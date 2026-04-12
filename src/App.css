@@ -48,18 +48,19 @@ table  { border-collapse: collapse; width: 100%; }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 24px;
+  padding: 0 16px;
   height: 60px;
   background: var(--bg2);
   border-bottom: 1px solid var(--border);
   position: sticky;
   top: 0;
   z-index: 100;
-  gap: 16px;
+  gap: 8px;
+  overflow: hidden;
 }
 
-.header-left  { display: flex; align-items: center; gap: 28px; }
-.header-right { display: flex; align-items: center; gap: 16px; }
+.header-left  { display: flex; align-items: center; gap: 20px; flex-shrink: 0; }
+.header-right { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
 
 /* Logo */
 .logo {
@@ -430,6 +431,10 @@ table  { border-collapse: collapse; width: 100%; }
   .at-top-row    { grid-template-columns: 1fr; }
   .at-config-row { grid-template-columns: 1fr; }
   .strategy-grid { grid-template-columns: 1fr; }
+  .header-time   { display: none; }
+  .logo-tag      { display: none; }
+  .market-badge  { display: none; }
+  .acc-btn       { padding: 5px 12px; }
 }
 
 /* ── Real Money Mode ───────────────────────────────────────────────────────── */
@@ -456,11 +461,13 @@ table  { border-collapse: collapse; width: 100%; }
 
 /* Account switcher */
 .acc-switcher {
-  display: flex; border: 1px solid var(--border); border-radius: 6px; overflow: hidden;
+  display: flex; border: 1px solid var(--border); border-radius: 6px;
+  overflow: hidden; flex-shrink: 0; min-width: 110px;
 }
 .acc-btn {
-  padding: 4px 14px; font-size: 12px; font-weight: 600;
+  padding: 5px 16px; font-size: 12px; font-weight: 600;
   color: var(--text2); transition: all 0.15s; background: transparent;
+  white-space: nowrap; flex: 1; text-align: center;
 }
 .acc-btn:hover       { color: var(--text); background: var(--card2); }
 .acc-btn.active-demo { color: var(--accent2); background: #0ea5e918; }
