@@ -9,8 +9,7 @@ const BROKERS = [
     logo: '🏦',
     tag: 'RECOMMENDED',
     tagColor: '#00d4aa',
-    fields: 'api',      // uses API Key + Account ID
-    hint: 'Get your API Key from Forex.com → My Account → API Access.',
+    fields: 'both',     // supports login AND api
     url: 'forex.com',
   },
   {
@@ -52,23 +51,29 @@ const BROKERS = [
 
 function BrokerPanel() {
   const [selectedBroker, setSelectedBroker] = useState(BROKERS[0]);
-  const [env, setEnv]           = useState('live');        // 'live' | 'demo'
-  // MT-style fields
-  const [server, setServer]     = useState('');
-  const [login, setLogin]       = useState('');
-  const [password, setPassword] = useState('');
-  // API-style fields
-  const [apiKey, setApiKey]     = useState('');
+  const [env, setEnv]             = useState('live');   // 'live' | 'demo'
+  const [authMethod, setAuthMethod] = useState('login'); // 'login' | 'api'
+
+  // Login fields
+  const [username, setUsername]   = useState('');
+  const [password, setPassword]   = useState('');
+  // MT-style extra field
+  const [server, setServer]       = useState('');
+  // API fields
+  const [apiKey, setApiKey]       = useState('');
   const [accountId, setAccountId] = useState('');
 
   const [connected, setConnected]   = useState(false);
   const [connecting, setConnecting] = useState(false);
   const [showPicker, setShowPicker] = useState(false);
 
-  const isApi = selectedBroker.fields === 'api';
+  const isBoth = selectedBroker.fields === 'both';
+  const isApi  = selectedBroker.fields === 'api' || (isBoth && authMethod === 'api');
+  const isMt   = selectedBroker.fields === 'mt';
+
   const canConnect = isApi
     ? apiKey.trim() && accountId.trim()
-    : server.trim() && login.trim() && password.trim();
+    : username.trim() && password.trim();
 
   const handleConnect = () => {
     if (!canConnect) return;
@@ -78,16 +83,17 @@ function BrokerPanel() {
 
   const handleDisconnect = () => {
     setConnected(false);
+    setUsername(''); setPassword(''); setServer('');
     setApiKey(''); setAccountId('');
-    setServer(''); setLogin(''); setPassword('');
   };
 
   const handleBrokerSelect = (b) => {
     setSelectedBroker(b);
+    setAuthMethod('login');
     setShowPicker(false);
     setConnected(false);
+    setUsername(''); setPassword(''); setServer('');
     setApiKey(''); setAccountId('');
-    setServer(''); setLogin(''); setPassword('');
   };
 
   return (
@@ -142,22 +148,43 @@ function BrokerPanel() {
       {connected ? (
         <div className="broker-connected-info">
           <div className="broker-row"><span>Broker</span><strong>{selectedBroker.name}</strong></div>
-          <div className="broker-row"><span>Environment</span><strong style={{ color: env === 'live' ? '#22c55e' : '#0ea5e9' }}>{env === 'live' ? 'Live' : 'Demo'}</strong></div>
+          <div className="broker-row"><span>Mode</span><strong style={{ color: env === 'live' ? '#22c55e' : '#0ea5e9' }}>{env === 'live' ? '● Live' : '● Demo'}</strong></div>
+          <div className="broker-row"><span>Auth</span><strong>{isApi ? 'API Key' : 'Login'}</strong></div>
           {isApi
-            ? <div className="broker-row"><span>Account ID</span><strong>{accountId}</strong></div>
-            : <div className="broker-row"><span>Login</span><strong>{login}</strong></div>
+            ? <div className="broker-row"><span>Account</span><strong>{accountId}</strong></div>
+            : <div className="broker-row"><span>Username</span><strong>{username}</strong></div>
           }
           <div className="broker-row"><span>Status</span><strong style={{ color: '#22c55e' }}>● Active</strong></div>
           <button className="broker-disconnect-btn" onClick={handleDisconnect}>Disconnect</button>
         </div>
       ) : (
         <div className="broker-form">
+
           {/* Live / Demo environment toggle */}
           <div className="broker-env-row">
             <button className={`env-btn ${env === 'live' ? 'active' : ''}`} onClick={() => setEnv('live')}>Live</button>
             <button className={`env-btn ${env === 'demo' ? 'active' : ''}`} onClick={() => setEnv('demo')}>Demo</button>
           </div>
 
+          {/* Login / API method toggle — shown only for Forex.com (both) */}
+          {isBoth && (
+            <div className="auth-method-row">
+              <button
+                className={`auth-method-btn ${authMethod === 'login' ? 'active' : ''}`}
+                onClick={() => setAuthMethod('login')}
+              >
+                🔑 Login
+              </button>
+              <button
+                className={`auth-method-btn ${authMethod === 'api' ? 'active' : ''}`}
+                onClick={() => setAuthMethod('api')}
+              >
+                ⚙️ API Key
+              </button>
+            </div>
+          )}
+
+          {/* Fields */}
           {isApi ? (
             <>
               <div className="field">
@@ -168,28 +195,31 @@ function BrokerPanel() {
                 <label className="field-label">Account ID</label>
                 <input className="field-input" placeholder="e.g. 001-001-1234567-001" value={accountId} onChange={e => setAccountId(e.target.value)} />
               </div>
+              <p className="broker-hint">Get API Key from Forex.com → My Account → API Access.</p>
             </>
           ) : (
             <>
               <div className="field">
-                <label className="field-label">Server</label>
-                <input className="field-input" placeholder="e.g. Forex-Live01" value={server} onChange={e => setServer(e.target.value)} />
-              </div>
-              <div className="field">
-                <label className="field-label">Login</label>
-                <input className="field-input" placeholder="Account number" value={login} onChange={e => setLogin(e.target.value)} />
+                <label className="field-label">Username / Email</label>
+                <input className="field-input" placeholder="Your Forex.com username" value={username} onChange={e => setUsername(e.target.value)} />
               </div>
               <div className="field">
                 <label className="field-label">Password</label>
                 <input className="field-input" type="password" placeholder="••••••••" value={password} onChange={e => setPassword(e.target.value)} />
               </div>
+              {isMt && (
+                <div className="field">
+                  <label className="field-label">Server</label>
+                  <input className="field-input" placeholder="e.g. Forex-Live01" value={server} onChange={e => setServer(e.target.value)} />
+                </div>
+              )}
+              <p className="broker-hint">Use your Forex.com account login credentials.</p>
             </>
           )}
 
           <button className="broker-connect-btn" onClick={handleConnect} disabled={connecting || !canConnect}>
             {connecting ? 'Connecting…' : `Connect to ${selectedBroker.name}`}
           </button>
-          <p className="broker-hint">{selectedBroker.hint}</p>
         </div>
       )}
     </div>

@@ -603,9 +603,18 @@ table  { border-collapse: collapse; width: 100%; }
   flex: 1; padding: 5px; font-size: 11px; font-weight: 600;
   color: var(--text2); transition: all 0.15s;
 }
-.env-btn.active {
-  color: #22c55e; background: #22c55e18;
+.env-btn.active { color: #22c55e; background: #22c55e18; }
+
+/* Login / API auth method toggle */
+.auth-method-row {
+  display: flex; border: 1px solid #f9731644; border-radius: var(--radius-sm);
+  overflow: hidden; margin-bottom: 4px;
 }
+.auth-method-btn {
+  flex: 1; padding: 6px; font-size: 11px; font-weight: 600;
+  color: var(--text2); transition: all 0.15s;
+}
+.auth-method-btn.active { color: #f97316; background: #f9731618; }
 
 @media (max-width: 900px) {
   .at-real-row { grid-template-columns: 1fr; }
