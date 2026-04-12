@@ -8,16 +8,99 @@ const TABS = [
   { id: 'autotrading', label: 'Auto Trading', icon: '⚡' },
 ];
 
+// ── Real-money warning modal ─────────────────────────────────────────────────
+function RealMoneyModal({ onConfirm, onCancel }) {
+  return (
+    <div className="modal-overlay">
+      <div className="modal-box">
+        <div className="modal-icon">⚠️</div>
+        <h2 className="modal-title">Switch to Real Money?</h2>
+        <p className="modal-body">
+          You are about to switch to <strong>Real Money mode</strong>. All trades
+          placed in this mode will use <strong>real funds</strong> from your
+          connected broker account.
+        </p>
+        <ul className="modal-list">
+          <li>Real losses can occur</li>
+          <li>Ensure your broker is connected</li>
+          <li>Use proper risk management</li>
+          <li>Only trade what you can afford to lose</li>
+        </ul>
+        <div className="modal-actions">
+          <button className="modal-btn cancel" onClick={onCancel}>Cancel</button>
+          <button className="modal-btn confirm" onClick={onConfirm}>I Understand — Switch</button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ── Account mode switcher ────────────────────────────────────────────────────
+function AccountSwitcher({ mode, onChange }) {
+  return (
+    <div className="acc-switcher">
+      <button
+        className={`acc-btn ${mode === 'demo' ? 'active-demo' : ''}`}
+        onClick={() => onChange('demo')}
+      >
+        Demo
+      </button>
+      <button
+        className={`acc-btn ${mode === 'real' ? 'active-real' : ''}`}
+        onClick={() => onChange('real')}
+      >
+        Real
+      </button>
+    </div>
+  );
+}
+
 export default function App() {
-  const [activeTab, setActiveTab] = useState('screener');
-  const now = new Date();
+  const [activeTab, setActiveTab]   = useState('screener');
+  const [accountMode, setAccountMode] = useState('demo');   // 'demo' | 'real'
+  const [showModal, setShowModal]   = useState(false);
+  const [realBalance] = useState(2548.30);
+  const [demoBalance] = useState(10000.00);
+
+  const now     = new Date();
   const timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
   const dateStr = now.toLocaleDateString([], { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' });
 
+  const isReal   = accountMode === 'real';
+  const balance  = isReal ? realBalance : demoBalance;
+
+  const handleModeChange = (mode) => {
+    if (mode === 'real' && accountMode === 'demo') {
+      setShowModal(true);
+    } else {
+      setAccountMode(mode);
+    }
+  };
+
   return (
-    <div className="app-root">
+    <div className={`app-root ${isReal ? 'real-mode' : ''}`}>
+
+      {/* ── Real money warning modal ───────────────────────────────────────── */}
+      {showModal && (
+        <RealMoneyModal
+          onConfirm={() => { setAccountMode('real'); setShowModal(false); }}
+          onCancel={() => setShowModal(false)}
+        />
+      )}
+
+      {/* ── Real-mode top banner ───────────────────────────────────────────── */}
+      {isReal && (
+        <div className="real-banner">
+          <span className="real-banner-dot" />
+          REAL MONEY MODE — Trades affect your actual broker account
+          <button className="real-banner-switch" onClick={() => setAccountMode('demo')}>
+            Switch to Demo
+          </button>
+        </div>
+      )}
+
       {/* ── Header ────────────────────────────────────────────────────────── */}
-      <header className="app-header">
+      <header className={`app-header ${isReal ? 'header-real' : ''}`}>
         <div className="header-left">
           <div className="logo">
             <span className="logo-icon">₣</span>
@@ -46,15 +129,22 @@ export default function App() {
             <span className="market-dot" />
             Markets Open
           </div>
+
+          {/* Account switcher */}
+          <AccountSwitcher mode={accountMode} onChange={handleModeChange} />
+
           <div className="header-time">
             <span className="time-val">{timeStr}</span>
             <span className="time-date">{dateStr} UTC</span>
           </div>
-          <div className="account-chip">
-            <span className="account-icon">◉</span>
+
+          <div className={`account-chip ${isReal ? 'account-chip-real' : ''}`}>
+            <span className="account-icon">{isReal ? '💳' : '◉'}</span>
             <div>
-              <div className="account-label">Demo Account</div>
-              <div className="account-balance">$10,000.00</div>
+              <div className="account-label">{isReal ? 'Real Account' : 'Demo Account'}</div>
+              <div className={`account-balance ${isReal ? 'balance-real' : ''}`}>
+                ${balance.toLocaleString('en-US', { minimumFractionDigits: 2 })}
+              </div>
             </div>
           </div>
         </div>
@@ -71,12 +161,16 @@ export default function App() {
       {/* ── Content ───────────────────────────────────────────────────────── */}
       <main className="app-main">
         {activeTab === 'screener'    && <Screener />}
-        {activeTab === 'autotrading' && <AutoTrading />}
+        {activeTab === 'autotrading' && <AutoTrading accountMode={accountMode} />}
       </main>
 
       {/* ── Footer ────────────────────────────────────────────────────────── */}
       <footer className="app-footer">
-        <span>ForexPro v1.0 · Data is simulated for demonstration purposes</span>
+        <span>
+          {isReal
+            ? '⚠️ Real Money Mode — Trade responsibly'
+            : 'ForexPro v1.0 · Demo data for illustration only'}
+        </span>
         <span>Session: {dateStr}</span>
       </footer>
     </div>

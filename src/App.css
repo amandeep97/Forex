@@ -431,3 +431,135 @@ table  { border-collapse: collapse; width: 100%; }
   .at-config-row { grid-template-columns: 1fr; }
   .strategy-grid { grid-template-columns: 1fr; }
 }
+
+/* ── Real Money Mode ───────────────────────────────────────────────────────── */
+.real-mode { --accent: #f97316; }
+
+.real-banner {
+  display: flex; align-items: center; gap: 10px; justify-content: center;
+  background: #7c2d1288; border-bottom: 1px solid #f9731655;
+  color: #fcd34d; font-size: 12px; font-weight: 600; padding: 6px 16px;
+  letter-spacing: 0.04em;
+}
+.real-banner-dot {
+  width: 7px; height: 7px; border-radius: 50%; background: #f97316;
+  animation: pulse 1s ease-in-out infinite;
+}
+.real-banner-switch {
+  margin-left: auto; padding: 3px 10px; border-radius: 4px;
+  border: 1px solid #f9731666; color: #f97316; font-size: 11px;
+  font-weight: 600; transition: background 0.15s;
+}
+.real-banner-switch:hover { background: #f9731620; }
+
+.header-real { border-bottom-color: #f9731633; background: #0d1321; }
+
+/* Account switcher */
+.acc-switcher {
+  display: flex; border: 1px solid var(--border); border-radius: 6px; overflow: hidden;
+}
+.acc-btn {
+  padding: 4px 14px; font-size: 12px; font-weight: 600;
+  color: var(--text2); transition: all 0.15s; background: transparent;
+}
+.acc-btn:hover       { color: var(--text); background: var(--card2); }
+.acc-btn.active-demo { color: var(--accent2); background: #0ea5e918; }
+.acc-btn.active-real { color: #f97316; background: #f9731618; }
+
+/* Account chip real */
+.account-chip-real { border-color: #f9731644; }
+.balance-real      { color: #f97316 !important; }
+
+/* Modal */
+.modal-overlay {
+  position: fixed; inset: 0; background: #00000088;
+  display: flex; align-items: center; justify-content: center; z-index: 999;
+  backdrop-filter: blur(4px);
+}
+.modal-box {
+  background: var(--card); border: 1px solid #f9731655;
+  border-radius: 12px; padding: 28px 28px 24px;
+  max-width: 400px; width: 90%; box-shadow: 0 20px 60px #0008;
+}
+.modal-icon  { font-size: 36px; text-align: center; margin-bottom: 12px; }
+.modal-title { font-size: 18px; font-weight: 700; color: var(--text); text-align: center; margin-bottom: 10px; }
+.modal-body  { font-size: 13px; color: var(--text2); line-height: 1.6; margin-bottom: 12px; }
+.modal-body strong { color: #f97316; }
+.modal-list {
+  list-style: none; margin-bottom: 20px;
+}
+.modal-list li {
+  font-size: 12px; color: var(--text2); padding: 4px 0;
+  padding-left: 16px; position: relative;
+}
+.modal-list li::before {
+  content: '•'; position: absolute; left: 0; color: #f97316;
+}
+.modal-actions { display: flex; gap: 10px; }
+.modal-btn {
+  flex: 1; padding: 10px; border-radius: 6px; font-size: 13px;
+  font-weight: 600; transition: all 0.15s;
+}
+.modal-btn.cancel  {
+  background: var(--card2); color: var(--text2);
+  border: 1px solid var(--border);
+}
+.modal-btn.cancel:hover  { color: var(--text); }
+.modal-btn.confirm {
+  background: #f9731620; color: #f97316;
+  border: 1px solid #f9731666;
+}
+.modal-btn.confirm:hover { background: #f9731635; }
+
+/* Real mode AutoTrading top row */
+.at-real-row {
+  display: grid; grid-template-columns: 1fr 320px; gap: 10px;
+}
+.real-warning-card {
+  display: flex; align-items: flex-start; gap: 12px;
+  background: #7c2d1215; border: 1px solid #f9731644;
+  border-radius: var(--radius); padding: 14px 16px;
+}
+
+/* Broker panel */
+.broker-panel {
+  background: var(--card); border: 1px solid #f9731444;
+  border-radius: var(--radius); padding: 14px 16px;
+}
+.broker-form { display: flex; flex-direction: column; gap: 8px; }
+.broker-form .field-input {
+  width: 100%; border-radius: var(--radius-sm);
+}
+.broker-form select.field-input {
+  appearance: none; cursor: pointer;
+}
+.broker-connect-btn {
+  width: 100%; padding: 8px; border-radius: var(--radius-sm);
+  background: #f9731620; color: #f97316; border: 1px solid #f9731666;
+  font-size: 13px; font-weight: 600; transition: all 0.15s; margin-top: 4px;
+}
+.broker-connect-btn:hover:not(:disabled) { background: #f9731635; }
+.broker-connect-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.broker-hint { font-size: 10px; color: var(--text3); line-height: 1.4; margin-top: 4px; }
+
+.broker-connected-badge {
+  margin-left: 8px; font-size: 11px; color: var(--up); font-weight: 600;
+  text-transform: none; letter-spacing: 0;
+}
+.broker-connected-info { display: flex; flex-direction: column; gap: 6px; }
+.broker-row {
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 12px; color: var(--text2); padding: 4px 0;
+  border-bottom: 1px solid var(--border);
+}
+.broker-row strong { color: var(--text); }
+.broker-disconnect-btn {
+  margin-top: 6px; padding: 6px; border-radius: var(--radius-sm);
+  border: 1px solid #ef444444; color: var(--down); font-size: 12px;
+  font-weight: 600; transition: all 0.15s;
+}
+.broker-disconnect-btn:hover { background: #ef444418; }
+
+@media (max-width: 900px) {
+  .at-real-row { grid-template-columns: 1fr; }
+}

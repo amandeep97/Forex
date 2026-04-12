@@ -1,6 +1,74 @@
 import { useState } from 'react';
 import { STRATEGIES, samplePositions, tradeHistory, SIGNALS, forexPairs } from '../data/forexData';
 
+// ── Broker connection panel (Real mode only) ──────────────────────────────────
+const BROKERS = ['MetaTrader 4', 'MetaTrader 5', 'cTrader', 'Interactive Brokers', 'OANDA', 'Alpaca', 'Custom API'];
+
+function BrokerPanel() {
+  const [broker, setBroker]       = useState('MetaTrader 5');
+  const [server, setServer]       = useState('');
+  const [login, setLogin]         = useState('');
+  const [password, setPassword]   = useState('');
+  const [connected, setConnected] = useState(false);
+  const [connecting, setConnecting] = useState(false);
+
+  const handleConnect = () => {
+    if (!server || !login || !password) return;
+    setConnecting(true);
+    setTimeout(() => { setConnecting(false); setConnected(true); }, 1800);
+  };
+
+  return (
+    <div className="broker-panel">
+      <div className="panel-title" style={{ color: '#f97316' }}>
+        ⚡ Broker Connection
+        {connected && <span className="broker-connected-badge">● Connected</span>}
+      </div>
+
+      {connected ? (
+        <div className="broker-connected-info">
+          <div className="broker-row"><span>Broker</span><strong>{broker}</strong></div>
+          <div className="broker-row"><span>Server</span><strong>{server}</strong></div>
+          <div className="broker-row"><span>Login</span><strong>{'*'.repeat(login.length)}</strong></div>
+          <div className="broker-row"><span>Status</span><strong style={{ color: '#22c55e' }}>Live</strong></div>
+          <button className="broker-disconnect-btn" onClick={() => { setConnected(false); setServer(''); setLogin(''); setPassword(''); }}>
+            Disconnect
+          </button>
+        </div>
+      ) : (
+        <div className="broker-form">
+          <div className="field">
+            <label className="field-label">Broker Platform</label>
+            <select className="field-input" value={broker} onChange={e => setBroker(e.target.value)}>
+              {BROKERS.map(b => <option key={b}>{b}</option>)}
+            </select>
+          </div>
+          <div className="field">
+            <label className="field-label">Server</label>
+            <input className="field-input" placeholder="e.g. ICMarkets-Live01" value={server} onChange={e => setServer(e.target.value)} />
+          </div>
+          <div className="field">
+            <label className="field-label">Login / Account No.</label>
+            <input className="field-input" placeholder="12345678" value={login} onChange={e => setLogin(e.target.value)} />
+          </div>
+          <div className="field">
+            <label className="field-label">Password</label>
+            <input className="field-input" type="password" placeholder="••••••••" value={password} onChange={e => setPassword(e.target.value)} />
+          </div>
+          <button
+            className="broker-connect-btn"
+            onClick={handleConnect}
+            disabled={connecting || !server || !login || !password}
+          >
+            {connecting ? 'Connecting…' : 'Connect Broker'}
+          </button>
+          <p className="broker-hint">Credentials are used only to connect your local MT4/MT5 terminal. Nothing is stored.</p>
+        </div>
+      )}
+    </div>
+  );
+}
+
 // ── Toggle switch ─────────────────────────────────────────────────────────────
 function Toggle({ checked, onChange, label }) {
   return (
@@ -108,7 +176,8 @@ function NumberInput({ label, value, onChange, min, max, step, unit }) {
 }
 
 // ── Main AutoTrading ──────────────────────────────────────────────────────────
-export default function AutoTrading() {
+export default function AutoTrading({ accountMode = 'demo' }) {
+  const isReal = accountMode === 'real';
   const [botActive, setBotActive] = useState(false);
   const [selectedStrategy, setSelectedStrategy] = useState(STRATEGIES[0]);
   const [positions, setPositions] = useState(samplePositions);
@@ -168,6 +237,23 @@ export default function AutoTrading() {
 
   return (
     <div className="autotrading-root">
+
+      {/* ── Real mode warning + broker panel ─────────────────────────────── */}
+      {isReal && (
+        <div className="at-real-row">
+          <div className="real-warning-card">
+            <span style={{ fontSize: 20 }}>⚠️</span>
+            <div>
+              <div style={{ fontWeight: 600, color: '#f97316', marginBottom: 2 }}>Real Money Mode Active</div>
+              <div style={{ fontSize: 12, color: '#94a3b8' }}>
+                All bot trades will execute on your live broker account using real funds.
+                Double-check your risk settings before enabling the bot.
+              </div>
+            </div>
+          </div>
+          <BrokerPanel />
+        </div>
+      )}
 
       {/* ── TOP: Bot control + stats ─────────────────────────────────────── */}
       <div className="at-top-row">
