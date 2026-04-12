@@ -1,21 +1,93 @@
 import { useState } from 'react';
 import { STRATEGIES, samplePositions, tradeHistory, SIGNALS, forexPairs } from '../data/forexData';
 
-// ── Broker connection panel (Real mode only) ──────────────────────────────────
-const BROKERS = ['MetaTrader 4', 'MetaTrader 5', 'cTrader', 'Interactive Brokers', 'OANDA', 'Alpaca', 'Custom API'];
+// ── Broker definitions ────────────────────────────────────────────────────────
+const BROKERS = [
+  {
+    id: 'forexcom',
+    name: 'Forex.com',
+    logo: '🏦',
+    tag: 'RECOMMENDED',
+    tagColor: '#00d4aa',
+    fields: 'api',      // uses API Key + Account ID
+    hint: 'Get your API Key from Forex.com → My Account → API Access.',
+    url: 'forex.com',
+  },
+  {
+    id: 'mt5',
+    name: 'MetaTrader 5',
+    logo: '📊',
+    fields: 'mt',
+    hint: 'Use your MT5 broker server, login and investor/trading password.',
+  },
+  {
+    id: 'mt4',
+    name: 'MetaTrader 4',
+    logo: '📈',
+    fields: 'mt',
+    hint: 'Use your MT4 broker server, login and trading password.',
+  },
+  {
+    id: 'ctrader',
+    name: 'cTrader',
+    logo: '🔷',
+    fields: 'api',
+    hint: 'Use your cTrader Open API credentials.',
+  },
+  {
+    id: 'oanda',
+    name: 'OANDA',
+    logo: '🌐',
+    fields: 'api',
+    hint: 'Get your API token from OANDA → Manage API Access.',
+  },
+  {
+    id: 'ib',
+    name: 'Interactive Brokers',
+    logo: '🏛️',
+    fields: 'mt',
+    hint: 'Requires TWS or IB Gateway running locally.',
+  },
+];
 
 function BrokerPanel() {
-  const [broker, setBroker]       = useState('MetaTrader 5');
-  const [server, setServer]       = useState('');
-  const [login, setLogin]         = useState('');
-  const [password, setPassword]   = useState('');
-  const [connected, setConnected] = useState(false);
+  const [selectedBroker, setSelectedBroker] = useState(BROKERS[0]);
+  const [env, setEnv]           = useState('live');        // 'live' | 'demo'
+  // MT-style fields
+  const [server, setServer]     = useState('');
+  const [login, setLogin]       = useState('');
+  const [password, setPassword] = useState('');
+  // API-style fields
+  const [apiKey, setApiKey]     = useState('');
+  const [accountId, setAccountId] = useState('');
+
+  const [connected, setConnected]   = useState(false);
   const [connecting, setConnecting] = useState(false);
+  const [showPicker, setShowPicker] = useState(false);
+
+  const isApi = selectedBroker.fields === 'api';
+  const canConnect = isApi
+    ? apiKey.trim() && accountId.trim()
+    : server.trim() && login.trim() && password.trim();
 
   const handleConnect = () => {
-    if (!server || !login || !password) return;
+    if (!canConnect) return;
     setConnecting(true);
-    setTimeout(() => { setConnecting(false); setConnected(true); }, 1800);
+    setTimeout(() => { setConnecting(false); setConnected(true); setShowPicker(false); }, 2000);
+  };
+
+  const handleDisconnect = () => {
+    setConnected(false);
+    setApiKey(''); setAccountId('');
+    setServer(''); setLogin(''); setPassword('');
+  };
+
+  const handleBrokerSelect = (b) => {
+    setSelectedBroker(b);
+    setShowPicker(false);
+    setConnected(false);
+    setApiKey(''); setAccountId('');
+    setServer(''); setLogin(''); setPassword('');
   };
 
   return (
@@ -25,44 +97,99 @@ function BrokerPanel() {
         {connected && <span className="broker-connected-badge">● Connected</span>}
       </div>
 
+      {/* Broker selector button */}
+      <div className="broker-selector-btn" onClick={() => !connected && setShowPicker(p => !p)}>
+        <span style={{ fontSize: 18 }}>{selectedBroker.logo}</span>
+        <div style={{ flex: 1 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+            <span style={{ fontWeight: 600, color: 'var(--text)', fontSize: 13 }}>{selectedBroker.name}</span>
+            {selectedBroker.tag && (
+              <span className="broker-tag" style={{ borderColor: selectedBroker.tagColor, color: selectedBroker.tagColor }}>
+                {selectedBroker.tag}
+              </span>
+            )}
+          </div>
+          {selectedBroker.url && (
+            <span style={{ fontSize: 10, color: 'var(--text3)' }}>{selectedBroker.url}</span>
+          )}
+        </div>
+        {!connected && <span style={{ color: 'var(--text3)', fontSize: 11 }}>▾</span>}
+      </div>
+
+      {/* Broker picker dropdown */}
+      {showPicker && (
+        <div className="broker-picker">
+          {BROKERS.map(b => (
+            <div
+              key={b.id}
+              className={`broker-picker-item ${selectedBroker.id === b.id ? 'selected' : ''}`}
+              onClick={() => handleBrokerSelect(b)}
+            >
+              <span style={{ fontSize: 16 }}>{b.logo}</span>
+              <div>
+                <div style={{ fontWeight: 600, fontSize: 12, color: 'var(--text)' }}>{b.name}</div>
+              </div>
+              {b.tag && (
+                <span className="broker-tag" style={{ marginLeft: 'auto', borderColor: b.tagColor, color: b.tagColor }}>
+                  {b.tag}
+                </span>
+              )}
+            </div>
+          ))}
+        </div>
+      )}
+
       {connected ? (
         <div className="broker-connected-info">
-          <div className="broker-row"><span>Broker</span><strong>{broker}</strong></div>
-          <div className="broker-row"><span>Server</span><strong>{server}</strong></div>
-          <div className="broker-row"><span>Login</span><strong>{'*'.repeat(login.length)}</strong></div>
-          <div className="broker-row"><span>Status</span><strong style={{ color: '#22c55e' }}>Live</strong></div>
-          <button className="broker-disconnect-btn" onClick={() => { setConnected(false); setServer(''); setLogin(''); setPassword(''); }}>
-            Disconnect
-          </button>
+          <div className="broker-row"><span>Broker</span><strong>{selectedBroker.name}</strong></div>
+          <div className="broker-row"><span>Environment</span><strong style={{ color: env === 'live' ? '#22c55e' : '#0ea5e9' }}>{env === 'live' ? 'Live' : 'Demo'}</strong></div>
+          {isApi
+            ? <div className="broker-row"><span>Account ID</span><strong>{accountId}</strong></div>
+            : <div className="broker-row"><span>Login</span><strong>{login}</strong></div>
+          }
+          <div className="broker-row"><span>Status</span><strong style={{ color: '#22c55e' }}>● Active</strong></div>
+          <button className="broker-disconnect-btn" onClick={handleDisconnect}>Disconnect</button>
         </div>
       ) : (
         <div className="broker-form">
-          <div className="field">
-            <label className="field-label">Broker Platform</label>
-            <select className="field-input" value={broker} onChange={e => setBroker(e.target.value)}>
-              {BROKERS.map(b => <option key={b}>{b}</option>)}
-            </select>
+          {/* Live / Demo environment toggle */}
+          <div className="broker-env-row">
+            <button className={`env-btn ${env === 'live' ? 'active' : ''}`} onClick={() => setEnv('live')}>Live</button>
+            <button className={`env-btn ${env === 'demo' ? 'active' : ''}`} onClick={() => setEnv('demo')}>Demo</button>
           </div>
-          <div className="field">
-            <label className="field-label">Server</label>
-            <input className="field-input" placeholder="e.g. ICMarkets-Live01" value={server} onChange={e => setServer(e.target.value)} />
-          </div>
-          <div className="field">
-            <label className="field-label">Login / Account No.</label>
-            <input className="field-input" placeholder="12345678" value={login} onChange={e => setLogin(e.target.value)} />
-          </div>
-          <div className="field">
-            <label className="field-label">Password</label>
-            <input className="field-input" type="password" placeholder="••••••••" value={password} onChange={e => setPassword(e.target.value)} />
-          </div>
-          <button
-            className="broker-connect-btn"
-            onClick={handleConnect}
-            disabled={connecting || !server || !login || !password}
-          >
-            {connecting ? 'Connecting…' : 'Connect Broker'}
+
+          {isApi ? (
+            <>
+              <div className="field">
+                <label className="field-label">API Key</label>
+                <input className="field-input" placeholder="Paste your API key…" value={apiKey} onChange={e => setApiKey(e.target.value)} />
+              </div>
+              <div className="field">
+                <label className="field-label">Account ID</label>
+                <input className="field-input" placeholder="e.g. 001-001-1234567-001" value={accountId} onChange={e => setAccountId(e.target.value)} />
+              </div>
+            </>
+          ) : (
+            <>
+              <div className="field">
+                <label className="field-label">Server</label>
+                <input className="field-input" placeholder="e.g. Forex-Live01" value={server} onChange={e => setServer(e.target.value)} />
+              </div>
+              <div className="field">
+                <label className="field-label">Login</label>
+                <input className="field-input" placeholder="Account number" value={login} onChange={e => setLogin(e.target.value)} />
+              </div>
+              <div className="field">
+                <label className="field-label">Password</label>
+                <input className="field-input" type="password" placeholder="••••••••" value={password} onChange={e => setPassword(e.target.value)} />
+              </div>
+            </>
+          )}
+
+          <button className="broker-connect-btn" onClick={handleConnect} disabled={connecting || !canConnect}>
+            {connecting ? 'Connecting…' : `Connect to ${selectedBroker.name}`}
           </button>
-          <p className="broker-hint">Credentials are used only to connect your local MT4/MT5 terminal. Nothing is stored.</p>
+          <p className="broker-hint">{selectedBroker.hint}</p>
         </div>
       )}
     </div>

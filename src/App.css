@@ -567,6 +567,46 @@ table  { border-collapse: collapse; width: 100%; }
 }
 .broker-disconnect-btn:hover { background: #ef444418; }
 
+/* Broker selector */
+.broker-selector-btn {
+  display: flex; align-items: center; gap: 10px;
+  padding: 8px 10px; border: 1px solid var(--border);
+  border-radius: var(--radius-sm); cursor: pointer;
+  transition: border 0.15s; margin-bottom: 8px;
+}
+.broker-selector-btn:hover { border-color: #f9731666; }
+
+.broker-tag {
+  font-size: 9px; font-weight: 700; padding: 1px 5px;
+  border-radius: 3px; border: 1px solid; letter-spacing: 0.06em;
+}
+
+/* Broker picker dropdown */
+.broker-picker {
+  border: 1px solid var(--border); border-radius: var(--radius-sm);
+  background: var(--bg2); margin-bottom: 8px; overflow: hidden;
+}
+.broker-picker-item {
+  display: flex; align-items: center; gap: 8px;
+  padding: 8px 10px; cursor: pointer; transition: background 0.12s;
+  font-size: 12px;
+}
+.broker-picker-item:hover    { background: var(--card2); }
+.broker-picker-item.selected { background: #f9731610; }
+
+/* Live/Demo env toggle */
+.broker-env-row {
+  display: flex; border: 1px solid var(--border); border-radius: var(--radius-sm);
+  overflow: hidden; margin-bottom: 4px;
+}
+.env-btn {
+  flex: 1; padding: 5px; font-size: 11px; font-weight: 600;
+  color: var(--text2); transition: all 0.15s;
+}
+.env-btn.active {
+  color: #22c55e; background: #22c55e18;
+}
+
 @media (max-width: 900px) {
   .at-real-row { grid-template-columns: 1fr; }
 }
