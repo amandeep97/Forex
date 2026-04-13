@@ -227,6 +227,7 @@ export default function Screener() {
     { key: 'rsi',       label: 'RSI',      width: 110 },
     { key: null,        label: 'Trend',    width: 90  },
     { key: 'signal',    label: 'Signal',   width: 110 },
+    { key: null,        label: 'Chart',    width: 60  },
   ];
 
   return (
@@ -425,9 +426,7 @@ export default function Screener() {
                 </td>
               </tr>
             ) : filtered.map(p => (
-              <tr key={p.id} className="pair-row clickable-row"
-                onClick={() => setChartInstrument(p)}
-                title="Click to view candlestick chart"
+              <tr key={p.id} className="pair-row"
               >
                 <td>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
@@ -454,6 +453,13 @@ export default function Screener() {
                 <td><RsiBar value={p.rsi} /></td>
                 <td><Sparkline data={p.sparkline} change={p.change} /></td>
                 <td><SignalBadge signal={p.signal} /></td>
+                <td>
+                  <button
+                    className="chart-open-btn"
+                    title="Open candlestick chart"
+                    onClick={() => setChartInstrument(p)}
+                  >📈</button>
+                </td>
               </tr>
             ))}
           </tbody>

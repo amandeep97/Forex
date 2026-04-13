@@ -1,7 +1,7 @@
 // Generates realistic mock OHLC + volume candles for any instrument.
 // Volatility is derived from the instrument's price magnitude and change%.
 
-const TF_MINS = { '1M': 1, '5M': 5, '15M': 15, '1H': 60, '4H': 240, 'D': 1440 };
+const TF_MINS = { '1M': 1, '2M': 2, '3M': 3, '5M': 5, '15M': 15, '30M': 30, '1H': 60, '2H': 120, '4H': 240, '8H': 480, 'D': 1440, 'W': 10080 };
 
 export function generateCandles(instrument, timeframe = '1H', count = 80) {
   const tf      = TF_MINS[timeframe] || 60;
