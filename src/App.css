@@ -876,6 +876,45 @@ table  { border-collapse: collapse; width: 100%; }
   background: #fff; transition: left 0.2s; box-shadow: 0 1px 3px #0004;
 }
 .sf-toggle.on .sf-toggle-knob { left: 19px; }
+/* Slider range input (RSI/MFI settings) */
+.sf-range-row { display: flex; flex-direction: column; gap: 5px; margin-bottom: 4px; }
+.sf-slider {
+  -webkit-appearance: none; appearance: none;
+  width: 100%; height: 4px; border-radius: 2px;
+  background: var(--border2); outline: none; cursor: pointer;
+}
+.sf-slider::-webkit-slider-thumb {
+  -webkit-appearance: none; appearance: none;
+  width: 16px; height: 16px; border-radius: 50%;
+  background: var(--accent); cursor: pointer;
+  box-shadow: 0 0 0 3px #00d4aa22;
+}
+.sf-slider::-moz-range-thumb {
+  width: 16px; height: 16px; border-radius: 50%;
+  background: var(--accent); cursor: pointer; border: none;
+  box-shadow: 0 0 0 3px #00d4aa22;
+}
+
+/* Scrollable timeframe selector */
+.tf-scroll-row {
+  display: flex; gap: 3px; overflow-x: auto;
+  scrollbar-width: none; -webkit-overflow-scrolling: touch;
+  flex: 1; padding-bottom: 1px;
+}
+.tf-scroll-row::-webkit-scrollbar { display: none; }
+.tf-pill {
+  flex-shrink: 0; padding: 3px 9px; border-radius: 4px;
+  font-size: 11px; font-weight: 500; font-family: var(--mono);
+  color: var(--text3); border: 1px solid transparent; transition: all 0.12s;
+  white-space: nowrap; background: none;
+}
+.tf-pill:hover { color: var(--text2); background: var(--card2); }
+.tf-pill.active {
+  color: var(--accent); background: #00d4aa15;
+  border-color: #00d4aa44; font-weight: 700;
+}
+
+/* Legacy num-input kept for compatibility */
 .sf-num-row { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
 .sf-num-input {
   width: 60px; background: var(--bg2); border: 1px solid var(--border);
