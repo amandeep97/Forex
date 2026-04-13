@@ -55,45 +55,73 @@ async function fetchFromFrankfurter() {
   return out;
 }
 
-// ── Metals (metals.live — free, CORS-enabled) ─────────────────────────────────
+// ── Metals via CryptoCompare (precious) + metals.live (base) ─────────────────
+// CryptoCompare treats XAU/XAG/XPT/XPD as commodities — CORS-friendly & free
 async function fetchMetals() {
-  const res = await fetch('https://api.metals.live/v1/latest', { signal: AbortSignal.timeout(8000) });
-  const data = await res.json();
-  // API returns array of single-key objects OR a flat object
-  const flat = Array.isArray(data) ? Object.assign({}, ...data) : data;
   const out = {};
-  if (flat.gold      != null) out['XAU/USD'] = parseFloat(flat.gold);
-  if (flat.silver    != null) out['XAG/USD'] = parseFloat(flat.silver);
-  if (flat.platinum  != null) out['XPT/USD'] = parseFloat(flat.platinum);
-  if (flat.palladium != null) out['XPD/USD'] = parseFloat(flat.palladium);
-  if (flat.copper    != null) out['XCU/USD'] = parseFloat(flat.copper);
-  if (flat.aluminum  != null) out['XAL/USD'] = parseFloat(flat.aluminum);
-  if (flat.nickel    != null) out['XNI/USD'] = parseFloat(flat.nickel);
-  if (flat.zinc      != null) out['XZN/USD'] = parseFloat(flat.zinc);
+
+  // Primary: CryptoCompare for precious metals (confirmed CORS-friendly)
+  try {
+    const res = await fetch(
+      'https://min-api.cryptocompare.com/data/pricemulti?fsyms=XAU,XAG,XPT,XPD&tsyms=USD',
+      { signal: AbortSignal.timeout(7000) }
+    );
+    const data = await res.json();
+    if (data.XAU?.USD) out['XAU/USD'] = parseFloat(data.XAU.USD);
+    if (data.XAG?.USD) out['XAG/USD'] = parseFloat(data.XAG.USD);
+    if (data.XPT?.USD) out['XPT/USD'] = parseFloat(data.XPT.USD);
+    if (data.XPD?.USD) out['XPD/USD'] = parseFloat(data.XPD.USD);
+  } catch (_) { /* fall through */ }
+
+  // Supplement: api.metals.live for base metals (copper, aluminum, nickel, zinc)
+  try {
+    const res2 = await fetch('https://api.metals.live/v1/latest', { signal: AbortSignal.timeout(6000) });
+    const raw  = await res2.json();
+    const flat = Array.isArray(raw) ? Object.assign({}, ...raw) : raw;
+    if (!out['XAU/USD'] && flat.gold)      out['XAU/USD'] = parseFloat(flat.gold);
+    if (!out['XAG/USD'] && flat.silver)    out['XAG/USD'] = parseFloat(flat.silver);
+    if (!out['XPT/USD'] && flat.platinum)  out['XPT/USD'] = parseFloat(flat.platinum);
+    if (!out['XPD/USD'] && flat.palladium) out['XPD/USD'] = parseFloat(flat.palladium);
+    if (flat.copper)    out['XCU/USD'] = parseFloat(flat.copper);
+    if (flat.aluminum)  out['XAL/USD'] = parseFloat(flat.aluminum);
+    if (flat.nickel)    out['XNI/USD'] = parseFloat(flat.nickel);
+    if (flat.zinc)      out['XZN/USD'] = parseFloat(flat.zinc);
+  } catch (_) { /* base metals stay as demo */ }
+
   return out;
 }
 
-// ── Indices + Energy (Yahoo Finance v7 — free, CORS-omit) ────────────────────
-const YF_MAP = {
-  '^GSPC':    'US500',  '^DJI':    'US30',   '^NDX':    'US100',  '^RUT':   'US2000',
-  '^FTSE':    'UK100',  '^GDAXI':  'GER40',  '^FCHI':   'FRA40',  '^IBEX':  'ESP35',
-  '^N225':    'JPN225', '^AXJO':   'AUS200', '^HSI':    'HKG50',  '000300.SS': 'CHN50',
-  'CL=F':     'USOIL',  'BZ=F':    'UKOIL',  'NG=F':    'NATGAS',
-  'HO=F':     'HEATOIL','RB=F':    'RBOB',   'MTF=F':   'GASOIL', 'MTW=F':  'COALUSD',
+// ── Indices + Energy via Yahoo Finance v8 chart (per-symbol, parallel) ────────
+// Using v8/finance/chart per-symbol is more CORS-permissive than v7 batch quote
+const YF_SYMBOLS = {
+  '%5EGSPC':    'US500',   '%5EDJI':    'US30',    '%5ENDX':  'US100',
+  '%5ERUT':     'US2000',  '%5EFTSE':   'UK100',   '%5EGDAXI':'GER40',
+  '%5EFCHI':    'FRA40',   '%5EIBEX':   'ESP35',   '%5EN225': 'JPN225',
+  '%5EAXJO':    'AUS200',  '%5EHSI':    'HKG50',   '000300.SS':'CHN50',
+  'CL%3DF':     'USOIL',   'BZ%3DF':    'UKOIL',   'NG%3DF':  'NATGAS',
+  'HO%3DF':     'HEATOIL', 'RB%3DF':    'RBOB',
 };
 
-async function fetchYahooQuotes() {
-  const params = new URLSearchParams({ symbols: Object.keys(YF_MAP).join(',') });
-  const res = await fetch(
-    `https://query1.finance.yahoo.com/v7/finance/quote?${params}`,
-    { signal: AbortSignal.timeout(8000), credentials: 'omit' }
-  );
+async function fetchOneYFChart(encodedSym) {
+  const url = `https://query2.finance.yahoo.com/v8/finance/chart/${encodedSym}?interval=1d&range=1d`;
+  const res = await fetch(url, { signal: AbortSignal.timeout(5000), credentials: 'omit' });
   const json = await res.json();
-  const results = json?.quoteResponse?.result || [];
+  return json?.chart?.result?.[0]?.meta?.regularMarketPrice ?? null;
+}
+
+async function fetchMarkets() {
+  const entries = Object.entries(YF_SYMBOLS);
+  const settled = await Promise.allSettled(
+    entries.map(async ([sym, key]) => {
+      const price = await fetchOneYFChart(sym);
+      return { key, price };
+    })
+  );
   const out = {};
-  results.forEach(q => {
-    const key = YF_MAP[q.symbol];
-    if (key && q.regularMarketPrice != null) out[key] = q.regularMarketPrice;
+  settled.forEach(r => {
+    if (r.status === 'fulfilled' && r.value.price != null) {
+      out[r.value.key] = r.value.price;
+    }
   });
   return out;
 }
@@ -139,17 +167,17 @@ export function useLivePrices() {
     const cr = await fetchCryptoWithFallback();
     if (cr) { setCryptoRates(cr); anySuccess = true; }
 
-    // Metals — separate try so failure doesn't block others
+    // Metals — CryptoCompare primary, metals.live supplement
     try {
       const mt = await fetchMetals();
       if (mt && Object.keys(mt).length > 0) { setMetalRates(mt); anySuccess = true; }
-    } catch (_) { /* metals API unavailable — keep demo prices */ }
+    } catch (_) { /* keep demo prices */ }
 
-    // Indices + Energy — Yahoo Finance (may have CORS on some networks)
+    // Indices + Energy — Yahoo Finance v8 chart, per-symbol parallel
     try {
-      const mkt = await fetchYahooQuotes();
+      const mkt = await fetchMarkets();
       if (mkt && Object.keys(mkt).length > 0) { setMarketRates(mkt); anySuccess = true; }
-    } catch (_) { /* Yahoo Finance blocked — keep demo prices */ }
+    } catch (_) { /* keep demo prices */ }
 
     if (anySuccess) { setLastUpdate(new Date()); setError(null); }
     else setError('Live feed unavailable — showing demo prices');

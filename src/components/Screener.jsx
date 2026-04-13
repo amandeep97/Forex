@@ -119,8 +119,9 @@ export default function Screener() {
   const [tfFilter, setTfFilter] = useState('1H');
 
   // Candlestick pattern
-  const [patternType, setPatternType]       = useState('All');
+  const [patternType, setPatternType]         = useState('All');
   const [specificPattern, setSpecificPattern] = useState('');
+  const [patternLookback, setPatternLookback] = useState(5); // how many recent candles to scan
 
   // RSI settings
   const [rsiLength, setRsiLength] = useState(14);
@@ -179,7 +180,7 @@ export default function Screener() {
         const rsiVal   = computeRSI(candles, rsiLength);
         const mfiVal   = computeMFI(candles, mfiLength);
         const smc      = analyzeSMC(candles);
-        const patterns = detectCandlePatterns(candles, 8);
+        const patterns = detectCandlePatterns(candles, patternLookback);
         const cp       = candles[candles.length - 1].c;
         map[inst.id] = {
           rsi: rsiVal,
@@ -218,7 +219,7 @@ export default function Screener() {
       }
     });
     return map;
-  }, [tfFilter, rsiLength, mfiLength]);
+  }, [tfFilter, rsiLength, mfiLength, patternLookback]);
 
   // ── Live prices ───────────────────────────────────────────────────────────
   const instrumentsWithLive = useMemo(() => allInstruments.map(inst => {
@@ -391,10 +392,12 @@ export default function Screener() {
         <div style={{display:'flex',gap:8,alignItems:'center'}}>
           {/* Timeframe selector */}
           <span style={{color:'#475569',fontSize:11,whiteSpace:'nowrap'}}>Analysis TF:</span>
-          <div className="tf-scroll-row">
-            {SCREENER_TFS.map(tf=>(
-              <button key={tf} className={`tf-pill ${tfFilter===tf?'active':''}`} onClick={()=>setTfFilter(tf)}>{tf}</button>
-            ))}
+          <div className="tf-scroll-box">
+            <div className="tf-scroll-row">
+              {SCREENER_TFS.map(tf=>(
+                <button key={tf} className={`tf-pill ${tfFilter===tf?'active':''}`} onClick={()=>setTfFilter(tf)}>{tf}</button>
+              ))}
+            </div>
           </div>
           <button onClick={refresh} style={{color:'#00d4aa',fontSize:11,fontWeight:600,padding:'2px 8px',border:'1px solid #00d4aa44',borderRadius:4}}>↻</button>
         </div>
@@ -464,6 +467,13 @@ export default function Screener() {
                   <option key={p.id} value={p.id}>{p.name}</option>
                 ))}
               </select>
+              <div className="sf-row-label" style={{marginTop:10}}>Scan Interval (last N candles)</div>
+              <div className="sf-chip-row">
+                {[3,5,8,10,15,20].map(n=>(
+                  <button key={n} className={`sf-chip ${patternLookback===n?'active':''}`}
+                    onClick={()=>setPatternLookback(n)}>{n}</button>
+                ))}
+              </div>
             </FilterSection>
 
             {/* Support & Resistance */}
@@ -521,8 +531,8 @@ export default function Screener() {
             {/* RSI */}
             <FilterSection title="RSI" icon="📉">
               <RangeInput label="Length" value={rsiLength} onChange={setRsiLength} min={2} max={50}/>
-              <RangeInput label={`Overbought ≥ ${rsiOB}`} value={rsiOB} onChange={setRsiOB} min={51} max={99}/>
-              <RangeInput label={`Oversold ≤ ${rsiOS}`} value={rsiOS} onChange={setRsiOS} min={1} max={49}/>
+              <RangeInput label={`Overbought ≥ ${rsiOB}`} value={rsiOB} onChange={setRsiOB} min={30} max={99}/>
+              <RangeInput label={`Oversold ≤ ${rsiOS}`} value={rsiOS} onChange={setRsiOS} min={1} max={70}/>
               <div className="sf-chip-row" style={{marginTop:8}}>
                 {['All','Overbought','Neutral','Oversold'].map(f=>(
                   <button key={f} className={`sf-chip ${rsiFilter===f?'active':''}`}
@@ -535,8 +545,8 @@ export default function Screener() {
             {/* MFI */}
             <FilterSection title="Money Flow Index (MFI)" icon="💧">
               <RangeInput label="Length" value={mfiLength} onChange={setMfiLength} min={2} max={50}/>
-              <RangeInput label={`Overbought ≥ ${mfiOB}`} value={mfiOB} onChange={setMfiOB} min={51} max={99}/>
-              <RangeInput label={`Oversold ≤ ${mfiOS}`} value={mfiOS} onChange={setMfiOS} min={1} max={49}/>
+              <RangeInput label={`Overbought ≥ ${mfiOB}`} value={mfiOB} onChange={setMfiOB} min={30} max={99}/>
+              <RangeInput label={`Oversold ≤ ${mfiOS}`} value={mfiOS} onChange={setMfiOS} min={1} max={70}/>
               <div className="sf-chip-row" style={{marginTop:8}}>
                 {['All','Overbought','Neutral','Oversold'].map(f=>(
                   <button key={f} className={`sf-chip ${mfiFilter===f?'active':''}`}
