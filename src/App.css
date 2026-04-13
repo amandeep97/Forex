@@ -195,6 +195,13 @@ table  { border-collapse: collapse; width: 100%; }
 /* ── Screener ──────────────────────────────────────────────────────────────── */
 .screener-root { display: flex; flex-direction: column; gap: 14px; }
 
+/* Live status bar */
+.live-status-bar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 7px 12px; background: var(--card); border: 1px solid var(--border);
+  border-radius: var(--radius); flex-wrap: wrap; gap: 8px;
+}
+
 /* Asset type tabs */
 .asset-type-row {
   display: flex; gap: 6px; flex-wrap: wrap;

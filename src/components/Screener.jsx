@@ -1,5 +1,6 @@
 import { useState, useMemo } from 'react';
 import { allInstruments, ASSET_TYPES, FOREX_CATEGORIES, SIGNALS, ASSET_COLORS } from '../data/forexData';
+import { useLivePrices } from '../hooks/useLivePrices';
 
 // ── Mini sparkline ────────────────────────────────────────────────────────────
 function Sparkline({ data, change }) {
@@ -88,8 +89,30 @@ function fmtPrice(v) {
   return v.toFixed(5);
 }
 
+// ── Live price badge ──────────────────────────────────────────────────────────
+function LiveBadge({ isLive }) {
+  return isLive ? (
+    <span style={{
+      display: 'inline-flex', alignItems: 'center', gap: 4,
+      padding: '1px 6px', borderRadius: 10, fontSize: 9, fontWeight: 700,
+      color: '#22c55e', background: '#22c55e18', border: '1px solid #22c55e44',
+      letterSpacing: '0.06em',
+    }}>
+      <span style={{ width: 5, height: 5, borderRadius: '50%', background: '#22c55e', display: 'inline-block', animation: 'pulse 1.4s infinite' }} />
+      LIVE
+    </span>
+  ) : (
+    <span style={{
+      padding: '1px 6px', borderRadius: 10, fontSize: 9, fontWeight: 700,
+      color: '#475569', background: '#1e293b', border: '1px solid #334155',
+      letterSpacing: '0.06em',
+    }}>DEMO</span>
+  );
+}
+
 // ── Main Screener ─────────────────────────────────────────────────────────────
 export default function Screener() {
+  const { forexRates, cryptoRates, lastUpdate, loading, error, refresh } = useLivePrices();
   const [assetType, setAssetType]   = useState('All');
   const [subCategory, setSubCategory] = useState('All');
   const [search, setSearch]         = useState('');
@@ -110,8 +133,24 @@ export default function Screener() {
     return ['All', ...cats];
   }, [assetType]);
 
+  // Merge live prices into instruments
+  const instrumentsWithLive = useMemo(() => {
+    return allInstruments.map(inst => {
+      let livePrice = null;
+      if (inst.assetType === 'Forex')  livePrice = forexRates[inst.symbol];
+      if (inst.assetType === 'Crypto') livePrice = cryptoRates[inst.symbol];
+      if (livePrice) {
+        const spread = inst.spread;
+        const bid    = parseFloat(livePrice.toFixed(inst.bid > 10 ? 3 : 5));
+        const ask    = parseFloat((bid + spread).toFixed(inst.bid > 10 ? 3 : 5));
+        return { ...inst, bid, ask, isLive: true };
+      }
+      return { ...inst, isLive: false };
+    });
+  }, [forexRates, cryptoRates]);
+
   const filtered = useMemo(() => {
-    let list = allInstruments;
+    let list = instrumentsWithLive;
     if (assetType !== 'All') list = list.filter(i => i.assetType === assetType);
     if (subCategory !== 'All' && subCategories.length > 0) list = list.filter(i => i.category === subCategory);
     if (signalFilter !== 'All') list = list.filter(i => i.signal === signalFilter);
@@ -127,7 +166,7 @@ export default function Screener() {
       return 0;
     });
     return list;
-  }, [assetType, subCategory, search, sortKey, sortDir, signalFilter, subCategories]);
+  }, [instrumentsWithLive, assetType, subCategory, search, sortKey, sortDir, signalFilter, subCategories]);
 
   // Summary stats
   const total   = filtered.length;
@@ -144,8 +183,10 @@ export default function Screener() {
     return c;
   }, []);
 
+  const liveCount = filtered.filter(i => i.isLive).length;
+
   const cols = [
-    { key: 'symbol',    label: 'Symbol',   width: 110 },
+    { key: 'symbol',    label: 'Symbol',   width: 120 },
     { key: 'assetType', label: 'Type',     width: 80  },
     { key: 'category',  label: 'Category', width: 90  },
     { key: 'bid',       label: 'Bid',      width: 100 },
@@ -183,6 +224,36 @@ export default function Screener() {
             </button>
           );
         })}
+      </div>
+
+      {/* ── Live feed status bar ─────────────────────────────────────────── */}
+      <div className="live-status-bar">
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+          {loading ? (
+            <span style={{ color: '#475569', fontSize: 12 }}>⟳ Connecting to live feed…</span>
+          ) : error ? (
+            <span style={{ color: '#f97316', fontSize: 12 }}>⚠ {error}</span>
+          ) : (
+            <>
+              <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#22c55e', display: 'inline-block', animation: 'pulse 1.4s infinite' }} />
+              <span style={{ color: '#22c55e', fontSize: 12, fontWeight: 600 }}>
+                LIVE — {liveCount} instruments (Forex + Crypto)
+              </span>
+              <span style={{ color: '#475569', fontSize: 11 }}>
+                · Updated {lastUpdate ? lastUpdate.toLocaleTimeString() : '—'}
+              </span>
+            </>
+          )}
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+          <span style={{ color: '#475569', fontSize: 11 }}>Metals · Indices · Energy = Demo prices</span>
+          <button
+            onClick={refresh}
+            style={{ color: '#00d4aa', fontSize: 11, fontWeight: 600, padding: '2px 8px', border: '1px solid #00d4aa44', borderRadius: 4 }}
+          >
+            ↻ Refresh
+          </button>
+        </div>
       </div>
 
       {/* ── Summary row ─────────────────────────────────────────────────── */}
@@ -268,8 +339,11 @@ export default function Screener() {
             ) : filtered.map(p => (
               <tr key={p.id} className="pair-row">
                 <td>
-                  <div style={{ display: 'flex', flexDirection: 'column' }}>
-                    <span className="pair-symbol">{p.symbol}</span>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                      <span className="pair-symbol">{p.symbol}</span>
+                      <LiveBadge isLive={p.isLive} />
+                    </div>
                     {p.unit && <span className="pair-category">{p.unit}</span>}
                   </div>
                 </td>
