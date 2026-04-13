@@ -1,7 +1,9 @@
-// ── Forex Pair Mock Data ──────────────────────────────────────────────────────
+// ── Market Data ───────────────────────────────────────────────────────────────
 // Replace with live feed (WebSocket / REST API) when ready.
 
-export const CATEGORIES = ['All', 'Majors', 'Minors', 'Exotics'];
+export const ASSET_TYPES = ['All', 'Forex', 'Metals', 'Indices', 'Energy', 'Crypto'];
+
+export const FOREX_CATEGORIES = ['All', 'Majors', 'Minors', 'Exotics'];
 
 export const SIGNALS = {
   STRONG_BUY:  { label: 'Strong Buy',  color: '#16a34a', bg: '#14532d33' },
@@ -11,24 +13,14 @@ export const SIGNALS = {
   STRONG_SELL: { label: 'Strong Sell', color: '#ef4444', bg: '#7f1d1d33' },
 };
 
-// Utility: create a pair entry
-const pair = (symbol, category, bid, ask, change, high, low, vol, signal, rsi, macd) => ({
-  id: symbol.replace('/', ''),
-  symbol,
-  category,
-  bid,
-  ask,
-  spread: parseFloat((ask - bid).toFixed(5)),
-  change,
-  high,
-  low,
-  volume: vol,
-  signal,
-  rsi,
-  macd,
-  // sparkline trend data (7 closing prices)
-  sparkline: generateSparkline(bid, change),
-});
+// Asset type color tags
+export const ASSET_COLORS = {
+  Forex:   { color: '#0ea5e9', bg: '#0ea5e915' },
+  Metals:  { color: '#f59e0b', bg: '#f59e0b15' },
+  Indices: { color: '#a78bfa', bg: '#a78bfa15' },
+  Energy:  { color: '#22c55e', bg: '#22c55e15' },
+  Crypto:  { color: '#f97316', bg: '#f9731615' },
+};
 
 function generateSparkline(currentPrice, change) {
   const points = [];
@@ -41,35 +33,109 @@ function generateSparkline(currentPrice, change) {
   return points;
 }
 
+const item = (symbol, assetType, category, bid, ask, change, high, low, vol, signal, rsi, macd, unit = '') => ({
+  id: symbol.replace(/[^a-zA-Z0-9]/g, ''),
+  symbol,
+  assetType,
+  category,
+  bid,
+  ask,
+  spread: parseFloat((ask - bid).toFixed(ask > 1000 ? 2 : ask > 10 ? 3 : 5)),
+  change,
+  high,
+  low,
+  volume: vol,
+  signal,
+  rsi,
+  macd,
+  unit,
+  sparkline: generateSparkline(bid, change),
+});
+
+// ── FOREX ─────────────────────────────────────────────────────────────────────
 export const forexPairs = [
-  // ── MAJORS ──────────────────────────────────────────────────────────────────
-  pair('EUR/USD', 'Majors', 1.08542, 1.08558,  0.23, 1.08890, 1.08210, 89432, 'BUY',         58.4,  0.0012),
-  pair('GBP/USD', 'Majors', 1.27134, 1.27152, -0.41, 1.27680, 1.26920, 72891, 'SELL',        41.2, -0.0023),
-  pair('USD/JPY', 'Majors', 153.420, 153.437,  0.61, 153.890, 152.540, 95120, 'STRONG_BUY',  71.8,  0.4200),
-  pair('USD/CHF', 'Majors', 0.89012, 0.89030, -0.18, 0.89340, 0.88790, 41200, 'NEUTRAL',     50.1, -0.0005),
-  pair('AUD/USD', 'Majors', 0.64821, 0.64839, -0.55, 0.65180, 0.64610, 58340, 'STRONG_SELL', 28.9, -0.0031),
-  pair('USD/CAD', 'Majors', 1.36482, 1.36502,  0.14, 1.36780, 1.36120, 47890, 'BUY',         54.7,  0.0018),
-  pair('NZD/USD', 'Majors', 0.59234, 0.59252, -0.29, 0.59610, 0.58980, 33210, 'SELL',        43.6, -0.0014),
+  // Majors
+  item('EUR/USD', 'Forex', 'Majors', 1.08542, 1.08558,  0.23, 1.08890, 1.08210, 89432, 'BUY',         58.4,  0.0012),
+  item('GBP/USD', 'Forex', 'Majors', 1.27134, 1.27152, -0.41, 1.27680, 1.26920, 72891, 'SELL',        41.2, -0.0023),
+  item('USD/JPY', 'Forex', 'Majors', 153.420, 153.437,  0.61, 153.890, 152.540, 95120, 'STRONG_BUY',  71.8,  0.4200),
+  item('USD/CHF', 'Forex', 'Majors', 0.89012, 0.89030, -0.18, 0.89340, 0.88790, 41200, 'NEUTRAL',     50.1, -0.0005),
+  item('AUD/USD', 'Forex', 'Majors', 0.64821, 0.64839, -0.55, 0.65180, 0.64610, 58340, 'STRONG_SELL', 28.9, -0.0031),
+  item('USD/CAD', 'Forex', 'Majors', 1.36482, 1.36502,  0.14, 1.36780, 1.36120, 47890, 'BUY',         54.7,  0.0018),
+  item('NZD/USD', 'Forex', 'Majors', 0.59234, 0.59252, -0.29, 0.59610, 0.58980, 33210, 'SELL',        43.6, -0.0014),
+  // Minors
+  item('EUR/GBP', 'Forex', 'Minors', 0.85312, 0.85334,  0.47, 0.85580, 0.85010, 28900, 'BUY',         61.3,  0.0008),
+  item('EUR/JPY', 'Forex', 'Minors', 166.521, 166.548,  0.83, 167.120, 165.880, 51230, 'STRONG_BUY',  73.2,  0.5100),
+  item('GBP/JPY', 'Forex', 'Minors', 195.213, 195.245, -0.22, 196.100, 194.780, 44120, 'NEUTRAL',     48.8, -0.1200),
+  item('EUR/AUD', 'Forex', 'Minors', 1.67432, 1.67468,  0.36, 1.68010, 1.67100, 19840, 'BUY',         57.9,  0.0024),
+  item('AUD/JPY', 'Forex', 'Minors', 99.423,  99.451,  -0.63, 99.980,  98.920,  22340, 'SELL',        38.7, -0.2800),
+  item('GBP/CHF', 'Forex', 'Minors', 1.13241, 1.13275,  0.19, 1.13680, 1.12980, 14120, 'NEUTRAL',     52.1,  0.0009),
+  item('CAD/JPY', 'Forex', 'Minors', 112.432, 112.465,  0.54, 112.890, 111.980, 18760, 'BUY',         59.8,  0.3100),
+  // Exotics
+  item('USD/SGD', 'Forex', 'Exotics', 1.34521, 1.34578, -0.12, 1.34890, 1.34210, 8920,  'NEUTRAL',     49.3, -0.0003),
+  item('USD/MXN', 'Forex', 'Exotics', 17.2341, 17.2461,  0.91, 17.3120, 17.1230, 15640, 'STRONG_BUY',  69.4,  0.0812),
+  item('USD/ZAR', 'Forex', 'Exotics', 18.4321, 18.4521, -1.23, 18.5670, 18.3120, 12380, 'STRONG_SELL', 24.8, -0.0921),
+  item('EUR/TRY', 'Forex', 'Exotics', 34.8921, 34.9121,  1.54, 35.1230, 34.5670, 7840,  'STRONG_BUY',  74.1,  0.2341),
+  item('USD/INR', 'Forex', 'Exotics', 83.4210, 83.4510,  0.08, 83.5120, 83.3210, 9230,  'NEUTRAL',     51.2,  0.0241),
+];
 
-  // ── MINORS ──────────────────────────────────────────────────────────────────
-  pair('EUR/GBP', 'Minors', 0.85312, 0.85334,  0.47, 0.85580, 0.85010, 28900, 'BUY',         61.3,  0.0008),
-  pair('EUR/JPY', 'Minors', 166.521, 166.548,  0.83, 167.120, 165.880, 51230, 'STRONG_BUY',  73.2,  0.5100),
-  pair('GBP/JPY', 'Minors', 195.213, 195.245, -0.22, 196.100, 194.780, 44120, 'NEUTRAL',     48.8, -0.1200),
-  pair('EUR/AUD', 'Minors', 1.67432, 1.67468,  0.36, 1.68010, 1.67100, 19840, 'BUY',         57.9,  0.0024),
-  pair('EUR/CAD', 'Minors', 1.48123, 1.48158,  0.09, 1.48560, 1.47800, 17650, 'NEUTRAL',     51.4,  0.0006),
-  pair('AUD/JPY', 'Minors', 99.423,  99.451,  -0.63, 99.980,  98.920,  22340, 'SELL',        38.7, -0.2800),
-  pair('GBP/CHF', 'Minors', 1.13241, 1.13275,  0.19, 1.13680, 1.12980, 14120, 'NEUTRAL',     52.1,  0.0009),
-  pair('CAD/JPY', 'Minors', 112.432, 112.465,  0.54, 112.890, 111.980, 18760, 'BUY',         59.8,  0.3100),
+// ── METALS ────────────────────────────────────────────────────────────────────
+export const metals = [
+  item('XAU/USD', 'Metals', 'Precious', 2342.50, 2342.90,  0.84, 2358.40, 2318.20, 142300, 'STRONG_BUY',  72.4,  3.210, '/oz'),
+  item('XAG/USD', 'Metals', 'Precious', 27.842,  27.868,   1.12, 28.240,  27.410,  89200,  'STRONG_BUY',  68.9,  0.412, '/oz'),
+  item('XPT/USD', 'Metals', 'Precious', 968.40,  969.10,  -0.31, 978.50,  961.20,  18400,  'NEUTRAL',     49.7, -0.820, '/oz'),
+  item('XPD/USD', 'Metals', 'Precious', 1024.30, 1025.80, -0.76, 1042.10, 1018.40, 9800,   'SELL',        38.2, -2.140, '/oz'),
+  item('XCU/USD', 'Metals', 'Base',     4.2341,  4.2389,   0.43, 4.2810,  4.1920,  34100,  'BUY',         57.3,  0.041, '/lb'),
+  item('XAL/USD', 'Metals', 'Base',     0.9812,  0.9834,  -0.22, 0.9960,  0.9740,  21300,  'NEUTRAL',     48.1, -0.009, '/lb'),
+  item('XNI/USD', 'Metals', 'Base',     7.8421,  7.8612,   0.61, 7.9120,  7.7840,  14200,  'BUY',         56.8,  0.081, '/lb'),
+  item('XZN/USD', 'Metals', 'Base',     1.3241,  1.3278,  -0.18, 1.3420,  1.3140,  11800,  'NEUTRAL',     50.4, -0.012, '/lb'),
+];
 
-  // ── EXOTICS ─────────────────────────────────────────────────────────────────
-  pair('USD/SGD', 'Exotics', 1.34521, 1.34578, -0.12, 1.34890, 1.34210, 8920,  'NEUTRAL',     49.3, -0.0003),
-  pair('USD/HKD', 'Exotics', 7.82341, 7.82415,  0.03, 7.83120, 7.81890, 11230, 'NEUTRAL',     50.8,  0.0012),
-  pair('USD/NOK', 'Exotics', 10.5432, 10.5512, -0.87, 10.6230, 10.4890, 9840,  'STRONG_SELL', 27.4, -0.0342),
-  pair('USD/SEK', 'Exotics', 10.3241, 10.3321,  0.31, 10.3780, 10.2890, 8120,  'BUY',         56.2,  0.0289),
-  pair('USD/MXN', 'Exotics', 17.2341, 17.2461,  0.91, 17.3120, 17.1230, 15640, 'STRONG_BUY',  69.4,  0.0812),
-  pair('USD/ZAR', 'Exotics', 18.4321, 18.4521, -1.23, 18.5670, 18.3120, 12380, 'STRONG_SELL', 24.8, -0.0921),
-  pair('EUR/TRY', 'Exotics', 34.8921, 34.9121,  1.54, 35.1230, 34.5670, 7840,  'STRONG_BUY',  74.1,  0.2341),
-  pair('USD/INR', 'Exotics', 83.4210, 83.4510,  0.08, 83.5120, 83.3210, 9230,  'NEUTRAL',     51.2,  0.0241),
+// ── INDICES ───────────────────────────────────────────────────────────────────
+export const indices = [
+  item('US500',   'Indices', 'Americas', 5218.40, 5219.10,  0.52, 5248.30, 5194.20, 312400, 'BUY',         61.2,  8.420),
+  item('US30',    'Indices', 'Americas', 38942.0, 38948.0,  0.34, 39120.0, 38720.0, 198200, 'BUY',         57.8,  42.10),
+  item('US100',   'Indices', 'Americas', 18124.0, 18128.0,  0.89, 18310.0, 17980.0, 241800, 'STRONG_BUY',  70.4,  68.20),
+  item('US2000',  'Indices', 'Americas', 2048.20, 2049.10, -0.41, 2068.40, 2034.10, 84100,  'SELL',        41.3, -4.810),
+  item('UK100',   'Indices', 'Europe',   8124.30, 8125.80, -0.28, 8198.40, 8094.20, 142100, 'NEUTRAL',     49.2, -6.320),
+  item('GER40',   'Indices', 'Europe',   18241.0, 18245.0,  0.63, 18410.0, 18140.0, 168400, 'BUY',         59.4,  42.80),
+  item('FRA40',   'Indices', 'Europe',   8012.40, 8014.20, -0.19, 8084.10, 7984.30, 98200,  'NEUTRAL',     51.1, -8.420),
+  item('ESP35',   'Indices', 'Europe',   11241.0, 11244.0,  0.41, 11310.0, 11190.0, 62100,  'BUY',         55.8,  18.40),
+  item('JPN225',  'Indices', 'Asia',     38412.0, 38418.0,  1.24, 38810.0, 37940.0, 284100, 'STRONG_BUY',  72.1,  124.0),
+  item('AUS200',  'Indices', 'Asia',     7841.20, 7842.80,  0.38, 7892.40, 7804.10, 89400,  'BUY',         58.2,  14.20),
+  item('HKG50',   'Indices', 'Asia',     17124.0, 17128.0, -0.84, 17420.0, 16980.0, 124100, 'SELL',        38.4, -48.10),
+  item('CHN50',   'Indices', 'Asia',     12841.0, 12846.0, -0.56, 13020.0, 12740.0, 104200, 'SELL',        40.2, -28.40),
+];
+
+// ── ENERGY ───────────────────────────────────────────────────────────────────
+export const energy = [
+  item('USOIL',  'Energy', 'Crude Oil',   82.341,  82.389,  0.92, 83.210, 81.420, 284100, 'STRONG_BUY',  69.8,  0.821, '/bbl'),
+  item('UKOIL',  'Energy', 'Crude Oil',   86.124,  86.178,  0.78, 86.940, 85.210, 241800, 'BUY',         62.4,  0.642, '/bbl'),
+  item('NATGAS', 'Energy', 'Natural Gas',  2.1842,  2.1894, -1.34,  2.2840,  2.1420, 184100, 'STRONG_SELL', 26.4, -0.048, '/MMBtu'),
+  item('HEATOIL','Energy', 'Refined',      2.4821,  2.4878,  0.54,  2.5140,  2.4520, 84100,  'BUY',         58.1,  0.021, '/gal'),
+  item('GASOIL', 'Energy', 'Refined',    841.240, 841.840,  0.67, 848.120, 834.210, 64100,  'BUY',         60.2,  2.840, '/MT'),
+  item('RBOB',   'Energy', 'Refined',      2.6421,  2.6498,  0.88,  2.6840,  2.6120, 74200,  'BUY',         63.4,  0.034, '/gal'),
+  item('COALUSD','Energy', 'Coal',        124.841, 125.041, -0.92, 127.420, 123.840, 28100,  'SELL',        37.8, -0.841, '/MT'),
+];
+
+// ── CRYPTO ────────────────────────────────────────────────────────────────────
+export const crypto = [
+  item('BTC/USD', 'Crypto', 'Major',  68241.0, 68298.0,  2.14, 69420.0, 66840.0, 384200, 'STRONG_BUY',  71.2,  421.0),
+  item('ETH/USD', 'Crypto', 'Major',  3524.80, 3526.40,  1.84,  3612.40, 3448.20, 241800, 'STRONG_BUY',  68.4,  48.20),
+  item('XRP/USD', 'Crypto', 'Major',  0.52841, 0.52918,  0.94,  0.54210, 0.51840, 184100, 'BUY',         59.8,  0.0041),
+  item('SOL/USD', 'Crypto', 'Major',  142.841, 143.048,  3.24,  148.420, 138.210, 124100, 'STRONG_BUY',  74.1,  2.841),
+  item('BNB/USD', 'Crypto', 'Major',  584.210, 584.840,  1.12,  592.410, 576.840, 84100,  'BUY',         62.4,  4.821),
+  item('ADA/USD', 'Crypto', 'Alt',    0.44821, 0.44918, -0.84,  0.46120, 0.44210, 64100,  'SELL',        39.4, -0.0021),
+  item('DOGE/USD','Crypto', 'Alt',    0.14821, 0.14884,  1.42,  0.15420, 0.14510, 94100,  'BUY',         61.2,  0.0012),
+  item('AVAX/USD','Crypto', 'Alt',    34.8421, 34.9124,  2.84,  36.4210, 33.8420, 54100,  'STRONG_BUY',  72.8,  0.4821),
+];
+
+// ── All instruments combined ──────────────────────────────────────────────────
+export const allInstruments = [
+  ...forexPairs,
+  ...metals,
+  ...indices,
+  ...energy,
+  ...crypto,
 ];
 
 // ── Strategy presets ──────────────────────────────────────────────────────────
@@ -122,18 +188,20 @@ export const STRATEGIES = [
 
 // ── Sample active positions ───────────────────────────────────────────────────
 export const samplePositions = [
-  { id: 'T001', pair: 'EUR/USD', type: 'BUY',  lots: 0.05, openPrice: 1.08420, currentPrice: 1.08542, sl: 1.08100, tp: 1.08900, pnl: +61.00, pips: +12.2, openTime: '09:14', duration: '2h 31m' },
-  { id: 'T002', pair: 'USD/JPY', type: 'BUY',  lots: 0.02, openPrice: 153.120, currentPrice: 153.420, sl: 152.600, tp: 154.200, pnl: +46.50, pips: +30.0, openTime: '07:55', duration: '3h 50m' },
-  { id: 'T003', pair: 'GBP/USD', type: 'SELL', lots: 0.03, openPrice: 1.27390, currentPrice: 1.27134, sl: 1.27700, tp: 1.26800, pnl: +57.00, pips: +25.6, openTime: '10:02', duration: '1h 43m' },
-  { id: 'T004', pair: 'AUD/USD', type: 'SELL', lots: 0.02, openPrice: 0.64920, currentPrice: 0.64821, sl: 0.65200, tp: 0.64400, pnl: +14.80, pips: +9.9,  openTime: '10:45', duration: '1h 00m' },
+  { id: 'T001', pair: 'EUR/USD',  type: 'BUY',  lots: 0.05, openPrice: 1.08420,  currentPrice: 1.08542,  sl: 1.08100,  tp: 1.08900,  pnl: +61.00,  pips: +12.2, openTime: '09:14', duration: '2h 31m' },
+  { id: 'T002', pair: 'USD/JPY',  type: 'BUY',  lots: 0.02, openPrice: 153.120,  currentPrice: 153.420,  sl: 152.600,  tp: 154.200,  pnl: +46.50,  pips: +30.0, openTime: '07:55', duration: '3h 50m' },
+  { id: 'T003', pair: 'XAU/USD',  type: 'BUY',  lots: 0.10, openPrice: 2318.40,  currentPrice: 2342.50,  sl: 2300.00,  tp: 2380.00,  pnl: +241.00, pips: +241,  openTime: '08:30', duration: '3h 15m' },
+  { id: 'T004', pair: 'US100',    type: 'BUY',  lots: 0.01, openPrice: 17980.00, currentPrice: 18124.00, sl: 17800.00, tp: 18400.00, pnl: +144.00, pips: +144,  openTime: '09:45', duration: '2h 00m' },
 ];
 
 // ── Trade history ─────────────────────────────────────────────────────────────
 export const tradeHistory = [
-  { id: 'H001', pair: 'EUR/USD', type: 'BUY',  lots: 0.05, openPrice: 1.08120, closePrice: 1.08490, pnl: +138.75, pips: +37, result: 'WIN',  closeTime: '2026-04-11 16:42' },
-  { id: 'H002', pair: 'GBP/JPY', type: 'SELL', lots: 0.02, openPrice: 195.800, closePrice: 196.100, pnl: -45.00,  pips: -30, result: 'LOSS', closeTime: '2026-04-11 14:20' },
-  { id: 'H003', pair: 'USD/CAD', type: 'BUY',  lots: 0.03, openPrice: 1.36100, closePrice: 1.36480, pnl: +85.50,  pips: +38, result: 'WIN',  closeTime: '2026-04-11 11:05' },
-  { id: 'H004', pair: 'EUR/JPY', type: 'BUY',  lots: 0.04, openPrice: 165.980, closePrice: 166.520, pnl: +162.00, pips: +54, result: 'WIN',  closeTime: '2026-04-10 18:30' },
-  { id: 'H005', pair: 'NZD/USD', type: 'SELL', lots: 0.02, openPrice: 0.59450, closePrice: 0.59600, pnl: -22.50,  pips: -15, result: 'LOSS', closeTime: '2026-04-10 15:12' },
-  { id: 'H006', pair: 'USD/JPY', type: 'BUY',  lots: 0.05, openPrice: 152.800, closePrice: 153.380, pnl: +218.75, pips: +58, result: 'WIN',  closeTime: '2026-04-10 12:44' },
+  { id: 'H001', pair: 'EUR/USD',  type: 'BUY',  lots: 0.05, openPrice: 1.08120,  closePrice: 1.08490,  pnl: +138.75, pips: +37,  result: 'WIN',  closeTime: '2026-04-11 16:42' },
+  { id: 'H002', pair: 'XAU/USD',  type: 'BUY',  lots: 0.10, openPrice: 2298.40,  closePrice: 2341.20,  pnl: +427.80, pips: +428, result: 'WIN',  closeTime: '2026-04-11 15:30' },
+  { id: 'H003', pair: 'USOIL',    type: 'BUY',  lots: 0.10, openPrice: 80.420,   closePrice: 82.180,   pnl: +176.00, pips: +176, result: 'WIN',  closeTime: '2026-04-11 14:20' },
+  { id: 'H004', pair: 'GBP/JPY',  type: 'SELL', lots: 0.02, openPrice: 195.800,  closePrice: 196.100,  pnl: -45.00,  pips: -30,  result: 'LOSS', closeTime: '2026-04-11 14:20' },
+  { id: 'H005', pair: 'US500',    type: 'BUY',  lots: 0.02, openPrice: 5180.20,  closePrice: 5218.40,  pnl: +152.00, pips: +38,  result: 'WIN',  closeTime: '2026-04-11 11:05' },
+  { id: 'H006', pair: 'BTC/USD',  type: 'BUY',  lots: 0.01, openPrice: 66840.0,  closePrice: 68241.0,  pnl: +140.10, pips: +1401,result: 'WIN',  closeTime: '2026-04-10 18:30' },
+  { id: 'H007', pair: 'NATGAS',   type: 'SELL', lots: 0.10, openPrice: 2.2420,   closePrice: 2.1842,   pnl: +57.80,  pips: +58,  result: 'WIN',  closeTime: '2026-04-10 15:12' },
+  { id: 'H008', pair: 'USD/JPY',  type: 'BUY',  lots: 0.05, openPrice: 152.800,  closePrice: 153.380,  pnl: +218.75, pips: +58,  result: 'WIN',  closeTime: '2026-04-10 12:44' },
 ];

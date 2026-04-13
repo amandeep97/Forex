@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { forexPairs, CATEGORIES, SIGNALS } from '../data/forexData';
+import { allInstruments, ASSET_TYPES, FOREX_CATEGORIES, SIGNALS, ASSET_COLORS } from '../data/forexData';
 
 // ── Mini sparkline ────────────────────────────────────────────────────────────
 function Sparkline({ data, change }) {
@@ -27,17 +27,25 @@ function SignalBadge({ signal }) {
   if (!s) return null;
   return (
     <span style={{
-      padding: '2px 8px',
-      borderRadius: 4,
-      fontSize: 11,
-      fontWeight: 600,
-      letterSpacing: '0.03em',
-      color: s.color,
-      background: s.bg,
-      border: `1px solid ${s.color}44`,
-      whiteSpace: 'nowrap',
+      padding: '2px 8px', borderRadius: 4, fontSize: 11, fontWeight: 600,
+      letterSpacing: '0.03em', color: s.color, background: s.bg,
+      border: `1px solid ${s.color}44`, whiteSpace: 'nowrap',
     }}>
       {s.label}
+    </span>
+  );
+}
+
+// ── Asset type badge ──────────────────────────────────────────────────────────
+function AssetBadge({ type }) {
+  const c = ASSET_COLORS[type] || { color: '#94a3b8', bg: '#1e293b55' };
+  return (
+    <span style={{
+      padding: '1px 6px', borderRadius: 3, fontSize: 10, fontWeight: 600,
+      color: c.color, background: c.bg, border: `1px solid ${c.color}44`,
+      whiteSpace: 'nowrap',
+    }}>
+      {type}
     </span>
   );
 }
@@ -71,12 +79,22 @@ function SummaryCard({ label, value, color }) {
   );
 }
 
+// ── Format price based on magnitude ──────────────────────────────────────────
+function fmtPrice(v) {
+  if (v === undefined || v === null) return '—';
+  if (v >= 10000) return v.toFixed(0);
+  if (v >= 100)   return v.toFixed(2);
+  if (v >= 1)     return v.toFixed(3);
+  return v.toFixed(5);
+}
+
 // ── Main Screener ─────────────────────────────────────────────────────────────
 export default function Screener() {
-  const [category, setCategory] = useState('All');
-  const [search, setSearch] = useState('');
-  const [sortKey, setSortKey] = useState('symbol');
-  const [sortDir, setSortDir] = useState('asc');
+  const [assetType, setAssetType]   = useState('All');
+  const [subCategory, setSubCategory] = useState('All');
+  const [search, setSearch]         = useState('');
+  const [sortKey, setSortKey]       = useState('symbol');
+  const [sortDir, setSortDir]       = useState('asc');
   const [signalFilter, setSignalFilter] = useState('All');
 
   const handleSort = (key) => {
@@ -84,13 +102,22 @@ export default function Screener() {
     else { setSortKey(key); setSortDir('asc'); }
   };
 
+  // Sub-categories depend on chosen asset type
+  const subCategories = useMemo(() => {
+    if (assetType === 'All' || assetType === 'Crypto') return [];
+    if (assetType === 'Forex') return FOREX_CATEGORIES;
+    const cats = [...new Set(allInstruments.filter(i => i.assetType === assetType).map(i => i.category))];
+    return ['All', ...cats];
+  }, [assetType]);
+
   const filtered = useMemo(() => {
-    let list = forexPairs;
-    if (category !== 'All') list = list.filter(p => p.category === category);
-    if (signalFilter !== 'All') list = list.filter(p => p.signal === signalFilter);
+    let list = allInstruments;
+    if (assetType !== 'All') list = list.filter(i => i.assetType === assetType);
+    if (subCategory !== 'All' && subCategories.length > 0) list = list.filter(i => i.category === subCategory);
+    if (signalFilter !== 'All') list = list.filter(i => i.signal === signalFilter);
     if (search.trim()) {
       const q = search.trim().toUpperCase();
-      list = list.filter(p => p.symbol.includes(q));
+      list = list.filter(i => i.symbol.toUpperCase().includes(q));
     }
     list = [...list].sort((a, b) => {
       let av = a[sortKey], bv = b[sortKey];
@@ -100,53 +127,88 @@ export default function Screener() {
       return 0;
     });
     return list;
-  }, [category, search, sortKey, sortDir, signalFilter]);
+  }, [assetType, subCategory, search, sortKey, sortDir, signalFilter, subCategories]);
 
   // Summary stats
-  const total = forexPairs.length;
-  const bullish = forexPairs.filter(p => p.signal === 'STRONG_BUY' || p.signal === 'BUY').length;
-  const bearish = forexPairs.filter(p => p.signal === 'STRONG_SELL' || p.signal === 'SELL').length;
-  const neutral = forexPairs.filter(p => p.signal === 'NEUTRAL').length;
+  const total   = filtered.length;
+  const bullish = filtered.filter(p => p.signal === 'STRONG_BUY' || p.signal === 'BUY').length;
+  const bearish = filtered.filter(p => p.signal === 'STRONG_SELL' || p.signal === 'SELL').length;
+  const neutral = filtered.filter(p => p.signal === 'NEUTRAL').length;
+
+  // Asset type counts
+  const counts = useMemo(() => {
+    const c = {};
+    ASSET_TYPES.forEach(t => {
+      c[t] = t === 'All' ? allInstruments.length : allInstruments.filter(i => i.assetType === t).length;
+    });
+    return c;
+  }, []);
 
   const cols = [
-    { key: 'symbol',  label: 'Pair',     width: 110 },
-    { key: 'bid',     label: 'Bid',      width: 100 },
-    { key: 'ask',     label: 'Ask',      width: 100 },
-    { key: 'spread',  label: 'Spread',   width: 80  },
-    { key: 'change',  label: 'Change %', width: 90  },
-    { key: 'high',    label: 'High',     width: 100 },
-    { key: 'low',     label: 'Low',      width: 100 },
-    { key: 'volume',  label: 'Volume',   width: 90  },
-    { key: 'rsi',     label: 'RSI',      width: 110 },
-    { key: null,      label: 'Trend',    width: 90  },
-    { key: 'signal',  label: 'Signal',   width: 110 },
+    { key: 'symbol',    label: 'Symbol',   width: 110 },
+    { key: 'assetType', label: 'Type',     width: 80  },
+    { key: 'category',  label: 'Category', width: 90  },
+    { key: 'bid',       label: 'Bid',      width: 100 },
+    { key: 'ask',       label: 'Ask',      width: 100 },
+    { key: 'spread',    label: 'Spread',   width: 80  },
+    { key: 'change',    label: 'Change %', width: 90  },
+    { key: 'high',      label: 'High',     width: 100 },
+    { key: 'low',       label: 'Low',      width: 100 },
+    { key: 'volume',    label: 'Volume',   width: 90  },
+    { key: 'rsi',       label: 'RSI',      width: 110 },
+    { key: null,        label: 'Trend',    width: 90  },
+    { key: 'signal',    label: 'Signal',   width: 110 },
   ];
 
   return (
     <div className="screener-root">
-      {/* Summary row */}
-      <div className="summary-row">
-        <SummaryCard label="Total Pairs"  value={total}   color="#94a3b8" />
-        <SummaryCard label="Bullish"      value={bullish}  color="#22c55e" />
-        <SummaryCard label="Bearish"      value={bearish}  color="#ef4444" />
-        <SummaryCard label="Neutral"      value={neutral}  color="#94a3b8" />
-        <SummaryCard label="Showing"      value={filtered.length} color="#00d4aa" />
+
+      {/* ── Asset type tabs ─────────────────────────────────────────────── */}
+      <div className="asset-type-row">
+        {ASSET_TYPES.map(t => {
+          const c = ASSET_COLORS[t] || { color: '#94a3b8', bg: '#1e293b55' };
+          const active = assetType === t;
+          return (
+            <button
+              key={t}
+              className={`asset-type-btn ${active ? 'active' : ''}`}
+              style={active ? { borderColor: c.color, color: c.color, background: c.bg } : {}}
+              onClick={() => { setAssetType(t); setSubCategory('All'); }}
+            >
+              <span className="asset-type-icon">
+                {t === 'All' ? '◈' : t === 'Forex' ? '₣' : t === 'Metals' ? '⬡' : t === 'Indices' ? '📊' : t === 'Energy' ? '⚡' : '₿'}
+              </span>
+              {t}
+              <span className="asset-type-count">{counts[t]}</span>
+            </button>
+          );
+        })}
       </div>
 
-      {/* Filters */}
+      {/* ── Summary row ─────────────────────────────────────────────────── */}
+      <div className="summary-row">
+        <SummaryCard label="Showing"  value={total}   color="#00d4aa" />
+        <SummaryCard label="Bullish"  value={bullish}  color="#22c55e" />
+        <SummaryCard label="Bearish"  value={bearish}  color="#ef4444" />
+        <SummaryCard label="Neutral"  value={neutral}  color="#94a3b8" />
+      </div>
+
+      {/* ── Filters bar ─────────────────────────────────────────────────── */}
       <div className="filter-bar">
-        {/* Category tabs */}
-        <div className="tab-group">
-          {CATEGORIES.map(c => (
-            <button
-              key={c}
-              className={`tab-btn ${category === c ? 'active' : ''}`}
-              onClick={() => setCategory(c)}
-            >
-              {c}
-            </button>
-          ))}
-        </div>
+        {/* Sub-category tabs (Majors/Minors etc.) */}
+        {subCategories.length > 0 && (
+          <div className="tab-group">
+            {subCategories.map(c => (
+              <button
+                key={c}
+                className={`tab-btn ${subCategory === c ? 'active' : ''}`}
+                onClick={() => setSubCategory(c)}
+              >
+                {c}
+              </button>
+            ))}
+          </div>
+        )}
 
         {/* Signal filter */}
         <div className="tab-group">
@@ -171,17 +233,15 @@ export default function Screener() {
           <span className="search-icon">⌕</span>
           <input
             className="search-input"
-            placeholder="Search pair…"
+            placeholder="Search symbol…"
             value={search}
             onChange={e => setSearch(e.target.value)}
           />
-          {search && (
-            <button className="search-clear" onClick={() => setSearch('')}>×</button>
-          )}
+          {search && <button className="search-clear" onClick={() => setSearch('')}>×</button>}
         </div>
       </div>
 
-      {/* Table */}
+      {/* ── Table ───────────────────────────────────────────────────────── */}
       <div className="table-wrap">
         <table className="screener-table">
           <thead>
@@ -202,7 +262,7 @@ export default function Screener() {
             {filtered.length === 0 ? (
               <tr>
                 <td colSpan={cols.length} style={{ textAlign: 'center', padding: '40px 0', color: '#475569' }}>
-                  No pairs match your filters
+                  No instruments match your filters
                 </td>
               </tr>
             ) : filtered.map(p => (
@@ -210,19 +270,21 @@ export default function Screener() {
                 <td>
                   <div style={{ display: 'flex', flexDirection: 'column' }}>
                     <span className="pair-symbol">{p.symbol}</span>
-                    <span className="pair-category">{p.category}</span>
+                    {p.unit && <span className="pair-category">{p.unit}</span>}
                   </div>
                 </td>
-                <td className="mono">{p.bid.toFixed(p.bid > 10 ? 3 : 5)}</td>
-                <td className="mono">{p.ask.toFixed(p.ask > 10 ? 3 : 5)}</td>
-                <td className="mono spread-cell">{p.spread.toFixed(p.spread > 0.1 ? 3 : 5)}</td>
+                <td><AssetBadge type={p.assetType} /></td>
+                <td><span className="pair-category" style={{ fontSize: 12 }}>{p.category}</span></td>
+                <td className="mono">{fmtPrice(p.bid)}</td>
+                <td className="mono">{fmtPrice(p.ask)}</td>
+                <td className="mono spread-cell">{fmtPrice(p.spread)}</td>
                 <td>
                   <span className={p.change >= 0 ? 'up' : 'down'}>
                     {p.change >= 0 ? '+' : ''}{p.change.toFixed(2)}%
                   </span>
                 </td>
-                <td className="mono muted">{p.high.toFixed(p.high > 10 ? 3 : 5)}</td>
-                <td className="mono muted">{p.low.toFixed(p.low > 10 ? 3 : 5)}</td>
+                <td className="mono muted">{fmtPrice(p.high)}</td>
+                <td className="mono muted">{fmtPrice(p.low)}</td>
                 <td className="mono muted">{p.volume.toLocaleString()}</td>
                 <td><RsiBar value={p.rsi} /></td>
                 <td><Sparkline data={p.sparkline} change={p.change} /></td>
@@ -234,8 +296,8 @@ export default function Screener() {
       </div>
 
       <div className="table-footer">
-        Showing <strong>{filtered.length}</strong> of <strong>{total}</strong> pairs
-        &nbsp;·&nbsp; Data refreshes every 5s &nbsp;·&nbsp;
+        Showing <strong>{filtered.length}</strong> of <strong>{allInstruments.length}</strong> instruments
+        &nbsp;·&nbsp;
         <span style={{ color: '#475569' }}>Last updated: {new Date().toLocaleTimeString()}</span>
       </div>
     </div>
