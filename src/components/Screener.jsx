@@ -1,6 +1,7 @@
 import { useState, useMemo } from 'react';
 import { allInstruments, ASSET_TYPES, FOREX_CATEGORIES, SIGNALS, ASSET_COLORS } from '../data/forexData';
 import { useLivePrices } from '../hooks/useLivePrices';
+import CandleChart from './CandleChart';
 
 // ── Mini sparkline ────────────────────────────────────────────────────────────
 function Sparkline({ data, change }) {
@@ -111,14 +112,25 @@ function LiveBadge({ isLive }) {
 }
 
 // ── Main Screener ─────────────────────────────────────────────────────────────
+const RSI_FILTERS   = ['All', 'Overbought >70', 'Neutral 30–70', 'Oversold <30'];
+const CHANGE_FILTERS = ['All', 'Strong Up >1%', 'Up 0–1%', 'Down 0–1%', 'Strong Down <-1%'];
+const VOL_FILTERS    = ['All', 'High Vol', 'Medium Vol', 'Low Vol'];
+
 export default function Screener() {
   const { forexRates, cryptoRates, lastUpdate, loading, error, refresh } = useLivePrices();
-  const [assetType, setAssetType]   = useState('All');
-  const [subCategory, setSubCategory] = useState('All');
-  const [search, setSearch]         = useState('');
-  const [sortKey, setSortKey]       = useState('symbol');
-  const [sortDir, setSortDir]       = useState('asc');
+  const [assetType, setAssetType]       = useState('All');
+  const [subCategory, setSubCategory]   = useState('All');
+  const [search, setSearch]             = useState('');
+  const [sortKey, setSortKey]           = useState('symbol');
+  const [sortDir, setSortDir]           = useState('asc');
   const [signalFilter, setSignalFilter] = useState('All');
+  // Advanced filters
+  const [rsiFilter, setRsiFilter]       = useState('All');
+  const [changeFilter, setChangeFilter] = useState('All');
+  const [volFilter, setVolFilter]       = useState('All');
+  const [showFilters, setShowFilters]   = useState(false);
+  // Candle chart
+  const [chartInstrument, setChartInstrument] = useState(null);
 
   const handleSort = (key) => {
     if (sortKey === key) setSortDir(d => d === 'asc' ? 'desc' : 'asc');
@@ -154,6 +166,22 @@ export default function Screener() {
     if (assetType !== 'All') list = list.filter(i => i.assetType === assetType);
     if (subCategory !== 'All' && subCategories.length > 0) list = list.filter(i => i.category === subCategory);
     if (signalFilter !== 'All') list = list.filter(i => i.signal === signalFilter);
+    // RSI filter
+    if (rsiFilter === 'Overbought >70') list = list.filter(i => i.rsi > 70);
+    if (rsiFilter === 'Neutral 30–70')  list = list.filter(i => i.rsi >= 30 && i.rsi <= 70);
+    if (rsiFilter === 'Oversold <30')   list = list.filter(i => i.rsi < 30);
+    // Change filter
+    if (changeFilter === 'Strong Up >1%')    list = list.filter(i => i.change > 1);
+    if (changeFilter === 'Up 0–1%')          list = list.filter(i => i.change > 0 && i.change <= 1);
+    if (changeFilter === 'Down 0–1%')        list = list.filter(i => i.change < 0 && i.change >= -1);
+    if (changeFilter === 'Strong Down <-1%') list = list.filter(i => i.change < -1);
+    // Volume filter
+    const vols = instrumentsWithLive.map(i => i.volume).sort((a,b) => a - b);
+    const v33 = vols[Math.floor(vols.length / 3)];
+    const v66 = vols[Math.floor(vols.length * 2 / 3)];
+    if (volFilter === 'High Vol')   list = list.filter(i => i.volume > v66);
+    if (volFilter === 'Medium Vol') list = list.filter(i => i.volume >= v33 && i.volume <= v66);
+    if (volFilter === 'Low Vol')    list = list.filter(i => i.volume < v33);
     if (search.trim()) {
       const q = search.trim().toUpperCase();
       list = list.filter(i => i.symbol.toUpperCase().includes(q));
@@ -266,6 +294,18 @@ export default function Screener() {
 
       {/* ── Filters bar ─────────────────────────────────────────────────── */}
       <div className="filter-bar">
+        {/* Advanced filter toggle */}
+        <button
+          className={`tab-btn ${showFilters ? 'active' : ''}`}
+          onClick={() => setShowFilters(f => !f)}
+          style={{ display: 'flex', alignItems: 'center', gap: 5 }}
+        >
+          ⧉ Filters
+          {(rsiFilter !== 'All' || changeFilter !== 'All' || volFilter !== 'All') && (
+            <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#00d4aa', display: 'inline-block' }} />
+          )}
+        </button>
+
         {/* Sub-category tabs (Majors/Minors etc.) */}
         {subCategories.length > 0 && (
           <div className="tab-group">
@@ -312,6 +352,54 @@ export default function Screener() {
         </div>
       </div>
 
+      {/* ── Advanced filter panel ───────────────────────────────────────── */}
+      {showFilters && (
+        <div className="adv-filter-panel">
+          <div className="adv-filter-group">
+            <div className="adv-filter-label">RSI</div>
+            <div className="tab-group">
+              {RSI_FILTERS.map(f => (
+                <button key={f} className={`tab-btn ${rsiFilter === f ? 'active' : ''}`}
+                  onClick={() => setRsiFilter(f)}>{f}</button>
+              ))}
+            </div>
+          </div>
+          <div className="adv-filter-group">
+            <div className="adv-filter-label">Change %</div>
+            <div className="tab-group">
+              {CHANGE_FILTERS.map(f => (
+                <button key={f} className={`tab-btn ${changeFilter === f ? 'active' : ''}`}
+                  onClick={() => setChangeFilter(f)}>{f}</button>
+              ))}
+            </div>
+          </div>
+          <div className="adv-filter-group">
+            <div className="adv-filter-label">Volume</div>
+            <div className="tab-group">
+              {VOL_FILTERS.map(f => (
+                <button key={f} className={`tab-btn ${volFilter === f ? 'active' : ''}`}
+                  onClick={() => setVolFilter(f)}>{f}</button>
+              ))}
+            </div>
+          </div>
+          <button
+            className="tab-btn"
+            style={{ marginLeft: 'auto', color: '#ef4444' }}
+            onClick={() => { setRsiFilter('All'); setChangeFilter('All'); setVolFilter('All'); }}
+          >
+            ✕ Clear
+          </button>
+        </div>
+      )}
+
+      {/* ── Candle chart modal ──────────────────────────────────────────── */}
+      {chartInstrument && (
+        <CandleChart
+          instrument={chartInstrument}
+          onClose={() => setChartInstrument(null)}
+        />
+      )}
+
       {/* ── Table ───────────────────────────────────────────────────────── */}
       <div className="table-wrap">
         <table className="screener-table">
@@ -337,7 +425,10 @@ export default function Screener() {
                 </td>
               </tr>
             ) : filtered.map(p => (
-              <tr key={p.id} className="pair-row">
+              <tr key={p.id} className="pair-row clickable-row"
+                onClick={() => setChartInstrument(p)}
+                title="Click to view candlestick chart"
+              >
                 <td>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
