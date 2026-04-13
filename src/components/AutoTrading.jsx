@@ -49,21 +49,26 @@ const BROKERS = [
   },
 ];
 
-function BrokerPanel() {
+function BrokerPanel({ brokerState }) {
   const [selectedBroker, setSelectedBroker] = useState(BROKERS[0]);
-  const [env, setEnv]             = useState('live');   // 'live' | 'demo'
-  const [authMethod, setAuthMethod] = useState('login'); // 'login' | 'api'
 
-  // Login fields
+  // Use lifted state from App so it persists across tab switches
+  const env        = brokerState.env;
+  const setEnv     = brokerState.setEnv;
+  const authMethod = brokerState.authMethod;
+  const setAuthMethod = brokerState.setAuthMethod;
+  const connected  = brokerState.connected;
+  const setConnected = (v) => {
+    brokerState.setConnected(v);
+    if (v) brokerState.setName(selectedBroker.name);
+  };
+
+  // Local form fields (these don't need to persist)
   const [username, setUsername]   = useState('');
   const [password, setPassword]   = useState('');
-  // MT-style extra field
   const [server, setServer]       = useState('');
-  // API fields
   const [apiKey, setApiKey]       = useState('');
   const [accountId, setAccountId] = useState('');
-
-  const [connected, setConnected]   = useState(false);
   const [connecting, setConnecting] = useState(false);
   const [showPicker, setShowPicker] = useState(false);
 
@@ -82,7 +87,8 @@ function BrokerPanel() {
   };
 
   const handleDisconnect = () => {
-    setConnected(false);
+    brokerState.setConnected(false);
+    brokerState.setName('');
     setUsername(''); setPassword(''); setServer('');
     setApiKey(''); setAccountId('');
   };
@@ -333,8 +339,13 @@ function NumberInput({ label, value, onChange, min, max, step, unit }) {
 }
 
 // ── Main AutoTrading ──────────────────────────────────────────────────────────
-export default function AutoTrading({ accountMode = 'demo' }) {
+export default function AutoTrading({ accountMode = 'demo', brokerState }) {
   const isReal = accountMode === 'real';
+  // fallback brokerState if not provided (standalone use)
+  const bs = brokerState || {
+    connected: false, name: '', env: 'live', authMethod: 'login',
+    setConnected: () => {}, setName: () => {}, setEnv: () => {}, setAuthMethod: () => {},
+  };
   const [botActive, setBotActive] = useState(false);
   const [selectedStrategy, setSelectedStrategy] = useState(STRATEGIES[0]);
   const [positions, setPositions] = useState(samplePositions);
@@ -408,7 +419,7 @@ export default function AutoTrading({ accountMode = 'demo' }) {
               </div>
             </div>
           </div>
-          <BrokerPanel />
+          <BrokerPanel brokerState={bs} />
         </div>
       )}
 

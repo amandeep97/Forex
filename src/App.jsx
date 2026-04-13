@@ -56,11 +56,28 @@ function AccountSwitcher({ mode, onChange }) {
 }
 
 export default function App() {
-  const [activeTab, setActiveTab]   = useState('screener');
-  const [accountMode, setAccountMode] = useState('demo');   // 'demo' | 'real'
-  const [showModal, setShowModal]   = useState(false);
+  const [activeTab, setActiveTab]     = useState('screener');
+  const [accountMode, setAccountMode] = useState('demo');
+  const [showModal, setShowModal]     = useState(false);
   const [realBalance] = useState(2548.30);
   const [demoBalance] = useState(10000.00);
+
+  // ── Broker state lifted here so it persists on tab switch ─────────────────
+  const [brokerConnected, setBrokerConnected]   = useState(false);
+  const [brokerName, setBrokerName]             = useState('');
+  const [brokerEnv, setBrokerEnv]               = useState('live');
+  const [brokerAuthMethod, setBrokerAuthMethod] = useState('login');
+
+  const brokerState = {
+    connected: brokerConnected,
+    name: brokerName,
+    env: brokerEnv,
+    authMethod: brokerAuthMethod,
+    setConnected: setBrokerConnected,
+    setName: setBrokerName,
+    setEnv: setBrokerEnv,
+    setAuthMethod: setBrokerAuthMethod,
+  };
 
   const now     = new Date();
   const timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
@@ -160,8 +177,13 @@ export default function App() {
 
       {/* ── Content ───────────────────────────────────────────────────────── */}
       <main className="app-main">
-        {activeTab === 'screener'    && <Screener />}
-        {activeTab === 'autotrading' && <AutoTrading accountMode={accountMode} />}
+        {/* Keep both mounted (hidden) so state is preserved on tab switch */}
+        <div style={{ display: activeTab === 'screener' ? 'block' : 'none' }}>
+          <Screener />
+        </div>
+        <div style={{ display: activeTab === 'autotrading' ? 'block' : 'none' }}>
+          <AutoTrading accountMode={accountMode} brokerState={brokerState} />
+        </div>
       </main>
 
       {/* ── Footer ────────────────────────────────────────────────────────── */}
