@@ -1017,3 +1017,13 @@ table  { border-collapse: collapse; width: 100%; }
   transition: all 0.14s; width: 100%;
 }
 .oanda-disconnect-btn:hover { background: #ef444422; }
+
+/* Chart data source badge */
+.cc-data-badge {
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 2px 7px; border-radius: 3px; font-size: 10px; font-weight: 700;
+  font-family: var(--mono); letter-spacing: 0.04em;
+}
+.cc-data-badge.live    { color: #22c55e; background: #22c55e15; border: 1px solid #22c55e44; }
+.cc-data-badge.sim     { color: #475569; background: #1e293b;   border: 1px solid #334155; }
+.cc-data-badge.loading { color: #94a3b8; background: #1e293b;   border: 1px solid #334155; }

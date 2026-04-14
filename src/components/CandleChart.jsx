@@ -1,9 +1,42 @@
-import { useState, useMemo, useRef } from 'react';
+import { useState, useMemo, useRef, useEffect } from 'react';
 import { generateCandles } from '../utils/generateCandles';
 import { detectCandlePatterns } from '../utils/candlePatterns';
 import { analyzeSMC } from '../utils/smcAnalysis';
+import { OANDA_MAP } from '../hooks/useLivePrices';
 
 const TIMEFRAMES = ['1M','2M','3M','5M','15M','30M','1H','2H','4H','8H','D','W'];
+
+// Our TF codes → OANDA granularity (OANDA has no M3 — use M4 as closest)
+const TF_GRAN = {
+  '1M':'M1','2M':'M2','3M':'M4','5M':'M5','15M':'M15','30M':'M30',
+  '1H':'H1','2H':'H2','4H':'H4','8H':'H8','D':'D','W':'W',
+};
+
+function loadOandaCreds() {
+  try { return JSON.parse(localStorage.getItem('oanda_creds')) || null; }
+  catch { return null; }
+}
+
+async function fetchOandaCandles(symbol, tf, apiKey, practice) {
+  const instrument = OANDA_MAP[symbol];
+  if (!instrument) return null;
+  const gran = TF_GRAN[tf] || 'H1';
+  const base = practice ? 'https://api-fxpractice.oanda.com/v3' : 'https://api-fxtrade.oanda.com/v3';
+  const res  = await fetch(
+    `${base}/instruments/${instrument}/candles?count=100&granularity=${gran}&price=M`,
+    { headers: { 'Authorization': `Bearer ${apiKey}` }, signal: AbortSignal.timeout(10000) }
+  );
+  if (!res.ok) return null;
+  const data = await res.json();
+  return (data.candles || [])
+    .filter(c => c.complete !== false || data.candles.indexOf(c) === data.candles.length - 1)
+    .map(c => ({
+      t: new Date(c.time).getTime(),
+      o: parseFloat(c.mid.o), h: parseFloat(c.mid.h),
+      l: parseFloat(c.mid.l), c: parseFloat(c.mid.c),
+      v: c.volume || 1,
+    }));
+}
 
 const PAT_COLOR = { bullish:'#22c55e', bearish:'#ef4444', neutral:'#94a3b8' };
 const STR_OP    = { strong:1, medium:0.75, weak:0.5 };
@@ -35,11 +68,34 @@ export default function CandleChart({ instrument, onClose }) {
   const [hover, setHover]     = useState(null);
   const [tab, setTab]         = useState('patterns');
   const [ov, setOv]           = useState({ ob:true, fvg:true, liq:true, bos:true, sr:true, tl:true });
+  const [candles, setCandles] = useState(() => generateCandles(instrument, '1H', 100));
+  const [isLive,  setIsLive]  = useState(false);
+  const [loadingC, setLoadingC] = useState(false);
   const svgRef                = useRef(null);
 
   const toggleOv = k => setOv(o => ({ ...o, [k]: !o[k] }));
 
-  const candles  = useMemo(() => generateCandles(instrument, tf, 80), [instrument, tf]);
+  // Load candles: try OANDA first, fall back to generated
+  useEffect(() => {
+    let cancelled = false;
+    const creds = loadOandaCreds();
+    setLoadingC(true);
+    (async () => {
+      if (creds?.apiKey) {
+        try {
+          const live = await fetchOandaCandles(instrument.symbol, tf, creds.apiKey, creds.practice);
+          if (!cancelled && live && live.length >= 10) {
+            setCandles(live); setIsLive(true); setLoadingC(false); return;
+          }
+        } catch { /* fall through */ }
+      }
+      if (!cancelled) {
+        setCandles(generateCandles(instrument, tf, 100));
+        setIsLive(false); setLoadingC(false);
+      }
+    })();
+    return () => { cancelled = true; };
+  }, [instrument, tf]);
   const patterns = useMemo(() => detectCandlePatterns(candles, 12), [candles]);
   const smc      = useMemo(() => analyzeSMC(candles), [candles]);
 
@@ -101,6 +157,12 @@ export default function CandleChart({ instrument, onClose }) {
           <div className="cc-head-left">
             <span className="cc-sym">{instrument.symbol}</span>
             <span className="cc-meta">{instrument.assetType} · {instrument.category}</span>
+            {loadingC
+              ? <span className="cc-data-badge loading">⟳ Loading…</span>
+              : isLive
+                ? <span className="cc-data-badge live">● OANDA LIVE</span>
+                : <span className="cc-data-badge sim">~ Simulated</span>
+            }
             {smc.premiumDiscount && (
               <span className={`cc-zone ${smc.premiumDiscount.zone}`}>
                 {smc.premiumDiscount.zone === 'premium' ? '▲ Premium' : '▼ Discount'}
