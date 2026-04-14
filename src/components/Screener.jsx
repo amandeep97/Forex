@@ -6,6 +6,7 @@ import { detectCandlePatterns, CANDLE_PATTERNS } from '../utils/candlePatterns';
 import { analyzeSMC } from '../utils/smcAnalysis';
 import { computeRSI, computeMFI } from '../utils/indicatorCalc';
 import CandleChart from './CandleChart';
+import OandaConnect from './OandaConnect';
 
 const SCREENER_TFS = ['1M','2M','3M','5M','15M','30M','1H','2H','4H','8H','D','W'];
 const ALL_PATTERNS = [{ id:'', name:'Any Pattern' }, ...CANDLE_PATTERNS];
@@ -104,7 +105,8 @@ function RangeInput({ label, value, onChange, min=1, max=200 }) {
 
 // ── Main Screener ─────────────────────────────────────────────────────────────
 export default function Screener() {
-  const { forexRates, cryptoRates, metalRates, marketRates, lastUpdate, loading, error, refresh } = useLivePrices();
+  const { forexRates, cryptoRates, metalRates, marketRates, lastUpdate, loading, error, refresh,
+          oandaStatus, connectOanda, disconnectOanda } = useLivePrices();
 
   // View
   const [assetType, setAssetType]     = useState('All');
@@ -384,10 +386,11 @@ export default function Screener() {
 
       {/* Live status */}
       <div className="live-status-bar">
-        <div style={{display:'flex',alignItems:'center',gap:8}}>
+        <div style={{display:'flex',alignItems:'center',gap:8,flexWrap:'wrap'}}>
           {loading?<span style={{color:'#475569',fontSize:12}}>⟳ Connecting…</span>
           :error?<span style={{color:'#f97316',fontSize:12}}>⚠ {error}</span>
-          :<><span style={{width:7,height:7,borderRadius:'50%',background:'#22c55e',display:'inline-block',animation:'pulse 1.4s infinite'}}/><span style={{color:'#22c55e',fontSize:12,fontWeight:600}}>LIVE — {liveCount} instruments</span><span style={{color:'#475569',fontSize:11}}>· {lastUpdate?lastUpdate.toLocaleTimeString():'—'}</span></>}
+          :<><span style={{width:7,height:7,borderRadius:'50%',background:'#22c55e',display:'inline-block',animation:'pulse 1.4s infinite'}}/><span style={{color:'#22c55e',fontSize:12,fontWeight:600}}>{oandaStatus.connected?'OANDA':'LIVE'} — {liveCount} instruments</span><span style={{color:'#475569',fontSize:11}}>· {lastUpdate?lastUpdate.toLocaleTimeString():'—'}</span></>}
+          <OandaConnect status={oandaStatus} onConnect={connectOanda} onDisconnect={disconnectOanda}/>
         </div>
         <div style={{display:'flex',gap:8,alignItems:'center'}}>
           {/* Timeframe selector */}

@@ -932,3 +932,88 @@ table  { border-collapse: collapse; width: 100%; }
   font-size: 11px; outline: none; cursor: pointer;
 }
 .sf-select:focus { border-color: var(--accent); }
+
+/* ── OANDA Connect ──────────────────────────────────────────────────────────── */
+.oanda-badge {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 3px 10px; border-radius: 4px; font-size: 11px; font-weight: 600;
+  color: var(--text3); border: 1px solid var(--border); background: var(--bg2);
+  transition: all 0.14s; white-space: nowrap; cursor: pointer;
+}
+.oanda-badge:hover { color: var(--text); border-color: var(--accent); }
+.oanda-badge.connected {
+  color: #22c55e; border-color: #22c55e55; background: #22c55e12;
+}
+.oanda-dot {
+  width: 6px; height: 6px; border-radius: 50%; background: #22c55e;
+  display: inline-block; flex-shrink: 0; animation: pulse 1.4s infinite;
+}
+.oanda-dot.large { width: 10px; height: 10px; }
+
+/* Modal overlay */
+.oanda-modal-overlay {
+  position: fixed; inset: 0; background: #00000088; z-index: 999;
+  display: flex; align-items: center; justify-content: center;
+  backdrop-filter: blur(2px);
+}
+.oanda-modal {
+  background: var(--card); border: 1px solid var(--border2);
+  border-radius: var(--radius); width: 380px; max-width: calc(100vw - 32px);
+  box-shadow: 0 24px 64px #00000066;
+}
+.oanda-modal-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 18px; border-bottom: 1px solid var(--border);
+  font-size: 14px; font-weight: 700; color: var(--text);
+}
+.oanda-close {
+  color: var(--text3); font-size: 14px; padding: 2px 6px; border-radius: 3px;
+  transition: all 0.12s; cursor: pointer;
+}
+.oanda-close:hover { color: var(--text); background: var(--card2); }
+.oanda-modal-body { padding: 18px; display: flex; flex-direction: column; gap: 6px; }
+
+/* Fields */
+.oanda-field-label {
+  font-size: 10px; font-weight: 700; color: var(--text3);
+  text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px;
+}
+.oanda-type-row { display: flex; gap: 6px; }
+.oanda-type-btn {
+  flex: 1; padding: 7px 0; border-radius: var(--radius-sm); font-size: 12px; font-weight: 500;
+  color: var(--text2); border: 1px solid var(--border); background: var(--bg2); transition: all 0.12s;
+}
+.oanda-type-btn:hover { color: var(--text); border-color: var(--border2); }
+.oanda-type-btn.active { color: var(--accent); border-color: #00d4aa55; background: #00d4aa12; font-weight: 600; }
+.oanda-type-btn.active.live { color: #f97316; border-color: #f9731655; background: #f9731612; }
+.oanda-input {
+  width: 100%; padding: 9px 11px; border-radius: var(--radius-sm);
+  border: 1px solid var(--border); background: var(--bg2); color: var(--text);
+  font-size: 12px; font-family: var(--mono); outline: none; transition: border-color 0.14s;
+}
+.oanda-input:focus { border-color: var(--accent); }
+.oanda-hint { font-size: 10px; color: var(--text3); line-height: 1.5; }
+.oanda-error {
+  font-size: 11px; color: #f97316; background: #f9731612;
+  border: 1px solid #f9731644; border-radius: var(--radius-sm);
+  padding: 7px 10px; margin-top: 2px;
+}
+.oanda-connect-btn {
+  margin-top: 6px; padding: 10px; border-radius: var(--radius-sm); font-size: 13px;
+  font-weight: 700; background: #00d4aa18; color: var(--accent);
+  border: 1px solid #00d4aa55; transition: all 0.14s; width: 100%;
+}
+.oanda-connect-btn:hover:not(:disabled) { background: #00d4aa28; }
+.oanda-connect-btn:disabled { opacity: 0.45; cursor: not-allowed; }
+.oanda-footer-note { font-size: 10px; color: var(--text3); line-height: 1.5; text-align: center; margin-top: 4px; }
+.oanda-connected-info {
+  display: flex; align-items: center; gap: 10px;
+  background: #22c55e10; border: 1px solid #22c55e33;
+  border-radius: var(--radius-sm); padding: 10px 12px;
+}
+.oanda-disconnect-btn {
+  margin-top: 10px; padding: 8px; border-radius: var(--radius-sm); font-size: 12px;
+  font-weight: 600; color: #ef4444; border: 1px solid #ef444455; background: #ef444412;
+  transition: all 0.14s; width: 100%;
+}
+.oanda-disconnect-btn:hover { background: #ef444422; }
