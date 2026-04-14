@@ -29,6 +29,11 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Fetch live prices into build
+        # Fetch fresh prices into dist/ so every deploy has current data.
+        # If the fetch fails (e.g. network hiccup) the placeholder is used.
+        run: node scripts/fetch-prices.js dist/prices.json || true
+
       - name: Deploy to gh-pages branch
         uses: peaceiris/actions-gh-pages@v4
         with:

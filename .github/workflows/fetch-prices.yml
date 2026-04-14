@@ -1,0 +1,45 @@
+name: Fetch Market Prices
+
+on:
+  schedule:
+    - cron: '*/15 * * * *'   # every 15 minutes
+  workflow_dispatch:           # manual trigger button in GitHub UI
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout gh-pages branch
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+
+      - name: Checkout fetch script from main
+        # We need the Node.js script but it lives in main, not gh-pages.
+        # Download it directly without a full checkout.
+        run: |
+          curl -fsSL \
+            "https://raw.githubusercontent.com/amandeep97/Forex/main/scripts/fetch-prices.js" \
+            -o fetch-prices.js
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Fetch live prices → prices.json
+        # Write directly to gh-pages root (served at /Forex/prices.json)
+        run: node fetch-prices.js prices.json
+
+      - name: Commit updated prices
+        run: |
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          git add prices.json
+          git diff --staged --quiet \
+            || git commit -m "prices $(date -u +'%H:%M UTC')" \
+            && git push origin gh-pages

@@ -2,6 +2,23 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 
 const REFRESH_MS = 15_000;
 
+// ── prices.json (written by GitHub Actions every 15 min) ─────────────────────
+// Served as a static file at /Forex/prices.json on GitHub Pages.
+// This bypasses all CORS issues — it's just a JSON file fetch.
+async function fetchPricesJson() {
+  try {
+    const base = import.meta.env.BASE_URL || '/';
+    const url  = `${base}prices.json?t=${Date.now()}`;
+    const res  = await fetch(url, { signal: AbortSignal.timeout(5000) });
+    if (!res.ok) return null;
+    const data = await res.json();
+    // Reject if data is older than 45 minutes (stale / deploy just happened)
+    const age = Date.now() - new Date(data.timestamp).getTime();
+    if (age > 45 * 60 * 1000) return null;
+    return data; // { timestamp, metals: {}, markets: {} }
+  } catch (_) { return null; }
+}
+
 // ── Forex ─────────────────────────────────────────────────────────────────────
 async function fetchForexWithFallback() {
   const apis = [() => fetchFromOpenER(), () => fetchFromFrankfurter()];
@@ -161,23 +178,38 @@ export function useLivePrices() {
   const refresh = useCallback(async () => {
     let anySuccess = false;
 
+    // ── Forex + Crypto (direct APIs, CORS-friendly) ──
     const fx = await fetchForexWithFallback();
     if (fx) { setForexRates(fx); fxSource.current = 'open.er-api.com'; anySuccess = true; }
 
     const cr = await fetchCryptoWithFallback();
     if (cr) { setCryptoRates(cr); anySuccess = true; }
 
-    // Metals — CryptoCompare primary, metals.live supplement
-    try {
-      const mt = await fetchMetals();
-      if (mt && Object.keys(mt).length > 0) { setMetalRates(mt); anySuccess = true; }
-    } catch (_) { /* keep demo prices */ }
+    // ── prices.json (GitHub Actions updates this every 15 min) ──
+    // This is the primary source for metals, indices, and energy.
+    const cached = await fetchPricesJson();
+    if (cached) {
+      if (cached.metals  && Object.keys(cached.metals).length  > 0) {
+        setMetalRates(cached.metals);
+        anySuccess = true;
+      }
+      if (cached.markets && Object.keys(cached.markets).length > 0) {
+        setMarketRates(cached.markets);
+        anySuccess = true;
+      }
+    } else {
+      // prices.json not ready yet → fall back to browser-side fetches
+      // (Metals: CryptoCompare works in browser; Indices: may be blocked by CORS)
+      try {
+        const mt = await fetchMetals();
+        if (mt && Object.keys(mt).length > 0) { setMetalRates(mt); anySuccess = true; }
+      } catch (_) { /* keep demo */ }
 
-    // Indices + Energy — Yahoo Finance v8 chart, per-symbol parallel
-    try {
-      const mkt = await fetchMarkets();
-      if (mkt && Object.keys(mkt).length > 0) { setMarketRates(mkt); anySuccess = true; }
-    } catch (_) { /* keep demo prices */ }
+      try {
+        const mkt = await fetchMarkets();
+        if (mkt && Object.keys(mkt).length > 0) { setMarketRates(mkt); anySuccess = true; }
+      } catch (_) { /* keep demo */ }
+    }
 
     if (anySuccess) { setLastUpdate(new Date()); setError(null); }
     else setError('Live feed unavailable — showing demo prices');
