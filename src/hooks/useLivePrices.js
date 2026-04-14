@@ -20,15 +20,19 @@ export const OANDA_MAP = {
   // Metals
   'XAU/USD':'XAU_USD','XAG/USD':'XAG_USD',
   'XPT/USD':'XPT_USD','XPD/USD':'XPD_USD','XCU/USD':'XCU_USD',
-  // Indices
+  // Indices (DE30_EUR = old DAX name, DE40_EUR = new name after Sept 2021 — chunked retry handles whichever is invalid)
   'US500':'SPX500_USD','US30':'US30_USD','US100':'NAS100_USD',
-  'US2000':'US2000_USD','UK100':'UK100_GBP','GER40':'DE30_EUR',
+  'US2000':'US2000_USD','UK100':'UK100_GBP',
+  'GER40':'DE30_EUR',  // older accounts; DE40_EUR for newer — retry chunks resolve this automatically
   'FRA40':'FR40_EUR','ESP35':'ES35_EUR','JPN225':'JP225_USD',
   'AUS200':'AU200_AUD','HKG50':'HK33_HKD',
   // Energy
   'USOIL':'WTICO_USD','UKOIL':'BCO_USD','NATGAS':'NATGAS_USD',
 };
-const OANDA_REVERSE = Object.fromEntries(Object.entries(OANDA_MAP).map(([k,v])=>[v,k]));
+const OANDA_REVERSE = {
+  ...Object.fromEntries(Object.entries(OANDA_MAP).map(([k,v])=>[v,k])),
+  'DE40_EUR': 'GER40', // newer OANDA accounts use DE40_EUR instead of DE30_EUR
+};
 
 function oandaBase(practice) { return practice ? OANDA_PRACTICE : OANDA_LIVE; }
 
@@ -52,13 +56,8 @@ export async function oandaDiscover(apiKey, practice) {
   return account.id;
 }
 
-// Batch-fetch all mapped instrument prices in one request
-async function oandaFetchPrices(apiKey, accountId, practice) {
-  const instruments = Object.values(OANDA_MAP).join('%2C');
-  const data = await oandaGet(
-    `/accounts/${accountId}/pricing?instruments=${instruments}`,
-    apiKey, practice
-  );
+// Parse prices array from a successful OANDA pricing response
+function parsePrices(data) {
   const out = {};
   (data.prices || []).forEach(p => {
     const sym = OANDA_REVERSE[p.instrument];
@@ -68,6 +67,41 @@ async function oandaFetchPrices(apiKey, accountId, practice) {
     if (bid > 0 && ask > 0) out[sym] = (bid + ask) / 2;
   });
   return out;
+}
+
+// Batch-fetch prices. If the full batch fails (e.g. one invalid instrument),
+// automatically split into chunks of 10 and retry — collecting what works.
+async function oandaFetchPrices(apiKey, accountId, practice) {
+  const allInstruments = Object.values(OANDA_MAP);
+
+  // Try full batch first (one request)
+  try {
+    const data = await oandaGet(
+      `/accounts/${accountId}/pricing?instruments=${allInstruments.join('%2C')}`,
+      apiKey, practice
+    );
+    return parsePrices(data);
+  } catch (fullErr) {
+    // Full batch failed — try in chunks of 8, collect whatever succeeds
+    const CHUNK = 8;
+    const out = {};
+    const chunks = [];
+    for (let i = 0; i < allInstruments.length; i += CHUNK)
+      chunks.push(allInstruments.slice(i, i + CHUNK));
+
+    await Promise.allSettled(chunks.map(async chunk => {
+      try {
+        const data = await oandaGet(
+          `/accounts/${accountId}/pricing?instruments=${chunk.join('%2C')}`,
+          apiKey, practice
+        );
+        Object.assign(out, parsePrices(data));
+      } catch { /* skip this chunk */ }
+    }));
+
+    if (Object.keys(out).length === 0) throw fullErr; // nothing worked
+    return out;
+  }
 }
 
 // ── Credential helpers (localStorage) ────────────────────────────────────────
