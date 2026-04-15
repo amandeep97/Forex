@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import Screener from './components/Screener';
 import AutoTrading from './components/AutoTrading';
+import Backtester from './components/Backtester';
 import './App.css';
 
 const TABS = [
   { id: 'screener',    label: 'Screener',     icon: '⊞' },
   { id: 'autotrading', label: 'Auto Trading', icon: '⚡' },
+  { id: 'backtester',  label: 'Backtester',   icon: '📊' },
 ];
 
 // ── Real-money warning modal ─────────────────────────────────────────────────
@@ -171,7 +173,10 @@ export default function App() {
       <div className="tab-indicator-strip">
         <div
           className="tab-indicator-bar"
-          style={{ left: activeTab === 'screener' ? '0%' : '50%', width: '50%' }}
+          style={{
+            left: activeTab === 'screener' ? '0%' : activeTab === 'autotrading' ? '33.33%' : '66.66%',
+            width: '33.33%'
+          }}
         />
       </div>
 
@@ -183,6 +188,9 @@ export default function App() {
         </div>
         <div style={{ display: activeTab === 'autotrading' ? 'block' : 'none' }}>
           <AutoTrading accountMode={accountMode} brokerState={brokerState} />
+        </div>
+        <div style={{ display: activeTab === 'backtester' ? 'block' : 'none' }}>
+          <Backtester />
         </div>
       </main>
 
