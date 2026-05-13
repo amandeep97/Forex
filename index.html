@@ -1,60 +1,16 @@
 <!DOCTYPE html>
-<html>
-<head>
-<title>Forex UI</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-body{
-margin:0;
-background:#0b0f1a;
-color:white;
-font-family:Arial;
-}
-.header{
-padding:15px;
-background:#111827;
-font-weight:bold;
-}
-.container{
-display:flex;
-height:90vh;
-}
-.sidebar{
-width:200px;
-background:#0f172a;
-padding:10px;
-}
-.main{
-flex:1;
-padding:20px;
-}
-.box{
-background:#111827;
-padding:20px;
-border-radius:10px;
-}
-</style>
-</head>
-
-<body>
-
-<div class="header">⚡ Forex Dashboard</div>
-
-<div class="container">
-
-<div class="sidebar">
-<p>EUR/USD</p>
-<p>GBP/USD</p>
-<p>USD/JPY</p>
-</div>
-
-<div class="main">
-<div class="box">
-Chart Area Working ✅
-</div>
-</div>
-
-</div>
-
-</body>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/forex-icon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Forex Pro — Screener & Auto Trading</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>
