@@ -1,143 +1,58 @@
-<!DOCTYPE html> 
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Forex Dashboard</title>
-
+<title>Forex UI</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #0b0f1a;
-  color: white;
+body{
+margin:0;
+background:#0b0f1a;
+color:white;
+font-family:Arial;
 }
-
-/* Top bar */
-.header {
-  display: flex;
-  justify-content: space-between;
-  padding: 15px 20px;
-  background: #111827;
-  border-bottom: 1px solid #222;
+.header{
+padding:15px;
+background:#111827;
+font-weight:bold;
 }
-
-.logo {
-  font-size: 18px;
-  font-weight: bold;
-  color: #00d4ff;
+.container{
+display:flex;
+height:90vh;
 }
-
-/* Layout */
-.container {
-  display: grid;
-  grid-template-columns: 250px 1fr 300px;
-  height: calc(100vh - 60px);
+.sidebar{
+width:200px;
+background:#0f172a;
+padding:10px;
 }
-
-/* Sidebar */
-.sidebar {
-  background: #0f172a;
-  padding: 15px;
-  border-right: 1px solid #222;
+.main{
+flex:1;
+padding:20px;
 }
-
-.pair {
-  padding: 10px;
-  margin: 5px 0;
-  background: #111827;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-.pair:hover {
-  background: #1f2937;
-}
-
-/* Main chart area */
-.main {
-  padding: 15px;
-}
-
-.chart-box {
-  height: 60%;
-  background: #111827;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #888;
-}
-
-/* Right panel */
-.right {
-  background: #0f172a;
-  padding: 15px;
-  border-left: 1px solid #222;
-}
-
-.card {
-  background: #111827;
-  padding: 10px;
-  border-radius: 10px;
-  margin-bottom: 10px;
-}
-
-/* Mobile */
-@media (max-width: 900px) {
-  .container {
-    grid-template-columns: 1fr;
-  }
-  .sidebar, .right {
-    display: none;
-  }
+.box{
+background:#111827;
+padding:20px;
+border-radius:10px;
 }
 </style>
-
 </head>
 
 <body>
 
-<div class="header">
-  <div class="logo">⚡ Forex Pro</div>
-  <div>Balance: $10,000</div>
-</div>
+<div class="header">⚡ Forex Dashboard</div>
 
 <div class="container">
 
-  <!-- Sidebar -->
-  <div class="sidebar">
-    <h3>Markets</h3>
-    <div class="pair">EUR/USD</div>
-    <div class="pair">GBP/USD</div>
-    <div class="pair">USD/JPY</div>
-    <div class="pair">BTC/USD</div>
-  </div>
+<div class="sidebar">
+<p>EUR/USD</p>
+<p>GBP/USD</p>
+<p>USD/JPY</p>
+</div>
 
-  <!-- Main -->
-  <div class="main">
-    <h2>Live Chart</h2>
-    <div class="chart-box">
-      Chart Area (Add TradingView or API here)
-    </div>
-  </div>
-
-  <!-- Right panel -->
-  <div class="right">
-    <h3>Trade Panel</h3>
-
-    <div class="card">Price: Loading...</div>
-    <div class="card">Spread: 0.2</div>
-    <div class="card">Change: +0.34%</div>
-
-    <button style="width:100%;padding:10px;background:#16a34a;color:white;border:none;border-radius:8px;margin-top:10px;">
-      BUY
-    </button>
-
-    <button style="width:100%;padding:10px;background:#dc2626;color:white;border:none;border-radius:8px;margin-top:10px;">
-      SELL
-    </button>
-  </div>
+<div class="main">
+<div class="box">
+Chart Area Working ✅
+</div>
+</div>
 
 </div>
 
