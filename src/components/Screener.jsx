@@ -82,8 +82,10 @@ function SortIcon({ col, sortKey, dir }) {
   return <span style={{color:'#00d4aa',marginLeft:3}}>{dir==='asc'?'↑':'↓'}</span>;
 }
 
-function SummaryCard({ label, value, color }) {
-  return <div className="summary-card"><span className="summary-value" style={{color}}>{value}</span><span className="summary-label">{label}</span></div>;
+function LiveBadge({ isLive }) {
+  return isLive
+    ? <span style={{display:'inline-flex',alignItems:'center',gap:4,padding:'1px 6px',borderRadius:10,fontSize:9,fontWeight:700,color:'#22c55e',background:'#22c55e18',border:'1px solid #22c55e44'}}><span style={{width:5,height:5,borderRadius:'50%',background:'#22c55e',display:'inline-block',animation:'pulse 1.4s infinite'}}/> LIVE</span>
+    : <span style={{padding:'1px 6px',borderRadius:10,fontSize:9,fontWeight:700,color:'#475569',background:'#1e293b',border:'1px solid #334155'}}>DEMO</span>;
 }
 
 function fmtPrice(v) {
@@ -94,22 +96,17 @@ function fmtPrice(v) {
   return v.toFixed(5);
 }
 
-function LiveBadge({ isLive }) {
-  return isLive
-    ? <span style={{display:'inline-flex',alignItems:'center',gap:4,padding:'1px 6px',borderRadius:10,fontSize:9,fontWeight:700,color:'#22c55e',background:'#22c55e18',border:'1px solid #22c55e44'}}><span style={{width:5,height:5,borderRadius:'50%',background:'#22c55e',display:'inline-block',animation:'pulse 1.4s infinite'}}/> LIVE</span>
-    : <span style={{padding:'1px 6px',borderRadius:10,fontSize:9,fontWeight:700,color:'#475569',background:'#1e293b',border:'1px solid #334155'}}>DEMO</span>;
-}
-
 // ── Main Screener ─────────────────────────────────────────────────────────────
 export default function Screener() {
   const { forexRates, cryptoRates, metalRates, marketRates, lastUpdate, loading, error, refresh,
           oandaStatus, connectOanda, disconnectOanda } = useLivePrices();
 
-  const [filters, setFilters]         = useState({ ...DEFAULT_FILTERS });
-  const [sortKey, setSortKey]         = useState('symbol');
-  const [sortDir, setSortDir]         = useState('asc');
+  const [filters, setFilters]           = useState({ ...DEFAULT_FILTERS });
+  const [showFilters, setShowFilters]   = useState(false);
+  const [sortKey, setSortKey]           = useState('symbol');
+  const [sortDir, setSortDir]           = useState('asc');
   const [signalFilter, setSignalFilter] = useState('All');
-  const [subCategory, setSubCategory] = useState('All');
+  const [subCategory, setSubCategory]   = useState('All');
   const [chartInstrument, setChartInstrument] = useState(null);
 
   const [watchlist, setWatchlist] = useState(() => {
@@ -122,6 +119,11 @@ export default function Screener() {
       return next;
     });
   };
+
+  const activeFilterCount = useMemo(() => {
+    const skip = new Set(['search','category','baseCurrency','candleInterval']);
+    return Object.keys(DEFAULT_FILTERS).filter(k => !skip.has(k) && filters[k] !== DEFAULT_FILTERS[k]).length;
+  }, [filters]);
 
   const handleSort = (key) => {
     if (sortKey===key) setSortDir(d=>d==='asc'?'desc':'asc');
@@ -231,84 +233,50 @@ export default function Screener() {
     const a  = analysis;
     const f  = filters;
 
-    // Category
     if (f.category && f.category !== 'All') list = list.filter(i => i.assetType === f.category);
     if (subCategory !== 'All' && subCategories.length > 0) list = list.filter(i => i.category === subCategory);
-
-    // Base currency
     if (f.baseCurrency && f.baseCurrency !== 'All')
       list = list.filter(i => i.symbol.split('/')[0] === f.baseCurrency);
-
-    // Signal filter (top bar)
     if (signalFilter !== 'All') list = list.filter(i => i.signal === signalFilter);
-
-    // Search
     if (f.search?.trim()) {
       const q = f.search.trim().toUpperCase();
       list = list.filter(i => i.symbol.toUpperCase().includes(q));
     }
-
-    // RSI range
     if (f.rsiMin != null && f.rsiMin !== '') list = list.filter(i => (a[i.id]?.rsi||50) >= Number(f.rsiMin));
     if (f.rsiMax != null && f.rsiMax !== '') list = list.filter(i => (a[i.id]?.rsi||50) <= Number(f.rsiMax));
-
-    // MFI range
     if (f.mfiMin != null && f.mfiMin !== '') list = list.filter(i => (a[i.id]?.mfi||50) >= Number(f.mfiMin));
     if (f.mfiMax != null && f.mfiMax !== '') list = list.filter(i => (a[i.id]?.mfi||50) <= Number(f.mfiMax));
-
-    // % Change
     if (f.changeMin != null && f.changeMin !== '') list = list.filter(i => i.change >= Number(f.changeMin));
     if (f.changeMax != null && f.changeMax !== '') list = list.filter(i => i.change <= Number(f.changeMax));
-
-    // Candle patterns
     if (f.candleType && f.candleType !== 'All') {
       const map = { bullish:'bull', bearish:'bear', neutral:'neut' };
       list = list.filter(i => a[i.id]?.patternType === (map[f.candleType]||f.candleType));
     }
     if (f.candlePattern && f.candlePattern !== 'All')
       list = list.filter(i => a[i.id]?.patternIds?.includes(f.candlePattern));
-
-    // S&R
     if (f.requireNearResistance)  list = list.filter(i => a[i.id]?.nearResistance);
     if (f.requireNearSupport)     list = list.filter(i => a[i.id]?.nearSupport);
     if (f.requireBrokeResistance) list = list.filter(i => a[i.id]?.brokeResistance);
     if (f.requireBrokeSupport)    list = list.filter(i => a[i.id]?.brokeSupport);
-
-    // Trendlines
     if (f.requireTrendlineBull || f.requireTrendlineBear) list = list.filter(i => a[i.id]?.nearTrendline);
     if (f.requireTrendlineBreak) list = list.filter(i => a[i.id]?.brokeTrendline);
-
-    // SMC — OB
     if (f.requireOb) list = list.filter(i => a[i.id]?.hasOB);
     if (f.obDir === 'bullish') list = list.filter(i => a[i.id]?.hasOB && a[i.id]?.structure === 'bullish');
     if (f.obDir === 'bearish') list = list.filter(i => a[i.id]?.hasOB && a[i.id]?.structure === 'bearish');
-
-    // SMC — FVG
     if (f.requireFvg) list = list.filter(i => a[i.id]?.hasFVG);
     if (f.fvgDir === 'bullish') list = list.filter(i => a[i.id]?.hasFVG && a[i.id]?.structure === 'bullish');
     if (f.fvgDir === 'bearish') list = list.filter(i => a[i.id]?.hasFVG && a[i.id]?.structure === 'bearish');
-
-    // FVG + OB mode
     if (f.requireFvg && f.requireOb && f.fvgObMode === 'OR')
       list = list.filter(i => a[i.id]?.hasFVG || a[i.id]?.hasOB);
-
-    // SMC — BOS / CHoCH
     if (f.requireBos)   list = list.filter(i => a[i.id]?.bosBullish || a[i.id]?.bosBearish);
     if (f.requireChoch) list = list.filter(i => a[i.id]?.chochBullish || a[i.id]?.chochBearish);
     if (f.structure !== 'All') list = list.filter(i => a[i.id]?.structure === f.structure);
-
-    // Zone
     if (f.zone !== 'All') list = list.filter(i => a[i.id]?.zone === f.zone);
-
-    // Liquidity
     if (f.liqType === 'bsl') list = list.filter(i => a[i.id]?.buySideLiq);
     if (f.liqType === 'ssl') list = list.filter(i => a[i.id]?.sellSideLiq);
-
-    // VWAP
     if (f.vwapBias === 'above') list = list.filter(i =>  a[i.id]?.vwapAbove);
     if (f.vwapBias === 'below') list = list.filter(i => !a[i.id]?.vwapAbove);
 
-    // Sort
     return [...list].sort((a,b) => {
       let av=a[sortKey],bv=b[sortKey];
       if(typeof av==='string'){av=av.toLowerCase();bv=bv.toLowerCase();}
@@ -355,7 +323,7 @@ export default function Screener() {
   return (
     <div className="screener-root">
 
-      {/* Asset type tabs */}
+      {/* ── Asset type tabs ──────────────────────────────────────────────── */}
       <div className="asset-type-row">
         {ASSET_TYPES.map(t => {
           const c=ASSET_COLORS[t]||{color:'#94a3b8',bg:'#1e293b55'};
@@ -371,30 +339,48 @@ export default function Screener() {
         })}
       </div>
 
-      {/* Live status */}
-      <div className="live-status-bar">
-        <div style={{display:'flex',alignItems:'center',gap:8,flexWrap:'wrap'}}>
-          {loading?<span style={{color:'#475569',fontSize:12}}>⟳ Connecting…</span>
-          :error?<span style={{color:'#f97316',fontSize:12}}>⚠ {error}</span>
-          :<><span style={{width:7,height:7,borderRadius:'50%',background:'#22c55e',display:'inline-block',animation:'pulse 1.4s infinite'}}/><span style={{color:'#22c55e',fontSize:12,fontWeight:600}}>{oandaStatus.connected?'OANDA':'LIVE'} — {liveCount} instruments</span><span style={{color:'#475569',fontSize:11}}>· {lastUpdate?lastUpdate.toLocaleTimeString():'—'}</span></>}
+      {/* ── Compact status + summary bar ─────────────────────────────────── */}
+      <div className="screener-topbar">
+        <div className="screener-topbar-left">
+          {loading
+            ? <span className="topbar-status loading">⟳ Connecting…</span>
+            : error
+            ? <span className="topbar-status error">⚠ {error}</span>
+            : <><span className="topbar-live-dot"/><span className="topbar-status live">{oandaStatus.connected?'OANDA':'LIVE'} — {liveCount} instruments</span></>
+          }
+          <span className="topbar-divider"/>
+          <span className="topbar-time">{lastUpdate?lastUpdate.toLocaleTimeString():'—'}</span>
           <OandaConnect status={oandaStatus} onConnect={connectOanda} onDisconnect={disconnectOanda}/>
         </div>
-        <div style={{display:'flex',gap:8,alignItems:'center'}}>
+        <div className="screener-topbar-right">
+          {/* Summary stats */}
+          <div className="screener-stats">
+            <span className="stat-pill"><span style={{color:'#00d4aa',fontWeight:700}}>{total}</span> shown</span>
+            <span className="stat-pill bull"><span style={{color:'#22c55e',fontWeight:700}}>{bullish}↑</span></span>
+            <span className="stat-pill bear"><span style={{color:'#ef4444',fontWeight:700}}>{bearish}↓</span></span>
+            <span className="stat-pill"><span style={{color:'#94a3b8',fontWeight:700}}>{neutral}→</span></span>
+          </div>
+          <span className="topbar-divider"/>
           <span style={{color:'#475569',fontSize:11}}>TF: <strong style={{color:'#00d4aa'}}>{tfFilter.toUpperCase()}</strong></span>
-          <button onClick={refresh} style={{color:'#00d4aa',fontSize:11,fontWeight:600,padding:'2px 8px',border:'1px solid #00d4aa44',borderRadius:4}}>↻</button>
+          <button onClick={refresh} className="topbar-refresh-btn" title="Refresh">↻</button>
         </div>
       </div>
 
-      {/* Summary */}
-      <div className="summary-row">
-        <SummaryCard label="Showing" value={total}   color="#00d4aa"/>
-        <SummaryCard label="Bullish" value={bullish}  color="#22c55e"/>
-        <SummaryCard label="Bearish" value={bearish}  color="#ef4444"/>
-        <SummaryCard label="Neutral" value={neutral}  color="#94a3b8"/>
-      </div>
+      {/* ── Toolbar: filters toggle + signal tabs ────────────────────────── */}
+      <div className="screener-toolbar">
+        {/* Filter toggle button */}
+        <button
+          className={`filter-toggle-btn ${showFilters ? 'active' : ''}`}
+          onClick={() => setShowFilters(s => !s)}
+        >
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+            <line x1="4" y1="6" x2="20" y2="6"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="11" y1="18" x2="13" y2="18"/>
+          </svg>
+          Filters
+          {activeFilterCount > 0 && <span className="filter-count-badge">{activeFilterCount}</span>}
+        </button>
 
-      {/* Signal filter + subcategory tabs */}
-      <div className="filter-bar">
+        {/* Sub-category tabs */}
         {subCategories.length > 0 && (
           <div className="tab-group">
             {subCategories.map(c=>(
@@ -402,9 +388,12 @@ export default function Screener() {
             ))}
           </div>
         )}
-        <div className="tab-group">
+
+        {/* Signal filter tabs */}
+        <div className="signal-tab-group">
           {['All','STRONG_BUY','BUY','NEUTRAL','SELL','STRONG_SELL'].map(s=>(
-            <button key={s} className={`tab-btn signal-tab ${signalFilter===s?'active':''}`}
+            <button key={s}
+              className={`signal-tab-btn ${signalFilter===s?'active':''}`}
               style={signalFilter===s&&s!=='All'?{color:SIGNALS[s]?.color,borderColor:SIGNALS[s]?.color,background:SIGNALS[s]?.bg}:{}}
               onClick={()=>setSignalFilter(s)}>
               {s==='All'?'All Signals':SIGNALS[s]?.label}
@@ -413,23 +402,34 @@ export default function Screener() {
         </div>
       </div>
 
-      {/* Main: sidebar + table */}
+      {/* ── Chart modal ──────────────────────────────────────────────────── */}
       {chartInstrument && <ChartModal instrument={chartInstrument} onClose={()=>setChartInstrument(null)}/>}
 
-      <div style={{display:'flex',gap:16,alignItems:'flex-start',marginTop:8}}>
+      {/* ── Main: filter sidebar + table ─────────────────────────────────── */}
+      <div className="screener-body">
 
-        {/* FilterPanel sidebar */}
-        <FilterPanel
-          filters={filters}
-          onChange={setFilters}
-          onReset={() => setFilters({ ...DEFAULT_FILTERS })}
-          resultCount={filtered.length}
-          totalCount={allInstruments.length}
-          allPairs={allInstruments}
-        />
+        {/* Mobile backdrop */}
+        {showFilters && (
+          <div className="filter-backdrop" onClick={() => setShowFilters(false)} />
+        )}
+
+        {/* Filter sidebar */}
+        {showFilters && (
+          <div className="filter-sidebar-wrap">
+            <FilterPanel
+              filters={filters}
+              onChange={setFilters}
+              onReset={() => setFilters({ ...DEFAULT_FILTERS })}
+              onClose={() => setShowFilters(false)}
+              resultCount={filtered.length}
+              totalCount={allInstruments.length}
+              allPairs={allInstruments}
+            />
+          </div>
+        )}
 
         {/* Table area */}
-        <div style={{flex:1,minWidth:0}}>
+        <div className="screener-table-area">
           <div className="table-wrap">
             <table className="screener-table">
               <thead>
@@ -443,7 +443,10 @@ export default function Screener() {
               </thead>
               <tbody>
                 {filtered.length===0?(
-                  <tr><td colSpan={cols.length} style={{textAlign:'center',padding:'40px 0',color:'#475569'}}>No instruments match your filters</td></tr>
+                  <tr><td colSpan={cols.length} style={{textAlign:'center',padding:'48px 0',color:'#475569'}}>
+                    <div style={{fontSize:28,marginBottom:8}}>🔍</div>
+                    No instruments match your filters
+                  </td></tr>
                 ):filtered.map(p=>{
                   const ai=analysis[p.id]||{};
                   return (
@@ -457,11 +460,13 @@ export default function Screener() {
                           {p.unit&&<span className="pair-category">{p.unit}</span>}
                         </div>
                       </td>
-                      <td style={{display:'flex',gap:4,alignItems:'center'}}>
-                        <button className="chart-open-btn" title="Open chart" onClick={()=>setChartInstrument(p)}>📈</button>
-                        <button className={`wl-star-btn${watchlist.includes(p.symbol)?' active':''}`} title={watchlist.includes(p.symbol)?'Remove from watchlist':'Add to watchlist'} onClick={()=>toggleWatch(p.symbol)}>
-                          {watchlist.includes(p.symbol)?'★':'☆'}
-                        </button>
+                      <td>
+                        <div style={{display:'flex',gap:4,alignItems:'center'}}>
+                          <button className="chart-open-btn" title="Open chart" onClick={()=>setChartInstrument(p)}>📈</button>
+                          <button className={`wl-star-btn${watchlist.includes(p.symbol)?' active':''}`} title={watchlist.includes(p.symbol)?'Remove':'Add to watchlist'} onClick={()=>toggleWatch(p.symbol)}>
+                            {watchlist.includes(p.symbol)?'★':'☆'}
+                          </button>
+                        </div>
                       </td>
                       <td><AssetBadge type={p.assetType}/></td>
                       <td><span className="pair-category" style={{fontSize:12}}>{p.category}</span></td>
@@ -486,10 +491,9 @@ export default function Screener() {
               </tbody>
             </table>
           </div>
-
           <div className="table-footer">
             Showing <strong>{filtered.length}</strong> of <strong>{allInstruments.length}</strong> instruments
-            &nbsp;·&nbsp;<span style={{color:'#475569'}}>TF: {tfFilter.toUpperCase()} · Updated: {new Date().toLocaleTimeString()}</span>
+            &nbsp;·&nbsp;<span style={{color:'#475569'}}>TF: {tfFilter.toUpperCase()} · {new Date().toLocaleTimeString()}</span>
           </div>
         </div>
       </div>

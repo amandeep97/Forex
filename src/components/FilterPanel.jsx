@@ -147,7 +147,7 @@ function describeFilters(f) {
   return parts
 }
 
-export default function FilterPanel({ filters, onChange, onReset, resultCount, totalCount, allPairs = [] }) {
+export default function FilterPanel({ filters, onChange, onReset, onClose, resultCount, totalCount, allPairs = [] }) {
   const set = (key, val) => onChange({ ...filters, [key]: val })
   const baseCurrencies = ['All', ...Array.from(new Set(
     allPairs.map(p => p.symbol?.split('/')[0] || p.symbol?.slice(0, 3))
@@ -184,6 +184,12 @@ export default function FilterPanel({ filters, onChange, onReset, resultCount, t
           <button onClick={onReset} className="flex items-center gap-1 text-[11px] text-slate-500 hover:text-accent-blue transition-colors">
             <RotateCcw size={11} /> Reset
           </button>
+          {onClose && (
+            <button onClick={onClose} title="Close filters"
+              className="flex items-center justify-center w-6 h-6 ml-1 rounded text-slate-500 hover:text-white hover:bg-slate-700 transition-colors text-base leading-none">
+              ×
+            </button>
+          )}
         </div>
       </div>
 

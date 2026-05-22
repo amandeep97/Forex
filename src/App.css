@@ -195,9 +195,126 @@ table  { border-collapse: collapse; width: 100%; }
 .tab-btn.active { color: var(--accent); background: #00d4aa18; border-color: #00d4aa44; }
 
 /* ── Screener ──────────────────────────────────────────────────────────────── */
-.screener-root { display: flex; flex-direction: column; gap: 14px; }
+.screener-root { display: flex; flex-direction: column; gap: 10px; }
 
-/* Live status bar */
+/* ── Compact top bar ───────────────────────────────────────────────────────── */
+.screener-topbar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 6px 12px; background: var(--card); border: 1px solid var(--border);
+  border-radius: var(--radius); flex-wrap: wrap; gap: 8px;
+}
+.screener-topbar-left  { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.screener-topbar-right { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-left: auto; }
+
+.topbar-live-dot {
+  width: 6px; height: 6px; border-radius: 50%; background: #22c55e;
+  animation: pulse 1.4s ease-in-out infinite; flex-shrink: 0;
+}
+.topbar-status       { font-size: 12px; font-weight: 600; }
+.topbar-status.live  { color: #22c55e; }
+.topbar-status.error { color: #f97316; }
+.topbar-status.loading { color: #475569; }
+.topbar-time         { font-size: 11px; color: #475569; }
+.topbar-divider      { width: 1px; height: 14px; background: var(--border2); }
+
+.topbar-refresh-btn {
+  color: #00d4aa; font-size: 14px; font-weight: 600;
+  padding: 2px 8px; border: 1px solid #00d4aa44; border-radius: 4px;
+  transition: all 0.12s;
+}
+.topbar-refresh-btn:hover { background: #00d4aa15; }
+
+/* Screener stats inline pills */
+.screener-stats {
+  display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
+}
+.stat-pill {
+  font-size: 11px; padding: 2px 8px;
+  background: var(--card2); border: 1px solid var(--border);
+  border-radius: 10px; color: var(--text2);
+}
+.stat-pill.bull { border-color: #22c55e33; background: #22c55e0a; }
+.stat-pill.bear { border-color: #ef444433; background: #ef44440a; }
+
+/* ── Screener toolbar ──────────────────────────────────────────────────────── */
+.screener-toolbar {
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+}
+
+/* Filter toggle button */
+.filter-toggle-btn {
+  display: flex; align-items: center; gap: 6px;
+  padding: 6px 12px; border-radius: var(--radius);
+  font-size: 12px; font-weight: 600; color: var(--text2);
+  border: 1px solid var(--border); background: var(--card);
+  transition: all 0.15s; flex-shrink: 0;
+}
+.filter-toggle-btn:hover { color: var(--text); border-color: var(--border2); background: var(--card2); }
+.filter-toggle-btn.active {
+  color: var(--accent); border-color: #00d4aa55; background: #00d4aa10;
+}
+.filter-count-badge {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-width: 16px; height: 16px; padding: 0 4px; border-radius: 8px;
+  font-size: 9px; font-weight: 800; background: var(--accent); color: #080c14;
+}
+
+/* Signal filter tabs (new style) */
+.signal-tab-group { display: flex; gap: 2px; flex-wrap: wrap; margin-left: auto; }
+.signal-tab-btn {
+  padding: 5px 11px; border-radius: var(--radius-sm);
+  font-size: 11px; font-weight: 500; color: var(--text2);
+  border: 1px solid transparent; transition: all 0.12s; white-space: nowrap;
+}
+.signal-tab-btn:hover  { color: var(--text); background: var(--card2); }
+.signal-tab-btn.active { background: #00d4aa18; border-color: #00d4aa44; color: var(--accent); }
+
+/* ── Screener body (sidebar + table) ───────────────────────────────────────── */
+.screener-body {
+  display: flex; gap: 12px; align-items: flex-start; position: relative;
+}
+.screener-table-area { flex: 1; min-width: 0; }
+
+/* Filter sidebar wrapper (desktop) */
+.filter-sidebar-wrap {
+  width: 264px; flex-shrink: 0;
+  position: sticky; top: 4px; align-self: flex-start;
+  max-height: calc(100vh - 80px); overflow-y: auto;
+}
+.filter-sidebar-wrap::-webkit-scrollbar { width: 4px; }
+.filter-sidebar-wrap::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 2px; }
+
+/* Mobile: filter panel becomes a fixed drawer */
+@media (max-width: 768px) {
+  .filter-sidebar-wrap {
+    position: fixed;
+    top: 0; left: 0; bottom: 0;
+    z-index: 300;
+    width: 290px;
+    max-height: 100vh;
+    background: var(--card);
+    border-right: 1px solid var(--border2);
+    box-shadow: 4px 0 32px #0009;
+    overflow-y: auto;
+  }
+  .signal-tab-group { margin-left: 0; }
+}
+
+/* Mobile backdrop */
+.filter-backdrop {
+  display: none;
+}
+@media (max-width: 768px) {
+  .filter-backdrop {
+    display: block;
+    position: fixed; inset: 0;
+    background: #00000077;
+    z-index: 299;
+    backdrop-filter: blur(2px);
+  }
+}
+
+/* Legacy live-status-bar — keep for backward compat */
 .live-status-bar {
   display: flex; align-items: center; justify-content: space-between;
   padding: 7px 12px; background: var(--card); border: 1px solid var(--border);
