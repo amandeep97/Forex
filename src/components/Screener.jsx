@@ -161,6 +161,18 @@ export default function Screener() {
   // Chart
   const [chartInstrument, setChartInstrument] = useState(null);
 
+  // Watchlist (persisted in localStorage)
+  const [watchlist, setWatchlist] = useState(() => {
+    try { return JSON.parse(localStorage.getItem('forex_watchlist')) || []; } catch { return []; }
+  });
+  const toggleWatch = sym => {
+    setWatchlist(prev => {
+      const next = prev.includes(sym) ? prev.filter(s => s !== sym) : [...prev, sym];
+      localStorage.setItem('forex_watchlist', JSON.stringify(next));
+      return next;
+    });
+  };
+
   const handleSort = (key) => {
     if (sortKey===key) setSortDir(d=>d==='asc'?'desc':'asc');
     else { setSortKey(key); setSortDir('asc'); }
@@ -602,7 +614,12 @@ export default function Screener() {
                       {p.unit&&<span className="pair-category">{p.unit}</span>}
                     </div>
                   </td>
-                  <td><button className="chart-open-btn" title="Open chart" onClick={()=>setChartInstrument(p)}>📈</button></td>
+                  <td style={{display:'flex',gap:4,alignItems:'center'}}>
+                    <button className="chart-open-btn" title="Open chart" onClick={()=>setChartInstrument(p)}>📈</button>
+                    <button className={`wl-star-btn${watchlist.includes(p.symbol)?' active':''}`} title={watchlist.includes(p.symbol)?'Remove from watchlist':'Add to watchlist'} onClick={()=>toggleWatch(p.symbol)}>
+                      {watchlist.includes(p.symbol)?'★':'☆'}
+                    </button>
+                  </td>
                   <td><AssetBadge type={p.assetType}/></td>
                   <td><span className="pair-category" style={{fontSize:12}}>{p.category}</span></td>
                   <td className="mono">{fmtPrice(p.bid)}</td>

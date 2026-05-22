@@ -2,10 +2,13 @@ import { useState } from 'react';
 import Screener from './components/Screener';
 import AutoTrading from './components/AutoTrading';
 import Backtester from './components/Backtester';
+import WatchlistTab from './components/WatchlistTab';
+import { allInstruments } from './data/forexData';
 import './App.css';
 
 const TABS = [
   { id: 'screener',    label: 'Screener',     icon: '⊞' },
+  { id: 'watchlist',   label: 'Watchlist',    icon: '★' },
   { id: 'autotrading', label: 'Auto Trading', icon: '⚡' },
   { id: 'backtester',  label: 'Backtester',   icon: '📊' },
 ];
@@ -174,8 +177,8 @@ export default function App() {
         <div
           className="tab-indicator-bar"
           style={{
-            left: activeTab === 'screener' ? '0%' : activeTab === 'autotrading' ? '33.33%' : '66.66%',
-            width: '33.33%'
+            left: activeTab === 'screener' ? '0%' : activeTab === 'watchlist' ? '25%' : activeTab === 'autotrading' ? '50%' : '75%',
+            width: '25%'
           }}
         />
       </div>
@@ -185,6 +188,14 @@ export default function App() {
         {/* Keep both mounted (hidden) so state is preserved on tab switch */}
         <div style={{ display: activeTab === 'screener' ? 'block' : 'none' }}>
           <Screener />
+        </div>
+        <div style={{ display: activeTab === 'watchlist' ? 'block' : 'none' }}>
+          <WatchlistTab pairs={allInstruments} watchlist={JSON.parse(localStorage.getItem('forex_watchlist')||'[]')} onToggleWatch={sym => {
+            const prev = JSON.parse(localStorage.getItem('forex_watchlist')||'[]');
+            const next = prev.includes(sym) ? prev.filter(s=>s!==sym) : [...prev,sym];
+            localStorage.setItem('forex_watchlist', JSON.stringify(next));
+            window.dispatchEvent(new Event('storage'));
+          }}/>
         </div>
         <div style={{ display: activeTab === 'autotrading' ? 'block' : 'none' }}>
           <AutoTrading accountMode={accountMode} brokerState={brokerState} />

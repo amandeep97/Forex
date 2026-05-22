@@ -1356,3 +1356,41 @@ table  { border-collapse: collapse; width: 100%; }
 .cm-score {
   font-size: 11px; font-weight: 600; color: var(--accent); text-align: center; margin-top: 4px;
 }
+
+/* ── WatchlistTab ────────────────────────────────────────────────────────────── */
+.wl-root { max-width: 860px; margin: 0 auto; padding: 16px; display: flex; flex-direction: column; gap: 12px; }
+.wl-header-card {
+  display: flex; align-items: center; gap: 12px;
+  background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px;
+}
+.wl-header-icon {
+  width: 32px; height: 32px; border-radius: 8px;
+  background: #eab30820; border: 1px solid #eab30830;
+  display: flex; align-items: center; justify-content: center; color: #eab308; flex-shrink: 0;
+}
+.wl-empty {
+  background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 48px 24px; text-align: center; color: var(--text3);
+  display: flex; flex-direction: column; align-items: center;
+}
+.wl-list-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+.wl-list-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 14px; border-bottom: 1px solid var(--border); background: var(--card2);
+}
+.wl-clear-btn { font-size: 10px; color: var(--text3); transition: color 0.12s; }
+.wl-clear-btn:hover { color: var(--down); }
+.wl-list-body { padding: 10px; display: flex; flex-direction: column; gap: 6px; }
+.wl-card {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 12px; border-radius: var(--radius-sm);
+  background: var(--bg2); border: 1px solid var(--border);
+  cursor: pointer; transition: all 0.12s;
+}
+.wl-card:hover { border-color: var(--border2); background: var(--card2); }
+.wl-star-btn {
+  font-size: 14px; color: var(--text3); padding: 3px 5px;
+  border-radius: 4px; transition: all 0.12s; flex-shrink: 0; line-height: 1;
+}
+.wl-star-btn:hover { color: #eab308; background: #eab30815; }
+.wl-star-btn.active { color: #eab308; }
