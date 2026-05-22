@@ -87,12 +87,16 @@ table  { border-collapse: collapse; width: 100%; }
 }
 
 /* Nav tabs */
-.main-nav { display: flex; gap: 2px; }
+.main-nav {
+  display: flex; gap: 2px;
+  overflow-x: auto; scrollbar-width: none;
+}
+.main-nav::-webkit-scrollbar { display: none; }
 .nav-tab {
   display: flex; align-items: center; gap: 6px;
-  padding: 6px 16px; border-radius: var(--radius-sm);
+  padding: 6px 14px; border-radius: var(--radius-sm);
   font-size: 13px; font-weight: 500; color: var(--text2);
-  transition: all 0.15s;
+  transition: all 0.15s; white-space: nowrap; flex-shrink: 0;
 }
 .nav-tab:hover  { color: var(--text); background: #1a2236; }
 .nav-tab.active { color: var(--accent); background: #00d4aa18; }
@@ -260,11 +264,17 @@ table  { border-collapse: collapse; width: 100%; }
 }
 
 /* Signal filter tabs (new style) */
-.signal-tab-group { display: flex; gap: 2px; flex-wrap: wrap; margin-left: auto; }
+.signal-tab-group {
+  display: flex; gap: 2px;
+  overflow-x: auto; scrollbar-width: none;
+  flex: 1; /* fill remaining width */
+}
+.signal-tab-group::-webkit-scrollbar { display: none; }
 .signal-tab-btn {
   padding: 5px 11px; border-radius: var(--radius-sm);
   font-size: 11px; font-weight: 500; color: var(--text2);
-  border: 1px solid transparent; transition: all 0.12s; white-space: nowrap;
+  border: 1px solid transparent; transition: all 0.12s;
+  white-space: nowrap; flex-shrink: 0;
 }
 .signal-tab-btn:hover  { color: var(--text); background: var(--card2); }
 .signal-tab-btn.active { background: #00d4aa18; border-color: #00d4aa44; color: var(--accent); }
@@ -1353,22 +1363,30 @@ table  { border-collapse: collapse; width: 100%; }
   box-shadow: 0 32px 80px #00000077;
 }
 .cm-header {
-  display: flex; align-items: center; justify-content: space-between;
+  display: flex; align-items: center; gap: 8px;
   padding: 10px 14px; border-bottom: 1px solid var(--border);
   background: var(--card2); flex-shrink: 0; border-radius: var(--radius) var(--radius) 0 0;
-  color: var(--text);
+  color: var(--text); overflow: hidden;
 }
+/* Scrollable tab strip inside modal header */
+.cm-tab-strip {
+  display: flex; gap: 2px; flex: 1;
+  overflow-x: auto; scrollbar-width: none; min-width: 0;
+}
+.cm-tab-strip::-webkit-scrollbar { display: none; }
 .cm-tab-btn {
-  padding: 4px 10px; border-radius: 4px; font-size: 11px; font-weight: 600;
+  padding: 5px 10px; border-radius: 4px; font-size: 11px; font-weight: 600;
   color: var(--text3); border: 1px solid transparent; transition: all 0.12s;
+  white-space: nowrap; flex-shrink: 0;
 }
 .cm-tab-btn:hover { color: var(--text2); background: var(--bg2); }
 .cm-tab-btn.active { color: var(--accent); background: #00d4aa12; border-color: #00d4aa44; }
 .cm-close-btn {
-  padding: 3px 8px; border-radius: 4px; font-size: 13px;
-  color: var(--text3); transition: all 0.12s; margin-left: 6px;
+  padding: 5px 9px; border-radius: 4px; font-size: 15px; font-weight: 600;
+  color: var(--text3); border: 1px solid var(--border);
+  background: var(--bg2); transition: all 0.12s; line-height: 1;
 }
-.cm-close-btn:hover { color: var(--down); background: #ef444415; }
+.cm-close-btn:hover { color: var(--down); border-color: #ef444466; background: #ef444415; }
 .cm-body {
   display: flex; flex-direction: column; flex: 1; overflow: hidden;
 }

@@ -348,16 +348,19 @@ Provide:
 
         {/* ── Header ── */}
         <div className="cm-header">
-          <div style={{display:'flex',alignItems:'center',gap:10}}>
+          {/* Symbol — always visible, shrinks last */}
+          <div style={{display:'flex',alignItems:'center',gap:8,flexShrink:0}}>
             <span style={{fontSize:15,fontWeight:700}}>{symbol}</span>
             <span style={{fontSize:10,color:'var(--text3)',fontFamily:'var(--mono)'}}>{tf}</span>
           </div>
-          <div style={{display:'flex',alignItems:'center',gap:5}}>
+          {/* Scrollable tab strip */}
+          <div className="cm-tab-strip">
             {[{k:'chart',l:'📈 Chart'},{k:'tv',l:'📺 TradingView'},{k:'ai',l:'🤖 Analysis'},{k:'checklist',l:'✅ Checklist'}].map(t=>(
               <button key={t.k} className={`cm-tab-btn${tab===t.k?' active':''}`} onClick={()=>setTab(t.k)}>{t.l}</button>
             ))}
-            <button className="cm-close-btn" onClick={onClose}>✕</button>
           </div>
+          {/* Close — always pinned right, never hidden */}
+          <button className="cm-close-btn" onClick={onClose} style={{flexShrink:0,marginLeft:4}}>✕</button>
         </div>
 
         {/* ── Chart Tab ── */}
