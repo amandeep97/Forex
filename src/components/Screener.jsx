@@ -5,6 +5,7 @@ import { generateCandles } from '../utils/generateCandles';
 import { detectCandlePatterns, CANDLE_PATTERNS } from '../utils/candlePatterns';
 import { analyzeSMC } from '../utils/smcAnalysis';
 import { computeRSI, computeMFI } from '../utils/indicatorCalc';
+import { computeVWAP } from '../utils/smcHelpers';
 import ChartModal from './ChartModal';
 import OandaConnect from './OandaConnect';
 
@@ -57,6 +58,42 @@ function fmtPrice(v) {
   if(v>=100)   return v.toFixed(2);
   if(v>=1)     return v.toFixed(3);
   return v.toFixed(5);
+}
+
+function SmcTagRow({ bosBullish, bosBearish, chochBullish, chochBearish, hasFvg, hasOb }) {
+  const tags = [];
+  if (bosBullish)  tags.push(<span key="bosb" style={{padding:'1px 4px',borderRadius:3,fontSize:9,fontWeight:700,color:'#22c55e',background:'#22c55e18',border:'1px solid #22c55e44'}}>BOS↑</span>);
+  if (bosBearish)  tags.push(<span key="bosr" style={{padding:'1px 4px',borderRadius:3,fontSize:9,fontWeight:700,color:'#ef4444',background:'#ef444418',border:'1px solid #ef444444'}}>BOS↓</span>);
+  if (chochBullish) tags.push(<span key="chb" style={{padding:'1px 4px',borderRadius:3,fontSize:9,fontWeight:700,color:'#eab308',background:'#eab30818',border:'1px solid #eab30844'}}>ChoCh↑</span>);
+  if (chochBearish) tags.push(<span key="chr" style={{padding:'1px 4px',borderRadius:3,fontSize:9,fontWeight:700,color:'#f97316',background:'#f9731618',border:'1px solid #f9731644'}}>ChoCh↓</span>);
+  if (hasFvg) tags.push(<span key="fvg" style={{padding:'1px 4px',borderRadius:3,fontSize:9,fontWeight:700,color:'#00d4aa',background:'#00d4aa12',border:'1px solid #00d4aa44'}}>FVG</span>);
+  if (hasOb)  tags.push(<span key="ob" style={{padding:'1px 4px',borderRadius:3,fontSize:9,fontWeight:700,color:'#a78bfa',background:'#a78bfa12',border:'1px solid #a78bfa44'}}>OB</span>);
+  if (tags.length === 0) return <span style={{color:'#334155',fontSize:10}}>—</span>;
+  return <div style={{display:'flex',flexWrap:'wrap',gap:2}}>{tags}</div>;
+}
+
+function ZoneBadge({ zone }) {
+  if (zone === 'premium')  return <span style={{padding:'2px 6px',borderRadius:4,fontSize:10,fontWeight:700,color:'#ef4444',background:'#ef444418',border:'1px solid #ef444444'}}>▲ Prem</span>;
+  if (zone === 'discount') return <span style={{padding:'2px 6px',borderRadius:4,fontSize:10,fontWeight:700,color:'#22c55e',background:'#22c55e18',border:'1px solid #22c55e44'}}>▼ Disc</span>;
+  return <span style={{color:'#475569',fontSize:10}}>—</span>;
+}
+
+function StructBadge({ structure }) {
+  if (structure === 'bullish') return <span style={{padding:'2px 6px',borderRadius:4,fontSize:10,fontWeight:700,color:'#22c55e',background:'#22c55e18',border:'1px solid #22c55e44'}}>Bullish</span>;
+  if (structure === 'bearish') return <span style={{padding:'2px 6px',borderRadius:4,fontSize:10,fontWeight:700,color:'#ef4444',background:'#ef444418',border:'1px solid #ef444444'}}>Bearish</span>;
+  return <span style={{color:'#475569',fontSize:10}}>Neutral</span>;
+}
+
+function StrengthBar({ value, dir }) {
+  const color = dir === 'bullish' ? '#22c55e' : dir === 'bearish' ? '#ef4444' : '#94a3b8';
+  return (
+    <div style={{display:'flex',alignItems:'center',gap:5}}>
+      <div style={{width:44,height:5,background:'#1e293b',borderRadius:3,overflow:'hidden'}}>
+        <div style={{width:`${value}%`,height:'100%',background:color,borderRadius:3}}/>
+      </div>
+      <span style={{fontSize:10,color,fontFamily:'var(--mono)',minWidth:28,fontWeight:600}}>{value}%</span>
+    </div>
+  );
 }
 
 function LiveBadge({ isLive }) {
@@ -196,25 +233,52 @@ export default function Screener() {
         const smc      = analyzeSMC(candles);
         const patterns = detectCandlePatterns(candles, patternLookback);
         const cp       = candles[candles.length - 1].c;
+
+        const bosBullish   = smc.bosChoch.some(b=>b.type==='BOS'&&b.direction==='bullish');
+        const bosBearish   = smc.bosChoch.some(b=>b.type==='BOS'&&b.direction==='bearish');
+        const chochBullish = smc.bosChoch.some(b=>b.type==='CHoCH'&&b.direction==='bullish');
+        const chochBearish = smc.bosChoch.some(b=>b.type==='CHoCH'&&b.direction==='bearish');
+        const hasOB  = smc.orderBlocks.length>0;
+        const hasFVG = smc.fvgs.length>0;
+        const zone   = smc.premiumDiscount?.zone || 'discount';
+
+        // VWAP position
+        const vwapSeries = computeVWAP(candles);
+        const lastVwap   = vwapSeries[vwapSeries.length-1];
+        const vwapAbove  = cp >= (lastVwap || cp);
+
+        // Market structure
+        const structure = (bosBullish||chochBullish) ? 'bullish'
+                        : (bosBearish||chochBearish) ? 'bearish' : 'neutral';
+
+        // Signal strength 0-100
+        let sBull = 0, sBear = 0;
+        if (rsiVal < rsiOS)       sBull += 2; else if (rsiVal > rsiOB) sBear += 2;
+        else if (rsiVal < 45)     sBull++;    else if (rsiVal > 55)    sBear++;
+        if (mfiVal < 40) sBull++;  else if (mfiVal > 60) sBear++;
+        if (bosBullish)  sBull += 2; if (bosBearish)  sBear += 2;
+        if (chochBullish) sBull++;   if (chochBearish) sBear++;
+        if (hasFVG) { if (structure==='bullish') sBull++; else sBear++; }
+        if (hasOB)  { if (structure==='bullish') sBull++; else sBear++; }
+        if (zone==='discount') sBull++; else if (zone==='premium') sBear++;
+        if (vwapAbove) sBull++; else sBear++;
+        const stTotal = sBull + sBear || 1;
+        const strength    = Math.round((Math.max(sBull, sBear) / stTotal) * 100);
+        const strengthDir = sBull > sBear ? 'bullish' : sBear > sBull ? 'bearish' : 'neutral';
+
         map[inst.id] = {
-          rsi: rsiVal,
-          mfi: mfiVal,
+          rsi: rsiVal, mfi: mfiVal,
           // S&R
           nearResistance:  smc.supportResistance.some(s=>s.type==='resistance'&&s.isNear),
           nearSupport:     smc.supportResistance.some(s=>s.type==='support'&&s.isNear),
-          brokeResistance: smc.bosChoch.some(b=>b.direction==='bullish'&&b.type==='BOS'),
-          brokeSupport:    smc.bosChoch.some(b=>b.direction==='bearish'&&b.type==='BOS'),
+          brokeResistance: bosBullish,
+          brokeSupport:    bosBearish,
           // Trendlines
           nearTrendline:  smc.trendlines.some(t=>t.isNear),
           brokeTrendline: smc.trendlines.some(t=>t.isBroken),
           // SMC
-          hasOB:       smc.orderBlocks.length>0,
-          hasFVG:      smc.fvgs.length>0,
-          bosBullish:  smc.bosChoch.some(b=>b.type==='BOS'&&b.direction==='bullish'),
-          bosBearish:  smc.bosChoch.some(b=>b.type==='BOS'&&b.direction==='bearish'),
-          chochBullish:smc.bosChoch.some(b=>b.type==='CHoCH'&&b.direction==='bullish'),
-          chochBearish:smc.bosChoch.some(b=>b.type==='CHoCH'&&b.direction==='bearish'),
-          zone:        smc.premiumDiscount?.zone || 'discount',
+          hasOB, hasFVG, bosBullish, bosBearish, chochBullish, chochBearish,
+          zone, structure, strength, strengthDir, vwapAbove,
           buySideLiq:  smc.liquidity.some(l=>l.type==='low'&&Math.abs(l.price-cp)/(cp||1)<0.006),
           sellSideLiq: smc.liquidity.some(l=>l.type==='high'&&Math.abs(l.price-cp)/(cp||1)<0.006),
           // Patterns
@@ -228,12 +292,13 @@ export default function Screener() {
           brokeResistance:false, brokeSupport:false, nearTrendline:false,
           brokeTrendline:false, hasOB:false, hasFVG:false, bosBullish:false,
           bosBearish:false, chochBullish:false, chochBearish:false,
-          zone:'discount', buySideLiq:false, sellSideLiq:false,
+          zone:'discount', structure:'neutral', strength:50, strengthDir:'neutral',
+          vwapAbove:true, buySideLiq:false, sellSideLiq:false,
           patternIds:[], patternType:'neut' };
       }
     });
     return map;
-  }, [tfFilter, rsiLength, mfiLength, patternLookback]);
+  }, [tfFilter, rsiLength, mfiLength, patternLookback, rsiOB, rsiOS]);
 
   // ── Live prices ───────────────────────────────────────────────────────────
   const instrumentsWithLive = useMemo(() => allInstruments.map(inst => {
@@ -374,6 +439,10 @@ export default function Screener() {
     {key:null,        label:'RSI',      width:110},
     {key:null,        label:'MFI',      width:110},
     {key:null,        label:'Trend',    width:90},
+    {key:null,        label:'SMC',      width:140},
+    {key:null,        label:'Zone',     width:75},
+    {key:null,        label:'Struct',   width:80},
+    {key:null,        label:'Strength', width:90},
     {key:'signal',    label:'Signal',   width:110},
   ];
 
@@ -632,6 +701,10 @@ export default function Screener() {
                   <td><RsiBar value={ai.rsi||p.rsi} ob={rsiOB} os={rsiOS}/></td>
                   <td><RsiBar value={ai.mfi||50} ob={mfiOB} os={mfiOS}/></td>
                   <td><Sparkline data={p.sparkline} change={p.change}/></td>
+                  <td><SmcTagRow bosBullish={ai.bosBullish} bosBearish={ai.bosBearish} chochBullish={ai.chochBullish} chochBearish={ai.chochBearish} hasFvg={ai.hasFVG} hasOb={ai.hasOB}/></td>
+                  <td><ZoneBadge zone={ai.zone}/></td>
+                  <td><StructBadge structure={ai.structure}/></td>
+                  <td><StrengthBar value={ai.strength||50} dir={ai.strengthDir||'neutral'}/></td>
                   <td><SignalBadge signal={p.signal}/></td>
                 </tr>
               );
