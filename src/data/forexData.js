@@ -233,3 +233,134 @@ export const tradeHistory = [
   { id: 'H007', pair: 'NATGAS',   type: 'SELL', lots: 0.10, openPrice: 2.2420,   closePrice: 2.1842,   pnl: +57.80,  pips: +58,  result: 'WIN',  closeTime: '2026-04-10 15:12' },
   { id: 'H008', pair: 'USD/JPY',  type: 'BUY',  lots: 0.05, openPrice: 152.800,  closePrice: 153.380,  pnl: +218.75, pips: +58,  result: 'WIN',  closeTime: '2026-04-10 12:44' },
 ];
+
+// ── Filter logic matching FilterPanel UI ──────────────────────────────────────
+export function filterPairs(data, filters) {
+  return data.filter(item => {
+    if (filters.baseCurrency !== 'All' && item.base !== filters.baseCurrency) return false
+    if (filters.structure !== 'All' && item.structure !== filters.structure) return false
+    if (filters.htfBias   !== 'All' && item.htfBias   !== filters.htfBias)   return false
+    if (filters.zone      !== 'All' && item.zone      !== filters.zone)      return false
+    if (item.change < filters.changeMin || item.change > filters.changeMax) return false
+    if (item.rsi != null && (item.rsi < filters.rsiMin || item.rsi > filters.rsiMax)) return false
+    if (item.mfi != null && (item.mfi < filters.mfiMin || item.mfi > filters.mfiMax)) return false
+    if (filters.volSpikeMin > 0 && (item.volRatio ?? 0) < filters.volSpikeMin) return false
+    if (filters.requireBos   && !item.bos)   return false
+    if (filters.requireChoch && !item.choch) return false
+    if (filters.requireFvg && filters.requireOb) {
+      if ((filters.fvgObMode || 'AND') === 'OR') {
+        if (!item.fvgTap && !item.obTap) return false
+      } else {
+        if (!item.fvgTap || !item.obTap) return false
+      }
+    } else {
+      if (filters.requireFvg && !item.fvgTap) return false
+      if (filters.requireOb  && !item.obTap)  return false
+    }
+    if (filters.requireSweep           && !item.sweep)             return false
+    if (filters.requireNearResistance  && !item.nearResistance)    return false
+    if (filters.requireNearSupport     && !item.nearSupport)       return false
+    if (filters.requireBrokeResistance && !item.brokeResistance)   return false
+    if (filters.requireBrokeSupport    && !item.brokeSupport)      return false
+    if (filters.requireTrendlineBull   && !item.trendlineBull)     return false
+    if (filters.requireTrendlineBear   && !item.trendlineBear)     return false
+    if (filters.requireTrendlineBreak  && !item.trendlineBreakout && !item.trendlineBreakdown) return false
+    if (filters.fvgDir  !== 'All' && item.fvg !== filters.fvgDir)  return false
+    if (filters.obDir   !== 'All' && item.ob  !== filters.obDir)   return false
+    if (filters.liqType !== 'All' && item.liq !== filters.liqType) return false
+    if (filters.search) {
+      const q = filters.search.toLowerCase()
+      if (!item.pair?.toLowerCase().includes(q) && !item.base?.toLowerCase().includes(q)) return false
+    }
+    // Candlestick patterns
+    const maxAgo = parseInt(filters.candleInterval ?? '1') || 1
+    if (filters.candleType !== 'All') {
+      if (!item.patterns?.some(p => p.type === filters.candleType && p.candlesAgo <= maxAgo)) return false
+    }
+    if (filters.candlePattern !== 'All') {
+      if (!item.patterns?.some(p => p.id === filters.candlePattern && p.candlesAgo <= maxAgo)) return false
+    }
+    // Chart patterns
+    if (filters.chartPattern && filters.chartPattern !== 'All') {
+      const [typeFilter, statusFilter] = filters.chartPattern.split(':')
+      const match = item.chartPatterns?.some(p =>
+        p.type === typeFilter && (!statusFilter || statusFilter === 'any' || p.status === statusFilter)
+      )
+      if (!match) return false
+    }
+    // VWAP / POC
+    if (filters.vwapBias !== 'All' && item.vwapBias !== filters.vwapBias) return false
+    if (filters.pocBias  !== 'All' && item.pocBias  !== filters.pocBias)  return false
+    // EMA
+    if (filters.emaPriceFilter && filters.emaPriceFilter !== 'Any') {
+      const pf = filters.emaPriceFilter, p = item.price ?? 0
+      if (pf === 'above20'  && (item.ema20  == null || p <= item.ema20))  return false
+      if (pf === 'below20'  && (item.ema20  == null || p >= item.ema20))  return false
+      if (pf === 'above50'  && (item.ema50  == null || p <= item.ema50))  return false
+      if (pf === 'below50'  && (item.ema50  == null || p >= item.ema50))  return false
+      if (pf === 'above100' && (item.ema100 == null || p <= item.ema100)) return false
+      if (pf === 'below100' && (item.ema100 == null || p >= item.ema100)) return false
+      if (pf === 'above200' && (item.ema200 == null || p <= item.ema200)) return false
+      if (pf === 'below200' && (item.ema200 == null || p >= item.ema200)) return false
+    }
+    if (filters.emaAlignFilter && filters.emaAlignFilter !== 'Any') {
+      if (filters.emaAlignFilter === '20_50'  && !item.ema20Above50)  return false
+      if (filters.emaAlignFilter === '50_200' && !item.ema50Above200) return false
+    }
+    if (filters.emaCrossFilter && filters.emaCrossFilter !== 'Any') {
+      const cf = filters.emaCrossFilter
+      if (cf === 'cross_up_20_50'  && !item.ema20CrossUp50)    return false
+      if (cf === 'cross_dn_20_50'  && !item.ema20CrossDown50)  return false
+      if (cf === 'golden'          && !item.ema50CrossUp200)   return false
+      if (cf === 'death'           && !item.ema50CrossDown200) return false
+    }
+    // Divergence / MACD / Equal levels
+    if (filters.divFilter && filters.divFilter !== 'Any') {
+      const df = filters.divFilter
+      if (df === 'bull'       && !item.rsiDivBull)   return false
+      if (df === 'bear'       && !item.rsiDivBear)   return false
+      if (df === 'hiddenBull' && !item.hiddenDivBull) return false
+      if (df === 'hiddenBear' && !item.hiddenDivBear) return false
+    }
+    if (filters.macdFilter && filters.macdFilter !== 'Any') {
+      const mf = filters.macdFilter
+      if (mf === 'crossUp'   && !item.macdCrossUp)                           return false
+      if (mf === 'crossDown' && !item.macdCrossDown)                         return false
+      if (mf === 'aboveZero' && !(item.macdVal != null && item.macdVal > 0)) return false
+      if (mf === 'belowZero' && !(item.macdVal != null && item.macdVal < 0)) return false
+    }
+    if (filters.equalFilter && filters.equalFilter !== 'Any') {
+      const ef = filters.equalFilter
+      if (ef === 'equalHighs' && !item.equalHighs) return false
+      if (ef === 'equalLows'  && !item.equalLows)  return false
+      if (ef === 'either' && !item.equalHighs && !item.equalLows) return false
+    }
+    if (filters.signalScoreMin != null && filters.signalScoreMin > -5) {
+      if ((item.signalStrength ?? 0) < filters.signalScoreMin) return false
+    }
+    // ICT / SMC advanced
+    if (filters.dispFilter && filters.dispFilter !== 'Any') {
+      const xf = filters.dispFilter
+      if (xf === 'bull'   && !item.dispBull)  return false
+      if (xf === 'bear'   && !item.dispBear)  return false
+      if (xf === 'either' && !item.dispBull && !item.dispBear) return false
+    }
+    if (filters.breakerFilter && filters.breakerFilter !== 'Any') {
+      const xf = filters.breakerFilter
+      if (xf === 'bull'   && !item.breakerBull)  return false
+      if (xf === 'bear'   && !item.breakerBear)  return false
+      if (xf === 'either' && !item.breakerBull && !item.breakerBear) return false
+    }
+    if (filters.oteFilter && filters.oteFilter !== 'Any') {
+      const xf = filters.oteFilter
+      if (xf === 'bull'   && !item.oteBull)  return false
+      if (xf === 'bear'   && !item.oteBear)  return false
+      if (xf === 'either' && !item.oteBull && !item.oteBear) return false
+    }
+    if (filters.consolidatingFilter && filters.consolidatingFilter !== 'Any') {
+      if (filters.consolidatingFilter === 'yes' && !item.consolidating) return false
+      if (filters.consolidatingFilter === 'no'  &&  item.consolidating) return false
+    }
+    return true
+  })
+}
