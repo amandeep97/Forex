@@ -58,11 +58,14 @@ table  { border-collapse: collapse; width: 100%; }
   top: 0;
   z-index: 100;
   gap: 8px;
-  overflow: hidden;
+  overflow: visible;
 }
 
-.header-left  { display: flex; align-items: center; gap: 20px; flex-shrink: 0; }
-.header-right { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+.header-left {
+  display: flex; align-items: center; gap: 12px;
+  flex: 1; min-width: 0; overflow: hidden;
+}
+.header-right { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
 
 /* Logo */
 .logo {
@@ -90,17 +93,18 @@ table  { border-collapse: collapse; width: 100%; }
 .main-nav {
   display: flex; gap: 2px;
   overflow-x: auto; scrollbar-width: none;
+  flex: 1; min-width: 0;
 }
 .main-nav::-webkit-scrollbar { display: none; }
 .nav-tab {
-  display: flex; align-items: center; gap: 6px;
-  padding: 6px 14px; border-radius: var(--radius-sm);
+  display: flex; align-items: center; gap: 5px;
+  padding: 6px 12px; border-radius: var(--radius-sm);
   font-size: 13px; font-weight: 500; color: var(--text2);
   transition: all 0.15s; white-space: nowrap; flex-shrink: 0;
 }
 .nav-tab:hover  { color: var(--text); background: #1a2236; }
 .nav-tab.active { color: var(--accent); background: #00d4aa18; }
-.nav-tab-icon   { font-size: 14px; }
+.nav-tab-icon   { font-size: 13px; }
 
 /* Market badge */
 .market-badge {
@@ -263,16 +267,17 @@ table  { border-collapse: collapse; width: 100%; }
   font-size: 9px; font-weight: 800; background: var(--accent); color: #080c14;
 }
 
-/* Signal filter tabs (new style) */
+/* Signal filter tabs — standalone scrollable row */
 .signal-tab-group {
   display: flex; gap: 2px;
   overflow-x: auto; scrollbar-width: none;
-  flex: 1; /* fill remaining width */
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 4px;
 }
 .signal-tab-group::-webkit-scrollbar { display: none; }
 .signal-tab-btn {
-  padding: 5px 11px; border-radius: var(--radius-sm);
-  font-size: 11px; font-weight: 500; color: var(--text2);
+  padding: 5px 12px; border-radius: var(--radius-sm);
+  font-size: 11px; font-weight: 600; color: var(--text2);
   border: 1px solid transparent; transition: all 0.12s;
   white-space: nowrap; flex-shrink: 0;
 }
@@ -651,7 +656,11 @@ table  { border-collapse: collapse; width: 100%; }
   .header-time   { display: none; }
   .logo-tag      { display: none; }
   .market-badge  { display: none; }
-  .acc-btn       { padding: 5px 12px; }
+  .acc-btn       { padding: 5px 10px; font-size: 11px; }
+  /* Give nav tabs max room on small screens */
+  .header-right  { gap: 5px; }
+  .account-chip  { padding: 5px 8px; gap: 5px; }
+  .account-icon  { display: none; }
 }
 
 /* ── Real Money Mode ───────────────────────────────────────────────────────── */

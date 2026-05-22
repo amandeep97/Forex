@@ -366,9 +366,8 @@ export default function Screener() {
         </div>
       </div>
 
-      {/* ── Toolbar: filters toggle + signal tabs ────────────────────────── */}
+      {/* ── Toolbar row 1: filter toggle + subcategory tabs ─────────────── */}
       <div className="screener-toolbar">
-        {/* Filter toggle button */}
         <button
           className={`filter-toggle-btn ${showFilters ? 'active' : ''}`}
           onClick={() => setShowFilters(s => !s)}
@@ -380,26 +379,21 @@ export default function Screener() {
           {activeFilterCount > 0 && <span className="filter-count-badge">{activeFilterCount}</span>}
         </button>
 
-        {/* Sub-category tabs */}
-        {subCategories.length > 0 && (
-          <div className="tab-group">
-            {subCategories.map(c=>(
-              <button key={c} className={`tab-btn ${subCategory===c?'active':''}`} onClick={()=>setSubCategory(c)}>{c}</button>
-            ))}
-          </div>
-        )}
+        {subCategories.length > 0 && subCategories.map(c=>(
+          <button key={c} className={`tab-btn ${subCategory===c?'active':''}`} onClick={()=>setSubCategory(c)}>{c}</button>
+        ))}
+      </div>
 
-        {/* Signal filter tabs */}
-        <div className="signal-tab-group">
-          {['All','STRONG_BUY','BUY','NEUTRAL','SELL','STRONG_SELL'].map(s=>(
-            <button key={s}
-              className={`signal-tab-btn ${signalFilter===s?'active':''}`}
-              style={signalFilter===s&&s!=='All'?{color:SIGNALS[s]?.color,borderColor:SIGNALS[s]?.color,background:SIGNALS[s]?.bg}:{}}
-              onClick={()=>setSignalFilter(s)}>
-              {s==='All'?'All Signals':SIGNALS[s]?.label}
-            </button>
-          ))}
-        </div>
+      {/* ── Toolbar row 2: signal filter tabs (full-width scrollable) ─────── */}
+      <div className="signal-tab-group">
+        {['All','STRONG_BUY','BUY','NEUTRAL','SELL','STRONG_SELL'].map(s=>(
+          <button key={s}
+            className={`signal-tab-btn ${signalFilter===s?'active':''}`}
+            style={signalFilter===s&&s!=='All'?{color:SIGNALS[s]?.color,borderColor:SIGNALS[s]?.color,background:SIGNALS[s]?.bg}:{}}
+            onClick={()=>setSignalFilter(s)}>
+            {s==='All'?'All Signals':SIGNALS[s]?.label}
+          </button>
+        ))}
       </div>
 
       {/* ── Chart modal ──────────────────────────────────────────────────── */}
