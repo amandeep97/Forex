@@ -5,6 +5,34 @@ export const ASSET_TYPES = ['All', 'Forex', 'Metals', 'Indices', 'Energy', 'Cryp
 
 export const FOREX_CATEGORIES = ['All', 'Majors', 'Minors', 'Exotics'];
 
+export const STRUCTURES          = ['All', 'bullish', 'bearish'];
+export const HTF_BIASES          = ['All', 'bullish', 'bearish', 'sideways'];
+export const ZONES               = ['All', 'premium', 'discount'];
+export const STRUCTURE_TIMEFRAMES = [
+  { value: '15m', label: '15M' }, { value: '30m', label: '30M' },
+  { value: '1h',  label: '1H'  }, { value: '2h',  label: '2H'  },
+  { value: '4h',  label: '4H'  }, { value: '8h',  label: '8H'  },
+  { value: '12h', label: '12H' }, { value: '1d',  label: '1D'  },
+  { value: '3d',  label: '3D'  }, { value: '1w',  label: '1W'  },
+];
+export const DEFAULT_FILTERS = {
+  search: '', baseCurrency: 'All', structureTF: '4h', structure: 'All', htfBias: 'All',
+  requireBos: false, bosTF: '4h', requireChoch: false, chochTF: '4h', requireSweep: false,
+  obDir: 'All', requireOb: false, fvgDir: 'All', requireFvg: false, fvgObMode: 'AND',
+  liqType: 'All', zone: 'All',
+  requireNearResistance: false, requireNearSupport: false,
+  requireBrokeResistance: false, requireBrokeSupport: false,
+  requireTrendlineBull: false, requireTrendlineBear: false, requireTrendlineBreak: false,
+  changeMin: '', changeMax: '', rsiMin: '', rsiMax: '', mfiMin: '', mfiMax: '',
+  volumeMin: 0, volSpikeMin: 0,
+  emaPriceFilter: 'Any', emaAlignFilter: 'Any', emaCrossFilter: 'Any',
+  divFilter: 'Any', macdFilter: 'Any', equalFilter: 'Any', signalScoreMin: -5,
+  dispFilter: 'Any', breakerFilter: 'Any', oteFilter: 'Any', consolidatingFilter: 'Any',
+  vwapBias: 'All', pocBias: 'All',
+  candleType: 'All', candlePattern: 'All', candleInterval: '1',
+  chartPattern: 'All',
+};
+
 export const SIGNALS = {
   STRONG_BUY:  { label: 'Strong Buy',  color: '#16a34a', bg: '#14532d33' },
   BUY:         { label: 'Buy',         color: '#22c55e', bg: '#15803d22' },
