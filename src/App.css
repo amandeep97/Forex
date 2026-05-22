@@ -48,24 +48,55 @@ table  { border-collapse: collapse; width: 100%; }
 /* ── Header ────────────────────────────────────────────────────────────────── */
 .app-header {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
   padding: 0 16px;
-  height: 60px;
   background: var(--bg2);
   border-bottom: 1px solid var(--border);
   position: sticky;
   top: 0;
   z-index: 100;
-  gap: 8px;
+  gap: 0;
   overflow: visible;
+  min-height: 54px;
 }
 
-.header-left {
-  display: flex; align-items: center; gap: 12px;
-  flex: 1; min-width: 0; overflow: hidden;
+/* Logo — row 1 left */
+.logo {
+  display: flex; align-items: center; gap: 10px;
+  text-decoration: none; user-select: none;
+  padding: 10px 0; flex-shrink: 0;
 }
-.header-right { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+
+/* Controls — row 1 right */
+.header-right {
+  display: flex; align-items: center; gap: 8px;
+  margin-left: auto; padding: 6px 0; flex-shrink: 0;
+  flex-wrap: nowrap;
+}
+
+/* Nav tabs — row 2, full width */
+.main-nav {
+  display: flex; gap: 2px;
+  width: 100%;
+  overflow-x: auto; scrollbar-width: none;
+  padding: 0 0 6px;
+  border-top: 1px solid var(--border);
+  margin-top: 2px;
+}
+.main-nav::-webkit-scrollbar { display: none; }
+
+.nav-tab {
+  display: flex; align-items: center; gap: 5px;
+  padding: 7px 14px; border-radius: var(--radius-sm);
+  font-size: 13px; font-weight: 500; color: var(--text2);
+  transition: all 0.15s; white-space: nowrap; flex-shrink: 0;
+}
+.nav-tab:hover  { color: var(--text); background: #1a2236; }
+.nav-tab.active { color: var(--accent); background: #00d4aa18; }
+.nav-tab-icon   { font-size: 13px; }
+
+.header-left  { display: none; } /* removed — logo is now direct child */
 
 /* Logo */
 .logo {

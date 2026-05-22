@@ -123,43 +123,27 @@ export default function App() {
 
       {/* ── Header ────────────────────────────────────────────────────────── */}
       <header className={`app-header ${isReal ? 'header-real' : ''}`}>
-        <div className="header-left">
-          <div className="logo">
-            <span className="logo-icon">₣</span>
-            <div>
-              <span className="logo-name">ForexPro</span>
-              <span className="logo-tag">TRADING SUITE</span>
-            </div>
-          </div>
 
-          <nav className="main-nav">
-            {TABS.map(t => (
-              <button
-                key={t.id}
-                className={`nav-tab ${activeTab === t.id ? 'active' : ''}`}
-                onClick={() => setActiveTab(t.id)}
-              >
-                <span className="nav-tab-icon">{t.icon}</span>
-                {t.label}
-              </button>
-            ))}
-          </nav>
+        {/* Row 1 left: logo */}
+        <div className="logo">
+          <span className="logo-icon">₣</span>
+          <div>
+            <span className="logo-name">ForexPro</span>
+            <span className="logo-tag">TRADING SUITE</span>
+          </div>
         </div>
 
+        {/* Row 1 right: controls */}
         <div className="header-right">
           <div className="market-badge open">
             <span className="market-dot" />
             Markets Open
           </div>
-
-          {/* Account switcher */}
           <AccountSwitcher mode={accountMode} onChange={handleModeChange} />
-
           <div className="header-time">
             <span className="time-val">{timeStr}</span>
             <span className="time-date">{dateStr} UTC</span>
           </div>
-
           <div className={`account-chip ${isReal ? 'account-chip-real' : ''}`}>
             <span className="account-icon">{isReal ? '💳' : '◉'}</span>
             <div>
@@ -170,6 +154,21 @@ export default function App() {
             </div>
           </div>
         </div>
+
+        {/* Row 2: nav tabs — full width, always scrollable */}
+        <nav className="main-nav">
+          {TABS.map(t => (
+            <button
+              key={t.id}
+              className={`nav-tab ${activeTab === t.id ? 'active' : ''}`}
+              onClick={() => setActiveTab(t.id)}
+            >
+              <span className="nav-tab-icon">{t.icon}</span>
+              {t.label}
+            </button>
+          ))}
+        </nav>
+
       </header>
 
       {/* ── Tab indicator strip ────────────────────────────────────────────── */}
