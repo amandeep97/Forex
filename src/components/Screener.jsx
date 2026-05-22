@@ -5,7 +5,7 @@ import { generateCandles } from '../utils/generateCandles';
 import { detectCandlePatterns, CANDLE_PATTERNS } from '../utils/candlePatterns';
 import { analyzeSMC } from '../utils/smcAnalysis';
 import { computeRSI, computeMFI } from '../utils/indicatorCalc';
-import CandleChart from './CandleChart';
+import ChartModal from './ChartModal';
 import OandaConnect from './OandaConnect';
 
 const SCREENER_TFS = ['1M','2M','3M','5M','15M','30M','1H','2H','4H','8H','D','W'];
@@ -572,7 +572,7 @@ export default function Screener() {
         </div>
       )}
 
-      {chartInstrument&&<CandleChart instrument={chartInstrument} onClose={()=>setChartInstrument(null)}/>}
+      {chartInstrument&&<ChartModal instrument={chartInstrument} onClose={()=>setChartInstrument(null)}/>}
 
       {/* Table */}
       <div className="table-wrap">

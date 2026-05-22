@@ -1219,3 +1219,140 @@ table  { border-collapse: collapse; width: 100%; }
 .bt-page-btn:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
 .bt-page-btn:disabled { opacity: 0.35; cursor: not-allowed; }
 @keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── ChartModal ─────────────────────────────────────────────────────────────── */
+.cm-overlay {
+  position: fixed; inset: 0; background: #00000099; z-index: 1000;
+  display: flex; align-items: center; justify-content: center;
+  backdrop-filter: blur(3px);
+}
+.cm-modal {
+  background: var(--card); border: 1px solid var(--border2);
+  border-radius: var(--radius); width: min(1100px, calc(100vw - 24px));
+  height: min(820px, calc(100vh - 24px));
+  display: flex; flex-direction: column;
+  box-shadow: 0 32px 80px #00000077;
+}
+.cm-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 14px; border-bottom: 1px solid var(--border);
+  background: var(--card2); flex-shrink: 0; border-radius: var(--radius) var(--radius) 0 0;
+  color: var(--text);
+}
+.cm-tab-btn {
+  padding: 4px 10px; border-radius: 4px; font-size: 11px; font-weight: 600;
+  color: var(--text3); border: 1px solid transparent; transition: all 0.12s;
+}
+.cm-tab-btn:hover { color: var(--text2); background: var(--bg2); }
+.cm-tab-btn.active { color: var(--accent); background: #00d4aa12; border-color: #00d4aa44; }
+.cm-close-btn {
+  padding: 3px 8px; border-radius: 4px; font-size: 13px;
+  color: var(--text3); transition: all 0.12s; margin-left: 6px;
+}
+.cm-close-btn:hover { color: var(--down); background: #ef444415; }
+.cm-body {
+  display: flex; flex-direction: column; flex: 1; overflow: hidden;
+}
+.cm-toolbar {
+  flex-shrink: 0; padding: 8px 12px; border-bottom: 1px solid var(--border);
+  background: var(--card2); display: flex; flex-direction: column; gap: 6px;
+}
+.cm-tf-row { display: flex; gap: 3px; flex-wrap: wrap; }
+.cm-tf-pill {
+  padding: 3px 9px; border-radius: 3px; font-size: 10px; font-weight: 600;
+  font-family: var(--mono); color: var(--text3); border: 1px solid transparent;
+  background: var(--bg2); transition: all 0.12s;
+}
+.cm-tf-pill:hover { color: var(--text2); border-color: var(--border); }
+.cm-tf-pill.active { color: var(--accent); background: #00d4aa12; border-color: #00d4aa44; font-weight: 700; }
+.cm-ov-row { display: flex; gap: 3px; flex-wrap: wrap; }
+.cm-ov-btn {
+  padding: 2px 7px; border-radius: 3px; font-size: 10px; font-weight: 500;
+  color: var(--text3); border: 1px solid var(--border); background: var(--bg2);
+  transition: all 0.12s;
+}
+.cm-ov-btn:hover { color: var(--text2); }
+.cm-ov-btn.active { font-weight: 700; }
+.cm-autoread {
+  flex-shrink: 0; padding: 6px 12px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; gap: 8px; background: var(--bg2);
+  min-height: 36px;
+}
+.cm-autoread-btn {
+  padding: 4px 12px; border-radius: 4px; font-size: 11px; font-weight: 700;
+  color: var(--accent); border: 1px solid #00d4aa55; background: #00d4aa12;
+  transition: all 0.12s; white-space: nowrap; flex-shrink: 0;
+}
+.cm-autoread-btn:hover:not(:disabled) { background: #00d4aa22; }
+.cm-autoread-btn:disabled { opacity: 0.45; cursor: not-allowed; }
+.cm-autoread-result {
+  display: flex; align-items: center; gap: 6px; flex: 1; overflow: hidden;
+}
+.cm-bias-pill {
+  padding: 2px 9px; border-radius: 3px; font-size: 11px; font-weight: 700;
+  border: 1px solid; white-space: nowrap; flex-shrink: 0;
+}
+.cm-ar-chip {
+  padding: 2px 7px; border-radius: 3px; font-size: 10px; font-weight: 600;
+  color: var(--text2); background: var(--card); border: 1px solid var(--border);
+  white-space: nowrap; font-family: var(--mono); flex-shrink: 0;
+}
+.cm-chart-wrap {
+  flex: 1; overflow: auto; padding: 8px;
+}
+.cm-state {
+  display: flex; align-items: center; justify-content: center;
+  height: 200px; font-size: 13px; color: var(--text3);
+}
+.cm-err { color: #f97316; }
+.cm-ai-body { overflow-y: auto; }
+.cm-ai-panel { padding: 16px; display: flex; flex-direction: column; gap: 10px; max-width: 720px; }
+.cm-section-title {
+  font-size: 11px; font-weight: 700; color: var(--text2);
+  text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px;
+}
+.cm-run-btn {
+  padding: 9px 18px; border-radius: var(--radius-sm); font-size: 12px; font-weight: 700;
+  color: var(--accent); border: 1px solid #00d4aa55; background: #00d4aa12;
+  transition: all 0.14s; align-self: flex-start;
+}
+.cm-run-btn:hover:not(:disabled) { background: #00d4aa22; }
+.cm-run-btn:disabled { opacity: 0.45; cursor: not-allowed; }
+.cm-analysis-text {
+  background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius-sm);
+  padding: 12px 14px; font-size: 12px; color: var(--text2); line-height: 1.7;
+  white-space: pre-wrap; max-height: 420px; overflow-y: auto;
+}
+.cm-ai-hint {
+  font-size: 10px; color: var(--text3); line-height: 1.6;
+  background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius-sm);
+  padding: 8px 10px;
+}
+.cm-ai-hint code { color: var(--accent2); font-family: var(--mono); font-size: 10px; }
+.cm-check-body { overflow-y: auto; }
+.cm-check-panel { padding: 16px; display: flex; flex-direction: column; gap: 6px; max-width: 600px; }
+.cm-check-row {
+  display: flex; align-items: center; gap: 10px;
+  padding: 8px 10px; border-radius: var(--radius-sm);
+  border: 1px solid var(--border); background: var(--bg2);
+  transition: background 0.12s;
+}
+.cm-check-row:hover { background: var(--card2); }
+.cm-check-toggle {
+  font-size: 15px; width: 28px; text-align: center; flex-shrink: 0;
+  border-radius: 4px; transition: all 0.12s;
+}
+.cm-check-toggle.pass { background: #22c55e12; }
+.cm-check-toggle.fail { background: #ef444412; }
+.cm-rm-btn { font-size: 11px; color: var(--text3); padding: 1px 5px; border-radius: 3px; transition: all 0.12s; }
+.cm-rm-btn:hover { color: var(--down); background: #ef444415; }
+.cm-check-add { display: flex; gap: 6px; margin-top: 4px; }
+.cm-check-input {
+  flex: 1; padding: 6px 10px; border-radius: var(--radius-sm);
+  border: 1px solid var(--border); background: var(--bg2); color: var(--text);
+  font-size: 12px; outline: none;
+}
+.cm-check-input:focus { border-color: var(--accent); }
+.cm-score {
+  font-size: 11px; font-weight: 600; color: var(--accent); text-align: center; margin-top: 4px;
+}
