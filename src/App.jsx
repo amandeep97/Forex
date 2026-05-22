@@ -210,7 +210,7 @@ export default function App() {
         <span>
           {isReal
             ? '⚠️ Real Money Mode — Trade responsibly'
-            : 'ForexPro v1.0 · Demo data for illustration only'}
+            : 'ForexPro v1.1 · Demo data for illustration only'}
         </span>
         <span>Session: {dateStr}</span>
       </footer>
