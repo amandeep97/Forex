@@ -357,6 +357,7 @@ export function runBacktest(candles, strategy) {
     slPips     = 25,
     tpAtr      = 2,
     slAtr      = 1,
+    rrRatio    = 2,
     maxTrades  = 1,
     riskPct    = 1,
     symbol,
@@ -442,6 +443,11 @@ export function runBacktest(candles, strategy) {
       slP = (currAtr * slAtr) / pip;
       tp  = dir === 'long' ? entry + currAtr * tpAtr : entry - currAtr * tpAtr;
       sl  = dir === 'long' ? entry - currAtr * slAtr : entry + currAtr * slAtr;
+    } else if (exitType === 'rr') {
+      // R:R mode: SL in pips, TP = SL × rrRatio
+      slP = slPips; tpP = slPips * rrRatio;
+      sl  = dir === 'long' ? entry - slPips * pip      : entry + slPips * pip;
+      tp  = dir === 'long' ? entry + tpP   * pip       : entry - tpP   * pip;
     } else {
       tpP = tpPips; slP = slPips;
       tp  = dir === 'long' ? entry + tpPips * pip : entry - tpPips * pip;
