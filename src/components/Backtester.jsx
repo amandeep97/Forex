@@ -23,7 +23,9 @@ const FALLBACK_PRICES = {
 
 const COND_TYPES = [
   {v:'rsi',l:'RSI'},{v:'mfi',l:'MFI'},{v:'ma',l:'Price vs MA'},
-  {v:'ma_cross',l:'MA Crossover'},{v:'pattern',l:'Pattern'},{v:'candle',l:'Candle Dir'},
+  {v:'ma_cross',l:'MA Crossover'},{v:'macd',l:'MACD'},
+  {v:'bos',l:'BOS / Structure'},{v:'fvg',l:'Fair Value Gap'},
+  {v:'displacement',l:'Displacement'},{v:'pattern',l:'Pattern'},{v:'candle',l:'Candle Dir'},
 ];
 
 const DEF = {
@@ -31,6 +33,10 @@ const DEF = {
   mfi:{period:14,op:'crossBelow',value:20},
   ma:{maType:'ema',period:50,op:'priceCrossAbove'},
   ma_cross:{maType:'ema',period:9,period2:21,op:'bullishCross'},
+  macd:{op:'crossUp'},
+  bos:{op:'bullish'},
+  fvg:{op:'bullish'},
+  displacement:{op:'bullish'},
   pattern:{value:'bullish'},
   candle:{op:'bullish'},
 };
@@ -40,8 +46,13 @@ const PRESETS = [
   {name:'MFI Extremes',dir:'both',conds:[{type:'mfi',period:14,op:'crossBelow',value:20}],exit:'fixed',tp:40,sl:20},
   {name:'EMA Bounce',dir:'both',conds:[{type:'ma',maType:'ema',period:50,op:'priceCrossAbove'},{type:'rsi',period:14,op:'above',value:40}],exit:'atr',tpA:2,slA:1},
   {name:'MA Crossover',dir:'both',conds:[{type:'ma_cross',maType:'ema',period:9,period2:21,op:'bullishCross'}],exit:'atr',tpA:3,slA:1.5},
+  {name:'MACD Cross',dir:'both',conds:[{type:'macd',op:'crossUp'}],exit:'atr',tpA:2.5,slA:1},
+  {name:'BOS + RSI',dir:'both',conds:[{type:'bos',op:'bullish'},{type:'rsi',period:14,op:'below',value:55}],exit:'atr',tpA:3,slA:1},
+  {name:'FVG Entry',dir:'both',conds:[{type:'fvg',op:'bullish'},{type:'candle',op:'bullish'}],exit:'atr',tpA:2,slA:1},
+  {name:'Displacement',dir:'both',conds:[{type:'displacement',op:'bullish'}],exit:'atr',tpA:3,slA:1.5},
   {name:'Pattern+RSI',dir:'both',conds:[{type:'pattern',value:'bullish'},{type:'rsi',period:14,op:'below',value:50}],exit:'fixed',tp:45,sl:25},
   {name:'RSI+MFI Combo',dir:'long',conds:[{type:'rsi',period:14,op:'below',value:35},{type:'mfi',period:14,op:'below',value:35}],exit:'fixed',tp:60,sl:30},
+  {name:'SMC Full',dir:'long',conds:[{type:'bos',op:'bullish'},{type:'fvg',op:'bullish'},{type:'rsi',period:14,op:'below',value:60}],exit:'atr',tpA:3,slA:1},
 ];
 
 async function fetchCandles(symbol, tf, count) {
@@ -167,6 +178,37 @@ function CondRow({cond, onChange, onRemove, idx}) {
             <option value="bearishCross">bear ×</option>
           </select>
         </>}
+        {cond.type==='macd' && (
+          <select className="bt-sel" value={cond.op||'crossUp'} onChange={e=>upd({op:e.target.value})}>
+            <option value="crossUp">MACD × above signal (bull)</option>
+            <option value="crossDown">MACD × below signal (bear)</option>
+            <option value="aboveZero">MACD above zero line</option>
+            <option value="belowZero">MACD below zero line</option>
+            <option value="histPos">Histogram positive</option>
+            <option value="histNeg">Histogram negative</option>
+          </select>
+        )}
+        {cond.type==='bos' && (
+          <select className="bt-sel" value={cond.op||'bullish'} onChange={e=>upd({op:e.target.value})}>
+            <option value="bullish">BOS Bullish (broke swing high)</option>
+            <option value="bearish">BOS Bearish (broke swing low)</option>
+            <option value="any">Any BOS</option>
+          </select>
+        )}
+        {cond.type==='fvg' && (
+          <select className="bt-sel" value={cond.op||'bullish'} onChange={e=>upd({op:e.target.value})}>
+            <option value="bullish">Bullish FVG (gap up)</option>
+            <option value="bearish">Bearish FVG (gap down)</option>
+            <option value="any">Any FVG</option>
+          </select>
+        )}
+        {cond.type==='displacement' && (
+          <select className="bt-sel" value={cond.op||'bullish'} onChange={e=>upd({op:e.target.value})}>
+            <option value="bullish">Bullish displacement (3 bull candles)</option>
+            <option value="bearish">Bearish displacement (3 bear candles)</option>
+            <option value="any">Any displacement</option>
+          </select>
+        )}
         {cond.type==='pattern' && (
           <select className="bt-sel" value={cond.value||'bullish'} onChange={e=>upd({value:e.target.value})}>
             <option value="bullish">Bullish</option>

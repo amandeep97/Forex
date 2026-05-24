@@ -81,6 +81,86 @@ export function computeATRSeries(candles, period = 14) {
   return res;
 }
 
+// ── MACD series ───────────────────────────────────────────────────────────────
+export function computeMACDSeries(candles, fast = 12, slow = 26, signal = 9) {
+  const res = new Array(candles.length).fill(null);
+  const emaFArr = computeEMASeries(candles, fast);
+  const emaSArr = computeEMASeries(candles, slow);
+  const validMacd = [];
+  for (let i = slow - 1; i < candles.length; i++) {
+    if (emaFArr[i] != null && emaSArr[i] != null)
+      validMacd.push({ idx: i, val: emaFArr[i] - emaSArr[i] });
+  }
+  if (validMacd.length < signal + 1) return res;
+  const kg = 2 / (signal + 1);
+  let sigEma = validMacd.slice(0, signal).reduce((s, v) => s + v.val, 0) / signal;
+  let prevSig = sigEma;
+  for (let i = signal; i < validMacd.length; i++) {
+    prevSig = sigEma;
+    const prev = validMacd[i - 1];
+    sigEma = validMacd[i].val * kg + sigEma * (1 - kg);
+    res[validMacd[i].idx] = {
+      m: validMacd[i].val, s: sigEma, h: validMacd[i].val - sigEma,
+      crossUp:   validMacd[i].val > sigEma && prev.val <= prevSig,
+      crossDown: validMacd[i].val < sigEma && prev.val >= prevSig,
+    };
+  }
+  return res;
+}
+
+// ── BOS series (simplified per-bar break-of-structure) ────────────────────────
+export function computeBOSSeries(candles, lookback = 10) {
+  const res = new Array(candles.length).fill(null);
+  for (let i = lookback + 3; i < candles.length; i++) {
+    const slice = candles.slice(Math.max(0, i - lookback), i);
+    let swingHigh = -Infinity, swingLow = Infinity;
+    for (let j = 2; j < slice.length - 2; j++) {
+      if (slice[j].h > slice[j-1].h && slice[j].h > slice[j-2].h &&
+          slice[j].h > slice[j+1].h && slice[j].h > slice[j+2].h)
+        swingHigh = Math.max(swingHigh, slice[j].h);
+      if (slice[j].l < slice[j-1].l && slice[j].l < slice[j-2].l &&
+          slice[j].l < slice[j+1].l && slice[j].l < slice[j+2].l)
+        swingLow = Math.min(swingLow, slice[j].l);
+    }
+    const c = candles[i];
+    if (swingHigh !== -Infinity || swingLow !== Infinity) {
+      res[i] = {
+        bull: swingHigh !== -Infinity && c.c > swingHigh,
+        bear: swingLow  !== Infinity  && c.c < swingLow,
+      };
+    }
+  }
+  return res;
+}
+
+// ── FVG series (is there a fair value gap ending at bar i) ────────────────────
+export function computeFVGSeries(candles) {
+  const res = new Array(candles.length).fill(null);
+  const avg = candles.reduce((s, c) => s + Math.abs(c.c - c.o), 0) / candles.length || 1;
+  for (let i = 2; i < candles.length; i++) {
+    const bull = candles[i-2].h < candles[i].l && (candles[i].l - candles[i-2].h) > avg * 0.1;
+    const bear = candles[i-2].l > candles[i].h && (candles[i-2].l - candles[i].h) > avg * 0.1;
+    if (bull || bear) res[i] = { bull, bear };
+  }
+  return res;
+}
+
+// ── Displacement series (3 impulsive candles in a row) ────────────────────────
+export function computeDisplacementSeries(candles) {
+  const res = new Array(candles.length).fill(null);
+  if (candles.length < 5) return res;
+  const avgBody = candles.reduce((s, c) => s + Math.abs(c.c - c.o), 0) / candles.length || 1;
+  for (let i = 2; i < candles.length; i++) {
+    const c0 = candles[i-2], c1 = candles[i-1], c2 = candles[i];
+    const allBull = c0.c > c0.o && c1.c > c1.o && c2.c > c2.o;
+    const allBear = c0.c < c0.o && c1.c < c1.o && c2.c < c2.o;
+    const totalMove = Math.abs(c2.c - c0.o);
+    if ((allBull || allBear) && totalMove > avgBody * 2.5)
+      res[i] = { bull: allBull, bear: allBear };
+  }
+  return res;
+}
+
 // ── Candle pattern detection ──────────────────────────────────────────────────
 export function detectPatternAt(candles, i) {
   if (i < 1) return null;
@@ -131,6 +211,16 @@ export function mirrorCond(cond) {
       const m = { bullishCross:'bearishCross', bearishCross:'bullishCross' };
       return { ...cond, op: m[cond.op] || cond.op };
     }
+    case 'macd': {
+      const m = { crossUp:'crossDown', crossDown:'crossUp', aboveZero:'belowZero', belowZero:'aboveZero', histPos:'histNeg', histNeg:'histPos' };
+      return { ...cond, op: m[cond.op] || cond.op };
+    }
+    case 'bos':
+    case 'fvg':
+    case 'displacement': {
+      const m = { bullish:'bearish', bearish:'bullish' };
+      return { ...cond, op: m[cond.op] || cond.op };
+    }
     case 'pattern':
       return { ...cond, value: cond.value === 'bullish' ? 'bearish' : cond.value === 'bearish' ? 'bullish' : cond.value };
     case 'candle':
@@ -176,8 +266,40 @@ function evalCond(c, prev, inds, cond, pattern) {
       if (cond.op === 'bearishCross') return s1.cur < s2.cur && p1 >= p2;
       return false;
     }
+    case 'macd': {
+      const s = inds['macd'];
+      if (!s || s.cur == null) return false;
+      if (cond.op === 'crossUp')   return s.cur.crossUp   === true;
+      if (cond.op === 'crossDown') return s.cur.crossDown === true;
+      if (cond.op === 'aboveZero') return s.cur.m > 0;
+      if (cond.op === 'belowZero') return s.cur.m < 0;
+      if (cond.op === 'histPos')   return s.cur.h > 0;
+      if (cond.op === 'histNeg')   return s.cur.h < 0;
+      return false;
+    }
+    case 'bos': {
+      const s = inds['bos'];
+      if (!s || s.cur == null) return false;
+      if (cond.op === 'bullish') return s.cur.bull === true;
+      if (cond.op === 'bearish') return s.cur.bear === true;
+      return s.cur.bull || s.cur.bear;
+    }
+    case 'fvg': {
+      const s = inds['fvg'];
+      if (!s || s.cur == null) return false;
+      if (cond.op === 'bullish') return s.cur.bull === true;
+      if (cond.op === 'bearish') return s.cur.bear === true;
+      return s.cur.bull || s.cur.bear;
+    }
+    case 'displacement': {
+      const s = inds['disp'];
+      if (!s || s.cur == null) return false;
+      if (cond.op === 'bullish') return s.cur.bull === true;
+      if (cond.op === 'bearish') return s.cur.bear === true;
+      return s.cur.bull || s.cur.bear;
+    }
     case 'pattern':
-      if (cond.value === 'any')     return pattern !== null;
+      if (cond.value === 'any') return pattern !== null;
       return pattern === cond.value;
     case 'candle':
       if (cond.op === 'bullish') return c.c > c.o;
@@ -209,6 +331,10 @@ function buildIndicators(candles, conditions) {
       if (!arrays[k1]) arrays[k1] = mt === 'sma' ? computeSMASeries(candles, period)  : computeEMASeries(candles, period);
       if (!arrays[k2]) arrays[k2] = mt === 'sma' ? computeSMASeries(candles, period2) : computeEMASeries(candles, period2);
     }
+    if (type === 'macd' && !arrays['macd']) arrays['macd'] = computeMACDSeries(candles);
+    if (type === 'bos'  && !arrays['bos'])  arrays['bos']  = computeBOSSeries(candles);
+    if (type === 'fvg'  && !arrays['fvg'])  arrays['fvg']  = computeFVGSeries(candles);
+    if (type === 'displacement' && !arrays['disp']) arrays['disp'] = computeDisplacementSeries(candles);
   };
   for (const cd of conditions) {
     ensure(cd.type, cd.period, cd.period2, cd.maType);

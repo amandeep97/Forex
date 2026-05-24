@@ -9,10 +9,17 @@ const isRed   = c => c.c <  c.o;
 function avgBody(arr) {
   return arr.reduce((s, c) => s + body(c), 0) / (arr.length || 1) || 1;
 }
+function localATR(candles, period = 14) {
+  if (!candles || candles.length < period + 1) return 0.001;
+  let atr = 0;
+  for (let i = candles.length - period; i < candles.length; i++) {
+    const pc = candles[i - 1].c;
+    atr += Math.max(candles[i].h - candles[i].l, Math.abs(candles[i].h - pc), Math.abs(candles[i].l - pc));
+  }
+  return atr / period;
+}
 
 // ── Order Blocks ──────────────────────────────────────────────────────────────
-// Bullish OB : last bearish candle before a strong bullish impulse
-// Bearish OB : last bullish candle before a strong bearish impulse
 export function detectOrderBlocks(candles) {
   if (!candles || candles.length < 6) return [];
   const n   = candles.length;
@@ -36,9 +43,7 @@ export function detectOrderBlocks(candles) {
   return obs.slice(-5);
 }
 
-// ── Fair Value Gaps (Imbalances) ──────────────────────────────────────────────
-// Bullish FVG : candles[i].h < candles[i+2].l  (gap above, price should come back)
-// Bearish FVG : candles[i].l > candles[i+2].h  (gap below, price should come back)
+// ── Fair Value Gaps ───────────────────────────────────────────────────────────
 export function detectFVGs(candles) {
   if (!candles || candles.length < 3) return [];
   const n   = candles.length;
@@ -49,7 +54,7 @@ export function detectFVGs(candles) {
     const c1 = candles[i];
     const c3 = candles[i + 2];
     const gapSize = c1.h < c3.l ? c3.l - c1.h : (c1.l > c3.h ? c1.l - c3.h : 0);
-    if (gapSize < avg * 0.1) continue;   // filter noise
+    if (gapSize < avg * 0.1) continue;
 
     if (c1.h < c3.l) {
       fvgs.push({ type: 'bullish', top: c3.l, bottom: c1.h, index: i + 1 });
@@ -77,8 +82,6 @@ function findSwings(candles, lookback = 3) {
 }
 
 // ── Liquidity Pools ───────────────────────────────────────────────────────────
-// Swing highs = sell-side liquidity (SSL)   — market often runs stops here
-// Swing lows  = buy-side liquidity  (BSL)
 export function detectLiquidity(candles) {
   if (!candles || candles.length < 8) return [];
   const { highs, lows } = findSwings(candles, 3);
@@ -90,8 +93,6 @@ export function detectLiquidity(candles) {
 }
 
 // ── Break of Structure / Change of Character ──────────────────────────────────
-// BOS   : break of a swing in the direction of the existing trend
-// CHoCH : break of a swing counter to the existing trend (trend reversal signal)
 export function detectBOSCHoCH(candles) {
   if (!candles || candles.length < 12) return [];
   const n = candles.length;
@@ -99,7 +100,6 @@ export function detectBOSCHoCH(candles) {
   const signals = [];
   const used = new Set();
 
-  // Simple trend: compare last swing high vs first swing high
   const trendBullish = highs.length >= 2 && highs[highs.length - 1].price > highs[0].price;
 
   const checkFrom = Math.max(5, n - 18);
@@ -130,7 +130,7 @@ export function detectBOSCHoCH(candles) {
 export function detectSupportResistance(candles) {
   if (!candles || candles.length < 12) return [];
   const n   = candles.length;
-  const tol = 0.0020;  // 0.20% cluster tolerance
+  const tol = 0.0020;
   const pivots = [];
 
   for (let i = 3; i < n - 3; i++) {
@@ -141,7 +141,6 @@ export function detectSupportResistance(candles) {
     if (candles[i].l <= minL) pivots.push({ type: 'support',    price: candles[i].l, index: i });
   }
 
-  // Cluster nearby levels
   const merged = [];
   for (const p of pivots) {
     const ref = p.price || 1;
@@ -149,7 +148,7 @@ export function detectSupportResistance(candles) {
     if (ex) {
       ex.touches++;
       ex.lastIndex = Math.max(ex.lastIndex, p.index);
-      ex.price = (ex.price * (ex.touches - 1) + p.price) / ex.touches; // avg price
+      ex.price = (ex.price * (ex.touches - 1) + p.price) / ex.touches;
     } else {
       merged.push({ ...p, touches: 1, lastIndex: p.index });
     }
@@ -176,52 +175,34 @@ export function detectTrendlines(candles) {
   const lines = [];
   const currentPrice = candles[n - 1].c;
 
-  // Resistance trendline: connect last 2 swing highs
   if (highs.length >= 2) {
-    const h1    = highs[highs.length - 2];
-    const h2    = highs[highs.length - 1];
+    const h1 = highs[highs.length - 2], h2 = highs[highs.length - 1];
     const slope = (h2.price - h1.price) / (h2.index - h1.index);
     const priceAtEnd = h2.price + slope * (n - 1 - h2.index);
-
     let isBroken = false;
     for (let i = h2.index + 1; i < n; i++) {
-      const lineP = h2.price + slope * (i - h2.index);
-      if (candles[i].c > lineP) { isBroken = true; break; }
+      if (candles[i].c > h2.price + slope * (i - h2.index)) { isBroken = true; break; }
     }
     const proximity = Math.abs(priceAtEnd - currentPrice) / (currentPrice || 1) * 100;
-    lines.push({
-      type: 'resistance', p1: h1, p2: h2, slope, priceAtEnd, isBroken,
-      proximity, isNear: proximity < 0.4 && !isBroken,
-      label: isBroken ? 'Resistance TL (Broken)' : 'Resistance Trendline',
-    });
+    lines.push({ type: 'resistance', p1: h1, p2: h2, slope, priceAtEnd, isBroken, proximity, isNear: proximity < 0.4 && !isBroken, label: isBroken ? 'Resistance TL (Broken)' : 'Resistance Trendline' });
   }
 
-  // Support trendline: connect last 2 swing lows
   if (lows.length >= 2) {
-    const l1    = lows[lows.length - 2];
-    const l2    = lows[lows.length - 1];
+    const l1 = lows[lows.length - 2], l2 = lows[lows.length - 1];
     const slope = (l2.price - l1.price) / (l2.index - l1.index);
     const priceAtEnd = l2.price + slope * (n - 1 - l2.index);
-
     let isBroken = false;
     for (let i = l2.index + 1; i < n; i++) {
-      const lineP = l2.price + slope * (i - l2.index);
-      if (candles[i].c < lineP) { isBroken = true; break; }
+      if (candles[i].c < l2.price + slope * (i - l2.index)) { isBroken = true; break; }
     }
     const proximity = Math.abs(priceAtEnd - currentPrice) / (currentPrice || 1) * 100;
-    lines.push({
-      type: 'support', p1: l1, p2: l2, slope, priceAtEnd, isBroken,
-      proximity, isNear: proximity < 0.4 && !isBroken,
-      label: isBroken ? 'Support TL (Broken)' : 'Support Trendline',
-    });
+    lines.push({ type: 'support', p1: l1, p2: l2, slope, priceAtEnd, isBroken, proximity, isNear: proximity < 0.4 && !isBroken, label: isBroken ? 'Support TL (Broken)' : 'Support Trendline' });
   }
 
   return lines;
 }
 
 // ── Premium / Discount Zones ──────────────────────────────────────────────────
-// Premium = top 50% of range (price is expensive)
-// Discount = bottom 50% of range (price is cheap)
 export function detectPremiumDiscount(candles) {
   if (!candles || candles.length < 5) return null;
   const rangeHigh = Math.max(...candles.map(c => c.h));
@@ -229,12 +210,95 @@ export function detectPremiumDiscount(candles) {
   const equilibrium = (rangeHigh + rangeLow) / 2;
   const currentPrice = candles[candles.length - 1].c;
   return {
-    rangeHigh,
-    rangeLow,
-    equilibrium,
+    rangeHigh, rangeLow, equilibrium,
     zone: currentPrice > equilibrium ? 'premium' : 'discount',
     deviation: ((currentPrice - equilibrium) / (equilibrium || 1)) * 100,
   };
+}
+
+// ── Breaker Blocks ────────────────────────────────────────────────────────────
+// An OB becomes a breaker when price breaks through it and then retests from the other side.
+export function detectBreakerBlocks(candles) {
+  if (!candles || candles.length < 10) return { bull: false, bear: false };
+  const obs = detectOrderBlocks(candles);
+  const cp  = candles[candles.length - 1].c;
+  const atr = localATR(candles);
+  let bull = false, bear = false;
+
+  for (const ob of obs) {
+    const startIdx = ob.index + 3;
+    if (ob.type === 'bullish') {
+      // Bullish OB breaks down → now acts as resistance (bearish breaker)
+      let broke = false;
+      for (let i = startIdx; i < candles.length; i++) {
+        if (candles[i].l < ob.bottom) { broke = true; break; }
+      }
+      if (broke && Math.abs(cp - ob.bottom) < atr * 2) bear = true;
+    } else {
+      // Bearish OB breaks up → now acts as support (bullish breaker)
+      let broke = false;
+      for (let i = startIdx; i < candles.length; i++) {
+        if (candles[i].h > ob.top) { broke = true; break; }
+      }
+      if (broke && Math.abs(cp - ob.top) < atr * 2) bull = true;
+    }
+  }
+  return { bull, bear };
+}
+
+// ── Optimal Trade Entry (OTE) ─────────────────────────────────────────────────
+// Price in the 61.8%–78.6% Fibonacci retracement zone after a confirmed swing
+export function detectOTE(candles) {
+  if (!candles || candles.length < 15) return { bull: false, bear: false };
+  const slice = candles.slice(-40);
+  const n = slice.length;
+  const cp = slice[n - 1].c;
+
+  let swingHigh = -Infinity, swingHighIdx = 0;
+  let swingLow  = Infinity,  swingLowIdx  = 0;
+  for (let i = 0; i < n; i++) {
+    if (slice[i].h > swingHigh) { swingHigh = slice[i].h; swingHighIdx = i; }
+    if (slice[i].l < swingLow)  { swingLow  = slice[i].l; swingLowIdx  = i; }
+  }
+  const range = swingHigh - swingLow;
+  if (range === 0) return { bull: false, bear: false };
+
+  // Bullish OTE: high occurred before low (bearish leg), price retracing upward
+  const ote618Bull = swingLow + range * 0.618;
+  const ote786Bull = swingLow + range * 0.786;
+  const bull = swingHighIdx < swingLowIdx && cp >= ote618Bull && cp <= ote786Bull;
+
+  // Bearish OTE: low occurred before high (bullish leg), price retracing downward
+  const ote786Bear = swingHigh - range * 0.786;
+  const ote618Bear = swingHigh - range * 0.618;
+  const bear = swingLowIdx < swingHighIdx && cp >= ote786Bear && cp <= ote618Bear;
+
+  return { bull, bear };
+}
+
+// ── Displacement Candles ──────────────────────────────────────────────────────
+// 3+ consecutive candles in the same direction with combined move > 2.5× avg body
+export function detectDisplacement(candles) {
+  if (!candles || candles.length < 5) return { bull: false, bear: false };
+  const avgB  = avgBody(candles);
+  const n     = candles.length;
+  const c0    = candles[n - 3], c1 = candles[n - 2], c2 = candles[n - 1];
+  const allBull  = c0.c > c0.o && c1.c > c1.o && c2.c > c2.o;
+  const allBear  = c0.c < c0.o && c1.c < c1.o && c2.c < c2.o;
+  const totalMove = Math.abs(c2.c - c0.o);
+  return {
+    bull: allBull && totalMove > avgB * 2.5,
+    bear: allBear && totalMove > avgB * 2.5,
+  };
+}
+
+// ── Consolidation Detection ───────────────────────────────────────────────────
+// Recent ATR is much smaller than the longer-term ATR → price coiling
+export function detectConsolidation(candles) {
+  if (!candles || candles.length < 30) return false;
+  const recentATR = localATR(candles.slice(-14), 14);
+  const longerATR = localATR(candles.slice(-42), 14);
+  return longerATR > 0 && (recentATR / longerATR) < 0.5;
 }
 
 // ── Full SMC Report ───────────────────────────────────────────────────────────
@@ -247,5 +311,9 @@ export function analyzeSMC(candles) {
     supportResistance: detectSupportResistance(candles),
     trendlines:        detectTrendlines(candles),
     premiumDiscount:   detectPremiumDiscount(candles),
+    breakerBlocks:     detectBreakerBlocks(candles),
+    ote:               detectOTE(candles),
+    displacement:      detectDisplacement(candles),
+    consolidation:     detectConsolidation(candles),
   };
 }

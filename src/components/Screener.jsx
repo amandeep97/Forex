@@ -4,7 +4,7 @@ import { useLivePrices } from '../hooks/useLivePrices';
 import { generateCandles } from '../utils/generateCandles';
 import { detectCandlePatterns } from '../utils/candlePatterns';
 import { analyzeSMC } from '../utils/smcAnalysis';
-import { computeRSI, computeMFI } from '../utils/indicatorCalc';
+import { computeRSI, computeMFI, computeEMA, computeMACD, detectRSIDivergence, detectEqualHighsLows } from '../utils/indicatorCalc';
 import { computeVWAP } from '../utils/smcHelpers';
 import ChartModal from './ChartModal';
 import OandaConnect from './OandaConnect';
@@ -145,11 +145,12 @@ export default function Screener() {
     const map = {};
     allInstruments.forEach(inst => {
       try {
-        const candles   = generateCandles(inst, tfFilter, 60);
+        const candles   = generateCandles(inst, tfFilter, 250);
+        const prevCandles = candles.slice(0, -1);
         const rsiVal    = computeRSI(candles, 14);
         const mfiVal    = computeMFI(candles, 14);
         const smc       = analyzeSMC(candles);
-        const patterns  = detectCandlePatterns(candles, lookback);
+        const patterns  = detectCandlePatterns(candles.slice(-60), lookback);
         const cp        = candles[candles.length - 1].c;
 
         const bosBullish   = smc.bosChoch.some(b=>b.type==='BOS'&&b.direction==='bullish');
@@ -160,12 +161,30 @@ export default function Screener() {
         const hasFVG = smc.fvgs.length>0;
         const zone   = smc.premiumDiscount?.zone || 'discount';
 
-        const vwapSeries = computeVWAP(candles);
+        const vwapSeries = computeVWAP(candles.slice(-60));
         const lastVwap   = vwapSeries[vwapSeries.length-1];
         const vwapAbove  = cp >= (lastVwap || cp);
 
         const structure = (bosBullish||chochBullish) ? 'bullish'
                         : (bosBearish||chochBearish) ? 'bearish' : 'neutral';
+
+        // EMAs
+        const ema20  = computeEMA(candles, 20);
+        const ema50  = computeEMA(candles, 50);
+        const ema100 = computeEMA(candles, 100);
+        const ema200 = computeEMA(candles, 200);
+        const prevEma20  = computeEMA(prevCandles, 20);
+        const prevEma50  = computeEMA(prevCandles, 50);
+        const prevEma200 = computeEMA(prevCandles, 200);
+
+        // MACD
+        const macd = computeMACD(candles);
+
+        // Divergence
+        const rsiDiv = detectRSIDivergence(candles);
+
+        // Equal Highs/Lows
+        const eql = detectEqualHighsLows(candles);
 
         let sBull = 0, sBear = 0;
         if (rsiVal < 30) sBull += 2; else if (rsiVal > 70) sBear += 2;
@@ -177,6 +196,9 @@ export default function Screener() {
         if (hasOB)  { if (structure==='bullish') sBull++; else sBear++; }
         if (zone==='discount') sBull++; else if (zone==='premium') sBear++;
         if (vwapAbove) sBull++; else sBear++;
+        if (macd.crossUp) sBull++; if (macd.crossDown) sBear++;
+        if (rsiDiv.bull || rsiDiv.hiddenBull) sBull++; if (rsiDiv.bear || rsiDiv.hiddenBear) sBear++;
+        if (smc.displacement.bull) sBull++; if (smc.displacement.bear) sBear++;
         const stTotal = sBull + sBear || 1;
         const strength    = Math.round((Math.max(sBull, sBear) / stTotal) * 100);
         const strengthDir = sBull > sBear ? 'bullish' : sBear > sBull ? 'bearish' : 'neutral';
@@ -197,6 +219,17 @@ export default function Screener() {
           patternType: patterns.length===0?'neut':
                        patterns.some(p=>p.type==='bullish')?'bull':
                        patterns.some(p=>p.type==='bearish')?'bear':'neut',
+          // New computed fields
+          ema20, ema50, ema100, ema200, prevEma20, prevEma50, prevEma200,
+          macdCrossUp: macd.crossUp, macdCrossDown: macd.crossDown,
+          macdAboveZero: macd.aboveZero, macdBelowZero: macd.belowZero,
+          rsiDivBull: rsiDiv.bull, rsiDivBear: rsiDiv.bear,
+          rsiDivHiddenBull: rsiDiv.hiddenBull, rsiDivHiddenBear: rsiDiv.hiddenBear,
+          equalHighs: eql.equalHighs, equalLows: eql.equalLows,
+          dispBull: smc.displacement.bull, dispBear: smc.displacement.bear,
+          breakerBull: smc.breakerBlocks.bull, breakerBear: smc.breakerBlocks.bear,
+          oteBull: smc.ote.bull, oteBear: smc.ote.bear,
+          isConsolidating: smc.consolidation,
         };
       } catch {
         map[inst.id] = { rsi:50, mfi:50, nearResistance:false, nearSupport:false,
@@ -205,7 +238,14 @@ export default function Screener() {
           bosBearish:false, chochBullish:false, chochBearish:false,
           zone:'discount', structure:'neutral', strength:50, strengthDir:'neutral',
           vwapAbove:true, buySideLiq:false, sellSideLiq:false,
-          patternIds:[], patternType:'neut' };
+          patternIds:[], patternType:'neut',
+          ema20:0, ema50:0, ema100:0, ema200:0,
+          prevEma20:0, prevEma50:0, prevEma200:0,
+          macdCrossUp:false, macdCrossDown:false, macdAboveZero:false, macdBelowZero:false,
+          rsiDivBull:false, rsiDivBear:false, rsiDivHiddenBull:false, rsiDivHiddenBear:false,
+          equalHighs:false, equalLows:false,
+          dispBull:false, dispBear:false, breakerBull:false, breakerBear:false,
+          oteBull:false, oteBear:false, isConsolidating:false };
       }
     });
     return map;
@@ -276,6 +316,108 @@ export default function Screener() {
     if (f.liqType === 'ssl') list = list.filter(i => a[i.id]?.sellSideLiq);
     if (f.vwapBias === 'above') list = list.filter(i =>  a[i.id]?.vwapAbove);
     if (f.vwapBias === 'below') list = list.filter(i => !a[i.id]?.vwapAbove);
+
+    // EMA price filter
+    if (f.emaPriceFilter && f.emaPriceFilter !== 'Any') {
+      const above = f.emaPriceFilter.startsWith('above');
+      const per = parseInt(f.emaPriceFilter.replace('above','').replace('below',''));
+      const key = `ema${per}`;
+      if (above) list = list.filter(i => i.bid > (a[i.id]?.[key] || 0));
+      else       list = list.filter(i => i.bid < (a[i.id]?.[key] || Infinity));
+    }
+
+    // EMA alignment filter
+    if (f.emaAlignFilter && f.emaAlignFilter !== 'Any') {
+      if (f.emaAlignFilter === '20_50')
+        list = list.filter(i => (a[i.id]?.ema20||0) > (a[i.id]?.ema50||0));
+      if (f.emaAlignFilter === '50_200')
+        list = list.filter(i => (a[i.id]?.ema50||0) > (a[i.id]?.ema200||0));
+    }
+
+    // EMA cross filter
+    if (f.emaCrossFilter && f.emaCrossFilter !== 'Any') {
+      if (f.emaCrossFilter === 'cross_up_20_50')
+        list = list.filter(i => { const ai=a[i.id]; return ai?.ema20>ai?.ema50 && ai?.prevEma20<=ai?.prevEma50; });
+      if (f.emaCrossFilter === 'cross_dn_20_50')
+        list = list.filter(i => { const ai=a[i.id]; return ai?.ema20<ai?.ema50 && ai?.prevEma20>=ai?.prevEma50; });
+      if (f.emaCrossFilter === 'golden')
+        list = list.filter(i => { const ai=a[i.id]; return ai?.ema50>ai?.ema200 && ai?.prevEma50<=ai?.prevEma200; });
+      if (f.emaCrossFilter === 'death')
+        list = list.filter(i => { const ai=a[i.id]; return ai?.ema50<ai?.ema200 && ai?.prevEma50>=ai?.prevEma200; });
+    }
+
+    // MACD filter
+    if (f.macdFilter && f.macdFilter !== 'Any') {
+      if (f.macdFilter === 'crossUp')   list = list.filter(i => a[i.id]?.macdCrossUp);
+      if (f.macdFilter === 'crossDown') list = list.filter(i => a[i.id]?.macdCrossDown);
+      if (f.macdFilter === 'aboveZero') list = list.filter(i => a[i.id]?.macdAboveZero);
+      if (f.macdFilter === 'belowZero') list = list.filter(i => a[i.id]?.macdBelowZero);
+    }
+
+    // RSI divergence filter
+    if (f.divFilter && f.divFilter !== 'Any') {
+      if (f.divFilter === 'bull')       list = list.filter(i => a[i.id]?.rsiDivBull);
+      if (f.divFilter === 'bear')       list = list.filter(i => a[i.id]?.rsiDivBear);
+      if (f.divFilter === 'hiddenBull') list = list.filter(i => a[i.id]?.rsiDivHiddenBull);
+      if (f.divFilter === 'hiddenBear') list = list.filter(i => a[i.id]?.rsiDivHiddenBear);
+    }
+
+    // Equal highs/lows filter
+    if (f.equalFilter && f.equalFilter !== 'Any') {
+      if (f.equalFilter === 'equalHighs') list = list.filter(i => a[i.id]?.equalHighs);
+      if (f.equalFilter === 'equalLows')  list = list.filter(i => a[i.id]?.equalLows);
+      if (f.equalFilter === 'either')     list = list.filter(i => a[i.id]?.equalHighs || a[i.id]?.equalLows);
+    }
+
+    // Displacement filter
+    if (f.dispFilter && f.dispFilter !== 'Any') {
+      if (f.dispFilter === 'bull')   list = list.filter(i => a[i.id]?.dispBull);
+      if (f.dispFilter === 'bear')   list = list.filter(i => a[i.id]?.dispBear);
+      if (f.dispFilter === 'either') list = list.filter(i => a[i.id]?.dispBull || a[i.id]?.dispBear);
+    }
+
+    // Breaker block filter
+    if (f.breakerFilter && f.breakerFilter !== 'Any') {
+      if (f.breakerFilter === 'bull')   list = list.filter(i => a[i.id]?.breakerBull);
+      if (f.breakerFilter === 'bear')   list = list.filter(i => a[i.id]?.breakerBear);
+      if (f.breakerFilter === 'either') list = list.filter(i => a[i.id]?.breakerBull || a[i.id]?.breakerBear);
+    }
+
+    // OTE filter
+    if (f.oteFilter && f.oteFilter !== 'Any') {
+      if (f.oteFilter === 'bull')   list = list.filter(i => a[i.id]?.oteBull);
+      if (f.oteFilter === 'bear')   list = list.filter(i => a[i.id]?.oteBear);
+      if (f.oteFilter === 'either') list = list.filter(i => a[i.id]?.oteBull || a[i.id]?.oteBear);
+    }
+
+    // Consolidation filter
+    if (f.consolidatingFilter && f.consolidatingFilter !== 'Any') {
+      if (f.consolidatingFilter === 'yes') list = list.filter(i =>  a[i.id]?.isConsolidating);
+      if (f.consolidatingFilter === 'no')  list = list.filter(i => !a[i.id]?.isConsolidating);
+    }
+
+    // Volume spike filter
+    if (f.volSpikeMin && f.volSpikeMin > 0) {
+      const avgVol = allInstruments.reduce((s, inst) => s + inst.volume, 0) / (allInstruments.length || 1);
+      list = list.filter(i => i.volume >= avgVol * f.volSpikeMin);
+    }
+
+    // Signal score filter
+    if (f.signalScoreMin != null && f.signalScoreMin > -5) {
+      const scoreMap = { STRONG_BUY:5, BUY:3, NEUTRAL:0, SELL:-3, STRONG_SELL:-5 };
+      list = list.filter(i => (scoreMap[i.signal] ?? 0) >= f.signalScoreMin);
+    }
+
+    // Chart pattern filter (structural pattern approximated from candle behavior)
+    if (f.chartPattern && f.chartPattern !== 'All') {
+      const pName = f.chartPattern.split(':')[0];
+      const bullPatterns = ['falling_wedge','ascending_triangle','double_bottom','inv_head_shoulders','bull_flag','channel_up'];
+      const bearPatterns = ['rising_wedge','descending_triangle','double_top','head_shoulders','bear_flag','channel_down'];
+      const isBullPat = bullPatterns.includes(pName);
+      const isBearPat = bearPatterns.includes(pName);
+      if (isBullPat) list = list.filter(i => a[i.id]?.structure === 'bullish' || a[i.id]?.rsiDivBull || a[i.id]?.oteBull);
+      else if (isBearPat) list = list.filter(i => a[i.id]?.structure === 'bearish' || a[i.id]?.rsiDivBear || a[i.id]?.oteBear);
+    }
 
     return [...list].sort((a,b) => {
       let av=a[sortKey],bv=b[sortKey];
