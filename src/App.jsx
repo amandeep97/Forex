@@ -123,65 +123,41 @@ export default function App() {
 
       {/* ── Header ────────────────────────────────────────────────────────── */}
       <header className={`app-header ${isReal ? 'header-real' : ''}`}>
-        <div className="header-left">
+
+        {/* ── Top bar: logo + controls ─────────────────────────────────── */}
+        <div className="header-topbar">
           <div className="logo">
             <span className="logo-icon">₣</span>
-            <div>
-              <span className="logo-name">ForexPro</span>
-              <span className="logo-tag">TRADING SUITE</span>
-            </div>
+            <span className="logo-name">ForexPro</span>
           </div>
 
-          <nav className="main-nav">
-            {TABS.map(t => (
-              <button
-                key={t.id}
-                className={`nav-tab ${activeTab === t.id ? 'active' : ''}`}
-                onClick={() => setActiveTab(t.id)}
-              >
-                <span className="nav-tab-icon">{t.icon}</span>
-                {t.label}
-              </button>
-            ))}
-          </nav>
-        </div>
-
-        <div className="header-right">
-          <div className="market-badge open">
-            <span className="market-dot" />
-            Markets Open
-          </div>
-
-          {/* Account switcher */}
-          <AccountSwitcher mode={accountMode} onChange={handleModeChange} />
-
-          <div className="header-time">
-            <span className="time-val">{timeStr}</span>
-            <span className="time-date">{dateStr} UTC</span>
-          </div>
-
-          <div className={`account-chip ${isReal ? 'account-chip-real' : ''}`}>
-            <span className="account-icon">{isReal ? '💳' : '◉'}</span>
-            <div>
-              <div className="account-label">{isReal ? 'Real Account' : 'Demo Account'}</div>
+          <div className="header-controls">
+            <div className={`account-chip ${isReal ? 'account-chip-real' : ''}`}>
+              <div className="account-label">{isReal ? 'Real' : 'Demo'}</div>
               <div className={`account-balance ${isReal ? 'balance-real' : ''}`}>
                 ${balance.toLocaleString('en-US', { minimumFractionDigits: 2 })}
               </div>
             </div>
+            <AccountSwitcher mode={accountMode} onChange={handleModeChange} />
           </div>
         </div>
+
+        {/* ── Nav tabs: full width, always visible ─────────────────────── */}
+        <nav className="main-nav">
+          {TABS.map(t => (
+            <button
+              key={t.id}
+              className={`nav-tab ${activeTab === t.id ? 'active' : ''}`}
+              onClick={() => setActiveTab(t.id)}
+            >
+              <span className="nav-tab-icon">{t.icon}</span>
+              {t.label}
+            </button>
+          ))}
+        </nav>
+
       </header>
 
-      {/* ── Tab indicator strip ────────────────────────────────────────────── */}
-      <div className="tab-indicator-strip">
-        <div
-          className="tab-indicator-bar"
-          style={{
-            left: activeTab === 'screener' ? '0%' : activeTab === 'watchlist' ? '25%' : activeTab === 'autotrading' ? '50%' : '75%',
-            width: '25%'
-          }}
-        />
-      </div>
 
       {/* ── Content ───────────────────────────────────────────────────────── */}
       <main className="app-main">

@@ -48,24 +48,71 @@ table  { border-collapse: collapse; width: 100%; }
 /* ── Header ────────────────────────────────────────────────────────────────── */
 .app-header {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 16px;
-  height: 60px;
+  flex-direction: column;
   background: var(--bg2);
   border-bottom: 1px solid var(--border);
   position: sticky;
   top: 0;
   z-index: 100;
-  gap: 8px;
-  overflow: visible;
 }
 
-.header-left {
-  display: flex; align-items: center; gap: 12px;
-  flex: 1; min-width: 0; overflow: hidden;
+/* Top bar: logo + controls in one row */
+.header-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  gap: 12px;
+  min-height: 52px;
 }
-.header-right { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+
+.header-controls {
+  display: flex; align-items: center; gap: 8px; flex-shrink: 0;
+}
+
+/* Logo */
+.logo {
+  display: flex; align-items: center; gap: 10px;
+  flex-shrink: 0; user-select: none;
+}
+
+/* Account chip — compact */
+.account-chip {
+  display: flex; align-items: baseline; gap: 6px;
+  padding: 5px 10px; background: var(--card); border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+.account-label   { font-size: 10px; color: var(--text3); }
+.account-balance { font-size: 13px; font-weight: 700; color: var(--up); font-family: var(--mono); }
+
+/* Nav tabs — always full width, always scrollable */
+.main-nav {
+  display: flex;
+  overflow-x: auto; scrollbar-width: none;
+  border-top: 1px solid var(--border);
+  padding: 0 8px;
+  gap: 2px;
+  background: var(--bg2);
+}
+.main-nav::-webkit-scrollbar { display: none; }
+
+.nav-tab {
+  display: flex; align-items: center; gap: 6px;
+  padding: 10px 16px;
+  font-size: 13px; font-weight: 500; color: var(--text3);
+  transition: all 0.15s; white-space: nowrap; flex-shrink: 0;
+  border-bottom: 2px solid transparent; margin-bottom: -1px;
+}
+.nav-tab:hover  { color: var(--text2); }
+.nav-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+.nav-tab-icon   { font-size: 14px; }
+
+/* Legacy */
+.header-left  { display: none; }
+.header-right { display: none; }
+.header-time  { display: none; }
+.market-badge { display: none; }
+.account-icon { display: none; }
 
 /* Logo */
 .logo {
