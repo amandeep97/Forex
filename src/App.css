@@ -1213,6 +1213,91 @@ table  { border-collapse: collapse; width: 100%; }
 .cc-data-badge.sim     { color: #475569; background: #1e293b;   border: 1px solid #334155; }
 .cc-data-badge.loading { color: #94a3b8; background: #1e293b;   border: 1px solid #334155; }
 
+/* ── Gold/Silver Ratio Chart ────────────────────────────────────────────────── */
+.ratio-root {
+  max-width: 1000px; margin: 0 auto; padding: 16px 14px 32px;
+  display: flex; flex-direction: column; gap: 12px;
+}
+.ratio-header {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  padding: 14px 16px; background: var(--bg2); border: 1px solid var(--border);
+  border-radius: var(--radius); gap: 12px;
+}
+.ratio-title { font-size: 18px; font-weight: 800; color: var(--text); }
+.ratio-sub   { font-size: 11px; color: var(--text3); margin-top: 3px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.ratio-src-badge {
+  font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 8px;
+}
+.ratio-src-badge.live { color: #22c55e; background: #22c55e15; border: 1px solid #22c55e44; }
+.ratio-src-badge.sim  { color: #64748b; background: #1e293b;   border: 1px solid #334155; }
+.ratio-big-val { font-size: 26px; font-weight: 800; color: var(--text); font-family: var(--mono); }
+
+.ratio-controls { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.ratio-tf-row   { display: flex; gap: 4px; }
+.ratio-tf-btn {
+  padding: 5px 12px; font-size: 11px; font-weight: 700;
+  color: var(--text3); border: 1px solid var(--border); border-radius: var(--radius-sm);
+  background: var(--bg2); transition: all 0.12s; cursor: pointer;
+}
+.ratio-tf-btn:hover { color: var(--text); }
+.ratio-tf-btn.active { color: var(--accent); background: #00d4aa12; border-color: #00d4aa55; }
+.ratio-refresh-btn {
+  padding: 5px 12px; font-size: 11px; font-weight: 600;
+  color: var(--text2); border: 1px solid var(--border); border-radius: var(--radius-sm);
+  background: var(--bg2); cursor: pointer; transition: all 0.12s; margin-left: auto;
+}
+.ratio-refresh-btn:hover { color: var(--accent); border-color: #00d4aa44; }
+.ratio-refresh-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.ratio-ctx-row {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px;
+}
+.ratio-ctx-card {
+  padding: 10px 12px; background: var(--bg2); border: 1px solid var(--border);
+  border-radius: var(--radius); border-top: 3px solid transparent; text-align: center;
+}
+.ratio-ctx-val   { font-size: 16px; font-weight: 800; font-family: var(--mono); }
+.ratio-ctx-label { font-size: 9px; font-weight: 700; color: var(--text3); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 3px; }
+.ratio-ctx-sub   { font-size: 9px; color: var(--text3); margin-top: 2px; }
+
+.ratio-chart-wrap {
+  background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius);
+  overflow: hidden; min-height: 200px;
+}
+.ratio-loading {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  min-height: 200px; color: var(--text3); font-size: 13px;
+}
+
+.ratio-guide {
+  background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 14px 16px;
+}
+.ratio-guide-title {
+  font-size: 11px; font-weight: 800; color: var(--text2); text-transform: uppercase;
+  letter-spacing: 0.06em; margin-bottom: 10px;
+}
+.ratio-guide-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.ratio-guide-item {
+  display: flex; gap: 10px; align-items: flex-start;
+  padding: 8px 10px; border-radius: var(--radius-sm); border-left: 3px solid transparent;
+}
+.ratio-guide-item.bull { background: #22c55e08; border-left-color: #22c55e55; }
+.ratio-guide-item.bear { background: #ef444408; border-left-color: #ef444455; }
+.ratio-guide-item.neutral { background: #94a3b808; border-left-color: #94a3b855; }
+.ratio-guide-icon {
+  font-size: 13px; font-weight: 800; min-width: 24px; text-align: center;
+  color: var(--text2); font-family: var(--mono);
+}
+.ratio-guide-label { font-size: 11px; font-weight: 700; color: var(--text); margin-bottom: 2px; }
+.ratio-guide-text  { font-size: 10px; color: var(--text3); line-height: 1.4; }
+
+@media (max-width: 700px) {
+  .ratio-ctx-row   { grid-template-columns: repeat(2, 1fr); }
+  .ratio-guide-grid { grid-template-columns: 1fr; }
+  .ratio-header    { flex-direction: column; }
+}
+
 /* ── Backtester v2 ──────────────────────────────────────────────────────────── */
 .bt2-root {
   display: flex; gap: 0; height: calc(100vh - 120px); overflow: hidden;
