@@ -22,61 +22,81 @@ const FALLBACK_PRICES = {
 };
 
 const COND_TYPES = [
-  {v:'rsi',        l:'RSI',            icon:'📊', color:'#0ea5e9'},
-  {v:'mfi',        l:'MFI',            icon:'💧', color:'#06b6d4'},
-  {v:'ma',         l:'Price vs MA',    icon:'〰', color:'#f59e0b'},
-  {v:'ma_cross',   l:'MA Crossover',   icon:'✕',  color:'#a78bfa'},
-  {v:'macd',       l:'MACD',           icon:'📈', color:'#22c55e'},
-  {v:'bos',        l:'BOS / CHoCH',    icon:'⚡', color:'#00d4aa'},
-  {v:'fvg',        l:'Fair Value Gap', icon:'◫',  color:'#f97316'},
-  {v:'displacement',l:'Displacement',  icon:'🚀', color:'#ef4444'},
-  {v:'pattern',    l:'Candle Pattern', icon:'🕯', color:'#eab308'},
-  {v:'candle',     l:'Candle Dir',     icon:'▲',  color:'#94a3b8'},
+  {v:'rsi',          l:'RSI',              icon:'📊', color:'#0ea5e9'},
+  {v:'mfi',          l:'MFI',              icon:'💧', color:'#06b6d4'},
+  {v:'ma',           l:'Price vs MA',      icon:'〰', color:'#f59e0b'},
+  {v:'ma_cross',     l:'MA Crossover',     icon:'✕',  color:'#a78bfa'},
+  {v:'macd',         l:'MACD',             icon:'📈', color:'#22c55e'},
+  {v:'bos',          l:'BOS / CHoCH',      icon:'⚡', color:'#00d4aa'},
+  {v:'fvg',          l:'Fair Value Gap',   icon:'◫',  color:'#f97316'},
+  {v:'displacement', l:'Displacement',     icon:'🚀', color:'#ef4444'},
+  {v:'ob',           l:'Order Block',      icon:'🧱', color:'#8b5cf6'},
+  {v:'ote_zone',     l:'OTE Zone',         icon:'🎯', color:'#14b8a6'},
+  {v:'liquidity',    l:'Liquidity Sweep',  icon:'💦', color:'#3b82f6'},
+  {v:'equal_hl',     l:'Equal H/L',        icon:'═',  color:'#fb923c'},
+  {v:'consolidation',l:'Consolidation',    icon:'📦', color:'#94a3b8'},
+  {v:'pattern',      l:'Candle Pattern',   icon:'🕯', color:'#eab308'},
+  {v:'candle',       l:'Candle Dir',       icon:'▲',  color:'#64748b'},
 ];
 
 const DEF = {
-  rsi:         {period:14, op:'crossBelow', value:30},
-  mfi:         {period:14, op:'crossBelow', value:20},
-  ma:          {maType:'ema', period:50, op:'priceCrossAbove'},
-  ma_cross:    {maType:'ema', period:9, period2:21, op:'bullishCross'},
-  macd:        {op:'crossUp'},
-  bos:         {op:'bullish'},
-  fvg:         {op:'bullish'},
-  displacement:{op:'bullish'},
-  pattern:     {value:'bullish'},
-  candle:      {op:'bullish'},
+  rsi:          {period:14, op:'crossBelow', value:30},
+  mfi:          {period:14, op:'crossBelow', value:20},
+  ma:           {maType:'ema', period:50, op:'priceCrossAbove'},
+  ma_cross:     {maType:'ema', period:9, period2:21, op:'bullishCross'},
+  macd:         {op:'crossUp'},
+  bos:          {op:'bullish'},
+  fvg:          {op:'bullish'},
+  displacement: {op:'bullish'},
+  ob:           {op:'bullish'},
+  ote_zone:     {op:'bullish'},
+  liquidity:    {op:'bullish'},
+  equal_hl:     {op:'equalLows'},
+  consolidation:{},
+  pattern:      {value:'bullish'},
+  candle:       {op:'bullish'},
 };
 
 // Categorized presets
 const PRESETS = [
   {name:'RSI Reversal',   cat:'Momentum', emoji:'📊', desc:'RSI crosses oversold',
-   dir:'both', conds:[{type:'rsi',period:14,op:'crossBelow',value:30}], exit:'rr',sl:25,rr:2},
+   dir:'both', conds:[{type:'rsi',period:14,op:'crossBelow',value:30}], exit:'rr',slTyp:'fixed',sl:25,rr:2},
   {name:'MFI Extremes',   cat:'Momentum', emoji:'💧', desc:'MFI cross OS/OB',
-   dir:'both', conds:[{type:'mfi',period:14,op:'crossBelow',value:20}], exit:'rr',sl:20,rr:2},
-  {name:'EMA 50 Bounce',  cat:'Trend',    emoji:'〰', desc:'Price bounces EMA50',
-   dir:'both', conds:[{type:'ma',maType:'ema',period:50,op:'priceCrossAbove'},{type:'rsi',period:14,op:'above',value:45}], exit:'atr',tpA:2,slA:1},
-  {name:'Golden Cross',   cat:'Trend',    emoji:'✕',  desc:'EMA9 × EMA21',
-   dir:'both', conds:[{type:'ma_cross',maType:'ema',period:9,period2:21,op:'bullishCross'}], exit:'atr',tpA:3,slA:1},
+   dir:'both', conds:[{type:'mfi',period:14,op:'crossBelow',value:20}], exit:'rr',slTyp:'fixed',sl:20,rr:2},
   {name:'MACD Cross',     cat:'Momentum', emoji:'📈', desc:'MACD × signal line',
-   dir:'both', conds:[{type:'macd',op:'crossUp'}], exit:'rr',sl:20,rr:2.5},
+   dir:'both', conds:[{type:'macd',op:'crossUp'}], exit:'rr',slTyp:'fixed',sl:20,rr:2.5},
   {name:'MACD Zero',      cat:'Momentum', emoji:'0',  desc:'MACD crosses zero line',
-   dir:'both', conds:[{type:'macd',op:'aboveZero'},{type:'rsi',period:14,op:'above',value:50}], exit:'atr',tpA:2,slA:1},
+   dir:'both', conds:[{type:'macd',op:'aboveZero'},{type:'rsi',period:14,op:'above',value:50}], exit:'atr',slTyp:'atr',tpA:2,slA:1},
+  {name:'EMA 50 Bounce',  cat:'Trend',    emoji:'〰', desc:'Price bounces EMA50',
+   dir:'both', conds:[{type:'ma',maType:'ema',period:50,op:'priceCrossAbove'},{type:'rsi',period:14,op:'above',value:45}], exit:'atr',slTyp:'swing',swingLb:15,tpA:2,slA:1},
+  {name:'Golden Cross',   cat:'Trend',    emoji:'✕',  desc:'EMA9 × EMA21',
+   dir:'both', conds:[{type:'ma_cross',maType:'ema',period:9,period2:21,op:'bullishCross'}], exit:'atr',slTyp:'atr',tpA:3,slA:1},
   {name:'BOS + RSI',      cat:'SMC',      emoji:'⚡', desc:'Structure break + RSI confirm',
-   dir:'both', conds:[{type:'bos',op:'bullish'},{type:'rsi',period:14,op:'below',value:55}], exit:'atr',tpA:3,slA:1},
+   dir:'both', conds:[{type:'bos',op:'bullish'},{type:'rsi',period:14,op:'below',value:55}], exit:'rr',slTyp:'swing',swingLb:15,sl:25,rr:3},
   {name:'FVG Entry',      cat:'SMC',      emoji:'◫',  desc:'Fair Value Gap fill',
-   dir:'both', conds:[{type:'fvg',op:'bullish'},{type:'candle',op:'bullish'}], exit:'rr',sl:15,rr:3},
+   dir:'both', conds:[{type:'fvg',op:'bullish'},{type:'candle',op:'bullish'}], exit:'rr',slTyp:'fixed',sl:15,rr:3},
   {name:'Displacement',   cat:'SMC',      emoji:'🚀', desc:'3-candle impulse entry',
-   dir:'both', conds:[{type:'displacement',op:'bullish'}], exit:'atr',tpA:3,slA:1},
+   dir:'both', conds:[{type:'displacement',op:'bullish'}], exit:'atr',slTyp:'atr',tpA:3,slA:1},
   {name:'SMC Full',       cat:'SMC',      emoji:'🏆', desc:'BOS + FVG + RSI confluence',
-   dir:'long', conds:[{type:'bos',op:'bullish'},{type:'fvg',op:'bullish'},{type:'rsi',period:14,op:'below',value:60}], exit:'atr',tpA:3,slA:1},
+   dir:'long', conds:[{type:'bos',op:'bullish'},{type:'fvg',op:'bullish'},{type:'rsi',period:14,op:'below',value:60}], exit:'rr',slTyp:'swing',swingLb:20,sl:30,rr:3},
+  {name:'OB Entry',       cat:'ICT',      emoji:'🧱', desc:'Order Block tap + BOS confirm',
+   dir:'both', conds:[{type:'ob',op:'bullish'},{type:'bos',op:'bullish'}], exit:'rr',slTyp:'swing',swingLb:15,sl:20,rr:3},
+  {name:'OTE Reversal',   cat:'ICT',      emoji:'🎯', desc:'OTE 61.8–78.6% zone entry',
+   dir:'both', conds:[{type:'ote_zone',op:'bullish'},{type:'rsi',period:14,op:'below',value:55}], exit:'rr',slTyp:'swing',swingLb:20,sl:25,rr:2.5},
+  {name:'Liq Sweep',      cat:'ICT',      emoji:'💦', desc:'Liquidity sweep + close back',
+   dir:'both', conds:[{type:'liquidity',op:'bullish'}], exit:'rr',slTyp:'swing',swingLb:10,sl:15,rr:3},
+  {name:'Equal Lows Tap', cat:'ICT',      emoji:'═',  desc:'Equal lows support + bull candle',
+   dir:'long', conds:[{type:'equal_hl',op:'equalLows'},{type:'candle',op:'bullish'}], exit:'rr',slTyp:'swing',swingLb:20,sl:20,rr:2},
+  {name:'ICT Full',       cat:'ICT',      emoji:'🏆', desc:'BOS + OB + Liquidity sweep',
+   dir:'long', conds:[{type:'bos',op:'bullish'},{type:'ob',op:'bullish'},{type:'liquidity',op:'bullish'}], exit:'rr',slTyp:'swing',swingLb:20,sl:25,rr:3},
   {name:'Pattern + RSI',  cat:'Pattern',  emoji:'🕯', desc:'Bull pattern under RSI 50',
-   dir:'both', conds:[{type:'pattern',value:'bullish'},{type:'rsi',period:14,op:'below',value:50}], exit:'rr',sl:25,rr:2},
+   dir:'both', conds:[{type:'pattern',value:'bullish'},{type:'rsi',period:14,op:'below',value:50}], exit:'rr',slTyp:'fixed',sl:25,rr:2},
   {name:'RSI+MFI Combo',  cat:'Momentum', emoji:'⚡', desc:'Double oversold confirmation',
-   dir:'long', conds:[{type:'rsi',period:14,op:'below',value:35},{type:'mfi',period:14,op:'below',value:35}], exit:'rr',sl:30,rr:2},
+   dir:'long', conds:[{type:'rsi',period:14,op:'below',value:35},{type:'mfi',period:14,op:'below',value:35}], exit:'rr',slTyp:'fixed',sl:30,rr:2},
 ];
 
 const CAT_COLORS = {
-  Momentum:'#0ea5e9', Trend:'#a78bfa', SMC:'#00d4aa', Pattern:'#eab308',
+  Momentum:'#0ea5e9', Trend:'#a78bfa', SMC:'#00d4aa', ICT:'#8b5cf6', Pattern:'#eab308',
 };
 
 async function fetchCandles(symbol, tf, count) {
@@ -258,6 +278,39 @@ function CondRow({cond, onChange, onRemove, idx}) {
               <option value="any">Any displacement</option>
             </select>
           )}
+          {cond.type==='ob' && (
+            <select className="bt2-sel full" value={cond.op||'bullish'} onChange={e=>upd({op:e.target.value})}>
+              <option value="bullish">Bullish OB — price retesting demand zone</option>
+              <option value="bearish">Bearish OB — price retesting supply zone</option>
+              <option value="any">Any Order Block retest</option>
+            </select>
+          )}
+          {cond.type==='ote_zone' && (
+            <select className="bt2-sel full" value={cond.op||'bullish'} onChange={e=>upd({op:e.target.value})}>
+              <option value="bullish">Bullish OTE — Fib 61.8–78.6% pullback in uptrend</option>
+              <option value="bearish">Bearish OTE — Fib 61.8–78.6% bounce in downtrend</option>
+              <option value="any">Any OTE zone</option>
+            </select>
+          )}
+          {cond.type==='liquidity' && (
+            <select className="bt2-sel full" value={cond.op||'bullish'} onChange={e=>upd({op:e.target.value})}>
+              <option value="bullish">Bullish sweep — wick below lows, closed back above</option>
+              <option value="bearish">Bearish sweep — wick above highs, closed back below</option>
+              <option value="any">Any liquidity sweep</option>
+            </select>
+          )}
+          {cond.type==='equal_hl' && (
+            <select className="bt2-sel full" value={cond.op||'equalLows'} onChange={e=>upd({op:e.target.value})}>
+              <option value="equalLows">Equal Lows — untested buy-side liquidity below</option>
+              <option value="equalHighs">Equal Highs — untested sell-side liquidity above</option>
+              <option value="any">Equal Highs or Equal Lows present</option>
+            </select>
+          )}
+          {cond.type==='consolidation' && (
+            <div className="bt2-rr-preview" style={{fontSize:11,padding:'6px 8px'}}>
+              📦 Triggers when price is consolidating in a tight range (ATR squeeze)
+            </div>
+          )}
           {cond.type==='pattern' && (
             <select className="bt2-sel full" value={cond.value||'bullish'} onChange={e=>upd({value:e.target.value})}>
               <option value="bullish">Bullish candle pattern</option>
@@ -285,14 +338,16 @@ export default function Backtester() {
   const [cnt,   setCnt]   = useState(1000);
   const [dir,   setDir]   = useState('both');
   const [conds, setConds] = useState([{id:1,type:'rsi',period:14,op:'crossBelow',value:30}]);
-  const [exit,  setExit]  = useState('rr');
-  const [tp,    setTp]    = useState(50);
-  const [sl,    setSl]    = useState(25);
-  const [rr,    setRr]    = useState(2.0);
-  const [tpA,   setTpA]   = useState(2.0);
-  const [slA,   setSlA]   = useState(1.0);
-  const [risk,  setRisk]  = useState(1);
-  const [maxT,  setMaxT]  = useState(1);
+  const [exit,      setExit]      = useState('rr');
+  const [slType,    setSlType]    = useState('fixed');
+  const [tp,        setTp]        = useState(50);
+  const [sl,        setSl]        = useState(25);
+  const [rr,        setRr]        = useState(2.0);
+  const [tpA,       setTpA]       = useState(2.0);
+  const [slA,       setSlA]       = useState(1.0);
+  const [swingLb,   setSwingLb]   = useState(15);
+  const [risk,      setRisk]      = useState(1);
+  const [maxT,      setMaxT]      = useState(1);
   const [results, setResults] = useState(null);
   const [running, setRunning] = useState(false);
   const [src,    setSrc]     = useState('');
@@ -307,9 +362,12 @@ export default function Backtester() {
   const applyPreset = p => {
     setDir(p.dir);
     setConds(p.conds.map((c,i)=>({...c,id:i+1})));
-    if (p.exit==='rr')  { setExit('rr');    setSl(p.sl||25);   setRr(p.rr||2);  }
-    if (p.exit==='fixed'){ setExit('fixed'); setTp(p.tp||50);   setSl(p.sl||25); }
-    if (p.exit==='atr') { setExit('atr');   setTpA(p.tpA||2);  setSlA(p.slA||1);}
+    if (p.exit==='rr')   { setExit('rr');    setSl(p.sl||25);   setRr(p.rr||2);   }
+    if (p.exit==='fixed'){ setExit('fixed'); setTp(p.tp||50);   setSl(p.sl||25);  }
+    if (p.exit==='atr')  { setExit('atr');   setTpA(p.tpA||2);  setSlA(p.slA||1); }
+    setSlType(p.slTyp || 'fixed');
+    if (p.swingLb) setSwingLb(p.swingLb);
+    if (p.slTyp === 'atr' && p.slA) setSlA(p.slA);
   };
 
   // Auto-compute TP in R:R mode
@@ -324,12 +382,14 @@ export default function Backtester() {
       setSrc(s);
       const strat = {
         symbol:sym, conditions:conds, logic:'AND', direction:dir,
-        exitType: exit==='rr'?'rr':exit,
-        tpPips: exit==='rr'? rrTpPips : tp,
-        slPips: sl,
-        tpAtr:  exit==='atr'? tpA : slA * rr,
-        slAtr:  slA,
-        rrRatio: rr,
+        exitType:     exit,
+        slType:       slType,
+        tpPips:       exit==='fixed' ? tp : (exit==='rr' ? rrTpPips : tp),
+        slPips:       sl,
+        tpAtr:        tpA,
+        slAtr:        slA,
+        rrRatio:      rr,
+        swingLookback:swingLb,
         maxTrades:maxT, riskPct:risk,
       };
       const {trades, equityCurve} = runBacktest(candles, strat);
@@ -411,19 +471,17 @@ export default function Backtester() {
         {/* Step 4: Exit Rules */}
         <div className="bt2-step">
           <div className="bt2-step-label"><span className="bt2-step-num">04</span>Exit Rules</div>
+
+          {/* Take Profit Mode */}
+          <div className="bt2-sub-label">Take Profit</div>
           <div className="bt2-exit-tabs">
-            {[{v:'rr',l:'R:R Ratio'},{v:'fixed',l:'Fixed Pips'},{v:'atr',l:'ATR Multiple'}].map(e=>(
+            {[{v:'rr',l:'R:R Ratio'},{v:'fixed',l:'Fixed Pips'},{v:'atr',l:'ATR ×'}].map(e=>(
               <button key={e.v} className={`bt2-exit-tab${exit===e.v?' active':''}`} onClick={()=>setExit(e.v)}>{e.l}</button>
             ))}
           </div>
-
           {exit==='rr' && (
             <div className="bt2-exit-body">
               <div className="bt2-exit-grid">
-                <div>
-                  <div className="bt2-mini-label">Stop Loss (pips)</div>
-                  <input className="bt2-num full" type="number" value={sl} min={1} onChange={e=>setSl(+e.target.value)}/>
-                </div>
                 <div>
                   <div className="bt2-mini-label">Risk : Reward</div>
                   <div className="bt2-rr-control">
@@ -434,31 +492,25 @@ export default function Backtester() {
               </div>
               <div className="bt2-rr-preview">
                 <span className="bt2-rr-preview-icon">→</span>
-                TP auto-set to <strong>{rrTpPips} pips</strong>
-                <span className="bt2-rr-preview-ratio">({rr}R)</span>
+                TP = SL distance × <strong>{rr}R</strong>
+                <span className="bt2-rr-preview-ratio">(auto from SL below)</span>
               </div>
             </div>
           )}
-
           {exit==='fixed' && (
             <div className="bt2-exit-body">
-              <div className="bt2-exit-grid">
-                <div>
-                  <div className="bt2-mini-label">Take Profit (pips)</div>
-                  <input className="bt2-num full" type="number" value={tp} min={1} onChange={e=>setTp(+e.target.value)}/>
-                </div>
-                <div>
-                  <div className="bt2-mini-label">Stop Loss (pips)</div>
-                  <input className="bt2-num full" type="number" value={sl} min={1} onChange={e=>setSl(+e.target.value)}/>
-                </div>
+              <div>
+                <div className="bt2-mini-label">Take Profit (pips)</div>
+                <input className="bt2-num" type="number" value={tp} min={1} style={{width:'100%'}} onChange={e=>setTp(+e.target.value)}/>
               </div>
-              <div className="bt2-rr-preview">
-                <span className="bt2-rr-preview-icon">≈</span>
-                Implied R:R = <strong>{(tp/sl).toFixed(2)} : 1</strong>
-              </div>
+              {slType==='fixed' && (
+                <div className="bt2-rr-preview">
+                  <span className="bt2-rr-preview-icon">≈</span>
+                  Implied R:R ≈ <strong>{sl>0?(tp/sl).toFixed(2):0} : 1</strong>
+                </div>
+              )}
             </div>
           )}
-
           {exit==='atr' && (
             <div className="bt2-exit-body">
               <div className="bt2-exit-grid">
@@ -466,15 +518,71 @@ export default function Backtester() {
                   <div className="bt2-mini-label">TP (× ATR)</div>
                   <input className="bt2-num full" type="number" value={tpA} min={0.1} step={0.1} onChange={e=>setTpA(+e.target.value)}/>
                 </div>
+              </div>
+            </div>
+          )}
+
+          {/* Stop Loss Type */}
+          <div className="bt2-sub-label" style={{marginTop:10}}>Stop Loss</div>
+          <div className="bt2-exit-tabs">
+            {[{v:'fixed',l:'Fixed Pips'},{v:'swing',l:'Swing H/L'},{v:'atr',l:'ATR ×'}].map(e=>(
+              <button key={e.v} className={`bt2-exit-tab${slType===e.v?' active':''}`} onClick={()=>setSlType(e.v)}>{e.l}</button>
+            ))}
+          </div>
+          {slType==='fixed' && (
+            <div className="bt2-exit-body">
+              <div>
+                <div className="bt2-mini-label">Stop Loss (pips)</div>
+                <input className="bt2-num" type="number" value={sl} min={1} style={{width:'100%'}} onChange={e=>setSl(+e.target.value)}/>
+              </div>
+              {exit==='rr' && (
+                <div className="bt2-rr-preview">
+                  <span className="bt2-rr-preview-icon">→</span>
+                  SL {sl} pips → TP <strong>{rrTpPips} pips</strong>
+                  <span className="bt2-rr-preview-ratio">({rr}R)</span>
+                </div>
+              )}
+            </div>
+          )}
+          {slType==='swing' && (
+            <div className="bt2-exit-body">
+              <div className="bt2-exit-grid">
+                <div>
+                  <div className="bt2-mini-label">Lookback (bars)</div>
+                  <input className="bt2-num full" type="number" value={swingLb} min={3} max={100} onChange={e=>setSwingLb(+e.target.value)}/>
+                </div>
+                <div>
+                  <div className="bt2-mini-label">Buffer (pips)</div>
+                  <div className="bt2-mini-label" style={{color:'var(--accent)',fontSize:10}}>3 pips fixed</div>
+                </div>
+              </div>
+              <div className="bt2-rr-preview" style={{background:'#8b5cf615',borderColor:'#8b5cf633'}}>
+                <span className="bt2-rr-preview-icon" style={{color:'#8b5cf6'}}>⤵</span>
+                SL placed at swing low/high within last <strong>{swingLb} bars</strong> + 3 pip buffer
+                {exit==='rr' && <span className="bt2-rr-preview-ratio"> · TP = SL dist × {rr}R</span>}
+              </div>
+            </div>
+          )}
+          {slType==='atr' && (
+            <div className="bt2-exit-body">
+              <div className="bt2-exit-grid">
                 <div>
                   <div className="bt2-mini-label">SL (× ATR)</div>
                   <input className="bt2-num full" type="number" value={slA} min={0.1} step={0.1} onChange={e=>setSlA(+e.target.value)}/>
                 </div>
               </div>
-              <div className="bt2-rr-preview">
-                <span className="bt2-rr-preview-icon">≈</span>
-                ATR R:R = <strong>{(tpA/slA).toFixed(2)} : 1</strong>
-              </div>
+              {exit==='rr' && (
+                <div className="bt2-rr-preview">
+                  <span className="bt2-rr-preview-icon">→</span>
+                  SL = {slA}× ATR → TP = {slA}× ATR × <strong>{rr}R</strong>
+                </div>
+              )}
+              {exit==='atr' && (
+                <div className="bt2-rr-preview">
+                  <span className="bt2-rr-preview-icon">≈</span>
+                  ATR R:R = <strong>{(tpA/slA).toFixed(2)} : 1</strong>
+                </div>
+              )}
             </div>
           )}
         </div>

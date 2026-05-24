@@ -161,6 +161,114 @@ export function computeDisplacementSeries(candles) {
   return res;
 }
 
+// ── Order Block series ───────────────────────────────────────────────────────
+// Bull OB: last bearish candle before 2+ bullish impulse candles; price retests it
+// Bear OB: last bullish candle before 2+ bearish impulse candles; price retests it
+export function computeOBSeries(candles, lookback = 20) {
+  const res = new Array(candles.length).fill(null);
+  for (let i = lookback + 3; i < candles.length; i++) {
+    const slice = candles.slice(Math.max(0, i - lookback), i);
+    let bullOB = false, bearOB = false;
+    for (let j = 0; j < slice.length - 2; j++) {
+      if (slice[j].c < slice[j].o && slice[j+1].c > slice[j+1].o && slice[j+2].c > slice[j+2].o) {
+        const obHi = slice[j].h, obLo = slice[j].l;
+        const cur = candles[i];
+        if (cur.l <= obHi && cur.c >= obLo) bullOB = true;
+      }
+      if (slice[j].c > slice[j].o && slice[j+1].c < slice[j+1].o && slice[j+2].c < slice[j+2].o) {
+        const obHi = slice[j].h, obLo = slice[j].l;
+        const cur = candles[i];
+        if (cur.h >= obLo && cur.c <= obHi) bearOB = true;
+      }
+    }
+    if (bullOB || bearOB) res[i] = { bull: bullOB, bear: bearOB };
+  }
+  return res;
+}
+
+// ── OTE Zone series (Fibonacci 61.8–78.6% retracement of last swing) ─────────
+export function computeOTESeries(candles, lookback = 30) {
+  const res = new Array(candles.length).fill(null);
+  for (let i = lookback + 3; i < candles.length; i++) {
+    const slice = candles.slice(Math.max(0, i - lookback), i);
+    let swHi = -Infinity, swHiIdx = -1, swLo = Infinity, swLoIdx = -1;
+    for (let j = 2; j < slice.length - 2; j++) {
+      if (slice[j].h >= slice[j-1].h && slice[j].h >= slice[j+1].h && slice[j].h > swHi) {
+        swHi = slice[j].h; swHiIdx = j;
+      }
+      if (slice[j].l <= slice[j-1].l && slice[j].l <= slice[j+1].l && slice[j].l < swLo) {
+        swLo = slice[j].l; swLoIdx = j;
+      }
+    }
+    if (swHi === -Infinity || swLo === Infinity) continue;
+    const range = swHi - swLo;
+    if (range <= 0) continue;
+    const cur = candles[i].c;
+    if (swHiIdx > swLoIdx) {
+      const lo618 = swHi - 0.618 * range, lo786 = swHi - 0.786 * range;
+      if (cur >= lo786 && cur <= lo618) res[i] = { bull: true, bear: false };
+    } else if (swLoIdx > swHiIdx) {
+      const hi618 = swLo + 0.618 * range, hi786 = swLo + 0.786 * range;
+      if (cur >= hi618 && cur <= hi786) res[i] = { bull: false, bear: true };
+    }
+  }
+  return res;
+}
+
+// ── Liquidity Sweep series ────────────────────────────────────────────────────
+// Bullish sweep: wick below lookback low, then close back above it (engineered liquidity grab)
+// Bearish sweep: wick above lookback high, close back below
+export function computeLiquiditySweepSeries(candles, lookback = 20) {
+  const res = new Array(candles.length).fill(null);
+  for (let i = lookback + 2; i < candles.length; i++) {
+    const slice = candles.slice(Math.max(0, i - lookback), i - 1);
+    let swHi = -Infinity, swLo = Infinity;
+    for (const c of slice) { swHi = Math.max(swHi, c.h); swLo = Math.min(swLo, c.l); }
+    const cur = candles[i];
+    const bull = cur.l < swLo && cur.c > swLo;
+    const bear = cur.h > swHi && cur.c < swHi;
+    if (bull || bear) res[i] = { bull, bear };
+  }
+  return res;
+}
+
+// ── Equal Highs / Equal Lows series ──────────────────────────────────────────
+export function computeEqualHLSeries(candles, lookback = 30, tolerance = 0.0015) {
+  const res = new Array(candles.length).fill(null);
+  for (let i = lookback + 2; i < candles.length; i++) {
+    const slice = candles.slice(Math.max(0, i - lookback), i + 1);
+    const swHis = [], swLos = [];
+    for (let j = 2; j < slice.length - 2; j++) {
+      if (slice[j].h >= slice[j-1].h && slice[j].h >= slice[j+1].h) swHis.push(slice[j].h);
+      if (slice[j].l <= slice[j-1].l && slice[j].l <= slice[j+1].l) swLos.push(slice[j].l);
+    }
+    let equalHighs = false, equalLows = false;
+    for (let a = 0; a < swHis.length - 1 && !equalHighs; a++)
+      for (let b = a + 1; b < swHis.length && !equalHighs; b++)
+        if (Math.abs(swHis[a] - swHis[b]) / (swHis[a] || 1) < tolerance) equalHighs = true;
+    for (let a = 0; a < swLos.length - 1 && !equalLows; a++)
+      for (let b = a + 1; b < swLos.length && !equalLows; b++)
+        if (Math.abs(swLos[a] - swLos[b]) / (swLos[a] || 1) < tolerance) equalLows = true;
+    if (equalHighs || equalLows) res[i] = { equalHighs, equalLows };
+  }
+  return res;
+}
+
+// ── Consolidation series ──────────────────────────────────────────────────────
+// True when N-bar range is less than ATR × 3 (price coiling in a tight range)
+export function computeConsolidationSeries(candles, period = 20) {
+  const res = new Array(candles.length).fill(null);
+  const atrArr = computeATRSeries(candles, 14);
+  for (let i = period; i < candles.length; i++) {
+    const slice = candles.slice(i - period, i + 1);
+    const hi = Math.max(...slice.map(c => c.h));
+    const lo = Math.min(...slice.map(c => c.l));
+    const avgAtr = atrArr[i] || 1;
+    res[i] = (hi - lo) < avgAtr * 3;
+  }
+  return res;
+}
+
 // ── Candle pattern detection ──────────────────────────────────────────────────
 export function detectPatternAt(candles, i) {
   if (i < 1) return null;
@@ -217,10 +325,19 @@ export function mirrorCond(cond) {
     }
     case 'bos':
     case 'fvg':
-    case 'displacement': {
+    case 'displacement':
+    case 'ob':
+    case 'ote_zone':
+    case 'liquidity': {
       const m = { bullish:'bearish', bearish:'bullish' };
       return { ...cond, op: m[cond.op] || cond.op };
     }
+    case 'equal_hl': {
+      const m = { equalLows:'equalHighs', equalHighs:'equalLows' };
+      return { ...cond, op: m[cond.op] || cond.op };
+    }
+    case 'consolidation':
+      return cond;
     case 'pattern':
       return { ...cond, value: cond.value === 'bullish' ? 'bearish' : cond.value === 'bearish' ? 'bullish' : cond.value };
     case 'candle':
@@ -298,6 +415,39 @@ function evalCond(c, prev, inds, cond, pattern) {
       if (cond.op === 'bearish') return s.cur.bear === true;
       return s.cur.bull || s.cur.bear;
     }
+    case 'ob': {
+      const s = inds['ob'];
+      if (!s || s.cur == null) return false;
+      if (cond.op === 'bullish') return s.cur.bull === true;
+      if (cond.op === 'bearish') return s.cur.bear === true;
+      return s.cur.bull || s.cur.bear;
+    }
+    case 'ote_zone': {
+      const s = inds['ote'];
+      if (!s || s.cur == null) return false;
+      if (cond.op === 'bullish') return s.cur.bull === true;
+      if (cond.op === 'bearish') return s.cur.bear === true;
+      return s.cur.bull || s.cur.bear;
+    }
+    case 'liquidity': {
+      const s = inds['liq'];
+      if (!s || s.cur == null) return false;
+      if (cond.op === 'bullish') return s.cur.bull === true;
+      if (cond.op === 'bearish') return s.cur.bear === true;
+      return s.cur.bull || s.cur.bear;
+    }
+    case 'equal_hl': {
+      const s = inds['ehl'];
+      if (!s || s.cur == null) return false;
+      if (cond.op === 'equalHighs') return s.cur.equalHighs === true;
+      if (cond.op === 'equalLows')  return s.cur.equalLows  === true;
+      return s.cur.equalHighs || s.cur.equalLows;
+    }
+    case 'consolidation': {
+      const s = inds['consol'];
+      if (!s || s.cur == null) return false;
+      return s.cur === true;
+    }
     case 'pattern':
       if (cond.value === 'any') return pattern !== null;
       return pattern === cond.value;
@@ -331,10 +481,15 @@ function buildIndicators(candles, conditions) {
       if (!arrays[k1]) arrays[k1] = mt === 'sma' ? computeSMASeries(candles, period)  : computeEMASeries(candles, period);
       if (!arrays[k2]) arrays[k2] = mt === 'sma' ? computeSMASeries(candles, period2) : computeEMASeries(candles, period2);
     }
-    if (type === 'macd' && !arrays['macd']) arrays['macd'] = computeMACDSeries(candles);
-    if (type === 'bos'  && !arrays['bos'])  arrays['bos']  = computeBOSSeries(candles);
-    if (type === 'fvg'  && !arrays['fvg'])  arrays['fvg']  = computeFVGSeries(candles);
-    if (type === 'displacement' && !arrays['disp']) arrays['disp'] = computeDisplacementSeries(candles);
+    if (type === 'macd'         && !arrays['macd'])   arrays['macd']   = computeMACDSeries(candles);
+    if (type === 'bos'          && !arrays['bos'])    arrays['bos']    = computeBOSSeries(candles);
+    if (type === 'fvg'          && !arrays['fvg'])    arrays['fvg']    = computeFVGSeries(candles);
+    if (type === 'displacement' && !arrays['disp'])   arrays['disp']   = computeDisplacementSeries(candles);
+    if (type === 'ob'           && !arrays['ob'])     arrays['ob']     = computeOBSeries(candles);
+    if (type === 'ote_zone'     && !arrays['ote'])    arrays['ote']    = computeOTESeries(candles);
+    if (type === 'liquidity'    && !arrays['liq'])    arrays['liq']    = computeLiquiditySweepSeries(candles);
+    if (type === 'equal_hl'     && !arrays['ehl'])    arrays['ehl']    = computeEqualHLSeries(candles);
+    if (type === 'consolidation'&& !arrays['consol']) arrays['consol'] = computeConsolidationSeries(candles);
   };
   for (const cd of conditions) {
     ensure(cd.type, cd.period, cd.period2, cd.maType);
@@ -349,17 +504,19 @@ export function runBacktest(candles, strategy) {
   if (!candles || candles.length < 20) return { trades: [], equityCurve: [10000] };
 
   const {
-    conditions = [],
-    logic      = 'AND',
-    direction  = 'both',
-    exitType   = 'fixed',
-    tpPips     = 50,
-    slPips     = 25,
-    tpAtr      = 2,
-    slAtr      = 1,
-    rrRatio    = 2,
-    maxTrades  = 1,
-    riskPct    = 1,
+    conditions    = [],
+    logic         = 'AND',
+    direction     = 'both',
+    exitType      = 'fixed',
+    slType        = 'fixed',
+    tpPips        = 50,
+    slPips        = 25,
+    tpAtr         = 2,
+    slAtr         = 1,
+    rrRatio       = 2,
+    swingLookback = 15,
+    maxTrades     = 1,
+    riskPct       = 1,
     symbol,
   } = strategy;
 
@@ -436,22 +593,40 @@ export function runBacktest(candles, strategy) {
 
     const entry   = c.c;
     const currAtr = atr[i] || entry * 0.001;
-    let tp, sl, tpP, slP;
 
-    if (exitType === 'atr') {
-      tpP = (currAtr * tpAtr) / pip;
+    // ── Compute SL (independent of TP mode) ──
+    let sl, slP;
+    if (slType === 'swing') {
+      const lb = swingLookback || 15;
+      const swSlice = candles.slice(Math.max(0, i - lb), i);
+      if (dir === 'long') {
+        const swLow = Math.min(...swSlice.map(c2 => c2.l));
+        sl  = swLow - pip * 3;
+        slP = Math.max((entry - sl) / pip, 1);
+      } else {
+        const swHigh = Math.max(...swSlice.map(c2 => c2.h));
+        sl  = swHigh + pip * 3;
+        slP = Math.max((sl - entry) / pip, 1);
+      }
+    } else if (slType === 'atr') {
       slP = (currAtr * slAtr) / pip;
-      tp  = dir === 'long' ? entry + currAtr * tpAtr : entry - currAtr * tpAtr;
       sl  = dir === 'long' ? entry - currAtr * slAtr : entry + currAtr * slAtr;
-    } else if (exitType === 'rr') {
-      // R:R mode: SL in pips, TP = SL × rrRatio
-      slP = slPips; tpP = slPips * rrRatio;
-      sl  = dir === 'long' ? entry - slPips * pip      : entry + slPips * pip;
-      tp  = dir === 'long' ? entry + tpP   * pip       : entry - tpP   * pip;
     } else {
-      tpP = tpPips; slP = slPips;
-      tp  = dir === 'long' ? entry + tpPips * pip : entry - tpPips * pip;
+      slP = slPips;
       sl  = dir === 'long' ? entry - slPips * pip : entry + slPips * pip;
+    }
+
+    // ── Compute TP ──
+    let tp, tpP;
+    if (exitType === 'rr') {
+      tpP = slP * rrRatio;
+      tp  = dir === 'long' ? entry + tpP * pip : entry - tpP * pip;
+    } else if (exitType === 'atr') {
+      tpP = (currAtr * tpAtr) / pip;
+      tp  = dir === 'long' ? entry + currAtr * tpAtr : entry - currAtr * tpAtr;
+    } else {
+      tpP = tpPips;
+      tp  = dir === 'long' ? entry + tpPips * pip : entry - tpPips * pip;
     }
 
     open.push({

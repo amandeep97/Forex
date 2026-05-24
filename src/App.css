@@ -1308,6 +1308,10 @@ table  { border-collapse: collapse; width: 100%; }
 }
 .bt2-rm:hover { color: #ef4444; background: #ef444415; }
 /* Exit rules */
+.bt2-sub-label {
+  font-size: 9px; font-weight: 800; color: var(--text3); text-transform: uppercase;
+  letter-spacing: 0.08em; margin-bottom: 4px;
+}
 .bt2-exit-tabs { display: flex; gap: 4px; }
 .bt2-exit-tab {
   flex: 1; padding: 6px 4px; font-size: 10px; font-weight: 600;
