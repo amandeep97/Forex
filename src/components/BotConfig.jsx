@@ -1,0 +1,393 @@
+import { useState, useEffect, useCallback } from 'react';
+import { ghRead, ghWrite, isGithubConfigured } from '../utils/githubSync';
+
+// ── Constants ─────────────────────────────────────────────────────────────────
+const PAIRS = ['EUR_USD','GBP_USD','USD_JPY','AUD_USD','USD_CAD','USD_CHF','NZD_USD','GBP_JPY','EUR_JPY','XAU_USD','XAG_USD'];
+const TFS   = ['M15','M30','H1','H2','H4','H6','H12','D'];
+const SESSIONS = [{ v:'london',  l:'London (07–16 UTC)' }, { v:'newyork', l:'New York (12–21 UTC)' }, { v:'overlap', l:'Overlap (12–16 UTC)' }];
+const SL_METHODS = [{ v:'atr',   l:'ATR ×' }, { v:'swing', l:'Swing High/Low' }, { v:'fixed', l:'Fixed Pips' }];
+const TP_METHODS = [{ v:'rr',    l:'R:R Ratio' }, { v:'fixed', l:'Fixed Pips' }, { v:'fib',  l:'Fib Extension' }];
+
+const DEFAULT_STRAT = {
+  id: '', name: 'New Strategy', enabled: false,
+  pair: 'EUR_USD', timeframe: 'H1', direction: 'both',
+  conditions: {
+    structure: 'any', requireBOS: false, requireOB: false,
+    requireFVG: false, requireOTE: false,
+    sessions: ['london'],
+    rsiFilter: { enabled: false, comparison: 'below', value: 70 },
+  },
+  risk: {
+    riskPercent: 1, slMethod: 'atr', slAtr: 1.5, slPips: 20,
+    tpMethod: 'rr', rrRatio: 2, tpFibLevel: 1.618,
+  },
+};
+
+// ── Small UI helpers ──────────────────────────────────────────────────────────
+function Label({ children }) { return <span style={{ fontSize: 11, color: 'var(--text3)', fontWeight: 600, letterSpacing: '0.04em' }}>{children}</span>; }
+function FieldRow({ label, children }) {
+  return <div style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '5px 0', borderBottom: '1px solid var(--border)' }}>
+    <Label>{label}</Label>
+    <div style={{ marginLeft: 'auto' }}>{children}</div>
+  </div>;
+}
+function Toggle({ checked, onChange }) {
+  return <button onClick={() => onChange(!checked)} style={{ width: 40, height: 22, borderRadius: 11, background: checked ? '#00d4aa' : '#1e293b', border: 'none', position: 'relative', cursor: 'pointer', transition: 'background 0.2s', flexShrink: 0 }}>
+    <span style={{ position: 'absolute', top: 3, left: checked ? 20 : 3, width: 16, height: 16, borderRadius: '50%', background: '#fff', transition: 'left 0.2s' }}/>
+  </button>;
+}
+function Select({ value, onChange, options, style = {} }) {
+  return <select value={value} onChange={e => onChange(e.target.value)}
+    style={{ background: 'var(--bg2)', color: 'var(--text)', border: '1px solid var(--border)', borderRadius: 4, padding: '3px 6px', fontSize: 11, ...style }}>
+    {options.map(o => <option key={o.v} value={o.v}>{o.l}</option>)}
+  </select>;
+}
+function NumberInput({ value, onChange, min, max, step = 1, style = {} }) {
+  return <input type="number" value={value} min={min} max={max} step={step}
+    onChange={e => onChange(+e.target.value)}
+    style={{ width: 70, background: 'var(--bg2)', color: 'var(--text)', border: '1px solid var(--border)', borderRadius: 4, padding: '3px 6px', fontSize: 11, textAlign: 'right', ...style }}/>;
+}
+function CondChip({ active, color, onClick, children }) {
+  return <button onClick={onClick} style={{ padding: '3px 9px', borderRadius: 4, fontSize: 11, fontWeight: 700, border: `1px solid ${active ? color + '88' : 'var(--border)'}`, background: active ? color + '22' : 'var(--bg2)', color: active ? color : 'var(--text3)', cursor: 'pointer', transition: 'all 0.12s' }}>{children}</button>;
+}
+
+// ── Strategy form ─────────────────────────────────────────────────────────────
+function StrategyEditor({ strat, onSave, onCancel }) {
+  const [s, setS] = useState(() => JSON.parse(JSON.stringify(strat)));
+  const set  = (path, val) => setS(prev => {
+    const clone = JSON.parse(JSON.stringify(prev));
+    const parts = path.split('.');
+    let obj = clone;
+    for (let i = 0; i < parts.length - 1; i++) obj = obj[parts[i]];
+    obj[parts[parts.length - 1]] = val;
+    return clone;
+  });
+  const toggleSession = (v) => {
+    const cur = s.conditions.sessions || [];
+    set('conditions.sessions', cur.includes(v) ? cur.filter(x => x !== v) : [...cur, v]);
+  };
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 16, padding: 16 }}>
+
+      {/* Name + pair + TF */}
+      <section>
+        <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--text2)', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '0.06em' }}>General</div>
+        <FieldRow label="Strategy Name">
+          <input value={s.name} onChange={e => set('name', e.target.value)}
+            style={{ background: 'var(--bg2)', color: 'var(--text)', border: '1px solid var(--border)', borderRadius: 4, padding: '3px 8px', fontSize: 12, width: 160 }}/>
+        </FieldRow>
+        <FieldRow label="Pair">
+          <Select value={s.pair} onChange={v => set('pair', v)} options={PAIRS.map(p => ({ v: p, l: p.replace('_', '/') }))}/>
+        </FieldRow>
+        <FieldRow label="Timeframe">
+          <Select value={s.timeframe} onChange={v => set('timeframe', v)} options={TFS.map(t => ({ v: t, l: t }))}/>
+        </FieldRow>
+        <FieldRow label="Direction">
+          <Select value={s.direction} onChange={v => set('direction', v)} options={[{ v:'both',l:'Both (follow structure)'},{v:'long',l:'Long only'},{v:'short',l:'Short only'}]}/>
+        </FieldRow>
+        <FieldRow label="Enabled">
+          <Toggle checked={s.enabled} onChange={v => set('enabled', v)}/>
+        </FieldRow>
+      </section>
+
+      {/* Conditions */}
+      <section>
+        <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--text2)', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '0.06em' }}>Entry Conditions</div>
+
+        <FieldRow label="Market Structure">
+          <Select value={s.conditions.structure} onChange={v => set('conditions.structure', v)}
+            options={[{v:'any',l:'Any'},{v:'bullish',l:'Bullish'},{v:'bearish',l:'Bearish'}]}/>
+        </FieldRow>
+
+        <FieldRow label="Require BOS">
+          <Toggle checked={s.conditions.requireBOS} onChange={v => set('conditions.requireBOS', v)}/>
+        </FieldRow>
+        <FieldRow label="Require Order Block">
+          <Toggle checked={s.conditions.requireOB} onChange={v => set('conditions.requireOB', v)}/>
+        </FieldRow>
+        <FieldRow label="Require Fair Value Gap">
+          <Toggle checked={s.conditions.requireFVG} onChange={v => set('conditions.requireFVG', v)}/>
+        </FieldRow>
+        <FieldRow label="Require OTE Zone (0.618–0.786)">
+          <Toggle checked={s.conditions.requireOTE} onChange={v => set('conditions.requireOTE', v)}/>
+        </FieldRow>
+
+        <div style={{ padding: '6px 0', borderBottom: '1px solid var(--border)' }}>
+          <Label>Sessions</Label>
+          <div style={{ display: 'flex', gap: 6, marginTop: 5 }}>
+            {SESSIONS.map(({ v, l }) => (
+              <CondChip key={v} active={(s.conditions.sessions||[]).includes(v)} color="#00d4aa" onClick={() => toggleSession(v)}>{v}</CondChip>
+            ))}
+          </div>
+        </div>
+
+        <div style={{ padding: '6px 0', borderBottom: '1px solid var(--border)' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: s.conditions.rsiFilter.enabled ? 8 : 0 }}>
+            <Label>RSI Filter</Label>
+            <div style={{ marginLeft: 'auto' }}><Toggle checked={s.conditions.rsiFilter.enabled} onChange={v => set('conditions.rsiFilter.enabled', v)}/></div>
+          </div>
+          {s.conditions.rsiFilter.enabled && (
+            <div style={{ display: 'flex', gap: 6, alignItems: 'center', paddingLeft: 8 }}>
+              <Label>RSI</Label>
+              <Select value={s.conditions.rsiFilter.comparison} onChange={v => set('conditions.rsiFilter.comparison', v)}
+                options={[{v:'below',l:'Below'},{v:'above',l:'Above'}]}/>
+              <NumberInput value={s.conditions.rsiFilter.value} onChange={v => set('conditions.rsiFilter.value', v)} min={1} max={99} step={1} style={{width:55}}/>
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* Risk */}
+      <section>
+        <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--text2)', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '0.06em' }}>Risk Management</div>
+        <FieldRow label="Risk Per Trade (%)">
+          <NumberInput value={s.risk.riskPercent} onChange={v => set('risk.riskPercent', v)} min={0.1} max={10} step={0.1}/>
+        </FieldRow>
+        <FieldRow label="Stop Loss Method">
+          <Select value={s.risk.slMethod} onChange={v => set('risk.slMethod', v)} options={SL_METHODS}/>
+        </FieldRow>
+        {s.risk.slMethod === 'atr'   && <FieldRow label="ATR Multiplier"><NumberInput value={s.risk.slAtr}  onChange={v => set('risk.slAtr',  v)} min={0.5} max={5} step={0.1}/></FieldRow>}
+        {s.risk.slMethod === 'fixed' && <FieldRow label="SL (pips)">     <NumberInput value={s.risk.slPips} onChange={v => set('risk.slPips', v)} min={5}   max={500} step={1}/></FieldRow>}
+        <FieldRow label="Take Profit Method">
+          <Select value={s.risk.tpMethod} onChange={v => set('risk.tpMethod', v)} options={TP_METHODS}/>
+        </FieldRow>
+        {s.risk.tpMethod === 'rr'    && <FieldRow label="R:R Ratio"><NumberInput value={s.risk.rrRatio}    onChange={v => set('risk.rrRatio',    v)} min={1} max={10} step={0.5}/></FieldRow>}
+        {s.risk.tpMethod === 'fixed' && <FieldRow label="TP (pips)"><NumberInput value={s.risk.tpPips||40} onChange={v => set('risk.tpPips',     v)} min={5} max={500} step={1}/></FieldRow>}
+        {s.risk.tpMethod === 'fib'   && <FieldRow label="Fib Level"> <Select value={s.risk.tpFibLevel} onChange={v => set('risk.tpFibLevel', +v)} options={[{v:1.272,l:'1.272'},{v:1.618,l:'1.618'},{v:2.0,l:'2.0'},{v:2.618,l:'2.618'}]}/></FieldRow>}
+      </section>
+
+      {/* Summary pill */}
+      <div style={{ background: '#00d4aa14', border: '1px solid #00d4aa33', borderRadius: 6, padding: '8px 12px', fontSize: 11, color: 'var(--text2)', lineHeight: 1.6 }}>
+        <b style={{ color: '#00d4aa' }}>{s.name}</b> · {s.pair.replace('_','/')} {s.timeframe} · {s.direction.toUpperCase()}<br/>
+        Conditions: {[s.conditions.requireBOS&&'BOS',s.conditions.requireOB&&'OB',s.conditions.requireFVG&&'FVG',s.conditions.requireOTE&&'OTE'].filter(Boolean).join(', ')||'None'}<br/>
+        Sessions: {(s.conditions.sessions||[]).join(', ')||'None'}<br/>
+        Risk: {s.risk.riskPercent}% · SL: {s.risk.slMethod.toUpperCase()} · TP: {s.risk.tpMethod === 'rr' ? `1:${s.risk.rrRatio}` : s.risk.tpMethod}
+      </div>
+
+      <div style={{ display: 'flex', gap: 8 }}>
+        <button onClick={onCancel} style={{ flex: 1, padding: '8px', borderRadius: 6, border: '1px solid var(--border)', background: 'var(--bg2)', color: 'var(--text3)', fontSize: 12, cursor: 'pointer' }}>Cancel</button>
+        <button onClick={() => onSave(s)} style={{ flex: 2, padding: '8px', borderRadius: 6, border: 'none', background: '#00d4aa', color: '#080c14', fontWeight: 700, fontSize: 12, cursor: 'pointer' }}>Save Strategy</button>
+      </div>
+    </div>
+  );
+}
+
+// ── Main BotConfig component ──────────────────────────────────────────────────
+export default function BotConfig() {
+  const [config,   setConfig]   = useState(null);
+  const [sha,      setSha]      = useState(null);
+  const [loading,  setLoading]  = useState(false);
+  const [saving,   setSaving]   = useState(false);
+  const [err,      setErr]      = useState('');
+  const [editing,  setEditing]  = useState(null); // null | 'new' | stratId
+  const [pat,      setPat]      = useState(() => localStorage.getItem('github_pat') || '');
+  const [patSaved, setPatSaved] = useState(!!localStorage.getItem('github_pat'));
+
+  const load = useCallback(async () => {
+    if (!isGithubConfigured()) return;
+    setLoading(true); setErr('');
+    try {
+      const result = await ghRead('bot/strategy.json');
+      if (result) { setConfig(result.content); setSha(result.sha); }
+      else {
+        // First time — create default
+        const def = { version:1, updatedAt: new Date().toISOString(), strategies: [], globalSettings: { maxTotalTrades:3, telegramEnabled:false, telegramChatId:'', tradeOnWeekends:false, lastRunAt:null, lastError:null } };
+        setConfig(def); setSha(null);
+      }
+    } catch (e) { setErr(e.message); }
+    setLoading(false);
+  }, []);
+
+  useEffect(() => { if (patSaved) load(); }, [patSaved, load]);
+
+  const saveConfig = async (cfg) => {
+    setSaving(true); setErr('');
+    try {
+      const updated = { ...cfg, updatedAt: new Date().toISOString() };
+      const newSha = await ghWrite('bot/strategy.json', updated, 'App: update strategy config', sha);
+      setConfig(updated); setSha(newSha);
+    } catch (e) { setErr(e.message); }
+    setSaving(false);
+  };
+
+  const saveGlobal = (key, val) => {
+    const updated = { ...config, globalSettings: { ...config.globalSettings, [key]: val } };
+    saveConfig(updated);
+  };
+
+  const handleSaveStrat = (strat) => {
+    const strats = [...(config.strategies || [])];
+    if (!strat.id) strat.id = 'strat_' + Date.now();
+    const idx = strats.findIndex(s => s.id === strat.id);
+    if (idx >= 0) strats[idx] = strat; else strats.push(strat);
+    saveConfig({ ...config, strategies: strats });
+    setEditing(null);
+  };
+
+  const deleteStrat = (id) => {
+    if (!window.confirm('Delete this strategy?')) return;
+    saveConfig({ ...config, strategies: config.strategies.filter(s => s.id !== id) });
+  };
+
+  const toggleStrat = (id) => {
+    const strats = config.strategies.map(s => s.id === id ? { ...s, enabled: !s.enabled } : s);
+    saveConfig({ ...config, strategies: strats });
+  };
+
+  const savePat = () => {
+    localStorage.setItem('github_pat', pat);
+    setPatSaved(true);
+    load();
+  };
+
+  // ── PAT setup screen ──────────────────────────────────────────────────────
+  if (!patSaved) {
+    return (
+      <div style={{ padding: 20, maxWidth: 500 }}>
+        <div style={{ fontSize: 15, fontWeight: 700, color: 'var(--text)', marginBottom: 8 }}>Connect GitHub</div>
+        <p style={{ fontSize: 12, color: 'var(--text3)', marginBottom: 16, lineHeight: 1.6 }}>
+          The bot config and trade log are stored in your GitHub repo. Enter a Personal Access Token with <b>Contents: read &amp; write</b> permission.
+          <br/><br/>
+          Create at: <code style={{ fontSize: 10, color: '#00d4aa' }}>github.com → Settings → Developer settings → Personal access tokens → Fine-grained tokens</code>
+        </p>
+        <input placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" value={pat} onChange={e => setPat(e.target.value)}
+          style={{ width: '100%', background: 'var(--bg2)', color: 'var(--text)', border: '1px solid var(--border)', borderRadius: 6, padding: '8px 12px', fontSize: 12, marginBottom: 10 }}/>
+        <button onClick={savePat} disabled={!pat.trim()} style={{ padding: '9px 20px', borderRadius: 6, background: '#00d4aa', color: '#080c14', fontWeight: 700, fontSize: 12, border: 'none', cursor: 'pointer' }}>
+          Save &amp; Connect
+        </button>
+      </div>
+    );
+  }
+
+  if (loading) return <div style={{ padding: 24, color: 'var(--text3)', fontSize: 13 }}>⟳ Loading config from GitHub…</div>;
+
+  // ── Edit screen ─────────────────────────────────────────────────────────────
+  if (editing !== null) {
+    const existing = editing === 'new' ? null : config.strategies.find(s => s.id === editing);
+    return (
+      <div style={{ maxWidth: 520 }}>
+        <div style={{ padding: '10px 16px', borderBottom: '1px solid var(--border)', display: 'flex', alignItems: 'center', gap: 8 }}>
+          <button onClick={() => setEditing(null)} style={{ background: 'none', border: 'none', color: 'var(--text3)', fontSize: 18, cursor: 'pointer', lineHeight: 1 }}>←</button>
+          <span style={{ fontSize: 13, fontWeight: 700, color: 'var(--text)' }}>{existing ? 'Edit Strategy' : 'New Strategy'}</span>
+        </div>
+        <StrategyEditor
+          strat={existing || { ...DEFAULT_STRAT }}
+          onSave={handleSaveStrat}
+          onCancel={() => setEditing(null)}
+        />
+      </div>
+    );
+  }
+
+  // ── Main screen ─────────────────────────────────────────────────────────────
+  const gs = config?.globalSettings || {};
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 0, maxWidth: 520 }}>
+
+      {/* Header */}
+      <div style={{ padding: '12px 16px', borderBottom: '1px solid var(--border)', display: 'flex', alignItems: 'center', gap: 8 }}>
+        <span style={{ fontSize: 14, fontWeight: 700, color: 'var(--text)' }}>⚙ Bot Config</span>
+        <span style={{ fontSize: 10, color: 'var(--text3)', marginLeft: 4 }}>synced with GitHub</span>
+        <button onClick={load} style={{ marginLeft: 'auto', padding: '4px 10px', borderRadius: 4, background: 'var(--bg2)', border: '1px solid var(--border)', color: 'var(--text3)', fontSize: 11, cursor: 'pointer' }}>↻ Refresh</button>
+        {saving && <span style={{ fontSize: 11, color: '#00d4aa' }}>Saving…</span>}
+      </div>
+
+      {err && <div style={{ margin: '8px 16px', padding: '8px 12px', background: '#ef444420', border: '1px solid #ef444444', borderRadius: 6, fontSize: 11, color: '#ef4444' }}>{err}</div>}
+
+      {/* Global settings */}
+      {config && (
+        <div style={{ padding: '12px 16px', borderBottom: '1px solid var(--border)' }}>
+          <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--text2)', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '0.06em' }}>Global Settings</div>
+          <FieldRow label="Max Total Open Trades">
+            <NumberInput value={gs.maxTotalTrades || 3} onChange={v => saveGlobal('maxTotalTrades', v)} min={1} max={10} step={1}/>
+          </FieldRow>
+          <FieldRow label="Telegram Enabled">
+            <Toggle checked={!!gs.telegramEnabled} onChange={v => saveGlobal('telegramEnabled', v)}/>
+          </FieldRow>
+          {gs.telegramEnabled && (
+            <FieldRow label="Chat ID">
+              <input value={gs.telegramChatId || ''} onChange={e => saveGlobal('telegramChatId', e.target.value)}
+                placeholder="-100xxxxxxxxxx"
+                style={{ width: 140, background: 'var(--bg2)', color: 'var(--text)', border: '1px solid var(--border)', borderRadius: 4, padding: '3px 6px', fontSize: 11 }}/>
+            </FieldRow>
+          )}
+          {gs.lastRunAt && (
+            <div style={{ fontSize: 10, color: 'var(--text3)', marginTop: 4 }}>
+              Last bot run: {new Date(gs.lastRunAt).toLocaleString()}
+              {gs.lastError && <span style={{ color: '#f87171', marginLeft: 6 }}>⚠ {gs.lastError}</span>}
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* Strategies list */}
+      {config && (
+        <div style={{ padding: '12px 16px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', marginBottom: 10 }}>
+            <span style={{ fontSize: 11, fontWeight: 700, color: 'var(--text2)', textTransform: 'uppercase', letterSpacing: '0.06em' }}>Strategies</span>
+            <button onClick={() => setEditing('new')}
+              style={{ marginLeft: 'auto', padding: '5px 12px', borderRadius: 4, background: '#00d4aa', color: '#080c14', fontWeight: 700, fontSize: 11, border: 'none', cursor: 'pointer' }}>
+              + New
+            </button>
+          </div>
+
+          {(!config.strategies || config.strategies.length === 0) && (
+            <div style={{ padding: 20, textAlign: 'center', color: 'var(--text3)', fontSize: 12, border: '1px dashed var(--border)', borderRadius: 6 }}>
+              No strategies yet — click + New to create one
+            </div>
+          )}
+
+          {(config.strategies || []).map(strat => (
+            <div key={strat.id} style={{ background: 'var(--card)', border: `1px solid ${strat.enabled ? '#00d4aa33' : 'var(--border)'}`, borderRadius: 8, padding: '10px 12px', marginBottom: 8 }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                <Toggle checked={strat.enabled} onChange={() => toggleStrat(strat.id)}/>
+                <div>
+                  <div style={{ fontSize: 13, fontWeight: 700, color: strat.enabled ? 'var(--text)' : 'var(--text3)' }}>{strat.name}</div>
+                  <div style={{ fontSize: 10, color: 'var(--text3)' }}>{strat.pair.replace('_','/')} · {strat.timeframe} · {strat.direction}</div>
+                </div>
+                <div style={{ marginLeft: 'auto', display: 'flex', gap: 6 }}>
+                  <button onClick={() => setEditing(strat.id)} style={{ padding: '4px 10px', borderRadius: 4, fontSize: 11, background: 'var(--bg2)', border: '1px solid var(--border)', color: 'var(--text2)', cursor: 'pointer' }}>Edit</button>
+                  <button onClick={() => deleteStrat(strat.id)} style={{ padding: '4px 10px', borderRadius: 4, fontSize: 11, background: 'none', border: '1px solid #ef444433', color: '#ef4444', cursor: 'pointer' }}>✕</button>
+                </div>
+              </div>
+              <div style={{ marginTop: 6, display: 'flex', gap: 4, flexWrap: 'wrap' }}>
+                {strat.conditions.requireBOS && <span style={{ fontSize: 9, padding: '1px 5px', borderRadius: 3, background: '#38bdf820', color: '#38bdf8', border: '1px solid #38bdf833' }}>BOS</span>}
+                {strat.conditions.requireOB  && <span style={{ fontSize: 9, padding: '1px 5px', borderRadius: 3, background: '#22c55e20', color: '#22c55e', border: '1px solid #22c55e33' }}>OB</span>}
+                {strat.conditions.requireFVG && <span style={{ fontSize: 9, padding: '1px 5px', borderRadius: 3, background: '#00d4aa20', color: '#00d4aa', border: '1px solid #00d4aa33' }}>FVG</span>}
+                {strat.conditions.requireOTE && <span style={{ fontSize: 9, padding: '1px 5px', borderRadius: 3, background: '#a855f720', color: '#a855f7', border: '1px solid #a855f733' }}>OTE</span>}
+                {(strat.conditions.sessions||[]).map(s => <span key={s} style={{ fontSize: 9, padding: '1px 5px', borderRadius: 3, background: '#f59e0b20', color: '#f59e0b', border: '1px solid #f59e0b33' }}>{s}</span>)}
+                <span style={{ fontSize: 9, padding: '1px 5px', borderRadius: 3, background: 'var(--bg2)', color: 'var(--text3)', border: '1px solid var(--border)' }}>Risk {strat.risk.riskPercent}%</span>
+                <span style={{ fontSize: 9, padding: '1px 5px', borderRadius: 3, background: 'var(--bg2)', color: 'var(--text3)', border: '1px solid var(--border)' }}>{strat.risk.tpMethod === 'rr' ? `1:${strat.risk.rrRatio}R` : strat.risk.tpMethod}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {/* VPS setup guide */}
+      <div style={{ margin: '0 16px 16px', padding: '10px 12px', background: '#1e293b', borderRadius: 8, border: '1px solid var(--border)' }}>
+        <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--text2)', marginBottom: 6 }}>VPS Bot Setup</div>
+        <div style={{ fontSize: 10, color: 'var(--text3)', lineHeight: 1.7, fontFamily: 'monospace' }}>
+          cd vps-bot<br/>
+          npm install<br/>
+          cp .env.example .env &amp;&amp; nano .env<br/>
+          pm2 start ecosystem.config.js<br/>
+          pm2 save &amp;&amp; pm2 startup
+        </div>
+        <div style={{ fontSize: 10, color: 'var(--text3)', marginTop: 6 }}>
+          Bot reads strategy every 60s from GitHub. Change strategy in app → bot picks it up automatically next minute.
+        </div>
+      </div>
+
+      {/* Reset PAT */}
+      <div style={{ padding: '0 16px 16px' }}>
+        <button onClick={() => { localStorage.removeItem('github_pat'); setPatSaved(false); setPat(''); }}
+          style={{ fontSize: 10, color: 'var(--text3)', background: 'none', border: 'none', cursor: 'pointer', textDecoration: 'underline' }}>
+          Change GitHub token
+        </button>
+      </div>
+    </div>
+  );
+}

@@ -1,5 +1,325 @@
 import { useState } from 'react';
 import { STRATEGIES, samplePositions, tradeHistory, SIGNALS, forexPairs } from '../data/forexData';
+import { ghRead, ghWrite } from '../utils/githubSync';
+
+// ── OANDA helpers (browser-direct) ───────────────────────────────────────────
+const oandaBase = (env) =>
+  env === 'live'
+    ? 'https://api-fxtrade.oanda.com/v3'
+    : 'https://api-fxpractice.oanda.com/v3';
+
+async function fetchOandaCandles(apiKey, env, instrument, count = 100) {
+  const res = await fetch(
+    `${oandaBase(env)}/instruments/${instrument}/candles?granularity=H1&count=${count}&price=M`,
+    { headers: { Authorization: `Bearer ${apiKey}` } }
+  );
+  if (!res.ok) {
+    const j = await res.json().catch(() => ({}));
+    throw new Error(j.errorMessage || `OANDA ${res.status}`);
+  }
+  const { candles } = await res.json();
+  return candles.filter(c => c.complete).map(c => ({
+    t: c.time,
+    o: parseFloat(c.mid.o), h: parseFloat(c.mid.h),
+    l: parseFloat(c.mid.l), c: parseFloat(c.mid.c),
+    v: c.volume,
+  }));
+}
+
+function analyzeCandles(candles) {
+  if (candles.length < 20) return null;
+  const n = candles.length;
+
+  // ATR(14)
+  let atrSum = 0;
+  for (let i = n - 14; i < n; i++) atrSum += candles[i].h - candles[i].l;
+  const atr = atrSum / 14;
+
+  const cp = candles[n - 1].c;
+
+  // Swing high/low over last 50
+  const win = candles.slice(Math.max(0, n - 50));
+  let sH = -Infinity, sL = Infinity;
+  for (let i = 2; i < win.length - 2; i++) {
+    if (win[i].h > win[i-1].h && win[i].h > win[i-2].h && win[i].h > win[i+1].h && win[i].h > win[i+2].h)
+      sH = Math.max(sH, win[i].h);
+    if (win[i].l < win[i-1].l && win[i].l < win[i-2].l && win[i].l < win[i+1].l && win[i].l < win[i+2].l)
+      sL = Math.min(sL, win[i].l);
+  }
+  if (sH === -Infinity) sH = Math.max(...win.map(c => c.h));
+  if (sL === Infinity)  sL = Math.min(...win.map(c => c.l));
+
+  // Bias from last 6 candles (HH/HL = bullish, LL/LH = bearish)
+  const last6 = candles.slice(n - 6);
+  const hArr  = last6.map(c => c.h);
+  const lArr  = last6.map(c => c.l);
+  const structure =
+    hArr[5] > hArr[3] && hArr[3] > hArr[1] ? 'bullish' :
+    hArr[5] < hArr[3] && hArr[3] < hArr[1] ? 'bearish' : 'ranging';
+
+  if (structure === 'ranging') return { dir: null, structure, cp, atr };
+
+  const dir = structure === 'bullish' ? 'LONG' : 'SHORT';
+  const slBuf = atr * 0.5;
+  const sl    = dir === 'LONG' ? sL - slBuf : sH + slBuf;
+  const dist  = Math.abs(cp - sl);
+  if (dist <= 0) return null;
+  const tp  = dir === 'LONG' ? cp + dist * 2 : cp - dist * 2;
+  const rr  = (Math.abs(tp - cp) / dist).toFixed(1);
+
+  return { dir, structure, cp, sl, tp, rr, atr };
+}
+
+// ── App Bot panel ─────────────────────────────────────────────────────────────
+const APP_BOT_PAIRS = [
+  'EUR_USD','GBP_USD','USD_JPY','USD_CHF','AUD_USD',
+  'NZD_USD','USD_CAD','XAU_USD','GBP_JPY','EUR_JPY',
+];
+
+function AppBotPanel() {
+  const [apiKey,     setApiKey]     = useState(() => localStorage.getItem('oanda_key')  || '');
+  const [accountId,  setAccountId]  = useState(() => localStorage.getItem('oanda_acct') || '');
+  const [env,        setEnv]        = useState(() => localStorage.getItem('oanda_env')  || 'practice');
+  const [pair,       setPair]       = useState('EUR_USD');
+  const [signal,     setSignal]     = useState(null);
+  const [editEntry,  setEditEntry]  = useState('');
+  const [editSL,     setEditSL]     = useState('');
+  const [editTP,     setEditTP]     = useState('');
+  const [analyzing,  setAnalyzing]  = useState(false);
+  const [placing,    setPlacing]    = useState(false);
+  const [statusMsg,  setStatusMsg]  = useState('');
+  const [errMsg,     setErrMsg]     = useState('');
+
+  const saveCredentials = () => {
+    localStorage.setItem('oanda_key',  apiKey);
+    localStorage.setItem('oanda_acct', accountId);
+    localStorage.setItem('oanda_env',  env);
+    setStatusMsg('Credentials saved');
+    setTimeout(() => setStatusMsg(''), 2000);
+  };
+
+  const analyze = async () => {
+    if (!apiKey || !accountId) { setErrMsg('Enter OANDA credentials first'); return; }
+    setAnalyzing(true); setErrMsg(''); setSignal(null);
+    try {
+      const candles = await fetchOandaCandles(apiKey, env, pair);
+      const sig = analyzeCandles(candles);
+      if (!sig || !sig.dir) {
+        setErrMsg('Market ranging — no clear SMC signal on H1');
+      } else {
+        setSignal(sig);
+        const dp = pair.includes('JPY') ? 3 : pair.includes('XAU') ? 2 : 5;
+        setEditEntry(sig.cp.toFixed(dp));
+        setEditSL(sig.sl.toFixed(dp));
+        setEditTP(sig.tp.toFixed(dp));
+      }
+    } catch (e) {
+      setErrMsg(e.message);
+    } finally {
+      setAnalyzing(false);
+    }
+  };
+
+  const placeOrder = async () => {
+    if (!signal || !apiKey || !accountId) return;
+    setPlacing(true); setErrMsg('');
+    try {
+      const entry = parseFloat(editEntry);
+      const sl    = parseFloat(editSL);
+      const tp    = parseFloat(editTP);
+      if (isNaN(sl) || isNaN(tp)) throw new Error('Invalid SL or TP value');
+
+      const dp    = pair.includes('JPY') ? 3 : pair.includes('XAU') ? 2 : 5;
+      const units = signal.dir === 'LONG' ? '1000' : '-1000';
+
+      const body = {
+        order: {
+          type: 'MARKET',
+          instrument: pair,
+          units,
+          stopLossOnFill:   { price: sl.toFixed(dp) },
+          takeProfitOnFill: { price: tp.toFixed(dp) },
+        },
+      };
+
+      const res = await fetch(`${oandaBase(env)}/accounts/${accountId}/orders`, {
+        method:  'POST',
+        headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
+        body:    JSON.stringify(body),
+      });
+      const json = await res.json();
+      if (!res.ok) throw new Error(json.errorMessage || `OANDA ${res.status}`);
+
+      const tradeId = json.orderFillTransaction?.tradeOpened?.tradeID
+        || json.relatedTransactionIDs?.[0]
+        || '—';
+
+      // Log to bot/trades.json via GitHub
+      try {
+        const ghData   = await ghRead('bot/trades.json');
+        const tradeLog = ghData?.content?.trades || [];
+        tradeLog.push({
+          id:          `app_${Date.now()}`,
+          source:      'app_bot',
+          pair,
+          direction:   signal.dir,
+          entryPrice:  entry,
+          slPrice:     sl,
+          tpPrice:     tp,
+          units:       parseInt(units),
+          oandaTradeId: tradeId,
+          openTime:    new Date().toISOString(),
+          status:      'OPEN',
+          structure:   signal.structure,
+          rr:          parseFloat(signal.rr),
+        });
+        await ghWrite(
+          'bot/trades.json',
+          { trades: tradeLog },
+          `App bot: ${signal.dir} ${pair}`,
+          ghData?.sha || null
+        );
+      } catch (logErr) {
+        console.warn('Trade log failed:', logErr.message);
+      }
+
+      setStatusMsg(`Order placed — Trade ID: ${tradeId}`);
+      setSignal(null);
+    } catch (e) {
+      setErrMsg(e.message);
+    } finally {
+      setPlacing(false);
+    }
+  };
+
+  return (
+    <div style={{ background: '#1e293b', borderRadius: 8, padding: 16, marginBottom: 16, border: '1px solid #334155' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 14 }}>
+        <span style={{ fontSize: 13, fontWeight: 700, color: '#f8fafc' }}>🤖 App Bot</span>
+        <span style={{ fontSize: 10, color: '#64748b', background: '#0f172a', padding: '2px 8px', borderRadius: 4 }}>
+          Manual SMC · OANDA Direct
+        </span>
+      </div>
+
+      {/* Credentials row */}
+      <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 12, alignItems: 'flex-end' }}>
+        <div>
+          <div style={{ fontSize: 10, color: '#64748b', marginBottom: 3 }}>OANDA API Key</div>
+          <input
+            type="password"
+            value={apiKey}
+            onChange={e => setApiKey(e.target.value)}
+            placeholder="Bearer token…"
+            style={{ background: '#0f172a', border: '1px solid #334155', color: '#e2e8f0', borderRadius: 6, padding: '5px 10px', fontSize: 12, width: 180 }}
+          />
+        </div>
+        <div>
+          <div style={{ fontSize: 10, color: '#64748b', marginBottom: 3 }}>Account ID</div>
+          <input
+            value={accountId}
+            onChange={e => setAccountId(e.target.value)}
+            placeholder="001-001-…"
+            style={{ background: '#0f172a', border: '1px solid #334155', color: '#e2e8f0', borderRadius: 6, padding: '5px 10px', fontSize: 12, width: 140 }}
+          />
+        </div>
+        <div style={{ display: 'flex', gap: 4 }}>
+          {['practice', 'live'].map(e => (
+            <button
+              key={e}
+              onClick={() => setEnv(e)}
+              style={{
+                background: env === e ? '#334155' : 'transparent',
+                border: `1px solid ${env === e ? '#475569' : '#1e293b'}`,
+                color: env === e ? '#f8fafc' : '#64748b',
+                borderRadius: 6, padding: '5px 10px', fontSize: 11, cursor: 'pointer', textTransform: 'capitalize',
+              }}
+            >
+              {e}
+            </button>
+          ))}
+        </div>
+        <button
+          onClick={saveCredentials}
+          style={{ background: '#1d4ed8', border: 'none', color: '#fff', borderRadius: 6, padding: '6px 12px', fontSize: 11, cursor: 'pointer' }}
+        >
+          Save
+        </button>
+      </div>
+
+      {/* Pair + Analyze */}
+      <div style={{ display: 'flex', gap: 8, alignItems: 'center', flexWrap: 'wrap' }}>
+        <select
+          value={pair}
+          onChange={e => { setPair(e.target.value); setSignal(null); setErrMsg(''); }}
+          style={{ background: '#0f172a', border: '1px solid #334155', color: '#e2e8f0', borderRadius: 6, padding: '6px 10px', fontSize: 12 }}
+        >
+          {APP_BOT_PAIRS.map(p => (
+            <option key={p} value={p}>{p.replace('_', '/')}</option>
+          ))}
+        </select>
+        <button
+          onClick={analyze}
+          disabled={analyzing}
+          style={{ background: '#0ea5e9', border: 'none', color: '#fff', borderRadius: 6, padding: '7px 16px', fontSize: 12, cursor: 'pointer', fontWeight: 600 }}
+        >
+          {analyzing ? 'Analyzing…' : 'Analyze H1'}
+        </button>
+        {statusMsg && <span style={{ fontSize: 11, color: '#22c55e' }}>{statusMsg}</span>}
+        {errMsg    && <span style={{ fontSize: 11, color: '#ef4444' }}>{errMsg}</span>}
+      </div>
+
+      {/* Signal card */}
+      {signal && (
+        <div style={{
+          marginTop: 14, background: '#0f172a', borderRadius: 8, padding: 14,
+          border: `1px solid ${signal.dir === 'LONG' ? '#166534' : '#7f1d1d'}`,
+        }}>
+          <div style={{ display: 'flex', gap: 12, alignItems: 'center', marginBottom: 12 }}>
+            <span style={{ fontSize: 18, fontWeight: 700, color: signal.dir === 'LONG' ? '#22c55e' : '#ef4444' }}>
+              {signal.dir === 'LONG' ? '▲ LONG' : '▼ SHORT'}
+            </span>
+            <span style={{ fontSize: 11, color: '#94a3b8' }}>{pair.replace('_', '/')} · H1 · {signal.structure}</span>
+            <span style={{ fontSize: 11, color: '#a78bfa' }}>R:R 1:{signal.rr}</span>
+          </div>
+          <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', alignItems: 'flex-end' }}>
+            {[
+              { label: 'Entry',       value: editEntry, setter: setEditEntry, color: '#94a3b8' },
+              { label: 'Stop Loss',   value: editSL,    setter: setEditSL,    color: '#ef4444' },
+              { label: 'Take Profit', value: editTP,    setter: setEditTP,    color: '#22c55e' },
+            ].map(({ label, value, setter, color }) => (
+              <div key={label}>
+                <div style={{ fontSize: 10, color: '#64748b', marginBottom: 3 }}>{label}</div>
+                <input
+                  value={value}
+                  onChange={e => setter(e.target.value)}
+                  style={{ background: '#1e293b', border: `1px solid ${color}55`, color, borderRadius: 6, padding: '5px 10px', fontSize: 12, width: 110, fontFamily: 'monospace' }}
+                />
+              </div>
+            ))}
+            <button
+              onClick={placeOrder}
+              disabled={placing}
+              style={{
+                background: signal.dir === 'LONG' ? '#166534' : '#7f1d1d',
+                border: `1px solid ${signal.dir === 'LONG' ? '#22c55e' : '#ef4444'}`,
+                color: signal.dir === 'LONG' ? '#22c55e' : '#ef4444',
+                borderRadius: 6, padding: '8px 18px', fontSize: 12, cursor: 'pointer', fontWeight: 700,
+              }}
+            >
+              {placing ? 'Placing…' : `Place ${signal.dir} Order`}
+            </button>
+            <button
+              onClick={() => setSignal(null)}
+              style={{ background: 'transparent', border: '1px solid #334155', color: '#64748b', borderRadius: 6, padding: '8px 12px', fontSize: 11, cursor: 'pointer' }}
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
 
 // ── Broker definitions ────────────────────────────────────────────────────────
 const BROKERS = [
@@ -405,6 +725,9 @@ export default function AutoTrading({ accountMode = 'demo', brokerState }) {
 
   return (
     <div className="autotrading-root">
+
+      {/* ── App Bot (manual SMC trades via OANDA) ────────────────────────── */}
+      <AppBotPanel />
 
       {/* ── Real mode warning + broker panel ─────────────────────────────── */}
       {isReal && (

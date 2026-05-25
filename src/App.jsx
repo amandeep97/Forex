@@ -4,6 +4,8 @@ import AutoTrading from './components/AutoTrading';
 import Backtester from './components/Backtester';
 import WatchlistTab from './components/WatchlistTab';
 import RatioChart from './components/RatioChart';
+import BotConfig from './components/BotConfig';
+import Journal from './components/Journal';
 import { allInstruments } from './data/forexData';
 import './App.css';
 
@@ -13,6 +15,8 @@ const TABS = [
   { id: 'autotrading', label: 'Auto Trading', icon: '⚡' },
   { id: 'backtester',  label: 'Backtester',   icon: '📊' },
   { id: 'ratio',       label: 'Au/Ag Ratio',  icon: '⚖' },
+  { id: 'strategy',    label: 'Strategy',     icon: '⚙' },
+  { id: 'journal',     label: 'Journal',      icon: '📋' },
 ];
 
 // ── Real-money warning modal ─────────────────────────────────────────────────
@@ -183,6 +187,12 @@ export default function App() {
         </div>
         <div style={{ display: activeTab === 'ratio' ? 'block' : 'none', overflowY:'auto', height:'calc(100vh - 120px)' }}>
           <RatioChart />
+        </div>
+        <div style={{ display: activeTab === 'strategy' ? 'block' : 'none', overflowY:'auto', height:'calc(100vh - 120px)' }}>
+          <BotConfig />
+        </div>
+        <div style={{ display: activeTab === 'journal' ? 'block' : 'none', overflowY:'auto', height:'calc(100vh - 120px)' }}>
+          <Journal />
         </div>
       </main>
 

@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "updatedAt": "2025-05-25T00:00:00Z",
+  "strategies": [
+    {
+      "id": "strat_001",
+      "name": "ICT London BOS",
+      "enabled": false,
+      "pair": "EUR_USD",
+      "timeframe": "H1",
+      "direction": "both",
+      "conditions": {
+        "structure": "bullish",
+        "requireBOS": true,
+        "requireOB": true,
+        "requireFVG": false,
+        "requireOTE": false,
+        "sessions": ["london", "overlap"],
+        "rsiFilter": {
+          "enabled": false,
+          "comparison": "below",
+          "value": 70
+        }
+      },
+      "risk": {
+        "riskPercent": 1.0,
+        "slMethod": "atr",
+        "slAtr": 1.5,
+        "slPips": 20,
+        "tpMethod": "rr",
+        "rrRatio": 2.0,
+        "tpFibLevel": 1.618
+      }
+    }
+  ],
+  "globalSettings": {
+    "maxTotalTrades": 3,
+    "tradeOnWeekends": false,
+    "telegramEnabled": false,
+    "telegramChatId": "",
+    "lastRunAt": null,
+    "lastError": null
+  }
+}
