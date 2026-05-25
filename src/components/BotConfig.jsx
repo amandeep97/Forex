@@ -102,74 +102,71 @@ function ScanPanel({ strat }) {
 
   const passing = results?.filter(r => r.pass) || [];
   const failing = results?.filter(r => !r.pass) || [];
+  const total = (strat.pairs?.filter(p => p !== 'ALL') || [strat.pair].filter(Boolean)).length;
+  const scanned = results?.length || 0;
 
   return (
-    <div style={{ marginTop: 8, borderTop: '1px solid var(--border)', paddingTop: 8 }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: results ? 8 : 0 }}>
-        <button
-          onClick={scan}
-          disabled={scanning}
-          style={{ padding: '4px 10px', borderRadius: 4, fontSize: 10, fontWeight: 700, cursor: 'pointer',
-            background: scanning ? 'var(--bg2)' : '#00d4aa22',
-            border: '1px solid #00d4aa44', color: '#00d4aa' }}
-        >
-          {scanning ? `Scanning… (${results?.length || 0}/${(strat.pairs?.filter(p=>p!=='ALL')||[]).length})` : '🔍 Scan Now'}
-        </button>
-        {results && !scanning && (
-          <span style={{ fontSize: 10, color: 'var(--text3)' }}>
-            {passing.length} match · {failing.length} fail
-          </span>
+    <div style={{ marginTop: 8 }}>
+      {/* Status badge — SMCPro style */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
+        {!results && !scanning && (
+          <button onClick={scan}
+            style={{ padding: '4px 12px', borderRadius: 20, fontSize: 11, fontWeight: 600, cursor: 'pointer',
+              background: '#1e293b', border: '1px solid #334155', color: '#64748b' }}>
+            ⏳ 0 pairs matching — tap to scan
+          </button>
         )}
         {scanning && (
-          <button onClick={() => { abortRef.current = true; setScanning(false); }}
-            style={{ fontSize: 10, color: '#ef4444', background: 'none', border: 'none', cursor: 'pointer' }}>
-            Cancel
-          </button>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+            <div style={{ padding: '4px 12px', borderRadius: 20, fontSize: 11, fontWeight: 600,
+              background: '#1e293b', border: '1px solid #334155', color: '#94a3b8' }}>
+              🔄 Scanning… {scanned}/{total}
+            </div>
+            <button onClick={() => { abortRef.current = true; setScanning(false); }}
+              style={{ fontSize: 10, color: '#ef4444', background: 'none', border: 'none', cursor: 'pointer' }}>✕</button>
+          </div>
+        )}
+        {results && !scanning && (
+          <>
+            <button onClick={scan}
+              style={{ padding: '4px 12px', borderRadius: 20, fontSize: 11, fontWeight: 700, cursor: 'pointer', border: 'none',
+                background: passing.length > 0 ? '#22c55e22' : '#1e293b',
+                color: passing.length > 0 ? '#22c55e' : '#64748b',
+                outline: passing.length > 0 ? '1px solid #22c55e44' : '1px solid #334155' }}>
+              {passing.length > 0 ? `🎯 ${passing.length} pairs matching now` : '⏳ 0 pairs matching — waiting for signal'}
+            </button>
+            {/* Matching pair chips — tap to trade */}
+            {passing.slice(0, 6).map(r => (
+              <button key={r.pair}
+                onClick={() => window.dispatchEvent(new CustomEvent('trade-signal-pair', { detail: { pair: r.pair } }))}
+                style={{ padding: '3px 10px', borderRadius: 20, fontSize: 11, fontWeight: 700, cursor: 'pointer',
+                  background: '#22c55e22', color: '#22c55e', border: '1px solid #22c55e44' }}>
+                {r.pair.replace('_','/')}
+              </button>
+            ))}
+            {passing.length > 6 && (
+              <span style={{ fontSize: 10, color: '#64748b' }}>+{passing.length - 6} more</span>
+            )}
+          </>
         )}
       </div>
 
-      {results && (
-        <div style={{ maxHeight: 180, overflowY: 'auto' }}>
-          {/* Passing pairs */}
-          {passing.length > 0 && (
-            <div style={{ marginBottom: 6 }}>
-              <div style={{ fontSize: 9, fontWeight: 700, color: '#22c55e', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 3 }}>
-                ✓ Matching ({passing.length}) — tap a pair to trade it
+      {/* Failing pairs — collapsed details */}
+      {results && failing.length > 0 && (
+        <details style={{ marginTop: 6 }}>
+          <summary style={{ fontSize: 10, color: '#475569', cursor: 'pointer', listStyle: 'none', userSelect: 'none' }}>
+            ✗ {failing.length} pairs not matching — tap to see why
+          </summary>
+          <div style={{ marginTop: 4, display: 'flex', flexDirection: 'column', gap: 2, paddingLeft: 8 }}>
+            {failing.map(r => (
+              <div key={r.pair} style={{ fontSize: 10, color: '#475569', display: 'flex', gap: 8, alignItems: 'center' }}>
+                <span style={{ minWidth: 72, color: '#334155', fontWeight: 600 }}>{r.pair.replace('_','/')}</span>
+                <span>{r.reason}</span>
+                {r.rsi != null && <span style={{ marginLeft: 'auto', color: '#334155' }}>RSI {r.rsi}</span>}
               </div>
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 4 }}>
-                {passing.map(r => (
-                  <button key={r.pair}
-                    onClick={() => window.dispatchEvent(new CustomEvent('trade-signal-pair', { detail: { pair: r.pair } }))}
-                    style={{ fontSize: 10, padding: '3px 8px', borderRadius: 4, background: '#22c55e22', color: '#22c55e', border: '1px solid #22c55e55', cursor: 'pointer', fontWeight: 600 }}>
-                    {r.pair.replace('_','/')}
-                    {r.rsi != null && <span style={{ opacity: 0.7, marginLeft: 3 }}>RSI{r.rsi}</span>}
-                    <span style={{ marginLeft: 4, opacity: 0.5 }}>→</span>
-                  </button>
-                ))}
-              </div>
-            </div>
-          )}
-          {/* Failing pairs — collapsed */}
-          {failing.length > 0 && (
-            <details style={{ marginTop: 4 }}>
-              <summary style={{ fontSize: 9, fontWeight: 700, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.05em', cursor: 'pointer', listStyle: 'none' }}>
-                ✗ Not matching ({failing.length}) — tap to expand
-              </summary>
-              <div style={{ marginTop: 4, display: 'flex', flexDirection: 'column', gap: 2 }}>
-                {failing.map(r => (
-                  <div key={r.pair} style={{ fontSize: 10, color: '#64748b', display: 'flex', gap: 6 }}>
-                    <span style={{ minWidth: 70, color: '#475569' }}>{r.pair.replace('_','/')}</span>
-                    <span style={{ color: '#334155' }}>{r.reason}</span>
-                    {r.rsi != null && <span style={{ color: '#475569', marginLeft: 'auto' }}>RSI {r.rsi}</span>}
-                  </div>
-                ))}
-              </div>
-            </details>
-          )}
-          {!localStorage.getItem('oanda_key') && (
-            <div style={{ fontSize: 10, color: '#f59e0b', marginTop: 4 }}>Connect OANDA in Connect Exchange tab to scan live</div>
-          )}
-        </div>
+            ))}
+          </div>
+        </details>
       )}
     </div>
   );
@@ -829,17 +826,66 @@ export default function BotConfig() {
                   <button onClick={() => deleteStrat(strat.id)} style={{ padding: '4px 10px', borderRadius: 4, fontSize: 11, background: 'none', border: '1px solid #ef444433', color: '#ef4444', cursor: 'pointer' }}>✕</button>
                 </div>
               </div>
+              {/* Descriptive condition chips — SMCPro v2 style */}
               <div style={{ marginTop: 6, display: 'flex', gap: 4, flexWrap: 'wrap' }}>
-                {strat.conditions.requireBOS && <span style={{ fontSize: 9, padding: '1px 5px', borderRadius: 3, background: '#38bdf820', color: '#38bdf8', border: '1px solid #38bdf833' }}>BOS</span>}
-                {strat.conditions.requireOB  && <span style={{ fontSize: 9, padding: '1px 5px', borderRadius: 3, background: '#22c55e20', color: '#22c55e', border: '1px solid #22c55e33' }}>OB</span>}
-                {strat.conditions.requireFVG && <span style={{ fontSize: 9, padding: '1px 5px', borderRadius: 3, background: '#00d4aa20', color: '#00d4aa', border: '1px solid #00d4aa33' }}>FVG</span>}
-                {strat.conditions.requireOTE && <span style={{ fontSize: 9, padding: '1px 5px', borderRadius: 3, background: '#a855f720', color: '#a855f7', border: '1px solid #a855f733' }}>OTE</span>}
-                {strat.conditions.rsiFilter?.enabled && <span style={{ fontSize: 9, padding: '1px 5px', borderRadius: 3, background: '#f97316' + '20', color: '#f97316', border: '1px solid #f9731633' }}>RSI {strat.conditions.rsiFilter.comparison} {strat.conditions.rsiFilter.value}</span>}
-                {(strat.conditions.sessions||[]).map(s => <span key={s} style={{ fontSize: 9, padding: '1px 5px', borderRadius: 3, background: '#f59e0b20', color: '#f59e0b', border: '1px solid #f59e0b33' }}>{s}</span>)}
-                <span style={{ fontSize: 9, padding: '1px 5px', borderRadius: 3, background: 'var(--bg2)', color: 'var(--text3)', border: '1px solid var(--border)' }}>
-                  {strat.risk.riskType==='usdt' ? `$${strat.risk.riskUsdt||10}` : `Risk ${strat.risk.riskPercent}%`}
+                {strat.conditions.structure && strat.conditions.structure !== 'any' && (
+                  <span style={{ fontSize: 10, padding: '2px 8px', borderRadius: 4, background: 'var(--bg2)', color: 'var(--text3)', border: '1px solid var(--border)' }}>
+                    Market Structure == {strat.conditions.structure}
+                  </span>
+                )}
+                {strat.conditions.requireBOS && (
+                  <span style={{ fontSize: 10, padding: '2px 8px', borderRadius: 4, background: 'var(--bg2)', color: 'var(--text3)', border: '1px solid var(--border)' }}>
+                    BOS / CHoCH required
+                  </span>
+                )}
+                {strat.conditions.priceZone && strat.conditions.priceZone !== 'any' && (
+                  <span style={{ fontSize: 10, padding: '2px 8px', borderRadius: 4, background: 'var(--bg2)', color: 'var(--text3)', border: '1px solid var(--border)' }}>
+                    Price Zone == {strat.conditions.priceZone}
+                  </span>
+                )}
+                {strat.conditions.requireOB && (
+                  <span style={{ fontSize: 10, padding: '2px 8px', borderRadius: 4, background: 'var(--bg2)', color: 'var(--text3)', border: '1px solid var(--border)' }}>
+                    OB (Order Block) == {strat.conditions.obDir || 'any'}
+                  </span>
+                )}
+                {strat.conditions.requireFVG && (
+                  <span style={{ fontSize: 10, padding: '2px 8px', borderRadius: 4, background: 'var(--bg2)', color: 'var(--text3)', border: '1px solid var(--border)' }}>
+                    FVG (Fair Value Gap) == {strat.conditions.fvgDir || 'any'}
+                  </span>
+                )}
+                {strat.conditions.requireOTE && (
+                  <span style={{ fontSize: 10, padding: '2px 8px', borderRadius: 4, background: 'var(--bg2)', color: 'var(--text3)', border: '1px solid var(--border)' }}>
+                    OTE Zone is_true
+                  </span>
+                )}
+                {strat.conditions.requireLiqSweep && (
+                  <span style={{ fontSize: 10, padding: '2px 8px', borderRadius: 4, background: 'var(--bg2)', color: 'var(--text3)', border: '1px solid var(--border)' }}>
+                    Liquidity Sweep required
+                  </span>
+                )}
+                {strat.conditions.rsiFilter?.enabled && (
+                  <span style={{ fontSize: 10, padding: '2px 8px', borderRadius: 4, background: '#f9731620', color: '#f97316', border: '1px solid #f9731633' }}>
+                    RSI {strat.conditions.rsiFilter.comparison} {strat.conditions.rsiFilter.value}
+                  </span>
+                )}
+                {strat.conditions.emaFilter?.enabled && (
+                  <span style={{ fontSize: 10, padding: '2px 8px', borderRadius: 4, background: 'var(--bg2)', color: 'var(--text3)', border: '1px solid var(--border)' }}>
+                    Price {strat.conditions.emaFilter.side} EMA {strat.conditions.emaFilter.period}
+                  </span>
+                )}
+                {strat.conditions.vwapFilter?.enabled && (
+                  <span style={{ fontSize: 10, padding: '2px 8px', borderRadius: 4, background: 'var(--bg2)', color: 'var(--text3)', border: '1px solid var(--border)' }}>
+                    Price {strat.conditions.vwapFilter.side} VWAP
+                  </span>
+                )}
+                {(strat.conditions.sessions||[]).length > 0 && (
+                  <span style={{ fontSize: 10, padding: '2px 8px', borderRadius: 4, background: '#f59e0b20', color: '#f59e0b', border: '1px solid #f59e0b33' }}>
+                    Session == {(strat.conditions.sessions||[]).join(' / ')}
+                  </span>
+                )}
+                <span style={{ fontSize: 10, padding: '2px 8px', borderRadius: 4, background: 'var(--bg2)', color: 'var(--text3)', border: '1px solid var(--border)' }}>
+                  Risk {strat.risk.riskType==='usdt' ? `$${strat.risk.riskUsdt||10}` : `${strat.risk.riskPercent}%`} · SL: {strat.risk.slMethod}{strat.risk.tpMethod === 'rr' ? ` · TP: 1:${strat.risk.rrRatio}R` : ''}
                 </span>
-                <span style={{ fontSize: 9, padding: '1px 5px', borderRadius: 3, background: 'var(--bg2)', color: 'var(--text3)', border: '1px solid var(--border)' }}>{strat.risk.tpMethod === 'rr' ? `1:${strat.risk.rrRatio}R` : strat.risk.tpMethod}</span>
               </div>
               <ScanPanel strat={strat} />
             </div>
