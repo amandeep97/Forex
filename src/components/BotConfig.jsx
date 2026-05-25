@@ -134,15 +134,17 @@ function ScanPanel({ strat }) {
           {passing.length > 0 && (
             <div style={{ marginBottom: 6 }}>
               <div style={{ fontSize: 9, fontWeight: 700, color: '#22c55e', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 3 }}>
-                ✓ Matching ({passing.length})
+                ✓ Matching ({passing.length}) — tap a pair to trade it
               </div>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: 4 }}>
                 {passing.map(r => (
-                  <span key={r.pair} title={`RSI: ${r.rsi} | ${r.structure}`}
-                    style={{ fontSize: 10, padding: '2px 7px', borderRadius: 4, background: '#22c55e22', color: '#22c55e', border: '1px solid #22c55e44' }}>
+                  <button key={r.pair}
+                    onClick={() => window.dispatchEvent(new CustomEvent('trade-signal-pair', { detail: { pair: r.pair } }))}
+                    style={{ fontSize: 10, padding: '3px 8px', borderRadius: 4, background: '#22c55e22', color: '#22c55e', border: '1px solid #22c55e55', cursor: 'pointer', fontWeight: 600 }}>
                     {r.pair.replace('_','/')}
                     {r.rsi != null && <span style={{ opacity: 0.7, marginLeft: 3 }}>RSI{r.rsi}</span>}
-                  </span>
+                    <span style={{ marginLeft: 4, opacity: 0.5 }}>→</span>
+                  </button>
                 ))}
               </div>
             </div>

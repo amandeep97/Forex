@@ -75,13 +75,21 @@ function fmtPx(v, pair) { return v != null ? Number(v).toFixed(dp(pair)) : '—'
 function fmtTime(iso) { return iso ? new Date(iso).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : '—'; }
 
 // ── Connect Exchange tab ──────────────────────────────────────────────────────
-function ConnectTab({ onLog }) {
+function ConnectTab({ onLog, signalPair, onSignalUsed }) {
   const [apiKey,    setApiKey]    = useState(() => localStorage.getItem('oanda_key')  || '');
   const [accountId, setAccountId] = useState(() => localStorage.getItem('oanda_acct') || '');
   const [env,       setEnv]       = useState(() => localStorage.getItem('oanda_env')  || 'practice');
   const [connected, setConnected] = useState(() => !!localStorage.getItem('oanda_key'));
   const [acctInfo,  setAcctInfo]  = useState(null);
   const [pair,      setPair]      = useState('EUR_USD');
+
+  // Auto-populate pair from scan results tap
+  useEffect(() => {
+    if (!signalPair) return;
+    setPair(signalPair);
+    setSignal(null);
+    onSignalUsed?.();
+  }, [signalPair, onSignalUsed]);
   const [signal,    setSignal]    = useState(null);
   const [editEntry, setEditEntry] = useState('');
   const [editSL,    setEditSL]    = useState('');
@@ -205,6 +213,15 @@ function ConnectTab({ onLog }) {
       {/* Manual trade */}
       <div style={{ ...CARD }}>
         <div style={SECTION}>Manual SMC Trade</div>
+
+        {/* Signal banner when coming from Scan Now tap */}
+        {pair && APP_PAIRS.includes(pair) && (
+          <div style={{ background: '#22c55e15', border: '1px solid #22c55e33', borderRadius: 6, padding: '6px 10px', marginBottom: 10, fontSize: 11, color: '#22c55e', display: 'flex', alignItems: 'center', gap: 6 }}>
+            <span>📡</span>
+            <span>Strategy signal: <strong>{pair.replace('_','/')}</strong> — tap Analyze to see entry/SL/TP</span>
+          </div>
+        )}
+
         <div style={{ display: 'flex', gap: 8, alignItems: 'center', flexWrap: 'wrap', marginBottom: 12 }}>
           <select value={pair} onChange={e => { setPair(e.target.value); setSignal(null); setTradeErr(''); }} style={INP}>
             {APP_PAIRS.map(p => <option key={p} value={p}>{p.replace('_','/')}</option>)}
@@ -525,13 +542,24 @@ function LogTab({ entries, onClear }) {
 // ── Main AutoTrading ──────────────────────────────────────────────────────────
 export default function AutoTrading({ accountMode = 'demo' }) {
   const isReal = accountMode === 'real';
-  const [activeTab,  setActiveTab]  = useState('connect');
-  const [logEntries, setLogEntries] = useState([]);
-  const [stratCount, setStratCount] = useState(0);
-  const [posCount,   setPosCount]   = useState(0);
+  const [activeTab,   setActiveTab]   = useState('connect');
+  const [logEntries,  setLogEntries]  = useState([]);
+  const [stratCount,  setStratCount]  = useState(0);
+  const [posCount,    setPosCount]    = useState(0);
+  const [signalPair,  setSignalPair]  = useState(null); // pair tapped from scan results
 
   const addLog = useCallback((type, msg) => {
     setLogEntries(prev => [...prev, { type, msg, ts: Date.now() }]);
+  }, []);
+
+  // Listen for tap-to-trade events from BotConfig ScanPanel
+  useEffect(() => {
+    const handler = (e) => {
+      setSignalPair(e.detail?.pair || null);
+      setActiveTab('connect');
+    };
+    window.addEventListener('trade-signal-pair', handler);
+    return () => window.removeEventListener('trade-signal-pair', handler);
   }, []);
 
 
@@ -583,7 +611,7 @@ export default function AutoTrading({ accountMode = 'demo' }) {
 
       {/* Tab content */}
       <div style={{ overflowY: 'auto', flex: 1 }}>
-        {activeTab === 'connect'   && <ConnectTab   onLog={addLog} />}
+        {activeTab === 'connect'   && <ConnectTab onLog={addLog} signalPair={signalPair} onSignalUsed={() => setSignalPair(null)} />}
         {activeTab === 'config'    && <BotConfig />}
         {activeTab === 'positions' && <PositionsTab onLog={addLog} />}
         {activeTab === 'vpsbot'    && <VPSBotTab    onLog={addLog} />}
