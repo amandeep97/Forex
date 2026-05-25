@@ -87,45 +87,69 @@ export function zigzagSwings(candles) {
 }
 
 export function detectFVGsAndOBs(candles) {
-  if (candles.length < 8) return { fvgZones:[], obZones:[] };
+  if (candles.length < 12) return { fvgZones:[], obZones:[] };
   const n = candles.length;
   const avgBody = candles.reduce((s,c) => s + Math.abs(c.c - c.o), 0) / n || 1;
+
+  // Find swing highs and lows
+  const look = 3;
+  const swingHighs = [], swingLows = [];
+  for (let i = look; i < n - look; i++) {
+    let hi = true, lo = true;
+    for (let j = 1; j <= look; j++) {
+      if (candles[i].h <= candles[i-j].h || candles[i].h <= candles[i+j].h) hi = false;
+      if (candles[i].l >= candles[i-j].l || candles[i].l >= candles[i+j].l) lo = false;
+    }
+    if (hi) swingHighs.push(i);
+    if (lo) swingLows.push(i);
+  }
+
   const fvgZones = [], obZones = [];
+  const SEARCH = 5; // candles around swing to look for FVG/OB
 
-  // FVG: 3-candle gap (candle[i] and candle[i+2] don't overlap)
-  for (let i = 0; i < n - 2; i++) {
-    const c1 = candles[i], c3 = candles[i + 2];
-    if (c1.h < c3.l && (c3.l - c1.h) > avgBody * 0.1) {
-      const topPrice = c3.l, botPrice = c1.h;
-      // Mitigated only when price closes past the midpoint of the gap
-      const mid = botPrice + (topPrice - botPrice) * 0.5;
-      const mitigated = candles.slice(i + 3).some(c => c.c < mid);
-      if (!mitigated) fvgZones.push({ type:'bullish', topPrice, botPrice, startIdx:i + 1 });
+  // Bearish FVG + OB: near swing highs
+  for (const si of swingHighs) {
+    // Bearish FVG: gap DOWN within SEARCH candles of swing high
+    for (let i = Math.max(1, si - 2); i <= Math.min(si + SEARCH, n - 3); i++) {
+      const c1 = candles[i], c3 = candles[i + 2];
+      if (c1.l > c3.h && (c1.l - c3.h) > avgBody * 0.15) {
+        const topPrice = c1.l, botPrice = c3.h;
+        // Mitigated: any candle closes above botPrice (price enters zone from below)
+        const mitigated = candles.slice(i + 3).some(c => c.c > botPrice);
+        if (!mitigated) { fvgZones.push({ type:'bearish', topPrice, botPrice, startIdx:i + 1 }); break; }
+      }
     }
-    if (c1.l > c3.h && (c1.l - c3.h) > avgBody * 0.1) {
-      const topPrice = c1.l, botPrice = c3.h;
-      const mid = botPrice + (topPrice - botPrice) * 0.5;
-      const mitigated = candles.slice(i + 3).some(c => c.c > mid);
-      if (!mitigated) fvgZones.push({ type:'bearish', topPrice, botPrice, startIdx:i + 1 });
+    // Bearish OB: last bullish candle at or before swing high
+    for (let i = si; i >= Math.max(0, si - SEARCH); i--) {
+      if (candles[i].c > candles[i].o) {
+        const mitigated = candles.slice(si + 1).some(c => c.c > candles[i].h);
+        if (!mitigated) { obZones.push({ type:'bearish', idx:i, topPrice:candles[i].h, botPrice:candles[i].l }); break; }
+      }
     }
   }
 
-  // OB: last opposite candle before a 2-candle impulse move
-  for (let i = 0; i < n - 3; i++) {
-    const c = candles[i], nx = candles[i + 1], nn = candles[i + 2];
-    const move = Math.abs(nn.c - nx.o);
-    if (move < avgBody * 0.5) continue;
-    if (c.c < c.o && nx.c > nx.o && nn.c > nn.o) {
-      const mitigated = candles.slice(i + 1).some(c2 => c2.c < c.l);
-      if (!mitigated) obZones.push({ type:'bullish', idx:i, topPrice:c.h, botPrice:c.l });
+  // Bullish FVG + OB: near swing lows
+  for (const si of swingLows) {
+    // Bullish FVG: gap UP within SEARCH candles of swing low
+    for (let i = Math.max(1, si - 2); i <= Math.min(si + SEARCH, n - 3); i++) {
+      const c1 = candles[i], c3 = candles[i + 2];
+      if (c1.h < c3.l && (c3.l - c1.h) > avgBody * 0.15) {
+        const topPrice = c3.l, botPrice = c1.h;
+        // Mitigated: any candle closes below topPrice (price enters zone from above)
+        const mitigated = candles.slice(i + 3).some(c => c.c < topPrice);
+        if (!mitigated) { fvgZones.push({ type:'bullish', topPrice, botPrice, startIdx:i + 1 }); break; }
+      }
     }
-    if (c.c > c.o && nx.c < nx.o && nn.c < nn.o) {
-      const mitigated = candles.slice(i + 1).some(c2 => c2.c > c.h);
-      if (!mitigated) obZones.push({ type:'bearish', idx:i, topPrice:c.h, botPrice:c.l });
+    // Bullish OB: last bearish candle at or before swing low
+    for (let i = si; i >= Math.max(0, si - SEARCH); i--) {
+      if (candles[i].c < candles[i].o) {
+        const mitigated = candles.slice(si + 1).some(c => c.c < candles[i].l);
+        if (!mitigated) { obZones.push({ type:'bullish', idx:i, topPrice:candles[i].h, botPrice:candles[i].l }); break; }
+      }
     }
   }
 
-  return { fvgZones: fvgZones.slice(-6), obZones: obZones.slice(-4) };
+  return { fvgZones: fvgZones.slice(-5), obZones: obZones.slice(-4) };
 }
 
 export function detectSweep(candles) {
