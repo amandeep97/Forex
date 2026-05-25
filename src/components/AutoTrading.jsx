@@ -528,10 +528,36 @@ function ConnectTab({ onLog, signalPair, onSignalUsed }) {
   );
 }
 
+// ── OANDA cancel reason → plain English ───────────────────────────────────────
+const CANCEL_REASONS = {
+  STOP_LOSS_ON_FILL_PRICE_DISTANCE_MINIMUM_NOT_MET: 'SL too close to price — move SL further away',
+  TAKE_PROFIT_ON_FILL_PRICE_DISTANCE_MINIMUM_NOT_MET: 'TP too close to price — move TP further away',
+  STOP_LOSS_ON_FILL_PRICE_DISTANCE_MAXIMUM_EXCEEDED: 'SL too far from price',
+  STOP_LOSS_ON_FILL_LOSS: 'SL would cause immediate loss at current price',
+  TAKE_PROFIT_ON_FILL_LOSS: 'TP would cause immediate loss at current price',
+  INSUFFICIENT_MARGIN: 'Not enough margin — reduce lot size',
+  UNITS_LIMIT_EXCEEDED: 'Position size too large for your account',
+  ACCOUNT_NOT_TRADEABLE: 'Account not enabled for trading — contact OANDA',
+  INSTRUMENT_NOT_TRADEABLE: 'Instrument not tradeable right now (market closed?)',
+  PRICE_HALTED: 'Market halted — try again shortly',
+  MARKET_HALTED: 'Market halted — try again shortly',
+  TIME_IN_FORCE_EXPIRY: 'Order expired before it could fill',
+  CLIENT_CANCEL: 'Cancelled by user',
+  LINKED_TRADE_CLOSED: 'Related trade was already closed',
+  STOP_LOSS_ON_FILL_GUARANTEED_BID_HALTED_CREATE_ONLY: 'Guaranteed SL not available — use regular stop',
+  MARKET_ORDER_POSITION_CLOSEOUT_ONLY: 'Only close orders allowed for this instrument now',
+};
+
+function explainReason(raw) {
+  return CANCEL_REASONS[raw] || raw?.replace(/_/g, ' ').toLowerCase() || 'Unknown reason';
+}
+
 // ── Positions tab ─────────────────────────────────────────────────────────────
 function PositionsTab({ onLog }) {
-  const [trades,  setTrades]  = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [trades,    setTrades]    = useState([]);
+  const [activity,  setActivity]  = useState([]);
+  const [actLoading, setActLoading] = useState(false);
+  const [actErr,    setActErr]    = useState('');
   const [error,   setError]   = useState('');
   const [closing, setClosing] = useState(null);
 
@@ -540,6 +566,25 @@ function PositionsTab({ onLog }) {
     ghRead('bot/trades.json').then(d => { setTrades(d?.content?.trades || []); setLoading(false); })
       .catch(e => { setError(e.message); setLoading(false); });
   }, []);
+
+  const fetchActivity = async () => {
+    const apiKey    = localStorage.getItem('oanda_key');
+    const accountId = localStorage.getItem('oanda_acct');
+    const env_      = localStorage.getItem('oanda_env') || 'practice';
+    if (!apiKey || !accountId) { setActErr('Connect OANDA first (Connect Exchange tab)'); return; }
+    setActLoading(true); setActErr(''); setActivity([]);
+    try {
+      const res = await fetch(
+        `${oandaBase(env_)}/accounts/${accountId}/transactions?type=ORDER_CANCEL,MARKET_ORDER_REJECT,ORDER_FILL&pageSize=20`,
+        { headers: { Authorization: `Bearer ${apiKey}` } }
+      );
+      if (!res.ok) { const j = await res.json().catch(() => ({})); throw new Error(j.errorMessage || `OANDA ${res.status}`); }
+      const data = await res.json();
+      const txns = data.transactions || [];
+      setActivity(txns.slice(0, 30));
+    } catch (e) { setActErr(e.message); }
+    finally { setActLoading(false); }
+  };
 
   const open   = trades.filter(t => t.status === 'OPEN' || t.status === 'open');
   const closed = trades.filter(t => t.status !== 'OPEN' && t.status !== 'open');
@@ -611,6 +656,53 @@ function PositionsTab({ onLog }) {
           );
         })
       }
+
+      {/* ── OANDA Order Activity ──────────────────────────────────────── */}
+      <div style={{ marginTop: 20 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 12 }}>
+          <span style={{ fontWeight: 700, color: '#f8fafc', fontSize: 15 }}>Order Activity</span>
+          <button onClick={fetchActivity} disabled={actLoading}
+            style={{ background: '#334155', border: 'none', color: '#94a3b8', padding: '5px 12px', borderRadius: 6, fontSize: 11, cursor: 'pointer' }}>
+            {actLoading ? 'Loading…' : 'Check OANDA Activity'}
+          </button>
+        </div>
+        {actErr && <div style={{ background: '#450a0a', color: '#fca5a5', padding: '8px 12px', borderRadius: 6, fontSize: 12, marginBottom: 10 }}>{actErr}</div>}
+        {activity.length === 0 && !actLoading && !actErr && (
+          <div style={{ fontSize: 12, color: '#475569' }}>Tap "Check OANDA Activity" to see cancelled orders and fill reasons</div>
+        )}
+        {activity.map((tx, i) => {
+          const isCancelled = tx.type === 'ORDER_CANCEL' || tx.type === 'MARKET_ORDER_REJECT';
+          const isFill      = tx.type === 'ORDER_FILL';
+          const color       = isCancelled ? '#ef4444' : isFill ? '#22c55e' : '#94a3b8';
+          const icon        = isCancelled ? '✗' : isFill ? '✓' : '·';
+          const label       = isCancelled ? 'CANCELLED' : isFill ? 'FILLED' : tx.type?.replace(/_/g,' ');
+          const reason      = isCancelled ? explainReason(tx.reason || tx.rejectReason) : null;
+          const timeStr     = tx.time ? new Date(tx.time).toLocaleTimeString([], { hour:'2-digit', minute:'2-digit' }) : '';
+          const dateStr     = tx.time ? new Date(tx.time).toLocaleDateString([], { month:'short', day:'numeric' }) : '';
+          return (
+            <div key={tx.id || i} style={{ background: '#1e293b', borderRadius: 8, padding: '10px 14px', marginBottom: 6, border: `1px solid ${isCancelled ? '#7f1d1d' : isFill ? '#14532d' : '#334155'}` }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                <span style={{ fontSize: 13, fontWeight: 700, color }}>{icon}</span>
+                <span style={{ fontSize: 11, fontWeight: 700, color, padding: '1px 6px', borderRadius: 3, background: `${color}22` }}>{label}</span>
+                {tx.instrument && <span style={{ fontSize: 12, color: '#e2e8f0', fontWeight: 600 }}>{tx.instrument.replace('_','/')}</span>}
+                {tx.units && <span style={{ fontSize: 11, color: '#64748b' }}>{parseInt(tx.units) > 0 ? '▲' : '▼'} {Math.abs(tx.units)} units</span>}
+                <span style={{ marginLeft: 'auto', fontSize: 10, color: '#475569' }}>{dateStr} {timeStr}</span>
+              </div>
+              {reason && (
+                <div style={{ marginTop: 6, fontSize: 11, color: '#fca5a5', background: '#450a0a', borderRadius: 4, padding: '4px 8px', lineHeight: 1.5 }}>
+                  Reason: {reason}
+                </div>
+              )}
+              {isFill && tx.price && (
+                <div style={{ marginTop: 4, fontSize: 11, color: '#94a3b8' }}>
+                  Filled @ <span style={{ color: '#22c55e', fontFamily: 'monospace' }}>{tx.price}</span>
+                  {tx.pl != null && <span style={{ marginLeft: 8, color: parseFloat(tx.pl) >= 0 ? '#22c55e' : '#ef4444' }}>P&L: {parseFloat(tx.pl) >= 0 ? '+' : ''}{parseFloat(tx.pl).toFixed(2)}</span>}
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }
