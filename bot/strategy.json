@@ -1,16 +1,14 @@
 {
   "version": 1,
-  "updatedAt": "2026-05-25T17:48:05.942Z",
+  "updatedAt": "2026-05-25T18:33:55.407Z",
   "strategies": [
     {
-      "id": "strat_001",
-      "name": "ICT London BOS",
-      "enabled": true,
-      "pair": "XAU_USD",
-      "timeframe": "M15",
+      "name": "ICT London Long",
+      "pair": "ALL",
+      "timeframe": "M5",
       "direction": "long",
       "conditions": {
-        "structure": "bullish",
+        "structure": "any",
         "requireBOS": false,
         "requireOB": true,
         "requireFVG": true,
@@ -24,13 +22,14 @@
       },
       "risk": {
         "riskPercent": 1,
-        "slMethod": "atr",
+        "slMethod": "swing",
         "slAtr": 1.5,
         "slPips": 20,
         "tpMethod": "rr",
         "rrRatio": 2,
         "tpFibLevel": 1.618
-      }
+      },
+      "id": "strat_001"
     }
   ],
   "globalSettings": {
