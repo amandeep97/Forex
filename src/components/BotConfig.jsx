@@ -480,9 +480,16 @@ export default function BotConfig() {
     setSaving(true); setErr('');
     try {
       const updated = { ...cfg, updatedAt: new Date().toISOString() };
-      const newSha = await ghWrite('bot/strategy.json', updated, 'App: update strategy config', sha);
+      // Always fetch fresh SHA before writing to avoid 409 conflicts
+      const fresh = await ghRead('bot/strategy.json').catch(() => null);
+      const freshSha = fresh?.sha ?? sha;
+      const newSha = await ghWrite('bot/strategy.json', updated, 'App: update strategy config', freshSha);
       setConfig(updated); setSha(newSha);
-    } catch (e) { setErr(e.message); }
+    } catch (e) {
+      setErr(e.message);
+      // Auto-reload so next save uses the correct SHA
+      load();
+    }
     setSaving(false);
   };
 
