@@ -91,10 +91,13 @@ function SVGChart({ candles, symbol, ov }) {
 
   let premBot=null, discTop=null, eqTop=null, eqBot=null;
   if (ov.zones && nv >= 20) {
-    const last = vis.slice(-20);
-    const rH = Math.max(...last.map(c=>c.h)), rL = Math.min(...last.map(c=>c.l));
-    const mid = (rH+rL)/2, q = (rH-rL)*0.25;
-    premBot=rH-q; discTop=rL+q; eqTop=mid+q*0.5; eqBot=mid-q*0.5;
+    const rH = Math.max(...vis.map(c=>c.h)), rL = Math.min(...vis.map(c=>c.l));
+    const range = rH - rL;
+    const mid = (rH + rL) / 2;
+    premBot  = rH - range * 0.25;
+    discTop  = rL + range * 0.25;
+    eqTop    = mid + range * 0.1;
+    eqBot    = mid - range * 0.1;
   }
 
   function linePath(vals, color, sw=1.5, dash='') {
@@ -121,12 +124,19 @@ function SVGChart({ candles, symbol, ov }) {
 
       {/* Zones: premium/discount/EQ */}
       {ov.zones && premBot && <>
-        <rect x={PL} y={PT} width={pw} height={yOf(premBot)-PT} fill="#ef444406"/>
-        <text x={PL+4} y={PT+10} fontSize={8} fill="#ef444466">PREMIUM</text>
-        <rect x={PL} y={yOf(discTop)} width={pw} height={PT+ph-yOf(discTop)} fill="#22c55e06"/>
-        <text x={PL+4} y={yOf(discTop)+10} fontSize={8} fill="#22c55e66">DISCOUNT</text>
-        <rect x={PL} y={yOf(eqTop)} width={pw} height={Math.abs(yOf(eqBot)-yOf(eqTop))} fill="#f59e0b10"/>
-        <text x={PL+4} y={yOf(eqTop)+10} fontSize={8} fill="#f59e0b66">EQ</text>
+        <rect x={PL} y={PT} width={pw} height={Math.max(2, yOf(premBot)-PT)}
+          fill="#ef444418" stroke="#ef444444" strokeWidth={0.8}/>
+        <text x={PL+5} y={PT+12} fontSize={9} fontWeight="700" fill="#ef4444aa">PREMIUM</text>
+        <line x1={PL} y1={yOf(premBot)} x2={PL+pw} y2={yOf(premBot)} stroke="#ef444477" strokeWidth={1} strokeDasharray="5,3"/>
+
+        <rect x={PL} y={yOf(discTop)} width={pw} height={Math.max(2, PT+ph-yOf(discTop))}
+          fill="#22c55e18" stroke="#22c55e44" strokeWidth={0.8}/>
+        <text x={PL+5} y={yOf(discTop)+12} fontSize={9} fontWeight="700" fill="#22c55eaa">DISCOUNT</text>
+        <line x1={PL} y1={yOf(discTop)} x2={PL+pw} y2={yOf(discTop)} stroke="#22c55e77" strokeWidth={1} strokeDasharray="5,3"/>
+
+        <rect x={PL} y={yOf(eqTop)} width={pw} height={Math.max(2, Math.abs(yOf(eqBot)-yOf(eqTop)))}
+          fill="#f59e0b20" stroke="#f59e0b55" strokeWidth={0.8}/>
+        <text x={PL+5} y={yOf(eqTop)+12} fontSize={9} fontWeight="700" fill="#f59e0baa">EQ</text>
       </>}
 
       {/* FVG */}
