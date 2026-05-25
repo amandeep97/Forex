@@ -215,19 +215,31 @@ async function scanPair(pair, strat) {
       if (!ok) return { pair, pass: false, reason: 'No liquidity sweep detected', rsi, structure };
     }
 
-    return { pair, pass: true, reason: 'All conditions met', rsi, structure };
+    // Build trade params for auto-execute
+    const resolvedDir = (dir === 'both') ? (structure === 'bullish' ? 'LONG' : 'SHORT') : dir.toUpperCase();
+    const slAtr = strat.risk?.slAtr || 1.5;
+    const sl_  = resolvedDir === 'LONG' ? cp - atr * slAtr : cp + atr * slAtr;
+    const rrR  = strat.risk?.rrRatio  || 2;
+    const tp_  = resolvedDir === 'LONG' ? cp + Math.abs(cp - sl_) * rrR : cp - Math.abs(cp - sl_) * rrR;
+
+    return {
+      pair, pass: true, reason: 'All conditions met', rsi, structure,
+      tradeParams: { dir: resolvedDir, entry: cp, sl: sl_, tp: tp_, rr: rrR, atr, riskPercent: strat.risk?.riskPercent || 1 },
+    };
   } catch (e) {
     return { pair, pass: false, reason: e.message, rsi: null, structure: null };
   }
 }
 
 // ── Scan panel component ──────────────────────────────────────────────────────
-function ScanPanel({ strat }) {
+function ScanPanel({ strat, autoExecute, onAutoTrade }) {
   const [scanning,  setScanning]  = useState(false);
   const [results,   setResults]   = useState(null);
   const [lastScan,  setLastScan]  = useState(null);
   const abortRef  = useRef(false);
   const timerRef  = useRef(null);
+
+  const autoFiredRef = useRef(new Set()); // track pairs already auto-traded this session
 
   const scan = async () => {
     const pairs = (strat.pairs?.filter(p => p !== 'ALL') || [strat.pair].filter(Boolean));
@@ -236,16 +248,28 @@ function ScanPanel({ strat }) {
     setScanning(true); setResults(null);
 
     const all = [];
-    // Scan in batches of 4 to avoid rate limits
     for (let i = 0; i < pairs.length; i += 4) {
       if (abortRef.current) break;
       const batch = await Promise.all(pairs.slice(i, i + 4).map(p => scanPair(p, strat)));
       all.push(...batch);
-      setResults([...all]); // show progress
+      setResults([...all]);
     }
     setScanning(false);
-    if (!abortRef.current) setLastScan(new Date());
+    if (!abortRef.current) {
+      setLastScan(new Date());
+      // Auto-execute: fire for first passing pair not already traded
+      if (autoExecute && onAutoTrade && strat.enabled) {
+        const hit = all.find(r => r.pass && !autoFiredRef.current.has(r.pair));
+        if (hit) {
+          autoFiredRef.current.add(hit.pair);
+          onAutoTrade({ pair: hit.pair, strat, tradeParams: hit.tradeParams });
+        }
+      }
+    }
   };
+
+  // Reset fired set when autoExecute turns off or strat changes
+  useEffect(() => { autoFiredRef.current = new Set(); }, [autoExecute, strat.id]);
 
   // Auto-scan on mount, then refresh every 5 minutes
   useEffect(() => {
@@ -778,7 +802,7 @@ function StrategyEditor({ strat, onSave, onCancel }) {
 }
 
 // ── Main BotConfig component ──────────────────────────────────────────────────
-export default function BotConfig() {
+export default function BotConfig({ autoExecute = false, onAutoTrade }) {
   const [config,   setConfig]   = useState(null);
   const [sha,      setSha]      = useState(null);
   const [loading,  setLoading]  = useState(false);
@@ -1045,7 +1069,7 @@ export default function BotConfig() {
                   Risk {strat.risk.riskType==='usdt' ? `$${strat.risk.riskUsdt||10}` : `${strat.risk.riskPercent}%`} · SL: {strat.risk.slMethod}{strat.risk.tpMethod === 'rr' ? ` · TP: 1:${strat.risk.rrRatio}R` : ''}
                 </span>
               </div>
-              <ScanPanel strat={strat} />
+              <ScanPanel strat={strat} autoExecute={autoExecute} onAutoTrade={onAutoTrade} />
             </div>
           ))}
         </div>
