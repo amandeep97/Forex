@@ -79,17 +79,24 @@ class ForexBot {
       if (!strat.enabled) continue;
       if (openTrades.length >= maxTotal) break;
 
-      // Already trading this pair?
-      if (openTrades.some(t => t.instrument === strat.pair)) {
-        this.log(`${strat.pair}: already open — skip`);
-        continue;
-      }
+      // Resolve pairs array (support old `pair` string for backward compat)
+      const pairsToScan = strat.pairs?.length ? strat.pairs : (strat.pair ? [strat.pair] : []);
 
-      try {
-        const placed = await this._runStrategy(strat, account, tradeLog);
-        if (placed) openTrades.push({ instrument: strat.pair }); // update local count
-      } catch (e) {
-        this.err(`Strategy "${strat.name}"`, e);
+      for (const pair of pairsToScan) {
+        if (openTrades.length >= maxTotal) break;
+
+        // Already trading this pair?
+        if (openTrades.some(t => t.instrument === pair)) {
+          this.log(`${pair}: already open — skip`);
+          continue;
+        }
+
+        try {
+          const placed = await this._runStrategy({ ...strat, pair }, account, tradeLog);
+          if (placed) openTrades.push({ instrument: pair });
+        } catch (e) {
+          this.err(`Strategy "${strat.name}" / ${pair}`, e);
+        }
       }
     }
 

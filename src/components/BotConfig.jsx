@@ -2,43 +2,31 @@ import { useState, useEffect, useCallback } from 'react';
 import { ghRead, ghWrite, isGithubConfigured } from '../utils/githubSync';
 
 // ── Constants ─────────────────────────────────────────────────────────────────
-const PAIRS = [
-  { v:'ALL',      l:'— All Pairs —' },
-  // Majors
-  { v:'EUR_USD',  l:'EUR/USD' },
-  { v:'GBP_USD',  l:'GBP/USD' },
-  { v:'USD_JPY',  l:'USD/JPY' },
-  { v:'USD_CHF',  l:'USD/CHF' },
-  { v:'AUD_USD',  l:'AUD/USD' },
-  { v:'NZD_USD',  l:'NZD/USD' },
-  { v:'USD_CAD',  l:'USD/CAD' },
-  // Minors
-  { v:'EUR_GBP',  l:'EUR/GBP' },
-  { v:'EUR_JPY',  l:'EUR/JPY' },
-  { v:'EUR_AUD',  l:'EUR/AUD' },
-  { v:'EUR_CAD',  l:'EUR/CAD' },
-  { v:'EUR_CHF',  l:'EUR/CHF' },
-  { v:'GBP_JPY',  l:'GBP/JPY' },
-  { v:'GBP_AUD',  l:'GBP/AUD' },
-  { v:'GBP_CAD',  l:'GBP/CAD' },
-  { v:'GBP_CHF',  l:'GBP/CHF' },
-  { v:'AUD_JPY',  l:'AUD/JPY' },
-  { v:'CAD_JPY',  l:'CAD/JPY' },
-  { v:'CHF_JPY',  l:'CHF/JPY' },
-  { v:'NZD_JPY',  l:'NZD/JPY' },
-  { v:'NZD_USD',  l:'NZD/USD' },
-  // Metals & Commodities
-  { v:'XAU_USD',  l:'XAU/USD (Gold)' },
-  { v:'XAG_USD',  l:'XAG/USD (Silver)' },
-  { v:'BCO_USD',  l:'BCO/USD (Brent Oil)' },
-  { v:'WTICO_USD',l:'WTI Crude Oil' },
-  // Indices
-  { v:'SPX500_USD',l:'S&P 500' },
-  { v:'NAS100_USD',l:'Nasdaq 100' },
-  { v:'US30_USD',  l:'Dow Jones' },
-  { v:'UK100_GBP', l:'FTSE 100' },
-  { v:'DE30_EUR',  l:'DAX 30' },
+const PAIR_GROUPS = [
+  { label: 'Majors', color: '#38bdf8', pairs: [
+    { v:'EUR_USD', l:'EUR/USD' }, { v:'GBP_USD', l:'GBP/USD' }, { v:'USD_JPY', l:'USD/JPY' },
+    { v:'USD_CHF', l:'USD/CHF' }, { v:'AUD_USD', l:'AUD/USD' }, { v:'NZD_USD', l:'NZD/USD' },
+    { v:'USD_CAD', l:'USD/CAD' },
+  ]},
+  { label: 'Minors', color: '#a78bfa', pairs: [
+    { v:'EUR_GBP', l:'EUR/GBP' }, { v:'EUR_JPY', l:'EUR/JPY' }, { v:'EUR_AUD', l:'EUR/AUD' },
+    { v:'EUR_CAD', l:'EUR/CAD' }, { v:'EUR_CHF', l:'EUR/CHF' }, { v:'GBP_JPY', l:'GBP/JPY' },
+    { v:'GBP_AUD', l:'GBP/AUD' }, { v:'GBP_CAD', l:'GBP/CAD' }, { v:'GBP_CHF', l:'GBP/CHF' },
+    { v:'AUD_JPY', l:'AUD/JPY' }, { v:'CAD_JPY', l:'CAD/JPY' }, { v:'CHF_JPY', l:'CHF/JPY' },
+    { v:'NZD_JPY', l:'NZD/JPY' },
+  ]},
+  { label: 'Metals', color: '#fbbf24', pairs: [
+    { v:'XAU_USD', l:'GOLD' }, { v:'XAG_USD', l:'SILVER' },
+  ]},
+  { label: 'Oil', color: '#f97316', pairs: [
+    { v:'BCO_USD', l:'BRENT' }, { v:'WTICO_USD', l:'WTI' },
+  ]},
+  { label: 'Indices', color: '#34d399', pairs: [
+    { v:'SPX500_USD', l:'SPX500' }, { v:'NAS100_USD', l:'NAS100' },
+    { v:'US30_USD', l:'US30' }, { v:'UK100_GBP', l:'UK100' }, { v:'DE30_EUR', l:'DE30' },
+  ]},
 ];
+const ALL_PAIRS = PAIR_GROUPS.flatMap(g => g.pairs.map(p => p.v));
 
 const TFS = [
   { v:'M1',  l:'1 Min' },
@@ -77,18 +65,18 @@ const TP_METHODS = [
 // ── Strategy templates ────────────────────────────────────────────────────────
 const TEMPLATES = [
   { v:'blank',        l:'— Blank —',                 data: null },
-  { v:'ict_long',     l:'ICT London Long (BOS+OB)',   data: { name:'ICT London Long',   pair:'EUR_USD', timeframe:'H1',  direction:'long',  conditions:{ structure:'bullish', requireBOS:true,  requireOB:true,  requireFVG:false, requireOTE:false, sessions:['london'],           rsiFilter:{enabled:false,comparison:'below',value:70} }, risk:{ riskPercent:1, slMethod:'swing', slAtr:1.5, slPips:20, tpMethod:'rr', rrRatio:2,   tpFibLevel:1.618 } } },
-  { v:'ict_short',    l:'ICT NY Short (BOS+FVG)',     data: { name:'ICT NY Short',       pair:'GBP_USD', timeframe:'H1',  direction:'short', conditions:{ structure:'bearish', requireBOS:true,  requireOB:false, requireFVG:true,  requireOTE:false, sessions:['newyork'],          rsiFilter:{enabled:false,comparison:'above',value:30} }, risk:{ riskPercent:1, slMethod:'swing', slAtr:1.5, slPips:20, tpMethod:'rr', rrRatio:2,   tpFibLevel:1.618 } } },
-  { v:'ote_scalp',    l:'OTE Scalp M15',              data: { name:'OTE Scalp',          pair:'EUR_USD', timeframe:'M15', direction:'both',  conditions:{ structure:'any',     requireBOS:true,  requireOB:false, requireFVG:false, requireOTE:true,  sessions:['london','overlap'],  rsiFilter:{enabled:false,comparison:'below',value:70} }, risk:{ riskPercent:0.5,slMethod:'atr',   slAtr:1.0, slPips:10, tpMethod:'rr', rrRatio:2,   tpFibLevel:1.618 } } },
-  { v:'premium_fade', l:'Premium Fade (OB+FVG)',      data: { name:'Premium Fade',       pair:'XAU_USD', timeframe:'H4',  direction:'short', conditions:{ structure:'bearish', requireBOS:true,  requireOB:true,  requireFVG:true,  requireOTE:false, sessions:['london','newyork'],  rsiFilter:{enabled:true, comparison:'above',value:70} }, risk:{ riskPercent:1, slMethod:'swing', slAtr:1.5, slPips:20, tpMethod:'rr', rrRatio:3,   tpFibLevel:1.618 } } },
-  { v:'full_ict',     l:'Full ICT Setup (All Pairs)', data: { name:'Full ICT Setup',     pair:'ALL',     timeframe:'H1',  direction:'both',  conditions:{ structure:'any',     requireBOS:true,  requireOB:true,  requireFVG:true,  requireOTE:true,  sessions:['london','newyork'],  rsiFilter:{enabled:false,comparison:'below',value:70} }, risk:{ riskPercent:1, slMethod:'swing', slAtr:1.5, slPips:20, tpMethod:'rr', rrRatio:2.5, tpFibLevel:1.618 } } },
-  { v:'gold_h4',      l:'Gold H4 Structure',          data: { name:'Gold H4 Structure',  pair:'XAU_USD', timeframe:'H4',  direction:'both',  conditions:{ structure:'any',     requireBOS:true,  requireOB:true,  requireFVG:false, requireOTE:false, sessions:['london','newyork'],  rsiFilter:{enabled:false,comparison:'below',value:70} }, risk:{ riskPercent:1, slMethod:'atr',   slAtr:2.0, slPips:50, tpMethod:'rr', rrRatio:2,   tpFibLevel:1.618 } } },
-  { v:'asian_range',  l:'Asian Session Range Break',  data: { name:'Asian Range Break',  pair:'ALL',     timeframe:'M30', direction:'both',  conditions:{ structure:'any',     requireBOS:true,  requireOB:false, requireFVG:false, requireOTE:false, sessions:['london'],            rsiFilter:{enabled:false,comparison:'below',value:70} }, risk:{ riskPercent:0.5,slMethod:'fixed', slAtr:1.5, slPips:15, tpMethod:'rr', rrRatio:2,   tpFibLevel:1.618 } } },
+  { v:'ict_long',     l:'ICT London Long (BOS+OB)',   data: { name:'ICT London Long',   pairs:['EUR_USD','GBP_USD'], timeframe:'H1',  direction:'long',  conditions:{ structure:'bullish', requireBOS:true,  requireOB:true,  requireFVG:false, requireOTE:false, sessions:['london'],           rsiFilter:{enabled:false,comparison:'below',value:70} }, risk:{ riskType:'percent', riskPercent:1, riskUsdt:10, slMethod:'swing', slAtr:1.5, slPips:20, tpMethod:'rr', rrRatio:2,   tpFibLevel:1.618 } } },
+  { v:'ict_short',    l:'ICT NY Short (BOS+FVG)',     data: { name:'ICT NY Short',       pairs:['GBP_USD','EUR_USD'], timeframe:'H1',  direction:'short', conditions:{ structure:'bearish', requireBOS:true,  requireOB:false, requireFVG:true,  requireOTE:false, sessions:['newyork'],          rsiFilter:{enabled:false,comparison:'above',value:30} }, risk:{ riskType:'percent', riskPercent:1, riskUsdt:10, slMethod:'swing', slAtr:1.5, slPips:20, tpMethod:'rr', rrRatio:2,   tpFibLevel:1.618 } } },
+  { v:'ote_scalp',    l:'OTE Scalp M15',              data: { name:'OTE Scalp',          pairs:['EUR_USD'], timeframe:'M15', direction:'both',  conditions:{ structure:'any',     requireBOS:true,  requireOB:false, requireFVG:false, requireOTE:true,  sessions:['london','overlap'],  rsiFilter:{enabled:false,comparison:'below',value:70} }, risk:{ riskType:'percent', riskPercent:0.5,riskUsdt:5, slMethod:'atr',   slAtr:1.0, slPips:10, tpMethod:'rr', rrRatio:2,   tpFibLevel:1.618 } } },
+  { v:'premium_fade', l:'Premium Fade (OB+FVG)',      data: { name:'Premium Fade',       pairs:['XAU_USD'], timeframe:'H4',  direction:'short', conditions:{ structure:'bearish', requireBOS:true,  requireOB:true,  requireFVG:true,  requireOTE:false, sessions:['london','newyork'],  rsiFilter:{enabled:true, comparison:'above',value:70} }, risk:{ riskType:'percent', riskPercent:1, riskUsdt:10, slMethod:'swing', slAtr:1.5, slPips:20, tpMethod:'rr', rrRatio:3,   tpFibLevel:1.618 } } },
+  { v:'full_ict',     l:'Full ICT Setup (7 Majors)',  data: { name:'Full ICT Setup',     pairs:['EUR_USD','GBP_USD','USD_JPY','USD_CHF','AUD_USD','NZD_USD','USD_CAD'], timeframe:'H1',  direction:'both',  conditions:{ structure:'any',     requireBOS:true,  requireOB:true,  requireFVG:true,  requireOTE:true,  sessions:['london','newyork'],  rsiFilter:{enabled:false,comparison:'below',value:70} }, risk:{ riskType:'percent', riskPercent:1, riskUsdt:10, slMethod:'swing', slAtr:1.5, slPips:20, tpMethod:'rr', rrRatio:2.5, tpFibLevel:1.618 } } },
+  { v:'gold_h4',      l:'Gold H4 Structure',          data: { name:'Gold H4 Structure',  pairs:['XAU_USD'], timeframe:'H4',  direction:'both',  conditions:{ structure:'any',     requireBOS:true,  requireOB:true,  requireFVG:false, requireOTE:false, sessions:['london','newyork'],  rsiFilter:{enabled:false,comparison:'below',value:70} }, risk:{ riskType:'percent', riskPercent:1, riskUsdt:10, slMethod:'atr',   slAtr:2.0, slPips:50, tpMethod:'rr', rrRatio:2,   tpFibLevel:1.618 } } },
+  { v:'asian_range',  l:'Asian Session Range Break',  data: { name:'Asian Range Break',  pairs:['EUR_USD','GBP_USD','USD_JPY'], timeframe:'M30', direction:'both',  conditions:{ structure:'any',     requireBOS:true,  requireOB:false, requireFVG:false, requireOTE:false, sessions:['london'],            rsiFilter:{enabled:false,comparison:'below',value:70} }, risk:{ riskType:'percent', riskPercent:0.5,riskUsdt:5, slMethod:'fixed', slAtr:1.5, slPips:15, tpMethod:'rr', rrRatio:2,   tpFibLevel:1.618 } } },
 ];
 
 const DEFAULT_STRAT = {
   id: '', name: 'New Strategy', enabled: false,
-  pair: 'EUR_USD', timeframe: 'H1', direction: 'both',
+  pairs: ['EUR_USD'], timeframe: 'H1', direction: 'both',
   conditions: {
     structure: 'any', requireBOS: false,
     priceZone: 'any',
@@ -139,7 +127,12 @@ function CondChip({ active, color, onClick, children }) {
 
 // ── Strategy form ─────────────────────────────────────────────────────────────
 function StrategyEditor({ strat, onSave, onCancel }) {
-  const [s, setS] = useState(() => JSON.parse(JSON.stringify(strat)));
+  // Normalise old strategies that used `pair` (string) to `pairs` (array)
+  const [s, setS] = useState(() => {
+    const clone = JSON.parse(JSON.stringify(strat));
+    if (!clone.pairs) clone.pairs = clone.pair ? [clone.pair] : ['EUR_USD'];
+    return clone;
+  });
   const set  = (path, val) => setS(prev => {
     const clone = JSON.parse(JSON.stringify(prev));
     const parts = path.split('.');
@@ -151,6 +144,19 @@ function StrategyEditor({ strat, onSave, onCancel }) {
   const toggleSession = (v) => {
     const cur = s.conditions.sessions || [];
     set('conditions.sessions', cur.includes(v) ? cur.filter(x => x !== v) : [...cur, v]);
+  };
+  const togglePair = (v) => {
+    const cur = s.pairs || [];
+    setS(prev => ({ ...prev, pairs: cur.includes(v) ? cur.filter(x => x !== v) : [...cur, v] }));
+  };
+  const selectGroupPairs = (groupPairs) => {
+    const vals = groupPairs.map(p => p.v);
+    const cur = s.pairs || [];
+    const allSelected = vals.every(v => cur.includes(v));
+    setS(prev => ({
+      ...prev,
+      pairs: allSelected ? cur.filter(v => !vals.includes(v)) : [...new Set([...cur, ...vals])],
+    }));
   };
 
   const applyTemplate = (tplVal) => {
@@ -183,9 +189,42 @@ function StrategyEditor({ strat, onSave, onCancel }) {
           <input value={s.name} onChange={e => set('name', e.target.value)}
             style={{ background: 'var(--bg2)', color: 'var(--text)', border: '1px solid var(--border)', borderRadius: 4, padding: '3px 8px', fontSize: 12, width: 160 }}/>
         </FieldRow>
-        <FieldRow label="Pair">
-          <Select value={s.pair} onChange={v => set('pair', v)} options={PAIRS}/>
-        </FieldRow>
+        {/* Pairs — chip multi-select grouped */}
+        <div style={{ padding: '6px 0', borderBottom: '1px solid var(--border)' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
+            <Label>Pairs ({(s.pairs||[]).length} selected)</Label>
+            <button onClick={() => setS(p => ({ ...p, pairs: ALL_PAIRS }))}
+              style={{ marginLeft: 'auto', fontSize: 9, padding: '2px 7px', borderRadius: 3, background: '#00d4aa22', color: '#00d4aa', border: '1px solid #00d4aa44', cursor: 'pointer' }}>All</button>
+            <button onClick={() => setS(p => ({ ...p, pairs: [] }))}
+              style={{ fontSize: 9, padding: '2px 7px', borderRadius: 3, background: 'var(--bg2)', color: 'var(--text3)', border: '1px solid var(--border)', cursor: 'pointer' }}>Clear</button>
+          </div>
+          {PAIR_GROUPS.map(grp => (
+            <div key={grp.label} style={{ marginBottom: 6 }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 5, marginBottom: 3 }}>
+                <span style={{ fontSize: 9, fontWeight: 700, color: grp.color, textTransform: 'uppercase', letterSpacing: '0.05em' }}>{grp.label}</span>
+                <button onClick={() => selectGroupPairs(grp.pairs)}
+                  style={{ fontSize: 9, padding: '1px 5px', borderRadius: 3, background: 'none', color: 'var(--text3)', border: '1px solid var(--border)', cursor: 'pointer' }}>
+                  {grp.pairs.every(p => (s.pairs||[]).includes(p.v)) ? 'Deselect' : 'Select'} all
+                </button>
+              </div>
+              <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap' }}>
+                {grp.pairs.map(p => {
+                  const active = (s.pairs||[]).includes(p.v);
+                  return <button key={p.v} onClick={() => togglePair(p.v)}
+                    style={{ padding: '3px 7px', borderRadius: 4, fontSize: 10, fontWeight: 600, cursor: 'pointer',
+                      border: `1px solid ${active ? grp.color + '88' : 'var(--border)'}`,
+                      background: active ? grp.color + '22' : 'var(--bg2)',
+                      color: active ? grp.color : 'var(--text3)' }}>
+                    {p.l}
+                  </button>;
+                })}
+              </div>
+            </div>
+          ))}
+          {(s.pairs||[]).length === 0 && (
+            <div style={{ fontSize: 10, color: '#ef4444', marginTop: 4 }}>Select at least one pair</div>
+          )}
+        </div>
         <FieldRow label="Timeframe">
           <Select value={s.timeframe} onChange={v => set('timeframe', v)} options={TFS}/>
         </FieldRow>
@@ -394,10 +433,11 @@ function StrategyEditor({ strat, onSave, onCancel }) {
 
       {/* Summary pill */}
       <div style={{ background: '#00d4aa14', border: '1px solid #00d4aa33', borderRadius: 6, padding: '8px 12px', fontSize: 11, color: 'var(--text2)', lineHeight: 1.6 }}>
-        <b style={{ color: '#00d4aa' }}>{s.name}</b> · {s.pair.replace('_','/')} {s.timeframe} · {s.direction.toUpperCase()}<br/>
+        <b style={{ color: '#00d4aa' }}>{s.name}</b> · {(s.pairs||[]).length} pair{(s.pairs||[]).length!==1?'s':''} · {s.timeframe} · {s.direction.toUpperCase()}<br/>
+        Pairs: {(s.pairs||[]).map(p=>p.replace('_','/')).join(', ')||'None'}<br/>
         Conditions: {[s.conditions.requireBOS&&'BOS',s.conditions.requireOB&&'OB',s.conditions.requireFVG&&'FVG',s.conditions.requireOTE&&'OTE'].filter(Boolean).join(', ')||'None'}<br/>
         Sessions: {(s.conditions.sessions||[]).join(', ')||'None'}<br/>
-        Risk: {s.risk.riskPercent}% · SL: {s.risk.slMethod.toUpperCase()} · TP: {s.risk.tpMethod === 'rr' ? `1:${s.risk.rrRatio}` : s.risk.tpMethod}
+        Risk: {s.risk.riskType==='usdt' ? `$${s.risk.riskUsdt||10} USDT` : `${s.risk.riskPercent}%`} · SL: {s.risk.slMethod.toUpperCase()} · TP: {s.risk.tpMethod === 'rr' ? `1:${s.risk.rrRatio}` : s.risk.tpMethod}
       </div>
 
       <div style={{ display: 'flex', gap: 8 }}>
@@ -580,7 +620,15 @@ export default function BotConfig() {
                 <Toggle checked={strat.enabled} onChange={() => toggleStrat(strat.id)}/>
                 <div>
                   <div style={{ fontSize: 13, fontWeight: 700, color: strat.enabled ? 'var(--text)' : 'var(--text3)' }}>{strat.name}</div>
-                  <div style={{ fontSize: 10, color: 'var(--text3)' }}>{strat.pair === 'ALL' ? 'All Pairs' : strat.pair.replace('_','/')} · {strat.timeframe} · {strat.direction}</div>
+                  <div style={{ fontSize: 10, color: 'var(--text3)' }}>
+                    {(() => {
+                      const pairs = strat.pairs || (strat.pair ? [strat.pair] : []);
+                      if (pairs.length === 0) return 'No pairs';
+                      if (pairs.length === 1) return pairs[0].replace('_','/');
+                      if (pairs.length <= 3) return pairs.map(p => p.replace('_','/')).join(', ');
+                      return `${pairs.slice(0,2).map(p=>p.replace('_','/')).join(', ')} +${pairs.length-2} more`;
+                    })()} · {strat.timeframe} · {strat.direction}
+                  </div>
                 </div>
                 <div style={{ marginLeft: 'auto', display: 'flex', gap: 6 }}>
                   <button onClick={() => setEditing(strat.id)} style={{ padding: '4px 10px', borderRadius: 4, fontSize: 11, background: 'var(--bg2)', border: '1px solid var(--border)', color: 'var(--text2)', cursor: 'pointer' }}>Edit</button>
@@ -593,7 +641,9 @@ export default function BotConfig() {
                 {strat.conditions.requireFVG && <span style={{ fontSize: 9, padding: '1px 5px', borderRadius: 3, background: '#00d4aa20', color: '#00d4aa', border: '1px solid #00d4aa33' }}>FVG</span>}
                 {strat.conditions.requireOTE && <span style={{ fontSize: 9, padding: '1px 5px', borderRadius: 3, background: '#a855f720', color: '#a855f7', border: '1px solid #a855f733' }}>OTE</span>}
                 {(strat.conditions.sessions||[]).map(s => <span key={s} style={{ fontSize: 9, padding: '1px 5px', borderRadius: 3, background: '#f59e0b20', color: '#f59e0b', border: '1px solid #f59e0b33' }}>{s}</span>)}
-                <span style={{ fontSize: 9, padding: '1px 5px', borderRadius: 3, background: 'var(--bg2)', color: 'var(--text3)', border: '1px solid var(--border)' }}>Risk {strat.risk.riskPercent}%</span>
+                <span style={{ fontSize: 9, padding: '1px 5px', borderRadius: 3, background: 'var(--bg2)', color: 'var(--text3)', border: '1px solid var(--border)' }}>
+                  {strat.risk.riskType==='usdt' ? `$${strat.risk.riskUsdt||10}` : `Risk ${strat.risk.riskPercent}%`}
+                </span>
                 <span style={{ fontSize: 9, padding: '1px 5px', borderRadius: 3, background: 'var(--bg2)', color: 'var(--text3)', border: '1px solid var(--border)' }}>{strat.risk.tpMethod === 'rr' ? `1:${strat.risk.rrRatio}R` : strat.risk.tpMethod}</span>
               </div>
             </div>
