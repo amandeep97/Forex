@@ -150,7 +150,7 @@ function ConnectTab({ onLog }) {
       const tradeId = json.orderFillTransaction?.tradeOpened?.tradeID || json.relatedTransactionIDs?.[0] || '—';
       // Log trade to GitHub
       try {
-        const ghData = await ghRead('bot/trades.json');
+        const ghData = await ghRead('bot/trades.json', { noCache: true });
         const log = ghData?.content?.trades || [];
         log.push({ id: `app_${Date.now()}`, source: 'app_bot', pair, direction: signal.dir, entryPrice: entry, slPrice: sl, tpPrice: tp, units: parseInt(units), oandaTradeId: tradeId, openTime: new Date().toISOString(), status: 'OPEN', structure: signal.structure, rr: parseFloat(signal.rr) });
         await ghWrite('bot/trades.json', { trades: log }, `App bot: ${signal.dir} ${pair}`, ghData?.sha || null);
@@ -270,7 +270,7 @@ function PositionsTab({ onLog }) {
   const markClosed = async (id) => {
     setClosing(id);
     try {
-      const data = await ghRead('bot/trades.json');
+      const data = await ghRead('bot/trades.json', { noCache: true });
       const updated = (data?.content?.trades || []).map(t =>
         t.id === id ? { ...t, status: 'CLOSED', closeTime: new Date().toISOString() } : t
       );
@@ -283,7 +283,7 @@ function PositionsTab({ onLog }) {
 
   const clearClosed = async () => {
     try {
-      const data = await ghRead('bot/trades.json');
+      const data = await ghRead('bot/trades.json', { noCache: true });
       const cleaned = (data?.content?.trades || []).filter(t => t.status !== 'CLOSED' && t.status !== 'closed');
       await ghWrite('bot/trades.json', { trades: cleaned }, 'Clear closed trades', data?.sha || null);
       setTrades(cleaned);
@@ -387,7 +387,7 @@ function VPSBotTab({ onLog }) {
   const sendControl = async (command) => {
     setSaving(true); setErr('');
     try {
-      const existing = await ghRead('bot/vps-control.json').catch(() => null);
+      const existing = await ghRead('bot/vps-control.json', { noCache: true }).catch(() => null);
       await ghWrite('bot/vps-control.json', { command, sentAt: new Date().toISOString() }, `VPS control: ${command}`, existing?.sha || null);
       setBotStatus(s => ({ ...s, control: command }));
       setMsg(`Command "${command}" sent — bot picks up on next cycle`);

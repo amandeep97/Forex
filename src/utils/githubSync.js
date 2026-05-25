@@ -19,9 +19,15 @@ function headers() {
 }
 
 // Returns { content: parsedJSON, sha } or null if not found
-export async function ghRead(path) {
-  const url = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${path}?ref=${GITHUB_BRANCH}`;
-  const res = await fetch(url, { headers: headers() });
+// noCache=true bypasses CDN cache so the SHA is always current (used before writes)
+export async function ghRead(path, { noCache = false } = {}) {
+  // Append a timestamp to bust the 60-second GitHub CDN cache when freshness matters
+  const bust = noCache ? `&_=${Date.now()}` : '';
+  const url = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${path}?ref=${GITHUB_BRANCH}${bust}`;
+  const res = await fetch(url, {
+    headers: headers(),
+    cache: noCache ? 'no-store' : 'default',
+  });
   if (res.status === 404) return null;
   if (!res.ok) throw new Error(`GitHub read ${res.status}: ${path}`);
   const data    = await res.json();

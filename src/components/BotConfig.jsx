@@ -480,8 +480,8 @@ export default function BotConfig() {
     setSaving(true); setErr('');
     try {
       const updated = { ...cfg, updatedAt: new Date().toISOString() };
-      // Fetch fresh SHA first to avoid 409 conflicts from external updates
-      const fresh = await ghRead('bot/strategy.json').catch(() => null);
+      // Fetch fresh SHA bypassing CDN cache (GitHub caches for ~60s, causing 409)
+      const fresh = await ghRead('bot/strategy.json', { noCache: true }).catch(() => null);
       const freshSha = fresh?.sha ?? sha;
       if (fresh?.sha && fresh.sha !== sha) setSha(fresh.sha);
       const newSha = await ghWrite('bot/strategy.json', updated, 'App: update strategy config', freshSha);
