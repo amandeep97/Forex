@@ -2,11 +2,89 @@ import { useState, useEffect, useCallback } from 'react';
 import { ghRead, ghWrite, isGithubConfigured } from '../utils/githubSync';
 
 // ── Constants ─────────────────────────────────────────────────────────────────
-const PAIRS = ['EUR_USD','GBP_USD','USD_JPY','AUD_USD','USD_CAD','USD_CHF','NZD_USD','GBP_JPY','EUR_JPY','XAU_USD','XAG_USD'];
-const TFS   = ['M15','M30','H1','H2','H4','H6','H12','D'];
-const SESSIONS = [{ v:'london',  l:'London (07–16 UTC)' }, { v:'newyork', l:'New York (12–21 UTC)' }, { v:'overlap', l:'Overlap (12–16 UTC)' }];
-const SL_METHODS = [{ v:'atr',   l:'ATR ×' }, { v:'swing', l:'Swing High/Low' }, { v:'fixed', l:'Fixed Pips' }];
-const TP_METHODS = [{ v:'rr',    l:'R:R Ratio' }, { v:'fixed', l:'Fixed Pips' }, { v:'fib',  l:'Fib Extension' }];
+const PAIRS = [
+  { v:'ALL',      l:'— All Pairs —' },
+  // Majors
+  { v:'EUR_USD',  l:'EUR/USD' },
+  { v:'GBP_USD',  l:'GBP/USD' },
+  { v:'USD_JPY',  l:'USD/JPY' },
+  { v:'USD_CHF',  l:'USD/CHF' },
+  { v:'AUD_USD',  l:'AUD/USD' },
+  { v:'NZD_USD',  l:'NZD/USD' },
+  { v:'USD_CAD',  l:'USD/CAD' },
+  // Minors
+  { v:'EUR_GBP',  l:'EUR/GBP' },
+  { v:'EUR_JPY',  l:'EUR/JPY' },
+  { v:'EUR_AUD',  l:'EUR/AUD' },
+  { v:'EUR_CAD',  l:'EUR/CAD' },
+  { v:'EUR_CHF',  l:'EUR/CHF' },
+  { v:'GBP_JPY',  l:'GBP/JPY' },
+  { v:'GBP_AUD',  l:'GBP/AUD' },
+  { v:'GBP_CAD',  l:'GBP/CAD' },
+  { v:'GBP_CHF',  l:'GBP/CHF' },
+  { v:'AUD_JPY',  l:'AUD/JPY' },
+  { v:'CAD_JPY',  l:'CAD/JPY' },
+  { v:'CHF_JPY',  l:'CHF/JPY' },
+  { v:'NZD_JPY',  l:'NZD/JPY' },
+  { v:'NZD_USD',  l:'NZD/USD' },
+  // Metals & Commodities
+  { v:'XAU_USD',  l:'XAU/USD (Gold)' },
+  { v:'XAG_USD',  l:'XAG/USD (Silver)' },
+  { v:'BCO_USD',  l:'BCO/USD (Brent Oil)' },
+  { v:'WTICO_USD',l:'WTI Crude Oil' },
+  // Indices
+  { v:'SPX500_USD',l:'S&P 500' },
+  { v:'NAS100_USD',l:'Nasdaq 100' },
+  { v:'US30_USD',  l:'Dow Jones' },
+  { v:'UK100_GBP', l:'FTSE 100' },
+  { v:'DE30_EUR',  l:'DAX 30' },
+];
+
+const TFS = [
+  { v:'M1',  l:'1 Min' },
+  { v:'M5',  l:'5 Min' },
+  { v:'M15', l:'15 Min' },
+  { v:'M30', l:'30 Min' },
+  { v:'H1',  l:'1 Hour' },
+  { v:'H2',  l:'2 Hour' },
+  { v:'H4',  l:'4 Hour' },
+  { v:'H6',  l:'6 Hour' },
+  { v:'H12', l:'12 Hour' },
+  { v:'D',   l:'Daily' },
+  { v:'W',   l:'Weekly' },
+];
+
+const SESSIONS = [
+  { v:'asian',   l:'Asian   (00–08 UTC)' },
+  { v:'london',  l:'London  (07–16 UTC)' },
+  { v:'overlap', l:'Overlap (12–16 UTC)' },
+  { v:'newyork', l:'New York(13–22 UTC)' },
+];
+
+const SL_METHODS = [
+  { v:'swing', l:'Swing Low / High' },
+  { v:'ob',    l:'Order Block Base' },
+  { v:'atr',   l:'ATR ×' },
+  { v:'fixed', l:'Fixed Pips' },
+];
+
+const TP_METHODS = [
+  { v:'rr',    l:'R:R Ratio' },
+  { v:'fib',   l:'Fib Extension' },
+  { v:'fixed', l:'Fixed Pips' },
+];
+
+// ── Strategy templates ────────────────────────────────────────────────────────
+const TEMPLATES = [
+  { v:'blank',        l:'— Blank —',                 data: null },
+  { v:'ict_long',     l:'ICT London Long (BOS+OB)',   data: { name:'ICT London Long',   pair:'EUR_USD', timeframe:'H1',  direction:'long',  conditions:{ structure:'bullish', requireBOS:true,  requireOB:true,  requireFVG:false, requireOTE:false, sessions:['london'],           rsiFilter:{enabled:false,comparison:'below',value:70} }, risk:{ riskPercent:1, slMethod:'swing', slAtr:1.5, slPips:20, tpMethod:'rr', rrRatio:2,   tpFibLevel:1.618 } } },
+  { v:'ict_short',    l:'ICT NY Short (BOS+FVG)',     data: { name:'ICT NY Short',       pair:'GBP_USD', timeframe:'H1',  direction:'short', conditions:{ structure:'bearish', requireBOS:true,  requireOB:false, requireFVG:true,  requireOTE:false, sessions:['newyork'],          rsiFilter:{enabled:false,comparison:'above',value:30} }, risk:{ riskPercent:1, slMethod:'swing', slAtr:1.5, slPips:20, tpMethod:'rr', rrRatio:2,   tpFibLevel:1.618 } } },
+  { v:'ote_scalp',    l:'OTE Scalp M15',              data: { name:'OTE Scalp',          pair:'EUR_USD', timeframe:'M15', direction:'both',  conditions:{ structure:'any',     requireBOS:true,  requireOB:false, requireFVG:false, requireOTE:true,  sessions:['london','overlap'],  rsiFilter:{enabled:false,comparison:'below',value:70} }, risk:{ riskPercent:0.5,slMethod:'atr',   slAtr:1.0, slPips:10, tpMethod:'rr', rrRatio:2,   tpFibLevel:1.618 } } },
+  { v:'premium_fade', l:'Premium Fade (OB+FVG)',      data: { name:'Premium Fade',       pair:'XAU_USD', timeframe:'H4',  direction:'short', conditions:{ structure:'bearish', requireBOS:true,  requireOB:true,  requireFVG:true,  requireOTE:false, sessions:['london','newyork'],  rsiFilter:{enabled:true, comparison:'above',value:70} }, risk:{ riskPercent:1, slMethod:'swing', slAtr:1.5, slPips:20, tpMethod:'rr', rrRatio:3,   tpFibLevel:1.618 } } },
+  { v:'full_ict',     l:'Full ICT Setup (All Pairs)', data: { name:'Full ICT Setup',     pair:'ALL',     timeframe:'H1',  direction:'both',  conditions:{ structure:'any',     requireBOS:true,  requireOB:true,  requireFVG:true,  requireOTE:true,  sessions:['london','newyork'],  rsiFilter:{enabled:false,comparison:'below',value:70} }, risk:{ riskPercent:1, slMethod:'swing', slAtr:1.5, slPips:20, tpMethod:'rr', rrRatio:2.5, tpFibLevel:1.618 } } },
+  { v:'gold_h4',      l:'Gold H4 Structure',          data: { name:'Gold H4 Structure',  pair:'XAU_USD', timeframe:'H4',  direction:'both',  conditions:{ structure:'any',     requireBOS:true,  requireOB:true,  requireFVG:false, requireOTE:false, sessions:['london','newyork'],  rsiFilter:{enabled:false,comparison:'below',value:70} }, risk:{ riskPercent:1, slMethod:'atr',   slAtr:2.0, slPips:50, tpMethod:'rr', rrRatio:2,   tpFibLevel:1.618 } } },
+  { v:'asian_range',  l:'Asian Session Range Break',  data: { name:'Asian Range Break',  pair:'ALL',     timeframe:'M30', direction:'both',  conditions:{ structure:'any',     requireBOS:true,  requireOB:false, requireFVG:false, requireOTE:false, sessions:['london'],            rsiFilter:{enabled:false,comparison:'below',value:70} }, risk:{ riskPercent:0.5,slMethod:'fixed', slAtr:1.5, slPips:15, tpMethod:'rr', rrRatio:2,   tpFibLevel:1.618 } } },
+];
 
 const DEFAULT_STRAT = {
   id: '', name: 'New Strategy', enabled: false,
@@ -18,7 +96,7 @@ const DEFAULT_STRAT = {
     rsiFilter: { enabled: false, comparison: 'below', value: 70 },
   },
   risk: {
-    riskPercent: 1, slMethod: 'atr', slAtr: 1.5, slPips: 20,
+    riskPercent: 1, slMethod: 'swing', slAtr: 1.5, slPips: 20,
     tpMethod: 'rr', rrRatio: 2, tpFibLevel: 1.618,
   },
 };
@@ -67,8 +145,28 @@ function StrategyEditor({ strat, onSave, onCancel }) {
     set('conditions.sessions', cur.includes(v) ? cur.filter(x => x !== v) : [...cur, v]);
   };
 
+  const applyTemplate = (tplVal) => {
+    const tpl = TEMPLATES.find(t => t.v === tplVal);
+    if (!tpl?.data) return;
+    setS(prev => ({ ...JSON.parse(JSON.stringify(tpl.data)), id: prev.id }));
+  };
+
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 16, padding: 16 }}>
+
+      {/* Template picker */}
+      <section>
+        <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--text2)', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '0.06em' }}>Start from Template</div>
+        <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
+          {TEMPLATES.filter(t => t.v !== 'blank').map(t => (
+            <button key={t.v} onClick={() => applyTemplate(t.v)}
+              style={{ padding: '4px 10px', borderRadius: 4, fontSize: 10, fontWeight: 600, border: '1px solid var(--border)', background: 'var(--bg2)', color: 'var(--text2)', cursor: 'pointer', whiteSpace: 'nowrap' }}>
+              {t.l}
+            </button>
+          ))}
+        </div>
+        <div style={{ fontSize: 10, color: 'var(--text3)', marginTop: 4 }}>Click a template to pre-fill — you can then customise below</div>
+      </section>
 
       {/* Name + pair + TF */}
       <section>
@@ -78,10 +176,10 @@ function StrategyEditor({ strat, onSave, onCancel }) {
             style={{ background: 'var(--bg2)', color: 'var(--text)', border: '1px solid var(--border)', borderRadius: 4, padding: '3px 8px', fontSize: 12, width: 160 }}/>
         </FieldRow>
         <FieldRow label="Pair">
-          <Select value={s.pair} onChange={v => set('pair', v)} options={PAIRS.map(p => ({ v: p, l: p.replace('_', '/') }))}/>
+          <Select value={s.pair} onChange={v => set('pair', v)} options={PAIRS}/>
         </FieldRow>
         <FieldRow label="Timeframe">
-          <Select value={s.timeframe} onChange={v => set('timeframe', v)} options={TFS.map(t => ({ v: t, l: t }))}/>
+          <Select value={s.timeframe} onChange={v => set('timeframe', v)} options={TFS}/>
         </FieldRow>
         <FieldRow label="Direction">
           <Select value={s.direction} onChange={v => set('direction', v)} options={[{ v:'both',l:'Both (follow structure)'},{v:'long',l:'Long only'},{v:'short',l:'Short only'}]}/>
@@ -97,10 +195,9 @@ function StrategyEditor({ strat, onSave, onCancel }) {
 
         <FieldRow label="Market Structure">
           <Select value={s.conditions.structure} onChange={v => set('conditions.structure', v)}
-            options={[{v:'any',l:'Any'},{v:'bullish',l:'Bullish'},{v:'bearish',l:'Bearish'}]}/>
+            options={[{v:'any',l:'Any'},{v:'bullish',l:'Bullish (uptrend)'},{v:'bearish',l:'Bearish (downtrend)'}]}/>
         </FieldRow>
-
-        <FieldRow label="Require BOS">
+        <FieldRow label="Require BOS / CHoCH">
           <Toggle checked={s.conditions.requireBOS} onChange={v => set('conditions.requireBOS', v)}/>
         </FieldRow>
         <FieldRow label="Require Order Block">
@@ -115,7 +212,7 @@ function StrategyEditor({ strat, onSave, onCancel }) {
 
         <div style={{ padding: '6px 0', borderBottom: '1px solid var(--border)' }}>
           <Label>Sessions</Label>
-          <div style={{ display: 'flex', gap: 6, marginTop: 5 }}>
+          <div style={{ display: 'flex', gap: 6, marginTop: 5, flexWrap: 'wrap' }}>
             {SESSIONS.map(({ v, l }) => (
               <CondChip key={v} active={(s.conditions.sessions||[]).includes(v)} color="#00d4aa" onClick={() => toggleSession(v)}>{v}</CondChip>
             ))}
@@ -144,17 +241,41 @@ function StrategyEditor({ strat, onSave, onCancel }) {
         <FieldRow label="Risk Per Trade (%)">
           <NumberInput value={s.risk.riskPercent} onChange={v => set('risk.riskPercent', v)} min={0.1} max={10} step={0.1}/>
         </FieldRow>
+
         <FieldRow label="Stop Loss Method">
           <Select value={s.risk.slMethod} onChange={v => set('risk.slMethod', v)} options={SL_METHODS}/>
         </FieldRow>
-        {s.risk.slMethod === 'atr'   && <FieldRow label="ATR Multiplier"><NumberInput value={s.risk.slAtr}  onChange={v => set('risk.slAtr',  v)} min={0.5} max={5} step={0.1}/></FieldRow>}
-        {s.risk.slMethod === 'fixed' && <FieldRow label="SL (pips)">     <NumberInput value={s.risk.slPips} onChange={v => set('risk.slPips', v)} min={5}   max={500} step={1}/></FieldRow>}
+        {s.risk.slMethod === 'swing' && (
+          <div style={{ padding: '4px 0 6px 12px', borderBottom: '1px solid var(--border)', fontSize: 10, color: 'var(--text3)' }}>
+            SL placed below the most recent swing low (long) or above swing high (short) + 3 pip buffer
+          </div>
+        )}
+        {s.risk.slMethod === 'ob' && (
+          <div style={{ padding: '4px 0 6px 12px', borderBottom: '1px solid var(--border)', fontSize: 10, color: 'var(--text3)' }}>
+            SL placed below the base of the entry Order Block
+          </div>
+        )}
+        {s.risk.slMethod === 'atr' && <FieldRow label="ATR Multiplier"><NumberInput value={s.risk.slAtr} onChange={v => set('risk.slAtr', v)} min={0.5} max={5} step={0.1}/></FieldRow>}
+        {s.risk.slMethod === 'fixed' && <FieldRow label="SL (pips)"><NumberInput value={s.risk.slPips} onChange={v => set('risk.slPips', v)} min={5} max={500} step={1}/></FieldRow>}
+
         <FieldRow label="Take Profit Method">
           <Select value={s.risk.tpMethod} onChange={v => set('risk.tpMethod', v)} options={TP_METHODS}/>
         </FieldRow>
-        {s.risk.tpMethod === 'rr'    && <FieldRow label="R:R Ratio"><NumberInput value={s.risk.rrRatio}    onChange={v => set('risk.rrRatio',    v)} min={1} max={10} step={0.5}/></FieldRow>}
-        {s.risk.tpMethod === 'fixed' && <FieldRow label="TP (pips)"><NumberInput value={s.risk.tpPips||40} onChange={v => set('risk.tpPips',     v)} min={5} max={500} step={1}/></FieldRow>}
-        {s.risk.tpMethod === 'fib'   && <FieldRow label="Fib Level"> <Select value={s.risk.tpFibLevel} onChange={v => set('risk.tpFibLevel', +v)} options={[{v:1.272,l:'1.272'},{v:1.618,l:'1.618'},{v:2.0,l:'2.0'},{v:2.618,l:'2.618'}]}/></FieldRow>}
+        {s.risk.tpMethod === 'rr' && (
+          <>
+            <FieldRow label="R:R Ratio"><NumberInput value={s.risk.rrRatio} onChange={v => set('risk.rrRatio', v)} min={1} max={10} step={0.5}/></FieldRow>
+            <div style={{ display: 'flex', gap: 5, padding: '4px 0 6px', borderBottom: '1px solid var(--border)' }}>
+              {[1, 1.5, 2, 2.5, 3, 4].map(r => (
+                <button key={r} onClick={() => set('risk.rrRatio', r)}
+                  style={{ padding: '2px 7px', borderRadius: 3, fontSize: 10, border: `1px solid ${s.risk.rrRatio === r ? '#00d4aa' : 'var(--border)'}`, background: s.risk.rrRatio === r ? '#00d4aa22' : 'var(--bg2)', color: s.risk.rrRatio === r ? '#00d4aa' : 'var(--text3)', cursor: 'pointer' }}>
+                  1:{r}
+                </button>
+              ))}
+            </div>
+          </>
+        )}
+        {s.risk.tpMethod === 'fixed' && <FieldRow label="TP (pips)"><NumberInput value={s.risk.tpPips||40} onChange={v => set('risk.tpPips', v)} min={5} max={500} step={1}/></FieldRow>}
+        {s.risk.tpMethod === 'fib'   && <FieldRow label="Fib Level"><Select value={s.risk.tpFibLevel} onChange={v => set('risk.tpFibLevel', +v)} options={[{v:1.0,l:'1.0'},{v:1.272,l:'1.272'},{v:1.618,l:'1.618'},{v:2.0,l:'2.0'},{v:2.618,l:'2.618'}]}/></FieldRow>}
       </section>
 
       {/* Summary pill */}
@@ -345,7 +466,7 @@ export default function BotConfig() {
                 <Toggle checked={strat.enabled} onChange={() => toggleStrat(strat.id)}/>
                 <div>
                   <div style={{ fontSize: 13, fontWeight: 700, color: strat.enabled ? 'var(--text)' : 'var(--text3)' }}>{strat.name}</div>
-                  <div style={{ fontSize: 10, color: 'var(--text3)' }}>{strat.pair.replace('_','/')} · {strat.timeframe} · {strat.direction}</div>
+                  <div style={{ fontSize: 10, color: 'var(--text3)' }}>{strat.pair === 'ALL' ? 'All Pairs' : strat.pair.replace('_','/')} · {strat.timeframe} · {strat.direction}</div>
                 </div>
                 <div style={{ marginLeft: 'auto', display: 'flex', gap: 6 }}>
                   <button onClick={() => setEditing(strat.id)} style={{ padding: '4px 10px', borderRadius: 4, fontSize: 11, background: 'var(--bg2)', border: '1px solid var(--border)', color: 'var(--text2)', cursor: 'pointer' }}>Edit</button>
