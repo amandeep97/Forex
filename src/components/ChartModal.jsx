@@ -131,18 +131,28 @@ function SVGChart({ candles, symbol, ov }) {
 
       {/* FVG */}
       {ov.fvg && fvgZones.map((z,i)=>z.startIdx<nv&&(
-        <rect key={`fvg${i}`} x={xOf(z.startIdx)} y={yOf(z.topPrice)}
-          width={pw-xOf(z.startIdx)+PL} height={Math.abs(yOf(z.botPrice)-yOf(z.topPrice))}
-          fill={z.type==='bullish'?'#00d4aa14':'#ef444414'}
-          stroke={z.type==='bullish'?'#00d4aa55':'#ef444455'} strokeWidth={0.5} strokeDasharray="3,2"/>
+        <g key={`fvg${i}`}>
+          <rect x={xOf(z.startIdx)} y={yOf(z.topPrice)}
+            width={pw-xOf(z.startIdx)+PL} height={Math.max(2,Math.abs(yOf(z.botPrice)-yOf(z.topPrice)))}
+            fill={z.type==='bullish'?'#00d4aa28':'#f4724428'}
+            stroke={z.type==='bullish'?'#00d4aa':'#f47244'} strokeWidth={1} strokeDasharray="4,2"/>
+          <text x={xOf(z.startIdx)+3} y={yOf(z.topPrice)+10} fontSize={8} fontWeight="700"
+            fill={z.type==='bullish'?'#00d4aa':'#f47244'}>FVG</text>
+        </g>
       ))}
 
       {/* OB */}
       {ov.ob && obZones.map((z,i)=>z.idx<nv&&(
-        <rect key={`ob${i}`} x={xOf(z.idx)} y={yOf(z.topPrice)}
-          width={Math.min(cw*8,pw-xOf(z.idx)+PL)} height={Math.abs(yOf(z.botPrice)-yOf(z.topPrice))}
-          fill={z.type==='bullish'?'#22c55e14':'#ef444414'}
-          stroke={z.type==='bullish'?'#22c55e':'#ef4444'} strokeWidth={1} rx={2}/>
+        <g key={`ob${i}`}>
+          <rect x={xOf(z.idx)} y={yOf(z.topPrice)}
+            width={Math.min(cw*10, pw-xOf(z.idx)+PL)} height={Math.max(2,Math.abs(yOf(z.botPrice)-yOf(z.topPrice)))}
+            fill={z.type==='bullish'?'#22c55e2a':'#ef44442a'}
+            stroke={z.type==='bullish'?'#22c55e':'#ef4444'} strokeWidth={1.2} rx={2}/>
+          <text x={xOf(z.idx)+3} y={yOf(z.topPrice)+10} fontSize={8} fontWeight="700"
+            fill={z.type==='bullish'?'#22c55e':'#ef4444'}>
+            {z.type==='bullish'?'Bull OB':'Bear OB'}
+          </text>
+        </g>
       ))}
 
       {/* S/R */}

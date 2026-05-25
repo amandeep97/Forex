@@ -88,75 +88,44 @@ export function zigzagSwings(candles) {
 
 export function detectFVGsAndOBs(candles) {
   if (candles.length < 8) return { fvgZones:[], obZones:[] };
-  const { sHs, sLs, active } = zigzagSwings(candles);
   const n = candles.length;
+  const avgBody = candles.reduce((s,c) => s + Math.abs(c.c - c.o), 0) / n || 1;
   const fvgZones = [], obZones = [];
 
-  function isFvgMitigated(type, topPrice, botPrice, sliceStart) {
-    if (type === 'bullish') return candles.slice(sliceStart).some(c => c.l < topPrice);
-    return candles.slice(sliceStart).some(c => c.h > botPrice);
-  }
-  function isObMitigated(type, topPrice, botPrice, sliceStart) {
-    if (type === 'bullish') return candles.slice(sliceStart).some(c => c.c < botPrice);
-    return candles.slice(sliceStart).some(c => c.c > topPrice);
-  }
-  function findOBAtSwing(swingIdx, type, prevOppositeIdx) {
-    const isBull = type === 'bullish';
-    const limit = prevOppositeIdx !== undefined ? prevOppositeIdx : 0;
-    for (let i = swingIdx; i >= limit; i--) {
-      const isTrigger = isBull ? candles[i].c < candles[i].o : candles[i].c > candles[i].o;
-      if (isTrigger) {
-        const ob = { type, idx:i, topPrice:candles[i].h, botPrice:candles[i].l };
-        if (!isObMitigated(type, ob.topPrice, ob.botPrice, i+1)) obZones.push(ob);
-        return;
-      }
+  // FVG: 3-candle gap (candle[i] and candle[i+2] don't overlap)
+  for (let i = 0; i < n - 2; i++) {
+    const c1 = candles[i], c3 = candles[i + 2];
+    if (c1.h < c3.l && (c3.l - c1.h) > avgBody * 0.1) {
+      const topPrice = c3.l, botPrice = c1.h;
+      // Mitigated only when price closes past the midpoint of the gap
+      const mid = botPrice + (topPrice - botPrice) * 0.5;
+      const mitigated = candles.slice(i + 3).some(c => c.c < mid);
+      if (!mitigated) fvgZones.push({ type:'bullish', topPrice, botPrice, startIdx:i + 1 });
+    }
+    if (c1.l > c3.h && (c1.l - c3.h) > avgBody * 0.1) {
+      const topPrice = c1.l, botPrice = c3.h;
+      const mid = botPrice + (topPrice - botPrice) * 0.5;
+      const mitigated = candles.slice(i + 3).some(c => c.c > mid);
+      if (!mitigated) fvgZones.push({ type:'bearish', topPrice, botPrice, startIdx:i + 1 });
     }
   }
 
-  const bullishSLs = [...sLs];
-  if (active?.dir === 'down') bullishSLs.push({ idx:active.idx, price:active.price });
-  for (let si = bullishSLs.length-1; si >= 0; si--) {
-    const sl = bullishSLs[si];
-    const sh = sHs.find(h => h.idx > sl.idx);
-    const end = sh ? sh.idx-2 : n-3;
-    const prevSH = [...sHs].reverse().find(h => h.idx < sl.idx);
-    let resolved = false;
-    for (let i = sl.idx+1; i <= end; i++) {
-      if (i+2 < n && candles[i+2].l > candles[i].h) {
-        const botPrice = candles[i].h, topPrice = candles[i+2].l;
-        if (!isFvgMitigated('bullish', topPrice, botPrice, i+3)) {
-          fvgZones.push({ type:'bullish', topPrice, botPrice, startIdx:i });
-          findOBAtSwing(sl.idx, 'bullish', prevSH ? prevSH.idx : 0);
-          resolved = true;
-        }
-        break;
-      }
+  // OB: last opposite candle before a 2-candle impulse move
+  for (let i = 0; i < n - 3; i++) {
+    const c = candles[i], nx = candles[i + 1], nn = candles[i + 2];
+    const move = Math.abs(nn.c - nx.o);
+    if (move < avgBody * 0.5) continue;
+    if (c.c < c.o && nx.c > nx.o && nn.c > nn.o) {
+      const mitigated = candles.slice(i + 1).some(c2 => c2.c < c.l);
+      if (!mitigated) obZones.push({ type:'bullish', idx:i, topPrice:c.h, botPrice:c.l });
     }
-    if (resolved) break;
+    if (c.c > c.o && nx.c < nx.o && nn.c < nn.o) {
+      const mitigated = candles.slice(i + 1).some(c2 => c2.c > c.h);
+      if (!mitigated) obZones.push({ type:'bearish', idx:i, topPrice:c.h, botPrice:c.l });
+    }
   }
 
-  const bearishSHs = [...sHs];
-  if (active?.dir === 'up') bearishSHs.push({ idx:active.idx, price:active.price });
-  for (let si = bearishSHs.length-1; si >= 0; si--) {
-    const sh = bearishSHs[si];
-    const sl = sLs.find(l => l.idx > sh.idx);
-    const end = sl ? sl.idx-2 : n-3;
-    const prevSL = [...sLs].reverse().find(l => l.idx < sh.idx);
-    let resolved = false;
-    for (let i = sh.idx+1; i <= end; i++) {
-      if (i+2 < n && candles[i+2].h < candles[i].l) {
-        const topPrice = candles[i].l, botPrice = candles[i+2].h;
-        if (!isFvgMitigated('bearish', topPrice, botPrice, i+3)) {
-          fvgZones.push({ type:'bearish', topPrice, botPrice, startIdx:i });
-          findOBAtSwing(sh.idx, 'bearish', prevSL ? prevSL.idx : 0);
-          resolved = true;
-        }
-        break;
-      }
-    }
-    if (resolved) break;
-  }
-  return { fvgZones, obZones };
+  return { fvgZones: fvgZones.slice(-6), obZones: obZones.slice(-4) };
 }
 
 export function detectSweep(candles) {
