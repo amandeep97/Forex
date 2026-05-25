@@ -57,17 +57,18 @@ const OV_DEFS = [
 const DEFAULT_OV = { ema20:true,ema50:true,ema200:false,vwap:true,poc:false,fvg:true,ob:true,sr:true,tl:true,zones:true,sweep:true,swings:false,liq:false,bos:true,fib:false,vol:true };
 
 function SVGChart({ candles, symbol, ov, barCount, chartH }) {
-  const W  = 900;
-  const H  = Math.max(300, chartH || 460);
-  const VOL_H = ov.vol ? 60 : 0;       // volume sub-panel height
-  const PL = 8, PR = 68, PT = 18;
-  const PB = 28 + VOL_H;               // bottom padding grows when vol shown
+  const W    = 900;
+  const H    = Math.max(240, chartH || 460);
+  const VOL_H = ov.vol ? 60 : 0;
+  const PL = 8, PR = 68, PT = 22;
+  const PB = 28 + VOL_H;
   const pw = W - PL - PR;
-  const ph = H - PT - PB;              // price panel height
-  const VOL_Y = H - VOL_H - 20;        // top of volume panel
+  const ph = H - PT - PB;
+  const VOL_Y = H - VOL_H - 20;
 
   if (!candles||candles.length<2) return (
-    <svg viewBox={`0 0 ${W} ${H}`} style={{width:'100%',height:'100%',display:'block'}}>
+    <svg viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none"
+      style={{width:'100%',height:H,display:'block',background:'#0d1321',borderRadius:6}}>
       <text x={W/2} y={H/2} textAnchor="middle" fontSize={13} fill="#475569">No candle data</text>
     </svg>
   );
@@ -98,10 +99,21 @@ function SVGChart({ candles, symbol, ov, barCount, chartH }) {
   const swings = ov.swings ? computeSwings(vis) : null;
   const bosArr = ov.bos    ? detectBOSCHoCH(vis) : [];
 
+  // Always compute zone boundaries (even when zones overlay is off) for the live zone badge
+  const _rH = Math.max(...vis.map(c=>c.h)), _rL = Math.min(...vis.map(c=>c.l));
+  const _range = _rH - _rL || 1;
+  const _premBot = _rH - _range * 0.25;
+  const _discTop = _rL + _range * 0.25;
+  const liveZone = last.c >= _premBot ? 'PREMIUM'
+                 : last.c <= _discTop ? 'DISCOUNT'
+                 : 'EQ';
+  const liveZoneColor = liveZone === 'PREMIUM' ? '#ef4444'
+                      : liveZone === 'DISCOUNT' ? '#22c55e' : '#f59e0b';
+
   let premBot=null, discTop=null, eqTop=null, eqBot=null;
   if (ov.zones && nv >= 20) {
-    const rH = Math.max(...vis.map(c=>c.h)), rL = Math.min(...vis.map(c=>c.l));
-    const range = rH - rL;
+    const rH = _rH, rL = _rL;
+    const range = _range;
     const mid = (rH + rL) / 2;
     premBot = rH - range * 0.25;
     discTop = rL + range * 0.25;
@@ -154,7 +166,8 @@ function SVGChart({ candles, symbol, ov, barCount, chartH }) {
   }
 
   return (
-    <svg viewBox={`0 0 ${W} ${H}`} style={{width:'100%',height:'100%',display:'block',background:'#0d1321',borderRadius:6}}>
+    <svg viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none"
+      style={{width:'100%',height:H,display:'block',background:'#0d1321',borderRadius:6}}>
 
       {/* Background */}
       <rect x={PL} y={PT} width={pw} height={ph} fill="#0d1321"/>
@@ -342,6 +355,10 @@ function SVGChart({ candles, symbol, ov, barCount, chartH }) {
       <line x1={PL} y1={yOf(last.c)} x2={W-PR} y2={yOf(last.c)} stroke="#00d4aa" strokeWidth={0.6} strokeDasharray="3,3" opacity={0.5}/>
       <rect x={W-PR+1} y={yOf(last.c)-8} width={PR-3} height={16} fill="#00d4aa" rx={3}/>
       <text x={W-PR+PR/2-1} y={yOf(last.c)+4} textAnchor="middle" fontSize={8.5} fill="#080c14" fontWeight="800">{fmtP(last.c,symbol)}</text>
+
+      {/* Live zone badge — always shows actual zone from real chart data */}
+      <rect x={PL} y={PT-18} width={72} height={14} fill={liveZoneColor+'22'} stroke={liveZoneColor+'66'} rx={3}/>
+      <text x={PL+36} y={PT-8} textAnchor="middle" fontSize={8} fontWeight="800" fill={liveZoneColor} letterSpacing="0.5">{liveZone}</text>
     </svg>
   );
 }
@@ -404,14 +421,16 @@ export default function ChartModal({ instrument, onClose }) {
   const [checks,    setChecks]   = useState({});
   const chartWrapRef = useRef(null);
 
-  // Measure chart container height
+  // Measure chart container — subtract 16px for the 8px padding on each side
   useEffect(() => {
     const el = chartWrapRef.current;
     if (!el) return;
-    const ro = new ResizeObserver(([e]) => {
-      const h = e.contentRect.height - 16;
-      if (h > 60) setChartH(h);
-    });
+    const measure = () => {
+      const h = el.clientHeight - 16;
+      if (h > 80) setChartH(h);
+    };
+    measure();
+    const ro = new ResizeObserver(measure);
     ro.observe(el);
     return () => ro.disconnect();
   }, []);
