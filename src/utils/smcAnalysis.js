@@ -209,9 +209,15 @@ export function detectPremiumDiscount(candles) {
   const rangeLow  = Math.min(...candles.map(c => c.l));
   const equilibrium = (rangeHigh + rangeLow) / 2;
   const currentPrice = candles[candles.length - 1].c;
+  const range = rangeHigh - rangeLow || 1;
+  const premBot = rangeHigh - range * 0.25;  // top 25% = premium (matches chart)
+  const discTop = rangeLow  + range * 0.25;  // bottom 25% = discount (matches chart)
+  const zone = currentPrice >= premBot ? 'premium'
+             : currentPrice <= discTop ? 'discount'
+             : 'equilibrium';
   return {
     rangeHigh, rangeLow, equilibrium,
-    zone: currentPrice > equilibrium ? 'premium' : 'discount',
+    zone,
     deviation: ((currentPrice - equilibrium) / (equilibrium || 1)) * 100,
   };
 }

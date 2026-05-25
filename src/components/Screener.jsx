@@ -5,7 +5,7 @@ import { generateCandles } from '../utils/generateCandles';
 import { detectCandlePatterns } from '../utils/candlePatterns';
 import { analyzeSMC } from '../utils/smcAnalysis';
 import { computeRSI, computeMFI, computeEMA, computeMACD, detectRSIDivergence, detectEqualHighsLows } from '../utils/indicatorCalc';
-import { computeVWAP } from '../utils/smcHelpers';
+import { computeVWAP, detectFVGsAndOBs, detectLiqLevels } from '../utils/smcHelpers';
 import ChartModal from './ChartModal';
 import OandaConnect from './OandaConnect';
 import FilterPanel from './FilterPanel';
@@ -157,9 +157,20 @@ export default function Screener() {
         const bosBearish   = smc.bosChoch.some(b=>b.type==='BOS'&&b.direction==='bearish');
         const chochBullish = smc.bosChoch.some(b=>b.type==='CHoCH'&&b.direction==='bullish');
         const chochBearish = smc.bosChoch.some(b=>b.type==='CHoCH'&&b.direction==='bearish');
-        const hasOB  = smc.orderBlocks.length>0;
-        const hasFVG = smc.fvgs.length>0;
-        const zone   = smc.premiumDiscount?.zone || 'discount';
+        // Use same detection functions as the chart for alignment
+        const { fvgZones=[], obZones=[] } = detectFVGsAndOBs(candles);
+        const { bsl: bslLevels=[], ssl: sslLevels=[] } = detectLiqLevels(candles);
+        const hasOB      = obZones.length > 0;
+        const hasFVG     = fvgZones.length > 0;
+        const hasBullOB  = obZones.some(ob => ob.type === 'bullish');
+        const hasBearOB  = obZones.some(ob => ob.type === 'bearish');
+        const hasBullFVG = fvgZones.some(fvg => fvg.type === 'bullish');
+        const hasBearFVG = fvgZones.some(fvg => fvg.type === 'bearish');
+        // Tap = price is currently inside the OB/FVG box
+        const obTap  = obZones.some(ob  => cp >= ob.botPrice  && cp <= ob.topPrice);
+        const fvgTap = fvgZones.some(fvg => cp >= fvg.botPrice && cp <= fvg.topPrice);
+        // Zone: same 25% quartile logic as chart (top 25% = premium, bottom 25% = discount)
+        const zone   = smc.premiumDiscount?.zone || 'equilibrium';
 
         const vwapSeries = computeVWAP(candles.slice(-60));
         const lastVwap   = vwapSeries[vwapSeries.length-1];
@@ -211,10 +222,14 @@ export default function Screener() {
           brokeSupport:    bosBearish,
           nearTrendline:   smc.trendlines.some(t=>t.isNear),
           brokeTrendline:  smc.trendlines.some(t=>t.isBroken),
-          hasOB, hasFVG, bosBullish, bosBearish, chochBullish, chochBearish,
+          hasOB, hasFVG, hasBullOB, hasBearOB, hasBullFVG, hasBearFVG,
+          obTap, fvgTap,
+          bosBullish, bosBearish, chochBullish, chochBearish,
           zone, structure, strength, strengthDir, vwapAbove,
-          buySideLiq:  smc.liquidity.some(l=>l.type==='low'&&Math.abs(l.price-cp)/(cp||1)<0.006),
-          sellSideLiq: smc.liquidity.some(l=>l.type==='high'&&Math.abs(l.price-cp)/(cp||1)<0.006),
+          // BSL = near a swing high (buy-side liquidity rests above highs)
+          // SSL = near a swing low (sell-side liquidity rests below lows)
+          buySideLiq:  bslLevels.some(l=>Math.abs(l.price-cp)/(cp||1)<0.006),
+          sellSideLiq: sslLevels.some(l=>Math.abs(l.price-cp)/(cp||1)<0.006),
           patternIds:  patterns.map(p=>p.id),
           patternType: patterns.length===0?'neut':
                        patterns.some(p=>p.type==='bullish')?'bull':
@@ -234,7 +249,8 @@ export default function Screener() {
       } catch {
         map[inst.id] = { rsi:50, mfi:50, nearResistance:false, nearSupport:false,
           brokeResistance:false, brokeSupport:false, nearTrendline:false,
-          brokeTrendline:false, hasOB:false, hasFVG:false, bosBullish:false,
+          brokeTrendline:false, hasOB:false, hasFVG:false, hasBullOB:false, hasBearOB:false,
+          hasBullFVG:false, hasBearFVG:false, obTap:false, fvgTap:false, bosBullish:false,
           bosBearish:false, chochBullish:false, chochBearish:false,
           zone:'discount', structure:'neutral', strength:50, strengthDir:'neutral',
           vwapAbove:true, buySideLiq:false, sellSideLiq:false,
@@ -300,14 +316,16 @@ export default function Screener() {
     if (f.requireBrokeSupport)    list = list.filter(i => a[i.id]?.brokeSupport);
     if (f.requireTrendlineBull || f.requireTrendlineBear) list = list.filter(i => a[i.id]?.nearTrendline);
     if (f.requireTrendlineBreak) list = list.filter(i => a[i.id]?.brokeTrendline);
-    if (f.requireOb) list = list.filter(i => a[i.id]?.hasOB);
-    if (f.obDir === 'bullish') list = list.filter(i => a[i.id]?.hasOB && a[i.id]?.structure === 'bullish');
-    if (f.obDir === 'bearish') list = list.filter(i => a[i.id]?.hasOB && a[i.id]?.structure === 'bearish');
-    if (f.requireFvg) list = list.filter(i => a[i.id]?.hasFVG);
-    if (f.fvgDir === 'bullish') list = list.filter(i => a[i.id]?.hasFVG && a[i.id]?.structure === 'bullish');
-    if (f.fvgDir === 'bearish') list = list.filter(i => a[i.id]?.hasFVG && a[i.id]?.structure === 'bearish');
+    // OB filter: requireOb = price must be inside OB zone (obTap), not just any OB exists
+    if (f.requireOb) list = list.filter(i => a[i.id]?.obTap);
+    if (f.obDir === 'bullish') list = list.filter(i => a[i.id]?.hasBullOB);
+    if (f.obDir === 'bearish') list = list.filter(i => a[i.id]?.hasBearOB);
+    // FVG filter: requireFvg = price must be inside FVG zone (fvgTap)
+    if (f.requireFvg) list = list.filter(i => a[i.id]?.fvgTap);
+    if (f.fvgDir === 'bullish') list = list.filter(i => a[i.id]?.hasBullFVG);
+    if (f.fvgDir === 'bearish') list = list.filter(i => a[i.id]?.hasBearFVG);
     if (f.requireFvg && f.requireOb && f.fvgObMode === 'OR')
-      list = list.filter(i => a[i.id]?.hasFVG || a[i.id]?.hasOB);
+      list = list.filter(i => a[i.id]?.fvgTap || a[i.id]?.obTap);
     if (f.requireBos)   list = list.filter(i => a[i.id]?.bosBullish || a[i.id]?.bosBearish);
     if (f.requireChoch) list = list.filter(i => a[i.id]?.chochBullish || a[i.id]?.chochBearish);
     if (f.structure !== 'All') list = list.filter(i => a[i.id]?.structure === f.structure);
