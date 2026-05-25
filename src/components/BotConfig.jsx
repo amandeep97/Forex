@@ -81,7 +81,9 @@ async function scanPair(pair, strat) {
 function ScanPanel({ strat }) {
   const [scanning,  setScanning]  = useState(false);
   const [results,   setResults]   = useState(null);
-  const abortRef = useRef(false);
+  const [lastScan,  setLastScan]  = useState(null);
+  const abortRef  = useRef(false);
+  const timerRef  = useRef(null);
 
   const scan = async () => {
     const pairs = (strat.pairs?.filter(p => p !== 'ALL') || [strat.pair].filter(Boolean));
@@ -98,43 +100,50 @@ function ScanPanel({ strat }) {
       setResults([...all]); // show progress
     }
     setScanning(false);
+    if (!abortRef.current) setLastScan(new Date());
   };
+
+  // Auto-scan on mount, then refresh every 5 minutes
+  useEffect(() => {
+    scan();
+    timerRef.current = setInterval(scan, 5 * 60 * 1000);
+    return () => {
+      abortRef.current = true;
+      clearInterval(timerRef.current);
+    };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [strat.id]);
 
   const passing = results?.filter(r => r.pass) || [];
   const failing = results?.filter(r => !r.pass) || [];
   const total = (strat.pairs?.filter(p => p !== 'ALL') || [strat.pair].filter(Boolean)).length;
   const scanned = results?.length || 0;
+  const lastScanLabel = lastScan ? lastScan.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : null;
 
   return (
     <div style={{ marginTop: 8 }}>
       {/* Status badge — SMCPro style */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
         {!results && !scanning && (
-          <button onClick={scan}
-            style={{ padding: '4px 12px', borderRadius: 20, fontSize: 11, fontWeight: 600, cursor: 'pointer',
-              background: '#1e293b', border: '1px solid #334155', color: '#64748b' }}>
-            ⏳ 0 pairs matching — tap to scan
-          </button>
+          <div style={{ padding: '4px 12px', borderRadius: 20, fontSize: 11, fontWeight: 600,
+            background: '#1e293b', border: '1px solid #334155', color: '#64748b' }}>
+            ⏳ Initialising scan…
+          </div>
         )}
         {scanning && (
-          <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-            <div style={{ padding: '4px 12px', borderRadius: 20, fontSize: 11, fontWeight: 600,
-              background: '#1e293b', border: '1px solid #334155', color: '#94a3b8' }}>
-              🔄 Scanning… {scanned}/{total}
-            </div>
-            <button onClick={() => { abortRef.current = true; setScanning(false); }}
-              style={{ fontSize: 10, color: '#ef4444', background: 'none', border: 'none', cursor: 'pointer' }}>✕</button>
+          <div style={{ padding: '4px 12px', borderRadius: 20, fontSize: 11, fontWeight: 600,
+            background: '#1e293b', border: '1px solid #334155', color: '#94a3b8' }}>
+            🔄 Scanning… {scanned}/{total}
           </div>
         )}
         {results && !scanning && (
           <>
-            <button onClick={scan}
-              style={{ padding: '4px 12px', borderRadius: 20, fontSize: 11, fontWeight: 700, cursor: 'pointer', border: 'none',
-                background: passing.length > 0 ? '#22c55e22' : '#1e293b',
-                color: passing.length > 0 ? '#22c55e' : '#64748b',
-                outline: passing.length > 0 ? '1px solid #22c55e44' : '1px solid #334155' }}>
+            <div style={{ padding: '4px 12px', borderRadius: 20, fontSize: 11, fontWeight: 700,
+              background: passing.length > 0 ? '#22c55e22' : '#1e293b',
+              color: passing.length > 0 ? '#22c55e' : '#64748b',
+              border: passing.length > 0 ? '1px solid #22c55e44' : '1px solid #334155' }}>
               {passing.length > 0 ? `🎯 ${passing.length} pairs matching now` : '⏳ 0 pairs matching — waiting for signal'}
-            </button>
+            </div>
             {/* Matching pair chips — tap to trade */}
             {passing.slice(0, 6).map(r => (
               <button key={r.pair}
@@ -146,6 +155,11 @@ function ScanPanel({ strat }) {
             ))}
             {passing.length > 6 && (
               <span style={{ fontSize: 10, color: '#64748b' }}>+{passing.length - 6} more</span>
+            )}
+            <button onClick={scan} title="Refresh scan"
+              style={{ fontSize: 12, color: '#475569', background: 'none', border: 'none', cursor: 'pointer', padding: '2px 4px' }}>↻</button>
+            {lastScanLabel && (
+              <span style={{ fontSize: 9, color: '#334155' }}>{lastScanLabel}</span>
             )}
           </>
         )}
