@@ -1,7 +1,8 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { ghRead, ghWrite, isGithubConfigured } from '../utils/githubSync';
 
-// ── Live scanner helpers ───────────────────────────────────────────────────────
+// ── SMC engine (browser port of vps-bot/src/smc.js) ──────────────────────────
+
 function calcRSI(closes, period = 14) {
   if (closes.length < period + 1) return null;
   let gains = 0, losses = 0;
@@ -13,13 +14,110 @@ function calcRSI(closes, period = 14) {
   return +(100 - 100 / (1 + rs)).toFixed(1);
 }
 
-function getStructure(candles) {
+function findSwings(candles, look = 3) {
   const n = candles.length;
-  if (n < 6) return 'ranging';
-  const h = candles.slice(n - 6).map(c => c.h);
-  if (h[5] > h[3] && h[3] > h[1]) return 'bullish';
-  if (h[5] < h[3] && h[3] < h[1]) return 'bearish';
+  const highs = [], lows = [];
+  for (let i = look; i < n - look; i++) {
+    let hi = true, lo = true;
+    for (let j = 1; j <= look; j++) {
+      if (candles[i].h <= candles[i - j].h || candles[i].h <= candles[i + j].h) hi = false;
+      if (candles[i].l >= candles[i - j].l || candles[i].l >= candles[i + j].l) lo = false;
+    }
+    if (hi) highs.push({ price: candles[i].h, idx: i });
+    if (lo)  lows.push({ price: candles[i].l, idx: i });
+  }
+  return { highs, lows };
+}
+
+function detectStructure(candles) {
+  const { highs, lows } = findSwings(candles, 3);
+  if (highs.length < 2 || lows.length < 2) return 'ranging';
+  const lastH1 = highs[highs.length - 2], lastH2 = highs[highs.length - 1];
+  const lastL1 = lows[lows.length - 2],   lastL2 = lows[lows.length - 1];
+  if (lastH2.price > lastH1.price && lastL2.price > lastL1.price) return 'bullish';
+  if (lastH2.price < lastH1.price && lastL2.price < lastL1.price) return 'bearish';
   return 'ranging';
+}
+
+function detectBOS(candles) {
+  if (candles.length < 20) return false;
+  const n = candles.length;
+  const { highs, lows } = findSwings(candles.slice(0, n - 1), 2);
+  for (let i = Math.max(5, n - 15); i < n; i++) {
+    const c = candles[i];
+    if (highs.some(s => s.idx < i - 1 && c.c > s.price)) return true;
+    if (lows.some(s  => s.idx < i - 1 && c.c < s.price)) return true;
+  }
+  return false;
+}
+
+function detectOrderBlocks(candles) {
+  if (candles.length < 10) return [];
+  const n   = candles.length;
+  const avg = candles.reduce((s, c) => s + Math.abs(c.c - c.o), 0) / n || 1;
+  const obs = [];
+  for (let i = 1; i < n - 3; i++) {
+    const c = candles[i], nx = candles[i + 1], nn = candles[i + 2];
+    if (Math.abs(nn.c - nx.o) < avg * 1.2) continue;
+    if (c.c < c.o && nx.c > nx.o && nn.c > c.o) obs.push({ type: 'bullish', top: c.o,   bottom: c.c });
+    if (c.c > c.o && nx.c < nx.o && nn.c < c.o) obs.push({ type: 'bearish', top: c.c,   bottom: c.o });
+  }
+  return obs.slice(-5);
+}
+
+function detectFVGs(candles) {
+  if (candles.length < 5) return [];
+  const avg  = candles.reduce((s, c) => s + Math.abs(c.c - c.o), 0) / candles.length || 1;
+  const fvgs = [];
+  for (let i = 0; i < candles.length - 2; i++) {
+    const c1 = candles[i], c3 = candles[i + 2];
+    const gap = c1.h < c3.l ? c3.l - c1.h : (c1.l > c3.h ? c1.l - c3.h : 0);
+    if (gap < avg * 0.1) continue;
+    if (c1.h < c3.l) fvgs.push({ type: 'bullish', top: c3.l, bottom: c1.h });
+    else              fvgs.push({ type: 'bearish', top: c1.l, bottom: c3.h });
+  }
+  return fvgs.slice(-6);
+}
+
+function detectOTE(candles) {
+  if (candles.length < 15) return { bull: false, bear: false };
+  const vis = candles.slice(-40);
+  const n   = vis.length;
+  const cp  = vis[n - 1].c;
+  let swHigh = -Infinity, swHighIdx = 0, swLow = Infinity, swLowIdx = 0;
+  for (let i = 0; i < n; i++) {
+    if (vis[i].h > swHigh) { swHigh = vis[i].h; swHighIdx = i; }
+    if (vis[i].l < swLow)  { swLow  = vis[i].l; swLowIdx  = i; }
+  }
+  const range = swHigh - swLow;
+  if (!range) return { bull: false, bear: false };
+  const bull = swHighIdx < swLowIdx && cp >= swLow + range * 0.618 && cp <= swLow + range * 0.786;
+  const bear = swLowIdx < swHighIdx && cp >= swHigh - range * 0.786 && cp <= swHigh - range * 0.618;
+  return { bull, bear };
+}
+
+function detectLiqSweep(candles) {
+  if (candles.length < 10) return { bull: false, bear: false };
+  const ref     = candles.slice(-15, -3);
+  const refLow  = Math.min(...ref.map(c => c.l));
+  const refHigh = Math.max(...ref.map(c => c.h));
+  const recent  = candles.slice(-3);
+  return {
+    bull: recent.some(c => c.l < refLow  && c.c > refLow),
+    bear: recent.some(c => c.h > refHigh && c.c < refHigh),
+  };
+}
+
+function detectPriceZone(candles) {
+  const n  = candles.length;
+  const sl = candles.slice(-20);
+  const hi = Math.max(...sl.map(c => c.h));
+  const lo = Math.min(...sl.map(c => c.l));
+  const cp = candles[n - 1].c;
+  const lvl = (hi - lo) ? (cp - lo) / (hi - lo) : 0.5;
+  if (lvl < 0.45) return 'discount';
+  if (lvl > 0.55) return 'premium';
+  return 'equilibrium';
 }
 
 function getSession() {
@@ -39,39 +137,85 @@ async function scanPair(pair, strat) {
   const base = env === 'live' ? 'https://api-fxtrade.oanda.com/v3' : 'https://api-fxpractice.oanda.com/v3';
   try {
     const res = await fetch(
-      `${base}/instruments/${pair}/candles?granularity=${strat.timeframe || 'H1'}&count=60&price=M`,
+      `${base}/instruments/${pair}/candles?granularity=${strat.timeframe || 'H1'}&count=100&price=M`,
       { headers: { Authorization: `Bearer ${key}` } }
     );
     if (!res.ok) return { pair, pass: false, reason: `OANDA ${res.status}`, rsi: null, structure: null };
     const { candles } = await res.json();
     const cs = (candles || []).filter(c => c.complete).map(c => ({
-      h: +c.mid.h, l: +c.mid.l, c: +c.mid.c,
+      o: +c.mid.o, h: +c.mid.h, l: +c.mid.l, c: +c.mid.c,
     }));
     if (cs.length < 20) return { pair, pass: false, reason: 'Not enough candles', rsi: null, structure: null };
 
-    const rsi = calcRSI(cs.map(c => c.c));
-    const structure = getStructure(cs);
-    const cond = strat.conditions || {};
-    const sessions = getSession();
+    const rsi       = calcRSI(cs.map(c => c.c));
+    const structure = detectStructure(cs);
+    const cp        = cs[cs.length - 1].c;
+    const atr       = cs.slice(-14).reduce((s, c) => s + (c.h - c.l), 0) / 14;
+    const cond      = strat.conditions || {};
+    const dir       = strat.direction || 'both';
+    const sessions  = getSession();
 
-    // Session check
+    // Session
     const allowedSess = cond.sessions?.length ? cond.sessions : [];
-    if (allowedSess.length && !sessions.some(s => allowedSess.includes(s))) {
-      return { pair, pass: false, reason: `Session: ${sessions.join('/')||'none'} not in [${allowedSess.join(',')}]`, rsi, structure };
-    }
-    // Structure check
-    if (cond.structure && cond.structure !== 'any' && structure !== cond.structure) {
+    if (allowedSess.length && !sessions.some(s => allowedSess.includes(s)))
+      return { pair, pass: false, reason: `Session: ${sessions.join('/')||'none'} ∉ [${allowedSess.join(',')}]`, rsi, structure };
+
+    // Market structure
+    if (cond.structure && cond.structure !== 'any' && structure !== cond.structure)
       return { pair, pass: false, reason: `Structure: ${structure} ≠ ${cond.structure}`, rsi, structure };
-    }
-    // RSI check
+
+    // RSI
     if (cond.rsiFilter?.enabled && rsi != null) {
-      const rsiPass = cond.rsiFilter.comparison === 'above' ? rsi > cond.rsiFilter.value : rsi < cond.rsiFilter.value;
-      if (!rsiPass) {
-        return { pair, pass: false, reason: `RSI ${rsi} not ${cond.rsiFilter.comparison} ${cond.rsiFilter.value}`, rsi, structure };
-      }
+      const ok = cond.rsiFilter.comparison === 'above' ? rsi > cond.rsiFilter.value : rsi < cond.rsiFilter.value;
+      if (!ok) return { pair, pass: false, reason: `RSI ${rsi} not ${cond.rsiFilter.comparison} ${cond.rsiFilter.value}`, rsi, structure };
     }
-    // OB / FVG / OTE are VPS-side checks (require full SMC analysis); mark as N/A in browser
-    return { pair, pass: true, reason: 'Signal conditions met', rsi, structure };
+
+    // BOS
+    if (cond.requireBOS && !detectBOS(cs))
+      return { pair, pass: false, reason: 'No BOS/CHoCH detected', rsi, structure };
+
+    // Price zone
+    if (cond.priceZone && cond.priceZone !== 'any') {
+      const zone = detectPriceZone(cs);
+      if (zone !== cond.priceZone)
+        return { pair, pass: false, reason: `Price zone: ${zone} ≠ ${cond.priceZone}`, rsi, structure };
+    }
+
+    // Order Block
+    if (cond.requireOB) {
+      const obs    = detectOrderBlocks(cs);
+      const obDir  = cond.obDir || 'any';
+      const bullOB = obs.some(ob => ob.type === 'bullish' && cp >= ob.bottom && cp <= ob.top + atr);
+      const bearOB = obs.some(ob => ob.type === 'bearish' && cp <= ob.top   && cp >= ob.bottom - atr);
+      const ok     = obDir === 'bullish' ? bullOB : obDir === 'bearish' ? bearOB : (bullOB || bearOB);
+      if (!ok) return { pair, pass: false, reason: `No ${obDir} OB at price`, rsi, structure };
+    }
+
+    // FVG
+    if (cond.requireFVG) {
+      const fvgs   = detectFVGs(cs);
+      const fvgDir = cond.fvgDir || 'any';
+      const bullF  = fvgs.some(f => f.type === 'bullish' && cp >= f.bottom && cp <= f.top + atr);
+      const bearF  = fvgs.some(f => f.type === 'bearish' && cp <= f.top   && cp >= f.bottom - atr);
+      const ok     = fvgDir === 'bullish' ? bullF : fvgDir === 'bearish' ? bearF : (bullF || bearF);
+      if (!ok) return { pair, pass: false, reason: `No ${fvgDir} FVG at price`, rsi, structure };
+    }
+
+    // OTE
+    if (cond.requireOTE) {
+      const ote = detectOTE(cs);
+      const ok  = (dir === 'long') ? ote.bull : (dir === 'short') ? ote.bear : (ote.bull || ote.bear);
+      if (!ok) return { pair, pass: false, reason: 'Price not in OTE zone (0.618–0.786)', rsi, structure };
+    }
+
+    // Liquidity sweep
+    if (cond.requireLiqSweep) {
+      const liq = detectLiqSweep(cs);
+      const ok  = (dir === 'long') ? liq.bull : (dir === 'short') ? liq.bear : (liq.bull || liq.bear);
+      if (!ok) return { pair, pass: false, reason: 'No liquidity sweep detected', rsi, structure };
+    }
+
+    return { pair, pass: true, reason: 'All conditions met', rsi, structure };
   } catch (e) {
     return { pair, pass: false, reason: e.message, rsi: null, structure: null };
   }
