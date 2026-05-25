@@ -554,12 +554,13 @@ function explainReason(raw) {
 
 // ── Positions tab ─────────────────────────────────────────────────────────────
 function PositionsTab({ onLog }) {
-  const [trades,    setTrades]    = useState([]);
-  const [activity,  setActivity]  = useState([]);
+  const [trades,     setTrades]     = useState([]);
+  const [loading,    setLoading]    = useState(false);
+  const [error,      setError]      = useState('');
+  const [closing,    setClosing]    = useState(null);
+  const [activity,   setActivity]   = useState([]);
   const [actLoading, setActLoading] = useState(false);
-  const [actErr,    setActErr]    = useState('');
-  const [error,   setError]   = useState('');
-  const [closing, setClosing] = useState(null);
+  const [actErr,     setActErr]     = useState('');
 
   useEffect(() => {
     setLoading(true);
