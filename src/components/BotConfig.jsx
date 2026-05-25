@@ -1,5 +1,177 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { ghRead, ghWrite, isGithubConfigured } from '../utils/githubSync';
+
+// ── Live scanner helpers ───────────────────────────────────────────────────────
+function calcRSI(closes, period = 14) {
+  if (closes.length < period + 1) return null;
+  let gains = 0, losses = 0;
+  for (let i = closes.length - period; i < closes.length; i++) {
+    const diff = closes[i] - closes[i - 1];
+    if (diff > 0) gains += diff; else losses -= diff;
+  }
+  const rs = (gains / period) / ((losses / period) || 0.0001);
+  return +(100 - 100 / (1 + rs)).toFixed(1);
+}
+
+function getStructure(candles) {
+  const n = candles.length;
+  if (n < 6) return 'ranging';
+  const h = candles.slice(n - 6).map(c => c.h);
+  if (h[5] > h[3] && h[3] > h[1]) return 'bullish';
+  if (h[5] < h[3] && h[3] < h[1]) return 'bearish';
+  return 'ranging';
+}
+
+function getSession() {
+  const h = new Date().getUTCHours();
+  const s = [];
+  if (h >= 0  && h < 8)  s.push('asian');
+  if (h >= 7  && h < 16) s.push('london');
+  if (h >= 12 && h < 16) s.push('overlap');
+  if (h >= 13 && h < 22) s.push('newyork');
+  return s;
+}
+
+async function scanPair(pair, strat) {
+  const key = localStorage.getItem('oanda_key');
+  const env = localStorage.getItem('oanda_env') || 'practice';
+  if (!key) return { pair, pass: false, reason: 'Connect OANDA first', rsi: null, structure: null };
+  const base = env === 'live' ? 'https://api-fxtrade.oanda.com/v3' : 'https://api-fxpractice.oanda.com/v3';
+  try {
+    const res = await fetch(
+      `${base}/instruments/${pair}/candles?granularity=${strat.timeframe || 'H1'}&count=60&price=M`,
+      { headers: { Authorization: `Bearer ${key}` } }
+    );
+    if (!res.ok) return { pair, pass: false, reason: `OANDA ${res.status}`, rsi: null, structure: null };
+    const { candles } = await res.json();
+    const cs = (candles || []).filter(c => c.complete).map(c => ({
+      h: +c.mid.h, l: +c.mid.l, c: +c.mid.c,
+    }));
+    if (cs.length < 20) return { pair, pass: false, reason: 'Not enough candles', rsi: null, structure: null };
+
+    const rsi = calcRSI(cs.map(c => c.c));
+    const structure = getStructure(cs);
+    const cond = strat.conditions || {};
+    const sessions = getSession();
+
+    // Session check
+    const allowedSess = cond.sessions?.length ? cond.sessions : [];
+    if (allowedSess.length && !sessions.some(s => allowedSess.includes(s))) {
+      return { pair, pass: false, reason: `Session: ${sessions.join('/')||'none'} not in [${allowedSess.join(',')}]`, rsi, structure };
+    }
+    // Structure check
+    if (cond.structure && cond.structure !== 'any' && structure !== cond.structure) {
+      return { pair, pass: false, reason: `Structure: ${structure} ≠ ${cond.structure}`, rsi, structure };
+    }
+    // RSI check
+    if (cond.rsiFilter?.enabled && rsi != null) {
+      const rsiPass = cond.rsiFilter.comparison === 'above' ? rsi > cond.rsiFilter.value : rsi < cond.rsiFilter.value;
+      if (!rsiPass) {
+        return { pair, pass: false, reason: `RSI ${rsi} not ${cond.rsiFilter.comparison} ${cond.rsiFilter.value}`, rsi, structure };
+      }
+    }
+    // OB / FVG / OTE are VPS-side checks (require full SMC analysis); mark as N/A in browser
+    return { pair, pass: true, reason: 'Signal conditions met', rsi, structure };
+  } catch (e) {
+    return { pair, pass: false, reason: e.message, rsi: null, structure: null };
+  }
+}
+
+// ── Scan panel component ──────────────────────────────────────────────────────
+function ScanPanel({ strat }) {
+  const [scanning,  setScanning]  = useState(false);
+  const [results,   setResults]   = useState(null);
+  const abortRef = useRef(false);
+
+  const scan = async () => {
+    const pairs = (strat.pairs?.filter(p => p !== 'ALL') || [strat.pair].filter(Boolean));
+    if (!pairs.length) return;
+    abortRef.current = false;
+    setScanning(true); setResults(null);
+
+    const all = [];
+    // Scan in batches of 4 to avoid rate limits
+    for (let i = 0; i < pairs.length; i += 4) {
+      if (abortRef.current) break;
+      const batch = await Promise.all(pairs.slice(i, i + 4).map(p => scanPair(p, strat)));
+      all.push(...batch);
+      setResults([...all]); // show progress
+    }
+    setScanning(false);
+  };
+
+  const passing = results?.filter(r => r.pass) || [];
+  const failing = results?.filter(r => !r.pass) || [];
+
+  return (
+    <div style={{ marginTop: 8, borderTop: '1px solid var(--border)', paddingTop: 8 }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: results ? 8 : 0 }}>
+        <button
+          onClick={scan}
+          disabled={scanning}
+          style={{ padding: '4px 10px', borderRadius: 4, fontSize: 10, fontWeight: 700, cursor: 'pointer',
+            background: scanning ? 'var(--bg2)' : '#00d4aa22',
+            border: '1px solid #00d4aa44', color: '#00d4aa' }}
+        >
+          {scanning ? `Scanning… (${results?.length || 0}/${(strat.pairs?.filter(p=>p!=='ALL')||[]).length})` : '🔍 Scan Now'}
+        </button>
+        {results && !scanning && (
+          <span style={{ fontSize: 10, color: 'var(--text3)' }}>
+            {passing.length} match · {failing.length} fail
+          </span>
+        )}
+        {scanning && (
+          <button onClick={() => { abortRef.current = true; setScanning(false); }}
+            style={{ fontSize: 10, color: '#ef4444', background: 'none', border: 'none', cursor: 'pointer' }}>
+            Cancel
+          </button>
+        )}
+      </div>
+
+      {results && (
+        <div style={{ maxHeight: 180, overflowY: 'auto' }}>
+          {/* Passing pairs */}
+          {passing.length > 0 && (
+            <div style={{ marginBottom: 6 }}>
+              <div style={{ fontSize: 9, fontWeight: 700, color: '#22c55e', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 3 }}>
+                ✓ Matching ({passing.length})
+              </div>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 4 }}>
+                {passing.map(r => (
+                  <span key={r.pair} title={`RSI: ${r.rsi} | ${r.structure}`}
+                    style={{ fontSize: 10, padding: '2px 7px', borderRadius: 4, background: '#22c55e22', color: '#22c55e', border: '1px solid #22c55e44' }}>
+                    {r.pair.replace('_','/')}
+                    {r.rsi != null && <span style={{ opacity: 0.7, marginLeft: 3 }}>RSI{r.rsi}</span>}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+          {/* Failing pairs — collapsed */}
+          {failing.length > 0 && (
+            <details style={{ marginTop: 4 }}>
+              <summary style={{ fontSize: 9, fontWeight: 700, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.05em', cursor: 'pointer', listStyle: 'none' }}>
+                ✗ Not matching ({failing.length}) — tap to expand
+              </summary>
+              <div style={{ marginTop: 4, display: 'flex', flexDirection: 'column', gap: 2 }}>
+                {failing.map(r => (
+                  <div key={r.pair} style={{ fontSize: 10, color: '#64748b', display: 'flex', gap: 6 }}>
+                    <span style={{ minWidth: 70, color: '#475569' }}>{r.pair.replace('_','/')}</span>
+                    <span style={{ color: '#334155' }}>{r.reason}</span>
+                    {r.rsi != null && <span style={{ color: '#475569', marginLeft: 'auto' }}>RSI {r.rsi}</span>}
+                  </div>
+                ))}
+              </div>
+            </details>
+          )}
+          {!localStorage.getItem('oanda_key') && (
+            <div style={{ fontSize: 10, color: '#f59e0b', marginTop: 4 }}>Connect OANDA in Connect Exchange tab to scan live</div>
+          )}
+        </div>
+      )}
+    </div>
+  );
+}
 
 // ── Constants ─────────────────────────────────────────────────────────────────
 const PAIR_GROUPS = [
@@ -660,12 +832,14 @@ export default function BotConfig() {
                 {strat.conditions.requireOB  && <span style={{ fontSize: 9, padding: '1px 5px', borderRadius: 3, background: '#22c55e20', color: '#22c55e', border: '1px solid #22c55e33' }}>OB</span>}
                 {strat.conditions.requireFVG && <span style={{ fontSize: 9, padding: '1px 5px', borderRadius: 3, background: '#00d4aa20', color: '#00d4aa', border: '1px solid #00d4aa33' }}>FVG</span>}
                 {strat.conditions.requireOTE && <span style={{ fontSize: 9, padding: '1px 5px', borderRadius: 3, background: '#a855f720', color: '#a855f7', border: '1px solid #a855f733' }}>OTE</span>}
+                {strat.conditions.rsiFilter?.enabled && <span style={{ fontSize: 9, padding: '1px 5px', borderRadius: 3, background: '#f97316' + '20', color: '#f97316', border: '1px solid #f9731633' }}>RSI {strat.conditions.rsiFilter.comparison} {strat.conditions.rsiFilter.value}</span>}
                 {(strat.conditions.sessions||[]).map(s => <span key={s} style={{ fontSize: 9, padding: '1px 5px', borderRadius: 3, background: '#f59e0b20', color: '#f59e0b', border: '1px solid #f59e0b33' }}>{s}</span>)}
                 <span style={{ fontSize: 9, padding: '1px 5px', borderRadius: 3, background: 'var(--bg2)', color: 'var(--text3)', border: '1px solid var(--border)' }}>
                   {strat.risk.riskType==='usdt' ? `$${strat.risk.riskUsdt||10}` : `Risk ${strat.risk.riskPercent}%`}
                 </span>
                 <span style={{ fontSize: 9, padding: '1px 5px', borderRadius: 3, background: 'var(--bg2)', color: 'var(--text3)', border: '1px solid var(--border)' }}>{strat.risk.tpMethod === 'rr' ? `1:${strat.risk.rrRatio}R` : strat.risk.tpMethod}</span>
               </div>
+              <ScanPanel strat={strat} />
             </div>
           ))}
         </div>
