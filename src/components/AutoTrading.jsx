@@ -140,7 +140,13 @@ function analyzeCandles(candles, forceDir = null) {
   const structure = h6[5] > h6[3] && h6[3] > h6[1] ? 'bullish' : h6[5] < h6[3] && h6[3] < h6[1] ? 'bearish' : 'ranging';
   const dir = forceDir || (structure === 'bullish' ? 'LONG' : structure === 'bearish' ? 'SHORT' : null);
   if (!dir) return { dir: null, structure, cp, atr };
-  const sl   = dir === 'LONG' ? sL - atr * 0.5 : sH + atr * 0.5;
+  const pipSize  = win[0] ? (String(win[0].c).includes('.') && win[0].c < 10 ? 0.0001 : win[0].c > 10 ? 0.01 : 0.0001) : 0.0001;
+  const minSLPips = 15; // minimum 15 pips SL distance — below this OANDA rejects
+  const rawSL    = dir === 'LONG' ? sL - atr * 0.5 : sH + atr * 0.5;
+  const minSLDist = minSLPips * pipSize;
+  const sl   = dir === 'LONG'
+    ? Math.min(rawSL, cp - minSLDist)
+    : Math.max(rawSL, cp + minSLDist);
   const dist = Math.abs(cp - sl);
   if (dist <= 0) return { dir: null, structure, cp, atr };
   const tp   = dir === 'LONG' ? cp + dist * 2 : cp - dist * 2;
@@ -588,7 +594,46 @@ function PositionsTab({ onLog }) {
   };
 
   const open   = trades.filter(t => t.status === 'OPEN' || t.status === 'open');
-  const closed = trades.filter(t => t.status !== 'OPEN' && t.status !== 'open');
+  const closed = trades.filter(t => t.status !== 'OPEN' && t.status !== 'open' && t.status !== 'CANCELLED');
+  const cancelled = trades.filter(t => t.status === 'CANCELLED');
+
+  // Sync with OANDA: mark positions closed/cancelled if not in actual open trades
+  const syncOanda = async () => {
+    const apiKey    = localStorage.getItem('oanda_key');
+    const accountId = localStorage.getItem('oanda_acct');
+    const env_      = localStorage.getItem('oanda_env') || 'practice';
+    if (!apiKey || !accountId) { setError('Connect OANDA first'); return; }
+    setLoading(true); setError('');
+    try {
+      const res = await fetch(`${oandaBase(env_)}/accounts/${accountId}/openTrades`,
+        { headers: { Authorization: `Bearer ${apiKey}` } });
+      if (!res.ok) throw new Error(`OANDA ${res.status}`);
+      const data = await res.json();
+      const openIds = new Set((data.trades || []).map(t => String(t.id)));
+
+      const ghData = await ghRead('bot/trades.json', { noCache: true });
+      const all = ghData?.content?.trades || [];
+      let changed = 0;
+      const updated = all.map(t => {
+        if ((t.status === 'OPEN' || t.status === 'open') && t.oandaTradeId) {
+          if (!openIds.has(String(t.oandaTradeId))) {
+            changed++;
+            return { ...t, status: 'CANCELLED', closeTime: new Date().toISOString() };
+          }
+        }
+        return t;
+      });
+      if (changed > 0) {
+        await ghWrite('bot/trades.json', { trades: updated }, `Sync: ${changed} cancelled`, ghData?.sha || null);
+        setTrades(updated);
+        onLog?.('INFO', `Synced — ${changed} position(s) marked cancelled by broker`);
+      } else {
+        onLog?.('INFO', 'Sync complete — all positions match OANDA');
+        setTrades(all);
+      }
+    } catch (e) { setError(e.message); }
+    finally { setLoading(false); }
+  };
 
   const markClosed = async (id) => {
     setClosing(id);
@@ -605,7 +650,7 @@ function PositionsTab({ onLog }) {
   const clearClosed = async () => {
     try {
       const data = await ghRead('bot/trades.json', { noCache: true });
-      const cleaned = (data?.content?.trades || []).filter(t => t.status !== 'CLOSED' && t.status !== 'closed');
+      const cleaned = (data?.content?.trades || []).filter(t => t.status !== 'CLOSED' && t.status !== 'closed' && t.status !== 'CANCELLED');
       await ghWrite('bot/trades.json', { trades: cleaned }, 'Clear closed', data?.sha || null);
       setTrades(cleaned);
     } catch (e) { setError(e.message); }
@@ -613,18 +658,50 @@ function PositionsTab({ onLog }) {
 
   return (
     <div style={{ padding: 16 }}>
+      {/* Sync banner — show if any open positions exist */}
+      {open.length > 0 && (
+        <div style={{ background: '#f59e0b15', border: '1px solid #f59e0b44', borderRadius: 8, padding: '10px 14px', marginBottom: 14, display: 'flex', alignItems: 'center', gap: 10 }}>
+          <span style={{ fontSize: 11, color: '#fbbf24', flex: 1 }}>
+            ⚠️ Positions may differ from broker — tap Sync to check which were filled vs cancelled
+          </span>
+          <button onClick={syncOanda} disabled={loading}
+            style={{ background: '#f59e0b', border: 'none', color: '#000', borderRadius: 6, padding: '6px 14px', fontSize: 11, fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap' }}>
+            {loading ? 'Syncing…' : '⟳ Sync OANDA'}
+          </button>
+        </div>
+      )}
+
       <div style={{ display: 'flex', gap: 10, alignItems: 'center', marginBottom: 14, flexWrap: 'wrap' }}>
         <span style={{ fontWeight: 700, color: '#f8fafc', fontSize: 15 }}>Open ({open.length})</span>
+        {cancelled.length > 0 && (
+          <span style={{ fontSize: 12, color: '#ef4444', fontWeight: 600 }}>✗ {cancelled.length} cancelled by broker</span>
+        )}
         <button onClick={() => { setLoading(true); ghRead('bot/trades.json').then(d => { setTrades(d?.content?.trades || []); setLoading(false); }).catch(e => { setError(e.message); setLoading(false); }); }}
           style={{ background: '#334155', border: 'none', color: '#94a3b8', padding: '5px 12px', borderRadius: 6, fontSize: 11, cursor: 'pointer' }}>Refresh</button>
-        {closed.length > 0 && (
+        {(closed.length > 0 || cancelled.length > 0) && (
           <button onClick={clearClosed} style={{ background: 'transparent', border: '1px solid #334155', color: '#64748b', padding: '5px 12px', borderRadius: 6, fontSize: 11, cursor: 'pointer' }}>
-            Clear Closed ({closed.length})
+            Clear History ({closed.length + cancelled.length})
           </button>
         )}
         {loading && <span style={{ fontSize: 11, color: '#475569' }}>Loading…</span>}
       </div>
       {error && <div style={{ background: '#450a0a', color: '#fca5a5', padding: '8px 12px', borderRadius: 6, fontSize: 12, marginBottom: 12 }}>{error}</div>}
+
+      {/* Cancelled positions */}
+      {cancelled.map(t => (
+        <div key={t.id} style={{ background: '#1e293b', borderRadius: 10, padding: 12, marginBottom: 8, border: '1px solid #7f1d1d', opacity: 0.8 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            <span style={{ fontSize: 13, color: '#f87171' }}>✗</span>
+            <span style={{ fontSize: 13, fontWeight: 700, color: '#94a3b8' }}>{(t.pair||'').replace('_','/')}</span>
+            <span style={{ fontSize: 10, padding: '2px 6px', borderRadius: 3, background: '#450a0a', color: '#f87171' }}>CANCELLED BY BROKER</span>
+            <span style={{ marginLeft: 'auto', fontSize: 10, color: '#475569' }}>{fmtTime(t.openTime||t.openedAt)}</span>
+          </div>
+          <div style={{ fontSize: 11, color: '#64748b', marginTop: 4 }}>
+            Entry {fmtPx(t.entryPrice??t.entry, t.pair)} · SL {fmtPx(t.slPrice??t.sl, t.pair)} · TP {fmtPx(t.tpPrice??t.tp, t.pair)}
+            {' '}— <span style={{ color: '#f59e0b' }}>Check "Order Activity" below for cancel reason</span>
+          </div>
+        </div>
+      ))}
       {open.length === 0 && !loading
         ? <div style={{ textAlign: 'center', color: '#475569', padding: '48px 0', fontSize: 13 }}>No open positions</div>
         : open.map(t => {
