@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { ghRead, ghWrite, isGithubConfigured } from '../utils/githubSync';
+import BotConfig from './BotConfig';
 
 // ── OANDA helpers ─────────────────────────────────────────────────────────────
 const oandaBase = (env) =>
@@ -243,108 +244,6 @@ function ConnectTab({ onLog }) {
   );
 }
 
-// ── Strategies tab ────────────────────────────────────────────────────────────
-function condChips(cond) {
-  const chips = [];
-  const dir = cond?.structure;
-  if (dir) chips.push(`Price Zone == ${dir === 'bullish' ? 'discount' : 'premium'}`);
-  if (cond?.requireBOS) chips.push('BOS Required');
-  if (cond?.requireOB)  chips.push(`OB (Order Block) == ${dir || 'any'}`);
-  if (cond?.requireFVG) chips.push(`FVG (Fair Value Gap) == ${dir || 'any'}`);
-  if (cond?.requireOTE) chips.push(`OTE ${dir === 'bullish' ? 'Bullish' : dir === 'bearish' ? 'Bearish' : ''} Zone is_true`);
-  if (cond?.rsiFilter?.enabled) chips.push(`RSI ${cond.rsiFilter.comparison} ${cond.rsiFilter.value}`);
-  if (cond?.sessions?.length)   chips.push(`Session == ${cond.sessions.join(' / ')}`);
-  return chips;
-}
-
-function StrategiesTab({ onLog }) {
-  const [strategies, setStrategies] = useState([]);
-  const [loading,    setLoading]    = useState(false);
-  const [saving,     setSaving]     = useState(null);
-  const [error,      setError]      = useState('');
-
-  useEffect(() => {
-    async function load() {
-      setLoading(true); setError('');
-      try {
-        const data = await ghRead('bot/strategy.json');
-        setStrategies(data?.content?.strategies || []);
-      } catch (e) { setError(e.message); }
-      finally { setLoading(false); }
-    }
-    load();
-  }, []);
-
-  const toggleStrategy = async (id, enabled) => {
-    setSaving(id);
-    const prev = strategies;
-    const updated = strategies.map(s => s.id === id ? { ...s, enabled } : s);
-    setStrategies(updated);
-    try {
-      const ghData = await ghRead('bot/strategy.json');
-      const content = { ...(ghData?.content || {}), strategies: updated };
-      await ghWrite('bot/strategy.json', content, `${enabled?'Enable':'Disable'} strategy ${id}`, ghData?.sha || null);
-      onLog?.('INFO', `Strategy ${id} ${enabled ? 'enabled' : 'disabled'}`);
-    } catch (e) {
-      setStrategies(prev);
-      setError(e.message);
-    } finally { setSaving(null); }
-  };
-
-  return (
-    <div style={{ padding: 16 }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 14 }}>
-        <p style={{ margin: 0, fontSize: 12, color: '#64748b' }}>Define conditions — when matched, trades execute automatically</p>
-        <button
-          onClick={() => window.dispatchEvent(new CustomEvent('nav-to-strategy'))}
-          style={BTN({ background: '#2563eb', color: '#fff', display: 'flex', alignItems: 'center', gap: 6 })}
-        >
-          + New Strategy
-        </button>
-      </div>
-
-      {error && <div style={{ background: '#450a0a', color: '#fca5a5', padding: '8px 12px', borderRadius: 6, fontSize: 12, marginBottom: 12 }}>{error}</div>}
-
-      {loading ? (
-        <div style={{ textAlign: 'center', color: '#475569', padding: '40px 0' }}>Loading…</div>
-      ) : !isGithubConfigured() ? (
-        <div style={{ textAlign: 'center', color: '#f59e0b', padding: '40px 0', fontSize: 13 }}>GitHub token required — configure in Strategy tab</div>
-      ) : strategies.length === 0 ? (
-        <div style={{ textAlign: 'center', color: '#475569', padding: '40px 0' }}>No strategies — create one in the Strategy tab</div>
-      ) : strategies.map(s => {
-        const chips = condChips(s.conditions);
-        return (
-          <div key={s.id} style={{ background: '#1e293b', borderRadius: 10, padding: 14, marginBottom: 10, border: `1px solid ${s.enabled ? '#1e3a5f' : '#1e293b'}` }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6, flexWrap: 'wrap' }}>
-              <Toggle checked={!!s.enabled} onChange={v => toggleStrategy(s.id, v)} />
-              <span style={{ fontWeight: 700, fontSize: 14, color: '#f8fafc' }}>{s.name}</span>
-              <span style={{ fontSize: 11, padding: '2px 8px', borderRadius: 4, fontWeight: 600, background: s.direction==='short'?'#450a0a':s.direction==='long'?'#14532d':'#1e3a5f', color: s.direction==='short'?'#f87171':s.direction==='long'?'#4ade80':'#60a5fa' }}>
-                {(s.direction || 'Both').toUpperCase()}
-              </span>
-              <span style={{ fontSize: 11, padding: '2px 8px', borderRadius: 4, background: '#0f172a', color: '#38bdf8', border: '1px solid #0ea5e930' }}>OANDA</span>
-              <span style={{ fontSize: 11, color: s.enabled ? '#22c55e' : '#475569', display: 'flex', alignItems: 'center', gap: 4 }}>
-                <span style={{ width: 6, height: 6, borderRadius: '50%', background: s.enabled ? '#22c55e' : '#475569', display: 'inline-block' }} />
-                {s.enabled ? 'Running' : 'Paused'}
-              </span>
-              {saving === s.id && <span style={{ fontSize: 10, color: '#64748b' }}>Saving…</span>}
-            </div>
-            <div style={{ fontSize: 11, color: '#475569', marginBottom: 8 }}>
-              {s.pair || 'All pairs'} · {s.timeframe} · {chips.length} conditions · Risk {s.risk?.riskPercent || 1}% · SL: {s.risk?.slMethod || 'atr'}
-            </div>
-            <div style={{ fontSize: 11, color: s.enabled ? '#f59e0b' : '#334155', display: 'flex', alignItems: 'center', gap: 6, marginBottom: 8, background: '#0f172a', padding: '5px 10px', borderRadius: 6 }}>
-              ⏳ {s.enabled ? '0 pairs matching — waiting for signal' : 'Strategy paused'}
-            </div>
-            <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
-              {chips.map((c, i) => (
-                <span key={i} style={{ fontSize: 10, background: '#0f172a', color: '#94a3b8', padding: '3px 8px', borderRadius: 4, border: '1px solid #1e293b' }}>{c}</span>
-              ))}
-            </div>
-          </div>
-        );
-      })}
-    </div>
-  );
-}
 
 // ── Positions tab ─────────────────────────────────────────────────────────────
 function PositionsTab({ onLog }) {
@@ -635,21 +534,10 @@ export default function AutoTrading({ accountMode = 'demo' }) {
     setLogEntries(prev => [...prev, { type, msg, ts: Date.now() }]);
   }, []);
 
-  useEffect(() => {
-    if (!isGithubConfigured()) return;
-    ghRead('bot/strategy.json').then(d => setStratCount(d?.content?.strategies?.length || 0)).catch(() => {});
-    ghRead('bot/trades.json').then(d => setPosCount((d?.content?.trades || []).filter(t => t.status==='OPEN'||t.status==='open').length)).catch(() => {});
-  }, []);
-
-  useEffect(() => {
-    const handler = () => window.dispatchEvent(new CustomEvent('nav-to-strategy-tab'));
-    window.addEventListener('nav-to-strategy', handler);
-    return () => window.removeEventListener('nav-to-strategy', handler);
-  }, []);
 
   const TABS = [
     { id: 'connect',    label: 'Connect Exchange' },
-    { id: 'strategies', label: stratCount ? `Strategies (${stratCount})` : 'Strategies' },
+    { id: 'config',     label: stratCount ? `Strategy Config (${stratCount})` : 'Strategy Config' },
     { id: 'positions',  label: posCount   ? `Positions (${posCount})`   : 'Positions' },
     { id: 'vpsbot',     label: 'VPS Bot' },
     { id: 'log',        label: logEntries.length ? `Log (${logEntries.length})` : 'Log' },
@@ -695,11 +583,11 @@ export default function AutoTrading({ accountMode = 'demo' }) {
 
       {/* Tab content */}
       <div style={{ overflowY: 'auto', flex: 1 }}>
-        {activeTab === 'connect'    && <ConnectTab    onLog={addLog} />}
-        {activeTab === 'strategies' && <StrategiesTab onLog={addLog} />}
-        {activeTab === 'positions'  && <PositionsTab  onLog={addLog} />}
-        {activeTab === 'vpsbot'     && <VPSBotTab     onLog={addLog} />}
-        {activeTab === 'log'        && <LogTab entries={logEntries} onClear={() => setLogEntries([])} />}
+        {activeTab === 'connect'   && <ConnectTab   onLog={addLog} />}
+        {activeTab === 'config'    && <BotConfig />}
+        {activeTab === 'positions' && <PositionsTab onLog={addLog} />}
+        {activeTab === 'vpsbot'    && <VPSBotTab    onLog={addLog} />}
+        {activeTab === 'log'       && <LogTab entries={logEntries} onClear={() => setLogEntries([])} />}
       </div>
     </div>
   );

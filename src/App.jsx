@@ -1,10 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Screener from './components/Screener';
 import AutoTrading from './components/AutoTrading';
 import Backtester from './components/Backtester';
 import WatchlistTab from './components/WatchlistTab';
 import RatioChart from './components/RatioChart';
-import BotConfig from './components/BotConfig';
 import Journal from './components/Journal';
 import { allInstruments } from './data/forexData';
 import './App.css';
@@ -15,7 +14,6 @@ const TABS = [
   { id: 'autotrading', label: 'Auto Trading', icon: '⚡' },
   { id: 'backtester',  label: 'Backtester',   icon: '📊' },
   { id: 'ratio',       label: 'Au/Ag Ratio',  icon: '⚖' },
-  { id: 'strategy',    label: 'Strategy',     icon: '⚙' },
   { id: 'journal',     label: 'Journal',      icon: '📋' },
 ];
 
@@ -73,13 +71,6 @@ export default function App() {
   const [realBalance] = useState(2548.30);
   const [demoBalance] = useState(10000.00);
 
-  // Navigate to Strategy tab when triggered from AutoTrading
-  useEffect(() => {
-    const handler = () => setActiveTab('strategy');
-    window.addEventListener('nav-to-strategy-tab', handler);
-    return () => window.removeEventListener('nav-to-strategy-tab', handler);
-  }, []);
-
   // ── Broker state lifted here so it persists on tab switch ─────────────────
   const [brokerConnected, setBrokerConnected]   = useState(false);
   const [brokerName, setBrokerName]             = useState('');
@@ -98,7 +89,6 @@ export default function App() {
   };
 
   const now     = new Date();
-  const timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
   const dateStr = now.toLocaleDateString([], { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' });
 
   const isReal   = accountMode === 'real';
@@ -194,9 +184,6 @@ export default function App() {
         </div>
         <div style={{ display: activeTab === 'ratio' ? 'block' : 'none', overflowY:'auto', height:'calc(100vh - 120px)' }}>
           <RatioChart />
-        </div>
-        <div style={{ display: activeTab === 'strategy' ? 'block' : 'none', overflowY:'auto', height:'calc(100vh - 120px)' }}>
-          <BotConfig />
         </div>
         <div style={{ display: activeTab === 'journal' ? 'block' : 'none', overflowY:'auto', height:'calc(100vh - 120px)' }}>
           <Journal />
