@@ -78,7 +78,7 @@ function ConnectTab({ onLog }) {
   const [apiKey,    setApiKey]    = useState(() => localStorage.getItem('oanda_key')  || '');
   const [accountId, setAccountId] = useState(() => localStorage.getItem('oanda_acct') || '');
   const [env,       setEnv]       = useState(() => localStorage.getItem('oanda_env')  || 'practice');
-  const [connected, setConnected] = useState(false);
+  const [connected, setConnected] = useState(() => !!localStorage.getItem('oanda_key'));
   const [acctInfo,  setAcctInfo]  = useState(null);
   const [pair,      setPair]      = useState('EUR_USD');
   const [signal,    setSignal]    = useState(null);
@@ -94,26 +94,27 @@ function ConnectTab({ onLog }) {
 
   const connect = async () => {
     if (!apiKey || !accountId) { setConnErr('Enter API key and Account ID'); return; }
-    setConnErr(''); setConnMsg('Connecting…');
+    setConnErr(''); setConnMsg('Saving…');
+    // Save credentials immediately — verify by fetching a price quote (no account permission needed)
+    localStorage.setItem('oanda_key', apiKey);
+    localStorage.setItem('oanda_acct', accountId);
+    localStorage.setItem('oanda_env', env);
     try {
-      const res = await fetch(`${oandaBase(env)}/accounts/${accountId}/summary`, {
-        headers: { Authorization: `Bearer ${apiKey}` }
-      });
+      const res = await fetch(
+        `${oandaBase(env)}/instruments/EUR_USD/candles?granularity=M1&count=1&price=M`,
+        { headers: { Authorization: `Bearer ${apiKey}` } }
+      );
       if (!res.ok) throw new Error(`OANDA ${res.status}`);
-      const { account } = await res.json();
-      localStorage.setItem('oanda_key', apiKey);
-      localStorage.setItem('oanda_acct', accountId);
-      localStorage.setItem('oanda_env', env);
-      setAcctInfo({ balance: account.balance, currency: account.currency, pl: account.pl });
       setConnected(true); setConnMsg('');
-      onLog?.('SUCCESS', `Connected to OANDA ${env} — ${account.currency} ${parseFloat(account.balance).toFixed(2)}`);
+      setAcctInfo({ env });
+      onLog?.('SUCCESS', `Connected to OANDA ${env} — credentials saved`);
     } catch (e) {
       setConnErr(e.message); setConnMsg('');
     }
   };
 
   const analyze = async () => {
-    if (!apiKey) { setTradeErr('Connect OANDA first'); return; }
+    if (!apiKey) { setTradeErr('Enter your OANDA API key and click Connect first'); return; }
     setAnalyzing(true); setTradeErr(''); setSignal(null);
     try {
       const candles = await fetchOandaCandles(apiKey, env, pair);
@@ -187,11 +188,13 @@ function ConnectTab({ onLog }) {
             {connected ? '● Connected' : 'Connect'}
           </button>
         </div>
-        {connected && acctInfo && (
-          <div style={{ display: 'flex', gap: 16, fontSize: 12 }}>
-            <span style={{ color: '#64748b' }}>Balance: <strong style={{ color: '#22c55e' }}>{acctInfo.currency} {parseFloat(acctInfo.balance).toLocaleString()}</strong></span>
-            <span style={{ color: '#64748b' }}>P&L: <strong style={{ color: parseFloat(acctInfo.pl)>=0 ? '#22c55e' : '#ef4444' }}>{parseFloat(acctInfo.pl)>=0?'+':''}{parseFloat(acctInfo.pl).toFixed(2)}</strong></span>
-            <span style={{ color: '#22c55e', fontWeight: 600 }}>● {env}</span>
+        {connected && (
+          <div style={{ display: 'flex', gap: 16, fontSize: 12, alignItems: 'center' }}>
+            <span style={{ color: '#22c55e', fontWeight: 600, display: 'flex', alignItems: 'center', gap: 5 }}>
+              <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#22c55e', display: 'inline-block' }} />
+              Connected · {env}
+            </span>
+            <span style={{ color: '#64748b', fontFamily: 'monospace', fontSize: 11 }}>{accountId}</span>
           </div>
         )}
         {connErr && <div style={{ fontSize: 12, color: '#ef4444', marginTop: 6 }}>{connErr}</div>}
