@@ -1815,7 +1815,8 @@ table  { border-collapse: collapse; width: 100%; }
   white-space: nowrap; font-family: var(--mono); flex-shrink: 0;
 }
 .cm-chart-wrap {
-  flex: 1; overflow: auto; padding: 8px;
+  flex: 1; overflow: hidden; padding: 8px;
+  display: flex; flex-direction: column; min-height: 0;
 }
 .cm-state {
   display: flex; align-items: center; justify-content: center;

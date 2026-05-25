@@ -59,7 +59,7 @@ function SVGChart({ candles, symbol, ov }) {
   const pw=W-PL-PR, ph=H-PT-PB;
 
   if (!candles||candles.length<2) return (
-    <svg viewBox={`0 0 ${W} ${H}`} style={{width:'100%',height:H}}>
+    <svg viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none" style={{width:'100%',flex:1,display:'block',minHeight:0}}>
       <text x={W/2} y={H/2} textAnchor="middle" fontSize={13} fill="#475569">No candle data</text>
     </svg>
   );
@@ -112,7 +112,7 @@ function SVGChart({ candles, symbol, ov }) {
   const last = vis[nv-1];
 
   return (
-    <svg viewBox={`0 0 ${W} ${H}`} style={{width:'100%',height:H,background:'var(--bg2)',borderRadius:6}}>
+    <svg viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none" style={{width:'100%',flex:1,display:'block',background:'var(--bg2)',borderRadius:6,minHeight:0}}>
       {/* Grid */}
       {[0.2,0.4,0.6,0.8].map(f=>{
         const py=PT+ph*f, pr=pMax-f*(pMax-pMin);
