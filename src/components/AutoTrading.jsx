@@ -6,9 +6,6 @@ import BotConfig from './BotConfig';
 const oandaBase = (env) =>
   env === 'live' ? 'https://api-fxtrade.oanda.com/v3' : 'https://api-fxpractice.oanda.com/v3';
 
-const fcBase = (env) =>
-  env === 'live' ? 'https://api.forex.com/v1' : 'https://api-demo.forex.com/v1';
-
 // ── OANDA helpers ─────────────────────────────────────────────────────────────
 async function oandaCandles(apiKey, env, instrument, count = 100) {
   const res = await fetch(
@@ -42,49 +39,86 @@ async function oandaPlaceOrder(apiKey, accountId, env, pair, signedUnits, sl, tp
   return json.orderFillTransaction?.tradeOpened?.tradeID || json.relatedTransactionIDs?.[0] || '?';
 }
 
-// ── Forex.com (GAIN Capital) helpers ─────────────────────────────────────────
-async function fcAuth(username, password, env) {
-  const res = await fetch(`${fcBase(env)}/session`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ UserName: username, Password: password, AppKey: 'ForexPro' }),
-  });
-  if (!res.ok) throw new Error(`Forex.com ${res.status}`);
-  const data = await res.json();
-  if (data.StatusCode !== 1 || !data.Session) throw new Error(data.StatusDescription || 'Auth failed');
-  return { session: data.Session, username };
+// ── MT4 signal writer ─────────────────────────────────────────────────────────
+async function writeMT4Signal(pair, direction, entry, sl, tp, lots) {
+  const signal = {
+    id:        `sig_${Date.now()}`,
+    pair,
+    direction,
+    entry,
+    sl,
+    tp,
+    lots,
+    sentAt:    new Date().toISOString(),
+    status:    'pending',
+  };
+  const existing = await ghRead('bot/mt4-signals.json', { noCache: true }).catch(() => null);
+  await ghWrite('bot/mt4-signals.json', signal, `MT4 signal: ${direction} ${pair}`, existing?.sha || null);
+  return signal.id;
 }
 
-async function fcGetAccounts(username, session, env) {
-  const res = await fetch(
-    `${fcBase(env)}/useraccount/clientaccounts?username=${encodeURIComponent(username)}&session=${encodeURIComponent(session)}`,
-    { headers: { 'Content-Type': 'application/json' } }
-  );
-  if (!res.ok) throw new Error(`Forex.com accounts ${res.status}`);
-  return res.json();
+// ── MT4 EA source code ────────────────────────────────────────────────────────
+const MT4_EA_CODE = `//+------------------------------------------------------------------+
+//| ForexPro MT4 Bridge EA                                            |
+//| Reads signals from GitHub and places trades in MT4               |
+//+------------------------------------------------------------------+
+// SETUP:
+// 1. Copy this file to: MT4 → File → Open Data Folder → MQL4/Experts/
+// 2. Compile (F7) then drag onto any chart
+// 3. Tools → Options → Expert Advisors → Allow WebRequest for URLs:
+//    https://raw.githubusercontent.com
+// 4. Enable "Allow live trading" checkbox
+
+#property strict
+extern double LotSize   = 0.01;
+extern int    Slippage  = 3;
+extern int    PollSecs  = 30;
+extern string SignalURL = "https://raw.githubusercontent.com/amandeep97/Forex/main/bot/mt4-signals.json";
+
+string   lastId    = "";
+datetime lastCheck = 0;
+
+int OnInit()  { EventSetTimer(PollSecs); return INIT_SUCCEEDED; }
+void OnDeinit(const int r) { EventKillTimer(); }
+void OnTimer() { CheckSignal(); }
+void OnTick()  { if (TimeCurrent()-lastCheck >= PollSecs) CheckSignal(); }
+
+void CheckSignal() {
+  lastCheck = TimeCurrent();
+  char post[], result[]; string rh;
+  int code = WebRequest("GET", SignalURL+"?_="+IntegerToString(TimeCurrent()),
+                        "", 5000, post, result, rh);
+  if (code != 200) { Print("[FP] HTTP ", code," — allow URL in Tools>Options>EA"); return; }
+  string j = CharArrayToString(result, 0, WHOLE_ARRAY, CP_UTF8);
+  string id  = F(j,"id"), status = F(j,"status"), pair = F(j,"pair");
+  string dir = F(j,"direction");
+  double sl  = StringToDouble(F(j,"sl")), tp = StringToDouble(F(j,"tp"));
+  double lots= StringToDouble(F(j,"lots")); if(lots<=0) lots=LotSize;
+  if (id=="" || id==lastId || status!="pending") return;
+  lastId = id;
+  string sym = pair; StringReplace(sym,"_","");
+  int cmd = (dir=="LONG") ? OP_BUY : OP_SELL;
+  double px = (cmd==OP_BUY) ? MarketInfo(sym,MODE_ASK) : MarketInfo(sym,MODE_BID);
+  int tk = OrderSend(sym, cmd, lots, px, Slippage, sl, tp, "ForexPro", 12345, 0,
+                     cmd==OP_BUY ? clrLime : clrRed);
+  if (tk>0) Print("[FP] Placed #",tk," ",dir," ",sym," SL:",sl," TP:",tp);
+  else      Print("[FP] Failed: ",GetLastError());
 }
 
-async function fcSearchMarket(symbol, username, session, env) {
-  const q = symbol.replace('_', '/').replace('XAUUSD', 'Gold').replace('XAU_USD', 'Gold');
-  const res = await fetch(
-    `${fcBase(env)}/market/searchWithTags?query=${encodeURIComponent(q)}&maxResults=5&username=${encodeURIComponent(username)}&session=${encodeURIComponent(session)}`
-  );
-  const data = await res.json();
-  return data?.Markets?.[0]?.MarketId;
-}
-
-async function fcPlaceOrder(username, session, env, accountId, marketId, direction, quantity, sl, tp) {
-  const res = await fetch(`${fcBase(env)}/order/newtradeorder`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ UserName: username, Session: session, MarketId: marketId,
-      Direction: direction, Quantity: quantity, TradingAccountId: accountId, StopLoss: sl, TakeProfit: tp }),
-  });
-  if (!res.ok) throw new Error(`Forex.com order ${res.status}`);
-  const d = await res.json();
-  if (d.StatusCode !== 1) throw new Error(d.StatusDescription || 'Order failed');
-  return d.OrderId || '?';
-}
+string F(string j, string k) {
+  int p=StringFind(j,"\""+k+"\""); if(p<0) return "";
+  p=StringFind(j,":",p)+1;
+  while(StringGetCharacter(j,p)==' ') p++;
+  bool s=(StringGetCharacter(j,p)=='"'); if(s) p++;
+  string r="";
+  for(int i=p;i<StringLen(j);i++) {
+    ushort c=StringGetCharacter(j,i);
+    if(s&&c=='"') break;
+    if(!s&&(c==','||c=='}'||c=='\\n')) break;
+    r+=ShortToString(c);
+  }
+  return r;
+}`;
 
 // ── SMC analysis for manual trade ─────────────────────────────────────────────
 function analyzeCandles(candles, forceDir = null) {
@@ -154,14 +188,14 @@ function ConnectTab({ onLog, signalPair, onSignalUsed }) {
   const [env,       setEnv]       = useState(() => localStorage.getItem('oanda_env')  || 'practice');
   const [connected, setConnected] = useState(() => !!localStorage.getItem('oanda_key'));
 
-  // Forex.com state
+  // Forex.com state (kept for future use, CORS workaround via VPS)
   const [fcUser,    setFcUser]    = useState(() => localStorage.getItem('fc_user') || '');
   const [fcPass,    setFcPass]    = useState('');
   const [fcEnv,     setFcEnv]     = useState(() => localStorage.getItem('fc_env') || 'demo');
-  const [fcSession, setFcSession] = useState(() => localStorage.getItem('fc_session') || '');
-  const [fcAccts,   setFcAccts]   = useState([]);
-  const [fcAcctId,  setFcAcctId]  = useState(() => localStorage.getItem('fc_acct') || '');
-  const [fcConnected, setFcConnected] = useState(() => !!localStorage.getItem('fc_session'));
+
+  // MT4 state
+  const [mt4Copied, setMt4Copied] = useState(false);
+  const [mt4Sending, setMt4Sending] = useState(false);
 
   // Trade state
   const [pair,      setPair]      = useState('EUR_USD');
@@ -237,13 +271,16 @@ function ConnectTab({ onLog, signalPair, onSignalUsed }) {
     setAnalyzing(true); setTradeErr(''); setSignal(null);
     try {
       let candles;
-      if (broker === 'oanda') {
+      if (broker === 'oanda' && apiKey) {
         candles = await oandaCandles(apiKey, env, pair);
       } else {
-        // Use OANDA for candle data even on Forex.com (price data only)
+        // MT4/Forex.com: use OANDA candles for analysis (price data only, no order placed)
         const savedKey = localStorage.getItem('oanda_key');
-        if (savedKey) candles = await oandaCandles(savedKey, localStorage.getItem('oanda_env') || 'practice', pair);
-        else throw new Error('Connect OANDA for chart data (or connect OANDA alongside Forex.com)');
+        if (savedKey) {
+          candles = await oandaCandles(savedKey, localStorage.getItem('oanda_env') || 'practice', pair);
+        } else {
+          throw new Error('Add an OANDA API key for chart analysis (free practice account works — no trading needed)');
+        }
       }
       const sig = analyzeCandles(candles, forceDir);
       if (!sig) { setTradeErr('Not enough candle data'); return; }
@@ -257,7 +294,7 @@ function ConnectTab({ onLog, signalPair, onSignalUsed }) {
       const d = dp(pair);
       setEditEntry(sig.cp.toFixed(d)); setEditSL(sig.sl?.toFixed(d) || ''); setEditTP(sig.tp?.toFixed(d) || '');
       // Estimate lots at 1% risk / 10k balance
-      const bal = broker === 'oanda' ? await oandaBalance(apiKey, accountId, env).catch(() => 10000) : 10000;
+      const bal = (broker === 'oanda' && apiKey && accountId) ? await oandaBalance(apiKey, accountId, env).catch(() => 10000) : 10000;
       const units = calcUnits(bal, 1, sig.cp, sig.sl, pair);
       setLotSize((units / 100000).toFixed(2));
       onLog?.('INFO', `Signal: ${sig.dir} ${pair.replace('_','/')} · ${sig.structure} · R:R 1:${sig.rr}`);
@@ -280,20 +317,18 @@ function ConnectTab({ onLog, signalPair, onSignalUsed }) {
       if (broker === 'oanda') {
         if (!apiKey || !accountId) throw new Error('OANDA not connected');
         tradeId = await oandaPlaceOrder(apiKey, accountId, env, pair, signedUnits, sl, tp);
+      } else if (broker === 'mt4') {
+        const signalId = await writeMT4Signal(pair, dir, entry, sl, tp, parseFloat(lotSize));
+        tradeId = `MT4-${signalId}`;
       } else {
-        // Forex.com
-        if (!fcSession) throw new Error('Forex.com not connected');
-        const marketId = await fcSearchMarket(pair, fcUser, fcSession, fcEnv);
-        if (!marketId) throw new Error(`Market ${pair} not found on Forex.com`);
-        tradeId = await fcPlaceOrder(fcUser, fcSession, fcEnv, fcAcctId, marketId,
-          dir === 'LONG' ? 'buy' : 'sell', units, sl, tp);
+        throw new Error('Broker not supported for direct orders — use MT4 or OANDA');
       }
 
       // Log to GitHub
       try {
         const ghData = await ghRead('bot/trades.json', { noCache: true });
         const log = ghData?.content?.trades || [];
-        log.push({ id: `app_${Date.now()}`, source: broker === 'oanda' ? 'app_manual' : 'app_forexcom',
+        log.push({ id: `app_${Date.now()}`, source: broker === 'oanda' ? 'app_manual' : 'app_mt4',
           pair, direction: dir, entryPrice: entry, slPrice: sl, tpPrice: tp,
           units: signedUnits, oandaTradeId: tradeId, openTime: new Date().toISOString(), status: 'OPEN',
           structure: signal?.structure, rr: parseFloat(signal?.rr || 0) });
@@ -301,33 +336,31 @@ function ConnectTab({ onLog, signalPair, onSignalUsed }) {
       } catch {}
 
       onLog?.('TRADE',   `${dir} ${pair.replace('_','/')} @ ${editEntry} | SL ${editSL} | TP ${editTP}`);
-      onLog?.('SUCCESS', `Order confirmed — ID: ${tradeId}`);
-      setTradeMsg(`✓ Order placed — ID: ${tradeId}`);
+      onLog?.('SUCCESS', broker === 'mt4' ? `Signal sent to MT4 — EA will place the order within 30s` : `Order confirmed — ID: ${tradeId}`);
+      setTradeMsg(broker === 'mt4' ? `✓ Signal sent to MT4 — check your MT4 platform` : `✓ Order placed — ID: ${tradeId}`);
       setSignal(null);
       setTimeout(() => setTradeMsg(''), 6000);
     } catch (e) { setTradeErr(e.message); onLog?.('ERROR', e.message); }
     finally { setPlacing(false); }
   };
 
-  const isOanda = broker === 'oanda';
-
   return (
     <div style={{ padding: 16 }}>
 
       {/* Broker selector */}
-      <div style={{ display: 'flex', gap: 6, marginBottom: 14 }}>
-        {[['oanda', 'OANDA'], ['forexcom', 'Forex.com']].map(([id, label]) => (
-          <button key={id} onClick={() => { setBroker(id); setConnErr(''); }}
-            style={{ padding: '6px 18px', borderRadius: 20, fontSize: 12, fontWeight: 600, cursor: 'pointer',
-              border: broker === id ? '1.5px solid #2563eb' : '1px solid #334155',
-              background: broker === id ? '#1d4ed8' : '#1e293b', color: broker === id ? '#fff' : '#94a3b8' }}>
+      <div style={{ display: 'flex', gap: 6, marginBottom: 14, flexWrap: 'wrap' }}>
+        {[['oanda','OANDA','#1d4ed8'],['mt4','MT4 / Forex.com','#7c3aed'],['forexcom','Forex.com Direct','#334155']].map(([id, label, bg]) => (
+          <button key={id} onClick={() => { setBroker(id); setConnErr(''); localStorage.setItem('broker_type', id); }}
+            style={{ padding: '6px 14px', borderRadius: 20, fontSize: 12, fontWeight: 600, cursor: 'pointer',
+              border: broker === id ? `1.5px solid ${bg}` : '1px solid #334155',
+              background: broker === id ? bg : '#1e293b', color: broker === id ? '#fff' : '#94a3b8' }}>
             {label}
           </button>
         ))}
       </div>
 
       {/* ── OANDA connection ──────────────────────────────────────────────── */}
-      {isOanda && (
+      {broker === 'oanda' && (
         <div style={CARD}>
           <div style={SEC}>OANDA Connection</div>
           <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'flex-end', marginBottom: 12 }}>
@@ -348,69 +381,65 @@ function ConnectTab({ onLog, signalPair, onSignalUsed }) {
               {connected ? '● Connected' : 'Connect'}
             </button>
           </div>
-          {connected && (
-            <div style={{ fontSize: 12, color: '#22c55e', fontWeight: 600 }}>
-              <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#22c55e', display: 'inline-block', marginRight: 6 }} />
-              Connected · {env} · {accountId}
-            </div>
-          )}
+          {connected && <div style={{ fontSize: 12, color: '#22c55e', fontWeight: 600 }}>● Connected · {env} · {accountId}</div>}
           {connErr && <div style={{ fontSize: 12, color: '#ef4444', marginTop: 6 }}>{connErr}</div>}
           {connMsg && <div style={{ fontSize: 12, color: '#94a3b8', marginTop: 6 }}>{connMsg}</div>}
         </div>
       )}
 
-      {/* ── Forex.com connection ──────────────────────────────────────────── */}
-      {!isOanda && (
+      {/* ── MT4 Bridge (Forex.com / any MT4 broker) ──────────────────────── */}
+      {broker === 'mt4' && (
         <div style={CARD}>
-          <div style={SEC}>Forex.com Connection</div>
-          <div style={{ fontSize: 11, color: '#64748b', marginBottom: 10, lineHeight: 1.5 }}>
-            Log in with your Forex.com (GAIN Capital) account credentials.
+          <div style={SEC}>MT4 Bridge — Works with Forex.com, IC Markets, any MT4 broker</div>
+          <div style={{ background: '#7c3aed15', border: '1px solid #7c3aed44', borderRadius: 8, padding: 12, marginBottom: 14 }}>
+            <div style={{ fontSize: 12, fontWeight: 600, color: '#a78bfa', marginBottom: 6 }}>How it works</div>
+            <div style={{ fontSize: 11, color: '#94a3b8', lineHeight: 1.8 }}>
+              1. You analyze a trade here → click <strong style={{ color: '#e2e8f0' }}>"Send to MT4"</strong><br/>
+              2. ForexPro writes the signal to GitHub (takes 1 second)<br/>
+              3. The <strong style={{ color: '#e2e8f0' }}>EA running in your MT4</strong> detects the signal within 30s and places the order<br/>
+              4. Works with <strong style={{ color: '#e2e8f0' }}>Forex.com, IC Markets, Pepperstone</strong> — any broker with MT4
+            </div>
           </div>
-          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'flex-end', marginBottom: 12 }}>
-            <div>
-              <div style={{ fontSize: 10, color: '#64748b', marginBottom: 3 }}>Username</div>
-              <input value={fcUser} onChange={e => setFcUser(e.target.value)} placeholder="your@email.com" style={{ ...INP, width: 170 }} />
-            </div>
-            <div>
-              <div style={{ fontSize: 10, color: '#64748b', marginBottom: 3 }}>Password</div>
-              <input type="password" value={fcPass} onChange={e => setFcPass(e.target.value)} placeholder="••••••••" style={{ ...INP, width: 140 }} />
-            </div>
-            <div style={{ display: 'flex', gap: 4 }}>
-              {['demo','live'].map(e => (
-                <button key={e} onClick={() => setFcEnv(e)} style={{ background: fcEnv===e?'#334155':'transparent', border:`1px solid ${fcEnv===e?'#475569':'#1e293b'}`, color: fcEnv===e?'#f8fafc':'#64748b', borderRadius:6, padding:'6px 10px', fontSize:11, cursor:'pointer', textTransform:'capitalize' }}>{e}</button>
-              ))}
-            </div>
-            <button onClick={connectForexCom} style={BTN({ background: fcConnected ? '#166534' : '#7c3aed', color: '#fff' })}>
-              {fcConnected ? '● Connected' : 'Login'}
+
+          <div style={{ fontSize: 11, fontWeight: 600, color: '#64748b', marginBottom: 8, letterSpacing: 1, textTransform: 'uppercase' }}>Step 1 — Install the EA in MT4 Desktop</div>
+          <div style={{ fontSize: 11, color: '#94a3b8', lineHeight: 1.8, marginBottom: 10 }}>
+            Download MT4 from your broker (Forex.com → <em>Platforms → MetaTrader 4</em>)<br/>
+            Then: File → Open Data Folder → MQL4 → Experts → paste the EA file below
+          </div>
+
+          <div style={{ fontSize: 11, fontWeight: 600, color: '#64748b', marginBottom: 8, letterSpacing: 1, textTransform: 'uppercase' }}>Step 2 — EA Code (ForexPro_Bridge.mq4)</div>
+          <div style={{ position: 'relative' }}>
+            <pre style={{ background: '#0f172a', borderRadius: 8, padding: 12, fontSize: 10, color: '#94a3b8', overflow: 'auto', maxHeight: 200, margin: 0, border: '1px solid #334155', lineHeight: 1.5 }}>
+              {MT4_EA_CODE}
+            </pre>
+            <button onClick={() => { navigator.clipboard.writeText(MT4_EA_CODE); setMt4Copied(true); setTimeout(() => setMt4Copied(false), 2000); }}
+              style={{ position: 'absolute', top: 8, right: 8, background: mt4Copied ? '#166534' : '#334155', border: 'none', color: mt4Copied ? '#4ade80' : '#94a3b8', borderRadius: 4, padding: '4px 10px', fontSize: 10, cursor: 'pointer' }}>
+              {mt4Copied ? '✓ Copied' : 'Copy'}
             </button>
           </div>
-          {fcConnected && (
-            <div>
-              <div style={{ fontSize: 12, color: '#22c55e', fontWeight: 600, marginBottom: 6 }}>
-                <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#22c55e', display: 'inline-block', marginRight: 6 }} />
-                Connected · {fcEnv} · {fcUser}
-              </div>
-              {fcAccts.length > 0 && (
-                <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
-                  {fcAccts.map(a => (
-                    <button key={a.TradingAccountId}
-                      onClick={() => { setFcAcctId(String(a.TradingAccountId)); localStorage.setItem('fc_acct', String(a.TradingAccountId)); }}
-                      style={{ fontSize: 10, padding: '3px 10px', borderRadius: 4, cursor: 'pointer',
-                        background: fcAcctId === String(a.TradingAccountId) ? '#1d4ed8' : '#0f172a',
-                        border: `1px solid ${fcAcctId === String(a.TradingAccountId) ? '#2563eb' : '#334155'}`,
-                        color: fcAcctId === String(a.TradingAccountId) ? '#fff' : '#94a3b8' }}>
-                      {a.TradingAccountName || a.TradingAccountId}
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
-          )}
-          {connErr && <div style={{ fontSize: 12, color: '#ef4444', marginTop: 6 }}>{connErr}</div>}
-          {connMsg && <div style={{ fontSize: 12, color: '#94a3b8', marginTop: 6 }}>{connMsg}</div>}
-          <div style={{ fontSize: 10, color: '#475569', marginTop: 10, lineHeight: 1.5 }}>
-            Note: if connection fails due to CORS, use the VPS Bot tab with FOREX_COM credentials instead.
+
+          <div style={{ fontSize: 11, color: '#64748b', marginTop: 10, lineHeight: 1.7 }}>
+            <strong style={{ color: '#f59e0b' }}>⚠️ Required in MT4:</strong><br/>
+            Tools → Options → Expert Advisors → ✓ Allow WebRequest for listed URLs<br/>
+            Add: <code style={{ background: '#0f172a', padding: '1px 6px', borderRadius: 3, color: '#38bdf8' }}>https://raw.githubusercontent.com</code>
           </div>
+        </div>
+      )}
+
+      {/* ── Forex.com Direct (CORS warning) ──────────────────────────────── */}
+      {broker === 'forexcom' && (
+        <div style={CARD}>
+          <div style={SEC}>Forex.com Direct API</div>
+          <div style={{ background: '#450a0a', border: '1px solid #7f1d1d', borderRadius: 8, padding: 12, marginBottom: 12 }}>
+            <div style={{ fontSize: 12, fontWeight: 600, color: '#f87171', marginBottom: 4 }}>Browser CORS Restriction</div>
+            <div style={{ fontSize: 11, color: '#fca5a5', lineHeight: 1.6 }}>
+              Browsers block direct Forex.com API calls for security reasons.<br/>
+              <strong>Use MT4 Bridge tab instead</strong> — it works with your Forex.com MT4 account.
+            </div>
+          </div>
+          <button onClick={() => setBroker('mt4')} style={BTN({ background: '#7c3aed', color: '#fff', width: '100%' })}>
+            Switch to MT4 Bridge →
+          </button>
         </div>
       )}
 
