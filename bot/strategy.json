@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-05-25T18:37:39.747Z",
+  "updatedAt": "2026-05-25T18:40:25.619Z",
   "strategies": [
     {
       "name": "ICT London Long",
@@ -18,7 +18,10 @@
           "enabled": false,
           "comparison": "below",
           "value": 70
-        }
+        },
+        "priceZone": "discount",
+        "obDir": "bullish",
+        "fvgDir": "bullish"
       },
       "risk": {
         "riskPercent": 1,
@@ -27,7 +30,9 @@
         "slPips": 20,
         "tpMethod": "rr",
         "rrRatio": 2,
-        "tpFibLevel": 1.618
+        "tpFibLevel": 1.618,
+        "riskType": "usdt",
+        "riskUsdt": 3
       },
       "id": "strat_001",
       "enabled": true
