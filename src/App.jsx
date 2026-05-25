@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Screener from './components/Screener';
 import AutoTrading from './components/AutoTrading';
 import Backtester from './components/Backtester';
@@ -72,6 +72,13 @@ export default function App() {
   const [showModal, setShowModal]     = useState(false);
   const [realBalance] = useState(2548.30);
   const [demoBalance] = useState(10000.00);
+
+  // Navigate to Strategy tab when triggered from AutoTrading
+  useEffect(() => {
+    const handler = () => setActiveTab('strategy');
+    window.addEventListener('nav-to-strategy-tab', handler);
+    return () => window.removeEventListener('nav-to-strategy-tab', handler);
+  }, []);
 
   // ── Broker state lifted here so it persists on tab switch ─────────────────
   const [brokerConnected, setBrokerConnected]   = useState(false);

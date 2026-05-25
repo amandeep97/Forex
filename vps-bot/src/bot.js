@@ -10,6 +10,7 @@ const {
 
 const STRATEGY_PATH = 'bot/strategy.json';
 const TRADES_PATH   = 'bot/trades.json';
+const CONTROL_PATH  = 'bot/vps-control.json';
 
 class ForexBot {
   constructor(env) {
@@ -29,6 +30,14 @@ class ForexBot {
     this.log('── Tick ──────────────────────');
 
     if (isWeekend()) { this.log('Weekend — skipped'); return; }
+
+    // Check remote control signal
+    const ctrl = await this.github.readJSON(CONTROL_PATH).catch(() => null);
+    const ctrlCmd = ctrl?.content?.command;
+    if (ctrlCmd === 'stopped' || ctrlCmd === 'paused') {
+      this.log(`Bot ${ctrlCmd} by remote control — skipping tick`);
+      return;
+    }
 
     // Load config from GitHub
     const cfgFile = await this.github.readJSON(STRATEGY_PATH).catch(e => { this.err('Config read', e); return null; });

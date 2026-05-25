@@ -1,8 +1,7 @@
-import { useState } from 'react';
-import { STRATEGIES, samplePositions, tradeHistory, SIGNALS, forexPairs } from '../data/forexData';
-import { ghRead, ghWrite } from '../utils/githubSync';
+import { useState, useEffect, useCallback } from 'react';
+import { ghRead, ghWrite, isGithubConfigured } from '../utils/githubSync';
 
-// ── OANDA helpers (browser-direct) ───────────────────────────────────────────
+// ── OANDA helpers ─────────────────────────────────────────────────────────────
 const oandaBase = (env) =>
   env === 'live'
     ? 'https://api-fxtrade.oanda.com/v3'
@@ -29,893 +28,675 @@ async function fetchOandaCandles(apiKey, env, instrument, count = 100) {
 function analyzeCandles(candles) {
   if (candles.length < 20) return null;
   const n = candles.length;
-
-  // ATR(14)
   let atrSum = 0;
   for (let i = n - 14; i < n; i++) atrSum += candles[i].h - candles[i].l;
   const atr = atrSum / 14;
-
-  const cp = candles[n - 1].c;
-
-  // Swing high/low over last 50
+  const cp  = candles[n - 1].c;
   const win = candles.slice(Math.max(0, n - 50));
   let sH = -Infinity, sL = Infinity;
   for (let i = 2; i < win.length - 2; i++) {
-    if (win[i].h > win[i-1].h && win[i].h > win[i-2].h && win[i].h > win[i+1].h && win[i].h > win[i+2].h)
-      sH = Math.max(sH, win[i].h);
-    if (win[i].l < win[i-1].l && win[i].l < win[i-2].l && win[i].l < win[i+1].l && win[i].l < win[i+2].l)
-      sL = Math.min(sL, win[i].l);
+    if (win[i].h > win[i-1].h && win[i].h > win[i-2].h && win[i].h > win[i+1].h && win[i].h > win[i+2].h) sH = Math.max(sH, win[i].h);
+    if (win[i].l < win[i-1].l && win[i].l < win[i-2].l && win[i].l < win[i+1].l && win[i].l < win[i+2].l) sL = Math.min(sL, win[i].l);
   }
   if (sH === -Infinity) sH = Math.max(...win.map(c => c.h));
   if (sL === Infinity)  sL = Math.min(...win.map(c => c.l));
-
-  // Bias from last 6 candles (HH/HL = bullish, LL/LH = bearish)
-  const last6 = candles.slice(n - 6);
-  const hArr  = last6.map(c => c.h);
-  const lArr  = last6.map(c => c.l);
-  const structure =
-    hArr[5] > hArr[3] && hArr[3] > hArr[1] ? 'bullish' :
-    hArr[5] < hArr[3] && hArr[3] < hArr[1] ? 'bearish' : 'ranging';
-
+  const h6  = candles.slice(n - 6).map(c => c.h);
+  const structure = h6[5] > h6[3] && h6[3] > h6[1] ? 'bullish' : h6[5] < h6[3] && h6[3] < h6[1] ? 'bearish' : 'ranging';
   if (structure === 'ranging') return { dir: null, structure, cp, atr };
-
-  const dir = structure === 'bullish' ? 'LONG' : 'SHORT';
-  const slBuf = atr * 0.5;
-  const sl    = dir === 'LONG' ? sL - slBuf : sH + slBuf;
+  const dir   = structure === 'bullish' ? 'LONG' : 'SHORT';
+  const sl    = dir === 'LONG' ? sL - atr * 0.5 : sH + atr * 0.5;
   const dist  = Math.abs(cp - sl);
   if (dist <= 0) return null;
-  const tp  = dir === 'LONG' ? cp + dist * 2 : cp - dist * 2;
-  const rr  = (Math.abs(tp - cp) / dist).toFixed(1);
-
-  return { dir, structure, cp, sl, tp, rr, atr };
+  const tp = dir === 'LONG' ? cp + dist * 2 : cp - dist * 2;
+  return { dir, structure, cp, sl, tp, rr: (Math.abs(tp - cp) / dist).toFixed(1), atr };
 }
 
-// ── App Bot panel ─────────────────────────────────────────────────────────────
-const APP_BOT_PAIRS = [
-  'EUR_USD','GBP_USD','USD_JPY','USD_CHF','AUD_USD',
-  'NZD_USD','USD_CAD','XAU_USD','GBP_JPY','EUR_JPY',
-];
+// ── Shared ────────────────────────────────────────────────────────────────────
+function Toggle({ checked, onChange }) {
+  return (
+    <div
+      onClick={() => onChange(!checked)}
+      style={{ width: 44, height: 24, borderRadius: 12, cursor: 'pointer', position: 'relative', background: checked ? '#2563eb' : '#334155', transition: 'background 0.2s', flexShrink: 0 }}
+    >
+      <div style={{ position: 'absolute', top: 2, left: checked ? 22 : 2, width: 20, height: 20, borderRadius: '50%', background: '#fff', transition: 'left 0.2s' }} />
+    </div>
+  );
+}
 
-function AppBotPanel() {
-  const [apiKey,     setApiKey]     = useState(() => localStorage.getItem('oanda_key')  || '');
-  const [accountId,  setAccountId]  = useState(() => localStorage.getItem('oanda_acct') || '');
-  const [env,        setEnv]        = useState(() => localStorage.getItem('oanda_env')  || 'practice');
-  const [pair,       setPair]       = useState('EUR_USD');
-  const [signal,     setSignal]     = useState(null);
-  const [editEntry,  setEditEntry]  = useState('');
-  const [editSL,     setEditSL]     = useState('');
-  const [editTP,     setEditTP]     = useState('');
-  const [analyzing,  setAnalyzing]  = useState(false);
-  const [placing,    setPlacing]    = useState(false);
-  const [statusMsg,  setStatusMsg]  = useState('');
-  const [errMsg,     setErrMsg]     = useState('');
+const INP = { background: '#0f172a', border: '1px solid #334155', color: '#e2e8f0', borderRadius: 6, padding: '6px 10px', fontSize: 12 };
+const BTN = (extra) => ({ border: 'none', borderRadius: 6, padding: '7px 16px', fontSize: 12, cursor: 'pointer', fontWeight: 600, ...extra });
+const CARD = { background: '#1e293b', borderRadius: 10, padding: 16, border: '1px solid #334155', marginBottom: 12 };
+const SECTION = { fontSize: 11, fontWeight: 600, color: '#64748b', letterSpacing: 1, textTransform: 'uppercase', marginBottom: 12 };
 
-  const saveCredentials = () => {
-    localStorage.setItem('oanda_key',  apiKey);
-    localStorage.setItem('oanda_acct', accountId);
-    localStorage.setItem('oanda_env',  env);
-    setStatusMsg('Credentials saved');
-    setTimeout(() => setStatusMsg(''), 2000);
+const APP_PAIRS = ['EUR_USD','GBP_USD','USD_JPY','USD_CHF','AUD_USD','NZD_USD','USD_CAD','XAU_USD','GBP_JPY','EUR_JPY'];
+function dp(pair) { return pair?.includes('JPY') ? 3 : pair?.includes('XAU') ? 2 : 5; }
+function fmtPx(v, pair) { return v != null ? Number(v).toFixed(dp(pair)) : '—'; }
+function fmtTime(iso) { return iso ? new Date(iso).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : '—'; }
+
+// ── Connect Exchange tab ──────────────────────────────────────────────────────
+function ConnectTab({ onLog }) {
+  const [apiKey,    setApiKey]    = useState(() => localStorage.getItem('oanda_key')  || '');
+  const [accountId, setAccountId] = useState(() => localStorage.getItem('oanda_acct') || '');
+  const [env,       setEnv]       = useState(() => localStorage.getItem('oanda_env')  || 'practice');
+  const [connected, setConnected] = useState(false);
+  const [acctInfo,  setAcctInfo]  = useState(null);
+  const [pair,      setPair]      = useState('EUR_USD');
+  const [signal,    setSignal]    = useState(null);
+  const [editEntry, setEditEntry] = useState('');
+  const [editSL,    setEditSL]    = useState('');
+  const [editTP,    setEditTP]    = useState('');
+  const [analyzing, setAnalyzing] = useState(false);
+  const [placing,   setPlacing]   = useState(false);
+  const [connMsg,   setConnMsg]   = useState('');
+  const [tradeMsg,  setTradeMsg]  = useState('');
+  const [connErr,   setConnErr]   = useState('');
+  const [tradeErr,  setTradeErr]  = useState('');
+
+  const connect = async () => {
+    if (!apiKey || !accountId) { setConnErr('Enter API key and Account ID'); return; }
+    setConnErr(''); setConnMsg('Connecting…');
+    try {
+      const res = await fetch(`${oandaBase(env)}/accounts/${accountId}/summary`, {
+        headers: { Authorization: `Bearer ${apiKey}` }
+      });
+      if (!res.ok) throw new Error(`OANDA ${res.status}`);
+      const { account } = await res.json();
+      localStorage.setItem('oanda_key', apiKey);
+      localStorage.setItem('oanda_acct', accountId);
+      localStorage.setItem('oanda_env', env);
+      setAcctInfo({ balance: account.balance, currency: account.currency, pl: account.pl });
+      setConnected(true); setConnMsg('');
+      onLog?.('SUCCESS', `Connected to OANDA ${env} — ${account.currency} ${parseFloat(account.balance).toFixed(2)}`);
+    } catch (e) {
+      setConnErr(e.message); setConnMsg('');
+    }
   };
 
   const analyze = async () => {
-    if (!apiKey || !accountId) { setErrMsg('Enter OANDA credentials first'); return; }
-    setAnalyzing(true); setErrMsg(''); setSignal(null);
+    if (!apiKey) { setTradeErr('Connect OANDA first'); return; }
+    setAnalyzing(true); setTradeErr(''); setSignal(null);
     try {
       const candles = await fetchOandaCandles(apiKey, env, pair);
       const sig = analyzeCandles(candles);
-      if (!sig || !sig.dir) {
-        setErrMsg('Market ranging — no clear SMC signal on H1');
+      if (!sig?.dir) {
+        setTradeErr('Market ranging — no clear SMC signal on H1');
       } else {
         setSignal(sig);
-        const dp = pair.includes('JPY') ? 3 : pair.includes('XAU') ? 2 : 5;
-        setEditEntry(sig.cp.toFixed(dp));
-        setEditSL(sig.sl.toFixed(dp));
-        setEditTP(sig.tp.toFixed(dp));
+        const d = dp(pair);
+        setEditEntry(sig.cp.toFixed(d)); setEditSL(sig.sl.toFixed(d)); setEditTP(sig.tp.toFixed(d));
+        onLog?.('INFO', `Signal: ${sig.dir} ${pair.replace('_','/')} · ${sig.structure} · R:R 1:${sig.rr}`);
       }
-    } catch (e) {
-      setErrMsg(e.message);
-    } finally {
-      setAnalyzing(false);
-    }
+    } catch (e) { setTradeErr(e.message); }
+    finally { setAnalyzing(false); }
   };
 
   const placeOrder = async () => {
     if (!signal || !apiKey || !accountId) return;
-    setPlacing(true); setErrMsg('');
+    setPlacing(true); setTradeErr('');
     try {
-      const entry = parseFloat(editEntry);
-      const sl    = parseFloat(editSL);
-      const tp    = parseFloat(editTP);
-      if (isNaN(sl) || isNaN(tp)) throw new Error('Invalid SL or TP value');
-
-      const dp    = pair.includes('JPY') ? 3 : pair.includes('XAU') ? 2 : 5;
+      const sl = parseFloat(editSL), tp = parseFloat(editTP), entry = parseFloat(editEntry);
+      if (isNaN(sl) || isNaN(tp)) throw new Error('Invalid SL or TP');
+      const d = dp(pair);
       const units = signal.dir === 'LONG' ? '1000' : '-1000';
-
-      const body = {
-        order: {
-          type: 'MARKET',
-          instrument: pair,
-          units,
-          stopLossOnFill:   { price: sl.toFixed(dp) },
-          takeProfitOnFill: { price: tp.toFixed(dp) },
-        },
-      };
-
       const res = await fetch(`${oandaBase(env)}/accounts/${accountId}/orders`, {
-        method:  'POST',
+        method: 'POST',
         headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
-        body:    JSON.stringify(body),
+        body: JSON.stringify({ order: { type: 'MARKET', instrument: pair, units, stopLossOnFill: { price: sl.toFixed(d) }, takeProfitOnFill: { price: tp.toFixed(d) } } }),
       });
       const json = await res.json();
       if (!res.ok) throw new Error(json.errorMessage || `OANDA ${res.status}`);
-
-      const tradeId = json.orderFillTransaction?.tradeOpened?.tradeID
-        || json.relatedTransactionIDs?.[0]
-        || '—';
-
-      // Log to bot/trades.json via GitHub
+      const tradeId = json.orderFillTransaction?.tradeOpened?.tradeID || json.relatedTransactionIDs?.[0] || '—';
+      // Log trade to GitHub
       try {
-        const ghData   = await ghRead('bot/trades.json');
-        const tradeLog = ghData?.content?.trades || [];
-        tradeLog.push({
-          id:          `app_${Date.now()}`,
-          source:      'app_bot',
-          pair,
-          direction:   signal.dir,
-          entryPrice:  entry,
-          slPrice:     sl,
-          tpPrice:     tp,
-          units:       parseInt(units),
-          oandaTradeId: tradeId,
-          openTime:    new Date().toISOString(),
-          status:      'OPEN',
-          structure:   signal.structure,
-          rr:          parseFloat(signal.rr),
-        });
-        await ghWrite(
-          'bot/trades.json',
-          { trades: tradeLog },
-          `App bot: ${signal.dir} ${pair}`,
-          ghData?.sha || null
-        );
-      } catch (logErr) {
-        console.warn('Trade log failed:', logErr.message);
-      }
-
-      setStatusMsg(`Order placed — Trade ID: ${tradeId}`);
+        const ghData = await ghRead('bot/trades.json');
+        const log = ghData?.content?.trades || [];
+        log.push({ id: `app_${Date.now()}`, source: 'app_bot', pair, direction: signal.dir, entryPrice: entry, slPrice: sl, tpPrice: tp, units: parseInt(units), oandaTradeId: tradeId, openTime: new Date().toISOString(), status: 'OPEN', structure: signal.structure, rr: parseFloat(signal.rr) });
+        await ghWrite('bot/trades.json', { trades: log }, `App bot: ${signal.dir} ${pair}`, ghData?.sha || null);
+      } catch (logErr) { console.warn('Trade log:', logErr.message); }
+      onLog?.('TRADE', `Placing ${signal.dir} ${pair.replace('_','/')} @ ${editEntry} | SL: ${editSL} | TP: ${editTP}`);
+      onLog?.('SUCCESS', `Order confirmed — Trade ID: ${tradeId}`);
+      setTradeMsg(`Order placed — ID: ${tradeId}`);
       setSignal(null);
+      setTimeout(() => setTradeMsg(''), 5000);
     } catch (e) {
-      setErrMsg(e.message);
-    } finally {
-      setPlacing(false);
-    }
+      setTradeErr(e.message);
+      onLog?.('ERROR', e.message);
+    } finally { setPlacing(false); }
   };
 
   return (
-    <div style={{ background: '#1e293b', borderRadius: 8, padding: 16, marginBottom: 16, border: '1px solid #334155' }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 14 }}>
-        <span style={{ fontSize: 13, fontWeight: 700, color: '#f8fafc' }}>🤖 App Bot</span>
-        <span style={{ fontSize: 10, color: '#64748b', background: '#0f172a', padding: '2px 8px', borderRadius: 4 }}>
-          Manual SMC · OANDA Direct
-        </span>
-      </div>
-
-      {/* Credentials row */}
-      <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 12, alignItems: 'flex-end' }}>
-        <div>
-          <div style={{ fontSize: 10, color: '#64748b', marginBottom: 3 }}>OANDA API Key</div>
-          <input
-            type="password"
-            value={apiKey}
-            onChange={e => setApiKey(e.target.value)}
-            placeholder="Bearer token…"
-            style={{ background: '#0f172a', border: '1px solid #334155', color: '#e2e8f0', borderRadius: 6, padding: '5px 10px', fontSize: 12, width: 180 }}
-          />
-        </div>
-        <div>
-          <div style={{ fontSize: 10, color: '#64748b', marginBottom: 3 }}>Account ID</div>
-          <input
-            value={accountId}
-            onChange={e => setAccountId(e.target.value)}
-            placeholder="001-001-…"
-            style={{ background: '#0f172a', border: '1px solid #334155', color: '#e2e8f0', borderRadius: 6, padding: '5px 10px', fontSize: 12, width: 140 }}
-          />
-        </div>
-        <div style={{ display: 'flex', gap: 4 }}>
-          {['practice', 'live'].map(e => (
-            <button
-              key={e}
-              onClick={() => setEnv(e)}
-              style={{
-                background: env === e ? '#334155' : 'transparent',
-                border: `1px solid ${env === e ? '#475569' : '#1e293b'}`,
-                color: env === e ? '#f8fafc' : '#64748b',
-                borderRadius: 6, padding: '5px 10px', fontSize: 11, cursor: 'pointer', textTransform: 'capitalize',
-              }}
-            >
-              {e}
-            </button>
-          ))}
-        </div>
-        <button
-          onClick={saveCredentials}
-          style={{ background: '#1d4ed8', border: 'none', color: '#fff', borderRadius: 6, padding: '6px 12px', fontSize: 11, cursor: 'pointer' }}
-        >
-          Save
-        </button>
-      </div>
-
-      {/* Pair + Analyze */}
-      <div style={{ display: 'flex', gap: 8, alignItems: 'center', flexWrap: 'wrap' }}>
-        <select
-          value={pair}
-          onChange={e => { setPair(e.target.value); setSignal(null); setErrMsg(''); }}
-          style={{ background: '#0f172a', border: '1px solid #334155', color: '#e2e8f0', borderRadius: 6, padding: '6px 10px', fontSize: 12 }}
-        >
-          {APP_BOT_PAIRS.map(p => (
-            <option key={p} value={p}>{p.replace('_', '/')}</option>
-          ))}
-        </select>
-        <button
-          onClick={analyze}
-          disabled={analyzing}
-          style={{ background: '#0ea5e9', border: 'none', color: '#fff', borderRadius: 6, padding: '7px 16px', fontSize: 12, cursor: 'pointer', fontWeight: 600 }}
-        >
-          {analyzing ? 'Analyzing…' : 'Analyze H1'}
-        </button>
-        {statusMsg && <span style={{ fontSize: 11, color: '#22c55e' }}>{statusMsg}</span>}
-        {errMsg    && <span style={{ fontSize: 11, color: '#ef4444' }}>{errMsg}</span>}
-      </div>
-
-      {/* Signal card */}
-      {signal && (
-        <div style={{
-          marginTop: 14, background: '#0f172a', borderRadius: 8, padding: 14,
-          border: `1px solid ${signal.dir === 'LONG' ? '#166534' : '#7f1d1d'}`,
-        }}>
-          <div style={{ display: 'flex', gap: 12, alignItems: 'center', marginBottom: 12 }}>
-            <span style={{ fontSize: 18, fontWeight: 700, color: signal.dir === 'LONG' ? '#22c55e' : '#ef4444' }}>
-              {signal.dir === 'LONG' ? '▲ LONG' : '▼ SHORT'}
-            </span>
-            <span style={{ fontSize: 11, color: '#94a3b8' }}>{pair.replace('_', '/')} · H1 · {signal.structure}</span>
-            <span style={{ fontSize: 11, color: '#a78bfa' }}>R:R 1:{signal.rr}</span>
+    <div style={{ padding: 16 }}>
+      {/* OANDA connection */}
+      <div style={{ ...CARD }}>
+        <div style={SECTION}>OANDA Connection</div>
+        <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'flex-end', marginBottom: 12 }}>
+          <div>
+            <div style={{ fontSize: 10, color: '#64748b', marginBottom: 3 }}>API Key</div>
+            <input type="password" value={apiKey} onChange={e => setApiKey(e.target.value)} placeholder="Bearer token…" style={{ ...INP, width: 180 }} />
           </div>
-          <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', alignItems: 'flex-end' }}>
-            {[
-              { label: 'Entry',       value: editEntry, setter: setEditEntry, color: '#94a3b8' },
-              { label: 'Stop Loss',   value: editSL,    setter: setEditSL,    color: '#ef4444' },
-              { label: 'Take Profit', value: editTP,    setter: setEditTP,    color: '#22c55e' },
-            ].map(({ label, value, setter, color }) => (
-              <div key={label}>
-                <div style={{ fontSize: 10, color: '#64748b', marginBottom: 3 }}>{label}</div>
-                <input
-                  value={value}
-                  onChange={e => setter(e.target.value)}
-                  style={{ background: '#1e293b', border: `1px solid ${color}55`, color, borderRadius: 6, padding: '5px 10px', fontSize: 12, width: 110, fontFamily: 'monospace' }}
-                />
-              </div>
+          <div>
+            <div style={{ fontSize: 10, color: '#64748b', marginBottom: 3 }}>Account ID</div>
+            <input value={accountId} onChange={e => setAccountId(e.target.value)} placeholder="001-001-…" style={{ ...INP, width: 140 }} />
+          </div>
+          <div style={{ display: 'flex', gap: 4 }}>
+            {['practice','live'].map(e => (
+              <button key={e} onClick={() => setEnv(e)} style={{ background: env===e ? '#334155' : 'transparent', border: `1px solid ${env===e ? '#475569' : '#1e293b'}`, color: env===e ? '#f8fafc' : '#64748b', borderRadius: 6, padding: '6px 10px', fontSize: 11, cursor: 'pointer', textTransform: 'capitalize' }}>{e}</button>
             ))}
-            <button
-              onClick={placeOrder}
-              disabled={placing}
-              style={{
-                background: signal.dir === 'LONG' ? '#166534' : '#7f1d1d',
-                border: `1px solid ${signal.dir === 'LONG' ? '#22c55e' : '#ef4444'}`,
-                color: signal.dir === 'LONG' ? '#22c55e' : '#ef4444',
-                borderRadius: 6, padding: '8px 18px', fontSize: 12, cursor: 'pointer', fontWeight: 700,
-              }}
-            >
-              {placing ? 'Placing…' : `Place ${signal.dir} Order`}
-            </button>
-            <button
-              onClick={() => setSignal(null)}
-              style={{ background: 'transparent', border: '1px solid #334155', color: '#64748b', borderRadius: 6, padding: '8px 12px', fontSize: 11, cursor: 'pointer' }}
-            >
-              Cancel
-            </button>
           </div>
-        </div>
-      )}
-    </div>
-  );
-}
-
-// ── Broker definitions ────────────────────────────────────────────────────────
-const BROKERS = [
-  {
-    id: 'forexcom',
-    name: 'Forex.com',
-    logo: '🏦',
-    tag: 'RECOMMENDED',
-    tagColor: '#00d4aa',
-    fields: 'both',     // supports login AND api
-    url: 'forex.com',
-  },
-  {
-    id: 'mt5',
-    name: 'MetaTrader 5',
-    logo: '📊',
-    fields: 'mt',
-    hint: 'Use your MT5 broker server, login and investor/trading password.',
-  },
-  {
-    id: 'mt4',
-    name: 'MetaTrader 4',
-    logo: '📈',
-    fields: 'mt',
-    hint: 'Use your MT4 broker server, login and trading password.',
-  },
-  {
-    id: 'ctrader',
-    name: 'cTrader',
-    logo: '🔷',
-    fields: 'api',
-    hint: 'Use your cTrader Open API credentials.',
-  },
-  {
-    id: 'oanda',
-    name: 'OANDA',
-    logo: '🌐',
-    fields: 'api',
-    hint: 'Get your API token from OANDA → Manage API Access.',
-  },
-  {
-    id: 'ib',
-    name: 'Interactive Brokers',
-    logo: '🏛️',
-    fields: 'mt',
-    hint: 'Requires TWS or IB Gateway running locally.',
-  },
-];
-
-function BrokerPanel({ brokerState }) {
-  const [selectedBroker, setSelectedBroker] = useState(BROKERS[0]);
-
-  // Use lifted state from App so it persists across tab switches
-  const env        = brokerState.env;
-  const setEnv     = brokerState.setEnv;
-  const authMethod = brokerState.authMethod;
-  const setAuthMethod = brokerState.setAuthMethod;
-  const connected  = brokerState.connected;
-  const setConnected = (v) => {
-    brokerState.setConnected(v);
-    if (v) brokerState.setName(selectedBroker.name);
-  };
-
-  // Local form fields (these don't need to persist)
-  const [username, setUsername]   = useState('');
-  const [password, setPassword]   = useState('');
-  const [server, setServer]       = useState('');
-  const [apiKey, setApiKey]       = useState('');
-  const [accountId, setAccountId] = useState('');
-  const [connecting, setConnecting] = useState(false);
-  const [showPicker, setShowPicker] = useState(false);
-
-  const isBoth = selectedBroker.fields === 'both';
-  const isApi  = selectedBroker.fields === 'api' || (isBoth && authMethod === 'api');
-  const isMt   = selectedBroker.fields === 'mt';
-
-  const canConnect = isApi
-    ? apiKey.trim() && accountId.trim()
-    : username.trim() && password.trim();
-
-  const handleConnect = () => {
-    if (!canConnect) return;
-    setConnecting(true);
-    setTimeout(() => { setConnecting(false); setConnected(true); setShowPicker(false); }, 2000);
-  };
-
-  const handleDisconnect = () => {
-    brokerState.setConnected(false);
-    brokerState.setName('');
-    setUsername(''); setPassword(''); setServer('');
-    setApiKey(''); setAccountId('');
-  };
-
-  const handleBrokerSelect = (b) => {
-    setSelectedBroker(b);
-    setAuthMethod('login');
-    setShowPicker(false);
-    setConnected(false);
-    setUsername(''); setPassword(''); setServer('');
-    setApiKey(''); setAccountId('');
-  };
-
-  return (
-    <div className="broker-panel">
-      <div className="panel-title" style={{ color: '#f97316' }}>
-        ⚡ Broker Connection
-        {connected && <span className="broker-connected-badge">● Connected</span>}
-      </div>
-
-      {/* Broker selector button */}
-      <div className="broker-selector-btn" onClick={() => !connected && setShowPicker(p => !p)}>
-        <span style={{ fontSize: 18 }}>{selectedBroker.logo}</span>
-        <div style={{ flex: 1 }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-            <span style={{ fontWeight: 600, color: 'var(--text)', fontSize: 13 }}>{selectedBroker.name}</span>
-            {selectedBroker.tag && (
-              <span className="broker-tag" style={{ borderColor: selectedBroker.tagColor, color: selectedBroker.tagColor }}>
-                {selectedBroker.tag}
-              </span>
-            )}
-          </div>
-          {selectedBroker.url && (
-            <span style={{ fontSize: 10, color: 'var(--text3)' }}>{selectedBroker.url}</span>
-          )}
-        </div>
-        {!connected && <span style={{ color: 'var(--text3)', fontSize: 11 }}>▾</span>}
-      </div>
-
-      {/* Broker picker dropdown */}
-      {showPicker && (
-        <div className="broker-picker">
-          {BROKERS.map(b => (
-            <div
-              key={b.id}
-              className={`broker-picker-item ${selectedBroker.id === b.id ? 'selected' : ''}`}
-              onClick={() => handleBrokerSelect(b)}
-            >
-              <span style={{ fontSize: 16 }}>{b.logo}</span>
-              <div>
-                <div style={{ fontWeight: 600, fontSize: 12, color: 'var(--text)' }}>{b.name}</div>
-              </div>
-              {b.tag && (
-                <span className="broker-tag" style={{ marginLeft: 'auto', borderColor: b.tagColor, color: b.tagColor }}>
-                  {b.tag}
-                </span>
-              )}
-            </div>
-          ))}
-        </div>
-      )}
-
-      {connected ? (
-        <div className="broker-connected-info">
-          <div className="broker-row"><span>Broker</span><strong>{selectedBroker.name}</strong></div>
-          <div className="broker-row"><span>Mode</span><strong style={{ color: env === 'live' ? '#22c55e' : '#0ea5e9' }}>{env === 'live' ? '● Live' : '● Demo'}</strong></div>
-          <div className="broker-row"><span>Auth</span><strong>{isApi ? 'API Key' : 'Login'}</strong></div>
-          {isApi
-            ? <div className="broker-row"><span>Account</span><strong>{accountId}</strong></div>
-            : <div className="broker-row"><span>Username</span><strong>{username}</strong></div>
-          }
-          <div className="broker-row"><span>Status</span><strong style={{ color: '#22c55e' }}>● Active</strong></div>
-          <button className="broker-disconnect-btn" onClick={handleDisconnect}>Disconnect</button>
-        </div>
-      ) : (
-        <div className="broker-form">
-
-          {/* Live / Demo environment toggle */}
-          <div className="broker-env-row">
-            <button className={`env-btn ${env === 'live' ? 'active' : ''}`} onClick={() => setEnv('live')}>Live</button>
-            <button className={`env-btn ${env === 'demo' ? 'active' : ''}`} onClick={() => setEnv('demo')}>Demo</button>
-          </div>
-
-          {/* Login / API method toggle — shown only for Forex.com (both) */}
-          {isBoth && (
-            <div className="auth-method-row">
-              <button
-                className={`auth-method-btn ${authMethod === 'login' ? 'active' : ''}`}
-                onClick={() => setAuthMethod('login')}
-              >
-                🔑 Login
-              </button>
-              <button
-                className={`auth-method-btn ${authMethod === 'api' ? 'active' : ''}`}
-                onClick={() => setAuthMethod('api')}
-              >
-                ⚙️ API Key
-              </button>
-            </div>
-          )}
-
-          {/* Fields */}
-          {isApi ? (
-            <>
-              <div className="field">
-                <label className="field-label">API Key</label>
-                <input className="field-input" placeholder="Paste your API key…" value={apiKey} onChange={e => setApiKey(e.target.value)} />
-              </div>
-              <div className="field">
-                <label className="field-label">Account ID</label>
-                <input className="field-input" placeholder="e.g. 001-001-1234567-001" value={accountId} onChange={e => setAccountId(e.target.value)} />
-              </div>
-              <p className="broker-hint">Get API Key from Forex.com → My Account → API Access.</p>
-            </>
-          ) : (
-            <>
-              <div className="field">
-                <label className="field-label">Username / Email</label>
-                <input className="field-input" placeholder="Your Forex.com username" value={username} onChange={e => setUsername(e.target.value)} />
-              </div>
-              <div className="field">
-                <label className="field-label">Password</label>
-                <input className="field-input" type="password" placeholder="••••••••" value={password} onChange={e => setPassword(e.target.value)} />
-              </div>
-              {isMt && (
-                <div className="field">
-                  <label className="field-label">Server</label>
-                  <input className="field-input" placeholder="e.g. Forex-Live01" value={server} onChange={e => setServer(e.target.value)} />
-                </div>
-              )}
-              <p className="broker-hint">Use your Forex.com account login credentials.</p>
-            </>
-          )}
-
-          <button className="broker-connect-btn" onClick={handleConnect} disabled={connecting || !canConnect}>
-            {connecting ? 'Connecting…' : `Connect to ${selectedBroker.name}`}
+          <button onClick={connect} style={BTN({ background: connected ? '#166534' : '#1d4ed8', color: '#fff' })}>
+            {connected ? '● Connected' : 'Connect'}
           </button>
         </div>
+        {connected && acctInfo && (
+          <div style={{ display: 'flex', gap: 16, fontSize: 12 }}>
+            <span style={{ color: '#64748b' }}>Balance: <strong style={{ color: '#22c55e' }}>{acctInfo.currency} {parseFloat(acctInfo.balance).toLocaleString()}</strong></span>
+            <span style={{ color: '#64748b' }}>P&L: <strong style={{ color: parseFloat(acctInfo.pl)>=0 ? '#22c55e' : '#ef4444' }}>{parseFloat(acctInfo.pl)>=0?'+':''}{parseFloat(acctInfo.pl).toFixed(2)}</strong></span>
+            <span style={{ color: '#22c55e', fontWeight: 600 }}>● {env}</span>
+          </div>
+        )}
+        {connErr && <div style={{ fontSize: 12, color: '#ef4444', marginTop: 6 }}>{connErr}</div>}
+        {connMsg && <div style={{ fontSize: 12, color: '#94a3b8', marginTop: 6 }}>{connMsg}</div>}
+      </div>
+
+      {/* Manual trade */}
+      <div style={{ ...CARD }}>
+        <div style={SECTION}>Manual SMC Trade</div>
+        <div style={{ display: 'flex', gap: 8, alignItems: 'center', flexWrap: 'wrap', marginBottom: 12 }}>
+          <select value={pair} onChange={e => { setPair(e.target.value); setSignal(null); setTradeErr(''); }} style={INP}>
+            {APP_PAIRS.map(p => <option key={p} value={p}>{p.replace('_','/')}</option>)}
+          </select>
+          <button onClick={analyze} disabled={analyzing} style={BTN({ background: '#0ea5e9', color: '#fff' })}>
+            {analyzing ? 'Analyzing…' : 'Analyze H1'}
+          </button>
+          {tradeMsg && <span style={{ fontSize: 11, color: '#22c55e' }}>{tradeMsg}</span>}
+          {!signal && tradeErr && <span style={{ fontSize: 11, color: '#ef4444' }}>{tradeErr}</span>}
+        </div>
+        {signal && (
+          <div style={{ background: '#0f172a', borderRadius: 8, padding: 14, border: `1px solid ${signal.dir==='LONG'?'#166534':'#7f1d1d'}` }}>
+            <div style={{ display: 'flex', gap: 10, alignItems: 'center', marginBottom: 12 }}>
+              <span style={{ fontSize: 15, fontWeight: 700, color: signal.dir==='LONG' ? '#22c55e' : '#ef4444' }}>
+                {signal.dir==='LONG' ? '▲ LONG' : '▼ SHORT'}
+              </span>
+              <span style={{ fontSize: 11, color: '#94a3b8' }}>{pair.replace('_','/')} · H1 · {signal.structure}</span>
+              <span style={{ fontSize: 11, color: '#a78bfa', marginLeft: 'auto' }}>R:R 1:{signal.rr}</span>
+            </div>
+            <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', alignItems: 'flex-end' }}>
+              {[{l:'Entry',v:editEntry,s:setEditEntry,c:'#94a3b8'},{l:'Stop Loss',v:editSL,s:setEditSL,c:'#ef4444'},{l:'Take Profit',v:editTP,s:setEditTP,c:'#22c55e'}].map(({l,v,s,c}) => (
+                <div key={l}>
+                  <div style={{ fontSize: 10, color: '#64748b', marginBottom: 3 }}>{l}</div>
+                  <input value={v} onChange={e => s(e.target.value)} style={{ background: '#1e293b', border: `1px solid ${c}55`, color: c, borderRadius: 6, padding: '6px 10px', fontSize: 12, width: 110, fontFamily: 'monospace' }} />
+                </div>
+              ))}
+              <button onClick={placeOrder} disabled={placing} style={BTN({ background: signal.dir==='LONG'?'#166534':'#7f1d1d', border: `1px solid ${signal.dir==='LONG'?'#22c55e':'#ef4444'}`, color: signal.dir==='LONG'?'#22c55e':'#ef4444' })}>
+                {placing ? 'Placing…' : `Place ${signal.dir}`}
+              </button>
+              <button onClick={() => setSignal(null)} style={{ background: 'transparent', border: '1px solid #334155', color: '#64748b', borderRadius: 6, padding: '7px 12px', fontSize: 11, cursor: 'pointer' }}>Cancel</button>
+            </div>
+            {tradeErr && <div style={{ fontSize: 12, color: '#ef4444', marginTop: 8 }}>{tradeErr}</div>}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+// ── Strategies tab ────────────────────────────────────────────────────────────
+function condChips(cond) {
+  const chips = [];
+  const dir = cond?.structure;
+  if (dir) chips.push(`Price Zone == ${dir === 'bullish' ? 'discount' : 'premium'}`);
+  if (cond?.requireBOS) chips.push('BOS Required');
+  if (cond?.requireOB)  chips.push(`OB (Order Block) == ${dir || 'any'}`);
+  if (cond?.requireFVG) chips.push(`FVG (Fair Value Gap) == ${dir || 'any'}`);
+  if (cond?.requireOTE) chips.push(`OTE ${dir === 'bullish' ? 'Bullish' : dir === 'bearish' ? 'Bearish' : ''} Zone is_true`);
+  if (cond?.rsiFilter?.enabled) chips.push(`RSI ${cond.rsiFilter.comparison} ${cond.rsiFilter.value}`);
+  if (cond?.sessions?.length)   chips.push(`Session == ${cond.sessions.join(' / ')}`);
+  return chips;
+}
+
+function StrategiesTab({ onLog }) {
+  const [strategies, setStrategies] = useState([]);
+  const [loading,    setLoading]    = useState(false);
+  const [saving,     setSaving]     = useState(null);
+  const [error,      setError]      = useState('');
+
+  useEffect(() => {
+    async function load() {
+      setLoading(true); setError('');
+      try {
+        const data = await ghRead('bot/strategy.json');
+        setStrategies(data?.content?.strategies || []);
+      } catch (e) { setError(e.message); }
+      finally { setLoading(false); }
+    }
+    load();
+  }, []);
+
+  const toggleStrategy = async (id, enabled) => {
+    setSaving(id);
+    const prev = strategies;
+    const updated = strategies.map(s => s.id === id ? { ...s, enabled } : s);
+    setStrategies(updated);
+    try {
+      const ghData = await ghRead('bot/strategy.json');
+      const content = { ...(ghData?.content || {}), strategies: updated };
+      await ghWrite('bot/strategy.json', content, `${enabled?'Enable':'Disable'} strategy ${id}`, ghData?.sha || null);
+      onLog?.('INFO', `Strategy ${id} ${enabled ? 'enabled' : 'disabled'}`);
+    } catch (e) {
+      setStrategies(prev);
+      setError(e.message);
+    } finally { setSaving(null); }
+  };
+
+  return (
+    <div style={{ padding: 16 }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 14 }}>
+        <p style={{ margin: 0, fontSize: 12, color: '#64748b' }}>Define conditions — when matched, trades execute automatically</p>
+        <button
+          onClick={() => window.dispatchEvent(new CustomEvent('nav-to-strategy'))}
+          style={BTN({ background: '#2563eb', color: '#fff', display: 'flex', alignItems: 'center', gap: 6 })}
+        >
+          + New Strategy
+        </button>
+      </div>
+
+      {error && <div style={{ background: '#450a0a', color: '#fca5a5', padding: '8px 12px', borderRadius: 6, fontSize: 12, marginBottom: 12 }}>{error}</div>}
+
+      {loading ? (
+        <div style={{ textAlign: 'center', color: '#475569', padding: '40px 0' }}>Loading…</div>
+      ) : !isGithubConfigured() ? (
+        <div style={{ textAlign: 'center', color: '#f59e0b', padding: '40px 0', fontSize: 13 }}>GitHub token required — configure in Strategy tab</div>
+      ) : strategies.length === 0 ? (
+        <div style={{ textAlign: 'center', color: '#475569', padding: '40px 0' }}>No strategies — create one in the Strategy tab</div>
+      ) : strategies.map(s => {
+        const chips = condChips(s.conditions);
+        return (
+          <div key={s.id} style={{ background: '#1e293b', borderRadius: 10, padding: 14, marginBottom: 10, border: `1px solid ${s.enabled ? '#1e3a5f' : '#1e293b'}` }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6, flexWrap: 'wrap' }}>
+              <Toggle checked={!!s.enabled} onChange={v => toggleStrategy(s.id, v)} />
+              <span style={{ fontWeight: 700, fontSize: 14, color: '#f8fafc' }}>{s.name}</span>
+              <span style={{ fontSize: 11, padding: '2px 8px', borderRadius: 4, fontWeight: 600, background: s.direction==='short'?'#450a0a':s.direction==='long'?'#14532d':'#1e3a5f', color: s.direction==='short'?'#f87171':s.direction==='long'?'#4ade80':'#60a5fa' }}>
+                {(s.direction || 'Both').toUpperCase()}
+              </span>
+              <span style={{ fontSize: 11, padding: '2px 8px', borderRadius: 4, background: '#0f172a', color: '#38bdf8', border: '1px solid #0ea5e930' }}>OANDA</span>
+              <span style={{ fontSize: 11, color: s.enabled ? '#22c55e' : '#475569', display: 'flex', alignItems: 'center', gap: 4 }}>
+                <span style={{ width: 6, height: 6, borderRadius: '50%', background: s.enabled ? '#22c55e' : '#475569', display: 'inline-block' }} />
+                {s.enabled ? 'Running' : 'Paused'}
+              </span>
+              {saving === s.id && <span style={{ fontSize: 10, color: '#64748b' }}>Saving…</span>}
+            </div>
+            <div style={{ fontSize: 11, color: '#475569', marginBottom: 8 }}>
+              {s.pair || 'All pairs'} · {s.timeframe} · {chips.length} conditions · Risk {s.risk?.riskPercent || 1}% · SL: {s.risk?.slMethod || 'atr'}
+            </div>
+            <div style={{ fontSize: 11, color: s.enabled ? '#f59e0b' : '#334155', display: 'flex', alignItems: 'center', gap: 6, marginBottom: 8, background: '#0f172a', padding: '5px 10px', borderRadius: 6 }}>
+              ⏳ {s.enabled ? '0 pairs matching — waiting for signal' : 'Strategy paused'}
+            </div>
+            <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
+              {chips.map((c, i) => (
+                <span key={i} style={{ fontSize: 10, background: '#0f172a', color: '#94a3b8', padding: '3px 8px', borderRadius: 4, border: '1px solid #1e293b' }}>{c}</span>
+              ))}
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+// ── Positions tab ─────────────────────────────────────────────────────────────
+function PositionsTab({ onLog }) {
+  const [trades,  setTrades]  = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error,   setError]   = useState('');
+  const [closing, setClosing] = useState(null);
+
+  useEffect(() => {
+    async function load() {
+      setLoading(true); setError('');
+      try {
+        const data = await ghRead('bot/trades.json');
+        setTrades(data?.content?.trades || []);
+      } catch (e) { setError(e.message); }
+      finally { setLoading(false); }
+    }
+    load();
+  }, []);
+
+  const open = trades.filter(t => t.status === 'OPEN' || t.status === 'open');
+  const closed = trades.filter(t => t.status !== 'OPEN' && t.status !== 'open');
+
+  const markClosed = async (id) => {
+    setClosing(id);
+    try {
+      const data = await ghRead('bot/trades.json');
+      const updated = (data?.content?.trades || []).map(t =>
+        t.id === id ? { ...t, status: 'CLOSED', closeTime: new Date().toISOString() } : t
+      );
+      await ghWrite('bot/trades.json', { trades: updated }, `Close trade ${id}`, data?.sha || null);
+      setTrades(updated);
+      onLog?.('INFO', `Trade ${id} marked closed`);
+    } catch (e) { setError(e.message); }
+    finally { setClosing(null); }
+  };
+
+  const clearClosed = async () => {
+    try {
+      const data = await ghRead('bot/trades.json');
+      const cleaned = (data?.content?.trades || []).filter(t => t.status !== 'CLOSED' && t.status !== 'closed');
+      await ghWrite('bot/trades.json', { trades: cleaned }, 'Clear closed trades', data?.sha || null);
+      setTrades(cleaned);
+    } catch (e) { setError(e.message); }
+  };
+
+  return (
+    <div style={{ padding: 16 }}>
+      <div style={{ display: 'flex', gap: 10, alignItems: 'center', marginBottom: 14, flexWrap: 'wrap' }}>
+        <span style={{ fontWeight: 700, color: '#f8fafc', fontSize: 15 }}>Open ({open.length})</span>
+        <button onClick={() => {
+          setLoading(true);
+          ghRead('bot/trades.json').then(d => { setTrades(d?.content?.trades || []); setLoading(false); }).catch(e => { setError(e.message); setLoading(false); });
+        }} style={{ background: '#334155', border: 'none', color: '#94a3b8', padding: '5px 12px', borderRadius: 6, fontSize: 11, cursor: 'pointer' }}>
+          Sync OANDA
+        </button>
+        {closed.length > 0 && (
+          <button onClick={clearClosed} style={{ background: 'transparent', border: '1px solid #334155', color: '#64748b', padding: '5px 12px', borderRadius: 6, fontSize: 11, cursor: 'pointer' }}>
+            Clear Closed ({closed.length})
+          </button>
+        )}
+        {loading && <span style={{ fontSize: 11, color: '#475569', marginLeft: 'auto' }}>Loading…</span>}
+      </div>
+
+      {error && <div style={{ background: '#450a0a', color: '#fca5a5', padding: '8px 12px', borderRadius: 6, fontSize: 12, marginBottom: 12 }}>{error}</div>}
+
+      {open.length === 0 && !loading ? (
+        <div style={{ textAlign: 'center', color: '#475569', padding: '48px 0', fontSize: 13 }}>No open positions</div>
+      ) : open.map(t => {
+        const isLong = t.direction === 'LONG' || t.direction === 'long';
+        const entry  = t.entryPrice ?? t.entry;
+        const sl     = t.slPrice    ?? t.sl;
+        const tp     = t.tpPrice    ?? t.tp;
+        const rr     = t.rr ? `1:${Number(t.rr).toFixed(1)}` : '—';
+        const oandaId = t.oandaTradeId || t.oandaId || t.id;
+        return (
+          <div key={t.id} style={{ background: '#1e293b', borderRadius: 10, padding: 14, marginBottom: 10, border: `1px solid ${isLong ? '#1e3a5f' : '#3b0764'}` }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
+              <span style={{ fontSize: 16, fontWeight: 700, color: '#f8fafc' }}>
+                {isLong ? '↗' : '↘'} {(t.pair || '').replace('_', '/')}
+              </span>
+              <span style={{ fontSize: 11, padding: '2px 8px', borderRadius: 4, background: isLong?'#14532d':'#450a0a', color: isLong?'#4ade80':'#f87171', fontWeight: 700 }}>
+                {t.direction?.toUpperCase?.() || 'LONG'}
+              </span>
+              <span style={{ fontSize: 11, padding: '2px 6px', borderRadius: 4, background: '#0f172a', color: '#38bdf8' }}>OANDA</span>
+              <span style={{ marginLeft: 'auto', fontSize: 12, color: '#a78bfa', fontWeight: 600 }}>R:R {rr}</span>
+            </div>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 8, marginBottom: 10 }}>
+              {[{l:'Entry',v:fmtPx(entry,t.pair),c:'#e2e8f0'},{l:'Current',v:'—',c:'#94a3b8'},{l:'SL',v:fmtPx(sl,t.pair),c:'#ef4444'},{l:'TP',v:fmtPx(tp,t.pair),c:'#22c55e'}].map(({l,v,c}) => (
+                <div key={l} style={{ background: '#0f172a', borderRadius: 6, padding: '8px 10px', textAlign: 'center' }}>
+                  <div style={{ fontSize: 10, color: '#475569', marginBottom: 3 }}>{l}</div>
+                  <div style={{ fontSize: 13, fontWeight: 600, color: c, fontFamily: 'monospace' }}>{v}</div>
+                </div>
+              ))}
+            </div>
+            <div style={{ fontSize: 11, color: '#475569', marginBottom: 10 }}>
+              {t.source || 'vps_bot'} · Opened {fmtTime(t.openTime || t.openedAt)} · ID: {oandaId}
+            </div>
+            <div style={{ display: 'flex', gap: 8 }}>
+              <button onClick={() => markClosed(t.id)} disabled={closing===t.id}
+                style={{ background: '#991b1b', border: 'none', color: '#fff', borderRadius: 6, padding: '6px 14px', fontSize: 11, cursor: 'pointer', fontWeight: 600 }}>
+                {closing===t.id ? '…' : '✓ Mark Closed'}
+              </button>
+              <button style={{ background: '#166534', border: 'none', color: '#4ade80', borderRadius: 6, padding: '6px 14px', fontSize: 11, cursor: 'pointer' }}>
+                Move BE
+              </button>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+// ── VPS Bot tab ───────────────────────────────────────────────────────────────
+function VPSBotTab({ onLog }) {
+  const [botStatus, setBotStatus]   = useState(null);
+  const [loading,   setLoading]     = useState(false);
+  const [saving,    setSaving]      = useState(false);
+  const [pat,       setPat]         = useState(() => localStorage.getItem('github_pat') || '');
+  const [msg,       setMsg]         = useState('');
+  const [err,       setErr]         = useState('');
+
+  const refreshStatus = async () => {
+    setLoading(true); setErr('');
+    try {
+      const [stratData, ctrlData] = await Promise.all([
+        ghRead('bot/strategy.json').catch(() => null),
+        ghRead('bot/vps-control.json').catch(() => null),
+      ]);
+      const gs = stratData?.content?.globalSettings || {};
+      setBotStatus({
+        lastRunAt: gs.lastRunAt,
+        lastError: gs.lastError,
+        control:   ctrlData?.content?.command || 'running',
+      });
+    } catch (e) { setErr(e.message); }
+    finally { setLoading(false); }
+  };
+
+  const sendControl = async (command) => {
+    setSaving(true); setErr('');
+    try {
+      const existing = await ghRead('bot/vps-control.json').catch(() => null);
+      await ghWrite('bot/vps-control.json', { command, sentAt: new Date().toISOString() }, `VPS control: ${command}`, existing?.sha || null);
+      setBotStatus(s => ({ ...s, control: command }));
+      setMsg(`Command "${command}" sent — bot picks up on next cycle`);
+      onLog?.('INFO', `VPS control: ${command}`);
+      setTimeout(() => setMsg(''), 4000);
+    } catch (e) { setErr(e.message); }
+    finally { setSaving(false); }
+  };
+
+  const savePat = () => {
+    localStorage.setItem('github_pat', pat);
+    setMsg('GitHub token saved');
+    setTimeout(() => setMsg(''), 2000);
+  };
+
+  const ctrlColor = { running: '#22c55e', paused: '#f59e0b', stopped: '#ef4444' }[botStatus?.control] || '#475569';
+
+  return (
+    <div style={{ padding: 16 }}>
+      {/* Bot info */}
+      <div style={{ ...CARD, display: 'flex', gap: 14, alignItems: 'flex-start' }}>
+        <span style={{ fontSize: 32 }}>🤖</span>
+        <div>
+          <div style={{ fontWeight: 700, color: '#f8fafc', fontSize: 14, marginBottom: 4 }}>VPS Auto-Trade Bot</div>
+          <div style={{ fontSize: 12, color: '#64748b', lineHeight: 1.6 }}>
+            Runs 24/7 on your VPS — trades even when your browser is off.<br />
+            Reads active strategies from GitHub, fetches live OANDA candles, places orders automatically.
+          </div>
+        </div>
+      </div>
+
+      {/* Bot control */}
+      <div style={{ ...CARD }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
+          <div style={SECTION}>Bot Control</div>
+          <button onClick={refreshStatus} disabled={loading}
+            style={{ background: '#334155', border: 'none', color: '#94a3b8', padding: '5px 12px', borderRadius: 6, fontSize: 11, cursor: 'pointer' }}>
+            {loading ? 'Loading…' : 'Refresh Status'}
+          </button>
+        </div>
+        <div style={{ fontSize: 13, color: '#94a3b8', marginBottom: 14 }}>
+          Status:{' '}
+          {botStatus
+            ? <strong style={{ color: ctrlColor }}>
+                {botStatus.control === 'running' ? 'Running' : botStatus.control === 'paused' ? 'Paused' : 'Stopped'}
+                {botStatus.lastRunAt ? ` — last run ${new Date(botStatus.lastRunAt).toLocaleTimeString()}` : ''}
+              </strong>
+            : <span style={{ color: '#475569' }}>Unknown — click Refresh Status</span>
+          }
+        </div>
+        {botStatus?.lastError && (
+          <div style={{ background: '#450a0a', color: '#fca5a5', padding: '6px 12px', borderRadius: 6, fontSize: 11, marginBottom: 12 }}>
+            Last error: {botStatus.lastError}
+          </div>
+        )}
+        <div style={{ display: 'flex', gap: 8, marginBottom: 10 }}>
+          <button onClick={() => sendControl('running')} disabled={saving}
+            style={BTN({ background: '#1d4ed8', color: '#fff' })}>▶ Resume</button>
+          <button onClick={() => sendControl('paused')} disabled={saving}
+            style={BTN({ background: '#92400e', color: '#fbbf24' })}>⏸ Pause</button>
+          <button onClick={() => sendControl('stopped')} disabled={saving}
+            style={BTN({ background: '#450a0a', color: '#ef4444' })}>⏹ Stop</button>
+        </div>
+        {msg && <div style={{ fontSize: 12, color: '#22c55e' }}>{msg}</div>}
+        {err && <div style={{ fontSize: 12, color: '#ef4444' }}>{err}</div>}
+        <div style={{ fontSize: 10, color: '#475569', marginTop: 10 }}>
+          Writes <code style={{ background: '#0f172a', padding: '1px 5px', borderRadius: 3 }}>bot/vps-control.json</code> to GitHub — bot checks each cycle
+        </div>
+      </div>
+
+      {/* GitHub PAT */}
+      <div style={{ ...CARD }}>
+        <div style={SECTION}>Step 1 — GitHub PAT (repo scope)</div>
+        <div style={{ fontSize: 12, color: '#64748b', marginBottom: 10, lineHeight: 1.5 }}>
+          The VPS bot reads <code style={{ background: '#0f172a', padding: '1px 5px', borderRadius: 3 }}>bot/strategy.json</code> from your repo.
+          Set your PAT here so the browser app can also write strategies.
+        </div>
+        <div style={{ display: 'flex', gap: 8, marginBottom: 14 }}>
+          <input type="password" value={pat} onChange={e => setPat(e.target.value)} placeholder="ghp_xxx…"
+            style={{ ...INP, flex: 1 }} />
+          <button onClick={savePat} style={BTN({ background: '#1d4ed8', color: '#fff' })}>Save</button>
+        </div>
+        <div style={SECTION}>Step 2 — Deploy VPS Bot</div>
+        {[
+          { n:1, cmd: 'git clone https://github.com/amandeep97/Forex && cd Forex/vps-bot' },
+          { n:2, cmd: 'npm install' },
+          { n:3, cmd: 'cp .env.example .env  # fill OANDA_API_KEY, GITHUB_TOKEN, TELEGRAM_BOT_TOKEN' },
+          { n:4, cmd: 'npm install -g pm2 && pm2 start ecosystem.config.js && pm2 save' },
+        ].map(({ n, cmd }) => (
+          <div key={n} style={{ background: '#0f172a', borderRadius: 6, padding: '8px 12px', marginBottom: 6, display: 'flex', gap: 10 }}>
+            <span style={{ fontSize: 10, fontWeight: 700, color: '#2563eb', minWidth: 16, paddingTop: 2 }}>{n}</span>
+            <code style={{ fontSize: 11, color: '#94a3b8', wordBreak: 'break-all' }}>{cmd}</code>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// ── Log tab ───────────────────────────────────────────────────────────────────
+const TAG_STYLE = {
+  INFO:    { bg: '#1e3a5f', color: '#93c5fd' },
+  SUCCESS: { bg: '#14532d', color: '#86efac' },
+  ERROR:   { bg: '#450a0a', color: '#fca5a5' },
+  TRADE:   { bg: '#1e1b4b', color: '#a5b4fc' },
+};
+
+function LogTab({ entries, onClear }) {
+  return (
+    <div style={{ padding: 16 }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 14 }}>
+        <span style={{ fontWeight: 700, color: '#f8fafc', fontSize: 15 }}>Activity Log</span>
+        <button onClick={onClear} style={{ background: '#991b1b', border: 'none', color: '#fff', borderRadius: 6, padding: '5px 14px', fontSize: 11, cursor: 'pointer' }}>Clear</button>
+      </div>
+      {entries.length === 0 ? (
+        <div style={{ textAlign: 'center', color: '#475569', padding: '48px 0' }}>No activity yet — connect OANDA or analyze a trade</div>
+      ) : (
+        <div style={{ background: '#1e293b', borderRadius: 10, overflow: 'hidden' }}>
+          {[...entries].reverse().map((e, i) => {
+            const s = TAG_STYLE[e.type] || TAG_STYLE.INFO;
+            return (
+              <div key={i} style={{ display: 'flex', gap: 10, alignItems: 'flex-start', padding: '10px 14px', borderBottom: '1px solid #0f172a' }}>
+                <span style={{ fontSize: 10, fontWeight: 700, padding: '2px 6px', borderRadius: 3, background: s.bg, color: s.color, whiteSpace: 'nowrap', marginTop: 1 }}>{e.type}</span>
+                <span style={{ flex: 1, fontSize: 12, color: '#cbd5e1' }}>{e.msg}</span>
+                <span style={{ fontSize: 10, color: '#475569', whiteSpace: 'nowrap' }}>{new Date(e.ts).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' })}</span>
+              </div>
+            );
+          })}
+        </div>
       )}
-    </div>
-  );
-}
-
-// ── Toggle switch ─────────────────────────────────────────────────────────────
-function Toggle({ checked, onChange, label }) {
-  return (
-    <label className="toggle-wrap">
-      <div className={`toggle ${checked ? 'on' : ''}`} onClick={() => onChange(!checked)}>
-        <div className="toggle-knob" />
-      </div>
-      {label && <span className="toggle-label">{label}</span>}
-    </label>
-  );
-}
-
-// ── Status dot ────────────────────────────────────────────────────────────────
-function StatusDot({ active }) {
-  return (
-    <span className={`status-dot ${active ? 'active' : ''}`} />
-  );
-}
-
-// ── Stat card ─────────────────────────────────────────────────────────────────
-function StatCard({ label, value, sub, color }) {
-  return (
-    <div className="stat-card">
-      <div className="stat-value" style={color ? { color } : {}}>{value}</div>
-      <div className="stat-label">{label}</div>
-      {sub && <div className="stat-sub">{sub}</div>}
-    </div>
-  );
-}
-
-// ── Position row ──────────────────────────────────────────────────────────────
-function PositionRow({ pos, onClose }) {
-  return (
-    <tr className="pair-row">
-      <td><span className="pair-symbol" style={{ fontSize: 13 }}>{pos.pair}</span></td>
-      <td>
-        <span className={`type-badge ${pos.type.toLowerCase()}`}>{pos.type}</span>
-      </td>
-      <td className="mono">{pos.lots}</td>
-      <td className="mono muted">{typeof pos.openPrice === 'number' ? pos.openPrice.toFixed(pos.openPrice > 10 ? 3 : 5) : pos.openPrice}</td>
-      <td className="mono">{typeof pos.currentPrice === 'number' ? pos.currentPrice.toFixed(pos.currentPrice > 10 ? 3 : 5) : pos.currentPrice}</td>
-      <td className="mono" style={{ color: '#ef4444' }}>{typeof pos.sl === 'number' ? pos.sl.toFixed(pos.sl > 10 ? 3 : 5) : pos.sl}</td>
-      <td className="mono" style={{ color: '#22c55e' }}>{typeof pos.tp === 'number' ? pos.tp.toFixed(pos.tp > 10 ? 3 : 5) : pos.tp}</td>
-      <td>
-        <span className={pos.pips >= 0 ? 'up' : 'down'}>
-          {pos.pips >= 0 ? '+' : ''}{pos.pips} pips
-        </span>
-      </td>
-      <td>
-        <span className={pos.pnl >= 0 ? 'up' : 'down'} style={{ fontWeight: 600 }}>
-          {pos.pnl >= 0 ? '+' : ''}${pos.pnl.toFixed(2)}
-        </span>
-      </td>
-      <td className="muted" style={{ fontSize: 11 }}>{pos.openTime} · {pos.duration}</td>
-      <td>
-        <button className="close-btn" onClick={() => onClose(pos.id)}>Close</button>
-      </td>
-    </tr>
-  );
-}
-
-// ── History row ───────────────────────────────────────────────────────────────
-function HistoryRow({ trade }) {
-  return (
-    <tr className="pair-row">
-      <td className="mono muted" style={{ fontSize: 11 }}>{trade.id}</td>
-      <td><span className="pair-symbol" style={{ fontSize: 13 }}>{trade.pair}</span></td>
-      <td><span className={`type-badge ${trade.type.toLowerCase()}`}>{trade.type}</span></td>
-      <td className="mono muted">{trade.lots}</td>
-      <td className="mono muted">{typeof trade.openPrice === 'number' ? trade.openPrice.toFixed(trade.openPrice > 10 ? 3 : 5) : trade.openPrice}</td>
-      <td className="mono muted">{typeof trade.closePrice === 'number' ? trade.closePrice.toFixed(trade.closePrice > 10 ? 3 : 5) : trade.closePrice}</td>
-      <td><span className={trade.pips >= 0 ? 'up' : 'down'}>{trade.pips >= 0 ? '+' : ''}{trade.pips}p</span></td>
-      <td>
-        <span className={trade.pnl >= 0 ? 'up' : 'down'} style={{ fontWeight: 600 }}>
-          {trade.pnl >= 0 ? '+' : ''}${trade.pnl.toFixed(2)}
-        </span>
-      </td>
-      <td>
-        <span className={`result-badge ${trade.result.toLowerCase()}`}>{trade.result}</span>
-      </td>
-      <td className="muted" style={{ fontSize: 11 }}>{trade.closeTime}</td>
-    </tr>
-  );
-}
-
-// ── Number input ──────────────────────────────────────────────────────────────
-function NumberInput({ label, value, onChange, min, max, step, unit }) {
-  return (
-    <div className="field">
-      <label className="field-label">{label}</label>
-      <div className="field-input-wrap">
-        <input
-          type="number"
-          className="field-input"
-          value={value}
-          min={min}
-          max={max}
-          step={step}
-          onChange={e => onChange(parseFloat(e.target.value))}
-        />
-        {unit && <span className="field-unit">{unit}</span>}
-      </div>
     </div>
   );
 }
 
 // ── Main AutoTrading ──────────────────────────────────────────────────────────
-export default function AutoTrading({ accountMode = 'demo', brokerState }) {
+export default function AutoTrading({ accountMode = 'demo' }) {
   const isReal = accountMode === 'real';
-  // fallback brokerState if not provided (standalone use)
-  const bs = brokerState || {
-    connected: false, name: '', env: 'live', authMethod: 'login',
-    setConnected: () => {}, setName: () => {}, setEnv: () => {}, setAuthMethod: () => {},
-  };
-  const [botActive, setBotActive] = useState(false);
-  const [selectedStrategy, setSelectedStrategy] = useState(STRATEGIES[0]);
-  const [positions, setPositions] = useState(samplePositions);
-  const [history, setHistory] = useState(tradeHistory);
-  const [activeTab, setActiveTab] = useState('positions');
+  const [activeTab,  setActiveTab]  = useState('connect');
+  const [logEntries, setLogEntries] = useState([]);
+  const [stratCount, setStratCount] = useState(0);
+  const [posCount,   setPosCount]   = useState(0);
 
-  // Risk settings state (initialized from strategy defaults)
-  const [lotSize, setLotSize] = useState(selectedStrategy.defaultLot);
-  const [stopLoss, setStopLoss] = useState(selectedStrategy.defaultSL);
-  const [takeProfit, setTakeProfit] = useState(selectedStrategy.defaultTP);
-  const [maxTrades, setMaxTrades] = useState(selectedStrategy.maxTrades);
-  const [maxDrawdown, setMaxDrawdown] = useState(5);
-  const [trailingStop, setTrailingStop] = useState(false);
-  const [martingale, setMartingale] = useState(false);
-  const [selectedPairs, setSelectedPairs] = useState(['EUR/USD', 'GBP/USD', 'USD/JPY']);
+  const addLog = useCallback((type, msg) => {
+    setLogEntries(prev => [...prev, { type, msg, ts: Date.now() }]);
+  }, []);
 
-  // Stats derived from history
-  const totalPnl = history.reduce((s, t) => s + t.pnl, 0);
-  const wins = history.filter(t => t.result === 'WIN').length;
-  const winRate = history.length > 0 ? ((wins / history.length) * 100).toFixed(1) : '0.0';
-  const activePnl = positions.reduce((s, p) => s + p.pnl, 0);
+  useEffect(() => {
+    if (!isGithubConfigured()) return;
+    ghRead('bot/strategy.json').then(d => setStratCount(d?.content?.strategies?.length || 0)).catch(() => {});
+    ghRead('bot/trades.json').then(d => setPosCount((d?.content?.trades || []).filter(t => t.status==='OPEN'||t.status==='open').length)).catch(() => {});
+  }, []);
 
-  const handleStrategyChange = (s) => {
-    setSelectedStrategy(s);
-    setLotSize(s.defaultLot);
-    setStopLoss(s.defaultSL);
-    setTakeProfit(s.defaultTP);
-    setMaxTrades(s.maxTrades);
-  };
+  useEffect(() => {
+    const handler = () => window.dispatchEvent(new CustomEvent('nav-to-strategy-tab'));
+    window.addEventListener('nav-to-strategy', handler);
+    return () => window.removeEventListener('nav-to-strategy', handler);
+  }, []);
 
-  const handleClosePosition = (id) => {
-    const pos = positions.find(p => p.id === id);
-    if (pos) {
-      setHistory(prev => [{
-        id: `H${String(prev.length + 1).padStart(3, '0')}`,
-        pair: pos.pair,
-        type: pos.type,
-        lots: pos.lots,
-        openPrice: pos.openPrice,
-        closePrice: pos.currentPrice,
-        pnl: pos.pnl,
-        pips: pos.pips,
-        result: pos.pnl >= 0 ? 'WIN' : 'LOSS',
-        closeTime: new Date().toLocaleString(),
-      }, ...prev]);
-      setPositions(prev => prev.filter(p => p.id !== id));
-    }
-  };
-
-  const togglePair = (symbol) => {
-    setSelectedPairs(prev =>
-      prev.includes(symbol) ? prev.filter(s => s !== symbol) : [...prev, symbol]
-    );
-  };
-
-  const majorPairs = forexPairs.filter(p => p.category === 'Majors').map(p => p.symbol);
+  const TABS = [
+    { id: 'connect',    label: 'Connect Exchange' },
+    { id: 'strategies', label: stratCount ? `Strategies (${stratCount})` : 'Strategies' },
+    { id: 'positions',  label: posCount   ? `Positions (${posCount})`   : 'Positions' },
+    { id: 'vpsbot',     label: 'VPS Bot' },
+    { id: 'log',        label: logEntries.length ? `Log (${logEntries.length})` : 'Log' },
+  ];
 
   return (
-    <div className="autotrading-root">
-
-      {/* ── App Bot (manual SMC trades via OANDA) ────────────────────────── */}
-      <AppBotPanel />
-
-      {/* ── Real mode warning + broker panel ─────────────────────────────── */}
+    <div style={{ background: '#0f172a', minHeight: '100%', display: 'flex', flexDirection: 'column' }}>
       {isReal && (
-        <div className="at-real-row">
-          <div className="real-warning-card">
-            <span style={{ fontSize: 20 }}>⚠️</span>
-            <div>
-              <div style={{ fontWeight: 600, color: '#f97316', marginBottom: 2 }}>Real Money Mode Active</div>
-              <div style={{ fontSize: 12, color: '#94a3b8' }}>
-                All bot trades will execute on your live broker account using real funds.
-                Double-check your risk settings before enabling the bot.
-              </div>
-            </div>
-          </div>
-          <BrokerPanel brokerState={bs} />
+        <div style={{ background: '#7f1d1d', padding: '6px 20px', fontSize: 12, color: '#fca5a5' }}>
+          ⚠️ Real Money Mode Active — trades execute with real funds
         </div>
       )}
 
-      {/* ── TOP: Bot control + stats ─────────────────────────────────────── */}
-      <div className="at-top-row">
-
-        {/* Bot status card */}
-        <div className="bot-status-card">
-          <div className="bot-status-header">
-            <div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}>
-                <StatusDot active={botActive} />
-                <span className="bot-status-title">{botActive ? 'Bot Running' : 'Bot Offline'}</span>
-              </div>
-              <div className="bot-strategy-name">{selectedStrategy.name}</div>
-              <div className="bot-tf">{selectedStrategy.timeframe}</div>
-            </div>
-            <div style={{ textAlign: 'right' }}>
-              <Toggle checked={botActive} onChange={setBotActive} />
-              <div style={{ fontSize: 10, color: '#475569', marginTop: 6 }}>
-                {botActive ? 'Click to stop' : 'Click to start'}
-              </div>
-            </div>
-          </div>
-
-          <div className="bot-indicator-row">
-            {selectedStrategy.indicators.map(ind => (
-              <span key={ind} className="indicator-chip">{ind}</span>
-            ))}
-          </div>
-
-          {botActive && (
-            <div className="bot-live-row">
-              <span className="live-dot" />
-              <span style={{ color: '#22c55e', fontSize: 12 }}>LIVE — scanning {selectedPairs.length} pair{selectedPairs.length !== 1 ? 's' : ''}</span>
-            </div>
-          )}
-        </div>
-
-        {/* Stats */}
-        <StatCard label="Open Positions"  value={positions.length}              color={positions.length > 0 ? '#00d4aa' : undefined} />
-        <StatCard label="Floating P&L"    value={`${activePnl >= 0 ? '+' : ''}$${activePnl.toFixed(2)}`}  color={activePnl >= 0 ? '#22c55e' : '#ef4444'} sub="unrealised" />
-        <StatCard label="Total P&L"       value={`${totalPnl >= 0 ? '+' : ''}$${totalPnl.toFixed(2)}`}    color={totalPnl >= 0 ? '#22c55e' : '#ef4444'}  sub={`${history.length} trades`} />
-        <StatCard label="Win Rate"        value={`${winRate}%`}                 color={parseFloat(winRate) >= 60 ? '#22c55e' : parseFloat(winRate) >= 40 ? '#f59e0b' : '#ef4444'} sub={`${wins}W / ${history.length - wins}L`} />
+      {/* Header */}
+      <div style={{ padding: '16px 20px 0' }}>
+        <h2 style={{ margin: 0, fontSize: 18, fontWeight: 700, color: '#f8fafc' }}>Auto Trading</h2>
+        <p style={{ margin: '2px 0 0', fontSize: 12, color: '#64748b' }}>Strategy-based auto-execution on OANDA</p>
       </div>
 
-      {/* ── MIDDLE: Strategy + Risk config ──────────────────────────────── */}
-      <div className="at-config-row">
-
-        {/* Strategy selector */}
-        <div className="config-panel">
-          <div className="panel-title">Strategy</div>
-          <div className="strategy-grid">
-            {STRATEGIES.map(s => (
-              <div
-                key={s.id}
-                className={`strategy-card ${selectedStrategy.id === s.id ? 'active' : ''}`}
-                onClick={() => handleStrategyChange(s)}
-              >
-                <div className="strategy-card-name">{s.name}</div>
-                <div className="strategy-card-tf">{s.timeframe}</div>
-                <div className="strategy-card-desc">{s.description}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Risk management */}
-        <div className="config-panel">
-          <div className="panel-title">Risk Management</div>
-          <div className="fields-grid">
-            <NumberInput label="Lot Size"      value={lotSize}    onChange={setLotSize}    min={0.01} max={10}   step={0.01} unit="lots" />
-            <NumberInput label="Stop Loss"     value={stopLoss}   onChange={setStopLoss}   min={1}    max={500}  step={1}    unit="pips" />
-            <NumberInput label="Take Profit"   value={takeProfit} onChange={setTakeProfit} min={1}    max={1000} step={1}    unit="pips" />
-            <NumberInput label="Max Trades"    value={maxTrades}  onChange={setMaxTrades}  min={1}    max={50}   step={1}    unit="open" />
-            <NumberInput label="Max Drawdown"  value={maxDrawdown} onChange={setMaxDrawdown} min={1} max={50}   step={0.5}  unit="%" />
-            <div className="field" />
-          </div>
-          <div className="toggle-row">
-            <Toggle checked={trailingStop} onChange={setTrailingStop} label="Trailing Stop Loss" />
-            <Toggle checked={martingale}   onChange={setMartingale}   label="Martingale (risky)" />
-          </div>
-          <div className="rr-display">
-            R:R Ratio <strong style={{ color: '#00d4aa' }}> 1:{(takeProfit / stopLoss).toFixed(1)}</strong>
-          </div>
-        </div>
-
-        {/* Pair selector */}
-        <div className="config-panel pair-selector-panel">
-          <div className="panel-title">Trading Pairs <span style={{ color: '#475569', fontWeight: 400, fontSize: 12 }}>({selectedPairs.length} selected)</span></div>
-          <div className="pair-chips">
-            {majorPairs.map(sym => (
-              <button
-                key={sym}
-                className={`pair-chip ${selectedPairs.includes(sym) ? 'active' : ''}`}
-                onClick={() => togglePair(sym)}
-              >
-                {sym}
-              </button>
-            ))}
-          </div>
-          <div className="pair-selector-hint">
-            Click pairs to toggle. Bot will only trade selected pairs.
-          </div>
-        </div>
+      {/* Sub-tab bar */}
+      <div style={{ display: 'flex', padding: '10px 20px 0', borderBottom: '2px solid #1e293b', overflowX: 'auto', gap: 2 }}>
+        {TABS.map(t => (
+          <button
+            key={t.id}
+            onClick={() => setActiveTab(t.id)}
+            style={{
+              background: activeTab === t.id ? '#2563eb' : 'transparent',
+              border: 'none',
+              color: activeTab === t.id ? '#fff' : '#64748b',
+              padding: '8px 16px',
+              borderRadius: activeTab === t.id ? '8px 8px 0 0' : '6px 6px 0 0',
+              fontSize: 13,
+              cursor: 'pointer',
+              fontWeight: activeTab === t.id ? 600 : 400,
+              whiteSpace: 'nowrap',
+              transition: 'all 0.15s',
+            }}
+          >
+            {t.label}
+          </button>
+        ))}
       </div>
 
-      {/* ── BOTTOM: Positions + History ──────────────────────────────────── */}
-      <div className="at-bottom-panel">
-        <div className="panel-tabs">
-          <button
-            className={`panel-tab ${activeTab === 'positions' ? 'active' : ''}`}
-            onClick={() => setActiveTab('positions')}
-          >
-            Open Positions
-            {positions.length > 0 && <span className="tab-badge">{positions.length}</span>}
-          </button>
-          <button
-            className={`panel-tab ${activeTab === 'history' ? 'active' : ''}`}
-            onClick={() => setActiveTab('history')}
-          >
-            Trade History
-            {history.length > 0 && <span className="tab-badge">{history.length}</span>}
-          </button>
-        </div>
-
-        <div className="table-wrap" style={{ marginTop: 0 }}>
-          {activeTab === 'positions' && (
-            <table className="screener-table">
-              <thead>
-                <tr>
-                  {['Pair','Type','Lots','Open','Current','SL','TP','Pips','P&L','Opened',''].map(h => (
-                    <th key={h}>{h}</th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {positions.length === 0 ? (
-                  <tr>
-                    <td colSpan={11} style={{ textAlign: 'center', padding: '32px 0', color: '#475569' }}>
-                      {botActive ? 'No open positions — bot is scanning…' : 'No open positions'}
-                    </td>
-                  </tr>
-                ) : positions.map(pos => (
-                  <PositionRow key={pos.id} pos={pos} onClose={handleClosePosition} />
-                ))}
-              </tbody>
-            </table>
-          )}
-
-          {activeTab === 'history' && (
-            <table className="screener-table">
-              <thead>
-                <tr>
-                  {['ID','Pair','Type','Lots','Open','Close','Pips','P&L','Result','Closed'].map(h => (
-                    <th key={h}>{h}</th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {history.length === 0 ? (
-                  <tr>
-                    <td colSpan={10} style={{ textAlign: 'center', padding: '32px 0', color: '#475569' }}>
-                      No trade history yet
-                    </td>
-                  </tr>
-                ) : history.map(t => (
-                  <HistoryRow key={t.id} trade={t} />
-                ))}
-              </tbody>
-            </table>
-          )}
-        </div>
+      {/* Tab content */}
+      <div style={{ overflowY: 'auto', flex: 1 }}>
+        {activeTab === 'connect'    && <ConnectTab    onLog={addLog} />}
+        {activeTab === 'strategies' && <StrategiesTab onLog={addLog} />}
+        {activeTab === 'positions'  && <PositionsTab  onLog={addLog} />}
+        {activeTab === 'vpsbot'     && <VPSBotTab     onLog={addLog} />}
+        {activeTab === 'log'        && <LogTab entries={logEntries} onClear={() => setLogEntries([])} />}
       </div>
     </div>
   );
