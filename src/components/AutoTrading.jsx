@@ -578,17 +578,32 @@ function PositionsTab({ onLog }) {
     const apiKey    = localStorage.getItem('oanda_key');
     const accountId = localStorage.getItem('oanda_acct');
     const env_      = localStorage.getItem('oanda_env') || 'practice';
-    if (!apiKey || !accountId) { setActErr('Connect OANDA first (Connect Exchange tab)'); return; }
+    if (!apiKey || !accountId) { setActErr('No OANDA account connected. Go to "Connect Exchange" tab and add your OANDA API key.'); return; }
     setActLoading(true); setActErr(''); setActivity([]);
     try {
-      const res = await fetch(
-        `${oandaBase(env_)}/accounts/${accountId}/transactions?type=ORDER_CANCEL,MARKET_ORDER_REJECT,ORDER_FILL&pageSize=20`,
+      // Step 1: get latest transaction ID from account summary
+      const sumRes = await fetch(`${oandaBase(env_)}/accounts/${accountId}/summary`,
+        { headers: { Authorization: `Bearer ${apiKey}` } });
+      if (!sumRes.ok) { const j = await sumRes.json().catch(() => ({})); throw new Error(j.errorMessage || `OANDA ${sumRes.status}`); }
+      const sumData = await sumRes.json();
+      const lastId  = parseInt(sumData.account?.lastTransactionID || '0', 10);
+      if (lastId === 0) { setActivity([]); return; }
+
+      // Step 2: fetch last 200 transactions by ID range
+      const fromId = Math.max(1, lastId - 200);
+      const txRes  = await fetch(
+        `${oandaBase(env_)}/accounts/${accountId}/transactions/idrange?from=${fromId}&to=${lastId}`,
         { headers: { Authorization: `Bearer ${apiKey}` } }
       );
-      if (!res.ok) { const j = await res.json().catch(() => ({})); throw new Error(j.errorMessage || `OANDA ${res.status}`); }
-      const data = await res.json();
-      const txns = data.transactions || [];
-      setActivity(txns.slice(0, 30));
+      if (!txRes.ok) { const j = await txRes.json().catch(() => ({})); throw new Error(j.errorMessage || `OANDA ${txRes.status}`); }
+      const txData = await txRes.json();
+      const all    = txData.transactions || [];
+
+      // Step 3: client-side filter for relevant types, newest first
+      const relevant = ['ORDER_CANCEL', 'MARKET_ORDER_REJECT', 'ORDER_FILL', 'STOP_LOSS_ORDER', 'TAKE_PROFIT_ORDER'];
+      const filtered = all.filter(t => relevant.includes(t.type)).reverse().slice(0, 40);
+      setActivity(filtered);
+      if (filtered.length === 0) setActErr('No order activity found in last 200 transactions.');
     } catch (e) { setActErr(e.message); }
     finally { setActLoading(false); }
   };
@@ -751,9 +766,11 @@ function PositionsTab({ onLog }) {
         {activity.map((tx, i) => {
           const isCancelled = tx.type === 'ORDER_CANCEL' || tx.type === 'MARKET_ORDER_REJECT';
           const isFill      = tx.type === 'ORDER_FILL';
-          const color       = isCancelled ? '#ef4444' : isFill ? '#22c55e' : '#94a3b8';
-          const icon        = isCancelled ? '✗' : isFill ? '✓' : '·';
-          const label       = isCancelled ? 'CANCELLED' : isFill ? 'FILLED' : tx.type?.replace(/_/g,' ');
+          const isSL        = tx.type === 'STOP_LOSS_ORDER';
+          const isTP        = tx.type === 'TAKE_PROFIT_ORDER';
+          const color       = isCancelled ? '#ef4444' : isFill ? '#22c55e' : isSL ? '#f59e0b' : isTP ? '#a78bfa' : '#94a3b8';
+          const icon        = isCancelled ? '✗' : isFill ? '✓' : isSL ? 'SL' : isTP ? 'TP' : '·';
+          const label       = isCancelled ? 'CANCELLED' : isFill ? 'FILLED' : isSL ? 'STOP LOSS' : isTP ? 'TAKE PROFIT' : tx.type?.replace(/_/g,' ');
           const reason      = isCancelled ? explainReason(tx.reason || tx.rejectReason) : null;
           const timeStr     = tx.time ? new Date(tx.time).toLocaleTimeString([], { hour:'2-digit', minute:'2-digit' }) : '';
           const dateStr     = tx.time ? new Date(tx.time).toLocaleDateString([], { month:'short', day:'numeric' }) : '';
