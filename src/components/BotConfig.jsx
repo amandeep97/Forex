@@ -90,13 +90,21 @@ const DEFAULT_STRAT = {
   id: '', name: 'New Strategy', enabled: false,
   pair: 'EUR_USD', timeframe: 'H1', direction: 'both',
   conditions: {
-    structure: 'any', requireBOS: false, requireOB: false,
-    requireFVG: false, requireOTE: false,
+    structure: 'any', requireBOS: false,
+    priceZone: 'any',
+    requireLiqSweep: false,
+    obDir: 'any', requireOB: false, requireOBTap: false,
+    fvgDir: 'any', requireFVG: false, requireFVGTap: false,
+    requireOTE: false,
+    candlePattern: 'any',
+    emaFilter:  { enabled: false, period: 200, side: 'above' },
+    vwapFilter: { enabled: false, side: 'above' },
     sessions: ['london'],
     rsiFilter: { enabled: false, comparison: 'below', value: 70 },
   },
   risk: {
-    riskPercent: 1, slMethod: 'swing', slAtr: 1.5, slPips: 20,
+    riskType: 'percent', riskPercent: 1, riskUsdt: 10,
+    slMethod: 'swing', slAtr: 1.5, slPips: 20,
     tpMethod: 'rr', rrRatio: 2, tpFibLevel: 1.618,
   },
 };
@@ -193,23 +201,116 @@ function StrategyEditor({ strat, onSave, onCancel }) {
       <section>
         <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--text2)', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '0.06em' }}>Entry Conditions</div>
 
+        {/* Market Structure */}
         <FieldRow label="Market Structure">
           <Select value={s.conditions.structure} onChange={v => set('conditions.structure', v)}
-            options={[{v:'any',l:'Any'},{v:'bullish',l:'Bullish (uptrend)'},{v:'bearish',l:'Bearish (downtrend)'}]}/>
+            options={[{v:'any',l:'Any'},{v:'bullish',l:'Bullish'},{v:'bearish',l:'Bearish'}]}/>
         </FieldRow>
         <FieldRow label="Require BOS / CHoCH">
-          <Toggle checked={s.conditions.requireBOS} onChange={v => set('conditions.requireBOS', v)}/>
-        </FieldRow>
-        <FieldRow label="Require Order Block">
-          <Toggle checked={s.conditions.requireOB} onChange={v => set('conditions.requireOB', v)}/>
-        </FieldRow>
-        <FieldRow label="Require Fair Value Gap">
-          <Toggle checked={s.conditions.requireFVG} onChange={v => set('conditions.requireFVG', v)}/>
-        </FieldRow>
-        <FieldRow label="Require OTE Zone (0.618–0.786)">
-          <Toggle checked={s.conditions.requireOTE} onChange={v => set('conditions.requireOTE', v)}/>
+          <Toggle checked={!!s.conditions.requireBOS} onChange={v => set('conditions.requireBOS', v)}/>
         </FieldRow>
 
+        {/* Price Zone */}
+        <FieldRow label="Price Zone">
+          <Select value={s.conditions.priceZone||'any'} onChange={v => set('conditions.priceZone', v)}
+            options={[{v:'any',l:'Any'},{v:'premium',l:'Premium (top 25%)'},{v:'discount',l:'Discount (bottom 25%)'},{v:'equilibrium',l:'Equilibrium (middle)'}]}/>
+        </FieldRow>
+
+        {/* Liquidity */}
+        <FieldRow label="Liquidity Sweep">
+          <Toggle checked={!!s.conditions.requireLiqSweep} onChange={v => set('conditions.requireLiqSweep', v)}/>
+        </FieldRow>
+        {s.conditions.requireLiqSweep && (
+          <div style={{ padding: '2px 0 6px 12px', borderBottom: '1px solid var(--border)', fontSize: 10, color: 'var(--text3)' }}>
+            Recent sweep of swing highs (for shorts) or swing lows (for longs)
+          </div>
+        )}
+
+        {/* Order Block */}
+        <div style={{ padding: '6px 0', borderBottom: '1px solid var(--border)' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
+            <Label>Order Block</Label>
+            <div style={{ marginLeft: 'auto' }}>
+              <Select value={s.conditions.obDir||'any'} onChange={v => set('conditions.obDir', v)}
+                options={[{v:'any',l:'Any'},{v:'bullish',l:'Bullish OB'},{v:'bearish',l:'Bearish OB'}]}/>
+            </div>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8, paddingLeft: 8 }}>
+            <span style={{ fontSize: 11, color: 'var(--text3)' }}>Require OB</span>
+            <Toggle checked={!!s.conditions.requireOB} onChange={v => set('conditions.requireOB', v)}/>
+            <span style={{ fontSize: 11, color: 'var(--text3)', marginLeft: 8 }}>OB Tap</span>
+            <Toggle checked={!!s.conditions.requireOBTap} onChange={v => set('conditions.requireOBTap', v)}/>
+          </div>
+          {s.conditions.requireOBTap && (
+            <div style={{ fontSize: 10, color: 'var(--text3)', paddingLeft: 8, marginTop: 3 }}>Price must be inside OB zone right now</div>
+          )}
+        </div>
+
+        {/* Fair Value Gap */}
+        <div style={{ padding: '6px 0', borderBottom: '1px solid var(--border)' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
+            <Label>Fair Value Gap</Label>
+            <div style={{ marginLeft: 'auto' }}>
+              <Select value={s.conditions.fvgDir||'any'} onChange={v => set('conditions.fvgDir', v)}
+                options={[{v:'any',l:'Any'},{v:'bullish',l:'Bullish FVG'},{v:'bearish',l:'Bearish FVG'}]}/>
+            </div>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8, paddingLeft: 8 }}>
+            <span style={{ fontSize: 11, color: 'var(--text3)' }}>Require FVG</span>
+            <Toggle checked={!!s.conditions.requireFVG} onChange={v => set('conditions.requireFVG', v)}/>
+            <span style={{ fontSize: 11, color: 'var(--text3)', marginLeft: 8 }}>FVG Tap</span>
+            <Toggle checked={!!s.conditions.requireFVGTap} onChange={v => set('conditions.requireFVGTap', v)}/>
+          </div>
+          {s.conditions.requireFVGTap && (
+            <div style={{ fontSize: 10, color: 'var(--text3)', paddingLeft: 8, marginTop: 3 }}>Price must be inside FVG zone right now</div>
+          )}
+        </div>
+
+        {/* OTE */}
+        <FieldRow label="Require OTE Zone (0.618–0.786)">
+          <Toggle checked={!!s.conditions.requireOTE} onChange={v => set('conditions.requireOTE', v)}/>
+        </FieldRow>
+
+        {/* Candle Pattern */}
+        <FieldRow label="Candlestick Pattern">
+          <Select value={s.conditions.candlePattern||'any'} onChange={v => set('conditions.candlePattern', v)}
+            options={[{v:'any',l:'Any'},{v:'bullish',l:'Bullish (engulfing / hammer)'},{v:'bearish',l:'Bearish (engulfing / shooting star)'},{v:'doji',l:'Doji / Indecision'}]}/>
+        </FieldRow>
+
+        {/* EMA Filter */}
+        <div style={{ padding: '6px 0', borderBottom: '1px solid var(--border)' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: (s.conditions.emaFilter?.enabled) ? 6 : 0 }}>
+            <Label>EMA Filter</Label>
+            <div style={{ marginLeft: 'auto' }}><Toggle checked={!!s.conditions.emaFilter?.enabled} onChange={v => set('conditions.emaFilter.enabled', v)}/></div>
+          </div>
+          {s.conditions.emaFilter?.enabled && (
+            <div style={{ display: 'flex', gap: 6, alignItems: 'center', paddingLeft: 8 }}>
+              <Label>Price</Label>
+              <Select value={s.conditions.emaFilter?.side||'above'} onChange={v => set('conditions.emaFilter.side', v)}
+                options={[{v:'above',l:'Above'},{v:'below',l:'Below'}]}/>
+              <Label>EMA</Label>
+              <Select value={String(s.conditions.emaFilter?.period||200)} onChange={v => set('conditions.emaFilter.period', +v)}
+                options={[{v:'20',l:'EMA 20'},{v:'50',l:'EMA 50'},{v:'100',l:'EMA 100'},{v:'200',l:'EMA 200'}]}/>
+            </div>
+          )}
+        </div>
+
+        {/* VWAP */}
+        <div style={{ padding: '6px 0', borderBottom: '1px solid var(--border)' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: (s.conditions.vwapFilter?.enabled) ? 6 : 0 }}>
+            <Label>VWAP Filter</Label>
+            <div style={{ marginLeft: 'auto' }}><Toggle checked={!!s.conditions.vwapFilter?.enabled} onChange={v => set('conditions.vwapFilter.enabled', v)}/></div>
+          </div>
+          {s.conditions.vwapFilter?.enabled && (
+            <div style={{ display: 'flex', gap: 6, alignItems: 'center', paddingLeft: 8 }}>
+              <Label>Price</Label>
+              <Select value={s.conditions.vwapFilter?.side||'above'} onChange={v => set('conditions.vwapFilter.side', v)}
+                options={[{v:'above',l:'Above VWAP'},{v:'below',l:'Below VWAP'}]}/>
+            </div>
+          )}
+        </div>
+
+        {/* Sessions */}
         <div style={{ padding: '6px 0', borderBottom: '1px solid var(--border)' }}>
           <Label>Sessions</Label>
           <div style={{ display: 'flex', gap: 6, marginTop: 5, flexWrap: 'wrap' }}>
@@ -219,12 +320,13 @@ function StrategyEditor({ strat, onSave, onCancel }) {
           </div>
         </div>
 
+        {/* RSI */}
         <div style={{ padding: '6px 0', borderBottom: '1px solid var(--border)' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: s.conditions.rsiFilter.enabled ? 8 : 0 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: s.conditions.rsiFilter?.enabled ? 8 : 0 }}>
             <Label>RSI Filter</Label>
-            <div style={{ marginLeft: 'auto' }}><Toggle checked={s.conditions.rsiFilter.enabled} onChange={v => set('conditions.rsiFilter.enabled', v)}/></div>
+            <div style={{ marginLeft: 'auto' }}><Toggle checked={!!s.conditions.rsiFilter?.enabled} onChange={v => set('conditions.rsiFilter.enabled', v)}/></div>
           </div>
-          {s.conditions.rsiFilter.enabled && (
+          {s.conditions.rsiFilter?.enabled && (
             <div style={{ display: 'flex', gap: 6, alignItems: 'center', paddingLeft: 8 }}>
               <Label>RSI</Label>
               <Select value={s.conditions.rsiFilter.comparison} onChange={v => set('conditions.rsiFilter.comparison', v)}
@@ -238,25 +340,37 @@ function StrategyEditor({ strat, onSave, onCancel }) {
       {/* Risk */}
       <section>
         <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--text2)', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '0.06em' }}>Risk Management</div>
-        <FieldRow label="Risk Per Trade (%)">
-          <NumberInput value={s.risk.riskPercent} onChange={v => set('risk.riskPercent', v)} min={0.1} max={10} step={0.1}/>
-        </FieldRow>
+
+        {/* Risk type toggle */}
+        <div style={{ display: 'flex', gap: 4, padding: '4px 0 10px', borderBottom: '1px solid var(--border)' }}>
+          {[{v:'percent',l:'% Balance'},{v:'usdt',l:'Fixed USDT'}].map(opt => (
+            <button key={opt.v} onClick={() => set('risk.riskType', opt.v)}
+              style={{ flex: 1, padding: '6px', borderRadius: 5, fontSize: 11, fontWeight: 600, cursor: 'pointer', border: `1px solid ${(s.risk.riskType||'percent')===opt.v ? '#00d4aa' : 'var(--border)'}`, background: (s.risk.riskType||'percent')===opt.v ? '#00d4aa22' : 'var(--bg2)', color: (s.risk.riskType||'percent')===opt.v ? '#00d4aa' : 'var(--text3)' }}>
+              {opt.l}
+            </button>
+          ))}
+        </div>
+
+        {(s.risk.riskType||'percent') === 'percent' ? (
+          <FieldRow label="Risk Per Trade (%)">
+            <NumberInput value={s.risk.riskPercent} onChange={v => set('risk.riskPercent', v)} min={0.1} max={10} step={0.1}/>
+          </FieldRow>
+        ) : (
+          <FieldRow label="Risk Per Trade (USDT)">
+            <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+              <span style={{ fontSize: 11, color: 'var(--text3)' }}>$</span>
+              <NumberInput value={s.risk.riskUsdt||10} onChange={v => set('risk.riskUsdt', v)} min={1} max={10000} step={1}/>
+            </div>
+          </FieldRow>
+        )}
 
         <FieldRow label="Stop Loss Method">
           <Select value={s.risk.slMethod} onChange={v => set('risk.slMethod', v)} options={SL_METHODS}/>
         </FieldRow>
-        {s.risk.slMethod === 'swing' && (
-          <div style={{ padding: '4px 0 6px 12px', borderBottom: '1px solid var(--border)', fontSize: 10, color: 'var(--text3)' }}>
-            SL placed below the most recent swing low (long) or above swing high (short) + 3 pip buffer
-          </div>
-        )}
-        {s.risk.slMethod === 'ob' && (
-          <div style={{ padding: '4px 0 6px 12px', borderBottom: '1px solid var(--border)', fontSize: 10, color: 'var(--text3)' }}>
-            SL placed below the base of the entry Order Block
-          </div>
-        )}
-        {s.risk.slMethod === 'atr' && <FieldRow label="ATR Multiplier"><NumberInput value={s.risk.slAtr} onChange={v => set('risk.slAtr', v)} min={0.5} max={5} step={0.1}/></FieldRow>}
-        {s.risk.slMethod === 'fixed' && <FieldRow label="SL (pips)"><NumberInput value={s.risk.slPips} onChange={v => set('risk.slPips', v)} min={5} max={500} step={1}/></FieldRow>}
+        {s.risk.slMethod === 'swing' && <div style={{ padding: '2px 0 6px 12px', borderBottom: '1px solid var(--border)', fontSize: 10, color: 'var(--text3)' }}>SL below recent swing low (long) or above swing high (short) + 3 pip buffer</div>}
+        {s.risk.slMethod === 'ob'    && <div style={{ padding: '2px 0 6px 12px', borderBottom: '1px solid var(--border)', fontSize: 10, color: 'var(--text3)' }}>SL below the base of the entry Order Block</div>}
+        {s.risk.slMethod === 'atr'   && <FieldRow label="ATR Multiplier"><NumberInput value={s.risk.slAtr||1.5} onChange={v => set('risk.slAtr', v)} min={0.5} max={5} step={0.1}/></FieldRow>}
+        {s.risk.slMethod === 'fixed' && <FieldRow label="SL (pips)"><NumberInput value={s.risk.slPips||20} onChange={v => set('risk.slPips', v)} min={5} max={500} step={1}/></FieldRow>}
 
         <FieldRow label="Take Profit Method">
           <Select value={s.risk.tpMethod} onChange={v => set('risk.tpMethod', v)} options={TP_METHODS}/>
@@ -267,7 +381,7 @@ function StrategyEditor({ strat, onSave, onCancel }) {
             <div style={{ display: 'flex', gap: 5, padding: '4px 0 6px', borderBottom: '1px solid var(--border)' }}>
               {[1, 1.5, 2, 2.5, 3, 4].map(r => (
                 <button key={r} onClick={() => set('risk.rrRatio', r)}
-                  style={{ padding: '2px 7px', borderRadius: 3, fontSize: 10, border: `1px solid ${s.risk.rrRatio === r ? '#00d4aa' : 'var(--border)'}`, background: s.risk.rrRatio === r ? '#00d4aa22' : 'var(--bg2)', color: s.risk.rrRatio === r ? '#00d4aa' : 'var(--text3)', cursor: 'pointer' }}>
+                  style={{ padding: '2px 7px', borderRadius: 3, fontSize: 10, cursor: 'pointer', border: `1px solid ${s.risk.rrRatio===r?'#00d4aa':'var(--border)'}`, background: s.risk.rrRatio===r?'#00d4aa22':'var(--bg2)', color: s.risk.rrRatio===r?'#00d4aa':'var(--text3)' }}>
                   1:{r}
                 </button>
               ))}
