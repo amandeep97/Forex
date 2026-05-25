@@ -1818,6 +1818,7 @@ table  { border-collapse: collapse; width: 100%; }
   flex: 1; overflow: hidden; padding: 8px;
   display: flex; flex-direction: column; min-height: 0;
 }
+.cm-chart-wrap > svg { flex: 1; min-height: 0; }
 .cm-state {
   display: flex; align-items: center; justify-content: center;
   height: 200px; font-size: 13px; color: var(--text3);
