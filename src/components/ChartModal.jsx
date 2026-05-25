@@ -100,6 +100,7 @@ function SVGChart({ candles, symbol, ov, barCount, chartH }) {
   const bosArr = ov.bos    ? detectBOSCHoCH(vis) : [];
 
   // Always compute zone boundaries (even when zones overlay is off) for the live zone badge
+  const last  = vis[nv-1];
   const _rH = Math.max(...vis.map(c=>c.h)), _rL = Math.min(...vis.map(c=>c.l));
   const _range = _rH - _rL || 1;
   const _premBot = _rH - _range * 0.25;
@@ -151,8 +152,6 @@ function SVGChart({ candles, symbol, ov, barCount, chartH }) {
     }
     return d.length ? <path key={color+dash} d={d.join(' ')} fill="none" stroke={color} strokeWidth={sw} strokeDasharray={dash}/> : null;
   }
-
-  const last = vis[nv-1];
 
   // Date labels: show ~5 evenly spaced
   const dateLabels = [];
