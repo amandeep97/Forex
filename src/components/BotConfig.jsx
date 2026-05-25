@@ -480,17 +480,19 @@ export default function BotConfig() {
     setSaving(true); setErr('');
     try {
       const updated = { ...cfg, updatedAt: new Date().toISOString() };
-      // Always fetch fresh SHA before writing to avoid 409 conflicts
+      // Fetch fresh SHA first to avoid 409 conflicts from external updates
       const fresh = await ghRead('bot/strategy.json').catch(() => null);
       const freshSha = fresh?.sha ?? sha;
+      if (fresh?.sha && fresh.sha !== sha) setSha(fresh.sha);
       const newSha = await ghWrite('bot/strategy.json', updated, 'App: update strategy config', freshSha);
       setConfig(updated); setSha(newSha);
+      setSaving(false);
+      return true;
     } catch (e) {
-      setErr(e.message);
-      // Auto-reload so next save uses the correct SHA
-      load();
+      setErr(`Save failed: ${e.message}`);
+      setSaving(false);
+      return false;
     }
-    setSaving(false);
   };
 
   const saveGlobal = (key, val) => {
@@ -512,9 +514,12 @@ export default function BotConfig() {
     saveConfig({ ...config, strategies: config.strategies.filter(s => s.id !== id) });
   };
 
-  const toggleStrat = (id) => {
+  const toggleStrat = async (id) => {
+    const original = config.strategies;
     const strats = config.strategies.map(s => s.id === id ? { ...s, enabled: !s.enabled } : s);
-    saveConfig({ ...config, strategies: strats });
+    setConfig(prev => ({ ...prev, strategies: strats })); // optimistic
+    const ok = await saveConfig({ ...config, strategies: strats });
+    if (!ok) setConfig(prev => ({ ...prev, strategies: original })); // revert
   };
 
   const savePat = () => {
@@ -576,7 +581,15 @@ export default function BotConfig() {
         {saving && <span style={{ fontSize: 11, color: '#00d4aa' }}>Saving…</span>}
       </div>
 
-      {err && <div style={{ margin: '8px 16px', padding: '8px 12px', background: '#ef444420', border: '1px solid #ef444444', borderRadius: 6, fontSize: 11, color: '#ef4444' }}>{err}</div>}
+      {err && (
+        <div style={{ margin: '8px 16px', padding: '10px 12px', background: '#ef444420', border: '1px solid #ef444444', borderRadius: 6, fontSize: 11, color: '#ef4444', display: 'flex', alignItems: 'flex-start', gap: 8 }}>
+          <span style={{ flex: 1 }}>{err}</span>
+          <div style={{ display: 'flex', gap: 6, flexShrink: 0 }}>
+            <button onClick={() => { setErr(''); load(); }} style={{ padding: '3px 8px', borderRadius: 4, fontSize: 10, background: '#ef444433', border: '1px solid #ef444466', color: '#ef4444', cursor: 'pointer', fontWeight: 700 }}>↻ Retry</button>
+            <button onClick={() => setErr('')} style={{ padding: '3px 8px', borderRadius: 4, fontSize: 10, background: 'none', border: '1px solid #ef444444', color: '#ef4444', cursor: 'pointer' }}>✕</button>
+          </div>
+        </div>
+      )}
 
       {/* Global settings */}
       {config && (
@@ -673,11 +686,21 @@ export default function BotConfig() {
         </div>
       </div>
 
-      {/* Reset PAT */}
-      <div style={{ padding: '0 16px 16px' }}>
+      {/* Reset PAT + token test */}
+      <div style={{ padding: '0 16px 16px', display: 'flex', gap: 12, alignItems: 'center' }}>
         <button onClick={() => { localStorage.removeItem('github_pat'); setPatSaved(false); setPat(''); }}
           style={{ fontSize: 10, color: 'var(--text3)', background: 'none', border: 'none', cursor: 'pointer', textDecoration: 'underline' }}>
           Change GitHub token
+        </button>
+        <button onClick={async () => {
+          try {
+            await ghRead('bot/strategy.json');
+            alert('GitHub token is valid — read/write OK');
+          } catch (e) {
+            alert(`GitHub token error: ${e.message}`);
+          }
+        }} style={{ fontSize: 10, color: '#00d4aa', background: 'none', border: 'none', cursor: 'pointer', textDecoration: 'underline' }}>
+          Test token
         </button>
       </div>
     </div>
