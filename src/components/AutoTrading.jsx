@@ -19,11 +19,16 @@ async function oandaCandles(apiKey, env, instrument, count = 100) {
   }));
 }
 
-async function oandaBalance(apiKey, accountId, env) {
+async function oandaAccount(apiKey, accountId, env) {
   const res = await fetch(`${oandaBase(env)}/accounts/${accountId}/summary`, { headers: { Authorization: `Bearer ${apiKey}` } });
-  if (!res.ok) return 10000;
-  const d = await res.json();
-  return parseFloat(d.account?.balance || 10000);
+  if (!res.ok) return { balance: 1000, marginAvailable: 200, leverage: 30 };
+  const d   = await res.json();
+  const acc = d.account || {};
+  return {
+    balance:         parseFloat(acc.balance         || 1000),
+    marginAvailable: parseFloat(acc.marginAvailable || acc.balance || 200),
+    leverage:        acc.marginRate ? Math.round(1 / parseFloat(acc.marginRate)) : 30,
+  };
 }
 
 async function oandaPlaceOrder(apiKey, accountId, env, pair, signedUnits, sl, tp) {
@@ -153,16 +158,18 @@ function analyzeCandles(candles, forceDir = null) {
   return { dir, structure, cp, sl, tp, rr: (Math.abs(tp - cp) / dist).toFixed(1), atr };
 }
 
-function calcUnits(balance, riskPct, entry, sl, pair) {
+function calcUnits(balance, riskPct, entry, sl, pair, marginAvailable, leverage) {
   const pipSize  = pair.includes('JPY') ? 0.01 : pair.includes('XAU') ? 0.1 : 0.0001;
   const slPips   = Math.abs(entry - sl) / pipSize;
   if (!slPips || slPips < 1) return 1;
-  // Risk-based sizing: riskAmt / (slPips * pip value per unit)
-  // For USD-quoted pairs, pip value per unit ≈ pipSize (in account currency per unit)
-  const riskAmt  = balance * riskPct / 100;
-  const units    = Math.round(riskAmt / (slPips * pipSize));
-  // No 1000-unit minimum — OANDA supports 1 unit, let the account balance decide
-  return Math.max(1, Math.min(units, 500000));
+  // Risk-based units
+  const riskAmt   = balance * riskPct / 100;
+  const riskUnits = Math.round(riskAmt / (slPips * pipSize));
+  // Margin-safe cap: use at most 40% of available margin for this trade
+  const lev       = leverage || 30;
+  const mAvail    = marginAvailable || balance * 0.5;
+  const marginCap = Math.floor((mAvail * 0.4 * lev) / (entry || 1));
+  return Math.max(1, Math.min(riskUnits, marginCap, 500000));
 }
 
 // ── Shared UI atoms ───────────────────────────────────────────────────────────
@@ -302,12 +309,13 @@ function ConnectTab({ onLog, signalPair, onSignalUsed }) {
       setSignal(sig);
       const d = dp(pair);
       setEditEntry(sig.cp.toFixed(d)); setEditSL(sig.sl?.toFixed(d) || ''); setEditTP(sig.tp?.toFixed(d) || '');
-      // Fetch real balance and size accordingly
-      const bal = (broker === 'oanda' && apiKey && accountId) ? await oandaBalance(apiKey, accountId, env).catch(() => 1000) : 1000;
-      const units = calcUnits(bal, 1, sig.cp, sig.sl, pair);
-      // Show as lots (100k units = 1 lot); minimum display 0.01 lots but allow fewer units
-      const lots = Math.max(0.01, units / 100000);
-      setLotSize(lots.toFixed(2));
+      // Fetch real balance + margin and size accordingly
+      const acct  = (broker === 'oanda' && apiKey && accountId)
+        ? await oandaAccount(apiKey, accountId, env).catch(() => ({ balance: 1000, marginAvailable: 200, leverage: 30 }))
+        : { balance: 1000, marginAvailable: 200, leverage: 30 };
+      const units = calcUnits(acct.balance, 1, sig.cp, sig.sl, pair, acct.marginAvailable, acct.leverage);
+      const lots  = units / 100000;
+      setLotSize(lots < 0.01 ? lots.toFixed(4) : lots.toFixed(2));
       onLog?.('INFO', `Signal: ${sig.dir} ${pair.replace('_','/')} · ${sig.structure} · R:R 1:${sig.rr}`);
     } catch (e) { setTradeErr(e.message); }
     finally { setAnalyzing(false); }
@@ -962,8 +970,8 @@ export default function AutoTrading({ accountMode = 'demo' }) {
     const { dir, entry, sl, tp, riskPercent } = tradeParams;
     addLog('TRADE', `Auto-executing ${dir} ${pair.replace('_','/')} @ ${entry?.toFixed(dp(pair))} | SL ${sl?.toFixed(dp(pair))} | TP ${tp?.toFixed(dp(pair))}`);
     try {
-      const balance  = await oandaBalance(apiKey, accountId, env_);
-      const units    = calcUnits(balance, riskPercent || 1, entry, sl, pair);
+      const acct_   = await oandaAccount(apiKey, accountId, env_);
+      const units   = calcUnits(acct_.balance, riskPercent || 1, entry, sl, pair, acct_.marginAvailable, acct_.leverage);
       const signedU  = dir === 'LONG' ? units : -units;
       const tradeId  = await oandaPlaceOrder(apiKey, accountId, env_, pair, signedU, sl, tp);
       addLog('SUCCESS', `Auto-trade placed — ${pair.replace('_','/')} ID: ${tradeId}`);
