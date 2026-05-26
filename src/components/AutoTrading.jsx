@@ -608,36 +608,32 @@ function PositionsTab({ onLog }) {
       .catch(e => { setError(e.message); setLoading(false); });
   }, []);
 
-  // Fetch live prices for open trades every 15 seconds
+  // Fetch live prices for open trades every 15 seconds via OANDA pricing endpoint
   useEffect(() => {
     const fetchPrices = async () => {
       const apiKey    = localStorage.getItem('oanda_key');
+      const accountId = localStorage.getItem('oanda_acct');
       const env_      = localStorage.getItem('oanda_env') || 'practice';
-      if (!apiKey) return;
+      if (!apiKey || !accountId) return;
       const openTrades = trades.filter(t => t.status === 'OPEN' || t.status === 'open');
       if (openTrades.length === 0) return;
       const instruments = [...new Set(openTrades.map(t => t.pair).filter(Boolean))].join(',');
       try {
-        const res = await fetch(`${oandaBase(env_)}/instruments/${instruments}/candles?granularity=M1&count=1&price=M`,
-          { headers: { Authorization: `Bearer ${apiKey}` } });
+        // OANDA pricing endpoint returns real-time bid/ask for multiple instruments at once
+        const res = await fetch(
+          `${oandaBase(env_)}/accounts/${accountId}/pricing?instruments=${instruments}`,
+          { headers: { Authorization: `Bearer ${apiKey}` } }
+        );
         if (!res.ok) return;
         const data = await res.json();
         const prices = {};
-        // Handle single vs multiple instruments response
-        if (data.candles) {
-          prices[data.instrument] = +data.candles.at(-1)?.mid?.c;
-        } else if (data.responses) {
-          data.responses.forEach(r => { if (r.candles?.length) prices[r.instrument] = +r.candles.at(-1)?.mid?.c; });
-        }
-        // Fallback: fetch one by one
-        if (Object.keys(prices).length === 0) {
-          for (const pair of openTrades.map(t => t.pair).filter(Boolean)) {
-            const r = await fetch(`${oandaBase(env_)}/instruments/${pair}/candles?granularity=M1&count=1&price=M`,
-              { headers: { Authorization: `Bearer ${apiKey}` } }).catch(() => null);
-            if (r?.ok) { const d = await r.json(); prices[pair] = +d.candles?.at(-1)?.mid?.c || 0; }
-          }
-        }
-        setLivePrices(prev => ({ ...prev, ...prices }));
+        (data.prices || []).forEach(p => {
+          // Use mid price = (bid + ask) / 2
+          const bid = parseFloat(p.bids?.[0]?.price || 0);
+          const ask = parseFloat(p.asks?.[0]?.price || 0);
+          if (bid && ask) prices[p.instrument] = (bid + ask) / 2;
+        });
+        if (Object.keys(prices).length > 0) setLivePrices(prev => ({ ...prev, ...prices }));
       } catch {}
     };
     fetchPrices();
