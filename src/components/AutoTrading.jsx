@@ -600,7 +600,8 @@ function PositionsTab({ onLog }) {
   const [activity,   setActivity]   = useState([]);
   const [actLoading, setActLoading] = useState(false);
   const [actErr,     setActErr]     = useState('');
-  const [livePrices, setLivePrices] = useState({});
+  const [livePrices,  setLivePrices]  = useState({});
+  const [liveMargins, setLiveMargins] = useState({}); // oandaTradeId → marginUsed (account currency)
 
   useEffect(() => {
     setLoading(true);
@@ -608,7 +609,7 @@ function PositionsTab({ onLog }) {
       .catch(e => { setError(e.message); setLoading(false); });
   }, []);
 
-  // Fetch live prices for open trades every 15 seconds via OANDA pricing endpoint
+  // Fetch live prices + real marginUsed for open trades every 15 seconds
   useEffect(() => {
     const fetchPrices = async () => {
       const apiKey    = localStorage.getItem('oanda_key');
@@ -619,21 +620,30 @@ function PositionsTab({ onLog }) {
       if (openTrades.length === 0) return;
       const instruments = [...new Set(openTrades.map(t => t.pair).filter(Boolean))].join(',');
       try {
-        // OANDA pricing endpoint returns real-time bid/ask for multiple instruments at once
-        const res = await fetch(
-          `${oandaBase(env_)}/accounts/${accountId}/pricing?instruments=${instruments}`,
-          { headers: { Authorization: `Bearer ${apiKey}` } }
-        );
-        if (!res.ok) return;
-        const data = await res.json();
-        const prices = {};
-        (data.prices || []).forEach(p => {
-          // Use mid price = (bid + ask) / 2
-          const bid = parseFloat(p.bids?.[0]?.price || 0);
-          const ask = parseFloat(p.asks?.[0]?.price || 0);
-          if (bid && ask) prices[p.instrument] = (bid + ask) / 2;
-        });
-        if (Object.keys(prices).length > 0) setLivePrices(prev => ({ ...prev, ...prices }));
+        const [priceRes, tradesRes] = await Promise.all([
+          fetch(`${oandaBase(env_)}/accounts/${accountId}/pricing?instruments=${instruments}`,
+            { headers: { Authorization: `Bearer ${apiKey}` } }),
+          fetch(`${oandaBase(env_)}/accounts/${accountId}/openTrades`,
+            { headers: { Authorization: `Bearer ${apiKey}` } }),
+        ]);
+        if (priceRes.ok) {
+          const data = await priceRes.json();
+          const prices = {};
+          (data.prices || []).forEach(p => {
+            const bid = parseFloat(p.bids?.[0]?.price || 0);
+            const ask = parseFloat(p.asks?.[0]?.price || 0);
+            if (bid && ask) prices[p.instrument] = (bid + ask) / 2;
+          });
+          if (Object.keys(prices).length > 0) setLivePrices(prev => ({ ...prev, ...prices }));
+        }
+        if (tradesRes.ok) {
+          const data = await tradesRes.json();
+          const margins = {};
+          (data.trades || []).forEach(t => {
+            if (t.id && t.marginUsed) margins[String(t.id)] = parseFloat(t.marginUsed);
+          });
+          if (Object.keys(margins).length > 0) setLiveMargins(prev => ({ ...prev, ...margins }));
+        }
       } catch {}
     };
     fetchPrices();
@@ -793,8 +803,8 @@ function PositionsTab({ onLog }) {
           const tp      = t.tpPrice ?? t.tp;
           const units    = Math.abs(t.units || 0);
           const notional = units && entry ? units * entry : null;
-          const lev      = (t.pair||'').includes('JPY') || (t.pair||'').includes('CHF') ? 20 : 30;
-          const margin   = notional ? notional / lev : null;
+          const oandaId  = String(t.oandaTradeId || t.oandaId || '');
+          const margin   = liveMargins[oandaId] ?? null;
           const livePrice = livePrices[t.pair] || null;
           const rawPL    = livePrice && entry && units
             ? (isLong ? (livePrice - entry) : (entry - livePrice)) * units
@@ -834,7 +844,7 @@ function PositionsTab({ onLog }) {
                   </div>}
                   {margin && <div style={{ background: '#0f172a', borderRadius: 6, padding: '6px 10px', flex: 1, textAlign: 'center' }}>
                     <div style={{ fontSize: 10, color: '#475569', marginBottom: 2 }}>Margin Used</div>
-                    <div style={{ fontSize: 12, fontWeight: 600, color: '#fbbf24', fontFamily: 'monospace' }}>${margin.toFixed(2)}</div>
+                    <div style={{ fontSize: 12, fontWeight: 600, color: '#fbbf24', fontFamily: 'monospace' }}>{margin.toFixed(2)}</div>
                   </div>}
                 </div>
               ) : null}
