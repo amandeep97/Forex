@@ -953,9 +953,10 @@ function VPSBotTab({ onLog }) {
   const ctrlLabel = { running: '● Running', paused: '⏸ Paused', stopped: '■ Stopped', unknown: '? Unknown' }[botStatus?.control] || '? Unknown';
 
   const VPS_PROVIDERS = [
-    { name: 'DigitalOcean', price: '$4/mo', url: 'digitalocean.com', note: 'Easiest setup' },
-    { name: 'Vultr',        price: '$2.50/mo', url: 'vultr.com',       note: 'Cheapest' },
-    { name: 'Linode',       price: '$5/mo',  url: 'linode.com',       note: 'Reliable' },
+    { name: 'Hetzner',      price: '€3.29/mo', url: 'hetzner.com',      note: '✓ You have this', highlight: true },
+    { name: 'DigitalOcean', price: '$4/mo',    url: 'digitalocean.com', note: 'Easiest setup' },
+    { name: 'Vultr',        price: '$2.50/mo', url: 'vultr.com',        note: 'Cheapest' },
+    { name: 'Linode',       price: '$5/mo',    url: 'linode.com',       note: 'Reliable' },
   ];
 
   const SETUP_CMDS = [
@@ -1010,10 +1011,10 @@ BOT_INTERVAL_MS=60000`;
             You need a Linux VPS (Ubuntu 22.04) — costs $2–5/month. Pick any provider:
           </div>
           {VPS_PROVIDERS.map(p => (
-            <div key={p.name} style={{ background: '#1e293b', borderRadius: 8, padding: '12px 14px', marginBottom: 8, display: 'flex', alignItems: 'center', gap: 12 }}>
+            <div key={p.name} style={{ background: p.highlight ? '#14532d22' : '#1e293b', borderRadius: 8, padding: '12px 14px', marginBottom: 8, display: 'flex', alignItems: 'center', gap: 12, border: `1px solid ${p.highlight ? '#22c55e44' : 'transparent'}` }}>
               <div style={{ flex: 1 }}>
-                <div style={{ fontWeight: 700, color: '#f8fafc', fontSize: 13 }}>{p.name}</div>
-                <div style={{ fontSize: 11, color: '#64748b' }}>{p.note} · {p.url}</div>
+                <div style={{ fontWeight: 700, color: p.highlight ? '#4ade80' : '#f8fafc', fontSize: 13 }}>{p.name}</div>
+                <div style={{ fontSize: 11, color: p.highlight ? '#86efac' : '#64748b' }}>{p.note} · {p.url}</div>
               </div>
               <div style={{ fontSize: 14, fontWeight: 700, color: '#22c55e' }}>{p.price}</div>
             </div>
