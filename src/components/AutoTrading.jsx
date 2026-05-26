@@ -715,8 +715,8 @@ function PositionsTab({ onLog }) {
       </div>
       {error && <div style={{ background: '#450a0a', color: '#fca5a5', padding: '8px 12px', borderRadius: 6, fontSize: 12, marginBottom: 12 }}>{error}</div>}
 
-      {/* Cancelled positions */}
-      {cancelled.map(t => (
+      {/* Cancelled positions — newest first */}
+      {[...cancelled].sort((a,b) => new Date(b.openTime||b.openedAt||0) - new Date(a.openTime||a.openedAt||0)).map(t => (
         <div key={t.id} style={{ background: '#1e293b', borderRadius: 10, padding: 12, marginBottom: 8, border: '1px solid #7f1d1d', opacity: 0.8 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
             <span style={{ fontSize: 13, color: '#f87171' }}>✗</span>
@@ -732,9 +732,16 @@ function PositionsTab({ onLog }) {
       ))}
       {open.length === 0 && !loading
         ? <div style={{ textAlign: 'center', color: '#475569', padding: '48px 0', fontSize: 13 }}>No open positions</div>
-        : open.map(t => {
-          const isLong = t.direction === 'LONG' || t.direction === 'long';
-          const entry = t.entryPrice ?? t.entry; const sl = t.slPrice ?? t.sl; const tp = t.tpPrice ?? t.tp;
+        : [...open].sort((a, b) => new Date(b.openTime||b.openedAt||0) - new Date(a.openTime||a.openedAt||0)).map(t => {
+          const isLong  = t.direction === 'LONG' || t.direction === 'long';
+          const entry   = t.entryPrice ?? t.entry;
+          const sl      = t.slPrice ?? t.sl;
+          const tp      = t.tpPrice ?? t.tp;
+          const units   = Math.abs(t.units || 0);
+          const notional = units && entry ? units * entry : null;
+          // Approximate margin: OANDA live majors ~30:1, minors ~20:1
+          const lev     = (t.pair||'').includes('JPY') || (t.pair||'').includes('CHF') ? 20 : 30;
+          const margin  = notional ? notional / lev : null;
           return (
             <div key={t.id} style={{ background: '#1e293b', borderRadius: 10, padding: 14, marginBottom: 10, border: `1px solid ${isLong?'#1e3a5f':'#3b0764'}` }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
@@ -751,6 +758,22 @@ function PositionsTab({ onLog }) {
                   </div>
                 ))}
               </div>
+              {(notional || units) ? (
+                <div style={{ display: 'flex', gap: 8, marginBottom: 8 }}>
+                  <div style={{ background: '#0f172a', borderRadius: 6, padding: '6px 10px', flex: 1, textAlign: 'center' }}>
+                    <div style={{ fontSize: 10, color: '#475569', marginBottom: 2 }}>Units</div>
+                    <div style={{ fontSize: 12, fontWeight: 600, color: '#94a3b8', fontFamily: 'monospace' }}>{units.toLocaleString()}</div>
+                  </div>
+                  {notional && <div style={{ background: '#0f172a', borderRadius: 6, padding: '6px 10px', flex: 1, textAlign: 'center' }}>
+                    <div style={{ fontSize: 10, color: '#475569', marginBottom: 2 }}>Trade Value</div>
+                    <div style={{ fontSize: 12, fontWeight: 600, color: '#e2e8f0', fontFamily: 'monospace' }}>${notional.toFixed(2)}</div>
+                  </div>}
+                  {margin && <div style={{ background: '#0f172a', borderRadius: 6, padding: '6px 10px', flex: 1, textAlign: 'center' }}>
+                    <div style={{ fontSize: 10, color: '#475569', marginBottom: 2 }}>Margin Used</div>
+                    <div style={{ fontSize: 12, fontWeight: 600, color: '#fbbf24', fontFamily: 'monospace' }}>${margin.toFixed(2)}</div>
+                  </div>}
+                </div>
+              ) : null}
               <div style={{ fontSize: 11, color: '#475569', marginBottom: 10 }}>
                 {t.source || 'vps_bot'} · {fmtTime(t.openTime || t.openedAt)} · ID: {t.oandaTradeId || t.id}
               </div>
