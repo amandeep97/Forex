@@ -907,18 +907,32 @@ function VPSBotTab({ onLog }) {
   const [botStatus, setBotStatus] = useState(null);
   const [loading,   setLoading]   = useState(false);
   const [saving,    setSaving]    = useState(false);
-  const [pat,       setPat]       = useState(() => localStorage.getItem('github_pat') || '');
   const [msg,       setMsg]       = useState('');
   const [err,       setErr]       = useState('');
+  const [copied,    setCopied]    = useState('');
+  const [step,      setStep]      = useState('setup'); // setup | deploy | control
+
+  const copy = (text, key) => {
+    navigator.clipboard.writeText(text).then(() => { setCopied(key); setTimeout(() => setCopied(''), 2000); });
+  };
 
   const refreshStatus = async () => {
     setLoading(true); setErr('');
     try {
-      const [stratData, ctrlData] = await Promise.all([
+      const [stratData, ctrlData, tradesData] = await Promise.all([
         ghRead('bot/strategy.json').catch(() => null),
         ghRead('bot/vps-control.json').catch(() => null),
+        ghRead('bot/trades.json').catch(() => null),
       ]);
-      setBotStatus({ lastRunAt: stratData?.content?.globalSettings?.lastRunAt, control: ctrlData?.content?.command || 'running' });
+      const trades = tradesData?.content?.trades || [];
+      const botTrades = trades.filter(t => t.source === 'vps_bot');
+      setBotStatus({
+        control:   ctrlData?.content?.command || 'unknown',
+        sentAt:    ctrlData?.content?.sentAt,
+        totalBotTrades: botTrades.length,
+        openBotTrades:  botTrades.filter(t => t.status === 'open' || t.status === 'OPEN').length,
+        hasStrategy: !!stratData,
+      });
     } catch (e) { setErr(e.message); }
     finally { setLoading(false); }
   };
@@ -929,65 +943,198 @@ function VPSBotTab({ onLog }) {
       const existing = await ghRead('bot/vps-control.json', { noCache: true }).catch(() => null);
       await ghWrite('bot/vps-control.json', { command, sentAt: new Date().toISOString() }, `VPS control: ${command}`, existing?.sha || null);
       setBotStatus(s => ({ ...s, control: command }));
-      setMsg(`"${command}" sent`); onLog?.('INFO', `VPS: ${command}`);
+      setMsg(`Command "${command}" sent to bot`); onLog?.('INFO', `VPS: ${command}`);
       setTimeout(() => setMsg(''), 3000);
     } catch (e) { setErr(e.message); }
     finally { setSaving(false); }
   };
 
-  const ctrlColor = { running: '#22c55e', paused: '#f59e0b', stopped: '#ef4444' }[botStatus?.control] || '#475569';
+  const ctrlColor = { running: '#22c55e', paused: '#f59e0b', stopped: '#ef4444', unknown: '#475569' }[botStatus?.control] || '#475569';
+  const ctrlLabel = { running: '● Running', paused: '⏸ Paused', stopped: '■ Stopped', unknown: '? Unknown' }[botStatus?.control] || '? Unknown';
+
+  const VPS_PROVIDERS = [
+    { name: 'DigitalOcean', price: '$4/mo', url: 'digitalocean.com', note: 'Easiest setup' },
+    { name: 'Vultr',        price: '$2.50/mo', url: 'vultr.com',       note: 'Cheapest' },
+    { name: 'Linode',       price: '$5/mo',  url: 'linode.com',       note: 'Reliable' },
+  ];
+
+  const SETUP_CMDS = [
+    { key: 'clone', label: '1. Download bot code', cmd: 'git clone https://github.com/amandeep97/Forex.git && cd Forex/vps-bot' },
+    { key: 'install', label: '2. Install dependencies', cmd: 'npm install' },
+    { key: 'env', label: '3. Create config file', cmd: 'cp .env.example .env && nano .env' },
+    { key: 'pm2', label: '4. Install PM2 (keeps bot alive)', cmd: 'npm install -g pm2' },
+    { key: 'start', label: '5. Start bot', cmd: 'pm2 start ecosystem.config.js && pm2 save && pm2 startup' },
+    { key: 'logs', label: '6. Watch live logs', cmd: 'pm2 logs forex-bot' },
+  ];
+
+  const ENV_CONTENT = `OANDA_API_KEY=${localStorage.getItem('oanda_key') || 'your_oanda_api_key'}
+OANDA_ACCOUNT_ID=${localStorage.getItem('oanda_acct') || 'your_account_id'}
+OANDA_PRACTICE=${localStorage.getItem('oanda_env') === 'live' ? 'false' : 'true'}
+
+GITHUB_TOKEN=ghp_your_github_personal_access_token
+GITHUB_OWNER=amandeep97
+GITHUB_REPO=Forex
+GITHUB_BRANCH=main
+
+TELEGRAM_BOT_TOKEN=optional_leave_blank_to_skip
+TELEGRAM_CHAT_ID=optional_leave_blank_to_skip
+
+BOT_INTERVAL_MS=60000`;
 
   return (
     <div style={{ padding: 16 }}>
-      <div style={{ ...CARD, display: 'flex', gap: 14 }}>
-        <span style={{ fontSize: 32 }}>🤖</span>
-        <div>
-          <div style={{ fontWeight: 700, color: '#f8fafc', fontSize: 14, marginBottom: 4 }}>VPS Auto-Trade Bot</div>
-          <div style={{ fontSize: 12, color: '#64748b', lineHeight: 1.6 }}>
-            Runs 24/7 on your server — trades even when browser is closed.<br />
-            Supports OANDA · Forex.com coming in v2.
-          </div>
+      {/* Header */}
+      <div style={{ background: 'linear-gradient(135deg,#1e3a5f,#1e1b4b)', borderRadius: 12, padding: 16, marginBottom: 14, border: '1px solid #2563eb44' }}>
+        <div style={{ fontSize: 16, fontWeight: 700, color: '#f8fafc', marginBottom: 4 }}>🤖 VPS Auto-Trade Bot</div>
+        <div style={{ fontSize: 12, color: '#93c5fd', lineHeight: 1.7 }}>
+          Runs 24/7 on a cheap server — scans pairs every minute, places trades automatically even when your phone is off.
         </div>
       </div>
-      <div style={CARD}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
-          <div style={SEC}>Bot Control</div>
-          <button onClick={refreshStatus} disabled={loading} style={{ background:'#334155', border:'none', color:'#94a3b8', padding:'5px 12px', borderRadius:6, fontSize:11, cursor:'pointer' }}>
-            {loading ? 'Loading…' : 'Refresh'}
+
+      {/* Step tabs */}
+      <div style={{ display: 'flex', gap: 6, marginBottom: 14 }}>
+        {[['setup','1. Get VPS'],['deploy','2. Deploy'],['control','3. Control']].map(([id, label]) => (
+          <button key={id} onClick={() => setStep(id)}
+            style={{ flex: 1, padding: '8px 4px', borderRadius: 8, border: `1px solid ${step===id?'#2563eb':'#334155'}`,
+              background: step===id ? '#1d4ed8' : '#1e293b', color: step===id ? '#fff' : '#64748b',
+              fontSize: 12, fontWeight: step===id ? 700 : 400, cursor: 'pointer' }}>
+            {label}
           </button>
-        </div>
-        <div style={{ fontSize: 13, color: '#94a3b8', marginBottom: 14 }}>
-          Status: {botStatus
-            ? <strong style={{ color: ctrlColor }}>{botStatus.control === 'running' ? 'Running' : botStatus.control === 'paused' ? 'Paused' : 'Stopped'}{botStatus.lastRunAt ? ` — ${new Date(botStatus.lastRunAt).toLocaleTimeString()}` : ''}</strong>
-            : <span style={{ color: '#475569' }}>Unknown — click Refresh</span>}
-        </div>
-        <div style={{ display: 'flex', gap: 8, marginBottom: 10 }}>
-          <button onClick={() => sendControl('running')} disabled={saving} style={BTN({ background:'#1d4ed8', color:'#fff' })}>▶ Resume</button>
-          <button onClick={() => sendControl('paused')}  disabled={saving} style={BTN({ background:'#92400e', color:'#fbbf24' })}>⏸ Pause</button>
-          <button onClick={() => sendControl('stopped')} disabled={saving} style={BTN({ background:'#450a0a', color:'#ef4444' })}>⏹ Stop</button>
-        </div>
-        {msg && <div style={{ fontSize: 12, color: '#22c55e' }}>{msg}</div>}
-        {err && <div style={{ fontSize: 12, color: '#ef4444' }}>{err}</div>}
-      </div>
-      <div style={CARD}>
-        <div style={SEC}>GitHub PAT</div>
-        <div style={{ display: 'flex', gap: 8, marginBottom: 16 }}>
-          <input type="password" value={pat} onChange={e => setPat(e.target.value)} placeholder="ghp_xxx…" style={{ ...INP, flex: 1 }} />
-          <button onClick={() => { localStorage.setItem('github_pat', pat); setMsg('Saved'); setTimeout(() => setMsg(''), 2000); }} style={BTN({ background:'#1d4ed8', color:'#fff' })}>Save</button>
-        </div>
-        <div style={SEC}>Deploy VPS Bot</div>
-        {[
-          'git clone https://github.com/amandeep97/Forex && cd Forex/vps-bot',
-          'npm install',
-          'cp .env.example .env  # fill OANDA_API_KEY, GITHUB_TOKEN, TELEGRAM_BOT_TOKEN',
-          'npm install -g pm2 && pm2 start ecosystem.config.js && pm2 save',
-        ].map((cmd, i) => (
-          <div key={i} style={{ background:'#0f172a', borderRadius:6, padding:'8px 12px', marginBottom:6, display:'flex', gap:10 }}>
-            <span style={{ fontSize:10, fontWeight:700, color:'#2563eb', minWidth:16, paddingTop:2 }}>{i+1}</span>
-            <code style={{ fontSize:11, color:'#94a3b8', wordBreak:'break-all' }}>{cmd}</code>
-          </div>
         ))}
       </div>
+
+      {/* Step 1: Get VPS */}
+      {step === 'setup' && (
+        <div>
+          <div style={{ fontSize: 12, color: '#94a3b8', marginBottom: 12, lineHeight: 1.7 }}>
+            You need a Linux VPS (Ubuntu 22.04) — costs $2–5/month. Pick any provider:
+          </div>
+          {VPS_PROVIDERS.map(p => (
+            <div key={p.name} style={{ background: '#1e293b', borderRadius: 8, padding: '12px 14px', marginBottom: 8, display: 'flex', alignItems: 'center', gap: 12 }}>
+              <div style={{ flex: 1 }}>
+                <div style={{ fontWeight: 700, color: '#f8fafc', fontSize: 13 }}>{p.name}</div>
+                <div style={{ fontSize: 11, color: '#64748b' }}>{p.note} · {p.url}</div>
+              </div>
+              <div style={{ fontSize: 14, fontWeight: 700, color: '#22c55e' }}>{p.price}</div>
+            </div>
+          ))}
+          <div style={{ background: '#0f172a', borderRadius: 8, padding: 12, marginTop: 14, fontSize: 12, color: '#64748b', lineHeight: 1.8 }}>
+            <div style={{ color: '#f8fafc', fontWeight: 600, marginBottom: 6 }}>After signing up:</div>
+            <div>1. Create a server — choose <strong style={{color:'#93c5fd'}}>Ubuntu 22.04</strong></div>
+            <div>2. Connect via SSH: <code style={{color:'#a5b4fc'}}>ssh root@your-server-ip</code></div>
+            <div>3. Install Node.js:</div>
+            <div style={{ background: '#1e293b', borderRadius: 6, padding: '6px 10px', marginTop: 4, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <code style={{ fontSize: 11, color: '#94a3b8' }}>curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && apt install -y nodejs git</code>
+              <button onClick={() => copy('curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && apt install -y nodejs git', 'node')}
+                style={{ background: copied==='node'?'#14532d':'#334155', border:'none', color: copied==='node'?'#4ade80':'#94a3b8', borderRadius:4, padding:'3px 8px', fontSize:10, cursor:'pointer', whiteSpace:'nowrap', marginLeft:8 }}>
+                {copied==='node' ? '✓ Copied' : 'Copy'}
+              </button>
+            </div>
+            <div style={{ marginTop: 6 }}>4. Then go to <strong style={{color:'#93c5fd'}}>Step 2 → Deploy</strong></div>
+          </div>
+        </div>
+      )}
+
+      {/* Step 2: Deploy */}
+      {step === 'deploy' && (
+        <div>
+          {SETUP_CMDS.map(({ key, label, cmd }) => (
+            <div key={key} style={{ marginBottom: 10 }}>
+              <div style={{ fontSize: 11, color: '#64748b', marginBottom: 4 }}>{label}</div>
+              <div style={{ background: '#0f172a', borderRadius: 6, padding: '8px 12px', display: 'flex', alignItems: 'center', gap: 8 }}>
+                <code style={{ fontSize: 11, color: '#94a3b8', flex: 1, wordBreak: 'break-all' }}>{cmd}</code>
+                <button onClick={() => copy(cmd, key)}
+                  style={{ background: copied===key?'#14532d':'#334155', border:'none', color:copied===key?'#4ade80':'#94a3b8', borderRadius:4, padding:'4px 10px', fontSize:10, cursor:'pointer', whiteSpace:'nowrap', flexShrink:0 }}>
+                  {copied===key ? '✓' : 'Copy'}
+                </button>
+              </div>
+            </div>
+          ))}
+
+          <div style={{ marginTop: 14 }}>
+            <div style={{ fontSize: 11, color: '#f59e0b', marginBottom: 6, fontWeight: 600 }}>📋 .env file contents (pre-filled with your OANDA keys)</div>
+            <div style={{ background: '#0f172a', borderRadius: 6, padding: '10px 12px', position: 'relative' }}>
+              <pre style={{ fontSize: 10, color: '#94a3b8', margin: 0, whiteSpace: 'pre-wrap', lineHeight: 1.8 }}>{ENV_CONTENT}</pre>
+              <button onClick={() => copy(ENV_CONTENT, 'env')}
+                style={{ position: 'absolute', top: 8, right: 8, background: copied==='env'?'#14532d':'#334155', border:'none', color:copied==='env'?'#4ade80':'#94a3b8', borderRadius:4, padding:'4px 10px', fontSize:10, cursor:'pointer' }}>
+                {copied==='env' ? '✓ Copied' : 'Copy'}
+              </button>
+            </div>
+            <div style={{ fontSize: 11, color: '#475569', marginTop: 6 }}>
+              Paste this into the .env file. Add your GitHub PAT from github.com/settings/tokens (repo scope).
+            </div>
+          </div>
+
+          <div style={{ background: '#14532d33', border: '1px solid #22c55e44', borderRadius: 8, padding: 12, marginTop: 14 }}>
+            <div style={{ fontSize: 12, color: '#4ade80', fontWeight: 600, marginBottom: 4 }}>✓ Bot is running when you see:</div>
+            <code style={{ fontSize: 11, color: '#86efac' }}>ForexPro VPS Bot starting — interval 60s</code>
+          </div>
+        </div>
+      )}
+
+      {/* Step 3: Control */}
+      {step === 'control' && (
+        <div>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
+            <div style={{ fontSize: 12, color: '#64748b' }}>Remote control via GitHub — bot checks every minute</div>
+            <button onClick={refreshStatus} disabled={loading}
+              style={{ background:'#334155', border:'none', color:'#94a3b8', padding:'5px 12px', borderRadius:6, fontSize:11, cursor:'pointer' }}>
+              {loading ? '…' : 'Refresh'}
+            </button>
+          </div>
+
+          {botStatus ? (
+            <div style={{ background: '#1e293b', borderRadius: 10, padding: 14, marginBottom: 14, border: `1px solid ${ctrlColor}44` }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 10 }}>
+                <span style={{ fontSize: 14, fontWeight: 700, color: ctrlColor }}>{ctrlLabel}</span>
+                {botStatus.sentAt && <span style={{ fontSize: 11, color: '#475569' }}>since {new Date(botStatus.sentAt).toLocaleTimeString()}</span>}
+              </div>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
+                <div style={{ background: '#0f172a', borderRadius: 6, padding: '8px 10px', textAlign: 'center' }}>
+                  <div style={{ fontSize: 10, color: '#475569', marginBottom: 2 }}>Bot Trades Total</div>
+                  <div style={{ fontSize: 18, fontWeight: 700, color: '#f8fafc' }}>{botStatus.totalBotTrades}</div>
+                </div>
+                <div style={{ background: '#0f172a', borderRadius: 6, padding: '8px 10px', textAlign: 'center' }}>
+                  <div style={{ fontSize: 10, color: '#475569', marginBottom: 2 }}>Currently Open</div>
+                  <div style={{ fontSize: 18, fontWeight: 700, color: '#22c55e' }}>{botStatus.openBotTrades}</div>
+                </div>
+              </div>
+              {!botStatus.hasStrategy && (
+                <div style={{ marginTop: 10, fontSize: 11, color: '#f59e0b' }}>⚠ No strategy.json found — configure in Strategy Config tab first</div>
+              )}
+            </div>
+          ) : (
+            <div style={{ fontSize: 12, color: '#475569', marginBottom: 14 }}>Tap Refresh to check bot status</div>
+          )}
+
+          <div style={{ display: 'flex', gap: 8, marginBottom: 12 }}>
+            <button onClick={() => sendControl('running')} disabled={saving} style={{ ...BTN({ background:'#14532d', color:'#4ade80' }), flex:1, justifyContent:'center' }}>▶ Resume</button>
+            <button onClick={() => sendControl('paused')}  disabled={saving} style={{ ...BTN({ background:'#78350f', color:'#fbbf24' }), flex:1, justifyContent:'center' }}>⏸ Pause</button>
+            <button onClick={() => sendControl('stopped')} disabled={saving} style={{ ...BTN({ background:'#450a0a', color:'#ef4444' }), flex:1, justifyContent:'center' }}>■ Stop</button>
+          </div>
+          {msg && <div style={{ fontSize: 12, color: '#22c55e', marginBottom: 8 }}>{msg}</div>}
+          {err && <div style={{ fontSize: 12, color: '#ef4444', marginBottom: 8 }}>{err}</div>}
+
+          <div style={{ background: '#0f172a', borderRadius: 8, padding: 12, fontSize: 12, color: '#64748b', lineHeight: 1.8 }}>
+            <div style={{ color: '#f8fafc', fontWeight: 600, marginBottom: 6 }}>Useful PM2 commands on your VPS:</div>
+            {[
+              ['pm2 logs forex-bot', 'See live logs'],
+              ['pm2 restart forex-bot', 'Restart bot'],
+              ['pm2 stop forex-bot', 'Stop bot'],
+              ['pm2 status', 'Check if running'],
+            ].map(([cmd, desc]) => (
+              <div key={cmd} style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}>
+                <code style={{ color: '#a5b4fc', fontSize: 11, flex: 1 }}>{cmd}</code>
+                <span style={{ color: '#475569', fontSize: 10 }}>{desc}</span>
+                <button onClick={() => copy(cmd, cmd)}
+                  style={{ background: copied===cmd?'#14532d':'#1e293b', border:'none', color:copied===cmd?'#4ade80':'#475569', borderRadius:3, padding:'2px 6px', fontSize:9, cursor:'pointer' }}>
+                  {copied===cmd?'✓':'Copy'}
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
