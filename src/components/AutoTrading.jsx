@@ -156,10 +156,13 @@ function analyzeCandles(candles, forceDir = null) {
 function calcUnits(balance, riskPct, entry, sl, pair) {
   const pipSize  = pair.includes('JPY') ? 0.01 : pair.includes('XAU') ? 0.1 : 0.0001;
   const slPips   = Math.abs(entry - sl) / pipSize;
-  if (!slPips) return 1000;
+  if (!slPips || slPips < 1) return 1;
+  // Risk-based sizing: riskAmt / (slPips * pip value per unit)
+  // For USD-quoted pairs, pip value per unit ≈ pipSize (in account currency per unit)
   const riskAmt  = balance * riskPct / 100;
   const units    = Math.round(riskAmt / (slPips * pipSize));
-  return Math.max(1000, Math.min(units, 500000));
+  // No 1000-unit minimum — OANDA supports 1 unit, let the account balance decide
+  return Math.max(1, Math.min(units, 500000));
 }
 
 // ── Shared UI atoms ───────────────────────────────────────────────────────────
@@ -299,10 +302,12 @@ function ConnectTab({ onLog, signalPair, onSignalUsed }) {
       setSignal(sig);
       const d = dp(pair);
       setEditEntry(sig.cp.toFixed(d)); setEditSL(sig.sl?.toFixed(d) || ''); setEditTP(sig.tp?.toFixed(d) || '');
-      // Estimate lots at 1% risk / 10k balance
-      const bal = (broker === 'oanda' && apiKey && accountId) ? await oandaBalance(apiKey, accountId, env).catch(() => 10000) : 10000;
+      // Fetch real balance and size accordingly
+      const bal = (broker === 'oanda' && apiKey && accountId) ? await oandaBalance(apiKey, accountId, env).catch(() => 1000) : 1000;
       const units = calcUnits(bal, 1, sig.cp, sig.sl, pair);
-      setLotSize((units / 100000).toFixed(2));
+      // Show as lots (100k units = 1 lot); minimum display 0.01 lots but allow fewer units
+      const lots = Math.max(0.01, units / 100000);
+      setLotSize(lots.toFixed(2));
       onLog?.('INFO', `Signal: ${sig.dir} ${pair.replace('_','/')} · ${sig.structure} · R:R 1:${sig.rr}`);
     } catch (e) { setTradeErr(e.message); }
     finally { setAnalyzing(false); }
@@ -317,7 +322,7 @@ function ConnectTab({ onLog, signalPair, onSignalUsed }) {
     setPlacing(true); setTradeErr('');
     try {
       let tradeId;
-      const units = Math.round(parseFloat(lotSize) * 100000) || 1000;
+      const units = Math.max(1, Math.round(parseFloat(lotSize) * 100000));
       const signedUnits = dir === 'LONG' ? units : -units;
 
       if (broker === 'oanda') {
