@@ -29,7 +29,7 @@ class TelegramClient {
 
 Direction : <b>${dir.toUpperCase()}</b>
 Entry     : <code>${entry}</code>
-Stop Loss : <code>${sl}</code>  (${Math.abs(((+entry - +sl) / +entry * 10000)).toFixed(1)} pips)
+Stop Loss : <code>${sl}</code>
 Take Profit: <code>${tp}</code>
 Lot Size  : <code>${lots}</code>
 R:R Ratio : <code>1:${rr}</code>`

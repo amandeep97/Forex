@@ -27,7 +27,6 @@ class OandaClient {
     return res.json();
   }
 
-  // Returns candles as { t, o, h, l, c, v }
   async getCandles(instrument, granularity, count = 200) {
     const data = await this._req(
       `/instruments/${instrument}/candles?granularity=${granularity}&count=${count}&price=M`,
@@ -62,13 +61,11 @@ class OandaClient {
     return data.positions || [];
   }
 
-  // Get a specific closed/completed transaction by ID
   async getTransaction(txId) {
     const data = await this._req(`/accounts/${this.accountId}/transactions/${txId}`);
     return data.transaction;
   }
 
-  // Place a market order. units > 0 = long, units < 0 = short
   async placeMarketOrder({ instrument, units, sl, tp, clientId }) {
     const order = {
       type:         'MARKET',
@@ -88,7 +85,6 @@ class OandaClient {
     });
   }
 
-  // Close all units of a position
   async closePosition(instrument) {
     return this._req(
       `/accounts/${this.accountId}/positions/${instrument}/close`,

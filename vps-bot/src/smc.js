@@ -1,8 +1,5 @@
 'use strict';
-// Pure Node.js SMC / indicator engine — no React dependencies.
-// Candle format: { o, h, l, c, v }
 
-// ── RSI ──────────────────────────────────────────────────────────────────────
 function computeRSI(candles, period = 14) {
   if (candles.length < period + 1) return 50;
   let gains = 0, losses = 0;
@@ -15,7 +12,6 @@ function computeRSI(candles, period = 14) {
   return 100 - 100 / (1 + rs);
 }
 
-// ── ATR ──────────────────────────────────────────────────────────────────────
 function computeATR(candles, period = 14) {
   if (candles.length < period + 1) return candles[candles.length - 1]?.h - candles[candles.length - 1]?.l || 0.001;
   let sum = 0;
@@ -30,7 +26,6 @@ function computeATR(candles, period = 14) {
   return sum / period;
 }
 
-// ── Swing highs / lows ────────────────────────────────────────────────────────
 function findSwings(candles, look = 3) {
   const n = candles.length;
   const highs = [], lows = [];
@@ -46,8 +41,6 @@ function findSwings(candles, look = 3) {
   return { highs, lows };
 }
 
-// ── Market structure ──────────────────────────────────────────────────────────
-// Returns 'bullish' | 'bearish' | 'ranging'
 function detectStructure(candles) {
   const { highs, lows } = findSwings(candles, 3);
   if (highs.length < 2 || lows.length < 2) return 'ranging';
@@ -60,17 +53,14 @@ function detectStructure(candles) {
   return 'ranging';
 }
 
-// ── BOS / CHoCH ───────────────────────────────────────────────────────────────
 function detectBOS(candles) {
   if (candles.length < 20) return { hasBOS: false, hasCHoCH: false, direction: null };
   const n = candles.length;
   const { highs, lows } = findSwings(candles.slice(0, n - 1), 2);
-  const cp    = candles[n - 1].c;
   const isBull = highs.length >= 2 && highs[highs.length - 1].price > highs[0].price;
 
   let hasBOS = false, hasCHoCH = false, direction = null;
 
-  // Check last few candles for breaks
   for (let i = Math.max(5, n - 15); i < n; i++) {
     const c = candles[i];
     for (const sh of highs.filter(s => s.idx < i - 1)) {
@@ -92,7 +82,6 @@ function detectBOS(candles) {
   return { hasBOS, hasCHoCH, direction };
 }
 
-// ── Order Blocks ──────────────────────────────────────────────────────────────
 function detectOrderBlocks(candles) {
   if (candles.length < 10) return [];
   const n   = candles.length;
@@ -110,7 +99,6 @@ function detectOrderBlocks(candles) {
   return obs.slice(-5);
 }
 
-// ── Fair Value Gaps ───────────────────────────────────────────────────────────
 function detectFVGs(candles) {
   if (candles.length < 5) return [];
   const avg  = candles.reduce((s, c) => s + Math.abs(c.c - c.o), 0) / candles.length || 1;
@@ -125,7 +113,6 @@ function detectFVGs(candles) {
   return fvgs.slice(-6);
 }
 
-// ── OTE Zone (Fibonacci 0.618 – 0.786) ───────────────────────────────────────
 function detectOTE(candles) {
   if (candles.length < 15) return { bull: false, bear: false };
   const vis = candles.slice(-40);
@@ -138,16 +125,13 @@ function detectOTE(candles) {
   }
   const range = swHigh - swLow;
   if (range === 0) return { bull: false, bear: false };
-  // Bullish OTE: high before low → bearish leg → price retracing upward
   const bull618 = swLow + range * 0.618, bull786 = swLow + range * 0.786;
   const bull = swHighIdx < swLowIdx && cp >= bull618 && cp <= bull786;
-  // Bearish OTE: low before high → bullish leg → price retracing downward
   const bear786 = swHigh - range * 0.786, bear618 = swHigh - range * 0.618;
   const bear = swLowIdx < swHighIdx && cp >= bear786 && cp <= bear618;
   return { bull, bear };
 }
 
-// ── Get nearest swing high / low for SL placement ────────────────────────────
 function getSwingLevels(candles, lookback = 20) {
   const recent = candles.slice(-lookback);
   return {
@@ -156,7 +140,6 @@ function getSwingLevels(candles, lookback = 20) {
   };
 }
 
-// ── Full analysis ─────────────────────────────────────────────────────────────
 function analyzeSMC(candles) {
   const structure   = detectStructure(candles);
   const bosResult   = detectBOS(candles);

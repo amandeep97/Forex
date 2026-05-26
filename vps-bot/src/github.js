@@ -17,7 +17,6 @@ class GitHubClient {
     };
   }
 
-  // Returns { content: parsedJSON, sha: string } or null if file not found
   async readJSON(path) {
     const url = `https://api.github.com/repos/${this.owner}/${this.repo}/contents/${path}?ref=${this.branch}`;
     const res  = await fetch(url, { headers: this._headers() });
@@ -28,7 +27,6 @@ class GitHubClient {
     return { content: JSON.parse(text), sha: data.sha };
   }
 
-  // Write / create a JSON file. sha required for updates, omit for creates.
   async writeJSON(path, content, message, sha = null) {
     const url  = `https://api.github.com/repos/${this.owner}/${this.repo}/contents/${path}`;
     const body = {
@@ -47,7 +45,7 @@ class GitHubClient {
       throw new Error(`GitHub write ${res.status}: ${err.message || path}`);
     }
     const result = await res.json();
-    return result.content.sha; // return new sha for next write
+    return result.content.sha;
   }
 }
 

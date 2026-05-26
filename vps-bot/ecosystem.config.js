@@ -12,7 +12,6 @@ module.exports = {
     out_file:   'logs/out.log',
     merge_logs: true,
     log_date_format: 'YYYY-MM-DD HH:mm:ss Z',
-    // Restart once per week (Monday midnight)
     cron_restart: '0 0 * * 1',
   }],
 };
