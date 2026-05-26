@@ -1024,14 +1024,20 @@ function LogTab({ entries, onClear }) {
 // ── Main AutoTrading ──────────────────────────────────────────────────────────
 export default function AutoTrading({ accountMode = 'demo' }) {
   const isReal       = accountMode === 'real';
-  const [activeTab,  setActiveTab]  = useState('connect');
-  const [logEntries, setLogEntries] = useState([]);
+  const [activeTab,  setActiveTab]  = useState(() => localStorage.getItem('fp_active_tab') || 'connect');
+  const [logEntries, setLogEntries] = useState(() => {
+    try { return JSON.parse(localStorage.getItem('fp_activity_log') || '[]'); } catch { return []; }
+  });
   const [signalPair, setSignalPair] = useState(null);
   const [autoExecute, setAutoExecute] = useState(false);
-  const autoLogRef = useRef(new Set()); // prevent duplicate auto-trade logs
+  const autoLogRef = useRef(new Set());
 
   const addLog = useCallback((type, msg) => {
-    setLogEntries(prev => [...prev, { type, msg, ts: Date.now() }]);
+    setLogEntries(prev => {
+      const next = [...prev, { type, msg, ts: Date.now() }].slice(-100); // keep last 100
+      try { localStorage.setItem('fp_activity_log', JSON.stringify(next)); } catch {}
+      return next;
+    });
   }, []);
 
   // Listen for tap-to-trade events from BotConfig scan chips
@@ -1118,7 +1124,7 @@ export default function AutoTrading({ accountMode = 'demo' }) {
       {/* Sub-tab bar */}
       <div style={{ display: 'flex', padding: '10px 20px 0', borderBottom: '2px solid #1e293b', overflowX: 'auto', gap: 2 }}>
         {TABS.map(t => (
-          <button key={t.id} onClick={() => setActiveTab(t.id)}
+          <button key={t.id} onClick={() => { setActiveTab(t.id); localStorage.setItem('fp_active_tab', t.id); }}
             style={{ background: activeTab===t.id ? '#2563eb' : 'transparent', border: 'none',
               color: activeTab===t.id ? '#fff' : '#64748b', padding: '8px 16px',
               borderRadius: activeTab===t.id ? '8px 8px 0 0' : '6px 6px 0 0',
@@ -1135,7 +1141,7 @@ export default function AutoTrading({ accountMode = 'demo' }) {
         {activeTab === 'config'    && <BotConfig autoExecute={autoExecute} onAutoTrade={handleAutoTrade} />}
         {activeTab === 'positions' && <PositionsTab onLog={addLog} />}
         {activeTab === 'vpsbot'    && <VPSBotTab onLog={addLog} />}
-        {activeTab === 'log'       && <LogTab entries={logEntries} onClear={() => setLogEntries([])} />}
+        {activeTab === 'log'       && <LogTab entries={logEntries} onClear={() => { setLogEntries([]); localStorage.removeItem('fp_activity_log'); }} />}
       </div>
     </div>
   );
