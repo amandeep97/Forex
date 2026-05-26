@@ -7,9 +7,9 @@ const oandaBase = (env) =>
   env === 'live' ? 'https://api-fxtrade.oanda.com/v3' : 'https://api-fxpractice.oanda.com/v3';
 
 // ── OANDA helpers ─────────────────────────────────────────────────────────────
-async function oandaCandles(apiKey, env, instrument, count = 100) {
+async function oandaCandles(apiKey, env, instrument, count = 100, granularity = 'H1') {
   const res = await fetch(
-    `${oandaBase(env)}/instruments/${instrument}/candles?granularity=H1&count=${count}&price=M`,
+    `${oandaBase(env)}/instruments/${instrument}/candles?granularity=${granularity}&count=${count}&price=M`,
     { headers: { Authorization: `Bearer ${apiKey}` } }
   );
   if (!res.ok) { const j = await res.json().catch(() => ({})); throw new Error(j.errorMessage || `OANDA ${res.status}`); }
@@ -189,7 +189,24 @@ const BTN  = (x) => ({ border: 'none', borderRadius: 6, padding: '7px 16px', fon
 const CARD = { background: '#1e293b', borderRadius: 10, padding: 16, border: '1px solid #334155', marginBottom: 12 };
 const SEC  = { fontSize: 11, fontWeight: 600, color: '#64748b', letterSpacing: 1, textTransform: 'uppercase', marginBottom: 12 };
 
-const ALL_PAIRS = ['EUR_USD','GBP_USD','USD_JPY','USD_CHF','AUD_USD','NZD_USD','USD_CAD','XAU_USD','GBP_JPY','EUR_JPY','EUR_GBP','AUD_JPY','GBP_AUD'];
+const ALL_PAIRS = [
+  // Majors
+  'EUR_USD','GBP_USD','USD_JPY','USD_CHF','AUD_USD','NZD_USD','USD_CAD',
+  // Crosses EUR
+  'EUR_GBP','EUR_JPY','EUR_AUD','EUR_CAD','EUR_NZD','EUR_CHF',
+  // Crosses GBP
+  'GBP_JPY','GBP_AUD','GBP_CAD','GBP_NZD','GBP_CHF',
+  // Crosses AUD
+  'AUD_JPY','AUD_CAD','AUD_NZD','AUD_CHF',
+  // Crosses NZD
+  'NZD_JPY','NZD_CAD','NZD_CHF',
+  // Crosses CAD
+  'CAD_JPY','CAD_CHF',
+  // Crosses CHF
+  'CHF_JPY',
+  // Metals & commodities
+  'XAU_USD','XAG_USD','BCO_USD','WTICO_USD',
+];
 function dp(pair)      { return pair?.includes('JPY') ? 3 : pair?.includes('XAU') ? 2 : 5; }
 function fmtPx(v, p)   { return v != null ? Number(v).toFixed(dp(p)) : '—'; }
 function fmtTime(iso)  { return iso ? new Date(iso).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : '—'; }
@@ -215,6 +232,7 @@ function ConnectTab({ onLog, signalPair, onSignalUsed }) {
 
   // Trade state
   const [pair,      setPair]      = useState('EUR_USD');
+  const [tf,        setTf]        = useState('H1');
   const [signal,    setSignal]    = useState(null);
   const [editEntry, setEditEntry] = useState('');
   const [editSL,    setEditSL]    = useState('');
@@ -288,12 +306,11 @@ function ConnectTab({ onLog, signalPair, onSignalUsed }) {
     try {
       let candles;
       if (broker === 'oanda' && apiKey) {
-        candles = await oandaCandles(apiKey, env, pair);
+        candles = await oandaCandles(apiKey, env, pair, 100, tf);
       } else {
-        // MT4/Forex.com: use OANDA candles for analysis (price data only, no order placed)
         const savedKey = localStorage.getItem('oanda_key');
         if (savedKey) {
-          candles = await oandaCandles(savedKey, localStorage.getItem('oanda_env') || 'practice', pair);
+          candles = await oandaCandles(savedKey, localStorage.getItem('oanda_env') || 'practice', pair, 100, tf);
         } else {
           throw new Error('Add an OANDA API key for chart analysis (free practice account works — no trading needed)');
         }
@@ -476,12 +493,15 @@ function ConnectTab({ onLog, signalPair, onSignalUsed }) {
           <select value={pair} onChange={e => { setPair(e.target.value); setSignal(null); setTradeErr(''); }} style={INP}>
             {ALL_PAIRS.map(p => <option key={p} value={p}>{p.replace('_','/')}</option>)}
           </select>
+          <select value={tf} onChange={e => { setTf(e.target.value); setSignal(null); }} style={{ ...INP, width: 72 }}>
+            {['M5','M15','M30','H1','H4','D'].map(t => <option key={t} value={t === 'D' ? 'D' : t}>{t}</option>)}
+          </select>
           <div>
             <div style={{ fontSize: 10, color: '#64748b', marginBottom: 3 }}>Lot Size</div>
             <input value={lotSize} onChange={e => setLotSize(e.target.value)} style={{ ...INP, width: 70 }} />
           </div>
           <button onClick={() => analyze()} disabled={analyzing} style={BTN({ background: '#0ea5e9', color: '#fff', marginTop: 14 })}>
-            {analyzing ? 'Analyzing…' : 'Analyze H1'}
+            {analyzing ? 'Analyzing…' : `Analyze ${tf}`}
           </button>
           {tradeMsg && <span style={{ fontSize: 11, color: '#22c55e', marginTop: 14 }}>{tradeMsg}</span>}
         </div>
@@ -490,7 +510,7 @@ function ConnectTab({ onLog, signalPair, onSignalUsed }) {
         {signal?.needsDirection && (
           <div style={{ background: '#0f172a', borderRadius: 8, padding: 14, border: '1px solid #334155' }}>
             <div style={{ fontSize: 12, color: '#f59e0b', marginBottom: 6, fontWeight: 600 }}>
-              ⚠️ Market ranging on H1 — choose direction manually
+              ⚠️ Market ranging on {tf} — choose direction manually
             </div>
             <div style={{ fontSize: 11, color: '#64748b', marginBottom: 12 }}>
               Current price: <strong style={{ color: '#e2e8f0', fontFamily: 'monospace' }}>{editEntry}</strong> · ATR: {signal.atr?.toFixed(dp(pair))}
@@ -515,7 +535,7 @@ function ConnectTab({ onLog, signalPair, onSignalUsed }) {
               <span style={{ fontSize: 15, fontWeight: 700, color: signal.dir==='LONG' ? '#22c55e' : '#ef4444' }}>
                 {signal.dir==='LONG' ? '▲ LONG' : '▼ SHORT'}
               </span>
-              <span style={{ fontSize: 11, color: '#94a3b8' }}>{pair.replace('_','/')} · H1 · {signal.structure}</span>
+              <span style={{ fontSize: 11, color: '#94a3b8' }}>{pair.replace('_','/')} · {tf} · {signal.structure}</span>
               <span style={{ fontSize: 11, color: '#a78bfa', marginLeft: 'auto' }}>R:R 1:{signal.rr}</span>
             </div>
             <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', alignItems: 'flex-end', marginBottom: 12 }}>
@@ -580,12 +600,50 @@ function PositionsTab({ onLog }) {
   const [activity,   setActivity]   = useState([]);
   const [actLoading, setActLoading] = useState(false);
   const [actErr,     setActErr]     = useState('');
+  const [livePrices, setLivePrices] = useState({});
 
   useEffect(() => {
     setLoading(true);
     ghRead('bot/trades.json').then(d => { setTrades(d?.content?.trades || []); setLoading(false); })
       .catch(e => { setError(e.message); setLoading(false); });
   }, []);
+
+  // Fetch live prices for open trades every 15 seconds
+  useEffect(() => {
+    const fetchPrices = async () => {
+      const apiKey    = localStorage.getItem('oanda_key');
+      const env_      = localStorage.getItem('oanda_env') || 'practice';
+      if (!apiKey) return;
+      const openTrades = trades.filter(t => t.status === 'OPEN' || t.status === 'open');
+      if (openTrades.length === 0) return;
+      const instruments = [...new Set(openTrades.map(t => t.pair).filter(Boolean))].join(',');
+      try {
+        const res = await fetch(`${oandaBase(env_)}/instruments/${instruments}/candles?granularity=M1&count=1&price=M`,
+          { headers: { Authorization: `Bearer ${apiKey}` } });
+        if (!res.ok) return;
+        const data = await res.json();
+        const prices = {};
+        // Handle single vs multiple instruments response
+        if (data.candles) {
+          prices[data.instrument] = +data.candles.at(-1)?.mid?.c;
+        } else if (data.responses) {
+          data.responses.forEach(r => { if (r.candles?.length) prices[r.instrument] = +r.candles.at(-1)?.mid?.c; });
+        }
+        // Fallback: fetch one by one
+        if (Object.keys(prices).length === 0) {
+          for (const pair of openTrades.map(t => t.pair).filter(Boolean)) {
+            const r = await fetch(`${oandaBase(env_)}/instruments/${pair}/candles?granularity=M1&count=1&price=M`,
+              { headers: { Authorization: `Bearer ${apiKey}` } }).catch(() => null);
+            if (r?.ok) { const d = await r.json(); prices[pair] = +d.candles?.at(-1)?.mid?.c || 0; }
+          }
+        }
+        setLivePrices(prev => ({ ...prev, ...prices }));
+      } catch {}
+    };
+    fetchPrices();
+    const id = setInterval(fetchPrices, 15000);
+    return () => clearInterval(id);
+  }, [trades]);
 
   const fetchActivity = async () => {
     const apiKey    = localStorage.getItem('oanda_key');
@@ -737,11 +795,15 @@ function PositionsTab({ onLog }) {
           const entry   = t.entryPrice ?? t.entry;
           const sl      = t.slPrice ?? t.sl;
           const tp      = t.tpPrice ?? t.tp;
-          const units   = Math.abs(t.units || 0);
+          const units    = Math.abs(t.units || 0);
           const notional = units && entry ? units * entry : null;
-          // Approximate margin: OANDA live majors ~30:1, minors ~20:1
-          const lev     = (t.pair||'').includes('JPY') || (t.pair||'').includes('CHF') ? 20 : 30;
-          const margin  = notional ? notional / lev : null;
+          const lev      = (t.pair||'').includes('JPY') || (t.pair||'').includes('CHF') ? 20 : 30;
+          const margin   = notional ? notional / lev : null;
+          const livePrice = livePrices[t.pair] || null;
+          const rawPL    = livePrice && entry && units
+            ? (isLong ? (livePrice - entry) : (entry - livePrice)) * units
+            : null;
+          const plSign   = rawPL != null ? (rawPL >= 0 ? '+' : '') : '';
           return (
             <div key={t.id} style={{ background: '#1e293b', borderRadius: 10, padding: 14, marginBottom: 10, border: `1px solid ${isLong?'#1e3a5f':'#3b0764'}` }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
@@ -750,6 +812,12 @@ function PositionsTab({ onLog }) {
                 <span style={{ fontSize: 11, padding: '2px 6px', borderRadius: 4, background: '#0f172a', color: '#38bdf8' }}>{t.source?.includes('forexcom') ? 'Forex.com' : 'OANDA'}</span>
                 <span style={{ marginLeft: 'auto', fontSize: 12, color: '#a78bfa', fontWeight: 600 }}>R:R 1:{t.rr?.toFixed?.(1) ?? '—'}</span>
               </div>
+              {rawPL != null && (
+                <div style={{ background: rawPL >= 0 ? '#14532d33' : '#450a0a33', border: `1px solid ${rawPL >= 0 ? '#22c55e44' : '#ef444444'}`, borderRadius: 8, padding: '8px 14px', marginBottom: 10, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                  <span style={{ fontSize: 11, color: '#64748b' }}>Live P&L @ {fmtPx(livePrice, t.pair)}</span>
+                  <span style={{ fontSize: 16, fontWeight: 700, color: rawPL >= 0 ? '#22c55e' : '#ef4444', fontFamily: 'monospace' }}>{plSign}{rawPL.toFixed(2)} USD</span>
+                </div>
+              )}
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 8, marginBottom: 10 }}>
                 {[{l:'Entry',v:fmtPx(entry,t.pair),c:'#e2e8f0'},{l:'SL',v:fmtPx(sl,t.pair),c:'#ef4444'},{l:'TP',v:fmtPx(tp,t.pair),c:'#22c55e'}].map(({l,v,c}) => (
                   <div key={l} style={{ background: '#0f172a', borderRadius: 6, padding: '8px 10px', textAlign: 'center' }}>
