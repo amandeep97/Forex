@@ -4,6 +4,15 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'src/**'
+      - 'public/**'
+      - 'index.html'
+      - 'package.json'
+      - 'vite.config.js'
+      - 'tailwind.config.js'
+      - 'scripts/**'
+      - '.github/workflows/**'
 
   workflow_dispatch:
 
