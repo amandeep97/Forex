@@ -7,6 +7,7 @@ import RatioChart from './components/RatioChart';
 import Journal from './components/Journal';
 import NewsCalendar from './components/NewsCalendar';
 import COTTab from './components/COTTab';
+import MetalsDashboard from './components/MetalsDashboard';
 import { allInstruments } from './data/forexData';
 import './App.css';
 
@@ -17,6 +18,7 @@ const TABS = [
   { id: 'backtester',  label: 'Backtester',   icon: '📊' },
   { id: 'ratio',       label: 'Au/Ag Ratio',  icon: '⚖' },
   { id: 'cot',         label: 'COT Report',   icon: '🏦' },
+  { id: 'metals',      label: 'Metals',       icon: '⚜' },
   { id: 'journal',     label: 'Journal',      icon: '📋' },
   { id: 'news',        label: 'News',         icon: '📰' },
 ];
@@ -191,6 +193,9 @@ export default function App() {
         </div>
         <div style={{ display: activeTab === 'cot' ? 'flex' : 'none', flexDirection:'column', height:'calc(100vh - 120px)' }}>
           <COTTab />
+        </div>
+        <div style={{ display: activeTab === 'metals' ? 'flex' : 'none', flexDirection:'column', height:'calc(100vh - 120px)' }}>
+          <MetalsDashboard />
         </div>
         <div style={{ display: activeTab === 'journal' ? 'block' : 'none', overflowY:'auto', height:'calc(100vh - 120px)' }}>
           <Journal />
