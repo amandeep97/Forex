@@ -146,7 +146,7 @@ class ForexBot {
     }
 
     if (conditions.intermarketFilter?.enabled) {
-      pass.intermarket = await checkIMFilter(this.oanda, conditions.intermarketFilter, this.log.bind(this));
+      pass.intermarket = await checkIMFilter(this.oanda, { ...conditions.intermarketFilter, pairOanda: pair }, this.log.bind(this));
     }
 
     if (conditions.cotFilter?.enabled) {

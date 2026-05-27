@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { OANDA_MAP } from '../hooks/useLivePrices';
-import { getIMSignals, PAIR_CORR } from '../utils/intermarket';
+import { getIMData, PAIR_CORR, PAIR_RELEVANT } from '../utils/intermarket';
 import {
   detectSR, detectTrendlines, detectFVGsAndOBs, detectSweep,
   computeSwings, detectLiqLevels,
@@ -460,7 +460,7 @@ export default function ChartModal({ instrument, onClose }) {
   const [rules,     setRules]    = useState(DEF_RULES);
   const [newRule,   setNewRule]  = useState('');
   const [checks,    setChecks]   = useState({});
-  const [imSignals,  setImSignals]  = useState(null);
+  const [imData,     setImData]     = useState(null);
   const [depthData,  setDepthData]  = useState(null);
   const [depthLoad,  setDepthLoad]  = useState(false);
   const [depthErr,   setDepthErr]   = useState('');
@@ -491,7 +491,8 @@ export default function ChartModal({ instrument, onClose }) {
   }, [symbol, tf, tab]);
 
   useEffect(() => {
-    getIMSignals('H1', 5).then(setImSignals).catch(() => {});
+    const oandaSym = toOandaInstr(symbol);
+    getIMData(oandaSym, 'H1', 50).then(setImData).catch(() => {});
   }, [symbol]);
 
   useEffect(() => {
@@ -658,33 +659,57 @@ Provide:
               )}
             </div>
 
-            {/* Correlated Markets Bar */}
-            {imSignals && (() => {
+            {/* Correlated Markets Bar — dynamic live Pearson correlation */}
+            {imData && (() => {
+              const { signals, correlations } = imData;
               const oandaSym = symbol.replace('/', '_');
-              const corr = PAIR_CORR[oandaSym] || {};
-              const relevant = Object.entries(corr).filter(([,v]) => Math.abs(v) >= 0.5);
-              if (relevant.length === 0 && !corr.dxy) return null;
-              const allKeys = Object.keys(corr).length ? Object.keys(corr) : ['dxy','gold'];
+              // Determine which markets to show: use PAIR_RELEVANT list, else live corr > 0.2
+              const relevantKeys = PAIR_RELEVANT[oandaSym]
+                || Object.entries(correlations).filter(([,v]) => Math.abs(v) >= 0.2).map(([k]) => k)
+                || Object.keys(PAIR_CORR[oandaSym] || {});
+              if (!relevantKeys.length) return null;
+              const hasLive = Object.keys(correlations).length > 0;
               return (
-                <div style={{ display:'flex', gap:6, padding:'4px 8px', flexWrap:'wrap', borderBottom:'1px solid var(--border)', background:'#0a0f1a' }}>
-                  {allKeys.map(key => {
-                    const sig = imSignals[key];
+                <div style={{ display:'flex', gap:5, padding:'4px 8px', flexWrap:'wrap', borderBottom:'1px solid var(--border)', background:'#0a0f1a', alignItems:'center' }}>
+                  <span style={{ fontSize:8, color:'#334155', flexShrink:0 }}>
+                    {hasLive ? '⚡ LIVE r50' : 'STATIC'}
+                  </span>
+                  {relevantKeys.map(key => {
+                    const sig = signals[key];
                     if (!sig) return null;
-                    const corrVal = corr[key] || 0;
+                    // Live correlation if available, else static fallback
+                    const liveR   = correlations[key];
+                    const staticR = (PAIR_CORR[oandaSym] || {})[key] || 0;
+                    const corrVal = liveR ?? staticR;
+                    const isLive  = liveR !== undefined;
+                    const strength = Math.abs(corrVal); // 0-1
+                    const weak    = strength < 0.3;
                     const bullish = (sig.direction === 'rising' && corrVal > 0) || (sig.direction === 'falling' && corrVal < 0);
                     const bearish = (sig.direction === 'rising' && corrVal < 0) || (sig.direction === 'falling' && corrVal > 0);
+                    // Correlation strength label
+                    const strengthLabel = strength >= 0.7 ? 'Strong' : strength >= 0.4 ? 'Mod' : 'Weak';
+                    const strengthColor = strength >= 0.7 ? '#22c55e' : strength >= 0.4 ? '#f59e0b' : '#475569';
                     return (
                       <div key={key} style={{ display:'flex', alignItems:'center', gap:4, padding:'2px 8px', borderRadius:4,
+                        opacity: weak ? 0.55 : 1,
                         background: bullish ? '#14532d33' : bearish ? '#450a0a33' : '#1e293b',
                         border: `1px solid ${bullish ? '#22c55e44' : bearish ? '#ef444444' : '#334155'}` }}>
-                        <span style={{ fontSize:9, fontWeight:700, color: sig.color }}>{sig.label}</span>
-                        <span style={{ fontSize:9, color: sig.direction==='rising'?'#22c55e':'#ef4444' }}>
-                          {sig.direction==='rising'?'↑':'↓'} {sig.pct >= 0 ? '+' : ''}{sig.pct.toFixed(2)}%
+                        <span style={{ fontSize:9, fontWeight:700, color:sig.color }}>{sig.label}</span>
+                        <span style={{ fontSize:9, color:sig.direction==='rising'?'#22c55e':'#ef4444' }}>
+                          {sig.direction==='rising'?'↑':'↓'} {sig.pct>=0?'+':''}{sig.pct.toFixed(2)}%
                         </span>
-                        {corrVal !== 0 && (
-                          <span style={{ fontSize:9, color: bullish?'#22c55e':bearish?'#ef4444':'#64748b', fontWeight:700 }}>
-                            {bullish ? '▲' : bearish ? '▼' : ''}
+                        {!weak && (
+                          <span style={{ fontSize:9, color:bullish?'#22c55e':bearish?'#ef4444':'#64748b', fontWeight:700 }}>
+                            {bullish?'▲':bearish?'▼':''}
                           </span>
+                        )}
+                        {/* Live correlation value */}
+                        <span style={{ fontSize:8, fontFamily:'monospace', color:strengthColor }}>
+                          r{corrVal>=0?'+':''}{corrVal.toFixed(2)}
+                          {!isLive && <span style={{ color:'#334155' }}>*</span>}
+                        </span>
+                        {isLive && (
+                          <span style={{ fontSize:8, color:strengthColor }}>{strengthLabel}</span>
                         )}
                       </div>
                     );
