@@ -707,18 +707,19 @@ function PositionsTab({ onLog }) {
       const all = ghData?.content?.trades || [];
       let changed = 0;
       const updated = all.map(t => {
-        if ((t.status === 'OPEN' || t.status === 'open') && t.oandaTradeId) {
-          if (!openIds.has(String(t.oandaTradeId))) {
-            changed++;
-            return { ...t, status: 'CANCELLED', closeTime: new Date().toISOString() };
-          }
+        const isOpen   = t.status === 'OPEN' || t.status === 'open';
+        // bot stores oandaId, app may store oandaTradeId — check both
+        const tradeId  = t.oandaId || t.oandaTradeId;
+        if (isOpen && tradeId && !openIds.has(String(tradeId))) {
+          changed++;
+          return { ...t, status: 'closed', closedAt: new Date().toISOString() };
         }
         return t;
       });
       if (changed > 0) {
-        await ghWrite('bot/trades.json', { trades: updated }, `Sync: ${changed} cancelled`, ghData?.sha || null);
+        await ghWrite('bot/trades.json', { trades: updated }, `Sync: ${changed} closed`, ghData?.sha || null);
         setTrades(updated);
-        onLog?.('INFO', `Synced — ${changed} position(s) marked cancelled by broker`);
+        onLog?.('INFO', `Synced — ${changed} position(s) marked closed`);
       } else {
         onLog?.('INFO', 'Sync complete — all positions match OANDA');
         setTrades(all);
@@ -741,9 +742,10 @@ function PositionsTab({ onLog }) {
 
   const clearClosed = async () => {
     try {
-      const data = await ghRead('bot/trades.json', { noCache: true });
-      const cleaned = (data?.content?.trades || []).filter(t => t.status !== 'CLOSED' && t.status !== 'closed' && t.status !== 'CANCELLED');
-      await ghWrite('bot/trades.json', { trades: cleaned }, 'Clear closed', data?.sha || null);
+      const data    = await ghRead('bot/trades.json', { noCache: true });
+      const OPEN_ST = new Set(['open', 'OPEN']);
+      const cleaned = (data?.content?.trades || []).filter(t => OPEN_ST.has(t.status));
+      await ghWrite('bot/trades.json', { trades: cleaned }, 'Clear closed trades', data?.sha || null);
       setTrades(cleaned);
     } catch (e) { setError(e.message); }
   };
