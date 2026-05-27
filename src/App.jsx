@@ -156,7 +156,7 @@ export default function App() {
               onClick={() => setActiveTab(t.id)}
             >
               <span className="nav-tab-icon">{t.icon}</span>
-              {t.label}
+              <span className="nav-tab-label">{t.label}</span>
             </button>
           ))}
         </nav>

@@ -85,11 +85,11 @@ table  { border-collapse: collapse; width: 100%; }
 .account-label   { font-size: 10px; color: var(--text3); }
 .account-balance { font-size: 13px; font-weight: 700; color: var(--up); font-family: var(--mono); }
 
-/* Nav tabs — always full width, always scrollable */
+/* Nav tabs — desktop: scrollable row */
 .main-nav {
   display: flex;
-  overflow-x: scroll; overflow-y: hidden; scrollbar-width: none;
-  -webkit-overflow-scrolling: touch; touch-action: pan-x;
+  overflow-x: auto; overflow-y: hidden; scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
   border-top: 1px solid var(--border);
   padding: 0 8px;
   gap: 2px;
@@ -107,6 +107,36 @@ table  { border-collapse: collapse; width: 100%; }
 .nav-tab:hover  { color: var(--text2); }
 .nav-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
 .nav-tab-icon   { font-size: 14px; }
+.nav-tab-label  { font-size: 13px; }
+
+/* Mobile: all 7 tabs visible at once — icon + tiny label stacked */
+@media (max-width: 600px) {
+  .main-nav {
+    overflow-x: visible;
+    padding: 0;
+    gap: 0;
+  }
+  .nav-tab {
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    padding: 7px 2px 5px;
+    border-bottom: none;
+    border-top: 2px solid transparent;
+    margin-bottom: 0;
+    white-space: normal;
+    flex-shrink: 1;
+  }
+  .nav-tab.active {
+    border-top-color: var(--accent);
+    border-bottom-color: transparent;
+    background: #00d4aa0d;
+  }
+  .nav-tab-icon  { font-size: 17px; line-height: 1; }
+  .nav-tab-label { font-size: 8px; font-weight: 600; letter-spacing: 0.01em; }
+}
 
 /* Legacy */
 .header-left  { display: none; }
