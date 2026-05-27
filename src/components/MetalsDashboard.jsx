@@ -325,8 +325,8 @@ export default function MetalsDashboard() {
   const goldScore   = calcScore('gold');
   const silverScore = calcScore('silver');
 
-  const fmtPct = v => v === null || v === undefined ? '—' : `${v >= 0 ? '+' : ''}${v.toFixed(2)}%`;
-  const fmtR   = v => v === null ? '—' : v.toFixed(2);
+  const fmtPct = v => v == null ? '—' : `${v >= 0 ? '+' : ''}${v.toFixed(2)}%`;
+  const fmtR   = v => v == null ? '—' : v.toFixed(2);
 
   const card = {
     background: 'var(--card)', border: '1px solid var(--border)',
@@ -428,7 +428,7 @@ export default function MetalsDashboard() {
                   label={sig.dxy ? `DXY ${sig.dxy === 'rising' ? 'Rising ↑' : 'Falling ↓'}` : 'No data'}
                   note={sig.dxy ? (sig.dxy === 'falling' ? 'Bullish for metals' : 'Bearish for metals') : 'Connect OANDA'}
                 />
-                {sig.dxyGoldCorr !== null && (
+                {sig.dxyGoldCorr != null && (
                   <div style={{ marginTop:8 }}>
                     <div style={{ fontSize:10, color:'var(--text3)', marginBottom:3 }}>DXY↔Gold correlation (50 H1)</div>
                     <div style={{ fontSize:13, fontFamily:'monospace', fontWeight:700,
@@ -748,7 +748,7 @@ export default function MetalsDashboard() {
                     signal: sig.dxy ? (sig.dxy === 'falling' ? '▼ Falling' : '▲ Rising') : '—',
                     goldImpact:   sig.dxy === 'falling' ? '✅ Bullish' : sig.dxy === 'rising' ? '❌ Bearish' : '—',
                     silverImpact: sig.dxy === 'falling' ? '✅ Bullish' : sig.dxy === 'rising' ? '❌ Bearish' : '—',
-                    strength: sig.dxyGoldCorr !== null ? `r=${fmtR(sig.dxyGoldCorr)}` : '—',
+                    strength: sig.dxyGoldCorr != null ? `r=${fmtR(sig.dxyGoldCorr)}` : '—',
                   },
                   {
                     driver: 'Real Yield Proxy',
