@@ -616,10 +616,10 @@ function PositionsTab({ onLog }) {
   const [modifyState, setModifyState] = useState({});
   const [chartPair,   setChartPair]   = useState(null);
 
-  const getMS = (id) => modifyState[id] || { sl: '', tp: '', trailDist: '', trailing: false, busy: false, err: '' };
+  const getMS = (id) => modifyState[id] || { sl: '', tp: '', trailDist: '', trailing: false, trailMode: 'pip', busy: false, err: '' };
   const setMS = (id, patch) => setModifyState(prev => ({ ...prev, [id]: { ...getMS(id), ...patch } }));
 
-  const doModify = async (id, oandaId, body) => {
+  const doModify = async (id, oandaId, body, onSuccess) => {
     const apiKey    = localStorage.getItem('oanda_key');
     const accountId = localStorage.getItem('oanda_acct');
     const env_      = localStorage.getItem('oanda_env') || 'practice';
@@ -629,6 +629,7 @@ function PositionsTab({ onLog }) {
       await oandaModifyTrade(apiKey, accountId, env_, oandaId, body);
       setMS(id, { busy: false, err: '' });
       onLog?.('INFO', `Trade ${oandaId} modified`);
+      onSuccess?.();
     } catch(e) { setMS(id, { busy: false, err: e.message }); }
   };
 
@@ -893,8 +894,13 @@ function PositionsTab({ onLog }) {
                   {closing===t.id ? '…' : '✓ Mark Closed'}
                 </button>
                 {oandaId && entry != null && (
-                  <button onClick={() => doModify(t.id, oandaId, { stopLoss: { price: Number(entry).toFixed(dp(t.pair)), timeInForce: 'GTC' } })}
-                    disabled={getMS(t.id).busy}
+                  <button onClick={() => {
+                    const bePrice = Number(entry).toFixed(dp(t.pair));
+                    doModify(t.id, oandaId,
+                      { stopLoss: { price: bePrice, timeInForce: 'GTC' } },
+                      () => setTrades(prev => prev.map(tr => tr.id === t.id ? { ...tr, sl: Number(entry), slPrice: Number(entry) } : tr))
+                    );
+                  }} disabled={getMS(t.id).busy}
                     style={{ background: '#f59e0b22', border: '1px solid #f59e0b88', color: '#fbbf24', borderRadius: 6, padding: '6px 14px', fontSize: 11, fontWeight: 700, cursor: 'pointer' }}>
                     ⚡ Breakeven
                   </button>
@@ -913,7 +919,10 @@ function PositionsTab({ onLog }) {
                         <button onClick={() => {
                           const val = parseFloat(getMS(t.id).sl);
                           if (isNaN(val)) { setMS(t.id, { err: 'Invalid SL' }); return; }
-                          doModify(t.id, oandaId, { stopLoss: { price: val.toFixed(dp(t.pair)), timeInForce: 'GTC' } });
+                          doModify(t.id, oandaId,
+                            { stopLoss: { price: val.toFixed(dp(t.pair)), timeInForce: 'GTC' } },
+                            () => setTrades(prev => prev.map(tr => tr.id === t.id ? { ...tr, sl: val, slPrice: val } : tr))
+                          );
                           setMS(t.id, { sl: '' });
                         }} disabled={getMS(t.id).busy}
                           style={{ padding: '4px 8px', borderRadius: 4, background: '#ef444422', border: '1px solid #ef444488', color: '#f87171', fontSize: 10, cursor: 'pointer', whiteSpace: 'nowrap' }}>Set</button>
@@ -928,32 +937,63 @@ function PositionsTab({ onLog }) {
                         <button onClick={() => {
                           const val = parseFloat(getMS(t.id).tp);
                           if (isNaN(val)) { setMS(t.id, { err: 'Invalid TP' }); return; }
-                          doModify(t.id, oandaId, { takeProfit: { price: val.toFixed(dp(t.pair)), timeInForce: 'GTC' } });
+                          doModify(t.id, oandaId,
+                            { takeProfit: { price: val.toFixed(dp(t.pair)), timeInForce: 'GTC' } },
+                            () => setTrades(prev => prev.map(tr => tr.id === t.id ? { ...tr, tp: val, tpPrice: val } : tr))
+                          );
                           setMS(t.id, { tp: '' });
                         }} disabled={getMS(t.id).busy}
                           style={{ padding: '4px 8px', borderRadius: 4, background: '#22c55e22', border: '1px solid #22c55e88', color: '#4ade80', fontSize: 10, cursor: 'pointer', whiteSpace: 'nowrap' }}>Set</button>
                       </div>
                     </div>
                   </div>
-                  <div style={{ display: 'flex', gap: 8, alignItems: 'center', flexWrap: 'wrap' }}>
-                    <span style={{ fontSize: 11, color: '#94a3b8' }}>Trail SL</span>
-                    <div onClick={() => setMS(t.id, { trailing: !getMS(t.id).trailing })}
-                      style={{ width: 36, height: 20, borderRadius: 10, background: getMS(t.id).trailing ? '#a78bfa' : '#334155', cursor: 'pointer', position: 'relative', flexShrink: 0 }}>
-                      <span style={{ position: 'absolute', top: 2, left: getMS(t.id).trailing ? 18 : 2, width: 16, height: 16, borderRadius: 8, background: '#fff', display: 'block', transition: 'left 0.15s' }}/>
+
+                  {/* Trailing SL */}
+                  <div style={{ background: '#0f172a', borderRadius: 6, padding: '8px 10px' }}>
+                    <div style={{ display: 'flex', gap: 8, alignItems: 'center', marginBottom: getMS(t.id).trailing ? 8 : 0 }}>
+                      <div>
+                        <span style={{ fontSize: 11, color: '#94a3b8', fontWeight: 600 }}>Trailing SL</span>
+                        <div style={{ fontSize: 9, color: '#475569', marginTop: 1 }}>Follows price in profit, locks gains</div>
+                      </div>
+                      <div onClick={() => setMS(t.id, { trailing: !getMS(t.id).trailing })}
+                        style={{ width: 36, height: 20, borderRadius: 10, background: getMS(t.id).trailing ? '#a78bfa' : '#334155', cursor: 'pointer', position: 'relative', flexShrink: 0, marginLeft: 'auto' }}>
+                        <span style={{ position: 'absolute', top: 2, left: getMS(t.id).trailing ? 18 : 2, width: 16, height: 16, borderRadius: 8, background: '#fff', display: 'block', transition: 'left 0.15s' }}/>
+                      </div>
                     </div>
-                    {getMS(t.id).trailing && <>
-                      <input value={getMS(t.id).trailDist} onChange={e => setMS(t.id, { trailDist: e.target.value })}
-                        placeholder="pips"
-                        style={{ width: 55, background: '#0f172a', color: '#e2e8f0', border: '1px solid #334155', borderRadius: 4, padding: '4px 6px', fontSize: 11, fontFamily: 'monospace' }}/>
-                      <button onClick={() => {
-                        const pips = parseFloat(getMS(t.id).trailDist);
-                        if (isNaN(pips) || pips <= 0) { setMS(t.id, { err: 'Enter pips' }); return; }
-                        const pip = t.pair?.includes('JPY') ? 0.01 : t.pair?.includes('XAU') ? 1 : 0.0001;
-                        const dist = (pips * pip).toFixed(dp(t.pair));
-                        doModify(t.id, oandaId, { trailingStopLoss: { distance: dist, timeInForce: 'GTC' } });
-                      }} disabled={getMS(t.id).busy}
-                        style={{ padding: '4px 10px', borderRadius: 4, background: '#a78bfa22', border: '1px solid #a78bfa88', color: '#c4b5fd', fontSize: 10, cursor: 'pointer', whiteSpace: 'nowrap' }}>Set Trail</button>
-                    </>}
+                    {getMS(t.id).trailing && (
+                      <div style={{ display: 'flex', gap: 6, alignItems: 'center', flexWrap: 'wrap' }}>
+                        <div style={{ display: 'flex', borderRadius: 4, overflow: 'hidden', border: '1px solid #334155', flexShrink: 0 }}>
+                          {['pip','price'].map(m => (
+                            <button key={m} onClick={() => setMS(t.id, { trailMode: m })}
+                              style={{ padding: '4px 8px', fontSize: 10, fontWeight: 600, cursor: 'pointer', border: 'none',
+                                background: getMS(t.id).trailMode === m ? '#a78bfa' : '#1e293b',
+                                color:      getMS(t.id).trailMode === m ? '#fff' : '#64748b' }}>
+                              {m === 'pip' ? 'Pips' : 'Price'}
+                            </button>
+                          ))}
+                        </div>
+                        <input value={getMS(t.id).trailDist} onChange={e => setMS(t.id, { trailDist: e.target.value })}
+                          placeholder={getMS(t.id).trailMode === 'pip' ? 'e.g. 20' : fmtPx(Math.abs((sl||0) - (entry||0)), t.pair)}
+                          style={{ width: 70, background: '#1e293b', color: '#e2e8f0', border: '1px solid #334155', borderRadius: 4, padding: '4px 6px', fontSize: 11, fontFamily: 'monospace' }}/>
+                        <button onClick={() => {
+                          const ms = getMS(t.id);
+                          const val = parseFloat(ms.trailDist);
+                          if (isNaN(val) || val <= 0) { setMS(t.id, { err: 'Enter a value' }); return; }
+                          let dist;
+                          if (ms.trailMode === 'price') {
+                            dist = val.toFixed(dp(t.pair));
+                          } else {
+                            const pip = t.pair?.includes('JPY') ? 0.01 : t.pair?.includes('XAU') ? 1 : 0.0001;
+                            dist = (val * pip).toFixed(dp(t.pair));
+                          }
+                          doModify(t.id, oandaId, { trailingStopLoss: { distance: dist, timeInForce: 'GTC' } });
+                        }} disabled={getMS(t.id).busy}
+                          style={{ padding: '4px 10px', borderRadius: 4, background: '#a78bfa22', border: '1px solid #a78bfa88', color: '#c4b5fd', fontSize: 10, cursor: 'pointer', whiteSpace: 'nowrap' }}>Set Trail</button>
+                        <span style={{ fontSize: 9, color: '#475569' }}>
+                          {getMS(t.id).trailMode === 'pip' ? 'pips behind current price' : 'price distance behind current price'}
+                        </span>
+                      </div>
+                    )}
                   </div>
                   {getMS(t.id).err && (
                     <div style={{ fontSize: 11, color: '#f87171', background: '#450a0a', borderRadius: 4, padding: '4px 8px', marginTop: 6 }}>{getMS(t.id).err}</div>
