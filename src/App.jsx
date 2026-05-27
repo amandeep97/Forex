@@ -5,6 +5,7 @@ import Backtester from './components/Backtester';
 import WatchlistTab from './components/WatchlistTab';
 import RatioChart from './components/RatioChart';
 import Journal from './components/Journal';
+import NewsCalendar from './components/NewsCalendar';
 import { allInstruments } from './data/forexData';
 import './App.css';
 
@@ -15,6 +16,7 @@ const TABS = [
   { id: 'backtester',  label: 'Backtester',   icon: '📊' },
   { id: 'ratio',       label: 'Au/Ag Ratio',  icon: '⚖' },
   { id: 'journal',     label: 'Journal',      icon: '📋' },
+  { id: 'news',        label: 'News',         icon: '📰' },
 ];
 
 // ── Real-money warning modal ─────────────────────────────────────────────────
@@ -187,6 +189,9 @@ export default function App() {
         </div>
         <div style={{ display: activeTab === 'journal' ? 'block' : 'none', overflowY:'auto', height:'calc(100vh - 120px)' }}>
           <Journal />
+        </div>
+        <div style={{ display: activeTab === 'news' ? 'block' : 'none', overflowY:'auto', height:'calc(100vh - 120px)' }}>
+          <NewsCalendar />
         </div>
       </main>
 
