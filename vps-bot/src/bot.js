@@ -8,6 +8,7 @@ const {
   getPipSize, calcPosition, genTradeId, fmtPrice,
 } = require('./utils');
 const { checkIMFilter } = require('./intermarket');
+const { fetchAllCOT, checkCOTFilter } = require('./cotFetcher');
 
 const STRATEGY_PATH = 'bot/strategy.json';
 const TRADES_PATH   = 'bot/trades.json';
@@ -20,6 +21,8 @@ class ForexBot {
     this.telegram = new TelegramClient({ botToken: env.TELEGRAM_BOT_TOKEN, chatId: env.TELEGRAM_CHAT_ID });
     this.configSha = null;
     this.tradesSha = null;
+    this.cotData   = null;
+    this.cotFetchedAt = 0;
   }
 
   log(msg)  { console.log(`[${new Date().toISOString()}] ${msg}`); }
@@ -135,6 +138,7 @@ class ForexBot {
       rsi:          !conditions.rsiFilter?.enabled || this._checkRSI(smc.rsi, conditions.rsiFilter),
       ratio:        !conditions.ratioFilter?.enabled,
       intermarket:  true,
+      cot:          true,
     };
 
     if (conditions.ratioFilter?.enabled) {
@@ -143,6 +147,21 @@ class ForexBot {
 
     if (conditions.intermarketFilter?.enabled) {
       pass.intermarket = await checkIMFilter(this.oanda, conditions.intermarketFilter, this.log.bind(this));
+    }
+
+    if (conditions.cotFilter?.enabled) {
+      // Refresh COT data at most once per 6 hours
+      const now = Date.now();
+      if (!this.cotData || now - this.cotFetchedAt > 6 * 3600 * 1000) {
+        this.log('Fetching COT data from CFTC…');
+        this.cotData = await fetchAllCOT(msg => this.log(msg)).catch(() => null);
+        this.cotFetchedAt = now;
+      }
+      const required = conditions.cotFilter.bias || 'any';
+      if (required !== 'any') {
+        pass.cot = checkCOTFilter(conditions.cotFilter, this.cotData, pair);
+        if (!pass.cot) this.log(`${pair}: COT bias mismatch (required ${required}, got ${this.cotData?.[pair.split('_')[0]]?.bias || 'unknown'})`);
+      }
     }
 
     const failed = Object.entries(pass).filter(([, v]) => !v).map(([k]) => k);

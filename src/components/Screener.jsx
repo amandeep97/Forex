@@ -11,6 +11,44 @@ import OandaConnect from './OandaConnect';
 import FilterPanel from './FilterPanel';
 import { getIMSignals, IM_DEFS } from '../utils/intermarket';
 
+// ── Forex Session Clock ───────────────────────────────────────────────────────
+function SessionClock() {
+  const [now, setNow] = useState(() => new Date());
+  useEffect(() => {
+    const id = setInterval(() => setNow(new Date()), 1000);
+    return () => clearInterval(id);
+  }, []);
+  const utcH = now.getUTCHours(), utcM = now.getUTCMinutes();
+  const mins = utcH * 60 + utcM;
+  function inSess(s, e) { return s < e ? mins >= s && mins < e : mins >= s || mins < e; }
+  const sessions = [
+    { name:'Sydney',   s:22*60, e:7*60,  color:'#3b82f6', active:inSess(22*60,7*60)  },
+    { name:'Tokyo',    s:0*60,  e:9*60,  color:'#f59e0b', active:inSess(0*60,9*60)   },
+    { name:'London',   s:8*60,  e:17*60, color:'#8b5cf6', active:inSess(8*60,17*60)  },
+    { name:'New York', s:13*60, e:22*60, color:'#22c55e', active:inSess(13*60,22*60) },
+  ];
+  const overlap = sessions[2].active && sessions[3].active;
+  const utcStr = `${String(utcH).padStart(2,'0')}:${String(utcM).padStart(2,'0')} UTC`;
+  return (
+    <div style={{ display:'flex', alignItems:'center', gap:5, padding:'4px 12px', borderBottom:'1px solid var(--border)', background:'#060a10', overflowX:'auto', scrollbarWidth:'none', flexShrink:0 }}>
+      <span style={{ fontSize:9, color:'#475569', flexShrink:0, fontFamily:'monospace' }}>🕐 {utcStr}</span>
+      {sessions.map(s => (
+        <div key={s.name} style={{ display:'flex', alignItems:'center', gap:3, padding:'2px 7px', borderRadius:4, flexShrink:0,
+          background: s.active ? s.color+'22' : 'transparent',
+          border:     `1px solid ${s.active ? s.color+'55' : '#1e293b'}` }}>
+          {s.active && <span style={{ width:5, height:5, borderRadius:'50%', background:s.color, display:'inline-block', animation:'pulse 1.4s infinite' }}/>}
+          <span style={{ fontSize:9, fontWeight:700, color:s.active ? s.color : '#334155' }}>{s.name}</span>
+        </div>
+      ))}
+      {overlap && (
+        <div style={{ padding:'2px 7px', borderRadius:4, background:'#22c55e18', border:'1px solid #22c55e44', flexShrink:0 }}>
+          <span style={{ fontSize:9, fontWeight:700, color:'#22c55e' }}>⚡ London+NY</span>
+        </div>
+      )}
+    </div>
+  );
+}
+
 // ── Sub-components ────────────────────────────────────────────────────────────
 function Sparkline({ data, change }) {
   const w=80, h=28;
@@ -498,6 +536,8 @@ export default function Screener() {
 
   return (
     <div className="screener-root">
+
+      <SessionClock/>
 
       {/* ── Asset type tabs ──────────────────────────────────────────────── */}
       <div className="asset-type-row">

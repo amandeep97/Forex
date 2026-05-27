@@ -54,8 +54,9 @@ const OV_DEFS = [
   {k:'sweep', l:'Sweep',  c:'#fb923c'}, {k:'swings', l:'Swings',  c:'#60a5fa'},
   {k:'liq',   l:'LIQ',    c:'#c084fc'}, {k:'bos',    l:'BOS/CoC', c:'#38bdf8'},
   {k:'fib',   l:'Auto Fib',c:'#e879f9'},{k:'vol',    l:'Volume',  c:'#64748b'},
+  {k:'piv',   l:'Pivots',  c:'#e0c97a'},
 ];
-const DEFAULT_OV = { ema20:true,ema50:true,ema200:false,vwap:true,poc:false,fvg:true,ob:true,sr:true,tl:true,zones:true,sweep:true,swings:false,liq:false,bos:true,fib:false,vol:true };
+const DEFAULT_OV = { ema20:true,ema50:true,ema200:false,vwap:true,poc:false,fvg:true,ob:true,sr:true,tl:true,zones:true,sweep:true,swings:false,liq:false,bos:true,fib:false,vol:true,piv:false };
 
 function SVGChart({ candles, symbol, ov, barCount, chartH }) {
   const W    = 900;
@@ -144,6 +145,36 @@ function SVGChart({ candles, symbol, ov, barCount, chartH }) {
 
   // Volume max for scaling
   const maxVol = ov.vol ? Math.max(...vis.map(c=>c.v||1)) : 1;
+
+  // Pivot points — use previous "session" (prior 24 candles or prior day by timestamp)
+  let pivotLevels = [];
+  if (ov.piv && vis.length >= 10) {
+    const lastTs = vis[vis.length - 1].t;
+    const prevArr = lastTs
+      ? (() => {
+          const d = new Date(lastTs);
+          const dayStart = Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate());
+          const prevStart = dayStart - 86400000;
+          const day = vis.filter(c => c.t >= prevStart && c.t < dayStart);
+          return day.length >= 3 ? day : vis.slice(-Math.min(vis.length, 48), -1);
+        })()
+      : vis.slice(-Math.min(vis.length, 48), -1);
+    if (prevArr.length >= 2) {
+      const pH = Math.max(...prevArr.map(c => c.h));
+      const pL = Math.min(...prevArr.map(c => c.l));
+      const pC = prevArr[prevArr.length - 1].c;
+      const PP = (pH + pL + pC) / 3;
+      const R1 = 2 * PP - pL, R2 = PP + (pH - pL);
+      const S1 = 2 * PP - pH, S2 = PP - (pH - pL);
+      pivotLevels = [
+        { price: PP, label: 'PP', color: '#e0c97a', width: 1.5 },
+        { price: R1, label: 'R1', color: '#ef4444', width: 1.1 },
+        { price: R2, label: 'R2', color: '#ef4444', width: 0.8 },
+        { price: S1, label: 'S1', color: '#22c55e', width: 1.1 },
+        { price: S2, label: 'S2', color: '#22c55e', width: 0.8 },
+      ].filter(l => l.price > pMin && l.price < pMax);
+    }
+  }
 
   function linePath(vals, color, sw=1.5, dash='') {
     const d = [];
@@ -297,6 +328,16 @@ function SVGChart({ candles, symbol, ov, barCount, chartH }) {
         <text x={W-PR+3} y={yOf(poc)+3.5} fontSize={7} fill="#fbbf24" fontFamily="monospace">POC</text>
       </>}
 
+      {/* Pivot Points */}
+      {ov.piv && pivotLevels.map((p, i) => (
+        <g key={`piv${i}`}>
+          <line x1={PL} y1={yOf(p.price)} x2={W-PR} y2={yOf(p.price)}
+            stroke={p.color} strokeWidth={p.width} strokeDasharray="6,3" opacity={0.8}/>
+          <rect x={W-PR+1} y={yOf(p.price)-7} width={PR-3} height={13} fill={p.color+'33'} rx={2}/>
+          <text x={W-PR+4} y={yOf(p.price)+4} fontSize={8} fontWeight="700" fill={p.color}>{p.label}</text>
+        </g>
+      ))}
+
       {/* EMA / VWAP */}
       {ov.ema20  && linePath(ema20v,  '#22c55e', 1.2)}
       {ov.ema50  && linePath(ema50v,  '#f59e0b', 1.3)}
@@ -419,7 +460,10 @@ export default function ChartModal({ instrument, onClose }) {
   const [rules,     setRules]    = useState(DEF_RULES);
   const [newRule,   setNewRule]  = useState('');
   const [checks,    setChecks]   = useState({});
-  const [imSignals, setImSignals] = useState(null);
+  const [imSignals,  setImSignals]  = useState(null);
+  const [depthData,  setDepthData]  = useState(null);
+  const [depthLoad,  setDepthLoad]  = useState(false);
+  const [depthErr,   setDepthErr]   = useState('');
   const chartWrapRef = useRef(null);
 
   // Measure chart container — subtract 16px for the 8px padding on each side
@@ -449,6 +493,22 @@ export default function ChartModal({ instrument, onClose }) {
   useEffect(() => {
     getIMSignals('H1', 5).then(setImSignals).catch(() => {});
   }, [symbol]);
+
+  useEffect(() => {
+    if (tab !== 'depth') return;
+    setDepthLoad(true); setDepthErr(''); setDepthData(null);
+    const creds = (() => { try { return JSON.parse(localStorage.getItem('oanda_creds')); } catch { return null; } })();
+    if (!creds?.apiKey) { setDepthErr('Connect OANDA in the Screener first.'); setDepthLoad(false); return; }
+    const instr = toOandaInstr(symbol);
+    const base  = creds.practice ? 'https://api-fxpractice.oanda.com/v3' : 'https://api-fxtrade.oanda.com/v3';
+    Promise.all([
+      fetch(`${base}/instruments/${instr}/positionBook`, { headers:{ Authorization:`Bearer ${creds.apiKey}` }, signal:AbortSignal.timeout(10000) }).then(r => r.json()),
+      fetch(`${base}/instruments/${instr}/orderBook`,    { headers:{ Authorization:`Bearer ${creds.apiKey}` }, signal:AbortSignal.timeout(10000) }).then(r => r.json()),
+    ]).then(([pos, ord]) => {
+      setDepthData({ pos: pos.positionBook, ord: ord.orderBook });
+      setDepthLoad(false);
+    }).catch(e => { setDepthErr(e.message); setDepthLoad(false); });
+  }, [symbol, tab]);
 
   const toggleOv = k => setOv(o => ({ ...o, [k]: !o[k] }));
 
@@ -533,7 +593,7 @@ Provide:
           </div>
           {/* Scrollable tab strip */}
           <div className="cm-tab-strip">
-            {[{k:'chart',l:'📈 Chart'},{k:'tv',l:'📺 TradingView'},{k:'ai',l:'🤖 Analysis'},{k:'checklist',l:'✅ Checklist'}].map(t=>(
+            {[{k:'chart',l:'📈 Chart'},{k:'tv',l:'📺 TradingView'},{k:'depth',l:'📊 Depth'},{k:'ai',l:'🤖 Analysis'},{k:'checklist',l:'✅ Checklist'}].map(t=>(
               <button key={t.k} className={`cm-tab-btn${tab===t.k?' active':''}`} onClick={()=>setTab(t.k)}>{t.l}</button>
             ))}
           </div>
@@ -641,6 +701,88 @@ Provide:
             <div style={{flex:1,display:'flex',flexDirection:'column'}}>
               <TradingViewWidget symbol={tvSym} interval={tvInt}/>
             </div>
+          </div>
+        )}
+
+        {/* ── Depth Tab (Position Book + Order Book) ── */}
+        {tab==='depth' && (
+          <div className="cm-body" style={{ overflowY:'auto' }}>
+            {depthLoad && <div className="cm-state">⟳ Loading order &amp; position book for {symbol}…</div>}
+            {depthErr  && <div className="cm-state cm-err">⚠ {depthErr}</div>}
+            {!depthLoad && !depthErr && depthData && (() => {
+              const pos = depthData.pos;
+              const ord = depthData.ord;
+              const curPrice = parseFloat(pos?.price || ord?.price || 0);
+              const renderBook = (title, buckets, longKey, shortKey, color) => {
+                if (!buckets?.length) return null;
+                const maxPct = Math.max(...buckets.flatMap(b => [parseFloat(b[longKey]||0), parseFloat(b[shortKey]||0)]), 0.1);
+                // show 40 buckets centred around current price
+                const sorted = [...buckets].sort((a,b) => parseFloat(b.price) - parseFloat(a.price));
+                const midIdx = sorted.findIndex(b => parseFloat(b.price) <= curPrice);
+                const start  = Math.max(0, (midIdx < 0 ? 0 : midIdx) - 20);
+                const visible = sorted.slice(start, start + 40);
+                return (
+                  <div style={{ marginBottom:16 }}>
+                    <div style={{ fontSize:11, fontWeight:700, color:'var(--text2)', marginBottom:8 }}>{title}</div>
+                    <div style={{ fontSize:9, color:'var(--text3)', marginBottom:4 }}>Current price: {fmtP(curPrice, symbol)} · {visible.length} price levels</div>
+                    <div style={{ display:'flex', flexDirection:'column', gap:1 }}>
+                      {visible.map((b, i) => {
+                        const lPct = parseFloat(b[longKey]  || 0);
+                        const sPct = parseFloat(b[shortKey] || 0);
+                        const bPrice = parseFloat(b.price);
+                        const isCurrent = Math.abs(bPrice - curPrice) / (curPrice || 1) < 0.002;
+                        return (
+                          <div key={i} style={{ display:'flex', alignItems:'center', gap:4,
+                            background: isCurrent ? '#00d4aa18' : 'transparent',
+                            borderRadius: isCurrent ? 3 : 0,
+                            padding:'1px 0' }}>
+                            {/* Short bar (left) */}
+                            <div style={{ width:100, display:'flex', justifyContent:'flex-end' }}>
+                              <div style={{ height:8, background:'#ef4444', borderRadius:'3px 0 0 3px',
+                                width:`${(sPct/maxPct)*100}px`, maxWidth:100 }}/>
+                            </div>
+                            {/* Price label */}
+                            <div style={{ width:70, textAlign:'center', fontSize:8, fontFamily:'monospace',
+                              color: isCurrent ? '#00d4aa' : 'var(--text3)', fontWeight: isCurrent ? 700 : 400 }}>
+                              {fmtP(bPrice, symbol)}{isCurrent ? ' ◄' : ''}
+                            </div>
+                            {/* Long bar (right) */}
+                            <div style={{ width:100 }}>
+                              <div style={{ height:8, background:'#22c55e', borderRadius:'0 3px 3px 0',
+                                width:`${(lPct/maxPct)*100}px`, maxWidth:100 }}/>
+                            </div>
+                            {/* pct labels */}
+                            <span style={{ fontSize:8, color:'#22c55e', fontFamily:'monospace', width:30 }}>
+                              {lPct > 0 ? lPct.toFixed(1)+'%' : ''}
+                            </span>
+                          </div>
+                        );
+                      })}
+                    </div>
+                    <div style={{ display:'flex', justifyContent:'space-between', marginTop:4, fontSize:9, color:'var(--text3)' }}>
+                      <span style={{ color:'#ef4444' }}>◄ SHORT %</span>
+                      <span style={{ color:'#22c55e' }}>LONG % ►</span>
+                    </div>
+                  </div>
+                );
+              };
+              return (
+                <div style={{ padding:12 }}>
+                  <div style={{ fontSize:12, fontWeight:700, color:'var(--text)', marginBottom:12 }}>
+                    {symbol} — Position &amp; Order Book
+                    <span style={{ fontSize:10, fontWeight:400, color:'var(--text3)', marginLeft:8 }}>
+                      OANDA live data · Price: {fmtP(curPrice, symbol)}
+                    </span>
+                  </div>
+                  {renderBook('Position Book — Open Trade Distribution', pos?.buckets, 'longCountPercent', 'shortCountPercent', '#22c55e')}
+                  {renderBook('Order Book — Pending Orders Distribution', ord?.buckets, 'longCountPercent', 'shortCountPercent', '#3b82f6')}
+                  <div style={{ fontSize:9, color:'var(--text3)', marginTop:8, lineHeight:1.6 }}>
+                    Position Book shows where open trades are clustered. Order Book shows pending buy/sell orders.<br/>
+                    Dense long areas below price = support. Dense short areas above = resistance.
+                  </div>
+                </div>
+              );
+            })()}
           </div>
         )}
 

@@ -790,6 +790,27 @@ function StrategyEditor({ strat, onSave, onCancel }) {
             </div>
           )}
         </div>
+        {/* COT Bias Filter */}
+        <div style={{ padding: '6px 0', borderBottom: '1px solid var(--border)' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: s.conditions.cotFilter?.enabled ? 8 : 0 }}>
+            <Label>COT Bias Filter</Label>
+            <div style={{ marginLeft: 'auto' }}><Toggle checked={!!s.conditions.cotFilter?.enabled} onChange={v => set('conditions.cotFilter.enabled', v)}/></div>
+          </div>
+          {s.conditions.cotFilter?.enabled && (
+            <div style={{ paddingLeft: 8 }}>
+              <div style={{ fontSize: 9, color: 'var(--text3)', marginBottom: 6, lineHeight: 1.5 }}>
+                Only trade when institutional (CFTC) speculator positioning aligns with trade direction.
+              </div>
+              <FieldRow label="Required COT Bias">
+                <Select value={s.conditions.cotFilter?.bias || 'any'} onChange={v => set('conditions.cotFilter.bias', v)}
+                  options={[{v:'any',l:'Any'},{v:'bullish',l:'Net Long (Bullish)'},{v:'bearish',l:'Net Short (Bearish)'}]}/>
+              </FieldRow>
+              <div style={{ fontSize: 9, color: 'var(--text3)', marginTop: 4 }}>
+                Data from CFTC COT report (updated Fridays). View full data in the COT Report tab.
+              </div>
+            </div>
+          )}
+        </div>
       </section>
 
       {/* Risk */}
