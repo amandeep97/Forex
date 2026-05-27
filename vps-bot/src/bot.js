@@ -153,13 +153,20 @@ class ForexBot {
 
     if (rr < 1.5) { this.log(`${pair}: RR too low (${rr})`); return false; }
 
-    const { lots, units } = calcPosition({
-      balance: account.balance,
-      riskPercent: risk.riskPercent || 1,
-      entryPrice: cp,
-      slPrice: sl,
-      pair,
-    });
+    let lots, units;
+    if (risk.riskType === 'lots' && risk.fixedLots) {
+      lots  = risk.fixedLots;
+      const isMetals = pair.includes('XAU') || pair.includes('XAG');
+      units = isMetals ? Math.round(lots * 100) : Math.round(lots * 100_000);
+    } else if (risk.riskType === 'usdt' && risk.riskUsdt) {
+      const computed = calcPosition({ balance: account.balance, riskPercent: (risk.riskUsdt / account.balance) * 100, entryPrice: cp, slPrice: sl, pair });
+      lots  = computed.lots;
+      units = computed.units;
+    } else {
+      const computed = calcPosition({ balance: account.balance, riskPercent: risk.riskPercent || 1, entryPrice: cp, slPrice: sl, pair });
+      lots  = computed.lots;
+      units = computed.units;
+    }
     const signedUnits = dir === 'long' ? units : -units;
 
     const tradeId = genTradeId();

@@ -44,6 +44,16 @@ async function oandaPlaceOrder(apiKey, accountId, env, pair, signedUnits, sl, tp
   return json.orderFillTransaction?.tradeOpened?.tradeID || json.relatedTransactionIDs?.[0] || '?';
 }
 
+async function oandaModifyTrade(apiKey, accountId, env, tradeId, body) {
+  const res = await fetch(`${oandaBase(env)}/accounts/${accountId}/trades/${tradeId}/orders`, {
+    method: 'PUT',
+    headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify(body),
+  });
+  if (!res.ok) { const j = await res.json().catch(() => ({})); throw new Error(j.errorMessage || `OANDA ${res.status}`); }
+  return res.json();
+}
+
 // ── MT4 signal writer ─────────────────────────────────────────────────────────
 async function writeMT4Signal(pair, direction, entry, sl, tp, lots) {
   const signal = {
@@ -593,15 +603,32 @@ function explainReason(raw) {
 
 // ── Positions tab ─────────────────────────────────────────────────────────────
 function PositionsTab({ onLog }) {
-  const [trades,     setTrades]     = useState([]);
-  const [loading,    setLoading]    = useState(false);
-  const [error,      setError]      = useState('');
-  const [closing,    setClosing]    = useState(null);
-  const [activity,   setActivity]   = useState([]);
-  const [actLoading, setActLoading] = useState(false);
-  const [actErr,     setActErr]     = useState('');
+  const [trades,      setTrades]      = useState([]);
+  const [loading,     setLoading]     = useState(false);
+  const [error,       setError]       = useState('');
+  const [closing,     setClosing]     = useState(null);
+  const [activity,    setActivity]    = useState([]);
+  const [actLoading,  setActLoading]  = useState(false);
+  const [actErr,      setActErr]      = useState('');
   const [livePrices,  setLivePrices]  = useState({});
-  const [liveMargins, setLiveMargins] = useState({}); // oandaTradeId → marginUsed (account currency)
+  const [liveMargins, setLiveMargins] = useState({});
+  const [modifyState, setModifyState] = useState({});
+
+  const getMS = (id) => modifyState[id] || { sl: '', tp: '', trailDist: '', trailing: false, busy: false, err: '' };
+  const setMS = (id, patch) => setModifyState(prev => ({ ...prev, [id]: { ...getMS(id), ...patch } }));
+
+  const doModify = async (id, oandaId, body) => {
+    const apiKey    = localStorage.getItem('oanda_key');
+    const accountId = localStorage.getItem('oanda_acct');
+    const env_      = localStorage.getItem('oanda_env') || 'practice';
+    if (!apiKey || !accountId) { setMS(id, { err: 'Connect OANDA first' }); return; }
+    setMS(id, { busy: true, err: '' });
+    try {
+      await oandaModifyTrade(apiKey, accountId, env_, oandaId, body);
+      setMS(id, { busy: false, err: '' });
+      onLog?.('INFO', `Trade ${oandaId} modified`);
+    } catch(e) { setMS(id, { busy: false, err: e.message }); }
+  };
 
   useEffect(() => {
     setLoading(true);
@@ -816,7 +843,10 @@ function PositionsTab({ onLog }) {
           return (
             <div key={t.id} style={{ background: '#1e293b', borderRadius: 10, padding: 14, marginBottom: 10, border: `1px solid ${isLong?'#1e3a5f':'#3b0764'}` }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
-                <span style={{ fontSize: 16, fontWeight: 700, color: '#f8fafc' }}>{isLong?'↗':'↘'} {(t.pair||'').replace('_','/')}</span>
+                <span onClick={() => window.open(`https://www.tradingview.com/chart/?symbol=OANDA:${(t.pair||'').replace('_','')}`, '_blank')}
+                  style={{ fontSize: 16, fontWeight: 700, color: '#f8fafc', cursor: 'pointer', textDecoration: 'underline dotted #475569' }}>
+                  {isLong?'↗':'↘'} {(t.pair||'').replace('_','/')}
+                </span>
                 <span style={{ fontSize: 11, padding: '2px 8px', borderRadius: 4, background: isLong?'#14532d':'#450a0a', color: isLong?'#4ade80':'#f87171', fontWeight: 700 }}>{t.direction?.toUpperCase?.() || 'LONG'}</span>
                 <span style={{ fontSize: 11, padding: '2px 6px', borderRadius: 4, background: '#0f172a', color: '#38bdf8' }}>{t.source?.includes('forexcom') ? 'Forex.com' : 'OANDA'}</span>
                 <span style={{ marginLeft: 'auto', fontSize: 12, color: '#a78bfa', fontWeight: 600 }}>R:R 1:{t.rr?.toFixed?.(1) ?? '—'}</span>
@@ -854,10 +884,79 @@ function PositionsTab({ onLog }) {
               <div style={{ fontSize: 11, color: '#475569', marginBottom: 10 }}>
                 {t.source || 'vps_bot'} · {fmtTime(t.openTime || t.openedAt)} · ID: {t.oandaTradeId || t.id}
               </div>
-              <button onClick={() => markClosed(t.id)} disabled={closing===t.id}
-                style={{ background: '#991b1b', border: 'none', color: '#fff', borderRadius: 6, padding: '6px 14px', fontSize: 11, cursor: 'pointer' }}>
-                {closing===t.id ? '…' : '✓ Mark Closed'}
-              </button>
+              <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'center' }}>
+                <button onClick={() => markClosed(t.id)} disabled={closing===t.id}
+                  style={{ background: '#991b1b', border: 'none', color: '#fff', borderRadius: 6, padding: '6px 14px', fontSize: 11, cursor: 'pointer' }}>
+                  {closing===t.id ? '…' : '✓ Mark Closed'}
+                </button>
+                {oandaId && entry != null && (
+                  <button onClick={() => doModify(t.id, oandaId, { stopLoss: { price: Number(entry).toFixed(dp(t.pair)), timeInForce: 'GTC' } })}
+                    disabled={getMS(t.id).busy}
+                    style={{ background: '#f59e0b22', border: '1px solid #f59e0b88', color: '#fbbf24', borderRadius: 6, padding: '6px 14px', fontSize: 11, fontWeight: 700, cursor: 'pointer' }}>
+                    ⚡ Breakeven
+                  </button>
+                )}
+              </div>
+
+              {oandaId && (
+                <div style={{ marginTop: 10, borderTop: '1px solid #334155', paddingTop: 10 }}>
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 6, marginBottom: 8 }}>
+                    <div>
+                      <div style={{ fontSize: 10, color: '#475569', marginBottom: 3 }}>Adjust SL</div>
+                      <div style={{ display: 'flex', gap: 4 }}>
+                        <input value={getMS(t.id).sl} onChange={e => setMS(t.id, { sl: e.target.value })}
+                          placeholder={fmtPx(sl, t.pair)}
+                          style={{ flex: 1, background: '#0f172a', color: '#e2e8f0', border: '1px solid #334155', borderRadius: 4, padding: '4px 6px', fontSize: 11, fontFamily: 'monospace', minWidth: 0 }}/>
+                        <button onClick={() => {
+                          const val = parseFloat(getMS(t.id).sl);
+                          if (isNaN(val)) { setMS(t.id, { err: 'Invalid SL' }); return; }
+                          doModify(t.id, oandaId, { stopLoss: { price: val.toFixed(dp(t.pair)), timeInForce: 'GTC' } });
+                          setMS(t.id, { sl: '' });
+                        }} disabled={getMS(t.id).busy}
+                          style={{ padding: '4px 8px', borderRadius: 4, background: '#ef444422', border: '1px solid #ef444488', color: '#f87171', fontSize: 10, cursor: 'pointer', whiteSpace: 'nowrap' }}>Set</button>
+                      </div>
+                    </div>
+                    <div>
+                      <div style={{ fontSize: 10, color: '#475569', marginBottom: 3 }}>Adjust TP</div>
+                      <div style={{ display: 'flex', gap: 4 }}>
+                        <input value={getMS(t.id).tp} onChange={e => setMS(t.id, { tp: e.target.value })}
+                          placeholder={fmtPx(tp, t.pair)}
+                          style={{ flex: 1, background: '#0f172a', color: '#e2e8f0', border: '1px solid #334155', borderRadius: 4, padding: '4px 6px', fontSize: 11, fontFamily: 'monospace', minWidth: 0 }}/>
+                        <button onClick={() => {
+                          const val = parseFloat(getMS(t.id).tp);
+                          if (isNaN(val)) { setMS(t.id, { err: 'Invalid TP' }); return; }
+                          doModify(t.id, oandaId, { takeProfit: { price: val.toFixed(dp(t.pair)), timeInForce: 'GTC' } });
+                          setMS(t.id, { tp: '' });
+                        }} disabled={getMS(t.id).busy}
+                          style={{ padding: '4px 8px', borderRadius: 4, background: '#22c55e22', border: '1px solid #22c55e88', color: '#4ade80', fontSize: 10, cursor: 'pointer', whiteSpace: 'nowrap' }}>Set</button>
+                      </div>
+                    </div>
+                  </div>
+                  <div style={{ display: 'flex', gap: 8, alignItems: 'center', flexWrap: 'wrap' }}>
+                    <span style={{ fontSize: 11, color: '#94a3b8' }}>Trail SL</span>
+                    <div onClick={() => setMS(t.id, { trailing: !getMS(t.id).trailing })}
+                      style={{ width: 36, height: 20, borderRadius: 10, background: getMS(t.id).trailing ? '#a78bfa' : '#334155', cursor: 'pointer', position: 'relative', flexShrink: 0 }}>
+                      <span style={{ position: 'absolute', top: 2, left: getMS(t.id).trailing ? 18 : 2, width: 16, height: 16, borderRadius: 8, background: '#fff', display: 'block', transition: 'left 0.15s' }}/>
+                    </div>
+                    {getMS(t.id).trailing && <>
+                      <input value={getMS(t.id).trailDist} onChange={e => setMS(t.id, { trailDist: e.target.value })}
+                        placeholder="pips"
+                        style={{ width: 55, background: '#0f172a', color: '#e2e8f0', border: '1px solid #334155', borderRadius: 4, padding: '4px 6px', fontSize: 11, fontFamily: 'monospace' }}/>
+                      <button onClick={() => {
+                        const pips = parseFloat(getMS(t.id).trailDist);
+                        if (isNaN(pips) || pips <= 0) { setMS(t.id, { err: 'Enter pips' }); return; }
+                        const pip = t.pair?.includes('JPY') ? 0.01 : t.pair?.includes('XAU') ? 1 : 0.0001;
+                        const dist = (pips * pip).toFixed(dp(t.pair));
+                        doModify(t.id, oandaId, { trailingStopLoss: { distance: dist, timeInForce: 'GTC' } });
+                      }} disabled={getMS(t.id).busy}
+                        style={{ padding: '4px 10px', borderRadius: 4, background: '#a78bfa22', border: '1px solid #a78bfa88', color: '#c4b5fd', fontSize: 10, cursor: 'pointer', whiteSpace: 'nowrap' }}>Set Trail</button>
+                    </>}
+                  </div>
+                  {getMS(t.id).err && (
+                    <div style={{ fontSize: 11, color: '#f87171', background: '#450a0a', borderRadius: 4, padding: '4px 8px', marginTop: 6 }}>{getMS(t.id).err}</div>
+                  )}
+                </div>
+              )}
             </div>
           );
         })

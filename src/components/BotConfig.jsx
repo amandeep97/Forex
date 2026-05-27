@@ -491,7 +491,10 @@ function StrategyEditor({ strat, onSave, onCancel }) {
     const clone = JSON.parse(JSON.stringify(prev));
     const parts = path.split('.');
     let obj = clone;
-    for (let i = 0; i < parts.length - 1; i++) obj = obj[parts[i]];
+    for (let i = 0; i < parts.length - 1; i++) {
+      if (obj[parts[i]] == null) obj[parts[i]] = {};
+      obj = obj[parts[i]];
+    }
     obj[parts[parts.length - 1]] = val;
     return clone;
   });
@@ -764,7 +767,7 @@ function StrategyEditor({ strat, onSave, onCancel }) {
 
         {/* Risk type toggle */}
         <div style={{ display: 'flex', gap: 4, padding: '4px 0 10px', borderBottom: '1px solid var(--border)' }}>
-          {[{v:'percent',l:'% Balance'},{v:'usdt',l:'Fixed USDT'}].map(opt => (
+          {[{v:'percent',l:'% Balance'},{v:'usdt',l:'Fixed USDT'},{v:'lots',l:'Fixed Lots'}].map(opt => (
             <button key={opt.v} onClick={() => set('risk.riskType', opt.v)}
               style={{ flex: 1, padding: '6px', borderRadius: 5, fontSize: 11, fontWeight: 600, cursor: 'pointer', border: `1px solid ${(s.risk.riskType||'percent')===opt.v ? '#00d4aa' : 'var(--border)'}`, background: (s.risk.riskType||'percent')===opt.v ? '#00d4aa22' : 'var(--bg2)', color: (s.risk.riskType||'percent')===opt.v ? '#00d4aa' : 'var(--text3)' }}>
               {opt.l}
@@ -776,13 +779,22 @@ function StrategyEditor({ strat, onSave, onCancel }) {
           <FieldRow label="Risk Per Trade (%)">
             <NumberInput value={s.risk.riskPercent} onChange={v => set('risk.riskPercent', v)} min={0.1} max={10} step={0.1}/>
           </FieldRow>
-        ) : (
+        ) : s.risk.riskType === 'usdt' ? (
           <FieldRow label="Risk Per Trade (USDT)">
             <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
               <span style={{ fontSize: 11, color: 'var(--text3)' }}>$</span>
               <NumberInput value={s.risk.riskUsdt||10} onChange={v => set('risk.riskUsdt', v)} min={1} max={10000} step={1}/>
             </div>
           </FieldRow>
+        ) : (
+          <>
+            <FieldRow label="Lot Size">
+              <NumberInput value={s.risk.fixedLots||0.01} onChange={v => set('risk.fixedLots', v)} min={0.01} max={100} step={0.01}/>
+            </FieldRow>
+            <div style={{ padding: '2px 0 6px 12px', borderBottom: '1px solid var(--border)', fontSize: 10, color: 'var(--text3)' }}>
+              Forex: 1 lot = 100,000 units · Gold/XAU: 1 lot = 100 oz · Silver: 1 lot = 5,000 oz
+            </div>
+          </>
         )}
 
         <FieldRow label="Stop Loss Method">
@@ -1047,9 +1059,20 @@ export default function BotConfig({ autoExecute = false, onAutoTrade }) {
                     {(() => {
                       const pairs = strat.pairs || (strat.pair ? [strat.pair] : []);
                       if (pairs.length === 0) return 'No pairs';
-                      if (pairs.length === 1) return pairs[0].replace('_','/');
-                      if (pairs.length <= 3) return pairs.map(p => p.replace('_','/')).join(', ');
-                      return `${pairs.slice(0,2).map(p=>p.replace('_','/')).join(', ')} +${pairs.length-2} more`;
+                      const shown = pairs.slice(0, 3);
+                      const extra = pairs.length - shown.length;
+                      return <>
+                        {shown.map((p, i) => (
+                          <span key={p}>
+                            {i > 0 && ', '}
+                            <span onClick={e => { e.stopPropagation(); window.open(`https://www.tradingview.com/chart/?symbol=OANDA:${p.replace('_','')}`, '_blank'); }}
+                              style={{ cursor: 'pointer', color: '#38bdf8', textDecoration: 'underline dotted' }}>
+                              {p.replace('_','/')}
+                            </span>
+                          </span>
+                        ))}
+                        {extra > 0 && ` +${extra} more`}
+                      </>;
                     })()} · {strat.timeframe} · {strat.direction}
                   </div>
                 </div>
