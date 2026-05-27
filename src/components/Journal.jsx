@@ -45,16 +45,18 @@ export default function Journal() {
 
   useEffect(() => { load(); }, [load]);
 
-  const closed = trades.filter(t => t.status === 'CLOSED' || t.pnl != null);
-  const open   = trades.filter(t => t.status === 'OPEN' && t.pnl == null);
+  const isOpen   = t => ['open','OPEN'].includes(t.status);
+  const isClosed = t => ['closed','CLOSED','tp_hit','sl_hit'].includes(t.status) || t.pnl != null;
+  const closed = trades.filter(isClosed);
+  const open   = trades.filter(t => isOpen(t) && t.pnl == null);
 
   // Stats
-  const wins       = closed.filter(t => (t.pnl || 0) > 0);
-  const losses     = closed.filter(t => (t.pnl || 0) <= 0);
+  const wins       = closed.filter(t => (t.pnl ?? t.pnlUsd ?? 0) > 0);
+  const losses     = closed.filter(t => (t.pnl ?? t.pnlUsd ?? 0) <= 0);
   const winRate    = closed.length > 0 ? ((wins.length / closed.length) * 100).toFixed(1) : null;
-  const totalPnl   = closed.reduce((s, t) => s + (t.pnl || 0), 0);
-  const gProfit    = wins.reduce((s, t) => s + (t.pnl || 0), 0);
-  const gLoss      = Math.abs(losses.reduce((s, t) => s + (t.pnl || 0), 0));
+  const totalPnl   = closed.reduce((s, t) => s + (t.pnl ?? t.pnlUsd ?? 0), 0);
+  const gProfit    = wins.reduce((s, t) => s + (t.pnl ?? t.pnlUsd ?? 0), 0);
+  const gLoss      = Math.abs(losses.reduce((s, t) => s + (t.pnl ?? t.pnlUsd ?? 0), 0));
   const pf         = gLoss > 0 ? (gProfit / gLoss).toFixed(2) : '∞';
   const rrVals     = closed.filter(t => t.rr != null).map(t => t.rr);
   const avgRR      = rrVals.length > 0 ? (rrVals.reduce((s, v) => s + v, 0) / rrVals.length).toFixed(2) : null;
@@ -64,8 +66,8 @@ export default function Journal() {
   closed.forEach(t => {
     if (!pairMap[t.pair]) pairMap[t.pair] = { pair: t.pair, trades: 0, wins: 0, pnl: 0 };
     pairMap[t.pair].trades++;
-    if ((t.pnl || 0) > 0) pairMap[t.pair].wins++;
-    pairMap[t.pair].pnl += t.pnl || 0;
+    if ((t.pnl ?? t.pnlUsd ?? 0) > 0) pairMap[t.pair].wins++;
+    pairMap[t.pair].pnl += t.pnl ?? t.pnlUsd ?? 0;
   });
   const pairStats = Object.values(pairMap).sort((a, b) => b.pnl - a.pnl);
 
@@ -78,7 +80,7 @@ export default function Journal() {
               : s.includes('newyork') || s.includes('new') ? 'newyork'
               : 'asian';
     sess[key].t++;
-    sess[key].pnl += t.pnl || 0;
+    sess[key].pnl += t.pnl ?? t.pnlUsd ?? 0;
   });
 
   const allPairs = [...new Set(trades.map(t => t.pair))].filter(Boolean).sort();
@@ -86,8 +88,8 @@ export default function Journal() {
   // Filter + sort
   let filtered = [...closed];
   if (filterPair   !== 'ALL') filtered = filtered.filter(t => t.pair === filterPair);
-  if (filterResult === 'WIN')  filtered = filtered.filter(t => (t.pnl || 0) > 0);
-  if (filterResult === 'LOSS') filtered = filtered.filter(t => (t.pnl || 0) <= 0);
+  if (filterResult === 'WIN')  filtered = filtered.filter(t => (t.pnl ?? t.pnlUsd ?? 0) > 0);
+  if (filterResult === 'LOSS') filtered = filtered.filter(t => (t.pnl ?? t.pnlUsd ?? 0) <= 0);
   if (filterDir    !== 'ALL') filtered = filtered.filter(t => t.direction === filterDir);
   filtered.sort((a, b) => {
     const av = a[sortField] ?? '', bv = b[sortField] ?? '';
@@ -296,7 +298,7 @@ export default function Journal() {
                   </td>
                 </tr>
               ) : filtered.map((t, i) => {
-                const isWin = (t.pnl || 0) > 0;
+                const isWin = (t.pnl ?? t.pnlUsd ?? 0) > 0;
                 return (
                   <tr key={t.id || i} style={{ borderTop: '1px solid #0f172a' }}>
                     <td style={{ padding: '8px 10px', color: '#94a3b8', whiteSpace: 'nowrap' }}>{fmtDate(t.openTime)}</td>
@@ -309,7 +311,7 @@ export default function Journal() {
                     <td style={{ padding: '8px 10px', fontFamily: 'monospace', color: '#22c55e' }}>{fmtPx(t.tpPrice)}</td>
                     <td style={{ padding: '8px 10px', fontFamily: 'monospace', color: '#94a3b8' }}>{fmtPx(t.closePrice)}</td>
                     <td style={{ padding: '8px 10px', color: '#a78bfa' }}>{t.rr != null ? `1:${Number(t.rr).toFixed(1)}` : '—'}</td>
-                    <td style={{ padding: '8px 10px', fontWeight: 600, color: (t.pnl || 0) >= 0 ? '#22c55e' : '#ef4444' }}>
+                    <td style={{ padding: '8px 10px', fontWeight: 600, color: (t.pnl ?? t.pnlUsd ?? 0) >= 0 ? '#22c55e' : '#ef4444' }}>
                       {t.pnl != null ? fmtPnl(t.pnl) : '—'}
                     </td>
                     <td style={{ padding: '8px 10px' }}>
