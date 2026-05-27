@@ -371,7 +371,7 @@ export default function MetalsDashboard() {
             <div style={{ flex:1 }}>
               <div style={{ fontSize:10, color:'var(--text3)', marginBottom:4 }}>CONFLUENCE FACTORS</div>
               <div style={{ display:'flex', flexWrap:'wrap', gap:4 }}>
-                {goldScore?.factors.map(f => (
+                {goldScore?.factors?.map(f => (
                   <span key={f.label} style={{ fontSize:10, padding:'2px 6px', borderRadius:3, fontWeight:600,
                     color:      f.bull ? '#22c55e' : '#ef4444',
                     background: f.bull ? '#22c55e18' : '#ef444418',
@@ -396,7 +396,7 @@ export default function MetalsDashboard() {
             <div style={{ flex:1 }}>
               <div style={{ fontSize:10, color:'var(--text3)', marginBottom:4 }}>CONFLUENCE FACTORS</div>
               <div style={{ display:'flex', flexWrap:'wrap', gap:4 }}>
-                {silverScore?.factors.map(f => (
+                {silverScore?.factors?.map(f => (
                   <span key={f.label} style={{ fontSize:10, padding:'2px 6px', borderRadius:3, fontWeight:600,
                     color:      f.bull ? '#22c55e' : '#ef4444',
                     background: f.bull ? '#22c55e18' : '#ef444418',
