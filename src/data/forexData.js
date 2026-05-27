@@ -1,7 +1,7 @@
 // ── Market Data ───────────────────────────────────────────────────────────────
 // Replace with live feed (WebSocket / REST API) when ready.
 
-export const ASSET_TYPES = ['All', 'Forex', 'Metals', 'Indices', 'Energy', 'Crypto'];
+export const ASSET_TYPES = ['All', 'Forex', 'Metals', 'Indices', 'Energy'];
 
 export const FOREX_CATEGORIES = ['All', 'Majors', 'Minors', 'Exotics'];
 
@@ -163,7 +163,6 @@ export const allInstruments = [
   ...metals,
   ...indices,
   ...energy,
-  ...crypto,
 ];
 
 // ── Strategy presets ──────────────────────────────────────────────────────────

@@ -385,8 +385,10 @@ table  { border-collapse: collapse; width: 100%; }
 
 /* Asset type tabs */
 .asset-type-row {
-  display: flex; gap: 6px; flex-wrap: wrap;
+  display: flex; gap: 6px; overflow-x: auto; white-space: nowrap;
+  -webkit-overflow-scrolling: touch; scrollbar-width: none; padding-bottom: 2px;
 }
+.asset-type-row::-webkit-scrollbar { display: none; }
 .asset-type-btn {
   display: flex; align-items: center; gap: 6px;
   padding: 7px 14px; border-radius: var(--radius);
