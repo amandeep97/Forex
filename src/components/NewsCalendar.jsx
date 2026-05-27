@@ -1,14 +1,28 @@
 'use strict';
 import { useState, useEffect, useCallback } from 'react';
 
-const CALENDAR_URL = 'https://nfs.faireconomy.media/ff_calendar_thisweek.json';
-const RSS2JSON     = 'https://api.rss2json.com/v1/api.json?count=40&rss_url=';
+const PROXY        = 'https://corsproxy.io/?';
+const CALENDAR_URL = PROXY + encodeURIComponent('https://nfs.faireconomy.media/ff_calendar_thisweek.json');
 
 const NEWS_FEEDS = [
-  { name: 'FXStreet',  url: 'https://www.fxstreet.com/rss/news' },
-  { name: 'ForexLive', url: 'https://feeds.forexlive.com/forex/news' },
+  { name: 'ForexLive', url: 'https://forexlive.com/feed/news' },
   { name: 'DailyFX',   url: 'https://feeds.dailyfx.com/forex-market-news' },
+  { name: 'FXStreet',  url: 'https://www.fxstreet.com/rss/news' },
 ];
+
+// Parse RSS XML text into item array using browser DOMParser
+function parseRSS(text) {
+  const doc   = new DOMParser().parseFromString(text, 'application/xml');
+  const items = [...doc.querySelectorAll('item')];
+  return items.map(el => {
+    const get = tag => el.querySelector(tag)?.textContent?.trim() || '';
+    const link = get('link') || el.querySelector('guid')?.textContent?.trim() || '';
+    const img  = el.querySelector('enclosure[type^="image"]')?.getAttribute('url')
+              || el.querySelector('media\\:thumbnail, thumbnail')?.getAttribute('url')
+              || null;
+    return { title: get('title'), link, pubDate: get('pubDate'), description: get('description'), author: get('author') || get('dc\\:creator'), thumbnail: img };
+  });
+}
 
 const TRACKED = ['USD','EUR','GBP','JPY','CHF','AUD','NZD','CAD','CNY'];
 
@@ -168,12 +182,13 @@ export default function NewsCalendar() {
   const loadNews = useCallback(async (idx) => {
     setLoad(true); setError('');
     try {
-      const url  = `${RSS2JSON}${encodeURIComponent(NEWS_FEEDS[idx].url)}`;
-      const res  = await fetch(url);
+      const proxyUrl = PROXY + encodeURIComponent(NEWS_FEEDS[idx].url);
+      const res  = await fetch(proxyUrl);
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      const data = await res.json();
-      if (data.status !== 'ok') throw new Error(data.message || 'Feed error');
-      setNews(data.items || []);
+      const text = await res.text();
+      const items = parseRSS(text);
+      if (!items.length) throw new Error('No articles in feed');
+      setNews(items);
     } catch (e) {
       setError('Could not load news. ' + e.message);
     }
