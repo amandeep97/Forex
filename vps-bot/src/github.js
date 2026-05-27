@@ -39,9 +39,10 @@ class GitHubClient {
         headers: this._headers(),
         body:    JSON.stringify(body),
       });
-      if (res.status === 409) {
-        // SHA conflict — fetch latest and retry once
-        const latest = await this.readJSON(path);
+      if (res.status === 409 || res.status === 422) {
+        // 409 = SHA conflict; 422 = file exists but sha not supplied
+        // Either way: fetch current SHA and retry once
+        const latest   = await this.readJSON(path);
         const freshSha = latest?.sha || null;
         const body2 = { message, content: encoded, branch: this.branch };
         if (freshSha) body2.sha = freshSha;
