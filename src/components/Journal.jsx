@@ -9,6 +9,7 @@ function norm(t) {
   if      (status === 'tp_hit' || status === 'win'  || (raw != null && raw >  0.005)) result = 'win';
   else if (status === 'sl_hit' || status === 'loss' || (raw != null && raw < -0.005)) result = 'loss';
   else if (raw != null && Math.abs(raw) <= 0.005 && !['open',''].includes(status))    result = 'be';
+  else if (status === 'closed')  result = raw != null ? (raw > 0 ? 'win' : raw < 0 ? 'loss' : 'be') : 'be';
   const dir = (t.direction || t.dir || '').toUpperCase();
   return {
     ...t,

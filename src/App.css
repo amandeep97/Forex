@@ -88,7 +88,8 @@ table  { border-collapse: collapse; width: 100%; }
 /* Nav tabs — always full width, always scrollable */
 .main-nav {
   display: flex;
-  overflow-x: auto; scrollbar-width: none;
+  overflow-x: scroll; overflow-y: hidden; scrollbar-width: none;
+  -webkit-overflow-scrolling: touch; touch-action: pan-x;
   border-top: 1px solid var(--border);
   padding: 0 8px;
   gap: 2px;
@@ -136,22 +137,7 @@ table  { border-collapse: collapse; width: 100%; }
   color: var(--accent); font-weight: 500; line-height: 1; margin-top: 1px;
 }
 
-/* Nav tabs */
-.main-nav {
-  display: flex; gap: 2px;
-  overflow-x: auto; scrollbar-width: none;
-  flex: 1; min-width: 0;
-}
-.main-nav::-webkit-scrollbar { display: none; }
-.nav-tab {
-  display: flex; align-items: center; gap: 5px;
-  padding: 6px 12px; border-radius: var(--radius-sm);
-  font-size: 13px; font-weight: 500; color: var(--text2);
-  transition: all 0.15s; white-space: nowrap; flex-shrink: 0;
-}
-.nav-tab:hover  { color: var(--text); background: #1a2236; }
-.nav-tab.active { color: var(--accent); background: #00d4aa18; }
-.nav-tab-icon   { font-size: 13px; }
+/* Nav tabs — duplicate removed, see main block above */
 
 /* Market badge */
 .market-badge {

@@ -40,14 +40,14 @@ R:R Ratio : <code>1:${rr}</code>`
     const win   = status === 'tp_hit';
     const emoji = win ? '✅' : '❌';
     const sign  = pnlUsd >= 0 ? '+' : '';
+    const pipsStr = pnlPips != null ? `\nPips      : <code>${win ? '+' : ''}${Number(pnlPips).toFixed(1)}</code>` : '';
+    const rrStr   = rr      != null ? `\nRR Achieved: <code>1:${Number(rr).toFixed(2)}</code>` : '';
     return (
 `${emoji} <b>TRADE ${win ? 'WIN' : 'LOSS'} — ${pair}</b>
 
-Direction : ${dir.toUpperCase()}
-Entry → Close: <code>${entry}</code> → <code>${close}</code>
-Pips      : <code>${win ? '+' : ''}${pnlPips.toFixed(1)}</code>
-P&amp;L       : <code>$${sign}${pnlUsd.toFixed(2)}</code>
-RR Achieved: <code>1:${rr.toFixed(2)}</code>`
+Direction : ${(dir || '').toUpperCase()}
+Entry → Close: <code>${entry ?? '—'}</code> → <code>${close ?? '—'}</code>${pipsStr}
+P&amp;L       : <code>$${sign}${Number(pnlUsd).toFixed(2)}</code>${rrStr}`
     );
   }
 

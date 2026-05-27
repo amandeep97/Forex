@@ -255,9 +255,36 @@ class ForexBot {
         const isStillOpen  = closedTrades.some(t => t.id === rec.oandaId);
         if (isStillOpen) continue;
 
-        rec.status    = 'closed';
-        rec.closedAt  = new Date().toISOString();
-        this.log(`${rec.pair} trade ${rec.id}: detected as closed`);
+        const details = await this.oanda.getTradeDetails(rec.oandaId).catch(() => null);
+        const pnl     = details ? +details.realizedPL : null;
+        rec.closedAt   = details?.closeTime || new Date().toISOString();
+        rec.closePrice = details?.averageClosePrice ? +details.averageClosePrice : null;
+        rec.pnlUsd     = pnl;
+
+        if (pnl != null) {
+          rec.status = pnl > 0 ? 'tp_hit' : 'sl_hit';
+          const pip  = getPipSize(rec.pair);
+          if (rec.closePrice && rec.entry) {
+            rec.pnlPips    = +(((rec.direction === 'long' ? rec.closePrice - rec.entry : rec.entry - rec.closePrice) / pip)).toFixed(1);
+            const slPips   = rec.sl ? Math.abs(rec.entry - rec.sl) / pip : 0;
+            rec.rrAchieved = slPips > 0 ? +(rec.pnlPips / slPips).toFixed(2) : null;
+          }
+        } else {
+          rec.status = 'closed';
+        }
+
+        this.log(`${rec.pair} trade ${rec.id}: closed — ${rec.status} | PnL $${(pnl || 0).toFixed(2)}`);
+
+        await this.telegram.send(this.telegram.tradeClosed({
+          pair:     rec.pair,
+          dir:      rec.direction,
+          entry:    rec.entry,
+          close:    rec.closePrice,
+          pnlPips:  rec.pnlPips,
+          pnlUsd:   pnl || 0,
+          rr:       rec.rrAchieved,
+          status:   rec.status,
+        })).catch(e => this.warn(`Telegram close: ${e.message}`));
       } catch (e) {
         this.warn(`Sync trade ${rec.id}: ${e.message}`);
       }

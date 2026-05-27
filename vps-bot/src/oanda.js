@@ -66,6 +66,11 @@ class OandaClient {
     return data.transaction;
   }
 
+  async getTradeDetails(tradeId) {
+    const data = await this._req(`/accounts/${this.accountId}/trades/${tradeId}`);
+    return data.trade;
+  }
+
   async placeMarketOrder({ instrument, units, sl, tp, clientId }) {
     const order = {
       type:         'MARKET',
