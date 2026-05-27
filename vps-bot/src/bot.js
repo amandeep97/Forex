@@ -52,7 +52,7 @@ class ForexBot {
     ]);
     this.log(`Account: $${account.balance.toFixed(2)} | Open trades: ${openTrades.length}`);
 
-    await this._syncClosedTrades(openTrades, tradeLog, account);
+    const syncChanged = await this._syncClosedTrades(openTrades, tradeLog, account);
 
     const utcH = new Date().getUTCHours(), utcM = new Date().getUTCMinutes();
     if (utcH === 21 && utcM < 2) {
@@ -62,10 +62,11 @@ class ForexBot {
     const maxTotal = config.globalSettings?.maxTotalTrades || 3;
     if (openTrades.length >= maxTotal) {
       this.log(`Global limit reached (${openTrades.length}/${maxTotal}) — not scanning`);
-      await this._saveTrades(tradeLog);
+      if (syncChanged) await this._saveTrades(tradeLog);
       return;
     }
 
+    let tradePlaced = false;
     for (const strat of (config.strategies || [])) {
       if (!strat.enabled) continue;
       if (openTrades.length >= maxTotal) break;
@@ -91,14 +92,15 @@ class ForexBot {
 
         try {
           const placed = await this._runStrategy({ ...strat, pair }, account, tradeLog);
-          if (placed) openTrades.push({ instrument: pair });
+          if (placed) { openTrades.push({ instrument: pair }); tradePlaced = true; }
         } catch (e) {
           this.err(`Strategy "${strat.name}" / ${pair}`, e);
         }
       }
     }
 
-    await this._saveTrades(tradeLog);
+    if (syncChanged || tradePlaced) await this._saveTrades(tradeLog);
+    else this.log('No changes — skipping trades.json write');
   }
 
   async _runStrategy(strat, account, tradeLog) {
@@ -245,6 +247,7 @@ class ForexBot {
 
   async _syncClosedTrades(openTrades, tradeLog, account) {
     const openIds = new Set(openTrades.map(t => t.id));
+    let changed = false;
 
     for (const rec of tradeLog.trades) {
       if (!rec.oandaId) continue;
@@ -279,6 +282,7 @@ class ForexBot {
           rec.status = 'closed';
         }
 
+        changed = true;
         this.log(`${rec.pair} trade ${rec.id}: synced — ${rec.status} | PnL $${(pnl || 0).toFixed(2)}`);
 
         if (isOpenGone) {
@@ -297,6 +301,7 @@ class ForexBot {
         this.warn(`Sync trade ${rec.id}: ${e.message}`);
       }
     }
+    return changed;
   }
 
   async _sendDailySummary(trades) {
