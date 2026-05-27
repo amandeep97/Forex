@@ -7,6 +7,7 @@ const {
   getCurrentSession, isWeekend,
   getPipSize, calcPosition, genTradeId, fmtPrice,
 } = require('./utils');
+const { checkIMFilter } = require('./intermarket');
 
 const STRATEGY_PATH = 'bot/strategy.json';
 const TRADES_PATH   = 'bot/trades.json';
@@ -126,17 +127,22 @@ class ForexBot {
     if (!dir) { this.log(`${pair}: direction mismatch`); return false; }
 
     const pass = {
-      structure: !conditions.structure || conditions.structure === 'any' || smc.structure === conditions.structure,
-      bos:       !conditions.requireBOS || smc.hasBOS,
-      ob:        !conditions.requireOB  || (dir === 'long' ? smc.hasBullOB : smc.hasBearOB),
-      fvg:       !conditions.requireFVG || (dir === 'long' ? smc.hasBullFVG : smc.hasBearFVG),
-      ote:       !conditions.requireOTE || (dir === 'long' ? smc.inOTEBull  : smc.inOTEBear),
-      rsi:       !conditions.rsiFilter?.enabled || this._checkRSI(smc.rsi, conditions.rsiFilter),
-      ratio:     !conditions.ratioFilter?.enabled,
+      structure:    !conditions.structure || conditions.structure === 'any' || smc.structure === conditions.structure,
+      bos:          !conditions.requireBOS || smc.hasBOS,
+      ob:           !conditions.requireOB  || (dir === 'long' ? smc.hasBullOB : smc.hasBearOB),
+      fvg:          !conditions.requireFVG || (dir === 'long' ? smc.hasBullFVG : smc.hasBearFVG),
+      ote:          !conditions.requireOTE || (dir === 'long' ? smc.inOTEBull  : smc.inOTEBear),
+      rsi:          !conditions.rsiFilter?.enabled || this._checkRSI(smc.rsi, conditions.rsiFilter),
+      ratio:        !conditions.ratioFilter?.enabled,
+      intermarket:  true,
     };
 
     if (conditions.ratioFilter?.enabled) {
       pass.ratio = await this._checkRatioFilter(timeframe, dir);
+    }
+
+    if (conditions.intermarketFilter?.enabled) {
+      pass.intermarket = await checkIMFilter(this.oanda, conditions.intermarketFilter, this.log.bind(this));
     }
 
     const failed = Object.entries(pass).filter(([, v]) => !v).map(([k]) => k);

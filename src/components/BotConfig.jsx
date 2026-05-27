@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { ghRead, ghWrite, isGithubConfigured } from '../utils/githubSync';
 import ChartModal from './ChartModal';
+import { getIMSignals, IM_DEFS } from '../utils/intermarket';
 
 // ── SMC engine (browser port of vps-bot/src/smc.js) ──────────────────────────
 
@@ -757,6 +758,35 @@ function StrategyEditor({ strat, onSave, onCancel }) {
               <Select value={s.conditions.rsiFilter.comparison} onChange={v => set('conditions.rsiFilter.comparison', v)}
                 options={[{v:'below',l:'Below'},{v:'above',l:'Above'}]}/>
               <NumberInput value={s.conditions.rsiFilter.value} onChange={v => set('conditions.rsiFilter.value', v)} min={1} max={99} step={1} style={{width:55}}/>
+            </div>
+          )}
+        </div>
+
+        {/* Intermarket Filter */}
+        <div style={{ padding: '6px 0', borderBottom: '1px solid var(--border)' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: s.conditions.intermarketFilter?.enabled ? 8 : 0 }}>
+            <Label>Intermarket Filter</Label>
+            <div style={{ marginLeft: 'auto' }}><Toggle checked={!!s.conditions.intermarketFilter?.enabled} onChange={v => set('conditions.intermarketFilter.enabled', v)}/></div>
+          </div>
+          {s.conditions.intermarketFilter?.enabled && (
+            <div style={{ paddingLeft: 8 }}>
+              <div style={{ fontSize: 9, color: 'var(--text3)', marginBottom: 6, lineHeight: 1.5 }}>
+                Block trades when market direction doesn't match. "Any" = no filter for that market.
+              </div>
+              {[
+                { key:'dxy',   label:'DXY (USD strength)', opts:[{v:'any',l:'Any'},{v:'rising',l:'Rising (USD bullish)'},{v:'falling',l:'Falling (USD bearish)'}] },
+                { key:'gold',  label:'Gold (XAU)',          opts:[{v:'any',l:'Any'},{v:'rising',l:'Rising'},{v:'falling',l:'Falling'}] },
+                { key:'oil',   label:'Oil (Brent)',         opts:[{v:'any',l:'Any'},{v:'rising',l:'Rising'},{v:'falling',l:'Falling'}] },
+                { key:'bonds', label:'US10Y Bonds',         opts:[{v:'any',l:'Any'},{v:'rising',l:'Rising (yields up)'},{v:'falling',l:'Falling (yields down)'}] },
+              ].map(row => (
+                <FieldRow key={row.key} label={row.label}>
+                  <Select value={s.conditions.intermarketFilter?.[row.key]||'any'} onChange={v => set(`conditions.intermarketFilter.${row.key}`, v)} options={row.opts}/>
+                </FieldRow>
+              ))}
+              <FieldRow label="Check Timeframe">
+                <Select value={s.conditions.intermarketFilter?.tf||'H1'} onChange={v => set('conditions.intermarketFilter.tf', v)}
+                  options={[{v:'M15',l:'M15'},{v:'M30',l:'M30'},{v:'H1',l:'H1'},{v:'H4',l:'H4'}]}/>
+              </FieldRow>
             </div>
           )}
         </div>

@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { allInstruments, ASSET_TYPES, FOREX_CATEGORIES, SIGNALS, ASSET_COLORS, DEFAULT_FILTERS } from '../data/forexData';
 import { useLivePrices } from '../hooks/useLivePrices';
 import { generateCandles } from '../utils/generateCandles';
@@ -9,6 +9,7 @@ import { computeVWAP, detectFVGsAndOBs, detectLiqLevels } from '../utils/smcHelp
 import ChartModal from './ChartModal';
 import OandaConnect from './OandaConnect';
 import FilterPanel from './FilterPanel';
+import { getIMSignals, IM_DEFS } from '../utils/intermarket';
 
 // ── Sub-components ────────────────────────────────────────────────────────────
 function Sparkline({ data, change }) {
@@ -109,9 +110,18 @@ export default function Screener() {
   const [subCategory, setSubCategory]   = useState('All');
   const [chartInstrument, setChartInstrument] = useState(null);
 
+  const [imSignals, setImSignals] = useState(null);
+
   const [watchlist, setWatchlist] = useState(() => {
     try { return JSON.parse(localStorage.getItem('forex_watchlist')) || []; } catch { return []; }
   });
+
+  useEffect(() => {
+    getIMSignals('H1', 5).then(setImSignals).catch(() => {});
+    const id = setInterval(() => getIMSignals('H1', 5).then(setImSignals).catch(() => {}), 5 * 60 * 1000);
+    return () => clearInterval(id);
+  }, []);
+
   const toggleWatch = sym => {
     setWatchlist(prev => {
       const next = prev.includes(sym) ? prev.filter(s => s !== sym) : [...prev, sym];
@@ -564,6 +574,29 @@ export default function Screener() {
 
       {/* ── Chart modal ──────────────────────────────────────────────────── */}
       {chartInstrument && <ChartModal instrument={chartInstrument} onClose={()=>setChartInstrument(null)}/>}
+
+      {/* Intermarket Conditions Bar */}
+      {imSignals && (
+        <div style={{ display:'flex', gap:4, padding:'6px 12px', overflowX:'auto', borderBottom:'1px solid var(--border)', background:'#080c14', scrollbarWidth:'none' }}>
+          <span style={{ fontSize:9, color:'var(--text3)', alignSelf:'center', flexShrink:0, marginRight:2 }}>MARKETS:</span>
+          {IM_DEFS.map(def => {
+            const sig = imSignals[def.key];
+            if (!sig) return null;
+            return (
+              <div key={def.key} style={{ display:'flex', alignItems:'center', gap:3, padding:'2px 8px', borderRadius:4, background:'#1e293b', border:`1px solid ${def.color}33`, flexShrink:0 }}>
+                <span style={{ fontSize:9, fontWeight:700, color:def.color }}>{def.label}</span>
+                <span style={{ fontSize:9, color: sig.direction==='rising'?'#22c55e':'#ef4444', fontWeight:600 }}>
+                  {sig.direction==='rising'?'↑':'↓'}
+                </span>
+                <span style={{ fontSize:9, color:'#64748b', fontFamily:'monospace' }}>
+                  {sig.pct >= 0 ? '+' : ''}{sig.pct.toFixed(1)}%
+                </span>
+              </div>
+            );
+          })}
+          <span style={{ fontSize:9, color:'#334155', alignSelf:'center', flexShrink:0, marginLeft:4 }}>H1 · 5-bar</span>
+        </div>
+      )}
 
       {/* ── Main: filter sidebar + table ─────────────────────────────────── */}
       <div className="screener-body">

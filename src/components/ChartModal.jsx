@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { OANDA_MAP } from '../hooks/useLivePrices';
+import { getIMSignals, PAIR_CORR } from '../utils/intermarket';
 import {
   detectSR, detectTrendlines, detectFVGsAndOBs, detectSweep,
   computeSwings, detectLiqLevels,
@@ -418,6 +419,7 @@ export default function ChartModal({ instrument, onClose }) {
   const [rules,     setRules]    = useState(DEF_RULES);
   const [newRule,   setNewRule]  = useState('');
   const [checks,    setChecks]   = useState({});
+  const [imSignals, setImSignals] = useState(null);
   const chartWrapRef = useRef(null);
 
   // Measure chart container — subtract 16px for the 8px padding on each side
@@ -443,6 +445,10 @@ export default function ChartModal({ instrument, onClose }) {
       .catch(e => setLoadErr(e.message))
       .finally(() => setLoading(false));
   }, [symbol, tf, tab]);
+
+  useEffect(() => {
+    getIMSignals('H1', 5).then(setImSignals).catch(() => {});
+  }, [symbol]);
 
   const toggleOv = k => setOv(o => ({ ...o, [k]: !o[k] }));
 
@@ -576,6 +582,41 @@ Provide:
                 </div>
               )}
             </div>
+
+            {/* Correlated Markets Bar */}
+            {imSignals && (() => {
+              const oandaSym = symbol.replace('/', '_');
+              const corr = PAIR_CORR[oandaSym] || {};
+              const relevant = Object.entries(corr).filter(([,v]) => Math.abs(v) >= 0.5);
+              if (relevant.length === 0 && !corr.dxy) return null;
+              const allKeys = Object.keys(corr).length ? Object.keys(corr) : ['dxy','gold'];
+              return (
+                <div style={{ display:'flex', gap:6, padding:'4px 8px', flexWrap:'wrap', borderBottom:'1px solid var(--border)', background:'#0a0f1a' }}>
+                  {allKeys.map(key => {
+                    const sig = imSignals[key];
+                    if (!sig) return null;
+                    const corrVal = corr[key] || 0;
+                    const bullish = (sig.direction === 'rising' && corrVal > 0) || (sig.direction === 'falling' && corrVal < 0);
+                    const bearish = (sig.direction === 'rising' && corrVal < 0) || (sig.direction === 'falling' && corrVal > 0);
+                    return (
+                      <div key={key} style={{ display:'flex', alignItems:'center', gap:4, padding:'2px 8px', borderRadius:4,
+                        background: bullish ? '#14532d33' : bearish ? '#450a0a33' : '#1e293b',
+                        border: `1px solid ${bullish ? '#22c55e44' : bearish ? '#ef444444' : '#334155'}` }}>
+                        <span style={{ fontSize:9, fontWeight:700, color: sig.color }}>{sig.label}</span>
+                        <span style={{ fontSize:9, color: sig.direction==='rising'?'#22c55e':'#ef4444' }}>
+                          {sig.direction==='rising'?'↑':'↓'} {sig.pct >= 0 ? '+' : ''}{sig.pct.toFixed(2)}%
+                        </span>
+                        {corrVal !== 0 && (
+                          <span style={{ fontSize:9, color: bullish?'#22c55e':bearish?'#ef4444':'#64748b', fontWeight:700 }}>
+                            {bullish ? '▲' : bearish ? '▼' : ''}
+                          </span>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+              );
+            })()}
 
             {/* Chart area */}
             <div className="cm-chart-wrap" ref={chartWrapRef}>
