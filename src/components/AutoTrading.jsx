@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { ghRead, ghWrite } from '../utils/githubSync';
 import BotConfig from './BotConfig';
+import ChartModal from './ChartModal';
 
 // ── Broker base URLs ──────────────────────────────────────────────────────────
 const oandaBase = (env) =>
@@ -613,6 +614,7 @@ function PositionsTab({ onLog }) {
   const [livePrices,  setLivePrices]  = useState({});
   const [liveMargins, setLiveMargins] = useState({});
   const [modifyState, setModifyState] = useState({});
+  const [chartPair,   setChartPair]   = useState(null);
 
   const getMS = (id) => modifyState[id] || { sl: '', tp: '', trailDist: '', trailing: false, busy: false, err: '' };
   const setMS = (id, patch) => setModifyState(prev => ({ ...prev, [id]: { ...getMS(id), ...patch } }));
@@ -780,6 +782,7 @@ function PositionsTab({ onLog }) {
 
   return (
     <div style={{ padding: 16 }}>
+      {chartPair && <ChartModal instrument={{ symbol: chartPair.replace('_', '/') }} onClose={() => setChartPair(null)}/>}
       {/* Sync banner — show if any open positions exist */}
       {open.length > 0 && (
         <div style={{ background: '#f59e0b15', border: '1px solid #f59e0b44', borderRadius: 8, padding: '10px 14px', marginBottom: 14, display: 'flex', alignItems: 'center', gap: 10 }}>
@@ -843,7 +846,7 @@ function PositionsTab({ onLog }) {
           return (
             <div key={t.id} style={{ background: '#1e293b', borderRadius: 10, padding: 14, marginBottom: 10, border: `1px solid ${isLong?'#1e3a5f':'#3b0764'}` }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
-                <span onClick={() => window.open(`https://www.tradingview.com/chart/?symbol=OANDA:${(t.pair||'').replace('_','')}`, '_blank')}
+                <span onClick={() => setChartPair(t.pair)}
                   style={{ fontSize: 16, fontWeight: 700, color: '#f8fafc', cursor: 'pointer', textDecoration: 'underline dotted #475569' }}>
                   {isLong?'↗':'↘'} {(t.pair||'').replace('_','/')}
                 </span>

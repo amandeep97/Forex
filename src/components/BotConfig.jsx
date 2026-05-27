@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { ghRead, ghWrite, isGithubConfigured } from '../utils/githubSync';
+import ChartModal from './ChartModal';
 
 // ── SMC engine (browser port of vps-bot/src/smc.js) ──────────────────────────
 
@@ -865,14 +866,15 @@ function StrategyEditor({ strat, onSave, onCancel }) {
 
 // ── Main BotConfig component ──────────────────────────────────────────────────
 export default function BotConfig({ autoExecute = false, onAutoTrade }) {
-  const [config,   setConfig]   = useState(null);
-  const [sha,      setSha]      = useState(null);
-  const [loading,  setLoading]  = useState(false);
-  const [saving,   setSaving]   = useState(false);
-  const [err,      setErr]      = useState('');
-  const [editing,  setEditing]  = useState(null); // null | 'new' | stratId
-  const [pat,      setPat]      = useState(() => localStorage.getItem('github_pat') || '');
-  const [patSaved, setPatSaved] = useState(!!localStorage.getItem('github_pat'));
+  const [config,    setConfig]    = useState(null);
+  const [sha,       setSha]       = useState(null);
+  const [loading,   setLoading]   = useState(false);
+  const [saving,    setSaving]    = useState(false);
+  const [err,       setErr]       = useState('');
+  const [editing,   setEditing]   = useState(null); // null | 'new' | stratId
+  const [pat,       setPat]       = useState(() => localStorage.getItem('github_pat') || '');
+  const [patSaved,  setPatSaved]  = useState(!!localStorage.getItem('github_pat'));
+  const [chartPair, setChartPair] = useState(null);
 
   const load = useCallback(async () => {
     if (!isGithubConfigured()) return;
@@ -987,6 +989,7 @@ export default function BotConfig({ autoExecute = false, onAutoTrade }) {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 0, maxWidth: 520 }}>
+      {chartPair && <ChartModal instrument={{ symbol: chartPair.replace('_', '/') }} onClose={() => setChartPair(null)}/>}
 
       {/* Header */}
       <div style={{ padding: '12px 16px', borderBottom: '1px solid var(--border)', display: 'flex', alignItems: 'center', gap: 8 }}>
@@ -1065,7 +1068,7 @@ export default function BotConfig({ autoExecute = false, onAutoTrade }) {
                         {shown.map((p, i) => (
                           <span key={p}>
                             {i > 0 && ', '}
-                            <span onClick={e => { e.stopPropagation(); window.open(`https://www.tradingview.com/chart/?symbol=OANDA:${p.replace('_','')}`, '_blank'); }}
+                            <span onClick={e => { e.stopPropagation(); setChartPair(p); }}
                               style={{ cursor: 'pointer', color: '#38bdf8', textDecoration: 'underline dotted' }}>
                               {p.replace('_','/')}
                             </span>
