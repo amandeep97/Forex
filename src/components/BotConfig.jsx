@@ -660,9 +660,37 @@ function StrategyEditor({ strat, onSave, onCancel }) {
         </div>
 
         {/* OTE */}
-        <FieldRow label="Require OTE Zone (0.618–0.786)">
-          <Toggle checked={!!s.conditions.requireOTE} onChange={v => set('conditions.requireOTE', v)}/>
-        </FieldRow>
+        <div style={{ padding: '6px 0', borderBottom: '1px solid var(--border)' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: s.conditions.requireOTE ? 6 : 0 }}>
+            <Label>OTE Zone</Label>
+            <div style={{ marginLeft: 'auto' }}><Toggle checked={!!s.conditions.requireOTE} onChange={v => set('conditions.requireOTE', v)}/></div>
+          </div>
+          {s.conditions.requireOTE && (
+            <div style={{ paddingLeft: 8 }}>
+              <div style={{ fontSize: 10, color: 'var(--text3)', marginBottom: 3 }}>Fib levels (comma-separated, zone = min→max)</div>
+              <input value={s.conditions.oteFibLevels ?? '0.618, 0.786'}
+                onChange={e => set('conditions.oteFibLevels', e.target.value)}
+                placeholder="e.g. 0.618, 0.786"
+                style={{ width: '100%', background: 'var(--bg2)', color: 'var(--text)', border: '1px solid var(--border)', borderRadius: 4, padding: '4px 8px', fontSize: 11 }}/>
+              <div style={{ fontSize: 10, color: 'var(--text3)', marginTop: 2 }}>
+                Examples: 0.618, 0.786 · 0.702, 0.893 · 0.5, 0.786
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* Au/Ag Ratio Filter */}
+        <div style={{ padding: '6px 0', borderBottom: '1px solid var(--border)' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: s.conditions.ratioFilter?.enabled ? 6 : 0 }}>
+            <Label>Au/Ag Ratio Filter</Label>
+            <div style={{ marginLeft: 'auto' }}><Toggle checked={!!s.conditions.ratioFilter?.enabled} onChange={v => set('conditions.ratioFilter.enabled', v)}/></div>
+          </div>
+          {s.conditions.ratioFilter?.enabled && (
+            <div style={{ fontSize: 10, color: 'var(--text3)', paddingLeft: 8 }}>
+              Uses strategy timeframe ({s.timeframe}): ratio falling → longs only · ratio rising → shorts only
+            </div>
+          )}
+        </div>
 
         {/* Candle Pattern */}
         <FieldRow label="Candlestick Pattern">
@@ -782,7 +810,19 @@ function StrategyEditor({ strat, onSave, onCancel }) {
           </>
         )}
         {s.risk.tpMethod === 'fixed' && <FieldRow label="TP (pips)"><NumberInput value={s.risk.tpPips||40} onChange={v => set('risk.tpPips', v)} min={5} max={500} step={1}/></FieldRow>}
-        {s.risk.tpMethod === 'fib'   && <FieldRow label="Fib Level"><Select value={s.risk.tpFibLevel} onChange={v => set('risk.tpFibLevel', +v)} options={[{v:1.0,l:'1.0'},{v:1.272,l:'1.272'},{v:1.618,l:'1.618'},{v:2.0,l:'2.0'},{v:2.618,l:'2.618'}]}/></FieldRow>}
+        {s.risk.tpMethod === 'fib' && (
+          <div style={{ padding: '4px 0 6px', borderBottom: '1px solid var(--border)' }}>
+            <FieldRow label="Fib Extension Level(s)">
+              <input value={s.risk.tpFibLevels ?? String(s.risk.tpFibLevel || '1.618')}
+                onChange={e => set('risk.tpFibLevels', e.target.value)}
+                placeholder="e.g. 1.618"
+                style={{ width: 150, background: 'var(--bg2)', color: 'var(--text)', border: '1px solid var(--border)', borderRadius: 4, padding: '3px 8px', fontSize: 11 }}/>
+            </FieldRow>
+            <div style={{ fontSize: 10, color: 'var(--text3)', paddingLeft: 12, marginTop: 2 }}>
+              Extension of SL distance. First value used. Examples: 1.272 · 1.618 · 2.0 · -1.0 · 0.893
+            </div>
+          </div>
+        )}
 
         <FieldRow label="Max Positions Per Pair">
           <NumberInput value={s.maxPositionsPerPair || 1} onChange={v => set('maxPositionsPerPair', v)} min={1} max={10} step={1}/>

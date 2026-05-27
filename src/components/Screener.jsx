@@ -149,7 +149,13 @@ export default function Screener() {
         const prevCandles = candles.slice(0, -1);
         const rsiVal    = computeRSI(candles, 14);
         const mfiVal    = computeMFI(candles, 14);
-        const smc       = analyzeSMC(candles);
+        const fibLevels = (() => {
+          const raw = filters.oteFibLevels;
+          if (!raw) return null;
+          const parsed = String(raw).split(',').map(v => parseFloat(v.trim())).filter(v => !isNaN(v));
+          return parsed.length >= 1 ? parsed : null;
+        })();
+        const smc       = analyzeSMC(candles, fibLevels ? { fibLevels } : {});
         const patterns  = detectCandlePatterns(candles.slice(-60), lookback);
         const cp        = candles[candles.length - 1].c;
 

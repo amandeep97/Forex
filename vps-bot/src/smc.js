@@ -113,7 +113,7 @@ function detectFVGs(candles) {
   return fvgs.slice(-6);
 }
 
-function detectOTE(candles) {
+function detectOTE(candles, fibLevels) {
   if (candles.length < 15) return { bull: false, bear: false };
   const vis = candles.slice(-40);
   const n   = vis.length;
@@ -125,10 +125,12 @@ function detectOTE(candles) {
   }
   const range = swHigh - swLow;
   if (range === 0) return { bull: false, bear: false };
-  const bull618 = swLow + range * 0.618, bull786 = swLow + range * 0.786;
-  const bull = swHighIdx < swLowIdx && cp >= bull618 && cp <= bull786;
-  const bear786 = swHigh - range * 0.786, bear618 = swHigh - range * 0.618;
-  const bear = swLowIdx < swHighIdx && cp >= bear786 && cp <= bear618;
+  const levels = Array.isArray(fibLevels) && fibLevels.length >= 1
+    ? [...fibLevels].sort((a, b) => a - b)
+    : [0.618, 0.786];
+  const fibMin = levels[0], fibMax = levels[levels.length - 1];
+  const bull = swHighIdx < swLowIdx && cp >= swLow + range * fibMin && cp <= swLow + range * fibMax;
+  const bear = swLowIdx < swHighIdx && cp >= swHigh - range * fibMax && cp <= swHigh - range * fibMin;
   return { bull, bear };
 }
 
@@ -140,12 +142,12 @@ function getSwingLevels(candles, lookback = 20) {
   };
 }
 
-function analyzeSMC(candles) {
+function analyzeSMC(candles, opts = {}) {
   const structure   = detectStructure(candles);
   const bosResult   = detectBOS(candles);
   const obs         = detectOrderBlocks(candles);
   const fvgs        = detectFVGs(candles);
-  const oteResult   = detectOTE(candles);
+  const oteResult   = detectOTE(candles, opts.fibLevels);
   const rsi         = computeRSI(candles, 14);
   const atr         = computeATR(candles, 14);
   const { recentSwingHigh, recentSwingLow } = getSwingLevels(candles, 20);

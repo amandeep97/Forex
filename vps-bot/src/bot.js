@@ -116,7 +116,10 @@ class ForexBot {
     const candles = await this.oanda.getCandles(pair, timeframe, 250);
     if (candles.length < 50) { this.warn(`${pair}: not enough candles`); return false; }
 
-    const smc = analyzeSMC(candles);
+    const fibLevels = conditions.oteFibLevels
+      ? String(conditions.oteFibLevels).split(',').map(v => parseFloat(v.trim())).filter(v => !isNaN(v))
+      : null;
+    const smc = analyzeSMC(candles, fibLevels ? { fibLevels } : {});
     const cp  = smc.currentPrice;
 
     const dir = this._resolveDirection(direction, smc);
@@ -129,7 +132,12 @@ class ForexBot {
       fvg:       !conditions.requireFVG || (dir === 'long' ? smc.hasBullFVG : smc.hasBearFVG),
       ote:       !conditions.requireOTE || (dir === 'long' ? smc.inOTEBull  : smc.inOTEBear),
       rsi:       !conditions.rsiFilter?.enabled || this._checkRSI(smc.rsi, conditions.rsiFilter),
+      ratio:     !conditions.ratioFilter?.enabled,
     };
+
+    if (conditions.ratioFilter?.enabled) {
+      pass.ratio = await this._checkRatioFilter(timeframe, dir);
+    }
 
     const failed = Object.entries(pass).filter(([, v]) => !v).map(([k]) => k);
     if (failed.length) { this.log(`${pair}: FAIL [${failed.join(', ')}]`); return false; }
@@ -209,6 +217,25 @@ class ForexBot {
     return null;
   }
 
+  async _checkRatioFilter(timeframe, dir) {
+    try {
+      const [xau, xag] = await Promise.all([
+        this.oanda.getCandles('XAU_USD', timeframe, 20),
+        this.oanda.getCandles('XAG_USD', timeframe, 20),
+      ]);
+      const n = Math.min(xau.length, xag.length);
+      if (n < 6) return true;
+      const ratioNow  = xau[n - 1].c / xag[n - 1].c;
+      const ratioPrev = xau[n - 6].c / xag[n - 6].c;
+      const falling   = ratioNow < ratioPrev;
+      // falling ratio = XAG rising faster = metals bullish → favour longs
+      return dir === 'long' ? falling : !falling;
+    } catch (e) {
+      this.warn(`Ratio filter: ${e.message}`);
+      return true;
+    }
+  }
+
   _checkRSI(rsi, filter) {
     if (filter.comparison === 'above') return rsi > filter.value;
     if (filter.comparison === 'below') return rsi < filter.value;
@@ -242,7 +269,12 @@ class ForexBot {
       const pips = risk.tpPips || 40;
       return dir === 'long' ? cp + pips * pip : cp - pips * pip;
     }
-    const ext = risk.tpFibLevel || 1.618;
+    // Support tpFibLevels (free-text comma-separated) or legacy tpFibLevel (number)
+    let ext = risk.tpFibLevel || 1.618;
+    if (risk.tpFibLevels) {
+      const parsed = String(risk.tpFibLevels).split(',').map(v => parseFloat(v.trim())).filter(v => !isNaN(v));
+      if (parsed.length > 0) ext = parsed[0];
+    }
     return dir === 'long' ? cp + slDist * ext : cp - slDist * ext;
   }
 
