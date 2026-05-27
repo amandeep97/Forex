@@ -430,6 +430,7 @@ const TEMPLATES = [
 const DEFAULT_STRAT = {
   id: '', name: 'New Strategy', enabled: false,
   pairs: ['EUR_USD'], timeframe: 'H1', direction: 'both',
+  maxPositionsPerPair: 1,
   conditions: {
     structure: 'any', requireBOS: false,
     priceZone: 'any',
@@ -782,6 +783,15 @@ function StrategyEditor({ strat, onSave, onCancel }) {
         )}
         {s.risk.tpMethod === 'fixed' && <FieldRow label="TP (pips)"><NumberInput value={s.risk.tpPips||40} onChange={v => set('risk.tpPips', v)} min={5} max={500} step={1}/></FieldRow>}
         {s.risk.tpMethod === 'fib'   && <FieldRow label="Fib Level"><Select value={s.risk.tpFibLevel} onChange={v => set('risk.tpFibLevel', +v)} options={[{v:1.0,l:'1.0'},{v:1.272,l:'1.272'},{v:1.618,l:'1.618'},{v:2.0,l:'2.0'},{v:2.618,l:'2.618'}]}/></FieldRow>}
+
+        <FieldRow label="Max Positions Per Pair">
+          <NumberInput value={s.maxPositionsPerPair || 1} onChange={v => set('maxPositionsPerPair', v)} min={1} max={10} step={1}/>
+        </FieldRow>
+        {(s.maxPositionsPerPair || 1) > 1 && (
+          <div style={{ padding: '2px 0 6px 12px', borderBottom: '1px solid var(--border)', fontSize: 10, color: 'var(--text3)' }}>
+            Bot can open up to {s.maxPositionsPerPair} separate positions on the same pair simultaneously
+          </div>
+        )}
       </section>
 
       {/* Summary pill */}
@@ -1068,6 +1078,11 @@ export default function BotConfig({ autoExecute = false, onAutoTrade }) {
                 <span style={{ fontSize: 10, padding: '2px 8px', borderRadius: 4, background: 'var(--bg2)', color: 'var(--text3)', border: '1px solid var(--border)' }}>
                   Risk {strat.risk.riskType==='usdt' ? `$${strat.risk.riskUsdt||10}` : `${strat.risk.riskPercent}%`} · SL: {strat.risk.slMethod}{strat.risk.tpMethod === 'rr' ? ` · TP: 1:${strat.risk.rrRatio}R` : ''}
                 </span>
+                {(strat.maxPositionsPerPair || 1) > 1 && (
+                  <span style={{ fontSize: 10, padding: '2px 8px', borderRadius: 4, background: '#38bdf820', color: '#38bdf8', border: '1px solid #38bdf833' }}>
+                    Max {strat.maxPositionsPerPair}× per pair
+                  </span>
+                )}
               </div>
               <ScanPanel strat={strat} autoExecute={autoExecute} onAutoTrade={onAutoTrade} />
             </div>

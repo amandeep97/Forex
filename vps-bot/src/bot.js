@@ -75,8 +75,10 @@ class ForexBot {
       for (const pair of pairsToScan) {
         if (openTrades.length >= maxTotal) break;
 
-        if (openTrades.some(t => t.instrument === pair)) {
-          this.log(`${pair}: already open — skip`);
+        const maxPerPair   = strat.maxPositionsPerPair || 1;
+        const openForPair  = openTrades.filter(t => t.instrument === pair).length;
+        if (openForPair >= maxPerPair) {
+          this.log(`${pair}: ${openForPair}/${maxPerPair} positions open — skip`);
           continue;
         }
 
