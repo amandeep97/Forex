@@ -664,14 +664,18 @@ export function runBacktest(candles, strategy) {
 
 // ── Statistics ────────────────────────────────────────────────────────────────
 export function calcStats(trades, initialEquity = 10000) {
-  if (!trades || trades.length === 0) {
-    return {
-      totalTrades: 0, wins: 0, losses: 0, winRate: 0,
-      totalPnlPips: 0, totalPnlDollars: 0, totalPnlPct: 0,
-      profitFactor: 0, maxDrawdown: 0,
-      avgWin: 0, avgLoss: 0, bestTrade: 0, worstTrade: 0, avgDuration: 0,
-    };
-  }
+  const empty = {
+    totalTrades: 0, wins: 0, losses: 0, winRate: 0,
+    totalPnlPips: 0, totalPnlDollars: 0, totalPnlPct: 0,
+    profitFactor: 0, maxDrawdown: 0,
+    avgWin: 0, avgLoss: 0, bestTrade: 0, worstTrade: 0, avgDuration: 0,
+    sharpe: null, sortino: null, calmar: null,
+    maxWinStreak: 0, maxLossStreak: 0,
+    longWins: 0, longLosses: 0, longWinRate: null,
+    shortWins: 0, shortLosses: 0, shortWinRate: null,
+    avgRR: null, monthlyPnl: [],
+  };
+  if (!trades || trades.length === 0) return empty;
 
   const wins   = trades.filter(t => t.result === 'win');
   const losses = trades.filter(t => t.result === 'loss');
@@ -679,6 +683,7 @@ export function calcStats(trades, initialEquity = 10000) {
   const grossL = Math.abs(losses.reduce((s, t) => s + (t.pnlDollars || 0), 0));
   const totalD = trades.reduce((s, t) => s + (t.pnlDollars || 0), 0);
 
+  // Equity curve + max drawdown
   let peak = initialEquity, maxDD = 0, eq = initialEquity;
   for (const t of trades) {
     eq += t.pnlDollars || 0;
@@ -688,6 +693,58 @@ export function calcStats(trades, initialEquity = 10000) {
   }
 
   const allPips = trades.map(t => t.pnlPips || 0);
+
+  // Per-trade returns as % of equity (for Sharpe/Sortino)
+  const returns = trades.map(t => (t.pnlDollars || 0) / initialEquity * 100);
+  const meanR = returns.reduce((s, v) => s + v, 0) / returns.length;
+  const variance = returns.reduce((s, v) => s + (v - meanR) ** 2, 0) / returns.length;
+  const stdDev = Math.sqrt(variance);
+  const downReturns = returns.filter(r => r < 0);
+  const downVar = downReturns.length
+    ? downReturns.reduce((s, v) => s + v ** 2, 0) / downReturns.length
+    : 0;
+  const downStd = Math.sqrt(downVar);
+
+  const sharpe  = stdDev  > 0 ? +(meanR / stdDev).toFixed(2)  : null;
+  const sortino = downStd > 0 ? +(meanR / downStd).toFixed(2) : null;
+  const calmar  = maxDD   > 0 ? +((totalD / initialEquity * 100) / (maxDD * 100)).toFixed(2) : null;
+
+  // Win/loss streaks
+  let maxWinStreak = 0, maxLossStreak = 0, curW = 0, curL = 0;
+  for (const t of trades) {
+    if (t.result === 'win')  { curW++; curL = 0; maxWinStreak  = Math.max(maxWinStreak,  curW); }
+    else                     { curL++; curW = 0; maxLossStreak = Math.max(maxLossStreak, curL); }
+  }
+
+  // Long vs Short breakdown
+  const longTrades  = trades.filter(t => t.dir === 'long');
+  const shortTrades = trades.filter(t => t.dir === 'short');
+  const longWins    = longTrades.filter(t => t.result === 'win').length;
+  const shortWins   = shortTrades.filter(t => t.result === 'win').length;
+
+  // Average achieved R-multiple (pnlDollars / risk per trade)
+  const rMultiples = trades
+    .filter(t => t.riskDollars > 0)
+    .map(t => t.pnlDollars / t.riskDollars);
+  const avgRR = rMultiples.length
+    ? +(rMultiples.reduce((s, v) => s + v, 0) / rMultiples.length).toFixed(2)
+    : null;
+
+  // Monthly P&L buckets (use trade index as proxy when no timestamps)
+  const monthlyMap = {};
+  for (const t of trades) {
+    let key;
+    if (t.entryTime) {
+      const d = new Date(typeof t.entryTime === 'number' ? t.entryTime * 1000 : t.entryTime);
+      key = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`;
+    } else {
+      key = `B${Math.floor((trades.indexOf(t) / trades.length) * 12) + 1}`;
+    }
+    monthlyMap[key] = (monthlyMap[key] || 0) + (t.pnlDollars || 0);
+  }
+  const monthlyPnl = Object.entries(monthlyMap)
+    .sort(([a], [b]) => a.localeCompare(b))
+    .map(([label, pnl]) => ({ label, pnl: Math.round(pnl * 100) / 100 }));
 
   return {
     totalTrades: trades.length,
@@ -704,5 +761,12 @@ export function calcStats(trades, initialEquity = 10000) {
     bestTrade:       Math.round(Math.max(...allPips) * 10) / 10,
     worstTrade:      Math.round(Math.min(...allPips) * 10) / 10,
     avgDuration:     Math.round(trades.reduce((s, t) => s + (t.duration || 0), 0) / trades.length),
+    sharpe, sortino, calmar,
+    maxWinStreak, maxLossStreak,
+    longWins, longLosses: longTrades.length - longWins,
+    longWinRate: longTrades.length ? Math.round(longWins / longTrades.length * 1000) / 10 : null,
+    shortWins, shortLosses: shortTrades.length - shortWins,
+    shortWinRate: shortTrades.length ? Math.round(shortWins / shortTrades.length * 1000) / 10 : null,
+    avgRR, monthlyPnl,
   };
 }

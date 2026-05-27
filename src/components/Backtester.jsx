@@ -178,6 +178,66 @@ function EquityCurve({curve}) {
   );
 }
 
+// ── Monthly P&L Bar Chart ─────────────────────────────────────────────────────
+function MonthlyPnlChart({ monthlyPnl }) {
+  if (!monthlyPnl || monthlyPnl.length < 2) return null;
+  const W = 600, H = 120, pl = 48, pr = 8, pt = 10, pb = 22;
+  const pw = W - pl - pr, ph = H - pt - pb;
+  const maxAbs = Math.max(...monthlyPnl.map(m => Math.abs(m.pnl)), 1);
+  const bw = Math.max(4, Math.floor(pw / monthlyPnl.length) - 2);
+  const zeroY = pt + ph / 2;
+  return (
+    <svg viewBox={`0 0 ${W} ${H}`} style={{ width:'100%', height:H, display:'block' }}>
+      <line x1={pl} y1={zeroY} x2={W-pr} y2={zeroY} stroke="#1e293b" strokeWidth={1}/>
+      {monthlyPnl.map((m, i) => {
+        const x = pl + (i / monthlyPnl.length) * pw + (pw / monthlyPnl.length - bw) / 2;
+        const barH = Math.max(2, (Math.abs(m.pnl) / maxAbs) * (ph / 2 - 2));
+        const y = m.pnl >= 0 ? zeroY - barH : zeroY;
+        const col = m.pnl >= 0 ? '#22c55e' : '#ef4444';
+        return (
+          <g key={m.label}>
+            <rect x={x} y={y} width={bw} height={barH} fill={col} opacity={0.85} rx={1}/>
+            {monthlyPnl.length <= 18 && (
+              <text x={x + bw/2} y={H - 6} textAnchor="middle" fontSize={7} fill="#475569">
+                {m.label.length > 7 ? m.label.slice(2) : m.label}
+              </text>
+            )}
+          </g>
+        );
+      })}
+      <text x={pl - 4} y={pt + 6} textAnchor="end" fontSize={8} fill="#475569">${Math.round(maxAbs)}</text>
+      <text x={pl - 4} y={pt + ph + 4} textAnchor="end" fontSize={8} fill="#475569">-${Math.round(maxAbs)}</text>
+      <text x={pl - 4} y={zeroY + 4} textAnchor="end" fontSize={8} fill="#334155">0</text>
+    </svg>
+  );
+}
+
+// ── Long vs Short Panel ────────────────────────────────────────────────────────
+function LongShortPanel({ s }) {
+  if (s.longWinRate === null && s.shortWinRate === null) return null;
+  const rows = [
+    { label: '▲ Long',  wr: s.longWinRate,  wins: s.longWins,  losses: s.longLosses,  color: '#22c55e' },
+    { label: '▼ Short', wr: s.shortWinRate, wins: s.shortWins, losses: s.shortLosses, color: '#ef4444' },
+  ].filter(r => r.wr !== null);
+  return (
+    <div style={{ display:'flex', gap:10 }}>
+      {rows.map(r => (
+        <div key={r.label} style={{ flex:1, padding:'8px 12px', borderRadius:6, border:`1px solid ${r.color}33`,
+          background:`${r.color}08` }}>
+          <div style={{ fontSize:11, fontWeight:700, color:r.color, marginBottom:6 }}>{r.label}</div>
+          <div style={{ fontSize:20, fontWeight:900, fontFamily:'monospace', color:r.wr>=50?'#22c55e':r.wr>=40?'#f59e0b':'#ef4444' }}>
+            {r.wr}%
+          </div>
+          <div style={{ fontSize:10, color:'var(--text3)', marginTop:2 }}>{r.wins}W · {r.losses}L</div>
+          <div style={{ height:5, background:'#1e293b', borderRadius:3, overflow:'hidden', marginTop:6 }}>
+            <div style={{ width:`${r.wr}%`, height:'100%', background:r.color, borderRadius:3 }}/>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 // ── Stat Card ─────────────────────────────────────────────────────────────────
 function Metric({label, value, sub, color, accent}) {
   return (
@@ -710,7 +770,46 @@ export default function Backtester() {
                 <Metric label="Recovery Factor" value={recovFactor}
                   color={+recovFactor>=2?'#22c55e':+recovFactor>=1?'#f59e0b':'#ef4444'} sub="P&L ÷ MaxDD"/>
               )}
+              {s.sharpe != null && (
+                <Metric label="Sharpe Ratio" value={s.sharpe}
+                  color={s.sharpe>=1?'#22c55e':s.sharpe>=0?'#f59e0b':'#ef4444'} sub="per-trade (>1 = good)"/>
+              )}
+              {s.sortino != null && (
+                <Metric label="Sortino Ratio" value={s.sortino}
+                  color={s.sortino>=1.5?'#22c55e':s.sortino>=0?'#f59e0b':'#ef4444'} sub="downside-adj (>1.5 = good)"/>
+              )}
+              {s.calmar != null && (
+                <Metric label="Calmar Ratio" value={s.calmar}
+                  color={s.calmar>=2?'#22c55e':s.calmar>=1?'#f59e0b':'#ef4444'} sub="return ÷ max drawdown"/>
+              )}
+              {s.avgRR != null && (
+                <Metric label="Avg Achieved R" value={s.avgRR}
+                  color={s.avgRR>=1?'#22c55e':s.avgRR>=0?'#f59e0b':'#ef4444'} sub="avg R-multiple per trade"/>
+              )}
+              <Metric label="Max Win Streak"  value={s.maxWinStreak}  color="#22c55e" sub="consecutive wins"/>
+              <Metric label="Max Loss Streak" value={s.maxLossStreak} color="#ef4444" sub="consecutive losses"/>
             </div>
+
+            {/* Long vs Short breakdown */}
+            {(s.longWinRate != null || s.shortWinRate != null) && (
+              <div className="bt2-chart-card">
+                <div className="bt2-card-title">Long vs Short Performance</div>
+                <LongShortPanel s={s}/>
+              </div>
+            )}
+
+            {/* Monthly P&L distribution */}
+            {s.monthlyPnl && s.monthlyPnl.length >= 2 && (
+              <div className="bt2-chart-card">
+                <div className="bt2-card-title">
+                  Period P&amp;L Distribution
+                  <span style={{color:'var(--text3)',fontWeight:400,fontSize:10,marginLeft:6}}>
+                    {s.monthlyPnl.filter(m=>m.pnl>0).length} profitable · {s.monthlyPnl.filter(m=>m.pnl<0).length} losing periods
+                  </span>
+                </div>
+                <MonthlyPnlChart monthlyPnl={s.monthlyPnl}/>
+              </div>
+            )}
 
             {/* Equity curve */}
             <div className="bt2-chart-card">
