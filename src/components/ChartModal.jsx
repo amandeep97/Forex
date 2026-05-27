@@ -501,11 +501,26 @@ export default function ChartModal({ instrument, onClose }) {
     if (!creds?.apiKey) { setDepthErr('Connect OANDA in the Screener first.'); setDepthLoad(false); return; }
     const instr = toOandaInstr(symbol);
     const base  = creds.practice ? 'https://api-fxpractice.oanda.com/v3' : 'https://api-fxtrade.oanda.com/v3';
+    const hdr   = { Authorization: `Bearer ${creds.apiKey}` };
+    const tryFetch = url => fetch(url, { headers: hdr, signal: AbortSignal.timeout(10000) })
+      .then(r => r.json()).catch(() => ({}));
     Promise.all([
-      fetch(`${base}/instruments/${instr}/positionBook`, { headers:{ Authorization:`Bearer ${creds.apiKey}` }, signal:AbortSignal.timeout(10000) }).then(r => r.json()),
-      fetch(`${base}/instruments/${instr}/orderBook`,    { headers:{ Authorization:`Bearer ${creds.apiKey}` }, signal:AbortSignal.timeout(10000) }).then(r => r.json()),
-    ]).then(([pos, ord]) => {
-      setDepthData({ pos: pos.positionBook, ord: ord.orderBook });
+      tryFetch(`${base}/instruments/${instr}/positionBook`),
+      tryFetch(`${base}/instruments/${instr}/orderBook`),
+    ]).then(([posResp, ordResp]) => {
+      const pos = posResp.positionBook;
+      const ord = ordResp.orderBook;
+      if (!pos && !ord) {
+        setDepthErr(`Position/Order book not available for ${symbol}. OANDA only provides this for major USD pairs (EUR/USD, GBP/USD, USD/JPY, etc.).`);
+        setDepthLoad(false);
+        return;
+      }
+      const posBuckets = (pos?.buckets || []).filter(b => parseFloat(b.longCountPercent||0) + parseFloat(b.shortCountPercent||0) > 0);
+      const ordBuckets = (ord?.buckets || []).filter(b => parseFloat(b.longCountPercent||0) + parseFloat(b.shortCountPercent||0) > 0);
+      setDepthData({
+        pos: pos ? { ...pos, buckets: posBuckets } : null,
+        ord: ord ? { ...ord, buckets: ordBuckets } : null,
+      });
       setDepthLoad(false);
     }).catch(e => { setDepthErr(e.message); setDepthLoad(false); });
   }, [symbol, tab]);
@@ -712,9 +727,13 @@ Provide:
             {!depthLoad && !depthErr && depthData && (() => {
               const pos = depthData.pos;
               const ord = depthData.ord;
-              const curPrice = parseFloat(pos?.price || ord?.price || 0);
+              const curPrice = parseFloat(pos?.price || ord?.price || '0') || 0;
               const renderBook = (title, buckets, longKey, shortKey, color) => {
-                if (!buckets?.length) return null;
+                if (!buckets?.length) return (
+                  <div style={{ marginBottom:16, padding:'12px', background:'#1e293b', borderRadius:6, color:'var(--text3)', fontSize:11 }}>
+                    {title} — No data available for {symbol}
+                  </div>
+                );
                 const maxPct = Math.max(...buckets.flatMap(b => [parseFloat(b[longKey]||0), parseFloat(b[shortKey]||0)]), 0.1);
                 // show 40 buckets centred around current price
                 const sorted = [...buckets].sort((a,b) => parseFloat(b.price) - parseFloat(a.price));
