@@ -104,9 +104,8 @@ class ForexBot {
   async _runStrategy(strat, account, tradeLog) {
     const { pair, timeframe = 'H1', direction = 'both', conditions = {}, risk = {} } = strat;
 
-    const sessions    = getCurrentSession();
-    const allowedSess = conditions.sessions?.length ? conditions.sessions : ['london', 'newyork'];
-    if (!sessions.some(s => allowedSess.includes(s))) {
+    const sessions = getCurrentSession();
+    if (conditions.sessions?.length && !sessions.some(s => conditions.sessions.includes(s))) {
       this.log(`${pair}: outside session — skip`);
       return false;
     }
