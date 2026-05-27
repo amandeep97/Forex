@@ -707,10 +707,11 @@ function PositionsTab({ onLog }) {
       const all = ghData?.content?.trades || [];
       let changed = 0;
       const updated = all.map(t => {
-        const isOpen   = t.status === 'OPEN' || t.status === 'open';
-        // bot stores oandaId, app may store oandaTradeId — check both
-        const tradeId  = t.oandaId || t.oandaTradeId;
-        if (isOpen && tradeId && !openIds.has(String(tradeId))) {
+        const isOpen  = t.status === 'OPEN' || t.status === 'open';
+        if (!isOpen) return t;
+        const tradeId = t.oandaId || t.oandaTradeId;
+        // Close if: no oandaId (can't verify) OR oandaId not in OANDA open trades
+        if (!tradeId || !openIds.has(String(tradeId))) {
           changed++;
           return { ...t, status: 'closed', closedAt: new Date().toISOString() };
         }
@@ -732,9 +733,9 @@ function PositionsTab({ onLog }) {
     setClosing(id);
     try {
       const data = await ghRead('bot/trades.json', { noCache: true });
-      const updated = (data?.content?.trades || []).map(t =>
-        t.id === id ? { ...t, status: 'CLOSED', closeTime: new Date().toISOString() } : t);
-      await ghWrite('bot/trades.json', { trades: updated }, `Close ${id}`, data?.sha || null);
+      // Remove the trade entirely from the list
+      const updated = (data?.content?.trades || []).filter(t => t.id !== id);
+      await ghWrite('bot/trades.json', { trades: updated }, `Remove trade ${id}`, data?.sha || null);
       setTrades(updated);
     } catch (e) { setError(e.message); }
     finally { setClosing(null); }
