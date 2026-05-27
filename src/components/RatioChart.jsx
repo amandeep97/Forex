@@ -2,9 +2,9 @@ import { useState, useEffect } from 'react';
 import { OANDA_MAP } from '../hooks/useLivePrices';
 import { generateCandles } from '../utils/generateCandles';
 
-const TF_GRAN = { '1H':'H1','4H':'H4','D':'D','W':'W' };
-const TFS     = ['1H','4H','D','W'];
-const COUNTS  = { '1H':200, '4H':200, 'D':300, 'W':200 };
+const TF_GRAN = { '1m':'M1','3m':'M3','5m':'M5','15m':'M15','30m':'M30','1H':'H1','4H':'H4','D':'D','W':'W' };
+const TFS     = ['1m','3m','5m','15m','30m','1H','4H','D','W'];
+const COUNTS  = { '1m':200,'3m':200,'5m':200,'15m':200,'30m':200,'1H':200,'4H':200,'D':300,'W':200 };
 
 const FALLBACK = {
   'XAU/USD': { bid:3250, change:0, volume:1000 },
