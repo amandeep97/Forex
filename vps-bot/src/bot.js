@@ -75,10 +75,17 @@ class ForexBot {
       for (const pair of pairsToScan) {
         if (openTrades.length >= maxTotal) break;
 
-        const maxPerPair   = strat.maxPositionsPerPair || 1;
-        const openForPair  = openTrades.filter(t => t.instrument === pair).length;
+        const maxPerPair = strat.maxPositionsPerPair || 1;
+        const stratOandaIds = new Set(
+          tradeLog.trades
+            .filter(t => t.strategyId === strat.id && t.status === 'open' && t.oandaId)
+            .map(t => String(t.oandaId))
+        );
+        const openForPair = openTrades.filter(t =>
+          t.instrument === pair && stratOandaIds.has(String(t.id))
+        ).length;
         if (openForPair >= maxPerPair) {
-          this.log(`${pair}: ${openForPair}/${maxPerPair} positions open — skip`);
+          this.log(`${pair}: ${openForPair}/${maxPerPair} positions open for strategy "${strat.name}" — skip`);
           continue;
         }
 
