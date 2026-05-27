@@ -247,18 +247,24 @@ class ForexBot {
     const openIds = new Set(openTrades.map(t => t.id));
 
     for (const rec of tradeLog.trades) {
-      if (rec.status !== 'open' || !rec.oandaId) continue;
-      if (openIds.has(rec.oandaId)) continue;
+      if (!rec.oandaId) continue;
+
+      // Process: open trades no longer in OANDA, OR closed trades missing P&L
+      const isOpenGone      = rec.status === 'open'   && !openIds.has(rec.oandaId);
+      const isClosedNoPnl   = rec.status === 'closed' && rec.pnlUsd == null;
+      if (!isOpenGone && !isClosedNoPnl) continue;
 
       try {
-        const closedTrades = await this.oanda.getOpenTrades().catch(() => []);
-        const isStillOpen  = closedTrades.some(t => t.id === rec.oandaId);
-        if (isStillOpen) continue;
+        // For open trades: double-check it's really gone
+        if (isOpenGone) {
+          const live = await this.oanda.getOpenTrades().catch(() => []);
+          if (live.some(t => t.id === rec.oandaId)) continue;
+        }
 
         const details = await this.oanda.getTradeDetails(rec.oandaId).catch(() => null);
         const pnl     = details ? +details.realizedPL : null;
-        rec.closedAt   = details?.closeTime || new Date().toISOString();
-        rec.closePrice = details?.averageClosePrice ? +details.averageClosePrice : null;
+        rec.closedAt   = details?.closeTime  || rec.closedAt || new Date().toISOString();
+        rec.closePrice = details?.averageClosePrice ? +details.averageClosePrice : rec.closePrice;
         rec.pnlUsd     = pnl;
 
         if (pnl != null) {
@@ -273,18 +279,20 @@ class ForexBot {
           rec.status = 'closed';
         }
 
-        this.log(`${rec.pair} trade ${rec.id}: closed — ${rec.status} | PnL $${(pnl || 0).toFixed(2)}`);
+        this.log(`${rec.pair} trade ${rec.id}: synced — ${rec.status} | PnL $${(pnl || 0).toFixed(2)}`);
 
-        await this.telegram.send(this.telegram.tradeClosed({
-          pair:     rec.pair,
-          dir:      rec.direction,
-          entry:    rec.entry,
-          close:    rec.closePrice,
-          pnlPips:  rec.pnlPips,
-          pnlUsd:   pnl || 0,
-          rr:       rec.rrAchieved,
-          status:   rec.status,
-        })).catch(e => this.warn(`Telegram close: ${e.message}`));
+        if (isOpenGone) {
+          await this.telegram.send(this.telegram.tradeClosed({
+            pair:     rec.pair,
+            dir:      rec.direction,
+            entry:    rec.entry,
+            close:    rec.closePrice,
+            pnlPips:  rec.pnlPips,
+            pnlUsd:   pnl || 0,
+            rr:       rec.rrAchieved,
+            status:   rec.status,
+          })).catch(e => this.warn(`Telegram close: ${e.message}`));
+        }
       } catch (e) {
         this.warn(`Sync trade ${rec.id}: ${e.message}`);
       }
