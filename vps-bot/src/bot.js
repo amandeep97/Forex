@@ -52,7 +52,8 @@ class ForexBot {
     ]);
     this.log(`Account: $${account.balance.toFixed(2)} | Open trades: ${openTrades.length}`);
 
-    const syncChanged = await this._syncClosedTrades(openTrades, tradeLog, account);
+    const reconcileChanged = await this._reconcileOpenTrades(openTrades, tradeLog);
+    const syncChanged      = await this._syncClosedTrades(openTrades, tradeLog, account);
 
     const utcH = new Date().getUTCHours(), utcM = new Date().getUTCMinutes();
     if (utcH === 21 && utcM < 2) {
@@ -62,7 +63,7 @@ class ForexBot {
     const maxTotal = config.globalSettings?.maxTotalTrades || 3;
     if (openTrades.length >= maxTotal) {
       this.log(`Global limit reached (${openTrades.length}/${maxTotal}) — not scanning`);
-      if (syncChanged) await this._saveTrades(tradeLog);
+      if (reconcileChanged || syncChanged) await this._saveTrades(tradeLog);
       return;
     }
 
@@ -99,7 +100,7 @@ class ForexBot {
       }
     }
 
-    if (syncChanged || tradePlaced) await this._saveTrades(tradeLog);
+    if (reconcileChanged || syncChanged || tradePlaced) await this._saveTrades(tradeLog);
     else this.log('No changes — skipping trades.json write');
   }
 
@@ -243,6 +244,47 @@ class ForexBot {
     }
     const ext = risk.tpFibLevel || 1.618;
     return dir === 'long' ? cp + slDist * ext : cp - slDist * ext;
+  }
+
+  async _reconcileOpenTrades(openTrades, tradeLog) {
+    const trackedIds = new Set(
+      tradeLog.trades
+        .filter(t => t.oandaId && t.status === 'open')
+        .map(t => String(t.oandaId))
+    );
+    let changed = false;
+    for (const ot of openTrades) {
+      if (trackedIds.has(String(ot.id))) continue;
+      const units = +ot.currentUnits;
+      const dir   = units > 0 ? 'long' : 'short';
+      const rec   = {
+        id:           genTradeId(),
+        strategyId:   'reconciled',
+        strategyName: 'Reconciled from OANDA',
+        pair:         ot.instrument,
+        direction:    dir,
+        entry:        ot.price ? +ot.price : null,
+        sl:           ot.stopLossOrder?.price   ? +ot.stopLossOrder.price   : null,
+        tp:           ot.takeProfitOrder?.price ? +ot.takeProfitOrder.price : null,
+        lotSize:      +(Math.abs(units) / 1000).toFixed(2),
+        units,
+        rrPlanned:    null,
+        session:      'unknown',
+        openedAt:     ot.openTime || new Date().toISOString(),
+        closedAt:     null,
+        closePrice:   null,
+        status:       'open',
+        pnlPips:      null,
+        pnlUsd:       null,
+        rrAchieved:   null,
+        source:       'reconciled',
+        oandaId:      String(ot.id),
+      };
+      tradeLog.trades.push(rec);
+      this.log(`Reconciled: ${ot.instrument} ${dir.toUpperCase()} (OANDA ID: ${ot.id})`);
+      changed = true;
+    }
+    return changed;
   }
 
   async _syncClosedTrades(openTrades, tradeLog, account) {
