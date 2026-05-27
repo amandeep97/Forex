@@ -619,7 +619,7 @@ function PositionsTab({ onLog }) {
   const getMS = (id) => modifyState[id] || { sl: '', tp: '', trailDist: '', trailing: false, trailMode: 'pip', busy: false, err: '' };
   const setMS = (id, patch) => setModifyState(prev => ({ ...prev, [id]: { ...getMS(id), ...patch } }));
 
-  const doModify = async (id, oandaId, body, onSuccess) => {
+  const doModify = async (id, oandaId, body, tradeUpdate) => {
     const apiKey    = localStorage.getItem('oanda_key');
     const accountId = localStorage.getItem('oanda_acct');
     const env_      = localStorage.getItem('oanda_env') || 'practice';
@@ -629,7 +629,22 @@ function PositionsTab({ onLog }) {
       await oandaModifyTrade(apiKey, accountId, env_, oandaId, body);
       setMS(id, { busy: false, err: '' });
       onLog?.('INFO', `Trade ${oandaId} modified`);
-      onSuccess?.();
+
+      if (tradeUpdate) {
+        // 1. Update React state immediately (instant UI feedback)
+        setTrades(prev => prev.map(tr => tr.id === id ? { ...tr, ...tradeUpdate } : tr));
+
+        // 2. Persist to GitHub so it survives page refresh
+        try {
+          const fresh = await ghRead('bot/trades.json', { noCache: true });
+          const updatedTrades = (fresh?.content?.trades || []).map(tr =>
+            tr.id === id ? { ...tr, ...tradeUpdate } : tr
+          );
+          await ghWrite('bot/trades.json', { trades: updatedTrades }, `App: update trade ${oandaId}`, fresh?.sha || null);
+        } catch(e2) {
+          setMS(id, { err: `OANDA updated but GitHub sync failed: ${e2.message}` });
+        }
+      }
     } catch(e) { setMS(id, { busy: false, err: e.message }); }
   };
 
@@ -898,7 +913,7 @@ function PositionsTab({ onLog }) {
                     const bePrice = Number(entry).toFixed(dp(t.pair));
                     doModify(t.id, oandaId,
                       { stopLoss: { price: bePrice, timeInForce: 'GTC' } },
-                      () => setTrades(prev => prev.map(tr => tr.id === t.id ? { ...tr, sl: Number(entry), slPrice: Number(entry) } : tr))
+                      { sl: Number(entry), slPrice: Number(entry) }
                     );
                   }} disabled={getMS(t.id).busy}
                     style={{ background: '#f59e0b22', border: '1px solid #f59e0b88', color: '#fbbf24', borderRadius: 6, padding: '6px 14px', fontSize: 11, fontWeight: 700, cursor: 'pointer' }}>
@@ -921,7 +936,7 @@ function PositionsTab({ onLog }) {
                           if (isNaN(val)) { setMS(t.id, { err: 'Invalid SL' }); return; }
                           doModify(t.id, oandaId,
                             { stopLoss: { price: val.toFixed(dp(t.pair)), timeInForce: 'GTC' } },
-                            () => setTrades(prev => prev.map(tr => tr.id === t.id ? { ...tr, sl: val, slPrice: val } : tr))
+                            { sl: val, slPrice: val }
                           );
                           setMS(t.id, { sl: '' });
                         }} disabled={getMS(t.id).busy}
@@ -939,7 +954,7 @@ function PositionsTab({ onLog }) {
                           if (isNaN(val)) { setMS(t.id, { err: 'Invalid TP' }); return; }
                           doModify(t.id, oandaId,
                             { takeProfit: { price: val.toFixed(dp(t.pair)), timeInForce: 'GTC' } },
-                            () => setTrades(prev => prev.map(tr => tr.id === t.id ? { ...tr, tp: val, tpPrice: val } : tr))
+                            { tp: val, tpPrice: val }
                           );
                           setMS(t.id, { tp: '' });
                         }} disabled={getMS(t.id).busy}
