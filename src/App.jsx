@@ -3,28 +3,22 @@ import Screener from './components/Screener';
 import AutoTrading from './components/AutoTrading';
 import Backtester from './components/Backtester';
 import WatchlistTab from './components/WatchlistTab';
-import RatioChart from './components/RatioChart';
-import Journal from './components/Journal';
-import NewsCalendar from './components/NewsCalendar';
-import COTTab from './components/COTTab';
-import MetalsDashboard from './components/MetalsDashboard';
-import CorrelationMatrix from './components/CorrelationMatrix';
-import AIAnalysis from './components/AIAnalysis';
+import CurrencyStrength from './components/CurrencyStrength';
+import VolatilityDashboard from './components/VolatilityDashboard';
+import SeasonalityChart from './components/SeasonalityChart';
+import LiquidityMap from './components/LiquidityMap';
 import { allInstruments } from './data/forexData';
 import './App.css';
 
 const TABS = [
-  { id: 'ai',          label: 'AI',           icon: '🤖' },
   { id: 'screener',    label: 'Screener',     icon: '⊞' },
   { id: 'watchlist',   label: 'Watchlist',    icon: '★' },
   { id: 'autotrading', label: 'Auto Trading', icon: '⚡' },
   { id: 'backtester',  label: 'Backtester',   icon: '📊' },
-  { id: 'ratio',       label: 'Au/Ag Ratio',  icon: '⚖' },
-  { id: 'cot',         label: 'COT Report',   icon: '🏦' },
-  { id: 'metals',      label: 'Metals',       icon: '⚜' },
-  { id: 'correlation', label: 'Correlation',  icon: '⬡' },
-  { id: 'journal',     label: 'Journal',      icon: '📋' },
-  { id: 'news',        label: 'News',         icon: '📰' },
+  { id: 'strength',    label: 'Strength',     icon: '💪' },
+  { id: 'volatility',  label: 'Volatility',   icon: '🌊' },
+  { id: 'seasonality', label: 'Seasonality',  icon: '📅' },
+  { id: 'liquidity',   label: 'Liquidity',    icon: '🏛' },
 ];
 
 // ── Real-money warning modal ─────────────────────────────────────────────────
@@ -99,6 +93,7 @@ export default function App() {
   };
 
   const now     = new Date();
+  const timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
   const dateStr = now.toLocaleDateString([], { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' });
 
   const isReal   = accountMode === 'real';
@@ -164,7 +159,7 @@ export default function App() {
               onClick={() => setActiveTab(t.id)}
             >
               <span className="nav-tab-icon">{t.icon}</span>
-              <span className="nav-tab-label">{t.label}</span>
+              {t.label}
             </button>
           ))}
         </nav>
@@ -175,9 +170,6 @@ export default function App() {
       {/* ── Content ───────────────────────────────────────────────────────── */}
       <main className="app-main">
         {/* Keep both mounted (hidden) so state is preserved on tab switch */}
-        <div style={{ display: activeTab === 'ai' ? 'flex' : 'none', flexDirection:'column', height:'calc(100vh - 120px)' }}>
-          <AIAnalysis />
-        </div>
         <div style={{ display: activeTab === 'screener' ? 'block' : 'none' }}>
           <Screener />
         </div>
@@ -195,23 +187,17 @@ export default function App() {
         <div style={{ display: activeTab === 'backtester' ? 'block' : 'none' }}>
           <Backtester />
         </div>
-        <div style={{ display: activeTab === 'ratio' ? 'block' : 'none', overflowY:'auto', height:'calc(100vh - 120px)' }}>
-          <RatioChart />
+        <div style={{ display: activeTab === 'strength' ? 'block' : 'none', overflowY:'auto', height:'calc(100vh - 120px)' }}>
+          <CurrencyStrength />
         </div>
-        <div style={{ display: activeTab === 'cot' ? 'flex' : 'none', flexDirection:'column', height:'calc(100vh - 120px)' }}>
-          <COTTab />
+        <div style={{ display: activeTab === 'volatility' ? 'block' : 'none', overflowY:'auto', height:'calc(100vh - 120px)' }}>
+          <VolatilityDashboard />
         </div>
-        <div style={{ display: activeTab === 'metals' ? 'flex' : 'none', flexDirection:'column', height:'calc(100vh - 120px)' }}>
-          <MetalsDashboard />
+        <div style={{ display: activeTab === 'seasonality' ? 'block' : 'none', overflowY:'auto', height:'calc(100vh - 120px)' }}>
+          <SeasonalityChart />
         </div>
-        <div style={{ display: activeTab === 'correlation' ? 'flex' : 'none', flexDirection:'column', height:'calc(100vh - 120px)' }}>
-          <CorrelationMatrix />
-        </div>
-        <div style={{ display: activeTab === 'journal' ? 'block' : 'none', overflowY:'auto', height:'calc(100vh - 120px)' }}>
-          <Journal />
-        </div>
-        <div style={{ display: activeTab === 'news' ? 'block' : 'none', overflowY:'auto', height:'calc(100vh - 120px)' }}>
-          <NewsCalendar />
+        <div style={{ display: activeTab === 'liquidity' ? 'block' : 'none', overflowY:'auto', height:'calc(100vh - 120px)' }}>
+          <LiquidityMap />
         </div>
       </main>
 
