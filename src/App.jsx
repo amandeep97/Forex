@@ -3,6 +3,10 @@ import Screener from './components/Screener';
 import AutoTrading from './components/AutoTrading';
 import Backtester from './components/Backtester';
 import WatchlistTab from './components/WatchlistTab';
+import CurrencyStrength from './components/CurrencyStrength';
+import VolatilityDashboard from './components/VolatilityDashboard';
+import SeasonalityChart from './components/SeasonalityChart';
+import LiquidityMap from './components/LiquidityMap';
 import { allInstruments } from './data/forexData';
 import './App.css';
 
@@ -11,6 +15,10 @@ const TABS = [
   { id: 'watchlist',   label: 'Watchlist',    icon: '★' },
   { id: 'autotrading', label: 'Auto Trading', icon: '⚡' },
   { id: 'backtester',  label: 'Backtester',   icon: '📊' },
+  { id: 'strength',    label: 'Strength',     icon: '💪' },
+  { id: 'volatility',  label: 'Volatility',   icon: '🌊' },
+  { id: 'seasonality', label: 'Seasonality',  icon: '📅' },
+  { id: 'liquidity',   label: 'Liquidity',    icon: '🏛' },
 ];
 
 // ── Real-money warning modal ─────────────────────────────────────────────────
@@ -178,6 +186,18 @@ export default function App() {
         </div>
         <div style={{ display: activeTab === 'backtester' ? 'block' : 'none' }}>
           <Backtester />
+        </div>
+        <div style={{ display: activeTab === 'strength' ? 'block' : 'none', overflowY:'auto', height:'calc(100vh - 120px)' }}>
+          <CurrencyStrength />
+        </div>
+        <div style={{ display: activeTab === 'volatility' ? 'block' : 'none', overflowY:'auto', height:'calc(100vh - 120px)' }}>
+          <VolatilityDashboard />
+        </div>
+        <div style={{ display: activeTab === 'seasonality' ? 'block' : 'none', overflowY:'auto', height:'calc(100vh - 120px)' }}>
+          <SeasonalityChart />
+        </div>
+        <div style={{ display: activeTab === 'liquidity' ? 'block' : 'none', overflowY:'auto', height:'calc(100vh - 120px)' }}>
+          <LiquidityMap />
         </div>
       </main>
 
