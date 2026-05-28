@@ -1487,12 +1487,12 @@
       "rrPlanned": 2,
       "session": "unknown",
       "openedAt": "2026-05-28T06:50:09.694Z",
-      "closedAt": null,
-      "closePrice": null,
-      "status": "open",
-      "pnlPips": null,
-      "pnlUsd": null,
-      "rrAchieved": null,
+      "closedAt": "2026-05-28T07:15:08.959009318Z",
+      "closePrice": 73.357,
+      "status": "sl_hit",
+      "pnlPips": -206,
+      "pnlUsd": -0.2867,
+      "rrAchieved": -0.54,
       "source": "vps_bot",
       "oandaId": "978"
     },
@@ -1518,6 +1518,29 @@
       "rrAchieved": null,
       "source": "vps_bot",
       "oandaId": null
+    },
+    {
+      "id": "TMPP5SW8H",
+      "strategyId": "strat_001",
+      "strategyName": "ICT London Long",
+      "pair": "XAG_USD",
+      "direction": "long",
+      "entry": 73.377,
+      "sl": 72.638,
+      "tp": 74.828,
+      "lotSize": 0.01,
+      "units": 1,
+      "rrPlanned": 2,
+      "session": "london",
+      "openedAt": "2026-05-28T07:16:09.272Z",
+      "closedAt": null,
+      "closePrice": null,
+      "status": "open",
+      "pnlPips": null,
+      "pnlUsd": null,
+      "rrAchieved": null,
+      "source": "vps_bot",
+      "oandaId": "986"
     }
   ]
 }
