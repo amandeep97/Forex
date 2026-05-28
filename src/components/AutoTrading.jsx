@@ -609,6 +609,7 @@ function PositionsTab({ onLog }) {
   const [error,       setError]       = useState('');
   const [closing,     setClosing]     = useState(null);
   const [activity,    setActivity]    = useState([]);
+  const [clearedAt,   setClearedAt]   = useState(() => localStorage.getItem('positions_cleared_at') || null);
   const [actLoading,  setActLoading]  = useState(false);
   const [actErr,      setActErr]      = useState('');
   const [livePrices,  setLivePrices]  = useState({});
@@ -731,8 +732,11 @@ function PositionsTab({ onLog }) {
   };
 
   const open   = trades.filter(t => t.status === 'OPEN' || t.status === 'open');
-  const closed = trades.filter(t => t.status !== 'OPEN' && t.status !== 'open' && t.status !== 'CANCELLED');
-  const cancelled = trades.filter(t => t.status === 'CANCELLED');
+  const allClosed = trades.filter(t => t.status !== 'OPEN' && t.status !== 'open' && t.status !== 'CANCELLED');
+  const allCancelled = trades.filter(t => t.status === 'CANCELLED');
+  // closed/cancelled after clearedAt timestamp (localStorage only — journal data untouched)
+  const closed    = clearedAt ? allClosed.filter(t => new Date(t.closedAt || t.openedAt || 0) > new Date(clearedAt)) : allClosed;
+  const cancelled = clearedAt ? allCancelled.filter(t => new Date(t.openedAt || 0) > new Date(clearedAt)) : allCancelled;
 
   // Sync with OANDA: mark positions closed/cancelled if not in actual open trades
   const syncOanda = async () => {
@@ -786,14 +790,10 @@ function PositionsTab({ onLog }) {
     finally { setClosing(null); }
   };
 
-  const clearClosed = async () => {
-    try {
-      const data    = await ghRead('bot/trades.json', { noCache: true });
-      const OPEN_ST = new Set(['open', 'OPEN']);
-      const cleaned = (data?.content?.trades || []).filter(t => OPEN_ST.has(t.status));
-      await ghWrite('bot/trades.json', { trades: cleaned }, 'Clear closed trades', data?.sha || null);
-      setTrades(cleaned);
-    } catch (e) { setError(e.message); }
+  const clearClosed = () => {
+    const ts = new Date().toISOString();
+    localStorage.setItem('positions_cleared_at', ts);
+    setClearedAt(ts);
   };
 
   return (
