@@ -751,12 +751,12 @@
       "rrPlanned": 2,
       "session": "unknown",
       "openedAt": "2026-05-28T06:09:09.470Z",
-      "closedAt": null,
-      "closePrice": null,
-      "status": "open",
-      "pnlPips": null,
-      "pnlUsd": null,
-      "rrAchieved": null,
+      "closedAt": "2026-05-28T06:09:09.640572179Z",
+      "closePrice": 72.855,
+      "status": "sl_hit",
+      "pnlPips": -53,
+      "pnlUsd": -0.0738,
+      "rrAchieved": -0.05,
       "source": "vps_bot",
       "oandaId": "850"
     },
@@ -782,6 +782,29 @@
       "rrAchieved": null,
       "source": "vps_bot",
       "oandaId": null
+    },
+    {
+      "id": "TMPP3G0UR",
+      "strategyId": "strat_1779880922965",
+      "strategyName": "New Strategy",
+      "pair": "XAG_USD",
+      "direction": "short",
+      "entry": 72.714,
+      "sl": 74.9735,
+      "tp": 69.35,
+      "lotSize": 0.01,
+      "units": -1,
+      "rrPlanned": 2,
+      "session": "unknown",
+      "openedAt": "2026-05-28T06:10:09.477Z",
+      "closedAt": null,
+      "closePrice": null,
+      "status": "open",
+      "pnlPips": null,
+      "pnlUsd": null,
+      "rrAchieved": null,
+      "source": "vps_bot",
+      "oandaId": "858"
     }
   ]
 }
