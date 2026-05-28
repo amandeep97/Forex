@@ -9,10 +9,12 @@ import NewsCalendar from './components/NewsCalendar';
 import COTTab from './components/COTTab';
 import MetalsDashboard from './components/MetalsDashboard';
 import CorrelationMatrix from './components/CorrelationMatrix';
+import AIAnalysis from './components/AIAnalysis';
 import { allInstruments } from './data/forexData';
 import './App.css';
 
 const TABS = [
+  { id: 'ai',          label: 'AI',           icon: '🤖' },
   { id: 'screener',    label: 'Screener',     icon: '⊞' },
   { id: 'watchlist',   label: 'Watchlist',    icon: '★' },
   { id: 'autotrading', label: 'Auto Trading', icon: '⚡' },
@@ -173,6 +175,9 @@ export default function App() {
       {/* ── Content ───────────────────────────────────────────────────────── */}
       <main className="app-main">
         {/* Keep both mounted (hidden) so state is preserved on tab switch */}
+        <div style={{ display: activeTab === 'ai' ? 'flex' : 'none', flexDirection:'column', height:'calc(100vh - 120px)' }}>
+          <AIAnalysis />
+        </div>
         <div style={{ display: activeTab === 'screener' ? 'block' : 'none' }}>
           <Screener />
         </div>
