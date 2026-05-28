@@ -1,14 +1,53 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { allInstruments, ASSET_TYPES, FOREX_CATEGORIES, SIGNALS, ASSET_COLORS, DEFAULT_FILTERS } from '../data/forexData';
 import { useLivePrices } from '../hooks/useLivePrices';
 import { generateCandles } from '../utils/generateCandles';
 import { detectCandlePatterns } from '../utils/candlePatterns';
 import { analyzeSMC } from '../utils/smcAnalysis';
 import { computeRSI, computeMFI, computeEMA, computeMACD, detectRSIDivergence, detectEqualHighsLows } from '../utils/indicatorCalc';
-import { computeVWAP } from '../utils/smcHelpers';
+import { computeVWAP, detectFVGsAndOBs, detectLiqLevels } from '../utils/smcHelpers';
 import ChartModal from './ChartModal';
 import OandaConnect from './OandaConnect';
 import FilterPanel from './FilterPanel';
+import { getIMSignals, IM_DEFS } from '../utils/intermarket';
+
+// ── Forex Session Clock ───────────────────────────────────────────────────────
+function SessionClock() {
+  const [now, setNow] = useState(() => new Date());
+  useEffect(() => {
+    const id = setInterval(() => setNow(new Date()), 1000);
+    return () => clearInterval(id);
+  }, []);
+  const utcH = now.getUTCHours(), utcM = now.getUTCMinutes();
+  const mins = utcH * 60 + utcM;
+  function inSess(s, e) { return s < e ? mins >= s && mins < e : mins >= s || mins < e; }
+  const sessions = [
+    { name:'Sydney',   s:22*60, e:7*60,  color:'#3b82f6', active:inSess(22*60,7*60)  },
+    { name:'Tokyo',    s:0*60,  e:9*60,  color:'#f59e0b', active:inSess(0*60,9*60)   },
+    { name:'London',   s:8*60,  e:17*60, color:'#8b5cf6', active:inSess(8*60,17*60)  },
+    { name:'New York', s:13*60, e:22*60, color:'#22c55e', active:inSess(13*60,22*60) },
+  ];
+  const overlap = sessions[2].active && sessions[3].active;
+  const utcStr = `${String(utcH).padStart(2,'0')}:${String(utcM).padStart(2,'0')} UTC`;
+  return (
+    <div style={{ display:'flex', alignItems:'center', gap:5, padding:'4px 12px', borderBottom:'1px solid var(--border)', background:'#060a10', overflowX:'auto', scrollbarWidth:'none', flexShrink:0 }}>
+      <span style={{ fontSize:9, color:'#475569', flexShrink:0, fontFamily:'monospace' }}>🕐 {utcStr}</span>
+      {sessions.map(s => (
+        <div key={s.name} style={{ display:'flex', alignItems:'center', gap:3, padding:'2px 7px', borderRadius:4, flexShrink:0,
+          background: s.active ? s.color+'22' : 'transparent',
+          border:     `1px solid ${s.active ? s.color+'55' : '#1e293b'}` }}>
+          {s.active && <span style={{ width:5, height:5, borderRadius:'50%', background:s.color, display:'inline-block', animation:'pulse 1.4s infinite' }}/>}
+          <span style={{ fontSize:9, fontWeight:700, color:s.active ? s.color : '#334155' }}>{s.name}</span>
+        </div>
+      ))}
+      {overlap && (
+        <div style={{ padding:'2px 7px', borderRadius:4, background:'#22c55e18', border:'1px solid #22c55e44', flexShrink:0 }}>
+          <span style={{ fontSize:9, fontWeight:700, color:'#22c55e' }}>⚡ London+NY</span>
+        </div>
+      )}
+    </div>
+  );
+}
 
 // ── Sub-components ────────────────────────────────────────────────────────────
 function Sparkline({ data, change }) {
@@ -109,9 +148,18 @@ export default function Screener() {
   const [subCategory, setSubCategory]   = useState('All');
   const [chartInstrument, setChartInstrument] = useState(null);
 
+  const [imSignals, setImSignals] = useState(null);
+
   const [watchlist, setWatchlist] = useState(() => {
     try { return JSON.parse(localStorage.getItem('forex_watchlist')) || []; } catch { return []; }
   });
+
+  useEffect(() => {
+    getIMSignals('H1', 5).then(setImSignals).catch(() => {});
+    const id = setInterval(() => getIMSignals('H1', 5).then(setImSignals).catch(() => {}), 5 * 60 * 1000);
+    return () => clearInterval(id);
+  }, []);
+
   const toggleWatch = sym => {
     setWatchlist(prev => {
       const next = prev.includes(sym) ? prev.filter(s => s !== sym) : [...prev, sym];
@@ -149,7 +197,13 @@ export default function Screener() {
         const prevCandles = candles.slice(0, -1);
         const rsiVal    = computeRSI(candles, 14);
         const mfiVal    = computeMFI(candles, 14);
-        const smc       = analyzeSMC(candles);
+        const fibLevels = (() => {
+          const raw = filters.oteFibLevels;
+          if (!raw) return null;
+          const parsed = String(raw).split(',').map(v => parseFloat(v.trim())).filter(v => !isNaN(v));
+          return parsed.length >= 1 ? parsed : null;
+        })();
+        const smc       = analyzeSMC(candles, fibLevels ? { fibLevels } : {});
         const patterns  = detectCandlePatterns(candles.slice(-60), lookback);
         const cp        = candles[candles.length - 1].c;
 
@@ -157,9 +211,20 @@ export default function Screener() {
         const bosBearish   = smc.bosChoch.some(b=>b.type==='BOS'&&b.direction==='bearish');
         const chochBullish = smc.bosChoch.some(b=>b.type==='CHoCH'&&b.direction==='bullish');
         const chochBearish = smc.bosChoch.some(b=>b.type==='CHoCH'&&b.direction==='bearish');
-        const hasOB  = smc.orderBlocks.length>0;
-        const hasFVG = smc.fvgs.length>0;
-        const zone   = smc.premiumDiscount?.zone || 'discount';
+        // Use same detection functions as the chart for alignment
+        const { fvgZones=[], obZones=[] } = detectFVGsAndOBs(candles);
+        const { bsl: bslLevels=[], ssl: sslLevels=[] } = detectLiqLevels(candles);
+        const hasOB      = obZones.length > 0;
+        const hasFVG     = fvgZones.length > 0;
+        const hasBullOB  = obZones.some(ob => ob.type === 'bullish');
+        const hasBearOB  = obZones.some(ob => ob.type === 'bearish');
+        const hasBullFVG = fvgZones.some(fvg => fvg.type === 'bullish');
+        const hasBearFVG = fvgZones.some(fvg => fvg.type === 'bearish');
+        // Tap = price is currently inside the OB/FVG box
+        const obTap  = obZones.some(ob  => cp >= ob.botPrice  && cp <= ob.topPrice);
+        const fvgTap = fvgZones.some(fvg => cp >= fvg.botPrice && cp <= fvg.topPrice);
+        // Zone: same 25% quartile logic as chart (top 25% = premium, bottom 25% = discount)
+        const zone   = smc.premiumDiscount?.zone || 'equilibrium';
 
         const vwapSeries = computeVWAP(candles.slice(-60));
         const lastVwap   = vwapSeries[vwapSeries.length-1];
@@ -211,10 +276,14 @@ export default function Screener() {
           brokeSupport:    bosBearish,
           nearTrendline:   smc.trendlines.some(t=>t.isNear),
           brokeTrendline:  smc.trendlines.some(t=>t.isBroken),
-          hasOB, hasFVG, bosBullish, bosBearish, chochBullish, chochBearish,
+          hasOB, hasFVG, hasBullOB, hasBearOB, hasBullFVG, hasBearFVG,
+          obTap, fvgTap,
+          bosBullish, bosBearish, chochBullish, chochBearish,
           zone, structure, strength, strengthDir, vwapAbove,
-          buySideLiq:  smc.liquidity.some(l=>l.type==='low'&&Math.abs(l.price-cp)/(cp||1)<0.006),
-          sellSideLiq: smc.liquidity.some(l=>l.type==='high'&&Math.abs(l.price-cp)/(cp||1)<0.006),
+          // BSL = near a swing high (buy-side liquidity rests above highs)
+          // SSL = near a swing low (sell-side liquidity rests below lows)
+          buySideLiq:  bslLevels.some(l=>Math.abs(l.price-cp)/(cp||1)<0.006),
+          sellSideLiq: sslLevels.some(l=>Math.abs(l.price-cp)/(cp||1)<0.006),
           patternIds:  patterns.map(p=>p.id),
           patternType: patterns.length===0?'neut':
                        patterns.some(p=>p.type==='bullish')?'bull':
@@ -234,7 +303,8 @@ export default function Screener() {
       } catch {
         map[inst.id] = { rsi:50, mfi:50, nearResistance:false, nearSupport:false,
           brokeResistance:false, brokeSupport:false, nearTrendline:false,
-          brokeTrendline:false, hasOB:false, hasFVG:false, bosBullish:false,
+          brokeTrendline:false, hasOB:false, hasFVG:false, hasBullOB:false, hasBearOB:false,
+          hasBullFVG:false, hasBearFVG:false, obTap:false, fvgTap:false, bosBullish:false,
           bosBearish:false, chochBullish:false, chochBearish:false,
           zone:'discount', structure:'neutral', strength:50, strengthDir:'neutral',
           vwapAbove:true, buySideLiq:false, sellSideLiq:false,
@@ -300,14 +370,16 @@ export default function Screener() {
     if (f.requireBrokeSupport)    list = list.filter(i => a[i.id]?.brokeSupport);
     if (f.requireTrendlineBull || f.requireTrendlineBear) list = list.filter(i => a[i.id]?.nearTrendline);
     if (f.requireTrendlineBreak) list = list.filter(i => a[i.id]?.brokeTrendline);
-    if (f.requireOb) list = list.filter(i => a[i.id]?.hasOB);
-    if (f.obDir === 'bullish') list = list.filter(i => a[i.id]?.hasOB && a[i.id]?.structure === 'bullish');
-    if (f.obDir === 'bearish') list = list.filter(i => a[i.id]?.hasOB && a[i.id]?.structure === 'bearish');
-    if (f.requireFvg) list = list.filter(i => a[i.id]?.hasFVG);
-    if (f.fvgDir === 'bullish') list = list.filter(i => a[i.id]?.hasFVG && a[i.id]?.structure === 'bullish');
-    if (f.fvgDir === 'bearish') list = list.filter(i => a[i.id]?.hasFVG && a[i.id]?.structure === 'bearish');
+    // OB filter: requireOb = price must be inside OB zone (obTap), not just any OB exists
+    if (f.requireOb) list = list.filter(i => a[i.id]?.obTap);
+    if (f.obDir === 'bullish') list = list.filter(i => a[i.id]?.hasBullOB);
+    if (f.obDir === 'bearish') list = list.filter(i => a[i.id]?.hasBearOB);
+    // FVG filter: requireFvg = price must be inside FVG zone (fvgTap)
+    if (f.requireFvg) list = list.filter(i => a[i.id]?.fvgTap);
+    if (f.fvgDir === 'bullish') list = list.filter(i => a[i.id]?.hasBullFVG);
+    if (f.fvgDir === 'bearish') list = list.filter(i => a[i.id]?.hasBearFVG);
     if (f.requireFvg && f.requireOb && f.fvgObMode === 'OR')
-      list = list.filter(i => a[i.id]?.hasFVG || a[i.id]?.hasOB);
+      list = list.filter(i => a[i.id]?.fvgTap || a[i.id]?.obTap);
     if (f.requireBos)   list = list.filter(i => a[i.id]?.bosBullish || a[i.id]?.bosBearish);
     if (f.requireChoch) list = list.filter(i => a[i.id]?.chochBullish || a[i.id]?.chochBearish);
     if (f.structure !== 'All') list = list.filter(i => a[i.id]?.structure === f.structure);
@@ -465,6 +537,8 @@ export default function Screener() {
   return (
     <div className="screener-root">
 
+      <SessionClock/>
+
       {/* ── Asset type tabs ──────────────────────────────────────────────── */}
       <div className="asset-type-row">
         {ASSET_TYPES.map(t => {
@@ -540,6 +614,29 @@ export default function Screener() {
 
       {/* ── Chart modal ──────────────────────────────────────────────────── */}
       {chartInstrument && <ChartModal instrument={chartInstrument} onClose={()=>setChartInstrument(null)}/>}
+
+      {/* Intermarket Conditions Bar */}
+      {imSignals && (
+        <div style={{ display:'flex', gap:4, padding:'6px 12px', overflowX:'auto', borderBottom:'1px solid var(--border)', background:'#080c14', scrollbarWidth:'none' }}>
+          <span style={{ fontSize:9, color:'var(--text3)', alignSelf:'center', flexShrink:0, marginRight:2 }}>MARKETS:</span>
+          {IM_DEFS.map(def => {
+            const sig = imSignals[def.key];
+            if (!sig) return null;
+            return (
+              <div key={def.key} style={{ display:'flex', alignItems:'center', gap:3, padding:'2px 8px', borderRadius:4, background:'#1e293b', border:`1px solid ${def.color}33`, flexShrink:0 }}>
+                <span style={{ fontSize:9, fontWeight:700, color:def.color }}>{def.label}</span>
+                <span style={{ fontSize:9, color: sig.direction==='rising'?'#22c55e':'#ef4444', fontWeight:600 }}>
+                  {sig.direction==='rising'?'↑':'↓'}
+                </span>
+                <span style={{ fontSize:9, color:'#64748b', fontFamily:'monospace' }}>
+                  {sig.pct >= 0 ? '+' : ''}{sig.pct.toFixed(1)}%
+                </span>
+              </div>
+            );
+          })}
+          <span style={{ fontSize:9, color:'#334155', alignSelf:'center', flexShrink:0, marginLeft:4 }}>H1 · 5-bar</span>
+        </div>
+      )}
 
       {/* ── Main: filter sidebar + table ─────────────────────────────────── */}
       <div className="screener-body">

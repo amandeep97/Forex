@@ -404,8 +404,20 @@ export default function FilterPanel({ filters, onChange, onReset, onClose, resul
             options={[{ value: 'Any', label: 'Any (off)' }, { value: 'bull', label: 'Bullish Displacement' }, { value: 'bear', label: 'Bearish Displacement' }, { value: 'either', label: 'Any Displacement' }]} />
           <SelectField label="Breaker Block" value={filters.breakerFilter ?? 'Any'} onChange={v => set('breakerFilter', v)}
             options={[{ value: 'Any', label: 'Any (off)' }, { value: 'bull', label: 'Bullish Breaker' }, { value: 'bear', label: 'Bearish Breaker' }, { value: 'either', label: 'Any Breaker Block' }]} />
-          <SelectField label="OTE Zone (0.618–0.786)" value={filters.oteFilter ?? 'Any'} onChange={v => set('oteFilter', v)}
+          <SelectField label="OTE Zone" value={filters.oteFilter ?? 'Any'} onChange={v => set('oteFilter', v)}
             options={[{ value: 'Any', label: 'Any (off)' }, { value: 'bull', label: 'Bullish OTE (buy zone)' }, { value: 'bear', label: 'Bearish OTE (sell zone)' }, { value: 'either', label: 'Any OTE Zone' }]} />
+          {filters.oteFilter && filters.oteFilter !== 'Any' && (
+            <div style={{ marginTop: 4 }}>
+              <label style={{ fontSize: 11, color: 'var(--text3)', display: 'block', marginBottom: 3 }}>Fib Levels (zone min, max)</label>
+              <input
+                value={filters.oteFibLevels ?? '0.618, 0.786'}
+                onChange={e => set('oteFibLevels', e.target.value)}
+                placeholder="e.g. 0.618, 0.786"
+                style={{ width: '100%', background: 'var(--bg2)', color: 'var(--text)', border: '1px solid var(--border)', borderRadius: 4, padding: '4px 8px', fontSize: 11 }}
+              />
+              <div style={{ fontSize: 10, color: 'var(--text3)', marginTop: 2 }}>Any two levels: 0.702, 0.893 · 0.5, 1.0 · etc.</div>
+            </div>
+          )}
           <SelectField label="Consolidation / Coiling" value={filters.consolidatingFilter ?? 'Any'} onChange={v => set('consolidatingFilter', v)}
             options={[{ value: 'Any', label: 'Any (off)' }, { value: 'yes', label: 'Consolidating (ATR squeeze)' }, { value: 'no', label: 'Trending (not consolidating)' }]} />
         </Section>

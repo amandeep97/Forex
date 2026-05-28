@@ -209,9 +209,15 @@ export function detectPremiumDiscount(candles) {
   const rangeLow  = Math.min(...candles.map(c => c.l));
   const equilibrium = (rangeHigh + rangeLow) / 2;
   const currentPrice = candles[candles.length - 1].c;
+  const range = rangeHigh - rangeLow || 1;
+  const premBot = rangeHigh - range * 0.25;  // top 25% = premium (matches chart)
+  const discTop = rangeLow  + range * 0.25;  // bottom 25% = discount (matches chart)
+  const zone = currentPrice >= premBot ? 'premium'
+             : currentPrice <= discTop ? 'discount'
+             : 'equilibrium';
   return {
     rangeHigh, rangeLow, equilibrium,
-    zone: currentPrice > equilibrium ? 'premium' : 'discount',
+    zone,
     deviation: ((currentPrice - equilibrium) / (equilibrium || 1)) * 100,
   };
 }
@@ -247,8 +253,8 @@ export function detectBreakerBlocks(candles) {
 }
 
 // ── Optimal Trade Entry (OTE) ─────────────────────────────────────────────────
-// Price in the 61.8%–78.6% Fibonacci retracement zone after a confirmed swing
-export function detectOTE(candles) {
+// fibLevels: optional array of retracement levels — zone spans from min to max
+export function detectOTE(candles, fibLevels) {
   if (!candles || candles.length < 15) return { bull: false, bear: false };
   const slice = candles.slice(-40);
   const n = slice.length;
@@ -263,15 +269,18 @@ export function detectOTE(candles) {
   const range = swingHigh - swingLow;
   if (range === 0) return { bull: false, bear: false };
 
-  // Bullish OTE: high occurred before low (bearish leg), price retracing upward
-  const ote618Bull = swingLow + range * 0.618;
-  const ote786Bull = swingLow + range * 0.786;
-  const bull = swingHighIdx < swingLowIdx && cp >= ote618Bull && cp <= ote786Bull;
+  const levels = Array.isArray(fibLevels) && fibLevels.length >= 1
+    ? [...fibLevels].sort((a, b) => a - b)
+    : [0.618, 0.786];
+  const fibMin = levels[0], fibMax = levels[levels.length - 1];
 
-  // Bearish OTE: low occurred before high (bullish leg), price retracing downward
-  const ote786Bear = swingHigh - range * 0.786;
-  const ote618Bear = swingHigh - range * 0.618;
-  const bear = swingLowIdx < swingHighIdx && cp >= ote786Bear && cp <= ote618Bear;
+  const bull = swingHighIdx < swingLowIdx
+    && cp >= swingLow + range * fibMin
+    && cp <= swingLow + range * fibMax;
+
+  const bear = swingLowIdx < swingHighIdx
+    && cp >= swingHigh - range * fibMax
+    && cp <= swingHigh - range * fibMin;
 
   return { bull, bear };
 }
@@ -302,7 +311,7 @@ export function detectConsolidation(candles) {
 }
 
 // ── Full SMC Report ───────────────────────────────────────────────────────────
-export function analyzeSMC(candles) {
+export function analyzeSMC(candles, opts = {}) {
   return {
     orderBlocks:       detectOrderBlocks(candles),
     fvgs:              detectFVGs(candles),
@@ -312,7 +321,7 @@ export function analyzeSMC(candles) {
     trendlines:        detectTrendlines(candles),
     premiumDiscount:   detectPremiumDiscount(candles),
     breakerBlocks:     detectBreakerBlocks(candles),
-    ote:               detectOTE(candles),
+    ote:               detectOTE(candles, opts.fibLevels),
     displacement:      detectDisplacement(candles),
     consolidation:     detectConsolidation(candles),
   };
