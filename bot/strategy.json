@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-05-27T17:54:55.142Z",
+  "updatedAt": "2026-05-28T02:16:15.802Z",
   "strategies": [
     {
       "name": "ICT London Long",
@@ -46,84 +46,6 @@
         "XAG_USD"
       ],
       "maxPositionsPerPair": 1
-    },
-    {
-      "id": "strat_1779736721452",
-      "name": "Rsi",
-      "enabled": false,
-      "pairs": [
-        "EUR_USD",
-        "GBP_USD",
-        "USD_JPY",
-        "USD_CHF",
-        "AUD_USD",
-        "NZD_USD",
-        "USD_CAD",
-        "EUR_GBP",
-        "EUR_JPY",
-        "EUR_AUD",
-        "EUR_CAD",
-        "EUR_CHF",
-        "GBP_JPY",
-        "GBP_AUD",
-        "GBP_CAD",
-        "GBP_CHF",
-        "AUD_JPY",
-        "CAD_JPY",
-        "CHF_JPY",
-        "NZD_JPY",
-        "XAU_USD",
-        "XAG_USD",
-        "BCO_USD",
-        "WTICO_USD",
-        "SPX500_USD",
-        "NAS100_USD",
-        "US30_USD",
-        "UK100_GBP",
-        "DE30_EUR"
-      ],
-      "timeframe": "M1",
-      "direction": "long",
-      "conditions": {
-        "structure": "any",
-        "requireBOS": false,
-        "priceZone": "any",
-        "requireLiqSweep": false,
-        "obDir": "any",
-        "requireOB": false,
-        "requireOBTap": false,
-        "fvgDir": "any",
-        "requireFVG": false,
-        "requireFVGTap": false,
-        "requireOTE": false,
-        "candlePattern": "any",
-        "emaFilter": {
-          "enabled": false,
-          "period": 200,
-          "side": "above"
-        },
-        "vwapFilter": {
-          "enabled": false,
-          "side": "above"
-        },
-        "sessions": [],
-        "rsiFilter": {
-          "enabled": true,
-          "comparison": "above",
-          "value": 30
-        }
-      },
-      "risk": {
-        "riskType": "usdt",
-        "riskPercent": 1,
-        "riskUsdt": 1,
-        "slMethod": "swing",
-        "slAtr": 1.5,
-        "slPips": 20,
-        "tpMethod": "rr",
-        "rrRatio": 2,
-        "tpFibLevel": 1.618
-      }
     },
     {
       "id": "strat_1779840163544",
