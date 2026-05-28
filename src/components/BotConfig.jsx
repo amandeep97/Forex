@@ -931,7 +931,7 @@ export default function BotConfig({ autoExecute = false, onAutoTrade }) {
     if (!isGithubConfigured()) return;
     setLoading(true); setErr('');
     try {
-      const result = await ghRead('bot/strategy.json');
+      const result = await ghRead('bot/strategy.json', { noCache: true });
       if (result) { setConfig(result.content); setSha(result.sha); }
       else {
         // First time — create default
