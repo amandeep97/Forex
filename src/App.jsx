@@ -10,6 +10,10 @@ import COTTab from './components/COTTab';
 import MetalsDashboard from './components/MetalsDashboard';
 import CorrelationMatrix from './components/CorrelationMatrix';
 import AIAnalysis from './components/AIAnalysis';
+import CurrencyStrength from './components/CurrencyStrength';
+import VolatilityDashboard from './components/VolatilityDashboard';
+import SeasonalityChart from './components/SeasonalityChart';
+import LiquidityMap from './components/LiquidityMap';
 import { allInstruments } from './data/forexData';
 import './App.css';
 
@@ -23,6 +27,10 @@ const TABS = [
   { id: 'cot',         label: 'COT Report',   icon: '🏦' },
   { id: 'metals',      label: 'Metals',       icon: '⚜' },
   { id: 'correlation', label: 'Correlation',  icon: '⬡' },
+  { id: 'strength',    label: 'Strength',     icon: '💪' },
+  { id: 'volatility',  label: 'Volatility',   icon: '🌊' },
+  { id: 'seasonality', label: 'Seasonality',  icon: '📅' },
+  { id: 'liquidity',   label: 'Liquidity',    icon: '🏛' },
   { id: 'journal',     label: 'Journal',      icon: '📋' },
   { id: 'news',        label: 'News',         icon: '📰' },
 ];
@@ -206,6 +214,18 @@ export default function App() {
         </div>
         <div style={{ display: activeTab === 'correlation' ? 'flex' : 'none', flexDirection:'column', height:'calc(100vh - 120px)' }}>
           <CorrelationMatrix />
+        </div>
+        <div style={{ display: activeTab === 'strength' ? 'block' : 'none', overflowY:'auto', height:'calc(100vh - 120px)' }}>
+          <CurrencyStrength />
+        </div>
+        <div style={{ display: activeTab === 'volatility' ? 'block' : 'none', overflowY:'auto', height:'calc(100vh - 120px)' }}>
+          <VolatilityDashboard />
+        </div>
+        <div style={{ display: activeTab === 'seasonality' ? 'block' : 'none', overflowY:'auto', height:'calc(100vh - 120px)' }}>
+          <SeasonalityChart />
+        </div>
+        <div style={{ display: activeTab === 'liquidity' ? 'block' : 'none', overflowY:'auto', height:'calc(100vh - 120px)' }}>
+          <LiquidityMap />
         </div>
         <div style={{ display: activeTab === 'journal' ? 'block' : 'none', overflowY:'auto', height:'calc(100vh - 120px)' }}>
           <Journal />
