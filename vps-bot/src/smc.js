@@ -143,8 +143,8 @@ function getSwingLevels(candles, lookback = 20) {
   }
   const recentSwingHigh = recent[highIdx].h;
   // Swing low = lowest low AFTER the swing high (the retrace low)
-  const afterHigh = recent.slice(highIdx);
-  const recentSwingLow = Math.min(...afterHigh.map(c => c.l));
+  const beforeHigh = recent.slice(0, highIdx + 1);
+  const recentSwingLow = Math.min(...beforeHigh.map(c => c.l));
   return { recentSwingHigh, recentSwingLow };
 }
 
