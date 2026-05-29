@@ -96,7 +96,7 @@ function detectOrderBlocks(candles) {
     if (c.c > c.o && next.c < next.o && nn.c < c.o)
       obs.push({ type: 'bearish', top: c.c, bottom: c.o, high: c.h, low: c.l, idx: i });
   }
-  return obs.slice(-5);
+  return obs.slice(-10);
 }
 
 function detectFVGs(candles) {
@@ -110,7 +110,7 @@ function detectFVGs(candles) {
     if (c1.h < c3.l) fvgs.push({ type: 'bullish', top: c3.l, bottom: c1.h, idx: i + 1 });
     else              fvgs.push({ type: 'bearish', top: c1.l, bottom: c3.h, idx: i + 1 });
   }
-  return fvgs.slice(-6);
+  return fvgs.slice(-10);
 }
 
 function detectOTE(candles, fibLevels) {
@@ -153,28 +153,74 @@ function analyzeSMC(candles, opts = {}) {
   const { recentSwingHigh, recentSwingLow } = getSwingLevels(candles, 20);
   const cp          = candles[candles.length - 1].c;
 
-  const hasBullOB = obs.some(ob => ob.type === 'bullish' && cp >= ob.bottom && cp <= ob.top + atr);
-  const hasBearOB = obs.some(ob => ob.type === 'bearish' && cp <= ob.top   && cp >= ob.bottom - atr);
-  const hasBullFVG = fvgs.some(f => f.type === 'bullish' && cp >= f.bottom && cp <= f.top + atr);
-  const hasBearFVG = fvgs.some(f => f.type === 'bearish' && cp <= f.top   && cp >= f.bottom - atr);
+  // Midpoint of recent range — discount = below, premium = above
+  const midpoint = (recentSwingHigh + recentSwingLow) / 2;
+  const inDiscount = cp < midpoint;
+  const inPremium  = cp > midpoint;
+
+  // ── Correct ICT logic ────────────────────────────────────────────────────
+  // OB is valid only when:
+  //   1. Price is in the correct zone (discount for bull, premium for bear)
+  //   2. The OB itself is in that zone
+  //   3. Price is actually tapping INTO the OB (inside or within 0.3 ATR)
+  const activeBullOB = obs.find(ob =>
+    ob.type === 'bullish' &&
+    ob.top < midpoint &&                    // OB is in discount zone
+    cp >= ob.bottom &&                      // price above OB bottom
+    cp <= ob.top + atr * 0.3               // price tapping into OB
+  ) || null;
+
+  const activeBearOB = obs.find(ob =>
+    ob.type === 'bearish' &&
+    ob.bottom > midpoint &&                 // OB is in premium zone
+    cp <= ob.top &&                         // price below OB top
+    cp >= ob.bottom - atr * 0.3            // price tapping into OB
+  ) || null;
+
+  // FVG is valid only when price is actually inside the gap
+  const activeBullFVG = fvgs.find(f =>
+    f.type === 'bullish' &&
+    f.top < midpoint &&                     // FVG is in discount zone
+    cp >= f.bottom &&                       // price inside FVG
+    cp <= f.top
+  ) || null;
+
+  const activeBearFVG = fvgs.find(f =>
+    f.type === 'bearish' &&
+    f.bottom > midpoint &&                  // FVG is in premium zone
+    cp <= f.top &&                          // price inside FVG
+    cp >= f.bottom
+  ) || null;
+
+  const hasBullOB  = inDiscount && !!activeBullOB;
+  const hasBearOB  = inPremium  && !!activeBearOB;
+  const hasBullFVG = inDiscount && !!activeBullFVG;
+  const hasBearFVG = inPremium  && !!activeBearFVG;
 
   return {
     structure,
-    hasBOS:      bosResult.hasBOS,
-    hasCHoCH:    bosResult.hasCHoCH,
+    hasBOS:       bosResult.hasBOS,
+    hasCHoCH:     bosResult.hasCHoCH,
     bosDirection: bosResult.direction,
-    hasOB:       obs.length > 0,
+    hasOB:        obs.length > 0,
     hasBullOB,
     hasBearOB,
-    hasFVG:      fvgs.length > 0,
+    hasFVG:       fvgs.length > 0,
     hasBullFVG,
     hasBearFVG,
-    inOTEBull:   oteResult.bull,
-    inOTEBear:   oteResult.bear,
+    inOTEBull:    oteResult.bull,
+    inOTEBear:    oteResult.bear,
     rsi,
     atr,
     recentSwingHigh,
     recentSwingLow,
+    midpoint,
+    inDiscount,
+    inPremium,
+    activeBullOB,
+    activeBearOB,
+    activeBullFVG,
+    activeBearFVG,
     currentPrice: cp,
   };
 }

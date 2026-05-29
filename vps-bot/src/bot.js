@@ -47,7 +47,7 @@ class ForexBot {
     this.configSha = cfgFile.sha;
 
     const tFile = await this.github.readJSON(TRADES_PATH).catch(() => null);
-    const tradeLog = tFile?.content || { trades: [] };
+    const tradeLog = tFile?.content?.trades ? tFile.content : { trades: [] };
     this.tradesSha = tFile?.sha || null;
 
     const [account, openTrades] = await Promise.all([
@@ -129,16 +129,23 @@ class ForexBot {
     const dir = this._resolveDirection(direction, smc);
     if (!dir) { this.log(`${pair}: direction mismatch`); return false; }
 
+    // Price zone check — discount for longs, premium for shorts
+    const zoneRequired = conditions.priceZone || 'any';
+    const zoneOk = zoneRequired === 'any' ||
+      (zoneRequired === 'discount' && smc.inDiscount) ||
+      (zoneRequired === 'premium'  && smc.inPremium);
+
     const pass = {
-      structure:    !conditions.structure || conditions.structure === 'any' || smc.structure === conditions.structure,
-      bos:          !conditions.requireBOS || smc.hasBOS,
-      ob:           !conditions.requireOB  || (dir === 'long' ? smc.hasBullOB : smc.hasBearOB),
-      fvg:          !conditions.requireFVG || (dir === 'long' ? smc.hasBullFVG : smc.hasBearFVG),
-      ote:          !conditions.requireOTE || (dir === 'long' ? smc.inOTEBull  : smc.inOTEBear),
-      rsi:          !conditions.rsiFilter?.enabled || this._checkRSI(smc.rsi, conditions.rsiFilter),
-      ratio:        !conditions.ratioFilter?.enabled,
-      intermarket:  true,
-      cot:          true,
+      structure:  !conditions.structure || conditions.structure === 'any' || smc.structure === conditions.structure,
+      priceZone:  zoneOk,
+      bos:        !conditions.requireBOS || smc.hasBOS,
+      ob:         !conditions.requireOB  || (dir === 'long' ? smc.hasBullOB : smc.hasBearOB),
+      fvg:        !conditions.requireFVG || (dir === 'long' ? smc.hasBullFVG : smc.hasBearFVG),
+      ote:        !conditions.requireOTE || (dir === 'long' ? smc.inOTEBull  : smc.inOTEBear),
+      rsi:        !conditions.rsiFilter?.enabled || this._checkRSI(smc.rsi, conditions.rsiFilter),
+      ratio:      !conditions.ratioFilter?.enabled,
+      intermarket: true,
+      cot:        true,
     };
 
     if (conditions.ratioFilter?.enabled) {
@@ -150,7 +157,6 @@ class ForexBot {
     }
 
     if (conditions.cotFilter?.enabled) {
-      // Refresh COT data at most once per 6 hours
       const now = Date.now();
       if (!this.cotData || now - this.cotFetchedAt > 6 * 3600 * 1000) {
         this.log('Fetching COT data from CFTC…');
@@ -172,7 +178,14 @@ class ForexBot {
     const sl  = this._calcSL(dir, cp, smc, risk, pip);
     const tp  = this._calcTP(dir, cp, sl, risk, pip);
 
+    // Guard: reject if SL is too wide (protects against bad swing detection)
     const slPips = Math.abs(cp - sl) / pip;
+    const maxSlPips = risk.maxSlPips || 80;
+    if (slPips > maxSlPips) {
+      this.log(`${pair}: SL too wide (${slPips.toFixed(0)} pips > max ${maxSlPips}) — skip`);
+      return false;
+    }
+
     const tpPips = Math.abs(tp - cp) / pip;
     const rr     = +(tpPips / slPips).toFixed(2);
 
@@ -260,7 +273,6 @@ class ForexBot {
       const ratioNow  = xau[n - 1].c / xag[n - 1].c;
       const ratioPrev = xau[n - 6].c / xag[n - 6].c;
       const falling   = ratioNow < ratioPrev;
-      // falling ratio = XAG rising faster = metals bullish → favour longs
       return dir === 'long' ? falling : !falling;
     } catch (e) {
       this.warn(`Ratio filter: ${e.message}`);
@@ -278,9 +290,19 @@ class ForexBot {
     const method = risk.slMethod || 'atr';
     if (method === 'swing') {
       const buf = pip * 3;
-      return dir === 'long'
-        ? smc.recentSwingLow  - buf
-        : smc.recentSwingHigh + buf;
+      if (dir === 'long') {
+        // Use the active OB bottom as SL reference — tight and logical
+        const obBottom = smc.activeBullOB?.bottom ?? smc.activeBullFVG?.bottom ?? null;
+        if (obBottom != null) return obBottom - buf;
+        // Fallback: recent swing low only if within 50 pips
+        const swingDist = Math.abs(cp - smc.recentSwingLow) / pip;
+        return swingDist <= 50 ? smc.recentSwingLow - buf : cp - 30 * pip;
+      } else {
+        const obTop = smc.activeBearOB?.top ?? smc.activeBearFVG?.top ?? null;
+        if (obTop != null) return obTop + buf;
+        const swingDist = Math.abs(smc.recentSwingHigh - cp) / pip;
+        return swingDist <= 50 ? smc.recentSwingHigh + buf : cp + 30 * pip;
+      }
     }
     if (method === 'fixed') {
       const pips = risk.slPips || 20;
@@ -301,7 +323,6 @@ class ForexBot {
       const pips = risk.tpPips || 40;
       return dir === 'long' ? cp + pips * pip : cp - pips * pip;
     }
-    // Support tpFibLevels (free-text comma-separated) or legacy tpFibLevel (number)
     let ext = risk.tpFibLevel || 1.618;
     if (risk.tpFibLevels) {
       const parsed = String(risk.tpFibLevels).split(',').map(v => parseFloat(v.trim())).filter(v => !isNaN(v));
@@ -358,13 +379,11 @@ class ForexBot {
     for (const rec of tradeLog.trades) {
       if (!rec.oandaId) continue;
 
-      // Process: open trades no longer in OANDA, OR closed trades missing P&L
-      const isOpenGone      = rec.status === 'open'   && !openIds.has(rec.oandaId);
-      const isClosedNoPnl   = rec.status === 'closed' && rec.pnlUsd == null;
+      const isOpenGone    = rec.status === 'open'   && !openIds.has(rec.oandaId);
+      const isClosedNoPnl = rec.status === 'closed' && rec.pnlUsd == null;
       if (!isOpenGone && !isClosedNoPnl) continue;
 
       try {
-        // For open trades: double-check it's really gone
         if (isOpenGone) {
           const live = await this.oanda.getOpenTrades().catch(() => []);
           if (live.some(t => t.id === rec.oandaId)) continue;
