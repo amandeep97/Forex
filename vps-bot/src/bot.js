@@ -290,19 +290,9 @@ class ForexBot {
     const method = risk.slMethod || 'atr';
     if (method === 'swing') {
       const buf = pip * 3;
-      if (dir === 'long') {
-        // Use the active OB bottom as SL reference — tight and logical
-        const obBottom = smc.activeBullOB?.bottom ?? smc.activeBullFVG?.bottom ?? null;
-        if (obBottom != null) return obBottom - buf;
-        // Fallback: recent swing low only if within 50 pips
-        const swingDist = Math.abs(cp - smc.recentSwingLow) / pip;
-        return swingDist <= 50 ? smc.recentSwingLow - buf : cp - 30 * pip;
-      } else {
-        const obTop = smc.activeBearOB?.top ?? smc.activeBearFVG?.top ?? null;
-        if (obTop != null) return obTop + buf;
-        const swingDist = Math.abs(smc.recentSwingHigh - cp) / pip;
-        return swingDist <= 50 ? smc.recentSwingHigh + buf : cp + 30 * pip;
-      }
+      return dir === 'long'
+        ? smc.recentSwingLow  - buf
+        : smc.recentSwingHigh + buf;
     }
     if (method === 'fixed') {
       const pips = risk.slPips || 20;

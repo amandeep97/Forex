@@ -136,10 +136,16 @@ function detectOTE(candles, fibLevels) {
 
 function getSwingLevels(candles, lookback = 20) {
   const recent = candles.slice(-lookback);
-  return {
-    recentSwingHigh: Math.max(...recent.map(c => c.h)),
-    recentSwingLow:  Math.min(...recent.map(c => c.l)),
-  };
+  // Find the most recent swing high (highest high in the window)
+  let highIdx = 0;
+  for (let i = 1; i < recent.length; i++) {
+    if (recent[i].h > recent[highIdx].h) highIdx = i;
+  }
+  const recentSwingHigh = recent[highIdx].h;
+  // Swing low = lowest low AFTER the swing high (the retrace low)
+  const afterHigh = recent.slice(highIdx);
+  const recentSwingLow = Math.min(...afterHigh.map(c => c.l));
+  return { recentSwingHigh, recentSwingLow };
 }
 
 function analyzeSMC(candles, opts = {}) {
