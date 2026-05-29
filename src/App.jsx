@@ -179,10 +179,8 @@ export default function App() {
 
       </header>
 
-
       {/* ── Content ───────────────────────────────────────────────────────── */}
       <main className="app-main">
-        {/* Keep both mounted (hidden) so state is preserved on tab switch */}
         <div style={{ display: activeTab === 'ai' ? 'flex' : 'none', flexDirection:'column', height:'calc(100vh - 120px)' }}>
           <AIAnalysis />
         </div>

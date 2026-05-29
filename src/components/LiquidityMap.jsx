@@ -282,98 +282,79 @@ export default function LiquidityMap() {
           )}
 
           {levels && inst && currentPrice && (
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 340px', gap: 16, maxWidth: 1100 }}>
-              {/* Price Ladder */}
-              <div style={{ background: '#161b22', border: '1px solid #30363d', borderRadius: 10, overflow: 'hidden' }}>
-                <div style={{ padding: '12px 16px', borderBottom: '1px solid #30363d' }}>
+            <div style={{ maxWidth: 600 }}>
+              {/* Price Ladder — single column, levels above, current price, levels below */}
+              <div style={{ background: '#161b22', border: '1px solid #30363d', borderRadius: 10, overflow: 'hidden', marginBottom: 12 }}>
+                <div style={{ padding: '10px 14px', borderBottom: '1px solid #30363d', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                   <span style={{ fontSize: 12, fontWeight: 700, color: '#8b949e', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                    Price Ladder — {inst.label}
+                    Key Levels — {inst.label}
                   </span>
-                </div>
-                <div>
-                  {levels.map((lvl, i) => {
-                    const isAbove = lvl.above;
-                    const tc = TYPE_COLORS[lvl.type] || { color: '#8b949e', bg: '#8b949e18', label: '?' };
-                    return (
-                      <div key={i} style={{
-                        display: 'flex', alignItems: 'center', gap: 10,
-                        padding: '9px 16px',
-                        borderBottom: '1px solid #30363d22',
-                        background: 'transparent',
-                      }}>
-                        <span style={{
-                          fontFamily: 'monospace', fontWeight: 700, fontSize: 14,
-                          color: isAbove ? '#3fb950' : '#f85149', minWidth: 80,
-                        }}>
-                          {formatPrice(lvl.price, inst.pipSize)}
-                        </span>
-                        <span style={{
-                          fontSize: 10, fontWeight: 700, padding: '2px 6px', borderRadius: 4,
-                          color: tc.color, background: tc.bg, border: `1px solid ${tc.color}44`,
-                          minWidth: 36, textAlign: 'center',
-                        }}>
-                          {tc.label}
-                        </span>
-                        <span style={{ fontSize: 13, color: '#8b949e', flex: 1 }}>
-                          {lvl.type}
-                        </span>
-                        <span style={{ fontSize: 12, fontFamily: 'monospace', color: isAbove ? '#3fb950' : '#f85149', minWidth: 70, textAlign: 'right' }}>
-                          {isAbove ? '+' : ''}{lvl.distPips} pips
-                        </span>
-                      </div>
-                    );
-                  })}
-
-                  {/* Current price row */}
-                  <div style={{
-                    display: 'flex', alignItems: 'center', gap: 10,
-                    padding: '11px 16px',
-                    background: '#1f6feb22', border: '1px solid #1f6feb55',
-                    margin: '0 8px',
-                    borderRadius: 6,
-                  }}>
-                    <span style={{ fontFamily: 'monospace', fontWeight: 700, fontSize: 15, color: '#58a6ff', minWidth: 80 }}>
-                      {formatPrice(currentPrice, inst.pipSize)}
-                    </span>
-                    <span style={{ fontSize: 12, fontWeight: 700, color: '#58a6ff' }}>
-                      ← CURRENT PRICE
-                    </span>
+                  <div style={{ display: 'flex', gap: 8 }}>
+                    {[['#58a6ff','W'], ['#a371f7','M'], ['#d29922','RND'], ['#bc8cff','LIQ']].map(([c,l]) => (
+                      <span key={l} style={{ fontSize: 10, fontWeight: 700, color: c, padding: '1px 5px', borderRadius: 3, background: `${c}18`, border: `1px solid ${c}44` }}>{l}</span>
+                    ))}
                   </div>
                 </div>
+
+                {/* Levels above current price */}
+                {levels.filter(l => l.above).reverse().map((lvl, i) => {
+                  const tc = TYPE_COLORS[lvl.type] || { color: '#8b949e', bg: '#8b949e18', label: '?' };
+                  return (
+                    <div key={`a${i}`} style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '8px 14px', borderBottom: '1px solid #30363d22' }}>
+                      <span style={{ fontFamily: 'monospace', fontWeight: 700, fontSize: 13, color: '#3fb950', minWidth: 75 }}>
+                        {formatPrice(lvl.price, inst.pipSize)}
+                      </span>
+                      <span style={{ fontSize: 10, fontWeight: 700, padding: '2px 5px', borderRadius: 3, color: tc.color, background: tc.bg, border: `1px solid ${tc.color}44`, minWidth: 34, textAlign: 'center' }}>
+                        {tc.label}
+                      </span>
+                      <span style={{ fontSize: 12, color: '#8b949e', flex: 1 }}>{lvl.type}</span>
+                      <span style={{ fontSize: 11, fontFamily: 'monospace', color: '#3fb950' }}>+{lvl.distPips}p</span>
+                    </div>
+                  );
+                })}
+
+                {/* Current price row */}
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '10px 14px', background: '#1f6feb18', borderTop: '1px solid #1f6feb44', borderBottom: '1px solid #1f6feb44' }}>
+                  <span style={{ fontFamily: 'monospace', fontWeight: 800, fontSize: 15, color: '#58a6ff', minWidth: 75 }}>
+                    {formatPrice(currentPrice, inst.pipSize)}
+                  </span>
+                  <span style={{ fontSize: 11, fontWeight: 700, color: '#58a6ff', padding: '2px 8px', borderRadius: 3, background: '#1f6feb33', border: '1px solid #1f6feb66' }}>
+                    PRICE
+                  </span>
+                  <span style={{ fontSize: 11, color: '#58a6ff', marginLeft: 4 }}>← current</span>
+                </div>
+
+                {/* Levels below current price */}
+                {levels.filter(l => !l.above).map((lvl, i) => {
+                  const tc = TYPE_COLORS[lvl.type] || { color: '#8b949e', bg: '#8b949e18', label: '?' };
+                  return (
+                    <div key={`b${i}`} style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '8px 14px', borderBottom: '1px solid #30363d22' }}>
+                      <span style={{ fontFamily: 'monospace', fontWeight: 700, fontSize: 13, color: '#f85149', minWidth: 75 }}>
+                        {formatPrice(lvl.price, inst.pipSize)}
+                      </span>
+                      <span style={{ fontSize: 10, fontWeight: 700, padding: '2px 5px', borderRadius: 3, color: tc.color, background: tc.bg, border: `1px solid ${tc.color}44`, minWidth: 34, textAlign: 'center' }}>
+                        {tc.label}
+                      </span>
+                      <span style={{ fontSize: 12, color: '#8b949e', flex: 1 }}>{lvl.type}</span>
+                      <span style={{ fontSize: 11, fontFamily: 'monospace', color: '#f85149' }}>{lvl.distPips}p</span>
+                    </div>
+                  );
+                })}
               </div>
 
-              {/* Institutional Notes Panel */}
-              <div>
-                <div style={{ background: '#161b22', border: '1px solid #30363d', borderRadius: 10, padding: '16px', marginBottom: 12 }}>
-                  <div style={{ fontSize: 12, fontWeight: 700, color: '#8b949e', marginBottom: 12, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                    Level Types
+              {/* Legend — compact row at bottom */}
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+                {[
+                  { color: '#58a6ff', label: 'W = Weekly Pivot' },
+                  { color: '#a371f7', label: 'M = Monthly Pivot' },
+                  { color: '#d29922', label: 'RND = Round Number' },
+                  { color: '#bc8cff', label: 'LIQ = Equal Highs/Lows (stop cluster)' },
+                ].map(item => (
+                  <div key={item.label} style={{ display: 'flex', alignItems: 'center', gap: 5, background: '#161b22', border: '1px solid #30363d', borderRadius: 6, padding: '5px 10px' }}>
+                    <div style={{ width: 8, height: 8, borderRadius: 2, background: item.color, flexShrink: 0 }} />
+                    <span style={{ fontSize: 11, color: '#8b949e' }}>{item.label}</span>
                   </div>
-                  {[
-                    { color: '#58a6ff', label: 'Weekly Pivots', desc: 'Calculated from last completed week\'s H/L/C. PP = (H+L+C)/3. Major R/S levels used by institutions.' },
-                    { color: '#a371f7', label: 'Monthly Pivots', desc: 'Same formula using last month\'s data. Longer-term institutional reference levels.' },
-                    { color: '#d29922', label: 'Round Numbers', desc: 'Banks and algorithms cluster orders at round price levels (0.0050 / 0.0100 increments). Strong S/R zones.' },
-                    { color: '#bc8cff', label: 'Equal Highs/Lows', desc: 'Multiple candles touching same price = liquidity pool. Institutions hunt these stops. Expect breakout or reversal.' },
-                  ].map(item => (
-                    <div key={item.label} style={{ marginBottom: 12, paddingBottom: 12, borderBottom: '1px solid #30363d22' }}>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 4 }}>
-                        <div style={{ width: 10, height: 10, borderRadius: 2, background: item.color }} />
-                        <span style={{ fontSize: 12, fontWeight: 700, color: '#e6edf3' }}>{item.label}</span>
-                      </div>
-                      <p style={{ fontSize: 11, color: '#8b949e', margin: 0, lineHeight: 1.6 }}>{item.desc}</p>
-                    </div>
-                  ))}
-                </div>
-
-                <div style={{ background: '#161b22', border: '1px solid #30363d', borderRadius: 10, padding: '14px 16px' }}>
-                  <div style={{ fontSize: 12, fontWeight: 700, color: '#8b949e', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                    Note
-                  </div>
-                  <p style={{ fontSize: 11, color: '#8b949e', margin: 0, lineHeight: 1.6 }}>
-                    True CME options data requires a paid subscription. These levels are algorithmic proxies
-                    that institutional traders actively watch. Use confluence of multiple level types for
-                    highest probability entries.
-                  </p>
-                </div>
+                ))}
               </div>
             </div>
           )}
