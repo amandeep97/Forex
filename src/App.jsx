@@ -14,11 +14,13 @@ import CurrencyStrength from './components/CurrencyStrength';
 import VolatilityDashboard from './components/VolatilityDashboard';
 import SeasonalityChart from './components/SeasonalityChart';
 import LiquidityMap from './components/LiquidityMap';
+import TradeDashboard from './components/TradeDashboard';
 import { allInstruments } from './data/forexData';
 import './App.css';
 
 const TABS = [
   { id: 'ai',          label: 'AI',           icon: '🤖' },
+  { id: 'dashboard',   label: 'Dashboard',    icon: '🎯' },
   { id: 'screener',    label: 'Screener',     icon: '⊞' },
   { id: 'watchlist',   label: 'Watchlist',    icon: '★' },
   { id: 'autotrading', label: 'Auto Trading', icon: '⚡' },
@@ -183,6 +185,9 @@ export default function App() {
       <main className="app-main">
         <div style={{ display: activeTab === 'ai' ? 'flex' : 'none', flexDirection:'column', height:'calc(100vh - 120px)' }}>
           <AIAnalysis />
+        </div>
+        <div style={{ display: activeTab === 'dashboard' ? 'block' : 'none', overflowY:'auto', height:'calc(100vh - 120px)' }}>
+          <TradeDashboard />
         </div>
         <div style={{ display: activeTab === 'screener' ? 'block' : 'none' }}>
           <Screener />
