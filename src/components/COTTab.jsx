@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react';
 
-const WEEKS = 104; // 2 years of history
+const WEEKS = 104; // 2 years
 
-// CFTC contract codes
 const COT_MARKETS = [
   { key:'EUR', label:'EUR/USD', code:'099741', color:'#3b82f6', invert:false, type:'tff'   },
   { key:'GBP', label:'GBP/USD', code:'096742', color:'#8b5cf6', invert:false, type:'tff'   },
@@ -15,8 +14,15 @@ const COT_MARKETS = [
   { key:'XAG', label:'Silver',  code:'084691', color:'#94a3b8', invert:false, type:'disag' },
 ];
 
-// ── Data fetching ─────────────────────────────────────────────────────────────
+// ── Legacy API (non-commercial) — used for original card display ──────────────
+async function fetchLegacy(code) {
+  const url = `https://publicreporting.cftc.gov/resource/jun7-fc8e.json?cftc_contract_market_code=${code}&$order=report_date_as_yyyy_mm_dd%20DESC&$limit=${WEEKS}`;
+  const res = await fetch(url, { signal: AbortSignal.timeout(25000) });
+  if (!res.ok) throw new Error(`Legacy ${res.status}`);
+  return res.json();
+}
 
+// ── TFF API (4 categories) — for FX pairs ────────────────────────────────────
 async function fetchTFF(code) {
   const url = `https://publicreporting.cftc.gov/resource/gpe5-46if.json?cftc_contract_market_code=${code}&$order=report_date_as_yyyy_mm_dd%20DESC&$limit=${WEEKS}`;
   const res = await fetch(url, { signal: AbortSignal.timeout(25000) });
@@ -24,6 +30,7 @@ async function fetchTFF(code) {
   return res.json();
 }
 
+// ── Disaggregated API (4 categories) — for metals ────────────────────────────
 async function fetchDisag(code) {
   const url = `https://publicreporting.cftc.gov/resource/6ddc-gi25.json?cftc_contract_market_code=${code}&$order=report_date_as_yyyy_mm_dd%20DESC&$limit=${WEEKS}`;
   const res = await fetch(url, { signal: AbortSignal.timeout(25000) });
@@ -32,336 +39,336 @@ async function fetchDisag(code) {
 }
 
 function n(v) { return +v || 0; }
+const s = (invert, val) => invert ? -val : val;
+
+function parseLegacy(rows, invert) {
+  return rows.map(r => ({
+    date:  (r.report_date_as_yyyy_mm_dd || '').slice(0, 10),
+    long:  n(r.noncomm_positions_long_all),
+    short: n(r.noncomm_positions_short_all),
+    oi:    n(r.open_interest_all),
+    net:   s(invert, n(r.noncomm_positions_long_all) - n(r.noncomm_positions_short_all)),
+  }));
+}
 
 function parseTFF(rows, invert) {
-  const s = invert ? -1 : 1;
   return rows.map(r => ({
-    date:       (r.report_date_as_yyyy_mm_dd || '').slice(0, 10),
-    oi:          n(r.open_interest_all),
-    leveraged: { long: n(r.lev_money_positions_long_all  || r.lev_money_positions_long),
-                 short: n(r.lev_money_positions_short_all || r.lev_money_positions_short),
-                 net:   s * (n(r.lev_money_positions_long_all  || r.lev_money_positions_long)
-                           - n(r.lev_money_positions_short_all || r.lev_money_positions_short)) },
-    assetMgr:  { long: n(r.asset_mgr_positions_long_all  || r.asset_mgr_positions_long),
-                 short: n(r.asset_mgr_positions_short_all || r.asset_mgr_positions_short),
-                 net:   s * (n(r.asset_mgr_positions_long_all  || r.asset_mgr_positions_long)
-                           - n(r.asset_mgr_positions_short_all || r.asset_mgr_positions_short)) },
-    dealer:    { long: n(r.dealer_positions_long_all),
-                 short: n(r.dealer_positions_short_all),
-                 net:   s * (n(r.dealer_positions_long_all) - n(r.dealer_positions_short_all)) },
-    smallSpec: { long: n(r.nonrept_positions_long_all),
-                 short: n(r.nonrept_positions_short_all),
-                 net:   s * (n(r.nonrept_positions_long_all) - n(r.nonrept_positions_short_all)) },
+    date: (r.report_date_as_yyyy_mm_dd || '').slice(0, 10),
+    leveraged: s(invert, n(r.lev_money_positions_long_all   || r.lev_money_positions_long)
+                        - n(r.lev_money_positions_short_all  || r.lev_money_positions_short)),
+    assetMgr:  s(invert, n(r.asset_mgr_positions_long_all   || r.asset_mgr_positions_long)
+                        - n(r.asset_mgr_positions_short_all  || r.asset_mgr_positions_short)),
+    dealer:    s(invert, n(r.dealer_positions_long_all)      - n(r.dealer_positions_short_all)),
+    smallSpec: s(invert, n(r.nonrept_positions_long_all)     - n(r.nonrept_positions_short_all)),
   }));
 }
 
 function parseDisag(rows, invert) {
-  const s = invert ? -1 : 1;
   return rows.map(r => ({
-    date:       (r.report_date_as_yyyy_mm_dd || '').slice(0, 10),
-    oi:          n(r.open_interest_all),
-    leveraged: { long: n(r.m_money_positions_long_all),
-                 short: n(r.m_money_positions_short_all),
-                 net:   s * (n(r.m_money_positions_long_all) - n(r.m_money_positions_short_all)) },
-    assetMgr:  { long: n(r.prod_merc_positions_long_all),
-                 short: n(r.prod_merc_positions_short_all),
-                 net:   s * (n(r.prod_merc_positions_long_all) - n(r.prod_merc_positions_short_all)) },
-    dealer:    { long: n(r.swap_positions_long_all),
-                 short: n(r['swap__positions_short_all'] || r.swap_positions_short_all),
-                 net:   s * (n(r.swap_positions_long_all)
-                           - n(r['swap__positions_short_all'] || r.swap_positions_short_all)) },
-    smallSpec: { long: n(r.nonrept_positions_long_all),
-                 short: n(r.nonrept_positions_short_all),
-                 net:   s * (n(r.nonrept_positions_long_all) - n(r.nonrept_positions_short_all)) },
+    date: (r.report_date_as_yyyy_mm_dd || '').slice(0, 10),
+    leveraged: s(invert, n(r.m_money_positions_long_all)        - n(r.m_money_positions_short_all)),
+    assetMgr:  s(invert, n(r.prod_merc_positions_long_all)      - n(r.prod_merc_positions_short_all)),
+    dealer:    s(invert, n(r.swap_positions_long_all)            - n(r['swap__positions_short_all'] || r.swap_positions_short_all)),
+    smallSpec: s(invert, n(r.nonrept_positions_long_all)        - n(r.nonrept_positions_short_all)),
   }));
 }
 
-// ── Crowded signal (percentile over full history) ─────────────────────────────
-
-function getCrowded(arr) {
-  if (arr.length < 8) return null;
-  const nets = arr.map(d => d.leveraged.net);
-  const current = nets[0];
-  const min = Math.min(...nets), max = Math.max(...nets);
+// ── Crowded signal: percentile over full history ──────────────────────────────
+function getCrowded(legacyArr) {
+  if (legacyArr.length < 10) return null;
+  const nets = legacyArr.map(d => d.net);
+  const cur = nets[0], min = Math.min(...nets), max = Math.max(...nets);
   const range = max - min;
   if (range === 0) return null;
-  const pct = (current - min) / range;
-  if (pct >= 0.8) return { type: 'CROWDED LONG',  color: '#f85149', bg: '#f8514920',
-    desc: 'Hedge funds extremely net long — contrarian SHORT bias' };
-  if (pct <= 0.2) return { type: 'CROWDED SHORT', color: '#3fb950', bg: '#3fb95020',
-    desc: 'Hedge funds extremely net short — contrarian LONG bias' };
+  const pct = (cur - min) / range;
+  if (pct >= 0.8) return { type:'CROWDED LONG',  color:'#f85149', bg:'#f8514920',
+    desc:'Hedge funds extremely net long — contrarian SHORT bias' };
+  if (pct <= 0.2) return { type:'CROWDED SHORT', color:'#3fb950', bg:'#3fb95020',
+    desc:'Hedge funds extremely net short — contrarian LONG bias' };
   return null;
 }
 
-// ── Chart component (full history line chart) ─────────────────────────────────
-
+// ── History line chart (full 2-year sparkline) ────────────────────────────────
 function HistoryChart({ arr, color }) {
   if (!arr || arr.length < 4) return null;
-  const vals  = [...arr].reverse().map(d => d.leveraged.net);
+  const vals  = [...arr].reverse().map(d => d.net);
   const dates = [...arr].reverse().map(d => d.date);
-  const W = 320, H = 72;
+  const W = 300, H = 60;
   const minV = Math.min(...vals, 0), maxV = Math.max(...vals, 0);
   const range = maxV - minV || 1;
-  const toX = i  => (i / (vals.length - 1)) * W;
-  const toY = v  => H - 4 - ((v - minV) / range) * (H - 8);
+  const toX = i => (i / (vals.length - 1)) * W;
+  const toY = v => H - 4 - ((v - minV) / range) * (H - 8);
   const zeroY = toY(0);
-
   const pts = vals.map((v, i) => `${toX(i).toFixed(1)},${toY(v).toFixed(1)}`).join(' ');
-  const areaAbove = `M${toX(0)},${zeroY} ` +
-    vals.map((v, i) => `L${toX(i).toFixed(1)},${Math.min(toY(v), zeroY).toFixed(1)}`).join(' ') +
-    ` L${toX(vals.length-1)},${zeroY} Z`;
-  const areaBelow = `M${toX(0)},${zeroY} ` +
-    vals.map((v, i) => `L${toX(i).toFixed(1)},${Math.max(toY(v), zeroY).toFixed(1)}`).join(' ') +
-    ` L${toX(vals.length-1)},${zeroY} Z`;
-
   const last = vals[vals.length - 1];
-  const lastColor = last >= 0 ? '#3fb950' : '#f85149';
-
-  // Tick labels: first, middle, last date
-  const ticks = [
-    { i: 0, label: dates[0]?.slice(0, 7) },
-    { i: Math.floor(vals.length / 2), label: dates[Math.floor(vals.length / 2)]?.slice(0, 7) },
-    { i: vals.length - 1, label: dates[vals.length - 1]?.slice(0, 7) },
-  ];
-
+  const lc = last >= 0 ? '#22c55e' : '#ef4444';
+  const ticks = [0, Math.floor(vals.length / 2), vals.length - 1];
   return (
-    <svg width="100%" viewBox={`0 0 ${W} ${H + 14}`} style={{ display: 'block', overflow: 'visible' }}>
-      <path d={areaAbove} fill="#3fb950" opacity="0.12" />
-      <path d={areaBelow} fill="#f85149" opacity="0.12" />
-      <line x1={0} y1={zeroY} x2={W} y2={zeroY} stroke="#30363d" strokeWidth="1" strokeDasharray="3,3" />
-      <polyline points={pts} fill="none" stroke={lastColor} strokeWidth="1.8" strokeLinejoin="round" />
-      <circle cx={toX(vals.length - 1)} cy={toY(last)} r="3" fill={lastColor} />
-      {ticks.map(t => (
-        <text key={t.i} x={toX(t.i)} y={H + 12} textAnchor={t.i === 0 ? 'start' : t.i === vals.length - 1 ? 'end' : 'middle'}
-          fontSize="8" fill="#484f58">{t.label}</text>
+    <svg width="100%" viewBox={`0 0 ${W} ${H + 14}`} style={{ display:'block' }}>
+      <line x1={0} y1={zeroY} x2={W} y2={zeroY} stroke="#30363d" strokeWidth="1" strokeDasharray="3,2"/>
+      <polyline points={pts} fill="none" stroke={lc} strokeWidth="1.5" strokeLinejoin="round"/>
+      <circle cx={toX(vals.length-1)} cy={toY(last)} r="2.5" fill={lc}/>
+      {ticks.map(i => (
+        <text key={i} x={toX(i)} y={H+12}
+          textAnchor={i===0?'start':i===vals.length-1?'end':'middle'}
+          fontSize="7" fill="#484f58">{dates[i]?.slice(0,7)}</text>
       ))}
     </svg>
   );
 }
 
-// ── Category bar row ───────────────────────────────────────────────────────────
-
-function CatRow({ label, curr, prev, maxAbs }) {
-  if (!curr) return null;
-  const wow   = prev ? curr.net - prev.net : null;
-  const bull  = curr.net >= 0;
-  const barW  = maxAbs > 0 ? Math.min(100, (Math.abs(curr.net) / maxAbs) * 100) : 0;
+// ── Category row (new addition) ───────────────────────────────────────────────
+function CatRow({ label, net, prevNet, maxAbs }) {
+  if (net === undefined) return null;
+  const wow  = prevNet !== undefined ? net - prevNet : null;
+  const bull = net >= 0;
+  const barW = maxAbs > 0 ? Math.min(100, (Math.abs(net) / maxAbs) * 100) : 0;
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: '110px 1fr', alignItems: 'center', gap: 8, marginBottom: 7 }}>
-      <div style={{ fontSize: 11, color: '#8b949e' }}>{label}</div>
-      <div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 3 }}>
-          <span style={{ fontFamily: 'monospace', fontSize: 12, fontWeight: 700,
-            color: bull ? '#3fb950' : '#f85149', minWidth: 72 }}>
-            {curr.net >= 0 ? '+' : ''}{curr.net.toLocaleString()}
-          </span>
-          {wow !== null && (
-            <span style={{ fontSize: 10, color: wow > 0 ? '#3fb950' : wow < 0 ? '#f85149' : '#8b949e',
-              fontFamily: 'monospace', minWidth: 70 }}>
-              {wow >= 0 ? '+' : ''}{wow.toLocaleString()} WoW
-            </span>
-          )}
-        </div>
-        <div style={{ height: 5, background: '#21262d', borderRadius: 3, overflow: 'hidden' }}>
-          <div style={{ width: `${barW}%`, height: '100%', background: bull ? '#3fb950' : '#f85149',
-            borderRadius: 3, transition: 'width 0.4s' }} />
-        </div>
+    <div style={{ display:'flex', alignItems:'center', gap:6, marginBottom:5 }}>
+      <span style={{ fontSize:10, color:'#8b949e', minWidth:90, flexShrink:0 }}>{label}</span>
+      <span style={{ fontFamily:'monospace', fontSize:11, fontWeight:700,
+        color:bull?'#22c55e':'#ef4444', minWidth:68, flexShrink:0 }}>
+        {net>=0?'+':''}{net.toLocaleString()}
+      </span>
+      {wow !== null && (
+        <span style={{ fontSize:9, fontFamily:'monospace', minWidth:60, flexShrink:0,
+          color:wow>0?'#22c55e':wow<0?'#ef4444':'#8b949e' }}>
+          {wow>=0?'+':''}{wow.toLocaleString()} WoW
+        </span>
+      )}
+      <div style={{ flex:1, height:4, background:'#21262d', borderRadius:2, overflow:'hidden' }}>
+        <div style={{ width:`${barW}%`, height:'100%', background:bull?'#22c55e':'#ef4444', borderRadius:2 }}/>
       </div>
     </div>
   );
 }
 
-// ── Main component ─────────────────────────────────────────────────────────────
-
+// ── Main ──────────────────────────────────────────────────────────────────────
 export default function COTTab() {
-  const [data,    setData]    = useState({});
-  const [loading, setLoading] = useState(true);
-  const [err,     setErr]     = useState('');
-  const [view,    setView]    = useState('cards');
+  const [legacy,   setLegacy]   = useState({});
+  const [cats,     setCats]     = useState({});
+  const [loading,  setLoading]  = useState(true);
+  const [err,      setErr]      = useState('');
+  const [view,     setView]     = useState('cards');
   const [expanded, setExpanded] = useState({});
 
   useEffect(() => {
     setLoading(true); setErr('');
     let cancelled = false;
-    Promise.allSettled(
-      COT_MARKETS.map(async m => {
-        const rows = m.type === 'tff' ? await fetchTFF(m.code) : await fetchDisag(m.code);
-        const arr  = m.type === 'tff' ? parseTFF(rows, m.invert) : parseDisag(rows, m.invert);
-        return { key: m.key, arr };
-      })
-    ).then(results => {
+
+    Promise.allSettled([
+      // Fetch 1: legacy non-commercial data (original display)
+      Promise.allSettled(COT_MARKETS.map(async m => {
+        const rows = await fetchLegacy(m.code);
+        return { key: m.key, arr: parseLegacy(rows, m.invert) };
+      })),
+      // Fetch 2: 4-category data (new addition)
+      Promise.allSettled(COT_MARKETS.map(async m => {
+        try {
+          const rows = m.type === 'tff' ? await fetchTFF(m.code) : await fetchDisag(m.code);
+          return { key: m.key, arr: m.type === 'tff' ? parseTFF(rows, m.invert) : parseDisag(rows, m.invert) };
+        } catch { return { key: m.key, arr: [] }; }
+      })),
+    ]).then(([legacyRes, catsRes]) => {
       if (cancelled) return;
-      const map = {};
-      results.forEach(r => { if (r.status === 'fulfilled') map[r.value.key] = r.value.arr; });
-      setData(map);
-      if (Object.keys(map).length === 0) setErr('Could not load COT data. CFTC API may be temporarily unavailable.');
+      const legMap = {}, catMap = {};
+      legacyRes.value?.forEach(r => { if (r.status==='fulfilled') legMap[r.value.key] = r.value.arr; });
+      catsRes.value?.forEach(r  => { if (r.status==='fulfilled') catMap[r.value.key]  = r.value.arr; });
+      setLegacy(legMap);
+      setCats(catMap);
+      if (!Object.keys(legMap).length) setErr('Could not load COT data. CFTC API may be temporarily unavailable.');
       setLoading(false);
     });
     return () => { cancelled = true; };
   }, []);
 
   if (loading) return (
-    <div style={{ padding: 40, textAlign: 'center', color: 'var(--text3)' }}>
-      <div style={{ fontSize: 28, marginBottom: 12, display: 'inline-block' }}>⟳</div>
+    <div style={{ padding:40, textAlign:'center', color:'var(--text3)' }}>
+      <div style={{ fontSize:28, marginBottom:12, display:'inline-block' }}>⟳</div>
       <div>Loading {WEEKS}-week COT history from CFTC…</div>
-      <div style={{ fontSize: 10, marginTop: 6, color: '#475569' }}>
-        Fetching disaggregated & TFF reports from publicreporting.cftc.gov
-      </div>
+      <div style={{ fontSize:10, marginTop:6, color:'#475569' }}>Fetching from publicreporting.cftc.gov</div>
     </div>
   );
 
   if (err) return (
-    <div style={{ padding: 24, textAlign: 'center' }}>
-      <div style={{ color: '#ef4444', marginBottom: 8 }}>⚠ {err}</div>
-      <div style={{ fontSize: 11, color: 'var(--text3)' }}>
-        CFTC API may be temporarily unavailable. COT data updates every Friday.
+    <div style={{ padding:24, textAlign:'center' }}>
+      <div style={{ color:'#ef4444', marginBottom:8 }}>⚠ {err}</div>
+      <div style={{ fontSize:11, color:'var(--text3)' }}>
+        CFTC API may be temporarily unavailable. Updates every Friday.
       </div>
     </div>
   );
 
+  const allNets   = Object.values(legacy).flatMap(arr => arr.map(d => Math.abs(d.net)));
+  const maxNet    = Math.max(...allNets, 1);
   const biasCount = COT_MARKETS.reduce((acc, m) => {
-    const arr = data[m.key];
+    const arr = legacy[m.key];
     if (!arr?.length) return acc;
-    const bull = arr[0].leveraged.net >= 0;
-    return { bull: acc.bull + (bull ? 1 : 0), bear: acc.bear + (bull ? 0 : 1) };
-  }, { bull: 0, bear: 0 });
+    const bull = arr[0].net >= 0;
+    return { bull: acc.bull+(bull?1:0), bear: acc.bear+(bull?0:1) };
+  }, { bull:0, bear:0 });
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', height: '100%', overflow: 'hidden' }}>
+    <div style={{ display:'flex', flexDirection:'column', height:'100%', overflow:'hidden' }}>
 
       {/* Header */}
-      <div style={{ padding: '10px 16px', borderBottom: '1px solid var(--border)', display: 'flex',
-        alignItems: 'center', gap: 10, flexWrap: 'wrap', flexShrink: 0 }}>
+      <div style={{ padding:'10px 16px', borderBottom:'1px solid var(--border)', display:'flex',
+        alignItems:'center', gap:10, flexWrap:'wrap', flexShrink:0 }}>
         <div>
-          <span style={{ fontSize: 14, fontWeight: 700, color: 'var(--text)' }}>📊 COT Report</span>
-          <span style={{ fontSize: 10, color: 'var(--text3)', marginLeft: 8 }}>
-            CFTC — Disaggregated · {WEEKS}-week history · 4 trader categories
+          <span style={{ fontSize:14, fontWeight:700, color:'var(--text)' }}>📊 COT Report</span>
+          <span style={{ fontSize:10, color:'var(--text3)', marginLeft:8 }}>
+            CFTC Commitments of Traders — {WEEKS}-week history · 4 trader categories
           </span>
         </div>
-        <div style={{ display: 'flex', gap: 4, marginLeft: 'auto' }}>
-          {[{ v: 'cards', l: 'Cards' }, { v: 'table', l: 'Table' }].map(t => (
+        <div style={{ display:'flex', gap:4, marginLeft:'auto' }}>
+          {[{v:'cards',l:'Cards'},{v:'table',l:'Table'}].map(t => (
             <button key={t.v} onClick={() => setView(t.v)}
-              style={{ padding: '3px 10px', borderRadius: 4, fontSize: 11, fontWeight: 700, cursor: 'pointer',
-                background: view === t.v ? '#00d4aa' : 'var(--bg2)',
-                color:      view === t.v ? '#080c14'  : 'var(--text3)',
-                border: '1px solid var(--border)' }}>
-              {t.l}
-            </button>
+              style={{ padding:'3px 10px', borderRadius:4, fontSize:11, fontWeight:700, cursor:'pointer',
+                background:view===t.v?'#00d4aa':'var(--bg2)',
+                color:view===t.v?'#080c14':'var(--text3)',
+                border:'1px solid var(--border)' }}>{t.l}</button>
           ))}
         </div>
       </div>
 
       {/* Bias summary */}
-      <div style={{ padding: '6px 16px', borderBottom: '1px solid var(--border)', background: '#080c14',
-        display: 'flex', gap: 8, alignItems: 'center', flexWrap: 'wrap', flexShrink: 0 }}>
-        <span style={{ fontSize: 10, fontWeight: 700, color: 'var(--text3)' }}>LEVERAGED FUNDS:</span>
-        <span style={{ fontSize: 11, fontWeight: 700, color: '#3fb950' }}>▲ {biasCount.bull} Net Long</span>
-        <span style={{ fontSize: 11, fontWeight: 700, color: '#f85149' }}>▼ {biasCount.bear} Net Short</span>
-        <span style={{ fontSize: 9, color: 'var(--text3)', marginLeft: 'auto' }}>Updated weekly (Fridays)</span>
+      <div style={{ padding:'6px 16px', borderBottom:'1px solid var(--border)', background:'#080c14',
+        display:'flex', gap:8, alignItems:'center', flexWrap:'wrap', flexShrink:0 }}>
+        <span style={{ fontSize:10, fontWeight:700, color:'var(--text3)' }}>OVERALL:</span>
+        <span style={{ fontSize:11, fontWeight:700, color:'#22c55e' }}>▲ {biasCount.bull} Bullish</span>
+        <span style={{ fontSize:11, fontWeight:700, color:'#ef4444' }}>▼ {biasCount.bear} Bearish</span>
+        <span style={{ fontSize:9, color:'var(--text3)', marginLeft:'auto' }}>Updated weekly (Fridays)</span>
         {COT_MARKETS.map(m => {
-          const arr = data[m.key];
+          const arr = legacy[m.key];
           if (!arr?.length) return null;
-          const bull = arr[0].leveraged.net >= 0;
+          const bull    = arr[0].net >= 0;
           const crowded = getCrowded(arr);
           return (
-            <div key={m.key} style={{ padding: '2px 8px', borderRadius: 4, fontSize: 10, fontWeight: 700,
-              color:      crowded ? crowded.color : (bull ? '#3fb950' : '#f85149'),
-              background: crowded ? crowded.bg    : (bull ? '#3fb95018' : '#f8514918'),
-              border:     `1px solid ${crowded ? crowded.color + '44' : (bull ? '#3fb95044' : '#f8514944')}`,
-              flexShrink: 0 }}>
-              {crowded ? '⚠ ' : (bull ? '▲ ' : '▼ ')}{m.label}
+            <div key={m.key} style={{ padding:'2px 8px', borderRadius:4, fontSize:10, fontWeight:700, flexShrink:0,
+              color:      crowded ? crowded.color : (bull?'#22c55e':'#ef4444'),
+              background: crowded ? crowded.bg    : (bull?'#22c55e18':'#ef444418'),
+              border:`1px solid ${crowded ? crowded.color+'44' : (bull?'#22c55e44':'#ef444444')}` }}>
+              {crowded ? '⚠ ' : (bull?'▲ ':'▼ ')}{m.label}
             </div>
           );
         })}
       </div>
 
       {/* Content */}
-      <div style={{ flex: 1, overflowY: 'auto', padding: '12px 16px' }}>
+      <div style={{ flex:1, overflowY:'auto', padding:'12px 16px' }}>
 
-        {/* ── CARDS VIEW ─────────────────────────────────────────── */}
+        {/* ── CARDS ──────────────────────────────────────────────── */}
         {view === 'cards' && (
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: 12 }}>
+          <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill, minmax(280px, 1fr))', gap:12 }}>
             {COT_MARKETS.map(m => {
-              const arr = data[m.key];
+              const arr = legacy[m.key];
               if (!arr?.length) return null;
-              const latest   = arr[0];
-              const prev     = arr[1];
+              const catArr  = cats[m.key] || [];
+              const latest  = arr[0], prev = arr[1];
+              const latCat  = catArr[0],  prevCat = catArr[1];
+              const bull    = latest.net >= 0;
+              const delta   = prev ? latest.net - prev.net : 0;
+              const history = [...arr].reverse().map(d => d.net);
+              const total   = latest.long + latest.short || 1;
+              const longPct  = Math.round((latest.long / total) * 100);
+              const shortPct = 100 - longPct;
+              const barPct   = maxNet > 0 ? (Math.abs(latest.net) / maxNet) * 100 : 0;
               const crowded  = getCrowded(arr);
-              const bull     = latest.leveraged.net >= 0;
               const isExp    = expanded[m.key];
 
-              // Max absolute net across 4 categories (for bar scaling)
-              const maxAbs = Math.max(
-                Math.abs(latest.leveraged.net),
-                Math.abs(latest.assetMgr.net),
-                Math.abs(latest.dealer.net),
-                Math.abs(latest.smallSpec.net),
-                1
-              );
+              const maxCatAbs = latCat ? Math.max(
+                Math.abs(latCat.leveraged), Math.abs(latCat.assetMgr),
+                Math.abs(latCat.dealer),    Math.abs(latCat.smallSpec), 1
+              ) : 1;
 
               return (
-                <div key={m.key} style={{ background: 'var(--card)',
-                  border: `1px solid ${crowded ? crowded.color + '55' : (bull ? '#3fb95033' : '#f8514933')}`,
-                  borderRadius: 10, padding: '12px 14px' }}>
+                <div key={m.key} style={{ background:'var(--card)',
+                  border:`1px solid ${crowded ? crowded.color+'55' : (bull?'#22c55e33':'#ef444433')}`,
+                  borderRadius:8, padding:'10px 12px' }}>
 
-                  {/* Crowded signal banner */}
+                  {/* ── CROWDED SIGNAL (new) ── */}
                   {crowded && (
-                    <div style={{ background: crowded.bg, border: `1px solid ${crowded.color}44`,
-                      borderRadius: 6, padding: '6px 10px', marginBottom: 10 }}>
-                      <div style={{ fontSize: 12, fontWeight: 800, color: crowded.color, letterSpacing: '0.05em' }}>
+                    <div style={{ background:crowded.bg, border:`1px solid ${crowded.color}44`,
+                      borderRadius:6, padding:'5px 8px', marginBottom:8 }}>
+                      <div style={{ fontSize:11, fontWeight:800, color:crowded.color, letterSpacing:'0.05em' }}>
                         {crowded.type}
                       </div>
-                      <div style={{ fontSize: 10, color: crowded.color, opacity: 0.8, marginTop: 2 }}>
+                      <div style={{ fontSize:9, color:crowded.color, opacity:0.85, marginTop:1 }}>
                         {crowded.desc}
                       </div>
                     </div>
                   )}
 
-                  {/* Card title */}
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 10 }}>
-                    <span style={{ fontSize: 14, fontWeight: 700, color: m.color }}>{m.label}</span>
-                    <span style={{ padding: '2px 7px', borderRadius: 3, fontSize: 10, fontWeight: 700,
-                      color:      bull ? '#3fb950' : '#f85149',
-                      background: bull ? '#3fb95018' : '#f8514918',
-                      border:     `1px solid ${bull ? '#3fb95044' : '#f8514944'}` }}>
+                  {/* ── Original: header ── */}
+                  <div style={{ display:'flex', alignItems:'center', gap:6, marginBottom:6 }}>
+                    <span style={{ fontSize:13, fontWeight:700, color:m.color }}>{m.label}</span>
+                    <span style={{ padding:'2px 7px', borderRadius:3, fontSize:10, fontWeight:700,
+                      color:bull?'#22c55e':'#ef4444', background:bull?'#22c55e18':'#ef444418',
+                      border:`1px solid ${bull?'#22c55e44':'#ef444444'}` }}>
                       {bull ? '▲ NET LONG' : '▼ NET SHORT'}
                     </span>
-                    <span style={{ marginLeft: 'auto', fontSize: 9, color: '#484f58' }}>
-                      {latest.date}
-                    </span>
-                  </div>
-
-                  {/* Section: Net Positioning */}
-                  <div style={{ fontSize: 10, fontWeight: 600, color: '#8b949e', marginBottom: 8,
-                    textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                    Net Positioning (contracts)
-                  </div>
-
-                  <CatRow label="Leveraged Funds" curr={latest.leveraged} prev={prev?.leveraged} maxAbs={maxAbs} />
-                  <CatRow label="Asset Manager"   curr={latest.assetMgr}  prev={prev?.assetMgr}  maxAbs={maxAbs} />
-                  <CatRow label="Dealer"          curr={latest.dealer}    prev={prev?.dealer}    maxAbs={maxAbs} />
-                  <CatRow label="Small Specs"     curr={latest.smallSpec} prev={prev?.smallSpec} maxAbs={maxAbs} />
-
-                  {/* History chart toggle */}
-                  <div style={{ borderTop: '1px solid #21262d', marginTop: 10, paddingTop: 10 }}>
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-                      cursor: 'pointer', userSelect: 'none' }}
-                      onClick={() => setExpanded(e => ({ ...e, [m.key]: !e[m.key] }))}>
-                      <span style={{ fontSize: 10, fontWeight: 600, color: '#8b949e', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                        Leveraged Funds Net — {arr.length} weeks
+                    {delta !== 0 && (
+                      <span style={{ marginLeft:'auto', fontSize:10, fontFamily:'monospace',
+                        color:delta>0?'#22c55e':'#ef4444' }}>
+                        {delta>0?'▲':'▼'} {Math.abs(delta).toLocaleString()}
                       </span>
-                      <span style={{ fontSize: 12, color: '#8b949e' }}>{isExp ? '▲' : '▼'}</span>
-                    </div>
-                    {isExp && (
-                      <div style={{ marginTop: 8 }}>
-                        <HistoryChart arr={arr} color={m.color} />
-                      </div>
                     )}
                   </div>
 
-                  {/* OI */}
-                  <div style={{ fontSize: 9, color: '#484f58', marginTop: 6 }}>
-                    OI: {latest.oi.toLocaleString()}
+                  {/* ── Original: net position ── */}
+                  <div style={{ fontSize:13, fontFamily:'monospace', color:bull?'#22c55e':'#ef4444', fontWeight:700, marginBottom:6 }}>
+                    Net: {latest.net>=0?'+':''}{latest.net.toLocaleString()}
+                  </div>
+
+                  {/* ── Original: net bar ── */}
+                  <div style={{ height:6, background:'#1e293b', borderRadius:3, overflow:'hidden', marginBottom:6 }}>
+                    <div style={{ width:`${barPct}%`, height:'100%', background:bull?'#22c55e':'#ef4444', borderRadius:3 }}/>
+                  </div>
+
+                  {/* ── Original: long/short split ── */}
+                  <div style={{ display:'flex', height:5, borderRadius:3, overflow:'hidden', marginBottom:4 }}>
+                    <div style={{ flex:latest.long, background:'#22c55e' }}/>
+                    <div style={{ flex:latest.short, background:'#ef4444' }}/>
+                  </div>
+                  <div style={{ display:'flex', justifyContent:'space-between', fontSize:10, color:'var(--text3)', marginBottom:10 }}>
+                    <span style={{ color:'#22c55e' }}>Long: {longPct}% ({latest.long.toLocaleString()})</span>
+                    <span style={{ color:'#ef4444' }}>Short: {shortPct}% ({latest.short.toLocaleString()})</span>
+                  </div>
+
+                  {/* ── NEW: 4 categories breakdown ── */}
+                  {latCat && (
+                    <div style={{ borderTop:'1px solid #21262d', paddingTop:8, marginBottom:8 }}>
+                      <div style={{ fontSize:9, fontWeight:600, color:'#8b949e', marginBottom:6,
+                        textTransform:'uppercase', letterSpacing:'0.05em' }}>
+                        Net Positioning by Trader
+                      </div>
+                      <CatRow label="Leveraged Funds" net={latCat.leveraged} prevNet={prevCat?.leveraged} maxAbs={maxCatAbs}/>
+                      <CatRow label="Asset Manager"   net={latCat.assetMgr}  prevNet={prevCat?.assetMgr}  maxAbs={maxCatAbs}/>
+                      <CatRow label="Dealer"          net={latCat.dealer}    prevNet={prevCat?.dealer}    maxAbs={maxCatAbs}/>
+                      <CatRow label="Small Specs"     net={latCat.smallSpec} prevNet={prevCat?.smallSpec} maxAbs={maxCatAbs}/>
+                    </div>
+                  )}
+
+                  {/* ── Original: sparkline + date ── */}
+                  <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between', borderTop:'1px solid #21262d', paddingTop:8 }}>
+                    <MiniSpark values={history.slice(-8)}/>
+                    <div style={{ fontSize:9, color:'var(--text3)', textAlign:'right' }}>
+                      <div>{latest.date}</div>
+                      <div style={{ marginTop:2 }}>OI: {latest.oi.toLocaleString()}</div>
+                    </div>
+                  </div>
+
+                  {/* ── NEW: expandable full history chart ── */}
+                  <div style={{ marginTop:8 }}>
+                    <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between',
+                      cursor:'pointer', userSelect:'none' }}
+                      onClick={() => setExpanded(e => ({ ...e, [m.key]: !e[m.key] }))}>
+                      <span style={{ fontSize:9, color:'#484f58' }}>
+                        Non-Commercial Net — {arr.length} weeks history
+                      </span>
+                      <span style={{ fontSize:10, color:'#484f58' }}>{isExp ? '▲' : '▼'}</span>
+                    </div>
+                    {isExp && <div style={{ marginTop:6 }}><HistoryChart arr={arr} color={m.color}/></div>}
                   </div>
                 </div>
               );
@@ -369,68 +376,54 @@ export default function COTTab() {
           </div>
         )}
 
-        {/* ── TABLE VIEW ─────────────────────────────────────────── */}
+        {/* ── TABLE ──────────────────────────────────────────────── */}
         {view === 'table' && (
-          <div style={{ overflowX: 'auto' }}>
-            <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 11 }}>
+          <div style={{ overflowX:'auto' }}>
+            <table style={{ width:'100%', borderCollapse:'collapse', fontSize:11 }}>
               <thead>
-                <tr style={{ borderBottom: '1px solid var(--border)' }}>
-                  {['Market','Signal','Lev Funds','WoW','Asset Mgr','WoW','Dealer','WoW','Small Specs','WoW','Date'].map(h => (
-                    <th key={h} style={{ padding: '6px 8px', textAlign: 'left', color: 'var(--text3)',
-                      fontWeight: 600, fontSize: 10, whiteSpace: 'nowrap' }}>{h}</th>
+                <tr style={{ borderBottom:'1px solid var(--border)' }}>
+                  {['Market','Signal','Net (Non-Comm)','Long','Short','OI','WoW','Lev Funds','Asset Mgr','Dealer','Small Specs','Date'].map(h => (
+                    <th key={h} style={{ padding:'6px 8px', textAlign:'left', color:'var(--text3)',
+                      fontWeight:600, fontSize:10, whiteSpace:'nowrap' }}>{h}</th>
                   ))}
                 </tr>
               </thead>
               <tbody>
                 {COT_MARKETS.map(m => {
-                  const arr = data[m.key];
+                  const arr    = legacy[m.key];
+                  const catArr = cats[m.key] || [];
                   if (!arr?.length) return null;
                   const l = arr[0], p = arr[1];
+                  const lc = catArr[0], pc = catArr[1];
+                  const bull    = l.net >= 0;
+                  const delta   = p ? l.net - p.net : 0;
                   const crowded = getCrowded(arr);
-                  const bull = l.leveraged.net >= 0;
-                  const wow = (cat) => p ? l[cat].net - p[cat].net : 0;
-                  const Cell = ({ val, wow: w }) => (
-                    <td style={{ padding: '7px 8px', fontFamily: 'monospace', fontWeight: 600,
-                      color: val >= 0 ? '#3fb950' : '#f85149', whiteSpace: 'nowrap' }}>
-                      {val >= 0 ? '+' : ''}{val.toLocaleString()}
-                      {w !== undefined && (
-                        <span style={{ fontSize: 9, marginLeft: 4, color: w > 0 ? '#3fb950' : w < 0 ? '#f85149' : '#8b949e' }}>
-                          {w >= 0 ? '+' : ''}{w.toLocaleString()}
-                        </span>
-                      )}
+                  const C = ({ v }) => (
+                    <td style={{ padding:'6px 8px', fontFamily:'monospace', fontSize:10, whiteSpace:'nowrap',
+                      color: v===undefined ? '#484f58' : v>=0 ? '#22c55e' : '#ef4444' }}>
+                      {v===undefined ? '—' : `${v>=0?'+':''}${v.toLocaleString()}`}
                     </td>
                   );
                   return (
-                    <tr key={m.key} style={{ borderBottom: '1px solid #21262d' }}>
-                      <td style={{ padding: '7px 8px', fontWeight: 700, color: m.color, whiteSpace: 'nowrap' }}>{m.label}</td>
-                      <td style={{ padding: '7px 8px' }}>
-                        <span style={{ padding: '2px 6px', borderRadius: 3, fontSize: 9, fontWeight: 700,
-                          color:      crowded ? crowded.color : (bull ? '#3fb950' : '#f85149'),
-                          background: crowded ? crowded.bg    : (bull ? '#3fb95018' : '#f8514918') }}>
-                          {crowded ? crowded.type : (bull ? '▲ LONG' : '▼ SHORT')}
+                    <tr key={m.key} style={{ borderBottom:'1px solid #21262d' }}>
+                      <td style={{ padding:'6px 8px', fontWeight:700, color:m.color, whiteSpace:'nowrap' }}>{m.label}</td>
+                      <td style={{ padding:'6px 8px' }}>
+                        <span style={{ padding:'2px 6px', borderRadius:3, fontSize:9, fontWeight:700,
+                          color:crowded?crowded.color:(bull?'#22c55e':'#ef4444'),
+                          background:crowded?crowded.bg:(bull?'#22c55e18':'#ef444418') }}>
+                          {crowded ? crowded.type : (bull?'▲ LONG':'▼ SHORT')}
                         </span>
                       </td>
-                      <Cell val={l.leveraged.net} />
-                      <td style={{ padding: '7px 8px', fontFamily: 'monospace', fontSize: 10, whiteSpace: 'nowrap',
-                        color: wow('leveraged') > 0 ? '#3fb950' : wow('leveraged') < 0 ? '#f85149' : '#8b949e' }}>
-                        {wow('leveraged') >= 0 ? '+' : ''}{wow('leveraged').toLocaleString()}
-                      </td>
-                      <Cell val={l.assetMgr.net} />
-                      <td style={{ padding: '7px 8px', fontFamily: 'monospace', fontSize: 10, whiteSpace: 'nowrap',
-                        color: wow('assetMgr') > 0 ? '#3fb950' : wow('assetMgr') < 0 ? '#f85149' : '#8b949e' }}>
-                        {wow('assetMgr') >= 0 ? '+' : ''}{wow('assetMgr').toLocaleString()}
-                      </td>
-                      <Cell val={l.dealer.net} />
-                      <td style={{ padding: '7px 8px', fontFamily: 'monospace', fontSize: 10, whiteSpace: 'nowrap',
-                        color: wow('dealer') > 0 ? '#3fb950' : wow('dealer') < 0 ? '#f85149' : '#8b949e' }}>
-                        {wow('dealer') >= 0 ? '+' : ''}{wow('dealer').toLocaleString()}
-                      </td>
-                      <Cell val={l.smallSpec.net} />
-                      <td style={{ padding: '7px 8px', fontFamily: 'monospace', fontSize: 10, whiteSpace: 'nowrap',
-                        color: wow('smallSpec') > 0 ? '#3fb950' : wow('smallSpec') < 0 ? '#f85149' : '#8b949e' }}>
-                        {wow('smallSpec') >= 0 ? '+' : ''}{wow('smallSpec').toLocaleString()}
-                      </td>
-                      <td style={{ padding: '7px 8px', color: '#484f58', fontSize: 10 }}>{l.date}</td>
+                      <C v={l.net}/>
+                      <td style={{ padding:'6px 8px', fontFamily:'monospace', fontSize:10, color:'#22c55e' }}>{l.long.toLocaleString()}</td>
+                      <td style={{ padding:'6px 8px', fontFamily:'monospace', fontSize:10, color:'#ef4444' }}>{l.short.toLocaleString()}</td>
+                      <td style={{ padding:'6px 8px', fontFamily:'monospace', fontSize:10, color:'var(--text3)' }}>{l.oi.toLocaleString()}</td>
+                      <C v={delta}/>
+                      <C v={lc?.leveraged}/>
+                      <C v={lc?.assetMgr}/>
+                      <C v={lc?.dealer}/>
+                      <C v={lc?.smallSpec}/>
+                      <td style={{ padding:'6px 8px', color:'#484f58', fontSize:10 }}>{l.date}</td>
                     </tr>
                   );
                 })}
@@ -439,26 +432,45 @@ export default function COTTab() {
           </div>
         )}
 
-        {/* ── How to read ────────────────────────────────────────── */}
-        <div style={{ marginTop: 20, padding: '12px 14px', background: '#161b22',
-          border: '1px solid #30363d', borderRadius: 8, fontSize: 11, color: '#8b949e' }}>
-          <div style={{ fontWeight: 700, color: '#e6edf3', marginBottom: 8 }}>How to read COT</div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 5 }}>
-            <div><span style={{ color: '#f85149' }}>Leveraged Funds extreme net long</span> → crowd is in, smart money fades = bearish signal</div>
-            <div><span style={{ color: '#3fb950' }}>Leveraged Funds extreme net short</span> → shorts crowded = short squeeze risk = bullish</div>
-            <div><span style={{ color: '#58a6ff' }}>Asset Manager net long growing</span> → institutional accumulation = bullish</div>
-            <div><span style={{ color: '#d29922' }}>Dealer net long</span> → market makers positioned to sell into rallies (normal)</div>
-            <div style={{ marginTop: 4, color: '#484f58', fontSize: 10 }}>
-              ⚠ CROWDED signal = Leveraged Funds at 80th/20th percentile of {WEEKS}-week range · Contrarian bias only, not entry signal
+        {/* ── How to read ── */}
+        <div style={{ marginTop:20, padding:'12px 14px', background:'#161b22',
+          border:'1px solid #30363d', borderRadius:8, fontSize:11, color:'#8b949e' }}>
+          <div style={{ fontWeight:700, color:'#e6edf3', marginBottom:8 }}>How to read COT</div>
+          <div style={{ display:'flex', flexDirection:'column', gap:5 }}>
+            <div><span style={{ color:'#f85149' }}>Leveraged Funds extreme net long</span> → crowd is in, smart money fades = bearish signal</div>
+            <div><span style={{ color:'#3fb950' }}>Leveraged Funds extreme net short</span> → shorts crowded = short squeeze risk = bullish</div>
+            <div><span style={{ color:'#58a6ff' }}>Asset Manager net long growing</span> → institutional accumulation = bullish</div>
+            <div><span style={{ color:'#d29922' }}>Dealer net long</span> → market makers positioned to sell into strength (normal hedging)</div>
+            <div style={{ marginTop:4, color:'#484f58', fontSize:10 }}>
+              ⚠ CROWDED signal = Non-Commercial at 80th/20th percentile of {WEEKS}-week range · Contrarian bias only, not entry signal
             </div>
           </div>
         </div>
       </div>
 
-      <div style={{ padding: '6px 16px', fontSize: 9, color: 'var(--text3)',
-        borderTop: '1px solid var(--border)', flexShrink: 0 }}>
-        Source: CFTC.gov · TFF report (currencies) · Disaggregated report (metals) · {WEEKS}-week history · Updates every Friday
+      <div style={{ padding:'6px 16px', fontSize:9, color:'var(--text3)',
+        borderTop:'1px solid var(--border)', flexShrink:0 }}>
+        Source: CFTC.gov public API · Non-Commercial = hedge funds &amp; large speculators ·
+        4-category breakdown from TFF &amp; Disaggregated reports · {WEEKS}-week history · Updates every Friday
       </div>
     </div>
+  );
+}
+
+// ── MiniSpark (original) ──────────────────────────────────────────────────────
+function MiniSpark({ values }) {
+  if (!values || values.length < 2) return null;
+  const w = 100, h = 28;
+  const min = Math.min(...values), max = Math.max(...values);
+  const range = max - min || 1;
+  const pts = values.map((v, i) =>
+    `${((i / (values.length - 1)) * w).toFixed(1)},${(h - ((v - min) / range) * (h - 4) - 2).toFixed(1)}`
+  ).join(' ');
+  const last = values[values.length - 1];
+  return (
+    <svg width={w} height={h} style={{ display:'block', flexShrink:0 }}>
+      <polyline points={pts} fill="none" stroke={last >= 0 ? '#22c55e' : '#ef4444'} strokeWidth="1.5" strokeLinejoin="round"/>
+      <circle cx={w} cy={h - ((last - min) / range) * (h - 4) - 2} r="2.5" fill={last >= 0 ? '#22c55e' : '#ef4444'}/>
+    </svg>
   );
 }
