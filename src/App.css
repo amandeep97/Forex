@@ -54,6 +54,7 @@ table  { border-collapse: collapse; width: 100%; }
   position: sticky;
   top: 0;
   z-index: 100;
+  overflow: hidden;
 }
 
 /* Top bar: logo + controls in one row */
@@ -118,6 +119,8 @@ table  { border-collapse: collapse; width: 100%; }
     scrollbar-width: none;
     padding: 0;
     gap: 0;
+    max-width: 100vw;
+    width: 100%;
   }
   .main-nav::-webkit-scrollbar { display: none; }
   .nav-tab {
@@ -125,21 +128,20 @@ table  { border-collapse: collapse; width: 100%; }
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 3px;
-    padding: 7px 10px 5px;
-    min-width: 58px;
-    border-bottom: none;
-    border-top: 2px solid transparent;
+    gap: 2px;
+    padding: 6px 12px 5px;
+    min-width: 60px;
+    border-bottom: 2px solid transparent;
+    border-top: none;
     margin-bottom: 0;
     white-space: nowrap;
   }
   .nav-tab.active {
-    border-top-color: var(--accent);
-    border-bottom-color: transparent;
+    border-bottom-color: var(--accent);
     background: #00d4aa0d;
   }
-  .nav-tab-icon  { font-size: 17px; line-height: 1; }
-  .nav-tab-label { font-size: 8px; font-weight: 600; letter-spacing: 0.01em; }
+  .nav-tab-icon  { font-size: 18px; line-height: 1; }
+  .nav-tab-label { font-size: 9px; font-weight: 600; letter-spacing: 0.01em; }
 }
 
 /* Legacy */
