@@ -10,8 +10,8 @@ const COT_MARKETS = [
   { key:'CAD', label:'USD/CAD', code:'090741', color:'#ef4444', invert:true,  type:'tff'   },
   { key:'CHF', label:'USD/CHF', code:'092741', color:'#f97316', invert:true,  type:'tff'   },
   { key:'NZD', label:'NZD/USD', code:'112741', color:'#06b6d4', invert:false, type:'tff'   },
-  { key:'XAU', label:'Gold',    code:'088691', color:'#eab308', invert:false, type:'disag' },
-  { key:'XAG', label:'Silver',  code:'084691', color:'#94a3b8', invert:false, type:'disag' },
+  { key:'XAU', label:'Gold',    code:'088691', commodity:'GOLD',   color:'#eab308', invert:false, type:'disag' },
+  { key:'XAG', label:'Silver',  code:'084691', commodity:'SILVER', color:'#94a3b8', invert:false, type:'disag' },
 ];
 
 // ── Legacy API (non-commercial) — used for original card display ──────────────
@@ -31,11 +31,19 @@ async function fetchTFF(code) {
 }
 
 // ── Disaggregated API (4 categories) — for metals ────────────────────────────
-async function fetchDisag(code) {
-  const url = `https://publicreporting.cftc.gov/resource/6ddc-gi25.json?cftc_contract_market_code=${code}&$order=report_date_as_yyyy_mm_dd%20DESC&$limit=${WEEKS}`;
-  const res = await fetch(url, { signal: AbortSignal.timeout(25000) });
-  if (!res.ok) throw new Error(`Disag ${res.status}`);
-  return res.json();
+// Tries by contract code first; falls back to commodity name search if empty
+async function fetchDisag(code, commodity) {
+  const byCode = `https://publicreporting.cftc.gov/resource/6ddc-gi25.json?cftc_contract_market_code=${code}&$order=report_date_as_yyyy_mm_dd%20DESC&$limit=${WEEKS}`;
+  const r1 = await fetch(byCode, { signal: AbortSignal.timeout(25000) });
+  if (r1.ok) {
+    const d = await r1.json();
+    if (d.length > 0) return d;
+  }
+  // Fallback: search by commodity name (handles code differences between reports)
+  const byName = `https://publicreporting.cftc.gov/resource/6ddc-gi25.json?$where=upper(commodity_name)%20like%20'%25${commodity}%25'&$order=report_date_as_yyyy_mm_dd%20DESC&$limit=${WEEKS}`;
+  const r2 = await fetch(byName, { signal: AbortSignal.timeout(25000) });
+  if (!r2.ok) throw new Error(`Disag ${r2.status}`);
+  return r2.json();
 }
 
 function n(v) { return +v || 0; }
@@ -165,7 +173,7 @@ export default function COTTab() {
       // Fetch 2: 4-category data (new addition)
       Promise.allSettled(COT_MARKETS.map(async m => {
         try {
-          const rows = m.type === 'tff' ? await fetchTFF(m.code) : await fetchDisag(m.code);
+          const rows = m.type === 'tff' ? await fetchTFF(m.code) : await fetchDisag(m.code, m.commodity);
           return { key: m.key, arr: m.type === 'tff' ? parseTFF(rows, m.invert) : parseDisag(rows, m.invert) };
         } catch { return { key: m.key, arr: [] }; }
       })),
@@ -342,10 +350,10 @@ export default function COTTab() {
                         textTransform:'uppercase', letterSpacing:'0.05em' }}>
                         Net Positioning by Trader
                       </div>
-                      <CatRow label="Leveraged Funds" net={latCat.leveraged} prevNet={prevCat?.leveraged} maxAbs={maxCatAbs}/>
-                      <CatRow label="Asset Manager"   net={latCat.assetMgr}  prevNet={prevCat?.assetMgr}  maxAbs={maxCatAbs}/>
-                      <CatRow label="Dealer"          net={latCat.dealer}    prevNet={prevCat?.dealer}    maxAbs={maxCatAbs}/>
-                      <CatRow label="Small Specs"     net={latCat.smallSpec} prevNet={prevCat?.smallSpec} maxAbs={maxCatAbs}/>
+                      <CatRow label="Leveraged Funds"                        net={latCat.leveraged} prevNet={prevCat?.leveraged} maxAbs={maxCatAbs}/>
+                      <CatRow label={m.type==='disag'?'Prod/Merchant':'Asset Manager'} net={latCat.assetMgr}  prevNet={prevCat?.assetMgr}  maxAbs={maxCatAbs}/>
+                      <CatRow label={m.type==='disag'?'Swap Dealer':'Dealer'}          net={latCat.dealer}    prevNet={prevCat?.dealer}    maxAbs={maxCatAbs}/>
+                      <CatRow label="Small Specs"                                      net={latCat.smallSpec} prevNet={prevCat?.smallSpec} maxAbs={maxCatAbs}/>
                     </div>
                   )}
 
