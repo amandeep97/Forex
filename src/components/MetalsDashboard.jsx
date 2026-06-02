@@ -63,9 +63,9 @@ async function fetchCOTHistory(code, weeks = 54) {
 // ── FRED — actual 10Y real yield (TIPS, series DFII10) — the #1 driver of gold ─
 const PROXY = 'https://corsproxy.io/?'; // same proven proxy used by the news calendar
 
-async function fetchFredSeries(id) {
+async function fetchFredSeries(id, days = 120) {
   const start = new Date();
-  start.setDate(start.getDate() - 120);
+  start.setDate(start.getDate() - days);
   const cosd = start.toISOString().slice(0, 10);
   const url = `https://fred.stlouisfed.org/graph/fredgraph.csv?id=${id}&cosd=${cosd}`;
   try {
@@ -75,12 +75,33 @@ async function fetchFredSeries(id) {
     const series = text.trim().split('\n').slice(1)
       .map(line => { const [date, val] = line.split(','); return { date, val: parseFloat(val) }; })
       .filter(d => Number.isFinite(d.val));
-    return series.length >= 5 ? series : null;
+    return series.length >= 2 ? series : null;
   } catch { return null; }
 }
 
 const fetchRealYield     = () => fetchFredSeries('DFII10');
 const fetchBreakevenInfl = () => fetchFredSeries('T10YIE');
+const fetchPMI           = () => fetchFredSeries('MPMIVMA', 540); // S&P Global Mfg PMI, 18mo
+
+// ── OHLC candles (for RSI / ATR / EMA / key levels) ─────────────────────────
+async function fetchOHLC(instrument, granularity, count) {
+  const creds = getOandaCreds();
+  if (!creds) return null;
+  const base = creds.practice
+    ? 'https://api-fxpractice.oanda.com/v3'
+    : 'https://api-fxtrade.oanda.com/v3';
+  try {
+    const res = await fetch(
+      `${base}/instruments/${instrument}/candles?granularity=${granularity}&count=${count}&price=M`,
+      { headers: { Authorization: `Bearer ${creds.apiKey}` }, signal: AbortSignal.timeout(8000) }
+    );
+    if (!res.ok) return null;
+    const data = await res.json();
+    return (data.candles || []).filter(c => c.complete).map(c => ({
+      t: c.time, o: +c.mid.o, h: +c.mid.h, l: +c.mid.l, c: +c.mid.c,
+    }));
+  } catch { return null; }
+}
 
 function pearsonCorr(a, b) {
   const n = Math.min(a.length, b.length);
@@ -113,6 +134,40 @@ function pctChange(closes, lookback = 5) {
   if (!closes || closes.length < lookback + 1) return null;
   const n = closes.length;
   return ((closes[n - 1] - closes[n - 1 - lookback]) / closes[n - 1 - lookback]) * 100;
+}
+
+function calcRSI(closes, period = 14) {
+  if (!closes || closes.length < period + 1) return null;
+  let gains = 0, losses = 0;
+  const start = closes.length - period;
+  for (let i = start; i < closes.length; i++) {
+    const d = closes[i] - closes[i - 1];
+    if (d > 0) gains += d; else losses -= d;
+  }
+  const avgLoss = losses / period;
+  if (avgLoss === 0) return 100;
+  return +(100 - 100 / (1 + (gains / period) / avgLoss)).toFixed(1);
+}
+
+function calcEMA(values, period) {
+  if (!values || values.length < period) return null;
+  const k = 2 / (period + 1);
+  let ema = values.slice(0, period).reduce((s, v) => s + v, 0) / period;
+  for (let i = period; i < values.length; i++) ema = values[i] * k + ema * (1 - k);
+  return +ema.toFixed(2);
+}
+
+function calcATR(candles, period = 14) {
+  if (!candles || candles.length < period + 1) return null;
+  const trs = [];
+  for (let i = 1; i < candles.length; i++) {
+    trs.push(Math.max(
+      candles[i].h - candles[i].l,
+      Math.abs(candles[i].h - candles[i - 1].c),
+      Math.abs(candles[i].l - candles[i - 1].c)
+    ));
+  }
+  return +(trs.slice(-period).reduce((s, v) => s + v, 0) / period).toFixed(2);
 }
 
 // ── Sub-components ───────────────────────────────────────────────────────────
@@ -197,33 +252,44 @@ function ScoreRing({ score, max, label, color }) {
 export default function MetalsDashboard() {
   const [mkt, setMkt]       = useState(null);
   const [cot, setCot]       = useState(null);
-  const [ry,  setRy]        = useState(null);   // FRED DFII10 — 10Y real yield
-  const [bi,  setBi]        = useState(null);   // FRED T10YIE — 10Y breakeven inflation
+  const [ry,  setRy]        = useState(null);
+  const [bi,  setBi]        = useState(null);
+  const [daily,  setDaily]  = useState(null);   // D1 OHLC — RSI / EMA / ATR / PDH/PDL
+  const [weekly, setWeekly] = useState(null);   // W1 OHLC — Previous Week H/L
+  const [pmi,    setPmi]    = useState(null);   // FRED MPMIVMA Manufacturing PMI
   const [loading, setLoading] = useState(true);
   const [lastRefresh, setLastRefresh] = useState(null);
   const hasOanda = !!getOandaCreds();
 
   const load = useCallback(async () => {
     setLoading(true);
-    const COUNT = 60;
     const [gold, silver, dxy, bonds10, bonds2, oil, copper,
-           cotGold, cotSilver, realYield, breakevenInfl] = await Promise.all([
-      fetchCloses(INSTR.gold,    'H1', COUNT),
-      fetchCloses(INSTR.silver,  'H1', COUNT),
-      fetchCloses(INSTR.dxy,     'H1', COUNT),
-      fetchCloses(INSTR.bonds10, 'H1', COUNT),
-      fetchCloses(INSTR.bonds2,  'H1', COUNT),
-      fetchCloses(INSTR.oil,     'H1', COUNT),
-      fetchCloses(INSTR.copper,  'H1', COUNT),
+           cotGold, cotSilver, realYield, breakevenInfl,
+           dGold, dSilver, wGold, wSilver, pmiData] = await Promise.all([
+      fetchCloses(INSTR.gold,    'H1', 60),
+      fetchCloses(INSTR.silver,  'H1', 60),
+      fetchCloses(INSTR.dxy,     'H1', 60),
+      fetchCloses(INSTR.bonds10, 'H1', 60),
+      fetchCloses(INSTR.bonds2,  'H1', 60),
+      fetchCloses(INSTR.oil,     'H1', 60),
+      fetchCloses(INSTR.copper,  'H1', 60),
       fetchCOTHistory('088691', 54),
       fetchCOTHistory('084691', 54),
       fetchRealYield(),
       fetchBreakevenInfl(),
+      fetchOHLC(INSTR.gold,   'D', 60),   // daily OHLC gold
+      fetchOHLC(INSTR.silver, 'D', 60),   // daily OHLC silver
+      fetchOHLC(INSTR.gold,   'W', 5),    // weekly OHLC gold
+      fetchOHLC(INSTR.silver, 'W', 5),    // weekly OHLC silver
+      fetchPMI(),
     ]);
     setMkt({ gold, silver, dxy, bonds10, bonds2, oil, copper });
     setCot({ gold: cotGold, silver: cotSilver });
     setRy(realYield);
     setBi(breakevenInfl);
+    setDaily({ gold: dGold, silver: dSilver });
+    setWeekly({ gold: wGold, silver: wSilver });
+    setPmi(pmiData);
     setLoading(false);
     setLastRefresh(new Date());
   }, []);
@@ -348,6 +414,59 @@ export default function MetalsDashboard() {
     }
   }
 
+  // ── Technical signals from daily candles ──────────────────────────────────
+  if (daily) {
+    ['gold', 'silver'].forEach(k => {
+      const candles = daily[k];
+      if (!candles?.length) return;
+      const closes = candles.map(c => c.c);
+      // RSI(14)
+      const rsi = calcRSI(closes);
+      sig[`${k}RSI`]       = rsi;
+      sig[`${k}RSISignal`] = rsi !== null ? (rsi < 30 ? 'oversold' : rsi > 70 ? 'overbought' : 'neutral') : null;
+      // 50 EMA trend filter
+      const ema50 = calcEMA(closes, 50);
+      sig[`${k}EMA50`]      = ema50;
+      sig[`${k}AboveEMA50`] = ema50 !== null ? closes[closes.length - 1] > ema50 : null;
+      // ATR(14) — position sizing
+      sig[`${k}ATR`] = calcATR(candles);
+      // Previous Day H/L (last completed daily candle)
+      if (candles.length >= 1) {
+        const pd = candles[candles.length - 1];
+        sig[`${k}PDH`] = pd.h;
+        sig[`${k}PDL`] = pd.l;
+      }
+    });
+  }
+
+  // ── Previous Week H/L from weekly candles ─────────────────────────────────
+  if (weekly) {
+    ['gold', 'silver'].forEach(k => {
+      const candles = weekly[k];
+      if (!candles?.length) return;
+      // last completed weekly candle = previous week
+      const pw = candles[candles.length - 1];
+      sig[`${k}PWH`] = pw.h;
+      sig[`${k}PWL`] = pw.l;
+    });
+  }
+
+  // ── PMI signal ─────────────────────────────────────────────────────────────
+  if (pmi && pmi.length >= 2) {
+    const latest = pmi[pmi.length - 1];
+    const prev   = pmi[pmi.length - 2];
+    sig.pmi         = latest.val;
+    sig.pmiDate     = latest.date;
+    sig.pmiPrev     = prev.val;
+    sig.pmiExpanding = latest.val >= 50;
+    sig.pmiRising    = latest.val > prev.val;
+    // Expanding + rising = most bullish for silver; contracting + falling = most bearish
+    sig.pmiSignal = (sig.pmiExpanding && sig.pmiRising)   ? 'bullish'
+                  : (sig.pmiExpanding && !sig.pmiRising)  ? 'mild_bullish'
+                  : (!sig.pmiExpanding && sig.pmiRising)  ? 'mild_bearish'
+                  : 'bearish';
+  }
+
   // COT percentile
   const cotSig = {};
   if (cot) {
@@ -389,6 +508,15 @@ export default function MetalsDashboard() {
     if (sig.breakevenSignal) factors.push({ label:'Breakeven', bull: sig.breakevenSignal === 'bullish', w: 1 });
     // 7. Copper for silver
     if (metal === 'silver' && sig.copperDir) factors.push({ label:'Copper', bull: sig.copperDir === 'rising', w: 1 });
+    // 8. EMA50: above = uptrend
+    const aboveEMA = sig[`${metal}AboveEMA50`];
+    if (aboveEMA !== null && aboveEMA !== undefined) factors.push({ label:'EMA50', bull: aboveEMA, w: 1 });
+    // 9. RSI: oversold = bullish entry zone; overbought = caution (weight 0 when overbought — doesn't penalise bull run)
+    const rsiSig = sig[`${metal}RSISignal`];
+    if (rsiSig === 'oversold')   factors.push({ label:'RSI', bull: true,  w: 1 });
+    if (rsiSig === 'overbought') factors.push({ label:'RSI', bull: false, w: 1 });
+    // 10. PMI for silver (industrial demand)
+    if (metal === 'silver' && sig.pmi !== undefined) factors.push({ label:'PMI', bull: sig.pmiExpanding, w: 1 });
     if (!factors.length) return null;
     const max = factors.reduce((s, f) => s + f.w, 0);
     const score = factors.filter(f => f.bull).reduce((s, f) => s + f.w, 0);
@@ -855,6 +983,165 @@ export default function MetalsDashboard() {
             )}
           </div>
 
+          {/* Manufacturing PMI */}
+          <div style={card}>
+            <div style={{ fontSize:12, fontWeight:700, color:'#34d399', marginBottom:8 }}>🏭 Manufacturing PMI (S&amp;P Global)</div>
+            {sig.pmi !== undefined ? (
+              <div>
+                <div style={{ display:'flex', alignItems:'baseline', gap:8, marginBottom:8 }}>
+                  <span style={{ fontSize:28, fontWeight:900, fontFamily:'monospace',
+                    color: sig.pmiExpanding ? '#22c55e' : '#ef4444' }}>{sig.pmi.toFixed(1)}</span>
+                  <div>
+                    <div style={{ fontSize:11, fontWeight:700,
+                      color: sig.pmiExpanding ? '#22c55e' : '#ef4444' }}>
+                      {sig.pmiExpanding ? '▲ EXPANDING' : '▼ CONTRACTING'}
+                      {sig.pmiRising ? ' ↑' : ' ↓'}
+                    </div>
+                    <div style={{ fontSize:10, color:'var(--text3)' }}>{sig.pmiDate}</div>
+                  </div>
+                </div>
+                {/* 50-line gauge */}
+                <div style={{ marginBottom:8 }}>
+                  <div style={{ height:8, background:'#1e293b', borderRadius:4, position:'relative', overflow:'hidden' }}>
+                    <div style={{ position:'absolute', left:'50%', width:2, height:'100%', background:'#475569' }}/>
+                    <div style={{ position:'absolute', left:`${Math.min(Math.max((sig.pmi - 30) / 50 * 100, 2), 97)}%`,
+                      top:0, width:3, height:'100%', borderRadius:2, transform:'translateX(-50%)',
+                      background: sig.pmiExpanding ? '#22c55e' : '#ef4444' }}/>
+                  </div>
+                  <div style={{ display:'flex', justifyContent:'space-between', fontSize:9, color:'#475569', marginTop:2 }}>
+                    <span>30 (Deep Contraction)</span><span>50 (Neutral)</span><span>65+ (Boom)</span>
+                  </div>
+                </div>
+                <SignalBadge
+                  bull={sig.pmiSignal === 'bullish' || sig.pmiSignal === 'mild_bullish'}
+                  label={`PMI Impact: ${sig.pmiSignal === 'bullish' ? 'Strong Bull Silver' : sig.pmiSignal === 'mild_bullish' ? 'Mild Bull Silver' : sig.pmiSignal === 'mild_bearish' ? 'Mild Bear' : 'Bearish Silver'}`}
+                  note="PMI drives silver industrial demand — less impact on gold"
+                />
+                {sig.pmiPrev !== undefined && (
+                  <div style={{ fontSize:10, color:'var(--text3)', marginTop:6 }}>
+                    Previous: {sig.pmiPrev.toFixed(1)} → {sig.pmi.toFixed(1)}
+                    {' '}({sig.pmiRising ? '+' : ''}{(sig.pmi - sig.pmiPrev).toFixed(1)} MoM)
+                  </div>
+                )}
+              </div>
+            ) : (
+              <div style={{ color:'var(--text3)', fontSize:11 }}>
+                Loading PMI from FRED…
+                <div style={{ fontSize:10, marginTop:4 }}>Series: MPMIVMA (S&amp;P Global US Manufacturing PMI)</div>
+              </div>
+            )}
+          </div>
+
+          {/* Technical Indicators — RSI, EMA50, ATR */}
+          <div style={card}>
+            <div style={{ fontSize:12, fontWeight:700, color:'#818cf8', marginBottom:8 }}>📐 Technical Indicators (Daily)</div>
+            {(sig.goldRSI !== null || sig.silverRSI !== null) ? (
+              <div style={{ display:'flex', flexDirection:'column', gap:10 }}>
+                {[
+                  { label:'XAU/USD', color:'#fbbf24', rsi: sig.goldRSI,   rsiSig: sig.goldRSISignal,   ema: sig.goldEMA50,   above: sig.goldAboveEMA50,   atr: sig.goldATR },
+                  { label:'XAG/USD', color:'#94a3b8', rsi: sig.silverRSI, rsiSig: sig.silverRSISignal, ema: sig.silverEMA50, above: sig.silverAboveEMA50, atr: sig.silverATR },
+                ].map(({ label, color, rsi, rsiSig, ema, above, atr }) => (
+                  <div key={label} style={{ padding:'8px', background:'var(--bg2)', borderRadius:6, border:'1px solid var(--border)' }}>
+                    <div style={{ fontSize:11, fontWeight:700, color, marginBottom:6 }}>{label}</div>
+                    <div style={{ display:'flex', flexWrap:'wrap', gap:8 }}>
+                      {/* RSI */}
+                      {rsi !== null && (
+                        <div style={{ flex:1, minWidth:80 }}>
+                          <div style={{ fontSize:9, color:'var(--text3)', marginBottom:2 }}>RSI(14)</div>
+                          <div style={{ fontSize:16, fontFamily:'monospace', fontWeight:700,
+                            color: rsiSig === 'oversold' ? '#22c55e' : rsiSig === 'overbought' ? '#ef4444' : '#f59e0b' }}>
+                            {rsi}
+                          </div>
+                          <div style={{ fontSize:9, fontWeight:700,
+                            color: rsiSig === 'oversold' ? '#22c55e' : rsiSig === 'overbought' ? '#ef4444' : '#64748b' }}>
+                            {rsiSig === 'oversold' ? '⚡ OVERSOLD — Buy zone' : rsiSig === 'overbought' ? '⚠ OVERBOUGHT' : 'Neutral'}
+                          </div>
+                          {/* RSI bar */}
+                          <div style={{ height:4, background:'#1e293b', borderRadius:2, marginTop:4, position:'relative', overflow:'hidden' }}>
+                            <div style={{ position:'absolute', left:'30%', width:'40%', height:'100%', background:'#22c55e11' }}/>
+                            <div style={{ position:'absolute', left:`${Math.min(rsi, 97)}%`, top:0, width:3, height:'100%',
+                              background: rsiSig === 'oversold' ? '#22c55e' : rsiSig === 'overbought' ? '#ef4444' : '#f59e0b',
+                              transform:'translateX(-50%)' }}/>
+                          </div>
+                        </div>
+                      )}
+                      {/* EMA50 */}
+                      {above !== null && above !== undefined && (
+                        <div style={{ flex:1, minWidth:80 }}>
+                          <div style={{ fontSize:9, color:'var(--text3)', marginBottom:2 }}>50 EMA Trend</div>
+                          <div style={{ fontSize:13, fontWeight:700,
+                            color: above ? '#22c55e' : '#ef4444' }}>
+                            {above ? '▲ Above' : '▼ Below'}
+                          </div>
+                          {ema && <div style={{ fontSize:9, fontFamily:'monospace', color:'#475569' }}>EMA: {ema.toLocaleString()}</div>}
+                          <div style={{ fontSize:9, color: above ? '#22c55e' : '#ef4444', marginTop:2 }}>
+                            {above ? 'Uptrend — favour longs' : 'Downtrend — favour shorts'}
+                          </div>
+                        </div>
+                      )}
+                      {/* ATR */}
+                      {atr !== null && atr !== undefined && (
+                        <div style={{ flex:1, minWidth:80 }}>
+                          <div style={{ fontSize:9, color:'var(--text3)', marginBottom:2 }}>ATR(14) Daily</div>
+                          <div style={{ fontSize:16, fontFamily:'monospace', fontWeight:700, color:'#a78bfa' }}>
+                            {atr.toLocaleString()}
+                          </div>
+                          <div style={{ fontSize:9, color:'var(--text3)' }}>
+                            Typical daily range · use for SL sizing
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div style={{ color:'var(--text3)', fontSize:11 }}>{hasOanda ? 'Loading daily candles…' : 'Connect OANDA'}</div>
+            )}
+          </div>
+
+          {/* ICT Key Levels — Previous Week & Day H/L */}
+          <div style={card}>
+            <div style={{ fontSize:12, fontWeight:700, color:'#f472b6', marginBottom:8 }}>🎯 ICT Key Levels (Liquidity)</div>
+            <div style={{ fontSize:10, color:'var(--text3)', marginBottom:8 }}>
+              Previous Week & Day Highs/Lows — price sweeps these before reversing (stop hunts)
+            </div>
+            {(sig.goldPWH || sig.silverPWH) ? (
+              <div style={{ display:'flex', flexDirection:'column', gap:8 }}>
+                {[
+                  { label:'XAU/USD', color:'#fbbf24', pwh: sig.goldPWH,   pwl: sig.goldPWL,   pdh: sig.goldPDH,   pdl: sig.goldPDL },
+                  { label:'XAG/USD', color:'#94a3b8', pwh: sig.silverPWH, pwl: sig.silverPWL, pdh: sig.silverPDH, pdl: sig.silverPDL },
+                ].map(({ label, color, pwh, pwl, pdh, pdl }) => (
+                  <div key={label} style={{ padding:'8px', background:'var(--bg2)', borderRadius:6, border:'1px solid var(--border)' }}>
+                    <div style={{ fontSize:11, fontWeight:700, color, marginBottom:6 }}>{label}</div>
+                    <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:6 }}>
+                      {pwh && <div style={{ padding:'4px 8px', borderRadius:4, background:'#22c55e0d', border:'1px solid #22c55e22' }}>
+                        <div style={{ fontSize:9, color:'#22c55e', fontWeight:700 }}>PW HIGH</div>
+                        <div style={{ fontSize:13, fontFamily:'monospace', color:'#22c55e', fontWeight:700 }}>{pwh.toLocaleString(undefined, {minimumFractionDigits:2, maximumFractionDigits:2})}</div>
+                        <div style={{ fontSize:9, color:'var(--text3)' }}>Sell-side liquidity above</div>
+                      </div>}
+                      {pwl && <div style={{ padding:'4px 8px', borderRadius:4, background:'#ef44440d', border:'1px solid #ef444422' }}>
+                        <div style={{ fontSize:9, color:'#ef4444', fontWeight:700 }}>PW LOW</div>
+                        <div style={{ fontSize:13, fontFamily:'monospace', color:'#ef4444', fontWeight:700 }}>{pwl.toLocaleString(undefined, {minimumFractionDigits:2, maximumFractionDigits:2})}</div>
+                        <div style={{ fontSize:9, color:'var(--text3)' }}>Buy-side liquidity below</div>
+                      </div>}
+                      {pdh && <div style={{ padding:'4px 8px', borderRadius:4, background:'#22c55e07', border:'1px solid #22c55e18' }}>
+                        <div style={{ fontSize:9, color:'#86efac', fontWeight:700 }}>PD HIGH</div>
+                        <div style={{ fontSize:13, fontFamily:'monospace', color:'#86efac', fontWeight:700 }}>{pdh.toLocaleString(undefined, {minimumFractionDigits:2, maximumFractionDigits:2})}</div>
+                      </div>}
+                      {pdl && <div style={{ padding:'4px 8px', borderRadius:4, background:'#ef444407', border:'1px solid #ef444418' }}>
+                        <div style={{ fontSize:9, color:'#fca5a5', fontWeight:700 }}>PD LOW</div>
+                        <div style={{ fontSize:13, fontFamily:'monospace', color:'#fca5a5', fontWeight:700 }}>{pdl.toLocaleString(undefined, {minimumFractionDigits:2, maximumFractionDigits:2})}</div>
+                      </div>}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div style={{ color:'var(--text3)', fontSize:11 }}>{hasOanda ? 'Loading weekly candles…' : 'Connect OANDA'}</div>
+            )}
+          </div>
+
         </div>{/* end grid */}
 
         {/* ── Confluence Table ─────────────────────────────────────────────── */}
@@ -930,6 +1217,34 @@ export default function MetalsDashboard() {
                     goldImpact:   '➖ Weak',
                     silverImpact: sig.copperDir === 'rising' ? '✅ Bullish (demand)' : sig.copperDir === 'falling' ? '❌ Bearish' : '—',
                     strength: sig.copperSilverCorr !== null ? `r=${fmtR(sig.copperSilverCorr)}` : '—',
+                  },
+                  {
+                    driver: 'PMI Manufacturing',
+                    signal: sig.pmi !== undefined ? `${sig.pmi.toFixed(1)} (${sig.pmiExpanding ? 'Expanding' : 'Contracting'})` : '—',
+                    goldImpact:   '➖ Indirect',
+                    silverImpact: sig.pmiSignal === 'bullish' ? '✅ Strong Bullish' : sig.pmiSignal === 'mild_bullish' ? '✅ Mild Bullish' : sig.pmiSignal === 'mild_bearish' ? '❌ Mild Bearish' : sig.pmiSignal === 'bearish' ? '❌ Bearish' : '—',
+                    strength: sig.pmi !== undefined ? (sig.pmiRising ? '↑ Rising' : '↓ Falling') : '—',
+                  },
+                  {
+                    driver: 'RSI(14) Gold Daily',
+                    signal: sig.goldRSI !== null ? `${sig.goldRSI} — ${sig.goldRSISignal}` : '—',
+                    goldImpact:   sig.goldRSISignal === 'oversold' ? '✅ Buy zone' : sig.goldRSISignal === 'overbought' ? '⚠ Caution' : '➖ Neutral' ,
+                    silverImpact: '➖ —',
+                    strength: '—',
+                  },
+                  {
+                    driver: 'RSI(14) Silver Daily',
+                    signal: sig.silverRSI !== null ? `${sig.silverRSI} — ${sig.silverRSISignal}` : '—',
+                    goldImpact:   '➖ —',
+                    silverImpact: sig.silverRSISignal === 'oversold' ? '✅ Buy zone' : sig.silverRSISignal === 'overbought' ? '⚠ Caution' : '➖ Neutral',
+                    strength: '—',
+                  },
+                  {
+                    driver: '50 EMA Trend (Daily)',
+                    signal: sig.goldAboveEMA50 !== null && sig.goldAboveEMA50 !== undefined ? `Gold: ${sig.goldAboveEMA50 ? '▲ Above' : '▼ Below'} · Silver: ${sig.silverAboveEMA50 ? '▲ Above' : '▼ Below'}` : '—',
+                    goldImpact:   sig.goldAboveEMA50 ? '✅ Uptrend' : sig.goldAboveEMA50 === false ? '❌ Downtrend' : '—',
+                    silverImpact: sig.silverAboveEMA50 ? '✅ Uptrend' : sig.silverAboveEMA50 === false ? '❌ Downtrend' : '—',
+                    strength: 'Trend filter',
                   },
                 ].map((row, i) => (
                   <tr key={i} style={{ borderBottom:'1px solid var(--border)', background: i%2===0 ? 'transparent' : '#ffffff05' }}>
