@@ -60,6 +60,28 @@ async function fetchCOTHistory(code, weeks = 54) {
   } catch { return null; }
 }
 
+// ── FRED — actual 10Y real yield (TIPS, series DFII10) — the #1 driver of gold ─
+const PROXY = 'https://corsproxy.io/?'; // same proven proxy used by the news calendar
+
+async function fetchRealYield() {
+  const start = new Date();
+  start.setDate(start.getDate() - 120);          // ~4 months of history
+  const cosd = start.toISOString().slice(0, 10);
+  const fredUrl = `https://fred.stlouisfed.org/graph/fredgraph.csv?id=DFII10&cosd=${cosd}`;
+  try {
+    const res = await fetch(PROXY + encodeURIComponent(fredUrl), { signal: AbortSignal.timeout(12000) });
+    if (!res.ok) return null;
+    const text = await res.text();
+    const series = text.trim().split('\n').slice(1)   // drop header row
+      .map(line => {
+        const [date, val] = line.split(',');
+        return { date, val: parseFloat(val) };
+      })
+      .filter(d => Number.isFinite(d.val));            // skip "." holiday gaps
+    return series.length >= 5 ? series : null;
+  } catch { return null; }
+}
+
 function pearsonCorr(a, b) {
   const n = Math.min(a.length, b.length);
   if (n < 10) return null;
@@ -175,6 +197,7 @@ function ScoreRing({ score, max, label, color }) {
 export default function MetalsDashboard() {
   const [mkt, setMkt]       = useState(null);   // market closes data
   const [cot, setCot]       = useState(null);   // COT 52-week data
+  const [ry,  setRy]        = useState(null);   // FRED 10Y real yield (DFII10)
   const [loading, setLoading] = useState(true);
   const [lastRefresh, setLastRefresh] = useState(null);
   const hasOanda = !!getOandaCreds();
@@ -183,7 +206,7 @@ export default function MetalsDashboard() {
     setLoading(true);
     const COUNT = 60;
     const [gold, silver, dxy, bonds10, bonds2, oil, copper,
-           cotGold, cotSilver] = await Promise.all([
+           cotGold, cotSilver, realYield] = await Promise.all([
       fetchCloses(INSTR.gold,    'H1', COUNT),
       fetchCloses(INSTR.silver,  'H1', COUNT),
       fetchCloses(INSTR.dxy,     'H1', COUNT),
@@ -193,9 +216,11 @@ export default function MetalsDashboard() {
       fetchCloses(INSTR.copper,  'H1', COUNT),
       fetchCOTHistory('088691', 54),
       fetchCOTHistory('084691', 54),
+      fetchRealYield(),
     ]);
     setMkt({ gold, silver, dxy, bonds10, bonds2, oil, copper });
     setCot({ gold: cotGold, silver: cotSilver });
+    setRy(realYield);
     setLoading(false);
     setLastRefresh(new Date());
   }, []);
@@ -275,6 +300,25 @@ export default function MetalsDashboard() {
     if (mkt.oil && mkt.gold) {
       sig.oilGoldCorr = pearsonCorr(mkt.oil, mkt.gold);
     }
+
+    // Mark the above as the proxy source (used only when FRED is unavailable)
+    if (sig.realYieldSignal) sig.realYieldSource = 'proxy';
+  }
+
+  // ── Actual real yield from FRED (DFII10) — overrides the proxy when available ─
+  if (ry && ry.length >= 5) {
+    const latest = ry[ry.length - 1];
+    const ref    = ry[Math.max(0, ry.length - 21)];   // ~1 month ago
+    const change = +(latest.val - ref.val).toFixed(2);
+    sig.realYield       = latest.val;
+    sig.realYieldDate   = latest.date;
+    sig.realYieldChange = change;
+    sig.realYieldDir    = change > 0.02 ? 'rising' : change < -0.02 ? 'falling' : 'flat';
+    // Rising real yield = bearish gold (bonds more attractive); falling = bullish
+    sig.realYieldSignal = sig.realYieldDir === 'rising'  ? 'bearish'
+                        : sig.realYieldDir === 'falling' ? 'bullish'
+                        : 'neutral';
+    sig.realYieldSource = 'fred';
   }
 
   // COT percentile
@@ -457,9 +501,28 @@ export default function MetalsDashboard() {
             <div style={{ display:'flex', flexDirection:'column', gap:7 }}>
               <SignalBadge
                 bull={sig.realYieldSignal === 'bullish'}
-                label={sig.realYieldSignal ? `Real Yield Proxy: ${sig.realYieldSignal.toUpperCase()}` : 'No data'}
-                note="10Y rising + Gold falling = real yields up = bearish"
+                label={sig.realYieldSignal
+                  ? `Real Yield ${sig.realYieldSource === 'fred' ? '(FRED 10Y TIPS)' : 'Proxy'}: ${sig.realYieldSignal.toUpperCase()}`
+                  : 'No data'}
+                note={sig.realYieldSource === 'fred'
+                  ? 'Real yield rising = bonds beat gold = bearish · falling = bullish'
+                  : '10Y rising + Gold falling = real yields up = bearish'}
               />
+              {sig.realYieldSource === 'fred' && sig.realYield !== undefined && (
+                <div style={{ display:'flex', justifyContent:'space-between', padding:'4px 0', borderBottom:'1px solid var(--border)' }}>
+                  <span style={{ fontSize:11, color:'var(--text3)' }}>
+                    10Y Real Yield <span style={{ color:'#484f58' }}>({sig.realYieldDate})</span>
+                  </span>
+                  <span style={{ fontSize:11, fontFamily:'monospace',
+                    color: sig.realYieldDir === 'rising' ? '#ef4444' : sig.realYieldDir === 'falling' ? '#22c55e' : 'var(--text3)' }}>
+                    {sig.realYield.toFixed(2)}%
+                    <span style={{ marginLeft:4 }}>
+                      {sig.realYieldDir === 'rising' ? '▲' : sig.realYieldDir === 'falling' ? '▼' : '■'}
+                      {sig.realYieldChange > 0 ? '+' : ''}{sig.realYieldChange} (1mo)
+                    </span>
+                  </span>
+                </div>
+              )}
               {sig.bonds10Dir && (
                 <div style={{ display:'flex', justifyContent:'space-between', padding:'4px 0', borderBottom:'1px solid var(--border)' }}>
                   <span style={{ fontSize:11, color:'var(--text3)' }}>US 10Y Yield</span>
@@ -492,7 +555,9 @@ export default function MetalsDashboard() {
                   )}
                 </div>
               )}
-              {!sig.bonds10Dir && <span style={{ fontSize:11, color:'var(--text3)' }}>Connect OANDA for yield data</span>}
+              {!sig.bonds10Dir && sig.realYieldSource !== 'fred' && (
+                <span style={{ fontSize:11, color:'var(--text3)' }}>Connect OANDA for yield data</span>
+              )}
             </div>
           </div>
 
