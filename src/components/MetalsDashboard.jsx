@@ -63,24 +63,24 @@ async function fetchCOTHistory(code, weeks = 54) {
 // ── FRED — actual 10Y real yield (TIPS, series DFII10) — the #1 driver of gold ─
 const PROXY = 'https://corsproxy.io/?'; // same proven proxy used by the news calendar
 
-async function fetchRealYield() {
+async function fetchFredSeries(id) {
   const start = new Date();
-  start.setDate(start.getDate() - 120);          // ~4 months of history
+  start.setDate(start.getDate() - 120);
   const cosd = start.toISOString().slice(0, 10);
-  const fredUrl = `https://fred.stlouisfed.org/graph/fredgraph.csv?id=DFII10&cosd=${cosd}`;
+  const url = `https://fred.stlouisfed.org/graph/fredgraph.csv?id=${id}&cosd=${cosd}`;
   try {
-    const res = await fetch(PROXY + encodeURIComponent(fredUrl), { signal: AbortSignal.timeout(12000) });
+    const res = await fetch(PROXY + encodeURIComponent(url), { signal: AbortSignal.timeout(12000) });
     if (!res.ok) return null;
     const text = await res.text();
-    const series = text.trim().split('\n').slice(1)   // drop header row
-      .map(line => {
-        const [date, val] = line.split(',');
-        return { date, val: parseFloat(val) };
-      })
-      .filter(d => Number.isFinite(d.val));            // skip "." holiday gaps
+    const series = text.trim().split('\n').slice(1)
+      .map(line => { const [date, val] = line.split(','); return { date, val: parseFloat(val) }; })
+      .filter(d => Number.isFinite(d.val));
     return series.length >= 5 ? series : null;
   } catch { return null; }
 }
+
+const fetchRealYield     = () => fetchFredSeries('DFII10');
+const fetchBreakevenInfl = () => fetchFredSeries('T10YIE');
 
 function pearsonCorr(a, b) {
   const n = Math.min(a.length, b.length);
@@ -195,9 +195,10 @@ function ScoreRing({ score, max, label, color }) {
 
 // ── Main component ───────────────────────────────────────────────────────────
 export default function MetalsDashboard() {
-  const [mkt, setMkt]       = useState(null);   // market closes data
-  const [cot, setCot]       = useState(null);   // COT 52-week data
-  const [ry,  setRy]        = useState(null);   // FRED 10Y real yield (DFII10)
+  const [mkt, setMkt]       = useState(null);
+  const [cot, setCot]       = useState(null);
+  const [ry,  setRy]        = useState(null);   // FRED DFII10 — 10Y real yield
+  const [bi,  setBi]        = useState(null);   // FRED T10YIE — 10Y breakeven inflation
   const [loading, setLoading] = useState(true);
   const [lastRefresh, setLastRefresh] = useState(null);
   const hasOanda = !!getOandaCreds();
@@ -206,7 +207,7 @@ export default function MetalsDashboard() {
     setLoading(true);
     const COUNT = 60;
     const [gold, silver, dxy, bonds10, bonds2, oil, copper,
-           cotGold, cotSilver, realYield] = await Promise.all([
+           cotGold, cotSilver, realYield, breakevenInfl] = await Promise.all([
       fetchCloses(INSTR.gold,    'H1', COUNT),
       fetchCloses(INSTR.silver,  'H1', COUNT),
       fetchCloses(INSTR.dxy,     'H1', COUNT),
@@ -217,10 +218,12 @@ export default function MetalsDashboard() {
       fetchCOTHistory('088691', 54),
       fetchCOTHistory('084691', 54),
       fetchRealYield(),
+      fetchBreakevenInfl(),
     ]);
     setMkt({ gold, silver, dxy, bonds10, bonds2, oil, copper });
     setCot({ gold: cotGold, silver: cotSilver });
     setRy(realYield);
+    setBi(breakevenInfl);
     setLoading(false);
     setLastRefresh(new Date());
   }, []);
@@ -314,11 +317,35 @@ export default function MetalsDashboard() {
     sig.realYieldDate   = latest.date;
     sig.realYieldChange = change;
     sig.realYieldDir    = change > 0.02 ? 'rising' : change < -0.02 ? 'falling' : 'flat';
-    // Rising real yield = bearish gold (bonds more attractive); falling = bullish
     sig.realYieldSignal = sig.realYieldDir === 'rising'  ? 'bearish'
                         : sig.realYieldDir === 'falling' ? 'bullish'
                         : 'neutral';
     sig.realYieldSource = 'fred';
+  }
+
+  // ── Breakeven inflation from FRED (T10YIE) ─────────────────────────────────
+  // Rising breakeven = market expects more inflation = gold as inflation hedge = bullish
+  if (bi && bi.length >= 5) {
+    const latest = bi[bi.length - 1];
+    const ref    = bi[Math.max(0, bi.length - 21)];
+    const change = +(latest.val - ref.val).toFixed(2);
+    sig.breakeven       = latest.val;
+    sig.breakevenDate   = latest.date;
+    sig.breakevenChange = change;
+    sig.breakevenDir    = change > 0.02 ? 'rising' : change < -0.02 ? 'falling' : 'flat';
+    sig.breakevenSignal = sig.breakevenDir === 'rising'  ? 'bullish'
+                       : sig.breakevenDir === 'falling' ? 'bearish'
+                       : 'neutral';
+    // Combined context: tell user what's driving real yields
+    if (sig.realYieldSource === 'fred') {
+      const nominalDir = sig.realYieldDir;
+      const biDir      = sig.breakevenDir;
+      if      (nominalDir === 'rising'  && biDir === 'rising')  sig.yieldContext = 'inflation_rise';
+      else if (nominalDir === 'rising'  && biDir !== 'rising')  sig.yieldContext = 'growth_rise';
+      else if (nominalDir === 'falling' && biDir === 'falling') sig.yieldContext = 'deflation';
+      else if (nominalDir === 'falling' && biDir === 'rising')  sig.yieldContext = 'stagflation';
+      else sig.yieldContext = 'mixed';
+    }
   }
 
   // COT percentile
@@ -358,7 +385,9 @@ export default function MetalsDashboard() {
     if (dir) factors.push({ label:'Momentum', bull: dir === 'rising', w: 1 });
     // 5. Yield curve inversion (good for gold)
     if (sig.yieldCurveInverted !== undefined) factors.push({ label:'Yield Curve', bull: sig.yieldCurveInverted, w: 1 });
-    // 6. Copper for silver
+    // 6. Breakeven inflation: rising = bullish (inflation hedge demand)
+    if (sig.breakevenSignal) factors.push({ label:'Breakeven', bull: sig.breakevenSignal === 'bullish', w: 1 });
+    // 7. Copper for silver
     if (metal === 'silver' && sig.copperDir) factors.push({ label:'Copper', bull: sig.copperDir === 'rising', w: 1 });
     if (!factors.length) return null;
     const max = factors.reduce((s, f) => s + f.w, 0);
@@ -497,21 +526,21 @@ export default function MetalsDashboard() {
 
           {/* Real Yields & Yield Curve */}
           <div style={card}>
-            <div style={{ fontSize:12, fontWeight:700, color:'#a78bfa', marginBottom:8 }}>📊 Real Yields &amp; Yield Curve</div>
+            <div style={{ fontSize:12, fontWeight:700, color:'#a78bfa', marginBottom:8 }}>📊 Real Yields &amp; Breakeven Inflation</div>
             <div style={{ display:'flex', flexDirection:'column', gap:7 }}>
               <SignalBadge
                 bull={sig.realYieldSignal === 'bullish'}
                 label={sig.realYieldSignal
-                  ? `Real Yield ${sig.realYieldSource === 'fred' ? '(FRED 10Y TIPS)' : 'Proxy'}: ${sig.realYieldSignal.toUpperCase()}`
+                  ? `Real Yield ${sig.realYieldSource === 'fred' ? '(FRED DFII10)' : 'Proxy'}: ${sig.realYieldSignal.toUpperCase()}`
                   : 'No data'}
                 note={sig.realYieldSource === 'fred'
-                  ? 'Real yield rising = bonds beat gold = bearish · falling = bullish'
+                  ? 'Rising real yield = bonds beat gold = bearish · falling = bullish'
                   : '10Y rising + Gold falling = real yields up = bearish'}
               />
               {sig.realYieldSource === 'fred' && sig.realYield !== undefined && (
                 <div style={{ display:'flex', justifyContent:'space-between', padding:'4px 0', borderBottom:'1px solid var(--border)' }}>
                   <span style={{ fontSize:11, color:'var(--text3)' }}>
-                    10Y Real Yield <span style={{ color:'#484f58' }}>({sig.realYieldDate})</span>
+                    Real Yield (DFII10) <span style={{ color:'#484f58' }}>({sig.realYieldDate})</span>
                   </span>
                   <span style={{ fontSize:11, fontFamily:'monospace',
                     color: sig.realYieldDir === 'rising' ? '#ef4444' : sig.realYieldDir === 'falling' ? '#22c55e' : 'var(--text3)' }}>
@@ -522,6 +551,40 @@ export default function MetalsDashboard() {
                     </span>
                   </span>
                 </div>
+              )}
+              {/* ── Breakeven Inflation (T10YIE) ── */}
+              {sig.breakeven !== undefined && (
+                <>
+                  <SignalBadge
+                    bull={sig.breakevenSignal === 'bullish'}
+                    label={`Breakeven Inflation (T10YIE): ${sig.breakevenSignal.toUpperCase()}`}
+                    note="Rising inflation expectations = gold as inflation hedge = bullish"
+                  />
+                  <div style={{ display:'flex', justifyContent:'space-between', padding:'4px 0', borderBottom:'1px solid var(--border)' }}>
+                    <span style={{ fontSize:11, color:'var(--text3)' }}>
+                      10Y Breakeven <span style={{ color:'#484f58' }}>({sig.breakevenDate})</span>
+                    </span>
+                    <span style={{ fontSize:11, fontFamily:'monospace',
+                      color: sig.breakevenDir === 'rising' ? '#22c55e' : sig.breakevenDir === 'falling' ? '#ef4444' : 'var(--text3)' }}>
+                      {sig.breakeven.toFixed(2)}%
+                      <span style={{ marginLeft:4 }}>
+                        {sig.breakevenDir === 'rising' ? '▲' : sig.breakevenDir === 'falling' ? '▼' : '■'}
+                        {sig.breakevenChange > 0 ? '+' : ''}{sig.breakevenChange} (1mo)
+                      </span>
+                    </span>
+                  </div>
+                  {/* Context: what is driving real yields */}
+                  {sig.yieldContext && (
+                    <div style={{ fontSize:10, padding:'4px 8px', borderRadius:4, border:'1px solid var(--border)',
+                      background:'var(--bg2)', color:'var(--text3)' }}>
+                      {sig.yieldContext === 'inflation_rise' && '🔥 Real yields rising on INFLATION — inflation hedge demand + rate headwind → mixed for gold'}
+                      {sig.yieldContext === 'growth_rise'   && '📈 Real yields rising on GROWTH — not inflation-driven → bearish gold'}
+                      {sig.yieldContext === 'deflation'     && '❄ Real yields falling on DEFLATION — weak growth → mild bullish for gold'}
+                      {sig.yieldContext === 'stagflation'   && '⚡ STAGFLATION signal — falling real yields + rising inflation → very bullish gold'}
+                      {sig.yieldContext === 'mixed'         && 'Mixed yield signals — monitor direction'}
+                    </div>
+                  )}
+                </>
               )}
               {sig.bonds10Dir && (
                 <div style={{ display:'flex', justifyContent:'space-between', padding:'4px 0', borderBottom:'1px solid var(--border)' }}>
@@ -816,11 +879,22 @@ export default function MetalsDashboard() {
                     strength: sig.dxyGoldCorr != null ? `r=${fmtR(sig.dxyGoldCorr)}` : '—',
                   },
                   {
-                    driver: 'Real Yield Proxy',
-                    signal: sig.realYieldSignal ? sig.realYieldSignal.toUpperCase() : '—',
+                    driver: sig.realYieldSource === 'fred' ? 'Real Yield (DFII10)' : 'Real Yield Proxy',
+                    signal: sig.realYieldSource === 'fred' && sig.realYield !== undefined
+                      ? `${sig.realYield.toFixed(2)}% (${sig.realYieldSignal.toUpperCase()})`
+                      : sig.realYieldSignal ? sig.realYieldSignal.toUpperCase() : '—',
                     goldImpact:   sig.realYieldSignal === 'bullish' ? '✅ Bullish' : sig.realYieldSignal === 'bearish' ? '❌ Bearish' : '—',
                     silverImpact: sig.realYieldSignal === 'bullish' ? '✅ Mild Bullish' : sig.realYieldSignal === 'bearish' ? '❌ Bearish' : '—',
-                    strength: sig.bonds10Dir ? `10Y ${sig.bonds10Dir}` : '—',
+                    strength: sig.realYieldSource === 'fred' ? `${sig.realYieldChange > 0 ? '+' : ''}${sig.realYieldChange} (1mo)` : sig.bonds10Dir ? `10Y ${sig.bonds10Dir}` : '—',
+                  },
+                  {
+                    driver: 'Breakeven Inflation (T10YIE)',
+                    signal: sig.breakeven !== undefined
+                      ? `${sig.breakeven.toFixed(2)}% (${sig.breakevenSignal.toUpperCase()})`
+                      : '—',
+                    goldImpact:   sig.breakevenSignal === 'bullish' ? '✅ Bullish (inflation hedge)' : sig.breakevenSignal === 'bearish' ? '❌ Bearish' : '—',
+                    silverImpact: sig.breakevenSignal === 'bullish' ? '✅ Bullish' : sig.breakevenSignal === 'bearish' ? '❌ Bearish' : '—',
+                    strength: sig.breakeven !== undefined ? `${sig.breakevenChange > 0 ? '+' : ''}${sig.breakevenChange} (1mo)` : '—',
                   },
                   {
                     driver: 'Yield Curve (10Y-2Y)',
