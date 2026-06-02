@@ -1,22 +1,34 @@
-import { useState } from 'react';
-import Screener from './components/Screener';
-import AutoTrading from './components/AutoTrading';
-import Backtester from './components/Backtester';
-import WatchlistTab from './components/WatchlistTab';
-import RatioChart from './components/RatioChart';
-import Journal from './components/Journal';
-import NewsCalendar from './components/NewsCalendar';
-import COTTab from './components/COTTab';
-import MetalsDashboard from './components/MetalsDashboard';
-import CorrelationMatrix from './components/CorrelationMatrix';
-import AIAnalysis from './components/AIAnalysis';
-import CurrencyStrength from './components/CurrencyStrength';
-import VolatilityDashboard from './components/VolatilityDashboard';
-import SeasonalityChart from './components/SeasonalityChart';
-import LiquidityMap from './components/LiquidityMap';
-import TradeDashboard from './components/TradeDashboard';
+import { useState, lazy, Suspense } from 'react';
+import Screener from './components/Screener';          // eager — default tab
 import { allInstruments } from './data/forexData';
 import './App.css';
+
+// All non-default tabs load only when first visited (code + data)
+const AIAnalysis       = lazy(() => import('./components/AIAnalysis'));
+const TradeDashboard   = lazy(() => import('./components/TradeDashboard'));
+const WatchlistTab     = lazy(() => import('./components/WatchlistTab'));
+const AutoTrading      = lazy(() => import('./components/AutoTrading'));
+const Backtester       = lazy(() => import('./components/Backtester'));
+const RatioChart       = lazy(() => import('./components/RatioChart'));
+const COTTab           = lazy(() => import('./components/COTTab'));
+const MetalsDashboard  = lazy(() => import('./components/MetalsDashboard'));
+const CorrelationMatrix= lazy(() => import('./components/CorrelationMatrix'));
+const CurrencyStrength = lazy(() => import('./components/CurrencyStrength'));
+const VolatilityDashboard= lazy(() => import('./components/VolatilityDashboard'));
+const SeasonalityChart = lazy(() => import('./components/SeasonalityChart'));
+const LiquidityMap     = lazy(() => import('./components/LiquidityMap'));
+const Journal          = lazy(() => import('./components/Journal'));
+const NewsCalendar     = lazy(() => import('./components/NewsCalendar'));
+
+function TabSpinner() {
+  return (
+    <div style={{ display:'flex', alignItems:'center', justifyContent:'center', height:'60vh', gap:10 }}>
+      <div style={{ width:20, height:20, border:'2px solid var(--border)', borderTopColor:'var(--accent)',
+        borderRadius:'50%', animation:'spin 0.7s linear infinite' }}/>
+      <span style={{ color:'var(--text3)', fontSize:13 }}>Loading…</span>
+    </div>
+  );
+}
 
 const TABS = [
   { id: 'ai',          label: 'AI',           icon: '🤖' },
@@ -86,6 +98,7 @@ function AccountSwitcher({ mode, onChange }) {
 
 export default function App() {
   const [activeTab, setActiveTab]     = useState('screener');
+  const [visitedTabs, setVisitedTabs] = useState(() => new Set(['screener']));
   const [accountMode, setAccountMode] = useState('demo');
   const [showModal, setShowModal]     = useState(false);
   const [realBalance] = useState(2548.30);
@@ -171,7 +184,10 @@ export default function App() {
             <button
               key={t.id}
               className={`nav-tab ${activeTab === t.id ? 'active' : ''}`}
-              onClick={() => setActiveTab(t.id)}
+              onClick={() => {
+                setActiveTab(t.id);
+                setVisitedTabs(prev => { prev.add(t.id); return new Set(prev); });
+              }}
             >
               <span className="nav-tab-icon">{t.icon}</span>
               <span className="nav-tab-label">{t.label}</span>
@@ -183,59 +199,61 @@ export default function App() {
 
       {/* ── Content ───────────────────────────────────────────────────────── */}
       <main className="app-main">
+      <Suspense fallback={<TabSpinner />}>
         <div style={{ display: activeTab === 'ai' ? 'flex' : 'none', flexDirection:'column', height:'calc(100vh - 120px)' }}>
-          <AIAnalysis />
+          {visitedTabs.has('ai') && <AIAnalysis />}
         </div>
         <div style={{ display: activeTab === 'dashboard' ? 'block' : 'none', overflowY:'auto', height:'calc(100vh - 120px)' }}>
-          <TradeDashboard />
+          {visitedTabs.has('dashboard') && <TradeDashboard />}
         </div>
         <div style={{ display: activeTab === 'screener' ? 'block' : 'none' }}>
-          <Screener />
+          {visitedTabs.has('screener') && <Screener />}
         </div>
         <div style={{ display: activeTab === 'watchlist' ? 'block' : 'none' }}>
-          <WatchlistTab pairs={allInstruments} watchlist={JSON.parse(localStorage.getItem('forex_watchlist')||'[]')} onToggleWatch={sym => {
+          {visitedTabs.has('watchlist') && <WatchlistTab pairs={allInstruments} watchlist={JSON.parse(localStorage.getItem('forex_watchlist')||'[]')} onToggleWatch={sym => {
             const prev = JSON.parse(localStorage.getItem('forex_watchlist')||'[]');
             const next = prev.includes(sym) ? prev.filter(s=>s!==sym) : [...prev,sym];
             localStorage.setItem('forex_watchlist', JSON.stringify(next));
             window.dispatchEvent(new Event('storage'));
-          }}/>
+          }}/>}
         </div>
         <div style={{ display: activeTab === 'autotrading' ? 'block' : 'none' }}>
-          <AutoTrading accountMode={accountMode} brokerState={brokerState} />
+          {visitedTabs.has('autotrading') && <AutoTrading accountMode={accountMode} brokerState={brokerState} />}
         </div>
         <div style={{ display: activeTab === 'backtester' ? 'block' : 'none' }}>
-          <Backtester />
+          {visitedTabs.has('backtester') && <Backtester />}
         </div>
         <div style={{ display: activeTab === 'ratio' ? 'block' : 'none', overflowY:'auto', height:'calc(100vh - 120px)' }}>
-          <RatioChart />
+          {visitedTabs.has('ratio') && <RatioChart />}
         </div>
         <div style={{ display: activeTab === 'cot' ? 'flex' : 'none', flexDirection:'column', height:'calc(100vh - 120px)' }}>
-          <COTTab />
+          {visitedTabs.has('cot') && <COTTab />}
         </div>
         <div style={{ display: activeTab === 'metals' ? 'flex' : 'none', flexDirection:'column', height:'calc(100vh - 120px)' }}>
-          <MetalsDashboard />
+          {visitedTabs.has('metals') && <MetalsDashboard />}
         </div>
         <div style={{ display: activeTab === 'correlation' ? 'flex' : 'none', flexDirection:'column', height:'calc(100vh - 120px)' }}>
-          <CorrelationMatrix />
+          {visitedTabs.has('correlation') && <CorrelationMatrix />}
         </div>
         <div style={{ display: activeTab === 'strength' ? 'block' : 'none', overflowY:'auto', height:'calc(100vh - 120px)' }}>
-          <CurrencyStrength />
+          {visitedTabs.has('strength') && <CurrencyStrength />}
         </div>
         <div style={{ display: activeTab === 'volatility' ? 'block' : 'none', overflowY:'auto', height:'calc(100vh - 120px)' }}>
-          <VolatilityDashboard />
+          {visitedTabs.has('volatility') && <VolatilityDashboard />}
         </div>
         <div style={{ display: activeTab === 'seasonality' ? 'block' : 'none', overflowY:'auto', height:'calc(100vh - 120px)' }}>
-          <SeasonalityChart />
+          {visitedTabs.has('seasonality') && <SeasonalityChart />}
         </div>
         <div style={{ display: activeTab === 'liquidity' ? 'block' : 'none', overflowY:'auto', height:'calc(100vh - 120px)' }}>
-          <LiquidityMap />
+          {visitedTabs.has('liquidity') && <LiquidityMap />}
         </div>
         <div style={{ display: activeTab === 'journal' ? 'block' : 'none', overflowY:'auto', height:'calc(100vh - 120px)' }}>
-          <Journal />
+          {visitedTabs.has('journal') && <Journal />}
         </div>
         <div style={{ display: activeTab === 'news' ? 'block' : 'none', overflowY:'auto', height:'calc(100vh - 120px)' }}>
-          <NewsCalendar />
+          {visitedTabs.has('news') && <NewsCalendar />}
         </div>
+      </Suspense>
       </main>
 
       {/* ── Footer ────────────────────────────────────────────────────────── */}
