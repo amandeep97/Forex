@@ -543,13 +543,15 @@ export default function IndicesDashboard() {
       // Yield curve: Yahoo → cache → FRED proxy (triple fallback)
       const y10Data = y10Yahoo?.length ? y10Yahoo : (macroCache?.dgs10?.length ? macroCache.dgs10 : fredY10);
       const y2Data  = y2Yahoo?.length  ? y2Yahoo  : (macroCache?.dgs2?.length  ? macroCache.dgs2  : fredY2);
+      // VIX: cache (populated every 6h) → FRED proxy fallback (vixData already tried proxy)
+      const resolvedVix = macroCache?.vix?.length ? macroCache.vix : vixData;
 
       setH1({ spx: spxH1c, nq: nqH1c, dow: dowH1c, russell: rutH1c });
       setDaily({ spx: spxD, nq: nqD, dow: dowD, russell: rutD });
       setWeekly({ spx: spxW, nq: nqW, dow: dowW, russell: rutW });
       setMonthly({ spx: spxM, nq: nqM, dow: dowM, russell: rutM });
       setH1ohlc({ spx: spxH1o, nq: nqH1o });
-      setVix(vixData); setCpi(cpiData); setFed(fedData);
+      setVix(resolvedVix); setCpi(cpiData); setFed(fedData);
       setYield10(y10Data); setYield2(y2Data); setPmi(pmiData);
       setCot({ spx: cotSPX, nq: cotNQ, dow: cotDow, russell: cotRUT });
       setLastRefresh(new Date());

@@ -401,6 +401,9 @@ export default function MetalsDashboard() {
         macroCache?.dgs2?.length   ? macroCache.dgs2   : fetchYield2(),
       ]);
 
+      // VIX: cache → FRED proxy fallback (vixData already tried proxy in Phase 1)
+      const resolvedVix = macroCache?.vix?.length ? macroCache.vix : vixData;
+
       setMkt({ gold, silver, dxy, bonds10, bonds2, oil, copper });
       setCot({ gold: cotGold, silver: cotSilver });
       setRy(realYield);
@@ -410,7 +413,7 @@ export default function MetalsDashboard() {
       setMonthly({ gold: mGold, silver: mSilver });
       setH1ohlc({ gold: h1Gold, silver: h1Silver });
       setPmi(pmiData);
-      setVix(vixData);
+      setVix(resolvedVix);
       setCpi(cpiData);
       setYield10(y10Data);
       setYield2(y2Data);

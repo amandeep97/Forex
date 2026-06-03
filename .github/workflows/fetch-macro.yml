@@ -168,6 +168,10 @@ jobs:
               primary_fn=lambda: fetch_yield("%5EIRX", 365),
               fallback_fn=lambda: fetch_fred_csv("DGS2", 365))
 
+          # VIX — Yahoo Finance ^VIX (works from GitHub Actions, no CORS block)
+          try_fetch("vix",
+              primary_fn=lambda: fetch_yahoo("%5EVIX", 60))
+
           output = {
               "updated": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
               "any_updated": any_updated,
