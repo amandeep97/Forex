@@ -4,9 +4,6 @@ on:
   schedule:
     - cron: '0 */6 * * *'   # Every 6 hours
   workflow_dispatch:          # Allow manual trigger from GitHub UI
-  push:
-    branches: [main]
-    paths: ['.github/workflows/fetch-macro.yml']  # Re-run when workflow changes
 
 jobs:
   fetch-macro:
@@ -21,27 +18,56 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Fetch macro data from FRED
+        env:
+          FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
         run: |
           python3 << 'PYEOF'
           import json, urllib.request, os
-          from datetime import datetime
+          from datetime import datetime, timedelta, timezone
+          from urllib.parse import urlencode
+
+          api_key = os.environ.get('FRED_API_KEY', '').strip()
 
           def fetch_fred(series_id, days=540):
-              url = f"https://fred.stlouisfed.org/graph/fredgraph.csv?id={series_id}"
+              if api_key:
+                  # FRED REST API — works from GitHub Actions (no IP block)
+                  start = (datetime.now(timezone.utc) - timedelta(days=days + 60)).strftime('%Y-%m-%d')
+                  params = urlencode({
+                      'series_id': series_id,
+                      'api_key': api_key,
+                      'file_type': 'json',
+                      'observation_start': start,
+                      'sort_order': 'asc',
+                      'limit': days + 60,
+                  })
+                  url = f"https://api.stlouisfed.org/fred/series/observations?{params}"
+              else:
+                  # CSV fallback (may be blocked from datacenter IPs)
+                  url = f"https://fred.stlouisfed.org/graph/fredgraph.csv?id={series_id}"
+
               try:
                   req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
                   with urllib.request.urlopen(req, timeout=30) as r:
                       text = r.read().decode()
-                  lines = text.strip().split('\n')[1:]
+
                   result = []
-                  for line in lines[-days:]:
-                      parts = line.split(',')
-                      if len(parts) == 2:
+                  if api_key:
+                      observations = json.loads(text).get('observations', [])
+                      for obs in observations[-days:]:
                           try:
-                              val = float(parts[1])
-                              result.append({"date": parts[0].strip(), "val": val})
-                          except (ValueError, IndexError):
+                              val = float(obs['value'])
+                              result.append({'date': obs['date'], 'val': val})
+                          except (ValueError, KeyError):
                               pass
+                  else:
+                      for line in text.strip().split('\n')[1:][-days:]:
+                          parts = line.split(',')
+                          if len(parts) == 2:
+                              try:
+                                  result.append({'date': parts[0].strip(), 'val': float(parts[1])})
+                              except (ValueError, IndexError):
+                                  pass
+
                   return result if result else None
               except Exception as e:
                   print(f"  WARN: Failed {series_id}: {e}")
@@ -55,6 +81,11 @@ jobs:
               print(f"Loaded existing data (updated: {existing.get('updated', 'unknown')})")
           except Exception:
               print("No existing data found, starting fresh")
+
+          if api_key:
+              print("Using FRED REST API (api_key set)")
+          else:
+              print("WARNING: FRED_API_KEY not set — using CSV endpoint (may fail from Actions)")
 
           series_config = [
               ("cpi",      "CPIAUCSL", 540, None),
@@ -87,7 +118,7 @@ jobs:
                   print(f"  ~ {key}: fetch failed, keeping {len(new_data[key])} existing pts")
 
           output = {
-              "updated": datetime.utcnow().isoformat() + "Z",
+              "updated": datetime.now(timezone.utc).isoformat().replace('+00:00', 'Z'),
               "any_updated": any_updated,
               **new_data,
           }
@@ -109,5 +140,6 @@ jobs:
             echo "No changes to commit"
           else
             git commit -m "chore: update macro data $(date -u '+%Y-%m-%d %H:%M UTC') [skip ci]"
+            git pull --rebase origin main
             git push
           fi
