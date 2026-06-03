@@ -12,6 +12,7 @@ const Backtester       = lazy(() => import('./components/Backtester'));
 const RatioChart       = lazy(() => import('./components/RatioChart'));
 const COTTab           = lazy(() => import('./components/COTTab'));
 const MetalsDashboard  = lazy(() => import('./components/MetalsDashboard'));
+const IndicesDashboard = lazy(() => import('./components/IndicesDashboard'));
 const CorrelationMatrix= lazy(() => import('./components/CorrelationMatrix'));
 const CurrencyStrength = lazy(() => import('./components/CurrencyStrength'));
 const VolatilityDashboard= lazy(() => import('./components/VolatilityDashboard'));
@@ -40,6 +41,7 @@ const TABS = [
   { id: 'ratio',       label: 'Au/Ag Ratio',  icon: '⚖' },
   { id: 'cot',         label: 'COT Report',   icon: '🏦' },
   { id: 'metals',      label: 'Metals',       icon: '⚜' },
+  { id: 'indices',     label: 'Indices',      icon: '📊' },
   { id: 'correlation', label: 'Correlation',  icon: '⬡' },
   { id: 'strength',    label: 'Strength',     icon: '💪' },
   { id: 'volatility',  label: 'Volatility',   icon: '🌊' },
@@ -231,6 +233,9 @@ export default function App() {
         </div>
         <div style={{ display: activeTab === 'metals' ? 'flex' : 'none', flexDirection:'column', height:'calc(100vh - 120px)' }}>
           {visitedTabs.has('metals') && <MetalsDashboard />}
+        </div>
+        <div style={{ display: activeTab === 'indices' ? 'flex' : 'none', flexDirection:'column', height:'calc(100vh - 120px)' }}>
+          {visitedTabs.has('indices') && <IndicesDashboard />}
         </div>
         <div style={{ display: activeTab === 'correlation' ? 'flex' : 'none', flexDirection:'column', height:'calc(100vh - 120px)' }}>
           {visitedTabs.has('correlation') && <CorrelationMatrix />}
