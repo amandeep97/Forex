@@ -261,10 +261,10 @@ async function fetchFredSeries(id, days = 120) {
   try { return await Promise.any(FRED_PROXIES.map(p => tryProxy(p))); } catch { return null; }
 }
 
-async function fetchVIX() {
+async function fetchYahooSeries(ticker, range = '60d') {
   try {
     const res = await fetch(
-      'https://query1.finance.yahoo.com/v8/finance/chart/%5EVIX?interval=1d&range=30d',
+      `https://query1.finance.yahoo.com/v8/finance/chart/${ticker}?interval=1d&range=${range}`,
       { signal: AbortSignal.timeout(12000) }
     );
     if (!res.ok) return null;
@@ -274,6 +274,24 @@ async function fetchVIX() {
     const series = ts.map((t,i) => ({ date: new Date(t*1000).toISOString().slice(0,10), val: closes[i] }))
       .filter(d => Number.isFinite(d.val));
     return series.length >= 2 ? series : null;
+  } catch { return null; }
+}
+
+const fetchVIX      = () => fetchYahooSeries('%5EVIX', '30d');
+// ^TNX = 10-Year Treasury yield. Yahoo returns values like 4.32 (meaning 4.32%)
+const fetchYield10Y = () => fetchYahooSeries('%5ETNX').then(s => s?.map(d => ({ ...d, val: d.val > 20 ? d.val / 10 : d.val })) || null);
+// ^IRX = 13-Week T-Bill rate (proxy for short-term rate)
+const fetchYield2Y  = () => fetchYahooSeries('%5EIRX').then(s => s?.map(d => ({ ...d, val: d.val > 20 ? d.val / 10 : d.val })) || null);
+
+// Macro cache from GitHub Actions (server-side FRED fetch, no proxy needed)
+async function fetchMacroCache() {
+  try {
+    const res = await fetch(
+      'https://raw.githubusercontent.com/amandeep97/Forex/main/public/macro-data.json?t=' + Date.now(),
+      { signal: AbortSignal.timeout(8000) }
+    );
+    if (!res.ok) return null;
+    return await res.json();
   } catch { return null; }
 }
 
@@ -464,13 +482,15 @@ export default function IndicesDashboard() {
   const load = useCallback(async () => {
     setLoading(true);
     try {
+      // Phase 1: OANDA + Yahoo Finance + macro cache (all parallel, no FRED proxies)
       const [
         spxH1c, nqH1c, dowH1c, rutH1c,
         spxD, nqD, dowD, rutD,
         spxW, nqW, dowW, rutW,
         spxM, nqM, dowM, rutM,
         spxH1o, nqH1o,
-        vixData, cpiData, fedData, y10Data, y2Data, pmiData,
+        vixData, y10Yahoo, y2Yahoo,
+        macroCache,
         cotSPX, cotNQ, cotDow, cotRUT,
       ] = await Promise.all([
         fetchCloses(INDICES.spx.oanda,     'H1', 60),
@@ -492,16 +512,25 @@ export default function IndicesDashboard() {
         fetchOHLC(INDICES.spx.oanda,       'H1', 100),
         fetchOHLC(INDICES.nq.oanda,        'H1', 100),
         fetchVIX(),
-        fetchFredSeries('CPIAUCSL', 24),
-        fetchFredSeries('FEDFUNDS', 12),
-        fetchFredSeries('DGS10', 60),
-        fetchFredSeries('DGS2', 60),
-        fetchFredSeries('NAPM', 540).then(d => d?.filter(x => x.val >= 10 && x.val <= 100) || null),
+        fetchYield10Y(),   // ^TNX from Yahoo Finance
+        fetchYield2Y(),    // ^IRX from Yahoo Finance
+        fetchMacroCache(), // GitHub Actions JSON
         fetchCOTHistory(INDICES.spx.cot, 54),
         fetchCOTHistory(INDICES.nq.cot, 54),
         fetchCOTHistory(INDICES.dow.cot, 54),
         fetchCOTHistory(INDICES.russell.cot, 54),
       ]);
+
+      // Phase 2: Use GitHub Actions cache if available, fall back to FRED proxies
+      const [cpiData, fedData, pmiData] = await Promise.all([
+        macroCache?.cpi?.length      ? macroCache.cpi      : fetchFredSeries('CPIAUCSL', 24),
+        macroCache?.fedfunds?.length ? macroCache.fedfunds : fetchFredSeries('FEDFUNDS', 12),
+        macroCache?.pmi?.length      ? macroCache.pmi      : fetchFredSeries('NAPM', 540).then(d => d?.filter(x => x.val >= 10 && x.val <= 100) || null),
+      ]);
+
+      // Yield curve: prefer Yahoo Finance live data, fallback to cached DGS10/DGS2
+      const y10Data = y10Yahoo?.length ? y10Yahoo : (macroCache?.dgs10?.length ? macroCache.dgs10 : null);
+      const y2Data  = y2Yahoo?.length  ? y2Yahoo  : (macroCache?.dgs2?.length  ? macroCache.dgs2  : null);
 
       setH1({ spx: spxH1c, nq: nqH1c, dow: dowH1c, russell: rutH1c });
       setDaily({ spx: spxD, nq: nqD, dow: dowD, russell: rutD });

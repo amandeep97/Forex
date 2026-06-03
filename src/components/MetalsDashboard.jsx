@@ -92,7 +92,6 @@ async function fetchFredSeries(id, days = 120) {
   };
 
   try {
-    // All proxies race — fastest successful response wins
     return await Promise.any(FRED_PROXIES.map(p => tryProxy(p)));
   } catch { return null; }
 }
@@ -102,12 +101,25 @@ const fetchBreakevenInfl = () => fetchFredSeries('T10YIE');
 const fetchPMI           = () => fetchFredSeries('NAPM', 540).then(d => d?.filter(x => x.val >= 10 && x.val <= 100) || null);
 const fetchCPI           = () => fetchFredSeries('CPIAUCSL', 540);
 
+// Macro cache from GitHub Actions (no proxy, no CORS)
+async function fetchMacroCache() {
+  try {
+    const res = await fetch(
+      'https://raw.githubusercontent.com/amandeep97/Forex/main/public/macro-data.json?t=' + Date.now(),
+      { signal: AbortSignal.timeout(8000) }
+    );
+    if (!res.ok) return null;
+    const data = await res.json();
+    return data;
+  } catch { return null; }
+}
+
 // VIX via Yahoo Finance — CORS enabled, no proxy needed
 async function fetchVIX() {
   try {
     const res = await fetch(
       'https://query1.finance.yahoo.com/v8/finance/chart/%5EVIX?interval=1d&range=30d',
-      { signal: AbortSignal.timeout(8000) }
+      { signal: AbortSignal.timeout(12000) }
     );
     if (!res.ok) return null;
     const data = await res.json();
@@ -340,10 +352,12 @@ export default function MetalsDashboard() {
   const load = useCallback(async () => {
     setLoading(true);
     try {
+      // Phase 1: OANDA + Yahoo Finance + macro cache (all parallel, no proxies)
       const [gold, silver, dxy, bonds10, bonds2, oil, copper,
-             cotGold, cotSilver, realYield, breakevenInfl,
+             cotGold, cotSilver,
              dGold, dSilver, wGold, wSilver, mGold, mSilver,
-             h1Gold, h1Silver, pmiData, vixData, cpiData] = await Promise.all([
+             h1Gold, h1Silver,
+             vixData, macroCache] = await Promise.all([
         fetchCloses(INSTR.gold,    'H1', 60),
         fetchCloses(INSTR.silver,  'H1', 60),
         fetchCloses(INSTR.dxy,     'H1', 60),
@@ -353,8 +367,6 @@ export default function MetalsDashboard() {
         fetchCloses(INSTR.copper,  'H1', 60),
         fetchCOTHistory('088691', 54),
         fetchCOTHistory('084691', 54),
-        fetchRealYield(),
-        fetchBreakevenInfl(),
         fetchOHLC(INSTR.gold,   'D', 60),
         fetchOHLC(INSTR.silver, 'D', 60),
         fetchOHLC(INSTR.gold,   'W', 5),
@@ -363,10 +375,18 @@ export default function MetalsDashboard() {
         fetchOHLC(INSTR.silver, 'M', 3),
         fetchOHLC(INSTR.gold,   'H1', 100),
         fetchOHLC(INSTR.silver, 'H1', 100),
-        fetchPMI(),
         fetchVIX(),
-        fetchCPI(),
+        fetchMacroCache(),
       ]);
+
+      // Phase 2: Use GitHub Actions cache if available, fall back to FRED proxies
+      const [realYield, breakevenInfl, cpiData, pmiData] = await Promise.all([
+        macroCache?.dfii10?.length ? macroCache.dfii10 : fetchRealYield(),
+        macroCache?.t10yie?.length ? macroCache.t10yie : fetchBreakevenInfl(),
+        macroCache?.cpi?.length    ? macroCache.cpi    : fetchCPI(),
+        macroCache?.pmi?.length    ? macroCache.pmi    : fetchPMI(),
+      ]);
+
       setMkt({ gold, silver, dxy, bonds10, bonds2, oil, copper });
       setCot({ gold: cotGold, silver: cotSilver });
       setRy(realYield);

@@ -1,0 +1,113 @@
+name: Fetch Macro Data
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'   # Every 6 hours
+  workflow_dispatch:          # Allow manual trigger from GitHub UI
+  push:
+    branches: [main]
+    paths: ['.github/workflows/fetch-macro.yml']  # Re-run when workflow changes
+
+jobs:
+  fetch-macro:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Fetch macro data from FRED
+        run: |
+          python3 << 'PYEOF'
+          import json, urllib.request, os
+          from datetime import datetime
+
+          def fetch_fred(series_id, days=540):
+              url = f"https://fred.stlouisfed.org/graph/fredgraph.csv?id={series_id}"
+              try:
+                  req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+                  with urllib.request.urlopen(req, timeout=30) as r:
+                      text = r.read().decode()
+                  lines = text.strip().split('\n')[1:]
+                  result = []
+                  for line in lines[-days:]:
+                      parts = line.split(',')
+                      if len(parts) == 2:
+                          try:
+                              val = float(parts[1])
+                              result.append({"date": parts[0].strip(), "val": val})
+                          except (ValueError, IndexError):
+                              pass
+                  return result if result else None
+              except Exception as e:
+                  print(f"  WARN: Failed {series_id}: {e}")
+                  return None
+
+          # Load existing data — keep it on failure (stale > empty)
+          existing = {}
+          try:
+              with open("public/macro-data.json") as f:
+                  existing = json.load(f)
+              print(f"Loaded existing data (updated: {existing.get('updated', 'unknown')})")
+          except Exception:
+              print("No existing data found, starting fresh")
+
+          series_config = [
+              ("cpi",      "CPIAUCSL", 540, None),
+              ("pmi",      "NAPM",     540, lambda x: 10 <= x["val"] <= 100),
+              ("fedfunds", "FEDFUNDS", 24,  None),
+              ("t10yie",   "T10YIE",   540, None),
+              ("dfii10",   "DFII10",   540, None),
+              ("dgs10",    "DGS10",    365, None),
+              ("dgs2",     "DGS2",     365, None),
+          ]
+
+          new_data = {}
+          any_updated = False
+
+          for key, fred_id, days, filter_fn in series_config:
+              result = fetch_fred(fred_id, days)
+              if result is not None:
+                  if filter_fn:
+                      result = [x for x in result if filter_fn(x)]
+                  if result:
+                      new_data[key] = result
+                      latest = result[-1]
+                      print(f"  ✓ {key}: {len(result)} pts, latest={latest}")
+                      any_updated = True
+                  else:
+                      new_data[key] = existing.get(key, [])
+                      print(f"  ~ {key}: filter removed all values, keeping existing")
+              else:
+                  new_data[key] = existing.get(key, [])
+                  print(f"  ~ {key}: fetch failed, keeping {len(new_data[key])} existing pts")
+
+          output = {
+              "updated": datetime.utcnow().isoformat() + "Z",
+              "any_updated": any_updated,
+              **new_data,
+          }
+
+          os.makedirs("public", exist_ok=True)
+          with open("public/macro-data.json", "w") as f:
+              json.dump(output, f, separators=(',', ':'))
+
+          total = sum(len(v) for v in new_data.values() if isinstance(v, list))
+          print(f"\nSaved macro-data.json — {total} total data points")
+          PYEOF
+
+      - name: Commit and push
+        run: |
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add public/macro-data.json
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "chore: update macro data $(date -u '+%Y-%m-%d %H:%M UTC') [skip ci]"
+            git push
+          fi
