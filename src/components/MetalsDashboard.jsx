@@ -100,8 +100,26 @@ async function fetchFredSeries(id, days = 120) {
 const fetchRealYield     = () => fetchFredSeries('DFII10');
 const fetchBreakevenInfl = () => fetchFredSeries('T10YIE');
 const fetchPMI           = () => fetchFredSeries('MPMIVMA', 540);
-const fetchVIX           = () => fetchFredSeries('VIXCLS',  90);
 const fetchCPI           = () => fetchFredSeries('CPIAUCSL', 540);
+
+// VIX via Yahoo Finance — CORS enabled, no proxy needed
+async function fetchVIX() {
+  try {
+    const res = await fetch(
+      'https://query1.finance.yahoo.com/v8/finance/chart/%5EVIX?interval=1d&range=30d',
+      { signal: AbortSignal.timeout(8000) }
+    );
+    if (!res.ok) return null;
+    const data = await res.json();
+    const ts     = data.chart?.result?.[0]?.timestamp || [];
+    const closes = data.chart?.result?.[0]?.indicators?.quote?.[0]?.close || [];
+    const series = ts.map((t, i) => ({
+      date: new Date(t * 1000).toISOString().slice(0, 10),
+      val:  closes[i],
+    })).filter(d => Number.isFinite(d.val));
+    return series.length >= 2 ? series : null;
+  } catch { return null; }
+}
 
 // ── ICT session H/L from H1 OHLC ─────────────────────────────────────────────
 // Sessions in UTC: Asian 00-06, London 07-11, NY 12-16
@@ -1328,7 +1346,7 @@ export default function MetalsDashboard() {
                 </div>
               </div>
             ) : (
-              <div style={{ color:'var(--text3)', fontSize:11 }}>Loading VIX from FRED (VIXCLS)…</div>
+              <div style={{ color:'var(--text3)', fontSize:11 }}>Loading VIX…</div>
             )}
           </div>
 
@@ -1574,15 +1592,15 @@ export default function MetalsDashboard() {
                   {
                     driver: 'VIX (CBOE Fear Index)',
                     signal: sig.vix !== undefined ? `${sig.vix.toFixed(1)} (${sig.vixElevated ? 'Elevated' : 'Low'})` : '—',
-                    goldImpact:   sig.vixSignal === 'strong_bullish' ? '✅ Strong Bullish' : sig.vixSignal === 'mild_bullish' ? '✅ Bullish' : sig.vixSignal === 'watch' ? '👀 Watch' : '➖ Neutral',
-                    silverImpact: sig.vixSignal === 'strong_bullish' ? '✅ Mild Bullish' : sig.vixSignal === 'mild_bullish' ? '✅ Mild Bullish' : '➖ Neutral',
+                    goldImpact:   sig.vix === undefined ? '—' : sig.vixSignal === 'strong_bullish' ? '✅ Strong Bullish' : sig.vixSignal === 'mild_bullish' ? '✅ Bullish' : sig.vixSignal === 'watch' ? '👀 Watch' : '➖ Neutral',
+                    silverImpact: sig.vix === undefined ? '—' : sig.vixSignal === 'strong_bullish' ? '✅ Mild Bullish' : sig.vixSignal === 'mild_bullish' ? '✅ Mild Bullish' : '➖ Neutral',
                     strength: sig.vix !== undefined ? `5d: ${sig.vixChange > 0 ? '+' : ''}${sig.vixChange}` : '—',
                   },
                   {
                     driver: 'US CPI Inflation (YoY)',
                     signal: sig.cpiYoY !== undefined ? `${sig.cpiYoY.toFixed(2)}% (${sig.cpiHot ? 'Hot' : 'Cooling'})` : '—',
-                    goldImpact:   sig.cpiSignal === 'strong_bullish' ? '✅ Strong Bullish' : sig.cpiSignal === 'mild_bullish' ? '✅ Bullish' : '➖ Neutral',
-                    silverImpact: sig.cpiSignal !== 'neutral' ? '✅ Bullish' : '➖ Neutral',
+                    goldImpact:   sig.cpiYoY === undefined ? '—' : sig.cpiSignal === 'strong_bullish' ? '✅ Strong Bullish' : sig.cpiSignal === 'mild_bullish' ? '✅ Bullish' : '➖ Neutral',
+                    silverImpact: sig.cpiYoY === undefined ? '—' : sig.cpiSignal !== 'neutral' ? '✅ Bullish' : '➖ Neutral',
                     strength: sig.cpiMoM !== undefined ? `MoM: ${sig.cpiMoM > 0 ? '+' : ''}${(sig.cpiMoM * 100).toFixed(2)}%` : '—',
                   },
                   {
