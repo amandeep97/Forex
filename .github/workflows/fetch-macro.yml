@@ -113,7 +113,7 @@ jobs:
           any_updated = False
 
           def try_fetch(key, primary_fn, fallback_fn=None, filter_fn=None):
-              nonlocal any_updated
+              global any_updated
               result = primary_fn()
               if result is None and fallback_fn:
                   result = fallback_fn()
