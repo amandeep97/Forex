@@ -60,32 +60,41 @@ async function fetchCOTHistory(code, weeks = 54) {
   } catch { return null; }
 }
 
-// ── FRED data — tries multiple CORS proxies in sequence ──────────────────────
+// ── FRED data — all proxies race simultaneously, first success wins ───────────
 const FRED_PROXIES = [
   url => `https://corsproxy.io/?${encodeURIComponent(url)}`,
   url => `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`,
+  url => `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(url)}`,
   url => `https://thingproxy.freeboard.io/fetch/${url}`,
 ];
+
+function parseFredCsv(text) {
+  if (!text?.includes(',')) return null;
+  const series = text.trim().split('\n').slice(1)
+    .map(line => { const [date, val] = line.split(','); return { date, val: parseFloat(val) }; })
+    .filter(d => Number.isFinite(d.val));
+  return series.length >= 2 ? series : null;
+}
 
 async function fetchFredSeries(id, days = 120) {
   const start = new Date();
   start.setDate(start.getDate() - days);
-  const cosd  = start.toISOString().slice(0, 10);
+  const cosd    = start.toISOString().slice(0, 10);
   const fredUrl = `https://fred.stlouisfed.org/graph/fredgraph.csv?id=${id}&cosd=${cosd}`;
 
-  for (const makeProxy of FRED_PROXIES) {
-    try {
-      const res = await fetch(makeProxy(fredUrl), { signal: AbortSignal.timeout(12000) });
-      if (!res.ok) continue;
-      const text = await res.text();
-      if (!text.includes(',')) continue;           // error page, not CSV
-      const series = text.trim().split('\n').slice(1)
-        .map(line => { const [date, val] = line.split(','); return { date, val: parseFloat(val) }; })
-        .filter(d => Number.isFinite(d.val));
-      if (series.length >= 2) return series;
-    } catch { /* try next proxy */ }
-  }
-  return null;
+  const tryProxy = async (makeProxy) => {
+    const res  = await fetch(makeProxy(fredUrl), { signal: AbortSignal.timeout(10000) });
+    if (!res.ok) throw new Error('bad status');
+    const text = await res.text();
+    const data = parseFredCsv(text);
+    if (!data) throw new Error('no data');
+    return data;
+  };
+
+  try {
+    // All proxies race — fastest successful response wins
+    return await Promise.any(FRED_PROXIES.map(p => tryProxy(p)));
+  } catch { return null; }
 }
 
 const fetchRealYield     = () => fetchFredSeries('DFII10');
