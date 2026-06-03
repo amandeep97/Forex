@@ -265,7 +265,7 @@ async function fetchVIX() {
   try {
     const res = await fetch(
       'https://query1.finance.yahoo.com/v8/finance/chart/%5EVIX?interval=1d&range=30d',
-      { signal: AbortSignal.timeout(8000) }
+      { signal: AbortSignal.timeout(12000) }
     );
     if (!res.ok) return null;
     const data = await res.json();
@@ -685,7 +685,7 @@ export default function IndicesDashboard() {
                 {vixDir && <span style={{ fontSize:10, marginLeft:4 }}>{vixDir === 'rising' ? '▲' : '▼'}</span>}
               </div>
               <div style={{ fontSize:10, color:neu }}>
-                {vixLast == null ? 'Loading…' : vixLast < 15 ? 'Very Low — ideal for bulls' : vixLast < 20 ? 'Low — normal rally' : vixLast < 30 ? 'Elevated — caution' : 'Extreme fear'}
+                {vixLast == null ? (loading ? 'Loading…' : '— unavailable') : vixLast < 15 ? 'Very Low — ideal for bulls' : vixLast < 20 ? 'Low — normal rally' : vixLast < 30 ? 'Elevated — caution' : 'Extreme fear'}
               </div>
               <Sparkline data={vix?.map(d=>d.val)} color={vixLast < 20 ? bull : bear} width={100} height={22}/>
             </div>
@@ -698,7 +698,7 @@ export default function IndicesDashboard() {
                 {fedDir && <span style={{ fontSize:10, marginLeft:4 }}>{fedDir === 'hiking' ? '▲' : fedDir === 'cutting' ? '▼' : '—'}</span>}
               </div>
               <div style={{ fontSize:10, color:neu }}>
-                {fedDir === 'cutting' ? '✅ Cutting — bullish for stocks' : fedDir === 'hiking' ? '❌ Hiking — bearish for stocks' : fedDir === 'pausing' ? '➖ Pausing — neutral' : 'Loading…'}
+                {fedDir === 'cutting' ? '✅ Cutting — bullish for stocks' : fedDir === 'hiking' ? '❌ Hiking — bearish for stocks' : fedDir === 'pausing' ? '➖ Pausing — neutral' : loading ? 'Loading…' : '— unavailable'}
               </div>
             </div>
 
@@ -709,7 +709,7 @@ export default function IndicesDashboard() {
                 {cpiYoY != null ? `${cpiYoY.toFixed(2)}%` : '—'}
               </div>
               <div style={{ fontSize:10, color:neu }}>
-                {cpiYoY == null ? 'Loading…' : cpiYoY >= 4 ? '❌ Hot — Fed must stay hawkish' : cpiYoY >= 2.5 ? '⚠ Elevated — watch Fed signals' : '✅ Controlled — Fed can ease'}
+                {cpiYoY == null ? (loading ? 'Loading…' : '— unavailable') : cpiYoY >= 4 ? '❌ Hot — Fed must stay hawkish' : cpiYoY >= 2.5 ? '⚠ Elevated — watch Fed signals' : '✅ Controlled — Fed can ease'}
               </div>
             </div>
 
@@ -720,7 +720,7 @@ export default function IndicesDashboard() {
                 {yieldCurve != null ? `${yieldCurve > 0 ? '+' : ''}${yieldCurve.toFixed(3)}%` : '—'}
               </div>
               <div style={{ fontSize:10, color:neu }}>
-                {yieldCurve == null ? 'Loading…' : yieldCurve > 0.5 ? '✅ Normal — growth signal' : yieldCurve > 0 ? '✅ Slight normal' : yieldCurve > -0.5 ? '⚠ Near inversion' : '❌ Inverted — recession warning'}
+                {yieldCurve == null ? (loading ? 'Loading…' : '— FRED unavailable') : yieldCurve > 0.5 ? '✅ Normal — growth signal' : yieldCurve > 0 ? '✅ Slight normal' : yieldCurve > -0.5 ? '⚠ Near inversion' : '❌ Inverted — recession warning'}
               </div>
             </div>
 
@@ -731,7 +731,7 @@ export default function IndicesDashboard() {
                 {pmiLast != null ? pmiLast.toFixed(1) : '—'}
               </div>
               <div style={{ fontSize:10, color:neu }}>
-                {pmiLast == null ? 'Loading…' : pmiLast > 55 ? '✅ Strong expansion' : pmiLast > 50 ? '✅ Expanding' : pmiLast > 45 ? '❌ Contracting' : '❌ Sharp contraction'}
+                {pmiLast == null ? (loading ? 'Loading…' : '— FRED unavailable') : pmiLast > 55 ? '✅ Strong expansion' : pmiLast > 50 ? '✅ Expanding' : pmiLast > 45 ? '❌ Contracting' : '❌ Sharp contraction'}
               </div>
             </div>
 
