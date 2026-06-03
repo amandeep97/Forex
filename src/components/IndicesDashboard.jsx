@@ -303,12 +303,15 @@ async function fetchMacroCache() {
 async function fetchCOTHistory(code, weeks = 52) {
   if (!code) return null;
   try {
-    const url = `https://publicreporting.cftc.gov/api/odata/v1/CorrectMarketHistory?$filter=CFTC_Commodity_Code eq '${code}'&$orderby=Report_Date_as_YYYY_MM_DD desc&$top=${weeks}&$select=Report_Date_as_YYYY_MM_DD,NonComm_Positions_Long_All,NonComm_Positions_Short_All`;
+    // Equity index futures are in the TFF (Traders in Financial Futures) report
+    // Use Leveraged Money positions (hedge funds) — most relevant for index bias
+    const url = `https://publicreporting.cftc.gov/api/odata/v1/FinancialFuturesAndOptionsHistory?$filter=CFTC_Commodity_Code eq '${code}'&$orderby=Report_Date_as_YYYY_MM_DD desc&$top=${weeks}&$select=Report_Date_as_YYYY_MM_DD,Lev_Money_Positions_Long_All,Lev_Money_Positions_Short_All`;
     const res = await fetch(url, { signal: AbortSignal.timeout(12000) });
     if (!res.ok) return null;
     const data = await res.json();
-    return (data.value || []).reverse()
-      .map(r => ({ date: r.Report_Date_as_YYYY_MM_DD, net: (r.NonComm_Positions_Long_All||0)-(r.NonComm_Positions_Short_All||0) }));
+    const rows = (data.value || []).reverse()
+      .map(r => ({ date: r.Report_Date_as_YYYY_MM_DD, net: (r.Lev_Money_Positions_Long_All||0)-(r.Lev_Money_Positions_Short_All||0) }));
+    return rows.length ? rows : null;
   } catch { return null; }
 }
 
