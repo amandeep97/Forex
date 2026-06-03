@@ -60,30 +60,39 @@ async function fetchCOTHistory(code, weeks = 54) {
   } catch { return null; }
 }
 
-// ── FRED — actual 10Y real yield (TIPS, series DFII10) — the #1 driver of gold ─
-const PROXY = 'https://corsproxy.io/?'; // same proven proxy used by the news calendar
+// ── FRED data — tries multiple CORS proxies in sequence ──────────────────────
+const FRED_PROXIES = [
+  url => `https://corsproxy.io/?${encodeURIComponent(url)}`,
+  url => `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`,
+  url => `https://thingproxy.freeboard.io/fetch/${url}`,
+];
 
 async function fetchFredSeries(id, days = 120) {
   const start = new Date();
   start.setDate(start.getDate() - days);
-  const cosd = start.toISOString().slice(0, 10);
-  const url = `https://fred.stlouisfed.org/graph/fredgraph.csv?id=${id}&cosd=${cosd}`;
-  try {
-    const res = await fetch(PROXY + encodeURIComponent(url), { signal: AbortSignal.timeout(12000) });
-    if (!res.ok) return null;
-    const text = await res.text();
-    const series = text.trim().split('\n').slice(1)
-      .map(line => { const [date, val] = line.split(','); return { date, val: parseFloat(val) }; })
-      .filter(d => Number.isFinite(d.val));
-    return series.length >= 2 ? series : null;
-  } catch { return null; }
+  const cosd  = start.toISOString().slice(0, 10);
+  const fredUrl = `https://fred.stlouisfed.org/graph/fredgraph.csv?id=${id}&cosd=${cosd}`;
+
+  for (const makeProxy of FRED_PROXIES) {
+    try {
+      const res = await fetch(makeProxy(fredUrl), { signal: AbortSignal.timeout(12000) });
+      if (!res.ok) continue;
+      const text = await res.text();
+      if (!text.includes(',')) continue;           // error page, not CSV
+      const series = text.trim().split('\n').slice(1)
+        .map(line => { const [date, val] = line.split(','); return { date, val: parseFloat(val) }; })
+        .filter(d => Number.isFinite(d.val));
+      if (series.length >= 2) return series;
+    } catch { /* try next proxy */ }
+  }
+  return null;
 }
 
 const fetchRealYield     = () => fetchFredSeries('DFII10');
 const fetchBreakevenInfl = () => fetchFredSeries('T10YIE');
 const fetchPMI           = () => fetchFredSeries('MPMIVMA', 540);
-const fetchVIX           = () => fetchFredSeries('VIXCLS',  90);   // CBOE VIX daily
-const fetchCPI           = () => fetchFredSeries('CPIAUCSL', 540); // US CPI, 18mo for YoY
+const fetchVIX           = () => fetchFredSeries('VIXCLS',  90);
+const fetchCPI           = () => fetchFredSeries('CPIAUCSL', 540);
 
 // ── ICT session H/L from H1 OHLC ─────────────────────────────────────────────
 // Sessions in UTC: Asian 00-06, London 07-11, NY 12-16
