@@ -114,8 +114,10 @@ async function fetchMacroCache() {
   } catch { return null; }
 }
 
-// VIX via Yahoo Finance — CORS enabled, no proxy needed
+// VIX: FRED VIXCLS proxy (same reliability as CPI/Fed), Yahoo Finance as backup
 async function fetchVIX() {
+  const fred = await fetchFredSeries('VIXCLS', 60);
+  if (fred?.length) return fred;
   try {
     const res = await fetch(
       'https://query1.finance.yahoo.com/v8/finance/chart/%5EVIX?interval=1d&range=30d',

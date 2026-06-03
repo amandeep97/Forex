@@ -277,10 +277,15 @@ async function fetchYahooSeries(ticker, range = '60d') {
   } catch { return null; }
 }
 
-const fetchVIX      = () => fetchYahooSeries('%5EVIX', '30d');
-// ^TNX = 10-Year Treasury yield. Yahoo returns values like 4.32 (meaning 4.32%)
+// VIX: FRED VIXCLS proxy (same reliability as CPI/Fed), Yahoo as backup
+async function fetchVIX() {
+  const fred = await fetchFredSeries('VIXCLS', 60);
+  if (fred?.length) return fred;
+  return fetchYahooSeries('%5EVIX', '30d');
+}
+// ^TNX = 10-Year Treasury yield (Yahoo returns e.g. 43.2 meaning 4.32%)
 const fetchYield10Y = () => fetchYahooSeries('%5ETNX').then(s => s?.map(d => ({ ...d, val: d.val > 20 ? d.val / 10 : d.val })) || null);
-// ^IRX = 13-Week T-Bill rate (proxy for short-term rate)
+// ^IRX = 13-Week T-Bill rate
 const fetchYield2Y  = () => fetchYahooSeries('%5EIRX').then(s => s?.map(d => ({ ...d, val: d.val > 20 ? d.val / 10 : d.val })) || null);
 
 // Macro cache from GitHub Actions (server-side FRED fetch, no proxy needed)
@@ -521,16 +526,18 @@ export default function IndicesDashboard() {
         fetchCOTHistory(INDICES.russell.cot, 54),
       ]);
 
-      // Phase 2: Use GitHub Actions cache if available, fall back to FRED proxies
-      const [cpiData, fedData, pmiData] = await Promise.all([
+      // Phase 2: cache → FRED proxy fallback. Also fetch yields from FRED if Yahoo + cache both empty.
+      const [cpiData, fedData, pmiData, fredY10, fredY2] = await Promise.all([
         macroCache?.cpi?.length      ? macroCache.cpi      : fetchFredSeries('CPIAUCSL', 24),
         macroCache?.fedfunds?.length ? macroCache.fedfunds : fetchFredSeries('FEDFUNDS', 12),
         macroCache?.pmi?.length      ? macroCache.pmi      : fetchFredSeries('NAPM', 540).then(d => d?.filter(x => x.val >= 10 && x.val <= 100) || null),
+        (!y10Yahoo?.length && !macroCache?.dgs10?.length)  ? fetchFredSeries('DGS10', 365) : Promise.resolve(null),
+        (!y2Yahoo?.length  && !macroCache?.dgs2?.length)   ? fetchFredSeries('DGS2',  365) : Promise.resolve(null),
       ]);
 
-      // Yield curve: prefer Yahoo Finance live data, fallback to cached DGS10/DGS2
-      const y10Data = y10Yahoo?.length ? y10Yahoo : (macroCache?.dgs10?.length ? macroCache.dgs10 : null);
-      const y2Data  = y2Yahoo?.length  ? y2Yahoo  : (macroCache?.dgs2?.length  ? macroCache.dgs2  : null);
+      // Yield curve: Yahoo → cache → FRED proxy (triple fallback)
+      const y10Data = y10Yahoo?.length ? y10Yahoo : (macroCache?.dgs10?.length ? macroCache.dgs10 : fredY10);
+      const y2Data  = y2Yahoo?.length  ? y2Yahoo  : (macroCache?.dgs2?.length  ? macroCache.dgs2  : fredY2);
 
       setH1({ spx: spxH1c, nq: nqH1c, dow: dowH1c, russell: rutH1c });
       setDaily({ spx: spxD, nq: nqD, dow: dowD, russell: rutD });
