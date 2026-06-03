@@ -133,10 +133,18 @@ jobs:
               primary_fn=fetch_bls_cpi,
               fallback_fn=lambda: fetch_fred_csv("CPIAUCSL", 540))
 
-          # PMI — FRED CSV (no free alternative); preserved from cache on failure
+          # PMI — MPMIVMA stores as decimal (0.487=48.7%); normalize then filter realistic range
+          def norm_pmi(data):
+              if not data: return None
+              result = []
+              for x in data:
+                  v = x["val"] * 100 if x["val"] < 5 else x["val"]
+                  if 30 <= v <= 75:
+                      result.append({"date": x["date"], "val": round(v, 1)})
+              return result if result else None
+
           try_fetch("pmi",
-              primary_fn=lambda: fetch_fred_csv("NAPM", 540),
-              filter_fn=lambda x: 10 <= x["val"] <= 100)
+              primary_fn=lambda: norm_pmi(fetch_fred_csv("MPMIVMA", 24)))
 
           # Fed Funds — FRED CSV; rarely changes so stale cache is fine
           try_fetch("fedfunds",

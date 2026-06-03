@@ -98,8 +98,16 @@ async function fetchFredSeries(id, days = 120) {
 
 const fetchRealYield     = () => fetchFredSeries('DFII10');
 const fetchBreakevenInfl = () => fetchFredSeries('T10YIE');
-const fetchPMI           = () => fetchFredSeries('NAPM', 540).then(d => d?.filter(x => x.val >= 10 && x.val <= 100) || null);
 const fetchCPI           = () => fetchFredSeries('CPIAUCSL', 540);
+const fetchYield10       = () => fetchFredSeries('DGS10', 365);
+const fetchYield2        = () => fetchFredSeries('DGS2',  365);
+// MPMIVMA stores PMI as decimal (0.487 = 48.7%). Normalize then accept only realistic range.
+const fetchPMI = () => fetchFredSeries('MPMIVMA', 24).then(d => {
+  if (!d?.length) return null;
+  const norm = d.map(x => ({ ...x, val: x.val < 5 ? +(x.val * 100).toFixed(1) : +x.val.toFixed(1) }))
+                .filter(x => x.val >= 30 && x.val <= 75);
+  return norm.length ? norm : null;
+});
 
 // Macro cache from GitHub Actions (no proxy, no CORS)
 async function fetchMacroCache() {
@@ -345,8 +353,10 @@ export default function MetalsDashboard() {
   const [monthly, setMonthly] = useState(null);
   const [h1ohlc,  setH1ohlc] = useState(null);   // H1 OHLC for session ranges
   const [pmi,     setPmi]     = useState(null);
-  const [vix,     setVix]     = useState(null);   // CBOE VIX
-  const [cpi,     setCpi]     = useState(null);   // US CPI
+  const [vix,     setVix]     = useState(null);
+  const [cpi,     setCpi]     = useState(null);
+  const [yield10, setYield10] = useState(null);   // DGS10 — real 10Y yield %
+  const [yield2,  setYield2]  = useState(null);   // DGS2  — real 2Y yield %
   const [loading, setLoading] = useState(true);
   const [lastRefresh, setLastRefresh] = useState(null);
   const hasOanda = !!getOandaCreds();
@@ -381,12 +391,14 @@ export default function MetalsDashboard() {
         fetchMacroCache(),
       ]);
 
-      // Phase 2: Use GitHub Actions cache if available, fall back to FRED proxies
-      const [realYield, breakevenInfl, cpiData, pmiData] = await Promise.all([
+      // Phase 2: cache → FRED proxy fallback
+      const [realYield, breakevenInfl, cpiData, pmiData, y10Data, y2Data] = await Promise.all([
         macroCache?.dfii10?.length ? macroCache.dfii10 : fetchRealYield(),
         macroCache?.t10yie?.length ? macroCache.t10yie : fetchBreakevenInfl(),
         macroCache?.cpi?.length    ? macroCache.cpi    : fetchCPI(),
         macroCache?.pmi?.length    ? macroCache.pmi    : fetchPMI(),
+        macroCache?.dgs10?.length  ? macroCache.dgs10  : fetchYield10(),
+        macroCache?.dgs2?.length   ? macroCache.dgs2   : fetchYield2(),
       ]);
 
       setMkt({ gold, silver, dxy, bonds10, bonds2, oil, copper });
@@ -400,6 +412,8 @@ export default function MetalsDashboard() {
       setPmi(pmiData);
       setVix(vixData);
       setCpi(cpiData);
+      setYield10(y10Data);
+      setYield2(y2Data);
       setLastRefresh(new Date());
     } finally {
       setLoading(false);
@@ -428,13 +442,10 @@ export default function MetalsDashboard() {
     sig.bonds10Pct = pctChange(mkt.bonds10);
     sig.bonds2Dir  = direction(mkt.bonds2);
 
-    // Yield curve = 10Y minus 2Y
-    if (mkt.bonds10 && mkt.bonds2) {
-      const n10 = mkt.bonds10.length, n2 = mkt.bonds2.length;
-      if (n10 > 0 && n2 > 0) {
-        sig.yieldCurve = +(mkt.bonds10[n10 - 1] - mkt.bonds2[n2 - 1]).toFixed(3);
-        sig.yieldCurveInverted = sig.yieldCurve < 0;
-      }
+    // Yield curve = real 10Y yield % minus real 2Y yield % (from FRED DGS10/DGS2)
+    if (yield10?.length && yield2?.length) {
+      sig.yieldCurve = +(yield10[yield10.length - 1].val - yield2[yield2.length - 1].val).toFixed(3);
+      sig.yieldCurveInverted = sig.yieldCurve < 0;
     }
 
     // Real yield proxy direction: if bonds rising & gold falling → real yields rising → bearish

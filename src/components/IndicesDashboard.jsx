@@ -530,7 +530,12 @@ export default function IndicesDashboard() {
       const [cpiData, fedData, pmiData, fredY10, fredY2] = await Promise.all([
         macroCache?.cpi?.length      ? macroCache.cpi      : fetchFredSeries('CPIAUCSL', 24),
         macroCache?.fedfunds?.length ? macroCache.fedfunds : fetchFredSeries('FEDFUNDS', 12),
-        macroCache?.pmi?.length      ? macroCache.pmi      : fetchFredSeries('NAPM', 540).then(d => d?.filter(x => x.val >= 10 && x.val <= 100) || null),
+        macroCache?.pmi?.length      ? macroCache.pmi      : fetchFredSeries('MPMIVMA', 24).then(d => {
+          if (!d?.length) return null;
+          const norm = d.map(x => ({ ...x, val: x.val < 5 ? +(x.val * 100).toFixed(1) : +x.val.toFixed(1) }))
+                        .filter(x => x.val >= 30 && x.val <= 75);
+          return norm.length ? norm : null;
+        }),
         (!y10Yahoo?.length && !macroCache?.dgs10?.length)  ? fetchFredSeries('DGS10', 365) : Promise.resolve(null),
         (!y2Yahoo?.length  && !macroCache?.dgs2?.length)   ? fetchFredSeries('DGS2',  365) : Promise.resolve(null),
       ]);
