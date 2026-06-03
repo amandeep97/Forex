@@ -99,7 +99,7 @@ async function fetchFredSeries(id, days = 120) {
 
 const fetchRealYield     = () => fetchFredSeries('DFII10');
 const fetchBreakevenInfl = () => fetchFredSeries('T10YIE');
-const fetchPMI           = () => fetchFredSeries('MPMIVMA', 540);
+const fetchPMI           = () => fetchFredSeries('NAPM', 540).then(d => d?.filter(x => x.val >= 10 && x.val <= 100) || null);
 const fetchCPI           = () => fetchFredSeries('CPIAUCSL', 540);
 
 // VIX via Yahoo Finance — CORS enabled, no proxy needed

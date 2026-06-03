@@ -496,7 +496,7 @@ export default function IndicesDashboard() {
         fetchFredSeries('FEDFUNDS', 12),
         fetchFredSeries('DGS10', 60),
         fetchFredSeries('DGS2', 60),
-        fetchFredSeries('MPMIVMA', 540),
+        fetchFredSeries('NAPM', 540).then(d => d?.filter(x => x.val >= 10 && x.val <= 100) || null),
         fetchCOTHistory(INDICES.spx.cot, 54),
         fetchCOTHistory(INDICES.nq.cot, 54),
         fetchCOTHistory(INDICES.dow.cot, 54),
