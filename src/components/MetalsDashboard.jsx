@@ -339,46 +339,49 @@ export default function MetalsDashboard() {
 
   const load = useCallback(async () => {
     setLoading(true);
-    const [gold, silver, dxy, bonds10, bonds2, oil, copper,
-           cotGold, cotSilver, realYield, breakevenInfl,
-           dGold, dSilver, wGold, wSilver, mGold, mSilver,
-           h1Gold, h1Silver, pmiData, vixData, cpiData] = await Promise.all([
-      fetchCloses(INSTR.gold,    'H1', 60),
-      fetchCloses(INSTR.silver,  'H1', 60),
-      fetchCloses(INSTR.dxy,     'H1', 60),
-      fetchCloses(INSTR.bonds10, 'H1', 60),
-      fetchCloses(INSTR.bonds2,  'H1', 60),
-      fetchCloses(INSTR.oil,     'H1', 60),
-      fetchCloses(INSTR.copper,  'H1', 60),
-      fetchCOTHistory('088691', 54),
-      fetchCOTHistory('084691', 54),
-      fetchRealYield(),
-      fetchBreakevenInfl(),
-      fetchOHLC(INSTR.gold,   'D', 60),
-      fetchOHLC(INSTR.silver, 'D', 60),
-      fetchOHLC(INSTR.gold,   'W', 5),
-      fetchOHLC(INSTR.silver, 'W', 5),
-      fetchOHLC(INSTR.gold,   'M', 3),    // monthly OHLC gold
-      fetchOHLC(INSTR.silver, 'M', 3),    // monthly OHLC silver
-      fetchOHLC(INSTR.gold,   'H1', 100), // H1 OHLC for session ranges
-      fetchOHLC(INSTR.silver, 'H1', 100),
-      fetchPMI(),
-      fetchVIX(),
-      fetchCPI(),
-    ]);
-    setMkt({ gold, silver, dxy, bonds10, bonds2, oil, copper });
-    setCot({ gold: cotGold, silver: cotSilver });
-    setRy(realYield);
-    setBi(breakevenInfl);
-    setDaily({ gold: dGold, silver: dSilver });
-    setWeekly({ gold: wGold, silver: wSilver });
-    setMonthly({ gold: mGold, silver: mSilver });
-    setH1ohlc({ gold: h1Gold, silver: h1Silver });
-    setPmi(pmiData);
-    setVix(vixData);
-    setCpi(cpiData);
-    setLoading(false);
-    setLastRefresh(new Date());
+    try {
+      const [gold, silver, dxy, bonds10, bonds2, oil, copper,
+             cotGold, cotSilver, realYield, breakevenInfl,
+             dGold, dSilver, wGold, wSilver, mGold, mSilver,
+             h1Gold, h1Silver, pmiData, vixData, cpiData] = await Promise.all([
+        fetchCloses(INSTR.gold,    'H1', 60),
+        fetchCloses(INSTR.silver,  'H1', 60),
+        fetchCloses(INSTR.dxy,     'H1', 60),
+        fetchCloses(INSTR.bonds10, 'H1', 60),
+        fetchCloses(INSTR.bonds2,  'H1', 60),
+        fetchCloses(INSTR.oil,     'H1', 60),
+        fetchCloses(INSTR.copper,  'H1', 60),
+        fetchCOTHistory('088691', 54),
+        fetchCOTHistory('084691', 54),
+        fetchRealYield(),
+        fetchBreakevenInfl(),
+        fetchOHLC(INSTR.gold,   'D', 60),
+        fetchOHLC(INSTR.silver, 'D', 60),
+        fetchOHLC(INSTR.gold,   'W', 5),
+        fetchOHLC(INSTR.silver, 'W', 5),
+        fetchOHLC(INSTR.gold,   'M', 3),
+        fetchOHLC(INSTR.silver, 'M', 3),
+        fetchOHLC(INSTR.gold,   'H1', 100),
+        fetchOHLC(INSTR.silver, 'H1', 100),
+        fetchPMI(),
+        fetchVIX(),
+        fetchCPI(),
+      ]);
+      setMkt({ gold, silver, dxy, bonds10, bonds2, oil, copper });
+      setCot({ gold: cotGold, silver: cotSilver });
+      setRy(realYield);
+      setBi(breakevenInfl);
+      setDaily({ gold: dGold, silver: dSilver });
+      setWeekly({ gold: wGold, silver: wSilver });
+      setMonthly({ gold: mGold, silver: mSilver });
+      setH1ohlc({ gold: h1Gold, silver: h1Silver });
+      setPmi(pmiData);
+      setVix(vixData);
+      setCpi(cpiData);
+      setLastRefresh(new Date());
+    } finally {
+      setLoading(false);
+    }
   }, []);
 
   useEffect(() => { load(); }, [load]);
