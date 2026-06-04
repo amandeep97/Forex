@@ -477,6 +477,12 @@ export default function IndicesDashboard() {
   const [yield2,  setYield2]  = useState(null);
   const [pmi, setPmi]       = useState(null);
   const [cot, setCot]       = useState(null);
+  const [manualPmi, setManualPmi] = useState(() => {
+    const v = localStorage.getItem('manual_pmi');
+    return v !== null ? parseFloat(v) : null;
+  });
+  const [pmiEditing, setPmiEditing] = useState(false);
+  const [pmiInput, setPmiInput] = useState('');
   const [killZone, setKillZone] = useState(() => getKillZone());
   const [amd, setAmd]       = useState(() => getAMDPhase());
 
@@ -486,6 +492,20 @@ export default function IndicesDashboard() {
   }, []);
 
   const hasOanda = !!getOanda().key;
+
+  const savePmi = (valStr) => {
+    const v = parseFloat(valStr);
+    if (!isNaN(v) && v >= 30 && v <= 75) {
+      localStorage.setItem('manual_pmi', String(v));
+      setManualPmi(v);
+      setPmiEditing(false);
+    }
+  };
+  const clearPmi = () => {
+    localStorage.removeItem('manual_pmi');
+    setManualPmi(null);
+    setPmiEditing(false);
+  };
 
   const load = useCallback(async () => {
     setLoading(true);
@@ -582,8 +602,9 @@ export default function IndicesDashboard() {
   const yieldCurve = (y10val && y2val) ? +(y10val - y2val).toFixed(3) : null;
 
   const pmiLast = pmi?.[pmi.length-1]?.val;
+  const effectivePmi = manualPmi !== null ? manualPmi : pmiLast;
 
-  const macro = { vixLast, vixPrev, cpiYoY, fedRate, fedPrev, yieldCurve, pmiLast };
+  const macro = { vixLast, vixPrev, cpiYoY, fedRate, fedPrev, yieldCurve, pmiLast: effectivePmi };
 
   /* ── Score each index ────────────────────────────────────────── */
   const scores = {};
@@ -772,13 +793,54 @@ export default function IndicesDashboard() {
 
             {/* PMI */}
             <div style={{ flex:'1 1 140px', background:'var(--bg1)', border:'1px solid var(--border)', borderRadius:8, padding:'8px 10px' }}>
-              <div style={{ fontSize:10, color:neu, marginBottom:2 }}>PMI Manufacturing</div>
-              <div style={{ fontWeight:700, fontSize:14, color: pmiLast == null ? neu : pmiLast > 50 ? bull : bear }}>
-                {pmiLast != null ? pmiLast.toFixed(1) : '—'}
+              <div style={{ fontSize:10, color:neu, marginBottom:2, display:'flex', alignItems:'center', justifyContent:'space-between' }}>
+                <span>PMI Manufacturing</span>
+                {!pmiEditing && (
+                  <button onClick={() => { setPmiInput(manualPmi !== null ? String(manualPmi) : ''); setPmiEditing(true); }}
+                    style={{ fontSize:9, padding:'1px 5px', borderRadius:3, cursor:'pointer',
+                      background:'var(--bg2)', color:neu, border:'1px solid var(--border)', lineHeight:1.5 }}>
+                    ✏
+                  </button>
+                )}
               </div>
-              <div style={{ fontSize:10, color:neu }}>
-                {pmiLast == null ? (loading ? 'Loading…' : '— FRED unavailable') : pmiLast > 55 ? '✅ Strong expansion' : pmiLast > 50 ? '✅ Expanding' : pmiLast > 45 ? '❌ Contracting' : '❌ Sharp contraction'}
-              </div>
+              {pmiEditing ? (
+                <div style={{ display:'flex', flexDirection:'column', gap:4 }}>
+                  <input type="number" min="30" max="75" step="0.1"
+                    value={pmiInput} onChange={e => setPmiInput(e.target.value)}
+                    placeholder="e.g. 48.7"
+                    style={{ width:'100%', padding:'3px 6px', borderRadius:4, fontSize:12, fontFamily:'monospace',
+                      background:'var(--bg2)', color:'var(--text)', border:'1px solid var(--border)', outline:'none', boxSizing:'border-box' }}
+                    onKeyDown={e => { if (e.key === 'Enter') savePmi(pmiInput); if (e.key === 'Escape') setPmiEditing(false); }}
+                    autoFocus
+                  />
+                  <div style={{ display:'flex', gap:3 }}>
+                    <button onClick={() => savePmi(pmiInput)}
+                      style={{ flex:1, padding:'2px', borderRadius:3, fontSize:10, fontWeight:700, cursor:'pointer',
+                        background:'#22c55e', color:'#000', border:'none' }}>Save</button>
+                    <button onClick={() => setPmiEditing(false)}
+                      style={{ flex:1, padding:'2px', borderRadius:3, fontSize:10, cursor:'pointer',
+                        background:'var(--bg2)', color:neu, border:'1px solid var(--border)' }}>✕</button>
+                    {manualPmi !== null && (
+                      <button onClick={clearPmi}
+                        style={{ flex:1, padding:'2px', borderRadius:3, fontSize:10, cursor:'pointer',
+                          background:'#ef444420', color:'#ef4444', border:'1px solid #ef444440' }}>Clear</button>
+                    )}
+                  </div>
+                  <div style={{ fontSize:9, color:neu }}>Range: 30–75</div>
+                </div>
+              ) : (
+                <>
+                  <div style={{ fontWeight:700, fontSize:14, color: effectivePmi == null ? neu : effectivePmi > 50 ? bull : bear }}>
+                    {effectivePmi != null ? effectivePmi.toFixed(1) : '—'}
+                    {manualPmi !== null && (
+                      <span style={{ fontSize:9, marginLeft:5, padding:'1px 4px', background:'#f59e0b20', color:'#f59e0b', borderRadius:3 }}>M</span>
+                    )}
+                  </div>
+                  <div style={{ fontSize:10, color:neu }}>
+                    {effectivePmi == null ? (loading ? 'Loading…' : 'Tap ✏ to set manually') : effectivePmi > 55 ? '✅ Strong expansion' : effectivePmi > 50 ? '✅ Expanding' : effectivePmi > 45 ? '❌ Contracting' : '❌ Sharp contraction'}
+                  </div>
+                </>
+              )}
             </div>
 
             {/* FOMC Countdown */}
@@ -1232,8 +1294,8 @@ export default function IndicesDashboard() {
                   },
                   {
                     driver: 'PMI Mfg', shared: true,
-                    signal: pmiLast != null ? `${pmiLast.toFixed(1)} ${pmiLast > 50 ? '(exp)' : '(cont)'}` : '—',
-                    bull: pmiLast != null ? pmiLast > 50 : null,
+                    signal: effectivePmi != null ? `${effectivePmi.toFixed(1)} ${effectivePmi > 50 ? '(exp)' : '(cont)'}${manualPmi !== null ? ' [M]' : ''}` : '—',
+                    bull: effectivePmi != null ? effectivePmi > 50 : null,
                     impact: 'Above 50 = expansion = bullish. Below 50 = contraction = bearish.',
                   },
                   {

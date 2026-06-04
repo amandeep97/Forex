@@ -359,7 +359,27 @@ export default function MetalsDashboard() {
   const [yield2,  setYield2]  = useState(null);   // DGS2  — real 2Y yield %
   const [loading, setLoading] = useState(true);
   const [lastRefresh, setLastRefresh] = useState(null);
+  const [manualPmi, setManualPmi] = useState(() => {
+    const v = localStorage.getItem('manual_pmi');
+    return v !== null ? parseFloat(v) : null;
+  });
+  const [pmiEditing, setPmiEditing] = useState(false);
+  const [pmiInput, setPmiInput] = useState('');
   const hasOanda = !!getOandaCreds();
+
+  const savePmi = (valStr) => {
+    const v = parseFloat(valStr);
+    if (!isNaN(v) && v >= 30 && v <= 75) {
+      localStorage.setItem('manual_pmi', String(v));
+      setManualPmi(v);
+      setPmiEditing(false);
+    }
+  };
+  const clearPmi = () => {
+    localStorage.removeItem('manual_pmi');
+    setManualPmi(null);
+    setPmiEditing(false);
+  };
 
   const load = useCallback(async () => {
     setLoading(true);
@@ -590,6 +610,15 @@ export default function MetalsDashboard() {
                      : (sig.pmiExpanding && !sig.pmiRising) ? 'mild_bullish'
                      : (!sig.pmiExpanding && sig.pmiRising) ? 'mild_bearish'
                      : 'bearish';
+  }
+
+  // Manual PMI override — localStorage value takes priority over fetched data
+  if (manualPmi !== null) {
+    sig.pmi = manualPmi;
+    sig.pmiDate = 'Manual';
+    sig.pmiExpanding = manualPmi >= 50;
+    sig.pmiRising = undefined;
+    sig.pmiSignal = manualPmi >= 50 ? 'mild_bullish' : 'mild_bearish';
   }
 
   // ── VIX — safe haven demand ────────────────────────────────────────────────
@@ -1184,7 +1213,51 @@ export default function MetalsDashboard() {
 
           {/* Manufacturing PMI */}
           <div style={card}>
-            <div style={{ fontSize:12, fontWeight:700, color:'#34d399', marginBottom:8 }}>🏭 Manufacturing PMI (S&amp;P Global)</div>
+            <div style={{ fontSize:12, fontWeight:700, color:'#34d399', marginBottom:8, display:'flex', alignItems:'center', justifyContent:'space-between' }}>
+              <span>🏭 Manufacturing PMI (ISM)</span>
+              {!pmiEditing && (
+                <button
+                  onClick={() => { setPmiInput(manualPmi !== null ? String(manualPmi) : ''); setPmiEditing(true); }}
+                  style={{ fontSize:10, padding:'2px 8px', borderRadius:3, cursor:'pointer',
+                    background:'var(--bg2)', color:'var(--text3)', border:'1px solid var(--border)' }}>
+                  ✏ Edit
+                </button>
+              )}
+            </div>
+            {pmiEditing && (
+              <div style={{ marginBottom:10, padding:'8px', background:'var(--bg2)', borderRadius:6, border:'1px solid var(--border)' }}>
+                <div style={{ fontSize:10, color:'var(--text3)', marginBottom:6 }}>Enter current ISM PMI value (30–75):</div>
+                <div style={{ display:'flex', gap:6, alignItems:'center', flexWrap:'wrap' }}>
+                  <input
+                    type="number" min="30" max="75" step="0.1"
+                    value={pmiInput}
+                    onChange={e => setPmiInput(e.target.value)}
+                    placeholder="e.g. 48.7"
+                    style={{ width:90, padding:'4px 8px', borderRadius:4, fontSize:13, fontFamily:'monospace',
+                      background:'var(--bg1)', color:'var(--text)', border:'1px solid var(--border)', outline:'none' }}
+                    onKeyDown={e => { if (e.key === 'Enter') savePmi(pmiInput); if (e.key === 'Escape') setPmiEditing(false); }}
+                    autoFocus
+                  />
+                  <button onClick={() => savePmi(pmiInput)}
+                    style={{ padding:'4px 10px', borderRadius:4, fontSize:11, fontWeight:700, cursor:'pointer',
+                      background:'#22c55e', color:'#000', border:'none' }}>
+                    Save
+                  </button>
+                  <button onClick={() => setPmiEditing(false)}
+                    style={{ padding:'4px 8px', borderRadius:4, fontSize:11, cursor:'pointer',
+                      background:'var(--bg2)', color:'var(--text3)', border:'1px solid var(--border)' }}>
+                    Cancel
+                  </button>
+                  {manualPmi !== null && (
+                    <button onClick={clearPmi}
+                      style={{ padding:'4px 8px', borderRadius:4, fontSize:11, cursor:'pointer',
+                        background:'#ef444420', color:'#ef4444', border:'1px solid #ef444440' }}>
+                      Clear
+                    </button>
+                  )}
+                </div>
+              </div>
+            )}
             {sig.pmi !== undefined ? (
               <div>
                 <div style={{ display:'flex', alignItems:'baseline', gap:8, marginBottom:8 }}>
@@ -1194,9 +1267,14 @@ export default function MetalsDashboard() {
                     <div style={{ fontSize:11, fontWeight:700,
                       color: sig.pmiExpanding ? '#22c55e' : '#ef4444' }}>
                       {sig.pmiExpanding ? '▲ EXPANDING' : '▼ CONTRACTING'}
-                      {sig.pmiRising ? ' ↑' : ' ↓'}
+                      {sig.pmiRising !== undefined && (sig.pmiRising ? ' ↑' : ' ↓')}
                     </div>
-                    <div style={{ fontSize:10, color:'var(--text3)' }}>{sig.pmiDate}</div>
+                    <div style={{ fontSize:10, color:'var(--text3)', display:'flex', alignItems:'center', gap:5 }}>
+                      {sig.pmiDate}
+                      {manualPmi !== null && (
+                        <span style={{ padding:'1px 5px', background:'#f59e0b20', color:'#f59e0b', borderRadius:3, fontSize:9, fontWeight:700 }}>Manual</span>
+                      )}
+                    </div>
                   </div>
                 </div>
                 {/* 50-line gauge */}
@@ -1225,8 +1303,8 @@ export default function MetalsDashboard() {
               </div>
             ) : (
               <div style={{ color:'var(--text3)', fontSize:11 }}>
-                Loading PMI from FRED…
-                <div style={{ fontSize:10, marginTop:4 }}>Series: MPMIVMA (S&amp;P Global US Manufacturing PMI)</div>
+                {loading ? 'Loading PMI from FRED…' : 'PMI unavailable — click ✏ Edit to set manually'}
+                <div style={{ fontSize:10, marginTop:4 }}>ISM Manufacturing PMI (published monthly)</div>
               </div>
             )}
           </div>
