@@ -66,6 +66,27 @@ async function fetchMetals() {
   return out;
 }
 
+// ── Forex pairs via Yahoo Finance ─────────────────────────────────────────────
+const YF_FOREX = {
+  'EURUSD%3DX': 'EUR/USD', 'GBPUSD%3DX': 'GBP/USD', 'USDJPY%3DX': 'USD/JPY',
+  'AUDUSD%3DX': 'AUD/USD', 'USDCAD%3DX': 'USD/CAD', 'USDCHF%3DX': 'USD/CHF',
+  'NZDUSD%3DX': 'NZD/USD', 'EURGBP%3DX': 'EUR/GBP', 'EURJPY%3DX': 'EUR/JPY',
+  'GBPJPY%3DX': 'GBP/JPY',
+};
+
+async function fetchForex() {
+  const results = await Promise.all(
+    Object.entries(YF_FOREX).map(async ([sym, key]) => {
+      const d = await get(`https://query2.finance.yahoo.com/v8/finance/chart/${sym}?interval=1d&range=1d`);
+      const p = d?.chart?.result?.[0]?.meta?.regularMarketPrice;
+      return { key, price: p ?? null };
+    })
+  );
+  const out = {};
+  results.forEach(({ key, price }) => { if (price != null) out[key] = price; });
+  return out;
+}
+
 // ── Indices + Energy via Yahoo Finance ────────────────────────────────────────
 const YF_MARKETS = {
   '%5EGSPC':    'US500',   '%5EDJI':    'US30',    '%5ENDX':   'US100',
@@ -93,12 +114,13 @@ async function fetchMarkets() {
 (async () => {
   console.log('[fetch-prices] Starting...');
 
-  const [metals, markets] = await Promise.all([fetchMetals(), fetchMarkets()]);
+  const [metals, markets, forex] = await Promise.all([fetchMetals(), fetchMarkets(), fetchForex()]);
 
   const payload = {
     timestamp: new Date().toISOString(),
     metals,
     markets,
+    forex,
   };
 
   fs.mkdirSync(path.dirname(OUT), { recursive: true });
@@ -106,5 +128,6 @@ async function fetchMarkets() {
 
   const mCount  = Object.keys(metals).length;
   const mkCount = Object.keys(markets).length;
-  console.log(`[fetch-prices] Done — ${mCount} metals, ${mkCount} indices/energy → ${OUT}`);
+  const fxCount = Object.keys(forex).length;
+  console.log(`[fetch-prices] Done — ${mCount} metals, ${mkCount} indices/energy, ${fxCount} forex → ${OUT}`);
 })();
