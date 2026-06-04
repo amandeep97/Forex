@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-06-04T15:02:42.987Z",
+  "updatedAt": "2026-06-04T15:04:37.646Z",
   "strategies": [
     {
       "name": "ICT London Long",
@@ -37,8 +37,8 @@
       },
       "risk": {
         "riskPercent": 1,
-        "slMethod": "swing",
-        "slAtr": 1.5,
+        "slMethod": "atr",
+        "slAtr": 4,
         "slPips": 20,
         "tpMethod": "rr",
         "rrRatio": 2,
