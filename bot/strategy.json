@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-06-02T18:20:51.855Z",
+  "updatedAt": "2026-06-04T14:55:38.281Z",
   "strategies": [
     {
       "name": "ICT London Long",
@@ -163,6 +163,57 @@
         "slAtr": 1.5,
         "slPips": 20,
         "tpMethod": "rr",
+        "rrRatio": 2,
+        "tpFibLevel": 1.618
+      }
+    },
+    {
+      "id": "strat_1780584938280",
+      "name": "5 min",
+      "enabled": false,
+      "pairs": [
+        "XAG_USD"
+      ],
+      "timeframe": "M5",
+      "direction": "long",
+      "maxPositionsPerPair": 1,
+      "conditions": {
+        "structure": "any",
+        "requireBOS": false,
+        "priceZone": "discount",
+        "requireLiqSweep": false,
+        "obDir": "any",
+        "requireOB": true,
+        "requireOBTap": true,
+        "fvgDir": "any",
+        "requireFVG": true,
+        "requireFVGTap": true,
+        "requireOTE": false,
+        "candlePattern": "bullish",
+        "emaFilter": {
+          "enabled": false,
+          "period": 200,
+          "side": "above"
+        },
+        "vwapFilter": {
+          "enabled": false,
+          "side": "above"
+        },
+        "sessions": [],
+        "rsiFilter": {
+          "enabled": false,
+          "comparison": "below",
+          "value": 70
+        }
+      },
+      "risk": {
+        "riskType": "usdt",
+        "riskPercent": 1,
+        "riskUsdt": 1.5,
+        "slMethod": "swing",
+        "slAtr": 1.5,
+        "slPips": 20,
+        "tpMethod": "fib",
         "rrRatio": 2,
         "tpFibLevel": 1.618
       }
