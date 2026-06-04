@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-06-04T14:55:38.281Z",
+  "updatedAt": "2026-06-04T15:02:42.987Z",
   "strategies": [
     {
       "name": "ICT London Long",
@@ -26,7 +26,13 @@
         "requireFVGTap": true,
         "candlePattern": "bullish",
         "ratioFilter": {
-          "enabled": true
+          "enabled": false
+        },
+        "intermarketFilter": {
+          "enabled": false
+        },
+        "cotFilter": {
+          "enabled": false
         }
       },
       "risk": {
