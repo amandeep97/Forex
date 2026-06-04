@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-06-04T23:53:59.114Z",
+  "updatedAt": "2026-06-04T23:59:31.816Z",
   "strategies": [
     {
       "name": "ICT London Long",
@@ -23,7 +23,7 @@
         "obDir": "bullish",
         "fvgDir": "bullish",
         "requireOBTap": true,
-        "requireFVGTap": true,
+        "requireFVGTap": false,
         "candlePattern": "bullish",
         "ratioFilter": {
           "enabled": false
@@ -41,7 +41,7 @@
         "slAtr": 4,
         "slPips": 20,
         "tpMethod": "rr",
-        "rrRatio": 2,
+        "rrRatio": 2.5,
         "tpFibLevel": 1.618,
         "riskType": "usdt",
         "riskUsdt": 3
