@@ -303,15 +303,17 @@ async function fetchMacroCache() {
 async function fetchCOTHistory(code, weeks = 52) {
   if (!code) return null;
   try {
-    // Equity index futures are in the TFF (Traders in Financial Futures) report
-    // Use Leveraged Money positions (hedge funds) — most relevant for index bias
-    const url = `https://publicreporting.cftc.gov/api/odata/v1/FinancialFuturesAndOptionsHistory?$filter=CFTC_Commodity_Code eq '${code}'&$orderby=Report_Date_as_YYYY_MM_DD desc&$top=${weeks}&$select=Report_Date_as_YYYY_MM_DD,Lev_Money_Positions_Long_All,Lev_Money_Positions_Short_All`;
-    const res = await fetch(url, { signal: AbortSignal.timeout(12000) });
+    // Same Socrata endpoint as MetalsDashboard — CORS-enabled, reliable
+    // Equity index futures (SPX/NQ/DJI/RUT) are all in the Legacy COT dataset
+    const url = `https://publicreporting.cftc.gov/resource/jun7-fc8e.json?cftc_contract_market_code=${code}&$order=report_date_as_yyyy_mm_dd%20DESC&$limit=${weeks}`;
+    const res = await fetch(url, { signal: AbortSignal.timeout(20000) });
     if (!res.ok) return null;
-    const data = await res.json();
-    const rows = (data.value || []).reverse()
-      .map(r => ({ date: r.Report_Date_as_YYYY_MM_DD, net: (r.Lev_Money_Positions_Long_All||0)-(r.Lev_Money_Positions_Short_All||0) }));
-    return rows.length ? rows : null;
+    const rows = await res.json();
+    if (!rows.length) return null;
+    return rows.reverse().map(r => ({
+      date: (r.report_date_as_yyyy_mm_dd || '').slice(0, 10),
+      net: (+r.noncomm_positions_long_all || 0) - (+r.noncomm_positions_short_all || 0),
+    }));
   } catch { return null; }
 }
 
