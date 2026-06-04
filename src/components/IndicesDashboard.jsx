@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
+import AIDashboardPanel from './AIDashboardPanel.jsx';
 
 /* ─────────────────────── CONSTANTS ─────────────────────────────── */
 const INDICES = {
@@ -694,6 +695,69 @@ export default function IndicesDashboard() {
   const bestIndex  = relStrength[0];
   const worstIndex = relStrength[relStrength.length-1];
 
+  /* ── AI context string ───────────────────────────────────────── */
+  const aiContext = (() => {
+    const now = new Date();
+    const utc = `${String(now.getUTCHours()).padStart(2,'0')}:${String(now.getUTCMinutes()).padStart(2,'0')} UTC`;
+    const lines = [];
+    lines.push(`=== US INDICES DASHBOARD — SIGNAL DATA (${utc}) ===`);
+    lines.push('');
+
+    lines.push('CONFLUENCE SCORES:');
+    INDEX_KEYS.forEach(k => {
+      const sc = scores[k];
+      if (!sc) return;
+      lines.push(`  ${INDICES[k].short} (${INDICES[k].name}): ${sc.score}/${sc.total} — ${sc.bias.toUpperCase()} | ${sc.factors.map(f=>(f.bull===true?'▲':f.bull===false?'▼':'●')+f.name+': '+f.detail).join(' | ')}`);
+    });
+    lines.push(`  OVERALL: ${totalScore}/${totalMax} — ${marketBull?'BULLISH':marketBear?'BEARISH':'NEUTRAL'}`);
+    lines.push('');
+
+    lines.push('MACRO ENVIRONMENT:');
+    if (vixLast!=null)     lines.push(`  VIX: ${vixLast.toFixed(1)} (${vixDir??'flat'}) — ${vixLast<15?'Very Low':vixLast<20?'Low':vixLast<30?'Elevated':'Extreme fear'}`);
+    if (fedRate!=null)     lines.push(`  Fed Rate: ${fedRate}% — ${fedDir?.toUpperCase()??'unknown'}`);
+    if (cpiYoY!=null)      lines.push(`  CPI YoY: ${cpiYoY.toFixed(2)}% — ${cpiYoY>=4?'TOO HOT (Fed hawkish)':cpiYoY>=2.5?'Elevated':'Controlled'}`);
+    if (yieldCurve!=null)  lines.push(`  Yield Curve (10Y-2Y): ${yieldCurve>0?'+':''}${yieldCurve.toFixed(3)}% — ${yieldCurve>0?'Normal':'INVERTED (recession warning)'}`);
+    if (effectivePmi!=null) lines.push(`  PMI Manufacturing: ${effectivePmi.toFixed(1)} — ${effectivePmi>50?'Expanding':'Contracting'}${manualPmi!==null?' [manual]':''}`);
+    lines.push('');
+
+    if (riskSentiment) {
+      lines.push(`RISK SENTIMENT: ${riskSentiment.label}`);
+      lines.push(`  SPX 5-bar: ${riskSentiment.spxRet?.toFixed(2)}% | RUT 5-bar: ${riskSentiment.rutRet?.toFixed(2)}% | RUT vs SPX: ${riskSentiment.outperform?.toFixed(2)}%`);
+      lines.push(`  ${riskSentiment.desc}`);
+      lines.push('');
+    }
+
+    lines.push('RELATIVE STRENGTH (5-bar H1):');
+    relStrength.forEach((idx, i) => lines.push(`  #${i+1} ${idx.short}: ${idx.ret>=0?'+':''}${idx.ret.toFixed(2)}%${idx.currentPrice?' @ '+idx.currentPrice.toFixed(0):''}`));
+    lines.push('');
+
+    lines.push('COT POSITIONING (Non-commercial, 52-week):');
+    INDEX_KEYS.forEach(k => {
+      const c = cot?.[k];
+      if (!c?.length) return;
+      const nets = c.map(r=>r.net);
+      const last = nets[nets.length-1];
+      const sorted = [...nets].sort((a,b)=>a-b);
+      const pct = Math.round(sorted.filter(v=>v<last).length/(sorted.length-1)*100);
+      lines.push(`  ${INDICES[k].short}: Net ${last>=0?'+':''}${last.toLocaleString()} | ${pct}th pct | ${pct>=80?'Crowded long':pct<=20?'Extreme short':'Neutral'}`);
+    });
+    lines.push('');
+
+    lines.push('TECHNICALS PER INDEX:');
+    INDEX_KEYS.forEach(k => {
+      const sc = scores[k];
+      if (!sc) return;
+      lines.push(`  ${INDICES[k].short}: RSI=${sc.rsi??'—'} | EMA50=${sc.ema50??(sc.currentPrice&&sc.ema50?'above':'—')} | ATR=${sc.atr??'—'} | Price=${sc.currentPrice?.toFixed(0)??'—'} | Structure=${sc.ms??'—'}`);
+    });
+    if (smtSpxNq)  lines.push(`  SMT SPX/NQ: ${smtSpxNq.type.toUpperCase()} — ${smtSpxNq.who}`);
+    if (smtSpxRut) lines.push(`  SMT SPX/RUT: ${smtSpxRut.type.toUpperCase()} — ${smtSpxRut.who}`);
+
+    const fomc = getDaysTillFOMC();
+    if (fomc) { lines.push(''); lines.push(`UPCOMING: FOMC in ${fomc.days} days (${fomc.date})`); }
+
+    return lines.join('\n');
+  })();
+
   /* ════════════════════ RENDER ════════════════════════════════════ */
   return (
     <div style={{ height:'100%', overflowY:'auto', background:'var(--bg1)', fontFamily:'var(--font)' }}>
@@ -722,6 +786,12 @@ export default function IndicesDashboard() {
       )}
 
       <div style={{ padding:'12px 16px', display:'flex', flexDirection:'column', gap:12 }}>
+
+        {/* ── AI Analysis Panel ─────────────────────────── */}
+        <AIDashboardPanel
+          context={aiContext}
+          quickPrompts={['Which index has the best setup today?','Risk-on or risk-off? Explain why','Should I trade NQ or SPX?','Key risks for US stocks this week?']}
+        />
 
         {/* ── SECTION 1: Market Narrative (plain English) ── */}
         {totalMax > 0 && (

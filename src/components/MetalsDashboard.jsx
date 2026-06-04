@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
+import AIDashboardPanel from './AIDashboardPanel.jsx';
 
 // ── OANDA instruments ────────────────────────────────────────────────────────
 const INSTR = {
@@ -757,6 +758,49 @@ export default function MetalsDashboard() {
   const fmtPct = v => v == null ? '—' : `${v >= 0 ? '+' : ''}${v.toFixed(2)}%`;
   const fmtR   = v => v == null ? '—' : v.toFixed(2);
 
+  // ── Build AI context string from current signals ───────────────────────────
+  const aiContext = (() => {
+    const now = new Date();
+    const utc = `${String(now.getUTCHours()).padStart(2,'0')}:${String(now.getUTCMinutes()).padStart(2,'0')} UTC`;
+    const lines = [];
+    lines.push(`=== METALS DASHBOARD — SIGNAL DATA (${utc}) ===`);
+    lines.push('');
+
+    lines.push('CONFLUENCE SCORES:');
+    if (goldScore)   lines.push(`  Gold (XAU):   ${goldScore.score}/${goldScore.max} — Factors: ${goldScore.factors.map(f=>(f.bull?'▲':'▼')+f.label).join(', ')}`);
+    if (silverScore) lines.push(`  Silver (XAG): ${silverScore.score}/${silverScore.max} — Factors: ${silverScore.factors.map(f=>(f.bull?'▲':'▼')+f.label).join(', ')}`);
+    lines.push('');
+
+    lines.push('MACRO DRIVERS:');
+    if (sig.dxy)         lines.push(`  DXY: ${sig.dxy} (5-bar: ${fmtPct(sig.dxyPct)})${sig.dxyGoldCorr!=null?' | r='+fmtR(sig.dxyGoldCorr)+' (DXY↔Gold corr)':''}`);
+    if (sig.realYield!=null) lines.push(`  Real Yield (DFII10): ${sig.realYield.toFixed(2)}% — ${sig.realYieldDir} (${sig.realYieldChange>0?'+':''}${sig.realYieldChange} 1mo) → ${sig.realYieldSignal}`);
+    if (sig.breakeven!=null) lines.push(`  Breakeven Inflation (T10YIE): ${sig.breakeven.toFixed(2)}% — ${sig.breakevenDir} → ${sig.breakevenSignal}${sig.yieldContext?' | Context: '+sig.yieldContext:''}`);
+    if (sig.yieldCurve!=null) lines.push(`  Yield Curve (10Y-2Y): ${sig.yieldCurve>0?'+':''}${sig.yieldCurve}% — ${sig.yieldCurveInverted?'INVERTED ⚠ recession signal':'Normal'}`);
+    lines.push('');
+
+    lines.push('COT POSITIONING (52-week, non-commercial):');
+    if (cotSig.gold)   lines.push(`  Gold:   Net ${cotSig.gold.net>=0?'+':''}${cotSig.gold.net.toLocaleString()} | ${cotSig.gold.pct}th pct | ${cotSig.gold.pct>=80?'CROWDED LONG (contrarian bearish)':cotSig.gold.pct<=20?'EXTREME SHORT (contrarian bullish)':'Neutral'} | ${cotSig.gold.date}`);
+    if (cotSig.silver) lines.push(`  Silver: Net ${cotSig.silver.net>=0?'+':''}${cotSig.silver.net.toLocaleString()} | ${cotSig.silver.pct}th pct | ${cotSig.silver.pct>=80?'CROWDED LONG (contrarian bearish)':cotSig.silver.pct<=20?'EXTREME SHORT (contrarian bullish)':'Neutral'} | ${cotSig.silver.date}`);
+    lines.push('');
+
+    lines.push('TECHNICALS (Daily):');
+    if (sig.goldRSI!=null)   lines.push(`  Gold:   RSI(14)=${sig.goldRSI} (${sig.goldRSISignal}) | EMA50=${sig.goldAboveEMA50?'Above':'Below'} ${sig.goldEMA50??'—'} | ATR=${sig.goldATR??'—'}`);
+    if (sig.silverRSI!=null) lines.push(`  Silver: RSI(14)=${sig.silverRSI} (${sig.silverRSISignal}) | EMA50=${sig.silverAboveEMA50?'Above':'Below'} ${sig.silverEMA50??'—'} | ATR=${sig.silverATR??'—'}`);
+    if (sig.goldPDH!=null)   lines.push(`  Gold key levels: PDH=${sig.goldPDH} PDL=${sig.goldPDL}${sig.goldPWH!=null?' PWH='+sig.goldPWH+' PWL='+sig.goldPWL:''}`);
+    if (sig.silverPDH!=null) lines.push(`  Silver key levels: PDH=${sig.silverPDH} PDL=${sig.silverPDL}${sig.silverPWH!=null?' PWH='+sig.silverPWH+' PWL='+sig.silverPWL:''}`);
+    lines.push('');
+
+    lines.push('MACRO INDICATORS:');
+    if (sig.vix!=null)   lines.push(`  VIX: ${sig.vix.toFixed(1)} (${sig.vixSignal}) — ${sig.vixElevated?'Elevated':'Low'}${sig.vixChange!=null?' | 5-day change: '+(sig.vixChange>0?'+':'')+sig.vixChange:''}`);
+    if (sig.pmi!=null)   lines.push(`  PMI Manufacturing: ${sig.pmi.toFixed(1)} — ${sig.pmiExpanding?'EXPANDING':'CONTRACTING'}${manualPmi!==null?' [manual entry]':''}`);
+    if (sig.cpiYoY!=null) lines.push(`  CPI: ${sig.cpiYoY.toFixed(2)}% YoY | ${sig.cpiMoM?.toFixed(3)}% MoM → ${sig.cpiSignal}`);
+    if (sig.auAgRatio!=null) lines.push(`  Au/Ag Ratio: ${sig.auAgRatio} — ${sig.auAgSignal}`);
+    if (sig.goldOilRatio!=null) lines.push(`  Gold/Oil Ratio: ${sig.goldOilRatio} — ${sig.goldOilHigh?'High >30':'Normal'}`);
+    if (sig.copperDir) lines.push(`  Copper: ${sig.copperDir}${sig.copperSilverCorr!=null?' | Copper↔Silver r='+fmtR(sig.copperSilverCorr):''}`);
+
+    return lines.join('\n');
+  })();
+
   const card = {
     background: 'var(--card)', border: '1px solid var(--border)',
     borderRadius: 8, padding: '12px 14px',
@@ -789,6 +833,12 @@ export default function MetalsDashboard() {
       )}
 
       <div style={{ flex:1, overflowY:'auto', padding:'12px 16px' }}>
+
+        {/* ── AI Analysis Panel ────────────────────────────────────────────── */}
+        <AIDashboardPanel
+          context={aiContext}
+          quickPrompts={['Should I buy or sell gold now?','Compare gold vs silver setup','What is the yield curve telling us?','Key risks for metals this week?']}
+        />
 
         {/* ── Confluence Score Row ─────────────────────────────────────────── */}
         <div style={{ display:'flex', gap:12, marginBottom:14, flexWrap:'wrap' }}>
