@@ -430,9 +430,9 @@ function PairCard({ pairDef, sig, score }) {
       </div>
 
       {/* Technicals */}
-      {(sig.rsi !== null || sig.aboveEMA50 !== null) && (
+      {(sig.rsi != null || sig.aboveEMA50 != null) && (
         <div style={{ display:'flex', gap:10, flexWrap:'wrap', fontSize:10 }}>
-          {sig.rsi !== null && (
+          {sig.rsi != null && (
             <span>
               RSI{' '}
               <span style={{ fontWeight:700, color:sig.rsiSignal==='oversold'?BULL:sig.rsiSignal==='overbought'?BEAR:'var(--text)' }}>
@@ -441,7 +441,7 @@ function PairCard({ pairDef, sig, score }) {
               <span style={{ color:'var(--text3)' }}>({sig.rsiSignal})</span>
             </span>
           )}
-          {sig.aboveEMA50 !== null && (
+          {sig.aboveEMA50 != null && (
             <span>
               EMA50{' '}
               <span style={{ fontWeight:700, color:sig.aboveEMA50?BULL:BEAR }}>
@@ -449,7 +449,7 @@ function PairCard({ pairDef, sig, score }) {
               </span>
             </span>
           )}
-          {sig.atr !== null && (
+          {sig.atr != null && (
             <span style={{ color:'var(--text3)' }}>
               ATR {sig.atr.toFixed(dp > 3 ? 4 : 2)}
             </span>
