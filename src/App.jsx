@@ -14,6 +14,7 @@ const COTTab           = lazy(() => import('./components/COTTab'));
 const MetalsDashboard  = lazy(() => import('./components/MetalsDashboard'));
 const IndicesDashboard = lazy(() => import('./components/IndicesDashboard'));
 const ForexPairsDashboard = lazy(() => import('./components/ForexPairsDashboard'));
+const TopDownSignals   = lazy(() => import('./components/TopDownSignals'));
 const CorrelationMatrix= lazy(() => import('./components/CorrelationMatrix'));
 const CurrencyStrength = lazy(() => import('./components/CurrencyStrength'));
 const VolatilityDashboard= lazy(() => import('./components/VolatilityDashboard'));
@@ -36,6 +37,7 @@ const TABS = [
   { id: 'ai',          label: 'AI',           icon: '🤖' },
   { id: 'dashboard',   label: 'Dashboard',    icon: '🎯' },
   { id: 'screener',    label: 'Screener',     icon: '⊞' },
+  { id: 'signals',     label: 'Signals',      icon: '🎯' },
   { id: 'watchlist',   label: 'Watchlist',    icon: '★' },
   { id: 'autotrading', label: 'Auto Trading', icon: '⚡' },
   { id: 'backtester',  label: 'Backtester',   icon: '📊' },
@@ -212,6 +214,9 @@ export default function App() {
         </div>
         <div style={{ display: activeTab === 'screener' ? 'block' : 'none' }}>
           {visitedTabs.has('screener') && <Screener />}
+        </div>
+        <div style={{ display: activeTab === 'signals' ? 'block' : 'none', overflowY:'auto', height:'calc(100vh - 120px)' }}>
+          {visitedTabs.has('signals') && <TopDownSignals />}
         </div>
         <div style={{ display: activeTab === 'watchlist' ? 'block' : 'none' }}>
           {visitedTabs.has('watchlist') && <WatchlistTab pairs={allInstruments} watchlist={JSON.parse(localStorage.getItem('forex_watchlist')||'[]')} onToggleWatch={sym => {

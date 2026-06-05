@@ -1,0 +1,408 @@
+import { useState, useCallback, useEffect } from 'react';
+
+const PAIRS = [
+  'XAG_USD',
+  'EUR_USD','GBP_USD','USD_JPY','USD_CHF','AUD_USD','NZD_USD','USD_CAD',
+  'EUR_GBP','EUR_JPY','EUR_AUD','EUR_CAD','EUR_CHF',
+  'GBP_JPY','GBP_AUD','GBP_CAD','GBP_CHF',
+  'AUD_JPY','CAD_JPY','CHF_JPY','NZD_JPY',
+];
+
+function getCreds() {
+  const c = JSON.parse(localStorage.getItem('oanda_creds') || 'null');
+  if (c?.apiKey) return c;
+  return { apiKey: localStorage.getItem('oanda_key'), practice: localStorage.getItem('oanda_env') !== 'live' };
+}
+
+async function fetchOHLC(instrument, granularity, count) {
+  const { apiKey, practice } = getCreds();
+  if (!apiKey) return null;
+  const base = practice !== false
+    ? 'https://api-fxpractice.oanda.com/v3'
+    : 'https://api-fxtrade.oanda.com/v3';
+  try {
+    const r = await fetch(
+      `${base}/instruments/${instrument}/candles?granularity=${granularity}&count=${count}&price=M`,
+      { headers: { Authorization: `Bearer ${apiKey}` } }
+    );
+    if (!r.ok) return null;
+    const d = await r.json();
+    return (d.candles || [])
+      .filter(c => c.complete)
+      .map(c => ({ o: +c.mid.o, h: +c.mid.h, l: +c.mid.l, c: +c.mid.c, t: c.time }));
+  } catch { return null; }
+}
+
+// ── SMC helpers ───────────────────────────────────────────────────────────────
+
+function computeATR(candles, period = 14) {
+  if (!candles || candles.length < period + 1) return 0.001;
+  let sum = 0;
+  for (let i = candles.length - period; i < candles.length; i++) {
+    const pc = candles[i - 1].c;
+    sum += Math.max(candles[i].h - candles[i].l, Math.abs(candles[i].h - pc), Math.abs(candles[i].l - pc));
+  }
+  return sum / period;
+}
+
+function detectStructure(candles) {
+  if (!candles || candles.length < 10) return 'ranging';
+  const look = 3, n = candles.length;
+  const highs = [], lows = [];
+  for (let i = look; i < n - look; i++) {
+    let hi = true, lo = true;
+    for (let j = 1; j <= look; j++) {
+      if (candles[i].h <= candles[i - j].h || candles[i].h <= candles[i + j].h) hi = false;
+      if (candles[i].l >= candles[i - j].l || candles[i].l >= candles[i + j].l) lo = false;
+    }
+    if (hi) highs.push(candles[i].h);
+    if (lo)  lows.push(candles[i].l);
+  }
+  if (highs.length < 2 || lows.length < 2) return 'ranging';
+  const [h1, h2] = highs.slice(-2);
+  const [l1, l2] = lows.slice(-2);
+  if (h2 > h1 && l2 > l1) return 'bullish';
+  if (h2 < h1 && l2 < l1) return 'bearish';
+  return 'ranging';
+}
+
+function detectOBs(candles) {
+  if (!candles || candles.length < 10) return [];
+  const n = candles.length;
+  const avg = candles.reduce((s, c) => s + Math.abs(c.c - c.o), 0) / n || 1;
+  const obs = [];
+  for (let i = 1; i < n - 3; i++) {
+    const c = candles[i], nx = candles[i + 1], nn = candles[i + 2];
+    if (Math.abs(nn.c - nx.o) < avg * 1.2) continue;
+    if (c.c < c.o && nx.c > nx.o && nn.c > c.o)
+      obs.push({ type: 'bullish', top: c.o, bottom: c.c, low: c.l });
+    if (c.c > c.o && nx.c < nx.o && nn.c < c.o)
+      obs.push({ type: 'bearish', top: c.c, bottom: c.o, high: c.h });
+  }
+  return obs.slice(-10);
+}
+
+function detectFVGs(candles) {
+  if (!candles || candles.length < 5) return [];
+  const avg = candles.reduce((s, c) => s + Math.abs(c.c - c.o), 0) / candles.length || 1;
+  const fvgs = [];
+  for (let i = 0; i < candles.length - 2; i++) {
+    const c1 = candles[i], c3 = candles[i + 2];
+    const gap = c1.h < c3.l ? c3.l - c1.h : (c1.l > c3.h ? c1.l - c3.h : 0);
+    if (gap < avg * 0.1) continue;
+    if (c1.h < c3.l) fvgs.push({ type: 'bullish', top: c3.l, bottom: c1.h });
+    else              fvgs.push({ type: 'bearish', top: c1.l, bottom: c3.h });
+  }
+  return fvgs.slice(-10);
+}
+
+function analyzeTimeframe(candles) {
+  if (!candles || candles.length < 20) return null;
+  const cp  = candles[candles.length - 1].c;
+  const atr = computeATR(candles);
+  const structure = detectStructure(candles);
+
+  const recent = candles.slice(-20);
+  const swingHigh = Math.max(...recent.map(c => c.h));
+  const swingLow  = Math.min(...recent.map(c => c.l));
+  const midpoint  = (swingHigh + swingLow) / 2;
+  const zone = cp < midpoint ? 'discount' : 'premium';
+
+  const obs  = detectOBs(candles);
+  const fvgs = detectFVGs(candles);
+
+  // 1.0 ATR tap tolerance — matches what app UI shows as "matching"
+  const bullOB = obs.find(ob =>
+    ob.type === 'bullish' && ob.top < midpoint &&
+    cp >= ob.bottom && cp <= ob.top + atr
+  ) || null;
+
+  const bearOB = obs.find(ob =>
+    ob.type === 'bearish' && ob.bottom > midpoint &&
+    cp <= ob.top && cp >= ob.bottom - atr
+  ) || null;
+
+  const bullFVG = fvgs.find(f =>
+    f.type === 'bullish' && f.top < midpoint &&
+    cp >= f.bottom - atr * 0.5 && cp <= f.top + atr * 0.5
+  ) || null;
+
+  const bearFVG = fvgs.find(f =>
+    f.type === 'bearish' && f.bottom > midpoint &&
+    cp >= f.bottom - atr * 0.5 && cp <= f.top + atr * 0.5
+  ) || null;
+
+  return { cp, atr, structure, zone, swingHigh, swingLow, bullOB, bearOB, bullFVG, bearFVG };
+}
+
+function getSignal(h4, h1, m15) {
+  if (!h4 || !h1 || !m15) return null;
+
+  const longOK =
+    h4.structure === 'bullish' &&
+    (h1.structure === 'bullish' || h1.zone === 'discount') &&
+    m15.zone === 'discount' &&
+    (m15.bullOB || m15.bullFVG);
+
+  const shortOK =
+    h4.structure === 'bearish' &&
+    (h1.structure === 'bearish' || h1.zone === 'premium') &&
+    m15.zone === 'premium' &&
+    (m15.bearOB || m15.bearFVG);
+
+  if (!longOK && !shortOK) return null;
+
+  const dir = longOK ? 'long' : 'short';
+  const entry = m15.cp;
+  let sl;
+
+  if (dir === 'long') {
+    const obLevel  = m15.bullOB?.low ?? m15.bullFVG?.bottom;
+    sl = (obLevel ?? m15.swingLow) - m15.atr * 0.1;
+    if (sl >= entry) sl = m15.swingLow - m15.atr * 0.1;
+  } else {
+    const obLevel  = m15.bearOB?.high ?? m15.bearFVG?.top;
+    sl = (obLevel ?? m15.swingHigh) + m15.atr * 0.1;
+    if (sl <= entry) sl = m15.swingHigh + m15.atr * 0.1;
+  }
+
+  const risk = Math.abs(entry - sl);
+  const tp   = dir === 'long' ? entry + risk * 2 : entry - risk * 2;
+  const rr   = +(Math.abs(tp - entry) / risk).toFixed(1);
+
+  return { dir, entry, sl, tp, rr };
+}
+
+// ── Formatting ────────────────────────────────────────────────────────────────
+
+const fmtPair = p => p.replace('_', '/');
+
+function fmtPrice(pair, price) {
+  const isJpy = pair.includes('JPY');
+  const isMetal = pair.startsWith('XA');
+  return price?.toFixed(isMetal ? 3 : isJpy ? 3 : 5) ?? '—';
+}
+
+function fmtDist(pair, dist) {
+  if (!dist) return '—';
+  const isMetal = pair.startsWith('XA');
+  const isJpy   = pair.includes('JPY');
+  if (isMetal) return `$${Math.abs(dist).toFixed(3)}`;
+  const pips = Math.round(Math.abs(dist) * (isJpy ? 100 : 10000));
+  return `${pips}p`;
+}
+
+// ── Score for sorting (more aligned = higher) ─────────────────────────────────
+
+function alignScore(h4, h1, m15) {
+  if (!h4 || !h1 || !m15) return 0;
+  let s = 0;
+  if (h4.structure === 'bullish' || h4.structure === 'bearish') s++;
+  if (h1.structure === h4.structure) s++;
+  if ((h4.structure === 'bullish' && m15.zone === 'discount') ||
+      (h4.structure === 'bearish' && m15.zone === 'premium')) s++;
+  if (m15.bullOB || m15.bearOB || m15.bullFVG || m15.bearFVG) s++;
+  return s;
+}
+
+// ── Sub-components ────────────────────────────────────────────────────────────
+
+const bull = '#22c55e', bear = '#ef4444', neu = '#6b7280';
+
+function TFRow({ label, data }) {
+  if (!data) return null;
+  const sc = data.structure === 'bullish' ? bull : data.structure === 'bearish' ? bear : neu;
+  const zc = data.zone === 'discount' ? bull : bear;
+  return (
+    <div style={{ display:'flex', alignItems:'center', gap:6, fontSize:12, marginBottom:2 }}>
+      <span style={{ color:neu, width:28, flexShrink:0 }}>{label}</span>
+      <span style={{ color:sc, fontWeight:600, width:60 }}>{data.structure}</span>
+      <span style={{ color:zc, fontSize:11, background:'rgba(255,255,255,0.06)', padding:'1px 6px', borderRadius:4 }}>
+        {data.zone}
+      </span>
+      {(data.bullOB || data.bearOB) && (
+        <span style={{ fontSize:10, color:'#f59e0b', background:'rgba(245,158,11,0.15)', padding:'1px 5px', borderRadius:4 }}>OB</span>
+      )}
+      {(data.bullFVG || data.bearFVG) && (
+        <span style={{ fontSize:10, color:'#818cf8', background:'rgba(129,140,248,0.15)', padding:'1px 5px', borderRadius:4 }}>FVG</span>
+      )}
+    </div>
+  );
+}
+
+function PairCard({ pair, data, loading: cardLoading }) {
+  const { h4, h1, m15, signal } = data || {};
+  const isLong  = signal?.dir === 'long';
+  const isShort = signal?.dir === 'short';
+  const borderCol = isLong ? bull : isShort ? bear : 'transparent';
+
+  return (
+    <div style={{
+      background:'var(--card-bg, #1a1a2e)',
+      border:`1px solid ${borderCol || 'rgba(255,255,255,0.08)'}`,
+      borderRadius:10,
+      padding:'12px 14px',
+      boxShadow: signal ? `0 0 12px ${borderCol}33` : 'none',
+    }}>
+      {/* Header */}
+      <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:8 }}>
+        <span style={{ fontWeight:700, fontSize:14, letterSpacing:0.5 }}>{fmtPair(pair)}</span>
+        {cardLoading ? (
+          <span style={{ fontSize:11, color:neu }}>loading…</span>
+        ) : signal ? (
+          <span style={{
+            fontSize:11, fontWeight:700, padding:'3px 8px', borderRadius:5,
+            background: isLong ? '#16a34a22' : '#dc262622',
+            color: isLong ? bull : bear,
+            border: `1px solid ${isLong ? bull : bear}`,
+          }}>
+            {isLong ? '▲ LONG' : '▼ SHORT'}
+          </span>
+        ) : (
+          <span style={{ fontSize:11, color:neu }}>waiting</span>
+        )}
+      </div>
+
+      {/* Timeframe rows */}
+      {(!data && !cardLoading) ? (
+        <div style={{ fontSize:12, color:neu }}>No OANDA data</div>
+      ) : cardLoading ? (
+        <div style={{ fontSize:12, color:neu }}>Fetching H4 · H1 · M15…</div>
+      ) : (
+        <>
+          <TFRow label="H4"  data={h4} />
+          <TFRow label="H1"  data={h1} />
+          <TFRow label="M15" data={m15} />
+
+          {/* Signal details */}
+          {signal && (
+            <div style={{ marginTop:10, paddingTop:8, borderTop:'1px solid rgba(255,255,255,0.07)' }}>
+              <div style={{ display:'grid', gridTemplateColumns:'auto 1fr auto', gap:'3px 10px', fontSize:12 }}>
+                <span style={{ color:neu }}>Entry</span>
+                <span style={{ color:'#e2e8f0', fontWeight:600 }}>{fmtPrice(pair, signal.entry)}</span>
+                <span style={{ color:neu }}></span>
+
+                <span style={{ color:neu }}>SL</span>
+                <span style={{ color:bear, fontWeight:600 }}>{fmtPrice(pair, signal.sl)}</span>
+                <span style={{ color:neu, fontSize:11 }}>−{fmtDist(pair, Math.abs(signal.entry - signal.sl))}</span>
+
+                <span style={{ color:neu }}>TP</span>
+                <span style={{ color:bull, fontWeight:600 }}>{fmtPrice(pair, signal.tp)}</span>
+                <span style={{ color:neu, fontSize:11 }}>+{fmtDist(pair, Math.abs(signal.tp - signal.entry))}</span>
+              </div>
+              <div style={{ marginTop:5, fontSize:11, color:'#f59e0b' }}>
+                R:R {signal.rr}:1 · M15 {m15?.bullOB || m15?.bearOB ? 'OB' : 'FVG'} entry
+              </div>
+            </div>
+          )}
+        </>
+      )}
+    </div>
+  );
+}
+
+// ── Main component ────────────────────────────────────────────────────────────
+
+export default function TopDownSignals() {
+  const [results,     setResults]     = useState({});
+  const [loadingSet,  setLoadingSet]  = useState(new Set());
+  const [lastRefresh, setLastRefresh] = useState(null);
+  const [refreshing,  setRefreshing]  = useState(false);
+
+  const hasOanda = !!getCreds().apiKey;
+
+  const load = useCallback(async () => {
+    if (!hasOanda) return;
+    setRefreshing(true);
+    setLoadingSet(new Set(PAIRS));
+
+    await Promise.all(PAIRS.map(async (pair) => {
+      const [h4c, h1c, m15c] = await Promise.all([
+        fetchOHLC(pair, 'H4', 60),
+        fetchOHLC(pair, 'H1', 100),
+        fetchOHLC(pair, 'M15', 100),
+      ]);
+      const h4  = analyzeTimeframe(h4c);
+      const h1  = analyzeTimeframe(h1c);
+      const m15 = analyzeTimeframe(m15c);
+      const signal = getSignal(h4, h1, m15);
+
+      setResults(prev => ({ ...prev, [pair]: { h4, h1, m15, signal } }));
+      setLoadingSet(prev => { const s = new Set(prev); s.delete(pair); return s; });
+    }));
+
+    setLastRefresh(new Date());
+    setRefreshing(false);
+  }, [hasOanda]);
+
+  useEffect(() => { load(); }, [load]);
+
+  const sorted = [...PAIRS].sort((a, b) => {
+    const aS = results[a]?.signal ? 1 : 0;
+    const bS = results[b]?.signal ? 1 : 0;
+    if (aS !== bS) return bS - aS;
+    return alignScore(results[b]?.h4, results[b]?.h1, results[b]?.m15)
+         - alignScore(results[a]?.h4, results[a]?.h1, results[a]?.m15);
+  });
+
+  const signalCount = Object.values(results).filter(r => r?.signal).length;
+
+  return (
+    <div style={{ padding:'12px 10px', overflowY:'auto', height:'100%' }}>
+      {/* Header */}
+      <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:12 }}>
+        <div>
+          <div style={{ fontWeight:700, fontSize:15 }}>Top-Down Signals</div>
+          <div style={{ fontSize:11, color:neu, marginTop:2 }}>H4 bias → H1 structure → M15 entry · SL · TP</div>
+        </div>
+        <div style={{ textAlign:'right' }}>
+          <button
+            onClick={load}
+            disabled={refreshing}
+            style={{
+              background:'rgba(255,255,255,0.08)', border:'1px solid rgba(255,255,255,0.12)',
+              borderRadius:6, color:'#e2e8f0', fontSize:12, padding:'5px 12px', cursor:'pointer',
+            }}
+          >
+            {refreshing ? 'Loading…' : '↻ Refresh'}
+          </button>
+          {lastRefresh && (
+            <div style={{ fontSize:10, color:neu, marginTop:3 }}>
+              {lastRefresh.toLocaleTimeString()}
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* No OANDA warning */}
+      {!hasOanda && (
+        <div style={{ textAlign:'center', color:neu, padding:40, fontSize:13 }}>
+          Connect OANDA in Screener settings to see signals.
+        </div>
+      )}
+
+      {/* Signal count banner */}
+      {hasOanda && signalCount > 0 && (
+        <div style={{
+          background:'rgba(34,197,94,0.1)', border:'1px solid rgba(34,197,94,0.3)',
+          borderRadius:8, padding:'8px 14px', marginBottom:12, fontSize:13,
+          color:bull, fontWeight:600,
+        }}>
+          {signalCount} active setup{signalCount > 1 ? 's' : ''} — scroll down to see all
+        </div>
+      )}
+
+      {/* Pair grid */}
+      <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill, minmax(280px, 1fr))', gap:10 }}>
+        {sorted.map(pair => (
+          <PairCard
+            key={pair}
+            pair={pair}
+            data={results[pair]}
+            loading={loadingSet.has(pair)}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
