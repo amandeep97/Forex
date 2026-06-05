@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-06-05T15:36:27.216Z",
+  "updatedAt": "2026-06-05T15:51:27.290Z",
   "strategies": [
     {
       "name": "ICT London Long",
@@ -188,12 +188,12 @@
         "requireBOS": false,
         "priceZone": "discount",
         "requireLiqSweep": false,
-        "obDir": "any",
+        "obDir": "bullish",
         "requireOB": true,
         "requireOBTap": true,
-        "fvgDir": "any",
+        "fvgDir": "bullish",
         "requireFVG": true,
-        "requireFVGTap": true,
+        "requireFVGTap": false,
         "requireOTE": false,
         "candlePattern": "bullish",
         "emaFilter": {
