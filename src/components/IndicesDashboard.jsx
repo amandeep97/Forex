@@ -126,18 +126,41 @@ function detectLiquiditySweep(candles) {
   return null;
 }
 
-function detectSMT(closesA, closesB, lookback = 5) {
-  if (!closesA || !closesB || closesA.length < lookback * 2 || closesB.length < lookback * 2) return null;
-  const aCurr = closesA.slice(-lookback), aPrev = closesA.slice(-lookback*2, -lookback);
-  const bCurr = closesB.slice(-lookback), bPrev = closesB.slice(-lookback*2, -lookback);
-  const aCH = Math.max(...aCurr), aPH = Math.max(...aPrev);
-  const aCL = Math.min(...aCurr), aPL = Math.min(...aPrev);
-  const bCH = Math.max(...bCurr), bPH = Math.max(...bPrev);
-  const bCL = Math.min(...bCurr), bPL = Math.min(...bPrev);
-  if (aCH > aPH && bCH <= bPH) return { type: 'bearish', who: 'A new HH, B failed — smart money warning' };
-  if (bCH > bPH && aCH <= aPH) return { type: 'bearish', who: 'B new HH, A failed — smart money warning' };
-  if (aCL < aPL && bCL >= bPL) return { type: 'bullish', who: 'A new LL, B held — potential reversal' };
-  if (bCL < bPL && aCL >= aPL) return { type: 'bullish', who: 'B new LL, A held — potential reversal' };
+function detectSMT(highsA, highsB, lowsA, lowsB, strength = 2) {
+  function swingHighs(prices) {
+    const out = [];
+    for (let i = strength; i < prices.length - strength; i++) {
+      if (prices.slice(i - strength, i).every(p => p < prices[i]) &&
+          prices.slice(i + 1, i + strength + 1).every(p => p < prices[i]))
+        out.push(prices[i]);
+    }
+    return out;
+  }
+  function swingLows(prices) {
+    const out = [];
+    for (let i = strength; i < prices.length - strength; i++) {
+      if (prices.slice(i - strength, i).every(p => p > prices[i]) &&
+          prices.slice(i + 1, i + strength + 1).every(p => p > prices[i]))
+        out.push(prices[i]);
+    }
+    return out;
+  }
+  const aHH = swingHighs(highsA || []);
+  const bHH = swingHighs(highsB || []);
+  const aLL = swingLows(lowsA  || []);
+  const bLL = swingLows(lowsB  || []);
+  if (aHH.length >= 2 && bHH.length >= 2) {
+    const [aPrev, aCurr] = aHH.slice(-2);
+    const [bPrev, bCurr] = bHH.slice(-2);
+    if (aCurr > aPrev && bCurr <= bPrev) return { type: 'bearish', who: 'A new HH, B failed — smart money warning' };
+    if (bCurr > bPrev && aCurr <= aPrev) return { type: 'bearish', who: 'B new HH, A failed — smart money warning' };
+  }
+  if (aLL.length >= 2 && bLL.length >= 2) {
+    const [aPrev, aCurr] = aLL.slice(-2);
+    const [bPrev, bCurr] = bLL.slice(-2);
+    if (aCurr < aPrev && bCurr >= bPrev) return { type: 'bullish', who: 'A new LL, B held — potential reversal' };
+    if (bCurr < bPrev && aCurr >= aPrev) return { type: 'bullish', who: 'B new LL, A held — potential reversal' };
+  }
   return null;
 }
 
@@ -650,9 +673,9 @@ export default function IndicesDashboard() {
   const nqH  = daily?.nq?.map(c=>c.h),  nqL  = daily?.nq?.map(c=>c.l);
   const rutH = daily?.russell?.map(c=>c.h), rutL = daily?.russell?.map(c=>c.l);
   const dowH = daily?.dow?.map(c=>c.h), dowL = daily?.dow?.map(c=>c.l);
-  const smtSpxNq  = detectSMT(spxH||[], nqH||[]);
-  const smtSpxRut = detectSMT(spxH||[], rutH||[]);
-  const smtNqDow  = detectSMT(nqH||[], dowH||[]);
+  const smtSpxNq  = detectSMT(spxH||[], nqH||[],  spxL||[], nqL||[]);
+  const smtSpxRut = detectSMT(spxH||[], rutH||[], spxL||[], rutL||[]);
+  const smtNqDow  = detectSMT(nqH||[], dowH||[],  nqL||[], dowL||[]);
 
   /* ── ICT Levels ──────────────────────────────────────────────── */
   function getICT(d, w) {
