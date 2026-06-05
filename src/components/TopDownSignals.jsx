@@ -138,32 +138,40 @@ function analyzeTimeframe(candles) {
 function getSignal(h4, h1, m15) {
   if (!h4 || !h1 || !m15) return null;
 
+  // H4 sets trend direction, H1 zone confirms pullback, M15 gives entry
   const longOK =
     h4.structure === 'bullish' &&
-    (h1.structure === 'bullish' || h1.zone === 'discount') &&
+    h1.zone === 'discount' &&
     m15.zone === 'discount' &&
     (m15.bullOB || m15.bullFVG);
 
   const shortOK =
     h4.structure === 'bearish' &&
-    (h1.structure === 'bearish' || h1.zone === 'premium') &&
+    h1.zone === 'premium' &&
     m15.zone === 'premium' &&
     (m15.bearOB || m15.bearFVG);
 
   if (!longOK && !shortOK) return null;
 
-  const dir = longOK ? 'long' : 'short';
+  const dir   = longOK ? 'long' : 'short';
   const entry = m15.cp;
+  const minDist = m15.atr * 1.5; // minimum 1.5 ATR — stops spread/noise from triggering SL
   let sl;
 
   if (dir === 'long') {
-    const obLevel  = m15.bullOB?.low ?? m15.bullFVG?.bottom;
-    sl = (obLevel ?? m15.swingLow) - m15.atr * 0.1;
-    if (sl >= entry) sl = m15.swingLow - m15.atr * 0.1;
+    const structural = Math.min(
+      m15.bullOB?.low ?? Infinity,
+      m15.bullFVG?.bottom ?? Infinity,
+      m15.swingLow
+    ) - m15.atr * 0.1;
+    sl = Math.min(structural, entry - minDist);
   } else {
-    const obLevel  = m15.bearOB?.high ?? m15.bearFVG?.top;
-    sl = (obLevel ?? m15.swingHigh) + m15.atr * 0.1;
-    if (sl <= entry) sl = m15.swingHigh + m15.atr * 0.1;
+    const structural = Math.max(
+      m15.bearOB?.high ?? -Infinity,
+      m15.bearFVG?.top ?? -Infinity,
+      m15.swingHigh
+    ) + m15.atr * 0.1;
+    sl = Math.max(structural, entry + minDist);
   }
 
   const risk = Math.abs(entry - sl);
