@@ -14,8 +14,14 @@ const INSTRUMENTS = [
   { key: 'EUR_GBP',  label: 'EUR/GBP', color: '#60a5fa' },
   { key: 'XAU_USD',  label: 'XAU/USD', color: '#fbbf24' },
   { key: 'XAG_USD',  label: 'XAG/USD', color: '#94a3b8' },
-  { key: 'BCO_USD',  label: 'Oil(BCO)', color: '#fb923c' },
-  { key: 'USB10Y_USD', label: 'US10Y', color: '#818cf8' },
+  { key: 'BCO_USD',    label: 'Oil(BCO)', color: '#fb923c' },
+  { key: 'USB10Y_USD', label: 'US10Y',   color: '#818cf8' },
+  { key: 'SPX500_USD', label: 'SPX',     color: '#22c55e' },
+  { key: 'NAS100_USD', label: 'NQ',      color: '#06b6d4' },
+  { key: 'US30_USD',   label: 'DJI',     color: '#a78bfa' },
+  { key: 'US2000_USD', label: 'RUT',     color: '#f472b6' },
+  { key: 'BTC_USD',    label: 'BTC',     color: '#f59e0b' },
+  { key: 'ETH_USD',    label: 'ETH',     color: '#818cf8' },
 ];
 
 const TF_OPTIONS = ['M15', 'H1', 'H4', 'D'];
