@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-06-11T05:39:22.613Z",
+  "updatedAt": "2026-06-12T17:11:01.742Z",
   "strategies": [
     {
       "name": "ICT London Long",
@@ -221,6 +221,57 @@
         "slPips": 20,
         "tpMethod": "fib",
         "rrRatio": 2,
+        "tpFibLevel": 1.618
+      }
+    },
+    {
+      "id": "strat_1781284261741",
+      "name": "New Strategy",
+      "enabled": true,
+      "pairs": [
+        "XAG_USD"
+      ],
+      "timeframe": "M5",
+      "direction": "short",
+      "maxPositionsPerPair": 1,
+      "conditions": {
+        "structure": "any",
+        "requireBOS": false,
+        "priceZone": "premium",
+        "requireLiqSweep": false,
+        "obDir": "any",
+        "requireOB": true,
+        "requireOBTap": true,
+        "fvgDir": "any",
+        "requireFVG": true,
+        "requireFVGTap": false,
+        "requireOTE": false,
+        "candlePattern": "bearish",
+        "emaFilter": {
+          "enabled": false,
+          "period": 200,
+          "side": "above"
+        },
+        "vwapFilter": {
+          "enabled": false,
+          "side": "above"
+        },
+        "sessions": [],
+        "rsiFilter": {
+          "enabled": false,
+          "comparison": "below",
+          "value": 70
+        }
+      },
+      "risk": {
+        "riskType": "usdt",
+        "riskPercent": 1,
+        "riskUsdt": 3,
+        "slMethod": "swing",
+        "slAtr": 1.5,
+        "slPips": 20,
+        "tpMethod": "rr",
+        "rrRatio": 2.5,
         "tpFibLevel": 1.618
       }
     }
