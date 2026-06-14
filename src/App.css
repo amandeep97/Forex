@@ -1996,3 +1996,490 @@ table  { border-collapse: collapse; width: 100%; }
 }
 .wl-star-btn:hover { color: #eab308; background: #eab30815; }
 .wl-star-btn.active { color: #eab308; }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   VISUAL OVERHAUL — Nexus AI / FX Screener Pro aesthetic
+   Deep darks + neon glowing card borders + vibrant purple/teal scheme
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Enhanced CSS variables ──────────────────────────────────────────────── */
+:root {
+  --bg:          #04070d;
+  --bg2:         #070b15;
+  --card:        #0b1120;
+  --card2:       #0f1729;
+  --border:      #1a2540;
+  --border2:     #243354;
+  --purple:      #8b5cf6;
+  --purple2:     #a78bfa;
+  --accent:      #00d4aa;
+  --accent2:     #38bdf8;
+  --up:          #22c55e;
+  --down:        #f43f5e;
+  --warn:        #f59e0b;
+
+  /* Glow shadows */
+  --glow-purple: 0 0 20px rgba(139,92,246,0.2), 0 0 40px rgba(139,92,246,0.08);
+  --glow-teal:   0 0 20px rgba(0,212,170,0.18), 0 0 40px rgba(0,212,170,0.07);
+  --glow-blue:   0 0 20px rgba(56,189,248,0.18), 0 0 40px rgba(56,189,248,0.07);
+  --glow-up:     0 0 16px rgba(34,197,94,0.2);
+  --glow-down:   0 0 16px rgba(244,63,94,0.2);
+  --card-glow:   0 4px 24px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.04);
+}
+
+/* ── Body — deeper gradient background ──────────────────────────────────── */
+body {
+  background: var(--bg);
+  background-image:
+    radial-gradient(ellipse 80% 50% at 15% 0%, rgba(139,92,246,0.07) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 40% at 85% 100%, rgba(0,212,170,0.06) 0%, transparent 55%),
+    radial-gradient(ellipse 40% 30% at 50% 50%, rgba(56,189,248,0.03) 0%, transparent 50%);
+}
+
+/* ── Header — purple-tinted gradient ────────────────────────────────────── */
+.app-header {
+  background: linear-gradient(180deg, #0c1228 0%, #080e1c 100%);
+  border-bottom: 1px solid rgba(139,92,246,0.2);
+  box-shadow: 0 1px 0 rgba(139,92,246,0.1), 0 4px 32px rgba(0,0,0,0.5);
+}
+
+.main-nav {
+  background: linear-gradient(180deg, #080e1c 0%, #070b18 100%);
+  border-top-color: rgba(139,92,246,0.12);
+}
+
+/* ── Logo — purple-to-teal gradient ─────────────────────────────────────── */
+.logo-icon {
+  background: linear-gradient(135deg, #8b5cf6 0%, #00d4aa 100%);
+  box-shadow: 0 0 20px rgba(139,92,246,0.4), 0 0 40px rgba(0,212,170,0.15), 0 2px 8px rgba(0,0,0,0.5);
+}
+
+/* ── Active nav tab — purple accent ─────────────────────────────────────── */
+.nav-tab.active {
+  color: var(--purple2);
+  border-bottom-color: var(--purple);
+  text-shadow: 0 0 16px rgba(139,92,246,0.7);
+  background: rgba(139,92,246,0.05);
+}
+@media (max-width: 600px) {
+  .nav-tab.active {
+    border-bottom-color: var(--purple);
+    background: rgba(139,92,246,0.08);
+    text-shadow: 0 0 12px rgba(139,92,246,0.6);
+  }
+}
+
+/* ── All cards — glowing colored borders ────────────────────────────────── */
+.stat-card,
+.config-panel,
+.bot-status-card,
+.bt2-kpi,
+.bt2-chart-card,
+.bt2-metric,
+.bt-stat,
+.bt-equity-box,
+.bt-log-box,
+.summary-card,
+.screener-topbar,
+.ratio-header,
+.ratio-ctx-card,
+.ratio-chart-wrap,
+.ratio-guide,
+.wl-header-card,
+.wl-list-card,
+.adv-filter-panel,
+.sf-panel {
+  background: linear-gradient(145deg, #0e1628 0%, #0b1120 60%, #0d152a 100%);
+  border: 1px solid rgba(139,92,246,0.2);
+  box-shadow:
+    0 0 0 1px rgba(139,92,246,0.05),
+    0 4px 24px rgba(0,0,0,0.45),
+    inset 0 1px 0 rgba(255,255,255,0.04),
+    0 0 30px rgba(139,92,246,0.06);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.stat-card:hover,
+.config-panel:hover,
+.bot-status-card:hover,
+.bt2-kpi:hover,
+.bt2-metric:hover,
+.bt-stat:hover,
+.summary-card:hover {
+  border-color: rgba(139,92,246,0.35);
+  box-shadow:
+    0 0 0 1px rgba(139,92,246,0.1),
+    0 6px 32px rgba(0,0,0,0.5),
+    inset 0 1px 0 rgba(255,255,255,0.05),
+    0 0 40px rgba(139,92,246,0.12);
+}
+
+/* ── Table container cards ───────────────────────────────────────────────── */
+.table-wrap,
+.at-bottom-panel,
+.live-status-bar {
+  background: linear-gradient(145deg, #0e1628 0%, #0b1120 100%);
+  border: 1px solid rgba(139,92,246,0.18);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.4), 0 0 30px rgba(139,92,246,0.05);
+}
+
+/* ── Screener table header ───────────────────────────────────────────────── */
+.screener-table th {
+  background: rgba(8,14,28,0.9);
+  border-bottom-color: rgba(139,92,246,0.2);
+}
+
+/* ── Bot status card — teal left border accent ───────────────────────────── */
+.bot-status-card {
+  border-left: 2px solid var(--accent);
+  box-shadow:
+    -2px 0 20px rgba(0,212,170,0.1),
+    0 0 0 1px rgba(139,92,246,0.05),
+    0 4px 24px rgba(0,0,0,0.45),
+    inset 0 1px 0 rgba(255,255,255,0.04);
+}
+
+/* ── Stat values — neon glow ─────────────────────────────────────────────── */
+.stat-value,
+.bt2-kpi-val,
+.bt-stat-val,
+.bt2-metric-val,
+.summary-value,
+.ratio-big-val {
+  font-family: var(--mono);
+  letter-spacing: -0.02em;
+}
+
+/* ── Up/down colors — brighter with glow ────────────────────────────────── */
+.up,
+.stat-value.up,
+.account-balance { color: #22c55e; text-shadow: 0 0 12px rgba(34,197,94,0.5); }
+.down { color: #f43f5e; text-shadow: 0 0 12px rgba(244,63,94,0.4); }
+
+/* ── Strategy cards ──────────────────────────────────────────────────────── */
+.strategy-card {
+  background: rgba(8,14,28,0.7);
+  border: 1px solid rgba(139,92,246,0.12);
+  transition: all 0.15s;
+}
+.strategy-card:hover {
+  border-color: rgba(139,92,246,0.3);
+  background: rgba(139,92,246,0.06);
+  box-shadow: 0 0 20px rgba(139,92,246,0.1);
+}
+.strategy-card.active {
+  border-color: rgba(139,92,246,0.5);
+  background: rgba(139,92,246,0.1);
+  box-shadow: 0 0 24px rgba(139,92,246,0.15), inset 0 1px 0 rgba(139,92,246,0.1);
+}
+
+/* ── Filter sidebar ──────────────────────────────────────────────────────── */
+.sf-panel {
+  border-color: rgba(139,92,246,0.2);
+}
+.sf-panel-head {
+  background: rgba(8,14,28,0.9);
+  border-bottom-color: rgba(139,92,246,0.15);
+}
+.sf-section { border-bottom-color: rgba(139,92,246,0.08); }
+
+/* ── Tab buttons — glow on active ────────────────────────────────────────── */
+.tab-btn.active,
+.signal-tab-btn.active,
+.cc-tf-btn.active,
+.bt2-tf-pill.active,
+.bt-tf-pill.active,
+.cc-tf.active,
+.cm-tf-pill.active,
+.tf-pill.active,
+.ratio-tf-btn.active {
+  color: var(--accent);
+  background: rgba(0,212,170,0.1);
+  border-color: rgba(0,212,170,0.35);
+  box-shadow: 0 0 12px rgba(0,212,170,0.15);
+}
+
+/* ── Pair chips — teal glow when active ──────────────────────────────────── */
+.pair-chip.active {
+  border-color: rgba(0,212,170,0.5);
+  color: var(--accent);
+  background: rgba(0,212,170,0.1);
+  box-shadow: 0 0 12px rgba(0,212,170,0.12);
+}
+
+/* ── Type badges — stronger glow ─────────────────────────────────────────── */
+.type-badge.buy  {
+  color: #22c55e; background: rgba(34,197,94,0.12);
+  border: 1px solid rgba(34,197,94,0.35);
+  box-shadow: 0 0 12px rgba(34,197,94,0.2);
+}
+.type-badge.sell {
+  color: #f43f5e; background: rgba(244,63,94,0.12);
+  border: 1px solid rgba(244,63,94,0.35);
+  box-shadow: 0 0 12px rgba(244,63,94,0.2);
+}
+
+/* ── BT2 KPI cards — colored top border with glow ───────────────────────── */
+.bt2-kpi.bull {
+  border-top: 2px solid #22c55e;
+  box-shadow: 0 -2px 16px rgba(34,197,94,0.12), 0 4px 24px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.04);
+}
+.bt2-kpi.bear {
+  border-top: 2px solid #f43f5e;
+  box-shadow: 0 -2px 16px rgba(244,63,94,0.12), 0 4px 24px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.04);
+}
+.bt2-kpi.neutral {
+  border-top: 2px solid #f59e0b;
+  box-shadow: 0 -2px 16px rgba(245,158,11,0.12), 0 4px 24px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.04);
+}
+
+/* ── Chart modal ─────────────────────────────────────────────────────────── */
+.cm-modal,
+.candle-chart-box,
+.cc-box,
+.oanda-modal {
+  background: linear-gradient(145deg, #0e1628 0%, #0b1120 100%);
+  border: 1px solid rgba(139,92,246,0.25);
+  box-shadow: 0 32px 80px rgba(0,0,0,0.7), 0 0 60px rgba(139,92,246,0.08);
+}
+
+.cm-header,
+.cc-head,
+.cc-toolbar,
+.cm-toolbar {
+  background: rgba(7,11,21,0.95);
+  border-bottom-color: rgba(139,92,246,0.15);
+}
+
+/* ── Run/connect buttons — purple gradient ───────────────────────────────── */
+.bt2-run-btn {
+  background: linear-gradient(135deg, #7c3aed 0%, #00d4aa 100%);
+  color: #fff;
+  border: none;
+  box-shadow: 0 4px 20px rgba(124,58,237,0.35);
+  letter-spacing: 0.04em;
+}
+.bt2-run-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #8b47f0 0%, #00e8bb 100%);
+  box-shadow: 0 6px 28px rgba(124,58,237,0.45);
+  transform: translateY(-1px);
+}
+
+/* ── Backtester step numbers — purple ────────────────────────────────────── */
+.bt2-step-num {
+  background: linear-gradient(135deg, #8b5cf6, #00d4aa);
+  color: #fff;
+  box-shadow: 0 0 10px rgba(139,92,246,0.4);
+}
+
+/* ── Candle chart overlay backdrop ──────────────────────────────────────────── */
+.candle-chart-overlay,
+.cc-overlay,
+.cm-overlay {
+  background: rgba(2,5,12,0.88);
+  backdrop-filter: blur(8px);
+}
+
+/* ── Screener table rows ──────────────────────────────────────────────────── */
+.pair-row:hover td {
+  background: rgba(139,92,246,0.04);
+}
+
+/* ── Asset type buttons ───────────────────────────────────────────────────── */
+.asset-type-btn {
+  background: rgba(8,14,28,0.7);
+  border-color: rgba(139,92,246,0.15);
+}
+.asset-type-btn:hover {
+  border-color: rgba(139,92,246,0.3);
+  background: rgba(139,92,246,0.06);
+}
+.asset-type-btn.active {
+  border-color: rgba(139,92,246,0.45);
+  background: rgba(139,92,246,0.1);
+  color: var(--purple2);
+  box-shadow: 0 0 16px rgba(139,92,246,0.15);
+}
+
+/* ── Watchlist cards ─────────────────────────────────────────────────────── */
+.wl-card {
+  background: rgba(8,14,28,0.7);
+  border-color: rgba(139,92,246,0.12);
+  transition: all 0.15s;
+}
+.wl-card:hover {
+  border-color: rgba(139,92,246,0.3);
+  background: rgba(139,92,246,0.06);
+  box-shadow: 0 0 20px rgba(139,92,246,0.08);
+}
+
+/* ── Account chip ─────────────────────────────────────────────────────────── */
+.account-chip {
+  background: rgba(8,14,28,0.9);
+  border: 1px solid rgba(34,197,94,0.25);
+  box-shadow: 0 0 16px rgba(34,197,94,0.08);
+}
+
+/* ── Panel tabs ───────────────────────────────────────────────────────────── */
+.panel-tabs {
+  background: rgba(7,11,21,0.95);
+  border-bottom-color: rgba(139,92,246,0.15);
+}
+.panel-tab.active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+  text-shadow: 0 0 12px rgba(0,212,170,0.5);
+}
+
+/* ── Real mode banner ─────────────────────────────────────────────────────── */
+.real-banner { background: rgba(124,45,18,0.4); }
+
+/* ── Glow utility overrides ───────────────────────────────────────────────── */
+.glow-accent { box-shadow: var(--glow-teal) !important; }
+.glow-up     { box-shadow: var(--glow-up)   !important; }
+.glow-down   { box-shadow: var(--glow-down) !important; }
+.glow-purple { box-shadow: var(--glow-purple) !important; }
+
+/* ── Scrollbar — purple tint ─────────────────────────────────────────────── */
+::-webkit-scrollbar-thumb { background: rgba(139,92,246,0.2); }
+::-webkit-scrollbar-thumb:hover { background: rgba(139,92,246,0.35); }
+
+/* ── Ratio context cards — colored borders ───────────────────────────────── */
+.ratio-ctx-card {
+  border-top: 2px solid rgba(139,92,246,0.4);
+  background: linear-gradient(145deg, #0e1628 0%, #0b1120 100%);
+}
+
+/* ── Market badges ────────────────────────────────────────────────────────── */
+.market-badge.open {
+  box-shadow: 0 0 10px rgba(34,197,94,0.15);
+}
+
+/* ── Status dots ──────────────────────────────────────────────────────────── */
+.status-dot.active {
+  box-shadow: 0 0 8px var(--up), 0 0 16px rgba(34,197,94,0.3);
+}
+
+/* ── Panel title text ─────────────────────────────────────────────────────── */
+.panel-title,
+.bt2-builder-head,
+.bt2-card-title,
+.bt-section-title,
+.cc-sym,
+.ratio-title {
+  background: linear-gradient(90deg, #e8eef5 0%, #a78bfa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Accent badges / chips — teal glow ───────────────────────────────────── */
+.tab-badge,
+.filter-count-badge,
+.sf-count-badge {
+  background: linear-gradient(135deg, #8b5cf6, #00d4aa);
+  color: #fff;
+  box-shadow: 0 0 10px rgba(139,92,246,0.4);
+}
+
+/* ── BT2 condition card — purple left border ──────────────────────────────── */
+.bt2-cond-card {
+  border-left-color: var(--purple);
+  background: rgba(7,11,21,0.8);
+  border-color: rgba(139,92,246,0.18);
+  box-shadow: -2px 0 12px rgba(139,92,246,0.1);
+}
+
+/* ── Data source badges ────────────────────────────────────────────────────── */
+.cc-data-badge.live,
+.bt2-src-badge.live,
+.bt-src-badge.live,
+.ratio-src-badge.live,
+.oanda-badge.connected {
+  box-shadow: 0 0 10px rgba(34,197,94,0.2);
+}
+
+/* ── CC analysis chip ─────────────────────────────────────────────────────── */
+.cc-chip {
+  background: rgba(11,17,32,0.8);
+  border-color: rgba(139,92,246,0.2);
+}
+.cc-chip:hover {
+  border-color: rgba(139,92,246,0.35);
+}
+
+/* ── Signal filter pill row background ────────────────────────────────────── */
+.signal-tab-group {
+  background: rgba(8,14,28,0.8);
+  border-color: rgba(139,92,246,0.15);
+}
+
+/* ── Stat pill (bull/bear counts) ─────────────────────────────────────────── */
+.stat-pill.bull {
+  border-color: rgba(34,197,94,0.3);
+  background: rgba(34,197,94,0.07);
+  box-shadow: 0 0 8px rgba(34,197,94,0.1);
+}
+.stat-pill.bear {
+  border-color: rgba(244,63,94,0.3);
+  background: rgba(244,63,94,0.07);
+  box-shadow: 0 0 8px rgba(244,63,94,0.1);
+}
+
+/* ── Summary card bull/bear variant ───────────────────────────────────────── */
+.summary-value.up  { text-shadow: 0 0 16px rgba(34,197,94,0.5); }
+.summary-value.down { text-shadow: 0 0 16px rgba(244,63,94,0.4); }
+
+/* ── OANDA connect badge ──────────────────────────────────────────────────── */
+.oanda-badge {
+  background: rgba(8,14,28,0.8);
+  border-color: rgba(139,92,246,0.2);
+}
+.oanda-badge:hover {
+  border-color: rgba(139,92,246,0.4);
+  background: rgba(139,92,246,0.06);
+}
+
+/* ── Footer ────────────────────────────────────────────────────────────────── */
+.app-footer {
+  background: rgba(7,11,21,0.95);
+  border-top-color: rgba(139,92,246,0.12);
+}
+
+/* ── Main content background ─────────────────────────────────────────────── */
+.app-main {
+  background: transparent;
+}
+
+/* ── Screener topbar — more visual weight ────────────────────────────────── */
+.screener-topbar {
+  background: linear-gradient(145deg, #0e1628 0%, #0b1120 100%);
+  border-color: rgba(139,92,246,0.2);
+}
+
+/* ── Live/status dot pulse ────────────────────────────────────────────────── */
+.topbar-live-dot,
+.live-dot {
+  background: #22c55e;
+  box-shadow: 0 0 6px rgba(34,197,94,0.6), 0 0 12px rgba(34,197,94,0.3);
+}
+
+/* ── ATR / spread cell color ──────────────────────────────────────────────── */
+.spread-cell { color: #f59e0b; text-shadow: 0 0 8px rgba(245,158,11,0.3); }
+
+/* ── Signal tab on screener ────────────────────────────────────────────────── */
+.signal-tab-btn.active {
+  color: var(--accent);
+  background: rgba(0,212,170,0.1);
+  border-color: rgba(0,212,170,0.35);
+  box-shadow: 0 0 12px rgba(0,212,170,0.15);
+}
+
+/* ── TopDownSignals & CorrelationMatrix inherit glow cards ───────────────── */
+[class*="tds-"],
+[class*="corr-"],
+[class*="idx-"] {
+  --card: #0b1120;
+  --card2: #0f1729;
+  --border: rgba(139,92,246,0.2);
+}
