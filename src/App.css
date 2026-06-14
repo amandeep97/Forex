@@ -2,24 +2,29 @@
 
 /* ── CSS variables ─────────────────────────────────────────────────────────── */
 :root {
-  --bg:          #080c14;
-  --bg2:         #0d1321;
-  --card:        #111827;
-  --card2:       #151e2e;
-  --border:      #1e2a3d;
-  --border2:     #253047;
+  --bg:          #05080f;
+  --bg2:         #090e1a;
+  --card:        #0d1220;
+  --card2:       #111828;
+  --border:      #182030;
+  --border2:     #1e2d42;
   --accent:      #00d4aa;
-  --accent2:     #0ea5e9;
+  --accent2:     #3b82f6;
+  --purple:      #8b5cf6;
   --up:          #22c55e;
   --down:        #ef4444;
   --warn:        #f59e0b;
-  --text:        #f0f4f8;
-  --text2:       #94a3b8;
-  --text3:       #475569;
+  --text:        #e8eef5;
+  --text2:       #8899b0;
+  --text3:       #3d5068;
   --mono:        'JetBrains Mono', 'Courier New', monospace;
   --sans:        'Inter', system-ui, sans-serif;
-  --radius:      8px;
-  --radius-sm:   4px;
+  --radius:      10px;
+  --radius-sm:   6px;
+  --glow-accent: 0 0 20px rgba(0,212,170,0.12), 0 0 40px rgba(0,212,170,0.04);
+  --glow-up:     0 0 20px rgba(34,197,94,0.12);
+  --glow-down:   0 0 20px rgba(239,68,68,0.12);
+  --card-bg:     #0d1220;
 }
 
 /* ── Reset ─────────────────────────────────────────────────────────────────── */
@@ -28,6 +33,9 @@ html, body, #root { height: 100%; }
 body {
   font-family: var(--sans);
   background: var(--bg);
+  background-image:
+    radial-gradient(ellipse at 20% 0%, rgba(0,212,170,0.04) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 100%, rgba(59,130,246,0.04) 0%, transparent 60%);
   color: var(--text);
   font-size: 13px;
   line-height: 1.5;
@@ -49,12 +57,13 @@ table  { border-collapse: collapse; width: 100%; }
 .app-header {
   display: flex;
   flex-direction: column;
-  background: var(--bg2);
-  border-bottom: 1px solid var(--border);
+  background: linear-gradient(180deg, #0b1222 0%, #090e1a 100%);
+  border-bottom: 1px solid rgba(0,212,170,0.12);
   position: sticky;
   top: 0;
   z-index: 100;
   overflow: hidden;
+  box-shadow: 0 1px 0 rgba(0,212,170,0.06), 0 4px 24px rgba(0,0,0,0.4);
 }
 
 /* Top bar: logo + controls in one row */
@@ -106,7 +115,11 @@ table  { border-collapse: collapse; width: 100%; }
   border-bottom: 2px solid transparent; margin-bottom: -1px;
 }
 .nav-tab:hover  { color: var(--text2); }
-.nav-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+.nav-tab.active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+  text-shadow: 0 0 12px rgba(0,212,170,0.6);
+}
 .nav-tab-icon   { font-size: 14px; }
 .nav-tab-label  { font-size: 13px; }
 
@@ -138,7 +151,8 @@ table  { border-collapse: collapse; width: 100%; }
   }
   .nav-tab.active {
     border-bottom-color: var(--accent);
-    background: #00d4aa0d;
+    background: rgba(0,212,170,0.06);
+    text-shadow: 0 0 10px rgba(0,212,170,0.5);
   }
   .nav-tab-icon  { font-size: 18px; line-height: 1; }
   .nav-tab-label { font-size: 9px; font-weight: 600; letter-spacing: 0.01em; }
@@ -158,11 +172,12 @@ table  { border-collapse: collapse; width: 100%; }
 }
 .logo-icon {
   width: 34px; height: 34px;
-  background: linear-gradient(135deg, #00d4aa, #0ea5e9);
-  border-radius: 8px;
+  background: linear-gradient(135deg, #00d4aa 0%, #0ea5e9 100%);
+  border-radius: 9px;
   display: flex; align-items: center; justify-content: center;
-  font-size: 20px; font-weight: 700; color: #080c14;
+  font-size: 20px; font-weight: 700; color: #05080f;
   line-height: 1;
+  box-shadow: 0 0 16px rgba(0,212,170,0.35), 0 2px 8px rgba(0,0,0,0.4);
 }
 .logo-name {
   display: block; font-size: 15px; font-weight: 700;
@@ -435,6 +450,7 @@ table  { border-collapse: collapse; width: 100%; }
   display: flex; flex-direction: column; align-items: center;
   padding: 12px 20px; background: var(--card); border: 1px solid var(--border);
   border-radius: var(--radius); min-width: 90px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.03);
 }
 .summary-value { font-size: 22px; font-weight: 700; font-family: var(--mono); line-height: 1; }
 .summary-label { font-size: 10px; color: var(--text3); margin-top: 3px; text-transform: uppercase; letter-spacing: 0.06em; }
@@ -703,11 +719,44 @@ table  { border-collapse: collapse; width: 100%; }
 .strength-medium { background: #f59e0b; }
 .strength-weak   { background: #475569; }
 
+/* ── Global card depth ─────────────────────────────────────────────────────── */
+.stat-card,
+.config-panel,
+.bot-status-card,
+.bt2-kpi,
+.bt2-chart-card,
+.bt-stat,
+.bt-equity-box,
+.bt-log-box {
+  box-shadow: 0 2px 12px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.03);
+}
+
+/* ── Glow utilities ────────────────────────────────────────────────────────── */
+.glow-accent { box-shadow: var(--glow-accent); }
+.glow-up     { box-shadow: var(--glow-up); }
+.glow-down   { box-shadow: var(--glow-down); }
+
+.border-accent { border-color: rgba(0,212,170,0.4) !important; }
+.border-up     { border-color: rgba(34,197,94,0.4) !important; }
+.border-down   { border-color: rgba(239,68,68,0.4) !important; }
+
+/* ── Active tab-btn glow ───────────────────────────────────────────────────── */
+.tab-btn.active {
+  color: var(--accent);
+  background: rgba(0,212,170,0.1);
+  border-color: rgba(0,212,170,0.3);
+  box-shadow: 0 0 10px rgba(0,212,170,0.1);
+}
+
+/* ── Up/down badge glow ────────────────────────────────────────────────────── */
+.type-badge.buy  { box-shadow: 0 0 8px rgba(34,197,94,0.15); }
+.type-badge.sell { box-shadow: 0 0 8px rgba(239,68,68,0.15); }
+
 /* ── Scrollbar ─────────────────────────────────────────────────────────────── */
-::-webkit-scrollbar { width: 6px; height: 6px; }
-::-webkit-scrollbar-track { background: var(--bg); }
-::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: #3a4e6b; }
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.14); }
 
 /* ── Responsive tweaks ─────────────────────────────────────────────────────── */
 @media (max-width: 1200px) {
@@ -735,6 +784,17 @@ table  { border-collapse: collapse; width: 100%; }
 }
 
 /* ── Real Money Mode ───────────────────────────────────────────────────────── */
+/* ── Main nav background ───────────────────────────────────────────────────── */
+.main-nav {
+  background: linear-gradient(180deg, #0b1120 0%, #090e1a 100%);
+}
+
+/* ── Account chip glow ─────────────────────────────────────────────────────── */
+.account-balance {
+  text-shadow: 0 0 10px rgba(34,197,94,0.4);
+}
+
+/* ── Real mode ─────────────────────────────────────────────────────────────── */
 .real-mode { --accent: #f97316; }
 
 .real-banner {
