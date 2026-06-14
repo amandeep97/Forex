@@ -2384,3 +2384,125 @@ body {
 
 /* ── Spread cell ──────────────────────────────────────────────────────────── */
 .spread-cell { color: #f59e0b; text-shadow: 0 0 10px rgba(245,158,11,0.4); }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   SCREENER VISUAL POLISH — make the table view pop
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ── Screener table container ────────────────────────────────────────────── */
+.screener-table-area,
+.screener-body .screener-table-area {
+  background: linear-gradient(140deg, #0f1c30 0%, #0b1422 100%);
+  border: 1px solid rgba(139,92,246,0.35);
+  border-radius: 10px;
+  box-shadow: 0 0 28px rgba(139,92,246,0.1), 0 8px 32px rgba(0,0,0,0.55);
+  overflow: hidden;
+}
+
+/* ── Table header ─────────────────────────────────────────────────────────── */
+.screener-table thead tr { background: rgba(5,9,20,0.9); }
+.screener-table th {
+  background: rgba(5,9,20,0.9) !important;
+  border-bottom: 1px solid rgba(139,92,246,0.3) !important;
+  color: var(--purple2);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+}
+
+/* ── Table row separator ──────────────────────────────────────────────────── */
+.screener-table td {
+  border-bottom: 1px solid rgba(139,92,246,0.08) !important;
+}
+.pair-row:hover td {
+  background: rgba(139,92,246,0.07) !important;
+}
+
+/* ── Session pills (Sydney/Tokyo/London/NY) ──────────────────────────────── */
+.session-pill,
+[class*="session"] {
+  border: 1px solid rgba(139,92,246,0.3);
+  background: rgba(139,92,246,0.1);
+  border-radius: 4px;
+  padding: 2px 8px;
+}
+
+/* ── Market ticker bar (DXY, Gold, Silver, Oil) ──────────────────────────── */
+.markets-bar,
+[class*="market-ticker"],
+[class*="ticker-bar"] {
+  background: rgba(6,10,20,0.9);
+  border-bottom: 1px solid rgba(139,92,246,0.15);
+}
+
+/* ── Signal type tabs (All Signals, Strong Buy, etc.) ────────────────────── */
+.signal-tab-btn {
+  border: 1px solid rgba(139,92,246,0.18);
+  background: rgba(10,18,32,0.6);
+  color: var(--text2);
+}
+.signal-tab-btn:hover {
+  border-color: rgba(139,92,246,0.4);
+  background: rgba(139,92,246,0.08);
+  color: var(--text);
+}
+.signal-tab-btn.active {
+  color: var(--accent) !important;
+  background: rgba(0,212,170,0.12) !important;
+  border-color: rgba(0,212,170,0.5) !important;
+  box-shadow: 0 0 14px rgba(0,212,170,0.2) !important;
+}
+
+/* ── Asset type row (All, Forex, Metals, Indices) ────────────────────────── */
+.asset-type-btn {
+  border: 1px solid rgba(139,92,246,0.22) !important;
+  background: rgba(10,18,32,0.7) !important;
+}
+.asset-type-btn.active {
+  border-color: rgba(139,92,246,0.6) !important;
+  background: rgba(139,92,246,0.14) !important;
+  color: var(--purple2) !important;
+  box-shadow: 0 0 18px rgba(139,92,246,0.22) !important;
+}
+
+/* ── OANDA live bar ───────────────────────────────────────────────────────── */
+.screener-topbar {
+  background: linear-gradient(145deg, #0f1c32 0%, #0b1320 100%) !important;
+  border: 1px solid rgba(0,212,170,0.3) !important;
+  box-shadow: 0 0 20px rgba(0,212,170,0.08), 0 4px 20px rgba(0,0,0,0.5) !important;
+}
+
+/* ── Filters button ───────────────────────────────────────────────────────── */
+.filter-toggle-btn {
+  background: rgba(10,18,32,0.8);
+  border: 1px solid rgba(139,92,246,0.3);
+  color: var(--purple2);
+}
+.filter-toggle-btn:hover {
+  border-color: rgba(139,92,246,0.55);
+  background: rgba(139,92,246,0.1);
+}
+.filter-toggle-btn.active {
+  border-color: rgba(139,92,246,0.65) !important;
+  background: rgba(139,92,246,0.15) !important;
+  color: var(--purple2) !important;
+  box-shadow: 0 0 16px rgba(139,92,246,0.2);
+}
+
+/* ── Pair symbol ──────────────────────────────────────────────────────────── */
+.pair-symbol { color: #e8eef5; font-weight: 700; }
+
+/* ── Category / type badges (Forex, Indices etc.) ────────────────────────── */
+.pair-category { color: var(--text3); }
+
+/* ── Chart open button ────────────────────────────────────────────────────── */
+.chart-open-btn {
+  border-color: rgba(139,92,246,0.25);
+  color: var(--purple2);
+}
+.chart-open-btn:hover {
+  border-color: rgba(139,92,246,0.55);
+  background: rgba(139,92,246,0.1);
+}
+
+/* ── Screener root gap ────────────────────────────────────────────────────── */
+.screener-root { gap: 12px; }
