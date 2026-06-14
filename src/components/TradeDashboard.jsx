@@ -25,6 +25,12 @@ const NEWS_CURRENCIES = {
 const PROXY = 'https://corsproxy.io/?';
 const CALENDAR_URL = PROXY + encodeURIComponent('https://nfs.faireconomy.media/ff_calendar_thisweek.json');
 
+const FLAGS = {
+  EUR:'🇪🇺', USD:'🇺🇸', GBP:'🇬🇧', JPY:'🇯🇵',
+  AUD:'🇦🇺', CAD:'🇨🇦', CHF:'🇨🇭', NZD:'🇳🇿',
+  XAU:'🥇',  XAG:'🥈',
+};
+
 function getOandaCreds() {
   try {
     const c = JSON.parse(localStorage.getItem('oanda_creds') || 'null');
@@ -53,19 +59,87 @@ function getPipSize(id) {
 }
 
 function getSignal(total) {
-  if (total >= 3)  return { label: 'STRONG LONG',  color: '#3fb950', bg: '#3fb95020' };
+  if (total >= 3)  return { label: 'STRONG LONG',  color: '#22c55e', bg: '#22c55e20' };
   if (total >= 1)  return { label: 'MILD LONG',    color: '#86efac', bg: '#86efac15' };
   if (total === 0) return { label: 'NEUTRAL',      color: '#8b949e', bg: '#8b949e15' };
   if (total >= -2) return { label: 'MILD SHORT',   color: '#fca5a5', bg: '#fca5a515' };
-  return             { label: 'STRONG SHORT', color: '#f85149', bg: '#f8514920' };
+  return             { label: 'STRONG SHORT', color: '#f43f5e', bg: '#f43f5e20' };
 }
 
-function ScoreCell({ val }) {
-  if (val === 1)  return <span style={{ color: '#3fb950', fontWeight: 700, fontSize: 15 }}>✓</span>;
-  if (val === -1) return <span style={{ color: '#f85149', fontWeight: 700, fontSize: 15 }}>✗</span>;
-  return <span style={{ color: '#484f58' }}>—</span>;
+function getScoreColor(pct) {
+  if (pct >= 70) return '#22c55e';
+  if (pct >= 50) return '#f59e0b';
+  if (pct >= 30) return '#f97316';
+  return '#f43f5e';
 }
 
+function getGreeting() {
+  const h = new Date().getHours();
+  if (h < 12) return 'Good Morning';
+  if (h < 18) return 'Good Afternoon';
+  return 'Good Evening';
+}
+
+/* ── ScoreRing ─────────────────────────────────────────────────────────── */
+function ScoreRing({ pct, color }) {
+  const R = 26, C = 2 * Math.PI * R;
+  const dash = C * (pct / 100);
+  return (
+    <svg width={64} height={64}>
+      <circle cx={32} cy={32} r={R} fill="none" stroke="rgba(255,255,255,0.07)" strokeWidth={5} />
+      <circle
+        cx={32} cy={32} r={R}
+        fill="none"
+        stroke={color}
+        strokeWidth={5}
+        strokeLinecap="round"
+        strokeDasharray={`${dash} ${C - dash}`}
+        transform="rotate(-90 32 32)"
+        style={{ filter: `drop-shadow(0 0 6px ${color})` }}
+      />
+      <text
+        x={32} y={37}
+        textAnchor="middle"
+        fill={color}
+        style={{ fontSize: 15, fontWeight: 800, fontFamily: 'monospace' }}
+      >
+        {pct}
+      </text>
+    </svg>
+  );
+}
+
+/* ── Sparkline ─────────────────────────────────────────────────────────── */
+function Sparkline({ data, color }) {
+  if (!data || data.length < 2) return null;
+  const mn = Math.min(...data), mx = Math.max(...data), rng = mx - mn || 1;
+  const W = 60, H = 28;
+  const pts = data
+    .map((v, i) => `${(i / (data.length - 1)) * W},${H - ((v - mn) / rng) * H}`)
+    .join(' ');
+  return (
+    <svg width={W} height={H} style={{ overflow: 'visible' }}>
+      <polyline
+        points={pts}
+        fill="none"
+        stroke={color}
+        strokeWidth={1.5}
+        style={{ filter: `drop-shadow(0 0 3px ${color})` }}
+      />
+    </svg>
+  );
+}
+
+/* ── Card style ────────────────────────────────────────────────────────── */
+const CARD_STYLE = {
+  background: 'linear-gradient(140deg, #111f38 0%, #0c1422 100%)',
+  border: '1px solid rgba(139,92,246,0.4)',
+  borderRadius: 12,
+  padding: '14px',
+  boxShadow: '0 0 24px rgba(139,92,246,0.12), 0 6px 24px rgba(0,0,0,0.5)',
+};
+
+/* ── Main component ────────────────────────────────────────────────────── */
 export default function TradeDashboard() {
   const [scores,      setScores]      = useState(null);
   const [loading,     setLoading]     = useState(false);
@@ -131,11 +205,12 @@ export default function TradeDashboard() {
         const quoteNews = hasHighNews(p.quote);
         s.news = (baseNews || quoteNews) ? -1 : 1;
 
-        if (!c) return { ...p, scores: s, total: Object.values(s).reduce((a, b) => a + b, 0) };
+        if (!c) return { ...p, scores: s, total: Object.values(s).reduce((a, b) => a + b, 0), sparkData: null, price: null, change: null };
 
         const pip = getPipSize(p.id);
 
-        // H1 candles — strength + volatility
+        // H1 candles — strength + volatility + sparkline data
+        let sparkData = null, price = null, change = null;
         try {
           const res = await fetch(
             `${oandaBase}/instruments/${p.id}/candles?granularity=H1&count=50`,
@@ -157,6 +232,12 @@ export default function TradeDashboard() {
               const atr     = computeATR(candles, 14);
               const atrPips = atr / pip;
               s.volatility  = atrPips >= 3 ? 1 : 0;
+
+              // Sparkline + price + change (last 20 bars)
+              const last20 = candles.slice(-20);
+              sparkData    = last20.map(cc => cc.c);
+              price        = last20[last20.length - 1].c;
+              change       = ((last20[last20.length - 1].c - last20[0].c) / last20[0].c) * 100;
             }
           }
         } catch {}
@@ -180,7 +261,7 @@ export default function TradeDashboard() {
           }
         } catch {}
 
-        return { ...p, scores: s, total: Object.values(s).reduce((a, b) => a + b, 0) };
+        return { ...p, scores: s, total: Object.values(s).reduce((a, b) => a + b, 0), sparkData, price, change };
       })
     );
 
@@ -196,32 +277,41 @@ export default function TradeDashboard() {
 
   useEffect(() => { compute(); }, [compute]);
 
-  const COLS = ['Pair', 'COT', 'Season', 'Strength', 'Volatility', 'News', 'Score', 'Signal'];
+  // Derived display values
+  const topPairs = scores ? scores.filter(p => p.total >= 2).slice(0, 3) : [];
+  const hasOanda = !!getOandaCreds();
 
   return (
-    <div style={{ padding: 16, maxWidth: 960, margin: '0 auto' }}>
+    <div style={{ padding: '20px 16px', maxWidth: 1100, margin: '0 auto', fontFamily: 'system-ui, sans-serif' }}>
 
-      {/* Header */}
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 20 }}>
+      {/* ── Header ─────────────────────────────────────────────────────── */}
+      <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: 20 }}>
         <div>
-          <div style={{ fontSize: 18, fontWeight: 700, color: '#e6edf3' }}>🎯 Trade Dashboard</div>
-          <div style={{ fontSize: 11, color: '#8b949e', marginTop: 2 }}>
-            Confluence score — COT · Seasonality · Strength · Volatility · News
+          <div style={{ fontSize: 22, fontWeight: 700, color: '#e6edf3', letterSpacing: '-0.3px' }}>
+            {getGreeting()}, Trader 👋
+          </div>
+          <div style={{ fontSize: 12, color: '#8b949e', marginTop: 4, letterSpacing: '0.04em' }}>
+            Live Confluence Analysis
           </div>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
           {lastUpdated && (
-            <span style={{ fontSize: 10, color: '#8b949e' }}>
-              {lastUpdated.toLocaleTimeString()}
+            <span style={{ fontSize: 11, color: '#484f58' }}>
+              Updated {lastUpdated.toLocaleTimeString()}
             </span>
           )}
           <button
             onClick={compute}
             disabled={loading}
             style={{
-              padding: '6px 14px', borderRadius: 6, border: '1px solid #30363d',
-              background: '#21262d', color: '#e6edf3', cursor: loading ? 'not-allowed' : 'pointer',
-              fontSize: 12, opacity: loading ? 0.6 : 1,
+              padding: '7px 16px', borderRadius: 8,
+              border: '1px solid rgba(139,92,246,0.5)',
+              background: 'rgba(139,92,246,0.15)',
+              color: '#c4b5fd',
+              cursor: loading ? 'not-allowed' : 'pointer',
+              fontSize: 12, fontWeight: 600,
+              opacity: loading ? 0.6 : 1,
+              transition: 'opacity 0.2s',
             }}
           >
             {loading ? '⟳ Loading…' : '↻ Refresh'}
@@ -229,110 +319,201 @@ export default function TradeDashboard() {
         </div>
       </div>
 
-      {/* No OANDA key warning */}
-      {!getOandaCreds() && (
+      {/* ── AI Alert card ──────────────────────────────────────────────── */}
+      {scores && topPairs.length > 0 && (
         <div style={{
-          background: '#1c2128', border: '1px solid #d29922', borderRadius: 8,
-          padding: '10px 14px', marginBottom: 16, color: '#d29922', fontSize: 12,
+          ...CARD_STYLE,
+          borderLeft: '3px solid #8b5cf6',
+          marginBottom: 16,
+          display: 'flex',
+          alignItems: 'flex-start',
+          gap: 12,
         }}>
-          ⚠ No OANDA API key — Strength, Volatility and Seasonality unavailable.
+          <span style={{ fontSize: 22, lineHeight: 1, marginTop: 2 }}>🤖</span>
+          <div>
+            <div style={{ fontSize: 12, fontWeight: 700, color: '#a78bfa', letterSpacing: '0.08em', marginBottom: 4 }}>
+              AI ALERT
+            </div>
+            <div style={{ fontSize: 13, color: '#cbd5e1', lineHeight: 1.5 }}>
+              Found <strong style={{ color: '#e2e8f0' }}>{topPairs.length}</strong> high-probability setup{topPairs.length > 1 ? 's' : ''}.{' '}
+              {topPairs.map((p, i) => {
+                const sig = getSignal(p.total);
+                return (
+                  <span key={p.id}>
+                    <strong style={{ color: '#e2e8f0' }}>{p.label}</strong>{' '}
+                    showing <span style={{ color: sig.color, fontWeight: 700 }}>{sig.label}</span>
+                    {i < topPairs.length - 1 ? ' · ' : ''}
+                  </span>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ── No OANDA warning ───────────────────────────────────────────── */}
+      {!hasOanda && (
+        <div style={{
+          background: 'rgba(217,119,6,0.08)',
+          border: '1px solid rgba(245,158,11,0.5)',
+          borderRadius: 10,
+          padding: '10px 14px',
+          marginBottom: 16,
+          color: '#fbbf24',
+          fontSize: 12,
+          display: 'flex',
+          alignItems: 'center',
+          gap: 8,
+        }}>
+          <span style={{ fontSize: 16 }}>⚠️</span>
+          No OANDA API key — Strength, Volatility, Seasonality and price data unavailable.
           Add your key in Auto Trading → Broker settings.
         </div>
       )}
 
-      {/* Loading spinner */}
+      {/* ── Loading spinner ─────────────────────────────────────────────── */}
       {loading && !scores && (
-        <div style={{ textAlign: 'center', padding: 60, color: '#8b949e' }}>
-          <div style={{ fontSize: 32, marginBottom: 10 }}>⟳</div>
-          <div>Loading confluence data from all sources…</div>
-          <div style={{ fontSize: 10, marginTop: 4 }}>COT from CFTC · Prices from OANDA · News from ForexFactory</div>
+        <div style={{
+          ...CARD_STYLE,
+          textAlign: 'center',
+          padding: '60px 20px',
+          color: '#8b949e',
+        }}>
+          <div style={{ fontSize: 36, marginBottom: 12 }}>⟳</div>
+          <div style={{ fontSize: 14, color: '#cbd5e1', marginBottom: 6 }}>Loading confluence data…</div>
+          <div style={{ fontSize: 11, color: '#4b5563' }}>
+            COT from CFTC · Prices from OANDA · News from ForexFactory
+          </div>
         </div>
       )}
 
-      {/* Table */}
-      {scores && (
-        <div style={{ overflowX: 'auto' }}>
-          <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 13 }}>
-            <thead>
-              <tr style={{ borderBottom: '1px solid #30363d' }}>
-                {COLS.map(h => (
-                  <th key={h} style={{
-                    padding: '8px 10px',
-                    textAlign: h === 'Pair' ? 'left' : 'center',
-                    color: '#8b949e', fontSize: 10, fontWeight: 600,
-                    textTransform: 'uppercase', letterSpacing: '0.05em',
-                    whiteSpace: 'nowrap',
-                  }}>
-                    {h}
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {scores.map(p => {
-                const sig = getSignal(p.total);
-                return (
-                  <tr key={p.id} style={{ borderBottom: '1px solid #21262d' }}>
-                    <td style={{ padding: '11px 10px', fontWeight: 700, color: '#e6edf3', whiteSpace: 'nowrap' }}>
-                      {p.label}
-                    </td>
-                    {['cot','seasonality','strength','volatility','news'].map(k => (
-                      <td key={k} style={{ textAlign: 'center', padding: '11px 10px' }}>
-                        <ScoreCell val={p.scores[k]} />
-                      </td>
-                    ))}
-                    <td style={{ textAlign: 'center', padding: '11px 10px' }}>
-                      <span style={{
-                        fontFamily: 'monospace', fontWeight: 700, fontSize: 16,
-                        color: p.total > 0 ? '#3fb950' : p.total < 0 ? '#f85149' : '#8b949e',
-                      }}>
-                        {p.total > 0 ? '+' : ''}{p.total}
-                      </span>
-                    </td>
-                    <td style={{ textAlign: 'center', padding: '11px 10px' }}>
-                      <span style={{
-                        fontSize: 10, fontWeight: 700, padding: '3px 8px', borderRadius: 4,
-                        color: sig.color, background: sig.bg,
-                        border: `1px solid ${sig.color}44`, whiteSpace: 'nowrap',
-                      }}>
-                        {sig.label}
-                      </span>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </div>
-      )}
-
-      {/* Legend */}
+      {/* ── Pair cards grid ────────────────────────────────────────────── */}
       {scores && (
         <div style={{
-          marginTop: 20, padding: '12px 16px', background: '#161b22',
-          border: '1px solid #30363d', borderRadius: 8,
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
+          gap: 12,
+          marginBottom: 16,
         }}>
-          <div style={{ fontSize: 11, fontWeight: 600, color: '#e6edf3', marginBottom: 8 }}>
-            How to read
+          {scores.map(p => {
+            const pct        = Math.round((p.total + 5) / 10 * 100);
+            const color      = getScoreColor(pct);
+            const sig        = getSignal(p.total);
+            const changePos  = p.change != null ? p.change >= 0 : null;
+            const sparkColor = changePos === false ? '#f43f5e' : '#22c55e';
+
+            const priceStr = p.price != null
+              ? (p.id === 'XAU_USD' || p.id === 'XAG_USD')
+                ? p.price.toFixed(2)
+                : p.id.includes('JPY')
+                  ? p.price.toFixed(3)
+                  : p.price.toFixed(5)
+              : null;
+
+            const changeStr = p.change != null
+              ? `${p.change >= 0 ? '+' : ''}${p.change.toFixed(2)}%`
+              : null;
+
+            return (
+              <div key={p.id} style={CARD_STYLE}>
+
+                {/* Top row: flags + name | score ring */}
+                <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between' }}>
+
+                  {/* Left: pair identity */}
+                  <div style={{ flex: 1 }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 4 }}>
+                      <span style={{ fontSize: 20 }}>{FLAGS[p.base] || '🏳️'}</span>
+                      <span style={{ fontSize: 20 }}>{FLAGS[p.quote] || '🏳️'}</span>
+                      <span style={{ fontSize: 15, fontWeight: 800, color: '#e2e8f0', letterSpacing: '0.02em' }}>
+                        {p.label}
+                      </span>
+                    </div>
+
+                    {/* Price + change */}
+                    <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, marginBottom: 10 }}>
+                      {priceStr ? (
+                        <>
+                          <span style={{ fontFamily: 'monospace', fontSize: 14, fontWeight: 700, color: '#e2e8f0' }}>
+                            {priceStr}
+                          </span>
+                          {changeStr && (
+                            <span style={{ fontSize: 11, fontWeight: 600, color: changePos ? '#22c55e' : '#f43f5e' }}>
+                              {changeStr}
+                            </span>
+                          )}
+                        </>
+                      ) : (
+                        <span style={{ fontSize: 11, color: '#4b5563' }}>No price data</span>
+                      )}
+                    </div>
+
+                    {/* Sparkline */}
+                    <div style={{ marginBottom: 10 }}>
+                      <Sparkline data={p.sparkData} color={sparkColor} />
+                    </div>
+
+                    {/* Signal badge */}
+                    <span style={{
+                      display: 'inline-block',
+                      fontSize: 10, fontWeight: 700,
+                      padding: '3px 9px', borderRadius: 5,
+                      color: sig.color,
+                      background: sig.bg,
+                      border: `1px solid ${sig.color}55`,
+                      letterSpacing: '0.06em',
+                    }}>
+                      {sig.label}
+                    </span>
+                  </div>
+
+                  {/* Right: score ring */}
+                  <div style={{ flexShrink: 0, marginLeft: 8 }}>
+                    <ScoreRing pct={pct} color={color} />
+                  </div>
+                </div>
+
+              </div>
+            );
+          })}
+        </div>
+      )}
+
+      {/* ── Legend card ────────────────────────────────────────────────── */}
+      {scores && (
+        <div style={{ ...CARD_STYLE, borderColor: 'rgba(139,92,246,0.55)' }}>
+          <div style={{
+            fontSize: 12, fontWeight: 700, color: '#a78bfa',
+            letterSpacing: '0.08em', marginBottom: 10,
+          }}>
+            HOW TO READ SCORES
           </div>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px 20px', fontSize: 11 }}>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px 22px', fontSize: 12, marginBottom: 8 }}>
             {[
-              { label: '+3 to +5 = Strong Long',  color: '#3fb950' },
-              { label: '+1 to +2 = Mild Long',    color: '#86efac' },
-              { label: '0 = Neutral — skip',      color: '#8b949e' },
-              { label: '-1 to -2 = Mild Short',   color: '#fca5a5' },
-              { label: '-3 to -5 = Strong Short', color: '#f85149' },
+              { label: '70–100 · Strong Long',    color: '#22c55e' },
+              { label: '50–69 · Mild / Caution',  color: '#f59e0b' },
+              { label: '30–49 · Weak',             color: '#f97316' },
+              { label: '0–29 · Strong Short',      color: '#f43f5e' },
             ].map(i => (
-              <span key={i.label} style={{ color: i.color }}>{i.label}</span>
+              <span key={i.label} style={{ color: i.color, fontWeight: 600 }}>
+                <span style={{
+                  display: 'inline-block', width: 8, height: 8,
+                  borderRadius: '50%', background: i.color,
+                  marginRight: 5, verticalAlign: 'middle',
+                  boxShadow: `0 0 6px ${i.color}`,
+                }} />
+                {i.label}
+              </span>
             ))}
           </div>
-          <div style={{ marginTop: 8, fontSize: 10, color: '#484f58' }}>
-            ✓ bullish signal · ✗ bearish signal · — neutral/unavailable &nbsp;|&nbsp;
-            COT = institutional bias · Season = current month history · Strength = recent pair direction ·
-            Volatility = ATR ≥ 3 pips · News = no high-impact event next 24h
+          <div style={{ fontSize: 10, color: '#4b5563', lineHeight: 1.6 }}>
+            Score ring maps –5…+5 raw score → 0…100 pct.&nbsp;
+            COT = institutional positioning · Seasonality = current month history ·
+            Strength = recent pair direction · Volatility = ATR ≥ 3 pips · News = no high-impact event next 24h
           </div>
         </div>
       )}
+
     </div>
   );
 }
