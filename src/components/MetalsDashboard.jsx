@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import AIDashboardPanel from './AIDashboardPanel.jsx';
+import { detectSweep, detectLiqLevels, detectFVGsAndOBs } from '../utils/smcHelpers.js';
 
 // ── OANDA instruments ────────────────────────────────────────────────────────
 const INSTR = {
@@ -365,8 +366,76 @@ function getNextKillzone() {
   return best;
 }
 
+// ── Liquidity / SMC layer computation ────────────────────────────────────────
+function computeLiqLayer(h1Candles) {
+  if (!h1Candles || h1Candles.length < 20) return { pts: [], score: 0, hasData: false };
+
+  const curr = h1Candles[h1Candles.length - 1].c;
+
+  // ATR from last 14 H1 candles
+  const atrSlice = h1Candles.slice(-15);
+  let atrSum = 0;
+  for (let i = 1; i < atrSlice.length; i++) {
+    atrSum += Math.max(
+      atrSlice[i].h - atrSlice[i].l,
+      Math.abs(atrSlice[i].h - atrSlice[i - 1].c),
+      Math.abs(atrSlice[i].l - atrSlice[i - 1].c)
+    );
+  }
+  const atr = atrSum / (atrSlice.length - 1) || 1;
+
+  // 1. Liquidity sweep on last candle
+  const sweep = detectSweep(h1Candles);
+
+  // 2. OB / FVG zones
+  const { obZones, fvgZones } = detectFVGsAndOBs(h1Candles);
+  const nearBullOB  = obZones.some(z  => z.type === 'bullish' && curr >= z.botPrice - atr * 0.5 && curr <= z.topPrice + atr * 0.5);
+  const nearBearOB  = obZones.some(z  => z.type === 'bearish' && curr <= z.topPrice + atr * 0.5 && curr >= z.botPrice - atr * 0.5);
+  const nearBullFVG = fvgZones.some(z => z.type === 'bullish' && curr >= z.botPrice - atr * 0.3 && curr <= z.topPrice + atr * 0.3);
+  const nearBearFVG = fvgZones.some(z => z.type === 'bearish' && curr <= z.topPrice + atr * 0.3 && curr >= z.botPrice - atr * 0.3);
+
+  // 3. BSL / SSL proximity (institutional liquidity pools)
+  const { bsl, ssl } = detectLiqLevels(h1Candles, 6);
+  const bslAbove = bsl.find(l => l.price > curr && l.price < curr + atr * 5);
+  const sslBelow = ssl.find(l => l.price < curr && l.price > curr - atr * 5);
+
+  const pts = [
+    sweep ? {
+      key: 'Sweep',
+      val: sweep.type === 'bullish',
+      detail: sweep.type === 'bullish'
+        ? `Bullish sweep @ ${sweep.price?.toFixed(2)} — stop-hunt reversal`
+        : `Bearish sweep @ ${sweep.price?.toFixed(2)} — stop-hunt reversal`,
+    } : null,
+
+    (nearBullOB || nearBearOB) ? {
+      key: 'Order Block',
+      val: nearBullOB && !nearBearOB,
+      detail: nearBullOB ? 'Price at bullish OB — institutional demand zone'
+                         : 'Price at bearish OB — institutional supply zone',
+    } : null,
+
+    (nearBullFVG || nearBearFVG) ? {
+      key: 'FVG',
+      val: nearBullFVG && !nearBearFVG,
+      detail: nearBullFVG ? 'Inside bullish FVG — imbalance fill'
+                          : 'Inside bearish FVG — imbalance fill',
+    } : null,
+
+    (bslAbove || sslBelow) ? {
+      key: 'Liq Target',
+      val: !!bslAbove,
+      detail: bslAbove
+        ? `BSL above @ ${bslAbove.price.toFixed(2)} (${bslAbove.count}x tested) — bullish target`
+        : `SSL below @ ${sslBelow.price.toFixed(2)} (${sslBelow.count}x tested) — bearish target`,
+    } : null,
+  ].filter(Boolean);
+
+  return { pts, score: pts.filter(p => p.val).length, hasData: true };
+}
+
 // ── Trade Setup Score card ────────────────────────────────────────────────────
-function TradeSetupScore({ metal, label, color, cotSig, sig, sentiment }) {
+function TradeSetupScore({ metal, label, color, cotSig, sig, sentiment, h1Candles }) {
   const kz = getCurrentKillzone();
   const nextKz = getNextKillzone();
 
@@ -395,15 +464,17 @@ function TradeSetupScore({ metal, label, color, cotSig, sig, sentiment }) {
   ].filter(Boolean);
   const structScore = structPts.filter(p => p.val === true).length;
 
-  // LAYER 4 — TIMING (killzone, max 1 pt)
+  // LAYER 4 — LIQUIDITY / SMC
+  const liq = computeLiqLayer(h1Candles);
+
+  // LAYER 5 — TIMING (killzone, max 1 pt)
   const kzActive = !!kz;
   const kzDetail = kz ? `${kz.name} active` : nextKz ? `Next: ${nextKz.name} in ${Math.floor(nextKz.minsUntil/60)}h ${nextKz.minsUntil%60}m` : '';
 
   // TOTAL — only count layers that actually have data
-  const dataPoints = biasPts.filter(p => p.detail !== 'No data' && p.detail !== 'No COT data');
-  const hasData = dataPoints.length > 0 || sentiment || aboveEMA != null;
-  const totalScore = biasScore + (sentBull === true ? 1 : 0) + structScore + (kzActive ? 1 : 0);
-  const totalMax   = biasPts.length + 1 + structPts.length + 1;
+  const hasData = biasPts.length > 0 || sentiment || aboveEMA != null || liq.hasData;
+  const totalScore = biasScore + (sentBull === true ? 1 : 0) + structScore + liq.score + (kzActive ? 1 : 0);
+  const totalMax   = biasPts.length + (sentiment != null ? 1 : 0) + structPts.length + (liq.hasData ? liq.pts.length : 0) + 1;
   const ratio = totalMax > 0 ? totalScore / totalMax : 0;
   const verdict = !hasData ? 'LOADING…'
                 : ratio >= 0.75 ? 'STRONG BUY'
@@ -448,7 +519,7 @@ function TradeSetupScore({ metal, label, color, cotSig, sig, sentiment }) {
       <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between', marginBottom:10 }}>
         <div>
           <span style={{ fontSize:13, fontWeight:700, color }}>🎯 Trade Setup — {label}</span>
-          <span style={{ fontSize:9, color:'#64748b', marginLeft:6 }}>4-layer confluence</span>
+          <span style={{ fontSize:9, color:'#64748b', marginLeft:6 }}>5-layer confluence</span>
         </div>
         <div style={{ textAlign:'right' }}>
           <div style={{ fontSize:15, fontWeight:800, color:verdictColor }}>{verdict}</div>
@@ -464,7 +535,8 @@ function TradeSetupScore({ metal, label, color, cotSig, sig, sentiment }) {
 
       {/* Layers */}
       {row('📊', 'Bias (Macro)', biasScore, biasPts.length, biasPts, null)}
-      {row('👥', 'Confirmation (Sentiment)', sentBull === true ? 1 : 0, 1, null, { bull:sentBull, detail:sentDetail })}
+      {liq.hasData && row('💧', 'Liquidity / SMC', liq.score, liq.pts.length, liq.pts, null)}
+      {row('👥', 'Confirmation (Sentiment)', sentBull === true ? 1 : 0, sentiment != null ? 1 : 0, null, { bull:sentBull, detail:sentDetail })}
       {row('📈', 'Structure (Technical)', structScore, structPts.length, structPts, null)}
       <div style={{ display:'flex', alignItems:'flex-start', gap:8, padding:'6px 0' }}>
         <span style={{ fontSize:14, width:18, flexShrink:0 }}>⏱</span>
@@ -1040,10 +1112,12 @@ export default function MetalsDashboard() {
           <TradeSetupScore
             metal="gold" label="Gold (XAU)" color="#fbbf24"
             cotSig={cotSig.gold} sig={sig} sentiment={retailSentiment.gold}
+            h1Candles={h1ohlc?.gold}
           />
           <TradeSetupScore
             metal="silver" label="Silver (XAG)" color="#94a3b8"
             cotSig={cotSig.silver} sig={sig} sentiment={retailSentiment.silver}
+            h1Candles={h1ohlc?.silver}
           />
         </div>
 
