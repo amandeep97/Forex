@@ -400,16 +400,20 @@ function TradeSetupScore({ metal, label, color, cotSig, sig, sentiment }) {
   const kzActive = !!kz;
   const kzDetail = kz ? `${kz.name} active` : nextKz ? `Next: ${nextKz.name} in ${Math.floor(nextKz.minsUntil/60)}h ${nextKz.minsUntil%60}m` : '';
 
-  // TOTAL
+  // TOTAL — only count layers that actually have data
+  const dataPoints = biasPts.filter(p => p.detail !== 'No data' && p.detail !== 'No COT data');
+  const hasData = dataPoints.length > 0 || sentiment || aboveEMA != null;
   const totalScore = biasScore + (sentBull === true ? 1 : 0) + structScore + (kzActive ? 1 : 0);
   const totalMax   = biasPts.length + 1 + structPts.length + 1;
   const ratio = totalMax > 0 ? totalScore / totalMax : 0;
-  const verdict = ratio >= 0.75 ? 'STRONG BUY'
+  const verdict = !hasData ? 'LOADING…'
+                : ratio >= 0.75 ? 'STRONG BUY'
                 : ratio >= 0.55 ? 'BUY'
                 : ratio <= 0.25 ? 'STRONG SELL'
                 : ratio <= 0.45 ? 'SELL'
                 : 'NEUTRAL';
-  const verdictColor = verdict.includes('STRONG BUY') ? '#22c55e'
+  const verdictColor = verdict === 'LOADING…' ? '#64748b'
+                     : verdict.includes('STRONG BUY') ? '#22c55e'
                      : verdict === 'BUY'     ? '#86efac'
                      : verdict === 'NEUTRAL' ? '#f59e0b'
                      : verdict === 'SELL'    ? '#fca5a5'
@@ -449,7 +453,7 @@ function TradeSetupScore({ metal, label, color, cotSig, sig, sentiment }) {
         </div>
         <div style={{ textAlign:'right' }}>
           <div style={{ fontSize:15, fontWeight:800, color:verdictColor }}>{verdict}</div>
-          <div style={{ fontSize:10, color:'#64748b' }}>{totalScore}/{totalMax} pts</div>
+          <div style={{ fontSize:10, color:'#64748b' }}>{hasData ? `${totalScore}/${totalMax} pts` : 'awaiting data'}</div>
         </div>
       </div>
 
