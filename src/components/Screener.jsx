@@ -236,24 +236,38 @@ export default function Screener() {
       }
       if (!creds?.apiKey) return;
 
-      const base = creds.practice ? 'https://api-fxpractice.oanda.com/v3' : 'https://api-fxtrade.oanda.com/v3';
+      // Position book is public market data — always try live API first
+      const liveBase = 'https://api-fxtrade.oanda.com/v3';
+      const practiceBase = 'https://api-fxpractice.oanda.com/v3';
 
       async function fetchSentiment(oandaInstrument) {
-        try {
-          const res = await fetch(
-            `${base}/instruments/${oandaInstrument}/positionBook`,
-            { headers: { Authorization: `Bearer ${creds.apiKey}` }, signal: AbortSignal.timeout(8000) }
-          );
-          if (!res.ok) return null;
-          const data = await res.json();
-          const buckets = data.positionBook?.buckets || [];
-          let totalLong = 0, totalShort = 0;
-          buckets.forEach(b => { totalLong += parseFloat(b.longCountPercent||0); totalShort += parseFloat(b.shortCountPercent||0); });
-          const total = totalLong + totalShort;
-          if (!total) return null;
-          const longPct = Math.round(totalLong / total * 100);
-          return { longPct, shortPct: 100 - longPct };
-        } catch { return null; }
+        for (const base of [liveBase, practiceBase]) {
+          try {
+            const res = await fetch(
+              `${base}/instruments/${oandaInstrument}/positionBook`,
+              { headers: { Authorization: `Bearer ${creds.apiKey}` }, signal: AbortSignal.timeout(6000) }
+            );
+            if (!res.ok) continue;
+            const data = await res.json();
+            const buckets = (data.positionBook?.buckets || []).filter(
+              b => parseFloat(b.longCountPercent||0) > 0 || parseFloat(b.shortCountPercent||0) > 0
+            );
+            if (!buckets.length) continue;
+            // Each bucket's longCountPercent = % of all long positions at this price level
+            // Sum across buckets ≈ 100 for longs, 100 for shorts — use count of dominant buckets instead
+            let longBuckets = 0, shortBuckets = 0;
+            buckets.forEach(b => {
+              const l = parseFloat(b.longCountPercent||0);
+              const s = parseFloat(b.shortCountPercent||0);
+              if (l >= s) longBuckets += l; else shortBuckets += s;
+            });
+            const total = longBuckets + shortBuckets;
+            if (!total) continue;
+            const longPct = Math.round(longBuckets / total * 100);
+            return { longPct, shortPct: 100 - longPct };
+          } catch { continue; }
+        }
+        return null;
       }
 
       const results = {};
