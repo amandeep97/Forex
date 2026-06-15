@@ -370,12 +370,12 @@ function TradeSetupScore({ metal, label, color, cotSig, sig, sentiment }) {
   const kz = getCurrentKillzone();
   const nextKz = getNextKillzone();
 
-  // LAYER 1 — BIAS (macro fundamentals, max 3 pts)
+  // LAYER 1 — BIAS (macro fundamentals, only include items with actual data)
   const biasPts = [
-    { key:'COT', val: cotSig?.bias === 'bullish', detail: cotSig ? `Net ${cotSig.net >= 0 ? '+' : ''}${(cotSig.net||0).toLocaleString()} (${cotSig.pct ?? '?'}th pct)` : 'No COT data' },
-    { key:'Real Yields', val: sig.realYieldSignal === 'bullish', detail: sig.realYield != null ? `${sig.realYield.toFixed(2)}% ${sig.realYieldDir}` : 'No data' },
-    { key:'DXY', val: sig.dxy === 'falling', detail: sig.dxy ? `DXY ${sig.dxy}` : 'No data' },
-  ].filter(p => p.val !== undefined);
+    cotSig ? { key:'COT', val: cotSig.bias === 'bullish', detail: `Net ${cotSig.net >= 0 ? '+' : ''}${(cotSig.net||0).toLocaleString()} (${cotSig.pct ?? '?'}th pct)` } : null,
+    sig.realYieldSignal ? { key:'Real Yields', val: sig.realYieldSignal === 'bullish', detail: `${sig.realYield?.toFixed(2) ?? '?'}% ${sig.realYieldDir ?? ''}` } : null,
+    sig.dxy ? { key:'DXY', val: sig.dxy === 'falling', detail: `DXY ${sig.dxy}` } : null,
+  ].filter(Boolean);
   const biasScore = biasPts.filter(p => p.val).length;
 
   // LAYER 2 — CONFIRMATION (contrarian sentiment, max 1 pt)
@@ -390,10 +390,9 @@ function TradeSetupScore({ metal, label, color, cotSig, sig, sentiment }) {
   const aboveEMA = sig[`${metal}AboveEMA50`];
   const rsiSig   = sig[`${metal}RSISignal`];
   const structPts = [
-    { key:'EMA50', val: aboveEMA, detail: aboveEMA != null ? (aboveEMA ? 'Price above EMA50 ✓' : 'Price below EMA50') : 'No data' },
-    { key:'RSI', val: rsiSig === 'oversold' ? true : rsiSig === 'overbought' ? false : null,
-      detail: sig[`${metal}RSI`] != null ? `RSI ${sig[`${metal}RSI`]} (${rsiSig})` : 'No data' },
-  ].filter(p => p.val !== undefined);
+    aboveEMA != null ? { key:'EMA50', val: aboveEMA, detail: aboveEMA ? 'Price above EMA50 ✓' : 'Price below EMA50' } : null,
+    rsiSig && rsiSig !== 'neutral' ? { key:'RSI', val: rsiSig === 'oversold', detail: `RSI ${sig[`${metal}RSI`]} — ${rsiSig}` } : null,
+  ].filter(Boolean);
   const structScore = structPts.filter(p => p.val === true).length;
 
   // LAYER 4 — TIMING (killzone, max 1 pt)
@@ -893,16 +892,15 @@ export default function MetalsDashboard() {
     });
   }
 
-  // ── COT Extreme flags (52-week range) ──────────────────────────────────────
+  // ── COT Extreme flags — rank-based percentile (consistent with gauge display) ─
   function cotExtreme(history) {
     if (!history || history.length < 10) return null;
     const nets = history.map(r => r.net);
-    const min52 = Math.min(...nets), max52 = Math.max(...nets);
-    const range = max52 - min52;
-    if (!range) return null;
-    const currentPct = (nets[0] - min52) / range * 100;
-    if (currentPct >= 80) return 'EXTREME LONG';
-    if (currentPct <= 20) return 'EXTREME SHORT';
+    const current = nets[0];
+    const prior = nets.slice(1);     // exclude current week from reference set
+    const rankPct = pctRank(current, prior);
+    if (rankPct >= 80) return 'EXTREME LONG';
+    if (rankPct <= 20) return 'EXTREME SHORT';
     return null;
   }
   sig.goldCOTExtreme   = cotExtreme(cot?.gold   || []);
