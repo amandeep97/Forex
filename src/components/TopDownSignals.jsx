@@ -8,6 +8,31 @@ const PAIRS = [
   'AUD_JPY','CAD_JPY','CHF_JPY','NZD_JPY',
 ];
 
+const KILLZONES = [
+  { name:'Asian KZ',     s:0,    e:240,  color:'#f59e0b' },
+  { name:'London KZ',    s:420,  e:600,  color:'#8b5cf6' },
+  { name:'London Close', s:660,  e:720,  color:'#38bdf8' },
+  { name:'NY AM KZ',     s:780,  e:960,  color:'#22c55e' },
+  { name:'NY PM KZ',     s:1080, e:1200, color:'#f97316' },
+];
+
+function getCurrentKZ() {
+  const now  = new Date();
+  const mins = now.getUTCHours() * 60 + now.getUTCMinutes();
+  return KILLZONES.find(kz => mins >= kz.s && mins < kz.e) || null;
+}
+
+function getNextKZ() {
+  const now  = new Date();
+  const mins = now.getUTCHours() * 60 + now.getUTCMinutes();
+  let best = null, bestDiff = Infinity;
+  for (const kz of KILLZONES) {
+    const diff = kz.s > mins ? kz.s - mins : kz.s + 1440 - mins;
+    if (diff < bestDiff) { bestDiff = diff; best = { ...kz, minsUntil: diff }; }
+  }
+  return best;
+}
+
 function getCreds() {
   const c = JSON.parse(localStorage.getItem('oanda_creds') || 'null');
   if (c?.apiKey) return c;
@@ -68,16 +93,23 @@ function detectStructure(candles) {
 
 function detectOBs(candles) {
   if (!candles || candles.length < 10) return [];
-  const n = candles.length;
+  const n   = candles.length;
   const avg = candles.reduce((s, c) => s + Math.abs(c.c - c.o), 0) / n || 1;
   const obs = [];
   for (let i = 1; i < n - 3; i++) {
     const c = candles[i], nx = candles[i + 1], nn = candles[i + 2];
     if (Math.abs(nn.c - nx.o) < avg * 1.2) continue;
-    if (c.c < c.o && nx.c > nx.o && nn.c > c.o)
-      obs.push({ type: 'bullish', top: c.o, bottom: c.c, low: c.l });
-    if (c.c > c.o && nx.c < nx.o && nn.c < c.o)
-      obs.push({ type: 'bearish', top: c.c, bottom: c.o, high: c.h });
+
+    if (c.c < c.o && nx.c > nx.o && nn.c > c.o) {
+      // Bullish OB — mitigated if any later candle closes below OB low
+      const mitigated = candles.slice(i + 3).some(x => x.c < c.l);
+      if (!mitigated) obs.push({ type: 'bullish', top: c.o, bottom: c.c, low: c.l });
+    }
+    if (c.c > c.o && nx.c < nx.o && nn.c < c.o) {
+      // Bearish OB — mitigated if any later candle closes above OB high
+      const mitigated = candles.slice(i + 3).some(x => x.c > c.h);
+      if (!mitigated) obs.push({ type: 'bearish', top: c.c, bottom: c.o, high: c.h });
+    }
   }
   return obs.slice(-10);
 }
@@ -102,16 +134,15 @@ function analyzeTimeframe(candles) {
   const atr = computeATR(candles);
   const structure = detectStructure(candles);
 
-  const recent = candles.slice(-20);
+  const recent    = candles.slice(-20);
   const swingHigh = Math.max(...recent.map(c => c.h));
   const swingLow  = Math.min(...recent.map(c => c.l));
   const midpoint  = (swingHigh + swingLow) / 2;
-  const zone = cp < midpoint ? 'discount' : 'premium';
+  const zone      = cp < midpoint ? 'discount' : 'premium';
 
   const obs  = detectOBs(candles);
   const fvgs = detectFVGs(candles);
 
-  // 1.0 ATR tap tolerance — matches what app UI shows as "matching"
   const bullOB = obs.find(ob =>
     ob.type === 'bullish' && ob.top < midpoint &&
     cp >= ob.bottom && cp <= ob.top + atr
@@ -135,10 +166,35 @@ function analyzeTimeframe(candles) {
   return { cp, atr, structure, zone, swingHigh, swingLow, bullOB, bearOB, bullFVG, bearFVG };
 }
 
-function getSignal(h4, h1, m15) {
+// ── Liquidity path check — finds pools blocking the path to TP ────────────────
+function checkLiqPath(dir, entry, tp, h1Candles) {
+  if (!h1Candles || h1Candles.length < 20) return null;
+  const look = 3, n = h1Candles.length;
+  const highs = [], lows = [];
+  for (let i = look; i < n - look; i++) {
+    let hi = true, lo = true;
+    for (let j = 1; j <= look; j++) {
+      if (h1Candles[i].h <= h1Candles[i-j].h || h1Candles[i].h <= h1Candles[i+j].h) hi = false;
+      if (h1Candles[i].l >= h1Candles[i-j].l || h1Candles[i].l >= h1Candles[i+j].l) lo = false;
+    }
+    if (hi) highs.push(h1Candles[i].h);
+    if (lo)  lows.push(h1Candles[i].l);
+  }
+  if (dir === 'long') {
+    // BSL (equal highs / swing highs) sitting between entry and TP = will get swept first
+    const pools = highs.filter(h => h > entry * 1.00005 && h < tp * 0.9999);
+    return pools.length ? Math.min(...pools) : null;
+  } else {
+    // SSL (equal lows / swing lows) sitting between entry and TP
+    const pools = lows.filter(l => l < entry * 0.99995 && l > tp * 1.0001);
+    return pools.length ? Math.max(...pools) : null;
+  }
+}
+
+// ── Signal generation ────────────────────────────────────────────────────────
+function getSignal(h4, h1, m15, h1Candles) {
   if (!h4 || !h1 || !m15) return null;
 
-  // H4 sets trend direction, H1 zone confirms pullback, M15 gives entry
   const longOK =
     h4.structure === 'bullish' &&
     h1.zone === 'discount' &&
@@ -153,14 +209,14 @@ function getSignal(h4, h1, m15) {
 
   if (!longOK && !shortOK) return null;
 
-  const dir   = longOK ? 'long' : 'short';
-  const entry = m15.cp;
-  const minDist = m15.atr * 1.5; // minimum 1.5 ATR — stops spread/noise from triggering SL
+  const dir      = longOK ? 'long' : 'short';
+  const entry    = m15.cp;
+  const minDist  = m15.atr * 1.5;
   let sl;
 
   if (dir === 'long') {
     const structural = Math.min(
-      m15.bullOB?.low ?? Infinity,
+      m15.bullOB?.low  ?? Infinity,
       m15.bullFVG?.bottom ?? Infinity,
       m15.swingLow
     ) - m15.atr * 0.1;
@@ -178,7 +234,18 @@ function getSignal(h4, h1, m15) {
   const tp   = dir === 'long' ? entry + risk * 2 : entry - risk * 2;
   const rr   = +(Math.abs(tp - entry) / risk).toFixed(1);
 
-  return { dir, entry, sl, tp, rr };
+  // Quality filters
+  const liqBlock = checkLiqPath(dir, entry, tp, h1Candles);
+  const kz       = getCurrentKZ();
+
+  // Quality score 0-4
+  let quality = 0;
+  if (kz)        quality++;                          // killzone timing
+  if (!liqBlock) quality++;                          // clear path to TP
+  if (h1.structure === h4.structure) quality++;      // H1 aligns with H4
+  if (m15.bullOB || m15.bearOB) quality++;           // OB entry (stronger than FVG)
+
+  return { dir, entry, sl, tp, rr, liqBlock, kz, quality };
 }
 
 // ── Formatting ────────────────────────────────────────────────────────────────
@@ -186,7 +253,7 @@ function getSignal(h4, h1, m15) {
 const fmtPair = p => p.replace('_', '/');
 
 function fmtPrice(pair, price) {
-  const isJpy = pair.includes('JPY');
+  const isJpy   = pair.includes('JPY');
   const isMetal = pair.startsWith('XA');
   return price?.toFixed(isMetal ? 3 : isJpy ? 3 : 5) ?? '—';
 }
@@ -199,8 +266,6 @@ function fmtDist(pair, dist) {
   const pips = Math.round(Math.abs(dist) * (isJpy ? 100 : 10000));
   return `${pips}p`;
 }
-
-// ── Score for sorting (more aligned = higher) ─────────────────────────────────
 
 function alignScore(h4, h1, m15) {
   if (!h4 || !h1 || !m15) return 0;
@@ -238,6 +303,20 @@ function TFRow({ label, data }) {
   );
 }
 
+// Quality star rating
+function QualityStars({ q }) {
+  return (
+    <div style={{ display:'flex', gap:2, alignItems:'center' }}>
+      {[0,1,2,3].map(i => (
+        <span key={i} style={{ fontSize:10, color: i < q ? '#f59e0b' : '#1e293b' }}>★</span>
+      ))}
+      <span style={{ fontSize:9, color:'#64748b', marginLeft:3 }}>
+        {q === 4 ? 'A+' : q === 3 ? 'A' : q === 2 ? 'B' : 'C'}
+      </span>
+    </div>
+  );
+}
+
 function PairCard({ pair, data, loading: cardLoading }) {
   const { h4, h1, m15, signal } = data || {};
   const isLong  = signal?.dir === 'long';
@@ -258,20 +337,22 @@ function PairCard({ pair, data, loading: cardLoading }) {
         {cardLoading ? (
           <span style={{ fontSize:11, color:neu }}>loading…</span>
         ) : signal ? (
-          <span style={{
-            fontSize:11, fontWeight:700, padding:'3px 8px', borderRadius:5,
-            background: isLong ? '#16a34a22' : '#dc262622',
-            color: isLong ? bull : bear,
-            border: `1px solid ${isLong ? bull : bear}`,
-          }}>
-            {isLong ? '▲ LONG' : '▼ SHORT'}
-          </span>
+          <div style={{ display:'flex', flexDirection:'column', alignItems:'flex-end', gap:3 }}>
+            <span style={{
+              fontSize:11, fontWeight:700, padding:'3px 8px', borderRadius:5,
+              background: isLong ? '#16a34a22' : '#dc262622',
+              color: isLong ? bull : bear,
+              border: `1px solid ${isLong ? bull : bear}`,
+            }}>
+              {isLong ? '▲ LONG' : '▼ SHORT'}
+            </span>
+            <QualityStars q={signal.quality} />
+          </div>
         ) : (
           <span style={{ fontSize:11, color:neu }}>waiting</span>
         )}
       </div>
 
-      {/* Timeframe rows */}
       {(!data && !cardLoading) ? (
         <div style={{ fontSize:12, color:neu }}>No OANDA data</div>
       ) : cardLoading ? (
@@ -282,13 +363,12 @@ function PairCard({ pair, data, loading: cardLoading }) {
           <TFRow label="H1"  data={h1} />
           <TFRow label="M15" data={m15} />
 
-          {/* Signal details */}
           {signal && (
             <div style={{ marginTop:10, paddingTop:8, borderTop:'1px solid rgba(255,255,255,0.07)' }}>
               <div style={{ display:'grid', gridTemplateColumns:'auto 1fr auto', gap:'3px 10px', fontSize:12 }}>
                 <span style={{ color:neu }}>Entry</span>
                 <span style={{ color:'#e2e8f0', fontWeight:600 }}>{fmtPrice(pair, signal.entry)}</span>
-                <span style={{ color:neu }}></span>
+                <span></span>
 
                 <span style={{ color:neu }}>SL</span>
                 <span style={{ color:bear, fontWeight:600 }}>{fmtPrice(pair, signal.sl)}</span>
@@ -298,9 +378,32 @@ function PairCard({ pair, data, loading: cardLoading }) {
                 <span style={{ color:bull, fontWeight:600 }}>{fmtPrice(pair, signal.tp)}</span>
                 <span style={{ color:neu, fontSize:11 }}>+{fmtDist(pair, Math.abs(signal.tp - signal.entry))}</span>
               </div>
+
               <div style={{ marginTop:5, fontSize:11, color:'#f59e0b' }}>
                 R:R {signal.rr}:1 · M15 {m15?.bullOB || m15?.bearOB ? 'OB' : 'FVG'} entry
               </div>
+
+              {/* Killzone badge */}
+              {signal.kz ? (
+                <div style={{ marginTop:6, fontSize:10, fontWeight:700, color:signal.kz.color,
+                  background:`${signal.kz.color}18`, border:`1px solid ${signal.kz.color}44`,
+                  borderRadius:4, padding:'3px 8px', display:'inline-block' }}>
+                  ⚡ {signal.kz.name} active — optimal timing
+                </div>
+              ) : (
+                <div style={{ marginTop:6, fontSize:10, color:'#64748b' }}>
+                  ⏱ Outside killzone — {(() => { const n = getNextKZ(); return n ? `${n.name} in ${Math.floor(n.minsUntil/60)}h ${n.minsUntil%60}m` : ''; })()}
+                </div>
+              )}
+
+              {/* Liquidity block warning */}
+              {signal.liqBlock && (
+                <div style={{ marginTop:5, fontSize:10, fontWeight:700,
+                  color:'#f43f5e', background:'#f43f5e12', border:'1px solid #f43f5e44',
+                  borderRadius:4, padding:'3px 8px' }}>
+                  ⚠ BSL/SSL blocking @ {fmtPrice(pair, signal.liqBlock)} — liquidity pool in path to TP
+                </div>
+              )}
             </div>
           )}
         </>
@@ -316,6 +419,9 @@ export default function TopDownSignals() {
   const [loadingSet,  setLoadingSet]  = useState(new Set());
   const [lastRefresh, setLastRefresh] = useState(null);
   const [refreshing,  setRefreshing]  = useState(false);
+  const [kzOnly,      setKzOnly]      = useState(false);
+  const [clearOnly,   setClearOnly]   = useState(false);
+  const [minQuality,  setMinQuality]  = useState(0);
 
   const hasOanda = !!getCreds().apiKey;
 
@@ -330,10 +436,10 @@ export default function TopDownSignals() {
         fetchOHLC(pair, 'H1', 100),
         fetchOHLC(pair, 'M15', 100),
       ]);
-      const h4  = analyzeTimeframe(h4c);
-      const h1  = analyzeTimeframe(h1c);
-      const m15 = analyzeTimeframe(m15c);
-      const signal = getSignal(h4, h1, m15);
+      const h4     = analyzeTimeframe(h4c);
+      const h1     = analyzeTimeframe(h1c);
+      const m15    = analyzeTimeframe(m15c);
+      const signal = getSignal(h4, h1, m15, h1c);
 
       setResults(prev => ({ ...prev, [pair]: { h4, h1, m15, signal } }));
       setLoadingSet(prev => { const s = new Set(prev); s.delete(pair); return s; });
@@ -345,20 +451,39 @@ export default function TopDownSignals() {
 
   useEffect(() => { load(); }, [load]);
 
-  const sorted = [...PAIRS].sort((a, b) => {
-    const aS = results[a]?.signal ? 1 : 0;
-    const bS = results[b]?.signal ? 1 : 0;
-    if (aS !== bS) return bS - aS;
+  let sorted = [...PAIRS].sort((a, b) => {
+    const aQ = results[a]?.signal?.quality ?? -1;
+    const bQ = results[b]?.signal?.quality ?? -1;
+    if (aQ !== bQ) return bQ - aQ;
     return alignScore(results[b]?.h4, results[b]?.h1, results[b]?.m15)
          - alignScore(results[a]?.h4, results[a]?.h1, results[a]?.m15);
   });
 
-  const signalCount = Object.values(results).filter(r => r?.signal).length;
+  // Apply filters
+  if (kzOnly)    sorted = sorted.filter(p => results[p]?.signal?.kz);
+  if (clearOnly) sorted = sorted.filter(p => !results[p]?.signal?.liqBlock);
+  if (minQuality > 0) sorted = sorted.filter(p => (results[p]?.signal?.quality ?? 0) >= minQuality);
+
+  const allSignals   = Object.values(results).filter(r => r?.signal);
+  const kzSignals    = allSignals.filter(r => r.signal.kz);
+  const clearSignals = allSignals.filter(r => !r.signal.liqBlock);
+  const aSignals     = allSignals.filter(r => r.signal.quality >= 3);
+
+  const chip = (label, active, onClick, count) => (
+    <button onClick={onClick} style={{
+      fontSize:10, padding:'3px 8px', borderRadius:5, cursor:'pointer', fontWeight:600,
+      background: active ? 'rgba(139,92,246,0.25)' : 'rgba(255,255,255,0.06)',
+      color:      active ? '#a78bfa' : '#94a3b8',
+      border:     `1px solid ${active ? '#8b5cf644' : 'rgba(255,255,255,0.1)'}`,
+    }}>
+      {label} {count != null ? <span style={{ opacity:0.7 }}>({count})</span> : null}
+    </button>
+  );
 
   return (
     <div style={{ padding:'12px 10px', overflowY:'auto', height:'100%' }}>
       {/* Header */}
-      <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:12 }}>
+      <div style={{ display:'flex', justifyContent:'space-between', alignItems:'flex-start', marginBottom:10 }}>
         <div>
           <div style={{ fontWeight:700, fontSize:15 }}>Top-Down Signals</div>
           <div style={{ fontSize:11, color:neu, marginTop:2 }}>H4 bias → H1 structure → M15 entry · SL · TP</div>
@@ -375,32 +500,34 @@ export default function TopDownSignals() {
             {refreshing ? 'Loading…' : '↻ Refresh'}
           </button>
           {lastRefresh && (
-            <div style={{ fontSize:10, color:neu, marginTop:3 }}>
-              {lastRefresh.toLocaleTimeString()}
-            </div>
+            <div style={{ fontSize:10, color:neu, marginTop:3 }}>{lastRefresh.toLocaleTimeString()}</div>
           )}
         </div>
       </div>
 
-      {/* No OANDA warning */}
+      {/* Filter chips */}
+      <div style={{ display:'flex', gap:6, flexWrap:'wrap', marginBottom:10 }}>
+        {chip('⚡ KZ Only',       kzOnly,    () => setKzOnly(v => !v),    kzSignals.length)}
+        {chip('✅ Clear Path',    clearOnly, () => setClearOnly(v => !v), clearSignals.length)}
+        {chip('★★★ A-Grade',    minQuality >= 3, () => setMinQuality(v => v >= 3 ? 0 : 3), aSignals.length)}
+      </div>
+
       {!hasOanda && (
         <div style={{ textAlign:'center', color:neu, padding:40, fontSize:13 }}>
           Connect OANDA in Screener settings to see signals.
         </div>
       )}
 
-      {/* Signal count banner */}
-      {hasOanda && signalCount > 0 && (
+      {hasOanda && allSignals.length > 0 && (
         <div style={{
           background:'rgba(34,197,94,0.1)', border:'1px solid rgba(34,197,94,0.3)',
           borderRadius:8, padding:'8px 14px', marginBottom:12, fontSize:13,
           color:bull, fontWeight:600,
         }}>
-          {signalCount} active setup{signalCount > 1 ? 's' : ''} — scroll down to see all
+          {allSignals.length} setup{allSignals.length > 1 ? 's' : ''} · {kzSignals.length} in KZ · {clearSignals.length} clear path · {aSignals.length} A-grade
         </div>
       )}
 
-      {/* Pair grid */}
       <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill, minmax(280px, 1fr))', gap:10 }}>
         {sorted.map(pair => (
           <PairCard
