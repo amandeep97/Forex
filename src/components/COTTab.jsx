@@ -96,6 +96,22 @@ function getCrowded(legacyArr) {
   return null;
 }
 
+// ── Extreme flag: 52-week (last 52 entries) percentile ───────────────────────
+function getExtreme(legacyArr) {
+  // Use the most recent 52 weeks (entries are newest-first)
+  const slice = legacyArr.slice(0, 52);
+  if (slice.length < 10) return null;
+  const nets = slice.map(d => d.net);
+  const cur = nets[0], min = Math.min(...nets), max = Math.max(...nets);
+  const range = max - min;
+  if (range === 0) return null;
+  const pct = (cur - min) / range * 100;
+  if (pct >= 80) return { type:'EXTREME LONG',  pct, color:'#f43f5e', bg:'#f43f5e18', border:'#f43f5e44' };
+  if (pct <= 20) return { type:'EXTREME SHORT', pct, color:'#22c55e', bg:'#22c55e18', border:'#22c55e44' };
+  return null;
+}
+
+
 // ── History line chart (full 2-year sparkline) ────────────────────────────────
 function HistoryChart({ arr, color }) {
   if (!arr || arr.length < 4) return null;
@@ -282,6 +298,7 @@ export default function COTTab() {
               const shortPct = 100 - longPct;
               const barPct   = maxNet > 0 ? (Math.abs(latest.net) / maxNet) * 100 : 0;
               const crowded  = getCrowded(arr);
+              const extreme  = getExtreme(arr);
               const isExp    = expanded[m.key];
 
               const maxCatAbs = latCat ? Math.max(
@@ -324,8 +341,16 @@ export default function COTTab() {
                   </div>
 
                   {/* ── Original: net position ── */}
-                  <div style={{ fontSize:13, fontFamily:'monospace', color:bull?'#22c55e':'#ef4444', fontWeight:700, marginBottom:6 }}>
-                    Net: {latest.net>=0?'+':''}{latest.net.toLocaleString()}
+                  <div style={{ display:'flex', alignItems:'center', gap:8, marginBottom:6 }}>
+                    <div style={{ fontSize:13, fontFamily:'monospace', color:bull?'#22c55e':'#ef4444', fontWeight:700 }}>
+                      Net: {latest.net>=0?'+':''}{latest.net.toLocaleString()}
+                    </div>
+                    {extreme && (
+                      <span style={{ fontSize:9, fontWeight:700, padding:'2px 6px', borderRadius:4,
+                        color:extreme.color, background:extreme.bg, border:`1px solid ${extreme.border}` }}>
+                        ⚠ {extreme.type}
+                      </span>
+                    )}
                   </div>
 
                   {/* ── Original: net bar ── */}
@@ -390,7 +415,7 @@ export default function COTTab() {
             <table style={{ width:'100%', borderCollapse:'collapse', fontSize:11 }}>
               <thead>
                 <tr style={{ borderBottom:'1px solid var(--border)' }}>
-                  {['Market','Signal','Net (Non-Comm)','Long','Short','OI','WoW','Lev Funds','Asset Mgr','Dealer','Small Specs','Date'].map(h => (
+                  {['Market','Signal','Extreme (52wk)','Net (Non-Comm)','Long','Short','OI','WoW','Lev Funds','Asset Mgr','Dealer','Small Specs','Date'].map(h => (
                     <th key={h} style={{ padding:'6px 8px', textAlign:'left', color:'var(--text3)',
                       fontWeight:600, fontSize:10, whiteSpace:'nowrap' }}>{h}</th>
                   ))}
@@ -406,6 +431,7 @@ export default function COTTab() {
                   const bull    = l.net >= 0;
                   const delta   = p ? l.net - p.net : 0;
                   const crowded = getCrowded(arr);
+                  const extreme = getExtreme(arr);
                   const C = ({ v }) => (
                     <td style={{ padding:'6px 8px', fontFamily:'monospace', fontSize:10, whiteSpace:'nowrap',
                       color: v===undefined ? '#484f58' : v>=0 ? '#22c55e' : '#ef4444' }}>
@@ -421,6 +447,17 @@ export default function COTTab() {
                           background:crowded?crowded.bg:(bull?'#22c55e18':'#ef444418') }}>
                           {crowded ? crowded.type : (bull?'▲ LONG':'▼ SHORT')}
                         </span>
+                      </td>
+                      <td style={{ padding:'6px 8px' }}>
+                        {extreme ? (
+                          <span style={{ fontSize:9, fontWeight:700, padding:'2px 6px', borderRadius:4,
+                            color:extreme.color, background:extreme.bg, border:`1px solid ${extreme.border}`,
+                            whiteSpace:'nowrap' }}>
+                            ⚠ {extreme.type}
+                          </span>
+                        ) : (
+                          <span style={{ fontSize:9, color:'#484f58' }}>—</span>
+                        )}
                       </td>
                       <C v={l.net}/>
                       <td style={{ padding:'6px 8px', fontFamily:'monospace', fontSize:10, color:'#22c55e' }}>{l.long.toLocaleString()}</td>
@@ -451,6 +488,9 @@ export default function COTTab() {
             <div><span style={{ color:'#d29922' }}>Dealer net long</span> → market makers positioned to sell into strength (normal hedging)</div>
             <div style={{ marginTop:4, color:'#484f58', fontSize:10 }}>
               ⚠ CROWDED signal = Non-Commercial at 80th/20th percentile of {WEEKS}-week range · Contrarian bias only, not entry signal
+            </div>
+            <div style={{ marginTop:3, color:'#484f58', fontSize:10 }}>
+              ⚠ EXTREME flag = top/bottom 20% of 52-week range → potential reversal zone · EXTREME LONG = crowded longs at risk of unwind · EXTREME SHORT = shorts may squeeze
             </div>
           </div>
         </div>

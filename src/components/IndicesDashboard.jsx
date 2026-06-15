@@ -31,6 +31,31 @@ function getOanda() {
   };
 }
 
+function getOandaCreds() {
+  try { const c = JSON.parse(localStorage.getItem('oanda_creds')||'null'); if (c?.apiKey) return c; } catch {}
+  const apiKey = localStorage.getItem('oanda_key');
+  const practice = localStorage.getItem('oanda_env') !== 'live';
+  return apiKey ? { apiKey, practice } : null;
+}
+
+async function fetchRetailSentiment(instrument, creds) {
+  const base = creds.practice ? 'https://api-fxpractice.oanda.com/v3' : 'https://api-fxtrade.oanda.com/v3';
+  try {
+    const res = await fetch(
+      `${base}/instruments/${instrument}/positionBook`,
+      { headers: { Authorization: `Bearer ${creds.apiKey}` }, signal: AbortSignal.timeout(8000) }
+    );
+    if (!res.ok) return null;
+    const data = await res.json();
+    const buckets = data.positionBook?.buckets || [];
+    let totalLong = 0, totalShort = 0;
+    buckets.forEach(b => { totalLong += parseFloat(b.longCountPercent||0); totalShort += parseFloat(b.shortCountPercent||0); });
+    const total = totalLong + totalShort;
+    if (!total) return null;
+    return { longPct: Math.round(totalLong / total * 100) };
+  } catch { return null; }
+}
+
 function pctRank(arr) {
   if (!arr || arr.length < 2) return null;
   const last = arr[arr.length - 1];

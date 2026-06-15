@@ -1,6 +1,6 @@
 import { useState, useMemo, useEffect } from 'react';
 import { allInstruments, ASSET_TYPES, FOREX_CATEGORIES, SIGNALS, ASSET_COLORS, DEFAULT_FILTERS } from '../data/forexData';
-import { useLivePrices } from '../hooks/useLivePrices';
+import { useLivePrices, OANDA_MAP } from '../hooks/useLivePrices';
 import { generateCandles } from '../utils/generateCandles';
 import { detectCandlePatterns } from '../utils/candlePatterns';
 import { analyzeSMC } from '../utils/smcAnalysis';
@@ -44,6 +44,69 @@ function SessionClock() {
         <div style={{ padding:'2px 7px', borderRadius:4, background:'#22c55e18', border:'1px solid #22c55e44', flexShrink:0 }}>
           <span style={{ fontSize:9, fontWeight:700, color:'#22c55e' }}>⚡ London+NY</span>
         </div>
+      )}
+    </div>
+  );
+}
+
+// ── ICT Killzone Bar ──────────────────────────────────────────────────────────
+function KillzoneBar() {
+  const [now, setNow] = useState(() => new Date());
+  useEffect(() => {
+    const id = setInterval(() => setNow(new Date()), 1000);
+    return () => clearInterval(id);
+  }, []);
+
+  const mins = now.getUTCHours() * 60 + now.getUTCMinutes();
+
+  const KILLZONES = [
+    { name: 'Asian KZ',      s: 0*60,  e: 4*60,  color: '#f59e0b' },
+    { name: 'London KZ',     s: 7*60,  e: 10*60, color: '#8b5cf6' },
+    { name: 'London Close',  s: 11*60, e: 12*60, color: '#38bdf8' },
+    { name: 'NY AM KZ',      s: 13*60, e: 16*60, color: '#22c55e' },
+    { name: 'NY PM KZ',      s: 18*60, e: 20*60, color: '#f97316' },
+  ];
+
+  const activeKZ = KILLZONES.find(kz => mins >= kz.s && mins < kz.e);
+
+  // Find next killzone and time until it
+  let nextKZ = null, minsUntil = null;
+  for (const kz of KILLZONES) {
+    const diff = kz.s > mins ? kz.s - mins : kz.s + 1440 - mins;
+    if (minsUntil === null || diff < minsUntil) { nextKZ = kz; minsUntil = diff; }
+  }
+
+  const hh = Math.floor(minsUntil / 60), mm = minsUntil % 60;
+
+  return (
+    <div style={{ display:'flex', alignItems:'center', gap:6, padding:'3px 12px',
+      borderBottom:'1px solid rgba(139,92,246,0.12)', background:'rgba(5,8,15,0.9)',
+      overflowX:'auto', scrollbarWidth:'none', flexShrink:0 }}>
+      <span style={{ fontSize:9, color:'#4b5563', flexShrink:0, fontWeight:600, letterSpacing:'0.06em' }}>KILLZONE</span>
+      {KILLZONES.map(kz => {
+        const active = mins >= kz.s && mins < kz.e;
+        return (
+          <div key={kz.name} style={{ display:'flex', alignItems:'center', gap:3, padding:'2px 7px',
+            borderRadius:4, flexShrink:0,
+            background: active ? kz.color+'22' : 'transparent',
+            border: `1px solid ${active ? kz.color+'66' : 'rgba(255,255,255,0.06)'}` }}>
+            {active && <span style={{ width:4, height:4, borderRadius:'50%', background:kz.color,
+              display:'inline-block', animation:'pulse 1.4s infinite' }}/>}
+            <span style={{ fontSize:9, fontWeight:700, color: active ? kz.color : '#374151' }}>
+              {kz.name}
+            </span>
+          </div>
+        );
+      })}
+      {!activeKZ && nextKZ && (
+        <span style={{ fontSize:9, color:'#64748b', marginLeft:'auto', flexShrink:0, fontFamily:'monospace' }}>
+          Next: <span style={{ color: nextKZ.color }}>{nextKZ.name}</span> in {hh}h {mm}m
+        </span>
+      )}
+      {activeKZ && (
+        <span style={{ fontSize:9, color: activeKZ.color, marginLeft:'auto', flexShrink:0, fontWeight:700 }}>
+          ⚡ ACTIVE — ends in {hh}h {mm}m
+        </span>
       )}
     </div>
   );
@@ -149,6 +212,7 @@ export default function Screener() {
   const [chartInstrument, setChartInstrument] = useState(null);
 
   const [imSignals, setImSignals] = useState(null);
+  const [sentiment, setSentiment] = useState({});
 
   const [watchlist, setWatchlist] = useState(() => {
     try { return JSON.parse(localStorage.getItem('forex_watchlist')) || []; } catch { return []; }
@@ -158,6 +222,54 @@ export default function Screener() {
     getIMSignals('H1', 5).then(setImSignals).catch(() => {});
     const id = setInterval(() => getIMSignals('H1', 5).then(setImSignals).catch(() => {}), 5 * 60 * 1000);
     return () => clearInterval(id);
+  }, []);
+
+  // ── Retail sentiment fetch (OANDA position book) ──────────────────────────
+  useEffect(() => {
+    async function fetchAllSentiment() {
+      let creds = null;
+      try { creds = JSON.parse(localStorage.getItem('oanda_creds') || 'null'); } catch {}
+      if (!creds?.apiKey) {
+        const apiKey = localStorage.getItem('oanda_key');
+        const practice = localStorage.getItem('oanda_env') !== 'live';
+        if (apiKey) creds = { apiKey, practice };
+      }
+      if (!creds?.apiKey) return;
+
+      const base = creds.practice ? 'https://api-fxpractice.oanda.com/v3' : 'https://api-fxtrade.oanda.com/v3';
+
+      async function fetchSentiment(oandaInstrument) {
+        try {
+          const res = await fetch(
+            `${base}/instruments/${oandaInstrument}/positionBook`,
+            { headers: { Authorization: `Bearer ${creds.apiKey}` }, signal: AbortSignal.timeout(8000) }
+          );
+          if (!res.ok) return null;
+          const data = await res.json();
+          const buckets = data.positionBook?.buckets || [];
+          let totalLong = 0, totalShort = 0;
+          buckets.forEach(b => { totalLong += parseFloat(b.longCountPercent||0); totalShort += parseFloat(b.shortCountPercent||0); });
+          const total = totalLong + totalShort;
+          if (!total) return null;
+          const longPct = Math.round(totalLong / total * 100);
+          return { longPct, shortPct: 100 - longPct };
+        } catch { return null; }
+      }
+
+      const results = {};
+      await Promise.all(
+        allInstruments
+          .filter(inst => OANDA_MAP[inst.symbol])
+          .map(async inst => {
+            const oandaId = OANDA_MAP[inst.symbol];
+            const sent = await fetchSentiment(oandaId);
+            if (sent) results[inst.id] = sent;
+          })
+      );
+      setSentiment(results);
+    }
+
+    fetchAllSentiment();
   }, []);
 
   const toggleWatch = sym => {
@@ -532,12 +644,14 @@ export default function Screener() {
     {key:null,        label:'Struct',   width:80},
     {key:null,        label:'Strength', width:90},
     {key:'signal',    label:'Signal',   width:110},
+    {key:null,        label:'Sentiment',width:80},
   ];
 
   return (
     <div className="screener-root">
 
       <SessionClock/>
+      <KillzoneBar/>
 
       {/* ── Asset type tabs ──────────────────────────────────────────────── */}
       <div className="asset-type-row">
@@ -718,6 +832,17 @@ export default function Screener() {
                       <td><StructBadge structure={ai.structure}/></td>
                       <td><StrengthBar value={ai.strength||50} dir={ai.strengthDir||'neutral'}/></td>
                       <td><SignalBadge signal={p.signal}/></td>
+                      <td style={{ textAlign:'center', padding:'8px 6px' }}>
+                        {(() => {
+                          const sent = sentiment[p.id];
+                          return sent ? (
+                            <span style={{ fontSize:10, fontWeight:700, fontFamily:'monospace',
+                              color: sent.longPct > 60 ? '#f43f5e' : sent.longPct < 40 ? '#22c55e' : '#8b949e' }}>
+                              {sent.longPct}%L
+                            </span>
+                          ) : <span style={{ color:'#374151', fontSize:10 }}>—</span>;
+                        })()}
+                      </td>
                     </tr>
                   );
                 })}

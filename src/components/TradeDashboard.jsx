@@ -38,6 +38,11 @@ const CARD = {
   boxShadow: '0 0 20px rgba(139,92,246,0.1),0 6px 24px rgba(0,0,0,0.5)',
 };
 
+const CB_RATES = {
+  USD: 5.33, EUR: 4.50, GBP: 5.25, JPY: 0.10,
+  AUD: 4.35, CAD: 5.00, CHF: 1.75, NZD: 5.50
+};
+
 /* ── helpers ───────────────────────────────────────────────────────────────── */
 function getOandaCreds() {
   try { const c = JSON.parse(localStorage.getItem('oanda_creds')||'null'); if (c?.apiKey) return c; } catch {}
@@ -666,6 +671,43 @@ export default function TradeDashboard() {
         ) : (
           <div style={{ color:'#4b5563', fontSize:12, textAlign:'center', padding:'16px 0' }}>Loading COT data…</div>
         )}
+      </SectionCard>
+
+      {/* ── Interest Rate Differentials ──────────────────────────────────── */}
+      <SectionCard title="INTEREST RATE DIFFERENTIALS" icon="💱" accent="rgba(251,191,36,0.4)">
+        <div style={{ fontSize:10, color:'#64748b', marginBottom:10 }}>
+          Higher rate currency has carry trade advantage
+        </div>
+        {[...PAIRS]
+          .filter(p => CB_RATES[p.base] !== undefined && CB_RATES[p.quote] !== undefined)
+          .map(p => ({ ...p, diff: CB_RATES[p.base] - CB_RATES[p.quote] }))
+          .sort((a, b) => Math.abs(b.diff) - Math.abs(a.diff))
+          .map(p => {
+            const bull = p.diff >= 0;
+            const barW = Math.min(100, Math.abs(p.diff) / 6 * 100);
+            const color = bull ? '#22c55e' : '#f43f5e';
+            return (
+              <div key={p.id} style={{ display:'flex', alignItems:'center', gap:8, marginBottom:8 }}>
+                <span style={{ fontSize:13 }}>{FLAGS[p.base]}{FLAGS[p.quote]}</span>
+                <span style={{ width:60, fontSize:11, fontWeight:700, color:'#94a3b8' }}>{p.label}</span>
+                <div style={{ flex:1, height:5, background:'rgba(255,255,255,0.05)', borderRadius:3, overflow:'hidden' }}>
+                  <div style={{ height:'100%', width:`${barW}%`, background:color, borderRadius:3,
+                    boxShadow:`0 0 6px ${color}88` }}/>
+                </div>
+                <span style={{ width:70, textAlign:'right', fontSize:11, fontFamily:'monospace', fontWeight:700, color }}>
+                  {p.diff >= 0 ? '+' : ''}{p.diff.toFixed(2)}%
+                </span>
+                <span style={{ fontSize:9, fontWeight:700, padding:'2px 5px', borderRadius:3,
+                  color, background:`${color}18`, border:`1px solid ${color}44`, whiteSpace:'nowrap' }}>
+                  {bull ? `LONG ${p.base}` : `SHORT ${p.base}`}
+                </span>
+              </div>
+            );
+          })}
+        <div style={{ fontSize:9, color:'#374151', marginTop:6, paddingTop:6,
+          borderTop:'1px solid rgba(251,191,36,0.15)' }}>
+          CB rates: USD {CB_RATES.USD}% · EUR {CB_RATES.EUR}% · GBP {CB_RATES.GBP}% · JPY {CB_RATES.JPY}% · AUD {CB_RATES.AUD}% · CAD {CB_RATES.CAD}% · CHF {CB_RATES.CHF}% · NZD {CB_RATES.NZD}%
+        </div>
       </SectionCard>
 
       {/* ── Trader Journal ───────────────────────────────────────────────── */}

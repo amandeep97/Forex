@@ -46,6 +46,24 @@ async function fetchCloses(instrument, granularity, count) {
   } catch { return null; }
 }
 
+async function fetchRetailSentiment(instrument, creds) {
+  const base = creds.practice ? 'https://api-fxpractice.oanda.com/v3' : 'https://api-fxtrade.oanda.com/v3';
+  try {
+    const res = await fetch(
+      `${base}/instruments/${instrument}/positionBook`,
+      { headers: { Authorization: `Bearer ${creds.apiKey}` }, signal: AbortSignal.timeout(8000) }
+    );
+    if (!res.ok) return null;
+    const data = await res.json();
+    const buckets = data.positionBook?.buckets || [];
+    let totalLong = 0, totalShort = 0;
+    buckets.forEach(b => { totalLong += parseFloat(b.longCountPercent||0); totalShort += parseFloat(b.shortCountPercent||0); });
+    const total = totalLong + totalShort;
+    if (!total) return null;
+    return { longPct: Math.round(totalLong / total * 100) };
+  } catch { return null; }
+}
+
 async function fetchCOTHistory(code, weeks = 54) {
   const url = `https://publicreporting.cftc.gov/resource/jun7-fc8e.json?cftc_contract_market_code=${code}&$order=report_date_as_yyyy_mm_dd%20DESC&$limit=${weeks}`;
   try {
@@ -360,6 +378,7 @@ export default function MetalsDashboard() {
   const [yield2,  setYield2]  = useState(null);   // DGS2  — real 2Y yield %
   const [loading, setLoading] = useState(true);
   const [lastRefresh, setLastRefresh] = useState(null);
+  const [retailSentiment, setRetailSentiment] = useState({ gold: null, silver: null });
   const [manualPmi, setManualPmi] = useState(() => {
     const v = localStorage.getItem('manual_pmi');
     return v !== null ? parseFloat(v) : null;
@@ -438,6 +457,17 @@ export default function MetalsDashboard() {
       setCpi(cpiData);
       setYield10(y10Data);
       setYield2(y2Data);
+
+      // Retail sentiment from OANDA position book (contrarian)
+      const creds = getOandaCreds();
+      if (creds) {
+        const [goldSent, silverSent] = await Promise.all([
+          fetchRetailSentiment('XAU_USD', creds),
+          fetchRetailSentiment('XAG_USD', creds),
+        ]);
+        setRetailSentiment({ gold: goldSent, silver: silverSent });
+      }
+
       setLastRefresh(new Date());
     } finally {
       setLoading(false);
@@ -710,6 +740,21 @@ export default function MetalsDashboard() {
       };
     });
   }
+
+  // ── COT Extreme flags (52-week range) ──────────────────────────────────────
+  function cotExtreme(history) {
+    if (!history || history.length < 10) return null;
+    const nets = history.map(r => r.net);
+    const min52 = Math.min(...nets), max52 = Math.max(...nets);
+    const range = max52 - min52;
+    if (!range) return null;
+    const currentPct = (nets[0] - min52) / range * 100;
+    if (currentPct >= 80) return 'EXTREME LONG';
+    if (currentPct <= 20) return 'EXTREME SHORT';
+    return null;
+  }
+  sig.goldCOTExtreme   = cotExtreme(cot?.gold   || []);
+  sig.silverCOTExtreme = cotExtreme(cot?.silver || []);
 
   // ── Overall confluence score ────────────────────────────────────────────────
   function calcScore(metal) {
@@ -1061,6 +1106,30 @@ export default function MetalsDashboard() {
                     {cotSig.gold.pct >= 80 ? '⚡ Crowded LONG — Contrarian Bearish Risk' : '⚡ Extreme SHORT — Contrarian Bullish Setup'}
                   </div>
                 )}
+                {sig.goldCOTExtreme && (
+                  <div style={{ marginTop:4 }}>
+                    <span style={{ fontSize:9, fontWeight:700, padding:'2px 7px', borderRadius:4,
+                      color: sig.goldCOTExtreme.includes('LONG') ? '#f43f5e' : '#22c55e',
+                      background: sig.goldCOTExtreme.includes('LONG') ? '#f43f5e18' : '#22c55e18',
+                      border: `1px solid ${sig.goldCOTExtreme.includes('LONG') ? '#f43f5e44' : '#22c55e44'}` }}>
+                      ⚠ COT {sig.goldCOTExtreme} · Reversal Zone
+                    </span>
+                  </div>
+                )}
+                {retailSentiment.gold && (
+                  <div style={{ marginTop:4 }}>
+                    <span style={{ fontSize:9, fontWeight:700, padding:'2px 7px', borderRadius:4,
+                      color: retailSentiment.gold.longPct > 65 ? '#f43f5e' : retailSentiment.gold.longPct < 35 ? '#22c55e' : '#94a3b8',
+                      background: retailSentiment.gold.longPct > 65 ? '#f43f5e18' : retailSentiment.gold.longPct < 35 ? '#22c55e18' : '#94a3b818',
+                      border: `1px solid ${retailSentiment.gold.longPct > 65 ? '#f43f5e44' : retailSentiment.gold.longPct < 35 ? '#22c55e44' : '#94a3b844'}` }}>
+                      {retailSentiment.gold.longPct > 65
+                        ? `🐟 ${retailSentiment.gold.longPct}% Retail Long → Bearish Signal`
+                        : retailSentiment.gold.longPct < 35
+                        ? `🐟 ${retailSentiment.gold.longPct}% Retail Long → Bullish Signal`
+                        : `🐟 ${retailSentiment.gold.longPct}% Mixed`}
+                    </span>
+                  </div>
+                )}
               </div>
             ) : (
               <div style={{ color:'var(--text3)', fontSize:11 }}>Loading CFTC data…</div>
@@ -1096,6 +1165,30 @@ export default function MetalsDashboard() {
                     color:      cotSig.silver.pct >= 80 ? '#22c55e' : '#ef4444',
                     border:     `1px solid ${cotSig.silver.pct >= 80 ? '#22c55e33' : '#ef444433'}` }}>
                     {cotSig.silver.pct >= 80 ? '⚡ Crowded LONG — Contrarian Bearish Risk' : '⚡ Extreme SHORT — Contrarian Bullish Setup'}
+                  </div>
+                )}
+                {sig.silverCOTExtreme && (
+                  <div style={{ marginTop:4 }}>
+                    <span style={{ fontSize:9, fontWeight:700, padding:'2px 7px', borderRadius:4,
+                      color: sig.silverCOTExtreme.includes('LONG') ? '#f43f5e' : '#22c55e',
+                      background: sig.silverCOTExtreme.includes('LONG') ? '#f43f5e18' : '#22c55e18',
+                      border: `1px solid ${sig.silverCOTExtreme.includes('LONG') ? '#f43f5e44' : '#22c55e44'}` }}>
+                      ⚠ COT {sig.silverCOTExtreme} · Reversal Zone
+                    </span>
+                  </div>
+                )}
+                {retailSentiment.silver && (
+                  <div style={{ marginTop:4 }}>
+                    <span style={{ fontSize:9, fontWeight:700, padding:'2px 7px', borderRadius:4,
+                      color: retailSentiment.silver.longPct > 65 ? '#f43f5e' : retailSentiment.silver.longPct < 35 ? '#22c55e' : '#94a3b8',
+                      background: retailSentiment.silver.longPct > 65 ? '#f43f5e18' : retailSentiment.silver.longPct < 35 ? '#22c55e18' : '#94a3b818',
+                      border: `1px solid ${retailSentiment.silver.longPct > 65 ? '#f43f5e44' : retailSentiment.silver.longPct < 35 ? '#22c55e44' : '#94a3b844'}` }}>
+                      {retailSentiment.silver.longPct > 65
+                        ? `🐟 ${retailSentiment.silver.longPct}% Retail Long → Bearish Signal`
+                        : retailSentiment.silver.longPct < 35
+                        ? `🐟 ${retailSentiment.silver.longPct}% Retail Long → Bullish Signal`
+                        : `🐟 ${retailSentiment.silver.longPct}% Mixed`}
+                    </span>
                   </div>
                 )}
               </div>

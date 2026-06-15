@@ -57,6 +57,28 @@ async function fetchOHLC(instrument, granularity, count) {
   } catch { return null; }
 }
 
+async function fetchRetailSentiment(instrument, creds) {
+  const base = creds.practice ? 'https://api-fxpractice.oanda.com/v3' : 'https://api-fxtrade.oanda.com/v3';
+  try {
+    const res = await fetch(
+      `${base}/instruments/${instrument}/positionBook`,
+      { headers: { Authorization: `Bearer ${creds.apiKey}` }, signal: AbortSignal.timeout(8000) }
+    );
+    if (!res.ok) return null;
+    const data = await res.json();
+    const buckets = data.positionBook?.buckets || [];
+    let totalLong = 0, totalShort = 0;
+    buckets.forEach(b => {
+      totalLong  += parseFloat(b.longCountPercent  || 0);
+      totalShort += parseFloat(b.shortCountPercent || 0);
+    });
+    const total = totalLong + totalShort;
+    if (!total) return null;
+    const longPct = Math.round(totalLong / total * 100);
+    return { longPct, shortPct: 100 - longPct };
+  } catch { return null; }
+}
+
 // ── COT via CFTC Socrata (CORS-enabled) ──────────────────────────────────────
 async function fetchCOTHistory(code, weeks = 54) {
   const url = `https://publicreporting.cftc.gov/resource/jun7-fc8e.json?cftc_contract_market_code=${code}&$order=report_date_as_yyyy_mm_dd%20DESC&$limit=${weeks}`;
@@ -231,6 +253,18 @@ function computePairSig(pairDef, data) {
     sig.cotDate  = latest.date;
     sig.cotDelta = cot[1] ? latest.net - cot[1].net : 0;
     sig.cotNets  = [...nets].reverse(); // oldest→newest for sparkline
+
+    // COT Extreme flag — 52-week percentile of the raw net position
+    const currentNet = nets[0];
+    const min52 = Math.min(...nets);
+    const max52 = Math.max(...nets);
+    const range52 = max52 - min52;
+    if (range52 > 0) {
+      const cotRawPct = (currentNet - min52) / range52 * 100;
+      sig.cotExtreme = cotRawPct >= 80 ? 'EXTREME LONG' : cotRawPct <= 20 ? 'EXTREME SHORT' : null;
+    } else {
+      sig.cotExtreme = null;
+    }
   }
 
   sig.rateDiff   = +((CB_RATES[base] || 0) - (CB_RATES[quote] || 0)).toFixed(2);
@@ -311,6 +345,7 @@ function buildAIContext(pairSignals, pairScores, dxyDir, vixSignal, yieldCurve, 
     if (sig.price != null)      parts.push(`Price=${sig.price.toFixed(p.dp)}`);
     if (sig.pct5bar != null)    parts.push(`5bar=${sig.pct5bar>=0?'+':''}${sig.pct5bar.toFixed(3)}%`);
     if (sig.cotPct != null)     parts.push(`COT=${sig.cotPct}th pct(${sig.cotBias})`);
+    if (sig.cotExtreme)         parts.push(`COT-Extreme=${sig.cotExtreme}`);
     parts.push(`RateDiff=${sig.rateDiff>=0?'+':''}${sig.rateDiff}%`);
     if (sig.rsi != null)        parts.push(`RSI=${sig.rsi}(${sig.rsiSignal})`);
     if (sig.aboveEMA50 != null) parts.push(`EMA50=${sig.aboveEMA50?'Above':'Below'}`);
@@ -361,7 +396,7 @@ function CotGauge({ pct }) {
   );
 }
 
-function PairCard({ pairDef, sig, score }) {
+function PairCard({ pairDef, sig, score, sentiment }) {
   const { label, base, quote, dp } = pairDef;
   const BULL = '#22c55e', BEAR = '#ef4444';
   const scorePct   = score ? score.score / score.max : null;
@@ -370,6 +405,13 @@ function PairCard({ pairDef, sig, score }) {
   const fmtP = v => v == null ? '—' : v.toFixed(dp);
   const momColor   = sig.momentum === 'rising' ? BULL : sig.momentum === 'falling' ? BEAR : '#64748b';
   const rateColor  = sig.rateDiff > 0 ? BULL : sig.rateDiff < 0 ? BEAR : '#64748b';
+
+  // Retail sentiment display logic (contrarian)
+  let sentColor = '#64748b', sentLabel = 'Mixed';
+  if (sentiment) {
+    if (sentiment.longPct > 65) { sentColor = BEAR; sentLabel = 'Contrarian SHORT'; }
+    else if (sentiment.longPct < 35) { sentColor = BULL; sentLabel = 'Contrarian LONG'; }
+  }
 
   return (
     <div style={{
@@ -415,6 +457,41 @@ function PairCard({ pairDef, sig, score }) {
             {sig.cotDelta !== undefined && (sig.cotDelta >= 0 ? '+' : '')}{sig.cotDelta?.toLocaleString()} wk
             <br/>{sig.cotDate}
           </div>
+          {/* COT Extreme badge */}
+          {sig.cotExtreme && (
+            <span
+              title="Top/bottom 20% of 52wk net-position range — potential reversal zone"
+              style={{
+                fontSize:9, fontWeight:700, padding:'2px 7px', borderRadius:4,
+                color:      sig.cotExtreme.includes('LONG') ? '#f43f5e' : '#22c55e',
+                background: sig.cotExtreme.includes('LONG') ? '#f43f5e18' : '#22c55e18',
+                border:     `1px solid ${sig.cotExtreme.includes('LONG') ? '#f43f5e44' : '#22c55e44'}`,
+              }}>
+              ⚠ {sig.cotExtreme}
+            </span>
+          )}
+        </div>
+      )}
+      {/* COT Extreme tooltip note */}
+      {sig.cotExtreme && (
+        <div style={{ fontSize:9, color:'var(--text3)', fontStyle:'italic' }}>
+          (top/bottom 20% of 52wk range = potential reversal)
+        </div>
+      )}
+
+      {/* Retail Sentiment */}
+      {sentiment && (
+        <div style={{ display:'flex', alignItems:'center', gap:6, flexWrap:'wrap' }}>
+          <span style={{ fontSize:9, color:'var(--text3)' }}>Retail Sentiment:</span>
+          <span style={{
+            fontSize:9, fontWeight:700, padding:'2px 7px', borderRadius:4,
+            color:      sentColor,
+            background: sentiment.longPct > 65 ? '#ef444418' : sentiment.longPct < 35 ? '#22c55e18' : '#64748b18',
+            border:     `1px solid ${sentiment.longPct > 65 ? '#ef444433' : sentiment.longPct < 35 ? '#22c55e33' : '#64748b33'}`,
+          }}>
+            🐟 {sentiment.longPct}% Retail Long
+          </span>
+          <span style={{ fontSize:9, fontWeight:600, color:sentColor }}>{sentLabel}</span>
         </div>
       )}
 
@@ -490,6 +567,7 @@ export default function ForexPairsDashboard() {
   const [macro, setMacro]             = useState({});
   const [loading, setLoading]         = useState(true);
   const [lastRefresh, setLastRefresh] = useState(null);
+  const [sentimentMap, setSentimentMap] = useState({});
   const hasOanda = !!getOandaCreds();
 
   const load = useCallback(async () => {
@@ -518,6 +596,20 @@ export default function ForexPairsDashboard() {
         macroCache?.dgs10?.length ? macroCache.dgs10 : fetchYield10(),
         macroCache?.dgs2?.length  ? macroCache.dgs2  : fetchYield2(),
       ]);
+
+      // Fetch retail sentiment
+      const creds = getOandaCreds();
+      if (creds) {
+        const sentResults = await Promise.allSettled(
+          PAIRS.map(async p => {
+            const s = await fetchRetailSentiment(p.instr, creds);
+            return { key: p.key, s };
+          })
+        );
+        const sm = {};
+        sentResults.forEach(r => { if (r.status === 'fulfilled' && r.value.s) sm[r.value.key] = r.value.s; });
+        setSentimentMap(sm);
+      }
 
       setPairData(newPairData);
       setMacro({ vix: resolvedVix, y10: y10Data, y2: y2Data });
@@ -670,6 +762,7 @@ export default function ForexPairsDashboard() {
               pairDef={p}
               sig={pairSignals[p.key]}
               score={pairScores[p.key]}
+              sentiment={sentimentMap[p.key]}
             />
           ))}
         </div>
