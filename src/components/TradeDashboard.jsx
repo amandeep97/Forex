@@ -444,36 +444,36 @@ export default function TradeDashboard() {
             const changePos = p.change != null ? p.change >= 0 : null;
             const sparkCol  = changePos===false ? '#f43f5e' : '#22c55e';
             return (
-              <div key={p.id} style={{ ...CARD, padding:12 }}>
-                <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between' }}>
+              <div key={p.id} style={{ ...CARD, padding:'9px 11px' }}>
+                <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between', gap:8 }}>
                   {/* Left */}
                   <div style={{ flex:1, minWidth:0 }}>
-                    <div style={{ display:'flex', alignItems:'center', gap:5, marginBottom:3 }}>
-                      <span style={{ fontSize:16 }}>{FLAGS[p.base]||'🏳️'}</span>
-                      <span style={{ fontSize:16 }}>{FLAGS[p.quote]||'🏳️'}</span>
-                      <span style={{ fontSize:13, fontWeight:800, color:'#e2e8f0' }}>{p.label}</span>
-                    </div>
-                    <div style={{ display:'flex', alignItems:'baseline', gap:6, marginBottom:6 }}>
-                      <span style={{ fontFamily:'monospace', fontSize:13, fontWeight:700, color:'#e2e8f0' }}>
-                        {fmtPrice(p.id, p.price)}
-                      </span>
+                    {/* Row 1: flags + name + price + change */}
+                    <div style={{ display:'flex', alignItems:'center', gap:5, marginBottom:4 }}>
+                      <span style={{ fontSize:14 }}>{FLAGS[p.base]||'🏳️'}</span>
+                      <span style={{ fontSize:14 }}>{FLAGS[p.quote]||'🏳️'}</span>
+                      <span style={{ fontSize:12, fontWeight:800, color:'#e2e8f0' }}>{p.label}</span>
                       {p.change!=null && (
-                        <span style={{ fontSize:11, fontWeight:600, color:changePos?'#22c55e':'#f43f5e' }}>
+                        <span style={{ fontSize:10, fontWeight:600, color:changePos?'#22c55e':'#f43f5e', marginLeft:'auto' }}>
                           {p.change>=0?'+':''}{p.change.toFixed(2)}%
                         </span>
                       )}
                     </div>
-                    <div style={{ marginBottom:7 }}>
+                    {/* Row 2: price + sparkline + signal badge */}
+                    <div style={{ display:'flex', alignItems:'center', gap:8 }}>
+                      <span style={{ fontFamily:'monospace', fontSize:12, fontWeight:700, color:'#e2e8f0' }}>
+                        {fmtPrice(p.id, p.price)}
+                      </span>
                       <Sparkline data={p.sparkData} color={sparkCol}/>
+                      <span style={{ fontSize:8, fontWeight:700, padding:'2px 6px', borderRadius:3,
+                        color:sig.color, background:sig.bg, border:`1px solid ${sig.color}44`,
+                        letterSpacing:'0.05em', whiteSpace:'nowrap', marginLeft:'auto' }}>
+                        {sig.label}
+                      </span>
                     </div>
-                    <span style={{ fontSize:9, fontWeight:700, padding:'2px 7px', borderRadius:4,
-                      color:sig.color, background:sig.bg, border:`1px solid ${sig.color}44`,
-                      letterSpacing:'0.06em' }}>
-                      {sig.label}
-                    </span>
                   </div>
                   {/* Score ring */}
-                  <div style={{ flexShrink:0, marginLeft:6 }}>
+                  <div style={{ flexShrink:0 }}>
                     <ScoreRing pct={pct} color={color}/>
                   </div>
                 </div>
