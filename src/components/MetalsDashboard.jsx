@@ -341,6 +341,154 @@ function SignalBadge({ bull, label, note }) {
   );
 }
 
+// ── ICT Killzone detection ────────────────────────────────────────────────────
+const KILLZONES = [
+  { name:'Asian KZ',     s:0,   e:240,  color:'#f59e0b' },
+  { name:'London KZ',    s:420, e:600,  color:'#8b5cf6' },
+  { name:'London Close', s:660, e:720,  color:'#38bdf8' },
+  { name:'NY AM KZ',     s:780, e:960,  color:'#22c55e' },
+  { name:'NY PM KZ',     s:1080,e:1200, color:'#f97316' },
+];
+function getCurrentKillzone() {
+  const now = new Date();
+  const mins = now.getUTCHours() * 60 + now.getUTCMinutes();
+  return KILLZONES.find(kz => mins >= kz.s && mins < kz.e) || null;
+}
+function getNextKillzone() {
+  const now = new Date();
+  const mins = now.getUTCHours() * 60 + now.getUTCMinutes();
+  let best = null, bestDiff = Infinity;
+  for (const kz of KILLZONES) {
+    const diff = kz.s > mins ? kz.s - mins : kz.s + 1440 - mins;
+    if (diff < bestDiff) { bestDiff = diff; best = { ...kz, minsUntil: diff }; }
+  }
+  return best;
+}
+
+// ── Trade Setup Score card ────────────────────────────────────────────────────
+function TradeSetupScore({ metal, label, color, cotSig, sig, sentiment }) {
+  const kz = getCurrentKillzone();
+  const nextKz = getNextKillzone();
+
+  // LAYER 1 — BIAS (macro fundamentals, max 3 pts)
+  const biasPts = [
+    { key:'COT', val: cotSig?.bias === 'bullish', detail: cotSig ? `Net ${cotSig.net >= 0 ? '+' : ''}${(cotSig.net||0).toLocaleString()} (${cotSig.pct ?? '?'}th pct)` : 'No COT data' },
+    { key:'Real Yields', val: sig.realYieldSignal === 'bullish', detail: sig.realYield != null ? `${sig.realYield.toFixed(2)}% ${sig.realYieldDir}` : 'No data' },
+    { key:'DXY', val: sig.dxy === 'falling', detail: sig.dxy ? `DXY ${sig.dxy}` : 'No data' },
+  ].filter(p => p.val !== undefined);
+  const biasScore = biasPts.filter(p => p.val).length;
+
+  // LAYER 2 — CONFIRMATION (contrarian sentiment, max 1 pt)
+  const sentBull = sentiment ? (sentiment.longPct < 35 ? true : sentiment.longPct > 65 ? false : null) : null;
+  const sentDetail = sentiment
+    ? (sentiment.longPct > 65 ? `${sentiment.longPct}% retail long → Contrarian SHORT`
+    : sentiment.longPct < 35  ? `${sentiment.longPct}% retail long → Contrarian LONG`
+    :                           `${sentiment.longPct}% retail long → Mixed`)
+    : 'No data';
+
+  // LAYER 3 — STRUCTURE (technical, max 2 pts)
+  const aboveEMA = sig[`${metal}AboveEMA50`];
+  const rsiSig   = sig[`${metal}RSISignal`];
+  const structPts = [
+    { key:'EMA50', val: aboveEMA, detail: aboveEMA != null ? (aboveEMA ? 'Price above EMA50 ✓' : 'Price below EMA50') : 'No data' },
+    { key:'RSI', val: rsiSig === 'oversold' ? true : rsiSig === 'overbought' ? false : null,
+      detail: sig[`${metal}RSI`] != null ? `RSI ${sig[`${metal}RSI`]} (${rsiSig})` : 'No data' },
+  ].filter(p => p.val !== undefined);
+  const structScore = structPts.filter(p => p.val === true).length;
+
+  // LAYER 4 — TIMING (killzone, max 1 pt)
+  const kzActive = !!kz;
+  const kzDetail = kz ? `${kz.name} active` : nextKz ? `Next: ${nextKz.name} in ${Math.floor(nextKz.minsUntil/60)}h ${nextKz.minsUntil%60}m` : '';
+
+  // TOTAL
+  const totalScore = biasScore + (sentBull === true ? 1 : 0) + structScore + (kzActive ? 1 : 0);
+  const totalMax   = biasPts.length + 1 + structPts.length + 1;
+  const ratio = totalMax > 0 ? totalScore / totalMax : 0;
+  const verdict = ratio >= 0.75 ? 'STRONG BUY'
+                : ratio >= 0.55 ? 'BUY'
+                : ratio <= 0.25 ? 'STRONG SELL'
+                : ratio <= 0.45 ? 'SELL'
+                : 'NEUTRAL';
+  const verdictColor = verdict.includes('STRONG BUY') ? '#22c55e'
+                     : verdict === 'BUY'     ? '#86efac'
+                     : verdict === 'NEUTRAL' ? '#f59e0b'
+                     : verdict === 'SELL'    ? '#fca5a5'
+                     : '#ef4444';
+
+  // COT extreme warning
+  const cotExt = metal === 'gold' ? sig.goldCOTExtreme : sig.silverCOTExtreme;
+
+  const row = (icon, layerLabel, score, max, pts, extra) => (
+    <div style={{ display:'flex', alignItems:'flex-start', gap:8, padding:'6px 0', borderBottom:'1px solid #1e293b' }}>
+      <span style={{ fontSize:14, width:18, flexShrink:0 }}>{icon}</span>
+      <div style={{ flex:1, minWidth:0 }}>
+        <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:2 }}>
+          <span style={{ fontSize:10, fontWeight:700, color:'#94a3b8', textTransform:'uppercase', letterSpacing:'0.5px' }}>{layerLabel}</span>
+          <span style={{ fontSize:11, fontWeight:700, color: score === max ? '#22c55e' : score === 0 ? '#ef4444' : '#f59e0b' }}>{score}/{max}</span>
+        </div>
+        {pts && pts.map(p => (
+          <div key={p.key} style={{ fontSize:10, color: p.val === true ? '#22c55e' : p.val === false ? '#ef4444' : '#64748b', marginBottom:1 }}>
+            {p.val === true ? '▲' : p.val === false ? '▼' : '—'} {p.key}: {p.detail}
+          </div>
+        ))}
+        {extra && <div style={{ fontSize:10, color: extra.bull === true ? '#22c55e' : extra.bull === false ? '#ef4444' : '#64748b', marginBottom:1 }}>
+          {extra.bull === true ? '▲' : extra.bull === false ? '▼' : '—'} Sentiment: {extra.detail}
+        </div>}
+      </div>
+    </div>
+  );
+
+  return (
+    <div style={{ background:'linear-gradient(140deg,#111f38,#0c1422)', border:`1px solid ${color}44`,
+      borderRadius:10, padding:'12px 14px', boxShadow:`0 0 16px ${color}18` }}>
+      {/* Header */}
+      <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between', marginBottom:10 }}>
+        <div>
+          <span style={{ fontSize:13, fontWeight:700, color }}>🎯 Trade Setup — {label}</span>
+          <span style={{ fontSize:9, color:'#64748b', marginLeft:6 }}>4-layer confluence</span>
+        </div>
+        <div style={{ textAlign:'right' }}>
+          <div style={{ fontSize:15, fontWeight:800, color:verdictColor }}>{verdict}</div>
+          <div style={{ fontSize:10, color:'#64748b' }}>{totalScore}/{totalMax} pts</div>
+        </div>
+      </div>
+
+      {/* Score bar */}
+      <div style={{ height:6, background:'#1e293b', borderRadius:3, marginBottom:10, overflow:'hidden' }}>
+        <div style={{ width:`${(ratio*100).toFixed(0)}%`, height:'100%', background:verdictColor, borderRadius:3,
+          transition:'width 0.4s ease' }}/>
+      </div>
+
+      {/* Layers */}
+      {row('📊', 'Bias (Macro)', biasScore, biasPts.length, biasPts, null)}
+      {row('👥', 'Confirmation (Sentiment)', sentBull === true ? 1 : 0, 1, null, { bull:sentBull, detail:sentDetail })}
+      {row('📈', 'Structure (Technical)', structScore, structPts.length, structPts, null)}
+      <div style={{ display:'flex', alignItems:'flex-start', gap:8, padding:'6px 0' }}>
+        <span style={{ fontSize:14, width:18, flexShrink:0 }}>⏱</span>
+        <div style={{ flex:1 }}>
+          <div style={{ display:'flex', justifyContent:'space-between', marginBottom:2 }}>
+            <span style={{ fontSize:10, fontWeight:700, color:'#94a3b8', textTransform:'uppercase', letterSpacing:'0.5px' }}>Timing (Killzone)</span>
+            <span style={{ fontSize:11, fontWeight:700, color: kzActive ? '#22c55e' : '#64748b' }}>{kzActive ? '1/1' : '0/1'}</span>
+          </div>
+          <div style={{ fontSize:10, color: kzActive ? kz.color : '#64748b' }}>
+            {kzActive ? `▲ ${kzDetail}` : `— ${kzDetail}`}
+          </div>
+        </div>
+      </div>
+
+      {/* COT extreme warning */}
+      {cotExt && (
+        <div style={{ marginTop:8, padding:'5px 10px', borderRadius:5, fontSize:10, fontWeight:700, textAlign:'center',
+          color: cotExt.includes('LONG') ? '#f43f5e' : '#22c55e',
+          background: cotExt.includes('LONG') ? '#f43f5e12' : '#22c55e12',
+          border: `1px solid ${cotExt.includes('LONG') ? '#f43f5e44' : '#22c55e44'}` }}>
+          ⚠ COT {cotExt} — Potential reversal zone (top/bottom 20% of 52-week range)
+        </div>
+      )}
+    </div>
+  );
+}
+
 function ScoreRing({ score, max, label, color }) {
   const pct = max > 0 ? score / max : 0;
   const r = 28, cx = 36, cy = 36;
@@ -884,6 +1032,18 @@ export default function MetalsDashboard() {
           context={aiContext}
           quickPrompts={['Should I buy or sell gold now?','Compare gold vs silver setup','What is the yield curve telling us?','Key risks for metals this week?']}
         />
+
+        {/* ── Trade Setup Score ────────────────────────────────────────────── */}
+        <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill, minmax(280px, 1fr))', gap:12, marginBottom:14 }}>
+          <TradeSetupScore
+            metal="gold" label="Gold (XAU)" color="#fbbf24"
+            cotSig={cotSig.gold} sig={sig} sentiment={retailSentiment.gold}
+          />
+          <TradeSetupScore
+            metal="silver" label="Silver (XAG)" color="#94a3b8"
+            cotSig={cotSig.silver} sig={sig} sentiment={retailSentiment.silver}
+          />
+        </div>
 
         {/* ── Confluence Score Row ─────────────────────────────────────────── */}
         <div style={{ display:'flex', gap:12, marginBottom:14, flexWrap:'wrap' }}>
