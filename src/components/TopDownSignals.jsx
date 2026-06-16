@@ -196,38 +196,43 @@ function checkLiqPath(dir, entry, tp, h1Candles) {
 function getSignal(h4, h1, m15, h1Candles) {
   if (!h4 || !h1 || !m15) return null;
 
+  // FIX 1: M15 structure must not actively oppose the signal direction
+  // (ranging = ok — pullback in progress; bearish M15 on a long = fighting momentum)
   const longOK =
     h4.structure === 'bullish' &&
     h1.zone === 'discount' &&
     m15.zone === 'discount' &&
+    m15.structure !== 'bearish' &&   // ← NEW: reject if M15 is bearish on a long
     (m15.bullOB || m15.bullFVG);
 
   const shortOK =
     h4.structure === 'bearish' &&
     h1.zone === 'premium' &&
     m15.zone === 'premium' &&
+    m15.structure !== 'bullish' &&   // ← NEW: reject if M15 is bullish on a short
     (m15.bearOB || m15.bearFVG);
 
   if (!longOK && !shortOK) return null;
 
-  const dir      = longOK ? 'long' : 'short';
-  const entry    = m15.cp;
-  const minDist  = m15.atr * 1.5;
+  const dir     = longOK ? 'long' : 'short';
+  const entry   = m15.cp;
+  // FIX 2: Increase minimum SL distance to 2.5 ATR (was 1.5) — avoids 7-pip stops
+  const minDist = m15.atr * 2.5;
   let sl;
 
   if (dir === 'long') {
     const structural = Math.min(
-      m15.bullOB?.low  ?? Infinity,
+      m15.bullOB?.low     ?? Infinity,
       m15.bullFVG?.bottom ?? Infinity,
       m15.swingLow
-    ) - m15.atr * 0.1;
+    ) - m15.atr * 0.15;
     sl = Math.min(structural, entry - minDist);
   } else {
     const structural = Math.max(
       m15.bearOB?.high ?? -Infinity,
       m15.bearFVG?.top ?? -Infinity,
       m15.swingHigh
-    ) + m15.atr * 0.1;
+    ) + m15.atr * 0.15;
     sl = Math.max(structural, entry + minDist);
   }
 
@@ -235,16 +240,19 @@ function getSignal(h4, h1, m15, h1Candles) {
   const tp   = dir === 'long' ? entry + risk * 2 : entry - risk * 2;
   const rr   = +(Math.abs(tp - entry) / risk).toFixed(1);
 
-  // Quality filters
   const liqBlock = checkLiqPath(dir, entry, tp, h1Candles);
   const kz       = getCurrentKZ();
 
-  // Quality score 0-4
+  // FIX 3 + 4: Revised quality score
+  // Each criterion adds 1 point (max 4). Blocking liquidity hard-caps grade at B (≤2).
   let quality = 0;
-  if (kz)        quality++;                          // killzone timing
-  if (!liqBlock) quality++;                          // clear path to TP
-  if (h1.structure === h4.structure) quality++;      // H1 aligns with H4
-  if (m15.bullOB || m15.bearOB) quality++;           // OB entry (stronger than FVG)
+  if (kz)                                                    quality++; // right timing
+  if (h1.structure === h4.structure)                         quality++; // H1 aligns H4
+  if (m15.structure === h4.structure)                        quality++; // M15 aligns too
+  if ((dir==='long' && m15.bullOB) || (dir==='short' && m15.bearOB)) quality++; // OB > FVG
+
+  // Blocking liquidity = can never be A-grade (path to TP isn't clear)
+  if (liqBlock) quality = Math.min(quality, 1);
 
   return { dir, entry, sl, tp, rr, liqBlock, kz, quality };
 }
