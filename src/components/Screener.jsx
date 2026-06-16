@@ -213,6 +213,7 @@ export default function Screener() {
 
   const [imSignals, setImSignals] = useState(null);
   const [sentiment, setSentiment] = useState({});
+  const [sentimentHasCreds, setSentimentHasCreds] = useState(true);
 
   const [watchlist, setWatchlist] = useState(() => {
     try { return JSON.parse(localStorage.getItem('forex_watchlist')) || []; } catch { return []; }
@@ -234,7 +235,7 @@ export default function Screener() {
         const practice = localStorage.getItem('oanda_env') !== 'live';
         if (apiKey) creds = { apiKey, practice };
       }
-      if (!creds?.apiKey) return;
+      if (!creds?.apiKey) { setSentimentHasCreds(false); return; }
 
       // Position book is public market data — always try live API first
       const liveBase = 'https://api-fxtrade.oanda.com/v3';
@@ -848,6 +849,9 @@ export default function Screener() {
                       <td><SignalBadge signal={p.signal}/></td>
                       <td style={{ textAlign:'center', padding:'8px 6px' }}>
                         {(() => {
+                          if (!sentimentHasCreds) return (
+                            <span title="Connect OANDA API key to see retail sentiment" style={{ fontSize:9, color:'#475569', cursor:'default' }}>🔑 key</span>
+                          );
                           const sent = sentiment[p.id];
                           return sent ? (
                             <span style={{ fontSize:10, fontWeight:700, fontFamily:'monospace',

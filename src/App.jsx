@@ -176,13 +176,17 @@ export default function App() {
           </div>
 
           <div className="header-controls">
-            <div className={`account-chip ${isReal ? 'account-chip-real' : ''}`}>
-              <div className="account-label">{isReal ? 'Real' : 'Demo'}</div>
-              <div className={`account-balance ${isReal ? 'balance-real' : ''}`}>
-                ${balance.toLocaleString('en-US', { minimumFractionDigits: 2 })}
-              </div>
-            </div>
-            <AccountSwitcher mode={accountMode} onChange={handleModeChange} />
+            {brokerConnected && (
+              <>
+                <div className={`account-chip ${isReal ? 'account-chip-real' : ''}`}>
+                  <div className="account-label">{isReal ? 'Real' : 'Demo'}</div>
+                  <div className={`account-balance ${isReal ? 'balance-real' : ''}`}>
+                    ${balance.toLocaleString('en-US', { minimumFractionDigits: 2 })}
+                  </div>
+                </div>
+                <AccountSwitcher mode={accountMode} onChange={handleModeChange} />
+              </>
+            )}
           </div>
         </div>
 
