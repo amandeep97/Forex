@@ -58,6 +58,16 @@ const OV_DEFS = [
 ];
 const DEFAULT_OV = { ema20:true,ema50:true,ema200:false,vwap:true,poc:false,fvg:true,ob:true,sr:true,tl:true,zones:true,sweep:true,swings:false,liq:false,bos:true,fib:false,vol:true,piv:false };
 
+function loadSavedOv() {
+  try {
+    const saved = JSON.parse(localStorage.getItem('chart_indicators') || 'null');
+    if (saved && typeof saved === 'object') {
+      return { ...DEFAULT_OV, ...saved };
+    }
+  } catch {}
+  return DEFAULT_OV;
+}
+
 function SVGChart({ candles, symbol, ov, barCount, chartH }) {
   const W    = 900;
   const H    = Math.max(240, chartH || 460);
@@ -450,7 +460,7 @@ export default function ChartModal({ instrument, onClose }) {
   const [candles,   setCandles]  = useState(null);
   const [loading,   setLoading]  = useState(false);
   const [loadErr,   setLoadErr]  = useState('');
-  const [ov,        setOv]       = useState(DEFAULT_OV);
+  const [ov,        setOv]       = useState(loadSavedOv);
   const [barCount,  setBarCount] = useState(100);
   const [chartH,    setChartH]   = useState(460);
   const [aiRead,    setAiRead]   = useState(null);
@@ -526,7 +536,13 @@ export default function ChartModal({ instrument, onClose }) {
     }).catch(e => { setDepthErr(e.message); setDepthLoad(false); });
   }, [symbol, tab]);
 
-  const toggleOv = k => setOv(o => ({ ...o, [k]: !o[k] }));
+  const toggleOv = k => setOv(o => {
+    const next = { ...o, [k]: !o[k] };
+    localStorage.setItem('chart_indicators', JSON.stringify(next));
+    return next;
+  });
+  const clearAllOv  = () => { const off = Object.fromEntries(Object.keys(ov).map(k=>[k,false])); setOv(off); localStorage.setItem('chart_indicators', JSON.stringify(off)); };
+  const resetOv     = () => { setOv(DEFAULT_OV); localStorage.setItem('chart_indicators', JSON.stringify(DEFAULT_OV)); };
 
   // AI Auto-Read (requires anthropic_key in localStorage)
   const doAutoRead = async () => {
@@ -638,6 +654,15 @@ Provide:
                   <button key={o.k} className={`cm-ov-btn${ov[o.k]?' active':''}`}
                     style={ov[o.k]?{borderColor:o.c+'66',color:o.c}:{}} onClick={()=>toggleOv(o.k)}>{o.l}</button>
                 ))}
+                <span style={{margin:'0 4px',color:'var(--border)',alignSelf:'center'}}>|</span>
+                <button onClick={clearAllOv} style={{fontSize:10,padding:'2px 8px',borderRadius:4,cursor:'pointer',
+                  background:'#ef444422',color:'#ef4444',border:'1px solid #ef444444',flexShrink:0,whiteSpace:'nowrap'}}>
+                  Clear All
+                </button>
+                <button onClick={resetOv} style={{fontSize:10,padding:'2px 8px',borderRadius:4,cursor:'pointer',
+                  background:'#8b5cf622',color:'#a78bfa',border:'1px solid #8b5cf644',flexShrink:0,whiteSpace:'nowrap'}}>
+                  Reset
+                </button>
               </div>
             </div>
 

@@ -1,4 +1,5 @@
 import { useState, useCallback, useEffect } from 'react';
+import ChartModal from './ChartModal.jsx';
 
 const PAIRS = [
   'XAG_USD',
@@ -317,7 +318,7 @@ function QualityStars({ q }) {
   );
 }
 
-function PairCard({ pair, data, loading: cardLoading }) {
+function PairCard({ pair, data, loading: cardLoading, onOpenChart }) {
   const { h4, h1, m15, signal } = data || {};
   const isLong  = signal?.dir === 'long';
   const isShort = signal?.dir === 'short';
@@ -333,7 +334,13 @@ function PairCard({ pair, data, loading: cardLoading }) {
     }}>
       {/* Header */}
       <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:8 }}>
-        <span style={{ fontWeight:700, fontSize:14, letterSpacing:0.5 }}>{fmtPair(pair)}</span>
+        <div style={{ display:'flex', alignItems:'center', gap:8 }}>
+          <span style={{ fontWeight:700, fontSize:14, letterSpacing:0.5 }}>{fmtPair(pair)}</span>
+          <button onClick={onOpenChart} title="Open Chart" style={{
+            fontSize:11, padding:'2px 7px', borderRadius:4, cursor:'pointer',
+            background:'#8b5cf622', color:'#a78bfa', border:'1px solid #8b5cf644',
+          }}>📊</button>
+        </div>
         {cardLoading ? (
           <span style={{ fontSize:11, color:neu }}>loading…</span>
         ) : signal ? (
@@ -415,13 +422,14 @@ function PairCard({ pair, data, loading: cardLoading }) {
 // ── Main component ────────────────────────────────────────────────────────────
 
 export default function TopDownSignals() {
-  const [results,     setResults]     = useState({});
-  const [loadingSet,  setLoadingSet]  = useState(new Set());
-  const [lastRefresh, setLastRefresh] = useState(null);
-  const [refreshing,  setRefreshing]  = useState(false);
-  const [kzOnly,      setKzOnly]      = useState(false);
-  const [clearOnly,   setClearOnly]   = useState(false);
-  const [minQuality,  setMinQuality]  = useState(0);
+  const [results,          setResults]          = useState({});
+  const [loadingSet,       setLoadingSet]       = useState(new Set());
+  const [lastRefresh,      setLastRefresh]      = useState(null);
+  const [refreshing,       setRefreshing]       = useState(false);
+  const [kzOnly,           setKzOnly]           = useState(false);
+  const [clearOnly,        setClearOnly]        = useState(false);
+  const [minQuality,       setMinQuality]       = useState(0);
+  const [chartInstrument,  setChartInstrument]  = useState(null);
 
   const hasOanda = !!getCreds().apiKey;
 
@@ -535,9 +543,14 @@ export default function TopDownSignals() {
             pair={pair}
             data={results[pair]}
             loading={loadingSet.has(pair)}
+            onOpenChart={() => setChartInstrument({ symbol: fmtPair(pair) })}
           />
         ))}
       </div>
+
+      {chartInstrument && (
+        <ChartModal instrument={chartInstrument} onClose={() => setChartInstrument(null)} />
+      )}
     </div>
   );
 }
