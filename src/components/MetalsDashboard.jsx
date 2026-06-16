@@ -432,7 +432,39 @@ function computeLiqLayer(h1Candles) {
     } : null,
   ].filter(Boolean);
 
-  return { pts, score: pts.filter(p => p.val).length, hasData: true };
+  // ── Trade levels ─────────────────────────────────────────────────────────────
+  // Determine overall direction from liq signals
+  const bullSignals = pts.filter(p => p.val === true).length;
+  const bearSignals = pts.filter(p => p.val === false).length;
+  const dir = bullSignals > bearSignals ? 'long' : bearSignals > bullSignals ? 'short' : null;
+
+  let tradeLevels = null;
+  if (dir && (nearBullOB || nearBearOB || nearBullFVG || nearBearFVG)) {
+    const entry = curr;
+    let slRef = null;
+    if (dir === 'long') {
+      // SL below nearest bullish OB bottom or FVG bottom
+      const ob  = obZones.find(z  => z.type === 'bullish' && curr >= z.botPrice - atr * 0.5 && curr <= z.topPrice + atr * 0.5);
+      const fvg = fvgZones.find(z => z.type === 'bullish' && curr >= z.botPrice - atr * 0.3 && curr <= z.topPrice + atr * 0.3);
+      slRef = Math.min(ob?.botPrice ?? Infinity, fvg?.botPrice ?? Infinity);
+      const sl  = slRef === Infinity ? entry - atr * 2.5 : slRef - atr * 0.15;
+      const risk = Math.abs(entry - sl);
+      const tp1 = bslAbove?.price ?? (entry + risk * 2);
+      const tp2 = entry + risk * 3;
+      tradeLevels = { dir:'LONG', entry, sl, tp1, tp2, risk, rr: +((tp1 - entry) / risk).toFixed(1) };
+    } else {
+      const ob  = obZones.find(z  => z.type === 'bearish' && curr <= z.topPrice + atr * 0.5 && curr >= z.botPrice - atr * 0.5);
+      const fvg = fvgZones.find(z => z.type === 'bearish' && curr <= z.topPrice + atr * 0.3 && curr >= z.botPrice - atr * 0.3);
+      slRef = Math.max(ob?.topPrice ?? -Infinity, fvg?.topPrice ?? -Infinity);
+      const sl  = slRef === -Infinity ? entry + atr * 2.5 : slRef + atr * 0.15;
+      const risk = Math.abs(entry - sl);
+      const tp1 = sslBelow?.price ?? (entry - risk * 2);
+      const tp2 = entry - risk * 3;
+      tradeLevels = { dir:'SHORT', entry, sl, tp1, tp2, risk, rr: +((entry - tp1) / risk).toFixed(1) };
+    }
+  }
+
+  return { pts, score: pts.filter(p => p.val).length, hasData: true, tradeLevels };
 }
 
 // ── Trade Setup Score card ────────────────────────────────────────────────────
@@ -551,6 +583,46 @@ function TradeSetupScore({ metal, label, color, cotSig, sig, sentiment, h1Candle
           </div>
         </div>
       </div>
+
+      {/* Trade levels box */}
+      {liq.tradeLevels && (verdict === 'BUY' || verdict === 'STRONG BUY' || verdict === 'SELL' || verdict === 'STRONG SELL') && (() => {
+        const tl = liq.tradeLevels;
+        const isLong = tl.dir === 'LONG';
+        const fc = isLong ? '#22c55e' : '#ef4444';
+        const fmt = v => metal === 'gold' ? v.toFixed(2) : v.toFixed(3);
+        const riskUsd = tl.risk * (metal === 'gold' ? 100 : 5000); // rough lot sizing hint
+        return (
+          <div style={{ marginTop:10, padding:'10px 12px', borderRadius:7,
+            background: isLong ? '#22c55e0d' : '#ef44440d',
+            border: `1px solid ${isLong ? '#22c55e44' : '#ef444444'}` }}>
+            <div style={{ fontSize:11, fontWeight:800, color:fc, marginBottom:6, letterSpacing:'0.5px' }}>
+              📋 TRADE PLAN — {tl.dir}
+            </div>
+            <div style={{ display:'grid', gridTemplateColumns:'auto 1fr auto', gap:'4px 12px', fontSize:11 }}>
+              <span style={{ color:'#64748b' }}>Entry</span>
+              <span style={{ color:'#e2e8f0', fontWeight:700 }}>{fmt(tl.entry)}</span>
+              <span style={{ color:'#64748b', fontSize:10 }}>current price</span>
+
+              <span style={{ color:'#64748b' }}>SL</span>
+              <span style={{ color:'#ef4444', fontWeight:700 }}>{fmt(tl.sl)}</span>
+              <span style={{ color:'#64748b', fontSize:10 }}>
+                {isLong ? '−' : '+'}{Math.abs(tl.entry - tl.sl).toFixed(2)} below OB
+              </span>
+
+              <span style={{ color:'#64748b' }}>TP1</span>
+              <span style={{ color:'#22c55e', fontWeight:700 }}>{fmt(tl.tp1)}</span>
+              <span style={{ color:'#64748b', fontSize:10 }}>R:R {tl.rr}:1 (liq target)</span>
+
+              <span style={{ color:'#64748b' }}>TP2</span>
+              <span style={{ color:'#86efac', fontWeight:700 }}>{fmt(tl.tp2)}</span>
+              <span style={{ color:'#64748b', fontSize:10 }}>R:R 3:1 (extended)</span>
+            </div>
+            <div style={{ marginTop:6, fontSize:9, color:'#475569' }}>
+              Risk = {Math.abs(tl.entry - tl.sl).toFixed(2)} pts · Size to 1% account risk
+            </div>
+          </div>
+        );
+      })()}
 
       {/* COT extreme warning */}
       {cotExt && (
