@@ -21,6 +21,7 @@ const VolatilityDashboard= lazy(() => import('./components/VolatilityDashboard')
 const SeasonalityChart = lazy(() => import('./components/SeasonalityChart'));
 const LiquidityMap     = lazy(() => import('./components/LiquidityMap'));
 const Journal          = lazy(() => import('./components/Journal'));
+const TradingNotebook  = lazy(() => import('./components/TradingNotebook'));
 const NewsCalendar     = lazy(() => import('./components/NewsCalendar'));
 
 function TabSpinner() {
@@ -52,6 +53,7 @@ const TABS = [
   { id: 'seasonality', label: 'Seasonality',  icon: '📅' },
   { id: 'liquidity',   label: 'Liquidity',    icon: '🏛' },
   { id: 'journal',     label: 'Journal',      icon: '📋' },
+  { id: 'notebook',    label: 'Notebook',     icon: '📓' },
   { id: 'news',        label: 'News',         icon: '📰' },
 ];
 
@@ -264,6 +266,9 @@ export default function App() {
         </div>
         <div style={{ display: activeTab === 'journal' ? 'block' : 'none', overflowY:'auto', height:'calc(100vh - 120px)' }}>
           {visitedTabs.has('journal') && <Journal />}
+        </div>
+        <div style={{ display: activeTab === 'notebook' ? 'block' : 'none', height:'calc(100vh - 120px)' }}>
+          {visitedTabs.has('notebook') && <TradingNotebook />}
         </div>
         <div style={{ display: activeTab === 'news' ? 'block' : 'none', overflowY:'auto', height:'calc(100vh - 120px)' }}>
           {visitedTabs.has('news') && <NewsCalendar />}
