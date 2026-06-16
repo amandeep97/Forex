@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import AIDashboardPanel from './AIDashboardPanel.jsx';
+import ChartModal from './ChartModal.jsx';
 
 /* ─────────────────────── CONSTANTS ─────────────────────────────── */
 const INDICES = {
@@ -516,6 +517,7 @@ function scoreIndex(key, data, macro) {
 export default function IndicesDashboard() {
   const [loading, setLoading] = useState(false);
   const [lastRefresh, setLastRefresh] = useState(null);
+  const [chartInstrument, setChartInstrument] = useState(null);
   const [h1, setH1]         = useState(null);
   const [daily, setDaily]   = useState(null);
   const [weekly, setWeekly] = useState(null);
@@ -834,6 +836,23 @@ export default function IndicesDashboard() {
       )}
 
       <div style={{ padding:'12px 16px', display:'flex', flexDirection:'column', gap:12 }}>
+
+        {/* ── Chart Buttons ─────────────────────────────── */}
+        <div style={{ display:'flex', flexWrap:'wrap', gap:6, marginBottom:12 }}>
+          {[
+            { label:'S&P 500', sym:'SPX500/USD' },
+            { label:'NASDAQ', sym:'NAS100/USD' },
+            { label:'Dow Jones', sym:'US30/USD' },
+            { label:'DAX', sym:'DE30/EUR' },
+            { label:'FTSE', sym:'UK100/GBP' },
+            { label:'Nikkei', sym:'JP225/USD' },
+          ].map(({ label, sym }) => (
+            <button key={sym} onClick={() => setChartInstrument({ symbol: sym })} style={{
+              fontSize:10, padding:'3px 8px', borderRadius:4, cursor:'pointer',
+              background:'#8b5cf622', color:'#a78bfa', border:'1px solid #8b5cf644',
+            }}>📊 {label}</button>
+          ))}
+        </div>
 
         {/* ── AI Analysis Panel ─────────────────────────── */}
         <AIDashboardPanel
@@ -1505,6 +1524,10 @@ export default function IndicesDashboard() {
         </div>
 
       </div>
+
+      {chartInstrument && (
+        <ChartModal instrument={chartInstrument} onClose={() => setChartInstrument(null)} />
+      )}
     </div>
   );
 }

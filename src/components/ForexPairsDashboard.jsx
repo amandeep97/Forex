@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import AIDashboardPanel from './AIDashboardPanel.jsx';
+import ChartModal from './ChartModal.jsx';
 
 const PAIRS = [
   { key:'eurusd', label:'EUR/USD', instr:'EUR_USD', base:'EUR', quote:'USD', cotCode:'099741', cotDir: 1, dp:5, vixEffect:null   },
@@ -568,6 +569,7 @@ export default function ForexPairsDashboard() {
   const [loading, setLoading]         = useState(true);
   const [lastRefresh, setLastRefresh] = useState(null);
   const [sentimentMap, setSentimentMap] = useState({});
+  const [chartInstrument, setChartInstrument] = useState(null);
   const hasOanda = !!getOandaCreds();
 
   const load = useCallback(async () => {
@@ -757,17 +759,27 @@ export default function ForexPairsDashboard() {
         {/* Pair cards */}
         <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill, minmax(300px, 1fr))', gap:12 }}>
           {PAIRS.map(p => (
-            <PairCard
-              key={p.key}
-              pairDef={p}
-              sig={pairSignals[p.key]}
-              score={pairScores[p.key]}
-              sentiment={sentimentMap[p.key]}
-            />
+            <div key={p.key} style={{ display:'flex', flexDirection:'column', gap:4 }}>
+              <PairCard
+                pairDef={p}
+                sig={pairSignals[p.key]}
+                score={pairScores[p.key]}
+                sentiment={sentimentMap[p.key]}
+              />
+              <button onClick={() => setChartInstrument({ symbol: p.label })} style={{
+                fontSize:10, padding:'3px 8px', borderRadius:4, cursor:'pointer',
+                background:'#8b5cf622', color:'#a78bfa', border:'1px solid #8b5cf644',
+                alignSelf:'flex-start',
+              }}>📊 Chart</button>
+            </div>
           ))}
         </div>
 
       </div>
+
+      {chartInstrument && (
+        <ChartModal instrument={chartInstrument} onClose={() => setChartInstrument(null)} />
+      )}
     </div>
   );
 }
