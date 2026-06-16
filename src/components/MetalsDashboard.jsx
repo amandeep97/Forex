@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import AIDashboardPanel from './AIDashboardPanel.jsx';
+import ChartModal from './ChartModal.jsx';
 import { detectSweep, detectLiqLevels, detectFVGsAndOBs } from '../utils/smcHelpers.js';
 
 // ── OANDA instruments ────────────────────────────────────────────────────────
@@ -586,6 +587,7 @@ function ScoreRing({ score, max, label, color }) {
 
 // ── Main component ───────────────────────────────────────────────────────────
 export default function MetalsDashboard() {
+  const [chartInstrument, setChartInstrument] = useState(null);
   const [mkt, setMkt]         = useState(null);
   const [cot, setCot]         = useState(null);
   const [ry,  setRy]          = useState(null);
@@ -1082,6 +1084,8 @@ export default function MetalsDashboard() {
         <div>
           <span style={{ fontSize:14, fontWeight:700, color:'var(--text)' }}>⚜ Metals Dashboard</span>
           <span style={{ fontSize:10, color:'var(--text3)', marginLeft:8 }}>Gold &amp; Silver — All Key Drivers</span>
+          <button onClick={() => setChartInstrument({ symbol: 'XAU/USD' })} style={{ fontSize:11, padding:'2px 8px', borderRadius:4, cursor:'pointer', background:'#fbbf2422', color:'#fbbf24', border:'1px solid #fbbf2444', marginLeft:8 }}>📊 Gold</button>
+          <button onClick={() => setChartInstrument({ symbol: 'XAG/USD' })} style={{ fontSize:11, padding:'2px 8px', borderRadius:4, cursor:'pointer', background:'#94a3b822', color:'#94a3b8', border:'1px solid #94a3b844', marginLeft:4 }}>📊 Silver</button>
         </div>
         <div style={{ marginLeft:'auto', display:'flex', gap:8, alignItems:'center' }}>
           {lastRefresh && <span style={{ fontSize:10, color:'var(--text3)' }}>Updated {lastRefresh.toLocaleTimeString()}</span>}
@@ -2121,6 +2125,9 @@ export default function MetalsDashboard() {
         </div>
 
       </div>{/* end scroll */}
+      {chartInstrument && (
+        <ChartModal instrument={chartInstrument} onClose={() => setChartInstrument(null)} />
+      )}
     </div>
   );
 }

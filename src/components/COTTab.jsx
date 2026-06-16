@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import ChartModal from './ChartModal.jsx';
 
 const WEEKS = 104; // 2 years
 
@@ -169,6 +170,7 @@ function CatRow({ label, net, prevNet, maxAbs }) {
 
 // ── Main ──────────────────────────────────────────────────────────────────────
 export default function COTTab() {
+  const [chartInstrument, setChartInstrument] = useState(null);
   const [legacy,   setLegacy]   = useState({});
   const [cats,     setCats]     = useState({});
   const [loading,  setLoading]  = useState(true);
@@ -280,6 +282,26 @@ export default function COTTab() {
 
       {/* Content */}
       <div style={{ flex:1, overflowY:'auto', padding:'12px 16px' }}>
+
+        {/* ── Chart buttons ── */}
+        <div style={{ display:'flex', flexWrap:'wrap', gap:6, marginBottom:12, padding:'0 4px' }}>
+          {[
+            { label:'EUR/USD', sym:'EUR/USD' },
+            { label:'GBP/USD', sym:'GBP/USD' },
+            { label:'USD/JPY', sym:'USD/JPY' },
+            { label:'AUD/USD', sym:'AUD/USD' },
+            { label:'USD/CAD', sym:'USD/CAD' },
+            { label:'USD/CHF', sym:'USD/CHF' },
+            { label:'NZD/USD', sym:'NZD/USD' },
+            { label:'Gold', sym:'XAU/USD' },
+            { label:'Silver', sym:'XAG/USD' },
+          ].map(({ label, sym }) => (
+            <button key={sym} onClick={() => setChartInstrument({ symbol: sym })} style={{
+              fontSize:10, padding:'3px 8px', borderRadius:4, cursor:'pointer',
+              background:'#8b5cf622', color:'#a78bfa', border:'1px solid #8b5cf644',
+            }}>📊 {label}</button>
+          ))}
+        </div>
 
         {/* ── CARDS ──────────────────────────────────────────────── */}
         {view === 'cards' && (
@@ -501,6 +523,9 @@ export default function COTTab() {
         Source: CFTC.gov public API · Non-Commercial = hedge funds &amp; large speculators ·
         4-category breakdown from TFF &amp; Disaggregated reports · {WEEKS}-week history · Updates every Friday
       </div>
+      {chartInstrument && (
+        <ChartModal instrument={chartInstrument} onClose={() => setChartInstrument(null)} />
+      )}
     </div>
   );
 }
