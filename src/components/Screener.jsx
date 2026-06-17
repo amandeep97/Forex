@@ -689,14 +689,26 @@ export default function Screener() {
   }, []);
 
   const cols = [
-    { key:'symbol',   label:'Symbol',   width:140 },
-    { key:null,       label:'Chart',    width:70  },
-    { key:'change',   label:'Change',   width:80  },
+    { key:'symbol',   label:'Symbol',   width:130 },
+    { key:null,       label:'Chart',    width:80  },
     { key:'assetType',label:'Type',     width:80  },
-    { key:null,       label:'Score',    width:50  },
+    { key:'category', label:'Category', width:90  },
+    { key:'bid',      label:'Bid',      width:100 },
+    { key:'ask',      label:'Ask',      width:100 },
+    { key:'spread',   label:'Spread',   width:80  },
+    { key:'change',   label:'Change %', width:90  },
+    { key:'high',     label:'High',     width:100 },
+    { key:'low',      label:'Low',      width:100 },
+    { key:'volume',   label:'Volume',   width:90  },
+    { key:null,       label:'RSI',      width:110 },
+    { key:null,       label:'MFI',      width:110 },
+    { key:null,       label:'SMC',      width:140 },
+    { key:null,       label:'Zone',     width:75  },
+    { key:null,       label:'Struct',   width:80  },
+    { key:null,       label:'Score',    width:55  },
+    { key:null,       label:'Strength', width:90  },
     { key:'signal',   label:'Signal',   width:120 },
-    { key:null,       label:'Strength', width:100 },
-    { key:null,       label:'Info',     width:80  },
+    { key:null,       label:'Sentiment',width:80  },
   ];
 
   return (
@@ -851,75 +863,83 @@ export default function Screener() {
                   </td></tr>
                 ):filtered.map(p => {
                   const ai = analysis[p.id] || {};
-                  const aiScore = ai.strength || 50;
-                  const sent = sentimentHasCreds ? sentiment[p.id] : null;
                   const isWatched = watchlist.includes(p.symbol);
+                  const sent = sentimentHasCreds ? sentiment[p.id] : null;
                   return (
-                    <tr key={p.id} className="pair-row" style={{ cursor:'default' }}>
+                    <tr key={p.id} className="pair-row">
                       {/* Symbol */}
-                      <td style={{ padding:'10px 12px' }}>
-                        <div style={{ display:'flex', alignItems:'center', gap:8 }}>
-                          <div style={{ display:'flex', flexDirection:'column', gap:2 }}>
-                            <div style={{ display:'flex', alignItems:'center', gap:5 }}>
-                              <span style={{ fontSize:13, fontWeight:800, color:'#f8fafc', letterSpacing:'0.01em' }}>{p.symbol}</span>
-                              {p.isLive && <span style={{ width:5, height:5, borderRadius:'50%', background:'#22c55e', flexShrink:0, animation:'pulse 1.4s infinite' }}/>}
-                            </div>
-                            <span style={{ fontSize:9, color:'#475569' }}>{p.category}</span>
+                      <td>
+                        <div style={{ display:'flex', flexDirection:'column', gap:3 }}>
+                          <div style={{ display:'flex', alignItems:'center', gap:6 }}>
+                            <span className="pair-symbol">{p.symbol}</span>
+                            <LiveBadge isLive={p.isLive}/>
                           </div>
+                          {p.unit && <span className="pair-category">{p.unit}</span>}
                         </div>
                       </td>
-                      {/* Chart + actions */}
-                      <td style={{ padding:'8px 6px' }}>
+                      {/* Chart + sparkline + actions */}
+                      <td>
                         <div style={{ display:'flex', alignItems:'center', gap:4 }}>
                           <Sparkline data={p.sparkline} change={p.change}/>
                           <div style={{ display:'flex', flexDirection:'column', gap:3 }}>
-                            <button title="Open chart" onClick={() => setChartInstrument(p)}
-                              style={{ background:'none', border:'1px solid #1e293b', borderRadius:4, color:'#64748b', fontSize:10, padding:'2px 4px', cursor:'pointer', lineHeight:1 }}>📈</button>
-                            <button title={isWatched ? 'Remove' : 'Add to watchlist'} onClick={() => toggleWatch(p.symbol)}
-                              style={{ background:'none', border:'1px solid #1e293b', borderRadius:4, color: isWatched ? '#f59e0b' : '#334155', fontSize:11, padding:'2px 4px', cursor:'pointer', lineHeight:1 }}>
+                            <button className="chart-open-btn" title="Open chart" onClick={() => setChartInstrument(p)}>📈</button>
+                            <button className={`wl-star-btn${isWatched ? ' active' : ''}`} title={isWatched ? 'Remove' : 'Add to watchlist'} onClick={() => toggleWatch(p.symbol)}>
                               {isWatched ? '★' : '☆'}
                             </button>
                           </div>
                         </div>
                       </td>
-                      {/* Change */}
-                      <td style={{ padding:'8px 6px', textAlign:'center' }}>
-                        <div style={{ display:'flex', flexDirection:'column', gap:2 }}>
-                          <span style={{ fontSize:11, fontWeight:700, color: p.change >= 0 ? '#22c55e' : '#ef4444', fontFamily:'monospace' }}>
-                            {p.change >= 0 ? '▲' : '▼'} {Math.abs(p.change).toFixed(2)}%
-                          </span>
-                          <span style={{ fontSize:10, color:'#475569', fontFamily:'monospace' }}>{fmtPrice(p.bid)}</span>
-                        </div>
-                      </td>
                       {/* Type */}
-                      <td style={{ padding:'8px 6px' }}>
-                        <AssetBadge type={p.assetType}/>
+                      <td><AssetBadge type={p.assetType}/></td>
+                      {/* Category */}
+                      <td><span className="pair-category" style={{ fontSize:12 }}>{p.category}</span></td>
+                      {/* Bid */}
+                      <td className="mono">{fmtPrice(p.bid)}</td>
+                      {/* Ask */}
+                      <td className="mono">{fmtPrice(p.ask)}</td>
+                      {/* Spread */}
+                      <td className="mono spread-cell">{fmtPrice(p.spread)}</td>
+                      {/* Change */}
+                      <td>
+                        <span style={{ fontWeight:700, fontFamily:'monospace', fontSize:12,
+                          color: p.change >= 0 ? '#22c55e' : '#ef4444' }}>
+                          {p.change >= 0 ? '▲' : '▼'} {Math.abs(p.change).toFixed(2)}%
+                        </span>
                       </td>
-                      {/* AI Score */}
-                      <td style={{ padding:'8px 6px' }}>
-                        <AIScoreCircle score={aiScore} dir={ai.strengthDir || 'neutral'}/>
+                      {/* High */}
+                      <td className="mono muted">{fmtPrice(p.high)}</td>
+                      {/* Low */}
+                      <td className="mono muted">{fmtPrice(p.low)}</td>
+                      {/* Volume */}
+                      <td className="mono muted">{p.volume.toLocaleString()}</td>
+                      {/* RSI */}
+                      <td><RsiBar value={ai.rsi || p.rsi} ob={70} os={30}/></td>
+                      {/* MFI */}
+                      <td><RsiBar value={ai.mfi || 50} ob={80} os={20}/></td>
+                      {/* SMC */}
+                      <td><SmcTagRow bosBullish={ai.bosBullish} bosBearish={ai.bosBearish} chochBullish={ai.chochBullish} chochBearish={ai.chochBearish} hasFvg={ai.hasFVG} hasOb={ai.hasOB}/></td>
+                      {/* Zone */}
+                      <td><ZoneBadge zone={ai.zone}/></td>
+                      {/* Structure */}
+                      <td><StructBadge structure={ai.structure}/></td>
+                      {/* AI Score circle */}
+                      <td style={{ padding:'6px 8px' }}>
+                        <AIScoreCircle score={ai.strength || 50} dir={ai.strengthDir || 'neutral'}/>
                       </td>
+                      {/* Strength bar */}
+                      <td><StrengthBar value={ai.strength || 50} dir={ai.strengthDir || 'neutral'}/></td>
                       {/* Signal */}
-                      <td style={{ padding:'8px 6px' }}>
-                        <SignalBadge signal={p.signal}/>
-                      </td>
-                      {/* Strength */}
-                      <td style={{ padding:'8px 8px' }}>
-                        <StrengthBar value={ai.strength || 50} dir={ai.strengthDir || 'neutral'}/>
-                      </td>
-                      {/* Info: structure + sentiment compact */}
-                      <td style={{ padding:'8px 6px' }}>
-                        <div style={{ display:'flex', flexDirection:'column', gap:3 }}>
-                          <StructBadge structure={ai.structure}/>
-                          {sent ? (
-                            <span style={{ fontSize:9, fontWeight:700, fontFamily:'monospace',
-                              color: sent.longPct > 60 ? '#f43f5e' : sent.longPct < 40 ? '#22c55e' : '#8b949e' }}>
-                              {sent.longPct}%L
-                            </span>
-                          ) : !sentimentHasCreds ? (
-                            <span title="Connect OANDA key" style={{ fontSize:8, color:'#334155' }}>🔑</span>
-                          ) : <span style={{ fontSize:9, color:'#334155' }}>—</span>}
-                        </div>
+                      <td><SignalBadge signal={p.signal}/></td>
+                      {/* Sentiment */}
+                      <td style={{ textAlign:'center', padding:'8px 6px' }}>
+                        {!sentimentHasCreds ? (
+                          <span title="Connect OANDA API key to see retail sentiment" style={{ fontSize:9, color:'#475569', cursor:'default' }}>🔑 key</span>
+                        ) : sent ? (
+                          <span style={{ fontSize:10, fontWeight:700, fontFamily:'monospace',
+                            color: sent.longPct > 60 ? '#f43f5e' : sent.longPct < 40 ? '#22c55e' : '#8b949e' }}>
+                            {sent.longPct}%L
+                          </span>
+                        ) : <span style={{ color:'#374151', fontSize:10 }}>—</span>}
                       </td>
                     </tr>
                   );
