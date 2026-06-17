@@ -114,55 +114,104 @@ function KillzoneBar() {
 
 // ── Sub-components ────────────────────────────────────────────────────────────
 function Sparkline({ data, change }) {
-  const w=80, h=28;
-  if (!data||data.length<2) return null;
+  const w=64, h=26;
+  if (!data||data.length<2) return <div style={{width:w,height:h}}/>;
   const min=Math.min(...data),max=Math.max(...data),range=max-min||0.0001;
-  const pts=data.map((v,i)=>`${((i/(data.length-1))*w).toFixed(1)},${(h-((v-min)/range)*h).toFixed(1)}`).join(' ');
-  return <svg width={w} height={h} style={{display:'block'}}><polyline points={pts} fill="none" stroke={change>=0?'#22c55e':'#ef4444'} strokeWidth="1.5" strokeLinejoin="round"/></svg>;
+  const pts=data.map((v,i)=>`${((i/(data.length-1))*w).toFixed(1)},${(h-((v-min)/range)*(h-2)+1).toFixed(1)}`).join(' ');
+  const col=change>=0?'#22c55e':'#ef4444';
+  const lastX=((data.length-1)/(data.length-1)*w).toFixed(1);
+  const lastY=(h-((data[data.length-1]-min)/range)*(h-2)+1).toFixed(1);
+  return (
+    <svg width={w} height={h} style={{display:'block'}}>
+      <defs>
+        <linearGradient id={`sg_${change}`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor={col} stopOpacity="0.25"/>
+          <stop offset="100%" stopColor={col} stopOpacity="0"/>
+        </linearGradient>
+      </defs>
+      <polygon points={`0,${h} ${pts} ${lastX},${h}`} fill={`url(#sg_${change})`}/>
+      <polyline points={pts} fill="none" stroke={col} strokeWidth="1.5" strokeLinejoin="round"/>
+      <circle cx={lastX} cy={lastY} r="2" fill={col}/>
+    </svg>
+  );
+}
+
+function AIScoreCircle({ score, dir }) {
+  const r=15, circ=2*Math.PI*r;
+  const col = dir==='bullish'?'#22c55e': dir==='bearish'?'#ef4444':'#64748b';
+  const dash=(Math.min(score,100)/100*circ).toFixed(1);
+  return (
+    <div style={{position:'relative',width:38,height:38}}>
+      <svg width="38" height="38" viewBox="0 0 38 38">
+        <circle cx="19" cy="19" r={r} fill="none" stroke="#1e293b" strokeWidth="3.5"/>
+        <circle cx="19" cy="19" r={r} fill="none" stroke={col} strokeWidth="3.5"
+          strokeDasharray={`${dash} ${circ.toFixed(1)}`} strokeLinecap="round"
+          transform="rotate(-90 19 19)"/>
+      </svg>
+      <div style={{position:'absolute',inset:0,display:'flex',alignItems:'center',justifyContent:'center'}}>
+        <span style={{fontSize:10,fontWeight:900,color:col,lineHeight:1}}>{score}</span>
+      </div>
+    </div>
+  );
 }
 
 function SignalBadge({ signal }) {
   const s=SIGNALS[signal]; if(!s) return null;
-  return <span style={{padding:'2px 8px',borderRadius:4,fontSize:11,fontWeight:600,color:s.color,background:s.bg,border:`1px solid ${s.color}44`,whiteSpace:'nowrap'}}>{s.label}</span>;
+  const strong=['STRONG_BUY','STRONG_SELL'].includes(signal);
+  return (
+    <span style={{
+      padding:'4px 10px',borderRadius:20,fontSize:10,fontWeight:800,
+      color:s.color,background:s.bg,border:`1px solid ${s.color}55`,
+      letterSpacing:'0.03em',whiteSpace:'nowrap',
+      boxShadow:strong?`0 0 8px ${s.color}33`:'none',
+    }}>{s.label}</span>
+  );
 }
 
 function AssetBadge({ type }) {
   const c=ASSET_COLORS[type]||{color:'#94a3b8',bg:'#1e293b55'};
-  return <span style={{padding:'1px 6px',borderRadius:3,fontSize:10,fontWeight:600,color:c.color,background:c.bg,border:`1px solid ${c.color}44`,whiteSpace:'nowrap'}}>{type}</span>;
+  const icon = {Forex:'₣',Metals:'⬡',Indices:'📊',Energy:'⚡',Crypto:'₿'}[type]||'·';
+  return (
+    <span style={{padding:'2px 7px',borderRadius:6,fontSize:10,fontWeight:700,
+      color:c.color,background:c.bg,border:`1px solid ${c.color}44`,
+      whiteSpace:'nowrap',display:'inline-flex',alignItems:'center',gap:3}}>
+      <span style={{fontSize:9}}>{icon}</span>{type}
+    </span>
+  );
 }
 
 function SmcTagRow({ bosBullish, bosBearish, chochBullish, chochBearish, hasFvg, hasOb }) {
   const tags = [];
   if (bosBullish)   tags.push(<span key="bosb"  style={{padding:'1px 4px',borderRadius:3,fontSize:9,fontWeight:700,color:'#22c55e',background:'#22c55e18',border:'1px solid #22c55e44'}}>BOS↑</span>);
   if (bosBearish)   tags.push(<span key="bosr"  style={{padding:'1px 4px',borderRadius:3,fontSize:9,fontWeight:700,color:'#ef4444',background:'#ef444418',border:'1px solid #ef444444'}}>BOS↓</span>);
-  if (chochBullish) tags.push(<span key="chb"   style={{padding:'1px 4px',borderRadius:3,fontSize:9,fontWeight:700,color:'#eab308',background:'#eab30818',border:'1px solid #eab30844'}}>ChoCh↑</span>);
-  if (chochBearish) tags.push(<span key="chr"   style={{padding:'1px 4px',borderRadius:3,fontSize:9,fontWeight:700,color:'#f97316',background:'#f9731618',border:'1px solid #f9731644'}}>ChoCh↓</span>);
+  if (chochBullish) tags.push(<span key="chb"   style={{padding:'1px 4px',borderRadius:3,fontSize:9,fontWeight:700,color:'#eab308',background:'#eab30818',border:'1px solid #eab30844'}}>CHoCH↑</span>);
+  if (chochBearish) tags.push(<span key="chr"   style={{padding:'1px 4px',borderRadius:3,fontSize:9,fontWeight:700,color:'#f97316',background:'#f9731618',border:'1px solid #f9731644'}}>CHoCH↓</span>);
   if (hasFvg) tags.push(<span key="fvg" style={{padding:'1px 4px',borderRadius:3,fontSize:9,fontWeight:700,color:'#00d4aa',background:'#00d4aa12',border:'1px solid #00d4aa44'}}>FVG</span>);
   if (hasOb)  tags.push(<span key="ob"  style={{padding:'1px 4px',borderRadius:3,fontSize:9,fontWeight:700,color:'#a78bfa',background:'#a78bfa12',border:'1px solid #a78bfa44'}}>OB</span>);
-  if (tags.length === 0) return <span style={{color:'#334155',fontSize:10}}>—</span>;
+  if (tags.length===0) return <span style={{color:'#334155',fontSize:10}}>—</span>;
   return <div style={{display:'flex',flexWrap:'wrap',gap:2}}>{tags}</div>;
 }
 
 function ZoneBadge({ zone }) {
-  if (zone === 'premium')  return <span style={{padding:'2px 6px',borderRadius:4,fontSize:10,fontWeight:700,color:'#ef4444',background:'#ef444418',border:'1px solid #ef444444'}}>▲ Prem</span>;
-  if (zone === 'discount') return <span style={{padding:'2px 6px',borderRadius:4,fontSize:10,fontWeight:700,color:'#22c55e',background:'#22c55e18',border:'1px solid #22c55e44'}}>▼ Disc</span>;
+  if (zone==='premium')  return <span style={{padding:'2px 6px',borderRadius:4,fontSize:10,fontWeight:700,color:'#ef4444',background:'#ef444418',border:'1px solid #ef444444'}}>▲ Prem</span>;
+  if (zone==='discount') return <span style={{padding:'2px 6px',borderRadius:4,fontSize:10,fontWeight:700,color:'#22c55e',background:'#22c55e18',border:'1px solid #22c55e44'}}>▼ Disc</span>;
   return <span style={{color:'#475569',fontSize:10}}>—</span>;
 }
 
 function StructBadge({ structure }) {
-  if (structure === 'bullish') return <span style={{padding:'2px 6px',borderRadius:4,fontSize:10,fontWeight:700,color:'#22c55e',background:'#22c55e18',border:'1px solid #22c55e44'}}>Bullish</span>;
-  if (structure === 'bearish') return <span style={{padding:'2px 6px',borderRadius:4,fontSize:10,fontWeight:700,color:'#ef4444',background:'#ef444418',border:'1px solid #ef444444'}}>Bearish</span>;
-  return <span style={{color:'#475569',fontSize:10}}>Neutral</span>;
+  if (structure==='bullish') return <span style={{padding:'2px 6px',borderRadius:4,fontSize:9,fontWeight:700,color:'#22c55e',background:'#22c55e14',border:'1px solid #22c55e33'}}>Bullish</span>;
+  if (structure==='bearish') return <span style={{padding:'2px 6px',borderRadius:4,fontSize:9,fontWeight:700,color:'#ef4444',background:'#ef444414',border:'1px solid #ef444433'}}>Bearish</span>;
+  return <span style={{color:'#475569',fontSize:9}}>Neutral</span>;
 }
 
 function StrengthBar({ value, dir }) {
-  const color = dir === 'bullish' ? '#22c55e' : dir === 'bearish' ? '#ef4444' : '#94a3b8';
+  const col=dir==='bullish'?'#22c55e':dir==='bearish'?'#ef4444':'#64748b';
   return (
-    <div style={{display:'flex',alignItems:'center',gap:5}}>
-      <div style={{width:44,height:5,background:'#1e293b',borderRadius:3,overflow:'hidden'}}>
-        <div style={{width:`${value}%`,height:'100%',background:color,borderRadius:3}}/>
+    <div style={{display:'flex',alignItems:'center',gap:5,minWidth:80}}>
+      <div style={{flex:1,height:4,background:'#1e293b',borderRadius:2,overflow:'hidden'}}>
+        <div style={{width:`${value}%`,height:'100%',background:`linear-gradient(90deg,${col}66,${col})`,borderRadius:2}}/>
       </div>
-      <span style={{fontSize:10,color,fontFamily:'var(--mono)',minWidth:28,fontWeight:600}}>{value}%</span>
+      <span style={{fontSize:10,color:col,fontFamily:'monospace',fontWeight:700,minWidth:28}}>{value}%</span>
     </div>
   );
 }
@@ -174,7 +223,7 @@ function RsiBar({ value, ob=70, os=30 }) {
       <div style={{width:48,height:4,background:'#1e293b',borderRadius:2,overflow:'hidden'}}>
         <div style={{width:`${value}%`,height:'100%',background:color,borderRadius:2}}/>
       </div>
-      <span style={{fontSize:11,color,fontFamily:'JetBrains Mono',minWidth:28}}>{value}</span>
+      <span style={{fontSize:11,color,fontFamily:'monospace',minWidth:28}}>{value}</span>
     </div>
   );
 }
@@ -640,26 +689,14 @@ export default function Screener() {
   }, []);
 
   const cols = [
-    {key:'symbol',    label:'Symbol',   width:130},
-    {key:null,        label:'Chart',    width:55},
-    {key:'assetType', label:'Type',     width:80},
-    {key:'category',  label:'Category', width:90},
-    {key:'bid',       label:'Bid',      width:100},
-    {key:'ask',       label:'Ask',      width:100},
-    {key:'spread',    label:'Spread',   width:80},
-    {key:'change',    label:'Change %', width:90},
-    {key:'high',      label:'High',     width:100},
-    {key:'low',       label:'Low',      width:100},
-    {key:'volume',    label:'Volume',   width:90},
-    {key:null,        label:'RSI',      width:110},
-    {key:null,        label:'MFI',      width:110},
-    {key:null,        label:'Trend',    width:90},
-    {key:null,        label:'SMC',      width:140},
-    {key:null,        label:'Zone',     width:75},
-    {key:null,        label:'Struct',   width:80},
-    {key:null,        label:'Strength', width:90},
-    {key:'signal',    label:'Signal',   width:110},
-    {key:null,        label:'Sentiment',width:80},
+    { key:'symbol',   label:'Symbol',   width:140 },
+    { key:null,       label:'Chart',    width:70  },
+    { key:'change',   label:'Change',   width:80  },
+    { key:'assetType',label:'Type',     width:80  },
+    { key:null,       label:'Score',    width:50  },
+    { key:'signal',   label:'Signal',   width:120 },
+    { key:null,       label:'Strength', width:100 },
+    { key:null,       label:'Info',     width:80  },
   ];
 
   return (
@@ -699,11 +736,14 @@ export default function Screener() {
         </div>
         <div className="screener-topbar-right">
           {/* Summary stats */}
-          <div className="screener-stats">
-            <span className="stat-pill"><span style={{color:'#00d4aa',fontWeight:700}}>{total}</span> shown</span>
-            <span className="stat-pill bull"><span style={{color:'#22c55e',fontWeight:700}}>{bullish}↑</span></span>
-            <span className="stat-pill bear"><span style={{color:'#ef4444',fontWeight:700}}>{bearish}↓</span></span>
-            <span className="stat-pill"><span style={{color:'#94a3b8',fontWeight:700}}>{neutral}→</span></span>
+          <div style={{ display:'flex', alignItems:'center', gap:6 }}>
+            <div style={{ fontSize:11, color:'#475569' }}><span style={{ color:'#00d4aa', fontWeight:800, fontSize:13 }}>{total}</span> shown</div>
+            <span style={{ color:'#1e293b' }}>|</span>
+            <div style={{ display:'flex', alignItems:'center', gap:3 }}>
+              <span style={{ fontSize:10, padding:'2px 9px', borderRadius:12, background:'#22c55e18', color:'#22c55e', fontWeight:700, border:'1px solid #22c55e33' }}>{bullish}+ Buy</span>
+              <span style={{ fontSize:10, padding:'2px 9px', borderRadius:12, background:'#ef444418', color:'#ef4444', fontWeight:700, border:'1px solid #ef444433' }}>{bearish}+ Sell</span>
+              <span style={{ fontSize:10, padding:'2px 9px', borderRadius:12, background:'#1e293b', color:'#64748b', fontWeight:700, border:'1px solid #334155' }}>{neutral} Neutral</span>
+            </div>
           </div>
           <span className="topbar-divider"/>
           <span style={{color:'#475569',fontSize:11}}>TF: <strong style={{color:'#00d4aa'}}>{tfFilter.toUpperCase()}</strong></span>
@@ -746,24 +786,24 @@ export default function Screener() {
 
       {/* Intermarket Conditions Bar */}
       {imSignals && (
-        <div style={{ display:'flex', gap:4, padding:'6px 12px', overflowX:'auto', borderBottom:'1px solid var(--border)', background:'#080c14', scrollbarWidth:'none' }}>
-          <span style={{ fontSize:9, color:'var(--text3)', alignSelf:'center', flexShrink:0, marginRight:2 }}>MARKETS:</span>
+        <div style={{ display:'flex', gap:6, padding:'5px 12px', overflowX:'auto', borderBottom:'1px solid #0f172a', background:'#060a10', scrollbarWidth:'none', alignItems:'center' }}>
+          <span style={{ fontSize:9, color:'#334155', flexShrink:0, fontWeight:700, letterSpacing:'0.08em' }}>MARKETS</span>
           {IM_DEFS.map(def => {
             const sig = imSignals[def.key];
             if (!sig) return null;
+            const up = sig.direction === 'rising';
             return (
-              <div key={def.key} style={{ display:'flex', alignItems:'center', gap:3, padding:'2px 8px', borderRadius:4, background:'#1e293b', border:`1px solid ${def.color}33`, flexShrink:0 }}>
-                <span style={{ fontSize:9, fontWeight:700, color:def.color }}>{def.label}</span>
-                <span style={{ fontSize:9, color: sig.direction==='rising'?'#22c55e':'#ef4444', fontWeight:600 }}>
-                  {sig.direction==='rising'?'↑':'↓'}
-                </span>
-                <span style={{ fontSize:9, color:'#64748b', fontFamily:'monospace' }}>
-                  {sig.pct >= 0 ? '+' : ''}{sig.pct.toFixed(1)}%
+              <div key={def.key} style={{ display:'flex', alignItems:'center', gap:4, padding:'3px 10px', borderRadius:6,
+                background: up ? '#22c55e10' : '#ef444410',
+                border: `1px solid ${up ? '#22c55e30' : '#ef444430'}`, flexShrink:0 }}>
+                <span style={{ fontSize:10, fontWeight:700, color: def.color }}>{def.label}</span>
+                <span style={{ fontSize:10, color: up ? '#22c55e' : '#ef4444', fontWeight:800 }}>{up ? '▲' : '▼'}</span>
+                <span style={{ fontSize:9, color: up ? '#22c55e99' : '#ef444499', fontFamily:'monospace' }}>
+                  {sig.pct >= 0 ? '+' : ''}{sig.pct.toFixed(2)}%
                 </span>
               </div>
             );
           })}
-          <span style={{ fontSize:9, color:'#334155', alignSelf:'center', flexShrink:0, marginLeft:4 }}>H1 · 5-bar</span>
         </div>
       )}
 
@@ -809,57 +849,77 @@ export default function Screener() {
                     <div style={{fontSize:28,marginBottom:8}}>🔍</div>
                     No instruments match your filters
                   </td></tr>
-                ):filtered.map(p=>{
-                  const ai=analysis[p.id]||{};
+                ):filtered.map(p => {
+                  const ai = analysis[p.id] || {};
+                  const aiScore = ai.strength || 50;
+                  const sent = sentimentHasCreds ? sentiment[p.id] : null;
+                  const isWatched = watchlist.includes(p.symbol);
                   return (
-                    <tr key={p.id} className="pair-row">
-                      <td>
-                        <div style={{display:'flex',flexDirection:'column',gap:3}}>
-                          <div style={{display:'flex',alignItems:'center',gap:6}}>
-                            <span className="pair-symbol">{p.symbol}</span>
-                            <LiveBadge isLive={p.isLive}/>
+                    <tr key={p.id} className="pair-row" style={{ cursor:'default' }}>
+                      {/* Symbol */}
+                      <td style={{ padding:'10px 12px' }}>
+                        <div style={{ display:'flex', alignItems:'center', gap:8 }}>
+                          <div style={{ display:'flex', flexDirection:'column', gap:2 }}>
+                            <div style={{ display:'flex', alignItems:'center', gap:5 }}>
+                              <span style={{ fontSize:13, fontWeight:800, color:'#f8fafc', letterSpacing:'0.01em' }}>{p.symbol}</span>
+                              {p.isLive && <span style={{ width:5, height:5, borderRadius:'50%', background:'#22c55e', flexShrink:0, animation:'pulse 1.4s infinite' }}/>}
+                            </div>
+                            <span style={{ fontSize:9, color:'#475569' }}>{p.category}</span>
                           </div>
-                          {p.unit&&<span className="pair-category">{p.unit}</span>}
                         </div>
                       </td>
-                      <td>
-                        <div style={{display:'flex',gap:4,alignItems:'center'}}>
-                          <button className="chart-open-btn" title="Open chart" onClick={()=>setChartInstrument(p)}>📈</button>
-                          <button className={`wl-star-btn${watchlist.includes(p.symbol)?' active':''}`} title={watchlist.includes(p.symbol)?'Remove':'Add to watchlist'} onClick={()=>toggleWatch(p.symbol)}>
-                            {watchlist.includes(p.symbol)?'★':'☆'}
-                          </button>
+                      {/* Chart + actions */}
+                      <td style={{ padding:'8px 6px' }}>
+                        <div style={{ display:'flex', alignItems:'center', gap:4 }}>
+                          <Sparkline data={p.sparkline} change={p.change}/>
+                          <div style={{ display:'flex', flexDirection:'column', gap:3 }}>
+                            <button title="Open chart" onClick={() => setChartInstrument(p)}
+                              style={{ background:'none', border:'1px solid #1e293b', borderRadius:4, color:'#64748b', fontSize:10, padding:'2px 4px', cursor:'pointer', lineHeight:1 }}>📈</button>
+                            <button title={isWatched ? 'Remove' : 'Add to watchlist'} onClick={() => toggleWatch(p.symbol)}
+                              style={{ background:'none', border:'1px solid #1e293b', borderRadius:4, color: isWatched ? '#f59e0b' : '#334155', fontSize:11, padding:'2px 4px', cursor:'pointer', lineHeight:1 }}>
+                              {isWatched ? '★' : '☆'}
+                            </button>
+                          </div>
                         </div>
                       </td>
-                      <td><AssetBadge type={p.assetType}/></td>
-                      <td><span className="pair-category" style={{fontSize:12}}>{p.category}</span></td>
-                      <td className="mono">{fmtPrice(p.bid)}</td>
-                      <td className="mono">{fmtPrice(p.ask)}</td>
-                      <td className="mono spread-cell">{fmtPrice(p.spread)}</td>
-                      <td><span className={p.change>=0?'up':'down'}>{p.change>=0?'+':''}{p.change.toFixed(2)}%</span></td>
-                      <td className="mono muted">{fmtPrice(p.high)}</td>
-                      <td className="mono muted">{fmtPrice(p.low)}</td>
-                      <td className="mono muted">{p.volume.toLocaleString()}</td>
-                      <td><RsiBar value={ai.rsi||p.rsi} ob={70} os={30}/></td>
-                      <td><RsiBar value={ai.mfi||50} ob={80} os={20}/></td>
-                      <td><Sparkline data={p.sparkline} change={p.change}/></td>
-                      <td><SmcTagRow bosBullish={ai.bosBullish} bosBearish={ai.bosBearish} chochBullish={ai.chochBullish} chochBearish={ai.chochBearish} hasFvg={ai.hasFVG} hasOb={ai.hasOB}/></td>
-                      <td><ZoneBadge zone={ai.zone}/></td>
-                      <td><StructBadge structure={ai.structure}/></td>
-                      <td><StrengthBar value={ai.strength||50} dir={ai.strengthDir||'neutral'}/></td>
-                      <td><SignalBadge signal={p.signal}/></td>
-                      <td style={{ textAlign:'center', padding:'8px 6px' }}>
-                        {(() => {
-                          if (!sentimentHasCreds) return (
-                            <span title="Connect OANDA API key to see retail sentiment" style={{ fontSize:9, color:'#475569', cursor:'default' }}>🔑 key</span>
-                          );
-                          const sent = sentiment[p.id];
-                          return sent ? (
-                            <span style={{ fontSize:10, fontWeight:700, fontFamily:'monospace',
+                      {/* Change */}
+                      <td style={{ padding:'8px 6px', textAlign:'center' }}>
+                        <div style={{ display:'flex', flexDirection:'column', gap:2 }}>
+                          <span style={{ fontSize:11, fontWeight:700, color: p.change >= 0 ? '#22c55e' : '#ef4444', fontFamily:'monospace' }}>
+                            {p.change >= 0 ? '▲' : '▼'} {Math.abs(p.change).toFixed(2)}%
+                          </span>
+                          <span style={{ fontSize:10, color:'#475569', fontFamily:'monospace' }}>{fmtPrice(p.bid)}</span>
+                        </div>
+                      </td>
+                      {/* Type */}
+                      <td style={{ padding:'8px 6px' }}>
+                        <AssetBadge type={p.assetType}/>
+                      </td>
+                      {/* AI Score */}
+                      <td style={{ padding:'8px 6px' }}>
+                        <AIScoreCircle score={aiScore} dir={ai.strengthDir || 'neutral'}/>
+                      </td>
+                      {/* Signal */}
+                      <td style={{ padding:'8px 6px' }}>
+                        <SignalBadge signal={p.signal}/>
+                      </td>
+                      {/* Strength */}
+                      <td style={{ padding:'8px 8px' }}>
+                        <StrengthBar value={ai.strength || 50} dir={ai.strengthDir || 'neutral'}/>
+                      </td>
+                      {/* Info: structure + sentiment compact */}
+                      <td style={{ padding:'8px 6px' }}>
+                        <div style={{ display:'flex', flexDirection:'column', gap:3 }}>
+                          <StructBadge structure={ai.structure}/>
+                          {sent ? (
+                            <span style={{ fontSize:9, fontWeight:700, fontFamily:'monospace',
                               color: sent.longPct > 60 ? '#f43f5e' : sent.longPct < 40 ? '#22c55e' : '#8b949e' }}>
                               {sent.longPct}%L
                             </span>
-                          ) : <span style={{ color:'#374151', fontSize:10 }}>—</span>;
-                        })()}
+                          ) : !sentimentHasCreds ? (
+                            <span title="Connect OANDA key" style={{ fontSize:8, color:'#334155' }}>🔑</span>
+                          ) : <span style={{ fontSize:9, color:'#334155' }}>—</span>}
+                        </div>
                       </td>
                     </tr>
                   );
