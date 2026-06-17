@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
+import { runMarketScan, scanDigest, fmtScanPrice } from '../utils/marketScan.js';
 
 // ── Inject blink keyframe once ────────────────────────────────────────────────
 if (!document.getElementById('ai-tab-kf')) {
@@ -57,7 +58,7 @@ const PROVIDERS = [
 // ── Quick prompts ─────────────────────────────────────────────────────────────
 const QUICK_PROMPTS = [
   { label: "Today's brief",   icon: '📋', text: "Give me today's complete market brief — active sessions, bias for major pairs, and what to watch or avoid." },
-  { label: 'Best trade now',  icon: '🎯', text: 'Based on all live data, give me the single best trade setup right now with entry, SL and TP.' },
+  { label: 'Best trade now',  icon: '🎯', text: "Look at the APP SETUP SCANNER rankings in the live context. Take the #1 setup, validate it against COT, DXY, yields and session timing, then give me the single best trade right now with refined entry, SL and TP." },
   { label: 'Gold setup',      icon: '⚜', text: 'Analyze XAU/USD in full detail using COT, DXY, real yields and momentum. Should I be long or short?' },
   { label: 'Silver setup',    icon: '🥈', text: 'Analyze XAG/USD. Compare it to gold — which metal has the stronger setup right now?' },
   { label: 'COT reading',     icon: '🏦', text: 'Explain the current COT positioning for all major currencies. Who is positioned where and what does it mean this week?' },
@@ -127,7 +128,7 @@ function getCurrentSessions() {
 async function buildMarketContext() {
   const session = getCurrentSessions();
   const [gold, silver, eurusd, bonds10, bonds2, oil,
-         cotGold, cotSilver, cotEUR, cotGBP, cotJPY, cotAUD] = await Promise.all([
+         cotGold, cotSilver, cotEUR, cotGBP, cotJPY, cotAUD, scan] = await Promise.all([
     fetchCloses('XAU_USD',    'H1', 15),
     fetchCloses('XAG_USD',    'H1', 15),
     fetchCloses('EUR_USD',    'H1', 15),
@@ -137,6 +138,7 @@ async function buildMarketContext() {
     fetchCOT('088691'), fetchCOT('084691'),
     fetchCOT('099741'), fetchCOT('096742'),
     fetchCOT('097741'), fetchCOT('232741'),
+    runMarketScan().catch(() => ({ ok: false, setups: [] })),
   ]);
 
   const last  = a => a?.[a.length - 1] ?? null;
@@ -189,6 +191,8 @@ async function buildMarketContext() {
   if (cotJPY)    L.push(`JPY:    Net ${-cotJPY.net>=0?'+':''}${(-cotJPY.net).toLocaleString()} → ${-cotJPY.net>=0?'Bullish':'Bearish'} (inverted)`);
   if (cotAUD)    L.push(`AUD:    Net ${cotAUD.net>=0?'+':''}${cotAUD.net.toLocaleString()} → ${cotAUD.net>=0?'Bullish':'Bearish'}`);
   L.push('');
+  const digest = scanDigest(scan);
+  if (digest) { L.push(digest); L.push(''); }
   L.push(`OANDA: ${getOandaCreds() ? 'Connected' : 'NOT connected — price data unavailable'}`);
 
   return {
@@ -197,6 +201,7 @@ async function buildMarketContext() {
       sessions: session.active, overlap: session.overlap,
       goldP, silverP, auag, dxyDir, b10dir, yc, realYield,
       cotGold, cotSilver, oandaOk: !!getOandaCreds(),
+      scan: scan?.ok ? scan : null,
     },
   };
 }
@@ -205,6 +210,8 @@ async function buildMarketContext() {
 const SYS = `You are ForexPro AI — an expert forex and metals trading analyst embedded in a professional trading platform. You receive real-time market data with every message.
 
 ALWAYS reference actual numbers from the data (prices, COT levels, yield values, session names). Never give generic advice.
+
+You also receive an "APP SETUP SCANNER" section — a deterministic confluence ranking computed from live H4 bias, H1 structure, liquidity sweeps, COT and retail sentiment. Treat it as a strong starting point: validate or challenge its top setups rather than inventing unrelated ideas. If you disagree with the scanner, say why using the data.
 
 When you identify a trade setup output it in this EXACT format on its own line:
 \`\`\`trade
@@ -360,6 +367,71 @@ function TradeCard({ trade }) {
   );
 }
 
+// ── Best Setup card (deterministic, app-ranked, live data) ────────────────────
+function scoreColor(s) { return s >= 75 ? '#22c55e' : s >= 60 ? '#f59e0b' : '#94a3b8'; }
+
+function BestSetupCard({ setup, rank, onValidate, disabled }) {
+  const col = setup.dir === 'LONG' ? '#22c55e' : '#ef4444';
+  const sc  = scoreColor(setup.score);
+  return (
+    <div style={{ borderRadius:12, border:`1px solid ${col}44`, background:`${col}0a`,
+      padding:'12px 14px', marginBottom:8 }}>
+      <div style={{ display:'flex', alignItems:'center', gap:8, marginBottom:8 }}>
+        {rank && <span style={{ fontSize:11, fontWeight:900, color:'var(--text3)' }}>#{rank}</span>}
+        <span style={{ fontSize:14, fontWeight:900, color:col }}>{setup.dir} {setup.label}</span>
+        {setup.inKZ && (
+          <span style={{ fontSize:8, fontWeight:800, padding:'2px 6px', borderRadius:8,
+            background:'#22c55e18', color:'#22c55e', border:'1px solid #22c55e33' }}>⚡ KZ</span>
+        )}
+        <span style={{ marginLeft:'auto', display:'flex', alignItems:'center', gap:5 }}>
+          <span style={{ fontSize:9, color:'var(--text3)' }}>score</span>
+          <span style={{ fontSize:15, fontWeight:900, color:sc }}>{setup.score}</span>
+        </span>
+      </div>
+      {/* score bar */}
+      <div style={{ height:4, borderRadius:2, background:'#ffffff10', overflow:'hidden', marginBottom:8 }}>
+        <div style={{ height:'100%', width:`${setup.score}%`, background:sc, borderRadius:2 }}/>
+      </div>
+      {/* levels */}
+      <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr 1fr 1fr', gap:5, marginBottom:8 }}>
+        {[['Entry',setup.entry,'var(--text)'],['SL',setup.sl,'#ef4444'],
+          ['TP1',setup.tp1,'#22c55e'],['TP2',setup.tp2,'#22c55e']].map(([l,v,c]) => (
+          <div key={l} style={{ textAlign:'center', padding:'4px 4px', borderRadius:6, background:'#0f172a' }}>
+            <div style={{ fontSize:8, color:'var(--text3)', marginBottom:2 }}>{l}</div>
+            <div style={{ fontSize:10, fontWeight:700, fontFamily:'monospace', color:c }}>{fmtScanPrice(v, setup.pip)}</div>
+          </div>
+        ))}
+      </div>
+      <div style={{ display:'flex', gap:8, alignItems:'center', marginBottom:6, flexWrap:'wrap' }}>
+        {setup.rr != null && <span style={{ fontSize:10, fontWeight:700, color:col }}>{setup.rr}R</span>}
+        {setup.sentiment != null && (
+          <span style={{ fontSize:9, color:'var(--text3)' }}>retail {setup.sentiment}% long</span>
+        )}
+      </div>
+      <div style={{ fontSize:9.5, color:'var(--text3)', lineHeight:1.5, marginBottom:8 }}>
+        {setup.reasons.join(' · ')}
+      </div>
+      {onValidate && (
+        <button onClick={() => onValidate(setup)} disabled={disabled}
+          style={{ width:'100%', padding:'7px 0', borderRadius:8, fontSize:11, fontWeight:700,
+            cursor: disabled ? 'not-allowed' : 'pointer', border:'none',
+            background: disabled ? 'var(--bg2)' : `${col}1f`, color: disabled ? 'var(--text3)' : col,
+            opacity: disabled ? 0.5 : 1 }}>
+          🤖 Validate this setup with AI
+        </button>
+      )}
+    </div>
+  );
+}
+
+function buildValidatePrompt(s) {
+  return `The app's live scanner ranked this as a top setup:\n` +
+    `${s.dir} ${s.label} (confluence score ${s.score}/100${s.inKZ ? ', in killzone' : ''})\n` +
+    `Entry ${fmtScanPrice(s.entry, s.pip)}, SL ${fmtScanPrice(s.sl, s.pip)}, TP1 ${fmtScanPrice(s.tp1, s.pip)}, TP2 ${fmtScanPrice(s.tp2, s.pip)} (${s.rr ?? '?'}R)\n` +
+    `Confluences: ${s.reasons.join('; ')}.\n` +
+    `Using the full live market context, validate or challenge this setup. Is the timing right? Any contradictions in COT, DXY, yields or correlation? Refine the entry/SL/TP if needed and give your confidence.`;
+}
+
 // ── Context sidebar ───────────────────────────────────────────────────────────
 function ContextPanel({ ctx, loading, onRefresh }) {
   if (loading) return (
@@ -420,6 +492,27 @@ function ContextPanel({ ctx, loading, onRefresh }) {
       <div style={{ fontSize:9, color:'var(--text3)', marginTop:8, marginBottom:4, textTransform:'uppercase', letterSpacing:1 }}>COT Bias</div>
       {s.cotGold   && row('Gold COT',   s.cotGold.net>=0  ?'Net Long ▲':'Net Short ▼', s.cotGold.net>=0  ?'#22c55e':'#ef4444')}
       {s.cotSilver && row('Silver COT', s.cotSilver.net>=0?'Net Long ▲':'Net Short ▼', s.cotSilver.net>=0?'#22c55e':'#ef4444')}
+
+      {/* Top setups */}
+      {s.scan?.setups?.length > 0 && (
+        <>
+          <div style={{ fontSize:9, color:'var(--text3)', marginTop:8, marginBottom:4, textTransform:'uppercase', letterSpacing:1 }}>
+            🏆 Top Setups (live)
+          </div>
+          {s.scan.setups.slice(0, 4).map((st, i) => {
+            const c = st.dir === 'LONG' ? '#22c55e' : '#ef4444';
+            return (
+              <div key={st.id} style={{ display:'flex', alignItems:'center', gap:6, padding:'4px 0', borderBottom:'1px solid #ffffff08' }}>
+                <span style={{ fontSize:9, color:'var(--text3)', width:10 }}>{i+1}</span>
+                <span style={{ fontSize:10, fontWeight:700, color:'var(--text)' }}>{st.label}</span>
+                <span style={{ fontSize:9, fontWeight:700, color:c }}>{st.dir}</span>
+                {st.inKZ && <span style={{ fontSize:8 }}>⚡</span>}
+                <span style={{ marginLeft:'auto', fontSize:10, fontWeight:800, color:scoreColor(st.score) }}>{st.score}</span>
+              </div>
+            );
+          })}
+        </>
+      )}
 
       <div style={{ marginTop:8, fontSize:9, padding:'4px 8px', borderRadius:4,
         background: s.oandaOk ? '#22c55e12' : '#ef444412',
@@ -531,6 +624,13 @@ export default function AIAnalysis() {
 
   const onSubmit = e => { e.preventDefault(); send(input); };
 
+  const validateSetup = useCallback((setup) => {
+    if (!hasKey) { setShowSettings(true); setError('Please enter your API key first'); return; }
+    send(buildValidatePrompt(setup));
+  }, [hasKey, send]);
+
+  const topSetups = context?.summary?.scan?.setups ?? [];
+
   // ── Render ────────────────────────────────────────────────────────────────
   return (
     <div style={{ display:'flex', flexDirection:'column', height:'100%', overflow:'hidden' }}>
@@ -638,6 +738,30 @@ export default function AIAnalysis() {
                     ? `${context.summary.sessions.length ? context.summary.sessions.join(' + ') : 'No active'} session · Live data loaded`
                     : 'Loading live market data…'}
                 </div>
+
+                {/* 🏆 Best setups — deterministic, ranked from live data */}
+                {topSetups.length > 0 && (
+                  <div style={{ maxWidth:380, margin:'0 auto 18px', textAlign:'left' }}>
+                    <div style={{ display:'flex', alignItems:'center', gap:6, marginBottom:8 }}>
+                      <span style={{ fontSize:12, fontWeight:800, color:'var(--text)' }}>🏆 Best Setups Right Now</span>
+                      <span style={{ fontSize:9, color:'var(--text3)' }}>app-ranked · live data</span>
+                    </div>
+                    {topSetups.slice(0, 3).map((st, i) => (
+                      <BestSetupCard key={st.id} setup={st} rank={i+1}
+                        onValidate={validateSetup} disabled={!hasKey || streaming}/>
+                    ))}
+                    <div style={{ fontSize:9, color:'var(--text3)', textAlign:'center', marginTop:2 }}>
+                      Scored on H4 bias · H1 structure · liquidity sweeps · COT · sentiment · killzone timing
+                    </div>
+                  </div>
+                )}
+                {context && !loadingCtx && topSetups.length === 0 && (
+                  <div style={{ maxWidth:360, margin:'0 auto 16px', fontSize:10, color:'var(--text3)',
+                    padding:'8px 12px', borderRadius:8, background:'var(--card)', border:'1px solid var(--border)' }}>
+                    Connect OANDA (Auto Trading tab) to unlock the live Best-Setup scanner across metals + FX majors.
+                  </div>
+                )}
+
                 <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:7, maxWidth:360, margin:'0 auto', textAlign:'left' }}>
                   {QUICK_PROMPTS.map(q => (
                     <button key={q.label} onClick={() => send(q.text)} disabled={!hasKey || streaming}
