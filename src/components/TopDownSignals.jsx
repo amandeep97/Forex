@@ -196,27 +196,28 @@ function checkLiqPath(dir, entry, tp, h1Candles) {
 function getSignal(h4, h1, m15, h1Candles) {
   if (!h4 || !h1 || !m15) return null;
 
-  // FIX 1: M15 structure must not actively oppose the signal direction
-  // (ranging = ok — pullback in progress; bearish M15 on a long = fighting momentum)
   const longOK =
-    h4.structure === 'bullish' &&
-    h1.zone === 'discount' &&
-    m15.zone === 'discount' &&
-    m15.structure !== 'bearish' &&   // ← NEW: reject if M15 is bearish on a long
-    (m15.bullOB || m15.bullFVG);
+    h4.structure === 'bullish' &&          // H4 must be bullish
+    h1.structure !== 'bearish' &&          // H1 must NOT oppose (bearish H1 fights the trade)
+    h1.zone === 'discount' &&              // H1 price in discount (pullback zone)
+    (h1.bullOB || h1.bullFVG) &&          // H1 must have a bullish POI to react from
+    m15.zone === 'discount' &&             // M15 in discount (entry zone)
+    m15.structure !== 'bearish' &&         // M15 not opposing
+    (m15.bullOB || m15.bullFVG);           // M15 OB or FVG for precise entry
 
   const shortOK =
-    h4.structure === 'bearish' &&
-    h1.zone === 'premium' &&
-    m15.zone === 'premium' &&
-    m15.structure !== 'bullish' &&   // ← NEW: reject if M15 is bullish on a short
-    (m15.bearOB || m15.bearFVG);
+    h4.structure === 'bearish' &&          // H4 must be bearish
+    h1.structure !== 'bullish' &&          // H1 must NOT oppose (bullish H1 fights the trade)
+    h1.zone === 'premium' &&               // H1 price in premium (pullback zone)
+    (h1.bearOB || h1.bearFVG) &&          // H1 must have a bearish POI to react from
+    m15.zone === 'premium' &&              // M15 in premium (entry zone)
+    m15.structure !== 'bullish' &&         // M15 not opposing
+    (m15.bearOB || m15.bearFVG);           // M15 OB or FVG for precise entry
 
   if (!longOK && !shortOK) return null;
 
   const dir     = longOK ? 'long' : 'short';
   const entry   = m15.cp;
-  // FIX 2: Increase minimum SL distance to 2.5 ATR (was 1.5) — avoids 7-pip stops
   const minDist = m15.atr * 2.5;
   let sl;
 
@@ -243,15 +244,15 @@ function getSignal(h4, h1, m15, h1Candles) {
   const liqBlock = checkLiqPath(dir, entry, tp, h1Candles);
   const kz       = getCurrentKZ();
 
-  // FIX 3 + 4: Revised quality score
-  // Each criterion adds 1 point (max 4). Blocking liquidity hard-caps grade at B (≤2).
+  // Quality score (max 5)
   let quality = 0;
-  if (kz)                                                    quality++; // right timing
-  if (h1.structure === h4.structure)                         quality++; // H1 aligns H4
-  if (m15.structure === h4.structure)                        quality++; // M15 aligns too
-  if ((dir==='long' && m15.bullOB) || (dir==='short' && m15.bearOB)) quality++; // OB > FVG
+  if (kz)                                                               quality++; // right timing
+  if (h1.structure === h4.structure)                                    quality++; // H1 fully aligns H4
+  if (m15.structure === h4.structure)                                   quality++; // M15 fully aligns too
+  if ((dir==='long' && m15.bullOB) || (dir==='short' && m15.bearOB))   quality++; // OB entry > FVG
+  if ((dir==='long' && h1.bullOB)  || (dir==='short' && h1.bearOB))    quality++; // H1 OB confluence
 
-  // Blocking liquidity = can never be A-grade (path to TP isn't clear)
+  // Blocking liquidity = hard cap at grade B
   if (liqBlock) quality = Math.min(quality, 1);
 
   return { dir, entry, sl, tp, rr, liqBlock, kz, quality };
@@ -316,11 +317,11 @@ function TFRow({ label, data }) {
 function QualityStars({ q }) {
   return (
     <div style={{ display:'flex', gap:2, alignItems:'center' }}>
-      {[0,1,2,3].map(i => (
+      {[0,1,2,3,4].map(i => (
         <span key={i} style={{ fontSize:10, color: i < q ? '#f59e0b' : '#1e293b' }}>★</span>
       ))}
       <span style={{ fontSize:9, color:'#64748b', marginLeft:3 }}>
-        {q === 4 ? 'A+' : q === 3 ? 'A' : q === 2 ? 'B' : 'C'}
+        {q >= 5 ? 'A+' : q === 4 ? 'A' : q === 3 ? 'B+' : q === 2 ? 'B' : 'C'}
       </span>
     </div>
   );
@@ -479,11 +480,13 @@ export default function TopDownSignals() {
   if (kzOnly)    sorted = sorted.filter(p => results[p]?.signal?.kz);
   if (clearOnly) sorted = sorted.filter(p => !results[p]?.signal?.liqBlock);
   if (minQuality > 0) sorted = sorted.filter(p => (results[p]?.signal?.quality ?? 0) >= minQuality);
+  // Always show only signals (hide pairs with no signal from the list)
+  sorted = sorted.filter(p => results[p]?.signal || loadingSet.has(p));
 
   const allSignals   = Object.values(results).filter(r => r?.signal);
   const kzSignals    = allSignals.filter(r => r.signal.kz);
   const clearSignals = allSignals.filter(r => !r.signal.liqBlock);
-  const aSignals     = allSignals.filter(r => r.signal.quality >= 3);
+  const aSignals     = allSignals.filter(r => r.signal.quality >= 4);
 
   const chip = (label, active, onClick, count) => (
     <button onClick={onClick} style={{
