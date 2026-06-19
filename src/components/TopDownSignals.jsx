@@ -198,21 +198,19 @@ function getSignal(h4, h1, m15, h1Candles) {
 
   const longOK =
     h4.structure === 'bullish' &&          // H4 must be bullish
-    h1.structure !== 'bearish' &&          // H1 must NOT oppose (bearish H1 fights the trade)
-    h1.zone === 'discount' &&              // H1 price in discount (pullback zone)
-    (h1.bullOB || h1.bullFVG) &&          // H1 must have a bullish POI to react from
-    m15.zone === 'discount' &&             // M15 in discount (entry zone)
+    h1.structure !== 'bearish' &&          // H1 must NOT oppose H4
+    h1.zone === 'discount' &&              // H1 in pullback zone
+    m15.zone === 'discount' &&             // M15 in entry zone
     m15.structure !== 'bearish' &&         // M15 not opposing
-    (m15.bullOB || m15.bullFVG);           // M15 OB or FVG for precise entry
+    (m15.bullOB || m15.bullFVG);           // M15 POI for entry
 
   const shortOK =
     h4.structure === 'bearish' &&          // H4 must be bearish
-    h1.structure !== 'bullish' &&          // H1 must NOT oppose (bullish H1 fights the trade)
-    h1.zone === 'premium' &&               // H1 price in premium (pullback zone)
-    (h1.bearOB || h1.bearFVG) &&          // H1 must have a bearish POI to react from
-    m15.zone === 'premium' &&              // M15 in premium (entry zone)
+    h1.structure !== 'bullish' &&          // H1 must NOT oppose H4
+    h1.zone === 'premium' &&               // H1 in pullback zone
+    m15.zone === 'premium' &&              // M15 in entry zone
     m15.structure !== 'bullish' &&         // M15 not opposing
-    (m15.bearOB || m15.bearFVG);           // M15 OB or FVG for precise entry
+    (m15.bearOB || m15.bearFVG);           // M15 POI for entry
 
   if (!longOK && !shortOK) return null;
 
@@ -480,8 +478,6 @@ export default function TopDownSignals() {
   if (kzOnly)    sorted = sorted.filter(p => results[p]?.signal?.kz);
   if (clearOnly) sorted = sorted.filter(p => !results[p]?.signal?.liqBlock);
   if (minQuality > 0) sorted = sorted.filter(p => (results[p]?.signal?.quality ?? 0) >= minQuality);
-  // Always show only signals (hide pairs with no signal from the list)
-  sorted = sorted.filter(p => results[p]?.signal || loadingSet.has(p));
 
   const allSignals   = Object.values(results).filter(r => r?.signal);
   const kzSignals    = allSignals.filter(r => r.signal.kz);
