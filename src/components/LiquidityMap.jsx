@@ -8,7 +8,7 @@ const INSTRUMENTS = [
   { key: 'AUD_USD', label: 'AUD/USD', roundSmall: 0.0050, roundLarge: 0.0100, pipSize: 0.0001 },
   { key: 'USD_CAD', label: 'USD/CAD', roundSmall: 0.0050, roundLarge: 0.0100, pipSize: 0.0001 },
   { key: 'NZD_USD', label: 'NZD/USD', roundSmall: 0.0050, roundLarge: 0.0100, pipSize: 0.0001 },
-  { key: 'XAU_USD', label: 'XAU/USD', roundSmall: 10,     roundLarge: 50,     pipSize: 0.1    },
+  { key: 'XAU_USD', label: 'XAU/USD', roundSmall: 50,    roundLarge: 100,    pipSize: 0.1    },
   { key: 'XAG_USD', label: 'XAG/USD', roundSmall: 0.25,   roundLarge: 0.50,   pipSize: 0.01   },
   { key: 'EUR_JPY', label: 'EUR/JPY', roundSmall: 0.50,   roundLarge: 1.00,   pipSize: 0.01   },
   { key: 'GBP_JPY', label: 'GBP/JPY', roundSmall: 0.50,   roundLarge: 1.00,   pipSize: 0.01   },
