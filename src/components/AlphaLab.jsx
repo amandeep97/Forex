@@ -230,6 +230,27 @@ function detectPhase(candles, strength=3, minWickPct=0) {
   return { phase:'neutral' };
 }
 
+// Compute Forex-specific sweep metadata from candle context
+const DOW_LABELS = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+function computeSweepMeta(candle, phase, pair, candles, i) {
+  const dow     = DOW_LABELS[new Date(candle.t).getDay()];
+  const ar      = avgRange(candles.slice(Math.max(0, i - 21), i));
+  const wickRaw = phase.direction === 'bearish'
+    ? candle.h - phase.level
+    : phase.level - candle.l;
+  const atrPips = ar > 0 && pair.pip > 0 ? ar / pair.pip : 1;
+  const wickPips = wickRaw / (pair.pip || 0.0001);
+  const wickSize = wickPips < atrPips * 0.3 ? 'Small' : wickPips < atrPips * 0.8 ? 'Medium' : 'Large';
+  const slice20  = candles.slice(Math.max(0, i - 20), i);
+  const avgVol   = slice20.reduce((s, c) => s + c.v, 0) / (slice20.length || 1);
+  const volSpike = avgVol > 0 && candle.v > avgVol * 1.5;
+  const ar5      = avgRange(candles.slice(Math.max(0, i - 5), i));
+  const compressed = ar > 0 && ar5 < ar * 0.5;
+  const htfBull  = slice20.length >= 2 && slice20[slice20.length - 1].c > slice20[0].c;
+  const htfAligned = htfBull === (phase.direction === 'bullish');
+  return { dow, wickSize, volSpike, compressed, htfAligned };
+}
+
 // O(N) sweep backfill using pre-computed swing pointers — much faster than O(N²) sliding window
 function backfillOnCandles(candles, pair, tf, strength, minWick, futureLen, hm, seenIds) {
   const sweeps = [];
@@ -285,6 +306,7 @@ function backfillOnCandles(candles, pair, tf, strength, minWick, futureLen, hm, 
     if (!hm[pair.key]) hm[pair.key] = {};
     hm[pair.key][utcHour] = (hm[pair.key][utcHour] || 0) + 1;
 
+    const meta = computeSweepMeta(candle, phase, pair, candles, i);
     sweeps.push({
       id, pair: pair.key, label: pair.label,
       time:        new Date(candle.t).toISOString(),
@@ -298,6 +320,7 @@ function backfillOnCandles(candles, pair, tf, strength, minWick, futureLen, hm, 
       resolvedAt:  new Date(candles[Math.min(i + futureLen, candles.length - 1)].t).toISOString(),
       historical:  true,
       tf, strength,
+      ...meta,
     });
   }
   return sweeps;
@@ -1221,12 +1244,24 @@ const MINE_CONDITIONS = [
   { type:'strength',  value:'3'       },
   { type:'strength',  value:'4'       },
   { type:'strength',  value:'5'       },
+  { type:'dow',       value:'Mon'     },
+  { type:'dow',       value:'Tue'     },
+  { type:'dow',       value:'Wed'     },
+  { type:'dow',       value:'Thu'     },
+  { type:'dow',       value:'Fri'     },
+  { type:'wickSize',  value:'Small'   },
+  { type:'wickSize',  value:'Medium'  },
+  { type:'wickSize',  value:'Large'   },
+  { type:'volSpike',  value:'true'    },
+  { type:'compressed',value:'true'    },
+  { type:'htfAligned',value:'true'    },
+  { type:'htfAligned',value:'false'   },
   ...PAIRS.map(p => ({ type:'pair', value:p.label })),
 ];
 
 // Conflict: two conditions of same type with different values = impossible to satisfy
 function condsConflict(a, b) {
-  const singleTypes = ['session','swept','direction','tf','group','pair'];
+  const singleTypes = ['session','swept','direction','tf','group','pair','dow','wickSize','volSpike','compressed','htfAligned'];
   return singleTypes.includes(a.type) && a.type === b.type && a.value !== b.value;
 }
 
@@ -1252,8 +1287,13 @@ function minePatterns(sweepLog, minSignals, minWR) {
       case 'pair':      return m.pair?.label === cond.value;
       case 'hour_from': return m.etH >= +cond.value;
       case 'hour_to':   return m.etH <= +cond.value;
-      case 'strength':  return (m.s.strength || 3) >= +cond.value;
-      default:          return true;
+      case 'strength':   return (m.s.strength || 3) >= +cond.value;
+      case 'dow':        return m.s.dow === cond.value;
+      case 'wickSize':   return m.s.wickSize === cond.value;
+      case 'volSpike':   return m.s.volSpike === (cond.value === 'true');
+      case 'compressed': return m.s.compressed === (cond.value === 'true');
+      case 'htfAligned': return m.s.htfAligned === (cond.value === 'true');
+      default:           return true;
     }
   };
 
@@ -1311,9 +1351,16 @@ function minePatterns(sweepLog, minSignals, minWR) {
 }
 
 function condLabel(c) {
-  return `${c.type === 'session' ? 'Session' : c.type === 'swept' ? 'Swept' : c.type === 'direction' ? 'Dir'
-    : c.type === 'tf' ? 'TF' : c.type === 'group' ? 'Group' : c.type === 'pair' ? 'Pair'
-    : c.type === 'strength' ? 'Str≥' : c.type}: ${c.value}`;
+  const labels = {
+    session:'Session', swept:'Swept', direction:'Dir', tf:'TF', group:'Group',
+    pair:'Pair', strength:'Str≥', dow:'Day', wickSize:'Wick',
+    volSpike:'VolSpike', compressed:'Compression', htfAligned:'HTF',
+  };
+  const val = c.type === 'volSpike'   ? (c.value === 'true' ? 'Spike' : 'Normal')
+            : c.type === 'compressed' ? (c.value === 'true' ? 'Yes' : 'No')
+            : c.type === 'htfAligned' ? (c.value === 'true' ? 'Aligned' : 'Counter')
+            : c.value;
+  return `${labels[c.type] || c.type}: ${val}`;
 }
 
 function PatternMiner({ sweepLog, onSaveScenario }) {
@@ -1490,9 +1537,14 @@ const COND_TYPES = [
   { id:'tf',        label:'Timeframe',  options:['M15','M30','H1','H4'],                                   desc:'Candle timeframe' },
   { id:'group',     label:'Group',      options:['Forex','Metals','Indices'],                              desc:'Asset class' },
   { id:'pair',      label:'Pair',       options:PAIRS.map(p=>p.label),                                    desc:'Specific instrument' },
-  { id:'hour_from', label:'ET Hour ≥',  options:Array.from({length:24},(_,i)=>String(i).padStart(2,'0')), desc:'From this ET hour' },
-  { id:'hour_to',   label:'ET Hour ≤',  options:Array.from({length:24},(_,i)=>String(i).padStart(2,'0')), desc:'Until this ET hour' },
-  { id:'strength',  label:'Strength ≥', options:['2','3','4','5'],                                         desc:'Minimum swing strength' },
+  { id:'hour_from',  label:'ET Hour ≥',      options:Array.from({length:24},(_,i)=>String(i).padStart(2,'0')), desc:'From this ET hour' },
+  { id:'hour_to',    label:'ET Hour ≤',      options:Array.from({length:24},(_,i)=>String(i).padStart(2,'0')), desc:'Until this ET hour' },
+  { id:'strength',   label:'Strength ≥',     options:['2','3','4','5'],                   desc:'Minimum swing strength' },
+  { id:'dow',        label:'Day of Week',     options:['Mon','Tue','Wed','Thu','Fri'],     desc:'ICT: Tue/Wed highest probability, Fri = trap day' },
+  { id:'wickSize',   label:'Wick Size',       options:['Small','Medium','Large'],          desc:'How aggressively price spiked past the level vs ATR' },
+  { id:'volSpike',   label:'Volume Spike',    options:['true','false'],                   desc:'Sweep candle volume > 1.5× the 20-bar average' },
+  { id:'compressed', label:'Pre-Compression', options:['true','false'],                   desc:'Tight range before sweep — 5-bar ATR < 50% of 20-bar (coil before expansion)' },
+  { id:'htfAligned', label:'HTF Aligned',     options:['true','false'],                   desc:'20-bar trend direction matches sweep expected move (with-trend vs counter-trend)' },
 ];
 
 function matchCond(sweep, cond) {
@@ -1508,8 +1560,13 @@ function matchCond(sweep, cond) {
     case 'pair':      return pair?.label === cond.value;
     case 'hour_from': return etH >= +cond.value;
     case 'hour_to':   return etH <= +cond.value;
-    case 'strength':  return (sweep.strength || 3) >= +cond.value;
-    default:          return true;
+    case 'strength':   return (sweep.strength || 3) >= +cond.value;
+    case 'dow':        return sweep.dow === cond.value;
+    case 'wickSize':   return sweep.wickSize === cond.value;
+    case 'volSpike':   return sweep.volSpike === (cond.value === 'true');
+    case 'compressed': return sweep.compressed === (cond.value === 'true');
+    case 'htfAligned': return sweep.htfAligned === (cond.value === 'true');
+    default:           return true;
   }
 }
 
@@ -2074,6 +2131,8 @@ export default function AlphaLab() {
           Date.now()-new Date(s.time).getTime() < dedupWindow
         );
         if (!recent) {
+          const lastIdx  = candles.length - 1;
+          const liveMeta = computeSweepMeta(candles[lastIdx], phase, pair, candles, lastIdx);
           newSweeps.push({
             id:          `${pair.key}_${scanTF}_${Date.now()}`,
             pair:        pair.key,
@@ -2089,6 +2148,7 @@ export default function AlphaLab() {
             pipsMoved:   0,
             tf:          scanTF,
             strength:    swingStrength,
+            ...liveMeta,
           });
           if (!hm[pair.key]) hm[pair.key]={};
           hm[pair.key][utcHour] = (hm[pair.key][utcHour]||0)+1;
