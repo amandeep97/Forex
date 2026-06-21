@@ -1539,110 +1539,11 @@ function liveMatchesScenario(pairKey, phase, conditions, scanTF, swingStrength) 
   });
 }
 
-function ScenarioCard({ sc, sweepLog, phases, scanTF, swingStrength, onEdit, onDelete, onPairClick }) {
-  const matched   = useMemo(() => sweepLog.filter(s => sweepMatchesScenario(s, sc.conditions)), [sweepLog, sc.conditions]);
-  const confirmed = matched.filter(s => s.outcome === 'confirmed');
-  const wr        = matched.length ? Math.round(confirmed.length / matched.length * 100) : null;
-  const avgPips   = confirmed.length ? Math.round(confirmed.reduce((a,s)=>a+s.pipsMoved,0)/confirmed.length) : 0;
-  const wrColor   = wr==null?'#475569':wr>=60?'#00d4aa':wr>=40?'#f59e0b':'#ef4444';
-
-  const byHour = {};
-  matched.forEach(s => {
-    const h = getETHour(s.time);
-    if (!byHour[h]) byHour[h] = { total:0, confirmed:0 };
-    byHour[h].total++;
-    if (s.outcome==='confirmed') byHour[h].confirmed++;
-  });
-
-  const liveMatches = PAIRS.filter(p => liveMatchesScenario(p.key, phases[p.key], sc.conditions, scanTF, swingStrength));
-
-  return (
-    <div style={{ background:'#06090f', border:`1px solid ${liveMatches.length?'#ef444433':'#0f1929'}`, borderRadius:12, overflow:'hidden', marginBottom:12 }}>
-      {/* Header */}
-      <div style={{ display:'flex', alignItems:'center', gap:8, padding:'10px 14px', borderBottom:'1px solid #0f1929' }}>
-        <span style={{ flex:1, fontSize:13, fontWeight:800, color:'#f1f5f9' }}>{sc.name}</span>
-        {liveMatches.length > 0 && (
-          <span style={{ fontSize:9, fontWeight:700, color:'#ef4444', background:'#ef444412',
-            padding:'2px 8px', borderRadius:8, border:'1px solid #ef444433', animation:'alphaGlow 0.8s infinite' }}>
-            ⚡ {liveMatches.length} LIVE NOW
-          </span>
-        )}
-        <button onClick={onEdit} style={{ fontSize:9, padding:'3px 8px', borderRadius:6, cursor:'pointer',
-          background:'transparent', border:'1px solid #1e293b', color:'#475569' }}>Edit</button>
-        <button onClick={onDelete} style={{ fontSize:9, padding:'3px 8px', borderRadius:6, cursor:'pointer',
-          background:'transparent', border:'1px solid #1e293b', color:'#ef4444' }}>✕</button>
-      </div>
-
-      {/* Conditions pills */}
-      <div style={{ display:'flex', gap:5, padding:'8px 14px', flexWrap:'wrap', borderBottom:'1px solid #0f1929' }}>
-        {sc.conditions.map((c, i) => {
-          const ct = COND_TYPES.find(t => t.id === c.type);
-          return (
-            <span key={i} style={{ fontSize:9, fontWeight:700, color:'#8b5cf6', background:'#8b5cf618',
-              padding:'2px 8px', borderRadius:10, border:'1px solid #8b5cf633' }}>
-              {ct?.label}: {c.value}
-            </span>
-          );
-        })}
-      </div>
-
-      {/* Stats */}
-      <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr 1fr 1fr' }}>
-        {[
-          { label:'Signals',  value:matched.length,              color:'#e2e8f0' },
-          { label:'Win Rate', value:wr!=null?`${wr}%`:'—',      color:wrColor },
-          { label:'Avg Pips', value:avgPips>0?`${avgPips}p`:'—', color:'#60a5fa' },
-          { label:'Live Now', value:liveMatches.length||'—',     color:liveMatches.length?'#ef4444':'#334155' },
-        ].map((s,i) => (
-          <div key={s.label} style={{ padding:'10px 6px', textAlign:'center',
-            borderRight:i<3?'1px solid #0f1929':'none' }}>
-            <div style={{ fontSize:18, fontWeight:900, fontFamily:'monospace', color:s.color, lineHeight:1 }}>{s.value}</div>
-            <div style={{ fontSize:9, color:'#334155', marginTop:3 }}>{s.label}</div>
-          </div>
-        ))}
-      </div>
-
-      {/* Live matches */}
-      {liveMatches.length > 0 && (
-        <div style={{ padding:'8px 14px', background:'#ef444406', borderTop:'1px solid #ef444422' }}>
-          <div style={{ fontSize:9, color:'#ef4444', fontWeight:700, marginBottom:5 }}>⚡ LIVE MATCHES</div>
-          <div style={{ display:'flex', gap:5, flexWrap:'wrap' }}>
-            {liveMatches.map(p => {
-              const ph = phases[p.key];
-              return (
-                <div key={p.key} onClick={() => onPairClick(p.key)}
-                  style={{ fontSize:10, fontWeight:700, cursor:'pointer', padding:'3px 10px',
-                    borderRadius:16, background:'#ef444418', border:'1px solid #ef444444', color:'#ef4444' }}>
-                  {p.label}
-                  <span style={{ color:ph?.direction==='bullish'?'#00d4aa':'#ef4444', marginLeft:4 }}>
-                    {ph?.direction==='bullish'?'↑':'↓'}
-                  </span>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      )}
-
-      {/* Win rate by hour chart */}
-      {matched.length >= 5 && (
-        <div style={{ padding:'10px 14px', borderTop:'1px solid #0f1929' }}>
-          <div style={{ fontSize:9, color:'#334155', fontWeight:700, letterSpacing:'0.08em', marginBottom:6 }}>WIN RATE BY ET HOUR</div>
-          <WinRateByHourChart byHour={byHour} />
-        </div>
-      )}
-
-      {matched.length === 0 && (
-        <div style={{ padding:'10px 14px', fontSize:10, color:'#1e293b', borderTop:'1px solid #0f1929' }}>
-          No historical signals match — try fewer or different conditions
-        </div>
-      )}
-    </div>
-  );
-}
-
+// ── Scenario Editor ───────────────────────────────────────────────────────────
 function ScenarioEditor({ initial, onSave, onCancel }) {
   const [name,    setName]    = useState(initial?.name || '');
+  const [desc,    setDesc]    = useState(initial?.desc || '');
+  const [dir,     setDir]     = useState(initial?.dir || 'both');
   const [conds,   setConds]   = useState(initial?.conditions || []);
   const [addType, setAddType] = useState(COND_TYPES[0].id);
 
@@ -1651,23 +1552,36 @@ function ScenarioEditor({ initial, onSave, onCancel }) {
     setConds(prev => [...prev, { type:addType, value:ct.options[0] }]);
   };
 
-  const updateCond = (i, field, val) =>
-    setConds(prev => prev.map((c,j) => j===i ? {...c,[field]:val} : c));
-
   const canSave = name.trim() && conds.length > 0;
 
   return (
     <div style={{ background:'#06090f', border:'1px solid #0f1929', borderRadius:12, padding:'14px', marginBottom:12 }}>
-      <div style={{ fontSize:12, fontWeight:800, color:'#f1f5f9', marginBottom:12 }}>
+      <div style={{ fontSize:12, fontWeight:800, color:'#f1f5f9', marginBottom:10 }}>
         {initial?.id ? 'Edit Scenario' : 'New Scenario'}
       </div>
 
-      <input value={name} onChange={e=>setName(e.target.value)} placeholder="Name your scenario…"
+      <input value={name} onChange={e=>setName(e.target.value)} placeholder="Scenario name…"
         style={{ width:'100%', background:'#0f1929', border:'1px solid #1e293b', borderRadius:8,
-          color:'#e2e8f0', fontSize:12, padding:'8px 10px', marginBottom:10,
+          color:'#e2e8f0', fontSize:12, padding:'8px 10px', marginBottom:8,
           boxSizing:'border-box', outline:'none' }}/>
 
-      {/* Existing conditions */}
+      <input value={desc} onChange={e=>setDesc(e.target.value)} placeholder="What does this scenario mean? (optional)"
+        style={{ width:'100%', background:'#0f1929', border:'1px solid #1e293b', borderRadius:8,
+          color:'#94a3b8', fontSize:11, padding:'7px 10px', marginBottom:10,
+          boxSizing:'border-box', outline:'none' }}/>
+
+      {/* Direction */}
+      <div style={{ display:'flex', gap:5, marginBottom:10 }}>
+        {[['long','▲ LONG','#00d4aa'],['short','▼ SHORT','#ef4444'],['both','↕ BOTH','#8b5cf6']].map(([v,l,c])=>(
+          <button key={v} onClick={()=>setDir(v)} style={{
+            flex:1, padding:'6px', borderRadius:7, cursor:'pointer', fontSize:10, fontWeight:800,
+            background:dir===v?`${c}18`:'transparent', border:`1px solid ${dir===v?c+'44':'#1e293b'}`,
+            color:dir===v?c:'#334155',
+          }}>{l}</button>
+        ))}
+      </div>
+
+      {/* Conditions */}
       {conds.map((c, i) => {
         const ct = COND_TYPES.find(t => t.id === c.type);
         return (
@@ -1681,55 +1595,45 @@ function ScenarioEditor({ initial, onSave, onCancel }) {
                 color:'#94a3b8', fontSize:10, padding:'6px', cursor:'pointer' }}>
               {COND_TYPES.map(t=><option key={t.id} value={t.id}>{t.label}</option>)}
             </select>
-            <select value={c.value} onChange={e=>updateCond(i,'value',e.target.value)}
+            <select value={c.value} onChange={e=>setConds(prev=>prev.map((x,j)=>j===i?{...x,value:e.target.value}:x))}
               style={{ flex:1, background:'#0f1929', border:'1px solid #1e293b', borderRadius:6,
                 color:'#e2e8f0', fontSize:10, padding:'6px', cursor:'pointer' }}>
               {ct?.options.map(o=><option key={o} value={o}>{o}</option>)}
             </select>
             <button onClick={()=>setConds(prev=>prev.filter((_,j)=>j!==i))}
               style={{ width:26, height:26, borderRadius:5, border:'1px solid #1e293b',
-                background:'transparent', color:'#ef4444', cursor:'pointer', fontSize:12, flexShrink:0 }}>
-              ✕
-            </button>
+                background:'transparent', color:'#ef4444', cursor:'pointer', fontSize:12, flexShrink:0 }}>✕</button>
           </div>
         );
       })}
 
-      {/* Add row */}
       <div style={{ display:'flex', gap:5, marginBottom:12, marginTop:4 }}>
         <select value={addType} onChange={e=>setAddType(e.target.value)}
           style={{ flex:1, background:'#0f1929', border:'1px solid #1e293b', borderRadius:6,
             color:'#94a3b8', fontSize:10, padding:'6px', cursor:'pointer' }}>
           {COND_TYPES.map(t=><option key={t.id} value={t.id}>{t.label} — {t.desc}</option>)}
         </select>
-        <button onClick={addCond}
-          style={{ padding:'6px 12px', borderRadius:6, border:'1px solid #00d4aa44',
-            background:'#00d4aa12', color:'#00d4aa', fontSize:10, fontWeight:700, cursor:'pointer' }}>
-          + Add
-        </button>
+        <button onClick={addCond} style={{ padding:'6px 12px', borderRadius:6, border:'1px solid #00d4aa44',
+          background:'#00d4aa12', color:'#00d4aa', fontSize:10, fontWeight:700, cursor:'pointer' }}>+ Add</button>
       </div>
 
       <div style={{ display:'flex', gap:6 }}>
-        <button disabled={!canSave} onClick={()=>onSave({id:initial?.id||Date.now().toString(), name:name.trim(), conditions:conds})}
-          style={{ flex:1, padding:'8px', borderRadius:8,
-            cursor:canSave?'pointer':'not-allowed',
-            background:canSave?'#00d4aa18':'transparent',
-            border:`1px solid ${canSave?'#00d4aa44':'#1e293b'}`,
-            color:canSave?'#00d4aa':'#334155', fontSize:11, fontWeight:700 }}>
-          Save Scenario
-        </button>
-        <button onClick={onCancel}
-          style={{ padding:'8px 14px', borderRadius:8, cursor:'pointer',
-            background:'transparent', border:'1px solid #1e293b', color:'#475569', fontSize:11 }}>
-          Cancel
-        </button>
+        <button disabled={!canSave}
+          onClick={()=>onSave({ id:initial?.id||Date.now().toString(), name:name.trim(), desc:desc.trim(), dir, conditions:conds })}
+          style={{ flex:1, padding:'8px', borderRadius:8, cursor:canSave?'pointer':'not-allowed',
+            background:canSave?'#00d4aa18':'transparent', border:`1px solid ${canSave?'#00d4aa44':'#1e293b'}`,
+            color:canSave?'#00d4aa':'#334155', fontSize:11, fontWeight:700 }}>Save</button>
+        <button onClick={onCancel} style={{ padding:'8px 14px', borderRadius:8, cursor:'pointer',
+          background:'transparent', border:'1px solid #1e293b', color:'#475569', fontSize:11 }}>Cancel</button>
       </div>
     </div>
   );
 }
 
-function ScenarioBuilder({ sweepLog, phases, scanTF, swingStrength, onPairClick, scenarios, setScenarios }) {
-  const [editing, setEditing] = useState(null);
+// ── Scenario Library ──────────────────────────────────────────────────────────
+function ScenarioLibrary({ sweepLog, phases, scanTF, swingStrength, onPairClick, scenarios, setScenarios }) {
+  const [editing,  setEditing]  = useState(null);
+  const [expanded, setExpanded] = useState(null);
 
   const saveScenario = sc => {
     setScenarios(prev => {
@@ -1741,44 +1645,365 @@ function ScenarioBuilder({ sweepLog, phases, scanTF, swingStrength, onPairClick,
 
   const editingScenario = editing === 'new' ? {} : editing ? scenarios.find(s=>s.id===editing) : null;
 
+  const dirColor = d => d==='long'?'#00d4aa':d==='short'?'#ef4444':'#8b5cf6';
+  const dirLabel = d => d==='long'?'▲ LONG':d==='short'?'▼ SHORT':'↕ BOTH';
+
+  if (editingScenario != null)
+    return <ScenarioEditor initial={editingScenario} onSave={saveScenario} onCancel={()=>setEditing(null)}/>;
+
   return (
     <div>
-      {editingScenario != null ? (
-        <ScenarioEditor initial={editingScenario} onSave={saveScenario} onCancel={()=>setEditing(null)}/>
-      ) : (
-        <>
-          <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:12 }}>
-            <div>
-              <div style={{ fontSize:12, fontWeight:800, color:'#f1f5f9' }}>Scenario Builder</div>
-              <div style={{ fontSize:10, color:'#334155', marginTop:2 }}>
-                Build conditions → see historical win rate + live alerts when they match
+      <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:12 }}>
+        <div style={{ fontSize:11, color:'#334155' }}>
+          {scenarios.length} scenario{scenarios.length!==1?'s':''} · test hypotheses, find edges
+        </div>
+        <button onClick={()=>setEditing('new')} style={{ padding:'6px 14px', borderRadius:8, cursor:'pointer',
+          background:'#8b5cf618', border:'1px solid #8b5cf644', color:'#8b5cf6', fontSize:10, fontWeight:700 }}>
+          + Add Custom
+        </button>
+      </div>
+
+      {scenarios.length === 0 ? (
+        <div style={{ textAlign:'center', padding:'48px 20px', color:'#1e293b', fontSize:12,
+          background:'#06090f', borderRadius:12, border:'1px solid #0f1929' }}>
+          <div style={{ fontSize:28, marginBottom:8 }}>⚗</div>
+          No scenarios yet.<br/>
+          <span style={{ color:'#475569' }}>Save from Discover, or create your own hypothesis to test.</span>
+        </div>
+      ) : scenarios.map(sc => {
+        const signals  = sweepLog.filter(s => sweepMatchesScenario(s, sc.conditions));
+        const wins     = signals.filter(s => s.outcome==='confirmed').length;
+        const wr       = signals.length ? Math.round(wins/signals.length*100) : null;
+        const avgPips  = wins ? Math.round(signals.filter(s=>s.outcome==='confirmed').reduce((a,s)=>a+s.pipsMoved,0)/wins) : 0;
+        const wrColor  = wr==null?'#475569':wr>=60?'#00d4aa':wr>=40?'#f59e0b':'#ef4444';
+        const live     = PAIRS.filter(p => liveMatchesScenario(p.key, phases[p.key], sc.conditions, scanTF, swingStrength));
+        const dc       = dirColor(sc.dir||'both');
+        const isOpen   = expanded === sc.id;
+
+        return (
+          <div key={sc.id} style={{ background:'#06090f', border:`1px solid ${live.length?'#ef444433':'#0f1929'}`,
+            borderRadius:12, overflow:'hidden', marginBottom:10 }}>
+
+            {/* Header */}
+            <div style={{ display:'flex', alignItems:'center', gap:8, padding:'10px 14px' }}>
+              <span style={{ fontSize:9, fontWeight:800, color:dc, background:`${dc}12`,
+                padding:'2px 7px', borderRadius:6, border:`1px solid ${dc}33`, flexShrink:0 }}>
+                {dirLabel(sc.dir||'both')}
+              </span>
+              <span style={{ flex:1, fontSize:13, fontWeight:800, color:'#f1f5f9' }}>{sc.name}</span>
+              {live.length>0 && (
+                <span style={{ fontSize:9, fontWeight:700, color:'#ef4444', background:'#ef444412',
+                  padding:'2px 7px', borderRadius:6, border:'1px solid #ef444433', animation:'alphaGlow 0.8s infinite', flexShrink:0 }}>
+                  ⚡ LIVE
+                </span>
+              )}
+              <button onClick={()=>setEditing(sc.id)} style={{ fontSize:9, padding:'2px 7px', borderRadius:5,
+                background:'transparent', border:'1px solid #1e293b', color:'#475569', cursor:'pointer' }}>Edit</button>
+              <button onClick={()=>setScenarios(prev=>prev.filter(s=>s.id!==sc.id))}
+                style={{ fontSize:9, padding:'2px 7px', borderRadius:5,
+                  background:'transparent', border:'1px solid #1e293b', color:'#ef4444', cursor:'pointer' }}>✕</button>
+            </div>
+
+            {/* Description */}
+            {sc.desc && (
+              <div style={{ fontSize:10, color:'#475569', padding:'0 14px 8px', lineHeight:1.5 }}>{sc.desc}</div>
+            )}
+
+            {/* Condition pills */}
+            <div style={{ display:'flex', gap:4, padding:'0 14px 8px', flexWrap:'wrap' }}>
+              {sc.conditions.map((c,i) => {
+                const ct = COND_TYPES.find(t=>t.id===c.type);
+                return (
+                  <span key={i} style={{ fontSize:9, fontWeight:700, color:'#8b5cf6', background:'#8b5cf618',
+                    padding:'2px 7px', borderRadius:8, border:'1px solid #8b5cf633' }}>
+                    {ct?.label}: {c.value}
+                  </span>
+                );
+              })}
+            </div>
+
+            {/* Stats row */}
+            <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr 1fr 1fr', borderTop:'1px solid #0f1929' }}>
+              {[
+                { label:'Signals',  value:signals.length,              color:'#e2e8f0' },
+                { label:'Win Rate', value:wr!=null?`${wr}%`:'—',      color:wrColor   },
+                { label:'Avg Pips', value:avgPips>0?`${avgPips}p`:'—', color:'#60a5fa' },
+                { label:'Live Now', value:live.length||'—',            color:live.length?'#ef4444':'#334155' },
+              ].map((s,i)=>(
+                <div key={s.label} style={{ padding:'9px 6px', textAlign:'center', borderRight:i<3?'1px solid #0f1929':'none' }}>
+                  <div style={{ fontSize:17, fontWeight:900, fontFamily:'monospace', color:s.color, lineHeight:1 }}>{s.value}</div>
+                  <div style={{ fontSize:9, color:'#334155', marginTop:2 }}>{s.label}</div>
+                </div>
+              ))}
+            </div>
+
+            {/* Live matches */}
+            {live.length>0 && (
+              <div style={{ padding:'8px 14px', background:'#ef444406', borderTop:'1px solid #ef444422', display:'flex', gap:5, flexWrap:'wrap' }}>
+                {live.map(p => {
+                  const ph = phases[p.key];
+                  return (
+                    <div key={p.key} onClick={()=>onPairClick(p.key)}
+                      style={{ fontSize:10, fontWeight:700, cursor:'pointer', padding:'3px 10px',
+                        borderRadius:16, background:'#ef444418', border:'1px solid #ef444444', color:'#ef4444' }}>
+                      {p.label} <span style={{ color:ph?.direction==='bullish'?'#00d4aa':'#ef4444' }}>
+                        {ph?.direction==='bullish'?'↑':'↓'}
+                      </span>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+
+            {/* Signal log toggle */}
+            {signals.length > 0 && (
+              <div style={{ borderTop:'1px solid #0f1929' }}>
+                <button onClick={()=>setExpanded(isOpen?null:sc.id)}
+                  style={{ width:'100%', padding:'7px', background:'transparent', border:'none',
+                    color:'#334155', fontSize:10, cursor:'pointer', fontWeight:600 }}>
+                  {isOpen ? '▲ Hide signal log' : `▼ Show ${signals.length} signals`}
+                </button>
+                {isOpen && (
+                  <div style={{ maxHeight:220, overflowY:'auto' }}>
+                    {signals.slice(0,50).map((s,i)=>{
+                      const etH  = getETHour(s.time);
+                      const sess = getSessionLabel(etH);
+                      return (
+                        <div key={s.id} onClick={()=>onPairClick(s.pair)}
+                          style={{ display:'flex', alignItems:'center', gap:8, padding:'7px 14px', cursor:'pointer',
+                            background:i%2===0?'#06090f':'#070b12', borderBottom:'1px solid #0a0f1a' }}>
+                          <span style={{ fontSize:9, fontFamily:'monospace', color:'#475569', minWidth:80 }}>
+                            {toET(s.time).slice(0,9)}
+                          </span>
+                          <span style={{ fontSize:10, fontWeight:700, color:'#e2e8f0', minWidth:58 }}>{s.label}</span>
+                          {sess && <span style={{ fontSize:8, color:sess.color, background:`${sess.color}12`,
+                            padding:'1px 5px', borderRadius:4, border:`1px solid ${sess.color}33` }}>{sess.label}</span>}
+                          <span style={{ fontSize:10, fontWeight:700, color:s.expectedDir==='bullish'?'#00d4aa':'#ef4444' }}>
+                            {s.expectedDir==='bullish'?'↑ LONG':'↓ SHORT'}
+                          </span>
+                          <span style={{ marginLeft:'auto', fontSize:9, fontWeight:700,
+                            color:s.outcome==='confirmed'?'#00d4aa':'#ef4444' }}>
+                            {s.outcome==='confirmed'?'✓ WIN':'✗ FAIL'}
+                            {s.pipsMoved>0 && <span style={{ color:'#60a5fa', marginLeft:4 }}>{s.pipsMoved}p</span>}
+                          </span>
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+            )}
+
+            {signals.length === 0 && (
+              <div style={{ padding:'8px 14px', fontSize:10, color:'#1e293b', borderTop:'1px solid #0f1929' }}>
+                No historical signals match these conditions yet
+              </div>
+            )}
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+// ── Record Log ────────────────────────────────────────────────────────────────
+function RecordLog({ sweepLog, scenarios }) {
+  const resolved = sweepLog.filter(s => s.outcome !== 'pending');
+  const oldest   = resolved.length ? resolved[resolved.length-1].time : null;
+  const newest   = resolved.length ? resolved[0].time : null;
+
+  // Leaderboard
+  const leaderboard = scenarios.map(sc => {
+    const sigs = resolved.filter(s => sc.conditions.every(c => matchCond(s, c)));
+    const wins = sigs.filter(s => s.outcome==='confirmed').length;
+    const wr   = sigs.length ? Math.round(wins/sigs.length*100) : null;
+    const avgPips = wins ? Math.round(sigs.filter(s=>s.outcome==='confirmed').reduce((a,s)=>a+s.pipsMoved,0)/wins) : 0;
+    return { sc, total:sigs.length, wins, wr, avgPips };
+  }).filter(r => r.total > 0).sort((a,b) => (b.wr||0)-(a.wr||0));
+
+  // All scenario signals combined, newest first
+  const allSignals = scenarios.flatMap(sc =>
+    resolved.filter(s => sc.conditions.every(c => matchCond(s, c))).map(s => ({ ...s, scName:sc.name, scDir:sc.dir }))
+  ).sort((a,b) => new Date(b.time)-new Date(a.time)).slice(0,60);
+
+  const wrColor = wr => wr>=60?'#00d4aa':wr>=40?'#f59e0b':'#ef4444';
+
+  return (
+    <div>
+      {/* Record Status */}
+      <div style={{ background:'#06090f', border:'1px solid #0f1929', borderRadius:12, padding:'14px', marginBottom:12 }}>
+        <div style={{ fontSize:10, fontWeight:700, color:'#475569', letterSpacing:'0.08em', marginBottom:10 }}>RECORD STATUS</div>
+        <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr 1fr 1fr', gap:8 }}>
+          {[
+            { label:'Total Entries', value:sweepLog.length, color:'#e2e8f0' },
+            { label:'Resolved',      value:resolved.length, color:'#00d4aa' },
+            { label:'Newest',        value:newest?toET(newest).slice(0,9):'—', color:'#60a5fa' },
+            { label:'Oldest',        value:oldest?toET(oldest).slice(0,9):'—', color:'#475569' },
+          ].map(s=>(
+            <div key={s.label} style={{ textAlign:'center' }}>
+              <div style={{ fontSize:14, fontWeight:900, fontFamily:'monospace', color:s.color, lineHeight:1 }}>{s.value}</div>
+              <div style={{ fontSize:9, color:'#334155', marginTop:3 }}>{s.label}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Scenario Leaderboard */}
+      <div style={{ background:'#06090f', border:'1px solid #0f1929', borderRadius:12, overflow:'hidden', marginBottom:12 }}>
+        <div style={{ padding:'10px 14px', borderBottom:'1px solid #0f1929', fontSize:10, fontWeight:700,
+          color:'#475569', letterSpacing:'0.08em' }}>🏆 SCENARIO LEADERBOARD — ranked by win rate</div>
+        {leaderboard.length === 0 ? (
+          <div style={{ padding:'24px', textAlign:'center', fontSize:11, color:'#1e293b' }}>
+            Add scenarios in the Library tab to see rankings
+          </div>
+        ) : leaderboard.map((r,i)=>{
+          const dc = r.sc.dir==='long'?'#00d4aa':r.sc.dir==='short'?'#ef4444':'#8b5cf6';
+          return (
+            <div key={r.sc.id} style={{ display:'flex', alignItems:'center', gap:10, padding:'10px 14px',
+              background:i%2===0?'#06090f':'#070b12', borderBottom:'1px solid #0a0f1a' }}>
+              <span style={{ fontSize:14, fontWeight:900, color:'#1e293b', fontFamily:'monospace', minWidth:22 }}>#{i+1}</span>
+              <span style={{ fontSize:9, fontWeight:800, color:dc, background:`${dc}12`,
+                padding:'2px 6px', borderRadius:5, border:`1px solid ${dc}33`, flexShrink:0 }}>
+                {r.sc.dir==='long'?'▲':r.sc.dir==='short'?'▼':'↕'}
+              </span>
+              <span style={{ flex:1, fontSize:11, fontWeight:700, color:'#e2e8f0' }}>{r.sc.name}</span>
+              <span style={{ fontSize:9, color:'#475569' }}>{r.total} signals</span>
+              {r.avgPips>0 && <span style={{ fontSize:9, color:'#60a5fa' }}>avg {r.avgPips}p</span>}
+              <span style={{ fontSize:16, fontWeight:900, fontFamily:'monospace', color:wrColor(r.wr||0), minWidth:38, textAlign:'right' }}>
+                {r.wr}%
+              </span>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Signal History */}
+      <div style={{ background:'#06090f', border:'1px solid #0f1929', borderRadius:12, overflow:'hidden' }}>
+        <div style={{ padding:'10px 14px', borderBottom:'1px solid #0f1929', fontSize:10, fontWeight:700,
+          color:'#475569', letterSpacing:'0.08em' }}>📋 SIGNAL HISTORY — all scenarios</div>
+        {allSignals.length === 0 ? (
+          <div style={{ padding:'24px', textAlign:'center', fontSize:11, color:'#1e293b' }}>
+            No signals yet — add scenarios and load history
+          </div>
+        ) : allSignals.map((s,i)=>{
+          const sess = getSessionLabel(getETHour(s.time));
+          return (
+            <div key={`${s.id}_${s.scName}`} style={{ display:'flex', alignItems:'center', gap:8, padding:'8px 14px',
+              background:i%2===0?'#06090f':'#070b12', borderBottom:'1px solid #0a0f1a' }}>
+              <span style={{ fontSize:9, color:'#334155', fontFamily:'monospace', minWidth:72 }}>
+                {toET(s.time).slice(0,9)}
+              </span>
+              <span style={{ fontSize:9, fontWeight:700, color:'#8b5cf6', background:'#8b5cf612',
+                padding:'1px 6px', borderRadius:5, border:'1px solid #8b5cf633', maxWidth:90,
+                overflow:'hidden', textOverflow:'ellipsis', whiteSpace:'nowrap' }}>
+                {s.scName}
+              </span>
+              <span style={{ fontSize:10, fontWeight:700, color:'#e2e8f0' }}>{s.label}</span>
+              {sess && <span style={{ fontSize:8, color:sess.color }}>{sess.label}</span>}
+              <span style={{ fontSize:10, fontWeight:700, color:s.expectedDir==='bullish'?'#00d4aa':'#ef4444', marginLeft:'auto' }}>
+                {s.expectedDir==='bullish'?'↑':'↓'}
+              </span>
+              <span style={{ fontSize:9, fontWeight:700, color:s.outcome==='confirmed'?'#00d4aa':'#ef4444' }}>
+                {s.outcome==='confirmed'?'✓ WIN':'✗ FAIL'}
+              </span>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+// ── Live Signal ───────────────────────────────────────────────────────────────
+function LiveSignalTab({ sweepLog, phases, scenarios, scanTF, swingStrength, onPairClick }) {
+  const nowISO = new Date().toISOString();
+  const etH    = getETHour(nowISO);
+  const sess   = getSessionLabel(etH);
+
+  // Which scenarios match live phases right now
+  const liveHits = scenarios.flatMap(sc =>
+    PAIRS.filter(p => liveMatchesScenario(p.key, phases[p.key], sc.conditions, scanTF, swingStrength))
+      .map(p => ({ sc, pair:p, phase:phases[p.key] }))
+  );
+
+  // Recent historical signals across all scenarios (last 20)
+  const resolved = sweepLog.filter(s => s.outcome !== 'pending');
+  const recentSignals = scenarios.flatMap(sc =>
+    resolved.filter(s => sc.conditions.every(c => matchCond(s, c))).map(s => ({ ...s, scName:sc.name, scDir:sc.dir }))
+  ).sort((a,b) => new Date(b.time)-new Date(a.time)).slice(0,20);
+
+  return (
+    <div>
+      {/* Live gauge */}
+      <div style={{ background:'#06090f', border:`1px solid ${liveHits.length?'#ef444433':'#0f1929'}`,
+        borderRadius:12, padding:'14px', marginBottom:12 }}>
+        <div style={{ display:'flex', alignItems:'center', gap:8, marginBottom:8 }}>
+          <div style={{ fontSize:11, fontWeight:800, color:'#f1f5f9' }}>Live Signal</div>
+          <div style={{ fontSize:9, color:sess?sess.color:'#334155', background:sess?`${sess.color}12`:'transparent',
+            padding:'2px 7px', borderRadius:6, border:sess?`1px solid ${sess.color}33`:'none' }}>
+            {sess?`${sess.label} session`:`${String(etH).padStart(2,'0')}:xx ET`}
+          </div>
+        </div>
+
+        {liveHits.length === 0 ? (
+          <div style={{ fontSize:12, color:'#334155', textAlign:'center', padding:'16px 0' }}>
+            No scenarios firing right now
+          </div>
+        ) : liveHits.map(({ sc, pair, phase }, i) => {
+          const dc = phase.direction==='bullish'?'#00d4aa':'#ef4444';
+          return (
+            <div key={`${sc.id}_${pair.key}`}
+              onClick={()=>onPairClick(pair.key)}
+              style={{ display:'flex', alignItems:'center', gap:10, padding:'10px 12px', cursor:'pointer',
+                background:'#ef444408', border:'1px solid #ef444433', borderRadius:10, marginBottom:8,
+                animation:'alphaGlow 1s infinite' }}>
+              <div style={{ fontSize:22, fontWeight:900, color:dc }}>{phase.direction==='bullish'?'▲':'▼'}</div>
+              <div style={{ flex:1 }}>
+                <div style={{ fontSize:12, fontWeight:800, color:'#f1f5f9' }}>{pair.label}</div>
+                <div style={{ fontSize:10, color:'#8b5cf6', fontWeight:700 }}>{sc.name}</div>
+              </div>
+              <div style={{ fontSize:11, fontWeight:800, color:dc, background:`${dc}12`,
+                padding:'4px 10px', borderRadius:8, border:`1px solid ${dc}33` }}>
+                {phase.direction==='bullish'?'↑ LONG':'↓ SHORT'}
               </div>
             </div>
-            <button onClick={()=>setEditing('new')}
-              style={{ padding:'6px 14px', borderRadius:8, cursor:'pointer',
-                background:'#8b5cf618', border:'1px solid #8b5cf644',
-                color:'#8b5cf6', fontSize:10, fontWeight:700 }}>
-              + New Scenario
-            </button>
-          </div>
+          );
+        })}
+      </div>
 
-          {scenarios.length === 0 ? (
-            <div style={{ textAlign:'center', padding:'48px 20px', color:'#1e293b', fontSize:12,
-              background:'#06090f', borderRadius:12, border:'1px solid #0f1929' }}>
-              <div style={{ fontSize:28, marginBottom:8 }}>⚗</div>
-              No scenarios yet.<br/>
-              Example: <span style={{ color:'#8b5cf6' }}>Session=London + Swept=high + Direction=bearish</span><br/>
-              → see how often that exact setup worked historically
+      {/* Recent signal history */}
+      <div style={{ background:'#06090f', border:'1px solid #0f1929', borderRadius:12, overflow:'hidden' }}>
+        <div style={{ padding:'10px 14px', borderBottom:'1px solid #0f1929', fontSize:10, fontWeight:700,
+          color:'#475569', letterSpacing:'0.08em' }}>⏱ RECENT SIGNAL HISTORY</div>
+        {recentSignals.length === 0 ? (
+          <div style={{ padding:'24px', textAlign:'center', fontSize:11, color:'#1e293b' }}>
+            No recent signals — add scenarios and load history
+          </div>
+        ) : recentSignals.map((s,i)=>{
+          const sess2 = getSessionLabel(getETHour(s.time));
+          return (
+            <div key={`${s.id}_${i}`} style={{ display:'flex', alignItems:'center', gap:8, padding:'9px 14px',
+              background:i%2===0?'#06090f':'#070b12', borderBottom:'1px solid #0a0f1a' }}>
+              <span style={{ fontSize:9, color:'#334155', fontFamily:'monospace', minWidth:72 }}>
+                {toET(s.time).slice(0,9)}
+              </span>
+              <span style={{ fontSize:9, fontWeight:700, color:'#8b5cf6', background:'#8b5cf612',
+                padding:'1px 5px', borderRadius:4, maxWidth:80, overflow:'hidden', textOverflow:'ellipsis', whiteSpace:'nowrap' }}>
+                {s.scName}
+              </span>
+              <span style={{ fontSize:10, fontWeight:700, color:'#e2e8f0' }}>{s.label}</span>
+              {sess2 && <span style={{ fontSize:8, color:sess2.color }}>{sess2.label}</span>}
+              <span style={{ fontSize:10, fontWeight:700, marginLeft:'auto',
+                color:s.expectedDir==='bullish'?'#00d4aa':'#ef4444' }}>
+                {s.expectedDir==='bullish'?'↑':'↓'}
+              </span>
+              <span style={{ fontSize:9, fontWeight:700, color:s.outcome==='confirmed'?'#00d4aa':'#ef4444' }}>
+                {s.outcome==='confirmed'?'✓ WIN':'✗ FAIL'}
+              </span>
             </div>
-          ) : scenarios.map(sc => (
-            <ScenarioCard key={sc.id} sc={sc} sweepLog={sweepLog} phases={phases}
-              scanTF={scanTF} swingStrength={swingStrength}
-              onEdit={()=>setEditing(sc.id)}
-              onDelete={()=>setScenarios(prev=>prev.filter(s=>s.id!==sc.id))}
-              onPairClick={onPairClick}/>
-          ))}
-        </>
-      )}
+          );
+        })}
+      </div>
     </div>
   );
 }
@@ -1947,7 +2172,9 @@ export default function AlphaLab() {
     { id:'dna',       label:'Time DNA' },
     { id:'edge',      label:'Edge Breakdown' },
     { id:'discover',  label:'🔬 Discover' },
-    { id:'scenarios', label:`Scenarios (${scenarios.length})` },
+    { id:'library',   label:`📋 Library (${scenarios.length})` },
+    { id:'record',    label:'📊 Record Log' },
+    { id:'live',      label:'⚡ Live Signal' },
   ];
 
   return (
@@ -2205,14 +2432,14 @@ export default function AlphaLab() {
                 sweepLog={sweepLog}
                 onSaveScenario={sc => {
                   setScenarios(prev => [...prev, sc]);
-                  setTab('scenarios');
+                  setTab('library');
                 }}
               />
             )}
 
-            {/* ── Scenarios ────────────────────────────────────────────── */}
-            {tab==='scenarios' && (
-              <ScenarioBuilder
+            {/* ── Library ──────────────────────────────────────────────── */}
+            {tab==='library' && (
+              <ScenarioLibrary
                 sweepLog={sweepLog}
                 phases={phases}
                 scanTF={scanTF}
@@ -2220,6 +2447,26 @@ export default function AlphaLab() {
                 onPairClick={setSelectedPair}
                 scenarios={scenarios}
                 setScenarios={setScenarios}
+              />
+            )}
+
+            {/* ── Record Log ───────────────────────────────────────────── */}
+            {tab==='record' && (
+              <RecordLog
+                sweepLog={sweepLog}
+                scenarios={scenarios}
+              />
+            )}
+
+            {/* ── Live Signal ──────────────────────────────────────────── */}
+            {tab==='live' && (
+              <LiveSignalTab
+                sweepLog={sweepLog}
+                phases={phases}
+                scenarios={scenarios}
+                scanTF={scanTF}
+                swingStrength={swingStrength}
+                onPairClick={setSelectedPair}
               />
             )}
           </>
