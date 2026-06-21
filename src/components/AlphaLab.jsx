@@ -1268,7 +1268,18 @@ function minePatterns(sweepLog, minSignals, minWR) {
     const avgPips = wins
       ? Math.round(matched.filter(m => m.s.outcome === 'confirmed').reduce((a, m) => a + m.s.pipsMoved, 0) / wins)
       : 0;
-    return { conditions, total: matched.length, wins, wr, avgPips };
+
+    // Split by direction so trader knows whether to go long or short
+    const bull = matched.filter(m => m.s.expectedDir === 'bullish');
+    const bear = matched.filter(m => m.s.expectedDir === 'bearish');
+    const bullWins = bull.filter(m => m.s.outcome === 'confirmed').length;
+    const bearWins = bear.filter(m => m.s.outcome === 'confirmed').length;
+    const bullWR = bull.length >= 3 ? Math.round(bullWins / bull.length * 100) : null;
+    const bearWR = bear.length >= 3 ? Math.round(bearWins / bear.length * 100) : null;
+
+    return { conditions, total: matched.length, wins, wr, avgPips,
+      bull: { count: bull.length, wins: bullWins, wr: bullWR },
+      bear: { count: bear.length, wins: bearWins, wr: bearWR } };
   };
 
   // Single conditions
@@ -1412,12 +1423,34 @@ function PatternMiner({ sweepLog, onSaveScenario }) {
                   </div>
                 </div>
 
-                {/* Win rate */}
+                {/* Direction split */}
+                <div style={{ display:'flex', flexDirection:'column', gap:4, flexShrink:0 }}>
+                  {p.bull.wr !== null && (
+                    <div style={{ display:'flex', alignItems:'center', gap:5 }}>
+                      <span style={{ fontSize:9, fontWeight:800, color:'#00d4aa', background:'#00d4aa12',
+                        padding:'2px 7px', borderRadius:6, border:'1px solid #00d4aa33', minWidth:38, textAlign:'center' }}>
+                        ↑ {p.bull.wr}%
+                      </span>
+                      <span style={{ fontSize:9, color:'#334155' }}>{p.bull.count} long</span>
+                    </div>
+                  )}
+                  {p.bear.wr !== null && (
+                    <div style={{ display:'flex', alignItems:'center', gap:5 }}>
+                      <span style={{ fontSize:9, fontWeight:800, color:'#ef4444', background:'#ef444412',
+                        padding:'2px 7px', borderRadius:6, border:'1px solid #ef444433', minWidth:38, textAlign:'center' }}>
+                        ↓ {p.bear.wr}%
+                      </span>
+                      <span style={{ fontSize:9, color:'#334155' }}>{p.bear.count} short</span>
+                    </div>
+                  )}
+                </div>
+
+                {/* Overall win rate */}
                 <div style={{ textAlign:'right', flexShrink:0 }}>
                   <div style={{ fontSize:22, fontWeight:900, fontFamily:'monospace', color:wrColor, lineHeight:1 }}>
                     {p.wr}%
                   </div>
-                  <div style={{ fontSize:9, color:'#334155', marginTop:2 }}>win rate</div>
+                  <div style={{ fontSize:9, color:'#334155', marginTop:2 }}>overall</div>
                 </div>
 
                 {/* Save button */}
