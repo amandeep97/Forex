@@ -60,6 +60,28 @@ async function fetchCandles(pair, gran, count) {
   } catch { return null; }
 }
 
+async function fetchCandlesAt(pair, isoTime, before=14, after=8) {
+  const creds = getCreds();
+  if (!creds?.apiKey) return null;
+  const base = creds.practice
+    ? 'https://api-fxpractice.oanda.com/v3'
+    : 'https://api-fxtrade.oanda.com/v3';
+  const from = new Date(new Date(isoTime).getTime() - before * 3600000).toISOString();
+  const count = before + after + 2;
+  try {
+    const r = await fetch(
+      `${base}/instruments/${pair}/candles?granularity=H1&from=${encodeURIComponent(from)}&count=${count}&price=M`,
+      { headers:{ Authorization:`Bearer ${creds.apiKey}` }, signal:AbortSignal.timeout(10000) }
+    );
+    if (!r.ok) return null;
+    const d = await r.json();
+    return (d.candles||[]).map(c=>({
+      o:+c.mid.o, h:+c.mid.h, l:+c.mid.l, c:+c.mid.c,
+      t:new Date(c.time).getTime(),
+    }));
+  } catch { return null; }
+}
+
 // ── Algorithms ────────────────────────────────────────────────────────────────
 function avgBody(candles) {
   return candles.reduce((s,c)=>s+Math.abs(c.c-c.o),0)/(candles.length||1);
@@ -296,6 +318,154 @@ function WinRateByHourChart({ byHour }) {
   );
 }
 
+// ── MiniSweepChart ────────────────────────────────────────────────────────────
+function MiniSweepChart({ sweep, pairKey }) {
+  const [candles, setCandles] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setLoading(true);
+    setCandles(null);
+    fetchCandlesAt(pairKey, sweep.time, 14, 8).then(c => {
+      setCandles(c);
+      setLoading(false);
+    });
+  }, [pairKey, sweep.time]);
+
+  if (loading) return (
+    <div style={{ padding:'14px 0', textAlign:'center', fontSize:10, color:'#334155', animation:'alphaGlow 1s infinite' }}>
+      Loading chart data…
+    </div>
+  );
+  if (!candles || candles.length < 4) return (
+    <div style={{ padding:'14px 0', textAlign:'center', fontSize:10, color:'#1e293b' }}>
+      No chart data available for this period
+    </div>
+  );
+
+  const sweepTs = new Date(sweep.time).getTime();
+  let sweepIdx = 0;
+  let minDiff = Infinity;
+  candles.forEach((c, i) => {
+    const d = Math.abs(c.t - sweepTs);
+    if (d < minDiff) { minDiff = d; sweepIdx = i; }
+  });
+
+  const W = 340, H = 130;
+  const padL = 4, padR = 4, padT = 14, padB = 20;
+  const usableW = W - padL - padR;
+  const usableH = H - padT - padB;
+  const cw = usableW / candles.length;
+
+  const allH = candles.map(c => c.h);
+  const allL = candles.map(c => c.l);
+  const pMax = Math.max(...allH, sweep.level) * 1.0002;
+  const pMin = Math.min(...allL, sweep.level) * 0.9998;
+  const pRange = pMax - pMin || 1;
+
+  const py = p => padT + (pMax - p) / pRange * usableH;
+  const px = i => padL + i * cw + cw * 0.5;
+
+  const sweepColor  = sweep.swept === 'high' ? '#ef4444' : '#00d4aa';
+  const expectColor = sweep.expectedDir === 'bullish' ? '#00d4aa' : '#ef4444';
+  const levelY = py(sweep.level);
+
+  return (
+    <div style={{ background:'#030508', borderRadius:8, padding:'6px 2px 4px', marginTop:6, border:'1px solid #0a0f1a', overflow:'hidden' }}>
+      <svg width="100%" viewBox={`0 0 ${W} ${H}`} style={{ display:'block' }}>
+        {/* Sweep level dashed line */}
+        <line x1={padL} y1={levelY} x2={W-padR} y2={levelY}
+          stroke={sweepColor} strokeWidth="0.7" strokeDasharray="4,3" opacity="0.7"/>
+        <text x={W-padR-2} y={levelY-3} fontSize="7" fill={sweepColor} textAnchor="end" opacity="0.8">
+          {sweep.swept==='high'?'SWING HIGH':'SWING LOW'}
+        </text>
+
+        {/* Vertical marker at sweep candle */}
+        <line x1={px(sweepIdx)} y1={padT} x2={px(sweepIdx)} y2={H-padB}
+          stroke={sweepColor} strokeWidth="0.5" strokeDasharray="2,2" opacity="0.35"/>
+
+        {/* Candles */}
+        {candles.map((c, i) => {
+          const isSweep  = i === sweepIdx;
+          const isAfter  = i > sweepIdx;
+          const bullish  = c.c >= c.o;
+          const baseCol  = bullish ? '#22c55e' : '#ef4444';
+          const col = isSweep ? sweepColor : baseCol;
+          const opacity  = isSweep ? 1 : isAfter ? 0.75 : 0.45;
+          const bodyTop  = py(Math.max(c.o, c.c));
+          const bodyBot  = py(Math.min(c.o, c.c));
+          const bodyH    = Math.max(1, bodyBot - bodyTop);
+          const wickX    = px(i);
+          const bodyX    = px(i) - cw * 0.36;
+          const bW       = cw * 0.72;
+          return (
+            <g key={i} opacity={opacity}>
+              <line x1={wickX} y1={py(c.h)} x2={wickX} y2={py(c.l)}
+                stroke={col} strokeWidth={isSweep ? 1.5 : 0.9}/>
+              <rect x={bodyX} y={bodyTop} width={bW} height={bodyH} fill={col}/>
+              {isSweep && (
+                <rect x={bodyX-1.5} y={bodyTop-1.5} width={bW+3} height={bodyH+3}
+                  fill="none" stroke={sweepColor} strokeWidth="1" opacity="0.6"/>
+              )}
+            </g>
+          );
+        })}
+
+        {/* Expected direction arrow */}
+        {sweepIdx < candles.length - 1 && (
+          <g opacity="0.8">
+            <line
+              x1={px(sweepIdx) + cw * 0.5}
+              y1={levelY}
+              x2={px(sweepIdx) + cw * 0.5}
+              y2={sweep.expectedDir==='bullish' ? levelY - 22 : levelY + 22}
+              stroke={expectColor} strokeWidth="1.5"/>
+            <polygon
+              points={sweep.expectedDir==='bullish'
+                ? `${px(sweepIdx)+cw*0.5-4},${levelY-18} ${px(sweepIdx)+cw*0.5+4},${levelY-18} ${px(sweepIdx)+cw*0.5},${levelY-26}`
+                : `${px(sweepIdx)+cw*0.5-4},${levelY+18} ${px(sweepIdx)+cw*0.5+4},${levelY+18} ${px(sweepIdx)+cw*0.5},${levelY+26}`}
+              fill={expectColor}/>
+          </g>
+        )}
+
+        {/* ⚡ label under sweep candle */}
+        <text x={px(sweepIdx)} y={H-padB+13} fontSize="8" fill={sweepColor} textAnchor="middle" fontWeight="700">
+          ⚡SWEEP
+        </text>
+
+        {/* ET time at first and last candle */}
+        {[0, candles.length-1].map(i => (
+          <text key={i} x={px(i)} y={H-padB+13} fontSize="7" fill="#1e293b" textAnchor="middle">
+            {toET(new Date(candles[i].t).toISOString()).slice(-5)}
+          </text>
+        ))}
+
+        {/* Outcome indicator after sweep */}
+        {sweep.outcome !== 'pending' && sweepIdx < candles.length - 1 && (
+          <text x={px(Math.min(sweepIdx+4, candles.length-1))} y={padT+10} fontSize="8" fontWeight="700"
+            fill={sweep.outcome==='confirmed'?'#00d4aa':'#ef4444'} textAnchor="middle">
+            {sweep.outcome==='confirmed'?'✓ WIN':'✗ FAIL'}
+          </text>
+        )}
+      </svg>
+
+      <div style={{ display:'flex', gap:10, padding:'2px 8px 4px', flexWrap:'wrap' }}>
+        {[
+          { col:sweepColor, label:`Sweep level (${sweep.swept==='high'?'swing H':'swing L'})`, dash:true },
+          { col:sweepColor, label:'Sweep candle' },
+          { col:expectColor, label:`Expected: ${sweep.expectedDir==='bullish'?'▲ UP':'▼ DOWN'}` },
+        ].map(({ col, label, dash }) => (
+          <div key={label} style={{ display:'flex', alignItems:'center', gap:3 }}>
+            <div style={{ width:10, height: dash?1:6, background:col, borderRadius:1, opacity:0.8,
+              borderTop:dash?`1px dashed ${col}`:'none', background:dash?'transparent':col }}/>
+            <span style={{ fontSize:8, color:'#334155' }}>{label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 // ── PairDetailModal ───────────────────────────────────────────────────────────
 function PairDetailModal({ pairKey, sweepLog, phases, onClose }) {
   const pair = PAIRS.find(p => p.key === pairKey);
@@ -331,6 +501,8 @@ function PairDetailModal({ pairKey, sweepLog, phases, onClose }) {
   const nowHrData = byHour[nowETHour];
   const nowHrWR   = nowHrData && nowHrData.total >= 2
     ? Math.round(nowHrData.confirmed/nowHrData.total*100) : null;
+
+  const [chartOpenId, setChartOpenId] = useState(null);
 
   return (
     <div
@@ -421,10 +593,9 @@ function PairDetailModal({ pairKey, sweepLog, phases, onClose }) {
           const hrWR = hrD && hrD.total >= 2 ? Math.round(hrD.confirmed/hrD.total*100) : null;
           const sess = getSessionLabel(etH);
           return (
-            <div key={s.id} style={{
+            <div key={s.id} style={{ borderBottom:'1px solid #0a0f1a', background: i%2===0 ? '#060910' : '#070b12' }}>
+            <div style={{
               display:'flex', alignItems:'center', gap:10, padding:'10px 14px',
-              background: i%2===0 ? '#060910' : '#070b12',
-              borderBottom:'1px solid #0a0f1a',
             }}>
               <div style={{
                 width:22, height:22, borderRadius:5, flexShrink:0,
@@ -459,15 +630,34 @@ function PairDetailModal({ pairKey, sweepLog, phases, onClose }) {
                   {s.historical && <span style={{ color:'#1e293b' }}> · historical</span>}
                 </div>
               </div>
-              <span style={{
-                fontSize:9, fontWeight:700, flexShrink:0,
-                color: s.outcome==='confirmed'?'#00d4aa':s.outcome==='failed'?'#ef4444':'#f59e0b',
-                background: s.outcome==='confirmed'?'#00d4aa12':s.outcome==='failed'?'#ef444412':'#f59e0b12',
-                padding:'2px 8px', borderRadius:8,
-                border:`1px solid ${s.outcome==='confirmed'?'#00d4aa33':s.outcome==='failed'?'#ef444433':'#f59e0b33'}`,
-              }}>
-                {s.outcome==='confirmed'?'✓ WIN':s.outcome==='failed'?'✗ FAIL':'⏳'}
-              </span>
+              <div style={{ display:'flex', flexDirection:'column', alignItems:'flex-end', gap:4, flexShrink:0 }}>
+                <span style={{
+                  fontSize:9, fontWeight:700,
+                  color: s.outcome==='confirmed'?'#00d4aa':s.outcome==='failed'?'#ef4444':'#f59e0b',
+                  background: s.outcome==='confirmed'?'#00d4aa12':s.outcome==='failed'?'#ef444412':'#f59e0b12',
+                  padding:'2px 8px', borderRadius:8,
+                  border:`1px solid ${s.outcome==='confirmed'?'#00d4aa33':s.outcome==='failed'?'#ef444433':'#f59e0b33'}`,
+                }}>
+                  {s.outcome==='confirmed'?'✓ WIN':s.outcome==='failed'?'✗ FAIL':'⏳'}
+                </span>
+                <button
+                  onClick={() => setChartOpenId(chartOpenId===s.id ? null : s.id)}
+                  style={{
+                    fontSize:9, fontWeight:700, padding:'2px 7px', borderRadius:6, cursor:'pointer',
+                    background: chartOpenId===s.id ? '#1e293b' : 'transparent',
+                    border:'1px solid #1e293b',
+                    color: chartOpenId===s.id ? '#00d4aa' : '#475569',
+                    transition:'all 0.15s',
+                  }}>
+                  {chartOpenId===s.id ? '▲ Chart' : '📈 Chart'}
+                </button>
+              </div>
+            </div>
+            {chartOpenId === s.id && (
+              <div style={{ padding:'0 14px 10px' }}>
+                <MiniSweepChart sweep={s} pairKey={pairKey}/>
+              </div>
+            )}
             </div>
           );
         })}
