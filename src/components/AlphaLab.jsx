@@ -1200,6 +1200,230 @@ function StatsBar({ log, phases }) {
   );
 }
 
+// ── Pattern Miner ─────────────────────────────────────────────────────────────
+// All discrete condition values to test (skip hour_from/hour_to — too many combinations)
+const MINE_CONDITIONS = [
+  { type:'session',   value:'Asian'   },
+  { type:'session',   value:'London'  },
+  { type:'session',   value:'Overlap' },
+  { type:'session',   value:'NY'      },
+  { type:'swept',     value:'high'    },
+  { type:'swept',     value:'low'     },
+  { type:'direction', value:'bullish' },
+  { type:'direction', value:'bearish' },
+  { type:'tf',        value:'M15'     },
+  { type:'tf',        value:'M30'     },
+  { type:'tf',        value:'H1'      },
+  { type:'tf',        value:'H4'      },
+  { type:'group',     value:'Forex'   },
+  { type:'group',     value:'Metals'  },
+  { type:'group',     value:'Indices' },
+  { type:'strength',  value:'3'       },
+  { type:'strength',  value:'4'       },
+  { type:'strength',  value:'5'       },
+  ...PAIRS.map(p => ({ type:'pair', value:p.label })),
+];
+
+// Conflict: two conditions of same type with different values = impossible to satisfy
+function condsConflict(a, b) {
+  const singleTypes = ['session','swept','direction','tf','group','pair'];
+  return singleTypes.includes(a.type) && a.type === b.type && a.value !== b.value;
+}
+
+function minePatterns(sweepLog, minSignals, minWR) {
+  const resolved = sweepLog.filter(s => s.outcome !== 'pending');
+  if (resolved.length < minSignals) return [];
+
+  const results = [];
+
+  const scoreCombo = (conditions) => {
+    const matched = resolved.filter(s => conditions.every(c => matchCond(s, c)));
+    if (matched.length < minSignals) return null;
+    const wins = matched.filter(s => s.outcome === 'confirmed').length;
+    const wr   = Math.round(wins / matched.length * 100);
+    if (wr < minWR) return null;
+    const avgPips = wins ? Math.round(matched.filter(s=>s.outcome==='confirmed').reduce((a,s)=>a+s.pipsMoved,0)/wins) : 0;
+    return { conditions, total:matched.length, wins, wr, avgPips };
+  };
+
+  // Single conditions
+  for (const c of MINE_CONDITIONS) {
+    const r = scoreCombo([c]);
+    if (r) results.push(r);
+  }
+
+  // Pairs of conditions (no conflicts, no duplicate types for most)
+  for (let i = 0; i < MINE_CONDITIONS.length; i++) {
+    for (let j = i + 1; j < MINE_CONDITIONS.length; j++) {
+      const a = MINE_CONDITIONS[i], b = MINE_CONDITIONS[j];
+      if (condsConflict(a, b)) continue;
+      const r = scoreCombo([a, b]);
+      if (r) results.push(r);
+    }
+  }
+
+  // Sort by win rate desc, break ties by total signals
+  results.sort((a, b) => b.wr - a.wr || b.total - a.total);
+
+  // Dedupe: remove results fully contained in a higher-ranked result
+  const top = [];
+  for (const r of results) {
+    if (top.length >= 40) break;
+    top.push(r);
+  }
+  return top;
+}
+
+function condLabel(c) {
+  return `${c.type === 'session' ? 'Session' : c.type === 'swept' ? 'Swept' : c.type === 'direction' ? 'Dir'
+    : c.type === 'tf' ? 'TF' : c.type === 'group' ? 'Group' : c.type === 'pair' ? 'Pair'
+    : c.type === 'strength' ? 'Str≥' : c.type}: ${c.value}`;
+}
+
+function PatternMiner({ sweepLog, onSaveScenario }) {
+  const [minSignals, setMinSignals] = useState(10);
+  const [minWR,      setMinWR]      = useState(60);
+  const [patterns,   setPatterns]   = useState(null);
+  const [running,    setRunning]    = useState(false);
+
+  const run = useCallback(() => {
+    setRunning(true);
+    setPatterns(null);
+    setTimeout(() => {
+      const found = minePatterns(sweepLog, minSignals, minWR);
+      setPatterns(found);
+      setRunning(false);
+    }, 30);
+  }, [sweepLog, minSignals, minWR]);
+
+  const resolved = sweepLog.filter(s => s.outcome !== 'pending').length;
+
+  return (
+    <div>
+      {/* Controls */}
+      <div style={{ background:'#06090f', border:'1px solid #0f1929', borderRadius:12, padding:'14px', marginBottom:12 }}>
+        <div style={{ fontSize:12, fontWeight:800, color:'#f1f5f9', marginBottom:4 }}>Pattern Discovery</div>
+        <div style={{ fontSize:10, color:'#334155', marginBottom:12 }}>
+          Scans every condition combination across {resolved} resolved sweeps — surfaces what actually works
+        </div>
+        <div style={{ display:'flex', gap:10, alignItems:'center', flexWrap:'wrap', marginBottom:12 }}>
+          <div style={{ display:'flex', flexDirection:'column', gap:4 }}>
+            <span style={{ fontSize:9, color:'#475569', fontWeight:700 }}>MIN SIGNALS</span>
+            <div style={{ display:'flex', gap:4 }}>
+              {[5,10,15,20].map(n => (
+                <button key={n} onClick={()=>setMinSignals(n)} style={{
+                  padding:'4px 10px', borderRadius:8, cursor:'pointer', fontSize:10, fontWeight:700,
+                  background:minSignals===n?'#8b5cf618':'transparent',
+                  border:`1px solid ${minSignals===n?'#8b5cf644':'#0f1929'}`,
+                  color:minSignals===n?'#8b5cf6':'#334155',
+                }}>{n}+</button>
+              ))}
+            </div>
+          </div>
+          <div style={{ display:'flex', flexDirection:'column', gap:4 }}>
+            <span style={{ fontSize:9, color:'#475569', fontWeight:700 }}>MIN WIN RATE</span>
+            <div style={{ display:'flex', gap:4 }}>
+              {[55,60,65,70].map(n => (
+                <button key={n} onClick={()=>setMinWR(n)} style={{
+                  padding:'4px 10px', borderRadius:8, cursor:'pointer', fontSize:10, fontWeight:700,
+                  background:minWR===n?'#00d4aa18':'transparent',
+                  border:`1px solid ${minWR===n?'#00d4aa44':'#0f1929'}`,
+                  color:minWR===n?'#00d4aa':'#334155',
+                }}>{n}%+</button>
+              ))}
+            </div>
+          </div>
+          <button onClick={run} disabled={running || resolved < 5} style={{
+            marginTop:16, padding:'7px 20px', borderRadius:8, cursor:running?'not-allowed':'pointer',
+            background:running?'transparent':'#8b5cf618', border:`1px solid ${running?'#1e293b':'#8b5cf644'}`,
+            color:running?'#334155':'#8b5cf6', fontSize:11, fontWeight:800,
+          }}>
+            {running ? '⏳ Scanning…' : '⚡ Find Patterns'}
+          </button>
+        </div>
+        {resolved < 10 && (
+          <div style={{ fontSize:10, color:'#f59e0b' }}>
+            Load history first — need at least 10 resolved sweeps to mine patterns
+          </div>
+        )}
+      </div>
+
+      {/* Results */}
+      {patterns !== null && (
+        <>
+          <div style={{ fontSize:10, color:'#334155', marginBottom:8, fontWeight:700, letterSpacing:'0.06em' }}>
+            {patterns.length === 0
+              ? `NO PATTERNS FOUND — try lowering min signals or win rate`
+              : `${patterns.length} PATTERNS DISCOVERED — ranked by win rate`}
+          </div>
+
+          {patterns.map((p, rank) => {
+            const wrColor = p.wr >= 70 ? '#00d4aa' : p.wr >= 60 ? '#f59e0b' : '#ef4444';
+            return (
+              <div key={rank} style={{ background:'#06090f', border:`1px solid ${p.wr>=70?'#00d4aa22':p.wr>=60?'#f59e0b22':'#0f1929'}`,
+                borderRadius:10, padding:'12px 14px', marginBottom:8,
+                display:'flex', alignItems:'center', gap:12 }}>
+
+                {/* Rank */}
+                <div style={{ fontSize:16, fontWeight:900, color:'#1e293b', fontFamily:'monospace',
+                  minWidth:24, textAlign:'center', flexShrink:0 }}>
+                  #{rank+1}
+                </div>
+
+                {/* Conditions */}
+                <div style={{ flex:1, minWidth:0 }}>
+                  <div style={{ display:'flex', gap:5, flexWrap:'wrap', marginBottom:5 }}>
+                    {p.conditions.map((c, i) => (
+                      <span key={i} style={{ fontSize:9, fontWeight:700, color:'#8b5cf6',
+                        background:'#8b5cf618', padding:'2px 7px', borderRadius:8, border:'1px solid #8b5cf633' }}>
+                        {condLabel(c)}
+                      </span>
+                    ))}
+                  </div>
+                  <div style={{ display:'flex', gap:8, fontSize:10 }}>
+                    <span style={{ color:'#475569' }}>{p.total} signals</span>
+                    <span style={{ color:'#00d4aa' }}>{p.wins} wins</span>
+                    {p.avgPips > 0 && <span style={{ color:'#60a5fa' }}>avg {p.avgPips}p</span>}
+                  </div>
+                </div>
+
+                {/* Win rate */}
+                <div style={{ textAlign:'right', flexShrink:0 }}>
+                  <div style={{ fontSize:22, fontWeight:900, fontFamily:'monospace', color:wrColor, lineHeight:1 }}>
+                    {p.wr}%
+                  </div>
+                  <div style={{ fontSize:9, color:'#334155', marginTop:2 }}>win rate</div>
+                </div>
+
+                {/* Save button */}
+                <button
+                  onClick={() => onSaveScenario({
+                    id: Date.now().toString() + rank,
+                    name: p.conditions.map(c=>c.value).join(' + '),
+                    conditions: p.conditions,
+                  })}
+                  style={{ fontSize:9, fontWeight:700, padding:'4px 8px', borderRadius:6, cursor:'pointer',
+                    background:'#00d4aa12', border:'1px solid #00d4aa33', color:'#00d4aa',
+                    flexShrink:0, whiteSpace:'nowrap' }}>
+                  + Save
+                </button>
+              </div>
+            );
+          })}
+        </>
+      )}
+
+      {patterns === null && !running && (
+        <div style={{ textAlign:'center', padding:'40px 20px', color:'#1e293b', fontSize:12,
+          background:'#06090f', borderRadius:12, border:'1px solid #0f1929' }}>
+          <div style={{ fontSize:28, marginBottom:8 }}>🔬</div>
+          Press "Find Patterns" to scan all condition combinations
+        </div>
+      )}
+    </div>
+  );
+}
+
 // ── Scenario Builder ─────────────────────────────────────────────────────────
 const COND_TYPES = [
   { id:'session',   label:'Session',    options:['Asian','London','Overlap','NY'],                         desc:'Trading session (ET time)' },
@@ -1446,15 +1670,8 @@ function ScenarioEditor({ initial, onSave, onCancel }) {
   );
 }
 
-function ScenarioBuilder({ sweepLog, phases, scanTF, swingStrength, onPairClick }) {
-  const [scenarios, setScenarios] = useState(() => {
-    try { return JSON.parse(localStorage.getItem('alpha_scenarios') || '[]'); } catch { return []; }
-  });
+function ScenarioBuilder({ sweepLog, phases, scanTF, swingStrength, onPairClick, scenarios, setScenarios }) {
   const [editing, setEditing] = useState(null);
-
-  useEffect(() => {
-    try { localStorage.setItem('alpha_scenarios', JSON.stringify(scenarios)); } catch {}
-  }, [scenarios]);
 
   const saveScenario = sc => {
     setScenarios(prev => {
@@ -1526,6 +1743,9 @@ export default function AlphaLab() {
   const [scanTF,           setScanTF]           = useState('H1');
   const [swingStrength,    setSwingStrength]    = useState(3);
   const [minWickPct,       setMinWickPct]       = useState(0);
+  const [scenarios,        setScenarios]        = useState(() => {
+    try { return JSON.parse(localStorage.getItem('alpha_scenarios') || '[]'); } catch { return []; }
+  });
 
   const prevManipCount = useRef(0);
   const hasOanda = !!getCreds()?.apiKey;
@@ -1535,6 +1755,10 @@ export default function AlphaLab() {
     if (store.sweepLog) setSweepLog(store.sweepLog);
     if (store.heatmap)  setHeatmap(store.heatmap);
   }, []);
+
+  useEffect(() => {
+    try { localStorage.setItem('alpha_scenarios', JSON.stringify(scenarios)); } catch {}
+  }, [scenarios]);
 
   const scan = useCallback(async () => {
     if (!hasOanda || scanning) return;
@@ -1664,7 +1888,8 @@ export default function AlphaLab() {
     { id:'feed',      label:`Sweep Feed (${filteredFeed.length})` },
     { id:'dna',       label:'Time DNA' },
     { id:'edge',      label:'Edge Breakdown' },
-    { id:'scenarios', label:'Scenarios' },
+    { id:'discover',  label:'🔬 Discover' },
+    { id:'scenarios', label:`Scenarios (${scenarios.length})` },
   ];
 
   return (
@@ -1916,6 +2141,17 @@ export default function AlphaLab() {
               <EdgeBreakdown sweepLog={tfLog} onPairClick={setSelectedPair}/>
             )}
 
+            {/* ── Discover ─────────────────────────────────────────────── */}
+            {tab==='discover' && (
+              <PatternMiner
+                sweepLog={sweepLog}
+                onSaveScenario={sc => {
+                  setScenarios(prev => [...prev, sc]);
+                  setTab('scenarios');
+                }}
+              />
+            )}
+
             {/* ── Scenarios ────────────────────────────────────────────── */}
             {tab==='scenarios' && (
               <ScenarioBuilder
@@ -1924,6 +2160,8 @@ export default function AlphaLab() {
                 scanTF={scanTF}
                 swingStrength={swingStrength}
                 onPairClick={setSelectedPair}
+                scenarios={scenarios}
+                setScenarios={setScenarios}
               />
             )}
           </>
