@@ -1234,16 +1234,41 @@ function minePatterns(sweepLog, minSignals, minWR) {
   const resolved = sweepLog.filter(s => s.outcome !== 'pending');
   if (resolved.length < minSignals) return [];
 
+  // Pre-compute per-sweep metadata ONCE — avoids 1M+ toLocaleString timezone calls
+  const meta = resolved.map(s => {
+    const etH  = getETHour(s.time);
+    const sess = getSessionLabel(etH);
+    const pair = PAIRS.find(p => p.key === s.pair);
+    return { s, etH, sess, pair };
+  });
+
+  const fastMatch = (m, cond) => {
+    switch (cond.type) {
+      case 'session':   return m.sess?.label === cond.value;
+      case 'swept':     return m.s.swept === cond.value;
+      case 'direction': return m.s.expectedDir === cond.value;
+      case 'tf':        return (m.s.tf || 'H1') === cond.value;
+      case 'group':     return m.pair?.group === cond.value;
+      case 'pair':      return m.pair?.label === cond.value;
+      case 'hour_from': return m.etH >= +cond.value;
+      case 'hour_to':   return m.etH <= +cond.value;
+      case 'strength':  return (m.s.strength || 3) >= +cond.value;
+      default:          return true;
+    }
+  };
+
   const results = [];
 
   const scoreCombo = (conditions) => {
-    const matched = resolved.filter(s => conditions.every(c => matchCond(s, c)));
+    const matched = meta.filter(m => conditions.every(c => fastMatch(m, c)));
     if (matched.length < minSignals) return null;
-    const wins = matched.filter(s => s.outcome === 'confirmed').length;
+    const wins = matched.filter(m => m.s.outcome === 'confirmed').length;
     const wr   = Math.round(wins / matched.length * 100);
     if (wr < minWR) return null;
-    const avgPips = wins ? Math.round(matched.filter(s=>s.outcome==='confirmed').reduce((a,s)=>a+s.pipsMoved,0)/wins) : 0;
-    return { conditions, total:matched.length, wins, wr, avgPips };
+    const avgPips = wins
+      ? Math.round(matched.filter(m => m.s.outcome === 'confirmed').reduce((a, m) => a + m.s.pipsMoved, 0) / wins)
+      : 0;
+    return { conditions, total: matched.length, wins, wr, avgPips };
   };
 
   // Single conditions
