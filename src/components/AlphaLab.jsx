@@ -29,6 +29,14 @@ const PHASES = {
   neutral:      { color:'#334155', glow:'transparent', label:'NEUTRAL',     icon:'·', desc:'No clear phase'          },
 };
 
+// Timeframe config
+const TF_CONFIG = {
+  M15: { label:'15m', gran:'M15', liveCount:200, backfillCount:2016, futureCandles:12 },
+  M30: { label:'30m', gran:'M30', liveCount:120, backfillCount:1440, futureCandles:8  },
+  H1:  { label:'1H',  gran:'H1',  liveCount:100, backfillCount:720,  futureCandles:6  },
+  H4:  { label:'4H',  gran:'H4',  liveCount:80,  backfillCount:180,  futureCandles:5  },
+};
+
 // ── OANDA ─────────────────────────────────────────────────────────────────────
 function getCreds() {
   try {
@@ -99,35 +107,84 @@ function computeATR(candles, p=14) {
   return s/p;
 }
 
-function detectPhase(candles) {
-  if (!candles||candles.length<25) return { phase:'neutral' };
+// Real swing highs: pivot candle whose high is STRICTLY higher than `strength` candles on each side
+function findSwingHighs(candles, strength) {
+  const out = [];
+  for (let i = strength; i < candles.length - strength; i++) {
+    const h = candles[i].h;
+    let ok = true;
+    for (let j = 1; j <= strength; j++) {
+      if (candles[i-j].h >= h || candles[i+j].h >= h) { ok = false; break; }
+    }
+    if (ok) out.push({ price:h, idx:i, time:candles[i].t });
+  }
+  return out;
+}
+
+// Real swing lows: pivot candle whose low is STRICTLY lower than `strength` candles on each side
+function findSwingLows(candles, strength) {
+  const out = [];
+  for (let i = strength; i < candles.length - strength; i++) {
+    const l = candles[i].l;
+    let ok = true;
+    for (let j = 1; j <= strength; j++) {
+      if (candles[i-j].l <= l || candles[i+j].l <= l) { ok = false; break; }
+    }
+    if (ok) out.push({ price:l, idx:i, time:candles[i].t });
+  }
+  return out;
+}
+
+function detectPhase(candles, strength=3) {
+  const minLen = strength * 2 + 6;
+  if (!candles || candles.length < minLen) return { phase:'neutral' };
   const n    = candles.length;
   const last = candles[n-1];
-  const ref20 = candles.slice(-21,-1);
-  const ab   = avgBody(ref20);
-  const ar   = avgRange(ref20);
-  const swH  = Math.max(...ref20.map(c=>c.h));
-  const swL  = Math.min(...ref20.map(c=>c.l));
 
-  const sweptHigh = last.h>swH && last.c<swH;
-  const sweptLow  = last.l<swL && last.c>swL;
-  if (sweptHigh||sweptLow) return {
-    phase:'manipulation',
-    swept:sweptHigh?'high':'low',
-    level:sweptHigh?swH:swL,
-    direction:sweptHigh?'bearish':'bullish',
-    excess:sweptHigh ? Math.round((last.h-swH)/ar*100) : Math.round((swL-last.l)/ar*100),
-  };
+  // Confirmed swings from all candles except the current one
+  const history    = candles.slice(0, -1);
+  const swingHighs = findSwingHighs(history, strength);
+  const swingLows  = findSwingLows(history, strength);
+  const lastSwH    = swingHighs.length ? swingHighs[swingHighs.length-1] : null;
+  const lastSwL    = swingLows.length  ? swingLows[swingLows.length-1]   : null;
 
+  const ref  = candles.slice(-Math.min(21, n-1), -1);
+  const ab   = avgBody(ref);
+  const ar   = avgRange(ref);
+
+  // MANIPULATION — wick sweeps a confirmed pivot, body closes back inside
+  if (lastSwH && last.h > lastSwH.price && last.c < lastSwH.price) {
+    return {
+      phase:    'manipulation',
+      swept:    'high',
+      level:    lastSwH.price,
+      swingIdx: lastSwH.idx,
+      direction:'bearish',
+      excess:   ar>0 ? Math.round((last.h - lastSwH.price)/ar*100) : 0,
+    };
+  }
+  if (lastSwL && last.l < lastSwL.price && last.c > lastSwL.price) {
+    return {
+      phase:    'manipulation',
+      swept:    'low',
+      level:    lastSwL.price,
+      swingIdx: lastSwL.idx,
+      direction:'bullish',
+      excess:   ar>0 ? Math.round((lastSwL.price - last.l)/ar*100) : 0,
+    };
+  }
+
+  // DISTRIBUTION — strong impulsive body
   const lastBody = Math.abs(last.c-last.o);
-  if (lastBody>ab*1.9 && ar>0) return {
-    phase:'distribution',
-    direction:last.c>last.o?'bullish':'bearish',
-    strength:+(lastBody/ab).toFixed(1),
+  if (ab>0 && lastBody>ab*1.9 && ar>0) return {
+    phase:    'distribution',
+    direction: last.c>last.o?'bullish':'bearish',
+    strength:  +(lastBody/ab).toFixed(1),
   };
 
-  const last6 = candles.slice(-6);
-  const allSmall = last6.every(c=>Math.abs(c.c-c.o)<ab*0.75);
+  // ACCUMULATION — 6 small narrowing candles
+  const last6    = candles.slice(-6);
+  const allSmall = ab>0 && last6.every(c=>Math.abs(c.c-c.o)<ab*0.75);
   const narrow   = (last6[5].h-last6[5].l)<(last6[0].h-last6[0].l)*1.15;
   if (allSmall&&narrow) return { phase:'accumulation' };
 
@@ -143,31 +200,33 @@ function saveStore(d) {
 }
 
 // ── Historical backfill ───────────────────────────────────────────────────────
-async function runBackfill(onProgress) {
-  const store  = loadStore();
-  const hm     = store.heatmap  || {};
-  const sweeps = store.sweepLog || [];
+async function runBackfill(onProgress, tf='H1', strength=3) {
+  const tfCfg   = TF_CONFIG[tf];
+  const store   = loadStore();
+  const hm      = store.heatmap  || {};
+  const sweeps  = store.sweepLog || [];
   const seenIds = new Set(sweeps.map(s=>s.id));
   let total = 0;
+  const minWindow = strength * 2 + 8;
 
   for (let pi = 0; pi < PAIRS.length; pi++) {
     const pair = PAIRS[pi];
-    onProgress && onProgress(`Scanning ${pair.label} (${pi+1}/${PAIRS.length})…`);
-    const candles = await fetchCandles(pair.key, 'H1', 720);
-    if (!candles || candles.length < 30) continue;
+    onProgress && onProgress(`[${tf} str:${strength}] ${pair.label} (${pi+1}/${PAIRS.length})…`);
+    const candles = await fetchCandles(pair.key, tfCfg.gran, tfCfg.backfillCount);
+    if (!candles || candles.length < minWindow + 2) continue;
 
-    for (let i = 25; i < candles.length - 1; i++) {
+    for (let i = minWindow; i < candles.length - 1; i++) {
       const window = candles.slice(0, i + 1);
-      const phase  = detectPhase(window);
+      const phase  = detectPhase(window, strength);
       if (phase.phase !== 'manipulation') continue;
 
       const candle  = candles[i];
       const utcHour = new Date(candle.t).getUTCHours();
-      const id      = `${pair.key}_hist_${candle.t}`;
+      const id      = `${pair.key}_${tf}_s${strength}_hist_${candle.t}`;
       if (seenIds.has(id)) continue;
       seenIds.add(id);
 
-      const future  = candles.slice(i + 1, i + 7);
+      const future  = candles.slice(i + 1, i + tfCfg.futureCandles + 1);
       const pip     = pair.pip;
       const entry   = candle.c;
       const expBull = phase.direction === 'bullish';
@@ -191,8 +250,10 @@ async function runBackfill(onProgress) {
         entryPrice:  entry,
         pip,
         outcome, pipsMoved,
-        resolvedAt:  new Date(candles[Math.min(i+6, candles.length-1)].t).toISOString(),
+        resolvedAt:  new Date(candles[Math.min(i+tfCfg.futureCandles, candles.length-1)].t).toISOString(),
         historical:  true,
+        tf,
+        strength,
       });
 
       if (!hm[pair.key]) hm[pair.key] = {};
@@ -889,6 +950,9 @@ function PhaseCard({ pair, data, loading, onClick }) {
 function SweepEntry({ s, idx, onPairClick }) {
   const etH  = getETHour(s.time);
   const sess = getSessionLabel(etH);
+  const tf   = s.tf || 'H1';
+  const tfColor = { M15:'#38bdf8', M30:'#818cf8', H1:'#00d4aa', H4:'#f59e0b' }[tf] || '#00d4aa';
+  const tfLabel = TF_CONFIG[tf]?.label || tf;
   const outcomeCol   = s.outcome==='confirmed'?'#00d4aa':s.outcome==='failed'?'#ef4444':'#f59e0b';
   const outcomeLabel = s.outcome==='confirmed'?'✓ WIN':s.outcome==='failed'?'✗ FAIL':'⏳';
   return (
@@ -917,6 +981,10 @@ function SweepEntry({ s, idx, onPairClick }) {
       <div style={{ flex:1, minWidth:0 }}>
         <div style={{ display:'flex', alignItems:'center', gap:5, flexWrap:'wrap' }}>
           <span style={{ fontSize:12, fontWeight:700, color:'#e2e8f0' }}>{s.label}</span>
+          <span style={{ fontSize:8, color:tfColor, background:`${tfColor}12`,
+            padding:'1px 5px', borderRadius:4, border:`1px solid ${tfColor}33`, fontWeight:700 }}>
+            {tfLabel}
+          </span>
           <span style={{ fontSize:9, color:'#ef4444', background:'#ef444412', padding:'1px 5px', borderRadius:4, border:'1px solid #ef444433' }}>
             ⚡ {s.swept==='high'?'HIGH':'LOW'} swept
           </span>
@@ -930,6 +998,7 @@ function SweepEntry({ s, idx, onPairClick }) {
         <div style={{ fontSize:10, color:'#475569', marginTop:2, fontFamily:'monospace' }}>
           {toET(s.time)} ET
           {s.pipsMoved>0 && <span style={{ color:'#334155' }}> · {s.pipsMoved}p after</span>}
+          {s.strength && <span style={{ color:'#1e293b' }}> · str:{s.strength}</span>}
         </div>
       </div>
 
@@ -1073,6 +1142,8 @@ export default function AlphaLab() {
   const [backfilling,      setBackfilling]      = useState(false);
   const [backfillProgress, setBackfillProgress] = useState('');
   const [backfillDone,     setBackfillDone]     = useState(null);
+  const [scanTF,           setScanTF]           = useState('H1');
+  const [swingStrength,    setSwingStrength]    = useState(3);
 
   const prevManipCount = useRef(0);
   const hasOanda = !!getCreds()?.apiKey;
@@ -1088,31 +1159,37 @@ export default function AlphaLab() {
     setScanning(true);
     setLoading(new Set(PAIRS.map(p=>p.key)));
 
+    const tfCfg    = TF_CONFIG[scanTF];
     const store    = loadStore();
     const existLog = store.sweepLog || [];
     const hm       = store.heatmap  || {};
     const newPhases = {};
     const newSweeps = [];
     const utcHour   = new Date().getUTCHours();
+    const resolveHrs = tfCfg.futureCandles * (scanTF==='M15'?0.25:scanTF==='M30'?0.5:scanTF==='H4'?4:1);
 
     await Promise.all(PAIRS.map(async pair => {
-      const candles = await fetchCandles(pair.key, 'H1', 60);
+      const candles = await fetchCandles(pair.key, tfCfg.gran, tfCfg.liveCount);
       setLoading(prev => { const s=new Set(prev); s.delete(pair.key); return s; });
       if (!candles) return;
 
-      const phase = detectPhase(candles);
+      const phase = detectPhase(candles, swingStrength);
       const atr   = computeATR(candles);
       const price = candles[candles.length-1].c;
       newPhases[pair.key] = { ...phase, atr, price };
 
       if (phase.phase==='manipulation') {
-        const recent = existLog.find(s=>s.pair===pair.key&&Date.now()-new Date(s.time).getTime()<60*60*1000);
+        const dedupWindow = resolveHrs * 60 * 60 * 1000;
+        const recent = existLog.find(s=>
+          s.pair===pair.key && s.tf===scanTF &&
+          Date.now()-new Date(s.time).getTime() < dedupWindow
+        );
         if (!recent) {
           newSweeps.push({
-            id:      `${pair.key}_${Date.now()}`,
-            pair:    pair.key,
-            label:   pair.label,
-            time:    new Date().toISOString(),
+            id:          `${pair.key}_${scanTF}_${Date.now()}`,
+            pair:        pair.key,
+            label:       pair.label,
+            time:        new Date().toISOString(),
             utcHour,
             swept:       phase.swept,
             level:       phase.level,
@@ -1121,6 +1198,8 @@ export default function AlphaLab() {
             pip:         pair.pip,
             outcome:     'pending',
             pipsMoved:   0,
+            tf:          scanTF,
+            strength:    swingStrength,
           });
           if (!hm[pair.key]) hm[pair.key]={};
           hm[pair.key][utcHour] = (hm[pair.key][utcHour]||0)+1;
@@ -1128,26 +1207,26 @@ export default function AlphaLab() {
       }
 
       existLog.forEach(s => {
-        if (s.pair!==pair.key||s.outcome!=='pending') return;
+        if (s.pair!==pair.key||s.outcome!=='pending'||(s.tf||'H1')!==scanTF) return;
         const hrs = (Date.now()-new Date(s.time).getTime())/(1000*60*60);
-        if (hrs<1) return;
+        if (hrs < resolveHrs * 0.5) return;
         const moved = (price-s.entryPrice)/s.pip;
         const expectedPos = s.expectedDir==='bullish';
         const moved20 = (expectedPos&&moved>20)||(!expectedPos&&moved<-20);
-        s.outcome   = moved20 ? 'confirmed' : hrs>6 ? 'failed' : 'pending';
-        s.pipsMoved = Math.round(Math.abs(moved));
+        s.outcome    = moved20 ? 'confirmed' : hrs > resolveHrs ? 'failed' : 'pending';
+        s.pipsMoved  = Math.round(Math.abs(moved));
         s.resolvedAt = new Date().toISOString();
       });
     }));
 
-    const merged = [...newSweeps, ...existLog].slice(0,200);
+    const merged = [...newSweeps, ...existLog].slice(0,400);
     saveStore({ sweepLog:merged, heatmap:hm });
     setPhases(newPhases);
     setSweepLog(merged);
     setHeatmap(hm);
     setLastScan(new Date());
     setScanning(false);
-  }, [hasOanda, scanning]);
+  }, [hasOanda, scanning, scanTF, swingStrength]);
 
   useEffect(() => {
     scan();
@@ -1161,7 +1240,7 @@ export default function AlphaLab() {
     setBackfillDone(null);
     setBackfillProgress('Starting historical scan…');
     try {
-      const result = await runBackfill(msg => setBackfillProgress(msg));
+      const result = await runBackfill(msg => setBackfillProgress(msg), scanTF, swingStrength);
       setSweepLog(result.sweeps);
       setHeatmap(result.heatmap);
       setBackfillDone(result.total);
@@ -1179,17 +1258,21 @@ export default function AlphaLab() {
     prevManipCount.current = liveManip.length;
   }, [liveManip.length]);
 
-  // Session-filtered feed
+  // Feed filtered by TF + session
+  const tfLog = useMemo(() =>
+    sweepLog.filter(s => (s.tf || 'H1') === scanTF),
+  [sweepLog, scanTF]);
+
   const filteredFeed = useMemo(() => {
-    if (sessionFilter === 'All') return sweepLog;
-    return sweepLog.filter(s => {
+    if (sessionFilter === 'All') return tfLog;
+    return tfLog.filter(s => {
       const h = getETHour(s.time);
       if (sessionFilter === 'Asian')  return h >= 19 || h < 3;
       if (sessionFilter === 'London') return h >= 3  && h < 12;
       if (sessionFilter === 'NY')     return h >= 8  && h < 17;
       return true;
     });
-  }, [sweepLog, sessionFilter]);
+  }, [tfLog, sessionFilter]);
 
   const groups       = ['All', 'Forex', 'Metals', 'Indices'];
   const filteredPairs = groupFilter === 'All' ? PAIRS : PAIRS.filter(p => p.group === groupFilter);
@@ -1273,7 +1356,41 @@ export default function AlphaLab() {
 
         {hasOanda && (
           <>
-            {/* ── Live sweep alert ─────────────────────────────────────── */}
+            {/* ── TF + Swing Strength selectors ───────────────────────── */}
+          <div style={{ display:'flex', gap:6, alignItems:'center', marginBottom:12, flexWrap:'wrap',
+            background:'#06090f', borderRadius:10, padding:'8px 12px', border:'1px solid #0f1929' }}>
+            <span style={{ fontSize:9, color:'#475569', fontWeight:700, letterSpacing:'0.08em', flexShrink:0 }}>TIMEFRAME</span>
+            {Object.entries(TF_CONFIG).map(([key, cfg]) => {
+              const active = scanTF === key;
+              const c = { M15:'#38bdf8', M30:'#818cf8', H1:'#00d4aa', H4:'#f59e0b' }[key];
+              return (
+                <button key={key} onClick={() => setScanTF(key)} style={{
+                  padding:'4px 11px', borderRadius:12,
+                  border:`1px solid ${active?c+'66':'#0f1929'}`,
+                  background:active?`${c}18`:'transparent',
+                  cursor:'pointer', fontSize:11, fontWeight:800,
+                  color:active?c:'#334155', transition:'all 0.2s',
+                }}>{cfg.label}</button>
+              );
+            })}
+            <div style={{ width:1, height:16, background:'#0f1929', margin:'0 4px', flexShrink:0 }}/>
+            <span style={{ fontSize:9, color:'#475569', fontWeight:700, letterSpacing:'0.08em', flexShrink:0 }}>SWING STRENGTH</span>
+            {[2,3,4,5].map(n => {
+              const active = swingStrength === n;
+              return (
+                <button key={n} onClick={() => setSwingStrength(n)} style={{
+                  padding:'4px 10px', borderRadius:12,
+                  border:`1px solid ${active?'#8b5cf666':'#0f1929'}`,
+                  background:active?'#8b5cf618':'transparent',
+                  cursor:'pointer', fontSize:11, fontWeight:800,
+                  color:active?'#8b5cf6':'#334155', transition:'all 0.2s',
+                }}>{n}</button>
+              );
+            })}
+            <span style={{ fontSize:9, color:'#1e293b', marginLeft:2 }}>candles each side of pivot</span>
+          </div>
+
+          {/* ── Live sweep alert ─────────────────────────────────────── */}
             {liveManip.length>0 && (
               <div style={{ background:'#ef444410', border:'1px solid #ef444433', borderRadius:10,
                 padding:'10px 14px', marginBottom:12, animation:'alphaGlow 1s infinite' }}>
@@ -1301,7 +1418,7 @@ export default function AlphaLab() {
             )}
 
             {/* ── Stats bar ────────────────────────────────────────────── */}
-            <StatsBar log={sweepLog} phases={phases}/>
+            <StatsBar log={tfLog} phases={phases}/>
 
             {/* ── Inner tabs ───────────────────────────────────────────── */}
             <div style={{ display:'flex', gap:4, marginBottom:14, background:'#06090f',
@@ -1398,7 +1515,7 @@ export default function AlphaLab() {
 
             {/* ── Edge Breakdown ───────────────────────────────────────── */}
             {tab==='edge' && (
-              <EdgeBreakdown sweepLog={sweepLog} onPairClick={setSelectedPair}/>
+              <EdgeBreakdown sweepLog={tfLog} onPairClick={setSelectedPair}/>
             )}
           </>
         )}
