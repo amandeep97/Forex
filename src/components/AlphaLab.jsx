@@ -135,13 +135,12 @@ function findSwingLows(candles, strength) {
   return out;
 }
 
-function detectPhase(candles, strength=3) {
+function detectPhase(candles, strength=3, minWickPct=0) {
   const minLen = strength * 2 + 6;
   if (!candles || candles.length < minLen) return { phase:'neutral' };
   const n    = candles.length;
   const last = candles[n-1];
 
-  // Confirmed swings from all candles except the current one
   const history    = candles.slice(0, -1);
   const swingHighs = findSwingHighs(history, strength);
   const swingLows  = findSwingLows(history, strength);
@@ -153,24 +152,29 @@ function detectPhase(candles, strength=3) {
   const ar   = avgRange(ref);
 
   // MANIPULATION — wick sweeps a confirmed pivot, body closes back inside
+  // minWickPct: wick excess must be at least X% of avg range (filters micro-pokes)
   if (lastSwH && last.h > lastSwH.price && last.c < lastSwH.price) {
+    const excessPct = ar>0 ? (last.h - lastSwH.price)/ar*100 : 0;
+    if (excessPct < minWickPct) return { phase:'neutral' };
     return {
       phase:    'manipulation',
       swept:    'high',
       level:    lastSwH.price,
       swingIdx: lastSwH.idx,
       direction:'bearish',
-      excess:   ar>0 ? Math.round((last.h - lastSwH.price)/ar*100) : 0,
+      excess:   Math.round(excessPct),
     };
   }
   if (lastSwL && last.l < lastSwL.price && last.c > lastSwL.price) {
+    const excessPct = ar>0 ? (lastSwL.price - last.l)/ar*100 : 0;
+    if (excessPct < minWickPct) return { phase:'neutral' };
     return {
       phase:    'manipulation',
       swept:    'low',
       level:    lastSwL.price,
       swingIdx: lastSwL.idx,
       direction:'bullish',
-      excess:   ar>0 ? Math.round((lastSwL.price - last.l)/ar*100) : 0,
+      excess:   Math.round(excessPct),
     };
   }
 
@@ -200,7 +204,7 @@ function saveStore(d) {
 }
 
 // ── Historical backfill ───────────────────────────────────────────────────────
-async function runBackfill(onProgress, tf='H1', strength=3) {
+async function runBackfill(onProgress, tf='H1', strength=3, minWick=0) {
   const tfCfg   = TF_CONFIG[tf];
   const store   = loadStore();
   const hm      = store.heatmap  || {};
@@ -217,12 +221,12 @@ async function runBackfill(onProgress, tf='H1', strength=3) {
 
     for (let i = minWindow; i < candles.length - 1; i++) {
       const window = candles.slice(0, i + 1);
-      const phase  = detectPhase(window, strength);
+      const phase  = detectPhase(window, strength, minWick);
       if (phase.phase !== 'manipulation') continue;
 
       const candle  = candles[i];
       const utcHour = new Date(candle.t).getUTCHours();
-      const id      = `${pair.key}_${tf}_s${strength}_hist_${candle.t}`;
+      const id      = `${pair.key}_${tf}_s${strength}_w${minWick}_hist_${candle.t}`;
       if (seenIds.has(id)) continue;
       seenIds.add(id);
 
@@ -915,6 +919,7 @@ function PhaseCard({ pair, data, loading, onClick }) {
         {isManip && data.swept && (
           <span style={{ fontSize:9, color:'#ef4444', fontWeight:700 }}>
             {data.swept==='high'?'↑ HIGH':'↓ LOW'} swept
+            {data.excess>0 && <span style={{ color:'#f97316', marginLeft:3 }}>+{data.excess}%</span>}
           </span>
         )}
         {isDist && data.direction && (
@@ -1144,6 +1149,7 @@ export default function AlphaLab() {
   const [backfillDone,     setBackfillDone]     = useState(null);
   const [scanTF,           setScanTF]           = useState('H1');
   const [swingStrength,    setSwingStrength]    = useState(3);
+  const [minWickPct,       setMinWickPct]       = useState(0);
 
   const prevManipCount = useRef(0);
   const hasOanda = !!getCreds()?.apiKey;
@@ -1173,7 +1179,7 @@ export default function AlphaLab() {
       setLoading(prev => { const s=new Set(prev); s.delete(pair.key); return s; });
       if (!candles) return;
 
-      const phase = detectPhase(candles, swingStrength);
+      const phase = detectPhase(candles, swingStrength, minWickPct);
       const atr   = computeATR(candles);
       const price = candles[candles.length-1].c;
       newPhases[pair.key] = { ...phase, atr, price };
@@ -1226,7 +1232,7 @@ export default function AlphaLab() {
     setHeatmap(hm);
     setLastScan(new Date());
     setScanning(false);
-  }, [hasOanda, scanning, scanTF, swingStrength]);
+  }, [hasOanda, scanning, scanTF, swingStrength, minWickPct]);
 
   useEffect(() => {
     scan();
@@ -1240,7 +1246,7 @@ export default function AlphaLab() {
     setBackfillDone(null);
     setBackfillProgress('Starting historical scan…');
     try {
-      const result = await runBackfill(msg => setBackfillProgress(msg), scanTF, swingStrength);
+      const result = await runBackfill(msg => setBackfillProgress(msg), scanTF, swingStrength, minWickPct);
       setSweepLog(result.sweeps);
       setHeatmap(result.heatmap);
       setBackfillDone(result.total);
@@ -1387,7 +1393,22 @@ export default function AlphaLab() {
                 }}>{n}</button>
               );
             })}
-            <span style={{ fontSize:9, color:'#1e293b', marginLeft:2 }}>candles each side of pivot</span>
+            <span style={{ fontSize:9, color:'#1e293b', marginLeft:2 }}>each side</span>
+            <div style={{ width:1, height:16, background:'#0f1929', margin:'0 4px', flexShrink:0 }}/>
+            <span style={{ fontSize:9, color:'#475569', fontWeight:700, letterSpacing:'0.08em', flexShrink:0 }}>MIN WICK</span>
+            {[0, 10, 20, 30, 50].map(pct => {
+              const active = minWickPct === pct;
+              return (
+                <button key={pct} onClick={() => setMinWickPct(pct)} style={{
+                  padding:'4px 10px', borderRadius:12,
+                  border:`1px solid ${active?'#ef444466':'#0f1929'}`,
+                  background:active?'#ef444418':'transparent',
+                  cursor:'pointer', fontSize:11, fontWeight:800,
+                  color:active?'#ef4444':'#334155', transition:'all 0.2s',
+                }}>{pct===0?'Off':`${pct}%`}</button>
+              );
+            })}
+            <span style={{ fontSize:9, color:'#1e293b' }}>of ATR</span>
           </div>
 
           {/* ── Live sweep alert ─────────────────────────────────────── */}
