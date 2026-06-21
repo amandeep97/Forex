@@ -29,13 +29,16 @@ const PHASES = {
   neutral:      { color:'#334155', glow:'transparent', label:'NEUTRAL',     icon:'·', desc:'No clear phase'          },
 };
 
-// Timeframe config
+// Timeframe config — pages:2 × 5000 candles = up to 10k per pair
+// H4 ×2 pages ≈ 4.6 years · H1 ≈ 14 months · M30 ≈ 7 months · M15 ≈ 3.5 months
 const TF_CONFIG = {
-  M15: { label:'15m', gran:'M15', liveCount:200, backfillCount:2016, futureCandles:12 },
-  M30: { label:'30m', gran:'M30', liveCount:120, backfillCount:1440, futureCandles:8  },
-  H1:  { label:'1H',  gran:'H1',  liveCount:100, backfillCount:720,  futureCandles:6  },
-  H4:  { label:'4H',  gran:'H4',  liveCount:80,  backfillCount:180,  futureCandles:5  },
+  M15: { label:'15m', gran:'M15', liveCount:200, pages:2, futureCandles:12 },
+  M30: { label:'30m', gran:'M30', liveCount:120, pages:2, futureCandles:8  },
+  H1:  { label:'1H',  gran:'H1',  liveCount:100, pages:2, futureCandles:6  },
+  H4:  { label:'4H',  gran:'H4',  liveCount:80,  pages:2, futureCandles:5  },
 };
+
+const TF_HIST_LABEL = { M15:'~3.5 months', M30:'~7 months', H1:'~14 months', H4:'~4.6 years' };
 
 // ── OANDA ─────────────────────────────────────────────────────────────────────
 function getCreds() {
@@ -88,6 +91,38 @@ async function fetchCandlesAt(pair, isoTime, before=14, after=8) {
       t:new Date(c.time).getTime(),
     }));
   } catch { return null; }
+}
+
+// Paginated fetch: pages×5000 candles, oldest→newest
+async function fetchCandlesAll(pairKey, gran, pages = 2) {
+  const creds = getCreds();
+  if (!creds?.apiKey) return null;
+  const base = creds.practice
+    ? 'https://api-fxpractice.oanda.com/v3'
+    : 'https://api-fxtrade.oanda.com/v3';
+  let allCandles = [];
+  let toTime = null;
+  for (let p = 0; p < pages; p++) {
+    const url = toTime
+      ? `${base}/instruments/${pairKey}/candles?granularity=${gran}&count=5000&to=${encodeURIComponent(toTime)}&price=M`
+      : `${base}/instruments/${pairKey}/candles?granularity=${gran}&count=5000&price=M`;
+    try {
+      const r = await fetch(url, {
+        headers: { Authorization: `Bearer ${creds.apiKey}` },
+        signal:  AbortSignal.timeout(25000),
+      });
+      if (!r.ok) break;
+      const d = await r.json();
+      const batch = (d.candles || []).filter(c => c.complete).map(c => ({
+        o:+c.mid.o, h:+c.mid.h, l:+c.mid.l, c:+c.mid.c,
+        t:new Date(c.time).getTime(), v:c.volume || 0,
+      }));
+      if (!batch.length) break;
+      allCandles = [...batch, ...allCandles];
+      toTime = new Date(batch[0].t - 1).toISOString();
+    } catch { break; }
+  }
+  return allCandles.sort((a, b) => a.t - b.t);
 }
 
 // ── Algorithms ────────────────────────────────────────────────────────────────
@@ -195,6 +230,79 @@ function detectPhase(candles, strength=3, minWickPct=0) {
   return { phase:'neutral' };
 }
 
+// O(N) sweep backfill using pre-computed swing pointers — much faster than O(N²) sliding window
+function backfillOnCandles(candles, pair, tf, strength, minWick, futureLen, hm, seenIds) {
+  const sweeps = [];
+  const minI   = strength * 2 + 2;
+  if (candles.length < minI + futureLen + 2) return sweeps;
+
+  const allHighs = findSwingHighs(candles, strength);
+  const allLows  = findSwingLows(candles, strength);
+  let hPtr = -1, lPtr = -1;
+
+  for (let i = minI; i < candles.length - 1; i++) {
+    // Advance to most recent pivot confirmed in history[0..i-1]: pivot.idx + strength <= i-1
+    while (hPtr + 1 < allHighs.length && allHighs[hPtr + 1].idx + strength <= i - 1) hPtr++;
+    while (lPtr + 1 < allLows.length  && allLows[lPtr + 1].idx  + strength <= i - 1) lPtr++;
+
+    const lastSwH = hPtr >= 0 ? allHighs[hPtr] : null;
+    const lastSwL = lPtr >= 0 ? allLows[lPtr]  : null;
+    if (!lastSwH && !lastSwL) continue;
+
+    const candle = candles[i];
+    const ar     = avgRange(candles.slice(Math.max(0, i - 21), i));
+    let phase    = null;
+
+    if (lastSwH && candle.h > lastSwH.price && candle.c < lastSwH.price) {
+      const excessPct = ar > 0 ? (candle.h - lastSwH.price) / ar * 100 : 0;
+      if (excessPct >= minWick)
+        phase = { swept:'high', level:lastSwH.price, direction:'bearish' };
+    } else if (lastSwL && candle.l < lastSwL.price && candle.c > lastSwL.price) {
+      const excessPct = ar > 0 ? (lastSwL.price - candle.l) / ar * 100 : 0;
+      if (excessPct >= minWick)
+        phase = { swept:'low', level:lastSwL.price, direction:'bullish' };
+    }
+    if (!phase) continue;
+
+    const id = `${pair.key}_${tf}_s${strength}_w${minWick}_hist_${candle.t}`;
+    if (seenIds.has(id)) continue;
+    seenIds.add(id);
+
+    const future  = candles.slice(i + 1, i + futureLen + 1);
+    const entry   = candle.c;
+    const expBull = phase.direction === 'bullish';
+    let outcome = 'failed', pipsMoved = 0;
+    for (const fc of future) {
+      const moved = (fc.c - entry) / pair.pip;
+      if ((expBull && moved > 20) || (!expBull && moved < -20)) {
+        outcome   = 'confirmed';
+        pipsMoved = Math.round(Math.abs(moved));
+        break;
+      }
+    }
+
+    const utcHour = new Date(candle.t).getUTCHours();
+    if (!hm[pair.key]) hm[pair.key] = {};
+    hm[pair.key][utcHour] = (hm[pair.key][utcHour] || 0) + 1;
+
+    sweeps.push({
+      id, pair: pair.key, label: pair.label,
+      time:        new Date(candle.t).toISOString(),
+      utcHour,
+      swept:       phase.swept,
+      level:       phase.level,
+      expectedDir: phase.direction,
+      entryPrice:  entry,
+      pip:         pair.pip,
+      outcome, pipsMoved,
+      resolvedAt:  new Date(candles[Math.min(i + futureLen, candles.length - 1)].t).toISOString(),
+      historical:  true,
+      tf, strength,
+    });
+  }
+  return sweeps;
+}
+
 // ── Persistence ───────────────────────────────────────────────────────────────
 function loadStore() {
   try { return JSON.parse(localStorage.getItem(LS_KEY)||'{}'); } catch { return {}; }
@@ -204,70 +312,30 @@ function saveStore(d) {
 }
 
 // ── Historical backfill ───────────────────────────────────────────────────────
-async function runBackfill(onProgress, tf='H1', strength=3, minWick=0) {
+async function runBackfill(onProgress, tf = 'H1', strength = 3, minWick = 0) {
   const tfCfg   = TF_CONFIG[tf];
   const store   = loadStore();
   const hm      = store.heatmap  || {};
-  const sweeps  = store.sweepLog || [];
-  const seenIds = new Set(sweeps.map(s=>s.id));
-  let total = 0;
-  const minWindow = strength * 2 + 8;
+  const existing = store.sweepLog || [];
+  const seenIds  = new Set(existing.map(s => s.id));
+  let allNew = [], total = 0;
 
   for (let pi = 0; pi < PAIRS.length; pi++) {
     const pair = PAIRS[pi];
-    onProgress && onProgress(`[${tf} str:${strength}] ${pair.label} (${pi+1}/${PAIRS.length})…`);
-    const candles = await fetchCandles(pair.key, tfCfg.gran, tfCfg.backfillCount);
-    if (!candles || candles.length < minWindow + 2) continue;
+    onProgress && onProgress(`[${tf} ${pi+1}/${PAIRS.length}] Fetching ${pair.label}…`);
+    const candles = await fetchCandlesAll(pair.key, tfCfg.gran, tfCfg.pages);
+    if (!candles || candles.length < strength * 2 + 10) continue;
 
-    for (let i = minWindow; i < candles.length - 1; i++) {
-      const window = candles.slice(0, i + 1);
-      const phase  = detectPhase(window, strength, minWick);
-      if (phase.phase !== 'manipulation') continue;
-
-      const candle  = candles[i];
-      const utcHour = new Date(candle.t).getUTCHours();
-      const id      = `${pair.key}_${tf}_s${strength}_w${minWick}_hist_${candle.t}`;
-      if (seenIds.has(id)) continue;
-      seenIds.add(id);
-
-      const future  = candles.slice(i + 1, i + tfCfg.futureCandles + 1);
-      const pip     = pair.pip;
-      const entry   = candle.c;
-      const expBull = phase.direction === 'bullish';
-      let outcome = 'failed', pipsMoved = 0;
-      for (const fc of future) {
-        const moved = (fc.c - entry) / pip;
-        if ((expBull && moved > 20) || (!expBull && moved < -20)) {
-          outcome   = 'confirmed';
-          pipsMoved = Math.round(Math.abs(moved));
-          break;
-        }
-      }
-
-      sweeps.push({
-        id, pair: pair.key, label: pair.label,
-        time:        new Date(candle.t).toISOString(),
-        utcHour,
-        swept:       phase.swept,
-        level:       phase.level,
-        expectedDir: phase.direction,
-        entryPrice:  entry,
-        pip,
-        outcome, pipsMoved,
-        resolvedAt:  new Date(candles[Math.min(i+tfCfg.futureCandles, candles.length-1)].t).toISOString(),
-        historical:  true,
-        tf,
-        strength,
-      });
-
-      if (!hm[pair.key]) hm[pair.key] = {};
-      hm[pair.key][utcHour] = (hm[pair.key][utcHour] || 0) + 1;
-      total++;
-    }
+    onProgress && onProgress(`[${tf} ${pi+1}/${PAIRS.length}] Scanning ${pair.label} · ${candles.length.toLocaleString()} candles…`);
+    const sweeps = backfillOnCandles(candles, pair, tf, strength, minWick, tfCfg.futureCandles, hm, seenIds);
+    allNew = allNew.concat(sweeps);
+    total += sweeps.length;
   }
 
-  sweeps.sort((a,b)=>new Date(b.time)-new Date(a.time));
-  const merged = sweeps.slice(0, 500);
+  const merged = [...allNew, ...existing]
+    .sort((a, b) => new Date(b.time) - new Date(a.time))
+    .slice(0, 2000);
+
   saveStore({ ...store, sweepLog: merged, heatmap: hm });
   return { sweeps: merged, heatmap: hm, total };
 }
@@ -1329,7 +1397,7 @@ export default function AlphaLab() {
                 fontSize:10, padding:'6px 12px',
                 cursor:backfilling||scanning||!hasOanda?'not-allowed':'pointer', fontWeight:700,
               }}>
-                {backfilling?'Loading…':'⏮ Load 30d History'}
+                {backfilling?'Loading…':`⏮ Load ${TF_HIST_LABEL[scanTF] || 'History'}`}
               </button>
               <button onClick={scan} disabled={scanning||!hasOanda} style={{
                 background:'#090d18', border:'1px solid #1e293b', borderRadius:8,
