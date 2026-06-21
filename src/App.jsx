@@ -23,6 +23,7 @@ const LiquidityMap     = lazy(() => import('./components/LiquidityMap'));
 const Journal          = lazy(() => import('./components/Journal'));
 const TradingNotebook  = lazy(() => import('./components/TradingNotebook'));
 const NewsCalendar     = lazy(() => import('./components/NewsCalendar'));
+const AlphaLab         = lazy(() => import('./components/AlphaLab'));
 
 function TabSpinner() {
   return (
@@ -55,6 +56,7 @@ const TABS = [
   { id: 'journal',     label: 'Journal',      icon: '📋' },
   { id: 'notebook',    label: 'Notebook',     icon: '📓' },
   { id: 'news',        label: 'News',         icon: '📰' },
+  { id: 'alphalab',   label: 'Alpha Lab',    icon: '⚗' },
 ];
 
 // ── Real-money warning modal ─────────────────────────────────────────────────
@@ -276,6 +278,9 @@ export default function App() {
         </div>
         <div style={{ display: activeTab === 'news' ? 'block' : 'none', overflowY:'auto', height:'calc(100vh - 120px)' }}>
           {visitedTabs.has('news') && <NewsCalendar />}
+        </div>
+        <div style={{ display: activeTab === 'alphalab' ? 'block' : 'none', overflowY:'auto', height:'calc(100vh - 120px)' }}>
+          {visitedTabs.has('alphalab') && <AlphaLab />}
         </div>
       </Suspense>
       </main>
