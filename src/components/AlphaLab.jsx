@@ -1288,11 +1288,11 @@ function minePatterns(sweepLog, minSignals, minWR) {
       case 'hour_from': return m.etH >= +cond.value;
       case 'hour_to':   return m.etH <= +cond.value;
       case 'strength':   return (m.s.strength || 3) >= +cond.value;
-      case 'dow':        return m.s.dow === cond.value;
-      case 'wickSize':   return m.s.wickSize === cond.value;
-      case 'volSpike':   return m.s.volSpike === (cond.value === 'true');
-      case 'compressed': return m.s.compressed === (cond.value === 'true');
-      case 'htfAligned': return m.s.htfAligned === (cond.value === 'true');
+      case 'dow':        return (m.s.dow ?? DOW_LABELS[new Date(m.s.time).getDay()]) === cond.value;
+      case 'wickSize':   return m.s.wickSize != null && m.s.wickSize === cond.value;
+      case 'volSpike':   return m.s.volSpike != null && m.s.volSpike === (cond.value === 'true');
+      case 'compressed': return m.s.compressed != null && m.s.compressed === (cond.value === 'true');
+      case 'htfAligned': return m.s.htfAligned != null && m.s.htfAligned === (cond.value === 'true');
       default:           return true;
     }
   };
@@ -1561,11 +1561,11 @@ function matchCond(sweep, cond) {
     case 'hour_from': return etH >= +cond.value;
     case 'hour_to':   return etH <= +cond.value;
     case 'strength':   return (sweep.strength || 3) >= +cond.value;
-    case 'dow':        return sweep.dow === cond.value;
-    case 'wickSize':   return sweep.wickSize === cond.value;
-    case 'volSpike':   return sweep.volSpike === (cond.value === 'true');
-    case 'compressed': return sweep.compressed === (cond.value === 'true');
-    case 'htfAligned': return sweep.htfAligned === (cond.value === 'true');
+    case 'dow':        return (sweep.dow ?? DOW_LABELS[new Date(sweep.time).getDay()]) === cond.value;
+    case 'wickSize':   return sweep.wickSize != null && sweep.wickSize === cond.value;
+    case 'volSpike':   return sweep.volSpike != null && sweep.volSpike === (cond.value === 'true');
+    case 'compressed': return sweep.compressed != null && sweep.compressed === (cond.value === 'true');
+    case 'htfAligned': return sweep.htfAligned != null && sweep.htfAligned === (cond.value === 'true');
     default:           return true;
   }
 }
