@@ -1200,6 +1200,314 @@ function StatsBar({ log, phases }) {
   );
 }
 
+// ── Scenario Builder ─────────────────────────────────────────────────────────
+const COND_TYPES = [
+  { id:'session',   label:'Session',    options:['Asian','London','Overlap','NY'],                         desc:'Trading session (ET time)' },
+  { id:'swept',     label:'Swept',      options:['high','low'],                                            desc:'Which swing was swept' },
+  { id:'direction', label:'Direction',  options:['bullish','bearish'],                                     desc:'Expected move direction' },
+  { id:'tf',        label:'Timeframe',  options:['M15','M30','H1','H4'],                                   desc:'Candle timeframe' },
+  { id:'group',     label:'Group',      options:['Forex','Metals','Indices'],                              desc:'Asset class' },
+  { id:'pair',      label:'Pair',       options:PAIRS.map(p=>p.label),                                    desc:'Specific instrument' },
+  { id:'hour_from', label:'ET Hour ≥',  options:Array.from({length:24},(_,i)=>String(i).padStart(2,'0')), desc:'From this ET hour' },
+  { id:'hour_to',   label:'ET Hour ≤',  options:Array.from({length:24},(_,i)=>String(i).padStart(2,'0')), desc:'Until this ET hour' },
+  { id:'strength',  label:'Strength ≥', options:['2','3','4','5'],                                         desc:'Minimum swing strength' },
+];
+
+function matchCond(sweep, cond) {
+  const etH  = getETHour(sweep.time);
+  const sess = getSessionLabel(etH);
+  const pair = PAIRS.find(p => p.key === sweep.pair);
+  switch (cond.type) {
+    case 'session':   return sess?.label === cond.value;
+    case 'swept':     return sweep.swept === cond.value;
+    case 'direction': return sweep.expectedDir === cond.value;
+    case 'tf':        return (sweep.tf || 'H1') === cond.value;
+    case 'group':     return pair?.group === cond.value;
+    case 'pair':      return pair?.label === cond.value;
+    case 'hour_from': return etH >= +cond.value;
+    case 'hour_to':   return etH <= +cond.value;
+    case 'strength':  return (sweep.strength || 3) >= +cond.value;
+    default:          return true;
+  }
+}
+
+function sweepMatchesScenario(sweep, conditions) {
+  if (sweep.outcome === 'pending') return false;
+  return conditions.every(c => matchCond(sweep, c));
+}
+
+function liveMatchesScenario(pairKey, phase, conditions, scanTF, swingStrength) {
+  if (!phase || phase.phase !== 'manipulation') return false;
+  const pair = PAIRS.find(p => p.key === pairKey);
+  const etH  = getETHour(new Date().toISOString());
+  const sess = getSessionLabel(etH);
+  return conditions.every(c => {
+    switch (c.type) {
+      case 'session':   return sess?.label === c.value;
+      case 'swept':     return phase.swept === c.value;
+      case 'direction': return phase.direction === c.value;
+      case 'tf':        return scanTF === c.value;
+      case 'group':     return pair?.group === c.value;
+      case 'pair':      return pair?.label === c.value;
+      case 'hour_from': return etH >= +c.value;
+      case 'hour_to':   return etH <= +c.value;
+      case 'strength':  return swingStrength >= +c.value;
+      default:          return true;
+    }
+  });
+}
+
+function ScenarioCard({ sc, sweepLog, phases, scanTF, swingStrength, onEdit, onDelete, onPairClick }) {
+  const matched   = useMemo(() => sweepLog.filter(s => sweepMatchesScenario(s, sc.conditions)), [sweepLog, sc.conditions]);
+  const confirmed = matched.filter(s => s.outcome === 'confirmed');
+  const wr        = matched.length ? Math.round(confirmed.length / matched.length * 100) : null;
+  const avgPips   = confirmed.length ? Math.round(confirmed.reduce((a,s)=>a+s.pipsMoved,0)/confirmed.length) : 0;
+  const wrColor   = wr==null?'#475569':wr>=60?'#00d4aa':wr>=40?'#f59e0b':'#ef4444';
+
+  const byHour = {};
+  matched.forEach(s => {
+    const h = getETHour(s.time);
+    if (!byHour[h]) byHour[h] = { total:0, confirmed:0 };
+    byHour[h].total++;
+    if (s.outcome==='confirmed') byHour[h].confirmed++;
+  });
+
+  const liveMatches = PAIRS.filter(p => liveMatchesScenario(p.key, phases[p.key], sc.conditions, scanTF, swingStrength));
+
+  return (
+    <div style={{ background:'#06090f', border:`1px solid ${liveMatches.length?'#ef444433':'#0f1929'}`, borderRadius:12, overflow:'hidden', marginBottom:12 }}>
+      {/* Header */}
+      <div style={{ display:'flex', alignItems:'center', gap:8, padding:'10px 14px', borderBottom:'1px solid #0f1929' }}>
+        <span style={{ flex:1, fontSize:13, fontWeight:800, color:'#f1f5f9' }}>{sc.name}</span>
+        {liveMatches.length > 0 && (
+          <span style={{ fontSize:9, fontWeight:700, color:'#ef4444', background:'#ef444412',
+            padding:'2px 8px', borderRadius:8, border:'1px solid #ef444433', animation:'alphaGlow 0.8s infinite' }}>
+            ⚡ {liveMatches.length} LIVE NOW
+          </span>
+        )}
+        <button onClick={onEdit} style={{ fontSize:9, padding:'3px 8px', borderRadius:6, cursor:'pointer',
+          background:'transparent', border:'1px solid #1e293b', color:'#475569' }}>Edit</button>
+        <button onClick={onDelete} style={{ fontSize:9, padding:'3px 8px', borderRadius:6, cursor:'pointer',
+          background:'transparent', border:'1px solid #1e293b', color:'#ef4444' }}>✕</button>
+      </div>
+
+      {/* Conditions pills */}
+      <div style={{ display:'flex', gap:5, padding:'8px 14px', flexWrap:'wrap', borderBottom:'1px solid #0f1929' }}>
+        {sc.conditions.map((c, i) => {
+          const ct = COND_TYPES.find(t => t.id === c.type);
+          return (
+            <span key={i} style={{ fontSize:9, fontWeight:700, color:'#8b5cf6', background:'#8b5cf618',
+              padding:'2px 8px', borderRadius:10, border:'1px solid #8b5cf633' }}>
+              {ct?.label}: {c.value}
+            </span>
+          );
+        })}
+      </div>
+
+      {/* Stats */}
+      <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr 1fr 1fr' }}>
+        {[
+          { label:'Signals',  value:matched.length,              color:'#e2e8f0' },
+          { label:'Win Rate', value:wr!=null?`${wr}%`:'—',      color:wrColor },
+          { label:'Avg Pips', value:avgPips>0?`${avgPips}p`:'—', color:'#60a5fa' },
+          { label:'Live Now', value:liveMatches.length||'—',     color:liveMatches.length?'#ef4444':'#334155' },
+        ].map((s,i) => (
+          <div key={s.label} style={{ padding:'10px 6px', textAlign:'center',
+            borderRight:i<3?'1px solid #0f1929':'none' }}>
+            <div style={{ fontSize:18, fontWeight:900, fontFamily:'monospace', color:s.color, lineHeight:1 }}>{s.value}</div>
+            <div style={{ fontSize:9, color:'#334155', marginTop:3 }}>{s.label}</div>
+          </div>
+        ))}
+      </div>
+
+      {/* Live matches */}
+      {liveMatches.length > 0 && (
+        <div style={{ padding:'8px 14px', background:'#ef444406', borderTop:'1px solid #ef444422' }}>
+          <div style={{ fontSize:9, color:'#ef4444', fontWeight:700, marginBottom:5 }}>⚡ LIVE MATCHES</div>
+          <div style={{ display:'flex', gap:5, flexWrap:'wrap' }}>
+            {liveMatches.map(p => {
+              const ph = phases[p.key];
+              return (
+                <div key={p.key} onClick={() => onPairClick(p.key)}
+                  style={{ fontSize:10, fontWeight:700, cursor:'pointer', padding:'3px 10px',
+                    borderRadius:16, background:'#ef444418', border:'1px solid #ef444444', color:'#ef4444' }}>
+                  {p.label}
+                  <span style={{ color:ph?.direction==='bullish'?'#00d4aa':'#ef4444', marginLeft:4 }}>
+                    {ph?.direction==='bullish'?'↑':'↓'}
+                  </span>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
+      {/* Win rate by hour chart */}
+      {matched.length >= 5 && (
+        <div style={{ padding:'10px 14px', borderTop:'1px solid #0f1929' }}>
+          <div style={{ fontSize:9, color:'#334155', fontWeight:700, letterSpacing:'0.08em', marginBottom:6 }}>WIN RATE BY ET HOUR</div>
+          <WinRateByHourChart byHour={byHour} />
+        </div>
+      )}
+
+      {matched.length === 0 && (
+        <div style={{ padding:'10px 14px', fontSize:10, color:'#1e293b', borderTop:'1px solid #0f1929' }}>
+          No historical signals match — try fewer or different conditions
+        </div>
+      )}
+    </div>
+  );
+}
+
+function ScenarioEditor({ initial, onSave, onCancel }) {
+  const [name,    setName]    = useState(initial?.name || '');
+  const [conds,   setConds]   = useState(initial?.conditions || []);
+  const [addType, setAddType] = useState(COND_TYPES[0].id);
+
+  const addCond = () => {
+    const ct = COND_TYPES.find(t => t.id === addType);
+    setConds(prev => [...prev, { type:addType, value:ct.options[0] }]);
+  };
+
+  const updateCond = (i, field, val) =>
+    setConds(prev => prev.map((c,j) => j===i ? {...c,[field]:val} : c));
+
+  const canSave = name.trim() && conds.length > 0;
+
+  return (
+    <div style={{ background:'#06090f', border:'1px solid #0f1929', borderRadius:12, padding:'14px', marginBottom:12 }}>
+      <div style={{ fontSize:12, fontWeight:800, color:'#f1f5f9', marginBottom:12 }}>
+        {initial?.id ? 'Edit Scenario' : 'New Scenario'}
+      </div>
+
+      <input value={name} onChange={e=>setName(e.target.value)} placeholder="Name your scenario…"
+        style={{ width:'100%', background:'#0f1929', border:'1px solid #1e293b', borderRadius:8,
+          color:'#e2e8f0', fontSize:12, padding:'8px 10px', marginBottom:10,
+          boxSizing:'border-box', outline:'none' }}/>
+
+      {/* Existing conditions */}
+      {conds.map((c, i) => {
+        const ct = COND_TYPES.find(t => t.id === c.type);
+        return (
+          <div key={i} style={{ display:'flex', gap:5, alignItems:'center', marginBottom:6 }}>
+            <select value={c.type}
+              onChange={e => {
+                const newCt = COND_TYPES.find(t => t.id === e.target.value);
+                setConds(prev => prev.map((x,j) => j===i ? {type:e.target.value, value:newCt.options[0]} : x));
+              }}
+              style={{ flex:1, background:'#0f1929', border:'1px solid #1e293b', borderRadius:6,
+                color:'#94a3b8', fontSize:10, padding:'6px', cursor:'pointer' }}>
+              {COND_TYPES.map(t=><option key={t.id} value={t.id}>{t.label}</option>)}
+            </select>
+            <select value={c.value} onChange={e=>updateCond(i,'value',e.target.value)}
+              style={{ flex:1, background:'#0f1929', border:'1px solid #1e293b', borderRadius:6,
+                color:'#e2e8f0', fontSize:10, padding:'6px', cursor:'pointer' }}>
+              {ct?.options.map(o=><option key={o} value={o}>{o}</option>)}
+            </select>
+            <button onClick={()=>setConds(prev=>prev.filter((_,j)=>j!==i))}
+              style={{ width:26, height:26, borderRadius:5, border:'1px solid #1e293b',
+                background:'transparent', color:'#ef4444', cursor:'pointer', fontSize:12, flexShrink:0 }}>
+              ✕
+            </button>
+          </div>
+        );
+      })}
+
+      {/* Add row */}
+      <div style={{ display:'flex', gap:5, marginBottom:12, marginTop:4 }}>
+        <select value={addType} onChange={e=>setAddType(e.target.value)}
+          style={{ flex:1, background:'#0f1929', border:'1px solid #1e293b', borderRadius:6,
+            color:'#94a3b8', fontSize:10, padding:'6px', cursor:'pointer' }}>
+          {COND_TYPES.map(t=><option key={t.id} value={t.id}>{t.label} — {t.desc}</option>)}
+        </select>
+        <button onClick={addCond}
+          style={{ padding:'6px 12px', borderRadius:6, border:'1px solid #00d4aa44',
+            background:'#00d4aa12', color:'#00d4aa', fontSize:10, fontWeight:700, cursor:'pointer' }}>
+          + Add
+        </button>
+      </div>
+
+      <div style={{ display:'flex', gap:6 }}>
+        <button disabled={!canSave} onClick={()=>onSave({id:initial?.id||Date.now().toString(), name:name.trim(), conditions:conds})}
+          style={{ flex:1, padding:'8px', borderRadius:8,
+            cursor:canSave?'pointer':'not-allowed',
+            background:canSave?'#00d4aa18':'transparent',
+            border:`1px solid ${canSave?'#00d4aa44':'#1e293b'}`,
+            color:canSave?'#00d4aa':'#334155', fontSize:11, fontWeight:700 }}>
+          Save Scenario
+        </button>
+        <button onClick={onCancel}
+          style={{ padding:'8px 14px', borderRadius:8, cursor:'pointer',
+            background:'transparent', border:'1px solid #1e293b', color:'#475569', fontSize:11 }}>
+          Cancel
+        </button>
+      </div>
+    </div>
+  );
+}
+
+function ScenarioBuilder({ sweepLog, phases, scanTF, swingStrength, onPairClick }) {
+  const [scenarios, setScenarios] = useState(() => {
+    try { return JSON.parse(localStorage.getItem('alpha_scenarios') || '[]'); } catch { return []; }
+  });
+  const [editing, setEditing] = useState(null);
+
+  useEffect(() => {
+    try { localStorage.setItem('alpha_scenarios', JSON.stringify(scenarios)); } catch {}
+  }, [scenarios]);
+
+  const saveScenario = sc => {
+    setScenarios(prev => {
+      const exists = prev.find(s => s.id === sc.id);
+      return exists ? prev.map(s => s.id===sc.id ? sc : s) : [...prev, sc];
+    });
+    setEditing(null);
+  };
+
+  const editingScenario = editing === 'new' ? {} : editing ? scenarios.find(s=>s.id===editing) : null;
+
+  return (
+    <div>
+      {editingScenario != null ? (
+        <ScenarioEditor initial={editingScenario} onSave={saveScenario} onCancel={()=>setEditing(null)}/>
+      ) : (
+        <>
+          <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:12 }}>
+            <div>
+              <div style={{ fontSize:12, fontWeight:800, color:'#f1f5f9' }}>Scenario Builder</div>
+              <div style={{ fontSize:10, color:'#334155', marginTop:2 }}>
+                Build conditions → see historical win rate + live alerts when they match
+              </div>
+            </div>
+            <button onClick={()=>setEditing('new')}
+              style={{ padding:'6px 14px', borderRadius:8, cursor:'pointer',
+                background:'#8b5cf618', border:'1px solid #8b5cf644',
+                color:'#8b5cf6', fontSize:10, fontWeight:700 }}>
+              + New Scenario
+            </button>
+          </div>
+
+          {scenarios.length === 0 ? (
+            <div style={{ textAlign:'center', padding:'48px 20px', color:'#1e293b', fontSize:12,
+              background:'#06090f', borderRadius:12, border:'1px solid #0f1929' }}>
+              <div style={{ fontSize:28, marginBottom:8 }}>⚗</div>
+              No scenarios yet.<br/>
+              Example: <span style={{ color:'#8b5cf6' }}>Session=London + Swept=high + Direction=bearish</span><br/>
+              → see how often that exact setup worked historically
+            </div>
+          ) : scenarios.map(sc => (
+            <ScenarioCard key={sc.id} sc={sc} sweepLog={sweepLog} phases={phases}
+              scanTF={scanTF} swingStrength={swingStrength}
+              onEdit={()=>setEditing(sc.id)}
+              onDelete={()=>setScenarios(prev=>prev.filter(s=>s.id!==sc.id))}
+              onPairClick={onPairClick}/>
+          ))}
+        </>
+      )}
+    </div>
+  );
+}
+
 // ── Main ──────────────────────────────────────────────────────────────────────
 export default function AlphaLab() {
   const [phases,           setPhases]           = useState({});
@@ -1352,10 +1660,11 @@ export default function AlphaLab() {
   const filteredPairs = groupFilter === 'All' ? PAIRS : PAIRS.filter(p => p.group === groupFilter);
 
   const innerTabs = [
-    { id:'scanner', label:'Phase Scanner' },
-    { id:'feed',    label:`Sweep Feed (${filteredFeed.length})` },
-    { id:'dna',     label:'Time DNA' },
-    { id:'edge',    label:'Edge Breakdown' },
+    { id:'scanner',   label:'Phase Scanner' },
+    { id:'feed',      label:`Sweep Feed (${filteredFeed.length})` },
+    { id:'dna',       label:'Time DNA' },
+    { id:'edge',      label:'Edge Breakdown' },
+    { id:'scenarios', label:'Scenarios' },
   ];
 
   return (
@@ -1605,6 +1914,17 @@ export default function AlphaLab() {
             {/* ── Edge Breakdown ───────────────────────────────────────── */}
             {tab==='edge' && (
               <EdgeBreakdown sweepLog={tfLog} onPairClick={setSelectedPair}/>
+            )}
+
+            {/* ── Scenarios ────────────────────────────────────────────── */}
+            {tab==='scenarios' && (
+              <ScenarioBuilder
+                sweepLog={sweepLog}
+                phases={phases}
+                scanTF={scanTF}
+                swingStrength={swingStrength}
+                onPairClick={setSelectedPair}
+              />
             )}
           </>
         )}
