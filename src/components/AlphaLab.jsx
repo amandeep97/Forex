@@ -2076,6 +2076,7 @@ export default function AlphaLab() {
   const [tab,              setTab]              = useState('scanner');
   const [groupFilter,      setGroupFilter]      = useState('All');
   const [sessionFilter,    setSessionFilter]    = useState('All');
+  const [pairFilter,       setPairFilter]       = useState('All');
   const [selectedPair,     setSelectedPair]     = useState(null);
   const [backfilling,      setBackfilling]      = useState(false);
   const [backfillProgress, setBackfillProgress] = useState('');
@@ -2207,10 +2208,12 @@ export default function AlphaLab() {
     prevManipCount.current = liveManip.length;
   }, [liveManip.length]);
 
-  // Feed filtered by TF + session
-  const tfLog = useMemo(() =>
-    sweepLog.filter(s => (s.tf || 'H1') === scanTF),
-  [sweepLog, scanTF]);
+  // Feed filtered by TF + pair
+  const tfLog = useMemo(() => {
+    let log = sweepLog.filter(s => (s.tf || 'H1') === scanTF);
+    if (pairFilter !== 'All') log = log.filter(s => s.pair === pairFilter);
+    return log;
+  }, [sweepLog, scanTF, pairFilter]);
 
   const filteredFeed = useMemo(() => {
     if (sessionFilter === 'All') return tfLog;
@@ -2222,6 +2225,10 @@ export default function AlphaLab() {
       return true;
     });
   }, [tfLog, sessionFilter]);
+
+  const pairFilteredLog = useMemo(() =>
+    pairFilter === 'All' ? sweepLog : sweepLog.filter(s => s.pair === pairFilter),
+  [sweepLog, pairFilter]);
 
   const groups       = ['All', 'Forex', 'Metals', 'Indices'];
   const filteredPairs = groupFilter === 'All' ? PAIRS : PAIRS.filter(p => p.group === groupFilter);
@@ -2358,6 +2365,31 @@ export default function AlphaLab() {
             <span style={{ fontSize:9, color:'#1e293b' }}>of ATR</span>
           </div>
 
+          {/* ── Pair filter ──────────────────────────────────────────── */}
+          <div style={{ display:'flex', gap:6, alignItems:'center', marginBottom:12, flexWrap:'wrap' }}>
+            <span style={{ fontSize:9, color:'#475569', fontWeight:700, letterSpacing:'0.08em', flexShrink:0 }}>PAIR</span>
+            <button onClick={() => setPairFilter('All')} style={{
+              padding:'4px 11px', borderRadius:12, fontSize:10, fontWeight:800, cursor:'pointer',
+              border:`1px solid ${pairFilter==='All'?'#47556966':'#0f1929'}`,
+              background:pairFilter==='All'?'#47556918':'transparent',
+              color:pairFilter==='All'?'#94a3b8':'#334155', transition:'all 0.2s',
+            }}>All ({sweepLog.filter(s=>(s.tf||'H1')===scanTF).length})</button>
+            {PAIRS.map(p => {
+              const cnt = sweepLog.filter(s => s.pair === p.key && (s.tf||'H1') === scanTF).length;
+              if (!cnt) return null;
+              const active = pairFilter === p.key;
+              const gc = p.group==='Metals'?'#f59e0b':p.group==='Indices'?'#22c55e':'#8b5cf6';
+              return (
+                <button key={p.key} onClick={() => setPairFilter(active ? 'All' : p.key)} style={{
+                  padding:'4px 10px', borderRadius:12, fontSize:10, fontWeight:800, cursor:'pointer',
+                  border:`1px solid ${active?gc+'66':'#0f1929'}`,
+                  background:active?`${gc}18`:'transparent',
+                  color:active?gc:'#334155', transition:'all 0.2s',
+                }}>{p.label} <span style={{ opacity:0.5, fontSize:8 }}>{cnt}</span></button>
+              );
+            })}
+          </div>
+
           {/* ── Live sweep alert ─────────────────────────────────────── */}
             {liveManip.length>0 && (
               <div style={{ background:'#ef444410', border:'1px solid #ef444433', borderRadius:10,
@@ -2489,7 +2521,7 @@ export default function AlphaLab() {
             {/* ── Discover ─────────────────────────────────────────────── */}
             {tab==='discover' && (
               <PatternMiner
-                sweepLog={sweepLog}
+                sweepLog={pairFilteredLog}
                 onSaveScenario={sc => {
                   setScenarios(prev => [...prev, sc]);
                   setTab('library');
@@ -2500,7 +2532,7 @@ export default function AlphaLab() {
             {/* ── Library ──────────────────────────────────────────────── */}
             {tab==='library' && (
               <ScenarioLibrary
-                sweepLog={sweepLog}
+                sweepLog={pairFilteredLog}
                 phases={phases}
                 scanTF={scanTF}
                 swingStrength={swingStrength}
@@ -2513,7 +2545,7 @@ export default function AlphaLab() {
             {/* ── Record Log ───────────────────────────────────────────── */}
             {tab==='record' && (
               <RecordLog
-                sweepLog={sweepLog}
+                sweepLog={pairFilteredLog}
                 scenarios={scenarios}
               />
             )}
@@ -2521,7 +2553,7 @@ export default function AlphaLab() {
             {/* ── Live Signal ──────────────────────────────────────────── */}
             {tab==='live' && (
               <LiveSignalTab
-                sweepLog={sweepLog}
+                sweepLog={pairFilteredLog}
                 phases={phases}
                 scenarios={scenarios}
                 scanTF={scanTF}
