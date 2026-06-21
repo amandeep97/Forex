@@ -1293,7 +1293,7 @@ export default function AlphaLab() {
       });
     }));
 
-    const merged = [...newSweeps, ...existLog].slice(0,400);
+    const merged = [...newSweeps, ...existLog].slice(0,2000);
     saveStore({ sweepLog:merged, heatmap:hm });
     setPhases(newPhases);
     setSweepLog(merged);
