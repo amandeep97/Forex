@@ -2,15 +2,25 @@ import { useState, useEffect, useCallback } from 'react';
 
 // ── Config ────────────────────────────────────────────────────────────────────
 const PAIRS = [
-  { key:'EUR_USD', label:'EUR/USD', pip:0.0001 },
-  { key:'GBP_USD', label:'GBP/USD', pip:0.0001 },
-  { key:'USD_JPY', label:'USD/JPY', pip:0.01   },
-  { key:'XAU_USD', label:'XAU/USD', pip:0.1    },
-  { key:'GBP_JPY', label:'GBP/JPY', pip:0.01   },
-  { key:'EUR_JPY', label:'EUR/JPY', pip:0.01   },
-  { key:'USD_CAD', label:'USD/CAD', pip:0.0001 },
-  { key:'AUD_USD', label:'AUD/USD', pip:0.0001 },
-  { key:'NZD_USD', label:'NZD/USD', pip:0.0001 },
+  // Forex majors
+  { key:'EUR_USD',    label:'EUR/USD',  pip:0.0001, group:'Forex'   },
+  { key:'GBP_USD',    label:'GBP/USD',  pip:0.0001, group:'Forex'   },
+  { key:'USD_JPY',    label:'USD/JPY',  pip:0.01,   group:'Forex'   },
+  { key:'GBP_JPY',    label:'GBP/JPY',  pip:0.01,   group:'Forex'   },
+  { key:'EUR_JPY',    label:'EUR/JPY',  pip:0.01,   group:'Forex'   },
+  { key:'USD_CAD',    label:'USD/CAD',  pip:0.0001, group:'Forex'   },
+  { key:'AUD_USD',    label:'AUD/USD',  pip:0.0001, group:'Forex'   },
+  { key:'NZD_USD',    label:'NZD/USD',  pip:0.0001, group:'Forex'   },
+  // Metals
+  { key:'XAU_USD',    label:'XAU/USD',  pip:0.1,    group:'Metals'  },
+  { key:'XAG_USD',    label:'XAG/USD',  pip:0.01,   group:'Metals'  },
+  // Indices
+  { key:'US30_USD',   label:'US30',     pip:1,      group:'Indices' },
+  { key:'SPX500_USD', label:'SPX500',   pip:0.1,    group:'Indices' },
+  { key:'NAS100_USD', label:'NAS100',   pip:0.1,    group:'Indices' },
+  { key:'UK100_GBP',  label:'UK100',    pip:0.1,    group:'Indices' },
+  { key:'DE30_EUR',   label:'GER30',    pip:0.1,    group:'Indices' },
+  { key:'JP225_USD',  label:'JPN225',   pip:1,      group:'Indices' },
 ];
 
 const LS_KEY = 'alpha_lab_v2';
@@ -114,6 +124,74 @@ function loadStore() {
 }
 function saveStore(d) {
   try { localStorage.setItem(LS_KEY,JSON.stringify(d)); } catch {}
+}
+
+// ── Historical backfill ───────────────────────────────────────────────────────
+// Pulls 30 days of H1 candles per pair and replays detectPhase on every window
+async function runBackfill(onProgress) {
+  const store  = loadStore();
+  const hm     = store.heatmap  || {};
+  const sweeps = store.sweepLog || [];
+  const seenIds = new Set(sweeps.map(s=>s.id));
+  let total = 0;
+
+  for (let pi = 0; pi < PAIRS.length; pi++) {
+    const pair = PAIRS[pi];
+    onProgress && onProgress(`Scanning ${pair.label} (${pi+1}/${PAIRS.length})…`);
+    const candles = await fetchCandles(pair.key, 'H1', 720); // ~30 days
+    if (!candles || candles.length < 30) continue;
+
+    for (let i = 25; i < candles.length - 1; i++) {
+      const window = candles.slice(0, i + 1);
+      const phase  = detectPhase(window);
+      if (phase.phase !== 'manipulation') continue;
+
+      const candle   = candles[i];
+      const utcHour  = new Date(candle.t).getUTCHours();
+      const id       = `${pair.key}_hist_${candle.t}`;
+      if (seenIds.has(id)) continue;
+      seenIds.add(id);
+
+      // Resolve: check what happened in next 6 candles
+      const future   = candles.slice(i + 1, i + 7);
+      const pip      = pair.pip;
+      const entry    = candle.c;
+      const expBull  = phase.direction === 'bullish';
+      let outcome    = 'failed', pipsMoved = 0;
+      for (const fc of future) {
+        const moved = (fc.c - entry) / pip;
+        if ((expBull && moved > 20) || (!expBull && moved < -20)) {
+          outcome   = 'confirmed';
+          pipsMoved = Math.round(Math.abs(moved));
+          break;
+        }
+      }
+
+      sweeps.push({
+        id, pair: pair.key, label: pair.label,
+        time:        new Date(candle.t).toISOString(),
+        utcHour,
+        swept:       phase.swept,
+        level:       phase.level,
+        expectedDir: phase.direction,
+        entryPrice:  entry,
+        pip,
+        outcome, pipsMoved,
+        resolvedAt:  new Date(candles[Math.min(i+6, candles.length-1)].t).toISOString(),
+        historical:  true,
+      });
+
+      if (!hm[pair.key]) hm[pair.key] = {};
+      hm[pair.key][utcHour] = (hm[pair.key][utcHour] || 0) + 1;
+      total++;
+    }
+  }
+
+  // Keep most recent 500, newest first
+  sweeps.sort((a,b)=>new Date(b.time)-new Date(a.time));
+  const merged = sweeps.slice(0, 500);
+  saveStore({ ...store, sweepLog: merged, heatmap: hm });
+  return { sweeps: merged, heatmap: hm, total };
 }
 
 // ── CSS injected once ─────────────────────────────────────────────────────────
@@ -374,13 +452,17 @@ function StatsBar({ log, phases }) {
 
 // ── Main ──────────────────────────────────────────────────────────────────────
 export default function AlphaLab() {
-  const [phases,    setPhases]    = useState({});
-  const [loading,   setLoading]   = useState(new Set());
-  const [sweepLog,  setSweepLog]  = useState([]);
-  const [heatmap,   setHeatmap]   = useState({});
-  const [scanning,  setScanning]  = useState(false);
-  const [lastScan,  setLastScan]  = useState(null);
-  const [tab,       setTab]       = useState('scanner');
+  const [phases,          setPhases]          = useState({});
+  const [loading,         setLoading]         = useState(new Set());
+  const [sweepLog,        setSweepLog]        = useState([]);
+  const [heatmap,         setHeatmap]         = useState({});
+  const [scanning,        setScanning]        = useState(false);
+  const [lastScan,        setLastScan]        = useState(null);
+  const [tab,             setTab]             = useState('scanner');
+  const [groupFilter,     setGroupFilter]     = useState('All');
+  const [backfilling,     setBackfilling]     = useState(false);
+  const [backfillProgress,setBackfillProgress]= useState('');
+  const [backfillDone,    setBackfillDone]    = useState(null);
   const hasOanda = !!getCreds()?.apiKey;
 
   // Load persisted data
@@ -464,8 +546,30 @@ export default function AlphaLab() {
     return () => clearInterval(id);
   }, []);
 
+  const startBackfill = useCallback(async () => {
+    if (!hasOanda || backfilling) return;
+    setBackfilling(true);
+    setBackfillDone(null);
+    setBackfillProgress('Starting historical scan…');
+    try {
+      const result = await runBackfill((msg) => setBackfillProgress(msg));
+      setSweepLog(result.sweeps);
+      setHeatmap(result.heatmap);
+      setBackfillDone(result.total);
+      setBackfillProgress('');
+    } catch(e) {
+      setBackfillProgress('Error during backfill');
+    }
+    setBackfilling(false);
+  }, [hasOanda, backfilling]);
+
   // Active manipulations alert
   const liveManip = Object.entries(phases).filter(([,v])=>v.phase==='manipulation');
+
+  const groups    = ['All', 'Forex', 'Metals', 'Indices'];
+  const filteredPairs = groupFilter === 'All'
+    ? PAIRS
+    : PAIRS.filter(p => p.group === groupFilter);
 
   const innerTabs = [
     { id:'scanner', label:'Phase Scanner' },
@@ -494,15 +598,37 @@ export default function AlphaLab() {
             Market maker phase detection · Liquidity sweep tracker · Time pattern analysis
           </div>
         </div>
-        <div style={{ textAlign:'right' }}>
-          <button onClick={scan} disabled={scanning||!hasOanda} style={{
-            background:'#090d18', border:'1px solid #1e293b', borderRadius:8,
-            color:scanning?'#334155':'#e2e8f0', fontSize:11, padding:'6px 14px',
-            cursor:scanning||!hasOanda?'not-allowed':'pointer', fontWeight:600,
-          }}>
-            {scanning?'Scanning…':'↻ Scan Now'}
-          </button>
-          {lastScan&&<div style={{ fontSize:9, color:'#1e293b', marginTop:3 }}>{lastScan.toLocaleTimeString()}</div>}
+        <div style={{ textAlign:'right', display:'flex', flexDirection:'column', gap:5 }}>
+          <div style={{ display:'flex', gap:6 }}>
+            <button onClick={startBackfill} disabled={backfilling||scanning||!hasOanda} style={{
+              background: backfilling?'#090d18':'#0a1628',
+              border:`1px solid ${backfilling?'#1e293b':'#1d4ed8'}`,
+              borderRadius:8, color:backfilling?'#334155':'#60a5fa',
+              fontSize:10, padding:'6px 12px',
+              cursor:backfilling||scanning||!hasOanda?'not-allowed':'pointer', fontWeight:700,
+              letterSpacing:'0.03em',
+            }}>
+              {backfilling?'Loading…':'⏮ Load 30d History'}
+            </button>
+            <button onClick={scan} disabled={scanning||!hasOanda} style={{
+              background:'#090d18', border:'1px solid #1e293b', borderRadius:8,
+              color:scanning?'#334155':'#e2e8f0', fontSize:11, padding:'6px 14px',
+              cursor:scanning||!hasOanda?'not-allowed':'pointer', fontWeight:600,
+            }}>
+              {scanning?'Scanning…':'↻ Scan Now'}
+            </button>
+          </div>
+          {backfilling && (
+            <div style={{ fontSize:9, color:'#60a5fa', textAlign:'right', animation:'alphaGlow 1s infinite' }}>
+              {backfillProgress}
+            </div>
+          )}
+          {backfillDone !== null && !backfilling && (
+            <div style={{ fontSize:9, color:'#00d4aa', textAlign:'right' }}>
+              ✓ +{backfillDone} historical sweeps loaded
+            </div>
+          )}
+          {lastScan&&<div style={{ fontSize:9, color:'#1e293b', marginTop:2 }}>Last scan {lastScan.toLocaleTimeString()}</div>}
         </div>
       </div>
 
@@ -558,14 +684,35 @@ export default function AlphaLab() {
 
           {/* ── Phase Scanner ─────────────────────────────────────────── */}
           {tab==='scanner' && (
-            <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill,minmax(155px,1fr))', gap:10 }}>
-              {PAIRS.map(pair=>(
-                <PhaseCard key={pair.key} pair={pair}
-                  data={phases[pair.key]}
-                  loading={loading.has(pair.key)}
-                />
-              ))}
-            </div>
+            <>
+              {/* Group filter */}
+              <div style={{ display:'flex', gap:4, marginBottom:12, flexWrap:'wrap' }}>
+                {groups.map(g => {
+                  const count = g==='All' ? PAIRS.length : PAIRS.filter(p=>p.group===g).length;
+                  const active = groupFilter===g;
+                  const groupColors = { All:'#475569', Forex:'#8b5cf6', Metals:'#f59e0b', Indices:'#22c55e' };
+                  const c = groupColors[g];
+                  return (
+                    <button key={g} onClick={()=>setGroupFilter(g)} style={{
+                      padding:'4px 10px', borderRadius:16, border:`1px solid ${active?c+'66':'#0f1929'}`,
+                      background:active?`${c}18`:'transparent', cursor:'pointer',
+                      fontSize:10, fontWeight:700,
+                      color:active?c:'#334155', transition:'all 0.2s',
+                    }}>
+                      {g} <span style={{ fontSize:9, opacity:0.7 }}>({count})</span>
+                    </button>
+                  );
+                })}
+              </div>
+              <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill,minmax(155px,1fr))', gap:10 }}>
+                {filteredPairs.map(pair=>(
+                  <PhaseCard key={pair.key} pair={pair}
+                    data={phases[pair.key]}
+                    loading={loading.has(pair.key)}
+                  />
+                ))}
+              </div>
+            </>
           )}
 
           {/* ── Sweep Feed ───────────────────────────────────────────── */}
