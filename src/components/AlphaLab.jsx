@@ -1687,6 +1687,151 @@ function ScenarioEditor({ initial, onSave, onCancel }) {
   );
 }
 
+// ── Pre-built ICT / SMC / Liquidity Scenarios ─────────────────────────────────
+const PRESET_SCENARIOS = [
+  // ── ICT Kill Zones ──
+  {
+    id:'__london_kz', name:'London Kill Zone', dir:'both', builtin:true,
+    desc:'Liquidity sweep during London open (3–8 AM ET) — highest probability ICT kill zone. Smart money hunts Asian session highs/lows.',
+    conditions:[{ type:'session', value:'London' }],
+  },
+  {
+    id:'__ny_kz', name:'NY Kill Zone', dir:'both', builtin:true,
+    desc:'Sweep during New York open (8–12 AM ET). Second most powerful ICT kill zone — NY reverses London moves.',
+    conditions:[{ type:'session', value:'NY' }],
+  },
+  {
+    id:'__overlap_kz', name:'London–NY Overlap', dir:'both', builtin:true,
+    desc:'Both London and NY active simultaneously (1–5 PM UTC). Highest liquidity window — large sweeps, fast reversals.',
+    conditions:[{ type:'session', value:'Overlap' }],
+  },
+  {
+    id:'__asian_sweep', name:'Asian Session Sweep', dir:'both', builtin:true,
+    desc:'Price sweeps a level during low-volume Asian session. Often sets up the directional move for London/NY.',
+    conditions:[{ type:'session', value:'Asian' }],
+  },
+  // ── ICT Day Theory ──
+  {
+    id:'__tue_setup', name:'Tuesday ICT Setup', dir:'both', builtin:true,
+    desc:'ICT: Tuesday is statistically the highest probability trading day — trend continuation or reversal both work well.',
+    conditions:[{ type:'dow', value:'Tue' }],
+  },
+  {
+    id:'__wed_setup', name:'Wednesday ICT Setup', dir:'both', builtin:true,
+    desc:'ICT: Wednesday continues or extends the weekly range. Mid-week sweeps are the most reliable reversals.',
+    conditions:[{ type:'dow', value:'Wed' }],
+  },
+  {
+    id:'__tue_london', name:'Tuesday London KZ', dir:'both', builtin:true,
+    desc:'Combination of Tuesday (best day) + London Kill Zone (best session) — ICT\'s highest-confluence daily setup.',
+    conditions:[{ type:'dow', value:'Tue' }, { type:'session', value:'London' }],
+  },
+  {
+    id:'__wed_ny', name:'Wednesday NY Reversal', dir:'both', builtin:true,
+    desc:'Wednesday + NY session — mid-week NY sweep often creates the weekly high or low before Thursday continuation.',
+    conditions:[{ type:'dow', value:'Wed' }, { type:'session', value:'NY' }],
+  },
+  {
+    id:'__fri_trap', name:'Friday Trap Day', dir:'both', builtin:true,
+    desc:'ICT: Friday sweeps often fail or reverse quickly. Market makers close positions — unreliable signals.',
+    conditions:[{ type:'dow', value:'Fri' }],
+  },
+  // ── SMC / Liquidity Concepts ──
+  {
+    id:'__high_sweep', name:'Buy-Side Liquidity Sweep', dir:'short', builtin:true,
+    desc:'Sweep of swing HIGH — price takes out buy-side liquidity (stops above highs), then reverses down. Classic SMC short.',
+    conditions:[{ type:'swept', value:'high' }, { type:'direction', value:'bearish' }],
+  },
+  {
+    id:'__low_sweep', name:'Sell-Side Liquidity Sweep', dir:'long', builtin:true,
+    desc:'Sweep of swing LOW — price takes out sell-side liquidity (stops below lows), then reverses up. Classic SMC long.',
+    conditions:[{ type:'swept', value:'low' }, { type:'direction', value:'bullish' }],
+  },
+  {
+    id:'__strong_swing', name:'Major Swing Sweep (Str ≥ 4)', dir:'both', builtin:true,
+    desc:'Only sweeps of significant swing levels (strength ≥ 4 candles each side). More significant level = stronger reversal expected.',
+    conditions:[{ type:'strength', value:'4' }],
+  },
+  {
+    id:'__htf_aligned', name:'With-Trend Sweep', dir:'both', builtin:true,
+    desc:'Sweep direction aligns with the 20-bar higher timeframe trend. Trading with the flow — higher probability reversal.',
+    conditions:[{ type:'htfAligned', value:'true' }],
+  },
+  {
+    id:'__counter_trend', name:'Counter-Trend Sweep', dir:'both', builtin:true,
+    desc:'Sweep goes AGAINST the higher timeframe trend. Riskier but can catch powerful reversals if other confluence exists.',
+    conditions:[{ type:'htfAligned', value:'false' }],
+  },
+  {
+    id:'__large_wick', name:'Aggressive Manipulation', dir:'both', builtin:true,
+    desc:'Large wick sweep — price spiked far beyond the level (> 0.8× ATR). Aggressive manipulation = strong reversal signal.',
+    conditions:[{ type:'wickSize', value:'Large' }],
+  },
+  {
+    id:'__vol_spike', name:'Volume Spike Sweep', dir:'both', builtin:true,
+    desc:'Sweep candle has > 1.5× average volume — smart money footprint. Unusual activity confirms institutional involvement.',
+    conditions:[{ type:'volSpike', value:'true' }],
+  },
+  {
+    id:'__compression', name:'Coil Before Expansion', dir:'both', builtin:true,
+    desc:'Tight range (5-bar ATR < 50% of 20-bar ATR) before the sweep — compression = price coiling before an explosive move.',
+    conditions:[{ type:'compressed', value:'true' }],
+  },
+  // ── Asset-specific ──
+  {
+    id:'__xau_london', name:'Gold London Sweep', dir:'both', builtin:true,
+    desc:'XAU/USD sweep during London session. Gold manipulation often sets up the NY session direction — high pip potential.',
+    conditions:[{ type:'pair', value:'XAU/USD' }, { type:'session', value:'London' }],
+  },
+  {
+    id:'__xau_ny', name:'Gold NY Sweep', dir:'both', builtin:true,
+    desc:'XAU/USD sweep at NY open. Gold reacts strongly to US data — NY sweep is the primary entry window for metals.',
+    conditions:[{ type:'pair', value:'XAU/USD' }, { type:'session', value:'NY' }],
+  },
+  {
+    id:'__gbpjpy_london', name:'GBP/JPY London Beast', dir:'both', builtin:true,
+    desc:'GBP/JPY during London session — known as "The Beast" for its volatility. Sweeps are large but reversals are fast.',
+    conditions:[{ type:'pair', value:'GBP/JPY' }, { type:'session', value:'London' }],
+  },
+  {
+    id:'__forex_london', name:'Forex Majors London', dir:'both', builtin:true,
+    desc:'All Forex major pairs during London kill zone. The most liquid, most traded setup class in the world.',
+    conditions:[{ type:'group', value:'Forex' }, { type:'session', value:'London' }],
+  },
+  {
+    id:'__metals_london', name:'Metals London Open', dir:'both', builtin:true,
+    desc:'Gold and Silver during London open — metals respond to London institutional flow. Best entry window for metals traders.',
+    conditions:[{ type:'group', value:'Metals' }, { type:'session', value:'London' }],
+  },
+  // ── Timeframe specific ──
+  {
+    id:'__h4_sweep', name:'H4 Structure Sweep', dir:'both', builtin:true,
+    desc:'4-hour timeframe sweeps — these target major swing levels visible to all institutional traders. Highest pip targets.',
+    conditions:[{ type:'tf', value:'H4' }],
+  },
+  {
+    id:'__m15_precision', name:'M15 Precision Entry', dir:'both', builtin:true,
+    desc:'15-minute sweeps within kill zones — refined entry timing for ICT traders who drill down for precise risk management.',
+    conditions:[{ type:'tf', value:'M15' }],
+  },
+  // ── Elite combos ──
+  {
+    id:'__elite_long', name:'Elite Long Setup', dir:'long', builtin:true,
+    desc:'Sell-side sweep + with-trend + London/NY session. All three must align. Rare but highest conviction LONG setup.',
+    conditions:[{ type:'swept', value:'low' }, { type:'htfAligned', value:'true' }, { type:'session', value:'London' }],
+  },
+  {
+    id:'__elite_short', name:'Elite Short Setup', dir:'short', builtin:true,
+    desc:'Buy-side sweep + with-trend + London/NY session. All three align. Rare but highest conviction SHORT setup.',
+    conditions:[{ type:'swept', value:'high' }, { type:'htfAligned', value:'true' }, { type:'session', value:'London' }],
+  },
+  {
+    id:'__tue_vol_sweep', name:'Tuesday Volume Spike', dir:'both', builtin:true,
+    desc:'Tuesday + volume spike sweep. Smart money active on the highest-probability day — strong institutional signal.',
+    conditions:[{ type:'dow', value:'Tue' }, { type:'volSpike', value:'true' }],
+  },
+];
+
 // ── Scenario Library ──────────────────────────────────────────────────────────
 function ScenarioLibrary({ sweepLog, phases, scanTF, swingStrength, onPairClick, scenarios, setScenarios }) {
   const [editing,  setEditing]  = useState(null);
@@ -1701,6 +1846,7 @@ function ScenarioLibrary({ sweepLog, phases, scanTF, swingStrength, onPairClick,
   };
 
   const editingScenario = editing === 'new' ? {} : editing ? scenarios.find(s=>s.id===editing) : null;
+  const [showPresets, setShowPresets] = useState(true);
 
   const dirColor = d => d==='long'?'#00d4aa':d==='short'?'#ef4444':'#8b5cf6';
   const dirLabel = d => d==='long'?'▲ LONG':d==='short'?'▼ SHORT':'↕ BOTH';
@@ -1708,65 +1854,38 @@ function ScenarioLibrary({ sweepLog, phases, scanTF, swingStrength, onPairClick,
   if (editingScenario != null)
     return <ScenarioEditor initial={editingScenario} onSave={saveScenario} onCancel={()=>setEditing(null)}/>;
 
-  return (
-    <div>
-      <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:12 }}>
-        <div style={{ fontSize:11, color:'#334155' }}>
-          {scenarios.length} scenario{scenarios.length!==1?'s':''} · test hypotheses, find edges
-        </div>
-        <button onClick={()=>setEditing('new')} style={{ padding:'6px 14px', borderRadius:8, cursor:'pointer',
-          background:'#8b5cf618', border:'1px solid #8b5cf644', color:'#8b5cf6', fontSize:10, fontWeight:700 }}>
-          + Add Custom
-        </button>
-      </div>
-
-      {scenarios.length === 0 ? (
-        <div style={{ textAlign:'center', padding:'48px 20px', color:'#1e293b', fontSize:12,
-          background:'#06090f', borderRadius:12, border:'1px solid #0f1929' }}>
-          <div style={{ fontSize:28, marginBottom:8 }}>⚗</div>
-          No scenarios yet.<br/>
-          <span style={{ color:'#475569' }}>Save from Discover, or create your own hypothesis to test.</span>
-        </div>
-      ) : scenarios.map(sc => {
+  const renderCard = (sc, isBuiltin) => {
         const signals  = sweepLog.filter(s => sweepMatchesScenario(s, sc.conditions));
-        const wins     = signals.filter(s => s.outcome==='confirmed').length;
-        const wr       = signals.length ? Math.round(wins/signals.length*100) : null;
-        const avgPips  = wins ? Math.round(signals.filter(s=>s.outcome==='confirmed').reduce((a,s)=>a+s.pipsMoved,0)/wins) : 0;
+        const resolved = signals.filter(s => s.outcome !== 'pending');
+        const wins     = resolved.filter(s => s.outcome==='confirmed').length;
+        const wr       = resolved.length ? Math.round(wins/resolved.length*100) : null;
+        const avgPips  = wins ? Math.round(resolved.filter(s=>s.outcome==='confirmed').reduce((a,s)=>a+s.pipsMoved,0)/wins) : 0;
         const wrColor  = wr==null?'#475569':wr>=60?'#00d4aa':wr>=40?'#f59e0b':'#ef4444';
         const live     = PAIRS.filter(p => liveMatchesScenario(p.key, phases[p.key], sc.conditions, scanTF, swingStrength));
         const dc       = dirColor(sc.dir||'both');
         const isOpen   = expanded === sc.id;
-
         return (
-          <div key={sc.id} style={{ background:'#06090f', border:`1px solid ${live.length?'#ef444433':'#0f1929'}`,
-            borderRadius:12, overflow:'hidden', marginBottom:10 }}>
-
-            {/* Header */}
+          <div key={sc.id} style={{ background:'#06090f', border:`1px solid ${live.length?'#ef444433':isBuiltin?'#1e293b22':'#0f1929'}`,
+            borderRadius:12, overflow:'hidden', marginBottom:8 }}>
             <div style={{ display:'flex', alignItems:'center', gap:8, padding:'10px 14px' }}>
               <span style={{ fontSize:9, fontWeight:800, color:dc, background:`${dc}12`,
                 padding:'2px 7px', borderRadius:6, border:`1px solid ${dc}33`, flexShrink:0 }}>
                 {dirLabel(sc.dir||'both')}
               </span>
-              <span style={{ flex:1, fontSize:13, fontWeight:800, color:'#f1f5f9' }}>{sc.name}</span>
-              {live.length>0 && (
-                <span style={{ fontSize:9, fontWeight:700, color:'#ef4444', background:'#ef444412',
-                  padding:'2px 7px', borderRadius:6, border:'1px solid #ef444433', animation:'alphaGlow 0.8s infinite', flexShrink:0 }}>
-                  ⚡ LIVE
-                </span>
-              )}
-              <button onClick={()=>setEditing(sc.id)} style={{ fontSize:9, padding:'2px 7px', borderRadius:5,
-                background:'transparent', border:'1px solid #1e293b', color:'#475569', cursor:'pointer' }}>Edit</button>
-              <button onClick={()=>setScenarios(prev=>prev.filter(s=>s.id!==sc.id))}
-                style={{ fontSize:9, padding:'2px 7px', borderRadius:5,
-                  background:'transparent', border:'1px solid #1e293b', color:'#ef4444', cursor:'pointer' }}>✕</button>
+              <span style={{ flex:1, fontSize:12, fontWeight:800, color:'#f1f5f9' }}>{sc.name}</span>
+              {isBuiltin && <span style={{ fontSize:8, fontWeight:700, color:'#f59e0b', background:'#f59e0b12',
+                padding:'1px 6px', borderRadius:5, border:'1px solid #f59e0b33', flexShrink:0 }}>ICT/SMC</span>}
+              {live.length>0 && <span style={{ fontSize:9, fontWeight:700, color:'#ef4444', background:'#ef444412',
+                padding:'2px 7px', borderRadius:6, border:'1px solid #ef444433', animation:'alphaGlow 0.8s infinite', flexShrink:0 }}>⚡ LIVE</span>}
+              {!isBuiltin && <>
+                <button onClick={()=>setEditing(sc.id)} style={{ fontSize:9, padding:'2px 7px', borderRadius:5,
+                  background:'transparent', border:'1px solid #1e293b', color:'#475569', cursor:'pointer' }}>Edit</button>
+                <button onClick={()=>setScenarios(prev=>prev.filter(s=>s.id!==sc.id))}
+                  style={{ fontSize:9, padding:'2px 7px', borderRadius:5, background:'transparent',
+                    border:'1px solid #1e293b', color:'#ef4444', cursor:'pointer' }}>✕</button>
+              </>}
             </div>
-
-            {/* Description */}
-            {sc.desc && (
-              <div style={{ fontSize:10, color:'#475569', padding:'0 14px 8px', lineHeight:1.5 }}>{sc.desc}</div>
-            )}
-
-            {/* Condition pills */}
+            {sc.desc && <div style={{ fontSize:10, color:'#475569', padding:'0 14px 8px', lineHeight:1.5 }}>{sc.desc}</div>}
             <div style={{ display:'flex', gap:4, padding:'0 14px 8px', flexWrap:'wrap' }}>
               {sc.conditions.map((c,i) => {
                 const ct = COND_TYPES.find(t=>t.id===c.type);
@@ -1778,11 +1897,9 @@ function ScenarioLibrary({ sweepLog, phases, scanTF, swingStrength, onPairClick,
                 );
               })}
             </div>
-
-            {/* Stats row */}
             <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr 1fr 1fr', borderTop:'1px solid #0f1929' }}>
               {[
-                { label:'Signals',  value:signals.length,              color:'#e2e8f0' },
+                { label:'Signals',  value:resolved.length,             color:'#e2e8f0' },
                 { label:'Win Rate', value:wr!=null?`${wr}%`:'—',      color:wrColor   },
                 { label:'Avg Pips', value:avgPips>0?`${avgPips}p`:'—', color:'#60a5fa' },
                 { label:'Live Now', value:live.length||'—',            color:live.length?'#ef4444':'#334155' },
@@ -1793,8 +1910,6 @@ function ScenarioLibrary({ sweepLog, phases, scanTF, swingStrength, onPairClick,
                 </div>
               ))}
             </div>
-
-            {/* Live matches */}
             {live.length>0 && (
               <div style={{ padding:'8px 14px', background:'#ef444406', borderTop:'1px solid #ef444422', display:'flex', gap:5, flexWrap:'wrap' }}>
                 {live.map(p => {
@@ -1811,18 +1926,16 @@ function ScenarioLibrary({ sweepLog, phases, scanTF, swingStrength, onPairClick,
                 })}
               </div>
             )}
-
-            {/* Signal log toggle */}
-            {signals.length > 0 && (
+            {resolved.length > 0 && (
               <div style={{ borderTop:'1px solid #0f1929' }}>
                 <button onClick={()=>setExpanded(isOpen?null:sc.id)}
                   style={{ width:'100%', padding:'7px', background:'transparent', border:'none',
                     color:'#334155', fontSize:10, cursor:'pointer', fontWeight:600 }}>
-                  {isOpen ? '▲ Hide signal log' : `▼ Show ${signals.length} signals`}
+                  {isOpen ? '▲ Hide signal log' : `▼ Show ${resolved.length} signals`}
                 </button>
                 {isOpen && (
                   <div style={{ maxHeight:220, overflowY:'auto' }}>
-                    {signals.slice(0,50).map((s,i)=>{
+                    {resolved.slice(0,50).map((s,i)=>{
                       const etH  = getETHour(s.time);
                       const sess = getSessionLabel(etH);
                       return (
@@ -1850,15 +1963,48 @@ function ScenarioLibrary({ sweepLog, phases, scanTF, swingStrength, onPairClick,
                 )}
               </div>
             )}
-
-            {signals.length === 0 && (
+            {resolved.length === 0 && (
               <div style={{ padding:'8px 14px', fontSize:10, color:'#1e293b', borderTop:'1px solid #0f1929' }}>
-                No historical signals match these conditions yet
+                No resolved signals yet — run backfill in Alpha Lab
               </div>
             )}
           </div>
         );
-      })}
+  };
+
+  return (
+    <div>
+      <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:12 }}>
+        <div style={{ fontSize:11, color:'#334155' }}>
+          {PRESET_SCENARIOS.length} built-in · {scenarios.length} custom
+        </div>
+        <button onClick={()=>setEditing('new')} style={{ padding:'6px 14px', borderRadius:8, cursor:'pointer',
+          background:'#8b5cf618', border:'1px solid #8b5cf644', color:'#8b5cf6', fontSize:10, fontWeight:700 }}>
+          + Add Custom
+        </button>
+      </div>
+
+      {/* Built-in ICT/SMC presets */}
+      <div style={{ marginBottom:16 }}>
+        <div onClick={()=>setShowPresets(p=>!p)} style={{ display:'flex', alignItems:'center', gap:8,
+          marginBottom:showPresets?10:0, cursor:'pointer' }}>
+          <div style={{ fontSize:10, fontWeight:800, color:'#f59e0b', letterSpacing:'0.08em' }}>
+            ⚡ ICT / SMC / LIQUIDITY SCENARIOS ({PRESET_SCENARIOS.length})
+          </div>
+          <span style={{ fontSize:9, color:'#334155' }}>{showPresets?'▲':'▼'}</span>
+        </div>
+        {showPresets && PRESET_SCENARIOS.map(sc => renderCard(sc, true))}
+      </div>
+
+      {/* User scenarios */}
+      {scenarios.length > 0 && (
+        <div>
+          <div style={{ fontSize:10, fontWeight:800, color:'#8b5cf6', letterSpacing:'0.08em', marginBottom:10 }}>
+            MY SCENARIOS ({scenarios.length})
+          </div>
+          {scenarios.map(sc => renderCard(sc, false))}
+        </div>
+      )}
     </div>
   );
 }
