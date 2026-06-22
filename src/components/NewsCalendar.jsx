@@ -5,9 +5,13 @@ const PROXY        = 'https://corsproxy.io/?';
 const CALENDAR_URL = PROXY + encodeURIComponent('https://nfs.faireconomy.media/ff_calendar_thisweek.json');
 
 const NEWS_FEEDS = [
-  { name: 'ForexLive', url: 'https://forexlive.com/feed/news' },
-  { name: 'DailyFX',   url: 'https://feeds.dailyfx.com/forex-market-news' },
-  { name: 'FXStreet',  url: 'https://www.fxstreet.com/rss/news' },
+  { name: 'Reuters',     url: 'https://feeds.reuters.com/reuters/businessNews',                     color: '#f97316', badge: '🔶' },
+  { name: 'MarketWatch', url: 'https://feeds.marketwatch.com/marketwatch/topstories/',              color: '#22c55e', badge: '📈' },
+  { name: 'CNBC',        url: 'https://www.cnbc.com/id/100003114/device/rss/rss.html',             color: '#3b82f6', badge: '📡' },
+  { name: 'Yahoo Fin',   url: 'https://finance.yahoo.com/rss/topfinstories',                        color: '#8b5cf6', badge: '💹' },
+  { name: 'ForexLive',   url: 'https://forexlive.com/feed/news',                                   color: '#00d4aa', badge: '⚡' },
+  { name: 'FXStreet',    url: 'https://www.fxstreet.com/rss/news',                                 color: '#f59e0b', badge: '🌐' },
+  { name: 'DailyFX',    url: 'https://feeds.dailyfx.com/forex-market-news',                       color: '#ec4899', badge: '📊' },
 ];
 
 // Parse RSS XML text into item array using browser DOMParser
@@ -150,6 +154,43 @@ function NewsCard({ item }) {
   );
 }
 
+const NEWS_CACHE_KEY = 'forex_news_cache';
+
+function getFinnhubKey() {
+  try { return localStorage.getItem('finnhub_key') || ''; } catch { return ''; }
+}
+
+async function fetchFinnhubNews(key, category = 'forex') {
+  const res = await fetch(
+    `https://finnhub.io/api/v1/news?category=${category}&token=${key}`,
+    { signal: AbortSignal.timeout(10000) }
+  );
+  if (!res.ok) throw new Error(`Finnhub ${res.status}`);
+  const data = await res.json();
+  return data.map(a => ({
+    title:       a.headline,
+    link:        a.url,
+    pubDate:     new Date(a.datetime * 1000).toUTCString(),
+    description: a.summary,
+    author:      a.source,
+    thumbnail:   a.image || null,
+    source:      a.source,
+  }));
+}
+
+function cacheNews(items, sourceName) {
+  try {
+    localStorage.setItem(NEWS_CACHE_KEY, JSON.stringify({
+      items: items.slice(0, 12).map(i => ({
+        title:  i.title,
+        source: sourceName || i.author || '',
+        age:    i.pubDate ? Math.round((Date.now() - new Date(i.pubDate)) / 60000) : null,
+      })),
+      ts: Date.now(),
+    }));
+  } catch {}
+}
+
 // ── Main component ────────────────────────────────────────────────────────────
 export default function NewsCalendar() {
   const [subTab,      setSubTab]  = useState('calendar');
@@ -159,6 +200,8 @@ export default function NewsCalendar() {
   const [error,       setError]   = useState('');
   const [impact,      setImpact]  = useState('High');
   const [feedIdx,     setFeedIdx] = useState(0);
+  const [finnhubKey,  setFhKey]   = useState(() => getFinnhubKey());
+  const [showFhInput, setShowFh]  = useState(false);
   const [, setTick]               = useState(0);
 
   // refresh countdown every minute
@@ -182,15 +225,32 @@ export default function NewsCalendar() {
   const loadNews = useCallback(async (idx) => {
     setLoad(true); setError('');
     try {
-      const proxyUrl = PROXY + encodeURIComponent(NEWS_FEEDS[idx].url);
-      const res  = await fetch(proxyUrl);
+      const feed = NEWS_FEEDS[idx];
+      const proxyUrl = PROXY + encodeURIComponent(feed.url);
+      const res  = await fetch(proxyUrl, { signal: AbortSignal.timeout(12000) });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const text = await res.text();
       const items = parseRSS(text);
-      if (!items.length) throw new Error('No articles in feed');
+      if (!items.length) throw new Error('No articles — feed may have moved');
+      cacheNews(items, feed.name);
       setNews(items);
     } catch (e) {
-      setError('Could not load news. ' + e.message);
+      setError(`Could not load ${NEWS_FEEDS[idx]?.name}: ${e.message}`);
+    }
+    setLoad(false);
+  }, []);
+
+  const loadFinnhub = useCallback(async (key) => {
+    if (!key) { setShowFh(true); return; }
+    setLoad(true); setError('');
+    try {
+      localStorage.setItem('finnhub_key', key);
+      const items = await fetchFinnhubNews(key, 'forex');
+      if (!items.length) throw new Error('No articles returned');
+      cacheNews(items, 'Finnhub');
+      setNews(items);
+    } catch (e) {
+      setError('Finnhub error: ' + e.message);
     }
     setLoad(false);
   }, []);
@@ -233,6 +293,7 @@ export default function NewsCalendar() {
         {[
           { id: 'calendar', label: '📅 Calendar' },
           { id: 'news',     label: '📰 News'     },
+          { id: 'finnhub',  label: '⚡ Live Feed' },
         ].map(t => (
           <button key={t.id} onClick={() => setSubTab(t.id)} style={{
             flex: 1, padding: '13px 0', background: 'none', border: 'none', cursor: 'pointer',
@@ -309,27 +370,72 @@ export default function NewsCalendar() {
         {/* ── News ── */}
         {subTab === 'news' && !loading && (
           <>
-            {/* Feed selector */}
-            <div style={{ display: 'flex', gap: 6, marginBottom: 14, overflowX: 'auto', paddingBottom: 2 }}>
+            <div style={{ display:'flex', gap:6, marginBottom:14, overflowX:'auto', paddingBottom:2 }}>
               {NEWS_FEEDS.map((f, i) => (
                 <button key={i} onClick={() => { setFeedIdx(i); loadNews(i); }} style={{
-                  padding: '5px 14px', borderRadius: 20, fontSize: 11, fontWeight: 600,
-                  cursor: 'pointer', whiteSpace: 'nowrap', flexShrink: 0,
-                  background: feedIdx === i ? '#00d4aa18' : '#0f172a',
-                  color:      feedIdx === i ? '#00d4aa'   : '#475569',
-                  border: `1px solid ${feedIdx === i ? '#00d4aa35' : '#1e293b'}`,
-                }}>{f.name}</button>
+                  padding:'5px 12px', borderRadius:20, fontSize:11, fontWeight:600,
+                  cursor:'pointer', whiteSpace:'nowrap', flexShrink:0,
+                  background: feedIdx === i ? `${f.color}18` : '#0f172a',
+                  color:      feedIdx === i ? f.color : '#475569',
+                  border:`1px solid ${feedIdx === i ? f.color + '44' : '#1e293b'}`,
+                }}>{f.badge} {f.name}</button>
               ))}
               <button onClick={() => loadNews(feedIdx)} style={{
-                marginLeft: 'auto', padding: '5px 12px', borderRadius: 20, fontSize: 13,
-                cursor: 'pointer', background: '#0f172a', color: '#475569', border: '1px solid #1e293b', flexShrink: 0,
+                marginLeft:'auto', padding:'5px 12px', borderRadius:20, fontSize:13,
+                cursor:'pointer', background:'#0f172a', color:'#475569', border:'1px solid #1e293b', flexShrink:0,
               }}>↻</button>
             </div>
 
             {news.length === 0 && !error && (
-              <div style={{ textAlign: 'center', padding: 48, color: '#334155', fontSize: 13 }}>No articles loaded</div>
+              <div style={{ textAlign:'center', padding:48, color:'#334155', fontSize:13 }}>
+                Tap a source above to load headlines
+              </div>
             )}
+            {news.map((item, i) => <NewsCard key={i} item={item} />)}
+          </>
+        )}
 
+        {/* ── Finnhub Live Feed ── */}
+        {subTab === 'finnhub' && !loading && (
+          <>
+            <div style={{ background:'#0f172a', borderRadius:10, padding:14, marginBottom:14,
+              border:'1px solid #1e293b' }}>
+              <div style={{ fontSize:12, fontWeight:700, color:'#f1f5f9', marginBottom:6 }}>
+                ⚡ Finnhub Real-Time News
+                <span style={{ fontSize:10, color:'#475569', fontWeight:400, marginLeft:8 }}>
+                  Free key → finnhub.io/dashboard
+                </span>
+              </div>
+              <div style={{ display:'flex', gap:8 }}>
+                <input
+                  type="password"
+                  placeholder="Paste Finnhub API key (free)"
+                  value={finnhubKey}
+                  onChange={e => setFhKey(e.target.value)}
+                  style={{ flex:1, background:'#1e293b', border:'1px solid #334155', borderRadius:8,
+                    color:'#f1f5f9', fontSize:12, padding:'8px 10px', outline:'none' }}
+                />
+                <button onClick={() => loadFinnhub(finnhubKey)} style={{
+                  padding:'8px 16px', borderRadius:8, border:'1px solid #00d4aa44',
+                  background:'#00d4aa12', color:'#00d4aa', fontSize:12, fontWeight:700, cursor:'pointer',
+                }}>Load</button>
+              </div>
+              <div style={{ display:'flex', gap:8, marginTop:10, flexWrap:'wrap' }}>
+                {['forex','general','merger'].map(cat => (
+                  <button key={cat} onClick={() => fetchFinnhubNews(finnhubKey, cat).then(items => {
+                    if (items.length) { cacheNews(items, 'Finnhub'); setNews(items); }
+                  }).catch(e => setError(e.message))} style={{
+                    padding:'4px 12px', borderRadius:12, fontSize:10, fontWeight:700,
+                    cursor:'pointer', background:'#1e293b', color:'#94a3b8', border:'1px solid #334155',
+                  }}>{cat === 'forex' ? '💱 Forex' : cat === 'general' ? '📰 General' : '🔀 M&A'}</button>
+                ))}
+              </div>
+            </div>
+            {news.length === 0 && !error && (
+              <div style={{ textAlign:'center', padding:48, color:'#334155', fontSize:13 }}>
+                Enter your free Finnhub key and tap Load
+              </div>
+            )}
             {news.map((item, i) => <NewsCard key={i} item={item} />)}
           </>
         )}

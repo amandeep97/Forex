@@ -126,6 +126,21 @@ function getCurrentSessions() {
   return { active, overlap, utcTime: `${h}:${m} UTC` };
 }
 
+function buildNewsContext() {
+  try {
+    const cache = JSON.parse(localStorage.getItem('forex_news_cache') || 'null');
+    if (!cache?.items?.length) return '';
+    const ageMin = Math.round((Date.now() - cache.ts) / 60000);
+    if (ageMin > 120) return '';
+    const L = [`=== LATEST MARKET NEWS (from ${cache.items[0]?.source || 'news feed'}, ${ageMin}m ago) ===`];
+    for (const item of cache.items.slice(0, 8)) {
+      const age = item.age != null ? `${item.age}m ago` : '';
+      L.push(`• [${item.source}] ${item.title}${age ? ' (' + age + ')' : ''}`);
+    }
+    return L.join('\n');
+  } catch { return ''; }
+}
+
 function buildAlphaLabContext() {
   try {
     const store     = JSON.parse(localStorage.getItem('alpha_lab_v2') || '{}');
@@ -272,6 +287,9 @@ async function buildMarketContext() {
   L.push('');
   const digest = scanDigest(scan);
   if (digest) { L.push(digest); L.push(''); }
+
+  const newsCtx = buildNewsContext();
+  if (newsCtx) { L.push(''); L.push(newsCtx); }
 
   const alphaCtx = buildAlphaLabContext();
   if (alphaCtx) { L.push(''); L.push(alphaCtx); }
