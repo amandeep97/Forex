@@ -21,9 +21,9 @@ jobs:
         run: |
           python3 << 'PYEOF'
           import json, urllib.request, os
-          from datetime import datetime, timezone
+          from datetime import datetime, timezone, timedelta
 
-          # -- BLS (US Bureau of Labor Statistics) -- no key, no account needed --
+          # ── BLS (US Bureau of Labor Statistics) ── no key, no account needed ──
           def fetch_bls_cpi():
               # CUSR0000SA0 = CPI-U All Items Seasonally Adjusted
               url = "https://api.bls.gov/publicAPI/v1/timeseries/data/CUSR0000SA0"
@@ -38,11 +38,11 @@ jobs:
                   rows = payload["Results"]["series"][0]["data"]
                   result = []
                   for row in rows:
-                      if row["period"] == "M13":   # annual average -- skip
+                      if row["period"] == "M13":   # annual average — skip
                           continue
                       if row.get("value") in ("-", "N/A", ""):   # unreleased month
                           continue
-                      month = row["period"][1:]     # "M01" -> "01"
+                      month = row["period"][1:]     # "M01" → "01"
                       date = f"{row['year']}-{month}-01"
                       result.append({"date": date, "val": float(row["value"])})
                   result.sort(key=lambda x: x["date"])
@@ -51,7 +51,7 @@ jobs:
                   print(f"  WARN: BLS CPI failed: {e}")
                   return None
 
-          # -- Yahoo Finance -- works from GitHub Actions (no block, no key) --
+          # ── Yahoo Finance ── works from GitHub Actions (no block, no key) ──
           def fetch_yahoo(ticker, limit=365):
               url = (
                   f"https://query1.finance.yahoo.com/v8/finance/chart/{ticker}"
@@ -82,7 +82,7 @@ jobs:
                   return None
               return [{"date": d["date"], "val": round(d["val"] / 10, 4) if d["val"] > 20 else d["val"]} for d in data]
 
-          # -- FRED CSV -- may time-out from datacenter IPs; kept as opportunistic --
+          # ── FRED CSV ── may time-out from datacenter IPs; kept as opportunistic ──
           def fetch_fred_csv(series_id, days=540):
               url = f"https://fred.stlouisfed.org/graph/fredgraph.csv?id={series_id}"
               try:
@@ -102,7 +102,7 @@ jobs:
                   print(f"  WARN: FRED {series_id}: {e}")
                   return None
 
-          # -- Stooq CSV -- reliable from GitHub Actions (no block, no key) --
+          # ── Stooq CSV ── reliable from GitHub Actions (no block, no key) ──
           # Economic indicators: close column (index 4) is the value.
           def fetch_stooq(symbol, limit=365):
               url = f"https://stooq.com/q/d/l/?s={symbol}&i=d"
@@ -126,8 +126,7 @@ jobs:
                   print(f"  WARN: Stooq {symbol}: {e}")
                   return None
 
-          # -- US Treasury real yield XML -- field_tdr_date_value=YYYY (4-digit year, NOT YYYYMM) --
-          # YYYYMM format returns an empty 690-byte feed; year-based returns full year of data
+          # ── US Treasury real yield XML ── field_tdr_date_value=YYYY (4-digit year) ──
           def fetch_treasury_real_yield_10y(years_back=2):
               import xml.etree.ElementTree as ET
               D_NS = 'http://schemas.microsoft.com/ado/2007/08/dataservices'
@@ -146,9 +145,7 @@ jobs:
                       req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
                       with urllib.request.urlopen(req, timeout=30) as r:
                           text = r.read().decode()
-                      entry_count_raw = text.count('<entry>')
-                      print(f"  DEBUG Treasury {year}: xml_len={len(text)}, raw_entries={entry_count_raw}")
-                      if entry_count_raw == 0:
+                      if text.count('<entry>') == 0:
                           continue
                       root = ET.fromstring(text)
                       entries = root.findall(f'{{{ATOM_NS}}}entry')
@@ -170,34 +167,55 @@ jobs:
                               pass
                   except Exception as e:
                       print(f"  WARN: Treasury DFII10 {year}: {e}")
-              print(f"  DEBUG Treasury total: {len(result)} dates found")
               if not result:
                   return None
               return [{"date": k, "val": v} for k, v in sorted(result.items())]
 
-          # -- NY Fed EFFR API -- tries smaller counts until one succeeds --
+          # ── NY Fed EFFR API ── date-range endpoint first, count-based fallback ──
           def fetch_nyfed_effr():
-              for count in [250, 180, 90]:
-                  url = f"https://markets.newyorkfed.org/api/rates/effr/last/{count}.json"
+              def _parse_effr(data):
+                  rates = data.get("refRates", [])
+                  result = []
+                  for item in rates:
+                      d = item.get("effectiveDate", "")
+                      v = item.get("percentRate")
+                      if d and v is not None:
+                          result.append({"date": d, "val": round(float(v), 4)})
+                  result.sort(key=lambda x: x["date"])
+                  return result if result else None
+
+              # Date-range endpoint avoids count-based 400 errors
+              today = datetime.now(timezone.utc)
+              start = (today - timedelta(days=400)).strftime("%Y-%m-%d")
+              end = today.strftime("%Y-%m-%d")
+              for type_path in ["EFFR", "effr"]:
+                  url = f"https://markets.newyorkfed.org/api/rates/{type_path}/startDate/{start}/endDate/{end}.json"
                   try:
                       req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
                       with urllib.request.urlopen(req, timeout=20) as r:
                           data = json.loads(r.read().decode())
-                      rates = data.get("refRates", [])
-                      result = []
-                      for item in rates:
-                          d = item.get("effectiveDate", "")
-                          v = item.get("percentRate")
-                          if d and v is not None:
-                              result.append({"date": d, "val": round(float(v), 4)})
-                      result.sort(key=lambda x: x["date"])
+                      result = _parse_effr(data)
                       if result:
                           return result
                   except Exception as e:
-                      print(f"  WARN: NY Fed EFFR (count={count}): {e}")
+                      print(f"  WARN: NY Fed EFFR range ({type_path}): {e}")
+
+              # Count-based fallback with small values
+              for type_path in ["EFFR", "effr"]:
+                  for count in [30, 20, 10]:
+                      url = f"https://markets.newyorkfed.org/api/rates/{type_path}/last/{count}.json"
+                      try:
+                          req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+                          with urllib.request.urlopen(req, timeout=20) as r:
+                              data = json.loads(r.read().decode())
+                          result = _parse_effr(data)
+                          if result:
+                              return result
+                      except Exception as e:
+                          print(f"  WARN: NY Fed EFFR ({type_path}, count={count}): {e}")
               return None
 
-          # -- BLS fix: robust CPI fetch with better error handling --
+          # ── BLS fix: robust CPI fetch with better error handling ──
           def fetch_bls_cpi_v2():
               # Try GET endpoint first (simpler, more reliable)
               url = "https://api.bls.gov/publicAPI/v1/timeseries/data/CUSR0000SA0"
@@ -234,7 +252,7 @@ jobs:
                       print(f"  WARN: BLS CPI {method}: {e}")
               return None
 
-          # Load existing data -- stale cache beats empty cache
+          # Load existing data — stale cache beats empty cache
           existing = {}
           try:
               with open("public/macro-data.json") as f:
@@ -256,18 +274,18 @@ jobs:
                       result = [x for x in result if filter_fn(x)]
                   if result:
                       new_data[key] = result
-                      print(f"  v {key}: {len(result)} pts, latest={result[-1]}")
+                      print(f"  ✓ {key}: {len(result)} pts, latest={result[-1]}")
                       any_updated = True
                       return
               new_data[key] = existing.get(key, [])
               print(f"  ~ {key}: fetch failed, keeping {len(new_data[key])} existing pts")
 
-          # CPI -- BLS v2 primary, original BLS fallback, then Stooq cpiaucsl
+          # CPI — BLS v2 primary, original BLS fallback, then Stooq cpiaucsl
           try_fetch("cpi",
               primary_fn=fetch_bls_cpi_v2,
               fallback_fn=lambda: fetch_bls_cpi() or fetch_stooq("cpiaucsl.us", 540))
 
-          # PMI -- MPMIVMA stores as decimal (0.487=48.7%); normalize then filter realistic range
+          # PMI — MPMIVMA stores as decimal (0.487=48.7%); normalize then filter realistic range
           def norm_pmi(data):
               if not data: return None
               result = []
@@ -281,30 +299,30 @@ jobs:
               primary_fn=lambda: norm_pmi(fetch_fred_csv("MPMIVMA", 24)),
               fallback_fn=lambda: norm_pmi(fetch_stooq("mpmivma.us", 24)))
 
-          # Fed Funds -- NY Fed EFFR primary (public API, no block), FRED CSV fallback
+          # Fed Funds — NY Fed EFFR primary (public API, no block), FRED CSV fallback
           try_fetch("fedfunds",
               primary_fn=fetch_nyfed_effr,
               fallback_fn=lambda: fetch_fred_csv("FEDFUNDS", 24) or fetch_stooq("fedfunds.us", 24))
 
-          # 10Y yield -- Yahoo Finance primary (reliable), FRED CSV fallback
+          # 10Y yield — Yahoo Finance primary (reliable), FRED CSV fallback
           # Fetched early so it's available for T10YIE computation below
           try_fetch("dgs10",
               primary_fn=lambda: fetch_yield("%5ETNX", 365),
               fallback_fn=lambda: fetch_fred_csv("DGS10", 365))
 
-          # 2Y yield -- Yahoo Finance primary (^IRX ~= 13-week, best free proxy), FRED fallback
+          # 2Y yield — Yahoo Finance primary (^IRX ≈ 13-week, best free proxy), FRED fallback
           try_fetch("dgs2",
               primary_fn=lambda: fetch_yield("%5EIRX", 365),
               fallback_fn=lambda: fetch_fred_csv("DGS2", 365))
 
-          # Real yield (TIPS 10Y) -- FRED primary, US Treasury XML fallback
+          # Real yield (TIPS 10Y) — FRED primary, US Treasury XML fallback (same source, no key)
           # Fetched before T10YIE so it's available for the compute fallback below
           try_fetch("dfii10",
               primary_fn=lambda: fetch_fred_csv("DFII10", 540),
               fallback_fn=lambda: fetch_treasury_real_yield_10y() or fetch_stooq("dfii10.us", 540))
 
-          # 10Y breakeven inflation = nominal yield - real yield
-          # FRED primary; if blocked, compute from dgs10-dfii10 (both already in new_data)
+          # 10Y breakeven inflation = nominal yield − real yield
+          # FRED primary; if blocked, compute from dgs10−dfii10 (both already in new_data)
           def compute_t10yie():
               d10 = {d["date"]: d["val"] for d in new_data.get("dgs10", [])}
               dfi = {d["date"]: d["val"] for d in new_data.get("dfii10", [])}
@@ -323,7 +341,7 @@ jobs:
               primary_fn=lambda: fetch_fred_csv("T10YIE", 540),
               fallback_fn=lambda: fetch_stooq("t10yie.us", 540) or compute_t10yie())
 
-          # VIX -- Yahoo Finance ^VIX (works from GitHub Actions, no CORS block)
+          # VIX — Yahoo Finance ^VIX (works from GitHub Actions, no CORS block)
           try_fetch("vix",
               primary_fn=lambda: fetch_yahoo("%5EVIX", 60))
 
@@ -338,7 +356,7 @@ jobs:
               json.dump(output, f, separators=(",", ":"))
 
           total = sum(len(v) for v in new_data.values() if isinstance(v, list))
-          print(f"\nSaved macro-data.json -- {total} total data points")
+          print(f"\nSaved macro-data.json — {total} total data points")
           PYEOF
 
       - name: Commit and push
