@@ -100,6 +100,65 @@ jobs:
                   print(f"  WARN: FRED {series_id}: {e}")
                   return None
 
+          # ── Stooq CSV ── reliable from GitHub Actions (no block, no key) ──
+          # Economic indicators: close column (index 4) is the value.
+          def fetch_stooq(symbol, limit=365):
+              url = f"https://stooq.com/q/d/l/?s={symbol}&i=d"
+              try:
+                  req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+                  with urllib.request.urlopen(req, timeout=20) as r:
+                      text = r.read().decode()
+                  result = []
+                  lines = text.strip().split("\n")
+                  for line in lines[1:]:          # skip header
+                      parts = line.split(",")
+                      if len(parts) >= 5:
+                          try:
+                              val = float(parts[4])  # Close
+                              result.append({"date": parts[0].strip(), "val": round(val, 4)})
+                          except (ValueError, IndexError):
+                              pass
+                  result.sort(key=lambda x: x["date"])
+                  return result[-limit:] if result else None
+              except Exception as e:
+                  print(f"  WARN: Stooq {symbol}: {e}")
+                  return None
+
+          # ── BLS fix: robust CPI fetch with better error handling ──
+          def fetch_bls_cpi_v2():
+              # Try GET endpoint first (simpler, more reliable)
+              url = "https://api.bls.gov/publicAPI/v1/timeseries/data/CUSR0000SA0"
+              for method in ["GET", "POST"]:
+                  try:
+                      if method == "GET":
+                          req = urllib.request.Request(
+                              url, headers={"User-Agent": "Mozilla/5.0 (compatible; macro-fetcher)"}
+                          )
+                      else:
+                          req = urllib.request.Request(
+                              url,
+                              data=json.dumps({"seriesid": ["CUSR0000SA0"]}).encode(),
+                              headers={"Content-Type": "application/json", "User-Agent": "Mozilla/5.0"},
+                          )
+                      with urllib.request.urlopen(req, timeout=30) as r:
+                          payload = json.loads(r.read().decode())
+                      if payload.get("status") != "REQUEST_SUCCEEDED":
+                          print(f"  WARN: BLS status={payload.get('status')} msg={payload.get('message')}")
+                          continue
+                      rows = payload["Results"]["series"][0]["data"]
+                      result = []
+                      for row in rows:
+                          if row.get("period") == "M13":
+                              continue
+                          month = row["period"][1:]
+                          date = f"{row['year']}-{month}-01"
+                          result.append({"date": date, "val": float(row["value"])})
+                      result.sort(key=lambda x: x["date"])
+                      return result if result else None
+                  except Exception as e:
+                      print(f"  WARN: BLS CPI {method}: {e}")
+              return None
+
           # Load existing data — stale cache beats empty cache
           existing = {}
           try:
@@ -128,10 +187,10 @@ jobs:
               new_data[key] = existing.get(key, [])
               print(f"  ~ {key}: fetch failed, keeping {len(new_data[key])} existing pts")
 
-          # CPI — BLS primary, FRED CSV fallback
+          # CPI — BLS v2 primary, original BLS fallback, then Stooq cpiaucsl
           try_fetch("cpi",
-              primary_fn=fetch_bls_cpi,
-              fallback_fn=lambda: fetch_fred_csv("CPIAUCSL", 540))
+              primary_fn=fetch_bls_cpi_v2,
+              fallback_fn=lambda: fetch_bls_cpi() or fetch_stooq("cpiaucsl.us", 540))
 
           # PMI — MPMIVMA stores as decimal (0.487=48.7%); normalize then filter realistic range
           def norm_pmi(data):
@@ -144,19 +203,23 @@ jobs:
               return result if result else None
 
           try_fetch("pmi",
-              primary_fn=lambda: norm_pmi(fetch_fred_csv("MPMIVMA", 24)))
+              primary_fn=lambda: norm_pmi(fetch_fred_csv("MPMIVMA", 24)),
+              fallback_fn=lambda: norm_pmi(fetch_stooq("mpmivma.us", 24)))
 
           # Fed Funds — FRED CSV; rarely changes so stale cache is fine
           try_fetch("fedfunds",
-              primary_fn=lambda: fetch_fred_csv("FEDFUNDS", 24))
+              primary_fn=lambda: fetch_fred_csv("FEDFUNDS", 24),
+              fallback_fn=lambda: fetch_stooq("fedfunds.us", 24))
 
-          # 10Y breakeven inflation — FRED CSV only
+          # 10Y breakeven inflation — FRED primary, Stooq fallback
           try_fetch("t10yie",
-              primary_fn=lambda: fetch_fred_csv("T10YIE", 540))
+              primary_fn=lambda: fetch_fred_csv("T10YIE", 540),
+              fallback_fn=lambda: fetch_stooq("t10yie.us", 540))
 
-          # Real yield — FRED CSV only
+          # Real yield (TIPS 10Y) — FRED primary, Stooq fallback
           try_fetch("dfii10",
-              primary_fn=lambda: fetch_fred_csv("DFII10", 540))
+              primary_fn=lambda: fetch_fred_csv("DFII10", 540),
+              fallback_fn=lambda: fetch_stooq("dfii10.us", 540))
 
           # 10Y yield — Yahoo Finance primary (reliable), FRED CSV fallback
           try_fetch("dgs10",

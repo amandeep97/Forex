@@ -738,13 +738,24 @@ export default function MetalsDashboard() {
         macroCache?.dgs2?.length   ? macroCache.dgs2   : fetchYield2(),
       ]);
 
+      // T10YIE fallback: compute as DGS10 - DFII10 (nominal - real = breakeven)
+      // Both yield series ARE working, so this covers when FRED/CORS-proxy fails for T10YIE.
+      let resolvedBI = breakevenInfl;
+      if (!resolvedBI?.length && y10Data?.length && realYield?.length) {
+        const ryMap = Object.fromEntries(realYield.map(d => [d.date, d.val]));
+        resolvedBI = y10Data
+          .filter(d => ryMap[d.date] != null)
+          .map(d => ({ date: d.date, val: +(d.val - ryMap[d.date]).toFixed(2) }))
+          .filter(d => d.val > 0 && d.val < 5);
+      }
+
       // VIX: cache → FRED proxy fallback (vixData already tried proxy in Phase 1)
       const resolvedVix = macroCache?.vix?.length ? macroCache.vix : vixData;
 
       setMkt({ gold, silver, dxy, bonds10, bonds2, oil, copper });
       setCot({ gold: cotGold, silver: cotSilver });
       setRy(realYield);
-      setBi(breakevenInfl);
+      setBi(resolvedBI);
       setDaily({ gold: dGold, silver: dSilver });
       setWeekly({ gold: wGold, silver: wSilver });
       setMonthly({ gold: mGold, silver: mSilver });
