@@ -127,10 +127,11 @@ jobs:
                   return None
 
           # ── US Treasury real yield XML ── no key, government endpoint, same as FRED DFII10 ──
-          def fetch_treasury_real_yield_10y(months_back=18):
+          def fetch_treasury_real_yield_10y(months_back=6):
               import re
               from datetime import timedelta
               result = {}
+              debug_printed = False
               for m in range(months_back + 1):
                   dt = datetime.now(timezone.utc) - timedelta(days=30 * m)
                   ym = dt.strftime("%Y%m")
@@ -140,13 +141,19 @@ jobs:
                   )
                   try:
                       req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
-                      with urllib.request.urlopen(req, timeout=20) as r:
+                      with urllib.request.urlopen(req, timeout=15) as r:
                           text = r.read().decode()
+                      if not debug_printed:
+                          print(f"  DEBUG Treasury XML ({ym}): {text[:400]!r}")
+                          debug_printed = True
                       for entry in text.split('<entry>')[1:]:
                           dm = re.search(r'NEW_DATE[^>]*>(\d{4}-\d{2}-\d{2})', entry)
-                          vm = re.search(r'TC_10YEAR[^>]*>([\d.]+)<', entry)
+                          vm = re.search(r'(?:TC|BC)_10YEAR[^>]*>([\d.-]+)<', entry)
                           if dm and vm:
-                              result[dm.group(1)] = round(float(vm.group(1)), 4)
+                              try:
+                                  result[dm.group(1)] = round(float(vm.group(1)), 4)
+                              except ValueError:
+                                  pass
                   except Exception as e:
                       print(f"  WARN: Treasury DFII10 {ym}: {e}")
               if not result:
