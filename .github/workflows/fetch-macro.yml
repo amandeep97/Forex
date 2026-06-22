@@ -137,7 +137,7 @@ jobs:
                   ym = dt.strftime("%Y%m")
                   url = (
                       "https://home.treasury.gov/resource-center/data-chart-center"
-                      f"/interest-rates/pages/xml?data=real_yield&field_tdr_date_value={ym}"
+                      f"/interest-rates/pages/xml?data=daily_treasury_real_yield_curve&field_tdr_date_value={ym}"
                   )
                   try:
                       req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
