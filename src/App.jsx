@@ -1,10 +1,11 @@
-import { useState, lazy, Suspense } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import Screener from './components/Screener';          // eager — default tab
 import { allInstruments } from './data/forexData';
 import './App.css';
 
 // All non-default tabs load only when first visited (code + data)
 const AIAnalysis       = lazy(() => import('./components/AIAnalysis'));
+const PairHub          = lazy(() => import('./components/PairHub'));
 const TradeDashboard   = lazy(() => import('./components/TradeDashboard'));
 const WatchlistTab     = lazy(() => import('./components/WatchlistTab'));
 const AutoTrading      = lazy(() => import('./components/AutoTrading'));
@@ -37,6 +38,7 @@ function TabSpinner() {
 
 const TABS = [
   { id: 'ai',          label: 'AI',           icon: '🤖' },
+  { id: 'pairhub',     label: 'Pair Hub',     icon: '💱' },
   { id: 'dashboard',   label: 'Dashboard',    icon: '🎯' },
   { id: 'screener',    label: 'Screener',     icon: '⊞' },
   { id: 'signals',     label: 'Signals',      icon: '🎯' },
@@ -109,6 +111,16 @@ function AccountSwitcher({ mode, onChange }) {
 export default function App() {
   const [activeTab, setActiveTab]     = useState('screener');
   const [visitedTabs, setVisitedTabs] = useState(() => new Set(['screener']));
+
+  useEffect(() => {
+    const handler = e => {
+      const tab = e.detail;
+      setActiveTab(tab);
+      setVisitedTabs(prev => new Set([...prev, tab]));
+    };
+    window.addEventListener('navigate-tab', handler);
+    return () => window.removeEventListener('navigate-tab', handler);
+  }, []);
   const [accountMode, setAccountMode] = useState('demo');
   const [showModal, setShowModal]     = useState(false);
   const [realBalance] = useState(2548.30);
@@ -216,6 +228,9 @@ export default function App() {
       <Suspense fallback={<TabSpinner />}>
         <div style={{ display: activeTab === 'ai' ? 'flex' : 'none', flexDirection:'column', height:'calc(100vh - 120px)' }}>
           {visitedTabs.has('ai') && <AIAnalysis />}
+        </div>
+        <div style={{ display: activeTab === 'pairhub' ? 'block' : 'none', overflowY:'auto', height:'calc(100vh - 120px)' }}>
+          {visitedTabs.has('pairhub') && <PairHub />}
         </div>
         <div style={{ display: activeTab === 'dashboard' ? 'block' : 'none', overflowY:'auto', height:'calc(100vh - 120px)' }}>
           {visitedTabs.has('dashboard') && <TradeDashboard />}
