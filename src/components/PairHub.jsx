@@ -79,6 +79,114 @@ function getAlphaStats(pairKey) {
   } catch { return null; }
 }
 
+// Best session hours (UTC) for each pair group
+const PAIR_SESSIONS = {
+  EUR_USD:{ name:'London/NY', utcFrom:8,  utcTo:17 },
+  GBP_USD:{ name:'London/NY', utcFrom:8,  utcTo:17 },
+  USD_JPY:{ name:'Tokyo/London', utcFrom:0, utcTo:12 },
+  USD_CHF:{ name:'London/NY', utcFrom:8,  utcTo:17 },
+  AUD_USD:{ name:'Sydney/Tokyo', utcFrom:22, utcTo:9 },
+  USD_CAD:{ name:'NY',        utcFrom:13, utcTo:22 },
+  NZD_USD:{ name:'Sydney/Tokyo', utcFrom:22, utcTo:9 },
+  GBP_JPY:{ name:'London',   utcFrom:8,  utcTo:13 },
+  EUR_JPY:{ name:'London',   utcFrom:8,  utcTo:13 },
+  EUR_GBP:{ name:'London',   utcFrom:8,  utcTo:17 },
+  AUD_JPY:{ name:'Tokyo',    utcFrom:0,  utcTo:9  },
+  CAD_JPY:{ name:'London/NY',utcFrom:8,  utcTo:17 },
+  XAU_USD:{ name:'London/NY',utcFrom:8,  utcTo:17 },
+  XAG_USD:{ name:'London/NY',utcFrom:8,  utcTo:17 },
+  US30_USD:{ name:'NY',      utcFrom:13, utcTo:21 },
+  NAS100_USD:{ name:'NY',    utcFrom:13, utcTo:21 },
+  SPX500_USD:{ name:'NY',    utcFrom:13, utcTo:21 },
+  DE30_EUR:{ name:'London',  utcFrom:7,  utcTo:16 },
+  JP225_USD:{ name:'Tokyo',  utcFrom:0,  utcTo:9  },
+  UK100_GBP:{ name:'London', utcFrom:8,  utcTo:16 },
+};
+
+function isInSession(pairKey) {
+  const s = PAIR_SESSIONS[pairKey];
+  if (!s) return false;
+  const h = new Date().getUTCHours();
+  if (s.utcFrom < s.utcTo) return h >= s.utcFrom && h < s.utcTo;
+  return h >= s.utcFrom || h < s.utcTo;
+}
+
+function dowFactor() {
+  const d = new Date().getDay(); // 0=Sun,1=Mon,...,6=Sat
+  return d === 2 || d === 3 ? 20  // Tue/Wed — highest probability
+       : d === 1 || d === 4 ? 12  // Mon/Thu — good
+       : d === 5             ?  5  // Fri — low, often trap
+       : 0;                        // Weekend
+}
+
+function scorePairToday(pair) {
+  let score = 0;
+  const breakdown = [];
+
+  try {
+    const store = JSON.parse(localStorage.getItem('alpha_lab_v2')||'{}');
+    const log = (store.sweepLog||[]).filter(s=>s.pair===pair.key);
+    const resolved = log.filter(s=>s.outcome!=='pending');
+    const confirmed = resolved.filter(s=>s.outcome==='confirmed');
+    const pending = log.filter(s=>s.outcome==='pending');
+    const wr = resolved.length >= 5 ? Math.round(confirmed.length/resolved.length*100) : null;
+
+    // 1. Historical WR (0-30 pts)
+    if (wr != null) {
+      const wrPts = wr >= 65 ? 30 : wr >= 55 ? 20 : wr >= 45 ? 10 : 0;
+      if (wrPts) { score += wrPts; breakdown.push(`WR ${wr}% (+${wrPts})`); }
+    }
+
+    // 2. Live sweep active today (0-30 pts)
+    if (pending.length > 0) {
+      score += 30;
+      breakdown.push(`Live sweep (+30)`);
+    }
+
+    // 3. Today's day-of-week WR from historical data
+    const today = new Date().getDay();
+    const dowNames = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+    const todayLabel = dowNames[today];
+    const todayLog = resolved.filter(s => {
+      const d = s.dow ?? dowNames[new Date(s.time).getDay()];
+      return d === todayLabel;
+    });
+    if (todayLog.length >= 5) {
+      const todayWins = todayLog.filter(s=>s.outcome==='confirmed').length;
+      const todayWR = Math.round(todayWins/todayLog.length*100);
+      const pts = todayWR >= 65 ? 20 : todayWR >= 55 ? 12 : 0;
+      if (pts) { score += pts; breakdown.push(`${todayLabel} WR ${todayWR}% (+${pts})`); }
+    }
+
+    // 4. Session timing (0-15 pts)
+    if (isInSession(pair.key)) {
+      score += 15;
+      breakdown.push(`Peak session (+15)`);
+    }
+
+    // 5. Day of week base factor (0-20 pts)
+    const dfPts = dowFactor();
+    if (dfPts) { score += dfPts; breakdown.push(`${todayLabel} factor (+${dfPts})`); }
+
+    // 6. Recent streak — last 3 resolved all confirmed (0-10 pts)
+    const last3 = resolved.slice(0,3);
+    if (last3.length === 3 && last3.every(s=>s.outcome==='confirmed')) {
+      score += 10;
+      breakdown.push('Hot streak (+10)');
+    }
+
+    // 7. HTF aligned on latest sweep (+5 pts)
+    const latestSweep = log.find(s=>s.htfAligned!=null);
+    if (latestSweep?.htfAligned) {
+      score += 5;
+      breakdown.push('HTF aligned (+5)');
+    }
+
+  } catch {}
+
+  return { score: Math.min(score, 100), breakdown };
+}
+
 function getNewsForPair(pair) {
   try {
     const cache = JSON.parse(localStorage.getItem('forex_news_cache')||'null');
@@ -123,12 +231,22 @@ function StatBox({ label, value, color='#f1f5f9', sub }) {
   );
 }
 
+const DOW_LABEL  = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'][new Date().getDay()];
+const DOW_COLOR  = [0,6].includes(new Date().getDay()) ? '#334155'
+  : [2,3].includes(new Date().getDay()) ? '#00d4aa'
+  : new Date().getDay() === 5 ? '#ef4444' : '#f59e0b';
+
 export default function PairHub() {
   const [group,     setGroup]     = useState('All');
   const [search,    setSearch]    = useState('');
   const [selected,  setSelected]  = useState(null);
   const [priceData, setPriceData] = useState(null);
   const [loading,   setLoading]   = useState(false);
+
+  const todayRanking = ALL_PAIRS.map(p => ({ pair:p, ...scorePairToday(p) }))
+    .filter(r => r.score > 0)
+    .sort((a,b) => b.score - a.score)
+    .slice(0, 5);
 
   const groups = ['All','Forex','Metals','Indices'];
   const filtered = ALL_PAIRS.filter(p =>
@@ -163,6 +281,63 @@ export default function PairHub() {
           💱 PAIR HUB
         </div>
         <div style={{ fontSize:10, color:'#334155' }}>Select any pair to see full analysis — price, Alpha Lab, news, AI</div>
+      </div>
+
+      {/* ── Today's Best ── */}
+      <div style={{ background:'#06090f', borderRadius:14, border:'1px solid #0f1929', marginBottom:14, overflow:'hidden' }}>
+        <div style={{ padding:'10px 14px', borderBottom:'1px solid #0f1929', display:'flex', alignItems:'center', justifyContent:'space-between' }}>
+          <div style={{ fontSize:11, fontWeight:800, color:'#f1f5f9', letterSpacing:'0.06em' }}>
+            🎯 TODAY'S HIGH PROBABILITY PAIRS
+          </div>
+          <div style={{ fontSize:10, fontWeight:700, color:DOW_COLOR, background:DOW_COLOR+'18',
+            padding:'2px 8px', borderRadius:8, border:`1px solid ${DOW_COLOR}33` }}>
+            {DOW_LABEL} {[2,3].includes(new Date().getDay())?'✓ Best day':[5].includes(new Date().getDay())?'⚠ Caution':''}
+          </div>
+        </div>
+
+        {todayRanking.length === 0 ? (
+          <div style={{ padding:'24px', textAlign:'center', fontSize:11, color:'#334155' }}>
+            Run backfill in Alpha Lab to generate scores
+          </div>
+        ) : todayRanking.map((r, i) => {
+          const gc = GROUP_COLORS[r.pair.group];
+          const scoreColor = r.score >= 70 ? '#00d4aa' : r.score >= 45 ? '#f59e0b' : '#ef4444';
+          const stats = getAlphaStats(r.pair.key);
+          const live = stats?.pending > 0;
+          return (
+            <div key={r.pair.key} onClick={()=>selectPair(r.pair)}
+              style={{ padding:'10px 14px', borderBottom: i<todayRanking.length-1?'1px solid #0a0e1a':undefined,
+                cursor:'pointer', display:'flex', alignItems:'center', gap:10,
+                background: selected?.key===r.pair.key ? '#0f172a' : 'transparent' }}>
+              {/* Rank */}
+              <div style={{ fontSize:13, fontWeight:900, color:'#1e293b', width:16, textAlign:'center', flexShrink:0 }}>
+                {i+1}
+              </div>
+              {/* Pair */}
+              <div style={{ flex:1 }}>
+                <div style={{ display:'flex', alignItems:'center', gap:6, marginBottom:2 }}>
+                  <span style={{ fontSize:12, fontWeight:800, color:gc }}>{r.pair.label}</span>
+                  {live && <span style={{ fontSize:8, fontWeight:800, color:'#ef4444', background:'#ef444418',
+                    padding:'1px 5px', borderRadius:6, border:'1px solid #ef444433' }}>⚡ LIVE</span>}
+                </div>
+                <div style={{ display:'flex', gap:4, flexWrap:'wrap' }}>
+                  {r.breakdown.map((b,j) => (
+                    <span key={j} style={{ fontSize:8, color:'#334155', background:'#0a0e1a',
+                      padding:'1px 5px', borderRadius:4, border:'1px solid #0f1929' }}>{b}</span>
+                  ))}
+                </div>
+              </div>
+              {/* Score bar */}
+              <div style={{ textAlign:'right', flexShrink:0 }}>
+                <div style={{ fontSize:18, fontWeight:900, color:scoreColor }}>{r.score}</div>
+                <div style={{ fontSize:8, color:'#334155' }}>/ 100</div>
+                <div style={{ width:40, height:4, background:'#0f1929', borderRadius:2, marginTop:3 }}>
+                  <div style={{ width:`${r.score}%`, height:'100%', background:scoreColor, borderRadius:2, transition:'width 0.4s' }}/>
+                </div>
+              </div>
+            </div>
+          );
+        })}
       </div>
 
       {/* ── Search + group filter ── */}
