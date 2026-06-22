@@ -144,7 +144,7 @@ jobs:
                           text = r.read().decode()
                       for entry in text.split('<entry>')[1:]:
                           dm = re.search(r'NEW_DATE[^>]*>(\d{4}-\d{2}-\d{2})', entry)
-                          vm = re.search(r'BC_10YEAR[^>]*>([\d.]+)<', entry)
+                          vm = re.search(r'TC_10YEAR[^>]*>([\d.]+)<', entry)
                           if dm and vm:
                               result[dm.group(1)] = round(float(vm.group(1)), 4)
                   except Exception as e:
