@@ -124,6 +124,7 @@ function scorePairToday(pair) {
   const breakdown = [];
   let direction = null;
   let dirReason = '';
+  let levels = null;
 
   try {
     const store = JSON.parse(localStorage.getItem('alpha_lab_v2')||'{}');
@@ -225,7 +226,6 @@ function scorePairToday(pair) {
     }
 
     // ── Trade levels from sweep ──
-    let levels = null;
     const sourceSweep = pending[0] || log.find(s =>
       s.outcome !== 'pending' &&
       Date.now() - new Date(s.time).getTime() < 48 * 3600 * 1000
