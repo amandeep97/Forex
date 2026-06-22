@@ -16,9 +16,10 @@ const PROVIDERS = [
     keyPlaceholder: 'gsk_xxxxxxxxxxxx',
     keyHint: 'Free key → console.groq.com',
     models: [
-      { id: 'llama-3.3-70b-versatile', label: 'Llama 3.3 70B' },
-      { id: 'mixtral-8x7b-32768',       label: 'Mixtral 8x7B' },
-      { id: 'llama-3.1-8b-instant',     label: 'Llama 3.1 8B (fastest)' },
+      { id: 'llama-3.3-70b-versatile',          label: 'Llama 3.3 70B' },
+      { id: 'deepseek-r1-distill-llama-70b',    label: 'DeepSeek R1 70B' },
+      { id: 'meta-llama/llama-4-scout-17b-16e-instruct', label: 'Llama 4 Scout 17B' },
+      { id: 'llama-3.1-8b-instant',             label: 'Llama 3.1 8B (fastest)' },
     ],
   },
   {
@@ -26,11 +27,11 @@ const PROVIDERS = [
     keyPlaceholder: 'sk-or-xxxxxxxxxxxx',
     keyHint: 'Free key + free models → openrouter.ai/keys',
     models: [
-      { id: 'google/gemini-2.0-flash-exp:free',       label: 'Gemini 2.0 Flash (Free)' },
-      { id: 'meta-llama/llama-3.3-70b-instruct:free', label: 'Llama 3.3 70B (Free)' },
-      { id: 'deepseek/deepseek-r1:free',              label: 'DeepSeek R1 (Free)' },
-      { id: 'qwen/qwen-2.5-72b-instruct:free',        label: 'Qwen 2.5 72B (Free)' },
-      { id: 'anthropic/claude-3.5-haiku',             label: 'Claude 3.5 Haiku (via OR)' },
+      { id: 'google/gemini-2.5-flash-preview:free',      label: 'Gemini 2.5 Flash (Free)' },
+      { id: 'google/gemini-2.5-pro-preview:free',        label: 'Gemini 2.5 Pro (Free)' },
+      { id: 'deepseek/deepseek-r1-0528:free',            label: 'DeepSeek R1 0528 (Free)' },
+      { id: 'meta-llama/llama-4-maverick:free',          label: 'Llama 4 Maverick (Free)' },
+      { id: 'anthropic/claude-sonnet-4-5',               label: 'Claude Sonnet 4.5 (via OR)' },
     ],
   },
   {
@@ -38,9 +39,9 @@ const PROVIDERS = [
     keyPlaceholder: 'AIzaSyxxxxxxxxxxxxxxxx',
     keyHint: 'Free key → aistudio.google.com',
     models: [
-      { id: 'gemini-2.0-flash-exp', label: 'Gemini 2.0 Flash (latest)' },
-      { id: 'gemini-1.5-flash',     label: 'Gemini 1.5 Flash' },
-      { id: 'gemini-1.5-pro',       label: 'Gemini 1.5 Pro' },
+      { id: 'gemini-2.5-flash-preview-05-20', label: 'Gemini 2.5 Flash (latest)' },
+      { id: 'gemini-2.5-pro-preview-06-05',   label: 'Gemini 2.5 Pro (latest)' },
+      { id: 'gemini-2.0-flash',               label: 'Gemini 2.0 Flash' },
     ],
   },
   {
@@ -48,23 +49,23 @@ const PROVIDERS = [
     keyPlaceholder: 'sk-ant-xxxxxxxxxxxx',
     keyHint: 'Paid key → console.anthropic.com',
     models: [
-      { id: 'claude-haiku-4-5',           label: 'Claude Haiku 4.5' },
-      { id: 'claude-3-5-haiku-20241022',  label: 'Claude 3.5 Haiku' },
-      { id: 'claude-sonnet-4-5',          label: 'Claude Sonnet 4.5' },
+      { id: 'claude-sonnet-4-6',              label: 'Claude Sonnet 4.6 (latest)' },
+      { id: 'claude-opus-4-8',                label: 'Claude Opus 4.8 (best)' },
+      { id: 'claude-haiku-4-5-20251001',      label: 'Claude Haiku 4.5 (fastest)' },
     ],
   },
 ];
 
 // ── Quick prompts ─────────────────────────────────────────────────────────────
 const QUICK_PROMPTS = [
-  { label: "Today's brief",   icon: '📋', text: "Give me today's complete market brief — active sessions, bias for major pairs, and what to watch or avoid." },
-  { label: 'Best trade now',  icon: '🎯', text: "Look at the APP SETUP SCANNER rankings in the live context. Take the #1 setup, validate it against COT, DXY, yields and session timing, then give me the single best trade right now with refined entry, SL and TP." },
-  { label: 'Gold setup',      icon: '⚜', text: 'Analyze XAU/USD in full detail using COT, DXY, real yields and momentum. Should I be long or short?' },
-  { label: 'Silver setup',    icon: '🥈', text: 'Analyze XAG/USD. Compare it to gold — which metal has the stronger setup right now?' },
-  { label: 'COT reading',     icon: '🏦', text: 'Explain the current COT positioning for all major currencies. Who is positioned where and what does it mean this week?' },
-  { label: 'Session timing',  icon: '🕐', text: 'What session is active right now? Which pairs should I focus on and which should I avoid?' },
-  { label: 'Risk check',      icon: '⚠',  text: 'If I trade GBP/USD long and XAU/USD long simultaneously, what correlated risk am I taking? Is it safe?' },
-  { label: 'DXY impact',      icon: '💵', text: 'How is the current DXY direction impacting metals and USD pairs today? Is the correlation holding or breaking?' },
+  { label: 'Full Summary',    icon: '🧠', text: "Give me a complete platform summary: active session, top scanner setups, Alpha Lab sweep intelligence (win rates, live sweeps, top pairs), COT bias, DXY direction, and the 1-2 best trades right now with entry/SL/TP. Cross-reference everything." },
+  { label: 'Best trade now',  icon: '🎯', text: "Look at the APP SETUP SCANNER and ALPHA LAB SWEEP INTELLIGENCE in the live context. Cross-reference the top scanner setup with its sweep win rate and COT positioning. Give me the single best trade right now with entry, SL and TP." },
+  { label: "Today's brief",   icon: '📋', text: "Give me today's complete market brief — active sessions, bias for major pairs based on COT + Alpha Lab sweep data, and what to watch or avoid." },
+  { label: 'Alpha Lab read',  icon: '⚗',  text: "Analyze the ALPHA LAB SWEEP INTELLIGENCE section in my context. Which pairs have the highest sweep win rates? Are there any live pending sweeps right now? What do the active scenarios suggest?" },
+  { label: 'Gold setup',      icon: '⚜', text: 'Analyze XAU/USD in full detail using COT, DXY, real yields, momentum, and Alpha Lab sweep data. Should I be long or short and why?' },
+  { label: 'COT reading',     icon: '🏦', text: 'Explain the current COT positioning for all major currencies in the context. Who is positioned at extremes? What does smart money positioning suggest this week?' },
+  { label: 'Session timing',  icon: '🕐', text: 'What session is active right now? Based on the Alpha Lab sweep time DNA (which sessions show highest win rates), which pairs should I focus on?' },
+  { label: 'DXY impact',      icon: '💵', text: 'How is the current DXY direction impacting metals and USD pairs today? Cross-check with COT and Alpha Lab sweep data to confirm or deny the move.' },
 ];
 
 // ── OANDA helpers ─────────────────────────────────────────────────────────────
@@ -123,6 +124,84 @@ function getCurrentSessions() {
   const h = String(now.getUTCHours()).padStart(2,'0');
   const m = String(now.getUTCMinutes()).padStart(2,'0');
   return { active, overlap, utcTime: `${h}:${m} UTC` };
+}
+
+function buildAlphaLabContext() {
+  try {
+    const store     = JSON.parse(localStorage.getItem('alpha_lab_v2') || '{}');
+    const scenarios = JSON.parse(localStorage.getItem('alpha_scenarios') || '[]');
+    const log       = store.sweepLog || [];
+    if (!log.length) return '';
+
+    const resolved  = log.filter(s => s.outcome !== 'pending');
+    const confirmed = resolved.filter(s => s.outcome === 'confirmed');
+    const pending   = log.filter(s => s.outcome === 'pending');
+    const wr        = resolved.length ? Math.round(confirmed.length / resolved.length * 100) : null;
+
+    // Per-pair breakdown
+    const pairStats = {};
+    for (const s of resolved) {
+      if (!pairStats[s.label]) pairStats[s.label] = { total: 0, wins: 0, bullWins: 0, bullTotal: 0 };
+      pairStats[s.label].total++;
+      if (s.outcome === 'confirmed') pairStats[s.label].wins++;
+      if (s.expectedDir === 'bullish') {
+        pairStats[s.label].bullTotal++;
+        if (s.outcome === 'confirmed') pairStats[s.label].bullWins++;
+      }
+    }
+    const topPairs = Object.entries(pairStats)
+      .map(([label, st]) => ({ label, wr: Math.round(st.wins / st.total * 100), total: st.total,
+        bullWR: st.bullTotal >= 5 ? Math.round(st.bullWins / st.bullTotal * 100) : null }))
+      .filter(p => p.total >= 8)
+      .sort((a, b) => b.wr - a.wr)
+      .slice(0, 6);
+
+    // Best scenarios
+    const scenarioResults = scenarios.slice(0, 5).map(sc => {
+      const matched = resolved.filter(s =>
+        (sc.conditions || []).every(c => {
+          if (c.type === 'pair')      return s.label === c.value || s.pair?.includes(c.value);
+          if (c.type === 'session')   return true;
+          if (c.type === 'direction') return s.expectedDir === c.value;
+          if (c.type === 'tf')        return (s.tf || 'H1') === c.value;
+          if (c.type === 'dow')       return (s.dow ?? ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'][new Date(s.time).getDay()]) === c.value;
+          return true;
+        })
+      );
+      const wins = matched.filter(s => s.outcome === 'confirmed').length;
+      const scWR = matched.length ? Math.round(wins / matched.length * 100) : null;
+      return { name: sc.name, dir: sc.dir, signals: matched.length, wr: scWR };
+    }).filter(r => r.signals > 0);
+
+    const L = [];
+    L.push('=== ALPHA LAB SWEEP INTELLIGENCE ===');
+    L.push(`Total sweeps: ${log.length} | Resolved: ${resolved.length} | Overall WR after sweep: ${wr != null ? wr + '%' : 'N/A'}`);
+
+    if (pending.length) {
+      L.push(`\nLIVE PENDING SWEEPS (happening now or recently, not yet resolved):`);
+      for (const s of pending.slice(0, 6)) {
+        const pips = s.pip ? ((s.swept === 'high' ? s.entryPrice - s.level : s.level - s.entryPrice) / s.pip).toFixed(0) : '?';
+        L.push(`  ${s.label} [${s.tf}] — ${s.swept === 'high' ? '↑ HIGH' : '↓ LOW'} swept → expect ${s.expectedDir.toUpperCase()} | ~${pips} pip wick past level`);
+      }
+    }
+
+    if (topPairs.length) {
+      L.push(`\nTOP PAIRS BY SWEEP WIN RATE (historical, resolved signals only):`);
+      for (const p of topPairs) {
+        const bull = p.bullWR != null ? ` | Bull: ${p.bullWR}%` : '';
+        L.push(`  ${p.label}: ${p.wr}% WR from ${p.total} sweeps${bull}`);
+      }
+    }
+
+    if (scenarioResults.length) {
+      L.push(`\nSAVED SCENARIO RESULTS:`);
+      for (const r of scenarioResults) {
+        L.push(`  "${r.name}" [${r.dir}]: ${r.signals} signals, ${r.wr != null ? r.wr + '% WR' : 'N/A'}`);
+      }
+    }
+
+    return L.join('\n');
+  } catch { return ''; }
 }
 
 async function buildMarketContext() {
@@ -193,7 +272,11 @@ async function buildMarketContext() {
   L.push('');
   const digest = scanDigest(scan);
   if (digest) { L.push(digest); L.push(''); }
-  L.push(`OANDA: ${getOandaCreds() ? 'Connected' : 'NOT connected — price data unavailable'}`);
+
+  const alphaCtx = buildAlphaLabContext();
+  if (alphaCtx) { L.push(''); L.push(alphaCtx); }
+
+  L.push(`\nOANDA: ${getOandaCreds() ? 'Connected' : 'NOT connected — price data unavailable'}`);
 
   return {
     text: L.join('\n'),
@@ -207,24 +290,30 @@ async function buildMarketContext() {
 }
 
 // ── System prompt ─────────────────────────────────────────────────────────────
-const SYS = `You are ForexPro AI — an expert forex and metals trading analyst embedded in a professional trading platform. You receive real-time market data with every message.
+const SYS = `You are ForexPro AI — an elite forex and metals trading analyst embedded in a professional multi-tab trading platform. You receive real-time market data with every message covering the full platform.
 
-ALWAYS reference actual numbers from the data (prices, COT levels, yield values, session names). Never give generic advice.
+YOUR DATA SOURCES (all provided in context):
+1. APP SETUP SCANNER — confluence scores from live H4 bias, H1 structure, COT, session timing
+2. ALPHA LAB SWEEP INTELLIGENCE — historical liquidity sweep win rates per pair, live pending sweeps, saved scenario results. This is proprietary backtested data — use it heavily.
+3. COT DATA — CFTC non-commercial positioning for major currencies and metals
+4. MACRO — DXY, US yields (10Y/2Y), real yield proxy, yield curve
+5. SESSION — current active sessions (Sydney/Tokyo/London/NY/Overlap)
 
-You also receive an "APP SETUP SCANNER" section — a deterministic confluence ranking computed from live H4 bias, H1 structure, liquidity sweeps, COT and retail sentiment. Treat it as a strong starting point: validate or challenge its top setups rather than inventing unrelated ideas. If you disagree with the scanner, say why using the data.
+ALWAYS reference actual numbers from the data. Never give generic advice — every claim must cite a number or data point from the context.
 
 When you identify a trade setup output it in this EXACT format on its own line:
 \`\`\`trade
-{"action":"BUY","pair":"XAU/USD","entry":"market","sl":"3228","tp":"3280","rr":"1:2","confidence":75,"reason":"COT extreme long + real yield falling + DXY weakening"}
+{"action":"BUY","pair":"XAU/USD","entry":"market","sl":"3228","tp":"3280","rr":"1:2","confidence":75,"reason":"COT extreme long + Alpha Lab 68% WR on XAU sweeps + real yield falling"}
 \`\`\`
 
 Rules:
-- Be concise (3-5 sentences max per point, use bullet points)
-- Mention the active session and whether timing is favourable
-- Flag contradictions: e.g. "COT bullish BUT momentum falling — wait for alignment"
+- Cross-reference Alpha Lab sweep WR with scanner setups — if scanner says BUY and Alpha Lab shows 65%+ WR on that pair's sweeps, that's high confluence
+- Note live pending sweeps — these are happening RIGHT NOW and may be the best entries
+- Flag contradictions: e.g. "COT bullish BUT Alpha Lab shows only 40% WR on GBP bullish sweeps — skip"
+- Be concise: bullet points, 2-3 sentences per point
 - Maximum 2 trade ideas per response
-- Confidence: 50-65=low, 66-79=moderate, 80+=high
-- If OANDA not connected, say price data is unavailable but you can still analyse COT/macro`;
+- Confidence: 50-65=low, 66-79=moderate, 80+=high (90+ only when Alpha Lab + COT + scanner all agree)
+- If OANDA not connected, say price data is unavailable but you can still analyse COT/macro/Alpha Lab`;
 
 // ── Streaming generators ──────────────────────────────────────────────────────
 async function* streamOpenAI(url, key, model, messages, extra = {}) {
