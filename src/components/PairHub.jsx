@@ -1,5 +1,5 @@
 'use strict';
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 
 const ALL_PAIRS = [
   // Forex Majors
@@ -28,6 +28,16 @@ const ALL_PAIRS = [
 ];
 
 const GROUP_COLORS = { Forex:'#8b5cf6', Metals:'#f59e0b', Indices:'#22c55e' };
+
+const TV_SYMBOLS = {
+  EUR_USD:'FX:EURUSD', GBP_USD:'FX:GBPUSD', USD_JPY:'FX:USDJPY',
+  USD_CHF:'FX:USDCHF', AUD_USD:'FX:AUDUSD', USD_CAD:'FX:USDCAD',
+  NZD_USD:'FX:NZDUSD', GBP_JPY:'FX:GBPJPY', EUR_JPY:'FX:EURJPY',
+  EUR_GBP:'FX:EURGBP', AUD_JPY:'FX:AUDJPY', CAD_JPY:'FX:CADJPY',
+  XAU_USD:'TVC:GOLD',  XAG_USD:'TVC:SILVER',
+  US30_USD:'DJ:DJI', NAS100_USD:'NASDAQ:NDX', SPX500_USD:'SP:SPX',
+  DE30_EUR:'XETR:DAX', JP225_USD:'INDEX:NKY', UK100_GBP:'INDEX:UKX',
+};
 
 function getCreds() {
   try {
@@ -59,6 +69,23 @@ async function fetchPrice(pairKey) {
     const pct = high > low ? ((last - low)/(high-low)*100) : 50;
     const trend = last > candles[candles.length-4] ? 'up' : 'down';
     return { price:last, change, pct, trend, candles };
+  } catch { return null; }
+}
+
+async function fetchLivePrice(pairKey) {
+  const creds = getCreds();
+  if (!creds) return null;
+  const base = creds.practice ? 'https://api-fxpractice.oanda.com/v3' : 'https://api-fxtrade.oanda.com/v3';
+  try {
+    const r = await fetch(
+      `${base}/instruments/${pairKey}/candles?granularity=M1&count=2&price=M`,
+      { headers:{ Authorization:`Bearer ${creds.apiKey}` }, signal: AbortSignal.timeout(8000) }
+    );
+    if (!r.ok) return null;
+    const d = await r.json();
+    const candles = d.candles || [];
+    if (!candles.length) return null;
+    return +candles[candles.length - 1].mid.c;
   } catch { return null; }
 }
 
@@ -251,7 +278,7 @@ function scorePairToday(pair) {
       const tp1  = isLong ? entry + risk * 2 : entry - risk * 2;   // 1:2 R:R
       const tp2  = isLong ? entry + risk * 3 : entry - risk * 3;   // 1:3 R:R
       const riskPips = Math.round(risk / pip);
-      const dec = pip < 0.001 ? 2 : pip < 0.01 ? 3 : pip === 0.01 ? 3 : 5;
+      const dec = pip >= 1 ? 2 : pip >= 0.01 ? 3 : pip >= 0.001 ? 3 : 5;
       levels = {
         entry:    entry.toFixed(dec),
         sl:       sl.toFixed(dec),
@@ -324,11 +351,31 @@ export default function PairHub() {
   const [selected,  setSelected]  = useState(null);
   const [priceData, setPriceData] = useState(null);
   const [loading,   setLoading]   = useState(false);
+  const [liveRates, setLiveRates] = useState({});
+  const [chartPair, setChartPair] = useState(null);
 
-  const todayRanking = ALL_PAIRS.map(p => ({ pair:p, ...scorePairToday(p) }))
-    .filter(r => r.score > 0)
-    .sort((a,b) => b.score - a.score)
-    .slice(0, 5);
+  const todayRanking = useMemo(() =>
+    ALL_PAIRS.map(p => ({ pair:p, ...scorePairToday(p) }))
+      .filter(r => r.score > 0)
+      .sort((a,b) => b.score - a.score)
+      .slice(0, 5),
+  []);
+
+  useEffect(() => {
+    const keys = todayRanking.map(r => r.pair.key);
+    if (!keys.length) return;
+    const run = async () => {
+      const results = await Promise.all(keys.map(async k => [k, await fetchLivePrice(k)]));
+      setLiveRates(prev => {
+        const next = { ...prev };
+        results.forEach(([k, p]) => { if (p != null) next[k] = p; });
+        return next;
+      });
+    };
+    run();
+    const t = setInterval(run, 30000);
+    return () => clearInterval(t);
+  }, []);
 
   const groups = ['All','Forex','Metals','Indices'];
   const filtered = ALL_PAIRS.filter(p =>
@@ -349,8 +396,8 @@ export default function PairHub() {
   const pairNews   = selected ? getNewsForPair(selected) : [];
 
   const priceFmt = (p, pair) => {
-    if (!p) return '—';
-    const dec = pair.pip < 0.001 ? 2 : pair.pip < 0.01 ? 3 : pair.pip === 0.01 ? 5 : 5;
+    if (p == null) return '—';
+    const dec = pair.pip >= 1 ? 2 : pair.pip >= 0.01 ? 3 : pair.pip >= 0.001 ? 3 : 5;
     return p.toFixed(dec);
   };
 
@@ -396,10 +443,19 @@ export default function PairHub() {
               <div style={{ display:'flex', alignItems:'center', gap:8, marginBottom:6 }}>
                 <div style={{ fontSize:11, fontWeight:900, color:'#1e293b', width:14, flexShrink:0 }}>{i+1}</div>
                 <span style={{ fontSize:13, fontWeight:900, color:gc }}>{r.pair.label}</span>
+                {liveRates[r.pair.key] != null && (
+                  <span style={{ fontSize:10, fontWeight:800, color:'#94a3b8', background:'#0a0e1a',
+                    padding:'2px 7px', borderRadius:6, border:'1px solid #1e293b' }}>
+                    {priceFmt(liveRates[r.pair.key], r.pair)}
+                  </span>
+                )}
                 {live && <span style={{ fontSize:8, fontWeight:800, color:'#ef4444', background:'#ef444418',
-                  padding:'1px 6px', borderRadius:6, border:'1px solid #ef444433', animation:'none' }}>⚡ LIVE NOW</span>}
-                {/* Direction badge — most prominent element */}
-                <div style={{ marginLeft:'auto', display:'flex', alignItems:'center', gap:8 }}>
+                  padding:'1px 6px', borderRadius:6, border:'1px solid #ef444433' }}>⚡ LIVE NOW</span>}
+                <div style={{ marginLeft:'auto', display:'flex', alignItems:'center', gap:6 }}>
+                  <button onClick={e=>{e.stopPropagation();setChartPair(r.pair);}} style={{
+                    background:'#0a0e1a', border:'1px solid #1e293b', borderRadius:8,
+                    color:'#64748b', fontSize:12, padding:'4px 8px', cursor:'pointer', lineHeight:1,
+                  }}>📊</button>
                   <div style={{ background:`${dirColor}20`, border:`1px solid ${dirColor}55`,
                     borderRadius:8, padding:'4px 10px', textAlign:'center' }}>
                     <div style={{ fontSize:13, fontWeight:900, color:dirColor, letterSpacing:'0.05em' }}>{dirLabel}</div>
@@ -539,6 +595,13 @@ export default function PairHub() {
             )}
           </div>
 
+          {/* Chart button */}
+          <button onClick={()=>setChartPair(selected)} style={{
+            width:'100%', padding:'11px', borderRadius:12, border:'1px solid #0f1929',
+            background:'#06090f', color:'#64748b', fontSize:13, fontWeight:700, cursor:'pointer',
+            marginBottom:12, display:'flex', alignItems:'center', justifyContent:'center', gap:8,
+          }}>📊 View Chart</button>
+
           {/* Alpha Lab stats */}
           {alphaStats && alphaStats.total > 0 && (
             <div style={{ marginBottom:12 }}>
@@ -623,6 +686,31 @@ export default function PairHub() {
       {!selected && (
         <div style={{ textAlign:'center', padding:'40px 20px', color:'#1e293b', fontSize:13 }}>
           Tap any pair above to see its full analysis
+        </div>
+      )}
+
+      {/* ── Chart modal ── */}
+      {chartPair && (
+        <div style={{ position:'fixed', inset:0, background:'rgba(4,7,15,0.97)', zIndex:2000,
+          display:'flex', flexDirection:'column' }}>
+          <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between',
+            padding:'12px 16px', background:'#06090f', borderBottom:'1px solid #0f1929', flexShrink:0 }}>
+            <div>
+              <div style={{ fontSize:14, fontWeight:900, color:'#f1f5f9' }}>📊 {chartPair.label}</div>
+              <div style={{ fontSize:9, color:'#334155', marginTop:2 }}>TradingView · H1</div>
+            </div>
+            <button onClick={()=>setChartPair(null)} style={{
+              background:'#0a0e1a', border:'1px solid #1e293b', borderRadius:8,
+              color:'#94a3b8', fontSize:18, cursor:'pointer', padding:'4px 10px', lineHeight:1,
+            }}>✕</button>
+          </div>
+          <iframe
+            key={chartPair.key}
+            src={`https://s.tradingview.com/widgetembed/?symbol=${encodeURIComponent(TV_SYMBOLS[chartPair.key]||chartPair.label)}&interval=H1&theme=dark&style=1&locale=en&hide_top_toolbar=0&hide_legend=0&save_image=0&calendar=0`}
+            style={{ flex:1, border:'none', width:'100%' }}
+            allow="fullscreen"
+            title={`${chartPair.label} chart`}
+          />
         </div>
       )}
     </div>
