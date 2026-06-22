@@ -21,7 +21,7 @@ jobs:
         run: |
           python3 << 'PYEOF'
           import json, urllib.request, os
-          from datetime import datetime, timezone
+          from datetime import datetime, timezone, timedelta
 
           # ── BLS (US Bureau of Labor Statistics) ── no key, no account needed ──
           def fetch_bls_cpi():
@@ -126,8 +126,7 @@ jobs:
                   print(f"  WARN: Stooq {symbol}: {e}")
                   return None
 
-          # ── US Treasury real yield XML ── field_tdr_date_value=YYYY (4-digit year, NOT YYYYMM) ──
-          # YYYYMM format returns an empty 690-byte feed; year-based returns full year of data
+          # ── US Treasury real yield XML ── field_tdr_date_value=YYYY (4-digit year) ──
           def fetch_treasury_real_yield_10y(years_back=2):
               import xml.etree.ElementTree as ET
               D_NS = 'http://schemas.microsoft.com/ado/2007/08/dataservices'
@@ -146,9 +145,7 @@ jobs:
                       req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
                       with urllib.request.urlopen(req, timeout=30) as r:
                           text = r.read().decode()
-                      entry_count_raw = text.count('<entry>')
-                      print(f"  DEBUG Treasury {year}: xml_len={len(text)}, raw_entries={entry_count_raw}")
-                      if entry_count_raw == 0:
+                      if text.count('<entry>') == 0:
                           continue
                       root = ET.fromstring(text)
                       entries = root.findall(f'{{{ATOM_NS}}}entry')
@@ -170,32 +167,136 @@ jobs:
                               pass
                   except Exception as e:
                       print(f"  WARN: Treasury DFII10 {year}: {e}")
-              print(f"  DEBUG Treasury total: {len(result)} dates found")
               if not result:
                   return None
               return [{"date": k, "val": v} for k, v in sorted(result.items())]
 
-          # ── NY Fed EFFR API ── tries smaller counts until one succeeds ──
+          # ── NY Fed EFFR API ── date-range endpoint, browser headers to avoid block ──
           def fetch_nyfed_effr():
-              for count in [250, 180, 90]:
-                  url = f"https://markets.newyorkfed.org/api/rates/effr/last/{count}.json"
+              def _parse_effr(data):
+                  rates = data.get("refRates", [])
+                  result = []
+                  for item in rates:
+                      d = item.get("effectiveDate", "")
+                      v = item.get("percentRate")
+                      if d and v is not None:
+                          result.append({"date": d, "val": round(float(v), 4)})
+                  result.sort(key=lambda x: x["date"])
+                  return result if result else None
+
+              today = datetime.now(timezone.utc)
+              start = (today - timedelta(days=400)).strftime("%Y-%m-%d")
+              end = today.strftime("%Y-%m-%d")
+              browser_hdrs = {
+                  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+                  "Accept": "application/json, */*",
+                  "Referer": "https://www.newyorkfed.org/markets/reference-rates/effr",
+              }
+              for type_path in ["EFFR", "effr"]:
+                  url = f"https://markets.newyorkfed.org/api/rates/{type_path}/startDate/{start}/endDate/{end}.json"
                   try:
-                      req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+                      req = urllib.request.Request(url, headers=browser_hdrs)
                       with urllib.request.urlopen(req, timeout=20) as r:
                           data = json.loads(r.read().decode())
-                      rates = data.get("refRates", [])
-                      result = []
-                      for item in rates:
-                          d = item.get("effectiveDate", "")
-                          v = item.get("percentRate")
-                          if d and v is not None:
-                              result.append({"date": d, "val": round(float(v), 4)})
-                      result.sort(key=lambda x: x["date"])
+                      result = _parse_effr(data)
                       if result:
                           return result
                   except Exception as e:
-                      print(f"  WARN: NY Fed EFFR (count={count}): {e}")
+                      print(f"  WARN: NY Fed EFFR range ({type_path}): {e}")
+
+              for type_path in ["EFFR", "effr"]:
+                  for count in [10, 5]:
+                      url = f"https://markets.newyorkfed.org/api/rates/{type_path}/last/{count}.json"
+                      try:
+                          req = urllib.request.Request(url, headers=browser_hdrs)
+                          with urllib.request.urlopen(req, timeout=20) as r:
+                              data = json.loads(r.read().decode())
+                          result = _parse_effr(data)
+                          if result:
+                              return result
+                      except Exception as e:
+                          print(f"  WARN: NY Fed EFFR ({type_path}, count={count}): {e}")
               return None
+
+          # ── FRB H.15 release ── Federal Reserve Board DDP (different from FRED) ──
+          def fetch_frb_fedfunds():
+              url = (
+                  "https://www.federalreserve.gov/datadownload/Output.aspx"
+                  "?rel=H15&series=bcb44e57fb57efbe1c1819a37cbd7604"
+                  "&lastobs=500&startdate=&enddate="
+                  "&filepath=h15/h15/H15_FFED_D.txt"
+                  "&label=include&layout=seriescolumn&type=package&disclaimer=true"
+              )
+              try:
+                  req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+                  with urllib.request.urlopen(req, timeout=30) as r:
+                      text = r.read().decode()
+                  result = []
+                  for line in text.strip().split("\n"):
+                      line = line.strip().strip('"')
+                      parts = line.split(",")
+                      if len(parts) == 2:
+                          date = parts[0].strip().strip('"')
+                          val = parts[1].strip().strip('"')
+                          if len(date) == 10 and date[4] == "-" and val not in ("ND", ""):
+                              try:
+                                  result.append({"date": date, "val": round(float(val), 4)})
+                              except ValueError:
+                                  pass
+                  result.sort(key=lambda x: x["date"])
+                  return result[-500:] if result else None
+              except Exception as e:
+                  print(f"  WARN: FRB H.15 EFFR: {e}")
+                  return None
+
+          # ── US Treasury 1-month CMT ── proxy for Fed Funds (within ~10 bps) ──
+          def fetch_treasury_1m_yield(years_back=1):
+              import xml.etree.ElementTree as ET
+              D_NS = 'http://schemas.microsoft.com/ado/2007/08/dataservices'
+              M_NS = 'http://schemas.microsoft.com/ado/2007/08/dataservices/metadata'
+              ATOM_NS = 'http://www.w3.org/2005/Atom'
+              NULL_ATTR = f'{{{M_NS}}}null'
+              result = {}
+              current_year = datetime.now(timezone.utc).year
+              for y in range(years_back + 1):
+                  year = current_year - y
+                  url = (
+                      "https://home.treasury.gov/resource-center/data-chart-center"
+                      f"/interest-rates/pages/xml?data=daily_treasury_yield_curve&field_tdr_date_value={year}"
+                  )
+                  try:
+                      req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+                      with urllib.request.urlopen(req, timeout=30) as r:
+                          text = r.read().decode()
+                      if text.count('<entry>') == 0:
+                          continue
+                      root = ET.fromstring(text)
+                      entries = root.findall(f'{{{ATOM_NS}}}entry')
+                      if not entries:
+                          entries = root.findall('entry')
+                      if not entries:
+                          entries = [c for c in root if c.tag.endswith('entry')]
+                      for entry in entries:
+                          props = entry.find(f'.//{{{M_NS}}}properties')
+                          if props is None: continue
+                          date_el = props.find(f'{{{D_NS}}}NEW_DATE')
+                          if date_el is None: continue
+                          val_el = None
+                          for field in ['BC_1MONTH', 'BC_1_MONTH', 'BC_1M']:
+                              val_el = props.find(f'{{{D_NS}}}{field}')
+                              if val_el is not None and val_el.get(NULL_ATTR) != 'true':
+                                  break
+                          if val_el is None or val_el.get(NULL_ATTR) == 'true': continue
+                          date_str = (date_el.text or '')[:10]
+                          try:
+                              result[date_str] = round(float(val_el.text), 4)
+                          except (ValueError, TypeError):
+                              pass
+                  except Exception as e:
+                      print(f"  WARN: Treasury 1M yield {year}: {e}")
+              if not result:
+                  return None
+              return [{"date": k, "val": v} for k, v in sorted(result.items())]
 
           # ── BLS fix: robust CPI fetch with better error handling ──
           def fetch_bls_cpi_v2():
@@ -281,10 +382,16 @@ jobs:
               primary_fn=lambda: norm_pmi(fetch_fred_csv("MPMIVMA", 24)),
               fallback_fn=lambda: norm_pmi(fetch_stooq("mpmivma.us", 24)))
 
-          # Fed Funds — NY Fed EFFR primary (public API, no block), FRED CSV fallback
+          # Fed Funds — NY Fed EFFR primary, FRB H.15/FRED fallbacks,
+          # then Treasury 1M CMT as proxy (within ~10 bps of actual Fed Funds rate)
           try_fetch("fedfunds",
               primary_fn=fetch_nyfed_effr,
-              fallback_fn=lambda: fetch_fred_csv("FEDFUNDS", 24) or fetch_stooq("fedfunds.us", 24))
+              fallback_fn=lambda: (
+                  fetch_frb_fedfunds() or
+                  fetch_fred_csv("FEDFUNDS", 500) or
+                  fetch_stooq("fedfunds.us", 500) or
+                  fetch_treasury_1m_yield()
+              ))
 
           # 10Y yield — Yahoo Finance primary (reliable), FRED CSV fallback
           # Fetched early so it's available for T10YIE computation below
