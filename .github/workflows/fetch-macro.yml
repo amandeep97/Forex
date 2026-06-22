@@ -301,7 +301,7 @@ jobs:
           # Fetched before T10YIE so it's available for the compute fallback below
           try_fetch("dfii10",
               primary_fn=lambda: fetch_fred_csv("DFII10", 540),
-              fallback_fn=lambda: fetch_treasury_real_yield_10y(18) or fetch_stooq("dfii10.us", 540))
+              fallback_fn=lambda: fetch_treasury_real_yield_10y() or fetch_stooq("dfii10.us", 540))
 
           # 10Y breakeven inflation = nominal yield − real yield
           # FRED primary; if blocked, compute from dgs10−dfii10 (both already in new_data)
