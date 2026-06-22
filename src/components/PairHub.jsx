@@ -234,9 +234,19 @@ function scorePairToday(pair) {
       const pip = sourceSweep.pip || pair.pip;
       const isLong = (sourceSweep.expectedDir === 'bullish');
       const entry = sourceSweep.entryPrice;
-      const buffer = pip * 5;                              // 5 pip buffer beyond swept level
-      const sl = isLong ? sourceSweep.level - buffer      // below swept low
-                        : sourceSweep.level + buffer;     // above swept high
+
+      // SL: 5 pips beyond the swept level, then enforce minimum risk from entry
+      // Indices need ~15 pts, metals ~100 pips, forex 10 pips minimum
+      const bufferPips = pair.group === 'Indices' ? 15 : 5;
+      const buffer = pip * bufferPips;
+      const slFromLevel = isLong ? sourceSweep.level - buffer
+                                 : sourceSweep.level + buffer;
+      const minRiskPips = pair.group === 'Indices' ? 20 : pair.group === 'Metals' ? 120 : 10;
+      const minRisk = pip * minRiskPips;
+      // Ensure SL is at least minRisk away from entry
+      const sl = isLong
+        ? Math.min(slFromLevel, entry - minRisk)
+        : Math.max(slFromLevel, entry + minRisk);
       const risk = Math.abs(entry - sl);
       const tp1  = isLong ? entry + risk * 2 : entry - risk * 2;   // 1:2 R:R
       const tp2  = isLong ? entry + risk * 3 : entry - risk * 3;   // 1:3 R:R
