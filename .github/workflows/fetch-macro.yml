@@ -126,36 +126,31 @@ jobs:
                   print(f"  WARN: Stooq {symbol}: {e}")
                   return None
 
-          # ── US Treasury real yield XML ── no key, government endpoint, same as FRED DFII10 ──
-          def fetch_treasury_real_yield_10y(months_back=18):
-              import re, xml.etree.ElementTree as ET
-              from datetime import timedelta
+          # ── US Treasury real yield XML ── field_tdr_date_value=YYYY (4-digit year, NOT YYYYMM) ──
+          # YYYYMM format returns an empty 690-byte feed; year-based returns full year of data
+          def fetch_treasury_real_yield_10y(years_back=2):
+              import xml.etree.ElementTree as ET
               D_NS = 'http://schemas.microsoft.com/ado/2007/08/dataservices'
               M_NS = 'http://schemas.microsoft.com/ado/2007/08/dataservices/metadata'
               ATOM_NS = 'http://www.w3.org/2005/Atom'
               NULL_ATTR = f'{{{M_NS}}}null'
               result = {}
-              debug_done = False
-              for m in range(months_back + 1):
-                  dt = datetime.now(timezone.utc) - timedelta(days=30 * m)
-                  ym = dt.strftime("%Y%m")
+              current_year = datetime.now(timezone.utc).year
+              for y in range(years_back + 1):
+                  year = current_year - y
                   url = (
                       "https://home.treasury.gov/resource-center/data-chart-center"
-                      f"/interest-rates/pages/xml?data=daily_treasury_real_yield_curve&field_tdr_date_value={ym}"
+                      f"/interest-rates/pages/xml?data=daily_treasury_real_yield_curve&field_tdr_date_value={year}"
                   )
                   try:
                       req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
-                      with urllib.request.urlopen(req, timeout=15) as r:
+                      with urllib.request.urlopen(req, timeout=30) as r:
                           text = r.read().decode()
-                      if not debug_done:
-                          print(f"  DEBUG Treasury {ym}: xml_len={len(text)}, snippet={text[:800]!r}")
-                          debug_done = True
-                      # Count raw entry tags — if zero, feed is empty for this month
                       entry_count_raw = text.count('<entry>')
+                      print(f"  DEBUG Treasury {year}: xml_len={len(text)}, raw_entries={entry_count_raw}")
                       if entry_count_raw == 0:
                           continue
                       root = ET.fromstring(text)
-                      # Try Atom-namespaced entry, then bare, then tag-suffix match
                       entries = root.findall(f'{{{ATOM_NS}}}entry')
                       if not entries:
                           entries = root.findall('entry')
@@ -163,45 +158,44 @@ jobs:
                           entries = [c for c in root if c.tag.endswith('entry')]
                       for entry in entries:
                           props = entry.find(f'.//{{{M_NS}}}properties')
-                          if props is None:
-                              continue
+                          if props is None: continue
                           date_el = props.find(f'{{{D_NS}}}NEW_DATE')
                           val_el = props.find(f'{{{D_NS}}}TC_10YEAR')
-                          if date_el is None or val_el is None:
-                              continue
-                          if val_el.get(NULL_ATTR) == 'true':
-                              continue
+                          if date_el is None or val_el is None: continue
+                          if val_el.get(NULL_ATTR) == 'true': continue
                           date_str = (date_el.text or '')[:10]
                           try:
                               result[date_str] = round(float(val_el.text), 4)
                           except (ValueError, TypeError):
                               pass
                   except Exception as e:
-                      print(f"  WARN: Treasury DFII10 {ym}: {e}")
+                      print(f"  WARN: Treasury DFII10 {year}: {e}")
               print(f"  DEBUG Treasury total: {len(result)} dates found")
               if not result:
                   return None
               return [{"date": k, "val": v} for k, v in sorted(result.items())]
 
-          # ── NY Fed EFFR API ── public endpoint, no API key needed ──
-          def fetch_nyfed_effr(days=500):
-              url = f"https://markets.newyorkfed.org/api/rates/effr/last/{days}.json"
-              try:
-                  req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
-                  with urllib.request.urlopen(req, timeout=20) as r:
-                      data = json.loads(r.read().decode())
-                  rates = data.get("refRates", [])
-                  result = []
-                  for item in rates:
-                      d = item.get("effectiveDate", "")
-                      v = item.get("percentRate")
-                      if d and v is not None:
-                          result.append({"date": d, "val": round(float(v), 4)})
-                  result.sort(key=lambda x: x["date"])
-                  return result if result else None
-              except Exception as e:
-                  print(f"  WARN: NY Fed EFFR: {e}")
-                  return None
+          # ── NY Fed EFFR API ── tries smaller counts until one succeeds ──
+          def fetch_nyfed_effr():
+              for count in [250, 180, 90]:
+                  url = f"https://markets.newyorkfed.org/api/rates/effr/last/{count}.json"
+                  try:
+                      req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+                      with urllib.request.urlopen(req, timeout=20) as r:
+                          data = json.loads(r.read().decode())
+                      rates = data.get("refRates", [])
+                      result = []
+                      for item in rates:
+                          d = item.get("effectiveDate", "")
+                          v = item.get("percentRate")
+                          if d and v is not None:
+                              result.append({"date": d, "val": round(float(v), 4)})
+                      result.sort(key=lambda x: x["date"])
+                      if result:
+                          return result
+                  except Exception as e:
+                      print(f"  WARN: NY Fed EFFR (count={count}): {e}")
+              return None
 
           # ── BLS fix: robust CPI fetch with better error handling ──
           def fetch_bls_cpi_v2():
