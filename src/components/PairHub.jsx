@@ -224,9 +224,39 @@ function scorePairToday(pair) {
       score += 10; breakdown.push(`Dir WR ${dirWR}% (+10)`);
     }
 
+    // ── Trade levels from sweep ──
+    let levels = null;
+    const sourceSweep = pending[0] || log.find(s =>
+      s.outcome !== 'pending' &&
+      Date.now() - new Date(s.time).getTime() < 48 * 3600 * 1000
+    );
+    if (sourceSweep && sourceSweep.level && sourceSweep.entryPrice) {
+      const pip = sourceSweep.pip || pair.pip;
+      const isLong = (sourceSweep.expectedDir === 'bullish');
+      const entry = sourceSweep.entryPrice;
+      const buffer = pip * 5;                              // 5 pip buffer beyond swept level
+      const sl = isLong ? sourceSweep.level - buffer      // below swept low
+                        : sourceSweep.level + buffer;     // above swept high
+      const risk = Math.abs(entry - sl);
+      const tp1  = isLong ? entry + risk * 2 : entry - risk * 2;   // 1:2 R:R
+      const tp2  = isLong ? entry + risk * 3 : entry - risk * 3;   // 1:3 R:R
+      const riskPips = Math.round(risk / pip);
+      const dec = pip < 0.001 ? 2 : pip < 0.01 ? 3 : pip === 0.01 ? 3 : 5;
+      levels = {
+        entry:    entry.toFixed(dec),
+        sl:       sl.toFixed(dec),
+        tp1:      tp1.toFixed(dec),
+        tp2:      tp2.toFixed(dec),
+        riskPips,
+        tp1Pips:  riskPips * 2,
+        tp2Pips:  riskPips * 3,
+        isLive:   sourceSweep.outcome === 'pending',
+      };
+    }
+
   } catch {}
 
-  return { score: Math.min(score, 100), breakdown, direction, dirReason };
+  return { score: Math.min(score, 100), breakdown, direction, dirReason, levels };
 }
 
 function getNewsForPair(pair) {
@@ -372,8 +402,28 @@ export default function PairHub() {
               </div>
               {/* Dir reason */}
               {r.dirReason && (
-                <div style={{ fontSize:9, color:dirColor, fontWeight:600, marginBottom:4, paddingLeft:22 }}>{r.dirReason}</div>
+                <div style={{ fontSize:9, color:dirColor, fontWeight:600, marginBottom:6, paddingLeft:22 }}>{r.dirReason}</div>
               )}
+
+              {/* Trade levels */}
+              {r.levels && (
+                <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr 1fr 1fr', gap:5, paddingLeft:22, marginBottom:6 }}>
+                  {[
+                    { label:'ENTRY',   value:r.levels.entry,  color:'#f1f5f9',  sub: r.levels.isLive ? 'Live price' : 'Sweep close' },
+                    { label:'SL',      value:r.levels.sl,     color:'#ef4444',  sub: `${r.levels.riskPips}p risk` },
+                    { label:'TP1 1:2', value:r.levels.tp1,    color:'#00d4aa',  sub: `+${r.levels.tp1Pips}p` },
+                    { label:'TP2 1:3', value:r.levels.tp2,    color:'#f59e0b',  sub: `+${r.levels.tp2Pips}p` },
+                  ].map(lv => (
+                    <div key={lv.label} style={{ background:'#0a0e1a', borderRadius:8,
+                      padding:'6px 8px', border:`1px solid ${lv.color}22`, textAlign:'center' }}>
+                      <div style={{ fontSize:7, color:'#334155', fontWeight:700, letterSpacing:'0.06em', marginBottom:2 }}>{lv.label}</div>
+                      <div style={{ fontSize:10, fontWeight:900, color:lv.color }}>{lv.value}</div>
+                      <div style={{ fontSize:7, color:'#1e293b', marginTop:1 }}>{lv.sub}</div>
+                    </div>
+                  ))}
+                </div>
+              )}
+
               {/* Breakdown chips */}
               <div style={{ display:'flex', gap:4, flexWrap:'wrap', paddingLeft:22 }}>
                 {r.breakdown.map((b,j) => (
