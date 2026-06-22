@@ -23,7 +23,7 @@ jobs:
           import json, urllib.request, os
           from datetime import datetime, timezone
 
-          # ── BLS (US Bureau of Labor Statistics) ── no key, no account needed ──
+          # -- BLS (US Bureau of Labor Statistics) -- no key, no account needed --
           def fetch_bls_cpi():
               # CUSR0000SA0 = CPI-U All Items Seasonally Adjusted
               url = "https://api.bls.gov/publicAPI/v1/timeseries/data/CUSR0000SA0"
@@ -51,7 +51,7 @@ jobs:
                   print(f"  WARN: BLS CPI failed: {e}")
                   return None
 
-          # ── Yahoo Finance ── works from GitHub Actions (no block, no key) ──
+          # -- Yahoo Finance -- works from GitHub Actions (no block, no key) --
           def fetch_yahoo(ticker, limit=365):
               url = (
                   f"https://query1.finance.yahoo.com/v8/finance/chart/{ticker}"
@@ -82,7 +82,7 @@ jobs:
                   return None
               return [{"date": d["date"], "val": round(d["val"] / 10, 4) if d["val"] > 20 else d["val"]} for d in data]
 
-          # ── FRED CSV ── may time-out from datacenter IPs; kept as opportunistic ──
+          # -- FRED CSV -- may time-out from datacenter IPs; kept as opportunistic --
           def fetch_fred_csv(series_id, days=540):
               url = f"https://fred.stlouisfed.org/graph/fredgraph.csv?id={series_id}"
               try:
@@ -102,7 +102,7 @@ jobs:
                   print(f"  WARN: FRED {series_id}: {e}")
                   return None
 
-          # ── Stooq CSV ── reliable from GitHub Actions (no block, no key) ──
+          # -- Stooq CSV -- reliable from GitHub Actions (no block, no key) --
           # Economic indicators: close column (index 4) is the value.
           def fetch_stooq(symbol, limit=365):
               url = f"https://stooq.com/q/d/l/?s={symbol}&i=d"
@@ -126,17 +126,16 @@ jobs:
                   print(f"  WARN: Stooq {symbol}: {e}")
                   return None
 
-          # ── US Treasury real yield XML ── no key, government endpoint, same as FRED DFII10 ──
+          # -- US Treasury real yield XML -- no key, government endpoint, same as FRED DFII10 --
           def fetch_treasury_real_yield_10y(months_back=18):
               import re, xml.etree.ElementTree as ET
               from datetime import timedelta
-              NS = {
-                  'a': 'http://www.w3.org/2005/Atom',
-                  'd': 'http://schemas.microsoft.com/ado/2007/08/dataservices',
-                  'm': 'http://schemas.microsoft.com/ado/2007/08/dataservices/metadata',
-              }
-              NULL_ATTR = '{http://schemas.microsoft.com/ado/2007/08/dataservices/metadata}null'
+              D_NS = 'http://schemas.microsoft.com/ado/2007/08/dataservices'
+              M_NS = 'http://schemas.microsoft.com/ado/2007/08/dataservices/metadata'
+              ATOM_NS = 'http://www.w3.org/2005/Atom'
+              NULL_ATTR = f'{{{M_NS}}}null'
               result = {}
+              debug_done = False
               for m in range(months_back + 1):
                   dt = datetime.now(timezone.utc) - timedelta(days=30 * m)
                   ym = dt.strftime("%Y%m")
@@ -148,41 +147,35 @@ jobs:
                       req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
                       with urllib.request.urlopen(req, timeout=15) as r:
                           text = r.read().decode()
-                      try:
-                          root = ET.fromstring(text)
-                          entries = root.findall('a:entry', NS)
-                          if m == 0:
-                              print(f"  DEBUG Treasury {ym}: {len(entries)} entries (ET)")
-                          for entry in entries:
-                              props = entry.find('.//m:properties', NS)
-                              if props is None:
-                                  continue
-                              date_el = props.find('d:NEW_DATE', NS)
-                              val_el = props.find('d:TC_10YEAR', NS)
-                              if date_el is None or val_el is None:
-                                  continue
-                              if val_el.get(NULL_ATTR) == 'true':
-                                  continue
-                              date_str = (date_el.text or '')[:10]
-                              try:
-                                  result[date_str] = round(float(val_el.text), 4)
-                              except (ValueError, TypeError):
-                                  pass
-                      except ET.ParseError:
-                          # Fallback: regex on raw text
-                          entries_raw = text.split('<entry>')[1:]
-                          if m == 0:
-                              print(f"  DEBUG Treasury {ym}: {len(entries_raw)} entries (regex)")
-                              if entries_raw:
-                                  print(f"  DEBUG first entry: {entries_raw[0][:400]!r}")
-                          for entry in entries_raw:
-                              dm = re.search(r'NEW_DATE[^>]*(\d{4}-\d{2}-\d{2})', entry)
-                              vm = re.search(r'TC_10YEAR[^>]*([-\d.]+)<', entry)
-                              if dm and vm:
-                                  try:
-                                      result[dm.group(1)] = round(float(vm.group(1)), 4)
-                                  except ValueError:
-                                      pass
+                      if not debug_done:
+                          print(f"  DEBUG Treasury {ym}: xml_len={len(text)}, snippet={text[:800]!r}")
+                          debug_done = True
+                      # Count raw entry tags -- if zero, feed is empty for this month
+                      entry_count_raw = text.count('<entry>')
+                      if entry_count_raw == 0:
+                          continue
+                      root = ET.fromstring(text)
+                      # Try Atom-namespaced entry, then bare, then tag-suffix match
+                      entries = root.findall(f'{{{ATOM_NS}}}entry')
+                      if not entries:
+                          entries = root.findall('entry')
+                      if not entries:
+                          entries = [c for c in root if c.tag.endswith('entry')]
+                      for entry in entries:
+                          props = entry.find(f'.//{{{M_NS}}}properties')
+                          if props is None:
+                              continue
+                          date_el = props.find(f'{{{D_NS}}}NEW_DATE')
+                          val_el = props.find(f'{{{D_NS}}}TC_10YEAR')
+                          if date_el is None or val_el is None:
+                              continue
+                          if val_el.get(NULL_ATTR) == 'true':
+                              continue
+                          date_str = (date_el.text or '')[:10]
+                          try:
+                              result[date_str] = round(float(val_el.text), 4)
+                          except (ValueError, TypeError):
+                              pass
                   except Exception as e:
                       print(f"  WARN: Treasury DFII10 {ym}: {e}")
               print(f"  DEBUG Treasury total: {len(result)} dates found")
@@ -190,8 +183,8 @@ jobs:
                   return None
               return [{"date": k, "val": v} for k, v in sorted(result.items())]
 
-          # ── NY Fed EFFR API ── public endpoint, no API key needed ──
-          def fetch_nyfed_effr(days=730):
+          # -- NY Fed EFFR API -- public endpoint, no API key needed --
+          def fetch_nyfed_effr(days=500):
               url = f"https://markets.newyorkfed.org/api/rates/effr/last/{days}.json"
               try:
                   req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
@@ -210,7 +203,7 @@ jobs:
                   print(f"  WARN: NY Fed EFFR: {e}")
                   return None
 
-          # ── BLS fix: robust CPI fetch with better error handling ──
+          # -- BLS fix: robust CPI fetch with better error handling --
           def fetch_bls_cpi_v2():
               # Try GET endpoint first (simpler, more reliable)
               url = "https://api.bls.gov/publicAPI/v1/timeseries/data/CUSR0000SA0"
@@ -269,7 +262,7 @@ jobs:
                       result = [x for x in result if filter_fn(x)]
                   if result:
                       new_data[key] = result
-                      print(f"  ✓ {key}: {len(result)} pts, latest={result[-1]}")
+                      print(f"  v {key}: {len(result)} pts, latest={result[-1]}")
                       any_updated = True
                       return
               new_data[key] = existing.get(key, [])
