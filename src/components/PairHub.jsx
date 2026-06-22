@@ -122,6 +122,8 @@ function dowFactor() {
 function scorePairToday(pair) {
   let score = 0;
   const breakdown = [];
+  let direction = null;
+  let dirReason = '';
 
   try {
     const store = JSON.parse(localStorage.getItem('alpha_lab_v2')||'{}');
@@ -131,19 +133,47 @@ function scorePairToday(pair) {
     const pending = log.filter(s=>s.outcome==='pending');
     const wr = resolved.length >= 5 ? Math.round(confirmed.length/resolved.length*100) : null;
 
+    const bullLog = resolved.filter(s=>s.expectedDir==='bullish');
+    const bearLog = resolved.filter(s=>s.expectedDir==='bearish');
+    const bullWR = bullLog.length>=5 ? Math.round(bullLog.filter(s=>s.outcome==='confirmed').length/bullLog.length*100) : null;
+    const bearWR = bearLog.length>=5 ? Math.round(bearLog.filter(s=>s.outcome==='confirmed').length/bearLog.length*100) : null;
+
+    // ── Direction logic ──
+    // 1. Live sweep wins — use its expected direction
+    if (pending.length > 0) {
+      const liveSweep = pending[0];
+      direction = liveSweep.expectedDir === 'bullish' ? 'long' : 'short';
+      dirReason = `Live sweep expects ${direction.toUpperCase()}`;
+      score += 30;
+      breakdown.push(`Live sweep (+30)`);
+    }
+
+    // 2. Recent sweep in last 48h
+    if (!direction) {
+      const recent = log.find(s => s.outcome !== 'pending' &&
+        Date.now() - new Date(s.time).getTime() < 48 * 3600 * 1000);
+      if (recent) {
+        direction = recent.expectedDir === 'bullish' ? 'long' : 'short';
+        dirReason = `Recent ${recent.outcome === 'confirmed' ? '✓' : ''} sweep was ${direction.toUpperCase()}`;
+      }
+    }
+
+    // 3. Best historical direction WR
+    if (!direction && (bullWR != null || bearWR != null)) {
+      if (bullWR != null && (bearWR == null || bullWR >= bearWR)) {
+        direction = 'long'; dirReason = `Long WR ${bullWR}% > Short WR ${bearWR??'N/A'}%`;
+      } else {
+        direction = 'short'; dirReason = `Short WR ${bearWR}% > Long WR ${bullWR??'N/A'}%`;
+      }
+    }
+
     // 1. Historical WR (0-30 pts)
     if (wr != null) {
       const wrPts = wr >= 65 ? 30 : wr >= 55 ? 20 : wr >= 45 ? 10 : 0;
       if (wrPts) { score += wrPts; breakdown.push(`WR ${wr}% (+${wrPts})`); }
     }
 
-    // 2. Live sweep active today (0-30 pts)
-    if (pending.length > 0) {
-      score += 30;
-      breakdown.push(`Live sweep (+30)`);
-    }
-
-    // 3. Today's day-of-week WR from historical data
+    // 3. Today's DOW WR
     const today = new Date().getDay();
     const dowNames = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
     const todayLabel = dowNames[today];
@@ -156,6 +186,14 @@ function scorePairToday(pair) {
       const todayWR = Math.round(todayWins/todayLog.length*100);
       const pts = todayWR >= 65 ? 20 : todayWR >= 55 ? 12 : 0;
       if (pts) { score += pts; breakdown.push(`${todayLabel} WR ${todayWR}% (+${pts})`); }
+
+      // refine direction from today's data
+      if (direction) {
+        const todayDir = todayLog.filter(s=>s.expectedDir===(direction==='long'?'bullish':'bearish'));
+        const todayDirWins = todayDir.filter(s=>s.outcome==='confirmed').length;
+        const todayDirWR = todayDir.length >= 3 ? Math.round(todayDirWins/todayDir.length*100) : null;
+        if (todayDirWR != null) dirReason += ` · ${todayLabel} ${todayDirWR}% WR`;
+      }
     }
 
     // 4. Session timing (0-15 pts)
@@ -164,27 +202,31 @@ function scorePairToday(pair) {
       breakdown.push(`Peak session (+15)`);
     }
 
-    // 5. Day of week base factor (0-20 pts)
+    // 5. Day of week base (0-20 pts)
     const dfPts = dowFactor();
     if (dfPts) { score += dfPts; breakdown.push(`${todayLabel} factor (+${dfPts})`); }
 
-    // 6. Recent streak — last 3 resolved all confirmed (0-10 pts)
+    // 6. Recent streak (0-10 pts)
     const last3 = resolved.slice(0,3);
     if (last3.length === 3 && last3.every(s=>s.outcome==='confirmed')) {
-      score += 10;
-      breakdown.push('Hot streak (+10)');
+      score += 10; breakdown.push('Hot streak (+10)');
     }
 
-    // 7. HTF aligned on latest sweep (+5 pts)
+    // 7. HTF aligned (0-5 pts)
     const latestSweep = log.find(s=>s.htfAligned!=null);
     if (latestSweep?.htfAligned) {
-      score += 5;
-      breakdown.push('HTF aligned (+5)');
+      score += 5; breakdown.push('HTF aligned (+5)');
+    }
+
+    // Directional WR bonus — if direction strongly confirmed
+    const dirWR = direction === 'long' ? bullWR : bearWR;
+    if (dirWR != null && dirWR >= 65 && pending.length === 0) {
+      score += 10; breakdown.push(`Dir WR ${dirWR}% (+10)`);
     }
 
   } catch {}
 
-  return { score: Math.min(score, 100), breakdown };
+  return { score: Math.min(score, 100), breakdown, direction, dirReason };
 }
 
 function getNewsForPair(pair) {
@@ -304,36 +346,44 @@ export default function PairHub() {
           const scoreColor = r.score >= 70 ? '#00d4aa' : r.score >= 45 ? '#f59e0b' : '#ef4444';
           const stats = getAlphaStats(r.pair.key);
           const live = stats?.pending > 0;
+          const dirColor = r.direction === 'long' ? '#00d4aa' : r.direction === 'short' ? '#ef4444' : '#475569';
+          const dirLabel = r.direction === 'long' ? '▲ LONG' : r.direction === 'short' ? '▼ SHORT' : '— WAIT';
           return (
             <div key={r.pair.key} onClick={()=>selectPair(r.pair)}
-              style={{ padding:'10px 14px', borderBottom: i<todayRanking.length-1?'1px solid #0a0e1a':undefined,
-                cursor:'pointer', display:'flex', alignItems:'center', gap:10,
-                background: selected?.key===r.pair.key ? '#0f172a' : 'transparent' }}>
-              {/* Rank */}
-              <div style={{ fontSize:13, fontWeight:900, color:'#1e293b', width:16, textAlign:'center', flexShrink:0 }}>
-                {i+1}
+              style={{ padding:'12px 14px', borderBottom: i<todayRanking.length-1?'1px solid #0a0e1a':undefined,
+                cursor:'pointer', background: selected?.key===r.pair.key ? '#0f172a' : 'transparent' }}>
+              {/* Top row */}
+              <div style={{ display:'flex', alignItems:'center', gap:8, marginBottom:6 }}>
+                <div style={{ fontSize:11, fontWeight:900, color:'#1e293b', width:14, flexShrink:0 }}>{i+1}</div>
+                <span style={{ fontSize:13, fontWeight:900, color:gc }}>{r.pair.label}</span>
+                {live && <span style={{ fontSize:8, fontWeight:800, color:'#ef4444', background:'#ef444418',
+                  padding:'1px 6px', borderRadius:6, border:'1px solid #ef444433', animation:'none' }}>⚡ LIVE NOW</span>}
+                {/* Direction badge — most prominent element */}
+                <div style={{ marginLeft:'auto', display:'flex', alignItems:'center', gap:8 }}>
+                  <div style={{ background:`${dirColor}20`, border:`1px solid ${dirColor}55`,
+                    borderRadius:8, padding:'4px 10px', textAlign:'center' }}>
+                    <div style={{ fontSize:13, fontWeight:900, color:dirColor, letterSpacing:'0.05em' }}>{dirLabel}</div>
+                  </div>
+                  <div style={{ textAlign:'right' }}>
+                    <div style={{ fontSize:17, fontWeight:900, color:scoreColor, lineHeight:1 }}>{r.score}</div>
+                    <div style={{ fontSize:8, color:'#334155' }}>score</div>
+                  </div>
+                </div>
               </div>
-              {/* Pair */}
-              <div style={{ flex:1 }}>
-                <div style={{ display:'flex', alignItems:'center', gap:6, marginBottom:2 }}>
-                  <span style={{ fontSize:12, fontWeight:800, color:gc }}>{r.pair.label}</span>
-                  {live && <span style={{ fontSize:8, fontWeight:800, color:'#ef4444', background:'#ef444418',
-                    padding:'1px 5px', borderRadius:6, border:'1px solid #ef444433' }}>⚡ LIVE</span>}
-                </div>
-                <div style={{ display:'flex', gap:4, flexWrap:'wrap' }}>
-                  {r.breakdown.map((b,j) => (
-                    <span key={j} style={{ fontSize:8, color:'#334155', background:'#0a0e1a',
-                      padding:'1px 5px', borderRadius:4, border:'1px solid #0f1929' }}>{b}</span>
-                  ))}
-                </div>
+              {/* Dir reason */}
+              {r.dirReason && (
+                <div style={{ fontSize:9, color:dirColor, fontWeight:600, marginBottom:4, paddingLeft:22 }}>{r.dirReason}</div>
+              )}
+              {/* Breakdown chips */}
+              <div style={{ display:'flex', gap:4, flexWrap:'wrap', paddingLeft:22 }}>
+                {r.breakdown.map((b,j) => (
+                  <span key={j} style={{ fontSize:8, color:'#334155', background:'#0a0e1a',
+                    padding:'1px 5px', borderRadius:4, border:'1px solid #0f1929' }}>{b}</span>
+                ))}
               </div>
               {/* Score bar */}
-              <div style={{ textAlign:'right', flexShrink:0 }}>
-                <div style={{ fontSize:18, fontWeight:900, color:scoreColor }}>{r.score}</div>
-                <div style={{ fontSize:8, color:'#334155' }}>/ 100</div>
-                <div style={{ width:40, height:4, background:'#0f1929', borderRadius:2, marginTop:3 }}>
-                  <div style={{ width:`${r.score}%`, height:'100%', background:scoreColor, borderRadius:2, transition:'width 0.4s' }}/>
-                </div>
+              <div style={{ height:3, background:'#0a0e1a', borderRadius:2, marginTop:8 }}>
+                <div style={{ width:`${r.score}%`, height:'100%', background:scoreColor, borderRadius:2 }}/>
               </div>
             </div>
           );
