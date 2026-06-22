@@ -40,6 +40,8 @@ jobs:
                   for row in rows:
                       if row["period"] == "M13":   # annual average — skip
                           continue
+                      if row.get("value") in ("-", "N/A", ""):   # unreleased month
+                          continue
                       month = row["period"][1:]     # "M01" → "01"
                       date = f"{row['year']}-{month}-01"
                       result.append({"date": date, "val": float(row["value"])})
@@ -124,6 +126,33 @@ jobs:
                   print(f"  WARN: Stooq {symbol}: {e}")
                   return None
 
+          # ── US Treasury real yield XML ── no key, government endpoint, same as FRED DFII10 ──
+          def fetch_treasury_real_yield_10y(months_back=18):
+              import re
+              from datetime import timedelta
+              result = {}
+              for m in range(months_back + 1):
+                  dt = datetime.now(timezone.utc) - timedelta(days=30 * m)
+                  ym = dt.strftime("%Y%m")
+                  url = (
+                      "https://home.treasury.gov/resource-center/data-chart-center"
+                      f"/interest-rates/pages/xml?data=real_yield&field_tdr_date_value={ym}"
+                  )
+                  try:
+                      req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+                      with urllib.request.urlopen(req, timeout=20) as r:
+                          text = r.read().decode()
+                      for entry in text.split('<entry>')[1:]:
+                          dm = re.search(r'NEW_DATE[^>]*>(\d{4}-\d{2}-\d{2})', entry)
+                          vm = re.search(r'BC_10YEAR[^>]*>([\d.]+)<', entry)
+                          if dm and vm:
+                              result[dm.group(1)] = round(float(vm.group(1)), 4)
+                  except Exception as e:
+                      print(f"  WARN: Treasury DFII10 {ym}: {e}")
+              if not result:
+                  return None
+              return [{"date": k, "val": v} for k, v in sorted(result.items())]
+
           # ── BLS fix: robust CPI fetch with better error handling ──
           def fetch_bls_cpi_v2():
               # Try GET endpoint first (simpler, more reliable)
@@ -149,6 +178,8 @@ jobs:
                       result = []
                       for row in rows:
                           if row.get("period") == "M13":
+                              continue
+                          if row.get("value") in ("-", "N/A", ""):   # unreleased month
                               continue
                           month = row["period"][1:]
                           date = f"{row['year']}-{month}-01"
@@ -211,17 +242,8 @@ jobs:
               primary_fn=lambda: fetch_fred_csv("FEDFUNDS", 24),
               fallback_fn=lambda: fetch_stooq("fedfunds.us", 24))
 
-          # 10Y breakeven inflation — FRED primary, Stooq fallback
-          try_fetch("t10yie",
-              primary_fn=lambda: fetch_fred_csv("T10YIE", 540),
-              fallback_fn=lambda: fetch_stooq("t10yie.us", 540))
-
-          # Real yield (TIPS 10Y) — FRED primary, Stooq fallback
-          try_fetch("dfii10",
-              primary_fn=lambda: fetch_fred_csv("DFII10", 540),
-              fallback_fn=lambda: fetch_stooq("dfii10.us", 540))
-
           # 10Y yield — Yahoo Finance primary (reliable), FRED CSV fallback
+          # Fetched early so it's available for T10YIE computation below
           try_fetch("dgs10",
               primary_fn=lambda: fetch_yield("%5ETNX", 365),
               fallback_fn=lambda: fetch_fred_csv("DGS10", 365))
@@ -230,6 +252,32 @@ jobs:
           try_fetch("dgs2",
               primary_fn=lambda: fetch_yield("%5EIRX", 365),
               fallback_fn=lambda: fetch_fred_csv("DGS2", 365))
+
+          # Real yield (TIPS 10Y) — FRED primary, US Treasury XML fallback (same source, no key)
+          # Fetched before T10YIE so it's available for the compute fallback below
+          try_fetch("dfii10",
+              primary_fn=lambda: fetch_fred_csv("DFII10", 540),
+              fallback_fn=lambda: fetch_treasury_real_yield_10y(18) or fetch_stooq("dfii10.us", 540))
+
+          # 10Y breakeven inflation = nominal yield − real yield
+          # FRED primary; if blocked, compute from dgs10−dfii10 (both already in new_data)
+          def compute_t10yie():
+              d10 = {d["date"]: d["val"] for d in new_data.get("dgs10", [])}
+              dfi = {d["date"]: d["val"] for d in new_data.get("dfii10", [])}
+              if not d10 or not dfi:
+                  return None
+              result = []
+              for date, v10 in d10.items():
+                  if date in dfi:
+                      bi = round(v10 - dfi[date], 4)
+                      if 0 < bi < 5:
+                          result.append({"date": date, "val": bi})
+              result.sort(key=lambda x: x["date"])
+              return result[-540:] if result else None
+
+          try_fetch("t10yie",
+              primary_fn=lambda: fetch_fred_csv("T10YIE", 540),
+              fallback_fn=lambda: fetch_stooq("t10yie.us", 540) or compute_t10yie())
 
           # VIX — Yahoo Finance ^VIX (works from GitHub Actions, no CORS block)
           try_fetch("vix",
