@@ -249,6 +249,55 @@ jobs:
                   print(f"  WARN: FRB H.15 EFFR: {e}")
                   return None
 
+          # ── US Treasury 1-month CMT ── proxy for Fed Funds (within ~10 bps) ──
+          def fetch_treasury_1m_yield(years_back=1):
+              import xml.etree.ElementTree as ET
+              D_NS = 'http://schemas.microsoft.com/ado/2007/08/dataservices'
+              M_NS = 'http://schemas.microsoft.com/ado/2007/08/dataservices/metadata'
+              ATOM_NS = 'http://www.w3.org/2005/Atom'
+              NULL_ATTR = f'{{{M_NS}}}null'
+              result = {}
+              current_year = datetime.now(timezone.utc).year
+              for y in range(years_back + 1):
+                  year = current_year - y
+                  url = (
+                      "https://home.treasury.gov/resource-center/data-chart-center"
+                      f"/interest-rates/pages/xml?data=daily_treasury_yield_curve&field_tdr_date_value={year}"
+                  )
+                  try:
+                      req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+                      with urllib.request.urlopen(req, timeout=30) as r:
+                          text = r.read().decode()
+                      if text.count('<entry>') == 0:
+                          continue
+                      root = ET.fromstring(text)
+                      entries = root.findall(f'{{{ATOM_NS}}}entry')
+                      if not entries:
+                          entries = root.findall('entry')
+                      if not entries:
+                          entries = [c for c in root if c.tag.endswith('entry')]
+                      for entry in entries:
+                          props = entry.find(f'.//{{{M_NS}}}properties')
+                          if props is None: continue
+                          date_el = props.find(f'{{{D_NS}}}NEW_DATE')
+                          if date_el is None: continue
+                          val_el = None
+                          for field in ['BC_1MONTH', 'BC_1_MONTH', 'BC_1M']:
+                              val_el = props.find(f'{{{D_NS}}}{field}')
+                              if val_el is not None and val_el.get(NULL_ATTR) != 'true':
+                                  break
+                          if val_el is None or val_el.get(NULL_ATTR) == 'true': continue
+                          date_str = (date_el.text or '')[:10]
+                          try:
+                              result[date_str] = round(float(val_el.text), 4)
+                          except (ValueError, TypeError):
+                              pass
+                  except Exception as e:
+                      print(f"  WARN: Treasury 1M yield {year}: {e}")
+              if not result:
+                  return None
+              return [{"date": k, "val": v} for k, v in sorted(result.items())]
+
           # ── BLS fix: robust CPI fetch with better error handling ──
           def fetch_bls_cpi_v2():
               # Try GET endpoint first (simpler, more reliable)
@@ -333,10 +382,16 @@ jobs:
               primary_fn=lambda: norm_pmi(fetch_fred_csv("MPMIVMA", 24)),
               fallback_fn=lambda: norm_pmi(fetch_stooq("mpmivma.us", 24)))
 
-          # Fed Funds — NY Fed EFFR primary, FRB H.15 secondary, FRED CSV last
+          # Fed Funds — NY Fed EFFR primary, FRB H.15/FRED fallbacks,
+          # then Treasury 1M CMT as proxy (within ~10 bps of actual Fed Funds rate)
           try_fetch("fedfunds",
               primary_fn=fetch_nyfed_effr,
-              fallback_fn=lambda: fetch_frb_fedfunds() or fetch_fred_csv("FEDFUNDS", 500) or fetch_stooq("fedfunds.us", 500))
+              fallback_fn=lambda: (
+                  fetch_frb_fedfunds() or
+                  fetch_fred_csv("FEDFUNDS", 500) or
+                  fetch_stooq("fedfunds.us", 500) or
+                  fetch_treasury_1m_yield()
+              ))
 
           # 10Y yield — Yahoo Finance primary (reliable), FRED CSV fallback
           # Fetched early so it's available for T10YIE computation below
