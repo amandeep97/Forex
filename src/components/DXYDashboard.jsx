@@ -176,8 +176,9 @@ function MiniChart({ eurusdCandles, dxyIsUp }) {
 
 // ── Main Component ────────────────────────────────────────────────────────────
 export default function DXYDashboard() {
-  const [tfBias,    setTfBias]    = useState({});
-  const [structure, setStructure] = useState({ pattern: 'ranging' });
+  const [tfBias,      setTfBias]      = useState({});
+  const [tfStructure, setTfStructure] = useState({});
+  const [structure,   setStructure]   = useState({ pattern: 'ranging' });
   const [eurusdD,   setEurusdD]   = useState(null);
   const [dxy15m,    setDxy15m]    = useState(null);
   const [events,    setEvents]    = useState([]);
@@ -211,10 +212,15 @@ export default function DXYDashboard() {
 
       const raws = [wC, dC, h4C, h1C, m30C, m15C];
       const biases = {};
+      const structures = {};
       TFS.forEach((tf, i) => {
-        if (raws[i]) biases[tf.key] = computeBias(toDXY(raws[i]));
+        if (raws[i]) {
+          biases[tf.key]    = computeBias(toDXY(raws[i]));
+          structures[tf.key] = computeStructure(toDXY(raws[i]));
+        }
       });
       setTfBias(biases);
+      setTfStructure(structures);
 
       if (h1C) {
         const p = pctDiff(toDXY(h1C), 5);
@@ -395,6 +401,13 @@ export default function DXYDashboard() {
                   <div style={{ fontSize: 21, color, lineHeight: 1.1 }}>{arrow}</div>
                   {trend && <div style={{ fontSize: 8, color, marginTop: 3, fontWeight: 700 }}>{trend.toUpperCase()}</div>}
                   {b?.rsi && <div style={{ fontSize: 7, color: '#334155', marginTop: 2 }}>RSI {b.rsi}</div>}
+                  {(() => {
+                    const s = tfStructure[tf.key];
+                    if (!s) return null;
+                    if (s.pattern === 'uptrend')   return <div style={{ fontSize: 7, color: '#22c55e', marginTop: 2, fontWeight: 600 }}>HH·HL</div>;
+                    if (s.pattern === 'downtrend') return <div style={{ fontSize: 7, color: '#ef4444', marginTop: 2, fontWeight: 600 }}>LH·LL</div>;
+                    return <div style={{ fontSize: 7, color: '#475569', marginTop: 2 }}>Rng</div>;
+                  })()}
                 </div>
               );
             })}
