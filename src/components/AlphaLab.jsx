@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback, useRef, useMemo } from 'react';
+import DOWPatterns from './DOWPatterns';
 
 // ── Config ────────────────────────────────────────────────────────────────────
 const PAIRS = [
@@ -2388,6 +2389,7 @@ export default function AlphaLab() {
     { id:'library',   label:`📋 Library (${scenarios.length})` },
     { id:'record',    label:'📊 Record Log' },
     { id:'live',      label:'⚡ Live Signal' },
+    { id:'dow',       label:'📅 DOW Patterns' },
   ];
 
   return (
@@ -2707,6 +2709,7 @@ export default function AlphaLab() {
                 onPairClick={setSelectedPair}
               />
             )}
+            {tab==='dow' && <DOWPatterns />}
           </>
         )}
       </div>
