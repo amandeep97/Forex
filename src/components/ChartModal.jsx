@@ -69,7 +69,7 @@ function loadSavedOv() {
   return DEFAULT_OV;
 }
 
-function SVGChart({ candles, symbol, ov, barCount, chartH }) {
+function SVGChart({ candles, symbol, ov, barCount, chartH, setupLevels }) {
   const W    = 900;
   const H    = Math.max(240, chartH || 460);
   const VOL_H = ov.vol ? 60 : 0;
@@ -362,6 +362,37 @@ function SVGChart({ candles, symbol, ov, barCount, chartH }) {
         </g>
       ))}
 
+      {/* Setup Planner levels */}
+      {setupLevels && (() => {
+        const sl = setupLevels;
+        const isBull = sl.direction === 'LONG';
+        return <>
+          {sl.entry != null && sl.entry > pMin && sl.entry < pMax && <>
+            <line x1={PL} y1={yOf(sl.entry)} x2={W-PR} y2={yOf(sl.entry)} stroke="#f1f5f9" strokeWidth={1.5} opacity={0.9}/>
+            <rect x={W-PR+1} y={yOf(sl.entry)-7} width={PR-3} height={13} fill="#1e293b" rx={2}/>
+            <text x={W-PR+4} y={yOf(sl.entry)+4} fontSize={8} fontWeight="800" fill="#f1f5f9">ENTRY</text>
+          </>}
+          {sl.sl != null && sl.sl > pMin && sl.sl < pMax && <>
+            <line x1={PL} y1={yOf(sl.sl)} x2={W-PR} y2={yOf(sl.sl)} stroke="#ef4444" strokeWidth={1.5} opacity={0.9}/>
+            <rect x={W-PR+1} y={yOf(sl.sl)-7} width={PR-3} height={13} fill="#450a0a" rx={2}/>
+            <text x={W-PR+4} y={yOf(sl.sl)+4} fontSize={8} fontWeight="800" fill="#ef4444">SL</text>
+          </>}
+          {sl.tp1 != null && sl.tp1 > pMin && sl.tp1 < pMax && <>
+            <line x1={PL} y1={yOf(sl.tp1)} x2={W-PR} y2={yOf(sl.tp1)} stroke="#22c55e" strokeWidth={1.5} opacity={0.9}/>
+            <rect x={W-PR+1} y={yOf(sl.tp1)-7} width={PR-3} height={13} fill="#14532d" rx={2}/>
+            <text x={W-PR+4} y={yOf(sl.tp1)+4} fontSize={8} fontWeight="800" fill="#22c55e">TP1</text>
+          </>}
+          {sl.tp2 != null && sl.tp2 > pMin && sl.tp2 < pMax && <>
+            <line x1={PL} y1={yOf(sl.tp2)} x2={W-PR} y2={yOf(sl.tp2)} stroke="#86efac" strokeWidth={1} strokeDasharray="5,3" opacity={0.8}/>
+            <rect x={W-PR+1} y={yOf(sl.tp2)-7} width={PR-3} height={13} fill="#14532d" rx={2}/>
+            <text x={W-PR+4} y={yOf(sl.tp2)+4} fontSize={8} fontWeight="700" fill="#86efac">TP2</text>
+          </>}
+          {/* Direction badge */}
+          <rect x={PL} y={PT-18} width={48} height={14} fill={isBull?'#22c55e22':'#ef444422'} stroke={isBull?'#22c55e66':'#ef444466'} rx={3}/>
+          <text x={PL+24} y={PT-8} textAnchor="middle" fontSize={8} fontWeight="800" fill={isBull?'#22c55e':'#ef4444'}>{isBull?'▲ LONG':'▼ SHORT'}</text>
+        </>;
+      })()}
+
       {/* EMA / VWAP */}
       {ov.ema20  && linePath(ema20v,  '#22c55e', 1.2)}
       {ov.ema50  && linePath(ema50v,  '#f59e0b', 1.3)}
@@ -466,7 +497,7 @@ const DEF_RULES = [
 ];
 
 // ── ChartModal ─────────────────────────────────────────────────────────────────
-export default function ChartModal({ instrument, onClose }) {
+export default function ChartModal({ instrument, onClose, setupLevels }) {
   const symbol = instrument?.symbol || 'EUR/USD';
 
   const [tf,        setTf]       = useState('H4');
@@ -762,7 +793,7 @@ Provide:
               {loading && <div className="cm-state">⟳ Fetching {symbol} {tf} candles…</div>}
               {loadErr && <div className="cm-state cm-err">⚠ {loadErr}</div>}
               {!loading && !loadErr && candles && (
-                <SVGChart candles={candles} symbol={symbol} ov={ov} barCount={barCount} chartH={chartH}/>
+                <SVGChart candles={candles} symbol={symbol} ov={ov} barCount={barCount} chartH={chartH} setupLevels={setupLevels}/>
               )}
             </div>
           </div>

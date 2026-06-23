@@ -25,6 +25,8 @@ const Journal          = lazy(() => import('./components/Journal'));
 const TradingNotebook  = lazy(() => import('./components/TradingNotebook'));
 const NewsCalendar     = lazy(() => import('./components/NewsCalendar'));
 const AlphaLab         = lazy(() => import('./components/AlphaLab'));
+const SetupPlanner     = lazy(() => import('./components/SetupPlanner'));
+const Analytics        = lazy(() => import('./components/Analytics'));
 
 function TabSpinner() {
   return (
@@ -55,8 +57,10 @@ const TABS = [
   { id: 'volatility',  label: 'Volatility',   icon: '🌊' },
   { id: 'seasonality', label: 'Seasonality',  icon: '📅' },
   { id: 'liquidity',   label: 'Liquidity',    icon: '🏛' },
-  { id: 'journal',     label: 'Journal',      icon: '📋' },
-  { id: 'notebook',    label: 'Notebook',     icon: '📓' },
+  { id: 'setups',      label: 'Setups',       icon: '📌' },
+  { id: 'analytics',  label: 'Analytics',    icon: '📈' },
+  { id: 'journal',    label: 'Journal',      icon: '📋' },
+  { id: 'notebook',   label: 'Notebook',     icon: '📓' },
   { id: 'news',        label: 'News',         icon: '📰' },
   { id: 'alphalab',   label: 'Alpha Lab',    icon: '⚗' },
 ];
@@ -284,6 +288,12 @@ export default function App() {
         </div>
         <div style={{ display: activeTab === 'liquidity' ? 'block' : 'none', overflowY:'auto', height:'calc(100vh - 120px)' }}>
           {visitedTabs.has('liquidity') && <LiquidityMap />}
+        </div>
+        <div style={{ display: activeTab === 'setups' ? 'block' : 'none', overflowY:'auto', height:'calc(100vh - 120px)' }}>
+          {visitedTabs.has('setups') && <SetupPlanner />}
+        </div>
+        <div style={{ display: activeTab === 'analytics' ? 'block' : 'none', overflowY:'auto', height:'calc(100vh - 120px)' }}>
+          {visitedTabs.has('analytics') && <Analytics />}
         </div>
         <div style={{ display: activeTab === 'journal' ? 'block' : 'none', overflowY:'auto', height:'calc(100vh - 120px)' }}>
           {visitedTabs.has('journal') && <Journal />}
