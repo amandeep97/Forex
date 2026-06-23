@@ -28,6 +28,7 @@ const AlphaLab         = lazy(() => import('./components/AlphaLab'));
 const SetupPlanner     = lazy(() => import('./components/SetupPlanner'));
 const Analytics        = lazy(() => import('./components/Analytics'));
 const DXYDashboard     = lazy(() => import('./components/DXYDashboard'));
+const CommandCenter    = lazy(() => import('./components/CommandCenter'));
 
 function TabSpinner() {
   return (
@@ -40,6 +41,7 @@ function TabSpinner() {
 }
 
 const TABS = [
+  { id: 'cmd',         label: 'Command',      icon: '⚡' },
   { id: 'ai',          label: 'AI',           icon: '🤖' },
   { id: 'dxy',         label: 'DXY',          icon: '💵' },
   { id: 'pairhub',     label: 'Pair Hub',     icon: '💱' },
@@ -232,6 +234,9 @@ export default function App() {
       {/* ── Content ───────────────────────────────────────────────────────── */}
       <main className="app-main">
       <Suspense fallback={<TabSpinner />}>
+        <div style={{ display: activeTab === 'cmd' ? 'block' : 'none', overflowY:'auto', height:'calc(100vh - 120px)' }}>
+          {visitedTabs.has('cmd') && <CommandCenter />}
+        </div>
         <div style={{ display: activeTab === 'ai' ? 'flex' : 'none', flexDirection:'column', height:'calc(100vh - 120px)' }}>
           {visitedTabs.has('ai') && <AIAnalysis />}
         </div>
