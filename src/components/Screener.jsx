@@ -5,7 +5,7 @@ import { generateCandles } from '../utils/generateCandles';
 import { detectCandlePatterns } from '../utils/candlePatterns';
 import { analyzeSMC } from '../utils/smcAnalysis';
 import { computeRSI, computeMFI, computeEMA, computeMACD, detectRSIDivergence, detectEqualHighsLows } from '../utils/indicatorCalc';
-import { computeVWAP, detectFVGsAndOBs, detectLiqLevels } from '../utils/smcHelpers';
+import { computeVWAP, detectFVGsAndOBs, detectLiqLevels, computePOC, computeValueArea } from '../utils/smcHelpers';
 import ChartModal from './ChartModal';
 import TechnicalPanel from './TechnicalPanel';
 import OandaConnect from './OandaConnect';
@@ -248,6 +248,19 @@ function fmtPrice(v) {
   return v.toFixed(5);
 }
 
+// ── MTF bias helper ───────────────────────────────────────────────────────────
+function getTFBias(inst, tf) {
+  try {
+    const c = generateCandles(inst, tf, 60);
+    const rsi = computeRSI(c, 14);
+    const ema = computeEMA(c, 20);
+    const price = c[c.length - 1].c;
+    if (price > ema && rsi > 55) return 'bull';
+    if (price < ema && rsi < 45) return 'bear';
+    return 'neutral';
+  } catch { return 'neutral'; }
+}
+
 // ── Main Screener ─────────────────────────────────────────────────────────────
 export default function Screener() {
   const { forexRates, cryptoRates, metalRates, marketRates, lastUpdate, loading, error, refresh,
@@ -408,6 +421,21 @@ export default function Screener() {
         const lastVwap   = vwapSeries[vwapSeries.length-1];
         const vwapAbove  = cp >= (lastVwap || cp);
 
+        const poc        = computePOC(candles.slice(-50));
+        const pocAbove   = poc ? cp >= poc : true;
+
+        const vaData     = computeValueArea(candles.slice(-50));
+        const vahAbove   = vaData ? cp >= vaData.vah : true;
+        const valAbove   = vaData ? cp >= vaData.val : false;
+        const inValueArea = vaData ? (cp >= vaData.val && cp <= vaData.vah) : true;
+
+        const h4Bias     = getTFBias(inst, '4h');
+        const h1Bias     = getTFBias(inst, '1h');
+        const m15Bias    = getTFBias(inst, '15m');
+        const bulls3     = [h4Bias, h1Bias, m15Bias].filter(b => b === 'bull').length;
+        const bears3     = [h4Bias, h1Bias, m15Bias].filter(b => b === 'bear').length;
+        const mtfConsensus = bulls3 >= 2 ? 'bull' : bears3 >= 2 ? 'bear' : 'mixed';
+
         const structure = (bosBullish||chochBullish) ? 'bullish'
                         : (bosBearish||chochBearish) ? 'bearish' : 'neutral';
 
@@ -477,6 +505,7 @@ export default function Screener() {
           breakerBull: smc.breakerBlocks.bull, breakerBear: smc.breakerBlocks.bear,
           oteBull: smc.ote.bull, oteBear: smc.ote.bear,
           isConsolidating: smc.consolidation,
+          pocAbove, vahAbove, valAbove, inValueArea, mtfConsensus,
         };
       } catch {
         map[inst.id] = { rsi:50, mfi:50, nearResistance:false, nearSupport:false,
@@ -493,7 +522,8 @@ export default function Screener() {
           rsiDivBull:false, rsiDivBear:false, rsiDivHiddenBull:false, rsiDivHiddenBear:false,
           equalHighs:false, equalLows:false,
           dispBull:false, dispBear:false, breakerBull:false, breakerBear:false,
-          oteBull:false, oteBear:false, isConsolidating:false };
+          oteBull:false, oteBear:false, isConsolidating:false,
+          pocAbove:true, vahAbove:true, valAbove:false, inValueArea:true, mtfConsensus:'mixed' };
       }
     });
     return map;
@@ -566,6 +596,14 @@ export default function Screener() {
     if (f.liqType === 'ssl') list = list.filter(i => a[i.id]?.sellSideLiq);
     if (f.vwapBias === 'above') list = list.filter(i =>  a[i.id]?.vwapAbove);
     if (f.vwapBias === 'below') list = list.filter(i => !a[i.id]?.vwapAbove);
+    if (f.pocBias === 'above')  list = list.filter(i =>  a[i.id]?.pocAbove);
+    if (f.pocBias === 'below')  list = list.filter(i => !a[i.id]?.pocAbove);
+    if (f.vaPosition === 'aboveVah') list = list.filter(i =>  a[i.id]?.vahAbove);
+    if (f.vaPosition === 'inVa')     list = list.filter(i =>  a[i.id]?.inValueArea);
+    if (f.vaPosition === 'belowVal') list = list.filter(i => !a[i.id]?.valAbove);
+    if (f.mtfConsensus === 'bull')   list = list.filter(i =>  a[i.id]?.mtfConsensus === 'bull');
+    if (f.mtfConsensus === 'bear')   list = list.filter(i =>  a[i.id]?.mtfConsensus === 'bear');
+    if (f.mtfConsensus === 'mixed')  list = list.filter(i =>  a[i.id]?.mtfConsensus === 'mixed');
 
     // EMA price filter
     if (f.emaPriceFilter && f.emaPriceFilter !== 'Any') {

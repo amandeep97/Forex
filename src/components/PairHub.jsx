@@ -1,6 +1,7 @@
 'use strict';
 import { useState, useEffect, useCallback, useMemo } from 'react';
 import TechnicalPanel from './TechnicalPanel';
+import ChartModal from './ChartModal';
 
 const ALL_PAIRS = [
   // Forex Majors
@@ -695,27 +696,10 @@ export default function PairHub() {
 
       {/* ── Chart modal ── */}
       {chartPair && (
-        <div style={{ position:'fixed', inset:0, background:'rgba(4,7,15,0.97)', zIndex:2000,
-          display:'flex', flexDirection:'column' }}>
-          <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between',
-            padding:'12px 16px', background:'#06090f', borderBottom:'1px solid #0f1929', flexShrink:0 }}>
-            <div>
-              <div style={{ fontSize:14, fontWeight:900, color:'#f1f5f9' }}>📊 {chartPair.label}</div>
-              <div style={{ fontSize:9, color:'#334155', marginTop:2 }}>TradingView · H1</div>
-            </div>
-            <button onClick={()=>setChartPair(null)} style={{
-              background:'#0a0e1a', border:'1px solid #1e293b', borderRadius:8,
-              color:'#94a3b8', fontSize:18, cursor:'pointer', padding:'4px 10px', lineHeight:1,
-            }}>✕</button>
-          </div>
-          <iframe
-            key={chartPair.key}
-            src={`https://s.tradingview.com/widgetembed/?symbol=${encodeURIComponent(TV_SYMBOLS[chartPair.key]||chartPair.label)}&interval=H1&theme=dark&style=1&locale=en&hide_top_toolbar=0&hide_legend=0&save_image=0&calendar=0`}
-            style={{ flex:1, border:'none', width:'100%' }}
-            allow="fullscreen"
-            title={`${chartPair.label} chart`}
-          />
-        </div>
+        <ChartModal
+          instrument={{ symbol: chartPair.label.includes('/') ? chartPair.label : chartPair.key }}
+          onClose={() => setChartPair(null)}
+        />
       )}
     </div>
   );

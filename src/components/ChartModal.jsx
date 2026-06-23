@@ -4,7 +4,7 @@ import { getIMData, PAIR_CORR, PAIR_RELEVANT } from '../utils/intermarket';
 import {
   detectSR, detectTrendlines, detectFVGsAndOBs, detectSweep,
   computeSwings, detectLiqLevels,
-  computeEMASeries, computeVWAP, computePOC,
+  computeEMASeries, computeVWAP, computePOC, computeValueArea,
 } from '../utils/smcHelpers';
 import { detectBOSCHoCH } from '../utils/smcAnalysis';
 
@@ -54,9 +54,10 @@ const OV_DEFS = [
   {k:'sweep', l:'Sweep',  c:'#fb923c'}, {k:'swings', l:'Swings',  c:'#60a5fa'},
   {k:'liq',   l:'LIQ',    c:'#c084fc'}, {k:'bos',    l:'BOS/CoC', c:'#38bdf8'},
   {k:'fib',   l:'Auto Fib',c:'#e879f9'},{k:'vol',    l:'Volume',  c:'#64748b'},
-  {k:'piv',   l:'Pivots',  c:'#e0c97a'},
+  {k:'piv',   l:'Pivots',  c:'#e0c97a'},{k:'vah',    l:'VAH',     c:'#22c55e'},
+  {k:'val',   l:'VAL',     c:'#ef4444'},
 ];
-const DEFAULT_OV = { ema20:true,ema50:true,ema200:false,vwap:true,poc:false,fvg:true,ob:true,sr:true,tl:true,zones:true,sweep:true,swings:false,liq:false,bos:true,fib:false,vol:true,piv:false };
+const DEFAULT_OV = { ema20:true,ema50:true,ema200:false,vwap:true,poc:false,fvg:true,ob:true,sr:true,tl:true,zones:true,sweep:true,swings:false,liq:false,bos:true,fib:false,vol:true,piv:false,vah:false,val:false };
 
 function loadSavedOv() {
   try {
@@ -102,6 +103,9 @@ function SVGChart({ candles, symbol, ov, barCount, chartH }) {
   const ema200v = ov.ema200 ? computeEMASeries(candles, 200).slice(si) : [];
   const vwapV   = ov.vwap   ? computeVWAP(candles).slice(si)           : [];
   const poc     = ov.poc    ? computePOC(vis)                           : null;
+  const vaData  = (ov.vah||ov.val) ? computeValueArea(vis, 60)          : null;
+  const vah     = vaData?.vah ?? null;
+  const val     = vaData?.val ?? null;
 
   const { fvgZones=[], obZones=[] } = (ov.fvg||ov.ob) ? detectFVGsAndOBs(vis) : {};
   const { supports=[], resistances=[] } = ov.sr ? detectSR(vis) : {};
@@ -336,6 +340,16 @@ function SVGChart({ candles, symbol, ov, barCount, chartH }) {
       {ov.poc && poc && <>
         <line x1={PL} y1={yOf(poc)} x2={W-PR} y2={yOf(poc)} stroke="#fbbf24" strokeWidth={1.2} strokeDasharray="2,2" opacity={0.85}/>
         <text x={W-PR+3} y={yOf(poc)+3.5} fontSize={7} fill="#fbbf24" fontFamily="monospace">POC</text>
+      </>}
+
+      {/* VAH / VAL */}
+      {ov.vah && vah && vah > pMin && vah < pMax && <>
+        <line x1={PL} y1={yOf(vah)} x2={W-PR} y2={yOf(vah)} stroke="#22c55e" strokeWidth={1.2} strokeDasharray="4,2" opacity={0.85}/>
+        <text x={W-PR+3} y={yOf(vah)+3.5} fontSize={7} fill="#22c55e" fontFamily="monospace">VAH</text>
+      </>}
+      {ov.val && val && val > pMin && val < pMax && <>
+        <line x1={PL} y1={yOf(val)} x2={W-PR} y2={yOf(val)} stroke="#ef4444" strokeWidth={1.2} strokeDasharray="4,2" opacity={0.85}/>
+        <text x={W-PR+3} y={yOf(val)+3.5} fontSize={7} fill="#ef4444" fontFamily="monospace">VAL</text>
       </>}
 
       {/* Pivot Points */}

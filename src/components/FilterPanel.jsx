@@ -422,8 +422,8 @@ export default function FilterPanel({ filters, onChange, onReset, onClose, resul
             options={[{ value: 'Any', label: 'Any (off)' }, { value: 'yes', label: 'Consolidating (ATR squeeze)' }, { value: 'no', label: 'Trending (not consolidating)' }]} />
         </Section>
 
-        {/* VWAP & POC */}
-        <Section title="VWAP & POC" defaultOpen={false}>
+        {/* VWAP, POC & Value Area */}
+        <Section title="VWAP, POC & Value Area" defaultOpen={false}>
           <div>
             <label className="block text-[11px] text-slate-500 mb-1">VWAP Bias</label>
             <div className="flex gap-1.5">
@@ -445,6 +445,55 @@ export default function FilterPanel({ filters, onChange, onReset, onClose, resul
                 </button>
               ))}
             </div>
+          </div>
+          <div>
+            <label className="block text-[11px] text-slate-500 mb-1">Value Area Position</label>
+            <div className="grid grid-cols-2 gap-1">
+              {[
+                { label: 'Any',         val: 'All'      },
+                { label: '↑ Above VAH', val: 'aboveVah' },
+                { label: '↔ In VA',     val: 'inVa'     },
+                { label: '↓ Below VAL', val: 'belowVal' },
+              ].map(opt => (
+                <button key={opt.val} onClick={() => set('vaPosition', opt.val)}
+                  className={`text-[10px] px-2 py-1 rounded border transition-colors font-semibold ${
+                    (filters.vaPosition ?? 'All') === opt.val
+                      ? opt.val === 'aboveVah' ? 'bg-green-500/20 text-green-300 border-green-600/40'
+                        : opt.val === 'belowVal' ? 'bg-red-500/20 text-red-300 border-red-600/40'
+                        : opt.val === 'inVa' ? 'bg-blue-500/20 text-blue-300 border-blue-600/40'
+                        : 'bg-slate-500/20 text-slate-300 border-slate-600/40'
+                      : 'text-slate-500 border-surface-border hover:text-slate-300 hover:border-slate-500'
+                  }`}>
+                  {opt.label}
+                </button>
+              ))}
+            </div>
+            <p className="text-[10px] text-slate-600 mt-1">Value Area = 70% vol around POC</p>
+          </div>
+        </Section>
+
+        {/* MTF Consensus */}
+        <Section title="MTF Consensus" defaultOpen={false}>
+          <div>
+            <label className="block text-[11px] text-slate-500 mb-1">H4 · H1 · M15 Alignment</label>
+            <div className="flex gap-1.5">
+              {[
+                { label: 'Any',      val: 'All',   cls: 'bg-slate-500/20 text-slate-300 border-slate-600/40' },
+                { label: '▲ Bull 2/3', val: 'bull', cls: 'bg-green-500/20 text-green-300 border-green-600/40' },
+                { label: '▼ Bear 2/3', val: 'bear', cls: 'bg-red-500/20 text-red-300 border-red-600/40' },
+                { label: '— Mixed',  val: 'mixed', cls: 'bg-slate-500/20 text-slate-300 border-slate-600/40' },
+              ].map(opt => (
+                <button key={opt.val} onClick={() => set('mtfConsensus', opt.val)}
+                  className={`flex-1 text-[10px] px-1 py-1 rounded border transition-colors font-semibold ${
+                    (filters.mtfConsensus ?? 'All') === opt.val
+                      ? opt.cls
+                      : 'text-slate-500 border-surface-border hover:text-slate-300 hover:border-slate-500'
+                  }`}>
+                  {opt.label}
+                </button>
+              ))}
+            </div>
+            <p className="text-[10px] text-slate-600 mt-1">Bullish: price &gt; EMA20 &amp; RSI &gt; 55 on 2+ TFs</p>
           </div>
         </Section>
 
