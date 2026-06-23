@@ -12,8 +12,10 @@ const PAIRS = [
   { key:'USD_CAD',   label:'USD/CAD',  pip:0.0001 },
   { key:'NZD_USD',   label:'NZD/USD',  pip:0.0001 },
   { key:'XAU_USD',   label:'XAU/USD',  pip:0.1    },
+  { key:'XAG_USD',   label:'XAG/USD',  pip:0.001  },
   { key:'US30_USD',  label:'US30',     pip:1       },
   { key:'NAS100_USD',label:'NAS100',   pip:0.1    },
+  { key:'SPX500_USD',label:'SPX500',   pip:0.1    },
 ];
 
 const RULES = [
@@ -118,13 +120,32 @@ function detectGeneral(candles, pip) {
 
 // Rule 1: Fri high < Thu high → Mon visits Fri low
 // Rule 1b: Fri low > Thu low → Mon visits Fri high
+// Search flexibly so that a thin Sunday-session candle between Fri and Mon doesn't break detection.
 function detectRule1(candles, pip) {
   const results = [];
-  for (let i = 1; i < candles.length - 1; i++) {
-    const thu = candles[i - 1];
+  for (let i = 0; i < candles.length; i++) {
+    if (candles[i].dow !== 'Fri') continue;
     const fri = candles[i];
-    const mon = candles[i + 1];
-    if (thu.dow !== 'Thu' || fri.dow !== 'Fri' || mon.dow !== 'Mon') continue;
+
+    // Find Thursday: search up to 3 candles back, must be within 3 calendar days
+    let thu = null;
+    for (let j = i - 1; j >= Math.max(0, i - 3); j--) {
+      if (candles[j].dow === 'Thu') {
+        const diff = (new Date(fri.date) - new Date(candles[j].date)) / 86400000;
+        if (diff <= 3) { thu = candles[j]; break; }
+      }
+    }
+    if (!thu) continue;
+
+    // Find Monday: search up to 4 candles forward, must be within 5 calendar days
+    let mon = null;
+    for (let j = i + 1; j < Math.min(candles.length, i + 5); j++) {
+      if (candles[j].dow === 'Mon') {
+        const diff = (new Date(candles[j].date) - new Date(fri.date)) / 86400000;
+        if (diff <= 5) { mon = candles[j]; break; }
+      }
+    }
+    if (!mon) continue;
 
     if (fri.h < thu.h) {
       results.push({
@@ -132,7 +153,7 @@ function detectRule1(candles, pip) {
         refVal: thu.h, trigVal: fri.h, target: fri.l,
         resultVal: mon.l, hit: mon.l <= fri.l,
         pips: Math.round((fri.h - fri.l) / pip),
-        detail: `Thu H: ${thu.h.toFixed(5)} · Fri H: ${fri.h.toFixed(5)} · Fri L: ${fri.l.toFixed(5)} · Mon L: ${mon.l.toFixed(5)}`,
+        detail: '',
       });
     }
 
@@ -142,7 +163,7 @@ function detectRule1(candles, pip) {
         refVal: thu.l, trigVal: fri.l, target: fri.h,
         resultVal: mon.h, hit: mon.h >= fri.h,
         pips: Math.round((fri.h - fri.l) / pip),
-        detail: `Thu L: ${thu.l.toFixed(5)} · Fri L: ${fri.l.toFixed(5)} · Fri H: ${fri.h.toFixed(5)} · Mon H: ${mon.h.toFixed(5)}`,
+        detail: '',
       });
     }
   }
@@ -224,7 +245,6 @@ export default function DOWPatterns() {
       return;
     }
     const dec = pair.pip < 0.01 ? 5 : pair.pip < 1 ? 3 : 1;
-    // Reformat detail with correct decimals
     const r1  = detectRule1(candles, pair.pip).map(r => ({
       ...r,
       detail: r.rule === 'rule1'
