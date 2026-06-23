@@ -1,6 +1,7 @@
 import { useState, useCallback, useEffect } from 'react';
 import ChartModal from './ChartModal.jsx';
 import { computeValueArea, computeFib } from '../utils/smcHelpers';
+import { detectOTE, detectBreakerBlocks } from '../utils/smcAnalysis';
 
 const PAIRS = [
   'XAG_USD',
@@ -221,7 +222,10 @@ function analyzeTimeframe(candles) {
     cp >= f.bottom - atr * 0.5 && cp <= f.top + atr * 0.5
   ) || null;
 
-  return { cp, atr, structure, zone, swingHigh, swingLow, bullOB, bearOB, bullFVG, bearFVG };
+  const ote = detectOTE(candles);
+  const bb  = detectBreakerBlocks(candles);
+
+  return { cp, atr, structure, zone, swingHigh, swingLow, bullOB, bearOB, bullFVG, bearFVG, ote, bb };
 }
 
 // ── Liquidity path check — finds pools blocking the path to TP ────────────────
@@ -305,7 +309,8 @@ function getSignal(h4, h1, m15, h1Candles) {
   if (h1.structure === h4.structure)                                    quality++; // H1 fully aligns H4
   if (m15.structure === h4.structure)                                   quality++; // M15 fully aligns too
   if ((dir==='long' && m15.bullOB) || (dir==='short' && m15.bearOB))   quality++; // OB entry > FVG
-  if ((dir==='long' && h1.bullOB)  || (dir==='short' && h1.bearOB))    quality++; // H1 OB confluence
+  if ((dir==='long' && m15.ote?.bull) || (dir==='short' && m15.ote?.bear) ||
+      (dir==='long' && m15.bb?.bull)  || (dir==='short' && m15.bb?.bear))  quality++; // OTE or BB confluence
 
   // Blocking liquidity = hard cap at grade B
   if (liqBlock) quality = Math.min(quality, 1);
@@ -363,6 +368,12 @@ function TFRow({ label, data }) {
       )}
       {(data.bullFVG || data.bearFVG) && (
         <span style={{ fontSize:10, color:'#818cf8', background:'rgba(129,140,248,0.15)', padding:'1px 5px', borderRadius:4 }}>FVG</span>
+      )}
+      {(data.bb?.bull || data.bb?.bear) && (
+        <span style={{ fontSize:10, color:'#f97316', background:'rgba(249,115,22,0.15)', padding:'1px 5px', borderRadius:4 }}>BB</span>
+      )}
+      {(data.ote?.bull || data.ote?.bear) && (
+        <span style={{ fontSize:10, color:'#06b6d4', background:'rgba(6,182,212,0.15)', padding:'1px 5px', borderRadius:4 }}>OTE</span>
       )}
     </div>
   );
@@ -482,6 +493,24 @@ function PairCard({ pair, data, loading: cardLoading, onOpenChart }) {
               <div style={{ marginTop:5, fontSize:11, color:'#f59e0b' }}>
                 R:R {signal.rr}:1 · M15 {m15?.bullOB || m15?.bearOB ? 'OB' : 'FVG'} entry
               </div>
+
+              {/* OTE zone */}
+              {((isLong && m15?.ote?.bull) || (isShort && m15?.ote?.bear)) && (
+                <div style={{ marginTop:4, fontSize:10, fontWeight:700,
+                  color:'#06b6d4', background:'#06b6d412', border:'1px solid #06b6d433',
+                  borderRadius:4, padding:'2px 8px' }}>
+                  📐 OTE — Fib 61.8–78.6% retracement zone
+                </div>
+              )}
+
+              {/* Breaker Block */}
+              {((isLong && m15?.bb?.bull) || (isShort && m15?.bb?.bear)) && (
+                <div style={{ marginTop:4, fontSize:10, fontWeight:700,
+                  color:'#f97316', background:'#f9731612', border:'1px solid #f9731633',
+                  borderRadius:4, padding:'2px 8px' }}>
+                  🔄 Breaker Block — flipped OB acting as {isLong ? 'support' : 'resistance'}
+                </div>
+              )}
 
               {/* Killzone badge */}
               {signal.kz ? (
