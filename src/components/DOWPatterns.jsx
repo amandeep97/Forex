@@ -334,24 +334,24 @@ export default function DOWPatterns() {
     const hits = data.filter(r => r.hit).length;
     const hrColor = hr === null ? '#475569' : hr >= 65 ? '#22c55e' : hr >= 50 ? '#f59e0b' : '#ef4444';
     return (
-      <div style={{ background:'#0f172a', borderRadius:9, padding:'12px 14px', border:`1px solid ${rule.color}22` }}>
-        <div style={{ display:'flex', justifyContent:'space-between', alignItems:'flex-start', marginBottom:6 }}>
+      <div style={{ background:'#0f172a', borderRadius:9, padding:'12px 10px', border:`1px solid ${rule.color}22` }}>
+        <div style={{ fontSize:11, fontWeight:800, color:rule.color, marginBottom:3, lineHeight:1.3 }}>{rule.title}</div>
+        <div style={{ fontSize:9, color:'#64748b', marginBottom:2, lineHeight:1.3 }}>{rule.desc}</div>
+        <div style={{ fontSize:9, color:'#334155', marginBottom:8 }}>Combo: {rule.combo}</div>
+        <div style={{ display:'flex', alignItems:'flex-end', justifyContent:'space-between' }}>
           <div>
-            <div style={{ fontSize:12, fontWeight:800, color:rule.color }}>{rule.title}</div>
-            <div style={{ fontSize:10, color:'#64748b', marginTop:2 }}>{rule.desc}</div>
-            <div style={{ fontSize:10, color:'#334155', marginTop:2 }}>Combo: {rule.combo}</div>
-          </div>
-          <div style={{ textAlign:'center', flexShrink:0, marginLeft:12 }}>
-            <div style={{ fontSize:26, fontWeight:900, color:hrColor, lineHeight:1 }}>
-              {hr !== null ? `${hr}%` : '—'}
-            </div>
-            <div style={{ fontSize:9, color:'#475569', marginTop:2 }}>HIT RATE</div>
+            <div style={{ fontSize:9, color:'#475569', marginBottom:2 }}>HIT RATE</div>
             <div style={{ fontSize:9, color:'#334155' }}>{hits}/{data.length}</div>
+            {data.length > 0 && data.length < 6 && (
+              <div style={{ fontSize:8, color:'#334155', marginTop:2 }}>small sample</div>
+            )}
+          </div>
+          <div style={{ fontSize:30, fontWeight:900, color:hrColor, lineHeight:1, minWidth:56, textAlign:'right' }}>
+            {hr !== null ? `${hr}%` : '—'}
           </div>
         </div>
-        {/* Bar */}
         {hr !== null && (
-          <div style={{ height:4, background:'#1e293b', borderRadius:2, marginTop:6 }}>
+          <div style={{ height:4, background:'#1e293b', borderRadius:2, marginTop:8 }}>
             <div style={{ height:'100%', width:`${hr}%`, background:hrColor, borderRadius:2 }}/>
           </div>
         )}
