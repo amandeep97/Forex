@@ -76,16 +76,26 @@ async function fetchDaily(pairKey, count) {
     return (d.candles || []).filter(c => c.complete).map(c => {
       // OANDA daily candles open at Sun 21-22:00 UTC for Monday's session.
       // Adding 4h shifts the timestamp to the correct calendar trading day.
+      // getUTCDay() is used (not getDay()) to avoid local-timezone mis-labeling.
       const corrected = new Date(new Date(c.time).getTime() + 4 * 3600 * 1000);
+      const date = corrected.toISOString().slice(0, 10);
       return {
-        t:   new Date(c.time).getTime(),
-        o:  +c.mid.o, h: +c.mid.h, l: +c.mid.l, c: +c.mid.c,
-        dow:  DOW_LABELS[corrected.getDay()],
-        date: corrected.toISOString().slice(0, 10),
+        t:    new Date(c.time).getTime(),
+        o:   +c.mid.o, h: +c.mid.h, l: +c.mid.l, c: +c.mid.c,
+        dow:  DOW_LABELS[corrected.getUTCDay()],
+        date,
       };
     });
   } catch { return null; }
 }
+
+// ── DOW helpers ───────────────────────────────────────────────────────────────
+// Compute day-of-week from the stored date string using UTC noon — completely
+// timezone-independent regardless of where the browser is running.
+function utcDOW(dateStr) {
+  return new Date(dateStr + 'T12:00:00Z').getUTCDay(); // 0=Sun 1=Mon … 5=Fri 6=Sat
+}
+const SUN=0, MON=1, TUE=2, WED=3, THU=4, FRI=5;
 
 // ── Pattern detection ─────────────────────────────────────────────────────────
 
@@ -120,32 +130,41 @@ function detectGeneral(candles, pip) {
 
 // Rule 1: Fri high < Thu high → Mon visits Fri low
 // Rule 1b: Fri low > Thu low → Mon visits Fri high
-// Search flexibly so that a thin Sunday-session candle between Fri and Mon doesn't break detection.
+// Uses utcDOW(date) for timezone-independent detection.
+// Returns { results, debug } — debug shows how many Fri/Thu/Mon were matched.
 function detectRule1(candles, pip) {
   const results = [];
-  for (let i = 0; i < candles.length; i++) {
-    if (candles[i].dow !== 'Fri') continue;
-    const fri = candles[i];
+  const debug = { friCount: 0, thuMatchCount: 0, monMatchCount: 0 };
 
-    // Find Thursday: search up to 3 candles back, must be within 3 calendar days
+  for (let i = 0; i < candles.length; i++) {
+    if (utcDOW(candles[i].date) !== FRI) continue;
+    const fri = candles[i];
+    debug.friCount++;
+
+    // Find Thursday: search up to 3 candles back, within 3 calendar days
     let thu = null;
-    for (let j = i - 1; j >= Math.max(0, i - 3); j--) {
-      if (candles[j].dow === 'Thu') {
+    for (let j = i - 1; j >= Math.max(0, i - 4); j--) {
+      if (utcDOW(candles[j].date) === THU) {
         const diff = (new Date(fri.date) - new Date(candles[j].date)) / 86400000;
         if (diff <= 3) { thu = candles[j]; break; }
       }
     }
     if (!thu) continue;
+    debug.thuMatchCount++;
 
-    // Find Monday: search up to 4 candles forward, must be within 5 calendar days
+    // Find Monday: search up to 5 candles forward, within 5 calendar days
+    // Skip any Sunday-session candle (utcDOW === SUN or same date as Friday)
     let mon = null;
-    for (let j = i + 1; j < Math.min(candles.length, i + 5); j++) {
-      if (candles[j].dow === 'Mon') {
+    for (let j = i + 1; j < Math.min(candles.length, i + 6); j++) {
+      const d = utcDOW(candles[j].date);
+      if (d === SUN) continue; // skip Sunday session candle
+      if (d === MON) {
         const diff = (new Date(candles[j].date) - new Date(fri.date)) / 86400000;
-        if (diff <= 5) { mon = candles[j]; break; }
+        if (diff >= 2 && diff <= 5) { mon = candles[j]; break; }
       }
     }
     if (!mon) continue;
+    debug.monMatchCount++;
 
     if (fri.h < thu.h) {
       results.push({
@@ -167,7 +186,7 @@ function detectRule1(candles, pip) {
       });
     }
   }
-  return results;
+  return { results, debug };
 }
 
 // Rule 2: Wed high < Mon high → Thu visits Wed low
@@ -176,17 +195,18 @@ function detectRule1(candles, pip) {
 function detectRule2(candles, pip) {
   const results = [];
   for (let i = 0; i < candles.length - 1; i++) {
-    if (candles[i].dow !== 'Wed') continue;
+    if (utcDOW(candles[i].date) !== WED) continue;
     const wed = candles[i];
     const thu = candles[i + 1];
-    if (!thu || thu.dow !== 'Thu') continue;
+    if (!thu || utcDOW(thu.date) !== THU) continue;
 
-    // Find Mon of same week (search up to 4 candles back)
+    // Find Mon of same week (search up to 5 candles back, skip Sunday)
     let mon = null;
-    for (let j = i - 1; j >= Math.max(0, i - 4); j--) {
-      if (candles[j].dow === 'Mon') {
+    for (let j = i - 1; j >= Math.max(0, i - 5); j--) {
+      if (utcDOW(candles[j].date) === SUN) continue;
+      if (utcDOW(candles[j].date) === MON) {
         const daysDiff = (new Date(wed.date) - new Date(candles[j].date)) / 86400000;
-        if (daysDiff <= 5) { mon = candles[j]; break; }
+        if (daysDiff >= 2 && daysDiff <= 5) { mon = candles[j]; break; }
       }
     }
     if (!mon) continue;
@@ -245,7 +265,8 @@ export default function DOWPatterns() {
       return;
     }
     const dec = pair.pip < 0.01 ? 5 : pair.pip < 1 ? 3 : 1;
-    const r1  = detectRule1(candles, pair.pip).map(r => ({
+    const { results: r1raw, debug: r1debug } = detectRule1(candles, pair.pip);
+    const r1  = r1raw.map(r => ({
       ...r,
       detail: r.rule === 'rule1'
         ? `Thu H: ${r.refVal.toFixed(dec)} · Fri H: ${r.trigVal.toFixed(dec)} · Fri L: ${r.target.toFixed(dec)} · Mon L: ${r.resultVal.toFixed(dec)}`
@@ -255,6 +276,10 @@ export default function DOWPatterns() {
     const gen = detectGeneral(candles, pair.pip);
     const all = [...r1, ...r2].sort((a, b) => b.date.localeCompare(a.date));
 
+    // DOW distribution — helps diagnose label issues
+    const dowDist = {};
+    candles.forEach(c => { const k = c.dow || '?'; dowDist[k] = (dowDist[k] || 0) + 1; });
+
     // Stats for general patterns by day combo
     const genByCombo = {};
     gen.forEach(p => {
@@ -263,7 +288,7 @@ export default function DOWPatterns() {
       if (p.hit) genByCombo[p.dayCombo].h++;
     });
 
-    setResults({ all, r1, r2, gen, genByCombo, pair });
+    setResults({ all, r1, r2, gen, genByCombo, pair, r1debug, dowDist });
     setSelRule('all');
     setLoading(false);
   }, [selPair, lookback, hasOanda]);
@@ -445,6 +470,18 @@ export default function DOWPatterns() {
                     return <RuleCard key={rule.id} rule={rule} data={data} />;
                   })}
                 </div>
+                {/* Debug: DOW label distribution + Rule 1 match stats */}
+                {results.dowDist && (
+                  <div style={{ marginTop:10, padding:'6px 8px', background:'#0a1120', borderRadius:6, fontSize:9, color:'#334155', lineHeight:1.7 }}>
+                    <span style={{ color:'#1e3a5f' }}>DOW dist: </span>
+                    {['Mon','Tue','Wed','Thu','Fri','Sun','Sat','?'].map(d => results.dowDist[d] ? `${d}:${results.dowDist[d]} ` : '').join('')}
+                    {results.r1debug && (
+                      <span style={{ marginLeft:8 }}>
+                        | R1: Fri={results.r1debug.friCount} Thu✓={results.r1debug.thuMatchCount} Mon✓={results.r1debug.monMatchCount}
+                      </span>
+                    )}
+                  </div>
+                )}
               </div>
 
               {/* General patterns by day combo */}
