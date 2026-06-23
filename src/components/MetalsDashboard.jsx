@@ -49,21 +49,23 @@ async function fetchCloses(instrument, granularity, count) {
 }
 
 async function fetchRetailSentiment(instrument, creds) {
-  const base = creds.practice ? 'https://api-fxpractice.oanda.com/v3' : 'https://api-fxtrade.oanda.com/v3';
-  try {
-    const res = await fetch(
-      `${base}/instruments/${instrument}/positionBook`,
-      { headers: { Authorization: `Bearer ${creds.apiKey}` }, signal: AbortSignal.timeout(8000) }
-    );
-    if (!res.ok) return null;
-    const data = await res.json();
-    const buckets = data.positionBook?.buckets || [];
-    let totalLong = 0, totalShort = 0;
-    buckets.forEach(b => { totalLong += parseFloat(b.longCountPercent||0); totalShort += parseFloat(b.shortCountPercent||0); });
-    const total = totalLong + totalShort;
-    if (!total) return null;
-    return { longPct: Math.round(totalLong / total * 100) };
-  } catch { return null; }
+  for (const base of ['https://api-fxtrade.oanda.com/v3', 'https://api-fxpractice.oanda.com/v3']) {
+    try {
+      const res = await fetch(
+        `${base}/instruments/${instrument}/positionBook`,
+        { headers: { Authorization: `Bearer ${creds.apiKey}` }, signal: AbortSignal.timeout(8000) }
+      );
+      if (!res.ok) continue;
+      const data = await res.json();
+      const buckets = data.positionBook?.buckets || [];
+      let totalLong = 0, totalShort = 0;
+      buckets.forEach(b => { totalLong += parseFloat(b.longCountPercent||0); totalShort += parseFloat(b.shortCountPercent||0); });
+      const total = totalLong + totalShort;
+      if (!total) continue;
+      return { longPct: Math.round(totalLong / total * 100) };
+    } catch { continue; }
+  }
+  return null;
 }
 
 async function fetchCOTHistory(code, weeks = 54) {
