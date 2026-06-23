@@ -1,7 +1,7 @@
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect, useRef } from 'react';
 import ChartModal from './ChartModal.jsx';
 import { computeValueArea, computeFib } from '../utils/smcHelpers';
-import { detectOTE, detectBreakerBlocks } from '../utils/smcAnalysis';
+import { sendTelegram, showBrowserNotification, requestBrowserPermission, getGrade, formatTelegramMsg } from '../utils/notifications';
 
 const PAIRS = [
   'XAG_USD',
@@ -222,10 +222,7 @@ function analyzeTimeframe(candles) {
     cp >= f.bottom - atr * 0.5 && cp <= f.top + atr * 0.5
   ) || null;
 
-  const ote = detectOTE(candles);
-  const bb  = detectBreakerBlocks(candles);
-
-  return { cp, atr, structure, zone, swingHigh, swingLow, bullOB, bearOB, bullFVG, bearFVG, ote, bb };
+  return { cp, atr, structure, zone, swingHigh, swingLow, bullOB, bearOB, bullFVG, bearFVG };
 }
 
 // ── Liquidity path check — finds pools blocking the path to TP ────────────────
@@ -309,8 +306,7 @@ function getSignal(h4, h1, m15, h1Candles) {
   if (h1.structure === h4.structure)                                    quality++; // H1 fully aligns H4
   if (m15.structure === h4.structure)                                   quality++; // M15 fully aligns too
   if ((dir==='long' && m15.bullOB) || (dir==='short' && m15.bearOB))   quality++; // OB entry > FVG
-  if ((dir==='long' && m15.ote?.bull) || (dir==='short' && m15.ote?.bear) ||
-      (dir==='long' && m15.bb?.bull)  || (dir==='short' && m15.bb?.bear))  quality++; // OTE or BB confluence
+  if ((dir==='long' && h1.bullOB)  || (dir==='short' && h1.bearOB))    quality++; // H1 OB confluence
 
   // Blocking liquidity = hard cap at grade B
   if (liqBlock) quality = Math.min(quality, 1);
@@ -368,12 +364,6 @@ function TFRow({ label, data }) {
       )}
       {(data.bullFVG || data.bearFVG) && (
         <span style={{ fontSize:10, color:'#818cf8', background:'rgba(129,140,248,0.15)', padding:'1px 5px', borderRadius:4 }}>FVG</span>
-      )}
-      {(data.bb?.bull || data.bb?.bear) && (
-        <span style={{ fontSize:10, color:'#f97316', background:'rgba(249,115,22,0.15)', padding:'1px 5px', borderRadius:4 }}>BB</span>
-      )}
-      {(data.ote?.bull || data.ote?.bear) && (
-        <span style={{ fontSize:10, color:'#06b6d4', background:'rgba(6,182,212,0.15)', padding:'1px 5px', borderRadius:4 }}>OTE</span>
       )}
     </div>
   );
@@ -493,24 +483,6 @@ function PairCard({ pair, data, loading: cardLoading, onOpenChart }) {
               <div style={{ marginTop:5, fontSize:11, color:'#f59e0b' }}>
                 R:R {signal.rr}:1 · M15 {m15?.bullOB || m15?.bearOB ? 'OB' : 'FVG'} entry
               </div>
-
-              {/* OTE zone */}
-              {((isLong && m15?.ote?.bull) || (isShort && m15?.ote?.bear)) && (
-                <div style={{ marginTop:4, fontSize:10, fontWeight:700,
-                  color:'#06b6d4', background:'#06b6d412', border:'1px solid #06b6d433',
-                  borderRadius:4, padding:'2px 8px' }}>
-                  📐 OTE — Fib 61.8–78.6% retracement zone
-                </div>
-              )}
-
-              {/* Breaker Block */}
-              {((isLong && m15?.bb?.bull) || (isShort && m15?.bb?.bear)) && (
-                <div style={{ marginTop:4, fontSize:10, fontWeight:700,
-                  color:'#f97316', background:'#f9731612', border:'1px solid #f9731633',
-                  borderRadius:4, padding:'2px 8px' }}>
-                  🔄 Breaker Block — flipped OB acting as {isLong ? 'support' : 'resistance'}
-                </div>
-              )}
 
               {/* Killzone badge */}
               {signal.kz ? (
@@ -705,13 +677,49 @@ export default function TopDownSignals() {
   const [clearOnly,        setClearOnly]        = useState(false);
   const [minQuality,       setMinQuality]       = useState(0);
   const [chartInstrument,  setChartInstrument]  = useState(null);
+  const [notifOpen,        setNotifOpen]        = useState(false);
+  const [notifSettings,    setNotifSettings]    = useState(() => {
+    try { return JSON.parse(localStorage.getItem('forex_notif_v1') || '{}'); } catch { return {}; }
+  });
+  const alertedRef      = useRef(new Map());
+  const autoIntervalRef = useRef(null);
 
   const hasOanda = !!getCreds().apiKey;
+
+  function saveNotif(patch) {
+    const next = { ...notifSettings, ...patch };
+    setNotifSettings(next);
+    localStorage.setItem('forex_notif_v1', JSON.stringify(next));
+  }
+
+  const checkAndAlert = useCallback((currentResults) => {
+    const { browserOn, telegramOn, botToken, chatId, minGrade = 5 } = notifSettings;
+    if (!browserOn && !telegramOn) return;
+    Object.entries(currentResults).forEach(([pair, data]) => {
+      if (!data?.signal) return;
+      const q = data.signal.quality ?? 0;
+      if (q < minGrade) return;
+      const key = `${pair}`;
+      const last = alertedRef.current.get(key) || 0;
+      if (Date.now() - last < 4 * 3600 * 1000) return;
+      alertedRef.current.set(key, Date.now());
+      const grade = getGrade(q);
+      const dir = data.signal.dir === 'long' ? '▲ LONG' : '▼ SHORT';
+      const sym = pair.replace('_', '/');
+      if (browserOn) {
+        showBrowserNotification(`${grade} Setup: ${sym} ${dir}`, `Entry ${data.signal.entry?.toFixed(5)} · R:R ${data.signal.rr}:1`);
+      }
+      if (telegramOn && botToken && chatId) {
+        sendTelegram(botToken, chatId, formatTelegramMsg(pair, data.signal, grade));
+      }
+    });
+  }, [notifSettings]);
 
   const load = useCallback(async () => {
     if (!hasOanda) return;
     setRefreshing(true);
     setLoadingSet(new Set(PAIRS));
+    const accumulated = {};
 
     await Promise.all(PAIRS.map(async (pair) => {
       const [h4c, h1c, m15c] = await Promise.all([
@@ -734,14 +742,25 @@ export default function TopDownSignals() {
       }
 
       setResults(prev => ({ ...prev, [pair]: { h4, h1, m15, signal, va, fib } }));
+      accumulated[pair] = { h4, h1, m15, signal, va, fib };
       setLoadingSet(prev => { const s = new Set(prev); s.delete(pair); return s; });
     }));
 
     setLastRefresh(new Date());
     setRefreshing(false);
-  }, [hasOanda]);
+    checkAndAlert(accumulated);
+  }, [hasOanda, checkAndAlert]);
 
   useEffect(() => { load(); }, [load]);
+
+  useEffect(() => {
+    if (autoIntervalRef.current) clearInterval(autoIntervalRef.current);
+    const mins = notifSettings.refreshMins ?? 15;
+    if ((notifSettings.browserOn || notifSettings.telegramOn) && mins > 0) {
+      autoIntervalRef.current = setInterval(() => { load(); }, mins * 60 * 1000);
+    }
+    return () => { if (autoIntervalRef.current) clearInterval(autoIntervalRef.current); };
+  }, [notifSettings.browserOn, notifSettings.telegramOn, notifSettings.refreshMins, load]);
 
   let sorted = [...PAIRS].sort((a, b) => {
     const aQ = results[a]?.signal?.quality ?? -1;
@@ -772,6 +791,135 @@ export default function TopDownSignals() {
     </button>
   );
 
+  function NotificationSettingsPanel() {
+    const [testStatus, setTestStatus] = useState('');
+    const perm = typeof Notification !== 'undefined' ? Notification.permission : 'unsupported';
+
+    async function handleEnableBrowser() {
+      const result = await requestBrowserPermission();
+      if (result === 'granted') saveNotif({ browserOn: true });
+      else setTestStatus('Browser permission denied. Please allow notifications in browser settings.');
+    }
+
+    async function handleTest() {
+      setTestStatus('Sending test…');
+      let ok = false;
+      if (notifSettings.browserOn) {
+        showBrowserNotification('ForexPro Test', 'Notifications are working! ✓');
+        ok = true;
+      }
+      if (notifSettings.telegramOn && notifSettings.botToken && notifSettings.chatId) {
+        const sent = await sendTelegram(notifSettings.botToken, notifSettings.chatId, '🧪 <b>ForexPro Test</b>\nTelegram alerts are working! ✓');
+        if (!sent) { setTestStatus('Telegram failed — check bot token and chat ID.'); return; }
+        ok = true;
+      }
+      setTestStatus(ok ? '✓ Test sent!' : 'Enable at least one alert type first.');
+      setTimeout(() => setTestStatus(''), 3000);
+    }
+
+    const toggle = (val, onChange) => (
+      <div onClick={onChange} style={{
+        width:36, height:20, borderRadius:10, cursor:'pointer', position:'relative',
+        background: val ? '#8b5cf6' : '#1e293b', border:`1px solid ${val ? '#8b5cf6' : '#334155'}`,
+        transition:'background 0.2s',
+      }}>
+        <div style={{
+          position:'absolute', top:2, left: val ? 16 : 2, width:14, height:14,
+          borderRadius:'50%', background:'white', transition:'left 0.2s',
+        }}/>
+      </div>
+    );
+
+    const input = (placeholder, val, onChange) => (
+      <input
+        type="text" placeholder={placeholder} value={val || ''}
+        onChange={e => onChange(e.target.value)}
+        style={{
+          width:'100%', background:'#0f172a', border:'1px solid #1e293b',
+          borderRadius:6, padding:'6px 10px', fontSize:11, color:'#e2e8f0',
+          outline:'none', marginTop:4,
+        }}
+      />
+    );
+
+    return (
+      <div style={{ background:'#1e293b', borderRadius:10, padding:'14px 16px', marginBottom:12,
+        border:'1px solid #8b5cf633' }}>
+        <div style={{ fontWeight:700, fontSize:12, color:'#a78bfa', marginBottom:12 }}>🔔 Alert Settings</div>
+
+        {/* Browser Notifications */}
+        <div style={{ marginBottom:12, padding:'10px 12px', background:'#0f172a', borderRadius:8 }}>
+          <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:6 }}>
+            <span style={{ fontSize:11, fontWeight:700, color:'#e2e8f0' }}>Browser Notifications</span>
+            {perm === 'granted'
+              ? toggle(!!notifSettings.browserOn, () => saveNotif({ browserOn: !notifSettings.browserOn }))
+              : <button onClick={handleEnableBrowser} style={{
+                  fontSize:10, padding:'3px 8px', borderRadius:5, cursor:'pointer', fontWeight:700,
+                  background:'#8b5cf622', color:'#a78bfa', border:'1px solid #8b5cf644',
+                }}>Enable</button>
+            }
+          </div>
+          <div style={{ fontSize:9, color:'#475569' }}>
+            Works while this tab is open. Great for desktop.
+          </div>
+        </div>
+
+        {/* Telegram */}
+        <div style={{ marginBottom:12, padding:'10px 12px', background:'#0f172a', borderRadius:8 }}>
+          <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:6 }}>
+            <span style={{ fontSize:11, fontWeight:700, color:'#e2e8f0' }}>📱 Telegram</span>
+            {toggle(!!notifSettings.telegramOn, () => saveNotif({ telegramOn: !notifSettings.telegramOn }))}
+          </div>
+          <div style={{ fontSize:9, color:'#475569', marginBottom:8 }}>
+            Get alerts on your phone. Create bot via @BotFather on Telegram.
+          </div>
+          {input('Bot Token (from @BotFather)', notifSettings.botToken, v => saveNotif({ botToken: v }))}
+          {input('Chat ID (message @userinfobot to get)', notifSettings.chatId, v => saveNotif({ chatId: v }))}
+        </div>
+
+        {/* Alert threshold + refresh interval */}
+        <div style={{ display:'flex', gap:8, marginBottom:12 }}>
+          <div style={{ flex:1 }}>
+            <div style={{ fontSize:9, color:'#475569', marginBottom:4 }}>Alert when grade ≥</div>
+            <select
+              value={notifSettings.minGrade ?? 5}
+              onChange={e => saveNotif({ minGrade: +e.target.value })}
+              style={{ width:'100%', background:'#0f172a', border:'1px solid #1e293b',
+                borderRadius:6, padding:'5px 8px', fontSize:11, color:'#e2e8f0', outline:'none' }}
+            >
+              <option value={5}>A+ only (quality 5)</option>
+              <option value={4}>A or better (quality 4+)</option>
+              <option value={3}>B+ or better (quality 3+)</option>
+            </select>
+          </div>
+          <div style={{ flex:1 }}>
+            <div style={{ fontSize:9, color:'#475569', marginBottom:4 }}>Auto-refresh every</div>
+            <select
+              value={notifSettings.refreshMins ?? 15}
+              onChange={e => saveNotif({ refreshMins: +e.target.value })}
+              style={{ width:'100%', background:'#0f172a', border:'1px solid #1e293b',
+                borderRadius:6, padding:'5px 8px', fontSize:11, color:'#e2e8f0', outline:'none' }}
+            >
+              <option value={5}>5 min</option>
+              <option value={10}>10 min</option>
+              <option value={15}>15 min</option>
+              <option value={30}>30 min</option>
+            </select>
+          </div>
+        </div>
+
+        {/* Test + status */}
+        <div style={{ display:'flex', gap:8, alignItems:'center' }}>
+          <button onClick={handleTest} style={{
+            fontSize:11, fontWeight:700, padding:'6px 16px', borderRadius:6, cursor:'pointer',
+            background:'#8b5cf625', color:'#a78bfa', border:'1px solid #8b5cf644',
+          }}>Send Test Alert</button>
+          {testStatus && <span style={{ fontSize:10, color: testStatus.startsWith('✓') ? '#22c55e' : '#ef4444' }}>{testStatus}</span>}
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div style={{ padding:'12px 10px', overflowY:'auto', height:'100%' }}>
       {/* Header */}
@@ -781,21 +929,36 @@ export default function TopDownSignals() {
           <div style={{ fontSize:11, color:neu, marginTop:2 }}>H4 bias → H1 structure → M15 entry · SL · TP</div>
         </div>
         <div style={{ textAlign:'right' }}>
-          <button
-            onClick={load}
-            disabled={refreshing}
-            style={{
-              background:'rgba(255,255,255,0.08)', border:'1px solid rgba(255,255,255,0.12)',
-              borderRadius:6, color:'#e2e8f0', fontSize:12, padding:'5px 12px', cursor:'pointer',
-            }}
-          >
-            {refreshing ? 'Loading…' : '↻ Refresh'}
-          </button>
+          <div style={{ display:'flex', gap:6, alignItems:'center' }}>
+            <button
+              onClick={() => setNotifOpen(v => !v)}
+              style={{
+                background: notifOpen ? 'rgba(139,92,246,0.2)' : 'rgba(255,255,255,0.08)',
+                border: `1px solid ${notifOpen ? '#8b5cf644' : 'rgba(255,255,255,0.12)'}`,
+                borderRadius:6, color: notifOpen ? '#a78bfa' : '#e2e8f0',
+                fontSize:14, padding:'5px 10px', cursor:'pointer',
+              }}
+            >
+              🔔
+            </button>
+            <button
+              onClick={load}
+              disabled={refreshing}
+              style={{
+                background:'rgba(255,255,255,0.08)', border:'1px solid rgba(255,255,255,0.12)',
+                borderRadius:6, color:'#e2e8f0', fontSize:12, padding:'5px 12px', cursor:'pointer',
+              }}
+            >
+              {refreshing ? 'Loading…' : '↻ Refresh'}
+            </button>
+          </div>
           {lastRefresh && (
             <div style={{ fontSize:10, color:neu, marginTop:3 }}>{lastRefresh.toLocaleTimeString()}</div>
           )}
         </div>
       </div>
+
+      {notifOpen && <NotificationSettingsPanel />}
 
       {/* Sub-tabs */}
       <div style={{ display:'flex', gap:6, marginBottom:12 }}>
