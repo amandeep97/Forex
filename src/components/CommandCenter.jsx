@@ -117,14 +117,17 @@ export default function CommandCenter() {
 
   useEffect(() => {
     try {
-      const raw = localStorage.getItem('forex_oanda_creds');
-      if (raw) setCreds(JSON.parse(raw));
+      const c = JSON.parse(localStorage.getItem('oanda_creds') || 'null');
+      if (c?.apiKey) { setCreds(c); return; }
     } catch {}
+    const apiKey = localStorage.getItem('oanda_key');
+    const practice = localStorage.getItem('oanda_env') !== 'live';
+    if (apiKey) setCreds({ apiKey, practice });
   }, []);
 
   const oandaFetch = useCallback(async (pair, tf, count) => {
     if (!creds) return [];
-    const base = creds.env === 'live'
+    const base = creds.practice === false || creds.env === 'live'
       ? 'https://api-fxtrade.oanda.com/v3'
       : 'https://api-fxpractice.oanda.com/v3';
     try {
