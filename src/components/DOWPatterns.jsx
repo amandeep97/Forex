@@ -71,12 +71,17 @@ async function fetchDaily(pairKey, count) {
     );
     if (!res.ok) return null;
     const d = await res.json();
-    return (d.candles || []).filter(c => c.complete).map(c => ({
-      t:    new Date(c.time).getTime(),
-      o:   +c.mid.o, h: +c.mid.h, l: +c.mid.l, c: +c.mid.c,
-      dow:  DOW_LABELS[new Date(c.time).getDay()],
-      date: c.time.slice(0, 10),
-    }));
+    return (d.candles || []).filter(c => c.complete).map(c => {
+      // OANDA daily candles open at Sun 21-22:00 UTC for Monday's session.
+      // Adding 4h shifts the timestamp to the correct calendar trading day.
+      const corrected = new Date(new Date(c.time).getTime() + 4 * 3600 * 1000);
+      return {
+        t:   new Date(c.time).getTime(),
+        o:  +c.mid.o, h: +c.mid.h, l: +c.mid.l, c: +c.mid.c,
+        dow:  DOW_LABELS[corrected.getDay()],
+        date: corrected.toISOString().slice(0, 10),
+      };
+    });
   } catch { return null; }
 }
 
@@ -89,8 +94,6 @@ function detectGeneral(candles, pip) {
     const prev = candles[i - 1];
     const curr = candles[i];
     const next = candles[i + 1];
-    if (curr.dow === 'Sun' || prev.dow === 'Sun') continue;
-
     if (curr.h < prev.h) {
       results.push({
         rule: 'gen_high', direction: 'bearish', date: curr.date,
