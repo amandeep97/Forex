@@ -18,6 +18,27 @@ const KILLZONES = [
   { name:'NY PM KZ',     s:1080, e:1200, color:'#f97316' },
 ];
 
+// Best UTC session hours per pair
+const PAIR_SESSIONS = {
+  EUR_USD:{ f:8,  t:17 }, GBP_USD:{ f:8,  t:17 }, USD_JPY:{ f:0,  t:12 },
+  USD_CHF:{ f:8,  t:17 }, AUD_USD:{ f:22, t:9  }, NZD_USD:{ f:22, t:9  },
+  USD_CAD:{ f:13, t:22 }, EUR_GBP:{ f:8,  t:17 }, EUR_JPY:{ f:8,  t:13 },
+  EUR_AUD:{ f:8,  t:13 }, EUR_CAD:{ f:13, t:17 }, EUR_CHF:{ f:8,  t:17 },
+  GBP_JPY:{ f:8,  t:13 }, GBP_AUD:{ f:8,  t:12 }, GBP_CAD:{ f:13, t:17 },
+  GBP_CHF:{ f:8,  t:17 }, AUD_JPY:{ f:0,  t:9  }, CAD_JPY:{ f:8,  t:17 },
+  CHF_JPY:{ f:8,  t:13 }, NZD_JPY:{ f:0,  t:9  }, XAG_USD:{ f:8,  t:17 },
+};
+
+// Expected direction for each pair when DXY is BULLISH
+// null = cross pair, DXY less relevant
+const DXY_BULL_DIR = {
+  EUR_USD:'short', GBP_USD:'short', USD_JPY:'long',  USD_CHF:'long',
+  AUD_USD:'short', NZD_USD:'short', USD_CAD:'long',  XAG_USD:'short',
+  EUR_JPY:null, EUR_GBP:null, EUR_AUD:null, EUR_CAD:null, EUR_CHF:null,
+  GBP_JPY:null, GBP_AUD:null, GBP_CAD:null, GBP_CHF:null,
+  AUD_JPY:null, CAD_JPY:null, CHF_JPY:null, NZD_JPY:null,
+};
+
 function getCurrentKZ() {
   const now  = new Date();
   const mins = now.getUTCHours() * 60 + now.getUTCMinutes();
@@ -33,6 +54,41 @@ function getNextKZ() {
     if (diff < bestDiff) { bestDiff = diff; best = { ...kz, minsUntil: diff }; }
   }
   return best;
+}
+
+function isInSession(pairKey) {
+  const s = PAIR_SESSIONS[pairKey];
+  if (!s) return null;
+  const h = new Date().getUTCHours();
+  return s.f < s.t ? (h >= s.f && h < s.t) : (h >= s.f || h < s.t);
+}
+
+function getDOWInfo() {
+  const day = new Date().getUTCDay();
+  const labels = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  if (day === 1) return { ok: true,  label: 'Mon', note: 'Rule 1 target' };
+  if (day === 4) return { ok: true,  label: 'Thu', note: 'Rule 2 target' };
+  return         { ok: false, label: labels[day], note: 'Not a target day' };
+}
+
+function getDXYBias(results) {
+  const eur = results['EUR_USD'];
+  if (!eur?.h4) return null;
+  if (eur.h4.structure === 'bearish') return 'bull'; // EUR/USD down = DXY up
+  if (eur.h4.structure === 'bullish') return 'bear';
+  return null;
+}
+
+function isDXYAligned(pairKey, data, dxyBias) {
+  if (!dxyBias) return null;
+  const expectedDir = DXY_BULL_DIR[pairKey];
+  if (expectedDir === undefined || expectedDir === null) return null;
+  const actualDir = data?.signal?.dir ??
+    (data?.h4?.structure === 'bullish' ? 'long'  :
+     data?.h4?.structure === 'bearish' ? 'short' : null);
+  if (!actualDir) return null;
+  const expectedSignalDir = dxyBias === 'bull' ? expectedDir : (expectedDir === 'long' ? 'short' : 'long');
+  return actualDir === expectedSignalDir;
 }
 
 function getCreds() {
@@ -503,9 +559,115 @@ function PairCard({ pair, data, loading: cardLoading, onOpenChart }) {
   );
 }
 
+// ── Checklist Board — scans all pairs against the 5 auto-checks ──────────────
+
+function CheckItem({ ok, label }) {
+  const c = ok === null ? '#334155' : ok ? '#22c55e' : '#ef4444';
+  const bg = ok === null ? '#0f172a' : ok ? '#22c55e12' : '#ef444412';
+  return (
+    <span style={{ fontSize:9, fontWeight:700, color:c, background:bg,
+      border:`1px solid ${c}44`, borderRadius:4, padding:'1px 5px', whiteSpace:'nowrap' }}>
+      {ok === null ? '?' : ok ? '✓' : '✗'} {label}
+    </span>
+  );
+}
+
+function ChecklistBoard({ results }) {
+  const kz      = getCurrentKZ();
+  const nextKZ  = getNextKZ();
+  const dow     = getDOWInfo();
+  const dxyBias = getDXYBias(results);
+
+  const rows = PAIRS.map(pair => {
+    const data = results[pair];
+    const checks = {
+      kz:      !!kz,
+      session: isInSession(pair),
+      mtf:     data?.h4?.structure === 'bullish' || data?.h4?.structure === 'bearish',
+      dxy:     isDXYAligned(pair, data, dxyBias),
+      dow:     dow.ok,
+    };
+    const vals   = Object.values(checks);
+    const known  = vals.filter(v => v !== null);
+    const passed = known.filter(Boolean).length;
+    const score  = known.length ? passed / known.length : 0;
+    const verdict = score >= 0.8 ? 'GO' : score >= 0.6 ? 'PARTIAL' : 'WAIT';
+    const vc      = score >= 0.8 ? '#22c55e' : score >= 0.6 ? '#f59e0b' : '#64748b';
+    const dir     = data?.signal?.dir ??
+      (data?.h4?.structure === 'bullish' ? 'long' : data?.h4?.structure === 'bearish' ? 'short' : null);
+    return { pair, checks, passed, total: known.length, verdict, vc, dir };
+  }).sort((a, b) => b.passed - a.passed);
+
+  return (
+    <div>
+      {/* Context bar */}
+      <div style={{ background:'#1e293b', borderRadius:8, padding:'9px 13px', marginBottom:10,
+        display:'flex', gap:16, flexWrap:'wrap', fontSize:11, alignItems:'center' }}>
+        <span>
+          KZ: {kz
+            ? <span style={{ color:kz.color, fontWeight:700 }}>⚡ {kz.name}</span>
+            : <span style={{ color:'#334155' }}>None {nextKZ ? `· ${nextKZ.name} in ${Math.floor(nextKZ.minsUntil/60)}h ${nextKZ.minsUntil%60}m` : ''}</span>}
+        </span>
+        <span>
+          DOW: <span style={{ color: dow.ok ? '#22c55e' : '#475569', fontWeight: dow.ok ? 700 : 400 }}>
+            {dow.label} {dow.ok ? `✓ ${dow.note}` : `(${dow.note})`}
+          </span>
+        </span>
+        <span>
+          DXY: <span style={{ color: dxyBias === 'bull' ? '#22c55e' : dxyBias === 'bear' ? '#ef4444' : '#475569', fontWeight:700 }}>
+            {dxyBias === 'bull' ? '▲ Bull' : dxyBias === 'bear' ? '▼ Bear' : '?'}
+          </span>
+          <span style={{ color:'#334155', fontSize:9 }}> via EUR/USD H4</span>
+        </span>
+      </div>
+
+      {/* Pair rows */}
+      <div style={{ display:'flex', flexDirection:'column', gap:5 }}>
+        {rows.map(({ pair, checks, passed, total, verdict, vc, dir }) => (
+          <div key={pair} style={{ background:'#1e293b', borderRadius:8, padding:'7px 12px',
+            border:`1px solid ${vc}22`, display:'flex', alignItems:'center', gap:10, flexWrap:'wrap' }}>
+            {/* Name + direction */}
+            <div style={{ minWidth:72 }}>
+              <div style={{ fontSize:12, fontWeight:800, color:'#f1f5f9' }}>{fmtPair(pair)}</div>
+              {dir
+                ? <div style={{ fontSize:9, color: dir==='long'?'#22c55e':'#ef4444', fontWeight:700 }}>
+                    {dir==='long'?'▲ LONG':'▼ SHORT'}
+                  </div>
+                : <div style={{ fontSize:9, color:'#334155' }}>—</div>}
+            </div>
+            {/* Checks */}
+            <div style={{ display:'flex', gap:4, flex:1, flexWrap:'wrap' }}>
+              <CheckItem ok={checks.kz}      label="Kill Zone" />
+              <CheckItem ok={checks.session} label="Session"   />
+              <CheckItem ok={checks.mtf}     label="MTF align" />
+              <CheckItem ok={checks.dxy}     label="DXY"       />
+              <CheckItem ok={checks.dow}     label="DOW day"   />
+            </div>
+            {/* Verdict */}
+            <div style={{ fontSize:13, fontWeight:900, color:vc, background:`${vc}12`,
+              border:`1px solid ${vc}30`, borderRadius:6, padding:'3px 10px',
+              flexShrink:0, textAlign:'center', minWidth:70 }}>
+              {verdict}
+              <div style={{ fontSize:9, fontWeight:400, color:'#475569', marginTop:1 }}>{passed}/{total}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div style={{ marginTop:12, padding:'8px 12px', background:'#0f172a', borderRadius:7,
+        fontSize:10, color:'#334155', lineHeight:1.8 }}>
+        Auto-checked above. Before entry also verify manually:<br/>
+        <span style={{ color:'#1e3a5f' }}>① Price at key level (PDH/PDL/OB/FVG)?</span>{' '}
+        <span style={{ color:'#1e3a5f' }}>② Trigger candle (sweep+reject / engulfing)?</span>
+      </div>
+    </div>
+  );
+}
+
 // ── Main component ────────────────────────────────────────────────────────────
 
 export default function TopDownSignals() {
+  const [tab,              setTab]              = useState('signals');
   const [results,          setResults]          = useState({});
   const [loadingSet,       setLoadingSet]       = useState(new Set());
   const [lastRefresh,      setLastRefresh]      = useState(null);
@@ -606,12 +768,28 @@ export default function TopDownSignals() {
         </div>
       </div>
 
-      {/* Filter chips */}
+      {/* Sub-tabs */}
+      <div style={{ display:'flex', gap:6, marginBottom:12 }}>
+        {[['signals','📊 Signals'],['checklist','📋 Trade Ready']].map(([id, lbl]) => (
+          <button key={id} onClick={() => setTab(id)} style={{
+            fontSize:11, fontWeight:700, padding:'5px 14px', borderRadius:7, cursor:'pointer',
+            background: tab===id ? '#8b5cf625' : '#0f172a',
+            color:      tab===id ? '#a78bfa'   : '#475569',
+            border:     `1px solid ${tab===id ? '#8b5cf644' : '#1e293b'}`,
+          }}>{lbl}</button>
+        ))}
+      </div>
+
+      {/* Trade Ready checklist tab */}
+      {tab === 'checklist' && <ChecklistBoard results={results} />}
+
+      {/* Filter chips — signals tab only */}
+      {tab === 'signals' && (
       <div style={{ display:'flex', gap:6, flexWrap:'wrap', marginBottom:10 }}>
         {chip('⚡ KZ Only',       kzOnly,    () => setKzOnly(v => !v),    kzSignals.length)}
         {chip('✅ Clear Path',    clearOnly, () => setClearOnly(v => !v), clearSignals.length)}
         {chip('★★★ A-Grade',    minQuality >= 3, () => setMinQuality(v => v >= 3 ? 0 : 3), aSignals.length)}
-      </div>
+      </div>)}
 
       {!hasOanda && (
         <div style={{ textAlign:'center', color:neu, padding:40, fontSize:13 }}>
@@ -619,27 +797,30 @@ export default function TopDownSignals() {
         </div>
       )}
 
-      {hasOanda && allSignals.length > 0 && (
-        <div style={{
-          background:'rgba(34,197,94,0.1)', border:'1px solid rgba(34,197,94,0.3)',
-          borderRadius:8, padding:'8px 14px', marginBottom:12, fontSize:13,
-          color:bull, fontWeight:600,
-        }}>
-          {allSignals.length} setup{allSignals.length > 1 ? 's' : ''} · {kzSignals.length} in KZ · {clearSignals.length} clear path · {aSignals.length} A-grade
-        </div>
+      {tab === 'signals' && (
+        <>
+          {hasOanda && allSignals.length > 0 && (
+            <div style={{
+              background:'rgba(34,197,94,0.1)', border:'1px solid rgba(34,197,94,0.3)',
+              borderRadius:8, padding:'8px 14px', marginBottom:12, fontSize:13,
+              color:bull, fontWeight:600,
+            }}>
+              {allSignals.length} setup{allSignals.length > 1 ? 's' : ''} · {kzSignals.length} in KZ · {clearSignals.length} clear path · {aSignals.length} A-grade
+            </div>
+          )}
+          <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill, minmax(280px, 1fr))', gap:10 }}>
+            {sorted.map(pair => (
+              <PairCard
+                key={pair}
+                pair={pair}
+                data={results[pair]}
+                loading={loadingSet.has(pair)}
+                onOpenChart={() => setChartInstrument({ symbol: fmtPair(pair) })}
+              />
+            ))}
+          </div>
+        </>
       )}
-
-      <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill, minmax(280px, 1fr))', gap:10 }}>
-        {sorted.map(pair => (
-          <PairCard
-            key={pair}
-            pair={pair}
-            data={results[pair]}
-            loading={loadingSet.has(pair)}
-            onOpenChart={() => setChartInstrument({ symbol: fmtPair(pair) })}
-          />
-        ))}
-      </div>
 
       {chartInstrument && (
         <ChartModal instrument={chartInstrument} onClose={() => setChartInstrument(null)} />
