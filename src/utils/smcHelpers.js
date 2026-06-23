@@ -264,3 +264,87 @@ export function computePOC(candles, buckets = 60) {
   const maxIdx = vol.indexOf(Math.max(...vol));
   return minP+(maxIdx/(buckets-1))*range;
 }
+
+// VWAP with ±1σ / ±2σ bands — returns final values only
+export function computeVWAPBands(candles) {
+  if (!candles || !candles.length) return null;
+  let cumPV = 0, cumV = 0, cumPV2 = 0;
+  let vwap = 0;
+  for (const c of candles) {
+    const tp = (c.h + c.l + c.c) / 3;
+    const v  = c.v || 1;
+    cumPV  += tp * v;
+    cumV   += v;
+    cumPV2 += tp * tp * v;
+    vwap    = cumPV / cumV;
+  }
+  const sd = Math.sqrt(Math.max(0, cumPV2 / cumV - vwap * vwap));
+  return { vwap, upper1: vwap + sd, lower1: vwap - sd, upper2: vwap + 2*sd, lower2: vwap - 2*sd, sd };
+}
+
+// Pivot Points — Classic and Camarilla from previous period H/L/C
+export function computePivots(prevH, prevL, prevC) {
+  const P = (prevH + prevL + prevC) / 3;
+  const r = prevH - prevL;
+  return {
+    P,
+    R1: 2*P - prevL,  R2: P + r,           R3: prevH + 2*(P - prevL),
+    S1: 2*P - prevH,  S2: P - r,           S3: prevL - 2*(prevH - P),
+    cR1: prevC + r*1.1/12, cR2: prevC + r*1.1/6,
+    cR3: prevC + r*1.1/4,  cR4: prevC + r*1.1/2,
+    cS1: prevC - r*1.1/12, cS2: prevC - r*1.1/6,
+    cS3: prevC - r*1.1/4,  cS4: prevC - r*1.1/2,
+  };
+}
+
+// Value Area (VAH / VAL / POC) — 70 % of total volume around POC
+export function computeValueArea(candles, numBuckets = 60) {
+  if (!candles || !candles.length) return null;
+  const minP = Math.min(...candles.map(c => c.l));
+  const maxP = Math.max(...candles.map(c => c.h));
+  const range = maxP - minP || 1;
+  const bkts = new Array(numBuckets).fill(0);
+  for (const c of candles) {
+    const v  = c.v || 1;
+    const lo = Math.max(0, Math.floor(((c.l - minP) / range) * (numBuckets - 1)));
+    const hi = Math.min(numBuckets - 1, Math.ceil(((c.h - minP) / range) * (numBuckets - 1)));
+    const n  = Math.max(1, hi - lo + 1);
+    for (let i = lo; i <= hi; i++) bkts[i] += v / n;
+  }
+  const pocIdx  = bkts.indexOf(Math.max(...bkts));
+  const poc     = minP + (pocIdx / (numBuckets - 1)) * range;
+  const total   = bkts.reduce((a, b) => a + b, 0);
+  let area = bkts[pocIdx], lo = pocIdx, hi = pocIdx;
+  while (area < total * 0.70) {
+    const ah = hi < numBuckets - 1 ? bkts[hi + 1] : 0;
+    const al = lo > 0             ? bkts[lo - 1] : 0;
+    if (ah === 0 && al === 0) break;
+    if (ah >= al && hi < numBuckets - 1) { hi++; area += bkts[hi]; }
+    else if (lo > 0)                      { lo--; area += bkts[lo]; }
+    else break;
+  }
+  return {
+    poc,
+    vah: minP + (hi / (numBuckets - 1)) * range,
+    val: minP + (lo / (numBuckets - 1)) * range,
+    distribution: bkts.map((vol, i) => ({
+      price: minP + (i / (numBuckets - 1)) * range,
+      vol,
+      isPoc: i === pocIdx,
+    })),
+    maxVol: Math.max(...bkts),
+    rangeHigh: maxP,
+    rangeLow:  minP,
+  };
+}
+
+// Fibonacci retracement / extension levels from a swing high → low
+// levels = array of ratios e.g. [0, 0.236, 0.382, 0.5, 0.618, 0.702, 0.786, 0.893, 1.0, 1.272, 1.618]
+export function computeFib(swingHigh, swingLow, levels) {
+  const range = swingHigh - swingLow;
+  return levels.map(l => ({
+    ratio: l,
+    price: swingHigh - range * l,
+    label: l === 0 ? '0.0 (High)' : l === 1 ? '1.0 (Low)' : `${(l * 100).toFixed(1)}%`,
+  }));
+}

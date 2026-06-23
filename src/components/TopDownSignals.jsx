@@ -1,5 +1,6 @@
 import { useState, useCallback, useEffect } from 'react';
 import ChartModal from './ChartModal.jsx';
+import { computeValueArea, computeFib } from '../utils/smcHelpers';
 
 const PAIRS = [
   'XAG_USD',
@@ -55,7 +56,7 @@ async function fetchOHLC(instrument, granularity, count) {
     const d = await r.json();
     return (d.candles || [])
       .filter(c => c.complete)
-      .map(c => ({ o: +c.mid.o, h: +c.mid.h, l: +c.mid.l, c: +c.mid.c, t: c.time }));
+      .map(c => ({ o: +c.mid.o, h: +c.mid.h, l: +c.mid.l, c: +c.mid.c, v: c.volume||1, t: c.time }));
   } catch { return null; }
 }
 
@@ -325,8 +326,35 @@ function QualityStars({ q }) {
   );
 }
 
+const BC = { bullish:'#00d4aa', bearish:'#ef4444', neutral:'#64748b' };
+const BA = { bullish:'▲', bearish:'▼', neutral:'—' };
+
+function MTFConsensus({ h4, h1, m15 }) {
+  const tfs = [{ l:'H4', b:h4?.structure }, { l:'H1', b:h1?.structure }, { l:'M15', b:m15?.structure }];
+  const bulls = tfs.filter(t => t.b === 'bullish').length;
+  const bears = tfs.filter(t => t.b === 'bearish').length;
+  const cons  = bulls >= 2 ? 'BULL' : bears >= 2 ? 'BEAR' : 'MIXED';
+  const cc    = bulls >= 2 ? '#00d4aa' : bears >= 2 ? '#ef4444' : '#f59e0b';
+  return (
+    <div style={{ display:'flex', alignItems:'center', gap:6, marginBottom:8,
+      padding:'5px 8px', borderRadius:6, background:'#ffffff06', border:'1px solid rgba(255,255,255,0.06)' }}>
+      {tfs.map(tf => (
+        <div key={tf.l} style={{ display:'flex', alignItems:'center', gap:2 }}>
+          <span style={{ fontSize:9, color:'#475569' }}>{tf.l}</span>
+          <span style={{ fontSize:11, color:BC[tf.b||'neutral'], fontWeight:800 }}>{BA[tf.b||'neutral']}</span>
+        </div>
+      ))}
+      <div style={{ marginLeft:'auto', fontSize:10, fontWeight:800, color:cc,
+        background:`${cc}18`, padding:'1px 7px', borderRadius:5, border:`1px solid ${cc}33` }}>
+        {cons}
+      </div>
+    </div>
+  );
+}
+
 function PairCard({ pair, data, loading: cardLoading, onOpenChart }) {
-  const { h4, h1, m15, signal } = data || {};
+  const { h4, h1, m15, signal, va, fib } = data || {};
+  const [showLevels, setShowLevels] = useState(false);
   const isLong  = signal?.dir === 'long';
   const isShort = signal?.dir === 'short';
   const borderCol = isLong ? bull : isShort ? bear : 'transparent';
@@ -373,6 +401,8 @@ function PairCard({ pair, data, loading: cardLoading, onOpenChart }) {
         <div style={{ fontSize:12, color:neu }}>Fetching H4 · H1 · M15…</div>
       ) : (
         <>
+          {/* MTF consensus row */}
+          <MTFConsensus h4={h4} h1={h1} m15={m15} />
           <TFRow label="H4"  data={h4} />
           <TFRow label="H1"  data={h1} />
           <TFRow label="M15" data={m15} />
@@ -420,6 +450,53 @@ function PairCard({ pair, data, loading: cardLoading, onOpenChart }) {
               )}
             </div>
           )}
+
+          {/* VA + Fib key levels */}
+          {(va || fib) && (
+            <div style={{ marginTop:8, borderTop:'1px solid rgba(255,255,255,0.06)', paddingTop:8 }}>
+              <button onClick={() => setShowLevels(s => !s)} style={{ fontSize:9, color:'#475569',
+                background:'transparent', border:'none', cursor:'pointer', padding:0, fontWeight:700,
+                letterSpacing:'0.06em' }}>
+                📐 KEY LEVELS {showLevels ? '▲' : '▼'}
+              </button>
+              {showLevels && (
+                <div style={{ marginTop:6 }}>
+                  {/* Volume Profile */}
+                  {va && (
+                    <div style={{ display:'flex', gap:6, marginBottom:6 }}>
+                      {[
+                        { l:'VAH', v:va.vah, c:'#22c55e' },
+                        { l:'POC', v:va.poc, c:'#f59e0b' },
+                        { l:'VAL', v:va.val, c:'#ef4444' },
+                      ].map(item => (
+                        <div key={item.l} style={{ flex:1, background:'#ffffff06',
+                          border:`1px solid ${item.c}33`, borderRadius:6, padding:'4px 6px', textAlign:'center' }}>
+                          <div style={{ fontSize:8, color:item.c, fontWeight:800 }}>{item.l}</div>
+                          <div style={{ fontSize:10, color:item.c, fontFamily:'monospace', fontWeight:700 }}>
+                            {fmtPrice(pair, item.v)}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                  {/* Fib key levels */}
+                  {fib && (
+                    <div style={{ display:'flex', flexWrap:'wrap', gap:4 }}>
+                      {fib.map(f => (
+                        <div key={f.ratio} style={{ background:'#f59e0b0a',
+                          border:'1px solid #f59e0b22', borderRadius:5, padding:'2px 7px' }}>
+                          <span style={{ fontSize:8, color:'#f59e0b' }}>{f.label} </span>
+                          <span style={{ fontSize:9, fontFamily:'monospace', color:'#e2e8f0', fontWeight:700 }}>
+                            {fmtPrice(pair, f.price)}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+          )}
         </>
       )}
     </div>
@@ -456,7 +533,16 @@ export default function TopDownSignals() {
       const m15    = analyzeTimeframe(m15c);
       const signal = getSignal(h4, h1, m15, h1c);
 
-      setResults(prev => ({ ...prev, [pair]: { h4, h1, m15, signal } }));
+      // Volume Profile + Fib from H1 candles
+      let va = null, fib = null;
+      if (h1c && h1c.length >= 10) {
+        va = computeValueArea(h1c.slice(-50));
+        const swHigh = Math.max(...h1c.slice(-50).map(c => c.h));
+        const swLow  = Math.min(...h1c.slice(-50).map(c => c.l));
+        fib = computeFib(swHigh, swLow, [0.5, 0.618, 0.702, 0.786, 0.893]);
+      }
+
+      setResults(prev => ({ ...prev, [pair]: { h4, h1, m15, signal, va, fib } }));
       setLoadingSet(prev => { const s = new Set(prev); s.delete(pair); return s; });
     }));
 

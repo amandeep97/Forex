@@ -1,5 +1,6 @@
 'use strict';
 import { useState, useEffect, useCallback, useMemo } from 'react';
+import TechnicalPanel from './TechnicalPanel';
 
 const ALL_PAIRS = [
   // Forex Majors
@@ -594,6 +595,9 @@ export default function PairHub() {
               </div>
             )}
           </div>
+
+          {/* Technical Levels Panel */}
+          <TechnicalPanel pairKey={selected.key} label={selected.label} />
 
           {/* Chart button */}
           <button onClick={()=>setChartPair(selected)} style={{

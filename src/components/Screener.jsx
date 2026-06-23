@@ -7,6 +7,7 @@ import { analyzeSMC } from '../utils/smcAnalysis';
 import { computeRSI, computeMFI, computeEMA, computeMACD, detectRSIDivergence, detectEqualHighsLows } from '../utils/indicatorCalc';
 import { computeVWAP, detectFVGsAndOBs, detectLiqLevels } from '../utils/smcHelpers';
 import ChartModal from './ChartModal';
+import TechnicalPanel from './TechnicalPanel';
 import OandaConnect from './OandaConnect';
 import FilterPanel from './FilterPanel';
 import { getIMSignals, IM_DEFS } from '../utils/intermarket';
@@ -259,6 +260,7 @@ export default function Screener() {
   const [signalFilter, setSignalFilter] = useState('All');
   const [subCategory, setSubCategory]   = useState('All');
   const [chartInstrument, setChartInstrument] = useState(null);
+  const [levelsInst, setLevelsInst] = useState(null);
 
   const [imSignals, setImSignals] = useState(null);
   const [sentiment, setSentiment] = useState({});
@@ -793,6 +795,23 @@ export default function Screener() {
         ))}
       </div>
 
+      {/* ── Technical Levels modal ───────────────────────────────────────── */}
+      {levelsInst && (
+        <div style={{ position:'fixed', inset:0, background:'rgba(4,7,15,0.97)', zIndex:2000,
+          display:'flex', flexDirection:'column' }}>
+          <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between',
+            padding:'12px 16px', background:'#06090f', borderBottom:'1px solid #0f1929', flexShrink:0 }}>
+            <div style={{ fontSize:14, fontWeight:900, color:'#f1f5f9' }}>📐 {levelsInst.symbol}</div>
+            <button onClick={() => setLevelsInst(null)} style={{ background:'#0a0e1a',
+              border:'1px solid #1e293b', borderRadius:8, color:'#94a3b8',
+              fontSize:18, cursor:'pointer', padding:'3px 10px', lineHeight:1 }}>✕</button>
+          </div>
+          <div style={{ flex:1, overflowY:'auto', padding:12 }}>
+            <TechnicalPanel pairKey={levelsInst.id} label={levelsInst.symbol} />
+          </div>
+        </div>
+      )}
+
       {/* ── Chart modal ──────────────────────────────────────────────────── */}
       {chartInstrument && <ChartModal instrument={chartInstrument} onClose={()=>setChartInstrument(null)}/>}
 
@@ -883,6 +902,7 @@ export default function Screener() {
                           <Sparkline data={p.sparkline} change={p.change}/>
                           <div style={{ display:'flex', flexDirection:'column', gap:3 }}>
                             <button className="chart-open-btn" title="Open chart" onClick={() => setChartInstrument(p)}>📈</button>
+                            <button className="chart-open-btn" title="Technical Levels" onClick={() => setLevelsInst(p)}>📐</button>
                             <button className={`wl-star-btn${isWatched ? ' active' : ''}`} title={isWatched ? 'Remove' : 'Add to watchlist'} onClick={() => toggleWatch(p.symbol)}>
                               {isWatched ? '★' : '☆'}
                             </button>
