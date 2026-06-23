@@ -1,5 +1,5 @@
 const CACHE = 'forex-pro-v1';
-const PRECACHE = ['/', '/index.html'];
+const PRECACHE = ['/Forex/', '/Forex/index.html'];
 
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(PRECACHE)));
@@ -36,5 +36,5 @@ self.addEventListener('push', e => {
 
 self.addEventListener('notificationclick', e => {
   e.notification.close();
-  e.waitUntil(clients.openWindow('/'));
+  e.waitUntil(clients.openWindow('/Forex/'));
 });
