@@ -82,6 +82,37 @@ async function fetchDaily(pairKey, count) {
 
 // ── Pattern detection ─────────────────────────────────────────────────────────
 
+// General: any Day N high < Day N-1 high → Day N+1 visits Day N low (all combos)
+function detectGeneral(candles, pip) {
+  const results = [];
+  for (let i = 1; i < candles.length - 1; i++) {
+    const prev = candles[i - 1];
+    const curr = candles[i];
+    const next = candles[i + 1];
+    if (curr.dow === 'Sun' || prev.dow === 'Sun') continue;
+
+    if (curr.h < prev.h) {
+      results.push({
+        rule: 'gen_high', direction: 'bearish', date: curr.date,
+        dayCombo: `${prev.dow}→${curr.dow}→${next.dow}`,
+        prevDOW: prev.dow, currDOW: curr.dow, nextDOW: next.dow,
+        target: curr.l, resultVal: next.l, hit: next.l <= curr.l,
+        pips: Math.round((curr.h - curr.l) / pip),
+      });
+    }
+    if (curr.l > prev.l) {
+      results.push({
+        rule: 'gen_low', direction: 'bullish', date: curr.date,
+        dayCombo: `${prev.dow}→${curr.dow}→${next.dow}`,
+        prevDOW: prev.dow, currDOW: curr.dow, nextDOW: next.dow,
+        target: curr.h, resultVal: next.h, hit: next.h >= curr.h,
+        pips: Math.round((curr.h - curr.l) / pip),
+      });
+    }
+  }
+  return results.sort((a, b) => b.date.localeCompare(a.date));
+}
+
 // Rule 1: Fri high < Thu high → Mon visits Fri low
 // Rule 1b: Fri low > Thu low → Mon visits Fri high
 function detectRule1(candles, pip) {
@@ -198,8 +229,18 @@ export default function DOWPatterns() {
         : `Thu L: ${r.refVal.toFixed(dec)} · Fri L: ${r.trigVal.toFixed(dec)} · Fri H: ${r.target.toFixed(dec)} · Mon H: ${r.resultVal.toFixed(dec)}`,
     }));
     const r2  = detectRule2(candles, pair.pip);
+    const gen = detectGeneral(candles, pair.pip);
     const all = [...r1, ...r2].sort((a, b) => b.date.localeCompare(a.date));
-    setResults({ all, r1, r2, pair });
+
+    // Stats for general patterns by day combo
+    const genByCombo = {};
+    gen.forEach(p => {
+      if (!genByCombo[p.dayCombo]) genByCombo[p.dayCombo] = { t:0, h:0, label:p.dayCombo };
+      genByCombo[p.dayCombo].t++;
+      if (p.hit) genByCombo[p.dayCombo].h++;
+    });
+
+    setResults({ all, r1, r2, gen, genByCombo, pair });
     setSelRule('all');
     setLoading(false);
   }, [selPair, lookback, hasOanda]);
@@ -383,9 +424,36 @@ export default function DOWPatterns() {
                 </div>
               </div>
 
+              {/* General patterns by day combo */}
+              {results?.genByCombo && Object.keys(results.genByCombo).length > 0 && (
+                <div style={S()}>
+                  {TT(`All Day Combos — Failed High/Low (${results.gen.length} total)`)}
+                  <div style={{ fontSize:10, color:'#334155', marginBottom:10 }}>
+                    Any day whose high/low fails to exceed the previous day → next day visits the target
+                  </div>
+                  {Object.entries(results.genByCombo)
+                    .sort((a, b) => b[1].t - a[1].t)
+                    .map(([combo, stat]) => {
+                      const rate = stat.t > 0 ? Math.round((stat.h / stat.t) * 100) : 0;
+                      const rc   = rate >= 65 ? '#22c55e' : rate >= 50 ? '#f59e0b' : '#ef4444';
+                      return (
+                        <div key={combo} style={{ marginBottom:8 }}>
+                          <div style={{ display:'flex', justifyContent:'space-between', fontSize:11, marginBottom:3 }}>
+                            <span style={{ color:'#94a3b8' }}>{combo}</span>
+                            <span style={{ color:rc, fontWeight:700 }}>{rate}% &nbsp;({stat.h}/{stat.t})</span>
+                          </div>
+                          <div style={{ height:4, background:'#0f172a', borderRadius:2 }}>
+                            <div style={{ height:'100%', width:`${rate}%`, background:rc, borderRadius:2 }}/>
+                          </div>
+                        </div>
+                      );
+                    })}
+                </div>
+              )}
+
               {/* Occurrence log */}
               <div style={S()}>
-                {TT('Occurrence Log')}
+                {TT('Occurrence Log — Rule 1 & Rule 2')}
                 {/* Filter by rule */}
                 <div style={{ display:'flex', gap:5, marginBottom:10, flexWrap:'wrap' }}>
                   {[['all','All'], ['rule1','Rule 1 ▼'], ['rule1b','Rule 1 ▲'], ['rule2','Rule 2 ▼'], ['rule2b','Rule 2 ▲']].map(([id, lbl]) => (
