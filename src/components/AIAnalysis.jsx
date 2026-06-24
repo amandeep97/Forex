@@ -59,7 +59,7 @@ const PROVIDERS = [
 // ── Quick prompts ─────────────────────────────────────────────────────────────
 const QUICK_PROMPTS = [
   { label: 'Full Summary',    icon: '🧠', text: "Give me a complete platform summary: active session, top scanner setups, Alpha Lab sweep intelligence (win rates, live sweeps, top pairs), COT bias, DXY direction, and the 1-2 best trades right now with entry/SL/TP. Cross-reference everything." },
-  { label: 'Best trade now',  icon: '🎯', text: "Look at the APP SETUP SCANNER and ALPHA LAB SWEEP INTELLIGENCE in the live context. Cross-reference the top scanner setup with its sweep win rate and COT positioning. Give me the single best trade right now with entry, SL and TP." },
+  { label: 'Best trade now',  icon: '🎯', text: "Cross-reference: APP SETUP SCANNER top setup + CURRENCY STRENGTH ranking + COT positioning for all 7 currencies + Alpha Lab sweep WR + Day-of-Week + active Kill Zone. Give me the single best trade right now with entry, SL, TP and why all factors align." },
   { label: "Today's brief",   icon: '📋', text: "Give me today's complete market brief — active sessions, bias for major pairs based on COT + Alpha Lab sweep data, and what to watch or avoid." },
   { label: 'Alpha Lab read',  icon: '⚗',  text: "Analyze the ALPHA LAB SWEEP INTELLIGENCE section in my context. Which pairs have the highest sweep win rates? Are there any live pending sweeps right now? What do the active scenarios suggest?" },
   { label: 'Gold setup',      icon: '⚜', text: 'Analyze XAU/USD in full detail using COT, DXY, real yields, momentum, and Alpha Lab sweep data. Should I be long or short and why?' },
@@ -219,10 +219,36 @@ function buildAlphaLabContext() {
   } catch { return ''; }
 }
 
+function buildDOWContext() {
+  const now = new Date();
+  const dow = now.getUTCDay();
+  const name = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'][dow];
+  const h = now.getUTCHours();
+  const kz = [
+    { name:'Asian', start:0, end:3 }, { name:'London', start:7, end:10 },
+    { name:'NY AM', start:12, end:15 }, { name:'NY PM', start:17, end:19 },
+  ].find(k => h >= k.start && h < k.end);
+  const L = [`=== DAY-OF-WEEK + KILL ZONE CONTEXT ===`, `Today: ${name} UTC`];
+  if (dow === 0 || dow === 6) L.push('Weekend — no institutional order flow, avoid trading');
+  else if (dow === 1) L.push('Monday = range day. Check: did Fri high < Thu high? → targets Friday LOW today (Rule 1 bearish). Wait for London direction.');
+  else if (dow === 2) L.push('Tuesday = HIGHEST PROBABILITY DAY (ICT). Strong trend continuation expected. Best day to trade.');
+  else if (dow === 3) l: {
+    L.push('Wednesday = mid-week extreme. CHECK Rule 2: is Wed high < Mon high? → Thu visits Wed LOW.');
+    L.push('NY session often creates the weekly high or low today.');
+  }
+  else if (dow === 4) L.push('Thursday = Rule 2 TARGET DAY. If Rule 2 triggered Wednesday, today visits Wednesday LOW or HIGH. Strong institutional day.');
+  else if (dow === 5) L.push('Friday CAUTION: sweeps often fail, market makers close positions. Check: Fri high vs Thu high → sets up next Monday Rule 1.');
+  L.push(kz ? `⚡ ACTIVE KILL ZONE: ${kz.name} — prime entry window now` : `No Kill Zone active (next: London 07 UTC, NY AM 12 UTC)`);
+  return L.join('\n');
+}
+
 async function buildMarketContext() {
   const session = getCurrentSessions();
   const [gold, silver, eurusd, bonds10, bonds2, oil,
-         cotGold, cotSilver, cotEUR, cotGBP, cotJPY, cotAUD, scan] = await Promise.all([
+         cotGold, cotSilver, cotEUR, cotGBP, cotJPY, cotAUD,
+         cotCHF, cotNZD, cotCAD,
+         h4EUR, h4GBP, h4JPY, h4CHF, h4AUD, h4CAD, h4NZD,
+         scan] = await Promise.all([
     fetchCloses('XAU_USD',    'H1', 15),
     fetchCloses('XAG_USD',    'H1', 15),
     fetchCloses('EUR_USD',    'H1', 15),
@@ -232,8 +258,29 @@ async function buildMarketContext() {
     fetchCOT('088691'), fetchCOT('084691'),
     fetchCOT('099741'), fetchCOT('096742'),
     fetchCOT('097741'), fetchCOT('232741'),
+    fetchCOT('092741'), fetchCOT('112741'), fetchCOT('090741'),
+    fetchCloses('EUR_USD','H4',40), fetchCloses('GBP_USD','H4',40),
+    fetchCloses('USD_JPY','H4',40), fetchCloses('USD_CHF','H4',40),
+    fetchCloses('AUD_USD','H4',40), fetchCloses('USD_CAD','H4',40),
+    fetchCloses('NZD_USD','H4',40),
     runMarketScan().catch(() => ({ ok: false, setups: [] })),
   ]);
+
+  // Currency strength from H4 closes
+  const strPairs = [
+    ['EUR','USD',h4EUR], ['GBP','USD',h4GBP], ['USD','JPY',h4JPY],
+    ['USD','CHF',h4CHF], ['AUD','USD',h4AUD], ['USD','CAD',h4CAD], ['NZD','USD',h4NZD],
+  ];
+  const strAcc = {}, strCnt = {};
+  for (const [base, quote, closes] of strPairs) {
+    if (!closes || closes.length < 2) continue;
+    const pct = (closes[closes.length-1] - closes[0]) / closes[0];
+    strAcc[base] = (strAcc[base]||0) + pct; strCnt[base] = (strCnt[base]||0) + 1;
+    strAcc[quote] = (strAcc[quote]||0) - pct; strCnt[quote] = (strCnt[quote]||0) + 1;
+  }
+  const strengthRanked = Object.keys(strAcc).length
+    ? Object.entries(strAcc).map(([c,v]) => [c, v/strCnt[c]]).sort((a,b) => b[1]-a[1])
+    : [];
 
   const last  = a => a?.[a.length - 1] ?? null;
   const pct5  = a => {
@@ -284,6 +331,27 @@ async function buildMarketContext() {
   if (cotGBP)    L.push(`GBP:    Net ${cotGBP.net>=0?'+':''}${cotGBP.net.toLocaleString()} → ${cotGBP.net>=0?'Bullish':'Bearish'}`);
   if (cotJPY)    L.push(`JPY:    Net ${-cotJPY.net>=0?'+':''}${(-cotJPY.net).toLocaleString()} → ${-cotJPY.net>=0?'Bullish':'Bearish'} (inverted)`);
   if (cotAUD)    L.push(`AUD:    Net ${cotAUD.net>=0?'+':''}${cotAUD.net.toLocaleString()} → ${cotAUD.net>=0?'Bullish':'Bearish'}`);
+  if (cotCHF)    L.push(`CHF:    Net ${-cotCHF.net>=0?'+':''}${(-cotCHF.net).toLocaleString()} → ${-cotCHF.net>=0?'Bullish':'Bearish'} (inverted)`);
+  if (cotNZD)    L.push(`NZD:    Net ${cotNZD.net>=0?'+':''}${cotNZD.net.toLocaleString()} → ${cotNZD.net>=0?'Bullish':'Bearish'}`);
+  if (cotCAD)    L.push(`CAD:    Net ${-cotCAD.net>=0?'+':''}${(-cotCAD.net).toLocaleString()} → ${-cotCAD.net>=0?'Bullish':'Bearish'} (inverted)`);
+
+  if (strengthRanked.length) {
+    L.push('');
+    L.push('=== CURRENCY STRENGTH (H4 relative momentum, strongest → weakest) ===');
+    strengthRanked.forEach(([cur, val]) => {
+      const arrow = val > 0.0003 ? '▲▲ STRONG' : val > 0 ? '▲ mild' : val < -0.0003 ? '▼▼ WEAK' : '▼ mild';
+      L.push(`  ${cur}: ${val>=0?'+':''}${(val*100).toFixed(3)}% ${arrow}`);
+    });
+    if (strengthRanked.length >= 2) {
+      const strongest = strengthRanked[0][0];
+      const weakest   = strengthRanked[strengthRanked.length-1][0];
+      L.push(`  → Best pair bias: LONG ${strongest}/${weakest} or SHORT ${weakest}/${strongest}`);
+    }
+  }
+
+  L.push('');
+  L.push(buildDOWContext());
+
   L.push('');
   const digest = scanDigest(scan);
   if (digest) { L.push(digest); L.push(''); }
@@ -303,6 +371,8 @@ async function buildMarketContext() {
       goldP, silverP, auag, dxyDir, b10dir, yc, realYield,
       cotGold, cotSilver, oandaOk: !!getOandaCreds(),
       scan: scan?.ok ? scan : null,
+      strengthRanked,
+      cotFX: { EUR:cotEUR, GBP:cotGBP, JPY:cotJPY, AUD:cotAUD, CHF:cotCHF, NZD:cotNZD, CAD:cotCAD },
     },
   };
 }
@@ -313,9 +383,11 @@ const SYS = `You are ForexPro AI — an elite forex and metals trading analyst e
 YOUR DATA SOURCES (all provided in context):
 1. APP SETUP SCANNER — confluence scores from live H4 bias, H1 structure, COT, session timing
 2. ALPHA LAB SWEEP INTELLIGENCE — historical liquidity sweep win rates per pair, live pending sweeps, saved scenario results. This is proprietary backtested data — use it heavily.
-3. COT DATA — CFTC non-commercial positioning for major currencies and metals
-4. MACRO — DXY, US yields (10Y/2Y), real yield proxy, yield curve
-5. SESSION — current active sessions (Sydney/Tokyo/London/NY/Overlap)
+3. COT DATA — CFTC non-commercial positioning for ALL 7 major currencies (EUR, GBP, JPY, AUD, CHF, NZD, CAD) + Gold + Silver
+4. CURRENCY STRENGTH — H4 relative momentum ranking for all 7 currencies (strongest to weakest). Use to identify best long/short currency pairing.
+5. MACRO — DXY, US yields (10Y/2Y), real yield proxy, yield curve
+6. SESSION + DAY-OF-WEEK — active Kill Zone, ICT DOW rules (Rule 1: Mon, Rule 2: Thu targets), best/worst trading days
+7. NEWS — latest market headlines if available
 
 ALWAYS reference actual numbers from the data. Never give generic advice — every claim must cite a number or data point from the context.
 
@@ -326,11 +398,15 @@ When you identify a trade setup output it in this EXACT format on its own line:
 
 Rules:
 - Cross-reference Alpha Lab sweep WR with scanner setups — if scanner says BUY and Alpha Lab shows 65%+ WR on that pair's sweeps, that's high confluence
+- Use Currency Strength to validate direction: long the strongest, short the weakest. If COT and Strength agree, confidence is higher.
+- Use COT for all 7 currencies now — note any extreme positioning (net longs/shorts at multi-month extremes = reversal risk)
+- Check Day-of-Week context before giving any trade — Friday and Sunday = avoid. Tuesday = highest conviction.
+- Note active Kill Zone — only enter during KZ windows (Asian/London/NY AM/NY PM)
 - Note live pending sweeps — these are happening RIGHT NOW and may be the best entries
-- Flag contradictions: e.g. "COT bullish BUT Alpha Lab shows only 40% WR on GBP bullish sweeps — skip"
+- Flag contradictions: e.g. "COT bullish BUT Currency Strength shows GBP weakest this week — wait"
 - Be concise: bullet points, 2-3 sentences per point
 - Maximum 2 trade ideas per response
-- Confidence: 50-65=low, 66-79=moderate, 80+=high (90+ only when Alpha Lab + COT + scanner all agree)
+- Confidence: 50-65=low, 66-79=moderate, 80+=high (90+ only when COT + Strength + Alpha Lab + scanner all agree)
 - If OANDA not connected, say price data is unavailable but you can still analyse COT/macro/Alpha Lab`;
 
 // ── Streaming generators ──────────────────────────────────────────────────────
@@ -595,10 +671,26 @@ function ContextPanel({ ctx, loading, onRefresh }) {
       {s.yc != null && row('Yield Curve', `${+s.yc>=0?'+':''}${s.yc}`, +s.yc<0?'#22c55e':'#f59e0b')}
       {s.realYield && row('Real Yield', s.realYield.split('→')[0].trim(), s.realYield.includes('bullish')?'#22c55e':'#ef4444')}
 
+      {/* FX Strength */}
+      {s.strengthRanked?.length > 0 && (
+        <>
+          <div style={{ fontSize:9, color:'var(--text3)', marginTop:8, marginBottom:4, textTransform:'uppercase', letterSpacing:1 }}>FX Strength (H4)</div>
+          {s.strengthRanked.map(([cur, val]) => {
+            const c = val > 0 ? '#22c55e' : '#ef4444';
+            return row(cur, `${val>=0?'+':''}${(val*100).toFixed(3)}%`, c);
+          })}
+        </>
+      )}
+
       {/* COT */}
       <div style={{ fontSize:9, color:'var(--text3)', marginTop:8, marginBottom:4, textTransform:'uppercase', letterSpacing:1 }}>COT Bias</div>
-      {s.cotGold   && row('Gold COT',   s.cotGold.net>=0  ?'Net Long ▲':'Net Short ▼', s.cotGold.net>=0  ?'#22c55e':'#ef4444')}
-      {s.cotSilver && row('Silver COT', s.cotSilver.net>=0?'Net Long ▲':'Net Short ▼', s.cotSilver.net>=0?'#22c55e':'#ef4444')}
+      {s.cotGold   && row('Gold',   s.cotGold.net>=0  ?'Net Long ▲':'Net Short ▼', s.cotGold.net>=0  ?'#22c55e':'#ef4444')}
+      {s.cotSilver && row('Silver', s.cotSilver.net>=0?'Net Long ▲':'Net Short ▼', s.cotSilver.net>=0?'#22c55e':'#ef4444')}
+      {s.cotFX && Object.entries(s.cotFX).map(([cur, d]) => {
+        if (!d) return null;
+        const net = ['JPY','CHF','CAD'].includes(cur) ? -d.net : d.net;
+        return row(cur, net>=0?'Long ▲':'Short ▼', net>=0?'#22c55e':'#ef4444');
+      })}
 
       {/* Top setups */}
       {s.scan?.setups?.length > 0 && (
