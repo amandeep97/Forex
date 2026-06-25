@@ -301,7 +301,7 @@ export default function DOWPatterns() {
       const candles = await fetchDaily(pair.key, 8);
       if (!candles || candles.length < 4) continue;
       const dec = pair.pip < 0.01 ? 5 : pair.pip < 1 ? 3 : 1;
-      const r1 = detectRule1(candles, pair.pip);
+      const { results: r1 } = detectRule1(candles, pair.pip);
       const r2 = detectRule2(candles, pair.pip);
       const recent = [...r1, ...r2]
         .filter(r => {
