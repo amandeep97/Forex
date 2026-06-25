@@ -244,7 +244,7 @@ function buildDOWContext() {
 
 async function buildMarketContext() {
   const session = getCurrentSessions();
-  const [gold, silver, eurusd, bonds10, bonds2, oil,
+  const [gold, silver, eurusd, bonds10, bonds2, oil, btc, eth,
          cotGold, cotSilver, cotEUR, cotGBP, cotJPY, cotAUD,
          cotCHF, cotNZD, cotCAD,
          h4EUR, h4GBP, h4JPY, h4CHF, h4AUD, h4CAD, h4NZD,
@@ -255,6 +255,8 @@ async function buildMarketContext() {
     fetchCloses('USB10Y_USD', 'H1', 15),
     fetchCloses('USB02Y_USD', 'H1', 15),
     fetchCloses('BCO_USD',    'H1', 15),
+    fetchCloses('BTC_USD',    'H1', 15),
+    fetchCloses('ETH_USD',    'H1', 15),
     fetchCOT('088691'), fetchCOT('084691'),
     fetchCOT('099741'), fetchCOT('096742'),
     fetchCOT('097741'), fetchCOT('232741'),
@@ -317,6 +319,17 @@ async function buildMarketContext() {
   if (silverP) L.push(`XAG/USD: $${fmt(silverP)} | ${pct5(silver) != null ? (+(pct5(silver))>=0?'+':'')+(+pct5(silver)).toFixed(3)+'%' : 'N/A'} | Trend: ${silvDir ?? 'unknown'}`);
   if (auag)    L.push(`Au/Ag Ratio: ${auag} — ${+auag > 80 ? 'Silver historically CHEAP vs Gold (>80)' : +auag < 50 ? 'Silver expensive vs Gold (<50)' : 'Normal range (50-80)'}`);
   if (last(oil)) L.push(`Brent Oil: $${fmt(last(oil))} | ${dirOf(oil) ?? 'unknown'}`);
+
+  if (btc || eth) {
+    L.push('');
+    L.push('=== CRYPTO (H1 momentum) ===');
+    if (btc) L.push(`BTC/USD: $${fmt(last(btc),0)} | ${pct5(btc) != null ? (+(pct5(btc))>=0?'+':'')+(+pct5(btc)).toFixed(2)+'%' : 'N/A'} | Trend: ${dirOf(btc) ?? 'unknown'}`);
+    if (eth) L.push(`ETH/USD: $${fmt(last(eth),0)} | ${pct5(eth) != null ? (+(pct5(eth))>=0?'+':'')+(+pct5(eth)).toFixed(2)+'%' : 'N/A'} | Trend: ${dirOf(eth) ?? 'unknown'}`);
+    if (btc && eth) {
+      const btcEthRatio = last(btc) && last(eth) ? (last(btc)/last(eth)).toFixed(1) : null;
+      if (btcEthRatio) L.push(`BTC/ETH Ratio: ${btcEthRatio} — ${+btcEthRatio > 20 ? 'BTC dominance high' : 'ETH gaining on BTC'}`);
+    }
+  }
   L.push('');
   L.push('=== MACRO DRIVERS ===');
   if (dxyDir)    L.push(`DXY: ${dxyDir} (${dxyPct != null ? (dxyPct>=0?'+':'')+dxyPct.toFixed(3)+'%' : 'N/A'}) — ${dxyDir==='rising'?'Headwind for metals':'Tailwind for metals'}`);

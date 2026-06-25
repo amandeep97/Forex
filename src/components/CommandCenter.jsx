@@ -105,12 +105,29 @@ const FACTORS = [
   { key:'time',  label:'Time',  color:'#fbbf24' },
 ];
 
+// Top 5 crypto — OANDA instruments, priced in USD
+const CRYPTO_PAIRS = [
+  { key:'BTC_USD', label:'BTC/USD' },
+  { key:'ETH_USD', label:'ETH/USD' },
+  { key:'LTC_USD', label:'LTC/USD' },
+  { key:'XRP_USD', label:'XRP/USD' },
+  { key:'BCH_USD', label:'BCH/USD' },
+];
+// No COT for crypto. DXY = primary macro driver (strong USD = bearish crypto).
+const CRYPTO_W = { tech:0.45, dxy:0.30, time:0.25 };
+const CRYPTO_FACTORS = [
+  { key:'tech', label:'Tech', color:'#818cf8' },
+  { key:'dxy',  label:'DXY',  color:'#60a5fa' },
+  { key:'time', label:'Time', color:'#fbbf24' },
+];
+
 export default function CommandCenter() {
   const [creds, setCreds] = useState(null);
   const [loading, setLoading] = useState(false);
   const [progress, setProgress] = useState(0);
   const [error, setError] = useState(null);
   const [results, setResults] = useState([]);
+  const [cryptoResults, setCryptoResults] = useState([]);
   const [lastUpdate, setLastUpdate] = useState(null);
   const [cotAvail, setCotAvail] = useState(false);
   const [filter, setFilter] = useState('all');
@@ -223,6 +240,31 @@ export default function CommandCenter() {
 
       scored.sort((a, b) => Math.abs(b.composite) - Math.abs(a.composite));
       setResults(scored);
+
+      // ── Crypto: fetch in parallel after FX (supplementary) ────────────────
+      const [cryptoH4, cryptoH1] = await Promise.all([
+        Promise.all(CRYPTO_PAIRS.map(p => oandaFetch(p.key, 'H4', 60).then(c => [p.key, c]))),
+        Promise.all(CRYPTO_PAIRS.map(p => oandaFetch(p.key, 'H1', 40).then(c => [p.key, c]))),
+      ]);
+      const ch4 = Object.fromEntries(cryptoH4);
+      const ch1 = Object.fromEntries(cryptoH1);
+
+      const cryptoScored = CRYPTO_PAIRS
+        .filter(p => ch4[p.key]?.length > 0)
+        .map(({ key, label }) => {
+          const tech = techScore(ch4[key], ch1[key]);
+          const dxy  = -dxyProxy; // strong USD always bearish for crypto
+          const composite = tech * CRYPTO_W.tech + dxy * CRYPTO_W.dxy + timing * CRYPTO_W.time;
+          return {
+            pair: key, label,
+            direction: composite >= 0 ? 'LONG' : 'SHORT',
+            confidence: Math.round(Math.min(Math.abs(composite) * 100, 100)),
+            composite, tech, dxy, time: timing, kzName,
+          };
+        });
+      cryptoScored.sort((a, b) => Math.abs(b.composite) - Math.abs(a.composite));
+      setCryptoResults(cryptoScored);
+
       setLastUpdate(new Date());
       setProgress(100);
     } catch (e) {
@@ -257,7 +299,7 @@ export default function CommandCenter() {
             ⚡ Command Center
           </div>
           <div style={{ fontSize:11, color:'#475569', marginTop:2 }}>
-            5-factor composite score · 21 pairs ranked · single source of truth
+            5-factor FX · 3-factor Crypto · 21+5 instruments ranked
             {!cotAvail && results.length > 0 && (
               <span style={{ color:'#d97706', marginLeft:6 }}>· COT N/A</span>
             )}
@@ -407,9 +449,99 @@ export default function CommandCenter() {
         <div style={{ textAlign:'center', padding:40, color:'#475569' }}>No pairs match the selected filter.</div>
       )}
 
+      {/* ── Crypto Section ─────────────────────────────────────────────────── */}
+      {cryptoResults.length > 0 && (
+        <div style={{ marginTop:20 }}>
+          <div style={{ display:'flex', alignItems:'center', gap:8, marginBottom:10 }}>
+            <div style={{ fontSize:13, fontWeight:700, color:'#e2e8f0' }}>₿ Crypto</div>
+            <div style={{ fontSize:10, color:'#475569' }}>Tech · DXY · Timing — no COT</div>
+            <div style={{ flex:1, height:1, background:'#1e293b', marginLeft:4 }} />
+          </div>
+          <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill, minmax(265px, 1fr))', gap:10 }}>
+            {cryptoResults
+              .filter(r => filter === 'all' || r.direction === filter.toUpperCase())
+              .map((r, idx) => {
+                const bull = r.direction === 'LONG';
+                const grade = gradeOf(r.confidence);
+                const gc = gradeColor(grade);
+                return (
+                  <div key={r.pair} style={{
+                    background:'#0f172a', borderRadius:10, padding:12,
+                    border:`1px solid ${bull ? '#1c3a2a' : '#3a1c1c'}`,
+                    position:'relative',
+                  }}>
+                    <span style={{ position:'absolute', top:8, right:10, fontSize:9, color:'#334155' }}>#{idx+1}</span>
+
+                    <div style={{ display:'flex', alignItems:'center', gap:5, marginBottom:8, flexWrap:'wrap' }}>
+                      <span style={{ fontSize:13, fontWeight:700, color:'#f59e0b', letterSpacing:1 }}>
+                        {r.label}
+                      </span>
+                      <span style={{
+                        background: bull ? '#14532d' : '#450a0a',
+                        color: bull ? '#86efac' : '#fca5a5',
+                        padding:'1px 6px', borderRadius:4, fontSize:10, fontWeight:700,
+                      }}>
+                        {r.direction}
+                      </span>
+                      <span style={{ color:gc, fontSize:11, fontWeight:700 }}>{grade}</span>
+                      {r.kzName && (
+                        <span style={{ background:'#1e1b4b', color:'#818cf8', padding:'1px 5px', borderRadius:3, fontSize:9 }}>
+                          {r.kzName} KZ
+                        </span>
+                      )}
+                    </div>
+
+                    <div style={{ marginBottom:8 }}>
+                      <div style={{ display:'flex', justifyContent:'space-between', fontSize:10, color:'#475569', marginBottom:3 }}>
+                        <span>Confidence</span>
+                        <span style={{ color: bull ? '#22c55e' : '#ef4444', fontWeight:700 }}>{r.confidence}%</span>
+                      </div>
+                      <div style={{ height:5, background:'#1e293b', borderRadius:3, overflow:'hidden' }}>
+                        <div style={{
+                          width:`${r.confidence}%`, height:'100%',
+                          background: bull
+                            ? 'linear-gradient(90deg,#92400e,#f59e0b)'
+                            : 'linear-gradient(90deg,#b91c1c,#ef4444)',
+                          transition:'width 0.5s ease',
+                        }}/>
+                      </div>
+                    </div>
+
+                    <div style={{ display:'flex', flexDirection:'column', gap:4 }}>
+                      {CRYPTO_FACTORS.map(({ key, label, color }) => {
+                        const val = r[key] ?? 0;
+                        const pctLeft = val >= 0 ? 50 : 50 + val * 50;
+                        const pctWidth = Math.abs(val) * 50;
+                        return (
+                          <div key={key} style={{ display:'flex', alignItems:'center', gap:6 }}>
+                            <span style={{ fontSize:9, color:'#475569', width:26, textAlign:'right', flexShrink:0 }}>{label}</span>
+                            <div style={{ flex:1, height:4, background:'#1e293b', borderRadius:2, position:'relative', overflow:'hidden' }}>
+                              <div style={{ position:'absolute', left:'50%', top:0, width:1, height:'100%', background:'#334155' }}/>
+                              <div style={{
+                                position:'absolute', left:`${pctLeft}%`, width:`${pctWidth}%`,
+                                height:'100%', background: val >= 0 ? color : '#ef4444', opacity:0.9,
+                              }}/>
+                            </div>
+                            <span style={{ fontSize:9, color, width:32, textAlign:'right', flexShrink:0 }}>
+                              {val >= 0 ? '+' : ''}{val.toFixed(2)}
+                            </span>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                );
+              })}
+          </div>
+          <div style={{ fontSize:9, color:'#334155', marginTop:6 }}>
+            * Crypto uses Tech(45%) · DXY(30%) · Timing(25%). No COT. If pair unavailable on your OANDA account it is hidden.
+          </div>
+        </div>
+      )}
+
       {lastUpdate && (
         <div style={{ textAlign:'center', fontSize:10, color:'#334155', marginTop:16, paddingBottom:16 }}>
-          Last updated: {lastUpdate.toLocaleString()} · {PAIRS.length} pairs · {cotAvail ? 'COT live' : 'COT neutral fallback'}
+          Last updated: {lastUpdate.toLocaleString()} · {PAIRS.length} FX + {cryptoResults.length} Crypto · {cotAvail ? 'COT live' : 'COT neutral fallback'}
         </div>
       )}
     </div>
