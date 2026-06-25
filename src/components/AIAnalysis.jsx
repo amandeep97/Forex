@@ -335,8 +335,8 @@ async function buildMarketContext() {
   if (btc || eth) {
     L.push('');
     L.push('=== CRYPTO (H1 momentum) ===');
-    if (btc) L.push(`BTC/USD: $${fmt(last(btc),0)} | ${pct5(btc) != null ? (+(pct5(btc))>=0?'+':'')+(+pct5(btc)).toFixed(2)+'%' : 'N/A'} | Trend: ${dirOf(btc) ?? 'unknown'}`);
-    if (eth) L.push(`ETH/USD: $${fmt(last(eth),0)} | ${pct5(eth) != null ? (+(pct5(eth))>=0?'+':'')+(+pct5(eth)).toFixed(2)+'%' : 'N/A'} | Trend: ${dirOf(eth) ?? 'unknown'}`);
+    if (btc) L.push(`BTC/USDT: $${fmt(last(btc),0)} | ${pct5(btc) != null ? (+(pct5(btc))>=0?'+':'')+(+pct5(btc)).toFixed(2)+'%' : 'N/A'} | Trend: ${dirOf(btc) ?? 'unknown'}`);
+    if (eth) L.push(`ETH/USDT: $${fmt(last(eth),0)} | ${pct5(eth) != null ? (+(pct5(eth))>=0?'+':'')+(+pct5(eth)).toFixed(2)+'%' : 'N/A'} | Trend: ${dirOf(eth) ?? 'unknown'}`);
     if (btc && eth) {
       const btcEthRatio = last(btc) && last(eth) ? (last(btc)/last(eth)).toFixed(1) : null;
       if (btcEthRatio) L.push(`BTC/ETH Ratio: ${btcEthRatio} — ${+btcEthRatio > 20 ? 'BTC dominance high' : 'ETH gaining on BTC'}`);

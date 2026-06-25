@@ -107,11 +107,11 @@ const FACTORS = [
 
 // Top 5 crypto — Binance public API (free, no key needed)
 const CRYPTO_PAIRS = [
-  { key:'BTC',  label:'BTC/USD', symbol:'BTCUSDT'  },
-  { key:'ETH',  label:'ETH/USD', symbol:'ETHUSDT'  },
-  { key:'SOL',  label:'SOL/USD', symbol:'SOLUSDT'  },
-  { key:'XRP',  label:'XRP/USD', symbol:'XRPUSDT'  },
-  { key:'BNB',  label:'BNB/USD', symbol:'BNBUSDT'  },
+  { key:'BTC',  label:'BTC/USDT', symbol:'BTCUSDT'  },
+  { key:'ETH',  label:'ETH/USDT', symbol:'ETHUSDT'  },
+  { key:'SOL',  label:'SOL/USDT', symbol:'SOLUSDT'  },
+  { key:'XRP',  label:'XRP/USDT', symbol:'XRPUSDT'  },
+  { key:'BNB',  label:'BNB/USDT', symbol:'BNBUSDT'  },
 ];
 
 // Binance public candle API — no key, free, browser-safe
