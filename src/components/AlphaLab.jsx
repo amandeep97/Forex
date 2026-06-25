@@ -19,6 +19,11 @@ const PAIRS = [
   { key:'UK100_GBP',  label:'UK100',    pip:0.1,    group:'Indices' },
   { key:'DE30_EUR',   label:'GER30',    pip:0.1,    group:'Indices' },
   { key:'JP225_USD',  label:'JPN225',   pip:1,      group:'Indices' },
+  { key:'BTC_USDT',   label:'BTC/USDT', pip:1,      group:'Crypto',  binance:'BTCUSDT'  },
+  { key:'ETH_USDT',   label:'ETH/USDT', pip:0.1,    group:'Crypto',  binance:'ETHUSDT'  },
+  { key:'SOL_USDT',   label:'SOL/USDT', pip:0.01,   group:'Crypto',  binance:'SOLUSDT'  },
+  { key:'XRP_USDT',   label:'XRP/USDT', pip:0.0001, group:'Crypto',  binance:'XRPUSDT'  },
+  { key:'BNB_USDT',   label:'BNB/USDT', pip:0.1,    group:'Crypto',  binance:'BNBUSDT'  },
 ];
 
 const LS_KEY = 'alpha_lab_v2';
@@ -53,6 +58,8 @@ function getCreds() {
 }
 
 async function fetchCandles(pair, gran, count) {
+  const pairMeta = PAIRS.find(p => p.key === pair);
+  if (pairMeta?.binance) return fetchBinanceCandles(pairMeta.binance, gran, count);
   const creds = getCreds();
   if (!creds?.apiKey) return null;
   const base = creds.practice
@@ -96,6 +103,8 @@ async function fetchCandlesAt(pair, isoTime, before=14, after=8) {
 
 // Paginated fetch: pages×5000 candles, oldest→newest
 async function fetchCandlesAll(pairKey, gran, pages = 2) {
+  const pairMeta = PAIRS.find(p => p.key === pairKey);
+  if (pairMeta?.binance) return fetchBinanceCandlesAll(pairMeta.binance, gran, pages);
   const creds = getCreds();
   if (!creds?.apiKey) return null;
   const base = creds.practice
@@ -121,6 +130,47 @@ async function fetchCandlesAll(pairKey, gran, pages = 2) {
       if (!batch.length) break;
       allCandles = [...batch, ...allCandles];
       toTime = new Date(batch[0].t - 1).toISOString();
+    } catch { break; }
+  }
+  return allCandles.sort((a, b) => a.t - b.t);
+}
+
+// ── Binance (Crypto) ──────────────────────────────────────────────────────────
+const BINANCE_GRAN = { M15:'15m', M30:'30m', H1:'1h', H4:'4h' };
+
+async function fetchBinanceCandles(symbol, gran, count) {
+  const interval = BINANCE_GRAN[gran] || '1h';
+  try {
+    const res = await fetch(
+      `https://api.binance.com/api/v3/klines?symbol=${symbol}&interval=${interval}&limit=${count + 1}`,
+      { signal: AbortSignal.timeout(10000) }
+    );
+    if (!res.ok) return null;
+    const data = await res.json();
+    return data.slice(0, -1).map(k => ({
+      o:+k[1], h:+k[2], l:+k[3], c:+k[4], t:k[0], v:+k[5],
+    }));
+  } catch { return null; }
+}
+
+async function fetchBinanceCandlesAll(symbol, gran, pages = 2) {
+  const interval = BINANCE_GRAN[gran] || '1h';
+  let allCandles = [];
+  let endTime = null;
+  for (let p = 0; p < pages; p++) {
+    const url = endTime
+      ? `https://api.binance.com/api/v3/klines?symbol=${symbol}&interval=${interval}&limit=1000&endTime=${endTime}`
+      : `https://api.binance.com/api/v3/klines?symbol=${symbol}&interval=${interval}&limit=1000`;
+    try {
+      const res = await fetch(url, { signal: AbortSignal.timeout(15000) });
+      if (!res.ok) break;
+      const data = await res.json();
+      if (!data.length) break;
+      const batch = data.map(k => ({
+        o:+k[1], h:+k[2], l:+k[3], c:+k[4], t:k[0], v:+k[5],
+      }));
+      allCandles = [...batch, ...allCandles];
+      endTime = batch[0].t - 1;
     } catch { break; }
   }
   return allCandles.sort((a, b) => a.t - b.t);
@@ -864,7 +914,7 @@ function EdgeBreakdown({ sweepLog, onPairClick }) {
   });
 
   const sessColors = { Asian:'#f59e0b', London:'#8b5cf6', NY:'#22c55e' };
-  const groupColors = { Forex:'#8b5cf6', Metals:'#f59e0b', Indices:'#22c55e' };
+  const groupColors = { Forex:'#8b5cf6', Metals:'#f59e0b', Indices:'#22c55e', Crypto:'#f97316' };
 
   return (
     <div>
@@ -1536,7 +1586,7 @@ const COND_TYPES = [
   { id:'swept',     label:'Swept',      options:['high','low'],                                            desc:'Which swing was swept' },
   { id:'direction', label:'Direction',  options:['bullish','bearish'],                                     desc:'Expected move direction' },
   { id:'tf',        label:'Timeframe',  options:['M15','M30','H1','H4'],                                   desc:'Candle timeframe' },
-  { id:'group',     label:'Group',      options:['Forex','Metals','Indices'],                              desc:'Asset class' },
+  { id:'group',     label:'Group',      options:['Forex','Metals','Indices','Crypto'],                     desc:'Asset class' },
   { id:'pair',      label:'Pair',       options:PAIRS.map(p=>p.label),                                    desc:'Specific instrument' },
   { id:'hour_from',  label:'ET Hour ≥',      options:Array.from({length:24},(_,i)=>String(i).padStart(2,'0')), desc:'From this ET hour' },
   { id:'hour_to',    label:'ET Hour ≤',      options:Array.from({length:24},(_,i)=>String(i).padStart(2,'0')), desc:'Until this ET hour' },
@@ -2377,7 +2427,7 @@ export default function AlphaLab() {
     pairFilter === 'All' ? sweepLog : sweepLog.filter(s => s.pair === pairFilter),
   [sweepLog, pairFilter]);
 
-  const groups       = ['All', 'Forex', 'Metals', 'Indices'];
+  const groups       = ['All', 'Forex', 'Metals', 'Indices', 'Crypto'];
   const filteredPairs = groupFilter === 'All' ? PAIRS : PAIRS.filter(p => p.group === groupFilter);
 
   const innerTabs = [
