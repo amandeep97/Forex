@@ -155,9 +155,11 @@ async function fetchBinanceCandles(symbol, gran, count) {
 
 async function fetchBinanceCandlesAll(symbol, gran, pages = 2) {
   const interval = BINANCE_GRAN[gran] || '1h';
+  // Binance max 1000 candles/request vs OANDA 5000 — multiply pages to get same coverage
+  const binancePages = pages * 5;
   let allCandles = [];
   let endTime = null;
-  for (let p = 0; p < pages; p++) {
+  for (let p = 0; p < binancePages; p++) {
     const url = endTime
       ? `https://api.binance.com/api/v3/klines?symbol=${symbol}&interval=${interval}&limit=1000&endTime=${endTime}`
       : `https://api.binance.com/api/v3/klines?symbol=${symbol}&interval=${interval}&limit=1000`;
@@ -2576,7 +2578,7 @@ export default function AlphaLab() {
               const cnt = sweepLog.filter(s => s.pair === p.key && (s.tf||'H1') === scanTF).length;
               if (!cnt) return null;
               const active = pairFilter === p.key;
-              const gc = p.group==='Metals'?'#f59e0b':p.group==='Indices'?'#22c55e':'#8b5cf6';
+              const gc = p.group==='Metals'?'#f59e0b':p.group==='Indices'?'#22c55e':p.group==='Crypto'?'#f97316':'#8b5cf6';
               return (
                 <button key={p.key} onClick={() => setPairFilter(active ? 'All' : p.key)} style={{
                   padding:'4px 10px', borderRadius:12, fontSize:10, fontWeight:800, cursor:'pointer',
