@@ -96,6 +96,18 @@ async function fetchCloses(instr, gran, count) {
   } catch { return null; }
 }
 
+async function fetchBinanceCloses(symbol, interval, limit) {
+  try {
+    const res = await fetch(
+      `https://api.binance.com/api/v3/klines?symbol=${symbol}&interval=${interval}&limit=${limit}`,
+      { signal: AbortSignal.timeout(8000) }
+    );
+    if (!res.ok) return null;
+    const data = await res.json();
+    return data.slice(0, -1).map(k => parseFloat(k[4]));
+  } catch { return null; }
+}
+
 async function fetchCOT(code) {
   try {
     const url = `https://publicreporting.cftc.gov/resource/jun7-fc8e.json?cftc_contract_market_code=${code}&$order=report_date_as_yyyy_mm_dd%20DESC&$limit=2`;
@@ -255,8 +267,8 @@ async function buildMarketContext() {
     fetchCloses('USB10Y_USD', 'H1', 15),
     fetchCloses('USB02Y_USD', 'H1', 15),
     fetchCloses('BCO_USD',    'H1', 15),
-    fetchCloses('BTC_USD',    'H1', 15),
-    fetchCloses('ETH_USD',    'H1', 15),
+    fetchBinanceCloses('BTCUSDT', '1h', 16),
+    fetchBinanceCloses('ETHUSDT', '1h', 16),
     fetchCOT('088691'), fetchCOT('084691'),
     fetchCOT('099741'), fetchCOT('096742'),
     fetchCOT('097741'), fetchCOT('232741'),

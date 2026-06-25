@@ -105,14 +105,29 @@ const FACTORS = [
   { key:'time',  label:'Time',  color:'#fbbf24' },
 ];
 
-// Top 5 crypto — OANDA instruments, priced in USD
+// Top 5 crypto — Binance public API (free, no key needed)
 const CRYPTO_PAIRS = [
-  { key:'BTC_USD', label:'BTC/USD' },
-  { key:'ETH_USD', label:'ETH/USD' },
-  { key:'LTC_USD', label:'LTC/USD' },
-  { key:'XRP_USD', label:'XRP/USD' },
-  { key:'BCH_USD', label:'BCH/USD' },
+  { key:'BTC',  label:'BTC/USD', symbol:'BTCUSDT'  },
+  { key:'ETH',  label:'ETH/USD', symbol:'ETHUSDT'  },
+  { key:'SOL',  label:'SOL/USD', symbol:'SOLUSDT'  },
+  { key:'XRP',  label:'XRP/USD', symbol:'XRPUSDT'  },
+  { key:'BNB',  label:'BNB/USD', symbol:'BNBUSDT'  },
 ];
+
+// Binance public candle API — no key, free, browser-safe
+async function binanceFetch(symbol, interval, limit) {
+  try {
+    const res = await fetch(
+      `https://api.binance.com/api/v3/klines?symbol=${symbol}&interval=${interval}&limit=${limit}`,
+      { signal: AbortSignal.timeout(8000) }
+    );
+    if (!res.ok) return [];
+    const data = await res.json();
+    // Exclude last candle (still forming). Format: [openTime,o,h,l,close,...]
+    return data.slice(0, -1).map(k => ({ c: parseFloat(k[4]) }));
+  } catch { return []; }
+}
+
 // No COT for crypto. DXY = primary macro driver (strong USD = bearish crypto).
 const CRYPTO_W = { tech:0.45, dxy:0.30, time:0.25 };
 const CRYPTO_FACTORS = [
@@ -241,10 +256,10 @@ export default function CommandCenter() {
       scored.sort((a, b) => Math.abs(b.composite) - Math.abs(a.composite));
       setResults(scored);
 
-      // ── Crypto: fetch in parallel after FX (supplementary) ────────────────
+      // ── Crypto: Binance public API (no OANDA key needed) ─────────────────
       const [cryptoH4, cryptoH1] = await Promise.all([
-        Promise.all(CRYPTO_PAIRS.map(p => oandaFetch(p.key, 'H4', 60).then(c => [p.key, c]))),
-        Promise.all(CRYPTO_PAIRS.map(p => oandaFetch(p.key, 'H1', 40).then(c => [p.key, c]))),
+        Promise.all(CRYPTO_PAIRS.map(p => binanceFetch(p.symbol, '4h', 61).then(c => [p.key, c]))),
+        Promise.all(CRYPTO_PAIRS.map(p => binanceFetch(p.symbol, '1h', 41).then(c => [p.key, c]))),
       ]);
       const ch4 = Object.fromEntries(cryptoH4);
       const ch1 = Object.fromEntries(cryptoH1);
@@ -534,7 +549,7 @@ export default function CommandCenter() {
               })}
           </div>
           <div style={{ fontSize:9, color:'#334155', marginTop:6 }}>
-            * Crypto uses Tech(45%) · DXY(30%) · Timing(25%). No COT. If pair unavailable on your OANDA account it is hidden.
+            * Crypto via Binance public API (free, no key needed). Tech(45%) · DXY(30%) · Timing(25%). No COT.
           </div>
         </div>
       )}
