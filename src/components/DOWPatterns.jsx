@@ -16,6 +16,11 @@ const PAIRS = [
   { key:'US30_USD',  label:'US30',     pip:1       },
   { key:'NAS100_USD',label:'NAS100',   pip:0.1    },
   { key:'SPX500_USD',label:'SPX500',   pip:0.1    },
+  { key:'BTC_USDT',  label:'BTC/USDT', pip:1,      binance:'BTCUSDT', crypto:true },
+  { key:'ETH_USDT',  label:'ETH/USDT', pip:0.1,    binance:'ETHUSDT', crypto:true },
+  { key:'SOL_USDT',  label:'SOL/USDT', pip:0.01,   binance:'SOLUSDT', crypto:true },
+  { key:'XRP_USDT',  label:'XRP/USDT', pip:0.0001, binance:'XRPUSDT', crypto:true },
+  { key:'BNB_USDT',  label:'BNB/USDT', pip:0.1,    binance:'BNBUSDT', crypto:true },
 ];
 
 const RULES = [
@@ -49,6 +54,28 @@ const RULES = [
   },
 ];
 
+// ── Binance daily fetch (crypto — no API key needed) ─────────────────────────
+
+async function fetchBinanceDaily(symbol, count) {
+  try {
+    const res = await fetch(
+      `https://api.binance.com/api/v3/klines?symbol=${symbol}&interval=1d&limit=${count + 1}`,
+      { signal: AbortSignal.timeout(12000) }
+    );
+    if (!res.ok) return null;
+    const data = await res.json();
+    return data.slice(0, -1).map(k => {
+      const date = new Date(k[0]).toISOString().slice(0, 10);
+      return {
+        t:   k[0],
+        o:  +k[1], h: +k[2], l: +k[3], c: +k[4],
+        dow: DOW_LABELS[new Date(date + 'T12:00:00Z').getUTCDay()],
+        date,
+      };
+    });
+  } catch { return null; }
+}
+
 // ── OANDA fetch ───────────────────────────────────────────────────────────────
 
 function getCreds() {
@@ -61,6 +88,8 @@ function getCreds() {
 }
 
 async function fetchDaily(pairKey, count) {
+  const pairMeta = PAIRS.find(p => p.key === pairKey);
+  if (pairMeta?.binance) return fetchBinanceDaily(pairMeta.binance, count);
   const creds = getCreds();
   if (!creds) return null;
   const base = creds.practice
@@ -255,9 +284,9 @@ export default function DOWPatterns() {
   const hasOanda = !!getCreds();
 
   const runBacktest = useCallback(async () => {
-    if (!hasOanda) return;
+    const pair = PAIRS.find(p => p.key === selPair);
+    if (!pair?.crypto && !hasOanda) return;
     setLoading(true);
-    const pair    = PAIRS.find(p => p.key === selPair);
     const candles = await fetchDaily(selPair, lookback);
     if (!candles || candles.length < 4) {
       setResults({ error: true });
@@ -294,10 +323,11 @@ export default function DOWPatterns() {
   }, [selPair, lookback, hasOanda]);
 
   const runLiveScan = useCallback(async () => {
-    if (!hasOanda) return;
+    if (!hasOanda && PAIRS.every(p => !p.crypto)) return;
     setLoading(true);
     const found = [];
     for (const pair of PAIRS) {
+      if (!pair.crypto && !hasOanda) continue;
       const candles = await fetchDaily(pair.key, 8);
       if (!candles || candles.length < 4) continue;
       const dec = pair.pip < 0.01 ? 5 : pair.pip < 1 ? 3 : 1;
@@ -319,7 +349,7 @@ export default function DOWPatterns() {
           ruleDesc:  rule?.desc ?? '',
           direction: r.direction,
           date:      r.date,
-          target:    r.target.toFixed(dec),
+          target:    pair.crypto ? `$${r.target.toFixed(dec)}` : r.target.toFixed(dec),
           targetRaw: r.target,
           color:     rule?.color ?? '#94a3b8',
           combo:     rule?.combo ?? '',

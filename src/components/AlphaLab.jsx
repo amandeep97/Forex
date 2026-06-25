@@ -179,6 +179,20 @@ async function fetchBinanceCandlesAll(symbol, gran, pages = 2) {
 }
 
 // ── Algorithms ────────────────────────────────────────────────────────────────
+// Format move size: pips for FX/Metals/Indices, $ amounts for Crypto
+function fmtMove(pipsMoved, pairKey, pipSize) {
+  const p = PAIRS.find(x => x.key === pairKey);
+  const pip = pipSize ?? p?.pip ?? 0.0001;
+  if (p?.group === 'Crypto') {
+    const usd = (pipsMoved || 0) * pip;
+    if (usd >= 10000) return `$${Math.round(usd).toLocaleString()}`;
+    if (usd >= 100)   return `$${Math.round(usd)}`;
+    if (usd >= 1)     return `$${usd.toFixed(1)}`;
+    return `$${usd.toFixed(2)}`;
+  }
+  return `${pipsMoved}p`;
+}
+
 function avgBody(candles) {
   return candles.reduce((s,c)=>s+Math.abs(c.c-c.o),0)/(candles.length||1);
 }
@@ -835,7 +849,7 @@ function PairDetailModal({ pairKey, sweepLog, phases, onClose }) {
                 </div>
                 <div style={{ fontSize:10, color:'#334155', marginTop:1 }}>
                   {s.swept==='high'?'↑ HIGH':'↓ LOW'} swept
-                  {s.pipsMoved>0 && <span style={{ color:'#475569' }}> · {s.pipsMoved}p moved after</span>}
+                  {s.pipsMoved>0 && <span style={{ color:'#475569' }}> · {fmtMove(s.pipsMoved, s.pair, s.pip)} moved after</span>}
                   {s.historical && <span style={{ color:'#1e293b' }}> · historical</span>}
                 </div>
               </div>
@@ -1000,7 +1014,7 @@ function EdgeBreakdown({ sweepLog, onPairClick }) {
                       color:wr>=60?'#00d4aa':wr>=40?'#f59e0b':'#ef4444' }}>{wr}%</span>
                   </div>
                   <span style={{ fontSize:9, color:'#475569', fontFamily:'monospace', alignSelf:'center' }}>
-                    {avgP>0?`${avgP}p`:'—'}
+                    {avgP>0 ? fmtMove(avgP, pairKey) : '—'}
                   </span>
                 </div>
               );
@@ -1146,7 +1160,7 @@ function SweepEntry({ s, idx, onPairClick }) {
         </div>
         <div style={{ fontSize:10, color:'#475569', marginTop:2, fontFamily:'monospace' }}>
           {toET(s.time)} ET
-          {s.pipsMoved>0 && <span style={{ color:'#334155' }}> · {s.pipsMoved}p after</span>}
+          {s.pipsMoved>0 && <span style={{ color:'#334155' }}> · {fmtMove(s.pipsMoved, s.pair, s.pip)} after</span>}
           {s.strength && <span style={{ color:'#1e293b' }}> · str:{s.strength}</span>}
         </div>
       </div>
@@ -2007,7 +2021,7 @@ function ScenarioLibrary({ sweepLog, phases, scanTF, swingStrength, onPairClick,
                           <span style={{ marginLeft:'auto', fontSize:9, fontWeight:700,
                             color:s.outcome==='confirmed'?'#00d4aa':'#ef4444' }}>
                             {s.outcome==='confirmed'?'✓ WIN':'✗ FAIL'}
-                            {s.pipsMoved>0 && <span style={{ color:'#60a5fa', marginLeft:4 }}>{s.pipsMoved}p</span>}
+                            {s.pipsMoved>0 && <span style={{ color:'#60a5fa', marginLeft:4 }}>{fmtMove(s.pipsMoved, s.pair, s.pip)}</span>}
                           </span>
                         </div>
                       );
