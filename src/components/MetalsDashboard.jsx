@@ -768,15 +768,15 @@ export default function MetalsDashboard() {
       setYield10(y10Data);
       setYield2(y2Data);
 
-      // Retail sentiment from OANDA position book (contrarian)
-      const creds = getOandaCreds();
-      if (creds) {
-        const [goldSent, silverSent] = await Promise.all([
-          fetchRetailSentiment('XAU_USD', creds),
-          fetchRetailSentiment('XAG_USD', creds),
-        ]);
-        setRetailSentiment({ gold: goldSent, silver: silverSent });
-      }
+      // Derive sentiment from COT speculator positioning (already fetched above)
+      const toSent = (cot) => {
+        const row = cot?.[0];
+        if (!row) return null;
+        const tot = row.long + row.short;
+        if (!tot) return null;
+        return { longPct: Math.round(row.long / tot * 100) };
+      };
+      setRetailSentiment({ gold: toSent(cotGold), silver: toSent(cotSilver) });
 
       setLastRefresh(new Date());
     } finally {

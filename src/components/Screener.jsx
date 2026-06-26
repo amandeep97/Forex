@@ -277,7 +277,6 @@ export default function Screener() {
 
   const [imSignals, setImSignals] = useState(null);
   const [sentiment, setSentiment] = useState({});
-  const [sentimentHasCreds, setSentimentHasCreds] = useState(true);
 
   const [watchlist, setWatchlist] = useState(() => {
     try { return JSON.parse(localStorage.getItem('forex_watchlist')) || []; } catch { return []; }
@@ -289,60 +288,75 @@ export default function Screener() {
     return () => clearInterval(id);
   }, []);
 
-  // ── Retail sentiment fetch (OANDA position book) ──────────────────────────
+  // ── COT-based sentiment (CFTC public data — no API key needed) ───────────────
+  // Speculator net positioning from CFTC Commitment of Traders reports.
+  // longPct > 60 = specs heavily long (often contrarian bearish signal)
+  // longPct < 40 = specs heavily short (often contrarian bullish signal)
   useEffect(() => {
-    async function fetchAllSentiment() {
-      let creds = null;
-      try { creds = JSON.parse(localStorage.getItem('oanda_creds') || 'null'); } catch {}
-      if (!creds?.apiKey) {
-        const apiKey = localStorage.getItem('oanda_key');
-        const practice = localStorage.getItem('oanda_env') !== 'live';
-        if (apiKey) creds = { apiKey, practice };
-      }
-      if (!creds?.apiKey) { setSentimentHasCreds(false); return; }
+    const COT_CODES = {
+      EUR:'099741', GBP:'096742', JPY:'097741', CHF:'092741',
+      AUD:'232741', NZD:'112741', CAD:'090741',
+    };
+    // symbol → { base currency to use for COT, invert? }
+    // invert=true when the tracked currency is the QUOTE (e.g. USD/JPY uses JPY, inverted)
+    const COT_MAP = {
+      'EUR/USD':{ cur:'EUR', inv:false }, 'GBP/USD':{ cur:'GBP', inv:false },
+      'USD/JPY':{ cur:'JPY', inv:true  }, 'USD/CHF':{ cur:'CHF', inv:true  },
+      'AUD/USD':{ cur:'AUD', inv:false }, 'NZD/USD':{ cur:'NZD', inv:false },
+      'USD/CAD':{ cur:'CAD', inv:true  }, 'EUR/GBP':{ cur:'EUR', inv:false },
+      'EUR/JPY':{ cur:'EUR', inv:false }, 'EUR/AUD':{ cur:'EUR', inv:false },
+      'EUR/CAD':{ cur:'EUR', inv:false }, 'EUR/CHF':{ cur:'EUR', inv:false },
+      'GBP/JPY':{ cur:'GBP', inv:false }, 'GBP/CHF':{ cur:'GBP', inv:false },
+      'AUD/JPY':{ cur:'AUD', inv:false }, 'CAD/JPY':{ cur:'CAD', inv:false },
+      'NZD/USD':{ cur:'NZD', inv:false },
+    };
 
-      // Position book is public market data — always try live API first
-      const liveBase = 'https://api-fxtrade.oanda.com/v3';
-      const practiceBase = 'https://api-fxpractice.oanda.com/v3';
+    async function fetchCOTSentiment() {
+      const codeList = Object.values(COT_CODES).map(c => `'${c}'`).join(',');
+      try {
+        const res = await fetch(
+          `https://publicreporting.cftc.gov/resource/6dca-aqww.json?$where=cftc_contract_market_code IN(${codeList})&$order=report_date_as_yyyy_mm_dd DESC&$limit=14`,
+          { signal: AbortSignal.timeout(12000) }
+        );
+        if (!res.ok) return;
+        const rows = await res.json();
 
-      async function fetchSentiment(oandaInstrument) {
-        for (const base of [liveBase, practiceBase]) {
-          try {
-            const res = await fetch(
-              `${base}/instruments/${oandaInstrument}/positionBook`,
-              { headers: { Authorization: `Bearer ${creds.apiKey}` }, signal: AbortSignal.timeout(6000) }
-            );
-            if (!res.ok) continue;
-            const data = await res.json();
-            const buckets = data.positionBook?.buckets || [];
-            let totalLong = 0, totalShort = 0;
-            buckets.forEach(b => {
-              totalLong  += parseFloat(b.longCountPercent  || 0);
-              totalShort += parseFloat(b.shortCountPercent || 0);
-            });
-            const total = totalLong + totalShort;
-            if (!total) continue;
-            const longPct = Math.round(totalLong / total * 100);
-            return { longPct, shortPct: 100 - longPct };
-          } catch { continue; }
-        }
-        return null;
-      }
+        // Latest row per COT code
+        const byCode = {};
+        rows.forEach(r => {
+          const code = r.cftc_contract_market_code;
+          if (!byCode[code]) byCode[code] = r;
+        });
 
-      const results = {};
-      await Promise.all(
-        allInstruments
-          .filter(inst => OANDA_MAP[inst.symbol])
-          .map(async inst => {
-            const oandaId = OANDA_MAP[inst.symbol];
-            const sent = await fetchSentiment(oandaId);
-            if (sent) results[inst.id] = sent;
-          })
-      );
-      setSentiment(results);
+        // Currency → { longPct, shortPct }
+        const cotByCur = {};
+        Object.entries(COT_CODES).forEach(([cur, code]) => {
+          const row = byCode[code];
+          if (!row) return;
+          const lng = parseFloat(row.noncomm_positions_long_all  || 0);
+          const sht = parseFloat(row.noncomm_positions_short_all || 0);
+          const tot = lng + sht;
+          if (!tot) return;
+          cotByCur[cur] = { longPct: Math.round(lng / tot * 100), shortPct: Math.round(sht / tot * 100) };
+        });
+
+        const results = {};
+        allInstruments.forEach(inst => {
+          const mapping = COT_MAP[inst.symbol];
+          if (!mapping) return;
+          const cot = cotByCur[mapping.cur];
+          if (!cot) return;
+          results[inst.id] = mapping.inv
+            ? { longPct: cot.shortPct, shortPct: cot.longPct, source:'COT' }
+            : { longPct: cot.longPct,  shortPct: cot.shortPct, source:'COT' };
+        });
+        setSentiment(results);
+      } catch { /* silent — sentiment is optional */ }
     }
 
-    fetchAllSentiment();
+    fetchCOTSentiment();
+    const id = setInterval(fetchCOTSentiment, 60 * 60 * 1000); // refresh hourly
+    return () => clearInterval(id);
   }, []);
 
   const toggleWatch = sym => {
@@ -982,13 +996,12 @@ export default function Screener() {
                       <td><StrengthBar value={ai.strength || 50} dir={ai.strengthDir || 'neutral'}/></td>
                       {/* Signal */}
                       <td><SignalBadge signal={p.signal}/></td>
-                      {/* Sentiment */}
+                      {/* Sentiment — COT speculator net positioning */}
                       <td style={{ textAlign:'center', padding:'8px 6px' }}>
-                        {!sentimentHasCreds ? (
-                          <span title="Connect OANDA API key to see retail sentiment" style={{ fontSize:9, color:'#475569', cursor:'default' }}>🔑 key</span>
-                        ) : sent ? (
-                          <span style={{ fontSize:10, fontWeight:700, fontFamily:'monospace',
-                            color: sent.longPct > 60 ? '#f43f5e' : sent.longPct < 40 ? '#22c55e' : '#8b949e' }}>
+                        {sent ? (
+                          <span title={`COT: ${sent.longPct}% specs long / ${sent.shortPct}% short`}
+                            style={{ fontSize:10, fontWeight:700, fontFamily:'monospace',
+                              color: sent.longPct > 60 ? '#f43f5e' : sent.longPct < 40 ? '#22c55e' : '#8b949e' }}>
                             {sent.longPct}%L
                           </span>
                         ) : <span style={{ color:'#374151', fontSize:10 }}>—</span>}
