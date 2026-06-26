@@ -929,7 +929,7 @@ export default function Screener() {
                 ):filtered.map(p => {
                   const ai = analysis[p.id] || {};
                   const isWatched = watchlist.includes(p.symbol);
-                  const sent = sentimentHasCreds ? sentiment[p.id] : null;
+                  const sent = sentiment[p.id] ?? null;
                   return (
                     <tr key={p.id} className="pair-row">
                       {/* Symbol */}
