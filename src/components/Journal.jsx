@@ -75,6 +75,7 @@ function normManual(t) {
     _openedAt: t.openedAt ?? null,
     _closedAt: t.closedAt ?? null,
     _strategy: t.strategy ?? '',
+    _setupSource: t.setupSource ?? '',
     _session:  (t.session || '').toLowerCase(),
     _lots:     t.lots ?? null,
     _source:   'manual',
@@ -220,6 +221,13 @@ function TradeCard({ t, onEdit, onDelete }) {
         </div>
       </div>
       <div style={{ display:'flex', gap:5, flexWrap:'wrap', marginBottom:4 }}>
+        {t._setupSource && (
+          <span style={{ fontSize:10, fontWeight:700, padding:'2px 8px', borderRadius:4,
+            color: t._setupSource===OFF_SYSTEM ? '#fca5a5' : '#00d4aa',
+            background: t._setupSource===OFF_SYSTEM ? '#45050933' : '#00d4aa18',
+            border: `1px solid ${t._setupSource===OFF_SYSTEM ? '#ef444433' : '#00d4aa33'}` }}>
+            📌 {t._setupSource}</span>
+        )}
         {t._strategy && <span style={{ fontSize:10, color:'#94a3b8', background:'#0f172a', padding:'2px 8px', borderRadius:4 }}>{t._strategy}</span>}
         {t._session  && <span style={{ fontSize:10, color:'#64748b', background:'#0f172a', padding:'2px 8px', borderRadius:4 }}>{t._session}</span>}
       </div>
@@ -592,10 +600,137 @@ const PAIRS = ['EUR/USD','GBP/USD','USD/JPY','AUD/USD','USD/CAD','USD/CHF','NZD/
 const SESSIONS = ['Asian','London','London Close','New York','New York PM'];
 const STRATEGIES = ['ICT OB','ICT FVG','ICT BMS','SMC Sweep','Breakout','Pullback','Scalp','News','Other'];
 const RESULTS = ['win','loss','be','open'];
+// Where the trade idea came from — the discipline tracker. "My Own Idea / Gut" = off-system.
+const SOURCES = ['Command Center','Alpha Lab','DOW Pattern','Screener','AI Validated','My Own Idea / Gut'];
+const OFF_SYSTEM = 'My Own Idea / Gut';
+
+// ── Position Size Calculator ──────────────────────────────────────────────────
+const POS_LS = 'forex_pos_calc_v1';
+const FX_PAIRS = ['EUR/USD','GBP/USD','USD/JPY','AUD/USD','USD/CAD','USD/CHF','NZD/USD','EUR/GBP','EUR/JPY','GBP/JPY'];
+
+function pipSizeFor(pair) { return pair.includes('JPY') ? 0.01 : 0.0001; }
+
+// Pip value per standard lot (100k units) in USD. Precise for USD-quote & USD-base pairs.
+// Crosses return { value, approx:true } using a quote≈USD approximation.
+function pipValuePerLotUSD(pair, entryPrice) {
+  const pip = pipSizeFor(pair);
+  const [base, quote] = pair.split('/');
+  const perLotInQuote = pip * 100000; // change in quote currency for a 1-pip move on 1 lot
+  if (quote === 'USD') return { value: perLotInQuote, approx: false };           // e.g. EUR/USD → $10
+  if (base === 'USD' && entryPrice > 0) return { value: perLotInQuote / entryPrice, approx: false }; // USD/JPY etc.
+  return { value: perLotInQuote, approx: true };                                  // crosses — approximate
+}
+
+function PositionSizeCalc({ onClose, prefill }) {
+  const saved = (() => { try { return JSON.parse(localStorage.getItem(POS_LS) || '{}'); } catch { return {}; } })();
+  const [balance, setBalance] = useState(saved.balance ?? '');
+  const [riskPct, setRiskPct] = useState(saved.riskPct ?? '1');
+  const [pair, setPair]       = useState(prefill?.pair && FX_PAIRS.includes(prefill.pair) ? prefill.pair : 'EUR/USD');
+  const [entry, setEntry]     = useState(prefill?.entry ?? '');
+  const [sl, setSl]           = useState(prefill?.sl ?? '');
+
+  useEffect(() => { localStorage.setItem(POS_LS, JSON.stringify({ balance, riskPct })); }, [balance, riskPct]);
+
+  const calc = useMemo(() => {
+    const bal = parseFloat(balance), rp = parseFloat(riskPct), e = parseFloat(entry), s = parseFloat(sl);
+    if (!(bal > 0) || !(rp > 0) || !(e > 0) || !(s > 0) || e === s) return null;
+    const pip = pipSizeFor(pair);
+    const stopPips = Math.abs(e - s) / pip;
+    const riskUsd = bal * rp / 100;
+    const pv = pipValuePerLotUSD(pair, e);
+    const perPipPerLot = pv.value;                     // $/pip for 1 standard lot
+    const lots = riskUsd / (stopPips * perPipPerLot);  // standard lots
+    const perPip = lots * perPipPerLot;                // $/pip at this size
+    return { stopPips, riskUsd, lots, units: lots * 100000, perPip, approx: pv.approx };
+  }, [balance, riskPct, pair, entry, sl]);
+
+  const inp = (style={}) => ({ background:'#0f172a', color:'#e2e8f0', border:'1px solid #334155',
+    borderRadius:7, padding:'8px 12px', fontSize:13, outline:'none', width:'100%', boxSizing:'border-box', ...style });
+  const lbl = { fontSize:10, color:'#64748b', fontWeight:700, marginBottom:4, display:'block' };
+
+  return (
+    <div style={{ position:'fixed', inset:0, background:'rgba(0,0,0,0.8)', display:'flex',
+      alignItems:'center', justifyContent:'center', zIndex:1000, padding:16 }}>
+      <div style={{ background:'#0f172a', border:'1px solid #334155', borderRadius:16,
+        width:'100%', maxWidth:440, padding:'20px 22px', maxHeight:'90vh', overflowY:'auto' }}>
+        <div style={{ display:'flex', alignItems:'center', marginBottom:4 }}>
+          <div style={{ fontSize:15, fontWeight:800, color:'#f8fafc', flex:1 }}>🧮 Position Size Calculator</div>
+          <button onClick={onClose} style={{ background:'none', border:'none', color:'#64748b', fontSize:22, cursor:'pointer', lineHeight:1 }}>×</button>
+        </div>
+        <div style={{ fontSize:10, color:'#475569', marginBottom:16 }}>
+          Risk a fixed % so one loss never wipes weeks of gains.
+        </div>
+
+        <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:12, marginBottom:12 }}>
+          <div>
+            <label style={lbl}>Account Balance ($)</label>
+            <input type="number" step="any" placeholder="e.g. 5000" value={balance}
+              onChange={e=>setBalance(e.target.value)} style={inp()}/>
+          </div>
+          <div>
+            <label style={lbl}>Risk per Trade (%)</label>
+            <input type="number" step="any" placeholder="e.g. 1" value={riskPct}
+              onChange={e=>setRiskPct(e.target.value)} style={inp()}/>
+          </div>
+          <div style={{ gridColumn:'1 / -1' }}>
+            <label style={lbl}>Pair</label>
+            <select value={pair} onChange={e=>setPair(e.target.value)} style={inp()}>
+              {FX_PAIRS.map(p => <option key={p}>{p}</option>)}
+            </select>
+          </div>
+          <div>
+            <label style={lbl}>Entry Price</label>
+            <input type="number" step="any" placeholder="e.g. 1.08500" value={entry}
+              onChange={e=>setEntry(e.target.value)} style={inp()}/>
+          </div>
+          <div>
+            <label style={lbl}>Stop Loss</label>
+            <input type="number" step="any" placeholder="e.g. 1.08200" value={sl}
+              onChange={e=>setSl(e.target.value)} style={inp({ border:'1px solid #ef444455' })}/>
+          </div>
+        </div>
+
+        {calc ? (
+          <div style={{ background:'#0b1220', borderRadius:10, padding:'14px 16px', border:'1px solid #1e293b' }}>
+            <div style={{ display:'flex', justifyContent:'space-between', marginBottom:8 }}>
+              <span style={{ fontSize:11, color:'#64748b' }}>Risk amount</span>
+              <span style={{ fontSize:12, fontWeight:700, color:'#f59e0b' }}>${calc.riskUsd.toFixed(2)}</span>
+            </div>
+            <div style={{ display:'flex', justifyContent:'space-between', marginBottom:8 }}>
+              <span style={{ fontSize:11, color:'#64748b' }}>Stop distance</span>
+              <span style={{ fontSize:12, fontWeight:700, color:'#e2e8f0' }}>{calc.stopPips.toFixed(1)} pips</span>
+            </div>
+            <div style={{ display:'flex', justifyContent:'space-between', marginBottom:8 }}>
+              <span style={{ fontSize:11, color:'#64748b' }}>Value per pip</span>
+              <span style={{ fontSize:12, fontWeight:700, color:'#e2e8f0' }}>${calc.perPip.toFixed(2)}/pip</span>
+            </div>
+            <div style={{ height:1, background:'#1e293b', margin:'10px 0' }}/>
+            <div style={{ textAlign:'center' }}>
+              <div style={{ fontSize:10, color:'#64748b', marginBottom:3, textTransform:'uppercase', letterSpacing:1 }}>Position Size</div>
+              <div style={{ fontSize:30, fontWeight:900, color:'#00d4aa', lineHeight:1 }}>{calc.lots.toFixed(2)} <span style={{ fontSize:14 }}>lots</span></div>
+              <div style={{ fontSize:11, color:'#94a3b8', marginTop:4 }}>
+                = {(calc.lots*10).toFixed(1)} mini · {Math.round(calc.units).toLocaleString()} units
+              </div>
+            </div>
+            {calc.approx && (
+              <div style={{ marginTop:10, fontSize:9.5, color:'#f59e0b', lineHeight:1.4 }}>
+                ⚠ Cross pair — pip value approximated (quote currency isn't USD). Verify against your broker before sizing.
+              </div>
+            )}
+          </div>
+        ) : (
+          <div style={{ textAlign:'center', padding:'20px 0', color:'#475569', fontSize:12 }}>
+            Enter balance, risk %, entry and stop to calculate
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
 
 function ManualTradeForm({ initial, onSave, onCancel }) {
   const blank = { pair:'EUR/USD', direction:'LONG', entry:'', sl:'', tp:'', close:'',
-    pnl:'', rr:'', result:'open', session:'', strategy:'', notes:'', openedAt:'', closedAt:'' };
+    pnl:'', rr:'', result:'open', session:'', strategy:'', setupSource:'', notes:'', openedAt:'', closedAt:'' };
   const [f, setF] = useState(initial || blank);
   const set = (k, v) => setF(p => ({...p, [k]:v}));
   const isEdit = !!initial;
@@ -611,7 +746,7 @@ function ManualTradeForm({ initial, onSave, onCancel }) {
     const closedAt = f.closedAt ? new Date(f.closedAt).toISOString() : (f.result !== 'open' ? new Date().toISOString() : null);
     onSave({ pair:f.pair, direction:f.direction, entry:entryN, sl:slN, tp:tpN, close:closeN,
       pnl:pnlNum, rr:rrNum, result:f.result, session:f.session, strategy:f.strategy,
-      notes:f.notes.trim(), openedAt, closedAt });
+      setupSource:f.setupSource, notes:f.notes.trim(), openedAt, closedAt });
   };
 
   const inp = (style={}) => ({
@@ -717,6 +852,15 @@ function ManualTradeForm({ initial, onSave, onCancel }) {
               {STRATEGIES.map(s => <option key={s}>{s}</option>)}
             </select>
           </div>
+          {/* Setup Source — discipline tracker */}
+          <div style={{ gridColumn:'1 / -1' }}>
+            <label style={lbl}>📌 Setup Source — where did this trade come from?</label>
+            <select value={f.setupSource} onChange={e=>set('setupSource',e.target.value)}
+              style={inp({ border:`1px solid ${f.setupSource===OFF_SYSTEM ? '#ef4444' : f.setupSource ? '#00d4aa' : '#334155'}` })}>
+              <option value="">— Select source (be honest) —</option>
+              {SOURCES.map(s => <option key={s}>{s}</option>)}
+            </select>
+          </div>
           {/* Opened */}
           <div>
             <label style={lbl}>Opened At</label>
@@ -764,6 +908,7 @@ function ManualJournal() {
   const [filter,    setFilter]= useState('all');
   const [form,      setForm]  = useState(null); // null | 'new' | {trade obj}
   const [delId,     setDelId] = useState(null);
+  const [showCalc,  setCalc]  = useState(false);
 
   const persist = useCallback((next) => { setRaw(next); saveManual(next); }, []);
 
@@ -801,6 +946,32 @@ function ManualJournal() {
     const m={}; closed.forEach(t=>{ const k=t._pair; if(!m[k])m[k]={pair:k,t:0,w:0,pnl:0}; m[k].t++; m[k].pnl+=t._pnl||0; if(t._result==='win')m[k].w++; });
     return Object.values(m).sort((a,b)=>b.pnl-a.pnl);
   }, [closed]);
+  // Discipline: performance by where the trade came from (system vs gut)
+  const sourceStats = useMemo(() => {
+    const m={};
+    closed.forEach(t=>{
+      const k=t._setupSource || 'Untagged';
+      if(!m[k]) m[k]={source:k,t:0,w:0,pnl:0,rSum:0,rN:0};
+      m[k].t++; m[k].pnl+=t._pnl||0; if(t._result==='win')m[k].w++;
+      if(t._rr!=null){ m[k].rSum+=Number(t._rr); m[k].rN++; }
+    });
+    return Object.values(m).sort((a,b)=>b.pnl-a.pnl);
+  }, [closed]);
+  // System (on-app) vs gut, the single headline number
+  const systemVsGut = useMemo(() => {
+    const agg = (pred) => {
+      const arr = closed.filter(pred);
+      const w = arr.filter(t=>t._result==='win').length;
+      const pnl = arr.reduce((s,t)=>s+(t._pnl||0),0);
+      const rArr = arr.filter(t=>t._rr!=null);
+      const avgR = rArr.length ? rArr.reduce((s,t)=>s+Number(t._rr),0)/rArr.length : null;
+      return { n:arr.length, wr: arr.length? w/arr.length*100 : null, pnl, avgR };
+    };
+    return {
+      system: agg(t => t._setupSource && t._setupSource !== OFF_SYSTEM),
+      gut:    agg(t => t._setupSource === OFF_SYSTEM),
+    };
+  }, [closed]);
   const wk = useMemo(()=>weeklyStats(closed),[closed]);
   const consistency = useMemo(()=>calcConsistency(closed),[closed]);
   const fmtPf = v => v===Infinity?'∞':v.toFixed(2);
@@ -821,6 +992,9 @@ function ManualJournal() {
         <div style={{ flex:1, fontSize:11, color:'#475569' }}>
           {trades.length} trades logged manually · stored locally
         </div>
+        <button onClick={()=>setCalc(true)} style={{ padding:'7px 12px', borderRadius:8, marginRight:8,
+          background:'#0f172a', border:'1px solid #00d4aa44', color:'#00d4aa', fontSize:12, fontWeight:700, cursor:'pointer' }}>
+          🧮 Size Calc</button>
         <button onClick={()=>setForm('new')} style={{ padding:'7px 16px', borderRadius:8,
           background:'#00d4aa', border:'none', color:'#080c14', fontSize:12, fontWeight:700, cursor:'pointer' }}>
           + Log Trade</button>
@@ -902,6 +1076,67 @@ function ManualJournal() {
       {/* ── Performance ── */}
       {tab === 'performance' && (
         <>
+          {/* Discipline: System vs Gut headline */}
+          {(systemVsGut.system.n > 0 || systemVsGut.gut.n > 0) && (
+            <div style={{ background:'#1e293b', borderRadius:10, padding:'14px 16px', marginBottom:10 }}>
+              <div style={{ fontSize:13, fontWeight:700, color:'#f8fafc', marginBottom:3 }}>🎯 Discipline — System vs Gut</div>
+              <div style={{ fontSize:10, color:'#475569', marginBottom:12 }}>
+                Trades from the app's tools vs your own off-system ideas. The honest mirror.
+              </div>
+              <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:10 }}>
+                {[['📊 System', systemVsGut.system, '#00d4aa'], ['🎲 Gut', systemVsGut.gut, '#ef4444']].map(([lbl, d, col]) => (
+                  <div key={lbl} style={{ background:'#0f172a', borderRadius:9, padding:'11px 12px', border:`1px solid ${col}33` }}>
+                    <div style={{ fontSize:11, fontWeight:800, color:col, marginBottom:8 }}>{lbl}</div>
+                    {d.n === 0 ? (
+                      <div style={{ fontSize:11, color:'#475569' }}>No trades tagged yet</div>
+                    ) : (
+                      <>
+                        <div style={{ fontSize:24, fontWeight:900, color: d.wr>=50?'#22c55e':'#ef4444', lineHeight:1 }}>
+                          {d.wr.toFixed(0)}%</div>
+                        <div style={{ fontSize:9, color:'#475569', marginBottom:6 }}>win rate · {d.n} trades</div>
+                        <div style={{ fontSize:11, fontWeight:700, color:pnlColor(d.pnl) }}>{$pnl(d.pnl)}</div>
+                        {d.avgR!=null && (
+                          <div style={{ fontSize:10, color:pnlColor(d.avgR) }}>{d.avgR>=0?'+':''}{d.avgR.toFixed(2)}R avg</div>
+                        )}
+                      </>
+                    )}
+                  </div>
+                ))}
+              </div>
+              {systemVsGut.system.n > 0 && systemVsGut.gut.n > 0 && (
+                <div style={{ marginTop:10, padding:'8px 11px', borderRadius:7, fontSize:11, lineHeight:1.5,
+                  background: systemVsGut.system.pnl > systemVsGut.gut.pnl ? '#14532d22' : '#45050922',
+                  border: `1px solid ${systemVsGut.system.pnl > systemVsGut.gut.pnl ? '#22c55e33' : '#ef444433'}`,
+                  color: systemVsGut.system.pnl > systemVsGut.gut.pnl ? '#86efac' : '#fca5a5' }}>
+                  {systemVsGut.system.pnl > systemVsGut.gut.pnl
+                    ? `Your system trades made ${$pnl(systemVsGut.system.pnl - systemVsGut.gut.pnl)} more than your gut trades. The data says: stick to the tools.`
+                    : `Your gut is currently beating the system by ${$pnl(systemVsGut.gut.pnl - systemVsGut.system.pnl)} — but check the sample size before trusting it.`}
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* By Setup Source */}
+          {sourceStats.length > 0 && sourceStats.some(s => s.source !== 'Untagged') && (
+            <div style={{ background:'#1e293b', borderRadius:10, padding:'14px 16px', marginBottom:10 }}>
+              <div style={{ fontSize:13, fontWeight:700, color:'#f8fafc', marginBottom:10 }}>By Setup Source</div>
+              {sourceStats.map(s => {
+                const wr = Math.round(s.w/s.t*100);
+                const avgR = s.rN ? s.rSum/s.rN : null;
+                const isGut = s.source === OFF_SYSTEM;
+                return (
+                  <div key={s.source} style={{ display:'flex', alignItems:'center', gap:8, padding:'7px 0', borderBottom:'1px solid #0f172a' }}>
+                    <span style={{ fontSize:11, fontWeight:700, color:isGut?'#fca5a5':'#e2e8f0', minWidth:110 }}>{s.source}</span>
+                    <span style={{ fontSize:10, color:'#475569', minWidth:22 }}>{s.t}T</span>
+                    <span style={{ fontSize:10, color:wr>=50?'#22c55e':'#ef4444', minWidth:30 }}>{wr}%</span>
+                    {avgR!=null && <span style={{ fontSize:10, color:pnlColor(avgR), minWidth:42 }}>{avgR>=0?'+':''}{avgR.toFixed(1)}R</span>}
+                    <span style={{ marginLeft:'auto', fontSize:11, fontWeight:700, color:pnlColor(s.pnl) }}>{$pnl(s.pnl)}</span>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+
           {pairStats.length > 0 && (
             <div style={{ background:'#1e293b', borderRadius:10, padding:'14px 16px', marginBottom:10 }}>
               <div style={{ fontSize:13, fontWeight:700, color:'#f8fafc', marginBottom:10 }}>By Pair</div>
@@ -926,6 +1161,9 @@ function ManualJournal() {
           )}
         </>
       )}
+
+      {/* Position size calculator */}
+      {showCalc && <PositionSizeCalc onClose={()=>setCalc(false)}/>}
 
       {/* Form modal */}
       {form !== null && (
