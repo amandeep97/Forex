@@ -604,130 +604,6 @@ const RESULTS = ['win','loss','be','open'];
 const SOURCES = ['Command Center','Alpha Lab','DOW Pattern','Screener','AI Validated','My Own Idea / Gut'];
 const OFF_SYSTEM = 'My Own Idea / Gut';
 
-// ── Position Size Calculator ──────────────────────────────────────────────────
-const POS_LS = 'forex_pos_calc_v1';
-const FX_PAIRS = ['EUR/USD','GBP/USD','USD/JPY','AUD/USD','USD/CAD','USD/CHF','NZD/USD','EUR/GBP','EUR/JPY','GBP/JPY'];
-
-function pipSizeFor(pair) { return pair.includes('JPY') ? 0.01 : 0.0001; }
-
-// Pip value per standard lot (100k units) in USD. Precise for USD-quote & USD-base pairs.
-// Crosses return { value, approx:true } using a quote≈USD approximation.
-function pipValuePerLotUSD(pair, entryPrice) {
-  const pip = pipSizeFor(pair);
-  const [base, quote] = pair.split('/');
-  const perLotInQuote = pip * 100000; // change in quote currency for a 1-pip move on 1 lot
-  if (quote === 'USD') return { value: perLotInQuote, approx: false };           // e.g. EUR/USD → $10
-  if (base === 'USD' && entryPrice > 0) return { value: perLotInQuote / entryPrice, approx: false }; // USD/JPY etc.
-  return { value: perLotInQuote, approx: true };                                  // crosses — approximate
-}
-
-function PositionSizeCalc({ onClose, prefill }) {
-  const saved = (() => { try { return JSON.parse(localStorage.getItem(POS_LS) || '{}'); } catch { return {}; } })();
-  const [balance, setBalance] = useState(saved.balance ?? '');
-  const [riskPct, setRiskPct] = useState(saved.riskPct ?? '1');
-  const [pair, setPair]       = useState(prefill?.pair && FX_PAIRS.includes(prefill.pair) ? prefill.pair : 'EUR/USD');
-  const [entry, setEntry]     = useState(prefill?.entry ?? '');
-  const [sl, setSl]           = useState(prefill?.sl ?? '');
-
-  useEffect(() => { localStorage.setItem(POS_LS, JSON.stringify({ balance, riskPct })); }, [balance, riskPct]);
-
-  const calc = useMemo(() => {
-    const bal = parseFloat(balance), rp = parseFloat(riskPct), e = parseFloat(entry), s = parseFloat(sl);
-    if (!(bal > 0) || !(rp > 0) || !(e > 0) || !(s > 0) || e === s) return null;
-    const pip = pipSizeFor(pair);
-    const stopPips = Math.abs(e - s) / pip;
-    const riskUsd = bal * rp / 100;
-    const pv = pipValuePerLotUSD(pair, e);
-    const perPipPerLot = pv.value;                     // $/pip for 1 standard lot
-    const lots = riskUsd / (stopPips * perPipPerLot);  // standard lots
-    const perPip = lots * perPipPerLot;                // $/pip at this size
-    return { stopPips, riskUsd, lots, units: lots * 100000, perPip, approx: pv.approx };
-  }, [balance, riskPct, pair, entry, sl]);
-
-  const inp = (style={}) => ({ background:'#0f172a', color:'#e2e8f0', border:'1px solid #334155',
-    borderRadius:7, padding:'8px 12px', fontSize:13, outline:'none', width:'100%', boxSizing:'border-box', ...style });
-  const lbl = { fontSize:10, color:'#64748b', fontWeight:700, marginBottom:4, display:'block' };
-
-  return (
-    <div style={{ position:'fixed', inset:0, background:'rgba(0,0,0,0.8)', display:'flex',
-      alignItems:'center', justifyContent:'center', zIndex:1000, padding:16 }}>
-      <div style={{ background:'#0f172a', border:'1px solid #334155', borderRadius:16,
-        width:'100%', maxWidth:440, padding:'20px 22px', maxHeight:'90vh', overflowY:'auto' }}>
-        <div style={{ display:'flex', alignItems:'center', marginBottom:4 }}>
-          <div style={{ fontSize:15, fontWeight:800, color:'#f8fafc', flex:1 }}>🧮 Position Size Calculator</div>
-          <button onClick={onClose} style={{ background:'none', border:'none', color:'#64748b', fontSize:22, cursor:'pointer', lineHeight:1 }}>×</button>
-        </div>
-        <div style={{ fontSize:10, color:'#475569', marginBottom:16 }}>
-          Risk a fixed % so one loss never wipes weeks of gains.
-        </div>
-
-        <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:12, marginBottom:12 }}>
-          <div>
-            <label style={lbl}>Account Balance ($)</label>
-            <input type="number" step="any" placeholder="e.g. 5000" value={balance}
-              onChange={e=>setBalance(e.target.value)} style={inp()}/>
-          </div>
-          <div>
-            <label style={lbl}>Risk per Trade (%)</label>
-            <input type="number" step="any" placeholder="e.g. 1" value={riskPct}
-              onChange={e=>setRiskPct(e.target.value)} style={inp()}/>
-          </div>
-          <div style={{ gridColumn:'1 / -1' }}>
-            <label style={lbl}>Pair</label>
-            <select value={pair} onChange={e=>setPair(e.target.value)} style={inp()}>
-              {FX_PAIRS.map(p => <option key={p}>{p}</option>)}
-            </select>
-          </div>
-          <div>
-            <label style={lbl}>Entry Price</label>
-            <input type="number" step="any" placeholder="e.g. 1.08500" value={entry}
-              onChange={e=>setEntry(e.target.value)} style={inp()}/>
-          </div>
-          <div>
-            <label style={lbl}>Stop Loss</label>
-            <input type="number" step="any" placeholder="e.g. 1.08200" value={sl}
-              onChange={e=>setSl(e.target.value)} style={inp({ border:'1px solid #ef444455' })}/>
-          </div>
-        </div>
-
-        {calc ? (
-          <div style={{ background:'#0b1220', borderRadius:10, padding:'14px 16px', border:'1px solid #1e293b' }}>
-            <div style={{ display:'flex', justifyContent:'space-between', marginBottom:8 }}>
-              <span style={{ fontSize:11, color:'#64748b' }}>Risk amount</span>
-              <span style={{ fontSize:12, fontWeight:700, color:'#f59e0b' }}>${calc.riskUsd.toFixed(2)}</span>
-            </div>
-            <div style={{ display:'flex', justifyContent:'space-between', marginBottom:8 }}>
-              <span style={{ fontSize:11, color:'#64748b' }}>Stop distance</span>
-              <span style={{ fontSize:12, fontWeight:700, color:'#e2e8f0' }}>{calc.stopPips.toFixed(1)} pips</span>
-            </div>
-            <div style={{ display:'flex', justifyContent:'space-between', marginBottom:8 }}>
-              <span style={{ fontSize:11, color:'#64748b' }}>Value per pip</span>
-              <span style={{ fontSize:12, fontWeight:700, color:'#e2e8f0' }}>${calc.perPip.toFixed(2)}/pip</span>
-            </div>
-            <div style={{ height:1, background:'#1e293b', margin:'10px 0' }}/>
-            <div style={{ textAlign:'center' }}>
-              <div style={{ fontSize:10, color:'#64748b', marginBottom:3, textTransform:'uppercase', letterSpacing:1 }}>Position Size</div>
-              <div style={{ fontSize:30, fontWeight:900, color:'#00d4aa', lineHeight:1 }}>{calc.lots.toFixed(2)} <span style={{ fontSize:14 }}>lots</span></div>
-              <div style={{ fontSize:11, color:'#94a3b8', marginTop:4 }}>
-                = {(calc.lots*10).toFixed(1)} mini · {Math.round(calc.units).toLocaleString()} units
-              </div>
-            </div>
-            {calc.approx && (
-              <div style={{ marginTop:10, fontSize:9.5, color:'#f59e0b', lineHeight:1.4 }}>
-                ⚠ Cross pair — pip value approximated (quote currency isn't USD). Verify against your broker before sizing.
-              </div>
-            )}
-          </div>
-        ) : (
-          <div style={{ textAlign:'center', padding:'20px 0', color:'#475569', fontSize:12 }}>
-            Enter balance, risk %, entry and stop to calculate
-          </div>
-        )}
-      </div>
-    </div>
-  );
-}
-
 function ManualTradeForm({ initial, onSave, onCancel }) {
   const blank = { pair:'EUR/USD', direction:'LONG', entry:'', sl:'', tp:'', close:'',
     pnl:'', rr:'', result:'open', session:'', strategy:'', setupSource:'', notes:'', openedAt:'', closedAt:'' };
@@ -908,7 +784,6 @@ function ManualJournal() {
   const [filter,    setFilter]= useState('all');
   const [form,      setForm]  = useState(null); // null | 'new' | {trade obj}
   const [delId,     setDelId] = useState(null);
-  const [showCalc,  setCalc]  = useState(false);
 
   const persist = useCallback((next) => { setRaw(next); saveManual(next); }, []);
 
@@ -992,9 +867,6 @@ function ManualJournal() {
         <div style={{ flex:1, fontSize:11, color:'#475569' }}>
           {trades.length} trades logged manually · stored locally
         </div>
-        <button onClick={()=>setCalc(true)} style={{ padding:'7px 12px', borderRadius:8, marginRight:8,
-          background:'#0f172a', border:'1px solid #00d4aa44', color:'#00d4aa', fontSize:12, fontWeight:700, cursor:'pointer' }}>
-          🧮 Size Calc</button>
         <button onClick={()=>setForm('new')} style={{ padding:'7px 16px', borderRadius:8,
           background:'#00d4aa', border:'none', color:'#080c14', fontSize:12, fontWeight:700, cursor:'pointer' }}>
           + Log Trade</button>
@@ -1161,9 +1033,6 @@ function ManualJournal() {
           )}
         </>
       )}
-
-      {/* Position size calculator */}
-      {showCalc && <PositionSizeCalc onClose={()=>setCalc(false)}/>}
 
       {/* Form modal */}
       {form !== null && (
