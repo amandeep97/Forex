@@ -146,6 +146,7 @@ export default function CommandCenter() {
   const [lastUpdate, setLastUpdate] = useState(null);
   const [cotAvail, setCotAvail] = useState(false);
   const [filter, setFilter] = useState('all');
+  const [newsRadar, setNewsRadar] = useState(null);
 
   useEffect(() => {
     try {
@@ -156,6 +157,35 @@ export default function CommandCenter() {
     const practice = localStorage.getItem('oanda_env') !== 'live';
     if (apiKey) setCreds({ apiKey, practice });
   }, []);
+
+  // Read News Radar (written by the News tab) to flag pairs with imminent events
+  useEffect(() => {
+    const read = () => {
+      try {
+        const r = JSON.parse(localStorage.getItem('news_radar') || 'null');
+        if (r?.currencies) setNewsRadar(r.currencies);
+      } catch {}
+    };
+    read();
+    const id = setInterval(read, 60000);
+    return () => clearInterval(id);
+  }, []);
+
+  // For a pair, return the soonest high-impact event warning across its 2 currencies
+  const newsWarn = useCallback((pair) => {
+    if (!newsRadar) return null;
+    const [base, quote] = pair.split('_');
+    let best = null;
+    [base, quote].forEach(c => {
+      const r = newsRadar[c];
+      if (!r?.nextMs) return;
+      const mins = Math.round((r.nextMs - Date.now()) / 60000);
+      if (mins < 0 || mins > 1440) return; // only within 24h
+      if (r.impact !== 'High') return;
+      if (!best || mins < best.mins) best = { ccy: c, mins, title: r.nextTitle };
+    });
+    return best;
+  }, [newsRadar]);
 
   const oandaFetch = useCallback(async (pair, tf, count) => {
     if (!creds) return [];
@@ -408,6 +438,25 @@ export default function CommandCenter() {
                   </span>
                 )}
               </div>
+
+              {/* News risk warning — imminent high-impact event for this pair */}
+              {(() => {
+                const w = newsWarn(r.pair);
+                if (!w) return null;
+                const cd = w.mins < 1 ? 'NOW' : w.mins < 60 ? `${w.mins}m` : `${Math.floor(w.mins/60)}h ${w.mins%60}m`;
+                const hot = w.mins <= 60;
+                return (
+                  <div title={w.title} style={{
+                    display:'flex', alignItems:'center', gap:5, marginBottom:8,
+                    padding:'4px 7px', borderRadius:5, fontSize:9.5, fontWeight:700,
+                    background: hot ? '#450a0a' : '#1f1300',
+                    color: hot ? '#fca5a5' : '#fbbf24',
+                    border:`1px solid ${hot ? '#7f1d1d' : '#78350f'}`,
+                  }}>
+                    ⚠ {w.ccy} high-impact news in {cd}
+                  </div>
+                );
+              })()}
 
               {/* Confidence bar */}
               <div style={{ marginBottom:8 }}>

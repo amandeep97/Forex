@@ -1,18 +1,81 @@
 'use strict';
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 
-const PROXY        = 'https://corsproxy.io/?';
-const CALENDAR_URL = PROXY + encodeURIComponent('https://nfs.faireconomy.media/ff_calendar_thisweek.json');
+// ── CORS proxies — raced simultaneously, first success wins (resilient) ────────
+const PROXIES = [
+  url => `https://corsproxy.io/?${encodeURIComponent(url)}`,
+  url => `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`,
+  url => `https://thingproxy.freeboard.io/fetch/${url}`,
+];
+
+const CALENDAR_SRC = 'https://nfs.faireconomy.media/ff_calendar_thisweek.json';
+
+// Race all proxies, return first OK response text
+async function proxyFetch(targetUrl, timeout = 12000) {
+  const attempts = PROXIES.map(p => fetch(p(targetUrl), { signal: AbortSignal.timeout(timeout) })
+    .then(async r => { if (!r.ok) throw new Error(`HTTP ${r.status}`); return r.text(); }));
+  return Promise.any(attempts);
+}
 
 const NEWS_FEEDS = [
-  { name: 'Reuters',     url: 'https://feeds.reuters.com/reuters/businessNews',                     color: '#f97316', badge: '🔶' },
-  { name: 'MarketWatch', url: 'https://feeds.marketwatch.com/marketwatch/topstories/',              color: '#22c55e', badge: '📈' },
-  { name: 'CNBC',        url: 'https://www.cnbc.com/id/100003114/device/rss/rss.html',             color: '#3b82f6', badge: '📡' },
-  { name: 'Yahoo Fin',   url: 'https://finance.yahoo.com/rss/topfinstories',                        color: '#8b5cf6', badge: '💹' },
-  { name: 'ForexLive',   url: 'https://forexlive.com/feed/news',                                   color: '#00d4aa', badge: '⚡' },
-  { name: 'FXStreet',    url: 'https://www.fxstreet.com/rss/news',                                 color: '#f59e0b', badge: '🌐' },
-  { name: 'DailyFX',    url: 'https://feeds.dailyfx.com/forex-market-news',                       color: '#ec4899', badge: '📊' },
+  { name: 'ForexLive',   url: 'https://www.forexlive.com/feed/news',                  color: '#00d4aa', badge: '⚡' },
+  { name: 'FXStreet',    url: 'https://www.fxstreet.com/rss/news',                    color: '#f59e0b', badge: '🌐' },
+  { name: 'DailyFX',     url: 'https://www.dailyfx.com/feeds/market-news',            color: '#ec4899', badge: '📊' },
+  { name: 'MarketWatch', url: 'https://feeds.marketwatch.com/marketwatch/topstories/',color: '#22c55e', badge: '📈' },
+  { name: 'CNBC',        url: 'https://www.cnbc.com/id/100003114/device/rss/rss.html',color: '#3b82f6', badge: '📡' },
+  { name: 'Investing',   url: 'https://www.investing.com/rss/news_25.rss',            color: '#8b5cf6', badge: '💹' },
 ];
+
+// ── Currency + sentiment tagging ──────────────────────────────────────────────
+const TRACKED = ['USD','EUR','GBP','JPY','CHF','AUD','NZD','CAD','CNY'];
+
+const CCY_KEYWORDS = {
+  USD: ['fed','fomc','powell','dollar','u.s.','united states','treasury','nonfarm','payroll',' nfp','jerome'],
+  EUR: ['ecb','lagarde','euro','eurozone','germany','german','france','french','bundesbank'],
+  GBP: ['boe','bank of england','bailey','pound','sterling','britain','british','uk '],
+  JPY: ['boj','bank of japan','ueda','yen','japan','japanese','tokyo'],
+  CHF: ['snb','franc','swiss','switzerland'],
+  AUD: ['rba','aussie','australia','australian'],
+  NZD: ['rbnz','kiwi','new zealand'],
+  CAD: ['boc','bank of canada','loonie','canada','canadian','macklem'],
+  CNY: ['pboc','yuan','renminbi','china','chinese','beijing'],
+};
+
+const BULLISH_WORDS = ['hike','hikes','hawkish','raise','raises','raised','tighten','tightening','beat','beats','surge','surges','jump','jumps','rally','rallies','strong','stronger','rises','rose','soar','soars','robust','upbeat','accelerat','outperform','higher-than'];
+const BEARISH_WORDS = ['cut','cuts','dovish','ease','easing','recession','slowdown','slows','miss','misses','plunge','plunges','tumble','tumbles','weak','weaker','falls','fell','slump','contraction','stimulus','downbeat','lower-than','disappoint'];
+
+// Indicators where a HIGHER actual is bearish for the currency
+const INVERSE_INDICATORS = ['unemployment rate','jobless','initial claims','continuing claims','inventories','deficit'];
+
+function detectCurrencies(text) {
+  const t = ' ' + text.toLowerCase() + ' ';
+  const out = [];
+  for (const [ccy, words] of Object.entries(CCY_KEYWORDS)) {
+    if (words.some(w => t.includes(w))) out.push(ccy);
+  }
+  return out;
+}
+
+// Returns +1 bullish, -1 bearish, 0 neutral for a headline
+function detectBias(text) {
+  const t = text.toLowerCase();
+  let score = 0;
+  BULLISH_WORDS.forEach(w => { if (t.includes(w)) score++; });
+  BEARISH_WORDS.forEach(w => { if (t.includes(w)) score--; });
+  return score > 0 ? 1 : score < 0 ? -1 : 0;
+}
+
+// Event directional bias from actual vs forecast (currency strength)
+function eventBias(ev) {
+  if (!ev.actual || !ev.forecast) return 0;
+  const a = parseFloat(String(ev.actual).replace(/[^0-9.-]/g, ''));
+  const f = parseFloat(String(ev.forecast).replace(/[^0-9.-]/g, ''));
+  if (isNaN(a) || isNaN(f) || a === f) return 0;
+  let strong = a > f;
+  const title = (ev.title || '').toLowerCase();
+  if (INVERSE_INDICATORS.some(k => title.includes(k))) strong = !strong;
+  return strong ? 1 : -1;
+}
 
 // Parse RSS XML text into item array using browser DOMParser
 function parseRSS(text) {
@@ -28,14 +91,11 @@ function parseRSS(text) {
   });
 }
 
-const TRACKED = ['USD','EUR','GBP','JPY','CHF','AUD','NZD','CAD','CNY'];
-
 const IMP = {
   High:   { dot: '#ef4444', bg: '#ef444418', border: '#ef444435', text: '#ef4444' },
   Medium: { dot: '#f59e0b', bg: '#f59e0b18', border: '#f59e0b35', text: '#f59e0b' },
   Low:    { dot: '#64748b', bg: '#64748b10', border: '#64748b25', text: '#64748b' },
 };
-
 function impStyle(impact) { return IMP[impact] || IMP.Low; }
 
 function countdown(dateStr) {
@@ -46,7 +106,106 @@ function countdown(dateStr) {
   if (m < 60) return `${m}m`;
   const h = Math.floor(m / 60);
   if (h < 24) return `${h}h ${m % 60}m`;
-  return null;
+  const d = Math.floor(h / 24);
+  return `${d}d ${h % 24}h`;
+}
+
+// ── News Radar: per-currency next event + news bias ───────────────────────────
+function buildRadar(events, newsItems) {
+  const now = Date.now();
+  const radar = {};
+  TRACKED.forEach(c => { radar[c] = { ccy: c, nextMs: null, nextTitle: null, impact: null, bull: 0, bear: 0 }; });
+
+  events.forEach(ev => {
+    if (!radar[ev.country]) return;
+    if (ev.impact !== 'High' && ev.impact !== 'Medium') return;
+    const t = new Date(ev.date).getTime();
+    if (t < now) return;
+    const r = radar[ev.country];
+    // prefer the soonest High; only fall back to Medium if no High yet
+    if (r.nextMs === null || (ev.impact === 'High' && r.impact !== 'High') ||
+        (t < r.nextMs && (ev.impact === r.impact || r.impact !== 'High'))) {
+      r.nextMs = t; r.nextTitle = ev.title; r.impact = ev.impact;
+    }
+  });
+
+  (newsItems || []).forEach(it => {
+    const text = `${it.title} ${it.description || ''}`;
+    const bias = detectBias(text);
+    if (!bias) return;
+    detectCurrencies(text).forEach(c => { if (radar[c]) bias > 0 ? radar[c].bull++ : radar[c].bear++; });
+  });
+
+  return radar;
+}
+
+function persistRadar(radar) {
+  try {
+    const summary = {};
+    Object.values(radar).forEach(r => {
+      summary[r.ccy] = {
+        nextMs: r.nextMs, nextTitle: r.nextTitle, impact: r.impact,
+        newsBias: r.bull - r.bear,
+      };
+    });
+    localStorage.setItem('news_radar', JSON.stringify({ ts: Date.now(), currencies: summary }));
+  } catch {}
+}
+
+// ── Radar strip ───────────────────────────────────────────────────────────────
+function RadarStrip({ radar, selCcy, onSelect }) {
+  const cards = TRACKED.map(c => radar[c]).filter(r => r && (r.nextMs || r.bull || r.bear));
+  // sort: imminent high-impact events first
+  cards.sort((a, b) => {
+    if (a.nextMs && b.nextMs) return a.nextMs - b.nextMs;
+    if (a.nextMs) return -1;
+    if (b.nextMs) return 1;
+    return (b.bull + b.bear) - (a.bull + a.bear);
+  });
+  if (!cards.length) return null;
+
+  return (
+    <div style={{ marginBottom: 14 }}>
+      <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', color: '#475569', marginBottom: 8, textTransform: 'uppercase' }}>
+        📡 News Radar — tap a currency to filter
+      </div>
+      <div style={{ display: 'flex', gap: 7, overflowX: 'auto', paddingBottom: 4 }}>
+        {cards.map(r => {
+          const cd = r.nextMs ? countdown(new Date(r.nextMs).toISOString()) : null;
+          const imminent = cd && (cd === 'NOW' || cd.endsWith('m'));
+          const netBias = r.bull - r.bear;
+          const biasColor = netBias > 0 ? '#22c55e' : netBias < 0 ? '#ef4444' : '#64748b';
+          const active = selCcy === r.ccy;
+          const ring = imminent ? '#ef4444' : r.impact === 'High' ? '#f59e0b' : active ? '#00d4aa' : '#1e293b';
+          return (
+            <button key={r.ccy} onClick={() => onSelect(active ? 'all' : r.ccy)} style={{
+              flexShrink: 0, minWidth: 92, textAlign: 'left', cursor: 'pointer',
+              background: active ? '#00d4aa12' : '#0f172a',
+              border: `1px solid ${ring}${imminent ? '' : '66'}`,
+              borderRadius: 10, padding: '8px 10px',
+              boxShadow: imminent ? '0 0 10px #ef444433' : 'none',
+            }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 5, marginBottom: 4 }}>
+                <span style={{ fontSize: 12, fontWeight: 800, color: '#f1f5f9' }}>{r.ccy}</span>
+                {netBias !== 0 && (
+                  <span style={{ fontSize: 9, fontWeight: 700, color: biasColor }}>
+                    {netBias > 0 ? '▲' : '▼'}{Math.abs(netBias)}
+                  </span>
+                )}
+              </div>
+              {cd ? (
+                <div style={{ fontSize: 10, fontWeight: 700, color: imminent ? '#ef4444' : r.impact === 'High' ? '#f59e0b' : '#94a3b8' }}>
+                  {r.impact === 'High' ? '🔴' : '🟡'} {cd}
+                </div>
+              ) : (
+                <div style={{ fontSize: 10, color: '#475569' }}>no event</div>
+              )}
+            </button>
+          );
+        })}
+      </div>
+    </div>
+  );
 }
 
 // ── Economic calendar event row ───────────────────────────────────────────────
@@ -55,11 +214,13 @@ function EventRow({ ev }) {
   const evDate   = new Date(ev.date);
   const isPast   = evDate < Date.now();
   const cd       = countdown(ev.date);
-  const imminent = cd && cd !== null && (cd === 'NOW' || cd.endsWith('m'));
+  const imminent = cd && (cd === 'NOW' || cd.endsWith('m'));
+  const bias     = isPast ? eventBias(ev) : 0;
 
   const numColor = (actual, forecast) => {
     if (!actual || !forecast) return '#f1f5f9';
-    return parseFloat(actual) >= parseFloat(forecast) ? '#22c55e' : '#ef4444';
+    const b = eventBias(ev);
+    return b > 0 ? '#22c55e' : b < 0 ? '#ef4444' : '#f1f5f9';
   };
 
   return (
@@ -67,22 +228,20 @@ function EventRow({ ev }) {
       padding: '10px 14px', borderRadius: 8, marginBottom: 6,
       background: imminent ? '#1a1f2e' : '#1e293b',
       border: `1px solid ${imminent ? s.border : '#1e293b'}`,
-      opacity: isPast && !ev.actual ? 0.55 : 1,
+      opacity: isPast && !ev.actual ? 0.5 : 1,
     }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 4 }}>
-        {/* Impact dot */}
         <span style={{ width: 8, height: 8, borderRadius: '50%', background: s.dot, flexShrink: 0 }} />
-
-        {/* Currency badge */}
         <span style={{
           fontSize: 10, fontWeight: 700, padding: '1px 6px', borderRadius: 4,
           background: '#0c4a6e33', color: '#38bdf8', border: '1px solid #38bdf825',
         }}>{ev.country}</span>
-
-        {/* Impact label */}
         <span style={{ fontSize: 10, fontWeight: 600, color: s.text }}>{ev.impact}</span>
-
-        {/* Countdown / time */}
+        {bias !== 0 && (
+          <span style={{ fontSize: 10, fontWeight: 700, color: bias > 0 ? '#22c55e' : '#ef4444' }}>
+            {bias > 0 ? `▲ ${ev.country} bullish` : `▼ ${ev.country} bearish`}
+          </span>
+        )}
         <span style={{ marginLeft: 'auto', fontSize: 11, color: imminent ? s.text : '#475569', fontWeight: imminent ? 700 : 400 }}>
           {cd ? cd : evDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
         </span>
@@ -94,16 +253,16 @@ function EventRow({ ev }) {
 
       {(ev.forecast || ev.previous || ev.actual) && (
         <div style={{ display: 'flex', gap: 14, fontSize: 11 }}>
+          {ev.actual && (
+            <span style={{ color: '#64748b' }}>
+              Actual <strong style={{ color: numColor(ev.actual, ev.forecast) }}>{ev.actual}</strong>
+            </span>
+          )}
           {ev.forecast && (
             <span style={{ color: '#64748b' }}>Fcst <strong style={{ color: '#94a3b8' }}>{ev.forecast}</strong></span>
           )}
           {ev.previous && (
             <span style={{ color: '#64748b' }}>Prev <strong style={{ color: '#94a3b8' }}>{ev.previous}</strong></span>
-          )}
-          {ev.actual && (
-            <span style={{ color: '#64748b' }}>
-              Actual <strong style={{ color: numColor(ev.actual, ev.forecast) }}>{ev.actual}</strong>
-            </span>
           )}
         </div>
       )}
@@ -122,18 +281,38 @@ function NewsCard({ item }) {
     return d.toLocaleDateString([], { month: 'short', day: 'numeric' });
   })();
 
+  const text  = `${item.title} ${item.description || ''}`;
+  const ccys  = detectCurrencies(text);
+  const bias  = detectBias(text);
+  const biasColor = bias > 0 ? '#22c55e' : bias < 0 ? '#ef4444' : null;
+
   return (
     <a href={item.link} target="_blank" rel="noopener noreferrer"
       style={{ display: 'block', textDecoration: 'none', marginBottom: 8 }}>
       <div style={{
         padding: '12px 14px', borderRadius: 8, background: '#1e293b',
-        borderLeft: '3px solid #334155', transition: 'border-color 0.15s',
+        borderLeft: `3px solid ${biasColor || '#334155'}`, transition: 'border-color 0.15s',
       }}>
         {item.thumbnail && (
           <img src={item.thumbnail} alt="" style={{
             width: '100%', height: 120, objectFit: 'cover',
             borderRadius: 6, marginBottom: 8,
           }} onError={e => { e.target.style.display = 'none'; }} />
+        )}
+        {(ccys.length > 0 || bias !== 0) && (
+          <div style={{ display: 'flex', gap: 5, marginBottom: 6, flexWrap: 'wrap', alignItems: 'center' }}>
+            {ccys.map(c => (
+              <span key={c} style={{
+                fontSize: 9, fontWeight: 700, padding: '1px 6px', borderRadius: 4,
+                background: '#0c4a6e33', color: '#38bdf8', border: '1px solid #38bdf825',
+              }}>{c}</span>
+            ))}
+            {bias !== 0 && (
+              <span style={{ fontSize: 9, fontWeight: 700, color: biasColor }}>
+                {bias > 0 ? '▲ hawkish/strong' : '▼ dovish/weak'}
+              </span>
+            )}
+          </div>
         )}
         <div style={{ fontSize: 13, fontWeight: 600, color: '#f1f5f9', lineHeight: 1.45, marginBottom: 6 }}>
           {item.title}
@@ -199,12 +378,12 @@ export default function NewsCalendar() {
   const [loading,     setLoad]    = useState(false);
   const [error,       setError]   = useState('');
   const [impact,      setImpact]  = useState('High');
+  const [selCcy,      setSelCcy]  = useState('all');
   const [feedIdx,     setFeedIdx] = useState(0);
   const [finnhubKey,  setFhKey]   = useState(() => getFinnhubKey());
-  const [showFhInput, setShowFh]  = useState(false);
   const [, setTick]               = useState(0);
 
-  // refresh countdown every minute
+  // refresh countdowns every minute
   useEffect(() => {
     const t = setInterval(() => setTick(n => n + 1), 60000);
     return () => clearInterval(t);
@@ -213,11 +392,10 @@ export default function NewsCalendar() {
   const loadCalendar = useCallback(async () => {
     setLoad(true); setError('');
     try {
-      const res  = await fetch(CALENDAR_URL);
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      setEvents(await res.json());
+      const text = await proxyFetch(CALENDAR_SRC);
+      setEvents(JSON.parse(text));
     } catch (e) {
-      setError('Could not load calendar. ' + e.message);
+      setError('Could not load calendar — all proxies failed. ' + (e.message || ''));
     }
     setLoad(false);
   }, []);
@@ -226,10 +404,7 @@ export default function NewsCalendar() {
     setLoad(true); setError('');
     try {
       const feed = NEWS_FEEDS[idx];
-      const proxyUrl = PROXY + encodeURIComponent(feed.url);
-      const res  = await fetch(proxyUrl, { signal: AbortSignal.timeout(12000) });
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      const text = await res.text();
+      const text = await proxyFetch(feed.url);
       const items = parseRSS(text);
       if (!items.length) throw new Error('No articles — feed may have moved');
       cacheNews(items, feed.name);
@@ -240,12 +415,12 @@ export default function NewsCalendar() {
     setLoad(false);
   }, []);
 
-  const loadFinnhub = useCallback(async (key) => {
-    if (!key) { setShowFh(true); return; }
+  const loadFinnhub = useCallback(async (key, cat = 'forex') => {
+    if (!key) return;
     setLoad(true); setError('');
     try {
       localStorage.setItem('finnhub_key', key);
-      const items = await fetchFinnhubNews(key, 'forex');
+      const items = await fetchFinnhubNews(key, cat);
       if (!items.length) throw new Error('No articles returned');
       cacheNews(items, 'Finnhub');
       setNews(items);
@@ -255,16 +430,24 @@ export default function NewsCalendar() {
     setLoad(false);
   }, []);
 
+  // initial + on sub-tab change
   useEffect(() => {
-    if (subTab === 'calendar') loadCalendar();
-    else loadNews(feedIdx);
+    if (subTab === 'calendar') { if (!events.length) loadCalendar(); }
+    else if (subTab === 'news') loadNews(feedIdx);
   }, [subTab]); // eslint-disable-line
+
+  // Always load calendar once on mount so radar works regardless of tab
+  useEffect(() => { loadCalendar(); }, [loadCalendar]);
+
+  // Build + persist radar whenever events/news change
+  const radar = useMemo(() => buildRadar(events, news), [events, news]);
+  useEffect(() => { if (events.length) persistRadar(radar); }, [radar, events.length]);
 
   // Filter & group calendar
   const filtered = events
     .filter(ev => {
       if (!TRACKED.includes(ev.country)) return false;
-      if (impact === 'all') return true;
+      if (selCcy !== 'all' && ev.country !== selCcy) return false;
       if (impact === 'High')   return ev.impact === 'High';
       if (impact === 'Medium') return ev.impact === 'High' || ev.impact === 'Medium';
       return true;
@@ -281,6 +464,11 @@ export default function NewsCalendar() {
 
   const today = new Date().toLocaleDateString([], { weekday: 'long', month: 'short', day: 'numeric' });
   const isToday = k => k === today;
+
+  // News filtered by selected currency
+  const newsFiltered = selCcy === 'all'
+    ? news
+    : news.filter(it => detectCurrencies(`${it.title} ${it.description || ''}`).includes(selCcy));
 
   return (
     <div style={{ paddingBottom: 80, minHeight: '100vh', background: '#0d1117' }}>
@@ -305,6 +493,9 @@ export default function NewsCalendar() {
       </div>
 
       <div style={{ padding: '12px 14px' }}>
+
+        {/* News Radar — always visible */}
+        <RadarStrip radar={radar} selCcy={selCcy} onSelect={setSelCcy} />
 
         {/* Error */}
         {error && (
@@ -336,6 +527,13 @@ export default function NewsCalendar() {
                   border: `1px solid ${impact === f.k ? '#00d4aa35' : '#1e293b'}`,
                 }}>{f.label}</button>
               ))}
+              {selCcy !== 'all' && (
+                <button onClick={() => setSelCcy('all')} style={{
+                  padding: '5px 12px', borderRadius: 20, fontSize: 11, fontWeight: 700,
+                  cursor: 'pointer', whiteSpace: 'nowrap', flexShrink: 0,
+                  background: '#00d4aa18', color: '#00d4aa', border: '1px solid #00d4aa35',
+                }}>{selCcy} ✕</button>
+              )}
               <button onClick={loadCalendar} style={{
                 marginLeft: 'auto', padding: '5px 12px', borderRadius: 20, fontSize: 13,
                 cursor: 'pointer', background: '#0f172a', color: '#475569', border: '1px solid #1e293b', flexShrink: 0,
@@ -344,7 +542,8 @@ export default function NewsCalendar() {
 
             {Object.keys(grouped).length === 0 && !error && (
               <div style={{ textAlign: 'center', padding: 48, color: '#334155', fontSize: 13 }}>
-                No {impact !== 'all' ? impact.toLowerCase() + ' impact ' : ''}events this week
+                No {impact !== 'all' ? impact.toLowerCase() + ' impact ' : ''}events
+                {selCcy !== 'all' ? ` for ${selCcy}` : ''} this week
               </div>
             )}
 
@@ -386,12 +585,14 @@ export default function NewsCalendar() {
               }}>↻</button>
             </div>
 
-            {news.length === 0 && !error && (
+            {newsFiltered.length === 0 && !error && (
               <div style={{ textAlign:'center', padding:48, color:'#334155', fontSize:13 }}>
-                Tap a source above to load headlines
+                {news.length && selCcy !== 'all'
+                  ? `No ${selCcy} headlines in this feed`
+                  : 'Tap a source above to load headlines'}
               </div>
             )}
-            {news.map((item, i) => <NewsCard key={i} item={item} />)}
+            {newsFiltered.map((item, i) => <NewsCard key={i} item={item} />)}
           </>
         )}
 
@@ -422,21 +623,19 @@ export default function NewsCalendar() {
               </div>
               <div style={{ display:'flex', gap:8, marginTop:10, flexWrap:'wrap' }}>
                 {['forex','general','merger'].map(cat => (
-                  <button key={cat} onClick={() => fetchFinnhubNews(finnhubKey, cat).then(items => {
-                    if (items.length) { cacheNews(items, 'Finnhub'); setNews(items); }
-                  }).catch(e => setError(e.message))} style={{
+                  <button key={cat} onClick={() => loadFinnhub(finnhubKey, cat)} style={{
                     padding:'4px 12px', borderRadius:12, fontSize:10, fontWeight:700,
                     cursor:'pointer', background:'#1e293b', color:'#94a3b8', border:'1px solid #334155',
                   }}>{cat === 'forex' ? '💱 Forex' : cat === 'general' ? '📰 General' : '🔀 M&A'}</button>
                 ))}
               </div>
             </div>
-            {news.length === 0 && !error && (
+            {newsFiltered.length === 0 && !error && (
               <div style={{ textAlign:'center', padding:48, color:'#334155', fontSize:13 }}>
                 Enter your free Finnhub key and tap Load
               </div>
             )}
-            {news.map((item, i) => <NewsCard key={i} item={item} />)}
+            {newsFiltered.map((item, i) => <NewsCard key={i} item={item} />)}
           </>
         )}
 
