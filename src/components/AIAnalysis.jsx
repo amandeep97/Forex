@@ -23,7 +23,7 @@ const PROVIDERS = [
     ],
   },
   {
-    id: 'openrouter', label: 'OpenRouter', badge: 'FREE', icon: '🔀', color: '#6366f1',
+    id: 'openrouter', label: 'OpenRouter', badge: 'FREE', icon: '🔀', color: '#6366f1', vision: true,
     keyPlaceholder: 'sk-or-xxxxxxxxxxxx',
     keyHint: 'Free key + free models → openrouter.ai/keys',
     models: [
@@ -35,7 +35,7 @@ const PROVIDERS = [
     ],
   },
   {
-    id: 'gemini', label: 'Gemini', badge: 'FREE', icon: '✦', color: '#4285f4',
+    id: 'gemini', label: 'Gemini', badge: 'FREE', icon: '✦', color: '#4285f4', vision: true,
     keyPlaceholder: 'AIzaSyxxxxxxxxxxxxxxxx',
     keyHint: 'Free key → aistudio.google.com',
     models: [
@@ -45,7 +45,7 @@ const PROVIDERS = [
     ],
   },
   {
-    id: 'claude', label: 'Claude', badge: 'PAID', icon: '◈', color: '#cc785c',
+    id: 'claude', label: 'Claude', badge: 'PAID', icon: '◈', color: '#cc785c', vision: true,
     keyPlaceholder: 'sk-ant-xxxxxxxxxxxx',
     keyHint: 'Paid key → console.anthropic.com',
     models: [
@@ -442,14 +442,33 @@ Rules:
 - Flag contradictions explicitly: e.g. "Scanner says BUY GBP but Currency Strength has GBP weakest this week and COT is net short — contradiction, WAIT"
 - Be concise: bullet points, 2-3 sentences per point. Maximum 2 trade ideas per response.
 - If OANDA not connected, say price data is unavailable but you can still analyse COT/macro/Alpha Lab
-- Never oversell. End uncertain reads with what would need to change for the trade to become valid.`;
+- Never oversell. End uncertain reads with what would need to change for the trade to become valid.
+
+CHART IMAGES: If the user attaches a chart screenshot, read it carefully — identify the pair/timeframe if visible, market structure (HH/HL or LH/LL), key swing highs/lows, any drawn zones or levels, and where price is now relative to them. Then CROSS-CHECK what you see against the deterministic data in context (scanner, COT, strength, Alpha Lab). If the chart and the data disagree, say so. Describe only what is actually visible — never invent price levels you cannot read.`;
+
+// ── Image helpers ─────────────────────────────────────────────────────────────
+// Split a data URL "data:image/png;base64,XXXX" into { mediaType, base64 }
+function parseDataUrl(dataUrl) {
+  const m = /^data:(.*?);base64,(.*)$/s.exec(dataUrl || '');
+  return m ? { mediaType: m[1], base64: m[2] } : null;
+}
+
+// Convert our normalized message (may carry .image dataUrl) to OpenAI multimodal content
+function toOpenAIContent(m) {
+  if (!m.image) return m.content;
+  return [
+    { type: 'text', text: m.content || 'Analyze this chart.' },
+    { type: 'image_url', image_url: { url: m.image } },
+  ];
+}
 
 // ── Streaming generators ──────────────────────────────────────────────────────
 async function* streamOpenAI(url, key, model, messages, extra = {}) {
+  const apiMessages = messages.map(m => ({ role: m.role, content: toOpenAIContent(m) }));
   const res = await fetch(url, {
     method: 'POST',
     headers: { 'Content-Type':'application/json', Authorization:`Bearer ${key}`, ...extra },
-    body: JSON.stringify({ model, messages, stream:true, max_tokens:1400, temperature:0.7 }),
+    body: JSON.stringify({ model, messages: apiMessages, stream:true, max_tokens:1400, temperature:0.7 }),
   });
   if (!res.ok) throw new Error(`${res.status} ${await res.text().catch(()=>res.statusText)}`);
   const reader = res.body.getReader();
@@ -473,7 +492,12 @@ async function* streamGemini(key, model, messages) {
   const sys = messages.find(m => m.role === 'system');
   const contents = messages
     .filter(m => m.role !== 'system')
-    .map(m => ({ role: m.role === 'assistant' ? 'model' : 'user', parts:[{text:m.content}] }));
+    .map(m => {
+      const parts = [{ text: m.content || 'Analyze this chart.' }];
+      const img = m.image ? parseDataUrl(m.image) : null;
+      if (img) parts.push({ inline_data: { mime_type: img.mediaType, data: img.base64 } });
+      return { role: m.role === 'assistant' ? 'model' : 'user', parts };
+    });
   const res = await fetch(
     `https://generativelanguage.googleapis.com/v1beta/models/${model}:streamGenerateContent?alt=sse&key=${key}`,
     { method:'POST', headers:{'Content-Type':'application/json'},
@@ -500,7 +524,14 @@ async function* streamClaude(key, model, messages) {
     body: JSON.stringify({
       model, max_tokens:1400, stream:true,
       system: sys?.content ?? SYS,
-      messages: messages.filter(m=>m.role!=='system').map(m=>({role:m.role,content:m.content})),
+      messages: messages.filter(m=>m.role!=='system').map(m=>{
+        const img = m.image ? parseDataUrl(m.image) : null;
+        if (!img) return { role:m.role, content:m.content };
+        return { role:m.role, content:[
+          { type:'text', text:m.content || 'Analyze this chart.' },
+          { type:'image', source:{ type:'base64', media_type:img.mediaType, data:img.base64 } },
+        ]};
+      }),
     }),
   });
   if (!res.ok) throw new Error(`Claude ${res.status} ${await res.text().catch(()=>res.statusText)}`);
@@ -765,6 +796,7 @@ export default function AIAnalysis() {
   const [apiKeys, setApiKeys]   = useState(() => { try { return JSON.parse(localStorage.getItem('ai_keys')||'{}'); } catch { return {}; } });
   const [messages, setMessages] = useState([]);
   const [input, setInput]       = useState('');
+  const [image, setImage]       = useState(null); // data URL of attached chart
   const [streaming, setStreaming] = useState(false);
   const [context, setContext]   = useState(null);
   const [loadingCtx, setLoadingCtx] = useState(false);
@@ -773,6 +805,7 @@ export default function AIAnalysis() {
   const [error, setError]       = useState('');
   const bottomRef = useRef(null);
   const inputRef  = useRef(null);
+  const fileRef   = useRef(null);
 
   const curProvider = PROVIDERS.find(p => p.id === provider) || PROVIDERS[0];
   const hasKey = !!(apiKeys[provider]?.trim());
@@ -804,28 +837,35 @@ export default function AIAnalysis() {
   useEffect(() => { loadContext(); }, [loadContext]);
 
   // ── Send ──────────────────────────────────────────────────────────────────
-  const send = useCallback(async (text) => {
+  const send = useCallback(async (text, img = null) => {
     const trimmed = text?.trim();
-    if (!trimmed || streaming) return;
+    const attached = img ?? image;
+    if ((!trimmed && !attached) || streaming) return;
     if (!hasKey) { setShowSettings(true); setError('Please enter your API key first'); return; }
+    if (attached && !curProvider.vision) {
+      setError(`${curProvider.label} can't read images. Switch to Gemini, Claude, or OpenRouter (vision model) to analyze charts.`);
+      return;
+    }
     setError('');
 
+    const userText = trimmed || 'Analyze this chart using my live market data context.';
     const uid = Date.now(), aid = Date.now()+1;
     const sysContent = `${SYS}\n\n${context?.text ?? '(Market data unavailable — OANDA not connected)'}`;
     const history = messages.filter(m => m.role !== 'system');
     const apiMsgs = [
       { role:'system', content:sysContent },
       ...history.map(m => ({ role:m.role, content:m.content })),
-      { role:'user', content:trimmed },
+      { role:'user', content:userText, ...(attached ? { image: attached } : {}) },
     ];
 
     setMessages(prev => [
       ...prev,
-      { role:'user',      content:trimmed, id:uid },
-      { role:'assistant', content:'',      id:aid, isStreaming:true },
+      { role:'user',      content:userText, id:uid, image: attached || undefined },
+      { role:'assistant', content:'',       id:aid, isStreaming:true },
     ]);
     setStreaming(true);
     setInput('');
+    setImage(null);
 
     try {
       let gen;
@@ -854,9 +894,17 @@ export default function AIAnalysis() {
       ));
     }
     setStreaming(false);
-  }, [streaming, hasKey, context, messages, provider, model, apiKeys]);
+  }, [streaming, hasKey, context, messages, provider, model, apiKeys, image, curProvider]);
 
   const onSubmit = e => { e.preventDefault(); send(input); };
+
+  const onPickImage = useCallback((file) => {
+    if (!file || !file.type.startsWith('image/')) return;
+    if (file.size > 5 * 1024 * 1024) { setError('Image too large (max 5MB)'); return; }
+    const reader = new FileReader();
+    reader.onload = () => setImage(reader.result);
+    reader.readAsDataURL(file);
+  }, []);
 
   const validateSetup = useCallback((setup) => {
     if (!hasKey) { setShowSettings(true); setError('Please enter your API key first'); return; }
@@ -1027,6 +1075,12 @@ export default function AIAnalysis() {
                   {/* Trade cards first */}
                   {trades.map((t, i) => <TradeCard key={i} trade={t}/>)}
 
+                  {/* Attached chart thumbnail */}
+                  {msg.image && (
+                    <img src={msg.image} alt="chart" style={{ maxWidth:'70%', maxHeight:200, objectFit:'contain',
+                      borderRadius:10, border:'1px solid #00d4aa33', marginBottom:6 }}/>
+                  )}
+
                   {/* Text bubble */}
                   {(display || msg.isStreaming) && (
                     <div style={{ maxWidth:'94%', padding:'10px 13px',
@@ -1060,19 +1114,45 @@ export default function AIAnalysis() {
             </div>
           )}
 
+          {/* Image preview chip */}
+          {image && (
+            <div style={{ padding:'8px 12px 0', display:'flex', alignItems:'center', gap:8, flexShrink:0 }}>
+              <div style={{ position:'relative', display:'inline-block' }}>
+                <img src={image} alt="chart" style={{ height:54, borderRadius:8, border:'1px solid #00d4aa44' }}/>
+                <button onClick={() => setImage(null)} type="button"
+                  style={{ position:'absolute', top:-7, right:-7, width:20, height:20, borderRadius:10, border:'none',
+                    cursor:'pointer', background:'#ef4444', color:'#fff', fontSize:12, fontWeight:700, lineHeight:1 }}>×</button>
+              </div>
+              <span style={{ fontSize:10, color: curProvider.vision ? 'var(--text3)' : '#ef4444' }}>
+                {curProvider.vision ? '📊 Chart attached — ask a question or just send' : `⚠ ${curProvider.label} can't read images`}
+              </span>
+            </div>
+          )}
+
           {/* Input */}
           <form onSubmit={onSubmit}
-            style={{ padding:'10px 12px', borderTop:'1px solid var(--border)', display:'flex', gap:8, flexShrink:0 }}>
+            style={{ padding:'10px 12px', borderTop:'1px solid var(--border)', display:'flex', gap:8, flexShrink:0, alignItems:'center' }}>
+            <input type="file" accept="image/*" ref={fileRef} style={{ display:'none' }}
+              onChange={e => { onPickImage(e.target.files?.[0]); e.target.value=''; }}/>
+            <button type="button" title="Attach a chart screenshot"
+              onClick={() => curProvider.vision ? fileRef.current?.click()
+                : setError(`${curProvider.label} can't read images — switch to Gemini, Claude, or OpenRouter.`)}
+              disabled={streaming || !hasKey}
+              style={{ width:42, height:42, borderRadius:21, flexShrink:0, cursor:(streaming||!hasKey)?'not-allowed':'pointer',
+                fontSize:17, background:'var(--card)', border:`1px solid ${image ? '#00d4aa66' : 'var(--border)'}`,
+                color: image ? '#00d4aa' : 'var(--text3)' }}>
+              📎
+            </button>
             <input ref={inputRef} value={input} onChange={e => setInput(e.target.value)}
               disabled={streaming || !hasKey}
-              placeholder={hasKey ? 'Ask anything about the markets…' : `Enter ${curProvider.label} API key to start`}
+              placeholder={hasKey ? (image ? 'Ask about this chart…' : 'Ask anything, or 📎 a chart…') : `Enter ${curProvider.label} API key to start`}
               style={{ flex:1, padding:'10px 14px', borderRadius:22, fontSize:12,
                 background:'var(--card)', border:'1px solid var(--border)', color:'var(--text)', outline:'none' }}/>
-            <button type="submit" disabled={streaming || !hasKey || !input.trim()}
-              style={{ width:42, height:42, borderRadius:21, border:'none', cursor:'pointer', fontSize:16, fontWeight:700, transition:'all 0.15s',
-                background: (streaming || !hasKey || !input.trim()) ? 'var(--bg2)' : '#00d4aa',
-                color:      (streaming || !hasKey || !input.trim()) ? 'var(--text3)' : '#080c14',
-                boxShadow:  (!streaming && hasKey && input.trim()) ? '0 0 12px #00d4aa55' : 'none' }}>
+            <button type="submit" disabled={streaming || !hasKey || (!input.trim() && !image)}
+              style={{ width:42, height:42, borderRadius:21, border:'none', cursor:'pointer', fontSize:16, fontWeight:700, transition:'all 0.15s', flexShrink:0,
+                background: (streaming || !hasKey || (!input.trim() && !image)) ? 'var(--bg2)' : '#00d4aa',
+                color:      (streaming || !hasKey || (!input.trim() && !image)) ? 'var(--text3)' : '#080c14',
+                boxShadow:  (!streaming && hasKey && (input.trim() || image)) ? '0 0 12px #00d4aa55' : 'none' }}>
               {streaming ? '⟳' : '↑'}
             </button>
           </form>
