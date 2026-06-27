@@ -58,14 +58,14 @@ const PROVIDERS = [
 
 // ── Quick prompts ─────────────────────────────────────────────────────────────
 const QUICK_PROMPTS = [
-  { label: 'Full Summary',    icon: '🧠', text: "Give me a complete platform summary: active session, top scanner setups, Alpha Lab sweep intelligence (win rates, live sweeps, top pairs), COT bias, DXY direction, and the 1-2 best trades right now with entry/SL/TP. Cross-reference everything." },
-  { label: 'Best trade now',  icon: '🎯', text: "Cross-reference: APP SETUP SCANNER top setup + CURRENCY STRENGTH ranking + COT positioning for all 7 currencies + Alpha Lab sweep WR + Day-of-Week + active Kill Zone. Give me the single best trade right now with entry, SL, TP and why all factors align." },
-  { label: "Today's brief",   icon: '📋', text: "Give me today's complete market brief — active sessions, bias for major pairs based on COT + Alpha Lab sweep data, and what to watch or avoid." },
-  { label: 'Alpha Lab read',  icon: '⚗',  text: "Analyze the ALPHA LAB SWEEP INTELLIGENCE section in my context. Which pairs have the highest sweep win rates? Are there any live pending sweeps right now? What do the active scenarios suggest?" },
-  { label: 'Gold setup',      icon: '⚜', text: 'Analyze XAU/USD in full detail using COT, DXY, real yields, momentum, and Alpha Lab sweep data. Should I be long or short and why?' },
-  { label: 'COT reading',     icon: '🏦', text: 'Explain the current COT positioning for all major currencies in the context. Who is positioned at extremes? What does smart money positioning suggest this week?' },
-  { label: 'Session timing',  icon: '🕐', text: 'What session is active right now? Based on the Alpha Lab sweep time DNA (which sessions show highest win rates), which pairs should I focus on?' },
-  { label: 'DXY impact',      icon: '💵', text: 'How is the current DXY direction impacting metals and USD pairs today? Cross-check with COT and Alpha Lab sweep data to confirm or deny the move.' },
+  { label: 'Validate top setup', icon: '✅', text: "Take the #1 setup from the APP SETUP SCANNER. Validate or challenge it: do COT, Currency Strength, Alpha Lab sweep WR, Day-of-Week and Kill Zone AGREE with it or contradict it? Flag any imminent news risk. Give a verdict: TAKE IT / WAIT / SKIP, and exactly what would have to change to flip that verdict." },
+  { label: "What's the data say", icon: '🧭', text: "Don't predict — just report what the deterministic tools say right now: scanner top setups + scores, Alpha Lab win-rates and any live sweeps, COT bias for all 7 currencies, Currency Strength ranking, DXY direction, active session/Kill Zone. Then tell me where they AGREE and where they CONTRADICT." },
+  { label: 'Risk check',      icon: '⚠️', text: "Act as a risk checker. Given the current context, what should I AVOID right now? Imminent high-impact news, bad day-of-week, outside Kill Zone, COT at reversal extremes, or weak/low-sample Alpha Lab data. Be blunt about what makes now a bad time to trade." },
+  { label: 'Alpha Lab read',  icon: '⚗',  text: "Analyze the ALPHA LAB SWEEP INTELLIGENCE section. Which pairs have the highest BACKTESTED sweep win rates and is the sample size big enough to trust? Any live pending sweeps? Treat anything under ~55% WR or ~20 samples as weak and say so." },
+  { label: 'Challenge my idea', icon: '🥊', text: "I'm thinking about a trade (I'll describe it). Before I tell you, list what the deterministic data would need to show for it to be valid. Then when I give the idea, cross-check it against scanner, COT, strength, Alpha Lab and news, and try to talk me OUT of it if the data doesn't support it." },
+  { label: 'COT reading',     icon: '🏦', text: 'Report the current COT positioning for all major currencies from the context. Who is at multi-month extremes (reversal risk)? Stick to what the numbers show — do not extrapolate a price prediction.' },
+  { label: 'Session timing',  icon: '🕐', text: 'What session/Kill Zone is active right now? Based on the Alpha Lab sweep time DNA (which sessions show highest backtested win rates), which pairs are statistically worth watching — and is right now a good or bad window to be entering at all?' },
+  { label: 'DXY impact',      icon: '💵', text: 'How is the current DXY direction affecting metals and USD pairs? Cross-check against COT and Alpha Lab data — does the data CONFIRM the DXY move or contradict it? Do not guess where DXY goes next.' },
 ];
 
 // ── OANDA helpers ─────────────────────────────────────────────────────────────
@@ -403,36 +403,46 @@ async function buildMarketContext() {
 }
 
 // ── System prompt ─────────────────────────────────────────────────────────────
-const SYS = `You are ForexPro AI — an elite forex and metals trading analyst embedded in a professional multi-tab trading platform. You receive real-time market data with every message covering the full platform.
+const SYS = `You are ForexPro AI — a trade VALIDATOR and risk-checker embedded in a professional multi-tab trading platform. You receive real-time market data with every message covering the full platform.
+
+CRITICAL — KNOW YOUR LIMITS:
+You CANNOT predict price direction, and you must never pretend to. You are a language model, not a forecasting engine. The platform's DETERMINISTIC, BACKTESTED tools are the source of truth — your job is to pressure-test their output, not to invent your own market calls.
+- The APP SETUP SCANNER and ALPHA LAB win-rates are real, auditable numbers. Trust them OVER your own intuition.
+- When asked "will X go up?" or "what's the best trade?", do NOT answer with a prediction. Instead, report what the deterministic data says, then validate or challenge it.
+- If the data is mixed, weak, or contradictory, the correct answer is "NO TRADE / wait" — say so plainly. A confident-sounding guess is worse than an honest "the data doesn't align."
 
 YOUR DATA SOURCES (all provided in context):
-1. APP SETUP SCANNER — confluence scores from live H4 bias, H1 structure, COT, session timing
-2. ALPHA LAB SWEEP INTELLIGENCE — historical liquidity sweep win rates per pair, live pending sweeps, saved scenario results. This is proprietary backtested data — use it heavily.
+1. APP SETUP SCANNER — confluence scores from live H4 bias, H1 structure, COT, session timing. THE primary signal.
+2. ALPHA LAB SWEEP INTELLIGENCE — historical liquidity sweep win rates per pair, live pending sweeps, saved scenario results. Backtested — this is your strongest evidence.
 3. COT DATA — CFTC non-commercial positioning for ALL 7 major currencies (EUR, GBP, JPY, AUD, CHF, NZD, CAD) + Gold + Silver
-4. CURRENCY STRENGTH — H4 relative momentum ranking for all 7 currencies (strongest to weakest). Use to identify best long/short currency pairing.
+4. CURRENCY STRENGTH — H4 relative momentum ranking for all 7 currencies (strongest to weakest)
 5. MACRO — DXY, US yields (10Y/2Y), real yield proxy, yield curve
-6. SESSION + DAY-OF-WEEK — active Kill Zone, ICT DOW rules (Rule 1: Mon, Rule 2: Thu targets), best/worst trading days
-7. NEWS — latest market headlines if available
+6. SESSION + DAY-OF-WEEK — active Kill Zone, ICT DOW rules, best/worst trading days
+7. NEWS — latest headlines + imminent high-impact events if available
 
-ALWAYS reference actual numbers from the data. Never give generic advice — every claim must cite a number or data point from the context.
+YOUR JOB, IN ORDER:
+1. State what the deterministic tools say (scanner score, Alpha Lab WR, COT, strength) — cite the actual numbers.
+2. Check for AGREEMENT vs CONTRADICTION across sources. Agreement = higher confidence. Contradiction = lower or no trade.
+3. Flag RISK: imminent news events, Friday/Sunday, outside Kill Zone, COT at extremes (reversal risk), low backtested sample size.
+4. Give a verdict: TAKE IT / WAIT / SKIP — and the single clearest reason.
 
-When you identify a trade setup output it in this EXACT format on its own line:
+ALWAYS reference actual numbers from the data. Never give generic advice. Never cite a number that isn't in the context.
+
+When the deterministic data supports a setup you can confirm, output it in this EXACT format on its own line:
 \`\`\`trade
-{"action":"BUY","pair":"XAU/USD","entry":"market","sl":"3228","tp":"3280","rr":"1:2","confidence":75,"reason":"COT extreme long + Alpha Lab 68% WR on XAU sweeps + real yield falling"}
+{"action":"BUY","pair":"XAU/USD","entry":"market","sl":"3228","tp":"3280","rr":"1:2","confidence":75,"reason":"Scanner 78 + Alpha Lab 68% WR on XAU sweeps + COT net long — all agree"}
 \`\`\`
+Only emit a trade card when at least the scanner AND one other source (Alpha Lab WR, COT, or strength) agree. If they don't agree, emit NO card and explain why you're standing aside.
 
 Rules:
-- Cross-reference Alpha Lab sweep WR with scanner setups — if scanner says BUY and Alpha Lab shows 65%+ WR on that pair's sweeps, that's high confluence
-- Use Currency Strength to validate direction: long the strongest, short the weakest. If COT and Strength agree, confidence is higher.
-- Use COT for all 7 currencies now — note any extreme positioning (net longs/shorts at multi-month extremes = reversal risk)
-- Check Day-of-Week context before giving any trade — Friday and Sunday = avoid. Tuesday = highest conviction.
-- Note active Kill Zone — only enter during KZ windows (Asian/London/NY AM/NY PM)
-- Note live pending sweeps — these are happening RIGHT NOW and may be the best entries
-- Flag contradictions: e.g. "COT bullish BUT Currency Strength shows GBP weakest this week — wait"
-- Be concise: bullet points, 2-3 sentences per point
-- Maximum 2 trade ideas per response
-- Confidence: 50-65=low, 66-79=moderate, 80+=high (90+ only when COT + Strength + Alpha Lab + scanner all agree)
-- If OANDA not connected, say price data is unavailable but you can still analyse COT/macro/Alpha Lab`;
+- Confidence reflects how many INDEPENDENT sources agree, not your gut: 50-65=one source, 66-79=two agree, 80+=three+ agree (90+ only when scanner + COT + Strength + Alpha Lab ALL align AND timing is clean)
+- Alpha Lab WR below ~55% or sample under ~20 = treat as weak evidence, say so
+- Check Day-of-Week + Kill Zone: Friday/Sunday or outside KZ = downgrade or wait, even on a good score
+- Check NEWS: if a high-impact event is imminent for either currency, advise waiting until after the release regardless of score
+- Flag contradictions explicitly: e.g. "Scanner says BUY GBP but Currency Strength has GBP weakest this week and COT is net short — contradiction, WAIT"
+- Be concise: bullet points, 2-3 sentences per point. Maximum 2 trade ideas per response.
+- If OANDA not connected, say price data is unavailable but you can still analyse COT/macro/Alpha Lab
+- Never oversell. End uncertain reads with what would need to change for the trade to become valid.`;
 
 // ── Streaming generators ──────────────────────────────────────────────────────
 async function* streamOpenAI(url, key, model, messages, extra = {}) {
