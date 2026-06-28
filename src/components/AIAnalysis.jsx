@@ -434,6 +434,12 @@ When the deterministic data supports a setup you can confirm, output it in this 
 \`\`\`
 Only emit a trade card when at least the scanner AND one other source (Alpha Lab WR, COT, or strength) agree. If they don't agree, emit NO card and explain why you're standing aside.
 
+TRADE LEVEL RULES (critical — you cannot see live prices, so do NOT fabricate them):
+- Only put exact numbers in entry/sl/tp if they come from the context's live data or the user's chart. If you don't have a real price, set entry to "market" and describe SL/TP as relative (e.g. "SL above the swing high, TP at 2R") rather than inventing digits.
+- If you do give numeric levels: for a LONG, SL must be BELOW entry and TP ABOVE entry; for a SHORT, SL ABOVE entry and TP BELOW entry. Never the reverse.
+- Take profit must give at least 1.5R. Never place TP within a few pips of entry (that is a 0R trade and is wrong).
+- Confidence must be ≤55 whenever R:R is below 1.5. A high-confidence, low-R:R trade is a contradiction — never output one.
+
 Rules:
 - Confidence reflects how many INDEPENDENT sources agree, not your gut: 50-65=one source, 66-79=two agree, 80+=three+ agree (90+ only when scanner + COT + Strength + Alpha Lab ALL align AND timing is clean)
 - Alpha Lab WR below ~55% or sample under ~20 = treat as weak evidence, say so
@@ -586,11 +592,56 @@ function MsgContent({ text }) {
   );
 }
 
+// Validate AI-proposed levels — weak models often fabricate nonsensical entry/SL/TP.
+// Returns { ok, rr, msg }. ok:false → render a warning instead of a real card.
+function analyzeTrade(trade) {
+  const e = parseFloat(trade.entry), s = parseFloat(trade.sl), t = parseFloat(trade.tp);
+  const isLong = ['BUY','LONG'].includes((trade.action || '').toUpperCase());
+  if (!(e > 0) || !(s > 0)) return { ok:true, rr:null };          // market/missing levels — can't validate
+  const risk = Math.abs(e - s);
+  if (risk === 0) return { ok:false, msg:'Stop loss equals entry — no defined risk. Ignore these levels.' };
+  if (isLong ? s >= e : s <= e)
+    return { ok:false, msg:`Stop loss is on the wrong side for a ${isLong ? 'long' : 'short'}. Levels are invalid.` };
+  let rr = null;
+  if (t > 0) {
+    if (isLong ? t <= e : t >= e)
+      return { ok:false, msg:`Take profit is on the wrong side — reward ≈ 0. The model invented bad levels; ignore.` };
+    rr = Math.abs(t - e) / risk;
+    if (rr < 0.3) return { ok:false, msg:'Take profit is almost at entry — reward ≈ 0. The model fabricated levels; ignore.' };
+  }
+  return { ok:true, rr };
+}
+
 // ── Trade card ────────────────────────────────────────────────────────────────
 function TradeCard({ trade }) {
+  const check = analyzeTrade(trade);
+
+  // Reject degenerate AI levels with an honest warning instead of a misleading card
+  if (!check.ok) {
+    return (
+      <div style={{ borderRadius:10, border:'1px solid #ef444455', borderLeft:'4px solid #ef4444',
+        background:'#ef44440d', padding:'12px 14px', marginBottom:6 }}>
+        <div style={{ fontSize:12, fontWeight:800, color:'#ef4444', marginBottom:5 }}>
+          ⚠ AI proposed invalid levels — discard
+        </div>
+        <div style={{ fontSize:10.5, color:'var(--text3)', lineHeight:1.5, marginBottom:6 }}>
+          {trade.action} {trade.pair} · {check.msg}
+        </div>
+        <div style={{ fontSize:9.5, color:'#64748b', lineHeight:1.5 }}>
+          This is the model guessing prices it can't see. Use the <strong>Setup Planner</strong> or your live chart
+          for real entry/SL/TP — or switch to a stronger model (Claude/Gemini) for level work.
+        </div>
+      </div>
+    );
+  }
+
   const col = { BUY:'#22c55e', SELL:'#ef4444', LONG:'#22c55e', SHORT:'#ef4444' }[trade.action?.toUpperCase()] || '#00d4aa';
-  const conf = trade.confidence ?? 0;
+  // Trust computed R:R over the model's claimed rr string; cap confidence to R:R quality
+  const rr = check.rr;
+  let conf = trade.confidence ?? 0;
+  if (rr != null && rr < 1.5 && conf > 60) conf = 55;     // weak R:R can't be high-confidence
   const confCol = conf >= 80 ? '#22c55e' : conf >= 66 ? '#f59e0b' : '#ef4444';
+  const rrCol = rr == null ? col : rr >= 2 ? '#22c55e' : rr >= 1 ? '#f59e0b' : '#ef4444';
   return (
     <div style={{ borderRadius:10, border:`1px solid ${col}55`, borderLeft:`4px solid ${col}`, background:`${col}0d`, padding:'12px 14px', marginBottom:6 }}>
       <div style={{ display:'flex', alignItems:'center', gap:8, marginBottom:10 }}>
@@ -610,7 +661,11 @@ function TradeCard({ trade }) {
           </div>
         ))}
       </div>
-      {trade.rr && <div style={{ fontSize:11, fontWeight:700, color:col, marginBottom:4 }}>Risk:Reward = {trade.rr}</div>}
+      {rr != null
+        ? <div style={{ fontSize:11, fontWeight:700, color:rrCol, marginBottom:4 }}>
+            Risk:Reward = 1 : {rr.toFixed(2)}{rr < 1 ? ' — poor, reward below risk' : ''}
+          </div>
+        : trade.rr && <div style={{ fontSize:11, fontWeight:700, color:col, marginBottom:4 }}>Risk:Reward = {trade.rr}</div>}
       {trade.reason && <div style={{ fontSize:10, color:'var(--text3)', lineHeight:1.5 }}>{trade.reason}</div>}
     </div>
   );
