@@ -30,6 +30,7 @@ const Analytics        = lazy(() => import('./components/Analytics'));
 const DXYDashboard     = lazy(() => import('./components/DXYDashboard'));
 const CommandCenter    = lazy(() => import('./components/CommandCenter'));
 const PositionCalculator = lazy(() => import('./components/PositionCalculator'));
+const Settings           = lazy(() => import('./components/Settings'));
 
 function TabSpinner() {
   return (
@@ -121,6 +122,7 @@ export default function App() {
   const [activeTab, setActiveTab]     = useState('screener');
   const [visitedTabs, setVisitedTabs] = useState(() => new Set(['screener']));
   const [showCalc, setShowCalc]       = useState(false);
+  const [showSettings, setShowSettings] = useState(false);
 
   useEffect(() => {
     const handler = e => {
@@ -205,6 +207,11 @@ export default function App() {
                 color:'#00d4aa', fontSize:17, padding:'5px 10px', lineHeight:1, marginRight:2 }}>
               🧮
             </button>
+            <button onClick={() => setShowSettings(true)} title="Settings & API keys"
+              style={{ background:'#0f172a', border:'1px solid #334155', borderRadius:9, cursor:'pointer',
+                color:'#94a3b8', fontSize:17, padding:'5px 10px', lineHeight:1, marginRight:2 }}>
+              ⚙️
+            </button>
             {brokerConnected && (
               <>
                 <div className={`account-chip ${isReal ? 'account-chip-real' : ''}`}>
@@ -242,6 +249,13 @@ export default function App() {
       {showCalc && (
         <Suspense fallback={null}>
           <PositionCalculator onClose={() => setShowCalc(false)} />
+        </Suspense>
+      )}
+
+      {/* ── Global settings & API keys ────────────────────────────────────── */}
+      {showSettings && (
+        <Suspense fallback={null}>
+          <Settings onClose={() => setShowSettings(false)} />
         </Suspense>
       )}
 
