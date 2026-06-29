@@ -73,6 +73,7 @@ export default function AlertsCenter({ onClose }) {
     if (a.type === 'price')  return `Price ${a.dir === 'above' ? 'crosses above' : a.dir === 'below' ? 'crosses below' : 'touches'} ${a.level}`;
     if (a.type === 'zone')   return `Price enters zone ${a.bottom} – ${a.top}`;
     if (a.type === 'candle') return `${a.tf} candle closes ${a.closeDir} ${a.level}`;
+    if (a.type === 'trendline') return `Price crosses your drawn trendline`;
     return '';
   };
 

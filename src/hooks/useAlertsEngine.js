@@ -44,7 +44,7 @@ export function useAlertsEngine() {
       const inst = instBySym(sym);
       if (!inst) continue;
       const symAlerts = active.filter(a => a.sym === sym);
-      const needPrice = symAlerts.some(a => a.type === 'price' || a.type === 'zone');
+      const needPrice = symAlerts.some(a => a.type === 'price' || a.type === 'zone' || a.type === 'trendline');
       const candleTfs = [...new Set(symAlerts.filter(a => a.type === 'candle').map(a => a.tf))];
 
       let price = null;
@@ -78,6 +78,20 @@ export function useAlertsEngine() {
           zoneInside.current.set(a.id, inside);
           if (inside && was === false) {
             fire(a, price, `Price entered zone ${a.bottom}–${a.top} (now ${price.toFixed(inst.dec)})`);
+            live.lastTriggered = Date.now(); if (!a.repeat) live.enabled = false; changed = true;
+          }
+        }
+
+        if (a.type === 'trendline' && price != null) {
+          // Evaluate the diagonal line's price at "now", fire when price crosses it
+          const slope = (a.p2 - a.p1) / ((a.t2 - a.t1) || 1);
+          const lineP = a.p1 + slope * (Date.now() - a.t1);
+          const prevKey = `tl_${a.id}`;
+          const prevSide = prevPrice.current.get(prevKey);
+          const side = price >= lineP ? 1 : -1;
+          prevPrice.current.set(prevKey, side);
+          if (prevSide != null && prevSide !== side) {
+            fire(a, price, `Price crossed your trendline at ${lineP.toFixed(inst.dec)} (now ${price.toFixed(inst.dec)})`);
             live.lastTriggered = Date.now(); if (!a.repeat) live.enabled = false; changed = true;
           }
         }

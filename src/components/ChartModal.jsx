@@ -7,6 +7,7 @@ import {
   computeEMASeries, computeVWAP, computePOC, computeValueArea,
 } from '../utils/smcHelpers';
 import { detectBOSCHoCH } from '../utils/smcAnalysis';
+import ChartDrawTools from './ChartDrawTools';
 
 const TFS    = ['M1','M5','M15','M30','H1','H2','H4','H6','H12','D','W'];
 const TV_TF  = { M1:'1',M5:'5',M15:'15',M30:'30',H1:'60',H2:'120',H4:'240',H6:'360',H12:'720',D:'D',W:'W' };
@@ -793,7 +794,10 @@ Provide:
               {loading && <div className="cm-state">⟳ Fetching {symbol} {tf} candles…</div>}
               {loadErr && <div className="cm-state cm-err">⚠ {loadErr}</div>}
               {!loading && !loadErr && candles && (
-                <SVGChart candles={candles} symbol={symbol} ov={ov} barCount={barCount} chartH={chartH} setupLevels={setupLevels}/>
+                <div style={{ position:'relative' }}>
+                  <SVGChart candles={candles} symbol={symbol} ov={ov} barCount={barCount} chartH={chartH} setupLevels={setupLevels}/>
+                  <ChartDrawTools candles={candles} symbol={symbol} tf={tf} ov={ov} barCount={barCount} chartH={chartH}/>
+                </div>
               )}
             </div>
           </div>
