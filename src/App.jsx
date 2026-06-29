@@ -1,4 +1,5 @@
 import { useState, useEffect, lazy, Suspense } from 'react';
+import { useAlertsEngine } from './hooks/useAlertsEngine';
 import Screener from './components/Screener';          // eager — default tab
 import { allInstruments } from './data/forexData';
 import './App.css';
@@ -31,6 +32,7 @@ const DXYDashboard     = lazy(() => import('./components/DXYDashboard'));
 const CommandCenter    = lazy(() => import('./components/CommandCenter'));
 const PositionCalculator = lazy(() => import('./components/PositionCalculator'));
 const Settings           = lazy(() => import('./components/Settings'));
+const AlertsCenter       = lazy(() => import('./components/AlertsCenter'));
 
 function TabSpinner() {
   return (
@@ -123,6 +125,9 @@ export default function App() {
   const [visitedTabs, setVisitedTabs] = useState(() => new Set(['screener']));
   const [showCalc, setShowCalc]       = useState(false);
   const [showSettings, setShowSettings] = useState(false);
+  const [showAlerts, setShowAlerts]   = useState(false);
+
+  useAlertsEngine(); // polls prices/candles and fires alerts app-wide
 
   useEffect(() => {
     const handler = e => {
@@ -207,6 +212,11 @@ export default function App() {
                 color:'#00d4aa', fontSize:17, padding:'5px 10px', lineHeight:1, marginRight:2 }}>
               🧮
             </button>
+            <button onClick={() => setShowAlerts(true)} title="Alerts"
+              style={{ background:'#0f172a', border:'1px solid #334155', borderRadius:9, cursor:'pointer',
+                color:'#94a3b8', fontSize:17, padding:'5px 10px', lineHeight:1, marginRight:2 }}>
+              🔔
+            </button>
             <button onClick={() => setShowSettings(true)} title="Settings & API keys"
               style={{ background:'#0f172a', border:'1px solid #334155', borderRadius:9, cursor:'pointer',
                 color:'#94a3b8', fontSize:17, padding:'5px 10px', lineHeight:1, marginRight:2 }}>
@@ -256,6 +266,13 @@ export default function App() {
       {showSettings && (
         <Suspense fallback={null}>
           <Settings onClose={() => setShowSettings(false)} />
+        </Suspense>
+      )}
+
+      {/* ── Global alerts center ──────────────────────────────────────────── */}
+      {showAlerts && (
+        <Suspense fallback={null}>
+          <AlertsCenter onClose={() => setShowAlerts(false)} />
         </Suspense>
       )}
 
