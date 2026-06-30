@@ -750,6 +750,29 @@
       "rrPlanned": 10,
       "session": "overlap",
       "openedAt": "2026-06-30T12:31:02.543Z",
+      "closedAt": "2026-06-30T12:33:31.273024957Z",
+      "closePrice": 58.381,
+      "status": "sl_hit",
+      "pnlPips": -44,
+      "pnlUsd": -0.0633,
+      "rrAchieved": -1.04,
+      "source": "vps_bot",
+      "oandaId": "1241"
+    },
+    {
+      "id": "TMR0MOTF3",
+      "strategyId": "strat_001",
+      "strategyName": "ICT London Long",
+      "pair": "XAG_USD",
+      "direction": "long",
+      "entry": 58.3585,
+      "sl": 58.3825,
+      "tp": 58.5985,
+      "lotSize": 0.01,
+      "units": 1,
+      "rrPlanned": 10,
+      "session": "overlap",
+      "openedAt": "2026-06-30T12:34:02.733Z",
       "closedAt": null,
       "closePrice": null,
       "status": "open",
@@ -757,7 +780,7 @@
       "pnlUsd": null,
       "rrAchieved": null,
       "source": "vps_bot",
-      "oandaId": "1241"
+      "oandaId": null
     }
   ]
 }
