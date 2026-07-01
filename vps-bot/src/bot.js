@@ -9,6 +9,7 @@ const {
 } = require('./utils');
 const { checkIMFilter } = require('./intermarket');
 const { fetchAllCOT, checkCOTFilter } = require('./cotFetcher');
+const { AlertChecker } = require('./alertChecker');
 
 const STRATEGY_PATH = 'bot/strategy.json';
 const TRADES_PATH   = 'bot/trades.json';
@@ -23,6 +24,7 @@ class ForexBot {
     this.tradesSha = null;
     this.cotData   = null;
     this.cotFetchedAt = 0;
+    this.alertChecker = new AlertChecker({ oanda: this.oanda, github: this.github, env, log: this.log.bind(this) });
   }
 
   log(msg)  { console.log(`[${new Date().toISOString()}] ${msg}`); }
@@ -31,6 +33,9 @@ class ForexBot {
 
   async run() {
     this.log('── Tick ──────────────────────');
+
+    // Price/candle/trendline alerts run every tick, independent of trading (works weekends for crypto)
+    await this.alertChecker.check().catch(e => this.warn(`Alert check: ${e.message}`));
 
     if (isWeekend()) { this.log('Weekend — skipped'); return; }
 

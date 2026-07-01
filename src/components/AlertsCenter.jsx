@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { ALERT_INSTRUMENTS, instBySym, fetchPrice } from '../utils/alertFeed';
 import { showBrowserNotification, requestBrowserPermission, sendTelegram } from '../utils/notifications';
 import { loadAlerts, saveAlerts, loadLog, notifCfg, saveNotifCfg, LOG_LS, POLL_MS } from '../hooks/useAlertsEngine';
+import { enableBackgroundPush, disableBackgroundPush, isPushEnabled, syncAlertsToBot, pushSupported } from '../utils/webPush';
 
 // ── UI helpers ────────────────────────────────────────────────────────────────
 const inp = (s={}) => ({ background:'#0f172a', color:'#e2e8f0', border:'1px solid #334155', borderRadius:8,
@@ -28,6 +29,9 @@ export default function AlertsCenter({ onClose }) {
   const [repeat, setRepeat] = useState(false);
   const [cur, setCur]   = useState(null);
   const [permMsg, setPermMsg] = useState('');
+  const [pushOn, setPushOn]   = useState(isPushEnabled);
+  const [pushMsg, setPushMsg] = useState('');
+  const [pushBusy, setPushBusy] = useState(false);
 
   const inst = instBySym(sym);
 
@@ -40,7 +44,21 @@ export default function AlertsCenter({ onClose }) {
   // Show current price when picking instrument
   useEffect(() => { let on = true; setCur(null); fetchPrice(inst).then(p => { if (on) setCur(p); }); return () => { on = false; }; }, [sym]);
 
-  const persist = (next) => { setAlerts(next); saveAlerts(next); };
+  const persist = (next) => { setAlerts(next); saveAlerts(next); if (isPushEnabled()) syncAlertsToBot().catch(() => {}); };
+
+  const toggleBackgroundPush = async () => {
+    setPushBusy(true); setPushMsg('');
+    const r = pushOn ? await disableBackgroundPush() : await enableBackgroundPush();
+    setPushOn(isPushEnabled());
+    setPushMsg((r.ok ? '✓ ' : '✗ ') + r.msg);
+    setPushBusy(false);
+  };
+  const resyncAlerts = async () => {
+    setPushBusy(true);
+    const r = await syncAlertsToBot();
+    setPushMsg((r.ok ? '✓ ' : '✗ ') + r.msg);
+    setPushBusy(false);
+  };
 
   const addAlert = () => {
     const id = `al_${Date.now()}_${Math.random().toString(36).slice(2,6)}`;
@@ -232,6 +250,31 @@ export default function AlertsCenter({ onClose }) {
         {/* ── Notify setup ── */}
         {tab === 'setup' && (
           <>
+            {/* Background push via VPS */}
+            <div style={{ background:'#0d1626', borderRadius:12, padding:'14px 15px', marginBottom:12, border:'1px solid #00d4aa33' }}>
+              <div style={{ fontSize:12, fontWeight:800, color:'#00d4aa', marginBottom:4 }}>🚀 Background push (app closed)</div>
+              <div style={{ fontSize:9.5, color:'#64748b', marginBottom:10, lineHeight:1.5 }}>
+                Your VPS watches prices 24/7 and pushes to this device even when the app is fully closed — no Telegram needed.
+                {pushSupported() ? '' : ' (Not supported on this browser — install the app to your home screen.)'}
+              </div>
+              <button onClick={toggleBackgroundPush} disabled={pushBusy || !pushSupported()} style={{ width:'100%', padding:'9px 0', borderRadius:8,
+                fontSize:12, fontWeight:700, cursor: pushBusy ? 'wait' : 'pointer',
+                background: pushOn ? '#ef444414' : '#00d4aa14', color: pushOn ? '#ef4444' : '#00d4aa',
+                border:`1px solid ${pushOn ? '#ef444444' : '#00d4aa44'}` }}>
+                {pushBusy ? '⟳ Working…' : pushOn ? 'Disable background push' : '🚀 Enable background push on this device'}
+              </button>
+              {pushOn && (
+                <button onClick={resyncAlerts} disabled={pushBusy} style={{ width:'100%', padding:'7px 0', borderRadius:8, marginTop:8,
+                  fontSize:11, fontWeight:700, cursor:'pointer', background:'#1e293b', color:'#94a3b8', border:'1px solid #334155' }}>
+                  ↻ Re-sync my alerts to the VPS
+                </button>
+              )}
+              {pushMsg && <div style={{ fontSize:11, marginTop:8, color: pushMsg.startsWith('✓') ? '#22c55e' : '#ef4444' }}>{pushMsg}</div>}
+              <div style={{ fontSize:9, color:'#475569', marginTop:8, lineHeight:1.5 }}>
+                Needs GitHub connected (⚙️ Settings) so your VPS can read this device's subscription + your alerts. iPhone: must be added to Home Screen.
+              </div>
+            </div>
+
             <div style={{ background:'#0d1626', borderRadius:12, padding:'14px 15px', marginBottom:12, border:'1px solid #14233b' }}>
               <div style={{ fontSize:12, fontWeight:800, color:'#f1f5f9', marginBottom:8 }}>📱 Browser / phone push</div>
               <div style={{ fontSize:10.5, color:'#64748b', marginBottom:10 }}>Permission: <strong style={{ color: perm==='granted'?'#22c55e':'#f59e0b' }}>{perm}</strong></div>
