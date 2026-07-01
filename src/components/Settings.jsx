@@ -11,6 +11,7 @@ function getKey(id) {
   if (id === 'oanda')   { try { const c = JSON.parse(localStorage.getItem('oanda_creds')||'null'); if (c?.apiKey) return c.apiKey; } catch {} return localStorage.getItem('oanda_key') || ''; }
   if (id === 'finnhub') return localStorage.getItem('finnhub_key') || '';
   if (id === 'anthropic') return localStorage.getItem('anthropic_key') || '';
+  if (id === 'github')  return localStorage.getItem('github_pat') || '';
   return '';
 }
 function setKey(id, val) {
@@ -23,6 +24,7 @@ function setKey(id, val) {
   }
   if (id === 'finnhub')   { localStorage.setItem('finnhub_key', val); return; }
   if (id === 'anthropic') { localStorage.setItem('anthropic_key', val); return; }
+  if (id === 'github')    { localStorage.setItem('github_pat', val); return; }
 }
 function getOandaEnv() { return localStorage.getItem('oanda_env') === 'live' ? 'live' : 'practice'; }
 function setOandaEnv(env) {
@@ -71,6 +73,12 @@ async function testKey(id, key) {
       if (!r.ok) return { ok:false, msg:`Rejected (${r.status})` };
       const d = await r.json();
       return d?.c ? { ok:true, msg:'Valid Finnhub key' } : { ok:false, msg:'Key rejected (no data)' };
+    }
+    if (id === 'github') {
+      const r = await fetch('https://api.github.com/user', { headers:{ Authorization:`token ${key}`, Accept:'application/vnd.github.v3+json' }, ...sig });
+      if (!r.ok) return { ok:false, msg:`Rejected (${r.status}) — token invalid or lacks repo scope` };
+      const d = await r.json();
+      return { ok:true, msg: d.login ? `Valid · @${d.login}` : 'Valid GitHub token' };
     }
   } catch (e) {
     return { ok:false, msg:`Couldn't reach API (${e.name === 'TimeoutError' ? 'timeout' : 'network/CORS'})` };
@@ -227,6 +235,15 @@ export default function Settings({ onClose }) {
               <KeyField id="groq"       label="Groq (free · fast)"     placeholder="gsk_…" getUrl="https://console.groq.com/keys"/>
               <KeyField id="openrouter" label="OpenRouter (free models)" placeholder="sk-or-…" getUrl="https://openrouter.ai/keys"/>
               <KeyField id="claude"     label="Claude (paid · best vision)" placeholder="sk-ant-…" getUrl="https://console.anthropic.com/settings/keys"/>
+            </div>
+
+            {/* GitHub — required for background alerts / VPS sync */}
+            <div style={{ background:'#0d1626', borderRadius:12, padding:'14px 15px', marginBottom:12, border:'1px solid #14233b' }}>
+              <div style={{ fontSize:13, fontWeight:800, color:'#f1f5f9', marginBottom:3 }}>🐙 GitHub (background alerts + VPS)</div>
+              <div style={{ fontSize:9.5, color:'#64748b', marginBottom:10, lineHeight:1.5 }}>
+                Required for screen-off push — your alerts + push subscription travel to the VPS through GitHub. Needs a token with <strong>repo</strong> scope.
+              </div>
+              <KeyField id="github" label="GitHub Personal Access Token" placeholder="ghp_…" getUrl="https://github.com/settings/tokens/new"/>
             </div>
 
             {/* Other */}
