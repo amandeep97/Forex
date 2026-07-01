@@ -24,9 +24,10 @@ function dec(sym) {
 }
 
 class AlertChecker {
-  constructor({ oanda, github, env, log }) {
+  constructor({ oanda, github, telegram, env, log }) {
     this.oanda = oanda;
     this.github = github;
+    this.telegram = telegram || null;
     this.env = env;
     this.log = log || (() => {});
     this.prev = new Map();        // sym -> last price (+ tl_<id> sides)
@@ -35,6 +36,8 @@ class AlertChecker {
       webpush.setVapidDetails(env.VAPID_SUBJECT || 'mailto:alerts@forexpro.app', env.VAPID_PUBLIC_KEY, env.VAPID_PRIVATE_KEY);
       this.ready = true;
     } else { this.ready = false; }
+    this.telegramOn = !!(this.telegram && this.telegram.enabled);
+    this.canNotify = this.ready || this.telegramOn;
   }
 
   async _price(sym) {
@@ -77,15 +80,14 @@ class AlertChecker {
   }
 
   async check() {
-    if (!this.ready) return;
+    if (!this.canNotify) return;
     const aFile = await this.github.readJSON(ALERTS_PATH).catch(() => null);
     const alerts = aFile?.content?.alerts || [];
     const active = alerts.filter(a => a.enabled);
     if (!active.length) return;
 
-    const sFile = await this.github.readJSON(SUBS_PATH).catch(() => null);
+    const sFile = this.ready ? await this.github.readJSON(SUBS_PATH).catch(() => null) : null;
     let subs = sFile?.content?.subscriptions || [];
-    if (!subs.length) { this.log('Alerts: no push subscriptions registered'); return; }
 
     const syms = [...new Set(active.map(a => a.sym))];
     let changed = false;
@@ -143,8 +145,10 @@ class AlertChecker {
 
         if (msg) {
           this.log(`ALERT ${sym}: ${msg}`);
-          const { dead } = await this._push(subs, `🔔 ${sym} alert`, msg);
-          dead.forEach(e => allDead.add(e));
+          const tasks = [];
+          if (this.ready && subs.length) tasks.push(this._push(subs, `🔔 ${sym} alert`, msg).then(r => r.dead.forEach(e => allDead.add(e))));
+          if (this.telegramOn) tasks.push(this.telegram.send(`🔔 <b>${sym}</b>\n${msg}`).catch(() => {}));
+          await Promise.all(tasks);
           live.lastTriggered = Date.now();
           if (!a.repeat) live.enabled = false;
           changed = true;

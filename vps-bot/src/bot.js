@@ -24,7 +24,7 @@ class ForexBot {
     this.tradesSha = null;
     this.cotData   = null;
     this.cotFetchedAt = 0;
-    this.alertChecker = new AlertChecker({ oanda: this.oanda, github: this.github, env, log: this.log.bind(this) });
+    this.alertChecker = new AlertChecker({ oanda: this.oanda, github: this.github, telegram: this.telegram, env, log: this.log.bind(this) });
   }
 
   log(msg)  { console.log(`[${new Date().toISOString()}] ${msg}`); }
