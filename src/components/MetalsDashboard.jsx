@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import AIDashboardPanel from './AIDashboardPanel.jsx';
 import ChartModal from './ChartModal.jsx';
 import { detectSweep, detectLiqLevels, detectFVGsAndOBs } from '../utils/smcHelpers.js';
@@ -660,6 +660,135 @@ function ScoreRing({ score, max, label, color }) {
 }
 
 // ── Main component ───────────────────────────────────────────────────────────
+// ── Gold Playbook — personal XAU edge from Alpha Lab data + live conditions ───
+const DOW_ORDER = ['Mon','Tue','Wed','Thu','Fri'];
+
+function readGoldSweeps() {
+  try {
+    const store = JSON.parse(localStorage.getItem('alpha_lab_v2') || '{}');
+    return (store.sweepLog || []).filter(s => s.pair === 'XAU_USD' && s.outcome !== 'pending');
+  } catch { return []; }
+}
+
+function grpWR(sweeps, keyFn, minN = 5) {
+  const g = {};
+  sweeps.forEach(s => {
+    const k = keyFn(s);
+    if (k == null) return;
+    if (!g[k]) g[k] = { t:0, w:0 };
+    g[k].t++;
+    if (s.outcome === 'confirmed') g[k].w++;
+  });
+  return Object.entries(g)
+    .filter(([, d]) => d.t >= minN)
+    .map(([k, d]) => ({ key:k, t:d.t, wr:Math.round(d.w / d.t * 100) }))
+    .sort((a, b) => b.wr - a.wr);
+}
+
+function GoldPlaybook({ sig, cotSig }) {
+  const sweeps = useMemo(readGoldSweeps, []);
+  const stats = useMemo(() => {
+    if (!sweeps.length) return null;
+    const wins = sweeps.filter(s => s.outcome === 'confirmed');
+    const wr = Math.round(wins.length / sweeps.length * 100);
+    const avgP = wins.length ? Math.round(wins.reduce((a, s) => a + (s.pipsMoved || 0), 0) / wins.length) : 0;
+    const hours = grpWR(sweeps, s => s.utcHour, 5).slice(0, 3);
+    const dows = grpWR(sweeps, s => s.dow ?? DOW_ORDER[new Date(s.time).getUTCDay() - 1], 5);
+    const compressed = grpWR(sweeps, s => s.compressed == null ? null : (s.compressed ? 'coiled' : 'loose'), 5);
+    const aligned = grpWR(sweeps, s => s.htfAligned == null ? null : (s.htfAligned ? 'with-trend' : 'counter'), 5);
+    return { n: sweeps.length, wr, avgP, hours, dows, compressed, aligned };
+  }, [sweeps]);
+
+  // Live checklist
+  const kz = getCurrentKillzone();
+  const nextKz = getNextKillzone();
+  const goodKz = kz && /London KZ|NY AM/.test(kz.name);
+  const day = DOW_ORDER[new Date().getUTCDay() - 1] || null; // null on Sat/Sun
+  const bestDay = stats?.dows?.[0]?.key;
+
+  // Macro alignment: DXY falling + real yields bullish = bullish gold, both opposite = bearish
+  const dxyBull = sig.dxy === 'falling';
+  const ryBull  = sig.realYieldSignal === 'bullish';
+  const macroBias = dxyBull && ryBull ? 'BULLISH' : (!dxyBull && !ryBull && sig.dxy && sig.realYieldSignal) ? 'BEARISH' : 'MIXED';
+  const cotBull = cotSig?.bias === 'bullish';
+
+  // News risk from the radar the News tab persists
+  const newsWarn = (() => {
+    try {
+      const r = JSON.parse(localStorage.getItem('news_radar') || 'null');
+      const usd = r?.currencies?.USD;
+      if (!usd?.nextMs || usd.impact !== 'High') return null;
+      const mins = Math.round((usd.nextMs - Date.now()) / 60000);
+      return (mins >= 0 && mins <= 120) ? { mins, title: usd.nextTitle } : null;
+    } catch { return null; }
+  })();
+
+  const rows = [
+    { l:'Macro (DXY + real yields)',
+      ok: macroBias !== 'MIXED', warn: macroBias === 'MIXED',
+      txt: macroBias === 'MIXED' ? 'Drivers disagree — chop risk, wait' : `Aligned ${macroBias} — trade only this direction` },
+    cotSig ? { l:'COT smart money', ok: true, warn: false,
+      txt: `${cotBull ? 'Net long ▲' : 'Net short ▼'}${cotSig.pct != null ? ` (${cotSig.pct}th pct)` : ''}${macroBias !== 'MIXED' && ((macroBias === 'BULLISH') !== cotBull) ? ' — conflicts with macro' : ''}` } : null,
+    { l:'Killzone timing',
+      ok: !!goodKz, warn: !goodKz,
+      txt: goodKz ? `${kz.name} active — gold's best window` : kz ? `${kz.name} — weak window for gold` : `No KZ — next: ${nextKz?.name} in ${Math.floor((nextKz?.minsUntil||0)/60)}h ${(nextKz?.minsUntil||0)%60}m` },
+    { l:'Day of week',
+      ok: day && day !== 'Fri', warn: !day || day === 'Fri',
+      txt: !day ? 'Weekend — market closed' : day === 'Fri' ? 'Friday — trap day, reduce size or skip' : `${day}${bestDay ? ` · your best day: ${bestDay} (${stats.dows[0].wr}%)` : ''}` },
+    { l:'News risk (USD)',
+      ok: !newsWarn, warn: !!newsWarn,
+      txt: newsWarn ? `⚠ High-impact USD event in ${newsWarn.mins}m — gold spikes hardest on news. WAIT.` : 'No imminent high-impact USD event' },
+  ].filter(Boolean);
+
+  const passCount = rows.filter(r => r.ok).length;
+  const verdict = newsWarn || macroBias === 'MIXED' ? 'WAIT' : passCount >= 4 ? 'HUNT SETUPS' : passCount >= 3 ? 'SELECTIVE' : 'STAND ASIDE';
+  const vColor = verdict === 'HUNT SETUPS' ? '#22c55e' : verdict === 'SELECTIVE' ? '#f59e0b' : '#ef4444';
+
+  const box = { background:'var(--card, #0d1626)', border:'1px solid #fbbf2433', borderRadius:12, padding:'14px 16px', marginBottom:14 };
+  const chip = (txt, c) => (
+    <span key={txt} style={{ fontSize:10, fontWeight:700, padding:'2px 8px', borderRadius:10, color:c, background:`${c}16`, border:`1px solid ${c}33` }}>{txt}</span>
+  );
+
+  return (
+    <div style={box}>
+      <div style={{ display:'flex', alignItems:'center', gap:8, marginBottom:4, flexWrap:'wrap' }}>
+        <span style={{ fontSize:13, fontWeight:800, color:'#fbbf24' }}>🏆 Gold Playbook</span>
+        <span style={{ fontSize:9, color:'var(--text3)' }}>your backtested XAU edge + live conditions</span>
+        <span style={{ marginLeft:'auto', fontSize:11, fontWeight:900, padding:'3px 12px', borderRadius:10,
+          color:vColor, background:`${vColor}16`, border:`1px solid ${vColor}44` }}>{verdict}</span>
+      </div>
+
+      {/* Your edge — from Alpha Lab */}
+      {stats ? (
+        <div style={{ display:'flex', gap:6, flexWrap:'wrap', margin:'8px 0 10px' }}>
+          {chip(`${stats.wr}% sweep WR · ${stats.n} trades`, stats.wr >= 60 ? '#22c55e' : '#f59e0b')}
+          {stats.avgP > 0 && chip(`avg +${stats.avgP}p after win`, '#38bdf8')}
+          {stats.hours.map(h => chip(`best ${String(h.key).padStart(2,'0')}:00 UTC · ${h.wr}% (${h.t})`, '#a78bfa'))}
+          {stats.compressed[0]?.key === 'coiled' && chip(`coiled pre-sweep: ${stats.compressed[0].wr}%`, '#f97316')}
+          {stats.aligned[0]?.key === 'with-trend' && chip(`with-trend: ${stats.aligned[0].wr}%`, '#22c55e')}
+        </div>
+      ) : (
+        <div style={{ fontSize:10, color:'var(--text3)', margin:'8px 0 10px' }}>
+          No XAU sweep history yet — run "Load History" in Alpha Lab to unlock your personal gold stats.
+        </div>
+      )}
+
+      {/* Live checklist */}
+      {rows.map(r => (
+        <div key={r.l} style={{ display:'flex', alignItems:'flex-start', gap:8, padding:'5px 0', borderBottom:'1px solid #ffffff08' }}>
+          <span style={{ fontSize:11, flexShrink:0, width:14 }}>{r.ok ? '✅' : '⚠️'}</span>
+          <span style={{ fontSize:10, fontWeight:700, color:'var(--text2, #94a3b8)', width:140, flexShrink:0 }}>{r.l}</span>
+          <span style={{ fontSize:10.5, color: r.warn ? '#f59e0b' : 'var(--text3, #64748b)', lineHeight:1.45 }}>{r.txt}</span>
+        </div>
+      ))}
+
+      <div style={{ fontSize:9, color:'var(--text3)', marginTop:8, lineHeight:1.5 }}>
+        Rules: trade gold only when macro is aligned, in London/NY-AM KZ, after a liquidity sweep · size with 🧮 at ≤1% · never hold through red USD news.
+      </div>
+    </div>
+  );
+}
+
 export default function MetalsDashboard() {
   const [chartInstrument, setChartInstrument] = useState(null);
   const [mkt, setMkt]         = useState(null);
@@ -1209,6 +1338,9 @@ export default function MetalsDashboard() {
             h1Candles={h1ohlc?.silver}
           />
         </div>
+
+        {/* ── Gold Playbook — personal edge + live conditions ──────────────── */}
+        <GoldPlaybook sig={sig} cotSig={cotSig.gold} />
 
         {/* ── Confluence Score Row ─────────────────────────────────────────── */}
         <div style={{ display:'flex', gap:12, marginBottom:14, flexWrap:'wrap' }}>
