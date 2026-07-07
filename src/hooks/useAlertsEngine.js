@@ -1,7 +1,8 @@
 'use strict';
 import { useEffect, useRef, useCallback } from 'react';
-import { instBySym, fetchPrice, fetchLastClosed } from '../utils/alertFeed';
+import { instBySym, fetchPrice, fetchLastClosed, fetchRecentCandles } from '../utils/alertFeed';
 import { showBrowserNotification, sendTelegram } from '../utils/notifications';
+import { detectStrongReversal } from '../utils/candlePatterns';
 
 export const ALERTS_LS = 'forex_alerts_v1';
 export const LOG_LS    = 'forex_alert_log_v1';
@@ -46,6 +47,7 @@ export function useAlertsEngine() {
       const symAlerts = active.filter(a => a.sym === sym);
       const needPrice = symAlerts.some(a => a.type === 'price' || a.type === 'zone' || a.type === 'trendline');
       const candleTfs = [...new Set(symAlerts.filter(a => a.type === 'candle').map(a => a.tf))];
+      const patTfs    = [...new Set(symAlerts.filter(a => a.type === 'pattern').map(a => a.tf))];
 
       let price = null;
       if (needPrice) price = await fetchPrice(inst);
@@ -54,6 +56,8 @@ export function useAlertsEngine() {
 
       const closes = {};
       for (const tf of candleTfs) closes[tf] = await fetchLastClosed(inst, tf);
+      const series = {};
+      for (const tf of patTfs) series[tf] = await fetchRecentCandles(inst, tf, 14);
 
       for (const a of symAlerts) {
         const live = all.find(x => x.id === a.id);
@@ -104,6 +108,23 @@ export function useAlertsEngine() {
             if (cond) {
               fire(a, cd.c, `${a.tf} candle CLOSED ${a.closeDir} ${a.level} (close ${cd.c.toFixed(inst.dec)})`);
               live.lastTriggered = Date.now(); if (!a.repeat) live.enabled = false;
+            }
+          }
+        }
+
+        if (a.type === 'pattern') {
+          const s = series[a.tf];
+          if (s && s.length) {
+            const last = s[s.length - 1];
+            if (a.lastCandleT == null || last.t > a.lastCandleT) {
+              live.lastCandleT = last.t; changed = true;
+              const pat = detectStrongReversal(s, s.length - 1, a.N || 5);
+              const want = a.pattern || 'both';
+              if (pat && (want === 'both' || want === pat)) {
+                const label = pat === 'hammer' ? 'Strong Hammer 🔨 (bullish sweep)' : 'Strong Shooting Star ⭐ (bearish sweep)';
+                fire(a, last.c, `${a.tf} ${label} — swept the ${a.N || 5}-candle ${pat === 'hammer' ? 'low' : 'high'} and reversed (${last.c.toFixed(inst.dec)})`);
+                live.lastTriggered = Date.now(); if (!a.repeat) live.enabled = false;
+              }
             }
           }
         }

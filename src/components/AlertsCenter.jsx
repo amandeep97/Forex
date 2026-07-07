@@ -4,6 +4,7 @@ import { ALERT_INSTRUMENTS, instBySym, fetchPrice } from '../utils/alertFeed';
 import { showBrowserNotification, requestBrowserPermission, sendTelegram } from '../utils/notifications';
 import { loadAlerts, saveAlerts, loadLog, notifCfg, saveNotifCfg, LOG_LS, POLL_MS } from '../hooks/useAlertsEngine';
 import { enableBackgroundPush, disableBackgroundPush, isPushEnabled, syncAlertsToBot, pushSupported } from '../utils/webPush';
+import { getPatternN, setPatternN } from '../utils/candlePatterns';
 
 // ── UI helpers ────────────────────────────────────────────────────────────────
 const inp = (s={}) => ({ background:'#0f172a', color:'#e2e8f0', border:'1px solid #334155', borderRadius:8,
@@ -26,6 +27,8 @@ export default function AlertsCenter({ onClose }) {
   const [bottom, setBottom] = useState('');
   const [tf, setTf]     = useState('H1');
   const [closeDir, setCloseDir] = useState('above');
+  const [patternKind, setPatternKind] = useState('both'); // both | hammer | star
+  const [patN, setPatN] = useState(() => getPatternN());
   const [repeat, setRepeat] = useState(false);
   const [cur, setCur]   = useState(null);
   const [permMsg, setPermMsg] = useState('');
@@ -67,6 +70,7 @@ export default function AlertsCenter({ onClose }) {
     if (type === 'price') { if (!(parseFloat(level) > 0)) return; a = { ...base, level:parseFloat(level), dir }; }
     if (type === 'zone')  { const t=parseFloat(top), b=parseFloat(bottom); if (!(t>0)||!(b>0)) return; a = { ...base, top:Math.max(t,b), bottom:Math.min(t,b) }; }
     if (type === 'candle'){ if (!(parseFloat(level) > 0)) return; a = { ...base, tf, closeDir, level:parseFloat(level), lastCandleT:null }; }
+    if (type === 'pattern'){ const N = setPatternN(patN); a = { ...base, tf, pattern:patternKind, N, lastCandleT:null }; }
     if (!a) return;
     persist([a, ...alerts]);
     setLevel(''); setTop(''); setBottom('');
@@ -92,10 +96,11 @@ export default function AlertsCenter({ onClose }) {
     if (a.type === 'zone')   return `Price enters zone ${a.bottom} – ${a.top}`;
     if (a.type === 'candle') return `${a.tf} candle closes ${a.closeDir} ${a.level}`;
     if (a.type === 'trendline') return `Price crosses your drawn trendline`;
+    if (a.type === 'pattern') return `${a.tf} ${a.pattern === 'hammer' ? 'Strong Hammer 🔨' : a.pattern === 'star' ? 'Strong Shooting Star ⭐' : 'Strong Hammer/Star ⚡'} (${a.N || 5}-bar sweep)`;
     return '';
   };
 
-  const TYPES = [['price','🎯 Price level'],['candle','🕯️ Candle close'],['zone','✏️ Line / Zone']];
+  const TYPES = [['price','🎯 Price'],['pattern','⚡ Strong candle'],['candle','🕯️ Candle close'],['zone','✏️ Line / Zone']];
   const perm = typeof Notification !== 'undefined' ? Notification.permission : 'unsupported';
 
   return (
@@ -179,6 +184,30 @@ export default function AlertsCenter({ onClose }) {
                 </div>
                 <label style={lbl}>Price level</label>
                 <input type="number" step="any" value={level} onChange={e=>setLevel(e.target.value)} placeholder="e.g. 1.08500" style={{ ...inp(), marginBottom:12 }}/>
+              </>
+            )}
+
+            {type === 'pattern' && (
+              <>
+                <label style={lbl}>Which pattern</label>
+                <div style={{ display:'flex', gap:6, marginBottom:10 }}>
+                  {[['both','⚡ Both'],['hammer','🔨 Strong Hammer'],['star','⭐ Shooting Star']].map(([id,l]) => (
+                    <button key={id} onClick={()=>setPatternKind(id)} style={{ flex:1, padding:'7px 0', borderRadius:7, fontSize:10, fontWeight:700,
+                      cursor:'pointer', border:`1px solid ${patternKind===id?'#22d3ee66':'#1e293b'}`, background:patternKind===id?'#22d3ee14':'#0f172a',
+                      color:patternKind===id?'#22d3ee':'#64748b' }}>{l}</button>
+                  ))}
+                </div>
+                <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:10, marginBottom:10 }}>
+                  <div><label style={lbl}>Timeframe</label>
+                    <select value={tf} onChange={e=>setTf(e.target.value)} style={inp()}>
+                      {['M15','M30','H1','H4','D'].map(t => <option key={t}>{t}</option>)}
+                    </select></div>
+                  <div><label style={lbl}>Range = last N candles</label>
+                    <input type="number" min="2" max="30" value={patN} onChange={e=>setPatN(e.target.value)} style={inp()}/></div>
+                </div>
+                <div style={{ fontSize:9.5, color:'#475569', marginBottom:12, lineHeight:1.5 }}>
+                  Fires when a candle's wick clears the whole last-{patN} range and closes back inside (a full-range liquidity sweep). N also controls the chart markers.
+                </div>
               </>
             )}
 

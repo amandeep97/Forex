@@ -7,6 +7,7 @@ import {
   computeEMASeries, computeVWAP, computePOC, computeValueArea,
 } from '../utils/smcHelpers';
 import { detectBOSCHoCH } from '../utils/smcAnalysis';
+import { findStrongReversals, getPatternN } from '../utils/candlePatterns';
 import ChartDrawTools from './ChartDrawTools';
 
 const TFS    = ['M1','M5','M15','M30','H1','H2','H4','H6','H12','D','W'];
@@ -56,9 +57,9 @@ const OV_DEFS = [
   {k:'liq',   l:'LIQ',    c:'#c084fc'}, {k:'bos',    l:'BOS/CoC', c:'#38bdf8'},
   {k:'fib',   l:'Auto Fib',c:'#e879f9'},{k:'vol',    l:'Volume',  c:'#64748b'},
   {k:'piv',   l:'Pivots',  c:'#e0c97a'},{k:'vah',    l:'VAH',     c:'#22c55e'},
-  {k:'val',   l:'VAL',     c:'#ef4444'},
+  {k:'val',   l:'VAL',     c:'#ef4444'},{k:'strev',  l:'⚡H/SS',   c:'#22d3ee'},
 ];
-const DEFAULT_OV = { ema20:true,ema50:true,ema200:false,vwap:true,poc:false,fvg:true,ob:true,sr:true,tl:true,zones:true,sweep:true,swings:false,liq:false,bos:true,fib:false,vol:true,piv:false,vah:false,val:false };
+const DEFAULT_OV = { ema20:true,ema50:true,ema200:false,vwap:true,poc:false,fvg:true,ob:true,sr:true,tl:true,zones:true,sweep:true,swings:false,liq:false,bos:true,fib:false,vol:true,piv:false,vah:false,val:false,strev:true };
 
 function loadSavedOv() {
   try {
@@ -115,6 +116,7 @@ function SVGChart({ candles, symbol, ov, barCount, chartH, setupLevels }) {
   const { bsl=[], ssl=[] } = ov.liq ? detectLiqLevels(vis) : {};
   const swings = ov.swings ? computeSwings(vis) : null;
   const bosArr = ov.bos    ? detectBOSCHoCH(vis) : [];
+  const strevs = ov.strev  ? findStrongReversals(vis, getPatternN()) : [];
 
   // Always compute zone boundaries (even when zones overlay is off) for the live zone badge
   const last  = vis[nv-1];
@@ -336,6 +338,22 @@ function SVGChart({ candles, symbol, ov, barCount, chartH, setupLevels }) {
             fill={b.direction==='bullish'?'#38bdf8':'#f472b6'}>{b.label}</text>
         </g>
       ))}
+
+      {/* Strong Hammer / Shooting Star (full-range sweep) */}
+      {ov.strev && strevs.map(({ i, type }) => {
+        const c = vis[i];
+        const bull = type === 'hammer';
+        const x = xOf(i);
+        const col = bull ? '#22c55e' : '#ef4444';
+        const my = bull ? yOf(c.l) + 6 : yOf(c.h) - 6;   // below wick / above wick
+        const ty = bull ? my + 12 : my - 6;
+        return (
+          <g key={`strev${i}`}>
+            <text x={x} y={my} fontSize={12} fontWeight="900" textAnchor="middle" fill={col}>{bull ? '▲' : '▼'}</text>
+            <text x={x} y={ty} fontSize={6.5} fontWeight="700" textAnchor="middle" fill={col}>{bull ? 'SH' : 'SS'}</text>
+          </g>
+        );
+      })}
 
       {/* POC */}
       {ov.poc && poc && <>

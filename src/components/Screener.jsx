@@ -2,7 +2,7 @@ import { useState, useMemo, useEffect } from 'react';
 import { allInstruments, ASSET_TYPES, FOREX_CATEGORIES, SIGNALS, ASSET_COLORS, DEFAULT_FILTERS } from '../data/forexData';
 import { useLivePrices, OANDA_MAP } from '../hooks/useLivePrices';
 import { generateCandles } from '../utils/generateCandles';
-import { detectCandlePatterns } from '../utils/candlePatterns';
+import { detectCandlePatterns, detectStrongReversal, getPatternN } from '../utils/candlePatterns';
 import { analyzeSMC } from '../utils/smcAnalysis';
 import { computeRSI, computeMFI, computeEMA, computeMACD, detectRSIDivergence, detectEqualHighsLows } from '../utils/indicatorCalc';
 import { computeVWAP, detectFVGsAndOBs, detectLiqLevels, computePOC, computeValueArea } from '../utils/smcHelpers';
@@ -271,6 +271,7 @@ export default function Screener() {
   const [sortKey, setSortKey]           = useState('symbol');
   const [sortDir, setSortDir]           = useState('asc');
   const [signalFilter, setSignalFilter] = useState('All');
+  const [strevFilter, setStrevFilter]   = useState('All'); // All | any | hammer | star
   const [subCategory, setSubCategory]   = useState('All');
   const [chartInstrument, setChartInstrument] = useState(null);
   const [levelsInst, setLevelsInst] = useState(null);
@@ -502,6 +503,7 @@ export default function Screener() {
           patternType: patterns.length===0?'neut':
                        patterns.some(p=>p.type==='bullish')?'bull':
                        patterns.some(p=>p.type==='bearish')?'bear':'neut',
+          strongRev:   detectStrongReversal(candles, candles.length-1, getPatternN()),
           // New computed fields
           ema20, ema50, ema100, ema200, prevEma20, prevEma50, prevEma200,
           macdCrossUp: macd.crossUp, macdCrossDown: macd.crossDown,
@@ -564,6 +566,10 @@ export default function Screener() {
     if (f.baseCurrency && f.baseCurrency !== 'All')
       list = list.filter(i => i.symbol.split('/')[0] === f.baseCurrency);
     if (signalFilter !== 'All') list = list.filter(i => i.signal === signalFilter);
+    if (strevFilter !== 'All') list = list.filter(i => {
+      const sr = a[i.id]?.strongRev;
+      return strevFilter === 'any' ? !!sr : sr === strevFilter;
+    });
     if (f.search?.trim()) {
       const q = f.search.trim().toUpperCase();
       list = list.filter(i => i.symbol.toUpperCase().includes(q));
@@ -722,7 +728,7 @@ export default function Screener() {
       if(av>bv) return sortDir==='asc'?1:-1;
       return 0;
     });
-  }, [instrumentsWithLive, analysis, filters, signalFilter, sortKey, sortDir, subCategory, subCategories]);
+  }, [instrumentsWithLive, analysis, filters, signalFilter, strevFilter, sortKey, sortDir, subCategory, subCategories]);
 
   const total   = filtered.length;
   const bullish = filtered.filter(p=>['STRONG_BUY','BUY'].includes(p.signal)).length;
@@ -839,6 +845,22 @@ export default function Screener() {
             {s==='All'?'All Signals':SIGNALS[s]?.label}
           </button>
         ))}
+      </div>
+
+      {/* ── Strong candle (full-range sweep) filter ─────────────────────────── */}
+      <div style={{ display:'flex', gap:6, padding:'6px 10px', overflowX:'auto', alignItems:'center' }}>
+        <span style={{ fontSize:9, fontWeight:700, color:'#475569', flexShrink:0, letterSpacing:'0.05em' }}>⚡ STRONG CANDLE</span>
+        {[['All','All'],['any','Any sweep'],['hammer','🔨 Hammer'],['star','⭐ Star']].map(([v,l]) => {
+          const active = strevFilter === v;
+          const col = v==='hammer' ? '#22c55e' : v==='star' ? '#ef4444' : '#22d3ee';
+          return (
+            <button key={v} onClick={()=>setStrevFilter(v)} style={{
+              flexShrink:0, padding:'4px 11px', borderRadius:14, fontSize:10, fontWeight:700, cursor:'pointer',
+              border:`1px solid ${active && v!=='All' ? col+'66' : '#1e293b'}`,
+              background: active && v!=='All' ? col+'18' : active ? '#334155' : '#0f172a',
+              color: active ? (v==='All' ? '#e2e8f0' : col) : '#64748b' }}>{l}</button>
+          );
+        })}
       </div>
 
       {/* ── Technical Levels modal ───────────────────────────────────────── */}

@@ -200,3 +200,77 @@ export function detectCandlePatterns(candles, lookback = 10) {
   }
   return found
 }
+
+// ── Strong reversal candles (full-range liquidity sweep) ─────────────────────
+// A single candle whose wick clears the ENTIRE prior N-candle range, then closes
+// back inside it — stops grabbed on the whole range, then reversed. Higher quality
+// than a lone hammer/star because it must sweep the full range, not just poke a low.
+export const PATTERN_N_KEY = 'pattern_range_n'
+export function getPatternN() {
+  const v = parseInt(localStorage.getItem(PATTERN_N_KEY) || '5', 10)
+  return v >= 2 && v <= 30 ? v : 5
+}
+export function setPatternN(n) {
+  const v = Math.max(2, Math.min(30, parseInt(n, 10) || 5))
+  localStorage.setItem(PATTERN_N_KEY, String(v))
+  return v
+}
+
+// Strong Hammer at index i: range = candles[i-N .. i-1]
+export function isStrongHammer(candles, i, N = 5) {
+  if (i < N || i >= candles.length) return false
+  const c = candles[i]
+  const prior = candles.slice(i - N, i)
+  const rangeLow = Math.min(...prior.map(x => x.l))
+  const b = body(c), u = upper(c), l = lower(c), r = rng(c)
+  if (r <= 0) return false
+  return (
+    c.l < rangeLow &&                     // wick clears the entire range low
+    c.c > rangeLow &&                      // closes back inside (reclaim)
+    c.c > c.o &&                           // closes green
+    l >= 2 * b &&                          // hammer shape
+    l > u &&                               // lower wick dominant
+    Math.min(c.o, c.c) >= c.l + r * 0.5    // body in upper half
+  )
+}
+
+// Strong Shooting Star — exact mirror
+export function isStrongStar(candles, i, N = 5) {
+  if (i < N || i >= candles.length) return false
+  const c = candles[i]
+  const prior = candles.slice(i - N, i)
+  const rangeHigh = Math.max(...prior.map(x => x.h))
+  const b = body(c), u = upper(c), l = lower(c), r = rng(c)
+  if (r <= 0) return false
+  return (
+    c.h > rangeHigh &&                     // wick clears the entire range high
+    c.c < rangeHigh &&                      // closes back inside
+    c.c < c.o &&                           // closes red
+    u >= 2 * b &&                          // shooting star shape
+    u > l &&                               // upper wick dominant
+    Math.max(c.o, c.c) <= c.l + r * 0.5    // body in lower half
+  )
+}
+
+// 'hammer' | 'star' | null for candle at index i
+export function detectStrongReversal(candles, i, N = 5) {
+  if (isStrongHammer(candles, i, N)) return 'hammer'
+  if (isStrongStar(candles, i, N)) return 'star'
+  return null
+}
+
+// Pattern on the most recent CLOSED candle (pass an array of complete bars)
+export function lastStrongReversal(candles, N = 5) {
+  if (!candles || candles.length < N + 1) return null
+  return detectStrongReversal(candles, candles.length - 1, N)
+}
+
+// Every index in the series that matches (for chart marking)
+export function findStrongReversals(candles, N = 5) {
+  const out = []
+  for (let i = N; i < candles.length; i++) {
+    const t = detectStrongReversal(candles, i, N)
+    if (t) out.push({ i, type: t })
+  }
+  return out
+}

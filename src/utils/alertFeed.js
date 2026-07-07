@@ -52,6 +52,26 @@ export async function fetchPrice(inst) {
   } catch { return null; }
 }
 
+// Series of the most recent COMPLETED candles [{o,h,l,c,t}] for a timeframe
+export async function fetchRecentCandles(inst, tf, count = 12) {
+  try {
+    if (inst.binance) {
+      const itv = BINANCE_TF[tf] || '1h';
+      const r = await fetch(`https://api.binance.com/api/v3/klines?symbol=${inst.binance}&interval=${itv}&limit=${count + 1}`, { signal: AbortSignal.timeout(8000) });
+      if (!r.ok) return null;
+      const d = await r.json();
+      return d.slice(0, -1).map(k => ({ o:+k[1], h:+k[2], l:+k[3], c:+k[4], t:k[0] })); // drop forming candle
+    }
+    const c = oandaCreds();
+    if (!c?.apiKey) return null;
+    const r = await fetch(`${oandaBase(c)}/instruments/${inst.oanda}/candles?granularity=${tf}&count=${count + 1}&price=M`,
+      { headers:{ Authorization:`Bearer ${c.apiKey}` }, signal: AbortSignal.timeout(8000) });
+    if (!r.ok) return null;
+    const d = await r.json();
+    return (d.candles || []).filter(x => x.complete).map(x => ({ o:+x.mid.o, h:+x.mid.h, l:+x.mid.l, c:+x.mid.c, t:new Date(x.time).getTime() }));
+  } catch { return null; }
+}
+
 // Last COMPLETED candle {o,h,l,c,t} for a timeframe
 export async function fetchLastClosed(inst, tf) {
   try {

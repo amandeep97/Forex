@@ -3,6 +3,18 @@ const fetch = require('node-fetch');
 let webpush = null;
 try { webpush = require('web-push'); } catch { /* installed on setup */ }
 
+// Strong Hammer / Shooting Star — wick clears the whole prior N-candle range, closes back inside.
+function detectStrongReversal(candles, i, N) {
+  if (i < N || i >= candles.length) return null;
+  const c = candles[i], prior = candles.slice(i - N, i);
+  const body = Math.abs(c.c - c.o), up = c.h - Math.max(c.o, c.c), lo = Math.min(c.o, c.c) - c.l, r = c.h - c.l;
+  if (r <= 0) return null;
+  const rLow = Math.min(...prior.map(x => x.l)), rHigh = Math.max(...prior.map(x => x.h));
+  if (c.l < rLow && c.c > rLow && c.c > c.o && lo >= 2 * body && lo > up && Math.min(c.o, c.c) >= c.l + r * 0.5) return 'hammer';
+  if (c.h > rHigh && c.c < rHigh && c.c < c.o && up >= 2 * body && up > lo && Math.max(c.o, c.c) <= c.l + r * 0.5) return 'star';
+  return null;
+}
+
 const ALERTS_PATH = 'bot/alerts.json';
 const SUBS_PATH   = 'bot/push-subscriptions.json';
 
@@ -66,6 +78,18 @@ class AlertChecker {
     return c.length ? c[c.length - 1] : null;
   }
 
+  async _recent(sym, tf, count) {
+    if (BINANCE_MAP[sym]) {
+      const r = await fetch(`https://api.binance.com/api/v3/klines?symbol=${BINANCE_MAP[sym]}&interval=${BIN_TF[tf] || '1h'}&limit=${count + 1}`);
+      if (!r.ok) return null;
+      const d = await r.json();
+      return d.slice(0, -1).map(k => ({ o:+k[1], h:+k[2], l:+k[3], c:+k[4], t:k[0] }));
+    }
+    const instr = OANDA_MAP[sym];
+    if (!instr) return null;
+    return this.oanda.getCandles(instr, tf, count + 1); // getCandles returns completed bars {o,h,l,c,t}
+  }
+
   async _push(subs, title, body) {
     if (!this.ready || !subs.length) return { dead: [] };
     const dead = [];
@@ -97,6 +121,7 @@ class AlertChecker {
       const symAlerts = active.filter(a => a.sym === sym);
       const needPrice = symAlerts.some(a => ['price','zone','trendline'].includes(a.type));
       const tfs = [...new Set(symAlerts.filter(a => a.type === 'candle').map(a => a.tf))];
+      const patTfs = [...new Set(symAlerts.filter(a => a.type === 'pattern').map(a => a.tf))];
 
       let price = null;
       if (needPrice) price = await this._price(sym).catch(() => null);
@@ -105,6 +130,8 @@ class AlertChecker {
 
       const closes = {};
       for (const tf of tfs) closes[tf] = await this._lastClosed(sym, tf).catch(() => null);
+      const series = {};
+      for (const tf of patTfs) series[tf] = await this._recent(sym, tf, 14).catch(() => null);
 
       const d = dec(sym);
       for (const a of symAlerts) {
@@ -140,6 +167,21 @@ class AlertChecker {
             live.lastCandleT = cd.t; changed = true;
             const cond = a.closeDir === 'above' ? cd.c > a.level : cd.c < a.level;
             if (cond) msg = `${a.tf} candle CLOSED ${a.closeDir} ${a.level} (close ${cd.c.toFixed(d)})`;
+          }
+        }
+        else if (a.type === 'pattern') {
+          const s = series[a.tf];
+          if (s && s.length) {
+            const last = s[s.length - 1];
+            if (a.lastCandleT == null || last.t > a.lastCandleT) {
+              live.lastCandleT = last.t; changed = true;
+              const pat = detectStrongReversal(s, s.length - 1, a.N || 5);
+              const want = a.pattern || 'both';
+              if (pat && (want === 'both' || want === pat)) {
+                const label = pat === 'hammer' ? 'Strong Hammer 🔨 (bullish sweep)' : 'Strong Shooting Star ⭐ (bearish sweep)';
+                msg = `${a.tf} ${label} — swept the ${a.N || 5}-candle ${pat === 'hammer' ? 'low' : 'high'} and reversed (${last.c.toFixed(d)})`;
+              }
+            }
           }
         }
 
