@@ -44,8 +44,19 @@ export default function AlertsCenter({ onClose }) {
     return () => window.removeEventListener('alerts-updated', refresh);
   }, []);
 
-  // Show current price when picking instrument
-  useEffect(() => { let on = true; setCur(null); fetchPrice(inst).then(p => { if (on) setCur(p); }); return () => { on = false; }; }, [sym]);
+  // TF options — OANDA has no 3-min; Binance (crypto) has 3m but no 2m
+  const isCrypto = !!inst?.binance;
+  const TF_OPTIONS = isCrypto
+    ? ['M1','M3','M5','M15','M30','H1','H4','D']
+    : ['M1','M5','M15','M30','H1','H4','D'];
+
+  // Show current price when picking instrument; clamp TF if it's no longer valid
+  useEffect(() => {
+    let on = true; setCur(null);
+    fetchPrice(inst).then(p => { if (on) setCur(p); });
+    if (!TF_OPTIONS.includes(tf)) setTf('M5');
+    return () => { on = false; };
+  }, [sym]); // eslint-disable-line
 
   const persist = (next) => { setAlerts(next); saveAlerts(next); if (isPushEnabled()) syncAlertsToBot().catch(() => {}); };
 
@@ -174,7 +185,7 @@ export default function AlertsCenter({ onClose }) {
                 <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:10, marginBottom:10 }}>
                   <div><label style={lbl}>Timeframe</label>
                     <select value={tf} onChange={e=>setTf(e.target.value)} style={inp()}>
-                      {['M15','M30','H1','H4','D'].map(t => <option key={t}>{t}</option>)}
+                      {TF_OPTIONS.map(t => <option key={t}>{t}</option>)}
                     </select></div>
                   <div><label style={lbl}>Close direction</label>
                     <select value={closeDir} onChange={e=>setCloseDir(e.target.value)} style={inp()}>
@@ -200,7 +211,7 @@ export default function AlertsCenter({ onClose }) {
                 <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:10, marginBottom:10 }}>
                   <div><label style={lbl}>Timeframe</label>
                     <select value={tf} onChange={e=>setTf(e.target.value)} style={inp()}>
-                      {['M15','M30','H1','H4','D'].map(t => <option key={t}>{t}</option>)}
+                      {TF_OPTIONS.map(t => <option key={t}>{t}</option>)}
                     </select></div>
                   <div><label style={lbl}>Range = last N candles</label>
                     <input type="number" min="2" max="30" value={patN} onChange={e=>setPatN(e.target.value)} style={inp()}/></div>

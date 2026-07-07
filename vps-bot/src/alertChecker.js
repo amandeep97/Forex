@@ -24,7 +24,7 @@ const OANDA_MAP = {
   'XAU/USD':'XAU_USD','XAG/USD':'XAG_USD','US30':'US30_USD','NAS100':'NAS100_USD','SPX500':'SPX500_USD',
 };
 const BINANCE_MAP = { 'BTC/USDT':'BTCUSDT','ETH/USDT':'ETHUSDT','SOL/USDT':'SOLUSDT' };
-const BIN_TF = { M15:'15m', M30:'30m', H1:'1h', H4:'4h', D:'1d' };
+const BIN_TF = { M1:'1m', M3:'3m', M5:'5m', M15:'15m', M30:'30m', H1:'1h', H4:'4h', D:'1d' };
 
 function dec(sym) {
   if (sym.startsWith('XAU')) return 2;

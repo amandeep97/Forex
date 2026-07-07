@@ -22,7 +22,7 @@ export const ALERT_INSTRUMENTS = [
 
 export function instBySym(sym) { return ALERT_INSTRUMENTS.find(i => i.sym === sym); }
 
-const BINANCE_TF = { M5:'5m', M15:'15m', M30:'30m', H1:'1h', H4:'4h', D:'1d' };
+const BINANCE_TF = { M1:'1m', M3:'3m', M5:'5m', M15:'15m', M30:'30m', H1:'1h', H4:'4h', D:'1d' };
 
 function oandaCreds() {
   try { const c = JSON.parse(localStorage.getItem('oanda_creds') || 'null'); if (c?.apiKey) return c; } catch {}
