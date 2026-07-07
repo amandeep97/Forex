@@ -7,7 +7,7 @@ import {
   computeEMASeries, computeVWAP, computePOC, computeValueArea,
 } from '../utils/smcHelpers';
 import { detectBOSCHoCH } from '../utils/smcAnalysis';
-import { findStrongReversals, getPatternN } from '../utils/candlePatterns';
+import { findStrongReversals, getPatternN, setPatternN } from '../utils/candlePatterns';
 import ChartDrawTools from './ChartDrawTools';
 
 const TFS    = ['M1','M5','M15','M30','H1','H2','H4','H6','H12','D','W'];
@@ -71,7 +71,7 @@ function loadSavedOv() {
   return DEFAULT_OV;
 }
 
-function SVGChart({ candles, symbol, ov, barCount, chartH, setupLevels }) {
+function SVGChart({ candles, symbol, ov, barCount, chartH, setupLevels, patternN }) {
   const W    = 900;
   const H    = Math.max(240, chartH || 460);
   const VOL_H = ov.vol ? 60 : 0;
@@ -116,7 +116,7 @@ function SVGChart({ candles, symbol, ov, barCount, chartH, setupLevels }) {
   const { bsl=[], ssl=[] } = ov.liq ? detectLiqLevels(vis) : {};
   const swings = ov.swings ? computeSwings(vis) : null;
   const bosArr = ov.bos    ? detectBOSCHoCH(vis) : [];
-  const strevs = ov.strev  ? findStrongReversals(vis, getPatternN()) : [];
+  const strevs = ov.strev  ? findStrongReversals(vis, patternN || getPatternN()) : [];
 
   // Always compute zone boundaries (even when zones overlay is off) for the live zone badge
   const last  = vis[nv-1];
@@ -525,6 +525,7 @@ export default function ChartModal({ instrument, onClose, setupLevels }) {
   const [loading,   setLoading]  = useState(false);
   const [loadErr,   setLoadErr]  = useState('');
   const [ov,        setOv]       = useState(loadSavedOv);
+  const [patternN,  setPatN]     = useState(getPatternN);
   const [barCount,  setBarCount] = useState(100);
   const [chartH,    setChartH]   = useState(460);
   const [aiRead,    setAiRead]   = useState(null);
@@ -718,6 +719,17 @@ Provide:
                   <button key={o.k} className={`cm-ov-btn${ov[o.k]?' active':''}`}
                     style={ov[o.k]?{borderColor:o.c+'66',color:o.c}:{}} onClick={()=>toggleOv(o.k)}>{o.l}</button>
                 ))}
+                {ov.strev && (
+                  <span style={{display:'inline-flex',alignItems:'center',gap:3,flexShrink:0,alignSelf:'center',
+                    background:'#22d3ee14',border:'1px solid #22d3ee44',borderRadius:6,padding:'1px 5px'}}>
+                    <span style={{fontSize:9,color:'#22d3ee',fontWeight:700}}>⚡N</span>
+                    <button onClick={()=>setPatN(setPatternN(patternN-1))} style={{width:18,height:18,borderRadius:4,cursor:'pointer',
+                      fontSize:12,fontWeight:800,lineHeight:1,background:'#0f172a',color:'#94a3b8',border:'1px solid #1e293b'}}>−</button>
+                    <span style={{fontSize:11,fontWeight:800,color:'#22d3ee',minWidth:14,textAlign:'center'}}>{patternN}</span>
+                    <button onClick={()=>setPatN(setPatternN(patternN+1))} style={{width:18,height:18,borderRadius:4,cursor:'pointer',
+                      fontSize:12,fontWeight:800,lineHeight:1,background:'#0f172a',color:'#94a3b8',border:'1px solid #1e293b'}}>+</button>
+                  </span>
+                )}
                 <span style={{margin:'0 4px',color:'var(--border)',alignSelf:'center'}}>|</span>
                 <button onClick={clearAllOv} style={{fontSize:10,padding:'2px 8px',borderRadius:4,cursor:'pointer',
                   background:'#ef444422',color:'#ef4444',border:'1px solid #ef444444',flexShrink:0,whiteSpace:'nowrap'}}>
@@ -813,7 +825,7 @@ Provide:
               {loadErr && <div className="cm-state cm-err">⚠ {loadErr}</div>}
               {!loading && !loadErr && candles && (
                 <div style={{ position:'relative' }}>
-                  <SVGChart candles={candles} symbol={symbol} ov={ov} barCount={barCount} chartH={chartH} setupLevels={setupLevels}/>
+                  <SVGChart candles={candles} symbol={symbol} ov={ov} barCount={barCount} chartH={chartH} setupLevels={setupLevels} patternN={patternN}/>
                   <ChartDrawTools candles={candles} symbol={symbol} tf={tf} ov={ov} barCount={barCount} chartH={chartH}/>
                 </div>
               )}

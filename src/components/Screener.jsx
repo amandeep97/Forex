@@ -2,7 +2,7 @@ import { useState, useMemo, useEffect } from 'react';
 import { allInstruments, ASSET_TYPES, FOREX_CATEGORIES, SIGNALS, ASSET_COLORS, DEFAULT_FILTERS } from '../data/forexData';
 import { useLivePrices, OANDA_MAP } from '../hooks/useLivePrices';
 import { generateCandles } from '../utils/generateCandles';
-import { detectCandlePatterns, detectStrongReversal, getPatternN } from '../utils/candlePatterns';
+import { detectCandlePatterns, detectStrongReversal, getPatternN, setPatternN } from '../utils/candlePatterns';
 import { analyzeSMC } from '../utils/smcAnalysis';
 import { computeRSI, computeMFI, computeEMA, computeMACD, detectRSIDivergence, detectEqualHighsLows } from '../utils/indicatorCalc';
 import { computeVWAP, detectFVGsAndOBs, detectLiqLevels, computePOC, computeValueArea } from '../utils/smcHelpers';
@@ -272,6 +272,7 @@ export default function Screener() {
   const [sortDir, setSortDir]           = useState('asc');
   const [signalFilter, setSignalFilter] = useState('All');
   const [strevFilter, setStrevFilter]   = useState('All'); // All | any | hammer | star
+  const [strevN, setStrevN]             = useState(getPatternN); // range size, shared with chart/alerts
   const [subCategory, setSubCategory]   = useState('All');
   const [chartInstrument, setChartInstrument] = useState(null);
   const [levelsInst, setLevelsInst] = useState(null);
@@ -503,7 +504,7 @@ export default function Screener() {
           patternType: patterns.length===0?'neut':
                        patterns.some(p=>p.type==='bullish')?'bull':
                        patterns.some(p=>p.type==='bearish')?'bear':'neut',
-          strongRev:   detectStrongReversal(candles, candles.length-1, getPatternN()),
+          strongRev:   detectStrongReversal(candles, candles.length-1, strevN),
           // New computed fields
           ema20, ema50, ema100, ema200, prevEma20, prevEma50, prevEma200,
           macdCrossUp: macd.crossUp, macdCrossDown: macd.crossDown,
@@ -537,7 +538,7 @@ export default function Screener() {
       }
     });
     return map;
-  }, [tfFilter, lookback]);
+  }, [tfFilter, lookback, strevN]);
 
   // ── Live prices ───────────────────────────────────────────────────────────
   const instrumentsWithLive = useMemo(() => allInstruments.map(inst => {
@@ -861,6 +862,16 @@ export default function Screener() {
               color: active ? (v==='All' ? '#e2e8f0' : col) : '#64748b' }}>{l}</button>
           );
         })}
+        {/* N selector — shared with chart + alerts */}
+        <div style={{ display:'flex', alignItems:'center', gap:4, flexShrink:0, marginLeft:4 }}>
+          <span style={{ fontSize:9, color:'#475569', fontWeight:700 }}>N</span>
+          {[-1,+1].map((d,idx) => (
+            <button key={idx} onClick={()=>{ const n = setPatternN(strevN + d); setStrevN(n); }} style={{
+              width:22, height:22, borderRadius:6, cursor:'pointer', fontSize:13, fontWeight:800, lineHeight:1,
+              background:'#0f172a', color:'#94a3b8', border:'1px solid #1e293b' }}>{d<0?'−':'+'}</button>
+          ))}
+          <span style={{ fontSize:11, fontWeight:800, color:'#22d3ee', minWidth:16, textAlign:'center' }}>{strevN}</span>
+        </div>
       </div>
 
       {/* ── Technical Levels modal ───────────────────────────────────────── */}
