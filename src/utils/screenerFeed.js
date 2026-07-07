@@ -1,8 +1,8 @@
 // Real candle fetch for the Screener — OANDA (FX/metals/indices/energy) + Binance (crypto).
 import { OANDA_MAP } from '../hooks/useLivePrices';
 
-const OANDA_GRAN  = { '15m':'M15','30m':'M30','1h':'H1','2h':'H2','4h':'H4','8h':'H8','12h':'H12','1d':'D','1w':'W' };
-const BINANCE_ITV = { '15m':'15m','30m':'30m','1h':'1h','2h':'2h','4h':'4h','8h':'8h','12h':'12h','1d':'1d','3d':'3d','1w':'1w' };
+const OANDA_GRAN  = { '1m':'M1','5m':'M5','15m':'M15','30m':'M30','1h':'H1','2h':'H2','4h':'H4','8h':'H8','12h':'H12','1d':'D','1w':'W' };
+const BINANCE_ITV = { '1m':'1m','5m':'5m','15m':'15m','30m':'30m','1h':'1h','2h':'2h','4h':'4h','8h':'8h','12h':'12h','1d':'1d','3d':'3d','1w':'1w' };
 
 function cryptoSymbol(sym) { return `${sym.split('/')[0]}USDT`; }   // BTC/USD → BTCUSDT
 

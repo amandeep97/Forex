@@ -9,6 +9,7 @@ export const STRUCTURES          = ['All', 'bullish', 'bearish'];
 export const HTF_BIASES          = ['All', 'bullish', 'bearish', 'sideways'];
 export const ZONES               = ['All', 'premium', 'discount'];
 export const STRUCTURE_TIMEFRAMES = [
+  { value: '1m',  label: '1M'  }, { value: '5m',  label: '5M'  },
   { value: '15m', label: '15M' }, { value: '30m', label: '30M' },
   { value: '1h',  label: '1H'  }, { value: '2h',  label: '2H'  },
   { value: '4h',  label: '4H'  }, { value: '8h',  label: '8H'  },
