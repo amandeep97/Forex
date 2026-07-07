@@ -2,6 +2,7 @@ import { useState, useMemo, useEffect } from 'react';
 import { allInstruments, ASSET_TYPES, FOREX_CATEGORIES, SIGNALS, ASSET_COLORS, DEFAULT_FILTERS } from '../data/forexData';
 import { useLivePrices, OANDA_MAP } from '../hooks/useLivePrices';
 import { generateCandles } from '../utils/generateCandles';
+import { fetchAllScreenerCandles } from '../utils/screenerFeed';
 import { detectCandlePatterns, detectStrongReversal, getPatternN, setPatternN } from '../utils/candlePatterns';
 import { analyzeSMC } from '../utils/smcAnalysis';
 import { computeRSI, computeMFI, computeEMA, computeMACD, detectRSIDivergence, detectEqualHighsLows } from '../utils/indicatorCalc';
@@ -273,6 +274,9 @@ export default function Screener() {
   const [signalFilter, setSignalFilter] = useState('All');
   const [strevFilter, setStrevFilter]   = useState('All'); // All | any | hammer | star
   const [strevN, setStrevN]             = useState(getPatternN); // range size, shared with chart/alerts
+  const [realCandles, setRealCandles]   = useState({});          // { instId: candles[] } from OANDA/Binance
+  const [candleLoading, setCandleLoading] = useState(false);
+  const [realCount, setRealCount]       = useState(0);
   const [subCategory, setSubCategory]   = useState('All');
   const [chartInstrument, setChartInstrument] = useState(null);
   const [levelsInst, setLevelsInst] = useState(null);
@@ -390,11 +394,28 @@ export default function Screener() {
   const lookback = Math.max(1, parseInt(filters.candleInterval) || 1);
   const tfFilter = filters.structureTF || '4h';
 
+  // Fetch REAL candles for the selected timeframe (OANDA + Binance), refresh every 90s
+  useEffect(() => {
+    let cancelled = false;
+    setCandleLoading(true);
+    const load = async () => {
+      const map = await fetchAllScreenerCandles(allInstruments, tfFilter, { count: 250 });
+      if (cancelled) return;
+      setRealCandles(map);
+      setRealCount(Object.keys(map).length);
+      setCandleLoading(false);
+    };
+    load();
+    const id = setInterval(load, 90000);
+    return () => { cancelled = true; clearInterval(id); };
+  }, [tfFilter]);
+
   const analysis = useMemo(() => {
     const map = {};
     allInstruments.forEach(inst => {
       try {
-        const candles   = generateCandles(inst, tfFilter, 250);
+        const real = realCandles[inst.id];
+        const candles   = (real && real.length >= 60) ? real : generateCandles(inst, tfFilter, 250);
         const prevCandles = candles.slice(0, -1);
         const rsiVal    = computeRSI(candles, 14);
         const mfiVal    = computeMFI(candles, 14);
@@ -538,7 +559,7 @@ export default function Screener() {
       }
     });
     return map;
-  }, [tfFilter, lookback, strevN]);
+  }, [tfFilter, lookback, strevN, realCandles]);
 
   // ── Live prices ───────────────────────────────────────────────────────────
   const instrumentsWithLive = useMemo(() => allInstruments.map(inst => {
@@ -1048,6 +1069,12 @@ export default function Screener() {
           <div className="table-footer">
             Showing <strong>{filtered.length}</strong> of <strong>{allInstruments.length}</strong> instruments
             &nbsp;·&nbsp;<span style={{color:'#475569'}}>TF: {tfFilter.toUpperCase()} · {new Date().toLocaleTimeString()}</span>
+            &nbsp;·&nbsp;
+            {candleLoading
+              ? <span style={{ color:'#f59e0b', fontWeight:700 }}>⟳ loading live data…</span>
+              : realCount > 0
+                ? <span style={{ color:'#22c55e', fontWeight:700 }}>● LIVE ({realCount} real{realCount < allInstruments.length ? `, ${allInstruments.length - realCount} demo` : ''})</span>
+                : <span style={{ color:'#ef4444', fontWeight:700 }}>● DEMO — connect OANDA (Settings) for real FX data</span>}
           </div>
         </div>
       </div>
