@@ -25,7 +25,7 @@ export function instBySym(sym) { return ALERT_INSTRUMENTS.find(i => i.sym === sy
 const BINANCE_TF = { M1:'1m', M3:'3m', M5:'5m', M15:'15m', M30:'30m', H1:'1h', H4:'4h', D:'1d' };
 
 function oandaCreds() {
-  try { const c = JSON.parse(localStorage.getItem('oanda_creds') || 'null'); if (c?.apiKey) return c; } catch {}
+  try { const c = JSON.parse(localStorage.getItem('oanda_creds') || 'null'); if (c?.apiKey) { const _e = localStorage.getItem('oanda_env'); return _e !== null ? { ...c, practice: _e !== 'live' } : c; } } catch {}
   const apiKey = localStorage.getItem('oanda_key');
   const practice = localStorage.getItem('oanda_env') !== 'live';
   return apiKey ? { apiKey, practice } : null;

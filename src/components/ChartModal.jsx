@@ -28,9 +28,21 @@ function fmtP(v, symbol) {
   return v.toFixed(5);
 }
 
+// oanda_env (Settings Practice/Live toggle) is the source of truth for environment —
+// never trust a possibly-stale `practice` flag cached inside oanda_creds.
+function getOandaCreds() {
+  const envSet = localStorage.getItem('oanda_env');
+  const freshPractice = envSet !== null ? envSet !== 'live' : undefined;
+  let creds = null;
+  try { creds = JSON.parse(localStorage.getItem('oanda_creds')); } catch {}
+  if (creds?.apiKey) return { ...creds, practice: freshPractice !== undefined ? freshPractice : creds.practice };
+  const apiKey = localStorage.getItem('oanda_key');
+  return apiKey ? { apiKey, practice: freshPractice !== undefined ? freshPractice : true } : null;
+}
+
 // Candle fetch from OANDA
 async function fetchCandles(symbol, tf, count = 500) {
-  const creds = (() => { try { return JSON.parse(localStorage.getItem('oanda_creds')); } catch { return null; } })();
+  const creds = getOandaCreds();
   if (!creds?.apiKey) throw new Error('OANDA not connected — connect in the Screener first.');
   const instr = toOandaInstr(symbol);
   const base  = creds.practice ? 'https://api-fxpractice.oanda.com/v3' : 'https://api-fxtrade.oanda.com/v3';
@@ -573,7 +585,7 @@ export default function ChartModal({ instrument, onClose, setupLevels }) {
   useEffect(() => {
     if (tab !== 'depth') return;
     setDepthLoad(true); setDepthErr(''); setDepthData(null);
-    const creds = (() => { try { return JSON.parse(localStorage.getItem('oanda_creds')); } catch { return null; } })();
+    const creds = getOandaCreds();
     if (!creds?.apiKey) { setDepthErr('Connect OANDA in the Screener first.'); setDepthLoad(false); return; }
     const instr = toOandaInstr(symbol);
     const base  = creds.practice ? 'https://api-fxpractice.oanda.com/v3' : 'https://api-fxtrade.oanda.com/v3';

@@ -151,7 +151,7 @@ export default function CommandCenter() {
   useEffect(() => {
     try {
       const c = JSON.parse(localStorage.getItem('oanda_creds') || 'null');
-      if (c?.apiKey) { setCreds(c); return; }
+      if (c?.apiKey) { const _e = localStorage.getItem('oanda_env'); setCreds(_e !== null ? { ...c, practice: _e !== 'live' } : c); return; }
     } catch {}
     const apiKey = localStorage.getItem('oanda_key');
     const practice = localStorage.getItem('oanda_env') !== 'live';

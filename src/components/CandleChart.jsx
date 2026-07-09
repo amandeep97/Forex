@@ -13,8 +13,14 @@ const TF_GRAN = {
 };
 
 function loadOandaCreds() {
-  try { return JSON.parse(localStorage.getItem('oanda_creds')) || null; }
-  catch { return null; }
+  const envSet = localStorage.getItem('oanda_env');
+  const freshPractice = envSet !== null ? envSet !== 'live' : undefined;
+  try {
+    const c = JSON.parse(localStorage.getItem('oanda_creds'));
+    if (c?.apiKey) return { ...c, practice: freshPractice !== undefined ? freshPractice : c.practice };
+  } catch {}
+  const apiKey = localStorage.getItem('oanda_key');
+  return apiKey ? { apiKey, practice: freshPractice !== undefined ? freshPractice : true } : null;
 }
 
 async function fetchOandaCandles(symbol, tf, apiKey, practice) {

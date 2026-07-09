@@ -50,7 +50,7 @@ const TF_HIST_LABEL = { M15:'~3.5 months', M30:'~7 months', H1:'~14 months', H4:
 function getCreds() {
   try {
     const c = JSON.parse(localStorage.getItem('oanda_creds') || 'null');
-    if (c?.apiKey) return c;
+    if (c?.apiKey) { const _e = localStorage.getItem('oanda_env'); return _e !== null ? { ...c, practice: _e !== 'live' } : c; }
   } catch {}
   const apiKey  = localStorage.getItem('oanda_key');
   const practice = localStorage.getItem('oanda_env') !== 'live';

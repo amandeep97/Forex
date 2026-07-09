@@ -19,7 +19,7 @@ const CB_RATES = { USD:5.33, EUR:4.50, GBP:5.25, JPY:0.10, AUD:4.35, CAD:5.00, C
 function getOandaCreds() {
   try {
     const c = JSON.parse(localStorage.getItem('oanda_creds') || 'null');
-    if (c?.apiKey) return c;
+    if (c?.apiKey) { const _e = localStorage.getItem('oanda_env'); return _e !== null ? { ...c, practice: _e !== 'live' } : c; }
   } catch {}
   const apiKey = localStorage.getItem('oanda_key');
   const practice = localStorage.getItem('oanda_env') !== 'live';

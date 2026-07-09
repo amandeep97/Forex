@@ -45,7 +45,7 @@ const CB_RATES = {
 
 /* ── helpers ───────────────────────────────────────────────────────────────── */
 function getOandaCreds() {
-  try { const c = JSON.parse(localStorage.getItem('oanda_creds')||'null'); if (c?.apiKey) return c; } catch {}
+  try { const c = JSON.parse(localStorage.getItem('oanda_creds')||'null'); if (c?.apiKey) { const _e = localStorage.getItem('oanda_env'); return _e !== null ? { ...c, practice: _e !== 'live' } : c; } } catch {}
   const apiKey = localStorage.getItem('oanda_key');
   const practice = localStorage.getItem('oanda_env') !== 'live';
   return apiKey ? { apiKey, practice } : null;

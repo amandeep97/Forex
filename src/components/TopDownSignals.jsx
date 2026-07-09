@@ -95,7 +95,7 @@ function isDXYAligned(pairKey, data, dxyBias) {
 
 function getCreds() {
   const c = JSON.parse(localStorage.getItem('oanda_creds') || 'null');
-  if (c?.apiKey) return c;
+  if (c?.apiKey) { const _e = localStorage.getItem('oanda_env'); return _e !== null ? { ...c, practice: _e !== 'live' } : c; }
   return { apiKey: localStorage.getItem('oanda_key'), practice: localStorage.getItem('oanda_env') !== 'live' };
 }
 

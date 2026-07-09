@@ -44,7 +44,7 @@ const TV_SYMBOLS = {
 function getCreds() {
   try {
     const c = JSON.parse(localStorage.getItem('oanda_creds') || 'null');
-    if (c?.apiKey) return c;
+    if (c?.apiKey) { const _e = localStorage.getItem('oanda_env'); return _e !== null ? { ...c, practice: _e !== 'live' } : c; }
     const k = localStorage.getItem('oanda_key');
     if (k) return { apiKey: k, practice: localStorage.getItem('oanda_env') !== 'live' };
   } catch {}

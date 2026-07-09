@@ -6,10 +6,18 @@ const BINANCE_ITV = { '1m':'1m','5m':'5m','15m':'15m','30m':'30m','1h':'1h','2h'
 
 function cryptoSymbol(sym) { return `${sym.split('/')[0]}USDT`; }   // BTC/USD → BTCUSDT
 
+// oanda_env (the Settings Practice/Live toggle) is the single source of truth for
+// environment — never trust a cached `practice` flag inside oanda_creds, it can go
+// stale relative to the toggle and silently strand the app on the wrong environment.
 function oandaCreds() {
-  try { const c = JSON.parse(localStorage.getItem('oanda_creds') || 'null'); if (c?.apiKey) return c; } catch {}
+  const envSet = localStorage.getItem('oanda_env');
+  const practice = envSet !== null ? envSet !== 'live' : undefined;
+  try {
+    const c = JSON.parse(localStorage.getItem('oanda_creds') || 'null');
+    if (c?.apiKey) return { ...c, practice: practice !== undefined ? practice : c.practice };
+  } catch {}
   const k = localStorage.getItem('oanda_key');
-  return k ? { apiKey: k, practice: localStorage.getItem('oanda_env') !== 'live' } : null;
+  return k ? { apiKey: k, practice: practice !== undefined ? practice : true } : null;
 }
 
 // Returns candle array [{t,o,h,l,c,v}] or null if unavailable (unmapped / no key / error).
