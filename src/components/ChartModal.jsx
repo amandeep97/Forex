@@ -14,7 +14,11 @@ const TFS    = ['M1','M5','M15','M30','H1','H2','H4','H6','H12','D','W'];
 const TV_TF  = { M1:'1',M5:'5',M15:'15',M30:'30',H1:'60',H2:'120',H4:'240',H6:'360',H12:'720',D:'D',W:'W' };
 
 // Instrument format helpers
-function toOandaInstr(symbol) { return (symbol||'').replace('/','_'); }
+// Indices/metals/energy have no slash (e.g. "US100") and need the real OANDA_MAP
+// lookup ("NAS100_USD") — a naive slash-replace passes them through unmapped and
+// OANDA rejects the bad instrument name with 400. FX pairs are in the map too, so
+// prefer it always; only fall back to slash-replace for anything not mapped.
+function toOandaInstr(symbol) { return OANDA_MAP[symbol] || (symbol||'').replace('/','_'); }
 function toTVSymbol(symbol) {
   const s = (symbol||'').replace('/','').replace('_','');
   return `OANDA:${s}`;
