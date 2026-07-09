@@ -8,7 +8,7 @@ import {
 } from '../utils/smcHelpers';
 import { detectBOSCHoCH } from '../utils/smcAnalysis';
 import { findStrongReversals, getPatternN, setPatternN } from '../utils/candlePatterns';
-import ChartDrawTools from './ChartDrawTools';
+import ChartDrawTools, { sliceVisible, maxPanOffset } from './ChartDrawTools';
 
 const TFS    = ['M1','M5','M15','M30','H1','H2','H4','H6','H12','D','W'];
 const TV_TF  = { M1:'1',M5:'5',M15:'15',M30:'30',H1:'60',H2:'120',H4:'240',H6:'360',H12:'720',D:'D',W:'W' };
@@ -87,7 +87,7 @@ function loadSavedOv() {
   return DEFAULT_OV;
 }
 
-function SVGChart({ candles, symbol, ov, barCount, chartH, setupLevels, patternN }) {
+function SVGChart({ candles, symbol, ov, barCount, chartH, setupLevels, patternN, panOffset }) {
   const W    = 900;
   const H    = Math.max(240, chartH || 460);
   const VOL_H = ov.vol ? 60 : 0;
@@ -104,7 +104,7 @@ function SVGChart({ candles, symbol, ov, barCount, chartH, setupLevels, patternN
     </svg>
   );
 
-  const vis  = candles.slice(-(barCount||100));
+  const vis  = sliceVisible(candles, barCount, panOffset || 0);
   const nv   = vis.length;
   const minP = Math.min(...vis.map(c=>c.l));
   const maxP = Math.max(...vis.map(c=>c.h));
@@ -543,6 +543,7 @@ export default function ChartModal({ instrument, onClose, setupLevels }) {
   const [ov,        setOv]       = useState(loadSavedOv);
   const [patternN,  setPatN]     = useState(getPatternN);
   const [barCount,  setBarCount] = useState(100);
+  const [panOffset, setPanOffset]= useState(0);
   const [chartH,    setChartH]   = useState(460);
   const [aiRead,    setAiRead]   = useState(null);
   const [aiRL,      setAiRL]     = useState(false);
@@ -574,12 +575,16 @@ export default function ChartModal({ instrument, onClose, setupLevels }) {
   // Fetch candles when tf or tab=chart changes
   useEffect(() => {
     if (tab !== 'chart') return;
-    setLoading(true); setLoadErr(''); setCandles(null);
+    setLoading(true); setLoadErr(''); setCandles(null); setPanOffset(0);
     fetchCandles(symbol, tf, 500)
       .then(cs => setCandles(cs))
       .catch(e => setLoadErr(e.message))
       .finally(() => setLoading(false));
   }, [symbol, tf, tab]);
+
+  const maxOffset = candles ? maxPanOffset(candles, barCount) : 0;
+  const clampedPan = Math.min(panOffset, maxOffset);
+  const panStep = Math.max(5, Math.round(barCount / 4));
 
   useEffect(() => {
     const oandaSym = toOandaInstr(symbol);
@@ -729,6 +734,21 @@ Provide:
                   </button>
                 ))}
                 <span style={{fontSize:10,color:'var(--text3)',alignSelf:'center',flexShrink:0,marginLeft:2}}>bars</span>
+                <span style={{margin:'0 4px',color:'var(--border)',alignSelf:'center',flexShrink:0}}>|</span>
+                <button onClick={()=>setPanOffset(o=>Math.min(maxOffset,o+panStep))} disabled={clampedPan>=maxOffset}
+                  title="Pan back (older candles)" style={{flexShrink:0,minWidth:26,padding:'2px 6px',borderRadius:6,
+                  fontSize:12,fontWeight:800,cursor:clampedPan>=maxOffset?'not-allowed':'pointer',
+                  background:'#0f172a',color:clampedPan>=maxOffset?'#334155':'#94a3b8',border:'1px solid #1e293b'}}>◀</button>
+                <button onClick={()=>setPanOffset(o=>Math.max(0,o-panStep))} disabled={clampedPan<=0}
+                  title="Pan forward (newer candles)" style={{flexShrink:0,minWidth:26,padding:'2px 6px',borderRadius:6,
+                  fontSize:12,fontWeight:800,cursor:clampedPan<=0?'not-allowed':'pointer',
+                  background:'#0f172a',color:clampedPan<=0?'#334155':'#94a3b8',border:'1px solid #1e293b'}}>▶</button>
+                {clampedPan > 0 && (
+                  <button onClick={()=>setPanOffset(0)} style={{flexShrink:0,padding:'2px 9px',borderRadius:6,
+                    fontSize:10,fontWeight:700,cursor:'pointer',background:'#f59e0b18',color:'#f59e0b',border:'1px solid #f59e0b44'}}>
+                    Live ↦
+                  </button>
+                )}
               </div>
               <div className="cm-ov-row">
                 {OV_DEFS.map(o=>(
@@ -841,8 +861,8 @@ Provide:
               {loadErr && <div className="cm-state cm-err">⚠ {loadErr}</div>}
               {!loading && !loadErr && candles && (
                 <div style={{ position:'relative' }}>
-                  <SVGChart candles={candles} symbol={symbol} ov={ov} barCount={barCount} chartH={chartH} setupLevels={setupLevels} patternN={patternN}/>
-                  <ChartDrawTools candles={candles} symbol={symbol} tf={tf} ov={ov} barCount={barCount} chartH={chartH}/>
+                  <SVGChart candles={candles} symbol={symbol} ov={ov} barCount={barCount} chartH={chartH} setupLevels={setupLevels} patternN={patternN} panOffset={clampedPan}/>
+                  <ChartDrawTools candles={candles} symbol={symbol} tf={tf} ov={ov} barCount={barCount} chartH={chartH} panOffset={clampedPan} onPan={setPanOffset} maxOffset={maxOffset}/>
                 </div>
               )}
             </div>

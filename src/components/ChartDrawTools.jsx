@@ -1,14 +1,29 @@
 'use strict';
-import { useState, useRef, useMemo, useCallback } from 'react';
+import { useState, useRef, useMemo, useCallback, useEffect } from 'react';
 import { loadAlerts, saveAlerts } from '../hooks/useAlertsEngine';
 
+// ── Pan-aware slicing (shared by SVGChart + this overlay so they stay aligned) ─
+// panOffset = how many candles back from the newest the RIGHT edge of the view sits.
+// 0 = latest. Clamped so the window never goes narrower than barCount or past the ends.
+export function sliceVisible(candles, barCount, panOffset = 0) {
+  const n = candles.length;
+  const count = Math.max(1, Math.min(barCount || 100, n));
+  const rightEdge = Math.max(count, Math.min(n, n - panOffset));
+  return candles.slice(rightEdge - count, rightEdge);
+}
+export function maxPanOffset(candles, barCount) {
+  const n = candles.length;
+  const count = Math.max(1, Math.min(barCount || 100, n));
+  return Math.max(0, n - count);
+}
+
 // ── Geometry (mirrors SVGChart exactly) ───────────────────────────────────────
-export function chartGeom(candles, barCount, chartH, volOn) {
+export function chartGeom(candles, barCount, chartH, volOn, panOffset = 0) {
   const W = 900, H = Math.max(240, chartH || 460);
   const VOL_H = volOn ? 60 : 0;
   const PL = 8, PR = 68, PT = 22, PB = 28 + VOL_H;
   const pw = W - PL - PR, ph = H - PT - PB;
-  const vis = candles.slice(-(barCount || 100));
+  const vis = sliceVisible(candles, barCount, panOffset);
   const nv = vis.length;
   const minP = Math.min(...vis.map(c => c.l)), maxP = Math.max(...vis.map(c => c.h));
   const pad = (maxP - minP) * 0.06 || 1;
@@ -52,8 +67,8 @@ function loadDrawings(symbol, tf) { try { return JSON.parse(localStorage.getItem
 function saveDrawings(symbol, tf, d) { localStorage.setItem(drawKey(symbol, tf), JSON.stringify(d)); }
 
 // ── Drawing overlay ───────────────────────────────────────────────────────────
-export default function ChartDrawTools({ candles, symbol, tf, ov, barCount, chartH }) {
-  const g = useMemo(() => chartGeom(candles, barCount, chartH, !!ov.vol), [candles, barCount, chartH, ov.vol]);
+export default function ChartDrawTools({ candles, symbol, tf, ov, barCount, chartH, panOffset = 0, onPan, maxOffset = 0 }) {
+  const g = useMemo(() => chartGeom(candles, barCount, chartH, !!ov.vol, panOffset), [candles, barCount, chartH, ov.vol, panOffset]);
   const svgRef = useRef(null);
   const [tool, setTool]       = useState('cursor');
   const [drawings, setDraw]   = useState(() => loadDrawings(symbol, tf));
@@ -61,12 +76,19 @@ export default function ChartDrawTools({ candles, symbol, tf, ov, barCount, char
   const [hover, setHover]     = useState(null);    // live cursor {t,p}
   const [selId, setSel]       = useState(null);
   const [toast, setToast]     = useState('');
+  const [crosshair, setCrosshair] = useState(null); // {idx, sx, sy} — TV-style tap-to-inspect
+  const dragRef    = useRef(null); // active pan/tap gesture: {startSx, startOffset, moved}
+  const lastTapRef = useRef({ time: 0, sx: 0, sy: 0 }); // for double-tap-to-reset-pan
 
   // reload when symbol/tf change
   const keyRef = useRef(`${symbol}_${tf}`);
   if (keyRef.current !== `${symbol}_${tf}`) { keyRef.current = `${symbol}_${tf}`; }
 
   const persist = useCallback((next) => { setDraw(next); saveDrawings(symbol, tf, next); }, [symbol, tf]);
+
+  // Toolbar pan buttons (or anything else) changing panOffset externally should
+  // drop a stale crosshair reading rather than show it against a shifted window.
+  useEffect(() => { setCrosshair(null); }, [panOffset]);
 
   // coordinate conversion
   const xOfT = (t) => g.xOf(tToIdx(g.vis, g.nv, t));
@@ -119,16 +141,59 @@ export default function ChartDrawTools({ candles, symbol, tf, ov, barCount, char
     return null;
   };
 
+  const idxFromSx = (sx) => Math.max(0, Math.min(g.nv - 1, Math.round((sx - g.PL) / g.pw * (g.nv - 1))));
+
   const onDown = (e) => {
     e.preventDefault();
     const pt = ptFromEvent(e);
-    if (tool === 'cursor') { setSel(hitTest(pt)); return; }
+    if (tool === 'cursor') {
+      const hitId = hitTest(pt);
+      if (hitId) { setSel(hitId); setCrosshair(null); dragRef.current = null; return; }
+      setSel(null);
+      // double-tap on empty space → jump back to the latest candle
+      const now = Date.now();
+      const lt = lastTapRef.current;
+      if (now - lt.time < 350 && Math.abs(pt.sx - lt.sx) < 20 && Math.abs(pt.sy - lt.sy) < 20) {
+        onPan?.(0); setCrosshair(null); dragRef.current = null;
+        lastTapRef.current = { time: 0, sx: 0, sy: 0 };
+        return;
+      }
+      try { e.target.setPointerCapture?.(e.pointerId); } catch {}
+      dragRef.current = { startSx: pt.sx, startOffset: panOffset, moved: false };
+      setCrosshair({ idx: idxFromSx(pt.sx), sx: pt.sx, sy: pt.sy });
+      return;
+    }
     if (TWO_POINT.includes(tool)) {
       if (!pendA) { setPendA(pt); setHover(pt); }
       else create(pendA, pt);
     } else create(pt);
   };
-  const onMovePreview = (e) => { if (pendA) setHover(ptFromEvent(e)); };
+
+  const onMovePreview = (e) => {
+    if (pendA) { setHover(ptFromEvent(e)); return; }
+    if (tool === 'cursor' && dragRef.current) {
+      const pt = ptFromEvent(e);
+      const dx = pt.sx - dragRef.current.startSx;
+      if (Math.abs(dx) > 6) {
+        dragRef.current.moved = true;
+        const pxPerCandle = g.pw / (g.vis.length || 1);
+        const deltaCandles = Math.round(dx / pxPerCandle);
+        const newOffset = Math.max(0, Math.min(maxOffset, dragRef.current.startOffset + deltaCandles));
+        onPan?.(newOffset);
+        setCrosshair(null);
+      } else {
+        setCrosshair({ idx: idxFromSx(pt.sx), sx: pt.sx, sy: pt.sy });
+      }
+    }
+  };
+
+  const onUp = (e) => {
+    if (tool === 'cursor' && dragRef.current) {
+      const pt = ptFromEvent(e);
+      lastTapRef.current = { time: Date.now(), sx: pt.sx, sy: pt.sy };
+      dragRef.current = null;
+    }
+  };
 
   const delSel = () => { if (!selId) return; persist(drawings.filter(d => d.id !== selId)); setSel(null); };
   const clearAll = () => { if (drawings.length && confirm('Clear all drawings on this chart?')) persist([]); setSel(null); };
@@ -197,7 +262,7 @@ export default function ChartDrawTools({ candles, symbol, tf, ov, barCount, char
       {/* Tool palette */}
       <div style={{ position:'absolute', top:8, left:8, display:'flex', flexDirection:'column', gap:3, zIndex:6 }}>
         {TOOLS.map(t => (
-          <button key={t.id} title={t.label} onClick={()=>{ setTool(t.id); setPendA(null); setSel(null); }}
+          <button key={t.id} title={t.label} onClick={()=>{ setTool(t.id); setPendA(null); setSel(null); setCrosshair(null); }}
             style={{ width:28, height:28, borderRadius:7, cursor:'pointer', fontSize:13, fontWeight:700, lineHeight:1,
               background: tool===t.id ? '#00d4aa22' : 'rgba(13,19,33,0.85)', color: tool===t.id ? '#00d4aa' : '#94a3b8',
               border:`1px solid ${tool===t.id ? '#00d4aa66' : '#1e293b'}` }}>{t.icon}</button>
@@ -226,13 +291,50 @@ export default function ChartDrawTools({ candles, symbol, tf, ov, barCount, char
           fontSize:11, color:'#06121f', background:'#00d4aa', padding:'5px 12px', borderRadius:10, fontWeight:700 }}>{toast}</div>
       )}
 
+      {/* Crosshair OHLC readout — tap empty space to inspect, drag to pan, double-tap to reset */}
+      {crosshair && g.vis[crosshair.idx] && !selId && (() => {
+        const c = g.vis[crosshair.idx];
+        const bull = c.c >= c.o;
+        const timeStr = new Date(c.t).toLocaleString([], { month:'short', day:'numeric', hour:'2-digit', minute:'2-digit' });
+        return (
+          <div style={{ position:'absolute', top:8, right:8, zIndex:6, background:'rgba(6,18,31,0.94)',
+            border:'1px solid #33415566', borderRadius:8, padding:'6px 10px', fontSize:10, color:'#e2e8f0',
+            fontFamily:'monospace', lineHeight:1.6, pointerEvents:'none' }}>
+            <div style={{ color:'#64748b', marginBottom:2 }}>{timeStr}</div>
+            <div>O <strong style={{color:'#e2e8f0'}}>{fmt(c.o)}</strong>&nbsp;&nbsp;H <strong style={{color:'#22c55e'}}>{fmt(c.h)}</strong></div>
+            <div>L <strong style={{color:'#ef4444'}}>{fmt(c.l)}</strong>&nbsp;&nbsp;C <strong style={{color:bull?'#22c55e':'#ef4444'}}>{fmt(c.c)}</strong></div>
+          </div>
+        );
+      })()}
+
+      {panOffset > 0 && (
+        <button onClick={() => onPan?.(0)} style={{ position:'absolute', bottom:8, right:8, zIndex:6,
+          fontSize:9.5, fontWeight:700, padding:'4px 10px', borderRadius:10, cursor:'pointer',
+          background:'#f59e0b18', color:'#f59e0b', border:'1px solid #f59e0b44' }}>
+          📍 Viewing history · tap to return to live
+        </button>
+      )}
+
       <svg ref={svgRef} viewBox={`0 0 ${g.W} ${g.H}`} preserveAspectRatio="none"
         onPointerDown={onDown} onPointerMove={onMovePreview}
+        onPointerUp={onUp} onPointerCancel={onUp} onPointerLeave={onUp}
         style={{ position:'absolute', inset:0, width:'100%', height:'100%', zIndex:5,
           cursor: tool==='cursor' ? 'default' : 'crosshair', touchAction:'none' }}>
         {drawings.map(d => renderDrawing(d))}
         {previewDraw && renderDrawing(previewDraw, true)}
         {pendA && <circle cx={xOfT(pendA.t)} cy={yOfP(pendA.p)} r={4} fill={COLORS[tool]||'#00d4aa'}/>}
+        {crosshair && g.vis[crosshair.idx] && (() => {
+          const cx = g.xOf(crosshair.idx), cy = crosshair.sy;
+          const priceAtCursor = g.pMin + (g.PT + g.ph - cy) / g.ph * (g.pMax - g.pMin);
+          return (
+            <g>
+              <line x1={cx} y1={g.PT} x2={cx} y2={g.PT+g.ph} stroke="#94a3b8" strokeWidth={1} strokeDasharray="3,3" opacity={0.6}/>
+              <line x1={g.PL} y1={cy} x2={g.W-g.PR} y2={cy} stroke="#94a3b8" strokeWidth={1} strokeDasharray="3,3" opacity={0.6}/>
+              <rect x={g.W-g.PR} y={cy-8} width={g.PR} height={16} fill="#94a3b8"/>
+              <text x={g.W-g.PR+4} y={cy+4} fontSize={9} fill="#06121f" fontWeight="700">{fmt(priceAtCursor)}</text>
+            </g>
+          );
+        })()}
       </svg>
     </>
   );
