@@ -45,7 +45,7 @@ function getOandaCreds() {
 }
 
 // Candle fetch from OANDA
-async function fetchCandles(symbol, tf, count = 500) {
+async function fetchCandles(symbol, tf, count = 5000) {
   const creds = getOandaCreds();
   if (!creds?.apiKey) throw new Error('OANDA not connected — connect in the Screener first.');
   const instr = toOandaInstr(symbol);
@@ -576,7 +576,7 @@ export default function ChartModal({ instrument, onClose, setupLevels }) {
   useEffect(() => {
     if (tab !== 'chart') return;
     setLoading(true); setLoadErr(''); setCandles(null); setPanOffset(0);
-    fetchCandles(symbol, tf, 500)
+    fetchCandles(symbol, tf, 5000)
       .then(cs => setCandles(cs))
       .catch(e => setLoadErr(e.message))
       .finally(() => setLoading(false));
