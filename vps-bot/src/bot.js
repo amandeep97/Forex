@@ -15,6 +15,14 @@ const STRATEGY_PATH = 'bot/strategy.json';
 const TRADES_PATH   = 'bot/trades.json';
 const CONTROL_PATH  = 'bot/vps-control.json';
 
+// Timeframe → milliseconds, for the "one entry per bar" guard.
+const TF_MS = { M1:60e3, M5:300e3, M15:900e3, M30:1800e3, H1:3600e3, H2:7200e3, H4:14400e3, H6:21600e3, H12:43200e3, D:86400e3, W:604800e3 };
+// Start (ms) of the current candle for a timeframe — floor of now to the TF grid.
+function barStartMs(tf) {
+  const ms = TF_MS[tf] || 900e3;
+  return Math.floor(Date.now() / ms) * ms;
+}
+
 class ForexBot {
   constructor(env) {
     this.oanda    = new OandaClient({ apiKey: env.OANDA_API_KEY, accountId: env.OANDA_ACCOUNT_ID, practice: env.OANDA_PRACTICE !== 'false' });
@@ -97,6 +105,19 @@ class ForexBot {
         ).length;
         if (openForPair >= maxPerPair) {
           this.log(`${pair}: ${openForPair}/${maxPerPair} positions open for strategy "${strat.name}" — skip`);
+          continue;
+        }
+
+        // One entry attempt per bar: the M15 (etc.) signal stays valid for the whole
+        // candle, so without this the bot re-fires every 60s tick. Count ANY logged
+        // attempt this bar (including ghost/failed orders) so the loop can't run away.
+        const barStart = barStartMs(strat.timeframe);
+        const attemptedThisBar = tradeLog.trades.some(t =>
+          t.strategyId === strat.id && t.pair === pair &&
+          t.openedAt && new Date(t.openedAt).getTime() >= barStart
+        );
+        if (attemptedThisBar) {
+          this.log(`${pair}: already attempted this ${strat.timeframe} bar for "${strat.name}" — skip`);
           continue;
         }
 
@@ -215,8 +236,19 @@ class ForexBot {
     const tradeId = genTradeId();
     const result  = await this.oanda.placeMarketOrder({ instrument: pair, units: signedUnits, sl, tp, clientId: tradeId });
     const fillTx  = result.orderFillTransaction;
-    const actualEntry = fillTx ? +fillTx.price : cp;
+    const oandaTradeId = fillTx?.tradeOpened?.tradeID || null;
 
+    // If OANDA didn't actually open a position (order cancelled/rejected — e.g. account
+    // locked, insufficient margin, TP/SL invalid), do NOT log a ghost trade. Logging it
+    // would both pollute the journal and blind the per-pair guard, causing the bot to
+    // re-fire every tick. Record the reject reason (if any) to the log and stand down.
+    if (!oandaTradeId) {
+      const reject = result.orderCancelTransaction?.reason || result.orderRejectTransaction?.rejectReason || 'no fill (position not opened)';
+      this.warn(`${pair}: order did NOT open — ${reject}. Not logging a trade.`);
+      return false;
+    }
+
+    const actualEntry = fillTx ? +fillTx.price : cp;
     const session = sessions.includes('overlap') ? 'overlap' : sessions[0] || 'unknown';
 
     const record = {
@@ -240,7 +272,7 @@ class ForexBot {
       pnlUsd:    null,
       rrAchieved: null,
       source:    'vps_bot',
-      oandaId:   fillTx?.tradeOpened?.tradeID || null,
+      oandaId:   oandaTradeId,
     };
 
     tradeLog.trades.push(record);
