@@ -1,6 +1,19 @@
 {
   "alerts": [
     {
+      "id": "al_1783999541186_nwrj",
+      "type": "pattern",
+      "sym": "XAG/USD",
+      "repeat": false,
+      "enabled": true,
+      "createdAt": 1783999541186,
+      "lastTriggered": null,
+      "tf": "M5",
+      "pattern": "both",
+      "N": 9,
+      "lastCandleT": null
+    },
+    {
       "id": "al_1783999532011_w7p4",
       "type": "pattern",
       "sym": "XAG/USD",
@@ -51,5 +64,5 @@
       "level": 4057.83
     }
   ],
-  "updatedAt": "2026-07-14T03:25:32.391Z"
+  "updatedAt": "2026-07-14T03:25:41.397Z"
 }
