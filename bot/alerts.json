@@ -1,6 +1,19 @@
 {
   "alerts": [
     {
+      "id": "al_1784053370595_olg3",
+      "type": "pattern",
+      "sym": "XAU/USD",
+      "repeat": true,
+      "enabled": true,
+      "createdAt": 1784053370595,
+      "lastTriggered": null,
+      "tf": "M15",
+      "pattern": "both",
+      "N": 9,
+      "lastCandleT": null
+    },
+    {
       "id": "al_1784053366579_oayj",
       "type": "pattern",
       "sym": "XAU/USD",
@@ -79,5 +92,5 @@
       "lastCandleT": 1784004600000
     }
   ],
-  "updatedAt": "2026-07-14T18:22:46.803Z"
+  "updatedAt": "2026-07-14T18:22:50.812Z"
 }
