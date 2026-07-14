@@ -1,6 +1,19 @@
 {
   "alerts": [
     {
+      "id": "al_1784053351114_2n8b",
+      "type": "pattern",
+      "sym": "SPX500",
+      "repeat": true,
+      "enabled": true,
+      "createdAt": 1784053351114,
+      "lastTriggered": null,
+      "tf": "M5",
+      "pattern": "both",
+      "N": 9,
+      "lastCandleT": null
+    },
+    {
       "id": "al_1784053336557_glat",
       "type": "pattern",
       "sym": "SPX500",
@@ -11,7 +24,7 @@
       "tf": "M15",
       "pattern": "both",
       "N": 9,
-      "lastCandleT": null
+      "lastCandleT": 1784052000000
     },
     {
       "id": "al_1783999541186_nwrj",
@@ -77,5 +90,5 @@
       "level": 4057.83
     }
   ],
-  "updatedAt": "2026-07-14T18:22:16.907Z"
+  "updatedAt": "2026-07-14T18:22:31.317Z"
 }
