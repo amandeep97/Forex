@@ -1,17 +1,30 @@
 {
   "alerts": [
     {
+      "id": "al_1784053336557_glat",
+      "type": "pattern",
+      "sym": "SPX500",
+      "repeat": true,
+      "enabled": true,
+      "createdAt": 1784053336557,
+      "lastTriggered": null,
+      "tf": "M15",
+      "pattern": "both",
+      "N": 9,
+      "lastCandleT": null
+    },
+    {
       "id": "al_1783999541186_nwrj",
       "type": "pattern",
       "sym": "XAG/USD",
       "repeat": false,
-      "enabled": false,
+      "enabled": true,
       "createdAt": 1783999541186,
       "lastTriggered": 1784005538459,
       "tf": "M5",
       "pattern": "both",
       "N": 9,
-      "lastCandleT": 1784005200000
+      "lastCandleT": 1784052900000
     },
     {
       "id": "al_1783999532011_w7p4",
@@ -64,5 +77,5 @@
       "level": 4057.83
     }
   ],
-  "updatedAt": "2026-07-14T18:22:08.981Z"
+  "updatedAt": "2026-07-14T18:22:16.907Z"
 }
