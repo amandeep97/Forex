@@ -1,6 +1,19 @@
 {
   "alerts": [
     {
+      "id": "al_1783998336215_pafa",
+      "type": "pattern",
+      "sym": "EUR/USD",
+      "repeat": false,
+      "enabled": true,
+      "createdAt": 1783998336215,
+      "lastTriggered": null,
+      "tf": "M5",
+      "pattern": "both",
+      "N": 9,
+      "lastCandleT": null
+    },
+    {
       "id": "al_1783998277703_1475",
       "type": "pattern",
       "sym": "XAU/USD",
@@ -25,5 +38,5 @@
       "level": 4057.83
     }
   ],
-  "updatedAt": "2026-07-14T03:05:31.100Z"
+  "updatedAt": "2026-07-14T03:05:36.612Z"
 }
