@@ -1,4 +1,29 @@
 {
-  "alerts": [],
-  "updatedAt": "2026-07-01T18:05:36.174Z"
+  "alerts": [
+    {
+      "id": "al_1783998277703_1475",
+      "type": "pattern",
+      "sym": "XAU/USD",
+      "repeat": false,
+      "enabled": true,
+      "createdAt": 1783998277703,
+      "lastTriggered": null,
+      "tf": "M15",
+      "pattern": "both",
+      "N": 9,
+      "lastCandleT": null
+    },
+    {
+      "id": "al_1782933821970_4tv",
+      "sym": "XAU/USD",
+      "enabled": true,
+      "repeat": false,
+      "createdAt": 1782933821970,
+      "lastTriggered": null,
+      "type": "price",
+      "dir": "cross",
+      "level": 4057.83
+    }
+  ],
+  "updatedAt": "2026-07-14T03:04:37.992Z"
 }
