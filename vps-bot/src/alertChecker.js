@@ -23,7 +23,11 @@ const OANDA_MAP = {
   'AUD/USD':'AUD_USD','NZD/USD':'NZD_USD','EUR/JPY':'EUR_JPY','GBP/JPY':'GBP_JPY',
   'XAU/USD':'XAU_USD','XAG/USD':'XAG_USD','US30':'US30_USD','NAS100':'NAS100_USD','SPX500':'SPX500_USD',
 };
-const BINANCE_MAP = { 'BTC/USDT':'BTCUSDT','ETH/USDT':'ETHUSDT','SOL/USDT':'SOLUSDT' };
+const BINANCE_MAP = {
+  'BTC/USDT':'BTCUSDT','ETH/USDT':'ETHUSDT','BNB/USDT':'BNBUSDT','SOL/USDT':'SOLUSDT',
+  'XRP/USDT':'XRPUSDT','ADA/USDT':'ADAUSDT','DOGE/USDT':'DOGEUSDT','AVAX/USDT':'AVAXUSDT',
+  'LINK/USDT':'LINKUSDT','DOT/USDT':'DOTUSDT','LTC/USDT':'LTCUSDT','TON/USDT':'TONUSDT',
+};
 const BIN_TF = { M1:'1m', M3:'3m', M5:'5m', M15:'15m', M30:'30m', H1:'1h', H4:'4h', D:'1d' };
 
 function dec(sym) {
@@ -31,7 +35,9 @@ function dec(sym) {
   if (/^(US|NAS|SPX)/.test(sym)) return 1;
   if (sym.includes('JPY')) return 3;
   if (sym.includes('BTC') || sym.includes('ETH')) return 1;
-  if (sym.includes('SOL') || sym.includes('XAG')) return 2;
+  if (sym.includes('SOL') || sym.includes('XAG') || sym.includes('BNB') || sym.includes('LTC')) return 2;
+  if (sym.includes('XRP') || sym.includes('ADA') || sym.includes('DOGE')) return 4;
+  if (sym.includes('AVAX') || sym.includes('LINK') || sym.includes('DOT') || sym.includes('TON')) return 3;
   return 5;
 }
 

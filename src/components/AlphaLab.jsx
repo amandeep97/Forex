@@ -21,9 +21,16 @@ const PAIRS = [
   { key:'JP225_USD',  label:'JPN225',   pip:1,      group:'Indices' },
   { key:'BTC_USDT',   label:'BTC/USDT', pip:1,      group:'Crypto',  binance:'BTCUSDT'  },
   { key:'ETH_USDT',   label:'ETH/USDT', pip:0.1,    group:'Crypto',  binance:'ETHUSDT'  },
+  { key:'BNB_USDT',   label:'BNB/USDT', pip:0.1,    group:'Crypto',  binance:'BNBUSDT'  },
   { key:'SOL_USDT',   label:'SOL/USDT', pip:0.01,   group:'Crypto',  binance:'SOLUSDT'  },
   { key:'XRP_USDT',   label:'XRP/USDT', pip:0.0001, group:'Crypto',  binance:'XRPUSDT'  },
-  { key:'BNB_USDT',   label:'BNB/USDT', pip:0.1,    group:'Crypto',  binance:'BNBUSDT'  },
+  { key:'ADA_USDT',   label:'ADA/USDT', pip:0.0001, group:'Crypto',  binance:'ADAUSDT'  },
+  { key:'DOGE_USDT',  label:'DOGE/USDT',pip:0.0001, group:'Crypto',  binance:'DOGEUSDT' },
+  { key:'AVAX_USDT',  label:'AVAX/USDT',pip:0.001,  group:'Crypto',  binance:'AVAXUSDT' },
+  { key:'LINK_USDT',  label:'LINK/USDT',pip:0.001,  group:'Crypto',  binance:'LINKUSDT' },
+  { key:'DOT_USDT',   label:'DOT/USDT', pip:0.001,  group:'Crypto',  binance:'DOTUSDT'  },
+  { key:'LTC_USDT',   label:'LTC/USDT', pip:0.01,   group:'Crypto',  binance:'LTCUSDT'  },
+  { key:'TON_USDT',   label:'TON/USDT', pip:0.001,  group:'Crypto',  binance:'TONUSDT'  },
 ];
 
 const LS_KEY = 'alpha_lab_v2';

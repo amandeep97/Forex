@@ -105,13 +105,20 @@ const FACTORS = [
   { key:'time',  label:'Time',  color:'#fbbf24' },
 ];
 
-// Top 5 crypto — Binance public API (free, no key needed)
+// Top 12 crypto — Binance public API (free, no key needed)
 const CRYPTO_PAIRS = [
-  { key:'BTC',  label:'BTC/USDT', symbol:'BTCUSDT'  },
-  { key:'ETH',  label:'ETH/USDT', symbol:'ETHUSDT'  },
-  { key:'SOL',  label:'SOL/USDT', symbol:'SOLUSDT'  },
-  { key:'XRP',  label:'XRP/USDT', symbol:'XRPUSDT'  },
-  { key:'BNB',  label:'BNB/USDT', symbol:'BNBUSDT'  },
+  { key:'BTC',  label:'BTC/USDT',  symbol:'BTCUSDT'  },
+  { key:'ETH',  label:'ETH/USDT',  symbol:'ETHUSDT'  },
+  { key:'BNB',  label:'BNB/USDT',  symbol:'BNBUSDT'  },
+  { key:'SOL',  label:'SOL/USDT',  symbol:'SOLUSDT'  },
+  { key:'XRP',  label:'XRP/USDT',  symbol:'XRPUSDT'  },
+  { key:'ADA',  label:'ADA/USDT',  symbol:'ADAUSDT'  },
+  { key:'DOGE', label:'DOGE/USDT', symbol:'DOGEUSDT' },
+  { key:'AVAX', label:'AVAX/USDT', symbol:'AVAXUSDT' },
+  { key:'LINK', label:'LINK/USDT', symbol:'LINKUSDT' },
+  { key:'DOT',  label:'DOT/USDT',  symbol:'DOTUSDT'  },
+  { key:'LTC',  label:'LTC/USDT',  symbol:'LTCUSDT'  },
+  { key:'TON',  label:'TON/USDT',  symbol:'TONUSDT'  },
 ];
 
 // Binance public candle API — no key, free, browser-safe

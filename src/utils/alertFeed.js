@@ -15,9 +15,18 @@ export const ALERT_INSTRUMENTS = [
   { sym:'US30',    oanda:'US30_USD',   pip:1,   dec:1 },
   { sym:'NAS100',  oanda:'NAS100_USD', pip:1,   dec:1 },
   { sym:'SPX500',  oanda:'SPX500_USD', pip:0.1, dec:1 },
-  { sym:'BTC/USDT', binance:'BTCUSDT', pip:1,    dec:1 },
-  { sym:'ETH/USDT', binance:'ETHUSDT', pip:0.1,  dec:2 },
-  { sym:'SOL/USDT', binance:'SOLUSDT', pip:0.01, dec:2 },
+  { sym:'BTC/USDT',  binance:'BTCUSDT',  pip:1,      dec:1 },
+  { sym:'ETH/USDT',  binance:'ETHUSDT',  pip:0.1,    dec:2 },
+  { sym:'BNB/USDT',  binance:'BNBUSDT',  pip:0.1,    dec:2 },
+  { sym:'SOL/USDT',  binance:'SOLUSDT',  pip:0.01,   dec:2 },
+  { sym:'XRP/USDT',  binance:'XRPUSDT',  pip:0.0001, dec:4 },
+  { sym:'ADA/USDT',  binance:'ADAUSDT',  pip:0.0001, dec:4 },
+  { sym:'DOGE/USDT', binance:'DOGEUSDT', pip:0.0001, dec:4 },
+  { sym:'AVAX/USDT', binance:'AVAXUSDT', pip:0.001,  dec:3 },
+  { sym:'LINK/USDT', binance:'LINKUSDT', pip:0.001,  dec:3 },
+  { sym:'DOT/USDT',  binance:'DOTUSDT',  pip:0.001,  dec:3 },
+  { sym:'LTC/USDT',  binance:'LTCUSDT',  pip:0.01,   dec:2 },
+  { sym:'TON/USDT',  binance:'TONUSDT',  pip:0.001,  dec:3 },
 ];
 
 export function instBySym(sym) { return ALERT_INSTRUMENTS.find(i => i.sym === sym); }
