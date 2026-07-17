@@ -1,6 +1,19 @@
 {
   "alerts": [
     {
+      "id": "al_1784302910439_itze",
+      "type": "pattern",
+      "sym": "XAG/USD",
+      "repeat": true,
+      "enabled": true,
+      "createdAt": 1784302910439,
+      "lastTriggered": null,
+      "tf": "M5",
+      "pattern": "both",
+      "N": 9,
+      "lastCandleT": null
+    },
+    {
       "id": "al_1784302906353_bf9t",
       "type": "pattern",
       "sym": "XAG/USD",
@@ -105,5 +118,5 @@
       "lastCandleT": 1784004600000
     }
   ],
-  "updatedAt": "2026-07-17T15:41:46.541Z"
+  "updatedAt": "2026-07-17T15:41:50.675Z"
 }
