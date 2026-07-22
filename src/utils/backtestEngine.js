@@ -610,8 +610,40 @@ function buildIndicators(candles, conditions) {
   return arrays;
 }
 
+// ── Per-bar entry signal series (long / short / null) ─────────────────────────
+// Uses the IDENTICAL entry logic as runBacktest, so fire-rate and the random
+// baseline are guaranteed to measure the same thing the backtest actually trades.
+export function computeSignalSeries(candles, strategy) {
+  const res = new Array(candles?.length || 0).fill(null);
+  const { conditions = [], logic = 'AND', direction = 'both' } = strategy || {};
+  if (!candles || candles.length < 20 || conditions.length === 0) return res;
+
+  const indArrays = buildIndicators(candles, conditions);
+  const mirroredConds = conditions.map(mirrorCond);
+  const needCandlestick = conditions.some(cd => cd.type === 'candlestick');
+  const check = (condList, c, prev, inds, pattern, patternIds) =>
+    logic === 'AND'
+      ? condList.every(cd => evalCond(c, prev, inds, cd, pattern, patternIds))
+      : condList.some(cd => evalCond(c, prev, inds, cd, pattern, patternIds));
+
+  for (let i = 10; i < candles.length; i++) {
+    const c = candles[i], prev = candles[i - 1];
+    const inds = {};
+    for (const [key, arr] of Object.entries(indArrays)) inds[key] = { cur: arr[i] ?? null, prev: arr[i - 1] ?? null };
+    const pattern = detectPatternAt(candles, i);
+    const patternIds = needCandlestick ? patternsAt(candles, i) : null;
+    const longOk  = (direction === 'long'  || direction === 'both') && check(conditions,    c, prev, inds, pattern, patternIds);
+    const shortOk = (direction === 'short' || direction === 'both') && check(mirroredConds, c, prev, inds, pattern, patternIds);
+    res[i] = longOk ? 'long' : (shortOk ? 'short' : null);
+  }
+  return res;
+}
+
 // ── Main backtest runner ──────────────────────────────────────────────────────
-export function runBacktest(candles, strategy) {
+// opts.entryOverride(i, candles) → 'long' | 'short' | null bypasses condition
+// evaluation (used by the random-baseline grader) so the SAME exit / risk /
+// spread mechanics run on differently-chosen entries.
+export function runBacktest(candles, strategy, opts = {}) {
   if (!candles || candles.length < 20) return { trades: [], equityCurve: [10000] };
 
   const {
@@ -649,6 +681,7 @@ export function runBacktest(candles, strategy) {
     return condList.some(cd => evalCond(c, prev, inds, cd, pattern, patternIds));
   };
 
+  const entryOverride = typeof opts.entryOverride === 'function' ? opts.entryOverride : null;
   const mirroredConds = conditions.map(mirrorCond);
   const needCandlestick = conditions.some(cd => cd.type === 'candlestick');
 
@@ -705,9 +738,14 @@ export function runBacktest(candles, strategy) {
     if (open.length >= maxTrades) continue;
 
     // ── Entry signals ──
-    const longOk  = (direction === 'long'  || direction === 'both') && check(conditions,    c, prev, inds, pattern, patternIds);
-    const shortOk = (direction === 'short' || direction === 'both') && check(mirroredConds, c, prev, inds, pattern, patternIds);
-    const dir = longOk ? 'long' : (shortOk ? 'short' : null);
+    let dir;
+    if (entryOverride) {
+      dir = entryOverride(i, candles) || null;
+    } else {
+      const longOk  = (direction === 'long'  || direction === 'both') && check(conditions,    c, prev, inds, pattern, patternIds);
+      const shortOk = (direction === 'short' || direction === 'both') && check(mirroredConds, c, prev, inds, pattern, patternIds);
+      dir = longOk ? 'long' : (shortOk ? 'short' : null);
+    }
     if (!dir) continue;
 
     const entry   = c.c;

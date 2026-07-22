@@ -1,5 +1,6 @@
 import { useState, useMemo } from 'react';
 import { runBacktest, calcStats, defaultSpreadPips } from '../utils/backtestEngine';
+import { gradeStrategy, loadLibrary, saveToLibrary, removeFromLibrary, condSignature } from '../utils/backtestGrading';
 import { OANDA_MAP } from '../hooks/useLivePrices';
 import { generateCandles } from '../utils/generateCandles';
 
@@ -315,6 +316,248 @@ function LongShortPanel({ s }) {
   );
 }
 
+// ── Statistical Grade Card (Phases 1 & 2 & 5) ─────────────────────────────────
+function GradeCard({ g, onSave, saved }) {
+  if (!g) return null;
+  const barBase = 100, barSetup = Math.min(100, (g.setupWinRate / Math.max(g.baseWinRate * 3, g.setupWinRate, 1)) * 100);
+  const barRand = Math.min(100, (g.baseWinRate / Math.max(g.baseWinRate * 3, g.setupWinRate, 1)) * 100);
+  const selMeta = {
+    too_loose: { c:'#ef4444', t:'Too loose', d:'fires very often — most matches will be noise' },
+    balanced:  { c:'#f59e0b', t:'Balanced',  d:'reasonable trigger frequency' },
+    selective: { c:'#22c55e', t:'Selective', d:'rare, high-conviction trigger' },
+  }[g.selectivity];
+  return (
+    <div style={{borderRadius:10, border:`1.5px solid ${g.color}55`, background:`${g.color}0c`, padding:14, marginBottom:14}}>
+      {/* Verdict banner */}
+      <div style={{display:'flex', alignItems:'center', justifyContent:'space-between', gap:10, flexWrap:'wrap'}}>
+        <div style={{display:'flex', alignItems:'center', gap:10}}>
+          <span style={{fontSize:22, fontWeight:900, letterSpacing:'-0.5px', color:g.color}}>
+            {g.verdict==='proven'?'✅':g.verdict==='weak'?'📈':g.verdict==='insufficient'?'⚠️':'❌'} {g.label}
+          </span>
+        </div>
+        <div style={{display:'flex', alignItems:'center', gap:8}}>
+          {g.edgeMult>0 && g.verdict!=='insufficient' && (
+            <span style={{fontSize:20, fontWeight:900, fontFamily:'monospace', color:g.color,
+              padding:'2px 10px', borderRadius:6, background:`${g.color}18`}}>
+              ×{g.edgeMult}
+            </span>
+          )}
+          <span style={{fontSize:11, color:'var(--text3)'}}>{g.note}</span>
+        </div>
+      </div>
+
+      {/* Win-rate vs random bars */}
+      <div style={{marginTop:12, display:'flex', flexDirection:'column', gap:8}}>
+        <div>
+          <div style={{display:'flex', justifyContent:'space-between', fontSize:11, marginBottom:3}}>
+            <span style={{color:'var(--text2)', fontWeight:600}}>This setup</span>
+            <span style={{fontFamily:'monospace', color:g.color, fontWeight:700}}>{g.setupWinRate}% win</span>
+          </div>
+          <div style={{height:8, background:'#1e293b', borderRadius:4, overflow:'hidden'}}>
+            <div style={{width:`${barSetup}%`, height:'100%', background:g.color, borderRadius:4}}/>
+          </div>
+        </div>
+        <div>
+          <div style={{display:'flex', justifyContent:'space-between', fontSize:11, marginBottom:3}}>
+            <span style={{color:'var(--text3)'}}>Random baseline (n={g.baseN})</span>
+            <span style={{fontFamily:'monospace', color:'var(--text3)'}}>{g.baseWinRate}% win</span>
+          </div>
+          <div style={{height:8, background:'#1e293b', borderRadius:4, overflow:'hidden'}}>
+            <div style={{width:`${barRand}%`, height:'100%', background:'#475569', borderRadius:4}}/>
+          </div>
+        </div>
+      </div>
+
+      {/* Headline numbers */}
+      <div style={{display:'grid', gridTemplateColumns:'repeat(3,1fr)', gap:8, marginTop:12}}>
+        <div style={{textAlign:'center', padding:'8px 4px', borderRadius:6, background:'var(--bg2,#0f172a)'}}>
+          <div style={{fontSize:18, fontWeight:900, fontFamily:'monospace', color: g.setupExpR>0?'#22c55e':'#ef4444'}}>
+            {g.setupExpR>0?'+':''}{g.setupExpR}R
+          </div>
+          <div style={{fontSize:9, color:'var(--text3)', marginTop:2}}>EXPECTANCY / TRADE</div>
+          <div style={{fontSize:9, color:'var(--text3)'}}>vs {g.baseExpR>0?'+':''}{g.baseExpR}R random</div>
+        </div>
+        <div style={{textAlign:'center', padding:'8px 4px', borderRadius:6, background:'var(--bg2,#0f172a)'}}>
+          <div style={{fontSize:18, fontWeight:900, fontFamily:'monospace', color: g.sufficient?'var(--text)':'#f59e0b'}}>
+            n={g.n}
+          </div>
+          <div style={{fontSize:9, color:'var(--text3)', marginTop:2}}>SAMPLE SIZE</div>
+          <div style={{fontSize:9, color: g.sufficient?'#22c55e':'#f59e0b'}}>
+            {g.sufficient?`≥${g.minSample} ✓ trustworthy`:`<${g.minSample} — thin`}
+          </div>
+        </div>
+        <div style={{textAlign:'center', padding:'8px 4px', borderRadius:6, background:'var(--bg2,#0f172a)'}}>
+          <div style={{fontSize:18, fontWeight:900, fontFamily:'monospace', color:selMeta.c}}>{g.fireRate}%</div>
+          <div style={{fontSize:9, color:'var(--text3)', marginTop:2}}>FIRE RATE · {selMeta.t}</div>
+          <div style={{fontSize:9, color:'var(--text3)'}}>{g.signalCount} signals · {g.nConditions} cond</div>
+        </div>
+      </div>
+
+      {g.selectivity==='too_loose' && (
+        <div style={{marginTop:10, fontSize:11, color:'#fca5a5', background:'#ef444412', border:'1px solid #ef444433',
+          borderRadius:6, padding:'7px 10px'}}>
+          ⚠ This setup fires on {g.fireRate}% of bars — that's the "every second coin matches" problem. A real edge
+          should be <strong>selective</strong>. Add a confluence condition or tighten thresholds.
+        </div>
+      )}
+
+      {/* Live gate */}
+      <div style={{marginTop:12, borderTop:'1px solid #1e293b', paddingTop:10}}>
+        <div style={{display:'flex', alignItems:'center', justifyContent:'space-between', gap:8, flexWrap:'wrap'}}>
+          <span style={{fontSize:12, fontWeight:800, color: g.validated?'#22c55e':'#94a3b8'}}>
+            {g.validated ? '🟢 CLEARED FOR LIVE' : '🔒 NOT CLEARED FOR LIVE'}
+          </span>
+          <button onClick={onSave} disabled={saved}
+            style={{fontSize:11, fontWeight:700, padding:'5px 12px', borderRadius:6, cursor: saved?'default':'pointer',
+              border:`1px solid ${g.color}55`, background: saved?'#1e293b':`${g.color}18`, color: saved?'#64748b':g.color}}>
+            {saved ? '✓ Saved to Edge Library' : '★ Save to Edge Library'}
+          </button>
+        </div>
+        {!g.validated && g.blockers.length>0 && (
+          <ul style={{margin:'8px 0 0', paddingLeft:18, fontSize:11, color:'var(--text3)'}}>
+            {g.blockers.map((b,i)=><li key={i} style={{marginBottom:2}}>{b}</li>)}
+          </ul>
+        )}
+        {g.validated && (
+          <div style={{marginTop:6, fontSize:11, color:'var(--text3)'}}>
+            Passed every check: ≥{g.liveSample} trades · ×{g.edgeMult} over random · positive expectancy ·
+            holds out-of-sample · Monte-Carlo profit-safe. Still size responsibly — past edge ≠ guaranteed future.
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+// ── Robustness Card (Phase 3) ─────────────────────────────────────────────────
+function RobustnessCard({ g }) {
+  if (!g) return null;
+  const oos = g.oos;
+  const oosColor = oos.status==='holds'?'#22c55e':oos.status==='fails'?'#ef4444':'#64748b';
+  const mc = g.monteCarlo;
+  return (
+    <div className="bt2-chart-card">
+      <div className="bt2-card-title">Robustness Checks <span style={{color:'var(--text3)',fontWeight:400,fontSize:10}}>does the edge survive unseen data & bad luck?</span></div>
+
+      {/* Out-of-sample */}
+      <div style={{display:'flex', gap:10, marginTop:4}}>
+        <div style={{flex:1, padding:'8px 10px', borderRadius:6, border:'1px solid #1e293b', background:'#0f172a'}}>
+          <div style={{fontSize:10, color:'var(--text3)', marginBottom:4}}>IN-SAMPLE (first 70%)</div>
+          <div style={{fontSize:15, fontWeight:800, fontFamily:'monospace', color: g.oos.in.expR>0?'#22c55e':'#ef4444'}}>
+            {g.oos.in.winRate}% · {g.oos.in.expR>0?'+':''}{g.oos.in.expR}R
+          </div>
+          <div style={{fontSize:9, color:'var(--text3)'}}>{g.oos.in.n} trades</div>
+        </div>
+        <div style={{display:'flex', alignItems:'center', color:oosColor, fontSize:18}}>→</div>
+        <div style={{flex:1, padding:'8px 10px', borderRadius:6, border:`1px solid ${oosColor}44`, background:`${oosColor}0a`}}>
+          <div style={{fontSize:10, color:'var(--text3)', marginBottom:4}}>OUT-OF-SAMPLE (last 30%)</div>
+          <div style={{fontSize:15, fontWeight:800, fontFamily:'monospace', color: g.oos.out.expR>0?'#22c55e':'#ef4444'}}>
+            {g.oos.out.winRate}% · {g.oos.out.expR>0?'+':''}{g.oos.out.expR}R
+          </div>
+          <div style={{fontSize:9, color:'var(--text3)'}}>{g.oos.out.n} trades</div>
+        </div>
+      </div>
+      <div style={{marginTop:6, fontSize:11, fontWeight:700, color:oosColor}}>
+        {oos.status==='holds' && '✓ Edge holds on data the setup never saw — the strongest sign it is real.'}
+        {oos.status==='fails' && '✗ Edge collapsed out-of-sample — likely curve-fit to the in-sample period.'}
+        {oos.status==='inconclusive' && '— Not enough out-of-sample trades to judge. Test on more bars.'}
+      </div>
+
+      {/* Thirds consistency */}
+      <div style={{marginTop:12}}>
+        <div style={{fontSize:10, color:'var(--text3)', marginBottom:5}}>CONSISTENCY ACROSS PERIODS ({g.positiveThirds}/{g.gradedThirds} profitable)</div>
+        <div style={{display:'flex', gap:6}}>
+          {g.thirds.map((t,i)=>(
+            <div key={i} style={{flex:1, textAlign:'center', padding:'6px 2px', borderRadius:5,
+              background: t.n<3?'#0f172a':(t.expR>0?'#22c55e12':'#ef444412'),
+              border:`1px solid ${t.n<3?'#1e293b':(t.expR>0?'#22c55e33':'#ef444433')}`}}>
+              <div style={{fontSize:9, color:'var(--text3)'}}>{['Early','Mid','Recent'][i]}</div>
+              <div style={{fontSize:12, fontWeight:800, fontFamily:'monospace', color: t.n<3?'#64748b':(t.expR>0?'#22c55e':'#ef4444')}}>
+                {t.n<3?'—':`${t.expR>0?'+':''}${t.expR}R`}
+              </div>
+              <div style={{fontSize:8, color:'var(--text3)'}}>{t.n} tr</div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Monte Carlo */}
+      {mc ? (
+        <div style={{marginTop:12}}>
+          <div style={{fontSize:10, color:'var(--text3)', marginBottom:5}}>
+            MONTE-CARLO ({500} shuffles of trade order — path & drawdown risk)
+          </div>
+          <div style={{display:'grid', gridTemplateColumns:'repeat(4,1fr)', gap:6}}>
+            <div style={{textAlign:'center', padding:'6px 2px', borderRadius:5, background:'#0f172a'}}>
+              <div style={{fontSize:14, fontWeight:800, fontFamily:'monospace', color: mc.profitProb>=0.9?'#22c55e':mc.profitProb>=0.7?'#f59e0b':'#ef4444'}}>
+                {Math.round(mc.profitProb*100)}%
+              </div>
+              <div style={{fontSize:8, color:'var(--text3)'}}>PROFIT PROB</div>
+            </div>
+            <div style={{textAlign:'center', padding:'6px 2px', borderRadius:5, background:'#0f172a'}}>
+              <div style={{fontSize:14, fontWeight:800, fontFamily:'monospace', color:'var(--text2)'}}>{mc.medianMaxDD}%</div>
+              <div style={{fontSize:8, color:'var(--text3)'}}>TYPICAL DD</div>
+            </div>
+            <div style={{textAlign:'center', padding:'6px 2px', borderRadius:5, background:'#0f172a'}}>
+              <div style={{fontSize:14, fontWeight:800, fontFamily:'monospace', color: mc.worstMaxDD>=30?'#ef4444':'#f59e0b'}}>{mc.worstMaxDD}%</div>
+              <div style={{fontSize:8, color:'var(--text3)'}}>WORST 5% DD</div>
+            </div>
+            <div style={{textAlign:'center', padding:'6px 2px', borderRadius:5, background:'#0f172a'}}>
+              <div style={{fontSize:14, fontWeight:800, fontFamily:'monospace', color: mc.ruinProb<=0.02?'#22c55e':mc.ruinProb<=0.1?'#f59e0b':'#ef4444'}}>
+                {(mc.ruinProb*100).toFixed(1)}%
+              </div>
+              <div style={{fontSize:8, color:'var(--text3)'}}>RUIN RISK</div>
+            </div>
+          </div>
+          <div style={{marginTop:6, fontSize:10, color:'var(--text3)'}}>
+            Ruin = a run that draws down ≥50%. Even a positive edge can ruin an account if drawdown risk is high.
+          </div>
+        </div>
+      ) : (
+        <div style={{marginTop:10, fontSize:11, color:'var(--text3)'}}>Too few trades for a Monte-Carlo risk simulation (need ≥5).</div>
+      )}
+    </div>
+  );
+}
+
+// ── Edge Library (Phase 4) ────────────────────────────────────────────────────
+function EdgeLibrary({ items, onLoad, onRemove }) {
+  if (!items || items.length === 0) return null;
+  const rank = { proven:3, weak:2, noise:1, insufficient:0 };
+  const sorted = [...items].sort((a,b)=> (rank[b.verdict]-rank[a.verdict]) || (b.edgeMult-a.edgeMult) || (b.n-a.n));
+  return (
+    <div className="bt2-chart-card">
+      <div className="bt2-card-title">
+        ★ Validated Edge Library
+        <span style={{color:'var(--text3)',fontWeight:400,fontSize:10,marginLeft:6}}>{items.length} saved · ranked by proven edge</span>
+      </div>
+      <div style={{display:'flex', flexDirection:'column', gap:6}}>
+        {sorted.map(e=>(
+          <div key={e.sig} style={{display:'flex', alignItems:'center', gap:8, padding:'7px 10px', borderRadius:6,
+            border:`1px solid ${e.color}33`, background:`${e.color}08`}}>
+            <span style={{fontSize:14}}>{e.validated?'🟢':e.verdict==='proven'?'✅':e.verdict==='weak'?'📈':'❌'}</span>
+            <div style={{flex:1, minWidth:0}}>
+              <div style={{fontSize:12, fontWeight:700, color:'var(--text)', whiteSpace:'nowrap', overflow:'hidden', textOverflow:'ellipsis'}}>
+                {e.symbol} · {e.tf} · {(e.conds||[]).map(c=>c.type).join(' + ')}
+              </div>
+              <div style={{fontSize:10, color:'var(--text3)'}}>
+                ×{e.edgeMult} vs random · {e.winRate}% win · {e.expR>0?'+':''}{e.expR}R · n={e.n} · OOS {e.oos}
+              </div>
+            </div>
+            <span style={{fontSize:10, fontWeight:800, color:e.color, padding:'2px 7px', borderRadius:4, background:`${e.color}18`}}>
+              {e.verdictLabel}
+            </span>
+            <button onClick={()=>onLoad(e)} title="Load into builder"
+              style={{fontSize:11, padding:'3px 8px', borderRadius:5, border:'1px solid #334155', background:'transparent', color:'var(--text2)', cursor:'pointer'}}>↺</button>
+            <button onClick={()=>onRemove(e.sig)} title="Remove"
+              style={{fontSize:11, padding:'3px 7px', borderRadius:5, border:'1px solid #334155', background:'transparent', color:'#64748b', cursor:'pointer'}}>✕</button>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 // ── Stat Card ─────────────────────────────────────────────────────────────────
 function Metric({label, value, sub, color, accent}) {
   return (
@@ -535,6 +778,8 @@ export default function Backtester() {
   const [err,    setErr]     = useState('');
   const [page,   setPage]    = useState(0);
   const [activePresetCat, setActivePresetCat] = useState('All');
+  const [library, setLibrary] = useState(() => loadLibrary());
+  const [saved,   setSaved]   = useState(false);
 
   const addCond = () => setConds(p=>[...p,{id:Date.now(),type:'rsi',...DEF.rsi}]);
   const updCond = (id,u) => setConds(p=>p.map(c=>c.id===id?{...c,...u}:c));
@@ -557,7 +802,7 @@ export default function Backtester() {
 
   const run = async () => {
     if (conds.length === 0) { setErr('Add at least one entry condition.'); return; }
-    setRunning(true); setErr(''); setResults(null); setPage(0);
+    setRunning(true); setErr(''); setResults(null); setPage(0); setSaved(false);
     try {
       const {candles, src:s} = await fetchCandles(sym, tf, cnt);
       setSrc(s);
@@ -576,9 +821,36 @@ export default function Backtester() {
       };
       const {trades, equityCurve} = runBacktest(candles, strat);
       const stats = calcStats(trades);
-      setResults({trades, equityCurve, stats});
+      // Statistical grading (all phases) — yield to the paint first so the
+      // spinner shows, since baseline + Monte-Carlo are a bit of extra compute.
+      await new Promise(r => setTimeout(r, 0));
+      let grade = null;
+      try { grade = gradeStrategy(candles, strat, stats, trades); } catch { grade = null; }
+      setResults({trades, equityCurve, stats, grade, symUsed:sym, tfUsed:tf, srcUsed:s});
     } catch(e) { setErr(e.message); }
     setRunning(false);
+  };
+
+  const saveGrade = () => {
+    if (!results?.grade) return;
+    const g = results.grade;
+    const entry = {
+      sig: condSignature(sym, tf, conds),
+      symbol: sym, tf, dir,
+      conds: conds.map(c=>({...c})),
+      verdict: g.verdict, verdictLabel: g.label, color: g.color,
+      edgeMult: g.edgeMult, n: g.n, expR: g.setupExpR,
+      winRate: g.setupWinRate, baseWinRate: g.baseWinRate,
+      oos: g.oos.status, validated: g.validated,
+      savedAt: new Date().toISOString(),
+    };
+    setLibrary(saveToLibrary(entry));
+    setSaved(true);
+  };
+  const removeGrade = (sig) => setLibrary(removeFromLibrary(sig));
+  const loadFromLib = (e) => {
+    setSym(e.symbol); setTf(e.tf); setDir(e.dir);
+    setConds(e.conds.map((c,i)=>({...c,id:i+1})));
   };
 
   const s = results?.stats;
@@ -842,6 +1114,11 @@ export default function Backtester() {
               <span className="bt2-data-pill live">● OANDA Live — real historical data when connected</span>
               <span className="bt2-data-pill sim">~ Simulated data when offline</span>
             </div>
+            {library.length > 0 && (
+              <div style={{width:'100%', maxWidth:620, marginTop:18, textAlign:'left'}}>
+                <EdgeLibrary items={library} onLoad={loadFromLib} onRemove={removeGrade}/>
+              </div>
+            )}
           </div>
         )}
         {running && (
@@ -859,6 +1136,9 @@ export default function Backtester() {
               </span>
               <span className="bt2-results-sym">{sym} · {tf} · {cnt} bars</span>
             </div>
+
+            {/* Statistical grade — the honest verdict (Phases 1/2/5) */}
+            {results.grade && <GradeCard g={results.grade} onSave={saveGrade} saved={saved}/>}
 
             {/* Key metrics — top row */}
             <div className="bt2-kpi-row">
@@ -920,6 +1200,9 @@ export default function Backtester() {
               <Metric label="Max Loss Streak" value={s.maxLossStreak} color="#ef4444" sub="consecutive losses"/>
             </div>
 
+            {/* Robustness — out-of-sample, thirds, Monte-Carlo (Phase 3) */}
+            {results.grade && <RobustnessCard g={results.grade}/>}
+
             {/* Long vs Short breakdown */}
             {(s.longWinRate != null || s.shortWinRate != null) && (
               <div className="bt2-chart-card">
@@ -946,6 +1229,9 @@ export default function Backtester() {
               <div className="bt2-card-title">Equity Curve <span style={{color:'var(--text3)',fontWeight:400,fontSize:10}}>$10,000 starting capital</span></div>
               <EquityCurve curve={results.equityCurve}/>
             </div>
+
+            {/* Validated edge library (Phase 4) */}
+            <EdgeLibrary items={library} onLoad={loadFromLib} onRemove={removeGrade}/>
 
             {/* Trade log */}
             {trades.length > 0 && (
