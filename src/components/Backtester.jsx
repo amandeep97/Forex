@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { runBacktest, calcStats } from '../utils/backtestEngine';
+import { runBacktest, calcStats, defaultSpreadPips } from '../utils/backtestEngine';
 import { OANDA_MAP } from '../hooks/useLivePrices';
 import { generateCandles } from '../utils/generateCandles';
 
@@ -8,17 +8,31 @@ const TFS = ['1M','5M','15M','30M','1H','4H','8H','D','W'];
 const COUNTS = [100,500,1000,2000,5000];
 
 const INSTRUMENTS = [
+  // Majors
   'EUR/USD','GBP/USD','USD/JPY','USD/CHF','AUD/USD','USD/CAD','NZD/USD',
-  'EUR/GBP','EUR/JPY','GBP/JPY','EUR/AUD','EUR/CAD',
-  'XAU/USD','XAG/USD','US500','US30','US100','GER40','USOIL','UKOIL',
+  // Crosses
+  'EUR/GBP','EUR/JPY','GBP/JPY','EUR/AUD','EUR/CAD','EUR/CHF','EUR/NZD',
+  'GBP/CHF','GBP/CAD','GBP/AUD','GBP/NZD','AUD/JPY','AUD/CHF','AUD/CAD',
+  'AUD/NZD','NZD/JPY','NZD/CHF','NZD/CAD','CAD/JPY','CAD/CHF','CHF/JPY',
+  // Metals / Indices / Energy
+  'XAU/USD','XAG/USD','US500','US30','US100','US2000','UK100','GER40','JPN225','USOIL','UKOIL',
+  // Crypto (Binance)
+  'BTC/USDT','ETH/USDT','BNB/USDT','SOL/USDT','XRP/USDT','ADA/USDT',
+  'DOGE/USDT','AVAX/USDT','LINK/USDT','DOT/USDT','LTC/USDT','TON/USDT',
 ];
 
 const FALLBACK_PRICES = {
   'EUR/USD':1.095,'GBP/USD':1.270,'USD/JPY':149.5,'USD/CHF':0.905,
   'AUD/USD':0.655,'USD/CAD':1.360,'NZD/USD':0.610,'EUR/GBP':0.860,
   'EUR/JPY':163.7,'GBP/JPY':189.9,'EUR/AUD':1.670,'EUR/CAD':1.490,
+  'EUR/CHF':0.935,'EUR/NZD':1.785,'GBP/CHF':1.132,'GBP/CAD':1.725,
+  'GBP/AUD':1.915,'GBP/NZD':2.085,'AUD/JPY':98.5,'AUD/CHF':0.585,
+  'AUD/CAD':0.905,'AUD/NZD':1.085,'NZD/JPY':88.5,'NZD/CHF':0.540,
+  'NZD/CAD':0.835,'CAD/JPY':109.5,'CAD/CHF':0.645,'CHF/JPY':168.5,
   'XAU/USD':3250,'XAG/USD':32.5,'US500':5500,'US30':42000,
-  'US100':19500,'GER40':18500,'USOIL':78.0,'UKOIL':82.0,
+  'US100':19500,'US2000':2050,'UK100':8100,'GER40':18500,'JPN225':39000,'USOIL':78.0,'UKOIL':82.0,
+  'BTC/USDT':68000,'ETH/USDT':3500,'BNB/USDT':580,'SOL/USDT':145,'XRP/USDT':0.53,
+  'ADA/USDT':0.45,'DOGE/USDT':0.15,'AVAX/USDT':35,'LINK/USDT':15,'DOT/USDT':6.4,'LTC/USDT':78,'TON/USDT':5.8,
 };
 
 const COND_TYPES = [
@@ -33,6 +47,7 @@ const COND_TYPES = [
   {v:'ob',           l:'Order Block',      icon:'🧱', color:'#8b5cf6'},
   {v:'ote_zone',     l:'OTE Zone',         icon:'🎯', color:'#14b8a6'},
   {v:'liquidity',    l:'Liquidity Sweep',  icon:'💦', color:'#3b82f6'},
+  {v:'strong_rev',   l:'Strong Hammer/Star',icon:'⚡', color:'#22d3ee'},
   {v:'equal_hl',     l:'Equal H/L',        icon:'═',  color:'#fb923c'},
   {v:'consolidation',l:'Consolidation',    icon:'📦', color:'#94a3b8'},
   {v:'pattern',      l:'Candle Pattern',   icon:'🕯', color:'#eab308'},
@@ -51,6 +66,7 @@ const DEF = {
   ob:           {op:'bullish'},
   ote_zone:     {op:'bullish'},
   liquidity:    {op:'bullish'},
+  strong_rev:   {op:'bullish', n:5},
   equal_hl:     {op:'equalLows'},
   consolidation:{},
   pattern:      {value:'bullish'},
@@ -85,6 +101,10 @@ const PRESETS = [
    dir:'both', conds:[{type:'ote_zone',op:'bullish'},{type:'rsi',period:14,op:'below',value:55}], exit:'rr',slTyp:'swing',swingLb:20,sl:25,rr:2.5},
   {name:'Liq Sweep',      cat:'ICT',      emoji:'💦', desc:'Liquidity sweep + close back',
    dir:'both', conds:[{type:'liquidity',op:'bullish'}], exit:'rr',slTyp:'swing',swingLb:10,sl:15,rr:3},
+  {name:'Strong Sweep',   cat:'ICT',      emoji:'⚡', desc:'Full-range sweep hammer/star (your core setup)',
+   dir:'both', conds:[{type:'strong_rev',op:'bullish',n:5}], exit:'rr',slTyp:'swing',swingLb:8,sl:20,rr:2},
+  {name:'Sweep + RSI',    cat:'ICT',      emoji:'🎯', desc:'Strong sweep confirmed by RSI extreme',
+   dir:'both', conds:[{type:'strong_rev',op:'bullish',n:5},{type:'rsi',period:14,op:'below',value:45}], exit:'rr',slTyp:'swing',swingLb:8,sl:20,rr:2.5},
   {name:'Equal Lows Tap', cat:'ICT',      emoji:'═',  desc:'Equal lows support + bull candle',
    dir:'long', conds:[{type:'equal_hl',op:'equalLows'},{type:'candle',op:'bullish'}], exit:'rr',slTyp:'swing',swingLb:20,sl:20,rr:2},
   {name:'ICT Full',       cat:'ICT',      emoji:'🏆', desc:'BOS + OB + Liquidity sweep',
@@ -99,12 +119,34 @@ const CAT_COLORS = {
   Momentum:'#0ea5e9', Trend:'#a78bfa', SMC:'#00d4aa', ICT:'#8b5cf6', Pattern:'#eab308',
 };
 
+const BINANCE_TF = {'1M':'1m','5M':'5m','15M':'15m','30M':'30m','1H':'1h','4H':'4h','8H':'8h','D':'1d','W':'1w'};
+
 async function fetchCandles(symbol, tf, count) {
+  // Crypto → Binance (free, no key, real historical data)
+  if (symbol.includes('/USDT')) {
+    try {
+      const sym = symbol.replace('/', '');
+      const itv = BINANCE_TF[tf] || '1h';
+      const res = await fetch(
+        `https://api.binance.com/api/v3/klines?symbol=${sym}&interval=${itv}&limit=${Math.min(count,1000)}`,
+        { signal: AbortSignal.timeout(20000) }
+      );
+      if (res.ok) {
+        const data = await res.json();
+        const cs = data.map(k => ({ t:k[0], o:+k[1], h:+k[2], l:+k[3], c:+k[4], v:+k[5] }));
+        if (cs.length >= 20) return { candles:cs, src:`Binance Live · ${cs.length} bars` };
+      }
+    } catch {}
+  }
+  // FX / metals / indices / energy → OANDA. oanda_env (Settings toggle) is the source
+  // of truth for environment — never trust a possibly-stale cached practice flag.
   try {
     const raw = localStorage.getItem('oanda_creds');
     const creds = raw ? JSON.parse(raw) : null;
+    const envSet = localStorage.getItem('oanda_env');
+    const practice = envSet !== null ? envSet !== 'live' : creds?.practice;
     if (creds?.apiKey && OANDA_MAP[symbol]) {
-      const base = creds.practice ? 'https://api-fxpractice.oanda.com/v3' : 'https://api-fxtrade.oanda.com/v3';
+      const base = practice ? 'https://api-fxpractice.oanda.com/v3' : 'https://api-fxtrade.oanda.com/v3';
       const res = await fetch(
         `${base}/instruments/${OANDA_MAP[symbol]}/candles?count=${Math.min(count,5000)}&granularity=${TF_GRAN[tf]||'H1'}&price=M`,
         {headers:{Authorization:`Bearer ${creds.apiKey}`}, signal:AbortSignal.timeout(20000)}
@@ -123,12 +165,15 @@ async function fetchCandles(symbol, tf, count) {
   return {candles:cs, src:`Simulated · ${cs.length} bars`};
 }
 
+const CRYPTO_PIP_BT = { BTC:1, ETH:0.1, BNB:0.1, SOL:0.01, XRP:0.0001, ADA:0.0001, DOGE:0.0001, AVAX:0.001, LINK:0.001, DOT:0.001, LTC:0.01, TON:0.001 };
 function getPipSz(sym) {
   if (!sym) return 0.0001;
   const s = sym.toUpperCase();
+  if (s.includes('USDT')) return CRYPTO_PIP_BT[s.split('/')[0]] ?? 0.01;
   if (s.includes('JPY')) return 0.01;
   if (s.startsWith('XAU')) return 0.1;
-  if (/^(US|GER|UK|FR)/.test(s)) return 1.0;
+  if (s.startsWith('XAG')) return 0.001;
+  if (/^(US|GER|UK|FR|JPN)/.test(s)) return 1.0;
   return 0.0001;
 }
 
@@ -359,6 +404,16 @@ function CondRow({cond, onChange, onRemove, idx}) {
               <option value="any">Any liquidity sweep</option>
             </select>
           )}
+          {cond.type==='strong_rev' && <>
+            <select className="bt2-sel" value={cond.op||'bullish'} onChange={e=>upd({op:e.target.value})}>
+              <option value="bullish">Strong Hammer 🔨 (swept range low, reversed up)</option>
+              <option value="bearish">Strong Shooting Star ⭐ (swept range high, reversed down)</option>
+              <option value="any">Either strong sweep</option>
+            </select>
+            <label className="bt2-mini-label">Range N</label>
+            <input className="bt2-num" type="number" value={cond.n||5} min={2} max={30} title="Candles the wick must clear"
+              onChange={e=>upd({n:+e.target.value})}/>
+          </>}
           {cond.type==='equal_hl' && (
             <select className="bt2-sel full" value={cond.op||'equalLows'} onChange={e=>upd({op:e.target.value})}>
               <option value="equalLows">Equal Lows — untested buy-side liquidity below</option>
@@ -408,6 +463,7 @@ export default function Backtester() {
   const [swingLb,   setSwingLb]   = useState(15);
   const [risk,      setRisk]      = useState(1);
   const [maxT,      setMaxT]      = useState(1);
+  const [spread,    setSpread]    = useState('');   // '' = realistic auto default per instrument
   const [results, setResults] = useState(null);
   const [running, setRunning] = useState(false);
   const [src,    setSrc]     = useState('');
@@ -451,6 +507,7 @@ export default function Backtester() {
         rrRatio:      rr,
         swingLookback:swingLb,
         maxTrades:maxT, riskPct:risk,
+        spreadPips: spread === '' ? undefined : +spread,   // undefined → engine uses realistic default
       };
       const {trades, equityCurve} = runBacktest(candles, strat);
       const stats = calcStats(trades);
@@ -659,8 +716,16 @@ export default function Backtester() {
               <div className="bt2-mini-label">Max open trades</div>
               <input className="bt2-num full" type="number" value={maxT} min={1} max={10} onChange={e=>setMaxT(+e.target.value)}/>
             </div>
+            <div>
+              <div className="bt2-mini-label">Spread cost (pips)</div>
+              <input className="bt2-num full" type="number" value={spread} min={0} step={0.1}
+                placeholder={`auto: ${defaultSpreadPips(sym)}`} onChange={e=>setSpread(e.target.value)}/>
+            </div>
           </div>
-          <div className="bt2-hint">Starting capital: $10,000 · Risk {risk}% = ${(10000*risk/100).toFixed(0)}/trade</div>
+          <div className="bt2-hint">
+            Starting capital: $10,000 · Risk {risk}% = ${(10000*risk/100).toFixed(0)}/trade ·
+            Spread {spread===''?`${defaultSpreadPips(sym)} (auto)`:spread} pips deducted per trade — real cost, not a fantasy fill
+          </div>
         </div>
 
         {/* Presets */}

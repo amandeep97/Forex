@@ -232,6 +232,24 @@ export function computeLiquiditySweepSeries(candles, lookback = 20) {
   return res;
 }
 
+// ── Strong reversal series (full-range sweep hammer / shooting star) ──────────
+// Bull (Strong Hammer): wick clears the entire prior N-candle low, closes green
+// back inside. Bear (Strong Shooting Star): mirror. Higher quality than a lone
+// hammer because it must sweep the WHOLE range, not just poke one candle.
+export function computeStrongReversalSeries(candles, N = 5) {
+  const res = new Array(candles.length).fill(null);
+  for (let i = N; i < candles.length; i++) {
+    const c = candles[i], prior = candles.slice(i - N, i);
+    const body = Math.abs(c.c - c.o), up = c.h - Math.max(c.o, c.c), lo = Math.min(c.o, c.c) - c.l, r = c.h - c.l;
+    if (r <= 0) continue;
+    const rLow = Math.min(...prior.map(x => x.l)), rHigh = Math.max(...prior.map(x => x.h));
+    const bull = c.l < rLow && c.c > rLow && c.c > c.o && lo >= 2 * body && lo > up && Math.min(c.o, c.c) >= c.l + r * 0.5;
+    const bear = c.h > rHigh && c.c < rHigh && c.c < c.o && up >= 2 * body && up > lo && Math.max(c.o, c.c) <= c.l + r * 0.5;
+    if (bull || bear) res[i] = { bull, bear };
+  }
+  return res;
+}
+
 // ── Equal Highs / Equal Lows series ──────────────────────────────────────────
 export function computeEqualHLSeries(candles, lookback = 30, tolerance = 0.0015) {
   const res = new Array(candles.length).fill(null);
@@ -292,10 +310,28 @@ export function detectPatternAt(candles, i) {
   return bull ? 'bullish' : (bear ? 'bearish' : null);
 }
 
+// ── Realistic default round-trip spread cost per instrument (in pips) ─────────
+// Deducted from every trade so backtests aren't the fantasy of zero cost.
+// User can override via strategy.spreadPips. Silver's is deliberately large —
+// its spread really is proportionally brutal.
+export function defaultSpreadPips(symbol) {
+  const s = (symbol || '').toUpperCase();
+  if (s.startsWith('XAU')) return 3;
+  if (s.startsWith('XAG')) return 30;
+  if (/USDT|BTC|ETH/.test(s)) return 2;
+  if (/^(US|GER|UK|FR|JPN|AUS|ESP|HKG|CHN)/.test(s)) return 2;
+  if (s.includes('JPY')) return 1.5;
+  const majors = ['EUR/USD','GBP/USD','USD/JPY','USD/CHF','AUD/USD','USD/CAD','NZD/USD'];
+  if (majors.includes(symbol)) return 1;
+  return 2; // crosses / everything else
+}
+
 // ── Pip size per instrument ───────────────────────────────────────────────────
+const CRYPTO_PIP = { BTC:1, ETH:0.1, BNB:0.1, SOL:0.01, XRP:0.0001, ADA:0.0001, DOGE:0.0001, AVAX:0.001, LINK:0.001, DOT:0.001, LTC:0.01, TON:0.001 };
 export function getPipSize(symbol) {
   if (!symbol) return 0.0001;
   const s = symbol.toUpperCase();
+  if (s.includes('USDT')) return CRYPTO_PIP[s.split('/')[0]] ?? 0.01;
   if (s.includes('JPY') || s.includes('HKD')) return 0.01;
   if (s === 'USOIL' || s === 'UKOIL' || s === 'NATGAS') return 0.01;
   if (s.startsWith('XAU')) return 0.1;
@@ -328,7 +364,8 @@ export function mirrorCond(cond) {
     case 'displacement':
     case 'ob':
     case 'ote_zone':
-    case 'liquidity': {
+    case 'liquidity':
+    case 'strong_rev': {
       const m = { bullish:'bearish', bearish:'bullish' };
       return { ...cond, op: m[cond.op] || cond.op };
     }
@@ -436,6 +473,13 @@ function evalCond(c, prev, inds, cond, pattern) {
       if (cond.op === 'bearish') return s.cur.bear === true;
       return s.cur.bull || s.cur.bear;
     }
+    case 'strong_rev': {
+      const s = inds[`strev_${cond.n || 5}`];
+      if (!s || s.cur == null) return false;
+      if (cond.op === 'bullish') return s.cur.bull === true;
+      if (cond.op === 'bearish') return s.cur.bear === true;
+      return s.cur.bull || s.cur.bear;
+    }
     case 'equal_hl': {
       const s = inds['ehl'];
       if (!s || s.cur == null) return false;
@@ -493,6 +537,7 @@ function buildIndicators(candles, conditions) {
   };
   for (const cd of conditions) {
     ensure(cd.type, cd.period, cd.period2, cd.maType);
+    if (cd.type === 'strong_rev') { const k = `strev_${cd.n || 5}`; if (!arrays[k]) arrays[k] = computeStrongReversalSeries(candles, cd.n || 5); }
     const mc = mirrorCond(cd);
     ensure(mc.type, mc.period, mc.period2, mc.maType);
   }
@@ -523,6 +568,7 @@ export function runBacktest(candles, strategy) {
   if (conditions.length === 0) return { trades: [], equityCurve: [10000] };
 
   const pip         = getPipSize(symbol);
+  const spreadPips  = strategy.spreadPips != null ? +strategy.spreadPips : defaultSpreadPips(symbol);
   const initEquity  = 10000;
   let equity        = initEquity;
   const equityCurve = [equity];
@@ -564,15 +610,20 @@ export function runBacktest(candles, strategy) {
       }
 
       if (exitPrice !== null) {
-        const pnlPips = trade.dir === 'long'
+        const grossPips = trade.dir === 'long'
           ? (exitPrice - trade.entry) / pip
           : (trade.entry - exitPrice) / pip;
-        const pnlDollars = equity * (riskPct / 100) * (pnlPips / (trade.slPips || 1));
+        const pnlPips    = grossPips - spreadPips;            // deduct round-trip spread cost
+        const riskDollars = equity * (riskPct / 100);
+        const pnlDollars = riskDollars * (pnlPips / (trade.slPips || 1));
         equity += pnlDollars;
         equityCurve.push(equity);
         trades.push({
           ...trade, exit: exitPrice, exitReason,
           exitBar: i, exitTime: c.t,
+          grossPips:  Math.round(grossPips * 10) / 10,
+          spreadCost: spreadPips,
+          riskDollars,
           pnlPips:    Math.round(pnlPips    * 10)  / 10,
           pnlDollars: Math.round(pnlDollars * 100) / 100,
           result: pnlPips > 0 ? 'win' : 'loss',
@@ -642,15 +693,20 @@ export function runBacktest(candles, strategy) {
   const last = candles[candles.length - 1];
   for (const trade of open) {
     const exitPrice  = last.c;
-    const pnlPips    = trade.dir === 'long'
+    const grossPips  = trade.dir === 'long'
       ? (exitPrice - trade.entry) / pip
       : (trade.entry - exitPrice) / pip;
-    const pnlDollars = equity * (riskPct / 100) * (pnlPips / (trade.slPips || 1));
+    const pnlPips    = grossPips - spreadPips;
+    const riskDollars = equity * (riskPct / 100);
+    const pnlDollars = riskDollars * (pnlPips / (trade.slPips || 1));
     equity += pnlDollars;
     equityCurve.push(equity);
     trades.push({
       ...trade, exit: exitPrice, exitReason: 'EOD',
       exitBar: candles.length - 1, exitTime: last.t,
+      grossPips:  Math.round(grossPips * 10) / 10,
+      spreadCost: spreadPips,
+      riskDollars,
       pnlPips:    Math.round(pnlPips    * 10)  / 10,
       pnlDollars: Math.round(pnlDollars * 100) / 100,
       result: pnlPips > 0 ? 'win' : 'loss',
