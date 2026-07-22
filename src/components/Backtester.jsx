@@ -50,8 +50,30 @@ const COND_TYPES = [
   {v:'strong_rev',   l:'Strong Hammer/Star',icon:'⚡', color:'#22d3ee'},
   {v:'equal_hl',     l:'Equal H/L',        icon:'═',  color:'#fb923c'},
   {v:'consolidation',l:'Consolidation',    icon:'📦', color:'#94a3b8'},
-  {v:'pattern',      l:'Candle Pattern',   icon:'🕯', color:'#eab308'},
-  {v:'candle',       l:'Candle Dir',       icon:'▲',  color:'#64748b'},
+  {v:'candlestick',  l:'Candlestick (30+)', icon:'🕯', color:'#eab308'},
+  {v:'session',      l:'Session / Killzone',icon:'🕐', color:'#a78bfa'},
+  {v:'dow',          l:'Day of Week',      icon:'📅', color:'#f472b6'},
+  {v:'volume',       l:'Volume',           icon:'📊', color:'#38bdf8'},
+  {v:'pattern',      l:'Candle Dir (simple)',icon:'▲', color:'#eab308'},
+  {v:'candle',       l:'Candle Close',     icon:'▲',  color:'#64748b'},
+];
+
+// Full candlestick pattern list for the picker (matches the shared candlePatterns.js)
+const CANDLESTICKS = [
+  ['any_bull','Any bullish pattern'],['any_bear','Any bearish pattern'],['any_reversal','Any reversal pattern'],
+  ['hammer','Hammer 🔨'],['shooting_star','Shooting Star ⭐'],['inv_hammer','Inverted Hammer'],['hanging_man','Hanging Man'],
+  ['bull_engulf','Bullish Engulfing'],['bear_engulf','Bearish Engulfing'],
+  ['morning_star','Morning Star'],['evening_star','Evening Star'],
+  ['three_soldiers','Three White Soldiers'],['three_crows','Three Black Crows'],
+  ['piercing_line','Piercing Line'],['dark_cloud','Dark Cloud Cover'],
+  ['bull_harami','Bullish Harami'],['bear_harami','Bearish Harami'],['harami_cross','Harami Cross'],
+  ['tweezer_bottom','Tweezer Bottom'],['tweezer_top','Tweezer Top'],
+  ['dragonfly_doji','Dragonfly Doji'],['gravestone_doji','Gravestone Doji'],['doji','Doji'],['long_legged_doji','Long-Legged Doji'],
+  ['marubozu_bull','Bullish Marubozu'],['marubozu_bear','Bearish Marubozu'],['spinning_top','Spinning Top'],
+  ['inside_bar','Inside Bar'],['outside_bar','Outside Bar'],['kicker_bull','Bullish Kicker'],['kicker_bear','Bearish Kicker'],
+  ['three_inside_up','Three Inside Up'],['three_inside_dn','Three Inside Down'],
+  ['abandoned_bull','Abandoned Baby Bull'],['abandoned_bear','Abandoned Baby Bear'],
+  ['rising_three','Rising Three Methods'],['falling_three','Falling Three Methods'],
 ];
 
 const DEF = {
@@ -69,6 +91,10 @@ const DEF = {
   strong_rev:   {op:'bullish', n:5},
   equal_hl:     {op:'equalLows'},
   consolidation:{},
+  candlestick:  {value:'any_bull'},
+  session:      {op:'killzone'},
+  dow:          {op:'tue'},
+  volume:       {op:'spike', mult:1.5},
   pattern:      {value:'bullish'},
   candle:       {op:'bullish'},
 };
@@ -105,6 +131,12 @@ const PRESETS = [
    dir:'both', conds:[{type:'strong_rev',op:'bullish',n:5}], exit:'rr',slTyp:'swing',swingLb:8,sl:20,rr:2},
   {name:'Sweep + RSI',    cat:'ICT',      emoji:'🎯', desc:'Strong sweep confirmed by RSI extreme',
    dir:'both', conds:[{type:'strong_rev',op:'bullish',n:5},{type:'rsi',period:14,op:'below',value:45}], exit:'rr',slTyp:'swing',swingLb:8,sl:20,rr:2.5},
+  {name:'Killzone Sweep', cat:'ICT',      emoji:'🕐', desc:'Strong sweep only in London/NY killzone',
+   dir:'both', conds:[{type:'strong_rev',op:'bullish',n:5},{type:'session',op:'killzone'}], exit:'rr',slTyp:'swing',swingLb:8,sl:20,rr:2},
+  {name:'Engulfing',      cat:'Pattern',  emoji:'🕯', desc:'Bullish/bearish engulfing reversal',
+   dir:'both', conds:[{type:'candlestick',value:'bull_engulf'}], exit:'rr',slTyp:'swing',swingLb:10,sl:20,rr:2},
+  {name:'Morning Star',   cat:'Pattern',  emoji:'🌅', desc:'3-candle reversal + volume spike',
+   dir:'both', conds:[{type:'candlestick',value:'morning_star'},{type:'volume',op:'spike',mult:1.5}], exit:'rr',slTyp:'swing',swingLb:12,sl:25,rr:2.5},
   {name:'Equal Lows Tap', cat:'ICT',      emoji:'═',  desc:'Equal lows support + bull candle',
    dir:'long', conds:[{type:'equal_hl',op:'equalLows'},{type:'candle',op:'bullish'}], exit:'rr',slTyp:'swing',swingLb:20,sl:20,rr:2},
   {name:'ICT Full',       cat:'ICT',      emoji:'🏆', desc:'BOS + OB + Liquidity sweep',
@@ -426,6 +458,39 @@ function CondRow({cond, onChange, onRemove, idx}) {
               📦 Triggers when price is consolidating in a tight range (ATR squeeze)
             </div>
           )}
+          {cond.type==='candlestick' && (
+            <select className="bt2-sel full" value={cond.value||'any_bull'} onChange={e=>upd({value:e.target.value})}>
+              {CANDLESTICKS.map(([v,l])=><option key={v} value={v}>{l}</option>)}
+            </select>
+          )}
+          {cond.type==='session' && (
+            <select className="bt2-sel full" value={cond.op||'killzone'} onChange={e=>upd({op:e.target.value})}>
+              <option value="killzone">ICT Killzone (London 7-10 · NY AM 12-15 UTC)</option>
+              <option value="asian">Asian session (00-07 UTC)</option>
+              <option value="london">London session (07-16 UTC)</option>
+              <option value="ny">New York session (12-21 UTC)</option>
+              <option value="overlap">London·NY overlap (12-16 UTC)</option>
+            </select>
+          )}
+          {cond.type==='dow' && (
+            <select className="bt2-sel full" value={cond.op||'tue'} onChange={e=>upd({op:e.target.value})}>
+              <option value="mon">Monday only</option><option value="tue">Tuesday only</option>
+              <option value="wed">Wednesday only</option><option value="thu">Thursday only</option>
+              <option value="fri">Friday only</option>
+            </select>
+          )}
+          {cond.type==='volume' && <>
+            <select className="bt2-sel" value={cond.op||'spike'} onChange={e=>upd({op:e.target.value})}>
+              <option value="spike">Volume spike (× 20-bar avg)</option>
+              <option value="above">Above average</option>
+              <option value="below">Below average</option>
+            </select>
+            {cond.op==='spike' && <>
+              <label className="bt2-mini-label">×</label>
+              <input className="bt2-num" type="number" value={cond.mult||1.5} min={1} max={5} step={0.1}
+                onChange={e=>upd({mult:+e.target.value})}/>
+            </>}
+          </>}
           {cond.type==='pattern' && (
             <select className="bt2-sel full" value={cond.value||'bullish'} onChange={e=>upd({value:e.target.value})}>
               <option value="bullish">Bullish candle pattern</option>

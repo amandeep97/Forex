@@ -1,6 +1,25 @@
 // src/utils/backtestEngine.js
 // Core backtesting engine — pure functions, no React dependencies.
 // Candle format: { t, o, h, l, c, v }  (OANDA / generateCandles format)
+import { patternsAt, PATTERN_MAP } from './candlePatterns';
+
+// Mirror map for candlestick patterns (long entry ↔ symmetrical short entry)
+const PATTERN_MIRROR = {
+  hammer:'shooting_star', shooting_star:'hammer', hanging_man:'inv_hammer', inv_hammer:'hanging_man',
+  dragonfly_doji:'gravestone_doji', gravestone_doji:'dragonfly_doji',
+  marubozu_bull:'marubozu_bear', marubozu_bear:'marubozu_bull',
+  bull_engulf:'bear_engulf', bear_engulf:'bull_engulf',
+  piercing_line:'dark_cloud', dark_cloud:'piercing_line',
+  bull_harami:'bear_harami', bear_harami:'bull_harami',
+  tweezer_bottom:'tweezer_top', tweezer_top:'tweezer_bottom',
+  kicker_bull:'kicker_bear', kicker_bear:'kicker_bull',
+  morning_star:'evening_star', evening_star:'morning_star',
+  three_soldiers:'three_crows', three_crows:'three_soldiers',
+  three_inside_up:'three_inside_dn', three_inside_dn:'three_inside_up',
+  abandoned_bull:'abandoned_bear', abandoned_bear:'abandoned_bull',
+  rising_three:'falling_three', falling_three:'rising_three',
+  any_bull:'any_bear', any_bear:'any_bull', any_reversal:'any_reversal',
+};
 
 // ── Indicator series (return full-length array, null where insufficient data) ──
 
@@ -374,9 +393,14 @@ export function mirrorCond(cond) {
       return { ...cond, op: m[cond.op] || cond.op };
     }
     case 'consolidation':
-      return cond;
+    case 'session':
+    case 'volume':
+    case 'dow':
+      return cond;   // context filters — same for long & short
     case 'pattern':
       return { ...cond, value: cond.value === 'bullish' ? 'bearish' : cond.value === 'bearish' ? 'bullish' : cond.value };
+    case 'candlestick':
+      return { ...cond, value: PATTERN_MIRROR[cond.value] || cond.value };
     case 'candle':
       return { ...cond, op: cond.op === 'bullish' ? 'bearish' : cond.op === 'bearish' ? 'bullish' : cond.op };
     default: return cond;
@@ -384,7 +408,7 @@ export function mirrorCond(cond) {
 }
 
 // ── Evaluate a single condition at index i ────────────────────────────────────
-function evalCond(c, prev, inds, cond, pattern) {
+function evalCond(c, prev, inds, cond, pattern, patternIds) {
   switch (cond.type) {
     case 'rsi':
     case 'mfi': {
@@ -495,6 +519,40 @@ function evalCond(c, prev, inds, cond, pattern) {
     case 'pattern':
       if (cond.value === 'any') return pattern !== null;
       return pattern === cond.value;
+    case 'candlestick': {
+      const ids = patternIds || [];
+      const want = cond.value || 'any_bull';
+      if (want === 'any_bull')     return ids.some(id => PATTERN_MAP[id]?.type === 'bullish');
+      if (want === 'any_bear')     return ids.some(id => PATTERN_MAP[id]?.type === 'bearish');
+      if (want === 'any_reversal') return ids.some(id => PATTERN_MAP[id]?.signal === 'reversal');
+      return ids.includes(want);   // specific pattern id
+    }
+    case 'session': {
+      if (!c.t) return true;       // sim data w/o timestamps — don't block
+      const h = new Date(typeof c.t === 'number' ? c.t : Date.parse(c.t)).getUTCHours();
+      const asian = h < 7, london = h >= 7 && h < 16, ny = h >= 12 && h < 21, overlap = h >= 12 && h < 16;
+      if (cond.op === 'asian')   return asian;
+      if (cond.op === 'london')  return london;
+      if (cond.op === 'ny')      return ny;
+      if (cond.op === 'overlap') return overlap;
+      if (cond.op === 'killzone')return (h>=7&&h<10)||(h>=12&&h<15); // London KZ + NY AM KZ
+      return true;
+    }
+    case 'dow': {
+      if (!c.t) return true;
+      const d = new Date(typeof c.t === 'number' ? c.t : Date.parse(c.t)).getUTCDay(); // 0=Sun..6=Sat
+      const map = { sun:0, mon:1, tue:2, wed:3, thu:4, fri:5, sat:6 };
+      return d === (map[cond.op] ?? -1);
+    }
+    case 'volume': {
+      const avg = inds['volAvg']?.cur;
+      if (avg == null || !c.v) return false;
+      const mult = cond.mult || 1.5;
+      if (cond.op === 'spike') return c.v >= avg * mult;
+      if (cond.op === 'above') return c.v >  avg;
+      if (cond.op === 'below') return c.v <  avg;
+      return false;
+    }
     case 'candle':
       if (cond.op === 'bullish') return c.c > c.o;
       if (cond.op === 'bearish') return c.c < c.o;
@@ -538,6 +596,14 @@ function buildIndicators(candles, conditions) {
   for (const cd of conditions) {
     ensure(cd.type, cd.period, cd.period2, cd.maType);
     if (cd.type === 'strong_rev') { const k = `strev_${cd.n || 5}`; if (!arrays[k]) arrays[k] = computeStrongReversalSeries(candles, cd.n || 5); }
+    if (cd.type === 'volume' && !arrays['volAvg']) {
+      const period = 20, out = new Array(candles.length).fill(null);
+      for (let i = period; i < candles.length; i++) {
+        let s = 0; for (let j = i - period; j < i; j++) s += candles[j].v || 1;
+        out[i] = s / period;
+      }
+      arrays['volAvg'] = out;
+    }
     const mc = mirrorCond(cd);
     ensure(mc.type, mc.period, mc.period2, mc.maType);
   }
@@ -578,12 +644,13 @@ export function runBacktest(candles, strategy) {
   const indArrays = buildIndicators(candles, conditions);
   const atr       = computeATRSeries(candles, 14);
 
-  const check = (condList, c, prev, inds, pattern) => {
-    if (logic === 'AND') return condList.every(cd => evalCond(c, prev, inds, cd, pattern));
-    return condList.some(cd => evalCond(c, prev, inds, cd, pattern));
+  const check = (condList, c, prev, inds, pattern, patternIds) => {
+    if (logic === 'AND') return condList.every(cd => evalCond(c, prev, inds, cd, pattern, patternIds));
+    return condList.some(cd => evalCond(c, prev, inds, cd, pattern, patternIds));
   };
 
   const mirroredConds = conditions.map(mirrorCond);
+  const needCandlestick = conditions.some(cd => cd.type === 'candlestick');
 
   for (let i = 10; i < candles.length; i++) {
     const c    = candles[i];
@@ -595,6 +662,7 @@ export function runBacktest(candles, strategy) {
       inds[key] = { cur: arr[i] ?? null, prev: arr[i - 1] ?? null };
     }
     const pattern = detectPatternAt(candles, i);
+    const patternIds = needCandlestick ? patternsAt(candles, i) : null;
 
     // ── Exit open trades ──
     for (let t = open.length - 1; t >= 0; t--) {
@@ -637,8 +705,8 @@ export function runBacktest(candles, strategy) {
     if (open.length >= maxTrades) continue;
 
     // ── Entry signals ──
-    const longOk  = (direction === 'long'  || direction === 'both') && check(conditions,    c, prev, inds, pattern);
-    const shortOk = (direction === 'short' || direction === 'both') && check(mirroredConds, c, prev, inds, pattern);
+    const longOk  = (direction === 'long'  || direction === 'both') && check(conditions,    c, prev, inds, pattern, patternIds);
+    const shortOk = (direction === 'short' || direction === 'both') && check(mirroredConds, c, prev, inds, pattern, patternIds);
     const dir = longOk ? 'long' : (shortOk ? 'short' : null);
     if (!dir) continue;
 

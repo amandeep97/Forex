@@ -181,6 +181,13 @@ function _detectOnWindow(window) {
   return hit
 }
 
+// Pattern ids completed AT bar i (uses only candles up to i — no look-ahead).
+// Shared by the Backtester so its candlestick logic matches the rest of the app.
+export function patternsAt(candles, i) {
+  if (!candles || i < 4 || i >= candles.length) return []
+  return _detectOnWindow(candles.slice(0, i + 1))
+}
+
 export function detectCandlePatterns(candles, lookback = 10) {
   if (!candles || candles.length < 6) return []
   const closed = candles.slice(0, -1)
