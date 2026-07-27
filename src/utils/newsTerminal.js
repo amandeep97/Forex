@@ -29,21 +29,56 @@ export const INSTRUMENT_KEYWORDS = {
 // Macro USD events that genuinely move everything priced in dollars.
 // Deliberately excludes the bare word "dollar" — it appears in most FX
 // headlines and would fan every story out across seven instruments.
-const USD_MACRO = ['fed','fomc','powell','treasury','nonfarm','payroll',' nfp','cpi','pce','jobless','rate decision'];
+const USD_MACRO = ['fed','fomc','powell','treasury','nonfarm','payroll','nfp','cpi','pce','jobless','rate decision'];
 const USD_AFFECTED = ['XAU/USD','EUR/USD','GBP/USD','USD/JPY','AUD/USD','USD/CAD','US500'];
 
+// Whole-word matching. Plain substring search is wrong here: "euro" appears
+// inside "European", so "European shares steady" was tagging EUR/USD — a
+// currency tag on an equities story. Compiled once; this runs per headline.
+const boundary = w => new RegExp(`(^|[^a-z])${w.trim().replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}([^a-z]|$)`, 'i');
+const compile = words => words.map(boundary);
+const anyMatch = (regexes, t) => regexes.some(r => r.test(t));
+
+const INSTRUMENT_RX = Object.fromEntries(
+  Object.entries(INSTRUMENT_KEYWORDS).map(([k, words]) => [k, compile(words)])
+);
+let USD_MACRO_RX = null;   // assigned after USD_MACRO is declared below
+
 export function tagInstruments(text) {
-  const t = ' ' + (text || '').toLowerCase() + ' ';
+  const t = (text || '').toLowerCase();
   const specific = [];
-  for (const [inst, words] of Object.entries(INSTRUMENT_KEYWORDS)) {
-    if (words.some(w => t.includes(w))) specific.push(inst);
+  for (const [inst, rxs] of Object.entries(INSTRUMENT_RX)) {
+    if (anyMatch(rxs, t)) specific.push(inst);
   }
   // A named instrument always wins: "Gold surges as dollar weakens" is a gold
   // story, not a seven-instrument story. Only fan out to the USD complex when
   // the headline is purely macro with nothing specific named.
   if (specific.length) return specific;
-  if (USD_MACRO.some(w => t.includes(w))) return [...USD_AFFECTED];
+  if (anyMatch(USD_MACRO_RX, t)) return [...USD_AFFECTED];
   return [];
+}
+
+// ── Relevance: is this a markets story at all? ────────────────────────────────
+// A forex terminal fed raw wire copy fills with corporate news — airline fare
+// structures, cinema deals, harassment suits. Useful to a general desk, noise
+// here. Score it so the default stream stays tradeable, with ALL as an escape.
+const MACRO_WORDS = ['central bank','interest rate','rate cut','rate hike','inflation','cpi','ppi','gdp',
+  'unemployment','payroll','jobless','recession','tariff','sanction','stimulus','yield','bond','treasury',
+  'fed','fomc','ecb','boe','boj','rba','rbnz','snb','opec','war','ceasefire','monetary','fiscal','hawkish','dovish'];
+const MARKET_WORDS = ['stocks','shares','equities','index','futures','commodity','commodities','currency',
+  'forex','fx','market','markets','rally','selloff','sell-off','dollar','investors','trading'];
+const MACRO_RX  = compile(MACRO_WORDS);
+const MARKET_RX = compile(MARKET_WORDS);
+
+// 2 = directly tradeable (tagged instrument or macro driver)
+// 1 = general market colour
+// 0 = corporate / off-topic
+export function relevanceOf(text, instruments) {
+  const t = (text || '').toLowerCase();
+  if (instruments?.length) return 2;
+  if (anyMatch(MACRO_RX, t)) return 2;
+  if (anyMatch(MARKET_RX, t)) return 1;
+  return 0;
 }
 
 // ── Severity: how much a headline deserves your attention ─────────────────────
@@ -62,13 +97,29 @@ export function severity(text) {
 // keep whatever succeeds, dedupe near-identical headlines, sort newest first.
 const normTitle = s => (s || '').toLowerCase().replace(/[^a-z0-9 ]/g, '').replace(/\s+/g, ' ').trim();
 
+USD_MACRO_RX = compile(USD_MACRO);
+
+// An unparseable date must stay null, never silently become "now" — otherwise
+// every story in the stream reads as breaking.
+function parseWhen(i) {
+  for (const v of [i.pubDate, i.date, i.published, i.updated]) {
+    if (!v) continue;
+    const d = new Date(v);
+    if (!isNaN(d)) return d.getTime();
+  }
+  return null;
+}
+
 export async function mergeFeeds(feeds, fetchText, parseRSS) {
   const settled = await Promise.allSettled(
     feeds.map(async f => (parseRSS(await fetchText(f.url)) || []).map(i => ({
       ...i, source: f.name, sourceColor: f.color, sourceBadge: f.badge,
     })))
   );
+  const okFeeds = [], failedFeeds = [];
+  settled.forEach((s, idx) => (s.status === 'fulfilled' && s.value.length ? okFeeds : failedFeeds).push(feeds[idx].name));
   const all = settled.filter(s => s.status === 'fulfilled').flatMap(s => s.value);
+
   const seen = new Map();
   for (const it of all) {
     const k = normTitle(it.title).slice(0, 70);
@@ -78,13 +129,17 @@ export async function mergeFeeds(feeds, fetchText, parseRSS) {
     if (!prev) seen.set(k, { ...it, alsoIn: [] });
     else if (!prev.alsoIn.includes(it.source) && it.source !== prev.source) prev.alsoIn.push(it.source);
   }
-  const ts = i => { const d = new Date(i.pubDate); return isNaN(d) ? 0 : d.getTime(); };
-  return [...seen.values()]
-    .map(i => ({ ...i, ms: ts(i), instruments: tagInstruments(`${i.title} ${i.description || ''}`), sev: severity(i.title) }))
-    .sort((a, b) => b.ms - a.ms);
-}
 
-export function feedsOk(settledCount, total) { return `${settledCount}/${total} feeds`; }
+  const items = [...seen.values()]
+    .map(i => {
+      const text = `${i.title} ${i.description || ''}`;
+      const instruments = tagInstruments(text);
+      return { ...i, ms: parseWhen(i), instruments, sev: severity(i.title), rel: relevanceOf(text, instruments) };
+    })
+    .sort((a, b) => (b.ms ?? 0) - (a.ms ?? 0));
+
+  return { items, ok: okFeeds, failed: failedFeeds, total: feeds.length };
+}
 
 // ── Economic event archive ────────────────────────────────────────────────────
 // The calendar source only serves the current week, so history has to be
@@ -230,6 +285,7 @@ export const COMMANDS = [
   ['LIVE',        'Merged real-time headline stream'],
   ['CAL',         'Economic calendar'],
   ['POS',         'Only news affecting your open positions'],
+  ['ALL',         'Include corporate / off-topic wire copy (hidden by default)'],
   ['CLR',         'Clear all filters'],
   ['?',           'Show this help'],
 ];
@@ -244,11 +300,12 @@ const INST_ALIAS = {
 };
 
 export function parseCommand(raw) {
-  const out = { view: null, ccy: null, instrument: null, impact: null, today: false, help: false, clear: false, unknown: [] };
+  const out = { view: null, ccy: null, instrument: null, impact: null, today: false, help: false, clear: false, all: false, unknown: [] };
   const toks = (raw || '').toUpperCase().split(/[\s,]+/).filter(Boolean);
   for (const t of toks) {
     if (t === '?' || t === 'HELP')            { out.help = true; continue; }
     if (t === 'CLR' || t === 'CLEAR')         { out.clear = true; continue; }
+    if (t === 'ALL')                          { out.all = true; continue; }
     if (t === 'ECO' || t === 'LIVE' || t === 'CAL' || t === 'POS') { out.view = t; continue; }
     if (t === 'HIGH' || t === 'MED' || t === 'MEDIUM') { out.impact = t === 'HIGH' ? 'High' : 'Medium'; continue; }
     if (t === 'TODAY')                        { out.today = true; continue; }

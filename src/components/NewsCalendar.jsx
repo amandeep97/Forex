@@ -52,11 +52,18 @@ const BEARISH_WORDS = ['cut','cuts','dovish','ease','easing','recession','slowdo
 // Indicators where a HIGHER actual is bearish for the currency
 const INVERSE_INDICATORS = ['unemployment rate','jobless','initial claims','continuing claims','inventories','deficit'];
 
+// Whole-word matching — plain substring search tagged "European shares" as EUR
+// because "euro" sits inside "European". Compiled once, runs per headline.
+const ccyBoundary = w => new RegExp(`(^|[^a-z])${w.trim().replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}([^a-z]|$)`, 'i');
+const CCY_RX = Object.fromEntries(
+  Object.entries(CCY_KEYWORDS).map(([c, words]) => [c, words.map(ccyBoundary)])
+);
+
 function detectCurrencies(text) {
-  const t = ' ' + text.toLowerCase() + ' ';
+  const t = (text || '').toLowerCase();
   const out = [];
-  for (const [ccy, words] of Object.entries(CCY_KEYWORDS)) {
-    if (words.some(w => t.includes(w))) out.push(ccy);
+  for (const [ccy, rxs] of Object.entries(CCY_RX)) {
+    if (rxs.some(r => r.test(t))) out.push(ccy);
   }
   return out;
 }
@@ -405,9 +412,10 @@ function CommandBar({ value, onChange, onSubmit, hint }) {
 // ── Terminal: one headline row (dense, monospace) ─────────────────────────────
 const SEV_COL = { 3:'#ef4444', 2:'#f59e0b', 1:'#64748b' };
 function agoLabel(ms) {
-  if (!ms) return '--:--';
+  if (!ms) return '—';                       // unparseable date: say so, don't imply "now"
   const m = Math.round((Date.now() - ms) / 60000);
-  if (m < 1) return 'NOW';
+  if (m < 0)  return 'NEW';                  // feed clock ahead of ours
+  if (m < 1)  return 'NOW';
   if (m < 60) return `${m}m`;
   const h = Math.floor(m / 60);
   return h < 24 ? `${h}h` : `${Math.floor(h / 24)}d`;
@@ -594,7 +602,7 @@ function cacheNews(items, sourceName) {
 // ── TERMINAL VIEW ─────────────────────────────────────────────────────────────
 function TerminalView({ events }) {
   const [cmd,     setCmd]     = useState('');
-  const [f,       setF]       = useState({ view:'LIVE', ccy:null, instrument:null, impact:'High', today:false });
+  const [f,       setF]       = useState({ view:'LIVE', ccy:null, instrument:null, impact:'High', today:false, all:false });
   const [stream,  setStream]  = useState([]);
   const [busy,    setBusy]    = useState(false);
   const [status,  setStatus]  = useState('');
@@ -609,9 +617,11 @@ function TerminalView({ events }) {
   const loadStream = useCallback(async () => {
     setBusy(true); setStatus('fetching all sources…');
     try {
-      const items = await mergeFeeds(NEWS_FEEDS, proxyFetch, parseRSS);
+      const { items, ok, failed, total } = await mergeFeeds(NEWS_FEEDS, proxyFetch, parseRSS);
       setStream(items);
-      setStatus(items.length ? `${items.length} stories · merged & deduped` : 'no stories returned');
+      setStatus(items.length
+        ? `${items.length} stories · ${ok.length}/${total} feeds${failed.length ? ` · down: ${failed.join(', ')}` : ''}`
+        : 'no stories returned');
     } catch { setStatus('all feeds failed'); }
     setBusy(false);
   }, []);
@@ -621,13 +631,14 @@ function TerminalView({ events }) {
   const submit = (raw) => {
     const p = parseCommand(raw);
     if (p.help)  { setHelp(true); setCmd(''); return; }
-    if (p.clear) { setF({ view:'LIVE', ccy:null, instrument:null, impact:'High', today:false }); setCmd(''); setStatus('filters cleared'); return; }
+    if (p.clear) { setF({ view:'LIVE', ccy:null, instrument:null, impact:'High', today:false, all:false }); setCmd(''); setStatus('filters cleared'); return; }
     setF(prev => ({
       view:       p.view       || prev.view,
       ccy:        p.ccy        ?? (p.instrument ? null : prev.ccy),
       instrument: p.instrument ?? (p.ccy ? null : prev.instrument),
       impact:     p.impact     || prev.impact,
       today:      p.today ? !prev.today : prev.today,
+      all:        p.all ? !prev.all : prev.all,
     }));
     if (p.instrument) setEcoInst(p.instrument);
     setStatus(p.unknown.length ? `unknown: ${p.unknown.join(' ')} — type ? for commands` : 'ok');
@@ -638,12 +649,15 @@ function TerminalView({ events }) {
 
   const shownStream = useMemo(() => {
     let s = stream;
+    if (!f.all)       s = s.filter(i => i.rel >= 1);   // drop corporate wire copy
     if (f.view === 'POS' && pos.length) s = s.filter(i => i.instruments.some(x => pos.includes(x)));
     if (f.instrument) s = s.filter(i => i.instruments.includes(f.instrument));
     if (f.ccy)        s = s.filter(i => detectCurrencies(`${i.title} ${i.description || ''}`).includes(f.ccy));
-    if (f.today)      s = s.filter(i => i.ms >= startOfDay.getTime());
+    if (f.today)      s = s.filter(i => i.ms && i.ms >= startOfDay.getTime());
     return s.slice(0, 120);
   }, [stream, f, pos]); // eslint-disable-line
+
+  const hiddenCount = stream.length - stream.filter(i => i.rel >= 1).length;
 
   const calEvents = useMemo(() => {
     const now = Date.now();
@@ -670,6 +684,11 @@ function TerminalView({ events }) {
         {f.instrument && <span style={chip(f.instrument, true)}>{f.instrument}</span>}
         {f.ccy && <span style={chip(f.ccy, true)}>{f.ccy}</span>}
         {f.today && <span style={chip('TODAY', true)}>TODAY</span>}
+        {f.all && <span style={chip('ALL', true)}>ALL</span>}
+        {!f.all && hiddenCount > 0 && (
+          <button onClick={() => setF(p => ({ ...p, all:true }))} title="Show corporate / off-topic stories"
+            style={{ ...chip('', false), cursor:'pointer' }}>+{hiddenCount} off-topic</button>
+        )}
         <span style={chip(f.impact.toUpperCase(), false)}>{f.impact.toUpperCase()}</span>
         <span style={{ color:'#334155', marginLeft:'auto' }}>{busy ? '···' : status}</span>
         <button onClick={loadStream} style={{ ...chip('↻', false), cursor:'pointer' }}>↻</button>
