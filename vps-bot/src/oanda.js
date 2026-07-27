@@ -21,7 +21,13 @@ class OandaClient {
       },
     });
     if (!res.ok) {
-      const body = await res.text().catch(() => '');
+      // Gateway errors (Cloudflare 502/504) return a full HTML page, not JSON.
+      // Dumping it verbatim floods the pm2 log with thousands of markup lines,
+      // so keep a short, useful message instead.
+      const raw = await res.text().catch(() => '');
+      const body = /^\s*</.test(raw)
+        ? `<non-JSON ${raw.length}B response — gateway/outage page>`
+        : raw.slice(0, 300);
       throw new Error(`OANDA ${res.status} ${path}: ${body}`);
     }
     return res.json();
