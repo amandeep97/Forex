@@ -673,7 +673,7 @@ export function runBacktest(candles, strategy, opts = {}) {
   const trades      = [];
   const open        = [];
 
-  const indArrays = buildIndicators(candles, conditions);
+  const indArrays = opts.entryOverride ? {} : buildIndicators(candles, conditions);
   const atr       = computeATRSeries(candles, 14);
 
   const check = (condList, c, prev, inds, pattern, patternIds) => {
@@ -682,20 +682,25 @@ export function runBacktest(candles, strategy, opts = {}) {
   };
 
   const entryOverride = typeof opts.entryOverride === 'function' ? opts.entryOverride : null;
-  const mirroredConds = conditions.map(mirrorCond);
-  const needCandlestick = conditions.some(cd => cd.type === 'candlestick');
+  const mirroredConds = entryOverride ? [] : conditions.map(mirrorCond);
+  const needCandlestick = !entryOverride && conditions.some(cd => cd.type === 'candlestick');
 
   for (let i = 10; i < candles.length; i++) {
     const c    = candles[i];
     const prev = candles[i - 1];
 
-    // Build per-candle indicator snapshot
+    // Build per-candle indicator snapshot. Skipped entirely when entries are
+    // overridden (random baseline) — conditions are never evaluated there, so
+    // computing indicators/patterns would be pure waste on every baseline run.
     const inds = {};
-    for (const [key, arr] of Object.entries(indArrays)) {
-      inds[key] = { cur: arr[i] ?? null, prev: arr[i - 1] ?? null };
+    let pattern = null, patternIds = null;
+    if (!entryOverride) {
+      for (const [key, arr] of Object.entries(indArrays)) {
+        inds[key] = { cur: arr[i] ?? null, prev: arr[i - 1] ?? null };
+      }
+      pattern = detectPatternAt(candles, i);
+      patternIds = needCandlestick ? patternsAt(candles, i) : null;
     }
-    const pattern = detectPatternAt(candles, i);
-    const patternIds = needCandlestick ? patternsAt(candles, i) : null;
 
     // ── Exit open trades ──
     for (let t = open.length - 1; t >= 0; t--) {

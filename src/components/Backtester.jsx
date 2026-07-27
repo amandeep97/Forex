@@ -1,12 +1,13 @@
 import { useState, useMemo } from 'react';
 import { runBacktest, calcStats, defaultSpreadPips } from '../utils/backtestEngine';
-import { gradeStrategy, loadLibrary, saveToLibrary, removeFromLibrary, condSignature } from '../utils/backtestGrading';
+import { gradeStrategy, loadLibrary, saveToLibrary, removeFromLibrary, condSignature,
+         getSeal, sealRule, recordSearch, datasetKey } from '../utils/backtestGrading';
 import { OANDA_MAP } from '../hooks/useLivePrices';
 import { generateCandles } from '../utils/generateCandles';
 
 const TF_GRAN = {'1M':'M1','5M':'M5','15M':'M15','30M':'M30','1H':'H1','4H':'H4','8H':'H8','D':'D','W':'W'};
 const TFS = ['1M','5M','15M','30M','1H','4H','8H','D','W'];
-const COUNTS = [100,500,1000,2000,5000];
+const COUNTS = [100,500,1000,2000,5000,10000,20000,50000];
 
 const INSTRUMENTS = [
   // Majors
@@ -154,21 +155,67 @@ const CAT_COLORS = {
 
 const BINANCE_TF = {'1M':'1m','5M':'5m','15M':'15m','30M':'30m','1H':'1h','4H':'4h','8H':'8h','D':'1d','W':'1w'};
 
+// Both APIs cap a single request (OANDA 5000, Binance 1000). To grade honestly
+// we want far more history than that, so page BACKWARDS from now until we have
+// the requested count or the exchange runs out of history.
+const dedupeSort = cs => {
+  const m = new Map();
+  for (const c of cs) m.set(c.t, c);
+  return [...m.values()].sort((a, b) => a.t - b.t);
+};
+
+async function fetchBinancePaged(sym, itv, total) {
+  const all = [];
+  let endTime = null, guard = 0;
+  while (all.length < total && guard++ < 30) {
+    const need = Math.min(1000, total - all.length);
+    const url = `https://api.binance.com/api/v3/klines?symbol=${sym}&interval=${itv}&limit=${need}`
+      + (endTime ? `&endTime=${endTime}` : '');
+    const res = await fetch(url, { signal: AbortSignal.timeout(20000) });
+    if (!res.ok) break;
+    const data = await res.json();
+    if (!data.length) break;
+    all.push(...data.map(k => ({ t:k[0], o:+k[1], h:+k[2], l:+k[3], c:+k[4], v:+k[5] })));
+    endTime = data[0][0] - 1;          // next page ends just before this page's oldest bar
+    if (data.length < need) break;     // exchange has no more history
+  }
+  return dedupeSort(all);
+}
+
+async function fetchOandaPaged(instr, gran, total, apiKey, base) {
+  const all = [];
+  let toParam = null, guard = 0;
+  while (all.length < total && guard++ < 20) {
+    const need = Math.min(5000, total - all.length);
+    const url = `${base}/instruments/${instr}/candles?count=${need}&granularity=${gran}&price=M`
+      + (toParam ? `&to=${encodeURIComponent(toParam)}` : '');
+    const res = await fetch(url, { headers:{Authorization:`Bearer ${apiKey}`}, signal:AbortSignal.timeout(25000) });
+    if (!res.ok) break;
+    const data = await res.json();
+    const raw = (data.candles || []).filter(c => c.complete);
+    if (!raw.length) break;
+    all.push(...raw.map(c => ({
+      t:new Date(c.time).getTime(), o:+c.mid.o, h:+c.mid.h, l:+c.mid.l, c:+c.mid.c, v:c.volume||1,
+    })));
+    toParam = raw[0].time;             // page backwards from the oldest bar we got
+    if (raw.length < need) break;
+  }
+  return dedupeSort(all);
+}
+
+const spanLabel = cs => {
+  if (cs.length < 2) return '';
+  const days = (cs[cs.length-1].t - cs[0].t) / 86400000;
+  return days >= 365 ? ` · ${(days/365).toFixed(1)}y history`
+       : days >= 1   ? ` · ${Math.round(days)}d history` : '';
+};
+
 async function fetchCandles(symbol, tf, count) {
   // Crypto → Binance (free, no key, real historical data)
   if (symbol.includes('/USDT')) {
     try {
-      const sym = symbol.replace('/', '');
-      const itv = BINANCE_TF[tf] || '1h';
-      const res = await fetch(
-        `https://api.binance.com/api/v3/klines?symbol=${sym}&interval=${itv}&limit=${Math.min(count,1000)}`,
-        { signal: AbortSignal.timeout(20000) }
-      );
-      if (res.ok) {
-        const data = await res.json();
-        const cs = data.map(k => ({ t:k[0], o:+k[1], h:+k[2], l:+k[3], c:+k[4], v:+k[5] }));
-        if (cs.length >= 20) return { candles:cs, src:`Binance Live · ${cs.length} bars` };
-      }
+      const cs = await fetchBinancePaged(symbol.replace('/', ''), BINANCE_TF[tf] || '1h', count);
+      if (cs.length >= 20) return { candles:cs, src:`Binance Live · ${cs.length} bars${spanLabel(cs)}` };
     } catch {}
   }
   // FX / metals / indices / energy → OANDA. oanda_env (Settings toggle) is the source
@@ -180,17 +227,8 @@ async function fetchCandles(symbol, tf, count) {
     const practice = envSet !== null ? envSet !== 'live' : creds?.practice;
     if (creds?.apiKey && OANDA_MAP[symbol]) {
       const base = practice ? 'https://api-fxpractice.oanda.com/v3' : 'https://api-fxtrade.oanda.com/v3';
-      const res = await fetch(
-        `${base}/instruments/${OANDA_MAP[symbol]}/candles?count=${Math.min(count,5000)}&granularity=${TF_GRAN[tf]||'H1'}&price=M`,
-        {headers:{Authorization:`Bearer ${creds.apiKey}`}, signal:AbortSignal.timeout(20000)}
-      );
-      if (res.ok) {
-        const data = await res.json();
-        const cs = (data.candles||[]).filter(c=>c.complete).map(c=>({
-          t:new Date(c.time).getTime(),o:+c.mid.o,h:+c.mid.h,l:+c.mid.l,c:+c.mid.c,v:c.volume||1
-        }));
-        if (cs.length >= 20) return {candles:cs, src:`OANDA Live · ${cs.length} bars`};
-      }
+      const cs = await fetchOandaPaged(OANDA_MAP[symbol], TF_GRAN[tf]||'H1', count, creds.apiKey, base);
+      if (cs.length >= 20) return {candles:cs, src:`OANDA Live · ${cs.length} bars${spanLabel(cs)}`};
     }
   } catch {}
   const inst = {bid:FALLBACK_PRICES[symbol]||1.1,change:0,volume:10000};
@@ -317,7 +355,7 @@ function LongShortPanel({ s }) {
 }
 
 // ── Statistical Grade Card (Phases 1 & 2 & 5) ─────────────────────────────────
-function GradeCard({ g, onSave, saved }) {
+function GradeCard({ g, onSave, saved, onSeal }) {
   if (!g) return null;
   const barBase = 100, barSetup = Math.min(100, (g.setupWinRate / Math.max(g.baseWinRate * 3, g.setupWinRate, 1)) * 100);
   const barRand = Math.min(100, (g.baseWinRate / Math.max(g.baseWinRate * 3, g.setupWinRate, 1)) * 100);
@@ -392,6 +430,56 @@ function GradeCard({ g, onSave, saved }) {
           <div style={{fontSize:9, color:'var(--text3)'}}>{g.signalCount} signals · {g.nConditions} cond</div>
         </div>
       </div>
+
+      {/* Forward test — the only check that cannot be overfit */}
+      {(() => {
+        const f = g.forward;
+        const fc = !f ? '#64748b' : f.status==='holds' ? '#22c55e' : f.status==='fails' ? '#ef4444' : '#0ea5e9';
+        return (
+          <div style={{marginTop:12, borderRadius:8, border:`1px solid ${fc}44`, background:`${fc}0a`, padding:'9px 11px'}}>
+            <div style={{display:'flex', alignItems:'center', justifyContent:'space-between', gap:8, flexWrap:'wrap'}}>
+              <span style={{fontSize:11, fontWeight:800, color:fc}}>
+                🔐 FORWARD TEST {!f ? '— NOT SEALED' : f.status==='holds' ? '— HOLDS ✓' : f.status==='fails' ? '— FAILED ✗' : '— RUNNING'}
+              </span>
+              {!f && (
+                <button onClick={onSeal}
+                  style={{fontSize:11, fontWeight:700, padding:'4px 11px', borderRadius:6, cursor:'pointer',
+                    border:'1px solid #0ea5e955', background:'#0ea5e918', color:'#0ea5e9'}}>
+                  🔐 Seal rule &amp; start clock
+                </button>
+              )}
+            </div>
+            <div style={{marginTop:5, fontSize:11, color:'var(--text3)', lineHeight:1.5}}>
+              {!f ? (
+                <>Sealing freezes today's date. Every bar after it is data that <strong>did not exist</strong> when you
+                wrote the rule — so the result cannot be curve-fit. It is the only honest proof, and it costs nothing
+                but patience. Seal now; re-run in a few weeks.</>
+              ) : f.status==='pending' ? (
+                <>Sealed {f.daysElapsed}d ago · <strong>{f.n}/{f.minN}</strong> forward trades so far.
+                Nothing to conclude yet — re-run this backtest periodically and the clock does the validating.</>
+              ) : (
+                <>Sealed {f.daysElapsed}d ago · <strong>n={f.n}</strong> trades on data recorded after sealing ·
+                {' '}<strong style={{color:fc}}>{f.winRate}% win · {f.expR>0?'+':''}{f.expR}R</strong>
+                {f.status==='holds'
+                  ? ' — the edge appeared on data it could not have been fitted to. This is the strongest evidence available.'
+                  : ' — the edge vanished on unseen data. The backtest was curve-fit.'}</>
+              )}
+            </div>
+          </div>
+        );
+      })()}
+
+      {/* Multiple-testing cost */}
+      {g.search && g.search.testCount > 5 && (
+        <div style={{marginTop:10, fontSize:11, borderRadius:6, padding:'7px 10px',
+          color: g.search.level==='high' ? '#fca5a5' : '#fcd34d',
+          background: g.search.level==='high' ? '#ef444412' : '#f59e0b12',
+          border: `1px solid ${g.search.level==='high' ? '#ef444433' : '#f59e0b33'}`}}>
+          🔍 <strong>{g.search.testCount} different setups</strong> tested on this data.
+          At that many attempts, expect <strong>~{g.search.expectedFalse}</strong> to look like a real edge by pure luck.
+          The more you search, the less a single ✅ means — only the forward test above is immune to this.
+        </div>
+      )}
 
       {g.selectivity==='too_loose' && (
         <div style={{marginTop:10, fontSize:11, color:'#fca5a5', background:'#ef444412', border:'1px solid #ef444433',
@@ -542,6 +630,7 @@ function EdgeLibrary({ items, onLoad, onRemove }) {
               </div>
               <div style={{fontSize:10, color:'var(--text3)'}}>
                 ×{e.edgeMult} vs random · {e.winRate}% win · {e.expR>0?'+':''}{e.expR}R · n={e.n} · OOS {e.oos}
+                {e.fwd && ` · 🔐 fwd ${e.fwd.status==='pending' ? `${e.fwd.n}/15 (${e.fwd.days}d)` : `${e.fwd.status} n=${e.fwd.n}`}`}
               </div>
             </div>
             <span style={{fontSize:10, fontWeight:800, color:e.color, padding:'2px 7px', borderRadius:4, background:`${e.color}18`}}>
@@ -824,11 +913,30 @@ export default function Backtester() {
       // Statistical grading (all phases) — yield to the paint first so the
       // spinner shows, since baseline + Monte-Carlo are a bit of extra compute.
       await new Promise(r => setTimeout(r, 0));
+      const sig = condSignature(sym, tf, conds);
+      const seal = getSeal(sig);
+      const testCount = recordSearch(datasetKey(sym, tf, cnt), sig);
       let grade = null;
-      try { grade = gradeStrategy(candles, strat, stats, trades); } catch { grade = null; }
-      setResults({trades, equityCurve, stats, grade, symUsed:sym, tfUsed:tf, srcUsed:s});
+      try { grade = gradeStrategy(candles, strat, stats, trades, { seal, testCount }); } catch { grade = null; }
+      setResults({
+        trades, equityCurve, stats, grade, sig,
+        lastBarTime: candles[candles.length - 1]?.t ?? Date.now(),
+        symUsed:sym, tfUsed:tf, srcUsed:s,
+      });
     } catch(e) { setErr(e.message); }
     setRunning(false);
+  };
+
+  // Seal = freeze the clock. Every bar after this instant is provably forward
+  // data, so the forward test can never be overfit. Deliberately irreversible.
+  const sealNow = () => {
+    if (!results?.sig) return;
+    sealRule(results.sig, results.lastBarTime);
+    setResults(r => ({
+      ...r,
+      grade: { ...r.grade, forward: { sealedAt:new Date().toISOString(), sealBarTime:r.lastBarTime,
+        daysElapsed:0, n:0, enough:false, minN:15, winRate:0, expR:0, status:'pending' } },
+    }));
   };
 
   const saveGrade = () => {
@@ -842,6 +950,7 @@ export default function Backtester() {
       edgeMult: g.edgeMult, n: g.n, expR: g.setupExpR,
       winRate: g.setupWinRate, baseWinRate: g.baseWinRate,
       oos: g.oos.status, validated: g.validated,
+      fwd: g.forward ? { status:g.forward.status, n:g.forward.n, expR:g.forward.expR, days:g.forward.daysElapsed } : null,
       savedAt: new Date().toISOString(),
     };
     setLibrary(saveToLibrary(entry));
@@ -1138,7 +1247,7 @@ export default function Backtester() {
             </div>
 
             {/* Statistical grade — the honest verdict (Phases 1/2/5) */}
-            {results.grade && <GradeCard g={results.grade} onSave={saveGrade} saved={saved}/>}
+            {results.grade && <GradeCard g={results.grade} onSave={saveGrade} saved={saved} onSeal={sealNow}/>}
 
             {/* Key metrics — top row */}
             <div className="bt2-kpi-row">
