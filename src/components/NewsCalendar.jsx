@@ -1,5 +1,10 @@
 'use strict';
-import { useState, useEffect, useCallback, useMemo } from 'react';
+import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
+import { OANDA_MAP } from '../hooks/useLivePrices';
+import {
+  mergeFeeds, tagInstruments, archiveEvents, archiveStats, archivedEventTypes,
+  computeReaction, parseCommand, COMMANDS,
+} from '../utils/newsTerminal';
 
 // ── CORS proxies — raced simultaneously, first success wins (resilient) ────────
 const PROXIES = [
@@ -333,6 +338,222 @@ function NewsCard({ item }) {
   );
 }
 
+// ── Terminal: OANDA window fetch (for ECO reaction stats) ─────────────────────
+function oandaCreds() {
+  try {
+    const c = JSON.parse(localStorage.getItem('oanda_creds') || 'null');
+    if (c?.apiKey) { const e = localStorage.getItem('oanda_env'); return e !== null ? { ...c, practice: e !== 'live' } : c; }
+  } catch {}
+  const apiKey = localStorage.getItem('oanda_key');
+  return apiKey ? { apiKey, practice: localStorage.getItem('oanda_env') !== 'live' } : null;
+}
+const oandaBase = c => (c.practice === false ? 'https://api-fxtrade.oanda.com/v3' : 'https://api-fxpractice.oanda.com/v3');
+
+function makeWindowFetcher(instrument) {
+  const instr = OANDA_MAP[instrument] || instrument.replace('/', '_');
+  return async (fromMs, toMs) => {
+    const c = oandaCreds();
+    if (!c?.apiKey) throw new Error('OANDA not connected');
+    const iso = ms => new Date(ms).toISOString();
+    const url = `${oandaBase(c)}/instruments/${instr}/candles?granularity=M15&price=M`
+      + `&from=${encodeURIComponent(iso(fromMs))}&to=${encodeURIComponent(iso(toMs))}`;
+    const r = await fetch(url, { headers:{Authorization:`Bearer ${c.apiKey}`}, signal:AbortSignal.timeout(12000) });
+    if (!r.ok) throw new Error(`OANDA ${r.status}`);
+    const d = await r.json();
+    return (d.candles || []).filter(x => x.complete)
+      .map(x => ({ t:new Date(x.time).getTime(), o:+x.mid.o, h:+x.mid.h, l:+x.mid.l, c:+x.mid.c }));
+  };
+}
+
+async function fetchOpenPositions() {
+  const c = oandaCreds();
+  if (!c?.apiKey) return [];
+  const acct = localStorage.getItem('oanda_account') || '';
+  if (!acct) return [];
+  try {
+    const r = await fetch(`${oandaBase(c)}/accounts/${acct}/openTrades`,
+      { headers:{Authorization:`Bearer ${c.apiKey}`}, signal:AbortSignal.timeout(9000) });
+    if (!r.ok) return [];
+    const d = await r.json();
+    const rev = Object.fromEntries(Object.entries(OANDA_MAP).map(([k, v]) => [v, k]));
+    return (d.trades || []).map(t => rev[t.instrument] || t.instrument.replace('_', '/'));
+  } catch { return []; }
+}
+
+// ── Terminal: command bar ─────────────────────────────────────────────────────
+function CommandBar({ value, onChange, onSubmit, hint }) {
+  return (
+    <div style={{ display:'flex', alignItems:'center', gap:8, padding:'7px 10px', background:'#000',
+      border:'1px solid #1e3a2f', borderRadius:4, fontFamily:'var(--mono, monospace)' }}>
+      <span style={{ color:'#00d4aa', fontWeight:800, fontSize:13 }}>&gt;</span>
+      <input
+        value={value}
+        onChange={e => onChange(e.target.value)}
+        onKeyDown={e => { if (e.key === 'Enter') onSubmit(value); }}
+        placeholder="XAU · USD HIGH · ECO · POS · TODAY · ?"
+        spellCheck={false} autoCapitalize="characters"
+        style={{ flex:1, background:'transparent', border:'none', outline:'none',
+          color:'#d1fae5', fontSize:13, fontFamily:'inherit', letterSpacing:'0.5px', textTransform:'uppercase' }}
+      />
+      <button onClick={() => onSubmit(value)} style={{ background:'#00d4aa18', border:'1px solid #00d4aa44',
+        color:'#00d4aa', borderRadius:3, fontSize:10, fontWeight:800, padding:'3px 9px', cursor:'pointer' }}>GO</button>
+      {hint && <span style={{ fontSize:10, color:'#475569' }}>{hint}</span>}
+    </div>
+  );
+}
+
+// ── Terminal: one headline row (dense, monospace) ─────────────────────────────
+const SEV_COL = { 3:'#ef4444', 2:'#f59e0b', 1:'#64748b' };
+function agoLabel(ms) {
+  if (!ms) return '--:--';
+  const m = Math.round((Date.now() - ms) / 60000);
+  if (m < 1) return 'NOW';
+  if (m < 60) return `${m}m`;
+  const h = Math.floor(m / 60);
+  return h < 24 ? `${h}h` : `${Math.floor(h / 24)}d`;
+}
+
+function StreamRow({ it, onTag }) {
+  const col = SEV_COL[it.sev];
+  return (
+    <a href={it.link} target="_blank" rel="noopener noreferrer"
+      style={{ display:'flex', gap:8, padding:'5px 8px', borderBottom:'1px solid #0f1720',
+        textDecoration:'none', alignItems:'baseline', fontFamily:'var(--mono, monospace)' }}>
+      <span style={{ color:'#334155', fontSize:10, width:34, flexShrink:0 }}>{agoLabel(it.ms)}</span>
+      <span style={{ color:col, fontSize:11, flexShrink:0 }}>{it.sev === 3 ? '●' : it.sev === 2 ? '◆' : '·'}</span>
+      <span style={{ flex:1, minWidth:0 }}>
+        <span style={{ color: it.sev === 3 ? '#fca5a5' : '#cbd5e1', fontSize:12, lineHeight:1.4 }}>{it.title}</span>
+        <span style={{ display:'flex', gap:5, flexWrap:'wrap', marginTop:2, alignItems:'center' }}>
+          <span style={{ fontSize:9, color:'#475569' }}>{it.source}</span>
+          {it.alsoIn?.length > 0 && <span style={{ fontSize:9, color:'#334155' }}>+{it.alsoIn.length}</span>}
+          {it.instruments.slice(0, 4).map(i => (
+            <button key={i} onClick={e => { e.preventDefault(); onTag?.(i); }}
+              style={{ fontSize:9, fontWeight:700, color:'#00d4aa', background:'#00d4aa12',
+                border:'1px solid #00d4aa26', borderRadius:2, padding:'0 4px', cursor:'pointer' }}>{i}</button>
+          ))}
+        </span>
+      </span>
+    </a>
+  );
+}
+
+// ── Terminal: ECO — how price actually reacted to past releases ───────────────
+function EcoPanel({ instrument, onInstrument }) {
+  const [types,  setTypes]  = useState([]);
+  const [sel,    setSel]    = useState(null);
+  const [res,    setRes]    = useState(null);
+  const [busy,   setBusy]   = useState(false);
+  const [err,    setErr]    = useState('');
+  const arch = archiveStats();
+
+  useEffect(() => { setTypes(archivedEventTypes(2)); }, []);
+
+  const run = async (t) => {
+    setSel(t); setRes(null); setErr(''); setBusy(true);
+    try {
+      const r = await computeReaction(t.title, t.country, makeWindowFetcher(instrument), {});
+      setRes(r);
+      if (!r.instances) setErr('No priceable instances yet — the archive has the events but OANDA returned no candles for those windows.');
+    } catch (e) { setErr(e.message || 'Failed'); }
+    setBusy(false);
+  };
+
+  return (
+    <div style={{ fontFamily:'var(--mono, monospace)' }}>
+      <div style={{ padding:'8px 10px', background:'#0a0f14', border:'1px solid #1e293b', borderRadius:4, marginBottom:10 }}>
+        <div style={{ fontSize:11, color:'#00d4aa', fontWeight:800, marginBottom:4 }}>ECO · EVENT REACTION HISTORY</div>
+        <div style={{ fontSize:10, color:'#64748b', lineHeight:1.5 }}>
+          How <strong style={{color:'#cbd5e1'}}>{instrument}</strong> actually moved after past releases — measured from
+          OANDA candles, split by whether the print beat or missed forecast. No prediction, just the record.
+        </div>
+        <div style={{ fontSize:10, color:'#475569', marginTop:5 }}>
+          Archive: <span style={{color:'#cbd5e1'}}>{arch.n}</span> events
+          {arch.days > 0 && <> · spanning <span style={{color:'#cbd5e1'}}>{arch.days}d</span></>}
+          {arch.n < 50 && <span style={{ color:'#f59e0b' }}> · builds every time you open this tab</span>}
+        </div>
+      </div>
+
+      <div style={{ display:'flex', gap:5, flexWrap:'wrap', marginBottom:10 }}>
+        {['XAU/USD','EUR/USD','GBP/USD','USD/JPY','US500','USOIL'].map(i => (
+          <button key={i} onClick={() => { onInstrument(i); setRes(null); setSel(null); }}
+            style={{ fontSize:10, fontWeight:700, padding:'3px 8px', borderRadius:3, cursor:'pointer',
+              border:`1px solid ${instrument===i?'#00d4aa55':'#1e293b'}`,
+              background: instrument===i?'#00d4aa15':'transparent', color: instrument===i?'#00d4aa':'#64748b' }}>{i}</button>
+        ))}
+      </div>
+
+      {types.length === 0 ? (
+        <div style={{ padding:16, fontSize:11, color:'#64748b', lineHeight:1.6, background:'#0a0f14',
+          border:'1px solid #1e293b', borderRadius:4 }}>
+          No repeating events archived yet. The calendar feed only publishes the current week, so history is
+          accumulated locally — open this tab across a few weeks and reaction stats appear automatically.
+          <div style={{ marginTop:6, color:'#475569' }}>Nothing to configure. It builds itself.</div>
+        </div>
+      ) : (
+        <div style={{ display:'flex', flexDirection:'column', gap:3, marginBottom:10 }}>
+          {types.slice(0, 12).map(t => (
+            <button key={`${t.country}|${t.title}`} onClick={() => run(t)}
+              style={{ display:'flex', justifyContent:'space-between', alignItems:'center', gap:8,
+                padding:'6px 9px', borderRadius:3, cursor:'pointer', textAlign:'left',
+                border:`1px solid ${sel?.title===t.title&&sel?.country===t.country?'#00d4aa44':'#151f2b'}`,
+                background: sel?.title===t.title&&sel?.country===t.country?'#00d4aa0c':'#0a0f14' }}>
+              <span style={{ fontSize:11, color:'#cbd5e1' }}>
+                <span style={{ color:'#00d4aa', fontWeight:800, marginRight:6 }}>{t.country}</span>{t.title}
+              </span>
+              <span style={{ fontSize:9, color:'#475569', flexShrink:0 }}>n={t.count}</span>
+            </button>
+          ))}
+        </div>
+      )}
+
+      {busy && <div style={{ padding:14, fontSize:11, color:'#00d4aa' }}>Pricing {sel?.title} windows…</div>}
+      {err && <div style={{ padding:10, fontSize:11, color:'#fca5a5', background:'#450a0a', borderRadius:4 }}>{err}</div>}
+
+      {res && res.instances > 0 && (
+        <div style={{ background:'#0a0f14', border:'1px solid #1e293b', borderRadius:4, padding:10 }}>
+          <div style={{ fontSize:11, color:'#cbd5e1', fontWeight:700, marginBottom:8 }}>
+            {res.country} {res.eventTitle} → {instrument}
+            <span style={{ color:'#475569', fontWeight:400, marginLeft:6 }}>{res.instances} releases priced</span>
+          </div>
+          <table style={{ width:'100%', borderCollapse:'collapse', fontSize:11 }}>
+            <thead>
+              <tr style={{ color:'#475569', fontSize:9, textAlign:'right' }}>
+                <th style={{ textAlign:'left', padding:'2px 4px' }}>OUTCOME</th>
+                <th style={{ padding:'2px 4px' }}>n</th>
+                {res.horizons.map(h => <th key={h} style={{ padding:'2px 4px' }}>{h < 60 ? `${h}m` : `${h/60}h`}</th>)}
+              </tr>
+            </thead>
+            <tbody>
+              {res.buckets.map(b => (
+                <tr key={b.name} style={{ borderTop:'1px solid #151f2b' }}>
+                  <td style={{ padding:'4px', color: b.name==='beat'?'#22c55e':b.name==='miss'?'#ef4444':'#cbd5e1', fontWeight:700 }}>
+                    {b.name.toUpperCase()}
+                  </td>
+                  <td style={{ padding:'4px', textAlign:'right', color: b.n>=8?'#64748b':'#f59e0b' }}>{b.n}</td>
+                  {res.horizons.map(h => {
+                    const v = b.horizons[h];
+                    return (
+                      <td key={h} style={{ padding:'4px', textAlign:'right', fontFamily:'inherit',
+                        color: !v ? '#334155' : v.median > 0 ? '#22c55e' : v.median < 0 ? '#ef4444' : '#64748b' }}>
+                        {v ? `${v.median > 0 ? '+' : ''}${v.median}%` : '—'}
+                        {v && <span style={{ color:'#334155', fontSize:9 }}> {v.upPct}↑</span>}
+                      </td>
+                    );
+                  })}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <div style={{ marginTop:7, fontSize:9, color:'#475569', lineHeight:1.5 }}>
+            Median % move from the release candle · <span style={{color:'#64748b'}}>N↑</span> = share that closed higher.
+            {res.instances < 8 && <span style={{ color:'#f59e0b' }}> Sample is small — treat as indicative, not evidence.</span>}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
 const NEWS_CACHE_KEY = 'forex_news_cache';
 
 function getFinnhubKey() {
@@ -368,6 +589,169 @@ function cacheNews(items, sourceName) {
       ts: Date.now(),
     }));
   } catch {}
+}
+
+// ── TERMINAL VIEW ─────────────────────────────────────────────────────────────
+function TerminalView({ events }) {
+  const [cmd,     setCmd]     = useState('');
+  const [f,       setF]       = useState({ view:'LIVE', ccy:null, instrument:null, impact:'High', today:false });
+  const [stream,  setStream]  = useState([]);
+  const [busy,    setBusy]    = useState(false);
+  const [status,  setStatus]  = useState('');
+  const [help,    setHelp]    = useState(false);
+  const [ecoInst, setEcoInst] = useState('XAU/USD');
+  const [pos,     setPos]     = useState([]);
+  const [, setTick] = useState(0);
+  const loaded = useRef(false);
+
+  useEffect(() => { const t = setInterval(() => setTick(n => n + 1), 30000); return () => clearInterval(t); }, []);
+
+  const loadStream = useCallback(async () => {
+    setBusy(true); setStatus('fetching all sources…');
+    try {
+      const items = await mergeFeeds(NEWS_FEEDS, proxyFetch, parseRSS);
+      setStream(items);
+      setStatus(items.length ? `${items.length} stories · merged & deduped` : 'no stories returned');
+    } catch { setStatus('all feeds failed'); }
+    setBusy(false);
+  }, []);
+
+  useEffect(() => { if (!loaded.current) { loaded.current = true; loadStream(); fetchOpenPositions().then(setPos); } }, [loadStream]);
+
+  const submit = (raw) => {
+    const p = parseCommand(raw);
+    if (p.help)  { setHelp(true); setCmd(''); return; }
+    if (p.clear) { setF({ view:'LIVE', ccy:null, instrument:null, impact:'High', today:false }); setCmd(''); setStatus('filters cleared'); return; }
+    setF(prev => ({
+      view:       p.view       || prev.view,
+      ccy:        p.ccy        ?? (p.instrument ? null : prev.ccy),
+      instrument: p.instrument ?? (p.ccy ? null : prev.instrument),
+      impact:     p.impact     || prev.impact,
+      today:      p.today ? !prev.today : prev.today,
+    }));
+    if (p.instrument) setEcoInst(p.instrument);
+    setStatus(p.unknown.length ? `unknown: ${p.unknown.join(' ')} — type ? for commands` : 'ok');
+    setCmd('');
+  };
+
+  const startOfDay = new Date(); startOfDay.setHours(0,0,0,0);
+
+  const shownStream = useMemo(() => {
+    let s = stream;
+    if (f.view === 'POS' && pos.length) s = s.filter(i => i.instruments.some(x => pos.includes(x)));
+    if (f.instrument) s = s.filter(i => i.instruments.includes(f.instrument));
+    if (f.ccy)        s = s.filter(i => detectCurrencies(`${i.title} ${i.description || ''}`).includes(f.ccy));
+    if (f.today)      s = s.filter(i => i.ms >= startOfDay.getTime());
+    return s.slice(0, 120);
+  }, [stream, f, pos]); // eslint-disable-line
+
+  const calEvents = useMemo(() => {
+    const now = Date.now();
+    return (events || [])
+      .filter(ev => TRACKED.includes(ev.country))
+      .filter(ev => f.impact === 'High' ? ev.impact === 'High' : (ev.impact === 'High' || ev.impact === 'Medium'))
+      .filter(ev => !f.ccy || ev.country === f.ccy)
+      .filter(ev => !f.today || new Date(ev.date) >= startOfDay)
+      .sort((a, b) => new Date(a.date) - new Date(b.date))
+      .map(ev => ({ ...ev, ms:new Date(ev.date).getTime(), future:new Date(ev.date).getTime() > now }));
+  }, [events, f]); // eslint-disable-line
+
+  const nextHigh = calEvents.find(e => e.future && e.impact === 'High');
+  const chip = (label, on) => ({ fontSize:9, fontWeight:800, padding:'2px 7px', borderRadius:2,
+    border:`1px solid ${on?'#00d4aa44':'#1e293b'}`, background:on?'#00d4aa15':'transparent', color:on?'#00d4aa':'#475569' });
+
+  return (
+    <div style={{ fontFamily:'var(--mono, monospace)' }}>
+      <CommandBar value={cmd} onChange={setCmd} onSubmit={submit} />
+
+      {/* status / filter line */}
+      <div style={{ display:'flex', gap:6, flexWrap:'wrap', alignItems:'center', padding:'6px 2px', fontSize:10 }}>
+        <span style={chip(f.view, true)}>{f.view}</span>
+        {f.instrument && <span style={chip(f.instrument, true)}>{f.instrument}</span>}
+        {f.ccy && <span style={chip(f.ccy, true)}>{f.ccy}</span>}
+        {f.today && <span style={chip('TODAY', true)}>TODAY</span>}
+        <span style={chip(f.impact.toUpperCase(), false)}>{f.impact.toUpperCase()}</span>
+        <span style={{ color:'#334155', marginLeft:'auto' }}>{busy ? '···' : status}</span>
+        <button onClick={loadStream} style={{ ...chip('↻', false), cursor:'pointer' }}>↻</button>
+      </div>
+
+      {/* next high-impact banner — the thing you actually need to know */}
+      {nextHigh && (
+        <div style={{ display:'flex', alignItems:'center', gap:8, padding:'6px 10px', marginBottom:8,
+          background:'#ef44440e', border:'1px solid #ef444433', borderRadius:3 }}>
+          <span style={{ fontSize:10, fontWeight:800, color:'#ef4444' }}>NEXT HIGH</span>
+          <span style={{ fontSize:11, color:'#cbd5e1', flex:1, minWidth:0, overflow:'hidden', textOverflow:'ellipsis', whiteSpace:'nowrap' }}>
+            {nextHigh.country} {nextHigh.title}
+          </span>
+          <span style={{ fontSize:12, fontWeight:800, color:'#fca5a5' }}>{countdown(nextHigh.date) || '—'}</span>
+        </div>
+      )}
+
+      {help && (
+        <div style={{ background:'#000', border:'1px solid #1e3a2f', borderRadius:4, padding:10, marginBottom:10 }}>
+          <div style={{ display:'flex', justifyContent:'space-between', marginBottom:6 }}>
+            <span style={{ fontSize:11, color:'#00d4aa', fontWeight:800 }}>COMMANDS</span>
+            <button onClick={() => setHelp(false)} style={{ background:'none', border:'none', color:'#475569', cursor:'pointer', fontSize:12 }}>✕</button>
+          </div>
+          {COMMANDS.map(([c, d]) => (
+            <div key={c} style={{ display:'flex', gap:10, fontSize:10, padding:'2px 0' }}>
+              <span style={{ color:'#00d4aa', width:120, flexShrink:0 }}>{c}</span>
+              <span style={{ color:'#64748b' }}>{d}</span>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {/* ── views ── */}
+      {f.view === 'ECO' ? (
+        <EcoPanel instrument={ecoInst} onInstrument={setEcoInst} />
+      ) : f.view === 'CAL' ? (
+        <div style={{ background:'#0a0f14', border:'1px solid #151f2b', borderRadius:4 }}>
+          {calEvents.length === 0 && <div style={{ padding:14, fontSize:11, color:'#475569' }}>No events match.</div>}
+          {calEvents.map((ev, i) => {
+            const s = impStyle(ev.impact);
+            const bias = eventBias(ev);
+            return (
+              <div key={i} style={{ display:'flex', gap:8, padding:'5px 9px', borderBottom:'1px solid #0f1720',
+                alignItems:'baseline', opacity: ev.future ? 1 : 0.5 }}>
+                <span style={{ fontSize:10, color:'#334155', width:44, flexShrink:0 }}>
+                  {new Date(ev.date).toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'})}
+                </span>
+                <span style={{ color:s.dot, fontSize:10, flexShrink:0 }}>●</span>
+                <span style={{ fontSize:10, fontWeight:800, color:'#00d4aa', width:30, flexShrink:0 }}>{ev.country}</span>
+                <span style={{ flex:1, fontSize:11, color:'#cbd5e1', minWidth:0 }}>{ev.title}</span>
+                {ev.actual ? (
+                  <span style={{ fontSize:10, color: bias>0?'#22c55e':bias<0?'#ef4444':'#64748b', flexShrink:0 }}>
+                    {ev.actual}<span style={{color:'#334155'}}>/{ev.forecast||'—'}</span>
+                  </span>
+                ) : (
+                  <span style={{ fontSize:10, color:'#f59e0b', flexShrink:0 }}>{countdown(ev.date) || ''}</span>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      ) : (
+        <div style={{ background:'#0a0f14', border:'1px solid #151f2b', borderRadius:4 }}>
+          {f.view === 'POS' && (
+            <div style={{ padding:'6px 9px', borderBottom:'1px solid #151f2b', fontSize:10, color:'#475569' }}>
+              {pos.length ? <>Open positions: <span style={{color:'#00d4aa'}}>{pos.join(' · ')}</span></>
+                          : 'No open positions found (needs OANDA account ID in Settings).'}
+            </div>
+          )}
+          {shownStream.length === 0 && !busy && (
+            <div style={{ padding:14, fontSize:11, color:'#475569' }}>
+              No headlines match. <span style={{ color:'#00d4aa' }}>CLR</span> to reset.
+            </div>
+          )}
+          {shownStream.map((it, i) => (
+            <StreamRow key={`${it.ms}_${i}`} it={it}
+              onTag={inst => { setF(p => ({ ...p, instrument:inst, ccy:null })); setEcoInst(inst); }} />
+          ))}
+        </div>
+      )}
+    </div>
+  );
 }
 
 // ── Main component ────────────────────────────────────────────────────────────
@@ -443,6 +827,11 @@ export default function NewsCalendar() {
   const radar = useMemo(() => buildRadar(events, news), [events, news]);
   useEffect(() => { if (events.length) persistRadar(radar); }, [radar, events.length]);
 
+  // Accumulate the event archive. The calendar feed only serves the current
+  // week, so ECO reaction history has to be grown locally — every load merges
+  // in new events and back-fills `actual` values once releases land.
+  useEffect(() => { if (events.length) archiveEvents(events); }, [events]);
+
   // Filter & group calendar
   const filtered = events
     .filter(ev => {
@@ -479,6 +868,7 @@ export default function NewsCalendar() {
         background: '#0d1117', position: 'sticky', top: 0, zIndex: 10,
       }}>
         {[
+          { id: 'terminal', label: '▮ Terminal' },
           { id: 'calendar', label: '📅 Calendar' },
           { id: 'news',     label: '📰 News'     },
           { id: 'finnhub',  label: '⚡ Live Feed' },
@@ -492,20 +882,23 @@ export default function NewsCalendar() {
         ))}
       </div>
 
-      <div style={{ padding: '12px 14px' }}>
+      <div style={{ padding: subTab === 'terminal' ? '8px 10px' : '12px 14px' }}>
 
-        {/* News Radar — always visible */}
-        <RadarStrip radar={radar} selCcy={selCcy} onSelect={setSelCcy} />
+        {/* ── Terminal — dense, command-driven, merged stream ── */}
+        {subTab === 'terminal' && <TerminalView events={events} />}
+
+        {/* News Radar — hidden in terminal (it has its own header line) */}
+        {subTab !== 'terminal' && <RadarStrip radar={radar} selCcy={selCcy} onSelect={setSelCcy} />}
 
         {/* Error */}
-        {error && (
+        {error && subTab !== 'terminal' && (
           <div style={{ padding: '10px 14px', borderRadius: 8, background: '#450a0a', color: '#fca5a5', fontSize: 12, marginBottom: 12 }}>
             {error}
           </div>
         )}
 
         {/* Loading */}
-        {loading && (
+        {loading && subTab !== 'terminal' && (
           <div style={{ textAlign: 'center', padding: 48, color: '#475569', fontSize: 13 }}>Loading…</div>
         )}
 
