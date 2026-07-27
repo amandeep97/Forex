@@ -22,6 +22,7 @@ const OANDA_MAP = {
   'EUR/USD':'EUR_USD','GBP/USD':'GBP_USD','USD/JPY':'USD_JPY','USD/CHF':'USD_CHF','USD/CAD':'USD_CAD',
   'AUD/USD':'AUD_USD','NZD/USD':'NZD_USD','EUR/JPY':'EUR_JPY','GBP/JPY':'GBP_JPY',
   'XAU/USD':'XAU_USD','XAG/USD':'XAG_USD','US30':'US30_USD','NAS100':'NAS100_USD','SPX500':'SPX500_USD',
+  'USOIL':'WTICO_USD','UKOIL':'BCO_USD','NATGAS':'NATGAS_USD',
 };
 const BINANCE_MAP = {
   'BTC/USDT':'BTCUSDT','ETH/USDT':'ETHUSDT','BNB/USDT':'BNBUSDT','SOL/USDT':'SOLUSDT',
@@ -32,6 +33,8 @@ const BIN_TF = { M1:'1m', M3:'3m', M5:'5m', M15:'15m', M30:'30m', H1:'1h', H4:'4
 
 function dec(sym) {
   if (sym.startsWith('XAU')) return 2;
+  if (sym === 'USOIL' || sym === 'UKOIL') return 2;
+  if (sym === 'NATGAS') return 3;
   if (/^(US|NAS|SPX)/.test(sym)) return 1;
   if (sym.includes('JPY')) return 3;
   if (sym.includes('BTC') || sym.includes('ETH')) return 1;
