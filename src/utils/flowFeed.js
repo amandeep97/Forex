@@ -140,6 +140,50 @@ export function retailBias(positionBook) {
   return { longPct, shortPct: 100 - longPct, crowded: Math.abs(longPct - 50) >= 20 };
 }
 
+// ── Real order book (Binance spot) ────────────────────────────────────────────
+// OANDA refuses its book on most accounts, so for crypto we use the genuine
+// article: live bids and asks with real quantities, not bucketed percentages.
+// Resting size clustered at a price is a wall — visible support/resistance that
+// exists right now, rather than an inference from candles.
+export const DEPTH_SYMBOLS = ['BTCUSDT','ETHUSDT','SOLUSDT','XRPUSDT','BNBUSDT','DOGEUSDT'];
+
+export async function fetchDepthMap(symbol, { limit = 1000, bucketPct = 0.0005, walls = 6 } = {}) {
+  const d = await j(`https://api.binance.com/api/v3/depth?symbol=${symbol}&limit=${limit}`);
+  const bids = (d.bids || []).map(([p, q]) => [+p, +q]);
+  const asks = (d.asks || []).map(([p, q]) => [+p, +q]);
+  if (!bids.length || !asks.length) throw new Error('empty depth');
+
+  const mid = (bids[0][0] + asks[0][0]) / 2;
+  const step = Math.max(mid * bucketPct, 1e-8);
+  const bucket = (rows, side) => {
+    const m = new Map();
+    for (const [p, q] of rows) {
+      const k = Math.round(p / step) * step;
+      m.set(k, (m.get(k) || 0) + q * p);        // size in quote currency
+    }
+    return [...m.entries()].map(([price, notional]) => ({ price, notional, side }));
+  };
+  const all = [...bucket(bids, 'bid'), ...bucket(asks, 'ask')];
+  const max = Math.max(...all.map(b => b.notional), 1);
+
+  const bidNotional = bids.reduce((s, [p, q]) => s + p * q, 0);
+  const askNotional = asks.reduce((s, [p, q]) => s + p * q, 0);
+
+  return {
+    symbol, mid, step,
+    // biggest resting size, nearest first when size is comparable
+    walls: all
+      .map(b => ({ ...b, rel: b.notional / max, distPct: +(((b.price - mid) / mid) * 100).toFixed(3) }))
+      .map(b => ({ ...b, score: b.notional / (1 + Math.abs(b.distPct) * 2) }))
+      .sort((a, b) => b.score - a.score)
+      .slice(0, walls)
+      .sort((a, b) => b.price - a.price),
+    imbalance: +((bidNotional / (bidNotional + askNotional)) * 100).toFixed(1),
+    bidNotional, askNotional,
+    levels: bids.length + asks.length,
+  };
+}
+
 // ── Binance derivatives: who is crowded ───────────────────────────────────────
 const FAPI = 'https://fapi.binance.com';
 

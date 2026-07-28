@@ -4,6 +4,7 @@ import {
   fetchPositionBook, fetchOrderBook, liquidityPools, retailBias,
   fetchSqueeze, fetchTakerFlow, fetchCOTNet, smartVsDumb,
   CORREL_PAIRS, pearson, returnsOf, correlationBreak, oandaCreds, probeOanda,
+  DEPTH_SYMBOLS, fetchDepthMap,
 } from '../utils/flowFeed';
 
 const C = {
@@ -94,28 +95,91 @@ function BookDiagnosis({ fail, probe, probing, onProbe }) {
   );
 }
 
-function LiquidityMap({ sym, setSym, data, busy, fail, probe, probing, onProbe }) {
+// Real Binance order book: live resting bids/asks, not inferred from candles.
+function DepthMap({ depth }) {
+  if (!depth) return null;
+  const dec = depth.mid >= 1000 ? 1 : depth.mid >= 1 ? 3 : 5;
+  return (
+    <>
+      <div style={{ display:'flex', alignItems:'center', gap:6, marginBottom:8, fontFamily:C.mono, fontSize:10 }}>
+        <span style={{ color:C.dim }}>BOOK</span>
+        <div style={{ flex:1, height:12, background:'#1a2430', borderRadius:2, overflow:'hidden', display:'flex' }}>
+          <div style={{ width:`${depth.imbalance}%`, background:'#22c55e55', display:'flex', alignItems:'center', paddingLeft:4 }}>
+            <span style={{ fontSize:8, color:C.good, fontWeight:800 }}>{depth.imbalance}% bid</span>
+          </div>
+          <div style={{ width:`${100-depth.imbalance}%`, background:'#ef444455', display:'flex', alignItems:'center', justifyContent:'flex-end', paddingRight:4 }}>
+            <span style={{ fontSize:8, color:C.bad, fontWeight:800 }}>{(100-depth.imbalance).toFixed(1)}% ask</span>
+          </div>
+        </div>
+        {Math.abs(depth.imbalance - 50) >= 15 && (
+          <span style={{ fontSize:9, color:C.warn, fontWeight:800 }}>SKEWED</span>
+        )}
+      </div>
+
+      <div style={{ fontSize:9, color:C.dim, fontFamily:C.mono, marginBottom:4 }}>
+        RESTING WALLS · mid {depth.mid.toFixed(dec)} · {depth.levels} levels
+      </div>
+      {depth.walls.map((w, i) => (
+        <div key={i} style={{ display:'flex', alignItems:'center', gap:6, padding:'2px 0', fontFamily:C.mono }}>
+          <span style={{ fontSize:10, color: w.side==='bid' ? C.good : C.bad, width:14, flexShrink:0 }}>
+            {w.side==='bid' ? '▼' : '▲'}
+          </span>
+          <span style={{ fontSize:10, color:C.txt, width:70, flexShrink:0 }}>{w.price.toFixed(dec)}</span>
+          <div style={{ flex:1, height:9, background:'#131c26', borderRadius:2, overflow:'hidden' }}>
+            <div style={{ width:`${Math.max(4, w.rel*100)}%`, height:'100%',
+              background: w.side==='bid' ? 'linear-gradient(90deg,#22c55e88,#22c55e)' : 'linear-gradient(90deg,#ef444488,#ef4444)' }}/>
+          </div>
+          <span style={{ fontSize:9, color:C.dim, width:52, textAlign:'right', flexShrink:0 }}>
+            ${w.notional >= 1e6 ? `${(w.notional/1e6).toFixed(1)}M` : `${Math.round(w.notional/1e3)}k`}
+          </span>
+          <span style={{ fontSize:9, color:'#334155', width:44, textAlign:'right', flexShrink:0 }}>
+            {w.distPct > 0 ? '+' : ''}{w.distPct}%
+          </span>
+        </div>
+      ))}
+      <div style={{ fontSize:8, color:'#334155', fontFamily:C.mono, marginTop:6, lineHeight:1.5 }}>
+        ▼ bid walls below · ▲ ask walls above. Real resting orders in USD, ranked by size and closeness.
+        Walls can be pulled at any moment — this is the book now, not a promise.
+      </div>
+    </>
+  );
+}
+
+function LiquidityMap({ sym, setSym, data, depth, busy, fail, probe, probing, onProbe }) {
   const inst = BOOK_INSTRUMENTS.find(i => i.sym === sym);
+  const isCrypto = DEPTH_SYMBOLS.includes(sym);
   const d = data[sym];
   const pools = d?.pools || [];
   const bias = d?.bias;
   const px = d?.book?.price;
+  const dep = depth[sym];
 
   return (
-    <Panel title="LIQUIDITY MAP" right={d?.book?.time ? new Date(d.book.time).toUTCString().slice(17, 22) + ' UTC' : ''}>
+    <Panel title="LIQUIDITY MAP"
+      right={isCrypto ? 'binance · live book' : (d?.book?.time ? new Date(d.book.time).toUTCString().slice(17, 22) + ' UTC' : 'oanda')}>
       <div style={{ display:'flex', gap:4, flexWrap:'wrap', marginBottom:8 }}>
+        {DEPTH_SYMBOLS.map(s => (
+          <button key={s} onClick={() => setSym(s)}
+            style={{ fontSize:9, fontWeight:700, padding:'2px 6px', borderRadius:2, cursor:'pointer', fontFamily:C.mono,
+              border:`1px solid ${sym===s?'#00d4aa55':C.line}`, background:sym===s?'#00d4aa15':'transparent',
+              color:sym===s?C.accent:C.dim }}>{s.replace('USDT','')}</button>
+        ))}
         {BOOK_INSTRUMENTS.map(i => (
           <button key={i.sym} onClick={() => setSym(i.sym)}
-            style={{ fontSize:9, fontWeight:700, padding:'2px 6px', borderRadius:2, cursor:'pointer', fontFamily:C.mono,
+            style={{ fontSize:9, fontWeight:700, padding:'2px 6px', borderRadius:2, cursor:'pointer', fontFamily:C.mono, opacity:0.55,
               border:`1px solid ${sym===i.sym?'#00d4aa55':C.line}`, background:sym===i.sym?'#00d4aa15':'transparent',
               color:sym===i.sym?C.accent:C.dim }}>{i.sym.replace('/','')}</button>
         ))}
       </div>
 
-      {busy && !d && <Empty>loading book…</Empty>}
-      {!busy && !d && (fail ? <BookDiagnosis fail={fail} probe={probe} probing={probing} onProbe={onProbe}/> : <Empty>No book data returned for this instrument.</Empty>)}
+      {isCrypto && !dep && busy && <Empty>loading order book…</Empty>}
+      {isCrypto && !dep && !busy && <Empty>Order book unavailable for {sym}.</Empty>}
+      {isCrypto && dep && <DepthMap depth={dep}/>}
 
-      {d && (
+      {!isCrypto && busy && !d && <Empty>loading book…</Empty>}
+      {!isCrypto && !busy && !d && (fail ? <BookDiagnosis fail={fail} probe={probe} probing={probing} onProbe={onProbe}/> : <Empty>No book data returned for this instrument.</Empty>)}
+
+      {!isCrypto && d && (
         <>
           {bias && (
             <div style={{ display:'flex', alignItems:'center', gap:6, marginBottom:8, fontFamily:C.mono, fontSize:10 }}>
@@ -280,7 +344,7 @@ function CorrelBreaks({ rows, busy }) {
 
 // ── MAIN ──────────────────────────────────────────────────────────────────────
 export default function FlowTerminal() {
-  const [sym,      setSym]      = useState('XAU/USD');
+  const [sym,      setSym]      = useState('BTCUSDT');
   const [books,    setBooks]    = useState({});
   const [squeeze,  setSqueeze]  = useState([]);
   const [flow,     setFlow]     = useState([]);
@@ -292,6 +356,7 @@ export default function FlowTerminal() {
   const [bookFail, setBookFail] = useState(null);
   const [probe,    setProbe]    = useState(null);
   const [probing,  setProbing]  = useState(false);
+  const [depth,    setDepth]    = useState({});
   const started = useRef(false);
 
   const hasOanda = !!oandaCreds()?.apiKey;
@@ -304,6 +369,15 @@ export default function FlowTerminal() {
   }, [sym]);
 
   const loadBook = useCallback(async (s) => {
+    if (DEPTH_SYMBOLS.includes(s)) {
+      try {
+        const dm = await fetchDepthMap(s);
+        setDepth(prev => ({ ...prev, [s]: dm }));
+      } catch {
+        setDepth(prev => { const n = { ...prev }; delete n[s]; return n; });
+      }
+      return;
+    }
     const inst = BOOK_INSTRUMENTS.find(i => i.sym === s);
     if (!inst) return;
     try {
@@ -408,7 +482,7 @@ export default function FlowTerminal() {
       )}
 
       <div style={{ display:'flex', flexDirection:'column', gap:9, padding:'9px 11px' }}>
-        <LiquidityMap sym={sym} setSym={setSym} data={books} busy={busy} fail={bookFail}
+        <LiquidityMap sym={sym} setSym={setSym} data={books} depth={depth} busy={busy} fail={bookFail}
           probe={probe} probing={probing} onProbe={runProbe}/>
         <SqueezeRadar rows={squeeze} busy={busy}/>
         <SmartDumb rows={sd} busy={busy}/>
