@@ -32,6 +32,7 @@ const DXYDashboard     = lazy(() => import('./components/DXYDashboard'));
 const CommandCenter    = lazy(() => import('./components/CommandCenter'));
 const FlowTerminal     = lazy(() => import('./components/FlowTerminal'));
 const InstrumentView   = lazy(() => import('./components/InstrumentView'));
+const Scanner          = lazy(() => import('./components/Scanner'));
 const PositionCalculator = lazy(() => import('./components/PositionCalculator'));
 const Settings           = lazy(() => import('./components/Settings'));
 const AlertsCenter       = lazy(() => import('./components/AlertsCenter'));
@@ -51,6 +52,7 @@ const TABS = [
   { id: 'ai',          label: 'AI',           icon: '🤖' },
   { id: 'flow',        label: 'FLOW',         icon: '🔬' },
   { id: 'instrument',  label: 'Instrument',   icon: '🎛' },
+  { id: 'scan',        label: 'Scan',         icon: '🛰' },
   { id: 'dxy',         label: 'DXY',          icon: '💵' },
   { id: 'pairhub',     label: 'Pair Hub',     icon: '💱' },
   { id: 'dashboard',   label: 'Dashboard',    icon: '🎯' },
@@ -294,6 +296,9 @@ export default function App() {
         </div>
         <div style={{ display: activeTab === 'instrument' ? 'block' : 'none', overflowY:'auto', height:'calc(100vh - 120px)' }}>
           {visitedTabs.has('instrument') && <InstrumentView />}
+        </div>
+        <div style={{ display: activeTab === 'scan' ? 'block' : 'none', overflowY:'auto', height:'calc(100vh - 120px)' }}>
+          {visitedTabs.has('scan') && <Scanner />}
         </div>
         <div style={{ display: activeTab === 'dxy' ? 'block' : 'none', overflowY:'auto', height:'calc(100vh - 120px)' }}>
           {visitedTabs.has('dxy') && <DXYDashboard />}

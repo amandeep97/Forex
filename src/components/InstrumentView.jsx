@@ -97,13 +97,19 @@ function Spark({ candles, dec }) {
 
 // ── Main ──────────────────────────────────────────────────────────────────────
 export default function InstrumentView() {
-  const [sym,   setSym]   = useState('XAU/USD');
+  const [sym,   setSym]   = useState(() => {
+    // Scanner hands over the instrument it wants opened
+    try { const f = localStorage.getItem('instrument_focus');
+          if (f) { localStorage.removeItem('instrument_focus'); return f; } } catch {}
+    return 'XAU/USD';
+  });
   const [tf,    setTf]    = useState('H1');
   const [query, setQuery] = useState('');
   const [px,    setPx]    = useState(null);   // {candles, source} | {error}
   const [spread,setSpread]= useState(null);
   const [posn,  setPosn]  = useState(null);
   const [deriv, setDeriv] = useState(null);
+  const [events,setEvents]= useState(null);
   const [busy,  setBusy]  = useState(false);
   const [asOf,  setAsOf]  = useState(null);
 
@@ -127,12 +133,44 @@ export default function InstrumentView() {
         ? fetchSqueeze(inst.binance).then(setDeriv).catch(e => setDeriv({ error:e.message }))
         : Promise.resolve(),
     ];
+    // Upcoming high-impact events for the currencies this instrument is exposed
+    // to. Same calendar the News tab uses; attached here so the instrument page
+    // answers "is something scheduled that moves this" without a tab switch.
+    jobs.push((async () => {
+      try {
+        const ccys = exposureOf(inst);
+        const cached = JSON.parse(localStorage.getItem('news_event_archive_v1') || '[]');
+        const now = Date.now();
+        const soon = cached
+          .filter(e => ccys.includes(e.country) && (e.impact === 'High' || e.impact === 'Medium'))
+          .map(e => ({ ...e, ms: new Date(e.date).getTime() }))
+          .filter(e => e.ms > now)
+          .sort((a, b) => a.ms - b.ms)
+          .slice(0, 4);
+        setEvents(soon);
+      } catch { setEvents([]); }
+    })());
+
     await Promise.allSettled(jobs);
     setAsOf(new Date());
     setBusy(false);
   }, [inst, tf]);
 
   useEffect(() => { load(); }, [load]);
+
+  // Tabs stay mounted, so the scanner's handoff must be picked up on every
+  // navigation, not only on first mount.
+  useEffect(() => {
+    const onNav = e => {
+      if (e.detail !== 'instrument') return;
+      try {
+        const f = localStorage.getItem('instrument_focus');
+        if (f) { localStorage.removeItem('instrument_focus'); setSym(f); }
+      } catch {}
+    };
+    window.addEventListener('navigate-tab', onNav);
+    return () => window.removeEventListener('navigate-tab', onNav);
+  }, []);
 
   const results = useMemo(() => {
     const q = query.trim().toUpperCase();
@@ -325,6 +363,33 @@ export default function InstrumentView() {
               )}
             </Card>
           )}
+
+          {/* scheduled risk */}
+          <Card title="SCHEDULED RISK" src={events?.length ? 'delayed' : 'unavailable'}
+            note={events?.length ? `next ${events.length} · ${exposureOf(inst).join('/')}` : 'calendar archive'}>
+            {events === null ? <Muted>loading…</Muted>
+              : events.length === 0 ? (
+                <Muted>
+                  No upcoming high-impact events archived for {exposureOf(inst).join(' / ')}.
+                  The calendar source publishes one week at a time and builds up as the News tab is opened.
+                </Muted>
+              ) : events.map((e, i) => {
+                const mins = Math.round((e.ms - Date.now()) / 60000);
+                const soon = mins < 120;
+                return (
+                  <div key={i} style={{ display:'flex', alignItems:'center', gap:8, padding:'2px 0', fontFamily:C.mono }}>
+                    <span style={{ fontSize:9, fontWeight:800, color: e.impact === 'High' ? C.bad : C.warn, width:30 }}>
+                      {e.country}
+                    </span>
+                    <span style={{ fontSize:10, color:C.txt, flex:1, minWidth:0, overflow:'hidden',
+                      textOverflow:'ellipsis', whiteSpace:'nowrap' }}>{e.title}</span>
+                    <span style={{ fontSize:9, fontWeight:soon?800:400, color: soon ? C.bad : C.dim, flexShrink:0 }}>
+                      {mins < 60 ? `${mins}m` : mins < 1440 ? `${Math.floor(mins/60)}h` : `${Math.floor(mins/1440)}d`}
+                    </span>
+                  </div>
+                );
+              })}
+          </Card>
 
           {/* what this instrument supports — honesty about coverage */}
           <Card title="DATA COVERAGE" src="live" note="what is available for this instrument">
