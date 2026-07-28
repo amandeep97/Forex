@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback, useMemo } from 'react';
+import { pearson as sharedPearson } from '../utils/mathUtils';
 import AIDashboardPanel from './AIDashboardPanel.jsx';
 import ChartModal from './ChartModal.jsx';
 import { detectSweep, detectLiqLevels, detectFVGsAndOBs } from '../utils/smcHelpers.js';
@@ -220,20 +221,8 @@ async function fetchOHLC(instrument, granularity, count) {
   } catch { return null; }
 }
 
-function pearsonCorr(a, b) {
-  const n = Math.min(a.length, b.length);
-  if (n < 10) return null;
-  const ax = a.slice(-n), bx = b.slice(-n);
-  const mA = ax.reduce((s, v) => s + v, 0) / n;
-  const mB = bx.reduce((s, v) => s + v, 0) / n;
-  let num = 0, dA = 0, dB = 0;
-  for (let i = 0; i < n; i++) {
-    const x = ax[i] - mA, y = bx[i] - mB;
-    num += x * y; dA += x * x; dB += y * y;
-  }
-  const denom = Math.sqrt(dA * dB);
-  return denom === 0 ? null : +(num / denom).toFixed(2);
-}
+// pearson moved to utils/mathUtils; minimum-sample guard (10) preserved
+const pearsonCorr = (a, b) => sharedPearson(a, b, 10);
 
 function pctRank(value, history) {
   if (!history?.length) return null;

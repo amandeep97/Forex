@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
+import { pearson as sharedPearson } from '../utils/mathUtils';
 
 const INSTRUMENTS = [
   { key: 'EUR_USD',  label: 'EUR/USD', color: '#3b82f6' },
@@ -58,20 +59,8 @@ async function fetchCloses(instrument, granularity, count) {
   } catch { return null; }
 }
 
-function pearson(a, b) {
-  const n = Math.min(a.length, b.length);
-  if (n < 5) return null;
-  const ax = a.slice(-n), bx = b.slice(-n);
-  const mA = ax.reduce((s, v) => s + v, 0) / n;
-  const mB = bx.reduce((s, v) => s + v, 0) / n;
-  let num = 0, dA = 0, dB = 0;
-  for (let i = 0; i < n; i++) {
-    const x = ax[i] - mA, y = bx[i] - mB;
-    num += x * y; dA += x * x; dB += y * y;
-  }
-  const denom = Math.sqrt(dA * dB);
-  return denom === 0 ? null : +(num / denom).toFixed(2);
-}
+// pearson moved to utils/mathUtils; minimum-sample guard (5) preserved
+const pearson = (a, b) => sharedPearson(a, b, 5);
 
 // Map r value → background colour (red→white→green)
 function rToColor(r) {

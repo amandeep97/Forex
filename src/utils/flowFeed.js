@@ -472,16 +472,8 @@ export const CORREL_PAIRS = [
   { a:'AUD/USD', b:'NZD/USD', expect:+1, label:'AUD vs NZD' },
 ];
 
-export function pearson(x, y) {
-  const n = Math.min(x.length, y.length);
-  if (n < 5) return null;
-  const a = x.slice(-n), b = y.slice(-n);
-  const ma = a.reduce((s, v) => s + v, 0) / n, mb = b.reduce((s, v) => s + v, 0) / n;
-  let num = 0, da = 0, db = 0;
-  for (let i = 0; i < n; i++) { const p = a[i] - ma, q = b[i] - mb; num += p * q; da += p * p; db += q * q; }
-  const den = Math.sqrt(da * db);
-  return den === 0 ? null : +(num / den).toFixed(2);
-}
+// pearson lives in utils/mathUtils (minimum-sample guard 5, unchanged)
+export { pearson } from './mathUtils';
 
 export function returnsOf(candles) {
   const out = [];

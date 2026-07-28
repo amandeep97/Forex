@@ -227,16 +227,8 @@ export function detectLiqLevels(candles, maxLevels = 4) {
 }
 
 // EMA series
-export function computeEMASeries(candles, period) {
-  if (candles.length < period) return new Array(candles.length).fill(null);
-  const k = 2/(period+1);
-  const res = new Array(candles.length).fill(null);
-  let sum = 0;
-  for (let i = 0; i < period; i++) sum += candles[i].c;
-  res[period-1] = sum/period;
-  for (let i = period; i < candles.length; i++) res[i] = candles[i].c*k + res[i-1]*(1-k);
-  return res;
-}
+// Identical implementation to backtestEngine's; re-exported rather than duplicated.
+export { computeEMASeries } from './backtestEngine';
 
 // Session VWAP
 export function computeVWAP(candles) {
