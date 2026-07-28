@@ -1,36 +1,14 @@
-// Shared instrument feed for the Alerts engine — OANDA for FX/metals/indices, Binance for crypto.
+// Shared instrument feed for the Alerts engine — OANDA for FX/metals/indices/
+// energy, Binance for crypto.
+import { INSTRUMENTS } from '../data/instruments';
 
-export const ALERT_INSTRUMENTS = [
-  { sym:'EUR/USD', oanda:'EUR_USD', pip:0.0001, dec:5 },
-  { sym:'GBP/USD', oanda:'GBP_USD', pip:0.0001, dec:5 },
-  { sym:'USD/JPY', oanda:'USD_JPY', pip:0.01,   dec:3 },
-  { sym:'USD/CHF', oanda:'USD_CHF', pip:0.0001, dec:5 },
-  { sym:'USD/CAD', oanda:'USD_CAD', pip:0.0001, dec:5 },
-  { sym:'AUD/USD', oanda:'AUD_USD', pip:0.0001, dec:5 },
-  { sym:'NZD/USD', oanda:'NZD_USD', pip:0.0001, dec:5 },
-  { sym:'EUR/JPY', oanda:'EUR_JPY', pip:0.01,   dec:3 },
-  { sym:'GBP/JPY', oanda:'GBP_JPY', pip:0.01,   dec:3 },
-  { sym:'XAU/USD', oanda:'XAU_USD', pip:0.1,    dec:2 },
-  { sym:'XAG/USD', oanda:'XAG_USD', pip:0.01,   dec:3 },
-  { sym:'US30',    oanda:'US30_USD',   pip:1,   dec:1 },
-  { sym:'NAS100',  oanda:'NAS100_USD', pip:1,   dec:1 },
-  { sym:'SPX500',  oanda:'SPX500_USD', pip:0.1, dec:1 },
-  { sym:'USOIL',   oanda:'WTICO_USD',  pip:0.01, dec:2 },
-  { sym:'UKOIL',   oanda:'BCO_USD',    pip:0.01, dec:2 },
-  { sym:'NATGAS',  oanda:'NATGAS_USD', pip:0.001, dec:3 },
-  { sym:'BTC/USDT',  binance:'BTCUSDT',  pip:1,      dec:1 },
-  { sym:'ETH/USDT',  binance:'ETHUSDT',  pip:0.1,    dec:2 },
-  { sym:'BNB/USDT',  binance:'BNBUSDT',  pip:0.1,    dec:2 },
-  { sym:'SOL/USDT',  binance:'SOLUSDT',  pip:0.01,   dec:2 },
-  { sym:'XRP/USDT',  binance:'XRPUSDT',  pip:0.0001, dec:4 },
-  { sym:'ADA/USDT',  binance:'ADAUSDT',  pip:0.0001, dec:4 },
-  { sym:'DOGE/USDT', binance:'DOGEUSDT', pip:0.0001, dec:4 },
-  { sym:'AVAX/USDT', binance:'AVAXUSDT', pip:0.001,  dec:3 },
-  { sym:'LINK/USDT', binance:'LINKUSDT', pip:0.001,  dec:3 },
-  { sym:'DOT/USDT',  binance:'DOTUSDT',  pip:0.001,  dec:3 },
-  { sym:'LTC/USDT',  binance:'LTCUSDT',  pip:0.01,   dec:2 },
-  { sym:'TON/USDT',  binance:'TONUSDT',  pip:0.001,  dec:3 },
-];
+// Derived from the canonical registry rather than kept as a separate list.
+// Alerts previously knew 29 instruments while the backtester knew 48, so an
+// instrument could be chartable and backtestable yet absent from the alert
+// dropdown. Anything the app can price can now be alerted on.
+export const ALERT_INSTRUMENTS = INSTRUMENTS
+  .filter(i => i.can.price)
+  .map(i => ({ sym:i.sym, oanda:i.oanda || undefined, binance:i.binance || undefined, pip:i.pip, dec:i.dec }));
 
 export function instBySym(sym) { return ALERT_INSTRUMENTS.find(i => i.sym === sym); }
 

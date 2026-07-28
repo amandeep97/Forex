@@ -3,25 +3,15 @@ import { runBacktest, calcStats, defaultSpreadPips } from '../utils/backtestEngi
 import { gradeStrategy, loadLibrary, saveToLibrary, removeFromLibrary, condSignature,
          getSeal, sealRule, recordSearch, datasetKey } from '../utils/backtestGrading';
 import { OANDA_MAP } from '../hooks/useLivePrices';
+import { INSTRUMENTS as REGISTRY } from '../data/instruments';
 import { generateCandles } from '../utils/generateCandles';
 
 const TF_GRAN = {'1M':'M1','5M':'M5','15M':'M15','30M':'M30','1H':'H1','4H':'H4','8H':'H8','D':'D','W':'W'};
 const TFS = ['1M','5M','15M','30M','1H','4H','8H','D','W'];
 const COUNTS = [100,500,1000,2000,5000,10000,20000,50000];
 
-const INSTRUMENTS = [
-  // Majors
-  'EUR/USD','GBP/USD','USD/JPY','USD/CHF','AUD/USD','USD/CAD','NZD/USD',
-  // Crosses
-  'EUR/GBP','EUR/JPY','GBP/JPY','EUR/AUD','EUR/CAD','EUR/CHF','EUR/NZD',
-  'GBP/CHF','GBP/CAD','GBP/AUD','GBP/NZD','AUD/JPY','AUD/CHF','AUD/CAD',
-  'AUD/NZD','NZD/JPY','NZD/CHF','NZD/CAD','CAD/JPY','CAD/CHF','CHF/JPY',
-  // Metals / Indices / Energy
-  'XAU/USD','XAG/USD','US500','US30','US100','US2000','UK100','GER40','JPN225','USOIL','UKOIL',
-  // Crypto (Binance)
-  'BTC/USDT','ETH/USDT','BNB/USDT','SOL/USDT','XRP/USDT','ADA/USDT',
-  'DOGE/USDT','AVAX/USDT','LINK/USDT','DOT/USDT','LTC/USDT','TON/USDT',
-];
+// Single source of truth — see src/data/instruments.js
+const INSTRUMENTS = REGISTRY.filter(i => i.can.candles).map(i => i.sym);
 
 const FALLBACK_PRICES = {
   'EUR/USD':1.095,'GBP/USD':1.270,'USD/JPY':149.5,'USD/CHF':0.905,

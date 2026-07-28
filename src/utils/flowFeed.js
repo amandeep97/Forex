@@ -1,4 +1,5 @@
 // src/utils/flowFeed.js
+import { INSTRUMENTS } from '../data/instruments';
 // FLOW — positioning X-ray. Four real data sources, no prediction:
 //   1. OANDA order/position book  → where retail orders and stops are piled up
 //   2. Binance funding + OI + L/S → who is crowded and paying to stay there
@@ -280,23 +281,34 @@ export async function fetchTakerFlow(symbol, interval = '1h', limit = 24) {
 // Some contracts have been re-coded over the years, so a single code can return
 // only a handful of recent weeks. Alternates are tried until one yields enough
 // history to score against.
+const COT_ALT = {
+  'XAU/USD':['088606'], 'XAG/USD':['084603'],
+  'USOIL':['067411'],   'NATGAS':['023391'],
+};
+// A COT contract tracks the FOREIGN currency, not the pair — USD/JPY, USD/CHF
+// and USD/CAD all map to distinct contracts (JPY, CHF, CAD) and must not share
+// a label. Truncating the instrument name produced three identical "US DOLLAR"
+// rows, so labels are explicit.
+const COT_LABEL = {
+  'XAU/USD':'GOLD', 'XAG/USD':'SILVER',
+  'US500':'S&P 500', 'US100':'NASDAQ',
+  'USOIL':'WTI', 'NATGAS':'NAT GAS',
+};
+const cotLabel = i => COT_LABEL[i.sym]
+  || (i.cls === 'fx' ? (i.base !== 'USD' ? i.base : i.quote) : i.sym);
+
 export const POSITION_MARKETS = [
-  { key:'XAU/USD', label:'GOLD',    code:'088691', alt:['088606'], group:'metal'  },
-  { key:'XAG/USD', label:'SILVER',  code:'084691', alt:['084603'], group:'metal'  },
-  { key:'COPPER',  label:'COPPER',  code:'085692', alt:['085692','084603'], group:'metal'  },
-  { key:'PLATINUM',label:'PLATINUM',code:'076651', alt:['076651'], group:'metal'  },
-  { key:'USOIL',   label:'WTI',     code:'067651', alt:['067411'], group:'energy' },
-  { key:'NATGAS',  label:'NAT GAS', code:'023651', alt:['023391'], group:'energy' },
-  { key:'US500',   label:'S&P 500', code:'13874A', group:'index'  },
-  { key:'US100',   label:'NASDAQ',  code:'209742', group:'index'  },
-  { key:'DXY',     label:'USD IDX', code:'098662', group:'index'  },
-  { key:'EUR/USD', label:'EUR',     code:'099741', group:'fx'     },
-  { key:'GBP/USD', label:'GBP',     code:'096742', group:'fx'     },
-  { key:'USD/JPY', label:'JPY',     code:'097741', group:'fx'     },
-  { key:'AUD/USD', label:'AUD',     code:'232741', group:'fx'     },
-  { key:'USD/CAD', label:'CAD',     code:'090741', group:'fx'     },
-  { key:'USD/CHF', label:'CHF',     code:'092741', group:'fx'     },
-  { key:'NZD/USD', label:'NZD',     code:'112741', group:'fx'     },
+  // Tradeable instruments that map to a CFTC contract, taken from the registry
+  ...INSTRUMENTS.filter(i => i.cot).map(i => ({
+    key: i.sym, label: cotLabel(i), code: i.cot,
+    group: i.cls === 'fx' ? 'fx' : i.cls,
+    alt: COT_ALT[i.sym] || [],
+  })),
+  // Reference contracts with no tradeable instrument here, but which inform the
+  // same markets — the dollar index in particular frames every FX row above.
+  { key:'DXY',      label:'USD IDX',  code:'098662', group:'index', alt:[] },
+  { key:'COPPER',   label:'COPPER',   code:'085692', group:'metal', alt:[] },
+  { key:'PLATINUM', label:'PLATINUM', code:'076651', group:'metal', alt:[] },
 ];
 
 const percentileOf = (value, arr) => {
@@ -381,19 +393,12 @@ export async function fetchPositioning(market, weeks = 156) {
 // its own norm is real, immediate evidence of stress or thin liquidity — and it
 // is exactly when stops get filled badly. This covers metals, indices, energies
 // and FX, which the crypto panels never did.
-export const SPREAD_INSTRUMENTS = [
-  { sym:'XAU/USD', oanda:'XAU_USD', group:'metal'  },
-  { sym:'XAG/USD', oanda:'XAG_USD', group:'metal'  },
-  { sym:'US500',   oanda:'SPX500_USD', group:'index' },
-  { sym:'US100',   oanda:'NAS100_USD', group:'index' },
-  { sym:'US30',    oanda:'US30_USD',   group:'index' },
-  { sym:'USOIL',   oanda:'WTICO_USD',  group:'energy' },
-  { sym:'UKOIL',   oanda:'BCO_USD',    group:'energy' },
-  { sym:'NATGAS',  oanda:'NATGAS_USD', group:'energy' },
-  { sym:'EUR/USD', oanda:'EUR_USD', group:'fx' },
-  { sym:'GBP/USD', oanda:'GBP_USD', group:'fx' },
-  { sym:'USD/JPY', oanda:'USD_JPY', group:'fx' },
-];
+// Everything with a bid/ask feed that is a metal, index, energy or FX major —
+// the markets actually traded here. Crosses are excluded to keep the panel
+// readable rather than because the data is missing.
+export const SPREAD_INSTRUMENTS = INSTRUMENTS
+  .filter(i => i.can.spread && (i.cls !== 'fx' || i.major))
+  .map(i => ({ sym:i.sym, oanda:i.oanda, group:i.cls }));
 
 export async function fetchSpreadStress(item, { granularity = 'M5', count = 120 } = {}) {
   const c = oandaCreds();

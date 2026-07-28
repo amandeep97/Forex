@@ -18,29 +18,129 @@ function detectStrongReversal(candles, i, N) {
 const ALERTS_PATH = 'bot/alerts.json';
 const SUBS_PATH   = 'bot/push-subscriptions.json';
 
+// Instrument maps generated from the app's canonical registry
+// (src/data/instruments.js). The app lets an alert be created on anything it
+// can price; if this list were shorter those alerts would be accepted in the UI
+// and then silently never fire in the background. Keep the two in step.
 const OANDA_MAP = {
-  'EUR/USD':'EUR_USD','GBP/USD':'GBP_USD','USD/JPY':'USD_JPY','USD/CHF':'USD_CHF','USD/CAD':'USD_CAD',
-  'AUD/USD':'AUD_USD','NZD/USD':'NZD_USD','EUR/JPY':'EUR_JPY','GBP/JPY':'GBP_JPY',
-  'XAU/USD':'XAU_USD','XAG/USD':'XAG_USD','US30':'US30_USD','NAS100':'NAS100_USD','SPX500':'SPX500_USD',
-  'USOIL':'WTICO_USD','UKOIL':'BCO_USD','NATGAS':'NATGAS_USD',
+  'EUR/USD':'EUR_USD',
+  'GBP/USD':'GBP_USD',
+  'USD/JPY':'USD_JPY',
+  'USD/CHF':'USD_CHF',
+  'USD/CAD':'USD_CAD',
+  'AUD/USD':'AUD_USD',
+  'NZD/USD':'NZD_USD',
+  'EUR/GBP':'EUR_GBP',
+  'EUR/JPY':'EUR_JPY',
+  'GBP/JPY':'GBP_JPY',
+  'EUR/AUD':'EUR_AUD',
+  'EUR/CAD':'EUR_CAD',
+  'EUR/CHF':'EUR_CHF',
+  'EUR/NZD':'EUR_NZD',
+  'GBP/CHF':'GBP_CHF',
+  'GBP/CAD':'GBP_CAD',
+  'GBP/AUD':'GBP_AUD',
+  'GBP/NZD':'GBP_NZD',
+  'AUD/JPY':'AUD_JPY',
+  'AUD/CHF':'AUD_CHF',
+  'AUD/CAD':'AUD_CAD',
+  'AUD/NZD':'AUD_NZD',
+  'NZD/JPY':'NZD_JPY',
+  'NZD/CHF':'NZD_CHF',
+  'NZD/CAD':'NZD_CAD',
+  'CAD/JPY':'CAD_JPY',
+  'CAD/CHF':'CAD_CHF',
+  'CHF/JPY':'CHF_JPY',
+  'XAU/USD':'XAU_USD',
+  'XAG/USD':'XAG_USD',
+  'US500':'SPX500_USD',
+  'US100':'NAS100_USD',
+  'US30':'US30_USD',
+  'US2000':'US2000_USD',
+  'UK100':'UK100_GBP',
+  'GER40':'DE30_EUR',
+  'JPN225':'JP225_USD',
+  'USOIL':'WTICO_USD',
+  'UKOIL':'BCO_USD',
+  'NATGAS':'NATGAS_USD',
 };
 const BINANCE_MAP = {
-  'BTC/USDT':'BTCUSDT','ETH/USDT':'ETHUSDT','BNB/USDT':'BNBUSDT','SOL/USDT':'SOLUSDT',
-  'XRP/USDT':'XRPUSDT','ADA/USDT':'ADAUSDT','DOGE/USDT':'DOGEUSDT','AVAX/USDT':'AVAXUSDT',
-  'LINK/USDT':'LINKUSDT','DOT/USDT':'DOTUSDT','LTC/USDT':'LTCUSDT','TON/USDT':'TONUSDT',
+  'BTC/USDT':'BTCUSDT',
+  'ETH/USDT':'ETHUSDT',
+  'BNB/USDT':'BNBUSDT',
+  'SOL/USDT':'SOLUSDT',
+  'XRP/USDT':'XRPUSDT',
+  'ADA/USDT':'ADAUSDT',
+  'DOGE/USDT':'DOGEUSDT',
+  'AVAX/USDT':'AVAXUSDT',
+  'LINK/USDT':'LINKUSDT',
+  'DOT/USDT':'DOTUSDT',
+  'LTC/USDT':'LTCUSDT',
+  'TON/USDT':'TONUSDT',
 };
+
 const BIN_TF = { M1:'1m', M3:'3m', M5:'5m', M15:'15m', M30:'30m', H1:'1h', H4:'4h', D:'1d' };
 
+const DEC = {
+  'EUR/USD':5,
+  'GBP/USD':5,
+  'USD/JPY':3,
+  'USD/CHF':5,
+  'USD/CAD':5,
+  'AUD/USD':5,
+  'NZD/USD':5,
+  'EUR/GBP':5,
+  'EUR/JPY':3,
+  'GBP/JPY':3,
+  'EUR/AUD':5,
+  'EUR/CAD':5,
+  'EUR/CHF':5,
+  'EUR/NZD':5,
+  'GBP/CHF':5,
+  'GBP/CAD':5,
+  'GBP/AUD':5,
+  'GBP/NZD':5,
+  'AUD/JPY':3,
+  'AUD/CHF':5,
+  'AUD/CAD':5,
+  'AUD/NZD':5,
+  'NZD/JPY':3,
+  'NZD/CHF':5,
+  'NZD/CAD':5,
+  'CAD/JPY':3,
+  'CAD/CHF':5,
+  'CHF/JPY':3,
+  'XAU/USD':2,
+  'XAG/USD':3,
+  'US500':1,
+  'US100':1,
+  'US30':1,
+  'US2000':1,
+  'UK100':1,
+  'GER40':1,
+  'JPN225':1,
+  'USOIL':2,
+  'UKOIL':2,
+  'NATGAS':3,
+  'BTC/USDT':1,
+  'ETH/USDT':2,
+  'BNB/USDT':2,
+  'SOL/USDT':2,
+  'XRP/USDT':4,
+  'ADA/USDT':4,
+  'DOGE/USDT':4,
+  'AVAX/USDT':3,
+  'LINK/USDT':3,
+  'DOT/USDT':3,
+  'LTC/USDT':2,
+  'TON/USDT':3,
+};
+
+// Precision comes from the registry; the previous substring heuristics
+// mis-handled overlaps such as USOIL matching the US-index rule.
 function dec(sym) {
-  if (sym.startsWith('XAU')) return 2;
-  if (sym === 'USOIL' || sym === 'UKOIL') return 2;
-  if (sym === 'NATGAS') return 3;
-  if (/^(US|NAS|SPX)/.test(sym)) return 1;
+  if (DEC[sym] != null) return DEC[sym];
   if (sym.includes('JPY')) return 3;
-  if (sym.includes('BTC') || sym.includes('ETH')) return 1;
-  if (sym.includes('SOL') || sym.includes('XAG') || sym.includes('BNB') || sym.includes('LTC')) return 2;
-  if (sym.includes('XRP') || sym.includes('ADA') || sym.includes('DOGE')) return 4;
-  if (sym.includes('AVAX') || sym.includes('LINK') || sym.includes('DOT') || sym.includes('TON')) return 3;
   return 5;
 }
 
