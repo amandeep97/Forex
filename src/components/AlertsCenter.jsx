@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { ALERT_INSTRUMENTS, instBySym, fetchPrice } from '../utils/alertFeed';
 import { showBrowserNotification, requestBrowserPermission, sendTelegram } from '../utils/notifications';
 import { loadAlerts, saveAlerts, loadLog, notifCfg, saveNotifCfg, LOG_LS, POLL_MS } from '../hooks/useAlertsEngine';
-import { enableBackgroundPush, disableBackgroundPush, isPushEnabled, syncAlertsToBot, pushSupported, pushBlockedReason, isStandalone, verifyPush, repairPush, listPushDevices } from '../utils/webPush';
+import { enableBackgroundPush, disableBackgroundPush, isPushEnabled, syncAlertsToBot, pushSupported, pushBlockedReason, isStandalone, verifyPush, repairPush, listPushDevices, removePushDevice } from '../utils/webPush';
 import { getPatternN, setPatternN } from '../utils/candlePatterns';
 
 // ── UI helpers ────────────────────────────────────────────────────────────────
@@ -340,8 +340,24 @@ export default function AlertsCenter({ onClose }) {
                       <span style={{ marginLeft:'auto', fontSize:9, color:'#475569' }}>
                         {d.addedAt ? d.addedAt.slice(0,10) : ''}
                       </span>
+                      {!d.isThisDevice && (
+                        <button onClick={async () => {
+                            await removePushDevice(d.endpoint);
+                            setDevices(await listPushDevices().catch(() => null));
+                          }}
+                          title="Stop sending alerts to this entry"
+                          style={{ fontSize:10, padding:'1px 6px', borderRadius:4, cursor:'pointer',
+                            border:'1px solid #334155', background:'transparent', color:'#64748b' }}>✕</button>
+                      )}
                     </div>
                   ))}
+                  {devices.ok && devices.devices.filter(d => d.legacy).length > 0 && (
+                    <div style={{ fontSize:10, color:'#f59e0b', marginTop:7, lineHeight:1.5 }}>
+                      ⚠ An entry above predates device tracking. An installed iPhone PWA reports a Mac
+                      user-agent, so it may be this same phone from an earlier registration — which would
+                      make every alert arrive twice. Remove it with ✕ if you get duplicates.
+                    </div>
+                  )}
                   {devices.ok && devices.devices.length > 0 && !devices.devices.some(d => d.isThisDevice) && (
                     <div style={{ fontSize:10, color:'#fca5a5', marginTop:6, lineHeight:1.5 }}>
                       ⚠ This device is not in the list — alerts are going to the devices above, not here.

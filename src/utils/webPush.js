@@ -8,6 +8,37 @@ export const VAPID_PUBLIC_KEY = 'BEFdB4UhSEuInqTtUY8WTXi4Qa37fe7c4Ooc6-qTSh9PCkF
 const SUBS_PATH   = 'bot/push-subscriptions.json';
 const ALERTS_PATH = 'bot/alerts.json';
 
+// A browser may rotate its push endpoint without telling us, leaving the old
+// one in the repo. The VPS then delivers to both and the phone shows every
+// alert twice. Endpoints are therefore not a usable identity; this id is
+// generated once per install and survives re-subscription.
+const DEVICE_ID_KEY = 'push_device_id';
+export function deviceId() {
+  let id = null;
+  try { id = localStorage.getItem(DEVICE_ID_KEY); } catch {}
+  if (!id) {
+    id = (crypto?.randomUUID?.() || `d${Date.now()}${Math.floor(Math.random()*1e6)}`);
+    try { localStorage.setItem(DEVICE_ID_KEY, id); } catch {}
+  }
+  return id;
+}
+
+// The user-agent cannot identify an iPhone here: an installed iOS PWA reports
+// "Macintosh; Intel Mac OS X". Touch support plus display mode can, so the
+// device description is captured at registration rather than guessed later.
+export function deviceInfo() {
+  const touch = (navigator.maxTouchPoints || 0) > 1;
+  const apple = /Mac|iPhone|iPad|iPod/.test(navigator.platform || navigator.userAgent);
+  const standalone = isStandalone();
+  let name = 'Unknown device', icon = '❔';
+  if (apple && touch)        { name = 'iPhone / iPad'; icon = '📱'; }
+  else if (apple)            { name = 'Mac';           icon = '💻'; }
+  else if (/Android/i.test(navigator.userAgent)) { name = 'Android'; icon = '📱'; }
+  else if (touch)            { name = 'Tablet';        icon = '📱'; }
+  else                       { name = 'Desktop';       icon = '💻'; }
+  return { name, icon, touch, standalone };
+}
+
 function urlBase64ToUint8Array(base64String) {
   const padding = '='.repeat((4 - (base64String.length % 4)) % 4);
   const base64 = (base64String + padding).replace(/-/g, '+').replace(/_/g, '/');
@@ -84,8 +115,16 @@ export async function enableBackgroundPush() {
   let existing = null, sha = null;
   try { const r = await ghRead(SUBS_PATH, { noCache: true }); existing = r?.content; sha = r?.sha; } catch {}
   const list = Array.isArray(existing?.subscriptions) ? existing.subscriptions : [];
-  const filtered = list.filter(s => s.endpoint !== subJson.endpoint);
-  filtered.push({ ...subJson, ua: navigator.userAgent.slice(0, 80), addedAt: new Date().toISOString() });
+  const id = deviceId();
+  const info = deviceInfo();
+  // Drop this endpoint AND any older endpoint from the same device. Without the
+  // second condition a rotated endpoint stays behind and every alert arrives
+  // twice on the same phone.
+  const filtered = list.filter(s => s.endpoint !== subJson.endpoint && s.deviceId !== id);
+  filtered.push({
+    ...subJson, deviceId: id, device: info.name, standalone: info.standalone,
+    ua: navigator.userAgent.slice(0, 80), addedAt: new Date().toISOString(),
+  });
 
   await ghWrite(SUBS_PATH, { subscriptions: filtered }, 'app: register push subscription', sha);
   localStorage.setItem('push_enabled', '1');
@@ -156,6 +195,7 @@ export async function verifyPush() {
 // is exactly how alerts can appear "enabled" while going to a device that is
 // closed.
 export async function listPushDevices() {
+  const myId = deviceId();
   let mine = null;
   try { const s = await (await swReady()).pushManager.getSubscription(); mine = s?.toJSON()?.endpoint || null; } catch {}
   let list = [];
@@ -164,23 +204,36 @@ export async function listPushDevices() {
     list = r?.content?.subscriptions || [];
   } catch { return { ok:false, msg:'Could not read the device list from GitHub.', devices:[], mine }; }
 
-  const label = ua => {
-    if (/iPhone/i.test(ua)) return { name:'iPhone', icon:'📱' };
-    if (/iPad/i.test(ua))   return { name:'iPad', icon:'📱' };
-    if (/Macintosh/i.test(ua)) return { name:'Mac', icon:'💻' };
-    if (/Android/i.test(ua)) return { name:'Android', icon:'📱' };
-    if (/Windows/i.test(ua)) return { name:'Windows PC', icon:'💻' };
-    return { name:'Unknown device', icon:'❔' };
+  // Entries recorded before device detection existed fall back to the UA, which
+  // mislabels installed iOS PWAs as Macs — flagged rather than shown as fact.
+  const label = d => {
+    if (d.device) return { name:d.device, icon: /iPhone|iPad|Android|Tablet/.test(d.device) ? '📱' : '💻' };
+    const ua = d.ua || '';
+    if (/iPhone|iPad/i.test(ua)) return { name:'iPhone / iPad', icon:'📱' };
+    if (/Android/i.test(ua))     return { name:'Android', icon:'📱' };
+    return { name:'Older entry (unverified)', icon:'❔' };
   };
   return {
     ok: true, mine,
     devices: list.map(d => ({
-      ...label(d.ua || ''),
+      ...label(d),
       endpoint: d.endpoint,
       addedAt: d.addedAt || null,
-      isThisDevice: !!mine && d.endpoint === mine,
+      isThisDevice: (!!mine && d.endpoint === mine) || d.deviceId === myId,
+      legacy: !d.deviceId,
     })),
   };
+}
+
+// Remove one endpoint from the VPS list — for clearing entries left behind by
+// an older install that no longer maps to any live device.
+export async function removePushDevice(endpoint) {
+  try {
+    const r = await ghRead(SUBS_PATH, { noCache: true });
+    const list = (r?.content?.subscriptions || []).filter(s => s.endpoint !== endpoint);
+    await ghWrite(SUBS_PATH, { subscriptions: list }, 'app: remove stale push subscription', r?.sha);
+    return { ok: true };
+  } catch (e) { return { ok: false, msg: e.message }; }
 }
 
 // Re-register this device without the user having to toggle anything off/on.
