@@ -28,10 +28,21 @@ export const BOOK_INSTRUMENTS = [
 
 async function book(kind, instr) {
   const c = oandaCreds();
-  if (!c?.apiKey) throw new Error('OANDA not connected');
+  if (!c?.apiKey) { const e = new Error('OANDA not connected'); e.code = 'NOKEY'; throw e; }
+  const env = c.practice === false ? 'live' : 'practice';
   const r = await fetch(`${base(c)}/instruments/${instr}/${kind}`,
     { headers:{ Authorization:`Bearer ${c.apiKey}` }, signal: AbortSignal.timeout(15000) });
-  if (!r.ok) throw new Error(`${kind} ${r.status}`);
+  if (!r.ok) {
+    // Surface OANDA's own reason. A 401 here while candles work on the same
+    // token is a permission problem, not a bad key — the books are a live-account
+    // feature, so practice tokens are rejected even though they are valid.
+    let why = '';
+    try { const j = await r.json(); why = j.errorMessage || j.message || ''; } catch {}
+    const e = new Error(why || `HTTP ${r.status}`);
+    e.code = r.status === 401 || r.status === 403 ? 'DENIED' : r.status === 404 ? 'UNSUPPORTED' : 'ERR';
+    e.status = r.status; e.env = env; e.instr = instr;
+    throw e;
+  }
   const d = await r.json();
   const b = d.orderBook || d.positionBook;
   if (!b) throw new Error('empty book');

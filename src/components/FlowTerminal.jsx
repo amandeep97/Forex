@@ -29,7 +29,30 @@ const Empty = ({ children }) => (
 );
 
 // ── 1. LIQUIDITY MAP ──────────────────────────────────────────────────────────
-function LiquidityMap({ sym, setSym, data, busy }) {
+// Explains exactly why the book is missing, instead of blaming a key that works.
+function BookDiagnosis({ fail }) {
+  if (!fail) return null;
+  if (fail.code === 'NOKEY') return <Empty>No OANDA key connected. Add one in Settings.</Empty>;
+  if (fail.code === 'DENIED') return (
+    <div style={{ fontSize:10, fontFamily:C.mono, lineHeight:1.6, padding:'6px 0', color:C.warn }}>
+      <div style={{ fontWeight:800, marginBottom:3 }}>OANDA refused the book ({fail.status}) on your <u>{fail.env}</u> token</div>
+      <div style={{ color:C.dim }}>
+        Your key is valid — candles work with it. The order/position books are a
+        <strong style={{ color:C.txt }}> live-account feature</strong>, so practice tokens are rejected even when correct.
+        {fail.env === 'practice'
+          ? <> Switch to <strong style={{ color:C.txt }}>Live</strong> in Settings and use a live API token to see the book.</>
+          : <> If you are already live, the token may lack read permission — regenerate it in OANDA’s portal.</>}
+      </div>
+      {fail.message && <div style={{ color:'#334155', marginTop:4 }}>OANDA said: “{fail.message}”</div>}
+    </div>
+  );
+  if (fail.code === 'UNSUPPORTED') return (
+    <Empty>OANDA does not publish a book for this instrument. Try a major pair or gold.</Empty>
+  );
+  return <Empty>Book unavailable: {fail.message}</Empty>;
+}
+
+function LiquidityMap({ sym, setSym, data, busy, fail }) {
   const inst = BOOK_INSTRUMENTS.find(i => i.sym === sym);
   const d = data[sym];
   const pools = d?.pools || [];
@@ -48,7 +71,7 @@ function LiquidityMap({ sym, setSym, data, busy }) {
       </div>
 
       {busy && !d && <Empty>loading book…</Empty>}
-      {!busy && !d && <Empty>No book data. Needs a connected OANDA key — the book is published for majors and gold only.</Empty>}
+      {!busy && !d && (fail ? <BookDiagnosis fail={fail}/> : <Empty>No book data returned for this instrument.</Empty>)}
 
       {d && (
         <>
@@ -224,18 +247,23 @@ export default function FlowTerminal() {
   const [busy,     setBusy]     = useState(false);
   const [updated,  setUpdated]  = useState(null);
   const [err,      setErr]      = useState('');
+  const [bookFail, setBookFail] = useState(null);
   const started = useRef(false);
 
   const hasOanda = !!oandaCreds()?.apiKey;
 
   const loadBook = useCallback(async (s) => {
     const inst = BOOK_INSTRUMENTS.find(i => i.sym === s);
-    if (!inst || !hasOanda) return;
+    if (!inst) return;
     try {
       const pb = await fetchPositionBook(inst.oanda);
       setBooks(prev => ({ ...prev, [s]: { book: pb, pools: liquidityPools(pb), bias: retailBias(pb) } }));
-    } catch (e) { setErr(`book ${s}: ${e.message}`); }
-  }, [hasOanda]);
+      setBookFail(null);
+    } catch (e) {
+      setBooks(prev => { const n = { ...prev }; delete n[s]; return n; });
+      setBookFail({ code: e.code, status: e.status, env: e.env, message: e.message });
+    }
+  }, []);
 
   const loadAll = useCallback(async () => {
     setBusy(true); setErr('');
@@ -329,7 +357,7 @@ export default function FlowTerminal() {
       )}
 
       <div style={{ display:'flex', flexDirection:'column', gap:9, padding:'9px 11px' }}>
-        <LiquidityMap sym={sym} setSym={setSym} data={books} busy={busy}/>
+        <LiquidityMap sym={sym} setSym={setSym} data={books} busy={busy} fail={bookFail}/>
         <SqueezeRadar rows={squeeze} busy={busy}/>
         <SmartDumb rows={sd} busy={busy}/>
         <OrderFlow rows={flow} busy={busy}/>
