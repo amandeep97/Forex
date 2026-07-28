@@ -21,6 +21,38 @@ export function pushSupported() {
   return 'serviceWorker' in navigator && 'PushManager' in window && 'Notification' in window;
 }
 
+// Is this running as an installed app rather than a browser tab?
+export function isStandalone() {
+  return window.matchMedia?.('(display-mode: standalone)').matches
+      || window.navigator.standalone === true;
+}
+
+const isIOS = () => /iPad|iPhone|iPod/.test(navigator.userAgent)
+  || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+
+// Why push cannot be enabled, specifically enough to act on.
+// On iOS the Push API exists ONLY in a Home Screen install — in a Safari tab
+// PushManager is undefined, so subscription can never happen no matter what the
+// server is doing. Saying merely "not supported" sent people looking in the
+// wrong place.
+export function pushBlockedReason() {
+  if (pushSupported()) return null;
+  if (isIOS() && !isStandalone()) return {
+    code: 'ios-not-installed',
+    title: 'Add to Home Screen first',
+    detail: 'On iPhone, background notifications only work when this is installed as an app. '
+          + 'Tap Share → Add to Home Screen, open it from the icon, then enable push here. '
+          + 'It cannot work in a Safari tab.',
+  };
+  if (isIOS()) return {
+    code: 'ios-old',
+    title: 'iOS 16.4 or later required',
+    detail: 'Web push arrived in iOS 16.4. Update iOS, then try again from the installed app.',
+  };
+  return { code:'unsupported', title:'Not supported by this browser',
+           detail:'This browser has no Push API. Chrome, Edge, Firefox and installed iOS PWAs support it.' };
+}
+
 async function swReady() {
   // ensure the SW is registered (main.jsx registers /Forex/sw.js)
   const reg = await navigator.serviceWorker.ready;
@@ -29,7 +61,10 @@ async function swReady() {
 
 // Subscribe this device and store the subscription in the repo for the VPS to read.
 export async function enableBackgroundPush() {
-  if (!pushSupported()) return { ok: false, msg: 'Push not supported on this browser' };
+  if (!pushSupported()) {
+    const r = pushBlockedReason();
+    return { ok: false, msg: `${r.title} — ${r.detail}` };
+  }
   if (!isGithubConfigured()) return { ok: false, msg: 'Connect GitHub (Settings → not set) so the VPS can read your subscription' };
 
   const perm = await Notification.requestPermission();

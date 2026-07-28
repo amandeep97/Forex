@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { ALERT_INSTRUMENTS, instBySym, fetchPrice } from '../utils/alertFeed';
 import { showBrowserNotification, requestBrowserPermission, sendTelegram } from '../utils/notifications';
 import { loadAlerts, saveAlerts, loadLog, notifCfg, saveNotifCfg, LOG_LS, POLL_MS } from '../hooks/useAlertsEngine';
-import { enableBackgroundPush, disableBackgroundPush, isPushEnabled, syncAlertsToBot, pushSupported } from '../utils/webPush';
+import { enableBackgroundPush, disableBackgroundPush, isPushEnabled, syncAlertsToBot, pushSupported, pushBlockedReason, isStandalone } from '../utils/webPush';
 import { getPatternN, setPatternN } from '../utils/candlePatterns';
 
 // ── UI helpers ────────────────────────────────────────────────────────────────
@@ -364,7 +364,27 @@ export default function AlertsCenter({ onClose }) {
               cursor:'pointer', background:'#1e293b', color:'#94a3b8', border:'1px solid #334155' }}>🔔 Send test notification</button>
 
             <div style={{ fontSize:9.5, color:'#f59e0b', marginTop:12, lineHeight:1.5 }}>
-              ⚠ Alerts are checked every {POLL_MS/1000}s while the app is open. For reliable alerts, keep the PWA open / installed. True closed-app push needs a server (not available).
+              {(() => {
+                const blocked = pushBlockedReason();
+                if (blocked) return (
+                  <>
+                    <strong style={{ color:'#fca5a5' }}>⚠ {blocked.title}</strong>
+                    <div style={{ color:'#94a3b8', marginTop:4 }}>{blocked.detail}</div>
+                    <div style={{ color:'#475569', marginTop:6 }}>
+                      Until then, alerts only fire while this page is open, checked every {POLL_MS/1000}s.
+                    </div>
+                  </>
+                );
+                return (
+                  <>
+                    ⚠ In-app alerts are checked every {POLL_MS/1000}s while this page is open.
+                    <div style={{ color:'#94a3b8', marginTop:4 }}>
+                      For alerts with the app <strong>closed</strong>, turn on background push above — your VPS bot
+                      then delivers them. {isStandalone() ? '' : 'Install to Home Screen first for this to work on iPhone.'}
+                    </div>
+                  </>
+                );
+              })()}
             </div>
           </>
         )}
