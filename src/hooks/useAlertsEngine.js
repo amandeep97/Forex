@@ -22,11 +22,21 @@ function pushLog(entry) {
   window.dispatchEvent(new Event('alerts-updated'));
 }
 
+// Telegram is sent by TWO independent engines: this one, running in the app
+// every 30s, and the VPS bot, running every 60s off the same synced alerts.
+// With both configured every alert arrived twice. Exactly one of them should
+// own delivery — the VPS by default, since it runs whether or not the app is
+// open. The browser notification still fires here because it is local and
+// instant, and cannot be duplicated by the VPS.
 function fire(alert, price, msg) {
   showBrowserNotification(`🔔 ${alert.sym} alert`, msg);
   const cfg = notifCfg();
-  if (cfg.botToken && cfg.chatId) sendTelegram(cfg.botToken, cfg.chatId, `🔔 <b>${alert.sym}</b>\n${msg}`);
-  pushLog({ id: alert.id, sym: alert.sym, msg, price, ts: Date.now() });
+  const by = cfg.telegramBy || 'vps';        // 'vps' | 'app' | 'both'
+  const appSends = by === 'app' || by === 'both';
+  if (appSends && cfg.botToken && cfg.chatId) {
+    sendTelegram(cfg.botToken, cfg.chatId, `🔔 <b>${alert.sym}</b>\n${msg}`);
+  }
+  pushLog({ id: alert.id, sym: alert.sym, msg, price, ts: Date.now(), tgBy: by });
 }
 
 // Runs app-wide (called once in App) — polls prices/candles and fires alerts.

@@ -332,6 +332,32 @@ export default function AlertsCenter({ onClose }) {
               <input value={cfg.botToken || ''} onChange={e=>saveCfg({ botToken:e.target.value })} placeholder="123456:ABC…" style={{ ...inp(), marginBottom:10, fontFamily:'monospace' }}/>
               <label style={lbl}>Chat ID</label>
               <input value={cfg.chatId || ''} onChange={e=>saveCfg({ chatId:e.target.value })} placeholder="your chat id" style={{ ...inp(), fontFamily:'monospace' }}/>
+
+              <div style={{ marginTop:12, paddingTop:11, borderTop:'1px solid #14233b' }}>
+                <label style={lbl}>Send Telegram from this app</label>
+                <div style={{ display:'flex', gap:6, marginTop:5 }}>
+                  {[['vps','No — VPS handles it'],['app','Yes — app sends too']].map(([v,l]) => {
+                    const on = (cfg.telegramBy || 'vps') === v;
+                    return (
+                      <button key={v} onClick={()=>saveCfg({ telegramBy:v })}
+                        style={{ flex:1, padding:'6px 0', borderRadius:7, fontSize:11, fontWeight:700, cursor:'pointer',
+                          border:`1px solid ${on?'#00d4aa55':'#334155'}`, background:on?'#00d4aa14':'#0f172a',
+                          color:on?'#00d4aa':'#64748b' }}>{l}</button>
+                    );
+                  })}
+                </div>
+                <div style={{ fontSize:9.5, color:'#475569', marginTop:7, lineHeight:1.45 }}>
+                  The app and the VPS bot evaluate the same alerts independently, so with both sending you get
+                  every message twice. This switch only controls <strong style={{color:'#94a3b8'}}>this app</strong> —
+                  it cannot silence the bot. Default is off, because the bot runs whether or not the app is open.
+                  <div style={{ marginTop:5 }}>
+                    To have the app send instead, remove <code style={{color:'#94a3b8'}}>TELEGRAM_BOT_TOKEN</code>
+                    {' '}from the bot&apos;s <code style={{color:'#94a3b8'}}>.env</code> and restart it — otherwise
+                    turning this on simply restores the duplicates.
+                  </div>
+                  Browser notifications are local and never duplicated.
+                </div>
+              </div>
             </div>
 
             <button onClick={testNotif} style={{ width:'100%', padding:'9px 0', borderRadius:8, fontSize:12, fontWeight:700,
