@@ -112,7 +112,48 @@ export async function disableBackgroundPush() {
   return { ok: true, msg: 'Background push disabled on this device' };
 }
 
+// Optimistic flag, kept for instant UI paint. It records only that push was
+// enabled at some point — never that it still works. Use verifyPush() for truth.
 export function isPushEnabled() { return localStorage.getItem('push_enabled') === '1'; }
+
+// Does a live subscription actually exist, and does the VPS still hold it?
+//
+// iOS silently expires push subscriptions for installed PWAs that go unopened
+// for a while. The VPS then receives 404/410 and correctly prunes the endpoint —
+// but nothing told the app, which kept reporting push as enabled because its own
+// flag was still set. Notifications simply stopped, and the only symptom was
+// alerts appearing in-app the next time the PWA was opened.
+export async function verifyPush() {
+  if (!pushSupported()) return { ok:false, state:'unsupported', reason: pushBlockedReason() };
+  const flagged = isPushEnabled();
+
+  let sub = null;
+  try { sub = await (await swReady()).pushManager.getSubscription(); } catch {}
+  if (!sub) {
+    if (flagged) localStorage.removeItem('push_enabled');
+    return { ok:false, state: flagged ? 'expired' : 'off',
+             msg: flagged ? 'The browser dropped this device\u2019s subscription — re-enable to restore background alerts.' : null };
+  }
+
+  // A local subscription is not enough: the VPS must still have it on file.
+  try {
+    const r = await ghRead(SUBS_PATH, { noCache: true });
+    const list = r?.content?.subscriptions || [];
+    const known = list.some(x => x.endpoint === sub.toJSON().endpoint);
+    if (!known) return { ok:false, state:'orphaned',
+      msg: 'This device is subscribed but the VPS no longer has it — it was pruned after failing to deliver. Re-register to fix.' };
+  } catch {
+    return { ok:true, state:'unverified', msg:'Subscribed, but the VPS list could not be read to confirm.' };
+  }
+  return { ok:true, state:'active' };
+}
+
+// Re-register this device without the user having to toggle anything off/on.
+export async function repairPush() {
+  localStorage.removeItem('push_enabled');
+  try { const s = await (await swReady()).pushManager.getSubscription(); if (s) await s.unsubscribe().catch(() => {}); } catch {}
+  return enableBackgroundPush();
+}
 
 // Push the current alert list to the repo so the VPS bot watches them 24/7.
 export async function syncAlertsToBot() {

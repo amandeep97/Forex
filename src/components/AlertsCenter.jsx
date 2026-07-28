@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { ALERT_INSTRUMENTS, instBySym, fetchPrice } from '../utils/alertFeed';
 import { showBrowserNotification, requestBrowserPermission, sendTelegram } from '../utils/notifications';
 import { loadAlerts, saveAlerts, loadLog, notifCfg, saveNotifCfg, LOG_LS, POLL_MS } from '../hooks/useAlertsEngine';
-import { enableBackgroundPush, disableBackgroundPush, isPushEnabled, syncAlertsToBot, pushSupported, pushBlockedReason, isStandalone } from '../utils/webPush';
+import { enableBackgroundPush, disableBackgroundPush, isPushEnabled, syncAlertsToBot, pushSupported, pushBlockedReason, isStandalone, verifyPush, repairPush } from '../utils/webPush';
 import { getPatternN, setPatternN } from '../utils/candlePatterns';
 
 // ── UI helpers ────────────────────────────────────────────────────────────────
@@ -34,6 +34,7 @@ export default function AlertsCenter({ onClose }) {
   const [permMsg, setPermMsg] = useState('');
   const [pushOn, setPushOn]   = useState(isPushEnabled);
   const [pushMsg, setPushMsg] = useState('');
+  const [pushHealth, setPushHealth] = useState(null);
   const [pushBusy, setPushBusy] = useState(false);
 
   const inst = instBySym(sym);
@@ -64,6 +65,7 @@ export default function AlertsCenter({ onClose }) {
     setPushBusy(true); setPushMsg('');
     const r = pushOn ? await disableBackgroundPush() : await enableBackgroundPush();
     setPushOn(isPushEnabled());
+    verifyPush().then(h => { setPushHealth(h); if (!h.ok) setPushOn(false); }).catch(() => {});
     setPushMsg((r.ok ? '✓ ' : '✗ ') + r.msg);
     setPushBusy(false);
   };
@@ -364,6 +366,29 @@ export default function AlertsCenter({ onClose }) {
               cursor:'pointer', background:'#1e293b', color:'#94a3b8', border:'1px solid #334155' }}>🔔 Send test notification</button>
 
             <div style={{ fontSize:9.5, color:'#f59e0b', marginTop:12, lineHeight:1.5 }}>
+              {pushHealth && (pushHealth.state === 'expired' || pushHealth.state === 'orphaned') && (
+                <div style={{ marginBottom:10, padding:'9px 11px', borderRadius:8,
+                  background:'#450a0a', border:'1px solid #7f1d1d' }}>
+                  <div style={{ fontSize:11, fontWeight:800, color:'#fca5a5' }}>
+                    ⚠ Background alerts stopped working
+                  </div>
+                  <div style={{ fontSize:10, color:'#cbd5e1', marginTop:4, lineHeight:1.5 }}>
+                    {pushHealth.msg}
+                  </div>
+                  <button onClick={async () => {
+                      setPushBusy(true);
+                      const r = await repairPush();
+                      setPushMsg(r.msg); setPushOn(r.ok);
+                      setPushHealth(await verifyPush().catch(() => null));
+                      setPushBusy(false);
+                    }} disabled={pushBusy}
+                    style={{ marginTop:8, padding:'6px 12px', borderRadius:7, fontSize:11, fontWeight:800,
+                      cursor:pushBusy?'default':'pointer', border:'1px solid #00d4aa55',
+                      background:'#00d4aa18', color:'#00d4aa' }}>
+                    {pushBusy ? 'Re-registering…' : '↻ Re-register this device'}
+                  </button>
+                </div>
+              )}
               {(() => {
                 const blocked = pushBlockedReason();
                 if (blocked) return (
