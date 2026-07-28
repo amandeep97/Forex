@@ -33,7 +33,7 @@ export default function AlertsCenter({ onClose }) {
   const [cur, setCur]   = useState(null);
   const [permMsg, setPermMsg] = useState('');
   const [pushOn, setPushOn]   = useState(isPushEnabled);
-  const [pushMsg, setPushMsg] = useState('');
+  const [pushMsg, setPushMsg] = useState(null);
   const [pushHealth, setPushHealth] = useState(null);
   const [devices, setDevices] = useState(null);
   const [pushBusy, setPushBusy] = useState(false);
@@ -63,18 +63,21 @@ export default function AlertsCenter({ onClose }) {
   const persist = (next) => { setAlerts(next); saveAlerts(next); if (isPushEnabled()) syncAlertsToBot().catch(() => {}); };
 
   const toggleBackgroundPush = async () => {
-    setPushBusy(true); setPushMsg('');
+    setPushBusy(true); setPushMsg(null);
     const r = pushOn ? await disableBackgroundPush() : await enableBackgroundPush();
     setPushOn(isPushEnabled());
     verifyPush().then(h => { setPushHealth(h); if (!h.ok) setPushOn(false); }).catch(() => {});
     listPushDevices().then(setDevices).catch(() => {});
-    setPushMsg((r.ok ? '✓ ' : '✗ ') + r.msg);
+    // Colour by the resulting STATE, not by whether the call succeeded.
+    // Disabling returns ok:true, which rendered a green tick next to "background
+    // push disabled" — reading as healthy when it means no alerts will arrive.
+    setPushMsg({ text: r.msg, ok: r.ok, on: isPushEnabled() });
     setPushBusy(false);
   };
   const resyncAlerts = async () => {
     setPushBusy(true);
     const r = await syncAlertsToBot();
-    setPushMsg((r.ok ? '✓ ' : '✗ ') + r.msg);
+    setPushMsg({ text: r.msg, ok: r.ok, on: isPushEnabled() });
     setPushBusy(false);
   };
 
@@ -313,7 +316,15 @@ export default function AlertsCenter({ onClose }) {
                   ↻ Re-sync my alerts to the VPS
                 </button>
               )}
-              {pushMsg && <div style={{ fontSize:11, marginTop:8, color: pushMsg.startsWith('✓') ? '#22c55e' : '#ef4444' }}>{pushMsg}</div>}
+              {pushMsg && (
+                <div style={{ fontSize:11, marginTop:8,
+                  color: !pushMsg.ok ? '#ef4444' : pushMsg.on ? '#22c55e' : '#f59e0b' }}>
+                  {!pushMsg.ok ? '✗' : pushMsg.on ? '✓' : '○'} {pushMsg.text}
+                  {pushMsg.ok && !pushMsg.on && (
+                    <span style={{ color:'#94a3b8' }}> — this device will not receive background alerts.</span>
+                  )}
+                </div>
+              )}
               <div style={{ fontSize:9, color:'#475569', marginTop:8, lineHeight:1.5 }}>
               {devices && (
                 <div style={{ marginTop:10, paddingTop:10, borderTop:'1px solid #14233b' }}>
@@ -431,7 +442,7 @@ export default function AlertsCenter({ onClose }) {
                   <button onClick={async () => {
                       setPushBusy(true);
                       const r = await repairPush();
-                      setPushMsg(r.msg); setPushOn(r.ok);
+                      setPushMsg({ text: r.msg, ok: r.ok, on: isPushEnabled() }); setPushOn(r.ok);
                       setPushHealth(await verifyPush().catch(() => null));
                       setPushBusy(false);
                     }} disabled={pushBusy}
