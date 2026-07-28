@@ -61,6 +61,46 @@ async function book(kind, instr) {
 export const fetchOrderBook    = instr => book('orderBook', instr);
 export const fetchPositionBook = instr => book('positionBook', instr);
 
+// ── Auth probe ────────────────────────────────────────────────────────────────
+// "Invalid authentication credentials" while candles work is ambiguous: either
+// the token belongs to the OTHER environment, or it is fine and only the book
+// is refused. Guessing between those wasted a round trip, so test it directly:
+// hit a trivial authenticated endpoint on BOTH hosts, then the book on whichever
+// accepts the token. The combination identifies the cause exactly.
+const ENVS = [
+  { name:'live',     host:'https://api-fxtrade.oanda.com/v3' },
+  { name:'practice', host:'https://api-fxpractice.oanda.com/v3' },
+];
+
+export async function probeOanda(instr = 'EUR_USD') {
+  const c = oandaCreds();
+  if (!c?.apiKey) return { ok:false, reason:'NOKEY', rows:[] };
+  const hdr = { Authorization:`Bearer ${c.apiKey}` };
+
+  const rows = await Promise.all(ENVS.map(async e => {
+    const row = { env:e.name, auth:null, book:null, note:'' };
+    try {
+      const r = await fetch(`${e.host}/accounts`, { headers:hdr, signal:AbortSignal.timeout(12000) });
+      row.auth = r.status;
+      if (r.ok) {
+        const b = await fetch(`${e.host}/instruments/${instr}/positionBook`, { headers:hdr, signal:AbortSignal.timeout(12000) });
+        row.book = b.status;
+        if (!b.ok) { try { row.note = (await b.json()).errorMessage || ''; } catch {} }
+      }
+    } catch (err) { row.auth = 0; row.note = err.message; }
+    return row;
+  }));
+
+  const good = rows.find(r => r.auth === 200);
+  const configured = c.practice === false ? 'live' : 'practice';
+  let verdict;
+  if (!good)                              verdict = 'TOKEN_BAD';        // rejected everywhere
+  else if (good.env !== configured)       verdict = 'WRONG_ENV';        // token belongs to the other host
+  else if (good.book === 200)             verdict = 'BOOK_OK';          // works — transient failure earlier
+  else                                    verdict = 'BOOK_DENIED';      // token fine, book specifically refused
+  return { ok:true, verdict, configured, working:good?.env || null, rows };
+}
+
 // ── Liquidity pools ───────────────────────────────────────────────────────────
 // Stops sit on the losing side of open positions: longs opened BELOW price are
 // protected by stops below, shorts opened ABOVE price by stops above. Clusters

@@ -3,7 +3,7 @@ import {
   BOOK_INSTRUMENTS, SQUEEZE_SYMBOLS, COT_CODES,
   fetchPositionBook, fetchOrderBook, liquidityPools, retailBias,
   fetchSqueeze, fetchTakerFlow, fetchCOTNet, smartVsDumb,
-  CORREL_PAIRS, pearson, returnsOf, correlationBreak, oandaCreds,
+  CORREL_PAIRS, pearson, returnsOf, correlationBreak, oandaCreds, probeOanda,
 } from '../utils/flowFeed';
 
 const C = {
@@ -29,30 +29,72 @@ const Empty = ({ children }) => (
 );
 
 // ── 1. LIQUIDITY MAP ──────────────────────────────────────────────────────────
-// Explains exactly why the book is missing, instead of blaming a key that works.
-function BookDiagnosis({ fail }) {
+// Explains exactly why the book is missing — measured, not guessed.
+const VERDICT = {
+  TOKEN_BAD: {
+    c:'#ef4444', t:'Token rejected by BOTH OANDA hosts',
+    d:'This key does not authenticate anywhere, so it is expired, revoked, or mistyped. Generate a fresh personal access token in the OANDA portal and paste it into Settings.',
+  },
+  WRONG_ENV: {
+    c:'#f59e0b', t:'Token belongs to the other environment',
+    d:'The key authenticates fine — just not on the host currently selected. Flip the environment toggle in Settings to match, and the book will load.',
+  },
+  BOOK_DENIED: {
+    c:'#f59e0b', t:'Token is valid; the book itself is refused',
+    d:'Authentication succeeds on this host, so the key is correct — OANDA is declining the order/position book specifically. That is an account-level entitlement, not something the app can fix.',
+  },
+  BOOK_OK: {
+    c:'#22c55e', t:'Book is reachable now',
+    d:'The earlier failure was transient. Hit refresh.',
+  },
+};
+
+function BookDiagnosis({ fail, probe, probing, onProbe }) {
   if (!fail) return null;
   if (fail.code === 'NOKEY') return <Empty>No OANDA key connected. Add one in Settings.</Empty>;
-  if (fail.code === 'DENIED') return (
-    <div style={{ fontSize:10, fontFamily:C.mono, lineHeight:1.6, padding:'6px 0', color:C.warn }}>
-      <div style={{ fontWeight:800, marginBottom:3 }}>OANDA refused the book ({fail.status}) on your <u>{fail.env}</u> token</div>
-      <div style={{ color:C.dim }}>
-        Your key is valid — candles work with it. The order/position books are a
-        <strong style={{ color:C.txt }}> live-account feature</strong>, so practice tokens are rejected even when correct.
-        {fail.env === 'practice'
-          ? <> Switch to <strong style={{ color:C.txt }}>Live</strong> in Settings and use a live API token to see the book.</>
-          : <> If you are already live, the token may lack read permission — regenerate it in OANDA’s portal.</>}
+  if (fail.code === 'UNSUPPORTED') return <Empty>OANDA does not publish a book for this instrument. Try a major pair or gold.</Empty>;
+
+  const v = probe?.verdict ? VERDICT[probe.verdict] : null;
+  return (
+    <div style={{ fontSize:10, fontFamily:C.mono, lineHeight:1.6, padding:'6px 0' }}>
+      <div style={{ fontWeight:800, color:C.warn, marginBottom:3 }}>
+        Book refused ({fail.status}) on your <u>{fail.env}</u> token
       </div>
-      {fail.message && <div style={{ color:'#334155', marginTop:4 }}>OANDA said: “{fail.message}”</div>}
+      {fail.message && <div style={{ color:'#334155', marginBottom:6 }}>OANDA said: “{fail.message}”</div>}
+
+      {!probe && (
+        <button onClick={onProbe} disabled={probing}
+          style={{ fontSize:10, fontWeight:800, padding:'4px 10px', borderRadius:3, cursor:probing?'default':'pointer',
+            border:`1px solid ${C.accent}44`, background:'#00d4aa15', color:C.accent }}>
+          {probing ? 'testing both hosts…' : '⌕ Diagnose this token'}
+        </button>
+      )}
+
+      {v && (
+        <>
+          <div style={{ fontWeight:800, color:v.c, marginTop:4 }}>{v.t}</div>
+          <div style={{ color:C.dim, marginTop:2 }}>{v.d}</div>
+          <div style={{ marginTop:6, borderTop:`1px solid ${C.line}`, paddingTop:5 }}>
+            {probe.rows.map(r => (
+              <div key={r.env} style={{ display:'flex', gap:8, color:'#475569' }}>
+                <span style={{ width:64, color: r.env===probe.configured ? C.txt : '#334155' }}>
+                  {r.env}{r.env===probe.configured ? ' *' : ''}
+                </span>
+                <span style={{ width:74, color: r.auth===200 ? C.good : C.bad }}>auth {r.auth || 'fail'}</span>
+                <span style={{ color: r.book===200 ? C.good : r.book ? C.bad : '#334155' }}>
+                  book {r.book ?? '—'}
+                </span>
+              </div>
+            ))}
+            <div style={{ color:'#2b3644', marginTop:3 }}>* currently selected in Settings</div>
+          </div>
+        </>
+      )}
     </div>
   );
-  if (fail.code === 'UNSUPPORTED') return (
-    <Empty>OANDA does not publish a book for this instrument. Try a major pair or gold.</Empty>
-  );
-  return <Empty>Book unavailable: {fail.message}</Empty>;
 }
 
-function LiquidityMap({ sym, setSym, data, busy, fail }) {
+function LiquidityMap({ sym, setSym, data, busy, fail, probe, probing, onProbe }) {
   const inst = BOOK_INSTRUMENTS.find(i => i.sym === sym);
   const d = data[sym];
   const pools = d?.pools || [];
@@ -71,7 +113,7 @@ function LiquidityMap({ sym, setSym, data, busy, fail }) {
       </div>
 
       {busy && !d && <Empty>loading book…</Empty>}
-      {!busy && !d && (fail ? <BookDiagnosis fail={fail}/> : <Empty>No book data returned for this instrument.</Empty>)}
+      {!busy && !d && (fail ? <BookDiagnosis fail={fail} probe={probe} probing={probing} onProbe={onProbe}/> : <Empty>No book data returned for this instrument.</Empty>)}
 
       {d && (
         <>
@@ -248,9 +290,18 @@ export default function FlowTerminal() {
   const [updated,  setUpdated]  = useState(null);
   const [err,      setErr]      = useState('');
   const [bookFail, setBookFail] = useState(null);
+  const [probe,    setProbe]    = useState(null);
+  const [probing,  setProbing]  = useState(false);
   const started = useRef(false);
 
   const hasOanda = !!oandaCreds()?.apiKey;
+
+  const runProbe = useCallback(async () => {
+    setProbing(true);
+    try { setProbe(await probeOanda(BOOK_INSTRUMENTS.find(i => i.sym === sym)?.oanda || 'EUR_USD')); }
+    catch (e) { setErr('probe failed: ' + e.message); }
+    setProbing(false);
+  }, [sym]);
 
   const loadBook = useCallback(async (s) => {
     const inst = BOOK_INSTRUMENTS.find(i => i.sym === s);
@@ -357,7 +408,8 @@ export default function FlowTerminal() {
       )}
 
       <div style={{ display:'flex', flexDirection:'column', gap:9, padding:'9px 11px' }}>
-        <LiquidityMap sym={sym} setSym={setSym} data={books} busy={busy} fail={bookFail}/>
+        <LiquidityMap sym={sym} setSym={setSym} data={books} busy={busy} fail={bookFail}
+          probe={probe} probing={probing} onProbe={runProbe}/>
         <SqueezeRadar rows={squeeze} busy={busy}/>
         <SmartDumb rows={sd} busy={busy}/>
         <OrderFlow rows={flow} busy={busy}/>
