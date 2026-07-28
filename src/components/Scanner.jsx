@@ -24,7 +24,7 @@ function Bar({ pct, color }) {
 function Row({ r, onOpen }) {
   const cls = CLASS[r.cls];
   return (
-    <div style={{ borderBottom:`1px solid #0e161e`, padding:'6px 9px' }}>
+    <div onClick={() => onOpen(r.sym)} style={{ borderBottom:`1px solid #0e161e`, padding:'6px 9px', cursor:'pointer' }}>
       <div style={{ display:'flex', alignItems:'center', gap:7, fontFamily:C.mono }}>
         <span style={{ fontSize:11, fontWeight:800, color:C.txt, width:82, flexShrink:0 }}>{r.sym}</span>
         <span style={{ fontSize:8, fontWeight:800, color:cls.color, width:44, flexShrink:0 }}>{cls.label}</span>
@@ -66,7 +66,7 @@ function Row({ r, onOpen }) {
   );
 }
 
-export default function Scanner() {
+export default function Scanner({ onOpen }) {
   const [rows,    setRows]    = useState([]);
   const [busy,    setBusy]    = useState(false);
   const [prog,    setProg]    = useState({ done:0, total:0 });
@@ -167,10 +167,7 @@ export default function Scanner() {
           </div>
         )}
         {shown.map(r => (
-          <Row key={r.sym} r={r} onOpen={sym => {
-            try { localStorage.setItem('instrument_focus', sym); } catch {}
-            window.dispatchEvent(new CustomEvent('navigate-tab', { detail:'instrument' }));
-          }}/>
+          <Row key={r.sym} r={r} onOpen={onOpen}/>
         ))}
       </div>
 

@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, useMemo } from 'react';
 import { INSTRUMENTS, CLASS, CLASS_ORDER, bySymbol, byClass, exposureOf, REGISTRY_STATS } from '../data/instruments';
-import { fetchPositioning, fetchSpreadStress, fetchSqueeze, oandaCreds } from '../utils/flowFeed';
+import { fetchPositioning, fetchSpreadStress, fetchSqueeze, fetchDepthMap, oandaCreds } from '../utils/flowFeed';
 
 const C = {
   bg:'#080c11', panel:'#0b1118', line:'#16202b', dim:'#475569', txt:'#cbd5e1',
@@ -96,19 +96,15 @@ function Spark({ candles, dec }) {
 }
 
 // ── Main ──────────────────────────────────────────────────────────────────────
-export default function InstrumentView() {
-  const [sym,   setSym]   = useState(() => {
-    // Scanner hands over the instrument it wants opened
-    try { const f = localStorage.getItem('instrument_focus');
-          if (f) { localStorage.removeItem('instrument_focus'); return f; } } catch {}
-    return 'XAU/USD';
-  });
+export default function InstrumentView({ sym: symProp, onBack }) {
+  const [sym,   setSym]   = useState(symProp || 'XAU/USD');
   const [tf,    setTf]    = useState('H1');
   const [query, setQuery] = useState('');
   const [px,    setPx]    = useState(null);   // {candles, source} | {error}
   const [spread,setSpread]= useState(null);
   const [posn,  setPosn]  = useState(null);
   const [deriv, setDeriv] = useState(null);
+  const [depth, setDepth] = useState(null);
   const [events,setEvents]= useState(null);
   const [busy,  setBusy]  = useState(false);
   const [asOf,  setAsOf]  = useState(null);
@@ -118,7 +114,7 @@ export default function InstrumentView() {
   const load = useCallback(async () => {
     if (!inst) return;
     setBusy(true);
-    setPx(null); setSpread(null); setPosn(null); setDeriv(null);
+    setPx(null); setSpread(null); setPosn(null); setDeriv(null); setDepth(null);
 
     const jobs = [
       loadCandles(inst, tf).then(r => setPx(r)).catch(e => setPx({ error:e.message, code:e.code })),
@@ -131,6 +127,9 @@ export default function InstrumentView() {
         : Promise.resolve(),
       inst.can.derivatives
         ? fetchSqueeze(inst.binance).then(setDeriv).catch(e => setDeriv({ error:e.message }))
+        : Promise.resolve(),
+      inst.can.depth
+        ? fetchDepthMap(inst.binance).then(setDepth).catch(e => setDepth({ error:e.message }))
         : Promise.resolve(),
     ];
     // Upcoming high-impact events for the currencies this instrument is exposed
@@ -158,19 +157,8 @@ export default function InstrumentView() {
 
   useEffect(() => { load(); }, [load]);
 
-  // Tabs stay mounted, so the scanner's handoff must be picked up on every
-  // navigation, not only on first mount.
-  useEffect(() => {
-    const onNav = e => {
-      if (e.detail !== 'instrument') return;
-      try {
-        const f = localStorage.getItem('instrument_focus');
-        if (f) { localStorage.removeItem('instrument_focus'); setSym(f); }
-      } catch {}
-    };
-    window.addEventListener('navigate-tab', onNav);
-    return () => window.removeEventListener('navigate-tab', onNav);
-  }, []);
+  // Follow the symbol the shell asks for
+  useEffect(() => { if (symProp && symProp !== sym) setSym(symProp); }, [symProp]); // eslint-disable-line
 
   const results = useMemo(() => {
     const q = query.trim().toUpperCase();
@@ -237,6 +225,11 @@ export default function InstrumentView() {
 
           {/* header */}
           <div style={{ display:'flex', alignItems:'baseline', gap:9, flexWrap:'wrap' }}>
+            {onBack && (
+              <button onClick={onBack} title="Back to market scan"
+                style={{ fontSize:13, fontWeight:800, padding:'1px 8px', borderRadius:3, cursor:'pointer',
+                  border:`1px solid ${C.line}`, background:'transparent', color:C.accent }}>←</button>
+            )}
             <span style={{ fontSize:20, fontWeight:900, color:C.txt, letterSpacing:'-0.5px' }}>{inst.sym}</span>
             <span style={{ fontSize:11, color:C.dim }}>{inst.name}</span>
             <span style={{ fontSize:9, fontWeight:800, color:CLASS[inst.cls].color,
@@ -360,6 +353,44 @@ export default function InstrumentView() {
                     {deriv.state==='neutral'?'':deriv.state.replace(/-/g,' ').toUpperCase()}
                   </span>
                 </div>
+              )}
+            </Card>
+          )}
+
+          {/* order book — real resting size, crypto only */}
+          {inst.can.depth && (
+            <Card title="ORDER BOOK" src={depth?.error ? 'error' : depth ? 'live' : 'unavailable'}
+              note={depth && !depth.error ? `spans ±${(depth.rangePct/2).toFixed(2)}%` : 'binance'}>
+              {depth?.error ? <Muted>{depth.error}</Muted> : !depth ? <Muted>loading…</Muted> : (
+                <>
+                  <div style={{ display:'flex', alignItems:'center', gap:6, marginBottom:7, fontSize:10 }}>
+                    <div style={{ flex:1, height:11, background:'#1a2430', borderRadius:2, overflow:'hidden', display:'flex' }}>
+                      <div style={{ width:`${depth.imbalance}%`, background:'#22c55e55' }}/>
+                      <div style={{ width:`${100-depth.imbalance}%`, background:'#ef444455' }}/>
+                    </div>
+                    <span style={{ fontSize:9, color:C.dim }}>{depth.imbalance}% bid</span>
+                  </div>
+                  {depth.walls.length === 0
+                    ? <Muted>No stand-out walls — depth is evenly spread.</Muted>
+                    : depth.walls.map((w, i) => (
+                      <div key={i} style={{ display:'flex', alignItems:'center', gap:6, padding:'1px 0', fontSize:10 }}>
+                        <span style={{ color: w.side==='bid'?C.good:C.bad, width:12 }}>{w.side==='bid'?'▼':'▲'}</span>
+                        <span style={{ color:C.txt, width:72 }}>{w.price.toFixed(inst.dec)}</span>
+                        <div style={{ flex:1, height:7, background:'#131c26', borderRadius:2, overflow:'hidden' }}>
+                          <div style={{ width:`${Math.max(4, w.rel*100)}%`, height:'100%',
+                            background: w.side==='bid'?'#22c55e':'#ef4444' }}/>
+                        </div>
+                        <span style={{ color:C.dim, width:48, textAlign:'right' }}>
+                          ${w.notional>=1e6?`${(w.notional/1e6).toFixed(1)}M`:`${Math.round(w.notional/1e3)}k`}
+                        </span>
+                        <span style={{ color: w.xMedian>=8?C.warn:'#334155', width:30, textAlign:'right' }}>×{w.xMedian}</span>
+                      </div>
+                    ))}
+                  <div style={{ fontSize:8, color:'#334155', marginTop:5, lineHeight:1.5 }}>
+                    Real resting orders. ×N = size versus a typical price level; only ≥×3 qualifies as a wall.
+                    Walls can be pulled at any moment.
+                  </div>
+                </>
               )}
             </Card>
           )}
