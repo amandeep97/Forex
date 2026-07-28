@@ -25,8 +25,8 @@ self.addEventListener('push', e => {
   e.waitUntil(
     self.registration.showNotification(title, {
       body,
-      icon: '/forex-icon.svg',
-      badge: '/forex-icon.svg',
+      icon: '/Forex/forex-icon.svg',
+      badge: '/Forex/forex-icon.svg',
       vibrate: [200, 100, 200],
       tag: 'forex-signal',
       renotify: true,
