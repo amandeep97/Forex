@@ -234,13 +234,17 @@ function LiquidityMap({ sym, setSym, data, depth, busy, fail, probe, probing, on
 // ── POSITIONING — metals, energies, indices, FX ───────────────────────────────
 const GROUP_LABEL = { metal:'METALS', energy:'ENERGY', index:'INDICES', fx:'FX' };
 
+const STATE_TXT = { '3y-high':'3Y HIGH', 'elevated':'ELEVATED', '3y-low':'3Y LOW', 'depressed':'DEPRESSED' };
+
 function Positioning({ rows, busy }) {
+  const ok = rows.filter(r => !r.failed);
+  const failed = rows.filter(r => r.failed);
   const byGroup = ['metal','energy','index','fx']
-    .map(g => ({ g, items: rows.filter(r => r.group === g) }))
+    .map(g => ({ g, items: ok.filter(r => r.group === g) }))
     .filter(x => x.items.length);
 
-  const stateCol = s => s === 'crowded-long' ? C.bad : s === 'crowded-short' ? C.good
-                      : s?.startsWith('leaning') ? C.warn : C.dim;
+  const stateCol = s => s === '3y-high' ? C.bad : s === '3y-low' ? C.good
+                      : s === 'elevated' || s === 'depressed' ? C.warn : C.dim;
 
   return (
     <Panel title="POSITIONING" right="CFTC · 3yr percentile">
@@ -263,27 +267,37 @@ function Positioning({ rows, busy }) {
                 color: r.change == null ? '#334155' : r.change > 0 ? C.good : C.bad }}>
                 {r.change == null ? '—' : `${r.change > 0 ? '+' : ''}${Math.round(r.change/1000)}k`}
               </span>
-              {/* percentile bar — where this reading sits against its own 3yr history */}
+              {/* percentile bar — only drawn when there is enough history to rank */}
               <div style={{ flex:1, height:9, background:'#131c26', borderRadius:2, overflow:'hidden', position:'relative' }}>
-                <div style={{ width:`${r.pct ?? 0}%`, height:'100%',
-                  background: r.pct >= 90 ? '#ef4444' : r.pct <= 10 ? '#22c55e'
-                            : r.pct >= 75 || r.pct <= 25 ? '#f59e0b' : '#334155' }}/>
+                {r.enough && (
+                  <div style={{ width:`${r.pct ?? 0}%`, height:'100%',
+                    background: r.pct >= 90 ? '#ef4444' : r.pct <= 10 ? '#22c55e'
+                              : r.pct >= 75 || r.pct <= 25 ? '#f59e0b' : '#334155' }}/>
+                )}
               </div>
-              <span style={{ fontSize:9, color:C.dim, width:30, textAlign:'right', flexShrink:0 }}>
-                {r.pct != null ? `${r.pct}%` : '—'}
+              <span style={{ fontSize:9, color: r.enough ? C.dim : '#334155', width:30, textAlign:'right', flexShrink:0 }}>
+                {r.enough ? `${r.pct}%` : '—'}
               </span>
-              <span style={{ fontSize:8, fontWeight:800, color:stateCol(r.state), width:58, textAlign:'right', flexShrink:0 }}>
-                {r.state === 'normal' ? '' : r.state.replace('-',' ').toUpperCase()}
+              <span style={{ fontSize:8, fontWeight:800, color: r.enough ? stateCol(r.state) : '#f59e0b',
+                width:58, textAlign:'right', flexShrink:0 }}>
+                {r.enough ? (STATE_TXT[r.state] || '') : `n=${r.weeks} THIN`}
               </span>
             </div>
           ))}
         </div>
       ))}
 
-      {rows.length > 0 && (
-        <div style={{ fontSize:8, color:'#334155', fontFamily:C.mono, marginTop:2, lineHeight:1.5 }}>
-          Net fund position, weekly change, and where it sits against its own 3-year range.
-          90th+ = crowded long, 10th− = crowded short. Report is weekly ({rows[0].date}) — positioning, not timing.
+      {failed.length > 0 && (
+        <div style={{ fontSize:9, color:C.warn, fontFamily:C.mono, marginTop:4, lineHeight:1.5 }}>
+          No CFTC data returned for: {failed.map(f => f.label).join(', ')} — contract code may have changed.
+        </div>
+      )}
+      {ok.length > 0 && (
+        <div style={{ fontSize:8, color:'#334155', fontFamily:C.mono, marginTop:4, lineHeight:1.5 }}>
+          Net fund position, weekly change, and where it sits in its own 3-year range.
+          3Y HIGH = top decile of its history, 3Y LOW = bottom. Rows marked THIN returned under {ok[0].minWeeks}
+          weeks of history — the reading is shown but not ranked, because a percentile from a handful of points
+          is noise. Weekly report ({(ok[0].date || '').slice(0,10)}) — positioning, not timing.
         </div>
       )}
     </Panel>
@@ -508,8 +522,9 @@ export default function FlowTerminal() {
     // The markets actually traded here: institutional positioning (all of them)
     // and live spread stress (all of them). Independent of the refused book.
     const posnDone = (async () => {
-      const r = await Promise.allSettled(POSITION_MARKETS.map(fetchPositioning));
-      setPosn(r.filter(x => x.status === 'fulfilled' && x.value).map(x => x.value));
+      const r = await Promise.allSettled(POSITION_MARKETS.map(m => fetchPositioning(m)));
+      // keep failures so the panel can name what is missing instead of hiding it
+      setPosn(r.map((x, i) => x.status === 'fulfilled' && x.value ? x.value : { ...POSITION_MARKETS[i], failed:true, weeks:0 }));
     })();
     const spreadDone = hasOanda ? (async () => {
       const r = await Promise.allSettled(SPREAD_INSTRUMENTS.map(fetchSpreadStress));

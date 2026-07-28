@@ -277,13 +277,16 @@ export async function fetchTakerFlow(symbol, interval = '1h', limit = 24) {
 // The number that matters is not the raw net position (meaningless without
 // context) but where it sits against its OWN history: +180k contracts long is
 // unremarkable for gold in one regime and a crowded extreme in another.
+// Some contracts have been re-coded over the years, so a single code can return
+// only a handful of recent weeks. Alternates are tried until one yields enough
+// history to score against.
 export const POSITION_MARKETS = [
-  { key:'XAU/USD', label:'GOLD',    code:'088691', group:'metal'  },
-  { key:'XAG/USD', label:'SILVER',  code:'084691', group:'metal'  },
-  { key:'COPPER',  label:'COPPER',  code:'085692', group:'metal'  },
-  { key:'PLATINUM',label:'PLATINUM',code:'076651', group:'metal'  },
-  { key:'USOIL',   label:'WTI',     code:'067651', group:'energy' },
-  { key:'NATGAS',  label:'NAT GAS', code:'023651', group:'energy' },
+  { key:'XAU/USD', label:'GOLD',    code:'088691', alt:['088606'], group:'metal'  },
+  { key:'XAG/USD', label:'SILVER',  code:'084691', alt:['084603'], group:'metal'  },
+  { key:'COPPER',  label:'COPPER',  code:'085692', alt:['085692','084603'], group:'metal'  },
+  { key:'PLATINUM',label:'PLATINUM',code:'076651', alt:['076651'], group:'metal'  },
+  { key:'USOIL',   label:'WTI',     code:'067651', alt:['067411'], group:'energy' },
+  { key:'NATGAS',  label:'NAT GAS', code:'023651', alt:['023391'], group:'energy' },
   { key:'US500',   label:'S&P 500', code:'13874A', group:'index'  },
   { key:'US100',   label:'NASDAQ',  code:'209742', group:'index'  },
   { key:'DXY',     label:'USD IDX', code:'098662', group:'index'  },
@@ -302,34 +305,51 @@ const percentileOf = (value, arr) => {
   return Math.round((below / arr.length) * 100);
 };
 
+// A percentile needs history to mean anything. Below this the reading is
+// reported as-is with no ranking and no crowding label — the same sample-size
+// discipline the backtest grader uses. Two weeks of data cannot say "extreme".
+export const MIN_WEEKS = 30;
+
+const fetchCode = async (code, weeks) => j(
+  `https://publicreporting.cftc.gov/resource/jun7-fc8e.json`
+  + `?cftc_contract_market_code=${code}`
+  + `&$order=report_date_as_yyyy_mm_dd%20DESC&$limit=${weeks}`
+);
+
 // weeks = how much history to score the current reading against
 export async function fetchPositioning(market, weeks = 156) {
-  const rows = await j(`https://publicreporting.cftc.gov/resource/jun7-fc8e.json`
-    + `?cftc_contract_market_code=${market.code}`
-    + `&$order=report_date_as_yyyy_mm_dd%20DESC&$limit=${weeks}`);
-  if (!rows?.length) return null;
+  let rows = null, usedCode = market.code;
+  for (const code of [market.code, ...(market.alt || [])]) {
+    try {
+      const r = await fetchCode(code, weeks);
+      if (r?.length && (!rows || r.length > rows.length)) { rows = r; usedCode = code; }
+      if (rows && rows.length >= MIN_WEEKS) break;      // enough history, stop looking
+    } catch { /* try the next code */ }
+  }
+  if (!rows?.length) return { ...market, failed: true, weeks: 0 };
 
   const net = r => (+r.noncomm_positions_long_all || 0) - (+r.noncomm_positions_short_all || 0);
   const comm = r => (+r.comm_positions_long_all || 0) - (+r.comm_positions_short_all || 0);
 
   const series = rows.map(net);
   const cur = series[0], prev = series[1] ?? null;
-  const pct = percentileOf(cur, series);
+  const enough = series.length >= MIN_WEEKS;
+  const pct = enough ? percentileOf(cur, series) : null;
 
-  // Extremes are where crowding lives. Both tails matter — a record short is
-  // as stretched as a record long, just in the other direction.
+  // Labels describe where the reading sits in its OWN range, which is what the
+  // percentile actually measures. "Crowded short" on a +21k net position read
+  // as a contradiction; "3Y LOW" cannot.
   let state = 'normal';
-  if (pct != null) {
-    if (pct >= 90) state = 'crowded-long';
-    else if (pct >= 75) state = 'leaning-long';
-    else if (pct <= 10) state = 'crowded-short';
-    else if (pct <= 25) state = 'leaning-short';
-  }
+  if (!enough) state = 'insufficient';
+  else if (pct >= 90) state = '3y-high';
+  else if (pct >= 75) state = 'elevated';
+  else if (pct <= 10) state = '3y-low';
+  else if (pct <= 25) state = 'depressed';
 
   return {
-    ...market,
+    ...market, usedCode,
     net: cur, prevNet: prev, change: prev != null ? cur - prev : null,
-    pct, state, weeks: series.length,
+    pct, state, weeks: series.length, enough, minWeeks: MIN_WEEKS,
     commercialNet: comm(rows[0]),
     openInterest: +rows[0].open_interest_all || null,
     date: rows[0].report_date_as_yyyy_mm_dd,
