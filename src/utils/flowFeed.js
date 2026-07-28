@@ -330,8 +330,13 @@ export async function fetchPositioning(market, weeks = 156) {
 
   const net = r => (+r.noncomm_positions_long_all || 0) - (+r.noncomm_positions_short_all || 0);
   const comm = r => (+r.comm_positions_long_all || 0) - (+r.comm_positions_short_all || 0);
+  // Non-reportable = traders too small to be required to report: the actual
+  // retail crowd, published by the CFTC itself. No broker book required.
+  const small = r => (+r.nonrept_positions_long_all || 0) - (+r.nonrept_positions_short_all || 0);
 
   const series = rows.map(net);
+  const commSeries = rows.map(comm);
+  const smallSeries = rows.map(small);
   const cur = series[0], prev = series[1] ?? null;
   const enough = series.length >= MIN_WEEKS;
   const pct = enough ? percentileOf(cur, series) : null;
@@ -346,11 +351,25 @@ export async function fetchPositioning(market, weeks = 156) {
   else if (pct <= 10) state = '3y-low';
   else if (pct <= 25) state = 'depressed';
 
+  // Smart vs dumb, both sides straight from the CFTC: hedgers (commercials) are
+  // in the physical business and are the classic "smart" side; non-reportable
+  // small traders are the retail crowd. They normally sit opposite each other,
+  // so what matters is when BOTH are stretched at once.
+  const commNet = commSeries[0], smallNet = smallSeries[0];
+  const commPct = enough ? percentileOf(commNet, commSeries) : null;
+  const smallPct = enough ? percentileOf(smallNet, smallSeries) : null;
+  const stretched = p => p != null && (p >= 85 || p <= 15);
+  const smartDumb = !enough ? null : {
+    commNet, smallNet, commPct, smallPct,
+    opposed: (commNet > 0) !== (smallNet > 0),
+    bothStretched: stretched(commPct) && stretched(smallPct),
+  };
+
   return {
     ...market, usedCode,
     net: cur, prevNet: prev, change: prev != null ? cur - prev : null,
     pct, state, weeks: series.length, enough, minWeeks: MIN_WEEKS,
-    commercialNet: comm(rows[0]),
+    commercialNet: commNet, smartDumb,
     openInterest: +rows[0].open_interest_all || null,
     date: rows[0].report_date_as_yyyy_mm_dd,
     min: Math.min(...series), max: Math.max(...series),

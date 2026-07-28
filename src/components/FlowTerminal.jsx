@@ -372,31 +372,57 @@ function SqueezeRadar({ rows, busy }) {
   );
 }
 
-// ── 3. SMART vs DUMB ──────────────────────────────────────────────────────────
+// ── SMART vs DUMB ─────────────────────────────────────────────────────────────
+// Both sides come from the CFTC report itself: commercial hedgers (producers,
+// miners, banks — in the physical business) against non-reportable small
+// traders (the retail crowd). No broker book needed, and it covers every market
+// traded here rather than only the ones a broker chooses to publish.
 function SmartDumb({ rows, busy }) {
+  const items = rows.filter(r => !r.failed && r.smartDumb);
   return (
-    <Panel title="SMART vs DUMB" right="COT × retail book">
-      {busy && !rows.length && <Empty>loading COT and retail books…</Empty>}
-      {!busy && !rows.length && <Empty>Needs both a connected OANDA key (retail book) and CFTC data.</Empty>}
-      {rows.map(r => (
-        <div key={r.ccy} style={{ display:'flex', alignItems:'center', gap:6, padding:'3px 0',
-          borderBottom:'1px solid #0e161e', fontFamily:C.mono }}>
-          <span style={{ fontSize:10, color:C.txt, width:34, flexShrink:0, fontWeight:700 }}>{r.ccy}</span>
-          <span style={{ fontSize:9, width:74, flexShrink:0, color: r.instLong ? C.good : C.bad }}>
-            inst {r.instNet > 0 ? '+' : ''}{(r.instNet/1000).toFixed(0)}k
-          </span>
-          <span style={{ fontSize:9, width:78, flexShrink:0, color: r.retailLong ? C.good : C.bad }}>
-            retail {r.retailLongPct}% {r.retailLong ? 'L' : 'S'}
-          </span>
-          <span style={{ fontSize:9, fontWeight:800, flex:1, textAlign:'right',
-            color: r.strength === 'strong' ? C.warn : r.strength === 'mild' ? C.dim : '#334155' }}>
-            {r.strength === 'strong' ? '⚠ OPPOSITE + CROWDED' : r.strength === 'mild' ? 'opposite' : 'aligned'}
-          </span>
+    <Panel title="SMART vs DUMB" right="CFTC · hedgers vs small traders">
+      {busy && !items.length && <Empty>loading…</Empty>}
+      {!busy && !items.length && <Empty>Needs at least {30} weeks of CFTC history per market.</Empty>}
+
+      {items.length > 0 && (
+        <div style={{ display:'flex', gap:6, fontSize:8, color:'#334155', fontFamily:C.mono, padding:'0 0 3px' }}>
+          <span style={{ width:56 }} />
+          <span style={{ width:64, textAlign:'right' }}>HEDGERS</span>
+          <span style={{ width:64, textAlign:'right' }}>SMALL</span>
+          <span style={{ flex:1, textAlign:'right' }}>READ</span>
         </div>
-      ))}
+      )}
+
+      {items.map(r => {
+        const sd = r.smartDumb;
+        const flag = sd.opposed && sd.bothStretched;
+        return (
+          <div key={r.key} style={{ display:'flex', alignItems:'center', gap:6, padding:'2px 0',
+            borderBottom:'1px solid #0e161e', fontFamily:C.mono }}>
+            <span style={{ fontSize:10, color:C.txt, width:56, flexShrink:0, fontWeight:700 }}>{r.label}</span>
+            <span style={{ fontSize:9, width:64, flexShrink:0, textAlign:'right',
+              color: sd.commNet > 0 ? C.good : C.bad }}>
+              {sd.commNet > 0 ? '+' : ''}{Math.round(sd.commNet/1000)}k
+              <span style={{ color:'#334155' }}> {sd.commPct}%</span>
+            </span>
+            <span style={{ fontSize:9, width:64, flexShrink:0, textAlign:'right',
+              color: sd.smallNet > 0 ? C.good : C.bad }}>
+              {sd.smallNet > 0 ? '+' : ''}{Math.round(sd.smallNet/1000)}k
+              <span style={{ color:'#334155' }}> {sd.smallPct}%</span>
+            </span>
+            <span style={{ fontSize:8, fontWeight:800, flex:1, textAlign:'right',
+              color: flag ? C.warn : sd.opposed ? C.dim : '#2b3644' }}>
+              {flag ? '⚠ BOTH STRETCHED' : sd.opposed ? 'opposed' : 'same side'}
+            </span>
+          </div>
+        );
+      })}
+
       <div style={{ fontSize:8, color:'#334155', fontFamily:C.mono, marginTop:6, lineHeight:1.5 }}>
-        Institutions (CFTC non-commercial net, weekly) against retail (OANDA client book, live).
-        Disagreement is a fact about positioning — it is not a signal to trade.
+        Hedgers are producers and banks trading the physical market — the classic smart side.
+        Small traders are accounts too small to report: the retail crowd. Percentages are each
+        group's own 3-year percentile. These two normally sit opposite, so only BOTH being at an
+        extreme is notable. Weekly data, and a fact about positioning — not a signal to trade.
       </div>
     </Panel>
   );
@@ -617,7 +643,7 @@ export default function FlowTerminal() {
           probe={probe} probing={probing} onProbe={runProbe}/>
         <SqueezeRadar rows={squeeze} busy={busy}/>
         <OrderFlow rows={flow} busy={busy}/>
-        <SmartDumb rows={sd} busy={busy}/>
+        <SmartDumb rows={posn} busy={busy}/>
       </div>
 
       <div style={{ padding:'4px 13px 20px', fontSize:9, color:'#2b3644', lineHeight:1.6 }}>
