@@ -268,6 +268,123 @@ export async function fetchTakerFlow(symbol, interval = '1h', limit = 24) {
   };
 }
 
+// ── POSITIONING: metals, energies, indices, FX ────────────────────────────────
+// The markets actually traded here have no retail book available, but they do
+// have the CFTC Commitment of Traders — real institutional positioning, free,
+// covering every one of them. Weekly rather than live, but it is the genuine
+// article rather than an inference.
+//
+// The number that matters is not the raw net position (meaningless without
+// context) but where it sits against its OWN history: +180k contracts long is
+// unremarkable for gold in one regime and a crowded extreme in another.
+export const POSITION_MARKETS = [
+  { key:'XAU/USD', label:'GOLD',    code:'088691', group:'metal'  },
+  { key:'XAG/USD', label:'SILVER',  code:'084691', group:'metal'  },
+  { key:'COPPER',  label:'COPPER',  code:'085692', group:'metal'  },
+  { key:'PLATINUM',label:'PLATINUM',code:'076651', group:'metal'  },
+  { key:'USOIL',   label:'WTI',     code:'067651', group:'energy' },
+  { key:'NATGAS',  label:'NAT GAS', code:'023651', group:'energy' },
+  { key:'US500',   label:'S&P 500', code:'13874A', group:'index'  },
+  { key:'US100',   label:'NASDAQ',  code:'209742', group:'index'  },
+  { key:'DXY',     label:'USD IDX', code:'098662', group:'index'  },
+  { key:'EUR/USD', label:'EUR',     code:'099741', group:'fx'     },
+  { key:'GBP/USD', label:'GBP',     code:'096742', group:'fx'     },
+  { key:'USD/JPY', label:'JPY',     code:'097741', group:'fx'     },
+  { key:'AUD/USD', label:'AUD',     code:'232741', group:'fx'     },
+  { key:'USD/CAD', label:'CAD',     code:'090741', group:'fx'     },
+  { key:'USD/CHF', label:'CHF',     code:'092741', group:'fx'     },
+  { key:'NZD/USD', label:'NZD',     code:'112741', group:'fx'     },
+];
+
+const percentileOf = (value, arr) => {
+  if (!arr.length) return null;
+  const below = arr.filter(v => v < value).length;
+  return Math.round((below / arr.length) * 100);
+};
+
+// weeks = how much history to score the current reading against
+export async function fetchPositioning(market, weeks = 156) {
+  const rows = await j(`https://publicreporting.cftc.gov/resource/jun7-fc8e.json`
+    + `?cftc_contract_market_code=${market.code}`
+    + `&$order=report_date_as_yyyy_mm_dd%20DESC&$limit=${weeks}`);
+  if (!rows?.length) return null;
+
+  const net = r => (+r.noncomm_positions_long_all || 0) - (+r.noncomm_positions_short_all || 0);
+  const comm = r => (+r.comm_positions_long_all || 0) - (+r.comm_positions_short_all || 0);
+
+  const series = rows.map(net);
+  const cur = series[0], prev = series[1] ?? null;
+  const pct = percentileOf(cur, series);
+
+  // Extremes are where crowding lives. Both tails matter — a record short is
+  // as stretched as a record long, just in the other direction.
+  let state = 'normal';
+  if (pct != null) {
+    if (pct >= 90) state = 'crowded-long';
+    else if (pct >= 75) state = 'leaning-long';
+    else if (pct <= 10) state = 'crowded-short';
+    else if (pct <= 25) state = 'leaning-short';
+  }
+
+  return {
+    ...market,
+    net: cur, prevNet: prev, change: prev != null ? cur - prev : null,
+    pct, state, weeks: series.length,
+    commercialNet: comm(rows[0]),
+    openInterest: +rows[0].open_interest_all || null,
+    date: rows[0].report_date_as_yyyy_mm_dd,
+    min: Math.min(...series), max: Math.max(...series),
+  };
+}
+
+// ── SPREAD STRESS (works on every OANDA instrument) ───────────────────────────
+// The book is refused, but bid/ask candles are not. A spread widening well past
+// its own norm is real, immediate evidence of stress or thin liquidity — and it
+// is exactly when stops get filled badly. This covers metals, indices, energies
+// and FX, which the crypto panels never did.
+export const SPREAD_INSTRUMENTS = [
+  { sym:'XAU/USD', oanda:'XAU_USD', group:'metal'  },
+  { sym:'XAG/USD', oanda:'XAG_USD', group:'metal'  },
+  { sym:'US500',   oanda:'SPX500_USD', group:'index' },
+  { sym:'US100',   oanda:'NAS100_USD', group:'index' },
+  { sym:'US30',    oanda:'US30_USD',   group:'index' },
+  { sym:'USOIL',   oanda:'WTICO_USD',  group:'energy' },
+  { sym:'UKOIL',   oanda:'BCO_USD',    group:'energy' },
+  { sym:'NATGAS',  oanda:'NATGAS_USD', group:'energy' },
+  { sym:'EUR/USD', oanda:'EUR_USD', group:'fx' },
+  { sym:'GBP/USD', oanda:'GBP_USD', group:'fx' },
+  { sym:'USD/JPY', oanda:'USD_JPY', group:'fx' },
+];
+
+export async function fetchSpreadStress(item, { granularity = 'M5', count = 120 } = {}) {
+  const c = oandaCreds();
+  if (!c?.apiKey) throw new Error('OANDA not connected');
+  const r = await fetch(`${base(c)}/instruments/${item.oanda}/candles`
+    + `?granularity=${granularity}&count=${count}&price=BA`,
+    { headers:{ Authorization:`Bearer ${c.apiKey}` }, signal: AbortSignal.timeout(15000) });
+  if (!r.ok) throw new Error(`spread ${r.status}`);
+  const d = await r.json();
+  const rows = (d.candles || []).filter(x => x.complete && x.bid && x.ask);
+  if (rows.length < 10) throw new Error('insufficient bid/ask candles');
+
+  const spreads = rows.map(x => +x.ask.c - +x.bid.c);
+  const mid = (+rows[rows.length-1].ask.c + +rows[rows.length-1].bid.c) / 2;
+  const cur = spreads[spreads.length - 1];
+  const sorted = [...spreads].sort((a, b) => a - b);
+  const med = sorted[Math.floor(sorted.length / 2)] || cur || 1e-9;
+  const ratio = med > 0 ? cur / med : 1;
+
+  return {
+    ...item,
+    spread: cur, median: med, ratio: +ratio.toFixed(2),
+    // spread as basis points of price makes instruments comparable
+    bps: +((cur / mid) * 10000).toFixed(2),
+    medBps: +((med / mid) * 10000).toFixed(2),
+    state: ratio >= 3 ? 'blown' : ratio >= 1.8 ? 'wide' : ratio <= 0.7 ? 'tight' : 'normal',
+    bars: rows.length,
+  };
+}
+
 // ── COT (institutional) ───────────────────────────────────────────────────────
 export const COT_CODES = {
   EUR:'099741', GBP:'096742', JPY:'097741', CHF:'092741',

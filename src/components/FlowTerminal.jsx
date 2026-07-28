@@ -5,6 +5,7 @@ import {
   fetchSqueeze, fetchTakerFlow, fetchCOTNet, smartVsDumb,
   CORREL_PAIRS, pearson, returnsOf, correlationBreak, oandaCreds, probeOanda,
   DEPTH_SYMBOLS, fetchDepthMap,
+  POSITION_MARKETS, fetchPositioning, SPREAD_INSTRUMENTS, fetchSpreadStress,
 } from '../utils/flowFeed';
 
 const C = {
@@ -230,6 +231,99 @@ function LiquidityMap({ sym, setSym, data, depth, busy, fail, probe, probing, on
   );
 }
 
+// ── POSITIONING — metals, energies, indices, FX ───────────────────────────────
+const GROUP_LABEL = { metal:'METALS', energy:'ENERGY', index:'INDICES', fx:'FX' };
+
+function Positioning({ rows, busy }) {
+  const byGroup = ['metal','energy','index','fx']
+    .map(g => ({ g, items: rows.filter(r => r.group === g) }))
+    .filter(x => x.items.length);
+
+  const stateCol = s => s === 'crowded-long' ? C.bad : s === 'crowded-short' ? C.good
+                      : s?.startsWith('leaning') ? C.warn : C.dim;
+
+  return (
+    <Panel title="POSITIONING" right="CFTC · 3yr percentile">
+      {busy && !rows.length && <Empty>loading institutional positioning…</Empty>}
+      {!busy && !rows.length && <Empty>CFTC unavailable right now.</Empty>}
+
+      {byGroup.map(({ g, items }) => (
+        <div key={g} style={{ marginBottom:7 }}>
+          <div style={{ fontSize:8, color:'#334155', fontFamily:C.mono, letterSpacing:'1px', marginBottom:2 }}>
+            {GROUP_LABEL[g]}
+          </div>
+          {items.map(r => (
+            <div key={r.key} style={{ display:'flex', alignItems:'center', gap:5, padding:'2px 0', fontFamily:C.mono }}>
+              <span style={{ fontSize:10, color:C.txt, width:56, flexShrink:0, fontWeight:700 }}>{r.label}</span>
+              <span style={{ fontSize:9, width:52, flexShrink:0, textAlign:'right',
+                color: r.net > 0 ? C.good : C.bad }}>
+                {r.net > 0 ? '+' : ''}{Math.round(r.net/1000)}k
+              </span>
+              <span style={{ fontSize:9, width:44, flexShrink:0, textAlign:'right',
+                color: r.change == null ? '#334155' : r.change > 0 ? C.good : C.bad }}>
+                {r.change == null ? '—' : `${r.change > 0 ? '+' : ''}${Math.round(r.change/1000)}k`}
+              </span>
+              {/* percentile bar — where this reading sits against its own 3yr history */}
+              <div style={{ flex:1, height:9, background:'#131c26', borderRadius:2, overflow:'hidden', position:'relative' }}>
+                <div style={{ width:`${r.pct ?? 0}%`, height:'100%',
+                  background: r.pct >= 90 ? '#ef4444' : r.pct <= 10 ? '#22c55e'
+                            : r.pct >= 75 || r.pct <= 25 ? '#f59e0b' : '#334155' }}/>
+              </div>
+              <span style={{ fontSize:9, color:C.dim, width:30, textAlign:'right', flexShrink:0 }}>
+                {r.pct != null ? `${r.pct}%` : '—'}
+              </span>
+              <span style={{ fontSize:8, fontWeight:800, color:stateCol(r.state), width:58, textAlign:'right', flexShrink:0 }}>
+                {r.state === 'normal' ? '' : r.state.replace('-',' ').toUpperCase()}
+              </span>
+            </div>
+          ))}
+        </div>
+      ))}
+
+      {rows.length > 0 && (
+        <div style={{ fontSize:8, color:'#334155', fontFamily:C.mono, marginTop:2, lineHeight:1.5 }}>
+          Net fund position, weekly change, and where it sits against its own 3-year range.
+          90th+ = crowded long, 10th− = crowded short. Report is weekly ({rows[0].date}) — positioning, not timing.
+        </div>
+      )}
+    </Panel>
+  );
+}
+
+// ── SPREAD STRESS ─────────────────────────────────────────────────────────────
+function SpreadStress({ rows, busy, hasOanda }) {
+  const col = s => s === 'blown' ? C.bad : s === 'wide' ? C.warn : s === 'tight' ? C.good : C.dim;
+  return (
+    <Panel title="SPREAD STRESS" right="oanda · M5 vs own median">
+      {!hasOanda && <Empty>Needs a connected OANDA key.</Empty>}
+      {hasOanda && busy && !rows.length && <Empty>measuring spreads…</Empty>}
+      {hasOanda && !busy && !rows.length && <Empty>No bid/ask data returned.</Empty>}
+      {rows.map(r => (
+        <div key={r.sym} style={{ display:'flex', alignItems:'center', gap:6, padding:'2px 0', fontFamily:C.mono }}>
+          <span style={{ fontSize:10, color:C.txt, width:60, flexShrink:0, fontWeight:700 }}>{r.sym}</span>
+          <span style={{ fontSize:9, color:C.dim, width:56, flexShrink:0, textAlign:'right' }}>{r.bps} bp</span>
+          <div style={{ flex:1, height:9, background:'#131c26', borderRadius:2, overflow:'hidden' }}>
+            <div style={{ width:`${Math.min(100, (r.ratio/4)*100)}%`, height:'100%',
+              background: r.ratio >= 3 ? '#ef4444' : r.ratio >= 1.8 ? '#f59e0b' : '#334155' }}/>
+          </div>
+          <span style={{ fontSize:9, color:col(r.state), width:38, textAlign:'right', flexShrink:0, fontWeight:700 }}>
+            ×{r.ratio}
+          </span>
+          <span style={{ fontSize:8, fontWeight:800, color:col(r.state), width:46, textAlign:'right', flexShrink:0 }}>
+            {r.state === 'normal' ? '' : r.state.toUpperCase()}
+          </span>
+        </div>
+      ))}
+      {rows.length > 0 && (
+        <div style={{ fontSize:8, color:'#334155', fontFamily:C.mono, marginTop:6, lineHeight:1.5 }}>
+          Current spread against this instrument's own median. ×3 or more = blown out: thin liquidity,
+          worse fills, stops taken at prices you did not expect. This is the cost of trading right now.
+        </div>
+      )}
+    </Panel>
+  );
+}
+
 // ── 2. SQUEEZE RADAR ──────────────────────────────────────────────────────────
 function SqueezeRadar({ rows, busy }) {
   const col = s => s?.includes('squeeze') ? C.bad : s?.includes('crowded') ? C.warn : C.dim;
@@ -363,6 +457,8 @@ export default function FlowTerminal() {
   const [probe,    setProbe]    = useState(null);
   const [probing,  setProbing]  = useState(false);
   const [depth,    setDepth]    = useState({});
+  const [posn,     setPosn]     = useState([]);
+  const [spreads,  setSpreads]  = useState([]);
   const started = useRef(false);
 
   const hasOanda = !!oandaCreds()?.apiKey;
@@ -409,6 +505,17 @@ export default function FlowTerminal() {
       setFlow(fl.filter(x => x.status === 'fulfilled' && x.value).map(x => x.value));
     })();
 
+    // The markets actually traded here: institutional positioning (all of them)
+    // and live spread stress (all of them). Independent of the refused book.
+    const posnDone = (async () => {
+      const r = await Promise.allSettled(POSITION_MARKETS.map(fetchPositioning));
+      setPosn(r.filter(x => x.status === 'fulfilled' && x.value).map(x => x.value));
+    })();
+    const spreadDone = hasOanda ? (async () => {
+      const r = await Promise.allSettled(SPREAD_INSTRUMENTS.map(fetchSpreadStress));
+      setSpreads(r.filter(x => x.status === 'fulfilled' && x.value).map(x => x.value));
+    })() : Promise.resolve();
+
     await loadBook(sym);
 
     // Smart vs Dumb — needs both a COT net and a retail book per currency
@@ -453,7 +560,7 @@ export default function FlowTerminal() {
       } catch { /* correlation is optional */ }
     }
 
-    await cryptoDone.catch(() => {});
+    await Promise.all([cryptoDone, posnDone, spreadDone].map(p => p.catch(() => {})));
     setUpdated(new Date());
     setBusy(false);
   }, [sym, hasOanda, loadBook]);
@@ -488,12 +595,14 @@ export default function FlowTerminal() {
       )}
 
       <div style={{ display:'flex', flexDirection:'column', gap:9, padding:'9px 11px' }}>
+        <Positioning rows={posn} busy={busy}/>
+        <SpreadStress rows={spreads} busy={busy} hasOanda={hasOanda}/>
+        <CorrelBreaks rows={correl} busy={busy}/>
         <LiquidityMap sym={sym} setSym={setSym} data={books} depth={depth} busy={busy} fail={bookFail}
           probe={probe} probing={probing} onProbe={runProbe}/>
         <SqueezeRadar rows={squeeze} busy={busy}/>
-        <SmartDumb rows={sd} busy={busy}/>
         <OrderFlow rows={flow} busy={busy}/>
-        <CorrelBreaks rows={correl} busy={busy}/>
+        <SmartDumb rows={sd} busy={busy}/>
       </div>
 
       <div style={{ padding:'4px 13px 20px', fontSize:9, color:'#2b3644', lineHeight:1.6 }}>
