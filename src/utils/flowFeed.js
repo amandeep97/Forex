@@ -147,7 +147,9 @@ export function retailBias(positionBook) {
 // exists right now, rather than an inference from candles.
 export const DEPTH_SYMBOLS = ['BTCUSDT','ETHUSDT','SOLUSDT','XRPUSDT','BNBUSDT','DOGEUSDT'];
 
-export async function fetchDepthMap(symbol, { limit = 1000, bucketPct = 0.0005, walls = 6 } = {}) {
+export async function fetchDepthMap(symbol, { limit = 5000, bucketPct = 0.0005, walls = 7 } = {}) {
+  // 5000 is Binance's maximum. On a liquid symbol 1000 levels barely clears the
+  // spread, so the "walls" it surfaced were just top-of-book noise.
   const d = await j(`https://api.binance.com/api/v3/depth?symbol=${symbol}&limit=${limit}`);
   const bids = (d.bids || []).map(([p, q]) => [+p, +q]);
   const asks = (d.asks || []).map(([p, q]) => [+p, +q]);
@@ -166,21 +168,36 @@ export async function fetchDepthMap(symbol, { limit = 1000, bucketPct = 0.0005, 
   const all = [...bucket(bids, 'bid'), ...bucket(asks, 'ask')];
   const max = Math.max(...all.map(b => b.notional), 1);
 
+  // A wall is size that STANDS OUT, not merely size that is close. Compare each
+  // bucket to the median bucket so ordinary depth near the touch is excluded and
+  // a genuine block further out can still qualify.
+  const sorted = all.map(b => b.notional).sort((a, b) => a - b);
+  const med = sorted[Math.floor(sorted.length / 2)] || 1;
+  const WALL_MIN = med * 3;
+
   const bidNotional = bids.reduce((s, [p, q]) => s + p * q, 0);
   const askNotional = asks.reduce((s, [p, q]) => s + p * q, 0);
+  const lowest = bids[bids.length - 1][0], highest = asks[asks.length - 1][0];
+
+  const scored = all
+    .map(b => ({ ...b, rel: b.notional / max, distPct: +(((b.price - mid) / mid) * 100).toFixed(3) }))
+    .filter(b => b.notional >= WALL_MIN)
+    // mild distance weighting only — a large block 1% away is still worth seeing
+    .map(b => ({ ...b, score: b.notional / (1 + Math.abs(b.distPct) * 0.4), xMedian: +(b.notional / med).toFixed(1) }))
+    .sort((a, b) => b.score - a.score)
+    .slice(0, walls)
+    .sort((a, b) => b.price - a.price);
 
   return {
-    symbol, mid, step,
-    // biggest resting size, nearest first when size is comparable
-    walls: all
-      .map(b => ({ ...b, rel: b.notional / max, distPct: +(((b.price - mid) / mid) * 100).toFixed(3) }))
-      .map(b => ({ ...b, score: b.notional / (1 + Math.abs(b.distPct) * 2) }))
-      .sort((a, b) => b.score - a.score)
-      .slice(0, walls)
-      .sort((a, b) => b.price - a.price),
+    symbol, mid, step, walls: scored,
     imbalance: +((bidNotional / (bidNotional + askNotional)) * 100).toFixed(1),
     bidNotional, askNotional,
     levels: bids.length + asks.length,
+    // how far the returned book actually reaches — without this the map looks
+    // complete when it may only span a fraction of a percent
+    rangePct: +(((highest - lowest) / mid) * 100).toFixed(2),
+    lowest, highest,
+    medianBucket: med,
   };
 }
 

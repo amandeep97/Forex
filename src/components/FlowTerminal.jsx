@@ -117,8 +117,11 @@ function DepthMap({ depth }) {
       </div>
 
       <div style={{ fontSize:9, color:C.dim, fontFamily:C.mono, marginBottom:4 }}>
-        RESTING WALLS · mid {depth.mid.toFixed(dec)} · {depth.levels} levels
+        RESTING WALLS · mid {depth.mid.toFixed(dec)} · book spans ±{(depth.rangePct/2).toFixed(2)}%
       </div>
+      {depth.walls.length === 0 && (
+        <Empty>No stand-out walls — depth is evenly spread, no single block dominates.</Empty>
+      )}
       {depth.walls.map((w, i) => (
         <div key={i} style={{ display:'flex', alignItems:'center', gap:6, padding:'2px 0', fontFamily:C.mono }}>
           <span style={{ fontSize:10, color: w.side==='bid' ? C.good : C.bad, width:14, flexShrink:0 }}>
@@ -132,14 +135,17 @@ function DepthMap({ depth }) {
           <span style={{ fontSize:9, color:C.dim, width:52, textAlign:'right', flexShrink:0 }}>
             ${w.notional >= 1e6 ? `${(w.notional/1e6).toFixed(1)}M` : `${Math.round(w.notional/1e3)}k`}
           </span>
+          <span style={{ fontSize:9, color: w.xMedian >= 8 ? C.warn : '#334155', width:34, textAlign:'right', flexShrink:0 }}>
+            ×{w.xMedian}
+          </span>
           <span style={{ fontSize:9, color:'#334155', width:44, textAlign:'right', flexShrink:0 }}>
             {w.distPct > 0 ? '+' : ''}{w.distPct}%
           </span>
         </div>
       ))}
       <div style={{ fontSize:8, color:'#334155', fontFamily:C.mono, marginTop:6, lineHeight:1.5 }}>
-        ▼ bid walls below · ▲ ask walls above. Real resting orders in USD, ranked by size and closeness.
-        Walls can be pulled at any moment — this is the book now, not a promise.
+        ▼ bid walls below · ▲ ask walls above. ×N = how many times the typical price level this block is;
+        only levels ≥×3 qualify. Walls can be pulled at any moment — this is the book now, not a promise.
       </div>
     </>
   );
