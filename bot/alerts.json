@@ -1,6 +1,19 @@
 {
   "alerts": [
     {
+      "id": "al_1785211918248_6c4g",
+      "type": "pattern",
+      "sym": "USOIL",
+      "repeat": false,
+      "enabled": true,
+      "createdAt": 1785211918248,
+      "lastTriggered": null,
+      "tf": "M15",
+      "pattern": "both",
+      "N": 15,
+      "lastCandleT": null
+    },
+    {
       "id": "al_1785211911108_pt2f",
       "type": "pattern",
       "sym": "USOIL",
@@ -11,7 +24,7 @@
       "tf": "M30",
       "pattern": "both",
       "N": 15,
-      "lastCandleT": null
+      "lastCandleT": 1785209400000
     },
     {
       "id": "al_1784302910439_itze",
@@ -131,5 +144,5 @@
       "lastCandleT": 1784004600000
     }
   ],
-  "updatedAt": "2026-07-28T04:11:51.484Z"
+  "updatedAt": "2026-07-28T04:11:58.443Z"
 }
