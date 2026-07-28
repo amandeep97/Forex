@@ -132,7 +132,11 @@ export default function AlertsCenter({ onClose }) {
           <button onClick={onClose} style={{ background:'none', border:'none', color:'#64748b', fontSize:24, cursor:'pointer', lineHeight:1 }}>×</button>
         </div>
         <div style={{ fontSize:10, color:'#475569', marginBottom:14 }}>
-          Fires browser + Telegram alerts while the app/PWA is open.
+          {/* Was "while the app/PWA is open", which stopped being true once
+              background push worked — the bot delivers with the app closed. */}
+          {pushOn
+            ? 'Your VPS watches 24/7 and alerts this device even when the app is closed.'
+            : 'Alerts fire while this app is open. Turn on background push below to get them when it is closed.'}
         </div>
 
         <div style={{ display:'flex', gap:6, marginBottom:16 }}>
