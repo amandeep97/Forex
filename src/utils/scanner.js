@@ -116,9 +116,12 @@ function signalsFor(m, spread, posn) {
 export async function runScan({ granularity = 'H4', onProgress, limit = 6, force = false } = {}) {
   const list = INSTRUMENTS.filter(i => i.can.candles);
 
-  // COT is weekly and cached for hours, so fetch it once per market up front
+  // COT is weekly, cached for hours, and slow to fetch across 15 contracts.
+  // It must NOT gate the price scan: doing so left progress at 0 and the table
+  // empty until every CFTC request had returned. Start it in the background and
+  // fold the positioning signals in once the price rows exist.
   const cotByKey = {};
-  await pooled(POSITION_MARKETS, async m => {
+  const cotDone = pooled(POSITION_MARKETS, async m => {
     try {
       const r = await get('cot', m.key, () => fetchPositioning(m), { force });
       cotByKey[m.key] = r.value;
@@ -139,17 +142,27 @@ export async function runScan({ granularity = 'H4', onProgress, limit = 6, force
       } catch { /* spread is optional */ }
     }
 
-    const posn = cotByKey[inst.sym] || null;
-    const sig = signalsFor(m, spread, posn);
+    // positioning may still be in flight; it is merged in below
+    const sig = signalsFor(m, spread, null);
     return {
       sym: inst.sym, name: inst.name, cls: inst.cls,
-      m, spread, posn, signals: sig,
+      m, spread, posn: null, signals: sig,
       score: sig.reduce((a, s) => a + s.w, 0),
       error: err,
     };
   }, { limit, onProgress });
 
-  return rows
-    .filter(r => r && !r.item)                 // drop pool error placeholders
-    .sort((a, b) => b.score - a.score || (b.m?.volPct ?? 0) - (a.m?.volPct ?? 0));
+  const priced = rows.filter(r => r && r.sym);   // drop pool error placeholders
+
+  // Fold in positioning once the CFTC requests have landed
+  await cotDone;
+  for (const r of priced) {
+    const posn = cotByKey[r.sym];
+    if (!posn) continue;
+    r.posn = posn;
+    r.signals = signalsFor(r.m, r.spread, posn);
+    r.score = r.signals.reduce((a, s) => a + s.w, 0);
+  }
+
+  return priced.sort((a, b) => b.score - a.score || (b.m?.volPct ?? 0) - (a.m?.volPct ?? 0));
 }

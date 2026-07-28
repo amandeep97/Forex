@@ -1,4 +1,4 @@
-import { useState, useCallback, useRef, useMemo } from 'react';
+import { useState, useEffect, useCallback, useRef, useMemo } from 'react';
 import { runScan } from '../utils/scanner';
 import { CLASS, CLASS_ORDER } from '../data/instruments';
 import { stats as cacheStats, clearAll } from '../utils/marketCache';
@@ -78,9 +78,19 @@ export default function Scanner() {
   const scan = useCallback(async (force = false) => {
     setBusy(true); setProg({ done:0, total:0 });
     try {
+      const partial = [];
       const out = await runScan({
         granularity: gran, force,
-        onProgress: (done, total) => setProg({ done, total }),
+        onProgress: (done, total, row) => {
+          setProg({ done, total });
+          // fill the table as results land rather than waiting for the slowest
+          if (row && row.sym) {
+            partial.push(row);
+            if (done % 5 === 0 || done === total) {
+              setRows([...partial].sort((a, b) => b.score - a.score));
+            }
+          }
+        },
       });
       setRows(out);
       setRanAt(new Date());
@@ -88,7 +98,13 @@ export default function Scanner() {
     setBusy(false);
   }, [gran]);
 
-  if (!started.current) { started.current = true; scan(false); }
+  // Kick off in an effect, not during render — calling setState from a render
+  // pass is a React violation and made the first scan unreliable.
+  useEffect(() => {
+    if (started.current) return;
+    started.current = true;
+    scan(false);
+  }, [scan]);
 
   const shown = useMemo(() => {
     const f = filter === 'all' ? rows
