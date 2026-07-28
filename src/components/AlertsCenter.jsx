@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { ALERT_INSTRUMENTS, instBySym, fetchPrice } from '../utils/alertFeed';
 import { showBrowserNotification, requestBrowserPermission, sendTelegram } from '../utils/notifications';
 import { loadAlerts, saveAlerts, loadLog, notifCfg, saveNotifCfg, LOG_LS, POLL_MS } from '../hooks/useAlertsEngine';
-import { enableBackgroundPush, disableBackgroundPush, isPushEnabled, syncAlertsToBot, pushSupported, pushBlockedReason, isStandalone, verifyPush, repairPush } from '../utils/webPush';
+import { enableBackgroundPush, disableBackgroundPush, isPushEnabled, syncAlertsToBot, pushSupported, pushBlockedReason, isStandalone, verifyPush, repairPush, listPushDevices } from '../utils/webPush';
 import { getPatternN, setPatternN } from '../utils/candlePatterns';
 
 // ── UI helpers ────────────────────────────────────────────────────────────────
@@ -35,6 +35,7 @@ export default function AlertsCenter({ onClose }) {
   const [pushOn, setPushOn]   = useState(isPushEnabled);
   const [pushMsg, setPushMsg] = useState('');
   const [pushHealth, setPushHealth] = useState(null);
+  const [devices, setDevices] = useState(null);
   const [pushBusy, setPushBusy] = useState(false);
 
   const inst = instBySym(sym);
@@ -66,6 +67,7 @@ export default function AlertsCenter({ onClose }) {
     const r = pushOn ? await disableBackgroundPush() : await enableBackgroundPush();
     setPushOn(isPushEnabled());
     verifyPush().then(h => { setPushHealth(h); if (!h.ok) setPushOn(false); }).catch(() => {});
+    listPushDevices().then(setDevices).catch(() => {});
     setPushMsg((r.ok ? '✓ ' : '✗ ') + r.msg);
     setPushBusy(false);
   };
@@ -313,6 +315,41 @@ export default function AlertsCenter({ onClose }) {
               )}
               {pushMsg && <div style={{ fontSize:11, marginTop:8, color: pushMsg.startsWith('✓') ? '#22c55e' : '#ef4444' }}>{pushMsg}</div>}
               <div style={{ fontSize:9, color:'#475569', marginTop:8, lineHeight:1.5 }}>
+              {devices && (
+                <div style={{ marginTop:10, paddingTop:10, borderTop:'1px solid #14233b' }}>
+                  <div style={{ fontSize:10, fontWeight:800, color:'#94a3b8', marginBottom:6 }}>
+                    Devices that will receive alerts
+                    {devices.ok && <span style={{ color:'#475569', fontWeight:400 }}> · {devices.devices.length}</span>}
+                  </div>
+                  {!devices.ok && <div style={{ fontSize:10, color:'#f59e0b' }}>{devices.msg}</div>}
+                  {devices.ok && devices.devices.length === 0 && (
+                    <div style={{ fontSize:10, color:'#fca5a5', lineHeight:1.5 }}>
+                      None registered — the VPS has nowhere to send. Enable background push above.
+                    </div>
+                  )}
+                  {devices.ok && devices.devices.map((d, i) => (
+                    <div key={i} style={{ display:'flex', alignItems:'center', gap:7, padding:'4px 0',
+                      borderBottom: i < devices.devices.length-1 ? '1px solid #101c2e' : 'none' }}>
+                      <span style={{ fontSize:13 }}>{d.icon}</span>
+                      <span style={{ fontSize:11, fontWeight:700,
+                        color: d.isThisDevice ? '#00d4aa' : '#cbd5e1' }}>{d.name}</span>
+                      {d.isThisDevice && (
+                        <span style={{ fontSize:8, fontWeight:800, color:'#00d4aa', border:'1px solid #00d4aa44',
+                          borderRadius:3, padding:'1px 5px' }}>THIS DEVICE</span>
+                      )}
+                      <span style={{ marginLeft:'auto', fontSize:9, color:'#475569' }}>
+                        {d.addedAt ? d.addedAt.slice(0,10) : ''}
+                      </span>
+                    </div>
+                  ))}
+                  {devices.ok && devices.devices.length > 0 && !devices.devices.some(d => d.isThisDevice) && (
+                    <div style={{ fontSize:10, color:'#fca5a5', marginTop:6, lineHeight:1.5 }}>
+                      ⚠ This device is not in the list — alerts are going to the devices above, not here.
+                      Disable and re-enable background push to register it.
+                    </div>
+                  )}
+                </div>
+              )}
                 Needs GitHub connected (⚙️ Settings) so your VPS can read this device's subscription + your alerts. iPhone: must be added to Home Screen.
               </div>
             </div>

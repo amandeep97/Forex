@@ -148,6 +148,41 @@ export async function verifyPush() {
   return { ok:true, state:'active' };
 }
 
+// Which devices will actually receive a background alert.
+//
+// This list lives only in the repo, so until now the single way to check whether
+// a phone was registered was to open the raw JSON on GitHub. A subscription
+// belonging to an old laptop looks identical to a working one from here, which
+// is exactly how alerts can appear "enabled" while going to a device that is
+// closed.
+export async function listPushDevices() {
+  let mine = null;
+  try { const s = await (await swReady()).pushManager.getSubscription(); mine = s?.toJSON()?.endpoint || null; } catch {}
+  let list = [];
+  try {
+    const r = await ghRead(SUBS_PATH, { noCache: true });
+    list = r?.content?.subscriptions || [];
+  } catch { return { ok:false, msg:'Could not read the device list from GitHub.', devices:[], mine }; }
+
+  const label = ua => {
+    if (/iPhone/i.test(ua)) return { name:'iPhone', icon:'📱' };
+    if (/iPad/i.test(ua))   return { name:'iPad', icon:'📱' };
+    if (/Macintosh/i.test(ua)) return { name:'Mac', icon:'💻' };
+    if (/Android/i.test(ua)) return { name:'Android', icon:'📱' };
+    if (/Windows/i.test(ua)) return { name:'Windows PC', icon:'💻' };
+    return { name:'Unknown device', icon:'❔' };
+  };
+  return {
+    ok: true, mine,
+    devices: list.map(d => ({
+      ...label(d.ua || ''),
+      endpoint: d.endpoint,
+      addedAt: d.addedAt || null,
+      isThisDevice: !!mine && d.endpoint === mine,
+    })),
+  };
+}
+
 // Re-register this device without the user having to toggle anything off/on.
 export async function repairPush() {
   localStorage.removeItem('push_enabled');
