@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback, useRef, useMemo } from 'react';
 import { runScan } from '../utils/scanner';
+import TradeGate from './TradeGate';
 import { CLASS, CLASS_ORDER } from '../data/instruments';
 import { stats as cacheStats, clearAll } from '../utils/marketCache';
 
@@ -161,6 +162,8 @@ export default function Scanner({ onOpen }) {
           </div>
         )}
       </div>
+
+      <TradeGate/>
 
       <div style={{ padding:'8px 10px 0', fontSize:9, color:'#334155', lineHeight:1.6 }}>
         Each instrument is measured against its <strong style={{color:C.dim}}>own</strong> history, so a metal and an
