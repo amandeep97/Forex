@@ -39,9 +39,18 @@ function Row({ r, onOpen }) {
           {r.m ? `${r.m.chg20 > 0 ? '+' : ''}${r.m.chg20}%` : '—'}
         </span>
 
-        <span style={{ marginLeft:'auto', fontSize:11, fontWeight:900, flexShrink:0,
-          color: r.score >= 6 ? C.bad : r.score >= 3 ? C.warn : '#334155' }}>
-          {r.score || ''}
+        <span style={{ marginLeft:'auto', display:'flex', alignItems:'baseline', gap:4, flexShrink:0 }}>
+          {r.families > 1 && (
+            <span title={`${r.families} independent sources: ${(r.familyNames||[]).join(', ')}`}
+              style={{ fontSize:8, fontWeight:800, color: r.families >= 3 ? C.good : C.warn,
+                border:`1px solid ${(r.families >= 3 ? C.good : C.warn)}44`, borderRadius:2, padding:'0 4px' }}>
+              {r.families}×
+            </span>
+          )}
+          <span style={{ fontSize:11, fontWeight:900,
+            color: r.score >= 6 ? C.bad : r.score >= 3 ? C.warn : '#334155' }}>
+            {r.score || ''}
+          </span>
         </span>
         <button onClick={() => onOpen(r.sym)} title="Open in Instrument view"
           style={{ fontSize:10, padding:'1px 6px', borderRadius:3, cursor:'pointer',
@@ -157,6 +166,11 @@ export default function Scanner({ onOpen }) {
         Each instrument is measured against its <strong style={{color:C.dim}}>own</strong> history, so a metal and an
         FX cross are judged on the same scale. The number on the right counts how many unusual things are true at
         once — it is a reason to look, not a signal to trade.
+        <div style={{ marginTop:3 }}>
+          The <strong style={{color:C.good}}>N×</strong> badge counts <strong style={{color:C.dim}}>independent</strong>
+          {' '}sources agreeing. A big move and high volatility are the same fact twice; volatility plus positioning
+          plus spread are three different lenses — and rank higher even at a similar count.
+        </div>
       </div>
 
       <div style={{ margin:'8px 10px', background:C.panel, border:`1px solid ${C.line}`, borderRadius:5, overflow:'hidden' }}>

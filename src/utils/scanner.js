@@ -85,31 +85,68 @@ function measure(inst, cs) {
 }
 
 // ── Signal extraction ─────────────────────────────────────────────────────────
-// Each signal is a plain statement of fact with a weight. The score is simply
-// how many unusual things are true at once — deliberately not a "probability".
+// Each signal is a plain statement of fact, tagged with the FAMILY of evidence
+// it comes from. The family matters because a naive sum double-counts: a large
+// 20-bar move and high volatility are the same event described twice, so an
+// instrument that had merely moved a lot outranked one where three genuinely
+// independent sources agreed.
+//
+//   swing      — magnitude of movement, from the candle series
+//   location   — where price sits in its range, from the same series but a
+//                different question
+//   persistence— one-sidedness of recent bars
+//   cost       — the bid/ask spread, a separate feed entirely
+//   positioning— CFTC weekly, unrelated to price action
+const FAMILY_LABEL = {
+  swing:'movement', location:'range position', persistence:'trend',
+  cost:'trading cost', positioning:'positioning',
+};
+
 function signalsFor(m, spread, posn) {
   const out = [];
   if (m) {
-    if (m.volPct >= 90) out.push({ w:3, tag:'VOL', txt:`volatility ${m.volPct}th pct — expanding` });
-    else if (m.volPct <= 10) out.push({ w:2, tag:'VOL', txt:`volatility ${m.volPct}th pct — coiled` });
+    if (m.volPct >= 90) out.push({ w:3, f:'swing', tag:'VOL', txt:`volatility ${m.volPct}th pct — expanding` });
+    else if (m.volPct <= 10) out.push({ w:2, f:'swing', tag:'VOL', txt:`volatility ${m.volPct}th pct — coiled` });
 
-    if (m.rangePos >= 95) out.push({ w:2, tag:'RANGE', txt:'at top of 60-bar range' });
-    else if (m.rangePos <= 5) out.push({ w:2, tag:'RANGE', txt:'at bottom of 60-bar range' });
+    if (m.rangePos >= 95) out.push({ w:2, f:'location', tag:'RANGE', txt:'at top of 60-bar range' });
+    else if (m.rangePos <= 5) out.push({ w:2, f:'location', tag:'RANGE', txt:'at bottom of 60-bar range' });
 
-    if (Math.abs(m.chg20) >= 5) out.push({ w:2, tag:'MOVE', txt:`${m.chg20 > 0 ? '+' : ''}${m.chg20}% over 20 bars` });
-    if (m.persistence >= 60) out.push({ w:1, tag:'TREND', txt:'one-sided recent bars' });
+    if (Math.abs(m.chg20) >= 5) out.push({ w:2, f:'swing', tag:'MOVE', txt:`${m.chg20 > 0 ? '+' : ''}${m.chg20}% over 20 bars` });
+    if (m.persistence >= 60) out.push({ w:1, f:'persistence', tag:'TREND', txt:'one-sided recent bars' });
   }
   if (spread && !spread.error) {
-    if (spread.state === 'blown') out.push({ w:3, tag:'COST', txt:`spread ×${spread.ratio} — blown out` });
-    else if (spread.state === 'wide') out.push({ w:2, tag:'COST', txt:`spread ×${spread.ratio} — wide` });
+    if (spread.state === 'blown') out.push({ w:3, f:'cost', tag:'COST', txt:`spread ×${spread.ratio} — blown out` });
+    else if (spread.state === 'wide') out.push({ w:2, f:'cost', tag:'COST', txt:`spread ×${spread.ratio} — wide` });
   }
   if (posn && posn.enough) {
-    if (posn.pct >= 90) out.push({ w:3, tag:'POSN', txt:`funds at ${posn.pct}th pct — 3y high` });
-    else if (posn.pct <= 10) out.push({ w:3, tag:'POSN', txt:`funds at ${posn.pct}th pct — 3y low` });
+    if (posn.pct >= 90) out.push({ w:3, f:'positioning', tag:'POSN', txt:`funds at ${posn.pct}th pct — 3y high` });
+    else if (posn.pct <= 10) out.push({ w:3, f:'positioning', tag:'POSN', txt:`funds at ${posn.pct}th pct — 3y low` });
     if (posn.smartDumb?.opposed && posn.smartDumb?.bothStretched)
-      out.push({ w:2, tag:'SMART', txt:'hedgers and small traders both stretched' });
+      out.push({ w:2, f:'positioning', tag:'SMART', txt:'hedgers and small traders both stretched' });
   }
   return out;
+}
+
+// Score = strongest signal per family, plus a small credit for corroboration
+// within a family, multiplied up as more independent families agree. Two facts
+// from one source are worth far less than two facts from two sources.
+export function scoreSignals(signals) {
+  if (!signals.length) return { score: 0, families: 0, familyNames: [] };
+  const byFamily = {};
+  for (const s of signals) (byFamily[s.f] ||= []).push(s);
+
+  let base = 0;
+  for (const list of Object.values(byFamily)) {
+    const strongest = Math.max(...list.map(s => s.w));
+    base += strongest + 0.5 * (list.length - 1);   // corroboration, not a second vote
+  }
+  const families = Object.keys(byFamily).length;
+  const independence = 1 + 0.35 * (families - 1);
+  return {
+    score: +(base * independence).toFixed(1),
+    families,
+    familyNames: Object.keys(byFamily).map(f => FAMILY_LABEL[f] || f),
+  };
 }
 
 // ── Runner ────────────────────────────────────────────────────────────────────
@@ -144,10 +181,11 @@ export async function runScan({ granularity = 'H4', onProgress, limit = 6, force
 
     // positioning may still be in flight; it is merged in below
     const sig = signalsFor(m, spread, null);
+    const sc = scoreSignals(sig);
     return {
       sym: inst.sym, name: inst.name, cls: inst.cls,
       m, spread, posn: null, signals: sig,
-      score: sig.reduce((a, s) => a + s.w, 0),
+      score: sc.score, families: sc.families, familyNames: sc.familyNames,
       error: err,
     };
   }, { limit, onProgress });
@@ -161,7 +199,8 @@ export async function runScan({ granularity = 'H4', onProgress, limit = 6, force
     if (!posn) continue;
     r.posn = posn;
     r.signals = signalsFor(r.m, r.spread, posn);
-    r.score = r.signals.reduce((a, s) => a + s.w, 0);
+    const sc = scoreSignals(r.signals);
+    r.score = sc.score; r.families = sc.families; r.familyNames = sc.familyNames;
   }
 
   return priced.sort((a, b) => b.score - a.score || (b.m?.volPct ?? 0) - (a.m?.volPct ?? 0));
