@@ -160,6 +160,8 @@ class FeedBuilder {
     this.notifier = notifier;
     this.data   = {};      // sym -> published record
     this.due    = new Map();  // "SYM|H4" -> next refresh timestamp
+    this.servedAt = new Map();  // "SYM|H4" -> monotonic order it was last run
+    this.seq    = 0;
     this.sha    = null;
     this.lastSig = null;
     this.loaded = false;
@@ -363,8 +365,29 @@ class FeedBuilder {
       }
     }
 
-    const batch = jobs.slice(0, MAX_REFRESH_PER_TICK);
+    // Serve the most overdue first, then whatever has waited longest since it
+    // was last served. NOT registry order.
+    //
+    // Observed live: the last five instruments in the registry — the whole
+    // crypto tail — went unmeasured indefinitely while every tick logged
+    // healthily. Taking the head of a registry-ordered list means the front of
+    // the registry always wins, and forty OANDA spread jobs fall due together
+    // every thirty minutes against fourteen slots a tick.
+    //
+    // Sorting by due time alone does NOT fix it: bar boundaries are global, so
+    // all forty spread jobs share one due timestamp and the tie falls straight
+    // back to registry order. The least-recently-served tie-break is what makes
+    // it a round robin, so an oversubscribed feed degrades into "everything is
+    // a bit stale" instead of "the last few are never measured at all".
+    const dueAt  = j => this.due.get(j.key) || 0;
+    const served = k => this.servedAt.get(k) || 0;
+    const batch = jobs
+      .sort((a, b) => dueAt(a) - dueAt(b) || served(a.key) - served(b.key))
+      .slice(0, MAX_REFRESH_PER_TICK);
     for (const j of batch) {
+      // Stamped before the attempt, so a job that keeps failing takes its turn
+      // at the back of the queue rather than reclaiming a slot every tick.
+      this.servedAt.set(j.key, ++this.seq);
       try {
         if (j.kind === 'SPREAD') await this._refreshSpread(j.inst);
         else await this._refreshTf(j.inst, j.kind);
