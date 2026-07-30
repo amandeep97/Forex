@@ -216,10 +216,22 @@ class FeedBuilder {
     return { ratio: +((lastRow.ask - lastRow.bid) / median).toFixed(1), at: lastRow.t };
   }
 
-  _rec(sym) {
+  // Identity is stamped the moment a record exists, not when its candles first
+  // arrive. During a cold start the COT pass creates records for instruments
+  // whose prices have not been measured yet; without a class on them, a filter
+  // scoped to "metals" skipped those records here while the app included them
+  // by falling back to its own registry — the app and the VPS disagreeing about
+  // the same instrument, which is the one thing the shared rules exist to stop.
+  _rec(inst) {
+    const sym = typeof inst === 'string' ? inst : inst.sym;
     if (!this.data[sym]) this.data[sym] = { state:{}, events:[], rarity:{}, asOf:{} };
     const r = this.data[sym];
     r.state ||= {}; r.events ||= []; r.rarity ||= {}; r.asOf ||= {};
+    if (typeof inst === 'object') {
+      r.cls  = inst.cls;
+      r.name = inst.name;
+      r.dec  = inst.dec;
+    }
     return r;
   }
 
@@ -227,10 +239,7 @@ class FeedBuilder {
     const cs = await this._candles(inst, tf, BARS[tf]);
     if (!cs || cs.length < 60) throw new Error(`only ${cs?.length || 0} bars`);
 
-    const rec = this._rec(inst.sym);
-    rec.cls  = inst.cls;
-    rec.name = inst.name;
-    rec.dec  = inst.dec;
+    const rec = this._rec(inst);
     rec.price = +cs[cs.length - 1].c;
 
     rec.state[tf] = measure(cs);
@@ -267,7 +276,7 @@ class FeedBuilder {
 
   async _refreshSpread(inst) {
     const s = await this._spread(inst);
-    const rec = this._rec(inst.sym);
+    const rec = this._rec(inst);
     if (s) {
       rec.state.spreadRatio = s.ratio;
       rec.asOf.spread = s.at;
@@ -286,7 +295,7 @@ class FeedBuilder {
     for (const inst of list) {
       try {
         const p = await fetchCOTPercentile(inst.cot);
-        const rec = this._rec(inst.sym);
+        const rec = this._rec(inst);
         if (p) {
           // A percentile from a thin history is noise wearing a number's
           // clothes, so publish the sample size and let the app refuse it.

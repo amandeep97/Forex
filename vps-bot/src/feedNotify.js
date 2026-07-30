@@ -15,6 +15,7 @@
 const path = require('path');
 const { pathToFileURL } = require('url');
 const { configurePush, sendPush } = require('./push');
+const { bySymbol } = require('./instruments');
 
 const FILTERS_PATH  = 'bot/feed-filters.json';
 const NOTIFIED_PATH = 'bot/feed-notified.json';
@@ -106,7 +107,10 @@ class FeedNotifier {
     for (const f of filters) {
       const scope = f.classes?.length ? new Set(f.classes) : null;
       for (const [sym, rec] of Object.entries(data)) {
-        if (scope && !scope.has(rec.cls)) continue;
+        // Fall back to the registry exactly as the app does. Records written
+        // before identity was stamped at creation carry no class, and reading
+        // rec.cls alone would skip them here while the app still showed them.
+        if (scope && !scope.has(rec.cls || bySymbol(sym)?.cls)) continue;
         let ev;
         try { ev = evaluateOne(rec, f); } catch { continue; }
         if (!ev.matched) continue;
