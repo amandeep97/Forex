@@ -2,8 +2,7 @@
 const fetch = require('node-fetch');
 const { OANDA_MAP, BINANCE_MAP, DEC } = require('./instruments');
 const { detectStrongReversal } = require('./smc');
-let webpush = null;
-try { webpush = require('web-push'); } catch { /* installed on setup */ }
+const { configurePush, sendPush } = require('./push');
 
 const ALERTS_PATH = 'bot/alerts.json';
 const SUBS_PATH   = 'bot/push-subscriptions.json';
@@ -31,10 +30,7 @@ class AlertChecker {
     this.log = log || (() => {});
     this.prev = new Map();        // sym -> last price (+ tl_<id> sides)
     this.zoneInside = new Map();  // alertId -> bool
-    if (webpush && env.VAPID_PUBLIC_KEY && env.VAPID_PRIVATE_KEY) {
-      webpush.setVapidDetails(env.VAPID_SUBJECT || 'mailto:alerts@forexpro.app', env.VAPID_PUBLIC_KEY, env.VAPID_PRIVATE_KEY);
-      this.ready = true;
-    } else { this.ready = false; }
+    this.ready = configurePush(env);
     this.telegramOn = !!(this.telegram && this.telegram.enabled);
     this.canNotify = this.ready || this.telegramOn;
   }
@@ -75,19 +71,6 @@ class AlertChecker {
     const instr = OANDA_MAP[sym];
     if (!instr) return null;
     return this.oanda.getCandles(instr, tf, count + 1); // getCandles returns completed bars {o,h,l,c,t}
-  }
-
-  async _push(subs, title, body) {
-    if (!this.ready || !subs.length) return { dead: [] };
-    const dead = [];
-    await Promise.all(subs.map(async (s) => {
-      try {
-        await webpush.sendNotification(s, JSON.stringify({ title, body }));
-      } catch (e) {
-        if (e.statusCode === 404 || e.statusCode === 410) dead.push(s.endpoint);
-      }
-    }));
-    return { dead };
   }
 
   async check() {
@@ -175,7 +158,7 @@ class AlertChecker {
         if (msg) {
           this.log(`ALERT ${sym}: ${msg}`);
           const tasks = [];
-          if (this.ready && subs.length) tasks.push(this._push(subs, `🔔 ${sym} alert`, msg).then(r => r.dead.forEach(e => allDead.add(e))));
+          if (this.ready && subs.length) tasks.push(sendPush(subs, `🔔 ${sym} alert`, msg).then(r => r.dead.forEach(e => allDead.add(e))));
           if (this.telegramOn) tasks.push(this.telegram.send(`🔔 <b>${sym}</b>\n${msg}`).catch(() => {}));
           await Promise.all(tasks);
           live.lastTriggered = Date.now();

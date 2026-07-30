@@ -153,10 +153,11 @@ function detectBreaks(cs) {
 
 // ── Feed builder ─────────────────────────────────────────────────────────────
 class FeedBuilder {
-  constructor({ oanda, github, log }) {
+  constructor({ oanda, github, log, notifier = null }) {
     this.oanda  = oanda;
     this.github = github;
     this.log    = log || (() => {});
+    this.notifier = notifier;
     this.data   = {};      // sym -> published record
     this.due    = new Map();  // "SYM|H4" -> next refresh timestamp
     this.sha    = null;
@@ -371,6 +372,13 @@ class FeedBuilder {
     // A new or expired event is the whole point of the feed and publishes at
     // once. Everything else — a percentile ticking over, a spread nudging up —
     // waits for the floor, so a quiet market cannot produce a commit a minute.
+    // Notify before deciding whether to write. The write is throttled to keep
+    // the repo readable; a match reaching your phone is not something to hold
+    // back for fifteen minutes because the commit log would look tidier.
+    if (this.notifier) {
+      await this.notifier.run(this.data).catch(e => this.log(`Feed push: ${e.message}`));
+    }
+
     const eventSig = this._eventSignature(this.data);
     const eventsChanged = eventSig !== this.lastEventSig;
     if (!eventsChanged && this.wroteAt && now - this.wroteAt < MIN_WRITE_GAP) {

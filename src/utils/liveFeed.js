@@ -11,12 +11,18 @@
 // fourth copy of a scoring engine rather than a new piece of information.
 
 import { INSTRUMENTS, bySymbol, CLASS_ORDER } from '../data/instruments';
+import { CONDITIONS, evaluateOne } from '../../shared/feedConditions.mjs';
 import { get } from './marketCache';
+import { ghRead, ghWrite, isGithubConfigured } from './githubSync';
 
 const FEED_URL = 'https://raw.githubusercontent.com/amandeep97/Forex/main/bot/feed.json';
+const FILTERS_PATH = 'bot/feed-filters.json';
 
-const FILTERS_KEY = 'live_feed_filters_v1';
-const ACTIVE_KEY  = 'live_feed_active_v1';
+const FILTERS_KEY   = 'live_feed_filters_v1';
+const ACTIVE_KEY    = 'live_feed_active_v1';
+const SYNCED_KEY    = 'live_feed_synced_v1';
+const SHORTLIST_KEY = 'live_feed_shortlist_v1';
+const WATCH_KEY     = 'forex_watchlist';
 
 // ── Feed ──────────────────────────────────────────────────────────────────────
 export async function fetchFeed({ force = false } = {}) {
@@ -31,174 +37,12 @@ export async function fetchFeed({ force = false } = {}) {
   return r.value;
 }
 
-// ── Conditions ────────────────────────────────────────────────────────────────
-// Each returns:
-//   { ok:true }   satisfied
-//   { ok:false }  measured and not satisfied
-//   { ok:null }   not measurable for this instrument (no COT, no spread feed…)
-//
-// The third case is the one that matters. Treating "we never measured it" as
-// "it is false" is how a screen ends up quietly excluding every crypto pair
-// from a filter that mentions positioning, with nothing on screen to say so.
-const NA = why => ({ ok: null, detail: why });
-
-const stateOf = (rec, tf) => rec?.state?.[tf] || null;
-
-function eventHit(rec, type, p) {
-  const cutoff = Date.now() - (p.withinH || 48) * 3600e3;
-  const hits = (rec.events || []).filter(e =>
-    e.type === type && e.tf === p.tf && e.at >= cutoff &&
-    (p.dir === 'any' || !p.dir || e.dir === p.dir));
-  if (!rec.asOf?.[p.tf]) return NA(`no ${p.tf} data`);
-  if (!hits.length) return { ok: false, detail: `no ${p.tf} ${type} in ${p.withinH}h` };
-  const h = hits[0];
-  return { ok: true, event: h, detail: `${p.tf} ${h.dir === 'up' ? '▲' : '▼'} ${h.detail}`, at: h.at };
-}
-
-const TF_OPTS = [{ v:'H4', label:'H4' }, { v:'D', label:'Daily' }];
-const DIR_OPTS = [{ v:'any', label:'either way' }, { v:'up', label:'bullish only' }, { v:'down', label:'bearish only' }];
-
-export const CONDITIONS = {
-  sweep: {
-    label: 'Liquidity sweep', group: 'Event', kind: 'event',
-    help: 'Wick clears the prior 5-bar high or low, body closes back inside.',
-    params: [
-      { k:'tf',      label:'timeframe', type:'select', options:TF_OPTS, def:'H4' },
-      { k:'dir',     label:'direction', type:'select', options:DIR_OPTS, def:'any' },
-      { k:'withinH', label:'within (hours)', type:'number', def:48, min:4, max:720, step:4 },
-    ],
-    test: (rec, p) => eventHit(rec, 'sweep', p),
-  },
-  break: {
-    label: 'Structure break', group: 'Event', kind: 'event',
-    help: 'Close through the most recent confirmed swing high or low.',
-    params: [
-      { k:'tf',      label:'timeframe', type:'select', options:TF_OPTS, def:'H4' },
-      { k:'dir',     label:'direction', type:'select', options:DIR_OPTS, def:'any' },
-      { k:'withinH', label:'within (hours)', type:'number', def:24, min:4, max:720, step:4 },
-    ],
-    test: (rec, p) => eventHit(rec, 'break', p),
-  },
-
-  volCoiled: {
-    label: 'Volatility coiled', group: 'Volatility', kind: 'state',
-    help: 'Current ATR low against this instrument’s own range — quiet before it is not.',
-    params: [
-      { k:'tf',     label:'timeframe', type:'select', options:TF_OPTS, def:'H4' },
-      { k:'maxPct', label:'at or below percentile', type:'number', def:20, min:1, max:50, step:1 },
-    ],
-    test: (rec, p) => {
-      const s = stateOf(rec, p.tf); if (!s || s.volPct == null) return NA(`no ${p.tf} data`);
-      return { ok: s.volPct <= p.maxPct, detail: `volatility ${s.volPct}th pct` };
-    },
-  },
-  volExpanding: {
-    label: 'Volatility expanding', group: 'Volatility', kind: 'state',
-    params: [
-      { k:'tf',     label:'timeframe', type:'select', options:TF_OPTS, def:'H4' },
-      { k:'minPct', label:'at or above percentile', type:'number', def:85, min:50, max:99, step:1 },
-    ],
-    test: (rec, p) => {
-      const s = stateOf(rec, p.tf); if (!s || s.volPct == null) return NA(`no ${p.tf} data`);
-      return { ok: s.volPct >= p.minPct, detail: `volatility ${s.volPct}th pct` };
-    },
-  },
-
-  rangeTop: {
-    label: 'At top of range', group: 'Location', kind: 'state',
-    params: [
-      { k:'tf',     label:'timeframe', type:'select', options:TF_OPTS, def:'H4' },
-      { k:'minPct', label:'at or above', type:'number', def:90, min:50, max:100, step:1 },
-    ],
-    test: (rec, p) => {
-      const s = stateOf(rec, p.tf); if (!s) return NA(`no ${p.tf} data`);
-      return { ok: s.rangePos >= p.minPct, detail: `${s.rangePos}% up the 60-bar range` };
-    },
-  },
-  rangeBottom: {
-    label: 'At bottom of range', group: 'Location', kind: 'state',
-    params: [
-      { k:'tf',     label:'timeframe', type:'select', options:TF_OPTS, def:'H4' },
-      { k:'maxPct', label:'at or below', type:'number', def:10, min:0, max:50, step:1 },
-    ],
-    test: (rec, p) => {
-      const s = stateOf(rec, p.tf); if (!s) return NA(`no ${p.tf} data`);
-      return { ok: s.rangePos <= p.maxPct, detail: `${s.rangePos}% up the 60-bar range` };
-    },
-  },
-
-  bigMove: {
-    label: 'Big recent move', group: 'Movement', kind: 'state',
-    params: [
-      { k:'tf',        label:'timeframe', type:'select', options:TF_OPTS, def:'H4' },
-      { k:'minAbsPct', label:'20-bar change at least (%)', type:'number', def:3, min:0.5, max:30, step:0.5 },
-      { k:'dir',       label:'direction', type:'select', options:DIR_OPTS, def:'any' },
-    ],
-    test: (rec, p) => {
-      const s = stateOf(rec, p.tf); if (!s) return NA(`no ${p.tf} data`);
-      const dirOk = p.dir === 'any' || !p.dir || (p.dir === 'up' ? s.chg20 > 0 : s.chg20 < 0);
-      return { ok: Math.abs(s.chg20) >= p.minAbsPct && dirOk,
-               detail: `${s.chg20 > 0 ? '+' : ''}${s.chg20}% over 20 bars` };
-    },
-  },
-  oneSided: {
-    label: 'One-sided bars', group: 'Movement', kind: 'state',
-    help: 'How lopsided the last 20 bars have been between up and down closes.',
-    params: [
-      { k:'tf',     label:'timeframe', type:'select', options:TF_OPTS, def:'H4' },
-      { k:'minPct', label:'at or above', type:'number', def:60, min:10, max:100, step:5 },
-    ],
-    test: (rec, p) => {
-      const s = stateOf(rec, p.tf); if (!s) return NA(`no ${p.tf} data`);
-      return { ok: s.persistence >= p.minPct, detail: `${s.persistence}% one-sided` };
-    },
-  },
-
-  spreadBlown: {
-    label: 'Spread blown out', group: 'Cost', kind: 'state',
-    params: [{ k:'minRatio', label:'at least × normal', type:'number', def:1.8, min:1.1, max:10, step:0.1 }],
-    test: (rec, p) => {
-      const v = rec.state?.spreadRatio; if (v == null) return NA('no spread feed');
-      return { ok: v >= p.minRatio, detail: `spread ×${v} vs normal` };
-    },
-  },
-  spreadNormal: {
-    label: 'Spread normal', group: 'Cost', kind: 'state',
-    help: 'Use as a cost guard: keep only instruments that are actually cheap to trade.',
-    params: [{ k:'maxRatio', label:'at most × normal', type:'number', def:1.3, min:1, max:5, step:0.1 }],
-    test: (rec, p) => {
-      const v = rec.state?.spreadRatio; if (v == null) return NA('no spread feed');
-      return { ok: v <= p.maxRatio, detail: `spread ×${v} vs normal` };
-    },
-  },
-
-  crowdedLong: {
-    label: 'Funds crowded long', group: 'Positioning', kind: 'state',
-    help: 'CFTC net non-commercial position high in its own 3-year range. A contrarian reading.',
-    params: [{ k:'minPct', label:'at or above percentile', type:'number', def:85, min:50, max:100, step:1 }],
-    test: (rec, p) => {
-      const v = rec.state?.posnPct;
-      if (v == null) return NA(rec.state?.posnWeeks ? `only ${rec.state.posnWeeks}w of COT` : 'no COT report');
-      return { ok: v >= p.minPct, detail: `funds ${v}th pct` };
-    },
-  },
-  crowdedShort: {
-    label: 'Funds crowded short', group: 'Positioning', kind: 'state',
-    params: [{ k:'maxPct', label:'at or below percentile', type:'number', def:15, min:0, max:50, step:1 }],
-    test: (rec, p) => {
-      const v = rec.state?.posnPct;
-      if (v == null) return NA(rec.state?.posnWeeks ? `only ${rec.state.posnWeeks}w of COT` : 'no COT report');
-      return { ok: v <= p.maxPct, detail: `funds ${v}th pct` };
-    },
-  },
-};
-
-export const CONDITION_GROUPS = [...new Set(Object.values(CONDITIONS).map(c => c.group))];
-
-export function defaultParams(key) {
-  const c = CONDITIONS[key]; if (!c) return {};
-  return Object.fromEntries(c.params.map(p => [p.k, p.def]));
-}
+// The condition vocabulary lives in shared/feedConditions.mjs because the VPS
+// evaluates the same filters to decide whether to wake your phone. One copy, so
+// a push can never disagree with the screen.
+export {
+  CONDITIONS, CONDITION_GROUPS, defaultParams, evaluateOne, rarityFor, matchKey,
+} from '../../shared/feedConditions.mjs';
 
 // ── Filters ───────────────────────────────────────────────────────────────────
 // mode 'all'  — every condition must hold
@@ -249,27 +93,83 @@ export function saveFilters(list) {
 export function loadActiveId() { try { return localStorage.getItem(ACTIVE_KEY) || null; } catch { return null; } }
 export function saveActiveId(id) { try { localStorage.setItem(ACTIVE_KEY, id); } catch { /* quota */ } }
 
-// ── Evaluation ────────────────────────────────────────────────────────────────
-export function evaluateOne(rec, filter) {
-  const results = (filter.conditions || []).map(c => {
-    const def = CONDITIONS[c.key];
-    if (!def) return { key:c.key, label:c.key, ok:null, detail:'unknown condition' };
-    const params = { ...defaultParams(c.key), ...(c.params || {}) };
-    let r; try { r = def.test(rec, params); } catch (e) { r = { ok:null, detail:e.message }; }
-    return { key:c.key, label:def.label, kind:def.kind, params, ...r };
-  });
+// ── Sending filters to the VPS ────────────────────────────────────────────────
+// Filters live in localStorage, which the bot cannot read. A filter marked for
+// push is copied to the repo, where the bot picks it up and evaluates it with
+// the same shared rules the screen uses.
+//
+// Syncing is explicit rather than automatic on every edit: each write is a
+// commit, and auto-syncing would produce one per keystroke in the name field.
+const pushable = list => (list || []).filter(f => f.push && (f.conditions || []).length)
+  .map(({ id, name, mode, minMatch, classes, conditions }) =>
+    ({ id, name, mode, minMatch, classes, conditions, push: true }));
 
-  const passed  = results.filter(r => r.ok === true);
-  const failed  = results.filter(r => r.ok === false);
-  const unknown = results.filter(r => r.ok === null);
+const syncHash = list => JSON.stringify(pushable(list));
 
-  const matched = filter.mode === 'any'
-    ? passed.length >= (filter.minMatch || 1)
-    : results.length > 0 && failed.length === 0 && unknown.length === 0;
-
-  return { results, passed, failed, unknown, matched };
+export function syncState(list) {
+  const want = pushable(list);
+  let last = null;
+  try { last = localStorage.getItem(SYNCED_KEY); } catch { /* private mode */ }
+  return {
+    count: want.length,
+    dirty: syncHash(list) !== last,
+    neverSynced: last == null,
+    configured: isGithubConfigured(),
+  };
 }
 
+export async function syncFiltersToBot(list) {
+  if (!isGithubConfigured()) {
+    return { ok:false, msg:'Connect GitHub in Settings — the VPS reads your filters from the repo.' };
+  }
+  const want = pushable(list);
+  let sha = null;
+  try { const r = await ghRead(FILTERS_PATH, { noCache: true }); sha = r?.sha; } catch { /* first write */ }
+  await ghWrite(FILTERS_PATH, { filters: want, updatedAt: new Date().toISOString() },
+    'app: sync feed filters to bot', sha);
+  try { localStorage.setItem(SYNCED_KEY, syncHash(list)); } catch { /* quota */ }
+  return { ok:true, msg: want.length
+    ? `${want.length} filter(s) now watched by the VPS. It notifies on NEW matches only — what already matches right now is recorded silently.`
+    : 'No filters marked for push — the VPS will stop notifying.' };
+}
+
+// ── Shortlist ─────────────────────────────────────────────────────────────────
+// Starring writes to the same watchlist the Watchlist tab reads, plus a note of
+// WHY and at what price. Without the note, next week's list is a row of symbols
+// with no memory of what you saw in them — and no way to find out afterwards
+// whether the filter that surfaced them was worth anything.
+export function loadShortlist() {
+  try { return JSON.parse(localStorage.getItem(SHORTLIST_KEY) || '{}'); } catch { return {}; }
+}
+
+function saveShortlist(map) {
+  try { localStorage.setItem(SHORTLIST_KEY, JSON.stringify(map)); } catch { /* quota */ }
+}
+
+export function shortlistToggle(sym, { price, reason, filterName } = {}) {
+  const map = loadShortlist();
+  if (map[sym]) delete map[sym];
+  else map[sym] = { at: Date.now(), price: price ?? null, reason: reason || null, filter: filterName || null };
+  saveShortlist(map);
+
+  // Keep the shared watchlist in step, so this remains one list rather than two
+  try {
+    const prev = JSON.parse(localStorage.getItem(WATCH_KEY) || '[]');
+    const next = map[sym] ? [...new Set([...prev, sym])] : prev.filter(s => s !== sym);
+    localStorage.setItem(WATCH_KEY, JSON.stringify(next));
+    window.dispatchEvent(new Event('storage'));
+  } catch { /* quota */ }
+  return map;
+}
+
+// What the instrument has done since you shortlisted it. Null when there is no
+// entry price to compare against rather than a fabricated 0%.
+export function sinceShortlist(entry, priceNow) {
+  if (!entry || entry.price == null || priceNow == null || !(entry.price > 0)) return null;
+  return +(((priceNow - entry.price) / entry.price) * 100).toFixed(2);
+}
+
+// ── Evaluation over every instrument ──────────────────────────────────────────
 export function evaluate(feed, filter) {
   const recs = feed?.instruments || {};
   const scope = filter.classes?.length ? new Set(filter.classes) : null;
@@ -283,15 +183,22 @@ export function evaluate(feed, filter) {
   // false, and a filter that drops a third of the market must say so.
   const blocked = [];
 
-  for (const inst of INSTRUMENTS) {
-    if (scope && !scope.has(inst.cls)) continue;
-    const rec = recs[inst.sym];
-    if (!rec) { noData++; continue; }
+  // Iterate what the FEED contains, not what this app's registry lists. The bot
+  // decides pushes by walking the same map, so driving the screen from the local
+  // registry instead would let a symbol the bot measures but the app has not
+  // heard of get notified and never appear — the exact failure the shared rules
+  // exist to prevent. Every record carries its own class, name and precision, so
+  // the registry is an enrichment here, never a gate.
+  for (const [sym, rec] of Object.entries(recs)) {
+    if (!rec) continue;
+    const inst = bySymbol(sym);
+    const cls = rec.cls || inst?.cls || 'fx';
+    if (scope && !scope.has(cls)) continue;
     considered++;
     const ev = evaluateOne(rec, filter);
     if (!ev.matched) {
       if (ev.failed.length === 0 && ev.unknown.length > 0) {
-        blocked.push({ sym: inst.sym, keys: ev.unknown.map(u => u.label), why: ev.unknown[0].detail });
+        blocked.push({ sym, keys: ev.unknown.map(u => u.label), why: ev.unknown[0].detail });
       }
       continue;
     }
@@ -299,28 +206,28 @@ export function evaluate(feed, filter) {
     // Newest passing event first, so the list reads as "what happened, when"
     const events = ev.passed.filter(r => r.event).map(r => r.event).sort((a, b) => b.at - a.at);
     rows.push({
-      sym: inst.sym, name: inst.name, cls: inst.cls, dec: inst.dec,
+      sym, name: rec.name || inst?.name || sym, cls, dec: rec.dec ?? inst?.dec ?? 2,
       price: rec.price, rec, ...ev, newestAt: events[0]?.at || null, events,
     });
+  }
+
+  // Registry instruments the feed has not measured yet — a cold start, not a
+  // filter result, so it is reported separately rather than as "no match".
+  for (const inst of INSTRUMENTS) {
+    if (scope && !scope.has(inst.cls)) continue;
+    if (!recs[inst.sym]) noData++;
   }
 
   rows.sort((a, b) => (b.newestAt || 0) - (a.newestAt || 0) || b.passed.length - a.passed.length);
   return { rows, considered, noData, blocked, total: INSTRUMENTS.length };
 }
 
-// How often the event conditions in a filter fire on a given instrument, from
-// the instrument's own measured history. A filter that lights up every
-// instrument every day is filtering nothing, and this is how you find that out
-// before trading it rather than after.
-export function rarityFor(rec, filter) {
-  const parts = [];
-  for (const c of filter.conditions || []) {
-    if (CONDITIONS[c.key]?.kind !== 'event') continue;
-    const p = { ...defaultParams(c.key), ...(c.params || {}) };
-    const r = rec?.rarity?.[`${c.key}.${p.tf}`];
-    if (r) parts.push({ key:c.key, tf:p.tf, ...r });
-  }
-  return parts;
+// The bot only keeps so much event history, so asking for a longer lookback
+// than it retains would quietly return less than requested — and the filter
+// would look like it had stopped finding things.
+export function lookbackCapH(feed, tf) {
+  const days = feed?.meta?.retainDays?.[tf];
+  return days ? days * 24 : null;
 }
 
 export function feedAge(feed) {

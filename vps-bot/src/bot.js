@@ -11,6 +11,7 @@ const { checkIMFilter } = require('./intermarket');
 const { fetchAllCOT, checkCOTFilter } = require('./cotFetcher');
 const { AlertChecker } = require('./alertChecker');
 const { FeedBuilder }  = require('./feed');
+const { FeedNotifier } = require('./feedNotify');
 
 const STRATEGY_PATH = 'bot/strategy.json';
 const TRADES_PATH   = 'bot/trades.json';
@@ -36,7 +37,10 @@ class ForexBot {
     this.alertChecker = new AlertChecker({ oanda: this.oanda, github: this.github, telegram: this.telegram, env, log: this.log.bind(this) });
     this.feed = env.FEED_ENABLED === 'false'
       ? null
-      : new FeedBuilder({ oanda: this.oanda, github: this.github, log: this.log.bind(this) });
+      : new FeedBuilder({
+          oanda: this.oanda, github: this.github, log: this.log.bind(this),
+          notifier: new FeedNotifier({ github: this.github, telegram: this.telegram, env, log: this.log.bind(this) }),
+        });
   }
 
   log(msg)  { console.log(`[${new Date().toISOString()}] ${msg}`); }

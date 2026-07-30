@@ -2,7 +2,9 @@ import { useState, useEffect, useCallback, useRef, useMemo } from 'react';
 import {
   fetchFeed, evaluate, CONDITIONS, CONDITION_GROUPS, defaultParams,
   loadFilters, saveFilters, loadActiveId, saveActiveId, newFilter,
-  rarityFor, feedAge, ago,
+  rarityFor, feedAge, ago, lookbackCapH,
+  loadShortlist, shortlistToggle, sinceShortlist,
+  syncState, syncFiltersToBot,
 } from '../utils/liveFeed';
 import { CLASS, CLASS_ORDER } from '../data/instruments';
 
@@ -11,17 +13,6 @@ const C = {
   accent:'#00d4aa', warn:'#f59e0b', bad:'#ef4444', good:'#22c55e', mono:'var(--mono, monospace)',
 };
 
-const WATCH_KEY = 'forex_watchlist';
-const readWatch = () => { try { return JSON.parse(localStorage.getItem(WATCH_KEY) || '[]'); } catch { return []; } };
-
-function toggleWatch(sym) {
-  const prev = readWatch();
-  const next = prev.includes(sym) ? prev.filter(s => s !== sym) : [...prev, sym];
-  localStorage.setItem(WATCH_KEY, JSON.stringify(next));
-  window.dispatchEvent(new Event('storage'));
-  return next;
-}
-
 const btn = (on) => ({
   fontSize:9, fontWeight:700, padding:'2px 7px', borderRadius:2, cursor:'pointer',
   border:`1px solid ${on ? '#00d4aa55' : C.line}`, background: on ? '#00d4aa15' : 'transparent',
@@ -29,16 +20,17 @@ const btn = (on) => ({
 });
 
 // ── One matching instrument ───────────────────────────────────────────────────
-function Row({ r, filter, watched, onWatch, onOpen }) {
+function Row({ r, filter, shortlisted, onWatch, onOpen }) {
   const cls = CLASS[r.cls];
   const rarity = rarityFor(r.rec, filter);
+  const since = sinceShortlist(shortlisted, r.price);
 
   return (
     <div style={{ borderBottom:'1px solid #0e161e', padding:'7px 9px' }}>
       <div style={{ display:'flex', alignItems:'center', gap:7, fontFamily:C.mono }}>
-        <button onClick={() => onWatch(r.sym)} title={watched ? 'Remove from watchlist' : 'Shortlist — adds to the Watchlist tab'}
+        <button onClick={() => onWatch(r)} title={shortlisted ? 'Remove from shortlist' : 'Shortlist — records why and at what price, and adds to the Watchlist tab'}
           style={{ background:'none', border:'none', cursor:'pointer', padding:0, fontSize:13, lineHeight:1,
-            color: watched ? C.warn : '#28323d' }}>★</button>
+            color: shortlisted ? C.warn : '#28323d' }}>★</button>
         <span onClick={() => onOpen(r.sym)} style={{ fontSize:11, fontWeight:800, color:C.txt, width:80, flexShrink:0, cursor:'pointer' }}>
           {r.sym}
         </span>
@@ -75,6 +67,18 @@ function Row({ r, filter, watched, onWatch, onOpen }) {
         ))}
       </div>
 
+      {shortlisted && (
+        <div style={{ fontSize:9, color:C.warn, fontFamily:C.mono, marginTop:4, paddingLeft:20 }}>
+          shortlisted {ago(Date.now() - shortlisted.at)}
+          {shortlisted.reason ? ` on ${shortlisted.reason}` : ''}
+          {since != null && (
+            <span style={{ color: since > 0 ? C.good : since < 0 ? C.bad : C.dim }}>
+              {' '}· {since > 0 ? '+' : ''}{since}% since
+            </span>
+          )}
+        </div>
+      )}
+
       {rarity.length > 0 && (
         <div style={{ fontSize:8, color:'#2b3644', fontFamily:C.mono, marginTop:4, paddingLeft:20 }}>
           {rarity.map(x => `${CONDITIONS[x.key]?.label ?? x.key} ${x.tf}: ${x.n}× in ${x.days}d (~${x.perMonth}/month here)`).join(' · ')}
@@ -85,7 +89,7 @@ function Row({ r, filter, watched, onWatch, onOpen }) {
 }
 
 // ── Filter editor ─────────────────────────────────────────────────────────────
-function Editor({ filter, onChange, onClose, onDelete, onDuplicate, onExport, onImport }) {
+function Editor({ filter, feed, onChange, onClose, onDelete, onDuplicate, onExport, onImport }) {
   const used = new Set((filter.conditions || []).map(c => c.key));
 
   const setC = (i, patch) => {
@@ -111,6 +115,19 @@ function Editor({ filter, onChange, onClose, onDelete, onDuplicate, onExport, on
       </div>
 
       <div style={{ padding:'9px 10px' }}>
+        {/* ── Push ── */}
+        <div style={{ display:'flex', gap:6, alignItems:'center', flexWrap:'wrap', marginBottom:9,
+          paddingBottom:8, borderBottom:`1px solid ${C.line}` }}>
+          <button onClick={() => onChange({ ...filter, push: !filter.push })} style={btn(!!filter.push)}>
+            {filter.push ? '🔔 push on' : '🔕 push off'}
+          </button>
+          <span style={{ fontSize:8, color:'#2b3644', fontFamily:C.mono, flex:1, minWidth:180, lineHeight:1.5 }}>
+            {filter.push
+              ? 'The VPS evaluates this filter with the same rules as this screen and notifies on NEW matches only.'
+              : 'Notify me when this filter finds something, even when the app is closed.'}
+          </span>
+        </div>
+
         {/* ── How the conditions combine ── */}
         <div style={{ display:'flex', gap:6, alignItems:'center', flexWrap:'wrap', marginBottom:8 }}>
           <span style={{ fontSize:9, color:C.dim, fontFamily:C.mono }}>match</span>
@@ -172,9 +189,15 @@ function Editor({ filter, onChange, onClose, onDelete, onDuplicate, onExport, on
               </div>
               {def.help && <div style={{ fontSize:8, color:'#2b3644', fontFamily:C.mono, marginTop:2 }}>{def.help}</div>}
               <div style={{ display:'flex', gap:9, flexWrap:'wrap', marginTop:5 }}>
-                {def.params.map(p => (
+                {def.params.map(p => {
+                  // The bot only keeps so much history; asking for more would
+                  // quietly return less, and the filter would look broken.
+                  const cap = p.k === 'withinH' ? lookbackCapH(feed, params.tf) : null;
+                  const max = cap ? Math.min(p.max, cap) : p.max;
+                  const over = cap && params[p.k] > cap;
+                  return (
                   <label key={p.k} style={{ display:'flex', alignItems:'center', gap:4, fontSize:9, color:C.dim, fontFamily:C.mono }}>
-                    {p.label}
+                    {p.label}{cap ? <span style={{ color:'#2b3644' }}> (max {cap})</span> : null}
                     {p.type === 'select' ? (
                       <select value={params[p.k]} onChange={e => setParam(i, p.k, e.target.value)}
                         style={{ fontSize:9, fontFamily:C.mono, background:'#0f172a', color:C.txt,
@@ -182,13 +205,16 @@ function Editor({ filter, onChange, onClose, onDelete, onDuplicate, onExport, on
                         {p.options.map(o => <option key={o.v} value={o.v}>{o.label}</option>)}
                       </select>
                     ) : (
-                      <input type="number" value={params[p.k]} min={p.min} max={p.max} step={p.step}
-                        onChange={e => setParam(i, p.k, e.target.value === '' ? p.def : +e.target.value)}
-                        style={{ width:58, fontSize:9, fontFamily:C.mono, background:'#0f172a', color:C.txt,
-                          border:`1px solid ${C.line}`, borderRadius:3, padding:'2px 5px' }}/>
+                      <input type="number" value={params[p.k]} min={p.min} max={max} step={p.step}
+                        onChange={e => setParam(i, p.k, e.target.value === '' ? p.def
+                          : Math.min(max, +e.target.value))}
+                        style={{ width:58, fontSize:9, fontFamily:C.mono, background:'#0f172a',
+                          color: over ? C.warn : C.txt,
+                          border:`1px solid ${over ? C.warn : C.line}`, borderRadius:3, padding:'2px 5px' }}/>
                     )}
                   </label>
-                ))}
+                  );
+                })}
               </div>
             </div>
           );
@@ -222,7 +248,9 @@ export default function LiveFeed({ onOpen }) {
   const [filters, setFilters] = useState(loadFilters);
   const [activeId, setActiveId] = useState(() => loadActiveId());
   const [editing, setEditing] = useState(false);
-  const [watch,   setWatch]   = useState(readWatch);
+  const [shortlist, setShortlist] = useState(loadShortlist);
+  const [syncMsg, setSyncMsg] = useState(null);
+  const [syncing, setSyncing] = useState(false);
   const started = useRef(false);
 
   const active = useMemo(
@@ -277,6 +305,15 @@ export default function LiveFeed({ onOpen }) {
     window.alert(`Imported ${stamped.length} filter(s)${dropped ? ` — ${dropped} unknown condition(s) will show as unusable` : ''}.`);
   }, [filters, persist]);
 
+  const sync = useMemo(() => syncState(filters), [filters, syncMsg]);
+
+  const doSync = useCallback(async () => {
+    setSyncing(true);
+    try { setSyncMsg(await syncFiltersToBot(filters)); }
+    catch (e) { setSyncMsg({ ok:false, msg:`Sync failed: ${e.message}` }); }
+    setSyncing(false);
+  }, [filters]);
+
   const res = useMemo(() => {
     if (!feed?.instruments) return null;
     return evaluate(feed, active);
@@ -323,6 +360,7 @@ export default function LiveFeed({ onOpen }) {
         <div style={{ marginTop:8 }}>
           <Editor
             filter={active}
+            feed={feed}
             onChange={updateActive}
             onClose={() => setEditing(false)}
             onExport={exportFilters}
@@ -346,7 +384,8 @@ export default function LiveFeed({ onOpen }) {
       <div style={{ padding:'8px 10px 0', fontSize:9, color:'#334155', lineHeight:1.6 }}>
         Measured on the VPS every minute, awake or not — so an H4 sweep that happened at 3am is still
         here when you open the app. This is a shortlist, not a signal: it says <strong style={{color:C.dim}}>look at these</strong>,
-        never which way to trade. Star a row to send it to the Watchlist tab, or tap it for the full read.
+        never which way to trade. Star a row to shortlist it — the reason and the price are kept, so weeks
+        later you can see what it did afterwards — or tap it for the full read.
       </div>
 
       {/* ── States ── */}
@@ -374,6 +413,38 @@ export default function LiveFeed({ onOpen }) {
           fontSize:9, color:C.warn, lineHeight:1.6 }}>
           Last publish was {ago(age)}. Either nothing has changed on any instrument, or the bot is not running.
           Everything below is as of then, not now.
+        </div>
+      )}
+
+      {/* ── Push filters only work once the VPS has them ── */}
+      {sync.count > 0 && (sync.dirty || !sync.configured) && (
+        <div style={{ margin:'8px 10px 0', padding:'8px 9px', background:C.panel,
+          border:'1px solid #f59e0b33', borderRadius:5, fontSize:9, color:C.warn, lineHeight:1.6 }}>
+          <strong>
+            {!sync.configured
+              ? 'Push filters cannot reach the VPS — GitHub is not connected.'
+              : sync.neverSynced
+                ? `${sync.count} filter(s) marked for push have never been sent to the VPS.`
+                : `${sync.count} push filter(s) changed since the last sync.`}
+          </strong>
+          <div style={{ marginTop:2, color:'#5b6b7d' }}>
+            {sync.configured
+              ? 'The bot reads filters from the repo. Until you sync, notifications use the previous version — or none at all.'
+              : 'Connect GitHub in Settings; the VPS reads your filters from there, the same way it reads your alerts.'}
+          </div>
+          {sync.configured && (
+            <button onClick={doSync} disabled={syncing}
+              style={{ ...btn(true), marginTop:5, padding:'3px 10px', fontSize:10 }}>
+              {syncing ? 'sending…' : 'sync to VPS'}
+            </button>
+          )}
+        </div>
+      )}
+      {syncMsg && (
+        <div style={{ margin:'6px 10px 0', padding:'7px 9px', background:C.panel,
+          border:`1px solid ${syncMsg.ok ? '#22c55e33' : '#ef444433'}`, borderRadius:5,
+          fontSize:9, color: syncMsg.ok ? C.good : C.bad, lineHeight:1.6 }}>
+          {syncMsg.msg}
         </div>
       )}
 
@@ -413,8 +484,13 @@ export default function LiveFeed({ onOpen }) {
           </div>
         )}
         {res?.rows.map(r => (
-          <Row key={r.sym} r={r} filter={active} watched={watch.includes(r.sym)}
-            onWatch={sym => setWatch(toggleWatch(sym))} onOpen={onOpen}/>
+          <Row key={r.sym} r={r} filter={active} shortlisted={shortlist[r.sym]}
+            onWatch={row => setShortlist(shortlistToggle(row.sym, {
+              price: row.price,
+              reason: row.passed.map(p => p.label).join(' + '),
+              filterName: active.name,
+            }))}
+            onOpen={onOpen}/>
         ))}
       </div>
 
@@ -422,6 +498,8 @@ export default function LiveFeed({ onOpen }) {
         Events are re-derived from candle history on every measurement, so a bot restart loses nothing and the
         “×/month” figure is each instrument&apos;s own measured rate rather than a guess. Conditions that cannot be
         measured for an instrument — no COT report, no spread feed — are shown as such instead of counting as false.
+        A filter marked for push is evaluated on the VPS by the same rules this screen uses, so a notification can
+        only ever name something that is also here.
         {feed?.meta && (
           <div style={{ marginTop:3 }}>
             {feed.meta.instruments} instruments · H4 scanned over {feed.meta.bars?.H4} bars, daily over {feed.meta.bars?.D} ·
