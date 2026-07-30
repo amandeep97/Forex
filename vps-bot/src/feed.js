@@ -180,7 +180,25 @@ class FeedBuilder {
         this.lastSig = this._signature(this.data);
         this.lastEventSig = this._eventSignature(this.data);
         this.wroteAt = new Date(f.content.updatedAt || 0).getTime() || 0;
-        this.log(`Feed: resumed with ${Object.keys(this.data).length} instruments`);
+
+        // Rebuild the refresh schedule from the timestamps already published.
+        // Without this the due map starts empty, every instrument is due at
+        // once, and the bot re-walks the whole registry from the top — so the
+        // instruments at the END of it wait ten minutes to be reached again,
+        // even though nothing about them had expired. Cheap to get wrong and
+        // easy to miss, because re-measuring produces identical values and
+        // looks like healthy "nothing changed" ticks. It matters much more now
+        // that the self-updater restarts the bot on its own.
+        let restored = 0;
+        for (const [sym, rec] of Object.entries(this.data)) {
+          for (const tf of ['H4', 'D']) {
+            if (rec.asOf?.[tf]) { this.due.set(`${sym}|${tf}`, nextBarDue(rec.asOf[tf], TF_MS[tf])); restored++; }
+          }
+          if (rec.asOf?.spread) {
+            this.due.set(`${sym}|SPREAD`, nextBarDue(rec.asOf.spread, TF_MS.M15, 60e3)); restored++;
+          }
+        }
+        this.log(`Feed: resumed with ${Object.keys(this.data).length} instruments, ${restored} schedules restored`);
       } else if (f) {
         this.sha = f.sha;
       }

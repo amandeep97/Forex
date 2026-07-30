@@ -94,8 +94,11 @@ class Updater {
         ...extra,
       };
       const cur = await this.github.readJSON(VERSION_PATH).catch(() => null);
-      // Do not commit an identical file every tick
-      const same = cur?.content && ['sha', 'behind', 'autoUpdate', 'lastError']
+      // Do not commit an identical file every tick. bootedAt is compared too:
+      // the publish that precedes a self-update restart is written by the OLD
+      // process and therefore carries the OLD boot time, so without this the
+      // file would keep claiming an uptime that ended minutes ago.
+      const same = cur?.content && ['sha', 'behind', 'autoUpdate', 'lastError', 'bootedAt']
         .every(k => JSON.stringify(cur.content[k]) === JSON.stringify(payload[k]));
       if (same) return;
       this.versionSha = await this.github.writeJSON(
