@@ -1,8 +1,8 @@
 {
   "version": 1,
-  "updatedAt": "2026-07-30T21:47:04.116Z",
+  "updatedAt": "2026-07-30T21:48:04.374Z",
   "meta": {
-    "instruments": 33,
+    "instruments": 34,
     "bars": {
       "H4": 500,
       "D": 400
@@ -12,7 +12,7 @@
       "D": 30
     },
     "sweepBars": 5,
-    "pending": 64
+    "pending": 50
   },
   "instruments": {
     "EUR/USD": {
@@ -833,46 +833,417 @@
     "XAU/USD": {
       "state": {
         "posnPct": 30,
-        "posnWeeks": 160
+        "posnWeeks": 160,
+        "H4": {
+          "volPct": 39,
+          "rangePos": 70,
+          "chg20": 0.48,
+          "persistence": 10,
+          "atrPct": 0.878,
+          "bars": 500
+        },
+        "D": {
+          "volPct": 53,
+          "rangePos": 19,
+          "chg20": -0.49,
+          "persistence": 10,
+          "atrPct": 2.122,
+          "bars": 400
+        },
+        "spreadRatio": 1.2
       },
-      "events": [],
-      "rarity": {},
+      "events": [
+        {
+          "type": "break",
+          "dir": "up",
+          "at": 1785344400000,
+          "price": 4066.34,
+          "detail": "closed above the swing high at 4047.88",
+          "tf": "H4"
+        },
+        {
+          "type": "sweep",
+          "dir": "up",
+          "at": 1785330000000,
+          "price": 4027.46,
+          "detail": "swept the 5-bar low and closed back inside",
+          "tf": "H4"
+        },
+        {
+          "type": "sweep",
+          "dir": "up",
+          "at": 1785243600000,
+          "price": 4037.605,
+          "detail": "swept the 5-bar low and closed back inside",
+          "tf": "H4"
+        },
+        {
+          "type": "break",
+          "dir": "down",
+          "at": 1784854800000,
+          "price": 4027.12,
+          "detail": "closed below the swing low at 4040.185",
+          "tf": "H4"
+        },
+        {
+          "type": "break",
+          "dir": "down",
+          "at": 1784149200000,
+          "price": 3976.58,
+          "detail": "closed below the swing low at 4021.815",
+          "tf": "D"
+        },
+        {
+          "type": "break",
+          "dir": "down",
+          "at": 1783890000000,
+          "price": 4001.185,
+          "detail": "closed below the swing low at 4021.815",
+          "tf": "D"
+        }
+      ],
+      "rarity": {
+        "sweep.H4": {
+          "n": 28,
+          "days": 116,
+          "perMonth": 7.3
+        },
+        "break.H4": {
+          "n": 47,
+          "days": 116,
+          "perMonth": 12.2
+        },
+        "sweep.D": {
+          "n": 13,
+          "days": 563,
+          "perMonth": 0.7
+        },
+        "break.D": {
+          "n": 44,
+          "days": 563,
+          "perMonth": 2.3
+        }
+      },
       "asOf": {
-        "cot": "2026-07-21"
-      }
+        "cot": "2026-07-21",
+        "H4": 1785430800000,
+        "D": 1785358800000,
+        "spread": 1785444300000
+      },
+      "cls": "metal",
+      "name": "Gold",
+      "dec": 2,
+      "price": 4103.27
     },
     "XAG/USD": {
       "state": {
         "posnPct": 12,
-        "posnWeeks": 160
+        "posnWeeks": 160,
+        "H4": {
+          "volPct": 21,
+          "rangePos": 68,
+          "chg20": 0.1,
+          "persistence": 0,
+          "atrPct": 1.729,
+          "bars": 500
+        },
+        "D": {
+          "volPct": 58,
+          "rangePos": 12,
+          "chg20": -3.25,
+          "persistence": 0,
+          "atrPct": 3.972,
+          "bars": 400
+        },
+        "spreadRatio": 1.1
       },
-      "events": [],
-      "rarity": {},
+      "events": [
+        {
+          "type": "sweep",
+          "dir": "down",
+          "at": 1785344400000,
+          "price": 57.6265,
+          "detail": "swept the 5-bar high and closed back inside",
+          "tf": "H4"
+        },
+        {
+          "type": "sweep",
+          "dir": "up",
+          "at": 1785243600000,
+          "price": 57.32,
+          "detail": "swept the 5-bar low and closed back inside",
+          "tf": "H4"
+        },
+        {
+          "type": "sweep",
+          "dir": "up",
+          "at": 1784235600000,
+          "price": 55.9,
+          "detail": "swept the 5-bar low and closed back inside",
+          "tf": "D"
+        },
+        {
+          "type": "break",
+          "dir": "down",
+          "at": 1784149200000,
+          "price": 55.518,
+          "detail": "closed below the swing low at 57.2155",
+          "tf": "D"
+        }
+      ],
+      "rarity": {
+        "sweep.H4": {
+          "n": 24,
+          "days": 116,
+          "perMonth": 6.2
+        },
+        "break.H4": {
+          "n": 46,
+          "days": 116,
+          "perMonth": 11.9
+        },
+        "sweep.D": {
+          "n": 15,
+          "days": 563,
+          "perMonth": 0.8
+        },
+        "break.D": {
+          "n": 42,
+          "days": 563,
+          "perMonth": 2.2
+        }
+      },
       "asOf": {
-        "cot": "2026-07-21"
-      }
+        "cot": "2026-07-21",
+        "H4": 1785430800000,
+        "D": 1785358800000,
+        "spread": 1785444300000
+      },
+      "cls": "metal",
+      "name": "Silver",
+      "dec": 3,
+      "price": 58.98935
     },
     "US500": {
       "state": {
         "posnPct": 90,
-        "posnWeeks": 160
+        "posnWeeks": 160,
+        "H4": {
+          "volPct": 95,
+          "rangePos": 63,
+          "chg20": -0.42,
+          "persistence": 10,
+          "atrPct": 0.734,
+          "bars": 500
+        },
+        "D": {
+          "volPct": 64,
+          "rangePos": 57,
+          "chg20": -0.4,
+          "persistence": 0,
+          "atrPct": 1.269,
+          "bars": 400
+        },
+        "spreadRatio": 1
       },
-      "events": [],
-      "rarity": {},
+      "events": [
+        {
+          "type": "break",
+          "dir": "down",
+          "at": 1785330000000,
+          "price": 7379.8,
+          "detail": "closed below the swing low at 7413.4",
+          "tf": "H4"
+        },
+        {
+          "type": "break",
+          "dir": "down",
+          "at": 1785272400000,
+          "price": 7313.2,
+          "detail": "closed below the swing low at 7382.5",
+          "tf": "D"
+        },
+        {
+          "type": "break",
+          "dir": "down",
+          "at": 1785200400000,
+          "price": 7401.2,
+          "detail": "closed below the swing low at 7402.9",
+          "tf": "H4"
+        },
+        {
+          "type": "break",
+          "dir": "down",
+          "at": 1785157200000,
+          "price": 7402.1,
+          "detail": "closed below the swing low at 7402.9",
+          "tf": "H4"
+        },
+        {
+          "type": "break",
+          "dir": "down",
+          "at": 1784754000000,
+          "price": 7426,
+          "detail": "closed below the swing low at 7496.4",
+          "tf": "D"
+        },
+        {
+          "type": "break",
+          "dir": "down",
+          "at": 1784235600000,
+          "price": 7462.6,
+          "detail": "closed below the swing low at 7496.4",
+          "tf": "D"
+        },
+        {
+          "type": "break",
+          "dir": "up",
+          "at": 1783630800000,
+          "price": 7588.6,
+          "detail": "closed above the swing high at 7563.1",
+          "tf": "D"
+        },
+        {
+          "type": "break",
+          "dir": "up",
+          "at": 1783285200000,
+          "price": 7557.6,
+          "detail": "closed above the swing high at 7548.9",
+          "tf": "D"
+        },
+        {
+          "type": "sweep",
+          "dir": "down",
+          "at": 1782939600000,
+          "price": 7482.6,
+          "detail": "swept the 5-bar high and closed back inside",
+          "tf": "D"
+        }
+      ],
+      "rarity": {
+        "sweep.H4": {
+          "n": 14,
+          "days": 116,
+          "perMonth": 3.6
+        },
+        "break.H4": {
+          "n": 45,
+          "days": 116,
+          "perMonth": 11.7
+        },
+        "sweep.D": {
+          "n": 13,
+          "days": 562,
+          "perMonth": 0.7
+        },
+        "break.D": {
+          "n": 49,
+          "days": 562,
+          "perMonth": 2.6
+        }
+      },
       "asOf": {
-        "cot": "2026-07-21"
-      }
+        "cot": "2026-07-21",
+        "H4": 1785430800000,
+        "D": 1785358800000,
+        "spread": 1785444300000
+      },
+      "cls": "index",
+      "name": "S&P 500",
+      "dec": 1,
+      "price": 7453
     },
     "US100": {
       "state": {
         "posnPct": 20,
-        "posnWeeks": 160
+        "posnWeeks": 160,
+        "H4": {
+          "volPct": 96,
+          "rangePos": 53,
+          "chg20": -1.17,
+          "persistence": 20,
+          "atrPct": 1.343,
+          "bars": 500
+        }
       },
-      "events": [],
-      "rarity": {},
+      "events": [
+        {
+          "type": "break",
+          "dir": "up",
+          "at": 1785416400000,
+          "price": 28015.2,
+          "detail": "closed above the swing high at 27985",
+          "tf": "H4"
+        },
+        {
+          "type": "break",
+          "dir": "down",
+          "at": 1785330000000,
+          "price": 27486.4,
+          "detail": "closed below the swing low at 27521.4",
+          "tf": "H4"
+        },
+        {
+          "type": "sweep",
+          "dir": "up",
+          "at": 1785243600000,
+          "price": 27935,
+          "detail": "swept the 5-bar low and closed back inside",
+          "tf": "H4"
+        },
+        {
+          "type": "sweep",
+          "dir": "up",
+          "at": 1785214800000,
+          "price": 27869.4,
+          "detail": "swept the 5-bar low and closed back inside",
+          "tf": "H4"
+        },
+        {
+          "type": "break",
+          "dir": "down",
+          "at": 1785157200000,
+          "price": 27914.6,
+          "detail": "closed below the swing low at 28078.1",
+          "tf": "H4"
+        },
+        {
+          "type": "break",
+          "dir": "up",
+          "at": 1785128400000,
+          "price": 28601.6,
+          "detail": "closed above the swing high at 28570.6",
+          "tf": "H4"
+        },
+        {
+          "type": "break",
+          "dir": "down",
+          "at": 1784912400000,
+          "price": 28170,
+          "detail": "closed below the swing low at 28332.2",
+          "tf": "H4"
+        }
+      ],
+      "rarity": {
+        "sweep.H4": {
+          "n": 26,
+          "days": 116,
+          "perMonth": 6.7
+        },
+        "break.H4": {
+          "n": 55,
+          "days": 116,
+          "perMonth": 14.3
+        }
+      },
       "asOf": {
-        "cot": "2026-07-21"
-      }
+        "cot": "2026-07-21",
+        "H4": 1785430800000
+      },
+      "cls": "index",
+      "name": "Nasdaq 100",
+      "dec": 1,
+      "price": 28221
     },
     "USOIL": {
       "state": {
@@ -3011,7 +3382,8 @@
           "persistence": 40,
           "atrPct": 0.562,
           "bars": 399
-        }
+        },
+        "spreadRatio": 5.7
       },
       "events": [
         {
@@ -3103,12 +3475,147 @@
       },
       "asOf": {
         "H4": 1785430800000,
-        "D": 1785358800000
+        "D": 1785358800000,
+        "spread": 1785447000000
       },
       "cls": "fx",
       "name": "Canadian $ / CHF",
       "dec": 5,
       "price": 0.57466
+    },
+    "CHF/JPY": {
+      "state": {
+        "H4": {
+          "volPct": 98,
+          "rangePos": 39,
+          "chg20": -1.16,
+          "persistence": 30,
+          "atrPct": 0.418,
+          "bars": 499
+        },
+        "D": {
+          "volPct": 51,
+          "rangePos": 26,
+          "chg20": -1.17,
+          "persistence": 10,
+          "atrPct": 0.629,
+          "bars": 399
+        },
+        "spreadRatio": 7.3
+      },
+      "events": [
+        {
+          "type": "break",
+          "dir": "down",
+          "at": 1785416400000,
+          "price": 198.288,
+          "detail": "closed below the swing low at 199.517",
+          "tf": "H4"
+        },
+        {
+          "type": "break",
+          "dir": "down",
+          "at": 1785358800000,
+          "price": 198.184,
+          "detail": "closed below the swing low at 199.22",
+          "tf": "D"
+        },
+        {
+          "type": "break",
+          "dir": "up",
+          "at": 1785344400000,
+          "price": 200.879,
+          "detail": "closed above the swing high at 200.384",
+          "tf": "H4"
+        },
+        {
+          "type": "sweep",
+          "dir": "up",
+          "at": 1785315600000,
+          "price": 199.825,
+          "detail": "swept the 5-bar low and closed back inside",
+          "tf": "H4"
+        },
+        {
+          "type": "break",
+          "dir": "down",
+          "at": 1785301200000,
+          "price": 199.728,
+          "detail": "closed below the swing low at 199.744",
+          "tf": "H4"
+        },
+        {
+          "type": "sweep",
+          "dir": "up",
+          "at": 1785214800000,
+          "price": 199.95,
+          "detail": "swept the 5-bar low and closed back inside",
+          "tf": "H4"
+        },
+        {
+          "type": "sweep",
+          "dir": "up",
+          "at": 1785186000000,
+          "price": 199.994,
+          "detail": "swept the 5-bar low and closed back inside",
+          "tf": "H4"
+        },
+        {
+          "type": "break",
+          "dir": "down",
+          "at": 1785157200000,
+          "price": 200.056,
+          "detail": "closed below the swing low at 200.17",
+          "tf": "H4"
+        },
+        {
+          "type": "sweep",
+          "dir": "down",
+          "at": 1785128400000,
+          "price": 200.655,
+          "detail": "swept the 5-bar high and closed back inside",
+          "tf": "H4"
+        },
+        {
+          "type": "break",
+          "dir": "down",
+          "at": 1783890000000,
+          "price": 199.413,
+          "detail": "closed below the swing low at 199.552",
+          "tf": "D"
+        }
+      ],
+      "rarity": {
+        "sweep.H4": {
+          "n": 23,
+          "days": 115,
+          "perMonth": 6
+        },
+        "break.H4": {
+          "n": 56,
+          "days": 115,
+          "perMonth": 14.6
+        },
+        "sweep.D": {
+          "n": 8,
+          "days": 560,
+          "perMonth": 0.4
+        },
+        "break.D": {
+          "n": 47,
+          "days": 560,
+          "perMonth": 2.5
+        }
+      },
+      "asOf": {
+        "H4": 1785430800000,
+        "D": 1785358800000,
+        "spread": 1785447000000
+      },
+      "cls": "fx",
+      "name": "Swiss Franc / Yen",
+      "dec": 3,
+      "price": 198.184
     }
   }
 }
