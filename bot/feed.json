@@ -1,8 +1,8 @@
 {
   "version": 1,
-  "updatedAt": "2026-07-30T21:49:04.238Z",
+  "updatedAt": "2026-07-30T21:50:05.287Z",
   "meta": {
-    "instruments": 37,
+    "instruments": 39,
     "bars": {
       "H4": 500,
       "D": 400
@@ -12,7 +12,7 @@
       "D": 30
     },
     "sweepBars": 5,
-    "pending": 39
+    "pending": 32
   },
   "instruments": {
     "EUR/USD": {
@@ -1293,13 +1293,62 @@
     "USOIL": {
       "state": {
         "posnPct": 14,
-        "posnWeeks": 160
+        "posnWeeks": 160,
+        "H4": {
+          "volPct": 45,
+          "rangePos": 38,
+          "chg20": -0.19,
+          "persistence": 10,
+          "atrPct": 2.254,
+          "bars": 500
+        }
       },
-      "events": [],
-      "rarity": {},
+      "events": [
+        {
+          "type": "break",
+          "dir": "up",
+          "at": 1785315600000,
+          "price": 85.142,
+          "detail": "closed above the swing high at 83.883",
+          "tf": "H4"
+        },
+        {
+          "type": "break",
+          "dir": "up",
+          "at": 1785272400000,
+          "price": 83.055,
+          "detail": "closed above the swing high at 83.041",
+          "tf": "H4"
+        },
+        {
+          "type": "break",
+          "dir": "down",
+          "at": 1785214800000,
+          "price": 80.791,
+          "detail": "closed below the swing low at 82.181",
+          "tf": "H4"
+        }
+      ],
+      "rarity": {
+        "sweep.H4": {
+          "n": 11,
+          "days": 116,
+          "perMonth": 2.9
+        },
+        "break.H4": {
+          "n": 49,
+          "days": 116,
+          "perMonth": 12.7
+        }
+      },
       "asOf": {
-        "cot": "2026-07-21"
-      }
+        "cot": "2026-07-21",
+        "H4": 1785430800000
+      },
+      "cls": "energy",
+      "name": "WTI Crude Oil",
+      "dec": 2,
+      "price": 84.492
     },
     "NATGAS": {
       "state": {
@@ -4031,6 +4080,234 @@
       "name": "FTSE 100",
       "dec": 1,
       "price": 10949.4
+    },
+    "GER40": {
+      "state": {
+        "H4": {
+          "volPct": 67,
+          "rangePos": 100,
+          "chg20": 0.82,
+          "persistence": 0,
+          "atrPct": 0.631,
+          "bars": 500
+        },
+        "D": {
+          "volPct": 61,
+          "rangePos": 91,
+          "chg20": 0.25,
+          "persistence": 10,
+          "atrPct": 1.457,
+          "bars": 400
+        },
+        "spreadRatio": 1
+      },
+      "events": [
+        {
+          "type": "break",
+          "dir": "up",
+          "at": 1785416400000,
+          "price": 25645.4,
+          "detail": "closed above the swing high at 25597.6",
+          "tf": "H4"
+        },
+        {
+          "type": "break",
+          "dir": "up",
+          "at": 1785114000000,
+          "price": 25315.2,
+          "detail": "closed above the swing high at 25219.7",
+          "tf": "H4"
+        },
+        {
+          "type": "break",
+          "dir": "up",
+          "at": 1785099600000,
+          "price": 25469.8,
+          "detail": "closed above the swing high at 25263.7",
+          "tf": "D"
+        },
+        {
+          "type": "sweep",
+          "dir": "down",
+          "at": 1784883600000,
+          "price": 24907.7,
+          "detail": "swept the 5-bar high and closed back inside",
+          "tf": "H4"
+        },
+        {
+          "type": "break",
+          "dir": "down",
+          "at": 1784494800000,
+          "price": 24710.8,
+          "detail": "closed below the swing low at 24775.5",
+          "tf": "D"
+        },
+        {
+          "type": "sweep",
+          "dir": "up",
+          "at": 1784235600000,
+          "price": 24834.8,
+          "detail": "swept the 5-bar low and closed back inside",
+          "tf": "D"
+        },
+        {
+          "type": "break",
+          "dir": "up",
+          "at": 1782939600000,
+          "price": 25649.2,
+          "detail": "closed above the swing high at 25217.5",
+          "tf": "D"
+        }
+      ],
+      "rarity": {
+        "sweep.H4": {
+          "n": 16,
+          "days": 120,
+          "perMonth": 4
+        },
+        "break.H4": {
+          "n": 52,
+          "days": 120,
+          "perMonth": 13
+        },
+        "sweep.D": {
+          "n": 13,
+          "days": 574,
+          "perMonth": 0.7
+        },
+        "break.D": {
+          "n": 46,
+          "days": 574,
+          "perMonth": 2.4
+        }
+      },
+      "asOf": {
+        "H4": 1785430800000,
+        "D": 1785358800000,
+        "spread": 1785440700000
+      },
+      "cls": "index",
+      "name": "DAX 40",
+      "dec": 1,
+      "price": 25714.4
+    },
+    "JPN225": {
+      "state": {
+        "H4": {
+          "volPct": 99,
+          "rangePos": 44,
+          "chg20": -2.36,
+          "persistence": 20,
+          "atrPct": 1.914,
+          "bars": 500
+        },
+        "D": {
+          "volPct": 95,
+          "rangePos": 30,
+          "chg20": -6.76,
+          "persistence": 10,
+          "atrPct": 3.604,
+          "bars": 400
+        },
+        "spreadRatio": 0.5
+      },
+      "events": [
+        {
+          "type": "break",
+          "dir": "up",
+          "at": 1785416400000,
+          "price": 63534.4,
+          "detail": "closed above the swing high at 63093.8",
+          "tf": "H4"
+        },
+        {
+          "type": "break",
+          "dir": "down",
+          "at": 1785286800000,
+          "price": 61328.8,
+          "detail": "closed below the swing low at 61936.3",
+          "tf": "H4"
+        },
+        {
+          "type": "sweep",
+          "dir": "up",
+          "at": 1785200400000,
+          "price": 62456.3,
+          "detail": "swept the 5-bar low and closed back inside",
+          "tf": "H4"
+        },
+        {
+          "type": "break",
+          "dir": "down",
+          "at": 1785186000000,
+          "price": 62443.8,
+          "detail": "closed below the swing low at 62805.6",
+          "tf": "D"
+        },
+        {
+          "type": "break",
+          "dir": "down",
+          "at": 1785157200000,
+          "price": 63519.5,
+          "detail": "closed below the swing low at 64197.4",
+          "tf": "H4"
+        },
+        {
+          "type": "break",
+          "dir": "down",
+          "at": 1784235600000,
+          "price": 65020.6,
+          "detail": "closed below the swing low at 65419.6",
+          "tf": "D"
+        },
+        {
+          "type": "sweep",
+          "dir": "up",
+          "at": 1783458000000,
+          "price": 67677.1,
+          "detail": "swept the 5-bar low and closed back inside",
+          "tf": "D"
+        },
+        {
+          "type": "break",
+          "dir": "down",
+          "at": 1783371600000,
+          "price": 67599.6,
+          "detail": "closed below the swing low at 67602.3",
+          "tf": "D"
+        }
+      ],
+      "rarity": {
+        "sweep.H4": {
+          "n": 19,
+          "days": 116,
+          "perMonth": 4.9
+        },
+        "break.H4": {
+          "n": 57,
+          "days": 116,
+          "perMonth": 14.8
+        },
+        "sweep.D": {
+          "n": 10,
+          "days": 562,
+          "perMonth": 0.5
+        },
+        "break.D": {
+          "n": 39,
+          "days": 562,
+          "perMonth": 2.1
+        }
+      },
+      "asOf": {
+        "H4": 1785430800000,
+        "D": 1785358800000,
+        "spread": 1785444300000
+      },
+      "cls": "index",
+      "name": "Nikkei 225",
+      "dec": 1,
+      "price": 63689.4
     }
   }
 }
