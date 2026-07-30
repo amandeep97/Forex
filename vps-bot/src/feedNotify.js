@@ -162,6 +162,46 @@ class FeedNotifier {
     }
   }
 
+  // Deliver a notification on demand, so push can be proven end to end without
+  // waiting for a market event. The count matters more than the message: a
+  // result of "0 devices" is the difference between "push is broken" and
+  // "nothing has matched yet", which are otherwise indistinguishable from the
+  // app and have very different fixes.
+  async sendTest() {
+    if (!this.pushReady && !this.telegramOn) {
+      return { ok:false, devices:0, detail:'no VAPID keys and no Telegram configured on the VPS' };
+    }
+    const subs = this.pushReady ? await this._subs() : { list: [], sha: null };
+    const body = 'If you can read this, your filters can reach this device.';
+    let sent = 0;
+    const dead = new Set();
+
+    if (this.pushReady && subs.list.length) {
+      const r = await sendPush(subs.list, '✅ ForexPro test', body);
+      sent = r.sent;
+      r.dead.forEach(e => dead.add(e));
+    }
+    if (this.telegramOn) await this.telegram.send(`✅ <b>ForexPro test</b>\n${body}`).catch(() => {});
+
+    if (dead.size) {
+      const cleaned = subs.list.filter(s => !dead.has(s.endpoint));
+      await this.github.writeJSON(SUBS_PATH, { subscriptions: cleaned },
+        'bot: prune dead subscriptions', subs.sha).catch(() => {});
+    }
+
+    this.log(`Feed push test: ${sent} delivered, ${dead.size} dead, telegram=${this.telegramOn}`);
+    return {
+      ok: sent > 0 || this.telegramOn,
+      devices: sent,
+      registered: subs.list.length,
+      pruned: dead.size,
+      telegram: this.telegramOn,
+      detail: sent > 0 ? `delivered to ${sent} device(s)`
+        : subs.list.length ? `${subs.list.length} device(s) registered but none accepted delivery`
+        : 'no devices registered — enable push in the app first',
+    };
+  }
+
   async _subs() {
     try {
       const f = await this.github.readJSON(SUBS_PATH);

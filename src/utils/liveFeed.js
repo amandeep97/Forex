@@ -133,6 +133,33 @@ export async function syncFiltersToBot(list) {
     : 'No filters marked for push — the VPS will stop notifying.' };
 }
 
+// ── Proving push actually works ───────────────────────────────────────────────
+// Everything about push can look correct — permission granted, filter marked,
+// filters synced — and still deliver nothing, and the only way to find out used
+// to be waiting for a market event that never came. This asks the VPS to send
+// one now and reports how many devices actually took it.
+const CONTROL_PATH = 'bot/vps-control.json';
+
+export async function requestTestPush() {
+  if (!isGithubConfigured()) return { ok:false, msg:'Connect GitHub in Settings first.' };
+  const r = await ghRead(CONTROL_PATH, { noCache: true }).catch(() => null);
+  await ghWrite(CONTROL_PATH,
+    { ...(r?.content || { command:'running' }), testPush:true, testPushSentAt:new Date().toISOString(), testPushResult:null },
+    'app: request push test', r?.sha || null);
+  return { ok:true, msg:'Asked the VPS to send a test — it goes out within a minute.' };
+}
+
+// The bot writes its answer back into the same file.
+export async function readTestPushResult() {
+  try {
+    const r = await ghRead(CONTROL_PATH, { noCache: true });
+    const c = r?.content || {};
+    if (c.testPush) return { state:'pending' };
+    if (!c.testPushResult) return { state:'none' };
+    return { state:'done', at:c.testPushAt, ...c.testPushResult };
+  } catch (e) { return { state:'error', detail:e.message }; }
+}
+
 // ── Shortlist ─────────────────────────────────────────────────────────────────
 // Starring writes to the same watchlist the Watchlist tab reads, plus a note of
 // WHY and at what price. Without the note, next week's list is a row of symbols

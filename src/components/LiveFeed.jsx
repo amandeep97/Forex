@@ -4,7 +4,7 @@ import {
   loadFilters, saveFilters, loadActiveId, saveActiveId, newFilter,
   rarityFor, feedAge, ago, lookbackCapH,
   loadShortlist, shortlistToggle, sinceShortlist,
-  syncState, syncFiltersToBot,
+  syncState, syncFiltersToBot, requestTestPush, readTestPushResult,
 } from '../utils/liveFeed';
 import { CLASS, CLASS_ORDER } from '../data/instruments';
 
@@ -89,7 +89,7 @@ function Row({ r, filter, shortlisted, onWatch, onOpen }) {
 }
 
 // ── Filter editor ─────────────────────────────────────────────────────────────
-function Editor({ filter, feed, onChange, onClose, onDelete, onDuplicate, onExport, onImport }) {
+function Editor({ filter, feed, onChange, onClose, onDelete, onDuplicate, onExport, onImport, onTestPush, testPush }) {
   const used = new Set((filter.conditions || []).map(c => c.key));
 
   const setC = (i, patch) => {
@@ -106,7 +106,7 @@ function Editor({ filter, feed, onChange, onClose, onDelete, onDuplicate, onExpo
       <div style={{ display:'flex', alignItems:'center', gap:8, padding:'8px 10px', borderBottom:`1px solid ${C.line}`, background:'#0a0f15', flexWrap:'wrap' }}>
         <input value={filter.name} onChange={e => onChange({ ...filter, name: e.target.value })}
           style={{ fontSize:11, fontWeight:800, fontFamily:C.mono, background:'#0f172a', color:C.txt,
-            border:`1px solid ${C.line}`, borderRadius:3, padding:'3px 7px', minWidth:150, flex:1 }}/>
+            border:`1px solid ${C.line}`, borderRadius:3, padding:'3px 7px', minWidth:0, width:'100%', flex:'1 1 100%' }}/>
         <button onClick={onDuplicate} style={btn(false)}>duplicate</button>
         <button onClick={onExport} title="Copy all filters as JSON" style={btn(false)}>export</button>
         <button onClick={onImport} title="Paste filters exported from another device" style={btn(false)}>import</button>
@@ -121,11 +121,24 @@ function Editor({ filter, feed, onChange, onClose, onDelete, onDuplicate, onExpo
           <button onClick={() => onChange({ ...filter, push: !filter.push })} style={btn(!!filter.push)}>
             {filter.push ? '🔔 push on' : '🔕 push off'}
           </button>
-          <span style={{ fontSize:8, color:'#2b3644', fontFamily:C.mono, flex:1, minWidth:180, lineHeight:1.5 }}>
+          {filter.push && (
+            <button onClick={onTestPush} style={btn(false)}>
+              {testPush?.state === 'pending' ? 'waiting for the VPS…' : 'send a test now'}
+            </button>
+          )}
+          <span style={{ fontSize:8, color:'#2b3644', fontFamily:C.mono, flex:1, minWidth:160, lineHeight:1.5 }}>
             {filter.push
               ? 'The VPS evaluates this filter with the same rules as this screen and notifies on NEW matches only.'
               : 'Notify me when this filter finds something, even when the app is closed.'}
           </span>
+          {testPush?.state === 'done' && (
+            <div style={{ width:'100%', fontSize:9, fontFamily:C.mono, lineHeight:1.6,
+              color: testPush.ok ? C.good : C.bad }}>
+              {testPush.ok ? '✓' : '✗'} {testPush.detail}
+              {testPush.pruned > 0 && ` · ${testPush.pruned} dead subscription(s) removed`}
+              {testPush.telegram && ' · also sent to Telegram'}
+            </div>
+          )}
         </div>
 
         {/* ── How the conditions combine ── */}
@@ -250,6 +263,7 @@ export default function LiveFeed({ onOpen }) {
   const [editing, setEditing] = useState(false);
   const [shortlist, setShortlist] = useState(loadShortlist);
   const [syncMsg, setSyncMsg] = useState(null);
+  const [testPush, setTestPush] = useState(null);
   const [syncing, setSyncing] = useState(false);
   const started = useRef(false);
 
@@ -314,6 +328,24 @@ export default function LiveFeed({ onOpen }) {
     setSyncing(false);
   }, [filters]);
 
+  const doTestPush = useCallback(async () => {
+    setTestPush({ state:'pending' });
+    try {
+      const r = await requestTestPush();
+      if (!r.ok) { setTestPush({ state:'done', ok:false, detail:r.msg }); return; }
+    } catch (e) { setTestPush({ state:'done', ok:false, detail:e.message }); return; }
+
+    // The bot answers in the same file, so poll rather than leave it spinning
+    // forever with no way to tell "in flight" from "the bot is not running".
+    for (let i = 0; i < 12; i++) {
+      await new Promise(r => setTimeout(r, 10_000));
+      const res = await readTestPushResult();
+      if (res.state === 'done') { setTestPush(res); return; }
+    }
+    setTestPush({ state:'done', ok:false,
+      detail:'no answer from the VPS in two minutes — is the bot running?' });
+  }, []);
+
   const res = useMemo(() => {
     if (!feed?.instruments) return null;
     return evaluate(feed, active);
@@ -365,6 +397,8 @@ export default function LiveFeed({ onOpen }) {
             onClose={() => setEditing(false)}
             onExport={exportFilters}
             onImport={importFilters}
+            onTestPush={doTestPush}
+            testPush={testPush}
             onDuplicate={() => {
               const copy = { ...active, id:`f${Date.now().toString(36)}`, name:`${active.name} copy`,
                 conditions: active.conditions.map(c => ({ ...c, params:{ ...c.params } })) };

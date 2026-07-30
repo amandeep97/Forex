@@ -161,6 +161,21 @@ class ForexBot {
   // pulls, dies, pulls again.
   async _maybeUpdate() {
     const ctrl = await this.github.readJSON(CONTROL_PATH).catch(() => null);
+
+    // Handled on the same read: a second fetch of the same file each tick buys
+    // nothing, and both are one-shot requests from the app.
+    if (ctrl?.content?.testPush) {
+      const result = await this.feed?.notifier?.sendTest().catch(e => ({ ok:false, detail:e.message }))
+        || { ok:false, detail:'live feed disabled on this bot' };
+      await this.github.writeJSON(
+        CONTROL_PATH,
+        { ...ctrl.content, testPush:false, testPushAt:new Date().toISOString(), testPushResult:result },
+        'bot: push test', ctrl.sha,
+      ).catch(e => this.warn(`Test push ack: ${e.message}`));
+      this.log(`Push test: ${result.detail}`);
+      return false;   // the ack rewrote the file; act on updates next tick
+    }
+
     // A separate field, NOT a value of `command`. Overloading command would mean
     // acknowledging an update rewrites it — silently restarting a bot the user
     // had deliberately stopped.
