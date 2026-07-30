@@ -15,6 +15,10 @@
 // Everything here is pure: given a published instrument record and a filter, the
 // answer is the same on both sides, forever.
 
+// The pattern list comes from the app's own registry rather than a copy, so a
+// pattern can never be offered here under a name the Screener does not use.
+import { CANDLE_PATTERNS, PATTERN_MAP } from '../src/utils/candlePatterns.js';
+
 // ── Result vocabulary ────────────────────────────────────────────────────────
 // A condition returns ok:true (satisfied), ok:false (measured, not satisfied),
 // or ok:null (not measurable for this instrument).
@@ -40,13 +44,58 @@ function eventHit(rec, type, p) {
 const TF_OPTS  = [{ v:'H4', label:'H4' }, { v:'D', label:'Daily' }];
 const DIR_OPTS = [{ v:'any', label:'either way' }, { v:'up', label:'bullish only' }, { v:'down', label:'bearish only' }];
 
+// The sweep detector is the SAME function the Screener's ⚡ STRONG CANDLE row
+// uses, so it must use the Screener's words. Calling the identical thing
+// "bullish only" here and "🔨 Hammer" there made it unfindable: the option was
+// present the whole time and looked absent.
+const SWEEP_DIR_OPTS = [
+  { v:'any',  label:'any sweep' },
+  { v:'up',   label:'🔨 Hammer (bullish)' },
+  { v:'down', label:'⭐ Shooting Star (bearish)' },
+];
+
+const PATTERN_OPTS = [
+  { v:'any', label:'any pattern' },
+  ...CANDLE_PATTERNS.map(p => ({
+    v: p.id,
+    label: `${p.type === 'bullish' ? '▲' : p.type === 'bearish' ? '▼' : '·'} ${p.name}`,
+  })),
+];
+
 export const CONDITIONS = {
-  sweep: {
-    label: 'Liquidity sweep', group: 'Event', kind: 'event',
-    help: 'Wick clears the prior 5-bar high or low, body closes back inside.',
+  candlePattern: {
+    label: 'Candlestick pattern', group: 'Event', kind: 'event',
+    help: 'The Screener’s candlestick library, checked on every closed bar around the clock. Watch the ×/month figure — a Doji prints constantly, a Morning Star almost never, and the same threshold means very different things for each.',
     params: [
       { k:'tf',      label:'timeframe', type:'select', options:TF_OPTS, def:'H4' },
-      { k:'dir',     label:'direction', type:'select', options:DIR_OPTS, def:'any' },
+      { k:'pattern', label:'pattern',   type:'select', options:PATTERN_OPTS, def:'any' },
+      { k:'withinH', label:'within (hours)', type:'number', def:24, min:4, max:720, step:4 },
+    ],
+    test: (rec, p) => {
+      const list = rec?.patterns?.[p.tf];
+      if (!list) return NA(`no ${p.tf} pattern data`);
+      const cutoff = Date.now() - (p.withinH || 24) * 3600e3;
+      const hits = list.filter(x => x.at >= cutoff && (p.pattern === 'any' || x.id === p.pattern));
+      if (!hits.length) {
+        const want = p.pattern === 'any' ? 'pattern' : (PATTERN_MAP[p.pattern]?.name || p.pattern);
+        return { ok: false, detail: `no ${p.tf} ${want} in ${p.withinH}h` };
+      }
+      const h = hits.reduce((a, b) => (b.at > a.at ? b : a));
+      const meta = PATTERN_MAP[h.id];
+      return {
+        ok: true,
+        event: { type:'pattern', id:h.id, tf:p.tf, at:h.at, dir: meta?.type === 'bullish' ? 'up' : meta?.type === 'bearish' ? 'down' : null },
+        at: h.at,
+        detail: `${p.tf} ${meta?.name || h.id}${h.rate != null ? ` · ~${h.rate}/month here` : ''}`,
+      };
+    },
+  },
+  sweep: {
+    label: 'Strong candle / sweep', group: 'Event', kind: 'event',
+    help: 'The Screener’s ⚡ STRONG CANDLE, running 24/7. Wick clears the entire prior 5-bar high or low and the body closes back inside — 🔨 Hammer is the bullish one, ⭐ Shooting Star the bearish.',
+    params: [
+      { k:'tf',      label:'timeframe', type:'select', options:TF_OPTS, def:'H4' },
+      { k:'dir',     label:'pattern', type:'select', options:SWEEP_DIR_OPTS, def:'any' },
       { k:'withinH', label:'within (hours)', type:'number', def:48, min:4, max:720, step:4 },
     ],
     test: (rec, p) => eventHit(rec, 'sweep', p),

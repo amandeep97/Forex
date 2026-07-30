@@ -22,6 +22,8 @@
 // rarity figure ("this fires about 4× a month on gold") is honest from the
 // first tick instead of after six months of collecting.
 
+const path = require('path');
+const { pathToFileURL } = require('url');
 const fetch = require('node-fetch');
 const { INSTRUMENTS } = require('./instruments');
 const { detectStrongReversal, findSwings } = require('./smc');
@@ -41,6 +43,20 @@ const BARS = { H4: 500, D: 400 };
 // freshness window on top of this, so err on the generous side here — trimming
 // it in the bot would silently cap what the app is allowed to ask for.
 const RETAIN_DAYS = { H4: 7, D: 30 };
+
+// The Screener's candlestick library, loaded rather than reimplemented. It is
+// ESM app code, so it comes in through a dynamic import the same way the shared
+// filter rules do. Reusing it is the point: a "Bullish Engulfing" in the FEED
+// has to mean exactly what it means on the Screener, or the two screens are
+// quietly answering different questions.
+const PATTERNS_SRC = pathToFileURL(
+  path.join(__dirname, '..', '..', 'src', 'utils', 'candlePatterns.js')).href;
+
+// How many recent closed bars are searched for patterns. Candlestick patterns
+// are short-lived by nature — the Screener asks "formed within the last 1-10
+// candles" — and publishing every occurrence over the whole history would
+// multiply the feed's size for information nobody would filter on.
+const PATTERN_BARS = 10;
 
 const SWEEP_N = 5;        // a sweep must clear the prior 5 bars
 const SWING_LOOK = 2;     // bars either side that define a swing point
@@ -169,6 +185,16 @@ class FeedBuilder {
     this.wroteAt = 0;
   }
 
+  // Loaded once, lazily: an older checkout without the module must degrade to
+  // "no patterns" rather than take the whole feed down.
+  async _patternLib() {
+    if (this._pats === undefined) {
+      try { this._pats = await import(PATTERNS_SRC); }
+      catch (e) { this._pats = null; this.log(`Feed: candle patterns unavailable (${e.message})`); }
+    }
+    return this._pats;
+  }
+
   // Pick up where the last process left off, so a restart does not republish
   // an identical file (and does not lose the SHA needed to write).
   async _load() {
@@ -191,16 +217,25 @@ class FeedBuilder {
         // easy to miss, because re-measuring produces identical values and
         // looks like healthy "nothing changed" ticks. It matters much more now
         // that the self-updater restarts the bot on its own.
-        let restored = 0;
+        let restored = 0, backfill = 0;
         for (const [sym, rec] of Object.entries(this.data)) {
           for (const tf of ['H4', 'D']) {
-            if (rec.asOf?.[tf]) { this.due.set(`${sym}|${tf}`, nextBarDue(rec.asOf[tf], TF_MS[tf])); restored++; }
+            if (!rec.asOf?.[tf]) continue;
+            // A record written by an older build can be missing a field this
+            // one produces. Leaving it on schedule would mean waiting a whole
+            // bar — up to a day on the daily — for a newly shipped condition to
+            // become usable, and until then it reports "no data" and silently
+            // excludes the instrument. Re-measure those now instead.
+            if (!rec.patterns?.[tf]) { backfill++; continue; }
+            this.due.set(`${sym}|${tf}`, nextBarDue(rec.asOf[tf], TF_MS[tf]));
+            restored++;
           }
           if (rec.asOf?.spread) {
             this.due.set(`${sym}|SPREAD`, nextBarDue(rec.asOf.spread, TF_MS.M15, 60e3)); restored++;
           }
         }
-        this.log(`Feed: resumed with ${Object.keys(this.data).length} instruments, ${restored} schedules restored`);
+        this.log(`Feed: resumed with ${Object.keys(this.data).length} instruments, ${restored} schedules restored`
+          + (backfill ? `, ${backfill} due for backfill (record predates a current field)` : ''));
       } else if (f) {
         this.sha = f.sha;
       }
@@ -244,9 +279,9 @@ class FeedBuilder {
   // the same instrument, which is the one thing the shared rules exist to stop.
   _rec(inst) {
     const sym = typeof inst === 'string' ? inst : inst.sym;
-    if (!this.data[sym]) this.data[sym] = { state:{}, events:[], rarity:{}, asOf:{} };
+    if (!this.data[sym]) this.data[sym] = { state:{}, events:[], rarity:{}, asOf:{}, patterns:{} };
     const r = this.data[sym];
-    r.state ||= {}; r.events ||= []; r.rarity ||= {}; r.asOf ||= {};
+    r.state ||= {}; r.events ||= []; r.rarity ||= {}; r.asOf ||= {}; r.patterns ||= {};
     if (typeof inst === 'object') {
       r.cls  = inst.cls;
       r.name = inst.name;
@@ -275,6 +310,29 @@ class FeedBuilder {
         days: Math.round(spanDays),
         perMonth: +((hits.length / spanDays) * 30).toFixed(1),
       };
+    }
+
+    // ── Candlestick patterns, dated, with each one's own rate ──
+    const lib = await this._patternLib();
+    if (lib?.patternsAt) {
+      const counts = {};
+      const recent = [];
+      const firstRecent = Math.max(4, cs.length - PATTERN_BARS);
+      for (let i = 4; i < cs.length; i++) {
+        const ids = lib.patternsAt(cs, i);
+        for (const id of ids) {
+          counts[id] = (counts[id] || 0) + 1;
+          if (i >= firstRecent) recent.push({ id, at: cs[i].t });
+        }
+      }
+      // The rate rides on the entry rather than in a separate table, so only
+      // patterns actually present cost anything — which is also exactly when
+      // the number is worth showing.
+      rec.patterns ||= {};
+      rec.patterns[tf] = recent.map(p => ({
+        ...p,
+        rate: +(((counts[p.id] || 0) / spanDays) * 30).toFixed(1),
+      }));
     }
 
     const cutoff = Date.now() - RETAIN_DAYS[tf] * 86400e3;
@@ -329,14 +387,18 @@ class FeedBuilder {
 
   _eventSignature(data) {
     return JSON.stringify(Object.entries(data).sort(([a], [b]) => a < b ? -1 : 1)
-      .map(([sym, r]) => [sym, (r.events || []).map(e => `${e.type}${e.dir}${e.tf}${e.at}`)]));
+      .map(([sym, r]) => [sym,
+        (r.events || []).map(e => `${e.type}${e.dir}${e.tf}${e.at}`),
+        Object.entries(r.patterns || {}).map(([tf, list]) => `${tf}:${list.map(p => p.id + p.at).join(',')}`)]));
   }
 
   _signature(data) {
     // Everything except wall-clock, so an unchanged market does not produce a
     // commit every minute. 1440 no-op commits a day would bury the real ones.
     return JSON.stringify(Object.entries(data).sort(([a], [b]) => a < b ? -1 : 1)
-      .map(([sym, r]) => [sym, r.price, r.state, r.rarity, (r.events || []).map(e => `${e.type}${e.dir}${e.tf}${e.at}`)]));
+      .map(([sym, r]) => [sym, r.price, r.state, r.rarity,
+        (r.events || []).map(e => `${e.type}${e.dir}${e.tf}${e.at}`),
+        Object.entries(r.patterns || {}).map(([tf, list]) => `${tf}:${list.map(p => p.id + p.at).join(',')}`)]));
   }
 
   async tick() {
@@ -444,6 +506,7 @@ class FeedBuilder {
         bars: BARS,
         retainDays: RETAIN_DAYS,
         sweepBars: SWEEP_N,
+        patternBars: PATTERN_BARS,
         pending: Math.max(0, jobs.length - batch.length),
       },
       instruments: this.data,
