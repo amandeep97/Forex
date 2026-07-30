@@ -1,8 +1,8 @@
 {
   "version": 1,
-  "updatedAt": "2026-07-30T21:51:04.210Z",
+  "updatedAt": "2026-07-30T21:52:04.643Z",
   "meta": {
-    "instruments": 40,
+    "instruments": 41,
     "bars": {
       "H4": 500,
       "D": 400
@@ -12,7 +12,7 @@
       "D": 30
     },
     "sweepBars": 5,
-    "pending": 27
+    "pending": 23
   },
   "instruments": {
     "EUR/USD": {
@@ -1398,13 +1398,123 @@
     "NATGAS": {
       "state": {
         "posnPct": 10,
-        "posnWeeks": 160
+        "posnWeeks": 160,
+        "H4": {
+          "volPct": 28,
+          "rangePos": 25,
+          "chg20": -1.78,
+          "persistence": 20,
+          "atrPct": 1.39,
+          "bars": 500
+        },
+        "D": {
+          "volPct": 1,
+          "rangePos": 14,
+          "chg20": -13.12,
+          "persistence": 0,
+          "atrPct": 3.385,
+          "bars": 400
+        },
+        "spreadRatio": 1.8
       },
-      "events": [],
-      "rarity": {},
+      "events": [
+        {
+          "type": "break",
+          "dir": "up",
+          "at": 1785416400000,
+          "price": 2.771,
+          "detail": "closed above the swing high at 2.762",
+          "tf": "H4"
+        },
+        {
+          "type": "break",
+          "dir": "down",
+          "at": 1785186000000,
+          "price": 2.777,
+          "detail": "closed below the swing low at 2.78",
+          "tf": "H4"
+        },
+        {
+          "type": "break",
+          "dir": "down",
+          "at": 1785099600000,
+          "price": 2.848,
+          "detail": "closed below the swing low at 2.916",
+          "tf": "H4"
+        },
+        {
+          "type": "break",
+          "dir": "down",
+          "at": 1785099600000,
+          "price": 2.78,
+          "detail": "closed below the swing low at 2.808",
+          "tf": "D"
+        },
+        {
+          "type": "sweep",
+          "dir": "down",
+          "at": 1784840400000,
+          "price": 2.919,
+          "detail": "swept the 5-bar high and closed back inside",
+          "tf": "D"
+        },
+        {
+          "type": "sweep",
+          "dir": "down",
+          "at": 1784754000000,
+          "price": 2.924,
+          "detail": "swept the 5-bar high and closed back inside",
+          "tf": "D"
+        },
+        {
+          "type": "break",
+          "dir": "down",
+          "at": 1784494800000,
+          "price": 2.824,
+          "detail": "closed below the swing low at 2.829",
+          "tf": "D"
+        },
+        {
+          "type": "break",
+          "dir": "down",
+          "at": 1783544400000,
+          "price": 2.987,
+          "detail": "closed below the swing low at 3.119",
+          "tf": "D"
+        }
+      ],
+      "rarity": {
+        "sweep.H4": {
+          "n": 13,
+          "days": 116,
+          "perMonth": 3.4
+        },
+        "break.H4": {
+          "n": 58,
+          "days": 116,
+          "perMonth": 15.1
+        },
+        "sweep.D": {
+          "n": 15,
+          "days": 563,
+          "perMonth": 0.8
+        },
+        "break.D": {
+          "n": 54,
+          "days": 563,
+          "perMonth": 2.9
+        }
+      },
       "asOf": {
-        "cot": "2026-07-21"
-      }
+        "cot": "2026-07-21",
+        "H4": 1785430800000,
+        "D": 1785358800000,
+        "spread": 1785444300000
+      },
+      "cls": "energy",
+      "name": "Natural Gas",
+      "dec": 3,
+      "price": 2.754
     },
     "EUR/GBP": {
       "state": {
@@ -4439,6 +4549,95 @@
       "name": "Brent Crude Oil",
       "dec": 2,
       "price": 91.736
+    },
+    "BTC/USDT": {
+      "state": {
+        "H4": {
+          "volPct": 40,
+          "rangePos": 49,
+          "chg20": -0.46,
+          "persistence": 10,
+          "atrPct": 1.109,
+          "bars": 499
+        }
+      },
+      "events": [
+        {
+          "type": "break",
+          "dir": "up",
+          "at": 1785427200000,
+          "price": 64800,
+          "detail": "closed above the swing high at 64744.81",
+          "tf": "H4"
+        },
+        {
+          "type": "sweep",
+          "dir": "down",
+          "at": 1785412800000,
+          "price": 64730.3,
+          "detail": "swept the 5-bar high and closed back inside",
+          "tf": "H4"
+        },
+        {
+          "type": "break",
+          "dir": "up",
+          "at": 1785398400000,
+          "price": 64788,
+          "detail": "closed above the swing high at 64744.81",
+          "tf": "H4"
+        },
+        {
+          "type": "break",
+          "dir": "down",
+          "at": 1785182400000,
+          "price": 63755.86,
+          "detail": "closed below the swing low at 63810",
+          "tf": "H4"
+        },
+        {
+          "type": "sweep",
+          "dir": "down",
+          "at": 1785124800000,
+          "price": 65221.99,
+          "detail": "swept the 5-bar high and closed back inside",
+          "tf": "H4"
+        },
+        {
+          "type": "sweep",
+          "dir": "down",
+          "at": 1785081600000,
+          "price": 64695.52,
+          "detail": "swept the 5-bar high and closed back inside",
+          "tf": "H4"
+        },
+        {
+          "type": "break",
+          "dir": "down",
+          "at": 1784894400000,
+          "price": 64093.85,
+          "detail": "closed below the swing low at 64650",
+          "tf": "H4"
+        }
+      ],
+      "rarity": {
+        "sweep.H4": {
+          "n": 27,
+          "days": 83,
+          "perMonth": 9.8
+        },
+        "break.H4": {
+          "n": 53,
+          "days": 83,
+          "perMonth": 19.2
+        }
+      },
+      "asOf": {
+        "H4": 1785427200000
+      },
+      "cls": "crypto",
+      "name": "Bitcoin",
+      "dec": 1,
+      "price": 64800
     }
   }
 }
