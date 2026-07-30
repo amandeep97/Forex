@@ -12,6 +12,7 @@ const { fetchAllCOT, checkCOTFilter } = require('./cotFetcher');
 const { AlertChecker } = require('./alertChecker');
 const { FeedBuilder }  = require('./feed');
 const { FeedNotifier } = require('./feedNotify');
+const { Updater }      = require('./updater');
 
 const STRATEGY_PATH = 'bot/strategy.json';
 const TRADES_PATH   = 'bot/trades.json';
@@ -35,6 +36,7 @@ class ForexBot {
     this.cotData   = null;
     this.cotFetchedAt = 0;
     this.alertChecker = new AlertChecker({ oanda: this.oanda, github: this.github, telegram: this.telegram, env, log: this.log.bind(this) });
+    this.updater = new Updater({ github: this.github, env, log: this.log.bind(this) });
     this.feed = env.FEED_ENABLED === 'false'
       ? null
       : new FeedBuilder({
@@ -49,6 +51,11 @@ class ForexBot {
 
   async run() {
     this.log('── Tick ──────────────────────');
+
+    // Self-update first, so a tick never runs half on old code and half on new.
+    // If it updates, the process exits here and pm2 restarts it; everything
+    // below simply happens on the next tick with the new build.
+    if (await this._maybeUpdate()) return;
 
     // Price/candle/trendline alerts run every tick, independent of trading (works weekends for crypto)
     await this.alertChecker.check().catch(e => this.warn(`Alert check: ${e.message}`));
@@ -145,6 +152,39 @@ class ForexBot {
 
     if (reconcileChanged || syncChanged || tradePlaced) await this._saveTrades(tradeLog);
     else this.log('No changes — skipping trades.json write');
+  }
+
+  // Returns true when the process is about to exit for a restart.
+  //
+  // The "update" command is one-shot: it is cleared before the pull, so a
+  // command that somehow crashes the bot cannot put it in a restart loop that
+  // pulls, dies, pulls again.
+  async _maybeUpdate() {
+    const ctrl = await this.github.readJSON(CONTROL_PATH).catch(() => null);
+    // A separate field, NOT a value of `command`. Overloading command would mean
+    // acknowledging an update rewrites it — silently restarting a bot the user
+    // had deliberately stopped.
+    const asked = !!ctrl?.content?.updateRequested;
+
+    if (asked) {
+      await this.github.writeJSON(
+        CONTROL_PATH,
+        { ...ctrl.content, updateRequested: false, updateAckAt: new Date().toISOString() },
+        'bot: acknowledged update request', ctrl.sha,
+      ).catch(e => this.warn(`Control ack: ${e.message}`));
+      this.log('Update requested from the app');
+    } else if (!this.updater.dueForCheck()) {
+      return false;
+    }
+
+    let r;
+    try { r = await this.updater.update({ force: false }); }
+    catch (e) { this.warn(`Updater: ${e.message}`); this.updater.checkedAt = Date.now(); return false; }
+
+    if (r.updated && r.restart) { this.updater.restart(); return true; }
+    if (!r.updated && asked) this.log(`Update: ${r.reason}`);
+    await this.updater.publish();
+    return false;
   }
 
   async _runStrategy(strat, account, tradeLog) {
