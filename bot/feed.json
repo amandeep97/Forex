@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-07-30T22:07:08.012Z",
+  "updatedAt": "2026-07-30T22:08:08.098Z",
   "meta": {
     "instruments": 47,
     "bars": {
@@ -12,7 +12,7 @@
       "D": 30
     },
     "sweepBars": 5,
-    "pending": 26
+    "pending": 22
   },
   "instruments": {
     "EUR/USD": {
@@ -1413,7 +1413,7 @@
           "chg20": -13.12,
           "persistence": 0,
           "atrPct": 3.385,
-          "bars": 400
+          "bars": 399
         },
         "spreadRatio": 1.8
       },
@@ -1438,17 +1438,17 @@
           "type": "break",
           "dir": "down",
           "at": 1785099600000,
-          "price": 2.78,
-          "detail": "closed below the swing low at 2.808",
-          "tf": "D"
+          "price": 2.848,
+          "detail": "closed below the swing low at 2.916",
+          "tf": "H4"
         },
         {
           "type": "break",
           "dir": "down",
           "at": 1785099600000,
-          "price": 2.848,
-          "detail": "closed below the swing low at 2.916",
-          "tf": "H4"
+          "price": 2.78,
+          "detail": "closed below the swing low at 2.808",
+          "tf": "D"
         },
         {
           "type": "sweep",
@@ -1496,12 +1496,12 @@
         },
         "sweep.D": {
           "n": 15,
-          "days": 563,
+          "days": 562,
           "perMonth": 0.8
         },
         "break.D": {
           "n": 54,
-          "days": 563,
+          "days": 562,
           "perMonth": 2.9
         }
       },
