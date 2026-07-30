@@ -17,6 +17,7 @@ const TTL = {
   deriv:    60_000,       // 1 min — funding / OI
   cot:  6 * 3600_000,     // 6 h — the report is weekly
   news:  5 * 60_000,      // 5 min
+  feed:     60_000,       // 1 min — the VPS only republishes when something changes
 };
 
 const PERSIST = new Set(['cot']);          // survives reload; the rest is per-session

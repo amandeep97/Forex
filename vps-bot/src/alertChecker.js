@@ -1,140 +1,18 @@
 'use strict';
 const fetch = require('node-fetch');
+const { OANDA_MAP, BINANCE_MAP, DEC } = require('./instruments');
+const { detectStrongReversal } = require('./smc');
 let webpush = null;
 try { webpush = require('web-push'); } catch { /* installed on setup */ }
-
-// Strong Hammer / Shooting Star — wick clears the whole prior N-candle range, closes back inside.
-function detectStrongReversal(candles, i, N) {
-  if (i < N || i >= candles.length) return null;
-  const c = candles[i], prior = candles.slice(i - N, i);
-  const body = Math.abs(c.c - c.o), up = c.h - Math.max(c.o, c.c), lo = Math.min(c.o, c.c) - c.l, r = c.h - c.l;
-  if (r <= 0) return null;
-  const rLow = Math.min(...prior.map(x => x.l)), rHigh = Math.max(...prior.map(x => x.h));
-  if (c.l < rLow && c.c > rLow && c.c > c.o && lo >= 2 * body && lo > up && Math.min(c.o, c.c) >= c.l + r * 0.5) return 'hammer';
-  if (c.h > rHigh && c.c < rHigh && c.c < c.o && up >= 2 * body && up > lo && Math.max(c.o, c.c) <= c.l + r * 0.5) return 'star';
-  return null;
-}
 
 const ALERTS_PATH = 'bot/alerts.json';
 const SUBS_PATH   = 'bot/push-subscriptions.json';
 
-// Instrument maps generated from the app's canonical registry
-// (src/data/instruments.js). The app lets an alert be created on anything it
-// can price; if this list were shorter those alerts would be accepted in the UI
-// and then silently never fire in the background. Keep the two in step.
-const OANDA_MAP = {
-  'EUR/USD':'EUR_USD',
-  'GBP/USD':'GBP_USD',
-  'USD/JPY':'USD_JPY',
-  'USD/CHF':'USD_CHF',
-  'USD/CAD':'USD_CAD',
-  'AUD/USD':'AUD_USD',
-  'NZD/USD':'NZD_USD',
-  'EUR/GBP':'EUR_GBP',
-  'EUR/JPY':'EUR_JPY',
-  'GBP/JPY':'GBP_JPY',
-  'EUR/AUD':'EUR_AUD',
-  'EUR/CAD':'EUR_CAD',
-  'EUR/CHF':'EUR_CHF',
-  'EUR/NZD':'EUR_NZD',
-  'GBP/CHF':'GBP_CHF',
-  'GBP/CAD':'GBP_CAD',
-  'GBP/AUD':'GBP_AUD',
-  'GBP/NZD':'GBP_NZD',
-  'AUD/JPY':'AUD_JPY',
-  'AUD/CHF':'AUD_CHF',
-  'AUD/CAD':'AUD_CAD',
-  'AUD/NZD':'AUD_NZD',
-  'NZD/JPY':'NZD_JPY',
-  'NZD/CHF':'NZD_CHF',
-  'NZD/CAD':'NZD_CAD',
-  'CAD/JPY':'CAD_JPY',
-  'CAD/CHF':'CAD_CHF',
-  'CHF/JPY':'CHF_JPY',
-  'XAU/USD':'XAU_USD',
-  'XAG/USD':'XAG_USD',
-  'US500':'SPX500_USD',
-  'US100':'NAS100_USD',
-  'US30':'US30_USD',
-  'US2000':'US2000_USD',
-  'UK100':'UK100_GBP',
-  'GER40':'DE30_EUR',
-  'JPN225':'JP225_USD',
-  'USOIL':'WTICO_USD',
-  'UKOIL':'BCO_USD',
-  'NATGAS':'NATGAS_USD',
-};
-const BINANCE_MAP = {
-  'BTC/USDT':'BTCUSDT',
-  'ETH/USDT':'ETHUSDT',
-  'BNB/USDT':'BNBUSDT',
-  'SOL/USDT':'SOLUSDT',
-  'XRP/USDT':'XRPUSDT',
-  'ADA/USDT':'ADAUSDT',
-  'DOGE/USDT':'DOGEUSDT',
-  'AVAX/USDT':'AVAXUSDT',
-  'LINK/USDT':'LINKUSDT',
-  'DOT/USDT':'DOTUSDT',
-  'LTC/USDT':'LTCUSDT',
-  'TON/USDT':'TONUSDT',
-};
-
+// Instruments, venue symbols and price precision all come from the bot's
+// registry (./instruments.js), which mirrors the app's. They used to be three
+// literal tables here, so an instrument added to the app could be accepted in
+// the alert UI and then silently never fire in the background.
 const BIN_TF = { M1:'1m', M3:'3m', M5:'5m', M15:'15m', M30:'30m', H1:'1h', H4:'4h', D:'1d' };
-
-const DEC = {
-  'EUR/USD':5,
-  'GBP/USD':5,
-  'USD/JPY':3,
-  'USD/CHF':5,
-  'USD/CAD':5,
-  'AUD/USD':5,
-  'NZD/USD':5,
-  'EUR/GBP':5,
-  'EUR/JPY':3,
-  'GBP/JPY':3,
-  'EUR/AUD':5,
-  'EUR/CAD':5,
-  'EUR/CHF':5,
-  'EUR/NZD':5,
-  'GBP/CHF':5,
-  'GBP/CAD':5,
-  'GBP/AUD':5,
-  'GBP/NZD':5,
-  'AUD/JPY':3,
-  'AUD/CHF':5,
-  'AUD/CAD':5,
-  'AUD/NZD':5,
-  'NZD/JPY':3,
-  'NZD/CHF':5,
-  'NZD/CAD':5,
-  'CAD/JPY':3,
-  'CAD/CHF':5,
-  'CHF/JPY':3,
-  'XAU/USD':2,
-  'XAG/USD':3,
-  'US500':1,
-  'US100':1,
-  'US30':1,
-  'US2000':1,
-  'UK100':1,
-  'GER40':1,
-  'JPN225':1,
-  'USOIL':2,
-  'UKOIL':2,
-  'NATGAS':3,
-  'BTC/USDT':1,
-  'ETH/USDT':2,
-  'BNB/USDT':2,
-  'SOL/USDT':2,
-  'XRP/USDT':4,
-  'ADA/USDT':4,
-  'DOGE/USDT':4,
-  'AVAX/USDT':3,
-  'LINK/USDT':3,
-  'DOT/USDT':3,
-  'LTC/USDT':2,
-  'TON/USDT':3,
-};
 
 // Precision comes from the registry; the previous substring heuristics
 // mis-handled overlaps such as USOIL matching the US-index rule.
