@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-07-30T22:08:08.098Z",
+  "updatedAt": "2026-07-30T22:12:08.465Z",
   "meta": {
     "instruments": 47,
     "bars": {
@@ -12,7 +12,7 @@
       "D": 30
     },
     "sweepBars": 5,
-    "pending": 22
+    "pending": 10
   },
   "instruments": {
     "EUR/USD": {
@@ -5279,6 +5279,14 @@
           "persistence": 10,
           "atrPct": 1.397,
           "bars": 499
+        },
+        "D": {
+          "volPct": 2,
+          "rangePos": 6,
+          "chg20": -3.77,
+          "persistence": 20,
+          "atrPct": 3.509,
+          "bars": 399
         }
       },
       "events": [
@@ -5321,6 +5329,22 @@
           "price": 0.0712,
           "detail": "closed above the swing high at 0.07016",
           "tf": "H4"
+        },
+        {
+          "type": "sweep",
+          "dir": "up",
+          "at": 1784851200000,
+          "price": 0.06957,
+          "detail": "swept the 5-bar low and closed back inside",
+          "tf": "D"
+        },
+        {
+          "type": "break",
+          "dir": "down",
+          "at": 1784764800000,
+          "price": 0.0692,
+          "detail": "closed below the swing low at 0.07109",
+          "tf": "D"
         }
       ],
       "rarity": {
@@ -5333,15 +5357,26 @@
           "n": 63,
           "days": 83,
           "perMonth": 22.8
+        },
+        "sweep.D": {
+          "n": 9,
+          "days": 398,
+          "perMonth": 0.7
+        },
+        "break.D": {
+          "n": 36,
+          "days": 398,
+          "perMonth": 2.7
         }
       },
       "asOf": {
-        "H4": 1785427200000
+        "H4": 1785427200000,
+        "D": 1785283200000
       },
       "cls": "crypto",
       "name": "Dogecoin",
       "dec": 4,
-      "price": 0.07076
+      "price": 0.07014
     }
   }
 }
