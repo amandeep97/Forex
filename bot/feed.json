@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-07-30T22:29:22.515Z",
+  "updatedAt": "2026-07-30T22:45:28.949Z",
   "meta": {
     "instruments": 52,
     "bars": {
@@ -12,7 +12,8 @@
       "D": 30
     },
     "sweepBars": 5,
-    "pending": 28
+    "patternBars": 10,
+    "pending": 130
   },
   "instruments": {
     "EUR/USD": {
@@ -142,7 +143,133 @@
       "cls": "fx",
       "name": "Euro / US Dollar",
       "dec": 5,
-      "price": 1.1528
+      "price": 1.1528,
+      "patterns": {
+        "H4": [
+          {
+            "id": "tweezer_top",
+            "at": 1785301200000,
+            "rate": 30.5
+          },
+          {
+            "id": "inside_bar",
+            "at": 1785301200000,
+            "rate": 22.2
+          },
+          {
+            "id": "tweezer_bottom",
+            "at": 1785330000000,
+            "rate": 30
+          },
+          {
+            "id": "marubozu_bull",
+            "at": 1785344400000,
+            "rate": 1.8
+          },
+          {
+            "id": "spinning_top",
+            "at": 1785358800000,
+            "rate": 22.4
+          },
+          {
+            "id": "bear_harami",
+            "at": 1785358800000,
+            "rate": 5.2
+          },
+          {
+            "id": "tweezer_top",
+            "at": 1785358800000,
+            "rate": 30.5
+          },
+          {
+            "id": "spinning_top",
+            "at": 1785387600000,
+            "rate": 22.4
+          },
+          {
+            "id": "tweezer_bottom",
+            "at": 1785402000000,
+            "rate": 30
+          },
+          {
+            "id": "long_legged_doji",
+            "at": 1785430800000,
+            "rate": 3.9
+          },
+          {
+            "id": "tweezer_top",
+            "at": 1785430800000,
+            "rate": 30.5
+          },
+          {
+            "id": "inside_bar",
+            "at": 1785430800000,
+            "rate": 22.2
+          }
+        ],
+        "D": [
+          {
+            "id": "spinning_top",
+            "at": 1784235600000,
+            "rate": 4.2
+          },
+          {
+            "id": "spinning_top",
+            "at": 1784494800000,
+            "rate": 4.2
+          },
+          {
+            "id": "bull_harami",
+            "at": 1784667600000,
+            "rate": 1.2
+          },
+          {
+            "id": "tweezer_bottom",
+            "at": 1784667600000,
+            "rate": 4
+          },
+          {
+            "id": "inside_bar",
+            "at": 1784667600000,
+            "rate": 3.5
+          },
+          {
+            "id": "tweezer_top",
+            "at": 1784754000000,
+            "rate": 4.1
+          },
+          {
+            "id": "outside_bar",
+            "at": 1784754000000,
+            "rate": 2.1
+          },
+          {
+            "id": "spinning_top",
+            "at": 1784840400000,
+            "rate": 4.2
+          },
+          {
+            "id": "inside_bar",
+            "at": 1784840400000,
+            "rate": 3.5
+          },
+          {
+            "id": "bull_harami",
+            "at": 1785186000000,
+            "rate": 1.2
+          },
+          {
+            "id": "tweezer_bottom",
+            "at": 1785186000000,
+            "rate": 4
+          },
+          {
+            "id": "three_inside_up",
+            "at": 1785272400000,
+            "rate": 0.4
+          }
+        ]
+      }
     },
     "GBP/USD": {
       "state": {
@@ -255,7 +382,148 @@
       "cls": "fx",
       "name": "Pound / US Dollar",
       "dec": 5,
-      "price": 1.34644
+      "price": 1.34644,
+      "patterns": {
+        "H4": [
+          {
+            "id": "tweezer_top",
+            "at": 1785315600000,
+            "rate": 29.5
+          },
+          {
+            "id": "spinning_top",
+            "at": 1785330000000,
+            "rate": 29
+          },
+          {
+            "id": "tweezer_bottom",
+            "at": 1785330000000,
+            "rate": 29
+          },
+          {
+            "id": "inside_bar",
+            "at": 1785330000000,
+            "rate": 20.6
+          },
+          {
+            "id": "morning_star",
+            "at": 1785344400000,
+            "rate": 1.6
+          },
+          {
+            "id": "tweezer_top",
+            "at": 1785358800000,
+            "rate": 29.5
+          },
+          {
+            "id": "inside_bar",
+            "at": 1785358800000,
+            "rate": 20.6
+          },
+          {
+            "id": "tweezer_bottom",
+            "at": 1785387600000,
+            "rate": 29
+          },
+          {
+            "id": "outside_bar",
+            "at": 1785387600000,
+            "rate": 16.7
+          },
+          {
+            "id": "marubozu_bull",
+            "at": 1785416400000,
+            "rate": 2.9
+          },
+          {
+            "id": "long_legged_doji",
+            "at": 1785430800000,
+            "rate": 3.4
+          },
+          {
+            "id": "tweezer_top",
+            "at": 1785430800000,
+            "rate": 29.5
+          }
+        ],
+        "D": [
+          {
+            "id": "spinning_top",
+            "at": 1784494800000,
+            "rate": 4.7
+          },
+          {
+            "id": "long_legged_doji",
+            "at": 1784667600000,
+            "rate": 0.5
+          },
+          {
+            "id": "tweezer_bottom",
+            "at": 1784667600000,
+            "rate": 4.8
+          },
+          {
+            "id": "bear_engulf",
+            "at": 1784754000000,
+            "rate": 1.2
+          },
+          {
+            "id": "tweezer_top",
+            "at": 1784754000000,
+            "rate": 4.6
+          },
+          {
+            "id": "spinning_top",
+            "at": 1784840400000,
+            "rate": 4.7
+          },
+          {
+            "id": "bull_harami",
+            "at": 1784840400000,
+            "rate": 1.2
+          },
+          {
+            "id": "tweezer_bottom",
+            "at": 1784840400000,
+            "rate": 4.8
+          },
+          {
+            "id": "inside_bar",
+            "at": 1784840400000,
+            "rate": 3.1
+          },
+          {
+            "id": "bear_engulf",
+            "at": 1785099600000,
+            "rate": 1.2
+          },
+          {
+            "id": "tweezer_top",
+            "at": 1785099600000,
+            "rate": 4.6
+          },
+          {
+            "id": "outside_bar",
+            "at": 1785099600000,
+            "rate": 2.8
+          },
+          {
+            "id": "long_legged_doji",
+            "at": 1785186000000,
+            "rate": 0.5
+          },
+          {
+            "id": "tweezer_bottom",
+            "at": 1785186000000,
+            "rate": 4.8
+          },
+          {
+            "id": "morning_star",
+            "at": 1785272400000,
+            "rate": 0.2
+          }
+        ]
+      }
     },
     "USD/JPY": {
       "state": {
@@ -360,7 +628,173 @@
       "cls": "fx",
       "name": "US Dollar / Yen",
       "dec": 3,
-      "price": 159.547
+      "price": 159.547,
+      "patterns": {
+        "H4": [
+          {
+            "id": "bull_harami",
+            "at": 1785301200000,
+            "rate": 3.1
+          },
+          {
+            "id": "tweezer_bottom",
+            "at": 1785301200000,
+            "rate": 29.5
+          },
+          {
+            "id": "inside_bar",
+            "at": 1785301200000,
+            "rate": 26.3
+          },
+          {
+            "id": "three_inside_up",
+            "at": 1785315600000,
+            "rate": 0.8
+          },
+          {
+            "id": "bear_engulf",
+            "at": 1785344400000,
+            "rate": 4.4
+          },
+          {
+            "id": "tweezer_top",
+            "at": 1785344400000,
+            "rate": 31
+          },
+          {
+            "id": "hammer",
+            "at": 1785358800000,
+            "rate": 1
+          },
+          {
+            "id": "tweezer_bottom",
+            "at": 1785358800000,
+            "rate": 29.5
+          },
+          {
+            "id": "long_legged_doji",
+            "at": 1785373200000,
+            "rate": 5.5
+          },
+          {
+            "id": "tweezer_top",
+            "at": 1785373200000,
+            "rate": 31
+          },
+          {
+            "id": "bull_engulf",
+            "at": 1785387600000,
+            "rate": 6
+          },
+          {
+            "id": "tweezer_bottom",
+            "at": 1785387600000,
+            "rate": 29.5
+          },
+          {
+            "id": "tweezer_top",
+            "at": 1785402000000,
+            "rate": 31
+          },
+          {
+            "id": "doji",
+            "at": 1785430800000,
+            "rate": 4.2
+          },
+          {
+            "id": "inside_bar",
+            "at": 1785430800000,
+            "rate": 26.3
+          }
+        ],
+        "D": [
+          {
+            "id": "doji",
+            "at": 1784235600000,
+            "rate": 0.4
+          },
+          {
+            "id": "tweezer_top",
+            "at": 1784235600000,
+            "rate": 4.8
+          },
+          {
+            "id": "inside_bar",
+            "at": 1784235600000,
+            "rate": 3.7
+          },
+          {
+            "id": "spinning_top",
+            "at": 1784494800000,
+            "rate": 3.7
+          },
+          {
+            "id": "tweezer_bottom",
+            "at": 1784494800000,
+            "rate": 3.7
+          },
+          {
+            "id": "doji",
+            "at": 1784667600000,
+            "rate": 0.4
+          },
+          {
+            "id": "hanging_man",
+            "at": 1784667600000,
+            "rate": 0.5
+          },
+          {
+            "id": "harami_cross",
+            "at": 1784667600000,
+            "rate": 0.4
+          },
+          {
+            "id": "tweezer_top",
+            "at": 1784667600000,
+            "rate": 4.8
+          },
+          {
+            "id": "inside_bar",
+            "at": 1784667600000,
+            "rate": 3.7
+          },
+          {
+            "id": "bull_engulf",
+            "at": 1784754000000,
+            "rate": 1.5
+          },
+          {
+            "id": "tweezer_bottom",
+            "at": 1784754000000,
+            "rate": 3.7
+          },
+          {
+            "id": "spinning_top",
+            "at": 1784840400000,
+            "rate": 3.7
+          },
+          {
+            "id": "tweezer_top",
+            "at": 1784840400000,
+            "rate": 4.8
+          },
+          {
+            "id": "inside_bar",
+            "at": 1784840400000,
+            "rate": 3.7
+          },
+          {
+            "id": "tweezer_bottom",
+            "at": 1785099600000,
+            "rate": 3.7
+          },
+          {
+            "id": "tweezer_top",
+            "at": 1785272400000,
+            "rate": 4.8
+          }
+        ]
+      }
     },
     "USD/CHF": {
       "state": {
@@ -489,7 +923,128 @@
       "cls": "fx",
       "name": "US Dollar / Swiss Franc",
       "dec": 5,
-      "price": 0.8051
+      "price": 0.8051,
+      "patterns": {
+        "H4": [
+          {
+            "id": "tweezer_bottom",
+            "at": 1785301200000,
+            "rate": 31
+          },
+          {
+            "id": "outside_bar",
+            "at": 1785330000000,
+            "rate": 17.7
+          },
+          {
+            "id": "marubozu_bear",
+            "at": 1785344400000,
+            "rate": 1.8
+          },
+          {
+            "id": "tweezer_top",
+            "at": 1785344400000,
+            "rate": 30.8
+          },
+          {
+            "id": "tweezer_bottom",
+            "at": 1785358800000,
+            "rate": 31
+          },
+          {
+            "id": "spinning_top",
+            "at": 1785387600000,
+            "rate": 29.5
+          },
+          {
+            "id": "three_soldiers",
+            "at": 1785387600000,
+            "rate": 2.6
+          },
+          {
+            "id": "tweezer_top",
+            "at": 1785402000000,
+            "rate": 30.8
+          },
+          {
+            "id": "evening_star",
+            "at": 1785402000000,
+            "rate": 2.6
+          },
+          {
+            "id": "marubozu_bear",
+            "at": 1785416400000,
+            "rate": 1.8
+          },
+          {
+            "id": "spinning_top",
+            "at": 1785430800000,
+            "rate": 29.5
+          },
+          {
+            "id": "tweezer_bottom",
+            "at": 1785430800000,
+            "rate": 31
+          },
+          {
+            "id": "inside_bar",
+            "at": 1785430800000,
+            "rate": 18
+          }
+        ],
+        "D": [
+          {
+            "id": "bear_harami",
+            "at": 1784235600000,
+            "rate": 1.1
+          },
+          {
+            "id": "tweezer_top",
+            "at": 1784235600000,
+            "rate": 4.3
+          },
+          {
+            "id": "inside_bar",
+            "at": 1784235600000,
+            "rate": 3.8
+          },
+          {
+            "id": "tweezer_bottom",
+            "at": 1784494800000,
+            "rate": 3.8
+          },
+          {
+            "id": "three_soldiers",
+            "at": 1784667600000,
+            "rate": 0.6
+          },
+          {
+            "id": "outside_bar",
+            "at": 1785099600000,
+            "rate": 2.1
+          },
+          {
+            "id": "spinning_top",
+            "at": 1785186000000,
+            "rate": 4
+          },
+          {
+            "id": "tweezer_top",
+            "at": 1785272400000,
+            "rate": 4.3
+          },
+          {
+            "id": "outside_bar",
+            "at": 1785272400000,
+            "rate": 2.1
+          },
+          {
+            "id": "evening_star",
+            "at": 1785272400000,
+            "rate": 0.3
+          }
+        ]
+      }
     },
     "USD/CAD": {
       "state": {
@@ -602,7 +1157,153 @@
       "cls": "fx",
       "name": "US Dollar / Canadian $",
       "dec": 5,
-      "price": 1.40108
+      "price": 1.40108,
+      "patterns": {
+        "H4": [
+          {
+            "id": "tweezer_bottom",
+            "at": 1785301200000,
+            "rate": 33.4
+          },
+          {
+            "id": "bear_harami",
+            "at": 1785315600000,
+            "rate": 5.7
+          },
+          {
+            "id": "tweezer_top",
+            "at": 1785315600000,
+            "rate": 33.1
+          },
+          {
+            "id": "spinning_top",
+            "at": 1785330000000,
+            "rate": 26.9
+          },
+          {
+            "id": "tweezer_bottom",
+            "at": 1785330000000,
+            "rate": 33.4
+          },
+          {
+            "id": "bear_engulf",
+            "at": 1785344400000,
+            "rate": 5.7
+          },
+          {
+            "id": "tweezer_top",
+            "at": 1785344400000,
+            "rate": 33.1
+          },
+          {
+            "id": "spinning_top",
+            "at": 1785358800000,
+            "rate": 26.9
+          },
+          {
+            "id": "hammer",
+            "at": 1785358800000,
+            "rate": 2.6
+          },
+          {
+            "id": "inside_bar",
+            "at": 1785358800000,
+            "rate": 18.8
+          },
+          {
+            "id": "bull_engulf",
+            "at": 1785373200000,
+            "rate": 5.7
+          },
+          {
+            "id": "tweezer_bottom",
+            "at": 1785373200000,
+            "rate": 33.4
+          },
+          {
+            "id": "spinning_top",
+            "at": 1785387600000,
+            "rate": 26.9
+          },
+          {
+            "id": "hammer",
+            "at": 1785402000000,
+            "rate": 2.6
+          },
+          {
+            "id": "tweezer_top",
+            "at": 1785402000000,
+            "rate": 33.1
+          },
+          {
+            "id": "marubozu_bear",
+            "at": 1785416400000,
+            "rate": 1.6
+          },
+          {
+            "id": "outside_bar",
+            "at": 1785416400000,
+            "rate": 14.9
+          },
+          {
+            "id": "tweezer_bottom",
+            "at": 1785430800000,
+            "rate": 33.4
+          }
+        ],
+        "D": [
+          {
+            "id": "bear_engulf",
+            "at": 1784235600000,
+            "rate": 1
+          },
+          {
+            "id": "tweezer_top",
+            "at": 1784235600000,
+            "rate": 4.7
+          },
+          {
+            "id": "bull_engulf",
+            "at": 1784494800000,
+            "rate": 1.4
+          },
+          {
+            "id": "tweezer_bottom",
+            "at": 1784494800000,
+            "rate": 4.8
+          },
+          {
+            "id": "outside_bar",
+            "at": 1784494800000,
+            "rate": 2.6
+          },
+          {
+            "id": "tweezer_top",
+            "at": 1784667600000,
+            "rate": 4.7
+          },
+          {
+            "id": "long_legged_doji",
+            "at": 1784754000000,
+            "rate": 0.6
+          },
+          {
+            "id": "spinning_top",
+            "at": 1784840400000,
+            "rate": 4.7
+          },
+          {
+            "id": "tweezer_bottom",
+            "at": 1784840400000,
+            "rate": 4.8
+          },
+          {
+            "id": "tweezer_top",
+            "at": 1785186000000,
+            "rate": 4.7
+          }
+        ]
+      }
     },
     "AUD/USD": {
       "state": {
@@ -731,7 +1432,133 @@
       "cls": "fx",
       "name": "Australian $ / US $",
       "dec": 5,
-      "price": 0.70297
+      "price": 0.70297,
+      "patterns": {
+        "H4": [
+          {
+            "id": "inside_bar",
+            "at": 1785301200000,
+            "rate": 21.1
+          },
+          {
+            "id": "spinning_top",
+            "at": 1785315600000,
+            "rate": 30.3
+          },
+          {
+            "id": "outside_bar",
+            "at": 1785330000000,
+            "rate": 15.7
+          },
+          {
+            "id": "bull_engulf",
+            "at": 1785344400000,
+            "rate": 4.4
+          },
+          {
+            "id": "tweezer_bottom",
+            "at": 1785344400000,
+            "rate": 29.5
+          },
+          {
+            "id": "spinning_top",
+            "at": 1785358800000,
+            "rate": 30.3
+          },
+          {
+            "id": "inside_bar",
+            "at": 1785358800000,
+            "rate": 21.1
+          },
+          {
+            "id": "bear_engulf",
+            "at": 1785373200000,
+            "rate": 5.5
+          },
+          {
+            "id": "tweezer_top",
+            "at": 1785373200000,
+            "rate": 30.8
+          },
+          {
+            "id": "inside_bar",
+            "at": 1785373200000,
+            "rate": 21.1
+          },
+          {
+            "id": "tweezer_bottom",
+            "at": 1785387600000,
+            "rate": 29.5
+          },
+          {
+            "id": "marubozu_bull",
+            "at": 1785416400000,
+            "rate": 3.1
+          },
+          {
+            "id": "spinning_top",
+            "at": 1785430800000,
+            "rate": 30.3
+          }
+        ],
+        "D": [
+          {
+            "id": "bull_engulf",
+            "at": 1784494800000,
+            "rate": 1.4
+          },
+          {
+            "id": "tweezer_bottom",
+            "at": 1784494800000,
+            "rate": 3.9
+          },
+          {
+            "id": "outside_bar",
+            "at": 1784494800000,
+            "rate": 2.8
+          },
+          {
+            "id": "spinning_top",
+            "at": 1784581200000,
+            "rate": 4.1
+          },
+          {
+            "id": "tweezer_top",
+            "at": 1784581200000,
+            "rate": 4.4
+          },
+          {
+            "id": "spinning_top",
+            "at": 1784667600000,
+            "rate": 4.1
+          },
+          {
+            "id": "outside_bar",
+            "at": 1784754000000,
+            "rate": 2.8
+          },
+          {
+            "id": "tweezer_bottom",
+            "at": 1784840400000,
+            "rate": 3.9
+          },
+          {
+            "id": "inside_bar",
+            "at": 1784840400000,
+            "rate": 3.2
+          },
+          {
+            "id": "tweezer_top",
+            "at": 1785099600000,
+            "rate": 4.4
+          },
+          {
+            "id": "three_crows",
+            "at": 1785272400000,
+            "rate": 0.2
+          }
+        ]
+      }
     },
     "NZD/USD": {
       "state": {
@@ -828,7 +1655,148 @@
       "cls": "fx",
       "name": "New Zealand $ / US $",
       "dec": 5,
-      "price": 0.58798
+      "price": 0.58798,
+      "patterns": {
+        "H4": [
+          {
+            "id": "spinning_top",
+            "at": 1785301200000,
+            "rate": 23.7
+          },
+          {
+            "id": "tweezer_top",
+            "at": 1785301200000,
+            "rate": 29.2
+          },
+          {
+            "id": "evening_star",
+            "at": 1785315600000,
+            "rate": 2.9
+          },
+          {
+            "id": "outside_bar",
+            "at": 1785330000000,
+            "rate": 15.9
+          },
+          {
+            "id": "tweezer_bottom",
+            "at": 1785344400000,
+            "rate": 29.2
+          },
+          {
+            "id": "spinning_top",
+            "at": 1785358800000,
+            "rate": 23.7
+          },
+          {
+            "id": "inside_bar",
+            "at": 1785358800000,
+            "rate": 19.6
+          },
+          {
+            "id": "outside_bar",
+            "at": 1785387600000,
+            "rate": 15.9
+          },
+          {
+            "id": "marubozu_bull",
+            "at": 1785416400000,
+            "rate": 1.6
+          },
+          {
+            "id": "spinning_top",
+            "at": 1785430800000,
+            "rate": 23.7
+          }
+        ],
+        "D": [
+          {
+            "id": "doji",
+            "at": 1784235600000,
+            "rate": 0.5
+          },
+          {
+            "id": "tweezer_bottom",
+            "at": 1784235600000,
+            "rate": 3.6
+          },
+          {
+            "id": "shooting_star",
+            "at": 1784494800000,
+            "rate": 0.4
+          },
+          {
+            "id": "shooting_star",
+            "at": 1784581200000,
+            "rate": 0.4
+          },
+          {
+            "id": "tweezer_top",
+            "at": 1784581200000,
+            "rate": 4.1
+          },
+          {
+            "id": "outside_bar",
+            "at": 1784581200000,
+            "rate": 2.4
+          },
+          {
+            "id": "bull_harami",
+            "at": 1784840400000,
+            "rate": 0.9
+          },
+          {
+            "id": "tweezer_bottom",
+            "at": 1784840400000,
+            "rate": 3.6
+          },
+          {
+            "id": "inside_bar",
+            "at": 1784840400000,
+            "rate": 2.6
+          },
+          {
+            "id": "dark_cloud",
+            "at": 1785099600000,
+            "rate": 0.1
+          },
+          {
+            "id": "tweezer_top",
+            "at": 1785099600000,
+            "rate": 4.1
+          },
+          {
+            "id": "spinning_top",
+            "at": 1785186000000,
+            "rate": 3.5
+          },
+          {
+            "id": "bull_harami",
+            "at": 1785186000000,
+            "rate": 0.9
+          },
+          {
+            "id": "tweezer_bottom",
+            "at": 1785186000000,
+            "rate": 3.6
+          },
+          {
+            "id": "spinning_top",
+            "at": 1785272400000,
+            "rate": 3.5
+          },
+          {
+            "id": "outside_bar",
+            "at": 1785272400000,
+            "rate": 2.4
+          },
+          {
+            "id": "marubozu_bull",
+            "at": 1785358800000,
+            "rate": 0.5
+          }
+        ]
+      }
     },
     "XAU/USD": {
       "state": {
@@ -933,7 +1901,8 @@
       "cls": "metal",
       "name": "Gold",
       "dec": 2,
-      "price": 4103.27
+      "price": 4103.27,
+      "patterns": {}
     },
     "XAG/USD": {
       "state": {
@@ -1022,7 +1991,8 @@
       "cls": "metal",
       "name": "Silver",
       "dec": 3,
-      "price": 58.98935
+      "price": 58.98935,
+      "patterns": {}
     },
     "US500": {
       "state": {
@@ -1151,7 +2121,8 @@
       "cls": "index",
       "name": "S&P 500",
       "dec": 1,
-      "price": 7453
+      "price": 7453,
+      "patterns": {}
     },
     "US100": {
       "state": {
@@ -1288,7 +2259,8 @@
       "cls": "index",
       "name": "Nasdaq 100",
       "dec": 1,
-      "price": 28221
+      "price": 28221,
+      "patterns": {}
     },
     "USOIL": {
       "state": {
@@ -1393,7 +2365,8 @@
       "cls": "energy",
       "name": "WTI Crude Oil",
       "dec": 2,
-      "price": 84.492
+      "price": 84.492,
+      "patterns": {}
     },
     "NATGAS": {
       "state": {
@@ -1514,7 +2487,8 @@
       "cls": "energy",
       "name": "Natural Gas",
       "dec": 3,
-      "price": 2.754
+      "price": 2.754,
+      "patterns": {}
     },
     "EUR/GBP": {
       "state": {
