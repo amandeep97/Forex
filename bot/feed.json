@@ -1,8 +1,8 @@
 {
   "version": 1,
-  "updatedAt": "2026-07-30T21:53:04.555Z",
+  "updatedAt": "2026-07-30T21:54:04.534Z",
   "meta": {
-    "instruments": 42,
+    "instruments": 44,
     "bars": {
       "H4": 500,
       "D": 400
@@ -12,7 +12,7 @@
       "D": 30
     },
     "sweepBars": 5,
-    "pending": 20
+    "pending": 17
   },
   "instruments": {
     "EUR/USD": {
@@ -4797,6 +4797,187 @@
       "name": "Ethereum",
       "dec": 2,
       "price": 1910.72
+    },
+    "BNB/USDT": {
+      "state": {
+        "H4": {
+          "volPct": 43,
+          "rangePos": 97,
+          "chg20": 3.79,
+          "persistence": 20,
+          "atrPct": 1.129,
+          "bars": 499
+        },
+        "D": {
+          "volPct": 0,
+          "rangePos": 17,
+          "chg20": 0.57,
+          "persistence": 0,
+          "atrPct": 1.851,
+          "bars": 399
+        }
+      },
+      "events": [
+        {
+          "type": "break",
+          "dir": "up",
+          "at": 1785398400000,
+          "price": 589,
+          "detail": "closed above the swing high at 575.66",
+          "tf": "H4"
+        },
+        {
+          "type": "sweep",
+          "dir": "down",
+          "at": 1785340800000,
+          "price": 568.54,
+          "detail": "swept the 5-bar high and closed back inside",
+          "tf": "H4"
+        },
+        {
+          "type": "sweep",
+          "dir": "up",
+          "at": 1785196800000,
+          "price": 566.57,
+          "detail": "swept the 5-bar low and closed back inside",
+          "tf": "H4"
+        },
+        {
+          "type": "break",
+          "dir": "down",
+          "at": 1785182400000,
+          "price": 566.28,
+          "detail": "closed below the swing low at 571.49",
+          "tf": "H4"
+        },
+        {
+          "type": "break",
+          "dir": "down",
+          "at": 1785153600000,
+          "price": 568.64,
+          "detail": "closed below the swing low at 571.49",
+          "tf": "H4"
+        },
+        {
+          "type": "break",
+          "dir": "up",
+          "at": 1784980800000,
+          "price": 567.38,
+          "detail": "closed above the swing high at 566.47",
+          "tf": "H4"
+        },
+        {
+          "type": "break",
+          "dir": "down",
+          "at": 1784894400000,
+          "price": 561.41,
+          "detail": "closed below the swing low at 563.71",
+          "tf": "H4"
+        }
+      ],
+      "rarity": {
+        "sweep.H4": {
+          "n": 19,
+          "days": 83,
+          "perMonth": 6.9
+        },
+        "break.H4": {
+          "n": 58,
+          "days": 83,
+          "perMonth": 21
+        },
+        "sweep.D": {
+          "n": 8,
+          "days": 398,
+          "perMonth": 0.6
+        },
+        "break.D": {
+          "n": 35,
+          "days": 398,
+          "perMonth": 2.6
+        }
+      },
+      "asOf": {
+        "H4": 1785427200000,
+        "D": 1785283200000
+      },
+      "cls": "crypto",
+      "name": "BNB",
+      "dec": 2,
+      "price": 571.99
+    },
+    "SOL/USDT": {
+      "state": {
+        "H4": {
+          "volPct": 25,
+          "rangePos": 38,
+          "chg20": -2.25,
+          "persistence": 10,
+          "atrPct": 1.531,
+          "bars": 499
+        }
+      },
+      "events": [
+        {
+          "type": "break",
+          "dir": "up",
+          "at": 1785412800000,
+          "price": 74.65,
+          "detail": "closed above the swing high at 74.53",
+          "tf": "H4"
+        },
+        {
+          "type": "sweep",
+          "dir": "down",
+          "at": 1785340800000,
+          "price": 72.76,
+          "detail": "swept the 5-bar high and closed back inside",
+          "tf": "H4"
+        },
+        {
+          "type": "break",
+          "dir": "down",
+          "at": 1785196800000,
+          "price": 73.28,
+          "detail": "closed below the swing low at 73.56",
+          "tf": "H4"
+        },
+        {
+          "type": "sweep",
+          "dir": "down",
+          "at": 1785081600000,
+          "price": 75.34,
+          "detail": "swept the 5-bar high and closed back inside",
+          "tf": "H4"
+        },
+        {
+          "type": "break",
+          "dir": "up",
+          "at": 1784995200000,
+          "price": 74.57,
+          "detail": "closed above the swing high at 74.36",
+          "tf": "H4"
+        }
+      ],
+      "rarity": {
+        "sweep.H4": {
+          "n": 14,
+          "days": 83,
+          "perMonth": 5.1
+        },
+        "break.H4": {
+          "n": 54,
+          "days": 83,
+          "perMonth": 19.5
+        }
+      },
+      "asOf": {
+        "H4": 1785427200000
+      },
+      "cls": "crypto",
+      "name": "Solana",
+      "dec": 2,
+      "price": 74.78
     }
   }
 }
