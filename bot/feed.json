@@ -1,8 +1,8 @@
 {
   "version": 1,
-  "updatedAt": "2026-07-30T21:54:04.534Z",
+  "updatedAt": "2026-07-30T21:55:05.627Z",
   "meta": {
-    "instruments": 44,
+    "instruments": 45,
     "bars": {
       "H4": 500,
       "D": 400
@@ -12,7 +12,7 @@
       "D": 30
     },
     "sweepBars": 5,
-    "pending": 17
+    "pending": 14
   },
   "instruments": {
     "EUR/USD": {
@@ -4915,6 +4915,14 @@
           "persistence": 10,
           "atrPct": 1.531,
           "bars": 499
+        },
+        "D": {
+          "volPct": 0,
+          "rangePos": 57,
+          "chg20": -5.59,
+          "persistence": 10,
+          "atrPct": 3.083,
+          "bars": 399
         }
       },
       "events": [
@@ -4957,6 +4965,38 @@
           "price": 74.57,
           "detail": "closed above the swing high at 74.36",
           "tf": "H4"
+        },
+        {
+          "type": "break",
+          "dir": "down",
+          "at": 1783900800000,
+          "price": 75.01,
+          "detail": "closed below the swing low at 76.29",
+          "tf": "D"
+        },
+        {
+          "type": "sweep",
+          "dir": "up",
+          "at": 1783814400000,
+          "price": 76.92,
+          "detail": "swept the 5-bar low and closed back inside",
+          "tf": "D"
+        },
+        {
+          "type": "sweep",
+          "dir": "down",
+          "at": 1783123200000,
+          "price": 81.8,
+          "detail": "swept the 5-bar high and closed back inside",
+          "tf": "D"
+        },
+        {
+          "type": "break",
+          "dir": "up",
+          "at": 1782864000000,
+          "price": 77.46,
+          "detail": "closed above the swing high at 73.93",
+          "tf": "D"
         }
       ],
       "rarity": {
@@ -4969,15 +5009,142 @@
           "n": 54,
           "days": 83,
           "perMonth": 19.5
+        },
+        "sweep.D": {
+          "n": 12,
+          "days": 398,
+          "perMonth": 0.9
+        },
+        "break.D": {
+          "n": 36,
+          "days": 398,
+          "perMonth": 2.7
         }
       },
       "asOf": {
-        "H4": 1785427200000
+        "H4": 1785427200000,
+        "D": 1785283200000
       },
       "cls": "crypto",
       "name": "Solana",
       "dec": 2,
-      "price": 74.78
+      "price": 73.68
+    },
+    "XRP/USDT": {
+      "state": {
+        "H4": {
+          "volPct": 23,
+          "rangePos": 37,
+          "chg20": -1.4,
+          "persistence": 10,
+          "atrPct": 1.353,
+          "bars": 499
+        },
+        "D": {
+          "volPct": 0,
+          "rangePos": 19,
+          "chg20": -1.78,
+          "persistence": 20,
+          "atrPct": 2.929,
+          "bars": 399
+        }
+      },
+      "events": [
+        {
+          "type": "sweep",
+          "dir": "up",
+          "at": 1785196800000,
+          "price": 1.069,
+          "detail": "swept the 5-bar low and closed back inside",
+          "tf": "D"
+        },
+        {
+          "type": "break",
+          "dir": "down",
+          "at": 1785153600000,
+          "price": 1.0865,
+          "detail": "closed below the swing low at 1.0955",
+          "tf": "H4"
+        },
+        {
+          "type": "break",
+          "dir": "down",
+          "at": 1785110400000,
+          "price": 1.0661,
+          "detail": "closed below the swing low at 1.085",
+          "tf": "D"
+        },
+        {
+          "type": "break",
+          "dir": "up",
+          "at": 1785096000000,
+          "price": 1.1131,
+          "detail": "closed above the swing high at 1.108",
+          "tf": "H4"
+        },
+        {
+          "type": "break",
+          "dir": "up",
+          "at": 1784980800000,
+          "price": 1.0985,
+          "detail": "closed above the swing high at 1.0965",
+          "tf": "H4"
+        },
+        {
+          "type": "break",
+          "dir": "down",
+          "at": 1784894400000,
+          "price": 1.0911,
+          "detail": "closed below the swing low at 1.1006",
+          "tf": "H4"
+        },
+        {
+          "type": "break",
+          "dir": "up",
+          "at": 1784592000000,
+          "price": 1.1436,
+          "detail": "closed above the swing high at 1.1302",
+          "tf": "D"
+        },
+        {
+          "type": "break",
+          "dir": "down",
+          "at": 1783900800000,
+          "price": 1.0675,
+          "detail": "closed below the swing low at 1.0694",
+          "tf": "D"
+        }
+      ],
+      "rarity": {
+        "sweep.H4": {
+          "n": 20,
+          "days": 83,
+          "perMonth": 7.2
+        },
+        "break.H4": {
+          "n": 52,
+          "days": 83,
+          "perMonth": 18.8
+        },
+        "sweep.D": {
+          "n": 13,
+          "days": 398,
+          "perMonth": 1
+        },
+        "break.D": {
+          "n": 34,
+          "days": 398,
+          "perMonth": 2.6
+        }
+      },
+      "asOf": {
+        "H4": 1785427200000,
+        "D": 1785283200000
+      },
+      "cls": "crypto",
+      "name": "XRP",
+      "dec": 4,
+      "price": 1.0737
     }
   }
 }
