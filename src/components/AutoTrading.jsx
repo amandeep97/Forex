@@ -1089,10 +1089,11 @@ function VPSBotTab({ onLog }) {
   const refreshStatus = async () => {
     setLoading(true); setErr('');
     try {
-      const [stratData, ctrlData, tradesData] = await Promise.all([
+      const [stratData, ctrlData, tradesData, verData] = await Promise.all([
         ghRead('bot/strategy.json').catch(() => null),
         ghRead('bot/vps-control.json').catch(() => null),
         ghRead('bot/trades.json').catch(() => null),
+        ghRead('bot/vps-version.json', { noCache: true }).catch(() => null),
       ]);
       const trades = tradesData?.content?.trades || [];
       const botTrades = trades.filter(t => t.source === 'vps_bot');
@@ -1102,6 +1103,8 @@ function VPSBotTab({ onLog }) {
         totalBotTrades: botTrades.length,
         openBotTrades:  botTrades.filter(t => t.status === 'open' || t.status === 'OPEN').length,
         hasStrategy: !!stratData,
+        updatePending: !!ctrlData?.content?.updateRequested,
+        version: verData?.content || null,
       });
     } catch (e) { setErr(e.message); }
     finally { setLoading(false); }
@@ -1115,6 +1118,23 @@ function VPSBotTab({ onLog }) {
       setBotStatus(s => ({ ...s, control: command }));
       setMsg(`Command "${command}" sent to bot`); onLog?.('INFO', `VPS: ${command}`);
       setTimeout(() => setMsg(''), 3000);
+    } catch (e) { setErr(e.message); }
+    finally { setSaving(false); }
+  };
+
+  // Ask the bot to pull and restart itself. A separate field, not a `command`
+  // value, so requesting an update cannot silently resume a bot you stopped.
+  const requestUpdate = async () => {
+    setSaving(true); setErr('');
+    try {
+      const existing = await ghRead('bot/vps-control.json', { noCache: true }).catch(() => null);
+      await ghWrite('bot/vps-control.json',
+        { ...(existing?.content || { command: 'running' }), updateRequested: true, updateSentAt: new Date().toISOString() },
+        'app: request bot self-update', existing?.sha || null);
+      setBotStatus(s => ({ ...s, updatePending: true }));
+      setMsg('Update requested — the bot picks it up within a minute and restarts itself');
+      onLog?.('INFO', 'VPS: update requested');
+      setTimeout(() => setMsg(''), 6000);
     } catch (e) { setErr(e.message); }
     finally { setSaving(false); }
   };
@@ -1276,6 +1296,46 @@ BOT_INTERVAL_MS=60000`;
             </div>
           ) : (
             <div style={{ fontSize: 12, color: '#475569', marginBottom: 14 }}>Tap Refresh to check bot status</div>
+          )}
+
+          {/* ── What the VPS is actually running ─────────────────────────── */}
+          {botStatus && (
+            <div style={{ background:'#1e293b', borderRadius:10, padding:12, marginBottom:14,
+              border:`1px solid ${botStatus.version?.behind ? '#f59e0b44' : '#33415544'}` }}>
+              <div style={{ display:'flex', alignItems:'center', gap:8, flexWrap:'wrap', marginBottom:6 }}>
+                <span style={{ fontSize:12, fontWeight:700, color:'#f8fafc' }}>Bot version</span>
+                {botStatus.version ? (
+                  <>
+                    <code style={{ fontSize:11, color:'#a5b4fc' }}>{botStatus.version.short}</code>
+                    <span style={{ fontSize:10, color:'#475569' }}>on {botStatus.version.branch}</span>
+                    {botStatus.version.behind > 0 ? (
+                      <span style={{ fontSize:10, fontWeight:700, color:'#f59e0b' }}>
+                        {botStatus.version.behind} commit(s) behind
+                      </span>
+                    ) : botStatus.version.behind === 0 ? (
+                      <span style={{ fontSize:10, fontWeight:700, color:'#22c55e' }}>up to date</span>
+                    ) : null}
+                  </>
+                ) : (
+                  <span style={{ fontSize:11, color:'#f59e0b' }}>
+                    not reported — this bot predates self-update
+                  </span>
+                )}
+              </div>
+              {botStatus.version?.lastError && (
+                <div style={{ fontSize:11, color:'#ef4444', marginBottom:6 }}>⚠ {botStatus.version.lastError}</div>
+              )}
+              <div style={{ fontSize:10, color:'#475569', lineHeight:1.7, marginBottom:8 }}>
+                {botStatus.version
+                  ? `Checks for new code every ${botStatus.version.autoUpdate ? '15 minutes' : 'never — auto-update is off'}, pulls fast-forward only, and refuses if anyone has edited files on the server.`
+                  : 'Run git pull && pm2 restart forex-bot once on the VPS. After that it updates itself and you will not need to do this again.'}
+              </div>
+              <button onClick={requestUpdate} disabled={saving || !botStatus.version}
+                style={{ ...BTN({ background:'#1e3a5f', color:'#7dd3fc' }), width:'100%', justifyContent:'center',
+                  opacity: botStatus.version ? 1 : 0.4 }}>
+                {botStatus.updatePending ? '⏳ Update requested…' : '⬇ Update bot now'}
+              </button>
+            </div>
           )}
 
           <div style={{ display: 'flex', gap: 8, marginBottom: 12 }}>

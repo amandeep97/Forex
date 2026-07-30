@@ -26,6 +26,21 @@ function computeATR(candles, period = 14) {
   return sum / period;
 }
 
+// Strong Hammer / Shooting Star — the wick clears the whole prior N-candle
+// range and the body closes back inside it. This is the "liquidity sweep"
+// detector: stops beyond the range are taken and immediately rejected.
+// Lives here rather than in alertChecker because the live feed reads it too.
+function detectStrongReversal(candles, i, N) {
+  if (i < N || i >= candles.length) return null;
+  const c = candles[i], prior = candles.slice(i - N, i);
+  const body = Math.abs(c.c - c.o), up = c.h - Math.max(c.o, c.c), lo = Math.min(c.o, c.c) - c.l, r = c.h - c.l;
+  if (r <= 0) return null;
+  const rLow = Math.min(...prior.map(x => x.l)), rHigh = Math.max(...prior.map(x => x.h));
+  if (c.l < rLow && c.c > rLow && c.c > c.o && lo >= 2 * body && lo > up && Math.min(c.o, c.c) >= c.l + r * 0.5) return 'hammer';
+  if (c.h > rHigh && c.c < rHigh && c.c < c.o && up >= 2 * body && up > lo && Math.max(c.o, c.c) <= c.l + r * 0.5) return 'star';
+  return null;
+}
+
 function findSwings(candles, look = 3) {
   const n = candles.length;
   const highs = [], lows = [];
@@ -231,4 +246,7 @@ function analyzeSMC(candles, opts = {}) {
   };
 }
 
-module.exports = { analyzeSMC, computeRSI, computeATR, detectStructure, detectBOS, detectOrderBlocks, detectFVGs, detectOTE };
+module.exports = {
+  analyzeSMC, computeRSI, computeATR, detectStructure, detectBOS,
+  detectOrderBlocks, detectFVGs, detectOTE, detectStrongReversal, findSwings,
+};

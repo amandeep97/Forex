@@ -55,6 +55,38 @@ async function fetchAllCOT(log) {
   return result;
 }
 
+// ── Positioning percentile, for the live feed ────────────────────────────────
+// The bias above ("net is positive → bullish") says almost nothing: funds are
+// net long EUR most of the time, so a small net long is normal, not a signal.
+// What matters is where today's net sits inside its OWN multi-year range, which
+// needs the whole history rather than the last four weeks.
+//
+// MIN_WEEKS exists because a percentile from a handful of samples is noise
+// dressed as a number — a single reading is always the 0th or 100th percentile.
+const MIN_WEEKS = 30;
+
+async function fetchCOTPercentile(code, weeks = 160) {
+  const rows = await fetchOneCOT(code, weeks);
+  if (!Array.isArray(rows) || !rows.length) return null;
+  const nets = rows
+    .map(r => ({
+      net:  (+r.noncomm_positions_long_all || 0) - (+r.noncomm_positions_short_all || 0),
+      date: (r.report_date_as_yyyy_mm_dd || '').slice(0, 10),
+    }))
+    .filter(r => Number.isFinite(r.net));
+  if (nets.length < 2) return null;
+
+  const now   = nets[0];               // API returns newest first
+  const below = nets.filter(r => r.net < now.net).length;
+  return {
+    net:    now.net,
+    pct:    Math.round((below / nets.length) * 100),
+    weeks:  nets.length,
+    enough: nets.length >= MIN_WEEKS,
+    date:   now.date,
+  };
+}
+
 // Check if a COT filter matches (called per-trade before entry)
 // filter = { enabled, bias: 'any'|'bullish'|'bearish' }
 // cotData = { EUR: { bias: 'bullish' }, ... }
@@ -73,4 +105,4 @@ function checkCOTFilter(filter, cotData, pair) {
   return entry.bias === required;
 }
 
-module.exports = { fetchAllCOT, checkCOTFilter };
+module.exports = { fetchAllCOT, checkCOTFilter, fetchCOTPercentile, COT_MIN_WEEKS: MIN_WEEKS };

@@ -46,6 +46,18 @@ class OandaClient {
       }));
   }
 
+  // Bid and ask separately — the mid-price candles above cannot show what a
+  // trade actually costs, and a spread that has tripled is a reason to stand
+  // aside no matter how good the setup looks.
+  async getBidAskCandles(instrument, granularity, count = 96) {
+    const data = await this._req(
+      `/instruments/${instrument}/candles?granularity=${granularity}&count=${count}&price=BA`,
+    );
+    return (data.candles || [])
+      .filter(c => c.complete && c.bid && c.ask)
+      .map(c => ({ t: new Date(c.time).getTime(), bid: +c.bid.c, ask: +c.ask.c }));
+  }
+
   async getAccountSummary() {
     const data = await this._req(`/accounts/${this.accountId}/summary`);
     return {
