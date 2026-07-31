@@ -27,11 +27,15 @@ class GitHubClient {
     return { content: JSON.parse(text), sha: data.sha };
   }
 
-  async writeJSON(path, content, message, sha = null) {
+  // pretty defaults to true because strategy.json, alerts.json and the control
+  // file are read and sometimes hand-edited on GitHub. The live feed is neither:
+  // it is machine-written every few minutes and machine-read, and indenting it
+  // doubles both the commit and the download for no reader's benefit.
+  async writeJSON(path, content, message, sha = null, { pretty = true } = {}) {
     const url     = `https://api.github.com/repos/${this.owner}/${this.repo}/contents/${path}`;
-    const encoded = Buffer.from(JSON.stringify(content, null, 2)).toString('base64');
+    const encoded = Buffer.from(pretty ? JSON.stringify(content, null, 2) : JSON.stringify(content)).toString('base64');
 
-    const attempt = async (currentSha) => {
+    const attempt = async (currentSha) => {   // uses `encoded` above, so a retry keeps the same formatting
       const body = { message, content: encoded, branch: this.branch };
       if (currentSha) body.sha = currentSha;
       const res = await fetch(url, {

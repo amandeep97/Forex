@@ -513,7 +513,7 @@ class FeedBuilder {
     };
 
     try {
-      this.sha = await this.github.writeJSON(FEED_PATH, payload, 'bot: live feed update', this.sha);
+      this.sha = await this.github.writeJSON(FEED_PATH, payload, 'bot: live feed update', this.sha, { pretty: false });
       this.lastSig = sig;
       this.lastEventSig = eventSig;
       this.wroteAt = now;
