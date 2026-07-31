@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-07-31T01:00:18.451Z",
+  "updatedAt": "2026-07-31T01:04:19.884Z",
   "meta": {
     "instruments": 52,
     "bars": {
@@ -13,17 +13,17 @@
     },
     "sweepBars": 5,
     "patternBars": 10,
-    "pending": 0
+    "pending": 32
   },
   "instruments": {
     "EUR/USD": {
       "state": {
         "H4": {
-          "volPct": 95,
-          "rangePos": 95,
-          "chg20": 1.27,
+          "volPct": 88,
+          "rangePos": 90,
+          "chg20": 1.21,
           "persistence": 10,
-          "atrPct": 0.251,
+          "atrPct": 0.236,
           "bars": 499
         },
         "D": {
@@ -135,27 +135,17 @@
         }
       },
       "asOf": {
-        "H4": 1785430800000,
+        "H4": 1785445200000,
         "D": 1785358800000,
-        "spread": 1785457800000,
+        "spread": 1785458700000,
         "cot": "2026-07-21"
       },
       "cls": "fx",
       "name": "Euro / US Dollar",
       "dec": 5,
-      "price": 1.1528,
+      "price": 1.1518,
       "patterns": {
         "H4": [
-          {
-            "id": "tweezer_top",
-            "at": 1785301200000,
-            "rate": 30.5
-          },
-          {
-            "id": "inside_bar",
-            "at": 1785301200000,
-            "rate": 22.2
-          },
           {
             "id": "tweezer_bottom",
             "at": 1785330000000,
@@ -174,12 +164,12 @@
           {
             "id": "bear_harami",
             "at": 1785358800000,
-            "rate": 5.2
+            "rate": 5
           },
           {
             "id": "tweezer_top",
             "at": 1785358800000,
-            "rate": 30.5
+            "rate": 30.3
           },
           {
             "id": "spinning_top",
@@ -199,12 +189,17 @@
           {
             "id": "tweezer_top",
             "at": 1785430800000,
-            "rate": 30.5
+            "rate": 30.3
           },
           {
             "id": "inside_bar",
             "at": 1785430800000,
-            "rate": 22.2
+            "rate": 22.4
+          },
+          {
+            "id": "inside_bar",
+            "at": 1785445200000,
+            "rate": 22.4
           }
         ],
         "D": [
@@ -274,11 +269,11 @@
     "GBP/USD": {
       "state": {
         "H4": {
-          "volPct": 83,
-          "rangePos": 92,
-          "chg20": 1.13,
+          "volPct": 82,
+          "rangePos": 89,
+          "chg20": 1.17,
           "persistence": 20,
-          "atrPct": 0.261,
+          "atrPct": 0.257,
           "bars": 499
         },
         "D": {
@@ -374,21 +369,21 @@
         }
       },
       "asOf": {
-        "H4": 1785430800000,
+        "H4": 1785445200000,
         "D": 1785358800000,
-        "spread": 1785457800000,
+        "spread": 1785458700000,
         "cot": "2026-07-21"
       },
       "cls": "fx",
       "name": "Pound / US Dollar",
       "dec": 5,
-      "price": 1.34644,
+      "price": 1.34585,
       "patterns": {
         "H4": [
           {
             "id": "tweezer_top",
             "at": 1785315600000,
-            "rate": 29.5
+            "rate": 29.2
           },
           {
             "id": "spinning_top",
@@ -403,7 +398,7 @@
           {
             "id": "inside_bar",
             "at": 1785330000000,
-            "rate": 20.6
+            "rate": 20.3
           },
           {
             "id": "morning_star",
@@ -413,12 +408,12 @@
           {
             "id": "tweezer_top",
             "at": 1785358800000,
-            "rate": 29.5
+            "rate": 29.2
           },
           {
             "id": "inside_bar",
             "at": 1785358800000,
-            "rate": 20.6
+            "rate": 20.3
           },
           {
             "id": "tweezer_bottom",
@@ -443,7 +438,7 @@
           {
             "id": "tweezer_top",
             "at": 1785430800000,
-            "rate": 29.5
+            "rate": 29.2
           }
         ],
         "D": [
@@ -528,11 +523,11 @@
     "USD/JPY": {
       "state": {
         "H4": {
-          "volPct": 98,
-          "rangePos": 26,
-          "chg20": -2.53,
-          "persistence": 10,
-          "atrPct": 0.495,
+          "volPct": 99,
+          "rangePos": 43,
+          "chg20": -1.9,
+          "persistence": 20,
+          "atrPct": 0.54,
           "bars": 499
         },
         "D": {
@@ -543,7 +538,7 @@
           "atrPct": 0.606,
           "bars": 399
         },
-        "spreadRatio": 1.1,
+        "spreadRatio": 1,
         "posnPct": 6,
         "posnWeeks": 160
       },
@@ -557,20 +552,20 @@
           "tf": "H4"
         },
         {
-          "type": "sweep",
-          "dir": "up",
-          "at": 1785358800000,
-          "price": 163.494,
-          "detail": "swept the 5-bar low and closed back inside",
-          "tf": "H4"
-        },
-        {
           "type": "break",
           "dir": "down",
           "at": 1785358800000,
           "price": 159.547,
           "detail": "closed below the swing low at 161.282",
           "tf": "D"
+        },
+        {
+          "type": "sweep",
+          "dir": "up",
+          "at": 1785358800000,
+          "price": 163.494,
+          "detail": "swept the 5-bar low and closed back inside",
+          "tf": "H4"
         },
         {
           "type": "break",
@@ -620,32 +615,17 @@
         }
       },
       "asOf": {
-        "H4": 1785430800000,
+        "H4": 1785445200000,
         "D": 1785358800000,
-        "spread": 1785457800000,
+        "spread": 1785458700000,
         "cot": "2026-07-21"
       },
       "cls": "fx",
       "name": "US Dollar / Yen",
       "dec": 3,
-      "price": 159.547,
+      "price": 160.543,
       "patterns": {
         "H4": [
-          {
-            "id": "bull_harami",
-            "at": 1785301200000,
-            "rate": 3.1
-          },
-          {
-            "id": "tweezer_bottom",
-            "at": 1785301200000,
-            "rate": 29.5
-          },
-          {
-            "id": "inside_bar",
-            "at": 1785301200000,
-            "rate": 26.3
-          },
           {
             "id": "three_inside_up",
             "at": 1785315600000,
@@ -669,7 +649,7 @@
           {
             "id": "tweezer_bottom",
             "at": 1785358800000,
-            "rate": 29.5
+            "rate": 29.2
           },
           {
             "id": "long_legged_doji",
@@ -684,12 +664,12 @@
           {
             "id": "bull_engulf",
             "at": 1785387600000,
-            "rate": 6
+            "rate": 6.3
           },
           {
             "id": "tweezer_bottom",
             "at": 1785387600000,
-            "rate": 29.5
+            "rate": 29.2
           },
           {
             "id": "tweezer_top",
@@ -705,6 +685,11 @@
             "id": "inside_bar",
             "at": 1785430800000,
             "rate": 26.3
+          },
+          {
+            "id": "bull_engulf",
+            "at": 1785445200000,
+            "rate": 6.3
           }
         ],
         "D": [
@@ -799,11 +784,11 @@
     "USD/CHF": {
       "state": {
         "H4": {
-          "volPct": 100,
-          "rangePos": 7,
-          "chg20": -1.38,
+          "volPct": 99,
+          "rangePos": 13,
+          "chg20": -1.45,
           "persistence": 40,
-          "atrPct": 0.389,
+          "atrPct": 0.378,
           "bars": 499
         },
         "D": {
@@ -814,7 +799,7 @@
           "atrPct": 0.747,
           "bars": 399
         },
-        "spreadRatio": 1,
+        "spreadRatio": 0.9,
         "posnPct": 34,
         "posnWeeks": 160
       },
@@ -894,9 +879,9 @@
       ],
       "rarity": {
         "sweep.H4": {
-          "n": 17,
+          "n": 16,
           "days": 115,
-          "perMonth": 4.4
+          "perMonth": 4.2
         },
         "break.H4": {
           "n": 57,
@@ -915,26 +900,21 @@
         }
       },
       "asOf": {
-        "H4": 1785430800000,
+        "H4": 1785445200000,
         "D": 1785358800000,
-        "spread": 1785457800000,
+        "spread": 1785458700000,
         "cot": "2026-07-21"
       },
       "cls": "fx",
       "name": "US Dollar / Swiss Franc",
       "dec": 5,
-      "price": 0.8051,
+      "price": 0.80616,
       "patterns": {
         "H4": [
           {
-            "id": "tweezer_bottom",
-            "at": 1785301200000,
-            "rate": 31
-          },
-          {
             "id": "outside_bar",
             "at": 1785330000000,
-            "rate": 17.7
+            "rate": 17.5
           },
           {
             "id": "marubozu_bear",
@@ -949,7 +929,7 @@
           {
             "id": "tweezer_bottom",
             "at": 1785358800000,
-            "rate": 31
+            "rate": 30.8
           },
           {
             "id": "spinning_top",
@@ -984,7 +964,7 @@
           {
             "id": "tweezer_bottom",
             "at": 1785430800000,
-            "rate": 31
+            "rate": 30.8
           },
           {
             "id": "inside_bar",
@@ -1049,11 +1029,11 @@
     "USD/CAD": {
       "state": {
         "H4": {
-          "volPct": 95,
-          "rangePos": 14,
+          "volPct": 91,
+          "rangePos": 17,
           "chg20": -0.69,
           "persistence": 0,
-          "atrPct": 0.186,
+          "atrPct": 0.178,
           "bars": 499
         },
         "D": {
@@ -1149,22 +1129,17 @@
         }
       },
       "asOf": {
-        "H4": 1785430800000,
+        "H4": 1785445200000,
         "D": 1785358800000,
         "cot": "2026-07-21",
-        "spread": 1785457800000
+        "spread": 1785458700000
       },
       "cls": "fx",
       "name": "US Dollar / Canadian $",
       "dec": 5,
-      "price": 1.40108,
+      "price": 1.40148,
       "patterns": {
         "H4": [
-          {
-            "id": "tweezer_bottom",
-            "at": 1785301200000,
-            "rate": 33.4
-          },
           {
             "id": "bear_harami",
             "at": 1785315600000,
@@ -1178,12 +1153,12 @@
           {
             "id": "spinning_top",
             "at": 1785330000000,
-            "rate": 26.9
+            "rate": 26.6
           },
           {
             "id": "tweezer_bottom",
             "at": 1785330000000,
-            "rate": 33.4
+            "rate": 33.1
           },
           {
             "id": "bear_engulf",
@@ -1198,7 +1173,7 @@
           {
             "id": "spinning_top",
             "at": 1785358800000,
-            "rate": 26.9
+            "rate": 26.6
           },
           {
             "id": "hammer",
@@ -1218,12 +1193,12 @@
           {
             "id": "tweezer_bottom",
             "at": 1785373200000,
-            "rate": 33.4
+            "rate": 33.1
           },
           {
             "id": "spinning_top",
             "at": 1785387600000,
-            "rate": 26.9
+            "rate": 26.6
           },
           {
             "id": "hammer",
@@ -1243,12 +1218,12 @@
           {
             "id": "outside_bar",
             "at": 1785416400000,
-            "rate": 14.9
+            "rate": 14.6
           },
           {
             "id": "tweezer_bottom",
             "at": 1785430800000,
-            "rate": 33.4
+            "rate": 33.1
           }
         ],
         "D": [
@@ -1310,11 +1285,11 @@
         "posnPct": 65,
         "posnWeeks": 160,
         "H4": {
-          "volPct": 79,
+          "volPct": 73,
           "rangePos": 97,
-          "chg20": 0.47,
-          "persistence": 20,
-          "atrPct": 0.343,
+          "chg20": 0.5,
+          "persistence": 10,
+          "atrPct": 0.328,
           "bars": 499
         },
         "D": {
@@ -1325,7 +1300,7 @@
           "atrPct": 0.669,
           "bars": 399
         },
-        "spreadRatio": 1.1
+        "spreadRatio": 1
       },
       "events": [
         {
@@ -1425,21 +1400,16 @@
       },
       "asOf": {
         "cot": "2026-07-21",
-        "H4": 1785430800000,
+        "H4": 1785445200000,
         "D": 1785358800000,
-        "spread": 1785457800000
+        "spread": 1785458700000
       },
       "cls": "fx",
       "name": "Australian $ / US $",
       "dec": 5,
-      "price": 0.70297,
+      "price": 0.703,
       "patterns": {
         "H4": [
-          {
-            "id": "inside_bar",
-            "at": 1785301200000,
-            "rate": 21.1
-          },
           {
             "id": "spinning_top",
             "at": 1785315600000,
@@ -1478,7 +1448,7 @@
           {
             "id": "tweezer_top",
             "at": 1785373200000,
-            "rate": 30.8
+            "rate": 30.5
           },
           {
             "id": "inside_bar",
@@ -1499,6 +1469,11 @@
             "id": "spinning_top",
             "at": 1785430800000,
             "rate": 30.3
+          },
+          {
+            "id": "inside_bar",
+            "at": 1785445200000,
+            "rate": 21.1
           }
         ],
         "D": [
@@ -1565,11 +1540,11 @@
         "posnPct": 9,
         "posnWeeks": 160,
         "H4": {
-          "volPct": 86,
-          "rangePos": 97,
-          "chg20": 1.57,
-          "persistence": 0,
-          "atrPct": 0.38,
+          "volPct": 80,
+          "rangePos": 90,
+          "chg20": 1.55,
+          "persistence": 10,
+          "atrPct": 0.368,
           "bars": 499
         },
         "D": {
@@ -1648,26 +1623,16 @@
       },
       "asOf": {
         "cot": "2026-07-21",
-        "H4": 1785430800000,
+        "H4": 1785445200000,
         "D": 1785358800000,
-        "spread": 1785457800000
+        "spread": 1785458700000
       },
       "cls": "fx",
       "name": "New Zealand $ / US $",
       "dec": 5,
-      "price": 0.58798,
+      "price": 0.58713,
       "patterns": {
         "H4": [
-          {
-            "id": "spinning_top",
-            "at": 1785301200000,
-            "rate": 23.7
-          },
-          {
-            "id": "tweezer_top",
-            "at": 1785301200000,
-            "rate": 29.2
-          },
           {
             "id": "evening_star",
             "at": 1785315600000,
@@ -1691,7 +1656,7 @@
           {
             "id": "inside_bar",
             "at": 1785358800000,
-            "rate": 19.6
+            "rate": 19.3
           },
           {
             "id": "outside_bar",
@@ -1888,7 +1853,7 @@
         "cot": "2026-07-21",
         "H4": 1785430800000,
         "D": 1785358800000,
-        "spread": 1785457800000
+        "spread": 1785458700000
       },
       "cls": "metal",
       "name": "Gold",
@@ -2021,7 +1986,7 @@
           "atrPct": 3.972,
           "bars": 399
         },
-        "spreadRatio": 1
+        "spreadRatio": 1.1
       },
       "events": [
         {
@@ -2083,7 +2048,7 @@
         "cot": "2026-07-21",
         "H4": 1785430800000,
         "D": 1785358800000,
-        "spread": 1785457800000
+        "spread": 1785458700000
       },
       "cls": "metal",
       "name": "Silver",
@@ -2313,7 +2278,7 @@
         "cot": "2026-07-21",
         "H4": 1785430800000,
         "D": 1785358800000,
-        "spread": 1785457800000
+        "spread": 1785458700000
       },
       "cls": "index",
       "name": "S&P 500",
@@ -2506,7 +2471,7 @@
           "atrPct": 2.507,
           "bars": 399
         },
-        "spreadRatio": 1.1
+        "spreadRatio": 0.9
       },
       "events": [
         {
@@ -2616,7 +2581,7 @@
         "cot": "2026-07-21",
         "H4": 1785430800000,
         "D": 1785358800000,
-        "spread": 1785457800000
+        "spread": 1785458700000
       },
       "cls": "index",
       "name": "Nasdaq 100",
@@ -2784,7 +2749,7 @@
           "atrPct": 5.755,
           "bars": 399
         },
-        "spreadRatio": 1.8
+        "spreadRatio": 1.5
       },
       "events": [
         {
@@ -2862,7 +2827,7 @@
         "cot": "2026-07-21",
         "H4": 1785430800000,
         "D": 1785358800000,
-        "spread": 1785457800000
+        "spread": 1785458700000
       },
       "cls": "energy",
       "name": "WTI Crude Oil",
@@ -2970,7 +2935,7 @@
           "atrPct": 3.385,
           "bars": 399
         },
-        "spreadRatio": 1.2
+        "spreadRatio": 1
       },
       "events": [
         {
@@ -3064,7 +3029,7 @@
         "cot": "2026-07-21",
         "H4": 1785430800000,
         "D": 1785358800000,
-        "spread": 1785457800000
+        "spread": 1785458700000
       },
       "cls": "energy",
       "name": "Natural Gas",
@@ -3175,11 +3140,11 @@
     "EUR/GBP": {
       "state": {
         "H4": {
-          "volPct": 79,
-          "rangePos": 76,
-          "chg20": 0.14,
+          "volPct": 68,
+          "rangePos": 73,
+          "chg20": 0.05,
           "persistence": 20,
-          "atrPct": 0.143,
+          "atrPct": 0.126,
           "bars": 499
         },
         "D": {
@@ -3190,9 +3155,17 @@
           "atrPct": 0.362,
           "bars": 399
         },
-        "spreadRatio": 1
+        "spreadRatio": 1.1
       },
       "events": [
+        {
+          "type": "break",
+          "dir": "down",
+          "at": 1785445200000,
+          "price": 0.85582,
+          "detail": "closed below the swing low at 0.85596",
+          "tf": "H4"
+        },
         {
           "type": "break",
           "dir": "up",
@@ -3257,9 +3230,9 @@
           "perMonth": 2.9
         },
         "break.H4": {
-          "n": 55,
+          "n": 56,
           "days": 115,
-          "perMonth": 14.3
+          "perMonth": 14.6
         },
         "sweep.D": {
           "n": 10,
@@ -3273,21 +3246,16 @@
         }
       },
       "asOf": {
-        "H4": 1785430800000,
+        "H4": 1785445200000,
         "D": 1785358800000,
-        "spread": 1785457800000
+        "spread": 1785458700000
       },
       "cls": "fx",
       "name": "Euro / Pound",
       "dec": 5,
-      "price": 0.85619,
+      "price": 0.85582,
       "patterns": {
         "H4": [
-          {
-            "id": "tweezer_top",
-            "at": 1785301200000,
-            "rate": 31.3
-          },
           {
             "id": "spinning_top",
             "at": 1785315600000,
@@ -3311,7 +3279,7 @@
           {
             "id": "inside_bar",
             "at": 1785358800000,
-            "rate": 23.5
+            "rate": 23.7
           },
           {
             "id": "three_soldiers",
@@ -3352,6 +3320,21 @@
             "id": "hammer",
             "at": 1785430800000,
             "rate": 1.8
+          },
+          {
+            "id": "doji",
+            "at": 1785445200000,
+            "rate": 2.6
+          },
+          {
+            "id": "tweezer_bottom",
+            "at": 1785445200000,
+            "rate": 31.6
+          },
+          {
+            "id": "inside_bar",
+            "at": 1785445200000,
+            "rate": 23.7
           }
         ],
         "D": [
@@ -3507,7 +3490,7 @@
       "asOf": {
         "H4": 1785430800000,
         "D": 1785358800000,
-        "spread": 1785457800000
+        "spread": 1785458700000
       },
       "cls": "fx",
       "name": "Euro / Yen",
@@ -3758,7 +3741,7 @@
       "asOf": {
         "H4": 1785430800000,
         "D": 1785358800000,
-        "spread": 1785457800000
+        "spread": 1785458700000
       },
       "cls": "fx",
       "name": "Pound / Yen",
@@ -3984,7 +3967,7 @@
           "atrPct": 0.527,
           "bars": 399
         },
-        "spreadRatio": 1
+        "spreadRatio": 1.1
       },
       "events": [
         {
@@ -4085,7 +4068,7 @@
       "asOf": {
         "H4": 1785430800000,
         "D": 1785358800000,
-        "spread": 1785457800000
+        "spread": 1785458700000
       },
       "cls": "fx",
       "name": "Euro / Australian $",
@@ -4261,7 +4244,7 @@
           "atrPct": 0.368,
           "bars": 399
         },
-        "spreadRatio": 0.8
+        "spreadRatio": 0.9
       },
       "events": [
         {
@@ -4338,7 +4321,7 @@
       "asOf": {
         "H4": 1785430800000,
         "D": 1785358800000,
-        "spread": 1785457800000
+        "spread": 1785458700000
       },
       "cls": "fx",
       "name": "Euro / Canadian $",
@@ -4514,7 +4497,7 @@
           "atrPct": 0.392,
           "bars": 399
         },
-        "spreadRatio": 1
+        "spreadRatio": 1.1
       },
       "events": [
         {
@@ -4623,7 +4606,7 @@
       "asOf": {
         "H4": 1785430800000,
         "D": 1785358800000,
-        "spread": 1785457800000
+        "spread": 1785458700000
       },
       "cls": "fx",
       "name": "Euro / Swiss Franc",
@@ -4922,7 +4905,7 @@
       "asOf": {
         "H4": 1785430800000,
         "D": 1785358800000,
-        "spread": 1785457800000
+        "spread": 1785458700000
       },
       "cls": "fx",
       "name": "Euro / NZ Dollar",
@@ -5088,7 +5071,7 @@
           "atrPct": 0.507,
           "bars": 399
         },
-        "spreadRatio": 1.1
+        "spreadRatio": 1
       },
       "events": [
         {
@@ -5165,7 +5148,7 @@
       "asOf": {
         "H4": 1785430800000,
         "D": 1785358800000,
-        "spread": 1785457800000
+        "spread": 1785458700000
       },
       "cls": "fx",
       "name": "Pound / Swiss Franc",
@@ -5391,7 +5374,7 @@
           "atrPct": 0.505,
           "bars": 399
         },
-        "spreadRatio": 0.9
+        "spreadRatio": 1
       },
       "events": [
         {
@@ -5468,7 +5451,7 @@
       "asOf": {
         "H4": 1785430800000,
         "D": 1785358800000,
-        "spread": 1785457800000
+        "spread": 1785458700000
       },
       "cls": "fx",
       "name": "Pound / Canadian $",
@@ -5634,7 +5617,7 @@
           "atrPct": 0.563,
           "bars": 399
         },
-        "spreadRatio": 1
+        "spreadRatio": 1.2
       },
       "events": [
         {
@@ -5711,7 +5694,7 @@
       "asOf": {
         "H4": 1785430800000,
         "D": 1785358800000,
-        "spread": 1785457800000
+        "spread": 1785458700000
       },
       "cls": "fx",
       "name": "Pound / Australian $",
@@ -5887,7 +5870,7 @@
           "atrPct": 0.606,
           "bars": 399
         },
-        "spreadRatio": 1.1
+        "spreadRatio": 1
       },
       "events": [
         {
@@ -5972,7 +5955,7 @@
       "asOf": {
         "H4": 1785430800000,
         "D": 1785358800000,
-        "spread": 1785457800000
+        "spread": 1785458700000
       },
       "cls": "fx",
       "name": "Pound / NZ Dollar",
@@ -6244,7 +6227,7 @@
       "asOf": {
         "H4": 1785430800000,
         "D": 1785358800000,
-        "spread": 1785457800000
+        "spread": 1785458700000
       },
       "cls": "fx",
       "name": "Australian $ / Yen",
@@ -6400,7 +6383,7 @@
           "atrPct": 0.612,
           "bars": 399
         },
-        "spreadRatio": 1
+        "spreadRatio": 1.1
       },
       "events": [
         {
@@ -6493,7 +6476,7 @@
       "asOf": {
         "H4": 1785430800000,
         "D": 1785358800000,
-        "spread": 1785457800000
+        "spread": 1785458700000
       },
       "cls": "fx",
       "name": "Australian $ / CHF",
@@ -6664,7 +6647,7 @@
           "atrPct": 0.591,
           "bars": 399
         },
-        "spreadRatio": 0.9
+        "spreadRatio": 1
       },
       "events": [
         {
@@ -6733,7 +6716,7 @@
       "asOf": {
         "H4": 1785430800000,
         "D": 1785358800000,
-        "spread": 1785457800000
+        "spread": 1785458700000
       },
       "cls": "fx",
       "name": "Australian $ / CAD",
@@ -6956,7 +6939,7 @@
       "asOf": {
         "H4": 1785430800000,
         "D": 1785358800000,
-        "spread": 1785457800000
+        "spread": 1785458700000
       },
       "cls": "fx",
       "name": "Australian $ / NZD",
@@ -7117,7 +7100,7 @@
           "atrPct": 0.801,
           "bars": 399
         },
-        "spreadRatio": 1
+        "spreadRatio": 1.1
       },
       "events": [
         {
@@ -7202,7 +7185,7 @@
       "asOf": {
         "H4": 1785430800000,
         "D": 1785358800000,
-        "spread": 1785457800000
+        "spread": 1785458700000
       },
       "cls": "fx",
       "name": "NZ Dollar / Yen",
@@ -7429,7 +7412,7 @@
       "asOf": {
         "H4": 1785430800000,
         "D": 1785358800000,
-        "spread": 1785457800000
+        "spread": 1785458700000
       },
       "cls": "fx",
       "name": "NZ Dollar / CHF",
@@ -7707,7 +7690,7 @@
       "asOf": {
         "H4": 1785430800000,
         "D": 1785358800000,
-        "spread": 1785457800000
+        "spread": 1785458700000
       },
       "cls": "fx",
       "name": "NZ Dollar / CAD",
@@ -7926,7 +7909,7 @@
       "asOf": {
         "H4": 1785430800000,
         "D": 1785358800000,
-        "spread": 1785457800000
+        "spread": 1785458700000
       },
       "cls": "fx",
       "name": "Canadian $ / Yen",
@@ -8180,7 +8163,7 @@
       "asOf": {
         "H4": 1785430800000,
         "D": 1785358800000,
-        "spread": 1785457800000
+        "spread": 1785458700000
       },
       "cls": "fx",
       "name": "Canadian $ / CHF",
@@ -8301,7 +8284,7 @@
           "atrPct": 0.629,
           "bars": 399
         },
-        "spreadRatio": 1.1
+        "spreadRatio": 1
       },
       "events": [
         {
@@ -8410,7 +8393,7 @@
       "asOf": {
         "H4": 1785430800000,
         "D": 1785358800000,
-        "spread": 1785457800000
+        "spread": 1785458700000
       },
       "cls": "fx",
       "name": "Swiss Franc / Yen",
@@ -8722,7 +8705,7 @@
       "asOf": {
         "H4": 1785430800000,
         "D": 1785358800000,
-        "spread": 1785457800000
+        "spread": 1785458700000
       },
       "cls": "index",
       "name": "Dow Jones 30",
@@ -8883,7 +8866,7 @@
           "atrPct": 1.557,
           "bars": 399
         },
-        "spreadRatio": 1
+        "spreadRatio": 1.2
       },
       "events": [
         {
@@ -8960,7 +8943,7 @@
       "asOf": {
         "H4": 1785430800000,
         "D": 1785358800000,
-        "spread": 1785457800000
+        "spread": 1785458700000
       },
       "cls": "index",
       "name": "Russell 2000",
@@ -9141,7 +9124,7 @@
           "atrPct": 1.328,
           "bars": 400
         },
-        "spreadRatio": 1.7
+        "spreadRatio": 1.4
       },
       "events": [
         {
@@ -9258,7 +9241,7 @@
       "asOf": {
         "H4": 1785430800000,
         "D": 1785358800000,
-        "spread": 1785457800000
+        "spread": 1785458700000
       },
       "cls": "index",
       "name": "FTSE 100",
@@ -9519,7 +9502,7 @@
       "asOf": {
         "H4": 1785430800000,
         "D": 1785358800000,
-        "spread": 1785457800000
+        "spread": 1785458700000
       },
       "cls": "index",
       "name": "DAX 40",
@@ -9818,7 +9801,7 @@
       "asOf": {
         "H4": 1785430800000,
         "D": 1785358800000,
-        "spread": 1785457800000
+        "spread": 1785458700000
       },
       "cls": "index",
       "name": "Nikkei 225",
@@ -9939,7 +9922,7 @@
           "atrPct": 6.012,
           "bars": 399
         },
-        "spreadRatio": 1.7
+        "spreadRatio": 2
       },
       "events": [
         {
@@ -10000,7 +9983,7 @@
       "asOf": {
         "H4": 1785430800000,
         "D": 1785358800000,
-        "spread": 1785457800000
+        "spread": 1785458700000
       },
       "cls": "energy",
       "name": "Brent Crude Oil",
