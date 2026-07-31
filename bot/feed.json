@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-07-31T01:06:20.463Z",
+  "updatedAt": "2026-07-31T01:07:18.739Z",
   "meta": {
     "instruments": 52,
     "bars": {
@@ -13,7 +13,7 @@
     },
     "sweepBars": 5,
     "patternBars": 10,
-    "pending": 8
+    "pending": 0
   },
   "instruments": {
     "EUR/USD": {
@@ -2737,11 +2737,11 @@
         "posnPct": 14,
         "posnWeeks": 160,
         "H4": {
-          "volPct": 45,
-          "rangePos": 38,
-          "chg20": -0.19,
+          "volPct": 34,
+          "rangePos": 36,
+          "chg20": 0.74,
           "persistence": 10,
-          "atrPct": 2.254,
+          "atrPct": 1.984,
           "bars": 499
         },
         "D": {
@@ -2828,21 +2828,16 @@
       },
       "asOf": {
         "cot": "2026-07-21",
-        "H4": 1785430800000,
+        "H4": 1785445200000,
         "D": 1785358800000,
         "spread": 1785458700000
       },
       "cls": "energy",
       "name": "WTI Crude Oil",
       "dec": 2,
-      "price": 84.492,
+      "price": 84.095,
       "patterns": {
         "H4": [
-          {
-            "id": "spinning_top",
-            "at": 1785301200000,
-            "rate": 30.7
-          },
           {
             "id": "tweezer_bottom",
             "at": 1785315600000,
@@ -2891,7 +2886,12 @@
           {
             "id": "inside_bar",
             "at": 1785430800000,
-            "rate": 21.8
+            "rate": 22.1
+          },
+          {
+            "id": "inside_bar",
+            "at": 1785445200000,
+            "rate": 22.1
           }
         ],
         "D": [
@@ -2923,11 +2923,11 @@
         "posnPct": 10,
         "posnWeeks": 160,
         "H4": {
-          "volPct": 28,
-          "rangePos": 25,
-          "chg20": -1.78,
-          "persistence": 20,
-          "atrPct": 1.39,
+          "volPct": 10,
+          "rangePos": 30,
+          "chg20": -0.97,
+          "persistence": 10,
+          "atrPct": 1.223,
           "bars": 499
         },
         "D": {
@@ -2941,6 +2941,14 @@
         "spreadRatio": 1
       },
       "events": [
+        {
+          "type": "break",
+          "dir": "up",
+          "at": 1785445200000,
+          "price": 2.769,
+          "detail": "closed above the swing high at 2.762",
+          "tf": "H4"
+        },
         {
           "type": "break",
           "dir": "up",
@@ -2961,17 +2969,17 @@
           "type": "break",
           "dir": "down",
           "at": 1785099600000,
-          "price": 2.848,
-          "detail": "closed below the swing low at 2.916",
-          "tf": "H4"
+          "price": 2.78,
+          "detail": "closed below the swing low at 2.808",
+          "tf": "D"
         },
         {
           "type": "break",
           "dir": "down",
           "at": 1785099600000,
-          "price": 2.78,
-          "detail": "closed below the swing low at 2.808",
-          "tf": "D"
+          "price": 2.848,
+          "detail": "closed below the swing low at 2.916",
+          "tf": "H4"
         },
         {
           "type": "sweep",
@@ -3013,9 +3021,9 @@
           "perMonth": 3.4
         },
         "break.H4": {
-          "n": 58,
+          "n": 59,
           "days": 115,
-          "perMonth": 15.1
+          "perMonth": 15.3
         },
         "sweep.D": {
           "n": 15,
@@ -3030,14 +3038,14 @@
       },
       "asOf": {
         "cot": "2026-07-21",
-        "H4": 1785430800000,
+        "H4": 1785445200000,
         "D": 1785358800000,
         "spread": 1785458700000
       },
       "cls": "energy",
       "name": "Natural Gas",
       "dec": 3,
-      "price": 2.754,
+      "price": 2.769,
       "patterns": {
         "H4": [
           {
@@ -3079,6 +3087,11 @@
             "id": "inside_bar",
             "at": 1785430800000,
             "rate": 20.8
+          },
+          {
+            "id": "tweezer_bottom",
+            "at": 1785445200000,
+            "rate": 16.1
           }
         ],
         "D": [
@@ -8527,11 +8540,11 @@
     "US30": {
       "state": {
         "H4": {
-          "volPct": 95,
-          "rangePos": 55,
-          "chg20": -0.53,
-          "persistence": 20,
-          "atrPct": 0.629,
+          "volPct": 92,
+          "rangePos": 62,
+          "chg20": 0.6,
+          "persistence": 30,
+          "atrPct": 0.585,
           "bars": 499
         },
         "D": {
@@ -8641,26 +8654,16 @@
         }
       },
       "asOf": {
-        "H4": 1785430800000,
+        "H4": 1785445200000,
         "D": 1785358800000,
         "spread": 1785458700000
       },
       "cls": "index",
       "name": "Dow Jones 30",
       "dec": 1,
-      "price": 52307.5,
+      "price": 52404,
       "patterns": {
         "H4": [
-          {
-            "id": "bull_harami",
-            "at": 1785301200000,
-            "rate": 9.1
-          },
-          {
-            "id": "tweezer_bottom",
-            "at": 1785301200000,
-            "rate": 29.1
-          },
           {
             "id": "marubozu_bear",
             "at": 1785315600000,
@@ -8674,7 +8677,7 @@
           {
             "id": "tweezer_top",
             "at": 1785315600000,
-            "rate": 30.6
+            "rate": 30.4
           },
           {
             "id": "bull_harami",
@@ -8684,7 +8687,7 @@
           {
             "id": "inside_bar",
             "at": 1785358800000,
-            "rate": 21.3
+            "rate": 21
           },
           {
             "id": "bear_engulf",
@@ -8694,7 +8697,7 @@
           {
             "id": "tweezer_top",
             "at": 1785373200000,
-            "rate": 30.6
+            "rate": 30.4
           },
           {
             "id": "tweezer_bottom",
@@ -8710,6 +8713,11 @@
             "id": "outside_bar",
             "at": 1785416400000,
             "rate": 21
+          },
+          {
+            "id": "three_soldiers",
+            "at": 1785445200000,
+            "rate": 1.6
           }
         ],
         "D": [
@@ -8789,11 +8797,11 @@
     "US2000": {
       "state": {
         "H4": {
-          "volPct": 89,
-          "rangePos": 58,
-          "chg20": -0.51,
-          "persistence": 10,
-          "atrPct": 0.881,
+          "volPct": 83,
+          "rangePos": 67,
+          "chg20": 0.57,
+          "persistence": 20,
+          "atrPct": 0.824,
           "bars": 499
         },
         "D": {
@@ -8879,25 +8887,20 @@
         }
       },
       "asOf": {
-        "H4": 1785430800000,
+        "H4": 1785445200000,
         "D": 1785358800000,
         "spread": 1785458700000
       },
       "cls": "index",
       "name": "Russell 2000",
       "dec": 1,
-      "price": 2946.94,
+      "price": 2955.822,
       "patterns": {
         "H4": [
           {
-            "id": "tweezer_bottom",
-            "at": 1785301200000,
-            "rate": 24.7
-          },
-          {
             "id": "tweezer_top",
             "at": 1785315600000,
-            "rate": 23.6
+            "rate": 23.4
           },
           {
             "id": "inv_hammer",
@@ -8927,12 +8930,12 @@
           {
             "id": "inside_bar",
             "at": 1785358800000,
-            "rate": 20.3
+            "rate": 20
           },
           {
             "id": "tweezer_top",
             "at": 1785373200000,
-            "rate": 23.6
+            "rate": 23.4
           },
           {
             "id": "tweezer_bottom",
@@ -8943,6 +8946,11 @@
             "id": "outside_bar",
             "at": 1785416400000,
             "rate": 20.5
+          },
+          {
+            "id": "marubozu_bull",
+            "at": 1785445200000,
+            "rate": 2.3
           }
         ],
         "D": [
@@ -9047,12 +9055,12 @@
     "UK100": {
       "state": {
         "H4": {
-          "volPct": 94,
-          "rangePos": 94,
-          "chg20": 1.52,
+          "volPct": 91,
+          "rangePos": 90,
+          "chg20": 1.42,
           "persistence": 10,
-          "atrPct": 0.661,
-          "bars": 500
+          "atrPct": 0.607,
+          "bars": 499
         },
         "D": {
           "volPct": 84,
@@ -9156,9 +9164,9 @@
       ],
       "rarity": {
         "sweep.H4": {
-          "n": 12,
+          "n": 11,
           "days": 121,
-          "perMonth": 3
+          "perMonth": 2.7
         },
         "break.H4": {
           "n": 57,
@@ -9177,31 +9185,16 @@
         }
       },
       "asOf": {
-        "H4": 1785430800000,
+        "H4": 1785445200000,
         "D": 1785358800000,
         "spread": 1785458700000
       },
       "cls": "index",
       "name": "FTSE 100",
       "dec": 1,
-      "price": 10949.4,
+      "price": 10927.2,
       "patterns": {
         "H4": [
-          {
-            "id": "shooting_star",
-            "at": 1785301200000,
-            "rate": 2.2
-          },
-          {
-            "id": "bull_harami",
-            "at": 1785301200000,
-            "rate": 6.7
-          },
-          {
-            "id": "tweezer_bottom",
-            "at": 1785301200000,
-            "rate": 28.2
-          },
           {
             "id": "inside_bar",
             "at": 1785315600000,
@@ -9220,12 +9213,12 @@
           {
             "id": "bear_engulf",
             "at": 1785330000000,
-            "rate": 8.4
+            "rate": 8.7
           },
           {
             "id": "tweezer_top",
             "at": 1785330000000,
-            "rate": 29
+            "rate": 29.3
           },
           {
             "id": "outside_bar",
@@ -9245,7 +9238,7 @@
           {
             "id": "tweezer_bottom",
             "at": 1785387600000,
-            "rate": 28.2
+            "rate": 28
           },
           {
             "id": "outside_bar",
@@ -9255,17 +9248,17 @@
           {
             "id": "spinning_top",
             "at": 1785402000000,
-            "rate": 22.8
+            "rate": 22.6
           },
           {
             "id": "bear_engulf",
             "at": 1785416400000,
-            "rate": 8.4
+            "rate": 8.7
           },
           {
             "id": "tweezer_top",
             "at": 1785416400000,
-            "rate": 29
+            "rate": 29.3
           },
           {
             "id": "bull_harami",
@@ -9276,6 +9269,16 @@
             "id": "inside_bar",
             "at": 1785430800000,
             "rate": 19.3
+          },
+          {
+            "id": "bear_engulf",
+            "at": 1785445200000,
+            "rate": 8.7
+          },
+          {
+            "id": "tweezer_top",
+            "at": 1785445200000,
+            "rate": 29.3
           }
         ],
         "D": [
@@ -9340,12 +9343,12 @@
     "GER40": {
       "state": {
         "H4": {
-          "volPct": 67,
-          "rangePos": 100,
-          "chg20": 0.82,
+          "volPct": 50,
+          "rangePos": 98,
+          "chg20": 1.2,
           "persistence": 0,
-          "atrPct": 0.631,
-          "bars": 500
+          "atrPct": 0.576,
+          "bars": 499
         },
         "D": {
           "volPct": 61,
@@ -9438,45 +9441,35 @@
         }
       },
       "asOf": {
-        "H4": 1785430800000,
+        "H4": 1785445200000,
         "D": 1785358800000,
         "spread": 1785458700000
       },
       "cls": "index",
       "name": "DAX 40",
       "dec": 1,
-      "price": 25714.4,
+      "price": 25700.4,
       "patterns": {
         "H4": [
           {
-            "id": "bull_harami",
-            "at": 1785301200000,
-            "rate": 7.7
-          },
-          {
-            "id": "tweezer_bottom",
-            "at": 1785301200000,
-            "rate": 25.5
-          },
-          {
             "id": "spinning_top",
             "at": 1785315600000,
-            "rate": 24.7
+            "rate": 25
           },
           {
             "id": "three_inside_up",
             "at": 1785315600000,
-            "rate": 1.7
+            "rate": 1.8
           },
           {
             "id": "spinning_top",
             "at": 1785330000000,
-            "rate": 24.7
+            "rate": 25
           },
           {
             "id": "bear_harami",
             "at": 1785330000000,
-            "rate": 7
+            "rate": 7.3
           },
           {
             "id": "tweezer_top",
@@ -9486,37 +9479,37 @@
           {
             "id": "inside_bar",
             "at": 1785330000000,
-            "rate": 22.2
+            "rate": 22.3
           },
           {
             "id": "outside_bar",
             "at": 1785344400000,
-            "rate": 20.2
+            "rate": 20.3
           },
           {
             "id": "spinning_top",
             "at": 1785358800000,
-            "rate": 24.7
+            "rate": 25
           },
           {
             "id": "inside_bar",
             "at": 1785358800000,
-            "rate": 22.2
+            "rate": 22.3
           },
           {
             "id": "outside_bar",
             "at": 1785373200000,
-            "rate": 20.2
+            "rate": 20.3
           },
           {
             "id": "bull_harami",
             "at": 1785387600000,
-            "rate": 7.7
+            "rate": 7.8
           },
           {
             "id": "three_inside_up",
             "at": 1785402000000,
-            "rate": 1.7
+            "rate": 1.8
           },
           {
             "id": "marubozu_bull",
@@ -9527,6 +9520,21 @@
             "id": "marubozu_bull",
             "at": 1785430800000,
             "rate": 2.5
+          },
+          {
+            "id": "spinning_top",
+            "at": 1785445200000,
+            "rate": 25
+          },
+          {
+            "id": "bear_harami",
+            "at": 1785445200000,
+            "rate": 7.3
+          },
+          {
+            "id": "tweezer_top",
+            "at": 1785445200000,
+            "rate": 25.5
           }
         ],
         "D": [
@@ -9632,10 +9640,10 @@
       "state": {
         "H4": {
           "volPct": 99,
-          "rangePos": 44,
-          "chg20": -2.36,
-          "persistence": 20,
-          "atrPct": 1.914,
+          "rangePos": 67,
+          "chg20": 2.78,
+          "persistence": 30,
+          "atrPct": 1.931,
           "bars": 499
         },
         "D": {
@@ -9737,21 +9745,16 @@
         }
       },
       "asOf": {
-        "H4": 1785430800000,
+        "H4": 1785445200000,
         "D": 1785358800000,
         "spread": 1785458700000
       },
       "cls": "index",
       "name": "Nikkei 225",
       "dec": 1,
-      "price": 63689.4,
+      "price": 65284.4,
       "patterns": {
         "H4": [
-          {
-            "id": "bull_engulf",
-            "at": 1785301200000,
-            "rate": 7.3
-          },
           {
             "id": "long_legged_doji",
             "at": 1785315600000,
@@ -9765,7 +9768,7 @@
           {
             "id": "tweezer_top",
             "at": 1785330000000,
-            "rate": 22.6
+            "rate": 22.3
           },
           {
             "id": "evening_star",
@@ -9801,6 +9804,11 @@
             "id": "three_inside_up",
             "at": 1785402000000,
             "rate": 2.1
+          },
+          {
+            "id": "marubozu_bull",
+            "at": 1785445200000,
+            "rate": 3.1
           }
         ],
         "D": [
@@ -9845,11 +9853,11 @@
     "UKOIL": {
       "state": {
         "H4": {
-          "volPct": 48,
-          "rangePos": 42,
-          "chg20": -0.32,
+          "volPct": 29,
+          "rangePos": 40,
+          "chg20": 0.34,
           "persistence": 10,
-          "atrPct": 1.957,
+          "atrPct": 1.699,
           "bars": 499
         },
         "D": {
@@ -9863,6 +9871,14 @@
         "spreadRatio": 2
       },
       "events": [
+        {
+          "type": "break",
+          "dir": "down",
+          "at": 1785445200000,
+          "price": 91.372,
+          "detail": "closed below the swing low at 91.446",
+          "tf": "H4"
+        },
         {
           "type": "break",
           "dir": "down",
@@ -9903,9 +9919,9 @@
           "perMonth": 3.7
         },
         "break.H4": {
-          "n": 51,
+          "n": 52,
           "days": 115,
-          "perMonth": 13.3
+          "perMonth": 13.6
         },
         "sweep.D": {
           "n": 11,
@@ -9919,25 +9935,20 @@
         }
       },
       "asOf": {
-        "H4": 1785430800000,
+        "H4": 1785445200000,
         "D": 1785358800000,
         "spread": 1785458700000
       },
       "cls": "energy",
       "name": "Brent Crude Oil",
       "dec": 2,
-      "price": 91.736,
+      "price": 91.372,
       "patterns": {
         "H4": [
           {
             "id": "spinning_top",
-            "at": 1785301200000,
-            "rate": 29
-          },
-          {
-            "id": "spinning_top",
             "at": 1785344400000,
-            "rate": 29
+            "rate": 28.7
           },
           {
             "id": "doji",
@@ -9973,6 +9984,11 @@
             "id": "inside_bar",
             "at": 1785430800000,
             "rate": 25
+          },
+          {
+            "id": "tweezer_top",
+            "at": 1785445200000,
+            "rate": 12.5
           }
         ],
         "D": [
