@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-07-31T00:05:24.794Z",
+  "updatedAt": "2026-07-31T00:06:20.791Z",
   "meta": {
     "instruments": 52,
     "bars": {
@@ -13,7 +13,7 @@
     },
     "sweepBars": 5,
     "patternBars": 10,
-    "pending": 13
+    "pending": 4
   },
   "instruments": {
     "EUR/USD": {
@@ -11049,10 +11049,10 @@
         },
         "D": {
           "volPct": 0,
-          "rangePos": 19,
-          "chg20": -1.78,
+          "rangePos": 22,
+          "chg20": -1.96,
           "persistence": 20,
-          "atrPct": 2.929,
+          "atrPct": 2.862,
           "bars": 399
         }
       },
@@ -11146,7 +11146,7 @@
       },
       "asOf": {
         "H4": 1785441600000,
-        "D": 1785283200000
+        "D": 1785369600000
       },
       "cls": "crypto",
       "name": "XRP",
@@ -11222,11 +11222,6 @@
         ],
         "D": [
           {
-            "id": "outside_bar",
-            "at": 1784505600000,
-            "rate": 2.4
-          },
-          {
             "id": "spinning_top",
             "at": 1784678400000,
             "rate": 7.5
@@ -11282,19 +11277,19 @@
     "ADA/USDT": {
       "state": {
         "H4": {
-          "volPct": 54,
-          "rangePos": 71,
-          "chg20": 4.98,
+          "volPct": 53,
+          "rangePos": 60,
+          "chg20": 7.41,
           "persistence": 20,
-          "atrPct": 2.377,
+          "atrPct": 2.408,
           "bars": 499
         },
         "D": {
-          "volPct": 2,
-          "rangePos": 24,
-          "chg20": -2.7,
+          "volPct": 5,
+          "rangePos": 32,
+          "chg20": 1.8,
           "persistence": 0,
-          "atrPct": 4.94,
+          "atrPct": 5.068,
           "bars": 399
         }
       },
@@ -11395,24 +11390,19 @@
         }
       },
       "asOf": {
-        "H4": 1785427200000,
-        "D": 1785283200000
+        "H4": 1785441600000,
+        "D": 1785369600000
       },
       "cls": "crypto",
       "name": "Cardano",
       "dec": 4,
-      "price": 0.1621,
+      "price": 0.1697,
       "patterns": {
         "H4": [
           {
-            "id": "inside_bar",
-            "at": 1785297600000,
-            "rate": 35.1
-          },
-          {
             "id": "tweezer_top",
             "at": 1785312000000,
-            "rate": 17.7
+            "rate": 18.1
           },
           {
             "id": "inside_bar",
@@ -11427,7 +11417,7 @@
           {
             "id": "outside_bar",
             "at": 1785326400000,
-            "rate": 14.5
+            "rate": 14.8
           },
           {
             "id": "doji",
@@ -11448,19 +11438,19 @@
             "id": "inside_bar",
             "at": 1785427200000,
             "rate": 35.1
-          }
-        ],
-        "D": [
+          },
           {
-            "id": "bull_engulf",
-            "at": 1784505600000,
-            "rate": 0.4
+            "id": "tweezer_top",
+            "at": 1785441600000,
+            "rate": 18.1
           },
           {
             "id": "outside_bar",
-            "at": 1784505600000,
-            "rate": 3.2
-          },
+            "at": 1785441600000,
+            "rate": 14.8
+          }
+        ],
+        "D": [
           {
             "id": "spinning_top",
             "at": 1784678400000,
@@ -11502,19 +11492,19 @@
     "DOGE/USDT": {
       "state": {
         "H4": {
-          "volPct": 11,
-          "rangePos": 44,
-          "chg20": -2.51,
+          "volPct": 5,
+          "rangePos": 41,
+          "chg20": -1.08,
           "persistence": 10,
-          "atrPct": 1.397,
+          "atrPct": 1.269,
           "bars": 499
         },
         "D": {
-          "volPct": 2,
-          "rangePos": 6,
-          "chg20": -3.77,
+          "volPct": 1,
+          "rangePos": 7,
+          "chg20": -4.76,
           "persistence": 20,
-          "atrPct": 3.509,
+          "atrPct": 3.389,
           "bars": 399
         }
       },
@@ -11599,19 +11589,19 @@
         }
       },
       "asOf": {
-        "H4": 1785427200000,
-        "D": 1785283200000
+        "H4": 1785441600000,
+        "D": 1785369600000
       },
       "cls": "crypto",
       "name": "Dogecoin",
       "dec": 4,
-      "price": 0.07014,
+      "price": 0.07059,
       "patterns": {
         "H4": [
           {
             "id": "tweezer_top",
             "at": 1785312000000,
-            "rate": 24.2
+            "rate": 24.6
           },
           {
             "id": "outside_bar",
@@ -11621,7 +11611,7 @@
           {
             "id": "spinning_top",
             "at": 1785369600000,
-            "rate": 45.5
+            "rate": 45.9
           },
           {
             "id": "bear_engulf",
@@ -11631,7 +11621,7 @@
           {
             "id": "evening_star",
             "at": 1785384000000,
-            "rate": 5.1
+            "rate": 4.7
           },
           {
             "id": "tweezer_bottom",
@@ -11641,20 +11631,25 @@
           {
             "id": "spinning_top",
             "at": 1785427200000,
-            "rate": 45.5
+            "rate": 45.9
+          },
+          {
+            "id": "spinning_top",
+            "at": 1785441600000,
+            "rate": 45.9
+          },
+          {
+            "id": "bear_harami",
+            "at": 1785441600000,
+            "rate": 4.3
+          },
+          {
+            "id": "tweezer_top",
+            "at": 1785441600000,
+            "rate": 24.6
           }
         ],
         "D": [
-          {
-            "id": "spinning_top",
-            "at": 1784505600000,
-            "rate": 6.4
-          },
-          {
-            "id": "outside_bar",
-            "at": 1784505600000,
-            "rate": 2.3
-          },
           {
             "id": "bull_engulf",
             "at": 1784592000000,
@@ -11668,7 +11663,7 @@
           {
             "id": "tweezer_top",
             "at": 1784678400000,
-            "rate": 0.9
+            "rate": 0.8
           },
           {
             "id": "evening_star",
@@ -11683,7 +11678,7 @@
           {
             "id": "bull_harami",
             "at": 1784851200000,
-            "rate": 0.8
+            "rate": 0.9
           },
           {
             "id": "morning_star",
@@ -11699,6 +11694,16 @@
             "id": "spinning_top",
             "at": 1785196800000,
             "rate": 6.4
+          },
+          {
+            "id": "bull_harami",
+            "at": 1785369600000,
+            "rate": 0.9
+          },
+          {
+            "id": "inside_bar",
+            "at": 1785369600000,
+            "rate": 5.7
           }
         ]
       }
@@ -11706,19 +11711,19 @@
     "AVAX/USDT": {
       "state": {
         "H4": {
-          "volPct": 25,
-          "rangePos": 47,
-          "chg20": -2.94,
+          "volPct": 11,
+          "rangePos": 42,
+          "chg20": -1.68,
           "persistence": 10,
-          "atrPct": 1.808,
+          "atrPct": 1.641,
           "bars": 499
         },
         "D": {
-          "volPct": 3,
+          "volPct": 2,
           "rangePos": 22,
-          "chg20": -3.7,
+          "chg20": -4.53,
           "persistence": 10,
-          "atrPct": 4.347,
+          "atrPct": 4.21,
           "bars": 399
         }
       },
@@ -11787,9 +11792,9 @@
           "perMonth": 7.2
         },
         "break.H4": {
-          "n": 48,
+          "n": 47,
           "days": 83,
-          "perMonth": 17.3
+          "perMonth": 17
         },
         "sweep.D": {
           "n": 11,
@@ -11803,25 +11808,15 @@
         }
       },
       "asOf": {
-        "H4": 1785427200000,
-        "D": 1785283200000
+        "H4": 1785441600000,
+        "D": 1785369600000
       },
       "cls": "crypto",
       "name": "Avalanche",
       "dec": 3,
-      "price": 6.432,
+      "price": 6.434,
       "patterns": {
         "H4": [
-          {
-            "id": "spinning_top",
-            "at": 1785297600000,
-            "rate": 36.9
-          },
-          {
-            "id": "bull_harami",
-            "at": 1785297600000,
-            "rate": 5.4
-          },
           {
             "id": "inside_bar",
             "at": 1785312000000,
@@ -11830,7 +11825,7 @@
           {
             "id": "spinning_top",
             "at": 1785340800000,
-            "rate": 36.9
+            "rate": 36.5
           },
           {
             "id": "outside_bar",
@@ -11855,12 +11850,22 @@
           {
             "id": "tweezer_top",
             "at": 1785412800000,
-            "rate": 19.5
+            "rate": 19.9
           },
           {
             "id": "inside_bar",
             "at": 1785427200000,
             "rate": 34.3
+          },
+          {
+            "id": "bear_engulf",
+            "at": 1785441600000,
+            "rate": 6.1
+          },
+          {
+            "id": "tweezer_top",
+            "at": 1785441600000,
+            "rate": 19.9
           }
         ],
         "D": [
@@ -11877,7 +11882,7 @@
           {
             "id": "tweezer_top",
             "at": 1784764800000,
-            "rate": 1.2
+            "rate": 1.1
           },
           {
             "id": "hammer",
@@ -11897,12 +11902,12 @@
           {
             "id": "tweezer_top",
             "at": 1785024000000,
-            "rate": 1.2
+            "rate": 1.1
           },
           {
             "id": "inside_bar",
             "at": 1785024000000,
-            "rate": 4.9
+            "rate": 5
           },
           {
             "id": "marubozu_bear",
@@ -11917,12 +11922,22 @@
           {
             "id": "tweezer_top",
             "at": 1785283200000,
-            "rate": 1.2
+            "rate": 1.1
           },
           {
             "id": "outside_bar",
             "at": 1785283200000,
             "rate": 2.9
+          },
+          {
+            "id": "long_legged_doji",
+            "at": 1785369600000,
+            "rate": 0.5
+          },
+          {
+            "id": "inside_bar",
+            "at": 1785369600000,
+            "rate": 5
           }
         ]
       }
@@ -11930,19 +11945,19 @@
     "LINK/USDT": {
       "state": {
         "H4": {
-          "volPct": 39,
-          "rangePos": 44,
-          "chg20": -3.04,
+          "volPct": 31,
+          "rangePos": 38,
+          "chg20": -1.47,
           "persistence": 0,
-          "atrPct": 1.669,
+          "atrPct": 1.566,
           "bars": 499
         },
         "D": {
           "volPct": 2,
-          "rangePos": 58,
-          "chg20": 7.76,
+          "rangePos": 66,
+          "chg20": 6.04,
           "persistence": 10,
-          "atrPct": 3.451,
+          "atrPct": 3.408,
           "bars": 399
         }
       },
@@ -12035,13 +12050,13 @@
         }
       },
       "asOf": {
-        "H4": 1785427200000,
-        "D": 1785283200000
+        "H4": 1785441600000,
+        "D": 1785369600000
       },
       "cls": "crypto",
       "name": "Chainlink",
       "dec": 3,
-      "price": 8.335,
+      "price": 8.451,
       "patterns": {
         "H4": [
           {
@@ -12067,17 +12082,27 @@
           {
             "id": "spinning_top",
             "at": 1785412800000,
-            "rate": 35.1
+            "rate": 34.7
           },
           {
             "id": "spinning_top",
             "at": 1785427200000,
-            "rate": 35.1
+            "rate": 34.7
           },
           {
             "id": "inside_bar",
             "at": 1785427200000,
             "rate": 34.3
+          },
+          {
+            "id": "bear_engulf",
+            "at": 1785441600000,
+            "rate": 8.3
+          },
+          {
+            "id": "tweezer_top",
+            "at": 1785441600000,
+            "rate": 24.9
           }
         ],
         "D": [
@@ -12124,7 +12149,7 @@
           {
             "id": "bear_engulf",
             "at": 1785110400000,
-            "rate": 1.1
+            "rate": 1
           },
           {
             "id": "outside_bar",
@@ -12139,12 +12164,17 @@
           {
             "id": "bear_engulf",
             "at": 1785283200000,
-            "rate": 1.1
+            "rate": 1
           },
           {
             "id": "outside_bar",
             "at": 1785283200000,
             "rate": 3.2
+          },
+          {
+            "id": "bull_engulf",
+            "at": 1785369600000,
+            "rate": 0.8
           }
         ]
       }
