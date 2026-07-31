@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-07-31T00:06:20.791Z",
+  "updatedAt": "2026-07-31T00:07:21.138Z",
   "meta": {
     "instruments": 52,
     "bars": {
@@ -13,7 +13,7 @@
     },
     "sweepBars": 5,
     "patternBars": 10,
-    "pending": 4
+    "pending": 0
   },
   "instruments": {
     "EUR/USD": {
@@ -12182,19 +12182,19 @@
     "DOT/USDT": {
       "state": {
         "H4": {
-          "volPct": 5,
-          "rangePos": 24,
-          "chg20": -3.72,
+          "volPct": 3,
+          "rangePos": 17,
+          "chg20": -3.15,
           "persistence": 0,
-          "atrPct": 1.471,
+          "atrPct": 1.432,
           "bars": 499
         },
         "D": {
-          "volPct": 1,
-          "rangePos": 3,
-          "chg20": -7.51,
+          "volPct": 0,
+          "rangePos": 4,
+          "chg20": -12.43,
           "persistence": 10,
-          "atrPct": 4.506,
+          "atrPct": 4.222,
           "bars": 399
         }
       },
@@ -12279,9 +12279,9 @@
           "perMonth": 8.7
         },
         "break.H4": {
-          "n": 44,
+          "n": 43,
           "days": 83,
-          "perMonth": 15.9
+          "perMonth": 15.5
         },
         "sweep.D": {
           "n": 11,
@@ -12295,29 +12295,19 @@
         }
       },
       "asOf": {
-        "H4": 1785427200000,
-        "D": 1785283200000
+        "H4": 1785441600000,
+        "D": 1785369600000
       },
       "cls": "crypto",
       "name": "Polkadot",
       "dec": 3,
-      "price": 0.764,
+      "price": 0.768,
       "patterns": {
         "H4": [
           {
-            "id": "tweezer_bottom",
-            "at": 1785297600000,
-            "rate": 21.3
-          },
-          {
-            "id": "inside_bar",
-            "at": 1785297600000,
-            "rate": 30
-          },
-          {
             "id": "tweezer_top",
             "at": 1785312000000,
-            "rate": 20.6
+            "rate": 21
           },
           {
             "id": "doji",
@@ -12348,14 +12338,14 @@
             "id": "outside_bar",
             "at": 1785412800000,
             "rate": 19.5
+          },
+          {
+            "id": "tweezer_top",
+            "at": 1785441600000,
+            "rate": 21
           }
         ],
         "D": [
-          {
-            "id": "spinning_top",
-            "at": 1784505600000,
-            "rate": 6.7
-          },
           {
             "id": "morning_star",
             "at": 1784592000000,
@@ -12397,19 +12387,19 @@
     "LTC/USDT": {
       "state": {
         "H4": {
-          "volPct": 31,
-          "rangePos": 28,
-          "chg20": -3.42,
-          "persistence": 20,
-          "atrPct": 1.434,
+          "volPct": 25,
+          "rangePos": 32,
+          "chg20": -1.68,
+          "persistence": 10,
+          "atrPct": 1.382,
           "bars": 499
         },
         "D": {
           "volPct": 7,
-          "rangePos": 46,
-          "chg20": 3.77,
+          "rangePos": 48,
+          "chg20": 1.79,
           "persistence": 0,
-          "atrPct": 3.384,
+          "atrPct": 3.357,
           "bars": 399
         }
       },
@@ -12478,9 +12468,9 @@
           "perMonth": 5.4
         },
         "break.H4": {
-          "n": 50,
+          "n": 49,
           "days": 83,
-          "perMonth": 18.1
+          "perMonth": 17.7
         },
         "sweep.D": {
           "n": 13,
@@ -12494,20 +12484,15 @@
         }
       },
       "asOf": {
-        "H4": 1785427200000,
-        "D": 1785283200000
+        "H4": 1785441600000,
+        "D": 1785369600000
       },
       "cls": "crypto",
       "name": "Litecoin",
       "dec": 2,
-      "price": 45.45,
+      "price": 45.58,
       "patterns": {
         "H4": [
-          {
-            "id": "spinning_top",
-            "at": 1785297600000,
-            "rate": 37.2
-          },
           {
             "id": "spinning_top",
             "at": 1785312000000,
@@ -12582,23 +12567,18 @@
         "D": [
           {
             "id": "spinning_top",
-            "at": 1784505600000,
-            "rate": 7.4
-          },
-          {
-            "id": "spinning_top",
             "at": 1784678400000,
-            "rate": 7.4
+            "rate": 7.5
           },
           {
             "id": "spinning_top",
             "at": 1784764800000,
-            "rate": 7.4
+            "rate": 7.5
           },
           {
             "id": "tweezer_top",
             "at": 1784764800000,
-            "rate": 2
+            "rate": 1.9
           },
           {
             "id": "morning_star",
@@ -12618,7 +12598,7 @@
           {
             "id": "spinning_top",
             "at": 1785196800000,
-            "rate": 7.4
+            "rate": 7.5
           },
           {
             "id": "bull_harami",
@@ -12634,6 +12614,16 @@
             "id": "bear_engulf",
             "at": 1785283200000,
             "rate": 0.8
+          },
+          {
+            "id": "spinning_top",
+            "at": 1785369600000,
+            "rate": 7.5
+          },
+          {
+            "id": "inside_bar",
+            "at": 1785369600000,
+            "rate": 5.3
           }
         ]
       }
