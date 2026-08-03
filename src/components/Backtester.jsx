@@ -1,10 +1,11 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { runBacktest, calcStats, defaultSpreadPips } from '../utils/backtestEngine';
 import { gradeStrategy, loadLibrary, saveToLibrary, removeFromLibrary, condSignature,
          getSeal, sealRule, recordSearch, datasetKey } from '../utils/backtestGrading';
 import { OANDA_MAP } from '../hooks/useLivePrices';
 import { INSTRUMENTS as REGISTRY } from '../data/instruments';
 import { generateCandles } from '../utils/generateCandles';
+import { takeStagedFilter } from '../utils/feedToBacktest';
 
 const TF_GRAN = {'1M':'M1','5M':'M5','15M':'M15','30M':'M30','1H':'H1','4H':'H4','8H':'H8','D':'D','W':'W'};
 const TFS = ['1M','5M','15M','30M','1H','4H','8H','D','W'];
@@ -858,6 +859,11 @@ export default function Backtester() {
   const [page,   setPage]    = useState(0);
   const [activePresetCat, setActivePresetCat] = useState('All');
   const [library, setLibrary] = useState(() => loadLibrary());
+  // AND/OR was hardcoded to AND. A Feed filter set to "ANY" would otherwise
+  // arrive here as AND and quietly test a much stricter strategy than the one
+  // on screen — the exact silent mistranslation the handoff exists to avoid.
+  const [logic, setLogic] = useState('AND');
+  const [fromFeed, setFromFeed] = useState(null);
   const [saved,   setSaved]   = useState(false);
 
   const addCond = () => setConds(p=>[...p,{id:Date.now(),type:'rsi',...DEF.rsi}]);
@@ -886,7 +892,7 @@ export default function Backtester() {
       const {candles, src:s} = await fetchCandles(sym, tf, cnt);
       setSrc(s);
       const strat = {
-        symbol:sym, conditions:conds, logic:'AND', direction:dir,
+        symbol:sym, conditions:conds, logic, direction:dir,
         exitType:     exit,
         slType:       slType,
         tpPips:       exit==='fixed' ? tp : (exit==='rr' ? rrTpPips : tp),
@@ -946,6 +952,18 @@ export default function Backtester() {
     setLibrary(saveToLibrary(entry));
     setSaved(true);
   };
+  // Pick up a filter handed over from the Live Feed. Consumed on read, so
+  // switching tabs and back cannot silently re-apply a strategy you have edited.
+  useEffect(() => {
+    const staged = takeStagedFilter();
+    if (!staged?.strategy?.conditions?.length) return;
+    setConds(staged.strategy.conditions.map((c, i) => ({ ...c, id: i + 1 })));
+    setLogic(staged.strategy.logic || 'AND');
+    setTf(staged.timeframe === 'D' ? 'D' : '4H');
+    setDir('both');
+    setFromFeed(staged);
+  }, []);
+
   const removeGrade = (sig) => setLibrary(removeFromLibrary(sig));
   const loadFromLib = (e) => {
     setSym(e.symbol); setTf(e.tf); setDir(e.dir);
@@ -974,6 +992,39 @@ export default function Backtester() {
         </div>
 
         {/* Step 1: Instrument */}
+        {/* ── What the Live Feed handed over, and what it could not ──
+              A backtest that quietly tests four of your six conditions and
+              reports a win rate is worse than no backtest, because it looks
+              like an answer. ── */}
+        {fromFeed && (
+          <div style={{ background:'#0b1118', border:'1px solid #00d4aa44', borderRadius:8,
+            padding:'10px 12px', marginBottom:12, fontSize:12, lineHeight:1.7 }}>
+            <div style={{ color:'#00d4aa', fontWeight:700, marginBottom:4 }}>
+              From the Live Feed — testing {fromFeed.testable} of {fromFeed.total} conditions on {fromFeed.timeframe}
+            </div>
+            {fromFeed.dropped.length > 0 && (
+              <div style={{ color:'#f59e0b' }}>
+                {fromFeed.dropped.map((d, i) => (
+                  <div key={i}>⚠ <strong>{d.label}</strong> not tested — {d.why}</div>
+                ))}
+              </div>
+            )}
+            {fromFeed.mixedTimeframes && (
+              <div style={{ color:'#f59e0b' }}>
+                ⚠ Filter mixes {fromFeed.mixedTimeframes.join(' and ')} — this test runs on {fromFeed.timeframe} only.
+              </div>
+            )}
+            {fromFeed.minMatchLost && (
+              <div style={{ color:'#f59e0b' }}>
+                ⚠ “ANY {fromFeed.minMatchLost} of N” became plain OR — the engine has no N-of-M.
+              </div>
+            )}
+            <div style={{ color:'#475569', fontSize:11, marginTop:4 }}>
+              Set your exit and risk below, then run. The grade tells you whether any edge beats random.
+            </div>
+          </div>
+        )}
+
         <div className="bt2-step">
           <div className="bt2-step-label"><span className="bt2-step-num">01</span>Instrument &amp; Data</div>
           <div className="bt2-row">
@@ -987,6 +1038,12 @@ export default function Backtester() {
           <div className="bt2-tf-row">
             {TFS.map(t=>(
               <button key={t} className={`bt2-tf-pill${tf===t?' active':''}`} onClick={()=>setTf(t)}>{t}</button>
+            ))}
+          </div>
+          <div className="bt2-tf-row" style={{ marginTop:6 }}>
+            <span style={{ fontSize:11, color:'#475569', alignSelf:'center', marginRight:6 }}>conditions must</span>
+            {[['AND','all hold'],['OR','any hold']].map(([v,l])=>(
+              <button key={v} className={`bt2-tf-pill${logic===v?' active':''}`} onClick={()=>setLogic(v)}>{l}</button>
             ))}
           </div>
         </div>

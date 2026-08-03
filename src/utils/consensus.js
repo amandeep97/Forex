@@ -145,6 +145,30 @@ function verdictOf(votes, vetoes, cfg) {
   return { state:'aligned', dir, agree, against:0 };
 }
 
+// One instrument, same code path as the full sweep.
+//
+// Exists so that tapping a row in the FEED lands on a page that can actually
+// tell you something. Before this the shortlist handed you to a screen showing
+// spread and depth and no read at all, so you had to walk back out to Consensus
+// and find the instrument again by hand — the shortlist stopped exactly one
+// step before it was useful.
+export async function runConsensusFor(sym, overrides = {}) {
+  const cfg = { ...DEFAULTS, ...overrides };
+  const inst = bySymbol(sym);
+  if (!inst || !inst.can.candles) return null;
+  try {
+    const { votes, missing, vetoes } = await readSources(inst, cfg);
+    return {
+      sym: inst.sym, cls: inst.cls, inst, votes, missing, vetoes,
+      verdict: verdictOf(votes, vetoes, cfg),
+      sources: Object.keys(votes).length, total: Object.keys(FAMILIES).length,
+    };
+  } catch (e) {
+    return { sym, cls: inst.cls, inst, error: e.message, votes:{}, missing:[], vetoes:[],
+             verdict:{ state:'no-read', agree:0 }, total: Object.keys(FAMILIES).length };
+  }
+}
+
 export async function runConsensus(overrides = {}) {
   const cfg = { ...DEFAULTS, ...overrides };
   const list = INSTRUMENTS.filter(i => i.can.candles);
