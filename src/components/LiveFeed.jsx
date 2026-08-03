@@ -19,6 +19,71 @@ const btn = (on) => ({
   color: on ? C.accent : C.dim,
 });
 
+
+// ── Sparkline ─────────────────────────────────────────────────────────────────
+// The row's own evidence. "Swept the 5-bar low and closed back inside" is a
+// claim; the shape underneath, with the bar it happened on marked, is the thing
+// itself. Drawn from closes the VPS publishes — no extra request, and it looks
+// identical whether you are online or not.
+function Spark({ series, events, w = 96, h = 30 }) {
+  if (!series?.c?.length || series.c.length < 3) return <div style={{ width:w, height:h }}/>;
+  const c = series.c;
+  const lo = Math.min(...c), hi = Math.max(...c);
+  const span = hi - lo || 1;
+  const x = i => (i / (c.length - 1)) * (w - 2) + 1;
+  const y = v => h - 2 - ((v - lo) / span) * (h - 4);
+  const pts = c.map((v, i) => `${x(i).toFixed(1)},${y(v).toFixed(1)}`).join(' ');
+  const up = c[c.length - 1] >= c[0];
+  const stroke = up ? '#22c55e' : '#ef4444';
+
+  // Position comes from the feed (`si`), never from arithmetic on timestamps —
+  // FX bars skip weekends, so elapsed-time over bar-size drifts two days a week
+  // and puts every marker after a Friday on the wrong bar.
+  const marks = (events || [])
+    .filter(e => e.si != null && e.si >= 0 && e.si < c.length)
+    .map(e => ({ ...e, i: e.si }));
+
+  return (
+    <svg width={w} height={h} style={{ display:'block', flexShrink:0 }} aria-hidden="true">
+      <polyline points={pts} fill="none" stroke={stroke} strokeWidth="1.2"
+        strokeLinejoin="round" strokeLinecap="round" opacity="0.85"/>
+      {marks.map((m, k) => (
+        <g key={k}>
+          <line x1={x(m.i)} y1="0" x2={x(m.i)} y2={h} stroke={C.warn} strokeWidth="0.6" opacity="0.35"/>
+          <circle cx={x(m.i)} cy={y(c[m.i])} r="2.6" fill={C.warn} stroke={C.bg} strokeWidth="0.8"/>
+        </g>
+      ))}
+      <circle cx={x(c.length - 1)} cy={y(c[c.length - 1])} r="1.8" fill={stroke}/>
+    </svg>
+  );
+}
+
+// ── Rarity meter ──────────────────────────────────────────────────────────────
+// A number like "17.6/month" means nothing until you know that 0.3 and 32 are
+// both on the same scale. Log-spaced, because the interesting range spans two
+// orders of magnitude — and the label always stays, since the bar is a hint and
+// the number is the fact.
+function Rarity({ perMonth, label }) {
+  if (perMonth == null) return null;
+  // The bar is log-scaled because the range spans two orders of magnitude, but
+  // the WORD comes from fixed thresholds you can act on. Deriving the word from
+  // the bar's position made "8 times a month" — every four days — read the same
+  // as "30 times a month", which is the distinction that matters most.
+  const t = Math.max(0, Math.min(1, Math.log10(Math.max(perMonth, 0.05) / 0.1) / Math.log10(400)));
+  const rare = perMonth < 1, occasional = perMonth < 5;
+  const col = rare ? C.good : occasional ? C.warn : '#64748b';
+  const word = rare ? 'rare' : occasional ? 'occasional' : 'common';
+  return (
+    <span title={`${label} fires about ${perMonth} times a month on this instrument`}
+      style={{ display:'inline-flex', alignItems:'center', gap:5, fontFamily:C.mono }}>
+      <span style={{ width:44, height:3, background:'#131c26', borderRadius:2, overflow:'hidden', flexShrink:0 }}>
+        <span style={{ display:'block', width:`${t * 100}%`, height:'100%', background:col }}/>
+      </span>
+      <span style={{ fontSize:8, color:col }}>{word} · {perMonth}/mo</span>
+    </span>
+  );
+}
+
 // ── One matching instrument ───────────────────────────────────────────────────
 function Row({ r, filter, shortlisted, onWatch, onOpen }) {
   const cls = CLASS[r.cls];
@@ -38,8 +103,9 @@ function Row({ r, filter, shortlisted, onWatch, onOpen }) {
         <span style={{ fontSize:10, color:C.dim, flexShrink:0 }}>
           {r.price != null ? r.price.toFixed(r.dec ?? 2) : '—'}
         </span>
-        <span style={{ marginLeft:'auto', fontSize:9, color:C.dim, flexShrink:0 }}>
-          {r.newestAt ? ago(Date.now() - r.newestAt) : ''}
+        <span style={{ marginLeft:'auto', display:'flex', alignItems:'center', gap:7, flexShrink:0 }}>
+          <span style={{ fontSize:9, color:C.dim }}>{r.newestAt ? ago(Date.now() - r.newestAt) : ''}</span>
+          <Spark series={r.rec?.spark?.[r.sparkTf]} events={r.events}/>
         </span>
         <button onClick={() => onOpen(r.sym)} title="Open instrument"
           style={{ fontSize:10, padding:'1px 6px', borderRadius:3, cursor:'pointer',
@@ -80,8 +146,10 @@ function Row({ r, filter, shortlisted, onWatch, onOpen }) {
       )}
 
       {rarity.length > 0 && (
-        <div style={{ fontSize:8, color:'#2b3644', fontFamily:C.mono, marginTop:4, paddingLeft:20 }}>
-          {rarity.map(x => `${CONDITIONS[x.key]?.label ?? x.key} ${x.tf}: ${x.n}× in ${x.days}d (~${x.perMonth}/month here)`).join(' · ')}
+        <div style={{ display:'flex', gap:12, flexWrap:'wrap', marginTop:5, paddingLeft:20 }}>
+          {rarity.map((x, i) => (
+            <Rarity key={i} perMonth={x.perMonth} label={`${CONDITIONS[x.key]?.label ?? x.key} ${x.tf}`}/>
+          ))}
         </div>
       )}
     </div>
