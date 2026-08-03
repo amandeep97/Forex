@@ -7,6 +7,7 @@ import {
   syncState, syncFiltersToBot, requestTestPush, readTestPushResult,
 } from '../utils/liveFeed';
 import { CLASS, CLASS_ORDER } from '../data/instruments';
+import { stageFilterForBacktest } from '../utils/feedToBacktest';
 
 const C = {
   bg:'#080c11', panel:'#0b1118', line:'#16202b', dim:'#475569', txt:'#cbd5e1',
@@ -157,7 +158,7 @@ function Row({ r, filter, shortlisted, onWatch, onOpen }) {
 }
 
 // ── Filter editor ─────────────────────────────────────────────────────────────
-function Editor({ filter, feed, onChange, onClose, onDelete, onDuplicate, onExport, onImport, onTestPush, testPush }) {
+function Editor({ filter, feed, onChange, onClose, onDelete, onDuplicate, onExport, onImport, onTestPush, testPush, onBacktest }) {
   const used = new Set((filter.conditions || []).map(c => c.key));
 
   const setC = (i, patch) => {
@@ -175,6 +176,7 @@ function Editor({ filter, feed, onChange, onClose, onDelete, onDuplicate, onExpo
         <input value={filter.name} onChange={e => onChange({ ...filter, name: e.target.value })}
           style={{ fontSize:11, fontWeight:800, fontFamily:C.mono, background:'#0f172a', color:C.txt,
             border:`1px solid ${C.line}`, borderRadius:3, padding:'3px 7px', minWidth:0, width:'100%', flex:'1 1 100%' }}/>
+        <button onClick={onBacktest} style={{ ...btn(true), fontWeight:800 }}>⏱ backtest this</button>
         <button onClick={onDuplicate} style={btn(false)}>duplicate</button>
         <button onClick={onExport} title="Copy all filters as JSON" style={btn(false)}>export</button>
         <button onClick={onImport} title="Paste filters exported from another device" style={btn(false)}>import</button>
@@ -396,6 +398,26 @@ export default function LiveFeed({ onOpen }) {
     setSyncing(false);
   }, [filters]);
 
+  // Hand the filter to the Backtester, honestly — naming what could not be
+  // carried across rather than testing a subset and calling it the filter.
+  const doBacktest = useCallback(() => {
+    const t = stageFilterForBacktest(active);
+    if (!t.testable) {
+      window.alert('Nothing in this filter can be backtested yet.\n\n'
+        + t.dropped.map(d => `• ${d.label} — ${d.why}`).join('\n'));
+      return;
+    }
+    const notes = [];
+    if (t.dropped.length) notes.push(`${t.dropped.length} condition(s) cannot be tested:\n`
+      + t.dropped.map(d => `  • ${d.label} — ${d.why}`).join('\n'));
+    if (t.mixedTimeframes) notes.push(`This filter mixes ${t.mixedTimeframes.join(' and ')}; the test runs on ${t.timeframe} only.`);
+    if (t.minMatchLost) notes.push(`"ANY ${t.minMatchLost} of N" becomes plain OR — the engine has no N-of-M.`);
+    window.alert(`Testing ${t.testable} of ${t.total} conditions on ${t.timeframe}.`
+      + (notes.length ? '\n\n' + notes.join('\n\n') : '')
+      + '\n\nOpening the Backtester.');
+    window.dispatchEvent(new CustomEvent('navigate-tab', { detail:'backtester' }));
+  }, [active]);
+
   const doTestPush = useCallback(async () => {
     setTestPush({ state:'pending' });
     try {
@@ -467,6 +489,7 @@ export default function LiveFeed({ onOpen }) {
             onImport={importFilters}
             onTestPush={doTestPush}
             testPush={testPush}
+            onBacktest={doBacktest}
             onDuplicate={() => {
               const copy = { ...active, id:`f${Date.now().toString(36)}`, name:`${active.name} copy`,
                 conditions: active.conditions.map(c => ({ ...c, params:{ ...c.params } })) };

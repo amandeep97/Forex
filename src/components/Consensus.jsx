@@ -37,7 +37,7 @@ function SourceRows({ votes, missing }) {
   );
 }
 
-function Row({ r }) {
+export function ConsensusRow({ r }) {
   const v = r.verdict;
   const state = v.state;
   const col = state === 'aligned' ? (v.dir === 'up' ? C.good : C.bad)
@@ -143,14 +143,14 @@ export default function Consensus() {
               </div>
             )}
 
-            {res.aligned.map(r => <Row key={r.sym} r={r}/>)}
+            {res.aligned.map(r => <ConsensusRow key={r.sym} r={r}/>)}
 
             {res.blocked.length > 0 && (
               <>
                 <div style={{ fontSize:9, color:'#a78bfa', fontFamily:C.mono, margin:'8px 0 4px' }}>
                   AGREED BUT BLOCKED — conditions, not the read
                 </div>
-                {res.blocked.map(r => <Row key={r.sym} r={r}/>)}
+                {res.blocked.map(r => <ConsensusRow key={r.sym} r={r}/>)}
               </>
             )}
 
@@ -159,7 +159,7 @@ export default function Consensus() {
                 <div style={{ fontSize:9, color:C.warn, fontFamily:C.mono, margin:'8px 0 4px' }}>
                   SOURCES DISAGREE — shown because a hidden conflict is worse than a visible one
                 </div>
-                {res.conflict.slice(0, showAll ? 99 : 4).map(r => <Row key={r.sym} r={r}/>)}
+                {res.conflict.slice(0, showAll ? 99 : 4).map(r => <ConsensusRow key={r.sym} r={r}/>)}
                 {res.conflict.length > 4 && (
                   <button onClick={() => setShowAll(v => !v)}
                     style={{ fontSize:10, padding:'3px 9px', borderRadius:4, cursor:'pointer', fontFamily:C.mono,

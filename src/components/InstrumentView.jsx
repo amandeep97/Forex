@@ -1,6 +1,8 @@
 import { useState, useEffect, useCallback, useMemo } from 'react';
 import { INSTRUMENTS, CLASS, CLASS_ORDER, bySymbol, byClass, exposureOf, REGISTRY_STATS } from '../data/instruments';
 import { fetchPositioning, fetchSpreadStress, fetchSqueeze, fetchDepthMap, oandaCreds } from '../utils/flowFeed';
+import { runConsensusFor } from '../utils/consensus';
+import { ConsensusRow } from './Consensus';
 
 const C = {
   bg:'#080c11', panel:'#0b1118', line:'#16202b', dim:'#475569', txt:'#cbd5e1',
@@ -106,6 +108,7 @@ export default function InstrumentView({ sym: symProp, onBack }) {
   const [deriv, setDeriv] = useState(null);
   const [depth, setDepth] = useState(null);
   const [events,setEvents]= useState(null);
+  const [read,  setRead]  = useState(null);   // the four-engine verdict for THIS instrument
   const [busy,  setBusy]  = useState(false);
   const [asOf,  setAsOf]  = useState(null);
 
@@ -114,10 +117,14 @@ export default function InstrumentView({ sym: symProp, onBack }) {
   const load = useCallback(async () => {
     if (!inst) return;
     setBusy(true);
-    setPx(null); setSpread(null); setPosn(null); setDeriv(null); setDepth(null);
+    setPx(null); setSpread(null); setPosn(null); setDeriv(null); setDepth(null); setRead(null);
 
     const jobs = [
       loadCandles(inst, tf).then(r => setPx(r)).catch(e => setPx({ error:e.message, code:e.code })),
+      // The read comes from the same four engines Consensus uses, not a fifth
+      // opinion computed here. Slowest of the panels, so it loads alongside
+      // rather than blocking the page.
+      runConsensusFor(sym).then(setRead).catch(() => setRead(null)),
       inst.can.spread
         ? fetchSpreadStress({ sym:inst.sym, oanda:inst.oanda }).then(setSpread).catch(e => setSpread({ error:e.message }))
         : Promise.resolve(),
@@ -240,6 +247,18 @@ export default function InstrumentView({ sym: symProp, onBack }) {
               {asOf ? `as of ${asOf.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'})}` : ''}
             </span>
           </div>
+
+          {/* ── The read: why this instrument is worth your time, or why it is not.
+                Same four engines as Consensus — Signals' structure, Command
+                Center's factors, Alpha Lab's realised win rate, CFTC positioning
+                — so this page and that panel can never say different things. ── */}
+          {read
+            ? <ConsensusRow r={read}/>
+            : <div style={{ border:`1px solid ${C.line}`, borderRadius:5, padding:'8px 10px',
+                fontSize:10, color:C.dim, fontFamily:C.mono }}>
+                reading Signals, Command Center, Pair Hub and CFTC…
+              </div>}
+
 
           {/* price */}
           <Card title="PRICE" src={px?.error ? 'error' : px ? 'live' : 'unavailable'}

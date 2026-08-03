@@ -396,7 +396,14 @@ export function mirrorCond(cond) {
     case 'session':
     case 'volume':
     case 'dow':
+    case 'volpct':
+    case 'rangepos':
+    case 'persistence':
       return cond;   // context filters — same for long & short
+    case 'chg20': {
+      const m = { up:'down', down:'up' };
+      return { ...cond, op: m[cond.op] || cond.op };
+    }
     case 'pattern':
       return { ...cond, value: cond.value === 'bullish' ? 'bearish' : cond.value === 'bearish' ? 'bullish' : cond.value };
     case 'candlestick':
@@ -553,6 +560,26 @@ function evalCond(c, prev, inds, cond, pattern, patternIds) {
       if (cond.op === 'below') return c.v <  avg;
       return false;
     }
+    // ── Live Feed measures ──
+    case 'volpct': {
+      const v = inds['volPct']?.cur; if (v == null) return false;
+      return cond.op === 'below' ? v <= cond.value : v >= cond.value;
+    }
+    case 'rangepos': {
+      const v = inds['rangePos']?.cur; if (v == null) return false;
+      return cond.op === 'below' ? v <= cond.value : v >= cond.value;
+    }
+    case 'chg20': {
+      const v = inds['chg20']?.cur; if (v == null) return false;
+      if (cond.op === 'up')   return v >=  Math.abs(cond.value);
+      if (cond.op === 'down') return v <= -Math.abs(cond.value);
+      return Math.abs(v) >= Math.abs(cond.value);
+    }
+    case 'persistence': {
+      const v = inds['persistence']?.cur; if (v == null) return false;
+      return v >= cond.value;
+    }
+
     case 'candle':
       if (cond.op === 'bullish') return c.c > c.o;
       if (cond.op === 'bearish') return c.c < c.o;
@@ -562,8 +589,73 @@ function evalCond(c, prev, inds, cond, pattern, patternIds) {
 }
 
 // ── Pre-build required indicator arrays from conditions ───────────────────────
+// ── The Live Feed's four measures, as rolling series ──────────────────────────
+// Definitions copied deliberately from the feed's measure(): volatility
+// percentile against the instrument's own ATR distribution, position in the
+// 60-bar range, 20-bar change, and how one-sided the last 20 bars were.
+//
+// They must agree with the feed exactly. If they drift, "test this filter"
+// silently backtests a DIFFERENT filter than the one on screen and reports a
+// number for a strategy you never built — worse than having no bridge at all.
+// feedMeasuresMatchTest in the test suite pins them together.
+//
+// Every value at bar i uses only bars up to i. An expanding percentile would be
+// look-ahead; the window is the trailing WINDOW bars.
+function feedMeasureSeries(candles, WINDOW = 500) {
+  const n = candles.length;
+  const volPct = new Array(n).fill(null);
+  const rangePos = new Array(n).fill(null);
+  const chg20 = new Array(n).fill(null);
+  const persistence = new Array(n).fill(null);
+
+  // ATR(14) at every bar, from true ranges
+  const tr = new Array(n).fill(null);
+  for (let i = 1; i < n; i++) {
+    const pc = candles[i - 1].c;
+    tr[i] = Math.max(candles[i].h - candles[i].l,
+                     Math.abs(candles[i].h - pc), Math.abs(candles[i].l - pc));
+  }
+  const atr = new Array(n).fill(null);
+  for (let i = 14; i < n; i++) {
+    let sum = 0;
+    for (let k = i - 13; k <= i; k++) sum += tr[k] ?? 0;
+    atr[i] = sum / 14;
+  }
+
+  for (let i = 0; i < n; i++) {
+    if (atr[i] != null) {
+      // Population starts at bar 15, not 14. The feed builds true ranges into a
+      // separate array offset by one bar and then drops the first 14, so its
+      // ATR distribution begins one bar later than the naive index suggests.
+      // A one-element difference in the population shifts the percentile by a
+      // point often enough to matter, and the feed is the published truth.
+      const from = Math.max(15, i - WINDOW + 1);
+      let below = 0, total = 0;
+      for (let k = from; k <= i; k++) { if (atr[k] == null) continue; total++; if (atr[k] < atr[i]) below++; }
+      if (total) volPct[i] = Math.round((below / total) * 100);
+    }
+    if (i >= 59) {
+      let hi = -Infinity, lo = Infinity;
+      for (let k = i - 59; k <= i; k++) { if (candles[k].h > hi) hi = candles[k].h; if (candles[k].l < lo) lo = candles[k].l; }
+      rangePos[i] = hi > lo ? Math.round(((candles[i].c - lo) / (hi - lo)) * 100) : 50;
+    }
+    if (i >= 20) chg20[i] = +(((candles[i].c - candles[i - 20].c) / candles[i - 20].c) * 100).toFixed(2);
+    if (i >= 19) {
+      let ups = 0;
+      for (let k = i - 19; k <= i; k++) if (candles[k].c > candles[k].o) ups++;
+      persistence[i] = Math.round((Math.abs(ups - 10) / 10) * 100);
+    }
+  }
+  return { volPct, rangePos, chg20, persistence };
+}
+
+const FEED_COND_TYPES = ['volpct', 'rangepos', 'chg20', 'persistence'];
+
 function buildIndicators(candles, conditions) {
   const arrays = {};
+  if (conditions.some(cd => FEED_COND_TYPES.includes(cd.type))) {
+    Object.assign(arrays, feedMeasureSeries(candles));
+  }
   const ensure = (type, period, period2, maType) => {
     const mt = maType || 'ema';
     if (type === 'rsi') {
