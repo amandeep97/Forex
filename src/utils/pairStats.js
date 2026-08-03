@@ -150,12 +150,82 @@ function dowFactor() {
        : 0;                        // Weekend
 }
 
+// ── Honest scoring helpers ───────────────────────────────────────────────────
+// A win rate from five samples is not a win rate. Rather than a hard cutoff
+// that makes a pair vanish the moment it has four, the observed rate is pulled
+// toward a coin flip by how little evidence supports it: 5 wins from 6 becomes
+// 58%, while 40 from 60 stays at 63%. Extraordinary numbers need extraordinary
+// sample sizes, and small samples stop producing extraordinary numbers.
+const PRIOR_N = 20;
+function shrunkWR(wins, n) {
+  if (!n) return null;
+  return Math.round(((wins + 0.5 * PRIOR_N) / (n + PRIOR_N)) * 100);
+}
+
+// Points are grouped by what they independently measure. The old scoring added
+// overall win rate, today's win rate and the directional win rate together —
+// but today's trades are INSIDE the overall set, so one good run was counted
+// three times and a pair could show 100 on a handful of trades.
+//
+// Deliberately gone:
+//   dowFactor  — the same bonus for every pair on a given day, so it cannot
+//                rank anything; it only inflated the whole board on Tuesdays
+//   hot streak — three wins in a row is recency, not evidence
+const FAMILY_MAX = { record: 30, live: 30, timing: 15, htf: 5 };
+
+// ── Cross-instrument consistency ─────────────────────────────────────────────
+// Each pair is scored on its own, which is how a ranking ended up showing
+// NAS100 LONG at 92 directly above SPX500 SHORT at 84. Those two move together
+// almost all the time, so that is not a view of the market — it is two
+// independent statistics disagreeing, and it is the clearest possible sign that
+// the numbers are noise rather than a read.
+//
+// Grouped by what actually moves together, not by tab.
+const MOVES_TOGETHER = [
+  { name:'equity indices', test: k => /SPX|NAS|US30|US2000|UK100|DE30|GER|JP225|JPN/i.test(k) },
+  { name:'precious metals', test: k => /XAU|XAG/i.test(k) },
+  { name:'crude oil',       test: k => /WTI|BCO|USOIL|UKOIL/i.test(k) },
+];
+
+// rows: [{ key, direction }] → Map(key -> warning)
+export function directionConflicts(rows) {
+  const out = new Map();
+  for (const g of MOVES_TOGETHER) {
+    const inGroup = (rows || []).filter(r => r.direction && g.test(r.key || ''));
+    if (inGroup.length < 2) continue;
+    const longs  = inGroup.filter(r => r.direction === 'long');
+    const shorts = inGroup.filter(r => r.direction === 'short');
+    if (!longs.length || !shorts.length) continue;
+    const msg = `${g.name} disagree — ${longs.map(r=>r.label||r.key).join(', ')} long vs `
+              + `${shorts.map(r=>r.label||r.key).join(', ')} short. These move together, so at most one can be right.`;
+    for (const r of inGroup) out.set(r.key, msg);
+  }
+  return out;
+}
+
+// Correlated instruments pointing the same way are ONE position, not several.
+// Taking the top five as five trades is usually taking two at double size.
+export function exposureGroups(rows) {
+  const groups = [];
+  for (const g of MOVES_TOGETHER) {
+    const inGroup = (rows || []).filter(r => r.direction && g.test(r.key || ''));
+    if (inGroup.length >= 2) groups.push({ name:g.name, members:inGroup.map(r=>r.label||r.key), dirs:[...new Set(inGroup.map(r=>r.direction))] });
+  }
+  return groups;
+}
+
 function scorePairToday(pair) {
-  let score = 0;
+  const fam = {};                       // family -> { pts, notes[] }
+  const addF = (family, pts, note) => {
+    const f = (fam[family] ||= { pts: 0, notes: [] });
+    f.pts = Math.max(f.pts, pts);       // strongest in the family, not the sum
+    if (note) f.notes.push(note);
+  };
   const breakdown = [];
   let direction = null;
   let dirReason = '';
   let levels = null;
+  let sample = 0;
 
   try {
     const store = JSON.parse(localStorage.getItem('alpha_lab_v2')||'{}');
@@ -163,98 +233,65 @@ function scorePairToday(pair) {
     const resolved = log.filter(s=>s.outcome!=='pending');
     const confirmed = resolved.filter(s=>s.outcome==='confirmed');
     const pending = log.filter(s=>s.outcome==='pending');
-    const wr = resolved.length >= 5 ? Math.round(confirmed.length/resolved.length*100) : null;
+    sample = resolved.length;
+
+    const rawWR = resolved.length ? Math.round(confirmed.length/resolved.length*100) : null;
+    const wr    = shrunkWR(confirmed.length, resolved.length);
 
     const bullLog = resolved.filter(s=>s.expectedDir==='bullish');
     const bearLog = resolved.filter(s=>s.expectedDir==='bearish');
-    const bullWR = bullLog.length>=5 ? Math.round(bullLog.filter(s=>s.outcome==='confirmed').length/bullLog.length*100) : null;
-    const bearWR = bearLog.length>=5 ? Math.round(bearLog.filter(s=>s.outcome==='confirmed').length/bearLog.length*100) : null;
+    const bullWR = shrunkWR(bullLog.filter(s=>s.outcome==='confirmed').length, bullLog.length);
+    const bearWR = shrunkWR(bearLog.filter(s=>s.outcome==='confirmed').length, bearLog.length);
 
-    // ── Direction logic ──
-    // 1. Live sweep wins — use its expected direction
+    // ── Direction ──
     if (pending.length > 0) {
       const liveSweep = pending[0];
       direction = liveSweep.expectedDir === 'bullish' ? 'long' : 'short';
       dirReason = `Live sweep expects ${direction.toUpperCase()}`;
-      score += 30;
-      breakdown.push(`Live sweep (+30)`);
+      addF('live', 30, 'Live sweep');
     }
-
-    // 2. Recent sweep in last 48h
     if (!direction) {
       const recent = log.find(s => s.outcome !== 'pending' &&
         Date.now() - new Date(s.time).getTime() < 48 * 3600 * 1000);
       if (recent) {
         direction = recent.expectedDir === 'bullish' ? 'long' : 'short';
         dirReason = `Recent ${recent.outcome === 'confirmed' ? '✓' : ''} sweep was ${direction.toUpperCase()}`;
+        addF('live', 15, 'Recent sweep');
       }
     }
-
-    // 3. Best historical direction WR
     if (!direction && (bullWR != null || bearWR != null)) {
       if (bullWR != null && (bearWR == null || bullWR >= bearWR)) {
-        direction = 'long'; dirReason = `Long WR ${bullWR}% > Short WR ${bearWR??'N/A'}%`;
+        direction = 'long'; dirReason = `Long ${bullWR}% > Short ${bearWR??'n/a'}% (adjusted)`;
       } else {
-        direction = 'short'; dirReason = `Short WR ${bearWR}% > Long WR ${bullWR??'N/A'}%`;
+        direction = 'short'; dirReason = `Short ${bearWR}% > Long ${bullWR??'n/a'}% (adjusted)`;
       }
     }
 
-    // 1. Historical WR (0-30 pts)
-    if (wr != null) {
-      const wrPts = wr >= 65 ? 30 : wr >= 55 ? 20 : wr >= 45 ? 10 : 0;
-      if (wrPts) { score += wrPts; breakdown.push(`WR ${wr}% (+${wrPts})`); }
+    // ── Record: ONE family. Overall, today's and directional win rates are all
+    //    the same trades sliced differently, so the strongest counts and the
+    //    rest only corroborate.
+    if (wr != null && resolved.length >= 5) {
+      const pts = wr >= 62 ? 30 : wr >= 56 ? 20 : wr >= 52 ? 10 : 0;
+      if (pts) addF('record', pts, `WR ${wr}% adj (raw ${rawWR}%, n=${resolved.length})`);
     }
 
-    // 3. Today's DOW WR
-    const today = new Date().getDay();
     const dowNames = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-    const todayLabel = dowNames[today];
-    const todayLog = resolved.filter(s => {
-      const d = s.dow ?? dowNames[new Date(s.time).getDay()];
-      return d === todayLabel;
-    });
+    const todayLabel = dowNames[new Date().getDay()];
+    const todayLog = resolved.filter(s => (s.dow ?? dowNames[new Date(s.time).getDay()]) === todayLabel);
     if (todayLog.length >= 5) {
-      const todayWins = todayLog.filter(s=>s.outcome==='confirmed').length;
-      const todayWR = Math.round(todayWins/todayLog.length*100);
-      const pts = todayWR >= 65 ? 20 : todayWR >= 55 ? 12 : 0;
-      if (pts) { score += pts; breakdown.push(`${todayLabel} WR ${todayWR}% (+${pts})`); }
-
-      // refine direction from today's data
-      if (direction) {
-        const todayDir = todayLog.filter(s=>s.expectedDir===(direction==='long'?'bullish':'bearish'));
-        const todayDirWins = todayDir.filter(s=>s.outcome==='confirmed').length;
-        const todayDirWR = todayDir.length >= 3 ? Math.round(todayDirWins/todayDir.length*100) : null;
-        if (todayDirWR != null) dirReason += ` · ${todayLabel} ${todayDirWR}% WR`;
-      }
+      const tWR = shrunkWR(todayLog.filter(s=>s.outcome==='confirmed').length, todayLog.length);
+      if (tWR >= 56) addF('record', 0, `${todayLabel} ${tWR}% adj (n=${todayLog.length})`);
+      if (direction) dirReason += ` · ${todayLabel} n=${todayLog.length}`;
     }
 
-    // 4. Session timing (0-15 pts)
-    if (isInSession(pair.key)) {
-      score += 15;
-      breakdown.push(`Peak session (+15)`);
-    }
-
-    // 5. Day of week base (0-20 pts)
-    const dfPts = dowFactor();
-    if (dfPts) { score += dfPts; breakdown.push(`${todayLabel} factor (+${dfPts})`); }
-
-    // 6. Recent streak (0-10 pts)
-    const last3 = resolved.slice(0,3);
-    if (last3.length === 3 && last3.every(s=>s.outcome==='confirmed')) {
-      score += 10; breakdown.push('Hot streak (+10)');
-    }
-
-    // 7. HTF aligned (0-5 pts)
-    const latestSweep = log.find(s=>s.htfAligned!=null);
-    if (latestSweep?.htfAligned) {
-      score += 5; breakdown.push('HTF aligned (+5)');
-    }
-
-    // Directional WR bonus — if direction strongly confirmed
     const dirWR = direction === 'long' ? bullWR : bearWR;
-    if (dirWR != null && dirWR >= 65 && pending.length === 0) {
-      score += 10; breakdown.push(`Dir WR ${dirWR}% (+10)`);
-    }
+    const dirN  = direction === 'long' ? bullLog.length : bearLog.length;
+    if (dirWR != null && dirWR >= 58 && dirN >= 5) addF('record', 0, `${direction} ${dirWR}% adj (n=${dirN})`);
+
+    // ── Timing and higher-timeframe agreement: genuinely separate lenses ──
+    if (isInSession(pair.key)) addF('timing', 15, 'Peak session');
+    const latestSweep = log.find(s=>s.htfAligned!=null);
+    if (latestSweep?.htfAligned) addF('htf', 5, 'HTF aligned');
 
     // ── Trade levels from sweep ──
     const sourceSweep = pending[0] || log.find(s =>
@@ -297,7 +334,21 @@ function scorePairToday(pair) {
 
   } catch {}
 
-  return { score: Math.min(score, 100), breakdown, direction, dirReason, levels };
+  // Strongest per family, plus a little for each extra INDEPENDENT family.
+  // Corroboration inside a family adds 2, not another full score.
+  const names = Object.keys(fam);
+  let base = 0;
+  for (const n of names) {
+    base += fam[n].pts + 2 * Math.max(0, fam[n].notes.length - 1);
+    for (const note of fam[n].notes) breakdown.push(note);
+  }
+  const score = Math.min(100, Math.round(base + 5 * Math.max(0, names.length - 1)));
+
+  return {
+    score, breakdown, direction, dirReason, levels,
+    families: names.length, sample,
+    thin: sample > 0 && sample < 30,     // below the grading engine's own MIN_SAMPLE
+  };
 }
 
 function getNewsForPair(pair) {
