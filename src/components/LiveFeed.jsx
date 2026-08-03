@@ -4,8 +4,9 @@ import {
   loadFilters, saveFilters, loadActiveId, saveActiveId, newFilter,
   rarityFor, feedAge, ago, lookbackCapH,
   loadShortlist, shortlistToggle, sinceShortlist,
-  syncState, syncFiltersToBot, requestTestPush, readTestPushResult,
+  syncState, syncFiltersToBot, requestTestPush, readTestPushResult, redundantPicks,
 } from '../utils/liveFeed';
+import { INSTRUMENTS } from '../data/instruments';
 import { CLASS, CLASS_ORDER } from '../data/instruments';
 import { stageFilterForBacktest } from '../utils/feedToBacktest';
 
@@ -160,6 +161,7 @@ function Row({ r, filter, shortlisted, onWatch, onOpen }) {
 // ── Filter editor ─────────────────────────────────────────────────────────────
 function Editor({ filter, feed, onChange, onClose, onDelete, onDuplicate, onExport, onImport, onTestPush, testPush, onBacktest }) {
   const used = new Set((filter.conditions || []).map(c => c.key));
+  const [picking, setPicking] = useState(false);
 
   const setC = (i, patch) => {
     const next = filter.conditions.map((c, j) => j === i ? { ...c, ...patch } : c);
@@ -233,9 +235,47 @@ function Editor({ filter, feed, onChange, onClose, onDelete, onDuplicate, onExpo
           </div>
         )}
 
+        {/* ── Named instruments: a focus list beats a class ── */}
+        <div style={{ marginBottom:9 }}>
+          <div style={{ display:'flex', gap:4, alignItems:'center', flexWrap:'wrap' }}>
+            <span style={{ fontSize:9, color:C.dim, fontFamily:C.mono }}>instruments</span>
+            <button onClick={() => onChange({ ...filter, symbols:null })} style={btn(!filter.symbols?.length)}>any</button>
+            <button onClick={() => setPicking(v => !v)} style={btn(!!filter.symbols?.length)}>
+              {filter.symbols?.length ? `${filter.symbols.length} picked` : 'pick…'}
+            </button>
+            {filter.symbols?.length > 0 && (
+              <span style={{ fontSize:8, color:'#2b3644', fontFamily:C.mono }}>{filter.symbols.join(' · ')}</span>
+            )}
+          </div>
+          {redundantPicks(filter.symbols).map((g, i) => (
+            <div key={i} style={{ fontSize:9, color:C.warn, fontFamily:C.mono, marginTop:3, lineHeight:1.5 }}>
+              ⚠ {g.picked.join(' + ')} are one {g.name} position, not {g.picked.length} — they move together.
+            </div>
+          ))}
+          {picking && (
+            <div style={{ marginTop:6, border:`1px solid ${C.line}`, borderRadius:4, padding:'6px 8px', background:'#0a0f15' }}>
+              {CLASS_ORDER.map(cl => (
+                <div key={cl} style={{ display:'flex', gap:3, flexWrap:'wrap', alignItems:'center', marginBottom:4 }}>
+                  <span style={{ fontSize:8, color:'#2b3644', fontFamily:C.mono, width:52, flexShrink:0 }}>{CLASS[cl].label}</span>
+                  {INSTRUMENTS.filter(i => i.cls === cl).map(i => {
+                    const on = filter.symbols?.includes(i.sym);
+                    return (
+                      <button key={i.sym} onClick={() => {
+                        const cur = filter.symbols || [];
+                        const next = on ? cur.filter(x => x !== i.sym) : [...cur, i.sym];
+                        onChange({ ...filter, symbols: next.length ? next : null });
+                      }} style={{ ...btn(on), fontSize:8, padding:'1px 5px' }}>{i.sym}</button>
+                    );
+                  })}
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+
         {/* ── Instrument scope ── */}
         <div style={{ display:'flex', gap:4, alignItems:'center', flexWrap:'wrap', marginBottom:9 }}>
-          <span style={{ fontSize:9, color:C.dim, fontFamily:C.mono }}>look at</span>
+          <span style={{ fontSize:9, color:C.dim, fontFamily:C.mono }}>or by class</span>
           <button onClick={() => onChange({ ...filter, classes:null })} style={btn(!filter.classes?.length)}>everything</button>
           {CLASS_ORDER.map(c => {
             const on = filter.classes?.includes(c);

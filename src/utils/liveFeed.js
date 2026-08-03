@@ -50,7 +50,25 @@ export {
 //               conditions ANDed together return nothing on most days, which
 //               reads as "the filter is broken" rather than "markets are quiet".
 export function newFilter(name = 'New filter') {
-  return { id: `f${Date.now().toString(36)}`, name, mode:'all', minMatch:2, classes:null, conditions:[] };
+  return { id: `f${Date.now().toString(36)}`, name, mode:'all', minMatch:2, classes:null, symbols:null, conditions:[] };
+}
+
+// Instruments that move together closely enough that holding several is one
+// position. Measured from the feed's own daily returns, not assumed:
+// USOIL/UKOIL +1.00, US500/US100 +0.92, XAU/XAG +0.90, EUR/GBP-USD +0.84.
+export const SAME_BET = [
+  { name:'crude oil',       syms:['USOIL','UKOIL'] },
+  { name:'US indices',      syms:['US500','US100','US30','US2000'] },
+  { name:'precious metals', syms:['XAU/USD','XAG/USD'] },
+  { name:'EUR / GBP vs USD',syms:['EUR/USD','GBP/USD'] },
+];
+
+// Warn when a hand-picked list is fewer bets than it looks.
+export function redundantPicks(symbols) {
+  const set = new Set(symbols || []);
+  return SAME_BET
+    .map(g => ({ ...g, picked: g.syms.filter(x => set.has(x)) }))
+    .filter(g => g.picked.length > 1);
 }
 
 export const PRESETS = [
@@ -78,6 +96,22 @@ export const PRESETS = [
     ] },
 ];
 
+// A focus list, because watching everything is how nothing gets watched. Four
+// instruments that are genuinely four different bets — gold against the dollar,
+// US equity, crude, and the most liquid FX major. Silver and Brent are left out
+// on purpose: at +0.90 and +1.00 they add position size, not information.
+PRESETS.push({
+  id:'p_focus', name:'My four', mode:'any', minMatch:1, classes:null,
+  symbols:['XAU/USD','US500','USOIL','EUR/USD'],
+  conditions:[
+    { key:'sweep',        params:{ tf:'H4', dir:'any', withinH:48 } },
+    { key:'break',        params:{ tf:'D',  dir:'any', withinH:120 } },
+    { key:'volCoiled',    params:{ tf:'H4', maxPct:25 } },
+    { key:'rangeTop',     params:{ tf:'D',  minPct:92 } },
+    { key:'rangeBottom',  params:{ tf:'D',  maxPct:8 } },
+  ],
+});
+
 export function loadFilters() {
   try {
     const saved = JSON.parse(localStorage.getItem(FILTERS_KEY) || 'null');
@@ -101,8 +135,8 @@ export function saveActiveId(id) { try { localStorage.setItem(ACTIVE_KEY, id); }
 // Syncing is explicit rather than automatic on every edit: each write is a
 // commit, and auto-syncing would produce one per keystroke in the name field.
 const pushable = list => (list || []).filter(f => f.push && (f.conditions || []).length)
-  .map(({ id, name, mode, minMatch, classes, conditions }) =>
-    ({ id, name, mode, minMatch, classes, conditions, push: true }));
+  .map(({ id, name, mode, minMatch, classes, symbols, conditions }) =>
+    ({ id, name, mode, minMatch, classes, symbols, conditions, push: true }));
 
 const syncHash = list => JSON.stringify(pushable(list));
 
@@ -200,6 +234,10 @@ export function sinceShortlist(entry, priceNow) {
 export function evaluate(feed, filter) {
   const recs = feed?.instruments || {};
   const scope = filter.classes?.length ? new Set(filter.classes) : null;
+  // A named list beats a class. "Gold, S&P, oil, EUR" crosses four classes and
+  // is a subset of each, so class scoping alone could not express the handful
+  // of instruments someone actually watches.
+  const only = filter.symbols?.length ? new Set(filter.symbols) : null;
 
   const rows = [];
   let considered = 0, noData = 0;
@@ -218,6 +256,7 @@ export function evaluate(feed, filter) {
   // the registry is an enrichment here, never a gate.
   for (const [sym, rec] of Object.entries(recs)) {
     if (!rec) continue;
+    if (only && !only.has(sym)) continue;
     const inst = bySymbol(sym);
     const cls = rec.cls || inst?.cls || 'fx';
     if (scope && !scope.has(cls)) continue;
@@ -246,6 +285,7 @@ export function evaluate(feed, filter) {
   // Registry instruments the feed has not measured yet — a cold start, not a
   // filter result, so it is reported separately rather than as "no match".
   for (const inst of INSTRUMENTS) {
+    if (only && !only.has(inst.sym)) continue;
     if (scope && !scope.has(inst.cls)) continue;
     if (!recs[inst.sym]) noData++;
   }

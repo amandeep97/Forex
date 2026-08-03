@@ -106,7 +106,9 @@ class FeedNotifier {
     const matches = [];
     for (const f of filters) {
       const scope = f.classes?.length ? new Set(f.classes) : null;
+      const only  = f.symbols?.length ? new Set(f.symbols) : null;
       for (const [sym, rec] of Object.entries(data)) {
+        if (only && !only.has(sym)) continue;
         // Fall back to the registry exactly as the app does. Records written
         // before identity was stamped at creation carry no class, and reading
         // rec.cls alone would skip them here while the app still showed them.
