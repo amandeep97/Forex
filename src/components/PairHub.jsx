@@ -11,6 +11,8 @@ import {
   getNewsForPair,
   isInSession,
   scorePairToday,
+  directionConflicts,
+  exposureGroups,
 } from '../utils/pairStats';
 import { useState, useEffect, useCallback, useMemo } from 'react';
 import TechnicalPanel from './TechnicalPanel';
@@ -66,6 +68,15 @@ export default function PairHub() {
       .slice(0, 5),
   []);
 
+  // Each pair is scored alone, so the list can rank correlated instruments in
+  // opposite directions without noticing. Checked here, where the list exists.
+  const conflicts = useMemo(
+    () => directionConflicts(todayRanking.map(r => ({ key:r.pair.key, label:r.pair.label || r.pair.key, direction:r.direction }))),
+    [todayRanking]);
+  const exposure = useMemo(
+    () => exposureGroups(todayRanking.map(r => ({ key:r.pair.key, label:r.pair.label || r.pair.key, direction:r.direction }))),
+    [todayRanking]);
+
   useEffect(() => {
     const keys = todayRanking.map(r => r.pair.key);
     if (!keys.length) return;
@@ -119,6 +130,28 @@ export default function PairHub() {
 
       {/* ── Today's Best ── */}
       <div style={{ background:'#06090f', borderRadius:14, border:'1px solid #0f1929', marginBottom:14, overflow:'hidden' }}>
+        {conflicts.size > 0 && (
+          <div style={{ background:'#2a1206', borderBottom:'1px solid #7c2d12', padding:'9px 14px',
+            fontSize:11, color:'#fdba74', lineHeight:1.6 }}>
+            <strong style={{ color:'#fb923c' }}>⚠ This list disagrees with itself.</strong>
+            <div style={{ marginTop:2 }}>{[...new Set(conflicts.values())].join(' ')}</div>
+            <div style={{ marginTop:2, color:'#9a7a5c' }}>
+              Each pair is scored on its own, so nothing stops two correlated instruments being ranked
+              opposite ways. Treat that as a sign the numbers are noise, not a signal.
+            </div>
+          </div>
+        )}
+        {exposure.filter(g => g.dirs.length === 1).length > 0 && (
+          <div style={{ background:'#0c1420', borderBottom:'1px solid #16324a', padding:'9px 14px',
+            fontSize:11, color:'#7dd3fc', lineHeight:1.6 }}>
+            <strong>These are fewer trades than they look.</strong>
+            <div style={{ marginTop:2, color:'#8aa8bd' }}>
+              {exposure.filter(g => g.dirs.length === 1)
+                .map(g => `${g.members.join(' + ')} are one ${g.name} position (${g.dirs[0]}), not ${g.members.length}`)
+                .join(' · ')}. Taking each as a separate trade doubles the size of a single bet.
+            </div>
+          </div>
+        )}
         <div style={{ padding:'10px 14px', borderBottom:'1px solid #0f1929', display:'flex', alignItems:'center', justifyContent:'space-between' }}>
           <div style={{ fontSize:11, fontWeight:800, color:'#f1f5f9', letterSpacing:'0.06em' }}>
             🎯 TODAY'S HIGH PROBABILITY PAIRS
