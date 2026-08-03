@@ -235,6 +235,11 @@ export function evaluate(feed, filter) {
     rows.push({
       sym, name: rec.name || inst?.name || sym, cls, dec: rec.dec ?? inst?.dec ?? 2,
       price: rec.price, rec, ...ev, newestAt: events[0]?.at || null, events,
+      // Draw the timeframe the filter actually looked at, falling back to
+      // whatever the feed has — a chart of a timeframe you did not filter on
+      // would be decoration, not evidence.
+      sparkTf: ev.passed.find(p => p.params?.tf)?.params.tf
+            || (rec.spark?.H4 ? 'H4' : rec.spark?.D ? 'D' : null),
     });
   }
 

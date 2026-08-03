@@ -58,6 +58,13 @@ const PATTERNS_SRC = pathToFileURL(
 // multiply the feed's size for information nobody would filter on.
 const PATTERN_BARS = 10;
 
+// Closes published per timeframe so the app can DRAW the recent shape rather
+// than only describe it. A row that says "swept the 5-bar low" is a claim; the
+// same row with the move under it is evidence. Closes only, rounded to the
+// instrument's own precision — full OHLC would triple the cost for detail
+// nobody can see at 90 pixels wide.
+const SPARK_BARS = 40;
+
 const SWEEP_N = 5;        // a sweep must clear the prior 5 bars
 const SWING_LOOK = 2;     // bars either side that define a swing point
 
@@ -226,7 +233,10 @@ class FeedBuilder {
             // bar — up to a day on the daily — for a newly shipped condition to
             // become usable, and until then it reports "no data" and silently
             // excludes the instrument. Re-measure those now instead.
-            if (!rec.patterns?.[tf]) { backfill++; continue; }
+            // Every field the current build produces, not just the newest one:
+            // adding a field and forgetting to list it here is how a record
+            // silently stays a version behind until its bar happens to close.
+            if (!rec.patterns?.[tf] || !rec.spark?.[tf]) { backfill++; continue; }
             this.due.set(`${sym}|${tf}`, nextBarDue(rec.asOf[tf], TF_MS[tf]));
             restored++;
           }
@@ -279,9 +289,9 @@ class FeedBuilder {
   // the same instrument, which is the one thing the shared rules exist to stop.
   _rec(inst) {
     const sym = typeof inst === 'string' ? inst : inst.sym;
-    if (!this.data[sym]) this.data[sym] = { state:{}, events:[], rarity:{}, asOf:{}, patterns:{} };
+    if (!this.data[sym]) this.data[sym] = { state:{}, events:[], rarity:{}, asOf:{}, patterns:{}, spark:{} };
     const r = this.data[sym];
-    r.state ||= {}; r.events ||= []; r.rarity ||= {}; r.asOf ||= {}; r.patterns ||= {};
+    r.state ||= {}; r.events ||= []; r.rarity ||= {}; r.asOf ||= {}; r.patterns ||= {}; r.spark ||= {};
     if (typeof inst === 'object') {
       r.cls  = inst.cls;
       r.name = inst.name;
@@ -335,10 +345,28 @@ class FeedBuilder {
       }));
     }
 
+    // The recent shape, for drawing. Rounded to the instrument's own precision
+    // so a JPY cross does not ship fifteen meaningless decimals.
+    const dp = inst.dec ?? 4;
+    rec.spark ||= {};
+    const sparkBars = cs.slice(-SPARK_BARS);
+    rec.spark[tf] = {
+      from: sparkBars[0].t,
+      c: sparkBars.map(x => +x.c.toFixed(dp)),
+    };
+    // Index of each bar by timestamp. An event's position CANNOT be derived
+    // arithmetically from its time: FX bars skip weekends, so elapsed-time over
+    // bar-size drifts by two days every week and every marker after a Friday
+    // lands on the wrong bar. The bot knows the real index, so it publishes it.
+    const sparkIdx = new Map(sparkBars.map((b, i) => [b.t, i]));
+
     const cutoff = Date.now() - RETAIN_DAYS[tf] * 86400e3;
     const kept = all
       .filter(e => e.at >= cutoff)
-      .map(e => ({ ...e, tf }))
+      .map(e => {
+        const si = sparkIdx.get(e.at);
+        return si === undefined ? { ...e, tf } : { ...e, tf, si };
+      })
       .sort((a, b) => b.at - a.at);
 
     rec.events = [...rec.events.filter(e => e.tf !== tf), ...kept]
@@ -507,6 +535,7 @@ class FeedBuilder {
         retainDays: RETAIN_DAYS,
         sweepBars: SWEEP_N,
         patternBars: PATTERN_BARS,
+        sparkBars: SPARK_BARS,
         pending: Math.max(0, jobs.length - batch.length),
       },
       instruments: this.data,
