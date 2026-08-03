@@ -77,6 +77,12 @@ const MAX_REFRESH_PER_TICK = 14;
 // commit to the repo, so unbounded churn would bury the bot's real history.
 const MIN_WRITE_GAP = 15 * 60e3;
 
+// A pass that outlives this is assumed wedged. Without it a single hung request
+// holds the guard below forever: alerts keep firing, positioning keeps
+// updating, and the feed quietly stops measuring with nothing on screen to say
+// so — which is precisely how it froze for nineteen hours in production.
+const STUCK_PASS_MS = 6 * 60e3;
+
 // When the bar AFTER the last complete one will itself be complete, plus a
 // grace period for the venue to publish it.
 const nextBarDue = (lastCompleteT, tfMs, grace = 120e3) => lastCompleteT + 2 * tfMs + grace;
@@ -190,6 +196,10 @@ class FeedBuilder {
     this.loaded = false;
     this.cotAt  = 0;
     this.wroteAt = 0;
+    this.passId = 0;
+    this.runningSince = 0;
+    this.failStreak = 0;
+    this.lastFailure = null;
   }
 
   // Loaded once, lazily: an older checkout without the module must degrade to
@@ -433,12 +443,27 @@ class FeedBuilder {
     // The bot ticks on a timer, not on completion. A COT refresh is fifteen
     // sequential CFTC requests and can outlast the interval, and two overlapping
     // runs would mutate this.data and race each other to write the same file.
-    if (this.running) { this.log('Feed: previous pass still running — skipping'); return; }
+    if (this.running) {
+      const stuckFor = Date.now() - this.runningSince;
+      if (stuckFor < STUCK_PASS_MS) {
+        this.log(`Feed: previous pass still running (${Math.round(stuckFor / 1000)}s) — skipping`);
+        return;
+      }
+      // Release rather than wait forever. The abandoned pass is now stale: it
+      // checks its own id before writing anything, so it cannot resurrect and
+      // publish over whatever the new pass produces.
+      this.log(`Feed: previous pass wedged for ${Math.round(stuckFor / 60000)} min — abandoning it and starting a new one`);
+      this.running = false;
+    }
+    const id = ++this.passId;
     this.running = true;
-    try { await this._pass(); } finally { this.running = false; }
+    this.runningSince = Date.now();
+    try { await this._pass(id); }
+    finally { if (id === this.passId) { this.running = false; this.runningSince = 0; } }
   }
 
-  async _pass() {
+  async _pass(passId = this.passId) {
+    const mine = () => passId === this.passId;
     await this._load();
     const now = Date.now();
     const jobs = [];
@@ -481,10 +506,13 @@ class FeedBuilder {
       try {
         if (j.kind === 'SPREAD') await this._refreshSpread(j.inst);
         else await this._refreshTf(j.inst, j.kind);
+        this.failStreak = 0;
       } catch (e) {
         // Back off this one job rather than the whole feed — one delisted
         // symbol or one bad response must not stall the other 51.
         this.due.set(j.key, now + 10 * 60e3);
+        this.failStreak++;
+        this.lastFailure = { sym: j.inst.sym, kind: j.kind, msg: e.message, at: new Date().toISOString() };
         this.log(`Feed ${j.inst.sym} ${j.kind}: ${e.message}`);
       }
     }
@@ -502,6 +530,8 @@ class FeedBuilder {
     }
 
     if (!Object.keys(this.data).length) return;
+
+    if (!mine()) { this.log('Feed: pass superseded — discarding its result'); return; }
 
     const sig = this._signature(this.data);
     if (sig === this.lastSig) {
@@ -534,6 +564,10 @@ class FeedBuilder {
         bars: BARS,
         retainDays: RETAIN_DAYS,
         sweepBars: SWEEP_N,
+        // Health, published so a stall is visible in the app instead of only
+        // in a log nobody is watching.
+        failStreak: this.failStreak,
+        lastFailure: this.lastFailure,
         patternBars: PATTERN_BARS,
         sparkBars: SPARK_BARS,
         pending: Math.max(0, jobs.length - batch.length),

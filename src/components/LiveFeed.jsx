@@ -533,6 +533,44 @@ export default function LiveFeed({ onOpen }) {
         </div>
       )}
 
+      {/* Measurements stalling is different from the market being quiet, and the
+          two looked identical: "VPS 2h ago" reads as calm, not as broken. */}
+      {feed?.meta?.failStreak > 3 && (
+        <div style={{ margin:'8px 10px', padding:9, background:C.panel, border:'1px solid #ef444455', borderRadius:5,
+          fontSize:9, color:C.bad, lineHeight:1.6 }}>
+          <strong>The VPS is failing to measure — {feed.meta.failStreak} in a row.</strong>
+          {feed.meta.lastFailure && (
+            <div style={{ marginTop:2, color:'#8b96a5' }}>
+              last: {feed.meta.lastFailure.sym} {feed.meta.lastFailure.kind} — {feed.meta.lastFailure.msg}
+            </div>
+          )}
+          <div style={{ marginTop:2, color:'#8b96a5' }}>
+            Everything below is the last good measurement, not the market now.
+          </div>
+        </div>
+      )}
+
+      {/* Bars go stale even when the file keeps being written — positioning can
+          refresh while candles have not moved for hours. */}
+      {(() => {
+        if (!feed?.instruments) return null;
+        const now = Date.now();
+        const ages = Object.values(feed.instruments).map(r => r.asOf?.H4).filter(Boolean).map(t => (now - t) / 3600e3);
+        if (!ages.length) return null;
+        const freshest = Math.min(...ages);
+        if (freshest < 9) return null;      // an H4 bar plus a weekend gap
+        return (
+          <div style={{ margin:'8px 10px', padding:9, background:C.panel, border:'1px solid #f59e0b55',
+            borderRadius:5, fontSize:9, color:C.warn, lineHeight:1.6 }}>
+            <strong>No instrument has a fresh H4 bar — the newest is {Math.round(freshest)}h old.</strong>
+            <div style={{ marginTop:2, color:'#8b96a5' }}>
+              Crypto trades around the clock, so this is not the weekend. The bot is running but its
+              measurements are not landing.
+            </div>
+          </div>
+        );
+      })()}
+
       {stale && !feed?.missing && (
         <div style={{ margin:'8px 10px', padding:9, background:C.panel, border:'1px solid #f59e0b33', borderRadius:5,
           fontSize:9, color:C.warn, lineHeight:1.6 }}>

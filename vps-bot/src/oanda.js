@@ -10,9 +10,14 @@ class OandaClient {
       : 'https://api-fxtrade.oanda.com/v3';
   }
 
+  // A request with no timeout is not a slow request, it is a permanent one.
+  // node-fetch will wait forever on a black-holed socket, and any caller that
+  // holds a lock across the await — the live feed does — stops for good while
+  // the rest of the bot carries on looking healthy.
   async _req(path, opts = {}) {
     const url = `${this.base}${path}`;
     const res  = await fetch(url, {
+      timeout: 25000,
       ...opts,
       headers: {
         Authorization: `Bearer ${this.apiKey}`,
