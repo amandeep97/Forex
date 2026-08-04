@@ -43,6 +43,7 @@ export async function fetchFeed({ force = false } = {}) {
 // a push can never disagree with the screen.
 export {
   CONDITIONS, CONDITION_GROUPS, defaultParams, evaluateOne, rarityFor, matchKey,
+  contradictions,
 } from '../../shared/feedConditions.mjs';
 
 // ── Filters ───────────────────────────────────────────────────────────────────
@@ -102,7 +103,9 @@ export const PRESETS = [
 // US equity, crude, and the most liquid FX major. Silver and Brent are left out
 // on purpose: at +0.90 and +1.00 they add position size, not information.
 PRESETS.push({
-  id:'p_focus', name:'My four', mode:'any', minMatch:1, classes:null,
+  // ANY 2, not 1. At minMatch 1 a single condition puts an instrument on the
+  // list, which is not filtering — gold appeared on "volatility coiled" alone.
+  id:'p_focus', name:'My four', mode:'any', minMatch:2, classes:null,
   symbols:['XAU/USD','US500','USOIL','EUR/USD'],
   conditions:[
     { key:'sweep',        params:{ tf:'H4', dir:'any', withinH:48 } },

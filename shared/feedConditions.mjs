@@ -120,7 +120,9 @@ export const CONDITIONS = {
     ],
     test: (rec, p) => {
       const s = stateOf(rec, p.tf); if (!s || s.volPct == null) return NA(`no ${p.tf} data`);
-      return { ok: s.volPct <= p.maxPct, detail: `volatility ${s.volPct}th pct` };
+      const ok = s.volPct <= p.maxPct;
+      return { ok, detail: ok ? `volatility ${s.volPct}th pct`
+                              : `volatility ${s.volPct}th — above the ${p.maxPct}th needed` };
     },
   },
   volExpanding: {
@@ -131,7 +133,9 @@ export const CONDITIONS = {
     ],
     test: (rec, p) => {
       const s = stateOf(rec, p.tf); if (!s || s.volPct == null) return NA(`no ${p.tf} data`);
-      return { ok: s.volPct >= p.minPct, detail: `volatility ${s.volPct}th pct` };
+      const ok = s.volPct >= p.minPct;
+      return { ok, detail: ok ? `volatility ${s.volPct}th pct`
+                              : `volatility ${s.volPct}th — below the ${p.minPct}th needed` };
     },
   },
 
@@ -143,7 +147,11 @@ export const CONDITIONS = {
     ],
     test: (rec, p) => {
       const s = stateOf(rec, p.tf); if (!s) return NA(`no ${p.tf} data`);
-      return { ok: s.rangePos >= p.minPct, detail: `${s.rangePos}% up the 60-bar range` };
+      const ok = s.rangePos >= p.minPct;
+      // A failing chip has to read as a refutation. "At bottom of range · 96%
+      // up the 60-bar range" was technically true and looked like a bug.
+      return { ok, detail: ok ? `${s.rangePos}% up the 60-bar range`
+                              : `${s.rangePos}% up — not within ${100 - p.minPct}% of the high` };
     },
   },
   rangeBottom: {
@@ -154,7 +162,9 @@ export const CONDITIONS = {
     ],
     test: (rec, p) => {
       const s = stateOf(rec, p.tf); if (!s) return NA(`no ${p.tf} data`);
-      return { ok: s.rangePos <= p.maxPct, detail: `${s.rangePos}% up the 60-bar range` };
+      const ok = s.rangePos <= p.maxPct;
+      return { ok, detail: ok ? `${s.rangePos}% up the 60-bar range`
+                              : `${s.rangePos}% up — not within ${p.maxPct}% of the low` };
     },
   },
 
@@ -230,6 +240,41 @@ export function defaultParams(key) {
   const c = CONDITIONS[key];
   if (!c) return {};
   return Object.fromEntries(c.params.map(p => [p.k, p.def]));
+}
+
+// ── Filters that can never match ─────────────────────────────────────────────
+// Under ALL, "at top of range" and "at bottom of range" cannot both hold, so
+// the filter matches nothing — forever, silently, looking exactly like a quiet
+// market. Under ANY the pair is fine and one of them simply fails, which is
+// only confusing if the failing chip does not explain itself.
+const EXCLUSIVE = [
+  { a:'rangeTop',    b:'rangeBottom',  tf:true,  clash:(x,y) => x.minPct   > y.maxPct,
+    why:'price cannot be near the top and the bottom of the same range' },
+  { a:'volExpanding',b:'volCoiled',    tf:true,  clash:(x,y) => x.minPct   > y.maxPct,
+    why:'volatility cannot be above and below the same threshold' },
+  { a:'spreadBlown', b:'spreadNormal', tf:false, clash:(x,y) => x.minRatio > y.maxRatio,
+    why:'the spread cannot be blown out and normal at once' },
+  { a:'crowdedLong', b:'crowdedShort', tf:false, clash:(x,y) => x.minPct   > y.maxPct,
+    why:'funds cannot be crowded long and short at once' },
+];
+
+export function contradictions(filter) {
+  if (filter?.mode !== 'all') return [];
+  const byKey = {};
+  for (const c of filter.conditions || []) byKey[c.key] = { ...defaultParams(c.key), ...(c.params || {}) };
+  const out = [];
+  for (const e of EXCLUSIVE) {
+    const x = byKey[e.a], y = byKey[e.b];
+    if (!x || !y) continue;
+    if (e.tf && x.tf !== y.tf) continue;          // different timeframes can differ
+    if (e.clash(x, y)) {
+      out.push({
+        a: CONDITIONS[e.a].label, b: CONDITIONS[e.b].label,
+        why: e.why + (e.tf ? ` on ${x.tf}` : ''),
+      });
+    }
+  }
+  return out;
 }
 
 // ── Evaluation ───────────────────────────────────────────────────────────────
