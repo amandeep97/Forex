@@ -178,8 +178,11 @@ export const CONDITIONS = {
     test: (rec, p) => {
       const s = stateOf(rec, p.tf); if (!s) return NA(`no ${p.tf} data`);
       const dirOk = p.dir === 'any' || !p.dir || (p.dir === 'up' ? s.chg20 > 0 : s.chg20 < 0);
-      return { ok: Math.abs(s.chg20) >= p.minAbsPct && dirOk,
-               detail: `${s.chg20 > 0 ? '+' : ''}${s.chg20}% over 20 bars` };
+      const ok = Math.abs(s.chg20) >= p.minAbsPct && dirOk;
+      const shown = `${s.chg20 > 0 ? '+' : ''}${s.chg20}%`;
+      return { ok, detail: ok ? `${shown} over 20 bars`
+                              : !dirOk ? `${shown} — moving the other way`
+                                       : `${shown} — smaller than the ${p.minAbsPct}% needed` };
     },
   },
   oneSided: {
@@ -191,7 +194,9 @@ export const CONDITIONS = {
     ],
     test: (rec, p) => {
       const s = stateOf(rec, p.tf); if (!s) return NA(`no ${p.tf} data`);
-      return { ok: s.persistence >= p.minPct, detail: `${s.persistence}% one-sided` };
+      const ok = s.persistence >= p.minPct;
+      return { ok, detail: ok ? `${s.persistence}% one-sided`
+                              : `${s.persistence}% one-sided — below the ${p.minPct}% needed` };
     },
   },
 
@@ -200,7 +205,9 @@ export const CONDITIONS = {
     params: [{ k:'minRatio', label:'at least × normal', type:'number', def:1.8, min:1.1, max:10, step:0.1 }],
     test: (rec, p) => {
       const v = rec?.state?.spreadRatio; if (v == null) return NA('no spread feed');
-      return { ok: v >= p.minRatio, detail: `spread ×${v} vs normal` };
+      const ok = v >= p.minRatio;
+      return { ok, detail: ok ? `spread ×${v} vs normal`
+                              : `spread ×${v} — below the ×${p.minRatio} needed` };
     },
   },
   spreadNormal: {
@@ -209,7 +216,9 @@ export const CONDITIONS = {
     params: [{ k:'maxRatio', label:'at most × normal', type:'number', def:1.3, min:1, max:5, step:0.1 }],
     test: (rec, p) => {
       const v = rec?.state?.spreadRatio; if (v == null) return NA('no spread feed');
-      return { ok: v <= p.maxRatio, detail: `spread ×${v} vs normal` };
+      const ok = v <= p.maxRatio;
+      return { ok, detail: ok ? `spread ×${v} vs normal`
+                              : `spread ×${v} — above the ×${p.maxRatio} allowed` };
     },
   },
 
@@ -220,7 +229,11 @@ export const CONDITIONS = {
     test: (rec, p) => {
       const v = rec?.state?.posnPct;
       if (v == null) return NA(rec?.state?.posnWeeks ? `only ${rec.state.posnWeeks}w of COT` : 'no COT report');
-      return { ok: v >= p.minPct, detail: `funds ${v}th pct` };
+      const ok = v >= p.minPct;
+      // "Funds crowded long · funds 11th pct" as a FAILING chip read as though
+      // it had passed. A refutation has to refute.
+      return { ok, detail: ok ? `funds ${v}th pct`
+                              : `funds ${v}th — not crowded long (needs ${p.minPct}th+)` };
     },
   },
   crowdedShort: {
@@ -229,7 +242,9 @@ export const CONDITIONS = {
     test: (rec, p) => {
       const v = rec?.state?.posnPct;
       if (v == null) return NA(rec?.state?.posnWeeks ? `only ${rec.state.posnWeeks}w of COT` : 'no COT report');
-      return { ok: v <= p.maxPct, detail: `funds ${v}th pct` };
+      const ok = v <= p.maxPct;
+      return { ok, detail: ok ? `funds ${v}th pct`
+                              : `funds ${v}th — not crowded short (needs ${p.maxPct}th or less)` };
     },
   },
 };
