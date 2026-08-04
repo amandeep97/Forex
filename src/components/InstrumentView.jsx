@@ -5,6 +5,7 @@ import { runConsensusFor } from '../utils/consensus';
 import { fetchFeed } from '../utils/liveFeed';
 import { driversFor } from '../utils/drivers';
 import { fetchMacro, macroDriversFor } from '../utils/macroDrivers';
+import { indexComplex } from '../utils/indexBreadth';
 import { ConsensusRow } from './Consensus';
 
 const C = {
@@ -545,6 +546,54 @@ export default function InstrumentView({ sym: symProp, onBack }) {
                     not tracking: {m.context.map(d => `${d.label} ${d.level}${d.unit}`).join(' · ')}
                   </div>
                 )}
+              </Card>
+            );
+          })()}
+
+          {/* ── Who is leading the index complex ────────────────────────────
+                An index on its own gives you its direction. The four together
+                say who is leading, which is the more useful fact: a Nasdaq
+                high while the Dow lags is narrow and fragile; the Dow leading
+                is rotation, usually a rates or growth scare. Leadership
+                rotates by regime, so none of it is assumed — it is measured
+                from the same daily closes every tick. ── */}
+          {inst?.cls === 'index' && feed?.instruments && (() => {
+            const ix = indexComplex(feed);
+            if (!ix.ok) return null;
+            const col = ix.regime.key === 'aligned' ? '#22c55e'
+                      : ix.regime.key === 'narrow' ? C.warn
+                      : ix.regime.key === 'rotation' ? '#a78bfa' : C.dim;
+            return (
+              <Card title="INDEX LEADERSHIP" src="delayed" note={`last ${ix.bars} daily bars`}>
+                <div style={{ fontSize:11, fontWeight:800, color:col, marginBottom:2 }}>{ix.regime.headline}</div>
+                <div style={{ fontSize:9, color:C.dim, lineHeight:1.6, marginBottom:7 }}>{ix.regime.detail}</div>
+                {ix.ranked.map(m => (
+                  <div key={m.sym} style={{ display:'flex', alignItems:'center', gap:8, padding:'2px 0' }}>
+                    <span style={{ fontSize:10, fontWeight:800, width:96, flexShrink:0,
+                      color: m.sym === sym ? C.accent : C.txt }}>{m.label}</span>
+                    <span style={{ fontSize:10, width:58, flexShrink:0, textAlign:'right',
+                      color: m.chg > 0 ? '#22c55e' : '#ef4444' }}>
+                      {m.chg > 0 ? '+' : ''}{m.chg}%
+                    </span>
+                    <span style={{ fontSize:9, color: m.newHigh ? '#22c55e' : C.dim, flex:1, minWidth:0 }}>
+                      {m.newHigh ? `at its ${m.bars}-day high` : `${m.fromHigh}% off its high`}
+                    </span>
+                    <span style={{ fontSize:8, color:'#2b3644', flexShrink:0 }}>{m.role}</span>
+                  </div>
+                ))}
+                {ix.riskAppetite && (
+                  <div style={{ marginTop:7, paddingTop:6, borderTop:`1px solid ${C.line}` }}>
+                    <span style={{ fontSize:9, fontWeight:800,
+                      color: ix.riskAppetite.state === 'risk-on' ? '#22c55e'
+                           : ix.riskAppetite.state === 'risk-off' ? '#ef4444' : C.dim }}>
+                      RISK APPETITE: {ix.riskAppetite.state}
+                    </span>
+                    <div style={{ fontSize:9, color:C.dim, lineHeight:1.6, marginTop:2 }}>{ix.riskAppetite.detail}</div>
+                  </div>
+                )}
+                <div style={{ fontSize:8, color:'#2b3644', marginTop:6, lineHeight:1.6 }}>
+                  “High” means the highest close in this {ix.bars}-bar window, not an all-time high.
+                </div>
               </Card>
             );
           })()}
