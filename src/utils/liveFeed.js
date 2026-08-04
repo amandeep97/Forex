@@ -22,6 +22,7 @@ const FILTERS_KEY   = 'live_feed_filters_v1';
 const ACTIVE_KEY    = 'live_feed_active_v1';
 const SYNCED_KEY    = 'live_feed_synced_v1';
 const SHORTLIST_KEY = 'live_feed_shortlist_v1';
+const SEEN_PRESETS_KEY = 'live_feed_seen_presets_v1';
 const WATCH_KEY     = 'forex_watchlist';
 
 // ── Feed ──────────────────────────────────────────────────────────────────────
@@ -112,12 +113,38 @@ PRESETS.push({
   ],
 });
 
+// Saved filters used to short-circuit the presets entirely, so anyone who had
+// ever created a filter would never see a newly shipped one — a preset added
+// today reached only fresh installs, which is to say almost nobody.
+//
+// New presets are now merged in once. "Once" is the important part: a preset you
+// delete stays deleted, because its id is remembered as seen rather than
+// compared against what happens to be in the list right now.
 export function loadFilters() {
-  try {
-    const saved = JSON.parse(localStorage.getItem(FILTERS_KEY) || 'null');
-    if (Array.isArray(saved) && saved.length) return saved;
-  } catch { /* fall through to presets */ }
-  return PRESETS.map(p => ({ ...p, conditions: p.conditions.map(c => ({ ...c })) }));
+  const fresh = () => PRESETS.map(p => ({ ...p, conditions: p.conditions.map(c => ({ ...c })) }));
+  let saved = null;
+  try { saved = JSON.parse(localStorage.getItem(FILTERS_KEY) || 'null'); } catch { /* private mode */ }
+  if (!Array.isArray(saved) || !saved.length) {
+    try { localStorage.setItem(SEEN_PRESETS_KEY, JSON.stringify(PRESETS.map(p => p.id))); } catch { /* quota */ }
+    return fresh();
+  }
+
+  let seen = [];
+  try { seen = JSON.parse(localStorage.getItem(SEEN_PRESETS_KEY) || '[]'); } catch { /* private mode */ }
+  // Anything already in the list counts as seen, so an existing user is not
+  // handed duplicates of presets they have had all along.
+  const have = new Set([...seen, ...saved.map(f => f.id)]);
+  const added = PRESETS.filter(p => !have.has(p.id))
+    .map(p => ({ ...p, conditions: p.conditions.map(c => ({ ...c })) }));
+
+  if (added.length) {
+    const next = [...saved, ...added];
+    saveFilters(next);
+    try { localStorage.setItem(SEEN_PRESETS_KEY, JSON.stringify([...have, ...added.map(p => p.id)])); } catch { /* quota */ }
+    return next;
+  }
+  try { localStorage.setItem(SEEN_PRESETS_KEY, JSON.stringify([...have])); } catch { /* quota */ }
+  return saved;
 }
 
 export function saveFilters(list) {
