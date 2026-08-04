@@ -247,6 +247,7 @@ class FeedBuilder {
             // adding a field and forgetting to list it here is how a record
             // silently stays a version behind until its bar happens to close.
             if (!rec.patterns?.[tf] || !rec.spark?.[tf]) { backfill++; continue; }
+            if (tf === 'D' && !rec.spark.D.d) { backfill++; continue; }
             this.due.set(`${sym}|${tf}`, nextBarDue(rec.asOf[tf], TF_MS[tf]));
             restored++;
           }
@@ -363,6 +364,12 @@ class FeedBuilder {
     rec.spark[tf] = {
       from: sparkBars[0].t,
       c: sparkBars.map(x => +x.c.toFixed(dp)),
+      // Day offset of each bar from the first. Bars are NOT evenly spaced —
+      // markets close at weekends — so a consumer cannot reconstruct dates by
+      // multiplying an index, and anything aligning this series to dated data
+      // (macro releases, yields) would silently drift two days a week. Small
+      // integers, and only where dates are actually used.
+      ...(tf === 'D' ? { d: sparkBars.map(x => Math.round((x.t - sparkBars[0].t) / 86400e3)) } : {}),
     };
     // Index of each bar by timestamp. An event's position CANNOT be derived
     // arithmetically from its time: FX bars skip weekends, so elapsed-time over

@@ -4,6 +4,7 @@ import { fetchPositioning, fetchSpreadStress, fetchSqueeze, fetchDepthMap, oanda
 import { runConsensusFor } from '../utils/consensus';
 import { fetchFeed } from '../utils/liveFeed';
 import { driversFor } from '../utils/drivers';
+import { fetchMacro, macroDriversFor } from '../utils/macroDrivers';
 import { ConsensusRow } from './Consensus';
 
 const C = {
@@ -112,6 +113,7 @@ export default function InstrumentView({ sym: symProp, onBack }) {
   const [events,setEvents]= useState(null);
   const [read,  setRead]  = useState(null);   // the four-engine verdict for THIS instrument
   const [feed,  setFeed]  = useState(null);   // the VPS's 24/7 record
+  const [macro, setMacro] = useState(null);   // yields, inflation, VIX — fetched daily by the repo
   const [busy,  setBusy]  = useState(false);
   const [asOf,  setAsOf]  = useState(null);
 
@@ -131,6 +133,7 @@ export default function InstrumentView({ sym: symProp, onBack }) {
       // Cached for a minute and shared with the FEED tab, so opening an
       // instrument costs nothing extra.
       fetchFeed().then(setFeed).catch(() => setFeed(null)),
+      fetchMacro().then(setMacro).catch(() => setMacro(null)),
       inst.can.spread
         ? fetchSpreadStress({ sym:inst.sym, oanda:inst.oanda }).then(setSpread).catch(e => setSpread({ error:e.message }))
         : Promise.resolve(),
@@ -491,6 +494,56 @@ export default function InstrumentView({ sym: symProp, onBack }) {
                       indistinguishable from chance.
                     </div>
                   </>
+                )}
+              </Card>
+            );
+          })()}
+
+          {/* ── The fundamental leg ─────────────────────────────────────────
+                Real yields, breakevens, the curve and VIX have been fetched
+                daily by this repo for months and read by three dashboards
+                only. Correlated against the instrument's own daily closes on
+                shared dates — never assumed, so a relationship that has
+                stopped holding says so. ── */}
+          {(() => {
+            if (!feed?.instruments || !macro) return null;
+            const m = macroDriversFor(sym, feed, macro);
+            if (m.pending) return (
+              <Card title="MACRO DRIVERS" src="unavailable" note="waiting on the VPS">
+                <div style={{ fontSize:10, color:C.dim, lineHeight:1.6 }}>
+                  Needs dated daily closes, which the bot began publishing in the current build.
+                  It appears on the next measurement rather than being estimated — bars skip weekends,
+                  so guessing the dates drifts two days a week and quietly destroys the correlation.
+                </div>
+              </Card>
+            );
+            if (!m.n) return null;
+            return (
+              <Card title="MACRO DRIVERS" src="delayed" note={`${m.n} shared days`}>
+                {m.drivers.length === 0 && (
+                  <div style={{ fontSize:10, color:C.dim, marginBottom:6, lineHeight:1.6 }}>
+                    Not tracking any macro series right now — nothing clears |r| {m.floor} over {m.n} days.
+                    That is a finding: it is trading on its own story, not on rates.
+                  </div>
+                )}
+                {m.drivers.map(d => (
+                  <div key={d.key} style={{ display:'flex', alignItems:'center', gap:8, padding:'3px 0' }}>
+                    <span style={{ fontSize:10, fontWeight:800, color:C.txt, width:108, flexShrink:0 }}>{d.label}</span>
+                    <span style={{ fontSize:9, color: d.r > 0 ? '#22c55e' : '#ef4444', width:52, flexShrink:0 }}>
+                      {d.r > 0 ? 'with' : 'against'} {d.r > 0 ? '+' : ''}{d.r}
+                    </span>
+                    <span style={{ fontSize:9, color:C.dim, flexShrink:0 }}>
+                      now <strong style={{ color:C.txt }}>{d.level}{d.unit}</strong>
+                      {d.change !== 0 && <span style={{ color: d.change > 0 ? '#22c55e' : '#ef4444' }}>
+                        {' '}({d.change > 0 ? '+' : ''}{d.change} over the window)
+                      </span>}
+                    </span>
+                  </div>
+                ))}
+                {m.context.length > 0 && (
+                  <div style={{ fontSize:8, color:'#2b3644', marginTop:5, lineHeight:1.6 }}>
+                    not tracking: {m.context.map(d => `${d.label} ${d.level}${d.unit}`).join(' · ')}
+                  </div>
                 )}
               </Card>
             );
