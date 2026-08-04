@@ -5,6 +5,7 @@ import {
   rarityFor, feedAge, ago, lookbackCapH,
   loadShortlist, shortlistToggle, sinceShortlist,
   syncState, syncFiltersToBot, requestTestPush, readTestPushResult, redundantPicks,
+  contradictions,
 } from '../utils/liveFeed';
 import { INSTRUMENTS } from '../data/instruments';
 import { CLASS, CLASS_ORDER } from '../data/instruments';
@@ -228,6 +229,16 @@ function Editor({ filter, feed, onChange, onClose, onDelete, onDuplicate, onExpo
             </>
           )}
         </div>
+
+        {/* A filter that cannot match must say so. Otherwise it returns nothing
+            forever and looks exactly like a quiet market. */}
+        {contradictions(filter).map((c, i) => (
+          <div key={i} style={{ fontSize:9, color:C.bad, fontFamily:C.mono, marginBottom:8, lineHeight:1.5,
+            border:'1px solid #ef444455', borderRadius:4, padding:'6px 8px', background:'#ef44440d' }}>
+            <strong>This filter can never match.</strong> “{c.a}” and “{c.b}” are both required under ALL,
+            but {c.why}. Switch to ANY, or remove one.
+          </div>
+        ))}
 
         {filter.mode === 'all' && filter.conditions.length >= 4 && (
           <div style={{ fontSize:9, color:C.warn, fontFamily:C.mono, marginBottom:8, lineHeight:1.5 }}>
