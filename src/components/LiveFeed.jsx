@@ -10,6 +10,7 @@ import {
 import { INSTRUMENTS } from '../data/instruments';
 import { CLASS, CLASS_ORDER } from '../data/instruments';
 import { stageFilterForBacktest } from '../utils/feedToBacktest';
+import { runConsensusFor } from '../utils/consensus';
 
 const C = {
   bg:'#080c11', panel:'#0b1118', line:'#16202b', dim:'#475569', txt:'#cbd5e1',
@@ -87,8 +88,49 @@ function Rarity({ perMonth, label }) {
   );
 }
 
+// ── The read, from the engines that already produced it ──────────────────────
+// The feed says "look at these" and stops, on purpose — it measures no
+// direction of its own. But the four-engine verdict already exists one tap
+// away, and making someone tap through to find out whether anything agrees is
+// a chore, not a discipline. This surfaces what Consensus concluded; it is not
+// a fifth opinion, and it says "no read" rather than inventing one.
+function Verdict({ read }) {
+  if (read === undefined) return <span style={{ fontSize:9, color:'#2b3644', fontFamily:C.mono }}>reading…</span>;
+  if (!read) return null;
+  const v = read.verdict || {};
+  const sig = read.votes?.structure?.signal;
+  const state = v.state;
+  const col = state === 'aligned' ? (v.dir === 'up' ? C.good : C.bad)
+            : state === 'conflict' ? C.warn : state === 'blocked' ? '#a78bfa' : '#475569';
+  const label = state === 'aligned' ? (v.dir === 'up' ? 'LONG' : 'SHORT')
+              : state === 'conflict' ? 'ENGINES DISAGREE'
+              : state === 'blocked' ? 'BLOCKED'
+              : state === 'weak' ? `only ${v.agree} of 4 agree`
+              : 'no read';
+  return (
+    <div style={{ display:'flex', gap:8, alignItems:'center', flexWrap:'wrap', marginTop:5, paddingLeft:20 }}>
+      <span style={{ fontSize:10, fontWeight:900, color:col, fontFamily:C.mono,
+        border:`1px solid ${col}44`, background:`${col}0d`, borderRadius:3, padding:'1px 7px' }}>
+        {label}
+      </span>
+      {state === 'aligned' && <span style={{ fontSize:9, color:C.dim, fontFamily:C.mono }}>{v.agree} of 4 engines</span>}
+      {state === 'aligned' && sig?.entry != null && (
+        <span style={{ fontSize:9, fontFamily:C.mono, color:C.dim }}>
+          entry <strong style={{ color:C.txt }}>{sig.entry}</strong>
+          {sig.sl != null && <> · SL <strong style={{ color:C.bad }}>{sig.sl}</strong></>}
+          {sig.tp != null && <> · TP <strong style={{ color:C.good }}>{sig.tp}</strong></>}
+          {sig.rr != null && <> · R:R <strong style={{ color:C.txt }}>{sig.rr}</strong></>}
+        </span>
+      )}
+      {read.vetoes?.length > 0 && (
+        <span style={{ fontSize:9, color:'#a78bfa', fontFamily:C.mono }}>⛔ {read.vetoes[0]}</span>
+      )}
+    </div>
+  );
+}
+
 // ── One matching instrument ───────────────────────────────────────────────────
-function Row({ r, filter, shortlisted, onWatch, onOpen }) {
+function Row({ r, filter, shortlisted, onWatch, onOpen, read }) {
   const cls = CLASS[r.cls];
   const rarity = rarityFor(r.rec, filter);
   const since = sinceShortlist(shortlisted, r.price);
@@ -135,6 +177,8 @@ function Row({ r, filter, shortlisted, onWatch, onOpen }) {
           </span>
         ))}
       </div>
+
+      <Verdict read={read}/>
 
       {shortlisted && (
         <div style={{ fontSize:9, color:C.warn, fontFamily:C.mono, marginTop:4, paddingLeft:20 }}>
@@ -385,6 +429,7 @@ export default function LiveFeed({ onOpen }) {
   const [shortlist, setShortlist] = useState(loadShortlist);
   const [syncMsg, setSyncMsg] = useState(null);
   const [testPush, setTestPush] = useState(null);
+  const [reads, setReads] = useState({});      // sym -> consensus row | null
   const [syncing, setSyncing] = useState(false);
   const started = useRef(false);
 
@@ -491,6 +536,29 @@ export default function LiveFeed({ onOpen }) {
     if (!feed?.instruments) return null;
     return evaluate(feed, active);
   }, [feed, active]);
+
+  // Only the rows that matched — typically a handful — and only after the list
+  // is drawn, so the feed still paints instantly and offline.
+  useEffect(() => {
+    const syms = (res?.rows || []).map(r => r.sym);
+    if (!syms.length) return;
+    let cancelled = false;
+    setReads(prev => {
+      const next = { ...prev };
+      for (const s of syms) if (!(s in next)) next[s] = undefined;   // "reading…"
+      return next;
+    });
+    (async () => {
+      for (const sym of syms) {
+        if (cancelled) return;
+        let r = null;
+        try { r = await runConsensusFor(sym); } catch { r = null; }
+        if (cancelled) return;
+        setReads(prev => ({ ...prev, [sym]: r }));
+      }
+    })();
+    return () => { cancelled = true; };
+  }, [res]);
 
   const age = feedAge(feed);
   // An H4 bar closes for every instrument every four hours and moves the price
@@ -698,7 +766,7 @@ export default function LiveFeed({ onOpen }) {
           </div>
         )}
         {res?.rows.map(r => (
-          <Row key={r.sym} r={r} filter={active} shortlisted={shortlist[r.sym]}
+          <Row key={r.sym} r={r} filter={active} shortlisted={shortlist[r.sym]} read={reads[r.sym]}
             onWatch={row => setShortlist(shortlistToggle(row.sym, {
               price: row.price,
               reason: row.passed.map(p => p.label).join(' + '),

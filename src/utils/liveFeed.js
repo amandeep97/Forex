@@ -23,6 +23,7 @@ const ACTIVE_KEY    = 'live_feed_active_v1';
 const SYNCED_KEY    = 'live_feed_synced_v1';
 const SHORTLIST_KEY = 'live_feed_shortlist_v1';
 const SEEN_PRESETS_KEY = 'live_feed_seen_presets_v1';
+const PRESET_SHIPPED_KEY = 'live_feed_preset_shipped_v1';
 const WATCH_KEY     = 'forex_watchlist';
 
 // ── Feed ──────────────────────────────────────────────────────────────────────
@@ -123,31 +124,56 @@ PRESETS.push({
 // New presets are now merged in once. "Once" is the important part: a preset you
 // delete stays deleted, because its id is remembered as seen rather than
 // compared against what happens to be in the list right now.
+const clone = p => ({ ...p, conditions: p.conditions.map(c => ({ ...c })) });
+const sig = f => JSON.stringify({ mode:f.mode, minMatch:f.minMatch, classes:f.classes,
+  symbols:f.symbols, conditions:f.conditions });
+
+// Merging new presets in was only half the problem. Correcting an EXISTING
+// preset never reached anyone either: "My four" was fixed from ANY 1 to ANY 2,
+// and every phone kept the copy it had already saved — so the fix shipped and
+// changed nothing, twice over.
+//
+// A saved copy is updated only when it still matches the version that shipped
+// to it. If it differs, the filter has been edited and is left alone; nobody's
+// tuning is overwritten by an upgrade.
 export function loadFilters() {
-  const fresh = () => PRESETS.map(p => ({ ...p, conditions: p.conditions.map(c => ({ ...c })) }));
   let saved = null;
   try { saved = JSON.parse(localStorage.getItem(FILTERS_KEY) || 'null'); } catch { /* private mode */ }
-  if (!Array.isArray(saved) || !saved.length) {
-    try { localStorage.setItem(SEEN_PRESETS_KEY, JSON.stringify(PRESETS.map(p => p.id))); } catch { /* quota */ }
-    return fresh();
-  }
 
-  let seen = [];
+  const stamp = (list) => {
+    try {
+      localStorage.setItem(SEEN_PRESETS_KEY, JSON.stringify(PRESETS.map(p => p.id)));
+      localStorage.setItem(PRESET_SHIPPED_KEY,
+        JSON.stringify(Object.fromEntries(PRESETS.map(p => [p.id, sig(p)]))));
+    } catch { /* quota */ }
+    return list;
+  };
+
+  if (!Array.isArray(saved) || !saved.length) return stamp(PRESETS.map(clone));
+
+  let seen = [], shipped = {};
   try { seen = JSON.parse(localStorage.getItem(SEEN_PRESETS_KEY) || '[]'); } catch { /* private mode */ }
-  // Anything already in the list counts as seen, so an existing user is not
-  // handed duplicates of presets they have had all along.
-  const have = new Set([...seen, ...saved.map(f => f.id)]);
-  const added = PRESETS.filter(p => !have.has(p.id))
-    .map(p => ({ ...p, conditions: p.conditions.map(c => ({ ...c })) }));
+  try { shipped = JSON.parse(localStorage.getItem(PRESET_SHIPPED_KEY) || '{}'); } catch { /* private mode */ }
 
-  if (added.length) {
-    const next = [...saved, ...added];
-    saveFilters(next);
-    try { localStorage.setItem(SEEN_PRESETS_KEY, JSON.stringify([...have, ...added.map(p => p.id)])); } catch { /* quota */ }
-    return next;
-  }
-  try { localStorage.setItem(SEEN_PRESETS_KEY, JSON.stringify([...have])); } catch { /* quota */ }
-  return saved;
+  const byId = new Map(PRESETS.map(p => [p.id, p]));
+  let changed = false;
+
+  const next = saved.map(f => {
+    const preset = byId.get(f.id);
+    if (!preset) return f;                       // your own filter
+    const was = shipped[f.id];
+    if (was == null || was !== sig(f)) return f; // edited, or predates tracking — leave it
+    if (sig(preset) === was) return f;           // unchanged upstream
+    changed = true;
+    return { ...clone(preset), push: f.push };   // keep the push choice, take the fix
+  });
+
+  const have = new Set([...seen, ...saved.map(f => f.id)]);
+  const added = PRESETS.filter(p => !have.has(p.id)).map(clone);
+  if (added.length) { next.push(...added); changed = true; }
+
+  if (changed) saveFilters(next);
+  return stamp(next);
 }
 
 export function saveFilters(list) {
