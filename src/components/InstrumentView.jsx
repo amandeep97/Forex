@@ -2,6 +2,8 @@ import { useState, useEffect, useCallback, useMemo } from 'react';
 import { INSTRUMENTS, CLASS, CLASS_ORDER, bySymbol, byClass, exposureOf, REGISTRY_STATS } from '../data/instruments';
 import { fetchPositioning, fetchSpreadStress, fetchSqueeze, fetchDepthMap, oandaCreds } from '../utils/flowFeed';
 import { runConsensusFor } from '../utils/consensus';
+import { fetchFeed } from '../utils/liveFeed';
+import { driversFor } from '../utils/drivers';
 import { ConsensusRow } from './Consensus';
 
 const C = {
@@ -109,6 +111,7 @@ export default function InstrumentView({ sym: symProp, onBack }) {
   const [depth, setDepth] = useState(null);
   const [events,setEvents]= useState(null);
   const [read,  setRead]  = useState(null);   // the four-engine verdict for THIS instrument
+  const [feed,  setFeed]  = useState(null);   // the VPS's 24/7 record
   const [busy,  setBusy]  = useState(false);
   const [asOf,  setAsOf]  = useState(null);
 
@@ -125,6 +128,9 @@ export default function InstrumentView({ sym: symProp, onBack }) {
       // opinion computed here. Slowest of the panels, so it loads alongside
       // rather than blocking the page.
       runConsensusFor(sym).then(setRead).catch(() => setRead(null)),
+      // Cached for a minute and shared with the FEED tab, so opening an
+      // instrument costs nothing extra.
+      fetchFeed().then(setFeed).catch(() => setFeed(null)),
       inst.can.spread
         ? fetchSpreadStress({ sym:inst.sym, oanda:inst.oanda }).then(setSpread).catch(e => setSpread({ error:e.message }))
         : Promise.resolve(),
@@ -442,6 +448,89 @@ export default function InstrumentView({ sym: symProp, onBack }) {
           </Card>
 
           {/* what this instrument supports — honesty about coverage */}
+          {/* ── What actually moves this, measured ─────────────────────────
+                A hand-written table of "relevant markets" has no entry for
+                US500, USOIL or NATGAS, and its correlations were true on the
+                day someone typed them. These come from the closes the feed
+                already publishes, so they cost nothing and cannot go stale.
+                Short window on purpose: this answers "what is it moving with
+                NOW", not what it usually moves with. ── */}
+          {(() => {
+            if (!feed?.instruments) return null;
+            const d = driversFor(sym, feed, { tf: 'D' });
+            return (
+              <Card title="WHAT MOVES THIS" src={d.drivers.length ? 'live' : 'unavailable'}
+                note={`measured over ${d.n} daily bars`}>
+                {d.drivers.length === 0 ? (
+                  <div style={{ fontSize:10, color:C.dim }}>
+                    {d.n === 0
+                      ? 'No price history published for this instrument yet.'
+                      : `Nothing is moving with it beyond chance right now (${d.tested} instruments tested, `
+                        + `nothing clears |r| ${d.floor}). That is a real answer — it is trading on its own story.`}
+                  </div>
+                ) : (
+                  <>
+                    {d.drivers.map(x => (
+                      <div key={x.sym} style={{ display:'flex', alignItems:'center', gap:8, padding:'3px 0' }}>
+                        <span style={{ fontSize:10, fontWeight:800, color:C.txt, width:78, flexShrink:0 }}>{x.sym}</span>
+                        <span style={{ fontSize:9, color: x.r > 0 ? '#22c55e' : '#ef4444', width:78, flexShrink:0 }}>
+                          {x.r > 0 ? 'moves with' : 'moves against'}
+                        </span>
+                        <span style={{ flex:1, height:3, background:'#131c26', borderRadius:2, overflow:'hidden', minWidth:40 }}>
+                          <span style={{ display:'block', width:`${Math.abs(x.r) * 100}%`, height:'100%',
+                            background: x.r > 0 ? '#22c55e' : '#ef4444' }}/>
+                        </span>
+                        <span style={{ fontSize:9, color:C.dim, width:34, textAlign:'right', flexShrink:0 }}>
+                          {x.r > 0 ? '+' : ''}{x.r}
+                        </span>
+                      </div>
+                    ))}
+                    <div style={{ fontSize:8, color:'#2b3644', marginTop:5, lineHeight:1.6 }}>
+                      Anything above |0.7| is largely the same trade — holding both is one position at double size,
+                      not two ideas. Nothing weaker than |{d.floor}| is shown, because at {d.n} bars it would be
+                      indistinguishable from chance.
+                    </div>
+                  </>
+                )}
+              </Card>
+            );
+          })()}
+
+          {/* ── What the VPS saw while the app was shut ── */}
+          {(() => {
+            const rec = feed?.instruments?.[sym];
+            if (!rec) return null;
+            const evs = (rec.events || []).slice(0, 5);
+            const pats = [...(rec.patterns?.H4 || []), ...(rec.patterns?.D || [])]
+              .sort((a, b) => b.at - a.at).slice(0, 4);
+            const st = rec.state || {};
+            return (
+              <Card title="24/7 RECORD" src="delayed" note="measured on the VPS, awake or not">
+                <div style={{ display:'flex', gap:12, flexWrap:'wrap', fontSize:10, marginBottom:6 }}>
+                  {st.H4 && <span style={{ color:C.dim }}>H4 vol <strong style={{ color:C.txt }}>{st.H4.volPct}th</strong></span>}
+                  {st.H4 && <span style={{ color:C.dim }}>range <strong style={{ color:C.txt }}>{st.H4.rangePos}%</strong></span>}
+                  {st.spreadRatio != null && <span style={{ color:C.dim }}>spread <strong style={{ color:C.txt }}>×{st.spreadRatio}</strong></span>}
+                  {st.posnPct != null && <span style={{ color:C.dim }}>funds <strong style={{ color:C.txt }}>{st.posnPct}th</strong></span>}
+                </div>
+                {evs.length === 0 && pats.length === 0 && (
+                  <div style={{ fontSize:10, color:C.dim }}>Nothing has fired here recently.</div>
+                )}
+                {evs.map((e, i) => (
+                  <div key={i} style={{ fontSize:9, color:C.dim, padding:'1px 0' }}>
+                    <span style={{ color: e.dir === 'up' ? '#22c55e' : '#ef4444' }}>{e.dir === 'up' ? '▲' : '▼'}</span>{' '}
+                    <strong style={{ color:'#94a3b8' }}>{e.tf} {e.type}</strong> — {e.detail}
+                    <span style={{ color:'#2b3644' }}> · {Math.round((Date.now() - e.at) / 3600e3)}h ago</span>
+                  </div>
+                ))}
+                {pats.length > 0 && (
+                  <div style={{ fontSize:9, color:'#3f4a58', marginTop:4 }}>
+                    patterns: {pats.map(p => `${p.id} (${p.rate}/mo)`).join(' · ')}
+                  </div>
+                )}
+              </Card>
+            );
+          })()}
+
           <Card title="DATA COVERAGE" src="live" note="what is available for this instrument">
             <div style={{ display:'flex', gap:5, flexWrap:'wrap' }}>
               {[
