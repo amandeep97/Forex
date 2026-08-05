@@ -1658,8 +1658,25 @@ export default function Backtester() {
                       held out: <strong style={{ color: f.outSample?.expR > 0 ? '#22c55e' : '#ef4444' }}>
                         {f.outSample ? `${f.outSample.expR > 0 ? '+' : ''}${f.outSample.expR}R` : '—'}
                       </strong>
+                      {f.significance ? ` ± ${f.significance.ci}` : ''}
                       {f.outSample ? ` · ${f.outSample.winRate}% · n=${f.outSample.n}` : ''}
                     </span>
+                    <span style={{ width:'100%' }}/>
+                    {f.significance && (
+                      <span style={{ fontSize:11.5, lineHeight:1.65,
+                        color: f.significance.clearsZero ? '#22c55e' : '#f59e0b' }}>
+                        {f.significance.clearsZero
+                          ? `Clears zero at 95% (${f.significance.t} standard errors out).`
+                          : `Zero is inside that range — not yet distinguishable from luck${
+                              f.significance.needed ? `. Needs about ${f.significance.needed.toLocaleString()} out-of-sample trades to settle it` : ''}.`}
+                        {f.outSample?.lossStreak > 0 && (
+                          <span style={{ color:'var(--text3)' }}>
+                            {' '}Worst run in the holdout: <strong style={{ color:'#e2e8f0' }}>{f.outSample.lossStreak} losses in a row</strong>
+                            {' '}({(100 * (1 - Math.pow(0.99, f.outSample.lossStreak))).toFixed(0)}% down at 1% risk).
+                          </span>
+                        )}
+                      </span>
+                    )}
                     <span style={{ marginLeft:'auto', display:'flex', gap:6 }}>
                       {f.verdict === 'survived' && (
                         <>
