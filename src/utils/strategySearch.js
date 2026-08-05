@@ -175,7 +175,8 @@ export async function searchStrategies(candles, {
         id: `${tr.id}|${fl.id}|${ex.id}|${st.id}`,
         label: `${tr.label}${fl.conds.length ? ` + ${fl.label}` : ''} · ${ex.label} · ${st.label}`,
         strategy: strat,
-        inSample: { n: stats.totalTrades, winRate: stats.winRate, expR: e, pf: stats.profitFactor, dd: stats.maxDrawdown },
+        inSample: { n: stats.totalTrades, winRate: stats.winRate, expR: e, pf: stats.profitFactor, dd: stats.maxDrawdown,
+                    se: stats.seRR, lossStreak: stats.maxLossStreak },
       });
     }
   }
@@ -188,7 +189,8 @@ export async function searchStrategies(candles, {
     try {
       const r = runBacktest(outSample, { ...f.strategy, ...(spreadPips != null ? { spreadPips } : {}) });
       const s = calcStats(r.trades);
-      f.outSample = { n: s.totalTrades, winRate: s.winRate, expR: expR(s), pf: s.profitFactor, dd: s.maxDrawdown };
+      f.outSample = { n: s.totalTrades, winRate: s.winRate, expR: expR(s), pf: s.profitFactor, dd: s.maxDrawdown,
+                      se: s.seRR, lossStreak: s.maxLossStreak };
     } catch { f.outSample = null; }
 
     const i = f.inSample.expR, o = f.outSample?.expR;
@@ -197,6 +199,29 @@ export async function searchStrategies(candles, {
     f.verdict = !f.outSample || f.outSample.n < 8 ? 'untested'
               : !f.survived ? 'curve-fit'
               : f.held ? 'survived' : 'faded';
+
+    // Surviving the holdout and being distinguishable from luck are different
+    // questions, and only the first was ever asked. A trailing rule's single
+    // trades run from −1R to +15R, so an average of +0.11R over 400 of them
+    // can sit comfortably inside its own error bar — positive, reproduced out
+    // of sample, and still not evidence of anything.
+    f.significance = significanceOf(f.outSample);
+  }
+
+  function significanceOf(s) {
+    if (!s || s.expR == null || !s.se) return null;
+    const t = s.expR / s.se;                     // how many standard errors from zero
+    const ci = 1.96 * s.se;
+    // Out-of-sample trades needed for this expectancy to clear zero at 95%,
+    // holding the observed variability. The honest answer to "is it enough
+    // yet" is usually a number far larger than the one on screen.
+    const needed = Math.ceil((1.96 * s.se * Math.sqrt(s.n) / Math.abs(s.expR)) ** 2);
+    return {
+      t: +t.toFixed(2),
+      ci: +ci.toFixed(2),
+      clearsZero: s.expR - ci > 0,
+      needed: needed > s.n ? needed : null,
+    };
   }
 
   return {

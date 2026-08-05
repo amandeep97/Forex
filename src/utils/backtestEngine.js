@@ -1019,7 +1019,7 @@ export function calcStats(trades, initialEquity = 10000) {
     maxWinStreak: 0, maxLossStreak: 0,
     longWins: 0, longLosses: 0, longWinRate: null,
     shortWins: 0, shortLosses: 0, shortWinRate: null,
-    avgRR: null, monthlyPnl: [],
+    avgRR: null, sdRR: null, seRR: null, monthlyPnl: [],
   };
   if (!trades || trades.length === 0) return empty;
 
@@ -1072,9 +1072,23 @@ export function calcStats(trades, initialEquity = 10000) {
   const rMultiples = trades
     .filter(t => t.riskDollars > 0)
     .map(t => t.pnlDollars / t.riskDollars);
-  const avgRR = rMultiples.length
-    ? +(rMultiples.reduce((s, v) => s + v, 0) / rMultiples.length).toFixed(2)
+  const rawAvgRR = rMultiples.length
+    ? rMultiples.reduce((s, v) => s + v, 0) / rMultiples.length
     : null;
+  const avgRR = rawAvgRR == null ? null : +rawAvgRR.toFixed(2);
+
+  // How much the per-trade result actually varies, and therefore how much of
+  // the average is signal.
+  //
+  // Expectancy on its own cannot be read. A trailing strategy wins rarely and
+  // wins big, so single trades range from −1R to +15R; an average of +0.11R
+  // over 400 of those is a very different claim from +0.11R over 400 trades
+  // that all land near it. The standard error is the difference, and without
+  // it every backtest number invites more confidence than it has earned.
+  const sdRR = rMultiples.length > 1
+    ? Math.sqrt(rMultiples.reduce((s, v) => s + (v - rawAvgRR) ** 2, 0) / (rMultiples.length - 1))
+    : null;
+  const seRR = sdRR != null ? sdRR / Math.sqrt(rMultiples.length) : null;
 
   // Monthly P&L buckets (use trade index as proxy when no timestamps)
   const monthlyMap = {};
@@ -1113,6 +1127,9 @@ export function calcStats(trades, initialEquity = 10000) {
     longWinRate: longTrades.length ? Math.round(longWins / longTrades.length * 1000) / 10 : null,
     shortWins, shortLosses: shortTrades.length - shortWins,
     shortWinRate: shortTrades.length ? Math.round(shortWins / shortTrades.length * 1000) / 10 : null,
-    avgRR, monthlyPnl,
+    avgRR,
+    sdRR:  sdRR == null ? null : +sdRR.toFixed(3),
+    seRR:  seRR == null ? null : +seRR.toFixed(3),
+    monthlyPnl,
   };
 }
