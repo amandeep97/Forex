@@ -52,6 +52,18 @@ const RETAIN_DAYS = { H4: 7, D: 30 };
 const PATTERNS_SRC = pathToFileURL(
   path.join(__dirname, '..', '..', 'src', 'utils', 'candlePatterns.js')).href;
 
+// Lead-lag needs history, not a sparkline. The app only ever receives 40 daily
+// closes, and at that size the significance threshold is |r| 0.38 — higher than
+// any real lead-lag effect in liquid markets, so nothing is detectable and the
+// honest answer is always "not enough data". The bot holds 400 bars, where the
+// threshold is 0.12. Computing it here is the difference between asking the
+// question and being able to answer it.
+const LEADERSHIP_SRC = pathToFileURL(
+  path.join(__dirname, '..', '..', 'shared', 'leadershipMath.mjs')).href;
+
+// Daily bars move once a day; recomputing more often burns CPU for nothing.
+const LEADERSHIP_EVERY_MS = 6 * 3600e3;
+
 // How many recent closed bars are searched for patterns. Candlestick patterns
 // are short-lived by nature — the Screener asks "formed within the last 1-10
 // candles" — and publishing every occurrence over the whole history would
@@ -196,6 +208,8 @@ class FeedBuilder {
     this.loaded = false;
     this.cotAt  = 0;
     this.wroteAt = 0;
+    this.dailyCloses = {};    // sym -> full daily close series, for lead-lag
+    this.leadershipAt = 0;
     this.passId = 0;
     this.runningSince = 0;
     this.failStreak = 0;
@@ -204,6 +218,46 @@ class FeedBuilder {
 
   // Loaded once, lazily: an older checkout without the module must degrade to
   // "no patterns" rather than take the whole feed down.
+  async _leadershipLib() {
+    if (this._lead === undefined) {
+      try { this._lead = await import(LEADERSHIP_SRC); }
+      catch (e) { this._lead = null; this.log(`Feed: leadership maths unavailable (${e.message})`); }
+    }
+    return this._lead;
+  }
+
+  // Who moves first, across everything that has daily history.
+  //
+  // Deliberately NOT part of _refreshTf: it needs every instrument's series at
+  // once, so it runs after enough of them have been measured. Skipped entirely
+  // until most of the registry is present, because a leadership map computed
+  // from eight instruments would be both wrong and confident.
+  async _refreshLeadership() {
+    const lib = await this._leadershipLib();
+    if (!lib?.computeLeadership) return;
+
+    const have = Object.keys(this.dailyCloses).length;
+    const want = INSTRUMENTS.filter(i => i.can.candles).length;
+    if (have < want * 0.8) {
+      this.log(`Feed: leadership deferred — ${have}/${want} daily series so far`);
+      return;
+    }
+
+    const t0 = Date.now();
+    const map = lib.computeLeadership(this.dailyCloses);
+    this.leadershipAt = Date.now();
+
+    let withLeader = 0;
+    for (const [sym, r] of Object.entries(map)) {
+      const rec = this.data[sym];
+      if (!rec) continue;
+      rec.leaders = { n: r.n, floor: r.floor, list: r.leaders };
+      if (r.leaders.length) withLeader++;
+    }
+    this.log(`Feed: leadership over ${have} instruments in ${Date.now() - t0}ms — `
+      + `${withLeader} have a measurable leader`);
+  }
+
   async _patternLib() {
     if (this._pats === undefined) {
       try { this._pats = await import(PATTERNS_SRC); }
@@ -320,6 +374,8 @@ class FeedBuilder {
 
     rec.state[tf] = measure(cs);
     rec.asOf[tf]  = cs[cs.length - 1].t;
+    // Retained only for the daily lead-lag pass; 52 x 400 numbers is nothing.
+    if (tf === 'D') this.dailyCloses[inst.sym] = cs.map(x => x.c);
 
     const spanDays = Math.max(1, (cs[cs.length - 1].t - cs[0].t) / 86400e3);
     const all = [...detectSweeps(cs), ...detectBreaks(cs)];
@@ -441,7 +497,7 @@ class FeedBuilder {
     // Everything except wall-clock, so an unchanged market does not produce a
     // commit every minute. 1440 no-op commits a day would bury the real ones.
     return JSON.stringify(Object.entries(data).sort(([a], [b]) => a < b ? -1 : 1)
-      .map(([sym, r]) => [sym, r.price, r.state, r.rarity,
+      .map(([sym, r]) => [sym, r.price, r.state, r.rarity, (r.leaders?.list || []).map(l => `${l.sym}${l.lag}${l.r}`),
         (r.events || []).map(e => `${e.type}${e.dir}${e.tf}${e.at}`),
         Object.entries(r.patterns || {}).map(([tf, list]) => `${tf}:${list.map(p => p.id + p.at).join(',')}`)]));
   }
@@ -522,6 +578,10 @@ class FeedBuilder {
         this.lastFailure = { sym: j.inst.sym, kind: j.kind, msg: e.message, at: new Date().toISOString() };
         this.log(`Feed ${j.inst.sym} ${j.kind}: ${e.message}`);
       }
+    }
+
+    if (now - this.leadershipAt > LEADERSHIP_EVERY_MS) {
+      await this._refreshLeadership().catch(e => this.log(`Feed leadership: ${e.message}`));
     }
 
     if (now - this.cotAt > 6 * 3600e3) {
