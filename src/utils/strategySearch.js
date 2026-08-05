@@ -20,6 +20,25 @@
 // convincing than being told about it.
 import { runBacktest, calcStats } from './backtestEngine';
 
+// The instruments a breadth test should be judged on.
+//
+// Running the check across all fifty sounds more rigorous and is not. Half of
+// that list is small-cap crypto and third-tier crosses whose spread is a large
+// fraction of the daily range, so a rule with a genuine edge still prints
+// negative there and drags the median down. The verdict then reads "one-off"
+// for a reason that has nothing to do with the rule.
+//
+// Twelve deeply traded markets across four asset classes is a harder test, not
+// an easier one: metals, indices, both crude grades and the FX majors have
+// nothing structurally in common, so a rule that travels across them is
+// describing behaviour rather than history.
+export const FOCUS_SET = [
+  'XAU/USD', 'XAG/USD',                                  // metals
+  'US500', 'US100', 'GER40',                             // indices
+  'USOIL', 'UKOIL',                                      // energy — both grades
+  'EUR/USD', 'GBP/USD', 'USD/JPY', 'AUD/USD', 'USD/CAD', // FX majors
+];
+
 // Entry triggers. Kept deliberately small: a huge space does not find more
 // edges, it finds more noise, and each extra variant raises the bar the winner
 // has to clear before it means anything.
@@ -167,11 +186,19 @@ export async function searchStrategies(candles, {
 // nothing qualified and the whole test returned "not enough". Here the evidence
 // is BREADTH across instruments, not depth within one, so ten trades each
 // across twelve instruments is a stronger argument than sixty on a single one.
-export async function testAcrossInstruments(strategy, loadCandles, symbols, { minTrades = 10, onProgress } = {}) {
+//
+// `origin` is the instrument the strategy was searched on. Its row is still
+// shown — seeing it tower over everything else is the clearest possible picture
+// of a fitted rule — but it is excluded from the count and the median. It was
+// selected for being the best of 540 attempts on that one history, so it is
+// guaranteed to look good and carries no information. Across fifty instruments
+// that bias was 2% and ignorable; across twelve it is 8% and would be the
+// difference between a "mixed" and a "one-off" verdict.
+export async function testAcrossInstruments(strategy, loadCandles, symbols, { minTrades = 10, origin = null, onProgress } = {}) {
   const rows = [];
   let done = 0;
   for (const sym of symbols) {
-    let row = { sym, error: null };
+    let row = { sym, error: null, origin: sym === origin };
     try {
       const candles = await loadCandles(sym);
       if (!candles || candles.length < 300) throw new Error(`only ${candles?.length || 0} bars`);
@@ -188,7 +215,7 @@ export async function testAcrossInstruments(strategy, loadCandles, symbols, { mi
     await new Promise(r => setTimeout(r, 0));
   }
 
-  const judged = rows.filter(r => r.enough && r.expR != null);
+  const judged = rows.filter(r => r.enough && r.expR != null && !r.origin);
   const positive = judged.filter(r => r.expR > 0);
   const median = judged.length
     ? [...judged].sort((a, b) => a.expR - b.expR)[Math.floor(judged.length / 2)].expR
@@ -200,7 +227,8 @@ export async function testAcrossInstruments(strategy, loadCandles, symbols, { mi
     positive: positive.length,
     median,
     totalTrades: judged.reduce((n, r) => n + r.n, 0),
-    skipped: rows.filter(r => !r.enough && !r.error).length,
+    skipped: rows.filter(r => !r.enough && !r.error && !r.origin).length,
+    origin,
     // A single winner among many is what a fitted rule looks like. Breadth is
     // the evidence; the best number in the list is not.
     verdict: judged.length < 4 ? 'too-few'

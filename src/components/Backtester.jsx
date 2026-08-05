@@ -6,7 +6,7 @@ import { OANDA_MAP } from '../hooks/useLivePrices';
 import { INSTRUMENTS as REGISTRY } from '../data/instruments';
 import { generateCandles } from '../utils/generateCandles';
 import { takeStagedFilter } from '../utils/feedToBacktest';
-import { searchStrategies, combinationCount, testAcrossInstruments } from '../utils/strategySearch';
+import { searchStrategies, combinationCount, testAcrossInstruments, FOCUS_SET } from '../utils/strategySearch';
 
 const TF_GRAN = {'1M':'M1','5M':'M5','15M':'M15','30M':'M30','1H':'H1','4H':'H4','8H':'H8','D':'D','W':'W'};
 const TFS = ['1M','5M','15M','30M','1H','4H','8H','D','W'];
@@ -14,6 +14,15 @@ const COUNTS = [100,500,1000,2000,5000,10000,20000,50000];
 
 // Single source of truth — see src/data/instruments.js
 const INSTRUMENTS = REGISTRY.filter(i => i.can.candles).map(i => i.sym);
+
+// FOCUS_SET is written by hand, so anything renamed or dropped from the
+// registry has to fall out here rather than fail one symbol at a time inside
+// the test and be reported as "only 0 bars".
+const FOCUS = FOCUS_SET.filter(s => INSTRUMENTS.includes(s));
+const SCOPES = {
+  focus: { syms: FOCUS,       label: 'majors',          note: 'metals, indices, both crudes and the FX majors' },
+  all:   { syms: INSTRUMENTS, label: 'all instruments', note: 'includes small-cap crypto and minor crosses, where spread alone can turn a real edge negative' },
+};
 
 const FALLBACK_PRICES = {
   'EUR/USD':1.095,'GBP/USD':1.270,'USD/JPY':149.5,'USD/CHF':0.905,
@@ -996,7 +1005,11 @@ export default function Backtester() {
         spreadPips: spread === '' ? undefined : +spread,
         onProgress: (done, total) => setSearch(s => ({ ...s, done, total })),
       });
-      setSearch({ running:false, result:res });
+      // The symbol is captured here, not read at breadth-test time: the dropdown
+      // can be changed between searching and testing, and the breadth test has
+      // to exclude the instrument the rule was actually fitted on, not whatever
+      // happens to be selected.
+      setSearch({ running:false, result:res, symbol:sym });
     } catch (e) { setErr(e.message); setSearch(null); }
   };
 
@@ -1018,17 +1031,23 @@ export default function Backtester() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  // Run one finalist, unchanged, on every instrument. Breadth is the evidence.
-  const runAcross = async (f) => {
-    setAcross({ running:true, label:f.label, done:0, total:INSTRUMENTS.length });
+  // Run one finalist, unchanged, on other instruments. Breadth is the evidence.
+  // Defaults to the majors: a rule can only be judged against markets deep
+  // enough that spread is not the dominant term in the result.
+  const runAcross = async (f, scope = 'focus') => {
+    const origin = search?.symbol || sym;
+    // The instrument it was found on is always tested even when it sits outside
+    // the scope, so the fitted number stays visible next to the honest ones.
+    const syms = [...new Set([...SCOPES[scope].syms, origin])];
+    setAcross({ running:true, label:f.label, finalist:f, scope, done:0, total:syms.length });
     try {
       const res = await testAcrossInstruments(
         f.strategy,
         async (s) => (await fetchCandles(s, tf, cnt)).candles,
-        INSTRUMENTS,
-        { onProgress: (done, total) => setAcross(a => ({ ...a, done, total })) },
+        syms,
+        { origin, onProgress: (done, total) => setAcross(a => ({ ...a, done, total })) },
       );
-      setAcross({ running:false, label:f.label, result:res });
+      setAcross({ running:false, label:f.label, finalist:f, scope, result:res });
     } catch (e) { setErr(e.message); setAcross(null); }
   };
 
@@ -1375,10 +1394,12 @@ export default function Backtester() {
           if (across.running) return (
             <div style={{ background:'#0b1118', border:'1px solid #16324a', borderRadius:12,
               padding:'14px 16px', margin:'0 0 14px', fontSize:13, color:'#7dd3fc' }}>
-              ⟳ Testing on every instrument… {across.done}/{across.total}
+              ⟳ Testing on {SCOPES[across.scope].label}… {across.done}/{across.total}
             </div>
           );
           const r = across.result; if (!r) return null;
+          const sc = SCOPES[across.scope];
+          const other = across.scope === 'focus' ? 'all' : 'focus';
           const V = {
             broad:   { c:'#22c55e', t:'WORKS BROADLY',
                        d:'Positive on most instruments. That is what a real behaviour looks like — a rule fitted to one history has no reason to travel.' },
@@ -1393,6 +1414,9 @@ export default function Backtester() {
             <div style={{ background:'#0b1118', border:`1px solid ${V.c}44`, borderRadius:12, padding:'14px 16px', margin:'0 0 14px' }}>
               <div style={{ fontSize:15, fontWeight:800, color:V.c }}>{V.t}</div>
               <div style={{ fontSize:12, color:'var(--text3)', marginTop:3, marginBottom:8 }}>{across.label}</div>
+              <div style={{ fontSize:11, color:'var(--text3)', marginBottom:8 }}>
+                Tested on <strong style={{ color:'#94a3b8' }}>{sc.label}</strong> · {sc.note}
+              </div>
               <div style={{ fontSize:12, color:'#c7d2da', lineHeight:1.7, marginBottom:10 }}>
                 {V.d}
                 <div style={{ marginTop:3, color:'var(--text3)' }}>
@@ -1400,24 +1424,38 @@ export default function Backtester() {
                 </div>
               </div>
               {r.rows.filter(x => x.enough).map(x => (
-                <div key={x.sym} style={{ display:'flex', alignItems:'center', gap:8, padding:'2px 0', fontSize:12 }}>
+                <div key={x.sym} style={{ display:'flex', alignItems:'center', gap:8, padding:'2px 0', fontSize:12,
+                  opacity: x.origin ? 0.55 : 1 }}>
                   <span style={{ width:88, fontWeight:700, color:'#e2e8f0', flexShrink:0 }}>{x.sym}</span>
                   <span style={{ flex:1, height:4, background:'#0f172a', borderRadius:2, overflow:'hidden', minWidth:40 }}>
                     <span style={{ display:'block', marginLeft: x.expR < 0 ? 0 : '50%',
                       width:`${Math.min(50, Math.abs(x.expR) * 25)}%`, height:'100%',
-                      background: x.expR > 0 ? '#22c55e' : '#ef4444',
+                      background: x.origin ? '#64748b' : x.expR > 0 ? '#22c55e' : '#ef4444',
                       float: x.expR < 0 ? 'right' : 'none' }}/>
                   </span>
                   <span style={{ width:56, textAlign:'right', fontFamily:'monospace',
-                    color: x.expR > 0 ? '#22c55e' : '#ef4444' }}>
+                    color: x.origin ? '#94a3b8' : x.expR > 0 ? '#22c55e' : '#ef4444' }}>
                     {x.expR > 0 ? '+' : ''}{x.expR}R
                   </span>
                   <span style={{ width:44, textAlign:'right', color:'var(--text3)' }}>n={x.n}</span>
                 </div>
               ))}
-              <button onClick={() => setAcross(null)}
-                style={{ marginTop:10, fontSize:11, padding:'3px 10px', borderRadius:6, cursor:'pointer',
-                  background:'transparent', color:'var(--text3)', border:'1px solid var(--border)' }}>close</button>
+              {r.origin && (
+                <div style={{ fontSize:11, color:'var(--text3)', marginTop:8, lineHeight:1.6 }}>
+                  {r.origin} is greyed out and left out of the count — the rule was chosen for being
+                  the best of {combinationCount()} attempts on that history, so it cannot help but look good there.
+                </div>
+              )}
+              <div style={{ display:'flex', gap:6, marginTop:10, flexWrap:'wrap' }}>
+                <button onClick={() => runAcross(across.finalist, other)} disabled={across.running}
+                  style={{ fontSize:11, fontWeight:700, padding:'3px 10px', borderRadius:6, cursor:'pointer',
+                    border:'1px solid #7dd3fc55', background:'#0b1a2a', color:'#7dd3fc' }}>
+                  re-run on {SCOPES[other].label}
+                </button>
+                <button onClick={() => setAcross(null)}
+                  style={{ fontSize:11, padding:'3px 10px', borderRadius:6, cursor:'pointer',
+                    background:'transparent', color:'var(--text3)', border:'1px solid var(--border)' }}>close</button>
+              </div>
             </div>
           );
         })()}
@@ -1476,10 +1514,10 @@ export default function Backtester() {
                     </span>
                     <span style={{ marginLeft:'auto', display:'flex', gap:6 }}>
                       {f.verdict === 'survived' && (
-                        <button onClick={() => runAcross(f)} disabled={across?.running}
+                        <button onClick={() => runAcross(f, 'focus')} disabled={across?.running}
                           style={{ fontSize:11, fontWeight:700, padding:'3px 10px', borderRadius:6,
                             cursor:'pointer', border:'1px solid #22c55e55', background:'#0b1a12', color:'#22c55e' }}>
-                          test on all instruments
+                          test on {FOCUS.length} majors
                         </button>
                       )}
                       <button onClick={() => loadFinalist(f)}
