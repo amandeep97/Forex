@@ -100,6 +100,24 @@ export function computeATRSeries(candles, period = 14) {
   return res;
 }
 
+// Highest and lowest CLOSE of the n bars BEFORE each bar.
+//
+// Before, not including — a breakout condition that compares this bar's close
+// against a window containing this bar's close can never be true, which is the
+// kind of bug that reads as "that idea does not work".
+export function computeExtremeSeries(candles, n = 20) {
+  const res = new Array(candles.length).fill(null);
+  for (let i = n; i < candles.length; i++) {
+    let hi = -Infinity, lo = Infinity;
+    for (let j = i - n; j < i; j++) {
+      if (candles[j].c > hi) hi = candles[j].c;
+      if (candles[j].c < lo) lo = candles[j].c;
+    }
+    res[i] = { hi, lo };
+  }
+  return res;
+}
+
 // ── MACD series ───────────────────────────────────────────────────────────────
 export function computeMACDSeries(candles, fast = 12, slow = 26, signal = 9) {
   const res = new Array(candles.length).fill(null);
@@ -410,6 +428,23 @@ export function mirrorCond(cond) {
       return { ...cond, value: PATTERN_MIRROR[cond.value] || cond.value };
     case 'candle':
       return { ...cond, op: cond.op === 'bullish' ? 'bearish' : cond.op === 'bearish' ? 'bullish' : cond.op };
+    // The new conditions are directional, so the short side is the mirror
+    // image. Falling through to `default` would have tested the long-side
+    // condition on short entries — a rule that quietly means something
+    // different depending on which way it trades.
+    case 'stretch':
+    case 'gap': {
+      const m = { above:'below', below:'above', up:'down', down:'up' };
+      return { ...cond, op: m[cond.op] || cond.op };
+    }
+    case 'breakout': {
+      const m = { high:'low', low:'high' };
+      return { ...cond, op: m[cond.op] || cond.op };
+    }
+    case 'wick': {
+      const m = { lower:'upper', upper:'lower' };
+      return { ...cond, op: m[cond.op] || cond.op };
+    }
     default: return cond;
   }
 }
@@ -584,6 +619,57 @@ function evalCond(c, prev, inds, cond, pattern, patternIds) {
       if (cond.op === 'bullish') return c.c > c.o;
       if (cond.op === 'bearish') return c.c < c.o;
       return false;
+
+    // ── Conditions added for the deep search ────────────────────────────────
+    // Measured in ATR rather than pips or percent, so the same rule means the
+    // same thing on gold, the Nasdaq and cable. A "2% move" is enormous on
+    // EUR/USD and a quiet afternoon on silver; two ATR is two ATR everywhere.
+
+    // How far price has run from its own mean. The condition almost nobody
+    // stacks, and the one that separates a trend worth joining from a move
+    // already exhausted.
+    case 'stretch': {
+      const ma = inds[`ema_${cond.period || 50}`]?.cur, a = inds['atr14']?.cur;
+      if (ma == null || !a) return false;
+      const x = (c.c - ma) / a;
+      if (cond.op === 'above') return x >=  cond.value;      // stretched up
+      if (cond.op === 'below') return x <= -cond.value;      // stretched down
+      return Math.abs(x) >= cond.value;
+    }
+
+    // Close beyond every close of the prior n bars.
+    case 'breakout': {
+      const s = inds[`ext_${cond.n || 20}`];
+      if (!s || s.cur == null) return false;
+      if (cond.op === 'high') return c.c > s.cur.hi;
+      if (cond.op === 'low')  return c.c < s.cur.lo;
+      return c.c > s.cur.hi || c.c < s.cur.lo;
+    }
+
+    // Opening away from the previous close — the overnight repricing that a
+    // bar-close backtest otherwise treats as if it never happened.
+    case 'gap': {
+      const a = inds['atr14']?.cur;
+      if (!a || !prev) return false;
+      const g = (c.o - prev.c) / a;
+      if (cond.op === 'up')   return g >=  cond.value;
+      if (cond.op === 'down') return g <= -cond.value;
+      return Math.abs(g) >= cond.value;
+    }
+
+    // Wick dominance: who gave up ground inside the bar, regardless of where
+    // it closed.
+    case 'wick': {
+      const range = c.h - c.l;
+      if (!(range > 0)) return false;
+      const lower = Math.min(c.o, c.c) - c.l;
+      const upper = c.h - Math.max(c.o, c.c);
+      const v = cond.value ?? 0.5;
+      if (cond.op === 'lower') return lower / range >= v;
+      if (cond.op === 'upper') return upper / range >= v;
+      return Math.max(lower, upper) / range >= v;
+    }
+
     default: return false;
   }
 }
@@ -707,6 +793,18 @@ function buildIndicators(candles, conditions) {
   };
   for (const cd of conditions) {
     ensure(cd.type, cd.period, cd.period2, cd.maType);
+    // `stretch` is measured against an EMA in ATR units, so it needs both.
+    if (cd.type === 'stretch') {
+      const k = `ema_${cd.period || 50}`;
+      if (!arrays[k]) arrays[k] = cachedSeries(candles, k, () => computeEMASeries(candles, cd.period || 50));
+    }
+    if (cd.type === 'stretch' || cd.type === 'gap') {
+      if (!arrays['atr14']) arrays['atr14'] = cachedSeries(candles, 'atr_14', () => computeATRSeries(candles, 14));
+    }
+    if (cd.type === 'breakout') {
+      const n = cd.n || 20, k = `ext_${n}`;
+      if (!arrays[k]) arrays[k] = cachedSeries(candles, k, () => computeExtremeSeries(candles, n));
+    }
     if (cd.type === 'strong_rev') { const k = `strev_${cd.n || 5}`; if (!arrays[k]) arrays[k] = cachedSeries(candles, k, () => computeStrongReversalSeries(candles, cd.n || 5)); }
     if (cd.type === 'volume' && !arrays['volAvg']) {
       const period = 20, out = new Array(candles.length).fill(null);
