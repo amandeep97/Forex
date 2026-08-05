@@ -67,11 +67,73 @@ export const SAME_BET = [
 ];
 
 // Warn when a hand-picked list is fewer bets than it looks.
-export function redundantPicks(symbols) {
-  const set = new Set(symbols || []);
+//
+// The static table is the fallback, not the answer. When the feed is available
+// the correlations are MEASURED, because the app had grown three separate
+// definitions of "these move together" — this list, MOVES_TOGETHER in Pair Hub,
+// and the live Correlation matrix — and a hand-written table cannot know that
+// oil started trading inverse to equities last month.
+export function redundantPicks(symbols, feed = null) {
+  const set = [...new Set(symbols || [])];
+  if (feed?.instruments) {
+    const measured = measuredOverlap(set, feed);
+    if (measured) return measured;
+  }
+  const has = new Set(set);
   return SAME_BET
-    .map(g => ({ ...g, picked: g.syms.filter(x => set.has(x)) }))
+    .map(g => ({ ...g, picked: g.syms.filter(x => has.has(x)), measured: false }))
     .filter(g => g.picked.length > 1);
+}
+
+// Groups of picked instruments that genuinely move together right now, built by
+// transitively joining any pair above the threshold. Returns null when there is
+// not enough published history, so the caller falls back rather than showing
+// nothing.
+export function measuredOverlap(symbols, feed, { threshold = 0.7, tf = 'D' } = {}) {
+  const syms = (symbols || []).filter(s => feed?.instruments?.[s]?.spark?.[tf]?.c?.length >= 15);
+  if (syms.length < 2) return null;
+
+  const ret = s => {
+    const c = feed.instruments[s].spark[tf].c, r = [];
+    for (let i = 1; i < c.length; i++) {
+      if (!(c[i] > 0) || !(c[i - 1] > 0)) return null;
+      r.push(Math.log(c[i] / c[i - 1]));
+    }
+    return r;
+  };
+  const R = {};
+  for (const s of syms) { const r = ret(s); if (r) R[s] = r; }
+  const keys = Object.keys(R);
+  if (keys.length < 2) return null;
+
+  const corr = (a, b) => {
+    const n = Math.min(a.length, b.length);
+    const x = a.slice(-n), y = b.slice(-n);
+    const mx = x.reduce((s, v) => s + v, 0) / n, my = y.reduce((s, v) => s + v, 0) / n;
+    let sxy = 0, sxx = 0, syy = 0;
+    for (let i = 0; i < n; i++) { const dx = x[i] - mx, dy = y[i] - my; sxy += dx * dy; sxx += dx * dx; syy += dy * dy; }
+    return sxx && syy ? sxy / Math.sqrt(sxx * syy) : 0;
+  };
+
+  // union-find over the pairs that clear the threshold
+  const parent = Object.fromEntries(keys.map(k => [k, k]));
+  const find = x => (parent[x] === x ? x : (parent[x] = find(parent[x])));
+  const pairs = [];
+  for (let i = 0; i < keys.length; i++) for (let j = i + 1; j < keys.length; j++) {
+    const r = corr(R[keys[i]], R[keys[j]]);
+    if (Math.abs(r) >= threshold) { parent[find(keys[i])] = find(keys[j]); pairs.push({ a:keys[i], b:keys[j], r:+r.toFixed(2) }); }
+  }
+  const groups = {};
+  for (const k of keys) (groups[find(k)] ||= []).push(k);
+
+  return Object.values(groups).filter(g => g.length > 1).map(picked => {
+    const inner = pairs.filter(p => picked.includes(p.a) && picked.includes(p.b));
+    const strongest = inner.reduce((m, p) => (!m || Math.abs(p.r) > Math.abs(m.r) ? p : m), null);
+    return {
+      name: 'measured', picked, measured: true, r: strongest?.r,
+      detail: strongest ? `${strongest.a} and ${strongest.b} at ${strongest.r > 0 ? '+' : ''}${strongest.r}` : null,
+    };
+  });
 }
 
 export const PRESETS = [
