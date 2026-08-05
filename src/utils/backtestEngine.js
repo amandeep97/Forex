@@ -651,43 +651,63 @@ function feedMeasureSeries(candles, WINDOW = 500) {
 
 const FEED_COND_TYPES = ['volpct', 'rangepos', 'chg20', 'persistence'];
 
+// Indicator series, memoised on the candle array itself.
+//
+// A search runs 540 strategies over the SAME in-sample array, and every one of
+// them rebuilt every series it needed from scratch. RSI over 140,000 bars is
+// identical on run 1 and run 540; recomputing it is pure waste, and the
+// volatility-percentile series — a rolling window — is far more expensive than
+// that.
+//
+// Keyed by array identity in a WeakMap, so a slice is correctly a different
+// dataset and the memory is released as soon as the candles are dropped.
+// Nothing in the engine mutates a candle array, which is what makes identity a
+// safe key.
+const SERIES_CACHE = new WeakMap();
+function cachedSeries(candles, key, build) {
+  let m = SERIES_CACHE.get(candles);
+  if (!m) { m = new Map(); SERIES_CACHE.set(candles, m); }
+  if (!m.has(key)) m.set(key, build());
+  return m.get(key);
+}
+
 function buildIndicators(candles, conditions) {
   const arrays = {};
   if (conditions.some(cd => FEED_COND_TYPES.includes(cd.type))) {
-    Object.assign(arrays, feedMeasureSeries(candles));
+    Object.assign(arrays, cachedSeries(candles, 'feed', () => feedMeasureSeries(candles)));
   }
   const ensure = (type, period, period2, maType) => {
     const mt = maType || 'ema';
     if (type === 'rsi') {
       const k = `rsi_${period}`;
-      if (!arrays[k]) arrays[k] = computeRSISeries(candles, period);
+      if (!arrays[k]) arrays[k] = cachedSeries(candles, k, () => computeRSISeries(candles, period));
     }
     if (type === 'mfi') {
       const k = `mfi_${period}`;
-      if (!arrays[k]) arrays[k] = computeMFISeries(candles, period);
+      if (!arrays[k]) arrays[k] = cachedSeries(candles, k, () => computeMFISeries(candles, period));
     }
     if (type === 'ma') {
       const k = `${mt}_${period}`;
-      if (!arrays[k]) arrays[k] = mt === 'sma' ? computeSMASeries(candles, period) : computeEMASeries(candles, period);
+      if (!arrays[k]) arrays[k] = cachedSeries(candles, k, () => mt === 'sma' ? computeSMASeries(candles, period) : computeEMASeries(candles, period));
     }
     if (type === 'ma_cross') {
       const k1 = `${mt}_${period}`, k2 = `${mt}_${period2}`;
-      if (!arrays[k1]) arrays[k1] = mt === 'sma' ? computeSMASeries(candles, period)  : computeEMASeries(candles, period);
-      if (!arrays[k2]) arrays[k2] = mt === 'sma' ? computeSMASeries(candles, period2) : computeEMASeries(candles, period2);
+      if (!arrays[k1]) arrays[k1] = cachedSeries(candles, k1, () => mt === 'sma' ? computeSMASeries(candles, period)  : computeEMASeries(candles, period));
+      if (!arrays[k2]) arrays[k2] = cachedSeries(candles, k2, () => mt === 'sma' ? computeSMASeries(candles, period2) : computeEMASeries(candles, period2));
     }
-    if (type === 'macd'         && !arrays['macd'])   arrays['macd']   = computeMACDSeries(candles);
-    if (type === 'bos'          && !arrays['bos'])    arrays['bos']    = computeBOSSeries(candles);
-    if (type === 'fvg'          && !arrays['fvg'])    arrays['fvg']    = computeFVGSeries(candles);
-    if (type === 'displacement' && !arrays['disp'])   arrays['disp']   = computeDisplacementSeries(candles);
-    if (type === 'ob'           && !arrays['ob'])     arrays['ob']     = computeOBSeries(candles);
-    if (type === 'ote_zone'     && !arrays['ote'])    arrays['ote']    = computeOTESeries(candles);
-    if (type === 'liquidity'    && !arrays['liq'])    arrays['liq']    = computeLiquiditySweepSeries(candles);
-    if (type === 'equal_hl'     && !arrays['ehl'])    arrays['ehl']    = computeEqualHLSeries(candles);
-    if (type === 'consolidation'&& !arrays['consol']) arrays['consol'] = computeConsolidationSeries(candles);
+    if (type === 'macd'         && !arrays['macd'])   arrays['macd'] = cachedSeries(candles, 'macd', () => computeMACDSeries(candles));
+    if (type === 'bos'          && !arrays['bos'])    arrays['bos'] = cachedSeries(candles, 'bos', () => computeBOSSeries(candles));
+    if (type === 'fvg'          && !arrays['fvg'])    arrays['fvg'] = cachedSeries(candles, 'fvg', () => computeFVGSeries(candles));
+    if (type === 'displacement' && !arrays['disp'])   arrays['disp'] = cachedSeries(candles, 'disp', () => computeDisplacementSeries(candles));
+    if (type === 'ob'           && !arrays['ob'])     arrays['ob'] = cachedSeries(candles, 'ob', () => computeOBSeries(candles));
+    if (type === 'ote_zone'     && !arrays['ote'])    arrays['ote'] = cachedSeries(candles, 'ote', () => computeOTESeries(candles));
+    if (type === 'liquidity'    && !arrays['liq'])    arrays['liq'] = cachedSeries(candles, 'liq', () => computeLiquiditySweepSeries(candles));
+    if (type === 'equal_hl'     && !arrays['ehl'])    arrays['ehl'] = cachedSeries(candles, 'ehl', () => computeEqualHLSeries(candles));
+    if (type === 'consolidation'&& !arrays['consol']) arrays['consol'] = cachedSeries(candles, 'consol', () => computeConsolidationSeries(candles));
   };
   for (const cd of conditions) {
     ensure(cd.type, cd.period, cd.period2, cd.maType);
-    if (cd.type === 'strong_rev') { const k = `strev_${cd.n || 5}`; if (!arrays[k]) arrays[k] = computeStrongReversalSeries(candles, cd.n || 5); }
+    if (cd.type === 'strong_rev') { const k = `strev_${cd.n || 5}`; if (!arrays[k]) arrays[k] = cachedSeries(candles, k, () => computeStrongReversalSeries(candles, cd.n || 5)); }
     if (cd.type === 'volume' && !arrays['volAvg']) {
       const period = 20, out = new Array(candles.length).fill(null);
       for (let i = period; i < candles.length; i++) {
@@ -771,7 +791,10 @@ export function runBacktest(candles, strategy, opts = {}) {
   const open        = [];
 
   const indArrays = opts.entryOverride ? {} : buildIndicators(candles, conditions);
-  const atr       = computeATRSeries(candles, 14);
+  const atr       = cachedSeries(candles, 'atr_14', () => computeATRSeries(candles, 14));
+  // Hoisted: Object.entries allocates a fresh array of pairs, and doing that
+  // once per bar per strategy is 75 million throwaway arrays over a search.
+  const indEntries = Object.entries(indArrays);
 
   const check = (condList, c, prev, inds, pattern, patternIds) => {
     if (logic === 'AND') return condList.every(cd => evalCond(c, prev, inds, cd, pattern, patternIds));
@@ -781,6 +804,14 @@ export function runBacktest(candles, strategy, opts = {}) {
   const entryOverride = typeof opts.entryOverride === 'function' ? opts.entryOverride : null;
   const mirroredConds = entryOverride ? [] : conditions.map(mirrorCond);
   const needCandlestick = !entryOverride && conditions.some(cd => cd.type === 'candlestick');
+
+  // Patterns depend only on the candles, never on the strategy, so they are
+  // computed once for the dataset and shared by all 540 combinations rather
+  // than recomputed bar by bar inside each one.
+  const patSeries = entryOverride ? [] : cachedSeries(candles, 'patAt',
+    () => candles.map((_, i) => detectPatternAt(candles, i)));
+  const patIdSeries = needCandlestick ? cachedSeries(candles, 'patIds',
+    () => candles.map((_, i) => patternsAt(candles, i))) : null;
 
   for (let i = 10; i < candles.length; i++) {
     const c    = candles[i];
@@ -792,11 +823,12 @@ export function runBacktest(candles, strategy, opts = {}) {
     const inds = {};
     let pattern = null, patternIds = null;
     if (!entryOverride) {
-      for (const [key, arr] of Object.entries(indArrays)) {
-        inds[key] = { cur: arr[i] ?? null, prev: arr[i - 1] ?? null };
+      for (let e = 0; e < indEntries.length; e++) {
+        const arr = indEntries[e][1];
+        inds[indEntries[e][0]] = { cur: arr[i] ?? null, prev: arr[i - 1] ?? null };
       }
-      pattern = detectPatternAt(candles, i);
-      patternIds = needCandlestick ? patternsAt(candles, i) : null;
+      pattern = patSeries[i];
+      patternIds = patIdSeries ? patIdSeries[i] : null;
     }
 
     // ── Exit open trades ──
