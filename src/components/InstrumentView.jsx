@@ -598,6 +598,47 @@ export default function InstrumentView({ sym: symProp, onBack }) {
             );
           })()}
 
+          {/* ── Who moves first ─────────────────────────────────────────────
+                Computed on the VPS over 400 daily bars, not here over 40: at
+                40 the significance threshold is above any effect that exists,
+                so the app could only ever have answered "not enough data".
+                Corrected across the whole family of tests, which is why it
+                usually reports nothing — and that is the finding. ── */}
+          {(() => {
+            const L = feed?.instruments?.[sym]?.leaders;
+            if (!L) return null;
+            return (
+              <Card title="WHO MOVES FIRST" src="delayed"
+                note={`${L.n} daily bars · needs |r| ≥ ${L.floor}`}>
+                {L.list?.length ? L.list.map(x => (
+                  <div key={x.sym} style={{ display:'flex', alignItems:'baseline', gap:8, padding:'3px 0' }}>
+                    <span style={{ fontSize:10, fontWeight:800, color:C.txt, width:82, flexShrink:0 }}>{x.sym}</span>
+                    <span style={{ fontSize:9, color:C.accent, flexShrink:0 }}>
+                      leads by {x.lag} day{x.lag > 1 ? 's' : ''}
+                    </span>
+                    <span style={{ fontSize:9, color: x.r > 0 ? '#22c55e' : '#ef4444' }}>
+                      {x.r > 0 ? '+' : ''}{x.r}
+                    </span>
+                    <span style={{ fontSize:8, color:'#2b3644' }}>same-day {x.r0}</span>
+                  </div>
+                )) : (
+                  <div style={{ fontSize:10, color:C.dim, lineHeight:1.7 }}>
+                    <strong style={{ color:'#94a3b8' }}>Nothing leads this.</strong>
+                    <div style={{ marginTop:3 }}>
+                      Over {L.n} daily bars, no instrument’s move predicts this one a day later strongly
+                      enough to be distinguished from chance. That is the usual answer in liquid markets —
+                      lead–lag is largely arbitraged away, and what survives is smaller than {L.floor}.
+                    </div>
+                    <div style={{ marginTop:3, color:'#2b3644' }}>
+                      Correlation is not this. Plenty of things move WITH it — see the panel above. Moving
+                      together is not moving first, and only the second one is tradeable.
+                    </div>
+                  </div>
+                )}
+              </Card>
+            );
+          })()}
+
           {/* ── What the VPS saw while the app was shut ── */}
           {(() => {
             const rec = feed?.instruments?.[sym];
