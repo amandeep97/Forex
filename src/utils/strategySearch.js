@@ -146,6 +146,7 @@ export async function searchStrategies(candles, {
 
   const results = [];
   let done = 0;
+  let lastYield = performance.now();
   const total = combinationCount();
 
   for (const tr of TRIGGERS) for (const fl of FILTERS) for (const ex of EXITS) for (const st of STOPS) {
@@ -157,11 +158,15 @@ export async function searchStrategies(candles, {
       stats = calcStats(r.trades);
     } catch { /* a combination that cannot run is simply not a candidate */ }
     done++;
-    // Yield to the browser periodically — 540 backtests in one synchronous
-    // block freezes the phone and looks like a crash.
-    if (done % 12 === 0) {
+    // Yield on elapsed time, not on a fixed count. One combination costs under
+    // a millisecond on 500 daily bars and a fifth of a second on 140,000
+    // one-minute ones, so "every 12" meant either yielding pointlessly often or
+    // going two and a half seconds between repaints — which reads as a hang,
+    // and is what a stalled progress counter actually was.
+    if (performance.now() - lastYield > 80) {
       onProgress?.(done, total);
       await new Promise(r => setTimeout(r, 0));
+      lastYield = performance.now();
     }
 
     const e = expR(stats);

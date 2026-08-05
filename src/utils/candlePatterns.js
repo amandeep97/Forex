@@ -183,9 +183,17 @@ function _detectOnWindow(window) {
 
 // Pattern ids completed AT bar i (uses only candles up to i — no look-ahead).
 // Shared by the Backtester so its candlestick logic matches the rest of the app.
+//
+// Only the tail is passed. _detectOnWindow reads at most the last 20 bars
+// (avgBody's slice(-20); the trend checks use 11, the patterns themselves 5),
+// so slicing from bar 0 copied i elements to look at twenty of them — which
+// made a full pass quadratic in the bar count. Unnoticeable on 500 daily bars
+// and about half an hour on 140,000 one-minute ones.
+const PATTERN_LOOKBACK = 24     // 20 needed, four spare
+
 export function patternsAt(candles, i) {
   if (!candles || i < 4 || i >= candles.length) return []
-  return _detectOnWindow(candles.slice(0, i + 1))
+  return _detectOnWindow(candles.slice(Math.max(0, i - PATTERN_LOOKBACK), i + 1))
 }
 
 export function detectCandlePatterns(candles, lookback = 10) {
