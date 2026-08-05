@@ -999,6 +999,24 @@ export default function Backtester() {
     } catch (e) { setErr(e.message); setSearch(null); }
   };
 
+  // Load a search finalist into the builder, so the full report — trade list,
+  // equity curve, grade, forward-test seal — can be run on it. The search says
+  // whether something survived; everything else about it lives here.
+  const loadFinalist = (f) => {
+    const st = f.strategy;
+    setConds(st.conditions.map((c, i) => ({ ...c, id: i + 1 })));
+    setLogic(st.logic || 'AND');
+    setDir(st.direction || 'both');
+    setExit(st.exitType);
+    if (st.exitType === 'rr')    setRr(st.rrRatio || 2);
+    if (st.exitType === 'trail') setTrailA(st.trailAtr || 3);
+    setSlType(st.slType);
+    if (st.slType === 'atr')   setSlA(st.slAtr || 2);
+    if (st.slType === 'swing') setSwingLb(st.swingLookback || 12);
+    setSearch(null);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   const removeGrade = (sig) => setLibrary(removeFromLibrary(sig));
   const loadFromLib = (e) => {
     setSym(e.symbol); setTf(e.tf); setDir(e.dir);
@@ -1390,6 +1408,11 @@ export default function Backtester() {
                       </strong>
                       {f.outSample ? ` · ${f.outSample.winRate}% · n=${f.outSample.n}` : ''}
                     </span>
+                    <button onClick={() => loadFinalist(f)}
+                      style={{ marginLeft:'auto', fontSize:11, fontWeight:700, padding:'3px 10px', borderRadius:6,
+                        cursor:'pointer', border:'1px solid #7dd3fc55', background:'#0b1a2a', color:'#7dd3fc' }}>
+                      open in builder →
+                    </button>
                   </div>
                 </div>
               ))}
