@@ -99,11 +99,45 @@ function expR(stats) {
   return stats.avgRR ?? null;
 }
 
+// How far back the data reaches, which is not the same thing as how many bars
+// there are and matters a great deal more.
+//
+// 5,000 one-minute bars is six days. Six days is one regime — one prevailing
+// trend, one volatility level, one set of positioning — so a rule tuned on it
+// has learned last week, and the holdout is the second half of last week. The
+// bar count guard passes it happily, which is exactly why it needed a second
+// guard that counts calendar time instead.
+const MIN_SPAN_DAYS  = 180;
+const GOOD_SPAN_DAYS = 1095;   // three years — enough to contain regimes that disagree
+
+export function historySpanDays(candles) {
+  if (!candles || candles.length < 2) return 0;
+  return (candles[candles.length - 1].t - candles[0].t) / 86400e3;
+}
+
+export function describeSpan(days) {
+  if (days >= 365) return `${(days / 365).toFixed(1)} years`;
+  if (days >= 60)  return `${Math.round(days / 30)} months`;
+  return `${Math.round(days)} days`;
+}
+
 export async function searchStrategies(candles, {
   minTrades = 30, holdout = 0.3, keep = 8, spreadPips, onProgress,
 } = {}) {
   if (!candles || candles.length < 400) {
     return { ok:false, reason:`Only ${candles?.length || 0} bars. A search needs at least 400, and far more to mean anything.` };
+  }
+
+  const spanDays = historySpanDays(candles);
+  if (spanDays < MIN_SPAN_DAYS) {
+    return {
+      ok: false,
+      reason: `This history covers ${describeSpan(spanDays)}. Searching 540 combinations across it would find `
+            + `the best fit to a single market regime and label it a strategy — the holdout would be the `
+            + `second half of the same regime, so it could not catch the error either. `
+            + `Switch to the Daily timeframe, or a longer one, until the history reaches at least six months.`,
+      spanDays,
+    };
   }
 
   const cut = Math.floor(candles.length * (1 - holdout));
@@ -164,6 +198,10 @@ export async function searchStrategies(candles, {
     ok: true,
     tested: total, qualified: results.length,
     inSampleBars: inSample.length, outSampleBars: outSample.length,
+    spanDays, span: describeSpan(spanDays),
+    // Long enough to run, still short enough that a survivor has only been
+    // asked to work in one or two regimes.
+    thinHistory: spanDays < GOOD_SPAN_DAYS,
     finalists,
     // Stated plainly so the number can never be read as a discovery count.
     expectedFalsePositives: +(total * 0.05).toFixed(0),
