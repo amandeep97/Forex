@@ -906,6 +906,19 @@ export function runBacktest(candles, strategy, opts = {}) {
       sl  = dir === 'long' ? entry - slPips * pip : entry + slPips * pip;
     }
 
+    // ── Reject a stop that is not a real stop ────────────────────────────
+    // A swing stop placed where the recent low IS the entry bar's low gives a
+    // risk of a fraction of a pip. The old code floored that at 1 pip and
+    // carried on, which corrupted everything downstream: R is pnl divided by
+    // risk, so a trailing winner against a phantom stop reported thousands of
+    // R, and position sizing — 1% of equity over the stop distance — implied a
+    // position nobody could take.
+    //
+    // Rejecting is also what a person would do. You do not enter a trade whose
+    // stop is inside the spread; you skip it.
+    const minRisk = currAtr * 0.3;
+    if (!(Math.abs(entry - sl) >= minRisk) || slP * pip < spreadPips * pip * 2) continue;
+
     // ── Compute TP ──
     let tp, tpP;
     if (exitType === 'trail') {
