@@ -302,9 +302,10 @@ function Editor({ filter, feed, onChange, onClose, onDelete, onDuplicate, onExpo
               <span style={{ fontSize:8, color:'#2b3644', fontFamily:C.mono }}>{filter.symbols.join(' · ')}</span>
             )}
           </div>
-          {redundantPicks(filter.symbols).map((g, i) => (
+          {redundantPicks(filter.symbols, feed).map((g, i) => (
             <div key={i} style={{ fontSize:9, color:C.warn, fontFamily:C.mono, marginTop:3, lineHeight:1.5 }}>
-              ⚠ {g.picked.join(' + ')} are one {g.name} position, not {g.picked.length} — they move together.
+              ⚠ {g.picked.join(' + ')} are one position, not {g.picked.length} —
+              {g.measured ? ` measured together right now (${g.detail}).` : ` they move together (${g.name}).`}
             </div>
           ))}
           {picking && (

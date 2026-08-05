@@ -1,28 +1,36 @@
 import { useState, useEffect, useCallback } from 'react';
 import { pearson as sharedPearson } from '../utils/mathUtils';
+import { INSTRUMENTS as REGISTRY } from '../data/instruments';
+
+// Derived from the canonical registry rather than typed out again. This was a
+// fourth hand-maintained instrument list, and it had drifted: Brent was here
+// and WTI was not, so the oil row showed one contract when the app trades two —
+// and UK100, GER40, JPN225 and NATGAS were missing outright.
+//
+// US10Y is not a tradeable instrument in the registry but belongs on a
+// correlation grid, so it is added explicitly as the one genuine extra.
+const SHORT_LABEL = {
+  'USOIL':'Oil(WTI)', 'UKOIL':'Oil(BCO)', 'NATGAS':'NatGas',
+  'US500':'SPX', 'US100':'NQ', 'US30':'DJI', 'US2000':'RUT',
+  'UK100':'FTSE', 'GER40':'DAX', 'JPN225':'NKY',
+};
+const COLOR_BY_CLASS = { fx:'#3b82f6', metal:'#fbbf24', energy:'#fb923c', index:'#22c55e', crypto:'#f59e0b' };
+
+// The grid is unreadable past roughly this many rows on a phone, so FX is
+// limited to the majors and crosses people actually watch together.
+const FX_SHOWN = new Set(['EUR/USD','GBP/USD','USD/JPY','USD/CHF','AUD/USD','USD/CAD','NZD/USD',
+                          'EUR/JPY','GBP/JPY','AUD/JPY','EUR/GBP']);
 
 const INSTRUMENTS = [
-  { key: 'EUR_USD',  label: 'EUR/USD', color: '#3b82f6' },
-  { key: 'GBP_USD',  label: 'GBP/USD', color: '#8b5cf6' },
-  { key: 'USD_JPY',  label: 'USD/JPY', color: '#f59e0b' },
-  { key: 'USD_CHF',  label: 'USD/CHF', color: '#f97316' },
-  { key: 'AUD_USD',  label: 'AUD/USD', color: '#10b981' },
-  { key: 'USD_CAD',  label: 'USD/CAD', color: '#ef4444' },
-  { key: 'NZD_USD',  label: 'NZD/USD', color: '#06b6d4' },
-  { key: 'EUR_JPY',  label: 'EUR/JPY', color: '#a78bfa' },
-  { key: 'GBP_JPY',  label: 'GBP/JPY', color: '#c084fc' },
-  { key: 'AUD_JPY',  label: 'AUD/JPY', color: '#34d399' },
-  { key: 'EUR_GBP',  label: 'EUR/GBP', color: '#60a5fa' },
-  { key: 'XAU_USD',  label: 'XAU/USD', color: '#fbbf24' },
-  { key: 'XAG_USD',  label: 'XAG/USD', color: '#94a3b8' },
-  { key: 'BCO_USD',    label: 'Oil(BCO)', color: '#fb923c' },
-  { key: 'USB10Y_USD', label: 'US10Y',   color: '#818cf8' },
-  { key: 'SPX500_USD', label: 'SPX',     color: '#22c55e' },
-  { key: 'NAS100_USD', label: 'NQ',      color: '#06b6d4' },
-  { key: 'US30_USD',   label: 'DJI',     color: '#a78bfa' },
-  { key: 'US2000_USD', label: 'RUT',     color: '#f472b6' },
-  { key: 'BTC_USD',    label: 'BTC',     color: '#f59e0b' },
-  { key: 'ETH_USD',    label: 'ETH',     color: '#818cf8' },
+  ...REGISTRY
+    .filter(i => i.oanda && (i.cls !== 'fx' || FX_SHOWN.has(i.sym)))
+    .map(i => ({
+      key: i.oanda,
+      label: SHORT_LABEL[i.sym] || i.sym,
+      color: COLOR_BY_CLASS[i.cls] || '#94a3b8',
+      cls: i.cls,
+    })),
+  { key:'USB10Y_USD', label:'US10Y', color:'#818cf8', cls:'rate' },
 ];
 
 const TF_OPTIONS = ['M15', 'H1', 'H4', 'D'];
@@ -92,6 +100,11 @@ export default function CorrelationMatrix() {
   const [lastRefresh, setLastRefresh] = useState(null);
   const [selected, setSelected] = useState(null); // { row, col } for highlight
   const [filter, setFilter] = useState(0.7); // show only |r| >= filter (0 = show all)
+  // Reading one instrument's relationships off a 24x24 grid means scanning a
+  // row and a column and holding both in your head. Tapping its name gives the
+  // same information as a sorted list, which is how the question is actually
+  // asked: "what does gold move with?"
+  const [focus, setFocus] = useState(null);
 
   const hasOanda = !!getOandaCreds();
 
@@ -232,9 +245,13 @@ export default function CorrelationMatrix() {
                 <tbody>
                   {available.map(rowIns => (
                     <tr key={rowIns.key}>
-                      <td style={{ padding:'2px 6px', textAlign:'right', fontWeight:700, fontSize:9,
-                        color: selected && (selected.row === rowIns.key || selected.col === rowIns.key) ? rowIns.color : 'var(--text3)',
-                        whiteSpace:'nowrap' }}>
+                      <td onClick={() => setFocus(focus === rowIns.key ? null : rowIns.key)}
+                        title={`Show everything ${rowIns.label} moves with`}
+                        style={{ padding:'2px 6px', textAlign:'right', fontWeight:700, fontSize:9,
+                        color: focus === rowIns.key ? rowIns.color
+                             : selected && (selected.row === rowIns.key || selected.col === rowIns.key) ? rowIns.color : 'var(--text3)',
+                        whiteSpace:'nowrap', cursor:'pointer',
+                        textDecoration: focus === rowIns.key ? 'underline' : 'none' }}>
                         {rowIns.label}
                       </td>
                       {available.map(colIns => {
@@ -310,6 +327,64 @@ export default function CorrelationMatrix() {
             })()}
 
             {/* Strong pairs list */}
+            {/* ── One instrument against everything ─────────────────────────
+                  Same numbers as the grid, asked the way people actually ask
+                  it. Sorted by strength, with the threshold below which a
+                  correlation at this sample size is indistinguishable from
+                  chance shown rather than left for the reader to guess. ── */}
+            {focus && (() => {
+              const me = available.find(i => i.key === focus);
+              if (!me) return null;
+              const rows = available
+                .filter(o => o.key !== focus)
+                .map(o => ({ ...o, r: matrix[focus]?.[o.key] }))
+                .filter(o => typeof o.r === 'number')
+                .sort((a, b) => Math.abs(b.r) - Math.abs(a.r));
+              const n = closes[focus]?.length || 0;
+              const floor = n > 4 ? 1.96 / Math.sqrt(n) : 1;
+              const strong = rows.filter(o => Math.abs(o.r) >= 0.7);
+              return (
+                <div style={{ background:'var(--card)', border:`1px solid ${me.color}55`, borderRadius:8,
+                  padding:'12px 14px', marginBottom:12 }}>
+                  <div style={{ display:'flex', alignItems:'center', gap:8, marginBottom:8, flexWrap:'wrap' }}>
+                    <span style={{ fontSize:14, fontWeight:800, color:me.color }}>{me.label}</span>
+                    <span style={{ fontSize:11, color:'var(--text3)' }}>against everything · {tf} · {n} bars</span>
+                    <button onClick={() => setFocus(null)}
+                      style={{ marginLeft:'auto', fontSize:11, padding:'2px 9px', borderRadius:6, cursor:'pointer',
+                        background:'transparent', color:'var(--text3)', border:'1px solid var(--border)' }}>close</button>
+                  </div>
+                  {strong.length > 0 && (
+                    <div style={{ fontSize:11, color:'#fbbf24', marginBottom:8, lineHeight:1.6 }}>
+                      ⚠ {strong.map(o => o.label).join(', ')} {strong.length > 1 ? 'are' : 'is'} above |0.7| —
+                      holding {me.label} and {strong.length > 1 ? 'those' : 'that'} is one position at double size,
+                      not two ideas.
+                    </div>
+                  )}
+                  {rows.map(o => (
+                    <div key={o.key} style={{ display:'flex', alignItems:'center', gap:8, padding:'2px 0',
+                      opacity: Math.abs(o.r) >= floor ? 1 : 0.45 }}>
+                      <span style={{ fontSize:11, fontWeight:700, color:o.color, width:76, flexShrink:0 }}>{o.label}</span>
+                      <span style={{ fontSize:10, color:'var(--text3)', width:52, flexShrink:0 }}>
+                        {o.r > 0 ? 'with' : 'against'}
+                      </span>
+                      <span style={{ flex:1, height:4, background:'#0f172a', borderRadius:2, overflow:'hidden', minWidth:40 }}>
+                        <span style={{ display:'block', width:`${Math.min(100, Math.abs(o.r) * 100)}%`, height:'100%',
+                          background: o.r > 0 ? '#22c55e' : '#ef4444' }}/>
+                      </span>
+                      <span style={{ fontSize:11, fontFamily:'monospace', fontWeight:700, width:44, textAlign:'right',
+                        color: Math.abs(o.r) >= floor ? (o.r > 0 ? '#22c55e' : '#ef4444') : 'var(--text3)' }}>
+                        {o.r > 0 ? '+' : ''}{o.r.toFixed(2)}
+                      </span>
+                    </div>
+                  ))}
+                  <div style={{ fontSize:10, color:'var(--text3)', marginTop:8, lineHeight:1.6 }}>
+                    Dimmed rows are below |{floor.toFixed(2)}|, the level at which a correlation over {n} bars
+                    stops being distinguishable from chance. Reading meaning into those is reading noise.
+                  </div>
+                </div>
+              );
+            })()}
+
             <div style={{ background:'var(--card)', border:'1px solid var(--border)', borderRadius:8, padding:'12px 14px' }}>
               <div style={{ display:'flex', alignItems:'center', gap:8, marginBottom:10 }}>
                 <span style={{ fontSize:12, fontWeight:700, color:'var(--text)' }}>Notable Correlations</span>
