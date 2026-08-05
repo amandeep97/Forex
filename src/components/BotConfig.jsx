@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import { ghRead, ghWrite, isGithubConfigured } from '../utils/githubSync';
 import ChartModal from './ChartModal';
 import { getIMSignals, IM_DEFS } from '../utils/intermarket';
+import { takeStagedBotStrategy } from '../utils/strategyToBot';
 
 // ── SMC engine (browser port of vps-bot/src/smc.js) ──────────────────────────
 
@@ -415,6 +416,7 @@ const TP_METHODS = [
   { v:'rr',    l:'R:R Ratio' },
   { v:'fib',   l:'Fib Extension' },
   { v:'fixed', l:'Fixed Pips' },
+  { v:'trail', l:'Trailing Stop (no target)' },
 ];
 
 // ── Strategy templates ────────────────────────────────────────────────────────
@@ -873,6 +875,21 @@ function StrategyEditor({ strat, onSave, onCancel }) {
             </div>
           </>
         )}
+        {s.risk.tpMethod === 'trail' && (
+          <>
+            <FieldRow label="Trail Distance (ATR ×)">
+              <NumberInput value={s.risk.trailAtr ?? 3} onChange={v => set('risk.trailAtr', v)} min={1} max={10} step={0.5}/>
+            </FieldRow>
+            <div style={{ padding: '4px 0 8px 12px', borderBottom: '1px solid var(--border)', fontSize: 10, color: 'var(--text3)', lineHeight: 1.7 }}>
+              No take profit. The stop follows {s.risk.trailAtr ?? 3} ATR behind, moving only when a{' '}
+              <strong style={{ color: '#94a3b8' }}>{s.timeframe} bar closes</strong> further ahead — never backwards.
+              <div style={{ marginTop: 3, color: '#fbbf24' }}>
+                Expect a low win rate. This exit takes many small losses to hold the few large trends
+                that pay for them, and it needs the VPS bot running to walk the stop.
+              </div>
+            </div>
+          </>
+        )}
         {s.risk.tpMethod === 'fixed' && <FieldRow label="TP (pips)"><NumberInput value={s.risk.tpPips||40} onChange={v => set('risk.tpPips', v)} min={5} max={500} step={1}/></FieldRow>}
         {s.risk.tpMethod === 'fib' && (
           <div style={{ padding: '4px 0 6px', borderBottom: '1px solid var(--border)' }}>
@@ -923,6 +940,7 @@ export default function BotConfig({ autoExecute = false, onAutoTrade }) {
   const [saving,    setSaving]    = useState(false);
   const [err,       setErr]       = useState('');
   const [editing,   setEditing]   = useState(null); // null | 'new' | stratId
+  const [staged,    setStaged]    = useState(null); // strategy handed over by the Backtester
   const [pat,       setPat]       = useState(() => localStorage.getItem('github_pat') || '');
   const [patSaved,  setPatSaved]  = useState(!!localStorage.getItem('github_pat'));
   const [chartPair, setChartPair] = useState(null);
@@ -943,6 +961,17 @@ export default function BotConfig({ autoExecute = false, onAutoTrade }) {
   }, []);
 
   useEffect(() => { if (patSaved) load(); }, [patSaved, load]);
+
+  // A strategy handed over from the Backtester opens straight into the editor,
+  // switched off, with the list of ways it differs from the tested rule still
+  // attached. Landing it silently in the strategy list would reproduce the
+  // problem the handoff exists to solve.
+  useEffect(() => {
+    const s = takeStagedBotStrategy();
+    if (!s?.config) return;
+    setStaged(s);
+    setEditing('new');
+  }, []);
 
   const saveConfig = async (cfg) => {
     setSaving(true); setErr('');
@@ -1020,16 +1049,42 @@ export default function BotConfig({ autoExecute = false, onAutoTrade }) {
   // ── Edit screen ─────────────────────────────────────────────────────────────
   if (editing !== null) {
     const existing = editing === 'new' ? null : config.strategies.find(s => s.id === editing);
+    // Merged field by field: the translator only sets what it can map, and a
+    // shallow spread would blank every condition it stayed silent about.
+    const fromBacktest = staged && editing === 'new' ? {
+      ...DEFAULT_STRAT, ...staged.config,
+      conditions: { ...DEFAULT_STRAT.conditions, ...staged.config.conditions },
+      risk:       { ...DEFAULT_STRAT.risk,       ...staged.config.risk },
+    } : null;
+    const approx = (staged?.notes || []).filter(n => n.level === 'approximate');
     return (
       <div style={{ maxWidth: 520 }}>
         <div style={{ padding: '10px 16px', borderBottom: '1px solid var(--border)', display: 'flex', alignItems: 'center', gap: 8 }}>
-          <button onClick={() => setEditing(null)} style={{ background: 'none', border: 'none', color: 'var(--text3)', fontSize: 18, cursor: 'pointer', lineHeight: 1 }}>←</button>
-          <span style={{ fontSize: 13, fontWeight: 700, color: 'var(--text)' }}>{existing ? 'Edit Strategy' : 'New Strategy'}</span>
+          <button onClick={() => { setEditing(null); setStaged(null); }} style={{ background: 'none', border: 'none', color: 'var(--text3)', fontSize: 18, cursor: 'pointer', lineHeight: 1 }}>←</button>
+          <span style={{ fontSize: 13, fontWeight: 700, color: 'var(--text)' }}>
+            {existing ? 'Edit Strategy' : fromBacktest ? 'From Backtester' : 'New Strategy'}
+          </span>
         </div>
+        {fromBacktest && (
+          <div style={{ margin: '10px 16px', padding: '10px 12px', borderRadius: 8,
+            border: '1px solid #f59e0b44', background: '#f59e0b0d' }}>
+            <div style={{ fontSize: 12, fontWeight: 800, color: '#f59e0b', marginBottom: 5 }}>
+              {approx.length} way{approx.length === 1 ? '' : 's'} this differs from the backtest
+            </div>
+            {approx.map((n, i) => (
+              <div key={i} style={{ fontSize: 11, color: '#c7d2da', lineHeight: 1.6, marginTop: 5 }}>
+                <strong style={{ color: '#e2e8f0' }}>{n.what}</strong> — {n.why}
+              </div>
+            ))}
+            <div style={{ fontSize: 11, color: 'var(--text3)', marginTop: 7 }}>
+              It is switched off. Nothing trades until you save it and turn it on.
+            </div>
+          </div>
+        )}
         <StrategyEditor
-          strat={existing || { ...DEFAULT_STRAT }}
-          onSave={handleSaveStrat}
-          onCancel={() => setEditing(null)}
+          strat={existing || fromBacktest || { ...DEFAULT_STRAT }}
+          onSave={(s) => { setStaged(null); handleSaveStrat(s); }}
+          onCancel={() => { setEditing(null); setStaged(null); }}
         />
       </div>
     );

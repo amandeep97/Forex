@@ -113,6 +113,21 @@ class OandaClient {
     });
   }
 
+  // Move the stop on a trade that is already open.
+  //
+  // OANDA also offers a native trailing stop (`trailingStopLoss`), which is one
+  // field at order placement and is handled server-side even if this bot is
+  // down. It is deliberately not used: it ratchets on every tick, while the
+  // Backtester ratchets on bar closes. Those are different strategies — the
+  // tick version is wicked out of trades the tested one holds — and a live
+  // result that cannot be compared to its backtest is not worth having.
+  async modifyTradeStop(tradeId, price) {
+    return this._req(`/accounts/${this.accountId}/trades/${tradeId}/orders`, {
+      method: 'PUT',
+      body:   JSON.stringify({ stopLoss: { price: price.toFixed(5), timeInForce: 'GTC' } }),
+    });
+  }
+
   async closePosition(instrument) {
     return this._req(
       `/accounts/${this.accountId}/positions/${instrument}/close`,

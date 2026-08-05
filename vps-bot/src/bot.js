@@ -2,7 +2,9 @@
 const { OandaClient }   = require('./oanda');
 const { GitHubClient }  = require('./github');
 const { TelegramClient } = require('./telegram');
-const { analyzeSMC }    = require('./smc');
+const { analyzeSMC, computeATR } = require('./smc');
+const path = require('path');
+const { pathToFileURL } = require('url');
 const {
   getCurrentSession, isWeekend,
   getPipSize, calcPosition, genTradeId, fmtPrice,
@@ -24,6 +26,38 @@ const TF_MS = { M1:60e3, M5:300e3, M15:900e3, M30:1800e3, H1:3600e3, H2:7200e3, 
 function barStartMs(tf) {
   const ms = TF_MS[tf] || 900e3;
   return Math.floor(Date.now() / ms) * ms;
+}
+
+// Candle patterns come from the app's module, loaded over the same ESM-from-CJS
+// bridge the live feed uses. Writing a second engulfing check here would be
+// quicker and would eventually disagree with the Backtester — so a rule that
+// tested well would trade differently, and there would be no way to tell from
+// either screen which one was lying.
+const PATTERNS_URL = pathToFileURL(path.join(__dirname, '..', '..', 'src', 'utils', 'candlePatterns.js')).href;
+
+// EMA and VWAP are unambiguous enough to compute here; there is no second
+// definition to drift away from.
+function emaAt(candles, period) {
+  if (candles.length < period) return null;
+  const k = 2 / (period + 1);
+  let e = candles.slice(0, period).reduce((s, c) => s + c.c, 0) / period;
+  for (let i = period; i < candles.length; i++) e = candles[i].c * k + e * (1 - k);
+  return e;
+}
+
+// Session VWAP, anchored to the start of the current UTC day — the reference
+// intraday traders actually use. Anchoring to the fetch window instead would
+// give a different number every time the bot restarted.
+function vwapToday(candles) {
+  const dayStart = Math.floor(Date.now() / 86400e3) * 86400e3;
+  let pv = 0, vol = 0;
+  for (const c of candles) {
+    if (c.t < dayStart) continue;
+    const typical = (c.h + c.l + c.c) / 3;
+    pv  += typical * (c.v || 1);
+    vol += (c.v || 1);
+  }
+  return vol > 0 ? pv / vol : null;
 }
 
 class ForexBot {
@@ -91,6 +125,11 @@ class ForexBot {
 
     const reconcileChanged = await this._reconcileOpenTrades(openTrades, tradeLog);
     const syncChanged      = await this._syncClosedTrades(openTrades, tradeLog, account);
+    // Before the entry scan and before the global-limit early return: managing
+    // money already at risk outranks looking for somewhere to put more, and a
+    // full book is exactly when the stops most need walking.
+    const trailChanged     = await this._manageTrailingStops(openTrades, tradeLog)
+      .catch(e => { this.err('Trailing stops', e); return false; });
 
     const utcH = new Date().getUTCHours(), utcM = new Date().getUTCMinutes();
     if (utcH === 21 && utcM < 2) {
@@ -100,7 +139,7 @@ class ForexBot {
     const maxTotal = config.globalSettings?.maxTotalTrades || 3;
     if (openTrades.length >= maxTotal) {
       this.log(`Global limit reached (${openTrades.length}/${maxTotal}) — not scanning`);
-      if (reconcileChanged || syncChanged) await this._saveTrades(tradeLog);
+      if (reconcileChanged || syncChanged || trailChanged) await this._saveTrades(tradeLog);
       return;
     }
 
@@ -150,7 +189,7 @@ class ForexBot {
       }
     }
 
-    if (reconcileChanged || syncChanged || tradePlaced) await this._saveTrades(tradeLog);
+    if (reconcileChanged || syncChanged || trailChanged || tradePlaced) await this._saveTrades(tradeLog);
     else this.log('No changes — skipping trades.json write');
   }
 
@@ -240,6 +279,13 @@ class ForexBot {
       ratio:      !conditions.ratioFilter?.enabled,
       intermarket: true,
       cot:        true,
+      // These three were configurable in the app and read by nothing. A switch
+      // that does not switch anything is worse than a missing feature: a
+      // strategy set to enter only on a bullish engulfing entered on every
+      // bar, and the screen said it was filtering.
+      candle:     await this._checkCandlePattern(candles, conditions.candlePattern),
+      ema:        this._checkEMA(candles, conditions.emaFilter),
+      vwap:       this._checkVWAP(candles, conditions.vwapFilter),
     };
 
     if (conditions.ratioFilter?.enabled) {
@@ -280,10 +326,10 @@ class ForexBot {
       return false;
     }
 
-    const tpPips = Math.abs(tp - cp) / pip;
-    const rr     = +(tpPips / slPips).toFixed(2);
-
-    if (rr < 1.5) { this.log(`${pair}: RR too low (${rr})`); return false; }
+    // A trailing exit has no planned RR to check. Applying the 1.5 floor to it
+    // would reject every trailing trade, since tp is null and the ratio is NaN.
+    const rr = tp == null ? null : +((Math.abs(tp - cp) / pip) / slPips).toFixed(2);
+    if (rr != null && rr < 1.5) { this.log(`${pair}: RR too low (${rr})`); return false; }
 
     let lots, units;
     if (risk.riskType === 'lots' && risk.fixedLots) {
@@ -327,7 +373,12 @@ class ForexBot {
       direction: dir,
       entry:     +fmtPrice(actualEntry, pair),
       sl:        +fmtPrice(sl, pair),
-      tp:        +fmtPrice(tp, pair),
+      tp:        tp == null ? null : +fmtPrice(tp, pair),
+      // Carried on the trade, not looked up from the strategy each tick. If the
+      // config is edited or the strategy deleted while a position is open, the
+      // stop must keep walking on the terms the trade was opened under.
+      trail:     tp == null ? { atr: risk.trailAtr || 3, tf: timeframe } : null,
+      trailBar:  null,
       lotSize:   lots,
       units:     signedUnits,
       rrPlanned: rr,
@@ -345,13 +396,14 @@ class ForexBot {
 
     tradeLog.trades.push(record);
 
-    this.log(`${pair}: ORDER PLACED — ${dir.toUpperCase()} ${lots} lots | Entry ${fmtPrice(actualEntry, pair)} | SL ${fmtPrice(sl, pair)} | TP ${fmtPrice(tp, pair)} | RR 1:${rr}`);
+    const exitDesc = tp == null ? `TRAIL ${risk.trailAtr || 3} ATR` : `TP ${fmtPrice(tp, pair)} | RR 1:${rr}`;
+    this.log(`${pair}: ORDER PLACED — ${dir.toUpperCase()} ${lots} lots | Entry ${fmtPrice(actualEntry, pair)} | SL ${fmtPrice(sl, pair)} | ${exitDesc}`);
 
     await this.telegram.send(this.telegram.tradeOpened({
-      pair, dir, lots: lots.toFixed(2), rr,
+      pair, dir, lots: lots.toFixed(2), rr: rr ?? '—',
       entry: fmtPrice(actualEntry, pair),
       sl:    fmtPrice(sl, pair),
-      tp:    fmtPrice(tp, pair),
+      tp:    tp == null ? `trailing ${risk.trailAtr || 3} ATR` : fmtPrice(tp, pair),
       strategy: strat.name,
       session,
     })).catch(e => this.warn(`Telegram: ${e.message}`));
@@ -385,6 +437,47 @@ class ForexBot {
     }
   }
 
+  // A pattern the app knows about must be present on the last CLOSED bar.
+  // `candles` from OandaClient are already complete-only, so the last element
+  // is the most recent finished bar and there is no look-ahead to worry about.
+  //
+  // If the shared module cannot be loaded the answer is false, not true. An
+  // unloadable filter that silently passes would place trades the strategy
+  // explicitly asked not to place.
+  async _checkCandlePattern(candles, want) {
+    if (!want || want === 'any') return true;
+    let mod;
+    try {
+      if (!this._patterns) this._patterns = await import(PATTERNS_URL);
+      mod = this._patterns;
+    } catch (e) {
+      this.warn(`Candle patterns not loadable (${e.message}) — treating filter as failed. Run git pull on the VPS.`);
+      return false;
+    }
+    const ids = mod.patternsAt(candles, candles.length - 1) || [];
+    if (!ids.length) return false;
+    if (want === 'doji') return ids.some(id => /doji|spinning_top/.test(id));
+    return ids.some(id => mod.PATTERN_MAP[id]?.type === want);
+  }
+
+  _checkEMA(candles, filter) {
+    if (!filter?.enabled) return true;
+    const e = emaAt(candles, filter.period || 50);
+    if (e == null) return false;
+    const cp = candles[candles.length - 1].c;
+    return (filter.side || 'above') === 'above' ? cp > e : cp < e;
+  }
+
+  _checkVWAP(candles, filter) {
+    if (!filter?.enabled) return true;
+    const v = vwapToday(candles);
+    // Before the first bar of the UTC day there is no VWAP yet. Passing would
+    // mean the filter quietly switches itself off every night at midnight.
+    if (v == null) return false;
+    const cp = candles[candles.length - 1].c;
+    return (filter.side || 'above') === 'above' ? cp > v : cp < v;
+  }
+
   _checkRSI(rsi, filter) {
     if (filter.comparison === 'above') return rsi > filter.value;
     if (filter.comparison === 'below') return rsi < filter.value;
@@ -410,6 +503,10 @@ class ForexBot {
   _calcTP(dir, cp, sl, risk, pip) {
     const method = risk.tpMethod || 'rr';
     const slDist = Math.abs(cp - sl);
+    // A trailing exit has no target by definition — that is the whole point of
+    // it. The order goes out with a stop and nothing else, and the stop walks
+    // forward each bar in _manageTrailingStops.
+    if (method === 'trail') return null;
     if (method === 'rr') {
       const rr = risk.rrRatio || 2;
       return dir === 'long' ? cp + slDist * rr : cp - slDist * rr;
@@ -424,6 +521,64 @@ class ForexBot {
       if (parsed.length > 0) ext = parsed[0];
     }
     return dir === 'long' ? cp + slDist * ext : cp - slDist * ext;
+  }
+
+  // ── Trailing stops ─────────────────────────────────────────────────────────
+  // Walks the stop forward on every open trade that was opened with a trailing
+  // exit. Once per COMPLETED BAR, using that bar's close — the same rule the
+  // Backtester applies, so a live trade and its backtest can be compared.
+  //
+  // Ratchet only. A trailing stop that can also widen is not a trailing stop,
+  // it is a way to turn every loser into a bigger loser.
+  async _manageTrailingStops(openTrades, tradeLog) {
+    const live = new Map(openTrades.map(t => [String(t.id), t]));
+    const managed = tradeLog.trades.filter(t =>
+      t.status === 'open' && t.oandaId && t.trail && live.has(String(t.oandaId)));
+    if (!managed.length) return false;
+
+    let changed = false;
+    const candleCache = new Map();
+
+    for (const t of managed) {
+      const tf  = t.trail.tf || 'H1';
+      const bar = barStartMs(tf);
+      if (t.trailBar === bar) continue;
+
+      // Claimed before the request, not after. A rejection that repeats every
+      // 60s tick would hammer OANDA for the rest of the bar and fill the log;
+      // one attempt per bar fails quietly and retries with a fresher level.
+      t.trailBar = bar;
+      changed = true;
+
+      try {
+        const key = `${t.pair}|${tf}`;
+        if (!candleCache.has(key)) candleCache.set(key, await this.oanda.getCandles(t.pair, tf, 60));
+        const candles = candleCache.get(key);
+        if (candles.length < 20) continue;
+
+        const last = candles[candles.length - 1];
+        const atr  = computeATR(candles, 14);
+        if (!(atr > 0)) continue;
+
+        const cand = t.direction === 'long'
+          ? last.c - atr * (t.trail.atr || 3)
+          : last.c + atr * (t.trail.atr || 3);
+
+        const current = t.sl;
+        const better  = current == null || (t.direction === 'long' ? cand > current : cand < current);
+        if (!better) continue;
+
+        await this.oanda.modifyTradeStop(t.oandaId, cand);
+        this.log(`${t.pair}: trailing stop ${current == null ? '—' : fmtPrice(current, t.pair)} → ${fmtPrice(cand, t.pair)} (${t.trail.atr} ATR on ${tf} close)`);
+        t.sl = +fmtPrice(cand, t.pair);
+      } catch (e) {
+        // Most often "stop would be on the wrong side of the market" after a
+        // gap. Nothing to fix — the next bar's level will be valid or the trade
+        // will already have closed at the existing stop.
+        this.warn(`Trailing stop ${t.pair}: ${e.message}`);
+      }
+    }
+    return changed;
   }
 
   async _reconcileOpenTrades(openTrades, tradeLog) {

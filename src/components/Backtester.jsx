@@ -7,6 +7,7 @@ import { INSTRUMENTS as REGISTRY } from '../data/instruments';
 import { generateCandles } from '../utils/generateCandles';
 import { takeStagedFilter } from '../utils/feedToBacktest';
 import { searchStrategies, combinationCount, testAcrossInstruments, FOCUS_SET } from '../utils/strategySearch';
+import { translateToBot, stageForBot } from '../utils/strategyToBot';
 
 const TF_GRAN = {'1M':'M1','5M':'M5','15M':'M15','30M':'M30','1H':'H1','4H':'H4','8H':'H8','D':'D','W':'W'};
 const TFS = ['1M','5M','15M','30M','1H','4H','8H','D','W'];
@@ -893,6 +894,7 @@ export default function Backtester() {
   const [fromFeed, setFromFeed] = useState(null);
   const [search, setSearch]     = useState(null);   // { running, done, total, result }
   const [across, setAcross]     = useState(null);   // cross-instrument check of one finalist
+  const [handoff, setHandoff]   = useState(null);   // { f, t } translation preview for Auto Trading
   const [saved,   setSaved]   = useState(false);
 
   const addCond = () => setConds(p=>[...p,{id:Date.now(),type:'rsi',...DEF.rsi}]);
@@ -1049,6 +1051,20 @@ export default function Backtester() {
       );
       setAcross({ running:false, label:f.label, finalist:f, scope, result:res });
     } catch (e) { setErr(e.message); setAcross(null); }
+  };
+
+  // Show what the bot would actually run BEFORE anything is staged. The
+  // translation is lossy in specific ways, and the only defence against
+  // trading a rule you did not test is being shown the differences.
+  const previewHandoff = (f) => {
+    const symbol = search?.symbol || sym;
+    setHandoff({ f, symbol, t: translateToBot(f.strategy, { symbol, timeframe: tf, name: f.label }) });
+  };
+
+  const confirmHandoff = () => {
+    if (!handoff?.t?.ok) return;
+    stageForBot(handoff.f.strategy, { symbol: handoff.symbol, timeframe: tf, name: handoff.f.label });
+    setHandoff({ ...handoff, staged: true });
   };
 
   const removeGrade = (sig) => setLibrary(removeFromLibrary(sig));
@@ -1390,6 +1406,71 @@ export default function Backtester() {
 
       {/* ── RIGHT: Results ─────────────────────────────────────────────────── */}
       <div className="bt2-results">
+        {handoff && (() => {
+          const { t } = handoff;
+          const C = { blocking:'#ef4444', approximate:'#f59e0b', exact:'#22c55e' };
+          const W = { blocking:'CANNOT TRANSLATE', approximate:'DIFFERENT LIVE', exact:'SAME' };
+          return (
+            <div style={{ background:'#0b1118', border:`1px solid ${t.ok ? '#f59e0b55' : '#ef444455'}`,
+              borderRadius:12, padding:'14px 16px', margin:'0 0 14px' }}>
+              <div style={{ fontSize:15, fontWeight:800, color: t.ok ? '#f59e0b' : '#ef4444' }}>
+                {t.ok ? 'WHAT THE BOT WOULD ACTUALLY RUN' : 'THE BOT CANNOT RUN THIS RULE'}
+              </div>
+              <div style={{ fontSize:12, color:'var(--text3)', marginTop:3, marginBottom:10 }}>
+                {handoff.f.label} · {handoff.symbol} · {tf}
+              </div>
+
+              {!t.ok && (
+                <div style={{ fontSize:12.5, color:'#c7d2da', lineHeight:1.75, marginBottom:10 }}>
+                  Handing it over anyway would place trades on a rule you never tested. Nothing has
+                  been staged.
+                </div>
+              )}
+
+              {t.notes.map((n, i) => (
+                <div key={i} style={{ borderTop:'1px solid #16202b', padding:'7px 0' }}>
+                  <div style={{ display:'flex', gap:8, alignItems:'baseline', flexWrap:'wrap' }}>
+                    <span style={{ fontSize:9, fontWeight:900, color:C[n.level], flexShrink:0,
+                      border:`1px solid ${C[n.level]}44`, borderRadius:3, padding:'1px 5px' }}>
+                      {W[n.level]}
+                    </span>
+                    <span style={{ fontSize:12, color:'#e2e8f0' }}>{n.what}</span>
+                  </div>
+                  {n.why && <div style={{ fontSize:11.5, color:'var(--text3)', lineHeight:1.65, marginTop:3 }}>{n.why}</div>}
+                </div>
+              ))}
+
+              {t.ok && !handoff.staged && (
+                <div style={{ fontSize:11.5, color:'#fbbf24', lineHeight:1.7, marginTop:11,
+                  border:'1px solid #f59e0b33', borderRadius:8, padding:'9px 11px', background:'#f59e0b0d' }}>
+                  It arrives in Auto Trading <strong>switched off</strong>, at 1% risk. Read the amber
+                  rows above before enabling it — each one is a way the live rule differs from the one
+                  that produced your backtest numbers.
+                </div>
+              )}
+
+              {handoff.staged && (
+                <div style={{ fontSize:12.5, color:'#22c55e', lineHeight:1.7, marginTop:11 }}>
+                  Staged. Open the <strong>Auto Trading</strong> tab to review and save it.
+                </div>
+              )}
+
+              <div style={{ display:'flex', gap:6, marginTop:11, flexWrap:'wrap' }}>
+                {t.ok && !handoff.staged && (
+                  <button onClick={confirmHandoff}
+                    style={{ fontSize:11, fontWeight:700, padding:'4px 11px', borderRadius:6, cursor:'pointer',
+                      border:'1px solid #22c55e55', background:'#0b1a12', color:'#22c55e' }}>
+                    send to Auto Trading
+                  </button>
+                )}
+                <button onClick={() => setHandoff(null)}
+                  style={{ fontSize:11, padding:'4px 11px', borderRadius:6, cursor:'pointer',
+                    background:'transparent', color:'var(--text3)', border:'1px solid var(--border)' }}>close</button>
+              </div>
+            </div>
+          );
+        })()}
+
         {across && (() => {
           if (across.running) return (
             <div style={{ background:'#0b1118', border:'1px solid #16324a', borderRadius:12,
@@ -1535,11 +1616,18 @@ export default function Backtester() {
                     </span>
                     <span style={{ marginLeft:'auto', display:'flex', gap:6 }}>
                       {f.verdict === 'survived' && (
-                        <button onClick={() => runAcross(f, 'focus')} disabled={across?.running}
-                          style={{ fontSize:11, fontWeight:700, padding:'3px 10px', borderRadius:6,
-                            cursor:'pointer', border:'1px solid #22c55e55', background:'#0b1a12', color:'#22c55e' }}>
-                          test on {FOCUS.length} majors
-                        </button>
+                        <>
+                          <button onClick={() => runAcross(f, 'focus')} disabled={across?.running}
+                            style={{ fontSize:11, fontWeight:700, padding:'3px 10px', borderRadius:6,
+                              cursor:'pointer', border:'1px solid #22c55e55', background:'#0b1a12', color:'#22c55e' }}>
+                            test on {FOCUS.length} majors
+                          </button>
+                          <button onClick={() => previewHandoff(f)}
+                            style={{ fontSize:11, fontWeight:700, padding:'3px 10px', borderRadius:6,
+                              cursor:'pointer', border:'1px solid #f59e0b55', background:'#1a1206', color:'#f59e0b' }}>
+                            → Auto Trading
+                          </button>
+                        </>
                       )}
                       <button onClick={() => loadFinalist(f)}
                         style={{ fontSize:11, fontWeight:700, padding:'3px 10px', borderRadius:6,
