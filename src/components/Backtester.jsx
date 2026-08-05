@@ -1462,7 +1462,22 @@ export default function Backtester() {
 
         {search?.result && (() => {
           const r = search.result;
-          if (!r.ok) return <div className="bt2-error">⚠ {r.reason}</div>;
+          // A refusal is the most useful thing the search can return, so it gets
+          // the same room as a result rather than a one-line error strip.
+          if (!r.ok) return (
+            <div style={{ background:'#1a1206', border:'1px solid #f59e0b55', borderRadius:12,
+              padding:'14px 16px', margin:'0 0 14px' }}>
+              <div style={{ fontSize:14, fontWeight:800, color:'#f59e0b', marginBottom:6 }}>
+                NOT ENOUGH HISTORY TO SEARCH
+              </div>
+              <div style={{ fontSize:12.5, color:'#c7d2da', lineHeight:1.75 }}>{r.reason}</div>
+              <button onClick={() => { setTf('D'); setCnt(5000); setSearch(null); }}
+                style={{ marginTop:11, fontSize:11, fontWeight:700, padding:'4px 11px', borderRadius:6,
+                  cursor:'pointer', border:'1px solid #22c55e55', background:'#0b1a12', color:'#22c55e' }}>
+                switch to Daily · 5000 bars
+              </button>
+            </div>
+          );
           const COL = { survived:'#22c55e', faded:'#f59e0b', 'curve-fit':'#ef4444', untested:'#64748b' };
           const WORD = { survived:'SURVIVED', faded:'FADED', 'curve-fit':'CURVE-FIT', untested:'TOO FEW OUT-OF-SAMPLE' };
           const kept = r.finalists.filter(f => f.verdict === 'survived');
@@ -1473,7 +1488,13 @@ export default function Backtester() {
               </div>
               <div style={{ fontSize:12, color:'var(--text3)', lineHeight:1.7, marginBottom:12 }}>
                 {r.qualified} had enough trades to judge. Searched on {r.inSampleBars} bars,
-                tested on {r.outSampleBars} the search never saw.
+                tested on {r.outSampleBars} the search never saw — <strong style={{ color:'#94a3b8' }}>{r.span}</strong> of history.
+                {r.thinHistory && (
+                  <div style={{ marginTop:5, color:'#fbbf24' }}>
+                    Under three years, a survivor has only been asked to work in one or two market
+                    regimes. Read anything below as a lead to test on more history, not a result.
+                  </div>
+                )}
                 <div style={{ marginTop:3, color:'#f59e0b' }}>
                   At {r.tested} attempts, roughly {r.expectedFalsePositives} would look good by luck alone.
                   That is exactly why the holdout column is the only one worth reading.
