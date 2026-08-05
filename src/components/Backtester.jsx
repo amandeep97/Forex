@@ -11,7 +11,22 @@ import { translateToBot, stageForBot } from '../utils/strategyToBot';
 
 const TF_GRAN = {'1M':'M1','5M':'M5','15M':'M15','30M':'M30','1H':'H1','4H':'H4','8H':'H8','D':'D','W':'W'};
 const TFS = ['1M','5M','15M','30M','1H','4H','8H','D','W'];
-const COUNTS = [100,500,1000,2000,5000,10000,20000,50000];
+const COUNTS = [100,500,1000,2000,5000,10000,20000,50000,100000,200000];
+
+// Bars per TRADING day. FX, metals, indices and energy trade around the clock
+// five days a week, so calendar coverage is roughly 7/5 of the trading days a
+// bar count buys — a distinction that decides whether an intraday search has
+// six months of history or four.
+const BARS_PER_TRADING_DAY = { '1M':1440, '5M':288, '15M':96, '30M':48, '1H':24, '4H':6, '8H':3, 'D':1, 'W':0.2 };
+
+// What a timeframe/bar-count pair will actually cover, shown before the search
+// runs rather than as a refusal afterwards.
+function estimateSpanDays(tf, count, isCrypto) {
+  const perDay = BARS_PER_TRADING_DAY[tf];
+  if (!perDay) return null;
+  const tradingDays = count / perDay;
+  return isCrypto ? tradingDays : tradingDays * 7 / 5;
+}
 
 // Single source of truth — see src/data/instruments.js
 const INSTRUMENTS = REGISTRY.filter(i => i.can.candles).map(i => i.sym);
@@ -200,23 +215,35 @@ async function fetchBinancePaged(sym, itv, total) {
   return dedupeSort(all);
 }
 
-async function fetchOandaPaged(instr, gran, total, apiKey, base) {
+// OANDA caps a single request at 5,000 candles, so anything deeper has to be
+// walked backwards a page at a time.
+//
+// The end-of-history test must count what the API RETURNED, not what survived
+// the `complete` filter. The newest candle of the first page is always the one
+// still forming, so the filtered count was permanently one short of the
+// requested count, every paged fetch broke after page one, and asking for
+// 10,000 bars quietly delivered 4,999. On the Daily timeframe that is twenty
+// years versus five and nobody notices; on M1 it is six days, and six days is
+// not enough history to conclude anything at all.
+async function fetchOandaPaged(instr, gran, total, apiKey, base, onProgress) {
   const all = [];
   let toParam = null, guard = 0;
-  while (all.length < total && guard++ < 20) {
+  while (all.length < total && guard++ < 60) {
     const need = Math.min(5000, total - all.length);
     const url = `${base}/instruments/${instr}/candles?count=${need}&granularity=${gran}&price=M`
       + (toParam ? `&to=${encodeURIComponent(toParam)}` : '');
     const res = await fetch(url, { headers:{Authorization:`Bearer ${apiKey}`}, signal:AbortSignal.timeout(25000) });
     if (!res.ok) break;
     const data = await res.json();
-    const raw = (data.candles || []).filter(c => c.complete);
-    if (!raw.length) break;
-    all.push(...raw.map(c => ({
-      t:new Date(c.time).getTime(), o:+c.mid.o, h:+c.mid.h, l:+c.mid.l, c:+c.mid.c, v:c.volume||1,
-    })));
-    toParam = raw[0].time;             // page backwards from the oldest bar we got
-    if (raw.length < need) break;
+    const page = data.candles || [];
+    if (!page.length) break;
+    for (const c of page) {
+      if (!c.complete) continue;
+      all.push({ t:new Date(c.time).getTime(), o:+c.mid.o, h:+c.mid.h, l:+c.mid.l, c:+c.mid.c, v:c.volume||1 });
+    }
+    toParam = page[0].time;            // page backwards from the oldest bar returned
+    onProgress?.(all.length, total);
+    if (page.length < need) break;     // OANDA has no more history before this point
   }
   return dedupeSort(all);
 }
@@ -1143,6 +1170,25 @@ export default function Backtester() {
               <button key={t} className={`bt2-tf-pill${tf===t?' active':''}`} onClick={()=>setTf(t)}>{t}</button>
             ))}
           </div>
+          {(() => {
+            const d = estimateSpanDays(tf, cnt, sym.includes('/USDT'));
+            if (d == null) return null;
+            const ok = d >= 180;
+            return (
+              <div style={{ fontSize:11, marginTop:6, lineHeight:1.6, color: ok ? '#475569' : '#f59e0b' }}>
+                ≈ <strong>{d >= 365 ? `${(d/365).toFixed(1)} years` : `${Math.round(d)} days`}</strong> of history
+                {!ok && <> — the search needs 180 days. {(() => {
+                  const per = BARS_PER_TRADING_DAY[tf];
+                  const need = Math.ceil(180 * (sym.includes('/USDT') ? 1 : 5/7) * per);
+                  const fits = COUNTS.find(c => c >= need);
+                  return fits
+                    ? <>Use <button onClick={() => setCnt(fits)} style={{ background:'none', border:'none', padding:0,
+                        color:'#7dd3fc', font:'inherit', cursor:'pointer', textDecoration:'underline' }}>{fits.toLocaleString()} bars</button> on {tf}, or a higher timeframe.</>
+                    : <>That would take {need.toLocaleString()} bars on {tf} — more than this can fetch. Use a higher timeframe.</>;
+                })()}</>}
+              </div>
+            );
+          })()}
           <div className="bt2-tf-row" style={{ marginTop:6 }}>
             <span style={{ fontSize:11, color:'#475569', alignSelf:'center', marginRight:6 }}>conditions must</span>
             {[['AND','all hold'],['OR','any hold']].map(([v,l])=>(
