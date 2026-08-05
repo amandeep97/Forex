@@ -93,6 +93,13 @@ const DEF = {
 };
 
 // Categorized presets
+//
+// Everything below in Momentum / SMC / ICT is an ENTRY trigger with a fixed
+// target. That is the whole library, and it is the category with the least
+// evidence behind it. The approach with the longest documented record —
+// trend following, positive in essentially every decade since 1880 — was not
+// merely missing from this list, it could not be expressed at all until the
+// engine learned a trailing exit, because it depends on never capping a winner.
 const PRESETS = [
   {name:'RSI Reversal',   cat:'Momentum', emoji:'📊', desc:'RSI crosses oversold',
    dir:'both', conds:[{type:'rsi',period:14,op:'crossBelow',value:30}], exit:'rr',slTyp:'fixed',sl:25,rr:2},
@@ -128,6 +135,15 @@ const PRESETS = [
    dir:'both', conds:[{type:'strong_rev',op:'bullish',n:5},{type:'session',op:'killzone'}], exit:'rr',slTyp:'swing',swingLb:8,sl:20,rr:2},
   {name:'Engulfing',      cat:'Pattern',  emoji:'🕯', desc:'Bullish/bearish engulfing reversal',
    dir:'both', conds:[{type:'candlestick',value:'bull_engulf'}], exit:'rr',slTyp:'swing',swingLb:10,sl:20,rr:2},
+  {name:'Trend Follow',   cat:'Trend',    emoji:'📈', desc:'EMA 20/50 cross, 3 ATR trailing exit — no target',
+   dir:'both', conds:[{type:'ma_cross',period:20,period2:50,maType:'ema',op:'bullishCross'}],
+   exit:'trail', trailA:3, slTyp:'atr', slA:2},
+  {name:'Slow Trend',     cat:'Trend',    emoji:'🐢', desc:'EMA 50/200, 4 ATR trail — fewer, longer trades',
+   dir:'both', conds:[{type:'ma_cross',period:50,period2:200,maType:'ema',op:'bullishCross'}],
+   exit:'trail', trailA:4, slTyp:'atr', slA:2.5},
+  {name:'Sweep + Trail',  cat:'ICT',      emoji:'🎣', desc:'Your sweep entry, but the winner is not capped',
+   dir:'both', conds:[{type:'strong_rev',op:'bullish',n:5}],
+   exit:'trail', trailA:3, slTyp:'swing', swingLb:10},
   {name:'Morning Star',   cat:'Pattern',  emoji:'🌅', desc:'3-candle reversal + volume spike',
    dir:'both', conds:[{type:'candlestick',value:'morning_star'},{type:'volume',op:'spike',mult:1.5}], exit:'rr',slTyp:'swing',swingLb:12,sl:25,rr:2.5},
   {name:'Equal Lows Tap', cat:'ICT',      emoji:'═',  desc:'Equal lows support + bull candle',
@@ -843,6 +859,7 @@ export default function Backtester() {
   const [conds, setConds] = useState([{id:1,type:'rsi',period:14,op:'crossBelow',value:30}]);
   const [exit,      setExit]      = useState('rr');
   const [slType,    setSlType]    = useState('fixed');
+  const [trailA,    setTrailA]    = useState(3);
   const [tp,        setTp]        = useState(50);
   const [sl,        setSl]        = useState(25);
   const [rr,        setRr]        = useState(2.0);
@@ -876,6 +893,7 @@ export default function Backtester() {
     if (p.exit==='rr')   { setExit('rr');    setSl(p.sl||25);   setRr(p.rr||2);   }
     if (p.exit==='fixed'){ setExit('fixed'); setTp(p.tp||50);   setSl(p.sl||25);  }
     if (p.exit==='atr')  { setExit('atr');   setTpA(p.tpA||2);  setSlA(p.slA||1); }
+    if (p.exit==='trail'){ setExit('trail'); setTrailA(p.trailA||3); setSlA(p.slA||2); }
     setSlType(p.slTyp || 'fixed');
     if (p.swingLb) setSwingLb(p.swingLb);
     if (p.slTyp === 'atr' && p.slA) setSlA(p.slA);
@@ -893,6 +911,7 @@ export default function Backtester() {
       setSrc(s);
       const strat = {
         symbol:sym, conditions:conds, logic, direction:dir,
+        trailAtr: trailA,
         exitType:     exit,
         slType:       slType,
         tpPips:       exit==='fixed' ? tp : (exit==='rr' ? rrTpPips : tp),
@@ -1085,7 +1104,7 @@ export default function Backtester() {
           {/* Take Profit Mode */}
           <div className="bt2-sub-label">Take Profit</div>
           <div className="bt2-exit-tabs">
-            {[{v:'rr',l:'R:R Ratio'},{v:'fixed',l:'Fixed Pips'},{v:'atr',l:'ATR ×'}].map(e=>(
+            {[{v:'rr',l:'R:R Ratio'},{v:'fixed',l:'Fixed Pips'},{v:'atr',l:'ATR ×'},{v:'trail',l:'Trailing'}].map(e=>(
               <button key={e.v} className={`bt2-exit-tab${exit===e.v?' active':''}`} onClick={()=>setExit(e.v)}>{e.l}</button>
             ))}
           </div>
@@ -1127,6 +1146,28 @@ export default function Backtester() {
                 <div>
                   <div className="bt2-mini-label">TP (× ATR)</div>
                   <input className="bt2-num full" type="number" value={tpA} min={0.1} step={0.1} onChange={e=>setTpA(+e.target.value)}/>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {exit==='trail' && (
+            <div style={{marginTop:8}}>
+              <div style={{display:'flex',alignItems:'center',gap:10,flexWrap:'wrap'}}>
+                <span style={{fontSize:12,color:'var(--text3)'}}>Trail distance</span>
+                <input className="bt2-input" type="number" step="0.5" min="1" max="10" value={trailA}
+                  onChange={e=>setTrailA(+e.target.value||3)} style={{width:80}}/>
+                <span style={{fontSize:12,color:'var(--text3)'}}>× ATR</span>
+              </div>
+              <div style={{fontSize:11,color:'var(--text3)',lineHeight:1.7,marginTop:6,
+                background:'#0b1220',border:'1px solid #16324a',borderRadius:8,padding:'8px 10px'}}>
+                <strong style={{color:'#7dd3fc'}}>No take profit at all.</strong> The stop follows price up and
+                the trade ends only when it is hit. Every other exit here sets a target at entry, which caps the
+                winner — and a strategy that pays for twenty small losses with one very large win cannot survive
+                having that win capped. Expect a <em>lower</em> win rate and a much larger best trade.
+                <div style={{marginTop:4,color:'#8aa8bd'}}>
+                  Wide on purpose. A tight trail is clipped by every normal pullback, and being shaken out of one
+                  real trend costs more than the giveback on twenty ordinary trades.
                 </div>
               </div>
             </div>

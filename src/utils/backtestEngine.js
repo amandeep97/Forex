@@ -749,6 +749,11 @@ export function runBacktest(candles, strategy, opts = {}) {
     tpAtr         = 2,
     slAtr         = 1,
     rrRatio       = 2,
+    // Trailing-exit parameters. 3 ATR is wide on purpose: a tight trail is
+    // clipped by every normal pullback, and being shaken out of one long trend
+    // costs more than the giveback on twenty small ones combined.
+    trailAtr      = 3,
+    trailBars     = 0,          // 0 = ATR only; N = also trail a N-bar low/high
     swingLookback = 15,
     maxTrades     = 1,
     riskPct       = 1,
@@ -797,14 +802,45 @@ export function runBacktest(candles, strategy, opts = {}) {
     // ── Exit open trades ──
     for (let t = open.length - 1; t >= 0; t--) {
       const trade = open[t];
+      // ── Trailing stop ──────────────────────────────────────────────────
+      // The engine could only ever set a fixed target at entry, which caps
+      // every winner. That is fatal for the one approach with real long-run
+      // evidence: trend following earns everything from a few trades running
+      // far further than any target would have been placed, and capping them
+      // keeps all the losers while cutting the only thing that pays for them.
+      //
+      // The stop ratchets on CLOSES so a single wick cannot drag it up, but it
+      // is HIT intraday, because a real stop order sits in the market. Using
+      // closes for both would quietly assume a discipline no broker provides.
+      if (trade.trailing) {
+        const a = atr[i] || trade.entry * 0.001;
+        if (trade.dir === 'long') {
+          trade.peak = Math.max(trade.peak ?? prev.c, prev.c);
+          const byAtr = trade.peak - a * trade.trailAtr;
+          const byBars = trade.trailBars
+            ? Math.min(...candles.slice(Math.max(0, i - trade.trailBars), i).map(x => x.l))
+            : -Infinity;
+          const want = Math.max(byAtr, byBars);
+          if (want > trade.sl) trade.sl = want;
+        } else {
+          trade.peak = Math.min(trade.peak ?? prev.c, prev.c);
+          const byAtr = trade.peak + a * trade.trailAtr;
+          const byBars = trade.trailBars
+            ? Math.max(...candles.slice(Math.max(0, i - trade.trailBars), i).map(x => x.h))
+            : Infinity;
+          const want = Math.min(byAtr, byBars);
+          if (want < trade.sl) trade.sl = want;
+        }
+      }
+
       let exitPrice = null, exitReason = null;
 
       if (trade.dir === 'long') {
-        if (c.l <= trade.sl) { exitPrice = trade.sl; exitReason = 'SL'; }
-        else if (c.h >= trade.tp) { exitPrice = trade.tp; exitReason = 'TP'; }
+        if (c.l <= trade.sl) { exitPrice = trade.sl; exitReason = trade.trailing ? 'TRAIL' : 'SL'; }
+        else if (trade.tp != null && c.h >= trade.tp) { exitPrice = trade.tp; exitReason = 'TP'; }
       } else {
-        if (c.h >= trade.sl) { exitPrice = trade.sl; exitReason = 'SL'; }
-        else if (c.l <= trade.tp) { exitPrice = trade.tp; exitReason = 'TP'; }
+        if (c.h >= trade.sl) { exitPrice = trade.sl; exitReason = trade.trailing ? 'TRAIL' : 'SL'; }
+        else if (trade.tp != null && c.l <= trade.tp) { exitPrice = trade.tp; exitReason = 'TP'; }
       }
 
       if (exitPrice !== null) {
@@ -872,7 +908,9 @@ export function runBacktest(candles, strategy, opts = {}) {
 
     // ── Compute TP ──
     let tp, tpP;
-    if (exitType === 'rr') {
+    if (exitType === 'trail') {
+      tp = null; tpP = null;              // no target, by design
+    } else if (exitType === 'rr') {
       tpP = slP * rrRatio;
       tp  = dir === 'long' ? entry + tpP * pip : entry - tpP * pip;
     } else if (exitType === 'atr') {
@@ -885,7 +923,11 @@ export function runBacktest(candles, strategy, opts = {}) {
 
     open.push({
       dir, entry, tp, sl,
-      tpPips:    Math.round(tpP * 10) / 10,
+      trailing:  exitType === 'trail',
+      trailAtr:  trailAtr,
+      trailBars: trailBars,
+      peak:      entry,
+      tpPips:    tpP == null ? null : Math.round(tpP * 10) / 10,
       slPips:    Math.round(slP * 10) / 10,
       entryBar:  i,
       entryTime: c.t,
