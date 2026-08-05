@@ -27,6 +27,7 @@
 // how much a good number there is worth. That count is reported rather than
 // buried.
 import { runBacktest, calcStats } from './backtestEngine';
+import { buildContext } from './contextSeries';
 
 // ── Is it better than entering at random, here? ──────────────────────────────
 //
@@ -139,6 +140,8 @@ export function shuffledNull(candles, seed = 20260805) {
 // four different families are four independent statements about the same bar,
 // which is both rarer and much harder to arrive at by accident.
 export const FAMILY = {
+  crossasset: 'Cross-asset',
+  calendar:   'Calendar',
   structure:  'Structure',
   momentum:   'Momentum',
   trend:      'Trend',
@@ -214,7 +217,61 @@ export const POOL = [
   { id:'any_rev',    fam:'candle',    label:'any reversal pattern',   cond:{ type:'candlestick', value:'any_reversal' } },
   { id:'wick_dn',    fam:'candle',    label:'long lower wick',        cond:{ type:'wick', op:'lower', value:0.5 } },
   { id:'wick_up',    fam:'candle',    label:'long upper wick',        cond:{ type:'wick', op:'upper', value:0.5 } },
+
+  // ── Calendar ──────────────────────────────────────────────────────────────
+  // Month-end and quarter-end flows are among the few effects with a
+  // mechanical cause — funds rebalance because a mandate says so, not because
+  // a chart looked a certain way — and almost nobody tests them.
+  { id:'turn_month', fam:'calendar',  label:'turn of the month',      cond:{ type:'dom', op:'turn' } },
+  { id:'first_days', fam:'calendar',  label:'first 5 days of month',  cond:{ type:'dom', op:'first' } },
+  { id:'mid_month',  fam:'calendar',  label:'middle of the month',    cond:{ type:'dom', op:'mid' } },
+  { id:'last_days',  fam:'calendar',  label:'last 5 days of month',   cond:{ type:'dom', op:'last' } },
+  { id:'q1',         fam:'calendar',  label:'Q1',                     cond:{ type:'quarter', value:1 } },
+  { id:'q4',         fam:'calendar',  label:'Q4',                     cond:{ type:'quarter', value:4 } },
 ];
+
+// ── Cross-asset conditions ───────────────────────────────────────────────────
+// Built per peer, because the peer set depends on what the app could fetch.
+//
+// This is the half of the vocabulary a chart package cannot express, and the
+// reason to expect anything here to be untrodden. "RSI under 30 on gold" has
+// been tested by a million people. "Gold made a 20-bar high while silver did
+// not, in the last three days of the month" has been tested by approximately
+// nobody, which is not proof it works but is the only place worth looking.
+export const PEER_LABEL = {
+  'US500':   'the S&P',
+  'XAU/USD': 'gold',
+  'XAG/USD': 'silver',
+  'USOIL':   'oil',
+  'EUR/USD': 'the euro',
+  'US100':   'the Nasdaq',
+};
+
+export function crossAssetPool(peers) {
+  const out = [];
+  for (const sym of peers) {
+    const name = PEER_LABEL[sym] || sym;
+    out.push(
+      { id:`lead_up_${sym}`,  fam:'crossasset', label:`${name} moved up, this has not yet`,
+        cond:{ type:'lead', peer:sym, n:3, op:'up', value:1.5 } },
+      { id:`lead_dn_${sym}`,  fam:'crossasset', label:`${name} moved down, this has not yet`,
+        cond:{ type:'lead', peer:sym, n:3, op:'down', value:1.5 } },
+      { id:`div_bull_${sym}`, fam:'crossasset', label:`held up while ${name} fell`,
+        cond:{ type:'divergence', peer:sym, n:5, op:'bull', value:1 } },
+      { id:`div_bear_${sym}`, fam:'crossasset', label:`fell while ${name} held up`,
+        cond:{ type:'divergence', peer:sym, n:5, op:'bear', value:1 } },
+      { id:`peer_up_${sym}`,  fam:'crossasset', label:`${name} up over 2% in 10 bars`,
+        cond:{ type:'peer_chg', peer:sym, n:10, op:'above', value:2 } },
+      { id:`peer_dn_${sym}`,  fam:'crossasset', label:`${name} down over 2% in 10 bars`,
+        cond:{ type:'peer_chg', peer:sym, n:10, op:'below', value:-2 } },
+      { id:`ratio_hi_${sym}`, fam:'crossasset', label:`near a 1-year high against ${name}`,
+        cond:{ type:'ratio_pct', peer:sym, op:'above', value:80 } },
+      { id:`ratio_lo_${sym}`, fam:'crossasset', label:`near a 1-year low against ${name}`,
+        cond:{ type:'ratio_pct', peer:sym, op:'below', value:20 } },
+    );
+  }
+  return out;
+}
 
 const EXITS = [
   { id:'rr2',    label:'2R target',      exitType:'rr',    rrRatio:2 },
@@ -258,11 +315,13 @@ const MIN_GAIN = 0.05;
 // and never a significance claim.
 const MIN_HOLDOUT = 25;
 
-const byId = Object.fromEntries(POOL.map(p => [p.id, p]));
+// Rebuilt per run, because the cross-asset half depends on which peers loaded.
+let byId = Object.fromEntries(POOL.map(p => [p.id, p]));
 
-function assemble(ids, exit, stop) {
+function assemble(ids, exit, stop, ctx) {
   return {
     conditions: ids.map(id => ({ ...byId[id].cond })),
+    ctx,
     logic: 'AND', direction: 'both',
     exitType: exit.exitType, rrRatio: exit.rrRatio, trailAtr: exit.trailAtr,
     slType: stop.slType, slAtr: stop.slAtr, swingLookback: stop.swingLookback,
@@ -272,6 +331,10 @@ function assemble(ids, exit, stop) {
 
 export function describe(ids) {
   return ids.map(id => byId[id]?.label || id).join(' + ');
+}
+
+export function poolFor(peers) {
+  return peers?.length ? [...POOL, ...crossAssetPool(peers)] : POOL;
 }
 
 export function familiesOf(ids) {
@@ -294,6 +357,7 @@ export async function deepSearch(candles, {
   keep       = 10,
   spreadPips,
   calibrate  = true,    // re-run on a shuffled copy to measure the null
+  peers      = null,    // { 'US500': candles, ... } — enables cross-asset conditions
   onProgress,
 } = {}) {
   if (!candles || candles.length < 400) {
@@ -306,11 +370,27 @@ export async function deepSearch(candles, {
       + `search could. Use the Daily timeframe, or more bars.`, spanDays };
   }
 
+  // The cross-asset half of the vocabulary only exists if peers were supplied.
+  const peerSyms = peers ? Object.keys(peers).filter(k => peers[k]?.length) : [];
+  const pool = poolFor(peerSyms);
+  byId = Object.fromEntries(pool.map(p => [p.id, p]));
+  // Context is built on the FULL series and then sliced, so a 20-bar peer
+  // change at the start of the holdout still sees the bars before it. Building
+  // it per slice would blind every cross-asset condition for its first twenty
+  // bars of every slice, three times over.
+  const fullCtx = peerSyms.length ? buildContext(candles, peers) : {};
+  const sliceCtx = (from, to) => {
+    const out = {};
+    for (const [k, arr] of Object.entries(fullCtx)) out[k] = arr.slice(from, to);
+    return out;
+  };
+
   const nB = Math.floor(candles.length * 0.5);
   const nV = Math.floor(candles.length * 0.7);
   const build    = candles.slice(0, nB);
   const validate = candles.slice(nB, nV);
   const holdout  = candles.slice(nV);
+  const ctxFor = new Map([[build, sliceCtx(0, nB)], [validate, sliceCtx(nB, nV)], [holdout, sliceCtx(nV)]]);
 
   // The trade-count floor is derived from the holdout, not chosen separately.
   //
@@ -328,7 +408,7 @@ export async function deepSearch(candles, {
   const score = (slice, ids, exit, stop) => {
     evaluated++;
     try {
-      const trades = runBacktest(slice, withSpread(assemble(ids, exit, stop))).trades;
+      const trades = runBacktest(slice, withSpread(assemble(ids, exit, stop, ctxFor.get(slice)))).trades;
       const st = calcStats(trades);
       return { n: st.totalTrades, expR: st.avgRR, winRate: st.winRate,
                se: st.seRR, lossStreak: st.maxLossStreak,
@@ -357,11 +437,11 @@ export async function deepSearch(candles, {
   const singles = [];
   const usable = [];
   const neverFires = [];
-  for (let i = 0; i < POOL.length; i++) {
-    const r = score(build, [POOL[i].id], EXITS[3], STOPS[0]);
-    if (r.n > 0) usable.push(POOL[i]); else neverFires.push(POOL[i]);
-    if (r.n >= minBuild && r.expR != null) singles.push({ ids:[POOL[i].id], build:r });
-    await breathe('single conditions', i + 1, POOL.length);
+  for (let i = 0; i < pool.length; i++) {
+    const r = score(build, [pool[i].id], EXITS[3], STOPS[0]);
+    if (r.n > 0) usable.push(pool[i]); else neverFires.push(pool[i]);
+    if (r.n >= minBuild && r.expR != null) singles.push({ ids:[pool[i].id], build:r });
+    await breathe('single conditions', i + 1, pool.length);
   }
   if (!singles.length) {
     return { ok:false, reason:`No single condition produced ${minBuild} trades on this data. `
@@ -443,7 +523,11 @@ export async function deepSearch(candles, {
     f.holdout = score(holdout, f.ids, f.exit, f.stop);
     f.label = `${describe(f.ids)} · ${f.exit.label} · ${f.stop.label}`;
     f.families = familiesOf(f.ids);
-    f.strategy = withSpread(assemble(f.ids, f.exit, f.stop));
+    f.strategy = withSpread(assemble(f.ids, f.exit, f.stop, ctxFor.get(holdout)));
+    // The builder and the breadth test run on their own data, so they need the
+    // conditions without this run's pre-sliced context bolted on.
+    f.conditions = f.ids.map(id => ({ ...byId[id].cond }));
+    f.crossAsset = f.ids.filter(id => byId[id]?.fam === 'crossasset').length;
     f.depth = f.ids.length;
 
     const o = f.holdout;
@@ -490,6 +574,9 @@ export async function deepSearch(candles, {
     const draws = [];
     for (const seed of [20260805, 771113]) {
       try {
+        // No peers: the shuffle destroys the timestamp alignment that makes a
+        // cross-asset condition mean anything, so including them would compare
+        // a smaller vocabulary against a larger one.
         const nullRes = await deepSearch(shuffledNull(candles, seed), {
           maxDepth, beam, minTrades, keep, spreadPips, calibrate: false,
           onProgress: p => onProgress?.({ ...p, phase: `null: ${p.phase}`, evaluated }),
@@ -534,7 +621,8 @@ export async function deepSearch(candles, {
     nullRun,
     evaluated,
     holdoutLooks,
-    poolSize: POOL.length,
+    poolSize: pool.length,
+    peers: peerSyms,
     usablePool: usable.length,
     // Named rather than dropped in silence: "the search ignored nine of your
     // conditions" is something you should be told, not left to infer.

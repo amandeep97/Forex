@@ -1044,12 +1044,32 @@ export default function Backtester() {
     } catch (e) { setErr(e.message); setSearch(null); }
   };
 
+  // Four markets covering the axes everything else hangs off: risk appetite,
+  // the dollar, real rates and inflation. A rule that only knows its own chart
+  // cannot see any of them, which is the entire reason for fetching these.
+  const PEER_SYMS = ['US500', 'EUR/USD', 'XAU/USD', 'USOIL'];
+
   const runDeep = async () => {
     setErr(''); setDeep({ running:true, phase:'loading data', done:0, total:1 });
     try {
       const { candles, src:s } = await fetchCandles(sym, tf, cnt);
       setSrc(s);
+
+      // Peers are fetched on the same timeframe and depth. A failure is not
+      // fatal — the search runs with whatever loaded and says which peers it
+      // had, rather than silently dropping a third of its vocabulary.
+      const wanted = PEER_SYMS.filter(p => p !== sym);
+      const peers = {};
+      for (let i = 0; i < wanted.length; i++) {
+        setDeep(d => ({ ...d, phase:`loading ${wanted[i]}`, done:i, total:wanted.length }));
+        try {
+          const r = await fetchCandles(wanted[i], tf, cnt);
+          if (r.candles?.length > 100 && !/Simulated/.test(r.src)) peers[wanted[i]] = r.candles;
+        } catch { /* one missing peer is not a reason to abandon the run */ }
+      }
+
       const res = await deepSearch(candles, {
+        peers,
         spreadPips: spread === '' ? undefined : +spread,
         onProgress: p => setDeep(d => ({ ...d, ...p })),
       });
@@ -1503,6 +1523,18 @@ export default function Backtester() {
               <div style={{ fontSize:15, fontWeight:800, color:'#a78bfa', marginBottom:4 }}>
                 Built {r.evaluated.toLocaleString()} strategies from {r.usablePool} conditions
               </div>
+              {r.peers?.length > 0 && (
+                <div style={{ fontSize:11.5, color:'#a78bfa', marginBottom:6, lineHeight:1.6 }}>
+                  Including cross-asset conditions against {r.peers.join(', ')} — what the rest of the
+                  board was doing, which a single-chart backtest cannot ask.
+                </div>
+              )}
+              {r.peers?.length === 0 && (
+                <div style={{ fontSize:11.5, color:'#f59e0b', marginBottom:6, lineHeight:1.6 }}>
+                  No peer data loaded, so the cross-asset conditions are unavailable and this ran on
+                  single-chart conditions only — the ones everyone already tests.
+                </div>
+              )}
               <div style={{ fontSize:12, color:'var(--text3)', lineHeight:1.7, marginBottom:10 }}>
                 Up to {r.maxDepth} conditions deep. Built on {r.buildBars.toLocaleString()} bars,
                 filtered on {r.validateBars.toLocaleString()}, and only {r.holdoutLooks} reached
@@ -1545,6 +1577,12 @@ export default function Backtester() {
                     <span style={{ fontSize:10, fontWeight:700, color:'#a78bfa' }}>
                       {f.depth} conditions · {f.families.length} famil{f.families.length === 1 ? 'y' : 'ies'}
                     </span>
+                    {f.crossAsset > 0 && (
+                      <span style={{ fontSize:10, fontWeight:800, color:'#e2e8f0',
+                        border:'1px solid #a78bfa66', borderRadius:3, padding:'1px 5px' }}>
+                        {f.crossAsset} cross-asset
+                      </span>
+                    )}
                     {f.beatsNull && (
                       <span style={{ fontSize:10, fontWeight:800, color:'#22c55e' }}>beats the shuffled null</span>
                     )}
@@ -1569,12 +1607,14 @@ export default function Backtester() {
                     </div>
                   )}
                   <div style={{ display:'flex', gap:6, marginTop:6, flexWrap:'wrap' }}>
-                    <button onClick={() => runAcross({ label:f.label, strategy:f.strategy }, 'focus')} disabled={across?.running}
+                    <button onClick={() => runAcross({ label:f.label, strategy:{ ...f.strategy, ctx:undefined, conditions:f.conditions } }, 'focus')}
+                      disabled={across?.running || f.crossAsset > 0}
+                      title={f.crossAsset > 0 ? 'Cross-asset conditions need each instrument\'s own peer data — not yet wired into the breadth test' : ''}
                       style={{ fontSize:11, fontWeight:700, padding:'3px 10px', borderRadius:6, cursor:'pointer',
                         border:'1px solid #22c55e55', background:'#0b1a12', color:'#22c55e' }}>
                       test on {FOCUS.length} majors
                     </button>
-                    <button onClick={() => loadFinalist({ strategy:f.strategy })}
+                    <button onClick={() => loadFinalist({ strategy:{ ...f.strategy, ctx:undefined, conditions:f.conditions } })}
                       style={{ fontSize:11, fontWeight:700, padding:'3px 10px', borderRadius:6, cursor:'pointer',
                         border:'1px solid #7dd3fc55', background:'#0b1a2a', color:'#7dd3fc' }}>
                       open in builder →
