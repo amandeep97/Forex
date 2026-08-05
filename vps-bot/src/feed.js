@@ -239,7 +239,22 @@ class FeedBuilder {
     const have = Object.keys(this.dailyCloses).length;
     const want = INSTRUMENTS.filter(i => i.can.candles).length;
     if (have < want * 0.8) {
-      this.log(`Feed: leadership deferred — ${have}/${want} daily series so far`);
+      // The series are only captured when a DAILY bar refreshes, which happens
+      // once a day — and this map does not survive a restart. Since the bot
+      // now updates itself and restarts regularly, waiting for the schedule
+      // meant leadership never ran at all: it sat at 0 of 52 indefinitely.
+      //
+      // So ask for what is missing instead of waiting for it. These go through
+      // the normal queue, rate limit and round robin; a daily re-fetch is cheap
+      // and only happens once per boot.
+      let queued = 0;
+      for (const inst of INSTRUMENTS) {
+        if (!inst.can.candles || this.dailyCloses[inst.sym]) continue;
+        const k = `${inst.sym}|D`;
+        if ((this.due.get(k) || 0) > Date.now()) { this.due.set(k, 0); queued++; }
+      }
+      this.log(`Feed: leadership deferred — ${have}/${want} daily series`
+        + (queued ? `, requested ${queued} now` : ''));
       return;
     }
 
@@ -580,7 +595,13 @@ class FeedBuilder {
       }
     }
 
-    if (now - this.leadershipAt > LEADERSHIP_EVERY_MS) {
+    // Retried every few minutes until it has run once, then only daily. Without
+    // the short retry the first successful pass would wait a full interval
+    // after the series finally arrived.
+    const everCompleted = this.leadershipAt > 0;
+    const dueIn = everCompleted ? LEADERSHIP_EVERY_MS : 3 * 60e3;
+    if (now - (this.leadershipTriedAt || 0) > dueIn) {
+      this.leadershipTriedAt = now;
       await this._refreshLeadership().catch(e => this.log(`Feed leadership: ${e.message}`));
     }
 
