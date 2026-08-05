@@ -6,6 +6,7 @@ import { OANDA_MAP } from '../hooks/useLivePrices';
 import { INSTRUMENTS as REGISTRY } from '../data/instruments';
 import { generateCandles } from '../utils/generateCandles';
 import { takeStagedFilter } from '../utils/feedToBacktest';
+import { searchStrategies, combinationCount } from '../utils/strategySearch';
 
 const TF_GRAN = {'1M':'M1','5M':'M5','15M':'M15','30M':'M30','1H':'H1','4H':'H4','8H':'H8','D':'D','W':'W'};
 const TFS = ['1M','5M','15M','30M','1H','4H','8H','D','W'];
@@ -881,6 +882,7 @@ export default function Backtester() {
   // on screen — the exact silent mistranslation the handoff exists to avoid.
   const [logic, setLogic] = useState('AND');
   const [fromFeed, setFromFeed] = useState(null);
+  const [search, setSearch]     = useState(null);   // { running, done, total, result }
   const [saved,   setSaved]   = useState(false);
 
   const addCond = () => setConds(p=>[...p,{id:Date.now(),type:'rsi',...DEF.rsi}]);
@@ -982,6 +984,20 @@ export default function Backtester() {
     setDir('both');
     setFromFeed(staged);
   }, []);
+
+  // Search the space rather than trying presets one at a time — with a holdout,
+  // so anything found by looking hard is exposed instead of celebrated.
+  const runSearch = async () => {
+    setErr(''); setSearch({ running:true, done:0, total:combinationCount() });
+    try {
+      const { candles } = await fetchCandles(sym, tf, cnt);
+      const res = await searchStrategies(candles, {
+        spreadPips: spread === '' ? undefined : +spread,
+        onProgress: (done, total) => setSearch(s => ({ ...s, done, total })),
+      });
+      setSearch({ running:false, result:res });
+    } catch (e) { setErr(e.message); setSearch(null); }
+  };
 
   const removeGrade = (sig) => setLibrary(removeFromLibrary(sig));
   const loadFromLib = (e) => {
@@ -1294,14 +1310,92 @@ export default function Backtester() {
         {err && <div className="bt2-error">⚠ {err}</div>}
 
         <div style={{padding:'12px 14px', flexShrink:0}}>
-          <button className="bt2-run-btn" onClick={run} disabled={running}>
+          <button className="bt2-run-btn" onClick={run} disabled={running || search?.running}>
             {running ? <><span style={{animation:'spin 1s linear infinite',display:'inline-block'}}>⟳</span> Running…</> : '▶ Run Backtest'}
           </button>
+
+          {/* ── Search the space, with a holdout ───────────────────────────
+                Trying presets one at a time and keeping the best is how you
+                find something that never worked. This tries every combination
+                on the first 70% of the history, then runs the survivors on the
+                last 30% it never saw — so curve-fitting is visible instead of
+                being reported as a discovery. ── */}
+          <button onClick={runSearch} disabled={running || search?.running}
+            style={{ width:'100%', marginTop:10, padding:'12px', borderRadius:10, cursor:'pointer',
+              fontWeight:800, fontSize:14, border:'1px solid #7dd3fc55', background:'#0b1a2a', color:'#7dd3fc' }}>
+            {search?.running
+              ? `⟳ Searching… ${search.done}/${search.total}`
+              : `🔍 Find what works — search ${combinationCount()} combinations`}
+          </button>
+          <div style={{ fontSize:11, color:'var(--text3)', lineHeight:1.6, marginTop:6 }}>
+            Searches on the first 70% of the bars, then tests the best few on the last 30% it never saw.
+            Anything whose edge collapses out of sample was curve-fitting, and is labelled that way.
+            <strong style={{ color:'#f59e0b' }}> Use the Daily timeframe and as many bars as you can</strong> —
+            1,000 hourly bars is 58 days, which is not enough history for any of this to mean anything.
+          </div>
         </div>
       </div>
 
       {/* ── RIGHT: Results ─────────────────────────────────────────────────── */}
       <div className="bt2-results">
+        {search?.result && (() => {
+          const r = search.result;
+          if (!r.ok) return <div className="bt2-error">⚠ {r.reason}</div>;
+          const COL = { survived:'#22c55e', faded:'#f59e0b', 'curve-fit':'#ef4444', untested:'#64748b' };
+          const WORD = { survived:'SURVIVED', faded:'FADED', 'curve-fit':'CURVE-FIT', untested:'TOO FEW OUT-OF-SAMPLE' };
+          const kept = r.finalists.filter(f => f.verdict === 'survived');
+          return (
+            <div style={{ background:'#0b1118', border:'1px solid #16324a', borderRadius:12, padding:'14px 16px', margin:'0 0 14px' }}>
+              <div style={{ fontSize:15, fontWeight:800, color:'#7dd3fc', marginBottom:4 }}>
+                Searched {r.tested} combinations
+              </div>
+              <div style={{ fontSize:12, color:'var(--text3)', lineHeight:1.7, marginBottom:12 }}>
+                {r.qualified} had enough trades to judge. Searched on {r.inSampleBars} bars,
+                tested on {r.outSampleBars} the search never saw.
+                <div style={{ marginTop:3, color:'#f59e0b' }}>
+                  At {r.tested} attempts, roughly {r.expectedFalsePositives} would look good by luck alone.
+                  That is exactly why the holdout column is the only one worth reading.
+                </div>
+              </div>
+
+              {kept.length === 0 && (
+                <div style={{ fontSize:13, color:'#fca5a5', lineHeight:1.7, marginBottom:10,
+                  border:'1px solid #ef444444', borderRadius:8, padding:'10px 12px', background:'#ef44440d' }}>
+                  <strong>Nothing survived the holdout.</strong>
+                  <div style={{ marginTop:3, color:'#c7d2da' }}>
+                    Every candidate that looked good on the first 70% failed on the last 30%. That is the
+                    normal result, and it is worth far more than a number that would have been fitted.
+                    Longer history and the Daily timeframe give this the best chance.
+                  </div>
+                </div>
+              )}
+
+              {r.finalists.map(f => (
+                <div key={f.id} style={{ borderTop:'1px solid #16202b', padding:'9px 0' }}>
+                  <div style={{ display:'flex', gap:8, alignItems:'baseline', flexWrap:'wrap' }}>
+                    <span style={{ fontSize:10, fontWeight:900, color:COL[f.verdict],
+                      border:`1px solid ${COL[f.verdict]}44`, borderRadius:3, padding:'1px 6px' }}>
+                      {WORD[f.verdict]}
+                    </span>
+                    <span style={{ fontSize:12, color:'#e2e8f0' }}>{f.label}</span>
+                  </div>
+                  <div style={{ display:'flex', gap:18, marginTop:5, fontSize:12, flexWrap:'wrap' }}>
+                    <span style={{ color:'var(--text3)' }}>
+                      searched: <strong style={{ color:'#94a3b8' }}>{f.inSample.expR > 0 ? '+' : ''}{f.inSample.expR}R</strong>
+                      {' '}· {f.inSample.winRate}% · n={f.inSample.n}
+                    </span>
+                    <span style={{ color:'var(--text3)' }}>
+                      held out: <strong style={{ color: f.outSample?.expR > 0 ? '#22c55e' : '#ef4444' }}>
+                        {f.outSample ? `${f.outSample.expR > 0 ? '+' : ''}${f.outSample.expR}R` : '—'}
+                      </strong>
+                      {f.outSample ? ` · ${f.outSample.winRate}% · n=${f.outSample.n}` : ''}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          );
+        })()}
         {!results && !running && (
           <div className="bt2-placeholder">
             <div className="bt2-placeholder-icon">📊</div>
