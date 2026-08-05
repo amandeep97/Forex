@@ -8,6 +8,7 @@ import { generateCandles } from '../utils/generateCandles';
 import { takeStagedFilter } from '../utils/feedToBacktest';
 import { searchStrategies, combinationCount, testAcrossInstruments, FOCUS_SET } from '../utils/strategySearch';
 import { translateToBot, stageForBot } from '../utils/strategyToBot';
+import { deepSearch, POOL as DEEP_POOL, FAMILY } from '../utils/deepSearch';
 
 const TF_GRAN = {'1M':'M1','5M':'M5','15M':'M15','30M':'M30','1H':'H1','4H':'H4','8H':'H8','D':'D','W':'W'};
 const TFS = ['1M','5M','15M','30M','1H','4H','8H','D','W'];
@@ -922,6 +923,7 @@ export default function Backtester() {
   const [search, setSearch]     = useState(null);   // { running, done, total, result }
   const [across, setAcross]     = useState(null);   // cross-instrument check of one finalist
   const [handoff, setHandoff]   = useState(null);   // { f, t } translation preview for Auto Trading
+  const [deep, setDeep]         = useState(null);   // multi-condition search
   const [saved,   setSaved]   = useState(false);
 
   const addCond = () => setConds(p=>[...p,{id:Date.now(),type:'rsi',...DEF.rsi}]);
@@ -1040,6 +1042,19 @@ export default function Backtester() {
       // happens to be selected.
       setSearch({ running:false, result:res, symbol:sym });
     } catch (e) { setErr(e.message); setSearch(null); }
+  };
+
+  const runDeep = async () => {
+    setErr(''); setDeep({ running:true, phase:'loading data', done:0, total:1 });
+    try {
+      const { candles, src:s } = await fetchCandles(sym, tf, cnt);
+      setSrc(s);
+      const res = await deepSearch(candles, {
+        spreadPips: spread === '' ? undefined : +spread,
+        onProgress: p => setDeep(d => ({ ...d, ...p })),
+      });
+      setDeep({ running:false, result:res, symbol:sym });
+    } catch (e) { setErr(e.message); setDeep(null); }
   };
 
   // Load a search finalist into the builder, so the full report — trade list,
@@ -1447,11 +1462,133 @@ export default function Backtester() {
             <strong style={{ color:'#f59e0b' }}> Use the Daily timeframe and as many bars as you can</strong> —
             1,000 hourly bars is 58 days, which is not enough history for any of this to mean anything.
           </div>
+
+          {/* ── Deep search ─────────────────────────────────────────────────
+                The preset search never builds anything deeper than a trigger
+                plus a filter. This stacks three, four and five conditions from
+                a 47-condition vocabulary, chosen greedily against a build
+                slice and filtered on a validation slice before the holdout is
+                touched. Its false-positive rate is high and stated on the
+                results panel rather than hidden. ── */}
+          <button onClick={runDeep} disabled={running || search?.running || deep?.running}
+            style={{ width:'100%', marginTop:10, padding:'12px', borderRadius:10, cursor:'pointer',
+              fontWeight:800, fontSize:14, border:'1px solid #a78bfa55', background:'#160b2a', color:'#a78bfa' }}>
+            {deep?.running
+              ? `⟳ ${deep.phase || 'searching'}… ${deep.done || 0}/${deep.total || '?'}`
+              : `🧬 Deep search — stack up to 4 of ${DEEP_POOL.length} conditions`}
+          </button>
+          <div style={{ fontSize:11, color:'var(--text3)', lineHeight:1.6, marginTop:6 }}>
+            Builds combinations of three and four conditions across {Object.keys(FAMILY).length} families —
+            structure, momentum, trend, volatility, location, timing, volume and candles — instead of the
+            trigger-plus-filter pairs above. Slower, and it also re-runs itself on a shuffled copy of your
+            data to show what the same search finds in noise.
+          </div>
         </div>
       </div>
 
       {/* ── RIGHT: Results ─────────────────────────────────────────────────── */}
       <div className="bt2-results">
+        {deep?.result && (() => {
+          const r = deep.result;
+          if (!r.ok) return (
+            <div style={{ background:'#1a1206', border:'1px solid #f59e0b55', borderRadius:12, padding:'14px 16px', margin:'0 0 14px' }}>
+              <div style={{ fontSize:14, fontWeight:800, color:'#f59e0b', marginBottom:6 }}>DEEP SEARCH DECLINED</div>
+              <div style={{ fontSize:12.5, color:'#c7d2da', lineHeight:1.75 }}>{r.reason}</div>
+            </div>
+          );
+          const COL = { survived:'#22c55e', faded:'#f59e0b', 'curve-fit':'#ef4444', untested:'#64748b' };
+          const WORD = { survived:'SURVIVED', faded:'FADED', 'curve-fit':'CURVE-FIT', untested:'TOO FEW OUT-OF-SAMPLE' };
+          return (
+            <div style={{ background:'#0b1118', border:'1px solid #a78bfa44', borderRadius:12, padding:'14px 16px', margin:'0 0 14px' }}>
+              <div style={{ fontSize:15, fontWeight:800, color:'#a78bfa', marginBottom:4 }}>
+                Built {r.evaluated.toLocaleString()} strategies from {r.usablePool} conditions
+              </div>
+              <div style={{ fontSize:12, color:'var(--text3)', lineHeight:1.7, marginBottom:10 }}>
+                Up to {r.maxDepth} conditions deep. Built on {r.buildBars.toLocaleString()} bars,
+                filtered on {r.validateBars.toLocaleString()}, and only {r.holdoutLooks} reached
+                the {r.holdoutBars.toLocaleString()}-bar holdout.
+              </div>
+
+              {/* The most important thing on the screen. */}
+              <div style={{ fontSize:12, color:'#fca5a5', lineHeight:1.75, marginBottom:12,
+                border:'1px solid #ef444444', borderRadius:8, padding:'10px 12px', background:'#ef44440d' }}>
+                <strong>Read these as leads, not findings.</strong> Run on pure random walks, this
+                search returned finalists that looked this good about 40% of the time. Stacking four
+                conditions finds structure in noise faster than any significance test here can
+                discount it — so a good number below is weak evidence on its own.
+                {r.nullRun?.bestExpR != null && (
+                  <div style={{ marginTop:5, color:'#c7d2da' }}>
+                    On a shuffled copy of <strong>your</strong> data, the same search reached{' '}
+                    <strong style={{ color:'#e2e8f0' }}>{r.nullRun.bestExpR > 0 ? '+' : ''}{r.nullRun.bestExpR}R</strong>.
+                    Treat that as the score to beat, not zero.
+                  </div>
+                )}
+                <div style={{ marginTop:5, color:'#c7d2da' }}>
+                  The two tests that are independent of this search are <strong>test on {FOCUS.length} majors</strong> and
+                  a sealed forward test. Use them before anything here reaches money.
+                </div>
+              </div>
+
+              {r.neverFires?.length > 0 && (
+                <div style={{ fontSize:11, color:'var(--text3)', marginBottom:10, lineHeight:1.6 }}>
+                  Never fired on this data, so excluded: {r.neverFires.join(', ')}.
+                </div>
+              )}
+
+              {r.finalists.map((f, i) => (
+                <div key={i} style={{ borderTop:'1px solid #16202b', padding:'9px 0' }}>
+                  <div style={{ display:'flex', gap:8, alignItems:'baseline', flexWrap:'wrap' }}>
+                    <span style={{ fontSize:10, fontWeight:900, color:COL[f.verdict] || '#64748b',
+                      border:`1px solid ${COL[f.verdict] || '#64748b'}44`, borderRadius:3, padding:'1px 6px' }}>
+                      {WORD[f.verdict] || f.verdict.toUpperCase()}
+                    </span>
+                    <span style={{ fontSize:10, fontWeight:700, color:'#a78bfa' }}>
+                      {f.depth} conditions · {f.families.length} famil{f.families.length === 1 ? 'y' : 'ies'}
+                    </span>
+                    {f.beatsNull && (
+                      <span style={{ fontSize:10, fontWeight:800, color:'#22c55e' }}>beats the shuffled null</span>
+                    )}
+                  </div>
+                  <div style={{ fontSize:12, color:'#e2e8f0', marginTop:4, lineHeight:1.5 }}>{f.label}</div>
+                  <div style={{ display:'flex', gap:18, marginTop:5, fontSize:12, flexWrap:'wrap' }}>
+                    <span style={{ color:'var(--text3)' }}>
+                      built: <strong style={{ color:'#94a3b8' }}>{f.build.expR > 0 ? '+' : ''}{f.build.expR}R</strong> · n={f.build.n}
+                    </span>
+                    <span style={{ color:'var(--text3)' }}>
+                      held out: <strong style={{ color: f.holdout?.expR > 0 ? '#22c55e' : '#ef4444' }}>
+                        {f.holdout?.expR != null ? `${f.holdout.expR > 0 ? '+' : ''}${f.holdout.expR}R` : '—'}
+                      </strong>
+                      {f.significance ? ` ± ${f.significance.ci}` : ''} · n={f.holdout?.n ?? 0}
+                    </span>
+                  </div>
+                  {f.significance?.random && (
+                    <div style={{ fontSize:11.5, color:'var(--text3)', marginTop:4, lineHeight:1.6 }}>
+                      Random entries on the same slice averaged {f.significance.random.median > 0 ? '+' : ''}
+                      {f.significance.random.median}R.
+                      {f.holdout?.lossStreak > 0 && <> Worst run: <strong style={{ color:'#e2e8f0' }}>{f.holdout.lossStreak} losses in a row</strong>.</>}
+                    </div>
+                  )}
+                  <div style={{ display:'flex', gap:6, marginTop:6, flexWrap:'wrap' }}>
+                    <button onClick={() => runAcross({ label:f.label, strategy:f.strategy }, 'focus')} disabled={across?.running}
+                      style={{ fontSize:11, fontWeight:700, padding:'3px 10px', borderRadius:6, cursor:'pointer',
+                        border:'1px solid #22c55e55', background:'#0b1a12', color:'#22c55e' }}>
+                      test on {FOCUS.length} majors
+                    </button>
+                    <button onClick={() => loadFinalist({ strategy:f.strategy })}
+                      style={{ fontSize:11, fontWeight:700, padding:'3px 10px', borderRadius:6, cursor:'pointer',
+                        border:'1px solid #7dd3fc55', background:'#0b1a2a', color:'#7dd3fc' }}>
+                      open in builder →
+                    </button>
+                  </div>
+                </div>
+              ))}
+              <button onClick={() => setDeep(null)}
+                style={{ marginTop:10, fontSize:11, padding:'3px 10px', borderRadius:6, cursor:'pointer',
+                  background:'transparent', color:'var(--text3)', border:'1px solid var(--border)' }}>close</button>
+            </div>
+          );
+        })()}
+
         {handoff && (() => {
           const { t } = handoff;
           const C = { blocking:'#ef4444', approximate:'#f59e0b', exact:'#22c55e' };
