@@ -150,3 +150,62 @@ export async function searchStrategies(candles, {
     expectedFalsePositives: +(total * 0.05).toFixed(0),
   };
 }
+
+// ── Does it work anywhere else? ──────────────────────────────────────────────
+// The strongest test available, and stronger than simply adding more bars.
+//
+// A rule fitted to one instrument's history has no reason to work on another.
+// A rule that reflects something real about how markets behave — participants
+// trapped at a level, volatility clustering — has every reason to. So run the
+// survivor, unchanged, across everything and look at the spread of outcomes.
+//
+// One instrument at +0.7R and eleven around zero is a fitted rule that got
+// lucky once. Seven instruments mildly positive is far more interesting than a
+// single spectacular one, and it is the opposite of what a curve-fit produces.
+// minTrades is deliberately low. Trend strategies fire rarely — an EMA cross
+// might produce a dozen trades in years of data — and at 20 per instrument
+// nothing qualified and the whole test returned "not enough". Here the evidence
+// is BREADTH across instruments, not depth within one, so ten trades each
+// across twelve instruments is a stronger argument than sixty on a single one.
+export async function testAcrossInstruments(strategy, loadCandles, symbols, { minTrades = 10, onProgress } = {}) {
+  const rows = [];
+  let done = 0;
+  for (const sym of symbols) {
+    let row = { sym, error: null };
+    try {
+      const candles = await loadCandles(sym);
+      if (!candles || candles.length < 300) throw new Error(`only ${candles?.length || 0} bars`);
+      const r = runBacktest(candles, { ...strategy, symbol: sym });
+      const s = calcStats(r.trades);
+      row.n = s.totalTrades;
+      row.expR = s.avgRR;
+      row.winRate = s.winRate;
+      row.enough = s.totalTrades >= minTrades;
+    } catch (e) { row.error = e.message; }
+    rows.push(row);
+    done++;
+    onProgress?.(done, symbols.length);
+    await new Promise(r => setTimeout(r, 0));
+  }
+
+  const judged = rows.filter(r => r.enough && r.expR != null);
+  const positive = judged.filter(r => r.expR > 0);
+  const median = judged.length
+    ? [...judged].sort((a, b) => a.expR - b.expR)[Math.floor(judged.length / 2)].expR
+    : null;
+
+  return {
+    rows: rows.sort((a, b) => (b.expR ?? -99) - (a.expR ?? -99)),
+    judged: judged.length,
+    positive: positive.length,
+    median,
+    totalTrades: judged.reduce((n, r) => n + r.n, 0),
+    skipped: rows.filter(r => !r.enough && !r.error).length,
+    // A single winner among many is what a fitted rule looks like. Breadth is
+    // the evidence; the best number in the list is not.
+    verdict: judged.length < 4 ? 'too-few'
+           : positive.length >= Math.ceil(judged.length * 0.6) && median > 0 ? 'broad'
+           : positive.length >= Math.ceil(judged.length * 0.4) ? 'mixed'
+           : 'one-off',
+  };
+}

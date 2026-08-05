@@ -6,7 +6,7 @@ import { OANDA_MAP } from '../hooks/useLivePrices';
 import { INSTRUMENTS as REGISTRY } from '../data/instruments';
 import { generateCandles } from '../utils/generateCandles';
 import { takeStagedFilter } from '../utils/feedToBacktest';
-import { searchStrategies, combinationCount } from '../utils/strategySearch';
+import { searchStrategies, combinationCount, testAcrossInstruments } from '../utils/strategySearch';
 
 const TF_GRAN = {'1M':'M1','5M':'M5','15M':'M15','30M':'M30','1H':'H1','4H':'H4','8H':'H8','D':'D','W':'W'};
 const TFS = ['1M','5M','15M','30M','1H','4H','8H','D','W'];
@@ -883,6 +883,7 @@ export default function Backtester() {
   const [logic, setLogic] = useState('AND');
   const [fromFeed, setFromFeed] = useState(null);
   const [search, setSearch]     = useState(null);   // { running, done, total, result }
+  const [across, setAcross]     = useState(null);   // cross-instrument check of one finalist
   const [saved,   setSaved]   = useState(false);
 
   const addCond = () => setConds(p=>[...p,{id:Date.now(),type:'rsi',...DEF.rsi}]);
@@ -1015,6 +1016,20 @@ export default function Backtester() {
     if (st.slType === 'swing') setSwingLb(st.swingLookback || 12);
     setSearch(null);
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  // Run one finalist, unchanged, on every instrument. Breadth is the evidence.
+  const runAcross = async (f) => {
+    setAcross({ running:true, label:f.label, done:0, total:INSTRUMENTS.length });
+    try {
+      const res = await testAcrossInstruments(
+        f.strategy,
+        async (s) => (await fetchCandles(s, tf, cnt)).candles,
+        INSTRUMENTS,
+        { onProgress: (done, total) => setAcross(a => ({ ...a, done, total })) },
+      );
+      setAcross({ running:false, label:f.label, result:res });
+    } catch (e) { setErr(e.message); setAcross(null); }
   };
 
   const removeGrade = (sig) => setLibrary(removeFromLibrary(sig));
@@ -1356,6 +1371,57 @@ export default function Backtester() {
 
       {/* ── RIGHT: Results ─────────────────────────────────────────────────── */}
       <div className="bt2-results">
+        {across && (() => {
+          if (across.running) return (
+            <div style={{ background:'#0b1118', border:'1px solid #16324a', borderRadius:12,
+              padding:'14px 16px', margin:'0 0 14px', fontSize:13, color:'#7dd3fc' }}>
+              ⟳ Testing on every instrument… {across.done}/{across.total}
+            </div>
+          );
+          const r = across.result; if (!r) return null;
+          const V = {
+            broad:   { c:'#22c55e', t:'WORKS BROADLY',
+                       d:'Positive on most instruments. That is what a real behaviour looks like — a rule fitted to one history has no reason to travel.' },
+            mixed:   { c:'#f59e0b', t:'MIXED',
+                       d:'Positive on some, negative on others. Could be a weak real effect, could be luck. Not enough to trade on.' },
+            'one-off':{ c:'#ef4444', t:'ONE INSTRUMENT ONLY',
+                       d:'It works where it was found and nowhere else. That is what curve-fitting looks like when you widen the lens.' },
+            'too-few':{ c:'#64748b', t:'NOT ENOUGH INSTRUMENTS TRADED',
+                       d:'Too few instruments produced enough trades to judge. Try more bars, or a lower timeframe.' },
+          }[r.verdict];
+          return (
+            <div style={{ background:'#0b1118', border:`1px solid ${V.c}44`, borderRadius:12, padding:'14px 16px', margin:'0 0 14px' }}>
+              <div style={{ fontSize:15, fontWeight:800, color:V.c }}>{V.t}</div>
+              <div style={{ fontSize:12, color:'var(--text3)', marginTop:3, marginBottom:8 }}>{across.label}</div>
+              <div style={{ fontSize:12, color:'#c7d2da', lineHeight:1.7, marginBottom:10 }}>
+                {V.d}
+                <div style={{ marginTop:3, color:'var(--text3)' }}>
+                  {r.positive} of {r.judged} instruments positive · median {r.median != null ? `${r.median > 0 ? '+' : ''}${r.median}R` : '—'}
+                </div>
+              </div>
+              {r.rows.filter(x => x.enough).map(x => (
+                <div key={x.sym} style={{ display:'flex', alignItems:'center', gap:8, padding:'2px 0', fontSize:12 }}>
+                  <span style={{ width:88, fontWeight:700, color:'#e2e8f0', flexShrink:0 }}>{x.sym}</span>
+                  <span style={{ flex:1, height:4, background:'#0f172a', borderRadius:2, overflow:'hidden', minWidth:40 }}>
+                    <span style={{ display:'block', marginLeft: x.expR < 0 ? 0 : '50%',
+                      width:`${Math.min(50, Math.abs(x.expR) * 25)}%`, height:'100%',
+                      background: x.expR > 0 ? '#22c55e' : '#ef4444',
+                      float: x.expR < 0 ? 'right' : 'none' }}/>
+                  </span>
+                  <span style={{ width:56, textAlign:'right', fontFamily:'monospace',
+                    color: x.expR > 0 ? '#22c55e' : '#ef4444' }}>
+                    {x.expR > 0 ? '+' : ''}{x.expR}R
+                  </span>
+                  <span style={{ width:44, textAlign:'right', color:'var(--text3)' }}>n={x.n}</span>
+                </div>
+              ))}
+              <button onClick={() => setAcross(null)}
+                style={{ marginTop:10, fontSize:11, padding:'3px 10px', borderRadius:6, cursor:'pointer',
+                  background:'transparent', color:'var(--text3)', border:'1px solid var(--border)' }}>close</button>
+            </div>
+          );
+        })()}
+
         {search?.result && (() => {
           const r = search.result;
           if (!r.ok) return <div className="bt2-error">⚠ {r.reason}</div>;
@@ -1408,11 +1474,20 @@ export default function Backtester() {
                       </strong>
                       {f.outSample ? ` · ${f.outSample.winRate}% · n=${f.outSample.n}` : ''}
                     </span>
-                    <button onClick={() => loadFinalist(f)}
-                      style={{ marginLeft:'auto', fontSize:11, fontWeight:700, padding:'3px 10px', borderRadius:6,
-                        cursor:'pointer', border:'1px solid #7dd3fc55', background:'#0b1a2a', color:'#7dd3fc' }}>
-                      open in builder →
-                    </button>
+                    <span style={{ marginLeft:'auto', display:'flex', gap:6 }}>
+                      {f.verdict === 'survived' && (
+                        <button onClick={() => runAcross(f)} disabled={across?.running}
+                          style={{ fontSize:11, fontWeight:700, padding:'3px 10px', borderRadius:6,
+                            cursor:'pointer', border:'1px solid #22c55e55', background:'#0b1a12', color:'#22c55e' }}>
+                          test on all instruments
+                        </button>
+                      )}
+                      <button onClick={() => loadFinalist(f)}
+                        style={{ fontSize:11, fontWeight:700, padding:'3px 10px', borderRadius:6,
+                          cursor:'pointer', border:'1px solid #7dd3fc55', background:'#0b1a2a', color:'#7dd3fc' }}>
+                        open in builder →
+                      </button>
+                    </span>
                   </div>
                 </div>
               ))}
