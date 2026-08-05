@@ -433,10 +433,24 @@ export function mirrorCond(cond) {
     // condition on short entries — a rule that quietly means something
     // different depending on which way it trades.
     case 'stretch':
-    case 'gap': {
+    case 'gap':
+    case 'peer_chg':
+    case 'ratio_pct': {
       const m = { above:'below', below:'above', up:'down', down:'up' };
       return { ...cond, op: m[cond.op] || cond.op };
     }
+    case 'divergence': {
+      const m = { bull:'bear', bear:'bull' };
+      return { ...cond, op: m[cond.op] || cond.op };
+    }
+    case 'lead': {
+      const m = { up:'down', down:'up' };
+      return { ...cond, op: m[cond.op] || 'down' };
+    }
+    // Calendar position is not directional — month end is month end.
+    case 'dom':
+    case 'quarter':
+      return cond;
     case 'breakout': {
       const m = { high:'low', low:'high' };
       return { ...cond, op: m[cond.op] || cond.op };
@@ -670,6 +684,77 @@ function evalCond(c, prev, inds, cond, pattern, patternIds) {
       return Math.max(lower, upper) / range >= v;
     }
 
+    // ── Cross-asset and calendar ────────────────────────────────────────────
+    // These read series built from OTHER instruments (see contextSeries.js),
+    // handed in on strategy.ctx and merged into the same snapshot everything
+    // else uses. They are the conditions a single-chart backtester cannot
+    // express, which is the reason for having them.
+
+    // A peer moved this much over n bars.
+    case 'peer_chg': {
+      const v = inds[`chg:${cond.peer}:${cond.n || 5}`]?.cur;
+      if (v == null) return false;
+      return cond.op === 'below' ? v <= cond.value : v >= cond.value;
+    }
+
+    // This instrument and a peer pulled apart. Not correlation — correlation
+    // is an average over a window and says nothing about today. This is the
+    // day they disagreed.
+    case 'divergence': {
+      const self = inds[`chg:self:${cond.n || 5}`]?.cur;
+      const peer = inds[`chg:${cond.peer}:${cond.n || 5}`]?.cur;
+      if (self == null || peer == null) return false;
+      const m = cond.value ?? 1;
+      // 'bull': this one held or rose while the peer fell.
+      if (cond.op === 'bull') return self >=  m && peer <= -m;
+      if (cond.op === 'bear') return self <= -m && peer >=  m;
+      return Math.abs(self - peer) >= m * 2;
+    }
+
+    // Where this instrument sits against a peer, relative to its own year.
+    // The gold/silver ratio at an extreme is the obvious case.
+    case 'ratio_pct': {
+      const v = inds[`rpct:${cond.peer}`]?.cur;
+      if (v == null) return false;
+      return cond.op === 'below' ? v <= cond.value : v >= cond.value;
+    }
+
+    // The peer has already moved and this one has not — yet.
+    //
+    // The whole premise of the leadership work: when one market reprices a
+    // shared driver, the ones that lag are the trade. A condition no
+    // single-chart backtest can even state.
+    case 'lead': {
+      const n = cond.n || 3;
+      const peer = inds[`chg:${cond.peer}:${n}`]?.cur;
+      const self = inds[`chg:self:${n}`]?.cur;
+      if (peer == null || self == null) return false;
+      const m = cond.value ?? 1;
+      if (cond.op === 'down') return peer <= -m && self > -m / 2;
+      return peer >= m && self < m / 2;
+    }
+
+    // Calendar position. Month-end rebalancing, quarter-end flows and the
+    // first-days-of-month bid are among the few effects with a mechanical
+    // cause rather than a statistical one — and nobody backtests them.
+    case 'dom': {
+      if (!c.t) return false;
+      const d = new Date(typeof c.t === 'number' ? c.t : Date.parse(c.t));
+      const day = d.getUTCDate();
+      const last = new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth() + 1, 0)).getUTCDate();
+      if (cond.op === 'turn')  return day <= 3 || day > last - 3;
+      if (cond.op === 'first') return day <= 5;
+      if (cond.op === 'mid')   return day > 10 && day <= 20;
+      if (cond.op === 'last')  return day > last - 5;
+      return false;
+    }
+
+    case 'quarter': {
+      if (!c.t) return false;
+      const m = new Date(typeof c.t === 'number' ? c.t : Date.parse(c.t)).getUTCMonth();
+      return Math.floor(m / 3) + 1 === cond.value;
+    }
+
     default: return false;
   }
 }
@@ -888,7 +973,11 @@ export function runBacktest(candles, strategy, opts = {}) {
   const trades      = [];
   const open        = [];
 
-  const indArrays = opts.entryOverride ? {} : buildIndicators(candles, conditions);
+  // Cross-asset and calendar series arrive pre-built (contextSeries.js) because
+  // they need other instruments' candles, which the engine deliberately knows
+  // nothing about. Merged here so they use the same per-bar snapshot as
+  // everything else rather than a second lookup path inside the loop.
+  const indArrays = opts.entryOverride ? {} : { ...buildIndicators(candles, conditions), ...(strategy.ctx || {}) };
   const atr       = cachedSeries(candles, 'atr_14', () => computeATRSeries(candles, 14));
   // Hoisted: Object.entries allocates a fresh array of pairs, and doing that
   // once per bar per strategy is 75 million throwaway arrays over a search.
