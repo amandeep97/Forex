@@ -264,6 +264,7 @@ export async function searchStrategies(candles, {
 // difference between a "mixed" and a "one-off" verdict.
 export async function testAcrossInstruments(strategy, loadCandles, symbols, { minTrades = 10, origin = null, onProgress } = {}) {
   const rows = [];
+  const pooledTrades = [];
   let done = 0;
   for (const sym of symbols) {
     let row = { sym, error: null, origin: sym === origin };
@@ -276,6 +277,17 @@ export async function testAcrossInstruments(strategy, loadCandles, symbols, { mi
       row.expR = s.avgRR;
       row.winRate = s.winRate;
       row.enough = s.totalTrades >= minTrades;
+      row.totalR = s.totalR;
+      row.maxR = s.maxR;
+      // Trades from every instrument, kept together.
+      //
+      // This is the answer to the rare-setup problem. A rule that fires twenty
+      // times on gold cannot be judged on gold — twenty trades is an anecdote.
+      // The same rule across twelve unrelated markets fires two hundred and
+      // forty times, and unlike more history on one instrument, the extra
+      // sample is not the same regime measured again. Sizes vary by
+      // instrument, so R-multiples pool cleanly where dollars would not.
+      if (sym !== origin) for (const t of r.trades) pooledTrades.push(t);
     } catch (e) { row.error = e.message; }
     rows.push(row);
     done++;
@@ -289,8 +301,23 @@ export async function testAcrossInstruments(strategy, loadCandles, symbols, { mi
     ? [...judged].sort((a, b) => a.expR - b.expR)[Math.floor(judged.length / 2)].expR
     : null;
 
+  const pooled = pooledTrades.length ? (() => {
+    const st = calcStats(pooledTrades);
+    const ci = st.seRR != null ? 1.96 * st.seRR : null;
+    return {
+      n: st.totalTrades, expR: st.avgRR, winRate: st.winRate,
+      totalR: st.totalR, bigWinRate: st.bigWinRate, maxR: st.maxR, payoff: st.payoff,
+      lossStreak: st.maxLossStreak,
+      ci: ci == null ? null : +ci.toFixed(2),
+      clearsZero: ci != null && st.avgRR - ci > 0,
+    };
+  })() : null;
+
   return {
     rows: rows.sort((a, b) => (b.expR ?? -99) - (a.expR ?? -99)),
+    // The decisive number for a rare rule, and the only place its sample can
+    // honestly be made large enough to read.
+    pooled,
     judged: judged.length,
     positive: positive.length,
     median,

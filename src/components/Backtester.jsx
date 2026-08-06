@@ -924,6 +924,7 @@ export default function Backtester() {
   const [across, setAcross]     = useState(null);   // cross-instrument check of one finalist
   const [handoff, setHandoff]   = useState(null);   // { f, t } translation preview for Auto Trading
   const [deep, setDeep]         = useState(null);   // multi-condition search
+  const [deepObj, setDeepObj]   = useState('mean'); // 'mean' | 'tail' — what "better" means
   const [saved,   setSaved]   = useState(false);
 
   const addCond = () => setConds(p=>[...p,{id:Date.now(),type:'rsi',...DEF.rsi}]);
@@ -1069,7 +1070,7 @@ export default function Backtester() {
       }
 
       const res = await deepSearch(candles, {
-        peers,
+        peers, objective: deepObj,
         spreadPips: spread === '' ? undefined : +spread,
         onProgress: p => setDeep(d => ({ ...d, ...p })),
       });
@@ -1490,6 +1491,16 @@ export default function Backtester() {
                 slice and filtered on a validation slice before the holdout is
                 touched. Its false-positive rate is high and stated on the
                 results panel rather than hidden. ── */}
+          <div style={{ display:'flex', gap:6, marginTop:10 }}>
+            {[['mean','steady earners'],['tail','rare big payoffs']].map(([v,l]) => (
+              <button key={v} onClick={() => setDeepObj(v)}
+                style={{ flex:1, padding:'6px', borderRadius:8, fontSize:11, fontWeight:700, cursor:'pointer',
+                  border:`1px solid ${deepObj===v?'#a78bfa':'var(--border)'}`,
+                  background: deepObj===v?'#a78bfa22':'transparent', color: deepObj===v?'#a78bfa':'var(--text3)' }}>
+                {l}
+              </button>
+            ))}
+          </div>
           <button onClick={runDeep} disabled={running || search?.running || deep?.running}
             style={{ width:'100%', marginTop:10, padding:'12px', borderRadius:10, cursor:'pointer',
               fontWeight:800, fontSize:14, border:'1px solid #a78bfa55', background:'#160b2a', color:'#a78bfa' }}>
@@ -1498,6 +1509,9 @@ export default function Backtester() {
               : `🧬 Deep search — stack up to 4 of ${DEEP_POOL.length} conditions`}
           </button>
           <div style={{ fontSize:11, color:'var(--text3)', lineHeight:1.6, marginTop:6 }}>
+            {deepObj === 'tail'
+              ? 'Ranks by total R captured and how often a trade ran past +5R, and admits rare setups — twenty fires in a decade — that the other mode deletes before ranking them. Validate those with the pooled breadth test, never on one instrument. '
+              : 'Ranks by expectancy per trade, which favours rules that fire often and pay a little. '}
             Builds combinations of three and four conditions across {Object.keys(FAMILY).length} families —
             structure, momentum, trend, volatility, location, timing, volume and candles — instead of the
             trigger-plus-filter pairs above. Slower, and it also re-runs itself on a shuffled copy of your
@@ -1727,6 +1741,30 @@ export default function Backtester() {
                   {r.positive} of {r.judged} instruments positive · median {r.median != null ? `${r.median > 0 ? '+' : ''}${r.median}R` : '—'}
                 </div>
               </div>
+
+              {r.pooled && (
+                <div style={{ fontSize:12, lineHeight:1.75, marginBottom:11,
+                  border:'1px solid #a78bfa44', borderRadius:8, padding:'10px 12px', background:'#a78bfa0d' }}>
+                  <div style={{ fontWeight:800, color:'#a78bfa', marginBottom:4 }}>
+                    ALL {r.pooled.n} TRADES POOLED
+                  </div>
+                  <div style={{ color:'#c7d2da' }}>
+                    <strong style={{ color: r.pooled.expR > 0 ? '#22c55e' : '#ef4444' }}>
+                      {r.pooled.expR > 0 ? '+' : ''}{r.pooled.expR}R
+                    </strong>
+                    {r.pooled.ci != null && <> ± {r.pooled.ci}</>} per trade ·{' '}
+                    {r.pooled.winRate}% win · <strong style={{ color:'#e2e8f0' }}>{r.pooled.totalR}R</strong> captured in total
+                    {r.pooled.maxR != null && <> · best trade +{r.pooled.maxR}R</>}
+                    {r.pooled.bigWinRate != null && <> · {r.pooled.bigWinRate}% of trades ran past +5R</>}
+                  </div>
+                  <div style={{ color:'var(--text3)', marginTop:4, fontSize:11.5 }}>
+                    {r.pooled.clearsZero
+                      ? 'Clears zero at 95% on the pooled sample — and twelve unrelated markets is not one regime measured again.'
+                      : 'Zero is still inside the range even pooled. More instruments or more history, not more searching.'}
+                    {r.pooled.lossStreak > 0 && <> Worst run across the pool: {r.pooled.lossStreak} losses.</>}
+                  </div>
+                </div>
+              )}
               {r.rows.filter(x => x.enough).map(x => (
                 <div key={x.sym} style={{ display:'flex', alignItems:'center', gap:8, padding:'2px 0', fontSize:12,
                   opacity: x.origin ? 0.55 : 1 }}>
