@@ -1206,7 +1206,9 @@ export function calcStats(trades, initialEquity = 10000) {
     maxWinStreak: 0, maxLossStreak: 0,
     longWins: 0, longLosses: 0, longWinRate: null,
     shortWins: 0, shortLosses: 0, shortWinRate: null,
-    avgRR: null, sdRR: null, seRR: null, monthlyPnl: [],
+    avgRR: null, sdRR: null, seRR: null,
+    totalR: null, bigWinRate: null, bigWins: 0, p90R: null, maxR: null, payoff: null,
+    monthlyPnl: [],
   };
   if (!trades || trades.length === 0) return empty;
 
@@ -1272,6 +1274,18 @@ export function calcStats(trades, initialEquity = 10000) {
   // over 400 of those is a very different claim from +0.11R over 400 trades
   // that all land near it. The standard error is the difference, and without
   // it every backtest number invites more confidence than it has earned.
+  // Tail statistics. Mean expectancy answers "does this pay on average" and
+  // says nothing about where the money came from — and for an asymmetric rule
+  // that is the only interesting question. Two rules at +0.3R are different
+  // animals if one grinds out 0.3R eighty times and the other loses small
+  // seventy times and takes +20R once.
+  const sortedR = [...rMultiples].sort((a, b) => a - b);
+  const q = p => sortedR.length ? sortedR[Math.min(sortedR.length - 1, Math.floor(p * sortedR.length))] : null;
+  const bigWins = rMultiples.filter(v => v >= 5).length;
+  const totalR  = rMultiples.reduce((s, v) => s + v, 0);
+  const avgWinR = (() => { const w = rMultiples.filter(v => v > 0); return w.length ? w.reduce((s,v)=>s+v,0)/w.length : null; })();
+  const avgLossR= (() => { const l = rMultiples.filter(v => v < 0); return l.length ? Math.abs(l.reduce((s,v)=>s+v,0)/l.length) : null; })();
+
   const sdRR = rMultiples.length > 1
     ? Math.sqrt(rMultiples.reduce((s, v) => s + (v - rawAvgRR) ** 2, 0) / (rMultiples.length - 1))
     : null;
@@ -1317,6 +1331,17 @@ export function calcStats(trades, initialEquity = 10000) {
     avgRR,
     sdRR:  sdRR == null ? null : +sdRR.toFixed(3),
     seRR:  seRR == null ? null : +seRR.toFixed(3),
+    // Total R captured, not per trade. A rule firing 40 times at +2R takes
+    // 80R out of the market; one firing 900 times at +0.25R takes 225R. Mean
+    // expectancy ranks the second below the first and answers a question
+    // nobody asked.
+    totalR:     rMultiples.length ? +totalR.toFixed(1) : null,
+    // How often it actually paid big, and how big the biggest were.
+    bigWinRate: rMultiples.length ? +((bigWins / rMultiples.length) * 100).toFixed(1) : null,
+    bigWins,
+    p90R:       q(0.90) == null ? null : +q(0.90).toFixed(2),
+    maxR:       sortedR.length ? +sortedR[sortedR.length - 1].toFixed(2) : null,
+    payoff:     avgWinR != null && avgLossR ? +(avgWinR / avgLossR).toFixed(2) : null,
     monthlyPnl,
   };
 }

@@ -273,12 +273,20 @@ export function crossAssetPool(peers) {
   return out;
 }
 
+// The ceiling here was a 3R target and a 5 ATR trail, which means no strategy
+// in the search could express "hold for a very large move". A rule whose whole
+// case is one 20R trade a year had no exit capable of collecting it, so it
+// could never place well however good the entry was.
 const EXITS = [
-  { id:'rr2',    label:'2R target',      exitType:'rr',    rrRatio:2 },
-  { id:'rr3',    label:'3R target',      exitType:'rr',    rrRatio:3 },
-  { id:'trail2', label:'2 ATR trailing', exitType:'trail', trailAtr:2 },
-  { id:'trail3', label:'3 ATR trailing', exitType:'trail', trailAtr:3 },
-  { id:'trail5', label:'5 ATR trailing', exitType:'trail', trailAtr:5 },
+  { id:'rr2',    label:'2R target',       exitType:'rr',    rrRatio:2 },
+  { id:'rr3',    label:'3R target',       exitType:'rr',    rrRatio:3 },
+  { id:'rr5',    label:'5R target',       exitType:'rr',    rrRatio:5 },
+  { id:'rr8',    label:'8R target',       exitType:'rr',    rrRatio:8 },
+  { id:'trail2', label:'2 ATR trailing',  exitType:'trail', trailAtr:2 },
+  { id:'trail3', label:'3 ATR trailing',  exitType:'trail', trailAtr:3 },
+  { id:'trail5', label:'5 ATR trailing',  exitType:'trail', trailAtr:5 },
+  { id:'trail8', label:'8 ATR trailing',  exitType:'trail', trailAtr:8 },
+  { id:'trail12',label:'12 ATR trailing', exitType:'trail', trailAtr:12 },
 ];
 const STOPS = [
   { id:'atr2',  label:'2 ATR stop', slType:'atr',   slAtr:2 },
@@ -289,7 +297,14 @@ const STOPS = [
 // rather than exits. Exits are optimised afterwards, on the combinations that
 // survived — otherwise a good entry with an unlucky default exit is discarded
 // before it is ever seen properly.
-const NEUTRAL_EXIT = { exitType:'trail', trailAtr:3, slType:'atr', slAtr:2 };
+//
+// Looked up by id, not by position. This was EXITS[3], and adding two wider
+// targets to the front of the list silently moved the neutral exit from a
+// 3 ATR trail to an 8R target — which completes far fewer trades, so every
+// condition fell under the trade floor and the search reported that no
+// condition in a 47-word vocabulary produced a single qualifying entry.
+const NEUTRAL_EXIT = EXITS.find(e => e.id === 'trail3');
+const NEUTRAL_STOP = STOPS.find(s => s.id === 'atr2');
 
 // Two conditions from the same family are usually the same statement twice.
 // "RSI under 40" plus "MFI under 30" adds a condition and almost no
@@ -358,6 +373,16 @@ export async function deepSearch(candles, {
   spreadPips,
   calibrate  = true,    // re-run on a shuffled copy to measure the null
   peers      = null,    // { 'US500': candles, ... } — enables cross-asset conditions
+  // 'mean' ranks by expectancy per trade and needs a real sample to mean
+  // anything, so it favours rules that fire often and pay little.
+  //
+  // 'tail' ranks by total R captured and by how often a trade ran past +5R.
+  // It deliberately admits rare setups — twenty fires in a decade — because
+  // that is where asymmetric payoffs live, and a floor built for statistical
+  // comfort deletes them before they are ever ranked. Those results cannot be
+  // validated on one instrument; they are validated by POOLING the same rule
+  // across the majors, where twenty fires becomes two hundred and forty.
+  objective  = 'mean',
   onProgress,
 } = {}) {
   if (!candles || candles.length < 400) {
@@ -400,7 +425,17 @@ export async function deepSearch(candles, {
   // for a verdict. Every finalist then comes back "not tested yet", which is
   // accurate and useless. Scale the floor so that clearing it on build implies
   // clearing it where it counts.
-  const minBuild = Math.max(minTrades, Math.ceil(MIN_HOLDOUT * build.length / Math.max(1, holdout.length)));
+  const tail = objective === 'tail';
+  // In tail mode the floor drops to something that only rules out pure
+  // accidents. The sample problem is real and does not go away — it is moved
+  // to the breadth test, which is the only place it can honestly be solved.
+  const minBuild = tail
+    ? Math.max(6, minTrades / 4)
+    : Math.max(minTrades, Math.ceil(MIN_HOLDOUT * build.length / Math.max(1, holdout.length)));
+
+  // What "better" means. Total R captured rewards a rule that takes 80R out of
+  // the market in forty trades over one that takes 20R in four hundred.
+  const rank = r => tail ? (r.totalR ?? -999) : (r.expR ?? -999);
 
   let evaluated = 0;
   const withSpread = s => (spreadPips != null ? { ...s, spreadPips } : s);
@@ -412,6 +447,8 @@ export async function deepSearch(candles, {
       const st = calcStats(trades);
       return { n: st.totalTrades, expR: st.avgRR, winRate: st.winRate,
                se: st.seRR, lossStreak: st.maxLossStreak,
+               totalR: st.totalR, bigWinRate: st.bigWinRate, bigWins: st.bigWins,
+               maxR: st.maxR, payoff: st.payoff, p90R: st.p90R,
                longRatio: trades.length ? trades.filter(t => t.dir === 'long').length / trades.length : 0.5 };
     } catch { return { n: 0, expR: null }; }
   };
@@ -438,7 +475,7 @@ export async function deepSearch(candles, {
   const usable = [];
   const neverFires = [];
   for (let i = 0; i < pool.length; i++) {
-    const r = score(build, [pool[i].id], EXITS[3], STOPS[0]);
+    const r = score(build, [pool[i].id], NEUTRAL_EXIT, NEUTRAL_STOP);
     if (r.n > 0) usable.push(pool[i]); else neverFires.push(pool[i]);
     if (r.n >= minBuild && r.expR != null) singles.push({ ids:[pool[i].id], build:r });
     await breathe('single conditions', i + 1, pool.length);
@@ -454,7 +491,7 @@ export async function deepSearch(candles, {
   // condition that is unremarkable alone but decisive in company — which is
   // exactly what this is hunting for — never gets considered. Pairs are cheap
   // relative to what they rule in; depth 3 and beyond narrow to the beam.
-  const ranked = singles.sort((a,b) => b.build.expR - a.build.expR);
+  const ranked = singles.sort((a,b) => rank(b.build) - rank(a.build));
   let frontier = ranked.slice(0, beam * 3);
   const seen = new Set(frontier.map(f => f.ids.join('|')));
   const allCombos = [...frontier];
@@ -469,9 +506,13 @@ export async function deepSearch(candles, {
         const key = ids.join('|');
         if (seen.has(key)) continue;
         seen.add(key);
-        const r = score(build, ids, EXITS[3], STOPS[0]);
+        const r = score(build, ids, NEUTRAL_EXIT, NEUTRAL_STOP);
         // An addition has to earn its place by a margin, not by rounding.
-        if (r.n >= minBuild && r.expR != null && r.expR > f.build.expR + MIN_GAIN) {
+        // In tail mode an addition earns its place by capturing more total R,
+        // which a filter that removes losing trades does even when it fires
+        // less. In mean mode it must lift expectancy by more than rounding.
+        const better = tail ? rank(r) > rank(f.build) : r.expR > f.build.expR + MIN_GAIN;
+        if (r.n >= minBuild && r.expR != null && better) {
           next.push({ ids, build:r });
         }
       }
@@ -479,13 +520,13 @@ export async function deepSearch(candles, {
       await breathe(`${depth}-condition combinations`, done, frontier.length);
     }
     if (!next.length) break;
-    frontier = next.sort((a,b) => b.build.expR - a.build.expR).slice(0, beam);
+    frontier = next.sort((a,b) => rank(b.build) - rank(a.build)).slice(0, beam);
     allCombos.push(...frontier);
   }
 
   // ── Exits and stops, on the surviving entries only ────────────────────────
   const shortlist = allCombos
-    .sort((a,b) => b.build.expR - a.build.expR)
+    .sort((a,b) => rank(b.build) - rank(a.build))
     .slice(0, Math.max(beam, 12));
 
   const tuned = [];
@@ -494,7 +535,7 @@ export async function deepSearch(candles, {
     let best = null;
     for (const ex of EXITS) for (const st of STOPS) {
       const r = score(build, c.ids, ex, st);
-      if (r.n >= minBuild && r.expR != null && (!best || r.expR > best.build.expR)) {
+      if (r.n >= minBuild && r.expR != null && (!best || rank(r) > rank(best.build))) {
         best = { ids:c.ids, exit:ex, stop:st, build:r };
       }
     }
@@ -510,11 +551,12 @@ export async function deepSearch(candles, {
     // The validation slice is a fifth of the history, so it will always show
     // fewer trades than build — but "positive on three trades" is not a
     // filter, it is a coin landing the right way up.
-    if (v.expR != null && v.expR > 0 && v.n >= Math.max(10, minBuild / 3)) {
+    const vMin = tail ? Math.max(3, minBuild / 3) : Math.max(10, minBuild / 3);
+    if (v.expR != null && v.expR > 0 && v.n >= vMin) {
       validated.push({ ...t, validate: v });
     }
   }
-  validated.sort((a,b) => b.validate.expR - a.validate.expR);
+  validated.sort((a,b) => rank(b.validate) - rank(a.validate));
 
   // ── HOLDOUT: touched once, by the finalists ───────────────────────────────
   const finalists = validated.slice(0, keep);
@@ -531,7 +573,13 @@ export async function deepSearch(candles, {
     f.depth = f.ids.length;
 
     const o = f.holdout;
-    f.verdict = o.expR == null || o.n < MIN_HOLDOUT ? 'untested'
+    // In tail mode a small holdout sample is expected, not a defect — so it
+    // is reported as "rare" rather than "untested", and the breadth test is
+    // named as the thing that settles it.
+    f.rare = tail && o.n > 0 && o.n < MIN_HOLDOUT;
+    f.verdict = o.expR == null || o.n === 0 ? 'untested'
+              : f.rare ? (o.expR > 0 ? 'rare-positive' : 'rare-negative')
+              : o.n < MIN_HOLDOUT ? 'untested'
               : o.expR <= 0 ? 'curve-fit'
               : o.expR >= f.build.expR * 0.5 ? 'survived' : 'faded';
     // Downgraded below if random entries on this same slice did as well —
@@ -636,5 +684,6 @@ export async function deepSearch(candles, {
     expectedFalsePositives: +(holdoutLooks * 0.05).toFixed(1),
     minHoldout: MIN_HOLDOUT,
     minBuildTrades: minBuild,
+    objective,
   };
 }
