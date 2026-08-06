@@ -12,7 +12,7 @@ const {
 const { checkIMFilter } = require('./intermarket');
 const { fetchAllCOT, checkCOTFilter } = require('./cotFetcher');
 const { AlertChecker } = require('./alertChecker');
-const { FeedBuilder }  = require('./feed');
+const { FeedBuilder, measure }  = require('./feed');
 const { FeedNotifier } = require('./feedNotify');
 const { Updater }      = require('./updater');
 
@@ -286,6 +286,7 @@ class ForexBot {
       candle:     await this._checkCandlePattern(candles, conditions.candlePattern),
       ema:        this._checkEMA(candles, conditions.emaFilter),
       vwap:       this._checkVWAP(candles, conditions.vwapFilter),
+      feed:       await this._checkFeedMeasures(pair, timeframe, conditions),
     };
 
     if (conditions.ratioFilter?.enabled) {
@@ -458,6 +459,43 @@ class ForexBot {
     if (!ids.length) return false;
     if (want === 'doji') return ids.some(id => /doji|spinning_top/.test(id));
     return ids.some(id => mod.PATTERN_MAP[id]?.type === want);
+  }
+
+  // Volatility percentile and range position — the two conditions that appear
+  // in nearly every strategy the search turns up, and the two that used to
+  // refuse the handoff to live trading outright.
+  //
+  // measure() is the FEED's own function, imported rather than reimplemented,
+  // so the bot cannot drift from the screen. The 520-bar fetch is not
+  // arbitrary: the Backtester ranks today's ATR against a trailing 500-bar
+  // population, and ranking against 250 instead would answer a different
+  // question with the same words — "volatility is in the bottom 30%" of a
+  // window half the size is a materially different filter.
+  async _checkFeedMeasures(pair, timeframe, conditions) {
+    const vp = conditions.volPctFilter, rp = conditions.rangePosFilter;
+    if (!vp?.enabled && !rp?.enabled) return true;
+
+    let m;
+    try {
+      const cs = await this.oanda.getCandles(pair, timeframe, 520);
+      m = measure(cs);
+    } catch (e) {
+      this.warn(`${pair}: feed measures unavailable (${e.message}) — treating filter as failed`);
+      return false;
+    }
+    if (!m) return false;
+
+    if (vp?.enabled) {
+      if (m.volPct == null) return false;
+      const ok = vp.op === 'below' ? m.volPct <= vp.value : m.volPct >= vp.value;
+      if (!ok) { this.log(`${pair}: volatility ${m.volPct}% not ${vp.op} ${vp.value}%`); return false; }
+    }
+    if (rp?.enabled) {
+      if (m.rangePos == null) return false;
+      const ok = rp.op === 'below' ? m.rangePos <= rp.value : m.rangePos >= rp.value;
+      if (!ok) { this.log(`${pair}: range position ${m.rangePos}% not ${rp.op} ${rp.value}%`); return false; }
+    }
+    return true;
   }
 
   _checkEMA(candles, filter) {

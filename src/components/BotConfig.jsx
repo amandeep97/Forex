@@ -445,6 +445,8 @@ const DEFAULT_STRAT = {
     candlePattern: 'any',
     emaFilter:  { enabled: false, period: 200, side: 'above' },
     vwapFilter: { enabled: false, side: 'above' },
+    volPctFilter:   { enabled: false, op: 'below', value: 30 },
+    rangePosFilter: { enabled: false, op: 'below', value: 25 },
     sessions: ['london'],
     rsiFilter: { enabled: false, comparison: 'below', value: 70 },
   },
@@ -704,6 +706,34 @@ function StrategyEditor({ strat, onSave, onCancel }) {
           <Select value={s.conditions.candlePattern||'any'} onChange={v => set('conditions.candlePattern', v)}
             options={[{v:'any',l:'Any'},{v:'bullish',l:'Bullish (engulfing / hammer)'},{v:'bearish',l:'Bearish (engulfing / shooting star)'},{v:'doji',l:'Doji / Indecision'}]}/>
         </FieldRow>
+
+        {/* Volatility percentile / range position — the Live Feed measures */}
+        {[
+          { k:'volPctFilter',   label:'Volatility Percentile',
+            note:'Where today\u2019s ATR sits against its own last 500 bars. \u201Cbelow 30\u201D is the coiled filter the Backtester uses.' },
+          { k:'rangePosFilter', label:'Range Position',
+            note:'Where price sits in its 60-bar range. \u201Cbelow 25\u201D is the bottom of the range.' },
+        ].map(({ k, label, note }) => (
+          <div key={k} style={{ padding: '6px 0', borderBottom: '1px solid var(--border)' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+              <Label>{label}</Label>
+              <div style={{ marginLeft: 'auto' }}>
+                <Toggle checked={!!s.conditions[k]?.enabled} onChange={v => set(`conditions.${k}.enabled`, v)}/>
+              </div>
+            </div>
+            {s.conditions[k]?.enabled && (
+              <>
+                <div style={{ display: 'flex', gap: 6, alignItems: 'center', paddingLeft: 8, marginTop: 6 }}>
+                  <Select value={s.conditions[k]?.op || 'below'} onChange={v => set(`conditions.${k}.op`, v)}
+                    options={[{v:'below',l:'below'},{v:'above',l:'above'}]}/>
+                  <NumberInput value={s.conditions[k]?.value ?? 30} onChange={v => set(`conditions.${k}.value`, v)} min={0} max={100} step={5}/>
+                  <span style={{ fontSize: 11, color: 'var(--text3)' }}>%</span>
+                </div>
+                <div style={{ fontSize: 10, color: 'var(--text3)', paddingLeft: 8, marginTop: 4, lineHeight: 1.6 }}>{note}</div>
+              </>
+            )}
+          </div>
+        ))}
 
         {/* EMA Filter */}
         <div style={{ padding: '6px 0', borderBottom: '1px solid var(--border)' }}>

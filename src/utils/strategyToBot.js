@@ -52,6 +52,19 @@ const MAP = {
       why: `the bot filters on the ${family} family (engulfing, hammer, morning star and the rest), not on ${want} alone — it will take more trades than the backtest did` };
   },
 
+  // The two the bot used to refuse. It now evaluates them with the FEED's own
+  // measure(), against the same 500-bar population the engine ranks against,
+  // so this is a translation rather than an approximation.
+  volpct: (c, out) => {
+    out.conditions.volPctFilter = { enabled: true, op: c.op === 'above' ? 'above' : 'below', value: c.value ?? 30 };
+    return { level: 'exact', what: `Volatility percentile ${c.op} ${c.value}` };
+  },
+
+  rangepos: (c, out) => {
+    out.conditions.rangePosFilter = { enabled: true, op: c.op === 'above' ? 'above' : 'below', value: c.value ?? 25 };
+    return { level: 'exact', what: `Range position ${c.op} ${c.value}` };
+  },
+
   ma: (c, out) => {
     if ((c.maType || 'ema') !== 'ema') {
       return { level: 'blocking', what: `${c.maType} ${c.period} filter`,
@@ -88,13 +101,24 @@ const MAP = {
 // No equivalent exists. Each of these would need new detection in the bot, and
 // approximating them would change the rule rather than translate it.
 const BLOCKING = {
-  volpct:      'the bot has no volatility-percentile filter',
-  rangepos:    'the bot has no range-position filter',
   chg20:       'the bot has no N-bar change filter',
   persistence: 'the bot has no directional-persistence filter',
   ma_cross:    'the bot has no moving-average cross trigger',
   macd:        'the bot has no MACD trigger',
   strong_rev:  'the bot detects strong reversals internally but has no strategy switch for them',
+  // Cross-asset conditions need a second instrument's aligned history at
+  // decision time. The bot fetches one pair per strategy, so handing one over
+  // would place trades on a rule with its most important condition missing.
+  lead:        'the bot has no cross-asset series — it would trade this without the peer condition at all',
+  divergence:  'the bot has no cross-asset series — it would trade this without the peer condition at all',
+  peer_chg:    'the bot has no cross-asset series — it would trade this without the peer condition at all',
+  ratio_pct:   'the bot has no cross-asset series — it would trade this without the peer condition at all',
+  stretch:     'the bot has no distance-from-EMA filter',
+  breakout:    'the bot has no n-bar breakout filter',
+  gap:         'the bot has no opening-gap filter',
+  wick:        'the bot has no wick-dominance filter',
+  dom:         'the bot has no day-of-month filter',
+  quarter:     'the bot has no quarter filter',
 };
 
 const TF_MAP = { '1M':'M1', '5M':'M5', '15M':'M15', '30M':'M30', '1H':'H1', '4H':'H4', '8H':'H8', 'D':'D', 'W':'W' };
