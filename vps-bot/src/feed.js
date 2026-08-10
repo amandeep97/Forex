@@ -333,10 +333,18 @@ class FeedBuilder {
   }
 
   async _candles(inst, tf, count) {
-    if (inst.binance) {
-      const r = await fetch(`https://api.binance.com/api/v3/klines?symbol=${inst.binance}&interval=${BIN_TF[tf]}&limit=${count}`,
+    // Spot for the coins, futures for the TradFi perpetuals. Asking
+    // api.binance.com for a futures-only symbol returns a 400, which here
+    // would drop the instrument out of the feed with a misleading error
+    // rather than fetching it from the venue that has it.
+    const host = inst.binance ? 'https://api.binance.com/api/v3'
+               : inst.bfut    ? 'https://fapi.binance.com/fapi/v1'
+               : null;
+    if (host) {
+      const ticker = inst.binance || inst.bfut;
+      const r = await fetch(`${host}/klines?symbol=${ticker}&interval=${BIN_TF[tf]}&limit=${count}`,
         { timeout: 20000 });
-      if (!r.ok) throw new Error(`Binance ${r.status}`);
+      if (!r.ok) throw new Error(`Binance ${r.status} (${ticker})`);
       const d = await r.json();
       // The final kline is the bar still forming; an incomplete bar would make
       // every instrument look like it just did something.

@@ -565,11 +565,15 @@ export default function Screener() {
   const instrumentsWithLive = useMemo(() => allInstruments.map(inst => {
     let lp=null;
     if (inst.assetType==='Forex')   lp=forexRates[inst.symbol];
-    if (inst.assetType==='Crypto')  lp=cryptoRates[inst.symbol];
+    if (inst.assetType==='Crypto' || inst.assetType==='TradFi') lp=cryptoRates[inst.symbol];
     if (inst.assetType==='Metals')  lp=metalRates[inst.symbol];
     if (inst.assetType==='Indices'||inst.assetType==='Energy') lp=marketRates[inst.symbol];
     if (lp) {
-      const dp=inst.bid>10000?0:inst.bid>100?2:inst.bid>1?3:5;
+      // Registry-derived rows seed at zero, so decimals come from the LIVE
+      // price. Deriving them from a zero seed would round every quote to five
+      // places and print silver at 65.89000.
+      const ref = inst.seeded === false ? lp : inst.bid;
+      const dp=ref>10000?0:ref>100?2:ref>1?3:5;
       const bid=parseFloat(lp.toFixed(dp));
       const ask=parseFloat((bid+inst.spread).toFixed(dp));
       return {...inst,bid,ask,isLive:true};
