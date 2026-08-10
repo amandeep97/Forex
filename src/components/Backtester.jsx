@@ -10,7 +10,9 @@ import { searchStrategies, combinationCount, testAcrossInstruments, FOCUS_SET } 
 import { translateToBot, stageForBot } from '../utils/strategyToBot';
 import { deepSearch, POOL as DEEP_POOL, FAMILY } from '../utils/deepSearch';
 import { fetchBinanceKlines, venueFor, probeInstrument } from '../utils/binanceKlines';
-import { discoverBinancePerps, allInstruments, addCustom, removeCustom, loadCustom } from '../utils/binanceDiscovery';
+import { discoverBinancePerps, allInstruments, addCustom, removeCustom, loadCustom,
+         publishTradfiList, syncPublished, loadPublished } from '../utils/binanceDiscovery';
+import { ghRead, ghWrite } from '../utils/githubSync';
 
 const TF_GRAN = {'1M':'M1','5M':'M5','15M':'M15','30M':'M30','1H':'H1','4H':'H4','8H':'H8','D':'D','W':'W'};
 const TFS = ['1M','5M','15M','30M','1H','4H','8H','D','W'];
@@ -1156,6 +1158,21 @@ export default function Backtester() {
     setProbe(p => ({ ...(p || {}), [c.bfut]: r }));
   };
 
+  // Publish the whole listed set to the repo, where the VPS reads it.
+  //
+  // Picks kept in localStorage never reach the live feed, so an instrument
+  // added on a phone is missing from Terminal and from server-side alerts —
+  // which is where "added to the app" stops being true.
+  const publishList = async () => {
+    setDiscover(d => ({ ...d, publishing: true, published: null }));
+    try {
+      const list = await publishTradfiList(ghRead, ghWrite);
+      setDiscover(d => ({ ...d, publishing: false, published: list.length }));
+    } catch (e) {
+      setDiscover(d => ({ ...d, publishing: false, publishError: e.message }));
+    }
+  };
+
   const toggleCustom = (c) => {
     const has = (discover?.chosen || []).includes(c.bfut);
     const list = has ? removeCustom(c.bfut) : addCustom(c);
@@ -1620,6 +1637,28 @@ export default function Backtester() {
                   </div>
                 )}
               </>
+            )}
+            {discover.found && (
+              <div style={{ marginTop:11, borderTop:'1px solid #16202b', paddingTop:10 }}>
+                <button onClick={publishList} disabled={discover.publishing}
+                  style={{ fontSize:11, fontWeight:700, padding:'4px 11px', borderRadius:6, cursor:'pointer',
+                    border:'1px solid #22c55e55', background:'#0b1a12', color:'#22c55e' }}>
+                  {discover.publishing ? 'publishing…' : `publish all ${discover.found.length + 20} to the VPS`}
+                </button>
+                <div style={{ fontSize:11, color:'var(--text3)', lineHeight:1.65, marginTop:6 }}>
+                  Writes the full listed set to the repo. The live feed reads it there, so Terminal and
+                  server-side alerts cover the same instruments as this device — picks kept only in the
+                  browser never reach the VPS.
+                  {discover.published != null && (
+                    <div style={{ color:'#22c55e', marginTop:4 }}>
+                      Published {discover.published} instruments. The bot picks them up within the hour.
+                    </div>
+                  )}
+                  {discover.publishError && (
+                    <div style={{ color:'#ef4444', marginTop:4 }}>{discover.publishError}</div>
+                  )}
+                </div>
+              </div>
             )}
             <button onClick={() => setDiscover(null)}
               style={{ marginTop:10, fontSize:11, padding:'3px 10px', borderRadius:6, cursor:'pointer',

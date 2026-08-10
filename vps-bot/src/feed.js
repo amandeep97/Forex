@@ -26,6 +26,14 @@ const path = require('path');
 const { pathToFileURL } = require('url');
 const fetch = require('node-fetch');
 const { INSTRUMENTS } = require('./instruments');
+
+// Instruments the app discovered on Binance and published to the repo.
+//
+// The static list is hand-typed from screenshots, so it is always a subset of
+// what Binance actually lists. The app can see the full list — it can reach
+// exchangeInfo from the browser — and writes it here; without this the feed
+// covers whichever twenty someone typed in and silently misses the rest.
+const TRADFI_PATH = 'bot/tradfi-instruments.json';
 const { detectStrongReversal, findSwings } = require('./smc');
 const { fetchCOTPercentile } = require('./cotFetcher');
 
@@ -206,6 +214,8 @@ class FeedBuilder {
     this.sha    = null;
     this.lastSig = null;
     this.loaded = false;
+    this.published = [];        // TradFi instruments discovered by the app
+    this.publishedAt = 0;
     this.cotAt  = 0;
     this.wroteAt = 0;
     this.dailyCloses = {};    // sym -> full daily close series, for lead-lag
@@ -237,7 +247,7 @@ class FeedBuilder {
     if (!lib?.computeLeadership) return;
 
     const have = Object.keys(this.dailyCloses).length;
-    const want = INSTRUMENTS.filter(i => i.can.candles).length;
+    const want = this.instruments.filter(i => i.can.candles).length;
     if (have < want * 0.8) {
       // The series are only captured when a DAILY bar refreshes, which happens
       // once a day — and this map does not survive a restart. Since the bot
@@ -248,7 +258,7 @@ class FeedBuilder {
       // the normal queue, rate limit and round robin; a daily re-fetch is cheap
       // and only happens once per boot.
       let queued = 0;
-      for (const inst of INSTRUMENTS) {
+      for (const inst of this.instruments) {
         if (!inst.can.candles || this.dailyCloses[inst.sym]) continue;
         const k = `${inst.sym}|D`;
         if ((this.due.get(k) || 0) > Date.now()) { this.due.set(k, 0); queued++; }
@@ -493,7 +503,7 @@ class FeedBuilder {
     // a while, and if one throws halfway a timestamp set at the end would never
     // be reached and the bot would retry the whole set every single tick.
     this.cotAt = Date.now();
-    const list = INSTRUMENTS.filter(i => i.can.positioning);
+    const list = this.instruments.filter(i => i.can.positioning);
     for (const inst of list) {
       try {
         const p = await fetchCOTPercentile(inst.cot);
@@ -525,6 +535,39 @@ class FeedBuilder {
         Object.entries(r.patterns || {}).map(([tf, list]) => `${tf}:${list.map(p => p.id + p.at).join(',')}`)]));
   }
 
+  // The static registry plus whatever the app published. Read through this
+  // rather than INSTRUMENTS directly, or the feed measures the twenty someone
+  // typed in and quietly ignores everything Binance has listed since.
+  get instruments() {
+    if (!this.published.length) return INSTRUMENTS;
+    const have = new Set(INSTRUMENTS.map(i => i.sym));
+    const extra = this.published
+      .filter(e => e && e.sym && e.bfut && !have.has(e.sym))
+      .map(e => ({ ...e, cls: e.cls || 'tradfi', perp: true,
+                   can: { candles: true, spread: false, positioning: false } }));
+    return [...INSTRUMENTS, ...extra];
+  }
+
+  // Refreshed hourly. The list changes when Binance lists a contract, not
+  // between ticks, and a failed read must leave the previous list in place —
+  // dropping to the static twenty on one bad request would show as instruments
+  // vanishing from the feed and then coming back.
+  async _loadPublished() {
+    if (Date.now() - this.publishedAt < 3600e3) return;
+    this.publishedAt = Date.now();
+    try {
+      const f = await this.github.readJSON(TRADFI_PATH);
+      const list = f?.content?.instruments;
+      if (Array.isArray(list) && list.length) {
+        const before = this.published.length;
+        this.published = list;
+        if (list.length !== before) {
+          this.log(`Feed: ${list.length} published TradFi instruments (was ${before})`);
+        }
+      }
+    } catch { /* not published yet, or unreachable — keep what we have */ }
+  }
+
   async tick() {
     // The bot ticks on a timer, not on completion. A COT refresh is fifteen
     // sequential CFTC requests and can outlast the interval, and two overlapping
@@ -543,6 +586,9 @@ class FeedBuilder {
     }
     const id = ++this.passId;
     this.running = true;
+
+    // Before anything enumerates instruments.
+    await this._loadPublished();
     this.runningSince = Date.now();
     try { await this._pass(id); }
     finally { if (id === this.passId) { this.running = false; this.runningSince = 0; } }
@@ -554,7 +600,7 @@ class FeedBuilder {
     const now = Date.now();
     const jobs = [];
 
-    for (const inst of INSTRUMENTS) {
+    for (const inst of this.instruments) {
       if (!inst.can.candles) continue;
       for (const tf of ['H4', 'D']) {
         const k = `${inst.sym}|${tf}`;
