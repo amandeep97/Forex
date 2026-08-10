@@ -118,11 +118,25 @@ function KillzoneBar() {
 function Sparkline({ data, change }) {
   const w=64, h=26;
   if (!data||data.length<2) return <div style={{width:w,height:h}}/>;
-  const min=Math.min(...data),max=Math.max(...data),range=max-min||0.0001;
-  const pts=data.map((v,i)=>`${((i/(data.length-1))*w).toFixed(1)},${(h-((v-min)/range)*(h-2)+1).toFixed(1)}`).join(' ');
+  const min=Math.min(...data),max=Math.max(...data);
+  // A registry-derived row seeds every point at zero until its candles arrive.
+  // The old fallback (range ||= 0.0001) put the whole line at y = h + 1, one
+  // pixel below the viewport, so it rendered as an empty gap next to the
+  // buttons rather than as anything a reader could interpret.
+  if (max === 0 && min === 0) return <div style={{width:w,height:h}}/>;
+  const flat = max === min;
+  const range = flat ? 1 : max - min;
+  // A genuinely flat series is drawn down the middle, not clipped off the edge.
+  //
+  // The +1 offset used to be applied on top of a full-height span, so the
+  // lowest point of EVERY sparkline landed at y = h + 1 — one pixel below the
+  // 26px viewport, clipped on every row in the table. Inset by one at both
+  // ends instead, which is what the (h-2) span was already assuming.
+  const y = v => (flat ? h/2 : (h - 1) - ((v-min)/range)*(h-2)).toFixed(1);
+  const pts=data.map((v,i)=>`${((i/(data.length-1))*w).toFixed(1)},${y(v)}`).join(' ');
   const col=change>=0?'#22c55e':'#ef4444';
   const lastX=((data.length-1)/(data.length-1)*w).toFixed(1);
-  const lastY=(h-((data[data.length-1]-min)/range)*(h-2)+1).toFixed(1);
+  const lastY=y(data[data.length-1]);
   return (
     <svg width={w} height={h} style={{display:'block'}}>
       <defs>
@@ -562,12 +576,25 @@ export default function Screener() {
   }, [tfFilter, lookback, strevN, realCandles]);
 
   // ── Live prices ───────────────────────────────────────────────────────────
-  const instrumentsWithLive = useMemo(() => allInstruments.map(inst => {
+  const instrumentsWithLive = useMemo(() => allInstruments.map(orig => {
+    let inst = orig;
     let lp=null;
     if (inst.assetType==='Forex')   lp=forexRates[inst.symbol];
     if (inst.assetType==='Crypto' || inst.assetType==='TradFi') lp=cryptoRates[inst.symbol];
     if (inst.assetType==='Metals')  lp=metalRates[inst.symbol];
     if (inst.assetType==='Indices'||inst.assetType==='Energy') lp=marketRates[inst.symbol];
+    // Sparklines were produced by generateSparkline(), a random walk seeded from
+    // the price — decoration, not data, on every row in the table. The screener
+    // already fetches real candles for its structure analysis, so use those:
+    // real closes for anything that loaded, and nothing at all for a row still
+    // waiting, rather than a plausible invention.
+    const real = realCandles[inst.id];
+    if (real && real.length >= 2) {
+      const closes = real.slice(-20).map(c => c.c);
+      const first = closes[0], last = closes[closes.length - 1];
+      inst = { ...inst, sparkline: closes,
+               change: first ? +(((last - first) / first) * 100).toFixed(2) : inst.change };
+    }
     if (lp) {
       // Registry-derived rows seed at zero, so decimals come from the LIVE
       // price. Deriving them from a zero seed would round every quote to five
@@ -579,7 +606,7 @@ export default function Screener() {
       return {...inst,bid,ask,isLive:true};
     }
     return {...inst,isLive:false};
-  }), [forexRates, cryptoRates, metalRates, marketRates]);
+  }), [forexRates, cryptoRates, metalRates, marketRates, realCandles]);
 
   // ── Filtering ─────────────────────────────────────────────────────────────
   const filtered = useMemo(() => {
