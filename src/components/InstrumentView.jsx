@@ -7,6 +7,7 @@ import { driversFor } from '../utils/drivers';
 import { fetchMacro, macroDriversFor } from '../utils/macroDrivers';
 import { indexComplex } from '../utils/indexBreadth';
 import { ConsensusRow } from './Consensus';
+import { binanceCandles, isBinance } from '../utils/binanceKlines';
 
 const C = {
   bg:'#080c11', panel:'#0b1118', line:'#16202b', dim:'#475569', txt:'#cbd5e1',
@@ -53,13 +54,9 @@ const Muted = ({ children }) => (
 
 // ── Data loaders ──────────────────────────────────────────────────────────────
 async function loadCandles(inst, tf = 'H1', count = 120) {
-  if (inst.binance) {
-    const map = { M5:'5m', M15:'15m', H1:'1h', H4:'4h', D:'1d' };
-    const r = await fetch(`https://api.binance.com/api/v3/klines?symbol=${inst.binance}&interval=${map[tf]||'1h'}&limit=${count}`,
-      { signal: AbortSignal.timeout(15000) });
-    if (!r.ok) throw new Error(`Binance ${r.status}`);
-    const d = await r.json();
-    return { candles: d.map(k => ({ t:k[0], o:+k[1], h:+k[2], l:+k[3], c:+k[4], v:+k[5] })), source:'Binance' };
+  if (isBinance(inst)) {
+    return { candles: await binanceCandles(inst, tf, count),
+             source: inst.bfut ? 'Binance futures' : 'Binance' };
   }
   const c = oandaCreds();
   if (!c?.apiKey) { const e = new Error('OANDA not connected'); e.code='NOKEY'; throw e; }

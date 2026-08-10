@@ -11,6 +11,7 @@
 import { INSTRUMENTS } from '../data/instruments';
 import { oandaCreds, fetchSpreadStress, fetchPositioning, POSITION_MARKETS } from './flowFeed';
 import { get, pooled } from './marketCache';
+import { binanceCandles, isBinance } from './binanceKlines';
 
 const pct = (v, arr) => {
   if (!arr.length) return null;
@@ -21,13 +22,9 @@ const pct = (v, arr) => {
 // ── Candles (cached) ──────────────────────────────────────────────────────────
 async function candles(inst, granularity = 'H4', count = 180) {
   return get('candles', inst.sym, async () => {
-    if (inst.binance) {
-      const map = { H1:'1h', H4:'4h', D:'1d' };
-      const r = await fetch(`https://api.binance.com/api/v3/klines?symbol=${inst.binance}&interval=${map[granularity]||'4h'}&limit=${count}`,
-        { signal: AbortSignal.timeout(15000) });
-      if (!r.ok) throw new Error(`Binance ${r.status}`);
-      return (await r.json()).map(k => ({ t:k[0], o:+k[1], h:+k[2], l:+k[3], c:+k[4] }));
-    }
+    // Venue comes from the instrument, not the host name: the TradFi
+    // perpetuals live on the futures API and return nothing from spot.
+    if (isBinance(inst)) return binanceCandles(inst, granularity, count);
     const c = oandaCreds();
     if (!c?.apiKey) throw new Error('OANDA not connected');
     const base = c.practice === false ? 'https://api-fxtrade.oanda.com/v3' : 'https://api-fxpractice.oanda.com/v3';

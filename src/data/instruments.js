@@ -13,6 +13,7 @@ export const CLASS = {
   index:  { label:'Indices', color:'#a78bfa' },
   energy: { label:'Energy',  color:'#f97316' },
   crypto: { label:'Crypto',  color:'#22c55e' },
+  tradfi: { label:'TradFi',  color:'#f472b6' },
 };
 
 // cot: CFTC contract code (positioning available)
@@ -86,9 +87,10 @@ const R = [
   // Perpetual futures on stocks, ETFs and commodities, settled in USDT.
   //
   // `bfut` rather than `binance`: these exist only on the FUTURES venue
-  // (fapi.binance.com). Every kline call in the app points at the SPOT API, so
-  // listing them under `binance` would fetch nothing, fall through to the
-  // simulated-candle fallback, and quietly backtest invented data.
+  // (fapi.binance.com). Asking the spot host for one returns a 400, the
+  // caller's catch swallows it, and the app falls through to simulated
+  // candles — so the venue is resolved from this field by binanceKlines.js
+  // and never guessed from the symbol.
   //
   // Two things make them worth having despite being derivatives rather than
   // the underlying. There are no splits or dividends inside the price series,
@@ -105,27 +107,42 @@ const R = [
   // search refuses anything under 180 days. Run the health check on the
   // Backtester before trusting any of them — it reports what actually loaded.
 
-  // No commodity perps here on purpose. WTI, Brent and natural gas are already
-  // carried as USOIL, UKOIL and NATGAS through OANDA, which is the execution
-  // venue — and listing both would double-count oil in the twelve-major
-  // breadth test while adding an instrument that cannot be traded.
+  // Commodities and metals. These deliberately overlap USOIL, UKOIL, NATGAS
+  // and XAG/USD on OANDA, and the overlap is the point: OANDA gives five days
+  // a week and no positioning, while the perp runs 24/7 and carries funding
+  // and open interest. Same underlying, genuinely different information.
   //
-  // Sector ETF — the cross-asset peer worth more than any single name here.
+  // They are excluded from FOCUS_SET so the twelve-major breadth test cannot
+  // count oil twice.
+  { sym:'XAG/USDT',  name:'Silver (perp)',     cls:'tradfi', bfut:'XAGUSDT',    perp:true, pip:0.01,  dec:2 },
+  { sym:'WTI/USDT',  name:'WTI Crude (perp)',  cls:'tradfi', bfut:'CLUSDT',     perp:true, pip:0.01,  dec:2 },
+  { sym:'BRENT/USDT',name:'Brent Crude (perp)',cls:'tradfi', bfut:'BZUSDT',     perp:true, pip:0.01,  dec:2 },
+  { sym:'NGAS/USDT', name:'Natural Gas (perp)',cls:'tradfi', bfut:'NATGASUSDT', perp:true, pip:0.001, dec:3 },
+
+  // Sector and leveraged ETFs. XLE is the cross-asset peer worth more than any
+  // single name here; the other two are leveraged and decay against a flat
+  // index, so they are not proxies for anything — kept because a 2x and a 3x
+  // inverse tape are genuinely different volatility regimes to test against.
   { sym:'XLE/USDT',  name:'Energy Sector ETF', cls:'tradfi', bfut:'XLEUSDT',    perp:true, pip:0.01,  dec:2 },
-
-  // Single names. Thin — a few hundred thousand to two million a day against
-  // six hundred million on WTI — so spread will be a large share of the daily
-  // range and the breadth test will judge them harshly, correctly.
-  { sym:'CRWD/USDT', name:'CrowdStrike',       cls:'tradfi', bfut:'CRWDUSDT',   perp:true, pip:0.01,  dec:2 },
-  { sym:'PANW/USDT', name:'Palo Alto Networks',cls:'tradfi', bfut:'PANWUSDT',   perp:true, pip:0.01,  dec:2 },
-  { sym:'TTWO/USDT', name:'Take-Two',          cls:'tradfi', bfut:'TTWOUSDT',   perp:true, pip:0.01,  dec:2 },
-  { sym:'HPE/USDT',  name:'HPE',               cls:'tradfi', bfut:'HPEUSDT',    perp:true, pip:0.01,  dec:2 },
-
-  // A 3x INVERSE semiconductor ETF. Leveraged and inverse, so it decays
-  // against a flat index and is not a proxy for anything — kept because a
-  // 3x inverse tape is a genuinely different volatility regime to test
-  // against, not because it is a sensible thing to hold.
   { sym:'SOXS/USDT', name:'Semis Bear 3x ETF', cls:'tradfi', bfut:'SOXSUSDT',   perp:true, pip:0.01,  dec:2, leveraged:true },
+  { sym:'SNXX/USDT', name:'SNDK Long 2x ETF',  cls:'tradfi', bfut:'SNXXUSDT',   perp:true, pip:0.01,  dec:2, leveraged:true },
+
+  // Single names. Thin — a million or two a day against eight hundred million
+  // on silver — so spread will be a large share of the daily range and the
+  // breadth test will judge them harshly, correctly.
+  { sym:'ORCL/USDT', name:'Oracle',            cls:'tradfi', bfut:'ORCLUSDT',   perp:true, pip:0.01,  dec:2 },
+  { sym:'BABA/USDT', name:'Alibaba',           cls:'tradfi', bfut:'BABAUSDT',   perp:true, pip:0.01,  dec:2 },
+  { sym:'LLY/USDT',  name:'Eli Lilly',         cls:'tradfi', bfut:'LLYUSDT',    perp:true, pip:0.01,  dec:2 },
+  { sym:'CRWD/USDT', name:'CrowdStrike',       cls:'tradfi', bfut:'CRWDUSDT',   perp:true, pip:0.01,  dec:2 },
+  { sym:'NFLX/USDT', name:'Netflix',           cls:'tradfi', bfut:'NFLXUSDT',   perp:true, pip:0.01,  dec:2 },
+  { sym:'HPE/USDT',  name:'HPE',               cls:'tradfi', bfut:'HPEUSDT',    perp:true, pip:0.01,  dec:2 },
+  { sym:'ADBE/USDT', name:'Adobe',             cls:'tradfi', bfut:'ADBEUSDT',   perp:true, pip:0.01,  dec:2 },
+  { sym:'TTWO/USDT', name:'Take-Two',          cls:'tradfi', bfut:'TTWOUSDT',   perp:true, pip:0.01,  dec:2 },
+  { sym:'BX/USDT',   name:'Blackstone',        cls:'tradfi', bfut:'BXUSDT',     perp:true, pip:0.01,  dec:2 },
+  { sym:'PANW/USDT', name:'Palo Alto Networks',cls:'tradfi', bfut:'PANWUSDT',   perp:true, pip:0.01,  dec:2 },
+  { sym:'UBER/USDT', name:'Uber',              cls:'tradfi', bfut:'UBERUSDT',   perp:true, pip:0.01,  dec:2 },
+  { sym:'BSP/USDT',  name:'Bending Spoons',    cls:'tradfi', bfut:'BSPUSDT',    perp:true, pip:0.01,  dec:2 },
+  { sym:'SHAZ/USDT', name:'SharonAI',          cls:'tradfi', bfut:'SHAZUSDT',   perp:true, pip:0.01,  dec:2 },
 ];
 
 // Capabilities are derived, never hand-maintained — a screen asks what an
@@ -146,10 +163,10 @@ export const INSTRUMENTS = R.map(i => ({
     // to a URL that returns nothing for it.
     depth:       !!i.binance,
     book:        false,              // OANDA order/position book — refused on this account
-    // Only the Backtester knows how to read the futures venue so far. Screens
-    // that call api.binance.com directly ask for this instead of `candles`,
-    // so a futures-only instrument is absent from them rather than broken in
-    // them — which is the difference between a missing row and a fake one.
+    // Kept for the two screens that still build their own spot URL — order
+    // book depth in flowFeed, and the VPS live feed. Everything else now goes
+    // through binanceKlines and picks the venue from the instrument, so a
+    // futures-only symbol is a first-class instrument rather than a hidden one.
     spotCandles: !!(i.oanda || i.binance),
   },
 }));
