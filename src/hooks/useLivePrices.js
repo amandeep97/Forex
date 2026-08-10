@@ -1,3 +1,4 @@
+import { INSTRUMENTS } from '../data/instruments';
 import { useState, useEffect, useCallback, useRef } from 'react';
 
 const REFRESH_MS = 15_000;
@@ -250,6 +251,43 @@ async function fetchCryptoWithFallback() {
   } catch { return null; }
 }
 
+// Every Binance-listed instrument, in two requests.
+//
+// The crypto rates above come from CoinGecko keyed 'BTC/USD', which matches
+// nothing in the registry — it calls the same coin BTC/USDT — and covers none
+// of the TradFi perpetuals at all, so those rows showed as DEMO with no price.
+//
+// Binance returns the whole ticker table in one call per venue, so this is two
+// requests for every coin and every perpetual, keyed by registry symbol.
+async function fetchBinanceAll() {
+  const wanted = INSTRUMENTS.filter(i => i.binance || i.bfut);
+  if (!wanted.length) return null;
+  const bySpot = new Map(wanted.filter(i => i.binance).map(i => [i.binance, i.sym]));
+  const byFut  = new Map(wanted.filter(i => i.bfut).map(i => [i.bfut, i.sym]));
+
+  const grab = async (url, map) => {
+    try {
+      const r = await fetch(url, { signal: AbortSignal.timeout(9000) });
+      if (!r.ok) return {};
+      const list = await r.json();
+      const out = {};
+      for (const t of Array.isArray(list) ? list : []) {
+        const sym = map.get(t.symbol);
+        const px = parseFloat(t.price);
+        if (sym && Number.isFinite(px)) out[sym] = px;
+      }
+      return out;
+    } catch { return {}; }
+  };
+
+  const [spot, fut] = await Promise.all([
+    bySpot.size ? grab('https://api.binance.com/api/v3/ticker/price', bySpot) : {},
+    byFut.size  ? grab('https://fapi.binance.com/fapi/v1/ticker/price', byFut) : {},
+  ]);
+  const merged = { ...spot, ...fut };
+  return Object.keys(merged).length ? merged : null;
+}
+
 // ── Hook ──────────────────────────────────────────────────────────────────────
 export function useLivePrices() {
   const [forexRates,  setForexRates]  = useState({});
@@ -296,8 +334,11 @@ export function useLivePrices() {
     const fx = await fetchForexWithFallback();
     if (fx) { setForexRates(fx); anySuccess = true; }
 
-    const cr = await fetchCryptoWithFallback();
-    if (cr) { setCryptoRates(cr); anySuccess = true; }
+    // CoinGecko first for its BTC/USD keys, which older screens still read,
+    // then Binance for every registry symbol on either venue. Binance wins on
+    // overlap: it is the venue the app actually charts and backtests.
+    const [cr, bn] = await Promise.all([fetchCryptoWithFallback(), fetchBinanceAll()]);
+    if (cr || bn) { setCryptoRates({ ...(cr || {}), ...(bn || {}) }); anySuccess = true; }
 
     // ── OANDA: primary source if connected ──
     const creds = credsRef.current;

@@ -9,6 +9,8 @@ import {
 import { detectBOSCHoCH } from '../utils/smcAnalysis';
 import { findStrongReversals, getPatternN, setPatternN } from '../utils/candlePatterns';
 import ChartDrawTools, { sliceVisible, maxPanOffset } from './ChartDrawTools';
+import { binanceCandles, isBinance } from '../utils/binanceKlines';
+import { bySymbol } from '../data/instruments';
 
 const TFS    = ['M1','M5','M15','M30','H1','H2','H4','H6','H12','D','W'];
 const TV_TF  = { M1:'1',M5:'5',M15:'15',M30:'30',H1:'60',H2:'120',H4:'240',H6:'360',H12:'720',D:'D',W:'W' };
@@ -44,8 +46,20 @@ function getOandaCreds() {
   return apiKey ? { apiKey, practice: freshPractice !== undefined ? freshPractice : true } : null;
 }
 
-// Candle fetch from OANDA
+// Candle fetch — OANDA, or the right Binance venue.
+//
+// This was OANDA-only and unconditional. It never mattered while every
+// instrument that could open a chart was an OANDA one; the moment crypto and
+// the TradFi perpetuals appeared in the screener, opening their chart asked
+// OANDA for a symbol it has never heard of and showed "OANDA 400" over an
+// empty panel.
 async function fetchCandles(symbol, tf, count = 5000) {
+  const inst = bySymbol(symbol);
+  if (isBinance(inst)) {
+    const cs = await binanceCandles(inst, tf, Math.min(count, 1500));
+    if (!cs.length) throw new Error(`No Binance data for ${symbol}`);
+    return cs;
+  }
   const creds = getOandaCreds();
   if (!creds?.apiKey) throw new Error('OANDA not connected — connect in the Screener first.');
   const instr = toOandaInstr(symbol);
