@@ -1,5 +1,6 @@
 'use strict';
 import { useState, useEffect, useMemo, useCallback } from 'react';
+import { binancePrice, isBinance } from '../utils/binanceKlines';
 
 // ── Instrument specs ──────────────────────────────────────────────────────────
 // contract = units per 1 lot · pip = smallest tracked move · quote/base used for USD conversion
@@ -52,12 +53,7 @@ function getOandaCreds() {
 }
 
 async function fetchLivePrice(inst) {
-  if (inst.binance) {
-    const r = await fetch(`https://api.binance.com/api/v3/ticker/price?symbol=${inst.binance}`, { signal: AbortSignal.timeout(7000) });
-    if (!r.ok) return null;
-    const d = await r.json();
-    return parseFloat(d.price) || null;
-  }
+  if (isBinance(inst)) return binancePrice(inst);
   if (inst.oanda) {
     const creds = getOandaCreds();
     if (!creds?.apiKey) return null;

@@ -1,6 +1,7 @@
 // Shared instrument feed for the Alerts engine — OANDA for FX/metals/indices/
 // energy, Binance for crypto.
 import { INSTRUMENTS } from '../data/instruments';
+import { binanceCandles, binancePrice, isBinance } from './binanceKlines';
 
 // Derived from the canonical registry rather than kept as a separate list.
 // Alerts previously knew 29 instruments while the backtester knew 48, so an
@@ -26,11 +27,7 @@ function oandaBase(c) { return c.practice === false || c.env === 'live'
 // Latest price (may be from the still-forming candle)
 export async function fetchPrice(inst) {
   try {
-    if (inst.binance) {
-      const r = await fetch(`https://api.binance.com/api/v3/ticker/price?symbol=${inst.binance}`, { signal: AbortSignal.timeout(7000) });
-      if (!r.ok) return null;
-      return parseFloat((await r.json()).price) || null;
-    }
+    if (isBinance(inst)) return binancePrice(inst);
     const c = oandaCreds();
     if (!c?.apiKey) return null;
     const r = await fetch(`${oandaBase(c)}/instruments/${inst.oanda}/candles?granularity=M1&count=1&price=M`,
@@ -45,12 +42,12 @@ export async function fetchPrice(inst) {
 // Series of the most recent COMPLETED candles [{o,h,l,c,t}] for a timeframe
 export async function fetchRecentCandles(inst, tf, count = 12) {
   try {
-    if (inst.binance) {
-      const itv = BINANCE_TF[tf] || '1h';
-      const r = await fetch(`https://api.binance.com/api/v3/klines?symbol=${inst.binance}&interval=${itv}&limit=${count + 1}`, { signal: AbortSignal.timeout(8000) });
-      if (!r.ok) return null;
-      const d = await r.json();
-      return d.slice(0, -1).map(k => ({ o:+k[1], h:+k[2], l:+k[3], c:+k[4], t:k[0] })); // drop forming candle
+    if (isBinance(inst)) {
+      // fetchBinanceKlines keeps every bar the API returns, including the one
+      // still forming, so the caller's "completed candles only" contract is
+      // honoured here rather than assumed.
+      const cs = await binanceCandles(inst, tf, count + 1);
+      return cs.slice(0, -1).map(k => ({ o:k.o, h:k.h, l:k.l, c:k.c, t:k.t }));
     }
     const c = oandaCreds();
     if (!c?.apiKey) return null;
@@ -65,13 +62,10 @@ export async function fetchRecentCandles(inst, tf, count = 12) {
 // Last COMPLETED candle {o,h,l,c,t} for a timeframe
 export async function fetchLastClosed(inst, tf) {
   try {
-    if (inst.binance) {
-      const itv = BINANCE_TF[tf] || '1h';
-      const r = await fetch(`https://api.binance.com/api/v3/klines?symbol=${inst.binance}&interval=${itv}&limit=2`, { signal: AbortSignal.timeout(8000) });
-      if (!r.ok) return null;
-      const d = await r.json();
-      const k = d[0]; // d[1] is the still-forming candle
-      return k ? { o:+k[1], h:+k[2], l:+k[3], c:+k[4], t:k[0] } : null;
+    if (isBinance(inst)) {
+      const cs = await binanceCandles(inst, tf, 2);
+      const k = cs[0];               // cs[1] is the still-forming candle
+      return k ? { o:k.o, h:k.h, l:k.l, c:k.c, t:k.t } : null;
     }
     const c = oandaCreds();
     if (!c?.apiKey) return null;

@@ -1,5 +1,6 @@
 'use strict';
 import { useState, useCallback } from 'react';
+import { binanceCandles, isBinance } from '../utils/binanceKlines';
 
 const DOW_LABELS = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
 
@@ -56,15 +57,12 @@ const RULES = [
 
 // ── Binance daily fetch (crypto — no API key needed) ─────────────────────────
 
-async function fetchBinanceDaily(symbol, count) {
+async function fetchBinanceDaily(inst, count) {
   try {
-    const res = await fetch(
-      `https://api.binance.com/api/v3/klines?symbol=${symbol}&interval=1d&limit=${count + 1}`,
-      { signal: AbortSignal.timeout(12000) }
-    );
-    if (!res.ok) return null;
-    const data = await res.json();
-    return data.slice(0, -1).map(k => {
+    const cs = await binanceCandles(inst, 'D', count + 1);
+    if (!cs.length) return null;
+    return cs.slice(0, -1).map(c => {
+      const k = [c.t, c.o, c.h, c.l, c.c, c.v];
       const date = new Date(k[0]).toISOString().slice(0, 10);
       return {
         t:   k[0],
@@ -89,7 +87,7 @@ function getCreds() {
 
 async function fetchDaily(pairKey, count) {
   const pairMeta = PAIRS.find(p => p.key === pairKey);
-  if (pairMeta?.binance) return fetchBinanceDaily(pairMeta.binance, count);
+  if (isBinance(pairMeta)) return fetchBinanceDaily(pairMeta, count);
   const creds = getCreds();
   if (!creds) return null;
   const base = creds.practice

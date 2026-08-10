@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { runMarketScan, scanDigest, fmtScanPrice } from '../utils/marketScan.js';
+import { binanceCandles } from '../utils/binanceKlines';
 
 // ── Inject blink keyframe once ────────────────────────────────────────────────
 if (!document.getElementById('ai-tab-kf')) {
@@ -98,10 +99,10 @@ async function fetchCloses(instr, gran, count) {
 
 async function fetchBinanceCloses(symbol, interval, limit) {
   try {
-    const res = await fetch(
-      `https://api.binance.com/api/v3/klines?symbol=${symbol}&interval=${interval}&limit=${limit}`,
-      { signal: AbortSignal.timeout(8000) }
-    );
+    // Ticker resolved to its venue: a TradFi perp is futures-only and returns
+    // nothing from the spot host.
+    const cs = await binanceCandles(symbol, interval, limit);
+    const res = { ok: cs.length > 0, json: async () => cs.map(c => [c.t, c.o, c.h, c.l, c.c, c.v]) };
     if (!res.ok) return null;
     const data = await res.json();
     return data.slice(0, -1).map(k => parseFloat(k[4]));

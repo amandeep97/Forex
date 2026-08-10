@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback, useRef, useMemo } from 'react';
 import DOWPatterns from './DOWPatterns';
+import { binanceCandles } from '../utils/binanceKlines';
 
 // ── Config ────────────────────────────────────────────────────────────────────
 const PAIRS = [
@@ -148,10 +149,8 @@ const BINANCE_GRAN = { M15:'15m', M30:'30m', H1:'1h', H4:'4h' };
 async function fetchBinanceCandles(symbol, gran, count) {
   const interval = BINANCE_GRAN[gran] || '1h';
   try {
-    const res = await fetch(
-      `https://api.binance.com/api/v3/klines?symbol=${symbol}&interval=${interval}&limit=${count + 1}`,
-      { signal: AbortSignal.timeout(10000) }
-    );
+    const got = await binanceCandles(symbol, interval, count + 1);
+    const res = { ok: got.length > 0, json: async () => got.map(c => [c.t, c.o, c.h, c.l, c.c, c.v]) };
     if (!res.ok) return null;
     const data = await res.json();
     return data.slice(0, -1).map(k => ({
@@ -164,25 +163,13 @@ async function fetchBinanceCandlesAll(symbol, gran, pages = 2) {
   const interval = BINANCE_GRAN[gran] || '1h';
   // Binance max 1000 candles/request vs OANDA 5000 — multiply pages to get same coverage
   const binancePages = pages * 5;
-  let allCandles = [];
-  let endTime = null;
-  for (let p = 0; p < binancePages; p++) {
-    const url = endTime
-      ? `https://api.binance.com/api/v3/klines?symbol=${symbol}&interval=${interval}&limit=1000&endTime=${endTime}`
-      : `https://api.binance.com/api/v3/klines?symbol=${symbol}&interval=${interval}&limit=1000`;
-    try {
-      const res = await fetch(url, { signal: AbortSignal.timeout(15000) });
-      if (!res.ok) break;
-      const data = await res.json();
-      if (!data.length) break;
-      const batch = data.map(k => ({
-        o:+k[1], h:+k[2], l:+k[3], c:+k[4], t:k[0], v:+k[5],
-      }));
-      allCandles = [...batch, ...allCandles];
-      endTime = batch[0].t - 1;
-    } catch { break; }
-  }
-  return allCandles.sort((a, b) => a.t - b.t);
+  // Was a hand-rolled paging loop against the spot host — a second copy of the
+  // walk fetchBinanceKlines already does, and one that could not reach a
+  // futures-only symbol. One implementation means one place where the
+  // end-of-history condition has to be right.
+  try {
+    return await binanceCandles(symbol, interval, binancePages * 1000);
+  } catch { return []; }
 }
 
 // ── Algorithms ────────────────────────────────────────────────────────────────

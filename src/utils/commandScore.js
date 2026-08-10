@@ -1,4 +1,5 @@
 // src/utils/commandScore.js
+import { binanceCandles } from './binanceKlines';
 // Command Center's factor model, moved verbatim out of the component.
 // Weighted technical, DXY, COT, strength and timing scores were unreachable
 // from anywhere else; the Terminal needs them as one input among several.
@@ -127,12 +128,9 @@ const CRYPTO_PAIRS = [
 // Binance public candle API — no key, free, browser-safe
 async function binanceFetch(symbol, interval, limit) {
   try {
-    const res = await fetch(
-      `https://api.binance.com/api/v3/klines?symbol=${symbol}&interval=${interval}&limit=${limit}`,
-      { signal: AbortSignal.timeout(8000) }
-    );
-    if (!res.ok) return [];
-    const data = await res.json();
+    const cs = await binanceCandles(symbol, interval, limit);
+    if (!cs.length) return [];
+    const data = cs.map(c => [c.t, c.o, c.h, c.l, c.c, c.v]);
     // Exclude last candle (still forming). Format: [openTime,o,h,l,close,...]
     return data.slice(0, -1).map(k => ({ c: parseFloat(k[4]) }));
   } catch { return []; }
