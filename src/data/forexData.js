@@ -1,7 +1,8 @@
+import { INSTRUMENTS as REGISTRY } from './instruments';
 // ── Market Data ───────────────────────────────────────────────────────────────
 // Replace with live feed (WebSocket / REST API) when ready.
 
-export const ASSET_TYPES = ['All', 'Forex', 'Metals', 'Indices', 'Energy'];
+export const ASSET_TYPES = ['All', 'Forex', 'Metals', 'Indices', 'Energy', 'Crypto', 'TradFi'];
 
 export const FOREX_CATEGORIES = ['All', 'Majors', 'Minors', 'Exotics'];
 
@@ -162,27 +163,40 @@ export const energy = [
 ];
 
 // ── CRYPTO ────────────────────────────────────────────────────────────────────
-export const crypto = [
-  item('BTC/USD', 'Crypto', 'Major',  68241.0, 68298.0,  2.14, 69420.0, 66840.0, 384200, 'STRONG_BUY',  71.2,  421.0),
-  item('ETH/USD', 'Crypto', 'Major',  3524.80, 3526.40,  1.84,  3612.40, 3448.20, 241800, 'STRONG_BUY',  68.4,  48.20),
-  item('XRP/USD', 'Crypto', 'Major',  0.52841, 0.52918,  0.94,  0.54210, 0.51840, 184100, 'BUY',         59.8,  0.0041),
-  item('SOL/USD', 'Crypto', 'Major',  142.841, 143.048,  3.24,  148.420, 138.210, 124100, 'STRONG_BUY',  74.1,  2.841),
-  item('BNB/USD', 'Crypto', 'Major',  584.210, 584.840,  1.12,  592.410, 576.840, 84100,  'BUY',         62.4,  4.821),
-  item('ADA/USD', 'Crypto', 'Alt',    0.44821, 0.44918, -0.84,  0.46120, 0.44210, 64100,  'SELL',        39.4, -0.0021),
-  item('DOGE/USD','Crypto', 'Alt',    0.14821, 0.14884,  1.42,  0.15420, 0.14510, 94100,  'BUY',         61.2,  0.0012),
-  item('AVAX/USD','Crypto', 'Alt',    34.8421, 34.9124,  2.84,  36.4210, 33.8420, 54100,  'STRONG_BUY',  72.8,  0.4821),
-  item('LINK/USD','Crypto', 'Alt',    14.8210, 14.8420,  1.64,  15.2410, 14.4210, 48200,  'BUY',         60.6,  0.2410),
-  item('DOT/USD', 'Crypto', 'Alt',     6.4210,  6.4310, -0.42,   6.5820,  6.2410, 38100,  'NEUTRAL',     49.8, -0.0270),
-  item('LTC/USD', 'Crypto', 'Alt',    78.4210, 78.4820,  0.78,  80.1200, 76.8400, 42600,  'BUY',         58.2,  0.6100),
-  item('TON/USD', 'Crypto', 'Alt',     5.8210,  5.8320,  2.12,   6.0410,  5.6210, 31400,  'STRONG_BUY',  69.4,  0.1210),
-];
+// Was a hand-written block of twelve pairs quoted as BTC/USD, excluded from
+// allInstruments, and carrying invented prices. The registry calls the same
+// instruments BTC/USDT, so the two lists disagreed on the name of every coin
+// while one of them was not being displayed at all.
+//
+// Derived from the registry below instead.
 
 // ── All instruments combined ──────────────────────────────────────────────────
+// ── Crypto and TradFi, derived from the canonical registry ───────────────────
+// Everything above is hand-written seed data with placeholder prices, which is
+// how this file has always worked. These are not: they come from
+// data/instruments.js so there is one answer to "which instruments exist", and
+// they are seeded at zero rather than with invented quotes.
+//
+// A made-up price that looks real is worse than a blank one. These fill in as
+// soon as live prices arrive, and the structure analysis the screener actually
+// exists for comes from candles, which are fetched per instrument.
+const fromRegistry = (cls, assetType, category) =>
+  REGISTRY.filter(i => i.cls === cls && i.can.candles).map(i => ({
+    ...item(i.sym, assetType, category, 0, 0, 0, 0, 0, 0, 'NEUTRAL', 50, 0),
+    name: i.name,
+    seeded: false,        // no placeholder price to mistake for a quote
+  }));
+
+export const crypto = fromRegistry('crypto', 'Crypto', 'Perpetual');
+export const tradfi = fromRegistry('tradfi', 'TradFi', 'Perpetual');
+
 export const allInstruments = [
   ...forexPairs,
   ...metals,
   ...indices,
   ...energy,
+  ...crypto,
+  ...tradfi,
 ];
 
 // ── Strategy presets ──────────────────────────────────────────────────────────

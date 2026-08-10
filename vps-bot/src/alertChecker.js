@@ -1,6 +1,6 @@
 'use strict';
 const fetch = require('node-fetch');
-const { OANDA_MAP, BINANCE_MAP, DEC } = require('./instruments');
+const { OANDA_MAP, BINANCE_MAP, BINANCE_VENUE, DEC } = require('./instruments');
 const { detectStrongReversal } = require('./smc');
 const { configurePush, sendPush } = require('./push');
 
@@ -36,8 +36,9 @@ class AlertChecker {
   }
 
   async _price(sym) {
-    if (BINANCE_MAP[sym]) {
-      const r = await fetch(`https://api.binance.com/api/v3/ticker/price?symbol=${BINANCE_MAP[sym]}`);
+    const v = BINANCE_VENUE[sym];
+    if (v) {
+      const r = await fetch(`${v.host}/ticker/price?symbol=${v.ticker}`);
       if (!r.ok) return null;
       return parseFloat((await r.json()).price) || null;
     }
@@ -48,8 +49,9 @@ class AlertChecker {
   }
 
   async _lastClosed(sym, tf) {
-    if (BINANCE_MAP[sym]) {
-      const r = await fetch(`https://api.binance.com/api/v3/klines?symbol=${BINANCE_MAP[sym]}&interval=${BIN_TF[tf] || '1h'}&limit=2`);
+    const v = BINANCE_VENUE[sym];
+    if (v) {
+      const r = await fetch(`${v.host}/klines?symbol=${v.ticker}&interval=${BIN_TF[tf] || '1h'}&limit=2`);
       if (!r.ok) return null;
       const d = await r.json();
       const k = d[0];
@@ -62,8 +64,9 @@ class AlertChecker {
   }
 
   async _recent(sym, tf, count) {
-    if (BINANCE_MAP[sym]) {
-      const r = await fetch(`https://api.binance.com/api/v3/klines?symbol=${BINANCE_MAP[sym]}&interval=${BIN_TF[tf] || '1h'}&limit=${count + 1}`);
+    const v = BINANCE_VENUE[sym];
+    if (v) {
+      const r = await fetch(`${v.host}/klines?symbol=${v.ticker}&interval=${BIN_TF[tf] || '1h'}&limit=${count + 1}`);
       if (!r.ok) return null;
       const d = await r.json();
       return d.slice(0, -1).map(k => ({ o:+k[1], h:+k[2], l:+k[3], c:+k[4], t:k[0] }));

@@ -72,12 +72,37 @@ const R = [
   { sym:'DOT/USDT',  name:'Polkadot',  cls:'crypto', binance:'DOTUSDT',  dec:3 },
   { sym:'LTC/USDT',  name:'Litecoin',  cls:'crypto', binance:'LTCUSDT',  dec:2 },
   { sym:'TON/USDT',  name:'Toncoin',   cls:'crypto', binance:'TONUSDT',  dec:3 },
+
+  // ── Binance TradFi perpetuals ──
+  // Mirrors src/data/instruments.js. `bfut` means the FUTURES venue only —
+  // asking api.binance.com for one of these returns a 400, so the fetch picks
+  // its host from this field rather than assuming spot.
+  { sym:'XAG/USDT',  name:'Silver (perp)',      cls:'tradfi', bfut:'XAGUSDT',    dec:2 },
+  { sym:'WTI/USDT',  name:'WTI Crude (perp)',   cls:'tradfi', bfut:'CLUSDT',     dec:2 },
+  { sym:'BRENT/USDT',name:'Brent Crude (perp)', cls:'tradfi', bfut:'BZUSDT',     dec:2 },
+  { sym:'NGAS/USDT', name:'Natural Gas (perp)', cls:'tradfi', bfut:'NATGASUSDT', dec:3 },
+  { sym:'XLE/USDT',  name:'Energy Sector ETF',  cls:'tradfi', bfut:'XLEUSDT',    dec:2 },
+  { sym:'SOXS/USDT', name:'Semis Bear 3x ETF',  cls:'tradfi', bfut:'SOXSUSDT',   dec:2 },
+  { sym:'SNXX/USDT', name:'SNDK Long 2x ETF',   cls:'tradfi', bfut:'SNXXUSDT',   dec:2 },
+  { sym:'ORCL/USDT', name:'Oracle',             cls:'tradfi', bfut:'ORCLUSDT',   dec:2 },
+  { sym:'BABA/USDT', name:'Alibaba',            cls:'tradfi', bfut:'BABAUSDT',   dec:2 },
+  { sym:'LLY/USDT',  name:'Eli Lilly',          cls:'tradfi', bfut:'LLYUSDT',    dec:2 },
+  { sym:'CRWD/USDT', name:'CrowdStrike',        cls:'tradfi', bfut:'CRWDUSDT',   dec:2 },
+  { sym:'NFLX/USDT', name:'Netflix',            cls:'tradfi', bfut:'NFLXUSDT',   dec:2 },
+  { sym:'HPE/USDT',  name:'HPE',                cls:'tradfi', bfut:'HPEUSDT',    dec:2 },
+  { sym:'ADBE/USDT', name:'Adobe',              cls:'tradfi', bfut:'ADBEUSDT',   dec:2 },
+  { sym:'TTWO/USDT', name:'Take-Two',           cls:'tradfi', bfut:'TTWOUSDT',   dec:2 },
+  { sym:'BX/USDT',   name:'Blackstone',         cls:'tradfi', bfut:'BXUSDT',     dec:2 },
+  { sym:'PANW/USDT', name:'Palo Alto Networks', cls:'tradfi', bfut:'PANWUSDT',   dec:2 },
+  { sym:'UBER/USDT', name:'Uber',               cls:'tradfi', bfut:'UBERUSDT',   dec:2 },
+  { sym:'BSP/USDT',  name:'Bending Spoons',     cls:'tradfi', bfut:'BSPUSDT',    dec:2 },
+  { sym:'SHAZ/USDT', name:'SharonAI',           cls:'tradfi', bfut:'SHAZUSDT',   dec:2 },
 ];
 
 const INSTRUMENTS = R.map(i => ({
   ...i,
   can: {
-    candles:     !!(i.oanda || i.binance),
+    candles:     !!(i.oanda || i.binance || i.bfut),
     spread:      !!i.oanda,   // bid/ask candles
     positioning: !!i.cot,     // CFTC COT
   },
@@ -89,4 +114,17 @@ const DEC         = Object.fromEntries(R.map(i => [i.sym, i.dec]));
 
 const bySymbol = sym => INSTRUMENTS.find(i => i.sym === sym) || null;
 
-module.exports = { INSTRUMENTS, OANDA_MAP, BINANCE_MAP, DEC, bySymbol };
+// Which Binance venue a symbol lives on, if any.
+//
+// BINANCE_MAP only ever knew spot tickers, so every caller that used it to
+// decide "is this a Binance instrument" silently answered no for the TradFi
+// perpetuals and fell through to the OANDA branch, where they do not exist
+// either. This returns the host as well as the ticker so the decision and the
+// URL cannot drift apart.
+const BINANCE_VENUE = Object.fromEntries(
+  R.filter(i => i.binance || i.bfut).map(i => [i.sym, i.binance
+    ? { host: 'https://api.binance.com/api/v3',   ticker: i.binance, venue: 'spot' }
+    : { host: 'https://fapi.binance.com/fapi/v1', ticker: i.bfut,    venue: 'futures' }]),
+);
+
+module.exports = { INSTRUMENTS, OANDA_MAP, BINANCE_MAP, BINANCE_VENUE, DEC, bySymbol };
