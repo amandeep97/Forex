@@ -150,11 +150,87 @@ export function removeCustom(bfut) {
 // registry winning — a hand-tuned entry with a COT code and a real pip size
 // should never be shadowed by a discovered one.
 export function allInstruments() {
-  const custom = loadCustom().map(toInstrument);
+  // Three sources, in order of authority: the hand-tuned registry, whatever was
+  // published to the repo (and therefore also visible to the VPS), and finally
+  // this device's own picks. A published instrument can never shadow a registry
+  // entry that carries a COT code and a hand-checked pip size.
+  const extra = [
+    ...loadPublished().map(e => toInstrument({ ...e, base: e.sym.split('/')[0] })),
+    ...loadCustom().map(toInstrument),
+  ];
   const haveSym = new Set(INSTRUMENTS.map(i => i.sym));
   const haveTicker = new Set(INSTRUMENTS.flatMap(i => [i.binance, i.bfut].filter(Boolean)));
-  return [
-    ...INSTRUMENTS,
-    ...custom.filter(c => !haveSym.has(c.sym) && !haveTicker.has(c.bfut)),
-  ];
+  const out = [...INSTRUMENTS];
+  for (const c of extra) {
+    if (haveSym.has(c.sym) || haveTicker.has(c.bfut)) continue;
+    haveSym.add(c.sym); haveTicker.add(c.bfut);
+    out.push(c);
+  }
+  return out;
+}
+
+// ── Publishing the discovered list ───────────────────────────────────────────
+// localStorage cannot reach the VPS, so an instrument added in the browser is
+// invisible to the live feed — which is where "everywhere in the app" quietly
+// stops being true. The app already publishes filters and bot config to the
+// repo and the bot already reads them, so the discovered list goes the same
+// way: one file, both sides read it, no third hand-typed registry.
+export const TRADFI_PATH = 'bot/tradfi-instruments.json';
+const PUBLISHED_CACHE = 'binance_tradfi_published_v1';
+
+// Only the fields both sides need. Volume and tags are for the picker, not for
+// the registry, and writing them would put a number that changes every minute
+// into a file that should change when Binance lists something.
+const toEntry = c => ({
+  sym: `${c.base}/USDT`,
+  name: c.name || c.base,
+  cls: 'tradfi',
+  bfut: c.bfut,
+  perp: true,
+  pip: c.pip,
+  dec: c.dec,
+});
+
+// Everything currently listed, static entries included, so the published file
+// is the whole picture rather than a diff nobody can read.
+export async function buildTradfiList() {
+  const found = await discoverBinancePerps();
+  const staticOnes = INSTRUMENTS.filter(i => i.cls === 'tradfi')
+    .map(i => ({ sym:i.sym, name:i.name, cls:'tradfi', bfut:i.bfut, perp:true, pip:i.pip, dec:i.dec }));
+  const seen = new Set(staticOnes.map(e => e.bfut));
+  return [...staticOnes, ...found.filter(c => !seen.has(c.bfut)).map(toEntry)]
+    .sort((a, b) => a.sym.localeCompare(b.sym));
+}
+
+export async function publishTradfiList(ghRead, ghWrite) {
+  const instruments = await buildTradfiList();
+  let sha = null;
+  try { sha = (await ghRead(TRADFI_PATH, { noCache: true }))?.sha || null; } catch { /* first publish */ }
+  await ghWrite(TRADFI_PATH, { instruments, updatedAt: new Date().toISOString() },
+    `app: publish ${instruments.length} Binance TradFi instruments`, sha);
+  cachePublished(instruments);
+  return instruments;
+}
+
+export function cachePublished(list) {
+  try { localStorage.setItem(PUBLISHED_CACHE, JSON.stringify(list)); } catch { /* quota */ }
+  return list;
+}
+
+export function loadPublished() {
+  try {
+    const raw = localStorage.getItem(PUBLISHED_CACHE);
+    const l = raw ? JSON.parse(raw) : [];
+    return Array.isArray(l) ? l : [];
+  } catch { return []; }
+}
+
+// Pull whatever was last published, so a second device sees the same list
+// without rediscovering it.
+export async function syncPublished(ghRead) {
+  try {
+    const f = await ghRead(TRADFI_PATH);
+    const list = f?.content?.instruments;
+    return Array.isArray(list) ? cachePublished(list) : loadPublished();
+  } catch { return loadPublished(); }
 }
