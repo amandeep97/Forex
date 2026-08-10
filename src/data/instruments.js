@@ -105,12 +105,11 @@ const R = [
   // search refuses anything under 180 days. Run the health check on the
   // Backtester before trusting any of them — it reports what actually loaded.
 
-  // Commodities — by far the deepest of the group, and 24/7 versions of
-  // instruments already carried through OANDA without funding or OI.
-  { sym:'WTI/USDT',  name:'WTI Crude (perp)',  cls:'tradfi', bfut:'CLUSDT',     perp:true, pip:0.01,  dec:2 },
-  { sym:'BRENT/USDT',name:'Brent Crude (perp)',cls:'tradfi', bfut:'BZUSDT',     perp:true, pip:0.01,  dec:2 },
-  { sym:'NGAS/USDT', name:'Natural Gas (perp)',cls:'tradfi', bfut:'NATGASUSDT', perp:true, pip:0.001, dec:3 },
-
+  // No commodity perps here on purpose. WTI, Brent and natural gas are already
+  // carried as USOIL, UKOIL and NATGAS through OANDA, which is the execution
+  // venue — and listing both would double-count oil in the twelve-major
+  // breadth test while adding an instrument that cannot be traded.
+  //
   // Sector ETF — the cross-asset peer worth more than any single name here.
   { sym:'XLE/USDT',  name:'Energy Sector ETF', cls:'tradfi', bfut:'XLEUSDT',    perp:true, pip:0.01,  dec:2 },
 
