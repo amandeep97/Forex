@@ -10,6 +10,7 @@ import { searchStrategies, combinationCount, testAcrossInstruments, FOCUS_SET } 
 import { translateToBot, stageForBot } from '../utils/strategyToBot';
 import { deepSearch, POOL as DEEP_POOL, FAMILY } from '../utils/deepSearch';
 import { fetchBinanceKlines, venueFor, probeInstrument } from '../utils/binanceKlines';
+import { discoverBinancePerps, allInstruments, addCustom, removeCustom, loadCustom } from '../utils/binanceDiscovery';
 
 const TF_GRAN = {'1M':'M1','5M':'M5','15M':'M15','30M':'M30','1H':'H1','4H':'H4','8H':'H8','D':'D','W':'W'};
 const TFS = ['1M','5M','15M','30M','1H','4H','8H','D','W'];
@@ -30,16 +31,19 @@ function estimateSpanDays(tf, count, isCrypto) {
   return isCrypto ? tradingDays : tradingDays * 7 / 5;
 }
 
-// Single source of truth — see src/data/instruments.js
-const INSTRUMENTS = REGISTRY.filter(i => i.can.candles).map(i => i.sym);
+// Registry plus anything discovered from Binance and kept. Read at render
+// rather than at module load, so an instrument added in this session appears
+// without a reload.
+const instrumentPool = () => allInstruments().filter(i => i.can.candles);
 
 // FOCUS_SET is written by hand, so anything renamed or dropped from the
 // registry has to fall out here rather than fail one symbol at a time inside
 // the test and be reported as "only 0 bars".
-const FOCUS = FOCUS_SET.filter(s => INSTRUMENTS.includes(s));
+const FOCUS = FOCUS_SET.filter(s => REGISTRY.some(i => i.sym === s && i.can.candles));
 const SCOPES = {
-  focus: { syms: FOCUS,       label: 'majors',          note: 'metals, indices, both crudes and the FX majors' },
-  all:   { syms: INSTRUMENTS, label: 'all instruments', note: 'includes small-cap crypto and minor crosses, where spread alone can turn a real edge negative' },
+  focus: { syms: () => FOCUS, label: 'majors',          note: 'metals, indices, both crudes and the FX majors' },
+  all:   { syms: () => instrumentPool().map(i => i.sym), label: 'all instruments',
+           note: 'includes small-cap crypto and minor crosses, where spread alone can turn a real edge negative' },
 };
 
 const FALLBACK_PRICES = {
@@ -250,7 +254,7 @@ async function fetchCandles(symbol, tf, count) {
   // comes from the registry entry, never from the symbol: asking the spot host
   // for a futures-only symbol returns a 400, the catch swallows it, and the
   // run silently continues on simulated candles.
-  const inst = REGISTRY.find(i => i.sym === symbol);
+  const inst = allInstruments().find(i => i.sym === symbol);
   if (inst?.binance || inst?.bfut) {
     try {
       const cs = await fetchBinanceKlines(inst, BINANCE_TF[tf] || '1h', count);
@@ -921,7 +925,8 @@ export default function Backtester() {
   const [handoff, setHandoff]   = useState(null);   // { f, t } translation preview for Auto Trading
   const [deep, setDeep]         = useState(null);   // multi-condition search
   const [deepObj, setDeepObj]   = useState('mean'); // 'mean' | 'tail' — what "better" means
-  const [probe, setProbe]       = useState(null);   // what the new venues actually return
+  const [probe, setProbe]       = useState(null);   // per-symbol history probe
+  const [discover, setDiscover] = useState(null);   // what Binance actually lists
   const [saved,   setSaved]   = useState(false);
 
   const addCond = () => setConds(p=>[...p,{id:Date.now(),type:'rsi',...DEF.rsi}]);
@@ -1100,7 +1105,7 @@ export default function Backtester() {
     const origin = search?.symbol || sym;
     // The instrument it was found on is always tested even when it sits outside
     // the scope, so the fitted number stays visible next to the honest ones.
-    const syms = [...new Set([...SCOPES[scope].syms, origin])];
+    const syms = [...new Set([...SCOPES[scope].syms(), origin])];
     setAcross({ running:true, label:f.label, finalist:f, scope, done:0, total:syms.length });
     try {
       const res = await testAcrossInstruments(
@@ -1127,21 +1132,34 @@ export default function Backtester() {
     setHandoff({ ...handoff, staged: true });
   };
 
-  // Ask Binance what is actually listed and how far back it goes.
+  // Ask Binance what it lists, then measure how far back each one goes.
   //
-  // Not a nicety. These perpetuals are recent listings with very different
-  // start dates, and six weeks of history is indistinguishable from six years
-  // until something measures it. Everything downstream — the 180-day guard,
-  // the breadth test, the regime warning — depends on an answer nobody has.
-  const runProbe = async () => {
-    const list = REGISTRY.filter(i => i.bfut);
-    setProbe({ running:true, done:0, total:list.length, rows:[] });
-    const rows = [];
-    for (let i = 0; i < list.length; i++) {
-      rows.push(await probeInstrument(list[i], 'D'));
-      setProbe({ running:true, done:i+1, total:list.length, rows:[...rows] });
-    }
-    setProbe({ running:false, rows: rows.sort((a,b) => (b.days ?? -1) - (a.days ?? -1)) });
+  // Two separate unknowns. Which contracts exist — I could only see one screen
+  // of the list and it grows over time — and how much history each has, since
+  // a symbol listed last month is indistinguishable from one listed in 2019
+  // until something checks. Everything downstream depends on the second: the
+  // 180-day guard, the regime warning, whether a breadth test means anything.
+  const runDiscover = async () => {
+    setDiscover({ running:true, phase:'asking Binance what is listed' });
+    try {
+      const found = await discoverBinancePerps();
+      setDiscover({ running:false, found, chosen: loadCustom().map(c => c.bfut) });
+    } catch (e) { setDiscover({ running:false, error: e.message }); }
+  };
+
+  // History is only probed for what you actually want, not for the whole
+  // venue — that would be hundreds of paged requests to answer a question
+  // about six instruments.
+  const probeOne = async (c) => {
+    setProbe(p => ({ ...(p || {}), [c.bfut]: { running:true } }));
+    const r = await probeInstrument({ sym: `${c.base}/USDT`, bfut: c.bfut }, 'D');
+    setProbe(p => ({ ...(p || {}), [c.bfut]: r }));
+  };
+
+  const toggleCustom = (c) => {
+    const has = (discover?.chosen || []).includes(c.bfut);
+    const list = has ? removeCustom(c.bfut) : addCustom(c);
+    setDiscover(d => ({ ...d, chosen: list.map(x => x.bfut) }));
   };
 
   const removeGrade = (sig) => setLibrary(removeFromLibrary(sig));
@@ -1209,7 +1227,7 @@ export default function Backtester() {
           <div className="bt2-step-label"><span className="bt2-step-num">01</span>Instrument &amp; Data</div>
           <div className="bt2-row">
             <select className="bt2-sel" style={{flex:2}} value={sym} onChange={e=>setSym(e.target.value)}>
-              {INSTRUMENTS.map(i=><option key={i} value={i}>{i}</option>)}
+              {instrumentPool().map(i=><option key={i.sym} value={i.sym}>{i.sym}{i.custom ? ' ·' : ''}</option>)}
             </select>
             <select className="bt2-sel" value={cnt} onChange={e=>setCnt(+e.target.value)}>
               {COUNTS.map(c=><option key={c} value={c}>{c} bars</option>)}
@@ -1515,10 +1533,10 @@ export default function Backtester() {
               </button>
             ))}
           </div>
-          <button onClick={runProbe} disabled={probe?.running}
+          <button onClick={runDiscover} disabled={discover?.running}
             style={{ width:'100%', marginTop:10, padding:'8px', borderRadius:8, cursor:'pointer',
               fontWeight:700, fontSize:12, border:'1px solid var(--border)', background:'transparent', color:'var(--text3)' }}>
-            {probe?.running ? `checking… ${probe.done}/${probe.total}` : '🔎 check what history the new instruments have'}
+            {discover?.running ? 'asking Binance…' : '🔎 browse Binance instruments'}
           </button>
           <button onClick={runDeep} disabled={running || search?.running || deep?.running}
             style={{ width:'100%', marginTop:10, padding:'12px', borderRadius:10, cursor:'pointer',
@@ -1541,34 +1559,71 @@ export default function Backtester() {
 
       {/* ── RIGHT: Results ─────────────────────────────────────────────────── */}
       <div className="bt2-results">
-        {probe && (
+        {discover && (
           <div style={{ background:'#0b1118', border:'1px solid #a78bfa44', borderRadius:12, padding:'14px 16px', margin:'0 0 14px' }}>
             <div style={{ fontSize:15, fontWeight:800, color:'#a78bfa', marginBottom:4 }}>
-              {probe.running ? `Checking Binance… ${probe.done}/${probe.total}` : 'What Binance actually has'}
+              {discover.running ? 'Asking Binance…'
+                : discover.error ? 'Could not reach Binance'
+                : `${discover.found.length} contracts listed`}
             </div>
-            <div style={{ fontSize:11.5, color:'var(--text3)', lineHeight:1.7, marginBottom:9 }}>
-              Daily bars, straight from the venue. A symbol under 180 days is refused by the deep
-              search — that is the data being too new, not a setting to change.
-            </div>
-            {probe.rows.map(r => (
-              <div key={r.sym} style={{ display:'flex', gap:8, alignItems:'baseline', padding:'3px 0',
-                fontSize:12, borderTop:'1px solid #16202b', flexWrap:'wrap' }}>
-                <span style={{ width:92, fontWeight:700, color:'#e2e8f0', flexShrink:0 }}>{r.sym}</span>
-                {r.ok ? (
-                  <>
-                    <span style={{ color: r.usable ? '#22c55e' : '#f59e0b', fontWeight:700, width:74 }}>
-                      {r.days} days
-                    </span>
-                    <span style={{ color:'var(--text3)' }}>
-                      {r.bars} bars from {r.from} · median volume {r.medianVol.toLocaleString()}
-                    </span>
-                    {!r.usable && <span style={{ color:'#f59e0b', fontSize:11 }}>too new to search</span>}
-                  </>
-                ) : (
-                  <span style={{ color:'#ef4444' }}>{r.reason}</span>
+            {discover.error && <div style={{ fontSize:12.5, color:'#ef4444', lineHeight:1.7 }}>{discover.error}</div>}
+            {discover.found && (
+              <>
+                <div style={{ fontSize:11.5, color:'var(--text3)', lineHeight:1.7, marginBottom:10 }}>
+                  Stocks, ETFs and commodity perpetuals, ordered by 24-hour turnover — nothing below
+                  the top of this list will survive its own spread in a backtest. Tick size and
+                  decimals come from the exchange, not from me. Tap <strong>history</strong> before
+                  adding: these are recent listings, and under 180 days the search refuses them.
+                  <div style={{ marginTop:4, color:'#f59e0b' }}>
+                    Analysis only — the bot trades through OANDA, so nothing added here can be
+                    auto-traded.
+                  </div>
+                </div>
+                {discover.found.slice(0, 40).map(c => {
+                  const p = probe?.[c.bfut];
+                  const on = (discover.chosen || []).includes(c.bfut);
+                  return (
+                    <div key={c.bfut} style={{ borderTop:'1px solid #16202b', padding:'7px 0',
+                      display:'flex', gap:8, alignItems:'center', flexWrap:'wrap', fontSize:12 }}>
+                      <span style={{ width:96, fontWeight:700, color:'#e2e8f0' }}>{c.base}</span>
+                      <span style={{ color:'var(--text3)', width:110 }}>
+                        ${(c.quoteVolume / 1e6).toFixed(1)}M / 24h
+                      </span>
+                      {p?.running ? <span style={{ color:'var(--text3)' }}>checking…</span>
+                        : p?.ok ? (
+                          <span style={{ color: p.usable ? '#22c55e' : '#f59e0b' }}>
+                            {p.days} days from {p.from}{!p.usable && ' — too new to search'}
+                          </span>
+                        ) : p ? <span style={{ color:'#ef4444' }}>{p.reason}</span>
+                        : (
+                          <button onClick={() => probeOne(c)}
+                            style={{ fontSize:10.5, padding:'2px 8px', borderRadius:5, cursor:'pointer',
+                              border:'1px solid var(--border)', background:'transparent', color:'var(--text3)' }}>
+                            history
+                          </button>
+                        )}
+                      <button onClick={() => toggleCustom(c)}
+                        style={{ marginLeft:'auto', fontSize:10.5, fontWeight:700, padding:'2px 9px',
+                          borderRadius:5, cursor:'pointer',
+                          border:`1px solid ${on ? '#22c55e55' : 'var(--border)'}`,
+                          background: on ? '#0b1a12' : 'transparent',
+                          color: on ? '#22c55e' : 'var(--text3)' }}>
+                        {on ? 'added ✓' : 'add'}
+                      </button>
+                    </div>
+                  );
+                })}
+                {discover.found.length > 40 && (
+                  <div style={{ fontSize:11, color:'var(--text3)', marginTop:8 }}>
+                    Showing the 40 most traded of {discover.found.length}. The rest are thinner than
+                    anything worth backtesting.
+                  </div>
                 )}
-              </div>
-            ))}
+              </>
+            )}
+            <button onClick={() => setDiscover(null)}
+              style={{ marginTop:10, fontSize:11, padding:'3px 10px', borderRadius:6, cursor:'pointer',
+                background:'transparent', color:'var(--text3)', border:'1px solid var(--border)' }}>close</button>
           </div>
         )}
         {deep?.result && (() => {
