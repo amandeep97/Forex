@@ -9,6 +9,7 @@ import { takeStagedFilter } from '../utils/feedToBacktest';
 import { searchStrategies, combinationCount, testAcrossInstruments, FOCUS_SET } from '../utils/strategySearch';
 import { translateToBot, stageForBot } from '../utils/strategyToBot';
 import { deepSearch, POOL as DEEP_POOL, FAMILY } from '../utils/deepSearch';
+import { fetchBinanceKlines, venueFor, probeInstrument } from '../utils/binanceKlines';
 
 const TF_GRAN = {'1M':'M1','5M':'M5','15M':'M15','30M':'M30','1H':'H1','4H':'H4','8H':'H8','D':'D','W':'W'};
 const TFS = ['1M','5M','15M','30M','1H','4H','8H','D','W'];
@@ -198,23 +199,7 @@ const dedupeSort = cs => {
   return [...m.values()].sort((a, b) => a.t - b.t);
 };
 
-async function fetchBinancePaged(sym, itv, total) {
-  const all = [];
-  let endTime = null, guard = 0;
-  while (all.length < total && guard++ < 30) {
-    const need = Math.min(1000, total - all.length);
-    const url = `https://api.binance.com/api/v3/klines?symbol=${sym}&interval=${itv}&limit=${need}`
-      + (endTime ? `&endTime=${endTime}` : '');
-    const res = await fetch(url, { signal: AbortSignal.timeout(20000) });
-    if (!res.ok) break;
-    const data = await res.json();
-    if (!data.length) break;
-    all.push(...data.map(k => ({ t:k[0], o:+k[1], h:+k[2], l:+k[3], c:+k[4], v:+k[5] })));
-    endTime = data[0][0] - 1;          // next page ends just before this page's oldest bar
-    if (data.length < need) break;     // exchange has no more history
-  }
-  return dedupeSort(all);
-}
+
 
 // OANDA caps a single request at 5,000 candles, so anything deeper has to be
 // walked backwards a page at a time.
@@ -249,6 +234,10 @@ async function fetchOandaPaged(instr, gran, total, apiKey, base, onProgress) {
   return dedupeSort(all);
 }
 
+// Why the last Binance attempt failed, so a fall back to simulated data can
+// say more than "Simulated".
+let lastFetchNote = '';
+
 const spanLabel = cs => {
   if (cs.length < 2) return '';
   const days = (cs[cs.length-1].t - cs[0].t) / 86400000;
@@ -257,12 +246,19 @@ const spanLabel = cs => {
 };
 
 async function fetchCandles(symbol, tf, count) {
-  // Crypto → Binance (free, no key, real historical data)
-  if (symbol.includes('/USDT')) {
+  // Binance — spot for crypto, futures for the TradFi perpetuals. The venue
+  // comes from the registry entry, never from the symbol: asking the spot host
+  // for a futures-only symbol returns a 400, the catch swallows it, and the
+  // run silently continues on simulated candles.
+  const inst = REGISTRY.find(i => i.sym === symbol);
+  if (inst?.binance || inst?.bfut) {
     try {
-      const cs = await fetchBinancePaged(symbol.replace('/', ''), BINANCE_TF[tf] || '1h', count);
-      if (cs.length >= 20) return { candles:cs, src:`Binance Live · ${cs.length} bars${spanLabel(cs)}` };
-    } catch {}
+      const cs = await fetchBinanceKlines(inst, BINANCE_TF[tf] || '1h', count);
+      if (cs.length >= 20) {
+        const v = venueFor(inst);
+        return { candles:cs, src:`Binance ${v.venue} · ${cs.length} bars${spanLabel(cs)}` };
+      }
+    } catch (e) { lastFetchNote = e.message; }
   }
   // FX / metals / indices / energy → OANDA. oanda_env (Settings toggle) is the source
   // of truth for environment — never trust a possibly-stale cached practice flag.
@@ -277,9 +273,9 @@ async function fetchCandles(symbol, tf, count) {
       if (cs.length >= 20) return {candles:cs, src:`OANDA Live · ${cs.length} bars${spanLabel(cs)}`};
     }
   } catch {}
-  const inst = {bid:FALLBACK_PRICES[symbol]||1.1,change:0,volume:10000};
-  const cs = generateCandles(inst, tf, Math.min(count,500));
-  return {candles:cs, src:`Simulated · ${cs.length} bars`};
+  const fake = {bid:FALLBACK_PRICES[symbol]||1.1,change:0,volume:10000};
+  const cs = generateCandles(fake, tf, Math.min(count,500));
+  return {candles:cs, src:`Simulated · ${cs.length} bars${lastFetchNote ? ` — ${lastFetchNote}` : ''}`};
 }
 
 const CRYPTO_PIP_BT = { BTC:1, ETH:0.1, BNB:0.1, SOL:0.01, XRP:0.0001, ADA:0.0001, DOGE:0.0001, AVAX:0.001, LINK:0.001, DOT:0.001, LTC:0.01, TON:0.001 };
@@ -925,6 +921,7 @@ export default function Backtester() {
   const [handoff, setHandoff]   = useState(null);   // { f, t } translation preview for Auto Trading
   const [deep, setDeep]         = useState(null);   // multi-condition search
   const [deepObj, setDeepObj]   = useState('mean'); // 'mean' | 'tail' — what "better" means
+  const [probe, setProbe]       = useState(null);   // what the new venues actually return
   const [saved,   setSaved]   = useState(false);
 
   const addCond = () => setConds(p=>[...p,{id:Date.now(),type:'rsi',...DEF.rsi}]);
@@ -1128,6 +1125,23 @@ export default function Backtester() {
     if (!handoff?.t?.ok) return;
     stageForBot(handoff.f.strategy, { symbol: handoff.symbol, timeframe: tf, name: handoff.f.label });
     setHandoff({ ...handoff, staged: true });
+  };
+
+  // Ask Binance what is actually listed and how far back it goes.
+  //
+  // Not a nicety. These perpetuals are recent listings with very different
+  // start dates, and six weeks of history is indistinguishable from six years
+  // until something measures it. Everything downstream — the 180-day guard,
+  // the breadth test, the regime warning — depends on an answer nobody has.
+  const runProbe = async () => {
+    const list = REGISTRY.filter(i => i.bfut);
+    setProbe({ running:true, done:0, total:list.length, rows:[] });
+    const rows = [];
+    for (let i = 0; i < list.length; i++) {
+      rows.push(await probeInstrument(list[i], 'D'));
+      setProbe({ running:true, done:i+1, total:list.length, rows:[...rows] });
+    }
+    setProbe({ running:false, rows: rows.sort((a,b) => (b.days ?? -1) - (a.days ?? -1)) });
   };
 
   const removeGrade = (sig) => setLibrary(removeFromLibrary(sig));
@@ -1501,6 +1515,11 @@ export default function Backtester() {
               </button>
             ))}
           </div>
+          <button onClick={runProbe} disabled={probe?.running}
+            style={{ width:'100%', marginTop:10, padding:'8px', borderRadius:8, cursor:'pointer',
+              fontWeight:700, fontSize:12, border:'1px solid var(--border)', background:'transparent', color:'var(--text3)' }}>
+            {probe?.running ? `checking… ${probe.done}/${probe.total}` : '🔎 check what history the new instruments have'}
+          </button>
           <button onClick={runDeep} disabled={running || search?.running || deep?.running}
             style={{ width:'100%', marginTop:10, padding:'12px', borderRadius:10, cursor:'pointer',
               fontWeight:800, fontSize:14, border:'1px solid #a78bfa55', background:'#160b2a', color:'#a78bfa' }}>
@@ -1522,6 +1541,36 @@ export default function Backtester() {
 
       {/* ── RIGHT: Results ─────────────────────────────────────────────────── */}
       <div className="bt2-results">
+        {probe && (
+          <div style={{ background:'#0b1118', border:'1px solid #a78bfa44', borderRadius:12, padding:'14px 16px', margin:'0 0 14px' }}>
+            <div style={{ fontSize:15, fontWeight:800, color:'#a78bfa', marginBottom:4 }}>
+              {probe.running ? `Checking Binance… ${probe.done}/${probe.total}` : 'What Binance actually has'}
+            </div>
+            <div style={{ fontSize:11.5, color:'var(--text3)', lineHeight:1.7, marginBottom:9 }}>
+              Daily bars, straight from the venue. A symbol under 180 days is refused by the deep
+              search — that is the data being too new, not a setting to change.
+            </div>
+            {probe.rows.map(r => (
+              <div key={r.sym} style={{ display:'flex', gap:8, alignItems:'baseline', padding:'3px 0',
+                fontSize:12, borderTop:'1px solid #16202b', flexWrap:'wrap' }}>
+                <span style={{ width:92, fontWeight:700, color:'#e2e8f0', flexShrink:0 }}>{r.sym}</span>
+                {r.ok ? (
+                  <>
+                    <span style={{ color: r.usable ? '#22c55e' : '#f59e0b', fontWeight:700, width:74 }}>
+                      {r.days} days
+                    </span>
+                    <span style={{ color:'var(--text3)' }}>
+                      {r.bars} bars from {r.from} · median volume {r.medianVol.toLocaleString()}
+                    </span>
+                    {!r.usable && <span style={{ color:'#f59e0b', fontSize:11 }}>too new to search</span>}
+                  </>
+                ) : (
+                  <span style={{ color:'#ef4444' }}>{r.reason}</span>
+                )}
+              </div>
+            ))}
+          </div>
+        )}
         {deep?.result && (() => {
           const r = deep.result;
           if (!r.ok) return (

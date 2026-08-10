@@ -81,6 +81,52 @@ const R = [
   { sym:'DOT/USDT',  name:'Polkadot',  cls:'crypto', binance:'DOTUSDT',  perp:true, pip:0.001,  dec:3 },
   { sym:'LTC/USDT',  name:'Litecoin',  cls:'crypto', binance:'LTCUSDT',  perp:true, pip:0.01,   dec:2 },
   { sym:'TON/USDT',  name:'Toncoin',   cls:'crypto', binance:'TONUSDT',  perp:true, pip:0.001,  dec:3 },
+
+  // ── Binance TradFi perpetuals ──────────────────────────────────────────────
+  // Perpetual futures on stocks, ETFs and commodities, settled in USDT.
+  //
+  // `bfut` rather than `binance`: these exist only on the FUTURES venue
+  // (fapi.binance.com). Every kline call in the app points at the SPOT API, so
+  // listing them under `binance` would fetch nothing, fall through to the
+  // simulated-candle fallback, and quietly backtest invented data.
+  //
+  // Two things make them worth having despite being derivatives rather than
+  // the underlying. There are no splits or dividends inside the price series,
+  // so no fake 50% gap for an ATR stop to trip over; and they carry funding
+  // and open interest, which is positioning data almost nobody has on a single
+  // stock.
+  //
+  // They are NOT the underlying. The perp runs 24/7 while the stock market is
+  // shut about seventeen hours a day, so for most of its life it trades on
+  // sentiment and funding rather than on the company. A rule found on CRWDUSDT
+  // is a rule about the perpetual, not about CrowdStrike.
+  //
+  // History is the real constraint: these are recent listings, and the deep
+  // search refuses anything under 180 days. Run the health check on the
+  // Backtester before trusting any of them — it reports what actually loaded.
+
+  // Commodities — by far the deepest of the group, and 24/7 versions of
+  // instruments already carried through OANDA without funding or OI.
+  { sym:'WTI/USDT',  name:'WTI Crude (perp)',  cls:'tradfi', bfut:'CLUSDT',     perp:true, pip:0.01,  dec:2 },
+  { sym:'BRENT/USDT',name:'Brent Crude (perp)',cls:'tradfi', bfut:'BZUSDT',     perp:true, pip:0.01,  dec:2 },
+  { sym:'NGAS/USDT', name:'Natural Gas (perp)',cls:'tradfi', bfut:'NATGASUSDT', perp:true, pip:0.001, dec:3 },
+
+  // Sector ETF — the cross-asset peer worth more than any single name here.
+  { sym:'XLE/USDT',  name:'Energy Sector ETF', cls:'tradfi', bfut:'XLEUSDT',    perp:true, pip:0.01,  dec:2 },
+
+  // Single names. Thin — a few hundred thousand to two million a day against
+  // six hundred million on WTI — so spread will be a large share of the daily
+  // range and the breadth test will judge them harshly, correctly.
+  { sym:'CRWD/USDT', name:'CrowdStrike',       cls:'tradfi', bfut:'CRWDUSDT',   perp:true, pip:0.01,  dec:2 },
+  { sym:'PANW/USDT', name:'Palo Alto Networks',cls:'tradfi', bfut:'PANWUSDT',   perp:true, pip:0.01,  dec:2 },
+  { sym:'TTWO/USDT', name:'Take-Two',          cls:'tradfi', bfut:'TTWOUSDT',   perp:true, pip:0.01,  dec:2 },
+  { sym:'HPE/USDT',  name:'HPE',               cls:'tradfi', bfut:'HPEUSDT',    perp:true, pip:0.01,  dec:2 },
+
+  // A 3x INVERSE semiconductor ETF. Leveraged and inverse, so it decays
+  // against a flat index and is not a proxy for anything — kept because a
+  // 3x inverse tape is a genuinely different volatility regime to test
+  // against, not because it is a sensible thing to hold.
+  { sym:'SOXS/USDT', name:'Semis Bear 3x ETF', cls:'tradfi', bfut:'SOXSUSDT',   perp:true, pip:0.01,  dec:2, leveraged:true },
 ];
 
 // Capabilities are derived, never hand-maintained — a screen asks what an
@@ -91,13 +137,21 @@ export const INSTRUMENTS = R.map(i => ({
   base:  i.sym.includes('/') ? i.sym.split('/')[0] : null,
   quote: i.sym.includes('/') ? i.sym.split('/')[1] : null,
   can: {
-    price:       !!(i.oanda || i.binance),
-    candles:     !!(i.oanda || i.binance),
+    price:       !!(i.oanda || i.binance || i.bfut),
+    candles:     !!(i.oanda || i.binance || i.bfut),
     spread:      !!i.oanda,          // bid/ask candles
     positioning: !!i.cot,            // CFTC COT
     derivatives: !!i.perp,           // funding / OI / L-S ratio
-    depth:       !!i.binance,        // real order book
+    // Order book and the spot ticker are SPOT endpoints. A futures-only
+    // instrument has neither, and saying otherwise would send half the app
+    // to a URL that returns nothing for it.
+    depth:       !!i.binance,
     book:        false,              // OANDA order/position book — refused on this account
+    // Only the Backtester knows how to read the futures venue so far. Screens
+    // that call api.binance.com directly ask for this instead of `candles`,
+    // so a futures-only instrument is absent from them rather than broken in
+    // them — which is the difference between a missing row and a fake one.
+    spotCandles: !!(i.oanda || i.binance),
   },
 }));
 
