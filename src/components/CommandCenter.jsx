@@ -16,7 +16,7 @@
 // reading is.
 import { useState, useEffect, useCallback, useMemo } from 'react';
 import { fetchFeed } from '../utils/liveFeed';
-import { rank, ageOf, FAMILY } from '../utils/confluence';
+import { rank, ageOf, driversOf, FAMILY } from '../utils/confluence';
 
 const NEWS_URL = 'https://raw.githubusercontent.com/amandeep97/Forex/main/bot/news.json';
 const COT_URL  = 'https://raw.githubusercontent.com/amandeep97/Forex/main/bot/feed.json';
@@ -48,6 +48,12 @@ export default function CommandCenter() {
   const [tick, setTick] = useState(Date.now());
   const [minBreadth, setMinBreadth] = useState(2);
   const [open, setOpen] = useState({});
+  const [cls, setCls] = useState('all');
+  const [dir, setDir] = useState('all');
+  const [onlyStrong, setOnlyStrong] = useState(false);
+  const [onlyMulti, setOnlyMulti] = useState(false);
+  const [oneEach, setOneEach] = useState(false);
+  const [q, setQ] = useState('');
 
   const load = useCallback(async () => {
     setErr('');
@@ -71,15 +77,45 @@ export default function CommandCenter() {
   }, [load]);
 
   const now = tick;
-  const ranked = useMemo(
+  const all = useMemo(
     () => feed ? rank(feed, { news, now, minBreadth }) : [],
     [feed, news, now, minBreadth]);
+
+  const drivers = useMemo(() => driversOf(all), [all]);
+
+  const ranked = useMemo(() => {
+    let out = all;
+    if (cls !== 'all') out = out.filter(r => r.cls === cls);
+    if (dir !== 'all') out = out.filter(r => r.dir === (dir === 'up' ? 'up' : 'down'));
+    if (onlyStrong) out = out.filter(r => r.strong);
+    if (onlyMulti)  out = out.filter(r => r.multiTf);
+    if (q.trim())   out = out.filter(r => r.sym.toLowerCase().includes(q.trim().toLowerCase()));
+    // One per currency. When the RBA meets, seven AUD pairs qualify and six of
+    // them are the same idea — this keeps the strongest and drops the rest,
+    // rather than making you scroll past near-duplicates.
+    if (oneEach) {
+      const used = new Set();
+      out = out.filter(r => {
+        if ((r.ccy || []).some(c => used.has(c))) return false;
+        (r.ccy || []).forEach(c => used.add(c));
+        return true;
+      });
+    }
+    return out;
+  }, [all, cls, dir, onlyStrong, onlyMulti, oneEach, q]);
   const age = useMemo(() => ageOf(feed, news, now), [feed, news, now]);
   const mkt = useMemo(() => marketState(new Date(now)), [now]);
 
   const upcoming = useMemo(() => (news?.calendar || [])
     .filter(e => e.impact === 'high' && e.at > now && e.at < now + 12 * 3600e3)
     .slice(0, 4), [news, now]);
+
+  const pill = on => ({
+    fontSize:11, fontWeight:700, padding:'3px 9px', borderRadius:6, cursor:'pointer',
+    border:`1px solid ${on ? '#a78bfa' : 'var(--border)'}`,
+    background: on ? '#a78bfa22' : 'transparent',
+    color: on ? '#a78bfa' : 'var(--text3)',
+  });
 
   const S = {
     card:{ background:'var(--bg2, #0b1118)', border:'1px solid var(--border, #1e293b)',
@@ -123,6 +159,31 @@ export default function CommandCenter() {
         </div>
       )}
 
+      {/* Shared drivers, once. One RBA decision is one fact, however many pairs
+          contain AUD. */}
+      {drivers.length > 0 && (
+        <div style={{ ...S.card, borderColor:'#60a5fa44' }}>
+          <div style={S.h}>WHAT IS DRIVING THINGS</div>
+          {drivers.slice(0, 5).map(d => (
+            <div key={d.key} style={{ padding:'4px 0', fontSize:12.5 }}>
+              <div style={{ color:'var(--text)' }}>
+                {d.scheduled && <span style={{ color:'#60a5fa', fontWeight:800, marginRight:6 }}>◷</span>}
+                {d.label}
+              </div>
+              <div style={{ fontSize:11, color:'var(--text3)', marginTop:2 }}>
+                touches {d.syms.length} instrument{d.syms.length === 1 ? '' : 's'} — {d.syms.slice(0, 8).join(', ')}
+                {d.syms.length > 8 ? ` +${d.syms.length - 8}` : ''}
+              </div>
+            </div>
+          ))}
+          <div style={{ fontSize:10.5, color:'var(--text3)', marginTop:7, lineHeight:1.6 }}>
+            Shown once. A currency event is identical on every pair holding that currency, so it is
+            context — it cannot tell you which of them is more interesting, and it no longer inflates
+            their ranking.
+          </div>
+        </div>
+      )}
+
       {/* Scheduled risk. The only forward-looking thing here, and all it says is
           that it is coming. */}
       {upcoming.length > 0 && (
@@ -143,6 +204,29 @@ export default function CommandCenter() {
           })}
         </div>
       )}
+
+      <div style={{ ...S.card, padding:'10px 12px' }}>
+        <div style={{ display:'flex', gap:5, flexWrap:'wrap', alignItems:'center' }}>
+          <input value={q} onChange={e => setQ(e.target.value)} placeholder="search"
+            style={{ fontSize:11.5, padding:'3px 8px', borderRadius:6, width:92,
+              background:'var(--bg, #070b12)', color:'var(--text)', border:'1px solid var(--border)' }}/>
+          {[['all','All'],['fx','FX'],['metal','Metals'],['index','Indices'],
+            ['energy','Energy'],['crypto','Crypto'],['tradfi','TradFi']].map(([v,l]) => (
+            <button key={v} onClick={() => setCls(v)} style={pill(cls===v)}>{l}</button>
+          ))}
+        </div>
+        <div style={{ display:'flex', gap:5, flexWrap:'wrap', marginTop:6 }}>
+          {[['all','Both ways'],['up','Bullish'],['down','Bearish']].map(([v,l]) => (
+            <button key={v} onClick={() => setDir(v)} style={pill(dir===v)}>{l}</button>
+          ))}
+          <button onClick={() => setOnlyStrong(v => !v)} style={pill(onlyStrong)}>Strong hammer / star</button>
+          <button onClick={() => setOnlyMulti(v => !v)} style={pill(onlyMulti)}>Multi-timeframe</button>
+          <button onClick={() => setOneEach(v => !v)} style={pill(oneEach)}
+            title="When one event moves a currency, keep the strongest pair instead of seven versions of it">
+            One per currency
+          </button>
+        </div>
+      </div>
 
       <div style={{ display:'flex', gap:6, marginBottom:10, alignItems:'center', flexWrap:'wrap' }}>
         <span style={{ fontSize:11, color:'var(--text3)' }}>show instruments with at least</span>
@@ -187,6 +271,7 @@ export default function CommandCenter() {
               {r.conflict && (
                 <span style={{ fontSize:10, fontWeight:800, color:'#f59e0b' }}>EVIDENCE DISAGREES</span>
               )}
+              {r.strong && <span style={{ fontSize:10, fontWeight:800, color:'#34d399' }}>STRONG CANDLE</span>}
               {r.multiTf && <span style={{ fontSize:10, fontWeight:800, color:'#a78bfa' }}>MULTI-TF</span>}
               <span style={{ marginLeft:'auto', fontSize:11, color:'var(--text3)' }}>
                 {r.breadth} kinds · {r.price}
@@ -214,6 +299,12 @@ export default function CommandCenter() {
                 </span>
               </div>
             ))}
+
+            {r.shared?.length > 0 && (
+              <div style={{ fontSize:11, color:'#60a5fa', marginTop:5 }}>
+                ◷ {r.shared[0].label}{r.shared.length > 1 ? ` +${r.shared.length - 1} more driver${r.shared.length > 2 ? 's' : ''}` : ''}
+              </div>
+            )}
 
             {r.evidence.length > 3 && (
               <button onClick={() => setOpen(o => ({ ...o, [r.sym]: !isOpen }))}

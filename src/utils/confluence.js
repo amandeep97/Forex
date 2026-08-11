@@ -111,18 +111,25 @@ function structureEvidence(rec, now) {
     if (!f) continue;
     const r = rarity[`${e.type}.${e.tf}`];
     const perMonth = r?.perMonth;
-    // A sweep is a reversal signal; a break is a continuation one. Both are
-    // structure, and both are only interesting when the instrument does not do
-    // them constantly.
-    const dir = e.type === 'sweep'
-      ? (e.dir === 'up' ? 'down' : 'up')     // swept the highs = rejection of up
-      : (e.dir === 'up' ? 'up' : 'down');
+    // The feed's "sweep" is detectStrongReversal — a strong hammer or a strong
+    // shooting star, where the bar takes out N bars of highs or lows and closes
+    // back inside. It already resolves direction: dir 'up' IS the hammer.
+    //
+    // This used to invert it, reasoning that sweeping the highs is a rejection
+    // of up — which is correct reasoning applied to a value that had already
+    // had it applied, so every strong hammer was reported as bearish and every
+    // star as bullish. Exactly backwards, on the highest-weight signal here.
+    const dir = e.dir === 'up' ? 'up' : 'down';
+    const label = e.type === 'sweep'
+      ? (e.dir === 'up' ? `strong hammer on ${e.tf}` : `strong shooting star on ${e.tf}`)
+      : `structure break ${e.dir} on ${e.tf}`;
     out.push({
       family: 'structure',
       dir,
-      label: `${e.type === 'sweep' ? 'liquidity sweep' : 'structure break'} ${e.dir} on ${e.tf}`,
+      label,
       detail: e.detail || '',
       rarity: perMonth,
+      strong: e.type === 'sweep',
       weight: f * (perMonth == null ? 1 : perMonth <= 2 ? 1.5 : perMonth <= 5 ? 1.2 : 0.8),
     });
   }
@@ -210,6 +217,8 @@ function newsEvidence(sym, cls, news, now) {
       // Imminent matters more than merely today.
       weight: hrs < 0 ? 1.3 : hrs < 2 ? 1.4 : hrs < 8 ? 1.0 : 0.7,
       scheduled: true,
+      shared: e.country,        // identical on every instrument touching it
+      driver: `${e.country} ${e.title}`,
     });
   }
 
@@ -224,6 +233,8 @@ function newsEvidence(sym, cls, news, now) {
       label: h.title.length > 90 ? h.title.slice(0, 88) + '…' : h.title,
       detail: `${h.source} · ${Math.round((now - h.at) / 60000)} min ago`,
       weight: 0.8, headline: true, link: h.link,
+      shared: (h.ccy || [])[0] || 'news',
+      driver: h.title,
     });
   }
   return out;
@@ -264,13 +275,28 @@ export function assess(sym, rec, { news = null, cot = null, now = Date.now() } =
   ];
   if (!evidence.length) return null;
 
-  const families = [...new Set(evidence.map(e => e.family))];
+  // Shared vs own.
+  //
+  // An RBA decision is identical evidence on AUD/NZD, AUD/CHF, AUD/JPY and
+  // every other AUD pair. Counting it per instrument put seven near-identical
+  // cards at the top of the screen, each listing the same three lines, and
+  // buried everything else — the same double-counting the family model exists
+  // to prevent, happening across instruments instead of within one.
+  //
+  // A currency driver cannot discriminate between instruments that all contain
+  // that currency, so it does not contribute to the ranking. It is shown as
+  // context, once, with the list of what it touches.
+  const own = evidence.filter(e => !e.shared);
+  const shared = evidence.filter(e => e.shared);
+  if (!own.length) return null;
+
+  const families = [...new Set(own.map(e => e.family))];
 
   // Direction is a vote, weighted, and only over evidence that has one. A
   // volatility squeeze and a calendar event are real but say nothing about
   // which way — counting them as agreement would manufacture a bias.
   let up = 0, down = 0;
-  for (const e of evidence) {
+  for (const e of own) {
     if (e.dir === 'up') up += e.weight * (FAMILY[e.family]?.weight ?? 1);
     else if (e.dir === 'down') down += e.weight * (FAMILY[e.family]?.weight ?? 1);
   }
@@ -281,19 +307,48 @@ export function assess(sym, rec, { news = null, cot = null, now = Date.now() } =
   // reading. Four price-action signals from the same twenty candles are one
   // piece of evidence; a candle plus positioning plus a scheduled event are
   // three, and that is the case worth surfacing.
-  const base = evidence.reduce((s, e) => s + e.weight * (FAMILY[e.family]?.weight ?? 1), 0);
+  const base = own.reduce((s, e) => s + e.weight * (FAMILY[e.family]?.weight ?? 1), 0);
   const breadth = families.length;
   const score = +(base * (1 + 0.35 * (breadth - 1))).toFixed(2);
 
+  const byWeight = (a, b) =>
+    (b.weight * (FAMILY[b.family]?.weight ?? 1)) - (a.weight * (FAMILY[a.family]?.weight ?? 1));
+
   return {
     sym, cls, price: rec.price, dec: rec.dec, name: rec.name,
-    evidence: evidence.sort((a, b) =>
-      (b.weight * (FAMILY[b.family]?.weight ?? 1)) - (a.weight * (FAMILY[a.family]?.weight ?? 1))),
+    evidence: own.sort(byWeight),
+    shared: shared.sort(byWeight),
     families, breadth, dir, score,
     conflict: up > 0.5 && down > 0.5,   // evidence disagrees — worth saying so
-    hasNews: families.includes('news'),
-    multiTf: evidence.some(e => e.multiTf),
+    hasNews: shared.length > 0,
+    strong: own.some(e => e.strong),
+    multiTf: own.some(e => e.multiTf),
+    ccy: currenciesOf(sym, cls),
   };
+}
+
+// Shared drivers, grouped once instead of repeated on every affected card.
+//
+// "RBA decision in 1.5h → AUD/NZD, AUD/CHF, GBP/AUD and four others" is one
+// fact. Printing it seven times is not seven facts, and it pushed everything
+// else off the screen.
+export function driversOf(assessed) {
+  const map = new Map();
+  for (const a of assessed) {
+    for (const e of a.shared || []) {
+      const key = e.driver || e.label;
+      if (!map.has(key)) {
+        map.set(key, { key, label: e.label, detail: e.detail, ccy: e.shared,
+                       scheduled: !!e.scheduled, weight: e.weight, syms: [] });
+      }
+      const d = map.get(key);
+      if (!d.syms.includes(a.sym)) d.syms.push(a.sym);
+      // The nearest event wins the label — "in 20 min" beats "in 1.5h".
+      if (e.weight > d.weight) { d.weight = e.weight; d.label = e.label; }
+    }
+  }
+  return [...map.values()].sort((a, b) =>
+    (b.syms.length * b.weight) - (a.syms.length * a.weight));
 }
 
 // Everything worth looking at, most confluent first.
