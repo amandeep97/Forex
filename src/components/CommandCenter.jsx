@@ -47,7 +47,11 @@ export default function CommandCenter() {
   const [loading, setLoading] = useState(true);
   const [err, setErr] = useState('');
   const [tick, setTick] = useState(Date.now());
-  const [minBreadth, setMinBreadth] = useState(2);
+  const [minBreadth, setMinBreadth] = useState(3);
+  const [top, setTop] = useState(12);
+  const [allOpen, setAllOpen] = useState(false);
+  const [showDrivers, setShowDrivers] = useState(true);
+  const [showPacks, setShowPacks] = useState(true);
   const [open, setOpen] = useState({});
   const [cls, setCls] = useState('all');
   const [dir, setDir] = useState('all');
@@ -106,8 +110,11 @@ export default function CommandCenter() {
         return true;
       });
     }
-    return out;
-  }, [all, cls, dir, onlyStrong, onlyMulti, oneEach, q, tf]);
+    // Bounded by rank, not by a threshold. On a quiet day a threshold shows
+    // nothing and on a busy one it shows everything; "the twelve most unusual
+    // of seventy-two" means the same thing in both.
+    return top ? out.slice(0, top) : out;
+  }, [all, cls, dir, onlyStrong, onlyMulti, oneEach, q, tf, top]);
   const age = useMemo(() => ageOf(feed, news, now), [feed, news, now]);
   const mkt = useMemo(() => marketState(new Date(now)), [now]);
 
@@ -134,8 +141,13 @@ export default function CommandCenter() {
       <div style={{ display:'flex', alignItems:'baseline', gap:10, flexWrap:'wrap', marginBottom:4 }}>
         <h2 style={{ fontSize:18, fontWeight:800, margin:0, color:'var(--text)' }}>⚡ Command Center</h2>
         <span style={{ fontSize:11.5, color:'var(--text3)' }}>
-          {ranked.length} instrument{ranked.length === 1 ? '' : 's'} with more than one kind of evidence
+          top {ranked.length} of {all[0]?.of ?? 0} measured
         </span>
+        <button onClick={() => { setAllOpen(v => !v); setOpen({}); }}
+          style={{ fontSize:11, fontWeight:700, padding:'4px 10px', borderRadius:6, cursor:'pointer',
+            border:'1px solid var(--border)', background:'transparent', color:'var(--text3)' }}>
+          {allOpen ? '⌃ collapse all' : '⌄ expand all'}
+        </button>
         <button onClick={load} style={{ marginLeft:'auto', fontSize:11, fontWeight:700, padding:'4px 11px',
           borderRadius:6, cursor:'pointer', border:'1px solid var(--border)', background:'transparent', color:'var(--text3)' }}>
           ⟳ refresh
@@ -167,7 +179,12 @@ export default function CommandCenter() {
 
       {packs.length > 0 && (
         <div style={{ ...S.card, borderColor:'#34d39944' }}>
-          <div style={S.h}>MOVING AS A GROUP</div>
+          <div style={{ ...S.h, cursor:'pointer', display:'flex', alignItems:'center', gap:6 }}
+            onClick={() => setShowPacks(v => !v)}>
+            <span>{showPacks ? '⌄' : '›'}</span> MOVING AS A GROUP
+            <span style={{ marginLeft:'auto', fontWeight:600 }}>{packs.length}</span>
+          </div>
+          {showPacks && (<>
           {packs.map(p => (
             <div key={p.cls + p.dir} style={{ padding:'3px 0', fontSize:12.5 }}>
               <span style={{ color: p.dir === 'up' ? '#22c55e' : '#ef4444', fontWeight:800 }}>
@@ -181,7 +198,7 @@ export default function CommandCenter() {
             One instrument firing is a setup. Most of a class firing the same way is a regime — the
             dollar, real rates, risk appetite — and it is a reason to check total exposure rather
             than to take another position in the same direction.
-          </div>
+          </div></>)}
         </div>
       )}
 
@@ -189,7 +206,12 @@ export default function CommandCenter() {
           contain AUD. */}
       {drivers.length > 0 && (
         <div style={{ ...S.card, borderColor:'#60a5fa44' }}>
-          <div style={S.h}>WHAT IS DRIVING THINGS</div>
+          <div style={{ ...S.h, cursor:'pointer', display:'flex', alignItems:'center', gap:6 }}
+            onClick={() => setShowDrivers(v => !v)}>
+            <span>{showDrivers ? '⌄' : '›'}</span> WHAT IS DRIVING THINGS
+            <span style={{ marginLeft:'auto', fontWeight:600 }}>{drivers.length}</span>
+          </div>
+          {showDrivers && (<>
           {drivers.slice(0, 5).map(d => (
             <div key={d.key} style={{ padding:'4px 0', fontSize:12.5 }}>
               <div style={{ color:'var(--text)' }}>
@@ -206,7 +228,7 @@ export default function CommandCenter() {
             Shown once. A currency event is identical on every pair holding that currency, so it is
             context — it cannot tell you which of them is more interesting, and it no longer inflates
             their ranking.
-          </div>
+          </div></>)}
         </div>
       )}
 
@@ -245,7 +267,7 @@ export default function CommandCenter() {
           {[['all','Both ways'],['up','Bullish'],['down','Bearish']].map(([v,l]) => (
             <button key={v} onClick={() => setDir(v)} style={pill(dir===v)}>{l}</button>
           ))}
-          {[['all','Any TF'],['H4','H4'],['D','Daily']].map(([v,l]) => (
+          {[['all','Any TF'],['M15','15m'],['M30','30m'],['H1','1H'],['H4','H4'],['D','Daily']].map(([v,l]) => (
             <button key={v} onClick={() => setTf(v)} style={pill(tf===v)}>{l}</button>
           ))}
           <button onClick={() => setOnlyStrong(v => !v)} style={pill(onlyStrong)}>Strong hammer / star</button>
@@ -258,7 +280,13 @@ export default function CommandCenter() {
       </div>
 
       <div style={{ display:'flex', gap:6, marginBottom:10, alignItems:'center', flexWrap:'wrap' }}>
-        <span style={{ fontSize:11, color:'var(--text3)' }}>show instruments with at least</span>
+        <span style={{ fontSize:11, color:'var(--text3)' }}>show top</span>
+        {[8, 12, 25, null].map(n => (
+          <button key={String(n)} onClick={() => setTop(n)} style={pill(top===n)}>
+            {n ?? 'all'}
+          </button>
+        ))}
+        <span style={{ fontSize:11, color:'var(--text3)', marginLeft:8 }}>with at least</span>
         {[2, 3, 4].map(n => (
           <button key={n} onClick={() => setMinBreadth(n)}
             style={{ fontSize:11, fontWeight:700, padding:'3px 9px', borderRadius:6, cursor:'pointer',
@@ -283,7 +311,7 @@ export default function CommandCenter() {
       )}
 
       {ranked.map(r => {
-        const isOpen = open[r.sym];
+        const isOpen = open[r.sym] ?? allOpen;
         const show = isOpen ? r.evidence : r.evidence.slice(0, 3);
         return (
           <div key={r.sym} style={{ ...S.card,
@@ -303,7 +331,7 @@ export default function CommandCenter() {
               {r.strong && <span style={{ fontSize:10, fontWeight:800, color:'#34d399' }}>STRONG CANDLE</span>}
               {r.multiTf && <span style={{ fontSize:10, fontWeight:800, color:'#a78bfa' }}>MULTI-TF</span>}
               <span style={{ marginLeft:'auto', fontSize:11, color:'var(--text3)' }}>
-                {r.breadth} kinds · {r.price}
+                #{r.rank} of {r.of} · {r.breadth} kinds · {r.price}
               </span>
             </div>
 
