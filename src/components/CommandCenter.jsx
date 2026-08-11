@@ -16,7 +16,8 @@
 // reading is.
 import { useState, useEffect, useCallback, useMemo } from 'react';
 import { fetchFeed } from '../utils/liveFeed';
-import { rank, ageOf, driversOf, FAMILY } from '../utils/confluence';
+import { rank, ageOf, driversOf, clusters, FAMILY } from '../utils/confluence';
+import ChartModal from './ChartModal';
 
 const NEWS_URL = 'https://raw.githubusercontent.com/amandeep97/Forex/main/bot/news.json';
 const COT_URL  = 'https://raw.githubusercontent.com/amandeep97/Forex/main/bot/feed.json';
@@ -54,6 +55,8 @@ export default function CommandCenter() {
   const [onlyMulti, setOnlyMulti] = useState(false);
   const [oneEach, setOneEach] = useState(false);
   const [q, setQ] = useState('');
+  const [tf, setTf] = useState('all');
+  const [chart, setChart] = useState(null);
 
   const load = useCallback(async () => {
     setErr('');
@@ -82,6 +85,7 @@ export default function CommandCenter() {
     [feed, news, now, minBreadth]);
 
   const drivers = useMemo(() => driversOf(all), [all]);
+  const packs = useMemo(() => clusters(all), [all]);
 
   const ranked = useMemo(() => {
     let out = all;
@@ -89,6 +93,7 @@ export default function CommandCenter() {
     if (dir !== 'all') out = out.filter(r => r.dir === (dir === 'up' ? 'up' : 'down'));
     if (onlyStrong) out = out.filter(r => r.strong);
     if (onlyMulti)  out = out.filter(r => r.multiTf);
+    if (tf !== 'all') out = out.filter(r => (r.tfs || []).includes(tf));
     if (q.trim())   out = out.filter(r => r.sym.toLowerCase().includes(q.trim().toLowerCase()));
     // One per currency. When the RBA meets, seven AUD pairs qualify and six of
     // them are the same idea — this keeps the strongest and drops the rest,
@@ -102,7 +107,7 @@ export default function CommandCenter() {
       });
     }
     return out;
-  }, [all, cls, dir, onlyStrong, onlyMulti, oneEach, q]);
+  }, [all, cls, dir, onlyStrong, onlyMulti, oneEach, q, tf]);
   const age = useMemo(() => ageOf(feed, news, now), [feed, news, now]);
   const mkt = useMemo(() => marketState(new Date(now)), [now]);
 
@@ -125,6 +130,7 @@ export default function CommandCenter() {
 
   return (
     <div style={{ padding:12, maxWidth:900, margin:'0 auto' }}>
+      {chart && <ChartModal instrument={chart} onClose={() => setChart(null)} />}
       <div style={{ display:'flex', alignItems:'baseline', gap:10, flexWrap:'wrap', marginBottom:4 }}>
         <h2 style={{ fontSize:18, fontWeight:800, margin:0, color:'var(--text)' }}>⚡ Command Center</h2>
         <span style={{ fontSize:11.5, color:'var(--text3)' }}>
@@ -156,6 +162,26 @@ export default function CommandCenter() {
         <div style={{ ...S.card, borderColor:'#f59e0b44', fontSize:11.5, color:'#c7d2da', lineHeight:1.7 }}>
           News is not published yet. The bot writes it on its next pass — until then this screen shows
           technical and positioning evidence only, and no calendar.
+        </div>
+      )}
+
+      {packs.length > 0 && (
+        <div style={{ ...S.card, borderColor:'#34d39944' }}>
+          <div style={S.h}>MOVING AS A GROUP</div>
+          {packs.map(p => (
+            <div key={p.cls + p.dir} style={{ padding:'3px 0', fontSize:12.5 }}>
+              <span style={{ color: p.dir === 'up' ? '#22c55e' : '#ef4444', fontWeight:800 }}>
+                {p.n} of {p.total} {p.cls}
+              </span>
+              <span style={{ color:'var(--text)' }}> pointing {p.dir === 'up' ? 'up' : 'down'} together</span>
+              <div style={{ fontSize:11, color:'var(--text3)' }}>{p.syms.join(', ')}</div>
+            </div>
+          ))}
+          <div style={{ fontSize:10.5, color:'var(--text3)', marginTop:7, lineHeight:1.6 }}>
+            One instrument firing is a setup. Most of a class firing the same way is a regime — the
+            dollar, real rates, risk appetite — and it is a reason to check total exposure rather
+            than to take another position in the same direction.
+          </div>
         </div>
       )}
 
@@ -218,6 +244,9 @@ export default function CommandCenter() {
         <div style={{ display:'flex', gap:5, flexWrap:'wrap', marginTop:6 }}>
           {[['all','Both ways'],['up','Bullish'],['down','Bearish']].map(([v,l]) => (
             <button key={v} onClick={() => setDir(v)} style={pill(dir===v)}>{l}</button>
+          ))}
+          {[['all','Any TF'],['H4','H4'],['D','Daily']].map(([v,l]) => (
+            <button key={v} onClick={() => setTf(v)} style={pill(tf===v)}>{l}</button>
           ))}
           <button onClick={() => setOnlyStrong(v => !v)} style={pill(onlyStrong)}>Strong hammer / star</button>
           <button onClick={() => setOnlyMulti(v => !v)} style={pill(onlyMulti)}>Multi-timeframe</button>
@@ -290,13 +319,25 @@ export default function CommandCenter() {
             </div>
 
             {show.map((e, i) => (
-              <div key={i} style={{ display:'flex', gap:8, alignItems:'baseline', padding:'3px 0', fontSize:12.5 }}>
-                <span style={{ width:6, height:6, borderRadius:3, background:FAM_COLOR[e.family],
-                  flexShrink:0, marginTop:5 }}/>
-                <span style={{ color:'var(--text)' }}>
-                  {e.label}
-                  {e.detail && <span style={{ color:'var(--text3)' }}> — {e.detail}</span>}
-                </span>
+              <div key={i} style={{ padding:'3px 0', fontSize:12.5 }}>
+                <div style={{ display:'flex', gap:8, alignItems:'baseline' }}>
+                  <span style={{ width:6, height:6, borderRadius:3, background:FAM_COLOR[e.family],
+                    flexShrink:0, marginTop:5 }}/>
+                  <span style={{ color:'var(--text)' }}>
+                    {e.label}
+                    {e.detail && <span style={{ color:'var(--text3)' }}> — {e.detail}</span>}
+                  </span>
+                </div>
+                {e.base && (
+                  <div style={{ fontSize:11, marginLeft:14, marginTop:2,
+                    color: e.base.win >= 60 ? '#22c55e' : e.base.win <= 40 ? '#ef4444' : 'var(--text3)' }}>
+                    last {e.base.n} times here: {e.base.win}% went its way after {e.base.bars} bars
+                    <span style={{ color:'var(--text3)' }}>
+                      {' '}· median {e.base.med > 0 ? '+' : ''}{e.base.med} ATR
+                      {e.base.n < 15 ? ' · small sample' : ''}
+                    </span>
+                  </div>
+                )}
               </div>
             ))}
 
@@ -306,13 +347,21 @@ export default function CommandCenter() {
               </div>
             )}
 
-            {r.evidence.length > 3 && (
-              <button onClick={() => setOpen(o => ({ ...o, [r.sym]: !isOpen }))}
-                style={{ marginTop:5, fontSize:11, padding:0, background:'none', border:'none',
-                  color:'#7dd3fc', cursor:'pointer' }}>
-                {isOpen ? 'less' : `+${r.evidence.length - 3} more`}
+            <div style={{ display:'flex', gap:10, alignItems:'center', marginTop:6 }}>
+              {r.evidence.length > 3 && (
+                <button onClick={() => setOpen(o => ({ ...o, [r.sym]: !isOpen }))}
+                  style={{ fontSize:11, padding:0, background:'none', border:'none',
+                    color:'#7dd3fc', cursor:'pointer' }}>
+                  {isOpen ? 'less' : `+${r.evidence.length - 3} more`}
+                </button>
+              )}
+              <button onClick={() => setChart({ symbol: r.sym, assetType: r.cls })}
+                style={{ marginLeft:'auto', fontSize:11, fontWeight:700, padding:'3px 10px',
+                  borderRadius:6, cursor:'pointer', border:'1px solid #7dd3fc55',
+                  background:'#0b1a2a', color:'#7dd3fc' }}>
+                📈 chart
               </button>
-            )}
+            </div>
           </div>
         );
       })}

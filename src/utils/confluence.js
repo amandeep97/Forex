@@ -80,7 +80,13 @@ function candleEvidence(rec, now) {
       if ((p.rate ?? 99) > RARE_ENOUGH) continue;
       const f = freshness(p.at, tf, now);
       if (!f) continue;
-      (seen[p.id] ||= []).push({ tf, rate: p.rate, f });
+      // One entry per timeframe. The same pattern can appear twice in a
+      // timeframe's list — two occurrences within the retained window — and
+      // pushing both produced labels reading "bull engulf on H4 + H4 + D".
+      const bucket = (seen[p.id] ||= []);
+      const existing = bucket.find(x => x.tf === tf);
+      if (existing) { if (f > existing.f) { existing.f = f; existing.rate = p.rate; } }
+      else bucket.push({ tf, rate: p.rate, f });
     }
   }
   for (const [id, hits] of Object.entries(seen)) {
@@ -123,6 +129,13 @@ function structureEvidence(rec, now) {
     const label = e.type === 'sweep'
       ? (e.dir === 'up' ? `strong hammer on ${e.tf}` : `strong shooting star on ${e.tf}`)
       : `structure break ${e.dir} on ${e.tf}`;
+    // What happened the last time this fired here. A pattern with no
+    // consequence attached is the thing every other screen shows; this is the
+    // instrument's own record, with its sample size, and it is the only line
+    // on the card that answers "so what".
+    const base = r?.fwdN >= 5 ? {
+      n: r.fwdN, win: r.fwdWin, med: r.fwdMedAtr, bars: r.fwdBars,
+    } : null;
     out.push({
       family: 'structure',
       dir,
@@ -130,7 +143,11 @@ function structureEvidence(rec, now) {
       detail: e.detail || '',
       rarity: perMonth,
       strong: e.type === 'sweep',
-      weight: f * (perMonth == null ? 1 : perMonth <= 2 ? 1.5 : perMonth <= 5 ? 1.2 : 0.8),
+      base,
+      // Evidence with a measured history behind it outranks evidence without
+      // one — but only mildly, and only when the record is actually favourable.
+      weight: f * (perMonth == null ? 1 : perMonth <= 2 ? 1.5 : perMonth <= 5 ? 1.2 : 0.8)
+                * (base && base.n >= 10 ? (base.win >= 60 ? 1.25 : base.win <= 40 ? 0.8 : 1) : 1),
     });
   }
   return out;
@@ -323,8 +340,41 @@ export function assess(sym, rec, { news = null, cot = null, now = Date.now() } =
     hasNews: shared.length > 0,
     strong: own.some(e => e.strong),
     multiTf: own.some(e => e.multiTf),
+    tfs: [...new Set(own.flatMap(e => (String(e.label).match(/\b(H4|D)\b/g) || [])))],
+    // The strongest measured record among this instrument's evidence, so a
+    // card can be judged without expanding it.
+    base: own.map(e => e.base).filter(Boolean).sort((a, b) => b.n - a.n)[0] || null,
     ccy: currenciesOf(sym, cls),
   };
+}
+
+// When a whole asset class moves together, that is a different fact.
+//
+// One metal firing a signal is about that metal. Five of seven metals firing
+// the same direction at once is about the dollar, or real rates, or risk — a
+// regime, not a setup. Nothing in the app said which of those you were looking
+// at, and they call for opposite responses: the idiosyncratic one is a trade,
+// the cluster is a reason to check your total exposure.
+export function clusters(assessed) {
+  const byCls = {};
+  for (const a of assessed) {
+    if (!a.dir) continue;
+    (byCls[a.cls] ||= []).push(a);
+  }
+  const out = [];
+  for (const [cls, list] of Object.entries(byCls)) {
+    const up = list.filter(a => a.dir === 'up');
+    const down = list.filter(a => a.dir === 'down');
+    const side = up.length >= down.length ? up : down;
+    // Three is the smallest number that is a pattern rather than a coincidence.
+    if (side.length < 3) continue;
+    out.push({
+      cls, dir: side === up ? 'up' : 'down',
+      syms: side.map(a => a.sym),
+      n: side.length, total: list.length,
+    });
+  }
+  return out.sort((a, b) => b.n - a.n);
 }
 
 // Shared drivers, grouped once instead of repeated on every affected card.
