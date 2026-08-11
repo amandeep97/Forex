@@ -447,7 +447,14 @@ class FeedBuilder {
     // One decimal on purpose. ×1.1 versus ×1.8 changes a decision; ×1.12 versus
     // ×1.14 does not, and publishing that precision would rewrite the feed —
     // and commit it — every fifteen minutes for forty instruments.
-    return { ratio: +((lastRow.ask - lastRow.bid) / median).toFixed(1), at: lastRow.t };
+    // The ratio says whether conditions are normal; the absolute spread is what
+    // a trade actually pays. A plan cannot say "this costs 8% of your stop"
+    // from a ratio, so both are published.
+    return {
+      ratio: +((lastRow.ask - lastRow.bid) / median).toFixed(1),
+      abs: +(lastRow.ask - lastRow.bid).toPrecision(4),
+      at: lastRow.t,
+    };
   }
 
   // Identity is stamped the moment a record exists, not when its candles first
@@ -564,6 +571,7 @@ class FeedBuilder {
     const rec = this._rec(inst);
     if (s) {
       rec.state.spreadRatio = s.ratio;
+      rec.state.spreadAbs = s.abs;
       rec.asOf.spread = s.at;
       this.due.set(`${inst.sym}|SPREAD`, nextBarDue(s.at, TF_MS.M15, 60e3));
     } else {

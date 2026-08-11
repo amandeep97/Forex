@@ -18,6 +18,7 @@ import { useState, useEffect, useCallback, useMemo } from 'react';
 import { fetchFeed } from '../utils/liveFeed';
 import { rank, ageOf, driversOf, clusters, FAMILY } from '../utils/confluence';
 import ChartModal from './ChartModal';
+import { buildPlan } from '../utils/tradePlan';
 
 const NEWS_URL = 'https://raw.githubusercontent.com/amandeep97/Forex/main/bot/news.json';
 const COT_URL  = 'https://raw.githubusercontent.com/amandeep97/Forex/main/bot/feed.json';
@@ -61,6 +62,8 @@ export default function CommandCenter() {
   const [q, setQ] = useState('');
   const [tf, setTf] = useState('all');
   const [chart, setChart] = useState(null);
+  const [balance, setBalance] = useState(() => +(localStorage.getItem('cc_balance') || 10000));
+  const [riskPct, setRiskPct] = useState(() => +(localStorage.getItem('cc_risk') || 1));
 
   const load = useCallback(async () => {
     setErr('');
@@ -298,6 +301,18 @@ export default function CommandCenter() {
         ))}
       </div>
 
+      <div style={{ display:'flex', gap:6, alignItems:'center', flexWrap:'wrap', marginBottom:10, fontSize:11, color:'var(--text3)' }}>
+        <span>size plans for balance</span>
+        <input value={balance} onChange={e => { const v = +e.target.value || 0; setBalance(v); localStorage.setItem('cc_balance', v); }}
+          style={{ width:80, fontSize:11.5, padding:'3px 7px', borderRadius:6,
+            background:'var(--bg, #070b12)', color:'var(--text)', border:'1px solid var(--border)' }}/>
+        <span>risking</span>
+        <input value={riskPct} onChange={e => { const v = +e.target.value || 0; setRiskPct(v); localStorage.setItem('cc_risk', v); }}
+          style={{ width:46, fontSize:11.5, padding:'3px 7px', borderRadius:6,
+            background:'var(--bg, #070b12)', color:'var(--text)', border:'1px solid var(--border)' }}/>
+        <span>% per trade</span>
+      </div>
+
       {loading && <div style={{ ...S.card, color:'var(--text3)', fontSize:12 }}>Loading measurements…</div>}
 
       {!loading && ranked.length === 0 && (
@@ -368,6 +383,37 @@ export default function CommandCenter() {
                 )}
               </div>
             ))}
+
+            {(() => {
+              const p = buildPlan(r, feed?.instruments?.[r.sym], { balance, riskPct });
+              if (!p?.ok) return null;
+              const C = p.take ? '#22c55e' : p.verdict === 'record-says-no' ? '#ef4444' : '#f59e0b';
+              return (
+                <div style={{ marginTop:8, borderTop:'1px solid #16202b', paddingTop:8 }}>
+                  {p.take ? (
+                    <>
+                      <div style={{ display:'flex', gap:14, flexWrap:'wrap', fontSize:12.5 }}>
+                        <span style={{ color:'var(--text3)' }}>entry <strong style={{ color:'var(--text)' }}>{p.entry}</strong></span>
+                        <span style={{ color:'var(--text3)' }}>stop <strong style={{ color:'#ef4444' }}>{p.stop}</strong></span>
+                        <span style={{ color:'var(--text3)' }}>target <strong style={{ color:'#22c55e' }}>{p.target}</strong></span>
+                        <span style={{ color:'var(--text3)' }}>size <strong style={{ color:'var(--text)' }}>{p.units}</strong></span>
+                      </div>
+                      <div style={{ fontSize:11, color:C, marginTop:4, lineHeight:1.6 }}>
+                        {p.rr}R — the median move after the last {p.record.n} of these, not a chosen ratio ·
+                        {' '}{p.record.win}% went its way · <strong>{p.ev > 0 ? '+' : ''}{p.ev}R expected</strong>
+                        {p.costShare != null && <span style={{ color:'var(--text3)' }}> · spread is {p.costShare}% of the stop</span>}
+                      </div>
+                    </>
+                  ) : (
+                    <div style={{ fontSize:11.5, color:C, lineHeight:1.65 }}>
+                      <strong>{p.blocked ? 'CONDITIONS' : p.verdict === 'record-says-no' ? 'THE RECORD SAYS NO'
+                        : p.verdict === 'negative' ? 'NOT WORTH THE RISK' : 'CANNOT PRICE IT'}</strong>
+                      {' — '}{p.blocked || p.note}
+                    </div>
+                  )}
+                </div>
+              );
+            })()}
 
             {r.shared?.length > 0 && (
               <div style={{ fontSize:11, color:'#60a5fa', marginTop:5 }}>
