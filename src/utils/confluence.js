@@ -47,19 +47,30 @@ const REVERSAL = {
 // Occurrences per month above which a pattern is wallpaper. A daily harami at
 // 1.2/month is a rare event on that instrument; the same name on H4 at 29.7 is
 // what the chart does on a quiet afternoon.
-const RARE_ENOUGH = 8;
+const RARE_ENOUGH = 5;
 
-// How recent an event still counts. An H4 sweep from six days ago is history,
-// not a reason to look now.
-const FRESH = { H4: 2 * DAY, D: 6 * DAY };
+// Freshness is counted in BARS, against the feed's own last bar — not in days
+// against the wall clock.
+//
+// Measuring in days made "recent" mean twelve H4 bars, and with thirty-four
+// pattern types across five timeframes every instrument accumulates several
+// inside a window that wide. Measured on live data: 100% of seventy-two
+// instruments had a "rare" pattern and 99% had a structure event, so almost
+// everything cleared two families and the screen selected nothing.
+//
+// Against the wall clock it was also wrong in a second way. If the feed last
+// refreshed an instrument four hours ago, an event on its most recent bar is
+// already "old" by a clock and is still the latest thing that happened.
+const TF_MS = { M15: 900e3, M30: 1800e3, H1: 3600e3, H4: 14400e3, D: 86400e3 };
+const MAX_BARS_AGO = 2;
 
-const ago = (t, now) => now - (t || 0);
-
-function freshness(at, tf, now) {
-  const age = ago(at, now);
-  const window = FRESH[tf] || 2 * DAY;
-  if (age < 0 || age > window) return 0;
-  return 1 - age / window;          // 1 = just happened, 0 = at the edge
+function freshness(at, tf, asOf) {
+  const ms = TF_MS[tf];
+  const last = asOf?.[tf];
+  if (!ms || !last || !at) return 0;
+  const bars = (last - at) / ms;
+  if (bars < -0.5 || bars > MAX_BARS_AGO) return 0;
+  return 1 - Math.max(0, bars) / (MAX_BARS_AGO + 1);
 }
 
 // ── Evidence collectors ──────────────────────────────────────────────────────
@@ -67,7 +78,7 @@ function freshness(at, tf, now) {
 // 'up' | 'down' | null, and null means "notable but not directional" — a
 // volatility squeeze says something is coming, not which way.
 
-function candleEvidence(rec, now) {
+function candleEvidence(rec, asOf) {
   const out = [];
   const byTf = rec.patterns || {};
   // A pattern on two timeframes at once is the thing being asked for, and it
@@ -78,7 +89,7 @@ function candleEvidence(rec, now) {
       const dir = REVERSAL[p.id];
       if (!dir) continue;
       if ((p.rate ?? 99) > RARE_ENOUGH) continue;
-      const f = freshness(p.at, tf, now);
+      const f = freshness(p.at, tf, asOf);
       if (!f) continue;
       // One entry per timeframe. The same pattern can appear twice in a
       // timeframe's list — two occurrences within the retained window — and
@@ -89,6 +100,22 @@ function candleEvidence(rec, now) {
       else bucket.push({ tf, rate: p.rate, f });
     }
   }
+  // A bullish and a bearish pattern on the same instrument is not two pieces of
+  // evidence, it is an unclear chart. Both were being listed — "bear harami on
+  // H4 + D" directly above "bull engulf on H4 + D" — which inflated the count
+  // and made almost every card read EVIDENCE DISAGREES. The fresher and rarer
+  // side is kept and the other is dropped.
+  const score = h => Math.max(...h.map(x => x.f)) * (h.length > 1 ? 1.6 : 1)
+                     / Math.max(0.5, Math.min(...h.map(x => x.rate ?? 99)));
+  const ups = Object.entries(seen).filter(([id]) => REVERSAL[id] === 'up');
+  const dns = Object.entries(seen).filter(([id]) => REVERSAL[id] === 'down');
+  if (ups.length && dns.length) {
+    const bestUp = Math.max(...ups.map(([, h]) => score(h)));
+    const bestDn = Math.max(...dns.map(([, h]) => score(h)));
+    const drop = bestUp >= bestDn ? dns : ups;
+    for (const [id] of drop) delete seen[id];
+  }
+
   for (const [id, hits] of Object.entries(seen)) {
     const dir = REVERSAL[id];
     const tfs = hits.map(h => h.tf);
@@ -109,11 +136,11 @@ function candleEvidence(rec, now) {
   return out;
 }
 
-function structureEvidence(rec, now) {
+function structureEvidence(rec, asOf) {
   const out = [];
   const rarity = rec.rarity || {};
   for (const e of rec.events || []) {
-    const f = freshness(e.at, e.tf, now);
+    const f = freshness(e.at, e.tf, asOf);
     if (!f) continue;
     const r = rarity[`${e.type}.${e.tf}`];
     const perMonth = r?.perMonth;
@@ -180,7 +207,13 @@ function leadershipEvidence(rec) {
   if (!l?.list?.length) return [];
   // Only leaders that clear the noise floor the VPS already computed. Below it
   // the correlation is indistinguishable from chance at this sample size.
-  const strong = l.list.filter(x => Math.abs(x.r) > (l.floor ?? 0.25)).slice(0, 2);
+  // Clearing the noise floor by a hair is not a finding — 57% of instruments
+  // had at least one leader over it, so as a qualifying criterion it selected
+  // nothing. Well clear of the floor, and only the strongest.
+  const strong = l.list
+    .filter(x => Math.abs(x.r) > Math.max((l.floor ?? 0.25) * 1.6, 0.35))
+    .sort((a, b) => Math.abs(b.r) - Math.abs(a.r))
+    .slice(0, 1);
   return strong.map(x => ({
     family: 'crossasset',
     dir: null,
@@ -283,8 +316,8 @@ export function assess(sym, rec, { news = null, cot = null, now = Date.now() } =
   if (!rec) return null;
   const cls = rec.cls;
   const evidence = [
-    ...candleEvidence(rec, now),
-    ...structureEvidence(rec, now),
+    ...candleEvidence(rec, rec.asOf),
+    ...structureEvidence(rec, rec.asOf),
     ...volatilityEvidence(rec),
     ...leadershipEvidence(rec),
     ...newsEvidence(sym, cls, news, now),
@@ -306,6 +339,16 @@ export function assess(sym, rec, { news = null, cot = null, now = Date.now() } =
   const own = evidence.filter(e => !e.shared);
   const shared = evidence.filter(e => e.shared);
   if (!own.length) return null;
+
+  // Something has to have HAPPENED.
+  //
+  // Volatility regime, leadership and positioning are states: they are true for
+  // a third of the board at any moment, and two of them together were enough to
+  // put an instrument on the screen with nothing having occurred on it. They
+  // explain an event; they cannot be one. Requiring a price or structure event
+  // is what makes this a list of things that just happened rather than a list
+  // of things that are currently the case.
+  if (!own.some(e => e.family === 'price' || e.family === 'structure')) return null;
 
   const families = [...new Set(own.map(e => e.family))];
 
@@ -366,8 +409,10 @@ export function clusters(assessed) {
     const up = list.filter(a => a.dir === 'up');
     const down = list.filter(a => a.dir === 'down');
     const side = up.length >= down.length ? up : down;
-    // Three is the smallest number that is a pattern rather than a coincidence.
-    if (side.length < 3) continue;
+    // A cluster has to be both a real count AND a majority of what fired in
+    // that class. "13 of 23" was neither remarkable nor informative — it is
+    // roughly what half a class doing anything looks like.
+    if (side.length < 4 || side.length < list.length * 0.6) continue;
     out.push({
       cls, dir: side === up ? 'up' : 'down',
       syms: side.map(a => a.sym),
@@ -406,13 +451,32 @@ export function driversOf(assessed) {
 // The threshold is on BREADTH, not score: one very loud technical signal is
 // what every other screen in this app already shows. This one exists to find
 // the moments when unrelated kinds of evidence point at the same instrument.
-export function rank(feed, { news = null, cot = null, now = Date.now(), minBreadth = 2 } = {}) {
-  const out = [];
+export function rank(feed, { news = null, cot = null, now = Date.now(),
+                             minBreadth = 2, top = null } = {}) {
+  const scored = [];
+  let total = 0;
   for (const [sym, rec] of Object.entries(feed?.instruments || {})) {
+    total++;
     const a = assess(sym, rec, { news, cot, now });
-    if (a && a.breadth >= minBreadth) out.push(a);
+    if (a) scored.push(a);
   }
-  return out.sort((a, b) => b.score - a.score);
+  scored.sort((a, b) => b.score - a.score);
+
+  // Percentile against everything measured, not against everything shown.
+  //
+  // Absolute thresholds do not survive contact with a real market: on a quiet
+  // day nothing clears them and on a volatile one everything does, and either
+  // way the screen stops discriminating. A rank is stable — "the third most
+  // unusual instrument of seventy-two" means the same thing in both.
+  scored.forEach((a, i) => {
+    a.rank = i + 1;
+    a.of = total;
+    a.pct = Math.round(((total - i) / total) * 100);
+  });
+
+  let out = scored.filter(a => a.breadth >= minBreadth);
+  if (top) out = out.slice(0, top);
+  return out;
 }
 
 // How stale the data is. A live screen that quietly shows yesterday's readings

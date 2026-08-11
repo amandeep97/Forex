@@ -39,18 +39,22 @@ const { fetchCOTPercentile } = require('./cotFetcher');
 
 const FEED_PATH = 'bot/feed.json';
 
-const BIN_TF = { H4:'4h', D:'1d' };
-const TF_MS  = { M15: 900e3, H4: 14400e3, D: 86400e3 };
+const BIN_TF = { M15:'15m', M30:'30m', H1:'1h', H4:'4h', D:'1d' };
+const TF_MS  = { M15: 900e3, M30: 1800e3, H1: 3600e3, H4: 14400e3, D: 86400e3 };
 
 // How much history each timeframe is scanned over. This is what the rarity
 // figure is measured against, so it has to be long enough to mean something:
 // 500 H4 bars is ~83 days, 400 daily bars is well over a year.
-const BARS = { H4: 500, D: 400 };
+// Enough bars that a rarity figure means something on each timeframe: 500 M15
+// bars is ~5 days, 500 H1 is ~20 days, 500 H4 is ~83 days, 400 daily is well
+// over a year. The intraday ones buy less history in calendar terms, which is
+// exactly why their rarity numbers should be read with that in mind.
+const BARS = { M15: 500, M30: 500, H1: 500, H4: 500, D: 400 };
 
 // How far back published events reach. The app applies the user's own
 // freshness window on top of this, so err on the generous side here — trimming
 // it in the bot would silently cap what the app is allowed to ask for.
-const RETAIN_DAYS = { H4: 7, D: 30 };
+const RETAIN_DAYS = { M15: 2, M30: 3, H1: 4, H4: 7, D: 30 };
 
 // The Screener's candlestick library, loaded rather than reimplemented. It is
 // ESM app code, so it comes in through a dynamic import the same way the shared
@@ -91,7 +95,11 @@ const SWING_LOOK = 2;     // bars either side that define a swing point
 // Nothing may take so long that a 60-second tick overruns. Each instrument is
 // only re-measured when its bar closes, so in the steady state this cap is
 // never reached; it exists for the cold start, when all 52 are due at once.
-const MAX_REFRESH_PER_TICK = 14;
+// Five timeframes across seventy-plus instruments is 360 jobs rather than 144,
+// and each one is an API call. Raised so a full sweep still completes inside a
+// quarter of an hour; the fair-share queue below decides the order, so the
+// timeframe that just closed a bar is the one that gets served.
+const MAX_REFRESH_PER_TICK = 26;
 
 // Floor between publishes when only continuous state moved. Every write is a
 // commit to the repo, so unbounded churn would bury the bot's real history.
@@ -179,7 +187,11 @@ function detectSweeps(cs) {
 // How many bars forward an outcome is measured over. Long enough that a real
 // effect has room to appear, short enough that it is still attributable to the
 // event rather than to everything that happened afterwards.
-const HORIZON = { H4: 20, D: 10 };
+// Timeframes the feed measures. Ordered slow-first so the fair-share queue
+// serves the ones that carry the most information when it is under pressure.
+const FEED_TFS = ['D', 'H4', 'H1', 'M30', 'M15'];
+
+const HORIZON = { M15: 40, M30: 30, H1: 24, H4: 20, D: 10 };
 
 // What actually happened after this event, the last N times it fired here.
 //
@@ -374,7 +386,7 @@ class FeedBuilder {
         // that the self-updater restarts the bot on its own.
         let restored = 0, backfill = 0;
         for (const [sym, rec] of Object.entries(this.data)) {
-          for (const tf of ['H4', 'D']) {
+          for (const tf of FEED_TFS) {
             if (!rec.asOf?.[tf]) continue;
             // A record written by an older build can be missing a field this
             // one produces. Leaving it on schedule would mean waiting a whole
@@ -663,7 +675,7 @@ class FeedBuilder {
 
     for (const inst of this.instruments) {
       if (!inst.can.candles) continue;
-      for (const tf of ['H4', 'D']) {
+      for (const tf of FEED_TFS) {
         const k = `${inst.sym}|${tf}`;
         if ((this.due.get(k) || 0) <= now) jobs.push({ inst, kind: tf, key: k });
       }
