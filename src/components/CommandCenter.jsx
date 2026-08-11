@@ -1,495 +1,237 @@
-import {
-  COT_CODES,
-  CRYPTO_FACTORS,
-  CRYPTO_PAIRS,
-  CRYPTO_W,
-  FACTORS,
-  KZ,
-  PAIRS,
-  W,
-  binanceFetch,
-  computeStrengths,
-  currKZ,
-  gradeColor,
-  gradeOf,
-  midClose,
-  sma,
-  techScore,
-  timingScore,
-} from '../utils/commandScore';
-import { useState, useEffect, useCallback } from 'react';
+// src/components/CommandCenter.jsx
+// What is unusual right now, and everything that agrees.
+//
+// The previous version scored five factors that were not five things: two were
+// the same momentum reading counted twice, one was a clock returning an
+// identical number for every instrument, and all of it came from recent price.
+// It also ran entirely in the browser against OANDA, so it was blank at the
+// weekend and its confidence percentage had never been validated against
+// anything.
+//
+// This reads the VPS feed instead — 72 instruments, measured continuously,
+// weekends included — and joins it to the calendar and headlines the bot
+// publishes. Nothing here predicts. Every line is something that happened or
+// is scheduled, with a stated rarity, and instruments are ranked by how many
+// INDEPENDENT kinds of evidence point at them rather than by how loud any one
+// reading is.
+import { useState, useEffect, useCallback, useMemo } from 'react';
+import { fetchFeed } from '../utils/liveFeed';
+import { rank, ageOf, FAMILY } from '../utils/confluence';
+
+const NEWS_URL = 'https://raw.githubusercontent.com/amandeep97/Forex/main/bot/news.json';
+const COT_URL  = 'https://raw.githubusercontent.com/amandeep97/Forex/main/bot/feed.json';
+
+const FAM_COLOR = {
+  price:'#818cf8', structure:'#34d399', volatility:'#fbbf24',
+  crossasset:'#a78bfa', positioning:'#f472b6', news:'#60a5fa',
+};
+
+// Which markets are actually open, so a quiet screen at 3am on Sunday reads as
+// "FX is shut" rather than as "nothing is happening".
+function marketState(now = new Date()) {
+  const day = now.getUTCDay(), h = now.getUTCHours();
+  const fxOpen = !(day === 6 || (day === 0 && h < 22) || (day === 5 && h >= 21));
+  const usEquity = day >= 1 && day <= 5 && (h > 14 || (h === 14 && now.getUTCMinutes() >= 30)) && h < 21;
+  return { fxOpen, usEquity, crypto: true };
+}
+
+const fmtAge = ms => ms == null ? 'never'
+  : ms < 90e3 ? 'just now'
+  : ms < 3600e3 ? `${Math.round(ms / 60e3)} min ago`
+  : `${(ms / 3600e3).toFixed(1)}h ago`;
+
 export default function CommandCenter() {
-  const [creds, setCreds] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [progress, setProgress] = useState(0);
-  const [error, setError] = useState(null);
-  const [results, setResults] = useState([]);
-  const [cryptoResults, setCryptoResults] = useState([]);
-  const [lastUpdate, setLastUpdate] = useState(null);
-  const [cotAvail, setCotAvail] = useState(false);
-  const [filter, setFilter] = useState('all');
-  const [newsRadar, setNewsRadar] = useState(null);
+  const [feed, setFeed] = useState(null);
+  const [news, setNews] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [err, setErr] = useState('');
+  const [tick, setTick] = useState(Date.now());
+  const [minBreadth, setMinBreadth] = useState(2);
+  const [open, setOpen] = useState({});
 
-  useEffect(() => {
-    try {
-      const c = JSON.parse(localStorage.getItem('oanda_creds') || 'null');
-      if (c?.apiKey) { const _e = localStorage.getItem('oanda_env'); setCreds(_e !== null ? { ...c, practice: _e !== 'live' } : c); return; }
-    } catch {}
-    const apiKey = localStorage.getItem('oanda_key');
-    const practice = localStorage.getItem('oanda_env') !== 'live';
-    if (apiKey) setCreds({ apiKey, practice });
+  const load = useCallback(async () => {
+    setErr('');
+    const [f, n] = await Promise.allSettled([
+      fetchFeed({ force: true }),
+      fetch(`${NEWS_URL}?t=${Date.now()}`, { cache:'no-store', signal: AbortSignal.timeout(15000) })
+        .then(r => r.status === 404 ? null : r.ok ? r.json() : null),
+    ]);
+    if (f.status === 'fulfilled' && f.value && !f.value.missing) setFeed(f.value);
+    else if (f.status === 'rejected') setErr(f.reason?.message || 'feed unavailable');
+    if (n.status === 'fulfilled') setNews(n.value);
+    setLoading(false);
+    setTick(Date.now());
   }, []);
 
-  // Read News Radar (written by the News tab) to flag pairs with imminent events
   useEffect(() => {
-    const read = () => {
-      try {
-        const r = JSON.parse(localStorage.getItem('news_radar') || 'null');
-        if (r?.currencies) setNewsRadar(r.currencies);
-      } catch {}
-    };
-    read();
-    const id = setInterval(read, 60000);
+    load();
+    // The VPS writes about once a minute; polling faster only burns battery.
+    const id = setInterval(load, 60_000);
     return () => clearInterval(id);
-  }, []);
+  }, [load]);
 
-  // For a pair, return the soonest high-impact event warning across its 2 currencies
-  const newsWarn = useCallback((pair) => {
-    if (!newsRadar) return null;
-    const [base, quote] = pair.split('_');
-    let best = null;
-    [base, quote].forEach(c => {
-      const r = newsRadar[c];
-      if (!r?.nextMs) return;
-      const mins = Math.round((r.nextMs - Date.now()) / 60000);
-      if (mins < 0 || mins > 1440) return; // only within 24h
-      if (r.impact !== 'High') return;
-      if (!best || mins < best.mins) best = { ccy: c, mins, title: r.nextTitle };
-    });
-    return best;
-  }, [newsRadar]);
+  const now = tick;
+  const ranked = useMemo(
+    () => feed ? rank(feed, { news, now, minBreadth }) : [],
+    [feed, news, now, minBreadth]);
+  const age = useMemo(() => ageOf(feed, news, now), [feed, news, now]);
+  const mkt = useMemo(() => marketState(new Date(now)), [now]);
 
-  const oandaFetch = useCallback(async (pair, tf, count) => {
-    if (!creds) return [];
-    const base = creds.practice === false || creds.env === 'live'
-      ? 'https://api-fxtrade.oanda.com/v3'
-      : 'https://api-fxpractice.oanda.com/v3';
-    try {
-      const res = await fetch(
-        `${base}/instruments/${pair}/candles?granularity=${tf}&count=${count}&price=M`,
-        { headers: { Authorization: `Bearer ${creds.apiKey}` } }
-      );
-      if (!res.ok) return [];
-      const d = await res.json();
-      return (d.candles ?? []).filter(c => c.complete);
-    } catch { return []; }
-  }, [creds]);
+  const upcoming = useMemo(() => (news?.calendar || [])
+    .filter(e => e.impact === 'high' && e.at > now && e.at < now + 12 * 3600e3)
+    .slice(0, 4), [news, now]);
 
-  const fetchCOT = useCallback(async () => {
-    const cot = {};
-    for (const [cur, code] of Object.entries(COT_CODES)) {
-      try {
-        const r = await fetch(
-          `https://publicreporting.cftc.gov/resource/6dca-aqww.json?$where=cftc_contract_market_code='${code}'&$order=report_date_as_yyyy_mm_dd DESC&$limit=1`
-        );
-        if (!r.ok) continue;
-        const [d] = await r.json();
-        if (!d) continue;
-        const lng = parseFloat(d.noncomm_positions_long_all ?? 0);
-        const sht = parseFloat(d.noncomm_positions_short_all ?? 0);
-        const tot = lng + sht;
-        cot[cur] = tot ? (lng - sht) / tot : 0;
-      } catch {}
-    }
-    return cot;
-  }, []);
-
-  const analyze = useCallback(async () => {
-    if (!creds) return;
-    setLoading(true);
-    setError(null);
-    setProgress(0);
-
-    try {
-      let done = 0;
-      const total = PAIRS.length * 2;
-      const tick = () => setProgress(Math.round((++done / total) * 80));
-
-      const [h4Entries, h1Entries] = await Promise.all([
-        Promise.all(PAIRS.map(p => oandaFetch(p, 'H4', 60).then(c => { tick(); return [p, c]; }))),
-        Promise.all(PAIRS.map(p => oandaFetch(p, 'H1', 40).then(c => { tick(); return [p, c]; }))),
-      ]);
-
-      const h4 = Object.fromEntries(h4Entries);
-      const h1 = Object.fromEntries(h1Entries);
-      setProgress(85);
-
-      const strengths = computeStrengths(h4);
-      // EUR/USD H4 direction inverted = DXY proxy
-      const dxyProxy = -(techScore(h4['EUR_USD'], h1['EUR_USD']));
-      const timing = timingScore();
-      const kzName = currKZ();
-
-      const cot = await fetchCOT();
-      const hasCot = Object.keys(cot).length > 0;
-      setCotAvail(hasCot);
-      setProgress(95);
-
-      const scored = PAIRS.map(pair => {
-        const [base, quote] = pair.split('_');
-        const tech = techScore(h4[pair], h1[pair]);
-
-        // DXY influence: strong USD → USD/XXX rises, XXX/USD falls
-        let dxy = 0;
-        if (quote === 'USD') dxy = -dxyProxy;    // e.g. EUR/USD falls when DXY rises
-        else if (base === 'USD') dxy = dxyProxy;  // e.g. USD/JPY rises when DXY rises
-        else dxy = dxyProxy * 0.20;               // cross pairs: minor indirect influence
-
-        const cotScore = (cot[base] ?? 0) - (cot[quote] ?? 0);
-        const strScore = (strengths[base] ?? 0) - (strengths[quote] ?? 0);
-
-        const composite =
-          tech    * W.tech  +
-          dxy     * W.dxy   +
-          cotScore * W.cot  +
-          strScore * W.str  +
-          timing  * W.time;
-
-        return {
-          pair,
-          direction: composite >= 0 ? 'LONG' : 'SHORT',
-          confidence: Math.round(Math.min(Math.abs(composite) * 100, 100)),
-          composite,
-          tech, dxy, cot: cotScore, str: strScore, time: timing,
-          kzName,
-        };
-      });
-
-      scored.sort((a, b) => Math.abs(b.composite) - Math.abs(a.composite));
-      setResults(scored);
-
-      // ── Crypto: Binance public API (no OANDA key needed) ─────────────────
-      const [cryptoH4, cryptoH1] = await Promise.all([
-        Promise.all(CRYPTO_PAIRS.map(p => binanceFetch(p.symbol, '4h', 61).then(c => [p.key, c]))),
-        Promise.all(CRYPTO_PAIRS.map(p => binanceFetch(p.symbol, '1h', 41).then(c => [p.key, c]))),
-      ]);
-      const ch4 = Object.fromEntries(cryptoH4);
-      const ch1 = Object.fromEntries(cryptoH1);
-
-      const cryptoScored = CRYPTO_PAIRS
-        .filter(p => ch4[p.key]?.length > 0)
-        .map(({ key, label }) => {
-          const tech = techScore(ch4[key], ch1[key]);
-          const dxy  = -dxyProxy; // strong USD always bearish for crypto
-          const composite = tech * CRYPTO_W.tech + dxy * CRYPTO_W.dxy + timing * CRYPTO_W.time;
-          return {
-            pair: key, label,
-            direction: composite >= 0 ? 'LONG' : 'SHORT',
-            confidence: Math.round(Math.min(Math.abs(composite) * 100, 100)),
-            composite, tech, dxy, time: timing, kzName,
-          };
-        });
-      cryptoScored.sort((a, b) => Math.abs(b.composite) - Math.abs(a.composite));
-      setCryptoResults(cryptoScored);
-
-      setLastUpdate(new Date());
-      setProgress(100);
-    } catch (e) {
-      setError(e.message);
-    } finally {
-      setLoading(false);
-    }
-  }, [creds, oandaFetch, fetchCOT]);
-
-  // Auto-run on first load if creds exist
-  useEffect(() => { if (creds) analyze(); }, [creds]); // eslint-disable-line
-
-  const filtered = filter === 'all' ? results : results.filter(r => r.direction === filter.toUpperCase());
-
-  if (!creds) {
-    return (
-      <div style={{ padding:40, textAlign:'center', color:'#94a3b8', background:'#0a0f1e', minHeight:'100vh' }}>
-        <div style={{ fontSize:40, marginBottom:12 }}>🔑</div>
-        <div style={{ fontSize:15, marginBottom:6 }}>Connect your OANDA account first</div>
-        <div style={{ fontSize:12 }}>Enter API credentials in the Screener tab</div>
-      </div>
-    );
-  }
+  const S = {
+    card:{ background:'var(--bg2, #0b1118)', border:'1px solid var(--border, #1e293b)',
+           borderRadius:12, padding:'12px 14px', marginBottom:10 },
+    h:{ fontSize:12, fontWeight:800, letterSpacing:'.06em', color:'var(--text3)', marginBottom:8 },
+  };
 
   return (
-    <div style={{ padding:16, fontFamily:'monospace', background:'#0a0f1e', minHeight:'100vh' }}>
-
-      {/* Header */}
-      <div style={{ display:'flex', alignItems:'flex-start', justifyContent:'space-between', marginBottom:10, flexWrap:'wrap', gap:8 }}>
-        <div>
-          <div style={{ fontSize:17, fontWeight:700, color:'#e2e8f0', letterSpacing:0.5 }}>
-            ⚡ Command Center
-          </div>
-          <div style={{ fontSize:11, color:'#475569', marginTop:2 }}>
-            5-factor FX · 3-factor Crypto · 21+5 instruments ranked
-            {!cotAvail && results.length > 0 && (
-              <span style={{ color:'#d97706', marginLeft:6 }}>· COT N/A</span>
-            )}
-          </div>
-        </div>
-        <div style={{ display:'flex', gap:6, alignItems:'center', flexWrap:'wrap' }}>
-          {['all','long','short'].map(f => (
-            <button key={f} onClick={() => setFilter(f)} style={{
-              padding:'3px 9px', borderRadius:5, fontSize:11, border:'none', cursor:'pointer',
-              background: filter === f ? (f==='long'?'#14532d':f==='short'?'#7f1d1d':'#312e81') : '#1e293b',
-              color: filter === f ? '#fff' : '#64748b',
-            }}>
-              {f.toUpperCase()}
-            </button>
-          ))}
-          <button onClick={analyze} disabled={loading} style={{
-            padding:'5px 14px', background:'#7c3aed', color:'#fff', border:'none',
-            borderRadius:7, cursor:loading ? 'not-allowed' : 'pointer', fontSize:12,
-            fontWeight:600, opacity:loading ? 0.7 : 1, minWidth:90,
-          }}>
-            {loading ? `${progress}%…` : '⟳ Refresh'}
-          </button>
-        </div>
+    <div style={{ padding:12, maxWidth:900, margin:'0 auto' }}>
+      <div style={{ display:'flex', alignItems:'baseline', gap:10, flexWrap:'wrap', marginBottom:4 }}>
+        <h2 style={{ fontSize:18, fontWeight:800, margin:0, color:'var(--text)' }}>⚡ Command Center</h2>
+        <span style={{ fontSize:11.5, color:'var(--text3)' }}>
+          {ranked.length} instrument{ranked.length === 1 ? '' : 's'} with more than one kind of evidence
+        </span>
+        <button onClick={load} style={{ marginLeft:'auto', fontSize:11, fontWeight:700, padding:'4px 11px',
+          borderRadius:6, cursor:'pointer', border:'1px solid var(--border)', background:'transparent', color:'var(--text3)' }}>
+          ⟳ refresh
+        </button>
       </div>
 
-      {/* Factor weight pills */}
-      <div style={{ display:'flex', gap:6, marginBottom:10, flexWrap:'wrap' }}>
-        {[['Tech','30%','#818cf8'],['DXY','20%','#60a5fa'],['COT','20%','#f472b6'],['Str','15%','#34d399'],['Time','15%','#fbbf24']].map(([k,w,c]) => (
-          <div key={k} style={{ display:'flex', alignItems:'center', gap:4, background:'#0f172a', border:`1px solid ${c}33`, padding:'2px 8px', borderRadius:20, fontSize:10 }}>
-            <div style={{ width:6, height:6, borderRadius:'50%', background:c }} />
-            <span style={{ color:'#94a3b8' }}>{k}</span>
-            <span style={{ color:c, fontWeight:700 }}>{w}</span>
-          </div>
+      {/* Freshness first. A live screen showing yesterday's readings as current
+          is worse than one that is honestly empty. */}
+      <div style={{ display:'flex', gap:14, flexWrap:'wrap', fontSize:11, marginBottom:10 }}>
+        <span style={{ color: age.feedStale ? '#ef4444' : '#22c55e' }}>
+          ● measurements {fmtAge(age.feedMs)}{age.feedStale ? ' — VPS may be down' : ''}
+        </span>
+        <span style={{ color: !news ? 'var(--text3)' : age.newsStale ? '#f59e0b' : '#22c55e' }}>
+          ● news {news ? fmtAge(age.newsMs) : 'not published yet'}
+        </span>
+        <span style={{ color:'var(--text3)' }}>
+          {mkt.fxOpen ? 'FX open' : 'FX closed'} · {mkt.usEquity ? 'US equities open' : 'US equities closed'} · crypto always
+        </span>
+      </div>
+
+      {err && <div style={{ ...S.card, borderColor:'#ef444455', color:'#fca5a5', fontSize:12 }}>⚠ {err}</div>}
+
+      {!news && (
+        <div style={{ ...S.card, borderColor:'#f59e0b44', fontSize:11.5, color:'#c7d2da', lineHeight:1.7 }}>
+          News is not published yet. The bot writes it on its next pass — until then this screen shows
+          technical and positioning evidence only, and no calendar.
+        </div>
+      )}
+
+      {/* Scheduled risk. The only forward-looking thing here, and all it says is
+          that it is coming. */}
+      {upcoming.length > 0 && (
+        <div style={{ ...S.card, borderColor:'#60a5fa44' }}>
+          <div style={S.h}>NEXT 12 HOURS</div>
+          {upcoming.map((e, i) => {
+            const hrs = (e.at - now) / 3600e3;
+            return (
+              <div key={i} style={{ display:'flex', gap:8, alignItems:'baseline', padding:'3px 0', fontSize:12.5 }}>
+                <span style={{ width:44, fontWeight:800, color: hrs < 2 ? '#f59e0b' : '#60a5fa' }}>
+                  {hrs < 1 ? `${Math.round(hrs*60)}m` : `${hrs.toFixed(1)}h`}
+                </span>
+                <span style={{ width:38, color:'var(--text3)', fontWeight:700 }}>{e.country}</span>
+                <span style={{ color:'var(--text)' }}>{e.title}</span>
+                {e.forecast && <span style={{ color:'var(--text3)', fontSize:11 }}>fc {e.forecast}</span>}
+              </div>
+            );
+          })}
+        </div>
+      )}
+
+      <div style={{ display:'flex', gap:6, marginBottom:10, alignItems:'center', flexWrap:'wrap' }}>
+        <span style={{ fontSize:11, color:'var(--text3)' }}>show instruments with at least</span>
+        {[2, 3, 4].map(n => (
+          <button key={n} onClick={() => setMinBreadth(n)}
+            style={{ fontSize:11, fontWeight:700, padding:'3px 9px', borderRadius:6, cursor:'pointer',
+              border:`1px solid ${minBreadth===n ? '#a78bfa' : 'var(--border)'}`,
+              background: minBreadth===n ? '#a78bfa22' : 'transparent',
+              color: minBreadth===n ? '#a78bfa' : 'var(--text3)' }}>
+            {n} kinds
+          </button>
         ))}
       </div>
 
-      {/* Progress bar */}
-      {loading && (
-        <div style={{ height:3, background:'#1e293b', borderRadius:2, marginBottom:10, overflow:'hidden' }}>
-          <div style={{ width:`${progress}%`, height:'100%', background:'linear-gradient(90deg,#7c3aed,#a78bfa)', transition:'width 0.3s' }} />
+      {loading && <div style={{ ...S.card, color:'var(--text3)', fontSize:12 }}>Loading measurements…</div>}
+
+      {!loading && ranked.length === 0 && (
+        <div style={{ ...S.card, fontSize:12.5, color:'#c7d2da', lineHeight:1.8 }}>
+          Nothing has {minBreadth} independent kinds of evidence stacked on it right now.
+          <div style={{ color:'var(--text3)', marginTop:4 }}>
+            That is the normal state and it is the honest answer — confluence is rare, which is the
+            only reason it is worth watching for. Lower the threshold to see less selective results.
+          </div>
         </div>
       )}
 
-      {error && (
-        <div style={{ background:'#450a0a', border:'1px solid #7f1d1d', borderRadius:8, padding:10, color:'#fca5a5', fontSize:12, marginBottom:12 }}>
-          ⚠ {error}
-        </div>
-      )}
-
-      {!loading && results.length === 0 && (
-        <div style={{ textAlign:'center', padding:60, color:'#475569' }}>
-          <div style={{ fontSize:32, marginBottom:10 }}>📡</div>
-          <div style={{ fontSize:14, marginBottom:4 }}>Click <strong style={{ color:'#a78bfa' }}>Refresh</strong> to analyze all 21 pairs</div>
-          <div style={{ fontSize:11 }}>Fetches H4+H1 candles from OANDA · COT data from CFTC</div>
-        </div>
-      )}
-
-      {/* Pair cards */}
-      <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill, minmax(265px, 1fr))', gap:10 }}>
-        {filtered.map((r, idx) => {
-          const bull = r.direction === 'LONG';
-          const grade = gradeOf(r.confidence);
-          const gc = gradeColor(grade);
-
-          return (
-            <div key={r.pair} style={{
-              background:'#0f172a',
-              borderRadius:10,
-              padding:12,
-              border:`1px solid ${bull ? '#14532d' : '#7f1d1d'}`,
-              position:'relative',
-            }}>
-              <span style={{ position:'absolute', top:8, right:10, fontSize:9, color:'#334155' }}>#{idx+1}</span>
-
-              {/* Pair header */}
-              <div style={{ display:'flex', alignItems:'center', gap:5, marginBottom:8, flexWrap:'wrap' }}>
-                <span style={{ fontSize:13, fontWeight:700, color:'#e2e8f0', letterSpacing:1 }}>
-                  {r.pair.replace('_', '/')}
+      {ranked.map(r => {
+        const isOpen = open[r.sym];
+        const show = isOpen ? r.evidence : r.evidence.slice(0, 3);
+        return (
+          <div key={r.sym} style={{ ...S.card,
+            borderColor: r.dir === 'up' ? '#22c55e44' : r.dir === 'down' ? '#ef444444' : 'var(--border)' }}>
+            <div style={{ display:'flex', gap:8, alignItems:'baseline', flexWrap:'wrap' }}>
+              <span style={{ fontSize:15, fontWeight:800, color:'var(--text)' }}>{r.sym}</span>
+              {r.dir && (
+                <span style={{ fontSize:10, fontWeight:900, padding:'1px 7px', borderRadius:4,
+                  color: r.dir === 'up' ? '#22c55e' : '#ef4444',
+                  border:`1px solid ${r.dir === 'up' ? '#22c55e55' : '#ef444455'}` }}>
+                  {r.dir === 'up' ? 'BULLISH' : 'BEARISH'}
                 </span>
-                <span style={{
-                  background: bull ? '#14532d' : '#450a0a',
-                  color: bull ? '#86efac' : '#fca5a5',
-                  padding:'1px 6px', borderRadius:4, fontSize:10, fontWeight:700,
-                }}>
-                  {r.direction}
-                </span>
-                <span style={{ color:gc, fontSize:11, fontWeight:700 }}>{grade}</span>
-                {r.kzName && (
-                  <span style={{ background:'#1e1b4b', color:'#818cf8', padding:'1px 5px', borderRadius:3, fontSize:9 }}>
-                    {r.kzName} KZ
-                  </span>
-                )}
-              </div>
-
-              {/* News risk warning — imminent high-impact event for this pair */}
-              {(() => {
-                const w = newsWarn(r.pair);
-                if (!w) return null;
-                const cd = w.mins < 1 ? 'NOW' : w.mins < 60 ? `${w.mins}m` : `${Math.floor(w.mins/60)}h ${w.mins%60}m`;
-                const hot = w.mins <= 60;
-                return (
-                  <div title={w.title} style={{
-                    display:'flex', alignItems:'center', gap:5, marginBottom:8,
-                    padding:'4px 7px', borderRadius:5, fontSize:9.5, fontWeight:700,
-                    background: hot ? '#450a0a' : '#1f1300',
-                    color: hot ? '#fca5a5' : '#fbbf24',
-                    border:`1px solid ${hot ? '#7f1d1d' : '#78350f'}`,
-                  }}>
-                    ⚠ {w.ccy} high-impact news in {cd}
-                  </div>
-                );
-              })()}
-
-              {/* Confidence bar */}
-              <div style={{ marginBottom:8 }}>
-                <div style={{ display:'flex', justifyContent:'space-between', fontSize:10, color:'#475569', marginBottom:3 }}>
-                  <span>Confidence</span>
-                  <span style={{ color: bull ? '#22c55e' : '#ef4444', fontWeight:700 }}>{r.confidence}%</span>
-                </div>
-                <div style={{ height:5, background:'#1e293b', borderRadius:3, overflow:'hidden' }}>
-                  <div style={{
-                    width:`${r.confidence}%`, height:'100%',
-                    background: bull
-                      ? 'linear-gradient(90deg,#16a34a,#22c55e)'
-                      : 'linear-gradient(90deg,#b91c1c,#ef4444)',
-                    transition:'width 0.5s ease',
-                  }}/>
-                </div>
-              </div>
-
-              {/* Factor bars */}
-              <div style={{ display:'flex', flexDirection:'column', gap:4 }}>
-                {FACTORS.map(({ key, label, color }) => {
-                  const val = r[key] ?? 0;
-                  const pctLeft = val >= 0 ? 50 : 50 + val * 50;
-                  const pctWidth = Math.abs(val) * 50;
-                  return (
-                    <div key={key} style={{ display:'flex', alignItems:'center', gap:6 }}>
-                      <span style={{ fontSize:9, color:'#475569', width:26, textAlign:'right', flexShrink:0 }}>
-                        {label}
-                      </span>
-                      <div style={{ flex:1, height:4, background:'#1e293b', borderRadius:2, position:'relative', overflow:'hidden' }}>
-                        <div style={{ position:'absolute', left:'50%', top:0, width:1, height:'100%', background:'#334155' }}/>
-                        <div style={{
-                          position:'absolute',
-                          left:`${pctLeft}%`,
-                          width:`${pctWidth}%`,
-                          height:'100%',
-                          background: val >= 0 ? color : '#ef4444',
-                          opacity:0.9,
-                        }}/>
-                      </div>
-                      <span style={{ fontSize:9, color, width:32, textAlign:'right', flexShrink:0 }}>
-                        {val >= 0 ? '+' : ''}{val.toFixed(2)}
-                      </span>
-                    </div>
-                  );
-                })}
-              </div>
+              )}
+              {r.conflict && (
+                <span style={{ fontSize:10, fontWeight:800, color:'#f59e0b' }}>EVIDENCE DISAGREES</span>
+              )}
+              {r.multiTf && <span style={{ fontSize:10, fontWeight:800, color:'#a78bfa' }}>MULTI-TF</span>}
+              <span style={{ marginLeft:'auto', fontSize:11, color:'var(--text3)' }}>
+                {r.breadth} kinds · {r.price}
+              </span>
             </div>
-          );
-        })}
+
+            {/* Which families are represented — the point of the screen, visible
+                without reading the detail. */}
+            <div style={{ display:'flex', gap:5, margin:'7px 0', flexWrap:'wrap' }}>
+              {r.families.map(f => (
+                <span key={f} style={{ fontSize:9.5, fontWeight:800, padding:'1px 6px', borderRadius:3,
+                  color: FAM_COLOR[f], border:`1px solid ${FAM_COLOR[f]}44` }}>
+                  {FAMILY[f]?.label || f}
+                </span>
+              ))}
+            </div>
+
+            {show.map((e, i) => (
+              <div key={i} style={{ display:'flex', gap:8, alignItems:'baseline', padding:'3px 0', fontSize:12.5 }}>
+                <span style={{ width:6, height:6, borderRadius:3, background:FAM_COLOR[e.family],
+                  flexShrink:0, marginTop:5 }}/>
+                <span style={{ color:'var(--text)' }}>
+                  {e.label}
+                  {e.detail && <span style={{ color:'var(--text3)' }}> — {e.detail}</span>}
+                </span>
+              </div>
+            ))}
+
+            {r.evidence.length > 3 && (
+              <button onClick={() => setOpen(o => ({ ...o, [r.sym]: !isOpen }))}
+                style={{ marginTop:5, fontSize:11, padding:0, background:'none', border:'none',
+                  color:'#7dd3fc', cursor:'pointer' }}>
+                {isOpen ? 'less' : `+${r.evidence.length - 3} more`}
+              </button>
+            )}
+          </div>
+        );
+      })}
+
+      <div style={{ fontSize:11, color:'var(--text3)', lineHeight:1.75, marginTop:12 }}>
+        Every line above is something that <strong>happened</strong> or is <strong>scheduled</strong>,
+        with how often it happens on that instrument. Nothing here is a forecast, and the ordering is
+        by how many unrelated kinds of evidence agree — not by how large any single reading is.
+        Four signals from the same twenty candles are one piece of evidence, and are counted as one.
       </div>
-
-      {filtered.length === 0 && results.length > 0 && (
-        <div style={{ textAlign:'center', padding:40, color:'#475569' }}>No pairs match the selected filter.</div>
-      )}
-
-      {/* ── Crypto Section ─────────────────────────────────────────────────── */}
-      {cryptoResults.length > 0 && (
-        <div style={{ marginTop:20 }}>
-          <div style={{ display:'flex', alignItems:'center', gap:8, marginBottom:10 }}>
-            <div style={{ fontSize:13, fontWeight:700, color:'#e2e8f0' }}>₿ Crypto</div>
-            <div style={{ fontSize:10, color:'#475569' }}>Tech · DXY · Timing — no COT</div>
-            <div style={{ flex:1, height:1, background:'#1e293b', marginLeft:4 }} />
-          </div>
-          <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill, minmax(265px, 1fr))', gap:10 }}>
-            {cryptoResults
-              .filter(r => filter === 'all' || r.direction === filter.toUpperCase())
-              .map((r, idx) => {
-                const bull = r.direction === 'LONG';
-                const grade = gradeOf(r.confidence);
-                const gc = gradeColor(grade);
-                return (
-                  <div key={r.pair} style={{
-                    background:'#0f172a', borderRadius:10, padding:12,
-                    border:`1px solid ${bull ? '#1c3a2a' : '#3a1c1c'}`,
-                    position:'relative',
-                  }}>
-                    <span style={{ position:'absolute', top:8, right:10, fontSize:9, color:'#334155' }}>#{idx+1}</span>
-
-                    <div style={{ display:'flex', alignItems:'center', gap:5, marginBottom:8, flexWrap:'wrap' }}>
-                      <span style={{ fontSize:13, fontWeight:700, color:'#f59e0b', letterSpacing:1 }}>
-                        {r.label}
-                      </span>
-                      <span style={{
-                        background: bull ? '#14532d' : '#450a0a',
-                        color: bull ? '#86efac' : '#fca5a5',
-                        padding:'1px 6px', borderRadius:4, fontSize:10, fontWeight:700,
-                      }}>
-                        {r.direction}
-                      </span>
-                      <span style={{ color:gc, fontSize:11, fontWeight:700 }}>{grade}</span>
-                      {r.kzName && (
-                        <span style={{ background:'#1e1b4b', color:'#818cf8', padding:'1px 5px', borderRadius:3, fontSize:9 }}>
-                          {r.kzName} KZ
-                        </span>
-                      )}
-                    </div>
-
-                    <div style={{ marginBottom:8 }}>
-                      <div style={{ display:'flex', justifyContent:'space-between', fontSize:10, color:'#475569', marginBottom:3 }}>
-                        <span>Confidence</span>
-                        <span style={{ color: bull ? '#22c55e' : '#ef4444', fontWeight:700 }}>{r.confidence}%</span>
-                      </div>
-                      <div style={{ height:5, background:'#1e293b', borderRadius:3, overflow:'hidden' }}>
-                        <div style={{
-                          width:`${r.confidence}%`, height:'100%',
-                          background: bull
-                            ? 'linear-gradient(90deg,#92400e,#f59e0b)'
-                            : 'linear-gradient(90deg,#b91c1c,#ef4444)',
-                          transition:'width 0.5s ease',
-                        }}/>
-                      </div>
-                    </div>
-
-                    <div style={{ display:'flex', flexDirection:'column', gap:4 }}>
-                      {CRYPTO_FACTORS.map(({ key, label, color }) => {
-                        const val = r[key] ?? 0;
-                        const pctLeft = val >= 0 ? 50 : 50 + val * 50;
-                        const pctWidth = Math.abs(val) * 50;
-                        return (
-                          <div key={key} style={{ display:'flex', alignItems:'center', gap:6 }}>
-                            <span style={{ fontSize:9, color:'#475569', width:26, textAlign:'right', flexShrink:0 }}>{label}</span>
-                            <div style={{ flex:1, height:4, background:'#1e293b', borderRadius:2, position:'relative', overflow:'hidden' }}>
-                              <div style={{ position:'absolute', left:'50%', top:0, width:1, height:'100%', background:'#334155' }}/>
-                              <div style={{
-                                position:'absolute', left:`${pctLeft}%`, width:`${pctWidth}%`,
-                                height:'100%', background: val >= 0 ? color : '#ef4444', opacity:0.9,
-                              }}/>
-                            </div>
-                            <span style={{ fontSize:9, color, width:32, textAlign:'right', flexShrink:0 }}>
-                              {val >= 0 ? '+' : ''}{val.toFixed(2)}
-                            </span>
-                          </div>
-                        );
-                      })}
-                    </div>
-                  </div>
-                );
-              })}
-          </div>
-          <div style={{ fontSize:9, color:'#334155', marginTop:6 }}>
-            * Crypto via Binance public API (free, no key needed). Tech(45%) · DXY(30%) · Timing(25%). No COT.
-          </div>
-        </div>
-      )}
-
-      {lastUpdate && (
-        <div style={{ textAlign:'center', fontSize:10, color:'#334155', marginTop:16, paddingBottom:16 }}>
-          Last updated: {lastUpdate.toLocaleString()} · {PAIRS.length} FX + {cryptoResults.length} Crypto · {cotAvail ? 'COT live' : 'COT neutral fallback'}
-        </div>
-      )}
     </div>
   );
 }

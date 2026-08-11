@@ -15,6 +15,7 @@ const { AlertChecker } = require('./alertChecker');
 const { FeedBuilder, measure }  = require('./feed');
 const { FeedNotifier } = require('./feedNotify');
 const { Updater }      = require('./updater');
+const { NewsFetcher }  = require('./newsFetcher');
 
 const STRATEGY_PATH = 'bot/strategy.json';
 const TRADES_PATH   = 'bot/trades.json';
@@ -71,6 +72,7 @@ class ForexBot {
     this.cotFetchedAt = 0;
     this.alertChecker = new AlertChecker({ oanda: this.oanda, github: this.github, telegram: this.telegram, env, log: this.log.bind(this) });
     this.updater = new Updater({ github: this.github, env, log: this.log.bind(this) });
+    this.news = new NewsFetcher({ github: this.github, log: this.log.bind(this) });
     this.feed = env.FEED_ENABLED === 'false'
       ? null
       : new FeedBuilder({
@@ -93,6 +95,11 @@ class ForexBot {
 
     // Price/candle/trendline alerts run every tick, independent of trading (works weekends for crypto)
     await this.alertChecker.check().catch(e => this.warn(`Alert check: ${e.message}`));
+
+    // News runs before the weekend guard for the same reason the feed does: a
+    // calendar is most useful on Sunday evening, when nothing is trading and
+    // there is still time to read it.
+    await this.news.run().catch(e => this.warn(`News: ${e.message}`));
 
     // The live feed also runs before the weekend guard and before the remote
     // stop switch: it places no orders, and "which instruments are worth
