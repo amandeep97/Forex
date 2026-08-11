@@ -176,6 +176,65 @@ function detectSweeps(cs) {
   return out;
 }
 
+// How many bars forward an outcome is measured over. Long enough that a real
+// effect has room to appear, short enough that it is still attributable to the
+// event rather than to everything that happened afterwards.
+const HORIZON = { H4: 20, D: 10 };
+
+// What actually happened after this event, the last N times it fired here.
+//
+// Rarity says how often something occurs. It says nothing about whether it
+// mattered — and "a strong hammer formed" is a fact with no consequence
+// attached, which is most of what trading screens show. This measures the
+// instrument's own history: of every prior occurrence with a full forward
+// window, how often price was on the signal's side afterwards, and by how much.
+//
+// Two things keep it honest. Occurrences too close to the end of the series are
+// excluded entirely, because counting an event whose future has not happened
+// yet would quietly bias the result toward whatever the market just did. And
+// the move is measured in ATR at the time of the event, so a number from gold
+// and a number from natural gas mean the same thing.
+//
+// It is a base rate, not a forecast. Twelve out of seventeen is worth knowing
+// and is still seventeen samples — the count travels with the figure so it can
+// never be read as more than it is.
+function forwardOutcome(cs, idxOf, events, bars) {
+  if (!events.length || cs.length < bars + 30) return {};
+  const tr = [];
+  for (let i = 1; i < cs.length; i++) {
+    const pc = cs[i - 1].c;
+    tr.push(Math.max(cs[i].h - cs[i].l, Math.abs(cs[i].h - pc), Math.abs(cs[i].l - pc)));
+  }
+  const atrAt = i => {
+    const from = Math.max(0, i - 14), sl = tr.slice(from, i);
+    return sl.length ? sl.reduce((a, b) => a + b, 0) / sl.length : null;
+  };
+
+  const moves = [];
+  for (const e of events) {
+    const i = idxOf.get(e.at);
+    if (i == null || i + bars >= cs.length) continue;   // no complete future
+    const a = atrAt(i);
+    if (!a) continue;
+    const raw = cs[i + bars].c - cs[i].c;
+    // Signed by the event's own direction, so "worked" means the same thing
+    // for a hammer and for a shooting star.
+    const signed = (e.dir === 'up' ? raw : -raw) / a;
+    moves.push(signed);
+  }
+  if (moves.length < 5) return { fwdN: moves.length };   // too few to report
+
+  const sorted = [...moves].sort((x, y) => x - y);
+  const median = sorted[Math.floor(sorted.length / 2)];
+  const wins = moves.filter(m => m > 0).length;
+  return {
+    fwdBars: bars,
+    fwdN: moves.length,
+    fwdWin: Math.round((wins / moves.length) * 100),
+    fwdMedAtr: +median.toFixed(2),
+  };
+}
+
 // A swing point at index s is only KNOWN once `look` bars have printed after
 // it, so a break can never be credited to a bar that could not have seen the
 // level yet — that is the difference between a detector and hindsight.
@@ -413,12 +472,14 @@ class FeedBuilder {
     const spanDays = Math.max(1, (cs[cs.length - 1].t - cs[0].t) / 86400e3);
     const all = [...detectSweeps(cs), ...detectBreaks(cs)];
 
+    const idxOf = new Map(cs.map((c, i) => [c.t, i]));
     for (const type of ['sweep', 'break']) {
       const hits = all.filter(e => e.type === type);
       rec.rarity[`${type}.${tf}`] = {
         n: hits.length,
         days: Math.round(spanDays),
         perMonth: +((hits.length / spanDays) * 30).toFixed(1),
+        ...forwardOutcome(cs, idxOf, hits, HORIZON[tf] || 20),
       };
     }
 
