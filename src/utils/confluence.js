@@ -44,10 +44,31 @@ const REVERSAL = {
   evening_star:'down', three_inside_dn:'down', abandoned_bear:'down', kicker_bear:'down',
 };
 
-// Occurrences per month above which a pattern is wallpaper. A daily harami at
-// 1.2/month is a rare event on that instrument; the same name on H4 at 29.7 is
-// what the chart does on a quiet afternoon.
-const RARE_ENOUGH = 5;
+// Rarity has to be measured per BAR, not per month.
+//
+// "Five times a month" means opposite things on different timeframes: M15 has
+// roughly 2,900 bars in a month and Daily has 22, so five occurrences is
+// extraordinary on one and routine on the other. A flat monthly threshold
+// treated them identically, and adding three intraday timeframes promptly put
+// most of the board back on the screen.
+//
+// Per bar it is one number with one meaning: how often does this instrument do
+// this, out of the chances it had.
+// Corrected once already, in the other direction. Per-bar rarity is the right
+// measure of "unusual for this instrument" and the wrong one for this screen:
+// a pattern at one bar in seventeen fires about 170 times a month on M15, which
+// is rare per bar and constant in wall-clock terms. This tab answers "what is
+// happening now", and now is a human unit, so the threshold is per month and
+// deliberately strict — on M15 only something genuinely exceptional survives it.
+const MAX_PER_MONTH = 4;
+
+// Significance is a separate axis from rarity. A daily strong hammer and an
+// M15 one can be equally rare in per-bar terms and are not equally worth
+// knowing about — the daily one survived a hundred times as much trading.
+const TF_WEIGHT = { M15: 0.45, M30: 0.6, H1: 0.8, H4: 1.0, D: 1.3 };
+
+
+
 
 // Freshness is counted in BARS, against the feed's own last bar — not in days
 // against the wall clock.
@@ -88,7 +109,7 @@ function candleEvidence(rec, asOf) {
     for (const p of list || []) {
       const dir = REVERSAL[p.id];
       if (!dir) continue;
-      if ((p.rate ?? 99) > RARE_ENOUGH) continue;
+      if ((p.rate ?? 99) > MAX_PER_MONTH) continue;
       const f = freshness(p.at, tf, asOf);
       if (!f) continue;
       // One entry per timeframe. The same pattern can appear twice in a
@@ -125,10 +146,15 @@ function candleEvidence(rec, asOf) {
       family: 'price',
       dir,
       label: `${id.replace(/_/g, ' ')}${multi ? ` on ${tfs.join(' + ')}` : ` on ${tfs[0]}`}`,
+      tfs,
       detail: `${rarest.toFixed(1)}× a month on this instrument`,
       // Two timeframes agreeing is genuinely more than one, and a rarer
       // pattern is stronger evidence than a common one.
-      weight: (multi ? 1.6 : 1) * (rarest <= 2 ? 1.4 : rarest <= 4 ? 1.15 : 1)
+      // Weighted by the slowest timeframe it appeared on: a pattern present on
+      // both M15 and Daily is a daily event that also shows intraday, not an
+      // intraday one.
+      weight: (multi ? 1.6 : 1)
+              * Math.max(...hits.map(h => TF_WEIGHT[h.tf] ?? 1))
               * Math.max(...hits.map(h => h.f)),
       multiTf: multi,
     });
@@ -144,6 +170,8 @@ function structureEvidence(rec, asOf) {
     if (!f) continue;
     const r = rarity[`${e.type}.${e.tf}`];
     const perMonth = r?.perMonth;
+    // Routine for its own timeframe is not an event worth a line.
+    if (perMonth != null && perMonth > MAX_PER_MONTH * 2) continue;
     // The feed's "sweep" is detectStrongReversal — a strong hammer or a strong
     // shooting star, where the bar takes out N bars of highs or lows and closes
     // back inside. It already resolves direction: dir 'up' IS the hammer.
@@ -167,13 +195,15 @@ function structureEvidence(rec, asOf) {
       family: 'structure',
       dir,
       label,
+      tfs: [e.tf],
       detail: e.detail || '',
       rarity: perMonth,
       strong: e.type === 'sweep',
       base,
       // Evidence with a measured history behind it outranks evidence without
       // one — but only mildly, and only when the record is actually favourable.
-      weight: f * (perMonth == null ? 1 : perMonth <= 2 ? 1.5 : perMonth <= 5 ? 1.2 : 0.8)
+      weight: f * (TF_WEIGHT[e.tf] ?? 1)
+                * (perMonth == null ? 1 : perMonth <= 1.5 ? 1.5 : perMonth <= 4 ? 1.2 : 0.7)
                 * (base && base.n >= 10 ? (base.win >= 60 ? 1.25 : base.win <= 40 ? 0.8 : 1) : 1),
     });
   }
@@ -183,19 +213,21 @@ function structureEvidence(rec, asOf) {
 function volatilityEvidence(rec) {
   const out = [];
   for (const [tf, st] of Object.entries(rec.state || {})) {
-    if (!st) continue;
+    // state also carries non-timeframe keys — spreadRatio, posnPct, posnWeeks —
+    // which would otherwise be reported as "volatility at a posnPct floor".
+    if (!st || typeof st !== 'object' || !TF_MS[tf]) continue;
     if (st.volPct != null && st.volPct <= 5) {
-      out.push({ family:'volatility', dir:null, label:`volatility at a ${tf} floor`,
+      out.push({ family:'volatility', dir:null, label:`volatility at a ${tf} floor`, tfs:[tf],
         detail:`bottom ${st.volPct}% of its own range — coiled`, weight:1.1 });
     } else if (st.volPct != null && st.volPct >= 95) {
-      out.push({ family:'volatility', dir:null, label:`volatility at a ${tf} extreme`,
+      out.push({ family:'volatility', dir:null, label:`volatility at a ${tf} extreme`, tfs:[tf],
         detail:`top ${st.volPct}% — moves are already large`, weight:0.9 });
     }
     if (st.rangePos != null && st.rangePos >= 98) {
-      out.push({ family:'volatility', dir:'down', label:`pinned at the top of its ${tf} range`,
+      out.push({ family:'volatility', dir:'down', label:`pinned at the top of its ${tf} range`, tfs:[tf],
         detail:`${st.rangePos}% of the 60-bar range`, weight:1.0 });
     } else if (st.rangePos != null && st.rangePos <= 2) {
-      out.push({ family:'volatility', dir:'up', label:`pinned at the bottom of its ${tf} range`,
+      out.push({ family:'volatility', dir:'up', label:`pinned at the bottom of its ${tf} range`, tfs:[tf],
         detail:`${st.rangePos}% of the 60-bar range`, weight:1.0 });
     }
   }
@@ -383,7 +415,13 @@ export function assess(sym, rec, { news = null, cot = null, now = Date.now() } =
     hasNews: shared.length > 0,
     strong: own.some(e => e.strong),
     multiTf: own.some(e => e.multiTf),
-    tfs: [...new Set(own.flatMap(e => (String(e.label).match(/\b(H4|D)\b/g) || [])))],
+    // Read off the evidence, not scraped back out of its label.
+    //
+    // This parsed the display string with /\b(H4|D)\b/ — written when those
+    // were the only two timeframes — so when M15, M30 and H1 arrived the
+    // filters for them matched nothing and silently returned an empty screen.
+    // Recovering data from text meant for humans is how that happens.
+    tfs: [...new Set(own.flatMap(e => e.tfs || []))],
     // The strongest measured record among this instrument's evidence, so a
     // card can be judged without expanding it.
     base: own.map(e => e.base).filter(Boolean).sort((a, b) => b.n - a.n)[0] || null,
