@@ -17,7 +17,7 @@
 import { useState, useEffect, useCallback, useMemo } from 'react';
 import { fetchFeed } from '../utils/liveFeed';
 import { rank, ageOf, driversOf, clusters, FAMILY,
-         pooledRecords, winInterval } from '../utils/confluence';
+         pooledRecords, winInterval, verdictOf, zFor, MIN_EDGE_ATR } from '../utils/confluence';
 import ChartModal from './ChartModal';
 import { buildPlan, eventLine } from '../utils/tradePlan';
 
@@ -120,20 +120,26 @@ export default function CommandCenter() {
   // to answer it. Recomputed off the feed, not off the filtered list, because
   // it is a property of the data rather than of what is currently on screen.
   const evidenceReport = useMemo(() => {
-    if (!feed) return { total: 0, works: [], fails: [], silent: 0 };
+    if (!feed) return { total: 0, works: [], fails: [], silent: 0, tiny: 0, z: 1.96 };
     const pools = pooledRecords(feed);
+    // Every setup here is one hypothesis, and they are all being examined at
+    // once to find the winners. That is a search, so the threshold has to
+    // account for how many were searched.
+    const tests = Object.keys(pools).length;
     const works = [], fails = [];
-    let silent = 0;
+    let silent = 0, tiny = 0;
     for (const [k, v] of Object.entries(pools)) {
-      const iv = winInterval(v.win, v.n);
+      const iv = winInterval(v.win, v.n, tests);
       const row = [k, { ...v, lo: iv.lo, hi: iv.hi }];
-      if (iv.lo > 50 && v.med > 0) works.push(row);
-      else if (iv.hi < 50) fails.push(row);
+      const verdict = verdictOf(v, tests);
+      if (verdict === 'works') works.push(row);
+      else if (verdict === 'fails') fails.push(row);
+      else if (verdict === 'tiny') tiny++;
       else silent++;
     }
-    works.sort((a, b) => b[1].win - a[1].win);
+    works.sort((a, b) => b[1].med - a[1].med);
     fails.sort((a, b) => a[1].win - b[1].win);
-    return { total: Object.keys(pools).length, works, fails, silent };
+    return { total: tests, works, fails, silent, tiny, z: +zFor(tests).toFixed(2) };
   }, [feed]);
 
   const ranked = useMemo(() => {
@@ -318,11 +324,15 @@ export default function CommandCenter() {
               </div>
             ))}
             <div style={{ fontSize:10.5, color:'var(--text3)', marginTop:7, lineHeight:1.6 }}>
-              {evidenceReport.silent} of {evidenceReport.total} setups say <strong>nothing</strong> —
-              their 95% range covers a coin flip, so the numbers are not evidence in either
-              direction. That is the normal result, and it is why the cards below refuse far more
-              often than they price. Pooled within an asset class: a sweep on one pair is a few
-              dozen samples, the same sweep across the class is hundreds.
+              {evidenceReport.total} setups tested at once, so the bar is raised to match:
+              a 95% interval is a statement about one question, and asking {evidenceReport.total}
+              of them would throw up four or five winners by chance alone. Each one here has to
+              clear a coin flip at {evidenceReport.z} standard deviations rather than 1.96, and
+              show a median move of at least {MIN_EDGE_ATR} ATR, since a real edge of two
+              hundredths of an ATR is eaten whole by the spread.
+              {evidenceReport.tiny > 0 && ` ${evidenceReport.tiny} clear the first bar and fail the second.`}
+              {' '}{evidenceReport.silent} say nothing at all. Pooled within an asset class:
+              one pair's sweep is a few dozen samples, the class's is thousands.
             </div>
           </>)}
         </div>

@@ -182,13 +182,80 @@ export function pooledRecords(feed) {
 // establish that a setup fails, and the arithmetic should not pretend they can.
 const Z = 1.96;
 
-export function winInterval(win, n) {
+// ── Testing many things at once ──────────────────────────────────────────────
+//
+// A 95% interval is a statement about ONE question. Ask ninety-one and roughly
+// one in twenty looks significant by chance alone — so a panel that scans every
+// pooled setup and reports the winners will hand back four or five findings
+// that are nothing at all, indistinguishable from the real ones.
+//
+// That is what the first version of the evidence panel did. Eleven setups
+// reported as working, out of ninety-one tested, with no correction and no
+// mention of how many had been tried.
+//
+// Bonferroni: split the 5% across every test, so with ninety-one the interval
+// has to clear a coin flip at roughly 3.5 standard deviations instead of 2.
+// Blunt and over-conservative, and the right kind of wrong when the output is
+// a list of setups someone is going to trade.
+//
+// The correction belongs where the SEARCH happens. Scanning all of them and
+// keeping the best is a search; asking whether one particular setup — reached
+// because today's price action put that instrument in front of you — has a
+// record is not, and correcting it would only manufacture ignorance.
+function probit(p) {
+  // Acklam's rational approximation. Accurate to about 1e-9 across the range,
+  // which is far more than needed to turn a test count into a z-score.
+  const a = [-39.69683028665376, 220.9460984245205, -275.9285104469687,
+             138.3577518672690, -30.66479806614716, 2.506628277459239];
+  const b = [-54.47609879822406, 161.5858368580409, -155.6989798598866,
+             66.80131188771972, -13.28068155288572];
+  const c = [-0.007784894002430293, -0.3223964580411365, -2.400758277161838,
+             -2.549732539343734, 4.374664141464968, 2.938163982698783];
+  const d = [0.007784695709041462, 0.3224671290700398, 2.445134137142996, 3.754408661907416];
+  const pl = 0.02425;
+  if (p < pl) {
+    const q = Math.sqrt(-2 * Math.log(p));
+    return (((((c[0]*q+c[1])*q+c[2])*q+c[3])*q+c[4])*q+c[5]) /
+           ((((d[0]*q+d[1])*q+d[2])*q+d[3])*q+1);
+  }
+  if (p > 1 - pl) return -probit(1 - p);
+  const q = p - 0.5, r = q * q;
+  return (((((a[0]*r+a[1])*r+a[2])*r+a[3])*r+a[4])*r+a[5]) * q /
+         (((((b[0]*r+b[1])*r+b[2])*r+b[3])*r+b[4])*r+1);
+}
+
+export function zFor(tests = 1) {
+  if (!(tests > 1)) return Z;
+  return probit(1 - 0.05 / (2 * tests));
+}
+
+// A win rate can be significant and worthless at the same time. FX tweezer
+// bottoms on M15 ran 52% over 2,563 samples — comfortably significant, and a
+// median move of 0.02 ATR, which the spread eats whole. Significance says the
+// effect is real; this says it is large enough to be worth the cost of taking.
+export const MIN_EDGE_ATR = 0.25;
+
+export function winInterval(win, n, tests = 1) {
   if (!n || win == null) return null;
+  const z = zFor(tests);
   const p = win / 100;
-  const d = 1 + (Z * Z) / n;
-  const centre = (p + (Z * Z) / (2 * n)) / d;
-  const margin = (Z / d) * Math.sqrt((p * (1 - p)) / n + (Z * Z) / (4 * n * n));
+  const d = 1 + (z * z) / n;
+  const centre = (p + (z * z) / (2 * n)) / d;
+  const margin = (z / d) * Math.sqrt((p * (1 - p)) / n + (z * z) / (4 * n * n));
   return { lo: +((centre - margin) * 100).toFixed(1), hi: +((centre + margin) * 100).toFixed(1) };
+}
+
+// The panel's question, in one place: does this setup work, well enough to be
+// worth taking, after accounting for how many setups were examined to find it?
+export function verdictOf(rec, tests = 1) {
+  const iv = winInterval(rec.win, rec.n, tests);
+  if (!iv) return 'silent';
+  if (iv.lo > 50 && rec.med >= MIN_EDGE_ATR) return 'works';
+  if (iv.hi < 50) return 'fails';
+  // Significant and too small to trade is its own answer, and saying so is more
+  // useful than filing it with the genuine unknowns.
+  if (iv.lo > 50) return 'tiny';
+  return 'silent';
 }
 
 // Kept as a single number for display, as the half-width of that interval.
