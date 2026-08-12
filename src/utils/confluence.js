@@ -62,6 +62,59 @@ const REVERSAL = {
 // deliberately strict — on M15 only something genuinely exceptional survives it.
 const MAX_PER_MONTH = 4;
 
+// Corrected a second time, and this is the correction that matters.
+//
+// Per month is the right unit and the wrong threshold. Four a month means
+// something on Daily, which has 22 bars in a month; on M15, which has 2,900,
+// nothing can be that rare. Measured on a live feed: of 297 fresh M15 candle
+// patterns, ZERO cleared it. M30 kept 2, H1 kept 1, against Daily's 121. The
+// structure gate was worse — the rarest intraday structure event anywhere in
+// the feed fired 7.3 times a month, against a threshold of 8, so the entire
+// intraday population was excluded by construction rather than by selection.
+//
+// That is not strictness. A filter that always returns zero is not selecting.
+//
+// So the threshold is a RANK within the timeframe's own population — the
+// rarest tenth of what M15 does, judged against other M15 events — which is
+// the argument this file already makes for ranking instruments rather than
+// scoring them against absolutes. The absolute caps stay as a FLOOR, so the
+// slow timeframes keep exactly the behaviour they have now and only the fast
+// ones, which had nothing, gain a population.
+const RARE_PCTL = 0.10;
+
+function pctl(sorted, p) {
+  if (!sorted.length) return null;
+  return sorted[Math.max(0, Math.floor(sorted.length * p) - 1)];
+}
+
+// The cutoffs, measured across every instrument at once. This has to be a
+// population pass — an instrument cannot know whether its own M15 event is
+// unusual for M15 without seeing what M15 does elsewhere.
+export function rarityCutoffs(feed) {
+  const pat = {}, str = {};
+  for (const rec of Object.values(feed?.instruments || {})) {
+    for (const [tf, list] of Object.entries(rec.patterns || {})) {
+      for (const p of list || []) {
+        if (p.rate != null && freshness(p.at, tf, rec.asOf)) (pat[tf] ||= []).push(p.rate);
+      }
+    }
+    for (const e of rec.events || []) {
+      const pm = (rec.rarity || {})[`${e.type}.${e.tf}`]?.perMonth;
+      if (pm != null && freshness(e.at, e.tf, rec.asOf)) (str[e.tf] ||= []).push(pm);
+    }
+  }
+  const cut = (m, floor) => Object.fromEntries(Object.entries(m).map(([tf, a]) => {
+    a.sort((x, y) => x - y);
+    // Floored by the absolute cap, never tighter than it. On the slow
+    // timeframes the tenth percentile normally sits well below the cap, so
+    // Daily and H4 keep the threshold they have; on a day when H4 events are
+    // unusually common its own tenth percentile can run past the cap, and
+    // admitting those is the same rule, not an exception to it.
+    return [tf, Math.max(floor, pctl(a, RARE_PCTL) ?? floor)];
+  }));
+  return { pattern: cut(pat, MAX_PER_MONTH), structure: cut(str, MAX_PER_MONTH * 2) };
+}
+
 // Significance is a separate axis from rarity. A daily strong hammer and an
 // M15 one can be equally rare in per-bar terms and are not equally worth
 // knowing about — the daily one survived a hundred times as much trading.
@@ -133,7 +186,7 @@ function freshness(at, tf, asOf) {
 // 'up' | 'down' | null, and null means "notable but not directional" — a
 // volatility squeeze says something is coming, not which way.
 
-function candleEvidence(rec, asOf) {
+function candleEvidence(rec, asOf, cuts) {
   const out = [];
   const byTf = rec.patterns || {};
   // A pattern on two timeframes at once is the thing being asked for, and it
@@ -143,7 +196,7 @@ function candleEvidence(rec, asOf) {
     for (const p of list || []) {
       const dir = REVERSAL[p.id];
       if (!dir) continue;
-      if ((p.rate ?? 99) > MAX_PER_MONTH) continue;
+      if ((p.rate ?? 99) > (cuts?.pattern?.[tf] ?? MAX_PER_MONTH)) continue;
       const f = freshness(p.at, tf, asOf);
       if (!f) continue;
       // One entry per timeframe. The same pattern can appear twice in a
@@ -196,7 +249,7 @@ function candleEvidence(rec, asOf) {
   return out;
 }
 
-function structureEvidence(rec, asOf) {
+function structureEvidence(rec, asOf, cuts) {
   const out = [];
   const rarity = rec.rarity || {};
   for (const e of rec.events || []) {
@@ -204,8 +257,10 @@ function structureEvidence(rec, asOf) {
     if (!f) continue;
     const r = rarity[`${e.type}.${e.tf}`];
     const perMonth = r?.perMonth;
-    // Routine for its own timeframe is not an event worth a line.
-    if (perMonth != null && perMonth > MAX_PER_MONTH * 2) continue;
+    // Routine for its own timeframe is not an event worth a line — and "for
+    // its own timeframe" is now measured against what that timeframe does,
+    // not against a number that only ever made sense on Daily.
+    if (perMonth != null && perMonth > (cuts?.structure?.[e.tf] ?? MAX_PER_MONTH * 2)) continue;
     // The feed's "sweep" is detectStrongReversal — a strong hammer or a strong
     // shooting star, where the bar takes out N bars of highs or lows and closes
     // back inside. It already resolves direction: dir 'up' IS the hammer.
@@ -236,8 +291,17 @@ function structureEvidence(rec, asOf) {
       base,
       // Evidence with a measured history behind it outranks evidence without
       // one — but only mildly, and only when the record is actually favourable.
+      // Rarity is graded against the same cutoff that admitted it, for the
+      // same reason the cutoff is per-timeframe: an M15 event that fires 14
+      // times a month is exceptional for M15, and a fixed "more than 4 a month
+      // is routine" scored every one of them as routine.
+      // The ratios reproduce the old fixed boundaries exactly on the slow
+      // timeframes — 1.5 and 4 against the Daily cutoff of 8.
       weight: f * (TF_WEIGHT[e.tf] ?? 1)
-                * (perMonth == null ? 1 : perMonth <= 1.5 ? 1.5 : perMonth <= 4 ? 1.2 : 0.7)
+                * (perMonth == null ? 1 : (() => {
+                    const ratio = perMonth / (cuts?.structure?.[e.tf] ?? MAX_PER_MONTH * 2);
+                    return ratio <= 0.1875 ? 1.5 : ratio <= 0.5 ? 1.2 : 0.7;
+                  })())
                 * (base && base.n >= 10 ? (base.win >= 60 ? 1.25 : base.win <= 40 ? 0.8 : 1) : 1),
     });
   }
@@ -378,12 +442,12 @@ function positioningEvidence(sym, cls, cot) {
 
 // ── Assembly ─────────────────────────────────────────────────────────────────
 
-export function assess(sym, rec, { news = null, cot = null, now = Date.now() } = {}) {
+export function assess(sym, rec, { news = null, cot = null, now = Date.now(), cuts = null } = {}) {
   if (!rec) return null;
   const cls = rec.cls;
   const evidence = [
-    ...candleEvidence(rec, rec.asOf),
-    ...structureEvidence(rec, rec.asOf),
+    ...candleEvidence(rec, rec.asOf, cuts),
+    ...structureEvidence(rec, rec.asOf, cuts),
     ...volatilityEvidence(rec),
     ...leadershipEvidence(rec),
     ...newsEvidence(sym, cls, news, now),
@@ -457,13 +521,22 @@ export function assess(sym, rec, { news = null, cot = null, now = Date.now() } =
   const sv = vote(swingEv, MIN_NET.swing);
   const iv = vote(intraEv, MIN_NET.intra);
 
+  // A setup whose own slow evidence contradicts itself is not a timed entry,
+  // whatever the fast timeframes are doing. Calling it one promoted exactly the
+  // cards the screen should be cautious about — the trigger bonus was cancelling
+  // the conflict penalty, and a contradicted card was arriving at the top of the
+  // board labelled TIMED ENTRY.
+  const MIN_TRIGGER_COHERENCE = 0.5;
+  const swingCoherent = (sv.up + sv.down) > 0
+    && Math.abs(sv.net) / (sv.up + sv.down) >= MIN_TRIGGER_COHERENCE;
+
   let kind, dir, trigger = null, pullback = false;
   if (swingSetup) {
     // The slow evidence owns the direction. This is the whole correction: an
     // M15 hammer inside a bearish daily setup is a pullback to sell into, not
     // a reason to relabel the card bullish.
     dir = sv.dir;
-    if (intraSetup && iv.dir && dir && iv.dir === dir) {
+    if (intraSetup && iv.dir && dir && iv.dir === dir && swingCoherent) {
       kind = 'trigger';
       trigger = intraEv.filter(e => e.dir === dir && isEvent(e)).sort(byWeight)[0] || null;
     } else {
@@ -481,11 +554,42 @@ export function assess(sym, rec, { news = null, cot = null, now = Date.now() } =
   // three, and that is the case worth surfacing.
   const base = own.reduce((s, e) => s + e.weight * (FAMILY[e.family]?.weight ?? 1), 0);
   const breadth = families.length;
-  const score = +(base * (1 + 0.35 * (breadth - 1)) * (KIND_WEIGHT[kind] ?? 1)).toFixed(2);
 
   // Conflict is only meaningful inside one horizon. Slow and fast evidence
   // disagreeing is ordinary and has its own name — see `pullback` above.
   const cv = kind === 'intraday' ? iv : sv;
+
+  // Agreement has to be worth something, because the score was rewarding its
+  // opposite — in two separate places.
+  //
+  // `base` added up every piece of evidence regardless of which way it pointed,
+  // so an instrument with a bullish break and a bearish candle carried more
+  // total weight than one with the bullish break alone. And the breadth bonus
+  // made it worse: the opposing candle arrived from a different FAMILY, so
+  // contradicting the setup earned the 35% multiplier for "independent kinds of
+  // evidence agree" — which is the exact opposite of what happened.
+  //
+  // The effect was systematic. On a live feed, conflicted cards averaged rank
+  // 22.5 against 30.3 for cards whose evidence agreed, and eight of the
+  // seventeen cards clearing three families were conflicted. The top of the
+  // list was reliably something the tool then argued against.
+  //
+  // So the bonus is counted over families that AGREE with the card's direction,
+  // plus the ones that carry no direction at all — a volatility squeeze
+  // supports a setup without pointing anywhere. Opposing evidence still counts
+  // toward `breadth` for qualification and display, because "these disagree" is
+  // worth knowing; it just stops being rewarded for it.
+  const agreeing = own.filter(e => !e.dir || e.dir === dir);
+  const agreeBreadth = new Set(agreeing.map(e => e.family)).size;
+
+  // Coherence is the share of directional weight that points one way. A clean
+  // card keeps its score; a card split down the middle keeps a quarter of it
+  // and stays on the screen, because "these disagree" is still worth knowing —
+  // it just is not worth ranking first.
+  const dirTot = cv.up + cv.down;
+  const coherence = dirTot > 0 ? Math.abs(cv.net) / dirTot : 1;
+  const score = +(base * (1 + 0.35 * Math.max(0, agreeBreadth - 1)) * (KIND_WEIGHT[kind] ?? 1)
+                  * (0.25 + 0.75 * coherence)).toFixed(2);
 
   // Which evidence the trade would actually be built on, so the record shown
   // on the card is measured over the horizon the trade will be held for.
@@ -496,13 +600,19 @@ export function assess(sym, rec, { news = null, cot = null, now = Date.now() } =
     evidence: own.sort(byWeight),
     shared: shared.sort(byWeight),
     families, breadth, dir, score,
+    coherence: +coherence.toFixed(2),
+    agreeBreadth,
     // 'swing'    — a D/H4 event, held over the horizon that record was measured on
     // 'trigger'  — the same, with a faster event agreeing: a timed entry into it
     // 'intraday' — nothing on the slow timeframes; a trade in its own right, and
     //              held to a much shorter clock
     kind, trigger, pullback,
     swingDir: sv.dir, intraDir: iv.dir,
-    conflict: cv.up > 0.5 && cv.down > 0.5,   // evidence disagrees — worth saying so
+    // Evidence disagrees — worth saying so, but only when it genuinely does.
+    // The absolute floor alone flagged cards where one side held 85% of the
+    // weight, which reads as a contradiction and is a lopsided agreement. Both
+    // sides must carry real weight AND neither may dominate.
+    conflict: cv.up > 0.5 && cv.down > 0.5 && coherence < MIN_TRIGGER_COHERENCE,
     hasNews: shared.length > 0,
     strong: own.some(e => e.strong),
     multiTf: own.some(e => e.multiTf),
@@ -587,9 +697,13 @@ export function rank(feed, { news = null, cot = null, now = Date.now(),
                              minBreadth = 2, top = null } = {}) {
   const scored = [];
   let total = 0;
+  // Measured once over the whole board, then applied to each instrument. What
+  // counts as a rare M15 event is a property of the population, not of one
+  // chart, so it cannot be decided inside assess().
+  const cuts = rarityCutoffs(feed);
   for (const [sym, rec] of Object.entries(feed?.instruments || {})) {
     total++;
-    const a = assess(sym, rec, { news, cot, now });
+    const a = assess(sym, rec, { news, cot, now, cuts });
     if (a) scored.push(a);
   }
   scored.sort((a, b) => b.score - a.score);
