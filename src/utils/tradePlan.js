@@ -24,6 +24,8 @@
 // It is still not a prediction. It is a fully specified proposal with its
 // historical record attached, and the record is frequently discouraging.
 
+import { tellsUsSomething } from './confluence';
+
 // ── Horizon ──────────────────────────────────────────────────────────────────
 //
 // The plan is priced on the timeframe the trade will be HELD on, not the one
@@ -160,6 +162,7 @@ export function buildPlan(a, rec, {
   const stop = long ? price - stopDist : price + stopDist;
 
   const base = anchor.base;
+  const pool = anchor.pool;
   const spreadAbs = rec.state?.spreadAbs ?? null;
   const spreadRatio = rec.state?.spreadRatio ?? null;
 
@@ -187,38 +190,82 @@ export function buildPlan(a, rec, {
     atr: round(atr, rec.dec),
     spreadAbs, spreadRatio,
     costShare: costShare == null ? null : +(costShare * 100).toFixed(1),
-    record: base ? { n: base.n, win: base.win, medAtr: base.med, bars: base.bars } : null,
+    record: base ? { n: base.n, win: base.win, medAtr: base.med, bars: base.bars, ci: base.ci } : null,
+    // The same event across the asset class, always shown when it exists, so a
+    // thin per-instrument number can be read next to a meaningful one.
+    pool: pool ? { n: pool.n, win: pool.win, medAtr: pool.med, syms: pool.syms, ci: pool.ci } : null,
   };
 
   // ── What the record says ─────────────────────────────────────────────────
-  if (!base) {
+  //
+  // Rewritten once the arithmetic was actually done. "48% went its way over 33
+  // times" carries a margin of error of nine points — the true rate is between
+  // 31% and 65% — and the screen was reporting that as THE RECORD SAYS NO on
+  // fifteen cards at once. A record whose interval straddles a coin flip is not
+  // a finding pointing the other way; it is the absence of one, and saying so
+  // is the difference between a tool that is cautious and a tool that is
+  // confidently wrong.
+  //
+  // Where the instrument's own record cannot decide, the pooled record for the
+  // same event across its asset class usually can: two orders of magnitude more
+  // samples, at the cost of assuming a sweep on one crypto pair is the same
+  // event as a sweep on another.
+  const own = base && tellsUsSomething(base) ? base : null;
+  const usable = own || (pool && tellsUsSomething(pool) ? pool : null);
+
+  if (!base && !pool) {
     plan.verdict = 'unpriced';
     plan.note = 'no measured record for this setup on this instrument — the trade can be drawn but not priced';
-  } else if (base.n < MIN_RECORD) {
+  } else if (!usable) {
+    // The honest verdict, and the one that replaced most of the false ones.
+    plan.verdict = 'inconclusive';
+    const src = base || pool;
+    plan.note = `${src.win}% over ${src.n} occurrences is ±${src.ci} points — `
+      + `the range covers a coin flip, so this record does not say the setup works `
+      + `or that it fails. It says we do not know.`;
+  } else if (usable.n < MIN_RECORD) {
     plan.verdict = 'thin';
-    plan.note = `only ${base.n} prior occurrences — too few to price a target from`;
-  } else if (base.med <= 0) {
-    // The important case, and the one no other tool will tell you.
+    plan.note = `only ${usable.n} prior occurrences — too few to price a target from`;
+  } else if (usable.med <= 0) {
+    // The important case, and the one no other tool will tell you — now only
+    // stated when the record is significant enough to support it.
     plan.verdict = 'record-says-no';
-    plan.note = `the last ${base.n} times this fired here, the median outcome was `
-      + `${base.med} ATR — against the signal. ${base.win}% went its way. `
-      + `This setup has not worked on this instrument.`;
+    plan.note = `the last ${usable.n} times this fired${usable.pooled ? ` across ${usable.syms} ${a.cls} instruments` : ' here'}, `
+      + `the median outcome was ${usable.med} ATR — against the signal. `
+      + `${usable.win}% ±${usable.ci} went its way. This setup has not worked.`;
   } else {
-    const target = long ? price + base.med * atr : price - base.med * atr;
-    const rr = (base.med * atr) / stopDist;
-    const win = base.win / 100;
-    // Expectancy in R from the instrument's own record, not from an assumed
-    // win rate. Losers are taken at 1R by construction.
+    const target = long ? price + usable.med * atr : price - usable.med * atr;
+    const rr = (usable.med * atr) / stopDist;
+    const win = usable.win / 100;
+    // Expectancy in R from a measured win rate, not an assumed one. Losers are
+    // taken at 1R by construction.
     const ev = win * rr - (1 - win);
+    // And the same sum at the pessimistic end of the record's own interval.
+    // A trade that only pays at the point estimate is not one the record
+    // supports — it is one the record permits, which is a weaker claim and was
+    // being presented as the stronger one.
+    const winLow = Math.max(0, usable.win - (usable.ci ?? 0)) / 100;
+    const evLow = winLow * rr - (1 - winLow);
     Object.assign(plan, {
       target: round(target, rec.dec),
       rr: +rr.toFixed(2),
       ev: +ev.toFixed(2),
+      evLow: +evLow.toFixed(2),
+      pricedFrom: usable.pooled ? `${usable.syms} ${a.cls} instruments` : 'this instrument',
     });
+    // Significance was already required to get here — the record's interval had
+    // to exclude a coin flip. Demanding that the pessimistic end ALSO pay is
+    // the same caution charged twice, and on a live board it refused every
+    // trade there was. So the point estimate decides, and the weak end is
+    // disclosed rather than enforced.
     plan.verdict = ev <= 0 ? 'negative' : 'priced';
     if (ev <= 0) {
-      plan.note = `${base.win}% at ${rr.toFixed(2)}R is ${ev.toFixed(2)}R per trade — `
+      plan.note = `${usable.win}% at ${rr.toFixed(2)}R is ${ev.toFixed(2)}R per trade — `
         + `the historical record does not pay for the risk`;
+    } else if (evLow <= 0) {
+      // Worth taking and worth knowing it is not comfortable.
+      plan.fragile = `pays ${ev.toFixed(2)}R at the measured rate but ${evLow.toFixed(2)}R at the `
+        + `weak end of the record — the edge is real but thin`;
     }
   }
 

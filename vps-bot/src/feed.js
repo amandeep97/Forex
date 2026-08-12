@@ -210,17 +210,38 @@ const HORIZON = { M15: 40, M30: 30, H1: 24, H4: 20, D: 10 };
 // It is a base rate, not a forecast. Twelve out of seventeen is worth knowing
 // and is still seventeen samples — the count travels with the figure so it can
 // never be read as more than it is.
-function forwardOutcome(cs, idxOf, events, bars) {
-  if (!events.length || cs.length < bars + 30) return {};
+// Which way each reversal pattern points, so a forward outcome can be signed
+// the same way a sweep's is — "worked" must mean the same thing for a hammer
+// and for a shooting star. Kept in step with REVERSAL in
+// src/utils/confluence.js, which decides which of these reach a card.
+const REVERSAL_DIR = {
+  hammer:'up', inv_hammer:'up', dragonfly_doji:'up', bull_engulf:'up',
+  piercing_line:'up', bull_harami:'up', tweezer_bottom:'up', morning_star:'up',
+  three_inside_up:'up', abandoned_bull:'up', kicker_bull:'up',
+  shooting_star:'down', hanging_man:'down', gravestone_doji:'down',
+  bear_engulf:'down', dark_cloud:'down', bear_harami:'down', tweezer_top:'down',
+  evening_star:'down', three_inside_dn:'down', abandoned_bear:'down', kicker_bear:'down',
+};
+
+// True range once per series instead of once per call. This used to be rebuilt
+// inside forwardOutcome, which was free at two event types and is not at
+// twenty-four — the same five hundred bars would be walked twenty-six times per
+// timeframe per instrument.
+function atrSeries(cs) {
   const tr = [];
   for (let i = 1; i < cs.length; i++) {
     const pc = cs[i - 1].c;
     tr.push(Math.max(cs[i].h - cs[i].l, Math.abs(cs[i].h - pc), Math.abs(cs[i].l - pc)));
   }
-  const atrAt = i => {
+  return i => {
     const from = Math.max(0, i - 14), sl = tr.slice(from, i);
     return sl.length ? sl.reduce((a, b) => a + b, 0) / sl.length : null;
   };
+}
+
+function forwardOutcome(cs, idxOf, events, bars, atrAt) {
+  if (!events.length || cs.length < bars + 30) return {};
+  atrAt = atrAt || atrSeries(cs);
 
   const moves = [];
   for (const e of events) {
@@ -492,13 +513,14 @@ class FeedBuilder {
     const all = [...detectSweeps(cs), ...detectBreaks(cs)];
 
     const idxOf = new Map(cs.map((c, i) => [c.t, i]));
+    const atrFn = atrSeries(cs);
     for (const type of ['sweep', 'break']) {
       const hits = all.filter(e => e.type === type);
       rec.rarity[`${type}.${tf}`] = {
         n: hits.length,
         days: Math.round(spanDays),
         perMonth: +((hits.length / spanDays) * 30).toFixed(1),
-        ...forwardOutcome(cs, idxOf, hits, HORIZON[tf] || 20),
+        ...forwardOutcome(cs, idxOf, hits, HORIZON[tf] || 20, atrFn),
       };
     }
 
@@ -507,11 +529,18 @@ class FeedBuilder {
     if (lib?.patternsAt) {
       const counts = {};
       const recent = [];
+      // Every occurrence, kept as {at, dir} so the forward pass can reuse the
+      // same code path the sweeps take. Timestamps, not objects with bodies —
+      // thirty-four ids over five hundred bars is a few thousand small entries
+      // and they are discarded at the end of this function.
+      const occurrences = {};
       const firstRecent = Math.max(4, cs.length - PATTERN_BARS);
       for (let i = 4; i < cs.length; i++) {
         const ids = lib.patternsAt(cs, i);
         for (const id of ids) {
           counts[id] = (counts[id] || 0) + 1;
+          const dir = REVERSAL_DIR[id];
+          if (dir) (occurrences[id] ||= []).push({ at: cs[i].t, dir });
           if (i >= firstRecent) recent.push({ id, at: cs[i].t });
         }
       }
@@ -523,6 +552,32 @@ class FeedBuilder {
         ...p,
         rate: +(((counts[p.id] || 0) / spanDays) * 30).toFixed(1),
       }));
+
+      // What actually happened after each candle.
+      //
+      // Only sweeps and breaks were ever measured forward, so the app could
+      // draw a card built on a hammer and never price it — on a live feed, 24
+      // of 27 unpriced trade plans were anchored on a candle pattern. The
+      // machinery to answer it has been sitting right here the whole time,
+      // running on the other two event types.
+      //
+      // Only for patterns actually on screen. Measuring all thirty-four on
+      // every timeframe would triple the published payload to answer questions
+      // nobody is asking.
+      const onScreen = [...new Set(recent.map(p => p.id))].filter(id => REVERSAL_DIR[id]);
+      for (const id of onScreen) {
+        const hits = occurrences[id];
+        if (!hits || hits.length < 5) continue;
+        const out = forwardOutcome(cs, idxOf, hits, HORIZON[tf] || 20, atrFn);
+        if (out.fwdN >= 5) {
+          rec.rarity[`${id}.${tf}`] = {
+            n: counts[id],
+            days: Math.round(spanDays),
+            perMonth: +(((counts[id] || 0) / spanDays) * 30).toFixed(1),
+            ...out,
+          };
+        }
+      }
     }
 
     // The recent shape, for drawing. Rounded to the instrument's own precision
@@ -812,4 +867,10 @@ class FeedBuilder {
   }
 }
 
-module.exports = { FeedBuilder, measure, detectSweeps, detectBreaks };
+module.exports = {
+  FeedBuilder, measure, detectSweeps, detectBreaks,
+  // Exported for tests: the forward-outcome pass is the thing every base rate
+  // in the app rests on, and it is worth being able to check it directly
+  // against a series with a known answer.
+  forwardOutcome, atrSeries, REVERSAL_DIR,
+};

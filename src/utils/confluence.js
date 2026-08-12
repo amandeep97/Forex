@@ -115,6 +115,95 @@ export function rarityCutoffs(feed) {
   return { pattern: cut(pat, MAX_PER_MONTH), structure: cut(str, MAX_PER_MONTH * 2) };
 }
 
+// ── Pooled records ───────────────────────────────────────────────────────────
+//
+// One instrument's record is usually not enough to say anything.
+//
+// Measured across a live feed: 707 records, median sample 22, median win rate
+// 50%. 188 of them sat above 55% and 198 below 45% — a symmetry that is exactly
+// what a coin flip looks like. A card reading "48% went its way over 33 times"
+// carries a margin of error of nine points; the true rate is somewhere between
+// 31% and 65%, which is not evidence that the setup fails. It is the absence of
+// evidence, printed in the tone of a finding.
+//
+// The same event across an asset class is the same event. Sweeps on one crypto
+// pair are 33 samples; sweeps across every crypto pair are several hundred,
+// which is enough for the number to mean something. Pooled within class rather
+// than across everything, because a sweep on gold and a sweep on a tech stock
+// are not obviously the same phenomenon and pooling them would hide it if they
+// are not.
+export function pooledRecords(feed) {
+  const acc = new Map();
+  for (const rec of Object.values(feed?.instruments || {})) {
+    const cls = rec.cls || 'other';
+    for (const [key, r] of Object.entries(rec.rarity || {})) {
+      if (!r?.fwdN || r.fwdWin == null || r.fwdMedAtr == null) continue;
+      const k = `${cls}|${key}`;
+      const a = acc.get(k) || { n: 0, wins: 0, medSum: 0, syms: 0, bars: r.fwdBars };
+      a.n += r.fwdN;
+      // Reconstructed from the reported percentage. Exact enough at these
+      // sample sizes, and the alternative is publishing a second field.
+      a.wins += (r.fwdWin / 100) * r.fwdN;
+      // A weighted mean of medians is not a pooled median. It is the honest
+      // approximation available without shipping every observation, and it is
+      // used only to size a target, never to claim a distribution.
+      a.medSum += r.fwdMedAtr * r.fwdN;
+      a.syms += 1;
+      acc.set(k, a);
+    }
+  }
+  const out = {};
+  for (const [k, a] of acc) {
+    if (a.syms < 3) continue;        // a "pool" of two instruments is not one
+    const win = Math.round((a.wins / a.n) * 100);
+    out[k] = {
+      n: a.n,
+      win,
+      med: +(a.medSum / a.n).toFixed(2),
+      bars: a.bars,
+      syms: a.syms,
+      ci: winCI(win, a.n),
+      pooled: true,
+    };
+  }
+  return out;
+}
+
+// The 95% interval on a win rate, in percentage points. The single most
+// important number on the card and the one that was missing: without it, 48%
+// over 33 trades and 48% over 3,300 read identically.
+//
+// Wilson, not the textbook p ± 1.96·√(p(1−p)/n). The simple version is badly
+// wrong exactly where this data lives — small samples and rates far from a half
+// — and it was wrong in the dangerous direction. Gold's 23% over 13 gets a Wald
+// interval of 0–46%, which excludes a coin flip, so the screen declared the
+// setup broken on thirteen observations. Wilson puts the same record at 8–50%,
+// which touches a coin flip and therefore says nothing. Thirteen samples cannot
+// establish that a setup fails, and the arithmetic should not pretend they can.
+const Z = 1.96;
+
+export function winInterval(win, n) {
+  if (!n || win == null) return null;
+  const p = win / 100;
+  const d = 1 + (Z * Z) / n;
+  const centre = (p + (Z * Z) / (2 * n)) / d;
+  const margin = (Z / d) * Math.sqrt((p * (1 - p)) / n + (Z * Z) / (4 * n * n));
+  return { lo: +((centre - margin) * 100).toFixed(1), hi: +((centre + margin) * 100).toFixed(1) };
+}
+
+// Kept as a single number for display, as the half-width of that interval.
+export function winCI(win, n) {
+  const iv = winInterval(win, n);
+  return iv ? +((iv.hi - iv.lo) / 2).toFixed(1) : null;
+}
+
+// Does this record actually say anything? A record whose interval straddles a
+// coin flip does not, however far from 50% its point estimate happens to sit.
+export function tellsUsSomething(rec) {
+  const iv = rec?.n ? winInterval(rec.win, rec.n) : null;
+  return !!iv && (iv.lo > 50 || iv.hi < 50);
+}
+
 // Significance is a separate axis from rarity. A daily strong hammer and an
 // M15 one can be equally rare in per-bar terms and are not equally worth
 // knowing about — the daily one survived a hundred times as much trading.
@@ -186,7 +275,7 @@ function freshness(at, tf, asOf) {
 // 'up' | 'down' | null, and null means "notable but not directional" — a
 // volatility squeeze says something is coming, not which way.
 
-function candleEvidence(rec, asOf, cuts) {
+function candleEvidence(rec, asOf, cuts, pools, cls) {
   const out = [];
   const byTf = rec.patterns || {};
   // A pattern on two timeframes at once is the thing being asked for, and it
@@ -229,9 +318,24 @@ function candleEvidence(rec, asOf, cuts) {
     const tfs = hits.map(h => h.tf);
     const rarest = Math.min(...hits.map(h => h.rate ?? 99));
     const multi = hits.length > 1;
+    // A candle with its consequence attached.
+    //
+    // Only sweeps and breaks were ever measured forward, so every card whose
+    // signal was a candle could be drawn and never priced — 24 of 27 unpriced
+    // plans on a live feed. The bot now measures candles the same way, and the
+    // record is taken from the slowest timeframe the pattern appeared on, which
+    // is the one the trade will be held on.
+    const rk = hits.map(h => ({ h, r: (rec.rarity || {})[`${id}.${h.tf}`] }))
+                   .filter(x => x.r?.fwdN >= 5)
+                   .sort((a, b) => (TF_WEIGHT[b.h.tf] ?? 0) - (TF_WEIGHT[a.h.tf] ?? 0))[0];
+    const base = rk ? {
+      n: rk.r.fwdN, win: rk.r.fwdWin, med: rk.r.fwdMedAtr, bars: rk.r.fwdBars,
+      ci: winCI(rk.r.fwdWin, rk.r.fwdN),
+    } : null;
+    const pool = rk ? (pools?.[`${cls}|${id}.${rk.h.tf}`] || null) : null;
     out.push({
       family: 'price',
-      dir,
+      dir, base, pool,
       label: `${id.replace(/_/g, ' ')}${multi ? ` on ${tfs.join(' + ')}` : ` on ${tfs[0]}`}`,
       tfs,
       detail: `${rarest.toFixed(1)}× a month on this instrument`,
@@ -249,7 +353,7 @@ function candleEvidence(rec, asOf, cuts) {
   return out;
 }
 
-function structureEvidence(rec, asOf, cuts) {
+function structureEvidence(rec, asOf, cuts, pools, cls) {
   const out = [];
   const rarity = rec.rarity || {};
   for (const e of rec.events || []) {
@@ -279,7 +383,12 @@ function structureEvidence(rec, asOf, cuts) {
     // on the card that answers "so what".
     const base = r?.fwdN >= 5 ? {
       n: r.fwdN, win: r.fwdWin, med: r.fwdMedAtr, bars: r.fwdBars,
+      ci: winCI(r.fwdWin, r.fwdN),
     } : null;
+    // The same event measured across the whole asset class. Usually two orders
+    // of magnitude more samples, and the only version of this number with
+    // enough behind it to be acted on.
+    const pool = pools?.[`${cls}|${e.type}.${e.tf}`] || null;
     out.push({
       family: 'structure',
       dir,
@@ -288,7 +397,7 @@ function structureEvidence(rec, asOf, cuts) {
       detail: e.detail || '',
       rarity: perMonth,
       strong: e.type === 'sweep',
-      base,
+      base, pool,
       // Evidence with a measured history behind it outranks evidence without
       // one — but only mildly, and only when the record is actually favourable.
       // Rarity is graded against the same cutoff that admitted it, for the
@@ -420,38 +529,55 @@ function newsEvidence(sym, cls, news, now) {
   return out;
 }
 
-function positioningEvidence(sym, cls, cot) {
-  if (!cot) return [];
-  const [base, quote] = sym.includes('/') ? sym.split('/') : [sym, null];
-  const out = [];
-  const add = (ccy, sign) => {
-    const v = cot[ccy];
-    if (v == null || Math.abs(v) < 0.5) return;    // only genuine extremes
-    out.push({
-      family: 'positioning',
-      dir: (v * sign) > 0 ? 'up' : 'down',
-      label: `${ccy} positioning ${v > 0 ? 'heavily long' : 'heavily short'}`,
-      detail: `net ${(v * 100).toFixed(0)}% of open interest — crowded`,
-      weight: Math.min(1.4, 0.8 + Math.abs(v)),
-    });
-  };
-  add(base, 1);
-  if (quote && quote !== 'USDT') add(quote, -1);
-  return out;
+// Positioning, read from where the bot actually publishes it.
+//
+// This family carries the highest weight in FAMILY and had never once appeared
+// on a card. It was reading a `cot` object keyed by currency, holding values in
+// roughly -1..1, supplied by the caller — and nothing in the app has ever
+// supplied one. Meanwhile the bot has been fetching CFTC data all along and
+// writing it to `state.posnPct`: a percentile of net speculative positioning
+// against its own three-year history, on thirteen instruments. Two shapes for
+// the same fact, and the one being read did not exist.
+//
+// Deliberately NOT directional. Crowded positioning is the classic contrarian
+// signal, and it is also read as trend confirmation, and I cannot measure which
+// applies here — the bot records forward outcomes for events, not for states.
+// Having already shipped one inverted signal, asserting a direction I cannot
+// back is the worse error. So it reports the fact and contributes to breadth,
+// and the direction stays with the evidence that has a record behind it.
+const POSN_EXTREME = 10;   // percentile, from either end
+
+function positioningEvidence(rec) {
+  const pct = rec.state?.posnPct;
+  if (pct == null) return [];
+  const long = pct >= 100 - POSN_EXTREME;
+  const short = pct <= POSN_EXTREME;
+  if (!long && !short) return [];
+  const weeks = rec.state.posnWeeks;
+  return [{
+    family: 'positioning',
+    dir: null,
+    label: `speculative positioning at a ${long ? 'long' : 'short'} extreme`,
+    detail: `${pct}th percentile of the last ${weeks ? Math.round(weeks / 52) : 3} years`
+          + `${rec.asOf?.cot ? ` · CFTC ${rec.asOf.cot}` : ''}`,
+    // Independent of price in a way nothing else on the card is: every other
+    // family is ultimately derived from the same candles.
+    weight: 1.2,
+  }];
 }
 
 // ── Assembly ─────────────────────────────────────────────────────────────────
 
-export function assess(sym, rec, { news = null, cot = null, now = Date.now(), cuts = null } = {}) {
+export function assess(sym, rec, { news = null, cot = null, now = Date.now(), cuts = null, pools = null } = {}) {
   if (!rec) return null;
   const cls = rec.cls;
   const evidence = [
-    ...candleEvidence(rec, rec.asOf, cuts),
-    ...structureEvidence(rec, rec.asOf, cuts),
+    ...candleEvidence(rec, rec.asOf, cuts, pools, cls),
+    ...structureEvidence(rec, rec.asOf, cuts, pools, cls),
     ...volatilityEvidence(rec),
     ...leadershipEvidence(rec),
     ...newsEvidence(sym, cls, news, now),
-    ...positioningEvidence(sym, cls, cot),
+    ...positioningEvidence(rec),
   ];
   if (!evidence.length) return null;
 
@@ -717,9 +843,10 @@ export function rank(feed, { news = null, cot = null, now = Date.now(),
   // counts as a rare M15 event is a property of the population, not of one
   // chart, so it cannot be decided inside assess().
   const cuts = rarityCutoffs(feed);
+  const pools = pooledRecords(feed);
   for (const [sym, rec] of Object.entries(feed?.instruments || {})) {
     total++;
-    const a = assess(sym, rec, { news, cot, now, cuts });
+    const a = assess(sym, rec, { news, cot, now, cuts, pools });
     if (a) scored.push(a);
   }
   scored.sort((a, b) => b.score - a.score);

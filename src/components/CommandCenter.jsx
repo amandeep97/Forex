@@ -16,7 +16,8 @@
 // reading is.
 import { useState, useEffect, useCallback, useMemo } from 'react';
 import { fetchFeed } from '../utils/liveFeed';
-import { rank, ageOf, driversOf, clusters, FAMILY } from '../utils/confluence';
+import { rank, ageOf, driversOf, clusters, FAMILY,
+         pooledRecords, winInterval } from '../utils/confluence';
 import ChartModal from './ChartModal';
 import { buildPlan, eventLine } from '../utils/tradePlan';
 
@@ -37,6 +38,18 @@ function marketState(now = new Date()) {
   return { fxOpen, usEquity, crypto: true };
 }
 
+// "fx|sweep.H1" is a storage key, not a sentence.
+const CLASS_WORD = { fx:'FX pairs', metal:'metals', index:'indices',
+                     energy:'energy', crypto:'crypto', tradfi:'stocks' };
+function prettySetup(key) {
+  const [cls, rest] = key.split('|');
+  const [type, tf] = (rest || '').split('.');
+  const what = type === 'sweep' ? 'strong reversals (sweep and close back inside)'
+             : type === 'break' ? 'structure breakouts'
+             : type.replace(/_/g, ' ');
+  return `${what} on ${tf}, ${CLASS_WORD[cls] || cls}`;
+}
+
 const fmtAge = ms => ms == null ? 'never'
   : ms < 90e3 ? 'just now'
   : ms < 3600e3 ? `${Math.round(ms / 60e3)} min ago`
@@ -52,6 +65,7 @@ export default function CommandCenter() {
   const [top, setTop] = useState(12);
   const [allOpen, setAllOpen] = useState(false);
   const [showDrivers, setShowDrivers] = useState(true);
+  const [showWhatWorks, setShowWhatWorks] = useState(true);
   const [showPacks, setShowPacks] = useState(true);
   const [open, setOpen] = useState({});
   const [cls, setCls] = useState('all');
@@ -97,6 +111,30 @@ export default function CommandCenter() {
 
   const drivers = useMemo(() => driversOf(all), [all]);
   const packs = useMemo(() => clusters(all), [all]);
+
+  // Which kinds of setup the whole board says work, and which it says fail.
+  //
+  // Everything else on this screen answers "what is unusual right now". This
+  // answers the prior question — whether that kind of unusual has ever been
+  // worth anything — and it is the only view where the samples are large enough
+  // to answer it. Recomputed off the feed, not off the filtered list, because
+  // it is a property of the data rather than of what is currently on screen.
+  const evidenceReport = useMemo(() => {
+    if (!feed) return { total: 0, works: [], fails: [], silent: 0 };
+    const pools = pooledRecords(feed);
+    const works = [], fails = [];
+    let silent = 0;
+    for (const [k, v] of Object.entries(pools)) {
+      const iv = winInterval(v.win, v.n);
+      const row = [k, { ...v, lo: iv.lo, hi: iv.hi }];
+      if (iv.lo > 50 && v.med > 0) works.push(row);
+      else if (iv.hi < 50) fails.push(row);
+      else silent++;
+    }
+    works.sort((a, b) => b[1].win - a[1].win);
+    fails.sort((a, b) => a[1].win - b[1].win);
+    return { total: Object.keys(pools).length, works, fails, silent };
+  }, [feed]);
 
   const ranked = useMemo(() => {
     let out = all;
@@ -241,6 +279,52 @@ export default function CommandCenter() {
             context — it cannot tell you which of them is more interesting, and it no longer inflates
             their ranking.
           </div></>)}
+        </div>
+      )}
+
+      {/* What the whole board says about each kind of setup.
+          The point of pooling: one instrument's sweep is thirty samples and
+          says nothing; the same sweep across a class is hundreds and can. This
+          is the only place in the app that answers "which setups are even
+          worth looking for", and the answer is mostly "none of them". */}
+      {evidenceReport.total > 0 && (
+        <div style={{ ...S.card, borderColor:'#34d39944' }}>
+          <div style={{ ...S.h, cursor:'pointer', display:'flex', alignItems:'center', gap:6 }}
+            onClick={() => setShowWhatWorks(v => !v)}>
+            <span>{showWhatWorks ? '⌄' : '›'}</span> WHAT ACTUALLY WORKS
+            <span style={{ marginLeft:'auto', fontWeight:600 }}>
+              {evidenceReport.works.length} of {evidenceReport.total}
+            </span>
+          </div>
+          {showWhatWorks && (<>
+            {evidenceReport.works.map(([k, v]) => (
+              <div key={k} style={{ padding:'4px 0', fontSize:12.5 }}>
+                <span style={{ color:'#22c55e', fontWeight:800, marginRight:6 }}>✓</span>
+                <span style={{ color:'var(--text)' }}>{prettySetup(k)}</span>
+                <div style={{ fontSize:11, color:'var(--text3)', marginTop:2, marginLeft:20 }}>
+                  {v.win}% over {v.n.toLocaleString()} occurrences across {v.syms} instruments
+                  {' '}({v.lo}–{v.hi}% at 95%) · median +{v.med} ATR
+                </div>
+              </div>
+            ))}
+            {evidenceReport.fails.slice(0, 4).map(([k, v]) => (
+              <div key={k} style={{ padding:'4px 0', fontSize:12.5 }}>
+                <span style={{ color:'#ef4444', fontWeight:800, marginRight:6 }}>✗</span>
+                <span style={{ color:'var(--text)' }}>{prettySetup(k)}</span>
+                <div style={{ fontSize:11, color:'var(--text3)', marginTop:2, marginLeft:20 }}>
+                  {v.win}% over {v.n.toLocaleString()} across {v.syms} instruments
+                  {' '}({v.lo}–{v.hi}%) · median {v.med} ATR — measurably worse than a coin flip
+                </div>
+              </div>
+            ))}
+            <div style={{ fontSize:10.5, color:'var(--text3)', marginTop:7, lineHeight:1.6 }}>
+              {evidenceReport.silent} of {evidenceReport.total} setups say <strong>nothing</strong> —
+              their 95% range covers a coin flip, so the numbers are not evidence in either
+              direction. That is the normal result, and it is why the cards below refuse far more
+              often than they price. Pooled within an asset class: a sweep on one pair is a few
+              dozen samples, the same sweep across the class is hundreds.
+            </div>
+          </>)}
         </div>
       )}
 
@@ -421,7 +505,11 @@ export default function CommandCenter() {
             {(() => {
               const p = buildPlan(r, feed?.instruments?.[r.sym], { balance, riskPct, news, now });
               if (!p?.ok) return null;
-              const C = p.take ? '#22c55e' : p.verdict === 'record-says-no' ? '#ef4444' : '#f59e0b';
+              // Amber for "we do not know", red only for "we measured it and it fails".
+              // The difference is the whole point of the interval.
+              const C = p.take ? '#22c55e'
+                      : p.verdict === 'record-says-no' ? '#ef4444'
+                      : p.verdict === 'inconclusive' ? '#94a3b8' : '#f59e0b';
               const evLine = eventLine(p);
               return (
                 <div style={{ marginTop:8, borderTop:'1px solid #16202b', paddingTop:8 }}>
@@ -434,15 +522,28 @@ export default function CommandCenter() {
                         <span style={{ color:'var(--text3)' }}>size <strong style={{ color:'var(--text)' }}>{p.units}</strong></span>
                       </div>
                       <div style={{ fontSize:11, color:C, marginTop:4, lineHeight:1.6 }}>
-                        {p.rr}R — the median move after the last {p.record.n} of these, not a chosen ratio ·
-                        {' '}{p.record.win}% went its way · <strong>{p.ev > 0 ? '+' : ''}{p.ev}R expected</strong>
+                        {p.rr}R — the median move after these, not a chosen ratio ·
+                        {' '}<strong>{p.ev > 0 ? '+' : ''}{p.ev}R expected</strong>
                         {p.costShare != null && <span style={{ color:'var(--text3)' }}> · spread is {p.costShare}% of the stop</span>}
                       </div>
+                      {/* The sample and its interval, because a win rate
+                          without them is not a number you can act on. */}
+                      <div style={{ fontSize:11, color:'var(--text3)', marginTop:2, lineHeight:1.6 }}>
+                        from {p.pricedFrom} · {p.record?.win ?? '—'}% over {(p.pool?.n ?? p.record?.n)?.toLocaleString()} occurrences
+                        {p.pool && p.pricedFrom !== 'this instrument'
+                          ? ` (${p.pool.win}% ±${p.pool.ci} pooled)` : ` ±${p.record?.ci}`}
+                      </div>
+                      {p.fragile && (
+                        <div style={{ fontSize:11, color:'#f59e0b', marginTop:2, lineHeight:1.6 }}>
+                          ⚠ {p.fragile}
+                        </div>
+                      )}
                     </>
                   ) : (
                     <div style={{ fontSize:11.5, color:C, lineHeight:1.65 }}>
                       <strong>{p.blocked ? 'CONDITIONS' : p.verdict === 'record-says-no' ? 'THE RECORD SAYS NO'
-                        : p.verdict === 'negative' ? 'NOT WORTH THE RISK' : 'CANNOT PRICE IT'}</strong>
+                        : p.verdict === 'negative' ? 'NOT WORTH THE RISK'
+                        : p.verdict === 'inconclusive' ? 'NOT ENOUGH EVIDENCE' : 'CANNOT PRICE IT'}</strong>
                       {' — '}{p.blocked || p.note}
                     </div>
                   )}
