@@ -1201,7 +1201,7 @@ export function calcStats(trades, initialEquity = 10000) {
     totalTrades: 0, wins: 0, losses: 0, winRate: 0,
     totalPnlPips: 0, totalPnlDollars: 0, totalPnlPct: 0,
     profitFactor: 0, maxDrawdown: 0,
-    avgWin: 0, avgLoss: 0, bestTrade: 0, worstTrade: 0, avgDuration: 0,
+    avgWin: 0, avgLoss: 0, bestTrade: 0, worstTrade: 0, avgDuration: 0, medDuration: 0,
     sharpe: null, sortino: null, calmar: null,
     maxWinStreak: 0, maxLossStreak: 0,
     longWins: 0, longLosses: 0, longWinRate: null,
@@ -1322,6 +1322,14 @@ export function calcStats(trades, initialEquity = 10000) {
     bestTrade:       Math.round(Math.max(...allPips) * 10) / 10,
     worstTrade:      Math.round(Math.min(...allPips) * 10) / 10,
     avgDuration:     Math.round(trades.reduce((s, t) => s + (t.duration || 0), 0) / trades.length),
+    // The median, alongside the mean, because holding period is the one
+    // statistic here with a long right tail: one trade that trailed for a year
+    // drags the average far above anything the rule typically does, and "how
+    // long is this held for" has to answer for the typical trade.
+    medDuration:     (() => {
+      const d = trades.map(t => t.duration || 0).sort((x, y) => x - y);
+      return d[Math.floor(d.length / 2)];
+    })(),
     sharpe, sortino, calmar,
     maxWinStreak, maxLossStreak,
     longWins, longLosses: longTrades.length - longWins,
