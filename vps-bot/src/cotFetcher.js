@@ -31,6 +31,31 @@ async function fetchOneCOT(code, weeks = 4) {
   return httpsGet(url);
 }
 
+// The whole series, oldest first, as { t, net }.
+//
+// fetchCOTPercentile collapses this to a single number for today, which is all
+// the live feed needs and useless for asking whether an extreme preceded
+// anything. The sign convention lives here rather than at the call site,
+// because half these contracts are quoted against the dollar the other way up
+// and a study that got that backwards would report the exact opposite result
+// with no way to tell.
+async function fetchCOTHistory(code, weeks = 160) {
+  const rows = await fetchOneCOT(code, weeks);
+  if (!Array.isArray(rows)) return [];
+  const inv = COT_CODES.find(c => c.code === code)?.invert;
+  return rows
+    .map(r => {
+      const long  = +r.noncomm_positions_long_all  || 0;
+      const short = +r.noncomm_positions_short_all || 0;
+      const raw   = long - short;
+      const date  = (r.report_date_as_yyyy_mm_dd || '').slice(0, 10);
+      const t = Date.parse(date + 'T00:00:00Z');
+      return Number.isFinite(t) ? { t, net: inv ? -raw : raw } : null;
+    })
+    .filter(Boolean)
+    .sort((a, b) => a.t - b.t);
+}
+
 // Returns { EUR: { net, long, short, bias, date }, GBP: {...}, ... }
 async function fetchAllCOT(log) {
   const result = {};
@@ -105,4 +130,5 @@ function checkCOTFilter(filter, cotData, pair) {
   return entry.bias === required;
 }
 
-module.exports = { fetchAllCOT, checkCOTFilter, fetchCOTPercentile, COT_MIN_WEEKS: MIN_WEEKS };
+module.exports = { fetchAllCOT, checkCOTFilter, fetchCOTPercentile, fetchCOTHistory,
+                   COT_MIN_WEEKS: MIN_WEEKS };
