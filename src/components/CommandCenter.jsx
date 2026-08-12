@@ -18,7 +18,7 @@ import { useState, useEffect, useCallback, useMemo } from 'react';
 import { fetchFeed } from '../utils/liveFeed';
 import { rank, ageOf, driversOf, clusters, FAMILY } from '../utils/confluence';
 import ChartModal from './ChartModal';
-import { buildPlan } from '../utils/tradePlan';
+import { buildPlan, eventLine } from '../utils/tradePlan';
 
 const NEWS_URL = 'https://raw.githubusercontent.com/amandeep97/Forex/main/bot/news.json';
 const COT_URL  = 'https://raw.githubusercontent.com/amandeep97/Forex/main/bot/feed.json';
@@ -61,6 +61,10 @@ export default function CommandCenter() {
   const [oneEach, setOneEach] = useState(false);
   const [q, setQ] = useState('');
   const [tf, setTf] = useState('all');
+  // Swing first. Intraday ideas are still measured and still shown, but they
+  // are a different trade with a different holding period, and mixing them into
+  // one list asks you to compare a fortnight with an afternoon.
+  const [hz, setHz] = useState('all');
   const [chart, setChart] = useState(null);
   const [balance, setBalance] = useState(() => +(localStorage.getItem('cc_balance') || 10000));
   const [riskPct, setRiskPct] = useState(() => +(localStorage.getItem('cc_risk') || 1));
@@ -100,6 +104,11 @@ export default function CommandCenter() {
     if (dir !== 'all') out = out.filter(r => r.dir === (dir === 'up' ? 'up' : 'down'));
     if (onlyStrong) out = out.filter(r => r.strong);
     if (onlyMulti)  out = out.filter(r => r.multiTf);
+    // 'swing' keeps both swing setups and timed ones, because a timed entry IS
+    // a swing setup — the fast signal only decided when.
+    if (hz === 'swing')    out = out.filter(r => r.kind !== 'intraday');
+    if (hz === 'trigger')  out = out.filter(r => r.kind === 'trigger');
+    if (hz === 'intraday') out = out.filter(r => r.kind === 'intraday');
     if (tf !== 'all') out = out.filter(r => (r.tfs || []).includes(tf));
     if (q.trim())   out = out.filter(r => r.sym.toLowerCase().includes(q.trim().toLowerCase()));
     // One per currency. When the RBA meets, seven AUD pairs qualify and six of
@@ -117,7 +126,7 @@ export default function CommandCenter() {
     // nothing and on a busy one it shows everything; "the twelve most unusual
     // of seventy-two" means the same thing in both.
     return top ? out.slice(0, top) : out;
-  }, [all, cls, dir, onlyStrong, onlyMulti, oneEach, q, tf, top]);
+  }, [all, cls, dir, onlyStrong, onlyMulti, oneEach, q, tf, hz, top]);
   const age = useMemo(() => ageOf(feed, news, now), [feed, news, now]);
   const mkt = useMemo(() => marketState(new Date(now)), [now]);
 
@@ -266,6 +275,23 @@ export default function CommandCenter() {
             <button key={v} onClick={() => setCls(v)} style={pill(cls===v)}>{l}</button>
           ))}
         </div>
+        {/* Horizon before anything else, because it decides what the rest of
+            the card means: the same instrument is a two-week idea on Daily and
+            an afternoon's trade on M15, and they are not comparable. */}
+        <div style={{ display:'flex', gap:5, flexWrap:'wrap', marginTop:6, alignItems:'center' }}>
+          <span style={{ fontSize:11, color:'var(--text3)' }}>hold</span>
+          {[['all','Any'],['swing','Swing'],['trigger','Timed entry'],['intraday','Intraday']].map(([v,l]) => (
+            <button key={v} onClick={() => setHz(v)}
+              title={v === 'swing' ? 'D and H4 setups, held for days to weeks — includes timed entries'
+                   : v === 'trigger' ? 'A swing setup with a faster signal agreeing: the entry is timed'
+                   : v === 'intraday' ? 'H1 and below, with nothing on the slow timeframes — held for hours'
+                   : ''}
+              style={{ ...pill(hz===v),
+                ...(hz===v && v!=='all' ? { borderColor:'#34d399', background:'#34d39922', color:'#34d399' } : {}) }}>
+              {l}
+            </button>
+          ))}
+        </div>
         <div style={{ display:'flex', gap:5, flexWrap:'wrap', marginTop:6 }}>
           {[['all','Both ways'],['up','Bullish'],['down','Bearish']].map(([v,l]) => (
             <button key={v} onClick={() => setDir(v)} style={pill(dir===v)}>{l}</button>
@@ -340,6 +366,14 @@ export default function CommandCenter() {
                   {r.dir === 'up' ? 'BULLISH' : 'BEARISH'}
                 </span>
               )}
+              {/* What kind of trade this is, before anything about how good it
+                  looks. A timed entry and an intraday idea are different
+                  commitments, not different scores. */}
+              <span style={{ fontSize:9.5, fontWeight:900, padding:'1px 6px', borderRadius:3,
+                color: r.kind === 'trigger' ? '#34d399' : r.kind === 'swing' ? '#7dd3fc' : '#94a3b8',
+                border:`1px solid ${r.kind === 'trigger' ? '#34d39955' : r.kind === 'swing' ? '#7dd3fc55' : '#64748b55'}` }}>
+                {r.kind === 'trigger' ? 'TIMED ENTRY' : r.kind === 'swing' ? 'SWING' : 'INTRADAY'}
+              </span>
               {r.conflict && (
                 <span style={{ fontSize:10, fontWeight:800, color:'#f59e0b' }}>EVIDENCE DISAGREES</span>
               )}
@@ -385,9 +419,10 @@ export default function CommandCenter() {
             ))}
 
             {(() => {
-              const p = buildPlan(r, feed?.instruments?.[r.sym], { balance, riskPct });
+              const p = buildPlan(r, feed?.instruments?.[r.sym], { balance, riskPct, news, now });
               if (!p?.ok) return null;
               const C = p.take ? '#22c55e' : p.verdict === 'record-says-no' ? '#ef4444' : '#f59e0b';
+              const evLine = eventLine(p);
               return (
                 <div style={{ marginTop:8, borderTop:'1px solid #16202b', paddingTop:8 }}>
                   {p.take ? (
@@ -409,6 +444,20 @@ export default function CommandCenter() {
                       <strong>{p.blocked ? 'CONDITIONS' : p.verdict === 'record-says-no' ? 'THE RECORD SAYS NO'
                         : p.verdict === 'negative' ? 'NOT WORTH THE RISK' : 'CANNOT PRICE IT'}</strong>
                       {' — '}{p.blocked || p.note}
+                    </div>
+                  )}
+                  {/* What you are actually committing to. The holding period is
+                      not a target — it is the window the record above was
+                      measured over, so it is what those numbers describe. */}
+                  <div style={{ fontSize:11, color:'var(--text3)', marginTop:4, lineHeight:1.6 }}>
+                    priced on {p.tf} · held {p.hold.text}
+                    {p.triggeredBy && <> · timed by <span style={{ color:'#34d399' }}>{p.triggeredBy}</span></>}
+                    {r.pullback && <> · <span style={{ color:'#f59e0b' }}>faster timeframes are pulling the other way</span></>}
+                  </div>
+                  {evLine && (
+                    <div style={{ fontSize:11, marginTop:3, lineHeight:1.6,
+                      color: p.events.next.inMs < 12 * 3600e3 ? '#f59e0b' : 'var(--text3)' }}>
+                      ◷ {evLine}
                     </div>
                   )}
                 </div>
@@ -445,6 +494,13 @@ export default function CommandCenter() {
         with how often it happens on that instrument. Nothing here is a forecast, and the ordering is
         by how many unrelated kinds of evidence agree — not by how large any single reading is.
         Four signals from the same twenty candles are one piece of evidence, and are counted as one.
+        <div style={{ marginTop:6 }}>
+          Direction on a <strong>swing</strong> card comes only from its Daily and H4 evidence. A faster
+          timeframe can time the entry — that is a <strong>timed entry</strong> — but it never flips the
+          bias, because an M15 hammer inside a bearish daily setup is a pullback, not a reversal.
+          The holding period on each plan is the window its record was measured over, and the calendar
+          is searched across that whole window rather than the next few hours.
+        </div>
       </div>
     </div>
   );

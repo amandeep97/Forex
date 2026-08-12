@@ -24,6 +24,33 @@
 // It is still not a prediction. It is a fully specified proposal with its
 // historical record attached, and the record is frequently discouraging.
 
+// ── Horizon ──────────────────────────────────────────────────────────────────
+//
+// The plan is priced on the timeframe the trade will be HELD on, not the one
+// that happened to fire.
+//
+// This picked whichever piece of evidence carried the largest sample, which on
+// a Daily setup with an H1 pattern attached was usually the H1 one — so a trade
+// meant to run for a fortnight got an H1 ATR stop, an H1 target, and a size
+// computed for a hold of a few hours. Every number was individually correct and
+// the plan as a whole described a trade nobody was going to take.
+//
+// Slowest first, so a pattern present on both M15 and Daily prices as the daily
+// event it is.
+const TF_ORDER = ['D', 'H4', 'H1', 'M30', 'M15'];
+const SWING_TFS = new Set(['D', 'H4']);
+
+const TF_MS = { D: 86400e3, H4: 14400e3, H1: 3600e3, M30: 1800e3, M15: 900e3 };
+
+// The feed's forward windows, used only when a piece of evidence has no record
+// of its own. Kept in step with HORIZON in vps-bot/src/feed.js.
+const FWD_BARS = { D: 10, H4: 20, H1: 24, M30: 30, M15: 40 };
+
+// Daily bars are trading days. Ten of them is two calendar weeks, and the
+// difference matters here because the hold window is what the calendar is
+// searched over — an event five weekdays out is inside a 10-bar daily hold.
+const CALENDAR_STRETCH = { D: 7 / 5 };
+
 // Stop distance, in ATR. Wide enough that ordinary noise does not take it out,
 // tight enough that the measured median move is worth more than the risk.
 const DEFAULT_STOP_ATR = 1.5;
@@ -41,24 +68,86 @@ const MAX_SPREAD_RATIO = 1.6;
 // target loses a fifth of its value before the trade starts.
 const MAX_COST_SHARE = 0.10;
 
+// Below this, a scheduled event is not a disclosure — it is a reason not to be
+// in the market yet. Entering an hour before a rate decision means the entry
+// price is not the price you will have.
+const IMMINENT_MS = 2 * 3600e3;
+
 const round = (v, dec) => v == null ? null : +v.toFixed(dec ?? 5);
 
-// The piece of evidence the plan is built on: the freshest thing that carries
-// a measured record, falling back to the strongest directional evidence.
+const untilText = ms => ms < 3600e3 ? `${Math.round(ms / 60e3)} min`
+                      : ms < 36 * 3600e3 ? `${(ms / 3600e3).toFixed(1)}h`
+                      : `${Math.round(ms / 86400e3)}d`;
+
+// The piece of evidence the plan is built on. It must speak to the horizon the
+// trade will be held for: a swing setup can only be anchored by swing evidence,
+// and a piece of context with no timeframe at all cannot anchor anything,
+// because there is no ATR to measure a stop against.
 function anchorOf(a) {
-  const withRecord = a.evidence.filter(e => e.base && e.dir);
-  if (withRecord.length) {
-    return withRecord.sort((x, y) => (y.base.n ?? 0) - (x.base.n ?? 0))[0];
-  }
-  return a.evidence.find(e => e.dir) || null;
+  const swing = a.kind !== 'intraday';
+  const inScope = (e) => {
+    const tfs = e.tfs || [];
+    if (!tfs.length) return false;
+    return swing ? tfs.some(t => SWING_TFS.has(t)) : tfs.every(t => !SWING_TFS.has(t));
+  };
+  const pool = a.evidence.filter(e => e.dir && inScope(e));
+  if (!pool.length) return null;
+  // A record is what prices the trade, so evidence carrying one wins; among
+  // those, the largest sample.
+  const withRecord = pool.filter(e => e.base);
+  return (withRecord.length ? withRecord : pool)
+    .sort((x, y) => (y.base?.n ?? 0) - (x.base?.n ?? 0))[0];
 }
 
-export function buildPlan(a, rec, { balance = 10000, riskPct = 1, stopAtr = DEFAULT_STOP_ATR } = {}) {
+// How long this is expected to be held, from the window its record was actually
+// measured over. Not a target duration — a statement of what the numbers below
+// are describing.
+function holdOf(tf, base) {
+  const bars = base?.bars ?? FWD_BARS[tf] ?? 10;
+  const ms = bars * (TF_MS[tf] ?? 86400e3) * (CALENDAR_STRETCH[tf] ?? 1);
+  const days = ms / 86400e3;
+  const text = days >= 10 ? `about ${Math.round(days / 7)} weeks`
+             : days >= 1.5 ? `about ${Math.round(days)} days`
+             : days >= 0.8 ? 'about a day'
+             : `about ${Math.round(ms / 3600e3)} hours`;
+  return { bars, ms, days: +days.toFixed(1), text };
+}
+
+// High-impact events scheduled inside the hold window, for the currencies this
+// instrument is exposed to.
+//
+// A swing trade cannot avoid the calendar — over a fortnight there is always an
+// NFP — so this does not refuse on the count. It refuses on IMMINENCE, which is
+// the part you can actually do something about, and discloses the rest.
+function eventsInHold(a, news, now, holdMs) {
+  const cal = news?.calendar;
+  if (!cal?.length) return null;
+  const mine = new Set(a.ccy || []);
+  const hits = cal
+    .filter(e => e.impact === 'high' && mine.has(e.country) && e.at > now && e.at < now + holdMs)
+    .sort((x, y) => x.at - y.at)
+    // inMs is kept exact and every display derives from it. Rounding to hours
+    // first and converting back turned "in 45 min" into "in 48 min".
+    .map(e => ({ title: e.title, country: e.country, at: e.at,
+                 inMs: e.at - now, inHrs: +((e.at - now) / 3600e3).toFixed(1) }));
+  return { n: hits.length, next: hits[0] || null, list: hits.slice(0, 4) };
+}
+
+export function buildPlan(a, rec, {
+  balance = 10000, riskPct = 1, stopAtr = DEFAULT_STOP_ATR,
+  news = null, now = Date.now(),
+} = {}) {
   if (!a || !rec) return null;
   const anchor = anchorOf(a);
-  if (!anchor) return { ok: false, reason: 'no directional evidence to build a trade from' };
+  if (!anchor) {
+    return { ok: false, reason: a.kind === 'intraday'
+      ? 'no directional intraday evidence to build a trade from'
+      : 'the swing evidence here has no direction — nothing to price' };
+  }
 
-  const tf = (anchor.tfs || [])[0] || 'D';
+  // The slowest timeframe the anchor appeared on. A signal on H4 and Daily at
+  // once is a daily trade that also shows on H4.
+  const tf = TF_ORDER.find(t => (anchor.tfs || []).includes(t)) || 'D';
   const st = rec.state?.[tf];
   const price = rec.price;
   if (!st?.atrPct || !price) return { ok: false, reason: `no volatility measurement on ${tf} yet` };
@@ -78,10 +167,19 @@ export function buildPlan(a, rec, { balance = 10000, riskPct = 1, stopAtr = DEFA
   // good the setup looks, and it is knowable before anything else.
   const costShare = spreadAbs && stopDist > 0 ? spreadAbs / stopDist : null;
 
+  const hold = holdOf(tf, base);
+  const events = eventsInHold(a, news, now, hold.ms);
+
   const plan = {
     ok: true,
     sym: a.sym, dir, tf,
+    kind: a.kind || 'swing',
     why: anchor.label,
+    // On a timed entry, which fast signal timed it. The trade is still the slow
+    // one — this is why now rather than why at all.
+    triggeredBy: a.kind === 'trigger' ? (a.trigger?.label || null) : null,
+    hold,
+    events,
     entry: round(price, rec.dec),
     stop: round(stop, rec.dec),
     stopDist: round(stopDist, rec.dec),
@@ -125,7 +223,13 @@ export function buildPlan(a, rec, { balance = 10000, riskPct = 1, stopAtr = DEFA
   }
 
   // ── Conditions that override a good setup ────────────────────────────────
-  if (spreadRatio != null && spreadRatio > MAX_SPREAD_RATIO) {
+  // An imminent release first: it is the only one where waiting a few hours
+  // costs nothing and entering now can cost the whole stop in one print.
+  if (events?.next && events.next.inMs < IMMINENT_MS) {
+    const n = events.next;
+    plan.blocked = `${n.country} ${n.title} in ${untilText(n.inMs)}`
+      + ` — the entry price will not survive it. Let it print first.`;
+  } else if (spreadRatio != null && spreadRatio > MAX_SPREAD_RATIO) {
     plan.blocked = `spread is ${spreadRatio}× its normal level — wait for conditions to settle`;
   } else if (costShare != null && costShare > MAX_COST_SHARE) {
     plan.blocked = `the spread is ${(costShare * 100).toFixed(0)}% of your stop — the cost is too large a share of the risk`;
@@ -155,6 +259,20 @@ export function buildPlan(a, rec, { balance = 10000, riskPct = 1, stopAtr = DEFA
 
   plan.take = worth && !plan.blocked;
   return plan;
+}
+
+// What the calendar holds over the life of the trade. Disclosure, not a
+// verdict: a fortnight-long hold cannot dodge the calendar, and pretending
+// otherwise would refuse every swing trade there is. What it can do is tell you
+// what you are agreeing to sit through.
+export function eventLine(plan) {
+  const ev = plan?.events;
+  if (!ev?.n) return '';
+  const n = ev.next;
+  const when = untilText(n.inMs);
+  return ev.n === 1
+    ? `1 high-impact release inside the hold — ${n.country} ${n.title} in ${when}`
+    : `${ev.n} high-impact releases inside the hold — next is ${n.country} ${n.title} in ${when}`;
 }
 
 // One line summarising why a plan is or is not worth taking, for a screen that

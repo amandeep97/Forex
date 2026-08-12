@@ -927,6 +927,7 @@ export default function Backtester() {
   const [handoff, setHandoff]   = useState(null);   // { f, t } translation preview for Auto Trading
   const [deep, setDeep]         = useState(null);   // multi-condition search
   const [deepObj, setDeepObj]   = useState('mean'); // 'mean' | 'tail' — what "better" means
+  const [deepHz, setDeepHz]     = useState('any');  // 'any' | 'swing' — how long it may hold
   const [probe, setProbe]       = useState(null);   // per-symbol history probe
   const [discover, setDiscover] = useState(null);   // what Binance actually lists
   const [saved,   setSaved]   = useState(false);
@@ -1074,7 +1075,7 @@ export default function Backtester() {
       }
 
       const res = await deepSearch(candles, {
-        peers, objective: deepObj,
+        peers, objective: deepObj, horizon: deepHz,
         spreadPips: spread === '' ? undefined : +spread,
         onProgress: p => setDeep(d => ({ ...d, ...p })),
       });
@@ -1550,6 +1551,19 @@ export default function Backtester() {
               </button>
             ))}
           </div>
+          {/* How long a rule is allowed to hold for. Not a preference — it
+              changes which rules can win, because a scalp accumulates a tidier
+              expectancy than a swing that sits through a drawdown. */}
+          <div style={{ display:'flex', gap:6, marginTop:6 }}>
+            {[['any','any holding period'],['swing','swing only — 2 days or longer']].map(([v,l]) => (
+              <button key={v} onClick={() => setDeepHz(v)}
+                style={{ flex:1, padding:'6px', borderRadius:8, fontSize:11, fontWeight:700, cursor:'pointer',
+                  border:`1px solid ${deepHz===v?'#34d399':'var(--border)'}`,
+                  background: deepHz===v?'#34d39922':'transparent', color: deepHz===v?'#34d399':'var(--text3)' }}>
+                {l}
+              </button>
+            ))}
+          </div>
           <button onClick={runDiscover} disabled={discover?.running}
             style={{ width:'100%', marginTop:10, padding:'8px', borderRadius:8, cursor:'pointer',
               fontWeight:700, fontSize:12, border:'1px solid var(--border)', background:'transparent', color:'var(--text3)' }}>
@@ -1566,6 +1580,13 @@ export default function Backtester() {
             {deepObj === 'tail'
               ? 'Ranks by total R captured and how often a trade ran past +5R, and admits rare setups — twenty fires in a decade — that the other mode deletes before ranking them. Validate those with the pooled breadth test, never on one instrument. '
               : 'Ranks by expectancy per trade, which favours rules that fire often and pay a little. '}
+            {deepHz === 'swing' && (
+              <span style={{ color:'#34d399' }}>
+                Session filters are dropped — they constrain the entry hour of a trade whose outcome is
+                decided days later — and every finalist must have held its trades for two days or more,
+                measured, not assumed.{' '}
+              </span>
+            )}
             Builds combinations of three and four conditions across {Object.keys(FAMILY).length} families —
             structure, momentum, trend, volatility, location, timing, volume and candles — instead of the
             trigger-plus-filter pairs above. Slower, and it also re-runs itself on a shuffled copy of your
@@ -1742,6 +1763,15 @@ export default function Backtester() {
                     )}
                     {f.beatsNull && (
                       <span style={{ fontSize:10, fontWeight:800, color:'#22c55e' }}>beats the shuffled null</span>
+                    )}
+                    {/* How long its trades actually lasted. Shown on every run,
+                        not only swing ones — a rule whose typical trade is over
+                        in four hours is a different instrument than it looks. */}
+                    {f.hold && (
+                      <span style={{ fontSize:10, fontWeight:800,
+                        color: f.hold.swingOk ? '#34d399' : '#94a3b8' }}>
+                        held {f.hold.days < 1 ? `${Math.round(f.hold.days * 24)}h` : `${f.hold.days}d`} typical
+                      </span>
                     )}
                   </div>
                   <div style={{ fontSize:12, color:'#e2e8f0', marginTop:4, lineHeight:1.5 }}>{f.label}</div>

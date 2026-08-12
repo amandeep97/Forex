@@ -306,6 +306,35 @@ const STOPS = [
 const NEUTRAL_EXIT = EXITS.find(e => e.id === 'trail3');
 const NEUTRAL_STOP = STOPS.find(s => s.id === 'atr2');
 
+// ── Horizon ──────────────────────────────────────────────────────────────────
+//
+// The search had no notion of how long a rule holds for, so it optimised over
+// scalps and swings together and returned whichever scored best. If the trade
+// you intend to place is a multi-day one, most of that list is unusable — and
+// worse, the scalps tend to win the ranking, because a rule that fires often
+// and exits in a bar or two accumulates a tidier expectancy than one that holds
+// through a drawdown for a fortnight.
+//
+// Two changes when swing mode is on, and only two, because everything else the
+// search does is horizon-neutral.
+//
+// Session filters go, and not as a preference. "London killzone" is a statement
+// about which hours of the day price moves, and a rule held for two weeks spans
+// every session there is — on daily bars the condition is a single constant for
+// the entire history, and on intraday bars it constrains the entry hour of a
+// trade whose outcome is decided days later.
+const INTRADAY_ONLY = new Set(['kz', 'london', 'ny', 'asian']);
+
+// And the measured holding period has to clear a floor. This is the honest
+// version of the filter: not "use wide exits" — a 2R target on daily bars takes
+// days to reach and is a perfectly good swing exit — but "whatever the exit, the
+// trades this rule actually produced were held for at least this long".
+//
+// Two days is deliberately the minimum that is not intraday rather than
+// something more ambitious. It excludes rules that open and close inside a
+// session without excluding the fast end of genuine swing trading.
+const MIN_SWING_HOLD_MS = 2 * 86400e3;
+
 // Two conditions from the same family are usually the same statement twice.
 // "RSI under 40" plus "MFI under 30" adds a condition and almost no
 // information, while halving the trade count — the shape of a rule that looks
@@ -383,6 +412,10 @@ export async function deepSearch(candles, {
   // validated on one instrument; they are validated by POOLING the same rule
   // across the majors, where twenty fires becomes two hundred and forty.
   objective  = 'mean',
+  // 'swing' drops the intraday-only vocabulary and requires the rule's measured
+  // holding period to clear two days. 'any' is the old behaviour, kept as the
+  // default so nothing that already calls this changes underneath it.
+  horizon    = 'any',
   onProgress,
 } = {}) {
   if (!candles || candles.length < 400) {
@@ -395,9 +428,21 @@ export async function deepSearch(candles, {
       + `search could. Use the Daily timeframe, or more bars.`, spanDays };
   }
 
+  // How far apart the bars are, taken from the data rather than from a
+  // timeframe label the search is never given. The median, because feeds have
+  // weekend gaps and the mean would report a daily series as 33-hourly.
+  const gaps = [];
+  for (let i = 1; i < Math.min(candles.length, 400); i++) gaps.push(candles[i].t - candles[i - 1].t);
+  gaps.sort((a, b) => a - b);
+  const barMs = gaps[Math.floor(gaps.length / 2)] || 86400e3;
+
+  const swing = horizon === 'swing';
+  const minHoldBars = swing ? Math.max(1, Math.round(MIN_SWING_HOLD_MS / barMs)) : 0;
+  const holdOk = r => !swing || (r.medDuration != null && r.medDuration >= minHoldBars);
+
   // The cross-asset half of the vocabulary only exists if peers were supplied.
   const peerSyms = peers ? Object.keys(peers).filter(k => peers[k]?.length) : [];
-  const pool = poolFor(peerSyms);
+  const pool = poolFor(peerSyms).filter(p => !(swing && INTRADAY_ONLY.has(p.id)));
   byId = Object.fromEntries(pool.map(p => [p.id, p]));
   // Context is built on the FULL series and then sliced, so a 20-bar peer
   // change at the start of the holdout still sees the bars before it. Building
@@ -447,6 +492,7 @@ export async function deepSearch(candles, {
       const st = calcStats(trades);
       return { n: st.totalTrades, expR: st.avgRR, winRate: st.winRate,
                se: st.seRR, lossStreak: st.maxLossStreak,
+               medDuration: st.medDuration, holdMs: (st.medDuration || 0) * barMs,
                totalR: st.totalR, bigWinRate: st.bigWinRate, bigWins: st.bigWins,
                maxR: st.maxR, payoff: st.payoff, p90R: st.p90R,
                longRatio: trades.length ? trades.filter(t => t.dir === 'long').length / trades.length : 0.5 };
@@ -529,19 +575,35 @@ export async function deepSearch(candles, {
     .sort((a,b) => rank(b.build) - rank(a.build))
     .slice(0, Math.max(beam, 12));
 
+  // This is where the holding-period floor is applied, rather than earlier.
+  // Every combination gets to try all nine exits against it, so a good entry is
+  // only rejected once it is clear that NO exit holds it long enough — not
+  // because the neutral exit happened to close it quickly.
   const tuned = [];
   let done = 0;
+  let droppedShort = 0;
   for (const c of shortlist) {
-    let best = null;
+    let best = null, sawAny = false;
     for (const ex of EXITS) for (const st of STOPS) {
       const r = score(build, c.ids, ex, st);
-      if (r.n >= minBuild && r.expR != null && (!best || rank(r) > rank(best.build))) {
-        best = { ids:c.ids, exit:ex, stop:st, build:r };
+      if (r.n >= minBuild && r.expR != null) {
+        sawAny = true;
+        if (holdOk(r) && (!best || rank(r) > rank(best.build))) {
+          best = { ids:c.ids, exit:ex, stop:st, build:r };
+        }
       }
     }
     if (best) tuned.push(best);
+    else if (sawAny && swing) droppedShort++;
     done++;
     await breathe('exits and stops', done, shortlist.length);
+  }
+  if (swing && !tuned.length && droppedShort) {
+    return { ok:false, horizon, barMs, minHoldBars, droppedShort,
+      reason: `${droppedShort} combination${droppedShort === 1 ? '' : 's'} traded well here but `
+        + `closed in under ${minHoldBars} bar${minHoldBars === 1 ? '' : 's'} — those are intraday rules, `
+        + `not swing ones. On this timeframe a two-day hold is ${minHoldBars} bars; `
+        + `search the Daily or H4 series, or switch the horizon to "any".` };
   }
 
   // ── VALIDATE: drop anything that only worked where it was built ───────────
@@ -571,6 +633,15 @@ export async function deepSearch(candles, {
     f.conditions = f.ids.map(id => ({ ...byId[id].cond }));
     f.crossAsset = f.ids.filter(id => byId[id]?.fam === 'crossasset').length;
     f.depth = f.ids.length;
+    // How long it actually held, out of sample. Reported for every run, not
+    // only swing ones — knowing that a rule's typical trade lasts four hours is
+    // information whichever horizon you asked for.
+    const hb = f.holdout?.medDuration ?? f.build?.medDuration ?? null;
+    f.hold = hb == null ? null : {
+      bars: hb,
+      days: +((hb * barMs) / 86400e3).toFixed(1),
+      swingOk: hb * barMs >= MIN_SWING_HOLD_MS,
+    };
 
     const o = f.holdout;
     // In tail mode a small holdout sample is expected, not a defect — so it
@@ -625,8 +696,11 @@ export async function deepSearch(candles, {
         // No peers: the shuffle destroys the timestamp alignment that makes a
         // cross-asset condition mean anything, so including them would compare
         // a smaller vocabulary against a larger one.
+        // Same horizon as the real run. A null measured under a wider
+        // vocabulary and no holding-period floor is not the null for this
+        // search — it would be a harder benchmark than the thing it grades.
         const nullRes = await deepSearch(shuffledNull(candles, seed), {
-          maxDepth, beam, minTrades, keep, spreadPips, calibrate: false,
+          maxDepth, beam, minTrades, keep, spreadPips, horizon, calibrate: false,
           onProgress: p => onProgress?.({ ...p, phase: `null: ${p.phase}`, evaluated }),
         });
         if (nullRes.ok && nullRes.finalists.length) {
@@ -685,5 +759,12 @@ export async function deepSearch(candles, {
     minHoldout: MIN_HOLDOUT,
     minBuildTrades: minBuild,
     objective,
+    horizon,
+    barMs,
+    // Stated rather than silent: a swing run that threw away nine otherwise
+    // good combinations should say so, or an empty result looks like the
+    // vocabulary failing when it was the holding period.
+    minHoldBars: swing ? minHoldBars : null,
+    droppedShort: swing ? droppedShort : null,
   };
 }

@@ -67,7 +67,41 @@ const MAX_PER_MONTH = 4;
 // knowing about — the daily one survived a hundred times as much trading.
 const TF_WEIGHT = { M15: 0.45, M30: 0.6, H1: 0.8, H4: 1.0, D: 1.3 };
 
+// ── Horizon ──────────────────────────────────────────────────────────────────
+//
+// A timeframe is not a preference, it is a holding period, and mixing them
+// produced a screen that could not be traded from.
+//
+// Every record on this screen is measured forward over a window the feed picks
+// per timeframe: Daily looks 10 bars ahead (about a fortnight), H4 looks 20
+// (about three days), H1 and below look a day or less. Those are two different
+// questions. Ranking a Daily setup and an M15 setup against each other on one
+// list asks you to compare "this instrument is likely to be higher in two
+// weeks" with "this instrument is likely to be higher by lunchtime", and the
+// old code went further than that — it let the M15 vote count toward the
+// direction of the Daily setup, so an intraday pullback could flip the stated
+// bias of a two-week idea.
+//
+// So evidence is split by the horizon it speaks to, and the two are combined in
+// one direction only: the slow evidence sets the bias, the fast evidence can
+// time an entry into it. That is the difference between a swing trade and an
+// intraday trade, and it is what decides which record prices the trade.
+const SWING_TFS = new Set(['D', 'H4']);
 
+// Positioning, cross-asset leadership and the calendar carry no timeframe. They
+// move over days to weeks, so they belong with the slow evidence rather than
+// being discarded — but they are context, and context alone is never a setup.
+export function horizonOf(e) {
+  const tfs = e?.tfs || [];
+  if (!tfs.length) return 'context';
+  return tfs.some(t => SWING_TFS.has(t)) ? 'swing' : 'intraday';
+}
+
+// A setup where the slow bias and the fast trigger agree is the thing being
+// hunted for, and it is much rarer than either alone. An intraday-only idea is
+// still shown — sometimes the better setup really is the fast one — but it has
+// to be exceptional to outrank a swing setup rather than merely present.
+const KIND_WEIGHT = { trigger: 1.35, swing: 1.0, intraday: 0.55 };
 
 
 // Freshness is counted in BARS, against the feed's own last bar — not in days
@@ -384,16 +418,62 @@ export function assess(sym, rec, { news = null, cot = null, now = Date.now() } =
 
   const families = [...new Set(own.map(e => e.family))];
 
+  const byWeight = (a, b) =>
+    (b.weight * (FAMILY[b.family]?.weight ?? 1)) - (a.weight * (FAMILY[a.family]?.weight ?? 1));
+
   // Direction is a vote, weighted, and only over evidence that has one. A
   // volatility squeeze and a calendar event are real but say nothing about
   // which way — counting them as agreement would manufacture a bias.
-  let up = 0, down = 0;
-  for (const e of own) {
-    if (e.dir === 'up') up += e.weight * (FAMILY[e.family]?.weight ?? 1);
-    else if (e.dir === 'down') down += e.weight * (FAMILY[e.family]?.weight ?? 1);
+  //
+  // The floor is per-population, and it has to be. TF_WEIGHT caps intraday
+  // evidence at 0.8 against Daily's 1.3, so the 0.35 that makes a slow signal
+  // count is a far higher bar for a fast one. Applied flat to both, it silenced
+  // the fast side almost entirely — on a live snapshot the only two instruments
+  // with an intraday event both agreed with their daily bias and both scored
+  // 0.2, so neither was ever reported as a timed entry.
+  //
+  // The two votes are also answering different questions. The slow one decides
+  // whether there is a trade at all and deserves a real threshold. The fast one
+  // only has to say agree, disagree, or nothing — the strength of the case was
+  // already settled by the slow evidence.
+  const MIN_NET = { swing: 0.35, intra: 0.15 };
+  const vote = (list, floor) => {
+    let up = 0, down = 0;
+    for (const e of list) {
+      if (e.dir === 'up') up += e.weight * (FAMILY[e.family]?.weight ?? 1);
+      else if (e.dir === 'down') down += e.weight * (FAMILY[e.family]?.weight ?? 1);
+    }
+    const net = up - down;
+    return { up, down, net, dir: Math.abs(net) < floor ? null : net > 0 ? 'up' : 'down' };
+  };
+
+  // Two separate votes, never one. Context sits with the slow side: an
+  // extreme in positioning is a two-week fact, not a lunchtime one.
+  const swingEv = own.filter(e => horizonOf(e) !== 'intraday');
+  const intraEv = own.filter(e => horizonOf(e) === 'intraday');
+  const isEvent = e => e.family === 'price' || e.family === 'structure';
+  const swingSetup = swingEv.some(isEvent);
+  const intraSetup = intraEv.some(isEvent);
+  const sv = vote(swingEv, MIN_NET.swing);
+  const iv = vote(intraEv, MIN_NET.intra);
+
+  let kind, dir, trigger = null, pullback = false;
+  if (swingSetup) {
+    // The slow evidence owns the direction. This is the whole correction: an
+    // M15 hammer inside a bearish daily setup is a pullback to sell into, not
+    // a reason to relabel the card bullish.
+    dir = sv.dir;
+    if (intraSetup && iv.dir && dir && iv.dir === dir) {
+      kind = 'trigger';
+      trigger = intraEv.filter(e => e.dir === dir && isEvent(e)).sort(byWeight)[0] || null;
+    } else {
+      kind = 'swing';
+      pullback = !!(dir && iv.dir && iv.dir !== dir);
+    }
+  } else {
+    kind = 'intraday';
+    dir = iv.dir;
   }
-  const net = up - down;
-  const dir = Math.abs(net) < 0.35 ? null : net > 0 ? 'up' : 'down';
 
   // The score is driven by breadth across families, not by the loudest single
   // reading. Four price-action signals from the same twenty candles are one
@@ -401,17 +481,28 @@ export function assess(sym, rec, { news = null, cot = null, now = Date.now() } =
   // three, and that is the case worth surfacing.
   const base = own.reduce((s, e) => s + e.weight * (FAMILY[e.family]?.weight ?? 1), 0);
   const breadth = families.length;
-  const score = +(base * (1 + 0.35 * (breadth - 1))).toFixed(2);
+  const score = +(base * (1 + 0.35 * (breadth - 1)) * (KIND_WEIGHT[kind] ?? 1)).toFixed(2);
 
-  const byWeight = (a, b) =>
-    (b.weight * (FAMILY[b.family]?.weight ?? 1)) - (a.weight * (FAMILY[a.family]?.weight ?? 1));
+  // Conflict is only meaningful inside one horizon. Slow and fast evidence
+  // disagreeing is ordinary and has its own name — see `pullback` above.
+  const cv = kind === 'intraday' ? iv : sv;
+
+  // Which evidence the trade would actually be built on, so the record shown
+  // on the card is measured over the horizon the trade will be held for.
+  const scope = kind === 'intraday' ? intraEv : swingEv;
 
   return {
     sym, cls, price: rec.price, dec: rec.dec, name: rec.name,
     evidence: own.sort(byWeight),
     shared: shared.sort(byWeight),
     families, breadth, dir, score,
-    conflict: up > 0.5 && down > 0.5,   // evidence disagrees — worth saying so
+    // 'swing'    — a D/H4 event, held over the horizon that record was measured on
+    // 'trigger'  — the same, with a faster event agreeing: a timed entry into it
+    // 'intraday' — nothing on the slow timeframes; a trade in its own right, and
+    //              held to a much shorter clock
+    kind, trigger, pullback,
+    swingDir: sv.dir, intraDir: iv.dir,
+    conflict: cv.up > 0.5 && cv.down > 0.5,   // evidence disagrees — worth saying so
     hasNews: shared.length > 0,
     strong: own.some(e => e.strong),
     multiTf: own.some(e => e.multiTf),
@@ -422,9 +513,12 @@ export function assess(sym, rec, { news = null, cot = null, now = Date.now() } =
     // filters for them matched nothing and silently returned an empty screen.
     // Recovering data from text meant for humans is how that happens.
     tfs: [...new Set(own.flatMap(e => e.tfs || []))],
-    // The strongest measured record among this instrument's evidence, so a
-    // card can be judged without expanding it.
-    base: own.map(e => e.base).filter(Boolean).sort((a, b) => b.n - a.n)[0] || null,
+    swingTfs: [...new Set(swingEv.flatMap(e => e.tfs || []))],
+    intraTfs: [...new Set(intraEv.flatMap(e => e.tfs || []))],
+    // The strongest measured record among the evidence the trade is built on.
+    // Taken from `scope`, not from everything: on a Daily setup with an M15
+    // pattern attached, the M15 record answers a question you are not asking.
+    base: scope.map(e => e.base).filter(Boolean).sort((a, b) => b.n - a.n)[0] || null,
     ccy: currenciesOf(sym, cls),
   };
 }
