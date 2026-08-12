@@ -134,12 +134,23 @@ export function rarityCutoffs(feed) {
 // are not.
 export function pooledRecords(feed) {
   const acc = new Map();
+  // What every bar did over the same window, pooled the same way. This is what
+  // a setup has to beat — see baselineOutcome in the bot for why 50% is the
+  // wrong benchmark.
+  const base = new Map();
   for (const rec of Object.values(feed?.instruments || {})) {
     const cls = rec.cls || 'other';
+    for (const [tf, b] of Object.entries(rec.baseline || {})) {
+      if (!b?.n) continue;
+      const bk = `${cls}|${tf}`;
+      const x = base.get(bk) || { n: 0, wins: 0, medSum: 0 };
+      x.n += b.n; x.wins += (b.win / 100) * b.n; x.medSum += b.medAtr * b.n;
+      base.set(bk, x);
+    }
     for (const [key, r] of Object.entries(rec.rarity || {})) {
       if (!r?.fwdN || r.fwdWin == null || r.fwdMedAtr == null) continue;
       const k = `${cls}|${key}`;
-      const a = acc.get(k) || { n: 0, wins: 0, medSum: 0, syms: 0, bars: r.fwdBars };
+      const a = acc.get(k) || { n: 0, wins: 0, medSum: 0, upSum: 0, syms: 0, bars: r.fwdBars };
       a.n += r.fwdN;
       // Reconstructed from the reported percentage. Exact enough at these
       // sample sizes, and the alternative is publishing a second field.
@@ -148,6 +159,10 @@ export function pooledRecords(feed) {
       // approximation available without shipping every observation, and it is
       // used only to size a target, never to claim a distribution.
       a.medSum += r.fwdMedAtr * r.fwdN;
+      // Older feeds carry no split. Assuming an even one is the neutral guess:
+      // it makes the mirrored baseline exactly 50%, which is the behaviour
+      // before baselines existed.
+      a.upSum += (r.upShare ?? 0.5) * r.fwdN;
       a.syms += 1;
       acc.set(k, a);
     }
@@ -156,6 +171,19 @@ export function pooledRecords(feed) {
   for (const [k, a] of acc) {
     if (a.syms < 3) continue;        // a "pool" of two instruments is not one
     const win = Math.round((a.wins / a.n) * 100);
+    const tf = k.split('.').pop();
+    const b = base.get(`${k.split('|')[0]}|${tf}`);
+    const up = a.upSum / a.n;
+    let baseWin = null, baseMed = null, baseN = null;
+    if (b?.n) {
+      const bw = (b.wins / b.n) * 100, bm = b.medSum / b.n;
+      // The published baseline is signed for an "up" event. A "down" event's
+      // baseline is its mirror, and a mixed population's is the blend — which
+      // lands on 50% for an even split, exactly as it should.
+      baseWin = +(up * bw + (1 - up) * (100 - bw)).toFixed(1);
+      baseMed = +(bm * (2 * up - 1)).toFixed(2);
+      baseN = b.n;
+    }
     out[k] = {
       n: a.n,
       win,
@@ -163,6 +191,12 @@ export function pooledRecords(feed) {
       bars: a.bars,
       syms: a.syms,
       ci: winCI(win, a.n),
+      upShare: +up.toFixed(3),
+      baseWin, baseMed, baseN,
+      // What the setup adds over simply being in this market for the same
+      // window. The only version of these numbers that is about the setup.
+      edgeWin: baseWin == null ? null : +(win - baseWin).toFixed(1),
+      edgeMed: baseMed == null ? null : +(a.medSum / a.n - baseMed).toFixed(2),
       pooled: true,
     };
   }
@@ -245,16 +279,43 @@ export function winInterval(win, n, tests = 1) {
   return { lo: +((centre - margin) * 100).toFixed(1), hi: +((centre + margin) * 100).toFixed(1) };
 }
 
-// The panel's question, in one place: does this setup work, well enough to be
-// worth taking, after accounting for how many setups were examined to find it?
+// Two proportions, not one against a half. The question is whether this setup
+// did better than the same window did on every other bar — a difference of
+// proportions, with both samples' uncertainty in it.
+function diffZ(win1, n1, win2, n2) {
+  if (!n1 || !n2) return null;
+  const p1 = win1 / 100, p2 = win2 / 100;
+  const pool = (p1 * n1 + p2 * n2) / (n1 + n2);
+  const se = Math.sqrt(pool * (1 - pool) * (1 / n1 + 1 / n2));
+  return se > 0 ? (p1 - p2) / se : null;
+}
+
+// The panel's question, in one place: does this setup beat simply being in the
+// market, by enough to be worth the spread, after accounting for how many
+// setups were examined to find it?
+//
+// The benchmark used to be 50%, and that credited the market's drift to the
+// pattern. Measured on a live board: every surviving "works" was a bullish
+// pattern and almost every "fails" was a bearish one, across every asset class
+// at once. Patterns do not work that way; rising markets do.
 export function verdictOf(rec, tests = 1) {
-  const iv = winInterval(rec.win, rec.n, tests);
-  if (!iv) return 'silent';
-  if (iv.lo > 50 && rec.med >= MIN_EDGE_ATR) return 'works';
-  if (iv.hi < 50) return 'fails';
-  // Significant and too small to trade is its own answer, and saying so is more
-  // useful than filing it with the genuine unknowns.
-  if (iv.lo > 50) return 'tiny';
+  const z = zFor(tests);
+  // With no baseline published yet, fall back to the old benchmark rather than
+  // going silent — an older feed should degrade, not disappear.
+  if (rec.baseWin == null) {
+    const iv = winInterval(rec.win, rec.n, tests);
+    if (!iv) return 'silent';
+    if (iv.lo > 50 && rec.med >= MIN_EDGE_ATR) return 'works';
+    if (iv.hi < 50) return 'fails';
+    if (iv.lo > 50) return 'tiny';
+    return 'silent';
+  }
+  const stat = diffZ(rec.win, rec.n, rec.baseWin, rec.baseN);
+  if (stat == null) return 'silent';
+  if (stat > z && rec.edgeMed >= MIN_EDGE_ATR) return 'works';
+  if (stat < -z) return 'fails';
+  // Beats the market measurably and by too little to collect after costs.
+  if (stat > z) return 'tiny';
   return 'silent';
 }
 

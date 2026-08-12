@@ -239,11 +239,46 @@ function atrSeries(cs) {
   };
 }
 
+// What EVERY bar does over the same window, so a pattern can be judged against
+// the market instead of against a coin.
+//
+// A forward outcome is signed by the event's own direction: for a bullish
+// pattern, "worked" means price was higher N bars later. In a market that
+// drifted up over the sample, that is true of most bars whether or not any
+// pattern was present — so measuring against 50% credits the drift to the
+// pattern. It showed: on a live board, nearly every bullish pattern "worked"
+// and nearly every bearish one "failed", across every asset class. That is not
+// what pattern skill looks like. That is what a rising market looks like.
+//
+// This is the number that tells them apart. Same window, same ATR scaling,
+// every bar that has a complete future — the answer to "what would you have got
+// for showing up at random".
+function baselineOutcome(cs, bars, atrAt) {
+  if (cs.length < bars + 30) return null;
+  const moves = [];
+  for (let i = 15; i + bars < cs.length; i++) {
+    const a = atrAt(i);
+    if (!a) continue;
+    moves.push((cs[i + bars].c - cs[i].c) / a);
+  }
+  if (moves.length < 30) return null;
+  const sorted = [...moves].sort((x, y) => x - y);
+  return {
+    bars,
+    n: moves.length,
+    // Signed for an "up" event. A "down" event's baseline is the mirror of
+    // this, which the app computes from the direction split below.
+    win: Math.round((moves.filter(m => m > 0).length / moves.length) * 100),
+    medAtr: +sorted[Math.floor(sorted.length / 2)].toFixed(2),
+  };
+}
+
 function forwardOutcome(cs, idxOf, events, bars, atrAt) {
   if (!events.length || cs.length < bars + 30) return {};
   atrAt = atrAt || atrSeries(cs);
 
   const moves = [];
+  let ups = 0;
   for (const e of events) {
     const i = idxOf.get(e.at);
     if (i == null || i + bars >= cs.length) continue;   // no complete future
@@ -253,6 +288,7 @@ function forwardOutcome(cs, idxOf, events, bars, atrAt) {
     // Signed by the event's own direction, so "worked" means the same thing
     // for a hammer and for a shooting star.
     const signed = (e.dir === 'up' ? raw : -raw) / a;
+    if (e.dir === 'up') ups++;
     moves.push(signed);
   }
   if (moves.length < 5) return { fwdN: moves.length };   // too few to report
@@ -265,6 +301,12 @@ function forwardOutcome(cs, idxOf, events, bars, atrAt) {
     fwdN: moves.length,
     fwdWin: Math.round((wins / moves.length) * 100),
     fwdMedAtr: +median.toFixed(2),
+    // What share of these occurrences pointed up. Needed to mirror the baseline
+    // correctly: a candle pattern is all one direction, but sweeps and breaks
+    // are a mix, and a mixed population's baseline is a blend of the up
+    // baseline and its mirror. Without this the comparison silently assumes an
+    // even split.
+    upShare: +(ups / moves.length).toFixed(3),
   };
 }
 
@@ -514,6 +556,10 @@ class FeedBuilder {
 
     const idxOf = new Map(cs.map((c, i) => [c.t, i]));
     const atrFn = atrSeries(cs);
+    // Measured once per timeframe, before anything is compared to it.
+    rec.baseline ||= {};
+    const bl = baselineOutcome(cs, HORIZON[tf] || 20, atrFn);
+    if (bl) rec.baseline[tf] = bl;
     for (const type of ['sweep', 'break']) {
       const hits = all.filter(e => e.type === type);
       rec.rarity[`${type}.${tf}`] = {
@@ -872,5 +918,5 @@ module.exports = {
   // Exported for tests: the forward-outcome pass is the thing every base rate
   // in the app rests on, and it is worth being able to check it directly
   // against a series with a known answer.
-  forwardOutcome, atrSeries, REVERSAL_DIR,
+  forwardOutcome, atrSeries, baselineOutcome, REVERSAL_DIR,
 };

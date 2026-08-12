@@ -137,7 +137,7 @@ export default function CommandCenter() {
       else if (verdict === 'tiny') tiny++;
       else silent++;
     }
-    works.sort((a, b) => b[1].med - a[1].med);
+    works.sort((a, b) => (b[1].edgeMed ?? b[1].med) - (a[1].edgeMed ?? a[1].med));
     fails.sort((a, b) => a[1].win - b[1].win);
     return { total: tests, works, fails, silent, tiny, z: +zFor(tests).toFixed(2) };
   }, [feed]);
@@ -309,7 +309,11 @@ export default function CommandCenter() {
                 <span style={{ color:'var(--text)' }}>{prettySetup(k)}</span>
                 <div style={{ fontSize:11, color:'var(--text3)', marginTop:2, marginLeft:20 }}>
                   {v.win}% over {v.n.toLocaleString()} occurrences across {v.syms} instruments
-                  {' '}({v.lo}–{v.hi}% at 95%) · median +{v.med} ATR
+                  {v.baseWin != null
+                    ? <> · the market itself did {v.baseWin}% over the same window, so the setup
+                        adds <strong style={{ color:'#22c55e' }}>{v.edgeWin > 0 ? '+' : ''}{v.edgeWin} points
+                        and {v.edgeMed > 0 ? '+' : ''}{v.edgeMed} ATR</strong></>
+                    : <> ({v.lo}–{v.hi}%) · median +{v.med} ATR · no market baseline yet</>}
                 </div>
               </div>
             ))}
@@ -319,7 +323,9 @@ export default function CommandCenter() {
                 <span style={{ color:'var(--text)' }}>{prettySetup(k)}</span>
                 <div style={{ fontSize:11, color:'var(--text3)', marginTop:2, marginLeft:20 }}>
                   {v.win}% over {v.n.toLocaleString()} across {v.syms} instruments
-                  {' '}({v.lo}–{v.hi}%) · median {v.med} ATR — measurably worse than a coin flip
+                  {v.baseWin != null
+                    ? <> against {v.baseWin}% for the market over the same window — {v.edgeWin} points worse</>
+                    : <> ({v.lo}–{v.hi}%) · median {v.med} ATR — worse than a coin flip</>}
                 </div>
               </div>
             ))}
@@ -328,8 +334,10 @@ export default function CommandCenter() {
               a 95% interval is a statement about one question, and asking {evidenceReport.total}
               of them would throw up four or five winners by chance alone. Each one here has to
               clear a coin flip at {evidenceReport.z} standard deviations rather than 1.96, and
-              show a median move of at least {MIN_EDGE_ATR} ATR, since a real edge of two
-              hundredths of an ATR is eaten whole by the spread.
+              show a median move of at least {MIN_EDGE_ATR} ATR beyond the baseline, since a real
+              edge of two hundredths of an ATR is eaten whole by the spread. Each setup is measured
+              against what <em>every</em> bar did over the same window, not against 50% — otherwise
+              a market that drifted up credits its drift to every bullish pattern in it.
               {evidenceReport.tiny > 0 && ` ${evidenceReport.tiny} clear the first bar and fail the second.`}
               {' '}{evidenceReport.silent} say nothing at all. Pooled within an asset class:
               one pair's sweep is a few dozen samples, the class's is thousands.
