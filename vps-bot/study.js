@@ -14,6 +14,11 @@
 // agreeing families — and writes a small result the app can read.
 
 const path = require('path');
+// The bot's entry point loads this relative to the working directory, so
+// running the study from the repo root found no .env at all and every OANDA
+// request came back 401 with fifty-nine of seventy-two instruments skipped.
+// Anchored to this file instead, so it works from anywhere.
+require('dotenv').config({ path: path.join(__dirname, '.env') });
 const { pathToFileURL } = require('url');
 const fetch = require('node-fetch');
 const { INSTRUMENTS } = require('./src/instruments');
@@ -72,11 +77,15 @@ async function main() {
     path.join(REPO_ROOT, 'src', 'utils', 'candlePatterns.js')).href);
   const patternsAt = patternsMod.patternsAt;
 
+  // Exactly as bot.js builds it. The variable is OANDA_PRACTICE, not
+  // OANDA_ENV — inventing a second name for the same setting pointed a live
+  // account's key at the practice host, which is the other half of the 401.
   const oanda = new OandaClient({
     apiKey: process.env.OANDA_API_KEY,
     accountId: process.env.OANDA_ACCOUNT_ID,
-    practice: process.env.OANDA_ENV !== 'live',
+    practice: process.env.OANDA_PRACTICE !== 'false',
   });
+  if (!process.env.OANDA_API_KEY) log('WARNING: no OANDA key in the environment — only Binance instruments will load');
 
   const rows = [];
   const baseline = [];

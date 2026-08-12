@@ -117,21 +117,46 @@ function changeOver(series, t, days) {
 // this class. Returns 'up' | 'down' | null.
 function macroDirection(cls, sym, macro, t) {
   if (!macro) return null;
+
   if (cls === 'metal' || /^XA[UG]/.test(sym)) {
     const d = changeOver(macro.dfii10, t, MACRO_LOOKBACK);
     return d == null ? null : d < 0 ? 'up' : 'down';
   }
-  if (cls === 'index') {
+
+  // Equities and equity-like risk. Stocks are indices one level down, so the
+  // same signal applies to both; crypto is included as a risk asset, which is
+  // the standard framing and the most arguable line in this file.
+  if (cls === 'index' || cls === 'tradfi' || cls === 'crypto') {
     const ten = changeOver(macro.dgs10, t, MACRO_LOOKBACK);
     const two = changeOver(macro.dgs2, t, MACRO_LOOKBACK);
     if (ten == null || two == null) return null;
-    const steepening = ten - two;
-    return steepening > 0 ? 'up' : 'down';
+    return (ten - two) > 0 ? 'up' : 'down';
   }
+
   if (cls === 'energy') {
     const d = changeOver(macro.t10yie, t, MACRO_LOOKBACK);
     return d == null ? null : d > 0 ? 'up' : 'down';
   }
+
+  // FX, through the rate differential — the textbook driver of a currency
+  // pair. A rising US 2-year is dollar-positive, so it points a pair DOWN when
+  // the dollar is the quote and UP when it is the base.
+  //
+  // Omitting this was not a neutral choice. It left every FX pair with only
+  // price and structure to draw on, so the fundamental family could never
+  // appear on more than half the board and three-family agreement was
+  // arithmetically almost impossible — the first run found it three times in
+  // 1,465 bars.
+  if (cls === 'fx') {
+    const d = changeOver(macro.dgs2, t, MACRO_LOOKBACK);
+    if (d == null) return null;
+    const [base, quote] = sym.split('/');
+    const usdStronger = d > 0;
+    if (quote === 'USD') return usdStronger ? 'down' : 'up';
+    if (base  === 'USD') return usdStronger ? 'up'   : 'down';
+    return null;                     // a cross has no direct dollar leg
+  }
+
   return null;
 }
 
