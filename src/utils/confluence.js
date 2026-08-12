@@ -482,8 +482,24 @@ export function assess(sym, rec, { news = null, cot = null, now = Date.now(), cu
 
   const families = [...new Set(own.map(e => e.family))];
 
-  const byWeight = (a, b) =>
-    (b.weight * (FAMILY[b.family]?.weight ?? 1)) - (a.weight * (FAMILY[a.family]?.weight ?? 1));
+  const wOf = e => e.weight * (FAMILY[e.family]?.weight ?? 1);
+  const byWeight = (a, b) => wOf(b) - wOf(a);
+
+  // What HAPPENED goes above what merely IS.
+  //
+  // Sorting the card purely by weight is right for scoring and wrong for
+  // reading. Context evidence carries fixed weights — cross-asset 0.9,
+  // volatility 0.8 to 1.1 — while an event is scaled by its timeframe, 0.45 on
+  // M15 against 1.3 on Daily. On a daily card the event leads comfortably. On
+  // an intraday card it cannot: EUR/JPY listed a cross-asset lead and four
+  // volatility floors above the hanging man that was the only reason the card
+  // existed, and US100 buried its strong hammer under three lines of context.
+  //
+  // This file already draws the distinction — a squeeze explains an event and
+  // cannot be one — and then displayed them in an order that hid it.
+  const EVENT = new Set(['price', 'structure']);
+  const byEventFirst = (a, b) =>
+    (EVENT.has(b.family) ? 1 : 0) - (EVENT.has(a.family) ? 1 : 0) || byWeight(a, b);
 
   // Direction is a vote, weighted, and only over evidence that has one. A
   // volatility squeeze and a calendar event are real but say nothing about
@@ -597,7 +613,7 @@ export function assess(sym, rec, { news = null, cot = null, now = Date.now(), cu
 
   return {
     sym, cls, price: rec.price, dec: rec.dec, name: rec.name,
-    evidence: own.sort(byWeight),
+    evidence: own.sort(byEventFirst),
     shared: shared.sort(byWeight),
     families, breadth, dir, score,
     coherence: +coherence.toFixed(2),
