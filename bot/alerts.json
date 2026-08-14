@@ -1,6 +1,19 @@
 {
   "alerts": [
     {
+      "id": "al_1786668627586_t8n9",
+      "type": "pattern",
+      "sym": "USOIL",
+      "repeat": true,
+      "enabled": true,
+      "createdAt": 1786668627586,
+      "lastTriggered": null,
+      "tf": "M5",
+      "pattern": "both",
+      "N": 15,
+      "lastCandleT": null
+    },
+    {
       "id": "al_1786668622645_aikr",
       "type": "pattern",
       "sym": "USOIL",
@@ -144,5 +157,5 @@
       "lastCandleT": 1784004600000
     }
   ],
-  "updatedAt": "2026-08-14T00:50:22.935Z"
+  "updatedAt": "2026-08-14T00:50:27.775Z"
 }
