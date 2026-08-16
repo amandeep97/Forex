@@ -19,18 +19,65 @@ const fetch = require('node-fetch');
 
 const CALENDAR_URL = 'https://nfs.faireconomy.media/ff_calendar_thisweek.json';
 
+// Three of the original six were failing, silently, for long enough that the
+// screen simply looked quiet — a feed that returns nothing and a feed that is
+// blocked are indistinguishable unless the failure is recorded, which it now
+// is, with the status code that caused it.
+//
+// FXStreet, DailyFX and CNBC's id-based endpoint are all behind bot protection
+// that a plain fetch does not get past. They are kept, because a block can lift
+// and the cost of trying is one request, but each now has a working alternative
+// alongside it rather than a silent hole.
 const RSS = [
   { name: 'ForexLive',   url: 'https://www.forexlive.com/feed/news' },
+  { name: 'MarketWatch', url: 'https://feeds.marketwatch.com/marketwatch/topstories/' },
+  { name: 'Investing',   url: 'https://www.investing.com/rss/news_25.rss' },
+  // Replacements for the three that stopped answering.
+  { name: 'Investing FX',  url: 'https://www.investing.com/rss/news_1.rss' },
+  { name: 'Investing Cmdty', url: 'https://www.investing.com/rss/news_11.rss' },
+  { name: 'CNBC Markets', url: 'https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=10000664' },
+  { name: 'Yahoo Finance', url: 'https://finance.yahoo.com/news/rssindex' },
+  // Kept on trial; they have been blocked, and a block can lift.
   { name: 'FXStreet',    url: 'https://www.fxstreet.com/rss/news' },
   { name: 'DailyFX',     url: 'https://www.dailyfx.com/feeds/market-news' },
-  { name: 'MarketWatch', url: 'https://feeds.marketwatch.com/marketwatch/topstories/' },
-  { name: 'CNBC',        url: 'https://www.cnbc.com/id/100003114/device/rss/rss.html' },
-  { name: 'Investing',   url: 'https://www.investing.com/rss/news_25.rss' },
 ];
 
 const NEWS_PATH = 'bot/news.json';
+const HISTORY_PATH = 'bot/calendar-history.json';
 const MAX_HEADLINES = 60;
 const KEEP_CALENDAR_DAYS = 8;
+
+// ── The surprise ─────────────────────────────────────────────────────────────
+//
+// "There is a CPI at 13:30" is a diary entry. "CPI came in 0.3 hotter than
+// forecast" is the thing that moved the market. The second cannot be computed
+// without the first being kept, which is why the actual is captured above.
+//
+// Values arrive as display strings — "0.2%", "250K", "-1.2%", "3.40M" — so
+// they have to be read as numbers before they can be compared.
+function numOf(s) {
+  if (s == null) return null;
+  const t = String(s).trim().replace(/,/g, '').replace(/%$/, '');
+  const m = t.match(/^(-?\d*\.?\d+)\s*([KMBT])?$/i);
+  if (!m) return null;
+  const mult = { K: 1e3, M: 1e6, B: 1e9, T: 1e12 }[(m[2] || '').toUpperCase()] || 1;
+  return parseFloat(m[1]) * mult;
+}
+
+function withSurprise(e) {
+  const a = numOf(e.actual), f = numOf(e.forecast), p = numOf(e.previous);
+  if (a == null) return e;
+  const out = { ...e, actualNum: a };
+  if (p != null) out.vsPrevious = +(a - p).toFixed(4);
+  if (f == null) return out;
+  out.forecastNum = f;
+  out.surprise = +(a - f).toFixed(4);
+  // A relative reading, because 0.1 is enormous on a rate decision and noise on
+  // a payrolls number. Guarded: forecasts of exactly zero are common.
+  if (Math.abs(f) > 1e-9) out.surprisePct = +(((a - f) / Math.abs(f)) * 100).toFixed(1);
+  out.beat = out.surprise > 0 ? 'above' : out.surprise < 0 ? 'below' : 'inline';
+  return out;
+}
 
 // A currency mentioned in a headline is the link between a story and an
 // instrument. Matching on the code alone puts every "CAD" in "Canada" and
@@ -86,13 +133,37 @@ function parseRSS(xml, source) {
   return out;
 }
 
+// Names that contain a currency word and have nothing to do with the currency.
+// Checked before the words are, because "Goldman Sachs raises S&P target" was
+// arriving on the gold card as though it were about bullion, and "Canada Goose
+// shares fall 8%" as though it were about the loonie.
+const NOT_ABOUT = [
+  ['goldman', 'XAU'], ['golden', 'XAU'], ['gold coast', 'XAU'], ['goldmine', 'XAU'],
+  ['silver lake', 'XAG'], ['silverstone', 'XAG'],
+  ['canada goose', 'CAD'],
+  ['boeing', 'GBP'],           // 'boe'
+  ['audit', 'AUD'], ['audio', 'AUD'], ['audience', 'AUD'],
+  ['oilers', 'OIL'],
+];
+
 // Which currencies a headline is about. Empty means general market news,
 // which is still worth showing but should not attach itself to an instrument.
+//
+// Matched on WORD BOUNDARIES. Plain substring matching put every Goldman story
+// on gold and every Canada Goose story on the Canadian dollar — and because the
+// match also drives which instrument's card a headline appears on, a mismatched
+// headline is not merely untidy, it is evidence attached to the wrong market.
 function currenciesIn(text) {
   const low = String(text).toLowerCase();
+  const blocked = new Set(NOT_ABOUT.filter(([n]) => low.includes(n)).map(([, c]) => c));
   const hit = new Set();
   for (const [code, words] of Object.entries(CURRENCY_WORDS)) {
-    if (words.some(w => low.includes(w))) hit.add(code);
+    if (blocked.has(code)) continue;
+    // \b on both sides, with the word escaped — several entries contain spaces
+    // ("new zealand") and one contains a dot in other locales.
+    if (words.some(w => new RegExp(`\\b${w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`).test(low))) {
+      hit.add(code);
+    }
   }
   return [...hit];
 }
@@ -111,6 +182,7 @@ class NewsFetcher {
     this.github = github;
     this.log = log || (() => {});
     this.sha = null;
+    this.historySha = null;
     this.last = null;         // last good payload
     this.lastRunAt = 0;
   }
@@ -123,17 +195,75 @@ class NewsFetcher {
     return list
       .map(e => {
         const at = Date.parse(e.date);
-        return {
+        // The ACTUAL, if the source carries it.
+        //
+        // This used to map six fields by hand and drop everything else, so a
+        // released number was thrown away the moment it arrived. Fifty-five
+        // past events were stored and not one recorded what had happened —
+        // the screen could say CPI was coming and never say what CPI was,
+        // which is the only part of a release that moves anything.
+        //
+        // Anything the source provides under another name is kept in `extra`
+        // rather than discarded, so a field appearing later needs no code
+        // change to be visible.
+        const known = new Set(['title', 'country', 'impact', 'date', 'forecast', 'previous', 'actual']);
+        const extra = {};
+        for (const [k, v] of Object.entries(e)) {
+          if (!known.has(k) && v != null && v !== '') extra[k] = v;
+        }
+        const row = {
           title: strip(e.title),
           country: e.country,            // currency code, e.g. USD
           impact: String(e.impact || '').toLowerCase(),   // high | medium | low
           at: Number.isFinite(at) ? at : null,
           forecast: e.forecast || '',
           previous: e.previous || '',
+          actual: e.actual || '',
         };
+        if (Object.keys(extra).length) row.extra = extra;
+        return withSurprise(row);
       })
       .filter(e => e.at && e.at > cutoff && e.at < Date.now() + KEEP_CALENDAR_DAYS * 86400e3)
       .sort((a, b) => a.at - b.at);
+  }
+
+  // Every released event, kept forever, in a file of its own.
+  //
+  // The live calendar holds eight days because that is all a screen needs. The
+  // question worth answering — "the last twelve times CPI came in hot, what did
+  // EUR/USD do" — needs years, and the only way to have years later is to start
+  // keeping them now. Merged by a stable key so a re-fetch updates a row rather
+  // than duplicating it: an event's actual appears minutes after the event
+  // itself, so the same row is written twice by design.
+  async _archive(calendar) {
+    const released = calendar.filter(e => e.at < Date.now() && e.actual);
+    if (!released.length) return;
+    let prev = [];
+    try {
+      const cur = await this.github.readJSON(HISTORY_PATH).catch(() => null);
+      if (Array.isArray(cur?.content?.events)) prev = cur.content.events;
+      this.historySha = cur?.sha || null;
+    } catch { /* first run, or unreadable — start fresh rather than lose today */ }
+
+    const byKey = new Map(prev.map(e => [`${e.at}|${e.country}|${e.title}`, e]));
+    let added = 0;
+    for (const e of released) {
+      const k = `${e.at}|${e.country}|${e.title}`;
+      if (!byKey.has(k)) added++;
+      byKey.set(k, e);
+    }
+    if (!added) return;                     // nothing new; do not churn a commit
+
+    const events = [...byKey.values()].sort((a, b) => a.at - b.at);
+    try {
+      this.historySha = await this.github.writeJSON(HISTORY_PATH,
+        { version: 1, updatedAt: new Date().toISOString(), events },
+        `bot: calendar history (+${added})`, this.historySha);
+      this.log(`News: archived ${added} released event(s), ${events.length} total`);
+    } catch (err) {
+      this.log(`News: could not archive (${err.message})`);
+      this.historySha = null;
+    }
   }
 
   async _headlines() {
@@ -144,7 +274,13 @@ class NewsFetcher {
     const ok = [], failed = [];
     settled.forEach((s, i) => {
       if (s.status === 'fulfilled' && s.value.length) { ok.push(RSS[i].name); items.push(...s.value); }
-      else failed.push(RSS[i].name);
+      // The reason, not just the name. "FXStreet failed" is a fact nobody can
+      // act on; "FXStreet 403" says it is being blocked and "FXStreet 0 items"
+      // says the parser is the problem, and those need opposite fixes.
+      else failed.push({
+        name: RSS[i].name,
+        why: s.status === 'rejected' ? (s.reason?.message || 'error') : 'no items parsed',
+      });
     });
     // Same story from three outlets is one story. Dedupe on the headline text
     // before truncating, or the list is six versions of whatever just broke.
@@ -173,6 +309,11 @@ class NewsFetcher {
     if (news.status === 'rejected') this.log(`News: headlines failed (${news.reason?.message}) — keeping previous`);
     if (!calendar.length && !headlines.length) return;
 
+    // Start keeping released events now, so the question "what did EUR/USD do
+    // the last twelve times CPI ran hot" is answerable in a few months rather
+    // than never.
+    await this._archive(calendar).catch(e => this.log(`News: archive failed (${e.message})`));
+
     const payload = {
       calendar,
       headlines,
@@ -198,4 +339,5 @@ class NewsFetcher {
   }
 }
 
-module.exports = { NewsFetcher, NEWS_PATH, parseRSS, currenciesIn, CURRENCY_WORDS };
+module.exports = { NewsFetcher, NEWS_PATH, HISTORY_PATH, parseRSS, currenciesIn,
+                   CURRENCY_WORDS, numOf, withSurprise, NOT_ABOUT };
