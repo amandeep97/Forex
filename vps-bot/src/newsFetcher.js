@@ -301,7 +301,10 @@ class NewsFetcher {
   // itself, so the same row is written twice by design.
   async _archive(calendar) {
     const released = calendar.filter(e => e.at < Date.now() && e.actual);
-    if (!released.length) return;
+    // No early return on an empty batch. The cleanup below has to run even when
+    // there is nothing to add — and once the country check was in place there
+    // never was, so the purge sat behind a guard it could not get past and the
+    // four bad rows stayed exactly where they were.
     let prev = [];
     try {
       const cur = await this.github.readJSON(HISTORY_PATH).catch(() => null);
@@ -315,7 +318,6 @@ class NewsFetcher {
     // that ever reads this file.
     const before = prev.length;
     prev = prev.filter(e => !(e.actualFrom === 'BLS' && e.country !== RELEASE_COUNTRY));
-    if (prev.length !== before) this.log(`News: purged ${before - prev.length} mis-attributed archive row(s)`);
 
     // Keyed to the DAY, not the minute. The calendar restates its own
     // timestamps — the same Canadian Core CPI arrived at 12:30 and again at
@@ -329,14 +331,18 @@ class NewsFetcher {
       if (!byKey.has(k)) added++;
       byKey.set(k, e);
     }
-    if (!added) return;                     // nothing new; do not churn a commit
+    const purged = before - prev.length;
+    // Write when something was added OR something was removed. Gating only on
+    // additions meant a file could be known to be wrong and never corrected.
+    if (!added && !purged) return;          // genuinely nothing to do
 
     const events = [...byKey.values()].sort((a, b) => a.at - b.at);
+    const what = [added && `+${added}`, purged && `-${purged} bad`].filter(Boolean).join(', ');
     try {
       this.historySha = await this.github.writeJSON(HISTORY_PATH,
         { version: 1, updatedAt: new Date().toISOString(), events },
-        `bot: calendar history (+${added})`, this.historySha);
-      this.log(`News: archived ${added} released event(s), ${events.length} total`);
+        `bot: calendar history (${what})`, this.historySha);
+      this.log(`News: archive ${what}, ${events.length} total`);
     } catch (err) {
       this.log(`News: could not archive (${err.message})`);
       this.historySha = null;
