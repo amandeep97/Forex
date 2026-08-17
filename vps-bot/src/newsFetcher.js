@@ -74,6 +74,14 @@ function numOf(s) {
 // An explicit map, not a fuzzy match. "Core CPI m/m" and "CPI m/m" differ by
 // one word and are different series, and a matcher clever enough to pair them
 // automatically is clever enough to pair them wrongly.
+//
+// And US ONLY, which the first version of this forgot. BLS is a United States
+// agency; every series below is a US number. Matching on title alone put the US
+// unemployment rate onto China's release and the US CPI onto Canada's — the
+// archive recorded Canadian CPI as 0.07 against a 0.4% Canadian forecast and
+// called it a miss. Every calendar carries the same event names for a dozen
+// countries, so a title is not an identifier.
+const RELEASE_COUNTRY = 'USD';
 const RELEASE_MAP = [
   [/^core cpi m\/m$/i,               'core_cpi_mom'],
   [/^cpi m\/m$/i,                    'cpi_mom'],
@@ -85,8 +93,11 @@ const RELEASE_MAP = [
 // The released value for the month an event covers. A release in March reports
 // February, so the reading published on or just before the event date is the
 // one it announced — never a later one, which would be a number nobody had.
-function releasedValue(title, at, releases) {
+function releasedValue(title, at, releases, country) {
   if (!releases || !title) return null;
+  // The country is not optional. Without it this fills every nation's release
+  // with a US number.
+  if (country !== RELEASE_COUNTRY) return null;
   const key = RELEASE_MAP.find(([re]) => re.test(title.trim()))?.[1];
   const series = key && releases[key];
   if (!Array.isArray(series) || !series.length) return null;
@@ -270,7 +281,7 @@ class NewsFetcher {
         // left the field empty — a value the calendar does provide is always
         // preferred to one reconstructed here.
         if (!row.actual && row.at && row.at < Date.now()) {
-          const v = releasedValue(row.title, row.at, releases);
+          const v = releasedValue(row.title, row.at, releases, row.country);
           if (v != null) { row.actual = String(v); row.actualFrom = 'BLS'; }
         }
         if (Object.keys(extra).length) row.extra = extra;
@@ -298,10 +309,23 @@ class NewsFetcher {
       this.historySha = cur?.sha || null;
     } catch { /* first run, or unreadable — start fresh rather than lose today */ }
 
-    const byKey = new Map(prev.map(e => [`${e.at}|${e.country}|${e.title}`, e]));
+    // Drop anything the country-blind version of this wrote. A US figure filed
+    // against a Canadian release is not a row to keep and correct later; it is
+    // a fabricated observation, and leaving it in would poison the first study
+    // that ever reads this file.
+    const before = prev.length;
+    prev = prev.filter(e => !(e.actualFrom === 'BLS' && e.country !== RELEASE_COUNTRY));
+    if (prev.length !== before) this.log(`News: purged ${before - prev.length} mis-attributed archive row(s)`);
+
+    // Keyed to the DAY, not the minute. The calendar restates its own
+    // timestamps — the same Canadian Core CPI arrived at 12:30 and again at
+    // 12:32 and was archived twice, because an exact-millisecond key treats a
+    // two-minute correction as a different event.
+    const keyOf = e => `${new Date(e.at).toISOString().slice(0, 10)}|${e.country}|${e.title}`;
+    const byKey = new Map(prev.map(e => [keyOf(e), e]));
     let added = 0;
     for (const e of released) {
-      const k = `${e.at}|${e.country}|${e.title}`;
+      const k = keyOf(e);
       if (!byKey.has(k)) added++;
       byKey.set(k, e);
     }
