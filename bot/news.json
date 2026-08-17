@@ -64,15 +64,6 @@
       "actual": ""
     },
     {
-      "title": "Foreign Direct Investment ytd/y",
-      "country": "CNY",
-      "impact": "low",
-      "at": 1786946520000,
-      "forecast": "",
-      "previous": "-5.0%",
-      "actual": ""
-    },
-    {
       "title": "Fixed Asset Investment ytd/y",
       "country": "CNY",
       "impact": "low",
@@ -124,7 +115,14 @@
       "at": 1786950000000,
       "forecast": "5.1%",
       "previous": "5.0%",
-      "actual": ""
+      "actual": "4.1",
+      "actualFrom": "BLS",
+      "actualNum": 4.1,
+      "vsPrevious": -0.9,
+      "forecastNum": 5.1,
+      "surprise": -1,
+      "surprisePct": -19.6,
+      "beat": "below"
     },
     {
       "title": "CPI m/m",
@@ -133,7 +131,14 @@
       "at": 1786969800000,
       "forecast": "0.4%",
       "previous": "-0.4%",
-      "actual": ""
+      "actual": "0.07",
+      "actualFrom": "BLS",
+      "actualNum": 0.07,
+      "vsPrevious": 0.47,
+      "forecastNum": 0.4,
+      "surprise": -0.33,
+      "surprisePct": -82.5,
+      "beat": "below"
     },
     {
       "title": "Median CPI y/y",
@@ -163,15 +168,6 @@
       "actual": ""
     },
     {
-      "title": "Core CPI m/m",
-      "country": "CAD",
-      "impact": "low",
-      "at": 1786969800000,
-      "forecast": "",
-      "previous": "0.1%",
-      "actual": ""
-    },
-    {
       "title": "Foreign Securities Purchases",
       "country": "CAD",
       "impact": "low",
@@ -188,6 +184,18 @@
       "forecast": "10.6",
       "previous": "15.6",
       "actual": ""
+    },
+    {
+      "title": "Core CPI m/m",
+      "country": "CAD",
+      "impact": "low",
+      "at": 1786969920000,
+      "forecast": "",
+      "previous": "0.1%",
+      "actual": "0.22",
+      "actualFrom": "BLS",
+      "actualNum": 0.22,
+      "vsPrevious": 0.12
     },
     {
       "title": "NAHB Housing Market Index",
@@ -244,6 +252,15 @@
       "actual": ""
     },
     {
+      "title": "Foreign Direct Investment ytd/y",
+      "country": "CNY",
+      "impact": "low",
+      "at": 1787032920000,
+      "forecast": "",
+      "previous": "-5.0%",
+      "actual": ""
+    },
+    {
       "title": "ZEW Economic Sentiment",
       "country": "EUR",
       "impact": "low",
@@ -257,7 +274,7 @@
       "country": "EUR",
       "impact": "low",
       "at": 1787043600000,
-      "forecast": "30.0",
+      "forecast": "30.1",
       "previous": "26.3",
       "actual": ""
     },
@@ -867,444 +884,455 @@
   ],
   "headlines": [
     {
-      "title": "Gold rises near $4,400 as Fed minutes, oil risks shape rate outlook",
-      "link": "https://www.investing.com/news/commodities-news/gold-rises-near-4400-as-fed-minutes-oil-risks-shape-rate-outlook-4862058",
+      "title": "SpaceX&#x2019;s stock is rising, and that&#x2019;s a good sign for Nvidia and Google",
+      "link": "https://www.marketwatch.com/story/spacexs-stock-is-rising-and-thats-a-good-sign-for-nvidia-and-google-913ce9de?mod=mw_rss_topstories",
+      "source": "MarketWatch",
+      "at": 1786993080000,
+      "ccy": []
+    },
+    {
+      "title": "Getting diagnosed with dementia isn&#x2019;t the end. It&#x2019;s a time to take financial action.",
+      "link": "https://www.marketwatch.com/story/getting-diagnosed-with-dementia-isnt-the-end-its-a-time-to-take-financial-action-f52769b6?mod=mw_rss_topstories",
+      "source": "MarketWatch",
+      "at": 1786992720000,
+      "ccy": []
+    },
+    {
+      "title": "Best credit cards for gas (August 2026)",
+      "link": "https://finance.yahoo.com/personal-finance/credit-cards/article/best-credit-cards-for-gas-august-2026-184035427.html",
+      "source": "Yahoo Finance",
+      "at": 1786992035000,
+      "ccy": []
+    },
+    {
+      "title": "Synchrony, credit card issuer to Amazon and Walmart, partners with OpenAI for ChatGPT shopping",
+      "link": "https://www.cnbc.com/2026/08/17/synchrony-openai-chatgpt-shopping.html",
+      "source": "CNBC Markets",
+      "at": 1786991574000,
+      "ccy": []
+    },
+    {
+      "title": "Oil rises nearly 3%, Brent tops $90 a barrel as Trump threatens to bomb Oman",
+      "link": "https://www.investing.com/news/commodities-news/oil-prices-edge-lower-after-strong-week-iran-jitters-persist-4862062",
       "source": "Investing Cmdty",
-      "at": 1786929667000,
+      "at": 1786991380000,
       "ccy": [
-        "USD",
-        "XAU",
         "OIL"
       ]
     },
     {
-      "title": "Wall St futures steady as rate hike fears ease; earnings buoy stocks",
+      "title": "Why is Brent Oil Futures stock surging today?",
+      "link": "https://www.investing.com/news/stock-market-news/why-is-brent-oil-futures-stock-surging-today-93CH-4863805",
+      "source": "Investing",
+      "at": 1786991352000,
+      "ccy": [
+        "OIL"
+      ]
+    },
+    {
+      "title": "Why is Flotek Industries stock crashing today?",
+      "link": "https://www.investing.com/news/stock-market-news/why-is-flotek-industries-stock-crashing-today-93CH-4863802",
+      "source": "Investing",
+      "at": 1786991159000,
+      "ccy": []
+    },
+    {
+      "title": "Stocks slip as oil climbs; investors eye Fed minutes, retail earnings this week",
       "link": "https://www.investing.com/news/stock-market-news/wall-st-futures-steady-as-rate-hike-fears-ease-earnings-buoy-stocks-4862054",
       "source": "Investing",
-      "at": 1786928909000,
-      "ccy": []
-    },
-    {
-      "title": "Yen edges higher as traders push back Fed rate hike bets, shrug off soft GDP",
-      "link": "https://investinglive.com/news/yen-edges-higher-as-traders-push-back-fed-rate-hike-bets-shrug-off-soft-gdp/",
-      "source": "ForexLive",
-      "at": 1786928880000,
+      "at": 1786991104000,
       "ccy": [
         "USD",
-        "JPY"
-      ]
-    },
-    {
-      "title": "Russia hits steel plant in new strikes on Ukraine, Kyiv attacks Moscow region",
-      "link": "https://www.investing.com/news/stock-market-news/russia-hits-steel-plant-in-new-strikes-on-ukraine-kyiv-attacks-moscow-region-4861966",
-      "source": "Investing",
-      "at": 1786928806000,
-      "ccy": []
-    },
-    {
-      "title": "Nikkei 225 stalls at 61.8% Fib level: Live hourly levels",
-      "link": "https://www.investing.com/news/stock-market-news/nikkei-225-stalls-at-618-fib-level-live-hourly-levels-93CH-4862053",
-      "source": "Investing",
-      "at": 1786928564000,
-      "ccy": []
-    },
-    {
-      "title": "U.S. stock futures little changed as investors ponder the Fed&#x2019;s next move",
-      "link": "https://www.marketwatch.com/story/u-s-stock-futures-little-changed-as-investors-ponder-the-feds-next-move-27bcbea4?mod=mw_rss_topstories",
-      "source": "MarketWatch",
-      "at": 1786928100000,
-      "ccy": [
-        "USD"
-      ]
-    },
-    {
-      "title": "BlueScope FY profit jumps over 100% on U.S., Asia strength",
-      "link": "https://www.investing.com/news/stock-market-news/bluescope-fy-profit-jumps-over-100-on-us-asia-strength-93CH-4862048",
-      "source": "Investing",
-      "at": 1786927909000,
-      "ccy": []
-    },
-    {
-      "title": "New Zealand’s a2 Milk tumbles on weak earnings forecast, profit miss",
-      "link": "https://www.investing.com/news/stock-market-news/new-zealands-a2-milk-posts-44-fall-in-fullyear-profit-4862012",
-      "source": "Investing",
-      "at": 1786927707000,
-      "ccy": [
-        "NZD"
-      ]
-    },
-    {
-      "title": "Singapore NODX growth holds above 20% for fourth straight month in July",
-      "link": "https://investinglive.com/news/singapore-nodx-growth-holds-above-20-for-fourth-straight-month-in-july/",
-      "source": "ForexLive",
-      "at": 1786927304000,
-      "ccy": []
-    },
-    {
-      "title": "Oil treads water as US-Iran peace talks stall, Hormuz shipping slows",
-      "link": "https://www.investing.com/news/commodities-news/oil-treads-water-as-usiran-peace-talks-stall-hormuz-shipping-slows-4862040",
-      "source": "Investing Cmdty",
-      "at": 1786926988000,
-      "ccy": [
         "OIL"
       ]
     },
     {
-      "title": "From coffee to hotpot, brands race to grab a bite of China’s growing burger market",
-      "link": "https://www.investing.com/news/stock-market-news/from-coffee-to-hotpot-brands-race-to-grab-a-bite-of-chinas-growing-burger-market-4862025",
+      "title": "Stocks making the biggest moves midday: EyePoint, Intuitive Machines, Workday, JetBlue & more",
+      "link": "https://www.cnbc.com/2026/08/17/stocks-making-big-moves-midday-eypt-lunr-wday-jblu.html",
+      "source": "CNBC Markets",
+      "at": 1786990970000,
+      "ccy": []
+    },
+    {
+      "title": "Flotek Industries stock plummets on short seller report",
+      "link": "https://www.investing.com/news/stock-market-news/flotek-industries-stock-plummets-on-short-seller-report-93CH-4863799",
       "source": "Investing",
-      "at": 1786926312000,
+      "at": 1786990836000,
       "ccy": []
     },
     {
-      "title": "New Zealand’s Synlait denies takeover talks with Fonterra and a2 Milk",
-      "link": "https://www.investing.com/news/stock-market-news/new-zealands-synlait-denies-takeover-talks-with-fonterra-and-a2-milk-4862029",
+      "title": "Microsoft-linked QTS bond sale draws $8 billion in demand - Bloomberg",
+      "link": "https://www.investing.com/news/stock-market-news/microsoftlinked-qts-bond-sale-draws-8-billion-in-demand--bloomberg-93CH-4863795",
       "source": "Investing",
-      "at": 1786926065000,
-      "ccy": [
-        "NZD"
-      ]
-    },
-    {
-      "title": "Shipping slows through Strait of Hormuz after tanker attacks, data shows",
-      "link": "https://www.investing.com/news/commodities-news/shipping-slows-through-strait-of-hormuz-after-tanker-attacks-data-shows-4862024",
-      "source": "Investing Cmdty",
-      "at": 1786924846000,
+      "at": 1786990127000,
       "ccy": []
     },
     {
-      "title": "Japan Q2 GDP growth undershoots forecasts, complicating BOJ's hike timeline",
-      "link": "https://investinglive.com/news/japan-q2-gdp-growth-undershoots-forecasts-complicating-boj-s-hike-timeline/",
-      "source": "ForexLive",
-      "at": 1786924742000,
-      "ccy": [
-        "JPY"
-      ]
-    },
-    {
-      "title": "Why is A2 Milk stock tumbling today?",
-      "link": "https://www.investing.com/news/stock-market-news/why-is-a2-milk-stock-tumbling-today-93CH-4862020",
+      "title": "Ferrari’s bespoke Luce EV one-off fetches $40 million at charity auction",
+      "link": "https://www.investing.com/news/stock-market-news/ferraris-bespoke-luce-ev-oneoff-fetches-40-million-at-charity-auction-4862354",
       "source": "Investing",
-      "at": 1786924217000,
+      "at": 1786990003000,
       "ccy": []
     },
     {
-      "title": "a2 Milk FY profit slumps 44% on China supply disruptions",
-      "link": "https://www.investing.com/news/stock-market-news/a2-milk-fy-profit-slumps-44-on-china-supply-disruptions-93CH-4862019",
+      "title": "Andreessen Horowitz faces DOJ probe over board directors - Bloomberg",
+      "link": "https://www.investing.com/news/stock-market-news/andreessen-horowitz-faces-doj-probe-over-board-directors--bloomberg-93CH-4863793",
       "source": "Investing",
-      "at": 1786924207000,
+      "at": 1786989959000,
       "ccy": []
     },
     {
-      "title": "UK data - Housing slump and hiring freeze cloud outlook",
-      "link": "https://investinglive.com/news/uk-data-housing-slump-and-hiring-freeze-cloud-outlook/",
-      "source": "ForexLive",
-      "at": 1786922777000,
-      "ccy": []
-    },
-    {
-      "title": "More NZ data: Retail card spending (July) +1.3% m/m (prior -1.4%)",
-      "link": "https://investinglive.com/news/more-nz-data-retail-card-spending-july-1-3-m-m-prior-1-4/",
-      "source": "ForexLive",
-      "at": 1786920608000,
-      "ccy": []
-    },
-    {
-      "title": "NZ services sector holds above breakeven for second month as PMI eases to 50.6 (prior 50.9)",
-      "link": "https://investinglive.com/news/nz-services-sector-holds-above-breakeven-for-second-month-as-pmi-eases-to-50-6-prior-50-9/",
-      "source": "ForexLive",
-      "at": 1786919974000,
-      "ccy": []
-    },
-    {
-      "title": "China delays July economic data release to late afternoon slot",
-      "link": "https://investinglive.com/news/china-delays-july-economic-data-release-to-late-afternoon-slot/",
-      "source": "ForexLive",
-      "at": 1786917505000,
-      "ccy": []
-    },
-    {
-      "title": "Russia stocks lower at close of trade; MOEX Russia Index down 4.29%",
-      "link": "https://www.investing.com/news/stock-market-news/russia-stocks-lower-at-close-of-trade-moex-russia-index-down-429-4862013",
+      "title": "SanDisk, SpaceX among market cap stock movers on Monday",
+      "link": "https://www.investing.com/news/stock-market-news/sandisk-spacex-among-market-cap-stock-movers-on-monday-93CH-4863789",
       "source": "Investing",
-      "at": 1786915203000,
+      "at": 1786989684000,
       "ccy": []
     },
     {
-      "title": "Can I claim 50% of my husband&#x2019;s Social Security now &#x2014; and switch to my higher benefit at 70?",
-      "link": "https://www.marketwatch.com/story/can-i-claim-50-of-my-husbands-social-security-now-and-switch-to-my-higher-benefit-at-70-5518700b?mod=mw_rss_topstories",
-      "source": "MarketWatch",
-      "at": 1786904100000,
+      "title": "Pending home sales and building permits among economic data due Tuesday",
+      "link": "https://www.investing.com/news/stock-market-news/pending-home-sales-and-building-permits-among-economic-data-due-tuesday-93CH-4863788",
+      "source": "Investing",
+      "at": 1786989642000,
       "ccy": []
     },
     {
-      "title": "My friend&#x2019;s mother died. Can she stop Medicaid from taking the family home?",
-      "link": "https://www.marketwatch.com/story/shes-desperate-my-friends-mother-died-can-she-stop-medicaid-from-taking-the-family-home-394fb6e9?mod=mw_rss_topstories",
-      "source": "MarketWatch",
-      "at": 1786901400000,
+      "title": "Tutor Perini wins $60M Coast Guard contract in Florida",
+      "link": "https://www.investing.com/news/stock-market-news/tutor-perini-wins-60m-coast-guard-contract-in-florida-93CH-4863787",
+      "source": "Investing",
+      "at": 1786989432000,
       "ccy": []
     },
     {
-      "title": "&#x2018;It&#x2019;s a double-edged sword&#x2019;: My husband got a $42,000 bonus. Will it wipe out our Affordable Care Act subsidy?",
-      "link": "https://www.marketwatch.com/story/its-a-double-edged-sword-my-husband-got-a-42-000-bonus-will-it-wipe-out-our-affordable-care-act-subsidy-32db285e?mod=mw_rss_topstories",
+      "title": "Here&#x2019;s how Amazon&#x2019;s stock could nearly double by the end of next year, according to Morgan Stanley",
+      "link": "https://www.marketwatch.com/story/heres-how-amazons-stock-could-nearly-double-by-the-end-of-next-year-according-to-morgan-stanley-91b97520?mod=mw_rss_topstories",
       "source": "MarketWatch",
-      "at": 1786899600000,
+      "at": 1786989420000,
       "ccy": []
     },
     {
-      "title": "I&#x2019;m 63, a retired CPA with a $1.2 million 401(k). Do I need to bother with a Roth conversion?",
-      "link": "https://www.marketwatch.com/story/im-63-and-a-retired-cpa-i-have-a-1-2-million-401-k-do-i-need-a-roth-conversion-0a227302?mod=mw_rss_topstories",
-      "source": "MarketWatch",
-      "at": 1786897320000,
-      "ccy": []
-    },
-    {
-      "title": "Here&#x2019;s the real reason oil prices aren&#x2019;t moving higher",
-      "link": "https://www.marketwatch.com/story/heres-the-real-reason-oil-prices-arent-moving-higher-256afdbc?mod=mw_rss_topstories",
-      "source": "MarketWatch",
-      "at": 1786885200000,
-      "ccy": [
-        "OIL"
-      ]
-    },
-    {
-      "title": "The Mediterranean diet is the best out there. Here&#x2019;s why Americans struggle with it.",
+      "title": "The Mediterranean diet is the best one out there. Here&#x2019;s why Americans struggle with it.",
       "link": "https://www.marketwatch.com/story/the-mediterranean-diet-is-the-best-out-there-heres-why-americans-struggle-with-it-081f3fe7?mod=mw_rss_topstories",
       "source": "MarketWatch",
-      "at": 1786881600000,
+      "at": 1786988700000,
       "ccy": []
     },
     {
-      "title": "Goldman Sachs picks China stocks poised to benefit from a new wave of AI-related hardware exports",
-      "link": "https://www.cnbc.com/2026/08/16/goldman-picks-china-stocks-poised-to-benefit-from-wave-of-ai-related-exports.html",
+      "title": "Stanley Druckenmiller loaded up on Amazon and chip stocks before July rout",
+      "link": "https://www.cnbc.com/2026/08/17/druckenmiller-loaded-up-on-amazon-and-chip-stocks-before-july-rout.html",
       "source": "CNBC Markets",
-      "at": 1786881308000,
+      "at": 1786988696000,
       "ccy": []
     },
     {
-      "title": "Walmart and Target are about to reveal the health of the U.S. consumer",
-      "link": "https://www.marketwatch.com/story/walmart-and-target-are-about-to-reveal-the-health-of-the-u-s-consumer-d5b89491?mod=mw_rss_topstories",
+      "title": "Prediction market traders see roughly 1-in-4 odds Paramount’s bid to buy Warner Bros. Discovery fails",
+      "link": "https://www.cnbc.com/2026/08/17/pskys-wbd-bid-has-1-in-4-odds-of-falling-through-kalshi-traders-say.html",
+      "source": "CNBC Markets",
+      "at": 1786988620000,
+      "ccy": []
+    },
+    {
+      "title": "Northwest Europe gasoline margins drop but stay firm on supply",
+      "link": "https://www.investing.com/news/commodities-news/northwest-europe-gasoline-margins-drop-but-stay-firm-on-supply-93CH-4863770",
+      "source": "Investing Cmdty",
+      "at": 1786987634000,
+      "ccy": []
+    },
+    {
+      "title": "European diesel margins jump amid supply disruptions",
+      "link": "https://www.investing.com/news/commodities-news/european-diesel-margins-jump-amid-supply-disruptions-93CH-4863767",
+      "source": "Investing Cmdty",
+      "at": 1786987512000,
+      "ccy": []
+    },
+    {
+      "title": "Investor dubbed the &#x2018;AI stock god&#x2019; had 56% of his hedge fund invested in these two stocks before the July blow-up",
+      "link": "https://www.marketwatch.com/story/investor-dubbed-ai-stock-god-had-56-of-his-funds-in-these-two-stocks-before-it-blew-up-07472f46?mod=mw_rss_topstories",
       "source": "MarketWatch",
-      "at": 1786878000000,
-      "ccy": []
-    },
-    {
-      "title": "Mortgage and refinance interest rates today, Sunday, August 16, 2026: Rates mostly lower than last week",
-      "link": "https://finance.yahoo.com/personal-finance/mortgages/article/mortgage-and-refinance-interest-rates-today-sunday-august-16-2026-rates-mostly-lower-than-last-week-100000512.html",
-      "source": "Yahoo Finance",
-      "at": 1786874400000,
-      "ccy": []
-    },
-    {
-      "title": "Best CD rates today, Sunday, August 16, 2026: Lock in up to 4.30% APY",
-      "link": "https://finance.yahoo.com/personal-finance/banking/article/best-cd-rates-today-sunday-august-16-2026-lock-in-up-to-430-apy-100000956.html",
-      "source": "Yahoo Finance",
-      "at": 1786874400000,
-      "ccy": []
-    },
-    {
-      "title": "Billionaire Bill Ackman doubles down on these stocks in Q2",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/billionaire-bill-ackman-doubles-down-020300181.html",
-      "source": "Yahoo Finance",
-      "at": 1786845780000,
-      "ccy": []
-    },
-    {
-      "title": "Morgan Stanley sends a blunt Tesla message to investors",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/morgan-stanley-sends-blunt-tesla-010300423.html",
-      "source": "Yahoo Finance",
-      "at": 1786842180000,
-      "ccy": []
-    },
-    {
-      "title": "Historic retailer gets lifeline after warning it could collapse",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/historic-retailer-gets-lifeline-warning-220700487.html",
-      "source": "Yahoo Finance",
-      "at": 1786831620000,
-      "ccy": []
-    },
-    {
-      "title": "Think interest rates are high now? These charts offer a different perspective.",
-      "link": "https://www.marketwatch.com/story/think-interest-rates-are-high-now-these-charts-offers-a-different-perspective-ae5f28c6?mod=mw_rss_topstories",
-      "source": "MarketWatch",
-      "at": 1786820460000,
-      "ccy": []
-    },
-    {
-      "title": "Wall Street Focused on D-Wave’s Earnings. Its Bigger Story Came 1 Day Before.",
-      "link": "https://finance.yahoo.com/technology/ai/articles/wall-street-focused-d-wave-183002547.html",
-      "source": "Yahoo Finance",
-      "at": 1786818602000,
+      "at": 1786984260000,
       "ccy": []
     },
     {
       "title": "Owning a home is overrated. Renting is now often a much better money move.",
       "link": "https://www.marketwatch.com/story/owning-a-home-is-overrated-renting-is-now-often-a-much-better-money-move-711288a6?mod=mw_rss_topstories",
       "source": "MarketWatch",
-      "at": 1786818180000,
+      "at": 1786983420000,
       "ccy": []
     },
     {
-      "title": "Sergey Brin Wants Google to Double Down on Gemini. What That Means for GOOGL Stock.",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/sergey-brin-wants-google-double-170001830.html",
-      "source": "Yahoo Finance",
-      "at": 1786813201000,
+      "title": "European stocks close mostly lower as yields rise",
+      "link": "https://investinglive.com/news/european-stocks-close-mostly-lower-as-yields-rise/",
+      "source": "ForexLive",
+      "at": 1786982506000,
       "ccy": []
     },
     {
-      "title": "Nvidia Is Turning Its Massive Cash Flow Into Another AI Growth Engine",
-      "link": "https://finance.yahoo.com/technology/ai/articles/nvidia-turning-massive-cash-flow-154502275.html",
-      "source": "Yahoo Finance",
-      "at": 1786808702000,
+      "title": "Apple&#x2019;s stock could rise 30% if it strikes an Nvidia deal for AI, this analyst says",
+      "link": "https://www.marketwatch.com/story/apples-stock-could-rise-30-if-it-strikes-an-nvidia-deal-for-ai-this-analyst-says-f5f5c861?mod=mw_rss_topstories",
+      "source": "MarketWatch",
+      "at": 1786982400000,
       "ccy": []
     },
     {
-      "title": "Bill Gates’ Portfolio Just Added Home Depot (HD) Despite Risks. Time to Buy?",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/bill-gates-portfolio-just-added-154023511.html",
-      "source": "Yahoo Finance",
-      "at": 1786808423000,
+      "title": "Kushner, Netanyahu agree on path forward for Gaza, Board of Peace official says",
+      "link": "https://www.investing.com/news/commodities-news/kushner-netanyahu-agree-on-path-forward-for-gaza-board-of-peace-official-says-4863648",
+      "source": "Investing Cmdty",
+      "at": 1786980633000,
       "ccy": []
     },
     {
-      "title": "53-year-old lawn and garden giant faces Chapter 11, liquidation",
-      "link": "https://finance.yahoo.com/small-business/articles/53-old-lawn-garden-giant-153300199.html",
-      "source": "Yahoo Finance",
-      "at": 1786807980000,
+      "title": "I have $10 million and pay two advisers for financial help, but still have questions",
+      "link": "https://www.marketwatch.com/story/i-have-10-million-and-pay-two-advisers-for-financial-help-but-still-have-questions-7c29b83f?mod=mw_rss_topstories",
+      "source": "MarketWatch",
+      "at": 1786980540000,
       "ccy": []
     },
     {
-      "title": "Alphabet Stock to $515: 3 Reasons the Bull Case Is Getting Stronger",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/alphabet-stock-515-3-reasons-153002451.html",
-      "source": "Yahoo Finance",
-      "at": 1786807802000,
+      "title": "Canadian dollar rises as inflation exceeds expectations",
+      "link": "https://www.investing.com/news/forex-news/canadian-dollar-rises-as-inflation-exceeds-expectations-93CH-4863620",
+      "source": "Investing FX",
+      "at": 1786980419000,
+      "ccy": [
+        "USD"
+      ]
+    },
+    {
+      "title": "Micron, Sandisk and other chip stocks climb as investors get more confident about AI spending",
+      "link": "https://www.marketwatch.com/story/micron-sandisk-and-other-chip-stocks-climb-as-investors-are-more-confident-about-ai-spending-128374fa?mod=mw_rss_topstories",
+      "source": "MarketWatch",
+      "at": 1786980120000,
       "ccy": []
     },
     {
-      "title": "A 1-hour delay replying to a recruiter cuts your hiring chances by half. Here's why",
-      "link": "https://finance.yahoo.com/small-business/articles/1-hour-delay-replying-recruiter-153000153.html",
-      "source": "Yahoo Finance",
-      "at": 1786807800000,
+      "title": "&#x2018;I&#x2019;m running out of time&#x2019;: I sold my $300,000 rental property at a $75,000 loss. Should I buy another one to avoid taxes?",
+      "link": "https://www.marketwatch.com/story/im-running-out-of-time-i-sold-my-300-000-rental-property-at-a-75-000-loss-should-i-buy-another-one-to-avoid-taxes-f214c172?mod=mw_rss_topstories",
+      "source": "MarketWatch",
+      "at": 1786979700000,
       "ccy": []
     },
     {
-      "title": "Why Medicare Advantage providers are cutting plans — and what to do if your coverage is affected",
-      "link": "https://finance.yahoo.com/healthcare/article/why-medicare-advantage-providers-are-cutting-plans--and-what-to-do-if-your-coverage-is-affected-150759090.html",
-      "source": "Yahoo Finance",
-      "at": 1786806479000,
+      "title": "US August NAHB housing market index 35 vs 33 expected",
+      "link": "https://investinglive.com/news/us-august-nahb-housing-market-index-vs-33-expected/",
+      "source": "ForexLive",
+      "at": 1786975203000,
       "ccy": []
     },
     {
-      "title": "NOW Stock Has Rebounded Over 54% — Why ServiceNow’s Rally Could Have Further Room to Run",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/now-stock-rebounded-over-54-150002323.html",
+      "title": "Bitcoin and ethereum prices today, Monday, August 17, 2026: Crypto prices down slightly as analysts question timing of bear market bottom",
+      "link": "https://finance.yahoo.com/personal-finance/investing/article/bitcoin-and-ethereum-prices-today-monday-august-17-2026-crypto-prices-down-slightly-as-analysts-question-timing-of-bear-market-bottom-135747407.html",
       "source": "Yahoo Finance",
-      "at": 1786806002000,
-      "ccy": []
-    },
-    {
-      "title": "Suze Orman says AI could force you out of your job before 65 — and retiring early costs you each year",
-      "link": "https://finance.yahoo.com/technology/ai/articles/suze-orman-says-ai-could-150000538.html",
-      "source": "Yahoo Finance",
-      "at": 1786806000000,
-      "ccy": []
-    },
-    {
-      "title": "Prediction market operator Kalshi hits back at Nevada regulator over geofencing fine",
-      "link": "https://finance.yahoo.com/markets/crypto/articles/prediction-market-operator-kalshi-hits-145839600.html",
-      "source": "Yahoo Finance",
-      "at": 1786805919000,
-      "ccy": []
-    },
-    {
-      "title": "CEO Elon Musk Just Announced Great News for SpaceX Stock Investors",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/ceo-elon-musk-just-announced-145000843.html",
-      "source": "Yahoo Finance",
-      "at": 1786805400000,
-      "ccy": []
-    },
-    {
-      "title": "Social Media Went Negative on Memory Stocks like SanDisk & Micron Last Weekend. Then They Rallied.",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/social-media-went-negative-memory-144338731.html",
-      "source": "Yahoo Finance",
-      "at": 1786805018000,
-      "ccy": []
-    },
-    {
-      "title": "Boiler room raised $74 million selling retirees SpaceX, Anduril, Anthropic, and Perplexity while reaping ‘massive hidden fees,’ SEC claims",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/boiler-room-raised-74-million-143839766.html",
-      "source": "Yahoo Finance",
-      "at": 1786804719000,
-      "ccy": []
-    },
-    {
-      "title": "Citi Sees U.S. Industrial Growth Accelerating to 6.9% as Data Centre Demand Expands",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/citi-sees-u-industrial-growth-143715190.html",
-      "source": "Yahoo Finance",
-      "at": 1786804635000,
-      "ccy": []
-    },
-    {
-      "title": "Nvidia Is Looking to Own Another Layer of the AI Ecosystem",
-      "link": "https://finance.yahoo.com/technology/ai/articles/nvidia-looking-own-another-layer-143602047.html",
-      "source": "Yahoo Finance",
-      "at": 1786804562000,
-      "ccy": []
-    },
-    {
-      "title": "SpaceX vs. Micron: Which High-Growth Titan Is the Better Buy?",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/spacex-vs-micron-high-growth-143500471.html",
-      "source": "Yahoo Finance",
-      "at": 1786804500000,
-      "ccy": []
-    },
-    {
-      "title": "Goldman Sachs Sees $1.4 Trillion Buyback Wave Outpacing U.S. Equity Supply in 2026",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/goldman-sachs-sees-1-4-143200767.html",
-      "source": "Yahoo Finance",
-      "at": 1786804320000,
-      "ccy": []
-    },
-    {
-      "title": "Wall Street Only Looked Like This in 1929 and 2000: What It Means for Bitcoin?",
-      "link": "https://finance.yahoo.com/markets/crypto/articles/wall-street-only-looked-1929-143134270.html",
-      "source": "Yahoo Finance",
-      "at": 1786804294000,
+      "at": 1786975067000,
       "ccy": [
         "BTC"
       ]
     },
     {
-      "title": "CMCT (CMCT) Q2 2026 Earnings Call Transcript",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/cmct-cmct-q2-2026-earnings-142946227.html",
+      "title": "Silver prices today, Monday, August 17, 2026: Buoyed by softer economic data, while industrial outlook remains uncertain",
+      "link": "https://finance.yahoo.com/personal-finance/investing/article/silver-prices-today-monday-august-17-2026-buoyed-by-softer-economic-data-while-industrial-outlook-remains-uncertain-135247624.html",
       "source": "Yahoo Finance",
-      "at": 1786804186000,
-      "ccy": []
+      "at": 1786974767000,
+      "ccy": [
+        "XAG"
+      ]
     },
     {
-      "title": "CSP Inc. (CSPI) Q3 2026 Earnings Call Transcript",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/csp-inc-cspi-q3-2026-142616183.html",
+      "title": "Gold prices today, Monday, August 17, 2026: Gold ticks up after lower retail sales report",
+      "link": "https://finance.yahoo.com/personal-finance/investing/article/gold-prices-today-monday-august-17-2026-gold-ticks-up-after-lower-retail-sales-report-134755206.html",
       "source": "Yahoo Finance",
-      "at": 1786803976000,
-      "ccy": []
+      "at": 1786974475000,
+      "ccy": [
+        "XAU"
+      ]
     },
     {
-      "title": "Leave the Kids the Roth, Spend the IRA Yourself: The Inheritance Order Most Families Get Backward.",
-      "link": "https://finance.yahoo.com/markets/options/articles/leave-kids-roth-spend-ira-141927922.html",
-      "source": "Yahoo Finance",
-      "at": 1786803567000,
-      "ccy": []
-    },
-    {
-      "title": "The Landlords of the AI Boom Are Up 35% This Year and Their Pricing Power Keeps Climbing",
-      "link": "https://finance.yahoo.com/real-estate/articles/landlords-ai-boom-35-pricing-141442560.html",
-      "source": "Yahoo Finance",
-      "at": 1786803282000,
-      "ccy": []
-    },
-    {
-      "title": "Iran defiant on strait as Trump tells Americans to accept high gasoline prices",
-      "link": "https://www.investing.com/news/commodities-news/trump-urges-americans-to-accept-higher-gas-prices-as-he-escalates-iran-rhetoric-4861490",
+      "title": "Gold edges higher amid softer dollar, easing Fed rate hike wagers",
+      "link": "https://www.investing.com/news/commodities-news/gold-rises-near-4400-as-fed-minutes-oil-risks-shape-rate-outlook-4862058",
       "source": "Investing Cmdty",
-      "at": 1786803163000,
+      "at": 1786974270000,
+      "ccy": [
+        "USD",
+        "XAU"
+      ]
+    },
+    {
+      "title": "Iran says it will escalate if US does not honour deal within weeks",
+      "link": "https://www.investing.com/news/commodities-news/iran-says-it-will-escalate-if-us-does-not-honour-deal-within-weeks-4863374",
+      "source": "Investing Cmdty",
+      "at": 1786974157000,
+      "ccy": []
+    },
+    {
+      "title": "Corn futures edge up as traders await Pro Farmer crop tour",
+      "link": "https://www.investing.com/news/commodities-news/corn-futures-edge-up-as-traders-await-pro-farmer-crop-tour-93CH-4863350",
+      "source": "Investing Cmdty",
+      "at": 1786973572000,
+      "ccy": []
+    },
+    {
+      "title": "Wheat futures fall on profit-taking despite Black Sea tensions",
+      "link": "https://www.investing.com/news/commodities-news/wheat-futures-fall-on-profittaking-despite-black-sea-tensions-93CH-4863345",
+      "source": "Investing Cmdty",
+      "at": 1786973518000,
+      "ccy": []
+    },
+    {
+      "title": "Iran has set a deadline of \"a few weeks\" for full implementation of the MOU",
+      "link": "https://investinglive.com/news/iran-has-set-a-deadline-of-a-few-weeks-for-full-implementation-of-the-mou/",
+      "source": "ForexLive",
+      "at": 1786971196000,
+      "ccy": []
+    },
+    {
+      "title": "US Empire Manufacturing index 20.60 vs 11.00 estimate",
+      "link": "https://investinglive.com/news/us-empire-manufacturing-index-20-60-vs-11-00-estimate/",
+      "source": "ForexLive",
+      "at": 1786969831000,
+      "ccy": []
+    },
+    {
+      "title": "Canada July CPI 3.0% y/y vs +2.9% expected",
+      "link": "https://investinglive.com/news/canada-july-cpi-3-0-y-y-vs-2-9-expected/",
+      "source": "ForexLive",
+      "at": 1786969808000,
+      "ccy": [
+        "CAD"
+      ]
+    },
+    {
+      "title": "Bond market holds range as dovish U.S. data clash with Persian Gulf supply risks",
+      "link": "https://www.investing.com/news/forex-news/german-bund-yields-hold-flat-near-multiday-highs-as-rate-hike-fears-recede-4862206",
+      "source": "Investing FX",
+      "at": 1786967599000,
+      "ccy": []
+    },
+    {
+      "title": "Stocks making the biggest moves premarket: Alibaba, Intel, Sandisk & more",
+      "link": "https://www.cnbc.com/2026/08/17/stocks-making-the-biggest-moves-premarket-baba-intc-sndk.html",
+      "source": "CNBC Markets",
+      "at": 1786966649000,
+      "ccy": []
+    },
+    {
+      "title": "investingLive European markets wrap: Dollar holds lower to start the week",
+      "link": "https://investinglive.com/news/investinglive-european-markets-wrap-dollar-holds-lower-to-start-the-week/",
+      "source": "ForexLive",
+      "at": 1786966157000,
+      "ccy": [
+        "USD"
+      ]
+    },
+    {
+      "title": "Why this Wall Street strategist says the \"trade is long gold\"",
+      "link": "https://www.investing.com/news/commodities-news/why-this-wall-street-strategist-says-the-trade-is-long-gold-4862683",
+      "source": "Investing Cmdty",
+      "at": 1786964412000,
+      "ccy": [
+        "XAU"
+      ]
+    },
+    {
+      "title": "Morning Bid: Retail risk",
+      "link": "https://www.investing.com/news/commodities-news/morning-bid-retail-risk-4862565",
+      "source": "Investing Cmdty",
+      "at": 1786963346000,
+      "ccy": []
+    },
+    {
+      "title": "Best CD rates today, Monday, August 17, 2026: Lock in up to 4.30% APY",
+      "link": "https://finance.yahoo.com/personal-finance/banking/article/best-cd-rates-today-monday-august-17-2026-lock-in-up-to-430-apy-100000753.html",
+      "source": "Yahoo Finance",
+      "at": 1786960800000,
+      "ccy": []
+    },
+    {
+      "title": "Mortgage and refinance rates today, Monday, August 17, 2026: Purchase rates currently lower than refi rates",
+      "link": "https://finance.yahoo.com/personal-finance/mortgages/article/mortgage-and-refinance-rates-today-monday-august-17-2026-purchase-rates-currently-lower-than-refi-rates-100000908.html",
+      "source": "Yahoo Finance",
+      "at": 1786960800000,
+      "ccy": []
+    },
+    {
+      "title": "Best high-yield savings interest rates today, Monday, August 17, 2026: Earn up to 4.15% APY",
+      "link": "https://finance.yahoo.com/personal-finance/banking/article/best-high-yield-savings-interest-rates-today-monday-august-17-2026-earn-up-to-415-apy-100000771.html",
+      "source": "Yahoo Finance",
+      "at": 1786960800000,
+      "ccy": []
+    },
+    {
+      "title": "HELOC and home equity loan rates today, Monday, August 17, 2026: A 19-basis-point differential",
+      "link": "https://finance.yahoo.com/personal-finance/mortgages/article/heloc-and-home-equity-loan-rates-today-monday-august-17-2026-a-19-basis-point-differential-100000113.html",
+      "source": "Yahoo Finance",
+      "at": 1786960800000,
+      "ccy": []
+    },
+    {
+      "title": "Dollar slips to June lows as cool U.S. data fuel 70% Fed pause probability",
+      "link": "https://www.investing.com/news/forex-news/asia-fx-ticks-up-on-reduced-fed-hike-bets-yen-gains-despite-weak-japan-gdp-4862111",
+      "source": "Investing FX",
+      "at": 1786959099000,
+      "ccy": [
+        "USD"
+      ]
+    },
+    {
+      "title": "Iran reaffirms that talks have not yet begun with the US",
+      "link": "https://investinglive.com/news/iran-reaffirms-that-talks-have-not-yet-begun-with-the-us/",
+      "source": "ForexLive",
+      "at": 1786954163000,
+      "ccy": []
+    },
+    {
+      "title": "Sterling today: Pound advance as weak US retail data dims Fed hike bets",
+      "link": "https://www.investing.com/news/forex-news/sterling-today-pound-advance-as-weak-us-retail-data-dims-fed-hike-bets-4862294",
+      "source": "Investing FX",
+      "at": 1786953438000,
+      "ccy": [
+        "USD",
+        "GBP"
+      ]
+    },
+    {
+      "title": "China stats bureau says July economic activity affected by extreme weather conditions, among other factors",
+      "link": "https://investinglive.com/news/china-stats-bureau-says-july-economic-activity-affected-by-extreme-weather-conditions-among-other-factors/",
+      "source": "ForexLive",
+      "at": 1786951721000,
+      "ccy": []
+    },
+    {
+      "title": "China retail sales disappoint in July, industrial output slows while new home prices extend declines",
+      "link": "https://investinglive.com/news/china-retail-sales-disappoint-in-july-industrial-output-slows-while-new-home-prices-extend-declines/",
+      "source": "ForexLive",
+      "at": 1786950014000,
+      "ccy": []
+    },
+    {
+      "title": "No major US data releases but this week will feature a big test on consumer health",
+      "link": "https://investinglive.com/news/no-major-us-data-releases-but-this-week-will-feature-a-big-test-on-consumer-health/",
+      "source": "ForexLive",
+      "at": 1786946781000,
+      "ccy": []
+    },
+    {
+      "title": "Heads up: China July economic data releases to feature in the session ahead",
+      "link": "https://investinglive.com/news/heads-up-china-july-economic-data-releases-to-feature-in-the-session-ahead/",
+      "source": "ForexLive",
+      "at": 1786942951000,
+      "ccy": []
+    },
+    {
+      "title": "investingLive Asia-Pacific market news: Oil steady, yen firms",
+      "link": "https://investinglive.com/news/investinglive-asia-pacific-market-news-oil-steady-yen-firms/",
+      "source": "ForexLive",
+      "at": 1786938762000,
+      "ccy": [
+        "JPY",
+        "OIL"
+      ]
+    },
+    {
+      "title": "China's delayed July data looms as markets eye demand and PBOC's yuan stance",
+      "link": "https://investinglive.com/news/china-s-delayed-july-data-looms-as-markets-eye-demand-and-pboc-s-yuan-stance/",
+      "source": "ForexLive",
+      "at": 1786935945000,
       "ccy": []
     }
   ],
@@ -1327,7 +1355,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-08-17T01:30:49.796Z",
-  "headlinesAt": "2026-08-17T01:30:49.796Z",
-  "updatedAt": "2026-08-17T01:30:49.796Z"
+  "calendarAt": "2026-08-17T19:00:24.692Z",
+  "headlinesAt": "2026-08-17T19:00:24.692Z",
+  "updatedAt": "2026-08-17T19:00:24.692Z"
 }
