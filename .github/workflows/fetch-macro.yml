@@ -434,6 +434,81 @@ jobs:
           try_fetch("vix",
               primary_fn=lambda: fetch_yahoo("%5EVIX", 60))
 
+          # ── Released values for the calendar ─────────────────────────────────
+          #
+          # The economic calendar the bot fetches is a SCHEDULE. It carries the
+          # forecast and the previous and never the actual — Japan's GDP printed
+          # and the field was still empty an hour later — so the app could say a
+          # release was coming and never say what it was. The surprise, which is
+          # the only part of a release that moves anything, cannot be computed at
+          # all without it.
+          #
+          # BLS publishes the actuals, has no key and no account, and already
+          # answers from here — it is the CPI fetcher above. These are the five
+          # US releases that move markets most, keyed so the bot can join them to
+          # the scheduled event by title.
+          def fetch_bls_series(series_id, months=36):
+              url = f"https://api.bls.gov/publicAPI/v1/timeseries/data/{series_id}"
+              try:
+                  req = urllib.request.Request(
+                      url,
+                      data=json.dumps({"seriesid": [series_id]}).encode(),
+                      headers={"Content-Type": "application/json", "User-Agent": "Mozilla/5.0"},
+                  )
+                  with urllib.request.urlopen(req, timeout=30) as r:
+                      payload = json.loads(r.read().decode())
+                  rows = payload["Results"]["series"][0]["data"]
+                  out = []
+                  for row in rows:
+                      if row["period"] == "M13" or row.get("value") in ("-", "N/A", ""):
+                          continue
+                      out.append({
+                          "date": f"{row['year']}-{row['period'][1:]}-01",
+                          "val": float(row["value"]),
+                      })
+                  out.sort(key=lambda x: x["date"])
+                  return out[-months:] if out else None
+              except Exception as e:
+                  print(f"  WARN: BLS {series_id}: {e}")
+                  return None
+
+          # A month-on-month change, because that is how the calendar quotes most
+          # of these — a level is not comparable to a forecast of "0.2%".
+          def as_mom_pct(data):
+              if not data or len(data) < 2:
+                  return None
+              out = []
+              for i in range(1, len(data)):
+                  prev, cur = data[i - 1]["val"], data[i]["val"]
+                  if prev:
+                      out.append({"date": data[i]["date"], "val": round((cur - prev) / prev * 100, 2)})
+              return out or None
+
+          releases = {}
+          for key, series, transform in [
+              ("cpi_mom",        "CUSR0000SA0",  as_mom_pct),   # CPI m/m
+              ("core_cpi_mom",   "CUSR0000SA0L1E", as_mom_pct), # Core CPI m/m
+              ("nfp",            "CES0000000001", None),        # Nonfarm payrolls, level
+              ("unemployment",   "LNS14000000",  None),         # Unemployment rate
+              ("avg_earnings_mom","CES0500000003", as_mom_pct), # Average hourly earnings m/m
+          ]:
+              raw = fetch_bls_series(series)
+              val = transform(raw) if (transform and raw) else raw
+              if val:
+                  # Payrolls are published as a level; the calendar quotes the
+                  # monthly CHANGE, which is what a forecast of "175K" means.
+                  if key == "nfp":
+                      val = [{"date": val[i]["date"],
+                              "val": round((val[i]["val"] - val[i - 1]["val"]) * 1000)}
+                             for i in range(1, len(val))]
+                  releases[key] = val
+                  print(f"  releases.{key}: {len(val)} points, latest {val[-1]}")
+              else:
+                  print(f"  releases.{key}: unavailable")
+          if releases:
+              new_data["releases"] = releases
+              any_updated = True
+
           output = {
               "updated": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
               "any_updated": any_updated,

@@ -456,6 +456,10 @@ export default function CommandCenter() {
       {ranked.map(r => {
         const isOpen = open[r.sym] ?? allOpen;
         const show = isOpen ? r.evidence : r.evidence.slice(0, 3);
+        // Built once per card. Two separate blocks below need it — the plan
+        // itself and the shared-driver line, which has to know what the plan
+        // already named so the same event is not printed twice.
+        const plan = buildPlan(r, feed?.instruments?.[r.sym], { balance, riskPct, news, now });
         return (
           <div key={r.sym} style={{ ...S.card,
             borderColor: r.dir === 'up' ? '#22c55e44' : r.dir === 'down' ? '#ef444444' : 'var(--border)' }}>
@@ -521,7 +525,7 @@ export default function CommandCenter() {
             ))}
 
             {(() => {
-              const p = buildPlan(r, feed?.instruments?.[r.sym], { balance, riskPct, news, now });
+              const p = plan;
               if (!p?.ok) return null;
               // Amber for "we do not know", red only for "we measured it and it fails".
               // The difference is the whole point of the interval.
@@ -563,6 +567,12 @@ export default function CommandCenter() {
                         : p.verdict === 'negative' ? 'NOT WORTH THE RISK'
                         : p.verdict === 'inconclusive' ? 'NOT ENOUGH EVIDENCE' : 'CANNOT PRICE IT'}</strong>
                       {' — '}{p.blocked || p.note}
+                      {p.marketWin != null && (
+                        <span style={{ color:'var(--text3)' }}>
+                          {' '}The market itself went that way {p.marketWin}% of the time over the
+                          same window, which is what the number above is measured against.
+                        </span>
+                      )}
                     </div>
                   )}
                   {/* What you are actually committing to. The holding period is
@@ -583,11 +593,22 @@ export default function CommandCenter() {
               );
             })()}
 
-            {r.shared?.length > 0 && (
-              <div style={{ fontSize:11, color:'#60a5fa', marginTop:5 }}>
-                ◷ {r.shared[0].label}{r.shared.length > 1 ? ` +${r.shared.length - 1} more driver${r.shared.length > 2 ? 's' : ''}` : ''}
-              </div>
-            )}
+            {/* Shared drivers, minus whatever the hold-window line already
+                named. Both blocks reach for the nearest scheduled event, so a
+                card read "7 high-impact releases inside the hold — next is USD
+                Core CPI in 11.6h" and then "USD Core CPI in 11.6h +3 more
+                drivers" directly underneath: one fact, printed twice, three
+                lines apart. */}
+            {(() => {
+              const named = plan?.events?.next?.title;
+              const rest = (r.shared || []).filter(d => !named || !d.label?.includes(named));
+              if (!rest.length) return null;
+              return (
+                <div style={{ fontSize:11, color:'#60a5fa', marginTop:5 }}>
+                  ◷ {rest[0].label}{rest.length > 1 ? ` +${rest.length - 1} more driver${rest.length > 2 ? 's' : ''}` : ''}
+                </div>
+              );
+            })()}
 
             <div style={{ display:'flex', gap:10, alignItems:'center', marginTop:6 }}>
               {r.evidence.length > 3 && (

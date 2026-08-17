@@ -64,6 +64,41 @@ function numOf(s) {
   return parseFloat(m[1]) * mult;
 }
 
+// ── Filling in the actual the calendar never sends ───────────────────────────
+//
+// The schedule feed carries forecast and previous and nothing else, so the
+// surprise could be computed and never was. BLS publishes the released values,
+// has no key, and the macro workflow already reaches it — so the numbers arrive
+// in public/macro-data.json under `releases` and are joined here by title.
+//
+// An explicit map, not a fuzzy match. "Core CPI m/m" and "CPI m/m" differ by
+// one word and are different series, and a matcher clever enough to pair them
+// automatically is clever enough to pair them wrongly.
+const RELEASE_MAP = [
+  [/^core cpi m\/m$/i,               'core_cpi_mom'],
+  [/^cpi m\/m$/i,                    'cpi_mom'],
+  [/^non-?farm employment change$/i, 'nfp'],
+  [/^unemployment rate$/i,           'unemployment'],
+  [/^average hourly earnings m\/m$/i,'avg_earnings_mom'],
+];
+
+// The released value for the month an event covers. A release in March reports
+// February, so the reading published on or just before the event date is the
+// one it announced — never a later one, which would be a number nobody had.
+function releasedValue(title, at, releases) {
+  if (!releases || !title) return null;
+  const key = RELEASE_MAP.find(([re]) => re.test(title.trim()))?.[1];
+  const series = key && releases[key];
+  if (!Array.isArray(series) || !series.length) return null;
+  let best = null;
+  for (const row of series) {
+    const t = Date.parse(row.date + 'T00:00:00Z');
+    // The series is dated by the month it covers, which is before the release.
+    if (Number.isFinite(t) && t <= at && (!best || t > Date.parse(best.date + 'T00:00:00Z'))) best = row;
+  }
+  return best ? best.val : null;
+}
+
 function withSurprise(e) {
   const a = numOf(e.actual), f = numOf(e.forecast), p = numOf(e.previous);
   if (a == null) return e;
@@ -187,7 +222,18 @@ class NewsFetcher {
     this.lastRunAt = 0;
   }
 
+  // Released values, published by the macro workflow into the repo the bot
+  // already has checked out. Re-read each pass so a fresh git pull is picked up
+  // without a restart; a missing or unreadable file simply means no actuals.
+  _releases() {
+    try {
+      const p = require('path').join(__dirname, '..', '..', 'public', 'macro-data.json');
+      return JSON.parse(require('fs').readFileSync(p, 'utf8')).releases || null;
+    } catch { return null; }
+  }
+
   async _calendar() {
+    const releases = this._releases();
     const raw = await getText(CALENDAR_URL);
     const list = JSON.parse(raw);
     if (!Array.isArray(list)) throw new Error('calendar was not a list');
@@ -220,6 +266,13 @@ class NewsFetcher {
           previous: e.previous || '',
           actual: e.actual || '',
         };
+        // Only for events that have already happened, and only when the source
+        // left the field empty — a value the calendar does provide is always
+        // preferred to one reconstructed here.
+        if (!row.actual && row.at && row.at < Date.now()) {
+          const v = releasedValue(row.title, row.at, releases);
+          if (v != null) { row.actual = String(v); row.actualFrom = 'BLS'; }
+        }
         if (Object.keys(extra).length) row.extra = extra;
         return withSurprise(row);
       })
@@ -340,4 +393,4 @@ class NewsFetcher {
 }
 
 module.exports = { NewsFetcher, NEWS_PATH, HISTORY_PATH, parseRSS, currenciesIn,
-                   CURRENCY_WORDS, numOf, withSurprise, NOT_ABOUT };
+                   CURRENCY_WORDS, numOf, withSurprise, NOT_ABOUT, releasedValue, RELEASE_MAP };

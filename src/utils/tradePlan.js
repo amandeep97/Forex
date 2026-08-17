@@ -191,6 +191,11 @@ export function buildPlan(a, rec, {
     spreadAbs, spreadRatio,
     costShare: costShare == null ? null : +(costShare * 100).toFixed(1),
     record: base ? { n: base.n, win: base.win, medAtr: base.med, bars: base.bars, ci: base.ci } : null,
+    // What the market did over the same window, on every plan rather than only
+    // priced ones. A refusal is far easier to trust when the number it was
+    // compared against is visible next to it.
+    marketWin: base?.baseWin ?? pool?.baseWin ?? null,
+    marketMed: base?.baseMed ?? pool?.baseMed ?? null,
     // The same event across the asset class, always shown when it exists, so a
     // thin per-instrument number can be read next to a meaningful one.
     pool: pool ? { n: pool.n, win: pool.win, medAtr: pool.med, syms: pool.syms, ci: pool.ci } : null,
@@ -220,22 +225,37 @@ export function buildPlan(a, rec, {
     // The honest verdict, and the one that replaced most of the false ones.
     plan.verdict = 'inconclusive';
     const src = base || pool;
-    plan.note = `${src.win}% over ${src.n} occurrences is ±${src.ci} points — `
-      + `the range covers a coin flip, so this record does not say the setup works `
-      + `or that it fails. It says we do not know.`;
+    plan.note = src.baseWin != null
+      ? `${src.win}% over ${src.n} occurrences against ${src.baseWin}% for the market itself — `
+        + `too close to separate, so this record does not say the setup works or that it `
+        + `fails. It says we do not know.`
+      : `${src.win}% over ${src.n} occurrences is ±${src.ci} points — `
+        + `the range covers a coin flip, so this record does not say the setup works `
+        + `or that it fails. It says we do not know.`;
   } else if (usable.n < MIN_RECORD) {
     plan.verdict = 'thin';
     plan.note = `only ${usable.n} prior occurrences — too few to price a target from`;
-  } else if (usable.med <= 0) {
-    // The important case, and the one no other tool will tell you — now only
-    // stated when the record is significant enough to support it.
+  } else if (usable.med <= (usable.baseMed ?? 0)) {
+    // The important case, and the one no other tool will tell you — now stated
+    // only when the record is significant AND the comparison is against what
+    // the market itself did, not against a coin flip. A bearish setup winning
+    // 37% on an instrument that rose 65% of the time has beaten its benchmark,
+    // and calling that "has not worked" was wrong on every bearish card.
     plan.verdict = 'record-says-no';
+    const vs = usable.baseWin != null
+      ? `${usable.win}% against ${usable.baseWin}% for the market over the same window`
+      : `${usable.win}% ±${usable.ci} went its way`;
     plan.note = `the last ${usable.n} times this fired${usable.pooled ? ` across ${usable.syms} ${a.cls} instruments` : ' here'}, `
-      + `the median outcome was ${usable.med} ATR — against the signal. `
-      + `${usable.win}% ±${usable.ci} went its way. This setup has not worked.`;
+      + `the median outcome was ${usable.med} ATR`
+      + (usable.baseMed != null ? ` against the market's ${usable.baseMed}` : '')
+      + `. ${vs}. This setup has not worked.`;
   } else {
-    const target = long ? price + usable.med * atr : price - usable.med * atr;
-    const rr = (usable.med * atr) / stopDist;
+    // The move the SETUP adds, not the move the market was making anyway. A
+    // target drawn from a raw median on a drifting instrument is mostly the
+    // drift, and would be there whether or not the signal fired.
+    const edgeMed = usable.baseMed != null ? usable.med - usable.baseMed : usable.med;
+    const target = long ? price + edgeMed * atr : price - edgeMed * atr;
+    const rr = (edgeMed * atr) / stopDist;
     const win = usable.win / 100;
     // Expectancy in R from a measured win rate, not an assumed one. Losers are
     // taken at 1R by construction.
@@ -252,6 +272,8 @@ export function buildPlan(a, rec, {
       ev: +ev.toFixed(2),
       evLow: +evLow.toFixed(2),
       pricedFrom: usable.pooled ? `${usable.syms} ${a.cls} instruments` : 'this instrument',
+      marketWin: usable.baseWin ?? null,
+      edgeMed: +edgeMed.toFixed(2),
     });
     // Significance was already required to get here — the record's interval had
     // to exclude a coin flip. Demanding that the pessimistic end ALSO pay is

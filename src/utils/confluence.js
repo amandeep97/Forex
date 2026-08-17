@@ -325,10 +325,40 @@ export function winCI(win, n) {
   return iv ? +((iv.hi - iv.lo) / 2).toFixed(1) : null;
 }
 
-// Does this record actually say anything? A record whose interval straddles a
-// coin flip does not, however far from 50% its point estimate happens to sit.
+// What the market itself did over the same window, pointed the same way as the
+// event. The bot publishes the baseline signed for an "up" event, so a bearish
+// signal is judged against its mirror.
+//
+// Attached to every record, because the alternative is what the cards were
+// doing: comparing a bearish setup's 37% against 50% and printing THE RECORD
+// SAYS NO, when US500 rose on 65% of days and the honest benchmark for a short
+// was 35%. The setup had beaten the market by two points and the screen called
+// it broken. Every bearish card on a rising instrument read that way.
+export function mirroredBaseline(rec, tf, dir) {
+  const b = rec?.baseline?.[tf];
+  if (!b?.n || b.win == null) return {};
+  const down = dir === 'down';
+  return {
+    baseWin: down ? +(100 - b.win).toFixed(1) : b.win,
+    baseMed: down ? +(-b.medAtr).toFixed(2) : b.medAtr,
+    baseN: b.n,
+  };
+}
+
+// Does this record actually say anything?
+//
+// Against the market where one is known, against a coin flip where it is not.
+// A record whose interval straddles its own benchmark says nothing, however far
+// from it the point estimate happens to sit.
 export function tellsUsSomething(rec) {
-  const iv = rec?.n ? winInterval(rec.win, rec.n) : null;
+  if (!rec?.n) return false;
+  if (rec.baseWin != null && rec.baseN) {
+    const p1 = rec.win / 100, p2 = rec.baseWin / 100;
+    const pool = (p1 * rec.n + p2 * rec.baseN) / (rec.n + rec.baseN);
+    const se = Math.sqrt(pool * (1 - pool) * (1 / rec.n + 1 / rec.baseN));
+    return se > 0 && Math.abs((p1 - p2) / se) > Z;
+  }
+  const iv = winInterval(rec.win, rec.n);
   return !!iv && (iv.lo > 50 || iv.hi < 50);
 }
 
@@ -459,6 +489,7 @@ function candleEvidence(rec, asOf, cuts, pools, cls) {
     const base = rk ? {
       n: rk.r.fwdN, win: rk.r.fwdWin, med: rk.r.fwdMedAtr, bars: rk.r.fwdBars,
       ci: winCI(rk.r.fwdWin, rk.r.fwdN),
+      ...mirroredBaseline(rec, rk.h.tf, dir),
     } : null;
     const pool = rk ? (pools?.[`${cls}|${id}.${rk.h.tf}`] || null) : null;
     out.push({
@@ -512,6 +543,7 @@ function structureEvidence(rec, asOf, cuts, pools, cls) {
     const base = r?.fwdN >= 5 ? {
       n: r.fwdN, win: r.fwdWin, med: r.fwdMedAtr, bars: r.fwdBars,
       ci: winCI(r.fwdWin, r.fwdN),
+      ...mirroredBaseline(rec, e.tf, dir),
     } : null;
     // The same event measured across the whole asset class. Usually two orders
     // of magnitude more samples, and the only version of this number with
