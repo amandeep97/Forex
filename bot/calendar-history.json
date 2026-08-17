@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-17T07:02:24.225Z",
+  "updatedAt": "2026-08-17T12:38:23.741Z",
   "events": [
     {
       "title": "Unemployment Rate",
@@ -17,6 +17,34 @@
       "surprise": -1,
       "surprisePct": -19.6,
       "beat": "below"
+    },
+    {
+      "title": "CPI m/m",
+      "country": "CAD",
+      "impact": "high",
+      "at": 1786969800000,
+      "forecast": "0.4%",
+      "previous": "-0.4%",
+      "actual": "0.07",
+      "actualFrom": "BLS",
+      "actualNum": 0.07,
+      "vsPrevious": 0.47,
+      "forecastNum": 0.4,
+      "surprise": -0.33,
+      "surprisePct": -82.5,
+      "beat": "below"
+    },
+    {
+      "title": "Core CPI m/m",
+      "country": "CAD",
+      "impact": "low",
+      "at": 1786969800000,
+      "forecast": "",
+      "previous": "0.1%",
+      "actual": "0.22",
+      "actualFrom": "BLS",
+      "actualNum": 0.22,
+      "vsPrevious": 0.12
     }
   ]
 }
