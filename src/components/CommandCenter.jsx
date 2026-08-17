@@ -566,13 +566,14 @@ export default function CommandCenter() {
                       <strong>{p.blocked ? 'CONDITIONS' : p.verdict === 'record-says-no' ? 'THE RECORD SAYS NO'
                         : p.verdict === 'negative' ? 'NOT WORTH THE RISK'
                         : p.verdict === 'inconclusive' ? 'NOT ENOUGH EVIDENCE' : 'CANNOT PRICE IT'}</strong>
+                      {/* The note already names the market's own rate — "46% over
+                          13 occurrences against 52% for the market itself". A
+                          second sentence repeating "the market itself went that
+                          way 52% of the time" put the same number twice in one
+                          paragraph, which is the duplication fixed for the
+                          calendar line three hours earlier and reintroduced here
+                          by writing the explainer without rereading the note. */}
                       {' — '}{p.blocked || p.note}
-                      {p.marketWin != null && (
-                        <span style={{ color:'var(--text3)' }}>
-                          {' '}The market itself went that way {p.marketWin}% of the time over the
-                          same window, which is what the number above is measured against.
-                        </span>
-                      )}
                     </div>
                   )}
                   {/* What you are actually committing to. The holding period is
