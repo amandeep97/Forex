@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "node tests/run.mjs"
   },
   "dependencies": {
     "lucide-react": "^1.16.0",
