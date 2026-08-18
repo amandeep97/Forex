@@ -344,13 +344,29 @@ function stopGrid(entries, cs, bars) {
       if (r.r > 0) tgt++; else stp++;
     }
     exits.sort((a, b) => a - b);
+    const [tgtPct, stpPct] = shareOf100(tgt, stp, entries.length - tgt - stp);
     return [
-      Math.round((tgt / entries.length) * 100),
-      Math.round((stp / entries.length) * 100),
+      tgtPct, stpPct,
       Math.round((sum / entries.length) * 100),
       exits[Math.floor(exits.length / 2)],
     ];
   });
+}
+
+// Target, stop and still-open are three shares of one total, and rounding each
+// on its own lets them sum to 101 — a live series produced 38% reaching target
+// and 63% stopped, which reads as an arithmetic error and is one. Largest
+// remainder: floor everything, then hand the leftover points to whichever
+// shares were cut hardest, so the three always sum to exactly 100.
+function shareOf100(...counts) {
+  const total = counts.reduce((a, b) => a + b, 0);
+  if (!total) return counts.map(() => 0);
+  const exact = counts.map(c => (c / total) * 100);
+  const out = exact.map(Math.floor);
+  let left = 100 - out.reduce((a, b) => a + b, 0);
+  const order = exact.map((v, i) => [v - Math.floor(v), i]).sort((a, b) => b[0] - a[0]);
+  for (let k = 0; left > 0; k = (k + 1) % order.length, left--) out[order[k][1]]++;
+  return out;
 }
 
 // Win rate at bar 1, 2, 3 and 5 — the shape of the edge in time, before the
