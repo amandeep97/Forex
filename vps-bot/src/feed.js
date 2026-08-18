@@ -256,10 +256,12 @@ function atrSeries(cs) {
 function baselineOutcome(cs, bars, atrAt) {
   if (cs.length < bars + 30) return null;
   const moves = [];
+  const entries = [];
   for (let i = 15; i + bars < cs.length; i++) {
     const a = atrAt(i);
     if (!a) continue;
     moves.push((cs[i + bars].c - cs[i].c) / a);
+    entries.push({ i, a });
   }
   if (moves.length < 30) return null;
   const sorted = [...moves].sort((x, y) => x - y);
@@ -270,7 +272,101 @@ function baselineOutcome(cs, bars, atrAt) {
     // this, which the app computes from the direction split below.
     win: Math.round((moves.filter(m => m > 0).length / moves.length) * 100),
     medAtr: +sorted[Math.floor(sorted.length / 2)].toFixed(2),
+    // The same two questions asked of the market itself. A setup that resolves
+    // in three bars is only fast if the market does not resolve in three bars
+    // too, and a stop that survives is only good if a random entry's does not.
+    stUp: stopGrid(entries.map(e => ({ ...e, dir: 'up' })), cs, bars),
+    // Not the mirror of stUp. A long and a short entered on the same bar have
+    // different stops and different targets, and which of the two the bar's
+    // high and low reach first is not a symmetric question.
+    stDn: stopGrid(entries.map(e => ({ ...e, dir: 'down' })), cs, bars),
+    tp: timeProfile(entries.map(e => ({ ...e, dir: 'up' })), cs, bars),
   };
+}
+
+// ── Stops, and time. The two questions a fixed-window number cannot answer ───
+//
+// Everything above holds the position for the whole window with no stop and no
+// early exit, and reports where price was at the end. That measures "enter and
+// wait N bars", which is not a trade anybody places. Two things are missing
+// from it, and they are the two things that decide whether a setup is usable:
+//
+//   Where the stop has to sit. A pattern can be right about direction and still
+//   be untradeable, because getting to the eventual move means sitting through
+//   an adverse excursion wider than any stop a person would set. The
+//   fixed-window number cannot see that — it only looks at the last bar.
+//
+//   When it pays. An edge that appears at bar two and an edge that appears at
+//   bar ten look identical at the horizon, and only one of them can be traded
+//   by somebody who will not hold a loser for days.
+//
+// So each setup is run as an actual trade: in at the close of the event bar,
+// out at a stop, a target, or the end of the window, whichever comes first.
+const STOPS = [0.5, 1, 1.5];   // stop distance, in ATR at the moment of entry
+const RR = 2;                  // target at RR x the stop, so the R is fixed
+const CHECKS = [1, 2, 3, 5];   // bars at which the running win rate is sampled
+
+// One trade, bar by bar.
+function tradeRun(cs, i, bars, atr, dir, stopAtr) {
+  const entry = cs[i].c;
+  const risk = stopAtr * atr;
+  const up = dir === 'up';
+  const stop = up ? entry - risk : entry + risk;
+  const tgt = up ? entry + RR * risk : entry - RR * risk;
+  const last = Math.min(i + bars, cs.length - 1);
+
+  for (let j = i + 1; j <= last; j++) {
+    const hitStop = up ? cs[j].l <= stop : cs[j].h >= stop;
+    const hitTgt = up ? cs[j].h >= tgt : cs[j].l <= tgt;
+    // Both inside one bar. Daily OHLC does not say which came first, and
+    // assuming it was the target is exactly how a backtest manufactures an edge
+    // that does not survive contact. The loss is taken.
+    if (hitStop) return { r: -1, n: j - i };
+    if (hitTgt) return { r: RR, n: j - i };
+  }
+  const raw = cs[last].c - entry;
+  return { r: ((up ? raw : -raw) / risk), n: last - i, open: true };
+}
+
+// Compact on purpose: this rides on every record in a file the phone downloads
+// on every load. Fixed order, no keys — [target %, stop %, expectancy in R x100,
+// median bars to exit] for each of STOPS.
+function stopGrid(entries, cs, bars) {
+  if (!entries.length) return null;
+  return STOPS.map(s => {
+    let tgt = 0, stp = 0, sum = 0;
+    const exits = [];
+    for (const e of entries) {
+      const r = tradeRun(cs, e.i, bars, e.a, e.dir, s);
+      sum += r.r;
+      exits.push(r.n);
+      if (r.open) continue;
+      if (r.r > 0) tgt++; else stp++;
+    }
+    exits.sort((a, b) => a - b);
+    return [
+      Math.round((tgt / entries.length) * 100),
+      Math.round((stp / entries.length) * 100),
+      Math.round((sum / entries.length) * 100),
+      exits[Math.floor(exits.length / 2)],
+    ];
+  });
+}
+
+// Win rate at bar 1, 2, 3 and 5 — the shape of the edge in time, before the
+// horizon washes it out. Checkpoints past the horizon are dropped rather than
+// padded, so a D record with a ten-bar window keeps all four and nothing lies.
+function timeProfile(entries, cs, bars) {
+  return CHECKS.filter(k => k <= bars).map(k => {
+    let w = 0, n = 0;
+    for (const e of entries) {
+      if (e.i + k >= cs.length) continue;
+      const raw = cs[e.i + k].c - cs[e.i].c;
+      if ((e.dir === 'up' ? raw : -raw) > 0) w++;
+      n++;
+    }
+    return n ? Math.round((w / n) * 100) : null;
+  });
 }
 
 function forwardOutcome(cs, idxOf, events, bars, atrAt) {
@@ -278,6 +374,7 @@ function forwardOutcome(cs, idxOf, events, bars, atrAt) {
   atrAt = atrAt || atrSeries(cs);
 
   const moves = [];
+  const entries = [];
   let ups = 0;
   for (const e of events) {
     const i = idxOf.get(e.at);
@@ -290,6 +387,7 @@ function forwardOutcome(cs, idxOf, events, bars, atrAt) {
     const signed = (e.dir === 'up' ? raw : -raw) / a;
     if (e.dir === 'up') ups++;
     moves.push(signed);
+    entries.push({ i, a, dir: e.dir });
   }
   if (moves.length < 5) return { fwdN: moves.length };   // too few to report
 
@@ -307,6 +405,18 @@ function forwardOutcome(cs, idxOf, events, bars, atrAt) {
     // baseline and its mirror. Without this the comparison silently assumes an
     // even split.
     upShare: +(ups / moves.length).toFixed(3),
+    // The same occurrences run as trades with a stop, and the win rate at bars
+    // 1, 2, 3 and 5. Both are compared against the matching entry in the
+    // instrument's baseline, never read on their own.
+    //
+    // Withheld below ten occurrences. At six, one trade moves the target rate
+    // by seventeen points and the whole grid is noise wearing a number — and
+    // this rides on every record in a file a phone downloads, so a figure that
+    // cannot be read is not worth the bytes either.
+    ...(moves.length >= 10 ? {
+      st: stopGrid(entries, cs, bars),
+      tp: timeProfile(entries, cs, bars),
+    } : {}),
   };
 }
 
@@ -919,4 +1029,5 @@ module.exports = {
   // in the app rests on, and it is worth being able to check it directly
   // against a series with a known answer.
   forwardOutcome, atrSeries, baselineOutcome, REVERSAL_DIR,
+  tradeRun, stopGrid, timeProfile, STOPS, RR, CHECKS,
 };

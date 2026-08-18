@@ -132,6 +132,20 @@ export function rarityCutoffs(feed) {
 // than across everything, because a sweep on gold and a sweep on a tech stock
 // are not obviously the same phenomenon and pooling them would hide it if they
 // are not.
+// Weighted running sums over the stopped-trade grid. Kept as sums and divided
+// once at the end, so an instrument with 400 bars behind it counts for more
+// than one with 40 — the same weighting the win rates already use.
+function addRow(into, row, w) {
+  if (!into) return row.map(v => v * w);
+  return into.map((v, i) => v + row[i] * w);
+}
+function addGrid(into, grid, w) {
+  if (!into) return grid.map(r => r.map(v => v * w));
+  return into.map((r, k) => r.map((v, j) => v + grid[k][j] * w));
+}
+const divGrid = (g, w) => (g && w ? g.map(r => r.map(v => v / w)) : null);
+const divRow = (r, w) => (r && w ? r.map(v => v / w) : null);
+
 export function pooledRecords(feed) {
   const acc = new Map();
   // What every bar did over the same window, pooled the same way. This is what
@@ -143,14 +157,23 @@ export function pooledRecords(feed) {
     for (const [tf, b] of Object.entries(rec.baseline || {})) {
       if (!b?.n) continue;
       const bk = `${cls}|${tf}`;
-      const x = base.get(bk) || { n: 0, wins: 0, medSum: 0 };
+      const x = base.get(bk) || { n: 0, wins: 0, medSum: 0, up: null, dn: null, tp: null, gn: 0 };
       x.n += b.n; x.wins += (b.win / 100) * b.n; x.medSum += b.medAtr * b.n;
+      // The stopped-trade grids pool the same way, weighted by how many bars
+      // each instrument contributed. Older feeds carry none and simply do not
+      // add to the sum, which is why gn is counted separately from n.
+      if (b.stUp && b.stDn) {
+        x.up = addGrid(x.up, b.stUp, b.n);
+        x.dn = addGrid(x.dn, b.stDn, b.n);
+        if (b.tp) x.tp = addRow(x.tp, b.tp, b.n);
+        x.gn += b.n;
+      }
       base.set(bk, x);
     }
     for (const [key, r] of Object.entries(rec.rarity || {})) {
       if (!r?.fwdN || r.fwdWin == null || r.fwdMedAtr == null) continue;
       const k = `${cls}|${key}`;
-      const a = acc.get(k) || { n: 0, wins: 0, medSum: 0, upSum: 0, syms: 0, bars: r.fwdBars };
+      const a = acc.get(k) || { n: 0, wins: 0, medSum: 0, upSum: 0, syms: 0, bars: r.fwdBars, st: null, tp: null, stN: 0 };
       a.n += r.fwdN;
       // Reconstructed from the reported percentage. Exact enough at these
       // sample sizes, and the alternative is publishing a second field.
@@ -163,6 +186,11 @@ export function pooledRecords(feed) {
       // it makes the mirrored baseline exactly 50%, which is the behaviour
       // before baselines existed.
       a.upSum += (r.upShare ?? 0.5) * r.fwdN;
+      if (r.st) {
+        a.st = addGrid(a.st, r.st, r.fwdN);
+        if (r.tp) a.tp = addRow(a.tp, r.tp, r.fwdN);
+        a.stN += r.fwdN;
+      }
       a.syms += 1;
       acc.set(k, a);
     }
@@ -184,7 +212,18 @@ export function pooledRecords(feed) {
       baseMed = +(bm * (2 * up - 1)).toFixed(2);
       baseN = b.n;
     }
+    // The same setup run as an actual stopped trade, pooled across the class.
+    // This is where the sample sizes live — a per-instrument grid is fifteen
+    // occurrences and this is often two thousand.
+    const stops = a.st && b?.gn
+      ? chooseStop(divGrid(a.st, a.stN), blendGrid(divGrid(b.up, b.gn), divGrid(b.dn, b.gn), up))
+      : null;
+    const prof = a.tp && b?.gn
+      ? profileOf(divRow(a.tp, a.stN).map(Math.round), divRow(b.tp, b.gn), up)
+      : {};
     out[k] = {
+      ...(stops ? { stops } : {}),
+      ...prof,
       n: a.n,
       win,
       med: +(a.medSum / a.n).toFixed(2),
@@ -300,6 +339,23 @@ function diffZ(win1, n1, win2, n2) {
 // at once. Patterns do not work that way; rising markets do.
 export function verdictOf(rec, tests = 1) {
   const z = zFor(tests);
+  // Where the stopped-trade grid exists it is the better question, and it
+  // replaces the horizon one rather than being asked alongside it. "Was price
+  // higher twenty bars later" and "did this pay with a stop on it" are not two
+  // views of the same thing, and only the second is a trade.
+  if (rec.stops && rec.n && rec.baseN) {
+    const s = rec.stops;
+    const stat = diffZ(s.hit, rec.n, s.baseHit, rec.baseN);
+    if (stat == null) return 'silent';
+    // Three widths were compared to pick this one, so the bar it has to clear
+    // is three tests higher.
+    const zs = zFor(tests * (s.tried || 1));
+    if (stat < -zs) return 'fails';
+    if (stat <= zs) return 'silent';
+    // Significant, and it still has to pay: more per trade than a random entry
+    // with the same stop, and more than nothing.
+    return s.expR > s.baseExpR && s.expR > 0 ? 'works' : 'tiny';
+  }
   // With no baseline published yet, fall back to the old benchmark rather than
   // going silent — an older feed should degrade, not disappear.
   if (rec.baseWin == null) {
@@ -334,15 +390,102 @@ export function winCI(win, n) {
 // SAYS NO, when US500 rose on 65% of days and the honest benchmark for a short
 // was 35%. The setup had beaten the market by two points and the screen called
 // it broken. Every bearish card on a rising instrument read that way.
-export function mirroredBaseline(rec, tf, dir) {
+// upShare, when the record carries it, is the honest weight: a sweep record is
+// a mix of ups and downs and its benchmark is the blend, not the mirror of
+// whichever direction happens to be firing right now. For a candle pattern the
+// share is 1 or 0 and the blend IS the mirror, so nothing changes there.
+export function mirroredBaseline(rec, tf, dir, upShare = null) {
   const b = rec?.baseline?.[tf];
   if (!b?.n || b.win == null) return {};
-  const down = dir === 'down';
+  const up = upShare != null ? upShare : (dir === 'down' ? 0 : 1);
   return {
-    baseWin: down ? +(100 - b.win).toFixed(1) : b.win,
-    baseMed: down ? +(-b.medAtr).toFixed(2) : b.medAtr,
+    baseWin: +(up * b.win + (1 - up) * (100 - b.win)).toFixed(1),
+    baseMed: +(b.medAtr * (2 * up - 1)).toFixed(2),
     baseN: b.n,
   };
+}
+
+// ── The trade the record actually describes ─────────────────────────────────
+//
+// Every number above holds the position for the whole window with no stop. That
+// is not what anybody does, and it is why this screen could report a setup as
+// 60% and have it be untradeable: reaching the horizon on the right side often
+// means sitting through an excursion no stop survives.
+//
+// The bot now runs each setup as a real trade — in at the close, out at a stop,
+// a target at twice the stop, or the end of the window — at three stop widths,
+// and does the same for every bar in the sample. This picks the width and hands
+// back both sides of the comparison. Order and values must stay in step with
+// STOPS and RR in vps-bot/src/feed.js.
+const STOPS = [0.5, 1, 1.5];
+export const STOP_RR = 2;
+
+// Element-wise blend of the up-grid and the down-grid, by the share of the
+// population that pointed up. Same reasoning as mirroredBaseline above.
+function blendGrid(up, dn, share) {
+  if (!Array.isArray(up) || !Array.isArray(dn)) return null;
+  return up.map((row, k) => row.map((v, j) => v * share + dn[k][j] * (1 - share)));
+}
+
+export function chooseStop(grid, baseGrid) {
+  if (!Array.isArray(grid) || !Array.isArray(baseGrid)) return null;
+  // The width that beats the market by most — not the width with the highest
+  // raw expectancy. On a drifting instrument the widest stop always wins the
+  // raw comparison, because it is the one most like simply being long, and the
+  // screen would report the market's drift as the setup's edge for the third
+  // time.
+  let best = null;
+  for (let k = 0; k < grid.length && k < baseGrid.length; k++) {
+    const g = grid[k], bl = baseGrid[k];
+    if (!g || !bl) continue;
+    const over = (g[2] - bl[2]) / 100;
+    if (!best || over > best.over) best = { k, over, g, bl };
+  }
+  if (!best) return null;
+  return {
+    stopAtr: STOPS[best.k],
+    rr: STOP_RR,
+    hit: Math.round(best.g[0]),
+    stopped: Math.round(best.g[1]),
+    expR: +(best.g[2] / 100).toFixed(2),
+    baseExpR: +(best.bl[2] / 100).toFixed(2),
+    baseHit: Math.round(best.bl[0]),
+    // Median bars to leave the trade — at a stop, at a target, or at the end of
+    // the window. This is the number that answers "how long am I sitting here",
+    // and on most records it is nothing like the horizon the hold estimate has
+    // been quoting.
+    exitBars: Math.round(best.g[3]),
+    baseExitBars: Math.round(best.bl[3]),
+    // The best any width returned, ignoring the market. Refusing a trade is
+    // allowed to say "no width tried pays", and that sentence is only true if
+    // this is negative — the chosen width is the one with the largest EDGE, and
+    // a width with a worse edge can still be the one that makes money.
+    bestExpR: +(Math.max(...grid.filter(Boolean).map(g => g[2])) / 100).toFixed(2),
+    // Three widths were compared to choose this one, so the interval on it has
+    // to be widened accordingly.
+    tried: grid.length,
+  };
+}
+
+// Win rate at bars 1, 2, 3 and 5 next to the market's own, so an edge that only
+// exists at the horizon can be told from one that shows up straight away. Only
+// the second is tradeable by somebody who will not hold a loser for days.
+function profileOf(tp, baseTp, share) {
+  if (!Array.isArray(tp) || !Array.isArray(baseTp)) return {};
+  return { profile: tp.map((w, i) => ({
+    bar: [1, 2, 3, 5][i],
+    win: w,
+    base: Math.round(baseTp[i] * share + (100 - baseTp[i]) * (1 - share)),
+  })) };
+}
+
+export function stopsFor(r, rec, tf, dir) {
+  const b = rec?.baseline?.[tf];
+  if (!Array.isArray(r?.st) || !b?.stUp || !b?.stDn) return {};
+  const share = r.upShare != null ? r.upShare : (dir === 'down' ? 0 : 1);
+  const stops = chooseStop(r.st, blendGrid(b.stUp, b.stDn, share));
+  if (!stops) return {};
+  return { stops, ...profileOf(r.tp, b.tp, share) };
 }
 
 // Does this record actually say anything?
@@ -352,6 +495,14 @@ export function mirroredBaseline(rec, tf, dir) {
 // from it the point estimate happens to sit.
 export function tellsUsSomething(rec) {
   if (!rec?.n) return false;
+  // Same precedence as verdictOf: where the trade was actually run with a stop,
+  // that is the record, and the horizon number is a description of something
+  // nobody does.
+  if (rec.stops && rec.baseN) {
+    const s = rec.stops;
+    const stat = diffZ(s.hit, rec.n, s.baseHit, rec.baseN);
+    return stat != null && Math.abs(stat) > zFor(s.tried || 1);
+  }
   if (rec.baseWin != null && rec.baseN) {
     const p1 = rec.win / 100, p2 = rec.baseWin / 100;
     const pool = (p1 * rec.n + p2 * rec.baseN) / (rec.n + rec.baseN);
@@ -489,7 +640,8 @@ function candleEvidence(rec, asOf, cuts, pools, cls) {
     const base = rk ? {
       n: rk.r.fwdN, win: rk.r.fwdWin, med: rk.r.fwdMedAtr, bars: rk.r.fwdBars,
       ci: winCI(rk.r.fwdWin, rk.r.fwdN),
-      ...mirroredBaseline(rec, rk.h.tf, dir),
+      ...mirroredBaseline(rec, rk.h.tf, dir, rk.r.upShare),
+      ...stopsFor(rk.r, rec, rk.h.tf, dir),
     } : null;
     const pool = rk ? (pools?.[`${cls}|${id}.${rk.h.tf}`] || null) : null;
     out.push({
@@ -543,7 +695,8 @@ function structureEvidence(rec, asOf, cuts, pools, cls) {
     const base = r?.fwdN >= 5 ? {
       n: r.fwdN, win: r.fwdWin, med: r.fwdMedAtr, bars: r.fwdBars,
       ci: winCI(r.fwdWin, r.fwdN),
-      ...mirroredBaseline(rec, e.tf, dir),
+      ...mirroredBaseline(rec, e.tf, dir, r.upShare),
+      ...stopsFor(r, rec, e.tf, dir),
     } : null;
     // The same event measured across the whole asset class. Usually two orders
     // of magnitude more samples, and the only version of this number with

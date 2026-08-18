@@ -137,7 +137,12 @@ export default function CommandCenter() {
       else if (verdict === 'tiny') tiny++;
       else silent++;
     }
-    works.sort((a, b) => (b[1].edgeMed ?? b[1].med) - (a[1].edgeMed ?? a[1].med));
+    // Ranked by what a trade in it returns over a random entry with the same
+    // stop, where that was measured. The ATR edge is the fallback for a feed
+    // published before the trades were run. The two are different units and are
+    // never mixed — a given feed either has grids throughout or has none.
+    const edge = v => v.stops ? v.stops.expR - v.stops.baseExpR : (v.edgeMed ?? v.med);
+    works.sort((a, b) => edge(b[1]) - edge(a[1]));
     fails.sort((a, b) => a[1].win - b[1].win);
     return { total: tests, works, fails, silent, tiny, z: +zFor(tests).toFixed(2) };
   }, [feed]);
@@ -307,14 +312,26 @@ export default function CommandCenter() {
               <div key={k} style={{ padding:'4px 0', fontSize:12.5 }}>
                 <span style={{ color:'#22c55e', fontWeight:800, marginRight:6 }}>✓</span>
                 <span style={{ color:'var(--text)' }}>{prettySetup(k)}</span>
-                <div style={{ fontSize:11, color:'var(--text3)', marginTop:2, marginLeft:20 }}>
-                  {v.win}% over {v.n.toLocaleString()} occurrences across {v.syms} instruments
-                  {v.baseWin != null
-                    ? <> · the market itself did {v.baseWin}% over the same window, so the setup
-                        adds <strong style={{ color:'#22c55e' }}>{v.edgeWin > 0 ? '+' : ''}{v.edgeWin} points
-                        and {v.edgeMed > 0 ? '+' : ''}{v.edgeMed} ATR</strong></>
-                    : <> ({v.lo}–{v.hi}%) · median +{v.med} ATR · no market baseline yet</>}
-                </div>
+                {/* Where the trades were actually run, the line describes the
+                    trade: the stop it was run with, what it returned, and what
+                    the same stop returned on a random bar. The horizon win rate
+                    describes holding blind for N bars with no stop, which is
+                    not what the row above it is offering. */}
+                {v.stops
+                  ? <div style={{ fontSize:11, color:'var(--text3)', marginTop:2, marginLeft:20 }}>
+                      with a {v.stops.stopAtr} ATR stop and a {v.stops.rr}R target, over {v.n.toLocaleString()} occurrences
+                      across {v.syms} instruments: target hit {v.stops.hit}% against {v.stops.baseHit}% for a random
+                      entry, <strong style={{ color:'#22c55e' }}>{v.stops.expR > 0 ? '+' : ''}{v.stops.expR}R a trade
+                      against {v.stops.baseExpR}R</strong> · usually over in {v.stops.exitBars} bars
+                    </div>
+                  : <div style={{ fontSize:11, color:'var(--text3)', marginTop:2, marginLeft:20 }}>
+                      {v.win}% over {v.n.toLocaleString()} occurrences across {v.syms} instruments
+                      {v.baseWin != null
+                        ? <> · the market itself did {v.baseWin}% over the same window, so the setup
+                            adds <strong style={{ color:'#22c55e' }}>{v.edgeWin > 0 ? '+' : ''}{v.edgeWin} points
+                            and {v.edgeMed > 0 ? '+' : ''}{v.edgeMed} ATR</strong></>
+                        : <> ({v.lo}–{v.hi}%) · median +{v.med} ATR · no market baseline yet</>}
+                    </div>}
               </div>
             ))}
             {evidenceReport.fails.slice(0, 4).map(([k, v]) => (
@@ -576,11 +593,20 @@ export default function CommandCenter() {
                       {' — '}{p.blocked || p.note}
                     </div>
                   )}
-                  {/* What you are actually committing to. The holding period is
-                      not a target — it is the window the record above was
-                      measured over, so it is what those numbers describe. */}
+                  {/* What you are actually committing to.
+                      Two numbers, not one. The window is the outer bound the
+                      record was measured over and the calendar is searched
+                      across; the typical hold is the median time to actually
+                      leave, at the stop, at the target or at the end. This line
+                      quoted only the first, so a trade usually over in four
+                      hours was presented as "held about three days" — which is
+                      exactly the thing that makes a setup unusable to somebody
+                      who will not sit on a loser. */}
                   <div style={{ fontSize:11, color:'var(--text3)', marginTop:4, lineHeight:1.6 }}>
-                    priced on {p.tf} · held {p.hold.text}
+                    priced on {p.tf} · {p.hold.typical
+                      ? <>usually over in <strong style={{ color:'var(--text2)' }}>{p.hold.typical.text}</strong>, {p.hold.text} at the outside</>
+                      : <>held {p.hold.text}</>}
+                    {p.stopFromRecord && <> · stop {p.stopAtr} ATR, the width these trades were measured at</>}
                     {p.triggeredBy && <> · timed by <span style={{ color:'#34d399' }}>{p.triggeredBy}</span></>}
                     {r.pullback && <> · <span style={{ color:'#f59e0b' }}>faster timeframes are pulling the other way</span></>}
                   </div>

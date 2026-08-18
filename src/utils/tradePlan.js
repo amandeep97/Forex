@@ -101,18 +101,31 @@ function anchorOf(a) {
     .sort((x, y) => (y.base?.n ?? 0) - (x.base?.n ?? 0))[0];
 }
 
-// How long this is expected to be held, from the window its record was actually
-// measured over. Not a target duration — a statement of what the numbers below
-// are describing.
-function holdOf(tf, base) {
+// How long this is expected to be held. Two different numbers, and conflating
+// them is what made this screen quote
+// "about three days" for a trade that is usually over in four hours.
+//
+//   ms is the OUTER bound — the full window the record was measured over. The
+//   calendar is searched across it, because a release can land anywhere in it.
+//
+//   typical is the median bars to actually leave, at the stop, at the target or
+//   at the end. That is the number somebody deciding whether they can sit
+//   through this wants, and until the bot ran the trades it did not exist.
+function holdOf(tf, base, measured) {
   const bars = base?.bars ?? FWD_BARS[tf] ?? 10;
-  const ms = bars * (TF_MS[tf] ?? 86400e3) * (CALENDAR_STRETCH[tf] ?? 1);
-  const days = ms / 86400e3;
-  const text = days >= 10 ? `about ${Math.round(days / 7)} weeks`
-             : days >= 1.5 ? `about ${Math.round(days)} days`
-             : days >= 0.8 ? 'about a day'
-             : `about ${Math.round(ms / 3600e3)} hours`;
-  return { bars, ms, days: +days.toFixed(1), text };
+  const span = b => {
+    const ms = b * (TF_MS[tf] ?? 86400e3) * (CALENDAR_STRETCH[tf] ?? 1);
+    const days = ms / 86400e3;
+    return { ms, days: +days.toFixed(1),
+      text: days >= 10 ? `about ${Math.round(days / 7)} weeks`
+          : days >= 1.5 ? `about ${Math.round(days)} days`
+          : days >= 0.8 ? 'about a day'
+          : days >= 0.04 ? `about ${Math.round(ms / 3600e3)} hours`
+          : `about ${Math.round(ms / 60e3)} min` };
+  };
+  const outer = span(bars);
+  const typical = measured?.exitBars ? { bars: measured.exitBars, ...span(measured.exitBars) } : null;
+  return { bars, ...outer, typical };
 }
 
 // High-impact events scheduled inside the hold window, for the currencies this
@@ -158,11 +171,37 @@ export function buildPlan(a, rec, {
   const dir = anchor.dir;
   const long = dir === 'up';
 
-  const stopDist = atr * stopAtr;
-  const stop = long ? price - stopDist : price + stopDist;
-
   const base = anchor.base;
   const pool = anchor.pool;
+
+  // Which record prices this, settled before the stop is drawn — because where
+  // there is a measured record the stop is part of what it measured.
+  //
+  // Where the instrument's own record cannot decide, the pooled record for the
+  // same event across its asset class usually can: two orders of magnitude more
+  // samples, at the cost of assuming a sweep on one crypto pair is the same
+  // event as a sweep on another.
+  const own = base && tellsUsSomething(base) ? base : null;
+  const usable = own || (pool && tellsUsSomething(pool) ? pool : null);
+
+  // The grid is read even from a record that is not significant, because the two
+  // directions are not symmetric: TAKING a trade needs the record to establish
+  // something, REFUSING one does not. A setup that loses money at every stop
+  // width tried is a reason to stay out whether or not the loss clears a
+  // significance bar, and routing that through "inconclusive" threw away the
+  // one thing the measurement was built to tell you.
+  const gridRec = usable?.stops ? usable : (base?.stops ? base : (pool?.stops ? pool : null));
+
+  // The stop stops being a setting here. The expectancy below was measured at a
+  // specific width, and quoting it beside a stop of some other size describes a
+  // trade nobody ran — which is what this screen was doing: a win rate measured
+  // with no stop at all, multiplied through a 1.5 ATR stop it never saw. Three
+  // widths were run; the one that beat a random entry by most is carried.
+  const measured = gridRec?.stops || null;
+  const effStopAtr = measured ? measured.stopAtr : stopAtr;
+  const stopDist = atr * effStopAtr;
+  const stop = long ? price - stopDist : price + stopDist;
+
   const spreadAbs = rec.state?.spreadAbs ?? null;
   const spreadRatio = rec.state?.spreadRatio ?? null;
 
@@ -170,7 +209,7 @@ export function buildPlan(a, rec, {
   // good the setup looks, and it is knowable before anything else.
   const costShare = spreadAbs && stopDist > 0 ? spreadAbs / stopDist : null;
 
-  const hold = holdOf(tf, base);
+  const hold = holdOf(tf, base, measured);
   const events = eventsInHold(a, news, now, hold.ms);
 
   const plan = {
@@ -186,7 +225,10 @@ export function buildPlan(a, rec, {
     entry: round(price, rec.dec),
     stop: round(stop, rec.dec),
     stopDist: round(stopDist, rec.dec),
-    stopAtr,
+    stopAtr: effStopAtr,
+    // Whether that width was chosen by measurement or is still the default, so
+    // the card can say which.
+    stopFromRecord: !!measured,
     atr: round(atr, rec.dec),
     spreadAbs, spreadRatio,
     costShare: costShare == null ? null : +(costShare * 100).toFixed(1),
@@ -211,16 +253,36 @@ export function buildPlan(a, rec, {
   // is the difference between a tool that is cautious and a tool that is
   // confidently wrong.
   //
-  // Where the instrument's own record cannot decide, the pooled record for the
-  // same event across its asset class usually can: two orders of magnitude more
-  // samples, at the cost of assuming a sweep on one crypto pair is the same
-  // event as a sweep on another.
-  const own = base && tellsUsSomething(base) ? base : null;
-  const usable = own || (pool && tellsUsSomething(pool) ? pool : null);
+  const m = measured;
+  const over = m ? +(m.expR - m.baseExpR).toFixed(2) : null;
+  const src = gridRec?.pooled ? `across ${gridRec.syms} ${a.cls} instruments` : 'here';
+  const at = m ? `a ${m.stopAtr} ATR stop and a ${m.rr}R target` : '';
 
   if (!base && !pool) {
     plan.verdict = 'unpriced';
     plan.note = 'no measured record for this setup on this instrument — the trade can be drawn but not priced';
+  } else if (m && m.bestExpR <= 0) {
+    // Refusals come first and do not wait for significance. See gridRec above.
+    plan.verdict = 'negative';
+    plan.stopped = m;
+    plan.ev = m.expR;
+    plan.note = `run ${src} as a real trade, this setup lost money at every stop width tried — `
+      + `best was ${m.bestExpR}R a trade at ${m.stopAtr} ATR, reaching its target ${m.hit}% of the `
+      + `time and its stop ${m.stopped}%. There is no width that makes this one work.`;
+  } else if (m && m.expR <= 0) {
+    plan.verdict = 'negative';
+    plan.stopped = m;
+    plan.ev = m.expR;
+    plan.note = `with ${at} this returns ${m.expR}R a trade ${src}. It beats a random entry, which `
+      + `returns ${m.baseExpR}R — but beating a market that is falling is not the same as making money.`;
+  } else if (m && over <= 0) {
+    // The distinction the baseline exists for. A rising market makes almost any
+    // long pay; that is the market, not the signal.
+    plan.verdict = 'negative';
+    plan.stopped = m;
+    plan.ev = m.expR;
+    plan.note = `${at} pays ${m.expR}R ${src}, and the same stop on a random bar of this market pays `
+      + `${m.baseExpR}R. The setup is not adding anything — that is the market, not the signal.`;
   } else if (!usable) {
     // The honest verdict, and the one that replaced most of the false ones.
     plan.verdict = 'inconclusive';
@@ -235,6 +297,31 @@ export function buildPlan(a, rec, {
   } else if (usable.n < MIN_RECORD) {
     plan.verdict = 'thin';
     plan.note = `only ${usable.n} prior occurrences — too few to price a target from`;
+  } else if (measured) {
+    // ── Priced from the trade, not from the horizon ──────────────────────────
+    //
+    // Nothing is inferred here. The target is RR times the stop because that is
+    // the target the measurement used, and the expectancy is what those trades
+    // actually returned — stops taken at −1R, targets at +2R, anything still
+    // open at the end of the window marked to market. The old arithmetic took a
+    // win rate measured with no stop and multiplied it through a stop, which
+    // overstates every setup that has to survive an excursion to get paid.
+    Object.assign(plan, {
+      target: round(long ? price + m.rr * stopDist : price - m.rr * stopDist, rec.dec),
+      rr: m.rr,
+      ev: m.expR,
+      evOverMarket: over,
+      stopped: m,
+      pricedFrom: gridRec.pooled ? `${gridRec.syms} ${a.cls} instruments` : 'this instrument',
+      marketWin: usable.baseWin ?? null,
+    });
+    plan.verdict = 'priced';
+    plan.note = `the last ${gridRec.n} times this fired ${src}, taken with ${at}, it reached target `
+      + `${m.hit}% of the time against ${m.baseHit}% for a random entry — ${m.expR}R a trade `
+      + `against ${m.baseExpR}R. Usually over in ${hold.typical?.text || `${m.exitBars} bars`}.`;
+    if (over < 0.1) {
+      plan.fragile = `only ${over}R a trade better than a random entry with the same stop — real, and thin`;
+    }
   } else if (usable.med <= (usable.baseMed ?? 0)) {
     // The important case, and the one no other tool will tell you — now stated
     // only when the record is significant AND the comparison is against what
