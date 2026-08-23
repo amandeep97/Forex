@@ -1,0 +1,384 @@
+{
+  "asOf": "2026-08-23T23:17:56.079Z",
+  "weeks": 160,
+  "horizons": [
+    5,
+    10,
+    20,
+    40
+  ],
+  "high": 90,
+  "low": 10,
+  "instruments": [
+    "EUR/USD",
+    "GBP/USD",
+    "USD/JPY",
+    "USD/CHF",
+    "USD/CAD",
+    "AUD/USD",
+    "NZD/USD",
+    "XAU/USD",
+    "XAG/USD",
+    "US500",
+    "US100",
+    "USOIL",
+    "NATGAS"
+  ],
+  "tests": 24,
+  "z": 3.08,
+  "crowdedLong": {
+    "label": "positioning at or above the 90th percentile",
+    "hypothesis": "down",
+    "episodes": 37,
+    "bySym": [
+      {
+        "sym": "EUR/USD",
+        "episodes": 2
+      },
+      {
+        "sym": "GBP/USD",
+        "episodes": 1
+      },
+      {
+        "sym": "USD/JPY",
+        "episodes": 2
+      },
+      {
+        "sym": "USD/CHF",
+        "episodes": 4
+      },
+      {
+        "sym": "USD/CAD",
+        "episodes": 4
+      },
+      {
+        "sym": "AUD/USD",
+        "episodes": 2
+      },
+      {
+        "sym": "NZD/USD",
+        "episodes": 1
+      },
+      {
+        "sym": "XAU/USD",
+        "episodes": 3
+      },
+      {
+        "sym": "XAG/USD",
+        "episodes": 5
+      },
+      {
+        "sym": "US500",
+        "episodes": 4
+      },
+      {
+        "sym": "US100",
+        "episodes": 7
+      },
+      {
+        "sym": "USOIL",
+        "episodes": 1
+      },
+      {
+        "sym": "NATGAS",
+        "episodes": 1
+      }
+    ],
+    "horizons": {
+      "5": {
+        "n": 37,
+        "win": 43,
+        "medAtr": -0.16,
+        "baseWin": 47,
+        "baseMedAtr": -0.1,
+        "baseN": 1287,
+        "edgeWin": -4,
+        "z": -0.48,
+        "stops": [
+          {
+            "stopAtr": 0.5,
+            "rr": 2,
+            "expR": -0.045,
+            "n": 37
+          },
+          {
+            "stopAtr": 1,
+            "rr": 2,
+            "expR": -0.014,
+            "n": 37
+          },
+          {
+            "stopAtr": 1.5,
+            "rr": 2,
+            "expR": 0.002,
+            "n": 37
+          }
+        ]
+      },
+      "10": {
+        "n": 37,
+        "win": 41,
+        "medAtr": -0.6,
+        "baseWin": 45,
+        "baseMedAtr": -0.28,
+        "baseN": 1274,
+        "edgeWin": -4,
+        "z": -0.48,
+        "stops": [
+          {
+            "stopAtr": 0.5,
+            "rr": 2,
+            "expR": -0.027,
+            "n": 37
+          },
+          {
+            "stopAtr": 1,
+            "rr": 2,
+            "expR": -0.029,
+            "n": 37
+          },
+          {
+            "stopAtr": 1.5,
+            "rr": 2,
+            "expR": -0.051,
+            "n": 37
+          }
+        ]
+      },
+      "20": {
+        "n": 35,
+        "win": 51,
+        "medAtr": 0.24,
+        "baseWin": 44,
+        "baseMedAtr": -0.38,
+        "baseN": 1248,
+        "edgeWin": 7,
+        "z": 0.82,
+        "stops": [
+          {
+            "stopAtr": 0.5,
+            "rr": 2,
+            "expR": -0.057,
+            "n": 35
+          },
+          {
+            "stopAtr": 1,
+            "rr": 2,
+            "expR": -0.075,
+            "n": 35
+          },
+          {
+            "stopAtr": 1.5,
+            "rr": 2,
+            "expR": 0.077,
+            "n": 35
+          }
+        ]
+      },
+      "40": {
+        "n": 34,
+        "win": 41,
+        "medAtr": -0.78,
+        "baseWin": 42,
+        "baseMedAtr": -0.79,
+        "baseN": 1196,
+        "edgeWin": -1,
+        "z": -0.12,
+        "stops": [
+          {
+            "stopAtr": 0.5,
+            "rr": 2,
+            "expR": -0.118,
+            "n": 34
+          },
+          {
+            "stopAtr": 1,
+            "rr": 2,
+            "expR": -0.206,
+            "n": 34
+          },
+          {
+            "stopAtr": 1.5,
+            "rr": 2,
+            "expR": -0.029,
+            "n": 34
+          }
+        ]
+      }
+    }
+  },
+  "crowdedShort": {
+    "label": "positioning at or below the 10th percentile",
+    "hypothesis": "up",
+    "episodes": 40,
+    "bySym": [
+      {
+        "sym": "EUR/USD",
+        "episodes": 3
+      },
+      {
+        "sym": "GBP/USD",
+        "episodes": 8
+      },
+      {
+        "sym": "USD/JPY",
+        "episodes": 2
+      },
+      {
+        "sym": "USD/CAD",
+        "episodes": 1
+      },
+      {
+        "sym": "AUD/USD",
+        "episodes": 2
+      },
+      {
+        "sym": "NZD/USD",
+        "episodes": 4
+      },
+      {
+        "sym": "XAU/USD",
+        "episodes": 1
+      },
+      {
+        "sym": "US500",
+        "episodes": 3
+      },
+      {
+        "sym": "US100",
+        "episodes": 3
+      },
+      {
+        "sym": "USOIL",
+        "episodes": 7
+      },
+      {
+        "sym": "NATGAS",
+        "episodes": 6
+      }
+    ],
+    "horizons": {
+      "5": {
+        "n": 40,
+        "win": 55,
+        "medAtr": 0.47,
+        "baseWin": 53,
+        "baseMedAtr": 0.1,
+        "baseN": 1287,
+        "edgeWin": 2,
+        "z": 0.25,
+        "stops": [
+          {
+            "stopAtr": 0.5,
+            "rr": 2,
+            "expR": 0.1,
+            "n": 40
+          },
+          {
+            "stopAtr": 1,
+            "rr": 2,
+            "expR": 0.156,
+            "n": 40
+          },
+          {
+            "stopAtr": 1.5,
+            "rr": 2,
+            "expR": 0.117,
+            "n": 40
+          }
+        ]
+      },
+      "10": {
+        "n": 39,
+        "win": 56,
+        "medAtr": 0.33,
+        "baseWin": 55,
+        "baseMedAtr": 0.29,
+        "baseN": 1274,
+        "edgeWin": 1,
+        "z": 0.12,
+        "stops": [
+          {
+            "stopAtr": 0.5,
+            "rr": 2,
+            "expR": 0.077,
+            "n": 39
+          },
+          {
+            "stopAtr": 1,
+            "rr": 2,
+            "expR": 0.032,
+            "n": 39
+          },
+          {
+            "stopAtr": 1.5,
+            "rr": 2,
+            "expR": 0.015,
+            "n": 39
+          }
+        ]
+      },
+      "20": {
+        "n": 37,
+        "win": 54,
+        "medAtr": 0.57,
+        "baseWin": 56,
+        "baseMedAtr": 0.38,
+        "baseN": 1248,
+        "edgeWin": -2,
+        "z": -0.24,
+        "stops": [
+          {
+            "stopAtr": 0.5,
+            "rr": 2,
+            "expR": -0.027,
+            "n": 37
+          },
+          {
+            "stopAtr": 1,
+            "rr": 2,
+            "expR": -0.162,
+            "n": 37
+          },
+          {
+            "stopAtr": 1.5,
+            "rr": 2,
+            "expR": -0.036,
+            "n": 37
+          }
+        ]
+      },
+      "40": {
+        "n": 32,
+        "win": 56,
+        "medAtr": 0.63,
+        "baseWin": 58,
+        "baseMedAtr": 0.79,
+        "baseN": 1196,
+        "edgeWin": -2,
+        "z": -0.23,
+        "stops": [
+          {
+            "stopAtr": 0.5,
+            "rr": 2,
+            "expR": -0.25,
+            "n": 32
+          },
+          {
+            "stopAtr": 1,
+            "rr": 2,
+            "expR": -0.25,
+            "n": 32
+          },
+          {
+            "stopAtr": 1.5,
+            "rr": 2,
+            "expR": -0.144,
+            "n": 32
+          }
+        ]
+      }
+    }
+  },
+  "skipped": []
+}
