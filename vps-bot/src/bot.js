@@ -16,7 +16,10 @@ const { FeedBuilder, measure }  = require('./feed');
 const { FeedNotifier } = require('./feedNotify');
 const { Updater }      = require('./updater');
 const { NewsFetcher }  = require('./newsFetcher');
+const { runCOTStudy }  = require('./cotStudy');
+const { INSTRUMENTS }  = require('./instruments');
 
+const COT_STUDY_PATH = 'bot/cot-study.json';
 const STRATEGY_PATH = 'bot/strategy.json';
 const TRADES_PATH   = 'bot/trades.json';
 const CONTROL_PATH  = 'bot/vps-control.json';
@@ -70,6 +73,7 @@ class ForexBot {
     this.tradesSha = null;
     this.cotData   = null;
     this.cotFetchedAt = 0;
+    this.cotStudyRan = false;
     this.alertChecker = new AlertChecker({ oanda: this.oanda, github: this.github, telegram: this.telegram, env, log: this.log.bind(this) });
     this.updater = new Updater({ github: this.github, env, log: this.log.bind(this) });
     this.news = new NewsFetcher({ github: this.github, log: this.log.bind(this) });
@@ -79,6 +83,28 @@ class ForexBot {
           oanda: this.oanda, github: this.github, log: this.log.bind(this),
           notifier: new FeedNotifier({ github: this.github, telegram: this.telegram, env, log: this.log.bind(this) }),
         });
+  }
+
+  // Publishes bot/cot-study.json. Once per process, and only when the answer
+  // on file is missing or stale — thirteen COT downloads and thirteen candle
+  // pulls is not something to repeat every minute.
+  async _maybeCOTStudy() {
+    if (this.cotStudyRan) return;
+    const cur = await this.github.readJSON(COT_STUDY_PATH).catch(() => null);
+    const age = cur?.content?.asOf ? Date.now() - Date.parse(cur.content.asOf) : Infinity;
+    if (age < 7 * 86400e3) { this.cotStudyRan = true; return; }
+
+    this.cotStudyRan = true;   // set first, so a failure does not retry every tick
+    this.log('COT study: measuring what follows a positioning extreme…');
+    const result = await runCOTStudy({
+      instruments: INSTRUMENTS, oanda: this.oanda, log: this.log.bind(this),
+    });
+    await this.github.writeJSON(COT_STUDY_PATH, result, 'bot: COT positioning study', cur?.sha || null);
+    const cl = result.crowdedLong?.horizons?.[20], cs = result.crowdedShort?.horizons?.[20];
+    this.log(`COT study published — crowded long ${result.crowdedLong?.episodes} episodes`
+      + `${cl ? ` (${cl.win}% vs ${cl.baseWin}% at 20d, z=${cl.z})` : ''}`
+      + `, crowded short ${result.crowdedShort?.episodes} episodes`
+      + `${cs ? ` (${cs.win}% vs ${cs.baseWin}%, z=${cs.z})` : ''}`);
   }
 
   log(msg)  { console.log(`[${new Date().toISOString()}] ${msg}`); }
@@ -105,6 +131,13 @@ class ForexBot {
     // stop switch: it places no orders, and "which instruments are worth
     // looking at on Monday" is a question best answered over the weekend.
     if (this.feed) await this.feed.tick().catch(e => this.warn(`Feed: ${e.message}`));
+
+    // Does an extreme in positioning precede anything? The app has been
+    // asserting that it does — "crowded long, the side that unwinds badly" —
+    // on an instrument where nobody had measured it. Runs when the published
+    // answer is missing or a week old, which on a weekend is free: the only
+    // thing this competes with is a feed republishing an unchanged board.
+    await this._maybeCOTStudy().catch(e => this.warn(`COT study: ${e.message}`));
 
     if (isWeekend()) { this.log('Weekend — skipped'); return; }
 
