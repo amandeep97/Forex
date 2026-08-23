@@ -21,6 +21,8 @@ import { rank, ageOf, driversOf, clusters, FAMILY,
          stopCosts, MAX_COST_SHARE } from '../utils/confluence';
 import ChartModal from './ChartModal';
 import { buildPlan, eventLine } from '../utils/tradePlan';
+import { fetchMacro, macroDriversFor } from '../utils/macroDrivers';
+import { instrumentRead } from '../utils/instrumentRead';
 
 const NEWS_URL = 'https://raw.githubusercontent.com/amandeep97/Forex/main/bot/news.json';
 const COT_URL  = 'https://raw.githubusercontent.com/amandeep97/Forex/main/bot/feed.json';
@@ -59,6 +61,7 @@ const fmtAge = ms => ms == null ? 'never'
 export default function CommandCenter() {
   const [feed, setFeed] = useState(null);
   const [news, setNews] = useState(null);
+  const [macro, setMacro] = useState(null);
   const [loading, setLoading] = useState(true);
   const [err, setErr] = useState('');
   const [tick, setTick] = useState(Date.now());
@@ -86,14 +89,18 @@ export default function CommandCenter() {
 
   const load = useCallback(async () => {
     setErr('');
-    const [f, n] = await Promise.allSettled([
+    const [f, n, m] = await Promise.allSettled([
       fetchFeed({ force: true }),
       fetch(`${NEWS_URL}?t=${Date.now()}`, { cache:'no-store', signal: AbortSignal.timeout(15000) })
         .then(r => r.status === 404 ? null : r.ok ? r.json() : null),
+      // The fundamental leg. Fetched on a schedule for a long time and read by
+      // three dashboards nobody opens while looking at a setup.
+      fetchMacro({ force: true }).catch(() => null),
     ]);
     if (f.status === 'fulfilled' && f.value && !f.value.missing) setFeed(f.value);
     else if (f.status === 'rejected') setErr(f.reason?.message || 'feed unavailable');
     if (n.status === 'fulfilled') setNews(n.value);
+    if (m.status === 'fulfilled') setMacro(m.value);
     setLoading(false);
     setTick(Date.now());
   }, []);
@@ -211,6 +218,21 @@ export default function CommandCenter() {
     // of seventy-two" means the same thing in both.
     return top ? out.slice(0, top) : out;
   }, [all, cls, dir, onlyStrong, onlyMulti, oneEach, q, tf, hz, top]);
+  // The combined read, one per card on screen. Built here rather than inside
+  // the render loop because the fundamental leg correlates six macro series
+  // against the instrument's daily closes, and doing that again on every
+  // keystroke in the search box is work nobody asked for.
+  const reads = useMemo(() => {
+    const m = new Map();
+    if (!feed) return m;
+    for (const r of ranked) {
+      m.set(r.sym, instrumentRead(r.sym, feed.instruments?.[r.sym], r, {
+        news, macro: macro ? macroDriversFor(r.sym, feed, macro) : null, now,
+      }));
+    }
+    return m;
+  }, [ranked, feed, news, macro, now]);
+
   const age = useMemo(() => ageOf(feed, news, now), [feed, news, now]);
   const mkt = useMemo(() => marketState(new Date(now)), [now]);
 
@@ -621,6 +643,46 @@ export default function CommandCenter() {
                 </span>
               ))}
             </div>
+
+            {/* What is going on with this instrument, from every leg at once.
+                Each one existed already and none of them talked to each other:
+                the chart in confluence, the macro in macroDrivers, positioning
+                arriving with the feed as a COT percentile, headlines matched to
+                currencies, the calendar, and the lead-lag list. Six readings on
+                six screens, and the combining was left to whoever was looking.
+
+                The value is not any single line. It is seeing that three of
+                them agree, or that the chart and the positioning flatly
+                contradict each other — which no one screen could show. */}
+            {(() => {
+              const read = reads.get(r.sym);
+              if (!read || read.legs.length < 2) return null;
+              const tone = read.conflict ? '#f59e0b'
+                         : read.dir === 'up' ? '#22c55e'
+                         : read.dir === 'down' ? '#ef4444' : 'var(--text3)';
+              return (
+                <div style={{ margin:'8px 0 4px', padding:'7px 9px', borderRadius:5,
+                  background:'var(--bg2)', border:`1px solid ${tone}33` }}>
+                  <div style={{ fontSize:11.5, fontWeight:700, color:tone, marginBottom:5 }}>
+                    {read.verdict}
+                  </div>
+                  {read.legs.map((l, i) => (
+                    <div key={i} style={{ display:'flex', gap:7, alignItems:'baseline', marginTop:3 }}>
+                      <span style={{ fontSize:10, width:12, flexShrink:0, textAlign:'center',
+                        color: l.dir === 'up' ? '#22c55e' : l.dir === 'down' ? '#ef4444' : 'var(--text3)' }}>
+                        {l.dir === 'up' ? '▲' : l.dir === 'down' ? '▼' : '·'}
+                      </span>
+                      <span style={{ fontSize:10, textTransform:'uppercase', letterSpacing:0.4,
+                        color:'var(--text3)', width:74, flexShrink:0 }}>{l.leg}</span>
+                      <span style={{ fontSize:11.5, color:'var(--text)', lineHeight:1.5 }}>
+                        {l.headline}
+                        <span style={{ color:'var(--text3)' }}> — {l.detail}</span>
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              );
+            })()}
 
             {show.map((e, i) => (
               <div key={i} style={{ padding:'3px 0', fontSize:12.5 }}>
