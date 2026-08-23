@@ -7,18 +7,13 @@
 // disagreed outscored one whose evidence agreed.
 import { rank, assess, rarityCutoffs } from '../src/utils/confluence.js';
 import { readFileSync } from 'fs';
+import { loadFeed } from './feed-fixture.mjs';
 
 let fails = 0;
 const check = (n, c, e='') => { console.log(`${c?'  ok  ':'  FAIL'}  ${n}${e?' — '+e:''}`); if(!c) fails++; };
 const NOW = 1786500000000;
 
-const path = process.argv[2] || '/tmp/feed-live.json';
-let feed;
-try { feed = JSON.parse(readFileSync(path, 'utf8')); }
-catch {
-  const r = await fetch('https://raw.githubusercontent.com/amandeep97/Forex/main/bot/feed.json');
-  feed = await r.json();
-}
+const feed = loadFeed();
 const now = Date.parse(feed.updatedAt);
 
 // ── The cutoff is per timeframe, and never tighter than it used to be ─────

@@ -308,6 +308,17 @@ export function zFor(tests = 1) {
 // effect is real; this says it is large enough to be worth the cost of taking.
 export const MIN_EDGE_ATR = 0.25;
 
+// The same floor for a stopped trade, in R.
+//
+// The stopped verdict originally asked only that the expectancy be positive,
+// which let through crypto bear engulfing on M15: +0.03R a trade against
+// −0.46R for a random entry. The comparison is enormous and the number is
+// nothing — a short in a rising market, losing less badly than the market did,
+// which is not a trade. Below about a tenth of R the spread on entry and exit
+// eats the whole thing, which is the same reason MAX_COST_SHARE in tradePlan
+// refuses a stop the spread claims a tenth of.
+export const MIN_EXP_R = 0.1;
+
 export function winInterval(win, n, tests = 1) {
   if (!n || win == null) return null;
   const z = zFor(tests);
@@ -353,8 +364,8 @@ export function verdictOf(rec, tests = 1) {
     if (stat < -zs) return 'fails';
     if (stat <= zs) return 'silent';
     // Significant, and it still has to pay: more per trade than a random entry
-    // with the same stop, and more than nothing.
-    return s.expR > s.baseExpR && s.expR > 0 ? 'works' : 'tiny';
+    // with the same stop, and enough of it to survive the cost of taking.
+    return s.expR > s.baseExpR && s.expR >= MIN_EXP_R ? 'works' : 'tiny';
   }
   // With no baseline published yet, fall back to the old benchmark rather than
   // going silent — an older feed should degrade, not disappear.

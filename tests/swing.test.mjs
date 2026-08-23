@@ -7,6 +7,7 @@
 import { assess, rank, horizonOf } from '../src/utils/confluence.js';
 import { buildPlan, eventLine } from '../src/utils/tradePlan.js';
 import { readFileSync } from 'fs';
+import { loadFeed } from './feed-fixture.mjs';
 
 let fails = 0;
 const check = (n, c, e='') => { console.log(`${c?'  ok  ':'  FAIL'}  ${n}${e?' — '+e:''}`); if(!c) fails++; };
@@ -107,7 +108,7 @@ check('and says how long to wait', /45 min/.test(pSoon.blocked));
 check('a blocked plan is not takeable', pSoon.take === false);
 
 // ── Against the live feed ─────────────────────────────────────────────────
-const feed = JSON.parse(readFileSync('/tmp/f.json','utf8'));
+const feed = loadFeed();
 const now = Date.parse(feed.updatedAt);
 const ranked = rank(feed, { now, minBreadth: 2 });
 const kinds = {};
