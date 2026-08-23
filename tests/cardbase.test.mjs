@@ -10,6 +10,7 @@ const ROOT = new URL('../', import.meta.url).pathname;
 import { assess, mirroredBaseline, tellsUsSomething } from '../src/utils/confluence.js';
 import { buildPlan } from '../src/utils/tradePlan.js';
 import { readFileSync } from 'fs';
+import { loadFeed } from './feed-fixture.mjs';
 
 let fails = 0;
 const check = (n, c, e='') => { console.log(`${c?'  ok  ':'  FAIL'}  ${n}${e?' — '+e:''}`); if(!c) fails++; };
@@ -63,7 +64,7 @@ check('a setup that really does lose to the market is still refused',
 check('and names both numbers', /against 35%/.test(pb.note), pb.note?.slice(0, 90));
 
 // ── On the live board ─────────────────────────────────────────────────────
-const feed = JSON.parse(readFileSync(process.argv[2] || '/tmp/feed-live.json', 'utf8'));
+const feed = loadFeed();
 const { rank } = await import(`${ROOT}src/utils/confluence.js`);
 const now = Date.parse(feed.updatedAt);
 const plans = rank(feed, { now, minBreadth: 2 })

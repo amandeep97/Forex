@@ -1,5 +1,6 @@
 'use strict';
 import { useState, useCallback } from 'react';
+import { fetchGroqModels } from '../utils/groqModels.js';
 
 // ── Key storage adapters ──────────────────────────────────────────────────────
 // Each service knows where its key lives in localStorage (some share the ai_keys blob).
@@ -50,6 +51,11 @@ async function testKey(id, key) {
       return r.ok ? { ok:true, msg:'Valid Gemini key' } : { ok:false, msg:`Rejected (${r.status})` };
     }
     if (id === 'groq') {
+      // The same call that proves the key works also returns the model list, so
+      // it fills the picker instead of being thrown away. Forced past the cache
+      // because typing a key in is exactly when you want the list refreshed.
+      const list = await fetchGroqModels(key, { force: true });
+      if (list?.length) return { ok:true, msg:`Valid Groq key · ${list.length} models` };
       const r = await fetch('https://api.groq.com/openai/v1/models', { headers:{ Authorization:`Bearer ${key}` }, ...sig });
       return r.ok ? { ok:true, msg:'Valid Groq key' } : { ok:false, msg:`Rejected (${r.status})` };
     }

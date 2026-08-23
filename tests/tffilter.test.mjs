@@ -1,9 +1,10 @@
 import { rank } from '../src/utils/confluence.js';
 import { readFileSync } from 'fs';
+import { loadFeed } from './feed-fixture.mjs';
 let fails = 0;
 const check = (n, c, e='') => { console.log(`${c?'  ok  ':'  FAIL'}  ${n}${e?' — '+e:''}`); if(!c) fails++; };
 
-const feed = JSON.parse(readFileSync('/tmp/feed-live.json','utf8'));
+const feed = loadFeed();
 const now = Date.parse(feed.updatedAt);
 const total = Object.keys(feed.instruments).length;
 const all = rank(feed, { now, minBreadth: 2 });

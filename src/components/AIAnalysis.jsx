@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { runMarketScan, scanDigest, fmtScanPrice } from '../utils/marketScan.js';
 import { binanceCandles } from '../utils/binanceKlines';
+import { fetchGroqModels, cachedGroqModels } from '../utils/groqModels.js';
 
 // ── Inject blink keyframe once ────────────────────────────────────────────────
 if (!document.getElementById('ai-tab-kf')) {
@@ -870,12 +871,35 @@ export default function AIAnalysis() {
   useEffect(() => { localStorage.setItem('ai_provider', provider); }, [provider]);
   useEffect(() => { localStorage.setItem('ai_keys', JSON.stringify(apiKeys)); }, [apiKeys]);
 
-  // Sync model when provider changes
+  // Groq's real, current model list, asked of Groq rather than typed in here.
+  // The hardcoded array stays as the fallback for a first run with no key and
+  // for a failed call, so the picker is never empty.
+  const [groqModels, setGroqModels] = useState(() => cachedGroqModels());
+  useEffect(() => {
+    if (provider !== 'groq') return;
+    const key = apiKeys.groq?.trim();
+    if (!key) return;
+    let live = true;
+    fetchGroqModels(key).then(list => { if (live && list) setGroqModels(list); });
+    return () => { live = false; };
+  }, [provider, apiKeys.groq]);
+
+  const modelList = (provider === 'groq' && groqModels?.length)
+    ? groqModels
+    : (curProvider.models ?? []);
+
+  // Sync model when provider changes, or when the live list arrives.
+  //
+  // A saved choice is kept — but only if it still exists. Groq retires ids, and
+  // silently holding one that is gone is the failure this whole thing is for:
+  // the request 404s and the screen just stays blank. If it has gone, fall to
+  // the top of the list, which is the newest full-size model Groq is serving.
   useEffect(() => {
     const saved = localStorage.getItem(`ai_model_${provider}`);
-    const def   = PROVIDERS.find(p => p.id === provider)?.models[0]?.id ?? '';
-    setModel(saved || def);
-  }, [provider]);
+    const known = modelList.some(m => m.id === saved);
+    if (saved && known) { setModel(saved); return; }
+    setModel(modelList[0]?.id ?? '');
+  }, [provider, modelList]);
 
   useEffect(() => {
     if (model) localStorage.setItem(`ai_model_${provider}`, model);
@@ -1010,7 +1034,7 @@ export default function AIAnalysis() {
         <div style={{ display:'flex', gap:6, alignItems:'center' }}>
           <select value={model} onChange={e => setModel(e.target.value)}
             style={{ flex:1, minWidth:140, padding:'4px 8px', borderRadius:4, fontSize:10, background:'var(--bg2)', color:'var(--text)', border:'1px solid var(--border)', cursor:'pointer' }}>
-            {curProvider.models.map(m => <option key={m.id} value={m.id}>{m.label}</option>)}
+            {modelList.map(m => <option key={m.id} value={m.id}>{m.label}</option>)}
           </select>
           {loadingCtx
             ? <span style={{ fontSize:10, color:'var(--text3)' }}>⟳ Loading data…</span>

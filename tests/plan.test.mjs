@@ -1,6 +1,7 @@
 import { buildPlan, verdictLine } from '../src/utils/tradePlan.js';
 import { assess, rank } from '../src/utils/confluence.js';
 import { readFileSync } from 'fs';
+import { loadFeed } from './feed-fixture.mjs';
 
 let fails = 0;
 const check = (n, c, e='') => { console.log(`${c?'  ok  ':'  FAIL'}  ${n}${e?' — '+e:''}`); if(!c) fails++; };
@@ -95,7 +96,7 @@ check('no volatility yet is refused, not guessed',
 check('null inputs are safe', buildPlan(null, null) === null);
 
 // ── Against the live feed ─────────────────────────────────────────────────
-const feed = JSON.parse(readFileSync('/tmp/f.json','utf8'));
+const feed = loadFeed();
 const now = Date.parse(feed.updatedAt);
 const ranked = rank(feed, { now, minBreadth: 2 });
 const plans = ranked.map(a => buildPlan(a, feed.instruments[a.sym])).filter(Boolean);

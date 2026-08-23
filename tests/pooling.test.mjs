@@ -4,9 +4,10 @@
 // rate of 50%. The screen reported those as findings — fifteen cards at once
 // reading THE RECORD SAYS NO off numbers indistinguishable from a coin flip.
 import { pooledRecords, winInterval, winCI, tellsUsSomething, rank, assess,
-         zFor, verdictOf, MIN_EDGE_ATR } from '../src/utils/confluence.js';
+         zFor, verdictOf, MIN_EDGE_ATR, MIN_EXP_R } from '../src/utils/confluence.js';
 import { buildPlan } from '../src/utils/tradePlan.js';
 import { readFileSync } from 'fs';
+import { loadFeed } from './feed-fixture.mjs';
 
 let fails = 0;
 const check = (n, c, e='') => { console.log(`${c?'  ok  ':'  FAIL'}  ${n}${e?' — '+e:''}`); if(!c) fails++; };
@@ -27,7 +28,7 @@ check('a coin flip on any sample says nothing', !tellsUsSomething({ win: 50, n: 
 check('degenerate input is safe', winInterval(null, 0) === null && !tellsUsSomething(null));
 
 // ── Pooling ───────────────────────────────────────────────────────────────
-const feed = JSON.parse(readFileSync(process.argv[2] || '/tmp/feed-live.json', 'utf8'));
+const feed = loadFeed();
 const now = Date.parse(feed.updatedAt);
 const pools = pooledRecords(feed);
 const works = [], failsSig = [], silent = [];
@@ -149,10 +150,32 @@ console.log(`         after correction (${tests} tests, z=${zFor(tests).toFixed(
 for (const [k, v] of after.works) console.log(`           ${k}  ${v.win}% n=${v.n} med +${v.med}`);
 check('correction removes findings rather than adding them',
   after.works.length <= works.length, `${works.length} → ${after.works.length}`);
-check('every surviving setup clears the tradeable-size floor',
-  after.works.every(([, v]) => v.med >= MIN_EDGE_ATR));
-check('and every one clears the corrected interval',
-  after.works.every(([, v]) => winInterval(v.win, v.n, tests).lo > 50));
+// What "works" has to mean depends on which question was asked of the record.
+// A record with a stop grid was measured as a trade, and its size floor is in
+// R; one without was measured as a blind hold, and its floor is in ATR. Judging
+// the first by the second is how a setup returning +1.1R with a stop got called
+// broken for having a 47% horizon win rate — the two numbers describe different
+// trades and only one of them is the one on offer.
+const stopped = after.works.filter(([, v]) => v.stops);
+const held    = after.works.filter(([, v]) => !v.stops);
+
+check('every stopped survivor pays more than a random entry with the same stop',
+  stopped.every(([, v]) => v.stops.expR > v.stops.baseExpR),
+  stopped.map(([k, v]) => `${k} ${v.stops.expR} vs ${v.stops.baseExpR}`).join(' · ') || 'none');
+check('and every one clears the size floor, so the spread cannot eat it',
+  stopped.every(([, v]) => v.stops.expR >= MIN_EXP_R),
+  stopped.map(([k, v]) => `${k} ${v.stops.expR}R`).join(' · ') || 'none');
+check('a blind-hold survivor still clears the ATR floor and the interval',
+  held.every(([, v]) => v.med >= MIN_EDGE_ATR && winInterval(v.win, v.n, tests).lo > 50),
+  held.map(([k]) => k).join(' · ') || 'none');
+
+// The case that added the floor. Positive, hugely better than the market, and
+// not a trade: a short in a rising market, losing less badly than the market.
+const tiny = Object.entries(pools).find(([, v]) =>
+  v.stops && v.stops.expR > v.stops.baseExpR && v.stops.expR > 0 && v.stops.expR < MIN_EXP_R);
+if (tiny) check('a positive expectancy too small to collect is not reported as working',
+  verdictOf(tiny[1], tests) !== 'works',
+  `${tiny[0]} ${tiny[1].stops.expR}R vs ${tiny[1].stops.baseExpR}R → ${verdictOf(tiny[1], tests)}`);
 
 console.log(fails ? `\n${fails} FAILED` : '\nall passed');
 process.exit(fails ? 1 : 0);

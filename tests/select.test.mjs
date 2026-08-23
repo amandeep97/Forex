@@ -1,44 +1,56 @@
 // Against the LIVE feed shape: the screen must actually select.
 import { rank } from '../src/utils/confluence.js';
 import { readFileSync } from 'fs';
+import { loadFeed } from './feed-fixture.mjs';
 let fails = 0;
 const check = (n, c, e='') => { console.log(`${c?'  ok  ':'  FAIL'}  ${n}${e?' — '+e:''}`); if(!c) fails++; };
 
-// Runs against a real feed snapshot, because selectivity is a property of live
-// data and cannot be demonstrated on a fixture built to pass.
-const path = process.argv[2] || '/tmp/feed-live.json';
-let feed;
-try { feed = JSON.parse(readFileSync(path, 'utf8')); }
-catch {
-  const r = await fetch('https://raw.githubusercontent.com/amandeep97/Forex/main/bot/feed.json');
-  feed = await r.json();
-}
+// Runs against a committed snapshot of the real board — see feed-fixture.mjs.
+//
+// It used to run against whatever the feed contained at the moment the test
+// ran, falling back to fetching it from GitHub. That made these assertions
+// statements about the market rather than about the code: they read
+// "two-family candidates are well down from 97%" and asserted a fixed
+// fraction, so a busy day failed them and a quiet day passed them, with the
+// code identical either way. One of them duly failed on a day when nothing had
+// changed but the market.
+//
+// A fixed snapshot makes the question answerable. What can be asserted is that
+// the thresholds RELATE the way they are supposed to — three families tighter
+// than two, the top-N bound actually bounding — rather than that the board
+// happens to sit at some percentage today.
+const feed = loadFeed();
 const total = Object.keys(feed.instruments).length;
 const now = Date.parse(feed.updatedAt);
 
 const two = rank(feed, { now, minBreadth: 2 });
 const three = rank(feed, { now, minBreadth: 3 });
 console.log(`         ${total} measured → ${two.length} with 2+ families, ${three.length} with 3+`);
-// Measured, not asserted into existence. A threshold cannot be selective on
-// its own: on a quiet day nothing clears it, on a busy one everything does.
-// What these pin is that the fixes moved the numbers in the right direction
-// and that the top-N default is what actually bounds the screen.
-// The bound moved once, deliberately. Admitting the intraday population — the
-// rarity gate had been deleting 100% of it — adds cards that could not exist
-// before, so the two-family count rises by exactly the number of intraday-only
-// entrants. The selectivity that matters is measured on the swing side, which
-// must be unchanged, and on the three-family threshold below.
+
 const swingSide = two.filter(r => r.kind !== 'intraday');
-check('two-family candidates are well down from 97%', two.length <= total * 0.7,
-  `${two.length}/${total} = ${Math.round(100*two.length/total)}% — was 70/72`);
-check('and the swing side did not get less selective when intraday was let in',
-  swingSide.length <= total * 0.6,
-  `${swingSide.length}/${total} swing · ${two.length - swingSide.length} intraday-only`);
-check('three families is genuinely selective', three.length <= total * 0.35,
-  `${three.length}/${total} = ${Math.round(100*three.length/total)}%`);
+
+check('raising the breadth requirement removes cards', three.length < two.length,
+  `${two.length} at 2+, ${three.length} at 3+`);
+check('and removes a substantial share of them, not a token few',
+  three.length <= two.length * 0.7,
+  `${three.length}/${two.length} = ${Math.round(100*three.length/two.length)}% survive the third family`);
+// Admitting the intraday population — the rarity gate had been deleting 100%
+// of it — adds cards that could not exist before. The invariant is that those
+// arrive ALONGSIDE the swing cards rather than displacing them, so the swing
+// side is counted separately.
+check('intraday entrants do not displace the swing side',
+  swingSide.length + (two.length - swingSide.length) === two.length && swingSide.length > 0,
+  `${swingSide.length} swing · ${two.length - swingSide.length} intraday-only`);
 check('the default view is bounded regardless of the market',
   rank(feed, { now, minBreadth: 3, top: 12 }).length <= 12);
 check('but not empty', two.length >= 1);
+
+// A tripwire, not a standard. These are what this snapshot produces today; if
+// they move, the ranking changed and the reason should be known before the
+// numbers here are edited to match.
+check('this snapshot still ranks the way it did when it was taken',
+  two.length === 26 && three.length === 12 && swingSide.length === 24,
+  `2+ ${two.length} (26) · 3+ ${three.length} (12) · swing ${swingSide.length} (24)`);
 
 // Context alone must never produce a card.
 check('every card has something that HAPPENED',

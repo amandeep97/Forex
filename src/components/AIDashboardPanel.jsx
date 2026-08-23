@@ -1,10 +1,14 @@
 import { useState, useRef } from 'react';
+import { cachedGroqDefault } from '../utils/groqModels.js';
 
 function getAIConfig() {
   const provider = localStorage.getItem('ai_provider') || 'groq';
   const keys = (() => { try { return JSON.parse(localStorage.getItem('ai_keys') || '{}'); } catch { return {}; } })();
-  const defaults = { groq:'llama-3.3-70b-versatile', openrouter:'google/gemini-2.0-flash-exp:free', gemini:'gemini-2.0-flash-exp', claude:'claude-haiku-4-5' };
-  const model = localStorage.getItem(`ai_model_${provider}`) || defaults[provider] || '';
+  const defaults = { openrouter:'google/gemini-2.0-flash-exp:free', gemini:'gemini-2.0-flash-exp', claude:'claude-haiku-4-5' };
+  // Groq's default comes from the list the AI tab fetched from Groq, so this
+  // panel cannot drift onto a retired id while the tab beside it is current.
+  const fallback = provider === 'groq' ? cachedGroqDefault() : (defaults[provider] || '');
+  const model = localStorage.getItem(`ai_model_${provider}`) || fallback;
   return { provider, key: keys[provider]?.trim() || '', model };
 }
 

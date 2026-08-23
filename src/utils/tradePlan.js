@@ -24,7 +24,7 @@
 // It is still not a prediction. It is a fully specified proposal with its
 // historical record attached, and the record is frequently discouraging.
 
-import { tellsUsSomething } from './confluence';
+import { tellsUsSomething, MIN_EXP_R } from './confluence';
 
 // ── Horizon ──────────────────────────────────────────────────────────────────
 //
@@ -269,12 +269,19 @@ export function buildPlan(a, rec, {
     plan.note = `run ${src} as a real trade, this setup lost money at every stop width tried — `
       + `best was ${m.bestExpR}R a trade at ${m.stopAtr} ATR, reaching its target ${m.hit}% of the `
       + `time and its stop ${m.stopped}%. There is no width that makes this one work.`;
-  } else if (m && m.expR <= 0) {
+  } else if (m && m.expR < MIN_EXP_R) {
+    // Positive and too small to collect is the same refusal as negative, and
+    // the distinction matters because the comparison can look spectacular
+    // while the number does not: +0.03R against a random entry's −0.46R is a
+    // short losing less badly than a rising market, not a trade.
     plan.verdict = 'negative';
     plan.stopped = m;
     plan.ev = m.expR;
-    plan.note = `with ${at} this returns ${m.expR}R a trade ${src}. It beats a random entry, which `
-      + `returns ${m.baseExpR}R — but beating a market that is falling is not the same as making money.`;
+    plan.note = m.expR <= 0
+      ? `with ${at} this returns ${m.expR}R a trade ${src}. It beats a random entry, which returns `
+        + `${m.baseExpR}R — but losing less than the market lost is not making money.`
+      : `with ${at} this returns ${m.expR}R a trade ${src}, against ${m.baseExpR}R for a random entry. `
+        + `The comparison is good and the number is too small to collect — the spread takes it.`;
   } else if (m && over <= 0) {
     // The distinction the baseline exists for. A rising market makes almost any
     // long pay; that is the market, not the signal.
