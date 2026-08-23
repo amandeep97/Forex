@@ -24,7 +24,7 @@
 // It is still not a prediction. It is a fully specified proposal with its
 // historical record attached, and the record is frequently discouraging.
 
-import { tellsUsSomething, MIN_EXP_R } from './confluence';
+import { tellsUsSomething, MIN_EXP_R, MAX_COST_SHARE } from './confluence';
 
 // ── Horizon ──────────────────────────────────────────────────────────────────
 //
@@ -66,9 +66,9 @@ const MIN_RECORD = 10;
 // will not be.
 const MAX_SPREAD_RATIO = 1.6;
 
-// Cost that eats this much of the stop makes the maths unrecoverable: a 2R
-// target loses a fifth of its value before the trade starts.
-const MAX_COST_SHARE = 0.10;
+// MAX_COST_SHARE now lives in confluence.js, because the stop WIDTH has to be
+// chosen with it rather than checked against it afterwards. Two copies of the
+// same threshold is how they drift apart.
 
 // Below this, a scheduled event is not a disclosure — it is a reason not to be
 // in the market yet. Entering an hour before a rate decision means the entry
@@ -197,7 +197,10 @@ export function buildPlan(a, rec, {
   // trade nobody ran — which is what this screen was doing: a win rate measured
   // with no stop at all, multiplied through a 1.5 ATR stop it never saw. Three
   // widths were run; the one that beat a random entry by most is carried.
-  const measured = gridRec?.stops || null;
+  // A grid that was priced out has no affordable width to take a stop from, so
+  // it cannot set one. The caller's default stands and the plan refuses below.
+  const measured = gridRec?.stops && !gridRec.stops.pricedOut ? gridRec.stops : null;
+  const pricedOut = gridRec?.stops?.pricedOut ? gridRec.stops : null;
   const effStopAtr = measured ? measured.stopAtr : stopAtr;
   const stopDist = atr * effStopAtr;
   const stop = long ? price - stopDist : price + stopDist;
@@ -261,6 +264,17 @@ export function buildPlan(a, rec, {
   if (!base && !pool) {
     plan.verdict = 'unpriced';
     plan.note = 'no measured record for this setup on this instrument — the trade can be drawn but not priced';
+  } else if (pricedOut) {
+    // Before this, the stop width was chosen on measured edge alone and the
+    // spread was checked afterwards against a width picked without it. On
+    // EUR/USD M15 that produced a 1.2 pip stop against a 1.6 pip spread — the
+    // stop inside the spread — presented as the best setup on the board.
+    plan.verdict = 'costly';
+    plan.stopped = pricedOut;
+    plan.note = `the spread is ${Math.round(pricedOut.cost * 100)}% of the stop even at the widest width `
+      + `measured (${pricedOut.cheapestAt} ATR). The setup returns ${pricedOut.expR}R against `
+      + `${pricedOut.baseExpR}R for a random entry and the cost of taking it is larger than the edge. `
+      + `Not broken — unaffordable here. A slower timeframe or a tighter-spread market is where this lives.`;
   } else if (m && m.bestExpR <= 0) {
     // Refusals come first and do not wait for significance. See gridRec above.
     plan.verdict = 'negative';

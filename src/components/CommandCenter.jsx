@@ -17,7 +17,8 @@
 import { useState, useEffect, useCallback, useMemo } from 'react';
 import { fetchFeed } from '../utils/liveFeed';
 import { rank, ageOf, driversOf, clusters, FAMILY,
-         pooledRecords, winInterval, verdictOf, zFor, MIN_EDGE_ATR } from '../utils/confluence';
+         pooledRecords, winInterval, verdictOf, zFor, MIN_EDGE_ATR,
+         stopCosts, MAX_COST_SHARE } from '../utils/confluence';
 import ChartModal from './ChartModal';
 import { buildPlan, eventLine } from '../utils/tradePlan';
 
@@ -126,7 +127,7 @@ export default function CommandCenter() {
     // once to find the winners. That is a search, so the threshold has to
     // account for how many were searched.
     const tests = Object.keys(pools).length;
-    const works = [], fails = [];
+    const works = [], fails = [], costly = [], uncosted = [];
     let silent = 0, tiny = 0;
     for (const [k, v] of Object.entries(pools)) {
       const iv = winInterval(v.win, v.n, tests);
@@ -134,9 +135,17 @@ export default function CommandCenter() {
       const verdict = verdictOf(v, tests);
       if (verdict === 'works') works.push(row);
       else if (verdict === 'fails') fails.push(row);
+      // Two states that used to be invisible, and between them they held every
+      // setup this panel was advertising. "costly" is a setup whose edge is
+      // real and smaller than the spread — the remedy is a slower timeframe or
+      // a cheaper market, not a better pattern. "uncosted" is an instrument
+      // that publishes no spread at all, so nobody knows.
+      else if (verdict === 'costly') costly.push(row);
+      else if (verdict === 'uncosted') uncosted.push(row);
       else if (verdict === 'tiny') tiny++;
       else silent++;
     }
+    costly.sort((a, b) => (b[1].stops?.expR ?? 0) - (a[1].stops?.expR ?? 0));
     // Ranked by what a trade in it returns over a random entry with the same
     // stop, where that was measured. The ATR edge is the fallback for a feed
     // published before the trades were run. The two are different units and are
@@ -144,7 +153,33 @@ export default function CommandCenter() {
     const edge = v => v.stops ? v.stops.expR - v.stops.baseExpR : (v.edgeMed ?? v.med);
     works.sort((a, b) => edge(b[1]) - edge(a[1]));
     fails.sort((a, b) => a[1].win - b[1].win);
-    return { total: tests, works, fails, silent, tiny, z: +zFor(tests).toFixed(2) };
+
+    // Where trading is affordable at all — the thing this screen has never
+    // said, and the one that explains most of the list above. On FX M15 a 0.5
+    // ATR stop is 1.2 pips and the spread is 1.6, so the stop sits inside the
+    // spread and no pattern of any quality can be taken there. Same spreads the
+    // plans use, so the two can never disagree.
+    const classes = [...new Set(Object.values(feed.instruments || {}).map(r => r.cls))];
+    const afford = [];
+    for (const cls of classes) {
+      for (const tf of ['M15', 'M30', 'H1', 'H4', 'D']) {
+        const shares = [];
+        for (const rec of Object.values(feed.instruments || {})) {
+          if (rec.cls !== cls) continue;
+          const c = stopCosts(rec, tf);
+          // The cheapest width available, because that is the best case.
+          if (c) shares.push(Math.min(...c));
+        }
+        if (!shares.length) continue;
+        shares.sort((x, y) => x - y);
+        afford.push({ cls, tf, share: shares[Math.floor(shares.length / 2)], n: shares.length });
+      }
+    }
+    const uncostedClasses = classes.filter(c =>
+      !afford.some(a => a.cls === c) && Object.values(feed.instruments).some(r => r.cls === c));
+
+    return { total: tests, works, fails, costly, uncosted, silent, tiny,
+             afford, uncostedClasses, z: +zFor(tests).toFixed(2) };
   }, [feed]);
 
   const ranked = useMemo(() => {
@@ -346,6 +381,75 @@ export default function CommandCenter() {
                 </div>
               </div>
             ))}
+            {/* Setups whose edge is real and smaller than the cost of taking
+                it. These used to be counted as working: the stop width was
+                chosen on measured edge alone and the spread was checked
+                afterwards, against a width picked without it. The best-looking
+                setup on this board was a 1.2 pip stop on a 1.6 pip spread. */}
+            {evidenceReport.costly.length > 0 && (
+              <div style={{ marginTop:8, paddingTop:7, borderTop:'1px solid var(--border)' }}>
+                <div style={{ fontSize:11, color:'#f59e0b', fontWeight:700 }}>
+                  {evidenceReport.costly.length} more work and cost more than they pay
+                </div>
+                {evidenceReport.costly.slice(0, 3).map(([k, v]) => (
+                  <div key={k} style={{ fontSize:11, color:'var(--text3)', marginTop:3, marginLeft:2 }}>
+                    {prettySetup(k)} — {v.stops.expR}R a trade, spread is{' '}
+                    <strong style={{ color:'#f59e0b' }}>{Math.round(v.stops.cost * 100)}% of the stop</strong>
+                    {' '}even at {v.stops.cheapestAt} ATR
+                  </div>
+                ))}
+              </div>
+            )}
+            {evidenceReport.uncosted.length > 0 && (
+              <div style={{ fontSize:11, color:'var(--text3)', marginTop:6 }}>
+                {evidenceReport.uncosted.length} pass the record and publish no spread, so whether they
+                can be taken is unknown: {evidenceReport.uncosted.slice(0,3).map(([k]) => prettySetup(k)).join(', ')}
+              </div>
+            )}
+
+            {/* Which markets are affordable at all, at the cheapest stop width
+                measured. Nothing else on this screen answers it, and it decides
+                more than any pattern does. */}
+            <div style={{ marginTop:9, paddingTop:7, borderTop:'1px solid var(--border)' }}>
+              <div style={{ fontSize:11, fontWeight:700, color:'var(--text2)', marginBottom:4 }}>
+                WHERE THE SPREAD LETS YOU TRADE
+              </div>
+              <div style={{ overflowX:'auto' }}>
+                <table style={{ borderCollapse:'collapse', fontSize:10.5, color:'var(--text3)' }}>
+                  <thead><tr>
+                    <th style={{ textAlign:'left', padding:'2px 8px 2px 0' }}></th>
+                    {['M15','M30','H1','H4','D'].map(tf =>
+                      <th key={tf} style={{ padding:'2px 7px', fontWeight:600 }}>{tf}</th>)}
+                  </tr></thead>
+                  <tbody>
+                    {[...new Set(evidenceReport.afford.map(a => a.cls))].map(cls => (
+                      <tr key={cls}>
+                        <td style={{ padding:'2px 8px 2px 0', color:'var(--text2)' }}>{cls}</td>
+                        {['M15','M30','H1','H4','D'].map(tf => {
+                          const a = evidenceReport.afford.find(x => x.cls === cls && x.tf === tf);
+                          if (!a) return <td key={tf} style={{ padding:'2px 7px', textAlign:'center' }}>—</td>;
+                          const ok = a.share <= MAX_COST_SHARE;
+                          return (
+                            <td key={tf} style={{ padding:'2px 7px', textAlign:'right',
+                              color: ok ? '#22c55e' : a.share > 0.5 ? '#ef4444' : 'var(--text3)' }}>
+                              {Math.round(a.share * 100)}%
+                            </td>
+                          );
+                        })}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <div style={{ fontSize:10, color:'var(--text3)', marginTop:4, lineHeight:1.55 }}>
+                Spread as a share of the stop, at the cheapest width measured, median across the
+                instruments in each class. Green is takeable — above {Math.round(MAX_COST_SHARE*100)}%
+                the cost outweighs the edge whatever the pattern says.
+                {evidenceReport.uncostedClasses.length > 0 &&
+                  ` ${evidenceReport.uncostedClasses.join(' and ')} publish no spread and cannot be checked.`}
+              </div>
+            </div>
+
             <div style={{ fontSize:10.5, color:'var(--text3)', marginTop:7, lineHeight:1.6 }}>
               {evidenceReport.total} setups tested at once, so the bar is raised to match:
               a 95% interval is a statement about one question, and asking {evidenceReport.total}

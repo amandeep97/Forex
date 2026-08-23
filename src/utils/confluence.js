@@ -173,7 +173,8 @@ export function pooledRecords(feed) {
     for (const [key, r] of Object.entries(rec.rarity || {})) {
       if (!r?.fwdN || r.fwdWin == null || r.fwdMedAtr == null) continue;
       const k = `${cls}|${key}`;
-      const a = acc.get(k) || { n: 0, wins: 0, medSum: 0, upSum: 0, syms: 0, bars: r.fwdBars, st: null, tp: null, stN: 0 };
+      const a = acc.get(k) || { n: 0, wins: 0, medSum: 0, upSum: 0, syms: 0, bars: r.fwdBars,
+                                st: null, tp: null, stN: 0, costs: [], costUnknown: 0 };
       a.n += r.fwdN;
       // Reconstructed from the reported percentage. Exact enough at these
       // sample sizes, and the alternative is publishing a second field.
@@ -191,6 +192,11 @@ export function pooledRecords(feed) {
         if (r.tp) a.tp = addRow(a.tp, r.tp, r.fwdN);
         a.stN += r.fwdN;
       }
+      // Cost is per instrument, so a pooled setup gets the median across the
+      // instruments that make it up — and only those that publish a spread. An
+      // instrument with no spread does not count as cheap, it does not count.
+      const c = stopCosts(rec, key.split('.').pop());
+      if (c) a.costs.push(c); else a.costUnknown += 1;
       a.syms += 1;
       acc.set(k, a);
     }
@@ -215,8 +221,17 @@ export function pooledRecords(feed) {
     // The same setup run as an actual stopped trade, pooled across the class.
     // This is where the sample sizes live — a per-instrument grid is fifteen
     // occurrences and this is often two thousand.
+    // The median cost at each width across the instruments that carry a
+    // spread. null when none of them do — which is 32 of 72 here, so it is a
+    // real state and not an edge case.
+    const cost = a.costs.length
+      ? STOPS.map((_, i) => {
+          const col = a.costs.map(c => c[i]).sort((x, y) => x - y);
+          return col[Math.floor(col.length / 2)];
+        })
+      : null;
     const stops = a.st && b?.gn
-      ? chooseStop(divGrid(a.st, a.stN), blendGrid(divGrid(b.up, b.gn), divGrid(b.dn, b.gn), up))
+      ? chooseStop(divGrid(a.st, a.stN), blendGrid(divGrid(b.up, b.gn), divGrid(b.dn, b.gn), up), cost)
       : null;
     const prof = a.tp && b?.gn
       ? profileOf(divRow(a.tp, a.stN).map(Math.round), divRow(b.tp, b.gn), up)
@@ -224,6 +239,10 @@ export function pooledRecords(feed) {
     out[k] = {
       ...(stops ? { stops } : {}),
       ...prof,
+      // How many of the contributing instruments could be costed at all, so a
+      // pooled figure cannot quietly rest on the ones that publish nothing.
+      costedSyms: a.costs.length,
+      uncostedSyms: a.costUnknown,
       n: a.n,
       win,
       med: +(a.medSum / a.n).toFixed(2),
@@ -356,6 +375,10 @@ export function verdictOf(rec, tests = 1) {
   // views of the same thing, and only the second is a trade.
   if (rec.stops && rec.n && rec.baseN) {
     const s = rec.stops;
+    // Priced out is not the same finding as broken, and collapsing them loses
+    // the only one that has a remedy: a wider timeframe, a different asset
+    // class, or a broker whose spread is not larger than the stop.
+    if (s.pricedOut) return 'costly';
     const stat = diffZ(s.hit, rec.n, s.baseHit, rec.baseN);
     if (stat == null) return 'silent';
     // Three widths were compared to pick this one, so the bar it has to clear
@@ -365,7 +388,13 @@ export function verdictOf(rec, tests = 1) {
     if (stat <= zs) return 'silent';
     // Significant, and it still has to pay: more per trade than a random entry
     // with the same stop, and enough of it to survive the cost of taking.
-    return s.expR > s.baseExpR && s.expR >= MIN_EXP_R ? 'works' : 'tiny';
+    if (!(s.expR > s.baseExpR && s.expR >= MIN_EXP_R)) return 'tiny';
+    // Nothing published a spread, so whether it can be taken is unknown. Saying
+    // "works" here is the claim that broke this: two of the three setups on the
+    // live board were Binance perps with no spread recorded, and the screen
+    // presented them beside a costed one as though they had passed the same
+    // test.
+    return s.costKnown ? 'works' : 'uncosted';
   }
   // With no baseline published yet, fall back to the old benchmark rather than
   // going silent — an older feed should degrade, not disappear.
@@ -438,22 +467,84 @@ function blendGrid(up, dn, share) {
   return up.map((row, k) => row.map((v, j) => v * share + dn[k][j] * (1 - share)));
 }
 
-export function chooseStop(grid, baseGrid) {
+// Cost that eats this much of the stop makes the maths unrecoverable. Defined
+// here rather than in tradePlan because the stop WIDTH now has to know about it
+// — see chooseStop.
+export const MAX_COST_SHARE = 0.10;
+
+// What the spread costs at each stop width, as a share of the stop.
+//
+// Returns null when the instrument publishes no spread. Null is not zero: 32 of
+// 72 instruments here are Binance perps with no spread recorded, and treating
+// those as free is how an untradeable setup gets called the best on the board.
+export function stopCosts(rec, tf) {
+  const st = rec?.state?.[tf];
+  const spread = rec?.state?.spreadAbs;
+  const price = rec?.price;
+  if (!st?.atrPct || !spread || !price) return null;
+  const atr = price * (st.atrPct / 100);
+  if (!(atr > 0)) return null;
+  return STOPS.map(s => +(spread / (s * atr)).toFixed(3));
+}
+
+// Pick the stop width.
+//
+// This used to pick purely on measured edge, and that was wrong in a way the
+// numbers could not show. A tight stop with a 2R target always looks best in a
+// frictionless simulation, so on fast timeframes it chose 0.5 ATR every time.
+// On EUR/USD M15 a 0.5 ATR stop is 1.2 pips and the spread is 1.6 — the stop is
+// INSIDE the spread. The board's best setup, +0.71R over 153 occurrences,
+// resolved in half an hour, could not be taken by anybody.
+//
+// The cost check already existed in tradePlan and ran per card, long after the
+// width had been chosen and long after the panel had called the setup working.
+// Two correct pieces that never spoke to each other. So the width is chosen
+// from the affordable ones, and where none is affordable that is the answer.
+export function chooseStop(grid, baseGrid, costs = null) {
   if (!Array.isArray(grid) || !Array.isArray(baseGrid)) return null;
+  const known = Array.isArray(costs);
+
   // The width that beats the market by most — not the width with the highest
   // raw expectancy. On a drifting instrument the widest stop always wins the
   // raw comparison, because it is the one most like simply being long, and the
   // screen would report the market's drift as the setup's edge for the third
   // time.
-  let best = null;
+  let best = null, bestAny = null;
   for (let k = 0; k < grid.length && k < baseGrid.length; k++) {
     const g = grid[k], bl = baseGrid[k];
     if (!g || !bl) continue;
     const over = (g[2] - bl[2]) / 100;
+    if (!bestAny || over > bestAny.over) bestAny = { k, over, g, bl };
+    if (known && !(costs[k] <= MAX_COST_SHARE)) continue;   // priced out
     if (!best || over > best.over) best = { k, over, g, bl };
   }
-  if (!best) return null;
+  if (!bestAny) return null;
+
+  // Every width is eaten by the spread. Reported rather than swallowed: it is
+  // the difference between "this setup does not work" and "this setup works and
+  // you cannot afford it", and only one of those is fixed by a better broker or
+  // a slower timeframe.
+  if (known && !best) {
+    const cheapest = costs.indexOf(Math.min(...costs));
+    return {
+      pricedOut: true,
+      costKnown: true,
+      cost: costs[cheapest],
+      cheapestAt: STOPS[cheapest],
+      stopAtr: STOPS[bestAny.k],
+      rr: STOP_RR,
+      expR: +(bestAny.g[2] / 100).toFixed(2),
+      baseExpR: +(bestAny.bl[2] / 100).toFixed(2),
+      hit: Math.round(bestAny.g[0]),
+      baseHit: Math.round(bestAny.bl[0]),
+      tried: grid.length,
+    };
+  }
+
+  best = best || bestAny;
   return {
+    costKnown: known,
+    cost: known ? costs[best.k] : null,
     stopAtr: STOPS[best.k],
     rr: STOP_RR,
     hit: Math.round(best.g[0]),
@@ -494,7 +585,7 @@ export function stopsFor(r, rec, tf, dir) {
   const b = rec?.baseline?.[tf];
   if (!Array.isArray(r?.st) || !b?.stUp || !b?.stDn) return {};
   const share = r.upShare != null ? r.upShare : (dir === 'down' ? 0 : 1);
-  const stops = chooseStop(r.st, blendGrid(b.stUp, b.stDn, share));
+  const stops = chooseStop(r.st, blendGrid(b.stUp, b.stDn, share), stopCosts(rec, tf));
   if (!stops) return {};
   return { stops, ...profileOf(r.tp, b.tp, share) };
 }

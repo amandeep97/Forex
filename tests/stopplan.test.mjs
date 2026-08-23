@@ -11,7 +11,7 @@
 // The bot now runs each setup as an actual trade at three stop widths. These
 // check that the app prices from those runs and not from the horizon.
 import { buildPlan } from '../src/utils/tradePlan.js';
-import { assess, chooseStop, stopsFor, verdictOf, tellsUsSomething, pooledRecords }
+import { assess, chooseStop, stopsFor, verdictOf, tellsUsSomething, pooledRecords, stopCosts }
   from '../src/utils/confluence.js';
 
 let fails = 0;
@@ -51,6 +51,60 @@ const rec = (rarity, baseline) => ({
 
 check('no grid means no opinion, not a default one',
   chooseStop(null, G([1, 2, 3, 4])) === null && chooseStop(G([1, 2, 3, 4]), null) === null);
+
+// ── The spread decides the width ─────────────────────────────────────────────
+// This chose purely on measured edge, and on a fast timeframe that means it
+// always chose the tightest stop: a 0.5 ATR stop with a 2R target has the
+// biggest winners in a frictionless simulation. On EUR/USD M15 a 0.5 ATR stop
+// is 1.2 pips and the spread is 1.6 — the stop sits INSIDE the spread. The
+// board's best setup, +0.71R over 153 occurrences and resolved in half an hour,
+// could not be taken by anybody. The cost check existed and ran per card, after
+// the width had been chosen and after the panel had called the setup working.
+{
+  const setup  = G([50, 40, 60, 3], [45, 42, 40, 7], [40, 45, 20, 9]);
+  const market = G([40, 45, 5, 4], [42, 44, 5, 8], [44, 43, 5, 9]);
+
+  const free = chooseStop(setup, market, null);
+  check('with no spread known the tightest, best-scoring width still wins',
+    free.stopAtr === 0.5 && free.costKnown === false, `${free.stopAtr} ATR`);
+
+  // Tight is unaffordable, wide is fine. The best edge is at 0.5 and the best
+  // TRADE is at 1.5.
+  const dear = chooseStop(setup, market, [0.42, 0.21, 0.08]);
+  check('an affordable width is chosen over a better-scoring unaffordable one',
+    dear.stopAtr === 1.5, `${dear.stopAtr} ATR at ${Math.round(dear.cost * 100)}% cost`);
+  check('and the cost it was chosen at travels with it',
+    dear.costKnown === true && dear.cost === 0.08, JSON.stringify([dear.costKnown, dear.cost]));
+
+  // The live EUR/USD M15 case: every width is eaten.
+  const none = chooseStop(setup, market, [4.23, 2.11, 1.41]);
+  check('when no width is affordable that is the answer, not the least-bad width',
+    none.pricedOut === true, JSON.stringify(none.stopAtr));
+  check('and it reports the cheapest width and what it would still cost',
+    none.cheapestAt === 1.5 && none.cost === 1.41, `${none.cheapestAt} ATR at ${none.cost}`);
+  check('while still carrying what the setup would have returned, because '
+      + 'unaffordable and broken are different findings',
+    none.expR === 0.6 && none.baseExpR === 0.05, JSON.stringify([none.expR, none.baseExpR]));
+}
+
+// stopCosts reads the instrument, and refuses to guess.
+{
+  // EUR/USD as published: price 1.158, M15 ATR 0.02% of price, spread 1.6 pips.
+  const eur = { price: 1.158, state: { M15: { atrPct: 0.02 }, spreadAbs: 0.00016 } };
+  const c = stopCosts(eur, 'M15');
+  check('a 0.5 ATR stop on EUR/USD M15 is smaller than the spread', c[0] > 1,
+    `spread is ${Math.round(c[0] * 100)}% of the stop`);
+  check('and even the widest width measured does not clear the limit', c[2] > 0.10,
+    `${Math.round(c[2] * 100)}% at 1.5 ATR`);
+  // The same instrument on Daily, where the ATR is two orders larger.
+  const daily = { price: 1.158, state: { D: { atrPct: 0.465 }, spreadAbs: 0.00016 } };
+  check('the same spread on Daily is affordable', stopCosts(daily, 'D')[2] <= 0.10,
+    `${Math.round(stopCosts(daily, 'D')[2] * 100)}% at 1.5 ATR`);
+  check('an instrument with no spread published costs unknown, not zero',
+    stopCosts({ price: 100, state: { M15: { atrPct: 1 } } }, 'M15') === null,
+    '32 of 72 instruments are in this state and treating them as free is how '
+    + 'an untradeable setup became the best on the board');
+}
 
 // ── The mixed-direction blend ────────────────────────────────────────────────
 // A sweep record is a mix of ups and downs. Its benchmark is the blend of the
@@ -167,8 +221,17 @@ const MARKET = { stUp: G([30, 55, -20, 4], [32, 52, -12, 8], [34, 50, -8, 10]),
 {
   const works = { n: 200, baseN: 380, win: 65, baseWin: 52, med: 1.8, edgeMed: 1.2,
                   stops: { stopAtr: 0.5, rr: 2, hit: 48, stopped: 40, expR: 0.44,
-                           baseExpR: -0.2, baseHit: 30, exitBars: 3, baseExitBars: 4, tried: 3 } };
-  check('a setup that pays with a stop is reported as working', verdictOf(works) === 'works');
+                           baseExpR: -0.2, baseHit: 30, exitBars: 3, baseExitBars: 4, tried: 3,
+                           costKnown: true, cost: 0.04 } };
+  check('a setup that pays with a stop it can afford is reported as working',
+    verdictOf(works) === 'works', verdictOf(works));
+  // Two states that used to be reported as working and are not the same claim.
+  const noSpread = { ...works, stops: { ...works.stops, costKnown: false, cost: null } };
+  check('one on an instrument that publishes no spread is uncosted, not working',
+    verdictOf(noSpread) === 'uncosted', verdictOf(noSpread));
+  const tooDear = { ...works, stops: { ...works.stops, pricedOut: true, cost: 4.23, cheapestAt: 1.5 } };
+  check('one whose spread is larger than its stop is costly, not working',
+    verdictOf(tooDear) === 'costly', verdictOf(tooDear));
   const paid = { ...works, stops: { ...works.stops, expR: -0.1 } };
   check('one that clears significance and does not pay is not called working',
     verdictOf(paid) === 'tiny', verdictOf(paid));
