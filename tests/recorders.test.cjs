@@ -16,6 +16,7 @@ Module._resolveFilename = function (req, ...rest) {
   return orig.call(this, req, ...rest);
 };
 const { BookRecorder, spanOf, SAMPLE_MS, KEEP_DAYS } = require('../vps-bot/src/bookRecorder.js');
+const { OandaClient } = require('../vps-bot/src/oanda.js');
 
 let fails = 0;
 const check = (n, c, e = '') => { console.log(`${c ? '  ok  ' : '  FAIL'}  ${n}${e ? ' — ' + e : ''}`); if (!c) fails++; };
@@ -44,7 +45,7 @@ const okBook = pct => ({ t: NOW, price: 1.1, longPct: pct });
     const asked = [];
     const r = new BookRecorder({
       instruments: INST, github: hub, log: () => {},
-      oanda: { async getPositionBook(i) { asked.push(i); return okBook(72); } },
+      oanda: { canReadBook: () => true, async getPositionBook(i) { asked.push(i); return okBook(72); } },
     });
     const out = await r.tick(NOW);
     check('only instruments that have an OANDA book are asked',
@@ -73,7 +74,7 @@ const okBook = pct => ({ t: NOW, price: 1.1, longPct: pct });
     let calls = 0;
     const r = new BookRecorder({
       instruments: INST, github: fakeHub(), log: () => {},
-      oanda: { async getPositionBook() { calls++; return { error: 'OANDA 403 forbidden' }; } },
+      oanda: { canReadBook: () => true, async getPositionBook() { calls++; return { error: 'OANDA 403 forbidden' }; } },
     });
     await r.tick(NOW);
     const first = calls;
@@ -88,7 +89,7 @@ const okBook = pct => ({ t: NOW, price: 1.1, longPct: pct });
     let calls = 0;
     const r = new BookRecorder({
       instruments: INST, github: fakeHub(), log: () => {},
-      oanda: { async getPositionBook() { calls++; return { error: 'OANDA 503 unavailable' }; } },
+      oanda: { canReadBook: () => true, async getPositionBook() { calls++; return { error: 'OANDA 503 unavailable' }; } },
     });
     await r.tick(NOW);
     await r.tick(NOW + SAMPLE_MS);
@@ -102,7 +103,7 @@ const okBook = pct => ({ t: NOW, price: 1.1, longPct: pct });
     const hub = fakeHub({ version: 1, samples: { 'EUR/USD': [[old, 50, 1.1], [NOW - 86400e3, 60, 1.1]] } });
     const r = new BookRecorder({
       instruments: INST, github: hub, log: () => {},
-      oanda: { async getPositionBook() { return okBook(70); } },
+      oanda: { canReadBook: () => true, async getPositionBook() { return okBook(70); } },
     });
     const out = await r.tick(NOW);
     check('a row older than the retention window is dropped',
@@ -127,10 +128,60 @@ const okBook = pct => ({ t: NOW, price: 1.1, longPct: pct });
     const hub = fakeHub();
     const r = new BookRecorder({
       instruments: INST, github: hub, log: () => {},
-      oanda: { async getPositionBook() { return null; } },
+      oanda: { canReadBook: () => true, async getPositionBook() { return null; } },
     });
     check('an empty result writes no file rather than an empty one',
       (await r.tick(NOW)) === null && hub.stored === null);
+  }
+
+  // ── The second token, and the blast radius around it ──────────────────────
+  //
+  // The position book is a live-host endpoint; on practice every instrument
+  // returns 401. The obvious fix — flipping OANDA_PRACTICE to false — is the
+  // dangerous one, because that flag decides where ORDERS go, not just which
+  // host serves data. So the book gets its own credential, and the trading
+  // client stays exactly where it was.
+  {
+    const practice = new OandaClient({ apiKey: 'demo', accountId: 'a', practice: true });
+    check('without a book token the recorder knows not to ask',
+      practice.canReadBook() === false);
+    check('and the trading host is untouched by any of this',
+      practice.base.includes('fxpractice'), practice.base);
+
+    const withBook = new OandaClient({ apiKey: 'demo', accountId: 'a', practice: true,
+                                       bookApiKey: 'live-readonly' });
+    check('a book token does not move trading to the live host',
+      withBook.base.includes('fxpractice'), withBook.base);
+    check('but the book becomes readable', withBook.canReadBook() === true);
+
+    // The path guard. This token belongs to a funded account and the difference
+    // between an instrument read and an order is one string.
+    const refused = [];
+    for (const p of ['/accounts/123/orders', '/accounts/123/summary',
+                     '/instruments/EUR_USD/../../accounts/1/orders', '/orders']) {
+      try { await withBook._bookReq(p); } catch (e) { refused.push(/instrument-read-only/.test(e.message)); }
+    }
+    check('the book token is refused on every path that is not an instrument read',
+      refused.length === 4 && refused.every(Boolean), JSON.stringify(refused));
+  }
+
+  // A recorder wired to a client with no book token records nothing, says so
+  // once, and does not probe thirty endpoints on every restart.
+  {
+    const hub = fakeHub();
+    let asked = 0;
+    const lines = [];
+    const r = new BookRecorder({
+      instruments: INST, github: hub, log: m => lines.push(m),
+      oanda: { canReadBook: () => false, async getPositionBook() { asked++; return okBook(50); } },
+    });
+    await r.tick(NOW);
+    await r.tick(NOW + SAMPLE_MS);
+    check('no token means no requests at all', asked === 0, String(asked));
+    check('and it is explained once, not every four hours', lines.length === 1, String(lines.length));
+    check('with the reason, not just the absence',
+      /practice API/.test(lines[0]), lines[0]);
+    check('and nothing is written', hub.stored === null);
   }
 
   console.log(fails ? `\n${fails} FAILED` : '\nall passed');
