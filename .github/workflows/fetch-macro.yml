@@ -16,6 +16,12 @@ jobs:
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+          # main, explicitly. A scheduled run checks out the DEFAULT branch,
+          # which here is the bot's source branch — so this fetched macro data
+          # and committed it somewhere the app never reads. macroDrivers.js
+          # loads public/macro-data.json from main, and the copy there was six
+          # days behind the copy on the branch this was writing to.
+          ref: main
 
       - name: Fetch macro data
         run: |
@@ -530,8 +536,29 @@ jobs:
           git add public/macro-data.json
           if git diff --staged --quiet; then
             echo "No changes to commit"
-          else
-            git commit -m "chore: update macro data $(date -u '+%Y-%m-%d %H:%M UTC') [skip ci]"
-            git pull --rebase origin main
-            git push
+            exit 0
           fi
+          git commit -m "chore: update macro data $(date -u '+%Y-%m-%d %H:%M UTC') [skip ci]"
+
+          # This used to "git pull --rebase origin main" and then a bare "git
+          # push" — pulling from one branch and pushing to whichever was checked
+          # out. It worked only while the two shared a history. Once they did
+          # not, every file the branches had in common came back as an add/add
+          # conflict and the job failed twenty-two times in a row.
+          #
+          # Now it is one branch throughout. The retry is for a different race:
+          # the VPS bot commits to main about once a minute, so losing a push is
+          # ordinary and is not a reason to leave the file stale for six hours
+          # until the next scheduled run.
+          for attempt in 1 2 3 4 5; do
+            if git push origin HEAD:main; then
+              echo "pushed on attempt $attempt"
+              exit 0
+            fi
+            echo "attempt $attempt lost a race with another commit, rebasing"
+            git fetch origin main
+            git rebase origin/main || { git rebase --abort; echo "rebase conflict"; exit 1; }
+            sleep 3
+          done
+          echo "could not push after 5 attempts"
+          exit 1
