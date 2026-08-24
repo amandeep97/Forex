@@ -252,6 +252,31 @@ function ConnectTab({ onLog, signalPair, onSignalUsed }) {
   const [analyzing, setAnalyzing] = useState(false);
   const [placing,   setPlacing]   = useState(false);
   const [connMsg,   setConnMsg]   = useState('');
+  const [showKey,   setShowKey]   = useState(false);
+  // Which field last reported a successful copy, so the button can say so.
+  // Cleared on a timer rather than left saying "copied" forever.
+  const [copied,    setCopied]    = useState('');
+
+  // navigator.clipboard needs a secure context and is refused in some mobile
+  // browsers even then, so the textarea fallback is not belt-and-braces — it is
+  // the path that actually runs for a fair number of people.
+  const copyField = useCallback(async (value, which) => {
+    if (!value) return;
+    try {
+      await navigator.clipboard.writeText(value);
+    } catch {
+      const ta = document.createElement('textarea');
+      ta.value = value;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); } catch { /* nothing left to try */ }
+      document.body.removeChild(ta);
+    }
+    setCopied(which);
+    setTimeout(() => setCopied(c => (c === which ? '' : c)), 1500);
+  }, []);
   const [tradeMsg,  setTradeMsg]  = useState('');
   const [connErr,   setConnErr]   = useState('');
   const [tradeErr,  setTradeErr]  = useState('');
@@ -411,13 +436,36 @@ function ConnectTab({ onLog, signalPair, onSignalUsed }) {
         <div style={CARD}>
           <div style={SEC}>OANDA Connection</div>
           <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'flex-end', marginBottom: 12 }}>
+            {/* Show and copy, because the field is masked and the value is
+                needed elsewhere — on the server, in a curl, in the bot's .env.
+                Without these the only way to get it out is to re-fetch it from
+                OANDA, which is how the wrong token ends up pasted somewhere. */}
             <div>
               <div style={{ fontSize: 10, color: '#64748b', marginBottom: 3 }}>API Key</div>
-              <input type="password" value={apiKey} onChange={e => setApiKey(e.target.value)} placeholder="Bearer token…" style={{ ...INP, width: 180 }} />
+              <div style={{ display: 'flex', gap: 4 }}>
+                <input type={showKey ? 'text' : 'password'} value={apiKey}
+                  onChange={e => setApiKey(e.target.value)} placeholder="Bearer token…"
+                  style={{ ...INP, width: 180 }} />
+                <button onClick={() => setShowKey(v => !v)} title={showKey ? 'hide' : 'show'}
+                  style={BTN({ background: 'transparent', color: '#94a3b8' })}>
+                  {showKey ? 'hide' : 'show'}
+                </button>
+                <button onClick={() => copyField(apiKey, 'key')} disabled={!apiKey}
+                  style={BTN({ background: 'transparent', color: apiKey ? '#94a3b8' : '#475569' })}>
+                  {copied === 'key' ? 'copied' : 'copy'}
+                </button>
+              </div>
             </div>
             <div>
               <div style={{ fontSize: 10, color: '#64748b', marginBottom: 3 }}>Account ID</div>
-              <input value={accountId} onChange={e => setAccountId(e.target.value)} placeholder="001-001-…" style={{ ...INP, width: 140 }} />
+              <div style={{ display: 'flex', gap: 4 }}>
+                <input value={accountId} onChange={e => setAccountId(e.target.value)}
+                  placeholder="001-001-…" style={{ ...INP, width: 140 }} />
+                <button onClick={() => copyField(accountId, 'acct')} disabled={!accountId}
+                  style={BTN({ background: 'transparent', color: accountId ? '#94a3b8' : '#475569' })}>
+                  {copied === 'acct' ? 'copied' : 'copy'}
+                </button>
+              </div>
             </div>
             <div style={{ display: 'flex', gap: 4 }}>
               {['practice','live'].map(e => (
