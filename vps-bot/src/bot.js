@@ -17,6 +17,7 @@ const { FeedNotifier } = require('./feedNotify');
 const { Updater }      = require('./updater');
 const { NewsFetcher }  = require('./newsFetcher');
 const { runCOTStudy }  = require('./cotStudy');
+const { BookRecorder } = require('./bookRecorder');
 const { INSTRUMENTS }  = require('./instruments');
 
 const COT_STUDY_PATH = 'bot/cot-study.json';
@@ -77,6 +78,13 @@ class ForexBot {
     this.alertChecker = new AlertChecker({ oanda: this.oanda, github: this.github, telegram: this.telegram, env, log: this.log.bind(this) });
     this.updater = new Updater({ github: this.github, env, log: this.log.bind(this) });
     this.news = new NewsFetcher({ github: this.github, log: this.log.bind(this) });
+    // Records where OANDA's clients are positioned. Measures nothing — it makes
+    // a future measurement possible, which is the only thing that can be done
+    // about a question whose data was never kept.
+    this.book = new BookRecorder({
+      oanda: this.oanda, github: this.github, instruments: INSTRUMENTS,
+      log: this.log.bind(this),
+    });
     this.feed = env.FEED_ENABLED === 'false'
       ? null
       : new FeedBuilder({
@@ -138,6 +146,11 @@ class ForexBot {
     // answer is missing or a week old, which on a weekend is free: the only
     // thing this competes with is a feed republishing an unchanged board.
     await this._maybeCOTStudy().catch(e => this.warn(`COT study: ${e.message}`));
+
+    // Before the weekend guard, like the feed and the news: the retail book on
+    // a Sunday is still a reading, and skipping weekends would put a two-day
+    // hole in every series.
+    await this.book.tick().catch(e => this.warn(`Book: ${e.message}`));
 
     if (isWeekend()) { this.log('Weekend — skipped'); return; }
 

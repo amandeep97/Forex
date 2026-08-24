@@ -63,6 +63,41 @@ class OandaClient {
       .map(c => ({ t: new Date(c.time).getTime(), bid: +c.bid.c, ask: +c.ask.c }));
   }
 
+  // Where OANDA's own clients are positioned, bucketed by price.
+  //
+  // This is the only genuine sentiment reading available anywhere in this
+  // project — actual retail books rather than a number inferred from candles.
+  // The app has been fetching it live in the browser and throwing it away, so
+  // "what followed a crowded retail long" has never been answerable: no past
+  // state was ever written down.
+  //
+  // Not every account is served this endpoint. A refusal is returned as null
+  // rather than thrown, so the recorder can note which instruments answer.
+  async getPositionBook(instrument) {
+    try {
+      const data = await this._req(`/instruments/${instrument}/positionBook`);
+      const b = data?.positionBook;
+      if (!b?.buckets?.length) return null;
+      let long = 0, short = 0;
+      for (const k of b.buckets) {
+        long += +k.longCountPercent || 0;
+        short += +k.shortCountPercent || 0;
+      }
+      const total = long + short;
+      if (!total) return null;
+      return {
+        t: Date.parse(b.time) || Date.now(),
+        price: +b.price || null,
+        // One number, not the buckets. The full book is hundreds of rows per
+        // instrument and this file has to be written every few hours for
+        // months — the share of accounts long is the part that gets measured.
+        longPct: +((long / total) * 100).toFixed(1),
+      };
+    } catch (e) {
+      return { error: e.message.slice(0, 80) };
+    }
+  }
+
   async getAccountSummary() {
     const data = await this._req(`/accounts/${this.accountId}/summary`);
     return {

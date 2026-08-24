@@ -299,8 +299,24 @@ class NewsFetcher {
   // keeping them now. Merged by a stable key so a re-fetch updates a row rather
   // than duplicating it: an event's actual appears minutes after the event
   // itself, so the same row is written twice by design.
-  async _archive(calendar) {
-    const released = calendar.filter(e => e.at < Date.now() && e.actual);
+  async _archive(calendar, releases = null) {
+    // Everything on the calendar, not only what has already printed.
+    //
+    // This used to filter for events that were BOTH past AND carried an
+    // actual. The calendar is a schedule: it lists what is coming, carries a
+    // forecast while the event is upcoming, and drops the event once it has
+    // happened. So the two conditions were never true at the same moment and
+    // the file has been empty since the day it was created — checked on the
+    // live feed: 66 events, 0 in the past, 0 with an actual.
+    //
+    // The consequence is not an empty file, it is a permanently unanswerable
+    // question. Surprise is actual minus forecast, and the forecast only exists
+    // BEFORE the event. Waiting until afterwards to record anything throws away
+    // the half that can never be recovered.
+    //
+    // So every event is written while it is still scheduled, forecast and all,
+    // and the actual is filled in on a later pass once it exists.
+    const now = Date.now();
     // No early return on an empty batch. The cleanup below has to run even when
     // there is nothing to add — and once the country check was in place there
     // never was, so the purge sat behind a guard it could not get past and the
@@ -325,19 +341,76 @@ class NewsFetcher {
     // two-minute correction as a different event.
     const keyOf = e => `${new Date(e.at).toISOString().slice(0, 10)}|${e.country}|${e.title}`;
     const byKey = new Map(prev.map(e => [keyOf(e), e]));
-    let added = 0;
-    for (const e of released) {
-      const k = keyOf(e);
-      if (!byKey.has(k)) added++;
-      byKey.set(k, e);
-    }
-    const purged = before - prev.length;
-    // Write when something was added OR something was removed. Gating only on
-    // additions meant a file could be known to be wrong and never corrected.
-    if (!added && !purged) return;          // genuinely nothing to do
 
-    const events = [...byKey.values()].sort((a, b) => a.at - b.at);
-    const what = [added && `+${added}`, purged && `-${purged} bad`].filter(Boolean).join(', ');
+    let added = 0, filled = 0;
+    for (const e of calendar) {
+      const k = keyOf(e);
+      const was = byKey.get(k);
+      if (!was) {
+        added++;
+        byKey.set(k, {
+          at: e.at, country: e.country, title: e.title, impact: e.impact,
+          // The half that cannot be recovered later. Captured now, while the
+          // event is still in the future and the calendar is still carrying it.
+          forecast: e.forecast ?? null,
+          previous: e.previous ?? null,
+          seenAt: new Date().toISOString(),
+          actual: e.actual ?? null,
+        });
+        continue;
+      }
+      // Never overwrite a forecast that was captured before the event with
+      // whatever the calendar says about it afterwards — a restated forecast is
+      // not the number the market was positioned against.
+      if (was.forecast == null && e.forecast != null) was.forecast = e.forecast;
+      if (was.previous == null && e.previous != null) was.previous = e.previous;
+      if (was.actual == null && e.actual != null) { was.actual = e.actual; filled++; }
+    }
+
+    // Fill actuals from the BLS series the macro workflow publishes, for events
+    // that have passed and that the calendar never gave a result for — which is
+    // all of them. Guarded by country: BLS is a US agency, and the first version
+    // of this filed the US CPI against Canada's release.
+    for (const e of byKey.values()) {
+      if (e.actual != null || e.at > now) continue;
+      const v = releasedValue(e.title, e.at, releases, e.country);
+      if (v == null) continue;
+      e.actual = v;
+      e.actualFrom = 'BLS';
+      filled++;
+    }
+
+    // Surprise, wherever both halves are now present. This is the only number
+    // on the row that moves anything, and it exists solely because the forecast
+    // was captured before the event.
+    for (const e of byKey.values()) {
+      if (e.actual == null || e.forecast == null || e.surprise != null) continue;
+      const a = numOf(e.actual), f = numOf(e.forecast);
+      if (a == null || f == null) continue;
+      e.surprise = +(a - f).toFixed(4);
+      e.beat = e.surprise > 0 ? 'above' : e.surprise < 0 ? 'below' : 'inline';
+    }
+
+    const purged = before - prev.length;
+
+    // Bounded. A year of every scheduled event is enough to measure against and
+    // small enough to ship; without this the file grows forever.
+    //
+    // Computed BEFORE the write guard, not after. Putting it after is how the
+    // original version of this file ended up with a cleanup that could never
+    // run: the guard returned on a quiet pass and the stale rows sat there
+    // being quietly wrong. Aging a row out is itself a change worth writing.
+    const cutoff = now - 365 * 86400e3;
+    let dropped = 0;
+    const events = [...byKey.values()]
+      .filter(e => { const keep = e.at >= cutoff; if (!keep) dropped++; return keep; })
+      .sort((a, b) => a.at - b.at);
+
+    if (!added && !filled && !purged && !dropped) return;   // genuinely nothing to do
+
+    const what = [added && `+${added}`, filled && `${filled} filled`,
+                  purged && `-${purged} bad`, dropped && `-${dropped} aged out`]
+      .filter(Boolean).join(', ');
     try {
       this.historySha = await this.github.writeJSON(HISTORY_PATH,
         { version: 1, updatedAt: new Date().toISOString(), events },
@@ -395,7 +468,10 @@ class NewsFetcher {
     // Start keeping released events now, so the question "what did EUR/USD do
     // the last twelve times CPI ran hot" is answerable in a few months rather
     // than never.
-    await this._archive(calendar).catch(e => this.log(`News: archive failed (${e.message})`));
+    // The BLS actuals come from the same file the calendar pass reads, so the
+    // archive can fill in results the calendar itself never carries.
+    await this._archive(calendar, this._releases())
+      .catch(e => this.log(`News: archive failed (${e.message})`));
 
     const payload = {
       calendar,
