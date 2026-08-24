@@ -1,36 +1,14 @@
 'use strict';
 const fetch = require('node-fetch');
 
-const LIVE_BASE = 'https://api-fxtrade.oanda.com/v3';
-
 class OandaClient {
-  constructor({ apiKey, accountId, practice = true, bookApiKey = null }) {
+  constructor({ apiKey, accountId, practice = true }) {
     this.apiKey    = apiKey;
     this.accountId = accountId;
     this.base      = practice
       ? 'https://api-fxpractice.oanda.com/v3'
-      : LIVE_BASE;
-
-    // A second token, for one thing only.
-    //
-    // The position book does not exist on the practice API — every instrument
-    // came back 401 UNAUTHORIZED, which is the demo host declining to serve
-    // that data at all rather than the account lacking a permission. The
-    // obvious fix, flipping practice to false, is the dangerous one: that flag
-    // does not only select a data host, it selects where ORDERS GO. Turning it
-    // off to read a sentiment number would point live trading at a funded
-    // account.
-    //
-    // So the book gets its own credential and its own host, and the trading
-    // client is left exactly where it was. _bookReq below refuses to send this
-    // token anywhere except /instruments/, so it cannot reach an account
-    // endpoint even by mistake.
-    this.bookKey = bookApiKey || null;
+      : 'https://api-fxtrade.oanda.com/v3';
   }
-
-  // Whether the position book is reachable at all, so a recorder can decline to
-  // probe thirty endpoints for a guaranteed 401 on every restart.
-  canReadBook() { return !!this.bookKey; }
 
   // A request with no timeout is not a slow request, it is a permanent one.
   // node-fetch will wait forever on a black-holed socket, and any caller that
@@ -85,67 +63,13 @@ class OandaClient {
       .map(c => ({ t: new Date(c.time).getTime(), bid: +c.bid.c, ask: +c.ask.c }));
   }
 
-  // Where OANDA's own clients are positioned, bucketed by price.
+  // No getPositionBook here, deliberately, so nobody adds one back.
   //
-  // This is the only genuine sentiment reading available anywhere in this
-  // project — actual retail books rather than a number inferred from candles.
-  // The app has been fetching it live in the browser and throwing it away, so
-  // "what followed a crowded retail long" has never been answerable: no past
-  // state was ever written down.
-  //
-  // Not every account is served this endpoint. A refusal is returned as null
-  // rather than thrown, so the recorder can note which instruments answer.
-  // Instrument data only, on the live host, with the read-only book token.
-  //
-  // The path check is not defensive politeness. This token belongs to a funded
-  // account, and the difference between /instruments/EUR_USD/positionBook and
-  // /accounts/{id}/orders is one string. Refusing anything that is not an
-  // instrument read means a future caller cannot reach for this client and
-  // accidentally place something with it.
-  async _bookReq(path) {
-    if (!this.bookKey) throw new Error('no book token configured');
-    if (!/^\/instruments\/[A-Za-z0-9_]+\/[A-Za-z]+$/.test(path)) {
-      throw new Error(`book token is instrument-read-only, refused: ${path}`);
-    }
-    const res = await fetch(`${LIVE_BASE}${path}`, {
-      timeout: 25000,
-      method: 'GET',
-      headers: { Authorization: `Bearer ${this.bookKey}`, 'Content-Type': 'application/json' },
-    });
-    if (!res.ok) {
-      const raw = await res.text().catch(() => '');
-      throw new Error(`OANDA ${res.status} ${path}: ${raw.slice(0, 200)}`);
-    }
-    return res.json();
-  }
-
-  async getPositionBook(instrument) {
-    try {
-      const data = this.bookKey
-        ? await this._bookReq(`/instruments/${instrument}/positionBook`)
-        : await this._req(`/instruments/${instrument}/positionBook`);
-      const b = data?.positionBook;
-      if (!b?.buckets?.length) return null;
-      let long = 0, short = 0;
-      for (const k of b.buckets) {
-        long += +k.longCountPercent || 0;
-        short += +k.shortCountPercent || 0;
-      }
-      const total = long + short;
-      if (!total) return null;
-      return {
-        t: Date.parse(b.time) || Date.now(),
-        price: +b.price || null,
-        // One number, not the buckets. The full book is hundreds of rows per
-        // instrument and this file has to be written every few hours for
-        // months — the share of accounts long is the part that gets measured.
-        longPct: +((long / total) * 100).toFixed(1),
-      };
-    } catch (e) {
-      return { error: e.message.slice(0, 80) };
-    }
-  }
-
+  // OANDA does not serve /instruments/{x}/positionBook to this account.
+  // Verified rather than assumed: the same live token, on the same host, in the
+  // same command, listed both accounts from /v3/accounts and returned 401
+  // "Invalid authentication credentials" from the position book. The token is
+  // valid and that endpoint is not available, so no configuration reaches it.
   async getAccountSummary() {
     const data = await this._req(`/accounts/${this.accountId}/summary`);
     return {
