@@ -92,22 +92,42 @@ const printable = ccy => ccy.filter(c => CODE.test(c));
 
 // Where the big players are, from the COT percentile the feed publishes.
 //
-// Read as an extreme, not as a direction to follow: commercials being at a
-// three-year short extreme is a statement about crowding, and crowding resolves
-// by unwinding. Below the extremes it says nothing, and says so.
+// This used to vote. A reading above the 85th percentile was called "crowded
+// long — the side that unwinds badly" and counted as a bearish leg, which on
+// US500 produced a card reading "split — technical say up, big players say
+// down". That sentence was trading folklore. I wrote it here, as a finding,
+// on instruments where nobody had measured it — in the feature built to stop
+// exactly that.
+//
+// It has since been measured: bot/cot-study.json, thirteen instruments, three
+// years of weekly filings, forward outcomes at one, two, four and eight weeks
+// against what each instrument did from every other week, entered at the
+// Friday release rather than the Tuesday report, consecutive crowded weeks
+// counted as one episode. Thirty-seven crowded-long episodes and forty
+// crowded-short. The largest z anywhere in it is 0.82 against a corrected bar
+// of 3.08, and stopped expectancy sits between −0.25R and +0.16R.
+//
+// So the number is real and what follows it is not distinguishable from the
+// market. It stays on the card as context, because "positioning is stretched"
+// is a true statement about the world, and it no longer points anywhere or
+// counts toward agreement.
+//
+// The threshold is 90/10 rather than 85/15 because that is what was actually
+// tested; flagging at 85 and testing at 90 would be citing a measurement of a
+// different thing.
 function institutional(rec) {
   const p = rec?.state?.posnPct;
   const wk = rec?.state?.posnWeeks;
   if (p == null || !wk) return null;
-  if (p >= 85) return { leg: 'big players', dir: 'down', weight: 4,
-    headline: `positioning is at the top ${100 - p}% of ${Math.round(wk / 52)} years`,
-    detail: 'crowded long — the side that unwinds badly' };
-  if (p <= 15) return { leg: 'big players', dir: 'up', weight: 4,
-    headline: `positioning is at the bottom ${p}% of ${Math.round(wk / 52)} years`,
-    detail: 'crowded short — the side that squeezes' };
+  const yrs = Math.round(wk / 52);
+  if (p >= 90 || p <= 10) return { leg: 'big players', dir: null, weight: 2,
+    headline: `positioning is ${p >= 90 ? 'stretched long' : 'stretched short'} — `
+      + `${p >= 90 ? `top ${100 - p}%` : `bottom ${p}%`} of ${yrs} years`,
+    detail: 'measured across 13 instruments: what follows an extreme is '
+      + 'indistinguishable from what the market does anyway' };
   return { leg: 'big players', dir: null, weight: 1,
     headline: `positioning is mid-range (${p}th percentile)`,
-    detail: 'nothing stretched about how the big players are placed' };
+    detail: `nothing stretched about it against ${yrs} years` };
 }
 
 // Retail against institutional. The only genuine sentiment reading here, and it

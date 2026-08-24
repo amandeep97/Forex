@@ -67,17 +67,37 @@ const tiny = { n: 6,   baseN: 900, win: 33, baseWin: 59, med: -0.4, baseMed: 0.1
 }
 
 // ── Positioning ──────────────────────────────────────────────────────────────
+// This leg used to vote. Above the 85th percentile it said "crowded long — the
+// side that unwinds badly" and counted as bearish, which on US500 produced
+// "split — technical say up, big players say down". That was folklore written
+// in as a finding.
+//
+// It was then measured — bot/cot-study.json, 13 instruments, 3 years, 37
+// crowded-long and 40 crowded-short episodes, entered at the Friday release,
+// consecutive weeks counted once, against each instrument's own baseline. The
+// largest z in the whole study is 0.82 against a bar of 3.08.
 {
   const hot = instrumentRead('EUR/USD', rec({ posnPct: 92 }), card([sig('up', 'hammer', good)]), { now: NOW });
-  check('a crowded long is read as a risk to the downside',
-    legOf(hot, 'big players').dir === 'down', String(legOf(hot, 'big players').dir));
-  check('and that is a conflict with a bullish chart, stated as one',
-    hot.conflict === true && /split/.test(hot.verdict), hot.verdict);
+  check('a crowded long no longer points anywhere, because what follows it was measured',
+    legOf(hot, 'big players').dir === null, String(legOf(hot, 'big players').dir));
+  check('and the extreme is still reported, because it is a true fact about the world',
+    /stretched long/.test(legOf(hot, 'big players').headline), legOf(hot, 'big players').headline);
+  check('with the measurement named rather than a story told about it',
+    /indistinguishable/.test(legOf(hot, 'big players').detail), legOf(hot, 'big players').detail);
+  check('so it cannot manufacture a conflict with the chart',
+    hot.conflict === false && !/split/.test(hot.verdict), hot.verdict);
 
   const cold = instrumentRead('EUR/USD', rec({ posnPct: 8 }), card([sig('up', 'hammer', good)]), { now: NOW });
-  check('a crowded short is read as a squeeze risk upward',
-    legOf(cold, 'big players').dir === 'up');
-  check('and agreement is counted and named', cold.agree === 2 && /2 of/.test(cold.verdict), cold.verdict);
+  check('a crowded short is reported the same way and votes for nothing either',
+    legOf(cold, 'big players').dir === null && /stretched short/.test(legOf(cold, 'big players').headline),
+    legOf(cold, 'big players').headline);
+  check('and it does not count toward agreement', cold.agree === 1, String(cold.agree));
+
+  // 90/10, not 85/15 — flagging at a threshold the study never tested would be
+  // citing a measurement of a different thing.
+  const near = instrumentRead('EUR/USD', rec({ posnPct: 87 }), card([sig('up', 'hammer', good)]), { now: NOW });
+  check('the threshold matches the one that was actually measured',
+    /mid-range/.test(legOf(near, 'big players').headline), legOf(near, 'big players').headline);
 
   const mid = instrumentRead('EUR/USD', rec({ posnPct: 50 }), card([sig('up', 'hammer', good)]), { now: NOW });
   check('mid-range positioning votes for nothing',
@@ -183,9 +203,14 @@ const tiny = { n: 6,   baseN: 900, win: 33, baseWin: 59, med: -0.4, baseMed: 0.1
     macro: { drivers: [{ label: '2y yield', r: -0.6, change: -0.3, n: 90, level: 3.7, unit: '%' }] },
     smart: { retailLongPct: 75, retailLong: false, opposed: true, crowded: true },
   });
-  check('four legs agreeing is counted and every one of them is named',
-    many.agree === 4 && ['technical','big players','sentiment','fundamental']
-      .every(l => many.verdict.includes(l)), many.verdict);
+  // Three, not four: positioning is present and does not vote, so it is named
+  // on the card and left out of the count. A leg that has been measured and
+  // found to precede nothing must not still be padding the agreement number.
+  check('agreement counts only the legs that point somewhere, and names them',
+    many.agree === 3 && ['technical','sentiment','fundamental'].every(l => many.verdict.includes(l))
+      && !many.verdict.includes('big players'), many.verdict);
+  check('and the non-voting leg is still shown',
+    !!many.legs.find(l => l.leg === 'big players'), many.legs.map(l => l.leg).join(' > '));
   check('and the strongest evidence is ordered first',
     many.legs[0].leg === 'technical', many.legs.map(l => l.leg).join(' > '));
 }
