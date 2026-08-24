@@ -67,7 +67,14 @@ function vwapToday(candles) {
 
 class ForexBot {
   constructor(env) {
-    this.oanda    = new OandaClient({ apiKey: env.OANDA_API_KEY, accountId: env.OANDA_ACCOUNT_ID, practice: env.OANDA_PRACTICE !== 'false' });
+    this.oanda    = new OandaClient({
+      apiKey: env.OANDA_API_KEY, accountId: env.OANDA_ACCOUNT_ID,
+      practice: env.OANDA_PRACTICE !== 'false',
+      // Read-only, live-host, used by exactly one endpoint. Absent by default:
+      // without it the position book is simply not recorded, which is the state
+      // this has always been in. Setting it does NOT move trading anywhere.
+      bookApiKey: env.OANDA_BOOK_API_KEY || null,
+    });
     this.github   = new GitHubClient({ token: env.GITHUB_TOKEN, owner: env.GITHUB_OWNER, repo: env.GITHUB_REPO, branch: env.GITHUB_BRANCH || 'main' });
     this.telegram = new TelegramClient({ botToken: env.TELEGRAM_BOT_TOKEN, chatId: env.TELEGRAM_CHAT_ID });
     this.configSha = null;

@@ -47,6 +47,18 @@ class BookRecorder {
   }
 
   async tick(now = Date.now()) {
+    // Without a live-host token there is nothing to ask. The practice API does
+    // not serve this endpoint — thirty instruments, thirty 401s — and probing
+    // it again after every restart is thirty pointless requests for a result
+    // that is already known.
+    if (!this.oanda.canReadBook?.()) {
+      if (!this.warned) {
+        this.warned = true;
+        this.log('Book: not recording — OANDA_BOOK_API_KEY is unset, and the '
+          + 'position book does not exist on the practice API');
+      }
+      return null;
+    }
     if (!this.due(now)) return null;
     this.lastRun = now;
 
