@@ -55,6 +55,14 @@ const KEEP_CALENDAR_DAYS = 8;
 //
 // Values arrive as display strings — "0.2%", "250K", "-1.2%", "3.40M" — so
 // they have to be read as numbers before they can be compared.
+// The calendar sends an unreleased value as an empty string, not as a missing
+// field. `?? null` does not catch that, so every archived row came back with
+// actual:"" — which reads as present, which meant the fill pass skipped all 66
+// of them and no actual would ever have been written. Same failure as the
+// original archive bug wearing different clothes: a condition that looks like
+// it fires and never does.
+const blank = v => (v == null || String(v).trim() === '') ? null : v;
+
 function numOf(s) {
   if (s == null) return null;
   const t = String(s).trim().replace(/,/g, '').replace(/%$/, '');
@@ -352,19 +360,22 @@ class NewsFetcher {
           at: e.at, country: e.country, title: e.title, impact: e.impact,
           // The half that cannot be recovered later. Captured now, while the
           // event is still in the future and the calendar is still carrying it.
-          forecast: e.forecast ?? null,
-          previous: e.previous ?? null,
+          forecast: blank(e.forecast),
+          previous: blank(e.previous),
           seenAt: new Date().toISOString(),
-          actual: e.actual ?? null,
+          actual: blank(e.actual),
         });
         continue;
       }
       // Never overwrite a forecast that was captured before the event with
       // whatever the calendar says about it afterwards — a restated forecast is
       // not the number the market was positioned against.
-      if (was.forecast == null && e.forecast != null) was.forecast = e.forecast;
-      if (was.previous == null && e.previous != null) was.previous = e.previous;
-      if (was.actual == null && e.actual != null) { was.actual = e.actual; filled++; }
+      // Normalised on every pass, not only on insert: rows written by the
+      // first version of this carry "" and would otherwise never be filled.
+      was.forecast = blank(was.forecast) ?? blank(e.forecast);
+      was.previous = blank(was.previous) ?? blank(e.previous);
+      if (blank(was.actual) == null && blank(e.actual) != null) { was.actual = blank(e.actual); filled++; }
+      else was.actual = blank(was.actual);
     }
 
     // Fill actuals from the BLS series the macro workflow publishes, for events
@@ -372,7 +383,7 @@ class NewsFetcher {
     // all of them. Guarded by country: BLS is a US agency, and the first version
     // of this filed the US CPI against Canada's release.
     for (const e of byKey.values()) {
-      if (e.actual != null || e.at > now) continue;
+      if (blank(e.actual) != null || e.at > now) continue;
       const v = releasedValue(e.title, e.at, releases, e.country);
       if (v == null) continue;
       e.actual = v;
@@ -384,7 +395,7 @@ class NewsFetcher {
     // on the row that moves anything, and it exists solely because the forecast
     // was captured before the event.
     for (const e of byKey.values()) {
-      if (e.actual == null || e.forecast == null || e.surprise != null) continue;
+      if (blank(e.actual) == null || blank(e.forecast) == null || e.surprise != null) continue;
       const a = numOf(e.actual), f = numOf(e.forecast);
       if (a == null || f == null) continue;
       e.surprise = +(a - f).toFixed(4);

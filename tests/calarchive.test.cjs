@@ -91,6 +91,28 @@ const run = async (calendar, releases, stored) => {
   check('an empty calendar with an empty archive writes nothing', none.events === undefined
     || none.events.length === 0, JSON.stringify(none && none.events));
 
+  // The calendar sends an unreleased value as an EMPTY STRING, not as a missing
+  // field. On the live feed all 66 archived rows came back with actual:"" —
+  // which reads as present, so the fill pass skipped every one of them and no
+  // actual would ever have been written. The same failure as the original bug
+  // wearing different clothes: a condition that looks like it fires and does
+  // not.
+  const empties = [{ at: NOW + 86400e3, country: 'USD', title: 'CPI m/m', impact: 'high',
+                     forecast: '0.3%', previous: '0.2%', actual: '' }];
+  const d = await run(empties, null, null);
+  check('an empty actual is stored as absent, not as a value',
+    d.events[0].actual === null, JSON.stringify(d.events[0].actual));
+
+  // And a row written by the first version, carrying "", must still get filled.
+  const e = await run([], { cpi_mom: [{ date: '2026-08-01', val: 0.5 }] }, {
+    version: 1,
+    events: [{ at: NOW - 86400e3, country: 'USD', title: 'CPI m/m', impact: 'high',
+               forecast: '0.3%', previous: '0.2%', actual: '' }],
+  });
+  check('a row already written with an empty actual is repaired and filled',
+    e.events[0].actual === 0.5 && e.events[0].surprise === 0.2,
+    `${e.events[0].actual} / ${e.events[0].surprise}`);
+
   console.log(fails ? `\n${fails} FAILED` : '\nall passed');
   process.exit(fails ? 1 : 0);
 })().catch(e => { console.log('  FAIL  threw —', e.stack.split('\n').slice(0, 3).join(' ')); process.exit(1); });
