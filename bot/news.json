@@ -570,7 +570,8 @@
       ],
       "ccy": [],
       "sev": 1,
-      "rel": 2
+      "rel": 2,
+      "why": "Testing support levels, direction unclear."
     },
     {
       "title": "Nasdaq 100 trapped near 29,350 in bull-bear tug-of-war: Live",
@@ -582,7 +583,8 @@
       ],
       "ccy": [],
       "sev": 2,
-      "rel": 2
+      "rel": 2,
+      "why": "Tug-of-war implies indecision."
     },
     {
       "title": "Dow Jones stuck in indecision zone near 53,800: Live levels",
@@ -594,7 +596,8 @@
       ],
       "ccy": [],
       "sev": 1,
-      "rel": 2
+      "rel": 2,
+      "why": "Indecision zone implies no clear direction."
     },
     {
       "title": "London Gas Oil wedged at key resistance $1,245: Live levels",
@@ -608,7 +611,8 @@
         "OIL"
       ],
       "sev": 1,
-      "rel": 2
+      "rel": 2,
+      "why": "Wedged at resistance, direction unclear."
     },
     {
       "title": "Crude Oil WTI double top breakdown below $84: Hourly",
@@ -623,7 +627,12 @@
         "OIL"
       ],
       "sev": 1,
-      "rel": 2
+      "rel": 2,
+      "dir": {
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Double top breakdown is bearish."
     },
     {
       "title": "S&P 500 trapped in Ichimoku cloud near 7,746: Live levels",
@@ -635,7 +644,8 @@
       ],
       "ccy": [],
       "sev": 1,
-      "rel": 2
+      "rel": 2,
+      "why": "Trapped in cloud implies indecision."
     },
     {
       "title": "Silver stalls below $70 in tight consolidation: Live levels",
@@ -649,7 +659,8 @@
         "XAG"
       ],
       "sev": 1,
-      "rel": 2
+      "rel": 2,
+      "why": "Stalls in consolidation, direction unclear."
     },
     {
       "title": "Brent Oil tests 200-SMA support near $85.31: Live levels",
@@ -664,7 +675,8 @@
         "OIL"
       ],
       "sev": 1,
-      "rel": 2
+      "rel": 2,
+      "why": "Testing support, direction unclear."
     },
     {
       "title": "Copper teeters at $6.61 above key support: Hourly levels",
@@ -688,7 +700,8 @@
         "XAU"
       ],
       "sev": 1,
-      "rel": 2
+      "rel": 2,
+      "why": "Stalls after run, direction unclear."
     },
     {
       "title": "Are older Americans spoiling the economy for everyone else?",
@@ -828,7 +841,13 @@
         "USD"
       ],
       "sev": 1,
-      "rel": 2
+      "rel": 2,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "High yield strengthens dollar, bearish metals/forex."
     },
     {
       "title": "Dallas Fed Trimmed Mean +2.2% versus 1.5% last month",
@@ -849,7 +868,8 @@
         "USD"
       ],
       "sev": 1,
-      "rel": 2
+      "rel": 2,
+      "why": "Inflation data direction ambiguous for assets."
     },
     {
       "title": "London’s FTSE 100 dips as crude weighs on oil majors",
@@ -864,7 +884,12 @@
         "OIL"
       ],
       "sev": 1,
-      "rel": 2
+      "rel": 2,
+      "dir": {
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Crude weighs on oil majors."
     },
     {
       "title": "Stocks making the biggest moves midday: Meta, Abercrombie & Fitch, Zoom, Intuit & more",
@@ -877,7 +902,8 @@
       ],
       "ccy": [],
       "sev": 1,
-      "rel": 2
+      "rel": 2,
+      "why": "Individual stock moves, index direction unclear."
     },
     {
       "title": "Putin said to plan Ukraine escalation after seeing talks as fruitless",
@@ -892,7 +918,11 @@
         "OIL"
       ],
       "sev": 2,
-      "rel": 2
+      "rel": 2,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Escalation fears boost oil prices."
     },
     {
       "title": "Emergency medical evacuation insurance: What it covers, what it costs, and how to compare plans",
@@ -937,7 +967,8 @@
       ],
       "ccy": [],
       "sev": 1,
-      "rel": 2
+      "rel": 2,
+      "why": "Individual stock moves, index direction unclear."
     },
     {
       "title": "Dollar gains as hotter PCE inflation keeps Fed hike debate alive",
@@ -957,7 +988,13 @@
         "USD"
       ],
       "sev": 2,
-      "rel": 2
+      "rel": 2,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Stronger dollar pressures gold and major pairs."
     },
     {
       "title": "Treasury yields muted after headline PCE ticks up ahead of Jackson Hole",
@@ -977,7 +1014,8 @@
         "USD"
       ],
       "sev": 1,
-      "rel": 2
+      "rel": 2,
+      "why": "Muted yields imply no clear directional move."
     },
     {
       "title": "US July durable goods orders +1.1% vs +0.5% expected",
@@ -993,7 +1031,8 @@
         "EUR"
       ],
       "sev": 1,
-      "rel": 2
+      "rel": 2,
+      "why": "Soft data mixed with strong headline, unclear."
     },
     {
       "title": "Bitcoin and ethereum prices today, Wednesday, August 26, 2026: 'Bitcoin is having a price gusher to close out August'",
@@ -1008,7 +1047,12 @@
         "BTC"
       ],
       "sev": 1,
-      "rel": 2
+      "rel": 2,
+      "dir": {
+        "BTC/USDT": "up",
+        "ETH/USDT": "up"
+      },
+      "why": "Price gusher implies bullish momentum for both."
     },
     {
       "title": "US GDP 2nd estimate for Q2 1.5% vs 1.5% preliminary.",
@@ -1027,7 +1071,8 @@
       ],
       "ccy": [],
       "sev": 2,
-      "rel": 2
+      "rel": 2,
+      "why": "GDP revision neutral, no clear directional signal."
     },
     {
       "title": "Silver price today, Wednesday, August 26, 2026: Silver prices hold, notching a 17% monthly gain",
@@ -1041,7 +1086,11 @@
         "XAG"
       ],
       "sev": 1,
-      "rel": 2
+      "rel": 2,
+      "dir": {
+        "XAG/USD": "up"
+      },
+      "why": "Holding gains implies bullish sentiment for silver."
     },
     {
       "title": "Gold price today, Wednesday, August 26, 2026: Gold pulls back from morning's high over $4,700",
@@ -1055,7 +1104,11 @@
         "XAU"
       ],
       "sev": 1,
-      "rel": 2
+      "rel": 2,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Pullback from high indicates bearish short-term move."
     },
     {
       "title": "investingLive European news wrap: Markets await further US-Iran news, Jackson Hole event",
@@ -1068,7 +1121,8 @@
       ],
       "ccy": [],
       "sev": 1,
-      "rel": 2
+      "rel": 2,
+      "why": "Awaiting news, no clear immediate direction."
     },
     {
       "title": "Meta, states discuss mid-trial settlement in teen addiction case",
@@ -1092,7 +1146,11 @@
         "JPY"
       ],
       "sev": 1,
-      "rel": 2
+      "rel": 2,
+      "dir": {
+        "USD/JPY": "down"
+      },
+      "why": "Yen strengthening implies USD/JPY decline."
     },
     {
       "title": "UK retail sector remains under pressure as CBI survey shows sharp sales decline",
@@ -1148,7 +1206,8 @@
         "CHF"
       ],
       "sev": 1,
-      "rel": 2
+      "rel": 2,
+      "why": "Sentiment rise is ambiguous for currency pair."
     },
     {
       "title": "What are the main events for today?",
@@ -1163,7 +1222,8 @@
         "CHF"
       ],
       "sev": 1,
-      "rel": 2
+      "rel": 2,
+      "why": "Low-tier releases offer no clear direction."
     },
     {
       "title": "HP partners with U.S.-blacklisted Huawei for licensing the Chinese company's WiFi tech",
@@ -1191,7 +1251,12 @@
         "OIL"
       ],
       "sev": 2,
-      "rel": 2
+      "rel": 2,
+      "dir": {
+        "USD/JPY": "down",
+        "USOIL": "down"
+      },
+      "why": "Hawkish BOJ weakens yen; oil down."
     },
     {
       "title": "Australian monthly CPI (July 2026) 3.5 % y/y (vs. 3.2% expected)",
@@ -1206,7 +1271,11 @@
         "AUD"
       ],
       "sev": 2,
-      "rel": 2
+      "rel": 2,
+      "dir": {
+        "AUD/USD": "up"
+      },
+      "why": "Hotter CPI supports AUD against USD."
     },
     {
       "title": "Preview, today: Fed's favoured inflation gauge lands two days before Warsh's Jackson Hole speech",
@@ -1227,7 +1296,8 @@
         "USD"
       ],
       "sev": 2,
-      "rel": 2
+      "rel": 2,
+      "why": "Preview of data, no current direction."
     },
     {
       "title": "Japan's services inflation accelerates to 3.6pct in July, beating forecasts",
@@ -1242,7 +1312,11 @@
         "JPY"
       ],
       "sev": 3,
-      "rel": 2
+      "rel": 2,
+      "dir": {
+        "USD/JPY": "down"
+      },
+      "why": "BOJ hike case strengthens yen, lowers pair."
     },
     {
       "title": "US weighs further trade escalation after Canada sets retaliatory tariffs",
@@ -1280,7 +1354,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-08-26T19:35:49.310Z",
-  "headlinesAt": "2026-08-26T19:35:49.310Z",
-  "updatedAt": "2026-08-26T19:35:49.310Z"
+  "calendarAt": "2026-08-26T19:39:47.849Z",
+  "headlinesAt": "2026-08-26T19:39:47.849Z",
+  "updatedAt": "2026-08-26T19:39:47.849Z"
 }
