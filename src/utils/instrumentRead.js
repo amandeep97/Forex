@@ -174,17 +174,33 @@ function fundamental(drivers) {
 // Headlines that name this instrument's currencies. A count and the latest, not
 // a sentiment score: nothing here can read a headline's tone honestly, and
 // pretending otherwise would be the invented number this whole file avoids.
-function headlines(news, ccy, now) {
-  const mine = (news?.headlines || []).filter(h =>
-    (h.ccy || []).some(c => ccy.includes(c)) && (!h.at || now - h.at < 36 * 3600e3));
+function headlines(news, sym, ccy, now) {
+  const fresh = (news?.headlines || []).filter(h => !h.at || now - h.at < 36 * 3600e3);
+
+  // The instrument tag first, the currency tag only as a fallback.
+  //
+  // US500 resolves to USD, so matching on currency alone put Treasury and Fed
+  // stories on an equities card and called them news about the S&P — which is
+  // exactly what the live board was doing. The bot now publishes an instrument
+  // tag from the same vocabulary the news screen uses, and an index gets
+  // equities copy or nothing.
+  const byInst = fresh.filter(h => (h.inst || []).includes(sym));
+  const mine = byInst.length ? byInst
+    : fresh.filter(h => (h.ccy || []).some(c => ccy.includes(c)));
   if (!mine.length) return null;
-  const latest = mine[0];
-  const who = printable(ccy);
+
+  // Loudest first where the bot has scored it, rather than merely newest: a
+  // ceasefire and a routine market wrap are not the same story.
+  const ranked = [...mine].sort((a, b) => (b.sev ?? 1) - (a.sev ?? 1) || b.at - a.at);
+  const latest = ranked[0];
+  const about = byInst.length ? sym : (printable(ccy).join('/') || 'this market');
+  const urgent = ranked.filter(h => (h.sev ?? 1) >= 2).length;
   return {
     leg: 'news', dir: null, weight: 2,
-    headline: `${mine.length} recent ${mine.length === 1 ? 'story' : 'stories'} on ${who.join('/') || 'this market'}`,
+    headline: `${mine.length} recent ${mine.length === 1 ? 'story' : 'stories'} on ${about}`
+      + (urgent ? ` · ${urgent} heavyweight` : ''),
     detail: latest.title,
-    items: mine.slice(0, 4),
+    items: ranked.slice(0, 4),
   };
 }
 
@@ -239,7 +255,7 @@ export function instrumentRead(sym, rec, a, {
     institutional(rec),
     sentiment(smart),
     fundamental(macro),
-    headlines(news, ccy, now),
+    headlines(news, sym, ccy, now),
     scheduled(news, ccy, now, holdMs),
     related(rec),
   ].filter(Boolean).sort((x, y) => y.weight - x.weight);
