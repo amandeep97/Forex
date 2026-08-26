@@ -46,6 +46,30 @@ const fromBot = h => ({
   rel: h.rel ?? 1,
 });
 
+// The calendar the bot publishes, in the shape this screen has always spoken.
+//
+// Two differences, both silent if unhandled: the bot normalises the event time
+// to milliseconds under `at` while this file reads `new Date(ev.date)`, and it
+// lowercases impact while the styling and the filters key on 'High'/'Medium'.
+// An unconverted feed would render as a page of Low-impact events dated
+// Invalid Date rather than as an error.
+const capitalise = s => (s ? s[0].toUpperCase() + s.slice(1).toLowerCase() : 'Low');
+const fromBotEvent = e => ({
+  ...e,
+  date: e.at ? new Date(e.at).toISOString() : e.date,
+  impact: capitalise(e.impact),
+});
+
+async function fetchBotCalendar(timeout = 12000) {
+  const r = await fetch(`${BOT_NEWS}?t=${Date.now()}`,
+    { cache: 'no-store', signal: AbortSignal.timeout(timeout) });
+  if (!r.ok) throw new Error(`bot news ${r.status}`);
+  const j = await r.json();
+  const events = (j.calendar || []).map(fromBotEvent);
+  if (!events.length) throw new Error('bot published no calendar');
+  return events;
+}
+
 async function fetchBotNews(timeout = 12000) {
   const r = await fetch(`${BOT_NEWS}?t=${Date.now()}`,
     { cache: 'no-store', signal: AbortSignal.timeout(timeout) });
@@ -848,11 +872,19 @@ export default function NewsCalendar() {
 
   const loadCalendar = useCallback(async () => {
     setLoad(true); setError('');
+    // The bot fetches this same calendar server-side and republishes it, so the
+    // browser does not have to get past CORS to see the week's releases.
+    try {
+      setEvents(await fetchBotCalendar());
+      setLoad(false);
+      return;
+    } catch { /* fall through to the proxies */ }
     try {
       const text = await proxyFetch(CALENDAR_SRC);
       setEvents(JSON.parse(text));
     } catch (e) {
-      setError('Could not load calendar — all proxies failed. ' + (e.message || ''));
+      const why = e?.message || (e?.errors?.length ? `all ${e.errors.length} proxies failed` : 'unknown error');
+      setError(`Could not load calendar — the bot's copy was unavailable and the proxies failed: ${why}`);
     }
     setLoad(false);
   }, []);

@@ -73,6 +73,23 @@ const check = (n, c, e = '') => { console.log(`${c ? '  ok  ' : '  FAIL'}  ${n}$
   check('the proxies remain as a fallback rather than being deleted',
     /proxyFetch\(feed\.url\)/.test(ui),
     'a live proxy beats a stale file, so the path stays');
+  // The calendar view was missed in the same migration and failed the same way:
+  // "Could not load calendar — all proxies failed", while the week's releases
+  // sat in the very file the News tab beside it had just started reading.
+  check('the calendar reads the bot too', /fetchBotCalendar/.test(ui));
+  const cal = ui.slice(ui.indexOf('const loadCalendar'), ui.indexOf('const loadCalendar') + 1200);
+  check('and tries it before the proxies',
+    cal.indexOf('fetchBotCalendar') > -1 && cal.indexOf('fetchBotCalendar') < cal.indexOf('proxyFetch'));
+  // Two conversions, both silent if missed: the bot normalises the event time to
+  // milliseconds under `at` while this file reads new Date(ev.date), and it
+  // lowercases impact while the filters key on 'High'. Unconverted, the screen
+  // would render a page of Low-impact events dated Invalid Date — which reads
+  // as working software rather than as a bug.
+  check('the event time is converted from the bot\'s milliseconds',
+    /date: e\.at \? new Date\(e\.at\)\.toISOString\(\)/.test(ui));
+  check('and impact is capitalised to match the filters',
+    /impact: capitalise\(e\.impact\)/.test(ui));
+
   check('a failed load names the reason',
     /e\?\.errors\?\.length/.test(ui),
     'Promise.any rejects with an AggregateError whose own message is empty, '
