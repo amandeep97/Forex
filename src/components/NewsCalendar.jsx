@@ -15,6 +15,47 @@ const PROXIES = [
 
 const CALENDAR_SRC = 'https://nfs.faireconomy.media/ff_calendar_thisweek.json';
 
+// What the VPS already publishes.
+//
+// This screen fetches RSS from the browser through three public CORS proxies it
+// does not control, which is precisely the arrangement the bot was built to
+// replace — its own header says so. The Command Center was migrated and this
+// was not, so it kept failing the old way: "Could not load ForexLive:" with an
+// empty reason and a blank screen, while sixty headlines sat in bot/news.json
+// already deduped across nine sources, instrument-tagged and severity-scored.
+//
+// The proxies stay as a fallback. If the bot is down its file goes stale rather
+// than absent, and a stale headline beats an empty screen — but a live proxy
+// beats a stale file, so a failed fetch still falls through to them.
+const BOT_NEWS = 'https://raw.githubusercontent.com/amandeep97/Forex/main/bot/news.json';
+
+// The bot's shape, in the shape this screen already speaks. Field names differ
+// because they were written years apart; nothing is computed here.
+const fromBot = h => ({
+  title: h.title,
+  link: h.link,
+  pubDate: h.at ? new Date(h.at).toUTCString() : '',
+  description: h.desc || '',
+  author: h.source || '',
+  thumbnail: null,
+  ms: h.at || null,
+  source: h.source,
+  instruments: h.inst || [],
+  ccy: h.ccy || [],
+  sev: h.sev ?? 1,
+  rel: h.rel ?? 1,
+});
+
+async function fetchBotNews(timeout = 12000) {
+  const r = await fetch(`${BOT_NEWS}?t=${Date.now()}`,
+    { cache: 'no-store', signal: AbortSignal.timeout(timeout) });
+  if (!r.ok) throw new Error(`bot news ${r.status}`);
+  const j = await r.json();
+  const items = (j.headlines || []).map(fromBot);
+  if (!items.length) throw new Error('bot published no headlines');
+  return { items, updatedAt: j.updatedAt };
+}
+
 // Race all proxies, return first OK response text
 async function proxyFetch(targetUrl, timeout = 12000) {
   const attempts = PROXIES.map(p => fetch(p(targetUrl), { signal: AbortSignal.timeout(timeout) })
@@ -615,7 +656,20 @@ function TerminalView({ events }) {
   useEffect(() => { const t = setInterval(() => setTick(n => n + 1), 30000); return () => clearInterval(t); }, []);
 
   const loadStream = useCallback(async () => {
-    setBusy(true); setStatus('fetching all sources…');
+    setBusy(true); setStatus('loading…');
+    // The bot's merged stream first: nine sources fetched server-side where
+    // there is no CORS, already deduped, already tagged and scored. The browser
+    // proxies are the fallback, not the plan.
+    try {
+      const { items, updatedAt } = await fetchBotNews();
+      setStream(items);
+      const age = updatedAt ? Math.round((Date.now() - Date.parse(updatedAt)) / 60e3) : null;
+      const srcs = new Set(items.map(i => i.source).filter(Boolean));
+      setStatus(`${items.length} stories · ${srcs.size} sources`
+        + (age != null ? ` · ${age < 1 ? 'just now' : `${age} min ago`}` : ''));
+      setBusy(false);
+      return;
+    } catch { setStatus('bot feed unavailable — trying proxies…'); }
     try {
       const { items, ok, failed, total } = await mergeFeeds(NEWS_FEEDS, proxyFetch, parseRSS);
       setStream(items);
@@ -805,15 +859,32 @@ export default function NewsCalendar() {
 
   const loadNews = useCallback(async (idx) => {
     setLoad(true); setError('');
+    const feed = NEWS_FEEDS[idx];
+    // The bot first. It fetches these same feeds server-side where there is no
+    // CORS, so a source that a browser cannot reach at all is usually sitting
+    // in its file already.
     try {
-      const feed = NEWS_FEEDS[idx];
+      const { items } = await fetchBotNews();
+      const mine = items.filter(i => (i.source || '').toLowerCase().includes(feed.name.toLowerCase().slice(0, 6)));
+      const use = mine.length ? mine : items;
+      cacheNews(use, feed.name);
+      setNews(use);
+      if (!mine.length) setError(`${feed.name} had nothing in the bot's last pass — showing all sources`);
+      setLoad(false);
+      return;
+    } catch { /* fall through to the proxies */ }
+    try {
       const text = await proxyFetch(feed.url);
       const items = parseRSS(text);
       if (!items.length) throw new Error('No articles — feed may have moved');
       cacheNews(items, feed.name);
       setNews(items);
     } catch (e) {
-      setError(`Could not load ${NEWS_FEEDS[idx]?.name}: ${e.message}`);
+      // The reason, not just the failure. This read "Could not load ForexLive:"
+      // with nothing after the colon, because Promise.any rejects with an
+      // AggregateError whose own message is empty.
+      const why = e?.message || (e?.errors?.length ? `all ${e.errors.length} proxies failed` : 'unknown error');
+      setError(`Could not load ${feed?.name}: ${why}`);
     }
     setLoad(false);
   }, []);
