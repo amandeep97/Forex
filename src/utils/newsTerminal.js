@@ -1,103 +1,27 @@
+// The vocabulary now lives in shared/newsTagging.mjs, because the VPS bot needs
+// the identical answer. Two copies had drifted into different CAPABILITIES —
+// this side knew indices and had no stop-list, the bot side had the stop-list
+// and no equities words — so an index card showed dollar stories while this
+// screen tagged the same headline correctly.
+import {
+  INSTRUMENT_KEYWORDS, tagInstruments, relevanceOf, severity, labelHeadline,
+} from '../../shared/newsTagging.mjs';
+
+export { INSTRUMENT_KEYWORDS, tagInstruments, relevanceOf, severity, labelHeadline };
+
 // src/utils/newsTerminal.js
-// Terminal-grade news engine: merged multi-source stream, instrument tagging,
-// a growing economic-event archive, and ECO-style historical reaction stats
-// (how an instrument actually moved around past releases of a given event).
+// Terminal-grade news engine: merged multi-source stream, a growing economic-
+// event archive, and ECO-style historical reaction stats (how an instrument
+// actually moved around past releases of a given event). The tagging itself is
+// imported above rather than defined here.
 
-// ── Instrument tagging ────────────────────────────────────────────────────────
-// Maps a headline to the instruments it plausibly moves. Deliberately narrow —
-// a tag that fires on everything is worse than no tag.
-export const INSTRUMENT_KEYWORDS = {
-  'XAU/USD':  ['gold','bullion','xau','precious metal','safe haven','safe-haven'],
-  'XAG/USD':  ['silver','xag'],
-  'EUR/USD':  ['euro','ecb','eurozone','lagarde','bundesbank','german','germany'],
-  'GBP/USD':  ['pound','sterling','boe','bank of england','bailey','britain','british'],
-  'USD/JPY':  ['yen','boj','bank of japan','ueda','japan','japanese'],
-  'AUD/USD':  ['aussie','rba','australia','australian'],
-  'NZD/USD':  ['kiwi','rbnz','new zealand'],
-  'USD/CAD':  ['loonie','boc','bank of canada','macklem','canada','canadian'],
-  'USD/CHF':  ['franc','snb','swiss','switzerland'],
-  'USOIL':    ['oil','crude','wti','opec','barrel','petroleum'],
-  'UKOIL':    ['brent','crude','opec'],
-  'NATGAS':   ['natural gas','natgas','lng'],
-  'US500':    ['s&p','sp500','s&p 500','wall street','equities','stocks'],
-  'US100':    ['nasdaq','tech stocks','big tech'],
-  'US30':     ['dow','dow jones'],
-  'BTC/USDT': ['bitcoin','btc','crypto'],
-  'ETH/USDT': ['ethereum','ether','eth'],
-};
 
-// Macro USD events that genuinely move everything priced in dollars.
-// Deliberately excludes the bare word "dollar" — it appears in most FX
-// headlines and would fan every story out across seven instruments.
-const USD_MACRO = ['fed','fomc','powell','treasury','nonfarm','payroll','nfp','cpi','pce','jobless','rate decision'];
-const USD_AFFECTED = ['XAU/USD','EUR/USD','GBP/USD','USD/JPY','AUD/USD','USD/CAD','US500'];
-
-// Whole-word matching. Plain substring search is wrong here: "euro" appears
-// inside "European", so "European shares steady" was tagging EUR/USD — a
-// currency tag on an equities story. Compiled once; this runs per headline.
-const boundary = w => new RegExp(`(^|[^a-z])${w.trim().replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}([^a-z]|$)`, 'i');
-const compile = words => words.map(boundary);
-const anyMatch = (regexes, t) => regexes.some(r => r.test(t));
-
-const INSTRUMENT_RX = Object.fromEntries(
-  Object.entries(INSTRUMENT_KEYWORDS).map(([k, words]) => [k, compile(words)])
-);
-let USD_MACRO_RX = null;   // assigned after USD_MACRO is declared below
-
-export function tagInstruments(text) {
-  const t = (text || '').toLowerCase();
-  const specific = [];
-  for (const [inst, rxs] of Object.entries(INSTRUMENT_RX)) {
-    if (anyMatch(rxs, t)) specific.push(inst);
-  }
-  // A named instrument always wins: "Gold surges as dollar weakens" is a gold
-  // story, not a seven-instrument story. Only fan out to the USD complex when
-  // the headline is purely macro with nothing specific named.
-  if (specific.length) return specific;
-  if (anyMatch(USD_MACRO_RX, t)) return [...USD_AFFECTED];
-  return [];
-}
-
-// ── Relevance: is this a markets story at all? ────────────────────────────────
-// A forex terminal fed raw wire copy fills with corporate news — airline fare
-// structures, cinema deals, harassment suits. Useful to a general desk, noise
-// here. Score it so the default stream stays tradeable, with ALL as an escape.
-const MACRO_WORDS = ['central bank','interest rate','rate cut','rate hike','inflation','cpi','ppi','gdp',
-  'unemployment','payroll','jobless','recession','tariff','sanction','stimulus','yield','bond','treasury',
-  'fed','fomc','ecb','boe','boj','rba','rbnz','snb','opec','war','ceasefire','monetary','fiscal','hawkish','dovish'];
-const MARKET_WORDS = ['stocks','shares','equities','index','futures','commodity','commodities','currency',
-  'forex','fx','market','markets','rally','selloff','sell-off','dollar','investors','trading'];
-const MACRO_RX  = compile(MACRO_WORDS);
-const MARKET_RX = compile(MARKET_WORDS);
-
-// 2 = directly tradeable (tagged instrument or macro driver)
-// 1 = general market colour
-// 0 = corporate / off-topic
-export function relevanceOf(text, instruments) {
-  const t = (text || '').toLowerCase();
-  if (instruments?.length) return 2;
-  if (anyMatch(MACRO_RX, t)) return 2;
-  if (anyMatch(MARKET_RX, t)) return 1;
-  return 0;
-}
-
-// ── Severity: how much a headline deserves your attention ─────────────────────
-const URGENT = ['breaking','just in','alert','emergency','surprise','unscheduled','halts','halted','intervention'];
-const HEAVY  = ['rate decision','rate cut','rate hike','fomc','cpi','nonfarm','payroll','gdp','inflation','war','sanction','default','downgrade'];
-
-export function severity(text) {
-  const t = (text || '').toLowerCase();
-  if (URGENT.some(w => t.includes(w))) return 3;   // red
-  if (HEAVY.some(w => t.includes(w)))  return 2;   // amber
-  return 1;                                        // normal
-}
 
 // ── Merged multi-source stream ────────────────────────────────────────────────
 // Bloomberg shows ONE stream, not a source picker. Fetch every feed in parallel,
 // keep whatever succeeds, dedupe near-identical headlines, sort newest first.
 const normTitle = s => (s || '').toLowerCase().replace(/[^a-z0-9 ]/g, '').replace(/\s+/g, ' ').trim();
 
-USD_MACRO_RX = compile(USD_MACRO);
 
 // An unparseable date must stay null, never silently become "now" — otherwise
 // every story in the stream reads as breaking.

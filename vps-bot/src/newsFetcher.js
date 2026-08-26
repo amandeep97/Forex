@@ -17,6 +17,26 @@
 
 const fetch = require('node-fetch');
 
+// shared/newsTagging.mjs is ESM and this file is CommonJS, so it arrives by
+// dynamic import — the same route shared/feedConditions.mjs already takes. Held
+// after the first load; a failure falls back to the currency-only matcher below
+// rather than publishing sixty untagged headlines.
+let _tagging = null;
+async function tagging() {
+  if (_tagging) return _tagging;
+  try {
+    const url = require('url').pathToFileURL(
+      require('path').join(__dirname, '..', '..', 'shared', 'newsTagging.mjs')).href;
+    _tagging = await import(url);
+  } catch { _tagging = { labelHeadline: null }; }
+  return _tagging;
+}
+async function labelOf(title, desc) {
+  const t = await tagging();
+  if (t.labelHeadline) return t.labelHeadline(title, desc);
+  return { ccy: currenciesIn(title), inst: [], sev: 1, rel: 1 };
+}
+
 const CALENDAR_URL = 'https://nfs.faireconomy.media/ff_calendar_thisweek.json';
 
 // Three of the original six were failing, silently, for long enough that the
@@ -44,6 +64,12 @@ const RSS = [
 
 const NEWS_PATH = 'bot/news.json';
 const HISTORY_PATH = 'bot/calendar-history.json';
+const NEWS_HISTORY_PATH = 'bot/news-history.json';
+// Long enough to measure against, small enough to ship. Only headlines that
+// name an instrument are kept — an untagged story cannot be scored against a
+// price, so storing it would be weight without a question attached.
+const KEEP_NEWS_DAYS = 45;
+const MAX_NEWS_ROWS = 6000;
 const MAX_HEADLINES = 60;
 const KEEP_CALENDAR_DAYS = 8;
 
@@ -177,10 +203,18 @@ function parseRSS(xml, source) {
     if (!title) continue;
     const dateStr = tag(block, 'pubDate') || tag(block, 'dc:date') || tag(block, 'published');
     const t = Date.parse(dateStr);
+    // The description was parsed past and thrown away for this project's whole
+    // existence. RSS carries a lede paragraph and it is often the half that
+    // says what actually happened — "Fed rate decision delayed" and "Fed rate
+    // decision shocks markets" are the same headline to a keyword matcher and
+    // different stories in the first sentence. Trimmed, because sixty of these
+    // ride in a file the phone downloads.
+    const desc = (tag(block, 'description') || tag(block, 'summary') || '').slice(0, 280);
     out.push({
       title,
       link: tag(block, 'link'),
       source,
+      ...(desc ? { desc } : {}),
       at: Number.isFinite(t) ? t : Date.now(),
     });
   }
@@ -433,6 +467,66 @@ class NewsFetcher {
     }
   }
 
+  // Headlines, kept.
+  //
+  // Sixty were published and everything older was discarded, so no headline has
+  // ever been correlated with a forward return and none ever could be. That is
+  // the same failure as the calendar archive and the position book: the answer
+  // was not unavailable, it was never written down.
+  //
+  // Unlike those two this needs no broker and nobody's permission, and arrives
+  // at sixty an hour rather than six a day — so it becomes measurable in weeks.
+  // Stored as [t, sev, instruments, title] with the title trimmed: the study
+  // needs the timestamp and the tag, and the text only so a result can be
+  // audited by eye rather than taken on trust.
+  async _archiveNews(items) {
+    const now = Date.now();
+    const tagged = items.filter(i => i.inst?.length);
+    if (!tagged.length) return;
+
+    let prev = [];
+    try {
+      const cur = await this.github.readJSON(NEWS_HISTORY_PATH).catch(() => null);
+      if (Array.isArray(cur?.content?.rows)) prev = cur.content.rows;
+      this.newsHistorySha = cur?.sha || null;
+    } catch { /* first run — start fresh rather than lose today */ }
+
+    // Keyed on the headline text, not the timestamp: the same story arrives
+    // from three outlets minutes apart and is one event, not three.
+    const keyOf = r => String(r[3] || '').toLowerCase().slice(0, 60);
+    const byKey = new Map(prev.map(r => [keyOf(r), r]));
+    let added = 0;
+    for (const i of tagged) {
+      const row = [i.at, i.sev ?? 1, i.inst, String(i.title).slice(0, 120)];
+      if (byKey.has(keyOf(row))) continue;
+      byKey.set(keyOf(row), row);
+      added++;
+    }
+
+    const cutoff = now - KEEP_NEWS_DAYS * 86400e3;
+    let rows = [...byKey.values()].filter(r => r[0] >= cutoff).sort((a, b) => a[0] - b[0]);
+    const aged = byKey.size - rows.length;
+    // A hard cap as well as an age limit, because a busy fortnight should not
+    // be able to produce a file the phone has to download.
+    let capped = 0;
+    if (rows.length > MAX_NEWS_ROWS) { capped = rows.length - MAX_NEWS_ROWS; rows = rows.slice(-MAX_NEWS_ROWS); }
+    if (!added && !aged && !capped) return;
+
+    const span = rows.length > 1 ? Math.round((rows[rows.length - 1][0] - rows[0][0]) / 86400e3) : 0;
+    try {
+      this.newsHistorySha = await this.github.writeJSON(NEWS_HISTORY_PATH, {
+        version: 1, updatedAt: new Date(now).toISOString(),
+        columns: ['at', 'severity', 'instruments', 'title'],
+        keepDays: KEEP_NEWS_DAYS, days: span, rows,
+      }, `bot: news history (+${added})`, this.newsHistorySha, { pretty: false });
+      this.log(`News: archived +${added}, ${rows.length} rows over ${span} days`
+        + `${aged ? `, ${aged} aged out` : ''}${capped ? `, ${capped} capped` : ''}`);
+    } catch (e) {
+      this.log(`News: could not archive headlines (${e.message})`);
+      this.newsHistorySha = null;
+    }
+  }
+
   async _headlines() {
     const settled = await Promise.allSettled(
       RSS.map(async f => parseRSS(await getText(f.url), f.name)),
@@ -457,7 +551,12 @@ class NewsFetcher {
       const key = it.title.toLowerCase().slice(0, 60);
       if (seen.has(key)) continue;
       seen.add(key);
-      unique.push({ ...it, ccy: currenciesIn(it.title) });
+      // Instruments, currencies, severity and relevance in one pass, from the
+      // vocabulary the app uses. Computed here so the phone does not run
+      // seventeen regex sets over sixty headlines on every render, and so a
+      // label on a card cannot disagree with the same label on the news screen.
+      const label = await labelOf(it.title, it.desc);
+      unique.push({ ...it, ...label });
       if (unique.length >= MAX_HEADLINES) break;
     }
     return { items: unique, ok, failed };
@@ -483,6 +582,8 @@ class NewsFetcher {
     // archive can fill in results the calendar itself never carries.
     await this._archive(calendar, this._releases())
       .catch(e => this.log(`News: archive failed (${e.message})`));
+    await this._archiveNews(headlines)
+      .catch(e => this.log(`News: headline archive failed (${e.message})`));
 
     const payload = {
       calendar,
