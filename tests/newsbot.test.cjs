@@ -55,6 +55,42 @@ const check = (n, c, e = '') => { console.log(`${c ? '  ok  ' : '  FAIL'}  ${n}$
   check('and the file is bounded by age and by row count',
     /KEEP_NEWS_DAYS/.test(src) && /MAX_NEWS_ROWS/.test(src));
 
+  // ── The News screen was never migrated off the browser proxies ────────────
+  // newsFetcher.js's own header says the app "fetched both from the browser,
+  // through a chain of three public CORS proxies it does not control". The
+  // Command Center was moved to the bot's file; the News tab was not, and kept
+  // failing the old way — "Could not load ForexLive:" with an empty reason and
+  // a blank screen, while sixty tagged headlines sat in bot/news.json.
+  const ui = fs.readFileSync(path.join(__dirname, '..', 'src', 'components', 'NewsCalendar.jsx'), 'utf8');
+  check('the News screen reads what the bot publishes', /bot\/news\.json/.test(ui));
+  // Order matters, not proximity: the bot call has to come first in the
+  // function, however much comment sits between it and the fallback.
+  const stream = ui.slice(ui.indexOf('const loadStream'), ui.indexOf('const loadStream') + 1600);
+  check('the merged terminal stream tries the bot before any proxy',
+    stream.indexOf('fetchBotNews') > -1
+    && stream.indexOf('fetchBotNews') < stream.indexOf('mergeFeeds'),
+    'the proxies are the fallback, not the plan');
+  check('the proxies remain as a fallback rather than being deleted',
+    /proxyFetch\(feed\.url\)/.test(ui),
+    'a live proxy beats a stale file, so the path stays');
+  check('a failed load names the reason',
+    /e\?\.errors\?\.length/.test(ui),
+    'Promise.any rejects with an AggregateError whose own message is empty, '
+    + 'which is why the error read "Could not load ForexLive:" and stopped');
+
+  // Entity decoding — a live headline read "Dick&apos;s Sporting Goods".
+  const strip = (t) => t
+    .replace(/&(amp|lt|gt|quot|apos|nbsp|#0*39|#x0*27);/gi, (_, e) => ({
+      amp: '&', lt: '<', gt: '>', quot: '"', apos: "'", nbsp: ' ' }[e.toLowerCase()] ?? "'"))
+    .replace(/&#(\d+);/g, (_, n) => String.fromCodePoint(+n))
+    .replace(/&#x([0-9a-f]+);/gi, (_, h) => String.fromCodePoint(parseInt(h, 16)));
+  check('named entities beyond the original six decode',
+    strip('Dick&apos;s Sporting Goods') === "Dick's Sporting Goods", strip('Dick&apos;s Sporting Goods'));
+  check('and numeric ones, which feeds emit as often',
+    strip('Trump&#8217;s plan &#38; more') === 'Trump\u2019s plan & more', strip('Trump&#8217;s plan &#38; more'));
+  check('the original six still work',
+    strip('a&amp;b &lt;c&gt; &quot;d&quot; &#39;e&#39;') === 'a&b <c> "d" \'e\'', strip('a&amp;b &lt;c&gt; &quot;d&quot; &#39;e&#39;'));
+
   console.log(fails ? `\n${fails} FAILED` : '\nall passed');
   process.exit(fails ? 1 : 0);
 })().catch(e => { console.log('  FAIL  threw —', e.stack.split('\n').slice(0, 3).join(' ')); process.exit(1); });

@@ -181,8 +181,14 @@ const CURRENCY_WORDS = {
 const strip = s => String(s || '')
   .replace(/<!\[CDATA\[|\]\]>/g, '')
   .replace(/<[^>]*>/g, '')
-  .replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>')
-  .replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&nbsp;/g, ' ')
+  // Six entities were decoded by name and everything else came through raw —
+  // a live headline read "Dick&apos;s Sporting Goods". Numeric forms are handled
+  // too, because feeds emit &#8217; for a curly apostrophe as often as a name.
+  .replace(/&(amp|lt|gt|quot|apos|nbsp|#0*39|#x0*27);/gi, (_, e) => ({
+    amp: '&', lt: '<', gt: '>', quot: '"', apos: "'", nbsp: ' ',
+  }[e.toLowerCase()] ?? "'"))
+  .replace(/&#(\d+);/g, (_, n) => { const c = +n; return c > 0 && c < 0x110000 ? String.fromCodePoint(c) : ''; })
+  .replace(/&#x([0-9a-f]+);/gi, (_, h) => { const c = parseInt(h, 16); return c > 0 && c < 0x110000 ? String.fromCodePoint(c) : ''; })
   .replace(/\s+/g, ' ')
   .trim();
 
