@@ -195,11 +195,37 @@ function headlines(news, sym, ccy, now) {
   const latest = ranked[0];
   const about = byInst.length ? sym : (printable(ccy).join('/') || 'this market');
   const urgent = ranked.filter(h => (h.sev ?? 1) >= 2).length;
+
+  // Direction, where the bot has read the headlines rather than matched words
+  // against them. Only labels for THIS instrument count: the same story is
+  // bullish for one side of a pair and bearish for the other, and a label
+  // attached to gold is not a statement about the S&P.
+  //
+  // Weighted by severity, so a ceasefire outweighs three market wraps. The leg
+  // only points somewhere when one side clearly leads — the common case is a
+  // mixed bag, and a two-to-three split is not a direction.
+  let up = 0, dn = 0, lead = null;
+  for (const h of ranked) {
+    const d = h.dir?.[sym];
+    if (d !== 'up' && d !== 'down') continue;
+    const w = h.sev ?? 1;
+    if (d === 'up') up += w; else dn += w;
+    if (!lead) lead = h;
+  }
+  const total = up + dn;
+  const dir = total && Math.abs(up - dn) / total >= 0.5 ? (up > dn ? 'up' : 'down') : null;
+
   return {
-    leg: 'news', dir: null, weight: 2,
+    leg: 'news', dir,
+    // A directional read outranks a bare count, and still sits below a measured
+    // record: this is one model's opinion of a headline, unproven until the
+    // archive is old enough to score it.
+    weight: dir ? 3 : 2,
     headline: `${mine.length} recent ${mine.length === 1 ? 'story' : 'stories'} on ${about}`
       + (urgent ? ` · ${urgent} heavyweight` : ''),
-    detail: latest.title,
+    detail: dir && lead?.why
+      ? `read as ${dir === 'up' ? 'bullish' : 'bearish'} — ${lead.why}`
+      : latest.title,
     items: ranked.slice(0, 4),
   };
 }

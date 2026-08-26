@@ -76,7 +76,12 @@ class ForexBot {
     this.cotStudyRan = false;
     this.alertChecker = new AlertChecker({ oanda: this.oanda, github: this.github, telegram: this.telegram, env, log: this.log.bind(this) });
     this.updater = new Updater({ github: this.github, env, log: this.log.bind(this) });
-    this.news = new NewsFetcher({ github: this.github, log: this.log.bind(this) });
+    this.news = new NewsFetcher({
+      github: this.github, log: this.log.bind(this),
+      // Optional. Without it headlines carry no direction, which is where they
+      // have been all along; nothing else changes.
+      groqApiKey: env.GROQ_API_KEY || null,
+    });
     this.feed = env.FEED_ENABLED === 'false'
       ? null
       : new FeedBuilder({

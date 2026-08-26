@@ -16,6 +16,7 @@
 // "calendar 3 hours old".
 
 const fetch = require('node-fetch');
+const { NewsDirection } = require('./newsDirection');
 
 // shared/newsTagging.mjs is ESM and this file is CommonJS, so it arrives by
 // dynamic import — the same route shared/feedConditions.mjs already takes. Held
@@ -272,13 +273,19 @@ async function getText(url, timeout = 15000) {
 }
 
 class NewsFetcher {
-  constructor({ github, log }) {
+  constructor({ github, log, groqApiKey = null }) {
     this.github = github;
     this.log = log || (() => {});
     this.sha = null;
     this.historySha = null;
+    this.newsHistorySha = null;
     this.last = null;         // last good payload
     this.lastRunAt = 0;
+    // Which way each headline points, read by a model rather than matched
+    // against a word list — "OPEC raises output" and "OPEC cuts output" are the
+    // same words and opposite trades. Absent a key it labels nothing and says
+    // so once, which is the state everything was in before.
+    this.direction = new NewsDirection({ apiKey: groqApiKey, log: this.log });
   }
 
   // Released values, published by the macro workflow into the repo the bot
@@ -503,7 +510,11 @@ class NewsFetcher {
     const byKey = new Map(prev.map(r => [keyOf(r), r]));
     let added = 0;
     for (const i of tagged) {
+      // The label is stored with the row. Without it the archive can say what
+      // was published and never what it was called, and the whole point of
+      // labelling is that a study can come back later and mark it.
       const row = [i.at, i.sev ?? 1, i.inst, String(i.title).slice(0, 120)];
+      if (i.dir) row.push(i.dir);
       if (byKey.has(keyOf(row))) continue;
       byKey.set(keyOf(row), row);
       added++;
@@ -522,7 +533,7 @@ class NewsFetcher {
     try {
       this.newsHistorySha = await this.github.writeJSON(NEWS_HISTORY_PATH, {
         version: 1, updatedAt: new Date(now).toISOString(),
-        columns: ['at', 'severity', 'instruments', 'title'],
+        columns: ['at', 'severity', 'instruments', 'title', 'direction'],
         keepDays: KEEP_NEWS_DAYS, days: span, rows,
       }, `bot: news history (+${added})`, this.newsHistorySha, { pretty: false });
       this.log(`News: archived +${added}, ${rows.length} rows over ${span} days`
@@ -586,6 +597,11 @@ class NewsFetcher {
     // than never.
     // The BLS actuals come from the same file the calendar pass reads, so the
     // archive can fill in results the calendar itself never carries.
+    // Direction, before anything is written, so the label reaches the live
+    // file AND the archive that will eventually be used to judge it.
+    await this.direction.label(headlines)
+      .catch(e => this.log(`News direction: ${e.message}`));
+
     await this._archive(calendar, this._releases())
       .catch(e => this.log(`News: archive failed (${e.message})`));
     await this._archiveNews(headlines)
