@@ -1,33 +1,6 @@
 {
   "calendar": [
     {
-      "title": "Belgian NBB Business Climate",
-      "country": "EUR",
-      "impact": "low",
-      "at": 1787662800000,
-      "forecast": "-11.0",
-      "previous": "-11.9",
-      "actual": ""
-    },
-    {
-      "title": "HPI m/m",
-      "country": "USD",
-      "impact": "low",
-      "at": 1787662800000,
-      "forecast": "0.2%",
-      "previous": "0.3%",
-      "actual": ""
-    },
-    {
-      "title": "S&P/CS Composite-20 HPI y/y",
-      "country": "USD",
-      "impact": "low",
-      "at": 1787662800000,
-      "forecast": "1.8%",
-      "previous": "1.6%",
-      "actual": ""
-    },
-    {
       "title": "CB Consumer Confidence",
       "country": "USD",
       "impact": "medium",
@@ -534,24 +507,451 @@
   ],
   "headlines": [
     {
+      "title": "Boston Scientific reports cyber incident disrupting operations",
+      "link": "https://www.investing.com/news/stock-market-news/boston-scientific-reports-cyber-incident-disrupting-operations-93CH-4877272",
+      "source": "Investing",
+      "at": 1787749763000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 0
+    },
+    {
+      "title": "There&#x2019;s so much betting against long-term bonds that a turnaround could catch investors off guard, says Citadel Securities",
+      "link": "https://www.marketwatch.com/story/wall-streets-massive-bet-against-long-term-bonds-is-a-recipe-for-a-painful-bearish-unwind-says-citadel-securities-430dc145?mod=mw_rss_topstories",
+      "source": "MarketWatch",
+      "desc": "Citadel Securities&#x2019; strategist Frank Flight says a bet that appears to be one-sided against long-term bonds could be setting up for a painful unwind.",
+      "at": 1787749740000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 1
+    },
+    {
+      "title": "Vanguard strikes deal for fintech platform Altruist",
+      "link": "https://www.investing.com/news/stock-market-news/vanguard-strikes-deal-for-fintech-platform-altruist-4877215",
+      "source": "Investing",
+      "at": 1787749623000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 0
+    },
+    {
+      "title": "Stocks making the biggest moves premarket: Intuit, Zoom, Semtech, SolarEdge & more",
+      "link": "https://www.cnbc.com/2026/08/26/stocks-making-the-biggest-moves-premarket-intu-zm-sedg.html",
+      "source": "CNBC Markets",
+      "desc": "These are the stocks posting the largest moves premarket.",
+      "at": 1787749595000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2
+    },
+    {
+      "title": "Meta settles with US states over social media harms",
+      "link": "https://www.investing.com/news/stock-market-news/meta-settles-with-us-states-over-social-media-harms-4877262",
+      "source": "Investing",
+      "at": 1787749594000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 0
+    },
+    {
+      "title": "Kohl's Q2 2026 earnings: stock falls as sales keep sliding",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/kohls-q2-2026-earnings-stock-130535603.html",
+      "source": "Yahoo Finance",
+      "at": 1787749535000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 0
+    },
+    {
+      "title": "Canada’s main stock index expected to dip before 2027 record",
+      "link": "https://www.investing.com/news/stock-market-news/canadas-main-stock-index-expected-to-dip-before-2027-record-93CH-4877258",
+      "source": "Investing",
+      "at": 1787749516000,
+      "inst": [
+        "USD/CAD"
+      ],
+      "ccy": [
+        "CAD"
+      ],
+      "sev": 1,
+      "rel": 2
+    },
+    {
+      "title": "Why I’m Still Not Putting My $25,000 in a 30-Year Treasury Paying 5.23%",
+      "link": "https://finance.yahoo.com/markets/options/articles/why-m-still-not-putting-130412531.html",
+      "source": "Yahoo Finance",
+      "at": 1787749452000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 1,
+      "rel": 2
+    },
+    {
+      "title": "S&P 500 is expected to reach fresh highs this year &#x2014; but Barclays warns of risks",
+      "link": "https://www.marketwatch.com/story/s-p-500-is-expected-to-reach-fresh-highs-this-year-but-barclays-warns-of-risks-abc86282?mod=mw_rss_topstories",
+      "source": "MarketWatch",
+      "desc": "Strategists at the bank warn of rising macroeconomic volatility, capital-supply concerns related to artificial intelligence and uncertainty over the U.S. midterm elections.",
+      "at": 1787749440000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 2,
+      "rel": 2
+    },
+    {
+      "title": "Crypto executive loses extradition fight to face US fraud charges",
+      "link": "https://www.investing.com/news/stock-market-news/crypto-executive-loses-extradition-fight-to-face-us-fraud-charges-93CH-4877246",
+      "source": "Investing",
+      "at": 1787749388000,
+      "inst": [
+        "BTC/USDT"
+      ],
+      "ccy": [
+        "BTC"
+      ],
+      "sev": 1,
+      "rel": 2
+    },
+    {
+      "title": "Victory Capital Strikes $7B Deal for First Eagle, Targets $571B in Client Assets",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/victory-capital-strikes-7b-deal-130206151.html",
+      "source": "Yahoo Finance",
+      "at": 1787749326000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 0
+    },
+    {
+      "title": "LightInTheBox Q2 Earnings Call Highlights",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/lightinthebox-q2-earnings-call-highlights-130205347.html",
+      "source": "Yahoo Finance",
+      "at": 1787749325000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 0
+    },
+    {
+      "title": "Top insider buys and sells for Tuesday, August 25",
+      "link": "https://www.investing.com/news/stock-market-news/top-insider-buys-and-sells-for-tuesday-august-25-93CH-4877235",
+      "source": "Investing",
+      "at": 1787749291000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 0
+    },
+    {
+      "title": "Salesforce setup into earnings: Buy, hold, or trim CRM stock today?",
+      "link": "https://www.investing.com/news/stock-market-news/salesforce-setup-into-earnings-buy-hold-or-trim-crm-stock-today-93CH-4877234",
+      "source": "Investing",
+      "at": 1787749289000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 0
+    },
+    {
+      "title": "Stock Market Today: Dow Steady On Inflation Data; Nvidia Earnings Due After Close (Live Coverage)",
+      "link": "https://www.investors.com/market-trend/stock-market-today/dow-jones-sp500-nasdaq-inflation-data-nvidia-stock-nvda-earnings/?src=A00220&yptr=yahoo",
+      "source": "Yahoo Finance",
+      "at": 1787749284000,
+      "inst": [
+        "US30"
+      ],
+      "ccy": [],
+      "sev": 2,
+      "rel": 2
+    },
+    {
+      "title": "Does a 2% beneficiary inherit 100% if the 98% beneficiary dies in a car accident? Asking for a friend.",
+      "link": "https://www.marketwatch.com/story/does-a-2-beneficiary-inherit-100-if-the-98-beneficiary-dies-in-a-car-accident-asking-for-a-friend-67aacc06?mod=mw_rss_topstories",
+      "source": "MarketWatch",
+      "desc": "&#x201c;I&#x2019;m curious what would happen if the account owner were to die suddenly at the same time as the 98% beneficiary.&#x201d;",
+      "at": 1787749260000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 0
+    },
+    {
+      "title": "Anthropic Contemplates the Ultimate Total Addressable Market",
+      "link": "https://www.wsj.com/cio-journal/anthropic-contemplates-the-ultimate-total-addressable-market-4cc2deed?siteid=yhoof2&yptr=yahoo",
+      "source": "Yahoo Finance",
+      "at": 1787749260000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 1
+    },
+    {
+      "title": "3 Dividend Stocks I'd Actually Bet My Own Portfolio On",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/3-dividend-stocks-id-actually-130100331.html",
+      "source": "Yahoo Finance",
+      "at": 1787749260000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2
+    },
+    {
+      "title": "EXCLUSIVE: God Bless America ETF Exec Says Nvidia Wins No Matter Who Leads AI Race: 'Pioneers Die With Arrows in Their Backs'",
+      "link": "https://finance.yahoo.com/technology/ai/articles/exclusive-god-bless-america-etf-130059338.html",
+      "source": "Yahoo Finance",
+      "at": 1787749259000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 0
+    },
+    {
+      "title": "Prediction: Dell Stock Will Trade at $600 on This Date",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/prediction-dell-stock-trade-600-130049656.html",
+      "source": "Yahoo Finance",
+      "at": 1787749249000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 0
+    },
+    {
+      "title": "Boston Scientific hit by cyberattack, global operations affected",
+      "link": "https://www.investing.com/news/stock-market-news/boston-scientific-hit-by-cyberattack-global-operations-affected-4876822",
+      "source": "Investing",
+      "at": 1787749240000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 0
+    },
+    {
+      "title": "Alcoa Stock Price Prediction: Middle East Energy Outlook Pushes AA to $68",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/alcoa-stock-price-prediction-middle-130007883.html",
+      "source": "Yahoo Finance",
+      "at": 1787749207000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 0
+    },
+    {
+      "title": "Dos and Don’ts of Purchasing a First Home",
+      "link": "https://finance.yahoo.com/real-estate/articles/dos-don-ts-purchasing-first-130003312.html",
+      "source": "Yahoo Finance",
+      "at": 1787749203000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 0
+    },
+    {
+      "title": "Treasury Yields Rise on Data Showing U.S. Economy Still Hot",
+      "link": "https://www.wsj.com/finance/jgbs-rise-tracking-gains-in-u-s-treasury-market-1c64c2f4?siteid=yhoof2&yptr=yahoo",
+      "source": "Yahoo Finance",
+      "at": 1787749200000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 1,
+      "rel": 2
+    },
+    {
+      "title": "Stocks to Watch: Nvidia, Kohl's, Meta",
+      "link": "https://www.wsj.com/livecoverage/nvidia-earnings-stock-market-today-08-26-2026/card/stocks-to-watch-nvidia-intuit-meta-8lhnGTlzHTeDfkPmYdMO?siteid=yhoof2&yptr=yahoo",
+      "source": "Yahoo Finance",
+      "at": 1787749189000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2
+    },
+    {
+      "title": "Ed Yardeni raises S&P 500 target to 8,400 in 2026",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/ed-yardeni-raises-p-500-125931405.html",
+      "source": "Yahoo Finance",
+      "at": 1787749171000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2
+    },
+    {
+      "title": "Dollar gains as hotter PCE inflation keeps Fed hike debate alive",
+      "link": "https://www.investing.com/news/forex-news/asia-fx-mixed-ahead-of-us-pce-inflation-aussie-dollar-gains-on-hot-cpi-4876252",
+      "source": "Investing FX",
+      "at": 1787749103000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2
+    },
+    {
+      "title": "Consumer spending posts smallest increase in seven months. Economy getting weaker?",
+      "link": "https://www.marketwatch.com/story/consumer-spending-posts-smallest-increases-in-14-months-is-the-economy-getting-weaker-1580cec6?mod=mw_rss_topstories",
+      "source": "MarketWatch",
+      "desc": "Consumer spending rose in July at the slowest pace in seven months, suggesting the U.S. economy lost a little steam after the end of the 2026 Word Cup and start of the third quarter.",
+      "at": 1787749080000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 0
+    },
+    {
+      "title": "Should You Buy Lululemon Stock Before Sept. 3?",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/buy-lululemon-stock-sept-3-125700233.html",
+      "source": "Yahoo Finance",
+      "at": 1787749020000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 0
+    },
+    {
+      "title": "Treasury yields muted after headline PCE ticks up ahead of Jackson Hole",
+      "link": "https://www.investing.com/news/forex-news/euro-yields-slide-as-crude-tumble-overshadows-hawkish-ecb-warnings-4876453",
+      "source": "Investing FX",
+      "at": 1787748885000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 1,
+      "rel": 2
+    },
+    {
+      "title": "Sticky PCE inflation leaves a divided central bank ahead of Fed's Jackson Hole retreat",
+      "link": "https://finance.yahoo.com/economy/policy/article/sticky-pce-inflation-leaves-a-divided-central-bank-ahead-of-feds-jackson-hole-retreat-125248345.html",
+      "source": "Yahoo Finance",
+      "at": 1787748768000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2
+    },
+    {
+      "title": "PCE Inflation Data Sets High Bar For Warsh's Jackson Hole Speech (Live Coverage)",
+      "link": "https://www.investors.com/news/pce-inflation-july-federal-reserve-warsh-jackson-hole/?src=A00220&yptr=yahoo",
+      "source": "Yahoo Finance",
+      "at": 1787748621000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 2,
+      "rel": 2
+    },
+    {
+      "title": "Cybersecurity Stocks Are Priced For Big AI Growth. Why Earnings Could Bring Fireworks.",
+      "link": "https://www.investors.com/news/technology/cybersecurity-stocks-earnings-artificial-intelligence-high-expectations/?src=A00220&yptr=yahoo",
+      "source": "Yahoo Finance",
+      "at": 1787748585000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2
+    },
+    {
       "title": "US inflation remains sticky in July; 2nd-quarter GDP unrevised at 1.5%",
       "link": "https://finance.yahoo.com/economy/policy/articles/us-inflation-remains-sticky-july-124816701.html",
       "source": "Yahoo Finance",
-      "at": 1787748496000,
+      "at": 1787748584000,
       "inst": [],
       "ccy": [],
       "sev": 2,
       "rel": 2
     },
     {
-      "title": "Youngest Boomers Just Hit 62: Claim Social Security Now and Grab These 5 Dividend Giants Yielding 6%",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/youngest-boomers-just-hit-62-124540219.html",
-      "source": "Yahoo Finance",
-      "at": 1787748340000,
+      "title": "Iran and Oman reach accord on Strait of Hormuz, Revolutionary Guards say",
+      "link": "https://www.investing.com/news/commodities-news/iran-and-oman-discuss-temporary-hormuz-corridor-as-impasse-with-us-drags-on-4876021",
+      "source": "Investing Cmdty",
+      "at": 1787748578000,
       "inst": [],
       "ccy": [],
       "sev": 1,
       "rel": 0
+    },
+    {
+      "title": "Momentum, leveraged trading keep software stocks on roller coaster",
+      "link": "https://www.investing.com/news/stock-market-news/momentum-leveraged-trading-keep-software-stocks-on-roller-coaster-4877205",
+      "source": "Investing",
+      "at": 1787748552000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 2,
+      "rel": 2
     },
     {
       "title": "US July durable goods orders +1.1% vs +0.5% expected",
@@ -565,15 +965,15 @@
       "rel": 0
     },
     {
-      "title": "Stock Market Today: Dow Steady On Inflation Data; Nvidia Earnings Due After Close (Live Coverage)",
-      "link": "https://www.investors.com/market-trend/stock-market-today/dow-jones-sp500-nasdaq-inflation-data-nvidia-stock-nvda-earnings/?src=A00220&yptr=yahoo",
-      "source": "Yahoo Finance",
+      "title": "Saudi Arabia stocks higher at close of trade; Tadawul All Share up 0.25%",
+      "link": "https://www.investing.com/news/stock-market-news/saudi-arabia-stocks-higher-at-close-of-trade-tadawul-all-share-up-025-4877201",
+      "source": "Investing",
       "at": 1787748303000,
       "inst": [
-        "US30"
+        "US500"
       ],
       "ccy": [],
-      "sev": 2,
+      "sev": 1,
       "rel": 2
     },
     {
@@ -589,68 +989,6 @@
         "BTC"
       ],
       "sev": 1,
-      "rel": 2
-    },
-    {
-      "title": "PCE Inflation Data Sets High Bar For Warsh's Jackson Hole Speech (Live Coverage)",
-      "link": "https://www.investors.com/news/pce-inflation-july-federal-reserve-warsh-jackson-hole/?src=A00220&yptr=yahoo",
-      "source": "Yahoo Finance",
-      "at": 1787748163000,
-      "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 2,
-      "rel": 2
-    },
-    {
-      "title": "Leave the Kids the Roth, Spend the IRA Yourself: The Inheritance Order Most Families Get Backward.",
-      "link": "https://finance.yahoo.com/markets/currencies/articles/leave-kids-roth-spend-ira-124228842.html",
-      "source": "Yahoo Finance",
-      "at": 1787748148000,
-      "inst": [],
-      "ccy": [],
-      "sev": 2,
-      "rel": 0
-    },
-    {
-      "title": "There&#x2019;s so much betting against long-term bonds that a turnaround could catch investors off guard, says Citadel Securities",
-      "link": "https://www.marketwatch.com/story/wall-streets-massive-bet-against-long-term-bonds-is-a-recipe-for-a-painful-bearish-unwind-says-citadel-securities-430dc145?mod=mw_rss_topstories",
-      "source": "MarketWatch",
-      "desc": "Citadel Securities&#x2019; strategist Frank Flight says a bet that appears to be one-sided against long-term bonds could be setting up for a painful unwind.",
-      "at": 1787748000000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1
-    },
-    {
-      "title": "Realty Income Pays a Monthly Dividend. Here's Exactly How Much $30,000 Invested Generates Each Month.",
-      "link": "https://finance.yahoo.com/real-estate/articles/realty-income-pays-monthly-dividend-123900097.html",
-      "source": "Yahoo Finance",
-      "at": 1787747940000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 0
-    },
-    {
-      "title": "Nasdaq 100 futures, S&P futures extend some losses after mixed July inflation data",
-      "link": "https://www.investing.com/news/stock-market-news/us-stock-futures-fall-as-investors-await-pce-inflation-nvidia-results-4876105",
-      "source": "Investing",
-      "at": 1787747922000,
-      "inst": [
-        "US500",
-        "US100"
-      ],
-      "ccy": [],
-      "sev": 2,
       "rel": 2
     },
     {
@@ -675,56 +1013,6 @@
       "rel": 2
     },
     {
-      "title": "Iran and Oman plan for temporary Hormuz corridor as impasse with US persists",
-      "link": "https://www.investing.com/news/commodities-news/iran-and-oman-discuss-temporary-hormuz-corridor-as-impasse-with-us-drags-on-4876021",
-      "source": "Investing Cmdty",
-      "at": 1787747863000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 0
-    },
-    {
-      "title": "Why is JM Smucker stock surging today?",
-      "link": "https://www.investing.com/news/stock-market-news/why-is-jm-smucker-stock-surging-today-93CH-4877187",
-      "source": "Investing",
-      "at": 1787747861000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 0
-    },
-    {
-      "title": "Citadel Securities reverses bearish long-bond call, warns of short unwind",
-      "link": "https://finance.yahoo.com/economy/policy/articles/citadel-securities-reverses-bearish-long-123706696.html",
-      "source": "Yahoo Finance",
-      "at": 1787747826000,
-      "inst": [],
-      "ccy": [],
-      "sev": 2,
-      "rel": 2
-    },
-    {
-      "title": "Erste Group sees rising pressure on corporate credit spreads",
-      "link": "https://www.investing.com/news/stock-market-news/erste-group-sees-rising-pressure-on-corporate-credit-spreads-93CH-4877170",
-      "source": "Investing",
-      "at": 1787747748000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 0
-    },
-    {
-      "title": "Why is Target Hospitality stock surging today?",
-      "link": "https://www.investing.com/news/stock-market-news/why-is-target-hospitality-stock-surging-today-93CH-4877169",
-      "source": "Investing",
-      "at": 1787747728000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 0
-    },
-    {
       "title": "Jim Cramer names 4 'indispensable' memory stocks he says investors 'can't afford' to skip as AI demand soars",
       "link": "https://finance.yahoo.com/markets/stocks/articles/jim-cramer-names-4-indispensable-123500321.html",
       "source": "Yahoo Finance",
@@ -733,72 +1021,6 @@
         "US500"
       ],
       "ccy": [],
-      "sev": 1,
-      "rel": 2
-    },
-    {
-      "title": "Why is Dycom Industries stock sliding today?",
-      "link": "https://www.investing.com/news/stock-market-news/why-is-dycom-industries-stock-sliding-today-93CH-4877164",
-      "source": "Investing",
-      "at": 1787747594000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 0
-    },
-    {
-      "title": "3 European Airline Stocks Smart Money is Favoring Right Now: Citi",
-      "link": "https://www.investing.com/news/stock-market-news/3-european-airline-stocks-smart-money-is-favoring-right-now-citi-93CH-4877157",
-      "source": "Investing",
-      "at": 1787747536000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2
-    },
-    {
-      "title": "Greg Abel Just Made 3 Moves at Berkshire Hathaway That Bet on the Same Trend (And it's Not AI)",
-      "link": "https://finance.yahoo.com/real-estate/articles/greg-abel-just-made-3-123200978.html",
-      "source": "Yahoo Finance",
-      "at": 1787747520000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 0
-    },
-    {
-      "title": "Stock Spirits gains UK supermarket listing for Sierra RTDs",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/stock-spirits-gains-uk-supermarket-123137445.html",
-      "source": "Yahoo Finance",
-      "at": 1787747497000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 0
-    },
-    {
-      "title": "Zoom Q2 FY2027 earnings beat but profit outlook disappoints",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/zoom-q2-fy2027-earnings-beat-123114923.html",
-      "source": "Yahoo Finance",
-      "at": 1787747474000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 0
-    },
-    {
-      "title": "Revolut Launches Euro-Pegged EURR Stablecoin",
-      "link": "https://finance.yahoo.com/markets/crypto/articles/revolut-launches-euro-pegged-eurr-123113569.html",
-      "source": "Yahoo Finance",
-      "at": 1787747473000,
-      "inst": [
-        "EUR/USD"
-      ],
-      "ccy": [
-        "EUR"
-      ],
       "sev": 1,
       "rel": 2
     },
@@ -820,16 +1042,6 @@
       "ccy": [],
       "sev": 2,
       "rel": 2
-    },
-    {
-      "title": "JinkoSolar shares fall after second-quarter earnings and revenue miss forecasts",
-      "link": "https://finance.yahoo.com/energy/articles/jinkosolar-shares-fall-second-quarter-123031978.html",
-      "source": "Yahoo Finance",
-      "at": 1787747431000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1
     },
     {
       "title": "The renter generation: Young Americans, shut out of homeownership, brace to rent forever",
@@ -867,16 +1079,6 @@
       "rel": 0
     },
     {
-      "title": "AIG names Anthony Vassallo as global head of energy",
-      "link": "https://www.investing.com/news/stock-market-news/aig-names-anthony-vassallo-as-global-head-of-energy-93CH-4877118",
-      "source": "Investing",
-      "at": 1787746970000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 0
-    },
-    {
       "title": "Does OpenAI Face A Netscape Moment? How That Could Boost Google Stock.",
       "link": "https://www.investors.com/news/technology/google-stock-blodget-openai-ipo-netscape/?src=A00220&yptr=yahoo",
       "source": "Yahoo Finance",
@@ -897,16 +1099,6 @@
       "rel": 0
     },
     {
-      "title": "Why is Argen-X stock climbing today?",
-      "link": "https://www.investing.com/news/stock-market-news/why-is-argenx-stock-climbing-today-93CH-4877104",
-      "source": "Investing",
-      "at": 1787746713000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 0
-    },
-    {
       "title": "Silver price today, Wednesday, August 26, 2026: Silver prices hold, notching a 17% monthly gain",
       "link": "https://finance.yahoo.com/personal-finance/investing/article/silver-price-today-wednesday-august-26-2026-silver-prices-hold-notching-a-17-monthly-gain-121703294.html",
       "source": "Yahoo Finance",
@@ -921,7 +1113,7 @@
       "rel": 2
     },
     {
-      "title": "Wall Street&#x2019;s biggest optimist says &#x2018;I wouldn&#x2019;t jump into the AI trade right now&#x2019;",
+      "title": "Wall Street&#x2019;s biggest optimist says he &#x2018;wouldn&#x2019;t jump into the AI trade right now&#x2019;",
       "link": "https://www.marketwatch.com/story/wall-streets-biggest-optimist-says-i-wouldnt-jump-into-the-ai-trade-right-now-18110306?mod=mw_rss_topstories",
       "source": "MarketWatch",
       "desc": "Ed Yardeni, who has been called the most bullish person on Wall Street, says he hasn&#x2019;t been bullish enough on the stock market.",
@@ -942,38 +1134,6 @@
       "ccy": [],
       "sev": 2,
       "rel": 0
-    },
-    {
-      "title": "Citi sees an opportunity in Oracle after ’one of the most extreme’ stock drawdowns",
-      "link": "https://www.investing.com/news/stock-market-news/citi-sees-an-opportunity-in-oracle-after-one-of-the-most-extreme-stock-drawdowns-4877077",
-      "source": "Investing",
-      "at": 1787746493000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 0
-    },
-    {
-      "title": "J.M. Smucker forecasts smaller-than-expected annual sales decline on steady coffee demand",
-      "link": "https://www.investing.com/news/stock-market-news/jm-smucker-forecasts-smallerthanexpected-annual-sales-decline-on-steady-coffeedemand-4877073",
-      "source": "Investing",
-      "at": 1787746353000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 0
-    },
-    {
-      "title": "Cybersecurity Stocks Are Priced For Big AI Growth. Why Earnings Could Bring Fireworks.",
-      "link": "https://www.investors.com/news/technology/cybersecurity-stocks-earnings-artificial-intelligence-high-expectations/?src=A00220&yptr=yahoo",
-      "source": "Yahoo Finance",
-      "at": 1787746101000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2
     },
     {
       "title": "Gold price today, Wednesday, August 26, 2026: Gold pulls back from morning's high over $4,700",
@@ -1032,41 +1192,6 @@
       "rel": 0
     },
     {
-      "title": "World stocks inch up as oil drops on Hormuz hopes ahead of data, Nvidia results",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/asian-stocks-hesitant-nvidia-oil-021924396.html",
-      "source": "Yahoo Finance",
-      "at": 1787744733000,
-      "inst": [
-        "USOIL",
-        "US500"
-      ],
-      "ccy": [
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2
-    },
-    {
-      "title": "Are you 50 years old with very little savings? Here’s a shockingly simple 3-step plan to retire by 58",
-      "link": "https://finance.yahoo.com/markets/articles/50-years-old-very-little-114500079.html",
-      "source": "Yahoo Finance",
-      "at": 1787744700000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 0
-    },
-    {
-      "title": "Dick's Sporting Goods' stock crash reveals a major problem for struggling Nike",
-      "link": "https://finance.yahoo.com/markets/stocks/article/dicks-sporting-goods-stock-crash-reveals-a-major-problem-for-struggling-nike-114409937.html",
-      "source": "Yahoo Finance",
-      "at": 1787744649000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 0
-    },
-    {
       "title": "Callaway Golf&#x2019;s apology for ad showing woman being shoved to the ground exposes a major industry blind spot",
       "link": "https://www.marketwatch.com/story/callaway-golfs-apology-for-ad-showing-woman-being-shoved-to-the-ground-exposes-a-major-industry-blind-spot-41101a13?mod=mw_rss_topstories",
       "source": "MarketWatch",
@@ -1076,54 +1201,6 @@
       "ccy": [],
       "sev": 1,
       "rel": 0
-    },
-    {
-      "title": "Dollar nudges higher ahead of US inflation data; Aussie gains on rate bets",
-      "link": "https://finance.yahoo.com/news/dollar-moves-narrow-range-ahead-015118187.html",
-      "source": "Yahoo Finance",
-      "at": 1787744527000,
-      "inst": [
-        "AUD/USD"
-      ],
-      "ccy": [
-        "USD",
-        "AUD"
-      ],
-      "sev": 2,
-      "rel": 2
-    },
-    {
-      "title": "As Cook case smolders, Trump has other paths to shape Fed policy team",
-      "link": "https://finance.yahoo.com/economy/policy/articles/as-cook-case-smolders-trump-has-other-paths-to-shape-fed-policy-team-100943841.html",
-      "source": "Yahoo Finance",
-      "at": 1787744332000,
-      "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 1,
-      "rel": 2
-    },
-    {
-      "title": "Stocks making the biggest moves premarket: Intuit, Zoom, Semtech, SolarEdge & more",
-      "link": "https://www.cnbc.com/2026/08/26/stocks-making-the-biggest-moves-premarket-intu-zm-sedg.html",
-      "source": "CNBC Markets",
-      "desc": "These are the stocks posting the largest moves premarket.",
-      "at": 1787744302000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2
     },
     {
       "title": "investingLive European news wrap: Markets await further US-Iran news, Jackson Hole event",
@@ -1150,46 +1227,6 @@
       "rel": 1
     },
     {
-      "title": "US rates need to rise soon absent evidence of ongoing drop in inflation, Fed's Collins says",
-      "link": "https://finance.yahoo.com/economy/policy/articles/us-rates-rise-soon-absent-150621599.html",
-      "source": "Yahoo Finance",
-      "at": 1787743817000,
-      "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2
-    },
-    {
-      "title": "'Day of reckoning': Moody's economist Mark Zandi warns that conditions for economic crisis are falling in place for US",
-      "link": "https://finance.yahoo.com/economy/articles/day-reckoning-moodys-economist-mark-113000488.html",
-      "source": "Yahoo Finance",
-      "at": 1787743800000,
-      "inst": [],
-      "ccy": [],
-      "sev": 2,
-      "rel": 0
-    },
-    {
-      "title": "Retire while Trump is president if you can answer ‘yes’ to these 5 questions — you're closer to freedom than you think",
-      "link": "https://finance.yahoo.com/economy/policy/articles/retire-while-trump-president-answer-112500157.html",
-      "source": "Yahoo Finance",
-      "at": 1787743500000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 0
-    },
-    {
       "title": "&#x2018;It&#x2019;s the ultimate regifting&#x2019;: My mom gave me a house. Should I transfer it back to her to reduce capital gains?",
       "link": "https://www.marketwatch.com/story/its-the-ultimate-regifting-my-mom-gave-me-a-house-should-i-transfer-it-back-to-her-to-reduce-capital-gains-e357f49c?mod=mw_rss_topstories",
       "source": "MarketWatch",
@@ -1213,43 +1250,6 @@
       ],
       "sev": 1,
       "rel": 2
-    },
-    {
-      "title": "London’s FTSE 100 slips as sinking crude weighs on oil majors",
-      "link": "https://www.investing.com/news/commodities-news/londons-ftse-100-flat-as-sinking-crude-weighs-on-oil-majors-4876399",
-      "source": "Investing Cmdty",
-      "at": 1787740561000,
-      "inst": [
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2
-    },
-    {
-      "title": "Does a 2% beneficiary inherit 100% if the 98% beneficiary dies in a car accident? Asking for a friend.",
-      "link": "https://www.marketwatch.com/story/does-a-2-beneficiary-inherit-100-if-the-98-beneficiary-dies-in-a-car-accident-asking-for-a-friend-67aacc06?mod=mw_rss_topstories",
-      "source": "MarketWatch",
-      "desc": "&#x201c;I&#x2019;m curious what would happen if the account owner were to die suddenly at the same time as the 98% beneficiary.&#x201d;",
-      "at": 1787739360000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 0
-    },
-    {
-      "title": "Am I too old for Roth conversions? I&#x2019;m 84 and my wife is 77. We have $8 million saved.",
-      "link": "https://www.marketwatch.com/story/am-i-too-old-for-roth-conversions-im-84-and-my-wife-is-77-we-have-8-million-saved-fb08fccd?mod=mw_rss_topstories",
-      "source": "MarketWatch",
-      "desc": "&#x201c;We are reluctant to pay a financial adviser 2% of assets &#x2014; roughly $160,000 per year.&#x201d;",
-      "at": 1787739300000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 0
     }
   ],
   "sources": [
@@ -1268,10 +1268,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-08-26T12:55:55.465Z",
-  "headlinesAt": "2026-08-26T12:55:55.465Z",
-  "updatedAt": "2026-08-26T12:55:55.465Z"
+  "calendarAt": "2026-08-26T13:11:39.430Z",
+  "headlinesAt": "2026-08-26T13:11:39.430Z",
+  "updatedAt": "2026-08-26T13:11:39.430Z"
 }
