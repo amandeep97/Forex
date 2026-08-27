@@ -1,0 +1,213 @@
+{
+  "asOf": "2026-08-27T16:28:18.952Z",
+  "days": 1199,
+  "horizons": [
+    5,
+    10,
+    20,
+    40
+  ],
+  "high": 90,
+  "low": 10,
+  "tests": 16,
+  "now": {
+    "ratio": 67.44,
+    "percentile": 12,
+    "at": 1787691600000
+  },
+  "legacyZones": {
+    "extremeHigh": 80,
+    "high": 65,
+    "normal": 55,
+    "low": 45
+  },
+  "stretched": {
+    "label": "ratio at or above the 90th percentile — silver cheap against gold",
+    "hypothesis": "fall",
+    "episodes": 28,
+    "horizons": {
+      "5": {
+        "episodes": 28,
+        "ratioWin": 54,
+        "ratioBase": 51,
+        "ratioZ": 0.31,
+        "ratioMedPct": 0.32,
+        "ratioBaseMedPct": 0.04,
+        "pairWin": 54,
+        "pairBase": 51,
+        "pairMedPct": 0.32,
+        "pairBaseMedPct": 0.04,
+        "pairZ": 0.31,
+        "auMedPct": 1.05,
+        "agMedPct": 1.19,
+        "baseN": 1194
+      },
+      "10": {
+        "episodes": 28,
+        "ratioWin": 43,
+        "ratioBase": 49,
+        "ratioZ": -0.63,
+        "ratioMedPct": -0.19,
+        "ratioBaseMedPct": -0.12,
+        "pairWin": 43,
+        "pairBase": 49,
+        "pairMedPct": -0.18,
+        "pairBaseMedPct": -0.13,
+        "pairZ": -0.63,
+        "auMedPct": 2.62,
+        "agMedPct": 2.06,
+        "baseN": 1189
+      },
+      "20": {
+        "episodes": 28,
+        "ratioWin": 46,
+        "ratioBase": 50,
+        "ratioZ": -0.42,
+        "ratioMedPct": -0.11,
+        "ratioBaseMedPct": 0.02,
+        "pairWin": 46,
+        "pairBase": 50,
+        "pairMedPct": -0.11,
+        "pairBaseMedPct": 0.02,
+        "pairZ": -0.42,
+        "auMedPct": 4.7,
+        "agMedPct": 2.79,
+        "baseN": 1179
+      },
+      "40": {
+        "episodes": 28,
+        "ratioWin": 46,
+        "ratioBase": 48,
+        "ratioZ": -0.21,
+        "ratioMedPct": -0.09,
+        "ratioBaseMedPct": -0.29,
+        "pairWin": 46,
+        "pairBase": 48,
+        "pairMedPct": -0.1,
+        "pairBaseMedPct": -0.3,
+        "pairZ": -0.21,
+        "auMedPct": 9,
+        "agMedPct": 8.4,
+        "baseN": 1159
+      }
+    }
+  },
+  "compressed": {
+    "label": "ratio at or below the 10th percentile — gold cheap against silver",
+    "hypothesis": "rise",
+    "episodes": 9,
+    "horizons": {
+      "5": {
+        "episodes": 9,
+        "ratioWin": 78,
+        "ratioBase": 49,
+        "ratioZ": 1.73,
+        "ratioMedPct": 1.3,
+        "ratioBaseMedPct": -0.04,
+        "pairWin": 78,
+        "pairBase": 49,
+        "pairMedPct": 1.29,
+        "pairBaseMedPct": -0.04,
+        "pairZ": 1.73,
+        "auMedPct": -0.24,
+        "agMedPct": -1.03,
+        "baseN": 1194
+      },
+      "10": {
+        "episodes": 9,
+        "ratioWin": 67,
+        "ratioBase": 51,
+        "ratioZ": 0.96,
+        "ratioMedPct": 1.22,
+        "ratioBaseMedPct": 0.12,
+        "pairWin": 67,
+        "pairBase": 51,
+        "pairMedPct": 1.19,
+        "pairBaseMedPct": 0.13,
+        "pairZ": 0.96,
+        "auMedPct": 0.05,
+        "agMedPct": -1.09,
+        "baseN": 1189
+      },
+      "20": {
+        "episodes": 9,
+        "ratioWin": 78,
+        "ratioBase": 50,
+        "ratioZ": 1.67,
+        "ratioMedPct": 3.72,
+        "ratioBaseMedPct": -0.02,
+        "pairWin": 78,
+        "pairBase": 50,
+        "pairMedPct": 3.6,
+        "pairBaseMedPct": -0.02,
+        "pairZ": 1.67,
+        "auMedPct": 3.61,
+        "agMedPct": -2.94,
+        "baseN": 1179
+      },
+      "40": {
+        "episodes": 9,
+        "ratioWin": 78,
+        "ratioBase": 52,
+        "ratioZ": 1.56,
+        "ratioMedPct": 11.31,
+        "ratioBaseMedPct": 0.29,
+        "pairWin": 78,
+        "pairBase": 52,
+        "pairMedPct": 10.8,
+        "pairBaseMedPct": 0.3,
+        "pairZ": 1.56,
+        "auMedPct": 4.08,
+        "agMedPct": -5.59,
+        "baseN": 1159
+      }
+    }
+  },
+  "leadLag": {
+    "sameDay": 0.779,
+    "silverLeadsGold": [
+      {
+        "lag": 1,
+        "r": 0.03
+      },
+      {
+        "lag": 2,
+        "r": -0.062
+      },
+      {
+        "lag": 3,
+        "r": 0.043
+      },
+      {
+        "lag": 4,
+        "r": 0.012
+      },
+      {
+        "lag": 5,
+        "r": 0.024
+      }
+    ],
+    "goldLeadsSilver": [
+      {
+        "lag": 1,
+        "r": -0.015
+      },
+      {
+        "lag": 2,
+        "r": -0.088
+      },
+      {
+        "lag": 3,
+        "r": 0.024
+      },
+      {
+        "lag": 4,
+        "r": 0.033
+      },
+      {
+        "lag": 5,
+        "r": 0.008
+      }
+    ]
+  }
+}
