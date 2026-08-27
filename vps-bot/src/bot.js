@@ -17,9 +17,11 @@ const { FeedNotifier } = require('./feedNotify');
 const { Updater }      = require('./updater');
 const { NewsFetcher }  = require('./newsFetcher');
 const { runCOTStudy }  = require('./cotStudy');
+const { runHourStudy } = require('./hourStudy');
 const { INSTRUMENTS }  = require('./instruments');
 
 const COT_STUDY_PATH = 'bot/cot-study.json';
+const HOUR_STUDY_PATH = 'bot/hour-profile.json';
 const STRATEGY_PATH = 'bot/strategy.json';
 const TRADES_PATH   = 'bot/trades.json';
 const CONTROL_PATH  = 'bot/vps-control.json';
@@ -74,6 +76,7 @@ class ForexBot {
     this.cotData   = null;
     this.cotFetchedAt = 0;
     this.cotStudyRan = false;
+    this.hourStudyRan = false;
     this.alertChecker = new AlertChecker({ oanda: this.oanda, github: this.github, telegram: this.telegram, env, log: this.log.bind(this) });
     this.updater = new Updater({ github: this.github, env, log: this.log.bind(this) });
     this.news = new NewsFetcher({
@@ -112,6 +115,24 @@ class ForexBot {
       + `${cs ? ` (${cs.win}% vs ${cs.baseWin}%, z=${cs.z})` : ''}`);
   }
 
+  // When each market actually moves, measured on these instruments rather than
+  // repeated from somebody else's. Monthly: session structure is set by exchange
+  // hours and does not drift week to week.
+  async _maybeHourStudy() {
+    if (this.hourStudyRan) return;
+    const cur = await this.github.readJSON(HOUR_STUDY_PATH).catch(() => null);
+    const age = cur?.content?.asOf ? Date.now() - Date.parse(cur.content.asOf) : Infinity;
+    if (age < 30 * 86400e3) { this.hourStudyRan = true; return; }
+
+    this.hourStudyRan = true;   // set first, so a failure does not retry every tick
+    this.log('Hour study: measuring when each market moves…');
+    const result = await runHourStudy({
+      instruments: INSTRUMENTS, oanda: this.oanda, log: this.log.bind(this),
+    });
+    await this.github.writeJSON(HOUR_STUDY_PATH, result, 'bot: hour-of-day profile', cur?.sha || null);
+    this.log(`Hour study published — ${Object.keys(result.classes || {}).length} classes`);
+  }
+
   log(msg)  { console.log(`[${new Date().toISOString()}] ${msg}`); }
   warn(msg) { console.warn(`[${new Date().toISOString()}] WARN ${msg}`); }
   err(msg, e) { console.error(`[${new Date().toISOString()}] ERR ${msg}`, e?.message || ''); }
@@ -143,6 +164,7 @@ class ForexBot {
     // answer is missing or a week old, which on a weekend is free: the only
     // thing this competes with is a feed republishing an unchanged board.
     await this._maybeCOTStudy().catch(e => this.warn(`COT study: ${e.message}`));
+    await this._maybeHourStudy().catch(e => this.warn(`Hour study: ${e.message}`));
 
     if (isWeekend()) { this.log('Weekend — skipped'); return; }
 
