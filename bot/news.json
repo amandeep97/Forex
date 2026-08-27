@@ -408,6 +408,46 @@
   ],
   "headlines": [
     {
+      "title": "Why is Baidu stock surging today?",
+      "link": "https://www.investing.com/news/stock-market-news/why-is-baidu-stock-surging-today-93CH-4878355",
+      "source": "Investing",
+      "at": 1787810527000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 0
+    },
+    {
+      "title": "Germany consumer sentiment set to improve further going into September",
+      "link": "https://investinglive.com/news/germany-consumer-sentiment-set-to-improve-further-going-into-september/",
+      "source": "ForexLive",
+      "desc": "September GfK consumer sentiment -26.6 vs -29.6 expectedPrior -29.6; revised to -29.4German consumer sentiment looks set to improve further going into September, with this being the highest reading since February (ahead of March). The good news is that income expectations have no",
+      "at": 1787810416000,
+      "inst": [
+        "EUR/USD"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "dir": {
+        "EUR/USD": "up"
+      },
+      "why": "Stronger German sentiment supports Euro"
+    },
+    {
+      "title": "Taiwan stocks higher at close of trade; Taiwan Weighted up 0.30%",
+      "link": "https://www.investing.com/news/stock-market-news/taiwan-stocks-higher-at-close-of-trade-taiwan-weighted-up-030-4878351",
+      "source": "Investing",
+      "at": 1787810404000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "why": "Taiwan market news irrelevant to US"
+    },
+    {
       "title": "Nearly 1,500 missing in Nepal and China after devastating Himalayan flash flood",
       "link": "https://www.investing.com/news/commodities-news/rescuers-search-for-survivors-after-devastatingnepal-flood-4878182",
       "source": "Investing Cmdty",
@@ -459,7 +499,11 @@
         "XAU"
       ],
       "sev": 2,
-      "rel": 2
+      "rel": 2,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Gold explicitly edges higher near target"
     },
     {
       "title": "Z.ai shares surge 8% after releasing new AI model running only on Chinese chips",
@@ -517,26 +561,6 @@
       "link": "https://www.investing.com/news/stock-market-news/us-investigates-apex-logistics-over-suspected-nvidia-chip-smuggling--bloomberg-4878324",
       "source": "Investing",
       "at": 1787807303000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 0
-    },
-    {
-      "title": "SK Hynix stuck in KRW range: Live breakout levels",
-      "link": "https://www.investing.com/news/stock-market-news/sk-hynix-stalls-below-200ma-in-bull-trap-test-live-levels-93CH-4872532",
-      "source": "Investing",
-      "at": 1787807257000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 0
-    },
-    {
-      "title": "Nikkei 225 coils below 200-period MA: Live levels",
-      "link": "https://www.investing.com/news/stock-market-news/nikkei-225-pinned-below-200sma-live-hourly-levels-93CH-4872533",
-      "source": "Investing",
-      "at": 1787807192000,
       "inst": [],
       "ccy": [],
       "sev": 1,
@@ -1250,28 +1274,6 @@
         "AUD/USD": "up"
       },
       "why": "Hotter CPI supports AUD."
-    },
-    {
-      "title": "Preview, today: Fed's favoured inflation gauge lands two days before Warsh's Jackson Hole speech",
-      "link": "https://investinglive.com/news/preview-today-fed-s-favoured-inflation-gauge-lands-two-days-before-warsh-s-jackson-hole-speech/",
-      "source": "ForexLive",
-      "desc": "Today's PCE print carries added weight given its timing, landing just two days ahead of Fed Chair Warsh's first Jackson Hole keynote and before Nvidia's earnings, making this a genuinely stacked stretch for US macro risk. A softer than expected core reading would likely reinforce",
-      "at": 1787705709000,
-      "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "why": "Preview of upcoming data, no direction."
     }
   ],
   "sources": [
@@ -1290,10 +1292,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-08-27T06:03:52.353Z",
-  "headlinesAt": "2026-08-27T06:03:52.353Z",
-  "updatedAt": "2026-08-27T06:03:52.353Z"
+  "calendarAt": "2026-08-27T06:20:08.125Z",
+  "headlinesAt": "2026-08-27T06:20:08.125Z",
+  "updatedAt": "2026-08-27T06:20:08.125Z"
 }
