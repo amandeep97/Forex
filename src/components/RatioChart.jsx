@@ -179,18 +179,35 @@ export default function RatioChart() {
   const dir     = cur && prev ? (cur.c > prev.c ? 'up' : 'down') : null;
   const chg5    = cur && prev5 ? ((cur.c - prev5.c) / prev5.c * 100).toFixed(2) : null;
 
-  const zone = !cur ? '—'
-    : cur.c > 80 ? 'Extreme High'
-    : cur.c > 65 ? 'High'
-    : cur.c > 55 ? 'Normal'
-    : cur.c > 45 ? 'Low'
-    : 'Extreme Low';
+  // Against its own history, not against 80.
+  //
+  // These were fixed numbers — above 80 "Extreme High", below 45 "Extreme Low"
+  // — from a decade when the ratio lived between those two. It has spent long
+  // stretches above 80 since, so the card was calling ordinary days extreme and
+  // had no way to say a genuinely unusual one apart from them. Same error as
+  // the positioning line: a threshold nobody measured.
+  //
+  // The percentile is computed from the series already on screen, so it moves
+  // with the window being charted and says what it was measured against.
+  const pctile = (() => {
+    if (!cur || candles.length < 60) return null;
+    const prior = candles.slice(0, -1).map(c => c.c).filter(v => v > 0);
+    if (prior.length < 60) return null;
+    return Math.round(prior.filter(v => v < cur.c).length / prior.length * 100);
+  })();
 
-  const zoneColor = !cur ? '#64748b'
-    : cur.c > 80 ? '#ef4444'
-    : cur.c > 65 ? '#f97316'
-    : cur.c > 55 ? '#94a3b8'
-    : cur.c > 45 ? '#22c55e'
+  const zone = pctile == null ? (cur ? 'not enough history' : '—')
+    : pctile >= 90 ? 'Stretched high'
+    : pctile >= 70 ? 'High'
+    : pctile > 30  ? 'Normal'
+    : pctile > 10  ? 'Low'
+    : 'Stretched low';
+
+  const zoneColor = pctile == null ? '#64748b'
+    : pctile >= 90 ? '#ef4444'
+    : pctile >= 70 ? '#f97316'
+    : pctile > 30  ? '#94a3b8'
+    : pctile > 10  ? '#22c55e'
     : '#00d4aa';
 
   const metalSignal = dir === 'down'
@@ -255,7 +272,7 @@ export default function RatioChart() {
           value={cur ? cur.c.toFixed(1) : '—'}
           label="Current Ratio"
           color={zoneColor}
-          sub={zone}
+          sub={pctile == null ? zone : `${zone} · ${pctile}th pct of ${candles.length} bars`}
         />
         <CtxCard
           value={dir === 'down' ? '▼' : dir === 'up' ? '▲' : '—'}

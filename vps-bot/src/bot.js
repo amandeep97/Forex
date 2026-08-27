@@ -18,10 +18,12 @@ const { Updater }      = require('./updater');
 const { NewsFetcher }  = require('./newsFetcher');
 const { runCOTStudy }  = require('./cotStudy');
 const { runHourStudy } = require('./hourStudy');
+const { runMetalsStudy } = require('./metalsStudy');
 const { INSTRUMENTS }  = require('./instruments');
 
 const COT_STUDY_PATH = 'bot/cot-study.json';
 const HOUR_STUDY_PATH = 'bot/hour-profile.json';
+const METALS_STUDY_PATH = 'bot/metals-study.json';
 const STRATEGY_PATH = 'bot/strategy.json';
 const TRADES_PATH   = 'bot/trades.json';
 const CONTROL_PATH  = 'bot/vps-control.json';
@@ -77,6 +79,7 @@ class ForexBot {
     this.cotFetchedAt = 0;
     this.cotStudyRan = false;
     this.hourStudyRan = false;
+    this.metalsStudyRan = false;
     this.alertChecker = new AlertChecker({ oanda: this.oanda, github: this.github, telegram: this.telegram, env, log: this.log.bind(this) });
     this.updater = new Updater({ github: this.github, env, log: this.log.bind(this) });
     this.news = new NewsFetcher({
@@ -133,6 +136,21 @@ class ForexBot {
     this.log(`Hour study published — ${Object.keys(result.classes || {}).length} classes`);
   }
 
+  // Gold and silver, and whether the ratio between them means anything. The
+  // app has labelled that ratio against fixed numbers for years without anyone
+  // testing what follows one. Weekly: the percentile moves slowly.
+  async _maybeMetalsStudy() {
+    if (this.metalsStudyRan) return;
+    const cur = await this.github.readJSON(METALS_STUDY_PATH).catch(() => null);
+    const age = cur?.content?.asOf ? Date.now() - Date.parse(cur.content.asOf) : Infinity;
+    if (age < 7 * 86400e3) { this.metalsStudyRan = true; return; }
+
+    this.metalsStudyRan = true;
+    this.log('Metals study: measuring the gold-silver ratio…');
+    const result = await runMetalsStudy({ oanda: this.oanda, log: this.log.bind(this) });
+    await this.github.writeJSON(METALS_STUDY_PATH, result, 'bot: gold-silver study', cur?.sha || null);
+  }
+
   log(msg)  { console.log(`[${new Date().toISOString()}] ${msg}`); }
   warn(msg) { console.warn(`[${new Date().toISOString()}] WARN ${msg}`); }
   err(msg, e) { console.error(`[${new Date().toISOString()}] ERR ${msg}`, e?.message || ''); }
@@ -165,6 +183,7 @@ class ForexBot {
     // thing this competes with is a feed republishing an unchanged board.
     await this._maybeCOTStudy().catch(e => this.warn(`COT study: ${e.message}`));
     await this._maybeHourStudy().catch(e => this.warn(`Hour study: ${e.message}`));
+    await this._maybeMetalsStudy().catch(e => this.warn(`Metals study: ${e.message}`));
 
     if (isWeekend()) { this.log('Weekend — skipped'); return; }
 
