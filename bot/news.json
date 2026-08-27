@@ -411,11 +411,39 @@
       "title": "Rescuers search for survivors after devastating Nepal flood",
       "link": "https://www.investing.com/news/commodities-news/rescuers-search-for-survivors-after-devastatingnepal-flood-4878182",
       "source": "Investing Cmdty",
-      "at": 1787793171000,
+      "at": 1787794960000,
       "inst": [],
       "ccy": [],
       "sev": 1,
       "rel": 0
+    },
+    {
+      "title": "Nvidia in talks to acquire Hugging Face for over $13 bln- Business Insider",
+      "link": "https://www.investing.com/news/stock-market-news/nvidia-in-talks-to-acquire-hugging-face-for-over-13-bln-business-insider-4878215",
+      "source": "Investing",
+      "at": 1787794729000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 0
+    },
+    {
+      "title": "Oil prices extend losses on expectations talks to ease Middle East supply woes",
+      "link": "https://www.investing.com/news/commodities-news/oil-prices-extend-losses-on-expectations-talks-to-ease-middle-east-supply-woes-4878199",
+      "source": "Investing Cmdty",
+      "at": 1787793866000,
+      "inst": [
+        "USOIL"
+      ],
+      "ccy": [
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Oil prices extend losses"
     },
     {
       "title": "SK Hynix stuck at KRW 1,739,000 resistance: Hourly levels",
@@ -457,7 +485,8 @@
       ],
       "ccy": [],
       "sev": 1,
-      "rel": 2
+      "rel": 2,
+      "why": "Asian chip stocks rise"
     },
     {
       "title": "CrowdStrike’s stock soars after AI fuels the cybersecurity company’s ‘best quarter in history’",
@@ -575,16 +604,6 @@
       "sev": 1,
       "rel": 2,
       "why": "No clear directional impact on currency pair."
-    },
-    {
-      "title": "HP’s PC shipments drop overshadows strong revenue growth, shares slide",
-      "link": "https://www.investing.com/news/stock-market-news/hp-forecasts-strong-fourthquarter-profit-on-price-hikes-us-tariff-refunds-4877860",
-      "source": "Investing",
-      "at": 1787787747000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1
     },
     {
       "title": "Salesforce’s stock gets an Anthropic boost — and more highlights from earnings",
@@ -864,26 +883,6 @@
       "why": "Gas oil levels, no oil direction"
     },
     {
-      "title": "Crude Oil WTI double top breakdown below $84: Hourly",
-      "link": "https://www.investing.com/news/commodities-news/crude-oil-wti-consolidates-near-highs-at-8511-hourly-levels-93CH-4872742",
-      "source": "Investing Cmdty",
-      "at": 1787771945000,
-      "inst": [
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "dir": {
-        "USOIL": "down",
-        "UKOIL": "down"
-      },
-      "why": "Technical breakdown signals bearish price action."
-    },
-    {
       "title": "US treasury sells $70 billion of 5 year notes at a high yield of 4.393%",
       "link": "https://investinglive.com/news/us-treasury-sells-70-billion-of-5-year-notes-at-a-high-yield-of-4-393/",
       "source": "ForexLive",
@@ -1121,26 +1120,6 @@
       "rel": 1
     },
     {
-      "title": "Mortgage and refinance interest rates today, Wednesday, August 26, 2026: Rates down across the board",
-      "link": "https://finance.yahoo.com/personal-finance/mortgages/article/mortgage-and-refinance-interest-rates-today-wednesday-august-26-2026-rates-down-across-the-board-100000670.html",
-      "source": "Yahoo Finance",
-      "at": 1787738400000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 0
-    },
-    {
-      "title": "Best CD rates today, Wednesday, August 26, 2026: Earn up to 4.30% APY",
-      "link": "https://finance.yahoo.com/personal-finance/banking/article/best-cd-rates-today-wednesday-august-26-2026-earn-up-to-430-apy-100000859.html",
-      "source": "Yahoo Finance",
-      "at": 1787738400000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 0
-    },
-    {
       "title": "UBS raises EUR/SEK price target on low-yielding krona concerns",
       "link": "https://www.investing.com/news/forex-news/ubs-raises-eursek-price-target-on-lowyielding-krona-concerns-93CH-4876537",
       "source": "Investing FX",
@@ -1279,6 +1258,32 @@
       "sev": 2,
       "rel": 2,
       "why": "Trade dispute impact on currency unclear"
+    },
+    {
+      "title": "Japan July 2026 Services PPI +3.6% y/y (expected 3.2%, prior 3.2%)",
+      "link": "https://investinglive.com/news/japan-july-2026-services-ppi-3-6-y-y-expected-3-2-prior-3-2/",
+      "source": "ForexLive",
+      "desc": "Japan July 2026 Services PPI +3.6% y/y expected 3.2%, prior 3.2%And +0.4% m/mprior -0.4%Just the data this post. ADDED - details and BoJ implications here:Japan's services inflation accelerates to 3.6pct in July, beating forecasts This article was written by Eamonn Sheridan at in",
+      "at": 1787702017000,
+      "inst": [
+        "USD/JPY"
+      ],
+      "ccy": [
+        "JPY"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "why": "Inflation data direction for JPY ambiguous"
+    },
+    {
+      "title": "Louis Navellier has blunt message on Nvidia’s reign before earnings",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/louis-navellier-blunt-message-nvidia-214700439.html",
+      "source": "Yahoo Finance",
+      "at": 1787694420000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 0
     }
   ],
   "sources": [
@@ -1300,7 +1305,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-08-27T01:32:02.829Z",
-  "headlinesAt": "2026-08-27T01:32:02.829Z",
-  "updatedAt": "2026-08-27T01:32:02.829Z"
+  "calendarAt": "2026-08-27T01:48:03.981Z",
+  "headlinesAt": "2026-08-27T01:48:03.981Z",
+  "updatedAt": "2026-08-27T01:48:03.981Z"
 }
