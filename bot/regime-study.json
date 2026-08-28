@@ -1,7 +1,9 @@
 {
-  "asOf": "2026-08-28T16:12:31.874Z",
+  "asOf": "2026-08-28T16:44:50.744Z",
+  "methodVersion": 2,
   "tf": "H1",
   "method": {
+    "version": 2,
     "recentDays": 365,
     "priorDays": 1095,
     "blockDays": 14,
@@ -17,8 +19,8 @@
     "note": "Candidates were searched on alternating fortnights and scored on the fortnights in between, which the search never saw. Entries are spaced by the holding period so one condition lasting six hours counts once. Trades that would straddle a block boundary are dropped. Every number is against what every other bar in the same slice paid over the same window with the same stop, not against 50%."
   },
   "windows": {
-    "recentFrom": "2025-08-28T16:12:20.700Z",
-    "priorFrom": "2022-08-29T16:12:20.700Z",
+    "recentFrom": "2025-08-28T16:44:38.786Z",
+    "priorFrom": "2022-08-29T16:44:38.786Z",
     "bars": {
       "XAU_USD": 23660,
       "XAG_USD": 23658
@@ -1644,6 +1646,13 @@
             "lift": 1.09
           },
           {
+            "key": "round=at-round",
+            "n": 31,
+            "atEvent": 16.5,
+            "atAnyBar": 15.2,
+            "lift": 1.09
+          },
+          {
             "key": "stretch=far-below",
             "n": 28,
             "atEvent": 14.9,
@@ -1669,13 +1678,6 @@
             "n": 60,
             "atEvent": 31.9,
             "atAnyBar": 30.8,
-            "lift": 1.04
-          },
-          {
-            "key": "round=at-round",
-            "n": 118,
-            "atEvent": 62.8,
-            "atAnyBar": 60.2,
             "lift": 1.04
           }
         ]
@@ -1820,6 +1822,14 @@
           "nDied": 59
         },
         {
+          "key": "round=at-round",
+          "atRan": 11.6,
+          "atDied": 15.5,
+          "ratio": 0.75,
+          "nRan": 26,
+          "nDied": 58
+        },
+        {
           "key": "stretch=above",
           "atRan": 23.7,
           "atDied": 17.9,
@@ -1866,14 +1876,6 @@
           "ratio": 1.21,
           "nRan": 45,
           "nDied": 62
-        },
-        {
-          "key": "dayPos=at-day-low",
-          "atRan": 15.2,
-          "atDied": 18.4,
-          "ratio": 0.83,
-          "nRan": 34,
-          "nDied": 69
         }
       ],
       "dropVsStall": [
@@ -1963,13 +1965,6 @@
   },
   "drift": {
     "XAU_USD": [
-      {
-        "key": "round=at-round",
-        "nowPct": 38.6,
-        "thenPct": 12,
-        "changePct": 26.6,
-        "ratio": 3.22
-      },
       {
         "key": "partner=partner-quiet",
         "nowPct": 17.6,
@@ -2067,16 +2062,16 @@
         "thenPct": 22.5,
         "changePct": -1,
         "ratio": 0.96
+      },
+      {
+        "key": "drive=soft",
+        "nowPct": 15.6,
+        "thenPct": 14.8,
+        "changePct": 0.9,
+        "ratio": 1.06
       }
     ],
     "XAG_USD": [
-      {
-        "key": "round=at-round",
-        "nowPct": 60.2,
-        "thenPct": 13,
-        "changePct": 47.2,
-        "ratio": 4.63
-      },
       {
         "key": "partner=partner-quiet",
         "nowPct": 17.6,
@@ -2174,6 +2169,13 @@
         "thenPct": 9.1,
         "changePct": -1.8,
         "ratio": 0.8
+      },
+      {
+        "key": "pd=pd-high-swept",
+        "nowPct": 10.1,
+        "thenPct": 11.5,
+        "changePct": -1.4,
+        "ratio": 0.88
       }
     ]
   },
@@ -2189,8 +2191,7 @@
         "dayPos=at-day-low",
         "drive=dropping",
         "spike=spike",
-        "partner=partner-agree",
-        "round=at-round"
+        "partner=partner-agree"
       ],
       "plain": [
         "the London-New York overlap",
@@ -2199,8 +2200,7 @@
         "at the day's low",
         "falling hard",
         "a spike bar just printed",
-        "the other metal agrees",
-        "sitting on a round number"
+        "the other metal agrees"
       ],
       "firing": []
     },
@@ -2217,8 +2217,7 @@
         "pd=pd-high-swept",
         "pw=pw-high-swept",
         "spike=spike",
-        "partner=partner-agree",
-        "round=at-round"
+        "partner=partner-agree"
       ],
       "plain": [
         "the London-New York overlap",
@@ -2229,8 +2228,7 @@
         "yesterday's high taken and given back",
         "last week's high taken and given back",
         "a spike bar just printed",
-        "the other metal agrees",
-        "sitting on a round number"
+        "the other metal agrees"
       ],
       "firing": []
     }
