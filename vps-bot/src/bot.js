@@ -19,7 +19,7 @@ const { NewsFetcher }  = require('./newsFetcher');
 const { runCOTStudy }  = require('./cotStudy');
 const { runHourStudy } = require('./hourStudy');
 const { runMetalsStudy } = require('./metalsStudy');
-const { runRegimeStudy } = require('./regimeStudy');
+const { runRegimeStudy, METHOD_VERSION: REGIME_VERSION } = require('./regimeStudy');
 const { INSTRUMENTS }  = require('./instruments');
 
 const COT_STUDY_PATH = 'bot/cot-study.json';
@@ -169,7 +169,11 @@ class ForexBot {
     if (this.regimeStudyRan) return;
     const cur = await this.github.readJSON(REGIME_STUDY_PATH).catch(() => null);
     const age = cur?.content?.asOf ? Date.now() - Date.parse(cur.content.asOf) : Infinity;
-    if (age < 7 * 86400e3) { this.regimeStudyRan = true; return; }
+    // Age alone is not enough. When a condition's definition changes, the file
+    // on disk describes a market measured a different way, and leaving it for
+    // the rest of the week is leaving a wrong answer on the screen.
+    const stale = age >= 7 * 86400e3 || cur?.content?.methodVersion !== REGIME_VERSION;
+    if (!stale) { this.regimeStudyRan = true; return; }
 
     this.regimeStudyRan = true;
     this.log('Regime study: searching for what works now…');
