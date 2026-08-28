@@ -19,11 +19,13 @@ const { NewsFetcher }  = require('./newsFetcher');
 const { runCOTStudy }  = require('./cotStudy');
 const { runHourStudy } = require('./hourStudy');
 const { runMetalsStudy } = require('./metalsStudy');
+const { runRegimeStudy } = require('./regimeStudy');
 const { INSTRUMENTS }  = require('./instruments');
 
 const COT_STUDY_PATH = 'bot/cot-study.json';
 const HOUR_STUDY_PATH = 'bot/hour-profile.json';
 const METALS_STUDY_PATH = 'bot/metals-study.json';
+const REGIME_STUDY_PATH = 'bot/regime-study.json';
 const STRATEGY_PATH = 'bot/strategy.json';
 const TRADES_PATH   = 'bot/trades.json';
 const CONTROL_PATH  = 'bot/vps-control.json';
@@ -80,6 +82,7 @@ class ForexBot {
     this.cotStudyRan = false;
     this.hourStudyRan = false;
     this.metalsStudyRan = false;
+    this.regimeStudyRan = false;
     this.alertChecker = new AlertChecker({ oanda: this.oanda, github: this.github, telegram: this.telegram, env, log: this.log.bind(this) });
     this.updater = new Updater({ github: this.github, env, log: this.log.bind(this) });
     this.news = new NewsFetcher({
@@ -151,6 +154,33 @@ class ForexBot {
     await this.github.writeJSON(METALS_STUDY_PATH, result, 'bot: gold-silver study', cur?.sha || null);
   }
 
+  // What is working NOW, and what the moves that mattered had in common.
+  //
+  // The other three studies each take a pattern somebody else named and test it
+  // over five years; all three came back "no". This one names nothing, searches
+  // recent history for the states that precede the moves, and proves or kills
+  // each survivor on fortnights of that same history the search never saw.
+  //
+  // Weekly, and it needs to be: "these days" is a rolling twelve months and the
+  // answer drifts. Four years of hourly bars for two instruments is ten paged
+  // requests and about six seconds of arithmetic, which on a weekend competes
+  // with nothing.
+  async _maybeRegimeStudy() {
+    if (this.regimeStudyRan) return;
+    const cur = await this.github.readJSON(REGIME_STUDY_PATH).catch(() => null);
+    const age = cur?.content?.asOf ? Date.now() - Date.parse(cur.content.asOf) : Infinity;
+    if (age < 7 * 86400e3) { this.regimeStudyRan = true; return; }
+
+    this.regimeStudyRan = true;
+    this.log('Regime study: searching for what works now…');
+    const result = await runRegimeStudy({ oanda: this.oanda, log: this.log.bind(this) });
+    if (result.error) { this.warn(`Regime study: ${result.error}`); return; }
+    await this.github.writeJSON(REGIME_STUDY_PATH, result, 'bot: what works now', cur?.sha || null);
+    const t = result.tally || {};
+    this.log(`Regime study published — ${t.confirmed || 0} confirmed on the holdout, `
+      + `${t.holds || 0} held, ${t.fades || 0} faded, ${t.fails || 0} failed`);
+  }
+
   log(msg)  { console.log(`[${new Date().toISOString()}] ${msg}`); }
   warn(msg) { console.warn(`[${new Date().toISOString()}] WARN ${msg}`); }
   err(msg, e) { console.error(`[${new Date().toISOString()}] ERR ${msg}`, e?.message || ''); }
@@ -184,6 +214,7 @@ class ForexBot {
     await this._maybeCOTStudy().catch(e => this.warn(`COT study: ${e.message}`));
     await this._maybeHourStudy().catch(e => this.warn(`Hour study: ${e.message}`));
     await this._maybeMetalsStudy().catch(e => this.warn(`Metals study: ${e.message}`));
+    await this._maybeRegimeStudy().catch(e => this.warn(`Regime study: ${e.message}`));
 
     if (isWeekend()) { this.log('Weekend — skipped'); return; }
 

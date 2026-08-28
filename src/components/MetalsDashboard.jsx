@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback, useMemo } from 'react';
 import { pearson as sharedPearson } from '../utils/mathUtils';
 import AIDashboardPanel from './AIDashboardPanel.jsx';
+import RegimePanel from './RegimePanel.jsx';
 import ChartModal from './ChartModal.jsx';
 import { detectSweep, detectLiqLevels, detectFVGsAndOBs } from '../utils/smcHelpers.js';
 
@@ -1307,6 +1308,11 @@ export default function MetalsDashboard() {
       )}
 
       <div style={{ flex:1, overflowY:'auto', padding:'12px 16px' }}>
+
+        {/* ── What is working now ──────────────────────────────────────────── */}
+        {/* First on the page deliberately. It is the only thing here that has
+            been checked against data it was not fitted on. */}
+        <RegimePanel />
 
         {/* ── AI Analysis Panel ────────────────────────────────────────────── */}
         <AIDashboardPanel
