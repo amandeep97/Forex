@@ -143,10 +143,41 @@ export function sessionOf(hour) {
   return 'late';
 }
 
-// Round numbers people actually watch. Gold moves in $25 blocks on the screen
-// and silver in fifty-cent ones; a $1 grid on gold would mark every bar.
-export const ROUND_STEP = { XAU_USD: 25, XAG_USD: 0.5, XPT_USD: 25, default: null };
-export const roundStepFor = sym => ROUND_STEP[sym] ?? ROUND_STEP.default;
+// Round numbers people actually watch.
+//
+// The first version of this fixed the grid at $25 for gold and fifty cents for
+// silver, and asked whether price was within a quarter of an ATR of one. Both
+// halves were wrong, and the live study showed it in the first line of its own
+// output: "sitting on a round number" was true on 38.6% of gold bars this year
+// against 12% in the three years before, and 60.2% of silver bars against 13%
+// — the largest change on the board, and pure measurement artefact.
+//
+// Gold is $4,524 now and was $1,800 three years ago. A $25 grid at $1,800 is
+// something a trader watches; at $4,524 it is a rounding error, and nobody has
+// ever said "gold is holding 4,525". Worse, hourly ATR on gold is now $25.6 —
+// the entire grid spacing — so "within a quarter of an ATR of a $25 level" is
+// true half the time, and on silver nearly always. The feature had stopped
+// carrying any information at all, while reading as the year's biggest change.
+//
+// So: the grid scales with price, and proximity is a fraction of the grid
+// rather than of ATR. Both are then scale-free, and a doubling in price cannot
+// move the frequency. Near one percent of price, snapped to a 1/2/5 — gold at
+// $4,524 gets $50 levels, at $1,800 it gets $20; silver at $68 gets 50c, at $25
+// it gets 20c. Which is what people actually quote.
+const ROUND_INSTRUMENTS = new Set(['XAU_USD', 'XAG_USD', 'XPT_USD', 'XPD_USD']);
+export const ROUND_NEAR = 0.08;      // within 8% of the spacing, either side
+
+export function roundStepFor(sym, price) {
+  if (!ROUND_INSTRUMENTS.has(sym) || !(price > 0)) return null;
+  const target = price * 0.01;
+  const mag = Math.pow(10, Math.floor(Math.log10(target)));
+  let best = null;
+  for (const m of [1, 2, 5, 10]) {
+    const s = m * mag;
+    if (best === null || Math.abs(Math.log(s / target)) < Math.abs(Math.log(best / target))) best = s;
+  }
+  return best;
+}
 
 // ── The feature pass ────────────────────────────────────────────────────────
 
@@ -167,7 +198,6 @@ export function featureSeries(cs, { sym = null, partner = null } = {}) {
   const vb  = volBaseline(atr);
   const day = periodLevels(cs, dayKey);
   const wk  = periodLevels(cs, weekKey);
-  const step = sym ? roundStepFor(sym) : null;
 
   // The partner's close at or before each of our timestamps. Built once by
   // merge rather than searched per bar.
@@ -239,11 +269,14 @@ export function featureSeries(cs, { sym = null, partner = null } = {}) {
       else partnerState = 'quiet';
     }
 
-    // Distance to the nearest round level people watch, in ATR.
+    // Distance to the nearest round level people watch, as a share of the
+    // spacing between them. The grid is recomputed from the bar's own price, so
+    // it widens as the market goes up instead of dissolving into noise.
+    const step = roundStepFor(sym, c);
     let atRound = null;
     if (step) {
       const rem = ((c % step) + step) % step;
-      atRound = Math.min(rem, step - rem) / a < 0.25;
+      atRound = Math.min(rem, step - rem) / step < ROUND_NEAR;
     }
 
     const pdSweep = swept(day.prevHi, day.prevLo);

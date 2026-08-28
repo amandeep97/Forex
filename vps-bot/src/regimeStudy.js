@@ -62,6 +62,17 @@ const { tradeRun } = require('./feed');
 const SHARED = pathToFileURL(path.join(__dirname, '..', '..', 'shared', 'moveFeatures.mjs')).href;
 
 // ── Shape of the study ──────────────────────────────────────────────────────
+
+// Bumped whenever a condition's DEFINITION changes, so the published answer is
+// rebuilt rather than sitting there for a week describing a market measured a
+// different way. Age is not enough on its own: version 1's round-number feature
+// was an artefact of gold doubling in price, and a file that is six days old is
+// six days of a wrong answer.
+//
+//   2 — round numbers gridded off price rather than a fixed $25/50c, and
+//       proximity as a share of the grid rather than of ATR.
+const METHOD_VERSION = 2;
+
 const TF = 'H1';
 const RECENT_DAYS = 365;        // "these days"
 const PRIOR_DAYS  = 365 * 3;    // the before, for the novelty comparison
@@ -591,8 +602,10 @@ async function runRegimeStudy({ oanda, log = () => {}, now = Date.now(),
 
   return {
     asOf: new Date().toISOString(),
+    methodVersion: METHOD_VERSION,
     tf: TF,
     method: {
+      version: METHOD_VERSION,
       recentDays, priorDays, blockDays: BLOCK_MS / 86400e3,
       holds: HOLDS, stopAtr: STOP_ATR, rr: 2,
       searched: searched.length, carried: carried.length,
@@ -623,5 +636,5 @@ module.exports = {
   // and the verdict are the four places this could quietly fake a result.
   sideOf, blockOf, entriesOf, welch, zFor, verdictOf, noveltyOf, anatomy, drift,
   BLOCK_MS, HOLDS, STOP_ATR, MIN_A, MIN_B, CARRY, METALS, TF,
-  ZIGZAG_K, BIG_LEG, SMALL_LEG,
+  ZIGZAG_K, BIG_LEG, SMALL_LEG, METHOD_VERSION,
 };

@@ -117,16 +117,48 @@ const flat = (n, px = 100, rng = 1) =>
     g[55]?.b.partner == null, String(g[55]?.b.partner));
 }
 
-// ── Round numbers ───────────────────────────────────────────────────────────
+// ── Round numbers, and the artefact that made the first version useless ─────
+//
+// Version 1 fixed the grid at $25 for gold and asked whether price was within a
+// quarter of an ATR of one. The live study's own output showed what that does:
+// "sitting on a round number" was true on 38.6% of gold bars this year against
+// 12% in the three years before — the largest change on the board, and entirely
+// because gold went from $1,800 to $4,524. Hourly ATR on gold is now $25.6, the
+// whole grid spacing, so the condition had stopped meaning anything at all
+// while reading as the year's biggest finding.
 {
-  check('gold is gridded in the blocks a screen shows', roundStepFor('XAU_USD') === 25);
-  check('silver in fifty cents', roundStepFor('XAG_USD') === 0.5);
-  check('and an instrument with no convention has no grid rather than a made-up one',
-    roundStepFor('EUR_USD') === null);
-  const at = featureSeries(flat(600, 2000.4, 4), { sym: 'XAU_USD' });
-  const off = featureSeries(flat(600, 2012.0, 4), { sym: 'XAU_USD' });
-  check('a price sitting on 2000 is at a round number', at[500]?.b.round === 'at-round');
-  check('and one halfway between two of them is not', off[500]?.b.round == null);
+  check('the grid at $4,500 gold is the fifty-dollar levels people quote',
+    roundStepFor('XAU_USD', 4524) === 50, String(roundStepFor('XAU_USD', 4524)));
+  check('and at $1,800 it is the twenties, not the same absolute number',
+    roundStepFor('XAU_USD', 1800) === 20, String(roundStepFor('XAU_USD', 1800)));
+  check('silver at $68 gets fifty cents', roundStepFor('XAG_USD', 68) === 0.5,
+    String(roundStepFor('XAG_USD', 68)));
+  check('and at $25 it gets twenty', roundStepFor('XAG_USD', 25) === 0.2,
+    String(roundStepFor('XAG_USD', 25)));
+  check('an instrument with no such convention has no grid rather than a made-up one',
+    roundStepFor('EUR_USD', 1.08) === null);
+
+  const near = featureSeries(flat(600, 4500.9, 25), { sym: 'XAU_USD' });
+  const off  = featureSeries(flat(600, 4525.0, 25), { sym: 'XAU_USD' });
+  check('a price sitting on 4500 is at a round number', near[500]?.b.round === 'at-round');
+  check('and one exactly between two levels is not', off[500]?.b.round == null,
+    String(off[500]?.b.round));
+
+  // The regression itself: the same market twice, once at half the price. The
+  // frequency of the condition must not move.
+  const freq = (px, atr) => {
+    const cs = bars(900, i => {
+      const p = px * (1 + Math.sin(i / 7) * 0.004 + i * 0.00002);
+      return { o: p, h: p + atr / 2, l: p - atr / 2, c: p };
+    });
+    const f = featureSeries(cs, { sym: 'XAU_USD' }).filter(Boolean);
+    return f.filter(x => x.b.round === 'at-round').length / f.length;
+  };
+  const cheap = freq(1800, 9), dear = freq(4524, 25.6);
+  check('doubling the price does not change how often the condition is true',
+    Math.abs(cheap - dear) < 0.06, `${(cheap * 100).toFixed(1)}% vs ${(dear * 100).toFixed(1)}%`);
+  check('and it is a condition rather than the market — true some of the time, not most',
+    dear > 0.02 && dear < 0.45, `${(dear * 100).toFixed(1)}%`);
 }
 
 // ── Sessions ────────────────────────────────────────────────────────────────

@@ -226,6 +226,12 @@ const RECENT = NOW - 365 * 24 * H;
     JSON.stringify(live[0]?.holdout));
   check('what is true on the last bar is reported for both metals',
     found.now?.XAU_USD?.keys?.length > 0 && found.now?.XAG_USD?.keys?.length > 0);
+  // The bot re-runs on a version change as well as on age. Version 1's
+  // round-number condition was an artefact of gold doubling in price, and a
+  // file six days old would have been six more days of a wrong answer.
+  check('the published file states which version of the method produced it',
+    found.methodVersion === R.METHOD_VERSION && found.method?.version === R.METHOD_VERSION,
+    `${found.methodVersion} vs ${R.METHOD_VERSION}`);
   check('turns and fizzles both exist, or "why did this one run" has no comparison',
     found.anatomy?.XAU_USD?.turns?.n > 0 && found.anatomy?.XAU_USD?.fizzles?.n > 0,
     `${found.anatomy?.XAU_USD?.turns?.n} ran, ${found.anatomy?.XAU_USD?.fizzles?.n} died`);
