@@ -1,7 +1,7 @@
 # Tests
 
 ```
-npm test                 # all 38
+npm test                 # all 50
 npm test stops plan      # only files whose name contains "stops" or "plan"
 ```
 
@@ -61,3 +61,24 @@ took the bot down for half an hour), `bot`, `news`, `newsfix` and `archive`
 `discover` cover every instrument reaching the right exchange host — a
 futures-only symbol asked of the spot host returns 400 and the caller's catch
 swallows it, so the panel silently shows nothing.
+
+**The studies.** `cotstudy`, `hourstudy` and `metalsstudy` each test one named
+hypothesis over five years; the checks there are mostly about the four ways
+such a study fakes a result — a percentile that can see the future, one
+stretched month counted as forty observations, a benchmark of 50% instead of
+what the market did, and a hypothesis relabelled after the fact.
+
+`features`, `regime` and `paged` cover the study that does the opposite: it
+names nothing, searches recent history for the states that precede the moves,
+and proves each survivor on fortnights the search never saw. Different design,
+different failure modes. `features` is mostly one question asked several ways —
+can any feature see a bar that has not happened yet — because everything
+downstream is fiction if one can. `regime` covers the holdout itself: that the
+two halves alternate rather than splitting by date, that a trade cannot straddle
+the fence between them, that a condition true for six hours is one opportunity
+rather than six. Its last two checks are the point of the whole design: a real
+effect planted in the data is found, and on a pure random walk the search still
+turns up rules that look excellent where they were found — and none of them
+survives. `paged` covers fetching four years of hourly bars out of an API that
+returns 5000 at a time without double-counting the boundaries or hanging on a
+gap in the history.

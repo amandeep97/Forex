@@ -51,6 +51,62 @@ class OandaClient {
       }));
   }
 
+  // OANDA returns at most 5000 candles per request, which on H1 is about ten
+  // months. That is enough to describe how the market behaves now and not
+  // enough to say whether it behaved that way BEFORE, which is the whole
+  // question a regime study asks. So: fetch a long history one time window at a
+  // time.
+  //
+  // Windows rather than a rolling cursor, and from/to rather than from/count,
+  // because both of those remove a way to be wrong.
+  //
+  //   A window is bounded by construction. `from` with a `count` returns
+  //   whatever the server feels like, and if the last bar of a page is not
+  //   later than the last bar of the previous one — which happens at the live
+  //   edge, where the newest candle is incomplete and gets filtered out — the
+  //   loop never advances.
+  //
+  //   A window sized well under 5000 bars cannot trip "maximum candle count
+  //   exceeded", which a naive from/to over four years does immediately.
+  //
+  // Pages overlap at the boundary by design and the duplicates are dropped by
+  // timestamp, so a bar can never be counted twice.
+  static windowFor(granularity) {
+    const bar = {
+      S5: 5e3, S10: 1e4, S30: 3e4, M1: 60e3, M2: 12e4, M4: 24e4, M5: 3e5,
+      M10: 6e5, M15: 9e5, M30: 18e5, H1: 36e5, H2: 72e5, H3: 108e5, H4: 144e5,
+      H6: 216e5, H8: 288e5, H12: 432e5, D: 864e5, W: 6048e5,
+    }[granularity] || 36e5;
+    // Three thousand bars a page: comfortably under the server's limit even in
+    // a stretch with no weekends missing from it.
+    return bar * 3000;
+  }
+
+  async getCandlesSince(instrument, granularity, fromMs, { to = Date.now(), max = 60000 } = {}) {
+    const span = OandaClient.windowFor(granularity);
+    const seen = new Set();
+    const out = [];
+    for (let start = fromMs; start < to && out.length < max;) {
+      const end = Math.min(start + span, to);
+      const data = await this._req(
+        `/instruments/${instrument}/candles?granularity=${granularity}`
+        + `&from=${encodeURIComponent(new Date(start).toISOString())}`
+        + `&to=${encodeURIComponent(new Date(end).toISOString())}&price=M`,
+      );
+      for (const c of data.candles || []) {
+        if (!c.complete) continue;
+        const t = new Date(c.time).getTime();
+        if (seen.has(t)) continue;
+        seen.add(t);
+        out.push({ t, o: +c.mid.o, h: +c.mid.h, l: +c.mid.l, c: +c.mid.c, v: c.volume || 1 });
+      }
+      if (end >= to) break;
+      start = end;
+    }
+    out.sort((a, b) => a.t - b.t);
+    return out.slice(0, max);
+  }
+
   // Bid and ask separately — the mid-price candles above cannot show what a
   // trade actually costs, and a spread that has tripled is a reason to stand
   // aside no matter how good the setup looks.
