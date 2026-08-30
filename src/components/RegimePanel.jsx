@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import {
   fetchRegimeStudy, stateNow, firing, nearMisses,
   headline, VERDICT_TEXT, NOVELTY_TEXT,
+  DOLLAR_INSTRUMENT, RATE_INSTRUMENT, invertDollar,
 } from '../utils/regimeRead.js';
 import { PHRASE } from '../../shared/moveFeatures.mjs';
 
@@ -51,6 +52,8 @@ async function bars(sym) {
   const res = await fetch(
     `${base}/instruments/${sym}/candles?granularity=H1&count=2000&price=M`,
     { headers: { Authorization: `Bearer ${c.apiKey}` }, signal: AbortSignal.timeout(20000) });
+  // An instrument the account cannot see is a real state — the macro read
+  // simply does not appear. It must not blank the rest of the panel.
   if (!res.ok) return null;
   const d = await res.json();
   return (d.candles || []).filter(x => x.complete).map(x => ({
@@ -69,6 +72,16 @@ const ago = (iso) => {
 
 const Row = ({ children, ...s }) => (
   <div style={{ display: 'flex', alignItems: 'center', gap: 8, ...s }}>{children}</div>
+);
+
+// A number with its label and, where there is one, its error bar. A coefficient
+// printed without an error bar is an opinion with a decimal point on it.
+const Stat = ({ label, value, note, tone }) => (
+  <div>
+    <div style={{ fontSize: 9, color: 'var(--text3)' }}>{label}</div>
+    <div style={{ fontSize: 13, fontWeight: 700, color: tone || 'var(--text1)' }}>{value}</div>
+    {note && <div style={{ fontSize: 9, color: 'var(--text3)' }}>{note}</div>}
+  </div>
 );
 
 const Head = ({ children, note }) => (
@@ -112,11 +125,18 @@ export default function RegimePanel() {
       setStudy(s);
       const cs = {};
       for (const m of METALS) cs[m.sym] = await bars(m.sym);
+      // The two things gold is mostly a function of. Fetched separately so a
+      // missing entitlement on the bond costs the metals nothing.
+      const dollarUp = invertDollar(await bars(DOLLAR_INSTRUMENT).catch(() => null));
+      const rate = await bars(RATE_INSTRUMENT).catch(() => null);
+
       const out = {};
       for (const m of METALS) {
         const other = METALS.find(x => x.sym !== m.sym);
         if (!cs[m.sym]) continue;
-        const st = stateNow(cs[m.sym], { sym: m.sym, partner: cs[other.sym] });
+        const st = stateNow(cs[m.sym], {
+          sym: m.sym, partner: cs[other.sym], dollarUp, rate,
+        });
         if (!st) continue;
         out[m.sym] = {
           ...st,
@@ -207,6 +227,41 @@ export default function RegimePanel() {
                     bar of {new Date(s.at).toLocaleString([], { month: 'short', day: 'numeric', hour: '2-digit' })}
                   </span>
                 </Row>
+
+                {/* What is actually moving it. Not a correlation — the move
+                    split into the part the dollar and the ten-year forced and
+                    the part they did not, which are different trades. */}
+                {s.driver && (
+                  <div style={{ marginTop: 7, padding: '8px 10px', borderRadius: 6,
+                    background: 'var(--bg1)', border: '1px solid var(--border)' }}>
+                    <div style={{ fontSize: 11, color: 'var(--text1)', lineHeight: 1.55 }}>
+                      {s.driver.text}.
+                    </div>
+                    <Row style={{ marginTop: 6, gap: 12, flexWrap: 'wrap' }}>
+                      <Stat label="macro explains" value={`${Math.round(s.driver.r2 * 100)}%`}
+                        tone={s.driver.r2 >= 0.4 ? '#94a3b8' : '#f59e0b'} />
+                      <Stat label="vs dollar" value={s.driver.b1.toFixed(2)}
+                        note={s.driver.dollarSig ? `±${s.driver.se1.toFixed(2)}` : 'not significant'}
+                        tone={s.driver.dollarSig ? (s.driver.b1 < 0 ? '#94a3b8' : '#f59e0b') : '#64748b'} />
+                      <Stat label="vs yields" value={s.driver.b2.toFixed(2)}
+                        note={s.driver.rateSig ? `±${s.driver.se2.toFixed(2)}` : 'not significant'}
+                        tone={s.driver.rateSig ? (s.driver.b2 < 0 ? '#94a3b8' : '#f59e0b') : '#64748b'} />
+                      {s.driver.push != null && (
+                        <Stat label="beyond the macro" value={`${s.driver.push > 0 ? '+' : ''}${s.driver.push}σ`}
+                          note={`over ${12}h`}
+                          tone={Math.abs(s.driver.push) >= 1.5
+                            ? (s.driver.push > 0 ? '#22c55e' : '#ef4444') : '#64748b'} />
+                      )}
+                    </Row>
+                    {s.driver.shift?.dollar != null && Math.abs(s.driver.shift.dollar) >= 2.5 && (
+                      <div style={{ fontSize: 10, color: '#f59e0b', marginTop: 5 }}>
+                        ⚠ Its relationship with the dollar has changed since ten days ago
+                        (z={s.driver.shift.dollar}). The usual intermarket read is describing
+                        something that has stopped operating.
+                      </div>
+                    )}
+                  </div>
+                )}
 
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: 4, marginTop: 6 }}>
                   {s.plain.map(p => (

@@ -27,6 +27,8 @@
 // directly; the bot loads it with a dynamic import(), the same route
 // shared/feedConditions.mjs already takes.
 
+import { macroBuckets, MACRO_PHRASE } from './macroFit.mjs';
+
 export const ATR_LEN = 14;
 export const EMA_LEN = 50;
 export const DRIVE_BARS = 12;      // half a day on H1 — the run into now
@@ -189,10 +191,15 @@ export function roundStepFor(sym, price) {
  * @param partner the other metal's candles (optional). Time-aligned by
  *                timestamp, never by index — the two do not print identical bars
  *                and pairing by position silently compares Tuesday to Wednesday.
+ * @param macro   the result of macroSeries() for this instrument (optional).
+ *                Indexed on the same bars, so what the dollar and the ten-year
+ *                explain — and what they do not — becomes a condition the
+ *                holdout can score alongside the price-structure ones, rather
+ *                than another number on a screen nobody checked.
  * @returns array aligned to `cs`; entries are null where a feature could not be
  *          computed from history alone, which is a real state and not a zero.
  */
-export function featureSeries(cs, { sym = null, partner = null } = {}) {
+export function featureSeries(cs, { sym = null, partner = null, macro = null } = {}) {
   const atr = atrSeries(cs);
   const ema = emaSeries(cs);
   const vb  = volBaseline(atr);
@@ -282,6 +289,11 @@ export function featureSeries(cs, { sym = null, partner = null } = {}) {
     const pdSweep = swept(day.prevHi, day.prevLo);
     const pwSweep = swept(wk.prevHi, wk.prevLo);
 
+    // What the dollar and the ten-year account for, and what they do not.
+    // Absent when no macro series was supplied — which is a real state, not a
+    // reason to invent one.
+    const mb = macro ? macroBuckets(macro, i) : { macro: null, dollar: null, flow: null, shift: null };
+
     out[i] = {
       i, t: cs[i].t, atr: a, close: c,
       hour, dow: d.getUTCDay(), session: sessionOf(hour),
@@ -303,6 +315,7 @@ export function featureSeries(cs, { sym = null, partner = null } = {}) {
         spike: spike ? 'spike' : null,
         partner: partnerState ? `partner-${partnerState}` : null,
         round: atRound ? 'at-round' : null,
+        macro: mb.macro, dollar: mb.dollar, flow: mb.flow, shift: mb.shift,
       },
     };
   }
@@ -355,6 +368,7 @@ export const PHRASE = {
   'session=asia': 'Asian session', 'session=london': 'London session',
   'session=ny-am': 'the London-New York overlap', 'session=ny-pm': 'New York afternoon',
   'session=late': 'after the New York close',
+  ...MACRO_PHRASE,
 };
 
 // ── Finding the moves ───────────────────────────────────────────────────────
