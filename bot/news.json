@@ -993,6 +993,33 @@
   ],
   "headlines": [
     {
+      "title": "‘It’s the ultimate regifting’: My mom gave me a house. Should I transfer it back to her to reduce capital gains?",
+      "link": "https://www.marketwatch.com/story/its-the-ultimate-regifting-my-mom-gave-me-a-house-should-i-transfer-it-back-to-her-to-reduce-capital-gains-e357f49c?mod=mw_rss_topstories",
+      "source": "MarketWatch",
+      "desc": "“The property is very old and requires significant ongoing maintenance.”",
+      "at": 1788129060000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 0
+    },
+    {
+      "title": "Dow Jones Futures Fall Amid Bullish, Bearish Market Signals. What To Do Now.",
+      "link": "https://www.investors.com/market-trend/stock-market-today/dow-jones-futures-microsoft-titans-mask-market-weakness/?src=A00220&yptr=yahoo",
+      "source": "Yahoo Finance",
+      "at": 1788128800000,
+      "inst": [
+        "US30"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "dir": {
+        "US30": "down"
+      },
+      "why": "Dow Jones Futures Fall"
+    },
+    {
       "title": "‘My main goal is to help people’: I’m single, 74, with $10 million burning a hole in my pocket. What should I do?",
       "link": "https://www.marketwatch.com/story/my-main-goal-is-to-help-people-im-single-74-with-10-million-burning-a-hole-in-my-pocket-what-should-i-do-0e6112e1?mod=mw_rss_topstories",
       "source": "MarketWatch",
@@ -1026,20 +1053,22 @@
       "rel": 2
     },
     {
-      "title": "Dow Jones Futures Fall Amid Bullish, Bearish Market Signals. What To Do Now.",
-      "link": "https://www.investors.com/market-trend/stock-market-today/dow-jones-futures-microsoft-titans-mask-market-weakness/?src=A00220&yptr=yahoo",
-      "source": "Yahoo Finance",
-      "at": 1788127638000,
+      "title": "Oil jumps more than 2% after US attack on Iran’s Larak island",
+      "link": "https://www.investing.com/news/commodities-news/oil-jumps-more-than-2-after-us-attack-on-irans-larak-island-4882075",
+      "source": "Investing Cmdty",
+      "at": 1788127949000,
       "inst": [
-        "US30"
+        "USOIL"
       ],
-      "ccy": [],
+      "ccy": [
+        "OIL"
+      ],
       "sev": 1,
       "rel": 2,
       "dir": {
-        "US30": "down"
+        "USOIL": "up"
       },
-      "why": "Dow Jones Futures Fall"
+      "why": "Oil jumps after US attack"
     },
     {
       "title": "Can SanDisk Avoid the Memory Trap That’s Burned Investors Before?",
@@ -1050,6 +1079,21 @@
       "ccy": [],
       "sev": 1,
       "rel": 1
+    },
+    {
+      "title": "ECB Wants the Euro Directly on Blockchain. Will It Kill Stablecoins in Europe?",
+      "link": "https://finance.yahoo.com/markets/crypto/articles/ecb-wants-euro-directly-blockchain-220000477.html",
+      "source": "Yahoo Finance",
+      "at": 1788127200000,
+      "inst": [
+        "EUR/USD"
+      ],
+      "ccy": [
+        "EUR"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "why": "No clear directional impact"
     },
     {
       "title": "Is a ‘Bessent doctrine’ taking shape in global FX policy?",
@@ -1537,16 +1581,6 @@
       "why": "MicroStrategy resuming purchases is bullish."
     },
     {
-      "title": "3 Simple ETFs Worth Buying and Holding for Decades",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/3-simple-etfs-worth-buying-181500129.html",
-      "source": "Yahoo Finance",
-      "at": 1788113700000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 0
-    },
-    {
       "title": "Honda (HMC), Nissan Edge Toward a Software Alliance",
       "link": "https://finance.yahoo.com/markets/stocks/articles/honda-hmc-nissan-edge-toward-180935321.html",
       "source": "Yahoo Finance",
@@ -1633,16 +1667,6 @@
       "rel": 0
     },
     {
-      "title": "Dear Kraft Heinz Stock Fans, Mark Your Calendars for September 14",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/dear-kraft-heinz-stock-fans-153002037.html",
-      "source": "Yahoo Finance",
-      "at": 1788103802000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 0
-    },
-    {
       "title": "This Is What Investors Should Watch Before Buying PANW Stock. Most Will Ignore It on September 1.",
       "link": "https://finance.yahoo.com/markets/stocks/articles/investors-watch-buying-panw-stock-153002874.html",
       "source": "Yahoo Finance",
@@ -1651,6 +1675,16 @@
       "ccy": [],
       "sev": 1,
       "rel": 1
+    },
+    {
+      "title": "Dear Kraft Heinz Stock Fans, Mark Your Calendars for September 14",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/dear-kraft-heinz-stock-fans-153002037.html",
+      "source": "Yahoo Finance",
+      "at": 1788103802000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 0
     },
     {
       "title": "Trump: Venezuelan oil to be used to fill up ‘virtually emptied’ U.S. reserves",
@@ -1669,27 +1703,6 @@
         "USOIL": "down"
       },
       "why": "Increased supply from Venezuelan oil."
-    },
-    {
-      "title": "My mother, 91, has dementia. Every bank says I need her signature to unlock her $100,000 stock certificate. What can I do?",
-      "link": "https://www.marketwatch.com/story/my-mother-91-has-dementia-every-bank-says-i-need-her-signature-to-unlock-her-100-000-stock-certificate-what-can-i-do-4a2b702f?mod=mw_rss_topstories",
-      "source": "MarketWatch",
-      "desc": "“These shares are the only assets in her estate without designated beneficiaries.”",
-      "at": 1788100200000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1
-    },
-    {
-      "title": "FINAL HOURS: THIS IS YOUR LAST CHANCE to secure up to 55% off InvestingPro",
-      "link": "https://www.investing.com/news/stock-market-news/your-last-chance-only-hours-to-go-to-secure-55-off-investingpro-4882056",
-      "source": "Investing",
-      "at": 1788100043000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 0
     }
   ],
   "sources": [
@@ -1711,7 +1724,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-08-30T22:20:19.011Z",
-  "headlinesAt": "2026-08-30T22:20:19.011Z",
-  "updatedAt": "2026-08-30T22:20:19.011Z"
+  "calendarAt": "2026-08-30T22:36:18.323Z",
+  "headlinesAt": "2026-08-30T22:36:18.323Z",
+  "updatedAt": "2026-08-30T22:36:18.323Z"
 }
