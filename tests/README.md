@@ -1,7 +1,7 @@
 # Tests
 
 ```
-npm test                 # all 50
+npm test                 # all 51
 npm test stops plan      # only files whose name contains "stops" or "plan"
 ```
 
@@ -82,3 +82,14 @@ turns up rules that look excellent where they were found — and none of them
 survives. `paged` covers fetching four years of hourly bars out of an API that
 returns 5000 at a time without double-counting the boundaries or hanging on a
 gap in the history.
+
+`macrofit` covers splitting gold's move into the part the dollar and the
+ten-year forced and the part they did not. Correlation is measured three times
+elsewhere in this app and cannot answer that question, so this is a regression,
+and a regression has four ways to be wrong that all look fine: fitting on the
+bar it then explains (the residual comes out zero everywhere and gold reads as
+perfectly explained forever), regressing on each driver separately (the two are
+correlated, so the shared part is counted twice), pairing the series by index
+instead of timestamp, and reading OANDA's ten-year as a yield when it quotes a
+price — which inverts every sign downstream with nothing looking wrong. The
+coefficients are checked against a world where they have a known answer.

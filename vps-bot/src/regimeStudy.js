@@ -60,6 +60,7 @@ const { pathToFileURL } = require('url');
 const { tradeRun } = require('./feed');
 
 const SHARED = pathToFileURL(path.join(__dirname, '..', '..', 'shared', 'moveFeatures.mjs')).href;
+const MACRO = pathToFileURL(path.join(__dirname, '..', '..', 'shared', 'macroFit.mjs')).href;
 
 // ── Shape of the study ──────────────────────────────────────────────────────
 
@@ -71,7 +72,10 @@ const SHARED = pathToFileURL(path.join(__dirname, '..', '..', 'shared', 'moveFea
 //
 //   2 — round numbers gridded off price rather than a fixed $25/50c, and
 //       proximity as a share of the grid rather than of ATR.
-const METHOD_VERSION = 2;
+//   3 — the dollar and the ten-year enter as conditions: how much of the metal
+//       is macro-explained, whether its dollar relationship is the normal one
+//       or has broken, and how far it has moved beyond what the two account for.
+const METHOD_VERSION = 3;
 
 const TF = 'H1';
 const RECENT_DAYS = 365;        // "these days"
@@ -107,6 +111,16 @@ const METALS = [
   { sym: 'XAU_USD', label: 'Gold' },
   { sym: 'XAG_USD', label: 'Silver' },
 ];
+
+// The two things gold is mostly a function of.
+//
+// EUR/USD is inverted so the series RISES when the dollar strengthens — every
+// sign downstream depends on that and it is done in one place, visibly, rather
+// than being buried in a regression. USB10Y_USD is a bond, and whether OANDA
+// serves it as a price or a yield is decided from the data rather than from its
+// label; the app's own intermarket.js calls it a yield while quoting a price.
+const DOLLAR = 'EUR_USD';
+const RATE = 'USB10Y_USD';
 
 // ── Statistics ──────────────────────────────────────────────────────────────
 
@@ -439,6 +453,7 @@ function drift(recentFeats, priorFeats, keysOf, minPct = 1) {
 async function runRegimeStudy({ oanda, log = () => {}, now = Date.now(),
                                 recentDays = RECENT_DAYS, priorDays = PRIOR_DAYS } = {}) {
   const M = await import(SHARED);
+  const MF = await import(MACRO);
 
   const recentStart = now - recentDays * 86400e3;
   const priorStart  = recentStart - priorDays * 86400e3;
@@ -452,6 +467,32 @@ async function runRegimeStudy({ oanda, log = () => {}, now = Date.now(),
     log(`Regime study: ${m.label} ${cs.length} ${TF} bars from ${new Date(cs[0].t).toISOString().slice(0, 10)}`);
   }
 
+  // The macro side. Missing it is a degraded study, not a failed one — the
+  // price-structure conditions stand on their own, and an instrument the
+  // account is not entitled to should cost those nothing.
+  let dollar = null, rate = null, macroErr = null;
+  try {
+    const eur = await oanda.getCandlesSince(DOLLAR, TF, priorStart, { to: now });
+    // Inverted here, in the open, so the series rises when the DOLLAR does.
+    dollar = eur.map(c => ({ t: c.t, c: 1 / c.c }));
+    rate = await oanda.getCandlesSince(RATE, TF, priorStart, { to: now });
+    if (!dollar.length || !rate.length) throw new Error('empty series');
+  } catch (e) {
+    macroErr = e.message.slice(0, 120);
+    dollar = rate = null;
+    log(`Regime study: no macro leg — ${macroErr}`);
+  }
+
+  const macro = {};
+  for (const m of METALS) {
+    if (!dollar || !rate) { macro[m.sym] = null; continue; }
+    macro[m.sym] = MF.macroSeries(raw[m.sym], { dollarUp: dollar, rate });
+  }
+  if (macro[METALS[0].sym]) {
+    log(`Regime study: the ten-year reads as a ${macro[METALS[0].sym].rateKind}`
+      + `${macro[METALS[0].sym].rateKind === null ? ' — sign left out rather than guessed' : ''}`);
+  }
+
   // Features computed on the FULL series, then sliced. Computing them per slice
   // would restart the ATR and the previous-day levels at the slice boundary,
   // and the first fortnight of every block would be quietly wrong.
@@ -459,7 +500,9 @@ async function runRegimeStudy({ oanda, log = () => {}, now = Date.now(),
   const feats = {};
   for (const m of METALS) {
     const other = METALS.find(x => x.sym !== m.sym);
-    const f = M.featureSeries(raw[m.sym], { sym: m.sym, partner: raw[other.sym] });
+    const f = M.featureSeries(raw[m.sym], {
+      sym: m.sym, partner: raw[other.sym], macro: macro[m.sym],
+    });
     // The condition set for each bar, once. Rule predicates run tens of
     // millions of times across a full search and cannot afford to rebuild it.
     for (const row of f) if (row) row.keys = new Set(M.keysOf(row));
@@ -580,6 +623,22 @@ async function runRegimeStudy({ oanda, log = () => {}, now = Date.now(),
       + `${anat[m.sym].fizzles?.n ?? 0} went nowhere`);
   }
 
+  // ── What is driving each metal, right now ─────────────────────────────────
+  //
+  // The thing the multi-agent diagrams promise and never deliver: one statement
+  // of what is moving this instrument, with the number behind every clause. Not
+  // a correlation — a decomposition, so "gold rallied" is separated into the
+  // dollar falling and somebody buying gold, which are different trades.
+  const drivers = {};
+  for (const m of METALS) {
+    const mm = macro[m.sym];
+    if (!mm) { drivers[m.sym] = macroErr ? { unavailable: macroErr } : null; continue; }
+    let i = mm.fits.length - 1;
+    while (i > 0 && !mm.fits[i]) i--;
+    const d = MF.describe(mm, i);
+    if (d) drivers[m.sym] = { ...d, at: mm.ts[i] };
+  }
+
   // ── Where the market is right now ─────────────────────────────────────────
   const nowState = {};
   for (const m of METALS) {
@@ -627,6 +686,13 @@ async function runRegimeStudy({ oanda, log = () => {}, now = Date.now(),
     anatomy: anat,
     drift: drifts,
     now: nowState,
+    drivers,
+    macro: {
+      dollar: DOLLAR, dollarNote: 'inverted, so the series rises when the dollar strengthens',
+      rate: RATE,
+      rateKind: macro[METALS[0].sym]?.rateKind ?? null,
+      unavailable: macroErr,
+    },
   };
 }
 

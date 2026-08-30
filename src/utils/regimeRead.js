@@ -11,6 +11,13 @@
 // in the search.
 
 import { featureSeries, keysOf, PHRASE, labelOf } from '../../shared/moveFeatures.mjs';
+import { macroSeries, describe as describeMacro } from '../../shared/macroFit.mjs';
+
+// EUR/USD inverted so the series rises when the DOLLAR strengthens. The sign
+// convention is written once, here and in the study, and nowhere else.
+export const DOLLAR_INSTRUMENT = 'EUR_USD';
+export const RATE_INSTRUMENT = 'USB10Y_USD';
+export const invertDollar = cs => (cs || []).map(c => ({ t: c.t, c: 1 / c.c }));
 
 export const REGIME_URL =
   'https://raw.githubusercontent.com/amandeep97/Forex/main/bot/regime-study.json';
@@ -32,15 +39,23 @@ export async function fetchRegimeStudy(signal = null) {
 // and the volatility baseline are all built from history, and a "current state"
 // computed from a handful of recent candles would silently differ from the one
 // the study measured.
-export function stateNow(cs, { sym, partner = null } = {}) {
+export function stateNow(cs, { sym, partner = null, dollarUp = null, rate = null } = {}) {
   if (!cs || cs.length < 500) return null;
-  const f = featureSeries(cs, { sym, partner });
+  // The decomposition is rebuilt here rather than read from the published file
+  // because the published file is up to a week old, and "what is driving gold"
+  // is a question about this hour. Same module the study used, so the answer
+  // cannot mean something different on the phone than it did in the search.
+  const macro = dollarUp?.length && rate?.length
+    ? macroSeries(cs, { dollarUp, rate })
+    : null;
+  const f = featureSeries(cs, { sym, partner, macro });
   for (let i = f.length - 1; i >= 0; i--) {
     if (f[i]) {
       const keys = keysOf(f[i]);
       return {
         at: f[i].t, close: f[i].close, atr: f[i].atr,
         keys, plain: keys.map(k => PHRASE[k] || k), row: f[i],
+        driver: macro ? describeMacro(macro, i) : null,
       };
     }
   }

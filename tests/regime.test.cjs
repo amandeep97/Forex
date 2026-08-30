@@ -167,7 +167,7 @@ const DAY = 86400e3;
 // ── End to end ──────────────────────────────────────────────────────────────
 
 const NOW = Date.UTC(2026, 6, 1);
-function makeOanda(plant) {
+function makeOanda(plant, { macro = false } = {}) {
   // Deterministic, so a failure here is reproducible rather than a bad afternoon.
   let seed = 987654321;
   const rnd = () => { seed = (seed * 1103515245 + 12345) & 0x7fffffff; return seed / 0x7fffffff; };
@@ -190,9 +190,15 @@ function makeOanda(plant) {
     return cs;
   };
   const au = series(2000, 4, true), ag = series(25, 0.06, false);
+  const book = { XAU_USD: au, XAG_USD: ag };
+  if (macro) { book.EUR_USD = series(1.08, 0.002, false); book.USB10Y_USD = series(4.2, 0.01, false); }
   return {
     async getCandlesSince(sym, tf, from, { to }) {
-      return (sym === 'XAU_USD' ? au : ag).filter(c => c.t >= from && c.t <= to);
+      // An instrument the account is not entitled to throws, exactly as the
+      // real client does. Returning gold's bars under another name would build
+      // a macro leg out of gold regressed on itself.
+      if (!book[sym]) throw new Error(`OANDA 400 ${sym}: instrument not available`);
+      return book[sym].filter(c => c.t >= from && c.t <= to);
     },
   };
 }
@@ -254,6 +260,39 @@ const RECENT = NOW - 365 * 24 * H;
     JSON.stringify(noise.tally));
   check('the rejected ones are still published, so the list is honest about what was tried',
     (noise.rules || []).length > 0);
+
+  // ── The macro leg is optional ─────────────────────────────────────────────
+  // Both runs above were served gold and silver only — the dollar and the
+  // ten-year threw, as they would on an account not entitled to them. A missing
+  // driver must cost the price-structure half of the study nothing.
+  check('a study with no macro data still completes', !noise.error);
+  check('and says why the macro leg is missing rather than silently omitting it',
+    typeof noise.macro?.unavailable === 'string', JSON.stringify(noise.macro));
+  check('no bar claims a macro state that could not be measured',
+    !Object.values(noise.now || {}).some(s => s.keys.some(k => /^(macro|dollar|flow|shift)=/.test(k))),
+    'an unmeasurable condition counted as false is how absent data becomes a signal');
+
+  // ── And on a random walk it finds nothing either ──────────────────────────
+  // The dollar and the ten-year are now supplied and are unrelated to the
+  // metals, so every macro condition is noise. None may survive.
+  const withMacro = await R.runRegimeStudy({
+    oanda: makeOanda(null, { macro: true }), now: NOW, recentDays: 365, priorDays: 365,
+  });
+  check('with the macro leg present, the decomposition runs',
+    withMacro.macro?.unavailable == null && withMacro.drivers?.XAU_USD?.r2 != null,
+    JSON.stringify(withMacro.macro));
+  check('and the ten-year is read as a yield or a price from its level, not its name',
+    ['yield', 'price', null].includes(withMacro.macro.rateKind), String(withMacro.macro.rateKind));
+  check('the macro conditions are searched alongside the price ones',
+    Object.values(withMacro.now).some(s => s.keys.some(k => k.startsWith('macro='))),
+    JSON.stringify(withMacro.now?.XAU_USD?.keys));
+  check('a driver sentence is produced with its numbers attached',
+    typeof withMacro.drivers.XAU_USD.text === 'string'
+    && withMacro.drivers.XAU_USD.b1 != null && withMacro.drivers.XAU_USD.n > 0,
+    withMacro.drivers.XAU_USD?.text?.slice(0, 80));
+  check('and on unrelated drivers nothing survives the holdout',
+    (withMacro.tally?.confirmed || 0) + (withMacro.tally?.holds || 0) === 0,
+    JSON.stringify(withMacro.tally));
 
   console.log(fails ? `\n${fails} FAILED` : '\nall passed');
   process.exit(fails ? 1 : 0);
