@@ -39,7 +39,7 @@ export async function fetchRegimeStudy(signal = null) {
 // and the volatility baseline are all built from history, and a "current state"
 // computed from a handful of recent candles would silently differ from the one
 // the study measured.
-export function stateNow(cs, { sym, partner = null, dollarUp = null, rate = null } = {}) {
+export function stateNow(cs, { sym, partner = null, dollarUp = null, rate = null, name = 'it' } = {}) {
   if (!cs || cs.length < 500) return null;
   // The decomposition is rebuilt here rather than read from the published file
   // because the published file is up to a week old, and "what is driving gold"
@@ -55,7 +55,7 @@ export function stateNow(cs, { sym, partner = null, dollarUp = null, rate = null
       return {
         at: f[i].t, close: f[i].close, atr: f[i].atr,
         keys, plain: keys.map(k => PHRASE[k] || k), row: f[i],
-        driver: macro ? describeMacro(macro, i) : null,
+        driver: macro ? describeMacro(macro, i, { name }) : null,
       };
     }
   }

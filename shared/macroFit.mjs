@@ -253,7 +253,7 @@ export function macroSeries(base, { dollarUp, rate, rateIsPrice = null, win = FI
 // One sentence, for the top of a card. This is the thing the multi-agent
 // diagrams promise and never deliver: what is moving this instrument right now,
 // with the number behind every clause.
-export function describe(m, i, { win = FIT_WIN, residWin = RESID_WIN } = {}) {
+export function describe(m, i, { win = FIT_WIN, residWin = RESID_WIN, name = 'it' } = {}) {
   const f = m.fits[i];
   if (!f) return null;
   const push = residualPush(m.resid, m.fits, i, residWin);
@@ -267,7 +267,7 @@ export function describe(m, i, { win = FIT_WIN, residWin = RESID_WIN } = {}) {
     ? `${pct}% of the last ${Math.round(win / 24)} days of hourly movement is the dollar and the ten-year`
     : pct >= 15
       ? `only ${pct}% of the last ${Math.round(win / 24)} days is explained by the dollar and the ten-year`
-      : `the dollar and the ten-year explain almost none of it (${pct}%) — this is gold's own story`);
+      : `the dollar and the ten-year explain almost none of it (${pct}%) — ${name} is off on its own story`);
 
   if (dollarSig) {
     parts.push(f.b1 < 0
@@ -284,9 +284,11 @@ export function describe(m, i, { win = FIT_WIN, residWin = RESID_WIN } = {}) {
   }
 
   if (push != null && Math.abs(push) >= 1.5) {
+    // Named, not hard-coded. The first live run described silver's residual as
+    // somebody selling gold, which is the kind of thing a reader believes.
     parts.push(push > 0
-      ? `over the last ${residWin} hours it has gone ${push.toFixed(1)} standard deviations further than those two account for — somebody is buying gold itself`
-      : `over the last ${residWin} hours it is ${Math.abs(push).toFixed(1)} standard deviations weaker than those two account for — somebody is selling gold itself`);
+      ? `over the last ${residWin} hours it has gone ${push.toFixed(1)} standard deviations further than those two account for — somebody is buying ${name} itself`
+      : `over the last ${residWin} hours it is ${Math.abs(push).toFixed(1)} standard deviations weaker than those two account for — somebody is selling ${name} itself`);
   }
 
   return {

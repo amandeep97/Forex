@@ -635,7 +635,7 @@ async function runRegimeStudy({ oanda, log = () => {}, now = Date.now(),
     if (!mm) { drivers[m.sym] = macroErr ? { unavailable: macroErr } : null; continue; }
     let i = mm.fits.length - 1;
     while (i > 0 && !mm.fits[i]) i--;
-    const d = MF.describe(mm, i);
+    const d = MF.describe(mm, i, { name: m.label.toLowerCase() });
     if (d) drivers[m.sym] = { ...d, at: mm.ts[i] };
   }
 
