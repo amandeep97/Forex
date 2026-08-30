@@ -8,6 +8,7 @@ import './App.css';
 const AIAnalysis       = lazy(() => import('./components/AIAnalysis'));
 const PairHub          = lazy(() => import('./components/PairHub'));
 const TradeDashboard   = lazy(() => import('./components/TradeDashboard'));
+const TradingDesk      = lazy(() => import('./components/TradingDesk'));
 const WatchlistTab     = lazy(() => import('./components/WatchlistTab'));
 const AutoTrading      = lazy(() => import('./components/AutoTrading'));
 const Backtester       = lazy(() => import('./components/Backtester'));
@@ -48,6 +49,7 @@ function TabSpinner() {
 const TABS = [
   { id: 'cmd',         label: 'Command',      icon: '⚡' },
   { id: 'ai',          label: 'AI',           icon: '🤖' },
+  { id: 'desk',        label: 'Desk',         icon: '🏛' },
   { id: 'terminal',    label: 'Terminal',     icon: '🛰' },
   { id: 'dxy',         label: 'DXY',          icon: '💵' },
   { id: 'pairhub',     label: 'Pair Hub',     icon: '💱' },
@@ -324,6 +326,9 @@ export default function App() {
         </div>
         <div style={{ display: activeTab === 'cot' ? 'flex' : 'none', flexDirection:'column', height:'calc(100vh - 120px)' }}>
           {visitedTabs.has('cot') && <COTTab />}
+        </div>
+        <div style={{ display: activeTab === 'desk' ? 'flex' : 'none', flexDirection:'column', height:'calc(100vh - 120px)' }}>
+          {visitedTabs.has('desk') && <TradingDesk />}
         </div>
         <div style={{ display: activeTab === 'metals' ? 'flex' : 'none', flexDirection:'column', height:'calc(100vh - 120px)' }}>
           {visitedTabs.has('metals') && <MetalsDashboard />}
