@@ -1,7 +1,7 @@
 # Tests
 
 ```
-npm test                 # all 51
+npm test                 # all 52
 npm test stops plan      # only files whose name contains "stops" or "plan"
 ```
 
@@ -93,3 +93,16 @@ correlated, so the shared part is counted twice), pairing the series by index
 instead of timestamp, and reading OANDA's ten-year as a yield when it quotes a
 price — which inverts every sign downstream with nothing looking wrong. The
 coefficients are checked against a world where they have a known answer.
+
+`desk` covers the research desk — four analysts, a bull and a bear who argue, a
+trader, a risk veto. The checks are not about whether it is right; a language
+model arguing with itself has never been shown to beat a coin, and the framework
+this structure came from says so in its own README. They are about the three
+ways it goes quietly useless: levels a model invented ("long, stop 3200, target
+3100" reads perfectly well and is a guaranteed loss, so it is checked with
+arithmetic rather than trusted as prose), evidence that was defaulted rather
+than measured (an analyst told "COT: 0 contracts" writes about balanced
+positioning; one told "no COT data" says there is none), and a verdict that
+leaves no trace — every call is logged with the price at the time, because
+otherwise nobody can ever check whether it was any good, which is the whole
+failing of the thing it was copied from.
