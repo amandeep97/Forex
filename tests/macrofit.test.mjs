@@ -233,6 +233,20 @@ function world(n, { bD = -0.9, bR = -0.4, noise = 0.05, flipAt = null, bDAfter =
     d.r2 != null && d.b1 != null && d.se1 != null && d.n > 0);
   check('and it says the relationship is the normal one here',
     /inverse move against the dollar/.test(d.text), d.text.slice(0, 120));
+
+  // The first live run described SILVER's residual as somebody selling gold,
+  // because the word was hard-coded into a function two instruments share.
+  const bought = w.gold.map((c, i) =>
+    (i > 1088 && i <= 1100 ? { ...c, c: c.c * Math.exp(0.0015 * (i - 1088)) } : c));
+  const mb = macroSeries(bought, { dollarUp: w.dol, rate: w.rate, rateIsPrice: false });
+  const named = describe(mb, 1100, { name: 'silver' });
+  check('the instrument names itself rather than inheriting somebody else\'s',
+    /buying silver itself/.test(named.text) && !/gold/.test(named.text),
+    named.text.slice(-90));
+  const low = describe({ ...mb, fits: mb.fits.map(f => (f ? { ...f, r2: 0.05 } : f)) },
+    1100, { name: 'silver' });
+  check('including in the sentence about it going off on its own',
+    !/gold/.test(low.text), low.text.slice(0, 90));
 }
 
 console.log(fails ? `\n${fails} FAILED` : '\nall passed');

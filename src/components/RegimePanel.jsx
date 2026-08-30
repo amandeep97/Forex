@@ -135,7 +135,7 @@ export default function RegimePanel() {
         const other = METALS.find(x => x.sym !== m.sym);
         if (!cs[m.sym]) continue;
         const st = stateNow(cs[m.sym], {
-          sym: m.sym, partner: cs[other.sym], dollarUp, rate,
+          sym: m.sym, partner: cs[other.sym], dollarUp, rate, name: m.label.toLowerCase(),
         });
         if (!st) continue;
         out[m.sym] = {
