@@ -18,7 +18,7 @@
 //   the entire failing of the thing it was copied from.
 import {
   parseJSON, checkLevels, marketBrief, newsBrief, positioningBrief, macroBrief,
-  calendarBrief, scoreLog, stripThinking, retryAfterMs, isReasoningModel,
+  calendarBrief, scoreLog, stripThinking, retryAfterMs, isReasoningModel, verdictOf,
 } from '../src/utils/deskAgents.js';
 
 let fails = 0;
@@ -226,6 +226,41 @@ const H = 3600e3;
   check('and neither is an empty or missing model name',
     !isReasoningModel('') && !isReasoningModel(null),
     'guessing "thinker" would triple the token budget for every model on the list');
+}
+
+// ── The answer, in the two words a person needs ────────────────────────────
+// It was at the bottom, under four analyst cards and a two-sided argument. On a
+// phone that is a lot of scrolling to find out whether to do anything.
+{
+  const long = { action: 'long', entry: 4436, stop: 4400, target: 4520, conviction: 3,
+    invalidated_by: 'a close below 4400' };
+  const aside = { action: 'stand aside', conviction: 4,
+    invalidated_by: 'a confirmed break below the week low of 4445.45' };
+
+  check('an approved trade says trade, and which way',
+    verdictOf(long, { verdict: 'approve' }, null).word === 'TRADE — LONG',
+    verdictOf(long, { verdict: 'approve' }, null).word);
+  check('a short says short',
+    verdictOf({ ...long, action: 'short' }, { verdict: 'approve' }, null).word === 'TRADE — SHORT');
+  check('standing aside says wait', verdictOf(aside, { verdict: 'approve' }, null).word === 'WAIT');
+
+  // A trade the risk manager killed is a different thing to know than a quiet
+  // day, so the veto is deliberately not folded into "wait".
+  const vetoed = verdictOf(long, { verdict: 'veto', reason: 'ISM in 19 hours' }, null);
+  check('a vetoed trade says no trade, not wait', vetoed.word === 'NO TRADE', vetoed.word);
+  check('and says who killed it and why', /vetoed it/.test(vetoed.line) && /ISM/.test(vetoed.line),
+    vetoed.line);
+
+  const bad = verdictOf(long, { verdict: 'approve' }, 'reward is only 0.4x risk');
+  check('levels that failed arithmetic override an approval',
+    bad.word === 'DO NOT USE THESE LEVELS',
+    'a risk manager reading prose can approve a target on the wrong side of entry');
+  check('and the banner says what was wrong with them', /0\.4x risk/.test(bad.line));
+
+  check('approve-with-changes still says trade, and names the changes',
+    /Risk approved it with changes: widen the stop/.test(
+      verdictOf(long, { verdict: 'approve with changes', changes: 'widen the stop' }, null).line));
+  check('nothing to report before the trader has spoken', verdictOf(null, null, null) === null);
 }
 
 console.log(fails ? `\n${fails} FAILED` : '\nall passed');
