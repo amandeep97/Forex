@@ -1,6 +1,6 @@
 import { useState, useCallback, useEffect } from 'react';
 import { DESK_INSTRUMENTS, gatherEvidence } from '../utils/deskEvidence.js';
-import { runDesk, readLog, aiConfig } from '../utils/deskAgents.js';
+import { runDesk, readLog, aiConfig, isReasoningModel } from '../utils/deskAgents.js';
 
 // The desk: four analysts, a bull and a bear who argue, a trader who decides,
 // a risk manager with a veto.
@@ -260,6 +260,15 @@ export default function TradingDesk() {
         </button>
       </div>
 
+      {cfg.key && isReasoningModel(cfg.model) && (
+        <div style={{ fontSize: 11, color: C.warn, marginTop: 10, lineHeight: 1.55 }}>
+          <b>{cfg.model}</b> is a reasoning model. It thinks before it answers and the thinking
+          comes out of the same budget as the reply, which makes a desk run three times more
+          expensive and can return blank cards. The desk asks Groq to switch the thinking off and
+          gives it extra room, but an instruct model is faster, cheaper and will not do this at
+          all — change it in the <b>AI</b> tab.
+        </div>
+      )}
       {!cfg.key && (
         <div style={{ fontSize: 11, color: C.warn, marginTop: 10 }}>
           No AI key. Add one in the <b>AI</b> tab → Settings. Groq is free — console.groq.com.
@@ -293,7 +302,15 @@ export default function TradingDesk() {
           {reports.map(r => (
             <Card key={r.id}>
               <Label>{r.icon} {r.label}</Label>
-              <Body>{r.text}</Body>
+              {r.text
+                ? <Body>{r.text}</Body>
+                : (
+                  <div style={{ fontSize: 11, color: C.warn, lineHeight: 1.55 }}>
+                    This one came back empty. A reasoning model spends its scratchpad out of the
+                    same output budget as its answer, so it can deliberate until the budget is
+                    gone and reply with nothing. Pick a non-reasoning model in the AI tab.
+                  </div>
+                )}
               <Evidence text={r.evidence} />
             </Card>
           ))}
