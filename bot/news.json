@@ -1011,6 +1011,59 @@
   ],
   "headlines": [
     {
+      "title": "Asian currencies mixed as hawkish Warsh lifts dollar, yen hovers near 160",
+      "link": "https://www.investing.com/news/stock-market-news/asian-currencies-mixed-as-yen-hovers-near-160-oil-surge-raises-riskoff-pressures-4882132",
+      "source": "Investing",
+      "at": 1788162577000,
+      "inst": [
+        "USD/JPY"
+      ],
+      "ccy": [
+        "USD",
+        "JPY"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "dir": {
+        "USD/JPY": "up"
+      },
+      "why": "Hawkish Warsh lifts dollar"
+    },
+    {
+      "title": "Oil rises as US, Iran resume military attacks",
+      "link": "https://www.investing.com/news/commodities-news/oil-jumps-more-than-2-after-us-attack-on-irans-larak-island-4882075",
+      "source": "Investing Cmdty",
+      "at": 1788162509000,
+      "inst": [
+        "USOIL"
+      ],
+      "ccy": [
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Military attacks boost oil"
+    },
+    {
+      "title": "German yields hit multi-year highs after Warsh’s hawkish tone",
+      "link": "https://www.investing.com/news/forex-news/german-yields-hit-multiyear-highs-after-warshs-hawkish-tone-4882236",
+      "source": "Investing FX",
+      "at": 1788162101000,
+      "inst": [
+        "EUR/USD"
+      ],
+      "ccy": [],
+      "sev": 2,
+      "rel": 2,
+      "dir": {
+        "EUR/USD": "down"
+      },
+      "why": "Hawkish tone strengthens dollar"
+    },
+    {
       "title": "European stocks ease as U.S.-Iran strikes fuel oil rally",
       "link": "https://www.investing.com/news/stock-market-news/european-stocks-ease-as-usiran-strikes-fuel-oil-rally-4882221",
       "source": "Investing",
@@ -1164,24 +1217,6 @@
       "rel": 0
     },
     {
-      "title": "Oil jumps more than 2% after US attack on Iran’s Larak Island",
-      "link": "https://www.investing.com/news/commodities-news/oil-jumps-more-than-2-after-us-attack-on-irans-larak-island-4882075",
-      "source": "Investing Cmdty",
-      "at": 1788160344000,
-      "inst": [
-        "USOIL"
-      ],
-      "ccy": [
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "dir": {
-        "USOIL": "up"
-      },
-      "why": "Oil jumps after US attack"
-    },
-    {
       "title": "European stocks slide as Middle East escalation spikes crude and hawkish bets",
       "link": "https://www.investing.com/news/stock-market-news/european-stocks-slide-as-middle-east-escalation-spikes-crude-and-hawkish-bets-4882208",
       "source": "Investing",
@@ -1263,25 +1298,6 @@
       "ccy": [],
       "sev": 2,
       "rel": 0
-    },
-    {
-      "title": "Australia stocks lower at close of trade; S&P/ASX 200 down 0.18%",
-      "link": "https://www.investing.com/news/stock-market-news/australia-stocks-lower-at-close-of-trade-spasx-200-down-018-4882170",
-      "source": "Investing",
-      "at": 1788157804000,
-      "inst": [
-        "AUD/USD",
-        "US500"
-      ],
-      "ccy": [
-        "AUD"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "dir": {
-        "AUD/USD": "down"
-      },
-      "why": "Australian stocks lower, no US impact"
     },
     {
       "title": "What are the main events for today?",
@@ -1708,6 +1724,16 @@
       "rel": 0
     },
     {
+      "title": "After 35 years of marriage, this couple dreads retiring together — a retirement coach explains why it's so common",
+      "link": "https://finance.yahoo.com/small-business/articles/35-years-marriage-couple-dreads-093000588.html",
+      "source": "Yahoo Finance",
+      "at": 1788082200000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 0
+    },
+    {
       "title": "Millions of Americans have a ticking time bomb in their tax-deferred accounts — 3 easy ways to start defusing it now",
       "link": "https://finance.yahoo.com/markets/articles/millions-americans-ticking-time-bomb-090000486.html",
       "source": "Yahoo Finance",
@@ -1810,31 +1836,6 @@
       "ccy": [],
       "sev": 1,
       "rel": 1
-    },
-    {
-      "title": "Iran War Adds $330 Billion to Global Energy Import Bill",
-      "link": "https://finance.yahoo.com/energy/articles/iran-war-adds-330-billion-230000013.html",
-      "source": "Yahoo Finance",
-      "at": 1788044400000,
-      "inst": [],
-      "ccy": [],
-      "sev": 2,
-      "rel": 2
-    },
-    {
-      "title": "Chevron vs. Occidental: Which Oil Major's Dividend Is Actually Safer?",
-      "link": "https://finance.yahoo.com/energy/articles/chevron-vs-occidental-oil-majors-223500434.html",
-      "source": "Yahoo Finance",
-      "at": 1788042900000,
-      "inst": [
-        "USOIL"
-      ],
-      "ccy": [
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "why": "Dividend comparison, no price direction"
     }
   ],
   "sources": [
@@ -1853,10 +1854,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-08-31T07:44:24.786Z",
-  "headlinesAt": "2026-08-31T07:44:24.786Z",
-  "updatedAt": "2026-08-31T07:44:24.786Z"
+  "calendarAt": "2026-08-31T08:00:12.870Z",
+  "headlinesAt": "2026-08-31T08:00:12.870Z",
+  "updatedAt": "2026-08-31T08:00:12.870Z"
 }
