@@ -18,7 +18,7 @@
 //   the entire failing of the thing it was copied from.
 import {
   parseJSON, checkLevels, marketBrief, newsBrief, positioningBrief, macroBrief,
-  calendarBrief, scoreLog,
+  calendarBrief, scoreLog, stripThinking, retryAfterMs,
 } from '../src/utils/deskAgents.js';
 
 let fails = 0;
@@ -69,12 +69,17 @@ const H = 3600e3;
 // ── Absent evidence stays absent ────────────────────────────────────────────
 // The failure that produces confident writing about nothing.
 {
-  check('no COT data says there is none rather than reporting zero',
-    /No COT data/.test(positioningBrief({})), positioningBrief({}));
-  check('and where there is COT, the measured caveat travels with it',
-    /did NOT precede anything/.test(positioningBrief({ cot: { net: 100, chg: 5, pct: 95 } })),
+  check('no positioning data says there is none rather than reporting zero',
+    /No positioning data/.test(positioningBrief({})), positioningBrief({}));
+  check('and where there is, the measured caveat travels with it',
+    /did NOT precede anything/.test(positioningBrief({ cot: { pct: 95, weeks: 160 } })),
     'positioning extremes were tested here and found to precede nothing — an analyst '
     + 'given the number without the finding will write the folklore');
+  check('a 70th percentile is described as nowhere near an extreme',
+    /nowhere near an extreme/.test(positioningBrief({ cot: { pct: 70, weeks: 160 } })),
+    'gold sits at 70 and a card that calls that "crowded" is the thing being avoided');
+  check('and a 95th as crowded long',
+    /crowded long/.test(positioningBrief({ cot: { pct: 95, weeks: 160 } })));
   check('an empty news archive says so instead of inventing a narrative',
     /No tagged headlines/.test(newsBrief({ news: [] })));
   check('an empty calendar says nothing is scheduled',
@@ -153,6 +158,55 @@ const H = 3600e3;
     'scoring a trade before it finished is how a log flatters itself');
   check('an empty log scores nothing rather than reporting zero percent',
     scoreLog([], () => 100) === null);
+}
+
+// ── Reasoning models leak their scratchpad ─────────────────────────────────
+// qwen, deepseek and the r1 family emit their working inside <think> tags. The
+// first live run opened the market analyst's card with "Here's a thinking
+// process: 1. Analyze User Input" and the actual report was somewhere below.
+{
+  check('a balanced think block is removed',
+    stripThinking('<think>step one, step two</think>The report.') === 'The report.');
+  check('several of them are removed',
+    stripThinking('<think>a</think>One. <think>b</think>Two.') === 'One. Two.');
+  check('a stray closing tag drops everything before it, which was the working',
+    stripThinking('rambling working...</think>\nThe report.') === 'The report.');
+  check('an unterminated opening tag drops what follows',
+    stripThinking('The report.<think>still thinking when the budget ran out')
+      === 'The report.', stripThinking('The report.<think>x'));
+  check('a truncated answer that is ALL thinking returns nothing, not the scratchpad',
+    stripThinking('<think>I should consider the evidence and') === '',
+    'returning the working as if it were the report is worse than returning nothing');
+  check('other tag spellings are handled', stripThinking('<reasoning>x</reasoning>y') === 'y');
+  check('ordinary text is untouched', stripThinking('Gold is at 4454.') === 'Gold is at 4454.');
+  check('empty stays empty', stripThinking('') === '' && stripThinking(null) === '');
+  check('and JSON hidden behind a scratchpad full of braces still parses',
+    parseJSON('<think>maybe {"a":1} or {"b":2}?</think>\n{"action":"long","stop":98}')?.action
+      === 'long',
+    'the scratchpad is full of braces, so parsing before stripping finds the wrong object');
+}
+
+// ── The free tier's rate limit ─────────────────────────────────────────────
+// Eight thousand tokens a minute; a desk run needs more. Failing on the fifth
+// of ten calls throws away four finished reports, so it waits instead — and
+// guessing how long is what turns one rate limit into four.
+{
+  const withHeader = { headers: { get: k => (k === 'retry-after' ? '7' : null) } };
+  check('the retry-after header is used when there is one',
+    retryAfterMs(withHeader, '') === 7000, String(retryAfterMs(withHeader, '')));
+  const none = { headers: { get: () => null } };
+  check('otherwise the wait stated in the message is used',
+    Math.abs(retryAfterMs(none, 'Please try again in 3.5s') - 4000) < 1,
+    String(retryAfterMs(none, 'Please try again in 3.5s')));
+  check('milliseconds are read as milliseconds, not seconds',
+    retryAfterMs(none, 'try again in 800ms') === 1300,
+    'reading 800ms as 800s would stall the desk for a quarter of an hour');
+  check('minutes are read as minutes', retryAfterMs(none, 'try again in 1m') === 60500);
+  check('an unparseable body falls back to a sane wait rather than zero',
+    retryAfterMs(none, 'slow down') === 12000, 'retrying immediately just earns another 429');
+  check('and no wait is ever longer than a minute or so',
+    retryAfterMs(none, 'try again in 45m') <= 65000,
+    String(retryAfterMs(none, 'try again in 45m')));
 }
 
 console.log(fails ? `\n${fails} FAILED` : '\nall passed');

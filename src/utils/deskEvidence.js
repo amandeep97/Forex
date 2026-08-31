@@ -23,14 +23,18 @@ const RAW = 'https://raw.githubusercontent.com/amandeep97/Forex/main';
 const FEED = `${RAW}/bot/feed.json`;
 const NEWS = `${RAW}/bot/news.json`;
 
+// `feedSym` is the name the bot tags headlines with — 'XAU/USD', not 'Gold' and
+// not 'XAU_USD'. Matching on the display label found nothing at all, which read
+// on screen as "0 tagged headlines" and sent the news analyst into a live gold
+// selloff with an empty page.
 export const DESK_INSTRUMENTS = [
-  { sym: 'XAU_USD', name: 'Gold', label: 'Gold', dec: 2, ccy: ['XAU', 'USD'] },
-  { sym: 'XAG_USD', name: 'Silver', label: 'Silver', dec: 3, ccy: ['XAG', 'USD'] },
-  { sym: 'EUR_USD', name: 'Euro / US Dollar', label: 'EUR/USD', dec: 5, ccy: ['EUR', 'USD'] },
-  { sym: 'GBP_USD', name: 'Sterling / US Dollar', label: 'GBP/USD', dec: 5, ccy: ['GBP', 'USD'] },
-  { sym: 'USD_JPY', name: 'US Dollar / Yen', label: 'USD/JPY', dec: 3, ccy: ['USD', 'JPY'] },
-  { sym: 'BCO_USD', name: 'Brent Crude', label: 'Oil', dec: 2, ccy: ['USD'] },
-  { sym: 'SPX500_USD', name: 'S&P 500', label: 'US500', dec: 1, ccy: ['USD'] },
+  { sym: 'XAU_USD', feedSym: 'XAU/USD', name: 'Gold', label: 'Gold', dec: 2, ccy: ['XAU', 'USD'] },
+  { sym: 'XAG_USD', feedSym: 'XAG/USD', name: 'Silver', label: 'Silver', dec: 3, ccy: ['XAG', 'USD'] },
+  { sym: 'EUR_USD', feedSym: 'EUR/USD', name: 'Euro / US Dollar', label: 'EUR/USD', dec: 5, ccy: ['EUR', 'USD'] },
+  { sym: 'GBP_USD', feedSym: 'GBP/USD', name: 'Sterling / US Dollar', label: 'GBP/USD', dec: 5, ccy: ['GBP', 'USD'] },
+  { sym: 'USD_JPY', feedSym: 'USD/JPY', name: 'US Dollar / Yen', label: 'USD/JPY', dec: 3, ccy: ['USD', 'JPY'] },
+  { sym: 'BCO_USD', feedSym: 'USOIL', name: 'Brent Crude', label: 'Oil', dec: 2, ccy: ['OIL', 'USD'] },
+  { sym: 'SPX500_USD', feedSym: 'US500', name: 'S&P 500', label: 'US500', dec: 1, ccy: ['USD'] },
 ];
 
 function creds() {
@@ -130,40 +134,64 @@ async function json(url) {
 // Headlines that are ABOUT this instrument, using the same vocabulary the bot
 // tags with — so what the desk reads is what the news tab shows, not a second
 // opinion about relevance.
-function newsFor(feed, inst) {
-  const items = feed?.items || feed?.news || [];
+// The bot publishes `headlines`, each already tagged with `inst` (feed symbols)
+// and `ccy` (currency codes) and scored `sev` 1-3 by the shared vocabulary. Use
+// those; fall back to tagging the text here only when a headline predates the
+// tagging, so the two sides can never disagree about what a headline is about.
+function newsFor(news, inst) {
+  const items = news?.headlines || [];
   const out = [];
   for (const it of items) {
     const title = it.title || '';
-    const tags = it.instruments?.length ? it.instruments : tagInstruments(`${title} ${it.desc || ''}`);
-    const mine = tags.some(t => t === inst.label || t === inst.sym
-      || (inst.label === 'Gold' && /XAU|GOLD/i.test(t))
-      || (inst.label === 'Silver' && /XAG|SILVER/i.test(t)));
+    const tags = it.inst?.length ? it.inst : tagInstruments(`${title} ${it.desc || ''}`);
+    const ccys = it.ccy || [];
+    // Directly about the instrument, or about a currency that prices it. A
+    // dollar story is a gold story; that is the whole point of the second test.
+    const mine = tags.includes(inst.feedSym) || ccys.some(c => inst.ccy.includes(c));
     if (!mine) continue;
+    const sev = it.sev ?? severity(`${title} ${it.desc || ''}`);
     out.push({
-      title, at: it.at || it.published || null,
-      severity: it.severity || severity(title) || null,
-      dir: it.direction || it.dir || null,
+      title, at: it.at || null,
+      // Published as a number. Printed as one, it reads as a price.
+      severity: sev >= 3 ? 'high impact' : sev === 2 ? 'notable' : 'routine',
+      direct: tags.includes(inst.feedSym),
+      dir: it.dir || null,
     });
   }
-  return out.sort((a, b) => (b.at || 0) - (a.at || 0));
+  // What is actually about this instrument first, then most recent.
+  return out.sort((a, b) => (b.direct - a.direct) || ((b.at || 0) - (a.at || 0)));
 }
 
-function eventsFor(feed, inst) {
-  const cal = feed?.calendar || [];
+// The calendar's `country` field holds the CURRENCY code — 'USD', 'EUR', 'All'.
+// A high-impact US release is relevant to gold whether or not anyone tagged it.
+function eventsFor(news, inst) {
+  const cal = news?.calendar || [];
   const now = Date.now();
   return cal
     .filter(e => e.at > now && e.at < now + 48 * 3600e3)
-    .filter(e => !inst.ccy.length || inst.ccy.some(c => (e.currency || e.country || '').toUpperCase().includes(c))
-      || /high/i.test(e.impact || ''))
+    .filter(e => {
+      const c = (e.country || '').toUpperCase();
+      return inst.ccy.includes(c) || (c === 'ALL' && /high/i.test(e.impact || ''));
+    })
+    .map(e => ({ ...e, currency: e.country }))
     .sort((a, b) => a.at - b.at);
 }
 
-function cotFor(feed, inst) {
-  const rec = feed?.instruments?.[inst.sym] || feed?.records?.[inst.sym] || null;
-  const c = rec?.cot;
-  if (!c || c.net == null) return null;
-  return { net: c.net, chg: c.chg ?? 0, pct: c.pct ?? null, at: c.at || null };
+// The feed keys its records by display symbol — 'XAU/USD' — and publishes
+// positioning as a PERCENTILE of its own history under state.posnPct, not as a
+// contract count. Looking for `rec.cot` found nothing on every instrument, which
+// showed on screen as "missing: cot" and left the positioning analyst with an
+// empty page while the number was sitting in the file.
+function positionFor(feed, inst) {
+  const st = feed?.instruments?.[inst.feedSym]?.state;
+  if (!st || st.posnPct == null) return null;
+  return { pct: st.posnPct, weeks: st.posnWeeks ?? null };
+}
+
+// The spread the feed measured, as a fallback when the live bid/ask call fails.
+function feedSpread(feed, inst) {
+  const st = feed?.instruments?.[inst.feedSym]?.state;
+  return st?.spreadAbs ?? null;
 }
 
 /**
@@ -225,7 +253,7 @@ export async function gatherEvidence(inst, { onStep = () => {} } = {}) {
 
   return {
     sym: inst.sym, name: inst.name, label: inst.label, dec: inst.dec,
-    at: last.t, price: last.c, atr: f?.atr ?? null, spread: sp,
+    at: last.t, price: last.c, atr: f?.atr ?? null, spread: sp ?? feedSpread(feed, inst),
     state: f ? { keys, plain: keys.map(k => PHRASE[k] || k) } : null,
     tf: {
       'Last 5 days (H4)': tfSummary(h4, 30),
@@ -236,14 +264,15 @@ export async function gatherEvidence(inst, { onStep = () => {} } = {}) {
     driver: macro ? describeMacro(macro, i, { name: inst.label.toLowerCase() }) : null,
     rules: study ? firing(study, keys) : [],
     studyAsOf: study?.asOf || null,
-    news: newsFor(news || feed, inst),
-    events: eventsFor(news || feed, inst),
-    cot: cotFor(feed, inst),
+    news: newsFor(news, inst),
+    events: eventsFor(news, inst),
+    cot: positionFor(feed, inst),
     partner: partnerNote,
     // For the record, so a reader can tell a thin pack from a full one.
     have: {
       prices: !!h1?.length, macro: !!macro, feed: !!feed, news: !!(news || feed),
-      study: !!study, spread: sp != null, cot: !!cotFor(feed, inst),
+      study: !!study, spread: sp != null || feedSpread(feed, inst) != null,
+      positioning: !!positionFor(feed, inst),
     },
   };
 }
