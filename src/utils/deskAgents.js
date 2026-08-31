@@ -96,42 +96,80 @@ export function retryAfterMs(res, body) {
 
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 
-// One call, with the two things a free tier makes mandatory: it waits out a
-// rate limit rather than failing the whole desk on the fifth of ten calls, and
-// it says what happened in English when it finally gives up.
+// Models that think before answering. On these the scratchpad is spent out of
+// the SAME output budget as the answer, so a 420-token cap on a 27b reasoning
+// model buys 420 tokens of deliberation and an empty reply — which is exactly
+// what happened: four analyst cards rendered, all of them blank.
+//
+// Hiding the reasoning does not help by itself. It removes the scratchpad from
+// the response, not from the budget. The budget has to grow, or the thinking
+// has to be switched off.
+export const REASONS = /qwen3|qwq|deepseek-r1|(^|[^a-z])r1([^a-z]|$)|reason|think/i;
+export const isReasoningModel = m => REASONS.test(m || '');
+
+// One call, with the three things a free tier and a reasoning model make
+// mandatory: it waits out a rate limit rather than failing the whole desk on
+// the fifth of ten calls, it retries once with room when the model thinks
+// itself out of an answer, and it says what happened in English.
 async function ask(cfg, system, user, { maxTokens = 900, temperature = 0.4, onWait = null } = {}) {
   const url = ENDPOINTS[cfg.provider];
   if (!url) throw new Error(`the desk runs on Groq or OpenRouter; ${cfg.provider} is not wired up`);
-  let hideReasoning = cfg.provider === 'groq';
+  const thinker = isReasoningModel(cfg.model);
+  // Groq flags. `reasoning_effort: none` switches thinking off on the qwen3
+  // family, which is the real fix; `hidden` only keeps it out of the response.
+  // Both are dropped on the first 400 that mentions them rather than being
+  // assumed universal.
+  let flags = cfg.provider === 'groq'
+    ? { reasoning_format: 'hidden', ...(thinker ? { reasoning_effort: 'none' } : {}) }
+    : {};
+  // A thinker that cannot be switched off needs room for the working AND the
+  // answer, so it starts with three times the budget instead of discovering
+  // the problem by returning nothing.
+  let budget = thinker ? maxTokens * 3 : maxTokens;
+  let grew = false;
 
-  for (let attempt = 0; attempt < 4; attempt++) {
+  for (let attempt = 0; attempt < 5; attempt++) {
     const res = await fetch(url, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${cfg.key}` },
       body: JSON.stringify({
-        model: cfg.model, temperature, max_tokens: maxTokens,
-        // Strips the scratchpad server-side, so it never spends output budget.
-        ...(hideReasoning ? { reasoning_format: 'hidden' } : {}),
+        model: cfg.model, temperature, max_tokens: budget, ...flags,
         messages: [{ role: 'system', content: system }, { role: 'user', content: user }],
       }),
     });
 
     if (res.ok) {
       const j = await res.json();
-      return stripThinking(j.choices?.[0]?.message?.content || '');
+      const choice = j.choices?.[0];
+      const text = stripThinking(choice?.message?.content || '');
+      if (text) return text;
+
+      // Empty. Either it ran out of budget mid-thought, or everything it
+      // produced was scratchpad. One more go with room; then say so plainly,
+      // because a blank card with no explanation is the worst of the three.
+      if (!grew) {
+        grew = true;
+        budget = Math.min(budget * 3, 4000);
+        continue;
+      }
+      throw new Error(thinker
+        ? `${cfg.model} spent its whole output budget thinking and returned nothing. `
+          + 'Pick a non-reasoning model in the AI tab — an instruct model runs the whole '
+          + 'desk in one breath and does not do this.'
+        : `${cfg.model} returned an empty reply${choice?.finish_reason ? ` (${choice.finish_reason})` : ''}.`);
     }
 
     const body = await res.text().catch(() => '');
 
-    // A model that does not know the flag rejects the whole request. Drop it
-    // and try once more rather than telling the user their model is broken.
-    if (res.status === 400 && hideReasoning && /reasoning/i.test(body)) {
-      hideReasoning = false;
+    // A model that does not know a flag rejects the whole request. Drop them
+    // and try again rather than telling the user their model is broken.
+    if (res.status === 400 && Object.keys(flags).length && /reasoning/i.test(body)) {
+      flags = {};
       continue;
     }
 
     if (res.status === 429) {
-      if (attempt === 3) {
+      if (attempt >= 3) {
         throw new Error('rate limit — the free tier allows about 8,000 tokens a minute and a '
           + 'full desk run needs more. Wait a minute, or choose "1 exchange", or pick a '
           + 'smaller model in the AI tab.');
@@ -144,7 +182,7 @@ async function ask(cfg, system, user, { maxTokens = 900, temperature = 0.4, onWa
 
     throw new Error(`${res.status} ${body.slice(0, 160)}`);
   }
-  throw new Error('gave up after four attempts');
+  throw new Error('gave up after five attempts');
 }
 
 // Models wrap JSON in prose, in fences, or in an apology. Take the object.

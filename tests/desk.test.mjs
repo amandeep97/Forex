@@ -18,7 +18,7 @@
 //   the entire failing of the thing it was copied from.
 import {
   parseJSON, checkLevels, marketBrief, newsBrief, positioningBrief, macroBrief,
-  calendarBrief, scoreLog, stripThinking, retryAfterMs,
+  calendarBrief, scoreLog, stripThinking, retryAfterMs, isReasoningModel,
 } from '../src/utils/deskAgents.js';
 
 let fails = 0;
@@ -207,6 +207,25 @@ const H = 3600e3;
   check('and no wait is ever longer than a minute or so',
     retryAfterMs(none, 'try again in 45m') <= 65000,
     String(retryAfterMs(none, 'try again in 45m')));
+}
+
+// ── Reasoning models think out of the answer's budget ──────────────────────
+// The second live run rendered four analyst cards and every one was blank. A
+// reasoning model's scratchpad is spent from the SAME output budget as its
+// reply, so a 420-token cap bought 420 tokens of deliberation and no answer.
+// Hiding the reasoning does not fix that — it removes the scratchpad from the
+// response, not from the budget.
+{
+  check('the qwen3 family is recognised as thinking models',
+    isReasoningModel('qwen/qwen3.6-27b') && isReasoningModel('qwen/qwen3-32b'));
+  check('so are deepseek-r1 and qwq',
+    isReasoningModel('deepseek-r1-distill-llama-70b') && isReasoningModel('qwen-qwq-32b'));
+  check('an instruct model is not',
+    !isReasoningModel('llama-3.3-70b-versatile') && !isReasoningModel('llama-3.1-8b-instant'),
+    'these answer straight away and run the whole desk in one breath');
+  check('and neither is an empty or missing model name',
+    !isReasoningModel('') && !isReasoningModel(null),
+    'guessing "thinker" would triple the token budget for every model on the list');
 }
 
 console.log(fails ? `\n${fails} FAILED` : '\nall passed');
