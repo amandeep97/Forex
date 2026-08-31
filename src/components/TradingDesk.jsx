@@ -151,7 +151,8 @@ export default function TradingDesk() {
   const [busy, setBusy] = useState('');
   const [err, setErr] = useState(null);
   const [log, setLog] = useState([]);
-  const [rounds, setRounds] = useState(1);
+  const [rounds, setRounds] = useState(0);
+  const [wait, setWait] = useState(0);
 
   useEffect(() => { setLog(readLog()); }, []);
 
@@ -185,13 +186,19 @@ export default function TradingDesk() {
           } else if (s.stage === 'risk') {
             setBusy('risk review');
             setRisk(s.review);
+          } else if (s.stage === 'wait') {
+            // A free tier allows about 8,000 tokens a minute and a full desk run
+            // needs more, so it waits rather than failing halfway. Saying so
+            // beats a spinner that looks hung.
+            setWait(s.secs);
+            setBusy(`rate limited — waiting ${s.secs}s`);
           }
         },
       });
       setLog(readLog());
     } catch (e) {
       setErr(e.message || String(e));
-    } finally { setBusy(''); }
+    } finally { setBusy(''); setWait(0); }
   }, [inst, rounds]);
 
   const thin = ev && Object.entries(ev.have || {}).filter(([, v]) => !v).map(([k]) => k);
@@ -240,9 +247,9 @@ export default function TradingDesk() {
         <select value={rounds} onChange={e => setRounds(+e.target.value)} disabled={!!busy}
           style={{ fontSize: 11, padding: '4px 6px', borderRadius: 5, background: 'var(--bg2)',
             color: 'var(--text2)', border: '1px solid var(--border)' }}>
-          <option value={0}>1 exchange</option>
-          <option value={1}>2 exchanges</option>
-          <option value={2}>3 exchanges</option>
+          <option value={0}>1 exchange · ~8 calls</option>
+          <option value={1}>2 exchanges · ~10 calls</option>
+          <option value={2}>3 exchanges · ~12 calls</option>
         </select>
         <button onClick={run} disabled={!!busy || !cfg.key}
           style={{ marginLeft: 'auto', padding: '6px 16px', borderRadius: 5, fontSize: 12,
@@ -259,6 +266,12 @@ export default function TradingDesk() {
         </div>
       )}
       {err && <div style={{ fontSize: 11, color: C.bear, marginTop: 10 }}>Failed: {err}</div>}
+      {wait > 0 && busy && (
+        <div style={{ fontSize: 11, color: C.warn, marginTop: 10 }}>
+          Rate limited by the free tier — waiting {wait}s and carrying on. The reports already
+          below are finished and will not be re-run.
+        </div>
+      )}
 
       {ev && (
         <div style={{ fontSize: 10, color: 'var(--text3)', marginTop: 10 }}>

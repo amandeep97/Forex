@@ -58,29 +58,98 @@ export function aiConfig() {
   };
 }
 
-// One call. Not streamed: every stage here is consumed by the next stage rather
-// than by a reader, and a half-arrived bear case cannot be handed to a trader.
-async function ask(cfg, system, user, { maxTokens = 900, temperature = 0.4 } = {}) {
+// Reasoning models — qwen, deepseek, the r1 family — emit their scratchpad
+// inside <think> tags before the answer. Left in, the market analyst's card
+// opens with "Here's a thinking process: 1. Analyze User Input" and the actual
+// report is somewhere below the fold. It also breaks JSON parsing, because the
+// scratchpad is full of braces.
+//
+// Groq can strip it server-side, which is better because the tokens never
+// arrive; this is the second line of defence for the models and providers that
+// cannot. The truncated case matters most: when the output budget runs out
+// mid-thought there is an opening tag and no answer at all, and returning the
+// scratchpad as if it were the report is worse than returning nothing.
+export function stripThinking(t) {
+  if (!t) return '';
+  let s = t.replace(/<(think|thinking|reasoning)>[\s\S]*?<\/\1>/gi, '');
+  const close = s.search(/<\/(think|thinking|reasoning)>/i);
+  if (close >= 0) s = s.slice(close).replace(/^<\/(think|thinking|reasoning)>/i, '');
+  const open = s.search(/<(think|thinking|reasoning)>/i);
+  if (open >= 0) s = s.slice(0, open);
+  return s.replace(/<\/?(think|thinking|reasoning)>/gi, '').trim();
+}
+
+// Groq says how long to wait, in a header on some responses and in the message
+// on others. Guessing is what turns one rate limit into four.
+export function retryAfterMs(res, body) {
+  const h = +(res?.headers?.get?.('retry-after') || 0);
+  if (h > 0) return Math.min(h * 1000, 65000);
+  const m = /try again in ([\d.]+)\s*(ms|s|m)\b/i.exec(body || '');
+  if (m) {
+    const v = parseFloat(m[1]);
+    const ms = (m[2] === 'ms' ? v : m[2] === 'm' ? v * 60000 : v * 1000) + 500;
+    // Capped after the padding, not before, or the cap is not a cap.
+    return Math.min(ms, 65000);
+  }
+  return 12000;
+}
+
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+
+// One call, with the two things a free tier makes mandatory: it waits out a
+// rate limit rather than failing the whole desk on the fifth of ten calls, and
+// it says what happened in English when it finally gives up.
+async function ask(cfg, system, user, { maxTokens = 900, temperature = 0.4, onWait = null } = {}) {
   const url = ENDPOINTS[cfg.provider];
   if (!url) throw new Error(`the desk runs on Groq or OpenRouter; ${cfg.provider} is not wired up`);
-  const res = await fetch(url, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${cfg.key}` },
-    body: JSON.stringify({
-      model: cfg.model, temperature, max_tokens: maxTokens,
-      messages: [{ role: 'system', content: system }, { role: 'user', content: user }],
-    }),
-  });
-  if (!res.ok) {
+  let hideReasoning = cfg.provider === 'groq';
+
+  for (let attempt = 0; attempt < 4; attempt++) {
+    const res = await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${cfg.key}` },
+      body: JSON.stringify({
+        model: cfg.model, temperature, max_tokens: maxTokens,
+        // Strips the scratchpad server-side, so it never spends output budget.
+        ...(hideReasoning ? { reasoning_format: 'hidden' } : {}),
+        messages: [{ role: 'system', content: system }, { role: 'user', content: user }],
+      }),
+    });
+
+    if (res.ok) {
+      const j = await res.json();
+      return stripThinking(j.choices?.[0]?.message?.content || '');
+    }
+
     const body = await res.text().catch(() => '');
-    throw new Error(`${res.status} ${body.slice(0, 200)}`);
+
+    // A model that does not know the flag rejects the whole request. Drop it
+    // and try once more rather than telling the user their model is broken.
+    if (res.status === 400 && hideReasoning && /reasoning/i.test(body)) {
+      hideReasoning = false;
+      continue;
+    }
+
+    if (res.status === 429) {
+      if (attempt === 3) {
+        throw new Error('rate limit — the free tier allows about 8,000 tokens a minute and a '
+          + 'full desk run needs more. Wait a minute, or choose "1 exchange", or pick a '
+          + 'smaller model in the AI tab.');
+      }
+      const wait = retryAfterMs(res, body);
+      onWait?.(Math.ceil(wait / 1000));
+      await sleep(wait);
+      continue;
+    }
+
+    throw new Error(`${res.status} ${body.slice(0, 160)}`);
   }
-  const j = await res.json();
-  return j.choices?.[0]?.message?.content?.trim() || '';
+  throw new Error('gave up after four attempts');
 }
 
 // Models wrap JSON in prose, in fences, or in an apology. Take the object.
-export function parseJSON(text) {
+export function parseJSON(raw) {
+  const text = stripThinking(raw);
   if (!text) return null;
   const fenced = text.match(/```(?:json)?\s*([\s\S]*?)```/);
   const body = fenced ? fenced[1] : text;
@@ -122,15 +191,18 @@ export function marketBrief(ev) {
 
 export function newsBrief(ev) {
   if (!ev.news?.length) return 'No tagged headlines in the archive for this instrument in the window.';
-  return ev.news.slice(0, 12).map(h => {
+  return ev.news.slice(0, 7).map(h => {
     const age = Math.round((Date.now() - (h.at || Date.now())) / 3600e3);
-    return `- [${age}h ago${h.severity ? `, ${h.severity}` : ''}] ${h.title}${h.dir ? ` (labelled ${h.dir})` : ''}`;
+    // "About this instrument" and "about a currency that prices it" are not the
+    // same weight of evidence, and an analyst cannot tell them apart otherwise.
+    return `- [${age}h ago, ${h.severity}, ${h.direct ? 'directly about it' : 'about a currency that prices it'}]`
+      + ` ${h.title}${h.dir ? ` (labelled ${h.dir})` : ''}`;
   }).join('\n');
 }
 
 export function calendarBrief(ev) {
   if (!ev.events?.length) return 'Nothing scheduled in the next 48 hours that is tagged to this instrument.';
-  return ev.events.slice(0, 8).map(e => {
+  return ev.events.slice(0, 5).map(e => {
     const h = Math.round(((e.at || 0) - Date.now()) / 3600e3);
     return `- in ${h}h: ${e.country || ''} ${e.title}${e.forecast ? ` (forecast ${e.forecast}, previous ${e.previous ?? '—'})` : ''}${e.impact ? ` [${e.impact}]` : ''}`;
   }).join('\n');
@@ -139,14 +211,15 @@ export function calendarBrief(ev) {
 export function positioningBrief(ev) {
   const L = [];
   if (ev.cot) {
-    L.push(`COT: large speculators net ${ev.cot.net > 0 ? 'long' : 'short'} ${Math.abs(ev.cot.net).toLocaleString()} contracts, `
-      + `${ev.cot.chg >= 0 ? 'added' : 'cut'} ${Math.abs(ev.cot.chg).toLocaleString()} on the week, `
-      + `${ev.cot.pct != null ? `${ev.cot.pct}th percentile of three years` : 'no percentile'}. `
-      + `Reported Tuesday, published Friday, so it is days old by construction.`);
+    L.push(`Large speculators sit at the ${ev.cot.pct}th percentile of their positioning`
+      + `${ev.cot.weeks ? ` over ${ev.cot.weeks} weeks` : ''} — `
+      + `${ev.cot.pct >= 80 ? 'crowded long' : ev.cot.pct <= 20 ? 'crowded short' : 'nowhere near an extreme'}. `
+      + `The report is taken on Tuesday and published on Friday, so it is days old by construction.`);
     L.push('MEASURED CAVEAT: positioning extremes were tested on this platform across thirteen instruments '
-      + 'and three horizons. The largest effect was z=0.82 against a bar of 3.08. Crowded positioning did NOT '
-      + 'precede anything. Do not treat an extreme as a signal.');
-  } else L.push('No COT data for this instrument.');
+      + 'and three horizons, counting each stretched run once rather than once a week. The largest effect '
+      + 'was z=0.82 against a significance bar of 3.08. Crowded positioning did NOT precede anything. '
+      + 'Describe the crowd; do not claim it predicts a reversal.');
+  } else L.push('No positioning data for this instrument.');
   if (ev.partner) L.push(`The other metal: ${ev.partner}.`);
   return L.join('\n');
 }
@@ -219,10 +292,10 @@ Four sentences maximum.`,
   },
 ];
 
-export async function runAnalyst(cfg, a, ev) {
+export async function runAnalyst(cfg, a, ev, onWait) {
   const text = await ask(cfg, HOUSE,
     `INSTRUMENT: ${ev.name} (${ev.sym})\n\nEVIDENCE:\n${a.brief(ev)}\n\nYOUR TASK:\n${a.task}`,
-    { maxTokens: 500, temperature: 0.3 });
+    { maxTokens: 420, temperature: 0.3, onWait });
   return { id: a.id, label: a.label, icon: a.icon, text, evidence: a.brief(ev) };
 }
 
@@ -232,7 +305,7 @@ If the evidence genuinely does not support your side, say the strongest version 
 case and then state plainly that it is weak — a bull who admits the bull case is thin is
 worth more than one who fabricates.`;
 
-export async function runSide(cfg, side, reports, ev, rebuttal = null) {
+export async function runSide(cfg, side, reports, ev, rebuttal = null, onWait = null) {
   const other = side === 'bull' ? 'bear' : 'bull';
   const body = [
     `INSTRUMENT: ${ev.name} (${ev.sym}) at ${n(ev.price, ev.dec ?? 2)}`,
@@ -248,7 +321,7 @@ Concede anything they got right — a rebuttal that concedes nothing is not a re
 Four to six sentences. Every one must cite a figure from the reports.`,
   ].join('\n');
   return ask(cfg, `${HOUSE}\n\nYou are the ${side.toUpperCase()} researcher. ${SIDE_RULES}`,
-    body, { maxTokens: 600, temperature: 0.5 });
+    body, { maxTokens: 460, temperature: 0.5, onWait });
 }
 
 const TRADER = `${HOUSE}
@@ -272,14 +345,14 @@ Return ONLY a JSON object:
 takes a position every day is not a desk. Stop and target must sit on the
 correct sides of entry for the direction chosen.`;
 
-export async function runTrader(cfg, reports, bull, bear, ev) {
+export async function runTrader(cfg, reports, bull, bear, ev, onWait = null) {
   const text = await ask(cfg, TRADER, [
     `INSTRUMENT: ${ev.name} (${ev.sym}) at ${n(ev.price, ev.dec ?? 2)}, hourly ATR ${n(ev.atr, ev.dec ?? 2)}`,
     '',
     'REPORTS:', ...reports.map(r => `\n[${r.label}]\n${r.text}`),
     `\n\nBULL CASE:\n${bull}`,
     `\n\nBEAR CASE:\n${bear}`,
-  ].join('\n'), { maxTokens: 600, temperature: 0.2 });
+  ].join('\n'), { maxTokens: 520, temperature: 0.2, onWait });
   return { raw: text, decision: parseJSON(text) };
 }
 
@@ -304,7 +377,7 @@ Return ONLY JSON:
   "biggest_risk": "the thing most likely to make this lose"
 }`;
 
-export async function runRisk(cfg, decision, ev) {
+export async function runRisk(cfg, decision, ev, onWait = null) {
   const text = await ask(cfg, RISK, [
     `INSTRUMENT: ${ev.name} (${ev.sym}) at ${n(ev.price, ev.dec ?? 2)}, hourly ATR ${n(ev.atr, ev.dec ?? 2)}`,
     ev.spread ? `Current spread ${n(ev.spread, ev.dec ?? 2)}.` : 'Spread unknown — say so if it matters.',
@@ -312,7 +385,7 @@ export async function runRisk(cfg, decision, ev) {
     'THE PROPOSED TRADE:', JSON.stringify(decision, null, 1),
     '',
     'SCHEDULED IN THE NEXT 48 HOURS:', calendarBrief(ev),
-  ].join('\n'), { maxTokens: 400, temperature: 0.2 });
+  ].join('\n'), { maxTokens: 340, temperature: 0.2, onWait });
   return { raw: text, review: parseJSON(text) };
 }
 
@@ -342,37 +415,38 @@ export function checkLevels(d, price) {
 // four analysts, then the argument, then the decision. A desk that shows nothing
 // for ninety seconds and then everything at once is worse to read and harder to
 // interrupt.
-export async function runDesk(ev, { onStage = () => {}, rounds = 1 } = {}) {
+export async function runDesk(ev, { onStage = () => {}, rounds = 0 } = {}) {
+  const onWait = secs => onStage({ stage: 'wait', secs });
   const cfg = aiConfig();
   if (!cfg.key) throw new Error('no AI key — add one in the AI tab');
   if (!cfg.model) throw new Error('no model selected — open the AI tab once so it can fetch the list');
 
   const reports = [];
   for (const a of ANALYSTS) {
-    const r = await runAnalyst(cfg, a, ev);
+    const r = await runAnalyst(cfg, a, ev, onWait);
     reports.push(r);
     onStage({ stage: 'analyst', report: r });
   }
 
-  let bull = await runSide(cfg, 'bull', reports, ev);
+  let bull = await runSide(cfg, 'bull', reports, ev, null, onWait);
   onStage({ stage: 'bull', text: bull, round: 0 });
-  let bear = await runSide(cfg, 'bear', reports, ev, bull);
+  let bear = await runSide(cfg, 'bear', reports, ev, bull, onWait);
   onStage({ stage: 'bear', text: bear, round: 0 });
 
   const debate = [{ bull, bear }];
   for (let r = 1; r <= rounds; r++) {
-    bull = await runSide(cfg, 'bull', reports, ev, bear);
+    bull = await runSide(cfg, 'bull', reports, ev, bear, onWait);
     onStage({ stage: 'bull', text: bull, round: r });
-    bear = await runSide(cfg, 'bear', reports, ev, bull);
+    bear = await runSide(cfg, 'bear', reports, ev, bull, onWait);
     onStage({ stage: 'bear', text: bear, round: r });
     debate.push({ bull, bear });
   }
 
-  const t = await runTrader(cfg, reports, bull, bear, ev);
+  const t = await runTrader(cfg, reports, bull, bear, ev, onWait);
   const levelIssue = checkLevels(t.decision, ev.price);
   onStage({ stage: 'trader', ...t, levelIssue });
 
-  const risk = await runRisk(cfg, t.decision, ev);
+  const risk = await runRisk(cfg, t.decision, ev, onWait);
   onStage({ stage: 'risk', ...risk });
 
   const out = {
