@@ -43,9 +43,81 @@ export const INSTRUMENT_KEYWORDS = {
 // Macro USD events that genuinely move everything priced in dollars.
 // Deliberately excludes the bare word "dollar" — it appears in most FX
 // headlines and would fan every story out across seven instruments.
-const USD_MACRO = ['fed', 'fomc', 'powell', 'treasury', 'nonfarm', 'payroll', 'nfp',
-                   'cpi', 'pce', 'jobless', 'rate decision'];
+//
+// This list was eleven words while severity() knew fourteen and relevanceOf()
+// knew thirty-seven, and the three disagreed. Measured on a live feed: 47 of 60
+// headlines came back tagged with no instrument and no currency at all, and the
+// worst of them was
+//
+//   "U.S. stock futures slip as chances of RATE HIKE rise after Warsh's
+//    Jackson Hole comments"
+//
+// which the same file scored severity 2 — market-moving — and relevance 2 —
+// directly tradeable — while tagging it as being about nothing. The app knew
+// the headline mattered and simultaneously could not say what it was about, so
+// it never reached a card, and the news analyst read an empty page during a
+// live gold selloff.
+//
+// Only reached when no specific instrument matched, so widening it cannot
+// steal a headline that names its own market.
+const USD_MACRO = [
+  'fed', 'fomc', 'powell', 'treasury', 'nonfarm', 'payroll', 'nfp',
+  'cpi', 'pce', 'jobless', 'rate decision',
+  // Policy, in the words wires actually use.
+  'rate hike', 'rate cut', 'interest rate', 'rate path', 'monetary policy',
+  'hawkish', 'dovish', 'quantitative', 'beige book', 'jackson hole',
+  'fed chair', 'fed official', 'fed governor', 'federal reserve', 'central bank',
+  // Data.
+  'ppi', 'inflation', 'unemployment', 'ism', 'retail sales', 'gdp',
+  // Fiscal and trade, which move the dollar as hard as the Fed does.
+  'tariff', 'trade deficit', 'trade surplus', 'debt ceiling', 'shutdown',
+  'treasury secretary', 'yield curve', 'real yield',
+  // The one part of this list that ages: the people currently holding the jobs.
+  // Worth having anyway — a wire writes the surname, not the office.
+  'powell', 'warsh', 'bessent', 'waller', 'bowman', 'williams', 'yellen',
+];
 const USD_AFFECTED = ['XAU/USD', 'EUR/USD', 'GBP/USD', 'USD/JPY', 'AUD/USD', 'USD/CAD', 'US500'];
+
+// ── Geopolitics ──────────────────────────────────────────────────────────────
+//
+// Gold IS the safe-haven trade. That is most of what it is for, and the app had
+// no connection between the two at all: "U.S. stock futures dip amid renewed
+// Iran hostilities" was tagged as being about nothing, on a board whose main
+// instrument is gold.
+//
+// A risk WORD is required, not just a place. "Ukraine seeks U.S. investment for
+// a defence fund" names a country in a war and is not a gold story; "renewed
+// Iran hostilities" is. Places alone would tag every trade-delegation wrap as a
+// safe-haven event.
+//
+// 'attack' and the bare 'strikes' were in this list for one run and came out
+// again. They are ordinary English — a company strikes a deal, a union strikes,
+// an airport is attacked in a local mutiny — and they tagged "Rival factions
+// stand off in Niger capital after mutineers attack airport" as a gold story.
+// The specific compounds below carry the same meaning without the collisions.
+const GEO_RISK = ['war', 'warfare', 'ceasefire', 'truce', 'sanction', 'sanctions', 'invasion',
+  'missile', 'airstrike', 'air strike', 'drone strike', 'hostilities', 'military strike',
+  'nuclear', 'coup', 'terror', 'escalation', 'retaliation'];
+
+// Words that mean conflict only in the right company. Taking 'attack' and
+// 'strikes' out entirely was too blunt the other way: it dropped "US attack on
+// Iran's Larak island" and "U.S. strikes Iranian launchers", which are gold
+// stories by any reading. So these count only alongside a named flashpoint —
+// which is why "mutineers attack airport" in Niger still does not qualify, and
+// why "strikes a deal" never will.
+const GEO_SOFT = ['attack', 'attacks', 'strike', 'strikes', 'troops', 'military',
+  'conflict', 'tensions', 'blockade', 'seizes', 'shelling'];
+
+// The places a conflict has to involve. Adjectival forms are listed explicitly
+// because matching is whole-word: "Iranian" does not contain the word "iran".
+const GEO_PLACES = ['iran', 'iranian', 'israel', 'israeli', 'gaza', 'lebanon', 'hezbollah',
+  'houthi', 'middle east', 'hormuz', 'red sea', 'russia', 'russian', 'ukraine', 'ukrainian',
+  'taiwan', 'north korea', 'venezuela', 'venezuelan', 'libya', 'nigeria', 'saudi'];
+
+// The subset of those that moves a barrel as well as an ounce.
+const GEO_ENERGY = ['iran', 'iranian', 'israel', 'israeli', 'gaza', 'middle east', 'hormuz',
+  'red sea', 'houthi', 'russia', 'russian', 'ukraine', 'ukrainian',
+  'opec', 'venezuela', 'libya', 'nigeria', 'saudi'];
 
 // ── Currencies ───────────────────────────────────────────────────────────────
 export const CURRENCY_WORDS = {
@@ -96,6 +168,21 @@ const INSTRUMENT_RX = Object.fromEntries(
 const CURRENCY_RX = Object.fromEntries(
   Object.entries(CURRENCY_WORDS).map(([k, w]) => [k, compile(w)]));
 const USD_MACRO_RX = compile(USD_MACRO);
+const GEO_RISK_RX = compile(GEO_RISK);
+const GEO_SOFT_RX = compile(GEO_SOFT);
+const GEO_PLACES_RX = compile(GEO_PLACES);
+const GEO_ENERGY_RX = compile(GEO_ENERGY);
+
+// A geopolitical risk story, which is a gold story whatever else it is about.
+//
+// Two tiers. An unambiguous risk word on its own — war, ceasefire, invasion,
+// airstrike. Or an ambiguous one alongside a named flashpoint, so "US attack on
+// Iran's Larak island" counts and "Aon strikes a deal" does not.
+export function isGeopolitical(text) {
+  const t = String(text || '').toLowerCase();
+  if (anyMatch(GEO_RISK_RX, t)) return true;
+  return anyMatch(GEO_SOFT_RX, t) && anyMatch(GEO_PLACES_RX, t);
+}
 
 // What the stop-list blocks for a given text, as currency codes.
 function blockedBy(low) {
@@ -112,10 +199,21 @@ export function tagInstruments(text) {
     if (blockedInst.has(inst)) continue;
     if (anyMatch(rxs, t)) specific.push(inst);
   }
-  // A named instrument always wins: "Gold surges as dollar weakens" is a gold
+  // Geopolitics is ADDITIVE rather than a fan-out, because it does not replace
+  // what a headline is about — it adds gold to it. "Oil slides on a US-Iran
+  // ceasefire" is an oil story AND a gold story, and the old rule returned only
+  // the first because a named instrument short-circuited everything after it.
+  const geo = isGeopolitical(t);
+  const add = [];
+  if (geo && !blockedInst.has('XAU/USD')) add.push('XAU/USD');
+  if (geo && anyMatch(GEO_ENERGY_RX, t) && !blockedInst.has('USOIL')) add.push('USOIL', 'UKOIL');
+
+  // A named instrument otherwise wins: "Gold surges as dollar weakens" is a gold
   // story, not a seven-instrument story. Only fan out to the USD complex when
   // the headline is purely macro with nothing specific named.
-  if (specific.length) return specific;
+  if (specific.length || add.length) {
+    return [...new Set([...specific, ...add])];
+  }
   if (anyMatch(USD_MACRO_RX, t)) return [...USD_AFFECTED];
   return [];
 }
@@ -128,6 +226,13 @@ export function currenciesIn(text) {
     if (blocked.has(code)) continue;
     if (anyMatch(rxs, t)) hit.push(code);
   }
+  // The same two additions as on the instrument side, so a card and a currency
+  // filter cannot disagree about whether a war is a gold story.
+  if (isGeopolitical(t)) {
+    if (!blocked.has('XAU') && !hit.includes('XAU')) hit.push('XAU');
+    if (anyMatch(GEO_ENERGY_RX, t) && !blocked.has('OIL') && !hit.includes('OIL')) hit.push('OIL');
+  }
+  if (!hit.includes('USD') && !blocked.has('USD') && anyMatch(USD_MACRO_RX, t)) hit.push('USD');
   return hit;
 }
 
@@ -145,8 +250,14 @@ const URGENT = ['breaking', 'just in', 'alert', 'emergency', 'surprise', 'unsche
 // 'opec' is deliberately NOT here despite being a driver: it is a standing body
 // named in every routine crude wrap, and it would mark the whole oil stream
 // heavyweight.
-const HEAVY  = ['rate decision', 'rate cut', 'rate hike', 'fomc', 'cpi', 'nonfarm', 'payroll',
-                'gdp', 'inflation', 'war', 'ceasefire', 'sanction', 'tariff', 'default', 'downgrade'];
+// The same asymmetry this comment already describes, one level deeper: 'war'
+// and 'ceasefire' were heavyweight while 'hostilities', 'invasion', 'airstrike'
+// and 'escalation' were ordinary, so "U.S. stock futures dip amid renewed Iran
+// hostilities" scored as market colour. The risk vocabulary is now shared with
+// the geopolitical tagger rather than being a third hand-kept list that drifts
+// from the other two — which is the defect this whole change is about.
+const HEAVY = ['rate decision', 'rate cut', 'rate hike', 'fomc', 'cpi', 'nonfarm', 'payroll',
+               'gdp', 'inflation', 'tariff', 'default', 'downgrade', ...GEO_RISK];
 
 export function severity(text) {
   const t = String(text || '').toLowerCase();
@@ -168,11 +279,49 @@ const MARKET_WORDS = ['stocks', 'shares', 'equities', 'index', 'futures', 'commo
 const MACRO_RX  = compile(MACRO_WORDS);
 const MARKET_RX = compile(MARKET_WORDS);
 
+// Not news at any price.
+//
+// MarketWatch's feed carries a personal-finance advice column, and it was
+// filling the board: five of fourteen headlines in one sample were "My mom gave
+// me a house", "I'm single, 74, with $10 million burning a hole in my pocket",
+// "My mother, 91, has dementia". Those are newer than a Fed story, the fetcher
+// keeps the sixty most recent, and so they were pushing real news off the list —
+// which is the other half of why the news analyst saw three headlines.
+//
+// Some of them mention stocks or investors and would otherwise score as market
+// colour, so this has to run BEFORE relevance rather than as one more word list
+// inside it.
+//
+// Deliberately narrow. Patterns keyed on family members and retirement accounts
+// are unambiguous; a rule like "headline opens with a quotation mark" would also
+// catch «'We are not done': Powell says», which is exactly the headline this
+// whole change exists to keep.
+const NOT_NEWS = [
+  /\bmy (mom|mum|mother|father|dad|husband|wife|son|daughter|sister|brother|parents|in-laws?|stepmother|stepfather|boyfriend|girlfriend|widow|late (husband|wife))\b/,
+  /\b(roth ira|401\(?k\)?|social security benefits?|estate plan|inheritance|my will|prenup)\b/,
+  /\bdear (quentin|moneyist|penny|therapist)\b/,
+  /\b(should i|am i (being )?(wrong|unreasonable|entitled|greedy))\b/,
+  // "I'm 74" and "I'm single, 74, with $10 million burning a hole in my
+  // pocket" are the same column; the age does not always sit next to the verb.
+  /\bi'?m\b[a-z,\s]{0,24}\b\d{2}\b/,
+  /\bi am\b[a-z,\s]{0,24}\b\d{2}\b/,
+];
+
+// Wires punctuate with typographic quotes — I'm, 'regifting' — and a pattern
+// written with a straight apostrophe silently matches none of them. Normalised
+// before matching rather than doubling every pattern.
+const straighten = t => String(t || '').toLowerCase()
+  .replace(/[\u2018\u2019\u02bc\u00b4`]/g, "'")
+  .replace(/[\u201c\u201d]/g, '"');
+
+export const isJunk = text => NOT_NEWS.some(rx => rx.test(straighten(text)));
+
 // 2 = directly tradeable (tagged instrument or macro driver)
 // 1 = general market colour
-// 0 = corporate / off-topic
+// 0 = corporate / off-topic / not news at all
 export function relevanceOf(text, instruments) {
   const t = String(text || '').toLowerCase();
+  if (isJunk(text)) return 0;
   if (instruments?.length) return 2;
   if (anyMatch(MACRO_RX, t)) return 2;
   if (anyMatch(MARKET_RX, t)) return 1;

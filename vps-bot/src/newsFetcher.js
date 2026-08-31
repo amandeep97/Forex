@@ -563,7 +563,7 @@ class NewsFetcher {
     // Same story from three outlets is one story. Dedupe on the headline text
     // before truncating, or the list is six versions of whatever just broke.
     const seen = new Set();
-    const unique = [];
+    const labelled = [];
     for (const it of items.sort((a, b) => b.at - a.at)) {
       const key = it.title.toLowerCase().slice(0, 60);
       if (seen.has(key)) continue;
@@ -573,10 +573,33 @@ class NewsFetcher {
       // seventeen regex sets over sixty headlines on every render, and so a
       // label on a card cannot disagree with the same label on the news screen.
       const label = await labelOf(it.title, it.desc);
-      unique.push({ ...it, ...label });
-      if (unique.length >= MAX_HEADLINES) break;
+      labelled.push({ ...it, ...label });
     }
-    return { items: unique, ok, failed };
+
+    // Everything is labelled BEFORE the list is cut, and the cut is by
+    // relevance first and recency second.
+    //
+    // It used to take the sixty most recent and label those, which sounds
+    // harmless and is not: MarketWatch's feed carries a personal-finance advice
+    // column, those items are newer than a Fed story, and on a live board five
+    // of fourteen headlines were "My mom gave me a house" and "I'm single, 74,
+    // with $10 million burning a hole in my pocket". They were pushing real news
+    // off the end of the list — which is half of why the desk's news analyst
+    // saw three headlines during an Iran war.
+    //
+    // Not-news is dropped outright. Corporate stories are kept but go last, so
+    // an M&A wire can fill a spare slot and can never take one.
+    const { isJunk } = await tagging();
+    const usable = isJunk
+      ? labelled.filter(x => !isJunk(`${x.title} ${x.desc || ''}`))
+      : labelled;
+    const rank = x => (x.rel ?? 1) > 0 ? 0 : 1;
+    const unique = usable
+      .sort((a, b) => rank(a) - rank(b) || b.at - a.at)
+      .slice(0, MAX_HEADLINES)
+      .sort((a, b) => b.at - a.at);
+
+    return { items: unique, ok, failed, dropped: labelled.length - usable.length };
   }
 
   async run() {
