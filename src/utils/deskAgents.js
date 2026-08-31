@@ -447,6 +447,45 @@ export function checkLevels(d, price) {
   return null;
 }
 
+// ── The answer, in the two words a person needs ─────────────────────────────
+//
+// The decision used to live at the BOTTOM of the panel, under four analyst
+// cards and a two-sided argument. On a phone that is a lot of scrolling to find
+// out whether to do anything, and a desk whose conclusion you have to hunt for
+// is a desk you stop reading.
+//
+// Four states, and the veto is deliberately not folded into "wait": a trade the
+// trader wanted and the risk manager killed is a different thing to know than a
+// day with nothing in it.
+//
+// `tone` is a role, not a colour, so this stays testable without a browser.
+export function verdictOf(d, review, levelIssue) {
+  if (!d) return null;
+  // Arithmetic beats an approval. A risk manager reading prose will happily
+  // sign off a target on the wrong side of the entry.
+  if (levelIssue) {
+    return { word: 'DO NOT USE THESE LEVELS', tone: 'warn',
+      line: `The trader's numbers do not check out — ${levelIssue}. Run it again.` };
+  }
+  if (review?.verdict === 'veto') {
+    return { word: 'NO TRADE', tone: 'warn',
+      line: `The trader wanted ${d.action}; risk vetoed it. ${review.reason || ''}`.trim() };
+  }
+  if (d.action === 'stand aside') {
+    return { word: 'WAIT', tone: 'neutral',
+      line: 'Nothing worth taking on this bar. Come back when something below changes.' };
+  }
+  const changed = review?.verdict === 'approve with changes';
+  return {
+    word: d.action === 'long' ? 'TRADE — LONG' : 'TRADE — SHORT',
+    tone: d.action === 'long' ? 'bull' : 'bear',
+    line: changed
+      ? `Risk approved it with changes: ${review.changes || 'see below'}`
+      : 'Risk approved it. The levels below were checked with arithmetic, not taken on trust.',
+    changed,
+  };
+}
+
 // ── The run ─────────────────────────────────────────────────────────────────
 //
 // `onStage` is called as each stage lands so the panel fills in progressively —

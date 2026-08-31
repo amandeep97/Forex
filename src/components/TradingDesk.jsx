@@ -1,6 +1,6 @@
 import { useState, useCallback, useEffect } from 'react';
 import { DESK_INSTRUMENTS, gatherEvidence } from '../utils/deskEvidence.js';
-import { runDesk, readLog, aiConfig, isReasoningModel } from '../utils/deskAgents.js';
+import { runDesk, readLog, aiConfig, isReasoningModel, verdictOf } from '../utils/deskAgents.js';
 
 // The desk: four analysts, a bull and a bear who argue, a trader who decides,
 // a risk manager with a veto.
@@ -137,6 +137,67 @@ function Decision({ d, levelIssue, review, dec }) {
         </div>
       )}
     </Card>
+  );
+}
+
+
+// The banner. Deliberately says what to DO and then, in the same breath, that it
+// is one opinion — because a two-word verdict in large green type is exactly the
+// thing a person acts on without reading the rest.
+function Verdict({ d, review, levelIssue, dec, waiting }) {
+  const raw = verdictOf(d, review, levelIssue);
+  if (!raw) return null;
+  const v = { ...raw, tone: C[raw.tone] || C.neutral };
+  const n = x => (x == null || !Number.isFinite(+x) ? '—' : (+x).toFixed(dec ?? 2));
+  const trading = v.word.startsWith('TRADE');
+  return (
+    <div style={{ marginTop: 12, padding: '12px 14px', borderRadius: 8,
+      background: `${v.tone}14`, border: `1px solid ${v.tone}55` }}>
+      <div style={{ display: 'flex', alignItems: 'baseline', gap: 10, flexWrap: 'wrap' }}>
+        <span style={{ fontSize: 19, fontWeight: 800, color: v.tone, letterSpacing: '0.5px' }}>
+          {v.word}
+        </span>
+        {d.conviction != null && (
+          <span style={{ fontSize: 10, color: 'var(--text3)' }}>
+            conviction {d.conviction}/5 · hold {d.horizon_hours}h
+          </span>
+        )}
+        {waiting && (
+          <span style={{ fontSize: 10, color: 'var(--text3)' }}>· still finishing</span>
+        )}
+      </div>
+
+      {trading && (
+        <div style={{ display: 'flex', gap: 18, marginTop: 9, flexWrap: 'wrap' }}>
+          {[['entry', d.entry ?? '—'], ['stop', d.stop], ['target', d.target]].map(([k, x]) => (
+            <div key={k}>
+              <div style={{ fontSize: 9, color: 'var(--text3)', textTransform: 'uppercase' }}>{k}</div>
+              <div style={{ fontSize: 16, fontWeight: 700, color: 'var(--text1)' }}>{n(x)}</div>
+            </div>
+          ))}
+        </div>
+      )}
+
+      <div style={{ fontSize: 11.5, color: 'var(--text2)', marginTop: 8, lineHeight: 1.55 }}>
+        {v.line}
+      </div>
+
+      {/* Standing aside, the useful sentence is not "why I was right to wait" —
+          it is what would turn this into a trade. Same field, relabelled by
+          which side of the decision you are on. */}
+      {d.invalidated_by && (
+        <div style={{ fontSize: 11, color: 'var(--text2)', marginTop: 7 }}>
+          <b style={{ color: v.tone }}>
+            {trading ? 'Get out if:' : 'It becomes a trade if:'}
+          </b>{' '}{d.invalidated_by}
+        </div>
+      )}
+
+      <div style={{ fontSize: 10, color: 'var(--text3)', marginTop: 8, lineHeight: 1.5 }}>
+        One opinion, not a signal — the reasoning and the case against it are below, and
+        this verdict is logged with the price so it can be scored later.
+      </div>
+    </div>
   );
 }
 
@@ -294,6 +355,10 @@ export default function TradingDesk() {
           ) : null}
         </div>
       )}
+
+      {/* ── The answer, first ───────────────────────────────────────────────── */}
+      <Verdict d={trader} review={risk} levelIssue={levelIssue} dec={ev?.dec}
+        waiting={!!busy && !risk} />
 
       {/* ── The four analysts ───────────────────────────────────────────────── */}
       {reports.length > 0 && (
