@@ -9,7 +9,7 @@
 // vocabulary at all, while the news screen three tabs away tagged the same
 // headline to US500 correctly.
 import { tagInstruments, currenciesIn, severity, relevanceOf, labelHeadline,
-         INSTRUMENT_KEYWORDS } from '../shared/newsTagging.mjs';
+         INSTRUMENT_KEYWORDS, isGeopolitical, isJunk } from '../shared/newsTagging.mjs';
 
 let fails = 0;
 const check = (n, c, e = '') => { console.log(`${c ? '  ok  ' : '  FAIL'}  ${n}${e ? ' — ' + e : ''}`); if (!c) fails++; };
@@ -100,6 +100,102 @@ const check = (n, c, e = '') => { console.log(`${c ? '  ok  ' : '  FAIL'}  ${n}$
   const junk = labelHeadline('Zoetis earnings reveal a divided business');
   check('corporate wire copy scores zero relevance and is hidden by default',
     junk.rel === 0 && !junk.inst.length, JSON.stringify(junk));
+}
+
+
+// ── The three lists that disagreed with each other ─────────────────────────
+//
+// Measured on a live feed: 47 of 60 headlines came back with no instrument and
+// no currency. The worst of them was
+//
+//   "U.S. stock futures slip as chances of rate hike rise after Warsh's
+//    Jackson Hole comments"
+//
+// which this same file scored severity 2 — market-moving — and relevance 2 —
+// directly tradeable — while tagging it as being about nothing. The app knew
+// the headline mattered and could not say what it was about, so it never
+// reached a card and the desk's news analyst read an empty page during a live
+// gold selloff and an Iran war.
+{
+  const H = 'U.S. stock futures slip as chances of rate hike rise after Warsh\u2019s Jackson Hole comments';
+  const L = labelHeadline(H);
+  check('a rate-hike headline reaches the dollar complex', L.inst.includes('XAU/USD') && L.ccy.includes('USD'),
+    JSON.stringify(L));
+  check('and is still scored market-moving, as it always was', L.sev === 2);
+  check('what it is ABOUT and how much it MATTERS can no longer disagree',
+    L.sev >= 2 && (L.inst.length > 0 || L.ccy.length > 0),
+    'severity knew fourteen words, relevance knew thirty-seven, tagging knew eleven');
+
+  for (const [h, why] of [
+    ['Treasury Secretary Bessent presses G20 on trade surplus', 'fiscal and trade move the dollar too'],
+    ['Fed officials signal a slower rate path', 'policy language, not just the word Fed'],
+    ['Hawkish tone at the Beige Book briefing', 'the adjectives wires actually use'],
+    ['US inflation runs hotter than forecast', 'data'],
+  ]) check(`"${h.slice(0, 44)}" reaches the dollar`, labelHeadline(h).ccy.includes('USD'), why);
+}
+
+// ── Gold IS the safe-haven trade ───────────────────────────────────────────
+// The app had no connection between geopolitics and gold at all, on a board
+// whose main instrument is gold.
+{
+  const iran = labelHeadline('U.S. stock futures dip amid renewed Iran hostilities');
+  check('a conflict headline is a gold headline', iran.inst.includes('XAU/USD'), JSON.stringify(iran.inst));
+  check('and an oil one when the flashpoint is an oil producer', iran.inst.includes('USOIL'));
+
+  const ceasefire = labelHeadline('Oil prices slide over 2% following report of U.S.-Iran ceasefire');
+  check('geopolitics is added to what a headline already names, not instead of it',
+    ceasefire.inst.includes('USOIL') && ceasefire.inst.includes('XAU/USD'),
+    JSON.stringify(ceasefire.inst) + ' — a named instrument used to short-circuit everything after it');
+
+  check('an unambiguous risk word stands alone', isGeopolitical('Missile strike reported overnight'));
+  check('a place alone is not a conflict',
+    !isGeopolitical('Ukraine seeks U.S. investment for defence technology fund'),
+    'naming a country in a war is not the same as reporting the war');
+
+  // 'attack' and 'strikes' were in the risk list for one run and came out again.
+  for (const clean of [
+    'Aon strikes a deal to buy USI Insurance from KKR',
+    'Union strikes hit Ford plants',
+    'Powell strikes a cautious tone',
+    'Rival factions stand off in Niger capital after mutineers attack airport',
+  ]) check(`"${clean.slice(0, 40)}" is not a gold story`, !isGeopolitical(clean),
+    'ordinary English, and it tagged a Niger mutiny as a safe-haven event');
+
+  check('but the same words alongside a flashpoint are',
+    isGeopolitical('Oil jumps after US attack on Iran\u2019s Larak island')
+    && isGeopolitical('U.S. strikes Iranian launchers on Larak Island'),
+    'taking them out entirely dropped two live war headlines');
+  check('adjectival forms count, because matching is whole-word',
+    isGeopolitical('Israeli military action reported'), '"Iranian" does not contain the word "iran"');
+}
+
+// ── Not news at any price ──────────────────────────────────────────────────
+// MarketWatch's feed carries an advice column. Those items are newer than a Fed
+// story, the fetcher kept the sixty most recent, and they were pushing real news
+// off the end of the list.
+{
+  for (const junk of [
+    '\u2018It\u2019s the ultimate regifting\u2019: My mom gave me a house. Should I transfer it back to her?',
+    'I\u2019m single, 74, with $10 million burning a hole in my pocket',
+    'My father funded my $800,000 Roth IRA. Does that give him the right to say how I invest?',
+    'My mother, 91, has dementia. Every bank says I need her signature',
+  ]) check(`"${junk.slice(0, 40)}" is not news`, isJunk(junk));
+
+  check('and it is scored zero even when it mentions markets',
+    relevanceOf('My mother left me $2 million in stocks. Should I sell?', []) === 0,
+    'some of them mention stocks or investors and would otherwise score as market colour, '
+    + 'which is why the check runs before relevance rather than inside it');
+
+  // The rule deliberately NOT used: "headline opens with a quotation mark".
+  const quoted = '\u2018We are not done\u2019: Powell says more hikes may be needed';
+  check('a quoted wire headline is not caught by the junk filter', !isJunk(quoted));
+  check('and still reaches the dollar', labelHeadline(quoted).ccy.includes('USD'),
+    'a quote-opening rule would have thrown away exactly the headline this change exists to keep');
+
+  check('ordinary corporate news is not junk, only irrelevant',
+    !isJunk('Aon close to acquiring USI Insurance from KKR in $17 billion deal')
+    && relevanceOf('Aon close to acquiring USI Insurance from KKR in $17 billion deal', []) === 0,
+    'it can fill a spare slot; it must never take one');
 }
 
 console.log(fails ? `\n${fails} FAILED` : '\nall passed');
