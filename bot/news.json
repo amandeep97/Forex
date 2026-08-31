@@ -689,7 +689,7 @@
       "country": "CHF",
       "impact": "low",
       "at": 1788418800000,
-      "forecast": "1.7%",
+      "forecast": "1.5%",
       "previous": "0.7%",
       "actual": ""
     },
@@ -698,7 +698,7 @@
       "country": "EUR",
       "impact": "low",
       "at": 1788419700000,
-      "forecast": "58.8",
+      "forecast": "59.0",
       "previous": "58.3",
       "actual": ""
     },
@@ -707,7 +707,7 @@
       "country": "EUR",
       "impact": "low",
       "at": 1788421500000,
-      "forecast": "53.3",
+      "forecast": "53.6",
       "previous": "52.5",
       "actual": ""
     },
@@ -752,7 +752,7 @@
       "country": "EUR",
       "impact": "low",
       "at": 1788426000000,
-      "forecast": "1.3%",
+      "forecast": "1.2%",
       "previous": "-0.3%",
       "actual": ""
     },
@@ -788,7 +788,7 @@
       "country": "CAD",
       "impact": "low",
       "at": 1788438600000,
-      "forecast": "0.2%",
+      "forecast": "0.7%",
       "previous": "-0.5%",
       "actual": ""
     },
@@ -842,7 +842,7 @@
       "country": "USD",
       "impact": "low",
       "at": 1788438600000,
-      "forecast": "-86.4B",
+      "forecast": "-89.4B",
       "previous": "-73.3B",
       "actual": ""
     },
@@ -860,7 +860,7 @@
       "country": "USD",
       "impact": "medium",
       "at": 1788444000000,
-      "forecast": "54.1",
+      "forecast": "54.2",
       "previous": "54.1",
       "actual": ""
     },
@@ -905,7 +905,7 @@
       "country": "EUR",
       "impact": "low",
       "at": 1788501600000,
-      "forecast": "0.4%",
+      "forecast": "0.3%",
       "previous": "3.1%",
       "actual": ""
     },
@@ -923,7 +923,7 @@
       "country": "GBP",
       "impact": "low",
       "at": 1788510600000,
-      "forecast": "45.9",
+      "forecast": "45.8",
       "previous": "44.7",
       "actual": ""
     },
@@ -950,7 +950,7 @@
       "country": "CAD",
       "impact": "high",
       "at": 1788525000000,
-      "forecast": "15.8K",
+      "forecast": "15.1K",
       "previous": "75.1K",
       "actual": ""
     },
@@ -1001,6 +1001,107 @@
     }
   ],
   "headlines": [
+    {
+      "title": "PG&E, other utility stocks sink as California leaves investors exposed to wildfire liability",
+      "link": "https://www.marketwatch.com/story/pg-e-other-utility-stocks-sink-as-california-leaves-investors-exposed-to-wildfire-liability-ac373b54?mod=mw_rss_topstories",
+      "source": "MarketWatch",
+      "desc": "A California bill is “more focused on victim protections without any new investor protections,” according to analysts.",
+      "at": 1788208800000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Utility stocks sink, dragging index down"
+    },
+    {
+      "title": "Latin American markets mixed as dollar softens, oil prices rise",
+      "link": "https://www.investing.com/news/stock-market-news/latin-american-markets-mixed-as-dollar-softens-oil-prices-rise-93CH-4883262",
+      "source": "Investing",
+      "at": 1788208274000,
+      "inst": [
+        "USOIL"
+      ],
+      "ccy": [
+        "USD",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil prices rise"
+    },
+    {
+      "title": "U.S. stocks lower at close of trade; Dow Jones Industrial Average down 0.70%",
+      "link": "https://www.investing.com/news/stock-market-news/us-stocks-lower-at-close-of-trade-dow-jones-industrial-average-down-070-4883258",
+      "source": "Investing",
+      "at": 1788208261000,
+      "inst": [
+        "US500",
+        "US30"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "dir": {
+        "US500": "down",
+        "US30": "down"
+      },
+      "why": "U.S. stocks lower, Dow down"
+    },
+    {
+      "title": "Bullion prices rally in August, with spot gold notching best month since January",
+      "link": "https://www.investing.com/news/commodities-news/gold-steadies-after-sharp-selloff-as-warsh-revives-fed-hike-bets-4882094",
+      "source": "Investing Cmdty",
+      "at": 1788208243000,
+      "inst": [
+        "XAU/USD"
+      ],
+      "ccy": [
+        "XAU"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Bullion prices rally, best month"
+    },
+    {
+      "title": "Canada stocks lower at close of trade; S&P/TSX Composite down 0.78%",
+      "link": "https://www.investing.com/news/stock-market-news/canada-stocks-lower-at-close-of-trade-sptsx-composite-down-078-4883257",
+      "source": "Investing",
+      "at": 1788208231000,
+      "inst": [
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "CAD"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "why": "Canada stocks lower, no US impact"
+    },
+    {
+      "title": "Brazil stocks higher at close of trade; Bovespa up 1.00%",
+      "link": "https://www.investing.com/news/stock-market-news/brazil-stocks-higher-at-close-of-trade-bovespa-up-100-4883255",
+      "source": "Investing",
+      "at": 1788208204000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "why": "Brazil stocks higher, no US impact"
+    },
     {
       "title": "The 10-year Treasury yield just crossed a key threshold that should make people ‘sit up and take notice’",
       "link": "https://www.marketwatch.com/story/the-10-year-treasury-yield-just-crossed-a-key-threshold-that-should-make-people-sit-up-and-take-notice-ffc0b5b5?mod=mw_rss_topstories",
@@ -1068,27 +1169,6 @@
       "sev": 1,
       "rel": 2,
       "why": "Mixed individual stock moves"
-    },
-    {
-      "title": "At Jackson Hole, global central bankers glimpse dystopian AI future",
-      "link": "https://www.investing.com/news/stock-market-news/at-jackson-hole-global-central-bankers-glimpse-dystopian-ai-future-4882399",
-      "source": "Investing",
-      "at": 1788205707000,
-      "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "why": "No clear directional impact on FX"
     },
     {
       "title": "Global oil prices settle above $90 a barrel after U.S. and Iran exchange fire for first time in a month",
@@ -1277,46 +1357,6 @@
         "XAU/USD": "down"
       },
       "why": "Gold double top breakdown"
-    },
-    {
-      "title": "Oil settles up by more than 2.5% as US and Iran resume military attacks",
-      "link": "https://www.investing.com/news/commodities-news/oil-jumps-more-than-2-after-us-attack-on-irans-larak-island-4882075",
-      "source": "Investing Cmdty",
-      "at": 1788202857000,
-      "inst": [
-        "USOIL",
-        "XAU/USD",
-        "UKOIL"
-      ],
-      "ccy": [
-        "OIL",
-        "XAU"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "dir": {
-        "USOIL": "up",
-        "XAU/USD": "up",
-        "UKOIL": "up"
-      },
-      "why": "Oil up, gold up on conflict"
-    },
-    {
-      "title": "Tesla’s stock is leading S&P 500 gainers as investors prepare for a Cybercab launch",
-      "link": "https://www.marketwatch.com/story/teslas-stock-is-leading-s-p-500-gainers-as-investors-prepare-for-a-cybercab-launch-f23a0d52?mod=mw_rss_topstories",
-      "source": "MarketWatch",
-      "desc": "The company is seemingly getting closer to rolling out a vehicle that comes without a steering wheel or pedals.",
-      "at": 1788201660000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "dir": {
-        "US500": "up"
-      },
-      "why": "Tesla leads S&P 500 gainers"
     },
     {
       "title": "Kalshi partners with brokerage Alpaca as it tries to build its international audience",
@@ -1890,6 +1930,16 @@
       "why": "Cramer warns of tougher road, bearish tone."
     },
     {
+      "title": "Breakfast News: AI For Investors",
+      "link": "https://finance.yahoo.com/technology/ai/articles/breakfast-news-ai-investors-115000619.html",
+      "source": "Yahoo Finance",
+      "at": 1788090600000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 1
+    },
+    {
       "title": "Wall Street's summer calm is colliding with the year's most volatile stretch: Chart of the Day",
       "link": "https://finance.yahoo.com/markets/article/wall-streets-summer-calm-is-colliding-with-the-years-most-volatile-stretch-chart-of-the-day-114901053.html",
       "source": "Yahoo Finance",
@@ -1903,14 +1953,19 @@
       "why": "Observation on volatility, no clear direction."
     },
     {
-      "title": "Rocket Lab COO Frank Klein Sells 35,558 Shares for $2.4 Million",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/rocket-lab-coo-frank-klein-112001700.html",
+      "title": "Tim Cook Owns Crypto But Apple Never Bought Bitcoin: Will This Change?",
+      "link": "https://finance.yahoo.com/markets/crypto/articles/tim-cook-owns-crypto-apple-114629817.html",
       "source": "Yahoo Finance",
-      "at": 1788088801000,
-      "inst": [],
-      "ccy": [],
+      "at": 1788090389000,
+      "inst": [
+        "BTC/USDT"
+      ],
+      "ccy": [
+        "BTC"
+      ],
       "sev": 1,
-      "rel": 1
+      "rel": 2,
+      "why": "Speculative question, no clear direction"
     },
     {
       "title": "U.S. appeals court rules against prediction markets, sets up likely fight at Supreme Court",
@@ -1989,92 +2044,6 @@
       "sev": 2,
       "rel": 2,
       "why": "Mixed data, no clear directional bias"
-    },
-    {
-      "title": "Corn and wheat prices jump to highest prices in more than three years",
-      "link": "https://www.cnbc.com/2026/08/28/corn-and-wheat-prices-jump-to-highest-prices-in-more-than-three-years.html",
-      "source": "CNBC Markets",
-      "desc": "Corn and wheat futures have surged to their highest levels in more than three years. But the reasons for these recent rallies are notably different.",
-      "at": 1787947256000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1
-    },
-    {
-      "title": "Dollar firms on hawkish Warsh at Jackson Hole, heads for weekly gain of nearly 1%",
-      "link": "https://www.investing.com/news/forex-news/asia-fx-dollar-muted-ahead-of-warsh-speech-won-hits-13mth-high-post-bok-hike-4880492",
-      "source": "Investing FX",
-      "at": 1787946127000,
-      "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "dir": {
-        "XAU/USD": "down",
-        "EUR/USD": "down",
-        "GBP/USD": "down"
-      },
-      "why": "Dollar firms, bearish for EUR/USD, GBP/USD"
-    },
-    {
-      "title": "September Fed decision is now a coin flip as rate hike odds increase post Warsh",
-      "link": "https://www.cnbc.com/2026/08/28/-september-fed-decision-now-a-coin-flip-as-rate-hike-odds-increase.html",
-      "source": "CNBC Markets",
-      "desc": "Odds rose after Warsh's speech in Jackson Hole, Wyo., where he discussed that he still is frustrated with the overall inflation trend.",
-      "at": 1787930530000,
-      "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "dir": {
-        "XAU/USD": "down",
-        "EUR/USD": "down",
-        "GBP/USD": "down"
-      },
-      "why": "Hawkish Fed signals stronger dollar, pressuring metals and p"
-    },
-    {
-      "title": "Univ of Michigan final sentiment index for August 51.7 vs 51.0 estimate",
-      "link": "https://investinglive.com/news/univ-of-michigan-final-sentiment-index-for-august-51-7-vs-51-0-estimate/",
-      "source": "ForexLive",
-      "desc": "Preliminary estimate 51.0 Consumer sentiment 51.7 vs 51.0 estimate. Prior 55.2Current conditions 51.9 versus 51.8 estimate. Preliminary 51.8. Prior 54.8.Expectations 51.5 versus 50.6 preliminary. Prior month 55.4.1 year inflation expectations 4.0% versus 4.3 preliminary. Prior mo",
-      "at": 1787925618000,
-      "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "why": "Slightly better sentiment data, no clear directional impact."
     }
   ],
   "sources": [
@@ -2093,10 +2062,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-08-31T20:31:21.519Z",
-  "headlinesAt": "2026-08-31T20:31:21.519Z",
-  "updatedAt": "2026-08-31T20:31:21.519Z"
+  "calendarAt": "2026-08-31T20:47:36.629Z",
+  "headlinesAt": "2026-08-31T20:47:36.629Z",
+  "updatedAt": "2026-08-31T20:47:36.629Z"
 }
