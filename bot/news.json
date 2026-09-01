@@ -1,15 +1,6 @@
 {
   "calendar": [
     {
-      "title": "Bank Holiday",
-      "country": "GBP",
-      "impact": "holiday",
-      "at": 1788159600000,
-      "forecast": "",
-      "previous": "",
-      "actual": ""
-    },
-    {
       "title": "G20 Meetings",
       "country": "All",
       "impact": "low",
@@ -921,6 +912,79 @@
   ],
   "headlines": [
     {
+      "title": "Iran says it has enough foreign currency despite US sanctions",
+      "link": "https://www.investing.com/news/forex-news/iran-says-it-has-enough-foreign-currency-despite-us-sanctions-4883541",
+      "source": "Investing FX",
+      "at": 1788245667000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "why": "Sanctions impact unclear, no immediate price signal"
+    },
+    {
+      "title": "Oil prices rise as latest fighting revives Mideast supply disruption risks",
+      "link": "https://www.investing.com/news/commodities-news/oil-prices-rise-as-latest-fighting-resurrects-middle-east-supply-disruption-risks-4883418",
+      "source": "Investing Cmdty",
+      "at": 1788245311000,
+      "inst": [
+        "USOIL"
+      ],
+      "ccy": [
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil prices rise on supply risks"
+    },
+    {
+      "title": "Gold falls as hawkish Fed stance, Iran tensions weigh on bullion",
+      "link": "https://www.investing.com/news/commodities-news/gold-steadies-after-twoday-drop-as-iran-strikes-revive-inflation-risks-4883434",
+      "source": "Investing Cmdty",
+      "at": 1788244992000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "USD",
+        "XAU",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Hawkish Fed and tensions explicitly weigh on gold"
+    },
+    {
+      "title": "Strategy buys Bitcoin after 2-mth break: here are the bull and bear cases",
+      "link": "https://www.investing.com/news/stock-market-news/strategy-buys-bitcoin-after-2mth-break-here-are-the-bull-and-bear-cases-93CH-4883533",
+      "source": "Investing",
+      "at": 1788244837000,
+      "inst": [
+        "BTC/USDT"
+      ],
+      "ccy": [
+        "BTC"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "why": "Headline presents both bull and bear cases"
+    },
+    {
       "title": "What are the main events for today?",
       "link": "https://investinglive.com/news/what-are-the-main-events-for-today-32/",
       "source": "ForexLive",
@@ -970,24 +1034,6 @@
       "sev": 1,
       "rel": 2,
       "why": "Tentative stocks amid mixed economic data focus."
-    },
-    {
-      "title": "Oil prices rise as latest fighting revives Mideast supply disruption risks",
-      "link": "https://www.investing.com/news/commodities-news/oil-prices-rise-as-latest-fighting-resurrects-middle-east-supply-disruption-risks-4883418",
-      "source": "Investing Cmdty",
-      "at": 1788243532000,
-      "inst": [
-        "USOIL"
-      ],
-      "ccy": [
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "dir": {
-        "USOIL": "up"
-      },
-      "why": "Oil prices rise on supply risks"
     },
     {
       "title": "Analysts react to global bond selloff",
@@ -1040,19 +1086,6 @@
       "sev": 1,
       "rel": 2,
       "why": "Taiwan market news irrelevant to US"
-    },
-    {
-      "title": "Chinese retail stocks gain as Beijing unveils fresh measures to boost consumption",
-      "link": "https://www.investing.com/news/stock-market-news/chinese-retail-stocks-gain-as-beijing-unveils-fresh-measures-to-boost-consumption-4883504",
-      "source": "Investing",
-      "at": 1788241794000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "why": "Chinese retail news irrelevant to US"
     },
     {
       "title": "Oil extends gains as Trump threatens further Iran strikes",
@@ -1167,29 +1200,6 @@
       "sev": 3,
       "rel": 2,
       "why": "Oil steady, gold flat, RBNZ hike preview."
-    },
-    {
-      "title": "Gold steadies after two-day drop as Iran strikes revive inflation risks",
-      "link": "https://www.investing.com/news/commodities-news/gold-steadies-after-twoday-drop-as-iran-strikes-revive-inflation-risks-4883434",
-      "source": "Investing Cmdty",
-      "at": 1788226677000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL",
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "dir": {
-        "USOIL": "up",
-        "UKOIL": "up"
-      },
-      "why": "Gold steady, oil up on Iran risks"
     },
     {
       "title": "White House releases terms of oil deal with North American Blue Energy Partners",
@@ -1957,10 +1967,10 @@
       "why": "On-chain metric signals buy signal"
     },
     {
-      "title": "Strategy Stock Surges as Bitcoin Briefly Tops $80K",
-      "link": "https://finance.yahoo.com/markets/crypto/articles/strategy-stock-surges-bitcoin-briefly-193515545.html",
+      "title": "Strategy’s Bitcoin Is $2.8 Billion in Profit—Is Saylor Teeing Up a Buy?",
+      "link": "https://finance.yahoo.com/markets/crypto/articles/strategy-bitcoin-2-8-billion-193955159.html",
       "source": "Yahoo Finance",
-      "at": 1788118515000,
+      "at": 1788118795000,
       "inst": [
         "BTC/USDT"
       ],
@@ -1969,20 +1979,7 @@
       ],
       "sev": 1,
       "rel": 2,
-      "dir": {
-        "BTC/USDT": "up"
-      },
-      "why": "Bitcoin price surges above $80K"
-    },
-    {
-      "title": "Retirees Who Convert to a Roth in a Down-Market Year Move the Same Shares for Less Tax. Almost Nobody Times It.",
-      "link": "https://finance.yahoo.com/markets/options/articles/retirees-convert-roth-down-market-192934790.html",
-      "source": "Yahoo Finance",
-      "at": 1788118174000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1
+      "why": "Question about potential buy, no confirmed action"
     }
   ],
   "sources": [
@@ -2004,7 +2001,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-01T06:53:36.611Z",
-  "headlinesAt": "2026-09-01T06:53:36.611Z",
-  "updatedAt": "2026-09-01T06:53:36.611Z"
+  "calendarAt": "2026-09-01T07:08:36.746Z",
+  "headlinesAt": "2026-09-01T07:08:36.746Z",
+  "updatedAt": "2026-09-01T07:08:36.746Z"
 }
