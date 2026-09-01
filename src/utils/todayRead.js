@@ -58,9 +58,12 @@ async function candles(sym, count = 2000) {
   } catch { return null; }
 }
 
-async function json(path) {
+// A one-minute cache bucket, not five. The bot publishes every three minutes
+// now; a five-minute bucket in front of it would spend more time than the
+// faster poll saved, and this screen exists to be current.
+async function json(path, bucketMs = 60e3) {
   try {
-    const r = await fetch(`${RAW}/${path}?t=${Math.floor(Date.now() / 3e5)}`,
+    const r = await fetch(`${RAW}/${path}?t=${Math.floor(Date.now() / bucketMs)}`,
       { signal: AbortSignal.timeout(20000) });
     return r.ok ? r.json() : null;
   } catch { return null; }
@@ -154,12 +157,18 @@ export function breaking(news, insts, bars, { now = Date.now(), withinH = 12, ma
     .sort((a, b) => (b.sev - a.sev) || (b.at - a.at))
     .slice(0, max)
     .map(h => ({
-      title: h.title, source: h.source, link: h.link, at: h.at, sev: h.sev ?? 1,
-      ageMin: Math.round((now - h.at) / 60e3),
+      title: h.title, source: h.source, link: h.link, sev: h.sev ?? 1,
+      // When it BROKE, not when this outlet rewrote it. The bot groups the same
+      // story across outlets and keeps the earliest sighting; without that, a
+      // story that landed at 14:12 and was rewritten at 15:40 is filed as 15:40
+      // and the move since it is measured from the wrong hour.
+      at: h.firstAt ?? h.at,
+      srcs: h.srcs ?? 1,
+      ageMin: Math.round((now - (h.firstAt ?? h.at)) / 60e3),
       direct: (h.inst || []).some(x => syms.has(x)),
       since: insts.map(i => ({
         label: i.label, dec: i.dec,
-        move: moveSincePct(bars[i.sym], h.at),
+        move: moveSincePct(bars[i.sym], h.firstAt ?? h.at),
       })).filter(x => x.move),
     }));
 }

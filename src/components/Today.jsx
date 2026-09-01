@@ -69,6 +69,12 @@ function Breaking({ items }) {
               <span style={{ fontSize: 11, fontWeight: 700, color: tone }}>{when(h.at)}</span>
               <span style={{ fontSize: 10, color: 'var(--text3)' }}>{ago(h.ageMin)}</span>
               <span style={{ fontSize: 10, color: 'var(--text3)' }}>· {h.source}</span>
+              {/* One outlet is a claim. Three inside three quarters of an hour
+                  is an event, and the difference is worth a word on screen. */}
+              <span style={{ fontSize: 10, fontWeight: 700,
+                color: (h.srcs || 1) > 1 ? C.bull : 'var(--text3)' }}>
+                · {(h.srcs || 1) > 1 ? `${h.srcs} sources` : 'single source'}
+              </span>
               {!h.direct && (
                 <span style={{ fontSize: 9, color: 'var(--text3)' }}>· via a currency that prices it</span>
               )}
