@@ -173,5 +173,48 @@ const walk = (n, spikeAt = -1, spike = 6) => {
     computeMACD(from(new Array(20).fill(5))).crossUp === false);
 }
 
+// ── How many bars each of these actually needs ─────────────────────────────
+//
+// A recursive indicator starts from an arbitrary seed whose weight decays as
+// (1-k)^n. "Enough bars" means enough for that seed to stop mattering. The
+// Screener fetched 250 for everything, which is comfortable for RSI, MACD,
+// EMA20 and EMA50 — and not for the two long EMAs, so an "EMA200" was 61% its
+// own opening average and the golden-cross filter was closer to an SMA cross.
+//
+// These are the numbers the fetch size is chosen from, asserted rather than
+// left in a comment where they can quietly stop being true.
+{
+  const seedWeight = (period, bars, wilder = false) => {
+    const k = wilder ? 1 / period : 2 / (period + 1);
+    return Math.pow(1 - k, Math.max(0, bars - period));
+  };
+  const pct = x => `${(x * 100).toFixed(1)}%`;
+
+  check('at 250 bars an EMA200 is still mostly its own seed',
+    seedWeight(200, 250) > 0.5, pct(seedWeight(200, 250)));
+  // Five percent, not sixty. Wrong by a little rather than a different
+  // indicator — worth fixing when the deep pull is already happening, not
+  // worth tripling the download on its own.
+  check('and an EMA100 carries a few percent of seed, borderline rather than broken',
+    seedWeight(100, 250) > 0.03 && seedWeight(100, 250) < 0.10,
+    pct(seedWeight(100, 250)));
+  check('at 700 bars the EMA200 seed is under one percent',
+    seedWeight(200, 700) < 0.01, pct(seedWeight(200, 700)));
+
+  check('RSI and ATR are fine at 250 — Wilder decays slower but 236 steps is plenty',
+    seedWeight(14, 250, true) < 0.001, pct(seedWeight(14, 250, true)));
+  check('EMA20 and EMA50 are fine at 250 too',
+    seedWeight(20, 250) < 1e-6 && seedWeight(50, 250) < 0.001,
+    `${pct(seedWeight(20, 250))} and ${pct(seedWeight(50, 250))}`);
+  check('MACD\'s slow leg is fine at 250',
+    seedWeight(26, 250) < 1e-6, pct(seedWeight(26, 250)));
+
+  // And the reason the deep pull is conditional rather than always on.
+  const mb = (bars) => (72 * bars * 150) / 1e6;
+  check('fetching 700 for all seventy-two instruments roughly triples the download',
+    mb(700) / mb(250) > 2.5 && mb(700) > 7,
+    `${mb(250).toFixed(1)} MB a refresh at 250, ${mb(700).toFixed(1)} MB at 700, every ninety seconds`);
+}
+
 console.log(fails ? `\n${fails} FAILED` : '\nall passed');
 process.exit(fails ? 1 : 0);
