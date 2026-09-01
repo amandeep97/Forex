@@ -117,6 +117,53 @@ const MAX_ALERTS_PER_HOUR = 4;
 const MIN_ALERT_GAP_MS = 8 * 60e3;
 const ALERT_MEMORY_MS = 2 * 3600e3;
 
+// ── Theatres ─────────────────────────────────────────────────────────────────
+//
+// The market prices in "the US is striking Iran" ONCE. The fifth report of
+// another strike in the same war is not a new event to trade; it is the same
+// event being reported again, and a phone that buzzes for each one is telling
+// you something you already acted on.
+//
+// Suppressing on shared PROPER NOUNS was the first attempt and it does not
+// work, which three live alerts inside two hours demonstrated:
+//
+//   "US strikes Iran as state media reports four killed at wedding party"
+//        → iran
+//   "Iranian media reports US missile attack near Ahvaz"
+//        → iranian, ahvaz, middle, east
+//   "US military conducting fresh strikes in the Strait of Hormuz"
+//        → strait, hormuz, axios
+//
+// Not one word in common between any pair. "Iran" and "Iranian" are different
+// strings, and Ahvaz, Hormuz and a wedding party are genuinely different
+// places — in the same war.
+//
+// So the key is the CONFLICT, not the entity. Two headlines touching the same
+// theatre are the same running story however differently they are worded, and
+// the theatre stays quiet for four hours unless something escalates it.
+const THEATRES = {
+  iran:     /\b(iran|iranian|tehran|hormuz|ahvaz|irgc|persian gulf|bandar)\b/i,
+  levant:   /\b(israel|israeli|gaza|hamas|hezbollah|lebanon|west bank|houthi|red sea|yemen)\b/i,
+  ukraine:  /\b(russia|russian|ukrain\w*|moscow|kyiv|kremlin|putin|zelensk\w*|donbas)\b/i,
+  taiwan:   /\b(taiwan|beijing|south china sea|pla navy)\b/i,
+  korea:    /\b(north korea|pyongyang|kim jong)\b/i,
+  venezuela:/\b(venezuela|venezuelan|maduro|caracas)\b/i,
+};
+
+// Four hours. Long enough that one war is one alert through a session, short
+// enough that tomorrow morning's development is news again.
+const THEATRE_QUIET_MS = 4 * 3600e3;
+
+// Which conflicts a headline touches. A story naming two of them — "Israel
+// strikes Iran" — belongs to both, and overlapping with EITHER later is enough
+// to call it the same running story.
+function theatresIn(text) {
+  const t = String(text || '');
+  const out = new Set();
+  for (const [name, rx] of Object.entries(THEATRES)) if (rx.test(t)) out.add(name);
+  return out;
+}
+
 // ── Corroboration ────────────────────────────────────────────────────────────
 //
 // One outlet reporting something is a CLAIM. Three within half an hour is an
@@ -783,7 +830,8 @@ class NewsFetcher {
 
     // Forget what was alerted more than two hours ago; a new day's Iran story
     // is a new story.
-    this.alertLog = (this.alertLog || []).filter(a => now - a.at < ALERT_MEMORY_MS);
+    this.alertLog = (this.alertLog || [])
+      .filter(a => now - a.at < Math.max(ALERT_MEMORY_MS, THEATRE_QUIET_MS));
     const lastAt = this.alertLog.length ? Math.max(...this.alertLog.map(a => a.at)) : 0;
     const inLastHour = this.alertLog.filter(a => now - a.at < 3600e3).length;
 
@@ -805,15 +853,22 @@ class NewsFetcher {
       if (budget <= 0) break;
       const sev = h.sev ?? 1;
       const nouns = properNouns(h.title);
-      // Already told you about this war, unless it just got worse.
-      const prior = this.alertLog.find(a => [...nouns].some(w => a.nouns.has(w)));
+      const theatres = theatresIn(`${h.title} ${h.desc || ''}`);
+
+      // Already told you about this war. The theatre is the strong test and
+      // holds for four hours; the proper nouns are the fallback for a story
+      // that belongs to no named conflict.
+      const prior = this.alertLog.find(a =>
+        (theatres.size && now - a.at < THEATRE_QUIET_MS
+          && [...theatres].some(x => a.theatres?.has(x)))
+        || [...nouns].some(w => a.nouns.has(w)));
       if (prior && !(sev >= 3 && prior.sev < 3)) continue;
       // Not within eight minutes of the last one, unless it is urgent and the
       // last one was not.
       if (now - gapFrom < MIN_ALERT_GAP_MS && !(sev >= 3 && (!prior || prior.sev < 3))) continue;
 
       hits.push(h);
-      this.alertLog.push({ at: now, sev, nouns });
+      this.alertLog.push({ at: now, sev, nouns, theatres });
       gapFrom = now;
       budget--;
     }
@@ -908,4 +963,5 @@ class NewsFetcher {
 module.exports = { NewsFetcher, NEWS_PATH, HISTORY_PATH, parseRSS, currenciesIn,
                    CURRENCY_WORDS, numOf, withSurprise, NOT_ABOUT, releasedValue, RELEASE_MAP,
                    corroborate, tokens, properNouns, POLL_MS, MAX_HEADLINES,
-                   MAX_ALERTS_PER_HOUR, MIN_ALERT_GAP_MS, ALERT_MEMORY_MS };
+                   MAX_ALERTS_PER_HOUR, MIN_ALERT_GAP_MS, ALERT_MEMORY_MS,
+                   theatresIn, THEATRES, THEATRE_QUIET_MS };
