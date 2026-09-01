@@ -459,7 +459,14 @@ export default function Screener() {
     allInstruments.forEach(inst => {
       try {
         const real = realCandles[inst.id];
-        const candles   = (real && real.length >= 60) ? real : generateCandles(inst, tfFilter, barCount);
+        // Whether this row is a measurement or an illustration. With no OANDA
+        // key, or a failed fetch, `real` is null and everything below is
+        // computed on a RANDOM WALK from generateCandles — RSI, the EMAs, MACD,
+        // the SMC structure, the patterns, the score. The footer counted how
+        // many rows were like that; nothing on the row itself said which, so a
+        // fabricated 82% bullish looked exactly like a measured one.
+        const isReal    = !!(real && real.length >= 60);
+        const candles   = isReal ? real : generateCandles(inst, tfFilter, barCount);
         const prevCandles = candles.slice(0, -1);
         const rsiVal    = computeRSI(candles, 14);
         const mfiVal    = computeMFI(candles, 14);
@@ -564,6 +571,7 @@ export default function Screener() {
           hasOB, hasFVG, hasBullOB, hasBearOB, hasBullFVG, hasBearFVG,
           obTap, fvgTap,
           bosBullish, bosBearish, chochBullish, chochBearish,
+          real: isReal,
           zone, structure, strength, strengthDir, vwapAbove,
           // BSL = near a swing high (buy-side liquidity rests above highs)
           // SSL = near a swing low (sell-side liquidity rests below lows)
@@ -593,7 +601,7 @@ export default function Screener() {
           brokeTrendline:false, hasOB:false, hasFVG:false, hasBullOB:false, hasBearOB:false,
           hasBullFVG:false, hasBearFVG:false, obTap:false, fvgTap:false, bosBullish:false,
           bosBearish:false, chochBullish:false, chochBearish:false,
-          zone:'discount', structure:'neutral', strength:50, strengthDir:'neutral',
+          real:false, zone:'discount', structure:'neutral', strength:null, strengthDir:'neutral',
           vwapAbove:true, buySideLiq:false, sellSideLiq:false,
           patternIds:[], patternType:'neut',
           ema20:null, ema50:null, ema100:null, ema200:null,
@@ -661,6 +669,28 @@ export default function Screener() {
       const q = f.search.trim().toUpperCase();
       list = list.filter(i => i.symbol.toUpperCase().includes(q));
     }
+    // Everything past this line filters on a MEASURED reading — an indicator,
+    // a pattern, a structure, a liquidity level. A row with no live candles has
+    // none of those; it has a random walk that happens to produce numbers, and
+    // letting it through means a "golden cross" scan returns instruments where
+    // the cross was invented. The rows stay on the board, marked "no data"; they
+    // just cannot be a hit.
+    //
+    // Only applied when such a filter is actually on, so an unconnected user
+    // browsing the board is not handed an empty screen for no reason.
+    const measuredFilterOn = [
+      f.rsiMin, f.rsiMax, f.mfiMin, f.mfiMax,
+    ].some(v => v != null && v !== '')
+      || [f.candleType, f.candlePattern, f.structure, f.zone, f.liqType, f.vwapBias,
+          f.pocBias, f.vaPosition, f.obDir, f.fvgDir, f.emaPriceFilter, f.emaAlignFilter,
+          f.emaCrossFilter, f.macdFilter, f.divergenceFilter, f.eqhlFilter]
+        .some(v => v && v !== 'Any' && v !== 'All')
+      || [f.requireNearResistance, f.requireNearSupport, f.requireBrokeResistance,
+          f.requireBrokeSupport, f.requireTrendlineBull, f.requireTrendlineBear,
+          f.requireTrendlineBreak, f.requireOb, f.requireFvg, f.requireBos, f.requireChoch]
+        .some(Boolean);
+    if (measuredFilterOn) list = list.filter(i => a[i.id]?.real);
+
     if (f.rsiMin != null && f.rsiMin !== '') list = list.filter(i => (a[i.id]?.rsi||50) >= Number(f.rsiMin));
     if (f.rsiMax != null && f.rsiMax !== '') list = list.filter(i => (a[i.id]?.rsi||50) <= Number(f.rsiMax));
     if (f.mfiMin != null && f.mfiMin !== '') list = list.filter(i => (a[i.id]?.mfi||50) >= Number(f.mfiMin));
@@ -1107,12 +1137,24 @@ export default function Screener() {
                       <td><ZoneBadge zone={ai.zone}/></td>
                       {/* Structure */}
                       <td><StructBadge structure={ai.structure}/></td>
-                      {/* AI Score circle */}
-                      <td style={{ padding:'6px 8px' }}>
-                        <AIScoreCircle score={ai.strength || 50} dir={ai.strengthDir || 'neutral'}/>
+                      {/* AI Score circle — a score, or a plain statement that
+                          there is nothing to score. `|| 50` was hiding two
+                          different things behind the same number: a genuine
+                          neutral reading of zero, and a row built from a random
+                          walk because no live candles arrived. */}
+                      <td style={{ padding:'6px 8px', textAlign:'center' }}>
+                        {ai.real
+                          ? <AIScoreCircle score={ai.strength ?? 50} dir={ai.strengthDir || 'neutral'}/>
+                          : <span title="No live candles for this instrument — connect OANDA in Settings. Nothing here is measured."
+                              style={{ fontSize:9, fontWeight:700, color:'#f59e0b', border:'1px solid #f59e0b55',
+                                borderRadius:4, padding:'2px 6px', whiteSpace:'nowrap' }}>no data</span>}
                       </td>
                       {/* Strength bar */}
-                      <td><StrengthBar value={ai.strength || 50} dir={ai.strengthDir || 'neutral'}/></td>
+                      <td>
+                        {ai.real
+                          ? <StrengthBar value={ai.strength ?? 50} dir={ai.strengthDir || 'neutral'}/>
+                          : <span style={{ color:'#475569', fontSize:10 }}>—</span>}
+                      </td>
                       {/* Signal */}
                       <td><SignalBadge signal={p.signal}/></td>
                       {/* Sentiment — COT speculator net positioning */}
@@ -1138,8 +1180,8 @@ export default function Screener() {
             {candleLoading
               ? <span style={{ color:'#f59e0b', fontWeight:700 }}>⟳ loading live data…</span>
               : realCount > 0
-                ? <span style={{ color:'#22c55e', fontWeight:700 }}>● LIVE ({realCount} real{realCount < allInstruments.length ? `, ${allInstruments.length - realCount} demo` : ''})</span>
-                : <span style={{ color:'#ef4444', fontWeight:700 }}>● DEMO — connect OANDA (Settings) for real FX data</span>}
+                ? <span style={{ color:'#22c55e', fontWeight:700 }}>● LIVE ({realCount} real{realCount < allInstruments.length ? `, ${allInstruments.length - realCount} marked "no data"` : ''})</span>
+                : <span style={{ color:'#ef4444', fontWeight:700 }}>● No live candles — connect OANDA (Settings). Nothing on this board is measured.</span>}
           </div>
         </div>
       </div>
