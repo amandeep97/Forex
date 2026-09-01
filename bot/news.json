@@ -903,6 +903,32 @@
   ],
   "headlines": [
     {
+      "title": "US strikes Iran as state media reports four killed at wedding party",
+      "link": "https://www.bbc.co.uk/news/articles/cj06q4ynpmjo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC World",
+      "desc": "Iranian news agencies said retaliatory missile and drone attacks on US targets had begun.",
+      "at": 1788299308000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1788297060000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Geopolitical conflict boosts safe havens and oil."
+    },
+    {
       "title": "US strikes Iran after failed Iranian missile, mine attacks - fox8live.com",
       "link": "https://news.google.com/rss/articles/CBMiogFBVV95cUxPSG1sWUkwM3RaaS1iNVBIeURaZ1duVlNRb3NjX1FnblV1S3lIME5aWGd4Zk9EaGNhVG1KVEdfR2g5dXNGQ0ZxMktkYy1NbGRDRUM0SnRHSGltbTFpcVBkV0lDa0xqSko1UVBDQVVTajNoVjJfU2xwZkIxUHpUOVdGbWY1ZmZYb1dtZGU4OW0wMHdsLUVsY0wxTU9NVHZJdnlJVHc?oc=5",
       "source": "Wires (geo)",
@@ -952,32 +978,6 @@
         "UKOIL": "up"
       },
       "why": "Oil jumps on U.S.-Iran military escalation"
-    },
-    {
-      "title": "US strikes Iran as state media reports four killed at wedding party",
-      "link": "https://www.bbc.co.uk/news/articles/cj06q4ynpmjo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC World",
-      "desc": "Iranian news agencies said retaliatory missile and drone attacks on US targets had begun.",
-      "at": 1788298343000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1788297060000,
-      "dir": {
-        "XAU/USD": "up",
-        "USOIL": "up",
-        "UKOIL": "up"
-      },
-      "why": "Geopolitical conflict boosts safe havens and oil."
     },
     {
       "title": "Mexico stocks lower at close of trade; S&P/BMV IPC down 1.40%",
@@ -1407,6 +1407,28 @@
       "why": "Geopolitical blame, no clear market direction"
     },
     {
+      "title": "U.S. stocks slip on Wall Street under pressure from higher oil prices and rising bond yields - BNN Bloomberg",
+      "link": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQZEprNFRpcEdCQjhxOTQ0TC14N0tkTEZKUFdnek9jalJ3ck1jdktyUWRlZG9jb0poUTRLZWFYbUNEM1FUQ0xNXzlJUVd4R0xocG1qQVYtQjJrNVNIQXpNU0F4TVVUZVptdWo4WlptQVNwemhEMmYzczB3TzJZTUQxYjRpUnNxNTZBWXdmRnBpWVRYZG1rUUNHMHFBZ1lORzBSRVRLUGJaVklRQThZY2NpeGcwRGZjYWd1cVE?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiugFBVV95cUxQZEprNFRpcEdCQjhxOTQ0TC14N0tkTEZKUFdnek9jalJ3ck1jdktyUWRlZG9jb0poUTRLZWFYbUNEM1FUQ0xNXzlJUVd4R0xocG1qQVYtQjJrNVNIQXpNU0F4TVVUZVptdWo4WlptQVNwemhEMmYzczB3TzJZTUQxYjRpUnNxNTZBWXdmRnBpWVRYZG1rUUNHMHFBZ1lORzBSRVRLUGJaVklRQT",
+      "at": 1788294863000,
+      "inst": [
+        "USOIL",
+        "US500"
+      ],
+      "ccy": [
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788294863000,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Stocks slip on higher oil and yields"
+    },
+    {
       "title": "Israel says Hamas security chief captured as strikes kill four during Gaza raid",
       "link": "https://www.bbc.co.uk/news/articles/c1wxex4vg35o?at_medium=RSS&at_campaign=rss",
       "source": "BBC World",
@@ -1802,7 +1824,7 @@
       "why": "Tariff rhetoric, direction unclear for FX"
     },
     {
-      "title": "Iran strikes back at US positions: Iranian media - Anadolu Ajansı",
+      "title": "Iran strikes back at US positions: Iranian media - aa.com.tr",
       "link": "https://news.google.com/rss/articles/CBMilwFBVV95cUxNRlRnOVNlcjgzUkZLUE0zV3ROX1BOVnJRWDV1bmxwbkJ4TzBDM2VPc2lBM0lGTzVEQ0MtZmRHdEh6YVFLaEMwT0ZwZEotZlFGVlBuSjdOZ19zZEdPS3lNS0wzc1M2Z2d1TlJfZmRjRVNwRzhvaGRGUFByNEpkcmpURFNOQjRCZWRaVUF6X1ZEc2dPM1hBRTFz?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMilwFBVV95cUxNRlRnOVNlcjgzUkZLUE0zV3ROX1BOVnJRWDV1bmxwbkJ4TzBDM2VPc2lBM0lGTzVEQ0MtZmRHdEh6YVFLaEMwT0ZwZEotZlFGVlBuSjdOZ19zZEdPS3lNS0wzc1M2Z2d1TlJfZmRjRVNwRzhvaGRGUFByNEpkcmpURFNOQjRCZWRaVUF6X1ZEc2dPM1hBRTFz?oc=5\" target=\"_blank\">Ira",
@@ -1825,7 +1847,7 @@
         "USOIL": "up",
         "UKOIL": "up"
       },
-      "why": "Retaliatory strikes increase geopolitical uncertainty"
+      "why": "Iran strikes US, boosting oil and gold"
     },
     {
       "title": "West African crude demand weakens as differentials rise",
@@ -2206,7 +2228,7 @@
       "firstAt": 1788283246000
     },
     {
-      "title": "Trump says US launches ‘large and powerful’ strikes near Strait of Hormuz - Anadolu Ajansı",
+      "title": "Trump says US launches ‘large and powerful’ strikes near Strait of Hormuz - aa.com.tr",
       "link": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNT29EbGlXRjV4NFB1eld4cWliRFpvR1R3dUtmSXJ2N0J2NW1aNGpwNHpJaWY5VEFpT3dGSFN1VHBzYmdSWGlMX3hxanR4cDBISGZQNGtOQW83eXJrWFhxamhPSHFkOGdVdUtNbVJzSm9wLUV2RmZjcUJNeU9KUzk0c0wwQXp3R0gyaVFIUlk2Wk43MmVUY0E5S2ZqbTIzXzBSRkNtdURacmp6ZjA?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiqwFBVV95cUxNT29EbGlXRjV4NFB1eld4cWliRFpvR1R3dUtmSXJ2N0J2NW1aNGpwNHpJaWY5VEFpT3dGSFN1VHBzYmdSWGlMX3hxanR4cDBISGZQNGtOQW83eXJrWFhxamhPSHFkOGdVdUtNbVJzSm9wLUV2RmZjcUJNeU9KUzk0c0wwQXp3R0gyaVFIUlk2Wk43MmVUY0E5S2ZqbTIzXzBSRkNtdURacmp6Zj",
@@ -2821,7 +2843,7 @@
       "why": "US strikes on Iran boost gold and oil."
     },
     {
-      "title": "US warns citizens in Middle East of flight cancellations, airspace closures over escalation risk - Anadolu Ajansı",
+      "title": "US warns citizens in Middle East of flight cancellations, airspace closures over escalation risk - aa.com.tr",
       "link": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxQUzNraFR3eHliNHhpNWpxcDEyUTZTVkNmX0lPQnNlLThPWVpUcU15RWhuQ1lVaVVGb0dTMXpfUE9NQjF1Si0xcHJvMEU5bXlUa2tIYXdqQkE2dTd6RGN6czNWYldjSjV2R3RBZzVQQ3ZvR21zejFkaGgyWmk3aFEtMzh5ckVCcGhoc2IxYWg5MDlQaVpUbGRzOXBBbzRYemlqdlNQV2FCYVhlMm1HZ2FQZlRmV3huWVJxM21qN2Z2U1J0b0tMLXF0eFVYUkcyVDVpRUE?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMi0gFBVV95cUxQUzNraFR3eHliNHhpNWpxcDEyUTZTVkNmX0lPQnNlLThPWVpUcU15RWhuQ1lVaVVGb0dTMXpfUE9NQjF1Si0xcHJvMEU5bXlUa2tIYXdqQkE2dTd6RGN6czNWYldjSjV2R3RBZzVQQ3ZvR21zejFkaGgyWmk3aFEtMzh5ckVCcGhoc2IxYWg5MDlQaVpUbGRzOXBBbzRYemlqdlNQV2FCYVhlMm",
@@ -2950,32 +2972,6 @@
         "UKOIL": "up"
       },
       "why": "Sanctions boost safe havens and oil"
-    },
-    {
-      "title": "Trump Warns Of 'Biggest Attack' As Strikes Begin, Iran Says US Will Regret - NDTV",
-      "link": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQWXJzUW54Q1ZqdTdHYTRDVGd0S3hJY1F1aU1EVHhIM1pNM2U1N2h5eU5ZclRkRjAxcmNXX0xqSmQ2QmVleHhpRzR2NGFqemdFOWFQbzJZaWVZRWZ6RG5rWURnUlRGT1BoN1RrYndkMzZqZXgxQUU2b2JKYXlRQkVMcEY0VlhiZXl6NXNJVHFHbGdsSVk3Z2RsUHRWb2JtaVFoRkl1TFBramZvZFIwT29KcC1sNNIBuwFBVV95cUxQV1lYRE8yZnhBcGFHbzQ4YWhTcmNGTXFUTUpwZ2doQ3p3bjEyTVYzQWFUV3FtUnI5UE5tSkp0OUtHU0ozbjZfYTE1WThnanNkUUM2cXBGdTM2SWtnN0tIaDNObDZadGVOYm53VndDRmlMSmw0UjBWWTB6ejItT2NrRFVKTk8tRk5fZ2lzdnQ4VndITFRFYkE5aDIyV1VMbVc2Y0JfcUxPUy0wUFJCTF9ZNUVvV1IxRWFBbDlN?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiswFBVV95cUxQWXJzUW54Q1ZqdTdHYTRDVGd0S3hJY1F1aU1EVHhIM1pNM2U1N2h5eU5ZclRkRjAxcmNXX0xqSmQ2QmVleHhpRzR2NGFqemdFOWFQbzJZaWVZRWZ6RG5rWURnUlRGT1BoN1RrYndkMzZqZXgxQUU2b2JKYXlRQkVMcEY0VlhiZXl6NXNJVHFHbGdsSVk3Z2RsUHRWb2JtaVFoRkl1TFBramZvZF",
-      "at": 1788281077000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1788280045000,
-      "dir": {
-        "XAU/USD": "up",
-        "USOIL": "up",
-        "UKOIL": "up"
-      },
-      "why": "Threats of attack boost safe havens"
     }
   ],
   "sources": [
@@ -3001,7 +2997,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-01T21:48:08.041Z",
-  "headlinesAt": "2026-09-01T21:48:08.041Z",
-  "updatedAt": "2026-09-01T21:48:08.041Z"
+  "calendarAt": "2026-09-01T21:51:08.146Z",
+  "headlinesAt": "2026-09-01T21:51:08.146Z",
+  "updatedAt": "2026-09-01T21:51:08.146Z"
 }
