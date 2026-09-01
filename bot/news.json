@@ -930,6 +930,39 @@
   ],
   "headlines": [
     {
+      "title": "Shein shares slide 10% in long-awaited Hong Kong trading debut",
+      "link": "https://www.investing.com/news/stock-market-news/shein-set-for-lacklustre-debut-after-setbacks-cause-huge-drop-in-valuation-4883337",
+      "source": "Investing",
+      "at": 1788226956000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 1
+    },
+    {
+      "title": "Gold steadies after two-day drop as Iran strikes revive inflation risks",
+      "link": "https://www.investing.com/news/commodities-news/gold-steadies-after-twoday-drop-as-iran-strikes-revive-inflation-risks-4883434",
+      "source": "Investing Cmdty",
+      "at": 1788226677000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL",
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Gold steady, oil up on Iran risks"
+    },
+    {
       "title": "Fast-fashion giant Shein set to open flat in Hong Kong market debut",
       "link": "https://www.investing.com/news/stock-market-news/fastfashion-giant-shein-set-to-open-flat-in-hong-kong-market-debut-4883426",
       "source": "Investing",
@@ -955,7 +988,7 @@
       "dir": {
         "USOIL": "up"
       },
-      "why": "Oil prices rise due to supply risks"
+      "why": "Oil rises on Middle East supply risks"
     },
     {
       "title": "White House releases terms of oil deal with North American Blue Energy Partners",
@@ -970,7 +1003,7 @@
       ],
       "sev": 1,
       "rel": 2,
-      "why": "Deal terms unclear for price direction"
+      "why": "Oil deal terms released, direction unclear"
     },
     {
       "title": "Oil extends gains as Trump threatens further Iran strikes",
@@ -993,7 +1026,7 @@
         "XAU/USD": "up",
         "UKOIL": "up"
       },
-      "why": "Geopolitical risk boosts oil and gold"
+      "why": "Oil and gold up on Iran threats"
     },
     {
       "title": "Japan manufacturing PMI hits 54.9 as new orders surge most since 2018",
@@ -1012,7 +1045,7 @@
       "dir": {
         "USD/JPY": "down"
       },
-      "why": "Strong Japan data weakens dollar"
+      "why": "Strong Japan PMI weakens Yen"
     },
     {
       "title": "Western Union faces Australia probe over high-risk payment channels",
@@ -1027,7 +1060,7 @@
       ],
       "sev": 1,
       "rel": 2,
-      "why": "Payment probe lacks clear FX impact"
+      "why": "Western Union probe, no clear AUD impact"
     },
     {
       "title": "Bessent urges Japan to show path to fiscal sustainability, rate hike - NHK reports",
@@ -1046,7 +1079,7 @@
       "dir": {
         "USD/JPY": "down"
       },
-      "why": "Japan rate hike expectations weaken dollar"
+      "why": "Japan rate hike call weakens Yen"
     },
     {
       "title": "U.S. stock futures steady as markets digest rate risks, Iran escalation",
@@ -1064,7 +1097,7 @@
       ],
       "sev": 2,
       "rel": 2,
-      "why": "Markets digest risks, direction unclear"
+      "why": "Stocks steady, mixed market sentiment"
     },
     {
       "title": "SEC asks investment firms to prove they have access to shares in startups, WSJ reports",
@@ -1102,7 +1135,7 @@
         "USOIL": "up",
         "UKOIL": "up"
       },
-      "why": "Oil shock, gold weakens, yields rise"
+      "why": "Oil up, gold weakens on yields"
     },
     {
       "title": "Exclusive-US oil firm to take over some Venezuelan oilfields previously run by Chinese, Russian companies, officials say",
@@ -1117,7 +1150,7 @@
       ],
       "sev": 1,
       "rel": 2,
-      "why": "Venezuelan oilfield takeover impact unclear"
+      "why": "Venezuelan oilfield takeover, supply impact unclear"
     },
     {
       "title": "Inflation? You want inflation? UK shop prices rise at fastest pace since 2024",
@@ -1137,7 +1170,7 @@
       "dir": {
         "GBP/USD": "up"
       },
-      "why": "UK inflation rise supports hawkish BoE"
+      "why": "UK inflation rise supports Pound"
     },
     {
       "title": "US Army Secretary Driscoll resigns after months of friction with Hegseth",
@@ -1166,7 +1199,7 @@
       ],
       "sev": 2,
       "rel": 2,
-      "why": "Sanctions lobbying lacks immediate price impact"
+      "why": "Ukraine sanctions lobbying, no clear direction"
     },
     {
       "title": "The S&P 500 usually falls in September. Why this year should be different.",
@@ -1197,7 +1230,7 @@
       "ccy": [],
       "sev": 1,
       "rel": 2,
-      "why": "Investment strategy discussion, no price signal"
+      "why": "Indexing strategy discussion, no price direction"
     },
     {
       "title": "Brent surges, sees best day since end of July as U.S-Iran resume military strikes",
@@ -1220,7 +1253,7 @@
         "XAU/USD": "up",
         "USOIL": "up"
       },
-      "why": "Military strikes surge oil and gold"
+      "why": "Brent surges on resumed military strikes"
     },
     {
       "title": "23 best-performing stocks of August, as the software industry continues its recovery",
@@ -1234,7 +1267,10 @@
       "ccy": [],
       "sev": 2,
       "rel": 2,
-      "why": "August performance recap, no future signal"
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Best-performing stocks, sector recovery"
     },
     {
       "title": "Canadian dollar rebounds from two-week low as oil prices rise, BoC decision looms",
@@ -1256,7 +1292,7 @@
         "USD/CAD": "down",
         "USOIL": "up"
       },
-      "why": "CAD rebounds, oil prices rise"
+      "why": "Oil rises, CAD rebounds"
     },
     {
       "title": "Tesla’s stock among S&P 500’s top gainers as investors prepare for a Cybercab launch",
@@ -1273,7 +1309,7 @@
       "dir": {
         "US500": "up"
       },
-      "why": "Tesla stock top gainer"
+      "why": "Tesla top gainer, Cybercab launch"
     },
     {
       "title": "This maneuver is boosting oil shipments through the Strait of Hormuz",
@@ -1314,7 +1350,7 @@
       ],
       "sev": 2,
       "rel": 2,
-      "why": "Bond concern unclear direction"
+      "why": "Bond concern, unclear direction"
     },
     {
       "title": "investingLive Americas FX news wrap 31 Aug: The USD moves lower. USD corrects after Warsh's hawkish speech at Jackson Hole",
@@ -1336,7 +1372,7 @@
       "dir": {
         "US100": "up"
       },
-      "why": "Nasdaq higher, oil reserves fell"
+      "why": "Nasdaq higher, USD lower"
     },
     {
       "title": "Bullion prices rally in August, with spot gold notching best month since January",
@@ -1368,7 +1404,7 @@
       "ccy": [],
       "sev": 1,
       "rel": 2,
-      "why": "China PMI data, no US impact"
+      "why": "China PMI beats, contraction"
     },
     {
       "title": "Stocks making the biggest moves midday: PG&E, Edison International, Apple, Howmet Aerospace, Eli Lilly & more",
@@ -1382,7 +1418,7 @@
       "ccy": [],
       "sev": 1,
       "rel": 2,
-      "why": "Individual stock moves listed"
+      "why": "Stocks making biggest moves"
     },
     {
       "title": "Markets see Warsh endorsing a rate hike in September. Not everyone is convinced",
@@ -1404,23 +1440,13 @@
       ],
       "sev": 2,
       "rel": 2,
-      "why": "Rate hike expectations uncertain"
+      "why": "Rate hike expectations, cluttered path"
     },
     {
       "title": "Soybean futures retreat from highs on profit-taking",
       "link": "https://www.investing.com/news/commodities-news/soybean-futures-retreat-from-highs-on-profittaking-93CH-4883186",
       "source": "Investing Cmdty",
       "at": 1788205039000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1
-    },
-    {
-      "title": "CBOT wheat futures fall after Turkey proposes Black Sea grain plan",
-      "link": "https://www.investing.com/news/commodities-news/cbot-wheat-futures-fall-after-turkey-proposes-black-sea-grain-plan-93CH-4883183",
-      "source": "Investing Cmdty",
-      "at": 1788204704000,
       "inst": [],
       "ccy": [],
       "sev": 1,
@@ -1451,7 +1477,7 @@
       ],
       "sev": 1,
       "rel": 2,
-      "why": "Arbitrator ruling, no price impact"
+      "why": "Arbitrator says Gemini not at fault"
     },
     {
       "title": "Aon CEO says insurance broker seeks to build 'premiere middle market platform' with purchase of rival USI",
@@ -1481,7 +1507,7 @@
       ],
       "sev": 2,
       "rel": 2,
-      "why": "Diplomacy test, unclear outcome"
+      "why": "G20 diplomacy test, bond turmoil"
     },
     {
       "title": "Treas Sec Bessent: Oil price are going to come down. US 10 year yield is where it was when Pres. Trump took office.",
@@ -1501,7 +1527,7 @@
       "dir": {
         "USOIL": "down"
       },
-      "why": "Bessent says oil prices will fall"
+      "why": "Bessent: Oil prices coming down"
     },
     {
       "title": "Bitcoin and ethereum prices today, Monday, August 31, 2026: Higher rate expectations pressure crypto prices lower",
@@ -1521,7 +1547,7 @@
         "BTC/USDT": "down",
         "ETH/USDT": "down"
       },
-      "why": "Rate expectations pressure crypto lower"
+      "why": "Higher rates pressure crypto lower"
     },
     {
       "title": "Treas. Sec Bessent at the G20: Iran taking sanctions seriously",
@@ -1541,7 +1567,7 @@
       ],
       "sev": 2,
       "rel": 2,
-      "why": "Iran sanctions pressure, unclear direction"
+      "why": "Iran taking sanctions seriously"
     },
     {
       "title": "Silver prices today, Monday, August 31, 2026: Silver opens lower as rate-hike expectations rise",
@@ -1555,11 +1581,7 @@
         "XAG"
       ],
       "sev": 1,
-      "rel": 2,
-      "dir": {
-        "XAG/USD": "down"
-      },
-      "why": "Silver opens lower on rates"
+      "rel": 2
     },
     {
       "title": "Gold prices today, Monday, August 31, 2026: Gold sinks following U.S. strikes on Iran",
@@ -1849,27 +1871,6 @@
       "rel": 2
     },
     {
-      "title": "More from Bessent, presses G20 to confront China's $1.2 trillion trade surplus",
-      "link": "https://investinglive.com/news/more-from-bessent-presses-g20-to-confront-china-s-1-2-trillion-trade-surplus/",
-      "source": "ForexLive",
-      "desc": "Bessent framing China's trade surplus as unacceptable at a G20 gathering he is personally trying to reshape signals Washington intends to use the forum to build multilateral pressure on Beijing rather than relying solely on bilateral tariffs, which could unsettle currencies and e",
-      "at": 1788131502000,
-      "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2
-    },
-    {
       "title": "Is a ‘Bessent doctrine’ taking shape in global FX policy?",
       "link": "https://www.investing.com/news/forex-news/is-a-bessent-doctrine-taking-shape-in-global-fx-policy-4882074",
       "source": "Investing FX",
@@ -1941,7 +1942,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-01T01:36:35.896Z",
-  "headlinesAt": "2026-09-01T01:36:35.896Z",
-  "updatedAt": "2026-09-01T01:36:35.896Z"
+  "calendarAt": "2026-09-01T01:52:40.378Z",
+  "headlinesAt": "2026-09-01T01:52:40.378Z",
+  "updatedAt": "2026-09-01T01:52:40.378Z"
 }
