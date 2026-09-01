@@ -411,12 +411,39 @@ export default function Screener() {
   const lookback = Math.max(1, parseInt(filters.candleInterval) || 1);
   const tfFilter = filters.structureTF || '4h';
 
+  // How many bars this screen actually needs, decided by the filters that are on.
+  //
+  // A recursive indicator starts from an arbitrary seed whose weight decays as
+  // (1-k)^n, so "enough bars" means enough for the seed to stop mattering —
+  // about 3.3x the period for one percent. At 250 bars everything here clears
+  // that except the two long EMAs:
+  //
+  //     EMA20 needs 67    EMA50 needs 166    RSI/ATR need 77    MACD needs 107
+  //     EMA100 needs 331  EMA200 needs 661
+  //
+  // So an "EMA200" built from 250 bars was 61% its own opening average — the
+  // golden-cross and death-cross filters were closer to SMA crosses than EMA
+  // ones.
+  //
+  // Fetching 700 for everything would fix it and roughly triple the download:
+  // seventy-two instruments every ninety seconds is about 2.7 MB a cycle at 250
+  // and 7.6 MB at 700, which on a phone is 300 MB an hour with the tab left
+  // open. So the deep pull happens only when a filter that needs it is actually
+  // selected, and the board scan stays cheap the rest of the time.
+  const barCount = useMemo(() => {
+    const f = filters;
+    const deep = /100|200/.test(f.emaPriceFilter || '')
+      || /200/.test(f.emaAlignFilter || '')
+      || /golden|death/.test(f.emaCrossFilter || '');
+    return deep ? 700 : 250;
+  }, [filters.emaPriceFilter, filters.emaAlignFilter, filters.emaCrossFilter]);
+
   // Fetch REAL candles for the selected timeframe (OANDA + Binance), refresh every 90s
   useEffect(() => {
     let cancelled = false;
     setCandleLoading(true);
     const load = async () => {
-      const map = await fetchAllScreenerCandles(allInstruments, tfFilter, { count: 250 });
+      const map = await fetchAllScreenerCandles(allInstruments, tfFilter, { count: barCount });
       if (cancelled) return;
       setRealCandles(map);
       setRealCount(Object.keys(map).length);
@@ -425,14 +452,14 @@ export default function Screener() {
     load();
     const id = setInterval(load, 90000);
     return () => { cancelled = true; clearInterval(id); };
-  }, [tfFilter]);
+  }, [tfFilter, barCount]);
 
   const analysis = useMemo(() => {
     const map = {};
     allInstruments.forEach(inst => {
       try {
         const real = realCandles[inst.id];
-        const candles   = (real && real.length >= 60) ? real : generateCandles(inst, tfFilter, 250);
+        const candles   = (real && real.length >= 60) ? real : generateCandles(inst, tfFilter, barCount);
         const prevCandles = candles.slice(0, -1);
         const rsiVal    = computeRSI(candles, 14);
         const mfiVal    = computeMFI(candles, 14);
@@ -580,7 +607,7 @@ export default function Screener() {
       }
     });
     return map;
-  }, [tfFilter, lookback, strevN, realCandles]);
+  }, [tfFilter, lookback, strevN, realCandles, barCount]);
 
   // ── Live prices ───────────────────────────────────────────────────────────
   const instrumentsWithLive = useMemo(() => allInstruments.map(orig => {
