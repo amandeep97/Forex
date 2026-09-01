@@ -103,5 +103,75 @@ const now = Date.UTC(2026, 8, 1, 15, 0);
     /Iran OR Israel OR Russia OR Ukraine/.test(src));
 }
 
-console.log(fails ? `\n${fails} FAILED` : '\nall passed');
-process.exit(fails ? 1 : 0);
+// ── How often the phone is allowed to buzz ─────────────────────────────────
+//
+// The arithmetic that the severity and corroboration gates do NOT solve:
+// twenty passes an hour times three alerts a pass is sixty pushes, and during
+// an active war four wire feeds will genuinely produce ten to twenty distinct
+// geopolitical headlines an hour that clear every other gate. A phone that
+// buzzes every few minutes has its notifications switched off, and then the
+// whole feature is worth nothing.
+//
+// Simulated here against a real war: one story, many outlets, over an hour.
+{
+  check('the ceiling is four an hour, not sixty',
+    N.MAX_ALERTS_PER_HOUR === 4, String(N.MAX_ALERTS_PER_HOUR));
+  check('with a floor of eight minutes between them',
+    N.MIN_ALERT_GAP_MS === 8 * 60e3, `${N.MIN_ALERT_GAP_MS / 60e3} minutes`);
+  check('and a two-hour memory, so tomorrow\'s Iran story is a new story',
+    N.ALERT_MEMORY_MS === 2 * 3600e3);
+
+  // A NewsFetcher with a telegram that records instead of sending.
+  const sent = [];
+  const mk = () => new N.NewsFetcher({
+    github: { readJSON: async () => ({ content: { subscriptions: [] } }) },
+    log: () => {},
+    telegram: { enabled: true, send: async (t) => { sent.push(t); } },
+  });
+
+  // The alert pass reads the wall clock, so this runs against the real one. A
+  // burst inside a single pass, then follow-ups, is enough to prove the three
+  // behaviours that matter: collapse, escalation, and the gap.
+  const fetcher = mk();
+  const burst = [0, 1, 2, 3, 4].map(k => ({
+    title: `Israel strikes Iranian positions near Larak (${k})`,
+    source: ['Al Jazeera', 'BBC World', 'Wires (geo)', 'ForexLive', 'CNBC'][k],
+    link: `https://x/${k}`, at: Date.now() - 60e3, sev: 2, srcs: 3,
+  }));
+
+  fetcher._alert(burst).then(() => {
+    check('five outlets reporting one war is ONE buzz, not five',
+      sent.length === 1, `${sent.length} sent`);
+
+    // A second pass on the same running story stays silent.
+    const more = [{ title: 'Iran responds to Larak strikes, officials say',
+      source: 'BBC World', link: 'https://x/9', at: Date.now(), sev: 2, srcs: 2 }];
+    return fetcher._alert(more).then(() => {
+      check('and the follow-up three minutes later is silent',
+        sent.length === 1, `${sent.length} sent — it shares "Larak" with one already sent`);
+
+      // An ESCALATION gets through the same-story gate.
+      const esc = [{ title: 'BREAKING: Iran declares war after Larak strikes',
+        source: 'Wires (geo)', link: 'https://x/10', at: Date.now(), sev: 3, srcs: 4 }];
+      return fetcher._alert(esc).then(() => {
+        check('but an urgent escalation of the same story DOES get through',
+          sent.length === 2,
+          'suppressing a war declaration because it mentions the same place is worse than one extra buzz');
+
+        // An unrelated story is still gated by the eight-minute floor.
+        const other = [{ title: 'Sanctions imposed on Venezuela oil exports',
+          source: 'BBC World', link: 'https://x/11', at: Date.now(), sev: 2, srcs: 2 }];
+        return fetcher._alert(other).then(() => {
+          check('an unrelated heavy story inside eight minutes waits its turn',
+            sent.length === 2, `${sent.length} sent`);
+          check('nothing is ever alerted twice',
+            new Set(sent).size === sent.length);
+
+          console.log(fails ? `\n${fails} FAILED` : '\nall passed');
+          process.exit(fails ? 1 : 0);
+        });
+      });
+    });
+  });
+}
+
