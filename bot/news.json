@@ -912,6 +912,32 @@
   ],
   "headlines": [
     {
+      "title": "Shein shares slide in Hong Kong debut as investors fret about growth and regulatory risks",
+      "link": "https://www.investing.com/news/stock-market-news/shein-set-for-lacklustre-debut-after-setbacks-cause-huge-drop-in-valuation-4883337",
+      "source": "Investing",
+      "at": 1788246031000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 1
+    },
+    {
+      "title": "Japan stocks lower at close of trade; Nikkei 225 down 0.19%",
+      "link": "https://www.investing.com/news/stock-market-news/japan-stocks-lower-at-close-of-trade-nikkei-225-down-019-4883546",
+      "source": "Investing",
+      "at": 1788246004000,
+      "inst": [
+        "USD/JPY",
+        "US500"
+      ],
+      "ccy": [
+        "JPY"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "why": "Japan-specific news, no clear US impact"
+    },
+    {
       "title": "Iran says it has enough foreign currency despite US sanctions",
       "link": "https://www.investing.com/news/forex-news/iran-says-it-has-enough-foreign-currency-despite-us-sanctions-4883541",
       "source": "Investing FX",
@@ -1044,16 +1070,6 @@
       "ccy": [],
       "sev": 1,
       "rel": 2
-    },
-    {
-      "title": "Shein shares slide in Hong Kong debut as investors fret about growth and regulatory risks",
-      "link": "https://www.investing.com/news/stock-market-news/shein-set-for-lacklustre-debut-after-setbacks-cause-huge-drop-in-valuation-4883337",
-      "source": "Investing",
-      "at": 1788242451000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1
     },
     {
       "title": "Germany retail sales slump heavily in July after end of fuel discounts",
@@ -1872,23 +1888,40 @@
       "why": "German state inflation data, no clear direction"
     },
     {
-      "title": "Iran says US must bear full responsibility for consequences of escalation",
-      "link": "https://investinglive.com/news/iran-says-us-must-bear-full-responsibility-for-consequences-of-escalation/",
-      "source": "ForexLive",
-      "desc": "Iran will respond decisively to any further military aggression from \"the enemy\"US and those supporting its military actions bear full responsibility for consequences of escalationIran has attacked UAE's Al Minhad air base with drones earlier todayUS military bases in Jordan were",
-      "at": 1788150489000,
+      "title": "Warsh’s “Quiet Fed” Approach Adds a Hawkish Call at Jackson Hole",
+      "link": "https://finance.yahoo.com/economy/policy/articles/warsh-quiet-fed-approach-adds-040100898.html",
+      "source": "Yahoo Finance",
+      "at": 1788148860000,
       "inst": [
         "XAU/USD",
-        "USOIL",
-        "UKOIL"
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
       ],
       "ccy": [
-        "XAU",
-        "OIL"
+        "USD"
       ],
       "sev": 2,
       "rel": 2,
-      "why": "Iran escalation rhetoric, unclear immediate market impact"
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Hawkish Fed signals stronger dollar, lower metals"
+    },
+    {
+      "title": "Is Concentration Causing Investors to Fear the Market-Weighted Index?",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/concentration-causing-investors-fear-market-040100464.html",
+      "source": "Yahoo Finance",
+      "at": 1788148860000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 1
     },
     {
       "title": "Dow Jones Futures Fall, Oil Prices Pop As U.S. Strikes Iran",
@@ -1949,37 +1982,6 @@
       "sev": 1,
       "rel": 2,
       "why": "Policy speculation, no immediate directional impact."
-    },
-    {
-      "title": "Ethereum Price Prediction: Key On-Chain Metric Flashes “Buy” at $2,500",
-      "link": "https://finance.yahoo.com/markets/crypto/articles/ethereum-price-prediction-key-chain-204758899.html",
-      "source": "Yahoo Finance",
-      "at": 1788122878000,
-      "inst": [
-        "ETH/USDT"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "dir": {
-        "ETH/USDT": "up"
-      },
-      "why": "On-chain metric signals buy signal"
-    },
-    {
-      "title": "Strategy’s Bitcoin Is $2.8 Billion in Profit—Is Saylor Teeing Up a Buy?",
-      "link": "https://finance.yahoo.com/markets/crypto/articles/strategy-bitcoin-2-8-billion-193955159.html",
-      "source": "Yahoo Finance",
-      "at": 1788118795000,
-      "inst": [
-        "BTC/USDT"
-      ],
-      "ccy": [
-        "BTC"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "why": "Question about potential buy, no confirmed action"
     }
   ],
   "sources": [
@@ -2001,7 +2003,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-01T07:08:36.746Z",
-  "headlinesAt": "2026-09-01T07:08:36.746Z",
-  "updatedAt": "2026-09-01T07:08:36.746Z"
+  "calendarAt": "2026-09-01T07:24:36.919Z",
+  "headlinesAt": "2026-09-01T07:24:36.919Z",
+  "updatedAt": "2026-09-01T07:24:36.919Z"
 }
