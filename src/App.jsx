@@ -9,6 +9,7 @@ const AIAnalysis       = lazy(() => import('./components/AIAnalysis'));
 const PairHub          = lazy(() => import('./components/PairHub'));
 const TradeDashboard   = lazy(() => import('./components/TradeDashboard'));
 const TradingDesk      = lazy(() => import('./components/TradingDesk'));
+const Today            = lazy(() => import('./components/Today'));
 const WatchlistTab     = lazy(() => import('./components/WatchlistTab'));
 const AutoTrading      = lazy(() => import('./components/AutoTrading'));
 const Backtester       = lazy(() => import('./components/Backtester'));
@@ -47,6 +48,7 @@ function TabSpinner() {
 }
 
 const TABS = [
+  { id: 'today',       label: 'Today',        icon: '☀' },
   { id: 'cmd',         label: 'Command',      icon: '⚡' },
   { id: 'ai',          label: 'AI',           icon: '🤖' },
   { id: 'desk',        label: 'Desk',         icon: '🏛' },
@@ -125,8 +127,11 @@ function AccountSwitcher({ mode, onChange }) {
 }
 
 export default function App() {
-  const [activeTab, setActiveTab]     = useState('screener');
-  const [visitedTabs, setVisitedTabs] = useState(() => new Set(['screener']));
+  // Opens on Today rather than the Screener. A board of seventy-two
+  // instruments is a place to look things up, not an answer to "is there
+  // anything to do", and it was four swipes from anything that said so.
+  const [activeTab, setActiveTab]     = useState('today');
+  const [visitedTabs, setVisitedTabs] = useState(() => new Set(['today']));
   const [showCalc, setShowCalc]       = useState(false);
   const [showSettings, setShowSettings] = useState(false);
   const [showAlerts, setShowAlerts]   = useState(false);
@@ -327,6 +332,9 @@ export default function App() {
         <div style={{ display: activeTab === 'cot' ? 'flex' : 'none', flexDirection:'column', height:'calc(100vh - 120px)' }}>
           {visitedTabs.has('cot') && <COTTab />}
         </div>
+        <div style={{ display: activeTab === 'today' ? 'flex' : 'none', flexDirection:'column', height:'calc(100vh - 120px)' }}>
+          {visitedTabs.has('today') && <Today />}
+        </div>
         <div style={{ display: activeTab === 'desk' ? 'flex' : 'none', flexDirection:'column', height:'calc(100vh - 120px)' }}>
           {visitedTabs.has('desk') && <TradingDesk />}
         </div>
@@ -377,10 +385,16 @@ export default function App() {
 
       {/* ── Footer ────────────────────────────────────────────────────────── */}
       <footer className="app-footer">
+        {/* "Demo data for illustration only" was left over from before there was
+            any data, and it had become false: the board is live OANDA, the feed
+            and the studies are measured, and a footer calling all of it a
+            demonstration undercuts every number above it. What the footer should
+            say is which ACCOUNT is connected, which is the thing worth being
+            warned about. */}
         <span>
           {isReal
-            ? '⚠️ Real Money Mode — Trade responsibly'
-            : 'ForexPro v1.3 · Demo data for illustration only'}
+            ? '⚠️ Live account — orders here are real money'
+            : 'ForexPro v1.3 · live market data · practice account'}
         </span>
         <span>Session: {dateStr}</span>
       </footer>
