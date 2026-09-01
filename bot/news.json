@@ -912,55 +912,153 @@
   ],
   "headlines": [
     {
-      "title": "Canadian regulators approve Laurentian Bank transactions with Fairstone and NBC",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/canadian-regulators-approve-laurentian-bank-110517047.html",
-      "source": "Yahoo Finance",
-      "at": 1788260717000,
+      "title": "investingLive European news wrap: Risk-off returns as oil and yields extend gains",
+      "link": "https://investinglive.com/news/investinglive-european-news-wrap-risk-off-returns-as-oil-and-yields-extend-gains/",
+      "source": "ForexLive",
+      "desc": "S&P 500 analysis (with video) shows bears are back but where is the next bounce?Bitcoin at crossroads after hawkish Warsh: traders waiting for 77K-80K range breakEuro area inflation climbs above 3% in August on higher energy pricesUK mortgage borrowing slows in July, though consu",
+      "at": 1788262212000,
       "inst": [
-        "USD/CAD"
+        "USOIL",
+        "US500",
+        "BTC/USDT"
       ],
-      "ccy": [],
-      "sev": 1,
+      "ccy": [
+        "OIL",
+        "BTC",
+        "USD"
+      ],
+      "sev": 2,
       "rel": 2,
-      "why": "Bank approval, no clear FX impact"
+      "dir": {
+        "USOIL": "up",
+        "US500": "down"
+      },
+      "why": "Oil up, S&P bears, BTC range"
     },
     {
-      "title": "Reckitt Benckiser shares rise over 4% as JP Morgan upgrades to 'overweight'",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/reckitt-benckiser-shares-rise-over-110000286.html",
+      "title": "Oil climbs as renewed U.S.-Iran tensions raise risks to Hormuz oil flows",
+      "link": "https://www.investing.com/news/commodities-news/oil-extends-gains-as-trump-threatens-further-iran-strikes-4883412",
+      "source": "Investing Cmdty",
+      "at": 1788262205000,
+      "inst": [
+        "USOIL",
+        "XAU/USD",
+        "UKOIL"
+      ],
+      "ccy": [
+        "OIL",
+        "XAU"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Oil up, gold up on risk"
+    },
+    {
+      "title": "Smucker CFO Marshall Tucker Sells 18,482 Shares for $2.4 Million",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/smucker-cfo-marshall-tucker-sells-112001984.html",
       "source": "Yahoo Finance",
-      "at": 1788260400000,
+      "at": 1788261601000,
       "inst": [],
       "ccy": [],
       "sev": 1,
       "rel": 1
     },
     {
-      "title": "Swiss panel backs compromise on UBS foreign unit capital",
-      "link": "https://finance.yahoo.com/economy/policy/articles/swiss-panel-backs-compromise-ubs-105853731.html",
-      "source": "Yahoo Finance",
-      "at": 1788260333000,
+      "title": "Oil up around 2% as renewed US-Iran strikes stoke supply fears",
+      "link": "https://www.investing.com/news/commodities-news/oil-prices-rise-as-latest-fighting-resurrects-middle-east-supply-disruption-risks-4883418",
+      "source": "Investing Cmdty",
+      "at": 1788261555000,
       "inst": [
-        "USD/CHF"
+        "USOIL",
+        "XAU/USD",
+        "UKOIL"
       ],
       "ccy": [
-        "CHF"
+        "OIL",
+        "XAU"
       ],
       "sev": 1,
       "rel": 2,
-      "why": "Regulatory compromise, no clear FX impact"
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Oil up, gold up on supply"
     },
     {
-      "title": "JPMorgan places 2 European staples stocks on positive catalyst watch",
-      "link": "https://www.investing.com/news/stock-market-news/jpmorgan-places-2-european-staples-stocks-on-positive-catalyst-watch-4883784",
+      "title": "Why is SPDR Gold Shares ETF sliding today?",
+      "link": "https://www.investing.com/news/stock-market-news/why-is-spdr-gold-shares-etf-sliding-today-93CH-4883847",
       "source": "Investing",
-      "at": 1788260327000,
+      "at": 1788261446000,
       "inst": [
-        "US500"
+        "XAU/USD"
       ],
-      "ccy": [],
+      "ccy": [
+        "XAU"
+      ],
       "sev": 1,
       "rel": 2,
-      "why": "European stocks news, unclear US impact"
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold ETF sliding implies bearish"
+    },
+    {
+      "title": "London stocks fall post-holiday as global bond rout and Middle East strikes weigh",
+      "link": "https://www.investing.com/news/stock-market-news/london-stocks-fall-postholiday-as-global-bond-rout-and-middle-east-strikes-weigh-4883559",
+      "source": "Investing",
+      "at": 1788261259000,
+      "inst": [
+        "US500",
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "dir": {
+        "US500": "down",
+        "USOIL": "down"
+      },
+      "why": "Global bond rout and strikes weigh on markets"
+    },
+    {
+      "title": "European shares fall to multi-week lows on global bond rout and Middle East threat",
+      "link": "https://www.investing.com/news/stock-market-news/european-stocks-flat-as-bond-selloff-and-fresh-middle-east-strikes-rattles-market-4883554",
+      "source": "Investing",
+      "at": 1788261044000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2
+    },
+    {
+      "title": "Crypto Winter Melts: Biggest Weekly Crypto ETF Buying Spree Since the October Flash Crash",
+      "link": "https://finance.yahoo.com/markets/crypto/articles/crypto-winter-melts-biggest-weekly-110710030.html",
+      "source": "Yahoo Finance",
+      "at": 1788260830000,
+      "inst": [
+        "BTC/USDT"
+      ],
+      "ccy": [
+        "BTC"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "dir": {
+        "BTC/USDT": "up"
+      },
+      "why": "Crypto ETF buying spree bullish"
     },
     {
       "title": "Are rising bond rates really so bad? Maybe not, say these experts",
@@ -989,38 +1087,6 @@
         "US500": "down"
       },
       "why": "Strategists cautious, potential turbulence implied"
-    },
-    {
-      "title": "TSX futures edge up as crude rally offsets mining drag ahead of BoC decision",
-      "link": "https://www.investing.com/news/stock-market-news/tsx-futures-edge-up-as-crude-rally-offsets-mining-drag-ahead-of-boc-decision-4883770",
-      "source": "Investing",
-      "at": 1788259655000,
-      "inst": [
-        "USD/CAD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "CAD",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "dir": {
-        "USOIL": "up",
-        "UKOIL": "up"
-      },
-      "why": "Crude rally offsets mining drag"
-    },
-    {
-      "title": "Exclusive: U.K. stock market ’approaching irrelevance’, Webull U.K. CEO says",
-      "link": "https://www.investing.com/news/stock-market-news/exclusive-uk-stock-market-approaching-irrelevance-webull-uk-ceo-says-4883762",
-      "source": "Investing",
-      "at": 1788259377000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1
     },
     {
       "title": "European gas rally accelerates as US-Iran strikes threaten LNG shipping ahead",
@@ -1142,21 +1208,6 @@
       "why": "Oil prices extend move over $90"
     },
     {
-      "title": "Price, Not Politics, Is Driving Most of India’s Oil Buying",
-      "link": "https://finance.yahoo.com/energy/articles/price-not-politics-driving-most-093000043.html",
-      "source": "Yahoo Finance",
-      "at": 1788255000000,
-      "inst": [
-        "USOIL"
-      ],
-      "ccy": [
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "why": "Demand driver neutral for price direction"
-    },
-    {
       "title": "Dollar ascendancy leaves rivals fragile as bond yields surge to multi-year peaks",
       "link": "https://www.investing.com/news/forex-news/asian-currencies-steady-as-yen-hovers-near-160-bessent-backs-boj-hikes-4883482",
       "source": "Investing FX",
@@ -1183,21 +1234,6 @@
       "sev": 1,
       "rel": 2,
       "why": "Yields jump, direction unclear"
-    },
-    {
-      "title": "Royal Bank of Canada (RY) Posts Record Profit as Tariffs Loom",
-      "link": "https://finance.yahoo.com/economy/policy/articles/royal-bank-canada-ry-posts-091959289.html",
-      "source": "Yahoo Finance",
-      "at": 1788254399000,
-      "inst": [
-        "USD/CAD"
-      ],
-      "ccy": [
-        "CAD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "why": "Bank profit, no clear FX direction"
     },
     {
       "title": "Italy August preliminary CPI +3.3% vs +3.3% y/y expected",
@@ -1244,28 +1280,6 @@
       "why": "Gold falls, oil jumps"
     },
     {
-      "title": "Oil rises as renewed US-Iran strikes stoke supply fears",
-      "link": "https://www.investing.com/news/commodities-news/oil-prices-rise-as-latest-fighting-resurrects-middle-east-supply-disruption-risks-4883418",
-      "source": "Investing Cmdty",
-      "at": 1788253235000,
-      "inst": [
-        "USOIL",
-        "XAU/USD",
-        "UKOIL"
-      ],
-      "ccy": [
-        "OIL",
-        "XAU"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "dir": {
-        "USOIL": "up",
-        "UKOIL": "up"
-      },
-      "why": "Supply fears boost oil"
-    },
-    {
       "title": "Euro area inflation climbs above 3% in August on higher energy prices",
       "link": "https://investinglive.com/news/euro-area-inflation-climbs-above-3-in-august-on-higher-energy-prices/",
       "source": "ForexLive",
@@ -1281,30 +1295,6 @@
       "sev": 3,
       "rel": 2,
       "why": "Inflation as expected, no clear direction"
-    },
-    {
-      "title": "Inside Robert De Niro’s property portfolio, including a Hamptons estate and his own ski slope",
-      "link": "https://www.marketwatch.com/story/inside-robert-de-niros-property-portfolio-including-a-hamptons-estate-and-his-own-ski-slope-0ed53160?mod=mw_rss_topstories",
-      "source": "MarketWatch",
-      "desc": "Robert De Niro has spent more than five decades building one of Hollywood’s most celebrated careers—and an incredibly unique mulitmillion-dollar property portfolio.",
-      "at": 1788253140000,
-      "inst": [],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 1,
-      "rel": 1
-    },
-    {
-      "title": "Shein shares fall up to 10% after long-awaited trading debut",
-      "link": "https://www.marketwatch.com/story/shein-shares-fall-up-to-10-after-long-awaited-trading-debut-edecb6ee?mod=mw_rss_topstories",
-      "source": "MarketWatch",
-      "desc": "The fast-fashion giant’s stock slumped after four years of public backlash over labor and ethical concerns.",
-      "at": 1788252060000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1
     },
     {
       "title": "Global bond rout deepens as Middle East escalation and inflation shock push yields",
@@ -1363,29 +1353,6 @@
         "US500": "down"
       },
       "why": "Futures fall on inflation and rate fears"
-    },
-    {
-      "title": "Oil gains as renewed U.S.-Iran tensions raise risks to Hormuz oil flows",
-      "link": "https://www.investing.com/news/commodities-news/oil-extends-gains-as-trump-threatens-further-iran-strikes-4883412",
-      "source": "Investing Cmdty",
-      "at": 1788249880000,
-      "inst": [
-        "USOIL",
-        "XAU/USD",
-        "UKOIL"
-      ],
-      "ccy": [
-        "OIL",
-        "XAU"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "dir": {
-        "USOIL": "up",
-        "XAU/USD": "up",
-        "UKOIL": "up"
-      },
-      "why": "Oil gains on U.S.-Iran tensions"
     },
     {
       "title": "Euro area factory growth continues to expand in August, driven by Germany - PMI data",
@@ -1933,6 +1900,79 @@
       "ccy": [],
       "sev": 1,
       "rel": 2
+    },
+    {
+      "title": "Goldman Sachs sends blunt message on oil price, economy",
+      "link": "https://finance.yahoo.com/energy/articles/goldman-sachs-sends-blunt-message-003700417.html",
+      "source": "Yahoo Finance",
+      "at": 1788136620000,
+      "inst": [
+        "USOIL"
+      ],
+      "ccy": [
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "why": "Blunt message implies uncertainty, no clear direction."
+    },
+    {
+      "title": "Is a ‘Bessent doctrine’ taking shape in global FX policy?",
+      "link": "https://www.investing.com/news/forex-news/is-a-bessent-doctrine-taking-shape-in-global-fx-policy-4882074",
+      "source": "Investing FX",
+      "at": 1788127093000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "why": "Policy speculation, no immediate directional impact."
+    },
+    {
+      "title": "U.S. appeals court rules against prediction markets, sets up likely fight at Supreme Court",
+      "link": "https://www.cnbc.com/2026/08/28/appeals-court-rules-against-prediction-markets-tees-up-scotus-fight.html",
+      "source": "CNBC Markets",
+      "desc": "The 9th U.S. Circuit Court of Appeals ruled that sports-related event contracts are not swaps, contradicting a 3rd Circuit ruling from April.",
+      "at": 1787970232000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 1
+    },
+    {
+      "title": "U.S. Treasury yields rise, 2-yr soars as Sept hike back in play after Warsh speech",
+      "link": "https://www.investing.com/news/stock-market-news/german-10year-yield-touches-highest-level-since-2011-on-inflation-threats-4880683",
+      "source": "Investing FX",
+      "at": 1787951877000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Rising yields strengthen dollar, hurt metals"
     }
   ],
   "sources": [
@@ -1954,7 +1994,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-01T11:20:37.818Z",
-  "headlinesAt": "2026-09-01T11:20:37.818Z",
-  "updatedAt": "2026-09-01T11:20:37.818Z"
+  "calendarAt": "2026-09-01T11:35:38.115Z",
+  "headlinesAt": "2026-09-01T11:35:38.115Z",
+  "updatedAt": "2026-09-01T11:35:38.115Z"
 }
