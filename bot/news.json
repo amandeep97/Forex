@@ -933,7 +933,17 @@
       "title": "Shein shares slide 10% in long-awaited Hong Kong trading debut",
       "link": "https://www.investing.com/news/stock-market-news/shein-set-for-lacklustre-debut-after-setbacks-cause-huge-drop-in-valuation-4883337",
       "source": "Investing",
-      "at": 1788226956000,
+      "at": 1788227357000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 1
+    },
+    {
+      "title": "Taiwan’s MediaTek shares jump after Nvidia invests $3.5 bln",
+      "link": "https://www.investing.com/news/stock-market-news/taiwans-mediatek-shares-jump-after-nvidia-invests-35-bln-4883439",
+      "source": "Investing",
+      "at": 1788227228000,
       "inst": [],
       "ccy": [],
       "sev": 1,
@@ -1100,16 +1110,6 @@
       "why": "Stocks steady, mixed market sentiment"
     },
     {
-      "title": "SEC asks investment firms to prove they have access to shares in startups, WSJ reports",
-      "link": "https://www.investing.com/news/stock-market-news/sec-asks-investment-firms-to-prove-they-have-access-to-shares-in-startups-wsj-reports-4883397",
-      "source": "Investing",
-      "at": 1788222289000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1
-    },
-    {
       "title": "Oil Shock Pushes Yields Higher as Bitcoin Resists and Gold Weakens",
       "link": "https://investinglive.com/news/oil-shock-pushes-yields-higher-as-bitcoin-resists-and-gold-weakens/",
       "source": "ForexLive",
@@ -1136,21 +1136,6 @@
         "UKOIL": "up"
       },
       "why": "Oil up, gold weakens on yields"
-    },
-    {
-      "title": "Exclusive-US oil firm to take over some Venezuelan oilfields previously run by Chinese, Russian companies, officials say",
-      "link": "https://www.investing.com/news/commodities-news/exclusiveus-oil-firm-to-take-over-some-venezuelan-oilfields-previously-run-by-chinese-russian-companies-officials-say-4883359",
-      "source": "Investing Cmdty",
-      "at": 1788219748000,
-      "inst": [
-        "USOIL"
-      ],
-      "ccy": [
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "why": "Venezuelan oilfield takeover, supply impact unclear"
     },
     {
       "title": "Inflation? You want inflation? UK shop prices rise at fastest pace since 2024",
@@ -1581,7 +1566,11 @@
         "XAG"
       ],
       "sev": 1,
-      "rel": 2
+      "rel": 2,
+      "dir": {
+        "XAG/USD": "down"
+      },
+      "why": "Silver opens lower on rate-hike expectations"
     },
     {
       "title": "Gold prices today, Monday, August 31, 2026: Gold sinks following U.S. strikes on Iran",
@@ -1598,7 +1587,11 @@
         "OIL"
       ],
       "sev": 1,
-      "rel": 2
+      "rel": 2,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold sinks following U.S. strikes on Iran"
     },
     {
       "title": "Trump: Iran has no Navy and Air Force.",
@@ -1619,7 +1612,8 @@
         "USD"
       ],
       "sev": 2,
-      "rel": 2
+      "rel": 2,
+      "why": "Trump rhetoric on Iran, no clear market direction"
     },
     {
       "title": "Germany August preliminary CPI +2.9% vs +3.0% y/y expected",
@@ -1634,7 +1628,8 @@
         "USD"
       ],
       "sev": 2,
-      "rel": 2
+      "rel": 2,
+      "why": "German CPI in line with expectations"
     },
     {
       "title": "investingLive European markets wrap: Oil holds higher, regional yields push up",
@@ -1652,7 +1647,12 @@
         "XAU"
       ],
       "sev": 2,
-      "rel": 2
+      "rel": 2,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Oil holds higher on US-Iran strikes"
     },
     {
       "title": "Treasury yields advance as Warsh’s hawkish stance and oil spike fuel Sept hike",
@@ -1667,7 +1667,11 @@
         "OIL"
       ],
       "sev": 2,
-      "rel": 2
+      "rel": 2,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil spike fuels September hike expectations"
     },
     {
       "title": "Stocks making the biggest moves premarket: Chevron, PG&E, GameStop and more",
@@ -1680,7 +1684,8 @@
       ],
       "ccy": [],
       "sev": 1,
-      "rel": 2
+      "rel": 2,
+      "why": "Individual stock moves, no broad index direction"
     },
     {
       "title": "Jackson Hole analyst roundup: Warsh's speech sends hike chances higher, may put Fed 'at odds' with Treasury",
@@ -1701,7 +1706,13 @@
         "USD"
       ],
       "sev": 2,
-      "rel": 2
+      "rel": 2,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Hawkish Fed stance strengthens dollar, weakens metals"
     },
     {
       "title": "Best high-yield savings interest rates today, Monday, August 31, 2026: Earn up to 4.15% APY",
@@ -1726,7 +1737,8 @@
         "USD"
       ],
       "sev": 2,
-      "rel": 2
+      "rel": 2,
+      "why": "German state inflation data, no clear direction"
     },
     {
       "title": "What are the main events for today?",
@@ -1742,7 +1754,8 @@
         "USD"
       ],
       "sev": 2,
-      "rel": 2
+      "rel": 2,
+      "why": "Preview of German CPI, no actual data"
     },
     {
       "title": "Iran says US must bear full responsibility for consequences of escalation",
@@ -1760,7 +1773,8 @@
         "OIL"
       ],
       "sev": 2,
-      "rel": 2
+      "rel": 2,
+      "why": "Iran escalation rhetoric, unclear immediate market impact"
     },
     {
       "title": "Heads up: Germany states' CPI readings due later today",
@@ -1775,7 +1789,8 @@
         "USD"
       ],
       "sev": 2,
-      "rel": 2
+      "rel": 2,
+      "why": "Preview of German state CPI data"
     },
     {
       "title": "investingLive Asia-Pacific market news: Oil jumps, renewed Iran - US strikes",
@@ -1796,7 +1811,13 @@
         "USD"
       ],
       "sev": 2,
-      "rel": 2
+      "rel": 2,
+      "dir": {
+        "USD/JPY": "down",
+        "USOIL": "up",
+        "XAU/USD": "down"
+      },
+      "why": "Oil jumps, gold slides, yen pops"
     },
     {
       "title": "China factory activity beats forecasts but stays in contraction in August",
@@ -1822,7 +1843,11 @@
         "USD"
       ],
       "sev": 2,
-      "rel": 2
+      "rel": 2,
+      "dir": {
+        "AUD/USD": "down"
+      },
+      "why": "Inventory drag on GDP growth bearish"
     },
     {
       "title": "New Zealand data: ANZ business survey shows August business confidence 53.7 (prior 56.1)",
@@ -1838,7 +1863,11 @@
         "USD"
       ],
       "sev": 2,
-      "rel": 2
+      "rel": 2,
+      "dir": {
+        "NZD/USD": "down"
+      },
+      "why": "Business confidence falls, bearish for NZD"
     },
     {
       "title": "Goldman Sachs sends blunt message on oil price, economy",
@@ -1852,23 +1881,8 @@
         "OIL"
       ],
       "sev": 1,
-      "rel": 2
-    },
-    {
-      "title": "Japan factory output tops forecasts as retail sales rebound sharply",
-      "link": "https://investinglive.com/news/japan-factory-output-tops-forecasts-as-retail-sales-rebound-sharply/",
-      "source": "ForexLive",
-      "desc": "The scale of the beat on industrial output, a small monthly gain against a Reuters poll pointing to a 0.7 percent contraction, removes some of the immediate downside risk to Japan's growth outlook that markets had been pricing in going into the release. The sharp rebound in retai",
-      "at": 1788134412000,
-      "inst": [
-        "USD/JPY"
-      ],
-      "ccy": [
-        "JPY",
-        "USD"
-      ],
-      "sev": 1,
-      "rel": 2
+      "rel": 2,
+      "why": "Blunt message implies uncertainty, no clear direction."
     },
     {
       "title": "Is a ‘Bessent doctrine’ taking shape in global FX policy?",
@@ -1888,7 +1902,21 @@
         "USD"
       ],
       "sev": 1,
-      "rel": 2
+      "rel": 2,
+      "why": "Policy speculation, no immediate directional impact."
+    },
+    {
+      "title": "Is Bank of America Stock Outperforming the Dow?",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/bank-america-stock-outperforming-dow-185346172.html",
+      "source": "Yahoo Finance",
+      "at": 1788116026000,
+      "inst": [
+        "US30"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "why": "Question about relative performance, not index direction."
     },
     {
       "title": "Is Netflix Stock Underperforming the S&P 500?",
@@ -1900,7 +1928,8 @@
       ],
       "ccy": [],
       "sev": 1,
-      "rel": 2
+      "rel": 2,
+      "why": "Question about relative performance, not index direction."
     },
     {
       "title": "Alibaba’s Chairman Just Bought Shares After a Major AI Funding Deal. How Investors Should View the Move.",
@@ -1921,6 +1950,22 @@
       "ccy": [],
       "sev": 1,
       "rel": 1
+    },
+    {
+      "title": "JPMorgan remains positive on equities, sees rotation driving further gains",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/jpmorgan-remains-positive-equities-sees-150916529.html",
+      "source": "Yahoo Finance",
+      "at": 1788102556000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Positive on equities, sees further gains."
     }
   ],
   "sources": [
@@ -1942,7 +1987,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-01T01:52:40.378Z",
-  "headlinesAt": "2026-09-01T01:52:40.378Z",
-  "updatedAt": "2026-09-01T01:52:40.378Z"
+  "calendarAt": "2026-09-01T02:08:39.066Z",
+  "headlinesAt": "2026-09-01T02:08:39.066Z",
+  "updatedAt": "2026-09-01T02:08:39.066Z"
 }
