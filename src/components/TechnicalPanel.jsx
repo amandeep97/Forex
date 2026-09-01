@@ -48,6 +48,7 @@ function biasOf(candles) {
   if (!candles || candles.length < 15) return 'neutral';
   const rsi = computeRSI(candles, 14);
   const ema = computeEMA(candles, 20);
+  if (rsi == null || ema == null) return 'neutral';
   const last = candles[candles.length - 1].c;
   if (last > ema && rsi > 55) return 'bullish';
   if (last < ema && rsi < 45) return 'bearish';

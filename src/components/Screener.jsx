@@ -269,6 +269,9 @@ function getTFBias(inst, tf) {
     const c = generateCandles(inst, tf, 60);
     const rsi = computeRSI(c, 14);
     const ema = computeEMA(c, 20);
+    // Both return null on too little history. A null in a comparison coerces to
+    // zero, so `price > ema` would read true on every instrument on the board.
+    if (rsi == null || ema == null) return 'neutral';
     const price = c[c.length - 1].c;
     if (price > ema && rsi > 55) return 'bull';
     if (price < ema && rsi < 45) return 'bear';
@@ -503,9 +506,13 @@ export default function Screener() {
         const eql = detectEqualHighsLows(candles);
 
         let sBull = 0, sBear = 0;
-        if (rsiVal < 30) sBull += 2; else if (rsiVal > 70) sBear += 2;
-        else if (rsiVal < 45) sBull++; else if (rsiVal > 55) sBear++;
-        if (mfiVal < 40) sBull++;  else if (mfiVal > 60) sBear++;
+        // Unmeasurable is not neutral-and-therefore-zero: `null < 45` is TRUE,
+        // which would have scored every short series as bullish.
+        if (rsiVal != null) {
+          if (rsiVal < 30) sBull += 2; else if (rsiVal > 70) sBear += 2;
+          else if (rsiVal < 45) sBull++; else if (rsiVal > 55) sBear++;
+        }
+        if (mfiVal != null) { if (mfiVal < 40) sBull++; else if (mfiVal > 60) sBear++; }
         if (bosBullish)  sBull += 2; if (bosBearish)  sBear += 2;
         if (chochBullish) sBull++;   if (chochBearish) sBear++;
         if (hasFVG) { if (structure==='bullish') sBull++; else sBear++; }
@@ -554,7 +561,7 @@ export default function Screener() {
           pocAbove, vahAbove, valAbove, inValueArea, mtfConsensus,
         };
       } catch {
-        map[inst.id] = { rsi:50, mfi:50, nearResistance:false, nearSupport:false,
+        map[inst.id] = { rsi:null, mfi:null, nearResistance:false, nearSupport:false,
           brokeResistance:false, brokeSupport:false, nearTrendline:false,
           brokeTrendline:false, hasOB:false, hasFVG:false, hasBullOB:false, hasBearOB:false,
           hasBullFVG:false, hasBearFVG:false, obTap:false, fvgTap:false, bosBullish:false,
@@ -562,7 +569,7 @@ export default function Screener() {
           zone:'discount', structure:'neutral', strength:50, strengthDir:'neutral',
           vwapAbove:true, buySideLiq:false, sellSideLiq:false,
           patternIds:[], patternType:'neut',
-          ema20:0, ema50:0, ema100:0, ema200:0,
+          ema20:null, ema50:null, ema100:null, ema200:null,
           prevEma20:0, prevEma50:0, prevEma200:0,
           macdCrossUp:false, macdCrossDown:false, macdAboveZero:false, macdBelowZero:false,
           rsiDivBull:false, rsiDivBear:false, rsiDivHiddenBull:false, rsiDivHiddenBear:false,

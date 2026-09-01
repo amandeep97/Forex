@@ -3,23 +3,50 @@
 // Candle format: { o, h, l, c, v }
 
 // ── RSI ───────────────────────────────────────────────────────────────────────
+//
+// Wilder's smoothing, which is what RSI IS. This used to take a plain average
+// of the last fourteen changes, and the difference is not cosmetic:
+//
+//   A big up-spike, then a quiet market. Bars since the spike, old vs correct:
+//     13 bars → 92 vs 85.6
+//     14 bars → 44 vs 78.8      ← the reading halved
+//     15 bars → 53 vs 82.7
+//
+// On the fourteenth bar the spike falls out of a fixed window and the reading
+// collapses by thirty-five points with nothing happening in the market. Wilder's
+// average decays smoothly instead, with an effective memory of about twenty-seven
+// bars rather than a cliff at fourteen.
+//
+// It matters because the Screener scores RSI against 30/70/45/55, and those
+// numbers are calibrated for Wilder's RSI. Fed a different statistic they fire
+// at the wrong times, and the cliff makes them fire on bars where nothing
+// happened.
+//
+// The correct version already existed a hundred lines below, inside
+// detectRSIDivergence. There were two RSIs in this file and the cards used the
+// broken one.
 export function computeRSI(candles, period = 14) {
-  if (!candles || candles.length < period + 1) return 50;
-  let gains = 0, losses = 0;
-  for (let i = candles.length - period; i < candles.length; i++) {
-    const chg = candles[i].c - candles[i - 1].c;
-    if (chg > 0) gains += chg;
-    else         losses -= chg;
+  if (!candles || candles.length < period + 1) return null;
+  let gain = 0, loss = 0;
+  for (let i = 1; i <= period; i++) {
+    const d = candles[i].c - candles[i - 1].c;
+    if (d > 0) gain += d; else loss -= d;
   }
-  const avgGain = gains / period;
-  const avgLoss = losses / period;
-  if (avgLoss === 0) return 100;
-  return Math.round(100 - (100 / (1 + avgGain / avgLoss)));
+  gain /= period; loss /= period;
+  for (let i = period + 1; i < candles.length; i++) {
+    const d = candles[i].c - candles[i - 1].c;
+    gain = (gain * (period - 1) + Math.max(d, 0)) / period;
+    loss = (loss * (period - 1) + Math.max(-d, 0)) / period;
+  }
+  // A market that has not moved at all is neutral, not overbought. Both sums
+  // are zero there, and "no losses" alone would return 100.
+  if (loss === 0) return gain === 0 ? 50 : 100;
+  return Math.round(100 - (100 / (1 + gain / loss)));
 }
 
 // ── Money Flow Index ──────────────────────────────────────────────────────────
 export function computeMFI(candles, period = 14) {
-  if (!candles || candles.length < period + 1) return 50;
+  if (!candles || candles.length < period + 1) return null;
   let posMF = 0, negMF = 0;
   for (let i = candles.length - period; i < candles.length; i++) {
     const tp     = (candles[i].h + candles[i].l + candles[i].c) / 3;
@@ -33,8 +60,21 @@ export function computeMFI(candles, period = 14) {
 }
 
 // ── EMA ───────────────────────────────────────────────────────────────────────
+//
+// Seeded with the simple average of the first `period` closes, then the usual
+// recursion. That is what every charting package does, so a line drawn here
+// matches a line drawn there.
+//
+// It returns NULL rather than a number when there is not enough history. It used
+// to return the LAST CLOSE, which is far worse than it sounds: with fewer than
+// two hundred bars, "EMA200" came back as the current price, so the Screener's
+// golden-cross filter — ema50 > ema200 — was quietly comparing the fifty-period
+// EMA against spot. Not a weaker test. A different one.
+//
+// Callers must check for null. A null in a comparison coerces to zero, so
+// `price > ema` would read as true on every instrument in the list.
 export function computeEMA(candles, period) {
-  if (!candles || candles.length < period) return candles?.[candles.length - 1]?.c ?? 0;
+  if (!candles || candles.length < period) return null;
   const k = 2 / (period + 1);
   let ema = candles.slice(0, period).reduce((s, c) => s + c.c, 0) / period;
   for (let i = period; i < candles.length; i++) {
@@ -45,7 +85,10 @@ export function computeEMA(candles, period) {
 
 // ── ATR ───────────────────────────────────────────────────────────────────────
 export function computeATR(candles, period = 14) {
-  if (!candles || candles.length < period + 1) return 0;
+  // Null, not zero. A zero ATR is a plausible-looking number that divides into
+  // infinity everywhere downstream — position size, stop distance, every
+  // normalised comparison.
+  if (!candles || candles.length < period + 1) return null;
   const trs = candles.map((c, i) => {
     if (i === 0) return c.h - c.l;
     const pc = candles[i - 1].c;
