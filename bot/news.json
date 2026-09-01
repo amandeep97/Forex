@@ -1,24 +1,6 @@
 {
   "calendar": [
     {
-      "title": "MI Inflation Gauge m/m",
-      "country": "AUD",
-      "impact": "low",
-      "at": 1788138000000,
-      "forecast": "",
-      "previous": "1.0%",
-      "actual": ""
-    },
-    {
-      "title": "ANZ Business Confidence",
-      "country": "NZD",
-      "impact": "low",
-      "at": 1788138000000,
-      "forecast": "",
-      "previous": "56.1",
-      "actual": ""
-    },
-    {
       "title": "Company Operating Profits q/q",
       "country": "AUD",
       "impact": "low",
@@ -984,6 +966,28 @@
   ],
   "headlines": [
     {
+      "title": "Oil extends gains as Trump threatens further Iran strikes",
+      "link": "https://www.investing.com/news/commodities-news/oil-extends-gains-as-trump-threatens-further-iran-strikes-4883412",
+      "source": "Investing Cmdty",
+      "at": 1788223410000,
+      "inst": [
+        "USOIL",
+        "XAU/USD",
+        "UKOIL"
+      ],
+      "ccy": [
+        "OIL",
+        "XAU"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Oil up on Iran threat, gold unclear"
+    },
+    {
       "title": "Japan manufacturing PMI hits 54.9 as new orders surge most since 2018",
       "link": "https://investinglive.com/news/japan-manufacturing-pmi-hits-54-9-as-new-orders-surge-most-since-2018/",
       "source": "ForexLive",
@@ -1461,22 +1465,6 @@
       "why": "Brent breaks above Ichimoku cloud"
     },
     {
-      "title": "Crude Oil WTI nears $87.50-88 resistance: Live levels",
-      "link": "https://www.investing.com/news/commodities-news/crude-oil-wti-charges-toward-8769-resistance-live-levels-93CH-4882215",
-      "source": "Investing Cmdty",
-      "at": 1788204338000,
-      "inst": [
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "why": "WTI nears resistance, direction unclear"
-    },
-    {
       "title": "Kalshi partners with brokerage Alpaca as it tries to build its international audience",
       "link": "https://www.cnbc.com/2026/08/31/kalshi-looks-international-partners-with-brokerage-alpaca.html",
       "source": "CNBC Markets",
@@ -1626,7 +1614,11 @@
         "OIL"
       ],
       "sev": 1,
-      "rel": 2
+      "rel": 2,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold sinks after strikes, oil unclear"
     },
     {
       "title": "Trump: Iran has no Navy and Air Force.",
@@ -1647,7 +1639,8 @@
         "USD"
       ],
       "sev": 2,
-      "rel": 2
+      "rel": 2,
+      "why": "Trump rhetoric unclear for markets"
     },
     {
       "title": "Germany August preliminary CPI +2.9% vs +3.0% y/y expected",
@@ -1662,7 +1655,11 @@
         "USD"
       ],
       "sev": 2,
-      "rel": 2
+      "rel": 2,
+      "dir": {
+        "EUR/USD": "down"
+      },
+      "why": "German CPI below expectations weakens euro"
     },
     {
       "title": "investingLive European markets wrap: Oil holds higher, regional yields push up",
@@ -1680,7 +1677,12 @@
         "XAU"
       ],
       "sev": 2,
-      "rel": 2
+      "rel": 2,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Oil holds higher, gold unclear"
     },
     {
       "title": "Treasury yields advance as Warsh’s hawkish stance and oil spike fuel Sept hike",
@@ -1695,7 +1697,11 @@
         "OIL"
       ],
       "sev": 2,
-      "rel": 2
+      "rel": 2,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil spike fuels rate hike expectations"
     },
     {
       "title": "Stocks making the biggest moves premarket: Chevron, PG&E, GameStop and more",
@@ -1708,7 +1714,8 @@
       ],
       "ccy": [],
       "sev": 1,
-      "rel": 2
+      "rel": 2,
+      "why": "Individual stock moves, index unclear"
     },
     {
       "title": "Jackson Hole analyst roundup: Warsh's speech sends hike chances higher, may put Fed 'at odds' with Treasury",
@@ -1729,7 +1736,13 @@
         "USD"
       ],
       "sev": 2,
-      "rel": 2
+      "rel": 2,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Hawkish Fed stance weakens risk assets"
     },
     {
       "title": "Best high-yield savings interest rates today, Monday, August 31, 2026: Earn up to 4.15% APY",
@@ -1754,7 +1767,8 @@
         "USD"
       ],
       "sev": 2,
-      "rel": 2
+      "rel": 2,
+      "why": "State CPI data, direction unclear"
     },
     {
       "title": "What are the main events for today?",
@@ -1770,7 +1784,8 @@
         "USD"
       ],
       "sev": 2,
-      "rel": 2
+      "rel": 2,
+      "why": "Preview of data, no direction yet"
     },
     {
       "title": "Iran says US must bear full responsibility for consequences of escalation",
@@ -1788,7 +1803,8 @@
         "OIL"
       ],
       "sev": 2,
-      "rel": 2
+      "rel": 2,
+      "why": "Escalation threats, market direction unclear"
     },
     {
       "title": "Heads up: Germany states' CPI readings due later today",
@@ -1803,7 +1819,8 @@
         "USD"
       ],
       "sev": 2,
-      "rel": 2
+      "rel": 2,
+      "why": "Data preview, no immediate direction"
     },
     {
       "title": "investingLive Asia-Pacific market news: Oil jumps, renewed Iran - US strikes",
@@ -1824,7 +1841,13 @@
         "USD"
       ],
       "sev": 2,
-      "rel": 2
+      "rel": 2,
+      "dir": {
+        "USD/JPY": "down",
+        "USOIL": "up",
+        "XAU/USD": "down"
+      },
+      "why": "Oil up, gold down, yen up"
     },
     {
       "title": "China factory activity beats forecasts but stays in contraction in August",
@@ -1850,7 +1873,11 @@
         "USD"
       ],
       "sev": 2,
-      "rel": 2
+      "rel": 2,
+      "dir": {
+        "AUD/USD": "down"
+      },
+      "why": "Inventory drag weakens Australian economy outlook"
     },
     {
       "title": "New Zealand data: ANZ business survey shows August business confidence 53.7 (prior 56.1)",
@@ -1866,7 +1893,11 @@
         "USD"
       ],
       "sev": 2,
-      "rel": 2
+      "rel": 2,
+      "dir": {
+        "NZD/USD": "down"
+      },
+      "why": "Lower business confidence weakens New Zealand dollar"
     },
     {
       "title": "Goldman Sachs sends blunt message on oil price, economy",
@@ -1880,7 +1911,8 @@
         "OIL"
       ],
       "sev": 1,
-      "rel": 2
+      "rel": 2,
+      "why": "Blunt message lacks specific directional detail."
     },
     {
       "title": "Japan factory output tops forecasts as retail sales rebound sharply",
@@ -1896,7 +1928,8 @@
         "USD"
       ],
       "sev": 1,
-      "rel": 2
+      "rel": 2,
+      "why": "Mixed data removes immediate directional bias."
     },
     {
       "title": "More from Bessent, presses G20 to confront China's $1.2 trillion trade surplus",
@@ -1917,7 +1950,8 @@
         "USD"
       ],
       "sev": 2,
-      "rel": 2
+      "rel": 2,
+      "why": "Geopolitical tension direction unclear for FX."
     },
     {
       "title": "Is a ‘Bessent doctrine’ taking shape in global FX policy?",
@@ -1937,7 +1971,8 @@
         "USD"
       ],
       "sev": 1,
-      "rel": 2
+      "rel": 2,
+      "why": "Speculative policy question without clear direction."
     },
     {
       "title": "Is Netflix Stock Underperforming the S&P 500?",
@@ -1949,7 +1984,8 @@
       ],
       "ccy": [],
       "sev": 1,
-      "rel": 2
+      "rel": 2,
+      "why": "Question about relative performance, not direction."
     },
     {
       "title": "Alibaba’s Chairman Just Bought Shares After a Major AI Funding Deal. How Investors Should View the Move.",
@@ -1991,7 +2027,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-01T00:48:43.806Z",
-  "headlinesAt": "2026-09-01T00:48:43.806Z",
-  "updatedAt": "2026-09-01T00:48:43.806Z"
+  "calendarAt": "2026-09-01T01:04:42.472Z",
+  "headlinesAt": "2026-09-01T01:04:42.472Z",
+  "updatedAt": "2026-09-01T01:04:42.472Z"
 }
