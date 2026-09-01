@@ -54,7 +54,10 @@ function computeBias(candles) {
   try {
     const rsi   = computeRSI(candles, 14);
     const ema20 = computeEMA(candles, 20);
-    const ema50 = candles.length >= 52 ? computeEMA(candles, 50) : ema20;
+    const ema50 = computeEMA(candles, 50) ?? ema20;
+    // Null on too little history, and a null compares as zero — every price is
+    // above zero, so an unguarded read would call the whole board bullish.
+    if (rsi == null || ema20 == null) return { trend: 'neutral', rsi: null };
     const last  = candles[candles.length - 1].c;
     const prev5 = candles[candles.length - 6]?.c ?? last;
     const bulls = [last > ema20, last > ema50, rsi > 55, last > prev5].filter(Boolean).length;

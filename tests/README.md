@@ -1,7 +1,7 @@
 # Tests
 
 ```
-npm test                 # all 53
+npm test                 # all 54
 npm test stops plan      # only files whose name contains "stops" or "plan"
 ```
 
@@ -117,3 +117,21 @@ Neither has ever been scored against an outcome, and a screen that quietly weigh
 them has invented a signal out of decoration. The rest covers a closed market
 reading as a closed market rather than a broken feed, which is how a Friday bar
 looked on a Sunday.
+
+`indicators` covers the ones the Screener scores instruments with. RSI was not
+RSI: a plain average of the last fourteen changes rather than Wilder's smoothed
+one, which gives a fixed window with a cliff at its edge — a spike falls out and
+the reading collapses thirty-five points on a bar where nothing happened (92 → 44
+→ 53, against 85.6 → 78.8 → 82.7 for the real thing). The thresholds it is scored
+against are calibrated for Wilder's, so the wrong statistic fires them at the
+wrong times. The correct version was already in the same file inside
+detectRSIDivergence, so the first check is that the two now agree.
+
+The rest is the "absent must stay absent" rule again, and it bites harder here
+than anywhere: a null coerces to zero in a comparison, so `price > ema` reads
+TRUE on every instrument on the board. computeEMA used to return the last close
+when short of history, which made EMA200 equal to spot and turned the
+golden-cross filter into a comparison of the fifty-period EMA against price —
+not a weaker test, a different one. computeATR returned zero, which divides into
+infinity in every position size downstream. Both now return null, and every
+caller is checked.
