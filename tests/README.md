@@ -1,7 +1,7 @@
 # Tests
 
 ```
-npm test                 # all 54
+npm test                 # all 55
 npm test stops plan      # only files whose name contains "stops" or "plan"
 ```
 
@@ -135,3 +135,16 @@ golden-cross filter into a comparison of the fifty-period EMA against price —
 not a weaker test, a different one. computeATR returned zero, which divides into
 infinity in every position size downstream. Both now return null, and every
 caller is checked.
+
+`newsalert` covers geopolitical news being fast and being right. Fast was three
+delays stacked: a fifteen-minute poll floor, a CDN, and a five-minute cache in
+the app — about fifteen minutes from a wire publishing to it reaching a phone
+that was already open. Right is the harder half, and the checks are mostly the
+history of getting it wrong: "three shared words" grouped nothing across sixty
+live headlines because two outlets never word it the same way; two shared words
+grouped one pair and it was wrong; weighting by how rare a word is in the batch
+did not save it, because sixty headlines cannot tell a rare word from a common
+one. A shared PROPER NOUN can — Iran and Larak name the event, stock and futures
+are how the business talks about everything — so the test that matters is that
+"U.S. stock futures slip after Warsh comments" and "U.S. stock futures dip amid
+Iran hostilities" stay two stories.

@@ -17,6 +17,11 @@
 
 const fetch = require('node-fetch');
 const { NewsDirection } = require('./newsDirection');
+// The same web-push and subscription plumbing the price alerts use. A second
+// mechanism for "tell the phone something happened" would be a second thing to
+// keep alive.
+const { configurePush, sendPush } = require('./push');
+const SUBS_PATH = 'bot/push-subscriptions.json';
 
 // shared/newsTagging.mjs is ESM and this file is CommonJS, so it arrives by
 // dynamic import — the same route shared/feedConditions.mjs already takes. Held
@@ -61,6 +66,30 @@ const RSS = [
   // Kept on trial; they have been blocked, and a block can lift.
   { name: 'FXStreet',    url: 'https://www.fxstreet.com/rss/news' },
   { name: 'DailyFX',     url: 'https://www.dailyfx.com/feeds/market-news' },
+
+  // ── Wires ──────────────────────────────────────────────────────────────
+  //
+  // Every source above is a MARKETS outlet, and geopolitics reaches them
+  // second — after a wire has run it and after somebody has written the
+  // markets angle. On a board whose main instrument is gold, that is the
+  // wrong way round: the safe-haven bid moves before the commentary exists.
+  //
+  // These carry a great deal that is not about markets at all. That is fine
+  // now: the list is cut by relevance first and recency second, so an
+  // untagged culture piece can fill a spare slot and can never take one.
+  { name: 'Al Jazeera', url: 'https://www.aljazeera.com/xml/rss/all.xml' },
+  { name: 'BBC World',  url: 'https://feeds.bbci.co.uk/news/world/rss.xml' },
+  // A standing query rather than a section. Google News aggregates every
+  // outlet it indexes, so this is usually the first place a strike appears
+  // in a feed we can read without a key.
+  { name: 'Wires (geo)', url: 'https://news.google.com/rss/search?q=' + encodeURIComponent(
+      '(Iran OR Israel OR Russia OR Ukraine OR "Middle East") '
+      + 'AND (strike OR strikes OR attack OR sanctions OR ceasefire OR escalation)')
+      + '&hl=en-US&gl=US&ceid=US:en' },
+  { name: 'Wires (macro)', url: 'https://news.google.com/rss/search?q=' + encodeURIComponent(
+      '("Federal Reserve" OR "rate cut" OR "rate hike" OR inflation OR tariffs) '
+      + 'AND (gold OR dollar OR treasury OR markets)')
+      + '&hl=en-US&gl=US&ceid=US:en' },
 ];
 
 const NEWS_PATH = 'bot/news.json';
@@ -71,7 +100,91 @@ const NEWS_HISTORY_PATH = 'bot/news-history.json';
 // price, so storing it would be weight without a question attached.
 const KEEP_NEWS_DAYS = 45;
 const MAX_NEWS_ROWS = 6000;
-const MAX_HEADLINES = 60;
+// Raised with the wire sources. Twelve feeds into sixty slots meant a world
+// desk could crowd out the markets ones even after the relevance sort.
+const MAX_HEADLINES = 90;
+
+// The news pass used to be gated to once every fifteen minutes, which put the
+// average lag from a wire publishing to it reaching the phone at seven and a
+// half minutes before anything else in the chain. For a missile strike that is
+// not a news feed. Three minutes costs a few more RSS requests per hour and
+// nothing else — the publish only happens when the payload actually changed.
+const POLL_MS = 3 * 60e3;
+
+// ── Corroboration ────────────────────────────────────────────────────────────
+//
+// One outlet reporting something is a CLAIM. Three within half an hour is an
+// event. The feed used to throw duplicates away and keep the newest, which
+// destroyed exactly the information that tells those two apart — and kept the
+// LATEST timestamp, so a story that broke at 14:12 and was rewritten at 15:40
+// was filed as 15:40.
+//
+// Matching is on content words rather than on the headline text, because two
+// outlets never word it the same way: "US strikes Iranian launchers" and "Oil
+// jumps after US attack on Iran's Larak island" share almost no characters and
+// obviously describe one event.
+const STOPWORDS = new Set(['the', 'and', 'for', 'with', 'from', 'that', 'this', 'after',
+  'says', 'said', 'over', 'into', 'amid', 'more', 'than', 'their', 'about', 'have',
+  'has', 'was', 'were', 'will', 'its', 'his', 'her', 'they', 'you', 'but', 'not', 'are']);
+
+function tokens(title) {
+  return new Set(String(title || '').toLowerCase()
+    .replace(/[^a-z0-9\s]/g, ' ')
+    .split(/\s+/)
+    .filter(w => w.length > 3 && !STOPWORDS.has(w)));
+}
+
+const sharedWords = (a, b) => [...a].filter(w => b.has(w));
+
+/**
+ * How many independent outlets carried each story, and when it actually broke.
+ *
+ * Returns the same items with `srcs` (distinct sources, at least 1) and
+ * `firstAt` (the earliest sighting in its group).
+ *
+ * Two gates, and the second is the one that makes it work. Tried on sixty live
+ * headlines, "at least three shared content words" grouped NOTHING — two
+ * outlets never word it the same way. Relaxing to two produced exactly one
+ * match and it was wrong: "U.S. stock futures slip as chances of a rate hike
+ * rise" and "U.S. stock futures dip amid renewed Iran hostilities" share
+ * "stock" and "futures" and are two entirely different stories. Weighting by
+ * how rare a word is in the batch did not save it either — sixty headlines is
+ * far too small a sample to tell a rare word from a common one.
+ *
+ * What does tell them apart is that a shared PROPER NOUN is an entity and a
+ * shared common noun is vocabulary. Iran, Larak, Warsh, Powell name the thing
+ * that happened; stock, futures, rate and market are how the business talks
+ * about everything. So a pair has to share at least two content words AND at
+ * least one capitalised one.
+ */
+function properNouns(title) {
+  return new Set(String(title || '')
+    .split(/\s+/)
+    .map(w => w.replace(/[^A-Za-z0-9]/g, ''))
+    .filter(w => w.length > 3 && /^[A-Z]/.test(w))
+    .map(w => w.toLowerCase())
+    .filter(w => !STOPWORDS.has(w)));
+}
+
+function corroborate(items, { windowMs = 45 * 60e3, minShared = 2 } = {}) {
+  const tok = items.map(i => tokens(i.title));
+  const nouns = items.map(i => properNouns(i.title));
+
+  return items.map((it, i) => {
+    const srcs = new Set([it.source]);
+    let firstAt = it.at || null;
+    for (let j = 0; j < items.length; j++) {
+      if (j === i) continue;
+      const other = items[j];
+      if (!it.at || !other.at || Math.abs(other.at - it.at) > windowMs) continue;
+      if (sharedWords(tok[i], tok[j]).length < minShared) continue;
+      if (!sharedWords(nouns[i], nouns[j]).length) continue;
+      srcs.add(other.source);
+      if (other.at && (firstAt == null || other.at < firstAt)) firstAt = other.at;
+    }
+    return { ...it, srcs: srcs.size, firstAt };
+  });
+}
 const KEEP_CALENDAR_DAYS = 8;
 
 // ── The surprise ─────────────────────────────────────────────────────────────
@@ -273,9 +386,17 @@ async function getText(url, timeout = 15000) {
 }
 
 class NewsFetcher {
-  constructor({ github, log, groqApiKey = null }) {
+  constructor({ github, log, groqApiKey = null, telegram = null, env = null }) {
     this.github = github;
     this.log = log || (() => {});
+    // Optional. Without either, the alert pass does nothing and says nothing —
+    // which is the state news has been in all along.
+    this.telegram = telegram && telegram.enabled ? telegram : null;
+    this.pushReady = env ? configurePush(env) : false;
+    // Alerting is once per story. Keyed on the link, and floored at the boot
+    // time so a restart cannot replay the morning.
+    this.alerted = new Set();
+    this.bootAt = Date.now();
     this.sha = null;
     this.historySha = null;
     this.newsHistorySha = null;
@@ -590,9 +711,13 @@ class NewsFetcher {
     // Not-news is dropped outright. Corporate stories are kept but go last, so
     // an M&A wire can fill a spare slot and can never take one.
     const { isJunk } = await tagging();
-    const usable = isJunk
+    const clean = isJunk
       ? labelled.filter(x => !isJunk(`${x.title} ${x.desc || ''}`))
       : labelled;
+    // Counted over everything fetched, BEFORE the list is cut, or a story
+    // carried by five outlets would report two because the other three fell
+    // off the end.
+    const usable = corroborate(clean);
     const rank = x => (x.rel ?? 1) > 0 ? 0 : 1;
     const unique = usable
       .sort((a, b) => rank(a) - rank(b) || b.at - a.at)
@@ -602,8 +727,75 @@ class NewsFetcher {
     return { items: unique, ok, failed, dropped: labelled.length - usable.length };
   }
 
+  // ── The alert ──────────────────────────────────────────────────────────
+  //
+  // Speed is the whole point of the last two changes and neither of them helps
+  // if being fast requires you to open an app. This pushes to the phone the
+  // moment a geopolitical wire lands, on the same web-push and Telegram plumbing
+  // the price alerts already use.
+  //
+  // Three gates, and each one exists because of a way this becomes noise you
+  // switch off:
+  //
+  //   Severity. An urgent wire alerts on sight. A merely heavy one has to be
+  //   CORROBORATED first — two outlets — because a single outlet reporting a
+  //   strike is a claim, and a phone that buzzes for claims stops being read.
+  //
+  //   Age. Nothing older than two hours, and on a fresh process nothing from
+  //   before it started plus a thirty-minute grace. Otherwise a restart replays
+  //   the whole morning.
+  //
+  //   Memory. Once per story, keyed on the link, capped so the set cannot grow
+  //   without bound over a long-running process.
+  async _alert(headlines) {
+    if (!this.telegram && !this.pushReady) return 0;
+    const now = Date.now();
+    const floor = Math.max(this.bootAt - 30 * 60e3, now - 2 * 3600e3);
+    const M = await tagging();
+    const geo = M.isGeopolitical || (() => false);
+
+    const hits = headlines.filter((h) => {
+      if (!h.at || h.at < floor) return false;
+      const key = h.link || h.title;
+      if (this.alerted.has(key)) return false;
+      const sev = h.sev ?? 1;
+      const isGeo = geo(`${h.title} ${h.desc || ''}`);
+      if (!isGeo && sev < 3) return false;
+      if (sev >= 3) return true;
+      return (h.srcs || 1) >= 2;          // heavy, but only once someone else has it
+    }).slice(0, 3);                       // a burst is one event, not five alerts
+
+    if (!hits.length) return 0;
+    for (const h of hits) this.alerted.add(h.link || h.title);
+    if (this.alerted.size > 500) this.alerted = new Set([...this.alerted].slice(-300));
+
+    for (const h of hits) {
+      const when = new Date(h.firstAt || h.at).toISOString().slice(11, 16);
+      const srcs = (h.srcs || 1) > 1 ? ` · ${h.srcs} sources` : ' · 1 source, unconfirmed';
+      const body = `${h.title}\n${h.source}${srcs}`;
+      const tag = h.sev >= 3 ? '🔴 URGENT' : '🟠 HEAVY';
+      if (this.telegram) {
+        await this.telegram.send(`${tag} <b>${when} UTC</b>${srcs}\n${h.title}\n<i>${h.source}</i>`)
+          .catch(() => {});
+      }
+      if (this.pushReady) {
+        const subs = await this._subs();
+        if (subs.length) await sendPush(subs, `${tag} ${when} UTC`, body).catch(() => {});
+      }
+    }
+    this.log(`News: alerted ${hits.length} geopolitical headline(s)`);
+    return hits.length;
+  }
+
+  async _subs() {
+    try {
+      const f = await this.github.readJSON(SUBS_PATH);
+      return f?.content?.subscriptions || [];
+    } catch { return []; }
+  }
+
   async run() {
-    if (Date.now() - this.lastRunAt < 15 * 60e3) return;
+    if (Date.now() - this.lastRunAt < POLL_MS) return;
     this.lastRunAt = Date.now();
 
     const [cal, news] = await Promise.allSettled([this._calendar(), this._headlines()]);
@@ -620,6 +812,10 @@ class NewsFetcher {
     // than never.
     // The BLS actuals come from the same file the calendar pass reads, so the
     // archive can fill in results the calendar itself never carries.
+    // Before the direction labelling, the archive and the publish, all of which
+    // take seconds this is trying not to spend.
+    await this._alert(headlines).catch(e => this.log(`News alert: ${e.message}`));
+
     // Direction, before anything is written, so the label reaches the live
     // file AND the archive that will eventually be used to judge it.
     await this.direction.label(headlines)
@@ -656,4 +852,5 @@ class NewsFetcher {
 }
 
 module.exports = { NewsFetcher, NEWS_PATH, HISTORY_PATH, parseRSS, currenciesIn,
-                   CURRENCY_WORDS, numOf, withSurprise, NOT_ABOUT, releasedValue, RELEASE_MAP };
+                   CURRENCY_WORDS, numOf, withSurprise, NOT_ABOUT, releasedValue, RELEASE_MAP,
+                   corroborate, tokens, properNouns, POLL_MS, MAX_HEADLINES };
