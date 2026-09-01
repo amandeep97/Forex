@@ -111,6 +111,12 @@ const MAX_HEADLINES = 90;
 // nothing else — the publish only happens when the payload actually changed.
 const POLL_MS = 3 * 60e3;
 
+// What the phone is allowed to do. Twenty passes an hour with three alerts each
+// is sixty pushes, which is a feature you switch off after one afternoon.
+const MAX_ALERTS_PER_HOUR = 4;
+const MIN_ALERT_GAP_MS = 8 * 60e3;
+const ALERT_MEMORY_MS = 2 * 3600e3;
+
 // ── Corroboration ────────────────────────────────────────────────────────────
 //
 // One outlet reporting something is a CLAIM. Three within half an hour is an
@@ -396,6 +402,9 @@ class NewsFetcher {
     // Alerting is once per story. Keyed on the link, and floored at the boot
     // time so a restart cannot replay the morning.
     this.alerted = new Set();
+    // [{ at, sev, nouns }] for the last two hours, so one running story cannot
+    // buzz the phone once per outlet per pass.
+    this.alertLog = [];
     this.bootAt = Date.now();
     this.sha = null;
     this.historySha = null;
@@ -747,6 +756,24 @@ class NewsFetcher {
   //
   //   Memory. Once per story, keyed on the link, capped so the set cannot grow
   //   without bound over a long-running process.
+  //
+  // And then the arithmetic that the three gates above do NOT solve. Twenty
+  // passes an hour times three alerts a pass is sixty pushes an hour, and
+  // during an active war four wire feeds will genuinely produce ten to twenty
+  // distinct geopolitical headlines that clear every gate above. A phone that
+  // buzzes every few minutes gets its notifications switched off, and then the
+  // whole feature is worth nothing.
+  //
+  // So three more, and the first is the one that matters:
+  //
+  //   THE SAME RUNNING STORY IS ONE ALERT. A candidate sharing a proper noun
+  //   with something already alerted in the last two hours is the same war
+  //   being reported again — suppressed, unless it is an ESCALATION, an urgent
+  //   wire where the earlier one was merely heavy.
+  //
+  //   A floor on the gap between alerts, and a ceiling per hour. Blunt, and
+  //   blunt is the point: whatever the story vocabulary does, the phone cannot
+  //   buzz more than four times an hour.
   async _alert(headlines) {
     if (!this.telegram && !this.pushReady) return 0;
     const now = Date.now();
@@ -754,7 +781,13 @@ class NewsFetcher {
     const M = await tagging();
     const geo = M.isGeopolitical || (() => false);
 
-    const hits = headlines.filter((h) => {
+    // Forget what was alerted more than two hours ago; a new day's Iran story
+    // is a new story.
+    this.alertLog = (this.alertLog || []).filter(a => now - a.at < ALERT_MEMORY_MS);
+    const lastAt = this.alertLog.length ? Math.max(...this.alertLog.map(a => a.at)) : 0;
+    const inLastHour = this.alertLog.filter(a => now - a.at < 3600e3).length;
+
+    const candidates = headlines.filter((h) => {
       if (!h.at || h.at < floor) return false;
       const key = h.link || h.title;
       if (this.alerted.has(key)) return false;
@@ -763,7 +796,27 @@ class NewsFetcher {
       if (!isGeo && sev < 3) return false;
       if (sev >= 3) return true;
       return (h.srcs || 1) >= 2;          // heavy, but only once someone else has it
-    }).slice(0, 3);                       // a burst is one event, not five alerts
+    }).sort((a, b) => (b.sev ?? 1) - (a.sev ?? 1) || (b.at - a.at));
+
+    const hits = [];
+    let budget = Math.max(0, MAX_ALERTS_PER_HOUR - inLastHour);
+    let gapFrom = lastAt;
+    for (const h of candidates) {
+      if (budget <= 0) break;
+      const sev = h.sev ?? 1;
+      const nouns = properNouns(h.title);
+      // Already told you about this war, unless it just got worse.
+      const prior = this.alertLog.find(a => [...nouns].some(w => a.nouns.has(w)));
+      if (prior && !(sev >= 3 && prior.sev < 3)) continue;
+      // Not within eight minutes of the last one, unless it is urgent and the
+      // last one was not.
+      if (now - gapFrom < MIN_ALERT_GAP_MS && !(sev >= 3 && (!prior || prior.sev < 3))) continue;
+
+      hits.push(h);
+      this.alertLog.push({ at: now, sev, nouns });
+      gapFrom = now;
+      budget--;
+    }
 
     if (!hits.length) return 0;
     for (const h of hits) this.alerted.add(h.link || h.title);
@@ -783,7 +836,8 @@ class NewsFetcher {
         if (subs.length) await sendPush(subs, `${tag} ${when} UTC`, body).catch(() => {});
       }
     }
-    this.log(`News: alerted ${hits.length} geopolitical headline(s)`);
+    this.log(`News: alerted ${hits.length} geopolitical headline(s)`
+      + ` (${inLastHour + hits.length}/${MAX_ALERTS_PER_HOUR} this hour)`);
     return hits.length;
   }
 
@@ -853,4 +907,5 @@ class NewsFetcher {
 
 module.exports = { NewsFetcher, NEWS_PATH, HISTORY_PATH, parseRSS, currenciesIn,
                    CURRENCY_WORDS, numOf, withSurprise, NOT_ABOUT, releasedValue, RELEASE_MAP,
-                   corroborate, tokens, properNouns, POLL_MS, MAX_HEADLINES };
+                   corroborate, tokens, properNouns, POLL_MS, MAX_HEADLINES,
+                   MAX_ALERTS_PER_HOUR, MIN_ALERT_GAP_MS, ALERT_MEMORY_MS };
