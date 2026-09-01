@@ -921,6 +921,34 @@
   ],
   "headlines": [
     {
+      "title": "Analysts react to global bond selloff",
+      "link": "https://www.investing.com/news/forex-news/analysts-react-to-global-bond-selloff-4883506",
+      "source": "Investing FX",
+      "at": 1788243149000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2
+    },
+    {
+      "title": "Oil prices rise as latest fighting revives Mideast supply disruption risks",
+      "link": "https://www.investing.com/news/commodities-news/oil-prices-rise-as-latest-fighting-resurrects-middle-east-supply-disruption-risks-4883418",
+      "source": "Investing Cmdty",
+      "at": 1788242815000,
+      "inst": [
+        "USOIL"
+      ],
+      "ccy": [
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil prices rise on supply risks"
+    },
+    {
       "title": "Shein shares slide in Hong Kong debut as investors fret about growth and regulatory risks",
       "link": "https://www.investing.com/news/stock-market-news/shein-set-for-lacklustre-debut-after-setbacks-cause-huge-drop-in-valuation-4883337",
       "source": "Investing",
@@ -961,16 +989,6 @@
       "sev": 1,
       "rel": 2,
       "why": "Taiwan market news irrelevant to US"
-    },
-    {
-      "title": "Analysts react to global bond selloff",
-      "link": "https://www.investing.com/news/forex-news/analysts-react-to-global-bond-selloff-4883506",
-      "source": "Investing FX",
-      "at": 1788242081000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2
     },
     {
       "title": "Chinese retail stocks gain as Beijing unveils fresh measures to boost consumption",
@@ -1020,24 +1038,6 @@
         "UKOIL": "up"
       },
       "why": "Oil and gold up on Iran threats"
-    },
-    {
-      "title": "Oil prices rise as latest fighting revives Mideast supply disruption risks",
-      "link": "https://www.investing.com/news/commodities-news/oil-prices-rise-as-latest-fighting-resurrects-middle-east-supply-disruption-risks-4883418",
-      "source": "Investing Cmdty",
-      "at": 1788238835000,
-      "inst": [
-        "USOIL"
-      ],
-      "ccy": [
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "dir": {
-        "USOIL": "up"
-      },
-      "why": "Oil prices rise on supply risks"
     },
     {
       "title": "Heads up: Eurozone inflation figures for August due later today",
@@ -1957,17 +1957,19 @@
       "why": "Merck vs Nasdaq comparison, no clear direction"
     },
     {
-      "title": "Is Bank of America Stock Outperforming the Dow?",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/bank-america-stock-outperforming-dow-185346172.html",
+      "title": "Russia’s Largest Bank Wants Bitcoin and Ethereum as Collateral",
+      "link": "https://finance.yahoo.com/markets/crypto/articles/russia-largest-bank-wants-bitcoin-185935086.html",
       "source": "Yahoo Finance",
-      "at": 1788116026000,
+      "at": 1788116375000,
       "inst": [
-        "US30"
+        "BTC/USDT",
+        "ETH/USDT"
       ],
-      "ccy": [],
+      "ccy": [
+        "BTC"
+      ],
       "sev": 1,
-      "rel": 2,
-      "why": "Question about relative performance, not index direction."
+      "rel": 2
     }
   ],
   "sources": [
@@ -1986,10 +1988,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-01T06:06:36.515Z",
-  "headlinesAt": "2026-09-01T06:06:36.515Z",
-  "updatedAt": "2026-09-01T06:06:36.515Z"
+  "calendarAt": "2026-09-01T06:21:49.956Z",
+  "headlinesAt": "2026-09-01T06:21:49.956Z",
+  "updatedAt": "2026-09-01T06:21:49.956Z"
 }
