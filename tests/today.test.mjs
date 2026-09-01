@@ -10,7 +10,7 @@
 // a person to read and must never leak into the answer — they have never been
 // scored against an outcome, and turning them into a signal is the exact habit
 // the rest of this work exists to break.
-import { verdictFor, barAge, nextEvents, topHeadlines } from '../src/utils/todayRead.js';
+import { verdictFor, barAge, nextEvents, topHeadlines, breaking, moveSincePct } from '../src/utils/todayRead.js';
 
 let fails = 0;
 const check = (n, c, e = '') => { console.log(`${c ? '  ok  ' : '  FAIL'}  ${n}${e ? ' — ' + e : ''}`); if (!c) fails++; };
@@ -136,6 +136,68 @@ const H = 3600e3;
   check('each carries its age, so stale is visible',
     h.every(x => Number.isFinite(x.ageH)), JSON.stringify(h.map(x => x.ageH)));
   check('an empty archive is an empty list', topHeadlines(null, insts).length === 0);
+}
+
+// ── What just happened, and what the market did after ──────────────────────
+//
+// A severity-3 wire and a two-percent dump were on the same screen twenty
+// scrolls apart — the metals at the top, the headline at the bottom under the
+// calendar. This puts the headline first with the clock on it and states what
+// the metals have done since that bar.
+//
+// The line it must not cross: it reports SEQUENCE, never cause. Nothing in this
+// app has ever measured whether a headline moved a price.
+{
+  const now = Date.UTC(2026, 8, 1, 18, 0);
+  const H = 3600e3;
+  // Hourly bars: flat until 14:00, then a slide.
+  const cs = [];
+  for (let h = 6; h <= 18; h++) {
+    const p = h <= 14 ? 4450 : 4450 - (h - 14) * 25;
+    cs.push({ t: Date.UTC(2026, 8, 1, h), o: p, h: p + 5, l: p - 5, c: p, v: 1 });
+  }
+
+  const m = moveSincePct(cs, Date.UTC(2026, 8, 1, 14, 12));
+  check('the move is measured from the bar the headline landed IN, not before it',
+    m.at === Date.UTC(2026, 8, 1, 15), new Date(m.at).toISOString());
+  check('and it is the move to now', Math.abs(m.pct - ((4350 - 4425) / 4425 * 100)) < 1e-9,
+    `${m.pct.toFixed(2)}%`);
+  check('a headline newer than the last complete bar has nothing to measure yet',
+    moveSincePct(cs, now + H) === null,
+    'a zero there would read as "the market did nothing", which is a different claim');
+  check('no bars is null rather than zero', moveSincePct(null, now) === null);
+
+  const news = { headlines: [
+    { title: 'BREAKING: US strikes Iranian sites', sev: 3, at: Date.UTC(2026, 8, 1, 14, 12),
+      inst: ['XAU/USD'], ccy: ['XAU'], source: 'ForexLive' },
+    { title: 'Fed speaker repeats guidance', sev: 2, at: Date.UTC(2026, 8, 1, 9, 0),
+      inst: [], ccy: ['USD'], source: 'Investing' },
+    { title: 'Routine Asia wrap', sev: 1, at: Date.UTC(2026, 8, 1, 17, 0),
+      inst: ['XAU/USD'], ccy: ['XAU'], source: 'CNBC' },
+    { title: 'Old war headline', sev: 3, at: Date.UTC(2026, 7, 30, 9, 0),
+      inst: ['XAU/USD'], ccy: ['XAU'], source: 'BBC' },
+    { title: 'Nikkei closes higher', sev: 3, at: Date.UTC(2026, 8, 1, 15, 0),
+      inst: ['JPN225'], ccy: ['JPY'], source: 'CNBC' },
+  ] };
+  const insts = [{ sym: 'XAU_USD', feedSym: 'XAU/USD', label: 'Gold', dec: 2, ccy: ['XAU', 'USD'] }];
+  const b = breaking(news, insts, { XAU_USD: cs }, { now });
+
+  check('the urgent one is first, ahead of a newer but lighter headline',
+    /US strikes/.test(b[0].title), b.map(x => x.title).join(' | '));
+  check('routine noise never reaches the top of the page',
+    !b.some(x => /Routine Asia/.test(x.title)), 'severity 1 is not breaking');
+  check('yesterday\'s war is not breaking either',
+    !b.some(x => /Old war/.test(x.title)), 'two days old, however severe');
+  check('and a Japanese equities story does not reach a metals screen',
+    !b.some(x => /Nikkei/.test(x.title)));
+  check('it carries the clock and the age, not just a date',
+    b[0].at === Date.UTC(2026, 8, 1, 14, 12) && b[0].ageMin === 228, String(b[0].ageMin));
+  check('with what the metal has done since it landed',
+    b[0].since[0].move.pct < -1, `${b[0].since[0].move.pct.toFixed(2)}%`);
+  check('a dollar story still reaches gold, marked as indirect',
+    b.some(x => /Fed speaker/.test(x.title) && x.direct === false));
+  check('an empty archive is an empty band rather than a crash',
+    breaking(null, insts, {}, { now }).length === 0);
 }
 
 console.log(fails ? `\n${fails} FAILED` : '\nall passed');

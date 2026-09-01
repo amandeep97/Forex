@@ -34,6 +34,70 @@ function Countdown({ ms }) {
   );
 }
 
+
+// The headline at the top, with the clock on it.
+//
+// A severity-3 wire and a two-percent dump were on the same screen, twenty
+// scrolls apart: the metals at the top, the headline at the bottom under the
+// calendar. Whether one had anything to do with the other was left entirely to
+// the reader's memory of what time it was.
+//
+// This states two measured facts adjacently — when it landed, and what the
+// metals have done since that bar — and stops there. It does not say the
+// headline caused the move; nothing in this app has ever measured that, and
+// asserting cause from adjacency is exactly the habit the rest of this work
+// exists to break. The sequence is the information.
+function Breaking({ items }) {
+  if (!items?.length) return null;
+  const when = t => new Date(t).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  const ago = m => (m < 60 ? `${m}m ago` : `${Math.floor(m / 60)}h ${m % 60}m ago`);
+  return (
+    <div style={{ marginBottom: 14 }}>
+      {items.map((h, i) => {
+        const urgent = h.sev >= 3;
+        const tone = urgent ? C.bear : C.warn;
+        return (
+          <a key={i} href={h.link} target="_blank" rel="noreferrer"
+            style={{ display: 'block', textDecoration: 'none', marginBottom: 8,
+              padding: '11px 13px', borderRadius: 8,
+              background: `${tone}14`, border: `1px solid ${tone}55` }}>
+            <Row style={{ gap: 7 }}>
+              <span style={{ fontSize: 9, fontWeight: 800, padding: '2px 6px', borderRadius: 3,
+                background: `${tone}26`, color: tone, letterSpacing: '0.5px' }}>
+                {urgent ? 'URGENT' : 'HEAVY'}
+              </span>
+              <span style={{ fontSize: 11, fontWeight: 700, color: tone }}>{when(h.at)}</span>
+              <span style={{ fontSize: 10, color: 'var(--text3)' }}>{ago(h.ageMin)}</span>
+              <span style={{ fontSize: 10, color: 'var(--text3)' }}>· {h.source}</span>
+              {!h.direct && (
+                <span style={{ fontSize: 9, color: 'var(--text3)' }}>· via a currency that prices it</span>
+              )}
+            </Row>
+            <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--text1)',
+              marginTop: 5, lineHeight: 1.45 }}>{h.title}</div>
+            {h.since.length > 0 && (
+              <Row style={{ gap: 14, marginTop: 7 }}>
+                {h.since.map(s => (
+                  <span key={s.label} style={{ fontSize: 11 }}>
+                    <span style={{ color: 'var(--text3)' }}>{s.label} </span>
+                    <b style={{ color: s.move.pct >= 0 ? C.bull : C.bear }}>
+                      {s.move.pct >= 0 ? '+' : ''}{s.move.pct.toFixed(2)}%
+                    </b>
+                    <span style={{ color: 'var(--text3)' }}> since</span>
+                  </span>
+                ))}
+                <span style={{ fontSize: 9, color: 'var(--text3)' }}>
+                  measured from the bar it landed in — sequence, not cause
+                </span>
+              </Row>
+            )}
+          </a>
+        );
+      })}
+    </div>
+  );
+}
+
 function Instrument({ r }) {
   if (r.missing) {
     return (
@@ -143,6 +207,9 @@ export default function Today() {
           weekend tick. Everything else below is live.
         </div>
       )}
+
+      {/* What just happened, before anything else on the page. */}
+      <div style={{ marginTop: 12 }}><Breaking items={data?.breaking} /></div>
 
       {data?.rows.map(r => <Instrument key={r.inst.sym} r={r} />)}
 

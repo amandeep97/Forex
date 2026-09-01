@@ -118,6 +118,52 @@ export function topHeadlines(news, insts, { max = 4, now = Date.now() } = {}) {
     .slice(0, max);
 }
 
+// What price has done since a given moment, from the bars already loaded.
+//
+// The bar AT or AFTER the timestamp, so a headline that landed mid-bar is
+// measured from the close of the bar it landed in rather than from a price that
+// had already moved on it. Null when the headline is newer than the last
+// complete bar — over a weekend, or in the first minutes of an hour, there is
+// nothing to measure yet and a zero would read as "it did nothing".
+export function moveSincePct(cs, t) {
+  if (!cs?.length || !t) return null;
+  const i = cs.findIndex(c => c.t >= t);
+  if (i < 0 || i >= cs.length - 1) return null;
+  const from = cs[i].c, to = cs[cs.length - 1].c;
+  if (!(from > 0)) return null;
+  return { pct: ((to - from) / from) * 100, bars: cs.length - 1 - i, at: cs[i].t };
+}
+
+// The headline worth putting at the TOP, and what the market did after it.
+//
+// Two measured facts placed next to each other — this landed at 14:12, gold is
+// down 1.9% since — and deliberately nothing more. It does not say the headline
+// caused the move. Nothing here has ever measured that, and a screen that
+// asserts cause from adjacency is inventing a signal, which is the habit the
+// rest of this work exists to break. The sequence is the information; the
+// reader draws the line.
+export function breaking(news, insts, bars, { now = Date.now(), withinH = 12, max = 2 } = {}) {
+  const items = news?.headlines || [];
+  const syms = new Set(insts.map(i => i.feedSym));
+  const ccys = new Set(insts.flatMap(i => i.ccy));
+  const cutoff = now - withinH * 3600e3;
+
+  return items
+    .filter(h => (h.sev ?? 1) >= 2 && h.at && h.at >= cutoff)
+    .filter(h => (h.inst || []).some(x => syms.has(x)) || (h.ccy || []).some(x => ccys.has(x)))
+    .sort((a, b) => (b.sev - a.sev) || (b.at - a.at))
+    .slice(0, max)
+    .map(h => ({
+      title: h.title, source: h.source, link: h.link, at: h.at, sev: h.sev ?? 1,
+      ageMin: Math.round((now - h.at) / 60e3),
+      direct: (h.inst || []).some(x => syms.has(x)),
+      since: insts.map(i => ({
+        label: i.label, dec: i.dec,
+        move: moveSincePct(bars[i.sym], h.at),
+      })).filter(x => x.move),
+    }));
+}
+
 // The verdict, from arithmetic rather than opinion.
 //
 // A rule that survived the holdout is true on this bar, or it is one condition
@@ -218,6 +264,7 @@ export async function loadToday({ now = Date.now(), instruments = FOCUS } = {}) 
     haveStudy: !!study,
     studyAsOf: study?.asOf || null,
     rows,
+    breaking: breaking(news, instruments, bars, { now }),
     events: nextEvents(news, [...new Set(instruments.flatMap(i => i.ccy))], { now }),
     headlines: topHeadlines(news, instruments, { now }),
     newsAt: news?.headlinesAt || news?.updatedAt || null,
