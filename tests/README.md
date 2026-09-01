@@ -1,7 +1,7 @@
 # Tests
 
 ```
-npm test                 # all 52
+npm test                 # all 53
 npm test stops plan      # only files whose name contains "stops" or "plan"
 ```
 
@@ -106,3 +106,14 @@ positioning; one told "no COT data" says there is none), and a verdict that
 leaves no trace — every call is logged with the price at the time, because
 otherwise nobody can ever check whether it was any good, which is the whole
 failing of the thing it was copied from.
+
+`today` covers the screen the app opens on. One rule to protect: the verdict is
+arithmetic — either a setup that survived the holdout is true on this bar, or it
+is one condition short, or there is nothing. The macro read and the headlines are
+printed for a person to read and must never leak into the answer, so the check is
+behavioural: hand `verdictFor` the decomposition, a screaming headline and an
+imminent release, and the result must be byte-for-byte what it was without them.
+Neither has ever been scored against an outcome, and a screen that quietly weighs
+them has invented a signal out of decoration. The rest covers a closed market
+reading as a closed market rather than a broken feed, which is how a Friday bar
+looked on a Sunday.
