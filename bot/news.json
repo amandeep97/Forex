@@ -121,7 +121,7 @@
       "title": "Retail Sales y/y",
       "country": "CHF",
       "impact": "low",
-      "at": 1788244200000,
+      "at": 1788244380000,
       "forecast": "1.6%",
       "previous": "1.5%",
       "actual": ""
@@ -523,6 +523,15 @@
       "actual": ""
     },
     {
+      "title": "RBNZ Gov Breman Speaks",
+      "country": "NZD",
+      "impact": "medium",
+      "at": 1788379800000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
       "title": "Overseas Trade Index q/q",
       "country": "NZD",
       "impact": "low",
@@ -911,6 +920,42 @@
     }
   ],
   "headlines": [
+    {
+      "title": "What are the main events for today?",
+      "link": "https://investinglive.com/news/what-are-the-main-events-for-today-32/",
+      "source": "ForexLive",
+      "desc": "EUROPEAN SESSIONIn the European session, we have the final PMIs for the major Eurozone economies and the UK, as well as the Eurozone Flash CPI report. The final PMIs and other low-tier indicators won't be market-moving, as the data won't change anything for the respective central",
+      "at": 1788244591000,
+      "inst": [
+        "EUR/USD"
+      ],
+      "ccy": [
+        "EUR",
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "why": "Preview of German CPI, no actual data"
+    },
+    {
+      "title": "Australia stocks lower at close of trade; S&P/ASX 200 down 0.10%",
+      "link": "https://www.investing.com/news/stock-market-news/australia-stocks-lower-at-close-of-trade-spasx-200-down-010-4883526",
+      "source": "Investing",
+      "at": 1788244204000,
+      "inst": [
+        "AUD/USD",
+        "US500"
+      ],
+      "ccy": [
+        "AUD"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "dir": {
+        "AUD/USD": "down"
+      },
+      "why": "Australian stocks lower, US stocks unaffected"
+    },
     {
       "title": "Asia stocks tentative amid Fed hike bets; S. Korea exports, China PMI in focus",
       "link": "https://www.investing.com/news/stock-market-news/asia-stocks-dip-amid-fed-uncertainty-s-korea-exports-china-pmi-in-focus-4883469",
@@ -1817,23 +1862,6 @@
       "why": "German state inflation data, no clear direction"
     },
     {
-      "title": "What are the main events for today?",
-      "link": "https://investinglive.com/news/what-are-the-main-events-for-today-31/",
-      "source": "ForexLive",
-      "desc": "EUROPEAN SESSIONIn the European session, the only highlight is the German CPI, which is expected to show a yearly increase to 3.0% vs 2.8% prior. It goes without saying that the core measure will be more important. Overall, the data shouldn't change anything for the ECB, so the m",
-      "at": 1788157260000,
-      "inst": [
-        "EUR/USD"
-      ],
-      "ccy": [
-        "EUR",
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "why": "Preview of German CPI, no actual data"
-    },
-    {
       "title": "Iran says US must bear full responsibility for consequences of escalation",
       "link": "https://investinglive.com/news/iran-says-us-must-bear-full-responsibility-for-consequences-of-escalation/",
       "source": "ForexLive",
@@ -1853,20 +1881,28 @@
       "why": "Iran escalation rhetoric, unclear immediate market impact"
     },
     {
-      "title": "Heads up: Germany states' CPI readings due later today",
-      "link": "https://investinglive.com/news/heads-up-germany-states-cpi-readings-due-later-today/",
-      "source": "ForexLive",
-      "desc": "It's getting to the tail end of the summer in Europe but price pressures are staying hot. We got a dose of that with the French and Spanish numbers on Friday, and Germany should continue that today.The expectations is for headline annual inflation to come in at 3.0% (previously 2",
-      "at": 1788150053000,
+      "title": "Dow Jones Futures Fall, Oil Prices Pop As U.S. Strikes Iran",
+      "link": "https://www.investors.com/market-trend/stock-market-today/dow-jones-futures-microsoft-titans-mask-market-weakness/?src=A00220&yptr=yahoo",
+      "source": "Yahoo Finance",
+      "at": 1788145853000,
       "inst": [
-        "EUR/USD"
+        "USOIL",
+        "US30",
+        "XAU/USD",
+        "UKOIL"
       ],
       "ccy": [
-        "USD"
+        "OIL",
+        "XAU"
       ],
-      "sev": 2,
+      "sev": 1,
       "rel": 2,
-      "why": "Preview of German state CPI data"
+      "dir": {
+        "USOIL": "up",
+        "US30": "down",
+        "XAU/USD": "up"
+      },
+      "why": "Oil and gold up, Dow down"
     },
     {
       "title": "Goldman Sachs sends blunt message on oil price, economy",
@@ -1939,23 +1975,10 @@
       "why": "Bitcoin price surges above $80K"
     },
     {
-      "title": "How Is AbbVie’s Stock Performance Compared to Other Healthcare Stocks",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/abbvie-stock-performance-compared-other-192104509.html",
+      "title": "Retirees Who Convert to a Roth in a Down-Market Year Move the Same Shares for Less Tax. Almost Nobody Times It.",
+      "link": "https://finance.yahoo.com/markets/options/articles/retirees-convert-roth-down-market-192934790.html",
       "source": "Yahoo Finance",
-      "at": 1788117664000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "why": "AbbVie performance vs peers, no index direction"
-    },
-    {
-      "title": "What Happens When You Invest in the Stock Market at the Worst Possible Time? History Has Reassuring News for Investors.",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/happens-invest-stock-market-worst-192000469.html",
-      "source": "Yahoo Finance",
-      "at": 1788117600000,
+      "at": 1788118174000,
       "inst": [],
       "ccy": [],
       "sev": 1,
@@ -1978,10 +2001,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-01T06:37:51.712Z",
-  "headlinesAt": "2026-09-01T06:37:51.712Z",
-  "updatedAt": "2026-09-01T06:37:51.712Z"
+  "calendarAt": "2026-09-01T06:53:36.611Z",
+  "headlinesAt": "2026-09-01T06:53:36.611Z",
+  "updatedAt": "2026-09-01T06:53:36.611Z"
 }
