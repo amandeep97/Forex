@@ -903,26 +903,55 @@
   ],
   "headlines": [
     {
-      "title": "Big Tech Spent Over $1 Trillion on AI. The Bill Does Not Arrive Until It Depreciates.",
-      "link": "https://finance.yahoo.com/technology/ai/articles/big-tech-spent-over-1-154147307.html",
+      "title": "Explainer-What's behind the selloff in world bond markets?",
+      "link": "https://finance.yahoo.com/economy/policy/articles/explainer-whats-behind-selloff-world-141230628.html",
       "source": "Yahoo Finance",
-      "at": 1788277307000,
-      "inst": [
-        "US100"
-      ],
+      "at": 1788278393000,
+      "inst": [],
       "ccy": [],
       "sev": 1,
       "rel": 2
     },
     {
-      "title": "Nio shares slide after revenue misses estimates despite narrower loss",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/nio-shares-slide-revenue-misses-153700085.html",
-      "source": "Yahoo Finance",
-      "at": 1788277020000,
+      "title": "Chicago wheat futures reach three-and-a-half-year high",
+      "link": "https://www.investing.com/news/commodities-news/chicago-wheat-futures-reach-threeandahalfyear-high-93CH-4884356",
+      "source": "Investing Cmdty",
+      "at": 1788278350000,
       "inst": [],
       "ccy": [],
       "sev": 1,
       "rel": 1
+    },
+    {
+      "title": "Volkswagen management proposes shutdown of four German plants by 2034, WiWo reports",
+      "link": "https://www.investing.com/news/stock-market-news/volkswagen-management-proposes-shutdown-of-four-german-plants-by-2034-wiwo-reports-4884253",
+      "source": "Investing",
+      "at": 1788278104000,
+      "inst": [
+        "EUR/USD"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "why": "Corporate news, no clear FX impact"
+    },
+    {
+      "title": "Mizuho Names Top Oil and Gas Stocks",
+      "link": "https://www.investing.com/news/stock-market-news/mizuho-names-top-oil-and-gas-stocks-devon-permian-resources-eqt-lead-93CH-4884353",
+      "source": "Investing",
+      "at": 1788277585000,
+      "inst": [
+        "USOIL",
+        "US500"
+      ],
+      "ccy": [
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "why": "Stock picks, no directional signal"
     },
     {
       "title": "Poland stocks lower at close of trade; WIG30 down 0.56%",
@@ -936,32 +965,6 @@
       "sev": 1,
       "rel": 2,
       "why": "Poland stocks down, no US impact"
-    },
-    {
-      "title": "Turkey stocks lower at close of trade; BIST 100 down 0.73%",
-      "link": "https://www.investing.com/news/stock-market-news/turkey-stocks-lower-at-close-of-trade-bist-100-down-073-4884342",
-      "source": "Investing",
-      "at": 1788276632000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "why": "Turkey stocks down, no US impact"
-    },
-    {
-      "title": "Denmark stocks lower at close of trade; OMX Copenhagen 20 down 0.41%",
-      "link": "https://www.investing.com/news/stock-market-news/denmark-stocks-lower-at-close-of-trade-omx-copenhagen-20-down-041-4884341",
-      "source": "Investing",
-      "at": 1788276604000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "why": "Denmark stocks down, no US impact"
     },
     {
       "title": "Oil prices rise 2% as US-Iran fighting stokes supply fears",
@@ -1023,29 +1026,27 @@
       "why": "Trade war boosts dollar, gold unclear"
     },
     {
-      "title": "Goldman Sachs, BofA and others plan to issue dollar stablecoin together in 2027",
-      "link": "https://www.investing.com/news/stock-market-news/goldman-sachs-bofa-and-others-plan-to-issue-dollar-stablecoin-together-in-2027-4884336",
-      "source": "Investing",
-      "at": 1788275552000,
-      "inst": [],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 1,
-      "rel": 1
-    },
-    {
-      "title": "Morocco stocks lower at close of trade; Moroccan All Shares down 0.38%",
-      "link": "https://www.investing.com/news/stock-market-news/morocco-stocks-lower-at-close-of-trade-moroccan-all-shares-down-038-4884333",
-      "source": "Investing",
-      "at": 1788275403000,
+      "title": "U.S.-Iran Strikes Put $100 Oil Back in Focus",
+      "link": "https://finance.yahoo.com/energy/articles/u-iran-strikes-put-100-151000231.html",
+      "source": "Yahoo Finance",
+      "at": 1788275400000,
       "inst": [
-        "US500"
+        "USOIL",
+        "XAU/USD",
+        "UKOIL"
       ],
-      "ccy": [],
+      "ccy": [
+        "OIL",
+        "XAU"
+      ],
       "sev": 1,
       "rel": 2,
-      "why": "Morocco news irrelevant to US index"
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Geopolitical risk boosts oil and gold"
     },
     {
       "title": "US Treas. Sec Bessent: I think Japan is taking right steps for economy",
@@ -1169,36 +1170,6 @@
       "why": "Yields and Fed bets weigh on gold"
     },
     {
-      "title": "Charter Communications (CHTR) Strengthens Market Position Amid Fierce Competition",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/charter-communications-chtr-strengthens-market-142325751.html",
-      "source": "Yahoo Finance",
-      "at": 1788272605000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1
-    },
-    {
-      "title": "Elevance Health (ELV) Soars as Investors Gain Confidence in Profitability",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/elevance-health-elv-soars-investors-141933883.html",
-      "source": "Yahoo Finance",
-      "at": 1788272373000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1
-    },
-    {
-      "title": "Robinhood Stock Upgraded On Growth Outlook; Shares Push Near Entry",
-      "link": "https://www.investors.com/news/robinhood-stock-upgrade-overweight-price-target-growth-outlook-hood-stock-base/?src=A00220&yptr=yahoo",
-      "source": "Yahoo Finance",
-      "at": 1788272341000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1
-    },
-    {
       "title": "US manufacturing PMI 54.6 versus 55.2 estimate",
       "link": "https://investinglive.com/news/us-manufacturing-pmi-54-6-versus-55-2-estimate/",
       "source": "ForexLive",
@@ -1219,16 +1190,6 @@
       "sev": 1,
       "rel": 2,
       "why": "Weak US data, direction unclear"
-    },
-    {
-      "title": "Explainer-What's behind the selloff in world bond markets?",
-      "link": "https://finance.yahoo.com/economy/policy/articles/explainer-whats-behind-selloff-world-141230628.html",
-      "source": "Yahoo Finance",
-      "at": 1788272019000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2
     },
     {
       "title": "Fed Governor Barr says he'll support rate hike if inflation doesn't ease",
@@ -1522,21 +1483,6 @@
         "USOIL": "up"
       },
       "why": "Supply disruption risk boosts oil prices"
-    },
-    {
-      "title": "Trump’s oil deal with Venezuela raises red flags for some major producers, sources say",
-      "link": "https://www.investing.com/news/commodities-news/trumps-oil-deal-with-venezuela-raises-red-flags-for-some-major-producers-sources-say-4883471",
-      "source": "Investing Cmdty",
-      "at": 1788256834000,
-      "inst": [
-        "USOIL"
-      ],
-      "ccy": [
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "why": "Deal impact on prices unclear"
     },
     {
       "title": "Italy August preliminary CPI +3.3% vs +3.3% y/y expected",
@@ -1921,6 +1867,108 @@
       "sev": 2,
       "rel": 2,
       "why": "G20 diplomacy test, bond turmoil"
+    },
+    {
+      "title": "Treasury yields advance as Warsh’s hawkish stance and oil spike fuel Sept hike",
+      "link": "https://www.investing.com/news/forex-news/german-yields-hit-multiyear-highs-after-warshs-hawkish-tone-4882236",
+      "source": "Investing FX",
+      "at": 1788176870000,
+      "inst": [
+        "USOIL"
+      ],
+      "ccy": [
+        "USD",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil spike fuels September hike expectations"
+    },
+    {
+      "title": "Stocks making the biggest moves premarket: Chevron, PG&E, GameStop and more",
+      "link": "https://www.cnbc.com/2026/08/31/stocks-making-the-biggest-moves-premarket-cvx-pcg-gme-more.html",
+      "source": "CNBC Markets",
+      "desc": "These are the stocks posting the largest moves premarket.",
+      "at": 1788176109000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "why": "Individual stock moves, no broad index direction"
+    },
+    {
+      "title": "Jackson Hole analyst roundup: Warsh's speech sends hike chances higher, may put Fed 'at odds' with Treasury",
+      "link": "https://www.cnbc.com/2026/08/31/jackson-hole-fed-chair-kevin-warsh-hawkish-rate-hikes-analysts.html",
+      "source": "CNBC Markets",
+      "desc": "Fed Chair Kevin Warsh's hawkish stance reinforced expectations of a relatively tighter stance at the Federal Open Market Committee meeting in September.",
+      "at": 1788175683000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Hawkish Fed stance strengthens dollar, weakens metals"
+    },
+    {
+      "title": "Best high-yield savings interest rates today, Tuesday, September 1, 2026: Earn up to 4.10% APY",
+      "link": "https://finance.yahoo.com/personal-finance/banking/article/best-high-yield-savings-interest-rates-today-tuesday-september-1-2026-earn-up-to-410-apy-100000500.html",
+      "source": "Yahoo Finance",
+      "at": 1788170400000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2
+    },
+    {
+      "title": "Is a ‘Bessent doctrine’ taking shape in global FX policy?",
+      "link": "https://www.investing.com/news/forex-news/is-a-bessent-doctrine-taking-shape-in-global-fx-policy-4882074",
+      "source": "Investing FX",
+      "at": 1788127093000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "why": "Policy speculation, no immediate directional impact."
+    },
+    {
+      "title": "U.S. appeals court rules against prediction markets, sets up likely fight at Supreme Court",
+      "link": "https://www.cnbc.com/2026/08/28/appeals-court-rules-against-prediction-markets-tees-up-scotus-fight.html",
+      "source": "CNBC Markets",
+      "desc": "The 9th U.S. Circuit Court of Appeals ruled that sports-related event contracts are not swaps, contradicting a 3rd Circuit ruling from April.",
+      "at": 1787970232000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 1
     }
   ],
   "sources": [
@@ -1942,7 +1990,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-01T16:00:38.619Z",
-  "headlinesAt": "2026-09-01T16:00:38.619Z",
-  "updatedAt": "2026-09-01T16:00:38.619Z"
+  "calendarAt": "2026-09-01T16:16:37.638Z",
+  "headlinesAt": "2026-09-01T16:16:37.638Z",
+  "updatedAt": "2026-09-01T16:16:37.638Z"
 }
