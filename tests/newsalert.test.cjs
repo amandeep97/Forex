@@ -129,6 +129,39 @@ const now = Date.UTC(2026, 8, 1, 15, 0);
     telegram: { enabled: true, send: async (t) => { sent.push(t); } },
   });
 
+  // ── The three that actually got through ──────────────────────────────────
+  //
+  // These are verbatim from a phone, inside two hours, all severity 2, all one
+  // war. Suppressing on shared proper nouns did not stop them and could not:
+  //
+  //   "US strikes Iran ... wedding party"        -> iran
+  //   "Iranian media reports ... near Ahvaz"     -> iranian, ahvaz, middle, east
+  //   "US military ... Strait of Hormuz"         -> strait, hormuz, axios
+  //
+  // Not one word shared between any pair. "Iran" and "Iranian" are different
+  // strings and Ahvaz, Hormuz and a wedding are genuinely different places, in
+  // the same war. The market prices that war in once.
+  check('all three real headlines land in the same theatre',
+    ['US strikes Iran as state media reports four killed at wedding party',
+     'Iranian media reports US missile attack near Ahvaz - Middle East Eye',
+     'U.S. military conducting fresh strikes in the Strait of Hormuz - Axios',
+    ].every(t => N.theatresIn(t).has('iran')));
+  check('and share no proper noun at all, which is why entities could not work',
+    N.properNouns('US strikes Iran as state media reports four killed at wedding party')
+      .size && ![...N.properNouns('U.S. military conducting fresh strikes in the Strait of Hormuz')]
+        .some(w => N.properNouns('US strikes Iran as state media reports four killed').has(w)));
+  check('a Ukraine story is a different theatre',
+    N.theatresIn('Russia launches drone strikes on Kyiv power grid').has('ukraine')
+    && !N.theatresIn('Russia launches drone strikes on Kyiv power grid').has('iran'));
+  check('"Israel strikes Iran" belongs to both, so either later is the same story',
+    N.theatresIn('Israel strikes Iranian nuclear sites').has('iran')
+    && N.theatresIn('Israel strikes Iranian nuclear sites').has('levant'));
+  check('an ordinary markets headline belongs to no theatre',
+    N.theatresIn('Fed holds rates as inflation cools').size === 0,
+    'or every CPI print would be filed as a war');
+  check('the theatre stays quiet for four hours, not two',
+    N.THEATRE_QUIET_MS === 4 * 3600e3, `${N.THEATRE_QUIET_MS / 3600e3}h`);
+
   // The alert pass reads the wall clock, so this runs against the real one. A
   // burst inside a single pass, then follow-ups, is enough to prove the three
   // behaviours that matter: collapse, escalation, and the gap.
@@ -167,8 +200,35 @@ const now = Date.UTC(2026, 8, 1, 15, 0);
           check('nothing is ever alerted twice',
             new Set(sent).size === sent.length);
 
-          console.log(fails ? `\n${fails} FAILED` : '\nall passed');
-          process.exit(fails ? 1 : 0);
+          // And the real sequence, replayed.
+          const war = mk();
+          const real = [
+            ['US strikes Iran as state media reports four killed at wedding party', 'BBC World'],
+            ['Iranian media reports US missile attack near Ahvaz - Middle East Eye', 'Wires (geo)'],
+            ['U.S. military conducting fresh strikes in the Strait of Hormuz - Axios', 'Wires (geo)'],
+          ];
+          const before = sent.length;
+          return real.reduce((chain, [title, source]) => chain.then(() =>
+            war._alert([{ title, source, link: title, at: Date.now() - 60e3, sev: 2, srcs: 2 }])
+          ), Promise.resolve()).then(() => {
+            check('the three real alerts collapse to one',
+              sent.length - before === 1, `${sent.length - before} sent, was 3`);
+            return war._alert([{ title: 'BREAKING: Iran closes Strait of Hormuz to all shipping',
+              source: 'Wires (geo)', link: 'esc', at: Date.now(), sev: 3, srcs: 4 }]);
+          }).then(() => {
+            check('a genuine escalation of that war still gets through',
+              sent.length - before === 2,
+              'closing Hormuz is a new event to trade, not the same one reported again');
+            return war._alert([{ title: 'Russia launches drone strikes on Kyiv power grid',
+              source: 'BBC World', link: 'ru', at: Date.now(), sev: 3, srcs: 3 }]);
+          }).then(() => {
+            check('and a different war is a different alert',
+              sent.length - before === 3, `${sent.length - before}`);
+
+            console.log(fails ? `\n${fails} FAILED` : '\nall passed');
+            process.exit(fails ? 1 : 0);
+          });
+
         });
       });
     });
