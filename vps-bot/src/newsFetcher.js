@@ -27,6 +27,18 @@ const SUBS_PATH = 'bot/push-subscriptions.json';
 // dynamic import — the same route shared/feedConditions.mjs already takes. Held
 // after the first load; a failure falls back to the currency-only matcher below
 // rather than publishing sixty untagged headlines.
+// The same ESM-from-CommonJS bridge, for the price helpers the alert needs.
+let _features = null;
+async function features() {
+  if (_features) return _features;
+  try {
+    const url = require('url').pathToFileURL(
+      require('path').join(__dirname, '..', '..', 'shared', 'moveFeatures.mjs')).href;
+    _features = await import(url);
+  } catch { _features = {}; }
+  return _features;
+}
+
 let _tagging = null;
 async function tagging() {
   if (_tagging) return _tagging;
@@ -153,6 +165,39 @@ const THEATRES = {
 // Four hours. Long enough that one war is one alert through a session, short
 // enough that tomorrow morning's development is news again.
 const THEATRE_QUIET_MS = 4 * 3600e3;
+
+// ── Quiet hours ──────────────────────────────────────────────────────────────
+//
+// Gold's geopolitical windows are the Asian and European mornings, which are
+// the middle of the night in Toronto, so alerts WILL land at three in the
+// morning. Severity 3 still gets through — a war starting is worth waking for,
+// and a silenced one is the alert that mattered. Severity 2 waits until
+// morning; the story is on the Today screen when you open it either way.
+//
+// A named zone rather than a UTC offset, so this does not drift by an hour
+// twice a year. iOS does this better through Focus and per-app notification
+// settings; this exists because it was asked for and because Telegram has no
+// equivalent.
+const QUIET_TZ = process.env.NEWS_QUIET_TZ || 'America/Toronto';
+const QUIET_FROM = Number(process.env.NEWS_QUIET_FROM ?? 23);
+const QUIET_TO = Number(process.env.NEWS_QUIET_TO ?? 7);
+
+// The local hour in a named zone, without pulling in a date library.
+function hourIn(tz, at = Date.now()) {
+  try {
+    return Number(new Intl.DateTimeFormat('en-GB', {
+      timeZone: tz, hour: 'numeric', hour12: false,
+    }).format(new Date(at)));
+  } catch { return null; }   // an unknown zone means no quiet hours, not a crash
+}
+
+function inQuietHours(at = Date.now(), tz = QUIET_TZ, from = QUIET_FROM, to = QUIET_TO) {
+  if (from === to) return false;                     // configured off
+  const h = hourIn(tz, at);
+  if (h == null) return false;
+  // Wraps past midnight: 23 to 7 is 23, 0, 1 ... 6.
+  return from < to ? (h >= from && h < to) : (h >= from || h < to);
+}
 
 // Which conflicts a headline touches. A story naming two of them — "Israel
 // strikes Iran" — belongs to both, and overlapping with EITHER later is enough
@@ -439,13 +484,16 @@ async function getText(url, timeout = 15000) {
 }
 
 class NewsFetcher {
-  constructor({ github, log, groqApiKey = null, telegram = null, env = null }) {
+  constructor({ github, log, groqApiKey = null, telegram = null, env = null, oanda = null }) {
     this.github = github;
     this.log = log || (() => {});
     // Optional. Without either, the alert pass does nothing and says nothing —
     // which is the state news has been in all along.
     this.telegram = telegram && telegram.enabled ? telegram : null;
     this.pushReady = env ? configurePush(env) : false;
+    // Optional. Without it the alert carries the headline and no price, which
+    // is where it started.
+    this.oanda = oanda;
     // Alerting is once per story. Keyed on the link, and floored at the boot
     // time so a restart cannot replay the morning.
     this.alerted = new Set();
@@ -842,6 +890,9 @@ class NewsFetcher {
       const sev = h.sev ?? 1;
       const isGeo = geo(`${h.title} ${h.desc || ''}`);
       if (!isGeo && sev < 3) return false;
+      // Overnight, only a war starting is worth waking for. The rest is on the
+      // Today screen in the morning.
+      if (sev < 3 && inQuietHours(now)) return false;
       if (sev >= 3) return true;
       return (h.srcs || 1) >= 2;          // heavy, but only once someone else has it
     }).sort((a, b) => (b.sev ?? 1) - (a.sev ?? 1) || (b.at - a.at));
@@ -880,11 +931,12 @@ class NewsFetcher {
     for (const h of hits) {
       const when = new Date(h.firstAt || h.at).toISOString().slice(11, 16);
       const srcs = (h.srcs || 1) > 1 ? ` · ${h.srcs} sources` : ' · 1 source, unconfirmed';
-      const body = `${h.title}\n${h.source}${srcs}`;
+      const moved = await this._moveSince(h.firstAt || h.at).catch(() => '');
+      const body = `${h.title}\n${h.source}${srcs}${moved ? `\n${moved}` : ''}`;
       const tag = h.sev >= 3 ? '🔴 URGENT' : '🟠 HEAVY';
       if (this.telegram) {
-        await this.telegram.send(`${tag} <b>${when} UTC</b>${srcs}\n${h.title}\n<i>${h.source}</i>`)
-          .catch(() => {});
+        await this.telegram.send(`${tag} <b>${when} UTC</b>${srcs}\n${h.title}`
+          + `\n<i>${h.source}</i>${moved ? `\n<b>${moved}</b>` : ''}`).catch(() => {});
       }
       if (this.pushReady) {
         const subs = await this._subs();
@@ -894,6 +946,36 @@ class NewsFetcher {
     this.log(`News: alerted ${hits.length} geopolitical headline(s)`
       + ` (${inLastHour + hits.length}/${MAX_ALERTS_PER_HOUR} this hour)`);
     return hits.length;
+  }
+
+  // What the metals have done since the headline broke.
+  //
+  // The line that turns a news alert into a trading one. Buzzing "US strikes
+  // Iran" invites the classic mistake — buying the news after the market has
+  // already taken it — and "Gold +0.9% since" is the number that says you are
+  // late. A near-zero reading is just as useful and much rarer: the market has
+  // seen this headline and does not care.
+  //
+  // ONE-MINUTE BARS, not hourly. The alert fires about three minutes after the
+  // wire, and an H1 bar that began at 21:00 is not complete until 22:00 — the
+  // measurement would be null on every alert it was built for. Ninety M1 bars
+  // covers an hour and a half of headline age and gives a close within a minute
+  // of now.
+  //
+  // Absent rather than zero when the market was shut, when the headline is
+  // older than the window, or when OANDA is not wired in.
+  async _moveSince(at) {
+    if (!this.oanda || !at) return '';
+    const M = await features();
+    if (!M?.moveSincePct) return '';
+    const parts = [];
+    for (const [sym, label] of [['XAU_USD', 'Gold'], ['XAG_USD', 'Silver']]) {
+      const cs = await this.oanda.getCandles(sym, 'M1', 90).catch(() => null);
+      const mv = cs && M.moveSincePct(cs, at);
+      if (!mv) continue;
+      parts.push(`${label} ${mv.pct >= 0 ? '+' : ''}${mv.pct.toFixed(2)}%`);
+    }
+    return parts.length ? `${parts.join(' · ')} since` : '';
   }
 
   async _subs() {
@@ -964,4 +1046,5 @@ module.exports = { NewsFetcher, NEWS_PATH, HISTORY_PATH, parseRSS, currenciesIn,
                    CURRENCY_WORDS, numOf, withSurprise, NOT_ABOUT, releasedValue, RELEASE_MAP,
                    corroborate, tokens, properNouns, POLL_MS, MAX_HEADLINES,
                    MAX_ALERTS_PER_HOUR, MIN_ALERT_GAP_MS, ALERT_MEMORY_MS,
-                   theatresIn, THEATRES, THEATRE_QUIET_MS };
+                   theatresIn, THEATRES, THEATRE_QUIET_MS,
+                   inQuietHours, hourIn, QUIET_TZ, QUIET_FROM, QUIET_TO };

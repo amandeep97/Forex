@@ -13,7 +13,11 @@
 // either a rule that survived the holdout is true on this bar, or it is one
 // condition away, or it is not. Three states, no judgement, no waiting.
 
-import { featureSeries, keysOf, PHRASE } from '../../shared/moveFeatures.mjs';
+import { featureSeries, keysOf, PHRASE, moveSincePct } from '../../shared/moveFeatures.mjs';
+
+// Re-exported: the bot puts the same number in a push notification, so there is
+// one implementation and it lives in shared/.
+export { moveSincePct };
 import { macroSeries, describe as describeMacro } from '../../shared/macroFit.mjs';
 import {
   fetchRegimeStudy, firing, nearMisses,
@@ -119,22 +123,6 @@ export function topHeadlines(news, insts, { max = 4, now = Date.now() } = {}) {
   return out
     .sort((a, b) => (b.sev - a.sev) || (b.direct - a.direct) || ((b.at || 0) - (a.at || 0)))
     .slice(0, max);
-}
-
-// What price has done since a given moment, from the bars already loaded.
-//
-// The bar AT or AFTER the timestamp, so a headline that landed mid-bar is
-// measured from the close of the bar it landed in rather than from a price that
-// had already moved on it. Null when the headline is newer than the last
-// complete bar — over a weekend, or in the first minutes of an hour, there is
-// nothing to measure yet and a zero would read as "it did nothing".
-export function moveSincePct(cs, t) {
-  if (!cs?.length || !t) return null;
-  const i = cs.findIndex(c => c.t >= t);
-  if (i < 0 || i >= cs.length - 1) return null;
-  const from = cs[i].c, to = cs[cs.length - 1].c;
-  if (!(from > 0)) return null;
-  return { pct: ((to - from) / from) * 100, bars: cs.length - 1 - i, at: cs[i].t };
 }
 
 // The headline worth putting at the TOP, and what the market did after it.

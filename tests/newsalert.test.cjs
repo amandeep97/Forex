@@ -200,6 +200,76 @@ const now = Date.UTC(2026, 8, 1, 15, 0);
           check('nothing is ever alerted twice',
             new Set(sent).size === sent.length);
 
+          // ── The price in the alert ─────────────────────────────────────
+          //
+          // The line that turns a news alert into a trading one. Buzzing "US
+          // strikes Iran" invites buying the news after the market has already
+          // taken it; "Gold +0.9% since" is the number that says you are late.
+          //
+          // M1 bars, not H1. The alert fires three minutes after the wire and
+          // an H1 bar that began at 21:00 is not complete until 22:00 — on H1
+          // the measurement would be null on every alert it was built for.
+          // Five minutes old, not thirty: the boot floor is bootAt minus thirty
+          // minutes, so a headline exactly that old is a millisecond coin flip
+          // on whether it counts as pre-boot. Correct behaviour, terrible test.
+          const now2 = Date.now();
+          const t0 = now2 - 5 * M;
+          const m1 = [];
+          for (let k = 0; k < 60; k++) {
+            const p = 4400 + (k >= 55 ? (k - 55) * 8 : 0);     // flat, then a rally
+            m1.push({ t: now2 - (59 - k) * M, o: p, h: p + 1, l: p - 1, c: p, v: 1 });
+          }
+          const priced = new N.NewsFetcher({
+            github: { readJSON: async () => ({ content: { subscriptions: [] } }) },
+            log: () => {},
+            telegram: { enabled: true, send: async (x) => { sent.push(x); } },
+            oanda: { getCandles: async () => m1 },
+          });
+          return priced._alert([{ title: 'BREAKING: Sanctions on Venezuelan crude',
+            source: 'Wires (geo)', link: 'vz', at: t0, sev: 3, srcs: 3 }]).then(() => {
+            const last = sent[sent.length - 1];
+            check('the alert carries what the metals did since it broke',
+              /Gold \+\d/.test(last) && /since/.test(last), last.split('\n').pop());
+            // Fifty-five flat minutes, then a rally of eight a bar. The headline
+            // sits on the turn five minutes ago, so the move since is 32/4400.
+            check('measured on M1 bars, so it is not null five minutes in',
+              /Gold \+0\.7\d%/.test(last),
+              'on H1 the bar the headline landed in would not close for another hour');
+
+            // No OANDA, or a market that was shut, says nothing rather than 0.00%.
+            const dumb = new N.NewsFetcher({
+              github: { readJSON: async () => ({ content: { subscriptions: [] } }) },
+              log: () => {}, telegram: { enabled: true, send: async (x) => { sent.push(x); } },
+            });
+            return dumb._alert([{ title: 'BREAKING: Taiwan strait incident',
+              source: 'BBC World', link: 'tw', at: Date.now() - M, sev: 3, srcs: 2 }]);
+          }).then(() => {
+            check('without prices the alert simply omits the line',
+              !/since/.test(sent[sent.length - 1]),
+              'a 0.00% would read as "the market did not care", which is a different claim');
+
+            // ── Quiet hours ──────────────────────────────────────────────
+            check('the window is 23:00 to 07:00 Toronto',
+              N.QUIET_FROM === 23 && N.QUIET_TO === 7 && N.QUIET_TZ === 'America/Toronto');
+            const at = (h) => Date.UTC(2026, 8, 2, h, 0);
+            check('four in the morning Toronto is quiet', N.inQuietHours(at(8)),
+              `${N.hourIn('America/Toronto', at(8))}:00 local`);
+            check('and the middle of the New York session is not', !N.inQuietHours(at(18)),
+              `${N.hourIn('America/Toronto', at(18))}:00 local`);
+            check('the window wraps past midnight rather than being empty',
+              N.inQuietHours(at(3)) && N.inQuietHours(at(4)) && N.inQuietHours(at(10))
+              && !N.inQuietHours(at(11)),
+              'from 23 to 7 has to mean 23, 0, 1 ... 6 — and 07:00 is when it ends');
+            check('a named zone, so it does not drift by an hour twice a year',
+              N.hourIn('America/Toronto', Date.UTC(2026, 0, 15, 12)) !==
+              N.hourIn('America/Toronto', Date.UTC(2026, 6, 15, 12)),
+              'January and July differ by exactly the DST hour');
+            check('an unknown zone means no quiet hours rather than a crash',
+              N.hourIn('Not/AZone') === null && N.inQuietHours(Date.now(), 'Not/AZone') === false);
+
+            return null;
+          }).then(() => {
+
           // And the real sequence, replayed.
           const war = mk();
           const real = [
@@ -227,6 +297,7 @@ const now = Date.UTC(2026, 8, 1, 15, 0);
 
             console.log(fails ? `\n${fails} FAILED` : '\nall passed');
             process.exit(fails ? 1 : 0);
+          });
           });
 
         });
