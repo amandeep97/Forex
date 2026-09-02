@@ -371,6 +371,27 @@ export const PHRASE = {
   ...MACRO_PHRASE,
 };
 
+// What price has done since a given moment.
+//
+// The bar AT or AFTER the timestamp, so a headline that landed mid-bar is
+// measured from the close of the bar it landed in rather than from a price that
+// had already moved on it. Null when there is no completed bar after it — over
+// a weekend, or in the first minute of a fresh bar, there is nothing to measure
+// yet and a zero would read as "the market did nothing", which is a different
+// claim entirely.
+//
+// Lives here rather than in either caller because the phone and the bot both
+// need it and must not drift: the app prints it under a breaking headline, and
+// the bot puts it in the push notification.
+export function moveSincePct(cs, t) {
+  if (!cs?.length || !t) return null;
+  const i = cs.findIndex(c => c.t >= t);
+  if (i < 0 || i >= cs.length - 1) return null;
+  const from = cs[i].c, to = cs[cs.length - 1].c;
+  if (!(from > 0)) return null;
+  return { pct: ((to - from) / from) * 100, bars: cs.length - 1 - i, at: cs[i].t };
+}
+
 // ── Finding the moves ───────────────────────────────────────────────────────
 //
 // An ATR zigzag: a pivot is confirmed once price has come back `k` ATR from the

@@ -87,8 +87,9 @@ class ForexBot {
     this.updater = new Updater({ github: this.github, env, log: this.log.bind(this) });
     this.news = new NewsFetcher({
       github: this.github, log: this.log.bind(this),
-      // So a geopolitical wire can reach the phone without the app being open.
-      telegram: this.telegram, env,
+      // So a geopolitical wire can reach the phone without the app being open,
+      // and so the alert can say what the metals did since it broke.
+      telegram: this.telegram, env, oanda: this.oanda,
       // Optional. Without it headlines carry no direction, which is where they
       // have been all along; nothing else changes.
       groqApiKey: env.GROQ_API_KEY || null,
