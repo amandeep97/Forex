@@ -570,10 +570,35 @@
   ],
   "headlines": [
     {
+      "title": "EU and Nato vow to step up pressure on Russia after 'new escalation' in Germany",
+      "link": "https://www.bbc.co.uk/news/articles/ce9e810pg7ko?at_medium=RSS&at_campaign=rss",
+      "source": "BBC World",
+      "desc": "Russia is accused of growing increasingly reckless after Berlin blamed Russia for a failed drone attack on Leipzig airport.",
+      "at": 1788359662000,
+      "inst": [
+        "EUR/USD",
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788359662000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Geopolitical tension boosts gold, oil unclear"
+    },
+    {
       "title": "OPEC+ likely to keep oil output policy unchanged on Sunday, sources say",
-      "link": "https://finance.yahoo.com/energy/articles/opec-likely-keep-oil-output-140907521.html",
-      "source": "Yahoo Finance",
-      "at": 1788358147000,
+      "link": "https://www.investing.com/news/commodities-news/opec-likely-tokeep-oil-output-policy-unchanged-on-sunday-sources-say-4886396",
+      "source": "Investing Cmdty",
+      "at": 1788359469000,
       "inst": [
         "USOIL",
         "UKOIL"
@@ -584,8 +609,70 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788358147000,
+      "firstAt": 1788359469000,
       "why": "Status quo implies no immediate price change"
+    },
+    {
+      "title": "EPAM leads underappreciated tech stocks",
+      "link": "https://www.investing.com/news/stock-market-news/epam-leads-underappreciated-tech-stocks-93CH-4886435",
+      "source": "Investing",
+      "at": 1788359395000,
+      "inst": [
+        "US500",
+        "US100"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788359395000
+    },
+    {
+      "title": "Wall Street pushes higher as oil prices, yields halt surge",
+      "link": "https://www.investing.com/news/stock-market-news/us-futures-muted-as-markets-parse-rate-jitters-more-iran-strikes-4885211",
+      "source": "Investing",
+      "at": 1788359016000,
+      "inst": [
+        "USOIL",
+        "US500"
+      ],
+      "ccy": [
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788359016000
+    },
+    {
+      "title": "This Stock Trades at a Fraction of Its Own Projected $23.6 Billion Value. Here's Why the Market Isn't Buying It.",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/stock-trades-fraction-own-projected-142000803.html",
+      "source": "Yahoo Finance",
+      "at": 1788358800000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 1,
+      "srcs": 1,
+      "firstAt": 1788358610000
+    },
+    {
+      "title": "Stock Market Today: Dow Up On Surprise Jobs Data; Dell Tries To Break Out (Live Coverage)",
+      "link": "https://www.investors.com/market-trend/stock-market-today/dow-jones-sp500-nasdaq-jobs-data-ai-stock-credo-earnings/?src=A00220&yptr=yahoo",
+      "source": "Yahoo Finance",
+      "at": 1788358610000,
+      "inst": [
+        "US30"
+      ],
+      "ccy": [],
+      "sev": 3,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788358610000,
+      "dir": {
+        "US30": "up"
+      },
+      "why": "Dow up on surprise jobs data"
     },
     {
       "title": "Ukraine's Refinery Strikes Force Russia to Process Oil Abroad - Crude Oil Prices Today | OilPrice.com",
@@ -639,18 +726,6 @@
         "GBP/USD": "down"
       },
       "why": "Strong economy implies hawkish Fed, higher yields."
-    },
-    {
-      "title": "Dell shares gain after strong AI server demand boosts annual forecast",
-      "link": "https://www.investing.com/news/stock-market-news/dell-shares-gain-after-strong-ai-server-demand-boosts-annual-forecast-4885629",
-      "source": "Investing",
-      "at": 1788357324000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1788357324000
     },
     {
       "title": "Bond yields still high as investors weigh rate hike risk: AlphaCheck",
@@ -746,7 +821,7 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 2,
+      "srcs": 1,
       "firstAt": 1788353951000,
       "dir": {
         "XAU/USD": "up"
@@ -770,24 +845,6 @@
       "srcs": 1,
       "firstAt": 1788356558000,
       "why": "Oil prices stay elevated, no new move"
-    },
-    {
-      "title": "Stock Market Today: Dow Rises On Surprise Jobs Data; AI Name Credo Dives On Earnings Report (Live Coverage)",
-      "link": "https://www.investors.com/market-trend/stock-market-today/dow-jones-sp500-nasdaq-jobs-data-ai-stock-credo-earnings/?src=A00220&yptr=yahoo",
-      "source": "Yahoo Finance",
-      "at": 1788356425000,
-      "inst": [
-        "US30"
-      ],
-      "ccy": [],
-      "sev": 3,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788355459000,
-      "dir": {
-        "US30": "up"
-      },
-      "why": "Dow rises on surprise jobs data."
     },
     {
       "title": "Trading Volumes On Kalshi And Polymarket Fell 15% In August",
@@ -820,6 +877,26 @@
         "USOIL": "down"
       },
       "why": "Oil retreats from one-month high"
+    },
+    {
+      "title": "India Boosts Far East Russian Oil Imports as War Upends Trade Routes",
+      "link": "https://finance.yahoo.com/energy/articles/india-boosts-far-east-russian-133000476.html",
+      "source": "Yahoo Finance",
+      "at": 1788355800000,
+      "inst": [
+        "USOIL",
+        "XAU/USD",
+        "UKOIL"
+      ],
+      "ccy": [
+        "OIL",
+        "XAU"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788355800000,
+      "why": "India boosts Russian oil imports"
     },
     {
       "title": "Wheat futures expected to open lower after hitting multi-year high",
@@ -1026,31 +1103,6 @@
       "why": "Yield rise direction ambiguous for FX and gold."
     },
     {
-      "title": "EU and Nato vow to step up pressure on Russia after 'new escalation' in Germany",
-      "link": "https://www.bbc.co.uk/news/articles/ce9e810pg7ko?at_medium=RSS&at_campaign=rss",
-      "source": "BBC World",
-      "desc": "Russia is accused of growing increasingly reckless after Berlin blamed Russia for a failed drone attack on Leipzig airport.",
-      "at": 1788354287000,
-      "inst": [
-        "EUR/USD",
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1788353340000,
-      "dir": {
-        "XAU/USD": "up"
-      },
-      "why": "Geopolitical tension boosts gold, oil unclear"
-    },
-    {
       "title": "Oil jumps after Iran strikes on US bases in the Middle East - Semafor",
       "link": "https://news.google.com/rss/articles/CBMipAFBVV95cUxQVXVGdEVnMFlnakI2Q3FZek1XTWNVMWRFOS1GOEhJdWMxWndTTVNTSlhnTmRUaGRZajd4TFdoc2h4eURwUWZZcVFnZVdnVlRiUHVGVTZocGVTVlQwVk9NT28xYlVxYTB0S0lObngwVlgyVUVXbkhZdzlXdFA4NzZTdGJRcl9pUExJd3ZTaXoxc2RDRzBqbXMxdFhiaGJEVkcwWkJldQ?oc=5",
       "source": "Wires (geo)",
@@ -1188,7 +1240,7 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 2,
+      "srcs": 1,
       "firstAt": 1788353340000,
       "dir": {
         "XAU/USD": "up"
@@ -1311,25 +1363,6 @@
       "srcs": 1,
       "firstAt": 1788352140000,
       "why": "No clear index direction implied"
-    },
-    {
-      "title": "How one strategist warned on semiconductor stocks within a day of their top",
-      "link": "https://www.marketwatch.com/story/how-one-strategist-warned-on-semiconductor-stocks-within-a-day-of-their-top-03ee8d34?mod=mw_rss_topstories",
-      "source": "MarketWatch",
-      "desc": "The chairman of JPMorgan Asset Management’s market and investment strategy warned on chip stocks within a day of their peak.",
-      "at": 1788351720000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788351720000,
-      "dir": {
-        "US500": "down"
-      },
-      "why": "Strategist warns on semiconductor stocks near peak."
     },
     {
       "title": "US eyes airlines, digital assets as Iran-related targets, Bessent says",
@@ -1700,7 +1733,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788345780000,
+      "firstAt": 1788345603000,
       "dir": {
         "XAU/USD": "up",
         "USOIL": "up",
@@ -1754,6 +1787,19 @@
       "srcs": 1,
       "firstAt": 1788346901000,
       "why": "Bank fine has no market impact"
+    },
+    {
+      "title": "Bond market sell-off: How investors can move and protect their money as rates rise - CNBC",
+      "link": "https://news.google.com/rss/articles/CBMilgFBVV95cUxQeVZwUTRpcDRiQlc2Ui1LQ2U3NWd3dkhJa3ZWSENPQTM1SkNJcEJwU2pJRlhBbC1WbGcxRlNGMHhBWTc5VDEweFoyTHR6Y2VoSG5QZHJZTkpSWEF5UEVoUlpVa3hEZW9KM1ZLOHIyQlF4anJ0bUZ4VlZCb195TWJfa25Xakh5cDhaSklJSDlWY3QwZjk0MGfSAZsBQVVfeXFMT2x1YUFxcVVJOEp6MnIxQ3ZweWFEYnV3TWRNM1NLd2lpUWk3MEtYaDBNQmEtXzNHeXhxbDAwRmNMNGJBSXBQbTRXQXBQNVVhVENXWHZoVFZwVTBiYnRBSUppRTdWdFRST0d4T0I3eVZJUzJ5STFzSmpWWHlCR3JieE9WWEVNcEFTUUIyUjRhXzRXdVk5TDRnMEJ0Wm8?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMilgFBVV95cUxQeVZwUTRpcDRiQlc2Ui1LQ2U3NWd3dkhJa3ZWSENPQTM1SkNJcEJwU2pJRlhBbC1WbGcxRlNGMHhBWTc5VDEweFoyTHR6Y2VoSG5QZHJZTkpSWEF5UEVoUlpVa3hEZW9KM1ZLOHIyQlF4anJ0bUZ4VlZCb195TWJfa25Xakh5cDhaSklJSDlWY3QwZjk0MGfSAZsBQVVfeXFMT2x1YUFxcVVJOE",
+      "at": 1788346829000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788346829000
     },
     {
       "title": "Silver price today, Wednesday, September 2, 2026: Silver prices fall further following second wave of attacks",
@@ -1860,7 +1906,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788345780000,
+      "firstAt": 1788345603000,
       "dir": {
         "XAU/USD": "up",
         "USOIL": "up",
@@ -1986,6 +2032,31 @@
         "UKOIL": "up"
       },
       "why": "Strait of Hormuz tensions boost oil"
+    },
+    {
+      "title": "US launches strikes on Iran as Trump warns regime is 'playing out the inevitable' - Fox News",
+      "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE5rX1lBdGhyclM1T2p2QnNubUZDV1pmTFY4dUwyLVlqTEpEaTNuX29HM0o4c09HTFdFenZmT2ZYVHVWbjhUekNoam91N2ZHRlBHUVFLdmZR?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiVkFVX3lxTE5rX1lBdGhyclM1T2p2QnNubUZDV1pmTFY4dUwyLVlqTEpEaTNuX29HM0o4c09HTFdFenZmT2ZYVHVWbjhUekNoam91N2ZHRlBHUVFLdmZR?oc=5\" target=\"_blank\">US launches strikes on Iran as Trump warns regime is 'playing out the inevitable'</a>&nbsp;",
+      "at": 1788345603000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788343416000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "US strikes Iran boost oil prices"
     },
     {
       "title": "'November is a priority’: Donald Trump aides push to contain Iran war until midterm elections - The Times of India",
@@ -2216,32 +2287,6 @@
       "why": "Gaza strikes despite ceasefire increase uncertainty"
     },
     {
-      "title": "Iran strikes US bases across region after American attack kills 18, including children - Middle East Eye",
-      "link": "https://news.google.com/rss/articles/CBMivAFBVV95cUxNdmREdjdiVXloNFRfMVA1SzV5N0JJNUtHSXNyOTNtbzJLb1VNTmFnRFhmTzNyZUJvVkRLaFctM3QxOUQyVmJfdGpyemMyOWFtY21kNmlGbjk5TGRSQ3Q3bzQ2MXQ0NXk3LWhpT295U1l5TWFFb0FtN3Z6ek5sdUtVYUJobkZOUkE4aHE4RlhBVTd3MlN3ZmF5TTM4YzNLYmxSSnFXWmNRb1FXSElPeE10MEhBcmh2ZFJBal85ZA?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMivAFBVV95cUxNdmREdjdiVXloNFRfMVA1SzV5N0JJNUtHSXNyOTNtbzJLb1VNTmFnRFhmTzNyZUJvVkRLaFctM3QxOUQyVmJfdGpyemMyOWFtY21kNmlGbjk5TGRSQ3Q3bzQ2MXQ0NXk3LWhpT295U1l5TWFFb0FtN3Z6ek5sdUtVYUJobkZOUkE4aHE4RlhBVTd3MlN3ZmF5TTM4YzNLYmxSSnFXWmNRb1FXSE",
-      "at": 1788340519000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1788339088000,
-      "dir": {
-        "XAU/USD": "up",
-        "USOIL": "up",
-        "UKOIL": "up"
-      },
-      "why": "Major conflict escalation drives risk-off and oil up."
-    },
-    {
       "title": "Every time Iran talks about de-escalation, something happens in Hormuz - Iran International",
       "link": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE9kaU5UYjhob2lyaXppNEpnUTRueFhjc3BRMGhNUUw0QUM3QU5HM0plbHBUS1NpVWM3N00tcWc4c2RSYm0zckdDMWdaNGZXZjBfWVE?oc=5",
       "source": "Wires (geo)",
@@ -2384,33 +2429,6 @@
       "why": "Stronger dollar weighs on gold"
     },
     {
-      "title": "Global bond rout gathers pace as inflation fears mount - CNBC",
-      "link": "https://news.google.com/rss/articles/CBMie0FVX3lxTE82MEVxdnp0YXFBQS1mbDBLZUFfamxOOEFULVVTXzlvUHNxTlQyZVhkUk1GTEZoRU9BVl9ZM3BWeFdPaGxkUk04X1hCX3h5TXdrNFp2RVJYemVRcDJ5NnE2MG9kRFIwTlRlaW8xTVY5d1U0akZKTDAwTUZXUdIBgAFBVV95cUxNN1ZLX3pEOENvWTVGekV1Tjh3V2ZTZGk1OU5fVDJfTmNkZ0MzOXV3OFczdE00a01Qalh3eHVTLW5fRHNoRmV5bk9pZFh1Z2FYOTVSdjVheVVjZWxRSHduY1gwVlhWWlBvaUlHMlFYVExqOVZoTmswMktCbHkzWHhZaA?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMie0FVX3lxTE82MEVxdnp0YXFBQS1mbDBLZUFfamxOOEFULVVTXzlvUHNxTlQyZVhkUk1GTEZoRU9BVl9ZM3BWeFdPaGxkUk04X1hCX3h5TXdrNFp2RVJYemVRcDJ5NnE2MG9kRFIwTlRlaW8xTVY5d1U0akZKTDAwTUZXUdIBgAFBVV95cUxNN1ZLX3pEOENvWTVGekV1Tjh3V2ZTZGk1OU5fVDJfTmNkZ0MzOX",
-      "at": 1788338352000,
-      "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788338352000,
-      "dir": {
-        "XAU/USD": "up"
-      },
-      "why": "Bond rout boosts gold"
-    },
-    {
       "title": "IRGC claims that another two oil tankers have been disabled after hitting mines in the Strait of Hormuz",
       "link": "https://investinglive.com/news/irgc-claims-that-another-two-oil-tankers-have-been-disabled-after-hitting-mines-in-the-strait-of-hormuz/",
       "source": "ForexLive",
@@ -2545,48 +2563,6 @@
         "XAU/USD": "down"
       },
       "why": "Gold hits low on rate fears"
-    },
-    {
-      "title": "Sterling today: Pound slips as hawkish Fed outlook lifts dollar broadly",
-      "link": "https://www.investing.com/news/forex-news/sterling-today-pound-slips-as-hawkish-fed-outlook-lifts-dollar-broadly-4885441",
-      "source": "Investing FX",
-      "at": 1788335485000,
-      "inst": [
-        "GBP/USD"
-      ],
-      "ccy": [
-        "USD",
-        "GBP"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788335485000,
-      "dir": {
-        "GBP/USD": "down"
-      },
-      "why": "Stronger dollar pressures sterling."
-    },
-    {
-      "title": "EU to discuss Leipzig incident and new sanctions against Russia on 2 September - Українська правда",
-      "link": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE1PZHpUT1VQcW8zX29MdVEtVC12a21ndWhydzNrWDNPUFZhYnNxZzhkRGxJOHg3bk5OWmtweTJ3WDg2QkNMX1REUGhfRXJ6YmFMT1RwYUNMZ08xZW56UXdFeTRDSDfSAXBBVV95cUxNWmdsNXgzTnJCTldzVmlfR0dvSTNDV3ZaSTBOWjZYZG5neThVTnZIS3UxQkxCTFJMSTByeGgxMzdYZ2NhdXhYSkpjWjB2eFhsR3NzWkZQc1V1cHVSVUJFLXhDbnV3dVloTnZYb2lqVnA5?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiZEFVX3lxTE1PZHpUT1VQcW8zX29MdVEtVC12a21ndWhydzNrWDNPUFZhYnNxZzhkRGxJOHg3bk5OWmtweTJ3WDg2QkNMX1REUGhfRXJ6YmFMT1RwYUNMZ08xZW56UXdFeTRDSDfSAXBBVV95cUxNWmdsNXgzTnJCTldzVmlfR0dvSTNDV3ZaSTBOWjZYZG5neThVTnZIS3UxQkxCTFJMSTByeGgxMzdYZ2NhdX",
-      "at": 1788334920000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788332671000,
-      "why": "EU sanctions discussion unclear impact"
     }
   ],
   "sources": [
@@ -2612,7 +2588,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-02T14:32:58.922Z",
-  "headlinesAt": "2026-09-02T14:32:58.922Z",
-  "updatedAt": "2026-09-02T14:32:58.922Z"
+  "calendarAt": "2026-09-02T14:35:58.117Z",
+  "headlinesAt": "2026-09-02T14:35:58.117Z",
+  "updatedAt": "2026-09-02T14:35:58.117Z"
 }
