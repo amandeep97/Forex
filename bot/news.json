@@ -660,6 +660,50 @@
   ],
   "headlines": [
     {
+      "title": "investingLive European session wrap: Higher bond yields continue to keep markets on edge",
+      "link": "https://investinglive.com/news/investinglive-european-session-wrap-higher-bond-yields-continue-to-keep-markets-on-edge/",
+      "source": "ForexLive",
+      "desc": "Headlines:The tectonic shift that is taking place in the bond marketGold futures are down more than 8%: Is the next dip-buying opportunity approaching?S&P 500 breaks through a major support as hawkish Fed expectations and US-Iran war weighWall Street poised for another soft start",
+      "at": 1788350285000,
+      "inst": [
+        "US500",
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "USD",
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788350285000,
+      "dir": {
+        "US500": "down",
+        "XAU/USD": "down"
+      },
+      "why": "Bond yields keep markets on edge"
+    },
+    {
+      "title": "Morning Minute: Bitcoin Enters ‘Rektember’ After Best August Since 2017",
+      "link": "https://finance.yahoo.com/markets/crypto/articles/morning-minute-bitcoin-enters-rektember-115548140.html",
+      "source": "Yahoo Finance",
+      "at": 1788350148000,
+      "inst": [
+        "BTC/USDT"
+      ],
+      "ccy": [
+        "BTC"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788350148000,
+      "why": "Bitcoin enters Rektember after best August"
+    },
+    {
       "title": "More than 900 killed in Gaza this year despite ceasefire, Hamas-run health ministry says",
       "link": "https://www.bbc.co.uk/news/articles/c7708dy33pdo?at_medium=RSS&at_campaign=rss",
       "source": "BBC World",
@@ -677,7 +721,24 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788349906000
+      "firstAt": 1788349906000,
+      "why": "Gaza death toll rises despite ceasefire"
+    },
+    {
+      "title": "Rosenberg: Putin's veiled threat to UK part of Russia's campaign against West",
+      "link": "https://www.bbc.co.uk/news/articles/c62j50n131mo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC World",
+      "desc": "The Russian president wants to keep Britain guessing - and stressing - over Moscow's real intentions.",
+      "at": 1788349631000,
+      "inst": [
+        "GBP/USD"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788349631000,
+      "why": "Putin's veiled threat to UK"
     },
     {
       "title": "Dow Jones Futures Rise As Oil Prices Fall; Dell, Credo, Palo Alto Are Earnings Movers",
@@ -694,7 +755,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1788348239000
+      "firstAt": 1788348239000,
+      "dir": {
+        "USOIL": "down",
+        "US30": "up"
+      },
+      "why": "Dow rises as oil prices fall"
     },
     {
       "title": "Gold extends losses to 3-week low as stronger dollar, Fed hike bets weigh",
@@ -711,7 +777,51 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788349547000
+      "firstAt": 1788349547000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold extends losses on stronger dollar"
+    },
+    {
+      "title": "Invesco KBW Bank ETF Wins on Yield and 1-Year Return. Is It a Better Financials Fund Than IYF?",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/invesco-kbw-bank-etf-wins-114501011.html",
+      "source": "Yahoo Finance",
+      "at": 1788349501000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788349501000
+    },
+    {
+      "title": "Global bond yields hit multi-decade highs on inflation fears",
+      "link": "https://finance.yahoo.com/economy/policy/articles/global-bond-yields-hit-multi-114356386.html",
+      "source": "Yahoo Finance",
+      "at": 1788349436000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788349436000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Global bond yields hit multi-decade highs"
     },
     {
       "title": "The US is gobbling up Venezuelan oil, but will it lower fuel prices?",
@@ -729,7 +839,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788349411000
+      "firstAt": 1788349411000,
+      "why": "US gobbling up Venezuelan oil"
     },
     {
       "title": "Stocks making the biggest moves premarket: Vertiv, Sirius, Dell, MongoDB & more",
@@ -744,7 +855,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1788349231000
+      "firstAt": 1788349231000,
+      "why": "Stocks making biggest moves premarket"
     },
     {
       "title": "Oil prices edge lower after recent gains on renewed US-Iran tensions",
@@ -763,19 +875,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788348980000
-    },
-    {
-      "title": "Loan Delinquencies Edge Lower in Q2, but Some Remain at Very High Levels. Here's What It Means for Investors.",
-      "link": "https://finance.yahoo.com/economy/articles/loan-delinquencies-edge-lower-q2-113500457.html",
-      "source": "Yahoo Finance",
-      "at": 1788348900000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 2,
-      "firstAt": 1788346829000
+      "firstAt": 1788348980000,
+      "dir": {
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Oil prices edge lower on tensions"
     },
     {
       "title": "European shares fall to over 1-month lows as global yield surge deepens",
@@ -820,7 +925,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788348654000
+      "firstAt": 1788348654000,
+      "why": "September usually ugly for stocks"
     },
     {
       "title": "Israel Warns Iran: Attack During Jewish Holidays and Face Unprecedented Response - Kurdistan24",
@@ -840,7 +946,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788348504000
+      "firstAt": 1788348504000,
+      "why": "Israel warns Iran of unprecedented response"
     },
     {
       "title": "Bitcoin and ethereum prices today, Wednesday, September 2, 2026: Crypto prices tumble as Iran war reignites",
@@ -861,7 +968,7 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 2,
+      "srcs": 1,
       "firstAt": 1788345914000,
       "dir": {
         "BTC/USDT": "down",
@@ -869,26 +976,6 @@
         "XAU/USD": "up"
       },
       "why": "Crypto falls, gold rises on war"
-    },
-    {
-      "title": "US and Iran Trade New Strikes as the War Enters its 7th Month - TODAY.com",
-      "link": "https://news.google.com/rss/articles/CBMingFBVV95cUxNVUcwamRqNFRFZFhVOTF6TlU4cE9sTjBrMW1LSHRRamJ1RkdndFp4YTNIdmw1RkVHd1lOamV5VHlldm1xZ0MwWk5rRUJqVnVMMUU3cGd4dnptZndFMFlPTk8tczFFLS1kaXFCU2I0TnFVbHZUbEFtal9CdWwyZEQwLVFNREt1NDlrWFRCUWY0MGZLXzByY3BmV0tVdEU1Zw?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMingFBVV95cUxNVUcwamRqNFRFZFhVOTF6TlU4cE9sTjBrMW1LSHRRamJ1RkdndFp4YTNIdmw1RkVHd1lOamV5VHlldm1xZ0MwWk5rRUJqVnVMMUU3cGd4dnptZndFMFlPTk8tczFFLS1kaXFCU2I0TnFVbHZUbEFtal9CdWwyZEQwLVFNREt1NDlrWFRCUWY0MGZLXzByY3BmV0tVdEU1Zw?oc=5\" target=\"_",
-      "at": 1788348266000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1788345603000
     },
     {
       "title": "Iran fires on its Gulf neighbors, retaliating for US military strikes after a monthlong lull - McAlester News-Capital",
@@ -934,7 +1021,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788345603000
+      "firstAt": 1788345240000,
+      "why": "US strikes Iran, tanker attacks raise stakes"
     },
     {
       "title": "Berkshire CEO Greg Abel says Japanese bond yields not a challenge for trading houses right now",
@@ -1003,46 +1091,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788347132000
-    },
-    {
-      "title": "US military completes latest strikes against Iran, while Trump vows more for Tehran's retaliation - WHAS11",
-      "link": "https://news.google.com/rss/articles/CBMikAJBVV95cUxPaGVUTUtZdm5GZGZRbGFITU52bG1CT3puMmhVbmNQQm04Ml9kYVRLdEludlNSMlVlU1dOZ0NsQjAzZFVyZlQtekl2OG1LWXVUUkR4Z3lJVlQwVFUxdGM4WXNYTi1TUDQxNW1YdXpMV3hjaVJ2ckxnOFZNQlhkNkMwZmxjN19ORlFGNnltbkJOZDdWUUwycC1panhVOWlWMXhKVGRQTkxOazJuRHhPUXpqLWpkQW5GZFlFVkVEdVFLV0haS2pCaDNRQ09JSm5xOE41bEQwTjRZTF8tb2UtQnBkbjhJRTh0ZVdkbUtlbGRlLXlpYzhTRnFWTXl2S2NvQ19yTUNDakIwSjBKNGhSTEZ0Rg?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMikAJBVV95cUxPaGVUTUtZdm5GZGZRbGFITU52bG1CT3puMmhVbmNQQm04Ml9kYVRLdEludlNSMlVlU1dOZ0NsQjAzZFVyZlQtekl2OG1LWXVUUkR4Z3lJVlQwVFUxdGM4WXNYTi1TUDQxNW1YdXpMV3hjaVJ2ckxnOFZNQlhkNkMwZmxjN19ORlFGNnltbkJOZDdWUUwycC1panhVOWlWMXhKVGRQTkxOazJuRH",
-      "at": 1788347100000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1788344474000,
-      "dir": {
-        "XAU/USD": "up",
-        "USOIL": "up",
-        "UKOIL": "up"
-      },
-      "why": "Completed strikes and vows boost risk"
-    },
-    {
-      "title": "Bond market selloff: What fixed-income investors can do to protect their money without panicking - CNBC",
-      "link": "https://news.google.com/rss/articles/CBMilgFBVV95cUxQeVZwUTRpcDRiQlc2Ui1LQ2U3NWd3dkhJa3ZWSENPQTM1SkNJcEJwU2pJRlhBbC1WbGcxRlNGMHhBWTc5VDEweFoyTHR6Y2VoSG5QZHJZTkpSWEF5UEVoUlpVa3hEZW9KM1ZLOHIyQlF4anJ0bUZ4VlZCb195TWJfa25Xakh5cDhaSklJSDlWY3QwZjk0MGfSAZsBQVVfeXFMT2x1YUFxcVVJOEp6MnIxQ3ZweWFEYnV3TWRNM1NLd2lpUWk3MEtYaDBNQmEtXzNHeXhxbDAwRmNMNGJBSXBQbTRXQXBQNVVhVENXWHZoVFZwVTBiYnRBSUppRTdWdFRST0d4T0I3eVZJUzJ5STFzSmpWWHlCR3JieE9WWEVNcEFTUUIyUjRhXzRXdVk5TDRnMEJ0Wm8?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMilgFBVV95cUxQeVZwUTRpcDRiQlc2Ui1LQ2U3NWd3dkhJa3ZWSENPQTM1SkNJcEJwU2pJRlhBbC1WbGcxRlNGMHhBWTc5VDEweFoyTHR6Y2VoSG5QZHJZTkpSWEF5UEVoUlpVa3hEZW9KM1ZLOHIyQlF4anJ0bUZ4VlZCb195TWJfa25Xakh5cDhaSklJSDlWY3QwZjk0MGfSAZsBQVVfeXFMT2x1YUFxcVVJOE",
-      "at": 1788346829000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1788346829000
+      "firstAt": 1788347132000,
+      "why": "China urges de-escalation of Ukraine crisis"
     },
     {
       "title": "Nvidia forecasts 70% revenue jump fueled by exclusive SpaceX deal as Bank of England warns of AI bubble risk",
@@ -1125,7 +1175,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788346491000
+      "firstAt": 1788346491000,
+      "why": "European gas hits 2023 peak"
     },
     {
       "title": "U.S., Iran trade strikes as Trump promises more to come - KCENTV.com",
@@ -1329,6 +1380,31 @@
       "why": "Sanctions details unclear for immediate price impact"
     },
     {
+      "title": "Iran fires on its Gulf neighbors after US military strikes Iran after a monthlong lull - apnews.com",
+      "link": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxOSTQ5RWEwemszN1g0ZGdybDJrd0d4MW9sTk43M05welQ3WGZmeWgycERkU0NFck5vMDc4eXBjbmdQSzc0OTNodV9tMXhpTFg1WF9SR2JXOXp3aEVGVjBHSUlwVFR5QWpVdnJodmNfV1FmdEZBeDlhUHNJZVZPeHliVlBQU3hZTXJhNGgzNGZoNURLUWtqOW53OUF2TTJpSEpsNGVBTDVyOUI?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiqAFBVV95cUxOSTQ5RWEwemszN1g0ZGdybDJrd0d4MW9sTk43M05welQ3WGZmeWgycERkU0NFck5vMDc4eXBjbmdQSzc0OTNodV9tMXhpTFg1WF9SR2JXOXp3aEVGVjBHSUlwVFR5QWpVdnJodmNfV1FmdEZBeDlhUHNJZVZPeHliVlBQU3hZTXJhNGgzNGZoNURLUWtqOW53OUF2TTJpSEpsNGVBTDVyOUI?oc",
+      "at": 1788345240000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1788343080000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Iran retaliation boosts oil prices"
+    },
+    {
       "title": "Guinea-Bissau referendum approves new constitution that expands president's powers",
       "link": "https://www.bbc.co.uk/news/articles/c93eny4dqp2o?at_medium=RSS&at_campaign=rss",
       "source": "BBC World",
@@ -1452,23 +1528,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1788344409000,
+      "firstAt": 1788344432000,
       "dir": {
         "US500": "down"
       },
       "why": "Wall Street skeptical of single quarter beat"
-    },
-    {
-      "title": "Marvell Beat and Raised Guidance. Why Its Google Deal Still Spooked Investors",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/marvell-beat-raised-guidance-why-102009844.html",
-      "source": "Yahoo Finance",
-      "at": 1788344409000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1788344409000
     },
     {
       "title": "Citigroup Fined £4.7 Million in UK for Russia Sanctions Breaches - Bloomberg.com",
@@ -1490,26 +1554,6 @@
       "srcs": 1,
       "firstAt": 1788341171000,
       "why": "Bank fine is minor, no market impact"
-    },
-    {
-      "title": "Russian attack cuts power in Odesa region as strikes on Kyiv enter seventh day - Reuters",
-      "link": "https://news.google.com/rss/articles/CBMitgFBVV95cUxPaUZJdVNudXgteTBObUE3dFRXX2FXYzBZS0FURzZMdGpDVk5oelI5RW5XYTltOFlzTVVyWHdXcHNBbG1SZzZoS1JCdEJDb1M1R21pQmVaSW9ueUpYa0g0MnBrOE1NT3M3WlpGbE1XcnczVzlaTVkyNHRqd0pVUnRZOEVONG0ybWtNcmZubUc2MU9vWGJjVmlVdTRLYXRBTjlQRHE1aWZaY1ZBbENFdWNCRzBaVVk4Zw?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMitgFBVV95cUxPaUZJdVNudXgteTBObUE3dFRXX2FXYzBZS0FURzZMdGpDVk5oelI5RW5XYTltOFlzTVVyWHdXcHNBbG1SZzZoS1JCdEJDb1M1R21pQmVaSW9ueUpYa0g0MnBrOE1NT3M3WlpGbE1XcnczVzlaTVkyNHRqd0pVUnRZOEVONG0ybWtNcmZubUc2MU9vWGJjVmlVdTRLYXRBTjlQRHE1aWZaY1ZBbE",
-      "at": 1788343528000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788343528000
     },
     {
       "title": "At least 18 killed, 76 wounded in latest US strikes on Iran - Türkiye Today",
@@ -1742,7 +1786,7 @@
       "why": "Yield surge boosts gold, weakens EUR/GBP vs USD."
     },
     {
-      "title": "Two dead after Monday attack on Saudi oil tanker in Hormuz, says shipping firm - middleeasteye.net",
+      "title": "Two dead after Monday attack on Saudi oil tanker in Hormuz, says shipping firm - Middle East Eye",
       "link": "https://news.google.com/rss/articles/CBMixwFBVV95cUxNc2FSVlhfLUpQVngwTjBPZ211Z25SOXYyRENlWnM0alFHakZoWnJodDhBS3RXMXJaeEkxdU5MMDUxQWhSYkJWVHpUVkx1S1RPMDY1X3hpVVpHbkZfN0d5b2ZwUTRWVVdiR2dIelYyWWdtQVp1OFVhSVo3R2NMc3BPV2lKYTVMR01WdFlxNjdPeWZPX2oxWmx5MG9YTk42cG92WkdoVDRzNmN1MGR4bF9NaHdnX0U0WXN0Y0w3c3kyVEVubUZKdEhz?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMixwFBVV95cUxNc2FSVlhfLUpQVngwTjBPZ211Z25SOXYyRENlWnM0alFHakZoWnJodDhBS3RXMXJaeEkxdU5MMDUxQWhSYkJWVHpUVkx1S1RPMDY1X3hpVVpHbkZfN0d5b2ZwUTRWVVdiR2dIelYyWWdtQVp1OFVhSVo3R2NMc3BPV2lKYTVMR01WdFlxNjdPeWZPX2oxWmx5MG9YTk42cG92WkdoVDRzNmN1MG",
@@ -1809,10 +1853,10 @@
       "why": "Strikes near Hormuz boost oil and gold."
     },
     {
-      "title": "The Black Sea: Trump’s First Test of a Ukraine Ceasefire | Opinion - Newsweek",
-      "link": "https://news.google.com/rss/articles/CBMinAFBVV95cUxQemQ2c05tSWluYm1SQ3RwOElRdlJ1OUVwVExCMllMMXhEMnpqVC1fSGpsTXFvakpPM1BUUFhRNXRMR1d3RGZUcmdfX0FZc2Vwd2ZETGFPUDBzRG1OSEN1ZlZWeGVBVV93UjRkSWhJZmh1YjNuVTRheVd2d09qU0hBTWpaZU55c0ZERWZka3lFaUZuZTJIcFdodmF0NGY?oc=5",
+      "title": "The Black Sea: Trump's first test of a Ukraine ceasefire | Opinion - Yahoo",
+      "link": "https://news.google.com/rss/articles/CBMikAFBVV95cUxQSm9BaGJzbUV6aFFyNnpBdVlSTGpCM3ZEX182cEd4MGRPQVJZOUNCTVZlR2U1blpFUEpnWTZ4a3Vtb3d2ZzdURkVKczluUnF3eUlmVEMyeGlEcG9UZHBpTW5WdTB4cmtYYXF1OFhxd1g5aks1ZDZ6T3NkczFoc2xsdm5seXlkeUR2ZjhxSjUzVmE?oc=5",
       "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMinAFBVV95cUxQemQ2c05tSWluYm1SQ3RwOElRdlJ1OUVwVExCMllMMXhEMnpqVC1fSGpsTXFvakpPM1BUUFhRNXRMR1d3RGZUcmdfX0FZc2Vwd2ZETGFPUDBzRG1OSEN1ZlZWeGVBVV93UjRkSWhJZmh1YjNuVTRheVd2d09qU0hBTWpaZU55c0ZERWZka3lFaUZuZTJIcFdodmF0NGY?oc=5\" target=\"_bla",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMikAFBVV95cUxQSm9BaGJzbUV6aFFyNnpBdVlSTGpCM3ZEX182cEd4MGRPQVJZOUNCTVZlR2U1blpFUEpnWTZ4a3Vtb3d2ZzdURkVKczluUnF3eUlmVEMyeGlEcG9UZHBpTW5WdTB4cmtYYXF1OFhxd1g5aks1ZDZ6T3NkczFoc2xsdm5seXlkeUR2ZjhxSjUzVmE?oc=5\" target=\"_blank\">The Black Se",
       "at": 1788339600000,
       "inst": [
         "XAU/USD",
@@ -1827,7 +1871,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788339600000,
-      "why": "Ukraine ceasefire test, indirect impact on oil/gold."
+      "why": "Ceasefire test opinion piece lacks clear direction"
     },
     {
       "title": "Iran, US exchange new attacks: Who was hit in latest strikes? - Al Jazeera",
@@ -2232,32 +2276,6 @@
       "why": "Bond market shift, unclear direction for commodities."
     },
     {
-      "title": "Katz warns: Iran may strike during Jewish holidays, Israel ready to respond - Ynetnews",
-      "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE5CY2lYbVVPQ3BZTlR4SGhfV25NU2VQSUthU0JSTjJRVGk1RFFKcUNoaXloUVBNSjR2VnpqemY1Y0NzVFpGSEc1UlJJcEtOU3liNE5xU1pR?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiVkFVX3lxTE5CY2lYbVVPQ3BZTlR4SGhfV25NU2VQSUthU0JSTjJRVGk1RFFKcUNoaXloUVBNSjR2VnpqemY1Y0NzVFpGSEc1UlJJcEtOU3liNE5xU1pR?oc=5\" target=\"_blank\">Katz warns: Iran may strike during Jewish holidays, Israel ready to respond</a>&nbsp;&nbsp;",
-      "at": 1788334227000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788334227000,
-      "dir": {
-        "XAU/USD": "up",
-        "USOIL": "up",
-        "UKOIL": "up"
-      },
-      "why": "Escalation warnings boost safe havens and oil."
-    },
-    {
       "title": "Iran Strikes Send Oil to $95 as Rate Fears Redden Wall Street, Dell's AI Server Blowout Steals the After-Hours - ChartMill",
       "link": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxNcUFIYjBNRUc4MmpxVDdwZ0g5Q25IUktia2FwZTl0YW01RTRDMlh4by1ITDgwb0g3Wnd1d21zaUw4c3B5MnZwMmVTbEtfSDdHakNMeGNNb0dGWFBVbkJCUXNzQzVBOHdYT254OXgtLVJDUWVUY2p2cFdBbWJxcVJVSUNHTlRUb0d0Z3dXbkVpQkdFZHBJTWpqN2c3bVlVRUNRODdkZHZKY2VXY2xISVVhcU1HQjh3ajlnVFhjRTYwa1lDbzNTZTV1MFBnaDBPOVgwRGpzdlpDSjBLX3EzWktzQlQ1R1BfVFZxVGloN3Zxbzk?oc=5",
       "source": "Wires (geo)",
@@ -2275,7 +2293,7 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 1,
+      "srcs": 2,
       "firstAt": 1788331686000,
       "dir": {
         "USOIL": "up",
@@ -2283,6 +2301,33 @@
         "XAU/USD": "up"
       },
       "why": "Oil up, stocks down on Iran strikes"
+    },
+    {
+      "title": "Gold falls to 3-week low as Iran tensions fuel oil, Fed rate-hike fears - Investing.com Nigeria",
+      "link": "https://news.google.com/rss/articles/CBMixgFBVV95cUxOQkZRMXpFWWl1QmlhWC1BdUxtMFo2VnNjdV80N0Qta2hrakthWF9QY3ZYS05HdGtHNkhweC01dE9nSFFqdVA3OFVoU2ZFQjJNVlVPYnQ1c0xlaGIyQ1dJM1BYT1lRdDNmRnJULWpnM09neldZWm9INTRIS1Yzb25neHRHUXM1THdLa2tMck05MUl3SGFwODlNZzc1bk11V2ZPUjRfSkNrWXdhdXVhREdXOG44QnlHSmRBcjctWU5pcXBuUWJRSVE?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMixgFBVV95cUxOQkZRMXpFWWl1QmlhWC1BdUxtMFo2VnNjdV80N0Qta2hrakthWF9QY3ZYS05HdGtHNkhweC01dE9nSFFqdVA3OFVoU2ZFQjJNVlVPYnQ1c0xlaGIyQ1dJM1BYT1lRdDNmRnJULWpnM09neldZWm9INTRIS1Yzb25neHRHUXM1THdLa2tMck05MUl3SGFwODlNZzc1bk11V2ZPUjRfSkNrWXdhdX",
+      "at": 1788333134000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "USD",
+        "XAU",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1788333134000,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Gold falls, oil rises on tensions"
     },
     {
       "title": "Natural Gas stalls under $2.996 resistance: Live levels",
@@ -2574,7 +2619,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-02T12:00:58.869Z",
-  "headlinesAt": "2026-09-02T12:00:58.869Z",
-  "updatedAt": "2026-09-02T12:00:58.869Z"
+  "calendarAt": "2026-09-02T12:04:58.577Z",
+  "headlinesAt": "2026-09-02T12:04:58.577Z",
+  "updatedAt": "2026-09-02T12:04:58.577Z"
 }
