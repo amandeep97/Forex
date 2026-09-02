@@ -1,15 +1,6 @@
 {
   "calendar": [
     {
-      "title": "FOMC Member Barr Speaks",
-      "country": "USD",
-      "impact": "low",
-      "at": 1788267900000,
-      "forecast": "",
-      "previous": "",
-      "actual": ""
-    },
-    {
       "title": "Manufacturing PMI",
       "country": "CAD",
       "impact": "low",
@@ -670,6 +661,25 @@
       "srcs": 1,
       "firstAt": 1788354006000,
       "why": "Pakistan's reaction to sanctions is neutral."
+    },
+    {
+      "title": "Oil Hovers Close to $95 as Middle East Conflict Further Pressures Bonds",
+      "link": "https://finance.yahoo.com/energy/articles/oil-hovers-close-95-middle-090400702.html",
+      "source": "Yahoo Finance",
+      "at": 1788353880000,
+      "inst": [
+        "USOIL",
+        "XAU/USD",
+        "UKOIL"
+      ],
+      "ccy": [
+        "OIL",
+        "XAU"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788353880000
     },
     {
       "title": "Saudi Arabia stocks lower at close of trade; Tadawul All Share down 0.80%",
@@ -1341,27 +1351,6 @@
       "why": "Oil prices edge lower on tensions"
     },
     {
-      "title": "Bond selloff deepens as oil prices and public debt fears jolt markets - Reuters",
-      "link": "https://news.google.com/rss/articles/CBMirgFBVV95cUxPSkJqeC1yeWhxa0NETU9oT1R3YUdoYm9fNE4zamM3MlhJTUFkZ3gwWDliZmFZRHpXaEFOLW1JMHN4dEhkTTlfY282eG9yWlJZRVpaR281SlMtWkpuLTRXYnQ4dkt0VnlwckFQU0JUR21WM2VBZTRYb3VKM0M0Zlg3aF83SUY0WERMb2dWdWlLQ3U2ZmlON1pJdU5WMTdEVUZoNlowM0ZhZDJNeEdFcUE?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMirgFBVV95cUxPSkJqeC1yeWhxa0NETU9oT1R3YUdoYm9fNE4zamM3MlhJTUFkZ3gwWDliZmFZRHpXaEFOLW1JMHN4dEhkTTlfY282eG9yWlJZRVpaR281SlMtWkpuLTRXYnQ4dkt0VnlwckFQU0JUR21WM2VBZTRYb3VKM0M0Zlg3aF83SUY0WERMb2dWdWlLQ3U2ZmlON1pJdU5WMTdEVUZoNlowM0ZhZDJNeE",
-      "at": 1788348918000,
-      "inst": [
-        "USOIL"
-      ],
-      "ccy": [
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788348918000,
-      "dir": {
-        "USOIL": "up"
-      },
-      "why": "Oil prices jolt markets, implying rise."
-    },
-    {
       "title": "Europe’s largest airline warns of jet-fuel prices hitting $140 this winter as it cuts capacity",
       "link": "https://www.marketwatch.com/story/europes-largest-airline-warns-of-jet-fuel-prices-at-140-this-winter-as-it-cuts-capacity-ba7821a9?mod=mw_rss_topstories",
       "source": "MarketWatch",
@@ -1394,6 +1383,26 @@
       "srcs": 1,
       "firstAt": 1788348654000,
       "why": "September usually ugly for stocks"
+    },
+    {
+      "title": "U.S. and Iran exchange new strikes as Trump applies economic pressure - CBS News",
+      "link": "https://news.google.com/rss/articles/CBMinwFBVV95cUxPUm9zNmRnX3QzU1RkYkJ0eE4tWTBkeTVDZ1R3S1JwZV9kVlItVUxKelJEMlM2WDE5cVZuc0xSb0hSd2xPV3d4V3J5YXVpREdjWklRVzR3Z1hmVkJza0lJM3RVRHJoaDNSVW9SUXBDTEE2RlR2WTFHajE4LWxxeDdiZjIyZGtTOVhEYWV3cnZ1RzVZZ3c0dkRrLUNidG5LZXc?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMinwFBVV95cUxPUm9zNmRnX3QzU1RkYkJ0eE4tWTBkeTVDZ1R3S1JwZV9kVlItVUxKelJEMlM2WDE5cVZuc0xSb0hSd2xPV3d4V3J5YXVpREdjWklRVzR3Z1hmVkJza0lJM3RVRHJoaDNSVW9SUXBDTEE2RlR2WTFHajE4LWxxeDdiZjIyZGtTOVhEYWV3cnZ1RzVZZ3c0dkRrLUNidG5LZXc?oc=5\" target=\"",
+      "at": 1788348540000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788346140000
     },
     {
       "title": "Israel Warns Iran: Attack During Jewish Holidays and Face Unprecedented Response - kurdistan24.net",
@@ -1524,7 +1533,7 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 2,
+      "srcs": 1,
       "firstAt": 1788345780000,
       "dir": {
         "XAU/USD": "up",
@@ -1653,33 +1662,6 @@
       "why": "Fatal strikes and Hormuz tension boost risk assets."
     },
     {
-      "title": "Global stock markets fall as US-Iran strikes push oil to $95, bond yields surge, Fed rate hike bets rise | Business News - Hindustan Times",
-      "link": "https://news.google.com/rss/articles/CBMi9AFBVV95cUxNeWxPWVJBbnl6aHlrSWVuYVFsckVoUW1fZ1BaUEJRa0VXbzdQZXNKY1l3MWhBY3RHLUJyT1J0R0NsQTR3RFN3ZlphNk5jWkk5LUFKSEEzaGVEcmljbllYNnk2SkRLc2pLcjRGdUNNVEllOF9jZTlDdk1QVjl0V0xqRUZKb2RKaTMxOERmZER1ME1Vd2VMemJuS1BhWUxOOGtFZWJiS09NRFAxVXpZWlFUVURaZkxBcDBSQVU0LV9rLXVMY1dxU2doMU41M3B4T01PQXg2RWFxdzd5aVRLSGxiREJvS1JZdG1pb1ROUDJrdGY3Y09T0gH6AUFVX3lxTE1mSWNzS0Vjc3pNODFzaFBhOG1vWlNrQk9aOEUwYW1mQ0VHNUUySVBIY3FTNXlhZDh0R2RGbWQ0UFhiM0VPbnlJN3FkMzNSZGVRWTV2Z3NmTUxYU0duNjJidzFRemlna0JBNDE5OTRiOG9BQ0hkUFkxOGdtenl0NDdXc3pjNjhuS0lLc1UzLTRzN3NRYlBwZEdraFR1VU1yZndKSVVncXdqeF9kNUllOTBnd3pYUVRFeEs2WWZYLWFpZlBCQmdaa3N6OUxscV9ud2dhVDNXTWRwN1BHSWxpeklBZElRdG80UFRuNnNnNjlxT1daN0RHdTRJVkE?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi9AFBVV95cUxNeWxPWVJBbnl6aHlrSWVuYVFsckVoUW1fZ1BaUEJRa0VXbzdQZXNKY1l3MWhBY3RHLUJyT1J0R0NsQTR3RFN3ZlphNk5jWkk5LUFKSEEzaGVEcmljbllYNnk2SkRLc2pLcjRGdUNNVEllOF9jZTlDdk1QVjl0V0xqRUZKb2RKaTMxOERmZER1ME1Vd2VMemJuS1BhWUxOOGtFZWJiS09NRFAxVX",
-      "at": 1788346635000,
-      "inst": [
-        "USOIL",
-        "XAU/USD",
-        "UKOIL"
-      ],
-      "ccy": [
-        "USD",
-        "OIL",
-        "XAU"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1788345420000,
-      "dir": {
-        "USOIL": "up",
-        "XAU/USD": "up",
-        "UKOIL": "up"
-      },
-      "why": "Oil surges, yields rise, gold benefits from risk."
-    },
-    {
       "title": "European gas eclipse Iran war highs, hits 2023 peak",
       "link": "https://www.investing.com/news/commodities-news/european-gas-breach-eclipse-iran-war-highs-hits-2023-peak-4885650",
       "source": "Investing Cmdty",
@@ -1725,7 +1707,7 @@
       "why": "Geopolitical risk boosts oil, gold mixed"
     },
     {
-      "title": "Tehran fires on Gulf neighbors after US renews Iran strikes - nypost.com",
+      "title": "Tehran fires on Gulf neighbors after US renews Iran strikes - New York Post",
       "link": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxON2xDeDNTbWpBdG9Gdnc2bHo1VUxiQkRTYUNXbExSUjFTVktFeU5rTGREVUgxa0pySERoNWFCOENkd2twREREclVlNTR2eUNxY3h5UWhpek8wMVozaXFFd0ZmX0FJV0JqOGlPZUdOTDE4Zk8tMS0xUlJDUWVvMmdDeTNNOC1wRjBJeTFPUTlSQzU1bVM3a2JsTTVueGRnQnJKcE5ybzRxR2k2Z2ZFaHZ1ckFRdnNoVTN1RHJLMjNlWkFJUQ?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiwgFBVV95cUxON2xDeDNTbWpBdG9Gdnc2bHo1VUxiQkRTYUNXbExSUjFTVktFeU5rTGREVUgxa0pySERoNWFCOENkd2twREREclVlNTR2eUNxY3h5UWhpek8wMVozaXFFd0ZmX0FJV0JqOGlPZUdOTDE4Zk8tMS0xUlJDUWVvMmdDeTNNOC1wRjBJeTFPUTlSQzU1bVM3a2JsTTVueGRnQnJKcE5ybzRxR2k2Z2",
@@ -1860,7 +1842,7 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 2,
+      "srcs": 1,
       "firstAt": 1788343416000,
       "dir": {
         "XAU/USD": "up",
@@ -2098,7 +2080,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788341822000,
+      "firstAt": 1788339652000,
       "dir": {
         "XAU/USD": "up"
       },
@@ -2122,7 +2104,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788341822000,
+      "firstAt": 1788339652000,
       "dir": {
         "XAU/USD": "up"
       },
@@ -2151,6 +2133,30 @@
         "XAU/USD": "up"
       },
       "why": "Gaza strikes despite ceasefire increase uncertainty"
+    },
+    {
+      "title": "EU summons Russian envoy over failed Leipzig drone attack - DW.com",
+      "link": "https://news.google.com/rss/articles/CBMilAFBVV95cUxOR1hOMnhjaXNHai1Ta0p0cGhkRlhkMkFEeVVSbDJuSVE4MXdPOG43Q1I0MGxDYlE2bmhhRGJsN0ttbmd6VjhDZy04am13ZGw2SFJqWDE5YlZTRHRKNDktYV9YNTNheEhpSEJYbWF6QlRqWEl0azQ5dDdzYVk3VFFPcmM4Z1lMT0ZoNmE0UENLdHNhUXp20gGUAUFVX3lxTE9TTjR2TDgxalkxc3VoX2xCR1dNTzFuazlHcDZIYzRmSWpQdFZUUW5GNG1idG5KbWc5VXFNX3lRVlNDbWNUX2dEN1Q1aEhIWDl4NUtGTXB4eU1SV0VmUDZVaGlhU2NMdDZBR2RfUGJlRUtMWkRwVmJZWEJRSGl4c01BVWVidElNek5Tcm5MdmVCSF9wek4?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMilAFBVV95cUxOR1hOMnhjaXNHai1Ta0p0cGhkRlhkMkFEeVVSbDJuSVE4MXdPOG43Q1I0MGxDYlE2bmhhRGJsN0ttbmd6VjhDZy04am13ZGw2SFJqWDE5YlZTRHRKNDktYV9YNTNheEhpSEJYbWF6QlRqWEl0azQ5dDdzYVk3VFFPcmM4Z1lMT0ZoNmE0UENLdHNhUXp20gGUAUFVX3lxTE9TTjR2TDgxalkxc3",
+      "at": 1788339652000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788337680000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "EU summons Russian envoy over drone attack"
     },
     {
       "title": "The Black Sea: Trump's first test of a Ukraine ceasefire | Opinion - Yahoo",
@@ -2477,27 +2483,6 @@
       "why": "Stronger dollar pressures sterling."
     },
     {
-      "title": "EU to discuss Leipzig incident and new sanctions against Russia on 2 September - Українська правда",
-      "link": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE1PZHpUT1VQcW8zX29MdVEtVC12a21ndWhydzNrWDNPUFZhYnNxZzhkRGxJOHg3bk5OWmtweTJ3WDg2QkNMX1REUGhfRXJ6YmFMT1RwYUNMZ08xZW56UXdFeTRDSDfSAXBBVV95cUxNWmdsNXgzTnJCTldzVmlfR0dvSTNDV3ZaSTBOWjZYZG5neThVTnZIS3UxQkxCTFJMSTByeGgxMzdYZ2NhdXhYSkpjWjB2eFhsR3NzWkZQc1V1cHVSVUJFLXhDbnV3dVloTnZYb2lqVnA5?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiZEFVX3lxTE1PZHpUT1VQcW8zX29MdVEtVC12a21ndWhydzNrWDNPUFZhYnNxZzhkRGxJOHg3bk5OWmtweTJ3WDg2QkNMX1REUGhfRXJ6YmFMT1RwYUNMZ08xZW56UXdFeTRDSDfSAXBBVV95cUxNWmdsNXgzTnJCTldzVmlfR0dvSTNDV3ZaSTBOWjZYZG5neThVTnZIS3UxQkxCTFJMSTByeGgxMzdYZ2NhdX",
-      "at": 1788334920000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788334920000,
-      "why": "EU sanctions discussion unclear impact"
-    },
-    {
       "title": "Worshippers in West Bank tear-gassed as Israeli attacks on mosques surge",
       "link": "https://www.aljazeera.com/news/2026/9/2/israeli-forces-settlers-attack-two-west-bank-mosques?traffic_source=rss",
       "source": "Al Jazeera",
@@ -2633,10 +2618,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-02T13:05:16.813Z",
-  "headlinesAt": "2026-09-02T13:05:16.813Z",
-  "updatedAt": "2026-09-02T13:05:16.813Z"
+  "calendarAt": "2026-09-02T13:08:58.050Z",
+  "headlinesAt": "2026-09-02T13:08:58.050Z",
+  "updatedAt": "2026-09-02T13:08:58.050Z"
 }
