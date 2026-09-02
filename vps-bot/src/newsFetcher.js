@@ -166,6 +166,131 @@ const THEATRES = {
 // enough that tomorrow morning's development is news again.
 const THEATRE_QUIET_MS = 4 * 3600e3;
 
+// ── What kind of thing happened ──────────────────────────────────────────────
+//
+// Every gate before this one asks how LOUD a headline is: severity words,
+// corroboration, whether the theatre has already alerted. None of them asks
+// what KIND of event it is, and that is the question that decides whether a
+// market moves.
+//
+// A market prices in a war when it STARTS and when it ENDS, and re-prices when
+// something changes its kind — a strait closes, a leader is killed, a new
+// country enters, a nuclear weapon is involved. It does not re-price on the
+// fortieth strike report, and it certainly does not re-price on a condemnation.
+//
+// Seven alerts got through in one day and the price move beside each of them
+// says the same thing:
+//
+//   Citibank fined £4.7m over Russia sanctions breaches      gold  +0.53%
+//   Stock Market Today: Dow Rises On Surprise Jobs Data      gold  +0.04%
+//   Air raid alert shatters first day of school in Kyiv      gold  +0.26%
+//   Seven US Embassies Issue Security Alert Warnings         gold  -0.31%
+//   EU and Nato vow to step up pressure on Russia            gold  -0.22%
+//   Iran condemns US strikes, says dozens killed             gold  -0.10%
+//
+// A fine, a daily wrap, a human-interest angle, a consequence, a statement, a
+// reaction. Every one of them noise, and the noise is measured.
+//
+// So: a headline has to be a KIND of event, not merely a loud sentence about
+// one. Everything else still reaches the Today screen and the news tab; it just
+// does not reach the phone.
+
+// A war beginning, or a new party entering one.
+const WAR_START = [
+  /\bdeclare[sd]? war\b/i, /\bdeclaration of war\b/i,
+  /\b(invasion of|invades?|invading)\b/i,
+  /\blaunch(es|ed)?\b[^.]{0,30}\b(invasion|offensive|ground operation|war)\b/i,
+  /\b(enters|joins|entering) the (war|conflict)\b/i,
+  /\bopens? a (new )?front\b/i,
+  /\bstate of war\b/i,
+];
+
+// A war ending. Just as tradeable as the start, and in the other direction.
+const WAR_END = [
+  /\bcease[- ]?fire\b/i, /\btruce\b/i, /\barmistice\b/i,
+  /\bpeace (deal|agreement|accord|treaty)\b/i,
+  /\b(war|conflict|hostilities) (ends?|ended|over)\b/i,
+  /\bsurrenders?\b/i,
+];
+
+// A change in KIND rather than a continuation. These re-price a market that has
+// already priced the war itself.
+const ESCALATION = [
+  /\bnuclear\b[^.]{0,30}\b(test|strike|weapon|attack|detonat|launch)/i,
+  /\bchemical weapons?\b/i,
+  /\bclos(es|ed|ing|ure)\b[^.]{0,20}\bstrait\b/i, /\bstrait\b[^.]{0,20}\bclos/i,
+  /\bblockad(e|es|ed|ing)\b/i,
+  /\bassassinat/i,
+  /\b(supreme leader|president|prime minister|\bpm\b|chancellor|ayatollah|crown prince|army chief|defen[cs]e minister)\b[^.]{0,45}\b(killed|assassinated|dead|shot)\b/i,
+  /\bmartial law\b/i,
+  /\bgeneral mobilis|mobiliz(ation|es|ed)\b/i,
+  /\barticle 5\b/i, /\bnato (invokes|triggers|activates)\b/i,
+  /\b(capital|city) (falls|has fallen|captured)\b/i,
+];
+
+// The macro equivalent. A SCHEDULED rate decision is on the calendar and is not
+// news; an unscheduled one is the whole market repricing at once.
+const MACRO_SHOCK = [
+  /\bemergency\b[^.]{0,30}\b(meeting|cut|rate|session)\b/i,
+  /\bunscheduled\b/i,
+  /\b(currency |fx |yen |won )?intervention\b/i,
+  /\bcircuit breaker/i, /\bhalts? trading\b/i, /\btrading halted\b/i,
+  /\b(sovereign )?default(s|ed)?\b/i,
+  /\bdowngrades? (the )?(us|u\.s\.|france|uk|japan|china)\b/i,
+  /\bsurprise (rate )?(cut|hike)\b/i,
+];
+
+// Words that mean somebody TALKED ABOUT an event rather than the event
+// happening. Checked first, because "Iran condemns US strikes" contains the
+// vocabulary of a strike and is a press release.
+const REACTION = [
+  /\b(condemn|denounce|vow|urge|slam|criticis|criticiz|deplore)/i,
+  /\bwarn(s|ed|ing)?\b/i, /\bcalls? for\b/i, /\bstep up pressure\b/i,
+  /\btells? the world\b/i, /\bstay away\b/i,
+  /\bsecurity alert\b/i, /\btravel advisory\b/i, /\bembassy|embassies\b/i,
+  /\bfined?\b/i, /\blawsuit\b/i, /\bprobe\b/i,
+  /\blive coverage\b/i, /\bstock market today\b/i, /\bmarket wrap\b/i,
+  /\b(analysis|opinion|explainer|what to know|here.s why|five things)\b/i,
+  /\breacts?\b/i, /\bresponds? to\b/i,
+];
+
+// Language that means something MIGHT happen, or that people are discussing
+// whether it should. "Ceasefire talks collapse" contains the word ceasefire and
+// is the opposite of a ceasefire; "invasion fears mount" is not an invasion.
+// Checked alongside the reaction words, because a headline about the
+// possibility of an event is a headline about a conversation.
+const TENTATIVE = [
+  /\btalks?\b/i, /\bnegotiat/i, /\bpropos/i, /\bplans? to\b/i, /\bdraft\b/i,
+  /\bhopes?\b/i, /\bseeks?\b/i, /\bpush(es|ing)? for\b/i, /\boffers?\b/i,
+  /\bmull(s|ing)?\b/i, /\bconsider(s|ing)\b/i, /\bweigh(s|ing)\b/i,
+  /\b(could|may|might|would|expected to|set to|poised to)\b/i,
+  /\b(threat|threaten|fear|risk of|prospect|possib|potential)/i,
+  /\bahead of\b/i, /\bprepar(es|ing)\b/i, /\bdemands?\b/i, /\brejects?\b/i,
+];
+
+const anyRx = (list, t) => list.some(rx => rx.test(t));
+
+/**
+ * The kind of market event a headline reports, or null.
+ *
+ * Null is the common case and it is the point: almost every headline about a
+ * war is a report ABOUT the war rather than a change in it.
+ */
+function marketEvent(text) {
+  const t = String(text || '');
+  if (anyRx(REACTION, t) || anyRx(TENTATIVE, t)) return null;
+  if (anyRx(WAR_END, t)) return 'war-end';
+  if (anyRx(WAR_START, t)) return 'war-start';
+  if (anyRx(ESCALATION, t)) return 'escalation';
+  if (anyRx(MACRO_SHOCK, t)) return 'macro-shock';
+  return null;
+}
+
+const EVENT_LABEL = {
+  'war-start': 'WAR STARTS', 'war-end': 'WAR ENDS',
+  escalation: 'ESCALATION', 'macro-shock': 'MACRO SHOCK',
+};
+
 // ── Quiet hours ──────────────────────────────────────────────────────────────
 //
 // Gold's geopolitical windows are the Asian and European mornings, which are
@@ -887,14 +1012,23 @@ class NewsFetcher {
       if (!h.at || h.at < floor) return false;
       const key = h.link || h.title;
       if (this.alerted.has(key)) return false;
-      const sev = h.sev ?? 1;
-      const isGeo = geo(`${h.title} ${h.desc || ''}`);
-      if (!isGeo && sev < 3) return false;
-      // Overnight, only a war starting is worth waking for. The rest is on the
-      // Today screen in the morning.
-      if (sev < 3 && inQuietHours(now)) return false;
-      if (sev >= 3) return true;
-      return (h.srcs || 1) >= 2;          // heavy, but only once someone else has it
+
+      // THE FIRST QUESTION IS WHAT KIND OF THING HAPPENED, not how loud the
+      // sentence is. A war starting, a war ending, a change in its kind, or a
+      // market repricing at once. Everything else — the fortieth strike report,
+      // the condemnation, the embassy warning, the daily wrap — goes to the
+      // Today screen and no further.
+      h._kind = marketEvent(`${h.title} ${h.desc || ''}`);
+      if (!h._kind) return false;
+
+      // A war ending is worth waking for as much as one starting, so quiet
+      // hours are broken by the kind rather than by the severity word.
+      const big = h._kind === 'war-start' || h._kind === 'war-end';
+      if (!big && inQuietHours(now)) return false;
+
+      // Corroboration still applies to the ones that are not obviously huge: a
+      // single outlet claiming a ceasefire is a claim.
+      return big || (h.sev ?? 1) >= 3 || (h.srcs || 1) >= 2;
     }).sort((a, b) => (b.sev ?? 1) - (a.sev ?? 1) || (b.at - a.at));
 
     const hits = [];
@@ -933,7 +1067,11 @@ class NewsFetcher {
       const srcs = (h.srcs || 1) > 1 ? ` · ${h.srcs} sources` : ' · 1 source, unconfirmed';
       const moved = await this._moveSince(h.firstAt || h.at).catch(() => '');
       const body = `${h.title}\n${h.source}${srcs}${moved ? `\n${moved}` : ''}`;
-      const tag = h.sev >= 3 ? '🔴 URGENT' : '🟠 HEAVY';
+      // The tag names the EVENT rather than the loudness of the sentence.
+      const tag = h._kind === 'war-end' ? '🕊 WAR ENDS'
+        : h._kind === 'war-start' ? '🔴 WAR STARTS'
+        : h._kind === 'escalation' ? '🔴 ESCALATION'
+        : '🟠 MACRO SHOCK';
       if (this.telegram) {
         await this.telegram.send(`${tag} <b>${when} UTC</b>${srcs}\n${h.title}`
           + `\n<i>${h.source}</i>${moved ? `\n<b>${moved}</b>` : ''}`).catch(() => {});
@@ -943,7 +1081,7 @@ class NewsFetcher {
         if (subs.length) await sendPush(subs, `${tag} ${when} UTC`, body).catch(() => {});
       }
     }
-    this.log(`News: alerted ${hits.length} geopolitical headline(s)`
+    this.log(`News: alerted ${hits.length} market event(s) `+ `[${hits.map(h => h._kind).join(', ')}]`
       + ` (${inLastHour + hits.length}/${MAX_ALERTS_PER_HOUR} this hour)`);
     return hits.length;
   }
@@ -1047,4 +1185,5 @@ module.exports = { NewsFetcher, NEWS_PATH, HISTORY_PATH, parseRSS, currenciesIn,
                    corroborate, tokens, properNouns, POLL_MS, MAX_HEADLINES,
                    MAX_ALERTS_PER_HOUR, MIN_ALERT_GAP_MS, ALERT_MEMORY_MS,
                    theatresIn, THEATRES, THEATRE_QUIET_MS,
-                   inQuietHours, hourIn, QUIET_TZ, QUIET_FROM, QUIET_TO };
+                   inQuietHours, hourIn, QUIET_TZ, QUIET_FROM, QUIET_TO,
+                   marketEvent, EVENT_LABEL };
