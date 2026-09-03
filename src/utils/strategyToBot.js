@@ -40,16 +40,52 @@ const MAP = {
       why: 'the bot additionally requires price to be inside the gap and in the discount half of the range, so it will fire less often' };
   },
 
+  // The bot can now name a single pattern, so this is a translation rather than
+  // a widening. It used to collapse every pattern to its family and warn that
+  // the bot would take more trades than the backtest did; that warning was
+  // correct and is no longer needed.
   candlestick: (c, out) => {
     const want = String(c.value || '');
-    const family = /bear|star|crow|dark|hanging|gravestone/.test(want) ? 'bearish'
-                 : /doji|spinning|harami_cross/.test(want) ? 'doji'
-                 : 'bullish';
-    out.conditions.candlePattern = family;
-    // The bot's filter is a family, the engine's is one named pattern. Only
-    // flag it when that actually widens the rule.
-    return want === 'any_reversal' ? null : { level: 'approximate', what: `Candlestick: ${want}`,
-      why: `the bot filters on the ${family} family (engulfing, hammer, morning star and the rest), not on ${want} alone — it will take more trades than the backtest did` };
+    if (want === 'any_bull') { out.conditions.candlePattern = 'bullish'; return null; }
+    if (want === 'any_bear') { out.conditions.candlePattern = 'bearish'; return null; }
+    if (want === 'any_reversal') {
+      out.conditions.candlePattern = 'bullish';
+      return { level: 'approximate', what: 'Candlestick: any reversal',
+        why: 'the bot takes one direction per strategy, so this becomes the bullish family — run a second strategy for the bearish side' };
+    }
+    out.conditions.candlePattern = want;
+    return null;
+  },
+
+  // The full-range sweep. The bot has always detected it; it now has a switch.
+  // The engine says bullish/bearish, which for a strong reversal means the
+  // hammer and the star — a bullish one sweeps the low, a bearish one the high.
+  strong_rev: (c, out) => {
+    const op = String(c.op || c.value || 'any');
+    out.conditions.candlePattern = op === 'bullish' ? 'strong_hammer'
+      : op === 'bearish' ? 'strong_star' : 'strong_any';
+    if (c.n) out.conditions.candleN = c.n;
+    return null;
+  },
+
+  // The engine names the MACD event in camelCase (crossUp); the bot's modes are
+  // snake_case. Translating rather than passing it through, because an
+  // unrecognised mode would fall through to "above" — a state, not the trigger
+  // that was backtested.
+  macd: (c, out) => {
+    const raw = String(c.op || c.value || 'above');
+    const MODES = {
+      crossUp: 'cross_up', cross_up: 'cross_up',
+      crossDown: 'cross_down', cross_down: 'cross_down',
+      above: 'above', below: 'below', rising: 'rising', falling: 'falling',
+    };
+    const mode = MODES[raw];
+    if (!mode) {
+      return { level: 'blocking', what: `MACD: ${raw}`,
+        why: 'the bot has no equivalent for this MACD trigger' };
+    }
+    out.conditions.macdFilter = { enabled: true, mode };
+    return null;
   },
 
   // The two the bot used to refuse. It now evaluates them with the FEED's own
@@ -104,8 +140,6 @@ const BLOCKING = {
   chg20:       'the bot has no N-bar change filter',
   persistence: 'the bot has no directional-persistence filter',
   ma_cross:    'the bot has no moving-average cross trigger',
-  macd:        'the bot has no MACD trigger',
-  strong_rev:  'the bot detects strong reversals internally but has no strategy switch for them',
   // Cross-asset conditions need a second instrument's aligned history at
   // decision time. The bot fetches one pair per strategy, so handing one over
   // would place trades on a rule with its most important condition missing.

@@ -45,6 +45,13 @@ function barStartMs(tf) {
 // either screen which one was lying.
 const PATTERNS_URL = pathToFileURL(path.join(__dirname, '..', '..', 'src', 'utils', 'candlePatterns.js')).href;
 
+// The candle, MACD, Bollinger, stochastic and ADX filters, evaluated by the
+// same module the strategy editor previews with. Same reason as above, one step
+// further: the phone's "0 pairs matching, tap to see why" and this decision have
+// to come from one implementation or the screen will explain a trade the bot
+// did not make.
+const FILTERS_URL = pathToFileURL(path.join(__dirname, '..', '..', 'shared', 'strategyFilters.mjs')).href;
+
 // EMA and VWAP are unambiguous enough to compute here; there is no second
 // definition to drift away from.
 function emaAt(candles, period) {
@@ -407,7 +414,6 @@ class ForexBot {
       // that does not switch anything is worse than a missing feature: a
       // strategy set to enter only on a bullish engulfing entered on every
       // bar, and the screen said it was filtering.
-      candle:     await this._checkCandlePattern(candles, conditions.candlePattern),
       ema:        this._checkEMA(candles, conditions.emaFilter),
       vwap:       this._checkVWAP(candles, conditions.vwapFilter),
       feed:       await this._checkFeedMeasures(pair, timeframe, conditions),
@@ -435,8 +441,18 @@ class ForexBot {
       }
     }
 
+    // Candle, MACD, Bollinger, stochastic and ADX. Grouped because they share
+    // one module and one failure explanation — the log says WHICH one and WHY,
+    // rather than the bare filter name every other line here prints.
+    const ind = await this._checkIndicatorFilters(candles, conditions);
+    Object.assign(pass, ind.detail);
+
     const failed = Object.entries(pass).filter(([, v]) => !v).map(([k]) => k);
-    if (failed.length) { this.log(`${pair}: FAIL [${failed.join(', ')}]`); return false; }
+    if (failed.length) {
+      const why = ind.first ? ` — ${ind.first.why}` : '';
+      this.log(`${pair}: FAIL [${failed.join(', ')}]${why}`);
+      return false;
+    }
     this.log(`${pair}: ALL PASS — building order`);
 
     const pip = getPipSize(pair);
@@ -569,20 +585,22 @@ class ForexBot {
   // If the shared module cannot be loaded the answer is false, not true. An
   // unloadable filter that silently passes would place trades the strategy
   // explicitly asked not to place.
-  async _checkCandlePattern(candles, want) {
-    if (!want || want === 'any') return true;
+  async _checkIndicatorFilters(candles, conditions) {
+    const wanted = conditions.candlePattern && conditions.candlePattern !== 'any';
+    const any = wanted || conditions.macdFilter?.enabled || conditions.bbFilter?.enabled
+      || conditions.stochFilter?.enabled || conditions.adxFilter?.enabled;
+    if (!any) return { pass: true, first: null, detail: {} };
+
     let mod;
     try {
-      if (!this._patterns) this._patterns = await import(PATTERNS_URL);
-      mod = this._patterns;
+      if (!this._filters) this._filters = await import(FILTERS_URL);
+      mod = this._filters;
     } catch (e) {
-      this.warn(`Candle patterns not loadable (${e.message}) — treating filter as failed. Run git pull on the VPS.`);
-      return false;
+      this.warn(`Strategy filters not loadable (${e.message}) — treating them as failed. Run git pull on the VPS.`);
+      return { pass: false, first: { name: 'filters', why: 'module not loadable' },
+               detail: { filters: false } };
     }
-    const ids = mod.patternsAt(candles, candles.length - 1) || [];
-    if (!ids.length) return false;
-    if (want === 'doji') return ids.some(id => /doji|spinning_top/.test(id));
-    return ids.some(id => mod.PATTERN_MAP[id]?.type === want);
+    return mod.checkIndicatorFilters(candles, conditions);
   }
 
   // Volatility percentile and range position — the two conditions that appear
