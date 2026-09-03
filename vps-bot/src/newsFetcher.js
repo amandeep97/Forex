@@ -609,8 +609,18 @@ async function getText(url, timeout = 15000) {
 }
 
 class NewsFetcher {
-  constructor({ github, log, groqApiKey = null, telegram = null, env = null, oanda = null }) {
+  constructor({ github, log, groqApiKey = null, telegram = null, env = null, oanda = null,
+                quiet = null }) {
     this.github = github;
+    // The do-not-disturb window, per instance rather than read off the module.
+    // It defaults to the configured one, so nothing changes in production; it
+    // is settable because the alert pass otherwise reads the wall clock, which
+    // made its own tests pass or fail depending on the hour they were run at.
+    this.quiet = {
+      tz: quiet?.tz ?? QUIET_TZ,
+      from: quiet?.from ?? QUIET_FROM,
+      to: quiet?.to ?? QUIET_TO,
+    };
     this.log = log || (() => {});
     // Optional. Without either, the alert pass does nothing and says nothing —
     // which is the state news has been in all along.
@@ -1024,7 +1034,7 @@ class NewsFetcher {
       // A war ending is worth waking for as much as one starting, so quiet
       // hours are broken by the kind rather than by the severity word.
       const big = h._kind === 'war-start' || h._kind === 'war-end';
-      if (!big && inQuietHours(now)) return false;
+      if (!big && inQuietHours(now, this.quiet.tz, this.quiet.from, this.quiet.to)) return false;
 
       // Corroboration still applies to the ones that are not obviously huge: a
       // single outlet claiming a ceasefire is a claim.
