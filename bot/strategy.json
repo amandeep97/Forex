@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-21T04:48:56.030Z",
+  "updatedAt": "2026-09-03T17:36:35.572Z",
   "strategies": [
     {
       "name": "ICT London Long",
@@ -272,6 +272,93 @@
         "slPips": 20,
         "tpMethod": "rr",
         "rrRatio": 4,
+        "tpFibLevel": 1.618
+      }
+    },
+    {
+      "id": "strat_1788456995572",
+      "name": "New Strategy",
+      "enabled": false,
+      "pairs": [
+        "XAG_USD"
+      ],
+      "timeframe": "M5",
+      "direction": "both",
+      "maxPositionsPerPair": 1,
+      "conditions": {
+        "structure": "any",
+        "requireBOS": false,
+        "priceZone": "any",
+        "requireLiqSweep": false,
+        "obDir": "any",
+        "requireOB": false,
+        "requireOBTap": false,
+        "fvgDir": "any",
+        "requireFVG": false,
+        "requireFVGTap": false,
+        "requireOTE": false,
+        "candlePattern": "strong_star",
+        "candleN": 5,
+        "macdFilter": {
+          "enabled": false,
+          "mode": "above"
+        },
+        "bbFilter": {
+          "enabled": false,
+          "mode": "below_lower",
+          "period": 20,
+          "mult": 2,
+          "value": 2
+        },
+        "stochFilter": {
+          "enabled": false,
+          "comparison": "below",
+          "value": 20
+        },
+        "adxFilter": {
+          "enabled": false,
+          "mode": "strong",
+          "value": 25
+        },
+        "emaFilter": {
+          "enabled": false,
+          "period": 200,
+          "side": "above"
+        },
+        "vwapFilter": {
+          "enabled": false,
+          "side": "above"
+        },
+        "volPctFilter": {
+          "enabled": false,
+          "op": "below",
+          "value": 30
+        },
+        "rangePosFilter": {
+          "enabled": false,
+          "op": "below",
+          "value": 25
+        },
+        "sessions": [
+          "london"
+        ],
+        "rsiFilter": {
+          "enabled": false,
+          "comparison": "below",
+          "value": 70
+        }
+      },
+      "risk": {
+        "riskType": "lots",
+        "riskPercent": 1,
+        "riskUsdt": 10,
+        "slMethod": "candle",
+        "slAtr": 1.5,
+        "slPips": 20,
+        "slCandles": 1,
+        "slBufferPips": 3,
+        "tpMethod": "rr",
+        "rrRatio": 3,
         "tpFibLevel": 1.618
       }
     }
