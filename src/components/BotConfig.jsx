@@ -4,6 +4,7 @@ import ChartModal from './ChartModal';
 import { getIMSignals, IM_DEFS } from '../utils/intermarket';
 import { takeStagedBotStrategy } from '../utils/strategyToBot';
 import { checkIndicatorFilters } from '../../shared/strategyFilters.mjs';
+import { stopFor, pipSizeFor } from '../../shared/stopLoss.mjs';
 import { CANDLE_PATTERNS } from '../../shared/candlePatterns.mjs';
 
 // ── SMC engine (browser port of vps-bot/src/smc.js) ──────────────────────────
@@ -227,10 +228,44 @@ async function scanPair(pair, strat) {
     if (!ind.pass)
       return { pair, pass: false, reason: ind.first.why, rsi, structure };
 
-    // Build trade params for auto-execute
+    // Build trade params for auto-execute.
+    //
+    // The stop comes from the SAME module the bot uses, and honours the method
+    // that was actually chosen. It used to be an ATR stop no matter what the
+    // dropdown said, so a strategy configured for a swing stop was executed
+    // from this screen with a different stop — and therefore a different
+    // position size — from the one the bot would have used.
     const resolvedDir = (dir === 'both') ? (structure === 'bullish' ? 'LONG' : 'SHORT') : dir.toUpperCase();
-    const slAtr = strat.risk?.slAtr || 1.5;
-    const sl_  = resolvedDir === 'LONG' ? cp - atr * slAtr : cp + atr * slAtr;
+    const long = resolvedDir === 'LONG';
+    const obs_ = detectOrderBlocks(cs);
+    const plan = stopFor({
+      dir: long ? 'long' : 'short',
+      price: cp,
+      pip: pipSizeFor(pair),
+      risk: strat.risk || {},
+      smc: {
+        atr,
+        recentSwingLow:  Math.min(...cs.slice(-20).map(c => c.l)),
+        recentSwingHigh: Math.max(...cs.slice(-20).map(c => c.h)),
+        activeBullOB: obs_.filter(o => o.type === 'bullish').at(-1) || null,
+        activeBearOB: obs_.filter(o => o.type === 'bearish').at(-1) || null,
+      },
+      candles: cs,
+      // This screen reads mid candles only; it has no bid/ask feed, so the
+      // signal-candle stop cannot be placed from here. Refusing is the right
+      // answer — the alternative is a stop tighter than asked. The bot has the
+      // spread and will take the trade.
+      spread: null,
+    });
+    if (!plan)
+      return { pair, pass: false, rsi, structure,
+        reason: (strat.risk?.slMethod === 'candle')
+          ? 'Signal-candle stop needs the live spread — the bot places this one, not the app'
+          : `Cannot place a ${strat.risk?.slMethod || 'atr'} stop here` };
+
+    const sl_  = plan.price;
+    if ((long && sl_ >= cp) || (!long && sl_ <= cp))
+      return { pair, pass: false, reason: 'Stop is not beyond entry', rsi, structure };
     const rrR  = strat.risk?.rrRatio  || 2;
     const tp_  = resolvedDir === 'LONG' ? cp + Math.abs(cp - sl_) * rrR : cp - Math.abs(cp - sl_) * rrR;
 
@@ -415,10 +450,11 @@ const SESSIONS = [
 ];
 
 const SL_METHODS = [
-  { v:'swing', l:'Swing Low / High' },
-  { v:'ob',    l:'Order Block Base' },
-  { v:'atr',   l:'ATR ×' },
-  { v:'fixed', l:'Fixed Pips' },
+  { v:'swing',  l:'Swing Low / High' },
+  { v:'ob',     l:'Order Block Base' },
+  { v:'candle', l:'Signal Candle Low / High + spread' },
+  { v:'atr',    l:'ATR ×' },
+  { v:'fixed',  l:'Fixed Pips' },
 ];
 
 const TP_METHODS = [
@@ -465,7 +501,7 @@ const DEFAULT_STRAT = {
   },
   risk: {
     riskType: 'percent', riskPercent: 1, riskUsdt: 10,
-    slMethod: 'swing', slAtr: 1.5, slPips: 20,
+    slMethod: 'swing', slAtr: 1.5, slPips: 20, slCandles: 1, slBufferPips: 3,
     tpMethod: 'rr', rrRatio: 2, tpFibLevel: 1.618,
   },
 };
@@ -1068,8 +1104,28 @@ function StrategyEditor({ strat, onSave, onCancel }) {
         <FieldRow label="Stop Loss Method">
           <Select value={s.risk.slMethod} onChange={v => set('risk.slMethod', v)} options={SL_METHODS}/>
         </FieldRow>
-        {s.risk.slMethod === 'swing' && <div style={{ padding: '2px 0 6px 12px', borderBottom: '1px solid var(--border)', fontSize: 10, color: 'var(--text3)' }}>SL below recent swing low (long) or above swing high (short) + 3 pip buffer</div>}
-        {s.risk.slMethod === 'ob'    && <div style={{ padding: '2px 0 6px 12px', borderBottom: '1px solid var(--border)', fontSize: 10, color: 'var(--text3)' }}>SL below the base of the entry Order Block</div>}
+        {s.risk.slMethod === 'swing' && <div style={{ padding: '2px 0 6px 12px', borderBottom: '1px solid var(--border)', fontSize: 10, color: 'var(--text3)' }}>SL beyond the recent swing low (long) or swing high (short), by the buffer below</div>}
+        {s.risk.slMethod === 'ob'    && <div style={{ padding: '2px 0 6px 12px', borderBottom: '1px solid var(--border)', fontSize: 10, color: 'var(--text3)' }}>SL beyond the low (long) or high (short) of the order block being entered from, by the buffer below. If there is no active order block the trade is skipped rather than the stop being placed by a different rule.</div>}
+        {s.risk.slMethod === 'candle' && (
+          <>
+            <FieldRow label="Candles to cover">
+              <NumberInput value={s.risk.slCandles ?? 1} onChange={v => set('risk.slCandles', v)} min={1} max={10} step={1}/>
+            </FieldRow>
+            <div style={{ padding: '2px 0 6px 12px', borderBottom: '1px solid var(--border)', fontSize: 10, color: 'var(--text3)' }}>
+              SL beyond the low (long) or high (short) of the signal candle, plus the
+              live spread and the buffer below. The spread matters: candles are mid
+              prices but a long closes at the bid, so a stop sitting exactly on the
+              mid low is already inside the bid’s reach and gets taken on a bar that
+              never traded through the level. If the spread cannot be read, the trade
+              is skipped rather than the stop being placed tighter than you asked.
+            </div>
+          </>
+        )}
+        {['swing', 'ob', 'candle'].includes(s.risk.slMethod) && (
+          <FieldRow label="Buffer (pips)">
+            <NumberInput value={s.risk.slBufferPips ?? 3} onChange={v => set('risk.slBufferPips', v)} min={0} max={100} step={0.5}/>
+          </FieldRow>
+        )}
         {s.risk.slMethod === 'atr'   && <FieldRow label="ATR Multiplier"><NumberInput value={s.risk.slAtr||1.5} onChange={v => set('risk.slAtr', v)} min={0.5} max={5} step={0.1}/></FieldRow>}
         {s.risk.slMethod === 'fixed' && <FieldRow label="SL (pips)"><NumberInput value={s.risk.slPips||20} onChange={v => set('risk.slPips', v)} min={5} max={500} step={1}/></FieldRow>}
 
