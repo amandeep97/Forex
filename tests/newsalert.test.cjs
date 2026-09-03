@@ -187,10 +187,17 @@ const now = Date.UTC(2026, 8, 1, 15, 0);
 
   // A NewsFetcher with a telegram that records instead of sending.
   const sent = [];
-  const mk = () => new N.NewsFetcher({
+  // Quiet hours OFF for the collapse and gap checks, because those are about
+  // the story vocabulary and not about the clock. Left on the real window, this
+  // whole section passed by day and failed between 23:00 and 07:00 Toronto —
+  // the alert pass reads the wall clock, so the suite did too. Quiet hours get
+  // their own checks below, against a window pinned open rather than the hour
+  // the test happens to be run at.
+  const mk = (quiet = { from: 0, to: 0 }) => new N.NewsFetcher({
     github: { readJSON: async () => ({ content: { subscriptions: [] } }) },
     log: () => {},
     telegram: { enabled: true, send: async (t) => { sent.push(t); } },
+    quiet,
   });
 
   // ── The three that actually got through ──────────────────────────────────
@@ -288,6 +295,7 @@ const now = Date.UTC(2026, 8, 1, 15, 0);
             log: () => {},
             telegram: { enabled: true, send: async (x) => { sent.push(x); } },
             oanda: { getCandles: async () => m1 },
+            quiet: { from: 0, to: 0 },
           });
           return priced._alert([{ title: 'BREAKING: Venezuela closes its ports in a blockade',
             source: 'Wires (geo)', link: 'vz', at: t0, sev: 3, srcs: 3 }]).then(() => {
@@ -304,6 +312,7 @@ const now = Date.UTC(2026, 8, 1, 15, 0);
             const dumb = new N.NewsFetcher({
               github: { readJSON: async () => ({ content: { subscriptions: [] } }) },
               log: () => {}, telegram: { enabled: true, send: async (x) => { sent.push(x); } },
+              quiet: { from: 0, to: 0 },
             });
             return dumb._alert([{ title: 'BREAKING: Taiwan blockade begins',
               source: 'BBC World', link: 'tw', at: Date.now() - M, sev: 3, srcs: 2 }]);
@@ -331,7 +340,24 @@ const now = Date.UTC(2026, 8, 1, 15, 0);
             check('an unknown zone means no quiet hours rather than a crash',
               N.hourIn('Not/AZone') === null && N.inQuietHours(Date.now(), 'Not/AZone') === false);
 
-            return null;
+            // And the gate in the alert pass itself, against a window held open
+            // at every hour so the result does not depend on when this is run.
+            const night = mk({ from: 0, to: 24 });
+            const nightFrom = sent.length;
+            return night._alert([{ title: 'BREAKING: Turkey closes the Bosphorus to shipping',
+              source: 'Wires (geo)', link: 'bos', at: Date.now() - 60e3, sev: 3, srcs: 4 }])
+              .then(() => {
+                check('an escalation at three in the morning waits until morning',
+                  sent.length === nightFrom,
+                  'the story is on the Today screen either way; it is not worth the phone');
+                return night._alert([{ title: 'Turkey declares war on Greece',
+                  source: 'BBC World', link: 'tg', at: Date.now(), sev: 2, srcs: 3 }]);
+              })
+              .then(() => {
+                check('but a war starting still wakes you',
+                  sent.length === nightFrom + 1,
+                  'a war ending is worth waking for as much as one starting, so the kind breaks quiet hours, not the severity word');
+              });
           }).then(() => {
 
           // And the real sequence, replayed.
