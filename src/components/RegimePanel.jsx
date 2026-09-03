@@ -474,6 +474,33 @@ export default function RegimePanel() {
               </span>
             </Row>
           ))}
+
+          {/* Never tested at all, which is a different answer from "it failed".
+              A condition that fired thirty times in a year cannot be measured on
+              a year, and without this line its absence from the list above reads
+              as rejection. That distinction matters most for the rarest and most
+              wanted conditions — a strong hammer is exactly the shape of thing
+              that fires a few dozen times and gets quietly dropped. */}
+          {!!study.untested?.length && (
+            <>
+              <Head note={'Not tested. These fired too rarely to measure on a year of '
+                + 'hourly bars, or were true on so many bars that they describe the market '
+                + 'rather than a condition in it. Neither is a verdict — the study has no '
+                + 'opinion on these.'}>
+                Not enough to measure ({study.untested.length})
+              </Head>
+              {study.untested.slice(0, 14).map(u => (
+                <Row key={u.key} style={{ marginTop: 5 }}>
+                  <span style={{ fontSize: 10, color: 'var(--text2)' }}>
+                    {PHRASE[u.key] || u.key}
+                  </span>
+                  <span style={{ marginLeft: 'auto', fontSize: 10, color: 'var(--text3)', flexShrink: 0 }}>
+                    {u.n} bars ({u.pct}%) — {u.why}
+                  </span>
+                </Row>
+              ))}
+            </>
+          )}
         </div>
       )}
     </div>
