@@ -7,7 +7,7 @@ const path = require('path');
 const { pathToFileURL } = require('url');
 const {
   getCurrentSession, isWeekend,
-  getPipSize, calcPosition, genTradeId, fmtPrice,
+  getPipSize, genTradeId, fmtPrice,
 } = require('./utils');
 const { checkIMFilter } = require('./intermarket');
 const { fetchAllCOT, checkCOTFilter } = require('./cotFetcher');
@@ -52,6 +52,7 @@ const PATTERNS_URL = pathToFileURL(path.join(__dirname, '..', '..', 'src', 'util
 // did not make.
 const FILTERS_URL = pathToFileURL(path.join(__dirname, '..', '..', 'shared', 'strategyFilters.mjs')).href;
 const STOPS_URL = pathToFileURL(path.join(__dirname, '..', '..', 'shared', 'stopLoss.mjs')).href;
+const POSITION_URL = pathToFileURL(path.join(__dirname, '..', '..', 'shared', 'position.mjs')).href;
 
 // EMA and VWAP are unambiguous enough to compute here; there is no second
 // definition to drift away from.
@@ -491,14 +492,20 @@ class ForexBot {
       lots  = risk.fixedLots;
       const isMetals = pair.includes('XAU') || pair.includes('XAG');
       units = isMetals ? Math.round(lots * 100) : Math.round(lots * 100_000);
-    } else if (risk.riskType === 'usdt' && risk.riskUsdt) {
-      const computed = calcPosition({ balance: account.balance, riskPercent: (risk.riskUsdt / account.balance) * 100, entryPrice: cp, slPrice: sl, pair });
-      lots  = computed.lots;
-      units = computed.units;
     } else {
-      const computed = calcPosition({ balance: account.balance, riskPercent: risk.riskPercent || 1, entryPrice: cp, slPrice: sl, pair });
-      lots  = computed.lots;
-      units = computed.units;
+      // Risk-based sizing, from the stop distance rather than from a pip table.
+      // See shared/position.mjs — the old rule assumed $10 per pip per lot and
+      // 100,000 units per lot, which is a major FX pair and nothing else. On
+      // SPX500 it produced about six million dollars of notional for a
+      // three-dollar risk budget.
+      const riskUsd = (risk.riskType === 'usdt' && risk.riskUsdt)
+        ? risk.riskUsdt
+        : account.balance * ((risk.riskPercent || 1) / 100);
+      const sized = await this._sizeFor(pair, cp, sl, riskUsd);
+      if (!sized.units) { this.log(`${pair}: not sized — ${sized.why}`); return false; }
+      units = sized.units;
+      lots  = +(units / (pair.includes('XAU') || pair.includes('XAG') ? 100 : 100_000)).toFixed(4);
+      this.log(`${pair}: ${units} units — risking ${sized.risk.toFixed(2)} of a ${riskUsd.toFixed(2)} budget`);
     }
     const signedUnits = dir === 'long' ? units : -units;
 
@@ -698,6 +705,30 @@ class ForexBot {
       spread = await this._spreadNow(pair);
     }
     return mod.stopFor({ dir, price: cp, pip, risk, smc, candles, spread });
+  }
+
+  // Position size, from shared/position.mjs. A cross-quoted instrument
+  // (EUR_JPY, UK100_GBP, DE30_EUR) needs the value of its quote currency in
+  // USD; that is fetched, and a failure to fetch it REFUSES the trade rather
+  // than defaulting to 1, which would size a DAX trade as though euros were
+  // dollars.
+  async _sizeFor(pair, entry, stop, riskUsd) {
+    let mod;
+    try {
+      if (!this._position) this._position = await import(POSITION_URL);
+      mod = this._position;
+    } catch (e) {
+      this.warn(`Position module not loadable (${e.message}) — skipping. Run git pull on the VPS.`);
+      return { units: 0, risk: 0, why: 'position module not loadable' };
+    }
+    const rateFor = async (sym) => {
+      try {
+        const cs = await this.oanda.getCandles(sym, 'M1', 2);
+        return cs?.length ? cs[cs.length - 1].c : null;
+      } catch { return null; }
+    };
+    const quoteToUsd = await mod.quoteToUsdFor(pair, entry, rateFor);
+    return mod.unitsFor({ riskUsd, entry, stop, quoteToUsd, minUnits: 1 });
   }
 
   // Current ask minus bid. Measured, not assumed: a typical-spread constant

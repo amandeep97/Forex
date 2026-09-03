@@ -28,21 +28,19 @@ function getPipValuePerUnit(pair, exchangeRate = 1) {
   return pip;
 }
 
-function calcPosition({ balance, riskPercent, entryPrice, slPrice, pair }) {
-  const riskUsd  = balance * (riskPercent / 100);
-  const pip      = getPipSize(pair);
-  const slPips   = Math.abs(entryPrice - slPrice) / pip;
-  if (slPips < 0.1) return { lots: 0.01, units: 1000 };
-
-  const pipValuePerLot = 10;
-  let lots = riskUsd / (slPips * pipValuePerLot);
-  lots = Math.max(0.01, Math.floor(lots * 100) / 100);
-
-  const isMetals = pair.includes('XAU') || pair.includes('XAG');
-  const units    = isMetals ? lots * 100 : lots * 100_000;
-
-  return { lots, units: Math.round(units) };
-}
+// Position sizing lives in shared/position.mjs now, and calcPosition is gone
+// rather than deprecated.
+//
+// It converted the stop distance to "pips", assumed $10 per pip per lot and
+// 100,000 units per lot, and clamped up to a 0.01 lot minimum. All three are
+// properties of a major FX pair. On SPX500, where getPipSize fell through to
+// 0.0001, a thirty-point stop measured 300,000 pips, the lot maths underflowed
+// to the clamp, and 0.01 lots became 1,000 units — six million dollars of
+// notional against a three-dollar risk budget.
+//
+// Leaving it here as a deprecated export would leave the trap in place for the
+// next caller. The replacement sizes from the stop distance directly and
+// refuses when the smallest tradeable position would exceed the budget.
 
 function genTradeId() {
   return 'T' + Date.now().toString(36).toUpperCase();
@@ -55,4 +53,4 @@ function fmtPrice(price, pair) {
   return price.toFixed(5);
 }
 
-module.exports = { getCurrentSession, isWeekend, getPipSize, getPipValuePerUnit, calcPosition, genTradeId, fmtPrice };
+module.exports = { getCurrentSession, isWeekend, getPipSize, getPipValuePerUnit, genTradeId, fmtPrice };
