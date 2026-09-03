@@ -19,6 +19,7 @@
 import {
   parseJSON, checkLevels, marketBrief, newsBrief, positioningBrief, macroBrief,
   calendarBrief, scoreLog, stripThinking, retryAfterMs, isReasoningModel, verdictOf,
+  scoreStandAside, MISSED_ATR,
 } from '../src/utils/deskAgents.js';
 
 let fails = 0;
@@ -261,6 +262,70 @@ const H = 3600e3;
     /Risk approved it with changes: widen the stop/.test(
       verdictOf(long, { verdict: 'approve with changes', changes: 'widen the stop' }, null).line));
   check('nothing to report before the trader has spoken', verdictOf(null, null, null) === null);
+}
+
+// ── Scoring a refusal ──────────────────────────────────────────────────────
+//
+// Four verdicts in and every one of them "stand aside". That is either
+// discipline or paralysis, and the record could not tell them apart because
+// standing aside was skipped by the scorer entirely — no direction, nothing to
+// score.
+//
+// But a refusal has an outcome. Either the market went nowhere and sitting out
+// cost nothing, or it ran and the caution cost something. Same bars, same
+// arithmetic, and the only way to find out which this is.
+{
+  const now = Date.now();
+  const rows = [
+    { at: now - 48 * H, sym: 'XAU_USD', price: 4400, atr: 20, action: 'stand aside', horizon: 12 },
+    { at: now - 40 * H, sym: 'XAU_USD', price: 4400, atr: 20, action: 'stand aside', horizon: 12 },
+    { at: now - 30 * H, sym: 'XAU_USD', price: 4400, atr: 20, action: 'long', horizon: 12 },
+  ];
+  // First window quiet, second one ran forty points — two ATR — upward.
+  const extremeAt = (sym, from) => (from === rows[0].at
+    ? { high: 4410, low: 4390 }
+    : { high: 4440, low: 4395 });
+
+  const s = scoreStandAside(rows, extremeAt);
+  check('only refusals are scored here', s.n === 2, String(s.n));
+  check('a market that went nowhere is a correct refusal',
+    s.rows[0].missed === false && s.rows[0].reachAtr === 0.5, JSON.stringify(s.rows[0].reachAtr));
+  check('and one that ran two ATR is a miss', s.rows[1].missed === true
+    && s.rows[1].reachAtr === 2, String(s.rows[1].reachAtr));
+  check('the direction it ran is named, so a missed selloff reads as one',
+    s.rows[1].dir === 'up');
+  check('the summary counts both sides',
+    s.correct === 1 && s.missed === 1 && s.correctPct === 50, JSON.stringify(s));
+  check('and reports the worst one, which is the cost of the caution',
+    s.worstMissAtr === 2, String(s.worstMissAtr));
+
+  // Measured on the furthest price REACHED, not where it closed. A window that
+  // ran two ATR and came all the way back was still a trade.
+  const roundTrip = scoreStandAside(
+    [{ at: 1, sym: 'X', price: 100, atr: 1, action: 'stand aside', horizon: 12 }],
+    () => ({ high: 102, low: 99.9 }));
+  check('a move that ran and fully retraced still counts as missed',
+    roundTrip.rows[0].missed === true,
+    'scoring the close would call a two-ATR round trip a quiet market');
+
+  // A refusal on a market that fell hard is the same mistake as one that rose.
+  const fell = scoreStandAside(
+    [{ at: 1, sym: 'X', price: 100, atr: 1, action: 'stand aside', horizon: 12 }],
+    () => ({ high: 100.2, low: 97 }));
+  check('sitting out a three-ATR selloff is a miss too', fell.rows[0].missed === true
+    && fell.rows[0].dir === 'down', fell.rows[0].dir);
+
+  check(`the bar for having missed something is ${MISSED_ATR} ATR`,
+    MISSED_ATR === 1.5 && scoreStandAside(
+      [{ at: 1, sym: 'X', price: 100, atr: 1, action: 'stand aside', horizon: 12 }],
+      () => ({ high: 101.4, low: 99.8 })).rows[0].missed === false,
+    'below it the market did not offer a trade and the refusal cost nothing');
+
+  check('a window with no bars yet is not scored as correct',
+    scoreStandAside(rows, () => null) === null,
+    'an unfinished horizon flattering the record is exactly the failure this avoids');
+  check('and a log with no refusals in it scores nothing',
+    scoreStandAside([rows[2]], extremeAt) === null);
 }
 
 console.log(fails ? `\n${fails} FAILED` : '\nall passed');

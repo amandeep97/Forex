@@ -1,6 +1,7 @@
 import { useState, useCallback, useEffect } from 'react';
 import { DESK_INSTRUMENTS, gatherEvidence } from '../utils/deskEvidence.js';
-import { runDesk, readLog, aiConfig, isReasoningModel, verdictOf } from '../utils/deskAgents.js';
+import { runDesk, readLog, aiConfig, isReasoningModel, verdictOf,
+         scoreStandAside, MISSED_ATR } from '../utils/deskAgents.js';
 
 // The desk: four analysts, a bull and a bear who argue, a trader who decides,
 // a risk manager with a veto.
@@ -214,8 +215,41 @@ export default function TradingDesk() {
   const [log, setLog] = useState([]);
   const [rounds, setRounds] = useState(0);
   const [wait, setWait] = useState(0);
+  const [scored, setScored] = useState(null);
 
   useEffect(() => { setLog(readLog()); }, []);
+
+  // Score the REFUSALS.
+  //
+  // Four verdicts in and every one of them "stand aside", which is either
+  // discipline or paralysis and the list could not tell those apart — standing
+  // aside was skipped by the scorer entirely, because there was no direction to
+  // score. But a refusal has an outcome: the market either went nowhere, in
+  // which case sitting out cost nothing, or it ran and the caution cost
+  // something. Same bars, same arithmetic, and the only way to find out.
+  useEffect(() => {
+    const aside = log.filter(r => r.action === 'stand aside'
+      && Date.now() > r.at + (r.horizon || 24) * 3600e3);
+    if (!aside.length) { setScored(null); return; }
+    let stop = false;
+    (async () => {
+      // The highest and lowest price reached inside each window — what a trade
+      // could have caught, not where it happened to close.
+      const cache = {};
+      const extremeAt = (sym, from, to) => {
+        const cs = cache[sym];
+        if (!cs) return null;
+        const win = cs.filter(c => c.t >= from && c.t <= to);
+        if (win.length < 2) return null;
+        return { high: Math.max(...win.map(c => c.h)), low: Math.min(...win.map(c => c.l)) };
+      };
+      for (const sym of [...new Set(aside.map(r => r.sym))]) {
+        cache[sym] = await bars(sym).catch(() => null);
+      }
+      if (!stop) setScored(scoreStandAside(aside, extremeAt));
+    })();
+    return () => { stop = true; };
+  }, [log]);
 
   const cfg = aiConfig();
 
@@ -411,12 +445,33 @@ export default function TradingDesk() {
       {/* ── The record ──────────────────────────────────────────────────────── */}
       {log.length > 0 && (
         <div style={{ marginTop: 16 }}>
-          <Label>Its own record — every verdict, with the price at the time</Label>
-          <div style={{ fontSize: 10, color: 'var(--text3)', marginBottom: 6 }}>
-            Kept so this can be scored against what price actually did, the same way every
-            setup in this app is scored. Until there are enough of them it is a list, not a
-            record — and a list is still more than any of these frameworks publish.
+          <Label>Its own record — every verdict, scored against what price did</Label>
+          <div style={{ fontSize: 10, color: 'var(--text3)', marginBottom: 6, lineHeight: 1.5 }}>
+            A refusal has an outcome too. Over the stated horizon the market either went
+            nowhere, and standing aside cost nothing, or it ran {MISSED_ATR} ATR or more and
+            the caution cost something. Measured on the furthest price reached, not where it
+            happened to close.
           </div>
+          {scored && (
+            <div style={{ fontSize: 11, color: 'var(--text2)', marginBottom: 8,
+              padding: '7px 10px', borderRadius: 6, background: 'var(--bg2)',
+              border: '1px solid var(--border)' }}>
+              <b style={{ color: scored.correctPct >= 60 ? C.bull : C.warn }}>
+                Right to stay out {scored.correct} of {scored.n}
+              </b>
+              {scored.missed > 0 && (
+                <span style={{ color: 'var(--text3)' }}>
+                  {' '}· missed {scored.missed}, the worst a {scored.worstMissAtr} ATR run
+                </span>
+              )}
+              <div style={{ fontSize: 10, color: 'var(--text3)', marginTop: 3 }}>
+                {scored.n < 10
+                  ? 'Too few to be a record yet. A desk that stands aside every time is a '
+                    + 'constant, not a desk — if this is still every one at twenty, it is not earning its place.'
+                  : 'Enough to read. Standing aside is only discipline while the market really was offering nothing.'}
+              </div>
+            </div>
+          )}
           {log.slice(0, 12).map((r, i) => (
             <div key={i} style={{ display: 'flex', gap: 8, alignItems: 'center', fontSize: 10.5,
               padding: '3px 0', borderBottom: '1px solid var(--border)' }}>
@@ -430,6 +485,17 @@ export default function TradingDesk() {
               </span>
               <span style={{ color: 'var(--text3)' }}>at {r.price}</span>
               {r.verdict === 'veto' && <span style={{ color: C.warn }}>vetoed</span>}
+              {(() => {
+                const sc = scored?.rows.find(x => x.at === r.at && x.sym === r.sym);
+                if (!sc) return null;
+                return (
+                  <span style={{ color: sc.missed ? C.warn : C.bull, fontWeight: 700 }}>
+                    {sc.missed
+                      ? `ran ${sc.reachAtr} ATR ${sc.dir} — missed it`
+                      : `quiet, ${sc.reachAtr} ATR — correct`}
+                  </span>
+                );
+              })()}
               <span style={{ marginLeft: 'auto', color: 'var(--text3)' }}>{r.horizon}h</span>
             </div>
           ))}

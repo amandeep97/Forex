@@ -567,6 +567,56 @@ export function readLog() {
 // instrument did anyway over the same window, not against zero. A desk that
 // says "long" every day in a rising market is right most of the time and has
 // told you nothing.
+// How big a move has to be before sitting it out counts as having missed
+// something. Below this the market did not offer a trade and standing aside
+// cost nothing; above it, there was one and the desk was not in it.
+export const MISSED_ATR = 1.5;
+
+// Scoring a REFUSAL.
+//
+// The desk has said "stand aside" four times out of four, and a desk that always
+// stands aside is a constant rather than a desk. The record could not tell those
+// apart, because standing aside was skipped entirely — there was no direction to
+// score, so nothing was scored.
+//
+// But a refusal has an outcome. Either the market went nowhere, and the caution
+// was right, or it ran and the caution cost something. That is measurable with
+// the same bars, and it is the only way to find out whether the discipline is
+// discipline or paralysis.
+//
+// Scored on the ABSOLUTE move, because sitting out a two-ATR rally and sitting
+// out a two-ATR selloff are the same mistake.
+export function scoreStandAside(rows, extremeAt, { missedAtr = MISSED_ATR } = {}) {
+  const scored = [];
+  for (const r of rows) {
+    if (r.action !== 'stand aside') continue;
+    const ex = extremeAt(r.sym, r.at, r.at + (r.horizon || 24) * 3600e3);
+    if (!ex || !(r.price > 0) || !(r.atr > 0)) continue;
+    // The furthest price travelled either way, which is what a trade could have
+    // caught — not where it happened to close.
+    const up = (ex.high - r.price) / r.atr;
+    const down = (r.price - ex.low) / r.atr;
+    const reach = Math.max(up, down);
+    scored.push({
+      ...r, reachAtr: +reach.toFixed(2),
+      dir: up >= down ? 'up' : 'down',
+      missed: reach >= missedAtr,
+    });
+  }
+  if (!scored.length) return null;
+  const missed = scored.filter(s => s.missed).length;
+  return {
+    n: scored.length,
+    missed,
+    correct: scored.length - missed,
+    // Not a win rate. "Right to stay out" is the question, and the number that
+    // matters alongside it is how far the market ran on the ones it got wrong.
+    correctPct: Math.round(((scored.length - missed) / scored.length) * 100),
+    worstMissAtr: +Math.max(...scored.map(s => s.reachAtr)).toFixed(2),
+    rows: scored,
+  };
+}
+
 export function scoreLog(rows, priceAt) {
   const scored = [];
   for (const r of rows) {
