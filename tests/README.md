@@ -1,7 +1,7 @@
 # Tests
 
 ```
-npm test                 # all 57
+npm test                 # all 58
 npm test stops plan      # only files whose name contains "stops" or "plan"
 ```
 

@@ -51,6 +51,7 @@ const PATTERNS_URL = pathToFileURL(path.join(__dirname, '..', '..', 'src', 'util
 // to come from one implementation or the screen will explain a trade the bot
 // did not make.
 const FILTERS_URL = pathToFileURL(path.join(__dirname, '..', '..', 'shared', 'strategyFilters.mjs')).href;
+const STOPS_URL = pathToFileURL(path.join(__dirname, '..', '..', 'shared', 'stopLoss.mjs')).href;
 
 // EMA and VWAP are unambiguous enough to compute here; there is no second
 // definition to drift away from.
@@ -456,8 +457,21 @@ class ForexBot {
     this.log(`${pair}: ALL PASS — building order`);
 
     const pip = getPipSize(pair);
-    const sl  = this._calcSL(dir, cp, smc, risk, pip);
+    const slPlan = await this._calcSL(dir, cp, smc, risk, pip, pair, candles);
+    if (!slPlan) {
+      this.log(`${pair}: cannot place a ${risk.slMethod || 'atr'} stop here — skip`);
+      return false;
+    }
+    const sl = slPlan.price;
+    this.log(`${pair}: stop ${sl.toFixed(5)} — ${slPlan.why}`);
     const tp  = this._calcTP(dir, cp, sl, risk, pip);
+
+    // A stop on the wrong side of entry is not a stop. Reachable when a signal
+    // candle's own low sits above the entry after a fast move up.
+    if ((dir === 'long' && sl >= cp) || (dir === 'short' && sl <= cp)) {
+      this.log(`${pair}: stop ${sl.toFixed(5)} is not beyond entry ${cp.toFixed(5)} — skip`);
+      return false;
+    }
 
     // Guard: reject if SL is too wide (protects against bad swing detection)
     const slPips = Math.abs(cp - sl) / pip;
@@ -664,20 +678,40 @@ class ForexBot {
     return true;
   }
 
-  _calcSL(dir, cp, smc, risk, pip) {
-    const method = risk.slMethod || 'atr';
-    if (method === 'swing') {
-      const buf = pip * 3;
-      return dir === 'long'
-        ? smc.recentSwingLow  - buf
-        : smc.recentSwingHigh + buf;
+  // The stop, from shared/stopLoss.mjs so there is one implementation and it is
+  // testable. Returns null when the chosen method cannot be computed — no swing,
+  // no order block, no spread — and the caller SKIPS rather than falling back.
+  // Falling back is how "Order Block Base" quietly became an ATR stop.
+  async _calcSL(dir, cp, smc, risk, pip, pair, candles) {
+    let mod;
+    try {
+      if (!this._stops) this._stops = await import(STOPS_URL);
+      mod = this._stops;
+    } catch (e) {
+      this.warn(`Stop module not loadable (${e.message}) — skipping. Run git pull on the VPS.`);
+      return null;
     }
-    if (method === 'fixed') {
-      const pips = risk.slPips || 20;
-      return dir === 'long' ? cp - pips * pip : cp + pips * pip;
+    // Only the signal-candle stop needs the live spread, so only it pays for
+    // the extra request.
+    let spread = null;
+    if ((risk.slMethod || 'atr') === 'candle') {
+      spread = await this._spreadNow(pair);
     }
-    const mult = risk.slAtr || 1.5;
-    return dir === 'long' ? cp - smc.atr * mult : cp + smc.atr * mult;
+    return mod.stopFor({ dir, price: cp, pip, risk, smc, candles, spread });
+  }
+
+  // Current ask minus bid. Measured, not assumed: a typical-spread constant
+  // would be wrong exactly when it matters, which is when the spread widens.
+  async _spreadNow(pair) {
+    try {
+      const rows = await this.oanda.getBidAskCandles(pair, 'M1', 3);
+      const last = rows[rows.length - 1];
+      const s = last ? last.ask - last.bid : null;
+      return s > 0 ? s : null;
+    } catch (e) {
+      this.warn(`${pair}: no spread available (${e.message})`);
+      return null;
+    }
   }
 
   _calcTP(dir, cp, sl, risk, pip) {
