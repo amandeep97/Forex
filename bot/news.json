@@ -208,19 +208,10 @@
       "actual": ""
     },
     {
-      "title": "PPI m/m",
-      "country": "EUR",
-      "impact": "low",
-      "at": 1788426000000,
-      "forecast": "1.2%",
-      "previous": "-0.3%",
-      "actual": ""
-    },
-    {
       "title": "Spanish 10-y Bond Auction",
       "country": "EUR",
       "impact": "low",
-      "at": 1788426180000,
+      "at": 1788424980000,
       "forecast": "",
       "previous": "3.54|2.4",
       "actual": ""
@@ -229,9 +220,18 @@
       "title": "French 10-y Bond Auction",
       "country": "EUR",
       "impact": "low",
-      "at": 1788427080000,
+      "at": 1788425820000,
       "forecast": "",
       "previous": "3.86|3.7",
+      "actual": ""
+    },
+    {
+      "title": "PPI m/m",
+      "country": "EUR",
+      "impact": "low",
+      "at": 1788426000000,
+      "forecast": "1.2%",
+      "previous": "-0.3%",
       "actual": ""
     },
     {
@@ -462,6 +462,31 @@
   ],
   "headlines": [
     {
+      "title": "Bond markets are repricing Fed independence, not just inflation - Asia Times",
+      "link": "https://news.google.com/rss/articles/CBMimAFBVV95cUxPYVhWOWtpOXc5NW1DWGJXQ0pIZ0l0R0YxNlBOWlVxeHhzVkV0V0JteW5rVFZEVzJBaUNhWVhpYXd6emVjczRBVzM5WVF5VTZjSFdpc3Y1RDlYU05jdXZBNFJWVV9pM1l2My1aTmtGRWgtMUVrdVdneE82Q3JheWFVV1k3a3YxNXdlTUVLdU1SX25lYVB4eGRjcQ?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMimAFBVV95cUxPYVhWOWtpOXc5NW1DWGJXQ0pIZ0l0R0YxNlBOWlVxeHhzVkV0V0JteW5rVFZEVzJBaUNhWVhpYXd6emVjczRBVzM5WVF5VTZjSFdpc3Y1RDlYU05jdXZBNFJWVV9pM1l2My1aTmtGRWgtMUVrdVdneE82Q3JheWFVV1k3a3YxNXdlTUVLdU1SX25lYVB4eGRjcQ?oc=5\" target=\"_blank\">B",
+      "at": 1788427932000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 3,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788427932000,
+      "_kind": null,
+      "why": "Market repricing lacks clear directional bias"
+    },
+    {
       "title": "Deutsche Bank upgrades Legrand on data center growth, building recovery; shares up",
       "link": "https://www.investing.com/news/stock-market-news/deutsche-bank-upgrades-legrand-on-data-center-growth-building-recovery-4887250",
       "source": "Investing",
@@ -494,6 +519,33 @@
         "USD/CAD": "down"
       },
       "why": "Loonie high implies USD/CAD down"
+    },
+    {
+      "title": "Saudi Arabia condemns deadly Iran attack on oil tanker in Strait of Hormuz - Arab News",
+      "link": "https://news.google.com/rss/articles/CBMivAFBVV95cUxOWlFXTTVJQU5kRHlOT2V1QWw4YWJ0TUR6YVhfcGp4TkF3SzJzdG1nZnFRZHpId0t4dGp2VUVDdEpGNGNmNlVVOTVhTmFLT05CbEs2aERoS1lySFN1SXpfeW9xdEVmNkl5elJSRk4yOXRLdkpkeXVyS21KUkh5dl8xZ3pNRnd4VUdoMFpvMkQ1ak1zYldYMGxEaUhZZ3JCRk9XVDFDUHh1Vkl1V0tkS1kyRkFjX0h6RTJEVXFNSQ?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMivAFBVV95cUxOWlFXTTVJQU5kRHlOT2V1QWw4YWJ0TUR6YVhfcGp4TkF3SzJzdG1nZnFRZHpId0t4dGp2VUVDdEpGNGNmNlVVOTVhTmFLT05CbEs2aERoS1lySFN1SXpfeW9xdEVmNkl5elJSRk4yOXRLdkpkeXVyS21KUkh5dl8xZ3pNRnd4VUdoMFpvMkQ1ak1zYldYMGxEaUhZZ3JCRk9XVDFDUHh1Vkl1V0",
+      "at": 1788427648000,
+      "inst": [
+        "USOIL",
+        "XAU/USD",
+        "UKOIL"
+      ],
+      "ccy": [
+        "OIL",
+        "XAU"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1788425808000,
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Strait of Hormuz attack risks oil supply"
     },
     {
       "title": "Yen at 1-month highs on hawkish BOJ bets as dollar suffers worst day since August",
@@ -826,11 +878,11 @@
       "why": "Mideast conflict escalates, boosting safe havens and oil."
     },
     {
-      "title": "Ukraine’s Drones Reach Moscow’s Doorstep, Strike Homes and Sochi Port - Kyiv Post",
-      "link": "https://news.google.com/rss/articles/CBMiS0FVX3lxTFBSWDBtWnZWV25FYTBzWTB6ZlgxQ2lQZHV1ZlpuSm5oUFNuOW1FMTVZUHdqZDFzMTh0ZFlsWllQMGxsckZQd2RDYjhKUQ?oc=5",
+      "title": "Iran war escalation raises concern over civilian death toll - reuters.com",
+      "link": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQZmJEcTdhQU9kcW41Z2J6enVZU2NHQ253eVV1VDJKOXBSTTJfbGhfVi1wbTQ0U1gzRllLb2xUUV9LRGRZaWpvaUlSWWRwQTdBaXdNY2x1Z3pxU1U1WjJSdzdKWGR6a2FLSXN6dnBPQ3NhM1hwUkxOZlIyd0dDX0ZycjdVSlpEUFN5N1NQbWR2UW1oRHNBU3BTZENPbGotQVFOSmdfUUFJNERYbEZTVzU3WDlrUQ?oc=5",
       "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiS0FVX3lxTFBSWDBtWnZWV25FYTBzWTB6ZlgxQ2lQZHV1ZlpuSm5oUFNuOW1FMTVZUHdqZDFzMTh0ZFlsWllQMGxsckZQd2RDYjhKUQ?oc=5\" target=\"_blank\">Ukraine’s Drones Reach Moscow’s Doorstep, Strike Homes and Sochi Port</a>&nbsp;&nbsp;<font color=\"#6f6f6f",
-      "at": 1788424027000,
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiswFBVV95cUxQZmJEcTdhQU9kcW41Z2J6enVZU2NHQ253eVV1VDJKOXBSTTJfbGhfVi1wbTQ0U1gzRllLb2xUUV9LRGRZaWpvaUlSWWRwQTdBaXdNY2x1Z3pxU1U1WjJSdzdKWGR6a2FLSXN6dnBPQ3NhM1hwUkxOZlIyd0dDX0ZycjdVSlpEUFN5N1NQbWR2UW1oRHNBU3BTZENPbGotQVFOSmdfUUFJNERYbE",
+      "at": 1788423888000,
       "inst": [
         "XAU/USD",
         "USOIL",
@@ -840,15 +892,17 @@
         "XAU",
         "OIL"
       ],
-      "sev": 1,
+      "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788421920000,
+      "firstAt": 1788423888000,
       "_kind": null,
       "dir": {
-        "XAU/USD": "up"
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
       },
-      "why": "Geopolitical risk boosts gold, oil unclear"
+      "why": "War escalation boosts safe havens and oil"
     },
     {
       "title": "Euro area business activity keeps steadier in August, reaffirms ECB policy pathway",
@@ -1062,10 +1116,10 @@
       "why": "Geopolitical risk boosts gold and oil"
     },
     {
-      "title": "Russia strikes Ukraine's largest pharmaceutical warehouse: losses could reach billions - Українська правда",
-      "link": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE56UkhvM1JHaFpGRm5qXzJvX2FEQXVROThlZlZ5MnREaGltSUFWdW5TVS1uZlo5WDlqWGIxR0NMeVBYdnVXdzZ4cEJDOTVFYlQ3N1dnQXVMQ0NKamJra0tESWs3ZlnSAXBBVV95cUxQc2hhN2pSMExhTmt1Y2cxbEdqdUVqUmZ4T0JIWl9iNXVZMVNpZldhV0Nmb3UzbkltVXhYbl9CbXNOQWtRZm1wMGRfYkVoOWx5czBTZlhGV2VObm45RnZrUjRzczU4eUpmVzN3aGY1RXQ1?oc=5",
+      "title": "Russia strikes Ukraine's largest pharmaceutical warehouse: losses could reach billions - Yahoo",
+      "link": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQbERuaTQzMmZOZHhDNWxRZmZMV3JmV2kyMnRLZEstT1R0d1FRYTRwWmI5SU9wdjhsMF85czFOclZub0RLc19nc3NERjdvTlE4NVgwbmNkWWFEb2hNZ1hFekt4V2Vzc1QzZURSVlMwMHFRdUltLTNGUTR4OHRGbTQxSFNYelRxbFpIY1ktU09MZWk4YjN3MTA0MGNzTTJxMWxhVy1Fel9B?oc=5",
       "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiZEFVX3lxTE56UkhvM1JHaFpGRm5qXzJvX2FEQXVROThlZlZ5MnREaGltSUFWdW5TVS1uZlo5WDlqWGIxR0NMeVBYdnVXdzZ4cEJDOTVFYlQ3N1dnQXVMQ0NKamJra0tESWs3ZlnSAXBBVV95cUxQc2hhN2pSMExhTmt1Y2cxbEdqdUVqUmZ4T0JIWl9iNXVZMVNpZldhV0Nmb3UzbkltVXhYbl9CbXNOQWtRZm",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMipgFBVV95cUxQbERuaTQzMmZOZHhDNWxRZmZMV3JmV2kyMnRLZEstT1R0d1FRYTRwWmI5SU9wdjhsMF85czFOclZub0RLc19nc3NERjdvTlE4NVgwbmNkWWFEb2hNZ1hFekt4V2Vzc1QzZURSVlMwMHFRdUltLTNGUTR4OHRGbTQxSFNYelRxbFpIY1ktU09MZWk4YjN3MTA0MGNzTTJxMWxhVy1Fel9B?oc=5\"",
       "at": 1788421920000,
       "inst": [
         "XAU/USD",
@@ -1102,7 +1156,6 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1788418932000,
-      "_kind": null,
       "why": "Geopolitical outrage, no clear market direction"
     },
     {
@@ -1132,7 +1185,7 @@
       "why": "Geopolitical risk boosts safe havens and oil"
     },
     {
-      "title": "US August Nonfarm Payrolls Preview: Will the Labor Market Quell Fed Rate Hike Expectations? US Stocks, Dollar, and Gold Face Key Test - TradingKey",
+      "title": "US August Nonfarm Payrolls Preview: Will the Labor Market Quell Fed Rate Hike Expectations? US Stocks, Dollar, and Gold Face Key Test - tradingkey.com",
       "link": "https://news.google.com/rss/articles/CBMi8gFBVV95cUxNdXpiVGczeHVNLWMxQlFjQ1N6WUdfV3dIOWhVNEpBOXp0d3V6bFpxdDgtZ000eURISzZLSDRwLUFDVjYyclNSaWhRUzdhTTNDQVViMDU3Mlgzdmk1T25yTWRkMGVncjQzalFheFlaRjZHTm1SNUhsVk84MllNQ3pLbnhsZGVVS2VXNmhXNWVKNmtkbEhSWVN5N0gycmxkWjhEMk05NUxETGV4c0I1U0JEV0plbFVpWEdVS2dCUTlaV2Jha1E2T0FyeVFkRFpJRExvNEdISEdVYnhXbGdvQzF1bkFHTFZXSTVkMWJMeXQ4bGZidw?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMi8gFBVV95cUxNdXpiVGczeHVNLWMxQlFjQ1N6WUdfV3dIOWhVNEpBOXp0d3V6bFpxdDgtZ000eURISzZLSDRwLUFDVjYyclNSaWhRUzdhTTNDQVViMDU3Mlgzdmk1T25yTWRkMGVncjQzalFheFlaRjZHTm1SNUhsVk84MllNQ3pLbnhsZGVVS2VXNmhXNWVKNmtkbEhSWVN5N0gycmxkWjhEMk05NUxETGV4c0",
@@ -1148,7 +1201,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788420097000,
+      "firstAt": 1788417708000,
       "why": "Preview implies uncertainty, no clear direction."
     },
     {
@@ -1240,7 +1293,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788416516000,
+      "firstAt": 1788419178000,
       "why": "No clear directional impact on gold price."
     },
     {
@@ -1322,6 +1375,28 @@
       "srcs": 1,
       "firstAt": 1788417932000,
       "why": "Cultural news, no direct FX impact"
+    },
+    {
+      "title": "Gold climbs above $4,400 as weaker dollar, yields revive bullion demand - Investing.com",
+      "link": "https://news.google.com/rss/articles/CBMizAFBVV95cUxPQnpyajUtMVd0aElpQUNNTDJXN1JfV1BnS3pvWEpZUWVPR3FCb2FDY3A2OENEMC1zR2lmcXVKV1hUbmJKLVJ3emhJLVFMTHRjUGFsdTY2eDFJUmg4RzFEZl80WkUwbktKa2NDQnNEa1Z0M1lXal9zdm95T0gxb3Q0MDZGYkhxM0VBN1Qxai1xejRmdElyZDlXMHVZM1RCWTEzZ0dXTlB3NTFpekRBNmU5YzBOamNxTklKQUhHalJaOHRMaGJuMkxGUXBTdm8?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMizAFBVV95cUxPQnpyajUtMVd0aElpQUNNTDJXN1JfV1BnS3pvWEpZUWVPR3FCb2FDY3A2OENEMC1zR2lmcXVKV1hUbmJKLVJ3emhJLVFMTHRjUGFsdTY2eDFJUmg4RzFEZl80WkUwbktKa2NDQnNEa1Z0M1lXal9zdm95T0gxb3Q0MDZGYkhxM0VBN1Qxai1xejRmdElyZDlXMHVZM1RCWTEzZ0dXTlB3NTFpek",
+      "at": 1788417708000,
+      "inst": [
+        "XAU/USD"
+      ],
+      "ccy": [
+        "USD",
+        "XAU"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788417708000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Gold climbs above $4,400"
     },
     {
       "title": "This is Asia’s best-performing currency so far in 2026",
@@ -1425,30 +1500,6 @@
         "UKOIL": "down"
       },
       "why": "Short strikes imply reduced oil supply risk."
-    },
-    {
-      "title": "Gold climbs above $4,400 as weaker dollar, yields revive bullion demand - Investing.com Canada",
-      "link": "https://news.google.com/rss/articles/CBMiywFBVV95cUxQbzE0WjdBUXhERFZOS05XRlpSR3NYRlVLOVJwNDFRVzYzNDRQZWRra1NndzliTkpQd1JodzFZNXZyNFJ3eE5SMmFiaWNudFRuZ2wwOVJHLWUxOFpyS2lnbHp1ZjhHdEp0TUl1bUhOTzlxQXJKNVJSRklyTXFtR01HallRYW00Qmc4RHhZb1dMQ3hDUGhEdUVHbzFBSGlKUjVBM3AzNWxkN1FJTDJtUzFqVFZWMGpiUU03ME83QWN5Q1VfTzZ5MWtCbGplRQ?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiywFBVV95cUxQbzE0WjdBUXhERFZOS05XRlpSR3NYRlVLOVJwNDFRVzYzNDRQZWRra1NndzliTkpQd1JodzFZNXZyNFJ3eE5SMmFiaWNudFRuZ2wwOVJHLWUxOFpyS2lnbHp1ZjhHdEp0TUl1bUhOTzlxQXJKNVJSRklyTXFtR01HallRYW00Qmc4RHhZb1dMQ3hDUGhEdUVHbzFBSGlKUjVBM3AzNWxkN1FJTD",
-      "at": 1788416516000,
-      "inst": [
-        "XAU/USD",
-        "USD/CAD"
-      ],
-      "ccy": [
-        "USD",
-        "CAD",
-        "XAU"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788416516000,
-      "dir": {
-        "XAU/USD": "up"
-      },
-      "why": "Gold climbs above $4,400"
     },
     {
       "title": "US-Iran strikes raise fears of renewed war across the Middle East - Rappler",
@@ -1791,24 +1842,11 @@
       "why": "War escalation hurts EUR, boosts safe havens/oil."
     },
     {
-      "title": "Tens of thousands rally across Spain over Ceuta migrant crisis",
-      "link": "https://www.aljazeera.com/video/newsfeed/2026/9/3/aje-onl-nf_mass-protests-across-spain-020926?traffic_source=rss",
-      "source": "Al Jazeera",
-      "desc": "Tens of thousands rallied across Spain protesting the government's handling of the Ceuta migrant crisis.",
-      "at": 1788404760000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1788404760000
-    },
-    {
-      "title": "Iran war escalation raises concern over civilian death toll - Al-Monitor",
-      "link": "https://news.google.com/rss/articles/CBMipwFBVV95cUxQNFZxVzNQdXJmZG1ieEZKWXhnaTIxWnRCNGYyd0pIV09HYklLcTVLdGgycHM5WjljRkh2N2ZtblJxLXdlVGQwNkk2MHZRRnBXYnI2aXdSZlljSVpGR1o2U3drdFpuLTVyeHEwMDA1RnlHb3U1M3NyTnMzdmxPUFB5MWRNOXRCWXJhS19KT2hjaE1vVlo1dzNRY3BUemNmSl9VS3ZtSG9Vaw?oc=5",
+      "title": "\"No Nation Should Help Iran\": Rubio's 'Sanctions' Warning After PM Modi-Pezeshkian Meet - NDTV",
+      "link": "https://news.google.com/rss/articles/CBMivwFBVV95cUxNWVlYdmJtOUh2dExocFZXd1diV0hHcHdBN29DMmlMSllXVld6ZnRWVGNIQXBUM0tQVEZ6Z2JoNFljRXNiNWNLU3AtZmx2SFlkdFVGbjZjc2NkZVFOV09yaTRxcTgtcXFKa05BRjljcmhOOFNsdmNpdklwM1Q2RXNnYmlWdFdoNGQtNGZrRl94LVg4ZjRXajZ5d1ZrT1lGUHJLZ0NEZUhLSnJZbDhtb3lFTHRqQTZ0RDNCQndFMnd4MNIBxwFBVV95cUxQc2Q2LWtnSnk1SW9DSEdSTHR1SkFreWRfSGxPMTk1YUt1TGhOVGZMMjJPRlBlaDVjU2M5UlRTZUhTdndLc3hFOGVNcWZJbUdNNnJlRGt0ZV9pTnF3YlYzb3Y1Q1lucERHaUJsM3ExRHFPNy1mV0FsVUVVNHBsQzVGcU1yQXl1NXJ3aFZ3TE93aW1TSmlhRGcyMVFkNGo2amxwMDE4LWRSUlZ5VVF0SUliUUxvX1FJWFhxUWlFUU9oVmNqQzEtTUxF?oc=5",
       "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMipwFBVV95cUxQNFZxVzNQdXJmZG1ieEZKWXhnaTIxWnRCNGYyd0pIV09HYklLcTVLdGgycHM5WjljRkh2N2ZtblJxLXdlVGQwNkk2MHZRRnBXYnI2aXdSZlljSVpGR1o2U3drdFpuLTVyeHEwMDA1RnlHb3U1M3NyTnMzdmxPUFB5MWRNOXRCWXJhS19KT2hjaE1vVlo1dzNRY3BUemNmSl9VS3ZtSG9Vaw?oc=",
-      "at": 1788402287000,
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMivwFBVV95cUxNWVlYdmJtOUh2dExocFZXd1diV0hHcHdBN29DMmlMSllXVld6ZnRWVGNIQXBUM0tQVEZ6Z2JoNFljRXNiNWNLU3AtZmx2SFlkdFVGbjZjc2NkZVFOV09yaTRxcTgtcXFKa05BRjljcmhOOFNsdmNpdklwM1Q2RXNnYmlWdFdoNGQtNGZrRl94LVg4ZjRXajZ5d1ZrT1lGUHJLZ0NEZUhLSnJZbD",
+      "at": 1788405171000,
       "inst": [
         "XAU/USD",
         "USOIL",
@@ -1821,13 +1859,21 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788400114000,
-      "dir": {
-        "XAU/USD": "up",
-        "USOIL": "up",
-        "UKOIL": "up"
-      },
-      "why": "War escalation boosts safe havens and oil"
+      "firstAt": 1788405171000,
+      "why": "Sanctions warning unclear for markets"
+    },
+    {
+      "title": "Tens of thousands rally across Spain over Ceuta migrant crisis",
+      "link": "https://www.aljazeera.com/video/newsfeed/2026/9/3/aje-onl-nf_mass-protests-across-spain-020926?traffic_source=rss",
+      "source": "Al Jazeera",
+      "desc": "Tens of thousands rallied across Spain protesting the government's handling of the Ceuta migrant crisis.",
+      "at": 1788404760000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 1,
+      "srcs": 1,
+      "firstAt": 1788404760000
     },
     {
       "title": "In Iranian town, a wedding shattered by deadly strike during US air attack - scmp.com",
@@ -2057,10 +2103,10 @@
       "why": "Sanctions evasion hub, no direct price impact"
     },
     {
-      "title": "More strikes in the Middle East as U.S. Iran war escalates - CityNews Kitchener",
-      "link": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxNYVlOdmN4YWIzNk5RSWgxZVRCek1ndHRPT0pPTGZ1ZHdlUk1qcjBjMWtPZl9tRVB6T0YwQjdFUUN3M2hhamlIYkVTazRRWmQwaWY2VkJQWC04YXItcXhsUkNVeTdVamMxdUpWR19LYzB3QjlUR2Y5T1NXVF9KckpUZEFzZVdFdjdTdkpzVm5EWTk5MFZiZkN3N3RUbWc3X1FzRWJpQ2h0NlU?oc=5",
+      "title": "More strikes in the Middle East as U.S. Iran war escalates - CityNews Ottawa",
+      "link": "https://news.google.com/rss/articles/CBMipAFBVV95cUxQYkVwY3NOMGRqOFNYVjdPU1Z5Wm5jOEl1RnMyN2s0bl95dDhKZGs0bDdzV2thWm90M0YyemFDYklkckZ3T2FrX2tVT3ktZTJKSVJkWkFpYTZzQzNXaUZKM2dVTWYwQ0JMMGxYd0NVaGJWT0xqOUFUMkt2VlhSME84UXhSclFUTTk4N0gtaV9TUlA5Q0hGd2lMY1A0OV9jYUZOQmxfVA?oc=5",
       "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiqAFBVV95cUxNYVlOdmN4YWIzNk5RSWgxZVRCek1ndHRPT0pPTGZ1ZHdlUk1qcjBjMWtPZl9tRVB6T0YwQjdFUUN3M2hhamlIYkVTazRRWmQwaWY2VkJQWC04YXItcXhsUkNVeTdVamMxdUpWR19LYzB3QjlUR2Y5T1NXVF9KckpUZEFzZVdFdjdTdkpzVm5EWTk5MFZiZkN3N3RUbWc3X1FzRWJpQ2h0NlU?oc",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMipAFBVV95cUxQYkVwY3NOMGRqOFNYVjdPU1Z5Wm5jOEl1RnMyN2s0bl95dDhKZGs0bDdzV2thWm90M0YyemFDYklkckZ3T2FrX2tVT3ktZTJKSVJkWkFpYTZzQzNXaUZKM2dVTWYwQ0JMMGxYd0NVaGJWT0xqOUFUMkt2VlhSME84UXhSclFUTTk4N0gtaV9TUlA5Q0hGd2lMY1A0OV9jYUZOQmxfVA?oc=5\" t",
       "at": 1788389580000,
       "inst": [
         "XAU/USD",
@@ -2383,58 +2429,6 @@
         "USD/CAD": "down"
       },
       "why": "BoC hike bets strengthen Canadian dollar"
-    },
-    {
-      "title": "Oil settles 1% higher, as US-Iran strikes threaten supplies - reuters.com",
-      "link": "https://news.google.com/rss/articles/CBMimwFBVV95cUxPLTRkVWlBVVJQeFBDbXB5UzFkd05qc05KVXhja1h2cC1aMUZxOTRGQTY4a0ZHeWpiSzl0UE50MjRTTjFVREhMUGJhd29Ka21tTTlISE9yd3pSSHFESEtVOTBzb2c0dEVFakx5eEJLamxsMUJxZ0NOSTBpNll2a2Z5eVBncmR6S3MtSW1ITE9hN01KbUljNlcwNlB3aw?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMimwFBVV95cUxPLTRkVWlBVVJQeFBDbXB5UzFkd05qc05KVXhja1h2cC1aMUZxOTRGQTY4a0ZHeWpiSzl0UE50MjRTTjFVREhMUGJhd29Ka21tTTlISE9yd3pSSHFESEtVOTBzb2c0dEVFakx5eEJLamxsMUJxZ0NOSTBpNll2a2Z5eVBncmR6S3MtSW1ITE9hN01KbUljNlcwNlB3aw?oc=5\" target=\"_blan",
-      "at": 1788377446000,
-      "inst": [
-        "USOIL",
-        "XAU/USD",
-        "UKOIL"
-      ],
-      "ccy": [
-        "OIL",
-        "XAU"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788377446000,
-      "dir": {
-        "USOIL": "up",
-        "UKOIL": "up"
-      },
-      "why": "Supply threats push oil higher"
-    },
-    {
-      "title": "EU eyes more Russia sanctions after failed drone attack in Germany - Al Jazeera",
-      "link": "https://news.google.com/rss/articles/CBMirAFBVV95cUxQd0ZWSVdiam5vMVBkVUtWYWdEOVN1bUp1czVlbFpzZFVNRWtKbDhjcnQzRDFfNE1ZUlkyUDBpRTBubHI4NG1Fb19nV2l0aHVQaDB3OEoyZmNHQmdQRmpMekZWeWRwa3drbE1lai1ISG0zUUJBUG1ULVV0OGdJUTljdEQtS0ZndG01em8tYUlMbmhiRTZmcWRUblZKUmd4WElsdkFBaDFpclJJY3NZ0gGyAUFVX3lxTE9yWlAxRTVsMUdTOXFXbUZDUGwwM24telFFV3E1SUVKYkpXcTNoN252d2RDZzBXMG0tdmRacnl6S2Y4a0h1ejByQU55ZC1iczRaTU1uU0Z4b1picHZDZHU3aEd1cU1WVV9ra09SRHVyaUhjcXlFSThPaE5aT0JWSkVlamZiTG8ycXVGdHVGak5FTVMwODR4ZEExRi1SWUh0UEdNSTZrWEdUd3JQeGZSVks0bGc?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMirAFBVV95cUxQd0ZWSVdiam5vMVBkVUtWYWdEOVN1bUp1czVlbFpzZFVNRWtKbDhjcnQzRDFfNE1ZUlkyUDBpRTBubHI4NG1Fb19nV2l0aHVQaDB3OEoyZmNHQmdQRmpMekZWeWRwa3drbE1lai1ISG0zUUJBUG1ULVV0OGdJUTljdEQtS0ZndG01em8tYUlMbmhiRTZmcWRUblZKUmd4WElsdkFBaDFpclJJY3",
-      "at": 1788376955000,
-      "inst": [
-        "EUR/USD",
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788376955000,
-      "dir": {
-        "EUR/USD": "down",
-        "XAU/USD": "up",
-        "USOIL": "up"
-      },
-      "why": "Sanctions and drone attack raise risk"
     }
   ],
   "sources": [
@@ -2460,7 +2454,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-03T09:41:08.619Z",
-  "headlinesAt": "2026-09-03T09:41:08.619Z",
-  "updatedAt": "2026-09-03T09:41:08.619Z"
+  "calendarAt": "2026-09-03T09:45:09.280Z",
+  "headlinesAt": "2026-09-03T09:45:09.280Z",
+  "updatedAt": "2026-09-03T09:45:09.280Z"
 }
