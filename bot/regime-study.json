@@ -1,9 +1,9 @@
 {
-  "asOf": "2026-08-30T20:28:41.971Z",
-  "methodVersion": 3,
+  "asOf": "2026-09-03T15:27:51.525Z",
+  "methodVersion": 4,
   "tf": "H1",
   "method": {
-    "version": 3,
+    "version": 4,
     "recentDays": 365,
     "priorDays": 1095,
     "blockDays": 14,
@@ -13,17 +13,17 @@
     ],
     "stopAtr": 1,
     "rr": 2,
-    "searched": 274,
+    "searched": 232,
     "carried": 12,
     "holdoutZ": 2.87,
     "note": "Candidates were searched on alternating fortnights and scored on the fortnights in between, which the search never saw. Entries are spaced by the holding period so one condition lasting six hours counts once. Trades that would straddle a block boundary are dropped. Every number is against what every other bar in the same slice paid over the same window with the same stop, not against 50%."
   },
   "windows": {
-    "recentFrom": "2025-08-30T20:28:26.158Z",
-    "priorFrom": "2022-08-31T20:28:26.158Z",
+    "recentFrom": "2025-09-03T15:27:33.635Z",
+    "priorFrom": "2022-09-04T15:27:33.635Z",
     "bars": {
-      "XAU_USD": 23615,
-      "XAG_USD": 23613
+      "XAU_USD": 23654,
+      "XAG_USD": 23652
     }
   },
   "rules": [
@@ -36,555 +36,96 @@
       "dir": "down",
       "hold": 24,
       "discovery": {
-        "n": 45,
-        "expR": 0.452,
+        "n": 34,
+        "expR": 0.481,
         "win": 48,
-        "resolved": 44,
-        "medBars": 5,
-        "openPct": 2,
-        "baseExpR": -0.053,
-        "baseWin": 31,
-        "baseN": 256,
-        "edgeR": 0.505,
-        "t": 2.1
-      },
-      "holdout": {
-        "n": 35,
-        "expR": -0.229,
-        "win": 26,
-        "resolved": 35,
+        "resolved": 33,
         "medBars": 6,
-        "openPct": 0,
-        "baseExpR": -0.097,
-        "baseWin": 30,
-        "baseN": 256,
-        "edgeR": -0.132,
-        "t": -0.55
-      },
-      "prior": {
-        "n": 238,
-        "expR": -0.105,
-        "win": 30,
-        "resolved": 235,
-        "medBars": 5,
-        "openPct": 1,
-        "baseExpR": 0.023,
-        "baseWin": 34,
-        "baseN": 1476,
-        "edgeR": -0.128,
-        "t": -1.34
-      },
-      "label": "upper part of the day + falling hard",
-      "verdict": "fails",
-      "novelty": "marginal"
-    },
-    {
-      "id": "macro=own-story&session=late|up|24",
-      "all": [
-        "macro=own-story",
-        "session=late"
-      ],
-      "dir": "up",
-      "hold": 24,
-      "discovery": {
-        "n": 68,
-        "expR": 0.54,
-        "win": 52,
-        "resolved": 65,
-        "medBars": 4,
-        "openPct": 4,
-        "baseExpR": 0.025,
-        "baseWin": 34,
-        "baseN": 256,
-        "edgeR": 0.515,
-        "t": 2.57
-      },
-      "holdout": {
-        "n": 75,
-        "expR": 0.011,
-        "win": 33,
-        "resolved": 73,
-        "medBars": 3,
         "openPct": 3,
-        "baseExpR": 0.182,
-        "baseWin": 39,
-        "baseN": 256,
-        "edgeR": -0.171,
-        "t": -0.92
-      },
-      "prior": {
-        "n": 314,
-        "expR": 0.02,
-        "win": 34,
-        "resolved": 306,
-        "medBars": 5,
-        "openPct": 3,
-        "baseExpR": 0.002,
-        "baseWin": 33,
-        "baseN": 1476,
-        "edgeR": 0.018,
-        "t": 0.2
-      },
-      "label": "off on its own story + after the New York close",
-      "verdict": "fails",
-      "novelty": "marginal"
-    },
-    {
-      "id": "dayPos=upper&drive=dropping|down|12",
-      "all": [
-        "dayPos=upper",
-        "drive=dropping"
-      ],
-      "dir": "down",
-      "hold": 12,
-      "discovery": {
-        "n": 51,
-        "expR": 0.408,
-        "win": 47,
-        "resolved": 49,
-        "medBars": 5,
-        "openPct": 4,
-        "baseExpR": -0.083,
+        "baseExpR": -0.131,
         "baseWin": 29,
-        "baseN": 502,
-        "edgeR": 0.491,
-        "t": 2.28
+        "baseN": 230,
+        "edgeR": 0.612,
+        "t": 2.24
       },
       "holdout": {
-        "n": 36,
-        "expR": -0.286,
-        "win": 22,
-        "resolved": 32,
-        "medBars": 6,
-        "openPct": 11,
-        "baseExpR": -0.061,
-        "baseWin": 30,
-        "baseN": 509,
-        "edgeR": -0.225,
-        "t": -1.06
+        "n": 39,
+        "expR": -0.154,
+        "win": 28,
+        "resolved": 39,
+        "medBars": 5,
+        "openPct": 0,
+        "baseExpR": 0.083,
+        "baseWin": 36,
+        "baseN": 232,
+        "edgeR": -0.237,
+        "t": -0.99
       },
       "prior": {
-        "n": 256,
-        "expR": -0.03,
-        "win": 31,
-        "resolved": 227,
+        "n": 237,
+        "expR": -0.102,
+        "win": 30,
+        "resolved": 234,
         "medBars": 5,
-        "openPct": 11,
-        "baseExpR": -0.013,
-        "baseWin": 31,
-        "baseN": 2952,
-        "edgeR": -0.017,
-        "t": -0.2
+        "openPct": 1,
+        "baseExpR": -0.006,
+        "baseWin": 33,
+        "baseN": 1478,
+        "edgeR": -0.096,
+        "t": -0.99
       },
       "label": "upper part of the day + falling hard",
       "verdict": "fails",
       "novelty": "marginal"
     },
     {
-      "id": "macro=own-story&session=late|up|12",
+      "id": "drive=dropping&session=london|down|24",
       "all": [
-        "macro=own-story",
-        "session=late"
-      ],
-      "dir": "up",
-      "hold": 12,
-      "discovery": {
-        "n": 107,
-        "expR": 0.49,
-        "win": 49,
-        "resolved": 91,
-        "medBars": 4,
-        "openPct": 15,
-        "baseExpR": 0.069,
-        "baseWin": 33,
-        "baseN": 502,
-        "edgeR": 0.421,
-        "t": 2.81
-      },
-      "holdout": {
-        "n": 113,
-        "expR": 0.205,
-        "win": 38,
-        "resolved": 98,
-        "medBars": 4,
-        "openPct": 13,
-        "baseExpR": 0.066,
-        "baseWin": 33,
-        "baseN": 509,
-        "edgeR": 0.139,
-        "t": 0.96
-      },
-      "prior": {
-        "n": 457,
-        "expR": -0.061,
-        "win": 26,
-        "resolved": 366,
-        "medBars": 5,
-        "openPct": 20,
-        "baseExpR": 0.005,
-        "baseWin": 30,
-        "baseN": 2952,
-        "edgeR": -0.066,
-        "t": -1.04
-      },
-      "label": "off on its own story + after the New York close",
-      "verdict": "fades",
-      "novelty": "new"
-    },
-    {
-      "id": "dayPos=lower&partner=partner-diverge|up|24",
-      "all": [
-        "dayPos=lower",
-        "partner=partner-diverge"
-      ],
-      "dir": "up",
-      "hold": 24,
-      "discovery": {
-        "n": 71,
-        "expR": 0.409,
-        "win": 47,
-        "resolved": 70,
-        "medBars": 5,
-        "openPct": 1,
-        "baseExpR": 0.025,
-        "baseWin": 34,
-        "baseN": 256,
-        "edgeR": 0.384,
-        "t": 1.94
-      },
-      "holdout": {
-        "n": 73,
-        "expR": -0.176,
-        "win": 27,
-        "resolved": 71,
-        "medBars": 4,
-        "openPct": 3,
-        "baseExpR": 0.182,
-        "baseWin": 39,
-        "baseN": 256,
-        "edgeR": -0.358,
-        "t": -1.99
-      },
-      "prior": {
-        "n": 388,
-        "expR": -0.041,
-        "win": 32,
-        "resolved": 380,
-        "medBars": 5,
-        "openPct": 2,
-        "baseExpR": 0.002,
-        "baseWin": 33,
-        "baseN": 1476,
-        "edgeR": -0.043,
-        "t": -0.54
-      },
-      "label": "lower part of the day + the other metal is going the other way",
-      "verdict": "fails",
-      "novelty": "marginal"
-    },
-    {
-      "id": "session=late&stretch=far-above|up|12",
-      "all": [
-        "session=late",
-        "stretch=far-above"
-      ],
-      "dir": "up",
-      "hold": 12,
-      "discovery": {
-        "n": 77,
-        "expR": 0.431,
-        "win": 48,
-        "resolved": 69,
-        "medBars": 3,
-        "openPct": 10,
-        "baseExpR": 0.069,
-        "baseWin": 33,
-        "baseN": 502,
-        "edgeR": 0.362,
-        "t": 2.07
-      },
-      "holdout": {
-        "n": 76,
-        "expR": 0.335,
-        "win": 43,
-        "resolved": 69,
-        "medBars": 3,
-        "openPct": 9,
-        "baseExpR": 0.066,
-        "baseWin": 33,
-        "baseN": 509,
-        "edgeR": 0.269,
-        "t": 1.52
-      },
-      "prior": {
-        "n": 350,
-        "expR": -0.054,
-        "win": 28,
-        "resolved": 272,
-        "medBars": 7,
-        "openPct": 22,
-        "baseExpR": 0.005,
-        "baseWin": 30,
-        "baseN": 2952,
-        "edgeR": -0.059,
-        "t": -0.83
-      },
-      "label": "after the New York close + far above the mean",
-      "verdict": "fades",
-      "novelty": "new"
-    },
-    {
-      "id": "dayPos=lower&session=london|down|12",
-      "all": [
-        "dayPos=lower",
+        "drive=dropping",
         "session=london"
       ],
       "dir": "down",
-      "hold": 12,
-      "discovery": {
-        "n": 138,
-        "expR": 0.21,
-        "win": 39,
-        "resolved": 128,
-        "medBars": 4,
-        "openPct": 7,
-        "baseExpR": -0.083,
-        "baseWin": 29,
-        "baseN": 502,
-        "edgeR": 0.293,
-        "t": 2.18
-      },
-      "holdout": {
-        "n": 116,
-        "expR": 0.219,
-        "win": 40,
-        "resolved": 110,
-        "medBars": 4,
-        "openPct": 5,
-        "baseExpR": -0.061,
-        "baseWin": 30,
-        "baseN": 509,
-        "edgeR": 0.28,
-        "t": 1.9
-      },
-      "prior": {
-        "n": 862,
-        "expR": -0.136,
-        "win": 29,
-        "resolved": 847,
-        "medBars": 3,
-        "openPct": 2,
-        "baseExpR": -0.013,
-        "baseWin": 31,
-        "baseN": 2952,
-        "edgeR": -0.123,
-        "t": -2.36
-      },
-      "label": "lower part of the day + London session",
-      "verdict": "fades",
-      "novelty": "new"
-    },
-    {
-      "id": "dayPos=at-day-high&session=late|up|12",
-      "all": [
-        "dayPos=at-day-high",
-        "session=late"
-      ],
-      "dir": "up",
-      "hold": 12,
-      "discovery": {
-        "n": 82,
-        "expR": 0.385,
-        "win": 46,
-        "resolved": 74,
-        "medBars": 3,
-        "openPct": 10,
-        "baseExpR": 0.069,
-        "baseWin": 33,
-        "baseN": 502,
-        "edgeR": 0.316,
-        "t": 1.85
-      },
-      "holdout": {
-        "n": 91,
-        "expR": 0.424,
-        "win": 46,
-        "resolved": 80,
-        "medBars": 3,
-        "openPct": 12,
-        "baseExpR": 0.066,
-        "baseWin": 33,
-        "baseN": 509,
-        "edgeR": 0.358,
-        "t": 2.21
-      },
-      "prior": {
-        "n": 450,
-        "expR": -0.049,
-        "win": 27,
-        "resolved": 357,
-        "medBars": 6,
-        "openPct": 21,
-        "baseExpR": 0.005,
-        "baseWin": 30,
-        "baseN": 2952,
-        "edgeR": -0.054,
-        "t": -0.84
-      },
-      "label": "at the day's high + after the New York close",
-      "verdict": "holds",
-      "novelty": "new"
-    },
-    {
-      "id": "dayPos=lower&partner=partner-diverge|up|12",
-      "all": [
-        "dayPos=lower",
-        "partner=partner-diverge"
-      ],
-      "dir": "up",
-      "hold": 12,
-      "discovery": {
-        "n": 81,
-        "expR": 0.387,
-        "win": 43,
-        "resolved": 68,
-        "medBars": 5,
-        "openPct": 16,
-        "baseExpR": 0.069,
-        "baseWin": 33,
-        "baseN": 502,
-        "edgeR": 0.318,
-        "t": 1.9
-      },
-      "holdout": {
-        "n": 83,
-        "expR": -0.14,
-        "win": 26,
-        "resolved": 76,
-        "medBars": 4,
-        "openPct": 8,
-        "baseExpR": 0.066,
-        "baseWin": 33,
-        "baseN": 509,
-        "edgeR": -0.206,
-        "t": -1.33
-      },
-      "prior": {
-        "n": 442,
-        "expR": -0.042,
-        "win": 27,
-        "resolved": 370,
-        "medBars": 5,
-        "openPct": 16,
-        "baseExpR": 0.005,
-        "baseWin": 30,
-        "baseN": 2952,
-        "edgeR": -0.047,
-        "t": -0.71
-      },
-      "label": "lower part of the day + the other metal is going the other way",
-      "verdict": "fails",
-      "novelty": "marginal"
-    },
-    {
-      "id": "dayPos=upper&partner=partner-diverge|down|24",
-      "all": [
-        "dayPos=upper",
-        "partner=partner-diverge"
-      ],
-      "dir": "down",
       "hold": 24,
       "discovery": {
-        "n": 82,
-        "expR": 0.263,
-        "win": 43,
-        "resolved": 80,
-        "medBars": 5,
-        "openPct": 2,
-        "baseExpR": -0.053,
-        "baseWin": 31,
-        "baseN": 256,
-        "edgeR": 0.316,
-        "t": 1.71
-      },
-      "holdout": {
-        "n": 81,
-        "expR": 0.043,
-        "win": 34,
-        "resolved": 79,
-        "medBars": 3,
-        "openPct": 2,
-        "baseExpR": -0.097,
-        "baseWin": 30,
-        "baseN": 256,
-        "edgeR": 0.14,
-        "t": 0.78
-      },
-      "prior": {
-        "n": 400,
-        "expR": 0.02,
-        "win": 34,
-        "resolved": 393,
-        "medBars": 5,
-        "openPct": 2,
-        "baseExpR": 0.023,
-        "baseWin": 34,
-        "baseN": 1476,
-        "edgeR": -0.003,
-        "t": -0.03
-      },
-      "label": "upper part of the day + the other metal is going the other way",
-      "verdict": "fades",
-      "novelty": "marginal"
-    },
-    {
-      "id": "macro=own-story&partner=partner-diverge|up|24",
-      "all": [
-        "macro=own-story",
-        "partner=partner-diverge"
-      ],
-      "dir": "up",
-      "hold": 24,
-      "discovery": {
-        "n": 57,
-        "expR": 0.368,
-        "win": 46,
-        "resolved": 57,
-        "medBars": 5,
-        "openPct": 0,
-        "baseExpR": 0.025,
-        "baseWin": 34,
-        "baseN": 256,
-        "edgeR": 0.343,
-        "t": 1.58
-      },
-      "holdout": {
         "n": 62,
-        "expR": -0.419,
-        "win": 19,
+        "expR": 0.5,
+        "win": 50,
         "resolved": 62,
-        "medBars": 3,
+        "medBars": 4,
         "openPct": 0,
-        "baseExpR": 0.182,
-        "baseWin": 39,
-        "baseN": 256,
-        "edgeR": -0.601,
-        "t": -3.4
+        "baseExpR": -0.131,
+        "baseWin": 29,
+        "baseN": 230,
+        "edgeR": 0.631,
+        "t": 2.98
+      },
+      "holdout": {
+        "n": 78,
+        "expR": -0.077,
+        "win": 31,
+        "resolved": 78,
+        "medBars": 5,
+        "openPct": 0,
+        "baseExpR": 0.083,
+        "baseWin": 36,
+        "baseN": 232,
+        "edgeR": -0.16,
+        "t": -0.87
       },
       "prior": {
-        "n": 262,
-        "expR": 0.059,
+        "n": 506,
+        "expR": 0.053,
         "win": 35,
-        "resolved": 259,
-        "medBars": 5,
-        "openPct": 1,
-        "baseExpR": 0.002,
+        "resolved": 504,
+        "medBars": 3,
+        "openPct": 0,
+        "baseExpR": -0.006,
         "baseWin": 33,
-        "baseN": 1476,
-        "edgeR": 0.057,
-        "t": 0.59
+        "baseN": 1478,
+        "edgeR": 0.059,
+        "t": 0.81
       },
-      "label": "off on its own story + the other metal is going the other way",
+      "label": "falling hard + London session",
       "verdict": "fails",
       "novelty": "faded"
     },
@@ -597,66 +138,572 @@
       "dir": "down",
       "hold": 12,
       "discovery": {
-        "n": 84,
-        "expR": 0.244,
-        "win": 41,
-        "resolved": 81,
+        "n": 66,
+        "expR": 0.409,
+        "win": 47,
+        "resolved": 66,
         "medBars": 4,
-        "openPct": 4,
-        "baseExpR": -0.083,
-        "baseWin": 29,
-        "baseN": 502,
-        "edgeR": 0.327,
-        "t": 1.92
+        "openPct": 0,
+        "baseExpR": -0.085,
+        "baseWin": 28,
+        "baseN": 481,
+        "edgeR": 0.494,
+        "t": 2.53
       },
       "holdout": {
-        "n": 84,
-        "expR": 0.259,
-        "win": 41,
-        "resolved": 82,
-        "medBars": 4,
-        "openPct": 2,
-        "baseExpR": -0.061,
-        "baseWin": 30,
-        "baseN": 509,
-        "edgeR": 0.32,
-        "t": 1.87
+        "n": 83,
+        "expR": 0.041,
+        "win": 34,
+        "resolved": 80,
+        "medBars": 5,
+        "openPct": 4,
+        "baseExpR": -0.002,
+        "baseWin": 32,
+        "baseN": 484,
+        "edgeR": 0.043,
+        "t": 0.26
       },
       "prior": {
-        "n": 560,
-        "expR": 0.018,
+        "n": 559,
+        "expR": 0.014,
         "win": 34,
-        "resolved": 551,
+        "resolved": 550,
         "medBars": 3,
         "openPct": 2,
-        "baseExpR": -0.013,
-        "baseWin": 31,
-        "baseN": 2952,
-        "edgeR": 0.031,
-        "t": 0.48
+        "baseExpR": -0.04,
+        "baseWin": 30,
+        "baseN": 2956,
+        "edgeR": 0.054,
+        "t": 0.84
       },
       "label": "falling hard + London session",
       "verdict": "fades",
-      "novelty": "new"
+      "novelty": "longstanding"
+    },
+    {
+      "id": "dayPos=upper&drive=dropping|down|12",
+      "all": [
+        "dayPos=upper",
+        "drive=dropping"
+      ],
+      "dir": "down",
+      "hold": 12,
+      "discovery": {
+        "n": 38,
+        "expR": 0.337,
+        "win": 44,
+        "resolved": 36,
+        "medBars": 6,
+        "openPct": 5,
+        "baseExpR": -0.085,
+        "baseWin": 28,
+        "baseN": 481,
+        "edgeR": 0.422,
+        "t": 1.72
+      },
+      "holdout": {
+        "n": 50,
+        "expR": -0.066,
+        "win": 30,
+        "resolved": 46,
+        "medBars": 5,
+        "openPct": 8,
+        "baseExpR": -0.002,
+        "baseWin": 32,
+        "baseN": 484,
+        "edgeR": -0.064,
+        "t": -0.32
+      },
+      "prior": {
+        "n": 255,
+        "expR": -0.026,
+        "win": 31,
+        "resolved": 226,
+        "medBars": 5,
+        "openPct": 11,
+        "baseExpR": -0.04,
+        "baseWin": 30,
+        "baseN": 2956,
+        "edgeR": 0.014,
+        "t": 0.16
+      },
+      "label": "upper part of the day + falling hard",
+      "verdict": "fails",
+      "novelty": "marginal"
+    },
+    {
+      "id": "cdl=cdl-bull-strong&session=ny-am|down|24",
+      "all": [
+        "cdl=cdl-bull-strong",
+        "session=ny-am"
+      ],
+      "dir": "down",
+      "hold": 24,
+      "discovery": {
+        "n": 84,
+        "expR": 0.221,
+        "win": 41,
+        "resolved": 83,
+        "medBars": 4,
+        "openPct": 1,
+        "baseExpR": -0.131,
+        "baseWin": 29,
+        "baseN": 230,
+        "edgeR": 0.352,
+        "t": 1.91
+      },
+      "holdout": {
+        "n": 83,
+        "expR": -0.071,
+        "win": 30,
+        "resolved": 82,
+        "medBars": 3,
+        "openPct": 1,
+        "baseExpR": 0.083,
+        "baseWin": 36,
+        "baseN": 232,
+        "edgeR": -0.154,
+        "t": -0.86
+      },
+      "prior": {
+        "n": 560,
+        "expR": -0.047,
+        "win": 31,
+        "resolved": 544,
+        "medBars": 3,
+        "openPct": 3,
+        "baseExpR": -0.006,
+        "baseWin": 33,
+        "baseN": 1478,
+        "edgeR": -0.041,
+        "t": -0.59
+      },
+      "label": "a strong bullish candle pattern + the London-New York overlap",
+      "verdict": "fails",
+      "novelty": "marginal"
+    },
+    {
+      "id": "pw=pw-high-swept|up|24",
+      "all": [
+        "pw=pw-high-swept"
+      ],
+      "dir": "up",
+      "hold": 24,
+      "discovery": {
+        "n": 31,
+        "expR": 0.606,
+        "win": 53,
+        "resolved": 30,
+        "medBars": 4,
+        "openPct": 3,
+        "baseExpR": 0.193,
+        "baseWin": 40,
+        "baseN": 230,
+        "edgeR": 0.413,
+        "t": 1.45
+      },
+      "holdout": {
+        "n": 36,
+        "expR": -0.312,
+        "win": 23,
+        "resolved": 35,
+        "medBars": 4,
+        "openPct": 3,
+        "baseExpR": 0.073,
+        "baseWin": 36,
+        "baseN": 232,
+        "edgeR": -0.385,
+        "t": -1.68
+      },
+      "prior": {
+        "n": 259,
+        "expR": 0.122,
+        "win": 37,
+        "resolved": 251,
+        "medBars": 4,
+        "openPct": 3,
+        "baseExpR": 0.023,
+        "baseWin": 34,
+        "baseN": 1478,
+        "edgeR": 0.099,
+        "t": 1.03
+      },
+      "label": "last week's high taken and given back",
+      "verdict": "fails",
+      "novelty": "faded"
+    },
+    {
+      "id": "cdl=cdl-bull-strong&session=ny-am|down|12",
+      "all": [
+        "cdl=cdl-bull-strong",
+        "session=ny-am"
+      ],
+      "dir": "down",
+      "hold": 12,
+      "discovery": {
+        "n": 105,
+        "expR": 0.299,
+        "win": 43,
+        "resolved": 91,
+        "medBars": 4,
+        "openPct": 13,
+        "baseExpR": -0.085,
+        "baseWin": 28,
+        "baseN": 481,
+        "edgeR": 0.384,
+        "t": 2.57
+      },
+      "holdout": {
+        "n": 105,
+        "expR": -0.016,
+        "win": 31,
+        "resolved": 99,
+        "medBars": 3,
+        "openPct": 6,
+        "baseExpR": -0.002,
+        "baseWin": 32,
+        "baseN": 484,
+        "edgeR": -0.014,
+        "t": -0.1
+      },
+      "prior": {
+        "n": 728,
+        "expR": 0.004,
+        "win": 31,
+        "resolved": 594,
+        "medBars": 3,
+        "openPct": 18,
+        "baseExpR": -0.04,
+        "baseWin": 30,
+        "baseN": 2956,
+        "edgeR": 0.044,
+        "t": 0.82
+      },
+      "label": "a strong bullish candle pattern + the London-New York overlap",
+      "verdict": "fails",
+      "novelty": "marginal"
+    },
+    {
+      "id": "macro=own-story|up|24",
+      "all": [
+        "macro=own-story"
+      ],
+      "dir": "up",
+      "hold": 24,
+      "discovery": {
+        "n": 94,
+        "expR": 0.496,
+        "win": 50,
+        "resolved": 92,
+        "medBars": 5,
+        "openPct": 2,
+        "baseExpR": 0.193,
+        "baseWin": 40,
+        "baseN": 230,
+        "edgeR": 0.303,
+        "t": 1.67
+      },
+      "holdout": {
+        "n": 97,
+        "expR": -0.077,
+        "win": 30,
+        "resolved": 93,
+        "medBars": 4,
+        "openPct": 4,
+        "baseExpR": 0.073,
+        "baseWin": 36,
+        "baseN": 232,
+        "edgeR": -0.15,
+        "t": -0.9
+      },
+      "prior": {
+        "n": 474,
+        "expR": -0.026,
+        "win": 32,
+        "resolved": 462,
+        "medBars": 4,
+        "openPct": 3,
+        "baseExpR": 0.023,
+        "baseWin": 34,
+        "baseN": 1478,
+        "edgeR": -0.049,
+        "t": -0.67
+      },
+      "label": "off on its own story",
+      "verdict": "fails",
+      "novelty": "marginal"
+    },
+    {
+      "id": "session=ny-am|down|24",
+      "all": [
+        "session=ny-am"
+      ],
+      "dir": "down",
+      "hold": 24,
+      "discovery": {
+        "n": 204,
+        "expR": 0.122,
+        "win": 37,
+        "resolved": 198,
+        "medBars": 4,
+        "openPct": 3,
+        "baseExpR": -0.131,
+        "baseWin": 29,
+        "baseN": 230,
+        "edgeR": 0.253,
+        "t": 1.88
+      },
+      "holdout": {
+        "n": 206,
+        "expR": 0.17,
+        "win": 39,
+        "resolved": 204,
+        "medBars": 4,
+        "openPct": 1,
+        "baseExpR": 0.083,
+        "baseWin": 36,
+        "baseN": 232,
+        "edgeR": 0.087,
+        "t": 0.63
+      },
+      "prior": {
+        "n": 1282,
+        "expR": -0.096,
+        "win": 30,
+        "resolved": 1255,
+        "medBars": 3,
+        "openPct": 2,
+        "baseExpR": -0.006,
+        "baseWin": 33,
+        "baseN": 1478,
+        "edgeR": -0.09,
+        "t": -1.7
+      },
+      "label": "the London-New York overlap",
+      "verdict": "fades",
+      "novelty": "marginal"
+    },
+    {
+      "id": "dayPos=lower|down|24",
+      "all": [
+        "dayPos=lower"
+      ],
+      "dir": "down",
+      "hold": 24,
+      "discovery": {
+        "n": 172,
+        "expR": 0.134,
+        "win": 38,
+        "resolved": 172,
+        "medBars": 4,
+        "openPct": 0,
+        "baseExpR": -0.131,
+        "baseWin": 29,
+        "baseN": 230,
+        "edgeR": 0.265,
+        "t": 1.85
+      },
+      "holdout": {
+        "n": 181,
+        "expR": 0.102,
+        "win": 37,
+        "resolved": 180,
+        "medBars": 5,
+        "openPct": 1,
+        "baseExpR": 0.083,
+        "baseWin": 36,
+        "baseN": 232,
+        "edgeR": 0.019,
+        "t": 0.14
+      },
+      "prior": {
+        "n": 1181,
+        "expR": -0.07,
+        "win": 31,
+        "resolved": 1162,
+        "medBars": 4,
+        "openPct": 2,
+        "baseExpR": -0.006,
+        "baseWin": 33,
+        "baseN": 1478,
+        "edgeR": -0.064,
+        "t": -1.17
+      },
+      "label": "lower part of the day",
+      "verdict": "fades",
+      "novelty": "marginal"
+    },
+    {
+      "id": "drive=dropping&session=ny-am|down|24",
+      "all": [
+        "drive=dropping",
+        "session=ny-am"
+      ],
+      "dir": "down",
+      "hold": 24,
+      "discovery": {
+        "n": 79,
+        "expR": 0.101,
+        "win": 37,
+        "resolved": 79,
+        "medBars": 2,
+        "openPct": 0,
+        "baseExpR": -0.131,
+        "baseWin": 29,
+        "baseN": 230,
+        "edgeR": 0.232,
+        "t": 1.25
+      },
+      "holdout": {
+        "n": 85,
+        "expR": 0.17,
+        "win": 39,
+        "resolved": 83,
+        "medBars": 3,
+        "openPct": 2,
+        "baseExpR": 0.083,
+        "baseWin": 36,
+        "baseN": 232,
+        "edgeR": 0.087,
+        "t": 0.48
+      },
+      "prior": {
+        "n": 568,
+        "expR": -0.089,
+        "win": 30,
+        "resolved": 562,
+        "medBars": 2,
+        "openPct": 1,
+        "baseExpR": -0.006,
+        "baseWin": 33,
+        "baseN": 1478,
+        "edgeR": -0.083,
+        "t": -1.21
+      },
+      "label": "falling hard + the London-New York overlap",
+      "verdict": "fades",
+      "novelty": "marginal"
+    },
+    {
+      "id": "flow=sold-beyond-macro|down|12",
+      "all": [
+        "flow=sold-beyond-macro"
+      ],
+      "dir": "down",
+      "hold": 12,
+      "discovery": {
+        "n": 71,
+        "expR": 0.164,
+        "win": 39,
+        "resolved": 70,
+        "medBars": 4,
+        "openPct": 1,
+        "baseExpR": -0.085,
+        "baseWin": 28,
+        "baseN": 481,
+        "edgeR": 0.249,
+        "t": 1.36
+      },
+      "holdout": {
+        "n": 54,
+        "expR": -0.018,
+        "win": 31,
+        "resolved": 48,
+        "medBars": 3,
+        "openPct": 11,
+        "baseExpR": -0.002,
+        "baseWin": 32,
+        "baseN": 484,
+        "edgeR": -0.016,
+        "t": -0.09
+      },
+      "prior": {
+        "n": 433,
+        "expR": -0.061,
+        "win": 29,
+        "resolved": 366,
+        "medBars": 4,
+        "openPct": 15,
+        "baseExpR": -0.04,
+        "baseWin": 30,
+        "baseN": 2956,
+        "edgeR": -0.021,
+        "t": -0.33
+      },
+      "label": "sold beyond what the macro explains",
+      "verdict": "fails",
+      "novelty": "marginal"
     }
   ],
   "tally": {
-    "fails": 6,
-    "fades": 5,
-    "holds": 1
+    "fails": 8,
+    "fades": 4
   },
+  "untested": [
+    {
+      "key": "dollar=dollar-inverse",
+      "n": 4788,
+      "why": "true on most bars — that is the market, not a condition",
+      "pct": 85.59
+    },
+    {
+      "key": "rev=strong-hammer",
+      "n": 98,
+      "why": "too rare to measure",
+      "pct": 1.75
+    },
+    {
+      "key": "cdl=cdl-bull-weak",
+      "n": 97,
+      "why": "too rare to measure",
+      "pct": 1.73
+    },
+    {
+      "key": "rev=strong-star",
+      "n": 82,
+      "why": "too rare to measure",
+      "pct": 1.47
+    },
+    {
+      "key": "cdl=cdl-conflict",
+      "n": 65,
+      "why": "too rare to measure",
+      "pct": 1.16
+    },
+    {
+      "key": "cdl=cdl-bear-weak",
+      "n": 57,
+      "why": "too rare to measure",
+      "pct": 1.02
+    }
+  ],
+  "discBars": 5594,
   "anatomy": {
     "XAU_USD": {
       "definition": "a pivot whose next leg ran 3 ATR or more counts as a turn; under 1.75 ATR it fizzled. Both sets are pivots, so \"ran vs died\" is the honest comparison — measuring a low against every bar mostly rediscovers that lows have falling prices before them.",
       "turns": {
-        "n": 397,
+        "n": 399,
         "inAtr": 1.9,
         "inBars": 2,
         "outAtr": 3.95,
         "outBars": 5,
-        "speed": 0.752,
-        "up": 210,
+        "speed": 0.768,
+        "up": 209,
         "conditions": [
+          {
+            "key": "rev=strong-hammer",
+            "n": 19,
+            "atEvent": 4.8,
+            "atAnyBar": 1.8,
+            "lift": 2.66
+          },
+          {
+            "key": "rev=strong-star",
+            "n": 13,
+            "atEvent": 3.3,
+            "atAnyBar": 1.5,
+            "lift": 2.21
+          },
           {
             "key": "pw=pw-high-swept",
             "n": 19,
@@ -666,7 +713,7 @@
           },
           {
             "key": "session=ny-am",
-            "n": 134,
+            "n": 135,
             "atEvent": 33.8,
             "atAnyBar": 21.8,
             "lift": 1.55
@@ -674,429 +721,447 @@
           {
             "key": "spike=spike",
             "n": 182,
-            "atEvent": 45.8,
-            "atAnyBar": 31.9,
+            "atEvent": 45.6,
+            "atAnyBar": 31.8,
             "lift": 1.44
           },
           {
+            "key": "cdl=cdl-indecision",
+            "n": 71,
+            "atEvent": 17.8,
+            "atAnyBar": 13.5,
+            "lift": 1.32
+          },
+          {
             "key": "vol=calm",
-            "n": 105,
-            "atEvent": 26.4,
+            "n": 106,
+            "atEvent": 26.6,
             "atAnyBar": 20.8,
             "lift": 1.27
           },
           {
             "key": "partner=partner-quiet",
-            "n": 87,
-            "atEvent": 21.9,
-            "atAnyBar": 17.5,
+            "n": 86,
+            "atEvent": 21.6,
+            "atAnyBar": 17.3,
             "lift": 1.25
           },
           {
             "key": "dayPos=mid",
-            "n": 43,
-            "atEvent": 10.8,
-            "atAnyBar": 8.8,
-            "lift": 1.22
-          },
-          {
-            "key": "pd=pd-high-swept",
-            "n": 41,
-            "atEvent": 10.3,
-            "atAnyBar": 8.6,
-            "lift": 1.21
+            "n": 44,
+            "atEvent": 11,
+            "atAnyBar": 8.9,
+            "lift": 1.24
           },
           {
             "key": "dayPos=lower",
-            "n": 111,
-            "atEvent": 28,
+            "n": 112,
+            "atEvent": 28.1,
             "atAnyBar": 23.5,
             "lift": 1.19
           },
           {
-            "key": "stretch=far-below",
-            "n": 65,
-            "atEvent": 16.4,
-            "atAnyBar": 13.8,
+            "key": "pd=pd-high-swept",
+            "n": 40,
+            "atEvent": 10,
+            "atAnyBar": 8.4,
             "lift": 1.19
           },
           {
-            "key": "dayPos=at-day-low",
-            "n": 71,
-            "atEvent": 17.9,
-            "atAnyBar": 16,
-            "lift": 1.12
-          },
-          {
-            "key": "drive=flat",
-            "n": 75,
-            "atEvent": 18.9,
-            "atAnyBar": 17,
-            "lift": 1.11
-          },
-          {
-            "key": "dollar=dollar-detached",
-            "n": 52,
-            "atEvent": 13.1,
-            "atAnyBar": 11.9,
-            "lift": 1.1
+            "key": "stretch=far-below",
+            "n": 69,
+            "atEvent": 17.3,
+            "atAnyBar": 14.8,
+            "lift": 1.17
           }
         ]
       },
       "fizzles": {
-        "n": 796,
-        "inAtr": 1.89,
+        "n": 793,
+        "inAtr": 1.9,
         "inBars": 2,
         "outAtr": 1.34,
         "outBars": 2,
         "speed": 0.839,
         "conditions": [
           {
+            "key": "cdl=cdl-conflict",
+            "n": 22,
+            "atEvent": 2.8,
+            "atAnyBar": 1,
+            "lift": 2.69
+          },
+          {
+            "key": "rev=strong-star",
+            "n": 25,
+            "atEvent": 3.2,
+            "atAnyBar": 1.5,
+            "lift": 2.14
+          },
+          {
+            "key": "rev=strong-hammer",
+            "n": 29,
+            "atEvent": 3.7,
+            "atAnyBar": 1.8,
+            "lift": 2.04
+          },
+          {
             "key": "pw=pw-high-swept",
             "n": 31,
             "atEvent": 3.9,
             "atAnyBar": 3,
-            "lift": 1.3
+            "lift": 1.31
           },
           {
             "key": "stretch=above",
-            "n": 188,
+            "n": 187,
             "atEvent": 23.6,
-            "atAnyBar": 19.2,
-            "lift": 1.23
+            "atAnyBar": 19.1,
+            "lift": 1.24
           },
           {
             "key": "pd=pd-high-swept",
-            "n": 84,
-            "atEvent": 10.6,
-            "atAnyBar": 8.6,
-            "lift": 1.23
+            "n": 81,
+            "atEvent": 10.2,
+            "atAnyBar": 8.4,
+            "lift": 1.22
+          },
+          {
+            "key": "cdl=cdl-bull-weak",
+            "n": 11,
+            "atEvent": 1.4,
+            "atAnyBar": 1.1,
+            "lift": 1.22
           },
           {
             "key": "pd=pd-low-swept",
             "n": 74,
             "atEvent": 9.3,
-            "atAnyBar": 7.6,
-            "lift": 1.22
+            "atAnyBar": 7.8,
+            "lift": 1.2
+          },
+          {
+            "key": "cdl=cdl-bear-medium",
+            "n": 164,
+            "atEvent": 20.7,
+            "atAnyBar": 18.2,
+            "lift": 1.14
           },
           {
             "key": "dayPos=upper",
-            "n": 225,
-            "atEvent": 28.3,
-            "atAnyBar": 24.9,
-            "lift": 1.13
-          },
-          {
-            "key": "dayPos=lower",
-            "n": 209,
-            "atEvent": 26.3,
-            "atAnyBar": 23.5,
+            "n": 220,
+            "atEvent": 27.7,
+            "atAnyBar": 24.8,
             "lift": 1.12
           },
           {
             "key": "drive=flat",
-            "n": 152,
-            "atEvent": 19.1,
-            "atAnyBar": 17,
+            "n": 151,
+            "atEvent": 19,
+            "atAnyBar": 16.9,
             "lift": 1.12
           },
           {
-            "key": "spike=spike",
-            "n": 282,
-            "atEvent": 35.4,
-            "atAnyBar": 31.9,
-            "lift": 1.11
-          },
-          {
-            "key": "session=ny-am",
-            "n": 193,
-            "atEvent": 24.2,
-            "atAnyBar": 21.8,
-            "lift": 1.11
-          },
-          {
-            "key": "macro=macro-mixed",
-            "n": 279,
-            "atEvent": 35.1,
-            "atAnyBar": 32.5,
-            "lift": 1.08
-          },
-          {
-            "key": "drive=soft",
-            "n": 132,
-            "atEvent": 16.6,
-            "atAnyBar": 15.7,
-            "lift": 1.06
-          },
-          {
-            "key": "dollar=dollar-detached",
-            "n": 100,
-            "atEvent": 12.6,
-            "atAnyBar": 11.9,
-            "lift": 1.06
+            "key": "dayPos=lower",
+            "n": 208,
+            "atEvent": 26.2,
+            "atAnyBar": 23.5,
+            "lift": 1.12
           }
         ]
       },
       "pumps": {
-        "n": 210,
+        "n": 209,
         "inAtr": 1.93,
         "inBars": 3,
-        "outAtr": 4.04,
+        "outAtr": 4.02,
         "outBars": 5,
         "speed": 0.726,
         "conditions": [
           {
+            "key": "rev=strong-hammer",
+            "n": 18,
+            "atEvent": 8.6,
+            "atAnyBar": 1.8,
+            "lift": 4.81
+          },
+          {
+            "key": "cdl=cdl-bull-medium",
+            "n": 55,
+            "atEvent": 26.3,
+            "atAnyBar": 17.1,
+            "lift": 1.54
+          },
+          {
             "key": "spike=spike",
-            "n": 94,
-            "atEvent": 44.8,
-            "atAnyBar": 31.9,
-            "lift": 1.41
+            "n": 92,
+            "atEvent": 44,
+            "atAnyBar": 31.8,
+            "lift": 1.39
           },
           {
             "key": "session=ny-am",
-            "n": 64,
-            "atEvent": 30.5,
+            "n": 63,
+            "atEvent": 30.1,
             "atAnyBar": 21.8,
-            "lift": 1.4
+            "lift": 1.38
           },
           {
             "key": "dayPos=mid",
             "n": 25,
-            "atEvent": 11.9,
-            "atAnyBar": 8.8,
-            "lift": 1.35
+            "atEvent": 12,
+            "atAnyBar": 8.9,
+            "lift": 1.34
           },
           {
             "key": "stretch=far-below",
-            "n": 39,
-            "atEvent": 18.6,
-            "atAnyBar": 13.8,
-            "lift": 1.35
-          },
-          {
-            "key": "partner=partner-quiet",
-            "n": 48,
-            "atEvent": 22.9,
-            "atAnyBar": 17.5,
-            "lift": 1.31
-          },
-          {
-            "key": "pd=pd-high-swept",
-            "n": 23,
-            "atEvent": 11,
-            "atAnyBar": 8.6,
-            "lift": 1.28
+            "n": 40,
+            "atEvent": 19.1,
+            "atAnyBar": 14.8,
+            "lift": 1.3
           },
           {
             "key": "vol=calm",
-            "n": 55,
-            "atEvent": 26.2,
+            "n": 56,
+            "atEvent": 26.8,
             "atAnyBar": 20.8,
-            "lift": 1.26
+            "lift": 1.29
+          },
+          {
+            "key": "partner=partner-quiet",
+            "n": 46,
+            "atEvent": 22,
+            "atAnyBar": 17.3,
+            "lift": 1.27
+          },
+          {
+            "key": "cdl=cdl-indecision",
+            "n": 36,
+            "atEvent": 17.2,
+            "atAnyBar": 13.5,
+            "lift": 1.27
+          },
+          {
+            "key": "pd=pd-high-swept",
+            "n": 22,
+            "atEvent": 10.5,
+            "atAnyBar": 8.4,
+            "lift": 1.25
           },
           {
             "key": "dayPos=lower",
             "n": 61,
-            "atEvent": 29,
+            "atEvent": 29.2,
             "atAnyBar": 23.5,
             "lift": 1.24
           },
           {
             "key": "drive=dropping",
             "n": 56,
-            "atEvent": 26.7,
-            "atAnyBar": 21.6,
-            "lift": 1.23
-          },
-          {
-            "key": "dayPos=at-day-low",
-            "n": 41,
-            "atEvent": 19.5,
-            "atAnyBar": 16,
+            "atEvent": 26.8,
+            "atAnyBar": 22,
             "lift": 1.22
-          },
-          {
-            "key": "drive=flat",
-            "n": 42,
-            "atEvent": 20,
-            "atAnyBar": 17,
-            "lift": 1.18
-          },
-          {
-            "key": "drive=firm",
-            "n": 39,
-            "atEvent": 18.6,
-            "atAnyBar": 16,
-            "lift": 1.16
           }
         ]
       },
       "drops": {
-        "n": 187,
+        "n": 190,
         "inAtr": 1.89,
         "inBars": 2,
-        "outAtr": 3.88,
+        "outAtr": 3.93,
         "outBars": 4,
-        "speed": 0.805,
+        "speed": 0.84,
         "conditions": [
+          {
+            "key": "rev=strong-star",
+            "n": 12,
+            "atEvent": 6.3,
+            "atAnyBar": 1.5,
+            "lift": 4.29
+          },
           {
             "key": "pw=pw-high-swept",
             "n": 13,
-            "atEvent": 7,
+            "atEvent": 6.8,
             "atAnyBar": 3,
-            "lift": 2.33
+            "lift": 2.3
           },
           {
             "key": "session=ny-am",
-            "n": 70,
-            "atEvent": 37.4,
+            "n": 72,
+            "atEvent": 37.9,
             "atAnyBar": 21.8,
-            "lift": 1.72
+            "lift": 1.74
           },
           {
             "key": "spike=spike",
-            "n": 88,
-            "atEvent": 47.1,
-            "atAnyBar": 31.9,
-            "lift": 1.48
+            "n": 90,
+            "atEvent": 47.4,
+            "atAnyBar": 31.8,
+            "lift": 1.49
+          },
+          {
+            "key": "cdl=cdl-indecision",
+            "n": 35,
+            "atEvent": 18.4,
+            "atAnyBar": 13.5,
+            "lift": 1.36
           },
           {
             "key": "vol=calm",
             "n": 50,
-            "atEvent": 26.7,
+            "atEvent": 26.3,
             "atAnyBar": 20.8,
-            "lift": 1.28
+            "lift": 1.26
+          },
+          {
+            "key": "partner=partner-quiet",
+            "n": 40,
+            "atEvent": 21.1,
+            "atAnyBar": 17.3,
+            "lift": 1.22
+          },
+          {
+            "key": "cdl=cdl-bear-medium",
+            "n": 42,
+            "atEvent": 22.1,
+            "atAnyBar": 18.2,
+            "lift": 1.21
+          },
+          {
+            "key": "cdl=cdl-bear-strong",
+            "n": 21,
+            "atEvent": 11.1,
+            "atAnyBar": 9.2,
+            "lift": 1.2
           },
           {
             "key": "drive=soft",
             "n": 36,
-            "atEvent": 19.3,
-            "atAnyBar": 15.7,
-            "lift": 1.23
+            "atEvent": 18.9,
+            "atAnyBar": 15.8,
+            "lift": 1.2
           },
           {
-            "key": "partner=partner-quiet",
-            "n": 39,
-            "atEvent": 20.9,
-            "atAnyBar": 17.5,
-            "lift": 1.19
+            "key": "cdl=cdl-bull-strong",
+            "n": 21,
+            "atEvent": 11.1,
+            "atAnyBar": 9.6,
+            "lift": 1.15
           },
           {
             "key": "dollar=dollar-detached",
             "n": 26,
-            "atEvent": 13.9,
+            "atEvent": 13.7,
             "atAnyBar": 11.9,
-            "lift": 1.17
-          },
-          {
-            "key": "dayPos=lower",
-            "n": 50,
-            "atEvent": 26.7,
-            "atAnyBar": 23.5,
-            "lift": 1.14
-          },
-          {
-            "key": "pd=pd-high-swept",
-            "n": 18,
-            "atEvent": 9.6,
-            "atAnyBar": 8.6,
-            "lift": 1.12
-          },
-          {
-            "key": "stretch=far-above",
-            "n": 54,
-            "atEvent": 28.9,
-            "atAnyBar": 26.1,
-            "lift": 1.11
-          },
-          {
-            "key": "session=late",
-            "n": 18,
-            "atEvent": 9.6,
-            "atAnyBar": 8.7,
-            "lift": 1.11
-          },
-          {
-            "key": "flow=sold-beyond-macro",
-            "n": 12,
-            "atEvent": 6.4,
-            "atAnyBar": 5.8,
-            "lift": 1.11
+            "lift": 1.15
           }
         ]
       },
       "ranVsDied": [
         {
-          "key": "stretch=far-below",
-          "atRan": 16.4,
-          "atDied": 10.6,
-          "ratio": 1.55,
-          "nRan": 65,
-          "nDied": 84
+          "key": "cdl=cdl-conflict",
+          "atRan": 1.3,
+          "atDied": 2.8,
+          "ratio": 0.49,
+          "nRan": 5,
+          "nDied": 22
         },
         {
           "key": "flow=sold-beyond-macro",
-          "atRan": 6.3,
-          "atDied": 4.1,
+          "atRan": 6.5,
+          "atDied": 4.3,
           "ratio": 1.52,
-          "nRan": 25,
-          "nDied": 33
+          "nRan": 26,
+          "nDied": 34
         },
         {
-          "key": "vol=calm",
-          "atRan": 26.4,
-          "atDied": 18.7,
-          "ratio": 1.41,
-          "nRan": 105,
-          "nDied": 149
+          "key": "stretch=far-below",
+          "atRan": 17.3,
+          "atDied": 11.3,
+          "ratio": 1.52,
+          "nRan": 69,
+          "nDied": 90
         },
         {
           "key": "dayPos=at-day-low",
-          "atRan": 17.9,
-          "atDied": 12.8,
-          "ratio": 1.4,
-          "nRan": 71,
+          "atRan": 18.3,
+          "atDied": 12.9,
+          "ratio": 1.42,
+          "nRan": 73,
           "nDied": 102
         },
         {
           "key": "session=ny-am",
           "atRan": 33.8,
           "atDied": 24.2,
-          "ratio": 1.39,
-          "nRan": 134,
-          "nDied": 193
+          "ratio": 1.4,
+          "nRan": 135,
+          "nDied": 192
+        },
+        {
+          "key": "vol=calm",
+          "atRan": 26.6,
+          "atDied": 19,
+          "ratio": 1.4,
+          "nRan": 106,
+          "nDied": 151
         },
         {
           "key": "stretch=above",
-          "atRan": 17.6,
+          "atRan": 17.3,
           "atDied": 23.6,
-          "ratio": 0.75,
-          "nRan": 70,
-          "nDied": 188
+          "ratio": 0.74,
+          "nRan": 69,
+          "nDied": 187
         },
         {
           "key": "flow=bought-beyond-macro",
-          "atRan": 4.5,
-          "atDied": 6,
+          "atRan": 4.3,
+          "atDied": 5.7,
           "ratio": 0.76,
-          "nRan": 18,
-          "nDied": 48
+          "nRan": 17,
+          "nDied": 45
         },
         {
-          "key": "session=late",
-          "atRan": 8.1,
-          "atDied": 6.2,
+          "key": "rev=strong-hammer",
+          "atRan": 4.8,
+          "atDied": 3.7,
           "ratio": 1.31,
-          "nRan": 32,
-          "nDied": 49
+          "nRan": 19,
+          "nDied": 29
         },
         {
           "key": "spike=spike",
-          "atRan": 45.8,
-          "atDied": 35.4,
-          "ratio": 1.29,
+          "atRan": 45.6,
+          "atDied": 35.2,
+          "ratio": 1.3,
           "nRan": 182,
-          "nDied": 282
+          "nDied": 279
+        },
+        {
+          "key": "cdl=cdl-bull-weak",
+          "atRan": 1.8,
+          "atDied": 1.4,
+          "ratio": 1.29,
+          "nRan": 7,
+          "nDied": 11
+        },
+        {
+          "key": "session=late",
+          "atRan": 8,
+          "atDied": 6.3,
+          "ratio": 1.28,
+          "nRan": 32,
+          "nDied": 50
+        },
+        {
+          "key": "session=asia",
+          "atRan": 24.8,
+          "atDied": 31.5,
+          "ratio": 0.79,
+          "nRan": 99,
+          "nDied": 250
         },
         {
           "key": "pd=pd-low-swept",
@@ -1105,71 +1170,63 @@
           "ratio": 0.79,
           "nRan": 29,
           "nDied": 74
-        },
-        {
-          "key": "dayPos=upper",
-          "atRan": 22.4,
-          "atDied": 28.3,
-          "ratio": 0.79,
-          "nRan": 89,
-          "nDied": 225
-        },
-        {
-          "key": "pw=pw-low-swept",
-          "atRan": 3.3,
-          "atDied": 2.6,
-          "ratio": 1.26,
-          "nRan": 13,
-          "nDied": 21
-        },
-        {
-          "key": "session=asia",
-          "atRan": 25.2,
-          "atDied": 31.5,
-          "ratio": 0.8,
-          "nRan": 100,
-          "nDied": 251
-        },
-        {
-          "key": "pw=pw-high-swept",
-          "atRan": 4.8,
-          "atDied": 3.9,
-          "ratio": 1.24,
-          "nRan": 19,
-          "nDied": 31
         }
       ],
       "pumpVsStall": [
         {
+          "key": "cdl=cdl-conflict",
+          "atRan": 1.4,
+          "atDied": 3.7,
+          "ratio": 0.44,
+          "nRan": 3,
+          "nDied": 14
+        },
+        {
           "key": "drive=soft",
           "atRan": 10.5,
-          "atDied": 20.1,
+          "atDied": 20.2,
           "ratio": 0.53,
           "nRan": 22,
           "nDied": 77
         },
         {
-          "key": "dayPos=at-day-high",
-          "atRan": 17.1,
-          "atDied": 10.7,
-          "ratio": 1.6,
-          "nRan": 36,
-          "nDied": 41
+          "key": "cdl=cdl-bear-strong",
+          "atRan": 7.2,
+          "atDied": 12.6,
+          "ratio": 0.58,
+          "nRan": 15,
+          "nDied": 48
         },
         {
           "key": "stretch=far-above",
-          "atRan": 25.2,
-          "atDied": 16.7,
-          "ratio": 1.51,
-          "nRan": 53,
-          "nDied": 64
+          "atRan": 24.4,
+          "atDied": 15.4,
+          "ratio": 1.58,
+          "nRan": 51,
+          "nDied": 59
+        },
+        {
+          "key": "dayPos=at-day-high",
+          "atRan": 16.7,
+          "atDied": 10.7,
+          "ratio": 1.56,
+          "nRan": 35,
+          "nDied": 41
+        },
+        {
+          "key": "drive=ripping",
+          "atRan": 24.9,
+          "atDied": 17.3,
+          "ratio": 1.44,
+          "nRan": 52,
+          "nDied": 66
         },
         {
           "key": "stretch=mid",
-          "atRan": 19.5,
-          "atDied": 28.2,
-          "ratio": 0.7,
-          "nRan": 41,
+          "atRan": 20.1,
+          "atDied": 28.3,
+          "ratio": 0.71,
+          "nRan": 42,
           "nDied": 108
         },
         {
@@ -1182,317 +1239,293 @@
         },
         {
           "key": "vol=calm",
-          "atRan": 26.2,
-          "atDied": 19.3,
-          "ratio": 1.36,
-          "nRan": 55,
+          "atRan": 26.8,
+          "atDied": 19.4,
+          "ratio": 1.38,
+          "nRan": 56,
           "nDied": 74
         },
         {
-          "key": "flow=bought-beyond-macro",
-          "atRan": 3.8,
-          "atDied": 2.9,
-          "ratio": 1.35,
-          "nRan": 8,
-          "nDied": 11
-        },
-        {
-          "key": "session=late",
-          "atRan": 6.7,
-          "atDied": 5,
-          "ratio": 1.35,
-          "nRan": 14,
-          "nDied": 19
-        },
-        {
-          "key": "drive=ripping",
-          "atRan": 24.3,
-          "atDied": 18.3,
-          "ratio": 1.33,
-          "nRan": 51,
-          "nDied": 70
-        },
-        {
           "key": "session=asia",
-          "atRan": 24.3,
-          "atDied": 32.1,
-          "ratio": 0.76,
-          "nRan": 51,
-          "nDied": 123
+          "atRan": 23.9,
+          "atDied": 31.9,
+          "ratio": 0.75,
+          "nRan": 50,
+          "nDied": 122
         }
       ],
       "dropVsStall": [
         {
           "key": "flow=sold-beyond-macro",
-          "atRan": 6.4,
+          "atRan": 6.8,
           "atDied": 2.4,
-          "ratio": 2.62,
-          "nRan": 12,
+          "ratio": 2.77,
+          "nRan": 13,
           "nDied": 10
         },
         {
           "key": "dayPos=at-day-low",
-          "atRan": 16,
-          "atDied": 7.7,
-          "ratio": 2.07,
-          "nRan": 30,
+          "atRan": 16.8,
+          "atDied": 7.8,
+          "ratio": 2.16,
+          "nRan": 32,
           "nDied": 32
         },
         {
           "key": "stretch=far-below",
-          "atRan": 13.9,
-          "atDied": 7,
-          "ratio": 1.98,
-          "nRan": 26,
-          "nDied": 29
+          "atRan": 15.3,
+          "atDied": 7.5,
+          "ratio": 2.02,
+          "nRan": 29,
+          "nDied": 31
         },
         {
           "key": "pw=pw-high-swept",
-          "atRan": 7,
+          "atRan": 6.8,
           "atDied": 3.6,
-          "ratio": 1.92,
+          "ratio": 1.88,
           "nRan": 13,
           "nDied": 15
         },
         {
-          "key": "flow=bought-beyond-macro",
-          "atRan": 5.3,
-          "atDied": 9,
-          "ratio": 0.62,
-          "nRan": 10,
-          "nDied": 37
+          "key": "cdl=cdl-bear-strong",
+          "atRan": 11.1,
+          "atDied": 6.8,
+          "ratio": 1.63,
+          "nRan": 21,
+          "nDied": 28
         },
         {
           "key": "session=ny-am",
-          "atRan": 37.4,
-          "atDied": 23.5,
-          "ratio": 1.59,
-          "nRan": 70,
-          "nDied": 97
+          "atRan": 37.9,
+          "atDied": 23.4,
+          "ratio": 1.62,
+          "nRan": 72,
+          "nDied": 96
+        },
+        {
+          "key": "flow=bought-beyond-macro",
+          "atRan": 5.3,
+          "atDied": 8.5,
+          "ratio": 0.64,
+          "nRan": 10,
+          "nDied": 35
         },
         {
           "key": "stretch=above",
-          "atRan": 16,
-          "atDied": 24.7,
-          "ratio": 0.66,
+          "atRan": 15.8,
+          "atDied": 24.6,
+          "ratio": 0.65,
           "nRan": 30,
-          "nDied": 102
+          "nDied": 101
         },
         {
-          "key": "vol=calm",
-          "atRan": 26.7,
-          "atDied": 18.2,
-          "ratio": 1.47,
-          "nRan": 50,
-          "nDied": 75
+          "key": "cdl=cdl-indecision",
+          "atRan": 18.4,
+          "atDied": 12.2,
+          "ratio": 1.52,
+          "nRan": 35,
+          "nDied": 50
         },
         {
-          "key": "drive=soft",
-          "atRan": 19.3,
-          "atDied": 13.3,
-          "ratio": 1.45,
-          "nRan": 36,
-          "nDied": 55
-        },
-        {
-          "key": "session=london",
-          "atRan": 16,
-          "atDied": 23.2,
-          "ratio": 0.7,
-          "nRan": 30,
-          "nDied": 96
+          "key": "dayPos=at-day-high",
+          "atRan": 24.7,
+          "atDied": 36,
+          "ratio": 0.69,
+          "nRan": 47,
+          "nDied": 148
         }
       ],
-      "bars": 5890
+      "bars": 5914
     },
     "XAG_USD": {
       "definition": "a pivot whose next leg ran 3 ATR or more counts as a turn; under 1.75 ATR it fizzled. Both sets are pivots, so \"ran vs died\" is the honest comparison — measuring a low against every bar mostly rediscovers that lows have falling prices before them.",
       "turns": {
-        "n": 411,
-        "inAtr": 1.87,
+        "n": 414,
+        "inAtr": 1.86,
         "inBars": 2,
-        "outAtr": 3.98,
+        "outAtr": 3.97,
         "outBars": 5,
-        "speed": 0.842,
+        "speed": 0.812,
         "up": 223,
         "conditions": [
           {
+            "key": "cdl=cdl-bear-weak",
+            "n": 14,
+            "atEvent": 3.4,
+            "atAnyBar": 1.4,
+            "lift": 2.41
+          },
+          {
+            "key": "rev=strong-hammer",
+            "n": 14,
+            "atEvent": 3.4,
+            "atAnyBar": 1.8,
+            "lift": 1.83
+          },
+          {
+            "key": "rev=strong-star",
+            "n": 13,
+            "atEvent": 3.1,
+            "atAnyBar": 1.7,
+            "lift": 1.8
+          },
+          {
             "key": "session=ny-am",
-            "n": 124,
-            "atEvent": 30.2,
+            "n": 126,
+            "atEvent": 30.4,
             "atAnyBar": 21.8,
-            "lift": 1.38
+            "lift": 1.4
           },
           {
             "key": "spike=spike",
-            "n": 185,
-            "atEvent": 45,
+            "n": 186,
+            "atEvent": 44.9,
             "atAnyBar": 33.7,
-            "lift": 1.34
+            "lift": 1.33
+          },
+          {
+            "key": "cdl=cdl-bear-strong",
+            "n": 51,
+            "atEvent": 12.3,
+            "atAnyBar": 9.5,
+            "lift": 1.3
           },
           {
             "key": "partner=partner-diverge",
-            "n": 48,
-            "atEvent": 11.7,
-            "atAnyBar": 9.1,
-            "lift": 1.28
+            "n": 49,
+            "atEvent": 11.8,
+            "atAnyBar": 9.2,
+            "lift": 1.29
           },
           {
             "key": "dayPos=mid",
-            "n": 46,
-            "atEvent": 11.2,
+            "n": 47,
+            "atEvent": 11.4,
             "atAnyBar": 8.8,
-            "lift": 1.27
+            "lift": 1.29
+          },
+          {
+            "key": "cdl=cdl-bull-weak",
+            "n": 13,
+            "atEvent": 3.1,
+            "atAnyBar": 2.5,
+            "lift": 1.24
+          },
+          {
+            "key": "pd=pd-high-swept",
+            "n": 50,
+            "atEvent": 12.1,
+            "atAnyBar": 10.1,
+            "lift": 1.19
           },
           {
             "key": "dayPos=lower",
-            "n": 110,
-            "atEvent": 26.8,
-            "atAnyBar": 22.7,
+            "n": 112,
+            "atEvent": 27.1,
+            "atAnyBar": 22.9,
             "lift": 1.18
           },
           {
             "key": "stretch=far-below",
-            "n": 67,
-            "atEvent": 16.3,
-            "atAnyBar": 13.8,
-            "lift": 1.18
-          },
-          {
-            "key": "drive=soft",
-            "n": 77,
-            "atEvent": 18.7,
-            "atAnyBar": 16,
+            "n": 70,
+            "atEvent": 16.9,
+            "atAnyBar": 14.5,
             "lift": 1.17
-          },
-          {
-            "key": "pd=pd-high-swept",
-            "n": 49,
-            "atEvent": 11.9,
-            "atAnyBar": 10.2,
-            "lift": 1.17
-          },
-          {
-            "key": "vol=calm",
-            "n": 95,
-            "atEvent": 23.1,
-            "atAnyBar": 19.9,
-            "lift": 1.16
-          },
-          {
-            "key": "stretch=above",
-            "n": 87,
-            "atEvent": 21.2,
-            "atAnyBar": 18.9,
-            "lift": 1.12
-          },
-          {
-            "key": "partner=partner-quiet",
-            "n": 80,
-            "atEvent": 19.5,
-            "atAnyBar": 17.5,
-            "lift": 1.11
-          },
-          {
-            "key": "dayPos=upper",
-            "n": 112,
-            "atEvent": 27.3,
-            "atAnyBar": 24.8,
-            "lift": 1.1
           }
         ]
       },
       "fizzles": {
-        "n": 746,
-        "inAtr": 1.94,
+        "n": 741,
+        "inAtr": 1.95,
         "inBars": 2,
         "outAtr": 1.36,
         "outBars": 2,
-        "speed": 0.885,
+        "speed": 0.891,
         "conditions": [
           {
+            "key": "rev=strong-hammer",
+            "n": 28,
+            "atEvent": 3.8,
+            "atAnyBar": 1.8,
+            "lift": 2.05
+          },
+          {
+            "key": "rev=strong-star",
+            "n": 25,
+            "atEvent": 3.4,
+            "atAnyBar": 1.7,
+            "lift": 1.94
+          },
+          {
             "key": "pw=pw-low-swept",
-            "n": 37,
-            "atEvent": 5,
-            "atAnyBar": 2.8,
-            "lift": 1.77
+            "n": 40,
+            "atEvent": 5.4,
+            "atAnyBar": 3.2,
+            "lift": 1.67
+          },
+          {
+            "key": "cdl=cdl-bull-weak",
+            "n": 29,
+            "atEvent": 3.9,
+            "atAnyBar": 2.5,
+            "lift": 1.54
+          },
+          {
+            "key": "cdl=cdl-bear-weak",
+            "n": 16,
+            "atEvent": 2.2,
+            "atAnyBar": 1.4,
+            "lift": 1.54
           },
           {
             "key": "pd=pd-high-swept",
             "n": 107,
-            "atEvent": 14.3,
-            "atAnyBar": 10.2,
-            "lift": 1.41
+            "atEvent": 14.4,
+            "atAnyBar": 10.1,
+            "lift": 1.42
           },
           {
             "key": "spike=spike",
-            "n": 319,
-            "atEvent": 42.8,
+            "n": 322,
+            "atEvent": 43.5,
             "atAnyBar": 33.7,
-            "lift": 1.27
+            "lift": 1.29
           },
           {
             "key": "pd=pd-low-swept",
-            "n": 66,
-            "atEvent": 8.8,
-            "atAnyBar": 7.3,
-            "lift": 1.21
+            "n": 67,
+            "atEvent": 9,
+            "atAnyBar": 7.4,
+            "lift": 1.22
           },
           {
             "key": "dayPos=lower",
             "n": 201,
-            "atEvent": 26.9,
-            "atAnyBar": 22.7,
+            "atEvent": 27.1,
+            "atAnyBar": 22.9,
             "lift": 1.19
           },
           {
             "key": "session=ny-am",
-            "n": 191,
-            "atEvent": 25.6,
+            "n": 192,
+            "atEvent": 25.9,
             "atAnyBar": 21.8,
-            "lift": 1.17
+            "lift": 1.19
+          },
+          {
+            "key": "cdl=cdl-indecision",
+            "n": 126,
+            "atEvent": 17,
+            "atAnyBar": 14.7,
+            "lift": 1.16
           },
           {
             "key": "vol=hot",
-            "n": 237,
-            "atEvent": 31.8,
-            "atAnyBar": 28,
-            "lift": 1.13
-          },
-          {
-            "key": "dayPos=upper",
-            "n": 206,
-            "atEvent": 27.6,
-            "atAnyBar": 24.8,
-            "lift": 1.11
-          },
-          {
-            "key": "stretch=far-below",
-            "n": 114,
-            "atEvent": 15.3,
-            "atAnyBar": 13.8,
-            "lift": 1.11
-          },
-          {
-            "key": "pw=pw-high-swept",
-            "n": 25,
-            "atEvent": 3.4,
-            "atAnyBar": 3.1,
-            "lift": 1.07
-          },
-          {
-            "key": "shift=relationship-broke",
-            "n": 156,
-            "atEvent": 20.9,
-            "atAnyBar": 19.8,
-            "lift": 1.06
-          },
-          {
-            "key": "macro=macro-mixed",
-            "n": 302,
-            "atEvent": 40.5,
-            "atAnyBar": 38.6,
-            "lift": 1.05
+            "n": 229,
+            "atEvent": 30.9,
+            "atAnyBar": 27.5,
+            "lift": 1.12
           }
         ]
       },
@@ -1500,10 +1533,24 @@
         "n": 223,
         "inAtr": 1.85,
         "inBars": 2,
-        "outAtr": 4.02,
+        "outAtr": 4.01,
         "outBars": 6,
-        "speed": 0.931,
+        "speed": 0.927,
         "conditions": [
+          {
+            "key": "rev=strong-hammer",
+            "n": 14,
+            "atEvent": 6.3,
+            "atAnyBar": 1.8,
+            "lift": 3.41
+          },
+          {
+            "key": "cdl=cdl-bull-weak",
+            "n": 10,
+            "atEvent": 4.5,
+            "atAnyBar": 2.5,
+            "lift": 1.77
+          },
           {
             "key": "pw=pw-high-swept",
             "n": 10,
@@ -1512,32 +1559,32 @@
             "lift": 1.43
           },
           {
-            "key": "spike=spike",
-            "n": 104,
-            "atEvent": 46.6,
-            "atAnyBar": 33.7,
+            "key": "cdl=cdl-bull-medium",
+            "n": 41,
+            "atEvent": 18.4,
+            "atAnyBar": 13.2,
             "lift": 1.39
+          },
+          {
+            "key": "spike=spike",
+            "n": 102,
+            "atEvent": 45.7,
+            "atAnyBar": 33.7,
+            "lift": 1.36
           },
           {
             "key": "pd=pd-high-swept",
             "n": 30,
             "atEvent": 13.5,
-            "atAnyBar": 10.2,
-            "lift": 1.32
+            "atAnyBar": 10.1,
+            "lift": 1.33
           },
           {
             "key": "dayPos=lower",
             "n": 66,
             "atEvent": 29.6,
-            "atAnyBar": 22.7,
-            "lift": 1.3
-          },
-          {
-            "key": "session=ny-am",
-            "n": 62,
-            "atEvent": 27.8,
-            "atAnyBar": 21.8,
-            "lift": 1.27
+            "atAnyBar": 22.9,
+            "lift": 1.29
           },
           {
             "key": "dayPos=mid",
@@ -1547,140 +1594,126 @@
             "lift": 1.27
           },
           {
+            "key": "session=ny-am",
+            "n": 61,
+            "atEvent": 27.4,
+            "atAnyBar": 21.8,
+            "lift": 1.25
+          },
+          {
             "key": "stretch=far-below",
-            "n": 39,
-            "atEvent": 17.5,
-            "atAnyBar": 13.8,
-            "lift": 1.27
-          },
-          {
-            "key": "stretch=above",
-            "n": 52,
-            "atEvent": 23.3,
-            "atAnyBar": 18.9,
-            "lift": 1.23
-          },
-          {
-            "key": "drive=soft",
-            "n": 44,
-            "atEvent": 19.7,
-            "atAnyBar": 16,
-            "lift": 1.23
-          },
-          {
-            "key": "partner=partner-diverge",
-            "n": 25,
-            "atEvent": 11.2,
-            "atAnyBar": 9.1,
-            "lift": 1.23
+            "n": 40,
+            "atEvent": 17.9,
+            "atAnyBar": 14.5,
+            "lift": 1.24
           },
           {
             "key": "partner=partner-quiet",
             "n": 47,
             "atEvent": 21.1,
-            "atAnyBar": 17.5,
-            "lift": 1.2
+            "atAnyBar": 17.3,
+            "lift": 1.22
           },
           {
-            "key": "flow=sold-beyond-macro",
-            "n": 13,
-            "atEvent": 5.8,
-            "atAnyBar": 5,
-            "lift": 1.16
+            "key": "stretch=above",
+            "n": 51,
+            "atEvent": 22.9,
+            "atAnyBar": 18.8,
+            "lift": 1.21
           }
         ]
       },
       "drops": {
-        "n": 188,
-        "inAtr": 1.98,
+        "n": 191,
+        "inAtr": 1.97,
         "inBars": 3,
-        "outAtr": 3.94,
+        "outAtr": 3.93,
         "outBars": 4,
-        "speed": 0.708,
+        "speed": 0.695,
         "conditions": [
           {
+            "key": "cdl=cdl-bear-weak",
+            "n": 10,
+            "atEvent": 5.2,
+            "atAnyBar": 1.4,
+            "lift": 3.73
+          },
+          {
+            "key": "rev=strong-star",
+            "n": 12,
+            "atEvent": 6.3,
+            "atAnyBar": 1.7,
+            "lift": 3.61
+          },
+          {
             "key": "session=ny-am",
-            "n": 62,
-            "atEvent": 33,
+            "n": 65,
+            "atEvent": 34,
             "atAnyBar": 21.8,
-            "lift": 1.51
+            "lift": 1.56
+          },
+          {
+            "key": "cdl=cdl-bear-medium",
+            "n": 47,
+            "atEvent": 24.6,
+            "atAnyBar": 15.8,
+            "lift": 1.56
+          },
+          {
+            "key": "cdl=cdl-bear-strong",
+            "n": 27,
+            "atEvent": 14.1,
+            "atAnyBar": 9.5,
+            "lift": 1.49
           },
           {
             "key": "flow=bought-beyond-macro",
             "n": 14,
-            "atEvent": 7.4,
-            "atAnyBar": 5.2,
-            "lift": 1.44
+            "atEvent": 7.3,
+            "atAnyBar": 4.9,
+            "lift": 1.49
           },
           {
             "key": "partner=partner-diverge",
-            "n": 23,
-            "atEvent": 12.2,
-            "atAnyBar": 9.1,
-            "lift": 1.34
+            "n": 25,
+            "atEvent": 13.1,
+            "atAnyBar": 9.2,
+            "lift": 1.43
+          },
+          {
+            "key": "spike=spike",
+            "n": 84,
+            "atEvent": 44,
+            "atAnyBar": 33.7,
+            "lift": 1.31
+          },
+          {
+            "key": "dayPos=mid",
+            "n": 22,
+            "atEvent": 11.5,
+            "atAnyBar": 8.8,
+            "lift": 1.31
           },
           {
             "key": "vol=calm",
             "n": 50,
-            "atEvent": 26.6,
-            "atAnyBar": 19.9,
-            "lift": 1.33
-          },
-          {
-            "key": "spike=spike",
-            "n": 81,
-            "atEvent": 43.1,
-            "atAnyBar": 33.7,
-            "lift": 1.28
+            "atEvent": 26.2,
+            "atAnyBar": 20,
+            "lift": 1.31
           },
           {
             "key": "macro=macro-driven",
             "n": 42,
-            "atEvent": 22.3,
-            "atAnyBar": 17.7,
-            "lift": 1.26
-          },
-          {
-            "key": "dayPos=mid",
-            "n": 21,
-            "atEvent": 11.2,
-            "atAnyBar": 8.8,
-            "lift": 1.26
+            "atEvent": 22,
+            "atAnyBar": 17.6,
+            "lift": 1.25
           },
           {
             "key": "dollar=dollar-detached",
             "n": 32,
-            "atEvent": 17,
+            "atEvent": 16.8,
             "atAnyBar": 14.6,
-            "lift": 1.16
-          },
-          {
-            "key": "drive=soft",
-            "n": 33,
-            "atEvent": 17.6,
-            "atAnyBar": 16,
-            "lift": 1.1
-          },
-          {
-            "key": "dayPos=upper",
-            "n": 51,
-            "atEvent": 27.1,
-            "atAnyBar": 24.8,
-            "lift": 1.09
-          },
-          {
-            "key": "round=at-round",
-            "n": 31,
-            "atEvent": 16.5,
-            "atAnyBar": 15.2,
-            "lift": 1.09
-          },
-          {
-            "key": "stretch=far-above",
-            "n": 58,
-            "atEvent": 30.9,
-            "atAnyBar": 28.5,
-            "lift": 1.08
+            "lift": 1.15
           }
         ]
       },
@@ -1688,332 +1721,332 @@
         {
           "key": "pw=pw-low-swept",
           "atRan": 2.7,
-          "atDied": 5,
-          "ratio": 0.56,
-          "nRan": 11,
-          "nDied": 37
-        },
-        {
-          "key": "vol=calm",
-          "atRan": 23.1,
-          "atDied": 16.9,
-          "ratio": 1.37,
-          "nRan": 95,
-          "nDied": 126
-        },
-        {
-          "key": "session=late",
-          "atRan": 7.1,
           "atDied": 5.4,
-          "ratio": 1.32,
-          "nRan": 29,
+          "ratio": 0.51,
+          "nRan": 11,
           "nDied": 40
         },
         {
+          "key": "cdl=cdl-bear-weak",
+          "atRan": 3.4,
+          "atDied": 2.2,
+          "ratio": 1.57,
+          "nRan": 14,
+          "nDied": 16
+        },
+        {
+          "key": "cdl=cdl-bull-strong",
+          "atRan": 6.5,
+          "atDied": 9.3,
+          "ratio": 0.71,
+          "nRan": 27,
+          "nDied": 69
+        },
+        {
+          "key": "vol=calm",
+          "atRan": 23.2,
+          "atDied": 17,
+          "ratio": 1.36,
+          "nRan": 96,
+          "nDied": 126
+        },
+        {
+          "key": "cdl=cdl-bear-strong",
+          "atRan": 12.3,
+          "atDied": 9.2,
+          "ratio": 1.34,
+          "nRan": 51,
+          "nDied": 68
+        },
+        {
           "key": "dayPos=mid",
-          "atRan": 11.2,
+          "atRan": 11.4,
           "atDied": 8.6,
-          "ratio": 1.31,
-          "nRan": 46,
+          "ratio": 1.32,
+          "nRan": 47,
           "nDied": 64
         },
         {
           "key": "partner=partner-diverge",
-          "atRan": 11.7,
-          "atDied": 9.2,
+          "atRan": 11.8,
+          "atDied": 9,
+          "ratio": 1.31,
+          "nRan": 49,
+          "nDied": 67
+        },
+        {
+          "key": "flow=bought-beyond-macro",
+          "atRan": 4.6,
+          "atDied": 3.6,
           "ratio": 1.27,
-          "nRan": 48,
-          "nDied": 69
+          "nRan": 19,
+          "nDied": 27
+        },
+        {
+          "key": "session=late",
+          "atRan": 6.8,
+          "atDied": 5.4,
+          "ratio": 1.26,
+          "nRan": 28,
+          "nDied": 40
         },
         {
           "key": "flow=sold-beyond-macro",
-          "atRan": 4.9,
+          "atRan": 4.8,
           "atDied": 3.9,
-          "ratio": 1.26,
+          "ratio": 1.24,
           "nRan": 20,
           "nDied": 29
         },
         {
-          "key": "vol=hot",
-          "atRan": 25.8,
-          "atDied": 31.8,
-          "ratio": 0.81,
-          "nRan": 106,
-          "nDied": 237
-        },
-        {
           "key": "dayPos=at-day-high",
-          "atRan": 20,
-          "atDied": 24.5,
+          "atRan": 19.3,
+          "atDied": 23.6,
           "ratio": 0.82,
-          "nRan": 82,
-          "nDied": 183
+          "nRan": 80,
+          "nDied": 175
         },
         {
-          "key": "dayPos=at-day-low",
-          "atRan": 14.8,
-          "atDied": 12.3,
-          "ratio": 1.21,
-          "nRan": 61,
-          "nDied": 92
+          "key": "cdl=cdl-bull-weak",
+          "atRan": 3.1,
+          "atDied": 3.9,
+          "ratio": 0.82,
+          "nRan": 13,
+          "nDied": 29
         },
         {
-          "key": "pd=pd-high-swept",
-          "atRan": 11.9,
-          "atDied": 14.3,
+          "key": "vol=hot",
+          "atRan": 25.6,
+          "atDied": 30.9,
           "ratio": 0.83,
-          "nRan": 49,
-          "nDied": 107
-        },
-        {
-          "key": "session=ny-am",
-          "atRan": 30.2,
-          "atDied": 25.6,
-          "ratio": 1.18,
-          "nRan": 124,
-          "nDied": 191
-        },
-        {
-          "key": "shift=relationship-broke",
-          "atRan": 17.8,
-          "atDied": 20.9,
-          "ratio": 0.85,
-          "nRan": 73,
-          "nDied": 156
+          "nRan": 106,
+          "nDied": 229
         },
         {
           "key": "pd=pd-low-swept",
           "atRan": 7.5,
-          "atDied": 8.8,
-          "ratio": 0.86,
+          "atDied": 9,
+          "ratio": 0.83,
           "nRan": 31,
-          "nDied": 66
-        },
-        {
-          "key": "partner=partner-quiet",
-          "atRan": 19.5,
-          "atDied": 17.2,
-          "ratio": 1.14,
-          "nRan": 80,
-          "nDied": 128
+          "nDied": 67
         }
       ],
       "pumpVsStall": [
         {
           "key": "pw=pw-low-swept",
           "atRan": 1.8,
-          "atDied": 4,
-          "ratio": 0.48,
+          "atDied": 4.3,
+          "ratio": 0.45,
           "nRan": 4,
-          "nDied": 15
+          "nDied": 16
         },
         {
           "key": "session=late",
-          "atRan": 8.5,
-          "atDied": 4.8,
-          "ratio": 1.76,
-          "nRan": 19,
+          "atRan": 8.1,
+          "atDied": 4.9,
+          "ratio": 1.66,
+          "nRan": 18,
           "nDied": 18
         },
         {
           "key": "partner=partner-quiet",
           "atRan": 21.1,
-          "atDied": 15.5,
-          "ratio": 1.36,
+          "atDied": 15.7,
+          "ratio": 1.34,
           "nRan": 47,
           "nDied": 58
         },
         {
-          "key": "shift=relationship-broke",
-          "atRan": 15.7,
-          "atDied": 21.2,
-          "ratio": 0.75,
-          "nRan": 35,
-          "nDied": 79
-        },
-        {
           "key": "round=at-round",
           "atRan": 11.7,
-          "atDied": 15.5,
-          "ratio": 0.76,
+          "atDied": 15.7,
+          "ratio": 0.75,
           "nRan": 26,
           "nDied": 58
         },
         {
+          "key": "shift=relationship-broke",
+          "atRan": 14.8,
+          "atDied": 19.7,
+          "ratio": 0.75,
+          "nRan": 33,
+          "nDied": 73
+        },
+        {
           "key": "drive=flat",
           "atRan": 17.9,
-          "atDied": 13.7,
-          "ratio": 1.31,
+          "atDied": 13.8,
+          "ratio": 1.3,
           "nRan": 40,
           "nDied": 51
         },
         {
           "key": "stretch=above",
-          "atRan": 23.3,
-          "atDied": 18,
-          "ratio": 1.3,
-          "nRan": 52,
-          "nDied": 67
-        },
-        {
-          "key": "flow=bought-beyond-macro",
-          "atRan": 2.7,
-          "atDied": 3.5,
-          "ratio": 0.8,
-          "nRan": 6,
-          "nDied": 13
-        },
-        {
-          "key": "pd=pd-high-swept",
-          "atRan": 13.5,
-          "atDied": 16.9,
-          "ratio": 0.8,
-          "nRan": 30,
-          "nDied": 63
+          "atRan": 22.9,
+          "atDied": 17.8,
+          "ratio": 1.28,
+          "nRan": 51,
+          "nDied": 66
         },
         {
           "key": "stretch=below",
           "atRan": 15.7,
-          "atDied": 19.6,
-          "ratio": 0.81,
+          "atDied": 20,
+          "ratio": 0.79,
           "nRan": 35,
-          "nDied": 73
+          "nDied": 74
+        },
+        {
+          "key": "session=ny-pm",
+          "atRan": 17.9,
+          "atDied": 14.3,
+          "ratio": 1.25,
+          "nRan": 40,
+          "nDied": 53
+        },
+        {
+          "key": "pd=pd-high-swept",
+          "atRan": 13.5,
+          "atDied": 17,
+          "ratio": 0.8,
+          "nRan": 30,
+          "nDied": 63
         }
       ],
       "dropVsStall": [
         {
-          "key": "dayPos=at-day-low",
-          "atRan": 14.4,
-          "atDied": 6.2,
-          "ratio": 2.32,
-          "nRan": 27,
-          "nDied": 23
+          "key": "cdl=cdl-bull-strong",
+          "atRan": 4.2,
+          "atDied": 10.5,
+          "ratio": 0.42,
+          "nRan": 8,
+          "nDied": 39
         },
         {
-          "key": "vol=calm",
-          "atRan": 26.6,
-          "atDied": 17.2,
-          "ratio": 1.55,
-          "nRan": 50,
-          "nDied": 64
+          "key": "dayPos=at-day-low",
+          "atRan": 14.1,
+          "atDied": 6.5,
+          "ratio": 2.17,
+          "nRan": 27,
+          "nDied": 24
+        },
+        {
+          "key": "cdl=cdl-bear-strong",
+          "atRan": 14.1,
+          "atDied": 6.7,
+          "ratio": 2.09,
+          "nRan": 27,
+          "nDied": 25
         },
         {
           "key": "pw=pw-low-swept",
           "atRan": 3.7,
-          "atDied": 5.9,
-          "ratio": 0.66,
+          "atDied": 6.5,
+          "ratio": 0.59,
           "nRan": 7,
-          "nDied": 22
-        },
-        {
-          "key": "dayPos=mid",
-          "atRan": 11.2,
-          "atDied": 7.5,
-          "ratio": 1.49,
-          "nRan": 21,
-          "nDied": 28
+          "nDied": 24
         },
         {
           "key": "partner=partner-diverge",
-          "atRan": 12.2,
-          "atDied": 8.3,
-          "ratio": 1.48,
-          "nRan": 23,
-          "nDied": 31
-        },
-        {
-          "key": "session=ny-pm",
-          "atRan": 12.2,
-          "atDied": 18,
-          "ratio": 0.69,
-          "nRan": 23,
-          "nDied": 67
-        },
-        {
-          "key": "session=ny-am",
-          "atRan": 33,
-          "atDied": 23.1,
-          "ratio": 1.43,
-          "nRan": 62,
-          "nDied": 86
-        },
-        {
-          "key": "dayPos=at-day-high",
-          "atRan": 23.9,
-          "atDied": 34.6,
-          "ratio": 0.7,
-          "nRan": 45,
-          "nDied": 129
+          "atRan": 13.1,
+          "atDied": 8.1,
+          "ratio": 1.62,
+          "nRan": 25,
+          "nDied": 30
         },
         {
           "key": "flow=bought-beyond-macro",
-          "atRan": 7.4,
-          "atDied": 5.4,
-          "ratio": 1.4,
+          "atRan": 7.3,
+          "atDied": 4.6,
+          "ratio": 1.61,
           "nRan": 14,
-          "nDied": 20
+          "nDied": 17
         },
         {
-          "key": "macro=macro-driven",
-          "atRan": 22.3,
-          "atDied": 16.4,
-          "ratio": 1.37,
-          "nRan": 42,
-          "nDied": 61
+          "key": "dayPos=mid",
+          "atRan": 11.5,
+          "atDied": 7.5,
+          "ratio": 1.53,
+          "nRan": 22,
+          "nDied": 28
+        },
+        {
+          "key": "vol=calm",
+          "atRan": 26.2,
+          "atDied": 17.3,
+          "ratio": 1.52,
+          "nRan": 50,
+          "nDied": 64
+        },
+        {
+          "key": "session=ny-pm",
+          "atRan": 12,
+          "atDied": 17.8,
+          "ratio": 0.68,
+          "nRan": 23,
+          "nDied": 66
+        },
+        {
+          "key": "session=ny-am",
+          "atRan": 34,
+          "atDied": 23.5,
+          "ratio": 1.45,
+          "nRan": 65,
+          "nDied": 87
         }
       ],
-      "bars": 5888
+      "bars": 5912
     }
   },
   "drift": {
     "XAU_USD": [
       {
         "key": "partner=partner-quiet",
-        "nowPct": 17.5,
+        "nowPct": 17.3,
         "thenPct": 32.4,
-        "changePct": -14.8,
-        "ratio": 0.54
+        "changePct": -15.1,
+        "ratio": 0.53
       },
       {
         "key": "partner=partner-agree",
-        "nowPct": 73.3,
+        "nowPct": 73.5,
         "thenPct": 58.8,
-        "changePct": 14.5,
+        "changePct": 14.7,
         "ratio": 1.25
       },
       {
         "key": "shift=relationship-broke",
-        "nowPct": 24.7,
+        "nowPct": 24.6,
         "thenPct": 15.1,
-        "changePct": 9.6,
-        "ratio": 1.64
+        "changePct": 9.5,
+        "ratio": 1.63
       },
       {
         "key": "macro=own-story",
-        "nowPct": 36.9,
+        "nowPct": 36.7,
         "thenPct": 28,
-        "changePct": 8.9,
-        "ratio": 1.32
+        "changePct": 8.8,
+        "ratio": 1.31
       },
       {
         "key": "macro=macro-mixed",
-        "nowPct": 32.5,
-        "thenPct": 39.1,
-        "changePct": -6.5,
+        "nowPct": 32.8,
+        "thenPct": 39.4,
+        "changePct": -6.6,
         "ratio": 0.83
       },
       {
         "key": "vol=hot",
-        "nowPct": 23.2,
-        "thenPct": 17.6,
-        "changePct": 5.6,
-        "ratio": 1.32
+        "nowPct": 22.6,
+        "thenPct": 17.8,
+        "changePct": 4.8,
+        "ratio": 1.27
       },
       {
         "key": "spike=spike",
-        "nowPct": 31.9,
+        "nowPct": 31.8,
         "thenPct": 36.1,
-        "changePct": -4.3,
+        "changePct": -4.4,
         "ratio": 0.88
       },
       {
@@ -2021,7 +2054,7 @@
         "nowPct": 11.9,
         "thenPct": 8.6,
         "changePct": 3.3,
-        "ratio": 1.39
+        "ratio": 1.38
       },
       {
         "key": "vol=calm",
@@ -2031,25 +2064,18 @@
         "ratio": 0.89
       },
       {
-        "key": "dayPos=at-day-low",
-        "nowPct": 16,
-        "thenPct": 18.4,
-        "changePct": -2.4,
-        "ratio": 0.87
-      },
-      {
         "key": "dayPos=at-day-high",
-        "nowPct": 26.8,
+        "nowPct": 26.7,
         "thenPct": 24.4,
         "changePct": 2.3,
-        "ratio": 1.1
+        "ratio": 1.09
       },
       {
-        "key": "stretch=far-below",
-        "nowPct": 13.8,
-        "thenPct": 16.1,
+        "key": "dayPos=at-day-low",
+        "nowPct": 16.1,
+        "thenPct": 18.4,
         "changePct": -2.3,
-        "ratio": 0.86
+        "ratio": 0.87
       },
       {
         "key": "dollar=dollar-inverse",
@@ -2060,46 +2086,53 @@
       },
       {
         "key": "stretch=mid",
-        "nowPct": 25.1,
-        "thenPct": 23.2,
-        "changePct": 1.9,
-        "ratio": 1.08
+        "nowPct": 25.2,
+        "thenPct": 23.1,
+        "changePct": 2,
+        "ratio": 1.09
       },
       {
-        "key": "pd=pd-high-swept",
-        "nowPct": 8.6,
-        "thenPct": 9.9,
-        "changePct": -1.3,
-        "ratio": 0.87
+        "key": "cdl=cdl-bear-medium",
+        "nowPct": 18.2,
+        "thenPct": 19.9,
+        "changePct": -1.7,
+        "ratio": 0.92
+      },
+      {
+        "key": "cdl=cdl-bull-medium",
+        "nowPct": 17.1,
+        "thenPct": 18.7,
+        "changePct": -1.6,
+        "ratio": 0.92
       }
     ],
     "XAG_USD": [
       {
         "key": "partner=partner-quiet",
-        "nowPct": 17.5,
+        "nowPct": 17.3,
         "thenPct": 32.4,
-        "changePct": -14.8,
-        "ratio": 0.54
+        "changePct": -15.1,
+        "ratio": 0.53
       },
       {
         "key": "partner=partner-agree",
-        "nowPct": 73.4,
+        "nowPct": 73.6,
         "thenPct": 58.8,
-        "changePct": 14.6,
+        "changePct": 14.7,
         "ratio": 1.25
       },
       {
         "key": "macro=macro-mixed",
-        "nowPct": 38.6,
-        "thenPct": 53,
-        "changePct": -14.4,
+        "nowPct": 38.9,
+        "thenPct": 53.1,
+        "changePct": -14.2,
         "ratio": 0.73
       },
       {
         "key": "macro=own-story",
-        "nowPct": 43.7,
+        "nowPct": 43.5,
         "thenPct": 32,
-        "changePct": 11.6,
+        "changePct": 11.5,
         "ratio": 1.36
       },
       {
@@ -2107,14 +2140,7 @@
         "nowPct": 14.6,
         "thenPct": 3.1,
         "changePct": 11.5,
-        "ratio": 4.7
-      },
-      {
-        "key": "vol=hot",
-        "nowPct": 28,
-        "thenPct": 17.6,
-        "changePct": 10.4,
-        "ratio": 1.59
+        "ratio": 4.69
       },
       {
         "key": "dollar=dollar-inverse",
@@ -2124,39 +2150,32 @@
         "ratio": 0.89
       },
       {
+        "key": "vol=hot",
+        "nowPct": 27.5,
+        "thenPct": 17.8,
+        "changePct": 9.7,
+        "ratio": 1.55
+      },
+      {
         "key": "shift=relationship-broke",
-        "nowPct": 19.8,
-        "thenPct": 12.7,
-        "changePct": 7.1,
-        "ratio": 1.56
+        "nowPct": 18.9,
+        "thenPct": 13,
+        "changePct": 5.9,
+        "ratio": 1.45
       },
       {
         "key": "stretch=far-above",
-        "nowPct": 28.5,
-        "thenPct": 22.2,
-        "changePct": 6.3,
-        "ratio": 1.29
+        "nowPct": 27.6,
+        "thenPct": 22.3,
+        "changePct": 5.3,
+        "ratio": 1.24
       },
       {
-        "key": "vol=normal",
-        "nowPct": 52.1,
-        "thenPct": 56.4,
-        "changePct": -4.3,
-        "ratio": 0.92
-      },
-      {
-        "key": "drive=ripping",
-        "nowPct": 30.7,
-        "thenPct": 26.6,
-        "changePct": 4.1,
-        "ratio": 1.16
-      },
-      {
-        "key": "macro=macro-driven",
-        "nowPct": 17.7,
-        "thenPct": 13.6,
-        "changePct": 4.1,
-        "ratio": 1.3
+        "key": "cdl=cdl-bull-medium",
+        "nowPct": 13.2,
+        "thenPct": 17.4,
+        "changePct": -4.2,
+        "ratio": 0.76
       },
       {
         "key": "spike=spike",
@@ -2166,119 +2185,141 @@
         "ratio": 0.89
       },
       {
-        "key": "stretch=far-below",
-        "nowPct": 13.8,
-        "thenPct": 17.8,
-        "changePct": -4,
-        "ratio": 0.77
+        "key": "macro=macro-driven",
+        "nowPct": 17.6,
+        "thenPct": 13.6,
+        "changePct": 4,
+        "ratio": 1.29
+      },
+      {
+        "key": "drive=ripping",
+        "nowPct": 30.5,
+        "thenPct": 26.6,
+        "changePct": 3.9,
+        "ratio": 1.15
+      },
+      {
+        "key": "vol=normal",
+        "nowPct": 52.5,
+        "thenPct": 56.2,
+        "changePct": -3.8,
+        "ratio": 0.93
       },
       {
         "key": "dayPos=at-day-low",
         "nowPct": 15.3,
         "thenPct": 19.1,
-        "changePct": -3.9,
+        "changePct": -3.8,
         "ratio": 0.8
       }
     ]
   },
   "now": {
     "XAU_USD": {
-      "at": 1787947200000,
-      "close": 4454.99,
-      "atr": 29.349,
+      "at": 1788444000000,
+      "close": 4485.365,
+      "atr": 21.532,
       "keys": [
-        "session=ny-pm",
-        "vol=hot",
-        "stretch=far-below",
-        "dayPos=at-day-low",
-        "drive=dropping",
+        "session=ny-am",
+        "vol=normal",
+        "stretch=far-above",
+        "dayPos=at-day-high",
+        "drive=ripping",
+        "pw=pw-low-swept",
+        "spike=spike",
         "partner=partner-agree",
+        "cdl=cdl-bull-medium",
         "macro=macro-mixed",
-        "dollar=dollar-inverse",
-        "flow=sold-beyond-macro"
+        "dollar=dollar-inverse"
       ],
       "plain": [
-        "New York afternoon",
-        "volatility running hot",
-        "far below the mean",
-        "at the day's low",
-        "falling hard",
+        "the London-New York overlap",
+        "normal volatility",
+        "far above the mean",
+        "at the day's high",
+        "ripping higher",
+        "last week's low taken and given back",
+        "a spike bar just printed",
         "the other metal agrees",
+        "a middling bullish candle pattern",
         "partly macro, partly its own",
-        "moving inverse to the dollar as usual",
-        "sold beyond what the macro explains"
+        "moving inverse to the dollar as usual"
       ],
       "firing": []
     },
     "XAG_USD": {
-      "at": 1787947200000,
-      "close": 66.355,
-      "atr": 0.9,
+      "at": 1788444000000,
+      "close": 66.754,
+      "atr": 0.504,
       "keys": [
-        "session=ny-pm",
-        "vol=hot",
-        "stretch=far-below",
-        "dayPos=at-day-low",
-        "drive=dropping",
+        "session=ny-am",
+        "vol=normal",
+        "stretch=far-above",
+        "dayPos=at-day-high",
+        "drive=ripping",
+        "pw=pw-low-swept",
+        "spike=spike",
         "partner=partner-agree",
+        "cdl=cdl-bull-strong",
         "macro=macro-mixed",
-        "dollar=dollar-inverse",
-        "flow=sold-beyond-macro"
+        "dollar=dollar-inverse"
       ],
       "plain": [
-        "New York afternoon",
-        "volatility running hot",
-        "far below the mean",
-        "at the day's low",
-        "falling hard",
+        "the London-New York overlap",
+        "normal volatility",
+        "far above the mean",
+        "at the day's high",
+        "ripping higher",
+        "last week's low taken and given back",
+        "a spike bar just printed",
         "the other metal agrees",
+        "a strong bullish candle pattern",
         "partly macro, partly its own",
-        "moving inverse to the dollar as usual",
-        "sold beyond what the macro explains"
+        "moving inverse to the dollar as usual"
       ],
       "firing": []
     }
   },
   "drivers": {
     "XAU_USD": {
-      "text": "only 31% of the last 10 days is explained by the dollar and the ten-year; the usual inverse move against the dollar is intact (-2.45); and falling when yields rise (-1.51), as it should; over the last 12 hours it is 2.1 standard deviations weaker than those two account for — somebody is selling gold itself",
-      "r2": 0.309,
-      "b1": -2.455,
-      "b2": -1.514,
-      "se1": 0.34,
-      "se2": 0.371,
+      "text": "only 33% of the last 10 days is explained by the dollar and the ten-year; the usual inverse move against the dollar is intact (-1.98); and falling when yields rise (-2.16), as it should",
+      "r2": 0.326,
+      "b1": -1.975,
+      "b2": -2.162,
+      "se1": 0.37,
+      "se2": 0.349,
       "n": 240,
       "dollarSig": true,
       "rateSig": true,
-      "push": -2.08,
+      "push": 0.87,
       "shift": {
-        "dollar": -1.14,
-        "rate": -0.92,
-        "r2Now": 0.309,
-        "r2Before": 0.311
+        "dollar": 1.99,
+        "rate": -2.92,
+        "r2Now": 0.326,
+        "r2Before": 0.365
       },
       "rateKind": "price",
-      "at": 1787947200000
+      "at": 1788444000000
     },
     "XAG_USD": {
-      "text": "only 26% of the last 10 days is explained by the dollar and the ten-year; the usual inverse move against the dollar is intact (-3.48); and falling when yields rise (-3.55), as it should; over the last 12 hours it is 2.1 standard deviations weaker than those two account for — somebody is selling gold itself",
-      "r2": 0.257,
-      "b1": -3.476,
-      "b2": -3.548,
-      "se1": 0.664,
-      "se2": 0.725,
+      "text": "only 28% of the last 10 days is explained by the dollar and the ten-year; the usual inverse move against the dollar is intact (-2.99); and falling when yields rise (-4.16), as it should",
+      "r2": 0.282,
+      "b1": -2.994,
+      "b2": -4.162,
+      "se1": 0.716,
+      "se2": 0.675,
       "n": 240,
       "dollarSig": true,
       "rateSig": true,
-      "push": -2.07,
+      "push": 0.08,
       "shift": {
-        "dollar": -1.11,
-        "rate": -1.79,
-        "r2Now": 0.257,
-        "r2Before": 0.218
+        "dollar": 0.87,
+        "rate": -2.93,
+        "r2Now": 0.282,
+        "r2Before": 0.249
       },
       "rateKind": "price",
-      "at": 1787947200000
+      "at": 1788444000000
     }
   },
   "macro": {
