@@ -967,7 +967,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788457816000,
-      "_kind": null,
       "dir": {
         "XAU/USD": "down",
         "EUR/USD": "up",
@@ -1042,7 +1041,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788456569000
+      "firstAt": 1788456569000,
+      "dir": {
+        "XAU/USD": "up",
+        "EUR/USD": "up",
+        "GBP/USD": "up"
+      },
+      "why": "Falling yields boost risk assets and gold"
     },
     {
       "title": "Oil prices rise on Middle East escalation - Reuters",
@@ -1953,7 +1958,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788439113000
+      "firstAt": 1788439113000,
+      "dir": {
+        "USD/JPY": "down"
+      },
+      "why": "Yen rally implies USD/JPY decline"
     },
     {
       "title": "US Initial Jobless claims 206K vs 205K estimate",
@@ -2026,7 +2035,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788437201000,
+      "firstAt": 1788438216000,
       "why": "Political rhetoric, no clear market impact"
     },
     {
@@ -2146,32 +2155,6 @@
       "why": "Escalation fears boost safe havens, oil"
     },
     {
-      "title": "Iran strikes hit Gulf countries as Trump predicts Iran’s regime collapse - NewsNation",
-      "link": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxPY1lxaHNmQUx0bk9wMDFDb3ZjLUJBU1dUQTdQSllsb0V1N2p1V3pvc2JfcDJ3ZkhzeU5zNGxoSzBEUGtIMl9pbzhQVUc4S0lCaVluZ2I0eU91UHg2dlBrSk54d2FZbHoyUEhQTWFrRTVYM09saTBrVkwxVGZBRTJvaF9nX0g3Sm1fWnQ5cXNObU1JSzJEallzT1FDLWxHZHRHWHpwMmxyR1dHUzVZcDZFUzhld3Noalph?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiuAFBVV95cUxPY1lxaHNmQUx0bk9wMDFDb3ZjLUJBU1dUQTdQSllsb0V1N2p1V3pvc2JfcDJ3ZkhzeU5zNGxoSzBEUGtIMl9pbzhQVUc4S0lCaVluZ2I0eU91UHg2dlBrSk54d2FZbHoyUEhQTWFrRTVYM09saTBrVkwxVGZBRTJvaF9nX0g3Sm1fWnQ5cXNObU1JSzJEallzT1FDLWxHZHRHWHpwMmxyR1dHUz",
-      "at": 1788437201000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788436568000,
-      "dir": {
-        "XAU/USD": "up",
-        "USOIL": "up",
-        "UKOIL": "up"
-      },
-      "why": "Strikes and regime collapse fears"
-    },
-    {
       "title": "Iran bets on shadow networks to evade US sanctions - dw.com",
       "link": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxPcGVMUzJtZi1FLVU1eTI3RThwb3Y3bW8yVlFNWWtyR05oazlLVmhsc3gtWGhlZ3cxRHVCeENCRGpuX2s2cDNJR0lnZk1CZVJsLVlhYTh4VXhkY19jNm9KcVhudE95NXlLZ21tN2h5M1BNcXNJU0JXYzhmN3UtN0planlHX0VRams2TGJr?oc=5",
       "source": "Wires (geo)",
@@ -2261,32 +2244,6 @@
       "why": "Iran attack escalates risk, boosts safe havens"
     },
     {
-      "title": "A Spiral of Escalation for Russia and Ukraine, With No End in Sight - The New York Times",
-      "link": "https://news.google.com/rss/articles/CBMihAFBVV95cUxPNUZtY0wxMXk4ZGF2UVlUREFBLWgyMEVQQ0lfaWRfVFdzdjNZT3p6M0wzYWV4a21oNW0wUjBqV3NVbTNfb2luUS1QZGNyM1gxb0puUENzQkEtUDY3TGhGdEJSV2MtM1BFVmVMSlhNa3hWS1docmpSUzk3Z1JVQUt0UFJDY2c?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMihAFBVV95cUxPNUZtY0wxMXk4ZGF2UVlUREFBLWgyMEVQQ0lfaWRfVFdzdjNZT3p6M0wzYWV4a21oNW0wUjBqV3NVbTNfb2luUS1QZGNyM1gxb0puUENzQkEtUDY3TGhGdEJSV2MtM1BFVmVMSlhNa3hWS1docmpSUzk3Z1JVQUt0UFJDY2c?oc=5\" target=\"_blank\">A Spiral of Escalation for R",
-      "at": 1788435344000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788435344000,
-      "dir": {
-        "XAU/USD": "up",
-        "USOIL": "up",
-        "UKOIL": "up"
-      },
-      "why": "Russia-Ukraine escalation, risk premium rises"
-    },
-    {
       "title": "Stocks making the biggest moves premarket: Snowflake, Moderna, Broadcom & more",
       "link": "https://www.cnbc.com/2026/09/03/stocks-making-the-biggest-moves-premarket-snow-mrna-avgo.html",
       "source": "CNBC Markets",
@@ -2339,6 +2296,48 @@
       "srcs": 1,
       "firstAt": 1788435181000,
       "why": "Warning of concerns, no immediate move"
+    },
+    {
+      "title": "‘Not normal behavior’: De Nederlandsche Bank reallocates gold from U.S. - Fortune",
+      "link": "https://news.google.com/rss/articles/CBMijAFBVV95cUxNZTlJNktFdWY5RFRQRGtMUG9PN1d3dExzTHBRTWRReGRlaTdzOFNJazU4NUctNWNIcjNVTUppcWthTWFTNWRqaUw5OFdEbFN6Z3FHMGlOQk9PNk4ySy1lNmxLbGdYeW5ZNzVmMExSaXB3NE8wR2N6US1CcTFZSUtfdEJSc05obVNHQlpxUg?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMijAFBVV95cUxNZTlJNktFdWY5RFRQRGtMUG9PN1d3dExzTHBRTWRReGRlaTdzOFNJazU4NUctNWNIcjNVTUppcWthTWFTNWRqaUw5OFdEbFN6Z3FHMGlOQk9PNk4ySy1lNmxLbGdYeW5ZNzVmMExSaXB3NE8wR2N6US1CcTFZSUtfdEJSc05obVNHQlpxUg?oc=5\" target=\"_blank\">‘Not normal behav",
+      "at": 1788434940000,
+      "inst": [
+        "XAU/USD"
+      ],
+      "ccy": [
+        "XAU"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788434940000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Central bank gold reallocation, bullish signal"
+    },
+    {
+      "title": "China hits back at G20 statement on its reliance on exports, accusing them of 'promoting protectionism'",
+      "link": "https://www.cnbc.com/2026/09/03/china-g20-exports-trade.html",
+      "source": "CNBC Markets",
+      "desc": "China rejected G20 pressure over export-driven growth while also challenging U.S. Iran sanctions and European trade measures.",
+      "at": 1788433974000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788433974000,
+      "why": "Diplomatic dispute, no clear price direction"
     }
   ],
   "sources": [
@@ -2364,7 +2363,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-03T19:47:34.591Z",
-  "headlinesAt": "2026-09-03T19:47:34.591Z",
-  "updatedAt": "2026-09-03T19:47:34.591Z"
+  "calendarAt": "2026-09-03T19:50:33.770Z",
+  "headlinesAt": "2026-09-03T19:50:33.770Z",
+  "updatedAt": "2026-09-03T19:50:33.770Z"
 }
