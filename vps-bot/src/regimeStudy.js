@@ -75,7 +75,13 @@ const MACRO = pathToFileURL(path.join(__dirname, '..', '..', 'shared', 'macroFit
 //   3 — the dollar and the ten-year enter as conditions: how much of the metal
 //       is macro-explained, whether its dollar relationship is the normal one
 //       or has broken, and how far it has moved beyond what the two account for.
-const METHOD_VERSION = 3;
+//   4 — candles enter, as two separate questions. The strict sweep-and-reclaim
+//       hammer and star, and the app's 34-pattern registry graded by its own
+//       strength label instead of flattened into bullish/bearish/doji the way
+//       the strategy builder flattens it. Conditions too rare or too common to
+//       test are now reported rather than silently dropped, because "it fired
+//       thirty-one times in a year" is a different answer from "it failed".
+const METHOD_VERSION = 4;
 
 const TF = 'H1';
 const RECENT_DAYS = 365;        // "these days"
@@ -88,6 +94,7 @@ const STOP_ATR    = 1.0;        // one ATR, fixed; a stop grid here would be
 const DIRS = ['up', 'down'];
 
 const MIN_A = 30;               // entries needed on the search half to be a candidate
+const MIN_SEEN = 150;           // discovery bars a condition must occur on to be testable
 const MIN_B = 20;               // entries needed on the holdout to say anything at all
 const CARRY = 12;               // how many candidates reach the holdout — this is the
                                 // number the holdout is corrected for, and it is small
@@ -546,8 +553,25 @@ async function runRegimeStudy({ oanda, log = () => {}, now = Date.now(),
   // and it will score exactly the baseline. One true on nearly no bar cannot be
   // measured. Both ends are dropped before the search rather than after, so
   // neither inflates the number of tests the holdout is corrected for.
+  //
+  // What gets dropped is now REPORTED rather than silently discarded. "A strong
+  // hammer fired thirty-one times in a year, which is too few to measure" is a
+  // real answer to whether it is worth a toggle in the strategy builder, and it
+  // is a different answer from "it was tested and it failed". Without this the
+  // two are indistinguishable from the outside — the condition simply never
+  // appears, and absence reads as rejection.
+  const untested = [...seen.entries()]
+    .filter(([, n]) => n < MIN_SEEN || n > 0.8 * discBars)
+    .map(([k, n]) => ({
+      key: k,
+      n,
+      why: n < MIN_SEEN ? 'too rare to measure' : 'true on most bars — that is the market, not a condition',
+      pct: +((n / Math.max(1, discBars)) * 100).toFixed(2),
+    }))
+    .sort((a, b) => b.n - a.n);
+
   const singles = [...seen.entries()]
-    .filter(([, n]) => n >= 150 && n <= 0.8 * discBars)
+    .filter(([, n]) => n >= MIN_SEEN && n <= 0.8 * discBars)
     .map(([k]) => ({ all: [k] }));
 
   const searched = [];
@@ -683,6 +707,8 @@ async function runRegimeStudy({ oanda, log = () => {}, now = Date.now(),
     },
     rules: carried,
     tally,
+    untested,
+    discBars,
     anatomy: anat,
     drift: drifts,
     now: nowState,
@@ -702,5 +728,5 @@ module.exports = {
   // and the verdict are the four places this could quietly fake a result.
   sideOf, blockOf, entriesOf, welch, zFor, verdictOf, noveltyOf, anatomy, drift,
   BLOCK_MS, HOLDS, STOP_ATR, MIN_A, MIN_B, CARRY, METALS, TF,
-  ZIGZAG_K, BIG_LEG, SMALL_LEG, METHOD_VERSION,
+  ZIGZAG_K, BIG_LEG, SMALL_LEG, METHOD_VERSION, MIN_SEEN,
 };

@@ -28,12 +28,14 @@
 // shared/feedConditions.mjs already takes.
 
 import { macroBuckets, MACRO_PHRASE } from './macroFit.mjs';
+import { patternsAt, PATTERN_MAP, detectStrongReversal } from './candlePatterns.mjs';
 
 export const ATR_LEN = 14;
 export const EMA_LEN = 50;
 export const DRIVE_BARS = 12;      // half a day on H1 — the run into now
 export const SWEEP_BARS = 3;       // how recently a level had to be taken
 export const VOL_LOOKBACK = 480;   // ~20 trading days of H1, for the vol regime
+export const REV_N = 5;            // the prior range a strong reversal must clear
 
 // ── Series ──────────────────────────────────────────────────────────────────
 
@@ -289,6 +291,44 @@ export function featureSeries(cs, { sym = null, partner = null, macro = null } =
     const pdSweep = swept(day.prevHi, day.prevLo);
     const pwSweep = swept(wk.prevHi, wk.prevLo);
 
+    // ── Candles ─────────────────────────────────────────────────────────────
+    //
+    // Two separate questions, so they get two separate keys and the holdout can
+    // answer them apart.
+    //
+    // `rev` is the strict test: the wick clears the entire prior five-bar range
+    // and the close comes back inside it. A sweep with a reclaim.
+    //
+    // `cdl` is the loose one — the app's 34-pattern registry — but graded by
+    // the registry's OWN strength label rather than flattened. The strategy
+    // builder currently collapses all 34 into bullish / bearish / doji, so a
+    // Bullish Harami the registry calls weak passes the same filter as a
+    // Bullish Kicker it calls strong. If that label means nothing the two
+    // buckets will score the same, and that is worth knowing either way.
+    const rev = detectStrongReversal(cs, i, REV_N);
+
+    // A bar can complete several patterns at once. Both directions at once is
+    // not a weak signal, it is a contradictory one, and averaging it into
+    // whichever happens to be listed first would hide that.
+    let cdl = null;
+    const ids = patternsAt(cs, i);
+    if (ids.length) {
+      const rank = { weak: 1, medium: 2, strong: 3 };
+      let bull = null, bear = null;
+      let indecision = false;
+      for (const id of ids) {
+        const m = PATTERN_MAP[id];
+        if (!m) continue;
+        if (m.signal === 'indecision') indecision = true;
+        if (m.type === 'bullish' && (!bull || rank[m.strength] > rank[bull.strength])) bull = m;
+        if (m.type === 'bearish' && (!bear || rank[m.strength] > rank[bear.strength])) bear = m;
+      }
+      if (bull && bear) cdl = 'cdl-conflict';
+      else if (bull) cdl = `cdl-bull-${bull.strength}`;
+      else if (bear) cdl = `cdl-bear-${bear.strength}`;
+      else if (indecision) cdl = 'cdl-indecision';
+    }
+
     // What the dollar and the ten-year account for, and what they do not.
     // Absent when no macro series was supplied — which is a real state, not a
     // reason to invent one.
@@ -299,7 +339,7 @@ export function featureSeries(cs, { sym = null, partner = null, macro = null } =
       hour, dow: d.getUTCDay(), session: sessionOf(hour),
       volRel, stretch, dayPos, drive,
       pdSweep, pwSweep,
-      spike, partner: partnerState, atRound,
+      spike, partner: partnerState, atRound, rev, cdl,
       // The labels the study counts.
       b: {
         session: sessionOf(hour),
@@ -315,6 +355,8 @@ export function featureSeries(cs, { sym = null, partner = null, macro = null } =
         spike: spike ? 'spike' : null,
         partner: partnerState ? `partner-${partnerState}` : null,
         round: atRound ? 'at-round' : null,
+        rev: rev ? `strong-${rev}` : null,
+        cdl,
         macro: mb.macro, dollar: mb.dollar, flow: mb.flow, shift: mb.shift,
       },
     };
@@ -365,6 +407,16 @@ export const PHRASE = {
   'partner=partner-diverge': 'the other metal is going the other way',
   'partner=partner-quiet': 'the other metal is quiet',
   'round=at-round': 'sitting on a round number',
+  'rev=strong-hammer': 'a strong hammer — the five-bar low swept and reclaimed',
+  'rev=strong-star': 'a strong shooting star — the five-bar high swept and rejected',
+  'cdl=cdl-bull-strong': 'a strong bullish candle pattern',
+  'cdl=cdl-bull-medium': 'a middling bullish candle pattern',
+  'cdl=cdl-bull-weak': 'a weak bullish candle pattern',
+  'cdl=cdl-bear-strong': 'a strong bearish candle pattern',
+  'cdl=cdl-bear-medium': 'a middling bearish candle pattern',
+  'cdl=cdl-bear-weak': 'a weak bearish candle pattern',
+  'cdl=cdl-conflict': 'bullish and bearish candle patterns at once',
+  'cdl=cdl-indecision': 'a doji or spinning top',
   'session=asia': 'Asian session', 'session=london': 'London session',
   'session=ny-am': 'the London-New York overlap', 'session=ny-pm': 'New York afternoon',
   'session=late': 'after the New York close',

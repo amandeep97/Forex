@@ -10,7 +10,13 @@ const check = (n, c, e='') => { console.log(`${c?'  ok  ':'  FAIL'}  ${n}${e?' â
 // Reference = the ORIGINAL implementation, reconstructed from the same
 // _detectOnWindow the module uses, so this compares behaviour and not a copy
 // of the new code.
-const src = readFileSync(`${ROOT}src/utils/candlePatterns.js`, 'utf8');
+//
+// Read from shared/, which is where the detection lives now.
+// src/utils/candlePatterns.js is a re-export shim, and loading a shim as a
+// data: URL cannot work â€” a data: module has no directory to resolve
+// '../../shared/...' against. patternsAt is still imported through the shim at
+// the top of this file, so the shim itself stays covered.
+const src = readFileSync(`${ROOT}shared/candlePatterns.mjs`, 'utf8');
 const refMod = await import('data:text/javascript,' + encodeURIComponent(
   src.replace(
     'return _detectOnWindow(candles.slice(Math.max(0, i - PATTERN_LOOKBACK), i + 1))',
