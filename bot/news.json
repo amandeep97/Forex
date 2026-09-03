@@ -456,7 +456,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788459840000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "EUR/USD": "up",
+        "GBP/USD": "up"
+      },
+      "why": "Fed hold expectations boost risk assets"
     },
     {
       "title": "The Fed Priced Out Half a Hike. Gold Barely Moved. - GoldSilver",
@@ -475,7 +481,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788456780000,
-      "_kind": null
+      "_kind": null,
+      "why": "Gold unchanged despite Fed pricing"
     },
     {
       "title": "Tesla, Snowflake among market cap stock movers on Thursday",
@@ -596,7 +603,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788457603000,
-      "_kind": null
+      "_kind": null,
+      "why": "Geopolitical news lacks clear market direction"
     },
     {
       "title": "AngloGold Ashanti Rises as Gold Prices Rebound and Rate-Hike Fears Ease - Quiver Quantitative",
@@ -666,7 +674,13 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1788456468000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Middle East escalation boosts oil and gold"
     },
     {
       "title": "Trump calls media ‘treasonous scum’ over reports of low Iran war munitions",
@@ -1068,7 +1082,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788447680000
+      "firstAt": 1788447680000,
+      "why": "Sanctions news unclear for markets"
     },
     {
       "title": "Trump $1 coin makes him first living president on US currency in a century",
@@ -1122,7 +1137,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788448388000
+      "firstAt": 1788448388000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Iran retaliation boosts oil and gold"
     },
     {
       "title": "Beijing urges US to lift Iran-related sanctions on Chinese companies - A News",
@@ -1142,7 +1163,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788448020000
+      "firstAt": 1788448020000,
+      "why": "Sanctions news unclear for markets"
     },
     {
       "title": "Palestinian teens killed during settler attack on West Bank village, officials say",
@@ -1183,7 +1205,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788447680000
+      "firstAt": 1788447680000,
+      "why": "Sanctions news unclear for markets"
     },
     {
       "title": "Gold jumps 2% as Fed Governor Waller's comments cool rate hike bets - TradingView",
@@ -1201,7 +1224,40 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788447543000
+      "firstAt": 1788447543000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Gold jumps on cooler rate bets"
+    },
+    {
+      "title": "Cryptos Rise As Markets Tone Down Fed Rate Hike Bets - RTTNews",
+      "link": "https://news.google.com/rss/articles/CBMikwFBVV95cUxQNVU2amVjV0VwcHc5UThoM242STA2bU93MGFoN3JjTXFSWHYtSHpxMHZVZEJ1MGhEWTFNRnlGbTgxLXVrbnRFNGd2X3NuR2hvRDdZR1k2WmRWYjV6Z1dqb05pX2l6SnNHbEZSSUZyT3B5eVZRZ21YZmpqNW4xZEhWRGViZ3FHaUdZLXpZNWtsRHN5MU0?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMikwFBVV95cUxQNVU2amVjV0VwcHc5UThoM242STA2bU93MGFoN3JjTXFSWHYtSHpxMHZVZEJ1MGhEWTFNRnlGbTgxLXVrbnRFNGd2X3NuR2hvRDdZR1k2WmRWYjV6Z1dqb05pX2l6SnNHbEZSSUZyT3B5eVZRZ21YZmpqNW4xZEhWRGViZ3FHaUdZLXpZNWtsRHN5MU0?oc=5\" target=\"_blank\">Cryptos ",
+      "at": 1788447180000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788447180000,
+      "dir": {
+        "XAU/USD": "up",
+        "EUR/USD": "up",
+        "GBP/USD": "up"
+      },
+      "why": "Risk-on tone boosts gold and FX"
     },
     {
       "title": "World in Brief: Trump says Iran strikes won’t last long; Nvidia buys Hugging Face - The Economist",
@@ -1221,7 +1277,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788446933000
+      "firstAt": 1788446933000,
+      "why": "Mixed news unclear for direction"
     },
     {
       "title": "Iranian drone damages residential building in Kuwait City",
@@ -1267,7 +1324,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788445814000
+      "firstAt": 1788445814000,
+      "why": "Assassination attempt unclear for markets"
     },
     {
       "title": "Miners power Canada's TSX; markets assess rate-hike bets - marketscreener.com",
@@ -1284,7 +1342,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788445731000
+      "firstAt": 1788445731000,
+      "why": "Miners boost TSX, CAD direction unclear"
     },
     {
       "title": "Gold gains 2% as weaker dollar, easing yields lift bullion ahead of jobs data",
@@ -1325,7 +1384,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788445714000
+      "firstAt": 1788445714000,
+      "why": "Ukraine attacks unclear for markets"
     },
     {
       "title": "Yen surge drives dollar lower as traders reassess BOJ, Fed rate paths",
@@ -1364,7 +1424,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788444607000
+      "firstAt": 1788444607000,
+      "dir": {
+        "EUR/USD": "up"
+      },
+      "why": "Euro gains as Waller tempers hike bets"
     },
     {
       "title": "Gold Holds Gain as Trump’s War Comments Ease Inflation Jitters - Bloomberg.com",
@@ -1432,25 +1496,6 @@
         "GBP/USD": "down"
       },
       "why": "Strong US data boosts dollar"
-    },
-    {
-      "title": "Dow, S&P 500, Nasdaq jump as easing Treasury yields lower Fed’s rate hike bets; Salesforce, Microsoft, Meta among gainers - Upstox",
-      "link": "https://news.google.com/rss/articles/CBMijwJBVV95cUxNbG5KREt3bXpoakJrbnZOcklxRFQwQk1TRXd2YW56OHJEMnlTQm12bExmbU5QbjhaSUc4SHZRcUVDdEtDNF94VmdtSEM1ZjNMR1ZvRnk2cVB2MjcwOVZyZk5DakxPWWM0eVZSSXRES1RJY2tyWEdiVWxBd1h5eWZ1NE5XWTZObll4Q1VBSG44R2w5X1VMYUxLTE1qamprWWMzQXNuaTdlbDVzeVhWQkROaDV2eFpxeXlJMWdNdmp6NTlPZ3l2SGJYYl9kcEVqMDktVjRTNVFrTVhUVTZLZFhGVlA0aEtSVlYyNGVBREZhRm8za1ZtaldVUEJFQkk0ckZMcUdUR2ZYNEZvOVZWb2Fj?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMijwJBVV95cUxNbG5KREt3bXpoakJrbnZOcklxRFQwQk1TRXd2YW56OHJEMnlTQm12bExmbU5QbjhaSUc4SHZRcUVDdEtDNF94VmdtSEM1ZjNMR1ZvRnk2cVB2MjcwOVZyZk5DakxPWWM0eVZSSXRES1RJY2tyWEdiVWxBd1h5eWZ1NE5XWTZObll4Q1VBSG44R2w5X1VMYUxLTE1qamprWWMzQXNuaTdlbDVzeV",
-      "at": 1788443606000,
-      "inst": [
-        "US500",
-        "US100",
-        "US30"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788443606000
     },
     {
       "title": "Middle East escalation deepens as Iran targets Gulf allies - Plataforma Media",
@@ -1734,6 +1779,29 @@
       "srcs": 1,
       "firstAt": 1788438782000,
       "why": "Data in line with expectations"
+    },
+    {
+      "title": "Treasury yields fall after top Fed official signals support for rate hold - Financial Times",
+      "link": "https://news.google.com/rss/articles/CBMihAFBVV95cUxONV9sN1lwMEpHa3MwdV9WQWRFQ1UwZzJycnNxM25DZU45WVhEZGdqN3EyU3pBYkw3WnlvS1FkekplTFdUNUdHel9xa0JBeGJWOS1IdlE5OEdKNzhFc0VOb3F1dHF4RURUMWZhektSemRTVzZ2V3U2OEttVTA5aVlQbHJGc04?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMihAFBVV95cUxONV9sN1lwMEpHa3MwdV9WQWRFQ1UwZzJycnNxM25DZU45WVhEZGdqN3EyU3pBYkw3WnlvS1FkekplTFdUNUdHel9xa0JBeGJWOS1IdlE5OEdKNzhFc0VOb3F1dHF4RURUMWZhektSemRTVzZ2V3U2OEttVTA5aVlQbHJGc04?oc=5\" target=\"_blank\">Treasury yields fall after t",
+      "at": 1788438623000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788438623000
     },
     {
       "title": "IA Protection Advocacy Brief - Escalation in the Middle East and Beyond, September 2026 - ReliefWeb",
@@ -2065,7 +2133,7 @@
       "firstAt": 1788435000000
     },
     {
-      "title": "‘Not normal behavior’: De Nederlandsche Bank reallocates gold from U.S. - fortune.com",
+      "title": "‘Not normal behavior’: De Nederlandsche Bank reallocates gold from U.S. - Fortune",
       "link": "https://news.google.com/rss/articles/CBMijAFBVV95cUxNZTlJNktFdWY5RFRQRGtMUG9PN1d3dExzTHBRTWRReGRlaTdzOFNJazU4NUctNWNIcjNVTUppcWthTWFTNWRqaUw5OFdEbFN6Z3FHMGlOQk9PNk4ySy1lNmxLbGdYeW5ZNzVmMExSaXB3NE8wR2N6US1CcTFZSUtfdEJSc05obVNHQlpxUg?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMijAFBVV95cUxNZTlJNktFdWY5RFRQRGtMUG9PN1d3dExzTHBRTWRReGRlaTdzOFNJazU4NUctNWNIcjNVTUppcWthTWFTNWRqaUw5OFdEbFN6Z3FHMGlOQk9PNk4ySy1lNmxLbGdYeW5ZNzVmMExSaXB3NE8wR2N6US1CcTFZSUtfdEJSc05obVNHQlpxUg?oc=5\" target=\"_blank\">‘Not normal behav",
@@ -2260,26 +2328,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788425330000
-    },
-    {
-      "title": "Iran strikes Kuwait in retaliation for U.S. bombardments, and other Mideast news - MS NOW",
-      "link": "https://news.google.com/rss/articles/CBMihgFBVV95cUxQbi1ya1ZZQW5tUS1iWnYtQWxoYmpNWlNTT1otT3dReU9mbEJvdm9wOFJnM3dELW9IYS1lOWFWR2l6MFZIOTVYdkVXd0pBODlEUkVvT2RLMF9DSWs5LVp5eDU2R0lOVVFlaTNEalBtSE5Jay16a0o0V1oyV1JkcFdwaXUyV3JpUQ?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMihgFBVV95cUxQbi1ya1ZZQW5tUS1iWnYtQWxoYmpNWlNTT1otT3dReU9mbEJvdm9wOFJnM3dELW9IYS1lOWFWR2l6MFZIOTVYdkVXd0pBODlEUkVvT2RLMF9DSWs5LVp5eDU2R0lOVVFlaTNEalBtSE5Jay16a0o0V1oyV1JkcFdwaXUyV3JpUQ?oc=5\" target=\"_blank\">Iran strikes Kuwait in re",
-      "at": 1788424779000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788424779000
     }
   ],
   "sources": [
@@ -2305,7 +2353,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-03T18:29:19.860Z",
-  "headlinesAt": "2026-09-03T18:29:19.860Z",
-  "updatedAt": "2026-09-03T18:29:19.860Z"
+  "calendarAt": "2026-09-03T18:32:24.140Z",
+  "headlinesAt": "2026-09-03T18:32:24.140Z",
+  "updatedAt": "2026-09-03T18:32:24.140Z"
 }
