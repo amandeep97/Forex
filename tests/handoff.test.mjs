@@ -16,9 +16,14 @@ check('  → daily timeframe',          t1.config.timeframe === 'D');
 check('  → tpMethod trail',           t1.config.risk.tpMethod === 'trail');
 check('  → trailAtr carried',         t1.config.risk.trailAtr === 5, String(t1.config.risk.trailAtr));
 check('  → 2 ATR stop',               t1.config.risk.slMethod === 'atr' && t1.config.risk.slAtr === 2);
-check('  → bullish candle family',    t1.config.conditions.candlePattern === 'bullish');
+// The bot can now name one pattern, so this is a translation and not a
+// widening. It used to become the whole bullish family with a warning that the
+// bot would take more trades than the backtest did.
+check('  → the exact pattern carries',t1.config.conditions.candlePattern === 'bull_engulf',
+  String(t1.config.conditions.candlePattern));
 check('  → arrives disabled',         t1.config.enabled === false);
-check('  → widening flagged',         has(t1, 'approximate', 'bull_engulf'));
+check('  → and is no longer flagged as a widening',
+  !has(t1, 'approximate', 'bull_engulf'));
 check('  → VPS dependency flagged',   has(t1, 'approximate', 'VPS'));
 check('  → structure filter flagged', has(t1, 'approximate', 'ranging'));
 
@@ -65,14 +70,36 @@ for (const cond of [
 // Conditions the bot genuinely cannot express must block, not approximate.
 for (const [type, cond] of Object.entries({
   ma_cross: { type:'ma_cross', period:20, period2:50, maType:'ema', op:'bullishCross' },
-  macd:     { type:'macd', op:'crossUp' },
-  strong_rev:{ type:'strong_rev', op:'bullish', n:5 },
   stretch:  { type:'stretch', period:50, op:'below', value:2 },
   dom:      { type:'dom', op:'turn' },
 })) {
   const t = translateToBot({ conditions:[cond], exitType:'rr', rrRatio:2, slType:'atr', slAtr:2 },
     { symbol:'XAU/USD', timeframe:'D' });
   check(`${type} blocks the handoff`, t.ok === false && t.blockers.length >= 1);
+}
+
+// The two the bot used to refuse. It now has a switch for each, so a strategy
+// found in the Backtester on a strong hammer hands over as a strong hammer
+// rather than being turned away at the door.
+{
+  const m = translateToBot({ conditions:[{ type:'macd', op:'crossUp' }],
+    exitType:'rr', rrRatio:2, slType:'atr', slAtr:2 }, { symbol:'XAU/USD', timeframe:'D' });
+  check('MACD now hands over', m.ok === true, m.blockers.map(b => b.what).join(','));
+  check('  → as the cross, not as a state',
+    m.config.conditions.macdFilter?.enabled === true
+    && m.config.conditions.macdFilter?.mode === 'cross_up');
+  const bad = translateToBot({ conditions:[{ type:'macd', op:'zeroCross' }],
+    exitType:'rr', rrRatio:2, slType:'atr', slAtr:2 }, { symbol:'XAU/USD', timeframe:'D' });
+  check('  → and a MACD trigger it cannot express still blocks',
+    bad.ok === false,
+    'falling through to "above" would hand over a state where a trigger was tested');
+
+  const r = translateToBot({ conditions:[{ type:'strong_rev', op:'bullish', n:7 }],
+    exitType:'rr', rrRatio:2, slType:'atr', slAtr:2 }, { symbol:'XAU/USD', timeframe:'D' });
+  check('a strong reversal now hands over', r.ok === true, r.blockers.map(b => b.what).join(','));
+  check('  → a bullish sweep is the hammer, with its range length',
+    r.config.conditions.candlePattern === 'strong_hammer' && r.config.conditions.candleN === 7,
+    `${r.config.conditions.candlePattern}, n=${r.config.conditions.candleN}`);
 }
 
 // EMA200 is the one filter that maps exactly.

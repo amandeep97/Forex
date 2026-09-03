@@ -24,19 +24,31 @@ engulf[28] = { t:engulf[28].t, o:101, h:101.2, l:99.8, c:100.0, v:100 };   // do
 engulf[29] = { t:engulf[29].t, o:99.9, h:101.6, l:99.7, c:101.4, v:100 };  // engulfs it
 
 (async () => {
-  check('bullish engulfing passes a bullish filter', await bot._checkCandlePattern(engulf, 'bullish') === true);
-  check('bullish engulfing fails a bearish filter', await bot._checkCandlePattern(engulf, 'bearish') === false);
-  check('"any" passes without loading anything',    await bot._checkCandlePattern(engulf, 'any') === true);
-  check('flat bars fail a bullish filter',          await bot._checkCandlePattern(base(30), 'bullish') === false);
+  // The candle filter moved into shared/strategyFilters.mjs, so the bot now
+  // asks one module for candles, MACD, Bollinger, stochastic and ADX together.
+  // What is checked here is the BOT's side of that: it delegates, and it fails
+  // closed when the module will not load.
+  const F = (cs, conditions) => bot._checkIndicatorFilters(cs, conditions);
 
-  // The filter must be closed, not open, when it cannot be evaluated.
+  check('bullish engulfing passes a bullish filter',
+    (await F(engulf, { candlePattern: 'bullish' })).pass === true);
+  check('bullish engulfing fails a bearish filter',
+    (await F(engulf, { candlePattern: 'bearish' })).pass === false);
+  check('"any" passes without loading anything',
+    (await F(engulf, { candlePattern: 'any' })).pass === true);
+  check('flat bars fail a bullish filter',
+    (await F(base(30), { candlePattern: 'bullish' })).pass === false);
+  check('a strategy with no indicator filters set does no work at all',
+    (await F(base(30), {})).pass === true);
+
+  // The filter must be closed, not open, when it cannot be evaluated. An
+  // unloadable module that passed would place trades the strategy explicitly
+  // asked not to place, and the screen would still say it was filtering.
   const broken = new (require(`${ROOT}vps-bot/src/bot.js`).ForexBot)({ FEED_ENABLED:'false' });
   broken.warn = () => {};
-  broken._patterns = null;
-  const realImport = broken._checkCandlePattern;
-  // Simulate an unloadable module by pointing the cache at a rejecting thenable
-  Object.defineProperty(broken, '_patterns', { get(){ throw new Error('boom'); }, set(){}, configurable:true });
-  check('unloadable pattern module fails closed', await realImport.call(broken, engulf, 'bullish') === false);
+  Object.defineProperty(broken, '_filters', { get(){ throw new Error('boom'); }, set(){}, configurable:true });
+  const failed = await broken._checkIndicatorFilters(engulf, { candlePattern: 'bullish' });
+  check('unloadable filter module fails closed', failed.pass === false);
 
   // ── EMA filter ───────────────────────────────────────────────────────────
   const rising = Array.from({length:120}, (_,i) => ({ t:i*86400e3, o:100+i*0.1, h:100+i*0.1, l:100+i*0.1, c:100+i*0.1, v:1 }));

@@ -3,6 +3,8 @@ import { ghRead, ghWrite, isGithubConfigured } from '../utils/githubSync';
 import ChartModal from './ChartModal';
 import { getIMSignals, IM_DEFS } from '../utils/intermarket';
 import { takeStagedBotStrategy } from '../utils/strategyToBot';
+import { checkIndicatorFilters } from '../../shared/strategyFilters.mjs';
+import { CANDLE_PATTERNS } from '../../shared/candlePatterns.mjs';
 
 // ── SMC engine (browser port of vps-bot/src/smc.js) ──────────────────────────
 
@@ -217,6 +219,13 @@ async function scanPair(pair, strat) {
       const ok  = (dir === 'long') ? liq.bull : (dir === 'short') ? liq.bear : (liq.bull || liq.bear);
       if (!ok) return { pair, pass: false, reason: 'No liquidity sweep detected', rsi, structure };
     }
+
+    // Candles, MACD, Bollinger, stochastic, ADX — the same module the bot
+    // calls, so this preview cannot say a pair matched when the bot would have
+    // refused it, or explain a reason the bot never checked.
+    const ind = checkIndicatorFilters(cs, cond);
+    if (!ind.pass)
+      return { pair, pass: false, reason: ind.first.why, rsi, structure };
 
     // Build trade params for auto-execute
     const resolvedDir = (dir === 'both') ? (structure === 'bullish' ? 'LONG' : 'SHORT') : dir.toUpperCase();
@@ -442,7 +451,11 @@ const DEFAULT_STRAT = {
     obDir: 'any', requireOB: false, requireOBTap: false,
     fvgDir: 'any', requireFVG: false, requireFVGTap: false,
     requireOTE: false,
-    candlePattern: 'any',
+    candlePattern: 'any', candleN: 5,
+    macdFilter:  { enabled: false, mode: 'above' },
+    bbFilter:    { enabled: false, mode: 'below_lower', period: 20, mult: 2, value: 2 },
+    stochFilter: { enabled: false, comparison: 'below', value: 20 },
+    adxFilter:   { enabled: false, mode: 'strong', value: 25 },
     emaFilter:  { enabled: false, period: 200, side: 'above' },
     vwapFilter: { enabled: false, side: 'above' },
     volPctFilter:   { enabled: false, op: 'below', value: 30 },
@@ -459,6 +472,55 @@ const DEFAULT_STRAT = {
 
 // ── Small UI helpers ──────────────────────────────────────────────────────────
 function Label({ children }) { return <span style={{ fontSize: 11, color: 'var(--text3)', fontWeight: 600, letterSpacing: '0.04em' }}>{children}</span>; }
+// Everything a candle filter can be asked for.
+//
+// The first group is the strict one and it is first on purpose: the wick has to
+// clear the ENTIRE prior N-bar range and the close has to come back inside it.
+// That is a sweep with a reclaim, not a shape, and it is a materially harder
+// test than "a hammer printed".
+//
+// The second group is what the four old options used to be, kept exactly so
+// existing strategies keep behaving the way they did — but now split by the
+// registry's own strength label as well, because a Bullish Harami the registry
+// calls weak was passing the same filter as a Bullish Kicker it calls strong.
+//
+// The third group is every named pattern, for when you want one and not a
+// family. Built from the registry rather than typed out, so it cannot drift.
+const CANDLE_OPTIONS = [
+  { v: 'any', l: 'Any' },
+  { group: 'Strong reversal (sweeps the range)', options: [
+    { v: 'strong_any',    l: 'Strong hammer or star' },
+    { v: 'strong_hammer', l: 'Strong hammer (sweeps the low)' },
+    { v: 'strong_star',   l: 'Strong shooting star (sweeps the high)' },
+  ] },
+  { group: 'Family', options: [
+    { v: 'bullish',      l: 'Bullish — any' },
+    { v: 'bull_strong',  l: 'Bullish — strong only' },
+    { v: 'bull_medium',  l: 'Bullish — medium only' },
+    { v: 'bull_weak',    l: 'Bullish — weak only' },
+    { v: 'bearish',      l: 'Bearish — any' },
+    { v: 'bear_strong',  l: 'Bearish — strong only' },
+    { v: 'bear_medium',  l: 'Bearish — medium only' },
+    { v: 'bear_weak',    l: 'Bearish — weak only' },
+    { v: 'doji',         l: 'Doji / indecision' },
+  ] },
+  { group: 'One named pattern', options: CANDLE_PATTERNS
+    .slice()
+    .sort((a, b) => a.name.localeCompare(b.name))
+    .map(p => ({ v: p.id, l: `${p.name} (${p.strength})` })) },
+];
+
+// Flattened once so the summary chip can name what was chosen without walking
+// the groups every render.
+const CANDLE_LABEL = Object.fromEntries(
+  CANDLE_OPTIONS.flatMap(o => (o.group ? o.options : [o])).map(o => [o.v, o.l]));
+
+const CANDLE_NOTE = {
+  strong_any: 'The wick clears the whole prior range and the close comes back inside it — stops taken and rejected. Stricter than a hammer shape, and rarer.',
+  strong_hammer: 'The wick clears the prior range LOW and the close comes back above it. A low swept and reclaimed.',
+  strong_star: 'The wick clears the prior range HIGH and the close comes back below it. A high swept and rejected.',
+};
+
 function FieldRow({ label, children }) {
   return <div style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '5px 0', borderBottom: '1px solid var(--border)' }}>
     <Label>{label}</Label>
@@ -470,10 +532,17 @@ function Toggle({ checked, onChange }) {
     <span style={{ position: 'absolute', top: 3, left: checked ? 20 : 3, width: 16, height: 16, borderRadius: '50%', background: '#fff', transition: 'left 0.2s' }}/>
   </button>;
 }
+// An option is { v, l }, or { group, options: [...] } for a labelled section.
+// The candle list is thirty-odd entries once every named pattern is selectable,
+// and a flat thirty-item dropdown on a phone is unusable.
 function Select({ value, onChange, options, style = {} }) {
   return <select value={value} onChange={e => onChange(e.target.value)}
     style={{ background: 'var(--bg2)', color: 'var(--text)', border: '1px solid var(--border)', borderRadius: 4, padding: '3px 6px', fontSize: 11, ...style }}>
-    {options.map(o => <option key={o.v} value={o.v}>{o.l}</option>)}
+    {options.map(o => (o.group
+      ? <optgroup key={o.group} label={o.group}>
+          {o.options.map(x => <option key={x.v} value={x.v}>{x.l}</option>)}
+        </optgroup>
+      : <option key={o.v} value={o.v}>{o.l}</option>))}
   </select>;
 }
 function NumberInput({ value, onChange, min, max, step = 1, style = {} }) {
@@ -704,8 +773,123 @@ function StrategyEditor({ strat, onSave, onCancel }) {
         {/* Candle Pattern */}
         <FieldRow label="Candlestick Pattern">
           <Select value={s.conditions.candlePattern||'any'} onChange={v => set('conditions.candlePattern', v)}
-            options={[{v:'any',l:'Any'},{v:'bullish',l:'Bullish (engulfing / hammer)'},{v:'bearish',l:'Bearish (engulfing / shooting star)'},{v:'doji',l:'Doji / Indecision'}]}/>
+            style={{ maxWidth: 210 }}
+            options={CANDLE_OPTIONS}/>
         </FieldRow>
+        {s.conditions.candlePattern?.startsWith('strong_') && (
+          <div style={{ padding: '0 0 6px 12px', borderBottom: '1px solid var(--border)', display: 'flex', alignItems: 'center', gap: 8 }}>
+            <span style={{ fontSize: 10, color: 'var(--text3)' }}>Range length (bars the wick must clear)</span>
+            <NumberInput value={s.conditions.candleN ?? 5} min={2} max={30}
+              onChange={v => set('conditions.candleN', v)} style={{ width: 56 }}/>
+          </div>
+        )}
+        {s.conditions.candlePattern && s.conditions.candlePattern !== 'any' && (
+          <div style={{ padding: '2px 0 6px 12px', borderBottom: '1px solid var(--border)', fontSize: 10, color: 'var(--text3)' }}>
+            {CANDLE_NOTE[s.conditions.candlePattern]
+              || 'Must have completed on the last CLOSED bar — the bar in progress is not counted.'}
+          </div>
+        )}
+
+        {/* MACD */}
+        <div style={{ padding: '6px 0', borderBottom: '1px solid var(--border)' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            <Label>MACD Filter</Label>
+            <div style={{ marginLeft: 'auto' }}><Toggle checked={!!s.conditions.macdFilter?.enabled} onChange={v => set('conditions.macdFilter.enabled', v)}/></div>
+          </div>
+          {s.conditions.macdFilter?.enabled && (
+            <>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginTop: 6 }}>
+                <Select value={s.conditions.macdFilter.mode || 'above'} onChange={v => set('conditions.macdFilter.mode', v)}
+                  options={[
+                    {v:'above',l:'Line above signal'},
+                    {v:'below',l:'Line below signal'},
+                    {v:'cross_up',l:'Crossed up on this bar'},
+                    {v:'cross_down',l:'Crossed down on this bar'},
+                    {v:'rising',l:'Histogram rising'},
+                    {v:'falling',l:'Histogram falling'},
+                  ]}/>
+              </div>
+              <div style={{ marginTop: 4, fontSize: 10, color: 'var(--text3)' }}>
+                “Above signal” is true for weeks at a time; “crossed on this bar” is one bar.
+                Different strategies — pick deliberately.
+              </div>
+            </>
+          )}
+        </div>
+
+        {/* Bollinger */}
+        <div style={{ padding: '6px 0', borderBottom: '1px solid var(--border)' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            <Label>Bollinger Bands</Label>
+            <div style={{ marginLeft: 'auto' }}><Toggle checked={!!s.conditions.bbFilter?.enabled} onChange={v => set('conditions.bbFilter.enabled', v)}/></div>
+          </div>
+          {s.conditions.bbFilter?.enabled && (
+            <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginTop: 6, flexWrap: 'wrap' }}>
+              <Select value={s.conditions.bbFilter.mode || 'below_lower'} onChange={v => set('conditions.bbFilter.mode', v)}
+                options={[
+                  {v:'below_lower',l:'Price below lower band'},
+                  {v:'above_upper',l:'Price above upper band'},
+                  {v:'above_mid',l:'Price above middle band'},
+                  {v:'below_mid',l:'Price below middle band'},
+                  {v:'squeeze',l:'Squeeze — bands narrower than'},
+                ]}/>
+              {s.conditions.bbFilter.mode === 'squeeze' && (
+                <>
+                  <NumberInput value={s.conditions.bbFilter.value ?? 2} min={0.1} max={20} step={0.1}
+                    onChange={v => set('conditions.bbFilter.value', v)} style={{ width: 56 }}/>
+                  <span style={{ fontSize: 10, color: 'var(--text3)' }}>% of price</span>
+                </>
+              )}
+              <span style={{ fontSize: 10, color: 'var(--text3)' }}>
+                {s.conditions.bbFilter.period || 20} bars, {s.conditions.bbFilter.mult || 2}σ
+              </span>
+            </div>
+          )}
+        </div>
+
+        {/* Stochastic */}
+        <div style={{ padding: '6px 0', borderBottom: '1px solid var(--border)' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            <Label>Stochastic Filter</Label>
+            <div style={{ marginLeft: 'auto' }}><Toggle checked={!!s.conditions.stochFilter?.enabled} onChange={v => set('conditions.stochFilter.enabled', v)}/></div>
+          </div>
+          {s.conditions.stochFilter?.enabled && (
+            <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginTop: 6 }}>
+              <Label>%K</Label>
+              <Select value={s.conditions.stochFilter.comparison || 'below'} onChange={v => set('conditions.stochFilter.comparison', v)}
+                options={[{v:'below',l:'below'},{v:'above',l:'above'}]}/>
+              <NumberInput value={s.conditions.stochFilter.value ?? 20} min={0} max={100}
+                onChange={v => set('conditions.stochFilter.value', v)} style={{ width: 56 }}/>
+            </div>
+          )}
+        </div>
+
+        {/* ADX */}
+        <div style={{ padding: '6px 0', borderBottom: '1px solid var(--border)' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            <Label>ADX Filter</Label>
+            <div style={{ marginLeft: 'auto' }}><Toggle checked={!!s.conditions.adxFilter?.enabled} onChange={v => set('conditions.adxFilter.enabled', v)}/></div>
+          </div>
+          {s.conditions.adxFilter?.enabled && (
+            <>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginTop: 6 }}>
+                <Select value={s.conditions.adxFilter.mode || 'strong'} onChange={v => set('conditions.adxFilter.mode', v)}
+                  options={[
+                    {v:'strong',l:'Trending (ADX above)'},
+                    {v:'weak',l:'Ranging (ADX below)'},
+                    {v:'bull',l:'Trending up (+DI leads)'},
+                    {v:'bear',l:'Trending down (−DI leads)'},
+                  ]}/>
+                <NumberInput value={s.conditions.adxFilter.value ?? 25} min={0} max={100}
+                  onChange={v => set('conditions.adxFilter.value', v)} style={{ width: 56 }}/>
+              </div>
+              <div style={{ marginTop: 4, fontSize: 10, color: 'var(--text3)' }}>
+                ADX measures how strongly price is trending and says nothing about which way.
+                The direction is +DI against −DI — the last two options.
+              </div>
+            </>
+          )}
+        </div>
 
         {/* Volatility percentile / range position — the Live Feed measures */}
         {[
@@ -1255,6 +1439,33 @@ export default function BotConfig({ autoExecute = false, onAutoTrade }) {
                 {strat.conditions.requireLiqSweep && (
                   <span style={{ fontSize: 10, padding: '2px 8px', borderRadius: 4, background: 'var(--bg2)', color: 'var(--text3)', border: '1px solid var(--border)' }}>
                     Liquidity Sweep required
+                  </span>
+                )}
+                {/* An enabled filter that is not on the card is a filter you
+                    forget you set. Every one of these gates real trades. */}
+                {strat.conditions.candlePattern && strat.conditions.candlePattern !== 'any' && (
+                  <span style={{ fontSize: 10, padding: '2px 8px', borderRadius: 4, background: '#a78bfa20', color: '#a78bfa', border: '1px solid #a78bfa33' }}>
+                    Candle == {CANDLE_LABEL[strat.conditions.candlePattern] || strat.conditions.candlePattern}
+                  </span>
+                )}
+                {strat.conditions.macdFilter?.enabled && (
+                  <span style={{ fontSize: 10, padding: '2px 8px', borderRadius: 4, background: '#38bdf820', color: '#38bdf8', border: '1px solid #38bdf833' }}>
+                    MACD {(strat.conditions.macdFilter.mode || 'above').replace('_', ' ')}
+                  </span>
+                )}
+                {strat.conditions.bbFilter?.enabled && (
+                  <span style={{ fontSize: 10, padding: '2px 8px', borderRadius: 4, background: '#38bdf820', color: '#38bdf8', border: '1px solid #38bdf833' }}>
+                    Bollinger {(strat.conditions.bbFilter.mode || 'below_lower').replace(/_/g, ' ')}
+                  </span>
+                )}
+                {strat.conditions.stochFilter?.enabled && (
+                  <span style={{ fontSize: 10, padding: '2px 8px', borderRadius: 4, background: '#38bdf820', color: '#38bdf8', border: '1px solid #38bdf833' }}>
+                    Stoch %K {strat.conditions.stochFilter.comparison || 'below'} {strat.conditions.stochFilter.value ?? 20}
+                  </span>
+                )}
+                {strat.conditions.adxFilter?.enabled && (
+                  <span style={{ fontSize: 10, padding: '2px 8px', borderRadius: 4, background: '#38bdf820', color: '#38bdf8', border: '1px solid #38bdf833' }}>
+                    ADX {strat.conditions.adxFilter.mode || 'strong'} {strat.conditions.adxFilter.value ?? 25}
                   </span>
                 )}
                 {strat.conditions.rsiFilter?.enabled && (
