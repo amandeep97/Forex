@@ -567,22 +567,6 @@
       "_kind": null
     },
     {
-      "title": "S&P Global Ratings warns of risks from China’s generous credit ratings",
-      "link": "https://www.investing.com/news/stock-market-news/sp-global-ratings-warns-of-risks-from-chinas-generous-credit-ratings-4887410",
-      "source": "Investing",
-      "at": 1788431101000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788431101000,
-      "_kind": null,
-      "why": "Credit rating warning lacks immediate impact"
-    },
-    {
       "title": "Iran warns US over Lebanon ridge strike - www.israelhayom.com",
       "link": "https://news.google.com/rss/articles/CBMimgFBVV95cUxQa0hIZFB3bktHVTRYeGR5X1JkX0h1bFNkcTlwLVBUM3U4N253Q1dKRTVHLWRac2hDajAxN1doU19HYVVPN0dlUzhwUnV3dXdzc0dhcFMxV2h3eHA1b3V0TzlzTnJQUUc5SFdDSExxWjdCYnNvc1JndmtFVE1ZWGhaWG54R1lhQndlV2lMYVV2Sll6cWNmVlVMWm13?oc=5",
       "source": "Wires (geo)",
@@ -1390,7 +1374,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788419554000,
+      "firstAt": 1788419561000,
       "why": "Sideways range implies no direction."
     },
     {
@@ -1407,7 +1391,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788419554000,
+      "firstAt": 1788419561000,
       "why": "Technical overbought status, no clear direction."
     },
     {
@@ -1424,28 +1408,6 @@
       "srcs": 1,
       "firstAt": 1788419560000,
       "why": "Testing resistance, outcome unclear."
-    },
-    {
-      "title": "Crude Oil WTI bearish engulfing at $90.10: Live levels",
-      "link": "https://www.investing.com/news/commodities-news/crude-oil-wti-charges-toward-8769-resistance-live-levels-93CH-4882215",
-      "source": "Investing Cmdty",
-      "at": 1788419554000,
-      "inst": [
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788419554000,
-      "dir": {
-        "USOIL": "down",
-        "UKOIL": "down"
-      },
-      "why": "Bearish engulfing pattern suggests decline."
     },
     {
       "title": "Natural Gas and Oil Forecast: Iran Escalation Tightens Hormuz as WTI Holds Breakout - FXEmpire",
@@ -1896,7 +1858,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788401695000,
+      "firstAt": 1788401220000,
       "dir": {
         "XAU/USD": "up",
         "USOIL": "up",
@@ -1931,7 +1893,7 @@
       "why": "Deadly strike boosts risk assets"
     },
     {
-      "title": "Iran fires on its Gulf neighbors, retaliating for US strikes after a wedding was hit - apnews.com",
+      "title": "Iran fires on its Gulf neighbors, retaliating for US strikes after a wedding was hit - AP News",
       "link": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxOSTQ5RWEwemszN1g0ZGdybDJrd0d4MW9sTk43M05welQ3WGZmeWgycERkU0NFck5vMDc4eXBjbmdQSzc0OTNodV9tMXhpTFg1WF9SR2JXOXp3aEVGVjBHSUlwVFR5QWpVdnJodmNfV1FmdEZBeDlhUHNJZVZPeHliVlBQU3hZTXJhNGgzNGZoNURLUWtqOW53OUF2TTJpSEpsNGVBTDVyOUI?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiqAFBVV95cUxOSTQ5RWEwemszN1g0ZGdybDJrd0d4MW9sTk43M05welQ3WGZmeWgycERkU0NFck5vMDc4eXBjbmdQSzc0OTNodV9tMXhpTFg1WF9SR2JXOXp3aEVGVjBHSUlwVFR5QWpVdnJodmNfV1FmdEZBeDlhUHNJZVZPeHliVlBQU3hZTXJhNGgzNGZoNURLUWtqOW53OUF2TTJpSEpsNGVBTDVyOUI?oc",
@@ -2423,6 +2385,59 @@
       "srcs": 1,
       "firstAt": 1788380904000,
       "why": "Calendar news, no direction"
+    },
+    {
+      "title": "Dollar lower as oil, yields lose steam; eyes on loonie, kiwi after rate decisions",
+      "link": "https://www.investing.com/news/forex-news/asian-currencies-weaken-as-dollar-gains-kiwi-tumbles-on-rbnz-outlook-4885309",
+      "source": "Investing FX",
+      "at": 1788379458000,
+      "inst": [
+        "NZD/USD",
+        "USD/CAD",
+        "USOIL"
+      ],
+      "ccy": [
+        "USD",
+        "NZD",
+        "CAD",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788379458000,
+      "dir": {
+        "NZD/USD": "up",
+        "USD/CAD": "down",
+        "USOIL": "down"
+      },
+      "why": "Dollar weakness lifts cross pairs"
+    },
+    {
+      "title": "US pounds Iran, Tehran strikes back at bases in biggest exchange since July - USA Today",
+      "link": "https://news.google.com/rss/articles/CBMingFBVV95cUxOM1gzTk51TmpBdlhkRDJZNkc5a2NMT1BzOVAxdUstQVlidndzNURMWnZVM19oQVBCZDhsbENXYW52aVJndm5PQ2tWYjd1aGxHVEhKMy1rcS10M1NyWlBZMHR0WE5CV0hQWkRSYlMwN2hRb0wxZUlQM0Q2MzZ0V3pzeGF3U3lhNktIaUphYmdqRWU4dy1DTldlenpzeTRuZw?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMingFBVV95cUxOM1gzTk51TmpBdlhkRDJZNkc5a2NMT1BzOVAxdUstQVlidndzNURMWnZVM19oQVBCZDhsbENXYW52aVJndm5PQ2tWYjd1aGxHVEhKMy1rcS10M1NyWlBZMHR0WE5CV0hQWkRSYlMwN2hRb0wxZUlQM0Q2MzZ0V3pzeGF3U3lhNktIaUphYmdqRWU4dy1DTldlenpzeTRuZw?oc=5\" target=\"_",
+      "at": 1788379440000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788379440000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Major military exchange spikes risk assets"
     }
   ],
   "sources": [
@@ -2445,10 +2460,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-03T10:48:20.808Z",
-  "headlinesAt": "2026-09-03T10:48:20.808Z",
-  "updatedAt": "2026-09-03T10:48:20.808Z"
+  "calendarAt": "2026-09-03T10:51:04.928Z",
+  "headlinesAt": "2026-09-03T10:51:04.928Z",
+  "updatedAt": "2026-09-03T10:51:04.928Z"
 }
