@@ -422,40 +422,6 @@
       "_kind": null
     },
     {
-      "title": "Circle Internet Surges 14% Despite Wall Street Building Rival Stablecoin; Coinbase Spikes 10%",
-      "link": "https://finance.yahoo.com/markets/crypto/articles/circle-internet-surges-14-despite-153012814.html",
-      "source": "Yahoo Finance",
-      "at": 1788449412000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1788448136000,
-      "_kind": null,
-      "why": "Specific stock moves, index impact unclear"
-    },
-    {
-      "title": "Why Diamond Hill Stayed Focused on Magnolia Oil & Gas (MGY) After the Geopolitical Selloff",
-      "link": "https://finance.yahoo.com/energy/articles/why-diamond-hill-stayed-focused-152858564.html",
-      "source": "Yahoo Finance",
-      "at": 1788449338000,
-      "inst": [
-        "USOIL"
-      ],
-      "ccy": [
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788449338000,
-      "_kind": null,
-      "why": "Analyst opinion, no clear price direction"
-    },
-    {
       "title": "Canadian dollar hits one-week high as BoC inflation warnings bolster loonie",
       "link": "https://www.investing.com/news/forex-news/canadian-dollar-hits-oneweek-high-as-boc-inflation-warnings-bolster-loonie-4888261",
       "source": "Investing FX",
@@ -563,7 +529,7 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 2,
+      "srcs": 1,
       "firstAt": 1788448136000,
       "_kind": null,
       "dir": {
@@ -571,6 +537,28 @@
         "US500": "up"
       },
       "why": "Oil yields drop, stocks rise"
+    },
+    {
+      "title": "Bitcoin News: Capital B Financing Could Add 376 BTC to Its Treasury",
+      "link": "https://finance.yahoo.com/markets/crypto/articles/bitcoin-news-capital-b-financing-150734568.html",
+      "source": "Yahoo Finance",
+      "at": 1788448054000,
+      "inst": [
+        "BTC/USDT"
+      ],
+      "ccy": [
+        "USD",
+        "BTC"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788448054000,
+      "_kind": null,
+      "dir": {
+        "BTC/USDT": "up"
+      },
+      "why": "Potential treasury increase signals bullish sentiment"
     },
     {
       "title": "Palestinian teens killed during settler attack on West Bank village, officials say",
@@ -847,6 +835,18 @@
         "UKOIL": "up"
       },
       "why": "Oil rises, Middle East escalation boosts gold."
+    },
+    {
+      "title": "Why HPE Stock Is Falling Amid Fiscal Q3 Earnings Beat",
+      "link": "https://www.investors.com/news/technology/hpe-stock-hpe-earnings-news-july26/?src=A00220&yptr=yahoo",
+      "source": "Yahoo Finance",
+      "at": 1788444692000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788444692000
     },
     {
       "title": "Stocks edge up as Nvidia leads tech higher following Hugging Face deal announcement: AlphaCheck",
@@ -1320,27 +1320,6 @@
       "why": "Diplomatic spat, no clear direction"
     },
     {
-      "title": "EU foreign ministers fail to break deadlock over Israel and Ukraine",
-      "link": "https://www.aljazeera.com/news/2026/9/3/eu-foreign-ministers-fail-to-break-deadlock-over-israel-and-ukraine?traffic_source=rss",
-      "source": "Al Jazeera",
-      "desc": "EU officials met in Ireland but failed to agree on imposing trade sanctions on Israel or military support for Ukraine.",
-      "at": 1788428049000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788428049000,
-      "why": "EU deadlock, no clear direction"
-    },
-    {
       "title": "Sterling today: Pound firms as dollar softens on Fed rate-hike doubts",
       "link": "https://www.investing.com/news/forex-news/sterling-today-pound-firms-as-dollar-softens-on-fed-ratehike-doubts-4887211",
       "source": "Investing FX",
@@ -1398,6 +1377,34 @@
         "AUD/USD": "up"
       },
       "why": "Aussie yields ease, AUD support"
+    },
+    {
+      "title": "Stock market today: Dow, S&P 500, Nasdaq rise, yields fall as investors weigh Middle East tensions",
+      "link": "https://finance.yahoo.com/markets/live/stock-market-today-thursday-september-3-dow-sp-500-nasdaq-futures-081525933.html",
+      "source": "Yahoo Finance",
+      "at": 1788423325000,
+      "inst": [
+        "US500",
+        "US100",
+        "US30",
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788423325000,
+      "dir": {
+        "US500": "up",
+        "US100": "up",
+        "US30": "up"
+      },
+      "why": "Stocks rise, yields fall"
     },
     {
       "title": "Swiss inflation nudges up in August amid higher energy prices",
@@ -1845,26 +1852,6 @@
       "why": "Gold slips, oil direction unclear"
     },
     {
-      "title": "Mortgage & refinance rates today, Wednesday, September 2, 2026: Rates up double digits as Iran war reescalates",
-      "link": "https://finance.yahoo.com/personal-finance/mortgages/article/mortgage--refinance-rates-today-wednesday-september-2-2026-rates-up-double-digits-as-iran-war-reescalates-100000964.html",
-      "source": "Yahoo Finance",
-      "at": 1788343200000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788343200000,
-      "why": "Mortgage rates up, asset direction unclear"
-    },
-    {
       "title": "IRGC claims that another two oil tankers have been disabled after hitting mines in the Strait of Hormuz",
       "link": "https://investinglive.com/news/irgc-claims-that-another-two-oil-tankers-have-been-disabled-after-hitting-mines-in-the-strait-of-hormuz/",
       "source": "ForexLive",
@@ -2208,6 +2195,21 @@
       "rel": 1,
       "srcs": 1,
       "firstAt": 1788189322000
+    },
+    {
+      "title": "Stocks making the biggest moves premarket: Chevron, PG&E, GameStop and more",
+      "link": "https://www.cnbc.com/2026/08/31/stocks-making-the-biggest-moves-premarket-cvx-pcg-gme-more.html",
+      "source": "CNBC Markets",
+      "desc": "These are the stocks posting the largest moves premarket.",
+      "at": 1788176109000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788176109000
     }
   ],
   "sources": [
@@ -2239,7 +2241,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-03T15:39:12.292Z",
-  "headlinesAt": "2026-09-03T15:39:12.292Z",
-  "updatedAt": "2026-09-03T15:39:12.292Z"
+  "calendarAt": "2026-09-03T15:42:09.388Z",
+  "headlinesAt": "2026-09-03T15:42:09.388Z",
+  "updatedAt": "2026-09-03T15:42:09.388Z"
 }
