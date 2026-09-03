@@ -445,7 +445,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788462036000,
-      "_kind": null
+      "_kind": null,
+      "why": "Geopolitical news lacks clear immediate market direction."
     },
     {
       "title": "Yen soars to one-month high against dollar amid intervention, rate hike chatter",
@@ -629,7 +630,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788458959000,
-      "_kind": null
+      "_kind": null,
+      "why": "Political blame game, no clear market impact."
     },
     {
       "title": "Iran’s Rial in Free Fall: How US Sanctions Are Reshaping Daily Life, Public Opinion for the Iranian People - algemeiner.com",
@@ -736,7 +738,12 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1788456240000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "down",
+        "US30": "up"
+      },
+      "why": "Oil eases, Dow jumps on Fed signal."
     },
     {
       "title": "AngloGold Ashanti Rises as Gold Prices Rebound and Rate-Hike Fears Ease - Quiver Quantitative",
@@ -806,7 +813,6 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1788456468000,
-      "_kind": null,
       "dir": {
         "XAU/USD": "up",
         "USOIL": "up",
@@ -833,7 +839,6 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1788455040000,
-      "_kind": null,
       "why": "Political rhetoric, no direct market driver"
     },
     {
@@ -880,7 +885,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1788456240000
+      "firstAt": 1788456240000,
+      "why": "Escalation fears, but direction unclear for instruments."
     },
     {
       "title": "Canada ready for a trade deal with US that benefits both, Carney says",
@@ -1639,7 +1645,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788442994000,
+      "firstAt": 1788441956000,
       "why": "Specific strike, unclear broader market impact"
     },
     {
@@ -1683,6 +1689,27 @@
       "srcs": 1,
       "firstAt": 1788441960000,
       "why": "Casualty report, no clear directional signal"
+    },
+    {
+      "title": "Russian general linked to attack on children’s hospital ‘shot in head’ - The Times",
+      "link": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxNbk9ucTNFNC1MUTFveWN5a3F3blFqYk44Nkg1QWdJdlRfRHdHVkQwN1NhYmp4djlHSDBDMnh1cnF1amtwUE5Xcy05SEY5X3JIQlFnbWxYSmJsWWthX3pyaGpDa0lHSTJTLUFOZlVVeWtBOUsydDdFLVBWbklERFNCbTdSR0NneXllZ2YyTV9pVEhIZmZjaG9NaklucUN4UTNMRlhyQW1TTnYtc3FLdE5QZ0JXWHlyaHVaOXV3TU42OG9wY3JCNFpfUkQyclc2dWgtWUJLTlln?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi1gFBVV95cUxNbk9ucTNFNC1MUTFveWN5a3F3blFqYk44Nkg1QWdJdlRfRHdHVkQwN1NhYmp4djlHSDBDMnh1cnF1amtwUE5Xcy05SEY5X3JIQlFnbWxYSmJsWWthX3pyaGpDa0lHSTJTLUFOZlVVeWtBOUsydDdFLVBWbklERFNCbTdSR0NneXllZ2YyTV9pVEhIZmZjaG9NaklucUN4UTNMRlhyQW1TTnYtc3",
+      "at": 1788441956000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788441956000,
+      "why": "Russian general shot, no clear market impact"
     },
     {
       "title": "‘We Were Mistaken’: Putin Admits Russia Was Unprepared for Ukrainian Strikes on Oil Refineries - Kyiv Post",
@@ -1944,7 +1971,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788438000000
+      "firstAt": 1788438000000,
+      "why": "Specific incident, no clear broad market direction."
     },
     {
       "title": "India’s Modi-Iran meeting comes amid US warnings of sanctions on Tehran’s trading partners - kotaradio.com",
@@ -2088,7 +2116,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788437192000
+      "firstAt": 1788437192000,
+      "why": "Sanctions evasion news, unclear immediate price impact."
     },
     {
       "title": "ANNEX: IA Funding Appeals & Protection Partners Presence - Escalation in Middle East - September 2026 - ReliefWeb",
@@ -2110,6 +2139,27 @@
       "srcs": 2,
       "firstAt": 1788437000000,
       "why": "Funding appeal, no market impact"
+    },
+    {
+      "title": "Watch Oil Stabilizes As Trump Says Iran Strikes To Be Short | The Opening Trade 9/3/2026 - Bloomberg.com",
+      "link": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxQQ2poMU9EdWwwZzBHYURTX09UbzlUTk1wQ1IyMVB2MWtKV1RpRjlXSjlZblI3elFhMlc4eU5DNkNhRHZfNFNCeDVUdWw0ZTZ2V0dHNGZ6UUpTNFZKX2ZVRkJtcWlYQ3o4NlJ4R1ppbVExWE9UY2l0WDdsZS1zWGlCdkNBX3JUM2hl?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiiAFBVV95cUxQQ2poMU9EdWwwZzBHYURTX09UbzlUTk1wQ1IyMVB2MWtKV1RpRjlXSjlZblI3elFhMlc4eU5DNkNhRHZfNFNCeDVUdWw0ZTZ2V0dHNGZ6UUpTNFZKX2ZVRkJtcWlYQ3o4NlJ4R1ppbVExWE9UY2l0WDdsZS1zWGlCdkNBX3JUM2hl?oc=5\" target=\"_blank\">Watch Oil Stabilizes As",
+      "at": 1788436568000,
+      "inst": [
+        "USOIL",
+        "XAU/USD",
+        "UKOIL"
+      ],
+      "ccy": [
+        "OIL",
+        "XAU"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1788435181000,
+      "why": "Oil stabilizes, no clear directional bias."
     },
     {
       "title": "Piper Sandler sees Brent at $90 in H2 — and says that may be an underestimate",
@@ -2193,26 +2243,6 @@
       "srcs": 1,
       "firstAt": 1788435237000,
       "why": "Diplomatic incident, no direct market link"
-    },
-    {
-      "title": "Oil prices jump as Iran strikes US targets - finance.yahoo.com",
-      "link": "https://news.google.com/rss/articles/CBMioAFBVV95cUxQQ2pQeXVGV1JKTDVlS1haTXhGcEhkTXVKMUxkMXRzeTY2WThUVnBBaUpJUWhueGg3bllOR3NOSHRkaWptZG43cmhDMnhDMTliZGltQjBZQjRER2hkYVNiR0NHdEdQMkhyQkRDQUJaem9kd2JGZWRvR05xVmgzbEZaQlY0ZUhkN3BIVnl2eWtWTUdFVlVuV1JzdWlobWZuVUJK?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMioAFBVV95cUxQQ2pQeXVGV1JKTDVlS1haTXhGcEhkTXVKMUxkMXRzeTY2WThUVnBBaUpJUWhueGg3bllOR3NOSHRkaWptZG43cmhDMnhDMTliZGltQjBZQjRER2hkYVNiR0NHdEdQMkhyQkRDQUJaem9kd2JGZWRvR05xVmgzbEZaQlY0ZUhkN3BIVnl2eWtWTUdFVlVuV1JzdWlobWZuVUJK?oc=5\" target=",
-      "at": 1788435198000,
-      "inst": [
-        "USOIL",
-        "XAU/USD",
-        "UKOIL"
-      ],
-      "ccy": [
-        "OIL",
-        "XAU"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1788433200000
     },
     {
       "title": "Japan’s currency diplomat warns of ongoing yen market concerns",
@@ -2371,32 +2401,6 @@
         "XAU/USD": "up"
       },
       "why": "Gold rebounds, rate hike odds cool"
-    },
-    {
-      "title": "Trump warns US is prepared to attack Iran 'anytime' after recent airstrikes - Fox News",
-      "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE45dGJKRmd4ZmxfRUFmZmFPYVJtUmI1SW1Galkxb05kNXJRRWpNOVRLblpoUGNXeXZueEw0eW9aMmxta3gzdkNhbXpGTXg1b0tJd0Y1bDlR?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiVkFVX3lxTE45dGJKRmd4ZmxfRUFmZmFPYVJtUmI1SW1Galkxb05kNXJRRWpNOVRLblpoUGNXeXZueEw0eW9aMmxta3gzdkNhbXpGTXg1b0tJd0Y1bDlR?oc=5\" target=\"_blank\">Trump warns US is prepared to attack Iran 'anytime' after recent airstrikes</a>&nbsp;&nbsp;",
-      "at": 1788428756000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788428756000,
-      "dir": {
-        "XAU/USD": "up",
-        "USOIL": "up",
-        "UKOIL": "up"
-      },
-      "why": "Trump warns of Iran attack, risk up"
     }
   ],
   "sources": [
@@ -2422,7 +2426,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-03T19:25:20.916Z",
-  "headlinesAt": "2026-09-03T19:25:20.916Z",
-  "updatedAt": "2026-09-03T19:25:20.916Z"
+  "calendarAt": "2026-09-03T19:29:21.534Z",
+  "headlinesAt": "2026-09-03T19:29:21.534Z",
+  "updatedAt": "2026-09-03T19:29:21.534Z"
 }
