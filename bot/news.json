@@ -348,7 +348,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788501604000,
-      "_kind": null
+      "_kind": null,
+      "why": "Taiwan news irrelevant to US index"
     },
     {
       "title": "Indonesian Rupiah declines as US Dollar gains despite easing Fed rate hike odds - FXStreet",
@@ -372,7 +373,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788501242000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Stronger dollar pressures metals and FX"
     },
     {
       "title": "Ukraine War, Day 1,654: Kyiv Strikes Military Plant and Naval Vessel Deep Inside Russia - eaworldview.com",
@@ -393,7 +400,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788501193000,
-      "_kind": null
+      "_kind": null,
+      "why": "War update lacks clear directional impact"
     },
     {
       "title": "Iran holds funeral for victims of strike on wedding - AP News",
@@ -414,7 +422,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788500640000,
-      "_kind": null
+      "_kind": null,
+      "why": "Funeral news has no market direction"
     },
     {
       "title": "China’s Longfor says it has enough funds to repay loans, shares surge",
@@ -557,7 +566,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1788497121000,
-      "_kind": null
+      "_kind": null,
+      "why": "Political rhetoric unclear for market direction"
     },
     {
       "title": "Iranian strikes on Jordan test the bonds between the US and one of its staunchest Mideast allies - AP News",
@@ -876,7 +886,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788495004000,
-      "_kind": null,
       "dir": {
         "USD/JPY": "down"
       },
@@ -946,6 +955,32 @@
       "why": "RBNZ delay hike weakens NZD"
     },
     {
+      "title": "Iran strikes two U.S. bases, pledges more responding actions - bastillepost.com",
+      "link": "https://news.google.com/rss/articles/CBMirwFBVV95cUxObk1hSUhWRkRZMEx4QTB6d21NdTZUa0dQaG54UnNCSXNvVG5FME1nMnNQLTFzM2t0YUMwX2kwT2pPT0x2M3d3QzBZdnpxUGR5U2NUMm1PRThTWmtxbnR3bFIwQ3U3TnZrNEpsdFZzQy1WZ25LYWQ0UHNsMUotdWMzTTcyWmxkeU1hTlp0VVFZcWlsX3NONkVZQ2pFSk9uRmpSSkVwQXRlLVhpWW9uSlg4?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMirwFBVV95cUxObk1hSUhWRkRZMEx4QTB6d21NdTZUa0dQaG54UnNCSXNvVG5FME1nMnNQLTFzM2t0YUMwX2kwT2pPT0x2M3d3QzBZdnpxUGR5U2NUMm1PRThTWmtxbnR3bFIwQ3U3TnZrNEpsdFZzQy1WZ25LYWQ0UHNsMUotdWMzTTcyWmxkeU1hTlp0VVFZcWlsX3NONkVZQ2pFSk9uRmpSSkVwQXRlLVhpWW",
+      "at": 1788493623000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788493623000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Escalation boosts safe havens and oil"
+    },
+    {
       "title": "Entertainment over policy? White House arcade games ignite backlash",
       "link": "https://www.aljazeera.com/economy/2026/9/4/entertainment-over-policy-white-house-arcade-games-ignite-backlash?traffic_source=rss",
       "source": "Al Jazeera",
@@ -1005,7 +1040,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788490920000
+      "firstAt": 1788490920000,
+      "why": "Awaiting data, no clear direction yet"
     },
     {
       "title": "EU joins U.S. sanctions push on Iran as South Korea weighs Hormuz deployment - CNBC",
@@ -2277,7 +2313,7 @@
       "why": "Middle East escalation drives oil and gold higher"
     },
     {
-      "title": "Iran bets on shadow networks to evade US sanctions - DW.com",
+      "title": "Iran bets on shadow networks to evade US sanctions - dw.com",
       "link": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxPcGVMUzJtZi1FLVU1eTI3RThwb3Y3bW8yVlFNWWtyR05oazlLVmhsc3gtWGhlZ3cxRHVCeENCRGpuX2s2cDNJR0lnZk1CZVJsLVlhYTh4VXhkY19jNm9KcVhudE95NXlLZ21tN2h5M1BNcXNJU0JXYzhmN3UtN0planlHX0VRams2TGJr0gGLAUFVX3lxTE85NGZhS2wzSlIyZ0dwYld6ZHM3Mk9xVHVFQXI4WFFKNlQ4M3hkTWRMRmZiQlB5T3EzX1ZuOHZSSGtiZElBQVZ0R2lUcGNOOW1IY1hMa3ZGUHhUTzlTRGdhdVM5Q25aQjVBZEFWWTBvaHFScUNxNHgzTkJlTE5TeUE2NnFOMmp4b3VtY0E?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiiwFBVV95cUxPcGVMUzJtZi1FLVU1eTI3RThwb3Y3bW8yVlFNWWtyR05oazlLVmhsc3gtWGhlZ3cxRHVCeENCRGpuX2s2cDNJR0lnZk1CZVJsLVlhYTh4VXhkY19jNm9KcVhudE95NXlLZ21tN2h5M1BNcXNJU0JXYzhmN3UtN0planlHX0VRams2TGJr0gGLAUFVX3lxTE85NGZhS2wzSlIyZ0dwYld6ZHM3Mk",
@@ -2317,32 +2353,6 @@
         "XAU/USD": "up"
       },
       "why": "Gold gains as dollar weakens"
-    },
-    {
-      "title": "OFAC Launches “Operation Economic Outcast,” Expanding Secondary Sanctions Risks for Iran-Related Business - jdsupra.com",
-      "link": "https://news.google.com/rss/articles/CBMigAFBVV95cUxNMTBJMXd2dVVQelZCMWZ4OXpobXhxczlnVW1HSUJqSVl4VnNEanZ6dHF5Vl93ZzU3TENpWG5iQWNyZUNNNnNLU0xfVUhUZmhPVkNIendXZDhYUnpxam5iN1dCTF9udFBidEd3MndFZEtqaGVudjlfLVY5ejdpamtkdg?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMigAFBVV95cUxNMTBJMXd2dVVQelZCMWZ4OXpobXhxczlnVW1HSUJqSVl4VnNEanZ6dHF5Vl93ZzU3TENpWG5iQWNyZUNNNnNLU0xfVUhUZmhPVkNIendXZDhYUnpxam5iN1dCTF9udFBidEd3MndFZEtqaGVudjlfLVY5ejdpamtkdg?oc=5\" target=\"_blank\">OFAC Launches “Operation Economic",
-      "at": 1788451825000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788451825000,
-      "dir": {
-        "XAU/USD": "up",
-        "USOIL": "up",
-        "UKOIL": "up"
-      },
-      "why": "Iran sanctions risk boosts oil and gold"
     }
   ],
   "sources": [
@@ -2368,7 +2378,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-04T06:08:41.276Z",
-  "headlinesAt": "2026-09-04T06:08:41.276Z",
-  "updatedAt": "2026-09-04T06:08:41.276Z"
+  "calendarAt": "2026-09-04T06:12:43.112Z",
+  "headlinesAt": "2026-09-04T06:12:43.112Z",
+  "updatedAt": "2026-09-04T06:12:43.112Z"
 }
