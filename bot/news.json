@@ -159,6 +159,66 @@
   ],
   "headlines": [
     {
+      "title": "European shares log weekly losses on inflation worries; Volkswagen jumps",
+      "link": "https://www.investing.com/news/stock-market-news/european-shares-edge-lower-ahead-ofus-jobs-data-volkswagen-jumps-4888893",
+      "source": "Investing",
+      "at": 1788541957000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788541957000,
+      "_kind": null,
+      "why": "Inflation worries mixed with specific stock gains"
+    },
+    {
+      "title": "Arqit Quantum and Aya Gold & Silver: two unusual trade setups to watch",
+      "link": "https://www.investing.com/news/stock-market-news/arqit-quantum-and-aya-gold--silver-two-unusual-trade-setups-to-watch-93CH-4889880",
+      "source": "Investing",
+      "at": 1788541479000,
+      "inst": [
+        "XAU/USD",
+        "XAG/USD"
+      ],
+      "ccy": [
+        "XAU",
+        "XAG"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788541479000,
+      "_kind": null,
+      "why": "Unusual trade setups mentioned without direction"
+    },
+    {
+      "title": "Exclusive-OpenAI agents hijacked German website in previously undisclosed AI breakout this spring",
+      "link": "https://www.investing.com/news/stock-market-news/exclusiveopenai-agents-hijacked-german-website-in-previously-undisclosed-aibreakout-this-spring-4889205",
+      "source": "Investing",
+      "at": 1788541280000,
+      "inst": [
+        "EUR/USD"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788541280000,
+      "_kind": null,
+      "why": "AI news unclear for EUR"
+    },
+    {
       "title": "With a New CEO and Majority Investors, What’s Next for HTeaO?",
       "link": "https://finance.yahoo.com/small-business/articles/ceo-majority-investors-next-hteao-170000369.html",
       "source": "Yahoo Finance",
@@ -170,6 +230,25 @@
       "srcs": 1,
       "firstAt": 1788541200000,
       "_kind": null
+    },
+    {
+      "title": "Goldman Sachs sees bond markets as speed limiter for stocks",
+      "link": "https://www.investing.com/news/stock-market-news/goldman-sachs-sees-bond-markets-as-speed-limiter-for-stocks-93CH-4889873",
+      "source": "Investing",
+      "at": 1788541111000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788541111000,
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Bond markets limit stock upside potential"
     },
     {
       "title": "Trump Issues Ultimatum to Fed: Cut Rates or Face Trade War With the World",
@@ -444,28 +523,31 @@
       "why": "Political news, no clear market direction"
     },
     {
-      "title": "Evercore sees strong jobs data not altering Fed September call",
-      "link": "https://www.investing.com/news/stock-market-news/evercore-sees-strong-jobs-data-not-altering-fed-september-call-93CH-4889854",
-      "source": "Investing",
-      "at": 1788539181000,
+      "title": "US issues sanctions on Turkish bank that it calls a ‘critical financial lifeline’ for Iran - Baltimore Sun",
+      "link": "https://news.google.com/rss/articles/CBMie0FVX3lxTE1nYWJkMC1haTBBZS1UQnJ2aURUUmZtLU0zeEM5OGMzRVNJOXJHYnZmd2JvVG1PcVNGVk1nRmlCQUdrTGx2RVQ5bzhpZFVhNV9QMG1MdGkyS1k4OEU5MFlaaXNCUTNoeTN5ZWZoRGhFZWduUXJtWnVlaFdrRQ?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMie0FVX3lxTE1nYWJkMC1haTBBZS1UQnJ2aURUUmZtLU0zeEM5OGMzRVNJOXJHYnZmd2JvVG1PcVNGVk1nRmlCQUdrTGx2RVQ5bzhpZFVhNV9QMG1MdGkyS1k4OEU5MFlaaXNCUTNoeTN5ZWZoRGhFZWduUXJtWnVlaFdrRQ?oc=5\" target=\"_blank\">US issues sanctions on Turkish bank that ",
+      "at": 1788538867000,
       "inst": [
         "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
+        "USOIL",
+        "UKOIL"
       ],
       "ccy": [
-        "USD"
+        "XAU",
+        "OIL"
       ],
-      "sev": 1,
+      "sev": 2,
       "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788539181000,
+      "srcs": 2,
+      "firstAt": 1788536599000,
       "_kind": null,
-      "why": "Fed policy expectations unchanged despite strong data."
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Sanctions increase geopolitical risk and oil supply concerns"
     },
     {
       "title": "Think of Nvidia’s $13 billion deal for Hugging Face as a form of ‘health insurance’",
@@ -588,28 +670,6 @@
       "why": "Escalating conflict boosts safe havens and oil"
     },
     {
-      "title": "US Sanctions Turkish Bank Over Iran-Linked Transactions - WANA News Agency",
-      "link": "https://news.google.com/rss/articles/CBMigAFBVV95cUxOekZkcVg1Qm9hTklnVGZUQmFTZl9mM0JJcTdtbHA1aUNyLWhxUzEwX3h6aEdOVS1jWGd4d3FtcnBKRnlORmpjZlNzUFdIRU1TaWI5aVMxUndsdXhBTVE1cGFESzY2WThoa3ZsZ3JqYXdMbmlPTUMxS0U1MTdqUzN3dw?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMigAFBVV95cUxOekZkcVg1Qm9hTklnVGZUQmFTZl9mM0JJcTdtbHA1aUNyLWhxUzEwX3h6aEdOVS1jWGd4d3FtcnBKRnlORmpjZlNzUFdIRU1TaWI5aVMxUndsdXhBTVE1cGFESzY2WThoa3ZsZ3JqYXdMbmlPTUMxS0U1MTdqUzN3dw?oc=5\" target=\"_blank\">US Sanctions Turkish Bank Over Ir",
-      "at": 1788538092000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1788536599000,
-      "_kind": null,
-      "why": "Sanctions impact unclear for these assets"
-    },
-    {
       "title": "Gold to End Volatile Week Higher as Fedspeak Trims Rate-Hike Bet - Bloomberg.com",
       "link": "https://news.google.com/rss/articles/CBMitgFBVV95cUxNS3JJcTRtUldLdU5qWXVjOWM0MVpLa21YbmdOVmNkeGJLYml2eHlzand3TWptUnc4UDFZMUV0M2dDN09Nel9EOVVTU2ZiS0ZCdU54aU1aU3VtNThvdEhnNE5McmZhZnRTMFd2OGdNMDBMNmtvcXhjMjN6REh3TkZPd3BaY3p5bWVrWFltS2FTVFZoX2wtSXhSMmRMOW10VVhscG5UOFMwdUlJSkROVmtpTURhNFJUUQ?oc=5",
       "source": "Wires (macro)",
@@ -701,33 +761,6 @@
       "why": "Diplomatic worry, unclear immediate market impact"
     },
     {
-      "title": "US issues sanctions on Turkish bank that it calls a ‘critical financial lifeline’ for Iran - Boston Herald",
-      "link": "https://news.google.com/rss/articles/CBMie0FVX3lxTE01Z2ZqV0FrZmpHaXRybkNfODhGSlRubUJUVjByaG1yZmVBSWxfRUpDaTFhVXpvMFVyMzl5YTNCN2tsVEtPWmZ1YVZIMkNZU2duWk01OVJBRU5fWkpkUmNiUmxJa3FNaWlJS2dhUUJfa0RSeGtxa2h6X2Jobw?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMie0FVX3lxTE01Z2ZqV0FrZmpHaXRybkNfODhGSlRubUJUVjByaG1yZmVBSWxfRUpDaTFhVXpvMFVyMzl5YTNCN2tsVEtPWmZ1YVZIMkNZU2duWk01OVJBRU5fWkpkUmNiUmxJa3FNaWlJS2dhUUJfa0RSeGtxa2h6X2Jobw?oc=5\" target=\"_blank\">US issues sanctions on Turkish bank that ",
-      "at": 1788537675000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1788535182000,
-      "_kind": null,
-      "dir": {
-        "XAU/USD": "up",
-        "USOIL": "up",
-        "UKOIL": "up"
-      },
-      "why": "Sanctions increase geopolitical risk and oil supply concerns"
-    },
-    {
       "title": "Stocks making the biggest moves midday: Sandisk, Tesla, Lululemon, Quanex, AMC & more",
       "link": "https://www.cnbc.com/2026/09/04/stocks-making-the-biggest-moves-midday-sndk-tsla-nx-amc.html",
       "source": "CNBC Markets",
@@ -784,28 +817,6 @@
         "UKOIL": "up"
       },
       "why": "Geopolitical risk boosts gold and oil"
-    },
-    {
-      "title": "‘Critical financial lifeline’: Why US targeted Turkish bank in latest Iran sanctions | World News - Hindustan Times",
-      "link": "https://news.google.com/rss/articles/CBMigAJBVV95cUxPOFlXR3JWTmxwTnR0TXV4aXJOUXcwczVSTWhDWE5iX0JJcXpYQldXa1ktQTk5b0tLMzBlaEhVcG5xdXRnbFVyOGs5ZUVWejVCUG5STjU1eDFKLVNaeVZMLV9nM0N3c0JObkhoRWM2VF9IWnl5MGY3VkItRkYwd3RTZlU4Q2pUdGNoa19IajNTbV9QYmxGak51UXI1bU9mR0dtVjhXRDlJaTdicjFDZnVTRHI5Wk1RVzRWaXVKbW5ucy0yZmctTnZLMnJySldrTVFHQkQ2VkYwdEVCcEloUHl6cHBpczV5NW5IZi0zNFRmR3UwOFpxbU5WWW1Bbmc4U19Y0gGGAkFVX3lxTFBGdVJjdmkxNC1NMUNyVXVpeUk2TnpoempEbUVkbm8xekhzTktDR3dqZTVFejdXOTd4YkJEcXlyeVpZTm82XzV4LTc3Nl9pNHFMRnc2WUN3RjcyWlNyYlZRaXVBa213dXRsUkd1YlNjVTcwT2NTcWJRa2NQR1Ztd1ItYzFnbXhqMkp2VWo0blFndFoyOWFMYy1uUDlDc3N0UldpUmZ0VnViMlB4OThqeENJbWxyUFNNUVhuUkpmNXNFS3BocS1zMlVRUUVUakVzSTEySl9XbTlXc3M1NGg0c0hGTXJ6OXZycTFQZElRbU03bG12NXdsdXBSeGotQzJzeHY2X2U3TFE?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMigAJBVV95cUxPOFlXR3JWTmxwTnR0TXV4aXJOUXcwczVSTWhDWE5iX0JJcXpYQldXa1ktQTk5b0tLMzBlaEhVcG5xdXRnbFVyOGs5ZUVWejVCUG5STjU1eDFKLVNaeVZMLV9nM0N3c0JObkhoRWM2VF9IWnl5MGY3VkItRkYwd3RTZlU4Q2pUdGNoa19IajNTbV9QYmxGak51UXI1bU9mR0dtVjhXRDlJaTdicj",
-      "at": 1788537114000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1788534635000,
-      "_kind": null,
-      "why": "Sanctions news lacks clear directional impact"
     },
     {
       "title": "Canadian dollar falls after jobs shock as strong US payrolls boost dollar",
@@ -1047,6 +1058,28 @@
       "why": "Diesel price hits all-time high"
     },
     {
+      "title": "U.S. issues sanctions on Turkish bank that it is 'financial lifeline' for Iran - Spectrum News",
+      "link": "https://news.google.com/rss/articles/CBMikAFBVV95cUxPMnFkZW9zSGZLNW5DaFBkbWVhUWdNQzhqOTFIb2FIbnQ5ZkQwMHZJbVp1eHRLeGxUNXVGUVdCSUNzSG1NSWs0bjRfdHlXcGpGdmxzZjZIRG5aMEtGUGw4NUt5eUVWV3NuVC1nNnNTRWdXTzBaT1NYSm8wcUhabXZYM0dkdHRPVTdEaWJSUjFnWmk?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMikAFBVV95cUxPMnFkZW9zSGZLNW5DaFBkbWVhUWdNQzhqOTFIb2FIbnQ5ZkQwMHZJbVp1eHRLeGxUNXVGUVdCSUNzSG1NSWs0bjRfdHlXcGpGdmxzZjZIRG5aMEtGUGw4NUt5eUVWV3NuVC1nNnNTRWdXTzBaT1NYSm8wcUhabXZYM0dkdHRPVTdEaWJSUjFnWmk?oc=5\" target=\"_blank\">U.S. issues ",
+      "at": 1788535620000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1788533130000,
+      "_kind": null,
+      "why": "Sanctions news lacks immediate directional clarity."
+    },
+    {
       "title": "IDF to strike Lebanon, explosions expected to be heard in northern Israel - The Jerusalem Post",
       "link": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1UVHEzWXVFYlNDR1Bqam4zSnRTWXVXX2Z3b2lBQTNJeklzOGQ1UW1mNDJ1NktjeDFTOWdISkpoUXhXVGNWcU01WEFvNmxxVU5uaWplOFFTS2I1LW1pRzBibFBtb2wyOGxsQVU0WGxn?oc=5",
       "source": "Wires (geo)",
@@ -1126,7 +1159,7 @@
       "why": "Fed hike concerns ease, risk-on sentiment"
     },
     {
-      "title": "US Sanctions Turkish Bank Accused Of Providing Iran Access To Global Financial System - i24NEWS",
+      "title": "US Sanctions Turkish Bank Accused Of Providing Iran Access To Global Financial System - i24news.tv",
       "link": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxNNGI0b3FBd3VMcDFaLUlKWXhXak9jLXEtQ1Zkanh6R0VRazEyOEo4UHU0WWNkdnJXWE52YjI2Z0tiSGhlZ3FIaFc2QkhlTDdUWVBsSV93UUdDa2pCM0VYV1BnejN0STc2SXFjaHdGTzRleHRUcURQRlJ5bFhpZjhST2RaR2tDNWh2OC1fVFhma0pWM3dmb1R1M2lwaWZXZEJtM2tVY3RvTGRneXV6V3lROHRidmJzRTZqajlGWDM4Rk9XNk9rZW1fNl84cnphSjJp?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMi0AFBVV95cUxNNGI0b3FBd3VMcDFaLUlKWXhXak9jLXEtQ1Zkanh6R0VRazEyOEo4UHU0WWNkdnJXWE52YjI2Z0tiSGhlZ3FIaFc2QkhlTDdUWVBsSV93UUdDa2pCM0VYV1BnejN0STc2SXFjaHdGTzRleHRUcURQRlJ5bFhpZjhST2RaR2tDNWh2OC1fVFhma0pWM3dmb1R1M2lwaWZXZEJtM2tVY3RvTGRneX",
@@ -1212,7 +1245,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788531725000,
+      "firstAt": 1788532804000,
       "dir": {
         "XAU/USD": "up"
       },
@@ -1321,7 +1354,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788530830000,
+      "firstAt": 1788531528000,
       "why": "Sanctions impact on markets unclear"
     },
     {
@@ -1389,27 +1422,6 @@
       "why": "Attack news, market reaction unclear"
     },
     {
-      "title": "US targets Turkish entities with Iran-related sanctions - TradingView",
-      "link": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxQdzhLN3czYzJVRDRXM2ZkeW9xX2ZMX3FNRG1UeUo5akpZY3hsaTRUeVlBa1YtTVJua2todTdlanl3aWtNQlF3WW1RTGJ0VFhvZ2xoRUU3ejZXY29JSjJuLUN1d0d5VmZBZGJ0V1UyeEg3VUNldDN6MzZRNDBPTUh6QjlORnVfbzh2dHdlVExiWlBfZ083WDgwMXZKMEJ2M0g0ZVBfUno5MmtWeVJ5NnExVHltamJsUzFJbndnZVp0cFpBMjA?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiwwFBVV95cUxQdzhLN3czYzJVRDRXM2ZkeW9xX2ZMX3FNRG1UeUo5akpZY3hsaTRUeVlBa1YtTVJua2todTdlanl3aWtNQlF3WW1RTGJ0VFhvZ2xoRUU3ejZXY29JSjJuLUN1d0d5VmZBZGJ0V1UyeEg3VUNldDN6MzZRNDBPTUh6QjlORnVfbzh2dHdlVExiWlBfZ083WDgwMXZKMEJ2M0g0ZVBfUno5MmtWeV",
-      "at": 1788531725000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788530830000,
-      "why": "Sanctions impact unclear for these assets"
-    },
-    {
       "title": "US issues new Iran-related sanctions, general license - Al Arabiya English",
       "link": "https://news.google.com/rss/articles/CBMirgFBVV95cUxPVEc1Tm5OUTVkU1JDdXE1akNRTi1DYmhSVUF1RVFJdDJ6UTBqUEQ0dm5YVVYtWjBveWp5WlZRMWtDeHJkVWxINk1xNGdDNDBvMFFYdDlITWF5UkcwNVpmUklYa3dJNzBqWG1vRkx4VDRwLUtJbkNPakRwY2JZV2FBQUZ6cVd2bGpZcG1xZ0FRWDNpeXZaUDdMRFZ3RjZkdENIVk9fTEdaVEJqaWVjRGfSAbMBQVVfeXFMTWotUUo3TnMxMVNGaGlXZXc5bWk5Q25tWXRoYzd0c01LNjlSTTZ6WWQtdFZTdHJOTGdFakVKWGd2bGFsdzcxQmJsVlFPRl9YcHd5YWtoM183aFBZRU1KdW5PUEl0d3lOTmNzRjZxLTNJc2tJVVo4TDJXdWdTbnZoVVgzYUJEU1AxTF9IMEVicG9LVW94aGE5LVBxRlV0YVBISFlVblF0bU5CY2ZoUk83Qm9jc1k?oc=5",
       "source": "Wires (geo)",
@@ -1427,7 +1439,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788530830000,
+      "firstAt": 1788531528000,
       "dir": {
         "XAU/USD": "up",
         "USOIL": "up",
@@ -1455,33 +1467,6 @@
       "srcs": 1,
       "firstAt": 1788529915000,
       "why": "Diplomatic call lacks immediate market-moving impact."
-    },
-    {
-      "title": "US issues new Iran-related sanctions, general license, Treasury website shows - TradingView",
-      "link": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxOX3phWUw4UEw2ZUJpNGVSM3FHVGJxbm1NQW1XTTJKZTlFV0VhaGluYU9HN3FsMkY1RURKRzREREZESkk0YmJZZEdBSWw3alNRZUFNVE01d1N5bl9mbFZmWUZka19oNWxYdmN4d0pzcGpidUh6YlBKcU81MjBCc0FyN0NoTmN4QTNURDBBTXdfdzFuN3VCZTBWekkyZ0JQWUJDcmhnN3FpNVZQeklmVlp6MGg5c0I5a3BiLThGSDBOVEV1cXVoc3dlaWhWRUZ6eVB1c0xzdHZjSnR6N21LSmc?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi3gFBVV95cUxOX3phWUw4UEw2ZUJpNGVSM3FHVGJxbm1NQW1XTTJKZTlFV0VhaGluYU9HN3FsMkY1RURKRzREREZESkk0YmJZZEdBSWw3alNRZUFNVE01d1N5bl9mbFZmWUZka19oNWxYdmN4d0pzcGpidUh6YlBKcU81MjBCc0FyN0NoTmN4QTNURDBBTXdfdzFuN3VCZTBWekkyZ0JQWUJDcmhnN3FpNVZQek",
-      "at": 1788530830000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "USD",
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788530830000,
-      "dir": {
-        "XAU/USD": "up",
-        "USOIL": "up",
-        "UKOIL": "up"
-      },
-      "why": "New sanctions signal increased geopolitical tension."
     },
     {
       "title": "Russia, Ukraine trade massive drone strikes as Kiev security HQ hit - TRT World",
@@ -2143,7 +2128,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-04T17:12:28.479Z",
-  "headlinesAt": "2026-09-04T17:12:28.479Z",
-  "updatedAt": "2026-09-04T17:12:28.479Z"
+  "calendarAt": "2026-09-04T17:15:30.169Z",
+  "headlinesAt": "2026-09-04T17:15:30.169Z",
+  "updatedAt": "2026-09-04T17:15:30.169Z"
 }
