@@ -329,7 +329,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788506013000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "EUR/USD": "up",
+        "GBP/USD": "up"
+      },
+      "why": "Fed dovishness boosts risk assets"
     },
     {
       "title": "Iran Strikes US Bases in Kuwait and United Arab Emirates, Kuwait Says Air Defenses Respond: 25 outlets compared - NewsCord",
@@ -350,7 +356,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788505741000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Geopolitical conflict boosts safe havens and oil"
     },
     {
       "title": "Brent Oil stalls at $97.62 double-top risk: Live levels",
@@ -368,7 +380,12 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1788505906000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Double-top risk implies bearish reversal"
     },
     {
       "title": "London Gas Oil stalls at $1,403 after parabolic run: Live levels",
@@ -385,7 +402,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1788505906000,
-      "_kind": null
+      "_kind": null,
+      "why": "Stalling price action implies no direction"
     },
     {
       "title": "Gold trapped in tight range: Live breakout levels",
@@ -402,7 +420,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1788505906000,
-      "_kind": null
+      "_kind": null,
+      "why": "Tight range implies no direction"
     },
     {
       "title": "Natural Gas holds $2.87 support confluence: Live levels",
@@ -417,7 +436,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1788505906000,
-      "_kind": null
+      "_kind": null,
+      "why": "Holding support implies no direction"
     },
     {
       "title": "Silver trapped in range at $67.30: Live breakout levels",
@@ -434,7 +454,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1788505906000,
-      "_kind": null
+      "_kind": null,
+      "why": "Trapped in range implies no direction"
     },
     {
       "title": "Crude Oil WTI tests highs with overbought RSI: Live levels",
@@ -452,7 +473,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1788505906000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Overbought RSI at highs implies pullback"
     },
     {
       "title": "US strikes deepen Tehran debate over compromise or confrontation - Iran International",
@@ -473,7 +498,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788505741000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "US strikes boost risk premium"
     },
     {
       "title": "Volkswagen shares jump in early trade on turnaround agreement",
@@ -507,7 +538,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788505304000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "War escalation boosts gold, oil unclear"
     },
     {
       "title": "Japan stocks higher at close of trade; Nikkei 225 up 1.28%",
@@ -1427,7 +1462,7 @@
       "why": "Political meeting, no market impact"
     },
     {
-      "title": "Ukraine war briefing: US envoy to visit Kyiv in coming days, Zelenskyy says, as Putin signals ‘chance’ of peace - theguardian.com",
+      "title": "Ukraine war briefing: US envoy to visit Kyiv in coming days, Zelenskyy says, as Putin signals ‘chance’ of peace - The Guardian",
       "link": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxPYmxBVFZFZ0ZPMXlDbHJrZjFJTWd6UjNFb1EtaHBPZ00xOVBRWEJ5Sk5QazVxVUI2Um53Tzh4Rm1mVEFGNW5Sb2oyYkJvamlkMFhlTmhqaC1tbGdOTWtmM2JBVXhobFV4SUxkcHdZSjdPZmNBWjhXMVAtX3NsMGpVVnQ4b3VUQi1HVmJHdE14dDdFYmE4VUtVRUdiTzY4VmlvMXcyR2NjOHJkSHdfbVE2eFlLMFZzcm5hWXpUdVNheVF5N25hQ0FJUDBVOTZta0lfN2MybFlkTm5BS2NKY2Rhbkw3ZmU1ak0?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMi5wFBVV95cUxPYmxBVFZFZ0ZPMXlDbHJrZjFJTWd6UjNFb1EtaHBPZ00xOVBRWEJ5Sk5QazVxVUI2Um53Tzh4Rm1mVEFGNW5Sb2oyYkJvamlkMFhlTmhqaC1tbGdOTWtmM2JBVXhobFV4SUxkcHdZSjdPZmNBWjhXMVAtX3NsMGpVVnQ4b3VUQi1HVmJHdE14dDdFYmE4VUtVRUdiTzY4VmlvMXcyR2NjOHJkSH",
@@ -1453,7 +1488,7 @@
       "why": "Peace signals reduce geopolitical risk premium"
     },
     {
-      "title": "Gold To End Volatile Week Higher As Fedspeak Trims Rate-Hike Bet - NDTV Profit",
+      "title": "Gold To End Volatile Week Higher As Fedspeak Trims Rate-Hike Bet - ndtvprofit.com",
       "link": "https://news.google.com/rss/articles/CBMirAFBVV95cUxObEZSNTBxZFpyeG82dTVXaWFGYnRETnR0UjE2RF9ROHZjbnF3ZU95YmZFY09ORTJOR0ZrR3ZUVE5qTmhRMlEyWFlYU3owV1BmRVo0dzQ1eC0yNFUyZ1REYTFNS0Q1YmxJQWswaFh0OVJIcGtoNmR1ejVwTk5lalIybjdqX2F1Ml9aYTY0ZG1tMVJ4OS1jang4QzhIVUNvMU1RWjhrX3ZBYVU5TU1Z0gG0AUFVX3lxTFBvWDlSX2tBUXJvZmVUWTJJOXRTWmdWXzcxM1BRWU5tb01zT1pFUDB6ZGtxYlpsUkJ1V09vY3VYdGFhLWVtQnctVHNoYmNHX3BnTzhmVElHWXZvZHFhT3IzVXdZWUI2dTZVM3BHdDZOOTFhZlV2MTI2eVFzRkM0OThRYXBwbnhXbV9RWno1eG8xVWZfaEJkX29iRnB4cUNHamk3Q2U3emU3TVd4MUZEWEZLaTF4UQ?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMirAFBVV95cUxObEZSNTBxZFpyeG82dTVXaWFGYnRETnR0UjE2RF9ROHZjbnF3ZU95YmZFY09ORTJOR0ZrR3ZUVE5qTmhRMlEyWFlYU3owV1BmRVo0dzQ1eC0yNFUyZ1REYTFNS0Q1YmxJQWswaFh0OVJIcGtoNmR1ejVwTk5lalIybjdqX2F1Ml9aYTY0ZG1tMVJ4OS1jang4QzhIVUNvMU1RWjhrX3ZBYVU5TU",
@@ -1625,7 +1660,7 @@
       "why": "Ukraine-Russia conflict boosts gold slightly"
     },
     {
-      "title": "JD Vance reacts to airstrike that killed four at Iran wedding: ‘Things happen’ - theguardian.com",
+      "title": "JD Vance reacts to airstrike that killed four at Iran wedding: ‘Things happen’ - The Guardian",
       "link": "https://news.google.com/rss/articles/CBMigAFBVV95cUxPOEtsaDRkWklOSkM5bFdVWFVTdTVMTE5aeVlDYk4tbk16ZG42STU3UU8zc0tRbzM1UWNQbWRoMTMtZ1hqdjNNTUoxbmhTR2RNOVgzaUppUUluNkRUb21WQTdmeDdUdGwwQ0ludExNbjg2aTVwaUpuZDZiTVZ1ZGlMTQ?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMigAFBVV95cUxPOEtsaDRkWklOSkM5bFdVWFVTdTVMTE5aeVlDYk4tbk16ZG42STU3UU8zc0tRbzM1UWNQbWRoMTMtZ1hqdjNNTUoxbmhTR2RNOVgzaUppUUluNkRUb21WQTdmeDdUdGwwQ0ludExNbjg2aTVwaUpuZDZiTVZ1ZGlMTQ?oc=5\" target=\"_blank\">JD Vance reacts to airstrike that",
@@ -2228,7 +2263,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788466058000
+      "firstAt": 1788466058000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Prolonged conflict sustains risk premium"
     },
     {
       "title": "Russia strikes WHO warehouse in Kyiv region - Ukrinform",
@@ -2300,7 +2341,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-04T07:19:32.748Z",
-  "headlinesAt": "2026-09-04T07:19:32.748Z",
-  "updatedAt": "2026-09-04T07:19:32.748Z"
+  "calendarAt": "2026-09-04T07:23:27.624Z",
+  "headlinesAt": "2026-09-04T07:23:27.624Z",
+  "updatedAt": "2026-09-04T07:23:27.624Z"
 }
