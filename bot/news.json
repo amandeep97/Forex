@@ -580,10 +580,10 @@
       "why": "Geopolitical uncertainty unclear for markets"
     },
     {
-      "title": "JD Vance says Iran conflict is not a war, two days after US strikes - abc.net.au",
+      "title": "US vice-president says Iran conflict not a war - abc.net.au",
       "link": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxOa1FCbUhna1pGME5ZbWVuSS1rNll2STB4amlvOFJHc0stanJmd09BZEd5S19oYmVSREU3bjFIRE5PdkZBUE54TnI0ZzNfNVFtSTJ1NDdRRDZUeWRBSFM4VEh0QllSOWNVRjc5X2N5N2hKRkZ5dkt0cTZoTDg1S3VUTmxjam92dkJ2?oc=5",
       "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiiAFBVV95cUxOa1FCbUhna1pGME5ZbWVuSS1rNll2STB4amlvOFJHc0stanJmd09BZEd5S19oYmVSREU3bjFIRE5PdkZBUE54TnI0ZzNfNVFtSTJ1NDdRRDZUeWRBSFM4VEh0QllSOWNVRjc5X2N5N2hKRkZ5dkt0cTZoTDg1S3VUTmxjam92dkJ2?oc=5\" target=\"_blank\">JD Vance says Iran conf",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiiAFBVV95cUxOa1FCbUhna1pGME5ZbWVuSS1rNll2STB4amlvOFJHc0stanJmd09BZEd5S19oYmVSREU3bjFIRE5PdkZBUE54TnI0ZzNfNVFtSTJ1NDdRRDZUeWRBSFM4VEh0QllSOWNVRjc5X2N5N2hKRkZ5dkt0cTZoTDg1S3VUTmxjam92dkJ2?oc=5\" target=\"_blank\">US vice-president says ",
       "at": 1788474779000,
       "inst": [
         "XAU/USD",
@@ -596,10 +596,15 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 2,
-      "firstAt": 1788472309000,
+      "srcs": 1,
+      "firstAt": 1788474779000,
       "_kind": null,
-      "why": "No clear directional impact"
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "De-escalation reduces geopolitical risk premium"
     },
     {
       "title": "Funerals held in Iran for wedding party victims of US missile strikes - applevalleynewsnow.com",
@@ -695,7 +700,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788473313000,
-      "_kind": null,
       "why": "Political criticism lacks market impact"
     },
     {
@@ -797,7 +801,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1788469440000,
+      "firstAt": 1788469500000,
       "dir": {
         "XAU/USD": "up",
         "USOIL": "up",
@@ -823,7 +827,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1788469440000,
+      "firstAt": 1788469500000,
       "dir": {
         "XAU/USD": "up",
         "USOIL": "up",
@@ -891,7 +895,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1788469440000,
+      "firstAt": 1788469500000,
       "why": "No clear directional impact on markets"
     },
     {
@@ -911,6 +915,32 @@
       "srcs": 1,
       "firstAt": 1788469625000,
       "why": "Light calendar, unlikely to move markets"
+    },
+    {
+      "title": "JD Vance reacts to airstrike that killed four at Iran wedding: ‘Things happen’ - The Guardian",
+      "link": "https://news.google.com/rss/articles/CBMigAFBVV95cUxPOEtsaDRkWklOSkM5bFdVWFVTdTVMTE5aeVlDYk4tbk16ZG42STU3UU8zc0tRbzM1UWNQbWRoMTMtZ1hqdjNNTUoxbmhTR2RNOVgzaUppUUluNkRUb21WQTdmeDdUdGwwQ0ludExNbjg2aTVwaUpuZDZiTVZ1ZGlMTQ?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMigAFBVV95cUxPOEtsaDRkWklOSkM5bFdVWFVTdTVMTE5aeVlDYk4tbk16ZG42STU3UU8zc0tRbzM1UWNQbWRoMTMtZ1hqdjNNTUoxbmhTR2RNOVgzaUppUUluNkRUb21WQTdmeDdUdGwwQ0ludExNbjg2aTVwaUpuZDZiTVZ1ZGlMTQ?oc=5\" target=\"_blank\">JD Vance reacts to airstrike that",
+      "at": 1788469500000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1788469500000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Iran wedding strike boosts risk aversion"
     },
     {
       "title": "Yen Surges to 155 Range Against Dollar on BOJ Consecutive Rate Hike Bets and Fed Pause Signals - finance.biggo.com",
@@ -933,32 +963,6 @@
         "USD/JPY": "down"
       },
       "why": "Yen surges against dollar"
-    },
-    {
-      "title": "JD Vance reacts to airstrike that killed four at Iran wedding: ‘Things happen’ - The Guardian",
-      "link": "https://news.google.com/rss/articles/CBMigAFBVV95cUxPOEtsaDRkWklOSkM5bFdVWFVTdTVMTE5aeVlDYk4tbk16ZG42STU3UU8zc0tRbzM1UWNQbWRoMTMtZ1hqdjNNTUoxbmhTR2RNOVgzaUppUUluNkRUb21WQTdmeDdUdGwwQ0ludExNbjg2aTVwaUpuZDZiTVZ1ZGlMTQ?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMigAFBVV95cUxPOEtsaDRkWklOSkM5bFdVWFVTdTVMTE5aeVlDYk4tbk16ZG42STU3UU8zc0tRbzM1UWNQbWRoMTMtZ1hqdjNNTUoxbmhTR2RNOVgzaUppUUluNkRUb21WQTdmeDdUdGwwQ0ludExNbjg2aTVwaUpuZDZiTVZ1ZGlMTQ?oc=5\" target=\"_blank\">JD Vance reacts to airstrike that",
-      "at": 1788469440000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1788469440000,
-      "dir": {
-        "XAU/USD": "up",
-        "USOIL": "up",
-        "UKOIL": "up"
-      },
-      "why": "Iran wedding strike boosts risk aversion"
     },
     {
       "title": "Oil prices extend weekly gains, touch their highest levels in three months",
@@ -2370,7 +2374,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-04T00:06:22.480Z",
-  "headlinesAt": "2026-09-04T00:06:22.480Z",
-  "updatedAt": "2026-09-04T00:06:22.480Z"
+  "calendarAt": "2026-09-04T00:09:24.183Z",
+  "headlinesAt": "2026-09-04T00:09:24.183Z",
+  "updatedAt": "2026-09-04T00:09:24.183Z"
 }
