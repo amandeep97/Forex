@@ -1,69 +1,6 @@
 {
   "calendar": [
     {
-      "title": "Labor Productivity q/q",
-      "country": "CAD",
-      "impact": "low",
-      "at": 1788438600000,
-      "forecast": "0.7%",
-      "previous": "-0.5%",
-      "actual": ""
-    },
-    {
-      "title": "Trade Balance",
-      "country": "CAD",
-      "impact": "low",
-      "at": 1788438600000,
-      "forecast": "3.2B",
-      "previous": "3.9B",
-      "actual": ""
-    },
-    {
-      "title": "Unemployment Claims",
-      "country": "USD",
-      "impact": "medium",
-      "at": 1788438600000,
-      "forecast": "205K",
-      "previous": "203K",
-      "actual": ""
-    },
-    {
-      "title": "FOMC Member Waller Speaks",
-      "country": "USD",
-      "impact": "low",
-      "at": 1788438600000,
-      "forecast": "",
-      "previous": "",
-      "actual": ""
-    },
-    {
-      "title": "Revised Nonfarm Productivity q/q",
-      "country": "USD",
-      "impact": "low",
-      "at": 1788438600000,
-      "forecast": "1.4%",
-      "previous": "1.4%",
-      "actual": ""
-    },
-    {
-      "title": "Revised Unit Labor Costs q/q",
-      "country": "USD",
-      "impact": "low",
-      "at": 1788438600000,
-      "forecast": "1.3%",
-      "previous": "1.3%",
-      "actual": ""
-    },
-    {
-      "title": "Trade Balance",
-      "country": "USD",
-      "impact": "low",
-      "at": 1788438600000,
-      "forecast": "-89.4B",
-      "previous": "-73.3B",
-      "actual": ""
-    },
-    {
       "title": "Final Services PMI",
       "country": "USD",
       "impact": "low",
@@ -196,7 +133,14 @@
       "at": 1788525000000,
       "forecast": "0.3%",
       "previous": "0.1%",
-      "actual": ""
+      "actual": "0.05",
+      "actualFrom": "BLS",
+      "actualNum": 0.05,
+      "vsPrevious": -0.05,
+      "forecastNum": 0.3,
+      "surprise": -0.25,
+      "surprisePct": -83.3,
+      "beat": "below"
     },
     {
       "title": "Non-Farm Employment Change",
@@ -205,7 +149,14 @@
       "at": 1788525000000,
       "forecast": "55K",
       "previous": "-23K",
-      "actual": ""
+      "actual": "-23000",
+      "actualFrom": "BLS",
+      "actualNum": -23000,
+      "vsPrevious": 0,
+      "forecastNum": 55000,
+      "surprise": -78000,
+      "surprisePct": -141.8,
+      "beat": "below"
     },
     {
       "title": "Unemployment Rate",
@@ -214,7 +165,14 @@
       "at": 1788525000000,
       "forecast": "4.1%",
       "previous": "4.1%",
-      "actual": ""
+      "actual": "4.1",
+      "actualFrom": "BLS",
+      "actualNum": 4.1,
+      "vsPrevious": 0,
+      "forecastNum": 4.1,
+      "surprise": 0,
+      "surprisePct": 0,
+      "beat": "inline"
     },
     {
       "title": "Ivey PMI",
@@ -227,6 +185,36 @@
     }
   ],
   "headlines": [
+    {
+      "title": "Is the stock market open on Labor Day? Will the post office deliver mail?",
+      "link": "https://www.marketwatch.com/story/is-the-stock-market-open-on-labor-day-does-the-post-office-deliver-mail-6d58fd77?mod=mw_rss_topstories",
+      "source": "MarketWatch",
+      "desc": "Here’s how trading hours and other services are affected by the Labor Day holiday on Monday, Sept. 7.",
+      "at": 1788524880000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 1,
+      "srcs": 1,
+      "firstAt": 1788524880000,
+      "_kind": null
+    },
+    {
+      "title": "Germany’s far right eyes election breakthrough as AfD surges in Saxony",
+      "link": "https://www.aljazeera.com/news/2026/9/4/germanys-far-right-eyes-election-breakthrough-as-afd-surges-in-saxony?traffic_source=rss",
+      "source": "Al Jazeera",
+      "desc": "The nationalist party that promises to strip back asylum rights is poised to win a state election for the first time.",
+      "at": 1788524378000,
+      "inst": [
+        "EUR/USD"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788524378000,
+      "_kind": null
+    },
     {
       "title": "Bitcoin heads for third winning week in a row as macro pressures mount",
       "link": "https://www.cnbc.com/2026/09/04/bitcoin-heads-for-third-winning-week-in-a-row-as-macro-pressures-mount.html",
@@ -1894,7 +1882,7 @@
       "why": "Geopolitical risk unclear for specific assets"
     },
     {
-      "title": "Qatar Confirms Iran’s Strikes Targeted US Military Facilities: Spokesman - tasnimnews.ir",
+      "title": "Qatar Confirms Iran’s Strikes Targeted US Military Facilities: Spokesman - تسنیم",
       "link": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxOWHcxN0xuM00tb3Ewb0dhSm5vckZYWUxxWDNSaUpDQ2hTaVhoQjRoU0VEYmZVdEVzRGROakpUSVFDTkhabVF1T0JzZllVYWRPSkZtSkcxaFNZZWdfNVZSODBOWXdHWDEyTEpzZVJmVElCa21yNzR0YXBiSVJMXzdJel9KTXBBX1RBaC02WXFfcmM3U0E0YVJ5d1o3WTFNcElzQlVnWjZUSEV5MmxqRUtJZWpucTlIWHNJZ0luX2c1SE5ZZ9IBxwFBVV95cUxPMVBBdWNwTFNtRDN4WkJWbS1sVll1a2ZjUXZJOW5JN0RPUkc5UEFrcjZFM0FNTnJSb0l5YlZJb09CWWpiRGMwR2lLQXNKa2FrZkxUdGxIeGNxX05IZzVMWkxKT0lkcm9CSFpUUEZ6cmlBLWY1ek9QbVFtdExtd2RHWHVaUDhCbXdmZkdWd3BuVFd2dmV4RHlvUmhGbHhJMHBabnlmMkM2OVdVU01PSHZxXzZhS1VLbWhPUVR0SkdtSG9XdkM0SkNv?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiwgFBVV95cUxOWHcxN0xuM00tb3Ewb0dhSm5vckZYWUxxWDNSaUpDQ2hTaVhoQjRoU0VEYmZVdEVzRGROakpUSVFDTkhabVF1T0JzZllVYWRPSkZtSkcxaFNZZWdfNVZSODBOWXdHWDEyTEpzZVJmVElCa21yNzR0YXBiSVJMXzdJel9KTXBBX1RBaC02WXFfcmM3U0E0YVJ5d1o3WTFNcElzQlVnWjZUSEV5Mm",
@@ -2143,56 +2131,6 @@
       "srcs": 1,
       "firstAt": 1788489900000,
       "why": "Geopolitical tension, unclear immediate impact"
-    },
-    {
-      "title": "Asian shares climb as Fed rate hike fears ease ahead of US jobs data - Business Standard",
-      "link": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxPTDJZcmFHUE5RUTc3aEhPZzcwOXBPTW9sSFhSd211bUFRMzd2NHB3RjFqOWI1NTcyQWFFZ1dTSmRLTTN3RDFaM3NEMThidUczSTlIUXFLNmxkWFMtbGlaLUVCNzg1c2Npd0FZellibmN1YVNKYTV1QTVURlJBUmdYWGFVREJQVldnNXJ0Ump2Q2pOVUg4SV84QmZJWmdiUkRNMGY1RHN3ZjVsZ1UxM1pRLXhlZEVOWDNhQ2J6VmM2VVhZbzBBWlpBNXRkWTJPNVFo?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi0AFBVV95cUxPTDJZcmFHUE5RUTc3aEhPZzcwOXBPTW9sSFhSd211bUFRMzd2NHB3RjFqOWI1NTcyQWFFZ1dTSmRLTTN3RDFaM3NEMThidUczSTlIUXFLNmxkWFMtbGlaLUVCNzg1c2Npd0FZellibmN1YVNKYTV1QTVURlJBUmdYWGFVREJQVldnNXJ0Ump2Q2pOVUg4SV84QmZJWmdiUkRNMGY1RHN3ZjVsZ1",
-      "at": 1788489841000,
-      "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788489841000,
-      "dir": {
-        "XAU/USD": "up",
-        "EUR/USD": "up",
-        "GBP/USD": "up"
-      },
-      "why": "Easing Fed fears boost risk assets"
-    },
-    {
-      "title": "Ukraine 'Optimistic' On Russia Sanctions Bill But Obstacles Loom - Radio Free Europe/Radio Liberty",
-      "link": "https://news.google.com/rss/articles/CBMijwFBVV95cUxNb2NYVmVwUlRfTk15UzYwRTFza2xiUWp6aDZ0aXZmdDAxaTduNmVXSTdkQnpPVUlhT1g1U2RXc0NkTG52MG93WTZpbzQ5V05kcHJvYldvSk9xNkRaTzJ1THJCaTZKSldHMXJLRk5EamR2X19FS0xKOGF5Y29ITm8zMUtKakI3bEdRM0Rxa2VyNNIBkgFBVV95cUxPVURXbldtdEl5M2RDSkppRURRWk82cDhOODBIa1J0Ukh4QXBDOHVyUjZaV09vMnNjM1VOVmo4OGxOMmF5bGtNcE8teVFGd09PS3drRjZ5bDhkZ1RTb1ZhQ21zaXFfd2dBeTAzRjBBWTlDZko3LW5vUmtQTFFYd2prMEtvV2dDRlVQaVB6MEV2RmR4Zw?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMijwFBVV95cUxNb2NYVmVwUlRfTk15UzYwRTFza2xiUWp6aDZ0aXZmdDAxaTduNmVXSTdkQnpPVUlhT1g1U2RXc0NkTG52MG93WTZpbzQ5V05kcHJvYldvSk9xNkRaTzJ1THJCaTZKSldHMXJLRk5EamR2X19FS0xKOGF5Y29ITm8zMUtKakI3bEdRM0Rxa2VyNNIBkgFBVV95cUxPVURXbldtdEl5M2RDSkppRU",
-      "at": 1788489095000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788489095000,
-      "why": "Sanctions bill obstacles, unclear oil impact"
     }
   ],
   "sources": [
@@ -2215,10 +2153,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-04T12:28:28.536Z",
-  "headlinesAt": "2026-09-04T12:28:28.536Z",
-  "updatedAt": "2026-09-04T12:28:28.536Z"
+  "calendarAt": "2026-09-04T12:31:44.737Z",
+  "headlinesAt": "2026-09-04T12:31:44.737Z",
+  "updatedAt": "2026-09-04T12:31:44.737Z"
 }
