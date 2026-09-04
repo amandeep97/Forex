@@ -354,7 +354,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788498671000,
-      "_kind": null
+      "_kind": null,
+      "why": "Humanitarian news, no clear market direction."
     },
     {
       "title": "Fed’s Rate Pause Signals Shift as Markets Weigh Inflation and Growth Risks - InteractiveCrypto",
@@ -487,7 +488,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788498002000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Inflation fears boost gold, hurt bonds."
     },
     {
       "title": "Qatar Confirms Iran’s Strikes Targeted US Military Facilities: Spokesman - تسنیم",
@@ -2371,10 +2378,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-04T05:27:42.430Z",
-  "headlinesAt": "2026-09-04T05:27:42.430Z",
-  "updatedAt": "2026-09-04T05:27:42.430Z"
+  "calendarAt": "2026-09-04T05:30:28.052Z",
+  "headlinesAt": "2026-09-04T05:30:28.052Z",
+  "updatedAt": "2026-09-04T05:30:28.052Z"
 }
