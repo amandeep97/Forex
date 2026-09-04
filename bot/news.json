@@ -354,6 +354,22 @@
   ],
   "headlines": [
     {
+      "title": "Chinese AI stocks rise after OpenAI launches Astra, MiniMax jumps 6%",
+      "link": "https://www.investing.com/news/stock-market-news/chinese-ai-stocks-rise-after-openai-launches-astra-minimax-jumps-6-4888776",
+      "source": "Investing",
+      "at": 1788488670000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788488670000,
+      "_kind": null,
+      "why": "Chinese AI news, US index unclear"
+    },
+    {
       "title": "Why did Trump meet with anti-Zionist Jewish leaders?",
       "link": "https://www.aljazeera.com/video/newsfeed/2026/9/4/why-did-trump-meet-with-anti-zionist-jewish-leaders?traffic_source=rss",
       "source": "Al Jazeera",
@@ -372,7 +388,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788488480000,
-      "_kind": null
+      "_kind": null,
+      "why": "Political meeting, no market direction"
     },
     {
       "title": "Gold To End Volatile Week Higher As Fedspeak Trims Rate-Hike Bet - NDTV Profit",
@@ -1028,25 +1045,28 @@
       "why": "Geopolitical tension boosts safe havens and oil."
     },
     {
-      "title": "Asia Stocks to Gain as Fed Bets Cool, Dollar Drops: Markets Wrap - Bloomberg.com",
+      "title": "Stocks Rise as Fed Rate-Hike Bets Ease, Yen Gains: Markets Wrap - Bloomberg.com",
       "link": "https://news.google.com/rss/articles/CBMilAFBVV95cUxQaktoYVRBb3N2SC1rN2s4X05rbWgtWE0xeFRDak9DOXV5Zlppd2Rsbml6bXJObVNkNjJuS1I4UzdxUG5XV1pqd3JPUUFxUWUzU1E1TmlSeVdZeFNzN3NNVjVPVE5qYmZHYUppMFdfVG1aV2NscTlvTnQyNGJyTDA5QUJNLUF3U1l0dmJ0d2ZPcFVtbV9a?oc=5",
       "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMilAFBVV95cUxQaktoYVRBb3N2SC1rN2s4X05rbWgtWE0xeFRDak9DOXV5Zlppd2Rsbml6bXJObVNkNjJuS1I4UzdxUG5XV1pqd3JPUUFxUWUzU1E1TmlSeVdZeFNzN3NNVjVPVE5qYmZHYUppMFdfVG1aV2NscTlvTnQyNGJyTDA5QUJNLUF3U1l0dmJ0d2ZPcFVtbV9a?oc=5\" target=\"_blank\">Asia St",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMilAFBVV95cUxQaktoYVRBb3N2SC1rN2s4X05rbWgtWE0xeFRDak9DOXV5Zlppd2Rsbml6bXJObVNkNjJuS1I4UzdxUG5XV1pqd3JPUUFxUWUzU1E1TmlSeVdZeFNzN3NNVjVPVE5qYmZHYUppMFdfVG1aV2NscTlvTnQyNGJyTDA5QUJNLUF3U1l0dmJ0d2ZPcFVtbV9a?oc=5\" target=\"_blank\">Stocks ",
       "at": 1788473666000,
       "inst": [
+        "USD/JPY",
         "US500"
       ],
       "ccy": [
-        "USD"
+        "USD",
+        "JPY"
       ],
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788473666000,
+      "firstAt": 1788473499000,
       "dir": {
+        "USD/JPY": "down",
         "US500": "up"
       },
-      "why": "Cooling Fed bets boost stocks"
+      "why": "Yen gains, stocks rise"
     },
     {
       "title": "Yen Soars to One-Month High Against Dollar Amid Intervention and BOJ Rate-Hike Speculation - Eurasia Business News",
@@ -1535,7 +1555,7 @@
       "why": "Geopolitical risk boosts gold."
     },
     {
-      "title": "Russia Sanctions Bill Stalls in US House Amid Tariff Concerns - Bloomberg.com",
+      "title": "Russia Sanctions Bill Stalls in US House Amid Tariff Concerns - bloomberg.com",
       "link": "https://news.google.com/rss/articles/CBMisgFBVV95cUxPeVRhQnU3aG5FWXZudWNBU1FKVW1hb2FqRlZ1SUN0V1F2VXVCZVpFekwzMmQwUllaYVJsbDhKb01OVkk3dGZadnB4dWNnUHpaR2xOQnU4ZVFfb2pSSVlseU54WlVXT1BnT05ZWUEtUThYbmtKNjI4dzBaSkNieHFEeXNyeWl3Wng0aU1uc2ZUNnRTeXpILTNqVmdfZk51RG5COUJydXBVUlZOUk9aRjRpYTln?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMisgFBVV95cUxPeVRhQnU3aG5FWXZudWNBU1FKVW1hb2FqRlZ1SUN0V1F2VXVCZVpFekwzMmQwUllaYVJsbDhKb01OVkk3dGZadnB4dWNnUHpaR2xOQnU4ZVFfb2pSSVlseU54WlVXT1BnT05ZWUEtUThYbmtKNjI4dzBaSkNieHFEeXNyeWl3Wng0aU1uc2ZUNnRTeXpILTNqVmdfZk51RG5COUJydXBVUlZOUk",
@@ -1627,30 +1647,6 @@
         "UKOIL": "up"
       },
       "why": "Iran attacks boost oil and gold."
-    },
-    {
-      "title": "Singapore Dollar: Stronger Singapore growth with contained inflation – Commerzbank - FXStreet",
-      "link": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPZDF5eWZKSndXRThacFBFMEZwTXpHaGtmajRYb0c4RVZLcWFyUkY5bXBZdkVqcEt5VG9sdy1hSE52SFZkbkZHY1ZZTGt1NUo2SmRXNkU3VHBzWk5mRDJNSHhlb0p6OVpNLUxmUjFjMnUweFR5dUs4MU1tc21oNzhyZ21JSDdnWlVBNHpNZmpJR0ktZFJfNEhhdXhMZW94REtpZ0VaQWFLc1FXX3N1RS02dWMzSVZ2LVluOUNMelZhNA?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMivwFBVV95cUxPZDF5eWZKSndXRThacFBFMEZwTXpHaGtmajRYb0c4RVZLcWFyUkY5bXBZdkVqcEt5VG9sdy1hSE52SFZkbkZHY1ZZTGt1NUo2SmRXNkU3VHBzWk5mRDJNSHhlb0p6OVpNLUxmUjFjMnUweFR5dUs4MU1tc21oNzhyZ21JSDdnWlVBNHpNZmpJR0ktZFJfNEhhdXhMZW94REtpZ0VaQWFLc1FXX3",
-      "at": 1788464280000,
-      "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788464280000,
-      "why": "Singapore news irrelevant to these pairs."
     },
     {
       "title": "Miners power Canada's TSX; markets assess rate-hike bets - KITCO",
@@ -2371,10 +2367,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-04T02:41:24.795Z",
-  "headlinesAt": "2026-09-04T02:41:24.795Z",
-  "updatedAt": "2026-09-04T02:41:24.795Z"
+  "calendarAt": "2026-09-04T02:44:39.371Z",
+  "headlinesAt": "2026-09-04T02:44:39.371Z",
+  "updatedAt": "2026-09-04T02:44:39.371Z"
 }
