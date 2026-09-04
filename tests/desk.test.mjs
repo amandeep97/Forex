@@ -328,5 +328,65 @@ const H = 3600e3;
     scoreStandAside([rows[2]], extremeAt) === null);
 }
 
+// ── The path the component actually takes ───────────────────────────────────
+//
+// The reason this block exists: scoreStandAside was tested in isolation with an
+// injected extremeAt and passed every check, while the component called a
+// bar-fetching helper named `bars` that was never defined in that file. The
+// ReferenceError escaped the async effect, setScored was never reached, and the
+// record rendered six verdicts with no scores and no error. Green tests, broken
+// screen.
+//
+// So this rebuilds the component's own extremeAt over a real bar array and runs
+// the whole thing, rather than handing the scorer a convenient stub.
+{
+  const H = 3600e3;
+  const t0 = Date.UTC(2026, 8, 1, 0, 0, 0);
+  // Forty hours of gold. Flat for twenty, then a run up of eight dollars a bar.
+  const cs = Array.from({ length: 40 }, (_, i) => {
+    const p = 4400 + (i >= 20 ? (i - 20) * 8 : 0);
+    return { t: t0 + i * H, o: p, h: p + 2, l: p - 2, c: p, v: 1 };
+  });
+  const cache = { XAU_USD: cs };
+
+  // Copied in shape from TradingDesk.jsx — same filter, same window, same
+  // guards. If the component's version drifts from this, that is the thing
+  // worth knowing.
+  const extremeAt = (sym, from, to) => {
+    const bars = cache[sym];
+    if (!bars) return null;
+    const win = bars.filter(c => c.t >= from && c.t <= to);
+    if (win.length < 2) return null;
+    return { high: Math.max(...win.map(c => c.h)), low: Math.min(...win.map(c => c.l)) };
+  };
+
+  const now = t0 + 40 * H;
+  const log = [
+    // Stood aside at the start of the flat stretch, 10 hour horizon. Nothing
+    // happened; the refusal was right.
+    { at: t0 + 2 * H, sym: 'XAU_USD', price: 4400, atr: 10, action: 'stand aside', horizon: 10 },
+    // Stood aside just before the run, 15 hour horizon. It went 96 dollars.
+    { at: t0 + 19 * H, sym: 'XAU_USD', price: 4400, atr: 10, action: 'stand aside', horizon: 15 },
+  ];
+  const aside = log.filter(r => r.action === 'stand aside' && now > r.at + (r.horizon || 24) * H);
+  check('both refusals have finished their horizon', aside.length === 2, String(aside.length));
+
+  const sc = scoreStandAside(aside, extremeAt);
+  check('the real path produces a score rather than nothing',
+    sc != null && sc.n === 2, sc ? `n=${sc.n}` : 'null',
+    'the component reached exactly this point and returned undefined');
+  check('the quiet window is scored correct and the run is scored missed',
+    sc.correct === 1 && sc.missed === 1, `${sc.correct} correct, ${sc.missed} missed`);
+  check('and the missed one names the direction and the size',
+    sc.rows.some(r => r.missed && r.dir === 'up' && r.reachAtr >= 5),
+    sc.rows.map(r => `${r.reachAtr} ${r.dir}`).join(' / '));
+
+  // The failure the component hit: no bars for that symbol.
+  const blind = (sym, from, to) => extremeAt('NOPE', from, to);
+  check('with no bars at all it scores nothing rather than scoring zero',
+    scoreStandAside(aside, blind) === null,
+    'a missing series must not read as "the market did nothing"');
+}
+
 console.log(fails ? `\n${fails} FAILED` : '\nall passed');
 process.exit(fails ? 1 : 0);

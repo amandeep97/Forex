@@ -1,5 +1,5 @@
 import { useState, useCallback, useEffect } from 'react';
-import { DESK_INSTRUMENTS, gatherEvidence } from '../utils/deskEvidence.js';
+import { DESK_INSTRUMENTS, gatherEvidence, candles } from '../utils/deskEvidence.js';
 import { runDesk, readLog, aiConfig, isReasoningModel, verdictOf,
          scoreStandAside, MISSED_ATR } from '../utils/deskAgents.js';
 
@@ -233,20 +233,36 @@ export default function TradingDesk() {
     if (!aside.length) { setScored(null); return; }
     let stop = false;
     (async () => {
-      // The highest and lowest price reached inside each window — what a trade
-      // could have caught, not where it happened to close.
-      const cache = {};
-      const extremeAt = (sym, from, to) => {
-        const cs = cache[sym];
-        if (!cs) return null;
-        const win = cs.filter(c => c.t >= from && c.t <= to);
-        if (win.length < 2) return null;
-        return { high: Math.max(...win.map(c => c.h)), low: Math.min(...win.map(c => c.l)) };
-      };
-      for (const sym of [...new Set(aside.map(r => r.sym))]) {
-        cache[sym] = await bars(sym).catch(() => null);
+      try {
+        // The highest and lowest price reached inside each window — what a trade
+        // could have caught, not where it happened to close.
+        const cache = {};
+        const extremeAt = (sym, from, to) => {
+          const cs = cache[sym];
+          if (!cs) return null;
+          const win = cs.filter(c => c.t >= from && c.t <= to);
+          if (win.length < 2) return null;
+          return { high: Math.max(...win.map(c => c.h)), low: Math.min(...win.map(c => c.l)) };
+        };
+        // Far enough back to cover the oldest refusal plus its horizon. H1 bars,
+        // the same granularity the verdict was made on.
+        const oldest = Math.min(...aside.map(r => r.at));
+        const hours = Math.ceil((Date.now() - oldest) / 3600e3) + 48;
+        const count = Math.min(5000, Math.max(200, hours));
+        for (const sym of [...new Set(aside.map(r => r.sym))]) {
+          try { cache[sym] = await candles(sym, 'H1', count); }
+          catch { cache[sym] = null; }
+        }
+        if (!stop) setScored(scoreStandAside(aside, extremeAt));
+      } catch (e) {
+        // Loudly, not silently. The first version of this called a bar-fetching
+        // helper that did not exist in this file; the ReferenceError escaped
+        // the async function, setScored was never reached, and the record
+        // rendered its verdicts with no scores at all and no sign anything had
+        // gone wrong. A scorer that can fail invisibly is a scorer nobody can
+        // trust, which defeats the point of having one.
+        if (!stop) setScored({ error: e.message || String(e) });
       }
-      if (!stop) setScored(scoreStandAside(aside, extremeAt));
     })();
     return () => { stop = true; };
   }, [log]);
@@ -452,7 +468,14 @@ export default function TradingDesk() {
             the caution cost something. Measured on the furthest price reached, not where it
             happened to close.
           </div>
-          {scored && (
+          {scored?.error && (
+            <div style={{ fontSize: 11, color: C.warn, marginBottom: 8,
+              padding: '7px 10px', borderRadius: 6, background: 'var(--bg2)',
+              border: `1px solid ${C.warn}44` }}>
+              Could not score the refusals — {scored.error}
+            </div>
+          )}
+          {scored && !scored.error && (
             <div style={{ fontSize: 11, color: 'var(--text2)', marginBottom: 8,
               padding: '7px 10px', borderRadius: 6, background: 'var(--bg2)',
               border: '1px solid var(--border)' }}>
@@ -486,7 +509,7 @@ export default function TradingDesk() {
               <span style={{ color: 'var(--text3)' }}>at {r.price}</span>
               {r.verdict === 'veto' && <span style={{ color: C.warn }}>vetoed</span>}
               {(() => {
-                const sc = scored?.rows.find(x => x.at === r.at && x.sym === r.sym);
+                const sc = scored?.rows?.find(x => x.at === r.at && x.sym === r.sym);
                 if (!sc) return null;
                 return (
                   <span style={{ color: sc.missed ? C.warn : C.bull, fontWeight: 700 }}>

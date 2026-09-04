@@ -49,7 +49,11 @@ function creds() {
   return apiKey ? { apiKey, practice: localStorage.getItem('oanda_env') !== 'live' } : null;
 }
 
-async function candles(sym, gran, count) {
+// Exported so the Desk's own record can re-read the same bars it decided on.
+// A second fetch written in the component would eventually disagree with this
+// one about which bars are complete, and the record would be scoring a
+// different series from the one the verdict was made on.
+export async function candles(sym, gran, count) {
   const c = creds();
   if (!c) throw new Error('OANDA is not connected — the desk has no prices to read');
   const base = c.practice
