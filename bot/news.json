@@ -963,13 +963,12 @@
       "why": "Geopolitical uncertainty unclear for markets"
     },
     {
-      "title": "US vice-president says Iran conflict not a war - ABC News & Headlines – Australian Broadcasting Corporation",
+      "title": "US vice-president says Iran conflict not a war - abc.net.au",
       "link": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxOa1FCbUhna1pGME5ZbWVuSS1rNll2STB4amlvOFJHc0stanJmd09BZEd5S19oYmVSREU3bjFIRE5PdkZBUE54TnI0ZzNfNVFtSTJ1NDdRRDZUeWRBSFM4VEh0QllSOWNVRjc5X2N5N2hKRkZ5dkt0cTZoTDg1S3VUTmxjam92dkJ2?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiiAFBVV95cUxOa1FCbUhna1pGME5ZbWVuSS1rNll2STB4amlvOFJHc0stanJmd09BZEd5S19oYmVSREU3bjFIRE5PdkZBUE54TnI0ZzNfNVFtSTJ1NDdRRDZUeWRBSFM4VEh0QllSOWNVRjc5X2N5N2hKRkZ5dkt0cTZoTDg1S3VUTmxjam92dkJ2?oc=5\" target=\"_blank\">US vice-president says ",
       "at": 1788474779000,
       "inst": [
-        "AUD/USD",
         "XAU/USD",
         "USOIL",
         "UKOIL"
@@ -981,8 +980,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788472140000,
-      "why": "Commentary lacks immediate market impact"
+      "firstAt": 1788474779000,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "De-escalation reduces geopolitical risk premium"
     },
     {
       "title": "Funerals held in Iran for wedding party victims of US missile strikes - applevalleynewsnow.com",
@@ -1059,25 +1063,28 @@
       "why": "Geopolitical tension boosts safe havens and oil."
     },
     {
-      "title": "Asia Stocks to Gain as Fed Bets Cool, Dollar Drops: Markets Wrap - bloomberg.com",
+      "title": "Stocks Rise as Fed Rate-Hike Bets Ease, Yen Gains: Markets Wrap - bloomberg.com",
       "link": "https://news.google.com/rss/articles/CBMilAFBVV95cUxQaktoYVRBb3N2SC1rN2s4X05rbWgtWE0xeFRDak9DOXV5Zlppd2Rsbml6bXJObVNkNjJuS1I4UzdxUG5XV1pqd3JPUUFxUWUzU1E1TmlSeVdZeFNzN3NNVjVPVE5qYmZHYUppMFdfVG1aV2NscTlvTnQyNGJyTDA5QUJNLUF3U1l0dmJ0d2ZPcFVtbV9a?oc=5",
       "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMilAFBVV95cUxQaktoYVRBb3N2SC1rN2s4X05rbWgtWE0xeFRDak9DOXV5Zlppd2Rsbml6bXJObVNkNjJuS1I4UzdxUG5XV1pqd3JPUUFxUWUzU1E1TmlSeVdZeFNzN3NNVjVPVE5qYmZHYUppMFdfVG1aV2NscTlvTnQyNGJyTDA5QUJNLUF3U1l0dmJ0d2ZPcFVtbV9a?oc=5\" target=\"_blank\">Asia St",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMilAFBVV95cUxQaktoYVRBb3N2SC1rN2s4X05rbWgtWE0xeFRDak9DOXV5Zlppd2Rsbml6bXJObVNkNjJuS1I4UzdxUG5XV1pqd3JPUUFxUWUzU1E1TmlSeVdZeFNzN3NNVjVPVE5qYmZHYUppMFdfVG1aV2NscTlvTnQyNGJyTDA5QUJNLUF3U1l0dmJ0d2ZPcFVtbV9a?oc=5\" target=\"_blank\">Stocks ",
       "at": 1788473666000,
       "inst": [
+        "USD/JPY",
         "US500"
       ],
       "ccy": [
-        "USD"
+        "USD",
+        "JPY"
       ],
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788473666000,
+      "firstAt": 1788473499000,
       "dir": {
+        "USD/JPY": "down",
         "US500": "up"
       },
-      "why": "Cooling Fed bets boost stocks"
+      "why": "Yen gains, stocks rise"
     },
     {
       "title": "Yen Soars to One-Month High Against Dollar Amid Intervention and BOJ Rate-Hike Speculation - Eurasia Business News",
@@ -1740,7 +1747,7 @@
       "why": "US-Iran tensions boost safe havens, oil"
     },
     {
-      "title": "Vance 'skeptical' of reports on wedding strike in Iran - nbcnews.com",
+      "title": "Vance 'skeptical' of reports on wedding strike in Iran - NBC News",
       "link": "https://news.google.com/rss/articles/CBMipAFBVV95cUxNM2VianVOTEFqOWNISDk3RWd5SFZnVHdnMFZoLTlLYzREcFRCaGhqRWxpLW5sVnBPbzRfY0k4SFpQbVg3QkFPc1VfbENCZ1E2ajJfM2h4ODVFb0xIOGFFU1ZsMWhRWWhOSnZRbnYxRXJ1ZkotYVJ4UV8ybF91QlQzQVlfOEU0b3Q4REdyMElRaEFlQWlHWnlfbGVrX2xkMFNCaElBTA?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMipAFBVV95cUxNM2VianVOTEFqOWNISDk3RWd5SFZnVHdnMFZoLTlLYzREcFRCaGhqRWxpLW5sVnBPbzRfY0k4SFpQbVg3QkFPc1VfbENCZ1E2ajJfM2h4ODVFb0xIOGFFU1ZsMWhRWWhOSnZRbnYxRXJ1ZkotYVJ4UV8ybF91QlQzQVlfOEU0b3Q4REdyMElRaEFlQWlHWnlfbGVrX2xkMFNCaElBTA?oc=5\" t",
@@ -2363,7 +2370,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-04T03:16:22.695Z",
-  "headlinesAt": "2026-09-04T03:16:22.695Z",
-  "updatedAt": "2026-09-04T03:16:22.695Z"
+  "calendarAt": "2026-09-04T03:20:23.787Z",
+  "headlinesAt": "2026-09-04T03:20:23.787Z",
+  "updatedAt": "2026-09-04T03:20:23.787Z"
 }
