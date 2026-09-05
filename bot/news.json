@@ -139,7 +139,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788575427000,
-      "_kind": null
+      "_kind": null,
+      "why": "Geopolitical alert, unclear market impact"
     },
     {
       "title": "Iran considers escalation as US officials fear military, cyberattacks - The Jerusalem Post",
@@ -582,6 +583,27 @@
       "why": "Supply constraints support oil prices"
     },
     {
+      "title": "Stocks fall after a surprisingly strong jobs report raises prospects of an interest rate hike - WTOP News",
+      "link": "https://news.google.com/rss/articles/CBMipwFBVV95cUxNWVFKaHpBb3AxSVRoZmFQUnk2aGZwYkpxeEdkNHhHNC1EX3ptRTltQVhEUS1aclRTMnVsUmVpVk5xdm9kYzhkaWU4Z2FxRE4zZUtGeEZCQVhBRExjckxaVjlZUXU0M3Q1S0xJYTFrV1R6bzViS2tlbzlKaWJqM3lzZ2F3TkV4QVZuY2VfU1NQc3REdnZtUzlOUmJEbTB1aDgzcGNWYkx3Zw?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMipwFBVV95cUxNWVFKaHpBb3AxSVRoZmFQUnk2aGZwYkpxeEdkNHhHNC1EX3ptRTltQVhEUS1aclRTMnVsUmVpVk5xdm9kYzhkaWU4Z2FxRE4zZUtGeEZCQVhBRExjckxaVjlZUXU0M3Q1S0xJYTFrV1R6bzViS2tlbzlKaWJqM3lzZ2F3TkV4QVZuY2VfU1NQc3REdnZtUzlOUmJEbTB1aDgzcGNWYkx3Zw?oc=",
+      "at": 1788555424000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788555424000,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Strong jobs report raises rate hike fears"
+    },
+    {
       "title": "Gold dips as stellar jobs report drives up Fed rate hike bets, boosts dollar",
       "link": "https://www.investing.com/news/commodities-news/gold-holds-near-4500-as-waller-cools-fed-hike-bets-4888741",
       "source": "Investing Cmdty",
@@ -792,7 +814,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1788552685000,
+      "firstAt": 1788552109000,
       "dir": {
         "XAU/USD": "up"
       },
@@ -914,7 +936,29 @@
       "why": "Oil gains on Middle East escalation"
     },
     {
-      "title": "Russian drone strikes Ukraine's security service HQ, escalating air war - reuters.com",
+      "title": "Gold prices fall as strong US jobs data boosts rate hike expectations - The Peninsula Qatar",
+      "link": "https://news.google.com/rss/articles/CBMiugFBVV95cUxOM1lock8yNDFpVEk0MjU5WDltU2xJVjgzdkNURV9TNkp2YlhSQmE0RHU0el9XOUtiM3gzeWlQMi1GeS1rdFBfaHctaF9PbG5nOF90SWdxaENndHlaODVNVndVRXB3eV8zclM1WEZhRmlJZXlKa0l4YWtmWks3QlhMdThWbDVvWFdFTDE5ekxjb3NFSk1iazFnZk9CN1F2NDBBUmJmYURaZEJsa1gyeExJY2MwRjRNTjFmcGc?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiugFBVV95cUxOM1lock8yNDFpVEk0MjU5WDltU2xJVjgzdkNURV9TNkp2YlhSQmE0RHU0el9XOUtiM3gzeWlQMi1GeS1rdFBfaHctaF9PbG5nOF90SWdxaENndHlaODVNVndVRXB3eV8zclM1WEZhRmlJZXlKa0l4YWtmWks3QlhMdThWbDVvWFdFTDE5ekxjb3NFSk1iazFnZk9CN1F2NDBBUmJmYURaZEJsa1",
+      "at": 1788552109000,
+      "inst": [
+        "XAU/USD"
+      ],
+      "ccy": [
+        "XAU",
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788550038000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Strong jobs data boosts rate hike expectations"
+    },
+    {
+      "title": "Russian drone strikes Ukraine's security service HQ, escalating air war - Reuters",
       "link": "https://news.google.com/rss/articles/CBMimAFBVV95cUxOaXBKVHktcVd4YllGVWp6Y1RrY2t4Qk1Zak9xd00zMnpKU3ZNVFg3SUdOWnRsU3RSUFhzUUtnTlZUcTA1N0pVSzhBM3hkU3lGSF8yT0pSaFhlaW1yeDlzLUpVa3oySUZ6X2luZU5YYk5ydHRXOW1QQ0dsWDk1aW11SnJzSDJuUkpvbzF1U1p1Mmlvd1R3dmdsTA?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMimAFBVV95cUxOaXBKVHktcVd4YllGVWp6Y1RrY2t4Qk1Zak9xd00zMnpKU3ZNVFg3SUdOWnRsU3RSUFhzUUtnTlZUcTA1N0pVSzhBM3hkU3lGSF8yT0pSaFhlaW1yeDlzLUpVa3oySUZ6X2luZU5YYk5ydHRXOW1QQ0dsWDk1aW11SnJzSDJuUkpvbzF1U1p1Mmlvd1R3dmdsTA?oc=5\" target=\"_blank\">R",
@@ -1120,7 +1164,7 @@
       "why": "Consolidation implies no clear direction"
     },
     {
-      "title": "U.S. approves potential sale of Joint Direct Attack Munitions-Extend Range to Saudi Arabia for $5 billion - reuters.com",
+      "title": "U.S. approves potential sale of Joint Direct Attack Munitions-Extend Range to Saudi Arabia for $5 billion - Reuters",
       "link": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxPS3hZQnZwRzktT3UxRlNtYk8wVi1LSmtMdmRlTHIyZ0k4cm00aGp3d1plVEs2YVl3b3JxcTJUWE85VzZhLWJ2SEQ0WHM2eGd3SWJCeDlNZkhRQlBQdU44WTZLS3pJNzJsVEJISGJLeFBhUHVHMzFmUldrMUIwbHdEQkt1elJVMWxfUTN2SVhQT1BRblp2clBaVk9EalNpTDBVRzN6R3lUNUFzdnpWNnJuWjM5cE5ISjhOaUgtQ2xjQUNPVjF1c0tWZA?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiyAFBVV95cUxPS3hZQnZwRzktT3UxRlNtYk8wVi1LSmtMdmRlTHIyZ0k4cm00aGp3d1plVEs2YVl3b3JxcTJUWE85VzZhLWJ2SEQ0WHM2eGd3SWJCeDlNZkhRQlBQdU44WTZLS3pJNzJsVEJISGJLeFBhUHVHMzFmUldrMUIwbHdEQkt1elJVMWxfUTN2SVhQT1BRblp2clBaVk9EalNpTDBVRzN6R3lUNUFzdn",
@@ -1371,7 +1415,7 @@
       "why": "Dollar weak, yen strong"
     },
     {
-      "title": "US sanctions Turkish bank, two subsidiaries in latest pressure on Iran - reuters.com",
+      "title": "US sanctions Turkish bank, two subsidiaries in latest pressure on Iran - Reuters",
       "link": "https://news.google.com/rss/articles/CBMirgFBVV95cUxPSml5Y093OWVORkhPb29wMzl1QlYxcWtjWGYwUTNFSUh3bkNTU3NJZ0d3eG9UbUNxeXM4eGE3U2V5ejVqaThPemU1WDBoMndmY0NxOUhKamRhUExmMjBnMDY2RXQ1b2FBMFI4X1NOcjJZNDlaSDR1dGZSclJoM3FOOElibjhITXVjS1ZiVTBpeFNUVXZuaWlORUNENUw1YVJNcFRYUXNwRERJZTgxb1E?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMirgFBVV95cUxPSml5Y093OWVORkhPb29wMzl1QlYxcWtjWGYwUTNFSUh3bkNTU3NJZ0d3eG9UbUNxeXM4eGE3U2V5ejVqaThPemU1WDBoMndmY0NxOUhKamRhUExmMjBnMDY2RXQ1b2FBMFI4X1NOcjJZNDlaSDR1dGZSclJoM3FOOElibjhITXVjS1ZiVTBpeFNUVXZuaWlORUNENUw1YVJNcFRYUXNwRERJZT",
@@ -1413,7 +1457,7 @@
       "why": "Sanctions impact unclear for these assets"
     },
     {
-      "title": "Gold slides after robust US payrolls boost rate hike bets - reuters.com",
+      "title": "Gold slides after robust US payrolls boost rate hike bets - Reuters",
       "link": "https://news.google.com/rss/articles/CBMimAFBVV95cUxNa0hqb2VPQUFuRk45bGpFaXNxaHc4NTVtSTJhcVJWdDNRSjEzbTRXWkhVOHRMVDNBdFNTajFBWTI0Z2RBX09VdTBjbmp4aS1zQkhHaWJWVjFYZmU2Q0J4MnZ2SU1rWXJzSy1ZeFBkTjZPWEY1RTVGREhfbGpVbXV5TFRnNTNBYmhubXZjQzRoY1IyM2RWT29XMw?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMimAFBVV95cUxNa0hqb2VPQUFuRk45bGpFaXNxaHc4NTVtSTJhcVJWdDNRSjEzbTRXWkhVOHRMVDNBdFNTajFBWTI0Z2RBX09VdTBjbmp4aS1zQkhHaWJWVjFYZmU2Q0J4MnZ2SU1rWXJzSy1ZeFBkTjZPWEY1RTVGREhfbGpVbXV5TFRnNTNBYmhubXZjQzRoY1IyM2RWT29XMw?oc=5\" target=\"_blank\">G",
@@ -1677,11 +1721,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788537752000,
+      "firstAt": 1788538153000,
       "why": "Attack news, market reaction unclear"
     },
     {
-      "title": "US issues sanctions on Turkish bank that it calls a ‘critical financial lifeline’ for Iran - apnews.com",
+      "title": "US issues sanctions on Turkish bank that it calls a ‘critical financial lifeline’ for Iran - AP News",
       "link": "https://news.google.com/rss/articles/CBMikAFBVV95cUxPanB5cnFJYmZzM1AxbjlvTGZnanhyQzRiYWIzXzNPV1Y1NzhkRlUxZEIxMUdMVDZiX3l3U2N0dDNUZnRNeWF5UHM0SHhJNE55TmtyUDBOSHZWekxwdGZaVUJrWUM1QnpnY2R0TGlieVNhR3ZrTGV0Vi1KYk41bHVwSW4zRXRmcFNILVBXTzNQdm0?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMikAFBVV95cUxPanB5cnFJYmZzM1AxbjlvTGZnanhyQzRiYWIzXzNPV1Y1NzhkRlUxZEIxMUdMVDZiX3l3U2N0dDNUZnRNeWF5UHM0SHhJNE55TmtyUDBOSHZWekxwdGZaVUJrWUM1QnpnY2R0TGlieVNhR3ZrTGV0Vi1KYk41bHVwSW4zRXRmcFNILVBXTzNQdm0?oc=5\" target=\"_blank\">US issues sa",
@@ -1766,7 +1810,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788537752000,
+      "firstAt": 1788538153000,
       "dir": {
         "XAU/USD": "up",
         "USOIL": "up",
@@ -1791,7 +1835,7 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 2,
+      "srcs": 1,
       "firstAt": 1788537752000,
       "dir": {
         "XAU/USD": "up"
@@ -1892,7 +1936,7 @@
       "why": "Sanctions news, unclear immediate direction"
     },
     {
-      "title": "Bond yields fall, stocks rally as Fed's Waller comments curb rate hike bets - reuters.com",
+      "title": "Bond yields fall, stocks rally as Fed's Waller comments curb rate hike bets - Reuters",
       "link": "https://news.google.com/rss/articles/CBMigwFBVV95cUxQZHUxMWV6alo1MWFYM191bnlDTlhjTlc0Y2t0UjE4TndrZW9PczcxTmg5a1M0ZWk5M2Fqb0RvVlNIQWFuNG1nb3BtbjhhM2NmbkhDVENZTF9qYU53UDBWR3ROTl9XSlFDVGNLUF9sN29rSlhZc0xfSGZKcWlFanB4b2R1bw?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMigwFBVV95cUxQZHUxMWV6alo1MWFYM191bnlDTlhjTlc0Y2t0UjE4TndrZW9PczcxTmg5a1M0ZWk5M2Fqb0RvVlNIQWFuNG1nb3BtbjhhM2NmbkhDVENZTF9qYU53UDBWR3ROTl9XSlFDVGNLUF9sN29rSlhZc0xfSGZKcWlFanB4b2R1bw?oc=5\" target=\"_blank\">Bond yields fall, stocks rall",
@@ -2027,51 +2071,6 @@
       "srcs": 1,
       "firstAt": 1788535182000,
       "why": "Sanctions impact unclear for these assets"
-    },
-    {
-      "title": "'A big piece of our hearts left this earth': Military families reflect on service members killed, injured in Iran war - ABC News - Breaking News, Latest News and Videos",
-      "link": "https://news.google.com/rss/articles/CBMiowFBVV95cUxNSzJWcmVEeGZUdnNJbkdEZXJVSXdZSHJTNUphSjBXRDNLbnBqbTNXYm1jM25LU0gtelZ0d2FTX2FNRHFGQTc2OUN5TnhibUpWbU1aQ2xZcjdYX2UyaDNJOVhjOU5CZWI4MlJkWF9wOEp3U1pHVTF4V0ZCcDZCTTVHZWVlYVF5aHFyX1hlbU94UW1ya0tibllWMmpMaEd4VE5Oc3BZ0gGoAUFVX3lxTE5GVnZNemM2TUZwdTF2c0ZPeUV2T1NjbGxZOFc4Vk12OFVjUEF2LXJZbzdNajhlYnFBcldmYWhUalZfZ01HZE1TakpsaHV4SkttOEFrQWNUejlINngteDRRTFNVNGQyQ2Q1UXhQeXhKZDhNSkRweXpybW84NFhFUzUyMGFNUUQ0NUNteUdiVFM0bHR3b3c4Mjdtb2JvQ2ZPNGJuSWkwRy1mVg?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiowFBVV95cUxNSzJWcmVEeGZUdnNJbkdEZXJVSXdZSHJTNUphSjBXRDNLbnBqbTNXYm1jM25LU0gtelZ0d2FTX2FNRHFGQTc2OUN5TnhibUpWbU1aQ2xZcjdYX2UyaDNJOVhjOU5CZWI4MlJkWF9wOEp3U1pHVTF4V0ZCcDZCTTVHZWVlYVF5aHFyX1hlbU94UW1ya0tibllWMmpMaEd4VE5Oc3BZ0gGoAUFVX3",
-      "at": 1788533130000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 3,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788533130000,
-      "dir": {
-        "XAU/USD": "up",
-        "USOIL": "up",
-        "UKOIL": "up"
-      },
-      "why": "War casualties heighten geopolitical risk and uncertainty."
-    },
-    {
-      "title": "Gold Forecast: US inflation holds the key to the next move - FXStreet",
-      "link": "https://news.google.com/rss/articles/CBMioAFBVV95cUxNVEFEcU9xRFZicGtJYzhEM1N2dzJzdlkzTUl6QmJ5dDJlSmViQkRMR3ZqaHJ5Z1B4NEVtQ3lJZS1kOVA4b0JyeWxlNWJ2U1lxOFVaUDBGelZvOF9La2oxaGhGdGJfYi05Tk9rcEtqT2V1RlBUdTVtTklaS0VYTmpzNE1ocFpvX09uazJUbjNwbHQ4Wno5bUFjTHVIUzZYRGJ4?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMioAFBVV95cUxNVEFEcU9xRFZicGtJYzhEM1N2dzJzdlkzTUl6QmJ5dDJlSmViQkRMR3ZqaHJ5Z1B4NEVtQ3lJZS1kOVA4b0JyeWxlNWJ2U1lxOFVaUDBGelZvOF9La2oxaGhGdGJfYi05Tk9rcEtqT2V1RlBUdTVtTklaS0VYTmpzNE1ocFpvX09uazJUbjNwbHQ4Wno5bUFjTHVIUzZYRGJ4?oc=5\" target=",
-      "at": 1788532823000,
-      "inst": [
-        "XAU/USD"
-      ],
-      "ccy": [
-        "XAU",
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788532823000,
-      "why": "Inflation data pending, direction unclear"
     }
   ],
   "sources": [
@@ -2097,7 +2096,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-05T02:34:28.231Z",
-  "headlinesAt": "2026-09-05T02:34:28.231Z",
-  "updatedAt": "2026-09-05T02:34:28.231Z"
+  "calendarAt": "2026-09-05T02:38:28.035Z",
+  "headlinesAt": "2026-09-05T02:38:28.035Z",
+  "updatedAt": "2026-09-05T02:38:28.035Z"
 }
