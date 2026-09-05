@@ -135,7 +135,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788593400000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Hawkish Fed comments boost dollar, hurt metals and pairs."
     },
     {
       "title": "Alcaraz, Sabalenka into US Open last 16 as Williams sisters lose on return",
@@ -159,7 +165,32 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788592529000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sports news has no financial market impact."
+    },
+    {
+      "title": "Russia launches massive strike on Ukraine’s Black Sea port city of Odesa - Yahoo News Canada",
+      "link": "https://news.google.com/rss/articles/CBMihgFBVV95cUxOaklKUzF0VmE2WVM5dGVHTVZTcDA5Vm9tdGt0b1BDOFFINzFoZGVDcWR5dmsxYXpPWnpXS184Nm9zRjl1TWYyOGpGNWJJUllGQ1ZPOEZLbm0wMmdJQnczaklERU9fc0VPSkZaSk4zTTMzMmpqQnBGNmhna1haa0U4LUZKTWxJZw?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMihgFBVV95cUxOaklKUzF0VmE2WVM5dGVHTVZTcDA5Vm9tdGt0b1BDOFFINzFoZGVDcWR5dmsxYXpPWnpXS184Nm9zRjl1TWYyOGpGNWJJUllGQ1ZPOEZLbm0wMmdJQnczaklERU9fc0VPSkZaSk4zTTMzMmpqQnBGNmhna1haa0U4LUZKTWxJZw?oc=5\" target=\"_blank\">Russia launches massive s",
+      "at": 1788592218000,
+      "inst": [
+        "USD/CAD",
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "CAD",
+        "XAU",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788590382000,
+      "_kind": null,
+      "why": "Geopolitical event direction unclear for these instruments."
     },
     {
       "title": "Air Defense Forces down 128 drones used by Russia to attack Ukraine overnight - Ukrinform",
@@ -224,7 +255,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788590382000,
-      "_kind": null
+      "_kind": null,
+      "why": "Geopolitical event direction unclear for these instruments."
     },
     {
       "title": "Live updates • U.S. sanctions Turkish financial body for aiding Iran's Revolutionary Guard - Haaretz",
@@ -249,6 +281,28 @@
       "why": "Sanctions impact unclear for these assets"
     },
     {
+      "title": "Months after ceasefire, Israel and Hezbollah battle over a strategic hill in Lebanon - Toronto Star",
+      "link": "https://news.google.com/rss/articles/CBMijAJBVV95cUxPbzhzYm9FamZlYl9Ec2hFRS1Vc2hjNVhROU9QNFJhVmJ1Z3ZYYWg3cnFJc3RNdWFZQWMwVW4tM2FQQWRwMUFxQWxDZmE4bklRdVE1c1pUdmdtZFZNVlM1eUNPeEhDQ0lvMXVFVTFtTExZWllvYUlDWG1CQ2xEQW1kaDM2cHd3SlgzcENUemZPdFF1dVRJbG9wdi1sVFFZaWloeVFDT1h3NUIwUTQ4aHBxOEo0dDNVeTQ5Z3JzbDBjd2I2eTFtcGFiYUxyRERDczdrOC1oQjZOaTZGNDFEWTY1S2s0SlU5Nno2cjNrTS1FbUtWSzFPUlQ4QTFiaWw2MEdxa2tKTktfeTZFNXNy?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMijAJBVV95cUxPbzhzYm9FamZlYl9Ec2hFRS1Vc2hjNVhROU9QNFJhVmJ1Z3ZYYWg3cnFJc3RNdWFZQWMwVW4tM2FQQWRwMUFxQWxDZmE4bklRdVE1c1pUdmdtZFZNVlM1eUNPeEhDQ0lvMXVFVTFtTExZWllvYUlDWG1CQ2xEQW1kaDM2cHd3SlgzcENUemZPdFF1dVRJbG9wdi1sVFFZaWloeVFDT1h3NUIwUT",
+      "at": 1788590397000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788588180000,
+      "_kind": "war-end",
+      "why": "Regional conflict, no clear market direction"
+    },
+    {
       "title": "Ukraine War, Day 1,655: On Eve of Visit by Trump Envoys, Russia Strikes State Security in Kyiv - EA WorldView",
       "link": "https://news.google.com/rss/articles/CBMiigFBVV95cUxPc0lYNURKYjk1ek8yenV5TXpvbWozVkRxTzUxd2d5dTlnYm5DdnNpR0FZMUZFa0dnaW9IZzk2dnNpcGxDWVVMbjZDQ1N5QnppLUxQWkRZRk1RS3ZYdE4teGxkZW4yZW0wZG5CS2RMQm5IOUxvbWJaZUlZcG5YSVJEZGpELUxSTWZUSGc?oc=5",
       "source": "Wires (geo)",
@@ -266,31 +320,9 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788588410000,
+      "firstAt": 1788590382000,
       "_kind": null,
       "why": "War continues, no new directional catalyst"
-    },
-    {
-      "title": "Months after ceasefire, Israel and Hezbollah battle over a strategic hill in Lebanon - seattletimes.com",
-      "link": "https://news.google.com/rss/articles/CBMixAFBVV95cUxOT3FNX2lsVzJKazBOVUVyN0FnR2YyTzREZURlTVk5Q1p5MHBUUFphbGwyYjhGSDVpN1NyYlFDTnBNa1dJYUs3ZkZoME9pcnRFRllPdWlPcUdkN0FzSl9nTW0tTHd5VUMxdGVMM28zT3JWREdEWFhsa0pWM1VWX18zaDBCc2V2SlFvZmYxbjVvdUd3Xzg5bHlocEJYRU5BZVJFSWtQZmtDRVo4S1BkYldiTENEMGRqWWtHLURSS3BwMXJnT01u?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMixAFBVV95cUxOT3FNX2lsVzJKazBOVUVyN0FnR2YyTzREZURlTVk5Q1p5MHBUUFphbGwyYjhGSDVpN1NyYlFDTnBNa1dJYUs3ZkZoME9pcnRFRllPdWlPcUdkN0FzSl9nTW0tTHd5VUMxdGVMM28zT3JWREdEWFhsa0pWM1VWX18zaDBCc2V2SlFvZmYxbjVvdUd3Xzg5bHlocEJYRU5BZVJFSWtQZmtDRVo4S1",
-      "at": 1788590357000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788588180000,
-      "_kind": "war-end",
-      "why": "Regional conflict, no clear market direction"
     },
     {
       "title": "Ukrainian General Staff explains why \"ceasefire\" did not take effect on line of contact - Українська правда",
@@ -312,33 +344,6 @@
       "srcs": 1,
       "firstAt": 1788589020000,
       "why": "Geopolitical status update, no clear direction"
-    },
-    {
-      "title": "Washington pushes for de-escalation on the front; Russia and Ukraine call for a halt to strikes as Trump's envoys move in tandem - صوت الإمارات",
-      "link": "https://news.google.com/rss/articles/CBMiigJBVV95cUxPOV9lWkg2UWtzb2tUMnpEVlJoVzdkS2JmQkxnRXZqME5lUjZZUXh4UE81X0VOVGNyMG54UzdtczBSa1ZOclU1b0tzeWZlNUd0ZHlLZTd5RkstU1EwYWUxU2NmTEs1cWdiZ3JMNFdDV0I2S0VwT0puNHpPT19UMVZ3SDdITkYyX1Q4SFB6a2NWVElkOW9GZXhua1lCV2p1Q1NrQVQ3TVNiams1QUUtMmY2cHVKdTMyei1IZjVSUDR4VDRmRlExWlEwQjlmY3haM0FFVlFtaXJrdjVhdUJMemJZb2sxRjRsNHNPbTFJQVI3V0NYWU9XblUweDZteXBYTWVlZnliNi1RRkhVUQ?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiigJBVV95cUxPOV9lWkg2UWtzb2tUMnpEVlJoVzdkS2JmQkxnRXZqME5lUjZZUXh4UE81X0VOVGNyMG54UzdtczBSa1ZOclU1b0tzeWZlNUd0ZHlLZTd5RkstU1EwYWUxU2NmTEs1cWdiZ3JMNFdDV0I2S0VwT0puNHpPT19UMVZ3SDdITkYyX1Q4SFB6a2NWVElkOW9GZXhua1lCV2p1Q1NrQVQ3TVNiams1QU",
-      "at": 1788588410000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788588410000,
-      "_kind": null,
-      "dir": {
-        "XAU/USD": "down",
-        "USOIL": "down",
-        "UKOIL": "down"
-      },
-      "why": "De-escalation reduces geopolitical risk premium"
     },
     {
       "title": "Israel claims ‘operational control’ of Lebanon’s Ali Taher, a rare flashpoint after the ceasefire - AP News",
@@ -386,7 +391,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788584220000,
-      "_kind": null,
       "dir": {
         "XAU/USD": "up",
         "USOIL": "up",
@@ -691,7 +695,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788574124000
+      "firstAt": 1788574124000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Strong payrolls lift dollar, causing gold to slip."
     },
     {
       "title": "Dollar Index pares gains as BoJ hike chatter returns, focus turns to US inflation data - VT Markets",
@@ -709,7 +717,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788574124000
+      "firstAt": 1788574124000,
+      "dir": {
+        "USD/JPY": "down"
+      },
+      "why": "BoJ hike chatter weakens dollar against yen."
     },
     {
       "title": "Why are European countries moving their gold out of North America?",
@@ -1733,7 +1745,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788544800000,
+      "firstAt": 1788543247000,
       "why": "Sanctions push unclear for oil, gold"
     },
     {
@@ -1786,6 +1798,32 @@
         "GBP/USD": "up"
       },
       "why": "Fed inflation failure boosts gold, weakens dollar"
+    },
+    {
+      "title": "Ukraine war latest: Russia strikes SBU headquarters in daytime attack on Kyiv, injures at least 12 - The Kyiv Independent",
+      "link": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQSHhzUWxDb3lBUDZKTVRKZklzclpBRzlQLXBCcm82YXhQOUE3elZXbWF4SHBpQzlBSHFpSUJPVWNCZ2dxUHY2cndGSjNQYUVCaFFOc0gyMkRDR0Q0QUhjS0ZaUzF3R0RoMnZhOXhhbzdwbDB5UTVvS25wSUtOMkRtUmdBSDl1MDhsd2lJSnFkeWxkdmFSdVp1MnpPWGhGc2prWU1iLVdkaTZ4bk9mTmdMT0lldFVTSWZTaHc?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiugFBVV95cUxQSHhzUWxDb3lBUDZKTVRKZklzclpBRzlQLXBCcm82YXhQOUE3elZXbWF4SHBpQzlBSHFpSUJPVWNCZ2dxUHY2cndGSjNQYUVCaFFOc0gyMkRDR0Q0QUhjS0ZaUzF3R0RoMnZhOXhhbzdwbDB5UTVvS25wSUtOMkRtUmdBSDl1MDhsd2lJSnFkeWxkdmFSdVp1MnpPWGhGc2prWU1iLVdkaTZ4bk",
+      "at": 1788543247000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788543247000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "War escalation boosts safe havens and oil"
     },
     {
       "title": "India shrimp exporters face anti-dumping rate hike in US markets - Undercurrent News",
@@ -2049,26 +2087,6 @@
         "UKOIL": "up"
       },
       "why": "Geopolitical risk boosts safe havens and oil"
-    },
-    {
-      "title": "Canadian dollar falls after jobs shock as strong US payrolls boost dollar",
-      "link": "https://www.investing.com/news/forex-news/canadian-dollar-falls-after-jobs-shock-as-strong-us-payrolls-boost-dollar-4889820",
-      "source": "Investing FX",
-      "at": 1788537008000,
-      "inst": [
-        "USD/CAD"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788537008000,
-      "dir": {
-        "USD/CAD": "up"
-      },
-      "why": "Strong US payrolls boost dollar"
     }
   ],
   "sources": [
@@ -2094,7 +2112,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-05T07:35:28.226Z",
-  "headlinesAt": "2026-09-05T07:35:28.226Z",
-  "updatedAt": "2026-09-05T07:35:28.226Z"
+  "calendarAt": "2026-09-05T07:39:28.987Z",
+  "headlinesAt": "2026-09-05T07:39:28.987Z",
+  "updatedAt": "2026-09-05T07:39:28.987Z"
 }
