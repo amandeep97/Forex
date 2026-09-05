@@ -809,30 +809,6 @@
       "why": "Oil higher on geopolitical tensions"
     },
     {
-      "title": "Trump calls Iran war ‘small potatoes’, compares US deaths with Vietnam war",
-      "link": "https://www.aljazeera.com/video/newsfeed/2026/9/4/09-04-trump-iran-war-small-potatoes-clip?traffic_source=rss",
-      "source": "Al Jazeera",
-      "desc": "US President Donald Trump called the Iran war small potatoes, saying only 18 Americans had been killed.",
-      "at": 1788553362000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 3,
-      "firstAt": 1788552553000,
-      "dir": {
-        "XAU/USD": "down"
-      },
-      "why": "War de-escalation reduces risk premium"
-    },
-    {
       "title": "US Equity Markets End Lower as Expectations Rise for Fed Rate Hike Amid Hot Jobs Data - marketscreener.com",
       "link": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxNMDdxbkpGbjhoODRQVTE4T3NmVXM3RTlaM2V5d21yUnVWdVlsUDkzbWtjVHJQTV9CY2IxUzh4UGFhMlJEMVZnODNQQl80Q2tYbXRlOW1kb0hVTVIzcFRCN09MdVplQmFvaWRmMnZLWjk5dFNjc0xsWi13ZEc3ZC1KY3c2UTJvYTNIQTlDVTM0RWRRZXQ4SFhldDVyRjJYcVdGNGkxVHFwd25yZS1YREZlRDBmUG1NM0NObGJLeDRBQ1dhbmdhc21WcDhBOU05MWtDQ0Q1bw?oc=5",
       "source": "Wires (macro)",
@@ -926,7 +902,7 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 3,
+      "srcs": 2,
       "firstAt": 1788552553000,
       "dir": {
         "XAU/USD": "up",
@@ -953,30 +929,6 @@
         "US500": "down"
       },
       "why": "Hot jobs report causes stock decline"
-    },
-    {
-      "title": "Israeli drones drop bombs on southern Lebanon’s Mansouri",
-      "link": "https://www.aljazeera.com/video/newsfeed/2026/9/4/04-09-sv-israel-drone-bombs-mansouri-lb-fm?traffic_source=rss",
-      "source": "Al Jazeera",
-      "desc": "Several explosions rocked the southern Lebanese town of Mansouri after Israeli military drones dropped explosives in the",
-      "at": 1788552253000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788552253000,
-      "dir": {
-        "XAU/USD": "up"
-      },
-      "why": "Geopolitical risk boosts gold, oil unclear"
     },
     {
       "title": "Trump's peace envoys to visit Moscow and Kyiv over weekend",
@@ -1735,7 +1687,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788537345000,
+      "firstAt": 1788537752000,
       "why": "Attack news, market reaction unclear"
     },
     {
@@ -1824,7 +1776,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788537345000,
+      "firstAt": 1788537752000,
       "dir": {
         "XAU/USD": "up",
         "USOIL": "up",
@@ -2085,6 +2037,52 @@
       "srcs": 1,
       "firstAt": 1788532674000,
       "why": "Mixed signals, unclear net direction"
+    },
+    {
+      "title": "Bitcoin heads for third winning week in a row as macro pressures mount",
+      "link": "https://www.cnbc.com/2026/09/04/bitcoin-heads-for-third-winning-week-in-a-row-as-macro-pressures-mount.html",
+      "source": "CNBC Markets",
+      "desc": "Bitcoin headed for its third straight winning week, as traders searched for refuge amid volatile moves in equities, currencies and bond markets.",
+      "at": 1788532608000,
+      "inst": [
+        "US500",
+        "BTC/USDT"
+      ],
+      "ccy": [
+        "BTC"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788532608000,
+      "dir": {
+        "BTC/USDT": "up"
+      },
+      "why": "Bitcoin up, equities unclear"
+    },
+    {
+      "title": "Ringgit Ends Lower Against US Dollar As US Rate Hike Debate Persists - BernamaBiz",
+      "link": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE5TNXd6UjdPSUxEUHhFUVlHOEkxZVpqRVBySGxETExvMEVUUkJXWnpFWjk3QWZBbG9UYUNmNDg2TDZrdlNjb3FZM29GWUlOekFmNFJodA?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiVEFVX3lxTE5TNXd6UjdPSUxEUHhFUVlHOEkxZVpqRVBySGxETExvMEVUUkJXWnpFWjk3QWZBbG9UYUNmNDg2TDZrdlNjb3FZM29GWUlOekFmNFJodA?oc=5\" target=\"_blank\">Ringgit Ends Lower Against US Dollar As US Rate Hike Debate Persists</a>&nbsp;&nbsp;<font col",
+      "at": 1788532589000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788532589000,
+      "why": "Ringgit news irrelevant to these pairs"
     }
   ],
   "sources": [
@@ -2110,7 +2108,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-05T04:04:42.679Z",
-  "headlinesAt": "2026-09-05T04:04:42.679Z",
-  "updatedAt": "2026-09-05T04:04:42.679Z"
+  "calendarAt": "2026-09-05T04:07:41.746Z",
+  "headlinesAt": "2026-09-05T04:07:41.746Z",
+  "updatedAt": "2026-09-05T04:07:41.746Z"
 }
