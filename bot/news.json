@@ -929,7 +929,7 @@
       "link": "https://news.google.com/rss/articles/CBMi_gFBVV95cUxNNXNaWFVwTnRNOW9ibzgyZjFjQ3RjTVVFdDcycXd1MDcwcWxLYXBYM3dUWHZ3UUF0ZjRDclJZY3JBYjctZFhpSUo4UTZDLUd6RnNSOFhHOFZsTWdIY3RSaGU2bU5TeE5TZVU2dmNpRl9OTVlmblJXNHRTZF9FS3NieFhtQXc3WDY2MlY3c1JFay1vNjRXbk8ybGVtTDRxc0VqTzlDcDZhbU4yYkVOMEhJaXJzX3dlM3lzQzFJQllPc0NQeHd2NmdrQW1UVzhfbXZJUGlxNDJXX1N2c1l2X0dyeEV2YVNacG5CX3FQZHJxVnk5ampGSzU3dHBaOGNkUQ?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMi_gFBVV95cUxNNXNaWFVwTnRNOW9ibzgyZjFjQ3RjTVVFdDcycXd1MDcwcWxLYXBYM3dUWHZ3UUF0ZjRDclJZY3JBYjctZFhpSUo4UTZDLUd6RnNSOFhHOFZsTWdIY3RSaGU2bU5TeE5TZVU2dmNpRl9OTVlmblJXNHRTZF9FS3NieFhtQXc3WDY2MlY3c1JFay1vNjRXbk8ybGVtTDRxc0VqTzlDcDZhbU4yYk",
-      "at": 1788565224000,
+      "at": 1788565432000,
       "inst": [
         "XAU/USD",
         "USOIL",
@@ -942,7 +942,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788565224000,
+      "firstAt": 1788565432000,
       "dir": {
         "XAU/USD": "up",
         "USOIL": "up",
@@ -1393,6 +1393,31 @@
         "US500": "down"
       },
       "why": "Hot jobs report causes stock decline"
+    },
+    {
+      "title": "Oil Futures Post Weekly Gains on Middle East Escalation - WSJ",
+      "link": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxPZWdtX2IwaGpUZzJTdUp3VzRMNk9ZZ3UzbTBxZDFyZ2ZsSFY0ODN3VXA5NjUzaldWc24zRGxYVTl3SVlZMGZFcXRrVkxfZVZDMUNES1E0Z0xWMVhoLW9oUVM1Z1lTdFBuSjdEUkc2WUdOS2JOdFFWdGUya09DZmtzUG9XNFFocVI0UG1Ma2pJbWFzOHZVRDBGbHJucWFkbHZySzlNMGxmWk9uNlE?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiqwFBVV95cUxPZWdtX2IwaGpUZzJTdUp3VzRMNk9ZZ3UzbTBxZDFyZ2ZsSFY0ODN3VXA5NjUzaldWc24zRGxYVTl3SVlZMGZFcXRrVkxfZVZDMUNES1E0Z0xWMVhoLW9oUVM1Z1lTdFBuSjdEUkc2WUdOS2JOdFFWdGUya09DZmtzUG9XNFFocVI0UG1Ma2pJbWFzOHZVRDBGbHJucWFkbHZySzlNMGxmWk9uNl",
+      "at": 1788552120000,
+      "inst": [
+        "USOIL",
+        "XAU/USD",
+        "UKOIL"
+      ],
+      "ccy": [
+        "OIL",
+        "XAU"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788552120000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Oil gains on Middle East escalation"
     },
     {
       "title": "Russian drone strikes Ukraine's security service HQ, escalating air war - Reuters",
@@ -2014,26 +2039,6 @@
         "UKOIL": "up"
       },
       "why": "Geopolitical risk boosts safe havens and oil"
-    },
-    {
-      "title": "Canadian dollar falls after jobs shock as strong US payrolls boost dollar",
-      "link": "https://www.investing.com/news/forex-news/canadian-dollar-falls-after-jobs-shock-as-strong-us-payrolls-boost-dollar-4889820",
-      "source": "Investing FX",
-      "at": 1788537008000,
-      "inst": [
-        "USD/CAD"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788537008000,
-      "dir": {
-        "USD/CAD": "up"
-      },
-      "why": "Strong US payrolls boost dollar"
     }
   ],
   "sources": [
@@ -2056,10 +2061,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-05T09:20:27.205Z",
-  "headlinesAt": "2026-09-05T09:20:27.205Z",
-  "updatedAt": "2026-09-05T09:20:27.205Z"
+  "calendarAt": "2026-09-05T09:24:41.781Z",
+  "headlinesAt": "2026-09-05T09:24:41.781Z",
+  "updatedAt": "2026-09-05T09:24:41.781Z"
 }
