@@ -2,6 +2,31 @@
   "calendar": [],
   "headlines": [
     {
+      "title": "US envoys meet Putin in Moscow for Ukraine talks",
+      "link": "https://www.bbc.co.uk/news/articles/cx2zqp46g8eo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC World",
+      "desc": "President Trump says his envoys Steve Witkoff and Jared Kushner are \"bringing with them a proposal to end the war\".",
+      "at": 1788628711000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1788626920000,
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Peace proposal reduces geopolitical risk premium."
+    },
+    {
       "title": "US hits three Iranian oil tankers after saying its warships were targeted",
       "link": "https://www.bbc.co.uk/news/articles/cj64rrne643o?at_medium=RSS&at_campaign=rss",
       "source": "BBC World",
@@ -29,29 +54,45 @@
       "why": "Escalation drives oil and gold higher"
     },
     {
-      "title": "US envoys in Moscow ahead of Ukraine talks",
-      "link": "https://www.bbc.co.uk/news/articles/cx2zqp46g8eo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC World",
-      "desc": "President Trump says his envoys Steve Witkoff and Jared Kushner are \"bringing with them a proposal to end the war\".",
-      "at": 1788627435000,
+      "title": "Trump disputes inflation risk as job gains and rising rates rattle markets - AL.com",
+      "link": "https://news.google.com/rss/articles/CBMisAFBVV95cUxQNU9rbkQ2UkVoV1k1LV9KaUFRV3AwRktfemt5YUJhbG4zQzVJRUhZRTRaSlE0Y2diZDVBRmdrWURwbV9RQWV3N1ktQnJXQUR2RjI0TnRKRWpNNDE4dW5EM1lhbWVLQjNGcTVaR0czSGUyMFJDOEY0YmtvV2tlQ0hOX1l0SFBNN184UmVIdFhxOWhjeUZsQXpHay1xU2FaSWt0NTEwMXNuV1JEWHZnQ1ZNNdIBxAFBVV95cUxNUWFFT3VFOFg1X3lsSXNQTVB4RV83SW40NDE5VUY0LUIweEpaOGhoUEN4WmdiV3Z4Vllpc0FRb1UycjlwVFprZ3lhLXFTaG03alRxd2lkNTNjcFhaa2phY3RPWUExSWNNOFZ1U0pScFFHdkctb3VXMk1KbFFYNDM3TXdnbWhzQUJIU0UzZW91OHpFRVJjQjBNdlhMaGplY1ZHQkQ1eTNBVGxaNHJjWllhdkRUZG1KTEszczkwZ3JBSTB6UGty?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMisAFBVV95cUxQNU9rbkQ2UkVoV1k1LV9KaUFRV3AwRktfemt5YUJhbG4zQzVJRUhZRTRaSlE0Y2diZDVBRmdrWURwbV9RQWV3N1ktQnJXQUR2RjI0TnRKRWpNNDE4dW5EM1lhbWVLQjNGcTVaR0czSGUyMFJDOEY0YmtvV2tlQ0hOX1l0SFBNN184UmVIdFhxOWhjeUZsQXpHay1xU2FaSWt0NTEwMXNuV1JEWH",
+      "at": 1788628380000,
       "inst": [
         "XAU/USD",
-        "USOIL",
-        "UKOIL"
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
       ],
       "ccy": [
-        "XAU",
-        "OIL"
+        "USD"
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 2,
-      "firstAt": 1788626920000,
+      "srcs": 1,
+      "firstAt": 1788628380000,
       "_kind": null,
-      "dir": {
-        "XAU/USD": "down"
-      },
-      "why": "Peace proposal reduces geopolitical risk premium."
+      "why": "Market reaction to inflation dispute is unclear."
+    },
+    {
+      "title": "Anthropic Could Be the Next Mega IPO: 2 Magnificent Stocks That Already Own a Piece of the AI Unicorn",
+      "link": "https://finance.yahoo.com/technology/ai/articles/anthropic-could-next-mega-ipo-170500565.html",
+      "source": "Yahoo Finance",
+      "at": 1788627900000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788627900000,
+      "_kind": null,
+      "why": "Specific stock news, not broad index impact."
     },
     {
       "title": "GOLDSTEIN: Mark Carney’s latest counter-tariffs a multi-billion-dollar tax on Canadians - Toronto Sun",
@@ -1916,58 +1957,6 @@
       "srcs": 1,
       "firstAt": 1788572529000,
       "why": "Gold relocation news lacks price direction"
-    },
-    {
-      "title": "Ukraine orders temporary ceasefire as US envoys set to visit Kyiv, Moscow for peace talks, Ukrainian media reports - The Kyiv Independent",
-      "link": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxNeWJYVWNvOEd3YzhnLXZTRHNqWGVDY2RZRXBwVVR4TGo5U0dLd1B5dUJMUkZwQVBDUG5jTFItN0kwY1NkU2tEaXJNNE9wNHFINWlsTXkxTFFVRjN2ZW9YQ19wZXZsTGRHSHk0cjRRRnEwb2lsNl9rd1c3MjNseWZkTHBySlJIdWd4dzU0bzdjeFBSQjRhWHRqNnBCLURoSThzdmpKTVpsNjZ6ZUN4ZkRCLU5qUE1XRXp6?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiuAFBVV95cUxNeWJYVWNvOEd3YzhnLXZTRHNqWGVDY2RZRXBwVVR4TGo5U0dLd1B5dUJMUkZwQVBDUG5jTFItN0kwY1NkU2tEaXJNNE9wNHFINWlsTXkxTFFVRjN2ZW9YQ19wZXZsTGRHSHk0cjRRRnEwb2lsNl9rd1c3MjNseWZkTHBySlJIdWd4dzU0bzdjeFBSQjRhWHRqNnBCLURoSThzdmpKTVpsNjZ6ZU",
-      "at": 1788571700000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788569744000,
-      "dir": {
-        "XAU/USD": "down",
-        "USOIL": "down",
-        "UKOIL": "down"
-      },
-      "why": "Ceasefire lowers geopolitical risk premium"
-    },
-    {
-      "title": "Report: Iran increasingly confident in its military strength, may be considering major escalation - i24NEWS",
-      "link": "https://news.google.com/rss/articles/CBMi_gFBVV95cUxNNXNaWFVwTnRNOW9ibzgyZjFjQ3RjTVVFdDcycXd1MDcwcWxLYXBYM3dUWHZ3UUF0ZjRDclJZY3JBYjctZFhpSUo4UTZDLUd6RnNSOFhHOFZsTWdIY3RSaGU2bU5TeE5TZVU2dmNpRl9OTVlmblJXNHRTZF9FS3NieFhtQXc3WDY2MlY3c1JFay1vNjRXbk8ybGVtTDRxc0VqTzlDcDZhbU4yYkVOMEhJaXJzX3dlM3lzQzFJQllPc0NQeHd2NmdrQW1UVzhfbXZJUGlxNDJXX1N2c1l2X0dyeEV2YVNacG5CX3FQZHJxVnk5ampGSzU3dHBaOGNkUQ?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi_gFBVV95cUxNNXNaWFVwTnRNOW9ibzgyZjFjQ3RjTVVFdDcycXd1MDcwcWxLYXBYM3dUWHZ3UUF0ZjRDclJZY3JBYjctZFhpSUo4UTZDLUd6RnNSOFhHOFZsTWdIY3RSaGU2bU5TeE5TZVU2dmNpRl9OTVlmblJXNHRTZF9FS3NieFhtQXc3WDY2MlY3c1JFay1vNjRXbk8ybGVtTDRxc0VqTzlDcDZhbU4yYk",
-      "at": 1788565224000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788565224000,
-      "dir": {
-        "XAU/USD": "up",
-        "USOIL": "up",
-        "UKOIL": "up"
-      },
-      "why": "Geopolitical risk boosts gold and oil"
     }
   ],
   "sources": [
@@ -1993,7 +1982,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-05T17:17:28.798Z",
-  "headlinesAt": "2026-09-05T17:17:28.798Z",
-  "updatedAt": "2026-09-05T17:17:28.798Z"
+  "calendarAt": "2026-09-05T17:21:28.743Z",
+  "headlinesAt": "2026-09-05T17:21:28.743Z",
+  "updatedAt": "2026-09-05T17:21:28.743Z"
 }
