@@ -476,7 +476,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788566400000
+      "firstAt": 1788566400000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Geopolitical risk boosts gold and oil prices."
     },
     {
       "title": "‘Small potatoes’: US President Trump downplays war on Iran - Al Jazeera",
@@ -1309,32 +1315,6 @@
       "why": "Geopolitical risk boosts gold"
     },
     {
-      "title": "Trump says Putin won't attack NATO as envoys push Ukraine peace plan - Daily Sabah",
-      "link": "https://news.google.com/rss/articles/CBMirgFBVV95cUxQNUZiWEdZbjc3cVlLSUVjUkRmVE9IdEJzUE9KdHhIMDYydHIxT3NVeG4zOXlWYmllcXZoeVUxaWMyS2ZtS3dJWFVzWlZnN1dkbFpZZGV4VENfODFBQ3Nsc2VkZU1tUFhDT21nclpFV29wcC13enJZRUtSWUJ5cndnTml3QlR3a0N3YjlLbGRvdW1nQnJZR0FuWHNyQTdJZzJXS0Fjb2FBLVBfY2htVEE?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMirgFBVV95cUxQNUZiWEdZbjc3cVlLSUVjUkRmVE9IdEJzUE9KdHhIMDYydHIxT3NVeG4zOXlWYmllcXZoeVUxaWMyS2ZtS3dJWFVzWlZnN1dkbFpZZGV4VENfODFBQ3Nsc2VkZU1tUFhDT21nclpFV29wcC13enJZRUtSWUJ5cndnTml3QlR3a0N3YjlLbGRvdW1nQnJZR0FuWHNyQTdJZzJXS0Fjb2FBLVBfY2",
-      "at": 1788548640000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1788547609000,
-      "dir": {
-        "XAU/USD": "down",
-        "USOIL": "down",
-        "UKOIL": "down"
-      },
-      "why": "Peace talks reduce geopolitical risk premium"
-    },
-    {
       "title": "Ayman Mohyeldin: After reported wedding strike, Hegseth’s war of ‘brutality’ is on display - MS NOW",
       "link": "https://news.google.com/rss/articles/CBMiggFBVV95cUxObVhaMVZZQ056OGFTbjNDUTdzOEJMMVZEUzIyU1dUY1FjVnlIdUpNcjZENlVhMGd4V0poa2NFc1N3dmNYTGVQTG5uTUJ3UUZVS2RnZjUxbTZYQWFDaEhlYmlEcTBsNWVCQWVrQmdQaldFZkt4M3hpazRINmNxUElZTTZn?oc=5",
       "source": "Wires (geo)",
@@ -1413,7 +1393,7 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 2,
+      "srcs": 1,
       "firstAt": 1788547609000,
       "why": "Unclear impact on gold from peace talks."
     },
@@ -2078,6 +2058,24 @@
       "srcs": 1,
       "firstAt": 1788532823000,
       "why": "Inflation data pending, direction unclear"
+    },
+    {
+      "title": "Semiconductor Stocks Buck Trend as Micron Rises Over 4%; Trump Demands Big Fed Rate Cut - TradingKey",
+      "link": "https://news.google.com/rss/articles/CBMi7wFBVV95cUxOYVk3Mzk1LXVYZ0hqY3BiM215WmRhVGxqVlVpN242TVlGOEFIa1lEdFdQVldSQWFiQ3BpdU82azFqNm9NRmxqdmotdG1WcVphajFYeE1vVkhsRUNpU2tfc3dIanZDRFpzSTM3Zl9ZRk93VXlQY0JEa052QXNuNmpMZGo1QVVoMGdlTlRkNXNkVXV3QVFaNUg2TTNRMGVEWXpXSTZLZnJzRU9FYzNTRUZIcEd2eUJyTThMWXo5bFJhdk1yRGR5SFlYOGVBNmo5SldUd21TZF9SQVEya2R5ZjN4Wjl5YmJwNm9wajZIX2V6Yw?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi7wFBVV95cUxOYVk3Mzk1LXVYZ0hqY3BiM215WmRhVGxqVlVpN242TVlGOEFIa1lEdFdQVldSQWFiQ3BpdU82azFqNm9NRmxqdmotdG1WcVphajFYeE1vVkhsRUNpU2tfc3dIanZDRFpzSTM3Zl9ZRk93VXlQY0JEa052QXNuNmpMZGo1QVVoMGdlTlRkNXNkVXV3QVFaNUg2TTNRMGVEWXpXSTZLZnJzRU9FYz",
+      "at": 1788532674000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788532674000,
+      "why": "Mixed signals, unclear net direction"
     }
   ],
   "sources": [
@@ -2100,10 +2098,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-05T05:15:28.700Z",
-  "headlinesAt": "2026-09-05T05:15:28.700Z",
-  "updatedAt": "2026-09-05T05:15:28.700Z"
+  "calendarAt": "2026-09-05T05:19:42.543Z",
+  "headlinesAt": "2026-09-05T05:19:42.543Z",
+  "updatedAt": "2026-09-05T05:19:42.543Z"
 }
