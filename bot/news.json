@@ -673,27 +673,6 @@
       "why": "Hawkish Fed comments boost dollar, hurt metals and pairs."
     },
     {
-      "title": "Trump's 50% tariffs on Canada take effect as Carney vows to retaliate - ABC News - Breaking News, Latest News and Videos",
-      "link": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxNeDdPQV9hVEo4eEFTSlhrVkowRE9mVVlJQzJkZTJnOG1TTUl1ZWYtNG1CcWk2MWlmZG51eVd2S0NJT0pWeHphblVQWThQMTc2OVhDd3VQQXZRU0gteVYtQlkxa29fcVpVV3VKSkl6NVdRTWhvT0E5X3VfVVI0UlVVdnhoUERGMFpxWVR1YXFiSENWQ2lTUTFNLTBEcU1ObHlfTW9OZ01VcmLSAa4BQVVfeXFMT0NxQThhZzl5Q29YNEt0Nl9FV3NrYzRMa1JXX0Vmd2pROGhvVHM3TFJ5NGRrOWVnY0FCOS1LM25MdVdINW8tNjZSS2NDSmhZbUZ4cFdOMWU4N1RObVVpNG43YTJRelY2R21VRDVjcm51cVk0b0ZISVdmNWFFcTdVOFJRdEZLamtrZXg0eER4cW9RbEt2R0lONGxjSXpYZ3RZbXRxbk9iaWdmREw0YVZB?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiqAFBVV95cUxNeDdPQV9hVEo4eEFTSlhrVkowRE9mVVlJQzJkZTJnOG1TTUl1ZWYtNG1CcWk2MWlmZG51eVd2S0NJT0pWeHphblVQWThQMTc2OVhDd3VQQXZRU0gteVYtQlkxa29fcVpVV3VKSkl6NVdRTWhvT0E5X3VfVVI0UlVVdnhoUERGMFpxWVR1YXFiSENWQ2lTUTFNLTBEcU1ObHlfTW9OZ01VcmLSAa",
-      "at": 1788593119000,
-      "inst": [
-        "USD/CAD"
-      ],
-      "ccy": [
-        "CAD"
-      ],
-      "sev": 3,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788593119000,
-      "dir": {
-        "USD/CAD": "up"
-      },
-      "why": "Tariffs weaken CAD, strengthen USD"
-    },
-    {
       "title": "Alcaraz, Sabalenka into US Open last 16 as Williams sisters lose on return",
       "link": "https://www.aljazeera.com/sports/2026/9/5/alcaraz-sabalenka-into-us-open-last-16-as-williams-sisters-lose-on-return?traffic_source=rss",
       "source": "Al Jazeera",
@@ -1663,8 +1642,8 @@
       "ccy": [],
       "sev": 1,
       "rel": 1,
-      "srcs": 1,
-      "firstAt": 1788549862000
+      "srcs": 2,
+      "firstAt": 1788548850000
     },
     {
       "title": "Precious Metals Update: Gold, Silver, Fed Rates, and Inflation Outlook | CPM Group - News and Statistics - IndexBox",
@@ -1686,6 +1665,27 @@
       "srcs": 1,
       "firstAt": 1788549804000,
       "why": "General update, no specific direction."
+    },
+    {
+      "title": "Russia/Ukraine Sanctions Update - Month of August 2026 - Mayer Brown",
+      "link": "https://news.google.com/rss/articles/CBMitAFBVV95cUxNOFNNWVZjVUJKckkwUjNPUkYtdHRWMXpRYmxmb21ZbHJ1TEE5X3hmNTF3Q2dFSDZFTUlKTUtHOThSQUhNekxVRTFQSnBVcy16QU9xd1dXOVZKeldFeDRCZzlpYnVPaWJDSUMtT2NIbkRzN2JVMnRHVU8tbDJqSFlEdTI3UC1hT1lYTlg3ZXJSTmtwZUpzV0lGWDZVaDN3X3ZXVElRQUM1el9nQ1NUVHFQR1RXX1Y?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMitAFBVV95cUxNOFNNWVZjVUJKckkwUjNPUkYtdHRWMXpRYmxmb21ZbHJ1TEE5X3hmNTF3Q2dFSDZFTUlKTUtHOThSQUhNekxVRTFQSnBVcy16QU9xd1dXOVZKeldFeDRCZzlpYnVPaWJDSUMtT2NIbkRzN2JVMnRHVU8tbDJqSFlEdTI3UC1hT1lYTlg3ZXJSTmtwZUpzV0lGWDZVaDN3X3ZXVElRQUM1el9nQ1",
+      "at": 1788548850000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1788548850000,
+      "why": "Sanctions update, unclear immediate direction"
     },
     {
       "title": "Stocks making the biggest moves midday: Sandisk, Tesla, Lululemon, Quanex, AMC & more",
@@ -2073,10 +2073,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-05T10:52:27.236Z",
-  "headlinesAt": "2026-09-05T10:52:27.236Z",
-  "updatedAt": "2026-09-05T10:52:27.236Z"
+  "calendarAt": "2026-09-05T10:55:42.528Z",
+  "headlinesAt": "2026-09-05T10:55:42.528Z",
+  "updatedAt": "2026-09-05T10:55:42.528Z"
 }
