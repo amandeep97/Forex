@@ -228,7 +228,6 @@
       "rel": 2,
       "srcs": 3,
       "firstAt": 1788641340000,
-      "_kind": null,
       "why": "Diplomatic talks, no immediate market impact"
     },
     {
@@ -942,7 +941,7 @@
       "why": "Geopolitical risk boosts oil and gold prices"
     },
     {
-      "title": "Iran targets Navy warships and US retaliates with 'higher economic cost' in new escalation phase - fortune.com",
+      "title": "Iran targets Navy warships and US retaliates with 'higher economic cost' in new escalation phase - Fortune",
       "link": "https://news.google.com/rss/articles/CBMikwFBVV95cUxNVFRQT1YwTmMwVEFxN1BybjFMQVVBYVExUmlxRXhvdGdVZnpHcGxsencwdXIzcm53MjNKRDg5dU03VWRxTlQyTUMxaW5idm5vVVJKb2hPb28tVmNWY3FlazZ5NXNVWWswcVp3bzlYUkVGemk4aWVKZXQyNmZhNDJHVXJJOXRkVWxTMm12enQ2X3l3TTA?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMikwFBVV95cUxNVFRQT1YwTmMwVEFxN1BybjFMQVVBYVExUmlxRXhvdGdVZnpHcGxsencwdXIzcm53MjNKRDg5dU03VWRxTlQyTUMxaW5idm5vVVJKb2hPb28tVmNWY3FlazZ5NXNVWWswcVp3bzlYUkVGemk4aWVKZXQyNmZhNDJHVXJJOXRkVWxTMm12enQ2X3l3TTA?oc=5\" target=\"_blank\">Iran tar",
@@ -1330,32 +1329,6 @@
         "UKOIL": "up"
       },
       "why": "Oil higher on geopolitical tensions"
-    },
-    {
-      "title": "US says it hit Iran oil tankers accused of helping ‘regional proxies’",
-      "link": "https://www.aljazeera.com/news/2026/9/5/us-says-it-hit-iran-oil-tankers-helping-finance-regional-proxies?traffic_source=rss",
-      "source": "Al Jazeera",
-      "desc": "The latest US strikes have hit Iranian oil tankers in the Gulf of Oman and near Iran’s Kharg island.",
-      "at": 1788619776000,
-      "inst": [
-        "USOIL",
-        "XAU/USD",
-        "UKOIL"
-      ],
-      "ccy": [
-        "OIL",
-        "XAU"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788619776000,
-      "dir": {
-        "USOIL": "up",
-        "XAU/USD": "up",
-        "UKOIL": "up"
-      },
-      "why": "Strikes on tankers, risk premium rises."
     },
     {
       "title": "Zelenskyy after speaking with Trump envoys: Ukraine prepared to halt strikes on cities involved in talks - Українська правда",
@@ -1965,6 +1938,28 @@
         "XAU/USD": "down"
       },
       "why": "Strong payrolls lift dollar, causing gold to slip."
+    },
+    {
+      "title": "Dollar Index pares gains as BoJ hike chatter returns, focus turns to US inflation data - VT Markets",
+      "link": "https://news.google.com/rss/articles/CBMiywFBVV95cUxNdDQ0cUhvc1V2LVlFRFowVnV5X1pORVNlVFBVNXhHcWtQbHRqQVZpdG83TkRYaGVOSTc2ZndrNlBfX2syWTFBTUpwd21XeF9vU3dMTFM2VlJXMF9CUWM1Y2RNOExJTWx6WUFpZVczbDlMMU14S1psWlhxNi00ZjlGUlhwcm96N0VZdlc1M0R1R0hwRG9vaS12b0E5YzR5ZXItSWpXMC1GZzdaREdaR0dieEJoYkRWMnRSUzZaWE1kYzR3dXQ0eDNKRHNTUQ?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiywFBVV95cUxNdDQ0cUhvc1V2LVlFRFowVnV5X1pORVNlVFBVNXhHcWtQbHRqQVZpdG83TkRYaGVOSTc2ZndrNlBfX2syWTFBTUpwd21XeF9vU3dMTFM2VlJXMF9CUWM1Y2RNOExJTWx6WUFpZVczbDlMMU14S1psWlhxNi00ZjlGUlhwcm96N0VZdlc1M0R1R0hwRG9vaS12b0E5YzR5ZXItSWpXMC1GZzdaRE",
+      "at": 1788574124000,
+      "inst": [
+        "USD/JPY"
+      ],
+      "ccy": [
+        "USD",
+        "JPY"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788574124000,
+      "dir": {
+        "USD/JPY": "down"
+      },
+      "why": "BoJ hike chatter weakens dollar against yen."
     }
   ],
   "sources": [
@@ -1987,10 +1982,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-05T23:22:43.917Z",
-  "headlinesAt": "2026-09-05T23:22:43.917Z",
-  "updatedAt": "2026-09-05T23:22:43.917Z"
+  "calendarAt": "2026-09-05T23:26:27.451Z",
+  "headlinesAt": "2026-09-05T23:26:27.451Z",
+  "updatedAt": "2026-09-05T23:26:27.451Z"
 }
