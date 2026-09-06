@@ -705,6 +705,25 @@
   ],
   "headlines": [
     {
+      "title": "Flames burst from Qantas plane engine after New Zealand takeoff",
+      "link": "https://www.aljazeera.com/video/newsfeed/2026/9/6/flames-burst-from-qantas-plane-engine-after-new-zealand-takeoff?traffic_source=rss",
+      "source": "Al Jazeera",
+      "desc": "A terrifying moment unfolded aboard a Qantas flight from Queenstown to Sydney when flames erupted from its left engine.",
+      "at": 1788670943000,
+      "inst": [
+        "NZD/USD"
+      ],
+      "ccy": [
+        "NZD"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788670943000,
+      "_kind": null,
+      "why": "No clear directional impact on currency."
+    },
+    {
       "title": "Investors turn to Chinese stocks as alternative to crowded AI trades",
       "link": "https://www.investing.com/news/stock-market-news/investors-turn-to-chinese-stocks-as-alternative-to-crowded-ai-trades-4890253",
       "source": "Investing",
@@ -717,7 +736,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788670512000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Capital rotation away from US AI stocks."
     },
     {
       "title": "U.S. military says it hit 3 Iranian tankers after Navy ships targeted - washingtonpost.com",
@@ -1507,8 +1530,8 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 2,
-      "firstAt": 1788631972000,
+      "srcs": 1,
+      "firstAt": 1788634409000,
       "dir": {
         "XAU/USD": "up"
       },
@@ -1564,30 +1587,9 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 2,
-      "firstAt": 1788631972000,
+      "srcs": 1,
+      "firstAt": 1788632280000,
       "why": "Ceasefire status unclear, no clear directional signal."
-    },
-    {
-      "title": "Russia’s Putin and US envoys discuss Trump proposal to end Ukraine war",
-      "link": "https://www.aljazeera.com/news/2026/9/5/russias-putin-meets-us-envoys-to-discuss-trump-proposal-to-end-ukraine-war?traffic_source=rss",
-      "source": "Al Jazeera",
-      "desc": "Kremlin aide calls the Moscow talks 'very frank and constructive', as US envoys head to Kyiv next.",
-      "at": 1788631972000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1788629417000,
-      "why": "Diplomatic talks, no clear market direction"
     },
     {
       "title": "Trump turns up the heat on Warsh as Fed rate hike looms - CNBC",
@@ -1642,7 +1644,7 @@
       ],
       "sev": 3,
       "rel": 2,
-      "srcs": 2,
+      "srcs": 1,
       "firstAt": 1788629417000,
       "why": "Political news, no direct market impact"
     },
@@ -1671,6 +1673,27 @@
         "UKOIL": "up"
       },
       "why": "Geopolitical risk boosts gold and oil prices."
+    },
+    {
+      "title": "Injured people in Iran hospital recall strikes that killed five at wedding in south of country - AP News",
+      "link": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxOR2xHSEFyN003a21PRHlUNHg4WkNZWWJ0bUdKcUN6R0hRVnF1alRkR012cnRjakp1OXZpYWlTSWZBSGN0MWMwMUhrRU1PbE11X1VueFhUMlRqdHpYcmRITlNoODZiT0lxQlcxXzhPOWY4by1YVzYtTEdFbC12RE9TRktMWmJMdnM5b18tZ0FIRFRUQWUybEVXSjJqM2t1cm5PRENLUm5PZmRTYURsa254ZWVTOGExRUdOaHBON1A4cWxZeEY1NWJjX2IwMUMtZGNoUHFmN1VCdnUxQmduenItdG5DX0NXVFU?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi5wFBVV95cUxOR2xHSEFyN003a21PRHlUNHg4WkNZWWJ0bUdKcUN6R0hRVnF1alRkR012cnRjakp1OXZpYWlTSWZBSGN0MWMwMUhrRU1PbE11X1VueFhUMlRqdHpYcmRITlNoODZiT0lxQlcxXzhPOWY4by1YVzYtTEdFbC12RE9TRktMWmJMdnM5b18tZ0FIRFRUQWUybEVXSjJqM2t1cm5PRENLUm5PZmRTYU",
+      "at": 1788628740000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788628740000,
+      "why": "Human interest story lacks market impact"
     },
     {
       "title": "U.S. Strikes Three Iranian Ships After Missiles Fired at American Aircraft Carrier - wsj.com",
@@ -2534,22 +2557,6 @@
       "why": "Political uncertainty unclear for markets"
     },
     {
-      "title": "Corning Leads 3 Oversold Tech Stocks That Also Pay Dividends. This Chip Stock Has Up to 84% Upside.",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/corning-leads-3-oversold-tech-230002933.html",
-      "source": "Yahoo Finance",
-      "at": 1788562802000,
-      "inst": [
-        "US500",
-        "US100"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788562076000,
-      "why": "Stock picks, no broad market direction"
-    },
-    {
       "title": "Jim Cramer Revealed Why Ross Stores, Inc. (NASDAQ:ROST) Is “Kicking Butt”",
       "link": "https://finance.yahoo.com/markets/stocks/articles/jim-cramer-revealed-why-ross-225741526.html",
       "source": "Yahoo Finance",
@@ -2680,7 +2687,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-06T05:06:29.350Z",
-  "headlinesAt": "2026-09-06T05:06:29.350Z",
-  "updatedAt": "2026-09-06T05:06:29.350Z"
+  "calendarAt": "2026-09-06T05:09:29.410Z",
+  "headlinesAt": "2026-09-06T05:09:29.410Z",
+  "updatedAt": "2026-09-06T05:09:29.410Z"
 }
