@@ -797,30 +797,6 @@
       "why": "Capital rotation away from US AI stocks."
     },
     {
-      "title": "Russian strikes kill multiple civilians in Ukraine - - Williamsport Sun-Gazette",
-      "link": "https://news.google.com/rss/articles/CBMilgFBVV95cUxQR0xaNUxOUDNkM3hOSTZOeF9fQ2htS01GUFZoTEh2RWV5VmZWUWg3QU5FVlh3UmhVQ2RhaFpYd0I0aFdjVjNDRGppSkJ5NVhwMDI4a3FERmZrSC1pT0dhUUpUQ3lVVENxNFROZUJQazQ5bkZWYUdCczN5R2tlVV9qNnZodkJzZFVLN2Nmbl9Ed09TLXJxMkE?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMilgFBVV95cUxQR0xaNUxOUDNkM3hOSTZOeF9fQ2htS01GUFZoTEh2RWV5VmZWUWg3QU5FVlh3UmhVQ2RhaFpYd0I0aFdjVjNDRGppSkJ5NVhwMDI4a3FERmZrSC1pT0dhUUpUQ3lVVENxNFROZUJQazQ5bkZWYUdCczN5R2tlVV9qNnZodkJzZFVLN2Nmbl9Ed09TLXJxMkE?oc=5\" target=\"_blank\">Russ",
-      "at": 1788667308000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788667308000,
-      "dir": {
-        "XAU/USD": "up"
-      },
-      "why": "Geopolitical risk boosts gold, oil unclear"
-    },
-    {
       "title": "‘Nobody will win’: Zelenskyy adviser warns of mutual destruction if war with Russia continues - theguardian.com",
       "link": "https://news.google.com/rss/articles/CBMioAFBVV95cUxQMkRoTkxPck1jMUx3dWx0WXJJRTQ1YUV5NTlDZWJXQk52OFc4cGdTNU92SF9TUDlYMW5ObDhWd1o1czJsZ0IzSmJucHdfVHBRMWNLVWFESHFteW05eHFobFJ6aWhxaklHYkk4a0VqSjZGMEh1M2hBYlU2SmptcWpmWjQyTlQ3ZGIwY0VoVU9mNHgxMFZUOXQzdlNialgtYVlS?oc=5",
       "source": "Wires (geo)",
@@ -1758,7 +1734,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788621360000
+      "firstAt": 1788621360000,
+      "why": "Trade threats unclear for markets"
     },
     {
       "title": "U.S. strikes Iranian oil tankers in retaliation for missile attacks on Navy ships - New Hampshire Public Radio",
@@ -2515,7 +2492,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788562740000
+      "firstAt": 1788562740000,
+      "why": "Activist news irrelevant to index"
     },
     {
       "title": "Jim Cramer Revealed Why Ross Stores, Inc. (NASDAQ:ROST) Is “Kicking Butt”",
@@ -2623,6 +2601,21 @@
       "srcs": 1,
       "firstAt": 1788562001000,
       "why": "Nvidia buyback comment, no clear index direction"
+    },
+    {
+      "title": "Jim Cramer Left Intrigued By Lululemon Athletica Inc. (NASDAQ:LULU)’s “Self Destruction”",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/jim-cramer-left-intrigued-lululemon-224641108.html",
+      "source": "Yahoo Finance",
+      "at": 1788562001000,
+      "inst": [
+        "US100"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788562001000,
+      "why": "Lululemon self-destruction comment, no clear index direction"
     }
   ],
   "sources": [
@@ -2645,10 +2638,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-06T06:43:28.749Z",
-  "headlinesAt": "2026-09-06T06:43:28.749Z",
-  "updatedAt": "2026-09-06T06:43:28.749Z"
+  "calendarAt": "2026-09-06T06:46:42.925Z",
+  "headlinesAt": "2026-09-06T06:46:42.925Z",
+  "updatedAt": "2026-09-06T06:46:42.925Z"
 }
