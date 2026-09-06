@@ -751,7 +751,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788685802000,
+      "firstAt": 1788684492000,
       "_kind": null,
       "dir": {
         "USOIL": "up",
@@ -829,7 +829,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788685802000,
+      "firstAt": 1788684492000,
       "_kind": null,
       "dir": {
         "XAU/USD": "up",
@@ -889,6 +889,33 @@
         "XAU/USD": "up"
       },
       "why": "Geopolitical risk boosts gold, oil unclear"
+    },
+    {
+      "title": "Iran claims strike on US ship in Strait of Hormuz as fighting escalates - The Seattle Times",
+      "link": "https://news.google.com/rss/articles/CBMirwFBVV95cUxORkVyb09wbFBOV0NSbVFheFdxRGVTc0lndDBUS3hvY2pjNndKNzZLc3RldXN4S0ZPaDZnc2dXRWZjRnh1OWNzV2JLMlY1eVgxUXdrZ096Q3VPOGlMdFZuc045bUVFdmwxTktWU1phbDRJbmc1aDBtZVN5V3dmZF9Yd0taamYxZ25BTnF0Y1F2SkxXSy1jQTFWR3VaWWZHd1prS1dxNmFIekRKT0lYV2t3?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMirwFBVV95cUxORkVyb09wbFBOV0NSbVFheFdxRGVTc0lndDBUS3hvY2pjNndKNzZLc3RldXN4S0ZPaDZnc2dXRWZjRnh1OWNzV2JLMlY1eVgxUXdrZ096Q3VPOGlMdFZuc045bUVFdmwxTktWU1phbDRJbmc1aDBtZVN5V3dmZF9Yd0taamYxZ25BTnF0Y1F2SkxXSy1jQTFWR3VaWWZHd1prS1dxNmFIekRKT0",
+      "at": 1788684492000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788684492000,
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Escalation boosts safe havens and oil supply risk."
     },
     {
       "title": "Israel bombards several towns in southern Lebanon",
@@ -960,33 +987,6 @@
       "firstAt": 1788681606000,
       "_kind": null,
       "why": "Conflict status quo, no clear directional signal"
-    },
-    {
-      "title": "Iran claims strike on US ship in Strait of Hormuz as fighting escalates - KSAT",
-      "link": "https://news.google.com/rss/articles/CBMiswFBVV95cUxOdHk2VmtzR2NFbE9mMlgtS3hBMXZ4cVVhUWFnWnllaXpJNnRqdGZob3lhRF9ZSW9CMTBaUXpCVl9lMUxWWG1aNUN2NnpOMjUwUEtndjI3Y1ktdkZhZWZsQWRRb3ZCZ3QxaVZFbXgwMFNHaTJINTd5dEEtYjNIQ2ZaU3FIcXpvaXdGRWVlajh2NzJhWm5hUTNhXzU1Ml9WU3dLNk55QUdaLWNLdUR3YVMweTlQOA?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiswFBVV95cUxOdHk2VmtzR2NFbE9mMlgtS3hBMXZ4cVVhUWFnWnllaXpJNnRqdGZob3lhRF9ZSW9CMTBaUXpCVl9lMUxWWG1aNUN2NnpOMjUwUEtndjI3Y1ktdkZhZWZsQWRRb3ZCZ3QxaVZFbXgwMFNHaTJINTd5dEEtYjNIQ2ZaU3FIcXpvaXdGRWVlajh2NzJhWm5hUTNhXzU1Ml9WU3dLNk55QUdaLWNLdU",
-      "at": 1788681258000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788680273000,
-      "_kind": null,
-      "dir": {
-        "XAU/USD": "up",
-        "USOIL": "up",
-        "UKOIL": "up"
-      },
-      "why": "Escalation boosts safe havens and oil supply risk."
     },
     {
       "title": "Israel Strikes Hezbollah Sites After Drones Target Lebanon Security Zone - The Media Line",
@@ -2175,7 +2175,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788617040000
+      "firstAt": 1788617040000,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Peace talks reduce risk premium, boost oil."
     },
     {
       "title": "Budanov Says Putin Ignored Ceasefire Proposal During US Envoy Visit - Kyiv Post",
@@ -2223,6 +2229,32 @@
         "UKOIL": "up"
       },
       "why": "Supply disruption and geopolitical risk boost prices"
+    },
+    {
+      "title": "Trump boasts Iran blockade is ‘unbelievable’ as oil tops $90 and US reserves near danger. Inflation-proof your nest egg",
+      "link": "https://finance.yahoo.com/energy/articles/trump-boasts-iran-blockade-unbelievable-111500672.html",
+      "source": "Yahoo Finance",
+      "at": 1788606900000,
+      "inst": [
+        "USOIL",
+        "XAU/USD",
+        "UKOIL"
+      ],
+      "ccy": [
+        "OIL",
+        "XAU",
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788606900000,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Oil tops $90, inflation fears rise"
     },
     {
       "title": "AST SpaceMobile Director Bought $619,000 as Short Interest Reached 57.5 Million Shares. Is the Risk-Reward Turning?",
@@ -2611,21 +2643,6 @@
       "srcs": 1,
       "firstAt": 1788585880000,
       "why": "Sanctions unclear for gold direction"
-    },
-    {
-      "title": "Berkshire Hathaway Outperformed the S&P 500 Over a 60-Year Period Under Warren Buffett. Here's the Stock That Could Help Continue the Streak Under Greg Abel.",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/berkshire-hathaway-outperformed-p-500-052000998.html",
-      "source": "Yahoo Finance",
-      "at": 1788585600000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788582900000,
-      "why": "Historical performance implies no current move"
     }
   ],
   "sources": [
@@ -2648,10 +2665,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-06T09:39:43.577Z",
-  "headlinesAt": "2026-09-06T09:39:43.577Z",
-  "updatedAt": "2026-09-06T09:39:43.577Z"
+  "calendarAt": "2026-09-06T09:42:28.596Z",
+  "headlinesAt": "2026-09-06T09:42:28.596Z",
+  "updatedAt": "2026-09-06T09:42:28.596Z"
 }
