@@ -705,6 +705,24 @@
   ],
   "headlines": [
     {
+      "title": "Australia’s Ingenia rejects $1.4 bln Warburg Pincus buyout bid",
+      "link": "https://www.investing.com/news/stock-market-news/australias-ingenia-rejects-14-bln-warburg-pincus-buyout-bid-4890325",
+      "source": "Investing",
+      "at": 1788737855000,
+      "inst": [
+        "AUD/USD"
+      ],
+      "ccy": [
+        "AUD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788737855000,
+      "_kind": null,
+      "why": "Corporate news, no clear FX impact"
+    },
+    {
       "title": "What a $10,000 Investment in the Vanguard S&P 500 ETF (VOO) a Decade Ago Is Worth Today",
       "link": "https://finance.yahoo.com/markets/stocks/articles/10-000-investment-vanguard-p-232500297.html",
       "source": "Yahoo Finance",
@@ -717,7 +735,29 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788737100000,
-      "_kind": null
+      "_kind": null,
+      "why": "Historical performance, no current direction"
+    },
+    {
+      "title": "Dow Jones Futures Fall With Iran, Apple, Inflation In Focus; Nvidia, Micron, Sandisk Flash Buy Signals",
+      "link": "https://www.investors.com/market-trend/stock-market-today/dow-jones-futures-nvidia-micron-sandisk-buy-signals-apple-inflation-reports/?src=A00220&yptr=yahoo",
+      "source": "Yahoo Finance",
+      "at": 1788737076000,
+      "inst": [
+        "US30"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788737076000,
+      "_kind": null,
+      "dir": {
+        "US30": "down"
+      },
+      "why": "Dow Jones Futures Fall"
     },
     {
       "title": "Warren Buffett has a stark message for stock market investors",
@@ -837,25 +877,28 @@
       "why": "Geopolitical risk boosts oil and gold prices"
     },
     {
-      "title": "Dow Jones Futures Fall With Iran, Apple, Inflation In Focus; Nvidia, Micron, Sandisk Flash Buy Signals",
-      "link": "https://www.investors.com/market-trend/stock-market-today/dow-jones-futures-nvidia-micron-sandisk-buy-signals-apple-inflation-reports/?src=A00220&yptr=yahoo",
+      "title": "JD Vance Says Trump 'Cares a Lot' About Interest Rates Because He Wants Americans to Afford a Home: 'Would Be Nice' to Have Fed's Help",
+      "link": "https://finance.yahoo.com/economy/policy/articles/jd-vance-says-trump-cares-223010655.html",
       "source": "Yahoo Finance",
-      "at": 1788733875000,
+      "at": 1788733810000,
       "inst": [
-        "US30"
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
       ],
       "ccy": [
         "USD"
       ],
-      "sev": 2,
+      "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788733875000,
+      "firstAt": 1788733810000,
       "_kind": null,
-      "dir": {
-        "US30": "down"
-      },
-      "why": "Dow Jones Futures Fall"
+      "why": "Ambiguous Fed commentary, no clear direction"
     },
     {
       "title": "Arrowhead Pharmaceuticals Director Sells 11,600 Shares for $1 Million",
@@ -1629,7 +1672,7 @@
       "why": "Historical context does not imply immediate price move"
     },
     {
-      "title": "Donald Trump calls Canada’s exchange rate with the U.S. ‘unacceptable’ - BNN Bloomberg",
+      "title": "Donald Trump calls Canada’s exchange rate with the U.S. ‘unacceptable’ - bnnbloomberg.ca",
       "link": "https://news.google.com/rss/articles/CBMiswFBVV95cUxNV0Y2S2ZTTy1NNElPbUNNdDRvN2xpdHFqYU1zUUQtc1hFSHg1RVdnQzZLRnBzcTZVeFkzVzFFdUhMV0FLa1lfWFhvQ3NzSmxxR2w3NFQ0anRrZ1lsaFNGWGtuQ0F0dkNURWVFNGwzX2xHZ3RQSUVCMllOUHNGTmliV0x5aVVVY1FOZDlXeFlZUVpTOXIzQ0xYZ2l1QTlRbDNIN1MzYWRSZVZGaFllelE5MzU0Zw?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiswFBVV95cUxNV0Y2S2ZTTy1NNElPbUNNdDRvN2xpdHFqYU1zUUQtc1hFSHg1RVdnQzZLRnBzcTZVeFkzVzFFdUhMV0FLa1lfWFhvQ3NzSmxxR2w3NFQ0anRrZ1lsaFNGWGtuQ0F0dkNURWVFNGwzX2xHZ3RQSUVCMllOUHNGTmliV0x5aVVVY1FOZDlXeFlZUVpTOXIzQ0xYZ2l1QTlRbDNIN1MzYWRSZVZGaF",
@@ -1768,7 +1811,7 @@
       "why": "Strait of Hormuz conflict boosts oil and gold"
     },
     {
-      "title": "Gold, Silver Prices Likely To Face Volatility This Week As Iran Tensions Take Centre Stage: Analysts - NDTV Profit",
+      "title": "Gold, Silver Prices Likely To Face Volatility This Week As Iran Tensions Take Centre Stage: Analysts - ndtvprofit.com",
       "link": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxPTnhSVjA0R1Z6ZzlVcXROVExUbkk1MzlnQ3Bobjlnd2F4UHpuS3R5NjRJN1FEQ0p2MGM2QkNIc1l3NTZ3LVZFR2o2cVRQbGJpcEVtU3YxRHg5SEU4ZVNGTVFJd1RPSUpTbmFKOGx2MW1mbUE1enUtQ29IVXd2VzZBR2xmbElCMmFwZXpGYkY0QkM1aG9qQVJzTV9DVXFjdVhyWGc0cWhUR2hpaUlDcWg0eTZvbkNqdjVZdjR2QjhZVVZiTGpiYW50SlhMS2F3aFRYM1d4eVFtY3B3QdIB4gFBVV95cUxPbGpfVUVIYlhyNlFfUEcwaDEwVVQ5Z0s5dENNamU5T2Q4dU9ja0dYVG1sTnBQMFhYcWdBYTVSWWtoUFZvTWRSWFdoRXZzSUVOY2k5RE10NXBFdldiNHR0RjRQdzdNdWRFUXlXRjdHZ1MtX0owQVBvN0RwZUlPeFdMb2lUd1QtcV9RV1BjdDlPbmVPbGZUZUNLRlJJTm5XZnhiRWxwTWowQzc4MVBmbHh6OU1aU1NOUERyT01pUVJiTW00eWlGVnBkV2R3dlRONTk5VjdHZ1FCa2lnaFdkNDl4RjhR?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMi2gFBVV95cUxPTnhSVjA0R1Z6ZzlVcXROVExUbkk1MzlnQ3Bobjlnd2F4UHpuS3R5NjRJN1FEQ0p2MGM2QkNIc1l3NTZ3LVZFR2o2cVRQbGJpcEVtU3YxRHg5SEU4ZVNGTVFJd1RPSUpTbmFKOGx2MW1mbUE1enUtQ29IVXd2VzZBR2xmbElCMmFwZXpGYkY0QkM1aG9qQVJzTV9DVXFjdVhyWGc0cWhUR2hpaU",
@@ -1813,31 +1856,6 @@
       "why": "Analysts discuss factors, no clear direction"
     },
     {
-      "title": "Gulf markets close mixed amid US-Iran tensions",
-      "link": "https://www.investing.com/news/stock-market-news/gulf-markets-close-mixed-amid-usiran-tensions-93CH-4890296",
-      "source": "Investing",
-      "at": 1788704409000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1788703036000,
-      "dir": {
-        "XAU/USD": "up",
-        "USOIL": "up",
-        "UKOIL": "up"
-      },
-      "why": "Tensions boost safe havens and oil"
-    },
-    {
       "title": "Is Iran planning an October 7-style multi-front attack on Israel? - Gulf News",
       "link": "https://news.google.com/rss/articles/CBMirAFBVV95cUxOemZkOVVQTGZFVzJBaGdoY1haQ2gzTG1vaWlOTk5XX2FqUjFram43NU05Mk01SmpDaHp5eDdXdkFvT2VzZWk0ZFBvcWZBWHJJUVJfODhLRnIza2FuZTNOLVRMekd4OTBlM2kzSi1mMnRhOVhpaF9TMjEzMjluZzlmSnFTS3VKaUFxMTZrUVNyeDBTTDlvYi1SWGRsNmN2Y3pGaHpLUk95T25WbzZ40gG_AUFVX3lxTE5xT3NrbDlGcEtfMld3VENqY0ZKeWZIRTJNYXBtVERBRElEZUs4ZUFKYWRKR25DRlc2WXFiRjZFYWJmVWxPQVpUQWlFZ0ROM2F0QTh2UjV1TDI4d2JWRk1lM2U1TGxseDc5LTJLcnZvdTFNVjR3ZkFHQ3RGcjNPNUtIX1M3WXJPOTRYMUtObFhMaTRZUEkyNHpxR3dYbnp1TXVZUmRPX3p3dlZXaWhaLWJjWDEwMHhWOUw1STI4Nncw?oc=5",
       "source": "Wires (geo)",
@@ -1854,7 +1872,7 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 2,
+      "srcs": 1,
       "firstAt": 1788703036000,
       "dir": {
         "XAU/USD": "up",
@@ -2656,23 +2674,6 @@
       "srcs": 1,
       "firstAt": 1788649500000,
       "why": "Range-bound outlook, no clear direction"
-    },
-    {
-      "title": "Is the latest rebound in the Japanese yen real?",
-      "link": "https://www.investing.com/news/forex-news/is-the-latest-rebound-in-the-japanese-yen-real-4890244",
-      "source": "Investing FX",
-      "at": 1788649357000,
-      "inst": [
-        "USD/JPY"
-      ],
-      "ccy": [
-        "JPY"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788649357000,
-      "why": "Question about yen rebound lacks direction."
     }
   ],
   "sources": [
@@ -2698,7 +2699,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-06T23:42:28.520Z",
-  "headlinesAt": "2026-09-06T23:42:28.520Z",
-  "updatedAt": "2026-09-06T23:42:28.520Z"
+  "calendarAt": "2026-09-06T23:45:30.225Z",
+  "headlinesAt": "2026-09-06T23:45:30.225Z",
+  "updatedAt": "2026-09-06T23:45:30.225Z"
 }
