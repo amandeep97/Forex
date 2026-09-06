@@ -1108,7 +1108,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788721200000,
-      "_kind": null,
       "why": "Yield curve volatility implies uncertainty, no clear directi"
     },
     {
@@ -1121,8 +1120,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788721082000,
-      "_kind": null
+      "firstAt": 1788721082000
     },
     {
       "title": "Adidas faces boycott calls over campaign featuring former Israeli soldier",
@@ -1298,29 +1296,6 @@
       "srcs": 1,
       "firstAt": 1788719573000,
       "why": "Political news, unclear market impact"
-    },
-    {
-      "title": "Inflation, Apple, Adobe, Oracle, Macy’s, and More to Watch This Week",
-      "link": "https://www.barrons.com/articles/inflation-apple-adobe-oracle-macys-and-more-to-watch-this-week-23a2c022?siteid=yhoof2&yptr=yahoo",
-      "source": "Yahoo Finance",
-      "at": 1788717600000,
-      "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788717600000,
-      "why": "General preview, no specific direction"
     },
     {
       "title": "Ukraine Counts on US Passing New Russia Sanctions, Zelensky Says - Kyiv Post",
@@ -2669,6 +2644,32 @@
         "USOIL": "up"
       },
       "why": "Oil surge revives rate-hike bets"
+    },
+    {
+      "title": "U.S. military says it hit 3 Iranian tankers after Navy ships targeted - The Washington Post",
+      "link": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxOeXUyT3djU2gxZUJQcWxaN3ZwMGRzU1VJSmhsNWVzYmpXTmtnR2dFYnpXN3BUa3hmUkhLVG9FSnZMdXJ5NmRqanBGLS1oS3VQcWJ3SndiT1lsS3hkb3VJUGFzbWQ5UmVDUjJweTBYdkN4X2JFWHNMUVRxLVdQWS1jTVJub014WFRRdG02M0gyNXRna2FDRE42OEFPRWtuTmx1S3Z0bEg2VU5SMFlpd1k4ZWVrMDJDUWZF?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiuAFBVV95cUxOeXUyT3djU2gxZUJQcWxaN3ZwMGRzU1VJSmhsNWVzYmpXTmtnR2dFYnpXN3BUa3hmUkhLVG9FSnZMdXJ5NmRqanBGLS1oS3VQcWJ3SndiT1lsS3hkb3VJUGFzbWQ5UmVDUjJweTBYdkN4X2JFWHNMUVRxLVdQWS1jTVJub014WFRRdG02M0gyNXRna2FDRE42OEFPRWtuTmx1S3Z0bEg2VU5SMF",
+      "at": 1788675272000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788675272000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Geopolitical risk boosts gold and oil prices"
     }
   ],
   "sources": [
@@ -2691,10 +2692,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-06T20:57:28.477Z",
-  "headlinesAt": "2026-09-06T20:57:28.477Z",
-  "updatedAt": "2026-09-06T20:57:28.477Z"
+  "calendarAt": "2026-09-06T21:00:43.739Z",
+  "headlinesAt": "2026-09-06T21:00:43.739Z",
+  "updatedAt": "2026-09-06T21:00:43.739Z"
 }
