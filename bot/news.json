@@ -146,7 +146,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788657025000,
-      "_kind": null,
       "dir": {
         "XAU/USD": "down",
         "USOIL": "down",
@@ -1912,7 +1911,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1788553815000,
+      "firstAt": 1788554152000,
       "dir": {
         "US500": "down"
       },
@@ -1931,7 +1930,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788553800000,
+      "firstAt": 1788553004000,
       "dir": {
         "US100": "down",
         "US30": "down"
@@ -1983,21 +1982,33 @@
       "why": "Mixed macro news, no clear direction"
     },
     {
-      "title": "Polymarket Launches Crypto Perpetual Futures With Up to 20x Leverage",
-      "link": "https://finance.yahoo.com/markets/crypto/articles/polymarket-launches-crypto-perpetual-futures-203103778.html",
-      "source": "Yahoo Finance",
-      "at": 1788553863000,
+      "title": "US Equity Markets End Lower as Expectations Rise for Fed Rate Hike Amid Hot Jobs Data - marketscreener.com",
+      "link": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxNMDdxbkpGbjhoODRQVTE4T3NmVXM3RTlaM2V5d21yUnVWdVlsUDkzbWtjVHJQTV9CY2IxUzh4UGFhMlJEMVZnODNQQl80Q2tYbXRlOW1kb0hVTVIzcFRCN09MdVplQmFvaWRmMnZLWjk5dFNjc0xsWi13ZEc3ZC1KY3c2UTJvYTNIQTlDVTM0RWRRZXQ4SFhldDVyRjJYcVdGNGkxVHFwd25yZS1YREZlRDBmUG1NM0NObGJLeDRBQ1dhbmdhc21WcDhBOU05MWtDQ0Q1bw?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi1AFBVV95cUxNMDdxbkpGbjhoODRQVTE4T3NmVXM3RTlaM2V5d21yUnVWdVlsUDkzbWtjVHJQTV9CY2IxUzh4UGFhMlJEMVZnODNQQl80Q2tYbXRlOW1kb0hVTVIzcFRCN09MdVplQmFvaWRmMnZLWjk5dFNjc0xsWi13ZEc3ZC1KY3c2UTJvYTNIQTlDVTM0RWRRZXQ4SFhldDVyRjJYcVdGNGkxVHFwd25yZS",
+      "at": 1788553160000,
       "inst": [
-        "BTC/USDT"
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
       ],
       "ccy": [
-        "BTC"
+        "USD"
       ],
-      "sev": 1,
+      "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788553863000,
-      "why": "New product launch, no price signal"
+      "firstAt": 1788553160000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Hot jobs data, Fed hike expectations"
     }
   ],
   "sources": [
@@ -2023,7 +2034,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-06T03:07:42.366Z",
-  "headlinesAt": "2026-09-06T03:07:42.366Z",
-  "updatedAt": "2026-09-06T03:07:42.366Z"
+  "calendarAt": "2026-09-06T03:10:42.320Z",
+  "headlinesAt": "2026-09-06T03:10:42.320Z",
+  "updatedAt": "2026-09-06T03:10:42.320Z"
 }
