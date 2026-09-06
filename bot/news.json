@@ -47,7 +47,12 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1788652200000,
-      "_kind": "escalation"
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Geopolitical risk boosts gold and oil prices."
     },
     {
       "title": "U.S. forces strike multiple Iranian oil tankers; Iran claims retaliation - CBS News",
@@ -289,6 +294,32 @@
         "UKOIL": "down"
       },
       "why": "Ceasefire reduces geopolitical risk premium"
+    },
+    {
+      "title": "Russia, Ukraine declare halt in strikes on capitals - Nine.com.au",
+      "link": "https://news.google.com/rss/articles/CBMi-wFBVV95cUxOZ0UyYzNfNEFzWEp4c3lXSjQ3V0I4Q2cyMk9PeVdEY3ctTEZhUWw3LXN1bkQ0dUVDV3lBT1VxOHhqbzMyM0JPUko1RmRYV0JfOGVYZzBFZVQweTF6MVN1Q2lTSDhaamI0REtuX1lMZzRadGlSQURZNUNCWlBwUWJTMnJsdC1FOXVldTNFY0hUNllPTDd6ajlCMzE4c1c2SzRSc2NHOGVBb0ZTejRpbkllVGtKVzQ5Ujh6SkZlUkxZWXFEQVZlNWFLNV9qcmIxX3dWWmphc01DMmRvbmtrb2lIS1E5MU9ETURoeEZLOXhiOFB0MWwwX2JyV3N1Zw?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi-wFBVV95cUxOZ0UyYzNfNEFzWEp4c3lXSjQ3V0I4Q2cyMk9PeVdEY3ctTEZhUWw3LXN1bkQ0dUVDV3lBT1VxOHhqbzMyM0JPUko1RmRYV0JfOGVYZzBFZVQweTF6MVN1Q2lTSDhaamI0REtuX1lMZzRadGlSQURZNUNCWlBwUWJTMnJsdC1FOXVldTNFY0hUNllPTDd6ajlCMzE4c1c2SzRSc2NHOGVBb0ZTej",
+      "at": 1788643260000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788643260000,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Ceasefire lowers risk premium, boosts oil"
     },
     {
       "title": "Russia stocks lower at close of trade; MOEX Russia Index unchanged",
@@ -1103,7 +1134,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788616980000,
+      "firstAt": 1788617040000,
       "why": "No clear directional impact on listed instruments."
     },
     {
@@ -1124,7 +1155,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788616980000,
+      "firstAt": 1788617040000,
       "dir": {
         "XAU/USD": "down",
         "USOIL": "down",
@@ -1150,39 +1181,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788616980000,
+      "firstAt": 1788617040000,
       "dir": {
         "XAU/USD": "down",
         "USOIL": "down",
         "UKOIL": "down"
       },
       "why": "Peace talks reduce geopolitical risk premium"
-    },
-    {
-      "title": "Putin orders pause in Ukraine strikes as Witkoff and Kushner arrive in Moscow - Washington Examiner",
-      "link": "https://news.google.com/rss/articles/CBMipwFBVV95cUxONUF1UGJ3UXhSdUVOQmV0S2hjX2VSY25wejJfNE9sVXZVY0ZxM0RlYVhFekxCNEF4M1hYWGo0U3lNbkNCQVloZHZlb0VKSGlwU1psaFF1X3BxOE5vdTc1TFZINVNQYmxHMG1Lc3ZoVmVIVWduYnFGRE1nMktOODM5R3lJM3VVWmtXaGlJM3U3Z3N0X1d1MVpNSDJlVG5qWmJiYk1COXRkVQ?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMipwFBVV95cUxONUF1UGJ3UXhSdUVOQmV0S2hjX2VSY25wejJfNE9sVXZVY0ZxM0RlYVhFekxCNEF4M1hYWGo0U3lNbkNCQVloZHZlb0VKSGlwU1psaFF1X3BxOE5vdTc1TFZINVNQYmxHMG1Lc3ZoVmVIVWduYnFGRE1nMktOODM5R3lJM3VVWmtXaGlJM3U3Z3N0X1d1MVpNSDJlVG5qWmJiYk1COXRkVQ?oc=",
-      "at": 1788616980000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788616980000,
-      "dir": {
-        "XAU/USD": "down",
-        "USOIL": "up",
-        "UKOIL": "up"
-      },
-      "why": "Peace talks boost oil, lower gold"
     },
     {
       "title": "US military strikes three Iranian tankers in retaliation for missile attacks - CNN",
@@ -2045,10 +2050,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-06T00:10:29.834Z",
-  "headlinesAt": "2026-09-06T00:10:29.834Z",
-  "updatedAt": "2026-09-06T00:10:29.834Z"
+  "calendarAt": "2026-09-06T00:13:42.382Z",
+  "headlinesAt": "2026-09-06T00:13:42.382Z",
+  "updatedAt": "2026-09-06T00:13:42.382Z"
 }
