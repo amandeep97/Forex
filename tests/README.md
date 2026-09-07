@@ -1,8 +1,10 @@
 # Tests
 
 ```
-npm test                 # lint, then all 59
+npm test                 # lint, typecheck, then all 59
 npm run lint             # the linter alone, warnings included
+npm run typecheck        # shared/ must stay at zero type errors
+npm run typecheck:audit  # the rest, visible but not yet enforced
 npm test stops plan      # only files whose name contains "stops" or "plan"
 ```
 
@@ -149,3 +151,29 @@ one. A shared PROPER NOUN can — Iran and Larak name the event, stock and futur
 are how the business talks about everything — so the test that matters is that
 "U.S. stock futures slip after Warsh comments" and "U.S. stock futures dip amid
 Iran hostilities" stay two stories.
+
+## Three gates, not one
+
+`npm test` runs three things and stops at the first failure.
+
+**The linter** catches names that do not exist. That is the class that reached
+the phone twice in two days: a bar-fetching helper that was never defined, so
+the Desk's record rendered with no scores and no error. Rules are narrow on
+purpose — nothing about quotes or semicolons, because a hundred style warnings
+on a working codebase teaches everyone to ignore the output.
+
+**The type checker** catches values that are not what the code assumes. It runs
+over `shared/` only, and `shared/` is at zero. That is the layer where it pays
+most: one copy of every calculation, imported by the app and loaded by the bot,
+so a wrong assumption there is wrong in both places at once. Its first run
+found a real one — the ADX filter compared +DI against -DI when both can be
+null together, answering "no up-trend" where the truth was that the direction
+could not be measured.
+
+**The tests** catch behaviour. They are the only one of the three that knows
+what the code is FOR.
+
+`src/utils` and `vps-bot/src` have 274 type errors between them and are checked
+by `typecheck:audit` rather than by `npm test`. Enforcing them today would mean
+fixing 274 things before anyone could add one line. They are visible, they are
+worth working down, and the honest position is that they are not done.

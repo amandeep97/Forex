@@ -149,12 +149,22 @@ export function checkADX(candles, f) {
   const a = adxAt(candles, { period: f.period || 14 });
   if (!a) return no('not enough bars for ADX (needs about 42)');
   const v = f.value ?? 25;
+  if (f.mode === 'bull' || f.mode === 'bear') {
+    // +DI and -DI are null together when there was no directional movement at
+    // all to divide by. `null > null` is false, so without this the filter
+    // would answer "no up-trend" — a measurement — where the truth is that the
+    // direction could not be measured. Type checking found this; both sides of
+    // the comparison were nullable and neither was guarded.
+    if (a.plusDI == null || a.minusDI == null) {
+      return no('no directional movement to read a direction from');
+    }
+    const lead = f.mode === 'bull' ? a.plusDI > a.minusDI : a.minusDI > a.plusDI;
+    return (a.adx > v && lead) ? ok()
+      : no(`ADX ${a.adx.toFixed(0)}, +DI ${a.plusDI.toFixed(0)} vs -DI ${a.minusDI.toFixed(0)}`
+         + ` — no ${f.mode === 'bull' ? 'up' : 'down'}-trend`);
+  }
   switch (f.mode) {
     case 'weak':  return a.adx < v ? ok() : no(`ADX is ${a.adx.toFixed(0)}, not below ${v} — this is a trend`);
-    case 'bull':  return (a.adx > v && a.plusDI > a.minusDI) ? ok()
-      : no(`ADX ${a.adx.toFixed(0)}, +DI ${a.plusDI?.toFixed(0)} vs -DI ${a.minusDI?.toFixed(0)} — no up-trend`);
-    case 'bear':  return (a.adx > v && a.minusDI > a.plusDI) ? ok()
-      : no(`ADX ${a.adx.toFixed(0)}, +DI ${a.plusDI?.toFixed(0)} vs -DI ${a.minusDI?.toFixed(0)} — no down-trend`);
     case 'strong':
     default:      return a.adx > v ? ok() : no(`ADX is ${a.adx.toFixed(0)}, not above ${v} — no trend`);
   }
@@ -163,6 +173,7 @@ export function checkADX(candles, f) {
 // Every new filter at once, in a fixed order, returning the FIRST reason it
 // failed. One reason is readable; five stacked reasons is a wall nobody reads.
 export function checkIndicatorFilters(candles, conditions = {}) {
+  /** @type {[string, () => {pass:boolean, why?:string}][]} */
   const checks = [
     ['candle', () => checkCandle(candles, conditions.candlePattern, { n: conditions.candleN || 5 })],
     ['macd', () => checkMACD(candles, conditions.macdFilter)],
@@ -171,6 +182,7 @@ export function checkIndicatorFilters(candles, conditions = {}) {
     ['adx', () => checkADX(candles, conditions.adxFilter)],
   ];
   const detail = {};
+  /** @type {{name:string, why:string|undefined}|null} */
   let first = null;
   for (const [name, run] of checks) {
     const r = run();

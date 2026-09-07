@@ -36,13 +36,34 @@ export function pipSizeFor(pair) {
 }
 
 /**
- * @param dir     'long' | 'short'
- * @param price   the intended entry (mid)
- * @param pip     one pip for this instrument, in price units
- * @param risk    the strategy's risk block: slMethod, slAtr, slPips, slBufferPips
- * @param smc     analyzeSMC output — recentSwingLow/High, atr, activeBull/BearOB
- * @param candles complete bars, oldest first; the last is the signal candle
- * @param spread  the CURRENT ask minus bid in price units, or null if unknown
+ * Where the stop goes.
+ *
+ * `price` is the intended entry (mid), `pip` one pip in price units, `candles`
+ * complete bars oldest first with the last being the signal candle, and
+ * `spread` the CURRENT ask minus bid — or null when it could not be read, which
+ * is a refusal rather than a zero.
+ *
+ * @typedef {{ t:number, o:number, h:number, l:number, c:number, v?:number }} Candle
+ * @typedef {{ type:string, top:number, bottom:number, high:number, low:number }} OrderBlock
+ *
+ * The strategy's risk block. Every field optional because a saved strategy
+ * predates most of them; the defaults below are the behaviour that shipped.
+ * @typedef {{
+ *   slMethod?: 'swing'|'ob'|'atr'|'fixed'|'candle',
+ *   slAtr?: number, slPips?: number, slCandles?: number, slBufferPips?: number
+ * }} RiskBlock
+ *
+ * What analyzeSMC hands over. Any of these can be missing on a thin history,
+ * which is exactly why every method here returns null rather than guessing.
+ * @typedef {{
+ *   atr?: number|null,
+ *   recentSwingLow?: number|null, recentSwingHigh?: number|null,
+ *   activeBullOB?: OrderBlock|null, activeBearOB?: OrderBlock|null
+ * }} SmcRead
+ *
+ * @param {{ dir:'long'|'short', price:number, pip:number,
+ *           risk?:RiskBlock, smc?:SmcRead, candles?:Candle[]|null, spread?:number|null }} a
+ * @returns {{ price:number, why:string }|null}
  */
 export function stopFor({ dir, price, pip, risk = {}, smc = {}, candles = null, spread = null }) {
   const method = risk.slMethod || 'atr';
@@ -51,7 +72,7 @@ export function stopFor({ dir, price, pip, risk = {}, smc = {}, candles = null, 
 
   if (method === 'swing') {
     const lvl = long ? smc.recentSwingLow : smc.recentSwingHigh;
-    if (!(lvl > 0)) return null;
+    if (lvl == null || !(lvl > 0)) return null;
     return { price: long ? lvl - buf : lvl + buf,
              why: `${(risk.slBufferPips ?? 3)} pips beyond the recent swing ${long ? 'low' : 'high'}` };
   }
@@ -61,7 +82,7 @@ export function stopFor({ dir, price, pip, risk = {}, smc = {}, candles = null, 
   if (method === 'ob') {
     const ob = long ? smc.activeBullOB : smc.activeBearOB;
     const lvl = long ? ob?.low : ob?.high;
-    if (!(lvl > 0)) return null;
+    if (lvl == null || !(lvl > 0)) return null;
     return { price: long ? lvl - buf : lvl + buf,
              why: `${(risk.slBufferPips ?? 3)} pips beyond the ${long ? 'low' : 'high'} of the entry order block` };
   }
@@ -105,7 +126,8 @@ export function stopFor({ dir, price, pip, risk = {}, smc = {}, candles = null, 
   }
 
   const mult = risk.slAtr || 1.5;
-  if (!(smc.atr > 0)) return null;
-  return { price: long ? price - smc.atr * mult : price + smc.atr * mult,
+  const atr = smc.atr;
+  if (atr == null || !(atr > 0)) return null;
+  return { price: long ? price - atr * mult : price + atr * mult,
            why: `${mult} ATR from entry` };
 }
