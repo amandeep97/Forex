@@ -750,7 +750,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788813540000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Geopolitical risk boosts gold and oil"
     },
     {
       "title": "Trump threatens Bombardier, Canadian dollar as counter-tariffs set to roll out - Global News",
@@ -876,7 +882,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788810622000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Hot jobs report weighs on stocks"
     },
     {
       "title": "What are the implications of AfD’s electoral rise for Germany and Europe?",
@@ -1397,6 +1407,32 @@
       "why": "Funeral news has no market impact"
     },
     {
+      "title": "Zelensky to Axios: U.S. exploring Russia-Ukraine winter de-escalation steps - axios.com",
+      "link": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPS1JUc284NjBMMkppZ29XSm9kUjBwSnpvcjhxT05xTG1rWGViQkswMEh4SzdPZ1NKN0VTQVUxcWc1T1ByMEJEUGdUS01nbVU0eFd3anRTX1h3aVo2QWNHcW96dzhoR3MzbWlrYS15TG1hYkZ1Zm1SMHRGVjZKeTFabnNqRWtIRHQ0LUdXYW9kd3huUQ?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMikgFBVV95cUxPS1JUc284NjBMMkppZ29XSm9kUjBwSnpvcjhxT05xTG1rWGViQkswMEh4SzdPZ1NKN0VTQVUxcWc1T1ByMEJEUGdUS01nbVU0eFd3anRTX1h3aVo2QWNHcW96dzhoR3MzbWlrYS15TG1hYkZ1Zm1SMHRGVjZKeTFabnNqRWtIRHQ0LUdXYW9kd3huUQ?oc=5\" target=\"_blank\">Zelensky ",
+      "at": 1788803417000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788803417000,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "De-escalation reduces risk premium"
+    },
+    {
       "title": "Israel threatens war with Palestinian Authority in case of October 7-style attack - The Hindu",
       "link": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxNd2lQR2dhNk91N1lGaGthU3J0eUZ2R2E2NHQ0VlA5bWdGcXVIZjNaVFpjY0lQQlZFYk1xYXdUMFBoR0RtSm9VVXU1dUVyOUdoSmNjUXdId1FIdWw3VGU3RlE0TkQ3UnV0c1pUNUZIUkltcnpfVUpuNkxjUkoyM3E0RlpmRElyX3dnbDFLTDhOSWNFRVZ4bm1CYmRvTjc1TVZOZ195dTFYTi1YQVdNYjRVOWsxaUFRaUI5dk00ek8tM1FHZW9pODBEVzU4OXo1THB2YmhBcE1oMndGWjNsOHfSAeQBQVVfeXFMTy1yb21GU0h5Z1RkN2gwSVZDbEdqVFpPQlEwTllKTlRUSXRhYWRkcXhqN3c4dF9Fa2JZeHRxQlNadV9SVHc0VVIwV1dTbzZxQmdsNUNyLXhONXBPcFNYTzY2Ymt6TnNscDZpeE1RQzVuSG0xWnJfTERQeHhLRWtwT3VkcmNBcF9YSnVQbmhXNFp5UTV1dTRweGg2d2Z3eFotT21JY0RYeWI4cTRTMnFwcHFlU2pWaWdfZDd0T25DbXl3OGdkN3RnYnY4U0tCZUw5YUo2NnlWbzZualZyZVBvSW1Zc3dl?oc=5",
       "source": "Wires (geo)",
@@ -1616,32 +1652,6 @@
         "UKOIL": "down"
       },
       "why": "Ceasefire talks lower geopolitical risk"
-    },
-    {
-      "title": "Zelensky to Axios: U.S. exploring Russia-Ukraine winter de-escalation steps - axios.com",
-      "link": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPS1JUc284NjBMMkppZ29XSm9kUjBwSnpvcjhxT05xTG1rWGViQkswMEh4SzdPZ1NKN0VTQVUxcWc1T1ByMEJEUGdUS01nbVU0eFd3anRTX1h3aVo2QWNHcW96dzhoR3MzbWlrYS15TG1hYkZ1Zm1SMHRGVjZKeTFabnNqRWtIRHQ0LUdXYW9kd3huUQ?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMikgFBVV95cUxPS1JUc284NjBMMkppZ29XSm9kUjBwSnpvcjhxT05xTG1rWGViQkswMEh4SzdPZ1NKN0VTQVUxcWc1T1ByMEJEUGdUS01nbVU0eFd3anRTX1h3aVo2QWNHcW96dzhoR3MzbWlrYS15TG1hYkZ1Zm1SMHRGVjZKeTFabnNqRWtIRHQ0LUdXYW9kd3huUQ?oc=5\" target=\"_blank\">Zelensky ",
-      "at": 1788800314000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788800314000,
-      "dir": {
-        "XAU/USD": "down",
-        "USOIL": "down",
-        "UKOIL": "down"
-      },
-      "why": "De-escalation reduces risk premium"
     },
     {
       "title": "Tim Miller: Democrats need to 'aggressively' ATTACK Trump on Iran war - Modern Ghana",
@@ -2667,7 +2677,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788780428000,
+      "firstAt": 1788779369000,
       "dir": {
         "XAU/USD": "down"
       },
@@ -2745,7 +2755,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-07T20:50:17.662Z",
-  "headlinesAt": "2026-09-07T20:50:17.662Z",
-  "updatedAt": "2026-09-07T20:50:17.662Z"
+  "calendarAt": "2026-09-07T20:53:16.154Z",
+  "headlinesAt": "2026-09-07T20:53:16.154Z",
+  "updatedAt": "2026-09-07T20:53:16.154Z"
 }
