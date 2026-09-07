@@ -723,6 +723,30 @@
   ],
   "headlines": [
     {
+      "title": "Oil prices climb after reports of Saudi Aramco refinery being hit by Houthi rebels",
+      "link": "https://www.marketwatch.com/story/oil-prices-hit-near-seven-week-highs-before-edging-lower-as-iran-plans-to-increase-control-of-hormuz-5070167c?mod=mw_rss_topstories",
+      "source": "MarketWatch",
+      "desc": "The West Texas Intermediate and Brent crude contracts previously rose to near-seven-week highs.",
+      "at": 1788819840000,
+      "inst": [
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788819840000,
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Refinery attack boosts oil supply concerns"
+    },
+    {
       "title": "Dow Futures Fall, Oil Prices Rise; Nvidia, Micron, Sandisk Flash Buy Signals With Apple, Inflation Ahead - Investor's Business Daily",
       "link": "https://news.google.com/rss/articles/CBMizwFBVV95cUxONnVmdkRaNDVMaV96YWJ1eGMzRlFGUTRMeDVfSlotMHFRaGJlN2VMTFpGVzQtM2JDVndXazFpY3VVajNBdG9BemQzZ0xKV1d2ejJkVVAzbWlOUGQwLVB1dU0tWnNuM2t1WEhaSlBwbDlmd1BDM3BaUU1od242RXhEanBPeEJJUF9LQS1GVzZwQTV3Q0c3bkVMN3lLbDhHU0tPY2xYc1p6NWRMMVBKTTF2dHJqNm8wR0NEMllEWkpLN0hmMEU1Y1ZhXzlQNDRYemM?oc=5",
       "source": "Wires (macro)",
@@ -846,10 +870,10 @@
       "why": "Geopolitical risk boosts gold and oil"
     },
     {
-      "title": "Burnham and Trump 'agree to work towards ceasefire' in conversation on Ukraine - Yahoo News UK",
-      "link": "https://news.google.com/rss/articles/CBMihAFBVV95cUxQTEdCUUE4VGppUml3cVlxbncybkJJcHFZdkJTZG04Z01HS2ZXMEJRcEt4aXE4ODBKQWJDNkhwRmJIem12ZFdLOEg3Q1NpVTBSVy1qaU95YTYtNUR5RlhLX2ptcFI2aHRGUXA0bUxya3BfTE13N080NTZqdGxmN3Q3UEt1dV8?oc=5",
+      "title": "Burnham and Trump 'agree to work towards ceasefire' in conversation on Ukraine | ITV News - ITVX",
+      "link": "https://news.google.com/rss/articles/CBMisgFBVV95cUxQN2JWWWJ3OWFhSHZiaUtuOXdBY1ZfNzd3YkhCRThreEpiS1pYa1VwUExiUHRCVVRfVDJOU3hKeV9fWmNtY2lLd3FxZWxQaEdZZGFDa1BqRGRGWG1TSkFmV2ZiTlNOSGo1TjZBWExCWFAxajF1dVJIc1BPVk5XZEN5YzkzMDdnZ041RWx5eUNNb1R1OTRmWnU0RmFFOWhmanI4R1dTN2pjSlMxdzFrN1B6T0JB?oc=5",
       "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMihAFBVV95cUxQTEdCUUE4VGppUml3cVlxbncybkJJcHFZdkJTZG04Z01HS2ZXMEJRcEt4aXE4ODBKQWJDNkhwRmJIem12ZFdLOEg3Q1NpVTBSVy1qaU95YTYtNUR5RlhLX2ptcFI2aHRGUXA0bUxya3BfTE13N080NTZqdGxmN3Q3UEt1dV8?oc=5\" target=\"_blank\">Burnham and Trump 'agree to ",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMisgFBVV95cUxQN2JWWWJ3OWFhSHZiaUtuOXdBY1ZfNzd3YkhCRThreEpiS1pYa1VwUExiUHRCVVRfVDJOU3hKeV9fWmNtY2lLd3FxZWxQaEdZZGFDa1BqRGRGWG1TSkFmV2ZiTlNOSGo1TjZBWExCWFAxajF1dVJIc1BPVk5XZEN5YzkzMDdnZ041RWx5eUNNb1R1OTRmWnU0RmFFOWhmanI4R1dTN2pjSlMxdz",
       "at": 1788816605000,
       "inst": [
         "XAU/USD",
@@ -863,7 +887,14 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788815899000
+      "firstAt": 1788815899000,
+      "_kind": "war-end",
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Ceasefire hopes reduce risk premium"
     },
     {
       "title": "Mexico stocks lower at close of trade; S&P/BMV IPC down 0.21%",
@@ -1253,29 +1284,6 @@
         "UKOIL": "up"
       },
       "why": "Geopolitical risk boosts gold and oil"
-    },
-    {
-      "title": "Oil prices climb after reports of Saudi Aramco refinery being hit by Houthi rebels",
-      "link": "https://www.marketwatch.com/story/oil-prices-hit-near-seven-week-highs-before-edging-lower-as-iran-plans-to-increase-control-of-hormuz-5070167c?mod=mw_rss_topstories",
-      "source": "MarketWatch",
-      "desc": "The West Texas Intermediate and Brent crude contracts previously rose to near-seven-week highs.",
-      "at": 1788808620000,
-      "inst": [
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788808620000,
-      "dir": {
-        "USOIL": "up",
-        "UKOIL": "up"
-      },
-      "why": "Refinery attack boosts oil supply concerns"
     },
     {
       "title": "Brent Oil stalls at resistance with RSI at 72: Live levels",
@@ -1763,6 +1771,32 @@
       "why": "Escalation fears boost oil and gold"
     },
     {
+      "title": "Zelensky to Axios: U.S. exploring Russia-Ukraine winter de-escalation steps - Axios",
+      "link": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPS1JUc284NjBMMkppZ29XSm9kUjBwSnpvcjhxT05xTG1rWGViQkswMEh4SzdPZ1NKN0VTQVUxcWc1T1ByMEJEUGdUS01nbVU0eFd3anRTX1h3aVo2QWNHcW96dzhoR3MzbWlrYS15TG1hYkZ1Zm1SMHRGVjZKeTFabnNqRWtIRHQ0LUdXYW9kd3huUQ?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMikgFBVV95cUxPS1JUc284NjBMMkppZ29XSm9kUjBwSnpvcjhxT05xTG1rWGViQkswMEh4SzdPZ1NKN0VTQVUxcWc1T1ByMEJEUGdUS01nbVU0eFd3anRTX1h3aVo2QWNHcW96dzhoR3MzbWlrYS15TG1hYkZ1Zm1SMHRGVjZKeTFabnNqRWtIRHQ0LUdXYW9kd3huUQ?oc=5\" target=\"_blank\">Zelensky ",
+      "at": 1788801508000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788801508000,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "De-escalation reduces risk premium"
+    },
+    {
       "title": "Oil Prices Rise After U.S. and Iran Trade Strikes - The New York Times",
       "link": "https://news.google.com/rss/articles/CBMifEFVX3lxTE1tdXhlb3hCRjN0TWt4Vkl1THhuUklqUGJTbzgybGZ4WFB2Q2oxUVd1Mk5Zd09MS3FuZ0pMd29lMk9WSmMzMktxZkpVaTQxczI3UEJnSkxlMkl4dEE1ODcyX2xPZmQweDJSeVpuamRyS1dBdGJZVDVzT2trSWY?oc=5",
       "source": "Wires (geo)",
@@ -1789,36 +1823,10 @@
       "why": "Strikes directly increase oil and gold prices"
     },
     {
-      "title": "Zelensky to Axios: U.S. exploring Russia-Ukraine winter de-escalation steps - Axios",
-      "link": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPS1JUc284NjBMMkppZ29XSm9kUjBwSnpvcjhxT05xTG1rWGViQkswMEh4SzdPZ1NKN0VTQVUxcWc1T1ByMEJEUGdUS01nbVU0eFd3anRTX1h3aVo2QWNHcW96dzhoR3MzbWlrYS15TG1hYkZ1Zm1SMHRGVjZKeTFabnNqRWtIRHQ0LUdXYW9kd3huUQ?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMikgFBVV95cUxPS1JUc284NjBMMkppZ29XSm9kUjBwSnpvcjhxT05xTG1rWGViQkswMEh4SzdPZ1NKN0VTQVUxcWc1T1ByMEJEUGdUS01nbVU0eFd3anRTX1h3aVo2QWNHcW96dzhoR3MzbWlrYS15TG1hYkZ1Zm1SMHRGVjZKeTFabnNqRWtIRHQ0LUdXYW9kd3huUQ?oc=5\" target=\"_blank\">Zelensky ",
-      "at": 1788801326000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788801326000,
-      "dir": {
-        "XAU/USD": "down",
-        "USOIL": "down",
-        "UKOIL": "down"
-      },
-      "why": "De-escalation reduces risk premium"
-    },
-    {
       "title": "UK's Burnham, Trump discuss working towards Ukraine-Russia ceasefire, Downing Street says - Reuters",
-      "link": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxNMUVsNHJpb29RakRkbGZ6SlRQdzdLcWpJOFRDNWVkYm1BcjVaWi1HOFdUcmluWjF2blZnVVdIcmZSdmxuNXcycDZqQWpJakNJVFBqOGMzWnAyNmNoTG9tNVJQNC1VUlFibXNDSVZlcnJLVmxqQ204NFpoNFQzUXUyVlRhMV9JbTZzSk45T0JHUjMwdHJ4VGNHVDhNYzZGOHl0bGJERVRXUkhNTFVxVG5aMlhaNVYzbXZaWlFNeGQ3cWI1NThwa2RzNA?oc=5",
+      "link": "https://news.google.com/rss/articles/CBMitwFBVV95cUxPWmxrUWIzN25kQzlJZVBjcy11SXlFeWJQZElmWi1ocVU1Qm94T2w3OXV4djNYd2JKTEE0QTFaeWVvQ2I4MmZZOEhwZVc2U1JmUEJTbXQ4SjdBb3lYNklqZDZJZ2s5MndibnlnMGw2YVJZWnB3R2MxWVNoWTlSSFlHNDFKdWd0STNGRFBselBtUDVrbGlsLUthbl9iQTFTMkFNYXhxUGJJWjJrT0oyNjFfRlJKNV9wWUE?oc=5",
       "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiyAFBVV95cUxNMUVsNHJpb29RakRkbGZ6SlRQdzdLcWpJOFRDNWVkYm1BcjVaWi1HOFdUcmluWjF2blZnVVdIcmZSdmxuNXcycDZqQWpJakNJVFBqOGMzWnAyNmNoTG9tNVJQNC1VUlFibXNDSVZlcnJLVmxqQ204NFpoNFQzUXUyVlRhMV9JbTZzSk45T0JHUjMwdHJ4VGNHVDhNYzZGOHl0bGJERVRXUkhNTF",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMitwFBVV95cUxPWmxrUWIzN25kQzlJZVBjcy11SXlFeWJQZElmWi1ocVU1Qm94T2w3OXV4djNYd2JKTEE0QTFaeWVvQ2I4MmZZOEhwZVc2U1JmUEJTbXQ4SjdBb3lYNklqZDZJZ2s5MndibnlnMGw2YVJZWnB3R2MxWVNoWTlSSFlHNDFKdWd0STNGRFBselBtUDVrbGlsLUthbl9iQTFTMkFNYXhxUGJJWjJrT0",
       "at": 1788801091000,
       "inst": [
         "XAU/USD",
@@ -2722,7 +2730,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-07T22:26:30.452Z",
-  "headlinesAt": "2026-09-07T22:26:30.452Z",
-  "updatedAt": "2026-09-07T22:26:30.452Z"
+  "calendarAt": "2026-09-07T22:29:30.552Z",
+  "headlinesAt": "2026-09-07T22:29:30.552Z",
+  "updatedAt": "2026-09-07T22:29:30.552Z"
 }
