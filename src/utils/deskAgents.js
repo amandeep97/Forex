@@ -368,10 +368,11 @@ You are the trader. The researchers argue; you take the risk. Produce a decision
 
 Return ONLY a JSON object:
 {
-  "action": "long" | "short" | "stand aside",
+  "action": "long" | "short" | "wait",
   "conviction": 1-5,
   "horizon_hours": number,
   "entry": number | null,
+  "trigger": number | null,
   "stop": number,
   "target": number,
   "why": "two sentences, each citing a figure",
@@ -379,9 +380,30 @@ Return ONLY a JSON object:
   "strongest_opposing_point": "the best point from the side you did not take"
 }
 
-"stand aside" is a real answer and is correct more often than not. A desk that
-takes a position every day is not a desk. Stop and target must sit on the
-correct sides of entry for the direction chosen.`;
+THERE IS NO BARE REFUSAL. "wait" is allowed and is often right, but it is not
+an exit from the question. If you wait, you must still name:
+
+  "action"   the side you would take WHEN this becomes a trade, long or short.
+             Never null. If the evidence genuinely points nowhere, take the
+             side the weight of it leans to and say your conviction is 1.
+  "trigger"  the exact price that turns this into a trade. Not a description.
+             A number.
+  "stop"     where you would be wrong once triggered.
+  "target"   where you would take it off.
+
+So a waiting verdict reads "long above 4512, stop 4488, target 4560" — a claim
+that can be checked against what price actually did. "No setup right now" is
+not a claim, cannot be scored, and is not an acceptable answer here.
+
+Set "trigger" to null ONLY when you are taking the trade at the current price;
+in that case "entry" carries the price instead.
+
+Your waiting verdicts are scored the same way your trades are: whether the
+trigger was reached inside the horizon, and whether the trade would then have
+worked. Waiting to avoid being measured will show up in the record.
+
+Stop and target must sit on the correct sides of the trigger (or the entry) for
+the direction chosen.`;
 
 export async function runTrader(cfg, reports, bull, bear, ev, onWait = null) {
   const text = await ask(cfg, TRADER, [
@@ -398,7 +420,9 @@ const RISK = `${HOUSE}
 
 You are the risk manager and you have a veto. You are not here to agree.
 
-Check, in this order:
+You have TWO jobs, not one, and the second is the one desks forget.
+
+FIRST: if the trader is taking a position, check it. In this order:
 1. Do the levels make sense? Stop and target on the correct sides, reward at
    least 1.2 times risk, stop not inside normal hourly noise (roughly one ATR).
 2. Event risk: is there a scheduled release inside the holding period?
@@ -407,13 +431,30 @@ Check, in this order:
 4. Is the conviction supported by the evidence, or by the confidence of the
    writing?
 
+SECOND: if the trader is WAITING, challenge the wait. Caution is not
+automatically correct, and approving every refusal makes you a rubber stamp.
+Ask:
+5. Was there a setup here that the trader talked themselves out of? Say so.
+6. Is the trigger real, or parked so far away it will never be reached — a
+   refusal wearing a number? A trigger the market cannot plausibly reach inside
+   the stated horizon is a refusal, and you should call it one.
+7. Is the horizon honest, or shortened so the trade cannot be judged?
+
+The cost of a missed move is real. It is not smaller than the cost of a loss
+just because it does not show up on a statement.
+
 Return ONLY JSON:
 {
   "verdict": "approve" | "approve with changes" | "veto",
   "changes": "what to change, or null",
   "reason": "one or two sentences",
-  "biggest_risk": "the thing most likely to make this lose"
-}`;
+  "biggest_risk": "the thing most likely to make this lose",
+  "wait_challenged": true | false,
+  "missed_setup": "the setup the trader passed on, or null"
+}
+
+Set "wait_challenged" true only when the trader waited AND you think there was
+something there. On a live trade it is false.`;
 
 export async function runRisk(cfg, decision, ev, onWait = null) {
   const text = await ask(cfg, RISK, [
@@ -430,11 +471,25 @@ export async function runRisk(cfg, decision, ev, onWait = null) {
 // Levels a model invented rather than derived. Checked here rather than trusted,
 // because a target on the wrong side of entry reads perfectly well in prose.
 export function checkLevels(d, price) {
-  if (!d || d.action === 'stand aside') return null;
-  const entry = Number.isFinite(+d.entry) ? +d.entry : price;
-  const stop = +d.stop, target = +d.target;
-  if (!Number.isFinite(stop) || !Number.isFinite(target)) return 'no usable stop or target';
-  const long = d.action === 'long';
+  if (!d) return null;
+  // A legacy "stand aside" row carries no levels at all and cannot be checked.
+  // New verdicts always can: waiting is measured off the TRIGGER, which is the
+  // price at which the trade begins, exactly as an entry is for a live one.
+  if (d.action === 'stand aside') return null;
+  const trigger = num(d.trigger);
+  const waiting = d.action === 'wait' || trigger != null;
+  if (waiting && trigger == null) {
+    return 'waiting without a trigger price — that is a refusal, not a plan';
+  }
+  const entry = trigger ?? num(d.entry) ?? price;
+  const stop = num(d.stop), target = num(d.target);
+  if (stop == null || target == null) return 'no usable stop or target';
+  // For a live trade the action names the side. For a wait it does not — the
+  // side is which way the plan points, so it is read off the target against the
+  // trigger rather than assumed. Assuming "not long" made every wait a short.
+  const long = d.action === 'long' ? true
+    : d.action === 'short' ? false
+    : target > entry;
   const risk = Math.abs(entry - stop), reward = Math.abs(target - entry);
   // Checked before the sides, so a stop written at the entry price is reported
   // as what it is rather than as a direction error — the two are fixed
@@ -443,7 +498,15 @@ export function checkLevels(d, price) {
   if (long && !(stop < entry && target > entry)) return 'stop and target are on the wrong sides for a long';
   if (!long && !(stop > entry && target < entry)) return 'stop and target are on the wrong sides for a short';
   if (reward / risk < 1.2) return `reward is only ${(reward / risk).toFixed(2)}x risk`;
-  if (Math.abs(entry - price) / price > 0.02) return 'the entry is more than 2% away from the current price';
+  // A live entry has to be near the current price. A TRIGGER is by definition
+  // somewhere price is not yet, so it gets more room — but not unlimited room,
+  // or "long above 6000" on gold at 4500 counts as a plan.
+  const limit = waiting ? 0.05 : 0.02;
+  if (Math.abs(entry - price) / price > limit) {
+    return waiting
+      ? `the trigger is more than ${limit * 100}% away — that is a forecast, not a plan`
+      : 'the entry is more than 2% away from the current price';
+  }
   return null;
 }
 
@@ -471,9 +534,21 @@ export function verdictOf(d, review, levelIssue) {
     return { word: 'NO TRADE', tone: 'warn',
       line: `The trader wanted ${d.action}; risk vetoed it. ${review.reason || ''}`.trim() };
   }
-  if (d.action === 'stand aside') {
-    return { word: 'WAIT', tone: 'neutral',
-      line: 'Nothing worth taking on this bar. Come back when something below changes.' };
+  // A wait now carries a price, so it can say something useful. "Nothing worth
+  // taking" told you to come back later and could not be checked; "long above
+  // 4512, stop 4488" is a plan you can act on and the record can score.
+  if (d.action === 'wait' || d.action === 'stand aside') {
+    const t = num(d.trigger);
+    if (t == null) {
+      return { word: 'WAIT', tone: 'neutral',
+        line: 'No trigger price given, so there is nothing here to act on or to score.' };
+    }
+    const up = (num(d.target) ?? t) > t;
+    return {
+      word: up ? 'WAIT — THEN LONG' : 'WAIT — THEN SHORT', tone: 'neutral',
+      line: `Not yet. It becomes a trade ${up ? 'above' : 'below'} ${t}`
+        + `, stop ${d.stop}, target ${d.target}. Below that there is nothing to do.`,
+    };
   }
   const changed = review?.verdict === 'approve with changes';
   return {
@@ -548,8 +623,14 @@ export function logVerdict(v) {
   rows.unshift({
     at: v.at, sym: v.sym, price: v.price, atr: v.atr,
     action: v.decision.action, conviction: v.decision.conviction,
-    horizon: v.decision.horizon_hours, stop: v.decision.stop, target: v.decision.target,
-    verdict: v.review?.verdict || null, model: v.model,
+    horizon: v.decision.horizon_hours,
+    // The trigger is what makes a wait checkable. Without it the row is the old
+    // unscoreable "stand aside" under a new name.
+    trigger: num(v.decision.trigger),
+    stop: v.decision.stop, target: v.decision.target,
+    verdict: v.review?.verdict || null,
+    waitChallenged: v.review?.wait_challenged === true,
+    model: v.model,
   });
   try { localStorage.setItem(LOG_KEY, JSON.stringify(rows.slice(0, MAX_LOG))); } catch { /* full is not fatal */ }
 }
@@ -570,6 +651,17 @@ export function readLog() {
 // How big a move has to be before sitting it out counts as having missed
 // something. Below this the market did not offer a trade and standing aside
 // cost nothing; above it, there was one and the desk was not in it.
+// A number, or null. NOT `Number.isFinite(+x)` — `+null` is 0 and 0 is finite,
+// so a missing trigger reads as a trigger at zero. That is the same
+// absent-becomes-a-value bug this project has hit in the round-number grid, in
+// the EMA guards and in the news tags; it gets one helper here rather than a
+// fourth independent instance of it.
+export function num(x) {
+  if (x == null || x === '') return null;
+  const v = +x;
+  return Number.isFinite(v) ? v : null;
+}
+
 export const MISSED_ATR = 1.5;
 
 // Scoring a REFUSAL.
@@ -589,7 +681,7 @@ export const MISSED_ATR = 1.5;
 export function scoreStandAside(rows, extremeAt, { missedAtr = MISSED_ATR } = {}) {
   const scored = [];
   for (const r of rows) {
-    if (r.action !== 'stand aside') continue;
+    if (r.action !== 'stand aside' && r.action !== 'wait') continue;
     const ex = extremeAt(r.sym, r.at, r.at + (r.horizon || 24) * 3600e3);
     if (!ex || !(r.price > 0) || !(r.atr > 0)) continue;
     // The furthest price travelled either way, which is what a trade could have
@@ -597,10 +689,38 @@ export function scoreStandAside(rows, extremeAt, { missedAtr = MISSED_ATR } = {}
     const up = (ex.high - r.price) / r.atr;
     const down = (r.price - ex.low) / r.atr;
     const reach = Math.max(up, down);
+
+    // A wait that named a trigger gets the harder question: did the market
+    // reach the price the desk said would make this a trade?
+    //
+    // Three outcomes, and they are genuinely different.
+    //   never reached  the desk said "not yet" and it stayed not-yet. Right,
+    //                  and right for the reason given rather than by luck.
+    //   reached, ran   the plan was correct and the level did what it should.
+    //   reached, and   the desk called the level and the market went the other
+    //   went the other way. Wrong in a way a bare refusal could never show.
+    let trig = null;
+    const tPrice = num(r.trigger), tTarget = num(r.target);
+    if (tPrice != null && tTarget != null) {
+      const t = tPrice;
+      const long = tTarget > t;
+      const hit = long ? ex.high >= t : ex.low <= t;
+      // How far past the trigger it got, in the direction the desk wanted.
+      const beyond = long ? (ex.high - t) / r.atr : (t - ex.low) / r.atr;
+      const against = long ? (t - ex.low) / r.atr : (ex.high - t) / r.atr;
+      trig = {
+        price: t, side: long ? 'long' : 'short', hit,
+        beyondAtr: +Math.max(0, beyond).toFixed(2),
+        againstAtr: +Math.max(0, against).toFixed(2),
+        worked: hit && beyond >= 1,
+      };
+    }
+
     scored.push({
       ...r, reachAtr: +reach.toFixed(2),
       dir: up >= down ? 'up' : 'down',
       missed: reach >= missedAtr,
+      trig,
     });
   }
   if (!scored.length) return null;
@@ -613,6 +733,23 @@ export function scoreStandAside(rows, extremeAt, { missedAtr = MISSED_ATR } = {}
     // matters alongside it is how far the market ran on the ones it got wrong.
     correctPct: Math.round(((scored.length - missed) / scored.length) * 100),
     worstMissAtr: +Math.max(...scored.map(s => s.reachAtr)).toFixed(2),
+    // The trigger record, kept apart from the missed-move record because they
+    // answer different questions. "Was it right to stay out" is about caution.
+    // "When it named a price, did that price mean anything" is about skill, and
+    // it is the only one of the two that a bare refusal could never be asked.
+    triggers: (() => {
+      const t = scored.filter(s => s.trig);
+      if (!t.length) return null;
+      const hit = t.filter(s => s.trig.hit);
+      return {
+        n: t.length,
+        hit: hit.length,
+        // Of the ones that triggered, how many then went the way they claimed.
+        worked: hit.filter(s => s.trig.worked).length,
+        // Named a level, the level was never reached, and nothing ran anyway.
+        heldOff: t.filter(s => !s.trig.hit && !s.missed).length,
+      };
+    })(),
     rows: scored,
   };
 }

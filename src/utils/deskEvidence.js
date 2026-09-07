@@ -17,7 +17,7 @@
 import { featureSeries, keysOf, PHRASE } from '../../shared/moveFeatures.mjs';
 import { macroSeries, describe as describeMacro } from '../../shared/macroFit.mjs';
 import { tagInstruments, severity } from '../../shared/newsTagging.mjs';
-import { fetchRegimeStudy, firing, DOLLAR_INSTRUMENT, RATE_INSTRUMENT, invertDollar } from './regimeRead.js';
+import { fetchRegimeStudy, firing, nearMisses, DOLLAR_INSTRUMENT, RATE_INSTRUMENT, invertDollar } from './regimeRead.js';
 
 const RAW = 'https://raw.githubusercontent.com/amandeep97/Forex/main';
 const FEED = `${RAW}/bot/feed.json`;
@@ -267,6 +267,10 @@ export async function gatherEvidence(inst, { onStep = () => {} } = {}) {
     levels: levelsOf(d1, h4),
     driver: macro ? describeMacro(macro, i, { name: inst.label.toLowerCase() }) : null,
     rules: study ? firing(study, keys) : [],
+    // One condition short. Carried so the Desk can tell "nothing at all" from
+    // "nearly", which is the difference between a question worth ten model
+    // calls and one whose answer is already known.
+    near: study ? nearMisses(study, keys, 1) : [],
     studyAsOf: study?.asOf || null,
     news: newsFor(news, inst),
     events: eventsFor(news, inst),

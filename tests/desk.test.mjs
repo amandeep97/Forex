@@ -19,7 +19,7 @@
 import {
   parseJSON, checkLevels, marketBrief, newsBrief, positioningBrief, macroBrief,
   calendarBrief, scoreLog, stripThinking, retryAfterMs, isReasoningModel, verdictOf,
-  scoreStandAside, MISSED_ATR,
+  scoreStandAside, MISSED_ATR, num,
 } from '../src/utils/deskAgents.js';
 
 let fails = 0;
@@ -386,6 +386,131 @@ const H = 3600e3;
   check('with no bars at all it scores nothing rather than scoring zero',
     scoreStandAside(aside, blind) === null,
     'a missing series must not read as "the market did nothing"');
+}
+
+// ── A wait has to name a price ──────────────────────────────────────────────
+//
+// Every verdict this desk has produced has been a refusal, and the trader brief
+// was a large part of why: it said "stand aside is a real answer and is correct
+// more often than not", which is advice to stand aside. The deeper problem was
+// that a refusal could not be checked. "No setup right now" is not a claim.
+//
+// So a wait now has to carry the side, the trigger, the stop and the target —
+// a plan that can be wrong. These checks are about the ways a model could
+// still dodge being measured.
+{
+  const P = 4500;
+  const lv = (d) => checkLevels(d, P);
+
+  check('a wait with a full plan passes the level check',
+    lv({ action: 'wait', trigger: 4530, stop: 4505, target: 4600 }) === null,
+    String(lv({ action: 'wait', trigger: 4530, stop: 4505, target: 4600 })));
+
+  check('a wait with NO trigger is rejected as a refusal in disguise',
+    /refusal, not a plan/.test(lv({ action: 'wait', trigger: null, stop: 4505, target: 4600 }) || ''),
+    'this is the exact escape hatch the old "stand aside" gave it');
+
+  check('and a trigger parked far away is called a forecast',
+    /forecast, not a plan/.test(lv({ action: 'wait', trigger: 5200, stop: 5100, target: 5400 }) || ''),
+    'a level the market cannot reach is a refusal wearing a number');
+
+  check('stop and target still have to straddle the TRIGGER, not the current price',
+    lv({ action: 'wait', trigger: 4530, stop: 4560, target: 4600 }) != null,
+    'a stop above a long trigger is not a stop');
+
+  check('and reward still has to beat risk',
+    /reward is only/.test(lv({ action: 'wait', trigger: 4530, stop: 4500, target: 4535 }) || ''));
+
+  // A live trade keeps the tighter rule: an entry is where price IS.
+  check('a live entry is still held to 2%, not 5%',
+    lv({ action: 'long', entry: 4700, stop: 4650, target: 4800 }) != null
+    && lv({ action: 'wait', trigger: 4700, stop: 4650, target: 4800 }) === null,
+    'a trigger is somewhere price is not yet; an entry is not');
+
+  // Old rows in the log predate all of this and must not start failing.
+  check('a legacy "stand aside" row is left alone rather than retro-failed',
+    lv({ action: 'stand aside' }) === null);
+}
+
+// ── The verdict a wait produces ─────────────────────────────────────────────
+{
+  const up = verdictOf({ action: 'wait', trigger: 4530, stop: 4505, target: 4600 }, { verdict: 'approve' }, null);
+  check('a wait reads as a side and a price, not as "nothing to do"',
+    /WAIT — THEN LONG/.test(up.word) && /4530/.test(up.line), `${up.word} / ${up.line}`);
+  const dn = verdictOf({ action: 'wait', trigger: 4470, stop: 4495, target: 4400 }, { verdict: 'approve' }, null);
+  check('and the short side is read off the target, not guessed',
+    /WAIT — THEN SHORT/.test(dn.word), dn.word);
+  const bare = verdictOf({ action: 'wait', trigger: null }, { verdict: 'approve' }, null);
+  check('a wait with no price says plainly that there is nothing to score',
+    /nothing here to act on or to score/.test(bare.line), bare.line);
+}
+
+// ── Scoring a wait against its own trigger ──────────────────────────────────
+{
+  const H = 3600e3;
+  const t0 = Date.UTC(2026, 8, 10);
+  // The desk said: long above 110, stop 104, target 130.
+  const row = { at: t0, sym: 'XAU_USD', price: 100, atr: 5, action: 'wait',
+                horizon: 10, trigger: 110, stop: 104, target: 130 };
+
+  // Reached 110 and kept going to 125 — three ATR beyond the trigger.
+  let sc = scoreStandAside([row], () => ({ high: 125, low: 99 }));
+  check('a trigger that was reached and ran is recorded as having worked',
+    sc.rows[0].trig.hit === true && sc.rows[0].trig.worked === true,
+    `beyond ${sc.rows[0].trig.beyondAtr} ATR`);
+  check('and the summary counts it', sc.triggers.n === 1 && sc.triggers.worked === 1);
+
+  // Reached 110, then fell to 90 — the level was called and the market refused it.
+  sc = scoreStandAside([row], () => ({ high: 111, low: 90 }));
+  check('a trigger that was reached and then went the other way did NOT work',
+    sc.rows[0].trig.hit === true && sc.rows[0].trig.worked === false,
+    `${sc.rows[0].trig.againstAtr} ATR against`);
+
+  // Never reached 110, and nothing much happened either.
+  sc = scoreStandAside([row], () => ({ high: 103, low: 98 }));
+  check('a trigger never reached in a quiet market is the desk being right',
+    sc.rows[0].trig.hit === false && sc.rows[0].missed === false
+    && sc.triggers.heldOff === 1);
+
+  // Never reached 110 — because it went the OTHER way, hard. The trigger was
+  // wrong AND the move was missed, and both have to show.
+  sc = scoreStandAside([row], () => ({ high: 101, low: 85 }));
+  check('a trigger never reached while the market ran the other way is a miss',
+    sc.rows[0].trig.hit === false && sc.rows[0].missed === true
+    && sc.rows[0].dir === 'down' && sc.triggers.heldOff === 0,
+    `ran ${sc.rows[0].reachAtr} ATR down`);
+
+  // A short: the trigger is BELOW and the target below that.
+  const short = { ...row, trigger: 90, stop: 96, target: 70 };
+  sc = scoreStandAside([short], () => ({ high: 101, low: 80 }));
+  check('a short trigger is read off the target and scored downward',
+    sc.rows[0].trig.side === 'short' && sc.rows[0].trig.hit === true
+    && sc.rows[0].trig.worked === true, `beyond ${sc.rows[0].trig.beyondAtr} ATR`);
+
+  // A wait with no trigger still gets the missed-move score, just no trigger row.
+  const bare = { ...row, trigger: null };
+  sc = scoreStandAside([bare], () => ({ high: 125, low: 99 }));
+  check('a wait without a trigger is still scored for the move it missed',
+    sc.rows[0].missed === true && sc.rows[0].trig === null && sc.triggers === null,
+    'losing the trigger must not also lose the miss');
+}
+
+// ── Absent must stay absent ─────────────────────────────────────────────────
+//
+// The bug that broke every one of the checks above on the first run, in one
+// line: `+null` is 0, and `Number.isFinite(0)` is true. So a verdict with no
+// trigger read as a trigger AT ZERO — the level check passed it, the banner
+// printed "becomes a trade below 0", and the scorer built a trigger record out
+// of nothing. Three places, one cause.
+{
+  check('num() refuses null, undefined, empty and nonsense',
+    num(null) === null && num(undefined) === null && num('') === null
+    && num('abc') === null && num(NaN) === null);
+  check('and keeps a real zero, which is a different thing from absent',
+    num(0) === 0 && num('0') === 0 && num(4530) === 4530);
+  check('the trap itself, pinned so nobody reinstates it',
+    Number.isFinite(+null) === true && num(null) === null,
+    '+null is 0 and 0 is finite — that is why the raw check cannot be used');
 }
 
 console.log(fails ? `\n${fails} FAILED` : '\nall passed');
