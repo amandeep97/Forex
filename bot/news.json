@@ -748,7 +748,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788791030000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Stagflation risk supports gold prices"
     },
     {
       "title": "‘Direction Potocari’: From Srebrenica genocide to a Belgrade football match",
@@ -766,7 +770,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788791595000,
-      "_kind": null
+      "_kind": null,
+      "why": "Irrelevant geopolitical news for gold"
     },
     {
       "title": "Gold eases as strong US jobs data boosts Fed rate-hike bets - TradingView",
@@ -1964,32 +1969,6 @@
       "why": "Gold under pressure, oil direction unclear"
     },
     {
-      "title": "Region Producing 40% of Russia’s Oil Prepares for Ukrainian Drone Strikes for First Time - UNITED24 Media",
-      "link": "https://news.google.com/rss/articles/CBMizgFBVV95cUxQbGEyVldMUmJFZlF3dWxtN29zYnBNVkdXWHBkM0tjSFVKSzRLSTNLVEctMHpEdmhIUEtyaDhQTDMxTjRUYWk1cHZ5LTVlUjBybmNMV3F3a2pyRzkta2I0dmRjdzFqN3dwTGFHb3hEOUgxbmRZUUZCejZEazZid3pnbnZMakVVODV0OVZVTk5IT1BCUGtKd08tVlJORTZlczhGNG1BT0g1VkFiWWVPNkRJdTdZcUtpdzZwVGJXWjlEM0d4WnRyZ3A2RDRqcEQzdw?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMizgFBVV95cUxQbGEyVldMUmJFZlF3dWxtN29zYnBNVkdXWHBkM0tjSFVKSzRLSTNLVEctMHpEdmhIUEtyaDhQTDMxTjRUYWk1cHZ5LTVlUjBybmNMV3F3a2pyRzkta2I0dmRjdzFqN3dwTGFHb3hEOUgxbmRZUUZCejZEazZid3pnbnZMakVVODV0OVZVTk5IT1BCUGtKd08tVlJORTZlczhGNG1BT0g1VkFiWW",
-      "at": 1788780955000,
-      "inst": [
-        "USOIL",
-        "XAU/USD",
-        "UKOIL"
-      ],
-      "ccy": [
-        "OIL",
-        "XAU"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788779552000,
-      "dir": {
-        "USOIL": "up",
-        "XAU/USD": "up",
-        "UKOIL": "up"
-      },
-      "why": "Supply risk boosts oil and gold"
-    },
-    {
       "title": "Latest flare-up between the US and Iran: Will there be major escalation or just more of the same stand-off? - The Straits Times",
       "link": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxNWE5JZkpTTDhWLThzLThleEV0Zlh6TEJxeWNZWnhPdWU4bVVpWU9Ra3FDS3pJOWdLd1VXeDNKRlRUZEdzLTJrY1NjRTNNQ0xwWjkyRFpNX29WUkRXdVlpZjRaSURFbkVxeVotWVVmV3hPX2FtampfYTJhUWJlTWFMZFNBQnc2NUc5dWFnMXpqS2lwTTJhR0thU0JqRXgtS3lYWlFmNzVVTnlCRWdQOS1OekxWTDh5M1psWFNaWW13dUs1NHMzanpLaDhiU3BIVlQ0M180SDh5WGVlZw?oc=5",
       "source": "Wires (geo)",
@@ -2667,6 +2646,29 @@
         "XAU/USD": "up"
       },
       "why": "Geopolitical risk boosts gold, oil unclear"
+    },
+    {
+      "title": "London stocks muted as rising oil, rate-hike bets weigh; energy stocks gain - Reuters",
+      "link": "https://news.google.com/rss/articles/CBMitgFBVV95cUxQV29mQ0Z1bjc2TzlmTm9aRXJVRm5xYTRNMHI3QU5hZDVqalVXdE5WZENCU3c1ampzSTN5aWZzeHZoZHZTelAtSlB0MUF1cXlmdS1XYXRjSHZ3cWw3dl9PR2pyQXkzdlNpN0p6S3Y0UVVaUER6bkdCQWpuUWJuNnIxVGxnTGVoU2lJQWpVVXZNWjg2UVMtYmQ0YlZVdldnbGhsZlV1WG1MX1JKaVBKY2ItajRBd0hvUQ?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMitgFBVV95cUxQV29mQ0Z1bjc2TzlmTm9aRXJVRm5xYTRNMHI3QU5hZDVqalVXdE5WZENCU3c1ampzSTN5aWZzeHZoZHZTelAtSlB0MUF1cXlmdS1XYXRjSHZ3cWw3dl9PR2pyQXkzdlNpN0p6S3Y0UVVaUER6bkdCQWpuUWJuNnIxVGxnTGVoU2lJQWpVVXZNWjg2UVMtYmQ0YlZVdldnbGhsZlV1WG1MX1JKaV",
+      "at": 1788773743000,
+      "inst": [
+        "USOIL",
+        "US500"
+      ],
+      "ccy": [
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788773743000,
+      "dir": {
+        "USOIL": "up",
+        "US500": "down"
+      },
+      "why": "Oil rises, rate bets weigh stocks"
     }
   ],
   "sources": [
@@ -2692,7 +2694,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-07T14:49:05.681Z",
-  "headlinesAt": "2026-09-07T14:49:05.681Z",
-  "updatedAt": "2026-09-07T14:49:05.681Z"
+  "calendarAt": "2026-09-07T14:53:04.681Z",
+  "headlinesAt": "2026-09-07T14:53:04.681Z",
+  "updatedAt": "2026-09-07T14:53:04.681Z"
 }
