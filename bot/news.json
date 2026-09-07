@@ -721,7 +721,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788740400000,
-      "_kind": null
+      "_kind": null,
+      "why": "Gold holds decline, direction unclear"
     },
     {
       "title": "Oil extends gains after US and Iran strike ships",
@@ -768,7 +769,35 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1788740100000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Oil extends gains, gold unclear"
+    },
+    {
+      "title": "Israel sanctions could threaten British security, shadow foreign secretary warns - The Jewish Chronicle",
+      "link": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxOeHJNR3luLThNbGppSnFUM2NBaXl4eUZlTG1zdVVJWXVXS210ODRERmtPdi1tVU45aEZOalNTak1YZjEweHBuanBVMDNtQnZzXzMtel8wSVlvbFQxSGdnUHlrU2VoMGR6SEgyYWNqZ29QejNoUkJKUGJCSE14R0tLT29HVW1STlZBUFRJUnIzSndnS3FWSEFhVjFTOWQteWtkTUFpVGFUeVh5QnJpQlRRUzRaRUJ2TXdO?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiuAFBVV95cUxOeHJNR3luLThNbGppSnFUM2NBaXl4eUZlTG1zdVVJWXVXS210ODRERmtPdi1tVU45aEZOalNTak1YZjEweHBuanBVMDNtQnZzXzMtel8wSVlvbFQxSGdnUHlrU2VoMGR6SEgyYWNqZ29QejNoUkJKUGJCSE14R0tLT29HVW1STlZBUFRJUnIzSndnS3FWSEFhVjFTOWQteWtkTUFpVGFUeVh5Qn",
+      "at": 1788739204000,
+      "inst": [
+        "GBP/USD",
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788739204000,
+      "_kind": null,
+      "why": "Sanctions warning, no clear direction"
     },
     {
       "title": "Iran war live: Tehran to announce new Hormuz shipping route in coming days",
@@ -829,7 +858,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788737880000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Oil rises, gold direction unclear"
     },
     {
       "title": "Australia’s Ingenia rejects $1.4 bln Warburg Pincus buyout bid",
@@ -1700,7 +1734,7 @@
       "why": "Military strikes in Hormuz increase geopolitical risk."
     },
     {
-      "title": "Gold, Silver Prices Likely To Face Volatility This Week As Iran Tensions Take Centre Stage: Analysts - ndtvprofit.com",
+      "title": "Gold, Silver Prices Likely To Face Volatility This Week As Iran Tensions Take Centre Stage: Analysts - NDTV Profit",
       "link": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxPTnhSVjA0R1Z6ZzlVcXROVExUbkk1MzlnQ3Bobjlnd2F4UHpuS3R5NjRJN1FEQ0p2MGM2QkNIc1l3NTZ3LVZFR2o2cVRQbGJpcEVtU3YxRHg5SEU4ZVNGTVFJd1RPSUpTbmFKOGx2MW1mbUE1enUtQ29IVXd2VzZBR2xmbElCMmFwZXpGYkY0QkM1aG9qQVJzTV9DVXFjdVhyWGc0cWhUR2hpaUlDcWg0eTZvbkNqdjVZdjR2QjhZVVZiTGpiYW50SlhMS2F3aFRYM1d4eVFtY3B3QdIB4gFBVV95cUxPbGpfVUVIYlhyNlFfUEcwaDEwVVQ5Z0s5dENNamU5T2Q4dU9ja0dYVG1sTnBQMFhYcWdBYTVSWWtoUFZvTWRSWFdoRXZzSUVOY2k5RE10NXBFdldiNHR0RjRQdzdNdWRFUXlXRjdHZ1MtX0owQVBvN0RwZUlPeFdMb2lUd1QtcV9RV1BjdDlPbmVPbGZUZUNLRlJJTm5XZnhiRWxwTWowQzc4MVBmbHh6OU1aU1NOUERyT01pUVJiTW00eWlGVnBkV2R3dlRONTk5VjdHZ1FCa2lnaFdkNDl4RjhR?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMi2gFBVV95cUxPTnhSVjA0R1Z6ZzlVcXROVExUbkk1MzlnQ3Bobjlnd2F4UHpuS3R5NjRJN1FEQ0p2MGM2QkNIc1l3NTZ3LVZFR2o2cVRQbGJpcEVtU3YxRHg5SEU4ZVNGTVFJd1RPSUpTbmFKOGx2MW1mbUE1enUtQ29IVXd2VzZBR2xmbElCMmFwZXpGYkY0QkM1aG9qQVJzTV9DVXFjdVhyWGc0cWhUR2hpaU",
@@ -2659,32 +2693,6 @@
       "why": "Rate hike fears strengthen dollar, hurt metals."
     },
     {
-      "title": "U.S. Strikes Three Iranian Ships After Missiles Fired at American Aircraft Carrier - wsj.com",
-      "link": "https://news.google.com/rss/articles/CBMixwFBVV95cUxNelpFSWtyY0FMcVVyaTNlZ0pKdnVzSGM3NjRDV1hUVmR0bm5jb0RBQ0JkNS1vTS1hOHlUcnNhWmdXcVNlS3NVUzFGaktoN1dJX21NTVRsUENWRks3T1ZaRlFhdzNKaTJiclVOaEVibW9laWNTaEtGdW1qa291ZVRTbXhKSlFpZDdVUU94OThwWTk3OGFsY1l3WkJkZkJydjhzZWtmdk1DREJXXzNKeFVVNHNVSlk3WnhVLVZTVDhjZHExekZUVl84?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMixwFBVV95cUxNelpFSWtyY0FMcVVyaTNlZ0pKdnVzSGM3NjRDV1hUVmR0bm5jb0RBQ0JkNS1vTS1hOHlUcnNhWmdXcVNlS3NVUzFGaktoN1dJX21NTVRsUENWRks3T1ZaRlFhdzNKaTJiclVOaEVibW9laWNTaEtGdW1qa291ZVRTbXhKSlFpZDdVUU94OThwWTk3OGFsY1l3WkJkZkJydjhzZWtmdk1DREJXXz",
-      "at": 1788630313000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788630313000,
-      "dir": {
-        "XAU/USD": "up",
-        "USOIL": "up",
-        "UKOIL": "up"
-      },
-      "why": "Geopolitical conflict boosts safe havens and oil."
-    },
-    {
       "title": "Iran targets Navy warships and US retaliates with 'higher economic cost' in new escalation phase - Fortune",
       "link": "https://news.google.com/rss/articles/CBMikwFBVV95cUxNVFRQT1YwTmMwVEFxN1BybjFMQVVBYVExUmlxRXhvdGdVZnpHcGxsencwdXIzcm53MjNKRDg5dU03VWRxTlQyTUMxaW5idm5vVVJKb2hPb28tVmNWY3FlazZ5NXNVWWswcVp3bzlYUkVGemk4aWVKZXQyNmZhNDJHVXJJOXRkVWxTMm12enQ2X3l3TTA?oc=5",
       "source": "Wires (geo)",
@@ -2731,10 +2739,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-07T00:39:04.279Z",
-  "headlinesAt": "2026-09-07T00:39:04.279Z",
-  "updatedAt": "2026-09-07T00:39:04.279Z"
+  "calendarAt": "2026-09-07T00:42:20.017Z",
+  "headlinesAt": "2026-09-07T00:42:20.017Z",
+  "updatedAt": "2026-09-07T00:42:20.017Z"
 }
