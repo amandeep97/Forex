@@ -216,6 +216,7 @@ export default function TradingDesk() {
   const [rounds, setRounds] = useState(0);
   const [wait, setWait] = useState(0);
   const [scored, setScored] = useState(null);
+  const [noSetup, setNoSetup] = useState(null);
 
   useEffect(() => { setLog(readLog()); }, []);
 
@@ -269,13 +270,27 @@ export default function TradingDesk() {
 
   const cfg = aiConfig();
 
-  const run = useCallback(async () => {
+  // Gather the evidence FIRST, then decide whether the question is worth
+  // asking. Evidence is a handful of fetches; the desk is ten model calls.
+  //
+  // Every verdict so far has been a refusal, and the reason is structural: the
+  // pack usually opens with "no measured rule is firing", and ten calls then
+  // spend their tokens agreeing with that in good prose. When nothing is firing
+  // AND nothing is one condition away, the answer is known before the analysts
+  // speak, so this stops and says so rather than performing the deliberation.
+  const run = useCallback(async ({ force = false } = {}) => {
     setErr(null); setReports([]); setDebate([]); setTrader(null); setRisk(null);
-    setLevelIssue(null); setEv(null);
+    setLevelIssue(null); setEv(null); setNoSetup(null);
     try {
       setBusy('gathering evidence');
       const pack = await gatherEvidence(inst, { onStep: s => setBusy(`gathering ${s}`) });
       setEv(pack);
+
+      if (!force && !pack.rules?.length && !pack.near?.length) {
+        setNoSetup(pack);
+        setBusy('');
+        return;
+      }
 
       await runDesk(pack, {
         rounds,
@@ -362,7 +377,7 @@ export default function TradingDesk() {
           <option value={1}>2 exchanges · ~10 calls</option>
           <option value={2}>3 exchanges · ~12 calls</option>
         </select>
-        <button onClick={run} disabled={!!busy || !cfg.key}
+        <button onClick={() => run()} disabled={!!busy || !cfg.key}
           style={{ marginLeft: 'auto', padding: '6px 16px', borderRadius: 5, fontSize: 12,
             fontWeight: 700, cursor: busy || !cfg.key ? 'default' : 'pointer',
             background: busy ? 'var(--bg2)' : '#3b82f6', color: busy ? 'var(--text3)' : '#fff',
@@ -370,6 +385,32 @@ export default function TradingDesk() {
           {busy ? `⟳ ${busy}…` : 'Run the desk'}
         </button>
       </div>
+
+      {noSetup && (
+        <div style={{ marginTop: 12, padding: 12, borderRadius: 8, background: 'var(--bg2)',
+          border: `1px solid ${C.neutral}44` }}>
+          <div style={{ fontSize: 13, fontWeight: 700, color: C.neutral }}>
+            Nothing to weigh on {noSetup.name}
+          </div>
+          <div style={{ fontSize: 11.5, color: 'var(--text2)', marginTop: 6, lineHeight: 1.6 }}>
+            No rule that survived the holdout is true on this bar, and none is one condition
+            away. The desk would read that and tell you to wait, which is the answer already
+            on this line — so it has not spent ten model calls arriving at it.
+          </div>
+          <div style={{ fontSize: 11, color: 'var(--text3)', marginTop: 8, lineHeight: 1.6 }}>
+            {noSetup.state?.plain?.length
+              ? <>The market is: {noSetup.state.plain.slice(0, 5).join(', ')}.</>
+              : 'No readable state on this bar.'}
+            {noSetup.driver ? ` ${noSetup.driver}` : ''}
+          </div>
+          <button onClick={() => run({ force: true })}
+            style={{ marginTop: 10, padding: '5px 12px', borderRadius: 5, fontSize: 11.5,
+              fontWeight: 700, cursor: 'pointer', background: 'transparent',
+              color: 'var(--text2)', border: '1px solid var(--border)' }}>
+            Run it anyway
+          </button>
+        </div>
+      )}
 
       {cfg.key && isReasoningModel(cfg.model) && (
         <div style={{ fontSize: 11, color: C.warn, marginTop: 10, lineHeight: 1.55 }}>
@@ -487,6 +528,15 @@ export default function TradingDesk() {
                   {' '}· missed {scored.missed}, the worst a {scored.worstMissAtr} ATR run
                 </span>
               )}
+              {scored.triggers && (
+                <div style={{ fontSize: 10.5, color: 'var(--text2)', marginTop: 5 }}>
+                  Named a price {scored.triggers.n} time{scored.triggers.n === 1 ? '' : 's'} —
+                  {' '}reached on {scored.triggers.hit}, and of those{' '}
+                  <b style={{ color: scored.triggers.worked >= scored.triggers.hit / 2 ? C.bull : C.warn }}>
+                    {scored.triggers.worked} went the way it said
+                  </b>. {scored.triggers.heldOff} never came and nothing ran without it.
+                </div>
+              )}
               <div style={{ fontSize: 10, color: 'var(--text3)', marginTop: 3 }}>
                 {scored.n < 10
                   ? 'Too few to be a record yet. A desk that stands aside every time is a '
@@ -513,7 +563,13 @@ export default function TradingDesk() {
                 if (!sc) return null;
                 return (
                   <span style={{ color: sc.missed ? C.warn : C.bull, fontWeight: 700 }}>
-                    {sc.missed
+                    {sc.trig
+                      ? (sc.trig.hit
+                          ? `${sc.trig.price} reached — ${sc.trig.worked
+                              ? `ran ${sc.trig.beyondAtr} ATR on`
+                              : `then went ${sc.trig.againstAtr} ATR against`}`
+                          : `${sc.trig.price} never came${sc.missed ? ` — but it ran ${sc.reachAtr} ATR ${sc.dir}` : ''}`)
+                      : sc.missed
                       ? `ran ${sc.reachAtr} ATR ${sc.dir} — missed it`
                       : `quiet, ${sc.reachAtr} ATR — correct`}
                   </span>
