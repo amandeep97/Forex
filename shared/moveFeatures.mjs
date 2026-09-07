@@ -30,6 +30,13 @@
 import { macroBuckets, MACRO_PHRASE } from './macroFit.mjs';
 import { patternsAt, PATTERN_MAP, detectStrongReversal } from './candlePatterns.mjs';
 
+/**
+ * One completed bar. Declared once so the type checker can hold every function
+ * here to the same shape, rather than each inferring its own from whatever it
+ * happened to be handed first.
+ * @typedef {{ t: number, o: number, h: number, l: number, c: number, v?: number }} Candle
+ */
+
 export const ATR_LEN = 14;
 export const EMA_LEN = 50;
 export const DRIVE_BARS = 12;      // half a day on H1 — the run into now
@@ -111,8 +118,10 @@ function periodLevels(cs, keyOf) {
   const runHi  = new Array(cs.length).fill(null);
   const runLo  = new Array(cs.length).fill(null);
 
-  let curKey = null, cHi = -Infinity, cLo = Infinity;
-  let pHi = null, pLo = null;
+  /** @type {string|null} */ let curKey = null;
+  let cHi = -Infinity, cLo = Infinity;
+  /** @type {number|null} */ let pHi = null;
+  /** @type {number|null} */ let pLo = null;
 
   for (let i = 0; i < cs.length; i++) {
     const k = keyOf(cs[i].t);
@@ -175,7 +184,7 @@ export function roundStepFor(sym, price) {
   if (!ROUND_INSTRUMENTS.has(sym) || !(price > 0)) return null;
   const target = price * 0.01;
   const mag = Math.pow(10, Math.floor(Math.log10(target)));
-  let best = null;
+  /** @type {number|null} */ let best = null;
   for (const m of [1, 2, 5, 10]) {
     const s = m * mag;
     if (best === null || Math.abs(Math.log(s / target)) < Math.abs(Math.log(best / target))) best = s;
@@ -201,6 +210,10 @@ export function roundStepFor(sym, price) {
  * @returns array aligned to `cs`; entries are null where a feature could not be
  *          computed from history alone, which is a real state and not a zero.
  */
+/**
+ * @param {Candle[]} cs
+ * @param {{ sym?: string|null, partner?: Candle[]|null, macro?: any }} [opts]
+ */
 export function featureSeries(cs, { sym = null, partner = null, macro = null } = {}) {
   const atr = atrSeries(cs);
   const ema = emaSeries(cs);
@@ -210,6 +223,7 @@ export function featureSeries(cs, { sym = null, partner = null, macro = null } =
 
   // The partner's close at or before each of our timestamps. Built once by
   // merge rather than searched per bar.
+  /** @type {(number|null)[]} */
   const pAt = new Array(cs.length).fill(null);
   if (partner?.length) {
     let j = 0;
@@ -269,9 +283,15 @@ export function featureSeries(cs, { sym = null, partner = null, macro = null } =
 
     // Does the other metal agree? Gold and silver move together at 0.78 on the
     // day — the interesting bar is the one where they do not.
-    let partnerState = null;
-    if (pAt[i] != null && i >= DRIVE_BARS && pAt[i - DRIVE_BARS] != null && pAt[i - DRIVE_BARS] > 0) {
-      const pDrive = (pAt[i] - pAt[i - DRIVE_BARS]) / pAt[i - DRIVE_BARS] * 100;
+    /** @type {'agree'|'diverge'|'quiet'|null} */ let partnerState = null;
+    // Read out of the array ONCE. Four separate index expressions are four
+    // things the checker cannot tie to the guard, and a reader has the same
+    // problem — the guard is above, the arithmetic is below, and nothing
+    // connects them except hope.
+    const pNow = pAt[i];
+    const pThen = i >= DRIVE_BARS ? pAt[i - DRIVE_BARS] : null;
+    if (pNow != null && pThen != null && pThen > 0) {
+      const pDrive = (pNow - pThen) / pThen * 100;
       const oDrive = (c - cs[i - DRIVE_BARS].c) / cs[i - DRIVE_BARS].c * 100;
       const both = Math.abs(pDrive) > 0.15 && Math.abs(oDrive) > 0.15;
       if (both) partnerState = Math.sign(pDrive) === Math.sign(oDrive) ? 'agree' : 'diverge';
@@ -282,7 +302,7 @@ export function featureSeries(cs, { sym = null, partner = null, macro = null } =
     // spacing between them. The grid is recomputed from the bar's own price, so
     // it widens as the market goes up instead of dissolving into noise.
     const step = roundStepFor(sym, c);
-    let atRound = null;
+    /** @type {boolean|null} */ let atRound = null;
     if (step) {
       const rem = ((c % step) + step) % step;
       atRound = Math.min(rem, step - rem) / step < ROUND_NEAR;
@@ -305,16 +325,17 @@ export function featureSeries(cs, { sym = null, partner = null, macro = null } =
     // Bullish Harami the registry calls weak passes the same filter as a
     // Bullish Kicker it calls strong. If that label means nothing the two
     // buckets will score the same, and that is worth knowing either way.
-    const rev = detectStrongReversal(cs, i, REV_N);
+    /** @type {string|null} */ const rev = detectStrongReversal(cs, i, REV_N);
 
     // A bar can complete several patterns at once. Both directions at once is
     // not a weak signal, it is a contradictory one, and averaging it into
     // whichever happens to be listed first would hide that.
-    let cdl = null;
+    /** @type {string|null} */ let cdl = null;
     const ids = patternsAt(cs, i);
     if (ids.length) {
       const rank = { weak: 1, medium: 2, strong: 3 };
-      let bull = null, bear = null;
+      /** @type {{strength:string,type:string}|null} */ let bull = null;
+      /** @type {{strength:string,type:string}|null} */ let bear = null;
       let indecision = false;
       for (const id of ids) {
         const m = PATTERN_MAP[id];
@@ -457,6 +478,7 @@ export function moveSincePct(cs, t) {
 export function zigzag(cs, atr, k = 2) {
   const piv = [];
   if (cs.length < 3) return piv;
+  /** @type {'up'|'down'|null} */
   let dir = null;                       // 'up' = tracking a high
   let extI = 0, extP = cs[0].c;
 

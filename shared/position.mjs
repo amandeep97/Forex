@@ -100,6 +100,11 @@ export function unitsFor({ riskUsd, entry, stop, quoteToUsd = 1, minUnits = 1 })
  * The third case is why this returns a promise. `rateFor(sym)` should return a
  * price for an OANDA instrument or null; null propagates to a refusal rather
  * than to a default.
+ *
+ * @param {string} pair
+ * @param {number} price
+ * @param {((sym: string) => Promise<number|null>)|null} [rateFor]
+ * @returns {Promise<number|null>}
  */
 export async function quoteToUsdFor(pair, price, rateFor = null) {
   const q = quoteOf(pair), b = baseOf(pair);
@@ -110,7 +115,7 @@ export async function quoteToUsdFor(pair, price, rateFor = null) {
 
   // QUOTE_USD if it exists (GBP_USD, EUR_USD), otherwise USD_QUOTE inverted.
   const direct = await rateFor(`${q}_USD`);
-  if (direct > 0) return direct;
+  if (direct != null && direct > 0) return direct;
   const inverse = await rateFor(`USD_${q}`);
-  return inverse > 0 ? 1 / inverse : null;
+  return inverse != null && inverse > 0 ? 1 / inverse : null;
 }

@@ -231,7 +231,13 @@ export const significant = (b, se, z = 2) => se > 0 && Math.abs(b / se) >= z;
 // `dollarUp` must be a series that RISES when the dollar strengthens. EUR/USD
 // does the opposite, so the caller inverts it; doing that here would hide the
 // one sign convention in the file that a reader needs to see.
-export function macroSeries(base, { dollarUp, rate, rateIsPrice = null, win = FIT_WIN } = {}) {
+/**
+ * @param {{t:number,c:number}[]} base
+ * @param {{ dollarUp: {t:number,c:number}[], rate: {t:number,c:number}[],
+ *           rateIsPrice?: boolean|null, win?: number }} opts
+ */
+export function macroSeries(base, { dollarUp, rate, rateIsPrice = null, win = FIT_WIN } = {
+  dollarUp: [], rate: [] }) {
   const ts = base.map(c => c.t);
   const y = pctReturns(base.map(c => c.c));
   const dCloses = alignOn(ts, dollarUp);

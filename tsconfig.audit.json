@@ -1,0 +1,9 @@
+{
+  "extends": "./tsconfig.json",
+  "include": [
+    "shared/**/*.mjs",
+    "src/utils/**/*.js",
+    "src/hooks/**/*.js",
+    "vps-bot/src/**/*.js"
+  ]
+}

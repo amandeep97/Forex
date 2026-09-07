@@ -116,6 +116,7 @@ export function computeLeadership(seriesBySym, { top = 5, minEdge = 1.2 } = {}) 
       const r0 = corrAtLag(c, t, 0);
       if (r0 == null) continue;
 
+      /** @type {{lag:number, r:number}|null} */
       let best = null;
       for (const lag of LAGS) {
         const r = corrAtLag(c, t, lag);
