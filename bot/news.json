@@ -705,6 +705,19 @@
   ],
   "headlines": [
     {
+      "title": "Foxconn says third quarter to outperform market expectations on AI strength",
+      "link": "https://www.investing.com/news/stock-market-news/foxconn-says-third-quarter-to-outperform-market-expectations-on-ai-strength-4890327",
+      "source": "Investing",
+      "at": 1788738867000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 1,
+      "srcs": 1,
+      "firstAt": 1788738867000,
+      "_kind": null
+    },
+    {
       "title": "Dow Jones Futures Fall With Iran, Apple, Inflation In Focus; Nvidia, Micron, Sandisk Flash Buy Signals",
       "link": "https://www.investors.com/market-trend/stock-market-today/dow-jones-futures-nvidia-micron-sandisk-buy-signals-apple-inflation-reports/?src=A00220&yptr=yahoo",
       "source": "Yahoo Finance",
@@ -892,7 +905,7 @@
       "why": "Gold resumes rally ahead of data"
     },
     {
-      "title": "Oil Prices Rise Slightly After U.S. and Iran Trade Strikes - The New York Times",
+      "title": "Oil Prices Rise Slightly After U.S. and Iran Trade Strikes - nytimes.com",
       "link": "https://news.google.com/rss/articles/CBMifEFVX3lxTE1tdXhlb3hCRjN0TWt4Vkl1THhuUklqUGJTbzgybGZ4WFB2Q2oxUVd1Mk5Zd09MS3FuZ0pMd29lMk9WSmMzMktxZkpVaTQxczI3UEJnSkxlMkl4dEE1ODcyX2xPZmQweDJSeVpuamRyS1dBdGJZVDVzT2trSWY?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMifEFVX3lxTE1tdXhlb3hCRjN0TWt4Vkl1THhuUklqUGJTbzgybGZ4WFB2Q2oxUVd1Mk5Zd09MS3FuZ0pMd29lMk9WSmMzMktxZkpVaTQxczI3UEJnSkxlMkl4dEE1ODcyX2xPZmQweDJSeVpuamRyS1dBdGJZVDVzT2trSWY?oc=5\" target=\"_blank\">Oil Prices Rise Slightly After U.S. and ",
@@ -1068,7 +1081,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788727921000
+      "firstAt": 1788727921000,
+      "why": "Regional election impact unclear"
     },
     {
       "title": "U.S. strikes three Iranian oil tankers as tensions escalate in Middle East - cbs19.tv",
@@ -1088,7 +1102,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788727740000
+      "firstAt": 1788727740000,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Middle East tensions boost oil, gold"
     },
     {
       "title": "Zelensky says he expects war to continue into winter after talks with US envoys",
@@ -1105,7 +1125,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1788726600000
+      "firstAt": 1788726600000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "War continuation boosts safe-haven demand"
     },
     {
       "title": "How BlackRock (BLK) is Quietly Turning Bitcoin Whales Into Wall Street Clients",
@@ -1122,7 +1146,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788726743000
+      "firstAt": 1788726743000,
+      "why": "Institutional adoption news lacks immediate direction"
     },
     {
       "title": "Zelensky says Ukraine expects US to approve new sanctions package against Russia - Ukrinform",
@@ -1142,7 +1167,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1788726195000
+      "firstAt": 1788726195000,
+      "why": "Sanctions expectations already priced in"
     },
     {
       "title": "Russia strikes Ukraine-Romania border crossing for 2nd time in week - The Kyiv Independent",
@@ -1162,7 +1188,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1788726195000
+      "firstAt": 1788726195000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Escalation boosts gold, oil impact unclear"
     },
     {
       "title": "Trump: Canada’s currency imbalance with US will be ‘no longer’ - The Hill",
@@ -1179,7 +1209,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788725820000
+      "firstAt": 1788725820000,
+      "dir": {
+        "USD/CAD": "up"
+      },
+      "why": "Trump threat implies CAD weakness"
     },
     {
       "title": "BitGo (BTGO) Buys Into NYDIG’s Trading Desk Just as Crypto Volume Comes Back",
@@ -1195,7 +1229,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788724918000
+      "firstAt": 1788724918000,
+      "why": "Corporate acquisition news neutral for price"
     },
     {
       "title": "Gold Price Forecast: Will Fed Rate Hike Risk Break $4,300 Support? - FXEmpire",
@@ -1213,7 +1248,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788724140000
+      "firstAt": 1788724140000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Rate hike risk breaks support"
     },
     {
       "title": "‘Nobody will win’: Zelenskyy adviser warns of mutual destruction if war with Russia continues - The Guardian",
@@ -1233,7 +1272,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788723060000
+      "firstAt": 1788723060000,
+      "why": "Rhetoric lacks immediate market impact"
     },
     {
       "title": "ASX eyes uncertain start, Wall Street slips on jobs report - SMH.com.au",
@@ -1248,7 +1288,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788722224000
+      "firstAt": 1788722224000,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Wall Street slips on jobs report"
     },
     {
       "title": "Adidas faces boycott calls over campaign featuring former Israeli soldier",
@@ -1268,7 +1312,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788720985000
+      "firstAt": 1788720985000,
+      "why": "Boycott calls have no direct market impact"
     },
     {
       "title": "Bogged down: On the U.S.-Iran conflict escalation - The Hindu",
@@ -1288,7 +1333,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788720900000
+      "firstAt": 1788720900000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Conflict escalation boosts risk assets"
     },
     {
       "title": "Israel Assesses Iran Applying Oct. 7 Lessons to Plan Multi-Front Attack - The Media Line",
@@ -1308,7 +1359,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788720548000
+      "firstAt": 1788720548000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Attack planning boosts risk assets"
     },
     {
       "title": "Why is Argentina reviving the Falklands dispute?",
@@ -1326,7 +1383,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788719800000
+      "firstAt": 1788719800000,
+      "why": "Historical dispute has no market impact"
     },
     {
       "title": "Germany's far-right AfD celebrate projected win in state election",
@@ -1341,7 +1399,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788719573000
+      "firstAt": 1788719573000,
+      "why": "State election result lacks clear macro impact."
     },
     {
       "title": "Ukraine Counts on US Passing New Russia Sanctions, Zelensky Says - Kyiv Post",
@@ -1361,10 +1420,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788715606000
+      "firstAt": 1788715606000,
+      "why": "Sanctions speculation lacks immediate market direction."
     },
     {
-      "title": "OPEC Plus Holds Oil Production Steady as U.S.-Iran Strikes Resume - The New York Times",
+      "title": "OPEC Plus Holds Oil Production Steady as U.S.-Iran Strikes Resume - nytimes.com",
       "link": "https://news.google.com/rss/articles/CBMigwFBVV95cUxPY2pWUklObC1DTFJZQTFnd2s1eVJhRFplUkZoZlNXZU84bjl4ckRQOEdhclpUTlBKMHNRLU1nRE81Sjl3amhuLVJwZEd0TDBGZ1pfbUt3UmxaLXNIRWt6LWJRRWdHUEllR0pVRV8zS2ZMMEItZkxsLTdNNmowV0pvWlJFcw?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMigwFBVV95cUxPY2pWUklObC1DTFJZQTFnd2s1eVJhRFplUkZoZlNXZU84bjl4ckRQOEdhclpUTlBKMHNRLU1nRE81Sjl3amhuLVJwZEd0TDBGZ1pfbUt3UmxaLXNIRWt6LWJRRWdHUEllR0pVRV8zS2ZMMEItZkxsLTdNNmowV0pvWlJFcw?oc=5\" target=\"_blank\">OPEC Plus Holds Oil Productio",
@@ -1381,7 +1441,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788715481000
+      "firstAt": 1788715481000,
+      "why": "Production steady, conflict ongoing, mixed signals."
     },
     {
       "title": "KeyBanc warns Apple’s iPhone 18 launch may be a negative catalyst for shares",
@@ -1416,7 +1477,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788714169000
+      "firstAt": 1788714169000,
+      "why": "Awaiting data release, no current direction."
     },
     {
       "title": "Iran warns of 'faster, heavier, more painful response' to US attacks",
@@ -1436,7 +1498,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1788712125000
+      "firstAt": 1788712125000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up",
+        "XAU/USD": "up"
+      },
+      "why": "Escalating conflict boosts risk assets and oil."
     },
     {
       "title": "Robinhood’s CEO Says States Are Fighting Prediction Markets to Protect Their Own Gambling Tax Money, ‘There’s a Huge Financial Incentive’",
@@ -1470,7 +1538,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788714003000
+      "firstAt": 1788714003000,
+      "why": "General weekly outlook, no specific direction."
     },
     {
       "title": "Trump official says ‘there may not be a nuclear agreement’ with Iran",
@@ -1490,7 +1559,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788713944000
+      "firstAt": 1788713944000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Dimming deal hopes increase geopolitical risk."
     },
     {
       "title": "Lebanon president calls for US help as Israeli strikes kill 7 - France 24",
@@ -1510,7 +1585,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788712871000
+      "firstAt": 1788712871000,
+      "why": "Lebanon conflict minor for global markets."
     },
     {
       "title": "Iran rebuilding its axis of resistance for attack, Israeli intelligence suggests - The Jerusalem Post",
@@ -1530,7 +1606,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788712591000
+      "firstAt": 1788712591000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Intelligence on attack prep raises risk."
     },
     {
       "title": "Iran touts military response as US maintains blockade, hits tankers - aljazeera.com",
@@ -1550,7 +1632,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1788712125000
+      "firstAt": 1788712125000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Blockade and strikes threaten supply and stability."
     },
     {
       "title": "Leo condemns strikes on Ukraine as US envoys land in Kyiv - The Tablet",
@@ -1570,7 +1658,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788712068000
+      "firstAt": 1788712068000,
+      "why": "Diplomatic visit amidst strikes, unclear impact."
     },
     {
       "title": "Far-right AfD wins vote in Germany’s Saxony-Anhalt state: Exit polls",
@@ -1585,7 +1674,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788710828000
+      "firstAt": 1788710828000,
+      "why": "State win unclear for federal government formation."
     },
     {
       "title": "The US Dollar Has Lost 97% of Its Value Since 1913: Is Bitcoin the Way Out? - BeInCrypto",
@@ -1603,7 +1693,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788710220000
+      "firstAt": 1788710220000,
+      "why": "Opinion piece, no immediate market catalyst."
     },
     {
       "title": "Donald Trump calls Canada’s exchange rate with the U.S. ‘unacceptable’ - bnnbloomberg.ca",
@@ -1620,7 +1711,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788710112000
+      "firstAt": 1788710112000,
+      "dir": {
+        "USD/CAD": "up"
+      },
+      "why": "Trump criticism implies pressure for CAD weakness."
     },
     {
       "title": "The latest on the war in Iran, strikes continue between US and Iran - 13WMAZ",
@@ -1640,7 +1735,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788706980000
+      "firstAt": 1788706980000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Continuing war strikes boost risk and oil."
     },
     {
       "title": "US envoys meet Putin: What’s behind latest diplomacy on Russia-Ukraine war? - aljazeera.com",
@@ -2421,24 +2522,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788653460000
-    },
-    {
-      "title": "Dollar-Yen to Seek Direction in 155-159 Range Next Week as U.S. Inflation Data and BOJ Rate Hike Speculation Take Center Stage - finance.biggo.com",
-      "link": "https://news.google.com/rss/articles/CBMidkFVX3lxTE1oQ3Z2a3VISHRhVFdXSWp2M1hiZGVLN2pKLWpROW1VTm1pTlFpWTlWeGtJNWdYMDd1ZW5GeDl1a3VrRVdheS1rYnZOcVNZQjBJZXg5dUtoZWxlUENvLWFKNU1fSHgzTk52SEhXWk5Dd3JWNVdUblE?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMidkFVX3lxTE1oQ3Z2a3VISHRhVFdXSWp2M1hiZGVLN2pKLWpROW1VTm1pTlFpWTlWeGtJNWdYMDd1ZW5GeDl1a3VrRVdheS1rYnZOcVNZQjBJZXg5dUtoZWxlUENvLWFKNU1fSHgzTk52SEhXWk5Dd3JWNVdUblE?oc=5\" target=\"_blank\">Dollar-Yen to Seek Direction in 155-159 Range Ne",
-      "at": 1788649500000,
-      "inst": [
-        "USD/JPY"
-      ],
-      "ccy": [
-        "USD",
-        "JPY"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788649500000
     }
   ],
   "sources": [
@@ -2461,10 +2544,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-07T00:04:05.538Z",
-  "headlinesAt": "2026-09-07T00:04:05.538Z",
-  "updatedAt": "2026-09-07T00:04:05.538Z"
+  "calendarAt": "2026-09-07T00:08:21.590Z",
+  "headlinesAt": "2026-09-07T00:08:21.590Z",
+  "updatedAt": "2026-09-07T00:08:21.590Z"
 }
