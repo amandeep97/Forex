@@ -766,7 +766,31 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788777780000,
-      "_kind": null
+      "_kind": null,
+      "why": "High yields don't guarantee stock direction"
+    },
+    {
+      "title": "Yen hits seven-month high with US dollar soft ahead of inflation data - The Straits Times",
+      "link": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNMkJucXJCNnNxRXpvcFBmZ1RJdktDUHdhVHF6R3lFZ0RyQ0FUX1VkWWVnY1lvYTRzQXRGUVhvSDZqWURtc0FrWUppUnhkOVpsdmhrc0JKT21VQXdfN296VkhWLWlxSVlkS056aGdoQmZ4ZkxROEFVb01PdE9LUlQ5aXZVNEtfY1dfVVBmZ3pveUtJeFBNMmx5TkYyclBrS0RrZHI5RlNyTVpXOVE?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiqwFBVV95cUxNMkJucXJCNnNxRXpvcFBmZ1RJdktDUHdhVHF6R3lFZ0RyQ0FUX1VkWWVnY1lvYTRzQXRGUVhvSDZqWURtc0FrWUppUnhkOVpsdmhrc0JKT21VQXdfN296VkhWLWlxSVlkS056aGdoQmZ4ZkxROEFVb01PdE9LUlQ5aXZVNEtfY1dfVVBmZ3pveUtJeFBNMmx5TkYyclBrS0RrZHI5RlNyTVpXOV",
+      "at": 1788777780000,
+      "inst": [
+        "USD/JPY"
+      ],
+      "ccy": [
+        "USD",
+        "JPY"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788777780000,
+      "_kind": null,
+      "dir": {
+        "USD/JPY": "down"
+      },
+      "why": "Dollar soft, yen hits high"
     },
     {
       "title": "Four Injured in 806 Russian Strikes on Ukraine’s Zaporizhzhia Region - Fana News -",
@@ -808,7 +832,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788777652000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Geopolitical risk boosts oil prices"
     },
     {
       "title": "Just like for SpaceX, investors may look to ‘make room’ for AI lab IPOs. These stocks could pay the price.",
@@ -826,6 +855,29 @@
       "firstAt": 1788777420000,
       "_kind": null,
       "why": "IPO speculation unclear for index direction"
+    },
+    {
+      "title": "Fringe Australian Jewish group leads push for parliamentary sanctions on Israel - The Jerusalem Post",
+      "link": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9YZjdBcHRSZTZJR2JGR2RnU2wyaG1TN3o0TlpsVjhDQVV2MjBtX3RaelZWd1prS292NGhtVDVvOWR2U0R0TmRmdDVuYjJ4VjRGaVNCdWxxa25XSUhqSFU3YXBpSG51TU1VWVE?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiakFVX3lxTE9YZjdBcHRSZTZJR2JGR2RnU2wyaG1TN3o0TlpsVjhDQVV2MjBtX3RaelZWd1prS292NGhtVDVvOWR2U0R0TmRmdDVuYjJ4VjRGaVNCdWxxa25XSUhqSFU3YXBpSG51TU1VWVE?oc=5\" target=\"_blank\">Fringe Australian Jewish group leads push for parliamentary sanc",
+      "at": 1788777277000,
+      "inst": [
+        "AUD/USD",
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788774770000,
+      "_kind": null,
+      "why": "Political news lacks direct market impact"
     },
     {
       "title": "Russia’s Budget Deficit Surges to $82 Billion as Ukrainian Strikes Hammer War Economy - united24media.com",
@@ -1799,7 +1851,7 @@
       "why": "Stronger eurozone confidence supports the euro"
     },
     {
-      "title": "Iran invokes UN charter in defence of strikes on US bases - Middle East Eye",
+      "title": "Iran invokes UN charter in defence of strikes on US bases - middleeasteye.net",
       "link": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxOcFhCVTBPNWFqeERHTVVoMFNRWm1GRmZDY0lkbloxSzVJeW5ra3o0SXBkT0lqZF9GVjF1aU9EejMyMXFJS1R6UVlac1lLNmxXV2xHTDY5RFcyNVljOXlyMTNMNmxLb2xTaU42YTdCSkNOSTZocUlvRHNrdGN6SzdXRTZnbVFCMmEyU0FPOTZJWUY2RVUtZExZRDJoQl9IaEs5NF8xWWRiTGg?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiqAFBVV95cUxOcFhCVTBPNWFqeERHTVVoMFNRWm1GRmZDY0lkbloxSzVJeW5ra3o0SXBkT0lqZF9GVjF1aU9EejMyMXFJS1R6UVlac1lLNmxXV2xHTDY5RFcyNVljOXlyMTNMNmxLb2xTaU42YTdCSkNOSTZocUlvRHNrdGN6SzdXRTZnbVFCMmEyU0FPOTZJWUY2RVUtZExZRDJoQl9IaEs5NF8xWWRiTGg?oc",
@@ -1927,7 +1979,7 @@
       "why": "No clear market impact"
     },
     {
-      "title": "Iraq’s Governing Coalition Sidesteps Arms Issue, Warns of Fallout from Iran Sanctions - english.aawsat.com",
+      "title": "Iraq’s Governing Coalition Sidesteps Arms Issue, Warns of Fallout from Iran Sanctions - ASHARQ AL-AWSAT English",
       "link": "https://news.google.com/rss/articles/CBMiygFBVV95cUxNY3l1N0dyNWdRWV9vWFppblZobVg3NDEycUdxdmYyTHdiNzlTSnFQVUlhNjAyR0pIdVBDaG56TjNpSzNUczBHczBjaTQxNEVaR1ZtczlqT0doNEJwYktOQTE5YlJ0eXdYQlA1N2lLOVVKcUNrajZGNGVPeU5nZTAtLUlWODJWZUl4Z09FMjNuQnVNZFNDal8tUWRSU2VUeERDdE1MM0JucnU2ZzFad251SE16UEstQlljTkZFWHE4ZmRDN2ZLcGs5V1dB?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiygFBVV95cUxNY3l1N0dyNWdRWV9vWFppblZobVg3NDEycUdxdmYyTHdiNzlTSnFQVUlhNjAyR0pIdVBDaG56TjNpSzNUczBHczBjaTQxNEVaR1ZtczlqT0doNEJwYktOQTE5YlJ0eXdYQlA1N2lLOVVKcUNrajZGNGVPeU5nZTAtLUlWODJWZUl4Z09FMjNuQnVNZFNDal8tUWRSU2VUeERDdE1MM0JucnU2Zz",
@@ -2086,6 +2138,28 @@
         "GBP/USD": "down"
       },
       "why": "Strong dollar hurts gold and euro pairs"
+    },
+    {
+      "title": "Shafaq News..Gold falls on US rate hike expectations - شفق نيوز",
+      "link": "https://news.google.com/rss/articles/CBMieEFVX3lxTE12WThDdW95Y1V2Y2tRaDBSaGNVSXBCOGtzdXRycy0yY3hOOEdnYXlqa3JXZ25xV3ZSb2VfeGNyQ1BiTDNGZXhib3BKZTJUdS1oVFNYV2phY2I4Y1gtbkJKMmsyalY2djA2WTZ6VVZTM0tXTmJRd1dHbQ?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMieEFVX3lxTE12WThDdW95Y1V2Y2tRaDBSaGNVSXBCOGtzdXRycy0yY3hOOEdnYXlqa3JXZ25xV3ZSb2VfeGNyQ1BiTDNGZXhib3BKZTJUdS1oVFNYV2phY2I4Y1gtbkJKMmsyalY2djA2WTZ6VVZTM0tXTmJRd1dHbQ?oc=5\" target=\"_blank\">Shafaq News..Gold falls on US rate hike expec",
+      "at": 1788766323000,
+      "inst": [
+        "XAU/USD"
+      ],
+      "ccy": [
+        "XAU",
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788766323000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold falls on rate hike expectations"
     },
     {
       "title": "Tech firms rally but Asian markets mixed, with eyes on US inflation - Yahoo Finance",
@@ -2361,7 +2435,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788761738000,
+      "firstAt": 1788762600000,
       "dir": {
         "XAU/USD": "down"
       },
@@ -2493,27 +2567,6 @@
       "rel": 1,
       "srcs": 1,
       "firstAt": 1788762480000
-    },
-    {
-      "title": "Gold extends drop as jobs data, Hormuz clashes up rate-hike bets - Moneyweb",
-      "link": "https://news.google.com/rss/articles/CBMioAFBVV95cUxPOHczcXpDSjVwZ3g3OFFhSzBiTk5LeXZCd0FhM1VvLUtjRG5PSTdRTkplWTdEejdMMGpQZDVfLU5YREVLWkhEeGhKNEQ0d3lqTHMzclJoVXhWOVkxMEFjZ3ZzLXdGLVFJbmJqSElQbVVKN3N1cnBRbXRJN1I1RDNZendIWTZuQmxZYmxKMzU4a0pIR1loWEt5UkpTdXhUQVJo?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMioAFBVV95cUxPOHczcXpDSjVwZ3g3OFFhSzBiTk5LeXZCd0FhM1VvLUtjRG5PSTdRTkplWTdEejdMMGpQZDVfLU5YREVLWkhEeGhKNEQ0d3lqTHMzclJoVXhWOVkxMEFjZ3ZzLXdGLVFJbmJqSElQbVVKN3N1cnBRbXRJN1I1RDNZendIWTZuQmxZYmxKMzU4a0pIR1loWEt5UkpTdXhUQVJo?oc=5\" target=",
-      "at": 1788761738000,
-      "inst": [
-        "XAU/USD"
-      ],
-      "ccy": [
-        "XAU"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788760112000,
-      "dir": {
-        "XAU/USD": "down"
-      },
-      "why": "Rate hike bets extend gold drop"
     },
     {
       "title": "Germany factory output slumps in July as autos hit the brakes",
@@ -2653,58 +2706,6 @@
       "rel": 1,
       "srcs": 1,
       "firstAt": 1788759452000
-    },
-    {
-      "title": "Iran vows 'painful response' as US sanctions squeeze economy - Daily Sabah",
-      "link": "https://news.google.com/rss/articles/CBMiogFBVV95cUxNTVZIM1lfNU96Ykx3QzAtQzJ3MFJQVXFMRDQ1QnkxdkpKUG5EWVZpcmw4TVBlSjRIal9zMnVhQ0dwZGZZQTVuSUJ1aGJBZHMwb2haZW52dThJR0hBZGpWMzVFRk85NkpuQWEzaHVGUUN0MjNHRmE1Q0NIRTNKWHpISkhMQ0Q2R2gyUkFQMDhvbFpzRzRScWFPZVFZSEYyR216V1E?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiogFBVV95cUxNTVZIM1lfNU96Ykx3QzAtQzJ3MFJQVXFMRDQ1QnkxdkpKUG5EWVZpcmw4TVBlSjRIal9zMnVhQ0dwZGZZQTVuSUJ1aGJBZHMwb2haZW52dThJR0hBZGpWMzVFRk85NkpuQWEzaHVGUUN0MjNHRmE1Q0NIRTNKWHpISkhMQ0Q2R2gyUkFQMDhvbFpzRzRScWFPZVFZSEYyR216V1E?oc=5\" targ",
-      "at": 1788759300000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788759300000,
-      "dir": {
-        "USOIL": "up",
-        "XAU/USD": "up",
-        "UKOIL": "up"
-      },
-      "why": "Escalating Iran tensions boost risk assets"
-    },
-    {
-      "title": "Israel-Hezbollah clashes kill 11 as Lebanon president calls for U.S. support to save truce - CNBC",
-      "link": "https://news.google.com/rss/articles/CBMinAFBVV95cUxObk5EbElublhva1o0aEYxbmpnTFB1aEU1dTNvenR2eHJndXFvYjVTTFJmYk5EQWpSVXdlaXhiM2lFeks5aFh6M1hQd2hJSDgwRXB1b3ducmllX19mam9CRFRjN0dlQVp5ak1QaEphcE8wUXpkYW4xUS1JYWpiTDJvcS1EOHduTjN5OWJWNy11anpKMlVoYlgtM2dwNGnSAaIBQVVfeXFMT0FyOVVHZVpXUUtqTWpKZ0hYdnVEZ1FhWTRWNk44bnZlS2Y2dkV5VTVGZjVYbm94MXcwMzN4TUY5YXBPX05qUUM2Q09sM3BYYl9uWlVFcmZsbmFCMjhCZE11bEN3bmt5VFpVdmdybHFfSExucWpXSVpZNVZjQTVOOFZIdXI3VWVvdjdsV1o2b1doQk9ZT0NxUldDTEdaRmZ3Mjh3?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMinAFBVV95cUxObk5EbElublhva1o0aEYxbmpnTFB1aEU1dTNvenR2eHJndXFvYjVTTFJmYk5EQWpSVXdlaXhiM2lFeks5aFh6M1hQd2hJSDgwRXB1b3ducmllX19mam9CRFRjN0dlQVp5ak1QaEphcE8wUXpkYW4xUS1JYWpiTDJvcS1EOHduTjN5OWJWNy11anpKMlVoYlgtM2dwNGnSAaIBQVVfeXFMT0FyOV",
-      "at": 1788758144000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788758144000,
-      "dir": {
-        "XAU/USD": "up",
-        "USOIL": "up",
-        "UKOIL": "up"
-      },
-      "why": "Middle East conflict boosts safe havens and oil"
     }
   ],
   "sources": [
@@ -2730,7 +2731,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-07T10:52:06.304Z",
-  "headlinesAt": "2026-09-07T10:52:06.304Z",
-  "updatedAt": "2026-09-07T10:52:06.304Z"
+  "calendarAt": "2026-09-07T10:55:07.261Z",
+  "headlinesAt": "2026-09-07T10:55:07.261Z",
+  "updatedAt": "2026-09-07T10:55:07.261Z"
 }
