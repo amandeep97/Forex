@@ -732,6 +732,34 @@
   ],
   "headlines": [
     {
+      "title": "investingLive European session wrap: Oil climbs, yen surges amid US holiday",
+      "link": "https://investinglive.com/news/investinglive-european-session-wrap-oil-climbs-yen-surges-amid-us-holiday/",
+      "source": "ForexLive",
+      "desc": "Headlines:Reminder: US markets are closed for Labor Day - what traders need to knowUSD/JPY tumbles lower, breaks below 155 for the first time since FebruaryOil prices climb as US-Iran missile strikes keep Hormuz risks elevatedSaudi Aramco facility attacked again; extent of the da",
+      "at": 1788782415000,
+      "inst": [
+        "USD/JPY",
+        "USOIL",
+        "XAU/USD",
+        "UKOIL"
+      ],
+      "ccy": [
+        "JPY",
+        "OIL",
+        "XAU"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788782415000,
+      "_kind": null,
+      "dir": {
+        "USD/JPY": "down",
+        "USOIL": "up"
+      },
+      "why": "Oil up, yen surges, gold unclear"
+    },
+    {
       "title": "Germany's far-right AfD says 'democracy demands' parties work with them after state election win",
       "link": "https://www.bbc.co.uk/news/articles/cpd0113082eo?at_medium=RSS&at_campaign=rss",
       "source": "BBC World",
@@ -765,7 +793,12 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1788780240000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Supply risk boosts oil prices"
     },
     {
       "title": "China Asked Ukraine Not to Strike Vladivostok While Senior Beijing Official Attended Russian Forum - Kyiv Post",
@@ -788,6 +821,19 @@
       "firstAt": 1788781492000,
       "_kind": null,
       "why": "Geopolitical news lacks clear market direction"
+    },
+    {
+      "title": "Canopy Growth's Revenue Grew 13% Last Quarter. Investors Barely Reacted. Here's Why.",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/canopy-growths-revenue-grew-13-114000448.html",
+      "source": "Yahoo Finance",
+      "at": 1788781200000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 1,
+      "srcs": 1,
+      "firstAt": 1788781200000,
+      "_kind": null
     },
     {
       "title": "Gold forecast: XAU/USD under pressure as investors watch oil and inflation data - FOREX.com",
@@ -989,7 +1035,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788780060000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Geopolitical risk boosts safe havens and oil"
     },
     {
       "title": "Is the stock market open today for Labor Day? What about bond trading and mail delivery?",
@@ -1149,35 +1201,6 @@
       "why": "Sanctions impact unclear for oil and gold"
     },
     {
-      "title": "Jensen Huang Just Said a 1-Gigawatt Facility Is Worth $50 Billion to $60 Billion. Here's What That Means for Neocloud Stocks Like Nebius.",
-      "link": "https://finance.yahoo.com/technology/ai/articles/jensen-huang-just-said-1-110300322.html",
-      "source": "Yahoo Finance",
-      "at": 1788778980000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1788777420000,
-      "_kind": null,
-      "why": "Specific stock news, unclear for index."
-    },
-    {
-      "title": "Nvidia just sent a strong signal to AMD and Intel investors",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/nvidia-just-sent-strong-signal-110300677.html",
-      "source": "Yahoo Finance",
-      "at": 1788778980000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1788778980000,
-      "_kind": null
-    },
-    {
       "title": "Gold eases as strong US jobs data boosts Fed rate-hike bets - TradingView",
       "link": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxPN0hWN040aUpQdEUxZ3IzYUkyTzcxNU1WTDJTZFdXTmtXaUJUMWhaYTdfclRmc29uWV9fV2RXbV8ydEVZNV9kZktYaGlNWmtoNFNBWXJVbWwtV25PeU9KR3BqTllSU2F4SlF0b1l0dVZnakNuOVQyYTY4a1lvWUxzYjcyVklXb0ttbUpqVzUxRUVxLV9NRGhhRGtYVnY3bmFEaVJaVUNLYUtNZUsxcXVUUFJvdmQyal9MM0t0WHpLVXEyNjY3RDFodQ?oc=5",
       "source": "Wires (macro)",
@@ -1199,6 +1222,32 @@
         "XAU/USD": "down"
       },
       "why": "Strong jobs data boosts rate-hike bets"
+    },
+    {
+      "title": "India’s Crude Oil Benchmark Tops $100 as Middle East War Escalates",
+      "link": "https://finance.yahoo.com/energy/articles/india-crude-oil-benchmark-tops-110000096.html",
+      "source": "Yahoo Finance",
+      "at": 1788778800000,
+      "inst": [
+        "USOIL",
+        "UKOIL",
+        "XAU/USD"
+      ],
+      "ccy": [
+        "OIL",
+        "XAU"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788778800000,
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up",
+        "XAU/USD": "up"
+      },
+      "why": "War escalation drives oil and gold higher"
     },
     {
       "title": "Is the AfD’s Ulrich Siegmund Germany’s ‘most dangerous man’?",
@@ -1369,7 +1418,7 @@
       "ccy": [],
       "sev": 1,
       "rel": 2,
-      "srcs": 2,
+      "srcs": 1,
       "firstAt": 1788777420000,
       "_kind": null,
       "why": "IPO speculation unclear for index direction"
@@ -1656,7 +1705,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788775320000,
-      "_kind": null,
       "dir": {
         "USOIL": "up",
         "UKOIL": "up"
@@ -1682,7 +1730,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788775287000,
-      "_kind": null,
       "dir": {
         "XAU/USD": "up",
         "USOIL": "up",
@@ -1700,8 +1747,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788775200000,
-      "_kind": null
+      "firstAt": 1788775200000
     },
     {
       "title": "What happened to the Russia sanctions package? - Deseret News",
@@ -1722,7 +1768,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788775200000,
-      "_kind": null,
       "why": "Sanctions status unclear for market impact"
     },
     {
@@ -1946,7 +1991,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788773151000
+      "firstAt": 1788773151000,
+      "why": "Sanctions evasion news lacks clear price direction"
     },
     {
       "title": "European Markets Slide Amid Rising Oil and Inflation Concerns - Devdiscourse",
@@ -2687,35 +2733,6 @@
         "XAU/USD": "down"
       },
       "why": "Gold slips on rate-hike bets"
-    },
-    {
-      "title": "Dollar Struggles Despite Rising Fed Rate Hike Expectations - Global Banking & Finance Review",
-      "link": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQbWlLODhoLTJhMW5VQXhhTEk1cVE5T0h6MEdUa0dVYXBUdkhPV0o1aWJ5UFJTSmhJa1l3TXk2X3Vad1FFVHpmWThRZlUyLWJZaEZzZlEtTUZadHRxRUsyR0dIbWxUU0p2V3FFZ0Mwb1JXd1RaaWJWRTRrRmNzQzVydEtxYUJXU2VKV2lPX1ZxUDdmWlRoOVhR?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMilwFBVV95cUxQbWlLODhoLTJhMW5VQXhhTEk1cVE5T0h6MEdUa0dVYXBUdkhPV0o1aWJ5UFJTSmhJa1l3TXk2X3Vad1FFVHpmWThRZlUyLWJZaEZzZlEtTUZadHRxRUsyR0dIbWxUU0p2V3FFZ0Mwb1JXd1RaaWJWRTRrRmNzQzVydEtxYUJXU2VKV2lPX1ZxUDdmWlRoOVhR?oc=5\" target=\"_blank\">Dol",
-      "at": 1788765876000,
-      "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788765876000,
-      "dir": {
-        "XAU/USD": "up",
-        "EUR/USD": "up",
-        "GBP/USD": "up"
-      },
-      "why": "Dollar weakness boosts gold and major pairs"
     }
   ],
   "sources": [
@@ -2741,7 +2758,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-07T11:59:05.745Z",
-  "headlinesAt": "2026-09-07T11:59:05.745Z",
-  "updatedAt": "2026-09-07T11:59:05.745Z"
+  "calendarAt": "2026-09-07T12:02:06.962Z",
+  "headlinesAt": "2026-09-07T12:02:06.962Z",
+  "updatedAt": "2026-09-07T12:02:06.962Z"
 }
