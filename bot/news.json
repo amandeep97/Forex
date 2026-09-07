@@ -750,7 +750,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788802345000,
-      "_kind": null
+      "_kind": null,
+      "why": "Geopolitical risk unclear for specific instruments"
     },
     {
       "title": "Trump’s blockade pushes Iran toward military escalation - CNN",
@@ -888,7 +889,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788800807000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Oil rises, gold rises on conflict"
     },
     {
       "title": "7 Low-Cost Retirement Spots Built for Today's Housing Market",
@@ -2390,24 +2397,6 @@
       "why": "No clear directional impact on listed instruments."
     },
     {
-      "title": "Serbia holds funeral for convicted war criminal Ratko Mladic",
-      "link": "https://www.aljazeera.com/video/newsfeed/2026/9/7/serbia-holds-funeral-for-convicted-war-criminal-ratko-mladic?traffic_source=rss",
-      "source": "Al Jazeera",
-      "desc": "The funeral of convicted war criminal Ratko Mladic has been held in Serbia’s capital with state honours.",
-      "at": 1788785753000,
-      "inst": [
-        "XAU/USD"
-      ],
-      "ccy": [
-        "XAU"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788785753000,
-      "why": "No clear market impact"
-    },
-    {
       "title": "Sixteen seafarers evacuated from damaged Bahri tanker hit in deadly Iran attack - TradeWinds News",
       "link": "https://news.google.com/rss/articles/CBMiygFBVV95cUxPX3U4bEVMWGFRTTlyYmYwNU0xOUlrOVVZcUUzdVdVX1YzbWpzRV9qOEgtb05OWWdZZHdVOC01LU1YUUZNcGFHY0FOWm94Skt5RF9iSXVqWjNmLVFnZzM5d2duNXljMU41MzNGRXo5clFaR0ZVNi1nOXZXSVJHOWNERjUwYnRZdU5NOUQ4MzlGNndPUGlsVmVxUk5wVC1zYXJnQnNXYzdnY3hHNnNTejMwY2N1eU1DaU1DN1hiZXFJYVVGVkNpSHkyX3Z3?oc=5",
       "source": "Wires (geo)",
@@ -2632,6 +2621,28 @@
         "XAU/USD": "down"
       },
       "why": "Gold under pressure, oil direction unclear"
+    },
+    {
+      "title": "Dollar falls ahead of US inflation data as yen hits seven-month high - Economies.com",
+      "link": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPR2hhMU9LQV9GWHM3d3VBWTVmampGWUQ0UnFnSmRzd0NXeGdXMmlieWRrQXVHeDlZeF9pcG9aTHUzdGh5Tjc3VU8wa3J2Sm5IajRNQzBkSnhRd0FFaW1qeXNvTDJjMS1IT0VrUmVjbkZwQlJhVU5DdUhDZXJWOXFIdHBMMzlQbVAtYmpveXphV3p0NFhrTEJLSmpBSXN1VVVKN0MweFNrU2d5bnA1cVFZWmRqTW8zdkZTd0Y4?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiuwFBVV95cUxPR2hhMU9LQV9GWHM3d3VBWTVmampGWUQ0UnFnSmRzd0NXeGdXMmlieWRrQXVHeDlZeF9pcG9aTHUzdGh5Tjc3VU8wa3J2Sm5IajRNQzBkSnhRd0FFaW1qeXNvTDJjMS1IT0VrUmVjbkZwQlJhVU5DdUhDZXJWOXFIdHBMMzlQbVAtYmpveXphV3p0NFhrTEJLSmpBSXN1VVVKN0MweFNrU2d5bn",
+      "at": 1788780300000,
+      "inst": [
+        "USD/JPY"
+      ],
+      "ccy": [
+        "USD",
+        "JPY"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788780300000,
+      "dir": {
+        "USD/JPY": "down"
+      },
+      "why": "Dollar falls, yen hits high"
     }
   ],
   "sources": [
@@ -2657,7 +2668,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-07T17:38:06.120Z",
-  "headlinesAt": "2026-09-07T17:38:06.120Z",
-  "updatedAt": "2026-09-07T17:38:06.120Z"
+  "calendarAt": "2026-09-07T17:41:06.259Z",
+  "headlinesAt": "2026-09-07T17:41:06.259Z",
+  "updatedAt": "2026-09-07T17:41:06.259Z"
 }
