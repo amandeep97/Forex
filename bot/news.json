@@ -736,7 +736,7 @@
       "link": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPS1JUc284NjBMMkppZ29XSm9kUjBwSnpvcjhxT05xTG1rWGViQkswMEh4SzdPZ1NKN0VTQVUxcWc1T1ByMEJEUGdUS01nbVU0eFd3anRTX1h3aVo2QWNHcW96dzhoR3MzbWlrYS15TG1hYkZ1Zm1SMHRGVjZKeTFabnNqRWtIRHQ0LUdXYW9kd3huUQ?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMikgFBVV95cUxPS1JUc284NjBMMkppZ29XSm9kUjBwSnpvcjhxT05xTG1rWGViQkswMEh4SzdPZ1NKN0VTQVUxcWc1T1ByMEJEUGdUS01nbVU0eFd3anRTX1h3aVo2QWNHcW96dzhoR3MzbWlrYS15TG1hYkZ1Zm1SMHRGVjZKeTFabnNqRWtIRHQ0LUdXYW9kd3huUQ?oc=5\" target=\"_blank\">Zelensky:",
-      "at": 1788800178000,
+      "at": 1788800216000,
       "inst": [
         "XAU/USD",
         "USOIL",
@@ -749,7 +749,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788800178000,
+      "firstAt": 1788800216000,
       "_kind": null,
       "dir": {
         "XAU/USD": "down",
@@ -1249,7 +1249,7 @@
       "why": "Escalating tensions boost safe havens, oil"
     },
     {
-      "title": "Ukraine Strikes Russia’s War Economy at Ranges Exceeding 2,000 Kilometers, Intelligence Chief Says - mezha.net",
+      "title": "Ukraine Strikes Russia’s War Economy at Ranges Exceeding 2,000 Kilometers, Intelligence Chief Says - Межа. Новини України.",
       "link": "https://news.google.com/rss/articles/CBMibkFVX3lxTE9Gc0JBWC1qblhDZ0tWdXdsTjBjaV9sQWhkWFE0cWY0NjB0RVZjNFJ0azlGTWQ2cUZTVkFqd3FjVXBaa0ZQeEFGVUJ3QXFmWUlEanh2bHJ5ODJvMnpfOEFRQklhRTdFOVIyWEZEaTh3?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMibkFVX3lxTE9Gc0JBWC1qblhDZ0tWdXdsTjBjaV9sQWhkWFE0cWY0NjB0RVZjNFJ0azlGTWQ2cUZTVkFqd3FjVXBaa0ZQeEFGVUJ3QXFmWUlEanh2bHJ5ODJvMnpfOEFRQklhRTdFOVIyWEZEaTh3?oc=5\" target=\"_blank\">Ukraine Strikes Russia’s War Economy at Ranges Exceeding 2,",
@@ -1809,8 +1809,8 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788788909000,
+      "srcs": 2,
+      "firstAt": 1788788601000,
       "dir": {
         "USOIL": "up",
         "UKOIL": "up"
@@ -1857,13 +1857,39 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788788909000,
+      "srcs": 2,
+      "firstAt": 1788788601000,
       "dir": {
         "USOIL": "up",
         "UKOIL": "up"
       },
       "why": "Oil rises on geopolitical tensions"
+    },
+    {
+      "title": "Oil prices hold near six-week highs on US-Iran attacks - Yahoo Finance",
+      "link": "https://news.google.com/rss/articles/CBMiigFBVV95cUxOWV94N3pPSGpoZFdVSGZJblpBVU4wNXh6OUFlYTUtUVBnMTNuckxVS2ZkTHltVVF1elFpZGxNWUZibjFJQXpLUlBwbEZDT0IzWndJSUlrUlh6VEhQR0xSQW1XTnVxaDhNOFNaYi1XQlF1SFVkUnZnTkROYzVGcFZQYVZtZ2M0MThHYWc?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiigFBVV95cUxOWV94N3pPSGpoZFdVSGZJblpBVU4wNXh6OUFlYTUtUVBnMTNuckxVS2ZkTHltVVF1elFpZGxNWUZibjFJQXpLUlBwbEZDT0IzWndJSUlrUlh6VEhQR0xSQW1XTnVxaDhNOFNaYi1XQlF1SFVkUnZnTkROYzVGcFZQYVZtZ2M0MThHYWc?oc=5\" target=\"_blank\">Oil prices hold near",
+      "at": 1788788601000,
+      "inst": [
+        "USOIL",
+        "XAU/USD",
+        "UKOIL"
+      ],
+      "ccy": [
+        "OIL",
+        "XAU"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1788788601000,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Oil and gold rise on geopolitical tension."
     },
     {
       "title": "Israeli strikes in southern Lebanese village kill 12",
@@ -2256,6 +2282,27 @@
       "why": "No clear market impact"
     },
     {
+      "title": "Sixteen seafarers evacuated from damaged Bahri tanker hit in deadly Iran attack - tradewindsnews.com",
+      "link": "https://news.google.com/rss/articles/CBMiygFBVV95cUxPX3U4bEVMWGFRTTlyYmYwNU0xOUlrOVVZcUUzdVdVX1YzbWpzRV9qOEgtb05OWWdZZHdVOC01LU1YUUZNcGFHY0FOWm94Skt5RF9iSXVqWjNmLVFnZzM5d2duNXljMU41MzNGRXo5clFaR0ZVNi1nOXZXSVJHOWNERjUwYnRZdU5NOUQ4MzlGNndPUGlsVmVxUk5wVC1zYXJnQnNXYzdnY3hHNnNTejMwY2N1eU1DaU1DN1hiZXFJYVVGVkNpSHkyX3Z3?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiygFBVV95cUxPX3U4bEVMWGFRTTlyYmYwNU0xOUlrOVVZcUUzdVdVX1YzbWpzRV9qOEgtb05OWWdZZHdVOC01LU1YUUZNcGFHY0FOWm94Skt5RF9iSXVqWjNmLVFnZzM5d2duNXljMU41MzNGRXo5clFaR0ZVNi1nOXZXSVJHOWNERjUwYnRZdU5NOUQ4MzlGNndPUGlsVmVxUk5wVC1zYXJnQnNXYzdnY3hHNn",
+      "at": 1788785155000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788785155000,
+      "why": "Seafarer evacuation news lacks clear market direction."
+    },
+    {
       "title": "Katz threatens 'all-out war' on PA over West Bank 'October 7-style attack' terror threat to Israel - The Jerusalem Post",
       "link": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1KV3kydzRTbXJITGVkbC11YW45Rk0yazUwTE93aThfeTE2XzBjUmFoWE4yRmMtNC0xZjBUeW5HeVVaSHhnendENnlyNjRkVWFQQW9pd1FXekpTOFRndTBnSnMxMDNoLUU2aE1VMHFn?oc=5",
       "source": "Wires (geo)",
@@ -2570,52 +2617,6 @@
         "XAU/USD": "up"
       },
       "why": "Geopolitical risk boosts gold, oil impact unclear."
-    },
-    {
-      "title": "WuBlockchain Weekly Outlook | U.S. Inflation and Central Bank Signals Drive Markets as Oracle and Adobe Test AI Demand - Substack",
-      "link": "https://news.google.com/rss/articles/CBMie0FVX3lxTFA1ZnQ5LTRxcDFHT0ZZZDJjUW4zR1JlQVQ2SnZZSWpDWWF5VVNzYUpudkVMSE9iMzMzUW5NV2oyRVFDZ1N1aHZ4XzcyaDZuUlRTclpaeUp4cTlNSGlaQXU2aGlOSl83T01tc0ZUYjdlR3UtY01SaHBsbkc5VQ?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMie0FVX3lxTFA1ZnQ5LTRxcDFHT0ZZZDJjUW4zR1JlQVQ2SnZZSWpDWWF5VVNzYUpudkVMSE9iMzMzUW5NV2oyRVFDZ1N1aHZ4XzcyaDZuUlRTclpaeUp4cTlNSGlaQXU2aGlOSl83T01tc0ZUYjdlR3UtY01SaHBsbkc5VQ?oc=5\" target=\"_blank\">WuBlockchain Weekly Outlook | U.S. Inflat",
-      "at": 1788779407000,
-      "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788779407000,
-      "why": "General outlook, no specific directional signal."
-    },
-    {
-      "title": "Gold price declines as strong US jobs data boosts Fed rate hike bets - FXStreet",
-      "link": "https://news.google.com/rss/articles/CBMitgFBVV95cUxQcFpQQnlCRlF2UXF5bXdqUjJONTE5bnpCdlFvb2h3bUgxWEVZcVExbk4tMlcxR0ZwTVZlUnd1WFJUend4Z1FRX2FHOURIUTJhNjg0R2lFSlVtRnl6eEhPMlY1OTBKa0RFbTl5MzY5alhZOFVESldJcFo5dmprWDRGaEVvV1c0Zm42VEZlbTJ0NXVFYTFlY2ZkeW9MUVRrbUJIS0pReFhaRmwyR1ItSl9ocjdjTUtVdw?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMitgFBVV95cUxQcFpQQnlCRlF2UXF5bXdqUjJONTE5bnpCdlFvb2h3bUgxWEVZcVExbk4tMlcxR0ZwTVZlUnd1WFJUend4Z1FRX2FHOURIUTJhNjg0R2lFSlVtRnl6eEhPMlY1OTBKa0RFbTl5MzY5alhZOFVESldJcFo5dmprWDRGaEVvV1c0Zm42VEZlbTJ0NXVFYTFlY2ZkeW9MUVRrbUJIS0pReFhaRmwyR1",
-      "at": 1788779369000,
-      "inst": [
-        "XAU/USD"
-      ],
-      "ccy": [
-        "USD",
-        "XAU"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788779369000,
-      "dir": {
-        "XAU/USD": "down"
-      },
-      "why": "Strong jobs data boosts gold decline."
     }
   ],
   "sources": [
@@ -2638,10 +2639,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-07T17:09:05.795Z",
-  "headlinesAt": "2026-09-07T17:09:05.795Z",
-  "updatedAt": "2026-09-07T17:09:05.795Z"
+  "calendarAt": "2026-09-07T17:12:20.984Z",
+  "headlinesAt": "2026-09-07T17:12:20.984Z",
+  "updatedAt": "2026-09-07T17:12:20.984Z"
 }
