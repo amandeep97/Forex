@@ -732,6 +732,28 @@
   ],
   "headlines": [
     {
+      "title": "Burnham and Trump agree need to continue working towards ceasefire in Ukraine - the-independent.com",
+      "link": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxORnJaTl85M0IyckNZQUg0eGczVzFockJzak1GUlZRMG5GTkdfM1paNTVRZTg0WUpRc2JUSVo3ejU5aFVtTWJuRVdkM1VaTVl5dDlUS3ZEdDRraUYtb0lod3pCU0p3TWZUTkozdERrR2I4RWpaa1J0SEZWbFBPZEJMdnlWVldYTFVwZ1VsTXBYRy1Ta1Y5UGY3Z3dacHBXbEE1dTdVOWNMN0xUWWV5X0N3dll1MzlRNkNV?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiuAFBVV95cUxORnJaTl85M0IyckNZQUg0eGczVzFockJzak1GUlZRMG5GTkdfM1paNTVRZTg0WUpRc2JUSVo3ejU5aFVtTWJuRVdkM1VaTVl5dDlUS3ZEdDRraUYtb0lod3pCU0p3TWZUTkozdERrR2I4RWpaa1J0SEZWbFBPZEJMdnlWVldYTFVwZ1VsTXBYRy1Ta1Y5UGY3Z3dacHBXbEE1dTdVOWNMN0xUWW",
+      "at": 1788803280000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788801091000,
+      "_kind": "war-end",
+      "why": "Ceasefire talks imply reduced geopolitical risk."
+    },
+    {
       "title": "Israel threatens war with Palestinian Authority in case of October 7-style attack - The Hindu",
       "link": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxNd2lQR2dhNk91N1lGaGthU3J0eUZ2R2E2NHQ0VlA5bWdGcXVIZjNaVFpjY0lQQlZFYk1xYXdUMFBoR0RtSm9VVXU1dUVyOUdoSmNjUXdId1FIdWw3VGU3RlE0TkQ3UnV0c1pUNUZIUkltcnpfVUpuNkxjUkoyM3E0RlpmRElyX3dnbDFLTDhOSWNFRVZ4bm1CYmRvTjc1TVZOZ195dTFYTi1YQVdNYjRVOWsxaUFRaUI5dk00ek8tM1FHZW9pODBEVzU4OXo1THB2YmhBcE1oMndGWjNsOHfSAeQBQVVfeXFMTy1yb21GU0h5Z1RkN2gwSVZDbEdqVFpPQlEwTllKTlRUSXRhYWRkcXhqN3c4dF9Fa2JZeHRxQlNadV9SVHc0VVIwV1dTbzZxQmdsNUNyLXhONXBPcFNYTzY2Ymt6TnNscDZpeE1RQzVuSG0xWnJfTERQeHhLRWtwT3VkcmNBcF9YSnVQbmhXNFp5UTV1dTRweGg2d2Z3eFotT21JY0RYeWI4cTRTMnFwcHFlU2pWaWdfZDd0T25DbXl3OGdkN3RnYnY4U0tCZUw5YUo2NnlWbzZualZyZVBvSW1Zc3dl?oc=5",
       "source": "Wires (geo)",
@@ -1729,7 +1751,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788792768000
+      "firstAt": 1788792768000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Supply disruption and trade blows boost oil."
     },
     {
       "title": "Thousands turn out in Serbia for funeral of 'Butcher of Bosnia' Ratko Mladić",
@@ -1746,7 +1772,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1788792650000
+      "firstAt": 1788792650000,
+      "why": "No direct market impact from funeral news."
     },
     {
       "title": "Ukraine's Defence Intelligence's soldiers strike Russian aircraft in Crimea – video - Українська правда",
@@ -1766,7 +1793,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788792300000
+      "firstAt": 1788792300000,
+      "why": "Military strike has unclear immediate market impact."
     },
     {
       "title": "Gold Faces Stagflation Risk as Energy Costs Keep Inflation Elevated - Investing.com",
@@ -1784,7 +1812,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788792188000
+      "firstAt": 1788792188000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Stagflation risk drives gold as safe haven."
     },
     {
       "title": "Alibaba (BABA) Shares Decline Amid Macro and Competitive Headwinds",
@@ -1813,7 +1845,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788791595000
+      "firstAt": 1788791595000,
+      "why": "Political news has no clear market direction."
     },
     {
       "title": "American and African Crudes Soar as China's Oil Imports Rebound",
@@ -1829,7 +1862,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788791400000
+      "firstAt": 1788791400000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Rebounding Chinese imports increase oil demand."
     },
     {
       "title": "How Energy Security, Load Growth and Infrastructure Arbitrage Could Reshape America's Power Market",
@@ -1861,7 +1898,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788791220000
+      "firstAt": 1788791220000,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Escalating conflict boosts oil and gold demand."
     },
     {
       "title": "Germany's far-right AfD says 'democracy demands' parties work with them after state election win",
@@ -1876,7 +1919,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788789841000
+      "firstAt": 1788789841000,
+      "why": "State election win has limited macro impact."
     },
     {
       "title": "Bitcoin and ethereum prices today, Monday, September 7, 2026: Crypto investors on rate watch",
@@ -1893,7 +1937,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788789762000
+      "firstAt": 1788789762000,
+      "why": "Rate watch implies uncertainty, no clear direction."
     },
     {
       "title": "Gold edges down as strong payrolls revive Fed hike bets",
@@ -1910,7 +1955,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1788787800000
+      "firstAt": 1788787800000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Strong payrolls and Fed hike bets hurt gold."
     },
     {
       "title": "US strikes perimeter of Iran’s Bushehr nuclear plant, Iranian state media reports - Middle East Eye",
@@ -1930,7 +1979,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788787184000
+      "firstAt": 1788787184000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Nuclear plant strike escalates geopolitical risk."
     },
     {
       "title": "Israeli attacks on Gaza kill five Palestinians, including two children",
@@ -1950,7 +2005,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 3,
-      "firstAt": 1788788363000
+      "firstAt": 1788788363000,
+      "why": "Casualty report has no clear market direction."
     },
     {
       "title": "Oil ticks higher after fresh U.S.-Iran attacks in Strait of Hormuz",
@@ -1969,27 +2025,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1788788601000
-    },
-    {
-      "title": "HUR Operators Strike Russian Aircraft in Occupied Crimea, Video - UNITED24 Media",
-      "link": "https://news.google.com/rss/articles/CBMirgFBVV95cUxQdFVCNHB1YXJUZzUxc21oZUJjYktaOURyYTNFUVMybUs2ZDlocmR6dzJYZnZteHM2NmY4ZmRhd0ZpeUo4N09jd0dYQmVaOW1odGtEOGRYOGgtWnNzWWktckg5eEJPSDJwa2JCRHNGcG1UTDFmT3huZTV0OW9yUjNIUlFGUDlYQUM0RTloSlE2cGxxMFdOeVVtMzdPeFppWGxIV0lMR201eC1MakdQeEE?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMirgFBVV95cUxQdFVCNHB1YXJUZzUxc21oZUJjYktaOURyYTNFUVMybUs2ZDlocmR6dzJYZnZteHM2NmY4ZmRhd0ZpeUo4N09jd0dYQmVaOW1odGtEOGRYOGgtWnNzWWktckg5eEJPSDJwa2JCRHNGcG1UTDFmT3huZTV0OW9yUjNIUlFGUDlYQUM0RTloSlE2cGxxMFdOeVVtMzdPeFppWGxIV0lMR201eC1Mak",
-      "at": 1788788944000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788786642000
+      "firstAt": 1788788601000,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Strait of Hormuz attacks boost risk assets."
     },
     {
       "title": "Oil prices hold near six-week highs on US-Iran attacks - Yahoo Finance",
@@ -2009,7 +2051,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1788788601000
+      "firstAt": 1788788601000,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "US-Iran attacks keep oil and gold high."
     },
     {
       "title": "Israeli strikes in southern Lebanese village kill 12",
@@ -2376,6 +2424,25 @@
       "firstAt": 1788784055000
     },
     {
+      "title": "Sensex drops 382 points amid elevated crude prices, U.S. interest-rate hike fears - The Hindu",
+      "link": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxQMjVpUWZ6RzFNRzY2VDJETV9XTmdFcVlGZVQ4VFpHUmJ5cl9NX1loRWJlcEF6QVZad2tLSWhCb01fcjM0SnNSczROY2lhQUJBVkdaX2EwSEV4amIxRU11d2hpazJzMVIzaEUtYndXeVkyZ2pGS2ZKaFowSGVoRGVQNWJ2TzE0blFMVGlpZjVYMWVQbzV2VS1zaUlySm5hLTgyNVRxZnY2cVllZVYwaWdjYU9WcEN6VVE0QjlUTXdkTFo5TlNnQmJiZ1FVQUNHaXpCaUNZNjktZ1ZhMlJhMjM00gHmAUFVX3lxTE1WQ1VyaGZURVl0ZHAteW9ZdzMtRUpuWEcxT3U4TC14SzRFa0FFNDR4c2lHSUdBVldWN3dVTHpOMWg3Smc4YU01U1VYM2VhdzFLVjJhQmlpWlQ2a1Y1OU9FajVkTGhvQU41YXJJNGEwTXBySVBETXBNTFNvQ2lfWGlXMXh3dHBqdl9lcUNpcWdhQ0l6R0l3Vlc3dmdwbmliU1dMeVpWdHhrMi0yRXZXaDc5MXJYSFI5WmJQazliaTJWaXNqS1Z3cjVrSU1WaklNeGxJRnRwMlhXUUplR0k1cE53ZVFIUTFR?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi3wFBVV95cUxQMjVpUWZ6RzFNRzY2VDJETV9XTmdFcVlGZVQ4VFpHUmJ5cl9NX1loRWJlcEF6QVZad2tLSWhCb01fcjM0SnNSczROY2lhQUJBVkdaX2EwSEV4amIxRU11d2hpazJzMVIzaEUtYndXeVkyZ2pGS2ZKaFowSGVoRGVQNWJ2TzE0blFMVGlpZjVYMWVQbzV2VS1zaUlySm5hLTgyNVRxZnY2cVllZV",
+      "at": 1788783639000,
+      "inst": [
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "OIL",
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788783639000
+    },
+    {
       "title": "Gold Steadies as Markets Await US Inflation Data - Fana News -",
       "link": "https://news.google.com/rss/articles/CBMijwFBVV95cUxOOTN0VkVHUnMyQUNQQzE3QkhURDU0UU9SS1hyTm1Kbm5NYlk3MTFzaHdQZFlxUnAyNDdLdEFBRFJGUU8zRE1MOFN3QlRhdFZjSXFiVHg1S0Q2MDZodWJJVnlJVmJxc3liRUdqRHNWQ3ItYWlaTV82M0tLMDRlaGpHY1JmZGZnVHVLUF93WUtJMA?oc=5",
       "source": "Wires (macro)",
@@ -2469,27 +2536,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788780300000
-    },
-    {
-      "title": "Saudi Aramco facility attacked again; extent of the damage still being assessed",
-      "link": "https://investinglive.com/news/saudi-aramco-facility-attacked-again-extent-of-the-damage-still-being-assessed/",
-      "source": "ForexLive",
-      "desc": "Saudi Aramco’s oil facilities in Jizan were targeted on Monday in new wave of strikes, raising concerns over risks to Saudi oil supplies, according to the Financial Times.The extent of the damage is still being assessed. According to people familiar with the incident, the latest ",
-      "at": 1788780240000,
-      "inst": [
-        "USOIL",
-        "XAU/USD",
-        "UKOIL"
-      ],
-      "ccy": [
-        "OIL",
-        "XAU"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1788780240000
+      "firstAt": 1788778598000
     }
   ],
   "sources": [
@@ -2515,7 +2562,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-07T17:56:09.962Z",
-  "headlinesAt": "2026-09-07T17:56:09.962Z",
-  "updatedAt": "2026-09-07T17:56:09.962Z"
+  "calendarAt": "2026-09-07T17:59:11.946Z",
+  "headlinesAt": "2026-09-07T17:59:11.946Z",
+  "updatedAt": "2026-09-07T17:59:11.946Z"
 }
