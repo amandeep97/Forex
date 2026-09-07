@@ -908,7 +908,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788787200000,
+      "firstAt": 1788789176000,
       "_kind": null,
       "why": "ETF rebalancing, neutral for broad index."
     },
@@ -1327,37 +1327,6 @@
         "USOIL": "up"
       },
       "why": "Oil surge supports CAD, weakens USD"
-    },
-    {
-      "title": "Is the Bitcoin Bottom In? 2 Analysts Say Yes From Separate Charts",
-      "link": "https://finance.yahoo.com/markets/crypto/articles/bitcoin-bottom-2-analysts-yes-132108969.html",
-      "source": "Yahoo Finance",
-      "at": 1788787268000,
-      "inst": [
-        "BTC/USDT"
-      ],
-      "ccy": [
-        "BTC"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788787268000,
-      "_kind": null,
-      "why": "Analyst opinions on bottom unclear"
-    },
-    {
-      "title": "Tech Rally Surges in Asia as Kospi Soars",
-      "link": "https://www.barrons.com/articles/stock-market-today-kospi-sk-hynix-samsung-ai-rally-05f6ffee?siteid=yhoof2&yptr=yahoo",
-      "source": "Yahoo Finance",
-      "at": 1788787260000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1788787260000,
-      "_kind": null
     },
     {
       "title": "Iran Faced Some Of America's Toughest Sanctions. Yet $9 Billion In Iranian Funds Still Moved Through U.S. Banks - International Business Times",
@@ -2656,6 +2625,54 @@
         "XAU/USD": "up"
       },
       "why": "Geopolitical risk boosts gold, oil unclear"
+    },
+    {
+      "title": "London stocks muted as rising oil, rate-hike bets weigh; energy stocks gain - Reuters",
+      "link": "https://news.google.com/rss/articles/CBMitgFBVV95cUxQV29mQ0Z1bjc2TzlmTm9aRXJVRm5xYTRNMHI3QU5hZDVqalVXdE5WZENCU3c1ampzSTN5aWZzeHZoZHZTelAtSlB0MUF1cXlmdS1XYXRjSHZ3cWw3dl9PR2pyQXkzdlNpN0p6S3Y0UVVaUER6bkdCQWpuUWJuNnIxVGxnTGVoU2lJQWpVVXZNWjg2UVMtYmQ0YlZVdldnbGhsZlV1WG1MX1JKaVBKY2ItajRBd0hvUQ?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMitgFBVV95cUxQV29mQ0Z1bjc2TzlmTm9aRXJVRm5xYTRNMHI3QU5hZDVqalVXdE5WZENCU3c1ampzSTN5aWZzeHZoZHZTelAtSlB0MUF1cXlmdS1XYXRjSHZ3cWw3dl9PR2pyQXkzdlNpN0p6S3Y0UVVaUER6bkdCQWpuUWJuNnIxVGxnTGVoU2lJQWpVVXZNWjg2UVMtYmQ0YlZVdldnbGhsZlV1WG1MX1JKaV",
+      "at": 1788773743000,
+      "inst": [
+        "USOIL",
+        "US500"
+      ],
+      "ccy": [
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788773743000,
+      "dir": {
+        "USOIL": "up",
+        "US500": "down"
+      },
+      "why": "Oil rises, rate bets weigh stocks"
+    },
+    {
+      "title": "Iran war: How US consumers spent an additional $100bn on fuel",
+      "link": "https://www.aljazeera.com/news/2026/9/7/iran-war-how-us-consumers-spent-an-additional-100bn-on-fuel?traffic_source=rss",
+      "source": "Al Jazeera",
+      "desc": "The average US household has spent $763 extra on fuel in six months, as the US-Israel war on Iran pushes up fuel costs.",
+      "at": 1788773444000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788773444000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "War pushes fuel costs higher"
     }
   ],
   "sources": [
@@ -2678,10 +2695,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-07T14:29:19.291Z",
-  "headlinesAt": "2026-09-07T14:29:19.291Z",
-  "updatedAt": "2026-09-07T14:29:19.291Z"
+  "calendarAt": "2026-09-07T14:32:05.601Z",
+  "headlinesAt": "2026-09-07T14:32:05.601Z",
+  "updatedAt": "2026-09-07T14:32:05.601Z"
 }
