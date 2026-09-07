@@ -19,7 +19,7 @@
 import {
   parseJSON, checkLevels, marketBrief, newsBrief, positioningBrief, macroBrief,
   calendarBrief, scoreLog, stripThinking, retryAfterMs, isReasoningModel, verdictOf,
-  scoreStandAside, MISSED_ATR, num,
+  scoreStandAside, MISSED_ATR, num, consensusOf, sideOfDecision, recordBrief,
 } from '../src/utils/deskAgents.js';
 
 let fails = 0;
@@ -511,6 +511,111 @@ const H = 3600e3;
   check('the trap itself, pinned so nobody reinstates it',
     Number.isFinite(+null) === true && num(null) === null,
     '+null is 0 and 0 is finite — that is why the raw check cannot be used');
+}
+
+// ── Asking more than once ───────────────────────────────────────────────────
+//
+// The desk used to ask the trader exactly once and print the model's own
+// self-rated conviction next to the answer. Both are accuracy problems. One
+// sample from a language model is a sample, not an answer, and a model rating
+// its own confidence is rating its own prose — there is nothing calibrating it.
+//
+// So the decision is asked k times and the runs that agree are the answer.
+// These checks are mostly about the ways that could quietly become theatre.
+{
+  const L = (o = {}) => ({ action: 'long', entry: 100, stop: 95, target: 115, horizon_hours: 12, ...o });
+  const S = (o = {}) => ({ action: 'short', entry: 100, stop: 105, target: 85, horizon_hours: 12, ...o });
+  const W = (t, tgt, o = {}) => ({ action: 'wait', trigger: t, stop: 95, target: tgt, horizon_hours: 12, ...o });
+
+  check('a wait points somewhere too — the side comes off the target',
+    sideOfDecision(W(105, 130)) === 'long' && sideOfDecision(W(95, 70)) === 'short');
+  check('and a wait with no trigger points nowhere',
+    sideOfDecision({ action: 'wait', trigger: null, target: 130 }) === null,
+    'which is exactly why a bare refusal cannot be voted on');
+
+  // Three that agree.
+  const all3 = consensusOf([L(), L({ stop: 94, target: 118 }), L({ stop: 96, target: 112 })]);
+  check('three runs agreeing gives a decision', all3.decision?.action === 'long');
+  check('agreement is 100% and drives the conviction',
+    all3.agreement === 1 && all3.decision.conviction === 5);
+  check('the levels are the MEDIAN of the agreeing runs, not the mean',
+    all3.decision.stop === 95 && all3.decision.target === 115,
+    'one run with a wild target must not drag the number');
+
+  // An outlier proves the median is doing work.
+  const outlier = consensusOf([L({ target: 115 }), L({ target: 116 }), L({ target: 900 })]);
+  check('an absurd outlier does not move the target',
+    outlier.decision.target === 116, String(outlier.decision.target),
+    'a mean would have put it at 377');
+
+  // Two against one.
+  const split21 = consensusOf([L(), L(), S()]);
+  check('two out of three still decides, at lower conviction',
+    split21.decision?.action === 'long' && split21.decision.conviction === 3,
+    `${Math.round(split21.agreement * 100)}%`);
+  check('and the dissenting run becomes the case against',
+    typeof split21.decision.strongest_opposing_point === 'string');
+
+  // A genuine split is an ANSWER, not a missing one. Long, short, and one run
+  // that pointed nowhere at all.
+  const split = consensusOf([L(), S(), { action: 'wait', trigger: null, target: null }]);
+  check('a real disagreement returns no decision at all',
+    split.decision === null && split.split === true,
+    JSON.stringify(split.votes));
+  check('rather than picking one of them at random',
+    split.agreement < 2 / 3,
+    'averaging a long and a short into a shrug would be worse than saying nothing');
+
+  // Three against two out of five is a coin flip, and a simple majority would
+  // have traded it. This is the case the two-thirds bar exists for.
+  const coinFlip = consensusOf([L(), L(), L(), S(), S()]);
+  check('three against two out of five is refused, not traded',
+    coinFlip.decision === null && coinFlip.split === true,
+    `${Math.round(coinFlip.agreement * 100)}% — a simple majority would have taken this`);
+  const clear = consensusOf([L(), L(), L(), L(), S()]);
+  check('but four against one is a call',
+    clear.decision?.action === 'long' && clear.decision.conviction === 4,
+    `${Math.round(clear.agreement * 100)}%`);
+
+  // Acting now versus waiting is decided by the majority of the agreeing runs.
+  const mostlyWait = consensusOf([W(105, 130), W(106, 132), L()]);
+  check('when most of the agreeing runs want to wait, it waits',
+    mostlyWait.decision.action === 'wait' && mostlyWait.decision.trigger === 105.5,
+    String(mostlyWait.decision.trigger));
+  const mostlyAct = consensusOf([L(), L(), W(105, 130)]);
+  check('and when most want to act, it acts',
+    mostlyAct.decision.action === 'long' && mostlyAct.decision.trigger === null);
+
+  // One sample must behave exactly as it did before this existed.
+  const one = consensusOf([L({ conviction: 4 })]);
+  check('a single run still produces its own decision',
+    one.decision?.action === 'long' && one.agreement === 1 && one.n === 1);
+
+  check('and no usable runs at all is not a decision',
+    consensusOf([null, null]).decision === null && consensusOf([]).n === 0);
+}
+
+// ── The desk reading its own record ─────────────────────────────────────────
+{
+  const rows = [
+    { at: Date.UTC(2026, 8, 1), sym: 'XAU_USD', missed: true, reachAtr: 2.4, dir: 'up',
+      trig: { price: 4500, side: 'long', hit: false, beyondAtr: 0, againstAtr: 0, worked: false } },
+    { at: Date.UTC(2026, 8, 2), sym: 'XAU_USD', missed: false, reachAtr: 0.4, dir: 'up',
+      trig: { price: 4400, side: 'long', hit: true, beyondAtr: 2.1, againstAtr: 0, worked: true } },
+    { at: Date.UTC(2026, 8, 3), sym: 'XAG_USD', missed: true, reachAtr: 3.1, dir: 'down', trig: null },
+  ];
+  const b = recordBrief(rows);
+  check('the brief tells it when a level it named was never reached',
+    /Never reached/.test(b) && /ran 2.4 ATR up without you/.test(b), b.split('\n')[1]);
+  check('and when one was reached and worked',
+    /Reached\. It then went 2.1 ATR your way/.test(b));
+  check('and counts the moves it was not in',
+    /2 were moves you were not in/.test(b), b.split('\n')[0]);
+  check('it warns against overcorrecting from a small sample',
+    /small sample/.test(b),
+    'three rows of feedback can do more harm than none if it is treated as a lesson');
+  check('and with no record it says nothing rather than inventing one',
+    recordBrief([]) === null && recordBrief(null) === null);
 }
 
 console.log(fails ? `\n${fails} FAILED` : '\nall passed');
