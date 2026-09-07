@@ -904,7 +904,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788795921000,
+      "firstAt": 1788795331000,
       "_kind": null,
       "why": "Pause on strikes unclear for markets"
     },
@@ -1027,28 +1027,6 @@
       "why": "Stock comparison unclear for Bitcoin direction"
     },
     {
-      "title": "Dow Jones Futures Fall With U.S. Markets Shut; Iran, Apple, Inflation In Focus - Investor's Business Daily",
-      "link": "https://news.google.com/rss/articles/CBMizwFBVV95cUxONnVmdkRaNDVMaV96YWJ1eGMzRlFGUTRMeDVfSlotMHFRaGJlN2VMTFpGVzQtM2JDVndXazFpY3VVajNBdG9BemQzZ0xKV1d2ejJkVVAzbWlOUGQwLVB1dU0tWnNuM2t1WEhaSlBwbDlmd1BDM3BaUU1od242RXhEanBPeEJJUF9LQS1GVzZwQTV3Q0c3bkVMN3lLbDhHU0tPY2xYc1p6NWRMMVBKTTF2dHJqNm8wR0NEMllEWkpLN0hmMEU1Y1ZhXzlQNDRYemM?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMizwFBVV95cUxONnVmdkRaNDVMaV96YWJ1eGMzRlFGUTRMeDVfSlotMHFRaGJlN2VMTFpGVzQtM2JDVndXazFpY3VVajNBdG9BemQzZ0xKV1d2ejJkVVAzbWlOUGQwLVB1dU0tWnNuM2t1WEhaSlBwbDlmd1BDM3BaUU1od242RXhEanBPeEJJUF9LQS1GVzZwQTV3Q0c3bkVMN3lLbDhHU0tPY2xYc1p6NWRMMV",
-      "at": 1788796020000,
-      "inst": [
-        "US30"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788796020000,
-      "_kind": null,
-      "dir": {
-        "US30": "down"
-      },
-      "why": "Futures fall due to market concerns"
-    },
-    {
       "title": "Ukraine Strikes Russia’s War Economy at Ranges Exceeding 2,000 Kilometers, Intelligence Chief Says - Межа. Новини України.",
       "link": "https://news.google.com/rss/articles/CBMibkFVX3lxTE9Gc0JBWC1qblhDZ0tWdXdsTjBjaV9sQWhkWFE0cWY0NjB0RVZjNFJ0azlGTWQ2cUZTVkFqd3FjVXBaa0ZQeEFGVUJ3QXFmWUlEanh2bHJ5ODJvMnpfOEFRQklhRTdFOVIyWEZEaTh3?oc=5",
       "source": "Wires (geo)",
@@ -1066,7 +1044,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788795921000,
+      "firstAt": 1788795331000,
       "_kind": null,
       "dir": {
         "XAU/USD": "up"
@@ -1120,6 +1098,27 @@
       "srcs": 1,
       "firstAt": 1788795601000,
       "_kind": null
+    },
+    {
+      "title": "Polymarket Ukraine Odds for Russia Ceasefire Slashed to 13% - Yahoo Finance",
+      "link": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxOODRobzJINVI4VTFMSVlCbDJBTnEyeGpWYmhHaFRxVXlQWUpYS3ZmN3FEWHp1MUlYazlZOEtSZmtBODFSaWZzdnc3eWFPRHVULUlTM3V2dnRXYnhuNFZsQU5Rd2hGY29ndk9Fb1JjTEducnpua25qUEtzSl9Ya3ppQ3h0OGRKdS0zNWZJOHJ0Z3I4aFpqbFdUdVNsSnJEOTMzQ2pqWmtRb3Q?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiqAFBVV95cUxOODRobzJINVI4VTFMSVlCbDJBTnEyeGpWYmhHaFRxVXlQWUpYS3ZmN3FEWHp1MUlYazlZOEtSZmtBODFSaWZzdnc3eWFPRHVULUlTM3V2dnRXYnhuNFZsQU5Rd2hGY29ndk9Fb1JjTEducnpua25qUEtzSl9Ya3ppQ3h0OGRKdS0zNWZJOHJ0Z3I4aFpqbFdUdVNsSnJEOTMzQ2pqWmtRb3Q?oc",
+      "at": 1788795331000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788795331000,
+      "_kind": "war-end"
     },
     {
       "title": "Convicted war criminal Ratko Mladic gets hero’s burial in Serbia",
@@ -1363,28 +1362,6 @@
       "why": "Serbia funeral irrelevant to gold price"
     },
     {
-      "title": "Ukraine's Defence Intelligence's soldiers strike Russian aircraft in Crimea – video - Українська правда",
-      "link": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE9PUDVNLVdDT0VSZE9BSFVfMGNXR1BGRDNjZVdCRnpSbzJXdUpuTFBRZ1NaZmcxLURhaVBhRUpVU3drdkJhcUtGYVVZckk0LU1ud25HNnhoMTNfSEtESGxpV0JrSlk?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiZEFVX3lxTE9PUDVNLVdDT0VSZE9BSFVfMGNXR1BGRDNjZVdCRnpSbzJXdUpuTFBRZ1NaZmcxLURhaVBhRUpVU3drdkJhcUtGYVVZckk0LU1ud25HNnhoMTNfSEtESGxpV0JrSlk?oc=5\" target=\"_blank\">Ukraine's Defence Intelligence's soldiers strike Russian aircraft in Cri",
-      "at": 1788792300000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788792300000,
-      "_kind": null,
-      "why": "Geopolitical event, unclear market impact"
-    },
-    {
       "title": "Gold Faces Stagflation Risk as Energy Costs Keep Inflation Elevated - Investing.com",
       "link": "https://news.google.com/rss/articles/CBMisgFBVV95cUxOZWF6SWNJS2FERzg1NG1hdm9JQnlCS19aS29reV9qejYtNWJRa0h4R3ozeUpvb25DVGFfR053VjZuOUN1X1hILTNhb1hDZmxwOHRIXzVmbzhqaXUzVzV4OEh4RDNqNHdmUGtBTHdpcDl6d3EzdmlWczRTMGlscW90TzM5VXJacUJNMEFySWZ1MmtzbzYweW44TGd2Yzd4Rl90OG1zalNmQmF6VWtNZ1JnZEhR?oc=5",
       "source": "Wires (macro)",
@@ -1519,7 +1496,6 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1788789313000,
-      "_kind": null,
       "dir": {
         "XAU/USD": "down"
       },
@@ -1913,8 +1889,8 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788787184000,
+      "srcs": 2,
+      "firstAt": 1788786480000,
       "why": "Sanctions news unclear for markets"
     },
     {
@@ -1978,6 +1954,27 @@
       "srcs": 2,
       "firstAt": 1788786354000,
       "why": "Yemen conflict unclear for markets"
+    },
+    {
+      "title": "Dow Jones Futures Fall With Iran, Apple, Inflation In Focus; Nvidia, Micron, Sandisk Flash Buy Signals - Investor's Business Daily",
+      "link": "https://news.google.com/rss/articles/CBMizwFBVV95cUxONnVmdkRaNDVMaV96YWJ1eGMzRlFGUTRMeDVfSlotMHFRaGJlN2VMTFpGVzQtM2JDVndXazFpY3VVajNBdG9BemQzZ0xKV1d2ejJkVVAzbWlOUGQwLVB1dU0tWnNuM2t1WEhaSlBwbDlmd1BDM3BaUU1od242RXhEanBPeEJJUF9LQS1GVzZwQTV3Q0c3bkVMN3lLbDhHU0tPY2xYc1p6NWRMMVBKTTF2dHJqNm8wR0NEMllEWkpLN0hmMEU1Y1ZhXzlQNDRYemM?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMizwFBVV95cUxONnVmdkRaNDVMaV96YWJ1eGMzRlFGUTRMeDVfSlotMHFRaGJlN2VMTFpGVzQtM2JDVndXazFpY3VVajNBdG9BemQzZ0xKV1d2ejJkVVAzbWlOUGQwLVB1dU0tWnNuM2t1WEhaSlBwbDlmd1BDM3BaUU1od242RXhEanBPeEJJUF9LQS1GVzZwQTV3Q0c3bkVMN3lLbDhHU0tPY2xYc1p6NWRMMV",
+      "at": 1788786480000,
+      "inst": [
+        "US30"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1788786480000,
+      "dir": {
+        "US30": "down"
+      },
+      "why": "Dow futures fall, tech signals mixed"
     },
     {
       "title": "Moment Israeli strike hits next to Lebanese reporter",
@@ -2634,7 +2631,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-07T16:20:07.296Z",
-  "headlinesAt": "2026-09-07T16:20:07.296Z",
-  "updatedAt": "2026-09-07T16:20:07.296Z"
+  "calendarAt": "2026-09-07T16:24:07.307Z",
+  "headlinesAt": "2026-09-07T16:24:07.307Z",
+  "updatedAt": "2026-09-07T16:24:07.307Z"
 }
