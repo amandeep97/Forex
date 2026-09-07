@@ -759,6 +759,27 @@
       "why": "Ceasefire talks reduce geopolitical risk premium"
     },
     {
+      "title": "Trump says Canada’s Bombardier cannot sell in US unless it builds there",
+      "link": "https://www.investing.com/news/stock-market-news/trump-says-canadas-bombardier-cannot-sell-in-us-unless-it-builds-there-4890715",
+      "source": "Investing",
+      "at": 1788804768000,
+      "inst": [
+        "USD/CAD"
+      ],
+      "ccy": [
+        "CAD"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788804768000,
+      "_kind": null,
+      "dir": {
+        "USD/CAD": "down"
+      },
+      "why": "Trade threat weakens Canadian dollar"
+    },
+    {
       "title": "Israel warns of 'full-scale war' if Palestinian Authority launches Oct. 7-style attack - France 24",
       "link": "https://news.google.com/rss/articles/CBMizAFBVV95cUxPV2Zma0g5QlppYUFHakdTeEhCVjhFVUUwX2NpNW12ZklHLUlJa1F4RXY2WFRhR0dsVkxzRDJNTkhsdUVtUEVYcHcwUDRqR0xwZGtQMWY0UUZhejRaYTdadl9qU0lhQkl5aHE1ZXg5dzJsSWVndlFlSUpKTTRTQ2xjNXBJYTM5dWZWb09xSmtkQ3AtWWFwejd1dVBCUndraWphRHcyNWQ0ZlFoNF8zZmdLUURLRkpzUXhzelJDTlpiNGpmOEhmLTM0UTVOLXY?oc=5",
       "source": "Wires (geo)",
@@ -786,25 +807,30 @@
       "why": "War threat boosts safe havens and oil."
     },
     {
-      "title": "Trump says Canada’s Bombardier cannot sell in US unless it builds there",
-      "link": "https://www.investing.com/news/stock-market-news/trump-says-canadas-bombardier-cannot-sell-in-us-unless-it-builds-there-4890715",
-      "source": "Investing",
-      "at": 1788804032000,
+      "title": "Oil prices rise to six-week highs on worsening Middle East conflict",
+      "link": "https://www.investing.com/news/commodities-news/oil-extends-gains-after-us-and-iran-strike-ships-4890330",
+      "source": "Investing Cmdty",
+      "at": 1788804049000,
       "inst": [
-        "USD/CAD"
+        "USOIL",
+        "XAU/USD",
+        "UKOIL"
       ],
       "ccy": [
-        "CAD"
+        "OIL",
+        "XAU"
       ],
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788804032000,
+      "firstAt": 1788804049000,
       "_kind": null,
       "dir": {
-        "USD/CAD": "down"
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
       },
-      "why": "Trade threat weakens Canadian dollar"
+      "why": "Conflict drives oil and gold higher."
     },
     {
       "title": "Thousands attend funeral of war criminal Ratko Mladic in Serbia",
@@ -1095,31 +1121,6 @@
       "why": "Ceasefire talks reduce geopolitical risk premium."
     },
     {
-      "title": "Oil prices rise to six-week highs on worsening Middle East conflict",
-      "link": "https://www.investing.com/news/commodities-news/oil-extends-gains-after-us-and-iran-strike-ships-4890330",
-      "source": "Investing Cmdty",
-      "at": 1788800807000,
-      "inst": [
-        "USOIL",
-        "XAU/USD",
-        "UKOIL"
-      ],
-      "ccy": [
-        "OIL",
-        "XAU"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788800807000,
-      "dir": {
-        "XAU/USD": "up",
-        "USOIL": "up",
-        "UKOIL": "up"
-      },
-      "why": "Conflict drives oil and gold higher."
-    },
-    {
       "title": "Zelensky to Axios: U.S. exploring Russia-Ukraine winter de-escalation steps - Axios",
       "link": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPS1JUc284NjBMMkppZ29XSm9kUjBwSnpvcjhxT05xTG1rWGViQkswMEh4SzdPZ1NKN0VTQVUxcWc1T1ByMEJEUGdUS01nbVU0eFd3anRTX1h3aVo2QWNHcW96dzhoR3MzbWlrYS15TG1hYkZ1Zm1SMHRGVjZKeTFabnNqRWtIRHQ0LUdXYW9kd3huUQ?oc=5",
       "source": "Wires (geo)",
@@ -1394,21 +1395,6 @@
       "srcs": 1,
       "firstAt": 1788797279000,
       "why": "Portugal stocks up, US unclear"
-    },
-    {
-      "title": "Netherlands stocks higher at close of trade; AEX up 0.17%",
-      "link": "https://www.investing.com/news/stock-market-news/netherlands-stocks-higher-at-close-of-trade-aex-up-017-4890702",
-      "source": "Investing",
-      "at": 1788797252000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788797252000,
-      "why": "Netherlands stocks up, US unclear"
     },
     {
       "title": "Iran threatens retaliation against U.S. tanker strikes - cbsnews.com",
@@ -2418,7 +2404,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788779369000,
+      "firstAt": 1788781010000,
       "dir": {
         "XAU/USD": "down"
       },
@@ -2555,28 +2541,6 @@
       "srcs": 1,
       "firstAt": 1788779407000,
       "why": "General outlook, no specific direction."
-    },
-    {
-      "title": "Gold price declines as strong US jobs data boosts Fed rate hike bets - FXStreet",
-      "link": "https://news.google.com/rss/articles/CBMitgFBVV95cUxQcFpQQnlCRlF2UXF5bXdqUjJONTE5bnpCdlFvb2h3bUgxWEVZcVExbk4tMlcxR0ZwTVZlUnd1WFJUend4Z1FRX2FHOURIUTJhNjg0R2lFSlVtRnl6eEhPMlY1OTBKa0RFbTl5MzY5alhZOFVESldJcFo5dmprWDRGaEVvV1c0Zm42VEZlbTJ0NXVFYTFlY2ZkeW9MUVRrbUJIS0pReFhaRmwyR1ItSl9ocjdjTUtVdw?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMitgFBVV95cUxQcFpQQnlCRlF2UXF5bXdqUjJONTE5bnpCdlFvb2h3bUgxWEVZcVExbk4tMlcxR0ZwTVZlUnd1WFJUend4Z1FRX2FHOURIUTJhNjg0R2lFSlVtRnl6eEhPMlY1OTBKa0RFbTl5MzY5alhZOFVESldJcFo5dmprWDRGaEVvV1c0Zm42VEZlbTJ0NXVFYTFlY2ZkeW9MUVRrbUJIS0pReFhaRmwyR1",
-      "at": 1788779369000,
-      "inst": [
-        "XAU/USD"
-      ],
-      "ccy": [
-        "USD",
-        "XAU"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788778598000,
-      "dir": {
-        "XAU/USD": "down"
-      },
-      "why": "Strong jobs data boosts dollar, hurts gold."
     },
     {
       "title": "Israel’s Katz threatens ‘full-scale war’ against PA after settler stabbed - Al Jazeera",
@@ -2736,6 +2700,57 @@
       "srcs": 1,
       "firstAt": 1788776457000,
       "why": "Diplomatic request lacks immediate market impact"
+    },
+    {
+      "title": "Dollar falls 0.07% as rate hike expectations strengthen - IDNFinancials",
+      "link": "https://news.google.com/rss/articles/CBMimwFBVV95cUxOSnVqeDFNMHRvWENhTmFkZHdwcTNlWmlZU3c0RUROMVYzbzl3ck44eVQyQ2RKdVR2TEM2Wmc0aEcwX1FValEwMHRHTzdJckVKV2xSTU9OVUJHQ01GM3h5TGkzV01FMlVSSlpTWV9LbVlNSFlfM0xNeGR0OVNwWjByS1MwbUQ4TGk3RjJmcy1QYXNJa2MtUFgwQV9ZOA?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMimwFBVV95cUxOSnVqeDFNMHRvWENhTmFkZHdwcTNlWmlZU3c0RUROMVYzbzl3ck44eVQyQ2RKdVR2TEM2Wmc0aEcwX1FValEwMHRHTzdJckVKV2xSTU9OVUJHQ01GM3h5TGkzV01FMlVSSlpTWV9LbVlNSFlfM0xNeGR0OVNwWjByS1MwbUQ4TGk3RjJmcy1QYXNJa2MtUFgwQV9ZOA?oc=5\" target=\"_blan",
+      "at": 1788776400000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788776400000,
+      "dir": {
+        "XAU/USD": "up",
+        "EUR/USD": "up",
+        "GBP/USD": "up"
+      },
+      "why": "Dollar falls, boosting gold and euro pairs"
+    },
+    {
+      "title": "Gold Extends Decline Below $4,400 as Markets Assess September Fed Rate Hike - Yahoo Finance UK",
+      "link": "https://news.google.com/rss/articles/CBMigwFBVV95cUxPMTM5Vi1SelBpUDU5Y3k1MUJadEoyS2M0X0t4aTlFdTJXY19aQ3A1czRoVEtuMkcwM0tRTnZOZkkzaUJhLUFDcWxUWGl3b0xzTWtqWXlaRFl2ZzI4UDNtUkRJRHphSnFrel9NX0FIeWpEcWgycXh5Y1E2WmtRdW9KX2xTcw?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMigwFBVV95cUxPMTM5Vi1SelBpUDU5Y3k1MUJadEoyS2M0X0t4aTlFdTJXY19aQ3A1czRoVEtuMkcwM0tRTnZOZkkzaUJhLUFDcWxUWGl3b0xzTWtqWXlaRFl2ZzI4UDNtUkRJRHphSnFrel9NX0FIeWpEcWgycXh5Y1E2WmtRdW9KX2xTcw?oc=5\" target=\"_blank\">Gold Extends Decline Below $4",
+      "at": 1788776158000,
+      "inst": [
+        "XAU/USD"
+      ],
+      "ccy": [
+        "USD",
+        "XAU"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788776052000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold extends decline below $4,400"
     }
   ],
   "sources": [
@@ -2758,10 +2773,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-07T18:18:08.872Z",
-  "headlinesAt": "2026-09-07T18:18:08.872Z",
-  "updatedAt": "2026-09-07T18:18:08.872Z"
+  "calendarAt": "2026-09-07T18:22:23.047Z",
+  "headlinesAt": "2026-09-07T18:22:23.047Z",
+  "updatedAt": "2026-09-07T18:22:23.047Z"
 }
