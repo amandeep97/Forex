@@ -746,7 +746,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788754980000,
-      "_kind": null
+      "_kind": null,
+      "why": "Market closure implies no trading direction."
     },
     {
       "title": "Gold remains depressed as reviving Fed rate hike bets and Iran risks underpin USD - fxstreet.com",
@@ -765,7 +766,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788753300000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Strong USD and rate hike bets depress gold."
     },
     {
       "title": "Markets open lower as strong US jobs data revives rate hike fears; IT stocks drag - BusinessLine",
@@ -783,7 +788,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788754315000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Markets open lower on rate hike fears."
     },
     {
       "title": "ECB Rate Hike: Five Key Questions for Investors & Markets 2024 - Global Banking & Finance Review",
@@ -838,7 +847,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788754043000,
-      "_kind": null
+      "_kind": null,
+      "why": "Political news direction unclear for currency pair."
     },
     {
       "title": "Gold Price Forecast: Will Fed Rate Hike Risk Break $4,300 Support? - FXEmpire",
@@ -2634,24 +2644,6 @@
       "why": "Memorial news lacks market direction"
     },
     {
-      "title": "Gold price is sliding after robust US payrolls boost rate hike bets - The Star",
-      "link": "https://news.google.com/rss/articles/CBMiygFBVV95cUxQOXhzRklQTGk5dHpGdUpSazRZdnFnZlNLRTVJazBhUjdmVlg4TWdRZ0lXTFlINlV6MmhaM3p5WXZuUloteFoyUFlvMm5CcUZXcjFHWnllelNLREp6VjFyZ3NjR1JvSnItaGU5T3kzenU0QXRqNk11Y0hRSGpoVk1TUlRzbGR1NFJSNS1MR3N5NVBiZ1otVmZmNS1NSl9talpCeVI2OXpndmJ2eTNGVGt4Sk9iQ083QXl4UG43bm5ZSEhDZnJ3YjZqWFBn?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiygFBVV95cUxQOXhzRklQTGk5dHpGdUpSazRZdnFnZlNLRTVJazBhUjdmVlg4TWdRZ0lXTFlINlV6MmhaM3p5WXZuUloteFoyUFlvMm5CcUZXcjFHWnllelNLREp6VjFyZ3NjR1JvSnItaGU5T3kzenU0QXRqNk11Y0hRSGpoVk1TUlRzbGR1NFJSNS1MR3N5NVBiZ1otVmZmNS1NSl9talpCeVI2OXpndmJ2eT",
-      "at": 1788701520000,
-      "inst": [
-        "XAU/USD"
-      ],
-      "ccy": [
-        "USD",
-        "XAU"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788701520000
-    },
-    {
       "title": "Iran’s Attacks Keep the Strait of Hormuz in a Lethal Stalemate - The New York Times",
       "link": "https://news.google.com/rss/articles/CBMiigFBVV95cUxNUkI5S3doOWVtUHhfdEU2d2RqTVZvakc1bTN2QUdmUEhQSmx1WThYQWoteGpjSGJLU1FMbmc4LWU5R20xLVBER182eG1FZm11ZHFWY1pvdEIzMlo2ZkFpeTlBQi1xd01UMUswenhqTXhCa2Ftd29nZ1RpUFo4REU0MFVoX3Y4RzJKd1E?oc=5",
       "source": "Wires (geo)",
@@ -2713,7 +2705,7 @@
       "firstAt": 1788700741000
     },
     {
-      "title": "US disputes Iran strike on Navy ship trying to enter Strait of Hormuz - Washington Examiner",
+      "title": "US disputes Iran strike on Navy ship trying to enter Strait of Hormuz - washingtonexaminer.com",
       "link": "https://news.google.com/rss/articles/CBMiogFBVV95cUxPTHF2aGZrUWtzaXA1YmNxUk9hV3p3bHBxX1NsLXFZWHJkWnpXeFA1VmNmYVZ1NjF2NGNkMl9oTGppX0VNbXN2QUtZamwzdXBzSWxIYjVKZW9MVzZXV0VXNGlpY2JaV3dBLURmQjV5ZDE5U0laNlQ2aWVxUFNmSEhMQlMzeDJORUJ6ZkxzdDZoMnpXVi1IeWlab1hZa3pDclRjM0E?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiogFBVV95cUxPTHF2aGZrUWtzaXA1YmNxUk9hV3p3bHBxX1NsLXFZWHJkWnpXeFA1VmNmYVZ1NjF2NGNkMl9oTGppX0VNbXN2QUtZamwzdXBzSWxIYjVKZW9MVzZXV0VXNGlpY2JaV3dBLURmQjV5ZDE5U0laNlQ2aWVxUFNmSEhMQlMzeDJORUJ6ZkxzdDZoMnpXVi1IeWlab1hZa3pDclRjM0E?oc=5\" targ",
@@ -2761,6 +2753,30 @@
         "XAU/USD": "up"
       },
       "why": "Ukraine drone strike increases regional conflict risk."
+    },
+    {
+      "title": "CPI, PPI, and Oracle Earnings to Test Fed Rate Hike Expectations - News and Statistics - IndexBox",
+      "link": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNSEIyVmpVRXZtcW1sUHJNU0FVdHVTQm1qcEo5QnpTeEpLSWlUOTM1NHVrRmlFazRtbFVNUEx5S1V0Tlp6eFRMUGhGUmhUU0c1RlNNNFM3dmtZRmlya19HQk1SNk16N0ZxSlcxaV9PRk9FQ2lZcnlaRGFJSHRqSEVoRXVxYkxLUVNWT1F2bi1FaVYzWEZNWEYzV3Bn?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMimgFBVV95cUxNSEIyVmpVRXZtcW1sUHJNU0FVdHVTQm1qcEo5QnpTeEpLSWlUOTM1NHVrRmlFazRtbFVNUEx5S1V0Tlp6eFRMUGhGUmhUU0c1RlNNNFM3dmtZRmlya19HQk1SNk16N0ZxSlcxaV9PRk9FQ2lZcnlaRGFJSHRqSEVoRXVxYkxLUVNWT1F2bi1FaVYzWEZNWEYzV3Bn?oc=5\" target=\"_blank\"",
+      "at": 1788700226000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788700226000,
+      "why": "Upcoming data to test rate expectations."
     }
   ],
   "sources": [
@@ -2786,7 +2802,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-07T04:29:05.416Z",
-  "headlinesAt": "2026-09-07T04:29:05.416Z",
-  "updatedAt": "2026-09-07T04:29:05.416Z"
+  "calendarAt": "2026-09-07T04:32:05.429Z",
+  "headlinesAt": "2026-09-07T04:32:05.429Z",
+  "updatedAt": "2026-09-07T04:32:05.429Z"
 }
