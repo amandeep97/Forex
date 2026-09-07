@@ -748,7 +748,36 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788759949000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold slips on rate-hike bets"
+    },
+    {
+      "title": "Chipmakers lift Asian markets as US inflation looms - Kuwait Times",
+      "link": "https://news.google.com/rss/articles/CBMioAFBVV95cUxOdVNNWHRmSUFJeTVqR0MxU2dWdWpYQVNvbWU5LW9PdDktMXBtU2ZWeTJPS20wWjluUlVSamJ5cGZONENLaW90U1JoZ3BCbTdreWRwUVF5LUJCMUxTRGNLX3A1NGx3VXdMZFhPbGtlZTRFaXhzZk5yOVV1bVd0Z0hfZXpPSG0tSl9WRGhTYmtyME5SdGpPcG1HMUN5bjdLM2U50gGkAUFVX3lxTFBXSXpGc1hiX0o3TGFwcXV2RkRtMlZDRXlncHpyYnJ6eGJmTS1oSjU4Rjg5WkItMWU4RmhxcmtCMUo2NVVUV0tVcmZfbUlINjBqSWMybERseU9UQUFPS2I5NEdPRGJhWUdXSHdZUVVrd2o0cUt1d0FPVnRYdGNYVGRudTRqMWlOLXpGWkVNRW40U2k0WUpLU1VDMk91U01WMi01bHFa?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMioAFBVV95cUxOdVNNWHRmSUFJeTVqR0MxU2dWdWpYQVNvbWU5LW9PdDktMXBtU2ZWeTJPS20wWjluUlVSamJ5cGZONENLaW90U1JoZ3BCbTdreWRwUVF5LUJCMUxTRGNLX3A1NGx3VXdMZFhPbGtlZTRFaXhzZk5yOVV1bVd0Z0hfZXpPSG0tSl9WRGhTYmtyME5SdGpPcG1HMUN5bjdLM2U50gGkAUFVX3lxTF",
+      "at": 1788759926000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788759926000,
+      "_kind": null,
+      "why": "Chipmakers lift Asian markets"
     },
     {
       "title": "U.S. markets closed for Labor Day; inflation data to shape Fed rate outlook - KuCoin",
@@ -772,7 +801,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788759663000,
-      "_kind": null
+      "_kind": null,
+      "why": "Markets closed, inflation data focus"
     },
     {
       "title": "Fed hike bets, $96 oil, US inflation put markets on edge this week: HDFC - Moneycontrol.com",
@@ -791,7 +821,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788759524000,
-      "_kind": null
+      "_kind": null,
+      "why": "Fed hike bets, oil on edge"
     },
     {
       "title": "Stock Markets Today: Sensex, Nifty Dip as West Asia Conflict, US Rate Hike Concerns Weigh - Rediff",
@@ -815,7 +846,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788759026000,
-      "_kind": null
+      "_kind": null,
+      "why": "Stocks dip on conflict, rate concerns"
     },
     {
       "title": "Israel-Hezbollah clashes deepen threat to fragile truce as Lebanon's president calls for U.S. support - CNBC",
@@ -883,7 +915,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788756719000,
-      "_kind": null
+      "_kind": null,
+      "why": "Oil prices, inflation drive markets"
     },
     {
       "title": "Germany's far-right AfD hails big victory in east, but falls short of majority",
@@ -1259,7 +1292,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788751300000,
+      "firstAt": 1788753300000,
       "_kind": null,
       "dir": {
         "XAU/USD": "down"
@@ -1315,28 +1348,6 @@
       "srcs": 1,
       "firstAt": 1788752046000,
       "why": "Mixed market news, no clear direction"
-    },
-    {
-      "title": "Gold eases as robust US payrolls boost rate-hike bets; inflation data in focus - BusinessLine",
-      "link": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxQTnRLbnRYSGdPcjJwQkxObVFSVkFjd2dmbkEzeHFHaGVZTFJISVo2ZDJoLUhNdUNBX3BISlVrZkxzcEEzeE1ta2ItUC1fRlBUeVBsNkZkdDY2Mlg3ZVlGTEFYVGFhMmQwdWcya2FrdnNDRXN4Z0JTQ1hrUzZRZk9SV2RLVkhGRUxLSkFMRHRsNV82OUVkUEU2TGV4YUpIRjZvTFR3ZVpoQzgtYWRfcGpxUG5TQXBQdWFLZHlYZm1pbDFMa0xnQXFvYmhuRk1US21fVFdvUHNKSE9RTG5adFNnbtIB5wFBVV95cUxNLV9hZjhURENQd24wWEFJUlNLQXF5ams0cno2ZHkwZEFMYi12REQyeVpUSDcwM3Vod2lwS0pOa3hNdXFpMUctaUs0dTB0d2VMTldzbElJTFhDT0FzY2RDSHdwbmV2aDM5QUp1NFlmVF9zTk9IR2puUDJwanotSy1VMlp5cEtmelpBNDhabk1WclVhWFJuTVRkSTQ3XzRkTW81VVJhNmtLcTRwdndDVkFzQVFReGpqOXg4WE50M2luVTZfeDlWb3B5SXUtaTY1b0REUmh0d3JSTFh0T2pKakJQYnlidml0S1k?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi4AFBVV95cUxQTnRLbnRYSGdPcjJwQkxObVFSVkFjd2dmbkEzeHFHaGVZTFJISVo2ZDJoLUhNdUNBX3BISlVrZkxzcEEzeE1ta2ItUC1fRlBUeVBsNkZkdDY2Mlg3ZVlGTEFYVGFhMmQwdWcya2FrdnNDRXN4Z0JTQ1hrUzZRZk9SV2RLVkhGRUxLSkFMRHRsNV82OUVkUEU2TGV4YUpIRjZvTFR3ZVpoQzgtYW",
-      "at": 1788751300000,
-      "inst": [
-        "XAU/USD"
-      ],
-      "ccy": [
-        "USD",
-        "XAU"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788751300000,
-      "dir": {
-        "XAU/USD": "down"
-      },
-      "why": "Robust payrolls boost rate-hike bets"
     },
     {
       "title": "Analysis-Ship fuel shortage looms as refiners strained by war favour other products",
@@ -1430,6 +1441,28 @@
         "UKOIL": "up"
       },
       "why": "Shipping disruption supports gold and oil"
+    },
+    {
+      "title": "Gold slips on rate-hike bets; inflation data in focus - Reuters",
+      "link": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPRGNES0hoVGlPMVZfR041a2MwVUNQOUI5dzBweW04UlNvWjNJUnJYUEdGMkkyb1I1MWdRcUp5SDJybUV4YlRTWEZ5aFd4M3NaTnE5clF1Y200Tk9oNFoxd3lncVkzbjFNdTVKazRLNVpSSloteGRvakNZWmxwLW5uUWo5V0U2dDc2TFE0Nkg4VWVOU1dpdE5tNUhzOWtXcUNjTUZQMmF3T2ZOQkpWRURmX20wSFlvam9UV1Yw?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiuwFBVV95cUxPRGNES0hoVGlPMVZfR041a2MwVUNQOUI5dzBweW04UlNvWjNJUnJYUEdGMkkyb1I1MWdRcUp5SDJybUV4YlRTWEZ5aFd4M3NaTnE5clF1Y200Tk9oNFoxd3lncVkzbjFNdTVKazRLNVpSSloteGRvakNZWmxwLW5uUWo5V0U2dDc2TFE0Nkg4VWVOU1dpdE5tNUhzOWtXcUNjTUZQMmF3T2ZOQk",
+      "at": 1788748560000,
+      "inst": [
+        "XAU/USD"
+      ],
+      "ccy": [
+        "XAU",
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788746792000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold slips on rate-hike bets"
     },
     {
       "title": "Australia’s proposed ‘opt out’ law targets Big Tech algorithms",
@@ -2245,7 +2278,7 @@
       "why": "Oil rises on conflict, gold unclear"
     },
     {
-      "title": "Hormuz shipping falls to lowest level since May after tanker strikes - Iran International",
+      "title": "Hormuz shipping falls to lowest level since May after tanker strikes - iranintl.com",
       "link": "https://news.google.com/rss/articles/CBMiTEFVX3lxTE1UdWQxNkhhTW03Z1h0TUtyNmhpMENNdmNqTnl2cUk1S3RBLUoxNUtFR0JSRW5aTnQySk9ZZ3VYUTF4NnhvbFFhVzNDcjU?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiTEFVX3lxTE1UdWQxNkhhTW03Z1h0TUtyNmhpMENNdmNqTnl2cUk1S3RBLUoxNUtFR0JSRW5aTnQySk9ZZ3VYUTF4NnhvbFFhVzNDcjU?oc=5\" target=\"_blank\">Hormuz shipping falls to lowest level since May after tanker strikes</a>&nbsp;&nbsp;<font color=\"#6f6f6f",
@@ -2760,31 +2793,6 @@
         "UKOIL": "up"
       },
       "why": "Continuing war strikes boost risk and oil."
-    },
-    {
-      "title": "Iran strikes US-affiliated tankers as maritime conflict escalates - san.com",
-      "link": "https://news.google.com/rss/articles/CBMijgFBVV95cUxNa2hPTlhHMW9YU0tjZW9aVnZRY1E0ZVlhekhnX0RQY2lUNTFaY0s0WFAxSEQ3R0VxSWFVZXlSNWpTZzcyYVpaYl80OGxRYW9aMHBaSEd6RnZBWC1rcHRMZ0ZkbnZoV2ZjUDVYNDJWOGduRC03MWJmN2ktZ3FIV0tlSzhHSHUwdC1haFBONGh3?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMijgFBVV95cUxNa2hPTlhHMW9YU0tjZW9aVnZRY1E0ZVlhekhnX0RQY2lUNTFaY0s0WFAxSEQ3R0VxSWFVZXlSNWpTZzcyYVpaYl80OGxRYW9aMHBaSEd6RnZBWC1rcHRMZ0ZkbnZoV2ZjUDVYNDJWOGduRC03MWJmN2ktZ3FIV0tlSzhHSHUwdC1haFBONGh3?oc=5\" target=\"_blank\">Iran strikes US",
-      "at": 1788707667000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788707667000,
-      "dir": {
-        "USOIL": "up",
-        "UKOIL": "up"
-      },
-      "why": "Conflict escalates, boosting oil prices"
     }
   ],
   "sources": [
@@ -2810,7 +2818,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-07T05:49:05.306Z",
-  "headlinesAt": "2026-09-07T05:49:05.306Z",
-  "updatedAt": "2026-09-07T05:49:05.306Z"
+  "calendarAt": "2026-09-07T05:52:06.722Z",
+  "headlinesAt": "2026-09-07T05:52:06.722Z",
+  "updatedAt": "2026-09-07T05:52:06.722Z"
 }
