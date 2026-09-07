@@ -1,5 +1,5 @@
 {
-  "asOf": "2026-08-31T00:00:53.534Z",
+  "asOf": "2026-09-07T17:52:38.673Z",
   "weeks": 160,
   "horizons": [
     5,
@@ -87,61 +87,61 @@
     "horizons": {
       "5": {
         "n": 39,
-        "win": 46,
+        "win": 49,
         "medAtr": -0.16,
         "baseWin": 47,
-        "baseMedAtr": -0.1,
+        "baseMedAtr": -0.11,
         "baseN": 1287,
+        "edgeWin": 2,
+        "z": 0.25,
+        "stops": [
+          {
+            "stopAtr": 0.5,
+            "rr": 2,
+            "expR": 0.144,
+            "n": 39
+          },
+          {
+            "stopAtr": 1,
+            "rr": 2,
+            "expR": 0.036,
+            "n": 39
+          },
+          {
+            "stopAtr": 1.5,
+            "rr": 2,
+            "expR": 0.011,
+            "n": 39
+          }
+        ]
+      },
+      "10": {
+        "n": 39,
+        "win": 44,
+        "medAtr": -0.6,
+        "baseWin": 45,
+        "baseMedAtr": -0.29,
+        "baseN": 1274,
         "edgeWin": -1,
         "z": -0.12,
         "stops": [
           {
             "stopAtr": 0.5,
             "rr": 2,
-            "expR": 0.059,
+            "expR": 0.221,
             "n": 39
           },
           {
             "stopAtr": 1,
             "rr": 2,
-            "expR": 0.064,
+            "expR": -0.002,
             "n": 39
           },
           {
             "stopAtr": 1.5,
             "rr": 2,
-            "expR": 0.057,
+            "expR": -0.079,
             "n": 39
-          }
-        ]
-      },
-      "10": {
-        "n": 38,
-        "win": 42,
-        "medAtr": -0.36,
-        "baseWin": 45,
-        "baseMedAtr": -0.29,
-        "baseN": 1274,
-        "edgeWin": -3,
-        "z": -0.37,
-        "stops": [
-          {
-            "stopAtr": 0.5,
-            "rr": 2,
-            "expR": 0.026,
-            "n": 38
-          },
-          {
-            "stopAtr": 1,
-            "rr": 2,
-            "expR": 0.024,
-            "n": 38
-          },
-          {
-            "stopAtr": 1.5,
-            "rr": 2,
-            "expR": -0.01,
-            "n": 38
           }
         ]
       },
@@ -150,7 +150,7 @@
         "win": 50,
         "medAtr": 0.24,
         "baseWin": 44,
-        "baseMedAtr": -0.38,
+        "baseMedAtr": -0.4,
         "baseN": 1248,
         "edgeWin": 6,
         "z": 0.73,
@@ -158,19 +158,19 @@
           {
             "stopAtr": 0.5,
             "rr": 2,
-            "expR": 0.026,
+            "expR": 0.184,
             "n": 38
           },
           {
             "stopAtr": 1,
             "rr": 2,
-            "expR": 0.01,
+            "expR": -0.015,
             "n": 38
           },
           {
             "stopAtr": 1.5,
             "rr": 2,
-            "expR": 0.071,
+            "expR": 0.036,
             "n": 38
           }
         ]
@@ -180,7 +180,7 @@
         "win": 43,
         "medAtr": -0.79,
         "baseWin": 42,
-        "baseMedAtr": -0.8,
+        "baseMedAtr": -0.81,
         "baseN": 1196,
         "edgeWin": 1,
         "z": 0.12,
@@ -188,7 +188,7 @@
           {
             "stopAtr": 0.5,
             "rr": 2,
-            "expR": -0.057,
+            "expR": 0.114,
             "n": 35
           },
           {
@@ -210,7 +210,7 @@
   "crowdedShort": {
     "label": "positioning at or below the 10th percentile",
     "hypothesis": "up",
-    "episodes": 41,
+    "episodes": 40,
     "bySym": [
       {
         "sym": "EUR/USD",
@@ -241,6 +241,10 @@
         "episodes": 1
       },
       {
+        "sym": "XAG/USD",
+        "episodes": 1
+      },
+      {
         "sym": "US500",
         "episodes": 3
       },
@@ -250,7 +254,7 @@
       },
       {
         "sym": "USOIL",
-        "episodes": 7
+        "episodes": 5
       },
       {
         "sym": "NATGAS",
@@ -259,74 +263,74 @@
     ],
     "horizons": {
       "5": {
-        "n": 41,
-        "win": 59,
+        "n": 40,
+        "win": 57,
         "medAtr": 0.49,
         "baseWin": 53,
-        "baseMedAtr": 0.1,
+        "baseMedAtr": 0.11,
         "baseN": 1287,
-        "edgeWin": 6,
-        "z": 0.76,
+        "edgeWin": 4,
+        "z": 0.5,
         "stops": [
           {
             "stopAtr": 0.5,
             "rr": 2,
-            "expR": 0.146,
-            "n": 41
+            "expR": 0.1,
+            "n": 40
           },
           {
             "stopAtr": 1,
             "rr": 2,
-            "expR": 0.26,
-            "n": 41
+            "expR": 0.137,
+            "n": 40
           },
           {
             "stopAtr": 1.5,
             "rr": 2,
-            "expR": 0.199,
-            "n": 41
+            "expR": 0.088,
+            "n": 40
           }
         ]
       },
       "10": {
-        "n": 41,
-        "win": 59,
-        "medAtr": 0.37,
+        "n": 40,
+        "win": 60,
+        "medAtr": 0.52,
         "baseWin": 55,
         "baseMedAtr": 0.29,
         "baseN": 1274,
-        "edgeWin": 4,
-        "z": 0.51,
+        "edgeWin": 5,
+        "z": 0.63,
         "stops": [
           {
             "stopAtr": 0.5,
             "rr": 2,
-            "expR": 0.098,
-            "n": 41
+            "expR": 0.05,
+            "n": 40
           },
           {
             "stopAtr": 1,
             "rr": 2,
-            "expR": 0.092,
-            "n": 41
+            "expR": 0.032,
+            "n": 40
           },
           {
             "stopAtr": 1.5,
             "rr": 2,
-            "expR": 0.084,
-            "n": 41
+            "expR": 0.021,
+            "n": 40
           }
         ]
       },
       "20": {
         "n": 39,
-        "win": 54,
-        "medAtr": 0.57,
+        "win": 56,
+        "medAtr": 0.91,
         "baseWin": 56,
-        "baseMedAtr": 0.38,
+        "baseMedAtr": 0.4,
         "baseN": 1248,
-        "edgeWin": -2,
-        "z": -0.25,
+        "edgeWin": 0,
+        "z": 0,
         "stops": [
           {
             "stopAtr": 0.5,
@@ -343,7 +347,7 @@
           {
             "stopAtr": 1.5,
             "rr": 2,
-            "expR": 0.08,
+            "expR": 0.052,
             "n": 39
           }
         ]
@@ -351,9 +355,9 @@
       "40": {
         "n": 35,
         "win": 57,
-        "medAtr": 0.46,
+        "medAtr": 0.59,
         "baseWin": 58,
-        "baseMedAtr": 0.8,
+        "baseMedAtr": 0.84,
         "baseN": 1196,
         "edgeWin": -1,
         "z": -0.12,
@@ -367,7 +371,7 @@
           {
             "stopAtr": 1,
             "rr": 2,
-            "expR": -0.143,
+            "expR": -0.229,
             "n": 35
           },
           {
