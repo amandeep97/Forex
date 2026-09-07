@@ -744,7 +744,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788792603000,
-      "_kind": null
+      "_kind": null,
+      "why": "Greece stocks unrelated to US index"
     },
     {
       "title": "Volkswagen finds defence future for German plant amid major overhaul",
@@ -763,6 +764,22 @@
       "why": "Corporate news lacks macro currency impact"
     },
     {
+      "title": "Tesla Says This Time Is Different. Wall Street Is Split on Whether to Believe It",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/tesla-says-time-different-wall-144326930.html",
+      "source": "Yahoo Finance",
+      "at": 1788792206000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788792206000,
+      "_kind": null,
+      "why": "Mixed sentiment, no clear direction"
+    },
+    {
       "title": "Gold Faces Stagflation Risk as Energy Costs Keep Inflation Elevated - Investing.com",
       "link": "https://news.google.com/rss/articles/CBMisgFBVV95cUxOZWF6SWNJS2FERzg1NG1hdm9JQnlCS19aS29reV9qejYtNWJRa0h4R3ozeUpvb25DVGFfR053VjZuOUN1X1hILTNhb1hDZmxwOHRIXzVmbzhqaXUzVzV4OEh4RDNqNHdmUGtBTHdpcDl6d3EzdmlWczRTMGlscW90TzM5VXJacUJNMEFySWZ1MmtzbzYweW44TGd2Yzd4Rl90OG1zalNmQmF6VWtNZ1JnZEhR?oc=5",
       "source": "Wires (macro)",
@@ -777,8 +794,8 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788791030000,
+      "srcs": 2,
+      "firstAt": 1788790860000,
       "_kind": null,
       "dir": {
         "XAU/USD": "up"
@@ -832,7 +849,7 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 2,
+      "srcs": 3,
       "firstAt": 1788789313000,
       "_kind": null,
       "dir": {
@@ -897,13 +914,35 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 2,
+      "srcs": 3,
       "firstAt": 1788789313000,
       "_kind": null,
       "dir": {
         "XAU/USD": "down"
       },
       "why": "Gold bears in control, oil neutral"
+    },
+    {
+      "title": "Gold Under Pressure With This Week’s Inflation Data in Focus",
+      "link": "https://www.wsj.com/finance/commodities-futures/gold-falls-on-rising-fed-rate-hike-expectations-6e77bf70?siteid=yhoof2&yptr=yahoo",
+      "source": "Yahoo Finance",
+      "at": 1788790860000,
+      "inst": [
+        "XAU/USD"
+      ],
+      "ccy": [
+        "XAU",
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1788790860000,
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold under pressure implies bearish"
     },
     {
       "title": "Microsoft Stock Is Building a Trillion-Dollar AI Opportunity. Is $600 Next?",
@@ -982,23 +1021,6 @@
       "srcs": 1,
       "firstAt": 1788790095000,
       "_kind": null
-    },
-    {
-      "title": "There Are Only a Handful of Nasdaq-100 Stocks That Yield Over 3%. Here's My Top Pick to Buy Now.",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/only-handful-nasdaq-100-stocks-140500834.html",
-      "source": "Yahoo Finance",
-      "at": 1788789900000,
-      "inst": [
-        "US500",
-        "US100"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788789176000,
-      "_kind": null,
-      "why": "Specific stock pick, not broad index."
     },
     {
       "title": "Germany's far-right AfD says 'democracy demands' parties work with them after state election win",
@@ -1086,22 +1108,6 @@
       "why": "Geopolitical escalation boosts safe havens and oil."
     },
     {
-      "title": "The S&P 100 ETF Just Dumped Nike and Colgate for 4 AI Stocks. Here’s What That Means for Your Portfolio",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/p-100-etf-just-dumped-135256184.html",
-      "source": "Yahoo Finance",
-      "at": 1788789176000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788789176000,
-      "_kind": null,
-      "why": "ETF rebalancing, neutral for broad index."
-    },
-    {
       "title": "Israeli attacks on Gaza kill five Palestinians, including two children",
       "link": "https://www.aljazeera.com/news/2026/9/7/israeli-attacks-on-gaza-kill-five-palestinians-including-two-children?traffic_source=rss",
       "source": "Al Jazeera",
@@ -1147,19 +1153,6 @@
         "UKOIL": "up"
       },
       "why": "Geopolitical risk boosts oil prices"
-    },
-    {
-      "title": "Apple Just Made a Move Most Investors Overlooked. This Is Why I Keep Buying The Stock",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/apple-just-made-move-most-135135226.html",
-      "source": "Yahoo Finance",
-      "at": 1788789095000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1788789095000,
-      "_kind": null
     },
     {
       "title": "HUR Operators Strike Russian Aircraft in Occupied Crimea, Video - UNITED24 Media",
@@ -1212,31 +1205,6 @@
       "why": "Oil rises on geopolitical tensions"
     },
     {
-      "title": "Lebanon says 12 killed in strikes as Israel vows to 'remove threats' - Bangkok Post",
-      "link": "https://news.google.com/rss/articles/CBMirAFBVV95cUxOZGRzRmtaWVMyVFBEQWhRM2F4ZnRPRXZGLXlPeEpXTGxHMmZ5VTcyV05CQUxfM2wtOTVuZmJuOXZ0MW5MRkRxNE5TLW9ER2ZlbVVkTG9BWUE3cjRyaTBDbUMxMFI5WTJSWVZkNkJtWC14Ykg1OVVGVlpoWXk1Rmx5YzQxS2VXY2Y1S1lJZ0lFMHVxY2VUcXBUcFRseWFQMnFIdDlSVUphdXVGclc2?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMirAFBVV95cUxOZGRzRmtaWVMyVFBEQWhRM2F4ZnRPRXZGLXlPeEpXTGxHMmZ5VTcyV05CQUxfM2wtOTVuZmJuOXZ0MW5MRkRxNE5TLW9ER2ZlbVVkTG9BWUE3cjRyaTBDbUMxMFI5WTJSWVZkNkJtWC14Ykg1OVVGVlpoWXk1Rmx5YzQxS2VXY2Y1S1lJZ0lFMHVxY2VUcXBUcFRseWFQMnFIdDlSVUphdXVGcl",
-      "at": 1788788700000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788787821000,
-      "_kind": null,
-      "dir": {
-        "XAU/USD": "up"
-      },
-      "why": "Conflict escalation supports gold, oil unclear."
-    },
-    {
       "title": "Israeli strikes in southern Lebanese village kill 12",
       "link": "https://www.bbc.co.uk/news/articles/c5yl96vz0edo?at_medium=RSS&at_campaign=rss",
       "source": "BBC World",
@@ -1261,7 +1229,7 @@
       "why": "Geopolitical risk boosts gold, oil unclear"
     },
     {
-      "title": "Israeli strikes in southern Lebanese village kill 12 - BBC",
+      "title": "Israeli strikes in southern Lebanese village kill 12 - bbc.com",
       "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBkeHo4dnBmNnFsLXpHaUU2czN0MG52bTBadUNFVlNWTTExWWFTanpTZnp3YS1QVEFsVkVPYWREVFRhRVBvY3NwcV9kakJ5clVhb2VtUjhMNzlTZw?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiWkFVX3lxTFBkeHo4dnBmNnFsLXpHaUU2czN0MG52bTBadUNFVlNWTTExWWFTanpTZnp3YS1QVEFsVkVPYWREVFRhRVBvY3NwcV9kakJ5clVhb2VtUjhMNzlTZw?oc=5\" target=\"_blank\">Israeli strikes in southern Lebanese village kill 12</a>&nbsp;&nbsp;<font color=\"#6f6",
@@ -1281,9 +1249,11 @@
       "firstAt": 1788786359000,
       "_kind": null,
       "dir": {
-        "XAU/USD": "up"
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
       },
-      "why": "Conflict escalation supports gold, oil unclear."
+      "why": "Geopolitical risk boosts safe havens and oil"
     },
     {
       "title": "Israel launches deadly strike on southern Lebanon - NBC News",
@@ -1662,7 +1632,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788786026000,
-      "_kind": null,
       "why": "No clear directional impact on listed instruments."
     },
     {
@@ -1981,6 +1950,27 @@
         "XAU/USD": "down"
       },
       "why": "Gold under pressure, oil direction unclear"
+    },
+    {
+      "title": "Latest flare-up between the US and Iran: Will there be major escalation or just more of the same stand-off? - The Straits Times",
+      "link": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxNWE5JZkpTTDhWLThzLThleEV0Zlh6TEJxeWNZWnhPdWU4bVVpWU9Ra3FDS3pJOWdLd1VXeDNKRlRUZEdzLTJrY1NjRTNNQ0xwWjkyRFpNX29WUkRXdVlpZjRaSURFbkVxeVotWVVmV3hPX2FtampfYTJhUWJlTWFMZFNBQnc2NUc5dWFnMXpqS2lwTTJhR0thU0JqRXgtS3lYWlFmNzVVTnlCRWdQOS1OekxWTDh5M1psWFNaWW13dUs1NHMzanpLaDhiU3BIVlQ0M180SDh5WGVlZw?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi2gFBVV95cUxNWE5JZkpTTDhWLThzLThleEV0Zlh6TEJxeWNZWnhPdWU4bVVpWU9Ra3FDS3pJOWdLd1VXeDNKRlRUZEdzLTJrY1NjRTNNQ0xwWjkyRFpNX29WUkRXdVlpZjRaSURFbkVxeVotWVVmV3hPX2FtampfYTJhUWJlTWFMZFNBQnc2NUc5dWFnMXpqS2lwTTJhR0thU0JqRXgtS3lYWlFmNzVVTnlCRW",
+      "at": 1788780600000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788780600000,
+      "why": "Uncertain escalation outcome for markets"
     },
     {
       "title": "Dollar falls ahead of US inflation data as yen hits seven-month high - Economies.com",
@@ -2662,6 +2652,31 @@
         "US500": "down"
       },
       "why": "Oil rises, rate bets weigh stocks"
+    },
+    {
+      "title": "Iran war: How US consumers spent an additional $100bn on fuel",
+      "link": "https://www.aljazeera.com/news/2026/9/7/iran-war-how-us-consumers-spent-an-additional-100bn-on-fuel?traffic_source=rss",
+      "source": "Al Jazeera",
+      "desc": "The average US household has spent $763 extra on fuel in six months, as the US-Israel war on Iran pushes up fuel costs.",
+      "at": 1788773444000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788773444000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "War pushes fuel costs higher"
     }
   ],
   "sources": [
@@ -2687,7 +2702,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-07T15:00:08.378Z",
-  "headlinesAt": "2026-09-07T15:00:08.378Z",
-  "updatedAt": "2026-09-07T15:00:08.378Z"
+  "calendarAt": "2026-09-07T15:04:06.421Z",
+  "headlinesAt": "2026-09-07T15:04:06.421Z",
+  "updatedAt": "2026-09-07T15:04:06.421Z"
 }
