@@ -246,7 +246,7 @@ function buildDOWContext() {
   if (dow === 0 || dow === 6) L.push('Weekend — no institutional order flow, avoid trading');
   else if (dow === 1) L.push('Monday = range day. Check: did Fri high < Thu high? → targets Friday LOW today (Rule 1 bearish). Wait for London direction.');
   else if (dow === 2) L.push('Tuesday = HIGHEST PROBABILITY DAY (ICT). Strong trend continuation expected. Best day to trade.');
-  else if (dow === 3) l: {
+  else if (dow === 3) {
     L.push('Wednesday = mid-week extreme. CHECK Rule 2: is Wed high < Mon high? → Thu visits Wed LOW.');
     L.push('NY session often creates the weekly high or low today.');
   }

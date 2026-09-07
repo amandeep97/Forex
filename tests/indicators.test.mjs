@@ -111,7 +111,10 @@ const walk = (n, spikeAt = -1, spike = 6) => {
     computeRSI(null) === null && computeEMA(null, 20) === null && computeATR(null) === null);
 
   // Why it has to be null and has to be guarded by the callers.
+  // The constant here is the whole point: this pins a rule of the LANGUAGE, not
+  // a behaviour of ours, so a linter calling it constant is agreeing with it.
   check('a null compares as zero, which is why every caller checks first',
+    // eslint-disable-next-line no-constant-binary-expression
     (100 > null) === true && (100 < null) === false,
     'an unguarded `price > ema` would read bullish on every instrument on the board');
 }

@@ -281,38 +281,31 @@ function ConnectTab({ onLog, signalPair, onSignalUsed }) {
   };
 
   // ── Forex.com connect ──────────────────────────────────────────────────────
+  //
+  // It does not exist. This is not a temporary outage or a CORS problem: the
+  // four functions this used to call — fcAuth, fcGetAccounts and the two state
+  // setters behind them — were never written, in this file or anywhere else in
+  // the repository. Pressing the button threw a ReferenceError, the catch below
+  // swallowed it, and the message shown to you blamed browser CORS. So the
+  // screen reported a plausible external cause for a function that was missing.
+  //
+  // A linter found this the first time it was run. It says so honestly now
+  // rather than pretending, and the OANDA path beside it is unaffected.
   const connectForexCom = async () => {
-    if (!fcUser || !fcPass) { setConnErr('Enter username and password'); return; }
-    setConnErr(''); setConnMsg('Authenticating…');
-    try {
-      const auth = await fcAuth(fcUser, fcPass, fcEnv);
-      localStorage.setItem('fc_user', fcUser);
-      localStorage.setItem('fc_session', auth.session);
-      localStorage.setItem('fc_env', fcEnv);
-      localStorage.setItem('broker_type', 'forexcom');
-      setFcSession(auth.session);
-      // Get accounts
-      const accts = await fcGetAccounts(fcUser, auth.session, fcEnv).catch(() => ({ ClientAccounts: [] }));
-      const list = accts.ClientAccounts || [];
-      setFcAccts(list);
-      if (list.length > 0) {
-        const id = String(list[0].TradingAccountId);
-        setFcAcctId(id);
-        localStorage.setItem('fc_acct', id);
-      }
-      setFcConnected(true); setConnMsg('');
-      onLog?.('SUCCESS', `Connected to Forex.com ${fcEnv} · ${list.length} account(s)`);
-    } catch (e) {
-      setConnErr(`Forex.com: ${e.message} — Note: browser CORS may block direct API calls; use VPS bot for Forex.com instead.`);
-      setConnMsg('');
-    }
+    setConnMsg('');
+    setConnErr('Forex.com is not supported in the app. Only OANDA is wired up here — '
+      + 'connect OANDA above, or run Forex.com through the VPS bot.');
   };
 
   // ── Analyze ────────────────────────────────────────────────────────────────
   const analyze = async (forceDir = null) => {
     const key = broker === 'oanda' ? apiKey : null;
     if (broker === 'oanda' && !key) { setTradeErr('Connect OANDA first'); return; }
-    if (broker === 'forexcom' && !fcConnected) { setTradeErr('Connect Forex.com first'); return; }
+    if (broker === 'forexcom') {
+      setTradeErr('Forex.com is not supported in the app — switch the broker to OANDA, '
+        + 'or run Forex.com through the VPS bot.');
+      return;
+    }
     setAnalyzing(true); setTradeErr(''); setSignal(null);
     try {
       let candles;

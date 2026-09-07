@@ -1509,7 +1509,7 @@ export default function IndicesDashboard() {
         <SectionCard style={{ background:'var(--bg1)' }}>
           <SectionTitle icon="📖" label="How to Use This Dashboard"/>
           <div style={{ display:'flex', flexDirection:'column', gap:8, fontSize:11, color:'var(--text2)', lineHeight:1.6 }}>
-            <div><strong style={{ color:'var(--text1)' }}>Step 1 — Macro check:</strong> Check the Macro Environment section. If VIX is low, Fed is pausing/cutting, PMI >50 = bullish bias. If opposite = bearish bias.</div>
+            <div><strong style={{ color:'var(--text1)' }}>Step 1 — Macro check:</strong> Check the Macro Environment section. If VIX is low, Fed is pausing/cutting, PMI above 50 = bullish bias. If opposite = bearish bias.</div>
             <div><strong style={{ color:'var(--text1)' }}>Step 2 — Pick the index:</strong> Look at Relative Strength. In an uptrend, trade the strongest index (NQ often leads). In a downtrend, short the weakest (RUT often falls first).</div>
             <div><strong style={{ color:'var(--text1)' }}>Step 3 — Check SMT:</strong> If SPX/NQ are diverging, do NOT trade that move. Wait for both to agree.</div>
             <div><strong style={{ color:'var(--text1)' }}>Step 4 — Wait for Kill Zone:</strong> Best entries happen at London Open (07-09 UTC) or NY Open (13:30-15:30 UTC). Do not enter in Asian session.</div>

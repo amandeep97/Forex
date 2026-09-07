@@ -331,7 +331,6 @@ export default function Screener() {
       'EUR/CAD':{ cur:'EUR', inv:false }, 'EUR/CHF':{ cur:'EUR', inv:false },
       'GBP/JPY':{ cur:'GBP', inv:false }, 'GBP/CHF':{ cur:'GBP', inv:false },
       'AUD/JPY':{ cur:'AUD', inv:false }, 'CAD/JPY':{ cur:'CAD', inv:false },
-      'NZD/USD':{ cur:'NZD', inv:false },
     };
 
     async function fetchCOTSentiment() {
