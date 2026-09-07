@@ -401,7 +401,7 @@ export default function TradingDesk() {
             {noSetup.state?.plain?.length
               ? <>The market is: {noSetup.state.plain.slice(0, 5).join(', ')}.</>
               : 'No readable state on this bar.'}
-            {noSetup.driver ? ` ${noSetup.driver}` : ''}
+            {noSetup.driver?.text ? ` ${noSetup.driver.text}.` : ''}
           </div>
           <button onClick={() => run({ force: true })}
             style={{ marginTop: 10, padding: '5px 12px', borderRadius: 5, fontSize: 11.5,
