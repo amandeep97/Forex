@@ -860,7 +860,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788745500000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Strong dollar boosts Fed hike bets"
     },
     {
       "title": "Eight-year-old Gaza girl killed by Israel on first day of school",
@@ -1170,7 +1176,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1788742655000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold falls on Fed rate hike expectations"
     },
     {
       "title": "Ringgit Edges Up As Markets Weigh Strong US NFP, Fed Rate Hike - BusinessToday Malaysia",
@@ -1241,7 +1251,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788742805000,
-      "_kind": null,
       "dir": {
         "XAU/USD": "up",
         "USOIL": "up",
@@ -2408,7 +2417,7 @@
       "why": "Iran tensions drive volatility and safe-haven demand."
     },
     {
-      "title": "US inflation data, crude, Iran crisis to steer bullion this week: Analysts - Business Standard",
+      "title": "US inflation data, crude, Iran crisis to steer bullion this week: Analysts - business-standard.com",
       "link": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxQb2g4Z0hmLVphaXdySWRoNmJRdDNfTkRNVDVYaDMtRGZaWWpWajFXcjFRb1BSV3ZNNWJlVVY5QlJCT1YtSTVTVndOZ3J4dWx4c2ZmZUdlRHMybnJ3d3kyNGIwcnRiemhVd0NyMDhuNnZGMmhpR0dVVkhtVTVKaTFSeGZMU21KYXVfX3dxdEtzUXloYnJEWFdjNDhSUTBNMzM1clBodTB4eXliNGlqY3pBWlJuYnJ3b1RFOS15aHZRdlMzNW0yRlkzWHlRWExnZnlKOVdocNIB2gFBVV95cUxNa0M2SjkwZ19CbTJTTGgydDkxRzFTQUowSWlqbk04SF9ycHlON1Rwam5WRmlnczloWkdQRmY0SUMzeC0zeFhpODYzVUFDN0FGTVNiWkdScWFjTWJQMjJHanZSNVRUY3Jqai1vMV9jYzhpMlhTM2p2XzBVT2Z6aWI0QVVOYzg4U3pvN0FvSnp3UkNrVURNZDI1Mm5PYmRLVVdfZk9NTVZ4UjBjQnJydTJtdEM4a05VdGxpdlJpcENpWmFVV1M5V2drYzJnM3hDcmViQXlsYldKcFJaZw?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMi1AFBVV95cUxQb2g4Z0hmLVphaXdySWRoNmJRdDNfTkRNVDVYaDMtRGZaWWpWajFXcjFRb1BSV3ZNNWJlVVY5QlJCT1YtSTVTVndOZ3J4dWx4c2ZmZUdlRHMybnJ3d3kyNGIwcnRiemhVd0NyMDhuNnZGMmhpR0dVVkhtVTVKaTFSeGZMU21KYXVfX3dxdEtzUXloYnJEWFdjNDhSUTBNMzM1clBodTB4eXliNG",
@@ -2621,27 +2630,6 @@
       "why": "Conflict and inflation data drive safe-haven demand."
     },
     {
-      "title": "US‑Israel strikes against Iran have systematically undermined human rights - Global Times",
-      "link": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE5MZnNPZWdUaUY0ZTd0NVZzRERKTzZ3UFhoaGVOb1FORmhOT3dNbGZUUTBLeTB4ZW1GOHJqNVNMSEhkQzFyRG9rQlppLUdEck5mektNVnF4VmxDNXR6aTR4Z3lB?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiYkFVX3lxTE5MZnNPZWdUaUY0ZTd0NVZzRERKTzZ3UFhoaGVOb1FORmhOT3dNbGZUUTBLeTB4ZW1GOHJqNVNMSEhkQzFyRG9rQlppLUdEck5mektNVnF4VmxDNXR6aTR4Z3lB?oc=5\" target=\"_blank\">US‑Israel strikes against Iran have systematically undermined human rights<",
-      "at": 1788697200000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788695920000,
-      "why": "Human rights commentary lacks market direction."
-    },
-    {
       "title": "How are recent US-Iran strikes impacting gas prices this holiday weekend? - KOAT",
       "link": "https://news.google.com/rss/articles/CBMiekFVX3lxTE9tdTlfb0Q3N1NRNkFlTC1INE9SNnhYWWdra1ZpOUJZTVVjUGdmdzhxN1lBa1VTTEtYN3hVdXNxUU5sZmlXbFhvUnJudzJ3Z0x6NEhqR1lpc3lLbTBqR1oyTmRLWnh4YWxlU3JhZEJnYlVJNkktbld2cTNR?oc=5",
       "source": "Wires (geo)",
@@ -2773,6 +2761,27 @@
       "srcs": 1,
       "firstAt": 1788694260000,
       "why": "Political rhetoric, no clear market impact."
+    },
+    {
+      "title": "Putin pauses Ukraine strikes after Kusher, Witkoff meeting - Fox News",
+      "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE02Vzctc2NybzNwY1Q3c3dHUnpDTjA0MTNtMVU3N2hOdkQ1OS1BanFzTWxyTGFVMnZQdnU0bEFfT2Rha3FObXktU05xRzRoOXJHek5MdGx3?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiVkFVX3lxTE02Vzctc2NybzNwY1Q3c3dHUnpDTjA0MTNtMVU3N2hOdkQ1OS1BanFzTWxyTGFVMnZQdnU0bEFfT2Rha3FObXktU05xRzRoOXJHek5MdGx3?oc=5\" target=\"_blank\">Putin pauses Ukraine strikes after Kusher, Witkoff meeting</a>&nbsp;&nbsp;<font color=\"#6f6",
+      "at": 1788693758000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788693758000,
+      "why": "Pause in strikes, direction unclear."
     }
   ],
   "sources": [
@@ -2795,10 +2804,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-07T03:12:19.657Z",
-  "headlinesAt": "2026-09-07T03:12:19.657Z",
-  "updatedAt": "2026-09-07T03:12:19.657Z"
+  "calendarAt": "2026-09-07T03:15:06.128Z",
+  "headlinesAt": "2026-09-07T03:15:06.128Z",
+  "updatedAt": "2026-09-07T03:15:06.128Z"
 }
