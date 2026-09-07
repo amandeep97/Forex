@@ -145,12 +145,25 @@ function Decision({ d, levelIssue, review, dec }) {
 // The banner. Deliberately says what to DO and then, in the same breath, that it
 // is one opinion — because a two-word verdict in large green type is exactly the
 // thing a person acts on without reading the rest.
-function Verdict({ d, review, levelIssue, dec, waiting }) {
-  const raw = verdictOf(d, review, levelIssue);
+function Verdict({ d, review, levelIssue, dec, waiting, consensus }) {
+  const raw = verdictOf(d, review, levelIssue, consensus);
   if (!raw) return null;
   const v = { ...raw, tone: C[raw.tone] || C.neutral };
   const n = x => (x == null || !Number.isFinite(+x) ? '—' : (+x).toFixed(dec ?? 2));
   const trading = v.word.startsWith('TRADE');
+  if (!d) {
+    return (
+      <div style={{ marginTop: 12, padding: '12px 14px', borderRadius: 8,
+        background: `${v.tone}14`, border: `1px solid ${v.tone}55` }}>
+        <div style={{ fontSize: 19, fontWeight: 800, color: v.tone, letterSpacing: '0.5px' }}>
+          {v.word}
+        </div>
+        <div style={{ fontSize: 11.5, color: 'var(--text2)', marginTop: 8, lineHeight: 1.55 }}>
+          {v.line}
+        </div>
+      </div>
+    );
+  }
   return (
     <div style={{ marginTop: 12, padding: '12px 14px', borderRadius: 8,
       background: `${v.tone}14`, border: `1px solid ${v.tone}55` }}>
@@ -158,7 +171,12 @@ function Verdict({ d, review, levelIssue, dec, waiting }) {
         <span style={{ fontSize: 19, fontWeight: 800, color: v.tone, letterSpacing: '0.5px' }}>
           {v.word}
         </span>
-        {d.conviction != null && (
+        {consensus?.n > 1 ? (
+          <span style={{ fontSize: 10, color: 'var(--text3)' }}>
+            {Math.round(consensus.agreement * 100)}% agreement across {consensus.n} independent runs
+            {' '}· hold {d.horizon_hours}h
+          </span>
+        ) : d.conviction != null && (
           <span style={{ fontSize: 10, color: 'var(--text3)' }}>
             conviction {d.conviction}/5 · hold {d.horizon_hours}h
           </span>
@@ -195,8 +213,12 @@ function Verdict({ d, review, levelIssue, dec, waiting }) {
       )}
 
       <div style={{ fontSize: 10, color: 'var(--text3)', marginTop: 8, lineHeight: 1.5 }}>
-        One opinion, not a signal — the reasoning and the case against it are below, and
-        this verdict is logged with the price so it can be scored later.
+        {consensus?.n > 1
+          ? `Decided ${consensus.n} times independently on the same evidence; the levels above are the
+             median of the runs that agreed. Agreement is measured, not the model rating its own
+             confidence. Logged with the price so it can be scored later.`
+          : `One opinion, not a signal — the reasoning and the case against it are below, and this
+             verdict is logged with the price so it can be scored later.`}
       </div>
     </div>
   );
@@ -217,6 +239,11 @@ export default function TradingDesk() {
   const [wait, setWait] = useState(0);
   const [scored, setScored] = useState(null);
   const [noSetup, setNoSetup] = useState(null);
+  const [consensus, setConsensus] = useState(null);
+  const [samples, setSamples] = useState(() => {
+    const v = parseInt(localStorage.getItem('desk_samples') || '3', 10);
+    return v >= 1 && v <= 5 ? v : 3;
+  });
 
   useEffect(() => { setLog(readLog()); }, []);
 
@@ -280,7 +307,7 @@ export default function TradingDesk() {
   // speak, so this stops and says so rather than performing the deliberation.
   const run = useCallback(async ({ force = false } = {}) => {
     setErr(null); setReports([]); setDebate([]); setTrader(null); setRisk(null);
-    setLevelIssue(null); setEv(null); setNoSetup(null);
+    setLevelIssue(null); setEv(null); setNoSetup(null); setConsensus(null);
     try {
       setBusy('gathering evidence');
       const pack = await gatherEvidence(inst, { onStep: s => setBusy(`gathering ${s}`) });
@@ -294,6 +321,10 @@ export default function TradingDesk() {
 
       await runDesk(pack, {
         rounds,
+        samples,
+        // Its own scored record, so the trader can see where it has been wrong
+        // instead of starting from nothing every single run.
+        history: scored?.rows || null,
         onStage: (s) => {
           if (s.stage === 'analyst') {
             setBusy(`${s.report.label} done`);
@@ -305,8 +336,13 @@ export default function TradingDesk() {
               next[s.round] = { ...(next[s.round] || {}), [s.stage]: s.text };
               return next;
             });
+          } else if (s.stage === 'sampling') {
+            setBusy(`deciding — run ${s.i + 1} of ${s.of}`);
+          } else if (s.stage === 'sample') {
+            // nothing to show yet; the consensus is what matters
           } else if (s.stage === 'trader') {
             setBusy('trader deciding');
+            setConsensus(s.consensus || null);
             setTrader(s.decision || { action: 'stand aside', why: s.raw });
             setLevelIssue(s.levelIssue);
           } else if (s.stage === 'risk') {
@@ -325,7 +361,7 @@ export default function TradingDesk() {
     } catch (e) {
       setErr(e.message || String(e));
     } finally { setBusy(''); setWait(0); }
-  }, [inst, rounds]);
+  }, [inst, rounds, samples, scored]);
 
   const thin = ev && Object.entries(ev.have || {}).filter(([, v]) => !v).map(([k]) => k);
 
@@ -376,6 +412,16 @@ export default function TradingDesk() {
           <option value={0}>1 exchange · ~8 calls</option>
           <option value={1}>2 exchanges · ~10 calls</option>
           <option value={2}>3 exchanges · ~12 calls</option>
+        </select>
+        <select value={samples}
+          onChange={e => { const v = +e.target.value; setSamples(v); localStorage.setItem('desk_samples', String(v)); }}
+          disabled={!!busy}
+          title="How many times the decision is asked, independently. Agreement across runs is the conviction."
+          style={{ fontSize: 11, padding: '4px 6px', borderRadius: 5, background: 'var(--bg2)',
+            color: 'var(--text2)', border: '1px solid var(--border)' }}>
+          <option value={1}>decide once</option>
+          <option value={3}>decide 3× · agree</option>
+          <option value={5}>decide 5× · agree</option>
         </select>
         <button onClick={() => run()} disabled={!!busy || !cfg.key}
           style={{ marginLeft: 'auto', padding: '6px 16px', borderRadius: 5, fontSize: 12,
@@ -449,7 +495,7 @@ export default function TradingDesk() {
 
       {/* ── The answer, first ───────────────────────────────────────────────── */}
       <Verdict d={trader} review={risk} levelIssue={levelIssue} dec={ev?.dec}
-        waiting={!!busy && !risk} />
+        waiting={!!busy && !risk} consensus={consensus} />
 
       {/* ── The four analysts ───────────────────────────────────────────────── */}
       {reports.length > 0 && (

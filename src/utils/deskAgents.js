@@ -405,15 +405,136 @@ worked. Waiting to avoid being measured will show up in the record.
 Stop and target must sit on the correct sides of the trigger (or the entry) for
 the direction chosen.`;
 
-export async function runTrader(cfg, reports, bull, bear, ev, onWait = null) {
+export async function runTrader(cfg, reports, bull, bear, ev, onWait = null,
+                                { temperature = 0.2, history = null } = {}) {
   const text = await ask(cfg, TRADER, [
     `INSTRUMENT: ${ev.name} (${ev.sym}) at ${n(ev.price, ev.dec ?? 2)}, hourly ATR ${n(ev.atr, ev.dec ?? 2)}`,
     '',
     'REPORTS:', ...reports.map(r => `\n[${r.label}]\n${r.text}`),
     `\n\nBULL CASE:\n${bull}`,
     `\n\nBEAR CASE:\n${bear}`,
-  ].join('\n'), { maxTokens: 520, temperature: 0.2, onWait });
+    history ? `\n\nYOUR OWN RECENT RECORD:\n${history}` : '',
+  ].join('\n'), { maxTokens: 520, temperature, onWait });
   return { raw: text, decision: parseJSON(text) };
+}
+
+// ── Asking more than once, on purpose ───────────────────────────────────────
+//
+// A language model asked a hard question once gives you a sample, not an
+// answer. Ask the same question a few times and the samples that agree are the
+// part that was actually in the evidence; the ones that scatter were the model
+// filling a gap. This is the one accuracy technique here that does not depend
+// on a bigger model, a better prompt or more data — it is the same model,
+// asked properly.
+//
+// It also replaces the conviction number. A model rating its own confidence
+// 1-5 is rating its own prose, and it has no way to be calibrated. How many
+// times out of five it independently reached the same call is a measurement.
+//
+// And disagreement is not a failure to be smoothed over. If three runs on
+// identical evidence say long, short and wait, the evidence does not support a
+// call, and saying so is more useful than averaging them into a shrug.
+
+const median = (xs) => {
+  const a = xs.filter(v => Number.isFinite(v)).sort((x, y) => x - y);
+  if (!a.length) return null;
+  const m = a.length >> 1;
+  return a.length % 2 ? a[m] : (a[m - 1] + a[m]) / 2;
+};
+
+/** Which way a decision points, ignoring whether it acts now or waits. */
+export function sideOfDecision(d) {
+  if (!d) return null;
+  if (d.action === 'long' || d.action === 'short') return d.action;
+  // A wait points somewhere too — that is the whole reason it must carry a
+  // trigger and a target.
+  const t = num(d.trigger), tgt = num(d.target);
+  if (t == null || tgt == null) return null;
+  return tgt > t ? 'long' : 'short';
+}
+
+/**
+ * Fold k independent decisions into one, or refuse.
+ *
+ * Levels come from the MEDIAN of the runs that agreed, not the mean: one run
+ * putting a target twice as far out should not drag the number, and with three
+ * samples the median simply is the middle opinion.
+ */
+/**
+ * The bar is two thirds, not a simple majority.
+ *
+ * Out of five runs, three against two is a coin flip with extra steps, and a
+ * simple majority would trade it. Two thirds refuses that and accepts four
+ * against one. Out of three runs it means two against one is the weakest call
+ * that can get through — which is worth knowing: with three samples nothing is
+ * ever refused except a genuine three-way split. That is a limit of asking
+ * three times, not of the rule, and it is why five is offered.
+ */
+export function consensusOf(samples, { minAgree = 2 / 3 } = {}) {
+  const usable = samples.filter(Boolean);
+  if (!usable.length) return { decision: null, agreement: 0, n: 0, votes: {} };
+
+  const votes = {};
+  for (const d of usable) {
+    const side = sideOfDecision(d) || 'unclear';
+    votes[side] = (votes[side] || 0) + 1;
+  }
+  const [top, count] = Object.entries(votes).sort((a, b) => b[1] - a[1])[0];
+  const agreement = count / usable.length;
+
+  if (top === 'unclear' || agreement < minAgree) {
+    return { decision: null, agreement, n: usable.length, votes, split: true };
+  }
+
+  const agreed = usable.filter(d => sideOfDecision(d) === top);
+  // Acting now beats waiting only if MOST of the agreeing runs wanted to act.
+  const acting = agreed.filter(d => d.action === 'long' || d.action === 'short');
+  const actNow = acting.length > agreed.length / 2;
+
+  const pick = (f) => median(agreed.map(d => num(d[f])).filter(v => v != null));
+  const decision = {
+    action: actNow ? top : 'wait',
+    trigger: actNow ? null : pick('trigger'),
+    entry: actNow ? pick('entry') : null,
+    stop: pick('stop'),
+    target: pick('target'),
+    horizon_hours: pick('horizon_hours') ?? 12,
+    // MEASURED, not self-reported: how many of the runs independently agreed.
+    conviction: Math.max(1, Math.min(5, Math.round(agreement * 5))),
+    why: agreed[0]?.why || '',
+    invalidated_by: agreed[0]?.invalidated_by || '',
+    strongest_opposing_point: usable.find(d => sideOfDecision(d) !== top)?.why
+      || agreed[0]?.strongest_opposing_point || '',
+  };
+  return { decision, agreement, n: usable.length, votes, split: false };
+}
+
+/**
+ * What the desk has actually been getting right, in a form the trader can read.
+ *
+ * Its own record is the only feedback in the loop. Without it every run starts
+ * from nothing and the same mistake is available every time.
+ */
+export function recordBrief(scoredRows, { max = 6 } = {}) {
+  if (!scoredRows?.length) return null;
+  const lines = scoredRows.slice(0, max).map((r) => {
+    const when = new Date(r.at).toISOString().slice(0, 16).replace('T', ' ');
+    if (r.trig) {
+      return r.trig.hit
+        ? `${when} ${r.sym}: you said ${r.trig.side} at ${r.trig.price}. Reached. `
+          + `It then went ${r.trig.worked ? `${r.trig.beyondAtr} ATR your way` : `${r.trig.againstAtr} ATR AGAINST you`}.`
+        : `${when} ${r.sym}: you said ${r.trig.side} at ${r.trig.price}. Never reached`
+          + `${r.missed ? `, and the market ran ${r.reachAtr} ATR ${r.dir} without you.` : ', and nothing ran.'}`;
+    }
+    return `${when} ${r.sym}: you stood aside. `
+      + (r.missed ? `The market then ran ${r.reachAtr} ATR ${r.dir}.` : 'Nothing ran.');
+  });
+  const missed = scoredRows.filter(r => r.missed).length;
+  return [
+    `${scoredRows.length} scored so far; ${missed} were moves you were not in.`,
+    ...lines,
+    'Do not overcorrect from this. It is a small sample and the market does not owe you symmetry.',
+  ].join('\n');
 }
 
 const RISK = `${HOUSE}
@@ -522,7 +643,17 @@ export function checkLevels(d, price) {
 // day with nothing in it.
 //
 // `tone` is a role, not a colour, so this stays testable without a browser.
-export function verdictOf(d, review, levelIssue) {
+export function verdictOf(d, review, levelIssue, consensus = null) {
+  // Asked the same question several times, the runs disagreed. That is not a
+  // missing answer, it is an answer: the evidence did not carry a call, and
+  // picking one of the samples would be picking at random and calling it
+  // analysis.
+  if (!d && consensus?.split) {
+    const v = Object.entries(consensus.votes || {}).map(([k, n]) => `${n} ${k}`).join(', ');
+    return { word: 'NO CALL', tone: 'neutral',
+      line: `Asked ${consensus.n} times on the same evidence, the desk did not agree with itself (${v}). `
+        + 'There is no read here to act on.' };
+  }
   if (!d) return null;
   // Arithmetic beats an approval. A risk manager reading prose will happily
   // sign off a target on the wrong side of the entry.
@@ -567,7 +698,7 @@ export function verdictOf(d, review, levelIssue) {
 // four analysts, then the argument, then the decision. A desk that shows nothing
 // for ninety seconds and then everything at once is worse to read and harder to
 // interrupt.
-export async function runDesk(ev, { onStage = () => {}, rounds = 0 } = {}) {
+export async function runDesk(ev, { onStage = () => {}, rounds = 0, samples = 3, history = null } = {}) {
   const onWait = secs => onStage({ stage: 'wait', secs });
   const cfg = aiConfig();
   if (!cfg.key) throw new Error('no AI key — add one in the AI tab');
@@ -594,11 +725,29 @@ export async function runDesk(ev, { onStage = () => {}, rounds = 0 } = {}) {
     debate.push({ bull, bear });
   }
 
-  const t = await runTrader(cfg, reports, bull, bear, ev, onWait);
+  // The decision, asked more than once. The first run stays cold at 0.2 so a
+  // single-sample setup behaves exactly as it did; the rest are warmer, because
+  // three identical greedy decodes would agree by construction and measure
+  // nothing.
+  const brief = recordBrief(history);
+  const raws = [];
+  const picks = [];
+  for (let i = 0; i < Math.max(1, samples); i++) {
+    onStage({ stage: 'sampling', i, of: Math.max(1, samples) });
+    const one = await runTrader(cfg, reports, bull, bear, ev, onWait,
+      { temperature: i === 0 ? 0.2 : 0.7, history: brief });
+    raws.push(one.raw);
+    picks.push(one.decision);
+    onStage({ stage: 'sample', i, decision: one.decision });
+  }
+  const con = consensusOf(picks);
+  const t = { raw: raws[0], decision: con.decision };
   const levelIssue = checkLevels(t.decision, ev.price);
-  onStage({ stage: 'trader', ...t, levelIssue });
+  onStage({ stage: 'trader', ...t, levelIssue, consensus: con });
 
-  const risk = await runRisk(cfg, t.decision, ev, onWait);
+  const risk = con.decision
+    ? await runRisk(cfg, con.decision, ev, onWait)
+    : { raw: null, review: null };
   onStage({ stage: 'risk', ...risk });
 
   const out = {
@@ -606,6 +755,7 @@ export async function runDesk(ev, { onStage = () => {}, rounds = 0 } = {}) {
     model: cfg.model, provider: cfg.provider,
     reports, debate, decision: t.decision, traderRaw: t.raw,
     review: risk.review, riskRaw: risk.raw, levelIssue,
+    consensus: { agreement: con.agreement, n: con.n, votes: con.votes, split: !!con.split },
   };
   logVerdict(out);
   return out;
@@ -630,6 +780,8 @@ export function logVerdict(v) {
     stop: v.decision.stop, target: v.decision.target,
     verdict: v.review?.verdict || null,
     waitChallenged: v.review?.wait_challenged === true,
+    agreement: v.consensus?.agreement ?? null,
+    samples: v.consensus?.n ?? null,
     model: v.model,
   });
   try { localStorage.setItem(LOG_KEY, JSON.stringify(rows.slice(0, MAX_LOG))); } catch { /* full is not fatal */ }
