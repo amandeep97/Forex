@@ -723,6 +723,23 @@
   ],
   "headlines": [
     {
+      "title": "China says it will pump $54 billion into banks and insurers — but their stocks still fell",
+      "link": "https://www.cnbc.com/2026/09/07/china-state-banks-lenders-insurers-capital-solvency-bankrupt-nim-.html",
+      "source": "CNBC Markets",
+      "desc": "With a bigger capital cushion, financial institutions may also be asked to do more to mobilize resources in capital markets, analysts say.",
+      "at": 1788823390000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788823390000,
+      "_kind": null,
+      "why": "Bank capital injection, mixed market reaction"
+    },
+    {
       "title": "BRC data shows summer retail boost fading fast as GBP watches consumer signals",
       "link": "https://investinglive.com/news/brc-data-shows-summer-retail-boost-fading-fast-as-gbp-watches-consumer-signals/",
       "source": "ForexLive",
@@ -736,7 +753,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788823099000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "GBP/USD": "down"
+      },
+      "why": "Retail slowdown weakens GBP outlook"
     },
     {
       "title": "South Korea Q2 GDP, final, +0.6% (vs. expected +0.6%, prior +1.8%)",
@@ -755,7 +776,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788823064000,
-      "_kind": null
+      "_kind": null,
+      "why": "Korean GDP data, no NZD impact"
     },
     {
       "title": "Oil prices climb after reports of Saudi Aramco refinery being hit by Houthi rebels",
@@ -1214,7 +1236,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788816303000,
-      "_kind": null,
       "why": "Colombia stocks unrelated to US500"
     },
     {
@@ -1929,6 +1950,32 @@
       "why": "Geopolitical risk boosts gold and oil"
     },
     {
+      "title": "Zelensky to Axios: U.S. exploring Russia-Ukraine winter de-escalation steps - Axios",
+      "link": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPS1JUc284NjBMMkppZ29XSm9kUjBwSnpvcjhxT05xTG1rWGViQkswMEh4SzdPZ1NKN0VTQVUxcWc1T1ByMEJEUGdUS01nbVU0eFd3anRTX1h3aVo2QWNHcW96dzhoR3MzbWlrYS15TG1hYkZ1Zm1SMHRGVjZKeTFabnNqRWtIRHQ0LUdXYW9kd3huUQ?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMikgFBVV95cUxPS1JUc284NjBMMkppZ29XSm9kUjBwSnpvcjhxT05xTG1rWGViQkswMEh4SzdPZ1NKN0VTQVUxcWc1T1ByMEJEUGdUS01nbVU0eFd3anRTX1h3aVo2QWNHcW96dzhoR3MzbWlrYS15TG1hYkZ1Zm1SMHRGVjZKeTFabnNqRWtIRHQ0LUdXYW9kd3huUQ?oc=5\" target=\"_blank\">Zelensky ",
+      "at": 1788801815000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788801815000,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "De-escalation reduces risk premium"
+    },
+    {
       "title": "Gaza: Genocide in Real Time?",
       "link": "https://www.aljazeera.com/video/aljazeerauntangles/2026/9/7/gaza-genocide-in-real-time?traffic_source=rss",
       "source": "Al Jazeera",
@@ -1974,32 +2021,6 @@
         "UKOIL": "up"
       },
       "why": "Escalation fears boost oil and gold"
-    },
-    {
-      "title": "Zelensky to Axios: U.S. exploring Russia-Ukraine winter de-escalation steps - Axios",
-      "link": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPS1JUc284NjBMMkppZ29XSm9kUjBwSnpvcjhxT05xTG1rWGViQkswMEh4SzdPZ1NKN0VTQVUxcWc1T1ByMEJEUGdUS01nbVU0eFd3anRTX1h3aVo2QWNHcW96dzhoR3MzbWlrYS15TG1hYkZ1Zm1SMHRGVjZKeTFabnNqRWtIRHQ0LUdXYW9kd3huUQ?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMikgFBVV95cUxPS1JUc284NjBMMkppZ29XSm9kUjBwSnpvcjhxT05xTG1rWGViQkswMEh4SzdPZ1NKN0VTQVUxcWc1T1ByMEJEUGdUS01nbVU0eFd3anRTX1h3aVo2QWNHcW96dzhoR3MzbWlrYS15TG1hYkZ1Zm1SMHRGVjZKeTFabnNqRWtIRHQ0LUdXYW9kd3huUQ?oc=5\" target=\"_blank\">Zelensky ",
-      "at": 1788801414000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788801414000,
-      "dir": {
-        "XAU/USD": "down",
-        "USOIL": "down",
-        "UKOIL": "down"
-      },
-      "why": "De-escalation reduces risk premium"
     },
     {
       "title": "UK's Burnham, Trump discuss working towards Ukraine-Russia ceasefire, Downing Street says - Reuters",
@@ -2351,30 +2372,6 @@
       "why": "Political news has no clear gold impact."
     },
     {
-      "title": "Soldiers from Ukraine's Defence Intelligence strike Russian aircraft in Crimea – video - Українська правда",
-      "link": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE9PUDVNLVdDT0VSZE9BSFVfMGNXR1BGRDNjZVdCRnpSbzJXdUpuTFBRZ1NaZmcxLURhaVBhRUpVU3drdkJhcUtGYVVZckk0LU1ud25HNnhoMTNfSEtESGxpV0JrSlk?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiZEFVX3lxTE9PUDVNLVdDT0VSZE9BSFVfMGNXR1BGRDNjZVdCRnpSbzJXdUpuTFBRZ1NaZmcxLURhaVBhRUpVU3drdkJhcUtGYVVZckk0LU1ud25HNnhoMTNfSEtESGxpV0JrSlk?oc=5\" target=\"_blank\">Soldiers from Ukraine's Defence Intelligence strike Russian aircraft in ",
-      "at": 1788792300000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788792300000,
-      "dir": {
-        "XAU/USD": "up"
-      },
-      "why": "Escalation boosts gold, oil impact unclear."
-    },
-    {
       "title": "Gold Faces Stagflation Risk as Energy Costs Keep Inflation Elevated - Investing.com",
       "link": "https://news.google.com/rss/articles/CBMisgFBVV95cUxOZWF6SWNJS2FERzg1NG1hdm9JQnlCS19aS29reV9qejYtNWJRa0h4R3ozeUpvb25DVGFfR053VjZuOUN1X1hILTNhb1hDZmxwOHRIXzVmbzhqaXUzVzV4OEh4RDNqNHdmUGtBTHdpcDl6d3EzdmlWczRTMGlscW90TzM5VXJacUJNMEFySWZ1MmtzbzYweW44TGd2Yzd4Rl90OG1zalNmQmF6VWtNZ1JnZEhR?oc=5",
       "source": "Wires (macro)",
@@ -2694,10 +2691,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-07T23:22:17.432Z",
-  "headlinesAt": "2026-09-07T23:22:17.432Z",
-  "updatedAt": "2026-09-07T23:22:17.432Z"
+  "calendarAt": "2026-09-07T23:25:31.693Z",
+  "headlinesAt": "2026-09-07T23:25:31.693Z",
+  "updatedAt": "2026-09-07T23:25:31.693Z"
 }
