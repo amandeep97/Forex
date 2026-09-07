@@ -790,8 +790,8 @@
       ],
       "sev": 1,
       "rel": 1,
-      "srcs": 1,
-      "firstAt": 1788790095000,
+      "srcs": 2,
+      "firstAt": 1788789740000,
       "_kind": null
     },
     {
@@ -846,6 +846,31 @@
       "firstAt": 1788787629000,
       "_kind": null,
       "why": "General price check, no direction."
+    },
+    {
+      "title": "Canadian Dollar finds support from Oil surge despite Fed rate hike bets - tmgm.com",
+      "link": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxOaDkzd1hFNVJnLVpnczdRekhBMUpQZVVfUEl3NDdFdGR5dld5bGFhLVNfZ3U5cUpmV0RuUk1rVVhOQ3N0QjRQcDlIS3ZKQXNWeFJqWFhSYVhXSmV5ZC13N3Z3b3JDVEh3c3A1bXhBYWRJeGs5Z2gzOG5HVjFjNXRqMWtwR21JWlpUa0lPb050aGhRa1JESHZBRnQ4UmhSZXBEREpLQ1h0YVhzZjFfaWdXTDV6eWc0WWVPUDRPcXNVTFdqMi14RnRFNWQwdXZQcWVmWFhB?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi0wFBVV95cUxOaDkzd1hFNVJnLVpnczdRekhBMUpQZVVfUEl3NDdFdGR5dld5bGFhLVNfZ3U5cUpmV0RuUk1rVVhOQ3N0QjRQcDlIS3ZKQXNWeFJqWFhSYVhXSmV5ZC13N3Z3b3JDVEh3c3A1bXhBYWRJeGs5Z2gzOG5HVjFjNXRqMWtwR21JWlpUa0lPb050aGhRa1JESHZBRnQ4UmhSZXBEREpLQ1h0YVhzZj",
+      "at": 1788789740000,
+      "inst": [
+        "USD/CAD",
+        "USOIL"
+      ],
+      "ccy": [
+        "USD",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1788789740000,
+      "_kind": null,
+      "dir": {
+        "USD/CAD": "down",
+        "USOIL": "up"
+      },
+      "why": "Oil surge supports CAD, weakens USD"
     },
     {
       "title": "Gold edges down as strong payrolls revive Fed hike bets",
@@ -1003,7 +1028,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788787740000,
+      "firstAt": 1788788944000,
       "_kind": null,
       "dir": {
         "XAU/USD": "up"
@@ -1203,31 +1228,6 @@
       "why": "Rate hike risk, direction uncertain"
     },
     {
-      "title": "Ukraine's military intelligence strikes Russian aircraft in Crimea - Ukrinform",
-      "link": "https://news.google.com/rss/articles/CBMitgFBVV95cUxNZGdHOGdqUGNpUUtXMEF5WGwzd25pcEEyOUpIU1lTSHRDZnJvMy1GdG1HaFRwX2h2VXFGYWVhZmk3RHZYNTFVUTlzcGtTcFVQU0dFUk5GMGZ0RERlTVkzVk1nWFN4S0pQNkl6OHE3N2tjUE55akJ1akt2dkpOY3U1MmMxQWpDZU1iMUhWbUY2NVpPSTdrUmdEcG1UX1dwQmxrUkhjTFIzQmFKVndGZGhPRnhHZXdFUdIBuwFBVV95cUxNSUxPbDZFQnRpaU00UUk2eHRfY3Fka3BuRFlPWk9DMGQxYlJkTXNpR2RiNy00RkNVR0d0RnhOc1VfQ1pyYzAzMy1YcXh2dGpuN0FoMmtkM0dtbjFXd1AxMmRvSmpTWm5Jc2tJYnBrcTBhcVBuMHdqUllNY0tPaGNLY2JaMWxQbmRWOW9MNFJCeFBFM1JSdUdJZGQ1YkVseUh1Yk1hU1V5WTdRWUNreFVWR1VlQndLLWNrSkt3?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMitgFBVV95cUxNZGdHOGdqUGNpUUtXMEF5WGwzd25pcEEyOUpIU1lTSHRDZnJvMy1GdG1HaFRwX2h2VXFGYWVhZmk3RHZYNTFVUTlzcGtTcFVQU0dFUk5GMGZ0RERlTVkzVk1nWFN4S0pQNkl6OHE3N2tjUE55akJ1akt2dkpOY3U1MmMxQWpDZU1iMUhWbUY2NVpPSTdrUmdEcG1UX1dwQmxrUkhjTFIzQmFKVn",
-      "at": 1788787740000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788787740000,
-      "_kind": null,
-      "dir": {
-        "XAU/USD": "up"
-      },
-      "why": "Conflict escalation boosts gold, oil unclear"
-    },
-    {
       "title": "Trump Crypto News: BTC $81,000 Rejection Puts September Fed Meeting in Focus",
       "link": "https://finance.yahoo.com/markets/crypto/articles/trump-crypto-news-btc-81-132709406.html",
       "source": "Yahoo Finance",
@@ -1302,31 +1302,6 @@
       "firstAt": 1788787493000,
       "_kind": null,
       "why": "Historical reparations claim, no FX impact."
-    },
-    {
-      "title": "Canadian Dollar holds gains as Oil surge offsets Fed rate hike bets - FXStreet",
-      "link": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQZkozeGpDeHpYSXFpeUlHdzlzZXlMZldYX3YybHBxMGFOeEU1X284TUxFWVJYcGEtOVZ0STRxQzN3eElzWmNOUHNjVWh1SEd1YWVNaXJWbGNoNk1qdkg0TFRzV2EyZ0FwMm01VG1hUWoyajFka2RDbHpxTUEtN2VRZHBHd3kzeUQwNktYUGhDNFl0amdlQ3pzakFkWTlMTW04aFB4MU9KS29HY2NUNHFwQ0tDVXY?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMitAFBVV95cUxQZkozeGpDeHpYSXFpeUlHdzlzZXlMZldYX3YybHBxMGFOeEU1X284TUxFWVJYcGEtOVZ0STRxQzN3eElzWmNOUHNjVWh1SEd1YWVNaXJWbGNoNk1qdkg0TFRzV2EyZ0FwMm01VG1hUWoyajFka2RDbHpxTUEtN2VRZHBHd3kzeUQwNktYUGhDNFl0amdlQ3pzakFkWTlMTW04aFB4MU9KS29HY2",
-      "at": 1788787363000,
-      "inst": [
-        "USD/CAD",
-        "USOIL"
-      ],
-      "ccy": [
-        "USD",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788787363000,
-      "_kind": null,
-      "dir": {
-        "USD/CAD": "down",
-        "USOIL": "up"
-      },
-      "why": "Oil surge supports CAD, weakens USD"
     },
     {
       "title": "Iran Faced Some Of America's Toughest Sanctions. Yet $9 Billion In Iranian Funds Still Moved Through U.S. Banks - International Business Times",
@@ -1911,6 +1886,26 @@
         "UKOIL": "up"
       },
       "why": "Supply risk boosts oil and gold"
+    },
+    {
+      "title": "Latest flare-up between the US and Iran: Will there be major escalation or just more of the same stand-off? - The Straits Times",
+      "link": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxNWE5JZkpTTDhWLThzLThleEV0Zlh6TEJxeWNZWnhPdWU4bVVpWU9Ra3FDS3pJOWdLd1VXeDNKRlRUZEdzLTJrY1NjRTNNQ0xwWjkyRFpNX29WUkRXdVlpZjRaSURFbkVxeVotWVVmV3hPX2FtampfYTJhUWJlTWFMZFNBQnc2NUc5dWFnMXpqS2lwTTJhR0thU0JqRXgtS3lYWlFmNzVVTnlCRWdQOS1OekxWTDh5M1psWFNaWW13dUs1NHMzanpLaDhiU3BIVlQ0M180SDh5WGVlZw?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi2gFBVV95cUxNWE5JZkpTTDhWLThzLThleEV0Zlh6TEJxeWNZWnhPdWU4bVVpWU9Ra3FDS3pJOWdLd1VXeDNKRlRUZEdzLTJrY1NjRTNNQ0xwWjkyRFpNX29WUkRXdVlpZjRaSURFbkVxeVotWVVmV3hPX2FtampfYTJhUWJlTWFMZFNBQnc2NUc5dWFnMXpqS2lwTTJhR0thU0JqRXgtS3lYWlFmNzVVTnlCRW",
+      "at": 1788780600000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788780600000
     },
     {
       "title": "Dollar falls ahead of US inflation data as yen hits seven-month high - Economies.com",
@@ -2698,7 +2693,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-07T14:32:05.601Z",
-  "headlinesAt": "2026-09-07T14:32:05.601Z",
-  "updatedAt": "2026-09-07T14:32:05.601Z"
+  "calendarAt": "2026-09-07T14:35:07.206Z",
+  "headlinesAt": "2026-09-07T14:35:07.206Z",
+  "updatedAt": "2026-09-07T14:35:07.206Z"
 }
