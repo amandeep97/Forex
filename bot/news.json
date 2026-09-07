@@ -746,6 +746,28 @@
       "why": "Stronger GDP implies hawkish BoJ, weaker Yen."
     },
     {
+      "title": "Qatar calls for phased de-escalation for sustainable solution to Iran war - Anadolu Ajansı",
+      "link": "https://news.google.com/rss/articles/CBMiugFBVV95cUxORlMyS0IxSmJLd19HcG80V1djUVhYeFdubmFHQjU3am5FRG1ONjdQbnhPX3NSNHNwaF9la3ZfbGF0Qlc5WS1zVmVYV0d3YzNnRXZpcGtnaU1WTEZxSElLWkFfaUpLa3ZmNzFEXzFzMmNpTlk1NjlGM1pZY0kzLUtyazJZelczN2sxeERSSkNPR0o2VDZ0V3Z3RUd4bTk4dGhSTVdNRTFYNXNja05yX2pQQ3ZXcUdSQW9ValE?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiugFBVV95cUxORlMyS0IxSmJLd19HcG80V1djUVhYeFdubmFHQjU3am5FRG1ONjdQbnhPX3NSNHNwaF9la3ZfbGF0Qlc5WS1zVmVYV0d3YzNnRXZpcGtnaU1WTEZxSElLWkFfaUpLa3ZmNzFEXzFzMmNpTlk1NjlGM1pZY0kzLUtyazJZelczN2sxeERSSkNPR0o2VDZ0V3Z3RUd4bTk4dGhSTVdNRTFYNXNja0",
+      "at": 1788824845000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788822225000,
+      "_kind": null,
+      "why": "Diplomatic call for de-escalation, no immediate market impac"
+    },
+    {
       "title": "US markets will await inflation data and Apple presentation - UA.NEWS",
       "link": "https://news.google.com/rss/articles/CBMimAFBVV95cUxPM0k5QmNpWlpaSHpFNzdoUXA1bzBCM1ZxVWx2QjZtVE1jMHItQlhXODZWLVVoQUZnb2tieUFWMmlfUzhPN0R0VWhwSFFqZVk0NXBEVFFoSmx1dUN3U3FuUVpNekhwemZaRkZQWVpPUlZCSDgyOTRZWmtBTGVadGZCb00ybk8zUWxXRzhoMlM2V0ttNFJJSG95RQ?oc=5",
       "source": "Wires (macro)",
@@ -986,29 +1008,6 @@
       "srcs": 1,
       "firstAt": 1788818760000,
       "why": "Political news, unclear immediate market impact."
-    },
-    {
-      "title": "U.S. Sanctions Türkiye’s Golden Global Bank Over Iran Finance Ties - The Ritz Herald",
-      "link": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPV1NfT0dGQWcyQThoc3JZbUdmcF9kMUZkeUJFV2VtajhOOG80elBMWjlrbjY2Z3J1V1d2MzBLczI0N292S2pLUkMxMWdSaWFOQy10UkpZWkVuQkRDejZ1SmRkckg1cDdYUnNtNF94OHE0V01DSVdaZlphckVxZkNrSkNlZTBod0ZDTkVCRG4wUGZRdw?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMikgFBVV95cUxPV1NfT0dGQWcyQThoc3JZbUdmcF9kMUZkeUJFV2VtajhOOG80elBMWjlrbjY2Z3J1V1d2MzBLczI0N292S2pLUkMxMWdSaWFOQy10UkpZWkVuQkRDejZ1SmRkckg1cDdYUnNtNF94OHE0V01DSVdaZlphckVxZkNrSkNlZTBod0ZDTkVCRG4wUGZRdw?oc=5\" target=\"_blank\">U.S. Sanc",
-      "at": 1788820475000,
-      "inst": [
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788820475000,
-      "dir": {
-        "USOIL": "up",
-        "UKOIL": "up"
-      },
-      "why": "Sanctions on Iran-linked bank tighten supply."
     },
     {
       "title": "Latest national headlines: US and Iran trade strikes, Amazon cargo plane crash, renaming New Mexico - weareiowa.com",
@@ -1396,7 +1395,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788812685000
+      "firstAt": 1788812685000,
+      "why": "Upcoming data release, direction depends on outcome."
     },
     {
       "title": "Israel prepares sharp response to expected British sanctions - www.israelhayom.com",
@@ -1417,7 +1417,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788809400000
+      "firstAt": 1788809400000,
+      "why": "Geopolitical tension, but specific market impact unclear."
     },
     {
       "title": "Oil Hits 6-Week High After US, Iran Trade Strikes - Newser",
@@ -1437,7 +1438,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788810780000
+      "firstAt": 1788810780000,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Oil hits high, geopolitical risk boosts gold."
     },
     {
       "title": "Stocks Fall After Hot Jobs Report - WSJ",
@@ -1452,7 +1459,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788810622000
+      "firstAt": 1788810622000,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Stocks fall directly due to hot jobs report."
     },
     {
       "title": "What are the implications of AfD’s electoral rise for Germany and Europe?",
@@ -1467,7 +1478,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788810605000
+      "firstAt": 1788810605000,
+      "why": "Political uncertainty, but no clear immediate FX direction."
     },
     {
       "title": "UK government refuses slavery reparations as Jamaica urges king to act",
@@ -1482,7 +1494,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788810528000
+      "firstAt": 1788810528000,
+      "why": "Political news, no clear immediate currency impact."
     },
     {
       "title": "Syria’s Assad-era reactor configured for nuclear weapons: IAEA",
@@ -1499,7 +1512,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788807809000
+      "firstAt": 1788807809000,
+      "why": "Nuclear safety news, unclear immediate gold impact."
     },
     {
       "title": "UK To Announce New Sanctions On Israel Tomorrow - Report - i24news.tv",
@@ -1519,7 +1533,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788809400000
+      "firstAt": 1788809400000,
+      "why": "Sanctions report, direction unclear without details."
     },
     {
       "title": "investingLive Americas FX news wrap 7 Sept: USD falls as the yen surges on BOJ rate-hike expectations",
@@ -1539,7 +1554,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788809300000
+      "firstAt": 1788809300000,
+      "dir": {
+        "USD/JPY": "down"
+      },
+      "why": "Yen surges, implying USD/JPY falls."
     },
     {
       "title": "Yemen's Houthis accuse Saudi Arabia of air raids, missile strikes - Middle East Eye",
@@ -1559,7 +1578,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788808680000
+      "firstAt": 1788808680000,
+      "why": "Accusations of strikes, unclear immediate market direction."
     },
     {
       "title": "Brent Oil stalls at resistance with RSI at 72: Live levels",
@@ -1576,7 +1596,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1788808304000
+      "firstAt": 1788808304000,
+      "why": "Technical stall at resistance, no clear direction."
     },
     {
       "title": "Crude Oil WTI tests $93.64 resistance with overbought RSI: Live levels",
@@ -1593,7 +1614,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1788808304000
+      "firstAt": 1788808304000,
+      "why": "Testing resistance, overbought, no clear direction."
     },
     {
       "title": "Dow Jones squeezed at 53,111 ahead of breakout: Live levels",
@@ -1607,7 +1629,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1788808304000
+      "firstAt": 1788808304000,
+      "why": "Squeezed ahead of breakout, direction undecided."
     },
     {
       "title": "London Gas Oil spikes 12% above 50-MA, overbought: Live levels",
@@ -1623,7 +1646,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1788808304000
+      "firstAt": 1788808304000,
+      "why": "Gas oil spike, not directly WTI crude."
     },
     {
       "title": "Natural Gas stalls below $3.00 resistance: Live levels",
@@ -2108,7 +2132,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788796920000
+      "firstAt": 1788797760000
     },
     {
       "title": "Iran threatens retaliation against U.S. tanker strikes - CBS News",
@@ -2129,26 +2153,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788796692000
-    },
-    {
-      "title": "Russia orders 72-hour pause on strikes in Ukraine - newswest9.com",
-      "link": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxNWkVSRmFVVlBKdndsVGUzbUV4aGdTVVBwZ3I4TUtxa0l5dy1LZWNrT2FULUtUSFBMeDBFTWhmek9NelNHOUdHOEVRRmlZLWxYaDN2RG50d1owTFh3NW5GUXhzWlY3aG02NUh3ZG1nazZDbm1DaUUtQ09YNElnSEtvME51MmpXZGMyTzJZSWNlYXdhRWZzMTdaaUNtMnhyTWRYQWRCWWcydURCc19ocTNKRndwV19HMTh4RlFuRkdfS0pjdDNsOXJ4UDZqcWg5X1hiRmtfUEtZTQ?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi1wFBVV95cUxNWkVSRmFVVlBKdndsVGUzbUV4aGdTVVBwZ3I4TUtxa0l5dy1LZWNrT2FULUtUSFBMeDBFTWhmek9NelNHOUdHOEVRRmlZLWxYaDN2RG50d1owTFh3NW5GUXhzWlY3aG02NUh3ZG1nazZDbm1DaUUtQ09YNElnSEtvME51MmpXZGMyTzJZSWNlYXdhRWZzMTdaaUNtMnhyTWRYQWRCWWcydURCc1",
-      "at": 1788796920000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788795331000
     },
     {
       "title": "Chip stock investors beware — these charts could warn of further weakness ahead",
@@ -2463,6 +2467,26 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1788788363000
+    },
+    {
+      "title": "Gold, Silver Prices To Correct As Fed Rate Hike Expectations Become Strong - Deccan Chronicle",
+      "link": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxOY3RjaHVuWWc0cTg4V25tYkRhMEczS0gzdzd1a09IQktsQzA3Q0Y5UnRGblBvUWVLVFplUmxXd3Q5cVpCbUlmUW5IcTJEU1JFM19Ncnhtc09ZemtlSXFoUTBkOVNFNy0wUXBDanZ5STlHNm5Jd2ZtcExGUFJTQ0lQVXp6X3AwT1RpNFU1ZktBTTcyaHBGdG93WXhGbmtjS09vNTZFanpDZlBILTNiM0V5RmpNMUE5akRaSV9PT3lKQWhQd2RiTG9KbGd5ckI5RzVIUXJfUlJlQdIB3AFBVV95cUxQd0FGNHdqR2pkWG5GSlFLcXRCQkczQU4xRHZta3BoeEJzY1Fod3dEZERaU1EzdGZNS2NxbEo4MlJadzlKWEhfaUxzZUxlMlVOQkV4MDUtUzY0WlpSWHJJWW8xWEQ3NThVcmp1M2V5WWFjeWU3ampiSml4WEV5Z0xtLVBMYTJHTjlEUnE4c0NYYmxDRHJuOW1pVjlJUHpCakxKUGlqTTNhdmpMbnd6c0hoSlQ2ai1iSUxDT2cta2lhdHRldnozU0wwakl1TTk1TjZPaTdXY2k4dFk2cW1m?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi1wFBVV95cUxOY3RjaHVuWWc0cTg4V25tYkRhMEczS0gzdzd1a09IQktsQzA3Q0Y5UnRGblBvUWVLVFplUmxXd3Q5cVpCbUlmUW5IcTJEU1JFM19Ncnhtc09ZemtlSXFoUTBkOVNFNy0wUXBDanZ5STlHNm5Jd2ZtcExGUFJTQ0lQVXp6X3AwT1RpNFU1ZktBTTcyaHBGdG93WXhGbmtjS09vNTZFanpDZlBILT",
+      "at": 1788788096000,
+      "inst": [
+        "XAU/USD",
+        "XAG/USD"
+      ],
+      "ccy": [
+        "USD",
+        "XAU",
+        "XAG"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1788787800000
     }
   ],
   "sources": [
@@ -2488,7 +2512,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-07T23:52:23.729Z",
-  "headlinesAt": "2026-09-07T23:52:23.729Z",
-  "updatedAt": "2026-09-07T23:52:23.729Z"
+  "calendarAt": "2026-09-07T23:55:22.986Z",
+  "headlinesAt": "2026-09-07T23:55:22.986Z",
+  "updatedAt": "2026-09-07T23:55:22.986Z"
 }
