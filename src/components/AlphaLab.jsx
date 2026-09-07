@@ -673,7 +673,7 @@ function MiniSweepChart({ sweep, pairKey }) {
           { col:expectColor, label:`Expected: ${sweep.expectedDir==='bullish'?'▲ UP':'▼ DOWN'}` },
         ].map(({ col, label, dash }) => (
           <div key={label} style={{ display:'flex', alignItems:'center', gap:3 }}>
-            <div style={{ width:10, height: dash?1:6, background:col, borderRadius:1, opacity:0.8,
+            <div style={{ width:10, height: dash?1:6, borderRadius:1, opacity:0.8,
               borderTop:dash?`1px dashed ${col}`:'none', background:dash?'transparent':col }}/>
             <span style={{ fontSize:8, color:'#334155' }}>{label}</span>
           </div>
@@ -685,6 +685,11 @@ function MiniSweepChart({ sweep, pairKey }) {
 
 // ── PairDetailModal ───────────────────────────────────────────────────────────
 function PairDetailModal({ pairKey, sweepLog, phases, onClose }) {
+  // Every hook BEFORE any early return. This useState used to sit two hundred
+  // lines below `if (!pair) return null`, so on a render where the pair was not
+  // found React saw one fewer hook than the render before — the "rendered more
+  // hooks than during the previous render" crash, waiting for a bad pairKey.
+  const [chartOpenId, setChartOpenId] = useState(null);
   const pair = PAIRS.find(p => p.key === pairKey);
   if (!pair) return null;
 
@@ -718,8 +723,6 @@ function PairDetailModal({ pairKey, sweepLog, phases, onClose }) {
   const nowHrData = byHour[nowETHour];
   const nowHrWR   = nowHrData && nowHrData.total >= 2
     ? Math.round(nowHrData.confirmed/nowHrData.total*100) : null;
-
-  const [chartOpenId, setChartOpenId] = useState(null);
 
   return (
     <div

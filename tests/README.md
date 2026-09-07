@@ -1,7 +1,8 @@
 # Tests
 
 ```
-npm test                 # all 59
+npm test                 # lint, then all 59
+npm run lint             # the linter alone, warnings included
 npm test stops plan      # only files whose name contains "stops" or "plan"
 ```
 
