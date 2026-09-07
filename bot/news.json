@@ -750,7 +750,32 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788800178000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "De-escalation reduces geopolitical risk premium"
+    },
+    {
+      "title": "AI Is Moving Into Everyday Business — These 5 Stocks Sit Squarely in the Path of the Surge",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/ai-moving-everyday-business-5-165250986.html",
+      "source": "Yahoo Finance",
+      "at": 1788799970000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788799970000,
+      "_kind": null,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "AI surge benefits tech-heavy index"
     },
     {
       "title": "Tim Miller: Democrats need to 'aggressively' ATTACK Trump on Iran war - Modern Ghana",
@@ -1072,22 +1097,6 @@
       "why": "Belgium stocks down, no US impact"
     },
     {
-      "title": "Wall Street Is Underestimating This Stock. Here's My Case for Why It Could Triple in 7 Years.",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/wall-street-underestimating-stock-heres-160300940.html",
-      "source": "Yahoo Finance",
-      "at": 1788796980000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788796980000,
-      "_kind": null,
-      "why": "Specific stock case, unclear index impact"
-    },
-    {
       "title": "Russia orders 72-hour pause on strikes in Ukraine - newswest9.com",
       "link": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxNWkVSRmFVVlBKdndsVGUzbUV4aGdTVVBwZ3I4TUtxa0l5dy1LZWNrT2FULUtUSFBMeDBFTWhmek9NelNHOUdHOEVRRmlZLWxYaDN2RG50d1owTFh3NW5GUXhzWlY3aG02NUh3ZG1nazZDbm1DaUUtQ09YNElnSEtvME51MmpXZGMyTzJZSWNlYXdhRWZzMTdaaUNtMnhyTWRYQWRCWWcydURCc19ocTNKRndwV19HMTh4RlFuRkdfS0pjdDNsOXJ4UDZqcWg5X1hiRmtfUEtZTQ?oc=5",
       "source": "Wires (geo)",
@@ -1146,27 +1155,6 @@
       "why": "Chip stock weakness warns of further decline"
     },
     {
-      "title": "Analyst reveals 'easy' Bitcoin target of $1.3 million",
-      "link": "https://finance.yahoo.com/markets/crypto/articles/analyst-reveals-easy-bitcoin-target-155940731.html",
-      "source": "Yahoo Finance",
-      "at": 1788796780000,
-      "inst": [
-        "BTC/USDT"
-      ],
-      "ccy": [
-        "BTC"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788796780000,
-      "_kind": null,
-      "dir": {
-        "BTC/USDT": "up"
-      },
-      "why": "Analyst predicts high Bitcoin price target"
-    },
-    {
       "title": "US strikes three Iranian vessels as Middle East tensions escalate - Fox News",
       "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFB6LTk3Q2E4Z1F3Mk1zR2p4UVRrOWluN21UaEhiTExFZkRHVlA1OUpMRE9TY2NILW1LUGJQQ2tEal9OQ2NuTmRYTkxmaFJ1TVcxblRuZmVn?oc=5",
       "source": "Wires (geo)",
@@ -1192,24 +1180,6 @@
         "UKOIL": "up"
       },
       "why": "Escalating tensions boost safe havens, oil"
-    },
-    {
-      "title": "Hyperliquid Strategies Soared by 94% in August. Should Investors Forget Bitcoin and Buy This Stock Instead?",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/hyperliquid-strategies-soared-94-august-155606307.html",
-      "source": "Yahoo Finance",
-      "at": 1788796566000,
-      "inst": [
-        "BTC/USDT"
-      ],
-      "ccy": [
-        "BTC"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788796566000,
-      "_kind": null,
-      "why": "Stock comparison unclear for Bitcoin direction"
     },
     {
       "title": "Ukraine Strikes Russia’s War Economy at Ranges Exceeding 2,000 Kilometers, Intelligence Chief Says - mezha.net",
@@ -1427,7 +1397,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788793280000,
-      "_kind": null,
       "why": "Stocks jumped while index fell"
     },
     {
@@ -1445,7 +1414,6 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1788793200000,
-      "_kind": null,
       "why": "Question about production shift, no clear direction"
     },
     {
@@ -1467,7 +1435,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788793177000,
-      "_kind": null,
       "why": "Media critique lacks direct market impact."
     },
     {
@@ -1484,7 +1451,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788793172000,
-      "_kind": null,
       "dir": {
         "EUR/USD": "down"
       },
@@ -2584,6 +2550,45 @@
         "UKOIL": "up"
       },
       "why": "Supply risk boosts oil and gold."
+    },
+    {
+      "title": "Iran update: 11 killed by Israel strikes, Iran planning \"exclusion zone\" near strait - weareiowa.com",
+      "link": "https://news.google.com/rss/articles/CBMi7wFBVV95cUxQSE1EeFlLSkZpbHhoSWFzeWIwdVNybUJSRUs0VUdfSnZUUF9nT21reXM1TUpidWNRbU9qVTIxbU1WUEFvejBRMngtNXRoSUJYOGVDc0pKclV5bjBtRm5QMWdtclRYOEd0ZGdCX3VDX2NtQXVQeTB2dDJVLUNvNms3WTRNanExSnZPSk1EZnJLYnNyQzBrZ0R2WWUwVmlZdG5ERGVjdjQ4bjJQQmJTUDdtWm9SUmlyWTdpanZFQVlGWGJQT18wMElNbTM4TGxaZkhUTTc3Z3BRcW1MTDg3WkJTVVVBUXlLZjMzVklyRG5RNA?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi7wFBVV95cUxQSE1EeFlLSkZpbHhoSWFzeWIwdVNybUJSRUs0VUdfSnZUUF9nT21reXM1TUpidWNRbU9qVTIxbU1WUEFvejBRMngtNXRoSUJYOGVDc0pKclV5bjBtRm5QMWdtclRYOEd0ZGdCX3VDX2NtQXVQeTB2dDJVLUNvNms3WTRNanExSnZPSk1EZnJLYnNyQzBrZ0R2WWUwVmlZdG5ERGVjdjQ4bjJQQm",
+      "at": 1788780060000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1788780060000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Geopolitical risk boosts safe havens and oil"
+    },
+    {
+      "title": "Is the stock market open today for Labor Day? What about bond trading and mail delivery?",
+      "link": "https://www.marketwatch.com/story/is-the-stock-market-open-on-labor-day-does-the-post-office-deliver-mail-6d58fd77?mod=mw_rss_topstories",
+      "source": "MarketWatch",
+      "desc": "Here’s how trading hours and other services are affected by the Labor Day holiday on Monday, Sept. 7.",
+      "at": 1788779760000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788779760000
     }
   ],
   "sources": [
@@ -2609,7 +2614,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-07T16:59:05.719Z",
-  "headlinesAt": "2026-09-07T16:59:05.719Z",
-  "updatedAt": "2026-09-07T16:59:05.719Z"
+  "calendarAt": "2026-09-07T17:02:06.168Z",
+  "headlinesAt": "2026-09-07T17:02:06.168Z",
+  "updatedAt": "2026-09-07T17:02:06.168Z"
 }
