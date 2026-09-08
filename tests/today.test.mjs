@@ -200,5 +200,43 @@ const H = 3600e3;
     breaking(null, insts, {}, { now }).length === 0);
 }
 
+// ── "Nothing is true" and "there is nothing to check" are different ─────────
+//
+// The screen said NOTHING every single time, and the reason was not a quiet
+// market. The last study produced zero surviving rules, so there was nothing
+// for the screen to evaluate — and it printed a word that implies a test was
+// run and came back negative. Same absent-reported-as-a-measured-negative
+// mistake as the null trigger and the missing spread, in the one place the user
+// actually looks.
+{
+  const nothing = verdictFor({ fires: [], near: [], ruleCount: 3 });
+  check('with rules to check and none true, NOTHING is a measurement',
+    nothing.word === 'NOTHING' && /3 surviving setups checked/.test(nothing.line),
+    nothing.line);
+  check('and it says how many were checked, so the word means something',
+    /checked against this bar/.test(nothing.line));
+
+  const none = verdictFor({ fires: [], near: [], ruleCount: 0 });
+  check('with NO rules at all it says so instead',
+    none.word === 'NO RULES YET' && none.noRules === true, none.word);
+  check('and states plainly that this is not the market being quiet',
+    /not "the market is quiet"/.test(none.line),
+    'the two states used to share a word, and the screen could only ever say one thing');
+
+  const one = verdictFor({ fires: [], near: [], ruleCount: 1 });
+  check('one rule is singular, because a screen that says "1 setups" is not read',
+    /1 surviving setup checked/.test(one.line), one.line);
+
+  // A firing rule must still win over both, and an unknown count must not
+  // masquerade as zero.
+  const fired = verdictFor({ fires: [{ dir: 'up', text: 'x', hold: 12, holdout: { expR: 0.3, baseExpR: 0.05, n: 40 } }], ruleCount: 0 });
+  check('a rule that IS firing beats the no-rules message',
+    fired.word === 'SETUP — LONG', fired.word);
+  const unknown = verdictFor({ fires: [], near: [], ruleCount: null });
+  check('and an unknown count is not treated as zero',
+    unknown.word === 'NOTHING' && !unknown.noRules,
+    'no study loaded is a third state again, and must not claim the search found nothing');
+}
+
 console.log(fails ? `\n${fails} FAILED` : '\nall passed');
 process.exit(fails ? 1 : 0);

@@ -20,7 +20,7 @@ import { featureSeries, keysOf, PHRASE, moveSincePct } from '../../shared/moveFe
 export { moveSincePct };
 import { macroSeries, describe as describeMacro } from '../../shared/macroFit.mjs';
 import {
-  fetchRegimeStudy, firing, nearMisses,
+  fetchRegimeStudy, firing, nearMisses, liveRules,
   DOLLAR_INSTRUMENT, RATE_INSTRUMENT, invertDollar,
 } from './regimeRead.js';
 
@@ -169,7 +169,7 @@ export function breaking(news, insts, bars, { now = Date.now(), withinH = 12, ma
 // them into a score would be inventing a signal out of things that have never
 // been measured against an outcome, which is the habit this whole project has
 // been trying to break.
-export function verdictFor({ fires = [], near = [] }) {
+export function verdictFor({ fires = [], near = [], ruleCount = null }) {
   if (fires.length) {
     const r = fires[0];
     return {
@@ -190,9 +190,31 @@ export function verdictFor({ fires = [], near = [] }) {
       rule: r,
     };
   }
+  // Two different states were sharing one word, and they are not the same
+  // thing at all.
+  //
+  // "No rule is true right now" is a measurement: rules exist, they were
+  // checked against this bar, and none of them fired. That is worth knowing.
+  //
+  // "There are no rules to check" is not a measurement. Nothing survived the
+  // last study, so this screen has nothing to evaluate and cannot answer the
+  // question either way. Printing NOTHING for that implies a test was run and
+  // came back negative, which is the same absent-reported-as-a-negative mistake
+  // this project keeps having to fix. It also meant the screen said the same
+  // word every single time, which is not a screen.
+  if (ruleCount === 0) {
+    return {
+      word: 'NO RULES YET', tone: 'neutral',
+      line: 'Nothing survived the last study, so there is no measured setup to check this bar '
+        + 'against. This is not "the market is quiet" — it is that the search found nothing to '
+        + 'test. The read below is what the app can see; the decision is yours.',
+      noRules: true,
+    };
+  }
   return {
     word: 'NOTHING', tone: 'neutral',
-    line: 'No surviving setup is true or close on this bar. The read below is context, not a reason to trade.',
+    line: `${ruleCount} surviving setup${ruleCount === 1 ? '' : 's'} checked against this bar; `
+      + 'none is true or one condition away. The read below is context, not a reason to trade.',
   };
 }
 
@@ -251,7 +273,7 @@ export async function loadToday({ now = Date.now(), instruments = FOCUS } = {}) 
       state: keys.map(k => PHRASE[k] || k),
       driver: macro ? describeMacro(macro, i, { name: inst.label.toLowerCase() }) : null,
       fires, near,
-      verdict: verdictFor({ fires, near }),
+      verdict: verdictFor({ fires, near, ruleCount: study ? liveRules(study).length : null }),
     };
   });
 
