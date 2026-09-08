@@ -2,6 +2,28 @@
   "calendar": [],
   "headlines": [
     {
+      "title": "Australia stocks lower at close of trade; S&P/ASX 200 down 1.00%",
+      "link": "https://www.investing.com/news/stock-market-news/australia-stocks-lower-at-close-of-trade-spasx-200-down-100-4890854",
+      "source": "Investing",
+      "at": 1788849004000,
+      "inst": [
+        "AUD/USD",
+        "US500"
+      ],
+      "ccy": [
+        "AUD"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788849004000,
+      "_kind": null,
+      "dir": {
+        "AUD/USD": "down"
+      },
+      "why": "Australian stocks fall, pressuring AUD."
+    },
+    {
       "title": "Trump and Burnham Discuss Ukraine Ceasefire Efforts and Middle East Security - Межа. Новини України.",
       "link": "https://news.google.com/rss/articles/CBMib0FVX3lxTE9RQ1kzalg2SW51RDludHZScFJEOThKT08wVm8xeUpDQkVUTTQzUzVVYUU0Mkd6V3NHcHItQW1oQ2ladHNzc3RsNlZDOFowSFJ2NU05UXlVZkxSX1U4czluZkNjZVpnRWFqNGNrd3Bacw?oc=5",
       "source": "Wires (geo)",
@@ -20,7 +42,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788848577000,
-      "_kind": "war-end"
+      "_kind": "war-end",
+      "why": "Ceasefire talks unclear for markets."
     },
     {
       "title": "WAR: Russia Resumes Strikes On Ukraine Despite Trump’s Mediation - Channels Television",
@@ -41,7 +64,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788846030000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "War escalation boosts gold safe-haven demand."
     },
     {
       "title": "Drones attack Saratov Oil Refinery in Russia overnight - Ukrinform",
@@ -62,7 +89,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788848340000,
-      "_kind": null
+      "_kind": null,
+      "why": "Refinery attack impact on supply unclear."
     },
     {
       "title": "Trump says Canada’s Bombardier must build jets in US or lose market access",
@@ -79,7 +107,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788848313000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USD/CAD": "down"
+      },
+      "why": "Trade threat weakens CAD, strengthens USD."
     },
     {
       "title": "Russian Strikes Kill Two in Kyiv as Ukraine Advances Air Defense Talks - Межа. Новини України.",
@@ -100,7 +132,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788845700000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Escalation drives gold higher on fear."
     },
     {
       "title": "Germany's trade surplus widens sharply in July as imports slump",
@@ -118,7 +154,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788847809000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "EUR/USD": "up"
+      },
+      "why": "Strong German trade surplus supports Euro."
     },
     {
       "title": "Gold gains as US dollar eases with US inflation data on radar - Forex Factory",
@@ -137,7 +177,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788846540000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Dollar eases, lifting gold prices."
     },
     {
       "title": "live At least 2 killed in Kyiv as Russia and Ukraine exchange strikes - anewz.tv",
@@ -158,7 +202,10 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788845100000,
-      "_kind": null
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Conflict escalation boosts gold safe-haven bid."
     },
     {
       "title": "USD/JPY Trades Below 154.000 as BOJ Rate Hike Bets Lift Yen - VT Markets",
@@ -176,7 +223,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788847267000
+      "firstAt": 1788847267000,
+      "dir": {
+        "USD/JPY": "down"
+      },
+      "why": "Yen strength lowers USD/JPY pair."
     },
     {
       "title": "Gold prices steady as dollar weakens ahead of key US inflation figures - Mettis Global",
@@ -194,7 +245,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788846540000
+      "firstAt": 1788846540000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Weaker dollar supports gold prices."
     },
     {
       "title": "Russia launches deadly strikes on Kyiv as pause during US envoy visits ends - Al Jazeera",
@@ -214,7 +269,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788845100000
+      "firstAt": 1788845100000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Renewed strikes boost gold safe-haven demand."
     },
     {
       "title": "Ukraine Says At Least Two Killed in Russian Attack On Kyiv - Bloomberg.com",
@@ -234,7 +293,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788845100000
+      "firstAt": 1788845100000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Russian attack increases geopolitical risk premium."
     },
     {
       "title": "Asian currencies gain as yen hits seven-month high, dollar stays subdued",
@@ -251,7 +314,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788845375000
+      "firstAt": 1788845375000,
+      "dir": {
+        "USD/JPY": "down"
+      },
+      "why": "Yen high, dollar subdued lowers pair."
     },
     {
       "title": "🔴 Live: At least two killed in Kyiv as Russia renews strikes after three-day pause - France 24",
@@ -271,7 +338,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788843052000
+      "firstAt": 1788843052000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Resumed strikes boost gold safe-haven demand."
     },
     {
       "title": "Russia Appears to Break Its Own Three-Day Kyiv Truce Before Deadline - Kyiv Post",
@@ -1176,7 +1247,7 @@
       "firstAt": 1788827167000
     },
     {
-      "title": "Gold gains as greenback eases with US inflation data on radar - businesstimes.com.sg",
+      "title": "Gold gains as greenback eases with US inflation data on radar - The Business Times",
       "link": "https://news.google.com/rss/articles/CBMivAFBVV95cUxOU29GQUxPTS1zcE5IQ0dPTjRFNWE2R290MEJzZTJuWXJLZFRIRVdnQVgxM1JnVld1aXdkNTY1TGpQMFlsTk5fSmdSZnhIeWdIdmY5ZmRORmZiRFlYVVdQZlBwS2QxWUx5WC1POEdVenlmOUJZeWJJZWZVZUozTTVlejdaczlqMzdPLV85TWZzSFJGdDNuT0xvdl91bzV0MFd4Sk5Hd0JmREhwWU5sWHplbHdtVnlmSVdBNnM2ZA?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMivAFBVV95cUxOU29GQUxPTS1zcE5IQ0dPTjRFNWE2R290MEJzZTJuWXJLZFRIRVdnQVgxM1JnVld1aXdkNTY1TGpQMFlsTk5fSmdSZnhIeWdIdmY5ZmRORmZiRFlYVVdQZlBwS2QxWUx5WC1POEdVenlmOUJZeWJJZWZVZUozTTVlejdaczlqMzdPLV85TWZzSFJGdDNuT0xvdl91bzV0MFd4Sk5Hd0JmREhwWU",
@@ -1209,7 +1280,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788823956000
+      "firstAt": 1788826590000
     },
     {
       "title": "Iran war live: Qatar warns of ‘industrial catastrophe’ if crisis continues",
@@ -1331,24 +1402,6 @@
       "firstAt": 1788824547000
     },
     {
-      "title": "Rising Oil Prices and Inflation Risks Put Markets on Edge as MoneySimpler Expands Free AI Automated Trading - thecanadianpressnews.ca",
-      "link": "https://news.google.com/rss/articles/CBMirAJBVV95cUxQTDRTay1tTWNhaGlETU5Ydkk2VzBzQW1TbDY4dFZZMXlUZEFUcExMTXBMZU5nX2RXMy1SM05LNDd1bjNVNGxFY3lsMi1kNzEzNWdmdlFvWEtvdHZ5ekJJUFZpZnU2aW9KZTJ0ZXljQjhPaE96ZV93SmpndmdpZmRpZWs4a1JaUjVRbzNldjZxNjhONF8xbWQxMlR0VW5JazdJNUFLQlBDNWdXNDlxQXhqUG80NnlwQmhvcVB5Y3ZHQ3BQU0JvV2tKZ1hHdkNSSjdleXpmenNxMUhZbW54SkdIbVNNeUotb0dOVGc0Uk9zWWVWcVo2RGVzSmxPbS1rOU1DTnV5d0Q1XzF1SGdIYnVGTklwZjJwRy1jTEYwSnBUeF9uLVM2MFN3cHRWOUs?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMirAJBVV95cUxQTDRTay1tTWNhaGlETU5Ydkk2VzBzQW1TbDY4dFZZMXlUZEFUcExMTXBMZU5nX2RXMy1SM05LNDd1bjNVNGxFY3lsMi1kNzEzNWdmdlFvWEtvdHZ5ekJJUFZpZnU2aW9KZTJ0ZXljQjhPaE96ZV93SmpndmdpZmRpZWs4a1JaUjVRbzNldjZxNjhONF8xbWQxMlR0VW5JazdJNUFLQlBDNWdXND",
-      "at": 1788823956000,
-      "inst": [
-        "USOIL"
-      ],
-      "ccy": [
-        "OIL",
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788823956000
-    },
-    {
       "title": "Japan wages data, July 2026: Headline earnings +4.7% y/y (expected +3.9%, prior +4%)",
       "link": "https://investinglive.com/news/japan-wages-data-july-2026-headline-earnings-4-7-y-y-expected-3-9-prior-4/",
       "source": "ForexLive",
@@ -1454,6 +1507,24 @@
       "firstAt": 1788822406000
     },
     {
+      "title": "Rising Oil Prices and Inflation Risks Put Markets on Edge as MoneySimpler Expands Free AI Automated Trading - The Manila Times",
+      "link": "https://news.google.com/rss/articles/CBMijgJBVV95cUxNNWZpV21PTVBHaEY0anFEaFFoakdsTV90TVBWYWROemFfR1pBZDlEdUdqeTVjUDJ5Q01DRklNdWFucEpHdENfcGNMaU5jQVRadXJoVkQ1LVNFQ2piRzVrb2JHeXZoN0dJVTg0YlZYencxbHpuX09NOG9XRU03T1J3MC15M0hkVnpsZlhCLXhOdUZRYmo1S2toUWI1LUtwVjJzUGZOUjhLTUhhYklwWjR5c1N5ZmRfMGtwVFl1RF9YWk9fX2NGa0piV2ZiWVoyTDA1al9hRjZHZ1dOajJHMnIyY3JaNWRucnJpcWFzbVc0Vnd0eDRhcGhMUmJzczJ3XzVhYjYtbXJXekJQWVhGbXfSAZMCQVVfeXFMTkxwSlhiaVN4bGNSa0NCSFlEUGpkaTJXQnd0cVhGYWpGV0Y1SGYzczlJNkgwM2xiYU1yLXJ6ZTNjWjhGb2VYcFBBSTBVaThWVjZRbkZ5b0YzUFVVemljeUF6a044ZmlxeHpoWjNVd3oyZXVVOHVqd0lyR0o4SnZMM2xfR1prc1pMMlpoNGFxNkNmVXlxUWZNbW9Gd1U2SUZ2Z1pCTTBhdzUwTkF5ZmM2N3NSZm5EYUYzN3hfRTk3cmlaVV9PZ2Qtc3lYZ2xNZ01YWTVLX1F3UDNfUlJYQVZSY1psRjVVS0Rvb2VBWGh3dThyTnFvbU42WF9ncklNQTJaY2dqSWk1dDdvaHdzcWVibmNYV28?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMijgJBVV95cUxNNWZpV21PTVBHaEY0anFEaFFoakdsTV90TVBWYWROemFfR1pBZDlEdUdqeTVjUDJ5Q01DRklNdWFucEpHdENfcGNMaU5jQVRadXJoVkQ1LVNFQ2piRzVrb2JHeXZoN0dJVTg0YlZYencxbHpuX09NOG9XRU03T1J3MC15M0hkVnpsZlhCLXhOdUZRYmo1S2toUWI1LUtwVjJzUGZOUjhLTUhhYk",
+      "at": 1788821871000,
+      "inst": [
+        "USOIL"
+      ],
+      "ccy": [
+        "OIL",
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1788819300000
+    },
+    {
       "title": "Burnham, Trump Back Continued Push for Ukraine-Russia Ceasefire - Kyiv Post",
       "link": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE41Y0MtRmM3dVVZTkJSSkVjVnF1MjJxWmhtSVFURUFaRG12dkFibHhFNGI2blZBVURHMlZwSWYzZHBNUjRULUhwTzQ4SQ?oc=5",
       "source": "Wires (geo)",
@@ -1550,7 +1621,7 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 1,
+      "srcs": 2,
       "firstAt": 1788819300000
     },
     {
@@ -1683,26 +1754,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788810622000
-    },
-    {
-      "title": "UK To Announce New Sanctions On Israel Tomorrow - Report - i24NEWS",
-      "link": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxOV3pqVXBwZEZMRVNlTml0S19ZSzdoQnFxVm9GZFkwdkZhOEhlZ3VxX04ySFkwdmd0RVZPd2dMQkw3MTZkc0Zfa2VYRk55N3lMc3NjMDQ5VWVzNmdYY084QnFINUI0RDhMY3ZLUWhTTWpoRHp5d1BiMmNlUDVUSjhPaGl5Vk9nZWk4UHVkSFdtejdFQ01LcHZLUzg0ekM3bXo2cmUxbDJKenlvZTQ?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiqwFBVV95cUxOV3pqVXBwZEZMRVNlTml0S19ZSzdoQnFxVm9GZFkwdkZhOEhlZ3VxX04ySFkwdmd0RVZPd2dMQkw3MTZkc0Zfa2VYRk55N3lMc3NjMDQ5VWVzNmdYY084QnFINUI0RDhMY3ZLUWhTTWpoRHp5d1BiMmNlUDVUSjhPaGl5Vk9nZWk4UHVkSFdtejdFQ01LcHZLUzg0ekM3bXo2cmUxbDJKenlvZT",
-      "at": 1788809400000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788809400000
     }
   ],
   "sources": [
@@ -1729,6 +1780,6 @@
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-08T06:34:55.799Z",
-  "updatedAt": "2026-09-08T06:34:55.799Z"
+  "headlinesAt": "2026-09-08T06:35:59.998Z",
+  "updatedAt": "2026-09-08T06:35:59.998Z"
 }
