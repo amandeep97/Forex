@@ -834,7 +834,7 @@
       "srcs": 2,
       "firstAt": 1788851466000,
       "_kind": null,
-      "why": "Overbought RSI, no clear directional bias"
+      "why": "Technical overbought, no clear direction"
     },
     {
       "title": "Gold clings to 38.2% Fib support at $4,451: Live levels",
@@ -852,7 +852,7 @@
       "srcs": 2,
       "firstAt": 1788851466000,
       "_kind": null,
-      "why": "Clings to support, no clear direction"
+      "why": "Holding support, no clear direction"
     },
     {
       "title": "Russia strikes Kyiv–Sumy train, no injuries reported - Ukrinform",
@@ -879,7 +879,7 @@
         "USOIL": "up",
         "UKOIL": "up"
       },
-      "why": "Geopolitical escalation boosts risk assets"
+      "why": "Escalating conflict boosts risk assets"
     },
     {
       "title": "Brent climbs near $100/bbl after Iran threat to Gulf energy infrastructure",
@@ -900,7 +900,7 @@
       "dir": {
         "UKOIL": "up"
       },
-      "why": "Brent climbs due to supply threats"
+      "why": "Brent climbs on supply threats"
     },
     {
       "title": "European stocks fall as crude extends advance following Iranian threats",
@@ -928,27 +928,6 @@
       "why": "Crude extends advance, stocks fall"
     },
     {
-      "title": "How Ukrainian Drone Strikes Are Pounding Russia’s Economy - WSJ",
-      "link": "https://news.google.com/rss/articles/CBMinwFBVV95cUxQaEFINTVQRkIxRGVyMllZMGptRXBpdWU0WndVWFRUazBMTTNKbnF4OFl6R2lnLXR3T1ljYUV2S29tZGRTT0ppT21JT2drWW1wdkxlM2Z2bF8wUkp4TDB3WTRIY1B0alNCWC1vUExLeWN5bXdkbTRsbFBuLVctQkhHTVU4eS1mdmJzZVcxMjNPSWVmV2J3RWcxcG5SbjdjNEk?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMinwFBVV95cUxQaEFINTVQRkIxRGVyMllZMGptRXBpdWU0WndVWFRUazBMTTNKbnF4OFl6R2lnLXR3T1ljYUV2S29tZGRTT0ppT21JT2drWW1wdkxlM2Z2bF8wUkp4TDB3WTRIY1B0alNCWC1vUExLeWN5bXdkbTRsbFBuLVctQkhHTVU4eS1mdmJzZVcxMjNPSWVmV2J3RWcxcG5SbjdjNEk?oc=5\" target=\"",
-      "at": 1788850922000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788848665000,
-      "why": "Economic impact unclear, no immediate price move"
-    },
-    {
       "title": "Japan stocks lower at close of trade; Nikkei 225 down 1.69%",
       "link": "https://www.investing.com/news/stock-market-news/japan-stocks-lower-at-close-of-trade-nikkei-225-down-169-4890886",
       "source": "Investing",
@@ -964,7 +943,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788850804000,
-      "why": "Japan-specific news, no clear US impact"
+      "why": "Japan-specific news, unclear for others"
     },
     {
       "title": "Ukraine decries ‘horrific’ Russian attack straight after US talks - Arab News",
@@ -990,7 +969,7 @@
         "USOIL": "up",
         "UKOIL": "up"
       },
-      "why": "Geopolitical tension boosts safe havens and oil"
+      "why": "Horrific attack boosts risk premiums"
     },
     {
       "title": "French trade deficit grows larger in July on higher imports again",
@@ -1013,7 +992,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788850521000
+      "firstAt": 1788850521000,
+      "dir": {
+        "EUR/USD": "down"
+      },
+      "why": "Wider deficit weakens Euro sentiment"
     },
     {
       "title": "Gold Climbs to $4,435 as Dollar Weakness Offsets Rate-Hike Gloom - finance.biggo.com",
@@ -1181,7 +1164,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788846433000
+      "firstAt": 1788847689000
     },
     {
       "title": "'Good to have choice': Australians on opting out of social media algorithms",
@@ -1218,7 +1201,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788846433000
+      "firstAt": 1788848340000
     },
     {
       "title": "UK’s Burnham Risks Trump Anger With New Sanctions on Israel - Bloomberg.com",
@@ -1350,26 +1333,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788846540000
-    },
-    {
-      "title": "'Run To Bunkers': Russia Attack Alert Across Ukraine; Kyiv 'Burns' Soon After Witkoff & Kushner Left - timesofindia.indiatimes.com",
-      "link": "https://news.google.com/rss/articles/CBMigwJBVV95cUxNS2YtWXZRN2dwR1lGVEtZSG5OeEc3ekdzaWxsSWdsQ0wxMWN5MnV4M1doM0ZDSkRQM0NBRHVkUm4yX0VoYVczcHlEcklCdWUxZHNrTkJ1MVBJNXZDaE1JaGx2ZkhiOHN3MmRYREtnWXJ4OFVLYXRFOWdXbjh2ZlI4elp3cEhzODNUNDRkelJHbnhLMlpRZDNhVm1fNENVQTl0R2sxY0NnUEhhUnpKbFpLR2NkTGxzSlVOQnJWNi1BY1kwemJmTVM0alZnY3hQUm5sN0RXY3hWdThKNHpxLVNSR0JqaWFDNUpGLUdkZTdzZnVibGxHTnZDOW9mNERLeWp6bEw40gGIAkFVX3lxTFBxUEZPaThfeHFQVVZNN3RWaGd6S0NyX2QzdXd6OUNzRXBXb2YxWVlRMHl1dVRwNzJhbnF5SjRmblMzUTlmaU1hVmE2M3kxalFrMFZiUmFBOXIySnpHZFlablZVeGxwVXdXd2pwd2hqZ3h2eHd6RnVhSkppcnJEVmp6WDlTMUU2QVZ6d2x0RzVWNklNZzBKeWo4NW1jWU5XTWV2VE1BUDJ5TEFuX0VQUVpqYVBoMC1vSG1YcUgzQUVZRVBuSjQ1WXZIT2Z0NmVNZzZHRk1PV0ZTdUpXQVdqd18tVi03MVpnTk03bXp6a09UY29ZWDhBT21tcU9YcW5BMzVxNExfNWQ1Tg?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMigwJBVV95cUxNS2YtWXZRN2dwR1lGVEtZSG5OeEc3ekdzaWxsSWdsQ0wxMWN5MnV4M1doM0ZDSkRQM0NBRHVkUm4yX0VoYVczcHlEcklCdWUxZHNrTkJ1MVBJNXZDaE1JaGx2ZkhiOHN3MmRYREtnWXJ4OFVLYXRFOWdXbjh2ZlI4elp3cEhzODNUNDRkelJHbnhLMlpRZDNhVm1fNENVQTl0R2sxY0NnUEhhUn",
-      "at": 1788846433000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 3,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788845100000
     },
     {
       "title": "Ukraine Says At Least Two Killed in Russian Attack On Kyiv - Bloomberg.com",
@@ -2410,6 +2373,38 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788824547000
+    },
+    {
+      "title": "Japan wages data, July 2026: Headline earnings +4.7% y/y (expected +3.9%, prior +4%)",
+      "link": "https://investinglive.com/news/japan-wages-data-july-2026-headline-earnings-4-7-y-y-expected-3-9-prior-4/",
+      "source": "ForexLive",
+      "desc": "Just the data on this post. July 2026. Average Cash Earnings YY 4.7% expected 3.9%, prior 4.0%Real wages + 2.4% y/y biggest increase since May 2021 seventh consecutive month of gainsADDED, details here: Japan wage growth strongest since 1997, cementing BOJ hike caseComing up soon",
+      "at": 1788823892000,
+      "inst": [
+        "USD/JPY"
+      ],
+      "ccy": [
+        "JPY"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788823892000
+    },
+    {
+      "title": "China says it will pump $54 billion into banks and insurers — but their stocks still fell",
+      "link": "https://www.cnbc.com/2026/09/07/china-state-banks-lenders-insurers-capital-solvency-bankrupt-nim-.html",
+      "source": "CNBC Markets",
+      "desc": "With a bigger capital cushion, financial institutions may also be asked to do more to mobilize resources in capital markets, analysts say.",
+      "at": 1788823390000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788823390000
     }
   ],
   "sources": [
@@ -2432,10 +2427,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-08T07:33:56.426Z",
-  "headlinesAt": "2026-09-08T07:33:56.426Z",
-  "updatedAt": "2026-09-08T07:33:56.426Z"
+  "calendarAt": "2026-09-08T07:35:10.880Z",
+  "headlinesAt": "2026-09-08T07:35:10.880Z",
+  "updatedAt": "2026-09-08T07:35:10.880Z"
 }
