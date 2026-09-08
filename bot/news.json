@@ -6,7 +6,7 @@
       "link": "https://www.bbc.co.uk/news/articles/c4g7zen0vveo?at_medium=RSS&at_campaign=rss",
       "source": "BBC World",
       "desc": "Britain's foreign secretary accuses settlers of carrying out the \"ethnic cleansing\" of Palestinians, as Israel responds by shutting the UK consulate in East Jerusalem.",
-      "at": 1788889717000,
+      "at": 1788890347000,
       "inst": [
         "GBP/USD",
         "XAU/USD",
@@ -20,8 +20,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 3,
-      "firstAt": 1788887476000,
-      "_kind": null
+      "firstAt": 1788888120000,
+      "_kind": null,
+      "dir": {
+        "GBP/USD": "down",
+        "XAU/USD": "up"
+      },
+      "why": "UK-Israel tensions boost gold, hurt pound"
     },
     {
       "title": "Qualcomm’s stock climbs as Amazon chip deal offers investors much-needed good news",
@@ -56,7 +61,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788889055000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Yemen conflict escalation boosts safe havens, oil"
     },
     {
       "title": "The Earnings Report That Could Move the Market",
@@ -84,7 +95,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788888900000,
-      "_kind": null
+      "_kind": null,
+      "why": "Stock advice irrelevant to crude direction"
     },
     {
       "title": "Behind the Ticker: Aristotle Pacific's Relative Value Bond Bet",
@@ -118,7 +130,35 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1788887454000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Ukraine strike boosts gold, oil unclear"
+    },
+    {
+      "title": "UAE warned Netanyahu of 7 October attack, Israeli newspaper reports - Euronews.com",
+      "link": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxNOHZ2Qm9zQU1BT2JkLUp4OHNtekpfYVR4dHlSOUJBckJYYlFoUEl4bXc2ODg0ZzN6OTdKR2FCUVVUMDJqcElHU2pXeHoteHNrenlEbllqazYxMjJJaHVaRnhJRFJWV2RQRVF3eWFMZS03blkxcVZuYTR6cmJHbkZCcWZiby1LRFRGSS1wc1h1Z05GNmppSWZ6a21weEd5UWtRMHljREhJVXdqRk5maF9vbGdjQU1lSkpjS092c2N0WVptUWM?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiwwFBVV95cUxNOHZ2Qm9zQU1BT2JkLUp4OHNtekpfYVR4dHlSOUJBckJYYlFoUEl4bXc2ODg0ZzN6OTdKR2FCUVVUMDJqcElHU2pXeHoteHNrenlEbllqazYxMjJJaHVaRnhJRFJWV2RQRVF3eWFMZS03blkxcVZuYTR6cmJHbkZCcWZiby1LRFRGSS1wc1h1Z05GNmppSWZ6a21weEd5UWtRMHljREhJVXdqRk",
+      "at": 1788888605000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788888605000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Geopolitical leak boosts gold, oil unclear"
     },
     {
       "title": "Northwest European gasoline margins drop as crude prices rise",
@@ -136,7 +176,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788888572000,
-      "_kind": null
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Crude prices rise explicitly stated"
     },
     {
       "title": "A contrarian case for stock-market gains through the midterm election",
@@ -149,8 +193,7 @@
       "sev": 1,
       "rel": 1,
       "srcs": 1,
-      "firstAt": 1788888540000,
-      "_kind": null
+      "firstAt": 1788888540000
     },
     {
       "title": "EU to step up support following Russian strike on “We Are Ukraine” TV Studio - Ukrinform",
@@ -171,7 +214,10 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788888540000,
-      "_kind": null
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Ukraine strike boosts gold, oil unclear"
     },
     {
       "title": "Holtec Nuclear launches $900 million IPO at $10.2 billion valuation",
@@ -188,7 +234,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788888507000,
-      "_kind": "escalation"
+      "why": "Nuclear IPO irrelevant to gold direction"
     },
     {
       "title": "Nicaragua urges ICJ to reject Germany’s bid to throw out Gaza genocide case",
@@ -203,7 +249,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788888393000
+      "firstAt": 1788888393000,
+      "why": "Legal dispute unclear for euro direction"
     },
     {
       "title": "U.S. Officials, Public Figures Divided Over U.K. West Bank Settlement Sanctions - Haaretz",
@@ -220,7 +267,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1788885932000
+      "firstAt": 1788885932000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Geopolitical tension boosts gold safe haven"
     },
     {
       "title": "Dollar Tree Director Stephanie Stahl Sells 1,185 Shares",
@@ -269,7 +320,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788887800000
+      "firstAt": 1788887800000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Consumer worry boosts gold, FX unclear"
     },
     {
       "title": "U.S. Treasury sells $58 billion of 3 or notes at a high yield of 4.474%",
@@ -292,7 +347,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788887548000
+      "firstAt": 1788887548000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "High yields boost gold, demand average"
     },
     {
       "title": "Ukrainian TV channel building hit by Russian drone as five killed in Kyiv",
@@ -312,7 +371,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1788887454000
+      "firstAt": 1788887454000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Ukraine strike boosts gold, oil unclear"
     },
     {
       "title": "US targets Iran’s airlines with sweeping new sanctions - South China Morning Post",
@@ -332,7 +395,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788884909000
+      "firstAt": 1788884909000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Iran sanctions boost gold, oil supply risk"
     },
     {
       "title": "Israel to close British consulate in Jerusalem after sanctions announced - theguardian.com",
@@ -353,7 +422,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788886669000
+      "firstAt": 1788886669000,
+      "dir": {
+        "GBP/USD": "down",
+        "XAU/USD": "up"
+      },
+      "why": "UK-Israel conflict hurts pound, boosts gold"
     },
     {
       "title": "Israeli strikes devastate homes, displace families across Gaza",
@@ -1267,7 +1341,7 @@
       "firstAt": 1788876471000
     },
     {
-      "title": "How the Latest Iran Sanctions Could Impact Central Asia - nationalinterest.org",
+      "title": "How the Latest Iran Sanctions Could Impact Central Asia - The National Interest",
       "link": "https://news.google.com/rss/articles/CBMirgFBVV95cUxNcEFHT1hJdWd2Vk1QWlo1bDhVNVpkLTNOZUxwZ2xQeGJ5cU1MZkMxTGM1V0x3Y2s3dklYTF82WDNwYUQ5dExISGJtYnh2SnpXTy1vZUZ6YmVlTUd4aXFfZ04yaGtVQVdaeHhUdHp3a3dtbVRhVDJDYUNaWk5LS3oxLWdQdVFsQW10b0doYW8yUy0xRHJPemN0Ylp4THhvYlRrZEJJUXE1bHlIMms0X2c?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMirgFBVV95cUxNcEFHT1hJdWd2Vk1QWlo1bDhVNVpkLTNOZUxwZ2xQeGJ5cU1MZkMxTGM1V0x3Y2s3dklYTF82WDNwYUQ5dExISGJtYnh2SnpXTy1vZUZ6YmVlTUd4aXFfZ04yaGtVQVdaeHhUdHp3a3dtbVRhVDJDYUNaWk5LS3oxLWdQdVFsQW10b0doYW8yUy0xRHJPemN0Ylp4THhvYlRrZEJJUXE1bHlIMm",
@@ -1654,26 +1728,6 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1788871205000
-    },
-    {
-      "title": "World’s third-largest crude importer risks US sanctions as Russia deepens oil ties with India and Africa - Business Insider Africa",
-      "link": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxPdEpIcG9XTUVMZi0yR2JwSW1VSHZVa09kcG1CcTlxbl9lVEVQU1RZYzhhU2tqbWt0QmVCT3NXNGpQWElTZGJCMl94ZzNOVEQ3elh6WmtJaVczcnhhNk0tdjllXy1tOC1VaEtDa2pmbV9IVG9nMDd6bVh3OUtJZ1FDWVVhUG9yR1lHa3hXeks1LTlLMHBSZmZWeGwwZzdzQnBFTV9BR2FiRmRTbF9TVGloM1ZIM3M4U3doQW9FQi1lQjQ0ZzBzOS1EY2FMdWJJQWl1RUFxMw?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi1AFBVV95cUxPdEpIcG9XTUVMZi0yR2JwSW1VSHZVa09kcG1CcTlxbl9lVEVQU1RZYzhhU2tqbWt0QmVCT3NXNGpQWElTZGJCMl94ZzNOVEQ3elh6WmtJaVczcnhhNk0tdjllXy1tOC1VaEtDa2pmbV9IVG9nMDd6bVh3OUtJZ1FDWVVhUG9yR1lHa3hXeks1LTlLMHBSZmZWeGwwZzdzQnBFTV9BR2FiRmRTbF",
-      "at": 1788872867000,
-      "inst": [
-        "USOIL",
-        "UKOIL",
-        "XAU/USD"
-      ],
-      "ccy": [
-        "OIL",
-        "XAU"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788872867000
     }
   ],
   "sources": [
@@ -1696,10 +1750,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-08T17:58:40.770Z",
-  "updatedAt": "2026-09-08T17:58:40.770Z"
+  "headlinesAt": "2026-09-08T18:00:30.365Z",
+  "updatedAt": "2026-09-08T18:00:30.365Z"
 }
