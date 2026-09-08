@@ -1,7 +1,7 @@
 # Tests
 
 ```
-npm test                 # lint, typecheck, then all 61
+npm test                 # lint, typecheck, then all 62
 npm run lint             # the linter alone, warnings included
 npm run typecheck        # shared/ must stay at zero type errors
 npm run typecheck:audit  # the rest, visible but not yet enforced
@@ -194,3 +194,28 @@ statistically significant rather than merely the right sign. Across three seeds
 the search now returns zero confirmed and about one hold per run, which is what
 the arithmetic predicts for an uncorrected threshold and is why "confirmed"
 carries the corrected one.
+
+## The null test found its own data was wrong
+
+The first run that included M15 reported ten of ten rules confirmed on what
+this file called random data. The search was not broken. The linear congruential
+generator used here has a mean of 0.4952 rather than 0.5, and over the
+thirty-five thousand bars in a year of M15 that one percent bias compounds into
+a fifty percent decline. Every series it produced trended hard downward, and the
+search correctly found the trend.
+
+Two lessons, both now enforced in the file:
+
+The generator is checked BEFORE the search is asked anything. A null test is
+only worth the data it runs on, and one that drifts certifies nothing while
+looking rigorous.
+
+And the null test runs at the sample sizes that are actually used. The bias was
+invisible at four thousand bars and dominant at thirty-five thousand, so a null
+test that skipped M15 was testing the wrong thing.
+
+With a sound generator it now returns zero confirmed AND zero holds across three
+seeds and sixty carried rules, on both timeframes, with the exit dimension
+searched. The other test files use the same old generator on series of a few
+hundred bars, where the bias is far too small to matter for the shapes they
+check.
