@@ -20,7 +20,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788895560000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions news lacks clear immediate market direction"
     },
     {
       "title": "Brent briefly tops $99/bbl as U.S. and Iran continue to escalate military action",
@@ -40,7 +41,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788897639000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "UKOIL": "up",
+        "USOIL": "up"
+      },
+      "why": "Oil prices rise on military escalation"
     },
     {
       "title": "Israel Closes British Consulate, Imposes Countermeasures Over UK Sanctions - The Media Line",
@@ -62,7 +68,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788895560000,
-      "_kind": null
+      "_kind": null,
+      "why": "Diplomatic dispute has no clear market impact"
     },
     {
       "title": "Iran war latest: Arab and Gulf countries condemn 'malicious' Houthi attacks on Saudi Arabia - thenationalnews.com",
@@ -82,7 +89,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788895140000
+      "firstAt": 1788895140000,
+      "why": "Condemnation of attacks lacks direct price signal"
     },
     {
       "title": "Wall Street falls on elevated Fed rate hike bets and oil prices, slump in health",
@@ -100,7 +108,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788896176000
+      "firstAt": 1788896176000,
+      "dir": {
+        "USOIL": "down",
+        "US500": "down"
+      },
+      "why": "Stocks fall on high oil and rates"
     },
     {
       "title": "Ukrainian Tennis Star Svitolina’s Own Padel Club Damaged in Russian Attack in Kyiv - united24media.com",
@@ -120,7 +133,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788896073000
+      "firstAt": 1788896073000,
+      "why": "Local incident has no broad market impact"
     },
     {
       "title": "US targets Iranian oil tankers, official tells 'Post,' as Iran reports explosions near Kharg Island - The Jerusalem Post",
@@ -137,7 +151,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1788893967000
+      "firstAt": 1788893967000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Supply disruption fears boost oil prices"
     },
     {
       "title": "US missile strike hits Iranian tanker off Kharg Island, IRGC outlet says - iranintl.com",
@@ -157,7 +175,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1788893967000
+      "firstAt": 1788893967000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Tanker strike implies supply risk for oil"
     },
     {
       "title": "Will UK sanctions have any impact on Israel’s ‘settler terrorists’ in West Bank? - The Guardian",
@@ -177,7 +200,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1788894699000
+      "firstAt": 1788892980000,
+      "why": "Political question has no clear market direction"
     },
     {
       "title": "Israel to close British consulate in Jerusalem after sanctions announced - The Guardian",
@@ -198,7 +222,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788894030000
+      "firstAt": 1788894030000,
+      "why": "Diplomatic action lacks immediate financial impact"
     },
     {
       "title": "Bessent unveils sanctions targeting Iran airlines in latest ‘economic D-Day’ tactic - Washington Examiner",
@@ -219,7 +244,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788895140000
+      "firstAt": 1788895140000,
+      "why": "Sanctions on airlines have minimal oil impact"
     },
     {
       "title": "UK announces sanctions on West Bank settlements prompting furious Israeli response",
@@ -240,7 +266,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1788894699000
+      "firstAt": 1788892980000,
+      "why": "Political sanctions have no clear market direction"
     },
     {
       "title": "Gold prices subdued as elevated Fed rate hike bets and oil offset weaker dollar",
@@ -259,7 +286,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1788893100000
+      "firstAt": 1788893100000,
+      "why": "Mixed factors keep gold prices subdued"
     },
     {
       "title": "U.S. Sanctions Iran’s 27 Remaining Active Airlines In 36-Target Crackdown - Dallas Express",
@@ -279,7 +307,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788891796000
+      "firstAt": 1788891796000,
+      "why": "Airline sanctions have negligible oil market impact"
     },
     {
       "title": "Does the UK have a legal obligation to redress the harms of slavery?",
@@ -294,7 +323,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788894073000
+      "firstAt": 1788894073000,
+      "why": "Legal petition has no immediate market impact"
     },
     {
       "title": "US Treasury slaps sanctions on Iranian airlines, accuses them of transporting arms - The Times of Israel",
@@ -384,6 +414,23 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788893079000
+    },
+    {
+      "title": "U.S. Officials, Public Figures Divided Over U.K. West Bank Settlement Sanctions - Haaretz",
+      "link": "https://news.google.com/rss/articles/CBMiogJBVV95cUxONlVxa1p5SEJMbkwybnB4VVBrYnA3WXlWTzR5alBWZW11UUVGTHU0MmtITzd3bDBuWHI2LVo2cm9UWlVDSEQ3UlJFYmNxdHZSQzRiWjJCajF3b0Zwdmg2MmJ4ZEdWSXBrWDdCYnFwQlZVOUZNeWE0R0sxRS0taEQzcklyUXljX3k5UGVvNXdhZFFMeEREckVaa1V5UEFtUjlDd1oxS0k4NEJRLXJZcmNocENOZkIycWRTd211OW1wb294eEkzQWhwRjk3N1pNQmhaWHdmOGkzYXpwbmRUS1ptZk4zdGdUUXp5REwyYm82czl4ekIwMVNvekJYb0Mya3pfQWxJbmhCZ2x0TFJGWHJ3cDdETjlTMTFZaUYxZERSYW5zUQ?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiogJBVV95cUxONlVxa1p5SEJMbkwybnB4VVBrYnA3WXlWTzR5alBWZW11UUVGTHU0MmtITzd3bDBuWHI2LVo2cm9UWlVDSEQ3UlJFYmNxdHZSQzRiWjJCajF3b0Zwdmg2MmJ4ZEdWSXBrWDdCYnFwQlZVOUZNeWE0R0sxRS0taEQzcklyUXljX3k5UGVvNXdhZFFMeEREckVaa1V5UEFtUjlDd1oxS0k4NEJRLX",
+      "at": 1788892980000,
+      "inst": [
+        "XAU/USD"
+      ],
+      "ccy": [
+        "XAU"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1788892980000
     },
     {
       "title": "Dollar slips ahead of key inflation data this week, yen hits over seven-month high",
@@ -557,23 +604,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788890562000
-    },
-    {
-      "title": "This is why UK sanctions against West Bank settlers are so seismic - The Independent",
-      "link": "https://news.google.com/rss/articles/CBMinAFBVV95cUxQd0NnRW4za2xjelAxdW9jVE1VNnJnb2NFYkI4enphb2xMZ1lBclU4dENHVWFONzVuaGxlVGVqOTBESkZJdGh6TzhHNVo3STdsSk9Ja0lrZUVqclAwQk5jYk9tVUtrcjBkVGdoakVOcWZES016UUJTQnJLdzBqR2Nwb09oWVN3TXJQTHc2dzROQlVvTzN2SnptanVocWw?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMinAFBVV95cUxQd0NnRW4za2xjelAxdW9jVE1VNnJnb2NFYkI4enphb2xMZ1lBclU4dENHVWFONzVuaGxlVGVqOTBESkZJdGh6TzhHNVo3STdsSk9Ja0lrZUVqclAwQk5jYk9tVUtrcjBkVGdoakVOcWZES016UUJTQnJLdzBqR2Nwb09oWVN3TXJQTHc2dzROQlVvTzN2SnptanVocWw?oc=5\" target=\"_bla",
-      "at": 1788890340000,
-      "inst": [
-        "XAU/USD"
-      ],
-      "ccy": [
-        "XAU"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788889284000
     },
     {
       "title": "UK sanctions Israeli settlements in occupied West Bank as Israel announces consulate closure, bans British lawmakers - Courthouse News",
@@ -1739,6 +1769,6 @@
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-08T20:09:27.568Z",
-  "updatedAt": "2026-09-08T20:09:27.568Z"
+  "headlinesAt": "2026-09-08T20:11:29.419Z",
+  "updatedAt": "2026-09-08T20:11:29.419Z"
 }
