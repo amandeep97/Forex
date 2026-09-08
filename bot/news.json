@@ -15,7 +15,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788900992000,
-      "_kind": null
+      "_kind": null,
+      "why": "Individual stock moves, index direction unclear."
     },
     {
       "title": "China August inflation seen rebounding as trade data flags demand gap",
@@ -39,7 +40,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788900933000,
-      "_kind": null
+      "_kind": null,
+      "why": "China data, no clear FX direction."
     },
     {
       "title": "Stocks stumble after Labor Day. This year’s easy gains may be over.",
@@ -57,7 +59,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788900840000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Stocks stumble, rate hike fears."
     },
     {
       "title": "Trump directs GSA to take steps to remove Canadian goods from agency lists",
@@ -72,7 +78,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788900519000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USD/CAD": "up"
+      },
+      "why": "Trade friction weakens CAD, strengthens USD."
     },
     {
       "title": "Police bodycam captures Russian missile strike on Kyiv",
@@ -93,7 +103,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788900232000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Geopolitical risk boosts safe havens and oil."
     },
     {
       "title": "investingLive Americas FX news wrap 8 Sept: USD mixed, yields rise. Trader await inflation data.",
@@ -117,7 +133,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788899985000,
-      "_kind": null
+      "why": "Mixed USD, awaiting data, direction unclear."
     },
     {
       "title": "11 European nations to sanction Israeli settlements in the West Bank - Euronews.com",
@@ -137,7 +153,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788897453000
+      "firstAt": 1788897453000,
+      "why": "Sanctions news, no immediate market impact."
     },
     {
       "title": "After British Sanctions on Israel, Jerusalem Must Counter Britain in the South Atlantic - Middle East Forum",
@@ -158,7 +175,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 3,
-      "firstAt": 1788897293000
+      "firstAt": 1788897293000,
+      "why": "Geopolitical commentary, no clear market direction."
     },
     {
       "title": "U.S. stocks lower at close of trade; Dow Jones Industrial Average down 1.17%",
@@ -173,7 +191,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788899458000
+      "firstAt": 1788899458000,
+      "dir": {
+        "US500": "down",
+        "US30": "down"
+      },
+      "why": "Stocks lower, Dow down 1.17%."
     },
     {
       "title": "Canada stocks lower at close of trade; S&P/TSX Composite down 1.07%",
@@ -190,7 +213,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788899430000
+      "firstAt": 1788899430000,
+      "dir": {
+        "USD/CAD": "up"
+      },
+      "why": "CAD weakness implies USD strength; US stocks flat."
     },
     {
       "title": "Brazil stocks higher at close of trade; Bovespa up 1.20%",
@@ -204,7 +231,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788899404000
+      "firstAt": 1788899404000,
+      "why": "Brazil stocks up, no US impact."
     },
     {
       "title": "Refining bottlenecks are emerging as the next big oil problem as Middle East skirmishes flare up",
@@ -221,7 +249,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 3,
-      "firstAt": 1788897576000
+      "firstAt": 1788897576000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Refining bottlenecks and supply concerns push oil up."
     },
     {
       "title": "Trump’s Israel settlement sanctions dilemma - Politico",
@@ -241,7 +273,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788897293000
+      "firstAt": 1788897293000,
+      "why": "Political dilemma, no clear market direction."
     },
     {
       "title": "Novartis’s failed trial for cholesterol drug leads to broad biopharma stock selloff",
@@ -287,7 +320,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 3,
-      "firstAt": 1788897576000
+      "firstAt": 1788897576000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Middle East conflict escalation boosts risk assets."
     },
     {
       "title": "Wall Street slides, oil surges amid worries over inflation, Middle East - Reuters",
@@ -306,7 +345,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 3,
-      "firstAt": 1788897576000
+      "firstAt": 1788897576000,
+      "dir": {
+        "USOIL": "up",
+        "US500": "down"
+      },
+      "why": "Oil surges on Middle East, stocks slide."
     },
     {
       "title": "What’s happening in the Yemen war?",
@@ -476,7 +520,7 @@
       "firstAt": 1788897293000
     },
     {
-      "title": "Ukrainian Tennis Star Svitolina’s Own Padel Club Damaged in Russian Attack in Kyiv - united24media.com",
+      "title": "Ukrainian Tennis Star Svitolina’s Own Padel Club Damaged in Russian Attack in Kyiv - UNITED24 Media",
       "link": "https://news.google.com/rss/articles/CBMixwFBVV95cUxNWmJTc1FtdTBGdGVZZWFpNHNkQjc1cVRheVRDdjdNV3B2NXVueE8xWmdjTDBUNEttckVvdXNSQ09TTlkzNFZXZ09HRmNod3k3UWxFaVQwMkdsNFlIZjM1LXZvU0kyYk5ZcVdJTmhQUmhyOHFLMjJSTnhZTThVLUxPTFUwXzVQcURsN1l5YWN1Qk5KRU92TTJCRnJTaThsWlhlemRBYTRGc09DSy1xXzg2X2JsanJUcG1TTlJBVGxvTzFZTTd3YTdN?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMixwFBVV95cUxNWmJTc1FtdTBGdGVZZWFpNHNkQjc1cVRheVRDdjdNV3B2NXVueE8xWmdjTDBUNEttckVvdXNSQ09TTlkzNFZXZ09HRmNod3k3UWxFaVQwMkdsNFlIZjM1LXZvU0kyYk5ZcVdJTmhQUmhyOHFLMjJSTnhZTThVLUxPTFUwXzVQcURsN1l5YWN1Qk5KRU92TTJCRnJTaThsWlhlemRBYTRGc09DSy",
@@ -1161,7 +1205,7 @@
       "firstAt": 1788886772000
     },
     {
-      "title": "Russia launches massive, deadly, and ‘complex’ attack against Ukraine - Colorado Politics",
+      "title": "Russia launches massive, deadly, and ‘complex’ attack against Ukraine - coloradopolitics.com",
       "link": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPV2x5ejRHTGgwcl9OUnBIZ3BoSUFEalRzTGw4ODlLYURCcGszb1BjUTVVb1Q5Um1lNUQ4VjJITDZIeVpHLUEtSURMSTRhNVBCSkhZeE1XV1FHVVdMbkd6c00wR0RQQkg1MkdTR2UwdzlRcDNJMEN5d1hiZEg1TkxPbUlGbFFZaURqc2JwekM0SjlVMDRCYzVtMjlTX0tEb0hwMkZzRGZUYkhTU1VpRWVn?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMirwFBVV95cUxPV2x5ejRHTGgwcl9OUnBIZ3BoSUFEalRzTGw4ODlLYURCcGszb1BjUTVVb1Q5Um1lNUQ4VjJITDZIeVpHLUEtSURMSTRhNVBCSkhZeE1XV1FHVVdMbkd6c00wR0RQQkg1MkdTR2UwdzlRcDNJMEN5d1hiZEg1TkxPbUlGbFFZaURqc2JwekM0SjlVMDRCYzVtMjlTX0tEb0hwMkZzRGZUYkhTU1",
@@ -1748,6 +1792,6 @@
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-08T21:09:40.701Z",
-  "updatedAt": "2026-09-08T21:09:40.701Z"
+  "headlinesAt": "2026-09-08T21:11:12.317Z",
+  "updatedAt": "2026-09-08T21:11:12.317Z"
 }
