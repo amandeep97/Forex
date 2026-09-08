@@ -786,8 +786,25 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788858720000,
-      "_kind": null
+      "firstAt": 1788858720000
+    },
+    {
+      "title": "Gold Edges Lower as Weaker Dollar Offsets Fed Rate-Hike Expectations - Yahoo Finance",
+      "link": "https://news.google.com/rss/articles/CBMiogFBVV95cUxQMXhtX1ppbWlFLVNLeWphV2RoM19ZdXFlMm1EVFZUTmJmdjh4M1VvTGJGdS1jaGlsQkxTTkJpOHNmVUt2Rld4LVFlVTdsWkNXWk1RRDAtakhfbVlOWUZlUHdpYnZReG9oYi1Mb1RzeUdEU2tPNGs3MFN0LVJUdXZlcnh4dS1Oem5mdUlkQV8tUlFNNmUzQ08tS0gtajBwMDNjREE?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiogFBVV95cUxQMXhtX1ppbWlFLVNLeWphV2RoM19ZdXFlMm1EVFZUTmJmdjh4M1VvTGJGdS1jaGlsQkxTTkJpOHNmVUt2Rld4LVFlVTdsWkNXWk1RRDAtakhfbVlOWUZlUHdpYnZReG9oYi1Mb1RzeUdEU2tPNGs3MFN0LVJUdXZlcnh4dS1Oem5mdUlkQV8tUlFNNmUzQ08tS0gtajBwMDNjREE?oc=5\" targ",
+      "at": 1788858532000,
+      "inst": [
+        "XAU/USD"
+      ],
+      "ccy": [
+        "USD",
+        "XAU"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1788856366000
     },
     {
       "title": "The Stock Market Is Repeating a Pattern Not Seen in Decades. History Says This Will Happen Next.",
@@ -876,7 +893,7 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 1,
+      "srcs": 2,
       "firstAt": 1788857946000
     },
     {
@@ -1854,7 +1871,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788848665000
+      "firstAt": 1788848100000
     },
     {
       "title": "WAR: Russia Resumes Strikes On Ukraine Despite Trump’s Mediation - Channels Television",
@@ -1892,6 +1909,26 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788848410000
+    },
+    {
+      "title": "UK’s Burnham Risks Trump Anger With New Sanctions on Israel - Bloomberg.com",
+      "link": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPYS16bGx5VUhhamdqSjNySjA2dkJTQmRDYlJIX3o0SC1yaV93VzdJS0xGUnFkczBjSG1iSVc4VlU3ZGFlWVhoYy1xNHByS0Qtekk3LWEyVVFlRnpxMUxabVhpZ2xOTVMyUWRfZ0NSSWtFSTU1aVNCS1VDc1dYZkJUTEFJSWdFalY5UHZ3S243Y3pkblp1MTNfckV1R1hPT05QNmhLN1BFZzNuQmdzMVBn?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMirwFBVV95cUxPYS16bGx5VUhhamdqSjNySjA2dkJTQmRDYlJIX3o0SC1yaV93VzdJS0xGUnFkczBjSG1iSVc4VlU3ZGFlWVhoYy1xNHByS0Qtekk3LWEyVVFlRnpxMUxabVhpZ2xOTVMyUWRfZ0NSSWtFSTU1aVNCS1VDc1dYZkJUTEFJSWdFalY5UHZ3S243Y3pkblp1MTNfckV1R1hPT05QNmhLN1BFZzNuQm",
+      "at": 1788848100000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788848100000
     },
     {
       "title": "Germany's trade surplus widens sharply in July as imports slump",
@@ -2272,40 +2309,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788838187000
-    },
-    {
-      "title": "Yen extends rally as BOJ hike bets gather pace",
-      "link": "https://www.investing.com/news/forex-news/yen-extends-rally-as-boj-hike-bets-gather-pace-4890777",
-      "source": "Investing FX",
-      "at": 1788837279000,
-      "inst": [
-        "USD/JPY"
-      ],
-      "ccy": [
-        "JPY"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788837279000
-    },
-    {
-      "title": "Oil prices climb after reports of Saudi Aramco refinery being hit by Houthi rebels",
-      "link": "https://www.marketwatch.com/story/oil-prices-hit-near-seven-week-highs-before-edging-lower-as-iran-plans-to-increase-control-of-hormuz-5070167c?mod=mw_rss_topstories",
-      "source": "MarketWatch",
-      "desc": "The West Texas Intermediate and Brent crude contracts previously rose to near-seven-week highs.",
-      "at": 1788836940000,
-      "inst": [
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788836940000
     }
   ],
   "sources": [
@@ -2331,7 +2334,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-08T09:41:39.827Z",
-  "headlinesAt": "2026-09-08T09:41:39.827Z",
-  "updatedAt": "2026-09-08T09:41:39.827Z"
+  "calendarAt": "2026-09-08T09:43:10.964Z",
+  "headlinesAt": "2026-09-08T09:43:10.964Z",
+  "updatedAt": "2026-09-08T09:43:10.964Z"
 }
