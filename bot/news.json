@@ -23,7 +23,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788879865000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Rising unemployment fears boost gold, weaken dollar."
     },
     {
       "title": "In West Bank, date farmers weigh impact of UK sanctions on Israeli settlers",
@@ -44,7 +50,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1788879225000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions on settlements unlikely to impact oil immediately."
     },
     {
       "title": "US hits remaining parts of Iran's aviation sector with sanctions in latest move to isolate Tehran - Toronto Star",
@@ -65,7 +72,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788878807000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Iran sanctions increase geopolitical risk, boosting safe hav"
     },
     {
       "title": "Why is Freeport-McMoran Copper & Gold stock surging today?",
@@ -82,7 +95,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788879440000,
-      "_kind": null
+      "_kind": null,
+      "why": "Copper stock surge does not directly move gold."
     },
     {
       "title": "Norway stocks higher at close of trade; Oslo OBX up 0.53%",
@@ -97,7 +111,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788879330000,
-      "_kind": null
+      "_kind": null,
+      "why": "Norwegian market performance does not directly move US stock"
     },
     {
       "title": "Israel stocks lower at close of trade; TA 35 down 0.81%",
@@ -112,7 +127,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1788879303000,
-      "_kind": null
+      "_kind": null,
+      "why": "Israeli market performance does not directly move US stocks."
     },
     {
       "title": "France and Canada join UK in announcing sanctions on Israeli settlements - Middle East Eye",
@@ -135,7 +151,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1788876732000,
-      "_kind": null
+      "_kind": null,
+      "why": "Settlement sanctions have negligible direct market impact."
     },
     {
       "title": "US issues fresh Iran-related sanctions, Treasury website shows - Reuters",
@@ -157,7 +174,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788877229000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "New Iran sanctions raise geopolitical risk premiums."
     },
     {
       "title": "Morgan Stanley turns more selective on European chip stocks",
@@ -172,20 +195,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788879223000,
-      "_kind": null
-    },
-    {
-      "title": "TD Synnex (SNX) Shares Jump Over 50% on Cloud Growth and AI Infrastructure Demand",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/td-synnex-snx-shares-jump-145255769.html",
-      "source": "Yahoo Finance",
-      "at": 1788879175000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1788879000000,
-      "_kind": null
+      "_kind": null,
+      "why": "European chip stock selection doesn't clearly move US index."
     },
     {
       "title": "Cathie Wood Just Went Bargain Hunting. Here Are the 3 AI Stocks She Bought.",
@@ -200,20 +211,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788878615000,
-      "_kind": null
-    },
-    {
-      "title": "Zoetis (ZTS) Shares Drop After Earnings Revision",
-      "link": "https://finance.yahoo.com/healthcare/articles/zoetis-zts-shares-drop-earnings-145103070.html",
-      "source": "Yahoo Finance",
-      "at": 1788879063000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1788879063000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Cathie Wood buying AI stocks signals bullish sentiment."
     },
     {
       "title": "Greece stocks higher at close of trade; Athens General Composite up 0.15%",
@@ -228,7 +230,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788879003000,
-      "_kind": null
+      "_kind": null,
+      "why": "Greek market performance does not directly move US stocks."
     },
     {
       "title": "Prediction: Oracle's $638 Billion Cloud Infrastructure Backlog Could Make It One of the Best-Performing AI Stocks Through 2028",
@@ -243,7 +246,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788879000000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Oracle cloud backlog suggests strong AI sector performance."
     },
     {
       "title": "Jazz Pharmaceuticals debt upgraded by S&P on stronger recovery",
@@ -258,7 +265,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788878917000,
-      "_kind": null
+      "_kind": null,
+      "why": "Single company debt upgrade has minimal index impact."
     },
     {
       "title": "US Targets Iran’s Airlines as New Sanctions Push Continues - Bloomberg.com",
@@ -279,7 +287,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788876471000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Iran airline sanctions increase geopolitical uncertainty and"
     },
     {
       "title": "Carney says US trade war 'will come at a cost' as Canada strikes back on tariffs",
@@ -299,7 +313,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788878776000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USD/CAD": "down",
+        "XAU/USD": "up"
+      },
+      "why": "Trade war escalation weakens dollar, boosts gold."
     },
     {
       "title": "5 Monthly Dividend Stocks Built to Keep the Checks Coming",
@@ -385,6 +404,19 @@
       "rel": 1,
       "srcs": 1,
       "firstAt": 1788878465000,
+      "_kind": null
+    },
+    {
+      "title": "CEO of Legendary Energy Stock Sells 5,000 Shares for $300,000",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/ceo-legendary-energy-stock-sells-144001966.html",
+      "source": "Yahoo Finance",
+      "at": 1788878401000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 1,
+      "srcs": 1,
+      "firstAt": 1788878401000,
       "_kind": null
     },
     {
@@ -1648,6 +1680,23 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788865835000
+    },
+    {
+      "title": "Argentina to file criminal case against oil company operating in Falklands",
+      "link": "https://www.bbc.co.uk/news/articles/c8jd14glvneo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC World",
+      "desc": "The move comes days after President Javier Milei stepped up Argentina's claims of sovereignty over the Falklands.",
+      "at": 1788865794000,
+      "inst": [
+        "USOIL"
+      ],
+      "ccy": [
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788865794000
     }
   ],
   "sources": [
@@ -1670,10 +1719,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-08T15:08:58.146Z",
-  "updatedAt": "2026-09-08T15:08:58.146Z"
+  "headlinesAt": "2026-09-08T15:10:12.302Z",
+  "updatedAt": "2026-09-08T15:10:12.302Z"
 }
