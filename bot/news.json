@@ -2,6 +2,22 @@
   "calendar": [],
   "headlines": [
     {
+      "title": "Taiwan stocks lower at close of trade; Taiwan Weighted down 0.46%",
+      "link": "https://www.investing.com/news/stock-market-news/taiwan-stocks-lower-at-close-of-trade-taiwan-weighted-down-046-4890812",
+      "source": "Investing",
+      "at": 1788847204000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788847204000,
+      "_kind": null,
+      "why": "Taiwan market news, no direct US impact"
+    },
+    {
       "title": "Gold prices steady as dollar weakens ahead of key US inflation figures - mettisglobal.news",
       "link": "https://news.google.com/rss/articles/CBMipAFBVV95cUxOLW9BRUJhTi1rb2UxRTJabFBzb1BCM3F6U014NUVpY1Q0MVFJcE1lREFlWkZJOFIwQnBqMmNvc09LRW5zc1dZMUdTZ01wOUNCNGhCZHN5aTBnU1JuUDdxU1VXbkt2ZVl2azVveEJwYkdoUGRlMWR4TGJLOTZkMklzaWdRYWNlWkFaZUN1LS1nUWRJZ2ppMkplbmxnOGNLWjMwS194Zg?oc=5",
       "source": "Wires (macro)",
@@ -22,7 +38,7 @@
       "dir": {
         "XAU/USD": "up"
       },
-      "why": "Dollar weakens, gold steady"
+      "why": "Weaker dollar supports gold prices"
     },
     {
       "title": "Ukraine Says At Least Two Killed in Russian Attack On Kyiv - Bloomberg.com",
@@ -43,13 +59,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788845100000,
-      "_kind": null,
       "dir": {
         "XAU/USD": "up",
         "USOIL": "up",
         "UKOIL": "up"
       },
-      "why": "War escalation boosts safe havens"
+      "why": "Geopolitical risk boosts safe havens and oil"
     },
     {
       "title": "Asian currencies gain as yen hits seven-month high, dollar stays subdued",
@@ -70,7 +85,7 @@
       "dir": {
         "USD/JPY": "down"
       },
-      "why": "Yen hits high, dollar subdued"
+      "why": "Yen high implies dollar weakness"
     },
     {
       "title": "🔴 Live: At least two killed in Kyiv as Russia renews strikes after three-day pause - france24.com",
@@ -96,7 +111,7 @@
         "USOIL": "up",
         "UKOIL": "up"
       },
-      "why": "Russia renews strikes, risk off"
+      "why": "Escalating conflict drives risk assets higher"
     },
     {
       "title": "Russia Appears to Break Its Own Three-Day Kyiv Truce Before Deadline - Kyiv Post",
@@ -122,7 +137,7 @@
         "USOIL": "up",
         "UKOIL": "up"
       },
-      "why": "Truce broken, geopolitical risk rises"
+      "why": "Truce break increases geopolitical uncertainty"
     },
     {
       "title": "Euro holds steady above 1.1600 as markets brace for US inflation data and ECB rate decision - FXStreet",
@@ -141,7 +156,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788842944000,
-      "why": "Euro steady, awaiting data"
+      "why": "Euro steady, awaiting data and decisions"
     },
     {
       "title": "Hormuz traffic slows after Iran threatens retaliation for US attacks",
@@ -166,7 +181,7 @@
         "USOIL": "up",
         "UKOIL": "up"
       },
-      "why": "Hormuz threat boosts oil, gold"
+      "why": "Hormuz threat boosts oil and gold"
     },
     {
       "title": "Asian stocks mixed as chipmakers rally, oil and rate risks cap gains",
@@ -184,45 +199,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788842755000,
-      "dir": {
-        "USOIL": "down"
-      },
-      "why": "Oil risks cap stock gains"
-    },
-    {
-      "title": "US DOJ’s antitrust division asked to pause cooperation with Canadian government, WSJ reports",
-      "link": "https://www.investing.com/news/stock-market-news/us-dojs-antitrust-division-asked-to-pause-cooperation-with-canadian-government-wsj-reports-4890785",
-      "source": "Investing",
-      "at": 1788842205000,
-      "inst": [
-        "USD/CAD"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788842205000,
-      "why": "Antitrust pause, unclear impact"
-    },
-    {
-      "title": "Trump says Canada’s Bombardier must build jets in US or lose market access",
-      "link": "https://www.investing.com/news/stock-market-news/trump-says-canadas-bombardier-cannot-sell-in-us-unless-it-builds-there-4890715",
-      "source": "Investing",
-      "at": 1788842190000,
-      "inst": [
-        "USD/CAD"
-      ],
-      "ccy": [
-        "CAD"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788842190000,
-      "dir": {
-        "USD/CAD": "down"
-      },
-      "why": "Trade threat weakens Canadian dollar"
+      "why": "Mixed stocks, capped gains, no clear direction"
     },
     {
       "title": "Extremist Israeli ministers call for retaliation against UK over looming sanctions - aa.com.tr",
@@ -243,12 +220,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788842163000,
-      "dir": {
-        "XAU/USD": "up",
-        "USOIL": "up",
-        "UKOIL": "up"
-      },
-      "why": "Retaliation threats raise geopolitical risk"
+      "why": "Political rhetoric, no immediate market impact"
     },
     {
       "title": "Houthi attacks on Saudi Arabia have wounded 73 civilians, official says",
@@ -274,7 +246,7 @@
         "USOIL": "up",
         "UKOIL": "up"
       },
-      "why": "Houthi attacks boost oil, gold"
+      "why": "Saudi attacks raise regional risk premium"
     },
     {
       "title": "Russian strikes continue following visit by Witkoff and Kushner to Kyiv - Fox News",
@@ -300,7 +272,7 @@
         "USOIL": "up",
         "UKOIL": "up"
       },
-      "why": "Strikes continue, risk sentiment negative"
+      "why": "Continued strikes sustain geopolitical risk premium"
     },
     {
       "title": "Scores wounded as Iran-backed Houthis attack Saudi Arabia, military says - CNN",
@@ -326,24 +298,7 @@
         "USOIL": "up",
         "UKOIL": "up"
       },
-      "why": "Houthi attacks boost oil, gold"
-    },
-    {
-      "title": "Australia targets social media algorithms with new user-choice rules",
-      "link": "https://www.investing.com/news/stock-market-news/australia-targets-social-media-algorithms-with-new-userchoice-rules-4890784",
-      "source": "Investing",
-      "at": 1788841144000,
-      "inst": [
-        "AUD/USD"
-      ],
-      "ccy": [
-        "AUD"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788841144000,
-      "why": "Social media rules, no clear impact"
+      "why": "Houthi attacks increase Middle East risk"
     },
     {
       "title": "Canada’s retaliatory tariffs on $20bn of US goods take effect - Al Jazeera",
@@ -360,7 +315,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788840060000
+      "firstAt": 1788840060000,
+      "dir": {
+        "USD/CAD": "down"
+      },
+      "why": "Tariffs hurt Canada, weakening CAD vs USD"
     },
     {
       "title": "Ukrainian drones ignite blaze at Russia's Saratov Oil Refinery, locals report - The Kyiv Independent",
@@ -377,7 +336,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788840314000
+      "firstAt": 1788840314000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Refinery attack threatens supply, boosting oil"
     },
     {
       "title": "Canada's new tariffs: Are small businesses 'cannon fodder' in the trade war? - CBC",
@@ -1747,6 +1710,35 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788808322000
+    },
+    {
+      "title": "Natural Gas stalls below $3.00 resistance: Live levels",
+      "link": "https://www.investing.com/news/commodities-news/natural-gas-stuck-between-287303-live-levels-93CH-4890483",
+      "source": "Investing Cmdty",
+      "at": 1788808322000,
+      "inst": [
+        "NATGAS"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788808322000
+    },
+    {
+      "title": "Britain Set to Target Israeli West Bank Settlements With Trade Ban - The New York Times",
+      "link": "https://news.google.com/rss/articles/CBMilgFBVV95cUxORHpmdXJfMzJicGpuSXlfWmpERlIxYUoxR2NfWmg0cWw4c2hLNjhGejljZ3lfOUxtVG1iTnBKUXItVkpMQ0QwT0dsR1FJZ3Fjb0NQa25jWTdXb1dZM1VfRkJ0SXVuYVNablZCYWNkR05hb18tdG5IeTNzb2xhRG1Jd3g2SjFLUXFUblY3c2t6eUJKWklPVFE?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMilgFBVV95cUxORHpmdXJfMzJicGpuSXlfWmpERlIxYUoxR2NfWmg0cWw4c2hLNjhGejljZ3lfOUxtVG1iTnBKUXItVkpMQ0QwT0dsR1FJZ3Fjb0NQa25jWTdXb1dZM1VfRkJ0SXVuYVNablZCYWNkR05hb18tdG5IeTNzb2xhRG1Jd3g2SjFLUXFUblY3c2t6eUJKWklPVFE?oc=5\" target=\"_blank\">Brit",
+      "at": 1788807037000,
+      "inst": [
+        "GBP/USD"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788807037000
     }
   ],
   "sources": [
@@ -1773,6 +1765,6 @@
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-08T06:04:56.651Z",
-  "updatedAt": "2026-09-08T06:04:56.651Z"
+  "headlinesAt": "2026-09-08T06:05:58.716Z",
+  "updatedAt": "2026-09-08T06:05:58.716Z"
 }
