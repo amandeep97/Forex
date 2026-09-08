@@ -669,6 +669,29 @@
   ],
   "headlines": [
     {
+      "title": "Gold rises ahead of US inflation data release - UA.NEWS",
+      "link": "https://news.google.com/rss/articles/CBMinwFBVV95cUxQamZBbE9ZdXdBUkJyYUt0TWJWcERzU2pZWHdIeWllZFg3RE5TY3NaZWE1TW9TNGxIRkFseHpwcEs4UW9sMFFhX1dvekNkVkdGdGFBRUFLUTEwdkFhOVhudXZjaVFLWjBLX2hKaE5qVnZ6MEtpNWxBZUtkZE9vWEZPbmVEODZPYW5UR3BabHhjVGV1VzhnOXdObDEwNGw5dzA?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMinwFBVV95cUxQamZBbE9ZdXdBUkJyYUt0TWJWcERzU2pZWHdIeWllZFg3RE5TY3NaZWE1TW9TNGxIRkFseHpwcEs4UW9sMFFhX1dvekNkVkdGdGFBRUFLUTEwdkFhOVhudXZjaVFLWjBLX2hKaE5qVnZ6MEtpNWxBZUtkZE9vWEZPbmVEODZPYW5UR3BabHhjVGV1VzhnOXdObDEwNGw5dzA?oc=5\" target=\"",
+      "at": 1788852740000,
+      "inst": [
+        "XAU/USD"
+      ],
+      "ccy": [
+        "XAU",
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788852740000,
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Gold rises ahead of data"
+    },
+    {
       "title": "Russian drone and missile strikes on Ukrainian capital kill 2 people, ending pause for U.S. talks - NBC News",
       "link": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPRTN4dTV1RE1nSU5MdldrNjlzdC1DWlBEZmgyQTFpLThQVjNVNkhjVC0tRDBFeHA5TmRWZjlaV0NrT1ZDb1RCOTNvdWZhUTU5bC04LUEtQlkwZ3c0S1VwWWItRktpTk01a3BBbUtCNDRZOXp3UFRPZnoydm4tS3NnWUtiSXdFR21mbElSeE1lUDFCWUJRc2FWMTU3YmgyMTZ1bmVkeEhtX2IycjlnLUhicEo4V0FfcG5DbmdF?oc=5",
       "source": "Wires (geo)",
@@ -693,7 +716,7 @@
         "USOIL": "up",
         "UKOIL": "up"
       },
-      "why": "Geopolitical risk boosts safe havens and oil"
+      "why": "Conflict escalation boosts safe havens"
     },
     {
       "title": "European shares dip as higher crude revives inflation worries; Novartis drags",
@@ -717,7 +740,7 @@
         "USOIL": "up",
         "UKOIL": "up"
       },
-      "why": "Higher crude prices explicitly stated"
+      "why": "Higher crude revives inflation worries"
     },
     {
       "title": "Dow futures slip amid Fed hike bets, surging oil",
@@ -741,7 +764,7 @@
         "USOIL": "up",
         "US30": "down"
       },
-      "why": "Surging oil, slipping Dow futures"
+      "why": "Surging oil, Fed hike bets"
     },
     {
       "title": "London Gas Oil surges to highs with overbought RSI: Live levels",
@@ -759,7 +782,7 @@
       "srcs": 2,
       "firstAt": 1788851466000,
       "_kind": null,
-      "why": "Technical levels, no clear directional bias"
+      "why": "Gas oil surges, not crude"
     },
     {
       "title": "Brent Oil nears $101.20 resistance with overbought RSI: Live levels",
@@ -778,7 +801,10 @@
       "srcs": 2,
       "firstAt": 1788851466000,
       "_kind": null,
-      "why": "Technical resistance, no clear directional bias"
+      "dir": {
+        "UKOIL": "up"
+      },
+      "why": "Brent nears resistance, overbought"
     },
     {
       "title": "Natural Gas stalls below $3 as momentum fades: Live levels",
@@ -797,7 +823,7 @@
       "dir": {
         "NATGAS": "down"
       },
-      "why": "Momentum fades, price stalls below level"
+      "why": "Momentum fades, stalls below level"
     },
     {
       "title": "Silver consolidates near $68 resistance: Hourly levels",
@@ -815,7 +841,7 @@
       "srcs": 1,
       "firstAt": 1788851480000,
       "_kind": null,
-      "why": "Consolidation implies no clear direction"
+      "why": "Silver consolidates near resistance"
     },
     {
       "title": "Crude Oil WTI overbought at RSI 75.8: Live levels",
@@ -834,7 +860,7 @@
       "srcs": 2,
       "firstAt": 1788851466000,
       "_kind": null,
-      "why": "Technical overbought, no clear direction"
+      "why": "WTI overbought, no clear direction"
     },
     {
       "title": "Gold clings to 38.2% Fib support at $4,451: Live levels",
@@ -852,7 +878,7 @@
       "srcs": 2,
       "firstAt": 1788851466000,
       "_kind": null,
-      "why": "Holding support, no clear direction"
+      "why": "Gold clings to support"
     },
     {
       "title": "Russia strikes Kyiv–Sumy train, no injuries reported - Ukrinform",
@@ -879,7 +905,7 @@
         "USOIL": "up",
         "UKOIL": "up"
       },
-      "why": "Escalating conflict boosts risk assets"
+      "why": "Russia strikes train, conflict continues"
     },
     {
       "title": "Brent climbs near $100/bbl after Iran threat to Gulf energy infrastructure",
@@ -896,11 +922,10 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788851265000,
-      "_kind": null,
       "dir": {
         "UKOIL": "up"
       },
-      "why": "Brent climbs on supply threats"
+      "why": "Brent climbs on Iran threat"
     },
     {
       "title": "European stocks fall as crude extends advance following Iranian threats",
@@ -942,7 +967,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788850804000,
-      "why": "Japan-specific news, unclear for others"
+      "why": "Japan stocks lower, no US link"
     },
     {
       "title": "Ukraine decries ‘horrific’ Russian attack straight after US talks - Arab News",
@@ -968,7 +993,7 @@
         "USOIL": "up",
         "UKOIL": "up"
       },
-      "why": "Horrific attack boosts risk premiums"
+      "why": "Ukraine decries Russian attack"
     },
     {
       "title": "French trade deficit grows larger in July on higher imports again",
@@ -991,11 +1016,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788850521000,
-      "dir": {
-        "EUR/USD": "down"
-      },
-      "why": "Wider deficit weakens Euro sentiment"
+      "firstAt": 1788850521000
     },
     {
       "title": "Gold Climbs to $4,435 as Dollar Weakness Offsets Rate-Hike Gloom - finance.biggo.com",
@@ -1143,7 +1164,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788848100000
+      "firstAt": 1788848665000
     },
     {
       "title": "WAR: Russia Resumes Strikes On Ukraine Despite Trump’s Mediation - Channels Television",
@@ -1203,26 +1224,6 @@
       "firstAt": 1788848340000
     },
     {
-      "title": "UK’s Burnham Risks Trump Anger With New Sanctions on Israel - Bloomberg.com",
-      "link": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPYS16bGx5VUhhamdqSjNySjA2dkJTQmRDYlJIX3o0SC1yaV93VzdJS0xGUnFkczBjSG1iSVc4VlU3ZGFlWVhoYy1xNHByS0Qtekk3LWEyVVFlRnpxMUxabVhpZ2xOTVMyUWRfZ0NSSWtFSTU1aVNCS1VDc1dYZkJUTEFJSWdFalY5UHZ3S243Y3pkblp1MTNfckV1R1hPT05QNmhLN1BFZzNuQmdzMVBn?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMirwFBVV95cUxPYS16bGx5VUhhamdqSjNySjA2dkJTQmRDYlJIX3o0SC1yaV93VzdJS0xGUnFkczBjSG1iSVc4VlU3ZGFlWVhoYy1xNHByS0Qtekk3LWEyVVFlRnpxMUxabVhpZ2xOTVMyUWRfZ0NSSWtFSTU1aVNCS1VDc1dYZkJUTEFJSWdFalY5UHZ3S243Y3pkblp1MTNfckV1R1hPT05QNmhLN1BFZzNuQm",
-      "at": 1788848100000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788848100000
-    },
-    {
       "title": "Russian Strikes Kill Two in Kyiv as Ukraine Advances Air Defense Talks - Межа. Новини України.",
       "link": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE1GWWtjZENteHNzQTlSemtOdjBQc0p5S1M3d0tPSGhkZ2pUeVVwbFpkbmZfaFJybXZXZXZYeHBuNTZFMjlRdTU4cmQwcVltNG1sbExLVzBfa0g1NUZMWGpub0ZGV0F3QVJv?oc=5",
       "source": "Wires (geo)",
@@ -1241,6 +1242,26 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788845700000
+    },
+    {
+      "title": "Houthi attacks in Saudi Arabia disrupt energy facilities, wound dozens - jpost.com",
+      "link": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE9IRTc0R2dFUFIyaHNXbmZsNk1LMmpEZk43cEhNLU5RWmtwYmpzSHRwNXZGWG10ZlJyMUxnS05IMEZWZ1k2YmE4WW9Yb0VlQzVmRXFYY2YyOF80c1lB?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiXEFVX3lxTE9IRTc0R2dFUFIyaHNXbmZsNk1LMmpEZk43cEhNLU5RWmtwYmpzSHRwNXZGWG10ZlJyMUxnS05IMEZWZ1k2YmE4WW9Yb0VlQzVmRXFYY2YyOF80c1lB?oc=5\" target=\"_blank\">Houthi attacks in Saudi Arabia disrupt energy facilities, wound dozens</a>&nbsp;&nb",
+      "at": 1788847924000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788847924000
     },
     {
       "title": "Germany's trade surplus widens sharply in July as imports slump",
@@ -2389,21 +2410,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788823892000
-    },
-    {
-      "title": "China says it will pump $54 billion into banks and insurers — but their stocks still fell",
-      "link": "https://www.cnbc.com/2026/09/07/china-state-banks-lenders-insurers-capital-solvency-bankrupt-nim-.html",
-      "source": "CNBC Markets",
-      "desc": "With a bigger capital cushion, financial institutions may also be asked to do more to mobilize resources in capital markets, analysts say.",
-      "at": 1788823390000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788823390000
     }
   ],
   "sources": [
@@ -2429,7 +2435,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-08T07:36:41.297Z",
-  "headlinesAt": "2026-09-08T07:36:41.297Z",
-  "updatedAt": "2026-09-08T07:36:41.297Z"
+  "calendarAt": "2026-09-08T07:38:12.322Z",
+  "headlinesAt": "2026-09-08T07:38:12.322Z",
+  "updatedAt": "2026-09-08T07:38:12.322Z"
 }
