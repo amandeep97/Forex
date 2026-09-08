@@ -2,6 +2,86 @@
   "calendar": [],
   "headlines": [
     {
+      "title": "Norway stocks higher at close of trade; Oslo OBX up 0.53%",
+      "link": "https://www.investing.com/news/stock-market-news/norway-stocks-higher-at-close-of-trade-oslo-obx-up-053-4892004",
+      "source": "Investing",
+      "at": 1788879330000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788879330000,
+      "_kind": null,
+      "why": "Norway stocks unrelated to US index"
+    },
+    {
+      "title": "Israel stocks lower at close of trade; TA 35 down 0.81%",
+      "link": "https://www.investing.com/news/stock-market-news/israel-stocks-lower-at-close-of-trade-ta-35-down-081-4892003",
+      "source": "Investing",
+      "at": 1788879303000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788879303000,
+      "_kind": null,
+      "why": "Israel stocks unrelated to US index"
+    },
+    {
+      "title": "Morgan Stanley turns more selective on European chip stocks",
+      "link": "https://www.investing.com/news/stock-market-news/morgan-stanley-turns-more-selective-on-european-chip-stocks-4892001",
+      "source": "Investing",
+      "at": 1788879223000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788879223000,
+      "_kind": null,
+      "why": "European chip stocks, not US"
+    },
+    {
+      "title": "Greece stocks higher at close of trade; Athens General Composite up 0.15%",
+      "link": "https://www.investing.com/news/stock-market-news/greece-stocks-higher-at-close-of-trade-athens-general-composite-up-015-4891997",
+      "source": "Investing",
+      "at": 1788879003000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788879003000,
+      "_kind": null,
+      "why": "Greece stocks unrelated to US index"
+    },
+    {
+      "title": "Jazz Pharmaceuticals debt upgraded by S&P on stronger recovery",
+      "link": "https://www.investing.com/news/stock-market-news/jazz-pharmaceuticals-debt-upgraded-by-sp-on-stronger-recovery-93CH-4891991",
+      "source": "Investing",
+      "at": 1788878917000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788878917000,
+      "_kind": null,
+      "why": "Single stock news, not index"
+    },
+    {
       "title": "Carney says US trade war 'will come at a cost' as Canada strikes back on tariffs",
       "link": "https://www.bbc.co.uk/news/articles/c8jdev0422jo?at_medium=RSS&at_campaign=rss",
       "source": "BBC World",
@@ -19,7 +99,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788878776000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USD/CAD": "down",
+        "XAU/USD": "up"
+      },
+      "why": "Trade war fears boost gold, hurt CAD"
     },
     {
       "title": "FM Sa'ar sanctions UK following sanctions on West Bank settlements - The Jerusalem Post",
@@ -37,7 +122,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788878691000,
-      "_kind": null
+      "_kind": null,
+      "why": "Geopolitical news, unclear gold direction"
     },
     {
       "title": "CEO of Legendary Energy Stock Sells 5,000 Shares for $300,000",
@@ -71,7 +157,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788876471000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Sanctions boost safe havens and oil"
     },
     {
       "title": "Novartis’s failed trial for cholesterol drug leads to broad biopharma stock selloff",
@@ -100,20 +192,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788878100000,
-      "_kind": null
-    },
-    {
-      "title": "Intel, AMD among market cap stock movers on Tuesday",
-      "link": "https://www.investing.com/news/stock-market-news/intel-amd-among-market-cap-stock-movers-on-tuesday-93CH-4891982",
-      "source": "Investing",
-      "at": 1788878164000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1788878164000,
-      "_kind": null
+      "_kind": null,
+      "why": "Specific coffee stocks, not index"
     },
     {
       "title": "Queen of Capital Gains: Pelosi Bets $3 Million on Bloom Energy — Then It Got Added to the S&P 500",
@@ -128,7 +208,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788877893000,
-      "_kind": null
+      "_kind": null,
+      "why": "Single stock news, not index"
     },
     {
       "title": "Bloom Energy Surges 8% as S&P 500 Swaps It In for Trade Desk; TTD Stock Slips 2%",
@@ -143,7 +224,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788877893000,
-      "_kind": null
+      "_kind": null,
+      "why": "Index swap, no clear direction"
     },
     {
       "title": "How Ukrainian Drone Strikes Are Pounding Russia’s Economy - WSJ",
@@ -164,33 +246,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788877923000,
-      "_kind": null
-    },
-    {
-      "title": "Bombardier shares drop as Trump threatens U.S. sales ban",
-      "link": "https://www.investing.com/news/stock-market-news/bombardier-shares-drop-as-trump-threatens-us-sales-ban-4891975",
-      "source": "Investing",
-      "at": 1788877862000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1788877838000,
-      "_kind": null
-    },
-    {
-      "title": "Bombardier shares fall after Trump threatens US market access",
-      "link": "https://www.investing.com/news/stock-market-news/bombardier-shares-fall-after-trump-threatens-us-market-access-4891971",
-      "source": "Investing",
-      "at": 1788877838000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1788877838000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "War escalation boosts gold and oil"
     },
     {
       "title": "U.S. sanctions Iranian airlines in aim to tighten economic squeeze as war spreads, oil rises - CNBC",
@@ -211,20 +273,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788876732000,
-      "_kind": null
-    },
-    {
-      "title": "Freeport-McMoRan shares surge as copper hits record $14,694/ton",
-      "link": "https://www.investing.com/news/stock-market-news/freeportmcmoran-shares-surge-as-copper-hits-record-14694ton-4891969",
-      "source": "Investing",
-      "at": 1788877773000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1788877773000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Sanctions and war boost gold, oil"
     },
     {
       "title": "UAE Expands Non-Hormuz Trade Corridors Following Escalation with Iran - IranWire",
@@ -244,19 +299,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788877575000
-    },
-    {
-      "title": "Trip.com shares may move 5.6% on Sept. 15 earnings report",
-      "link": "https://www.investing.com/news/stock-market-news/tripcom-shares-may-move-56-on-sept-15-earnings-report-93CH-4891961",
-      "source": "Investing",
-      "at": 1788877526000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1788877526000
+      "firstAt": 1788877575000,
+      "why": "Trade route changes, unclear impact"
     },
     {
       "title": "Dollar slips as yen hits seven-month high on BOJ hike bets",
@@ -273,7 +317,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788877472000
+      "firstAt": 1788877472000,
+      "dir": {
+        "USD/JPY": "down"
+      },
+      "why": "Dollar slips, yen hits high"
     },
     {
       "title": "Strategy Holds Off On Bitcoin Purchases As It Buys Preferred Stock",
@@ -1663,6 +1711,6 @@
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-08T14:57:27.749Z",
-  "updatedAt": "2026-09-08T14:57:27.749Z"
+  "headlinesAt": "2026-09-08T14:58:28.293Z",
+  "updatedAt": "2026-09-08T14:58:28.293Z"
 }
