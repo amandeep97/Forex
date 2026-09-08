@@ -2,6 +2,20 @@
   "calendar": [],
   "headlines": [
     {
+      "title": "What are the main events for today?",
+      "link": "https://investinglive.com/news/what-are-the-main-events-for-today-37/",
+      "source": "ForexLive",
+      "desc": "EUROPEAN SESSIONIn the European session, we don't have much on the agenda other than a couple of low-tier releases like the French trade balance and the US NFIB Small Business Optimism index. The data is not going to change anything for the respective central banks, so the market",
+      "at": 1788849216000,
+      "inst": [],
+      "ccy": [],
+      "sev": 2,
+      "rel": 1,
+      "srcs": 1,
+      "firstAt": 1788849216000,
+      "_kind": null
+    },
+    {
       "title": "Australia stocks lower at close of trade; S&P/ASX 200 down 1.00%",
       "link": "https://www.investing.com/news/stock-market-news/australia-stocks-lower-at-close-of-trade-spasx-200-down-100-4890854",
       "source": "Investing",
@@ -68,7 +82,26 @@
       "dir": {
         "XAU/USD": "up"
       },
-      "why": "War escalation boosts gold safe-haven demand."
+      "why": "War escalation boosts gold safe haven."
+    },
+    {
+      "title": "'Good to have choice': Australians on opting out of social media algorithms",
+      "link": "https://www.bbc.co.uk/news/videos/clyl2dnjgkro?at_medium=RSS&at_campaign=rss",
+      "source": "BBC World",
+      "desc": "The BBC spoke to people in Sydney about Australia's plans to force social media companies to allow users to easily opt in or out of personalised algorithms.",
+      "at": 1788848410000,
+      "inst": [
+        "AUD/USD"
+      ],
+      "ccy": [
+        "AUD"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788848410000,
+      "_kind": null,
+      "why": "Social media policy irrelevant to FX."
     },
     {
       "title": "Drones attack Saratov Oil Refinery in Russia overnight - Ukrinform",
@@ -90,7 +123,12 @@
       "srcs": 1,
       "firstAt": 1788848340000,
       "_kind": null,
-      "why": "Refinery attack impact on supply unclear."
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Refinery attack risks supply, boosts oil."
     },
     {
       "title": "Trump says Canada’s Bombardier must build jets in US or lose market access",
@@ -136,7 +174,7 @@
       "dir": {
         "XAU/USD": "up"
       },
-      "why": "Escalation drives gold higher on fear."
+      "why": "War escalation boosts gold safe haven."
     },
     {
       "title": "Germany's trade surplus widens sharply in July as imports slump",
@@ -158,7 +196,7 @@
       "dir": {
         "EUR/USD": "up"
       },
-      "why": "Strong German trade surplus supports Euro."
+      "why": "Strong trade surplus supports Euro."
     },
     {
       "title": "Gold gains as US dollar eases with US inflation data on radar - Forex Factory",
@@ -177,11 +215,10 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788846540000,
-      "_kind": null,
       "dir": {
         "XAU/USD": "up"
       },
-      "why": "Dollar eases, lifting gold prices."
+      "why": "Dollar eases, boosting gold prices."
     },
     {
       "title": "live At least 2 killed in Kyiv as Russia and Ukraine exchange strikes - anewz.tv",
@@ -205,7 +242,7 @@
       "dir": {
         "XAU/USD": "up"
       },
-      "why": "Conflict escalation boosts gold safe-haven bid."
+      "why": "War escalation boosts gold safe haven."
     },
     {
       "title": "USD/JPY Trades Below 154.000 as BOJ Rate Hike Bets Lift Yen - VT Markets",
@@ -249,7 +286,7 @@
       "dir": {
         "XAU/USD": "up"
       },
-      "why": "Weaker dollar supports gold prices."
+      "why": "Weak dollar supports gold prices."
     },
     {
       "title": "Russia launches deadly strikes on Kyiv as pause during US envoy visits ends - Al Jazeera",
@@ -273,7 +310,7 @@
       "dir": {
         "XAU/USD": "up"
       },
-      "why": "Renewed strikes boost gold safe-haven demand."
+      "why": "War escalation boosts gold safe haven."
     },
     {
       "title": "Ukraine Says At Least Two Killed in Russian Attack On Kyiv - Bloomberg.com",
@@ -297,7 +334,7 @@
       "dir": {
         "XAU/USD": "up"
       },
-      "why": "Russian attack increases geopolitical risk premium."
+      "why": "War escalation boosts gold safe haven."
     },
     {
       "title": "Asian currencies gain as yen hits seven-month high, dollar stays subdued",
@@ -318,7 +355,7 @@
       "dir": {
         "USD/JPY": "down"
       },
-      "why": "Yen high, dollar subdued lowers pair."
+      "why": "Yen gain lowers USD/JPY pair."
     },
     {
       "title": "🔴 Live: At least two killed in Kyiv as Russia renews strikes after three-day pause - France 24",
@@ -338,11 +375,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788843052000,
-      "dir": {
-        "XAU/USD": "up"
-      },
-      "why": "Resumed strikes boost gold safe-haven demand."
+      "firstAt": 1788843052000
     },
     {
       "title": "Russia Appears to Break Its Own Three-Day Kyiv Truce Before Deadline - Kyiv Post",
@@ -400,6 +433,25 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788842911000
+    },
+    {
+      "title": "Canada braces for prolonged trade war as counter-tariffs on US take effect",
+      "link": "https://www.bbc.co.uk/news/articles/c8jdev0422jo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC World",
+      "desc": "The tariffs will apply to $20bn worth of American products, jeopardising the stability of the world's largest bilateral trading relationship.",
+      "at": 1788842354000,
+      "inst": [
+        "USD/CAD",
+        "XAU/USD"
+      ],
+      "ccy": [
+        "CAD",
+        "XAU"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788842354000
     },
     {
       "title": "Extremist Israeli ministers call for retaliation against UK over looming sanctions - Anadolu Ajansı",
@@ -1701,59 +1753,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788813018000
-    },
-    {
-      "title": "Economic and event calendar in Asia Tuesday, September 8, 2026: Japan GDP and China trade data",
-      "link": "https://investinglive.com/news/economic-and-event-calendar-in-asia-tuesday-september-8-2026-japan-gdp-and-china-trade-data/",
-      "source": "ForexLive",
-      "desc": "GDP data from Japan and the trade data from China due today. I'll have more to come on both of these separately, previews, posted soon. The preliminary GDP from Japan was three weeks ago, quite a solid miss on this:Japan Q2 GDP growth undershoots forecasts, complicating BOJ's hik",
-      "at": 1788812685000,
-      "inst": [
-        "USD/JPY"
-      ],
-      "ccy": [
-        "JPY",
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788812685000
-    },
-    {
-      "title": "Oil Hits 6-Week High After US, Iran Trade Strikes - Newser",
-      "link": "https://news.google.com/rss/articles/CBMimAFBVV95cUxNVXlrYkZDYVAyMmZPdmNnNXp5T1pZSk1jdzRfb0VIcE9hTjVRZm93TTRpWkducm1USi1IcHNRODhPbkI5YzN1eVZGSGpSSVdadGliSzBsQ0Y2T0FyZVluVkFXMHpCNUVYTzVGOHQ4SUNlYWNGYkRmSEFrTE9tX19ER0N5S2hDcHYwWldxc3o4aEdaTldRcTdHMw?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMimAFBVV95cUxNVXlrYkZDYVAyMmZPdmNnNXp5T1pZSk1jdzRfb0VIcE9hTjVRZm93TTRpWkducm1USi1IcHNRODhPbkI5YzN1eVZGSGpSSVdadGliSzBsQ0Y2T0FyZVluVkFXMHpCNUVYTzVGOHQ4SUNlYWNGYkRmSEFrTE9tX19ER0N5S2hDcHYwWldxc3o4aEdaTldRcTdHMw?oc=5\" target=\"_blank\">O",
-      "at": 1788810780000,
-      "inst": [
-        "USOIL",
-        "XAU/USD",
-        "UKOIL"
-      ],
-      "ccy": [
-        "OIL",
-        "XAU"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788810780000
-    },
-    {
-      "title": "Stocks Fall After Hot Jobs Report - WSJ",
-      "link": "https://news.google.com/rss/articles/CBMigwFBVV95cUxNOGV0QmpMTThWUF9sWGY3OGZuTHpuTlR2Qmh3ZlF6ZmxISEJ4TVI3Ry1lamdEUnRYSWY2bm1qYXJ5R0FGeHhCZUxrdUlzaEdsa1E0VG54bjVsZ29INnFlcmhxT2x1OGNnOXpwendIUzdMSHpIei1ENXJENlhIU2tmdEZtZw?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMigwFBVV95cUxNOGV0QmpMTThWUF9sWGY3OGZuTHpuTlR2Qmh3ZlF6ZmxISEJ4TVI3Ry1lamdEUnRYSWY2bm1qYXJ5R0FGeHhCZUxrdUlzaEdsa1E0VG54bjVsZ29INnFlcmhxT2x1OGNnOXpwendIUzdMSHpIei1ENXJENlhIU2tmdEZtZw?oc=5\" target=\"_blank\">Stocks Fall After Hot Jobs Re",
-      "at": 1788810622000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788810622000
     }
   ],
   "sources": [
@@ -1776,10 +1775,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-08T06:35:59.998Z",
-  "updatedAt": "2026-09-08T06:35:59.998Z"
+  "headlinesAt": "2026-09-08T06:37:13.112Z",
+  "updatedAt": "2026-09-08T06:37:13.112Z"
 }
