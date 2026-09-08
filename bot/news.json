@@ -2,6 +2,25 @@
   "calendar": [],
   "headlines": [
     {
+      "title": "Goldman Sachs reverses engines on oil-price forecasts and raises the specter of $120 per barrel crude",
+      "link": "https://www.marketwatch.com/story/goldman-sachs-reverses-engines-on-oil-price-forecasts-and-raises-the-specter-of-120-per-barrel-crude-d8da110c?mod=mw_rss_topstories",
+      "source": "MarketWatch",
+      "desc": "In the span of just three months, Goldman Sachs analysts have gone from lowering their oil-price forecasts to hiking them.",
+      "at": 1788857880000,
+      "inst": [
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788857880000,
+      "_kind": null
+    },
+    {
       "title": "Iran Strikes Expose US Vulnerabilities As Washington Weighs Smaller Middle East Footprint: Report - تسنیم",
       "link": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxNeWNVNHQ2Y2ZaMDFhQWZPczM2U29mRnphX2ZWZU5wYTBrcUs4c1N0VE1EalF3dHhuczRwc2pfMG9xTXpVaTV5VlU1SG9Ta3g4VUg1RzRqblZXUm9scEJjWmdtZk10a2xVWldpTWRzaTBpS0t0em5GMEJLTkpIdFVEWEktZlJ5X3hjZElxbVlJQnRzd0VEd0FmZDExRWpkMzVVcy1qT04tV1YtTGZaODJmMXdmTElMOUJCY0Rjb3lHV181cnNESzE0TFNnNG5tTnBONnZBTWtxRktweFpfUHVHNjVJMNIB6AFBVV95cUxNWkdnVlo0aEZPaTJhNkQyNXNDanM0VW1wWWw0dTFpQXhsTExOdzlLdTZhYmRGSDdxU3Zzc1RWd1lTdlhmbnNMRHJOZW5qODYtSUtDdXl6aXFvMzAwak1vOHBfaXdGX2dvb2tVTk16TF9yQ3dWYXhleS1hdmthY3ZaXzlScThUbktkUkpqQVQ2bnp4aHd5a3JRS3FvOXI2UkltVXBzeDBadU91dzk1Qy1SV1o2NHd4MkJmeTBnb2tObkI3a013cVRGdDlQdjB3c0VBVlFMV1ROWkh3X01YMHh1MmlnOG0wNVhz?oc=5",
       "source": "Wires (geo)",
@@ -145,8 +164,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788856296000,
-      "_kind": null
+      "firstAt": 1788856296000
     },
     {
       "title": "Indonesia stocks higher at close of trade; IDX Composite Index up 0.97%",
@@ -160,8 +178,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788856204000,
-      "_kind": null
+      "firstAt": 1788856204000
     },
     {
       "title": "Oerlikon sets new 2030 targets, shares gain",
@@ -1673,29 +1690,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788832669000
-    },
-    {
-      "title": "US Dollar Index (DXY) struggles below 99.00, two-week low as traders eye US inflation data - FXStreet",
-      "link": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxNRXU5RXdXSkoyUVBTdUdGRlY3WW5XbkUtdVVNbDc2RzhiT0JNaHF5NWtIMUNSNU10NDBUWTFqSmhFX3JuMWp6YTFrTElhNEhCYnlIV1JqS0lra2t2VzdKN2Y1eHFFZHdKM3Z3Tl9xekZTUmI5Smt1eVZlSkx6Vk1zck5RQlVITEJyV1B1eVUwMmVmcXdwVTNJN0VaQTJVSHotaWYtRHdoVjRlekRTSEZXSmF6VlFjV1lzVTdzSGs0REZwRDcxeUxGVg?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiyAFBVV95cUxNRXU5RXdXSkoyUVBTdUdGRlY3WW5XbkUtdVVNbDc2RzhiT0JNaHF5NWtIMUNSNU10NDBUWTFqSmhFX3JuMWp6YTFrTElhNEhCYnlIV1JqS0lra2t2VzdKN2Y1eHFFZHdKM3Z3Tl9xekZTUmI5Smt1eVZlSkx6Vk1zck5RQlVITEJyV1B1eVUwMmVmcXdwVTNJN0VaQTJVSHotaWYtRHdoVjRlek",
-      "at": 1788832669000,
-      "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788830413000
     }
   ],
   "sources": [
@@ -1718,10 +1712,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-08T09:00:10.860Z",
-  "updatedAt": "2026-09-08T09:00:10.860Z"
+  "headlinesAt": "2026-09-08T09:01:58.397Z",
+  "updatedAt": "2026-09-08T09:01:58.397Z"
 }
