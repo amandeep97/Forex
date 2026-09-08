@@ -678,7 +678,13 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1788854915000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Geopolitical risk boosts gold and oil"
     },
     {
       "title": "Israel kills 2 in Gaza in fresh ceasefire violations - Muslim Network TV",
@@ -699,7 +705,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788856865000,
-      "_kind": "war-end"
+      "_kind": "war-end",
+      "why": "Gaza violence unclear for these assets"
     },
     {
       "title": "U.S. futures slide as post-holiday traders face hot payrolls and $100 oil threat",
@@ -717,7 +724,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788856520000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil threat implies high prices"
     },
     {
       "title": "Gold subdued as oil rises, investors await key US inflation - TradingView",
@@ -738,7 +749,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788854915000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil rises, gold subdued"
     },
     {
       "title": "How Ukrainian Drone Strikes Are Pounding Russia’s Economy - WSJ",
@@ -759,7 +774,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788856322000,
-      "_kind": null
+      "_kind": null,
+      "why": "Ukraine strikes unclear for these assets"
     },
     {
       "title": "The bond market continues to tighten the screws, and everything else is feeling it",
@@ -783,7 +799,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788856296000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Higher yields pressure risk assets"
     },
     {
       "title": "Indonesia stocks higher at close of trade; IDX Composite Index up 0.97%",
@@ -798,7 +819,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788856204000,
-      "_kind": null
+      "_kind": null,
+      "why": "Indonesia news irrelevant to US stocks"
     },
     {
       "title": "Oerlikon sets new 2030 targets, shares gain",
@@ -832,7 +854,12 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1788854157000,
-      "_kind": null
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Saudi attack boosts oil and gold"
     },
     {
       "title": "Euro yields push higher with crude near $100 and ECB hike imminent",
@@ -851,7 +878,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788855653000
+      "firstAt": 1788855653000,
+      "dir": {
+        "EUR/USD": "down",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Crude near $100, euro yields rise"
     },
     {
       "title": "Gold ticks up with US inflation data on radar - The Star",
@@ -869,7 +902,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788852740000
+      "firstAt": 1788852740000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Gold ticks up"
     },
     {
       "title": "Crypto platforms have lost over $3.63 billion to cyberattacks — even though most of them did security checks",
@@ -886,7 +923,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788855371000
+      "firstAt": 1788855371000,
+      "dir": {
+        "BTC/USDT": "down"
+      },
+      "why": "Cyberattacks hurt crypto sentiment"
     },
     {
       "title": "Sterling today: Pound slips as yen-fuelled dollar uncertainty keeps G10 on edge",
@@ -905,7 +946,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788855366000
+      "firstAt": 1788855366000,
+      "dir": {
+        "GBP/USD": "down",
+        "USD/JPY": "down"
+      },
+      "why": "Pound slips, yen fuels dollar uncertainty"
     },
     {
       "title": "Why the Dow is being dragged down by a Swiss company’s bad news",
@@ -924,7 +970,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788855300000
+      "firstAt": 1788855300000,
+      "dir": {
+        "US30": "down"
+      },
+      "why": "Dow dragged down by Swiss news"
     },
     {
       "title": "'Complex' Russian attack kills 2 in Kyiv after US peace talks visit, Zelenskyy says - ABC News - Breaking News, Latest News and Videos",
@@ -944,7 +994,11 @@
       "sev": 3,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1788852960000
+      "firstAt": 1788852960000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Kyiv attack boosts gold safe haven"
     },
     {
       "title": "Asian stocks fall as yen surge, oil gains revive Fed rate hike concerns",
@@ -964,7 +1018,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788854952000
+      "firstAt": 1788854952000,
+      "dir": {
+        "USD/JPY": "down",
+        "USOIL": "up",
+        "US500": "down"
+      },
+      "why": "Yen surge, oil gains, stocks fall"
     },
     {
       "title": "Israeli ministers call for sanctions on Britain over Falkland Islands - Middle East Eye",
@@ -988,7 +1048,7 @@
       "firstAt": 1788854915000
     },
     {
-      "title": "Gold edges up in Asia as dollar eases; inflation data and Middle East tensions in focus - VT Markets",
+      "title": "Gold edges up in Asia as dollar eases; inflation data and Middle East tensions in focus - vtmarkets.com",
       "link": "https://news.google.com/rss/articles/CBMizAFBVV95cUxNd3JHOU9ZSGxQS1dZQ3dNbG5oSEtIVS13LTV0VEQ2c2Vaa3Z1cWdwWlQtZGtsN3JRVm8wWnB6NUY2ZlV3c2E0V1FSNGc2SFJxT3A2bzdwTVdfbFdqOUh2dWNUblZNWnNObm9PNHo2LUdkYmNnMDZFVnhvemdNRFR4RTkzUm8yQVBiYjgwQUJ2US1PMEoxVlN2SlBHcjlsbGtaUDA4QmVmeElFWTdSdXU2Q3FkU2dIVW52Wm9hN3praVZtSzJ0TTlBMDlKZlY?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMizAFBVV95cUxNd3JHOU9ZSGxQS1dZQ3dNbG5oSEtIVS13LTV0VEQ2c2Vaa3Z1cWdwWlQtZGtsN3JRVm8wWnB6NUY2ZlV3c2E0V1FSNGc2SFJxT3A2bzdwTVdfbFdqOUh2dWNUblZNWnNObm9PNHo2LUdkYmNnMDZFVnhvemdNRFR4RTkzUm8yQVBiYjgwQUJ2US1PMEoxVlN2SlBHcjlsbGtaUDA4QmVmeElFWT",
@@ -1038,7 +1098,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 3,
-      "firstAt": 1788851975000
+      "firstAt": 1788852053000
     },
     {
       "title": "Russia strikes Kyiv and region, damaging homes, killing two, and injuring 10 – Rubryka - Rubryka",
@@ -1078,7 +1138,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1788851975000
+      "firstAt": 1788852053000
     },
     {
       "title": "Russia Is Building a Massive Site for Missile Components Deep in Siberia, Far From NATO and Ukraine’s Strike Reach - UNITED24 Media",
@@ -1098,7 +1158,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788852216000
+      "firstAt": 1788854142000
     },
     {
       "title": "Bessent’s Yen Bet Is Paying Off, For Now - WSJ",
@@ -1191,26 +1251,6 @@
       "firstAt": 1788852468000
     },
     {
-      "title": "Russia launches missile strikes against Kyiv as pause in raids ends - Financial Times",
-      "link": "https://news.google.com/rss/articles/CBMihAFBVV95cUxNVERGTzlVTERRTXZieTh6cTRLY2NVR0FjMmpFVHhIWHczY2RwbHZOX2FMMUg0QnBsMDVpWjFYTW1jYUJYb3EzWGhRRkJlbDM1NERFUUdpZmh1LWUzTDdlSDh6YW5CQWQwVXZEakQxeURkSTAtVjEySTdYTzA0S3k0aHNZRmM?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMihAFBVV95cUxNVERGTzlVTERRTXZieTh6cTRLY2NVR0FjMmpFVHhIWHczY2RwbHZOX2FMMUg0QnBsMDVpWjFYTW1jYUJYb3EzWGhRRkJlbDM1NERFUUdpZmh1LWUzTDdlSDh6YW5CQWQwVXZEakQxeURkSTAtVjEySTdYTzA0S3k0aHNZRmM?oc=5\" target=\"_blank\">Russia launches missile stri",
-      "at": 1788852216000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1788850092000
-    },
-    {
       "title": "Russia strikes Odesa's 7th Kilometre Market overnight, injuring 3 people - Українська правда",
       "link": "https://news.google.com/rss/articles/CBMiZEFVX3lxTFA4TkUyM24tSllaaXNOb0ZwWjZtNU91RWlKdXhVSHgtX1NuUlNCZTAxNUt2eFdGOXZWT0RvNTkxZmpwaDdRcWxyM1c2SVBMSlhaQk9KRHNWeWlmTkNvZ0p6cnVwbWfSAXBBVV95cUxNWGIyWm1pNmV5VTAybjAzMEJQQS1yM0hpMjVtVEwtZUoweWNzcGFSOU5jVm5yR0Z4YlliN0dFeWhFVTBDUVc3cDFUWjM5ZlYzZmVaeEw4YVl6aURJWFZmTVU3UWttbnl6ak53Q3NkYjJ3?oc=5",
       "source": "Wires (geo)",
@@ -1228,7 +1268,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788851280000
+      "firstAt": 1788850017000
     },
     {
       "title": "Iran-backed Houthis attack Saudi energy facilities, wounding dozens and sending oil prices higher - al-monitor.com",
@@ -1246,26 +1286,6 @@
         "XAU"
       ],
       "sev": 1,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1788850906000
-    },
-    {
-      "title": "Iran threatens US with new ‘economic warfare’ and missiles as Houthis attack Saudi Arabia - The Irish Times",
-      "link": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxPVzF1dFhYdkt0eGRQMkN5M21uWHJDVGtKTnp4T3MzWm1hbzJXSm9scjdSa2U4R3FCYnJaZHlnb3FsVW1HZmVHX185ODJzNmJNa3RYQTlHMXoteFVCNmNndzUzcE1JODBaLVJNVXk2NWZQVi0tVXhPaDZtaENiaEVwQ2E4Tk9DbzhmNnV5ajBFMmhIZmNFdE1Ec3hqaGVqZDM2NWZ2UzFjbXZVczFxXzRNWkYzTzZHQ0Q3enZXXzdXUnhXQUhjUmVsTDhyaTJXanJlMzU1dy1WWWZIZzVT?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi3AFBVV95cUxPVzF1dFhYdkt0eGRQMkN5M21uWHJDVGtKTnp4T3MzWm1hbzJXSm9scjdSa2U4R3FCYnJaZHlnb3FsVW1HZmVHX185ODJzNmJNa3RYQTlHMXoteFVCNmNndzUzcE1JODBaLVJNVXk2NWZQVi0tVXhPaDZtaENiaEVwQ2E4Tk9DbzhmNnV5ajBFMmhIZmNFdE1Ec3hqaGVqZDM2NWZ2UzFjbXZVcz",
-      "at": 1788851975000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
       "rel": 2,
       "srcs": 2,
       "firstAt": 1788850906000
@@ -1528,6 +1548,26 @@
       "firstAt": 1788847689000
     },
     {
+      "title": "Russia launches missile strikes against Kyiv as pause in raids ends - Financial Times",
+      "link": "https://news.google.com/rss/articles/CBMihAFBVV95cUxNVERGTzlVTERRTXZieTh6cTRLY2NVR0FjMmpFVHhIWHczY2RwbHZOX2FMMUg0QnBsMDVpWjFYTW1jYUJYb3EzWGhRRkJlbDM1NERFUUdpZmh1LWUzTDdlSDh6YW5CQWQwVXZEakQxeURkSTAtVjEySTdYTzA0S3k0aHNZRmM?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMihAFBVV95cUxNVERGTzlVTERRTXZieTh6cTRLY2NVR0FjMmpFVHhIWHczY2RwbHZOX2FMMUg0QnBsMDVpWjFYTW1jYUJYb3EzWGhRRkJlbDM1NERFUUdpZmh1LWUzTDdlSDh6YW5CQWQwVXZEakQxeURkSTAtVjEySTdYTzA0S3k0aHNZRmM?oc=5\" target=\"_blank\">Russia launches missile stri",
+      "at": 1788850017000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788847689000
+    },
+    {
       "title": "Videos capture massive fires at Saratov oil refinery following drone strike - The New Voice of Ukraine",
       "link": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNU3g5WjBVLXlJejBaX3p3b0NoRGFLMmRCQjFfWDdMSkpFZFJIWmMwaW9pM05mcTdwSTlaZUpvaFFqZEIyMmRFT0pELVg0dVk3Y29reXNGV0FmTmptdUtuQ3UzRlRCZ2lfblpGLWVfWTI2ai1zUnRxblZ4VXRlWW10eHh5VVcxLVZhNk9MRU5HUDlRS0NTcjRVYllEVDlueVR2YVk5TzNwbU01VWhmbUNGcXlLUTkxb1BxRE8tSHRlUTFXVnM0dXfSAbsBQVVfeXFMTk9PMFR1TU1wYXFIRlBHLVE3Y0RGSFBUUkkwSTVhZGV1RlMwcV9DYkEycVVPMVlnakZJTGM2VEUxTWFaSTA1SlRyQVVtSDlDd1JMdnlpajNOYVVMQUVuMzJaYkJaSTQzb2lOUi1xZm1QUDVQQndBb0h3NHVUWGhoTVU3MGN2bTdoSWNaMngyUGRFS2o1SGpGUEZQUUN5YjZDd00xdHUzOGpHNDVld2VIMjZjcGcya3drcmYwMA?oc=5",
       "source": "Wires (geo)",
@@ -1713,7 +1753,7 @@
       "firstAt": 1788846540000
     },
     {
-      "title": "USD/JPY Trades Below 154.000 as BOJ Rate Hike Bets Lift Yen - VT Markets",
+      "title": "USD/JPY Trades Below 154.000 as BOJ Rate Hike Bets Lift Yen - vtmarkets.com",
       "link": "https://news.google.com/rss/articles/CBMiowFBVV95cUxPempjY3dRbXVjdTJobmlYdDZZWjd4bHZuSjlwdUxqdldkVWdXN2dzSm02dTZnRFNRc3F1WndCOG94ckRGWlB1cGZQSmFIejF1SWRFVTBfLXc0OGJ4VlU1UGp2ejZ3NGx4TWFHTjZObEdLX1psLXVvOTlYMjl3OVJYZVRvVVBScDdoQThyNFhCZ1gxMzhSV1RtQWYtU1BpOGNmaTRN?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiowFBVV95cUxPempjY3dRbXVjdTJobmlYdDZZWjd4bHZuSjlwdUxqdldkVWdXN2dzSm02dTZnRFNRc3F1WndCOG94ckRGWlB1cGZQSmFIejF1SWRFVTBfLXc0OGJ4VlU1UGp2ejZ3NGx4TWFHTjZObEdLX1psLXVvOTlYMjl3OVJYZVRvVVBScDdoQThyNFhCZ1gxMzhSV1RtQWYtU1BpOGNmaTRN?oc=5\" tar",
@@ -1862,6 +1902,26 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788842944000
+    },
+    {
+      "title": "Iran threatens US with new 'economic warfare' and missiles as Houthis attack Saudi Arabia - al-monitor.com",
+      "link": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxQNkswMktiV2dLLXNQemhhUE9hZFA0VDZvdi1JUjBxRVJkMkx1MEJsR3VyYm4tVVhpbnc2bkE3N2JqRWRvTk9yTFBEOFhvLUpDaUhLanExVnNvNXZMSl9wZmxtVTYyTmUxQWZFaDZBM2dSN3V6WGlBdUU5R09jMFdrRlFUX3BLVjNRVEZ1eGh2UGpTeFltTVE3OGRhaWwzQlJWdlcxUDI1UUR1ZVozWm9Nc19URlUyWmI2ZjRIT1o2cEN2dw?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiwgFBVV95cUxQNkswMktiV2dLLXNQemhhUE9hZFA0VDZvdi1JUjBxRVJkMkx1MEJsR3VyYm4tVVhpbnc2bkE3N2JqRWRvTk9yTFBEOFhvLUpDaUhLanExVnNvNXZMSl9wZmxtVTYyTmUxQWZFaDZBM2dSN3V6WGlBdUU5R09jMFdrRlFUX3BLVjNRVEZ1eGh2UGpTeFltTVE3OGRhaWwzQlJWdlcxUDI1UUR1ZV",
+      "at": 1788842886000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788841402000
     },
     {
       "title": "Israel prepares sharp response to expected British sanctions - www.israelhayom.com",
@@ -2377,10 +2437,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-08T08:54:41.150Z",
-  "headlinesAt": "2026-09-08T08:54:41.150Z",
-  "updatedAt": "2026-09-08T08:54:41.150Z"
+  "calendarAt": "2026-09-08T08:56:27.855Z",
+  "headlinesAt": "2026-09-08T08:56:27.855Z",
+  "updatedAt": "2026-09-08T08:56:27.855Z"
 }
