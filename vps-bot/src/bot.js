@@ -219,7 +219,13 @@ class ForexBot {
 
     this.regimeStudyRan = true;
     this.log('Regime study: searching for what works now…');
-    const result = await runRegimeStudy({ oanda: this.oanda, log: this.log.bind(this) });
+    // The previous answer is passed in so rules that survived it are re-tested
+    // this run whatever they rank. Without it a survivor that falls out of the
+    // top twelve simply stops being mentioned, which reads identically to it
+    // having failed.
+    const result = await runRegimeStudy({
+      oanda: this.oanda, log: this.log.bind(this), previous: cur?.content || null,
+    });
     if (result.error) { this.warn(`Regime study: ${result.error}`); return; }
     await this.github.writeJSON(REGIME_STUDY_PATH, result, 'bot: what works now', cur?.sha || null);
     const t = result.tally || {};
