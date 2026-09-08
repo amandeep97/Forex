@@ -645,7 +645,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788868906000,
-      "_kind": null
+      "_kind": null,
+      "why": "General market overview, no specific direction."
     },
     {
       "title": "Stocks making the biggest moves premarket: Peloton Interactive, Roivant Sciences, Boston Scientific & more",
@@ -661,7 +662,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1788867041000,
-      "_kind": null
+      "_kind": null,
+      "why": "Individual stock moves, index impact unclear."
     },
     {
       "title": "AI Stocks: OpenAI Declares The 'AGI Era' Is Here Amid IPO Fervor",
@@ -676,7 +678,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788869011000,
-      "_kind": null
+      "_kind": null,
+      "why": "AI sentiment positive but index impact unclear."
     },
     {
       "title": "BRICS summit may be the only place another Iran ceasefire can be built - Al Jazeera",
@@ -697,7 +700,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788866681000,
-      "_kind": null
+      "_kind": null,
+      "why": "Ceasefire possibility ambiguous for risk assets."
     },
     {
       "title": "Gold edges lower after earlier gains as dollar weakness offsets Fed hike concerns",
@@ -715,7 +719,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1788868067000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold explicitly edges lower."
     },
     {
       "title": "US markets today: 5 things to track as oil nears $100, Fed rate-hike bets rise - CNBC TV18",
@@ -734,7 +742,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788868906000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil nears $100, implying upward pressure."
     },
     {
       "title": "Tanker for tanker: New tensions rise after U.S.-Iran exchange strikes - KXAN Austin",
@@ -755,7 +767,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788868828000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "New tensions boost safe havens and oil."
     },
     {
       "title": "If the Stock Market Drops 20%, History Says This Is What Could Happen Next",
@@ -768,27 +786,6 @@
       "rel": 1,
       "srcs": 2,
       "firstAt": 1788867621000,
-      "_kind": null
-    },
-    {
-      "title": "Iran weighs escalation as it seeks a way out of ‘no war, no peace’ - L'Orient Today",
-      "link": "https://news.google.com/rss/articles/CBMitwFBVV95cUxOcmlFLUJMSjdvR2RCeU5hUE9BSzJHa0Z3OG55dnRBckRzT1hDTXdra0I2S25pdEs1eXVNb3RVZ25jODRienQwQkszMkVUUjJabHMtdTFGbUpPYVktQW02QVhKaWdzOUJ2NEdKR3h5clBlZ2J3RWE2LW0wRVRCV1BqbGx0WkI3dTJ2NmJSVHJoUWVFcXRlV1Fnd19obU9ENUJYT08yaDlnOWVfRDhTbEptSXZFUld2LTA?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMitwFBVV95cUxOcmlFLUJMSjdvR2RCeU5hUE9BSzJHa0Z3OG55dnRBckRzT1hDTXdra0I2S25pdEs1eXVNb3RVZ25jODRienQwQkszMkVUUjJabHMtdTFGbUpPYVktQW02QVhKaWdzOUJ2NEdKR3h5clBlZ2J3RWE2LW0wRVRCV1BqbGx0WkI3dTJ2NmJSVHJoUWVFcXRlV1Fnd19obU9ENUJYT08yaDlnOWVfRD",
-      "at": 1788868786000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1788866375000,
       "_kind": null
     },
     {
@@ -806,7 +803,38 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1788866907000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USD/CAD": "down"
+      },
+      "why": "Canada futures drop implies CAD strength."
+    },
+    {
+      "title": "UK publishes legislation for tougher sanctions on Iran over nuclear programme - reuters.com",
+      "link": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPbHhqMGdpaWtLcy1Pb3ExcFhZSmd4MUtieGtkb0tiLUtpeWhGZVNwRVJOR2FSTnBCLWFVSDdRSUpaS083WHNWZUk2ZDQ4SU1sSG9UNDFIYW9wSk5RUW1PRlhud3plZFdUdjBPeVRPRDVGWm5RYzh1d05lRnltVmNneXBNbkpUaFZwRzJaX0dvYWxSY1V1bkFibzcyRFkzWDBPV1U1ZDZ2blB1NkZObUZJ?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMirwFBVV95cUxPbHhqMGdpaWtLcy1Pb3ExcFhZSmd4MUtieGtkb0tiLUtpeWhGZVNwRVJOR2FSTnBCLWFVSDdRSUpaS083WHNWZUk2ZDQ4SU1sSG9UNDFIYW9wSk5RUW1PRlhud3plZFdUdjBPeVRPRDVGWm5RYzh1d05lRnltVmNneXBNbkpUaFZwRzJaX0dvYWxSY1V1bkFibzcyRFkzWDBPV1U1ZDZ2blB1Nk",
+      "at": 1788868643000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788866340000,
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Sanctions increase geopolitical risk premium."
     },
     {
       "title": "Brent advances toward $100/bbl after Iran threat to Gulf energy infrastructure",
@@ -823,7 +851,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788868472000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "UKOIL": "up"
+      },
+      "why": "Brent advances toward $100."
     },
     {
       "title": "JEPI Is an Income Machine—But These 3 Dividend Stocks Don’t Cap Your Upside",
@@ -837,7 +869,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788868213000
+      "firstAt": 1788868213000,
+      "why": "Specific stock advice, no index direction."
     },
     {
       "title": "3 Financial Stocks You Could Buy Today and Not Think About Until 2030",
@@ -851,7 +884,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788868200000
+      "firstAt": 1788868200000,
+      "why": "Specific stock advice, no index direction."
     },
     {
       "title": "Gold holds above Rs 1,52,400 as strong US jobs data revive Fed rate-hike bets; key levels to watch - Moneycontrol.com",
@@ -869,7 +903,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1788868067000
+      "firstAt": 1788868067000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Strong jobs data revives hike bets, pressuring gold."
     },
     {
       "title": "UK Set to Impose Sanctions on Israeli Settlements in West Bank - The New York Times",
@@ -889,7 +927,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788865179000
+      "firstAt": 1788865179000,
+      "why": "Sanctions on settlements, limited direct market impact."
     },
     {
       "title": "Why the yen’s rise to a six-month high could go further",
@@ -907,7 +946,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788867720000
+      "firstAt": 1788867720000,
+      "dir": {
+        "USD/JPY": "down"
+      },
+      "why": "Yen rise implies USD/JPY decline."
     },
     {
       "title": "The stock market's hot streak hints at more good times ahead",
@@ -1193,7 +1236,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1788864803000
+      "firstAt": 1788864490000
     },
     {
       "title": "Silver prices today, Tuesday, September 8, 2026: Silver prices holding over $66 as Iran conflict wages on",
@@ -1213,14 +1256,14 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 2,
+      "srcs": 1,
       "firstAt": 1788865835000
     },
     {
       "title": "UK publishes legislation for expanded sanctions on Iran - Middle East Eye",
-      "link": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxQOENxWWdES0FQZk1GVkNvUVFPMXpqekZHcWxtRzhkZzYzeUs5b1VrNUNSdkxaZ2NJTzc3VmlOekV1S3VFNDRnUGZKQ3hKa1lwNW5qUkZ6S09lb1E5RjJVZzFkOV90YUdhM1NCckIyem9YOWtDNmp3UE5WUTZaVEdQVDhzeW95NmVPNDAzSFdpYTlHOVpGcXpwU0o0QmtMYjVPLUR0aDRvUjB6Y2p0dVh4d0I0SEZlTzlEcWJadE42a3oyRjR0Y3RGM25hanpTajljYllsZ0E1QmpkMERLZmFidTJDQ0xzMTJD?oc=5",
+      "link": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxPbUdNdFFUdkl3bnc0OTVhN1dELV9xdVpyMVpCUGFpWnl3eTR1Y0xyX3ZQSGRjdXYzLVF5UFZCT2tZMlNyZGxCaEJVZm1JcTFYS0xoQk12UW5nOTZwMms4Q1pRTkEtWFMzZ0ttUDF6TDhXbUxuOXU0Ukl5b01UNmlhWWZKWjdDczFVVU9VTlFzREd5bnZQNjNvN1NLRlg3UUFNLVlvclFBeDg?oc=5",
       "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi6AFBVV95cUxQOENxWWdES0FQZk1GVkNvUVFPMXpqekZHcWxtRzhkZzYzeUs5b1VrNUNSdkxaZ2NJTzc3VmlOekV1S3VFNDRnUGZKQ3hKa1lwNW5qUkZ6S09lb1E5RjJVZzFkOV90YUdhM1NCckIyem9YOWtDNmp3UE5WUTZaVEdQVDhzeW95NmVPNDAzSFdpYTlHOVpGcXpwU0o0QmtMYjVPLUR0aDRvUjB6Y2",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiqAFBVV95cUxPbUdNdFFUdkl3bnc0OTVhN1dELV9xdVpyMVpCUGFpWnl3eTR1Y0xyX3ZQSGRjdXYzLVF5UFZCT2tZMlNyZGxCaEJVZm1JcTFYS0xoQk12UW5nOTZwMms4Q1pRTkEtWFMzZ0ttUDF6TDhXbUxuOXU0Ukl5b01UNmlhWWZKWjdDczFVVU9VTlFzREd5bnZQNjNvN1NLRlg3UUFNLVlvclFBeDg?oc",
       "at": 1788866340000,
       "inst": [
         "XAU/USD",
@@ -1234,7 +1277,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1788864377000
+      "firstAt": 1788864490000
     },
     {
       "title": "Middle East Tensions Surge as Inflation Data Looms Over Markets - Devdiscourse",
@@ -1255,7 +1298,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1788864803000
+      "firstAt": 1788864490000
     },
     {
       "title": "Russia Strikes “We – Ukraine” TV Channel - reform.news",
@@ -1361,7 +1404,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1788864803000
+      "firstAt": 1788864490000
     },
     {
       "title": "Saudi political analyst says ‘No prolonged war with the Houthis’",
@@ -1421,7 +1464,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788864377000
+      "firstAt": 1788865014000
     },
     {
       "title": "Iran threatens new escalation as US pressure mounts | Morning in America - NewsNation",
@@ -1481,7 +1524,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788864377000
+      "firstAt": 1788865014000
     },
     {
       "title": "Ukraine Strikes Russian Drone Launch Site in Donetsk for Second Time in a Week - UNITED24 Media",
@@ -1582,7 +1625,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1788864803000
+      "firstAt": 1788864490000
     },
     {
       "title": "Iran says US return to Islamabad pact would pave way for de-escalation - Anadolu Ajansı",
@@ -1625,27 +1668,29 @@
       "firstAt": 1788862237000
     },
     {
-      "title": "UK publishes legislation for tougher sanctions on Iran - Reuters",
-      "link": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPbHhqMGdpaWtLcy1Pb3ExcFhZSmd4MUtieGtkb0tiLUtpeWhGZVNwRVJOR2FSTnBCLWFVSDdRSUpaS083WHNWZUk2ZDQ4SU1sSG9UNDFIYW9wSk5RUW1PRlhud3plZFdUdjBPeVRPRDVGWm5RYzh1d05lRnltVmNneXBNbkpUaFZwRzJaX0dvYWxSY1V1bkFibzcyRFkzWDBPV1U1ZDZ2blB1NkZObUZJ?oc=5",
+      "title": "France and Canada to follow UK in announcing sanctions on Israeli settlements - Middle East Eye",
+      "link": "https://news.google.com/rss/articles/CBMipgFBVV95cUxNUVdZQjUyMVlkVGFMZkNiWkIxWi04aTg3NjFZaFViODE4LTgwV0NoRldnRnNQajdqUGVUWFdwdGhaVl9BdkduZ2FKUzh4d19QdzdKZk9JemNKMHVDdGpEek9wU053QW1RbFBJQlgxSWpXMlNqejlQOThtdHRqRjFiZ1JHb2w1dlNfWHhSdnBFaTdkaDJCSGVWMWdDaVhaV1AwakNFWlZn?oc=5",
       "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMirwFBVV95cUxPbHhqMGdpaWtLcy1Pb3ExcFhZSmd4MUtieGtkb0tiLUtpeWhGZVNwRVJOR2FSTnBCLWFVSDdRSUpaS083WHNWZUk2ZDQ4SU1sSG9UNDFIYW9wSk5RUW1PRlhud3plZFdUdjBPeVRPRDVGWm5RYzh1d05lRnltVmNneXBNbkpUaFZwRzJaX0dvYWxSY1V1bkFibzcyRFkzWDBPV1U1ZDZ2blB1Nk",
-      "at": 1788864377000,
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMipgFBVV95cUxNUVdZQjUyMVlkVGFMZkNiWkIxWi04aTg3NjFZaFViODE4LTgwV0NoRldnRnNQajdqUGVUWFdwdGhaVl9BdkduZ2FKUzh4d19QdzdKZk9JemNKMHVDdGpEek9wU053QW1RbFBJQlgxSWpXMlNqejlQOThtdHRqRjFiZ1JHb2w1dlNfWHhSdnBFaTdkaDJCSGVWMWdDaVhaV1AwakNFWlZn?oc=5\"",
+      "at": 1788864490000,
       "inst": [
+        "USD/CAD",
         "XAU/USD",
         "USOIL",
         "UKOIL"
       ],
       "ccy": [
+        "CAD",
         "XAU",
         "OIL"
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788864377000
+      "srcs": 2,
+      "firstAt": 1788864490000
     },
     {
-      "title": "London shares inch lower as oil rally fuels inflation concerns - Reuters",
+      "title": "London shares inch lower as oil rally fuels inflation concerns - reuters.com",
       "link": "https://news.google.com/rss/articles/CBMipwFBVV95cUxQbGdaQ0NIYTJ1T2swamN3WUpXeXU0OE11YVZ0VS1OMDBKbzN0SmFta0t0bVo5X3dFbGVGZzBzbExwOXcydllBSnI0MnI3WHJrQkc2dERzV2dYME5lVjQ5RVdwWkNvdlVLejlyYlpZMWdmTFZOQktyZ095YkI3aGM4aktQRm5oN1p1UV9WdzByS0xoUUd1UkNIb2g0cXVJOWhjYTdqaGl3bw?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMipwFBVV95cUxQbGdaQ0NIYTJ1T2swamN3WUpXeXU0OE11YVZ0VS1OMDBKbzN0SmFta0t0bVo5X3dFbGVGZzBzbExwOXcydllBSnI0MnI3WHJrQkc2dERzV2dYME5lVjQ5RVdwWkNvdlVLejlyYlpZMWdmTFZOQktyZ095YkI3aGM4aktQRm5oN1p1UV9WdzByS0xoUUd1UkNIb2g0cXVJOWhjYTdqaGl3bw?oc=",
@@ -2317,7 +2362,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-08T12:22:25.440Z",
-  "headlinesAt": "2026-09-08T12:22:25.440Z",
-  "updatedAt": "2026-09-08T12:22:25.440Z"
+  "calendarAt": "2026-09-08T12:23:28.320Z",
+  "headlinesAt": "2026-09-08T12:23:28.320Z",
+  "updatedAt": "2026-09-08T12:23:28.320Z"
 }
