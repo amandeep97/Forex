@@ -642,6 +642,25 @@
   ],
   "headlines": [
     {
+      "title": "Nvidia, Palantir, and Meta Platforms Are Rattling Wall Street With This $18.6 Billion Warning",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/nvidia-palantir-meta-platforms-rattling-092601179.html",
+      "source": "Yahoo Finance",
+      "at": 1788859561000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788859561000,
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Tech giants rattling Wall Street negatively"
+    },
+    {
       "title": "Telecom Italia shares climb as Poste sweetens takeover offer",
       "link": "https://www.investing.com/news/stock-market-news/telecom-italia-shares-climb-as-poste-sweetens-takeover-offer-4891068",
       "source": "Investing",
@@ -652,21 +671,6 @@
       "rel": 1,
       "srcs": 1,
       "firstAt": 1788859302000,
-      "_kind": null
-    },
-    {
-      "title": "3 Dividend Stocks Trading Near Their 52-Week Lows",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/3-dividend-stocks-trading-near-092002053.html",
-      "source": "Yahoo Finance",
-      "at": 1788859202000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788859202000,
       "_kind": null
     },
     {
@@ -685,7 +689,24 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1788856980000,
-      "_kind": null
+      "_kind": null,
+      "why": "Comparative investment question, no direction"
+    },
+    {
+      "title": "3 Dividend Stocks Trading Near Their 52-Week Lows",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/3-dividend-stocks-trading-near-092002053.html",
+      "source": "Yahoo Finance",
+      "at": 1788859202000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788859202000,
+      "_kind": null,
+      "why": "Dividend stocks near lows, no index direction"
     },
     {
       "title": "3 of the Best Growth Stocks to Buy for Less Than $100 Right Now",
@@ -700,7 +721,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788859202000,
-      "_kind": null
+      "_kind": null,
+      "why": "Stock picks, no broad market direction"
     },
     {
       "title": "ExxonMobil's CEO Called Venezuela 'Uninvestable.' Trump Says It's Going In Anyway. Here's Why Investors Should Pay Attention.",
@@ -734,7 +756,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788859176000,
-      "_kind": null
+      "_kind": null,
+      "why": "Israeli politics, no direct market impact"
     },
     {
       "title": "The yen's sudden surge upsets the carry trade faithful",
@@ -751,7 +774,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788859100000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USD/JPY": "down"
+      },
+      "why": "Yen surge implies USD/JPY decline"
     },
     {
       "title": "Over 200 US seniors hand over fortunes in $250M gold scheme — 40+ indicted after bullion melted down in Florida",
@@ -768,7 +795,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788858900000,
-      "_kind": null
+      "_kind": null,
+      "why": "Fraud scheme, no price direction implied"
     },
     {
       "title": "U.S. stocks usually stumble after Fed hikes, but these markets tend to climb, says Citi",
@@ -787,7 +815,32 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788858720000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "US stocks stumble after Fed hikes"
+    },
+    {
+      "title": "Gold Edges Lower as Weaker Dollar Offsets Fed Rate-Hike Expectations",
+      "link": "https://finance.yahoo.com/markets/commodities/articles/gold-edges-lower-weaker-dollar-090852876.html",
+      "source": "Yahoo Finance",
+      "at": 1788858532000,
+      "inst": [
+        "XAU/USD"
+      ],
+      "ccy": [
+        "USD",
+        "XAU"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1788856366000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold edges lower explicitly stated"
     },
     {
       "title": "The Stock Market Is Repeating a Pattern Not Seen in Decades. History Says This Will Happen Next.",
@@ -819,7 +872,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788855898000
+      "firstAt": 1788855898000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Saudi attacks boost safe havens and oil"
     },
     {
       "title": "U.S. futures slide as post-holiday traders face hot payrolls and $100 oil threat",
@@ -836,7 +895,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788858232000
+      "firstAt": 1788858232000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "$100 oil threat implies bullish sentiment"
     },
     {
       "title": "Goldman Sachs flips on oil-price forecasts and says $120 Brent could be next.",
@@ -854,30 +917,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788858120000
-    },
-    {
-      "title": "Oil Nears $100 as Markets Assess Fed Rate Expectations and Iran Tensions: Dow Jones, S&P, Nasdaq, Wall Street Futures",
-      "link": "https://finance.yahoo.com/energy/articles/oil-nears-100-markets-assess-085906233.html",
-      "source": "Yahoo Finance",
-      "at": 1788857946000,
-      "inst": [
-        "USOIL",
-        "US500",
-        "US100",
-        "US30",
-        "XAU/USD",
-        "UKOIL"
-      ],
-      "ccy": [
-        "USD",
-        "OIL",
-        "XAU"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788857946000
+      "firstAt": 1788858120000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Goldman hikes oil price forecasts"
     },
     {
       "title": "Spain sells €2.4bn in Treasury bills at higher yields",
@@ -899,7 +944,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788857676000
+      "firstAt": 1788857676000,
+      "why": "Spain bond auction, no FX direction"
     },
     {
       "title": "European shares dip on oil-led inflation woes; Novartis set for worst day on record",
@@ -916,7 +962,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788857668000
+      "firstAt": 1788857668000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil-led inflation implies high oil prices"
     },
     {
       "title": "UniCredit gets ECB approval for Danish Compromise methodology",
@@ -932,7 +982,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788857596000
+      "firstAt": 1788857596000,
+      "why": "Bank regulatory approval, no FX impact"
     },
     {
       "title": "Energy stocks rise premarket as oil prices climb on Middle East supply fears",
@@ -1085,7 +1136,7 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 1,
+      "srcs": 2,
       "firstAt": 1788856366000
     },
     {
@@ -2142,24 +2193,6 @@
       "firstAt": 1788841402000
     },
     {
-      "title": "Global Market: Japan stocks mixed as strong data boosts rate-hike bets - The Economic Times",
-      "link": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxOOUotMkJkYU9wUVJlWVVReWRRQW9pSnFOVkd0WVRnek5BTlFPeUtXN3RlMDdZalgyVmVoX2g3bWFoUko5R3Byc0RkYXA4dGZnSnlEN0ota3JVTjJBdVpOVUJheWtCTzhhYUVjOVpwT3hNaVZZdFJHSHdkZGQ1NDhPVGhnQVBQWWJneWJzMENuaVRDS2Yzd1l0SXBqdnJJRGl0N3hsbjFoQ0dycGI1YXVpZFRJU1hNWGlaVlVORGIzQm9QQnBNd1hGZ1c1MThrZXpLWS03THFyNnNqeDhmUW9Z0gHkAUFVX3lxTE5MWUJPckJna3IwNUFOak5LS0pHeVRibnZ1TzB1TmE1MXp1N3JuVWpDalFSd1ZxdmlJZjE5T1c3RERjal9Ma3hjYVRhWUV5RVlENXM2NWVGWUQ2a2dianVnZFBJVWZ6NGpRcW16SjdITGMyXzk1dEVRVF9DV0toT1dWVndKRkd4akN5SkVPYTB1QWNtcms1LTZKeHNxbE83eDZqdHpiWTd0ZkpQZnQyc21zRU5TdG1LVm92LUxDVVFVRFBYd2hybFdsQVpUSjZhWTRMY29GaTl1WUg4U1hSWGJrYmxlMg?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi3wFBVV95cUxOOUotMkJkYU9wUVJlWVVReWRRQW9pSnFOVkd0WVRnek5BTlFPeUtXN3RlMDdZalgyVmVoX2g3bWFoUko5R3Byc0RkYXA4dGZnSnlEN0ota3JVTjJBdVpOVUJheWtCTzhhYUVjOVpwT3hNaVZZdFJHSHdkZGQ1NDhPVGhnQVBQWWJneWJzMENuaVRDS2Yzd1l0SXBqdnJJRGl0N3hsbjFoQ0dycG",
-      "at": 1788841255000,
-      "inst": [
-        "USD/JPY",
-        "US500"
-      ],
-      "ccy": [
-        "JPY"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788841255000
-    },
-    {
       "title": "Canada’s retaliatory tariffs on $20bn of US goods take effect - Al Jazeera",
       "link": "https://news.google.com/rss/articles/CBMioAFBVV95cUxNU2phM3hPekhiRHo2akRRdU1UZ3RyMkhmX0hBYS1PMVJ6R0Nucy03bi1vMGs4c0JzR29TNENaMms2b2p2UVFMSDFwTzlMcmZEQTJKTGwzUkc5T0h2eTFFTnBPSF95S29LTFRZTFhWMFgyQ2hvQ21Rdy1jVmVxWHh5elAyb1ZPQUlMc1VvTmlDZ3MwUW93elU0RHF2anVoN25F0gGmAUFVX3lxTE9DUnVDUUNxNWxaallNU01pSDkzT2dab2QtQkp0bFhwRHNOakg2NlJHcUUyWE9WWHlwTjhUalRNSTZvUVhyTWdYTXBadWpVcERaaDRvOGFNVGpFR0pfRjJxcFAyUnVRMnNiWHJmcUw4c0staW1ObkZvZVBMQWhLQzZ4aDFGcHpBZmhkRm9NNGxMZ2Z2b014RUdjZDR0LTBzWGVKalg2Unc?oc=5",
       "source": "Wires (macro)",
@@ -2331,7 +2364,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-08T09:39:26.013Z",
-  "headlinesAt": "2026-09-08T09:39:26.014Z",
-  "updatedAt": "2026-09-08T09:39:26.014Z"
+  "calendarAt": "2026-09-08T09:40:29.984Z",
+  "headlinesAt": "2026-09-08T09:40:29.984Z",
+  "updatedAt": "2026-09-08T09:40:29.984Z"
 }
