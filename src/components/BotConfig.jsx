@@ -5,6 +5,7 @@ import { getIMSignals, IM_DEFS } from '../utils/intermarket';
 import { takeStagedBotStrategy } from '../utils/strategyToBot';
 import { checkIndicatorFilters } from '../../shared/strategyFilters.mjs';
 import { stopFor, pipSizeFor } from '../../shared/stopLoss.mjs';
+import { LOT_UNITS, unitsForLots } from '../../shared/position.mjs';
 import { CANDLE_PATTERNS } from '../../shared/candlePatterns.mjs';
 
 // ── SMC engine (browser port of vps-bot/src/smc.js) ──────────────────────────
@@ -1095,8 +1096,18 @@ function StrategyEditor({ strat, onSave, onCancel }) {
             <FieldRow label="Lot Size">
               <NumberInput value={s.risk.fixedLots||0.01} onChange={v => set('risk.fixedLots', v)} min={0.01} max={100} step={0.01}/>
             </FieldRow>
+            {/* Read from the same table the bot converts with. This line and
+                the bot used to disagree about silver by a factor of fifty. */}
             <div style={{ padding: '2px 0 6px 12px', borderBottom: '1px solid var(--border)', fontSize: 10, color: 'var(--text3)' }}>
-              Forex: 1 lot = 100,000 units · Gold/XAU: 1 lot = 100 oz · Silver: 1 lot = 5,000 oz
+              Forex: 1 lot = {LOT_UNITS.DEFAULT.toLocaleString()} units ·
+              {' '}Gold/XAU: 1 lot = {LOT_UNITS.XAU} oz ·
+              {' '}Silver: 1 lot = {LOT_UNITS.XAG.toLocaleString()} oz
+              {s.pairs?.length === 1 && (
+                <> — {s.pairs[0].replace('_', '/')} at {s.risk.fixedLots || 0.01} lots
+                  {' '}is <b style={{ color: 'var(--text2)' }}>
+                    {unitsForLots(s.pairs[0], s.risk.fixedLots || 0.01).toLocaleString()} units
+                  </b></>
+              )}
             </div>
           </>
         )}
