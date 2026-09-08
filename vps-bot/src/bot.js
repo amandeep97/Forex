@@ -426,7 +426,15 @@ class ForexBot {
     const fibLevels = conditions.oteFibLevels
       ? String(conditions.oteFibLevels).split(',').map(v => parseFloat(v.trim())).filter(v => !isNaN(v))
       : null;
-    const smc = analyzeSMC(candles, fibLevels ? { fibLevels } : {});
+    // The tap switches are passed through now. They used to be ignored, and the
+    // strict behaviour they describe was on regardless — a choice the screen
+    // offered and the bot did not honour.
+    const smc = analyzeSMC(candles, {
+      ...(fibLevels ? { fibLevels } : {}),
+      requireOBTap: conditions.requireOBTap,
+      requireFVGTap: conditions.requireFVGTap,
+      sweepN: conditions.sweepN,
+    });
     const cp  = smc.currentPrice;
 
     const dir = this._resolveDirection(direction, smc);
@@ -445,6 +453,9 @@ class ForexBot {
       ob:         !conditions.requireOB  || (dir === 'long' ? smc.hasBullOB : smc.hasBearOB),
       fvg:        !conditions.requireFVG || (dir === 'long' ? smc.hasBullFVG : smc.hasBearFVG),
       ote:        !conditions.requireOTE || (dir === 'long' ? smc.inOTEBull  : smc.inOTEBear),
+      // The core ICT idea, and until now a switch the bot never read at all.
+      liqSweep:   !conditions.requireLiqSweep
+        || (dir === 'long' ? smc.hasBullSweep : smc.hasBearSweep),
       rsi:        !conditions.rsiFilter?.enabled || this._checkRSI(smc.rsi, conditions.rsiFilter),
       ratio:      !conditions.ratioFilter?.enabled,
       intermarket: true,

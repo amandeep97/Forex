@@ -6,6 +6,7 @@ import { takeStagedBotStrategy } from '../utils/strategyToBot';
 import { checkIndicatorFilters } from '../../shared/strategyFilters.mjs';
 import { stopFor, pipSizeFor } from '../../shared/stopLoss.mjs';
 import { LOT_UNITS, unitsForLots } from '../../shared/position.mjs';
+import { detectStrongReversal } from '../../shared/candlePatterns.mjs';
 import { CANDLE_PATTERNS } from '../../shared/candlePatterns.mjs';
 
 // ── SMC engine (browser port of vps-bot/src/smc.js) ──────────────────────────
@@ -103,16 +104,18 @@ function detectOTE(candles) {
   return { bull, bear };
 }
 
-function detectLiqSweep(candles) {
-  if (candles.length < 10) return { bull: false, bear: false };
-  const ref     = candles.slice(-15, -3);
-  const refLow  = Math.min(...ref.map(c => c.l));
-  const refHigh = Math.max(...ref.map(c => c.h));
-  const recent  = candles.slice(-3);
-  return {
-    bull: recent.some(c => c.l < refLow  && c.c > refLow),
-    bear: recent.some(c => c.h > refHigh && c.c < refHigh),
-  };
+// The sweep, from the SAME detector the bot uses.
+//
+// This was a second, looser definition: any of the last three bars dipping
+// under a fifteen-bar low and closing back above it, with no shape requirement
+// at all. The bot now uses detectStrongReversal — the wick must clear the whole
+// prior five-bar range AND the close come back inside it AND the bar be shaped
+// like a rejection. Two definitions of the central idea of the method is one
+// too many, and the preview would have explained a trade the bot refused.
+function detectLiqSweep(candles, n = 5) {
+  if (!candles || candles.length < n + 2) return { bull: false, bear: false };
+  const rev = detectStrongReversal(candles, candles.length - 1, n);
+  return { bull: rev === 'hammer', bear: rev === 'star' };
 }
 
 function detectPriceZone(candles) {
@@ -188,12 +191,16 @@ async function scanPair(pair, strat) {
         return { pair, pass: false, reason: `Price zone: ${zone} ≠ ${cond.priceZone}`, rsi, structure };
     }
 
-    // Order Block
+    // Order Block. The tap switch is honoured here exactly as the bot honours it,
+    // or the preview would explain a match the bot would not make.
     if (cond.requireOB) {
       const obs    = detectOrderBlocks(cs);
       const obDir  = cond.obDir || 'any';
-      const bullOB = obs.some(ob => ob.type === 'bullish' && cp >= ob.bottom && cp <= ob.top + atr);
-      const bearOB = obs.some(ob => ob.type === 'bearish' && cp <= ob.top   && cp >= ob.bottom - atr);
+      const tap    = cond.requireOBTap !== false;
+      const bullOB = obs.some(ob => ob.type === 'bullish'
+        && (!tap || (cp >= ob.bottom && cp <= ob.top + atr)));
+      const bearOB = obs.some(ob => ob.type === 'bearish'
+        && (!tap || (cp <= ob.top && cp >= ob.bottom - atr)));
       const ok     = obDir === 'bullish' ? bullOB : obDir === 'bearish' ? bearOB : (bullOB || bearOB);
       if (!ok) return { pair, pass: false, reason: `No ${obDir} OB at price`, rsi, structure };
     }
@@ -202,8 +209,11 @@ async function scanPair(pair, strat) {
     if (cond.requireFVG) {
       const fvgs   = detectFVGs(cs);
       const fvgDir = cond.fvgDir || 'any';
-      const bullF  = fvgs.some(f => f.type === 'bullish' && cp >= f.bottom && cp <= f.top + atr);
-      const bearF  = fvgs.some(f => f.type === 'bearish' && cp <= f.top   && cp >= f.bottom - atr);
+      const ftap   = cond.requireFVGTap !== false;
+      const bullF  = fvgs.some(f => f.type === 'bullish'
+        && (!ftap || (cp >= f.bottom && cp <= f.top + atr)));
+      const bearF  = fvgs.some(f => f.type === 'bearish'
+        && (!ftap || (cp <= f.top && cp >= f.bottom - atr)));
       const ok     = fvgDir === 'bullish' ? bullF : fvgDir === 'bearish' ? bearF : (bullF || bearF);
       if (!ok) return { pair, pass: false, reason: `No ${fvgDir} FVG at price`, rsi, structure };
     }
@@ -485,8 +495,8 @@ const DEFAULT_STRAT = {
     structure: 'any', requireBOS: false,
     priceZone: 'any',
     requireLiqSweep: false,
-    obDir: 'any', requireOB: false, requireOBTap: false,
-    fvgDir: 'any', requireFVG: false, requireFVGTap: false,
+    obDir: 'any', requireOB: false, requireOBTap: true,
+    fvgDir: 'any', requireFVG: false, requireFVGTap: true,
     requireOTE: false,
     candlePattern: 'any', candleN: 5,
     macdFilter:  { enabled: false, mode: 'above' },
@@ -730,7 +740,10 @@ function StrategyEditor({ strat, onSave, onCancel }) {
         </FieldRow>
         {s.conditions.requireLiqSweep && (
           <div style={{ padding: '2px 0 6px 12px', borderBottom: '1px solid var(--border)', fontSize: 10, color: 'var(--text3)' }}>
-            Recent sweep of swing highs (for shorts) or swing lows (for longs)
+            The last closed bar must sweep and reclaim: its wick clears the whole prior 5-bar
+            low (for longs) or high (for shorts) and the close comes back inside. Stops taken
+            and immediately rejected. A level broken and HELD is a breakout, which is the
+            opposite trade, so it does not count.
           </div>
         )}
 
@@ -747,7 +760,7 @@ function StrategyEditor({ strat, onSave, onCancel }) {
             <span style={{ fontSize: 11, color: 'var(--text3)' }}>Require OB</span>
             <Toggle checked={!!s.conditions.requireOB} onChange={v => set('conditions.requireOB', v)}/>
             <span style={{ fontSize: 11, color: 'var(--text3)', marginLeft: 8 }}>OB Tap</span>
-            <Toggle checked={!!s.conditions.requireOBTap} onChange={v => set('conditions.requireOBTap', v)}/>
+            <Toggle checked={s.conditions.requireOBTap !== false} onChange={v => set('conditions.requireOBTap', v)}/>
           </div>
           {s.conditions.requireOBTap && (
             <div style={{ fontSize: 10, color: 'var(--text3)', paddingLeft: 8, marginTop: 3 }}>Price must be inside OB zone right now</div>
@@ -767,7 +780,7 @@ function StrategyEditor({ strat, onSave, onCancel }) {
             <span style={{ fontSize: 11, color: 'var(--text3)' }}>Require FVG</span>
             <Toggle checked={!!s.conditions.requireFVG} onChange={v => set('conditions.requireFVG', v)}/>
             <span style={{ fontSize: 11, color: 'var(--text3)', marginLeft: 8 }}>FVG Tap</span>
-            <Toggle checked={!!s.conditions.requireFVGTap} onChange={v => set('conditions.requireFVGTap', v)}/>
+            <Toggle checked={s.conditions.requireFVGTap !== false} onChange={v => set('conditions.requireFVGTap', v)}/>
           </div>
           {s.conditions.requireFVGTap && (
             <div style={{ fontSize: 10, color: 'var(--text3)', paddingLeft: 8, marginTop: 3 }}>Price must be inside FVG zone right now</div>
