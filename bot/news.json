@@ -202,7 +202,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788851906000,
-      "_kind": null,
       "dir": {
         "USOIL": "up",
         "UKOIL": "up"
@@ -1500,6 +1499,26 @@
       "firstAt": 1788828523000
     },
     {
+      "title": "Zelensky to Axios: U.S. exploring Russia-Ukraine winter de-escalation steps - Axios",
+      "link": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPS1JUc284NjBMMkppZ29XSm9kUjBwSnpvcjhxT05xTG1rWGViQkswMEh4SzdPZ1NKN0VTQVUxcWc1T1ByMEJEUGdUS01nbVU0eFd3anRTX1h3aVo2QWNHcW96dzhoR3MzbWlrYS15TG1hYkZ1Zm1SMHRGVjZKeTFabnNqRWtIRHQ0LUdXYW9kd3huUQ?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMikgFBVV95cUxPS1JUc284NjBMMkppZ29XSm9kUjBwSnpvcjhxT05xTG1rWGViQkswMEh4SzdPZ1NKN0VTQVUxcWc1T1ByMEJEUGdUS01nbVU0eFd3anRTX1h3aVo2QWNHcW96dzhoR3MzbWlrYS15TG1hYkZ1Zm1SMHRGVjZKeTFabnNqRWtIRHQ0LUdXYW9kd3huUQ?oc=5\" target=\"_blank\">Zelensky ",
+      "at": 1788828249000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788828249000
+    },
+    {
       "title": "Today’s Market Recap: Brent Crude Nears $100, Gold and Bitcoin Under Pressure as US-Iran Conflict Escalates - TradingKey",
       "link": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxONWt6QmkzNHhoU0FPRTllQXRmck9sZ1dMaG9wc1NBeFpHeUU0SnBRZGdjN0EyblRET19xNmU2aHM0d2Vmc043VFh3bnRudU9uWUdPc0R3ZGFad0tycWkwQ1NHMXQzTzZUb2Znand2MW9FT216ODIxaFJreEZIUmI0a3hhV0JfeE05cGVWZTRMRHllbi1IX09ROWJBZXByMUV6VjU0TkpkeE1iV29meVBveHZXVkVlTXZIRHJ2LXNmZkdEa1JJU19JRWN0d3hZMzZLWm55RkVkN1gxaUYzcWN0TXZ5MA?oc=5",
       "source": "Wires (macro)",
@@ -1732,23 +1751,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788824547000
-    },
-    {
-      "title": "Japan wages data, July 2026: Headline earnings +4.7% y/y (expected +3.9%, prior +4%)",
-      "link": "https://investinglive.com/news/japan-wages-data-july-2026-headline-earnings-4-7-y-y-expected-3-9-prior-4/",
-      "source": "ForexLive",
-      "desc": "Just the data on this post. July 2026. Average Cash Earnings YY 4.7% expected 3.9%, prior 4.0%Real wages + 2.4% y/y biggest increase since May 2021 seventh consecutive month of gainsADDED, details here: Japan wage growth strongest since 1997, cementing BOJ hike caseComing up soon",
-      "at": 1788823892000,
-      "inst": [
-        "USD/JPY"
-      ],
-      "ccy": [
-        "JPY"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788823892000
     }
   ],
   "sources": [
@@ -1771,10 +1773,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-08T07:47:42.255Z",
-  "updatedAt": "2026-09-08T07:47:42.255Z"
+  "headlinesAt": "2026-09-08T07:49:27.047Z",
+  "updatedAt": "2026-09-08T07:49:27.048Z"
 }
