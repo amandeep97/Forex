@@ -213,10 +213,52 @@ function analyzeSMC(candles, opts = {}) {
     cp >= f.bottom
   ) || null;
 
-  const hasBullOB  = inDiscount && !!activeBullOB;
-  const hasBearOB  = inPremium  && !!activeBearOB;
-  const hasBullFVG = inDiscount && !!activeBullFVG;
-  const hasBearFVG = inPremium  && !!activeBearFVG;
+  // ── The tap, as a CHOICE rather than an always-on rule ───────────────────
+  //
+  // "OB Tap" and "FVG Tap" were switches in the strategy editor that the bot
+  // never read — and worse than dead, because the strict behaviour they
+  // describe was always on. Turning OB Tap OFF looked like it would accept an
+  // order block sitting anywhere in the discount half; the bot still demanded
+  // price be inside it. The screen offered a choice that did not exist.
+  //
+  // They mean something now. Default is ON, which is exactly what the bot has
+  // always done, so no existing strategy changes behaviour. Turning one off
+  // genuinely loosens the rule to "such a zone exists in the right half of the
+  // range", which is the looser reading of the concept and is what the label
+  // has been implying all along.
+  const wantOBTap = opts.requireOBTap !== false;
+  const wantFVGTap = opts.requireFVGTap !== false;
+
+  const anyBullOB = obs.find(ob => ob.type === 'bullish' && ob.top < midpoint) || null;
+  const anyBearOB = obs.find(ob => ob.type === 'bearish' && ob.bottom > midpoint) || null;
+  const anyBullFVG = fvgs.find(f => f.type === 'bullish' && f.top < midpoint) || null;
+  const anyBearFVG = fvgs.find(f => f.type === 'bearish' && f.bottom > midpoint) || null;
+
+  const bullOB  = wantOBTap ? activeBullOB : (activeBullOB || anyBullOB);
+  const bearOB  = wantOBTap ? activeBearOB : (activeBearOB || anyBearOB);
+  const bullFVG = wantFVGTap ? activeBullFVG : (activeBullFVG || anyBullFVG);
+  const bearFVG = wantFVGTap ? activeBearFVG : (activeBearFVG || anyBearFVG);
+
+  const hasBullOB  = inDiscount && !!bullOB;
+  const hasBearOB  = inPremium  && !!bearOB;
+  const hasBullFVG = inDiscount && !!bullFVG;
+  const hasBearFVG = inPremium  && !!bearFVG;
+
+  // ── The liquidity sweep ──────────────────────────────────────────────────
+  //
+  // The central idea of the whole method, and it was not here at all. The
+  // strategy editor had a Liquidity Sweep toggle; analyzeSMC never produced a
+  // sweep, and the bot never looked for one. The detector existed the whole
+  // time, used by the Screener and the alerts and nothing else.
+  //
+  // A sweep is the prior N-bar extreme taken and given back on one bar: stops
+  // beyond the range are filled and price immediately rejects. A level broken
+  // and HELD is a breakout, which is the opposite trade, and lumping the two
+  // together is how a sweep filter ends up meaning nothing.
+  const sweepN = opts.sweepN ?? 5;
+  const sweep = detectStrongReversal(candles, candles.length - 1, sweepN);
+  const hasBullSweep = sweep === 'hammer';
+  const hasBearSweep = sweep === 'star';
 
   return {
     structure,
@@ -231,6 +273,9 @@ function analyzeSMC(candles, opts = {}) {
     hasBearFVG,
     inOTEBull:    oteResult.bull,
     inOTEBear:    oteResult.bear,
+    sweep,
+    hasBullSweep,
+    hasBearSweep,
     rsi,
     atr,
     recentSwingHigh,
