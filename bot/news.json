@@ -624,6 +624,20 @@
   ],
   "headlines": [
     {
+      "title": "Qualcomm’s stock climbs as Amazon chip deal offers investors much-needed good news",
+      "link": "https://www.marketwatch.com/story/qualcomms-stock-climbs-as-amazon-chip-deal-offers-investors-some-much-needed-good-news-5b6a95ca?mod=mw_rss_topstories",
+      "source": "MarketWatch",
+      "desc": "Qualcomm shares have missed out on the chip sector’s big rally this year. The company is now working on various chip projects with Amazon.",
+      "at": 1788876600000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 1,
+      "srcs": 2,
+      "firstAt": 1788874643000,
+      "_kind": null
+    },
+    {
       "title": "Novartis’s failed trial for cholesterol drug leads to broad biopharma stock selloff",
       "link": "https://www.marketwatch.com/story/novartiss-failed-trial-for-cholesterol-drug-leads-to-broad-biopharma-selloff-2d487746?mod=mw_rss_topstories",
       "source": "MarketWatch",
@@ -672,7 +686,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788875569000,
-      "_kind": null
+      "_kind": null,
+      "why": "Trade corridor expansion impact unclear"
     },
     {
       "title": "Bond yield worries persist as oil edges higher : AlphaCheck",
@@ -689,7 +704,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788875518000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil edges higher despite yield worries"
     },
     {
       "title": "SpaceX Could Draw $15.5B in Passive Buying as Nasdaq Rebalance Looms",
@@ -704,7 +723,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788875492000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US100": "up"
+      },
+      "why": "Passive buying expected for Nasdaq"
     },
     {
       "title": "Dangote refinery CEO says fuel shortages to last after Iran war",
@@ -724,21 +747,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788875406000,
-      "_kind": null
-    },
-    {
-      "title": "Qualcomm’s stock climbs as Amazon chip deal offers investors some much-needed good news",
-      "link": "https://www.marketwatch.com/story/qualcomms-stock-climbs-as-amazon-chip-deal-offers-investors-some-much-needed-good-news-5b6a95ca?mod=mw_rss_topstories",
-      "source": "MarketWatch",
-      "desc": "Qualcomm shares have missed out on the chip sector’s big rally this year. The company is now working on various chip projects with Amazon.",
-      "at": 1788875160000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 2,
-      "firstAt": 1788874643000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Fuel shortages imply higher oil prices"
     },
     {
       "title": "Stock Market Today: Dow Sells Off 500 Points On U.S.-Iran Attacks; SK Hynix Breaks Out (Live Coverage)",
@@ -759,7 +773,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788874500000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US30": "down",
+        "XAU/USD": "up",
+        "USOIL": "up"
+      },
+      "why": "Dow sells off, geopolitical risk rises"
     },
     {
       "title": "Wall Street Keeps Asking How Much Meta Will Spend. The Better Question Is at What Price to Buy",
@@ -774,7 +794,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788874698000,
-      "_kind": null
+      "_kind": null,
+      "why": "Meta spending question lacks clear direction"
     },
     {
       "title": "The investment lessons from the Vanguard 500 Index fund’s 50-year history",
@@ -809,7 +830,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788875049000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "US30": "down",
+        "XAU/USD": "up"
+      },
+      "why": "Oil nears $100, Dow drops"
     },
     {
       "title": "Wall St mixed at open as Gulf tensions send oil to over six-week high",
@@ -826,7 +853,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788874969000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil hits six-week high, stocks mixed"
     },
     {
       "title": "Investors Are Buying Palantir for a Story That Is Not Quite True",
@@ -854,7 +885,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788874762000
+      "firstAt": 1788874762000,
+      "why": "Altcoin OI signal interpretation unclear"
     },
     {
       "title": "SpaceX initiated, Intel upgraded: Wall Street's top analyst calls",
@@ -868,7 +900,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788874698000
+      "firstAt": 1788874698000,
+      "why": "Analyst calls mixed, no clear direction"
     },
     {
       "title": "How Ukrainian Drone Strikes Are Pounding Russia’s Economy - WSJ",
@@ -888,7 +921,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788874687000
+      "firstAt": 1788874687000,
+      "why": "Ukraine strikes impact on markets unclear"
     },
     {
       "title": "Stock Market Today (Sept. 8, 2026): S&P 500 edges lower as oil prices climb, Mideast tensions rise",
@@ -905,7 +939,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788874500000
+      "firstAt": 1788874500000,
+      "dir": {
+        "USOIL": "up",
+        "US500": "down"
+      },
+      "why": "Oil climbs, S&P 500 edges lower"
     },
     {
       "title": "Before You Chase Salesforce’s Rally, Take a Closer Look at Its Latest Earnings Beat",
@@ -960,7 +999,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788874384000
+      "firstAt": 1788874384000,
+      "dir": {
+        "USOIL": "up",
+        "US500": "down",
+        "US30": "down"
+      },
+      "why": "Oil prices climb, stocks slip"
     },
     {
       "title": "Beneath the surface, the next stock-market leaders are getting ready to break out, says Morgan Stanley",
@@ -975,7 +1020,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788874380000
+      "firstAt": 1788874380000,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Morgan Stanley predicts stock breakouts"
     },
     {
       "title": "Britain Accuses Israeli Settlers of ‘Ethnic Cleansing’ in Parts of West Bank - The New York Times",
@@ -990,7 +1039,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788872220000
+      "firstAt": 1788872220000,
+      "why": "Geopolitical accusation lacks direct FX impact"
     },
     {
       "title": "Shafaq News..Basij commander killed in attack in southeastern Iran - شفق نيوز",
@@ -1171,7 +1221,7 @@
       "firstAt": 1788872023000
     },
     {
-      "title": "Canadian Dollar: Tariffs boost role as funding currency – TD Securities - FXStreet",
+      "title": "Canadian Dollar: Tariffs boost role as funding currency – TD Securities - fxstreet.com",
       "link": "https://news.google.com/rss/articles/CBMisAFBVV95cUxQM3dkT1pvaWRveGNyODl6YUlvZjVZRllEOE1zRjNvV1lod3J4bW1xUXNkUTVmLWRjMGM4U1NJSG9pMTdlcFFJX1p2eDUyck5rcl9KbW9JRzVnRFhFNnZVZnEyQ0NvUEJwZVFickJTeVdEMWFfbUdXenlWWWVOc204bUJhS3BRVUNMMDhTbEUzTnYwejJXMVlnZVlBbkJiWkhSS05ZZXpaT3E1ZmlqRk53aQ?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMisAFBVV95cUxQM3dkT1pvaWRveGNyODl6YUlvZjVZRllEOE1zRjNvV1lod3J4bW1xUXNkUTVmLWRjMGM4U1NJSG9pMTdlcFFJX1p2eDUyck5rcl9KbW9JRzVnRFhFNnZVZnEyQ0NvUEJwZVFickJTeVdEMWFfbUdXenlWWWVOc204bUJhS3BRVUNMMDhTbEUzTnYwejJXMVlnZVlBbkJiWkhSS05ZZXpaT3E1Zm",
@@ -1398,7 +1448,7 @@
       "firstAt": 1788870895000
     },
     {
-      "title": "Gold: Fed inflation focus and volatility risk – Commerzbank - FXStreet",
+      "title": "Gold: Fed inflation focus and volatility risk – Commerzbank - fxstreet.com",
       "link": "https://news.google.com/rss/articles/CBMioAFBVV95cUxOVWdRUjFaMGd0bnBfMEFuUWJiSVo0aVZwRzVpU0JxR3ZOaWpRT05NbnhvV0YyWkdpeGRtYzNQSWdDZGdaVVl0ZWgwVnp0QWNIOTZXdEZCVXlFUFgtN1RJQ0pFTWhmUlFLM0MyX3ZzYXc0VFkyT3JINFpGdVV0UXd4bzkxM2VFaXpPQXlkVEloOG1Lamp0VHlyQmI1eWNLdEtK?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMioAFBVV95cUxOVWdRUjFaMGd0bnBfMEFuUWJiSVo0aVZwRzVpU0JxR3ZOaWpRT05NbnhvV0YyWkdpeGRtYzNQSWdDZGdaVVl0ZWgwVnp0QWNIOTZXdEZCVXlFUFgtN1RJQ0pFTWhmUlFLM0MyX3ZzYXc0VFkyT3JINFpGdVV0UXd4bzkxM2VFaXpPQXlkVEloOG1Lamp0VHlyQmI1eWNLdEtK?oc=5\" target=",
@@ -1801,7 +1851,7 @@
       "firstAt": 1788866907000
     },
     {
-      "title": "Australian Dollar: RBA inflation focus underpins carry – BBH - FXStreet",
+      "title": "Australian Dollar: RBA inflation focus underpins carry – BBH - fxstreet.com",
       "link": "https://news.google.com/rss/articles/CBMiogFBVV95cUxPTjFRbmU3U2xxdjVHaUJNSnVQS21rR0kxdXlvU3lKRmFqR09iQkVqTno5VGpzRDhSQ1JjUzFHYXRYdjZ1TDBsdnpGQkIycmdqdkRxYU5mcW5qdXdDQXdnWjFEUFBPSUtrR3Z6X0lTWHRwMTBkZnR6WU5NcFNHZDhGZTJ0RjZETVR0V3U5anFQYWkxTjY0dmpZTEhJbVJQNHBBaVE?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiogFBVV95cUxPTjFRbmU3U2xxdjVHaUJNSnVQS21rR0kxdXlvU3lKRmFqR09iQkVqTno5VGpzRDhSQ1JjUzFHYXRYdjZ1TDBsdnpGQkIycmdqdkRxYU5mcW5qdXdDQXdnWjFEUFBPSUtrR3Z6X0lTWHRwMTBkZnR6WU5NcFNHZDhGZTJ0RjZETVR0V3U5anFQYWkxTjY0dmpZTEhJbVJQNHBBaVE?oc=5\" targ",
@@ -2097,6 +2147,26 @@
       "firstAt": 1788865281000
     },
     {
+      "title": "Burnham risks Trump anger with new sanctions on Israel - Antelope Valley Press",
+      "link": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxOX1pZVm5uc1hDT2J5dVloWWxZUUdwYTdKUmZDamJFRFNTeURlaktPUXRKeTQ1WHhPTjMzNkpjVnBLeW9iRWp6NEJlM2dIVkVlRkJyYzFQR3gtMy1wbFlfakZVTGNreW93NEhMVFZ3bWZCN0hSYUVvR3c0VHh6X1BqTHlVaktDOTJfUGEzampNOTBGV1A3LXkyNXZCWVRtc2FKQTJveVRqTmlQelIwY3Eza0VtTDJtenlLeVlYY2QwaVpTZHd4eS1XQmNjNzI0OVRRYlRjal9QMXYzdw?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi2gFBVV95cUxOX1pZVm5uc1hDT2J5dVloWWxZUUdwYTdKUmZDamJFRFNTeURlaktPUXRKeTQ1WHhPTjMzNkpjVnBLeW9iRWp6NEJlM2dIVkVlRkJyYzFQR3gtMy1wbFlfakZVTGNreW93NEhMVFZ3bWZCN0hSYUVvR3c0VHh6X1BqTHlVaktDOTJfUGEzampNOTBGV1A3LXkyNXZCWVRtc2FKQTJveVRqTmlQel",
+      "at": 1788865200000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788865179000
+    },
+    {
       "title": "UK publishes legislation for tougher sanctions on Iran - The Times of Israel",
       "link": "https://news.google.com/rss/articles/CBMiogFBVV95cUxNUkxvMTVWcHZRRlptOGJ2WUlFLUNiWTdVejdFc0Nnejh6WU5MTXkzSjNNbWRrQmJ1OE9yeEdfcHRmdTNNdGc1UGVaTVlMbVZTNWgzVHZYcFd1VndnTGpRU0UtZTQwRmJBYzhrRnVwQXU0bW93WUtXbkNuQmlDaFl6empibTlXQkhaVFdSS2x3azVDcVZqZEpCNngycDh2UlRpeXc?oc=5",
       "source": "Wires (geo)",
@@ -2197,26 +2267,6 @@
       "firstAt": 1788862237000
     },
     {
-      "title": "US officials threaten retaliation against UK over Israeli settlements sanctions - Middle East Eye",
-      "link": "https://news.google.com/rss/articles/CBMitAFBVV95cUxNRkJNa2ZELXRMeUJ4OUNueU9RLXRsUE8waDd4alhmMkFQTkZIYk13QmxGVVExQVpid3VqbFhFTEZrZm9xSzRlN2dEWWluWnRUMHhTdDJFTkhILWJfdDNXdkk5NTF0RkJlbS1oZ0dVdEt0d3ZNV21VWWVKMEVxNWFDMmFfdS1rRVdmYjRiNjBzVTRCdm9hS2lJYld2YXNyaW51MlJTODVnRGpxN0gzMjZFME1BMTQ?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMitAFBVV95cUxNRkJNa2ZELXRMeUJ4OUNueU9RLXRsUE8waDd4alhmMkFQTkZIYk13QmxGVVExQVpid3VqbFhFTEZrZm9xSzRlN2dEWWluWnRUMHhTdDJFTkhILWJfdDNXdkk5NTF0RkJlbS1oZ0dVdEt0d3ZNV21VWWVKMEVxNWFDMmFfdS1rRVdmYjRiNjBzVTRCdm9hS2lJYld2YXNyaW51MlJTODVnRGpxN0",
-      "at": 1788864803000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1788864490000
-    },
-    {
       "title": "Video: Russia Strikes Kyiv After Trump Envoys Leave - The New York Times",
       "link": "https://news.google.com/rss/articles/CBMinAFBVV95cUxPUHVUVm43c2c0RWFITlMzXzNZeDVxVUlsUFVzQnc1VF9ILW95ZU5ROXJvejc5RWJIWFZlMVJBMjRST01DRTZQZGdOYnVuQlRDM3E2RGNObUVwMEtBVzNkUlZsQkI0SHNvTk1ERmZjS1l1UDZjcmxxVXpxaVpoWjVxR0N5YWcybW1zVVFqbXhpTXNJZklONTVkVGc0VEk?oc=5",
       "source": "Wires (geo)",
@@ -2280,7 +2330,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-08T14:10:10.079Z",
-  "headlinesAt": "2026-09-08T14:10:10.079Z",
-  "updatedAt": "2026-09-08T14:10:10.079Z"
+  "calendarAt": "2026-09-08T14:11:41.780Z",
+  "headlinesAt": "2026-09-08T14:11:41.780Z",
+  "updatedAt": "2026-09-08T14:11:41.780Z"
 }
