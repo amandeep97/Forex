@@ -147,6 +147,18 @@ function Instrument({ r }) {
         <div style={{ fontSize: 11, color: 'var(--text2)', marginTop: 4, lineHeight: 1.55 }}>
           {v.line}
         </div>
+        {/* A dead end is not an answer. When there is no measured rule to check,
+            say what the app CAN still do rather than leaving the screen at a
+            word the reader can do nothing with. */}
+        {v.noRules && (
+          <div style={{ fontSize: 10.5, color: 'var(--text3)', marginTop: 7, lineHeight: 1.6 }}>
+            Until one survives: <b style={{ color: 'var(--text2)' }}>Screener</b> scans every pair
+            against filters you set, <b style={{ color: 'var(--text2)' }}>Backtester</b> measures an
+            idea before you trade it, and <b style={{ color: 'var(--text2)' }}>Desk</b> argues one
+            instrument both ways and names a trigger price. None of those is a measured edge — they
+            are tools for your own decision, which is the honest state of things right now.
+          </div>
+        )}
       </div>
 
       {/* What is driving it — the decomposition, not a correlation. */}

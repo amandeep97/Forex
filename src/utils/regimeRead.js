@@ -84,11 +84,27 @@ export function stateNow(cs, { sym, partner = null, dollarUp = null, rate = null
 // so this is a subset test and nothing more — no scoring happens here, because
 // the score was settled on data this session has never seen and re-deriving it
 // from a few hundred live bars would only be a worse version of it.
+// Every rule the screen is allowed to check against.
+//
+// Two sources, not one. The search's own survivors, AND the watchlist — rules
+// that survived an earlier run and are re-scored every run whatever they rank.
+// A watchlist rule that still HELD is a stronger claim than a fresh survivor,
+// not a weaker one: it was not selected out of this run's search, so it is a
+// pre-registered result rather than the best of twelve. Leaving it out of the
+// screen while publishing it in the file would be the wrong way round.
+export function liveRules(study) {
+  const fresh = (study?.rules || []).filter(r => LIVE_VERDICTS.includes(r.verdict));
+  const watched = (study?.carriedForward || [])
+    .filter(w => w.verdict === 'held')
+    // A rule can be both this run's survivor and on the watchlist. Once.
+    .filter(w => !fresh.some(r => r.id === w.id));
+  return [...fresh, ...watched];
+}
+
 export function firing(study, keys) {
-  if (!study?.rules || !keys) return [];
+  if (!keys) return [];
   const have = new Set(keys);
-  return study.rules
-    .filter(r => LIVE_VERDICTS.includes(r.verdict))
+  return liveRules(study)
     .filter(r => r.all.every(k => have.has(k)))
     .map(r => ({ ...r, text: r.label || labelOf({ all: r.all }) }));
 }
@@ -97,10 +113,9 @@ export function firing(study, keys) {
 // short of a surviving setup is worth knowing about — it is the difference
 // between "nothing today" and "watch the London open".
 export function nearMisses(study, keys, within = 1) {
-  if (!study?.rules || !keys) return [];
+  if (!keys) return [];
   const have = new Set(keys);
-  return study.rules
-    .filter(r => LIVE_VERDICTS.includes(r.verdict))
+  return liveRules(study)
     .map(r => ({ rule: r, missing: r.all.filter(k => !have.has(k)) }))
     .filter(x => x.missing.length > 0 && x.missing.length <= within)
     .map(x => ({
