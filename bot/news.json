@@ -624,19 +624,6 @@
   ],
   "headlines": [
     {
-      "title": "CEO Ditches 1,762 Shares of Gaming Stock Valued at More Than $172,000",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/ceo-ditches-1-762-shares-141901018.html",
-      "source": "Yahoo Finance",
-      "at": 1788877141000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1788877141000,
-      "_kind": null
-    },
-    {
       "title": "Dow Jones trapped below 200-SMA, oversold: Live levels",
       "link": "https://www.investing.com/news/stock-market-news/dow-jones-clings-to-200sma-at-53148-live-levels-93CH-4890671",
       "source": "Investing",
@@ -649,7 +636,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788877091000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US30": "down"
+      },
+      "why": "Trapped below key moving average."
     },
     {
       "title": "Nasdaq 100 consolidates below key resistance: Live levels",
@@ -664,7 +655,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788877091000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US100": "down"
+      },
+      "why": "Consolidating below key resistance level."
     },
     {
       "title": "S&P 500 clings to 7,650 support in low-vol squeeze: Live levels",
@@ -679,7 +674,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788877091000,
-      "_kind": null
+      "_kind": null,
+      "why": "Clings to support, low volatility."
     },
     {
       "title": "Dollar Index clings to 98.868 support: Live levels",
@@ -715,7 +711,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788876471000,
-      "_kind": null
+      "_kind": null,
+      "why": "Geopolitical impact unclear, no direct price signal."
     },
     {
       "title": "Qualcomm’s stock climbs as Amazon chip deal offers investors much-needed good news",
@@ -750,7 +747,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788876471000,
-      "_kind": null
+      "_kind": null,
+      "why": "Political alignment news, no market direction."
     },
     {
       "title": "Novartis’s failed trial for cholesterol drug leads to broad biopharma stock selloff",
@@ -764,21 +762,6 @@
       "rel": 1,
       "srcs": 1,
       "firstAt": 1788876420000,
-      "_kind": null
-    },
-    {
-      "title": "Big Short Billionaire Goes Long: Michael Burry Avoids AI, Bets on Beaten own Stocks Instead",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/big-short-billionaire-goes-long-140530623.html",
-      "source": "Yahoo Finance",
-      "at": 1788876330000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788876330000,
       "_kind": null
     },
     {
@@ -815,20 +798,32 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788876120000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold falls; oil inflation fears mixed."
     },
     {
-      "title": "QCOM Showered Owners With Cash, But The Stock Still Lagged The Market",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/qcom-showered-owners-cash-stock-135813184.html",
+      "title": "Strategy's Return to Bitcoin Buying Lasted Exactly One Week",
+      "link": "https://finance.yahoo.com/markets/crypto/articles/strategys-return-bitcoin-buying-lasted-135716763.html",
       "source": "Yahoo Finance",
-      "at": 1788875893000,
-      "inst": [],
-      "ccy": [],
+      "at": 1788875836000,
+      "inst": [
+        "BTC/USDT"
+      ],
+      "ccy": [
+        "BTC"
+      ],
       "sev": 1,
-      "rel": 1,
+      "rel": 2,
       "srcs": 1,
-      "firstAt": 1788875119000,
-      "_kind": null
+      "firstAt": 1788875836000,
+      "_kind": null,
+      "dir": {
+        "BTC/USDT": "down"
+      },
+      "why": "Buying stopped, negative sentiment signal."
     },
     {
       "title": "Buy 5 High ROE Stocks as Rate Hike Fears Keep Markets at Bay - Yahoo Finance",
@@ -846,7 +841,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788875820000,
-      "_kind": null
+      "_kind": null,
+      "why": "Stock picks, no broad market direction."
     },
     {
       "title": "UAE Expands Non-Hormuz Trade Corridors Following Escalation with Iran - IranWire",
@@ -867,7 +863,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788875569000,
-      "_kind": null
+      "why": "Trade corridor expansion, impact unclear."
     },
     {
       "title": "Video: Germany says ICJ lacks jurisdiction in Nicaragua genocide case",
@@ -883,7 +879,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788875564000,
-      "_kind": null
+      "why": "Legal news, no currency impact."
     },
     {
       "title": "Bond yield worries persist as oil edges higher : AlphaCheck",
@@ -899,7 +895,29 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788875518000
+      "firstAt": 1788875518000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil edges higher despite yield worries."
+    },
+    {
+      "title": "SpaceX Could Draw $15.5B in Passive Buying as Nasdaq Rebalance Looms",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/spacex-could-draw-15-5b-135132661.html",
+      "source": "Yahoo Finance",
+      "at": 1788875492000,
+      "inst": [
+        "US100"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788875492000,
+      "dir": {
+        "US100": "up"
+      },
+      "why": "Passive buying inflow expected."
     },
     {
       "title": "Dangote refinery CEO says fuel shortages to last after Iran war",
@@ -918,7 +936,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788875406000
+      "firstAt": 1788875406000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Fuel shortages imply higher oil prices."
     },
     {
       "title": "Stock Market Today: Dow Sells Off 500 Points On U.S.-Iran Attacks; SK Hynix Breaks Out (Live Coverage)",
@@ -938,7 +961,28 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788875119000
+      "firstAt": 1788875119000,
+      "dir": {
+        "US30": "down",
+        "XAU/USD": "up",
+        "USOIL": "up"
+      },
+      "why": "Dow sells off; risk-off boosts gold/oil."
+    },
+    {
+      "title": "Wall Street Keeps Asking How Much Meta Will Spend. The Better Question Is at What Price to Buy",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/wall-street-keeps-asking-much-134504052.html",
+      "source": "Yahoo Finance",
+      "at": 1788875104000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788875104000,
+      "why": "Meta specific, no broad market direction."
     },
     {
       "title": "The investment lessons from the Vanguard 500 Index fund’s 50-year history",
@@ -1185,6 +1229,21 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1788871587000
+    },
+    {
+      "title": "Tech stocks today: Apple kicks off new era Wednesday, Anthropic S1 watch",
+      "link": "https://finance.yahoo.com/technology/live/tech-stocks-today-apple-kicks-off-new-era-wednesday-anthropic-s1-watch-125343211.html",
+      "source": "Yahoo Finance",
+      "at": 1788872023000,
+      "inst": [
+        "US500",
+        "US100"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788872023000
     },
     {
       "title": "Canadian Dollar: Tariffs boost role as funding currency – TD Securities - fxstreet.com",
@@ -1534,7 +1593,7 @@
       "firstAt": 1788869863000
     },
     {
-      "title": "As Houthis attack Saudi Arabia, is Iran war escalating into regional conflict? - France 24",
+      "title": "As Houthis attack Saudi Arabia, is Iran war escalating into regional conflict? - france24.com",
       "link": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxOV2tEcWdFZzlJZ2o2ZkNEWl9tV2JTM0JFYjhhV1BqWWFNZ1FFNVMtbnNmSExadEZraDlMZUlfSnVRSUt0Y3hLRmJZbEtHUGtnaXF2d2htSW9obk9qM1ltNFZjTXc3aVJhdGdHc1Nvb0h2aC1CaDV6UUFTS1RiYUI2R2k2WURZUzZsMDA3S2duamcxajhZVXJwdExqSHBQYVZLOEh2R3ZSd3NsN0NIWWg1VU15TzdTekUzdGZn?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiuwFBVV95cUxOV2tEcWdFZzlJZ2o2ZkNEWl9tV2JTM0JFYjhhV1BqWWFNZ1FFNVMtbnNmSExadEZraDlMZUlfSnVRSUt0Y3hLRmJZbEtHUGtnaXF2d2htSW9obk9qM1ltNFZjTXc3aVJhdGdHc1Nvb0h2aC1CaDV6UUFTS1RiYUI2R2k2WURZUzZsMDA3S2duamcxajhZVXJwdExqSHBQYVZLOEh2R3ZSd3NsN0",
@@ -1551,7 +1610,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1788869242000
+      "firstAt": 1788869551000
     },
     {
       "title": "Morning Call Sheet: Inflation, rates and AI volatility test markets - CNBC",
@@ -1577,7 +1636,7 @@
       "firstAt": 1788868906000
     },
     {
-      "title": "Ukraine decries 'horrific' Russian attack shortly after US envoys leave - France 24",
+      "title": "Ukraine decries 'horrific' Russian attack shortly after US envoys leave - france24.com",
       "link": "https://news.google.com/rss/articles/CBMisgFBVV95cUxQYVh2c2Fpcm1JREp4Yk5UUFkwbE1rZGl0VHdWVlJMZTAwdlVGREhrRk5HNHBjZ2NnVkJvdHBuT0MyYTIyYXp3dVdYdWtwVG1QRkZCX0pRMVF5SUM5WnlhY0h5SFdvbEFRLWhKaGRxSlFnVUFPbkNXbTI1QWRiTjRveW9FTkhYRUFIb2tPSGZZV0VHU1RSaTJYY0lOUWU5cURmRWktZUtBOXF5X1d2c3ZBYTJn?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMisgFBVV95cUxQYVh2c2Fpcm1JREp4Yk5UUFkwbE1rZGl0VHdWVlJMZTAwdlVGREhrRk5HNHBjZ2NnVkJvdHBuT0MyYTIyYXp3dVdYdWtwVG1QRkZCX0pRMVF5SUM5WnlhY0h5SFdvbEFRLWhKaGRxSlFnVUFPbkNXbTI1QWRiTjRveW9FTkhYRUFIb2tPSGZZV0VHU1RSaTJYY0lOUWU5cURmRWktZUtBOXF5X1",
@@ -1672,7 +1731,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788868643000
+      "firstAt": 1788866340000
     },
     {
       "title": "DW News. . Russia attacked Kyiv with drones and missiles, resuming its strikes after a brief pause for the visit of Donald Trump's envoys in Ukraine. At least two people were killed, and fires spread across the Ukrainian capital. #dwnews - facebook.com",
@@ -1891,6 +1950,26 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788865835000
+    },
+    {
+      "title": "UK publishes legislation for expanded sanctions on Iran - Middle East Eye",
+      "link": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxQOENxWWdES0FQZk1GVkNvUVFPMXpqekZHcWxtRzhkZzYzeUs5b1VrNUNSdkxaZ2NJTzc3VmlOekV1S3VFNDRnUGZKQ3hKa1lwNW5qUkZ6S09lb1E5RjJVZzFkOV90YUdhM1NCckIyem9YOWtDNmp3UE5WUTZaVEdQVDhzeW95NmVPNDAzSFdpYTlHOVpGcXpwU0o0QmtMYjVPLUR0aDRvUjB6Y2p0dVh4d0I0SEZlTzlEcWJadE42a3oyRjR0Y3RGM25hanpTajljYllsZ0E1QmpkMERLZmFidTJDQ0xzMTJD?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi6AFBVV95cUxQOENxWWdES0FQZk1GVkNvUVFPMXpqekZHcWxtRzhkZzYzeUs5b1VrNUNSdkxaZ2NJTzc3VmlOekV1S3VFNDRnUGZKQ3hKa1lwNW5qUkZ6S09lb1E5RjJVZzFkOV90YUdhM1NCckIyem9YOWtDNmp3UE5WUTZaVEdQVDhzeW95NmVPNDAzSFdpYTlHOVpGcXpwU0o0QmtMYjVPLUR0aDRvUjB6Y2",
+      "at": 1788866340000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1788864490000
     },
     {
       "title": "Middle East Tensions Surge as Inflation Data Looms Over Markets - Devdiscourse",
@@ -2239,43 +2318,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788863955000
-    },
-    {
-      "title": "Russians attack already destroyed warehouse of one of Ukraine's largest pharmaceutical distributors - Українська правда",
-      "link": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE5tNVMzbkNRX09iZnRvV1h4c3d0VjZISW1ES1IzOXkxSnNoekw2eVU2TWlid1lCajZpS2h0eS1jNG5XNlFhQWZCckZueUpneV9vVnhGZXlGRU1TbE05OEc1TzJ0a03SAXBBVV95cUxQSzFoUGx1N21SdFI2TlRlcHoxRHlyV1prVWFpdjNBdUhKTk5HbmVNWUR0Y05KRUZCOHJjWUdVYlJFR084Sk84cTNtaEQyM1UyWUk3TEQwdzBwbjkwaEVfRlpsMTFpOXRadC1mV0FEVVV0?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiZEFVX3lxTE5tNVMzbkNRX09iZnRvV1h4c3d0VjZISW1ES1IzOXkxSnNoekw2eVU2TWlid1lCajZpS2h0eS1jNG5XNlFhQWZCckZueUpneV9vVnhGZXlGRU1TbE05OEc1TzJ0a03SAXBBVV95cUxQSzFoUGx1N21SdFI2TlRlcHoxRHlyV1prVWFpdjNBdUhKTk5HbmVNWUR0Y05KRUZCOHJjWUdVYlJFR084Sk",
-      "at": 1788863760000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788863760000
-    },
-    {
-      "title": "Citi expects BOJ rate hike to 1.25%, says political votes and Fed hold key to yen",
-      "link": "https://www.investing.com/news/forex-news/citi-expects-boj-rate-hike-to-125-says-political-votes-and-fed-hold-key-to-yen-4891238",
-      "source": "Investing FX",
-      "at": 1788863507000,
-      "inst": [
-        "USD/JPY"
-      ],
-      "ccy": [
-        "USD",
-        "JPY"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788863507000
     }
   ],
   "sources": [
@@ -2301,7 +2343,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-08T14:22:28.337Z",
-  "headlinesAt": "2026-09-08T14:22:28.337Z",
-  "updatedAt": "2026-09-08T14:22:28.337Z"
+  "calendarAt": "2026-09-08T14:23:28.440Z",
+  "headlinesAt": "2026-09-08T14:23:28.440Z",
+  "updatedAt": "2026-09-08T14:23:28.440Z"
 }
