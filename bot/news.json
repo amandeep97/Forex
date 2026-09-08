@@ -23,7 +23,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788887548000,
-      "_kind": null
+      "_kind": null,
+      "why": "Average demand, no clear directional bias"
     },
     {
       "title": "S&P slips, Dow falls over 500 points amid elevated Fed rate hike bets, oil prices",
@@ -43,7 +44,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788887520000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "down",
+        "US500": "down",
+        "US30": "down"
+      },
+      "why": "Stocks slip, oil falls on Fed bets"
     },
     {
       "title": "Ukrainian TV channel building hit by Russian drone as five killed in Kyiv",
@@ -64,7 +71,33 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788887454000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Geopolitical risk boosts gold safe haven"
+    },
+    {
+      "title": "US targets Iran’s airlines with sweeping new sanctions - South China Morning Post",
+      "link": "https://news.google.com/rss/articles/CBMirAFBVV95cUxONl9OUUdDZTJGc0szU2ZrWGtnc3JRNUhnaC1CMWlvVFE2ak5JX1cwdXdnblhsam5PVXRnbms5SmE4ZEt0N19pQnNvRU92VTAzM3hjMnBULTV5ZEVNZzJPRDA1WDhwcnpQa3pZcmxLclBORk9HY3BzSnJ3RkZhWkhkd1hXbF96ZkVNWF9BT3JMMkdtTGUzYmFNXzlGa1hwNHVkOWw4cjJfQmhsX3Qz0gGsAUFVX3lxTE5xWFpEQUszNjBRVmVyYVA1Q3dLcGxMUmExZjAtbTk2TDgzLXpvSVRPNkFCZk1CUU1Yek04dFF1MmdIRHVuNWpvZFhJd2w2dzNlUVhMc3RTUHJTTzNNdXpjdUxETmRVbkFPS1l2N3RWYWxJUTM4S2FQX2oyenQ1Q1RHTHNfWUpZM2c1MmxtakpnUExkc2k5YnJoLUVQLXJ6aUVrSEVxUDRqcHNDSXM?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMirAFBVV95cUxONl9OUUdDZTJGc0szU2ZrWGtnc3JRNUhnaC1CMWlvVFE2ak5JX1cwdXdnblhsam5PVXRnbms5SmE4ZEt0N19pQnNvRU92VTAzM3hjMnBULTV5ZEVNZzJPRDA1WDhwcnpQa3pZcmxLclBORk9HY3BzSnJ3RkZhWkhkd1hXbF96ZkVNWF9BT3JMMkdtTGUzYmFNXzlGa1hwNHVkOWw4cjJfQmhsX3",
+      "at": 1788887292000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788886669000,
+      "_kind": null,
+      "why": "Sanctions news lacks immediate price impact"
     },
     {
       "title": "Israel to close British consulate in Jerusalem after sanctions announced - The Guardian",
@@ -86,7 +119,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788885540000,
-      "_kind": null
+      "_kind": null,
+      "why": "Diplomatic dispute, no clear market direction"
     },
     {
       "title": "Ottawa’s dollar-for-dollar retaliatory tariffs take effect - Juno News",
@@ -124,7 +158,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788885540000,
-      "_kind": null
+      "_kind": null,
+      "why": "Political news, unclear market impact"
     },
     {
       "title": "Russia launches massive, deadly, and ‘complex’ attack against Ukraine - Colorado Politics",
@@ -145,7 +180,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788886514000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Escalation boosts gold, oil impact unclear"
     },
     {
       "title": "Wall St slips as steep oil prices stoke inflation concerns ahead of CPI - Reuters",
@@ -164,7 +203,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788886301000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Steep oil prices stoke inflation concerns"
     },
     {
       "title": "European shares muted as oil rally fuels caution; Novartis tumbles",
@@ -181,7 +224,10 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788886112000,
-      "_kind": null
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil rally fuels caution in markets"
     },
     {
       "title": "Iran’s No to Execution Campaign Reaches Week 137 as Hunger Strikes Persist Across 62 Prisons - National Council of Resistance of Iran - NCRI",
@@ -201,7 +247,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788883318000
+      "firstAt": 1788883318000,
+      "why": "Internal Iran news, no clear market signal"
     },
     {
       "title": "US Sanctions 36 Companies In Iranian Aviation Sector Over Weapons Transfers - i24NEWS",
@@ -221,7 +268,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788885363000
+      "firstAt": 1788885363000,
+      "why": "Sanctions news, no immediate price direction"
     },
     {
       "title": "Roivant shares jump 17% as lung disease drug meets trial goals",
@@ -251,7 +299,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788885611000
+      "firstAt": 1788885611000,
+      "dir": {
+        "USD/CAD": "down",
+        "USOIL": "up"
+      },
+      "why": "Oil rally strengthens Canadian dollar"
     },
     {
       "title": "Canada tariffs put loonie, supply chains in focus as trade war deepens",
@@ -269,7 +322,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788885610000
+      "firstAt": 1788885610000,
+      "why": "Trade war focus, no clear direction"
     },
     {
       "title": "In response to U.K. sanctions • Israel bars U.K. officials, closes Jerusalem consulate in response to sanctions - Haaretz",
@@ -289,7 +343,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788884700000
+      "firstAt": 1788884700000,
+      "why": "Diplomatic response, no clear market impact"
     },
     {
       "title": "Trump Administration Expands Iran Sanctions to 27 Airlines and Aviation Agents - mezha.net",
@@ -309,7 +364,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788883225000
+      "firstAt": 1788883225000,
+      "why": "Sanctions expansion, no clear price direction"
     },
     {
       "title": "Pound to Dollar Forecast: US Inflation Now Key to September Fed Hike - CurrencyNews.co.uk",
@@ -434,26 +490,6 @@
       "firstAt": 1788882240000
     },
     {
-      "title": "US hits remaining parts of Iran’s aviation sector with sanctions in latest move to isolate Tehran - Boston Herald",
-      "link": "https://news.google.com/rss/articles/CBMidkFVX3lxTE5YY2VuRWs2LWtTU0RBWEJnMTY5RmZTMnU4bUtPUkt6a24wYWRXNUQ4bElrWHZ1RHp4WnlkaFFPajZmaFRJdzVtbFJNV3hoMnpzQ3ViYXA4cE5qS01VQzR3RHdKbURFME9WUVlBN2loczJuYkxsNUE?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMidkFVX3lxTE5YY2VuRWs2LWtTU0RBWEJnMTY5RmZTMnU4bUtPUkt6a24wYWRXNUQ4bElrWHZ1RHp4WnlkaFFPajZmaFRJdzVtbFJNV3hoMnpzQ3ViYXA4cE5qS01VQzR3RHdKbURFME9WUVlBN2loczJuYkxsNUE?oc=5\" target=\"_blank\">US hits remaining parts of Iran’s aviation secto",
-      "at": 1788883639000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788883225000
-    },
-    {
       "title": "Iran-backed Houthis attack 4 Saudi cities, 73 injured - FOX 35 Orlando",
       "link": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE5LVXVWUVNtOGptLTBHWU5wRU1iTjhKbG9XR3V0c1VrYkpqemh5TkJTd0VRVWVkemstRnpSQk93VGE4d2xWSFZfNW5PLUZwSk5XLTZKZzJlMjBMcWo0bFJPZWx4VFQ1UdIBa0FVX3lxTE5QcC1zSWVnb3BLbnFpNExkS1RBaXJkUE8xY084eHZNR3RDcWVCMUJHM09CMkw5bGFZZHVUOWFnR0xncEwxd2FSc1hzMlJ5UVBjZWJYdzkwcmpSMHQtYmlRSURIc1hYNUdrSnBv?oc=5",
       "source": "Wires (geo)",
@@ -471,7 +507,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788883599000
+      "firstAt": 1788882724000
     },
     {
       "title": "UK sanctions on Israeli settlements a ‘seismic’ shift says Albanese",
@@ -546,7 +582,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788883225000
+      "firstAt": 1788882724000
     },
     {
       "title": "Sabotage suspect held in Germany after spate of attacks on power grid",
@@ -562,6 +598,26 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788883026000
+    },
+    {
+      "title": "US hits remaining parts of Iran’s aviation sector with sanctions in latest move to isolate Tehran - Orlando Sentinel",
+      "link": "https://news.google.com/rss/articles/CBMiekFVX3lxTE5YU0dSem9hVTlNSHhRSm1LcmxiZXc3T2c3S2RGRk1IbkhlU2o1T2pMdko0RnVFcklENXZVYUx5dkZac2RVYjFxbEpVOWFKVGlxVDRubGdqbmR1OV9OMGVfOTJJOEZpWmpKZG9CTE9uR19GRWpBODV4WGZR?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiekFVX3lxTE5YU0dSem9hVTlNSHhRSm1LcmxiZXc3T2c3S2RGRk1IbkhlU2o1T2pMdko0RnVFcklENXZVYUx5dkZac2RVYjFxbEpVOWFKVGlxVDRubGdqbmR1OV9OMGVfOTJJOEZpWmpKZG9CTE9uR19GRWpBODV4WGZR?oc=5\" target=\"_blank\">US hits remaining parts of Iran’s aviation ",
+      "at": 1788882724000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788882724000
     },
     {
       "title": "Bombardier’s stock drops as the U.S.-Canada trade war intensifies. Here’s what Trump may target next.",
@@ -1362,7 +1418,7 @@
       "firstAt": 1788875406000
     },
     {
-      "title": "Amb. Mike Huckabee says UK sanctions on Israel will see US reaction - Fox News",
+      "title": "Amb. Mike Huckabee says UK sanctions on Israel will see US reaction - foxnews.com",
       "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1rNEk3SjZhVm1pM2F3RHYyT3hWWDF3WW5hVzNQOGtNRWJxek02bjF2QXBuSmpnTjNtMnRYTEgxRnBfdHFoMWFlNHdocU12QXRVU1hmNXNB?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiVkFVX3lxTE1rNEk3SjZhVm1pM2F3RHYyT3hWWDF3WW5hVzNQOGtNRWJxek02bjF2QXBuSmpnTjNtMnRYTEgxRnBfdHFoMWFlNHdocU12QXRVU1hmNXNB?oc=5\" target=\"_blank\">Amb. Mike Huckabee says UK sanctions on Israel will see US reaction</a>&nbsp;&nbsp;<font co",
@@ -1614,7 +1670,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788868505000
+      "firstAt": 1788871205000
     },
     {
       "title": "Gold: Fed inflation focus and volatility risk – Commerzbank - FXStreet",
@@ -1672,23 +1728,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788869946000
-    },
-    {
-      "title": "Treasury yields hold near multi-year highs after hot jobs report and oil surge",
-      "link": "https://www.investing.com/news/forex-news/euro-yields-push-higher-with-crude-near-100-and-ecb-hike-imminent-4890937",
-      "source": "Investing FX",
-      "at": 1788869863000,
-      "inst": [
-        "USOIL"
-      ],
-      "ccy": [
-        "USD",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788869863000
     }
   ],
   "sources": [
@@ -1711,10 +1750,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-08T17:17:42.344Z",
-  "updatedAt": "2026-09-08T17:17:42.344Z"
+  "headlinesAt": "2026-09-08T17:18:59.636Z",
+  "updatedAt": "2026-09-08T17:18:59.636Z"
 }
