@@ -615,26 +615,6 @@
   ],
   "headlines": [
     {
-      "title": "U.S. Strikes Iranian Oil Tankers, Drawing Threat of Reprisal - The New York Times",
-      "link": "https://news.google.com/rss/articles/CBMihwFBVV95cUxPNkpTRGVrTlFEREt5SXZ5XzYtaUhFa1kyYnFqTmg1N0xaOU5DbWlORWRTS3BRWEwyQlhFaXIyZEp6ZmQ4N3dUQnhiMDV3bnZJa1ZmWmU2STlTZl9UTERDNW40SE85SlAyQlJuajBsenpXY0x0MGszV055RF8xNTNSZ1lPYVIzTnc?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMihwFBVV95cUxPNkpTRGVrTlFEREt5SXZ5XzYtaUhFa1kyYnFqTmg1N0xaOU5DbWlORWRTS3BRWEwyQlhFaXIyZEp6ZmQ4N3dUQnhiMDV3bnZJa1ZmWmU2STlTZl9UTERDNW40SE85SlAyQlJuajBsenpXY0x0MGszV055RF8xNTNSZ1lPYVIzTnc?oc=5\" target=\"_blank\">U.S. Strikes Iranian Oil",
-      "at": 1788905584000,
-      "inst": [
-        "USOIL",
-        "XAU/USD",
-        "UKOIL"
-      ],
-      "ccy": [
-        "OIL",
-        "XAU"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788903373000
-    },
-    {
       "title": "US strikes Iranian oil tankers in Strait of Hormuz - dw.com",
       "link": "https://news.google.com/rss/articles/CBMidkFVX3lxTE9OV3VIY1NYS2o1UXRSbzFnbk5CRFpfb1ZYWjZXMF9YWEk5a0U4V0hZS3A1X2NuVW85eVBLcXY4SFpxbUxhMlF2VDJFMDRHeWtSbzNlUGxFUDhNaEJueDVjMk9XVUR1clZxZER4ZUhLOFhiMzZ3YnfSAXZBVV95cUxQbGlJUDdhbkI5YzdMWmp4SHFZcmtCdVhpUWFaNEZwalNLOUhqeUZ4eFBCeUEyZURkUzFkWHQ4cXVZa3FmVUdkSnNIRm5aZ09jSWNjR0xTeW5xRi1FOGVET3BJREs2b2tWWHducXJnZEFKdS1PU2dR?oc=5",
       "source": "Wires (geo)",
@@ -652,7 +632,37 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788903373000
+      "firstAt": 1788903373000,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Strait of Hormuz disruption boosts oil, gold"
+    },
+    {
+      "title": "How Ukrainian Drone Strikes Are Pounding Russia’s Economy - WSJ",
+      "link": "https://news.google.com/rss/articles/CBMinwFBVV95cUxQaEFINTVQRkIxRGVyMllZMGptRXBpdWU0WndVWFRUazBMTTNKbnF4OFl6R2lnLXR3T1ljYUV2S29tZGRTT0ppT21JT2drWW1wdkxlM2Z2bF8wUkp4TDB3WTRIY1B0alNCWC1vUExLeWN5bXdkbTRsbFBuLVctQkhHTVU4eS1mdmJzZVcxMjNPSWVmV2J3RWcxcG5SbjdjNEk?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMinwFBVV95cUxQaEFINTVQRkIxRGVyMllZMGptRXBpdWU0WndVWFRUazBMTTNKbnF4OFl6R2lnLXR3T1ljYUV2S29tZGRTT0ppT21JT2drWW1wdkxlM2Z2bF8wUkp4TDB3WTRIY1B0alNCWC1vUExLeWN5bXdkbTRsbFBuLVctQkhHTVU4eS1mdmJzZVcxMjNPSWVmV2J3RWcxcG5SbjdjNEk?oc=5\" target=\"",
+      "at": 1788904923000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788904923000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Geopolitical risk supports gold, oil unclear"
     },
     {
       "title": "How one hedge-fund manager built his firm to be powered entirely by AI agents",
@@ -667,7 +677,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788904753000
+      "firstAt": 1788904753000,
+      "why": "AI adoption news lacks clear market direction"
     },
     {
       "title": "Paul Adams: British-Israeli relations at lowest ebb in decades",
@@ -682,7 +693,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788903991000
+      "firstAt": 1788903991000,
+      "why": "Diplomatic tension unclear for currency direction"
     },
     {
       "title": "Paramount says California AG contradicted bond arguments in TV interviews",
@@ -714,7 +726,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788901980000
+      "firstAt": 1788901980000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Military conflict boosts safe havens and oil"
     },
     {
       "title": "Qualcomm’s stock climbs as Amazon chip deal offers investors much-needed good news",
@@ -747,7 +765,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1788903087000
+      "firstAt": 1788903087000,
+      "why": "Sanctions on settlements unclear for these assets"
     },
     {
       "title": "Mexico stocks higher at close of trade; S&P/BMV IPC up 0.52%",
@@ -761,7 +780,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788903004000
+      "firstAt": 1788903004000,
+      "why": "Mexico stocks news irrelevant to US index"
     },
     {
       "title": "Bombardier’s stock drops as the U.S.-Canada trade war intensifies. Here’s what Trump is targeting next.",
@@ -780,7 +800,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788902580000
+      "firstAt": 1788902580000,
+      "dir": {
+        "USD/CAD": "up"
+      },
+      "why": "Trade war strengthens dollar, gold unclear"
     },
     {
       "title": "Colombia stocks higher at close of trade; COLCAP up 0.15%",
@@ -794,10 +818,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788902703000
+      "firstAt": 1788902703000,
+      "why": "Colombia stocks news irrelevant to US index"
     },
     {
-      "title": "US sanctions all remaining Iranian airlines, with 27 carriers hit in fresh action - The Times of India",
+      "title": "US sanctions all remaining Iranian airlines, with 27 carriers hit in fresh action - timesofindia.indiatimes.com",
       "link": "https://news.google.com/rss/articles/CBMi8gFBVV95cUxPYUc0a3djQzlHODFBNmtJQjR4WF9NWmY3ZzhVdnV6b2V1UkM0QkxWX1hzYk1GdUJpZ0hkYm1VYmlDaDVhLWE0Rk5tbnNlRGNxbTd4VDlSYUZVNUh2aVF6N2UtT3lUSkpWVnRYUUx2UDBEWWRoUDJwWTh3bk1pUTRoN081bTdlRW12WGVYWnZNTEFHb2N5R2FTb3FDbGZya0dfNnlaS0Y1UVlMcjRaR20xaUtmamtfdnZjbUhOQ0wxY2oycHFnckNCSmdzMFJOMDdDc2NfYm5TNTJONFBMVU01dURRNmF5b0Y0N09sN3U1ME5Cd9IB9wFBVV95cUxNdms5Q0w5WjlDQnFGUlQ3S0paUnR6X0lUd0oxejd2dFVraGZLRVdCSzNTTVhhZlZIZGpVNm1XMVR6NDZvVEFQN0h6ZjE3S3Y5dnk1VEZQRDNuX3ZyNXhleUFYMllRS3ljMnZZenFrM3p4WnZqVGVDMHBDU0ZoS2RLX0d5RDI0d25QZFlITGZwbEF1OHd1WUxxeFpQZ3BZR0RGOWQycDk2WlZ6MWp2NmxzME9yVU1tZ2hwTVFpOE4yaHRwbnBUQmtvOWJfeV9xN1FJYXVCNW95UUtlZTBnTTY2cHpfaldfVUZiOERMZlpxZm5vVGM1Ni1J?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMi8gFBVV95cUxPYUc0a3djQzlHODFBNmtJQjR4WF9NWmY3ZzhVdnV6b2V1UkM0QkxWX1hzYk1GdUJpZ0hkYm1VYmlDaDVhLWE0Rk5tbnNlRGNxbTd4VDlSYUZVNUh2aVF6N2UtT3lUSkpWVnRYUUx2UDBEWWRoUDJwWTh3bk1pUTRoN081bTdlRW12WGVYWnZNTEFHb2N5R2FTb3FDbGZya0dfNnlaS0Y1UVlMcj",
@@ -814,7 +839,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788901303000
+      "firstAt": 1788901303000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Iran sanctions boost oil and gold"
     },
     {
       "title": "US strikes Iranian tankers after more attempted missile attacks on Navy warship - AP News",
@@ -834,7 +865,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788900338000
+      "firstAt": 1788900338000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "US strikes boost oil and gold"
     },
     {
       "title": "US hits remaining parts of Iran's aviation sector with sanctions in latest move to isolate Tehran - AP News",
@@ -854,7 +891,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788901800000
+      "firstAt": 1788901800000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Iran sanctions boost oil and gold"
     },
     {
       "title": "Trump administration sanctions all Iranian airlines in aviation crackdown - Middle East Eye",
@@ -874,7 +917,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1788898660000
+      "firstAt": 1788898660000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Iran sanctions boost oil and gold"
     },
     {
       "title": "Stocks making the biggest moves after hours: ServiceTitan, Mission Produce, Chime Financial and more",
@@ -889,7 +938,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788900992000
+      "firstAt": 1788900992000,
+      "why": "Individual stock moves unclear for index"
     },
     {
       "title": "China August inflation seen rebounding as trade data flags demand gap",
@@ -912,7 +962,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788900933000
+      "firstAt": 1788900933000,
+      "why": "China inflation data unclear for these pairs"
     },
     {
       "title": "Trump directs GSA to take steps to remove Canadian goods from agency lists",
@@ -1010,7 +1061,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1788897727000
+      "firstAt": 1788897293000
     },
     {
       "title": "Why the U.K., Canada, and France Are Banning Trade With Israeli Settlements - Time Magazine",
@@ -1064,7 +1115,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788897727000
+      "firstAt": 1788897293000
     },
     {
       "title": "US hits remaining parts of Iran’s aviation sector with sanctions in latest move to isolate Tehran - The Boston Globe",
@@ -1228,7 +1279,7 @@
       "firstAt": 1788898072000
     },
     {
-      "title": "‘Beginning of serious outside pressure’: Experts say new sanctions raise stakes for Israel - aa.com.tr",
+      "title": "‘Beginning of serious outside pressure’: Experts say new sanctions raise stakes for Israel - Anadolu Ajansı",
       "link": "https://news.google.com/rss/articles/CBMizgFBVV95cUxOUUdjbUpha01ZS1llellnYUtibVVQY2NTcjFTcTV5dmtEYmZTelNoZTlaWFR0MlF5VEZWUFBiZ2RUX3B1TzNpelcwVmZIdUtkVk1Zak5nV1JQdjlzc1c3elNLdzg3dDNmT0V6Tk1tOG54di1tamg0MU5iYTJpMWl3OWlMWFlSVE82OFM2X1NGOTdwYkszXzk3c1ZfQzB2RUlaMmhmZVBRTzhRWWotcUotcDNfelpqLVgyWnJ1V3hBYzVGYWM5cTJmMS1Wa2Zzdw?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMizgFBVV95cUxOUUdjbUpha01ZS1llellnYUtibVVQY2NTcjFTcTV5dmtEYmZTelNoZTlaWFR0MlF5VEZWUFBiZ2RUX3B1TzNpelcwVmZIdUtkVk1Zak5nV1JQdjlzc1c3elNLdzg3dDNmT0V6Tk1tOG54di1tamg0MU5iYTJpMWl3OWlMWFlSVE82OFM2X1NGOTdwYkszXzk3c1ZfQzB2RUlaMmhmZVBRTzhRWW",
@@ -1245,7 +1296,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788897727000
+      "firstAt": 1788897293000
     },
     {
       "title": "Brent briefly tops $99/bbl as U.S. and Iran continue to escalate military action",
@@ -1265,6 +1316,27 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788897639000
+    },
+    {
+      "title": "Israel Closes British Consulate, Imposes Countermeasures Over UK Sanctions - The Media Line",
+      "link": "https://news.google.com/rss/articles/CBMirgFBVV95cUxORG9ZZk4zd3lodHB3NUgwWmxLREZIckF5X3FQOFNIYlhLbG1CWlB0V2hZdDhLNVZXbXlBLU9pNzJXUjI5RmhVSEpvbG1rdzRsNWRNZGlTdjVBbkJwU21VN3c2MXJQTlRoYW5vZGRUaXp0eEF1VzAzcVgwWWdqR3JrQ1JlR1pVVzhBakZKVlJaaFN6X1QyeVJoRE9tejk5YmdPT1lGT0JpZHV4TUwzX1E?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMirgFBVV95cUxORG9ZZk4zd3lodHB3NUgwWmxLREZIckF5X3FQOFNIYlhLbG1CWlB0V2hZdDhLNVZXbXlBLU9pNzJXUjI5RmhVSEpvbG1rdzRsNWRNZGlTdjVBbkJwU21VN3c2MXJQTlRoYW5vZGRUaXp0eEF1VzAzcVgwWWdqR3JrQ1JlR1pVVzhBakZKVlJaaFN6X1QyeVJoRE9tejk5YmdPT1lGT0JpZHV4TU",
+      "at": 1788897293000,
+      "inst": [
+        "GBP/USD",
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788897293000
     },
     {
       "title": "Will UK sanctions have any impact on Israel’s ‘settler terrorists’ in West Bank? - The Guardian",
@@ -1773,26 +1845,6 @@
       "firstAt": 1788886514000
     },
     {
-      "title": "UK publishes legislation for tougher sanctions on Iran over nuclear programme - Al-Monitor",
-      "link": "https://news.google.com/rss/articles/CBMitgFBVV95cUxPWENJRUZmOGljV1VCNzBXZVFoTndIOFpja0dKblhvZlVweEVtaDlKZkFLRnM2ME9xcW1iU2VMMW9ERU0ta3BpTkppN2RHdFl0NVBPQlFTSEJBeHBmcW9ac3g5Y0w5WjJpTDRCd2xObnMtdDVQRnpSblY3czd0TS1yUHVnNUtvX0VxZUlGOFlvQk1jSmRjUE43Y3NLRXNVX0haWW9BaUFmckdFYUNYV2xPYklEWkFEdw?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMitgFBVV95cUxPWENJRUZmOGljV1VCNzBXZVFoTndIOFpja0dKblhvZlVweEVtaDlKZkFLRnM2ME9xcW1iU2VMMW9ERU0ta3BpTkppN2RHdFl0NVBPQlFTSEJBeHBmcW9ac3g5Y0w5WjJpTDRCd2xObnMtdDVQRnpSblY3czd0TS1yUHVnNUtvX0VxZUlGOFlvQk1jSmRjUE43Y3NLRXNVX0haWW9BaUFmckdFYU",
-      "at": 1788886102000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788886102000
-    },
-    {
       "title": "US Sanctions 36 Companies In Iranian Aviation Sector Over Weapons Transfers - i24NEWS",
       "link": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxPRHpMaHN3SE5RVmFQazNTYmN3ODc1Vmc2SjJVUFhVX180c19PM2FWV1V6SVRYMF9PcXJZOURiaTRndmJyanFDVHBRMmtJX0xQR1VYWUkwSXJjOERaWW5TbEUxZFUxbjQwaktKV1ZEUGpCSER0cFhGRUdTRFJrMi1ud3U5YktjLXdtYnVfNkdmaGQ4dkh3VVl2SGNiT3dWXzRPUTlZeExpd3QyT0FwS3JpOEhDc1JUU1lhblVCYVpCaFV0N2hRdE9saU4zR3p0eE9NZGgzQ2ltMkhQcEE?oc=5",
       "source": "Wires (geo)",
@@ -1900,6 +1952,26 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788884696000
+    },
+    {
+      "title": "UK publishes legislation for tougher sanctions on Iran over nuclear programme - Reuters",
+      "link": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPbHhqMGdpaWtLcy1Pb3ExcFhZSmd4MUtieGtkb0tiLUtpeWhGZVNwRVJOR2FSTnBCLWFVSDdRSUpaS083WHNWZUk2ZDQ4SU1sSG9UNDFIYW9wSk5RUW1PRlhud3plZFdUdjBPeVRPRDVGWm5RYzh1d05lRnltVmNneXBNbkpUaFZwRzJaX0dvYWxSY1V1bkFibzcyRFkzWDBPV1U1ZDZ2blB1NkZObUZJ?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMirwFBVV95cUxPbHhqMGdpaWtLcy1Pb3ExcFhZSmd4MUtieGtkb0tiLUtpeWhGZVNwRVJOR2FSTnBCLWFVSDdRSUpaS083WHNWZUk2ZDQ4SU1sSG9UNDFIYW9wSk5RUW1PRlhud3plZFdUdjBPeVRPRDVGWm5RYzh1d05lRnltVmNneXBNbkpUaFZwRzJaX0dvYWxSY1V1bkFibzcyRFkzWDBPV1U1ZDZ2blB1Nk",
+      "at": 1788884687000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788884687000
     },
     {
       "title": "UAE warned Netanyahu of 7 October attack, Israeli newspaper reports - Euronews.com",
@@ -2308,25 +2380,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788875820000
-    },
-    {
-      "title": "Dangote refinery CEO says fuel shortages to last after Iran war",
-      "link": "https://www.investing.com/news/commodities-news/dangote-refinery-ceo-says-fuel-shortages-to-last-after-iran-war-93CH-4891881",
-      "source": "Investing Cmdty",
-      "at": 1788875406000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788875406000
     }
   ],
   "sources": [
@@ -2349,10 +2402,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-08T22:48:56.256Z",
-  "headlinesAt": "2026-09-08T22:48:56.256Z",
-  "updatedAt": "2026-09-08T22:48:56.256Z"
+  "calendarAt": "2026-09-08T22:50:11.992Z",
+  "headlinesAt": "2026-09-08T22:50:11.992Z",
+  "updatedAt": "2026-09-08T22:50:11.992Z"
 }
