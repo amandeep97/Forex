@@ -16,7 +16,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788873455000,
-      "_kind": null
+      "_kind": null,
+      "why": "Partnership news lacks clear directional impact."
     },
     {
       "title": "Stocks making the biggest moves premarket: Peloton Interactive, Roivant Sciences, Boston Scientific & more",
@@ -32,7 +33,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788873174000,
-      "_kind": null
+      "_kind": null,
+      "why": "General premarket moves lack specific direction."
     },
     {
       "title": "FTSE 100 today: Stocks edge higher, led by miners as copper hits record",
@@ -47,7 +49,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788872972000,
-      "_kind": null
+      "_kind": null,
+      "why": "FTSE 100 news does not imply US500 direction."
     },
     {
       "title": "Zelenskyy Says U.S. Is Exploring Russia-Ukraine De-escalation Steps. Moscow Is Striking Kyiv Again. - International Business Times",
@@ -68,7 +71,24 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788871205000,
-      "_kind": null
+      "_kind": null,
+      "why": "Mixed geopolitical signals create unclear direction."
+    },
+    {
+      "title": "With the S&P 500 Setting Record Highs, History Points to 1 Clear Move",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/p-500-setting-record-highs-130400324.html",
+      "source": "Yahoo Finance",
+      "at": 1788872640000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788872640000,
+      "_kind": null,
+      "why": "Historical analysis does not dictate immediate move."
     },
     {
       "title": "Nike and This Retail Giant Will No Longer Be Part of This Prestigious S&P Index",
@@ -83,7 +103,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788872436000,
-      "_kind": null
+      "_kind": null,
+      "why": "Index reclassification has negligible immediate impact."
     },
     {
       "title": "Crypto Fear and Greed Hit 74 While Bitcoin Trades Under $80,000. Is the Market Ahead of Itself?",
@@ -100,7 +121,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788872408000,
-      "_kind": null
+      "_kind": null,
+      "why": "High greed with price drop is ambiguous."
     },
     {
       "title": "Arizona Gold & Silver reports broad gold mineralization in three Perry Zone infill holes",
@@ -119,7 +141,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788872160000,
-      "_kind": null
+      "_kind": null,
+      "why": "Single company news lacks broad market impact."
     },
     {
       "title": "Canadian Dollar: Tariffs boost role as funding currency – TD Securities - FXStreet",
@@ -136,7 +159,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788871944000
+      "firstAt": 1788871944000,
+      "dir": {
+        "USD/CAD": "down"
+      },
+      "why": "Stronger CAD funding role implies USD/CAD down."
     },
     {
       "title": "Brent Crude Oil Moves Above $100 for the First Time in 3 Months",
@@ -153,49 +180,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788871917000
-    },
-    {
-      "title": "Billionaire David Tepper Just Bought These 2 Artificial Intelligence (AI) Stocks That Wall Street Thinks Could Soar by 50% or More",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/billionaire-david-tepper-just-bought-125001570.html",
-      "source": "Yahoo Finance",
-      "at": 1788871801000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788871801000
-    },
-    {
-      "title": "Solaris Energy Infrastructure Shares Rise After Raising 2026 EBITDA Guidance",
-      "link": "https://finance.yahoo.com/energy/articles/solaris-energy-infrastructure-shares-rise-124950619.html",
-      "source": "Yahoo Finance",
-      "at": 1788871790000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1788871790000
-    },
-    {
-      "title": "Ethereum Is Up 31% in Thirty Days and XRP 33%. Which Is the Better Buy Before the Fed Meets?",
-      "link": "https://finance.yahoo.com/markets/crypto/articles/ethereum-31-thirty-days-xrp-124940517.html",
-      "source": "Yahoo Finance",
-      "at": 1788871780000,
-      "inst": [
-        "ETH/USDT"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788871780000
+      "firstAt": 1788871917000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Oil price rising above $100 is bullish."
     },
     {
       "title": "Baltic dry bulk freight index edges up on capesize strength",
@@ -222,22 +212,6 @@
       "firstAt": 1788871715000
     },
     {
-      "title": "Robinhood strikes prediction markets deal with Crypto.com",
-      "link": "https://finance.yahoo.com/markets/crypto/articles/robinhood-strikes-prediction-markets-deal-124748312.html",
-      "source": "Yahoo Finance",
-      "at": 1788871668000,
-      "inst": [
-        "BTC/USDT"
-      ],
-      "ccy": [
-        "BTC"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788871668000
-    },
-    {
       "title": "Why the Dow is being dragged down by a Swiss company’s bad news",
       "link": "https://www.marketwatch.com/story/why-the-dow-is-being-dragged-down-by-a-swiss-companys-bad-news-7d3eaa06?mod=mw_rss_topstories",
       "source": "MarketWatch",
@@ -254,7 +228,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788871620000
+      "firstAt": 1788871620000,
+      "dir": {
+        "US500": "down",
+        "US30": "down"
+      },
+      "why": "Swiss pharma news drags down US indices."
     },
     {
       "title": "Canada begins collecting ‘dollar-for-dollar’ tariffs on U.S. goods - Scripps News",
@@ -272,7 +251,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1788870202000
+      "firstAt": 1788870202000,
+      "dir": {
+        "USD/CAD": "down"
+      },
+      "why": "Tariffs typically strengthen CAD against USD."
     },
     {
       "title": "Qatar says reopening Strait of Hormuz ‘unconditionally’ is a priority",
@@ -292,7 +275,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788871499000
+      "firstAt": 1788871499000,
+      "why": "Diplomatic priority suggests de-escalation, but unclear."
     },
     {
       "title": "Quantum Computing Stocks: IonQ Hosts Investor Day With SkyWater Deal In Focus",
@@ -306,7 +290,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788871377000
+      "firstAt": 1788871377000,
+      "why": "Single stock event lacks broad index impact."
     },
     {
       "title": "Mark Carney’s latest counter-tariffs a multi-billion-dollar tax on Canadians - Brooks Bulletin",
@@ -341,7 +326,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788868505000
+      "firstAt": 1788868505000,
+      "why": "Resumed attacks create mixed, unclear signals."
     },
     {
       "title": "Stock Market Today: Dow Slides 400 Points On Continued U.S.-Iran Attacks; Oil Prices Jump Again (Live Coverage)",
@@ -1659,6 +1645,66 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1788861060000
+    },
+    {
+      "title": "He was hosting his daughter’s wedding. Then a deadly missile strike tore through his home in southern Iran. - NBC News",
+      "link": "https://news.google.com/rss/articles/CBMilwFBVV95cUxONGZCY3FrRzNqQWdMa05xNXlPaWIzbC1aLW1hcVhCOWtBVjdVclhHQWlwTHg2U0VNZE9GNmNVNEo3NnFfRDNtMjNpblZkRldnTmFJT1dyVFlZMHFaLVIyVkZQMHRIZTUzcTZwNTNxbGU3QnBEMUpETTlmSElQSTZ3aWluMGw1Vm50WlczamFIX0d5ZGllOUtB?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMilwFBVV95cUxONGZCY3FrRzNqQWdMa05xNXlPaWIzbC1aLW1hcVhCOWtBVjdVclhHQWlwTHg2U0VNZE9GNmNVNEo3NnFfRDNtMjNpblZkRldnTmFJT1dyVFlZMHFaLVIyVkZQMHRIZTUzcTZwNTNxbGU3QnBEMUpETTlmSElQSTZ3aWluMGw1Vm50WlczamFIX0d5ZGllOUtB?oc=5\" target=\"_blank\">He ",
+      "at": 1788862552000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788862237000
+    },
+    {
+      "title": "Russia and Ukraine trade deadly strikes after temporary ceasefire ends - 41NBC News",
+      "link": "https://news.google.com/rss/articles/CBMie0FVX3lxTE1MRWpiTU9fRTBxeEdMRDM1ZWRxYlhVTWYtV3hfNlVNbGNYYXIwc3pmd296UUpaX0E4RTYtSno2Y0FNM3NvenRCSXRSU25mRDdiaFZWV2FNWmFaWVNFMm53NTd1TlczMkJiMWUyZVotcHFtaUZOdkhhbHlwQQ?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMie0FVX3lxTE1MRWpiTU9fRTBxeEdMRDM1ZWRxYlhVTWYtV3hfNlVNbGNYYXIwc3pmd296UUpaX0E4RTYtSno2Y0FNM3NvenRCSXRSU25mRDdiaFZWV2FNWmFaWVNFMm53NTd1TlczMkJiMWUyZVotcHFtaUZOdkhhbHlwQQ?oc=5\" target=\"_blank\">Russia and Ukraine trade deadly strikes a",
+      "at": 1788862237000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788861060000
+    },
+    {
+      "title": "US payrolls rebound as markets eye September inflation and Fed hike odds; sterling slips, yen watched - VT Markets",
+      "link": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxOUm1WMl92Y2xGeDlIMENGNVkxMVNqZWlJOXlDSmZkZWFIUjJtTEhzS0NwbzRWOGgwLURoSU5aUFpiNGtCYXhjcWUtQWZwNVBILWZRYUJtM2VPdkFfeFFMcVl2d1RlMnBwX1hGV3ZpYVlVUmhfRGstdGdoeHk3RmJ4dTd4aGdjN0YtYmozeDJuNGFJT3dtbHhJbm5GeTN5V1IyNDdFVlNEVkNBRTZJMnMzd0RfNWdWVHNUYzFKWXpGWDJVak8xdHFtdHBTdUpyaV91Qk14RWtCNjJiUy1OQlE?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi3gFBVV95cUxOUm1WMl92Y2xGeDlIMENGNVkxMVNqZWlJOXlDSmZkZWFIUjJtTEhzS0NwbzRWOGgwLURoSU5aUFpiNGtCYXhjcWUtQWZwNVBILWZRYUJtM2VPdkFfeFFMcVl2d1RlMnBwX1hGV3ZpYVlVUmhfRGstdGdoeHk3RmJ4dTd4aGdjN0YtYmozeDJuNGFJT3dtbHhJbm5GeTN5V1IyNDdFVlNEVkNBRT",
+      "at": 1788862050000,
+      "inst": [
+        "GBP/USD",
+        "USD/JPY"
+      ],
+      "ccy": [
+        "USD",
+        "GBP",
+        "JPY"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788862050000
     }
   ],
   "sources": [
@@ -1681,10 +1727,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-08T13:23:27.517Z",
-  "updatedAt": "2026-09-08T13:23:27.517Z"
+  "headlinesAt": "2026-09-08T13:24:42.848Z",
+  "updatedAt": "2026-09-08T13:24:42.848Z"
 }
