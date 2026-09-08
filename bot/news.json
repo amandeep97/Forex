@@ -2,6 +2,54 @@
   "calendar": [],
   "headlines": [
     {
+      "title": "Why the Dow is being dragged down by a Swiss company’s bad news",
+      "link": "https://www.marketwatch.com/story/why-the-dow-is-being-dragged-down-by-a-swiss-companys-bad-news-7d3eaa06?mod=mw_rss_topstories",
+      "source": "MarketWatch",
+      "desc": "Futures on the Dow were significantly worse than the S&P 500 because of a cardiovascular drug’s late-stage setback.",
+      "at": 1788855300000,
+      "inst": [
+        "USD/CHF",
+        "US500",
+        "US30"
+      ],
+      "ccy": [
+        "CHF"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788855300000,
+      "_kind": null,
+      "dir": {
+        "US500": "down",
+        "US30": "down"
+      },
+      "why": "Dow dragged down by Swiss company news"
+    },
+    {
+      "title": "Israeli ministers call for sanctions on Britain over Falkland Islands - Middle East Eye",
+      "link": "https://news.google.com/rss/articles/CBMingFBVV95cUxQVTB4NlJBNUlHMUNOVzF4QjVHUjBPdVh1VWU5RWRaODJFNi02Rl9NR2RqaTI5S053V284OTI1WjY1b2wybVNkdzB6LVFJbEs5cEROdHRpcFljUXdNSi1JZnJ3SjVRM05XMlJDeDNtalpkQjZGUzlTU2V5bmJSaTUwa1NVUTFOQWgybmxDY1BfWDZjVnJvNC0zVjRoSXVGUQ?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMingFBVV95cUxQVTB4NlJBNUlHMUNOVzF4QjVHUjBPdVh1VWU5RWRaODJFNi02Rl9NR2RqaTI5S053V284OTI1WjY1b2wybVNkdzB6LVFJbEs5cEROdHRpcFljUXdNSi1JZnJ3SjVRM05XMlJDeDNtalpkQjZGUzlTU2V5bmJSaTUwa1NVUTFOQWgybmxDY1BfWDZjVnJvNC0zVjRoSXVGUQ?oc=5\" target=\"_",
+      "at": 1788854936000,
+      "inst": [
+        "GBP/USD",
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1788854915000,
+      "_kind": null,
+      "why": "Geopolitical tension unclear for specific instruments"
+    },
+    {
       "title": "'Complex' Russian attack kills 2 in Kyiv after US peace talks visit, Zelenskyy says - ABC News - Breaking News, Latest News and Videos",
       "link": "https://news.google.com/rss/articles/CBMingFBVV95cUxPX3lXb1dOSXlCaG5IcmxJWUk1RGpxOENSOTc2Y2UzOHhwczUyWnNkajhicU1pX2dLeWFRZmZrdV9Jc0dodGJiQ2EwaGRzYllHRjhaUkFZNVJQTGdIUE8xWWFVVFFYUDFRTUpfQzU1TW9BV3p0eXZreXdHb05hb0xrNkxmcUFwRFYydUhtV1p5TkRZdmpsN1gyOWtrbll5d9IBowFBVV95cUxOVzV4NE93b0hxOUgzeU5mRDBUbUNJcUFoVUJYOUlaMV9Pb0lzbHRPLXdWaHBJVzU4VW5tazlrd2NOdFVKaGR6Q3JuNlBXMjJXQW1KX2JveERUWGdFbXF4WHpwaXVtcVk1NE1EcE9nSDRTWFJNQk1hSDBDUkZKVkM3S1RYQThQUFQtOGwyREM0UURJM2xCTldmYXVYcXg4WllrZ2M0?oc=5",
       "source": "Wires (geo)",
@@ -22,9 +70,11 @@
       "firstAt": 1788852960000,
       "_kind": null,
       "dir": {
-        "XAU/USD": "up"
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
       },
-      "why": "Geopolitical risk boosts gold, oil unclear"
+      "why": "Conflict escalation boosts safe havens and oil"
     },
     {
       "title": "Gold edges up in Asia as dollar eases; inflation data and Middle East tensions in focus - vtmarkets.com",
@@ -44,13 +94,13 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 1,
+      "srcs": 2,
       "firstAt": 1788852740000,
       "_kind": null,
       "dir": {
         "XAU/USD": "up"
       },
-      "why": "Gold up on easing dollar, oil flat"
+      "why": "Gold up on easing dollar and tensions"
     },
     {
       "title": "Russia strikes Kyiv and region, damaging homes, killing two, and injuring 10 – Rubryka - Rubryka",
@@ -73,9 +123,11 @@
       "firstAt": 1788852060000,
       "_kind": null,
       "dir": {
-        "XAU/USD": "up"
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
       },
-      "why": "Conflict escalation supports gold, oil unclear"
+      "why": "Russia strikes boost risk assets and oil"
     },
     {
       "title": "Oil prices extend gains as Yemen's Houthis threaten broader Saudi operation after attacks hit energy sites",
@@ -102,7 +154,7 @@
         "XAU/USD": "up",
         "UKOIL": "up"
       },
-      "why": "Supply risk lifts oil, gold safe haven"
+      "why": "Houthi attacks extend oil gains and risk"
     },
     {
       "title": "Russia Is Building a Massive Site for Missile Components Deep in Siberia, Far From NATO and Ukraine’s Strike Reach - UNITED24 Media",
@@ -124,7 +176,10 @@
       "srcs": 1,
       "firstAt": 1788854142000,
       "_kind": null,
-      "why": "Long-term military build, no immediate market impact"
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Russia missile site boosts geopolitical risk premium"
     },
     {
       "title": "Ferrexpo shares jump on $15 million loan facility news",
@@ -181,7 +236,7 @@
       "dir": {
         "USD/JPY": "down"
       },
-      "why": "Dollar falls, yen rises on BOJ hike"
+      "why": "Dollar falls into 152 yen zone"
     },
     {
       "title": "Russia Launches Large Attack on Kyiv Hours After Kushner, Witkoff Leave - Newsweek",
@@ -203,9 +258,11 @@
       "srcs": 2,
       "firstAt": 1788851172000,
       "dir": {
-        "XAU/USD": "up"
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
       },
-      "why": "Geopolitical tension supports gold, oil unclear"
+      "why": "Russia attack boosts safe havens and oil"
     },
     {
       "title": "Gold rises ahead of US inflation data release - UA.NEWS",
@@ -244,7 +301,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788852673000,
-      "why": "Regulatory news, no clear directional impact"
+      "why": "Social media rules unclear for currency"
     },
     {
       "title": "Goldman ups oil price forecasts as Mideast disruptions seen extending into 2027",
@@ -264,7 +321,7 @@
       "dir": {
         "USOIL": "up"
       },
-      "why": "Higher price forecasts imply bullish sentiment"
+      "why": "Goldman ups oil price forecasts"
     },
     {
       "title": "Russian drone and missile strikes on Ukrainian capital kill 2 people, ending pause for U.S. talks - NBC News",
@@ -286,9 +343,11 @@
       "srcs": 1,
       "firstAt": 1788850092000,
       "dir": {
-        "XAU/USD": "up"
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
       },
-      "why": "Conflict escalation supports gold, oil unclear"
+      "why": "Russian strikes boost risk assets and oil"
     },
     {
       "title": "Russia strikes Odesa's 7th Kilometre Market overnight, injuring 3 people - Українська правда",
@@ -310,9 +369,11 @@
       "srcs": 1,
       "firstAt": 1788851250000,
       "dir": {
-        "XAU/USD": "up"
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
       },
-      "why": "Conflict escalation supports gold, oil unclear"
+      "why": "Russia strikes Odesa boost risk and oil"
     },
     {
       "title": "Iran-backed Houthis attack Saudi energy facilities, wounding dozens and sending oil prices higher - Al-Monitor",
@@ -332,13 +393,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1788850906000,
-      "dir": {
-        "USOIL": "up",
-        "XAU/USD": "up",
-        "UKOIL": "up"
-      },
-      "why": "Supply disruption lifts oil, gold safe haven"
+      "firstAt": 1788850906000
     },
     {
       "title": "Iran threatens US with new ‘economic warfare’ and missiles as Houthis attack Saudi Arabia - The Irish Times",
@@ -358,13 +413,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1788850906000,
-      "dir": {
-        "USOIL": "up",
-        "XAU/USD": "up",
-        "UKOIL": "up"
-      },
-      "why": "Escalation threats boost oil and gold"
+      "firstAt": 1788850906000
     },
     {
       "title": "London Gas Oil surges to highs with overbought RSI: Live levels",
@@ -1501,44 +1550,6 @@
       "firstAt": 1788830413000
     },
     {
-      "title": "Zelensky to Axios: U.S. exploring Russia-Ukraine winter de-escalation steps - Axios",
-      "link": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPS1JUc284NjBMMkppZ29XSm9kUjBwSnpvcjhxT05xTG1rWGViQkswMEh4SzdPZ1NKN0VTQVUxcWc1T1ByMEJEUGdUS01nbVU0eFd3anRTX1h3aVo2QWNHcW96dzhoR3MzbWlrYS15TG1hYkZ1Zm1SMHRGVjZKeTFabnNqRWtIRHQ0LUdXYW9kd3huUQ?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMikgFBVV95cUxPS1JUc284NjBMMkppZ29XSm9kUjBwSnpvcjhxT05xTG1rWGViQkswMEh4SzdPZ1NKN0VTQVUxcWc1T1ByMEJEUGdUS01nbVU0eFd3anRTX1h3aVo2QWNHcW96dzhoR3MzbWlrYS15TG1hYkZ1Zm1SMHRGVjZKeTFabnNqRWtIRHQ0LUdXYW9kd3huUQ?oc=5\" target=\"_blank\">Zelensky ",
-      "at": 1788829953000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788829953000
-    },
-    {
-      "title": "Gold Under Pressure from Rate Hike Bets - TradingView",
-      "link": "https://news.google.com/rss/articles/CBMilAFBVV95cUxQcEdmRi1sdEZuenJBYnV5ajAtQ29pRmxUcTNoZHFCbkM3U0V4YjMwQWRPeWlyQmt2OV9wWUFrem1VdDJ0WWMwc09ydzdFZ2d3SUhnOFVvbnpKUDVTd044akpPbVVmbjR4M0J4MUNDX2MtMWJFUURScFMtLUYtY3c3blFpOFByWTh3b0hkVUwwal9PSm9a?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMilAFBVV95cUxQcEdmRi1sdEZuenJBYnV5ajAtQ29pRmxUcTNoZHFCbkM3U0V4YjMwQWRPeWlyQmt2OV9wWUFrem1VdDJ0WWMwc09ydzdFZ2d3SUhnOFVvbnpKUDVTd044akpPbVVmbjR4M0J4MUNDX2MtMWJFUURScFMtLUYtY3c3blFpOFByWTh3b0hkVUwwal9PSm9a?oc=5\" target=\"_blank\">Gold Un",
-      "at": 1788829680000,
-      "inst": [
-        "XAU/USD"
-      ],
-      "ccy": [
-        "XAU",
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788827167000
-    },
-    {
       "title": "Russia resumes strikes on Kyiv after three-day halt - Arab News",
       "link": "https://news.google.com/rss/articles/CBMilAFBVV95cUxNRWxsZ0U0V1Nlb0FaZFZaSGxIRG0yTVNZanJ2M2Y2ZjVqWHFaemlTVUZjQi03U0YyZ29IWnVmaWU3NFNPQk1HVTc3Z1VWbEI4eXN2NTVrSFhiM2xtUVBDT1RqT2JKbjJKYkxpNE81dzVSZGl3ODBvYll4eDNaT011TDZQYVlLS0w2T2gwU0dZTmZHQVZs?oc=5",
       "source": "Wires (geo)",
@@ -1574,8 +1585,8 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788828523000
+      "srcs": 2,
+      "firstAt": 1788825899000
     },
     {
       "title": "Today’s Market Recap: Brent Crude Nears $100, Gold and Bitcoin Under Pressure as US-Iran Conflict Escalates - TradingKey",
@@ -1693,6 +1704,23 @@
       "firstAt": 1788826590000
     },
     {
+      "title": "Trump says Canadian dollar imbalance with U.S. is 'unacceptable' - CBC",
+      "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5UczJ3RVFVTXpjWkRpR2Z6SzliUzF5VGxlLVFRTVY3MjRfcEYyc3lCUzYxYWc5b0habUlzeEdJVkVHenltOXBBN1QwWktpbTg1RUJncU1TdExUdw?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiWkFVX3lxTE5UczJ3RVFVTXpjWkRpR2Z6SzliUzF5VGxlLVFRTVY3MjRfcEYyc3lCUzYxYWc5b0habUlzeEdJVkVHenltOXBBN1QwWktpbTg1RUJncU1TdExUdw?oc=5\" target=\"_blank\">Trump says Canadian dollar imbalance with U.S. is 'unacceptable'</a>&nbsp;&nbsp;<font",
+      "at": 1788825899000,
+      "inst": [
+        "USD/CAD"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1788825899000
+    },
+    {
       "title": "Iran war live: Qatar warns of ‘industrial catastrophe’ if crisis continues",
       "link": "https://www.aljazeera.com/news/liveblog/2026/9/8/iran-war-live-qatar-warns-of-industrial-catastrophe-if-crisis-continues?traffic_source=rss",
       "source": "Al Jazeera",
@@ -1729,26 +1757,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788825456000
-    },
-    {
-      "title": "Houthis accuse Saudi Arabia of killing seven in Yemen prison air strike",
-      "link": "https://www.aljazeera.com/news/2026/9/7/houthis-accuse-saudi-arabia-of-killing-seven-in-yemen-prison-attack?traffic_source=rss",
-      "source": "Al Jazeera",
-      "desc": "Houthi-run media outlet released footage of destruction after alleged Saudi air strike on al-Hazm prison.",
-      "at": 1788825053000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788825053000
     }
   ],
   "sources": [
@@ -1771,10 +1779,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-08T08:16:26.465Z",
-  "updatedAt": "2026-09-08T08:16:26.465Z"
+  "headlinesAt": "2026-09-08T08:17:42.643Z",
+  "updatedAt": "2026-09-08T08:17:42.643Z"
 }
