@@ -727,6 +727,12 @@ module.exports = {
   // Exported for tests: the holdout split, the entry spacing, the comparison
   // and the verdict are the four places this could quietly fake a result.
   sideOf, blockOf, entriesOf, welch, zFor, verdictOf, noveltyOf, anatomy, drift,
+  // The scoring core, reused by the wide search in regimeSearch.js so there is
+  // one definition of what a trade is, what a baseline is, and how an edge is
+  // measured. A second copy would eventually disagree, and the two studies
+  // would report different numbers for the same rule with nothing to say which
+  // was right.
+  runAll, baselineFor, scoreRule, probit, DIRS,
   BLOCK_MS, HOLDS, STOP_ATR, MIN_A, MIN_B, CARRY, METALS, TF,
   ZIGZAG_K, BIG_LEG, SMALL_LEG, METHOD_VERSION, MIN_SEEN,
 };

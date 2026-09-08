@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import {
-  fetchRegimeStudy, stateNow, firing, nearMisses,
+  fetchRegimeStudy, fetchRegimeSearch, SEARCH_LIVE, stateNow, firing, nearMisses,
   headline, VERDICT_TEXT, NOVELTY_TEXT,
   DOLLAR_INSTRUMENT, RATE_INSTRUMENT, invertDollar,
 } from '../utils/regimeRead.js';
@@ -16,6 +16,8 @@ import { PHRASE } from '../../shared/moveFeatures.mjs';
 const C = {
   confirmed: '#22c55e', holds: '#84cc16', fades: '#f59e0b',
   fails: '#ef4444', thin: '#64748b',
+  'this market only': '#f59e0b', 'generalises, not current': '#f59e0b',
+  'untested elsewhere': '#64748b',
 };
 const NOVEL = {
   new: '#22c55e', 'stronger-now': '#84cc16', longstanding: '#94a3b8',
@@ -113,6 +115,7 @@ function RatioBar({ ratio }) {
 
 export default function RegimePanel() {
   const [study, setStudy] = useState(null);
+  const [wide, setWide] = useState(null);
   const [live, setLive] = useState({});
   const [err, setErr] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -123,6 +126,10 @@ export default function RegimePanel() {
     try {
       const s = await fetchRegimeStudy();
       setStudy(s);
+      // The cross-market search is a separate, slower study. It is fetched
+      // alongside and its absence is not an error — it has its own fortnightly
+      // cadence and the narrow answer stands without it.
+      fetchRegimeSearch().then(setWide).catch(() => setWide(null));
       const cs = {};
       for (const m of METALS) cs[m.sym] = await bars(m.sym);
       // The two things gold is mostly a function of. Fetched separately so a
@@ -158,6 +165,9 @@ export default function RegimePanel() {
 
   const live1 = study?.rules?.filter(r => r.verdict === 'confirmed' || r.verdict === 'holds') || [];
   const dead = study?.rules?.filter(r => !(r.verdict === 'confirmed' || r.verdict === 'holds')) || [];
+  const wideLive = wide?.rules?.filter(r => SEARCH_LIVE.includes(r.verdict)) || [];
+  const wideHalf = wide?.rules?.filter(r =>
+    r.verdict === 'this market only' || r.verdict === 'generalises, not current') || [];
   const anyFiring = METALS.some(m => live[m.sym]?.firing?.length);
 
   return (
@@ -193,6 +203,7 @@ export default function RegimePanel() {
         <Row style={{ marginTop: 10, gap: 4 }}>
           {[['now', 'Right now'], ['rules', `Rules (${live1.length})`],
             ['why', 'Why moves run'], ['changed', 'What changed'],
+            ['wide', `Across markets${wideLive.length ? ` (${wideLive.length})` : ''}`],
             ['dead', `Rejected (${dead.length})`]].map(([k, t]) => (
             <button key={k} onClick={() => setOpen(k)}
               style={{ padding: '3px 9px', borderRadius: 4, fontSize: 10, cursor: 'pointer',
@@ -451,6 +462,88 @@ export default function RegimePanel() {
               </div>
             );
           })}
+        </div>
+      )}
+
+      {/* ── Across markets ─────────────────────────────────────────────────── */}
+      {open === 'wide' && (
+        <div>
+          {!wide ? (
+            <div style={{ fontSize: 11, color: 'var(--text3)', marginTop: 10, lineHeight: 1.6 }}>
+              The cross-market search has not been published yet. It runs fortnightly and takes
+              several minutes, so the first one appears after the bot's next cycle.
+            </div>
+          ) : (
+            <>
+              <Head note={`Searched on ${wide.split?.searched?.length} instruments and then scored on `
+                + `${wide.split?.unseen?.length} it never looked at, across `
+                + `${wide.timeframes?.join(' and ')}, over ${wide.years} years. A rule has to clear `
+                + `BOTH holdouts — the hidden fortnights AND the unseen markets — and pay on at `
+                + `least ${wide.thresholds?.MIN_INSTRUMENTS} of those markets individually, because a `
+                + `pooled edge can be carried by one lucky instrument.`}>
+                Held on markets it was never searched on ({wideLive.length})
+              </Head>
+
+              {!wideLive.length && (
+                <div style={{ fontSize: 11.5, color: 'var(--text2)', lineHeight: 1.6 }}>
+                  Nothing cleared both holdouts. That is the expected result most of the time and it
+                  is the point of running it this way — a search this wide will always find something
+                  that looks good on the half it was fitted to.
+                </div>
+              )}
+
+              {wideLive.map(r => (
+                <div key={r.id + r.tf} style={{ marginTop: 8, padding: '8px 10px', borderRadius: 6,
+                  background: 'var(--bg)', border: `1px solid ${C[r.verdict] || 'var(--border)'}44` }}>
+                  <Row style={{ flexWrap: 'wrap' }}>
+                    <span style={{ fontSize: 9, padding: '1px 6px', borderRadius: 3,
+                      background: `${C[r.verdict]}22`, color: C[r.verdict] }}>{r.verdict}</span>
+                    <span style={{ fontSize: 11.5, color: 'var(--text1)', fontWeight: 600 }}>
+                      {r.dir === 'up' ? '▲ long' : '▼ short'} {r.hold} bars on {r.tf}
+                    </span>
+                  </Row>
+                  <div style={{ fontSize: 11.5, color: 'var(--text2)', marginTop: 4 }}>{r.label}</div>
+                  <div style={{ fontSize: 10.5, color: 'var(--text3)', marginTop: 5, lineHeight: 1.6 }}>
+                    On markets it never saw: <b style={{ color: C[r.verdict] }}>
+                      {r.unseen?.edgeR > 0 ? '+' : ''}{r.unseen?.edgeR}R
+                    </b> a trade against {r.unseen?.baseExpR}R for a random entry,
+                    over {r.unseen?.n} trades. It paid on{' '}
+                    <b style={{ color: 'var(--text2)' }}>{r.spread?.positive} of {r.spread?.tested}</b>{' '}
+                    of them individually.
+                  </div>
+                  {!!r.spread?.rows?.length && (
+                    <div style={{ fontSize: 10, color: 'var(--text3)', marginTop: 4 }}>
+                      {r.spread.rows.map(x => `${x.sym.replace('_', '/')} ${x.edgeR > 0 ? '+' : ''}${x.edgeR}`).join(' · ')}
+                    </div>
+                  )}
+                </div>
+              ))}
+
+              {!!wideHalf.length && (
+                <>
+                  <Head note={'Each of these cleared one holdout and failed the other. Half a result '
+                    + 'is not a rule, and showing them as one is exactly what the second holdout '
+                    + 'exists to prevent — but which half failed is worth reading.'}>
+                    Half a result ({wideHalf.length})
+                  </Head>
+                  {wideHalf.slice(0, 8).map(r => (
+                    <Row key={r.id + r.tf} style={{ marginTop: 5, fontSize: 10.5, flexWrap: 'wrap' }}>
+                      <span style={{ color: '#f59e0b', width: 150, flexShrink: 0 }}>{r.verdict}</span>
+                      <span style={{ color: 'var(--text2)' }}>
+                        {r.dir === 'up' ? '▲' : '▼'} {r.tf} · {r.label}
+                      </span>
+                    </Row>
+                  ))}
+                </>
+              )}
+
+              <div style={{ fontSize: 10, color: 'var(--text3)', marginTop: 12, lineHeight: 1.6 }}>
+                {wide.rules?.length || 0} rules reached the holdouts. The verdict thresholds are
+                published in the file, and the search is checked against pure random-walk data on
+                every test run — nothing is allowed to come back confirmed on noise.
+              </div>
+            </>
+          )}
         </div>
       )}
 

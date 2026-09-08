@@ -20,12 +20,14 @@ const { runCOTStudy }  = require('./cotStudy');
 const { runHourStudy } = require('./hourStudy');
 const { runMetalsStudy } = require('./metalsStudy');
 const { runRegimeStudy, METHOD_VERSION: REGIME_VERSION } = require('./regimeStudy');
+const { runRegimeSearch, METHOD_VERSION: SEARCH_VERSION } = require('./regimeSearch');
 const { INSTRUMENTS }  = require('./instruments');
 
 const COT_STUDY_PATH = 'bot/cot-study.json';
 const HOUR_STUDY_PATH = 'bot/hour-profile.json';
 const METALS_STUDY_PATH = 'bot/metals-study.json';
 const REGIME_STUDY_PATH = 'bot/regime-study.json';
+const REGIME_SEARCH_PATH = 'bot/regime-search.json';
 const STRATEGY_PATH = 'bot/strategy.json';
 const TRADES_PATH   = 'bot/trades.json';
 const CONTROL_PATH  = 'bot/vps-control.json';
@@ -92,6 +94,7 @@ class ForexBot {
     this.hourStudyRan = false;
     this.metalsStudyRan = false;
     this.regimeStudyRan = false;
+    this.regimeSearchRan = false;
     this.alertChecker = new AlertChecker({ oanda: this.oanda, github: this.github, telegram: this.telegram, env, log: this.log.bind(this) });
     this.updater = new Updater({ github: this.github, env, log: this.log.bind(this) });
     this.news = new NewsFetcher({
@@ -177,6 +180,33 @@ class ForexBot {
   // answer drifts. Four years of hourly bars for two instruments is ten paged
   // requests and about six seconds of arithmetic, which on a weekend competes
   // with nothing.
+  // The wide search. Sixteen instruments, two timeframes, four years, with the
+  // instrument holdout on top of the time one.
+  //
+  // Fortnightly rather than weekly: it is a few hundred paginated requests and
+  // several minutes of work, and the answer it produces is about what holds
+  // across markets, which does not turn over in seven days. It runs AFTER the
+  // narrow study so that a failure here cannot cost you the answer you already
+  // rely on.
+  async _maybeRegimeSearch() {
+    if (this.regimeSearchRan) return;
+    const cur = await this.github.readJSON(REGIME_SEARCH_PATH).catch(() => null);
+    const age = cur?.content?.asOf ? Date.now() - Date.parse(cur.content.asOf) : Infinity;
+    const stale = age >= 14 * 86400e3 || cur?.content?.methodVersion !== SEARCH_VERSION;
+    if (!stale) { this.regimeSearchRan = true; return; }
+
+    this.regimeSearchRan = true;   // set first, so a failure does not retry every tick
+    this.log('Wide search: searching across markets, holding out both time and instruments…');
+    const result = await runRegimeSearch({ oanda: this.oanda, log: this.log.bind(this) });
+    await this.github.writeJSON(REGIME_SEARCH_PATH, result, 'bot: cross-market search', cur?.sha || null);
+    const held = (result.rules || []).filter(r => r.verdict === 'confirmed' || r.verdict === 'holds');
+    this.log(`Wide search published — ${held.length} of ${result.rules?.length || 0} held both holdouts`);
+    for (const r of held.slice(0, 3)) {
+      this.log(`  ${r.tf} ${r.dir} ${r.hold}: ${r.label} — unseen ${r.unseen?.edgeR > 0 ? '+' : ''}${r.unseen?.edgeR}R `
+        + `on ${r.spread?.positive}/${r.spread?.tested} markets`);
+    }
+  }
+
   async _maybeRegimeStudy() {
     if (this.regimeStudyRan) return;
     const cur = await this.github.readJSON(REGIME_STUDY_PATH).catch(() => null);
@@ -231,6 +261,7 @@ class ForexBot {
     await this._maybeHourStudy().catch(e => this.warn(`Hour study: ${e.message}`));
     await this._maybeMetalsStudy().catch(e => this.warn(`Metals study: ${e.message}`));
     await this._maybeRegimeStudy().catch(e => this.warn(`Regime study: ${e.message}`));
+    await this._maybeRegimeSearch().catch(e => this.warn(`Wide search: ${e.message}`));
 
     if (isWeekend()) { this.log('Weekend — skipped'); return; }
 
