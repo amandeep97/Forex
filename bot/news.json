@@ -67,7 +67,10 @@
       "srcs": 2,
       "firstAt": 1788852960000,
       "_kind": null,
-      "why": "Geopolitical news lacks clear market direction."
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Geopolitical tension boosts safe-haven gold."
     },
     {
       "title": "Asian stocks fall as yen surge, oil gains revive Fed rate hike concerns",
@@ -117,7 +120,7 @@
       "srcs": 2,
       "firstAt": 1788854915000,
       "_kind": null,
-      "why": "Political news unclear for markets."
+      "why": "Political dispute lacks clear market direction."
     },
     {
       "title": "Gold edges up in Asia as dollar eases; inflation data and Middle East tensions in focus - vtmarkets.com",
@@ -159,6 +162,33 @@
       "_kind": null
     },
     {
+      "title": "Houthi attacks in Saudi Arabia disrupt energy facilities, wound dozens - The Jerusalem Post",
+      "link": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE9IRTc0R2dFUFIyaHNXbmZsNk1LMmpEZk43cEhNLU5RWmtwYmpzSHRwNXZGWG10ZlJyMUxnS05IMEZWZ1k2YmE4WW9Yb0VlQzVmRXFYY2YyOF80c1lB?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiXEFVX3lxTE9IRTc0R2dFUFIyaHNXbmZsNk1LMmpEZk43cEhNLU5RWmtwYmpzSHRwNXZGWG10ZlJyMUxnS05IMEZWZ1k2YmE4WW9Yb0VlQzVmRXFYY2YyOF80c1lB?oc=5\" target=\"_blank\">Houthi attacks in Saudi Arabia disrupt energy facilities, wound dozens</a>&nbsp;&nb",
+      "at": 1788854331000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 3,
+      "firstAt": 1788851925000,
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Saudi energy disruption boosts oil and gold."
+    },
+    {
       "title": "Russia strikes Kyiv and region, damaging homes, killing two, and injuring 10 – Rubryka - Rubryka",
       "link": "https://news.google.com/rss/articles/CBMiakFVX3lxTE1BUUJsdXZSNk5VTkRXaUt0cFFoNy05a0tDRG1iX0M0czYtMXVnaGM4T3lVT3VtZlFvSEpJMmxoMlktY1JqTDItbGI4bmtHRm1hbVpTejlLVzNRUWJsdDBpd2pjUWtGS1IyN2c?oc=5",
       "source": "Wires (geo)",
@@ -178,7 +208,10 @@
       "srcs": 2,
       "firstAt": 1788852060000,
       "_kind": null,
-      "why": "Russia strikes Kyiv, no clear market signal."
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Russia strikes boost safe-haven gold demand."
     },
     {
       "title": "Oil prices extend gains as Yemen's Houthis threaten broader Saudi operation after attacks hit energy sites",
@@ -202,9 +235,10 @@
       "_kind": null,
       "dir": {
         "USOIL": "up",
+        "XAU/USD": "up",
         "UKOIL": "up"
       },
-      "why": "Oil gains on Houthi threats to Saudi."
+      "why": "Houthi threats extend oil gains and gold."
     },
     {
       "title": "Russia Is Building a Massive Site for Missile Components Deep in Siberia, Far From NATO and Ukraine’s Strike Reach - UNITED24 Media",
@@ -226,7 +260,10 @@
       "srcs": 1,
       "firstAt": 1788852216000,
       "_kind": null,
-      "why": "Russia building missile site, no immediate impact."
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Russia missile site boosts geopolitical risk."
     },
     {
       "title": "Ferrexpo shares jump on $15 million loan facility news",
@@ -260,7 +297,7 @@
       "dir": {
         "USD/JPY": "down"
       },
-      "why": "Yen bet paying off implies yen strength."
+      "why": "Yen strength implies dollar weakness."
     },
     {
       "title": "Dollar falls into 152 yen zone amid BOJ rate hike speculation - 毎日新聞",
@@ -303,7 +340,10 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1788851172000,
-      "why": "Russia attacks Kyiv, no clear market direction."
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Russia attack boosts safe-haven gold."
     },
     {
       "title": "Gold rises ahead of US inflation data release - UA.NEWS",
@@ -345,7 +385,7 @@
       "dir": {
         "USOIL": "up"
       },
-      "why": "Goldman ups oil price forecasts."
+      "why": "Goldman raises oil price forecasts."
     },
     {
       "title": "Russia launches missile strikes against Kyiv as pause in raids ends - Financial Times",
@@ -365,8 +405,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1788850092000,
-      "why": "Russia strikes Kyiv, no clear market direction."
+      "firstAt": 1788850092000
     },
     {
       "title": "Russian drone and missile strikes on Ukrainian capital kill 2 people, ending pause for U.S. talks - NBC News",
@@ -754,26 +793,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788848340000
-    },
-    {
-      "title": "Houthi attacks in Saudi Arabia disrupt energy facilities, wound dozens - The Jerusalem Post",
-      "link": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE9IRTc0R2dFUFIyaHNXbmZsNk1LMmpEZk43cEhNLU5RWmtwYmpzSHRwNXZGWG10ZlJyMUxnS05IMEZWZ1k2YmE4WW9Yb0VlQzVmRXFYY2YyOF80c1lB?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiXEFVX3lxTE9IRTc0R2dFUFIyaHNXbmZsNk1LMmpEZk43cEhNLU5RWmtwYmpzSHRwNXZGWG10ZlJyMUxnS05IMEZWZ1k2YmE4WW9Yb0VlQzVmRXFYY2YyOF80c1lB?oc=5\" target=\"_blank\">Houthi attacks in Saudi Arabia disrupt energy facilities, wound dozens</a>&nbsp;&nb",
-      "at": 1788847924000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788847924000
     },
     {
       "title": "Germany's trade surplus widens sharply in July as imports slump",
@@ -1754,10 +1773,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-08T08:23:12.669Z",
-  "updatedAt": "2026-09-08T08:23:12.669Z"
+  "headlinesAt": "2026-09-08T08:24:27.033Z",
+  "updatedAt": "2026-09-08T08:24:27.033Z"
 }
