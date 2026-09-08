@@ -637,7 +637,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788900992000,
-      "_kind": null
+      "_kind": null,
+      "why": "Individual stock moves, index direction unclear."
     },
     {
       "title": "China August inflation seen rebounding as trade data flags demand gap",
@@ -661,7 +662,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788900933000,
-      "_kind": null
+      "_kind": null,
+      "why": "China data, no clear FX direction."
     },
     {
       "title": "Stocks stumble after Labor Day. This year’s easy gains may be over.",
@@ -679,7 +681,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788900840000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Stocks stumble, rate hike fears."
     },
     {
       "title": "Trump directs GSA to take steps to remove Canadian goods from agency lists",
@@ -694,7 +700,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788900519000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USD/CAD": "up"
+      },
+      "why": "Trade friction weakens CAD, strengthens USD."
     },
     {
       "title": "Police bodycam captures Russian missile strike on Kyiv",
@@ -715,7 +725,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788900232000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Geopolitical risk boosts safe havens and oil."
     },
     {
       "title": "investingLive Americas FX news wrap 8 Sept: USD mixed, yields rise. Trader await inflation data.",
@@ -739,7 +755,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788899985000,
-      "_kind": null
+      "_kind": null,
+      "why": "Mixed USD, awaiting data, direction unclear."
     },
     {
       "title": "After British Sanctions on Israel, Jerusalem Must Counter Britain in the South Atlantic - Middle East Forum",
@@ -761,7 +778,8 @@
       "rel": 2,
       "srcs": 3,
       "firstAt": 1788897576000,
-      "_kind": null
+      "_kind": null,
+      "why": "Geopolitical commentary, no immediate market impact."
     },
     {
       "title": "U.S. stocks lower at close of trade; Dow Jones Industrial Average down 1.17%",
@@ -776,7 +794,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788899458000
+      "firstAt": 1788899458000,
+      "dir": {
+        "US500": "down",
+        "US30": "down"
+      },
+      "why": "Stocks lower, Dow down significantly."
     },
     {
       "title": "Canada stocks lower at close of trade; S&P/TSX Composite down 1.07%",
@@ -793,7 +816,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788899430000
+      "firstAt": 1788899430000,
+      "dir": {
+        "USD/CAD": "up"
+      },
+      "why": "CAD weakness implies USD strength; US stocks unrelated."
     },
     {
       "title": "Brazil stocks higher at close of trade; Bovespa up 1.20%",
@@ -807,7 +834,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788899404000
+      "firstAt": 1788899404000,
+      "why": "Brazil stocks move, US index unaffected."
     },
     {
       "title": "Refining bottlenecks are emerging as the next big oil problem as Middle East skirmishes flare up",
@@ -824,7 +852,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 3,
-      "firstAt": 1788897576000
+      "firstAt": 1788897576000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Refining bottlenecks and high prices boost oil."
     },
     {
       "title": "Trump’s Israel settlement sanctions dilemma - Politico",
@@ -844,7 +876,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788897727000
+      "firstAt": 1788897727000,
+      "why": "Political dilemma, no clear market direction."
     },
     {
       "title": "Novartis’s failed trial for cholesterol drug leads to broad biopharma stock selloff",
@@ -890,7 +923,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 3,
-      "firstAt": 1788897576000
+      "firstAt": 1788897576000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Houthi attacks boost risk assets and oil."
     },
     {
       "title": "Wall Street slides, oil surges amid worries over inflation, Middle East - Reuters",
@@ -909,7 +948,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 3,
-      "firstAt": 1788897576000
+      "firstAt": 1788897576000,
+      "dir": {
+        "USOIL": "up",
+        "US500": "down"
+      },
+      "why": "Oil surges, Wall Street slides."
     },
     {
       "title": "What’s happening in the Yemen war?",
@@ -929,7 +973,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788898403000
+      "firstAt": 1788898403000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "War fears boost safe havens and oil."
     },
     {
       "title": "Markets will take a Fed rate hike hard, says Kestra Investment's Kara Murphy - CNBC",
@@ -2369,7 +2419,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-08T21:05:56.848Z",
-  "headlinesAt": "2026-09-08T21:05:56.848Z",
-  "updatedAt": "2026-09-08T21:05:56.848Z"
+  "calendarAt": "2026-09-08T21:06:57.870Z",
+  "headlinesAt": "2026-09-08T21:06:57.870Z",
+  "updatedAt": "2026-09-08T21:06:57.870Z"
 }
