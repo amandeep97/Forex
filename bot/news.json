@@ -2,6 +2,38 @@
   "calendar": [],
   "headlines": [
     {
+      "title": "Monday’s insider trading: No major buys or sells disclosed",
+      "link": "https://www.investing.com/news/stock-market-news/mondays-insider-trading-no-major-buys-or-sells-disclosed-93CH-4891726",
+      "source": "Investing",
+      "at": 1788872459000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 1,
+      "srcs": 1,
+      "firstAt": 1788872459000,
+      "_kind": null
+    },
+    {
+      "title": "Crude oil nears $100: Key moves investors should make if energy prices keep rising",
+      "link": "https://www.investing.com/news/stock-market-news/crude-oil-nears-100-key-moves-investors-should-make-if-energy-prices-keep-rising-93CH-4891720",
+      "source": "Investing",
+      "at": 1788872220000,
+      "inst": [
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788872220000,
+      "_kind": null,
+      "why": "Price level noted, no clear directional catalyst."
+    },
+    {
       "title": "Canadian Dollar: Tariffs boost role as funding currency – TD Securities - FXStreet",
       "link": "https://news.google.com/rss/articles/CBMisAFBVV95cUxQM3dkT1pvaWRveGNyODl6YUlvZjVZRllEOE1zRjNvV1lod3J4bW1xUXNkUTVmLWRjMGM4U1NJSG9pMTdlcFFJX1p2eDUyck5rcl9KbW9JRzVnRFhFNnZVZnEyQ0NvUEJwZVFickJTeVdEMWFfbUdXenlWWWVOc204bUJhS3BRVUNMMDhTbEUzTnYwejJXMVlnZVlBbkJiWkhSS05ZZXpaT3E1ZmlqRk53aQ?oc=5",
       "source": "Wires (macro)",
@@ -17,7 +49,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788871944000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USD/CAD": "down"
+      },
+      "why": "CAD strength as funding currency implies USD weakness."
     },
     {
       "title": "Top European Utilities Stocks: UBS Favors These 3 Names Right Now",
@@ -31,8 +67,9 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1788870027000,
-      "_kind": null
+      "firstAt": 1788870638000,
+      "_kind": null,
+      "why": "European stocks focus, no clear US index direction."
     },
     {
       "title": "Billionaire David Tepper Just Bought These 2 Artificial Intelligence (AI) Stocks That Wall Street Thinks Could Soar by 50% or More",
@@ -46,8 +83,27 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1788870027000,
-      "_kind": null
+      "firstAt": 1788870473000,
+      "_kind": null,
+      "why": "Specific stock buys, not broad index direction."
+    },
+    {
+      "title": "Ethereum Is Up 31% in Thirty Days and XRP 33%. Which Is the Better Buy Before the Fed Meets?",
+      "link": "https://finance.yahoo.com/markets/crypto/articles/ethereum-31-thirty-days-xrp-124940517.html",
+      "source": "Yahoo Finance",
+      "at": 1788871780000,
+      "inst": [
+        "ETH/USDT"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788871780000,
+      "_kind": null,
+      "why": "Comparative question, no clear directional signal."
     },
     {
       "title": "Baltic dry bulk freight index edges up on capesize strength",
@@ -90,7 +146,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788871668000,
-      "_kind": null
+      "_kind": null,
+      "why": "Business deal, no immediate price direction implied."
     },
     {
       "title": "Why the Dow is being dragged down by a Swiss company’s bad news",
@@ -110,7 +167,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788871620000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down",
+        "US30": "down"
+      },
+      "why": "Dow dragged down by Swiss company news."
     },
     {
       "title": "HSBC lifts S&P 500 year-end target",
@@ -125,7 +187,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788871594000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Higher year-end target implies bullish sentiment."
     },
     {
       "title": "Canada begins collecting ‘dollar-for-dollar’ tariffs on U.S. goods - Scripps News",
@@ -144,7 +210,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1788870202000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USD/CAD": "down"
+      },
+      "why": "Tariffs hurt CAD, implying USD strength."
     },
     {
       "title": "U.S.-Canada tariff escalation: 4 sectors most exposed to the trade shock",
@@ -164,7 +234,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788871548000,
-      "_kind": null
+      "_kind": null,
+      "why": "Trade shock exposure, direction unclear for these pairs."
     },
     {
       "title": "Saudi Arabia stocks higher at close of trade; Tadawul All Share up 0.10%",
@@ -179,7 +250,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788871503000,
-      "_kind": null
+      "_kind": null,
+      "why": "Saudi market news, irrelevant to US index."
     },
     {
       "title": "Qatar says reopening Strait of Hormuz ‘unconditionally’ is a priority",
@@ -200,7 +272,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788871499000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "De-escalation reduces risk premium for oil and gold."
     },
     {
       "title": "Quantum Computing Stocks: IonQ Hosts Investor Day With SkyWater Deal In Focus",
@@ -215,7 +293,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788871377000,
-      "_kind": null
+      "_kind": null,
+      "why": "Specific stock event, no broad index direction."
     },
     {
       "title": "Mark Carney’s latest counter-tariffs a multi-billion-dollar tax on Canadians - Brooks Bulletin",
@@ -248,7 +327,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788871143000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "BTC/USDT": "up"
+      },
+      "why": "Large institutional buying supports price."
     },
     {
       "title": "Stock Market Today: Dow Slides 400 Points On Continued U.S.-Iran Attacks; Oil Prices Jump Again (Live Coverage)",
@@ -269,7 +352,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788871137000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "US30": "down",
+        "XAU/USD": "up"
+      },
+      "why": "Geopolitical risk boosts oil/gold, hurts stocks."
     },
     {
       "title": "Gold: Fed inflation focus and volatility risk – Commerzbank - FXStreet",
@@ -329,8 +418,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788870895000,
-      "_kind": null
+      "firstAt": 1788870895000
     },
     {
       "title": "Basic Materials Roundup: Market Talk",
@@ -342,7 +430,7 @@
       "sev": 1,
       "rel": 1,
       "srcs": 1,
-      "firstAt": 1788869820000
+      "firstAt": 1788870780000
     },
     {
       "title": "AI Stocks: OpenAI Declares The 'AGI Era' Is Here Amid IPO Fervor",
@@ -404,18 +492,6 @@
       "firstAt": 1788870473000
     },
     {
-      "title": "Health Care Roundup: Market Talk",
-      "link": "https://www.wsj.com/business/health-care-roundup-market-talk-c793b63c?siteid=yhoof2&yptr=yahoo",
-      "source": "Yahoo Finance",
-      "at": 1788870300000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1788869820000
-    },
-    {
       "title": "Yen Hits 7-Month High as Dollar Falls Ahead of Inflation Data - صحيفة مال",
       "link": "https://news.google.com/rss/articles/CBMia0FVX3lxTFB4N2xNaXNsVFdncGdrM1dlQ2dmc0pCN2UzVFNhLURnWl9PRzlwVVRUQTRlLW85SlVFTjlQcVR6OUZoNlpzQ1dFRFZTc1ZsMWJ2ZXhNWjdHQ2RNNXdnTXJ2bDhMN19HM045Mkw4?oc=5",
       "source": "Wires (macro)",
@@ -430,8 +506,8 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 2,
-      "firstAt": 1788869751000
+      "srcs": 1,
+      "firstAt": 1788870289000
     },
     {
       "title": "Gold subdued as oil rises, investors await key US inflation data - NST Online",
@@ -452,18 +528,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788868067000
-    },
-    {
-      "title": "The iShares Europe Financials ETF Outperforms First Trust Bank ETF on Yield, Cost, and Performance",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/ishares-europe-financials-etf-outperforms-122401359.html",
-      "source": "Yahoo Finance",
-      "at": 1788870241000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788870241000
     },
     {
       "title": "Canada braces for prolonged trade war as counter-tariffs on US take effect",
@@ -522,20 +586,6 @@
       "firstAt": 1788868505000
     },
     {
-      "title": "Social Security’s 2027 COLA Raise Is the Biggest in 3 Years — But These 5 Dividend Stocks Pay You More",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/social-security-2027-cola-raise-122027324.html",
-      "source": "Yahoo Finance",
-      "at": 1788870027000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 3,
-      "firstAt": 1788869337000
-    },
-    {
       "title": "Treasury yields hold near multi-year highs after hot jobs report and oil surge",
       "link": "https://www.investing.com/news/forex-news/euro-yields-push-higher-with-crude-near-100-and-ecb-hike-imminent-4890937",
       "source": "Investing FX",
@@ -551,32 +601,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788869863000
-    },
-    {
-      "title": "Financial Services Roundup: Market Talk",
-      "link": "https://www.wsj.com/business/financial-services-roundup-market-talk-2d369bf1?siteid=yhoof2&yptr=yahoo",
-      "source": "Yahoo Finance",
-      "at": 1788869820000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1788869820000
-    },
-    {
-      "title": "Dollar’s Global Reserve Share Hits 30-Year Low but De-Dollarization Threat Looks Overstated",
-      "link": "https://finance.yahoo.com/markets/currencies/articles/dollar-global-share-hits-30-121551983.html",
-      "source": "Yahoo Finance",
-      "at": 1788869751000,
-      "inst": [],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 2,
-      "firstAt": 1788869751000
     },
     {
       "title": "Morning Call Sheet: Inflation, rates and AI volatility test markets - CNBC",
@@ -1628,6 +1652,46 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1788861060000
+    },
+    {
+      "title": "At least two people dead after Russian strikes on Kyiv",
+      "link": "https://www.bbc.co.uk/news/articles/cn8m1k7p3v7o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC World",
+      "desc": "Air raid alerts and sounds of explosions rang out in Ukraine's capital as Russian forces launched drone strikes early on Tuesday.",
+      "at": 1788862981000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 3,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1788861060000
+    },
+    {
+      "title": "At least two people dead after Russian strikes on Kyiv - BBC",
+      "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBqczB3d0ZsWjVKSDZQOWZZTHJ5bVdqNjFDQ0FpQ29PbjFSV0swMzlHaWc0MzMzeDJrQ1N5TnpHeVhQSGRxOS14aGpXVl96ekFkdktRY3FiV0JIQQ?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiWkFVX3lxTFBqczB3d0ZsWjVKSDZQOWZZTHJ5bVdqNjFDQ0FpQ29PbjFSV0swMzlHaWc0MzMzeDJrQ1N5TnpHeVhQSGRxOS14aGpXVl96ekFkdktRY3FiV0JIQQ?oc=5\" target=\"_blank\">At least two people dead after Russian strikes on Kyiv</a>&nbsp;&nbsp;<font color=\"#6",
+      "at": 1788862981000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1788861060000
     }
   ],
   "sources": [
@@ -1650,10 +1714,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-08T13:03:41.946Z",
-  "updatedAt": "2026-09-08T13:03:41.946Z"
+  "headlinesAt": "2026-09-08T13:05:29.889Z",
+  "updatedAt": "2026-09-08T13:05:29.889Z"
 }
