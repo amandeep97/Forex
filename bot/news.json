@@ -1,15 +1,6 @@
 {
   "calendar": [
     {
-      "title": "Leading Indicators",
-      "country": "JPY",
-      "impact": "low",
-      "at": 1788757200000,
-      "forecast": "117.9%",
-      "previous": "116.4%",
-      "actual": ""
-    },
-    {
       "title": "German Industrial Production m/m",
       "country": "EUR",
       "impact": "low",
@@ -734,6 +725,51 @@
       "why": "Euro holds steady, awaiting data"
     },
     {
+      "title": "Hormuz traffic slows after Iran threatens retaliation for US attacks",
+      "link": "https://www.investing.com/news/commodities-news/hormuz-traffic-slows-after-iran-threatens-retaliation-for-us-attacks-4890774",
+      "source": "Investing Cmdty",
+      "at": 1788842911000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788842911000,
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Geopolitical risk boosts gold and oil"
+    },
+    {
+      "title": "Asian stocks mixed as chipmakers rally, oil and rate risks cap gains",
+      "link": "https://www.investing.com/news/stock-market-news/asian-stocks-mixed-as-chipmakers-rally-oil-and-rate-risks-cap-gains-4890787",
+      "source": "Investing",
+      "at": 1788842755000,
+      "inst": [
+        "USOIL",
+        "US500"
+      ],
+      "ccy": [
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788842755000,
+      "_kind": null,
+      "why": "Mixed stocks, capped gains, unclear direction"
+    },
+    {
       "title": "US DOJ’s antitrust division asked to pause cooperation with Canadian government, WSJ reports",
       "link": "https://www.investing.com/news/stock-market-news/us-dojs-antitrust-division-asked-to-pause-cooperation-with-canadian-government-wsj-reports-4890785",
       "source": "Investing",
@@ -1166,32 +1202,6 @@
       "why": "Gold gains as dollar eases"
     },
     {
-      "title": "Hormuz traffic slows after Iran threatens retaliation for US attacks",
-      "link": "https://www.investing.com/news/commodities-news/hormuz-traffic-slows-after-iran-threatens-retaliation-for-us-attacks-4890774",
-      "source": "Investing Cmdty",
-      "at": 1788837865000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788837865000,
-      "_kind": null,
-      "dir": {
-        "XAU/USD": "up",
-        "USOIL": "up",
-        "UKOIL": "up"
-      },
-      "why": "Geopolitical risk boosts gold and oil"
-    },
-    {
       "title": "Russia strikes Kyiv with missiles and drones, damaging residential buildings, injuring six - Ukrinform",
       "link": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxOVGZ0RkJ6RW9xNV9kRy00SG1Vd1l6d3V0YU0tbTROcjZEZmVLeEk2ZDlVSGpuZGYwWmw2cFVTMDk3UVhtMWNoSE5OdWVwd05XbnNQMHNNcDFGNkxZaHl1UV9VVDNWQmZscjVnWlpYTVJTaXZtazh1WXljV2F2V3hrSWl5RFg2eUhId1lMNmlvUUNfdGdvTVp1TU5pVmJpQ3c0cTRsS1U4MFZlZy1YLWduQmxFUGYzQlZ3V1o2TVJiaEZiaE8yYVY1X1Uwa0lWMURZSkgtNdIB2gFBVV95cUxNdC11OFNUT2V4WnVCNDBWaUhBdTNJWXJpTXNKQ1RIZzRmU3VLXzRpZTRPN2J3MGQ4SlhkQ29ScVBHd01wYVVvQlRyQWlkSVBxWmV6cnQ5T2RPb2pqSjhWa1NQWTBYWS04VnRKNkxNRVhkd2lBUi1xN2Ywb2hqcEJkWDdXQUdFNDU0WUp1NVQxOHZsSXNXbzUybnFIYzllb0Z5bG9mQm53dEdra3VSUGFRMUo3VjdNYURTeDE5UFRldkNJa1pNRDdyYms2bGFaMUpVUlJlQkJJMlM0UQ?oc=5",
       "source": "Wires (geo)",
@@ -1208,7 +1218,7 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 2,
+      "srcs": 1,
       "firstAt": 1788835871000,
       "_kind": null,
       "dir": {
@@ -1219,7 +1229,7 @@
       "why": "Geopolitical risk boosts safe havens and oil"
     },
     {
-      "title": "Russia strikes Kyiv as three-day pause during US envoy visits ends - Al Jazeera",
+      "title": "Russia launches deadly strikes on Kyiv as pause during US envoy visits ends - Al Jazeera",
       "link": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxNaEhXSHNycHhKQldXbnlyVks3dUh0NDZIbHB2YU43MXkxaXdaZVg2NHZIelJ4emhyZk9PVWZiUzRwcUxONDd2VnRwVC00Z0toeXZvNE84aUpxZ2I2MUdVRFhQT0tqUmJkc3NHRHMtVnE1dmk5dlZvQXBlSVQ2V28xM0NZajhDTFpRdEhKYjcxdlQ2ZFNpRFphalBjMDlQQ2ZTemdhR0ZWR2QxZ9IBrwFBVV95cUxPX0VZRUtqcjA2cWRYN19LdEpzRFJTWlRfdHo4c29qSGloM2hoME5KU01Fb1JhNDl0eDhrN1B1WmxBeVFVMkJ6Z0FVTUZkN0lMXzdVb3JTblJpT0Q5SlRoQVJBTmlzMUFBWDJSTFdUendRYnFXV3JjRXVDZEg4cHRCRF9ENW15Z1VjdG5obkdFV2QtcVVEQi1mVWFrSmlmTVNSMXdWaVRhTkEySkNpc3kw?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiqgFBVV95cUxNaEhXSHNycHhKQldXbnlyVks3dUh0NDZIbHB2YU43MXkxaXdaZVg2NHZIelJ4emhyZk9PVWZiUzRwcUxONDd2VnRwVC00Z0toeXZvNE84aUpxZ2I2MUdVRFhQT0tqUmJkc3NHRHMtVnE1dmk5dlZvQXBlSVQ2V28xM0NZajhDTFpRdEhKYjcxdlQ2ZFNpRFphalBjMDlQQ2ZTemdhR0ZWR2QxZ9",
@@ -1235,13 +1245,13 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 2,
+      "srcs": 1,
       "firstAt": 1788834772000,
       "_kind": null,
       "dir": {
         "XAU/USD": "up"
       },
-      "why": "Geopolitical risk boosts gold, oil unclear"
+      "why": "War escalation boosts gold, oil unclear"
     },
     {
       "title": "Moment an Israel strike hits close to a reporter live on air in Lebanon - lufkindailynews.com",
@@ -1361,31 +1371,6 @@
       "why": "Supply disruption drives oil prices higher"
     },
     {
-      "title": "Russia launches deadly strikes on Kyiv as pause during US envoy visits ends",
-      "link": "https://www.aljazeera.com/news/2026/9/8/russia-strikes-kyiv-as-three-day-pause-during-us-envoy-visits-ends?traffic_source=rss",
-      "source": "Al Jazeera",
-      "desc": "US envoy says 'encouraged' by talks as White House official told Reuters next steps to be announced in coming weeks.",
-      "at": 1788836908000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1788834772000,
-      "_kind": null,
-      "dir": {
-        "XAU/USD": "up"
-      },
-      "why": "War escalation boosts gold, oil unclear"
-    },
-    {
       "title": "Russia resumes strikes on Kyiv after three-day halt - france24.com",
       "link": "https://news.google.com/rss/articles/CBMikAFBVV95cUxQMC0tdzhSdHhWRWdsanUzSEhoT2dNWjM0ZTMzbWk4R0pheW14eTJ4bG1RRVhmczdUYklWVkQxRFhsTTZpb19LMjQyRGlscUVGUUM3UTQ5d3h6V0w3NGJvV0lIQXEzMFc3eEM4aTQ2UFFURzFKYXZGOHV0eTNFUlVmRVo0Sml2Mzc4YnR1ZDd0eXc?oc=5",
       "source": "Wires (geo)",
@@ -1402,7 +1387,7 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 2,
+      "srcs": 1,
       "firstAt": 1788834772000,
       "dir": {
         "XAU/USD": "up"
@@ -1492,7 +1477,7 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 2,
+      "srcs": 1,
       "firstAt": 1788834772000,
       "dir": {
         "XAU/USD": "up",
@@ -1562,8 +1547,8 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 2,
-      "firstAt": 1788832140000,
+      "srcs": 1,
+      "firstAt": 1788834291000,
       "dir": {
         "USOIL": "up"
       },
@@ -1682,6 +1667,32 @@
       "why": "Geopolitical news lacks clear directional impact"
     },
     {
+      "title": "Iran threatens US with new 'economic warfare' and missiles as Houthis attack Saudi Arabia - Reuters",
+      "link": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNT2RnNWprQ01ScjN2Q05RSHRWdmRqVzh2U01LUVVPVmhiRDVYNER3anQxQlNWV24wS3RZR2ZqS1FxNnFKWFRqSmlYbnQwSFk1eU5Cbnh1SVpxbTZCWUwtelFqbFV6LTNLVHZZbGRaYTVucy1VT1JwNDZPM3gydkZRU2VCWHFoVnpTVU9ILXlfRHpKMnBsT3RJOUlkejRzT1FJa25YekFnMVl6dUJnbERxeXo1UnpOZTVaQ281aFJrbjFEWmN3T2c?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMixgFBVV95cUxNT2RnNWprQ01ScjN2Q05RSHRWdmRqVzh2U01LUVVPVmhiRDVYNER3anQxQlNWV24wS3RZR2ZqS1FxNnFKWFRqSmlYbnQwSFk1eU5Cbnh1SVpxbTZCWUwtelFqbFV6LTNLVHZZbGRaYTVucy1VT1JwNDZPM3gydkZRU2VCWHFoVnpTVU9ILXlfRHpKMnBsT3RJOUlkejRzT1FJa25YekFnMVl6dU",
+      "at": 1788832140000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788832140000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Geopolitical risk boosts gold and oil"
+    },
+    {
       "title": "Yen Strengthens Into 153 Per Dollar, Nearing 2026 High, on BOJ Rate-Hike Bets - bloomingbit",
       "link": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE9pTFpCcXRJV2VIVTlrU3lTaXdpYUtlRURGZFRKNDRzeVV5VGVaVVl2aVNBaklhUWhXWUFQTXRWcGJ6V0ZMRjVDZFFEVlNJMng5VWoxbA?oc=5",
       "source": "Wires (macro)",
@@ -1735,7 +1746,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788829543000,
+      "firstAt": 1788829580000,
       "dir": {
         "XAU/USD": "up"
       },
@@ -1764,11 +1775,11 @@
       "why": "Rate hike bets pressure gold prices"
     },
     {
-      "title": "Gold rises as dollar eases; US inflation data on radar - TradingView",
-      "link": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxQekw0Y2dNZ095LXFNVmxVQlItQVF0S2RqNTdFSFhIUlVnWW9MbUFKNVZCTXdaUmg3Y1NObFhUdjFON2N0amxRam94QUtXVXdDblRTbmF5R0g3QWdQMFFhVWlUSFlNdDJ3Z1FEWHR3YXJpVEhTN1VFMmM0M1cxcGdmR0dfR1R6QXUwTnAySmRYcjVmbDhBVk5tSlU0Zjlnekw3a0VQQ01LeFNIaTB1dXphRzB5TWgtT1FRR0ZOZEY1Wk0?oc=5",
+      "title": "Gold rises as dollar eases; US inflation data on radar - marketscreener.com",
+      "link": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxOaHV1NFBGR3JBc0dwdDgyQXU1SU9fSmpxcm1JeTJGRmlEUWZWN2NOaHNGYjloNWFsU1FMZlh3djlWTVFPM1dWYkZHTmFRbWloeWpTdmdSVEhEUGx0NHhyck9UaHJKSGMwQVpxcHdSbWFJN2t5UHpPRGUxR0dWVTdQNnFlSjJJT2dlMUxuWlhBQWd1S1Buc1F1RUY2RkIxbmRpSjVoVmZQNjJfUQ?oc=5",
       "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiwAFBVV95cUxQekw0Y2dNZ095LXFNVmxVQlItQVF0S2RqNTdFSFhIUlVnWW9MbUFKNVZCTXdaUmg3Y1NObFhUdjFON2N0amxRam94QUtXVXdDblRTbmF5R0g3QWdQMFFhVWlUSFlNdDJ3Z1FEWHR3YXJpVEhTN1VFMmM0M1cxcGdmR0dfR1R6QXUwTnAySmRYcjVmbDhBVk5tSlU0Zjlnekw3a0VQQ01LeFNIaT",
-      "at": 1788829543000,
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiqgFBVV95cUxOaHV1NFBGR3JBc0dwdDgyQXU1SU9fSmpxcm1JeTJGRmlEUWZWN2NOaHNGYjloNWFsU1FMZlh3djlWTVFPM1dWYkZHTmFRbWloeWpTdmdSVEhEUGx0NHhyck9UaHJKSGMwQVpxcHdSbWFJN2t5UHpPRGUxR0dWVTdQNnFlSjJJT2dlMUxuWlhBQWd1S1Buc1F1RUY2RkIxbmRpSjVoVmZQNjJfUQ",
+      "at": 1788829580000,
       "inst": [
         "XAU/USD"
       ],
@@ -2625,6 +2636,27 @@
       "why": "USD falls, oil tests resistance."
     },
     {
+      "title": "Yemen's Houthis accuse Saudi Arabia of air raids, missile strikes - Middle East Eye",
+      "link": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxNZnJVbXNDSlNTdzY4YnNSdWtaWEh1MHhCQm82WDVlLTd2Tjd4M3E3TzF0TEpmSUNFcm96QlFQSkRGa3JkVl96OEdDUUVoMWNtMUUxTG1UYzhqdEFXRWl1T1Ezd01kdUtEaC1RNTRqckRGbVctNldiTHF5V0dMT2VGbm1OZTFfU3NnVkkzS1VnMTg0V0didnRCUE83RXdKQWZvdHB2X0dOakQ1Nml6dVpwdnhvWTg3LWRD?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiuAFBVV95cUxNZnJVbXNDSlNTdzY4YnNSdWtaWEh1MHhCQm82WDVlLTd2Tjd4M3E3TzF0TEpmSUNFcm96QlFQSkRGa3JkVl96OEdDUUVoMWNtMUUxTG1UYzhqdEFXRWl1T1Ezd01kdUtEaC1RNTRqckRGbVctNldiTHF5V0dMT2VGbm1OZTFfU3NnVkkzS1VnMTg0V0didnRCUE83RXdKQWZvdHB2X0dOakQ1Nm",
+      "at": 1788808680000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788808680000,
+      "why": "Conflict accusation unclear for markets."
+    },
+    {
       "title": "Brent Oil stalls at resistance with RSI at 72: Live levels",
       "link": "https://www.investing.com/news/commodities-news/brent-oil-overbought-at-97-rsi-74-hourly-levels-93CH-4890477",
       "source": "Investing Cmdty",
@@ -2679,37 +2711,6 @@
         "USOIL": "up"
       },
       "why": "Gas oil spike implies bullish oil."
-    },
-    {
-      "title": "Natural Gas stalls below $3.00 resistance: Live levels",
-      "link": "https://www.investing.com/news/commodities-news/natural-gas-stuck-between-287303-live-levels-93CH-4890483",
-      "source": "Investing Cmdty",
-      "at": 1788808322000,
-      "inst": [
-        "NATGAS"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788808322000,
-      "why": "Stall below resistance implies no direction."
-    },
-    {
-      "title": "Russia shutters German consulate as diplomatic freeze deepens - Al Jazeera",
-      "link": "https://news.google.com/rss/articles/CBMiowFBVV95cUxNRVQzTGtETDlpLVh5REoxMXJhVmRxTWdSeWpQNDFuNWEwemhhY2xfMW1HTVFvX01hcTdiRjJ0ZHFGN0x5RVVkampPRVpWQVR1QzdVOUJEQWNBLWVNNTJGekNFV1dLYkxoODRxdVJqMl9NS1VRM2ZnRndRZXZKNzNIaGttamlOMWpTVGVRMk1jSmFwUTEtUjVGTDU4dUlWVTBqX2pn0gGoAUFVX3lxTE04ck9yOXQwSkNCcHJTUGpaamQycE1nZFZQcjczOHJnZHhvOFAyWllMaTZVcDlGcGVMT2NQMXlxb3VSY1F2ellsaFo5Z01zM0RtdnItb1RILTJwbGpKaWtFbmN3V3pVYnkyRGM4V2lRbXVsX2hSbGtPU09qMGhfZVBiRHBNa0d6NWJQbWxrMENkdDQ3eWhHSHhCT3VmNm1TaEZiNndZR3hjaQ?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiowFBVV95cUxNRVQzTGtETDlpLVh5REoxMXJhVmRxTWdSeWpQNDFuNWEwemhhY2xfMW1HTVFvX01hcTdiRjJ0ZHFGN0x5RVVkampPRVpWQVR1QzdVOUJEQWNBLWVNNTJGekNFV1dLYkxoODRxdVJqMl9NS1VRM2ZnRndRZXZKNzNIaGttamlOMWpTVGVRMk1jSmFwUTEtUjVGTDU4dUlWVTBqX2pn0gGoAUFVX3",
-      "at": 1788806278000,
-      "inst": [
-        "EUR/USD"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788806278000,
-      "why": "Diplomatic freeze unclear for EUR direction."
     }
   ],
   "sources": [
@@ -2735,7 +2736,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-08T04:58:39.365Z",
-  "headlinesAt": "2026-09-08T04:58:39.365Z",
-  "updatedAt": "2026-09-08T04:58:39.365Z"
+  "calendarAt": "2026-09-08T05:01:39.708Z",
+  "headlinesAt": "2026-09-08T05:01:39.708Z",
+  "updatedAt": "2026-09-08T05:01:39.708Z"
 }
