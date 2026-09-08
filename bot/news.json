@@ -637,7 +637,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788873174000,
-      "_kind": null
+      "_kind": null,
+      "why": "General premarket movers list, no clear direction."
     },
     {
       "title": "Zelenskyy Says U.S. Is Exploring Russia-Ukraine De-escalation Steps. Moscow Is Striking Kyiv Again. - International Business Times",
@@ -658,7 +659,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788872960000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "De-escalation hopes boost gold, oil unclear."
     },
     {
       "title": "Monday’s insider trading: No major buys or sells disclosed",
@@ -686,7 +691,26 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788872436000,
-      "_kind": null
+      "_kind": null,
+      "why": "Index reconstitution news, no clear market direction."
+    },
+    {
+      "title": "Crypto Fear and Greed Hit 74 While Bitcoin Trades Under $80,000. Is the Market Ahead of Itself?",
+      "link": "https://finance.yahoo.com/markets/crypto/articles/crypto-fear-greed-hit-74-130008554.html",
+      "source": "Yahoo Finance",
+      "at": 1788872408000,
+      "inst": [
+        "BTC/USDT"
+      ],
+      "ccy": [
+        "BTC"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788872408000,
+      "_kind": null,
+      "why": "High greed but price under $80k, mixed signals."
     },
     {
       "title": "Crude oil nears $100: Key moves investors should make if energy prices keep rising",
@@ -704,7 +728,12 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1788871917000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Oil nears $100, implies rising prices."
     },
     {
       "title": "Arizona Gold & Silver reports broad gold mineralization in three Perry Zone infill holes",
@@ -723,7 +752,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788872160000,
-      "_kind": null
+      "_kind": null,
+      "why": "Company-specific news, no clear macro direction."
     },
     {
       "title": "Canadian Dollar: Tariffs boost role as funding currency – TD Securities - FXStreet",
@@ -741,7 +771,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788871944000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USD/CAD": "down"
+      },
+      "why": "CAD as funding currency implies CAD strength."
     },
     {
       "title": "Brent Crude Oil Moves Above $100 for the First Time in 3 Months",
@@ -759,7 +793,12 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1788871917000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Brent moves above $100, bullish for oil."
     },
     {
       "title": "Top European Utilities Stocks: UBS Favors These 3 Names Right Now",
@@ -774,7 +813,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1788870638000,
-      "_kind": null
+      "_kind": null,
+      "why": "Specific stock picks, no clear index direction."
     },
     {
       "title": "Billionaire David Tepper Just Bought These 2 Artificial Intelligence (AI) Stocks That Wall Street Thinks Could Soar by 50% or More",
@@ -789,6 +829,20 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1788871801000,
+      "_kind": null,
+      "why": "Specific stock buys, no clear index direction."
+    },
+    {
+      "title": "Solaris Energy Infrastructure Shares Rise After Raising 2026 EBITDA Guidance",
+      "link": "https://finance.yahoo.com/energy/articles/solaris-energy-infrastructure-shares-rise-124950619.html",
+      "source": "Yahoo Finance",
+      "at": 1788871790000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 1,
+      "srcs": 1,
+      "firstAt": 1788871790000,
       "_kind": null
     },
     {
@@ -806,7 +860,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788871780000,
-      "_kind": null
+      "_kind": null,
+      "why": "Comparative question, no clear directional bias."
     },
     {
       "title": "Baltic dry bulk freight index edges up on capesize strength",
@@ -849,7 +904,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788871668000,
-      "_kind": null
+      "_kind": null,
+      "why": "Business deal, no clear price direction."
     },
     {
       "title": "Why the Dow is being dragged down by a Swiss company’s bad news",
@@ -869,7 +925,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788871620000,
-      "_kind": null
+      "dir": {
+        "US500": "down",
+        "US30": "down"
+      },
+      "why": "Dow dragged down by bad news."
     },
     {
       "title": "HSBC lifts S&P 500 year-end target",
@@ -884,7 +944,10 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788871594000,
-      "_kind": null
+      "dir": {
+        "US500": "up"
+      },
+      "why": "HSBC lifts S&P 500 target, bullish."
     },
     {
       "title": "Canada begins collecting ‘dollar-for-dollar’ tariffs on U.S. goods - Scripps News",
@@ -903,7 +966,10 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1788870202000,
-      "_kind": null
+      "dir": {
+        "USD/CAD": "down"
+      },
+      "why": "Tariffs on US goods hurt USD, help CAD."
     },
     {
       "title": "U.S.-Canada tariff escalation: 4 sectors most exposed to the trade shock",
@@ -986,22 +1052,6 @@
       "rel": 1,
       "srcs": 1,
       "firstAt": 1788871296000
-    },
-    {
-      "title": "Strategy Now Owns 845,050 Bitcoin After Paying $80,300 a Coin for the Latest 4,603. Is Saylor Back?",
-      "link": "https://finance.yahoo.com/markets/crypto/articles/strategy-now-owns-845-050-123903548.html",
-      "source": "Yahoo Finance",
-      "at": 1788871143000,
-      "inst": [
-        "BTC/USDT"
-      ],
-      "ccy": [
-        "BTC"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788871143000
     },
     {
       "title": "Stock Market Today: Dow Slides 400 Points On Continued U.S.-Iran Attacks; Oil Prices Jump Again (Live Coverage)",
@@ -2255,28 +2305,6 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1788861060000
-    },
-    {
-      "title": "Saudi Arabia says 73 wounded as Houthis attack civilian and energy sites - Al Jazeera",
-      "link": "https://news.google.com/rss/articles/CBMirwFBVV95cUxNelpMMWdSSTBNZG5rSnpCMmk5MnVUNGNIR1lvVTQ0X20zUFFIYUdheDN0QzFoRm15VGdmNmlvUi1rUHRJWkRqMXdPTFJwQ3FzUTFPWlpPNGFtNjI5UGE0U1c3azQyanhLdTdvMTZXcGJSYXMzVWczU0pwUU5GLXcxOXZ3dGpuMUplbm9NRzZuV0ZuUGV2SnB5OERyRXVENHpXNWxtSFk1SFpEazFBdVVV0gG0AUFVX3lxTE81M3laVXFBWllCdmJvOFZhQ2J1TjlPVFpNRzdGa2xLNktBSUhJYjlHYU9CLWlaVFNCNmMwOXRZd2doTU9UWTdxV1hZQ2FQWVFSUlBzYVVVX3hWaFNCRXJSRHY0TWc2aFkxNk96TUhwTi1POGdQNlZvTkd4Z3IxeU8xWmpoNmdFVTd3QzUyR3hxUnRjYUFQeGZoQ3FOa0pUWlhhWEVCLTNGRVlJaVdnTFdzUGZ3Rg?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMirwFBVV95cUxNelpMMWdSSTBNZG5rSnpCMmk5MnVUNGNIR1lvVTQ0X20zUFFIYUdheDN0QzFoRm15VGdmNmlvUi1rUHRJWkRqMXdPTFJwQ3FzUTFPWlpPNGFtNjI5UGE0U1c3azQyanhLdTdvMTZXcGJSYXMzVWczU0pwUU5GLXcxOXZ3dGpuMUplbm9NRzZuV0ZuUGV2SnB5OERyRXVENHpXNWxtSFk1SFpEaz",
-      "at": 1788863400000,
-      "inst": [
-        "USD/CHF",
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "CHF",
-        "XAU",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 3,
-      "firstAt": 1788863400000
     }
   ],
   "sources": [
@@ -2299,10 +2327,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-08T13:16:27.814Z",
-  "headlinesAt": "2026-09-08T13:16:27.814Z",
-  "updatedAt": "2026-09-08T13:16:27.814Z"
+  "calendarAt": "2026-09-08T13:17:42.983Z",
+  "headlinesAt": "2026-09-08T13:17:42.983Z",
+  "updatedAt": "2026-09-08T13:17:42.983Z"
 }
