@@ -297,8 +297,7 @@
       "sev": 1,
       "rel": 1,
       "srcs": 1,
-      "firstAt": 1788874501000,
-      "_kind": null
+      "firstAt": 1788874501000
     },
     {
       "title": "If a Stock Market Crash Is Coming, History Says You'll Survive If You Make This Move (Hint: It Does Not Mean Going to Cash)",
@@ -310,8 +309,7 @@
       "sev": 1,
       "rel": 1,
       "srcs": 1,
-      "firstAt": 1788874500000,
-      "_kind": null
+      "firstAt": 1788874500000
     },
     {
       "title": "S&P 500 and Dow slip at the open amid elevated Fed rate hike bets, oil prices",
@@ -342,23 +340,6 @@
         "US500"
       ],
       "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788874380000
-    },
-    {
-      "title": "OPEC+ has lost control of the oil market",
-      "link": "https://finance.yahoo.com/energy/articles/opec-lost-control-oil-market-133300099.html",
-      "source": "Yahoo Finance",
-      "at": 1788874380000,
-      "inst": [
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "OIL"
-      ],
       "sev": 1,
       "rel": 2,
       "srcs": 1,
@@ -448,7 +429,7 @@
       "ccy": [],
       "sev": 1,
       "rel": 2,
-      "srcs": 1,
+      "srcs": 2,
       "firstAt": 1788873174000
     },
     {
@@ -827,20 +808,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788868643000
-    },
-    {
-      "title": "AI Stocks: OpenAI Declares The 'AGI Era' Is Here Amid IPO Fervor",
-      "link": "https://www.investors.com/news/technology/ai-stocks-artificial-intelligence-stocks-sept82026/?src=A00220&yptr=yahoo",
-      "source": "Yahoo Finance",
-      "at": 1788870675000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788870675000
     },
     {
       "title": "Yen Hits 7-Month High as Dollar Falls Ahead of Inflation Data - صحيفة مال",
@@ -1641,6 +1608,46 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1788862980000
+    },
+    {
+      "title": "France and Canada to follow UK in announcing sanctions on Israeli settlements - Middle East Eye",
+      "link": "https://news.google.com/rss/articles/CBMipgFBVV95cUxNUVdZQjUyMVlkVGFMZkNiWkIxWi04aTg3NjFZaFViODE4LTgwV0NoRldnRnNQajdqUGVUWFdwdGhaVl9BdkduZ2FKUzh4d19QdzdKZk9JemNKMHVDdGpEek9wU053QW1RbFBJQlgxSWpXMlNqejlQOThtdHRqRjFiZ1JHb2w1dlNfWHhSdnBFaTdkaDJCSGVWMWdDaVhaV1AwakNFWlZn?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMipgFBVV95cUxNUVdZQjUyMVlkVGFMZkNiWkIxWi04aTg3NjFZaFViODE4LTgwV0NoRldnRnNQajdqUGVUWFdwdGhaVl9BdkduZ2FKUzh4d19QdzdKZk9JemNKMHVDdGpEek9wU053QW1RbFBJQlgxSWpXMlNqejlQOThtdHRqRjFiZ1JHb2w1dlNfWHhSdnBFaTdkaDJCSGVWMWdDaVhaV1AwakNFWlZn?oc=5\"",
+      "at": 1788864490000,
+      "inst": [
+        "USD/CAD",
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "CAD",
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1788864490000
+    },
+    {
+      "title": "London shares inch lower as oil rally fuels inflation concerns - Reuters",
+      "link": "https://news.google.com/rss/articles/CBMipwFBVV95cUxQbGdaQ0NIYTJ1T2swamN3WUpXeXU0OE11YVZ0VS1OMDBKbzN0SmFta0t0bVo5X3dFbGVGZzBzbExwOXcydllBSnI0MnI3WHJrQkc2dERzV2dYME5lVjQ5RVdwWkNvdlVLejlyYlpZMWdmTFZOQktyZ095YkI3aGM4aktQRm5oN1p1UV9WdzByS0xoUUd1UkNIb2g0cXVJOWhjYTdqaGl3bw?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMipwFBVV95cUxQbGdaQ0NIYTJ1T2swamN3WUpXeXU0OE11YVZ0VS1OMDBKbzN0SmFta0t0bVo5X3dFbGVGZzBzbExwOXcydllBSnI0MnI3WHJrQkc2dERzV2dYME5lVjQ5RVdwWkNvdlVLejlyYlpZMWdmTFZOQktyZ095YkI3aGM4aktQRm5oN1p1UV9WdzByS0xoUUd1UkNIb2g0cXVJOWhjYTdqaGl3bw?oc=",
+      "at": 1788864345000,
+      "inst": [
+        "USOIL"
+      ],
+      "ccy": [
+        "OIL",
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788864345000
     }
   ],
   "sources": [
@@ -1667,6 +1674,6 @@
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-08T14:04:40.466Z",
-  "updatedAt": "2026-09-08T14:04:40.466Z"
+  "headlinesAt": "2026-09-08T14:06:10.549Z",
+  "updatedAt": "2026-09-08T14:06:10.549Z"
 }
