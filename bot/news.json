@@ -2,6 +2,20 @@
   "calendar": [],
   "headlines": [
     {
+      "title": "Qualcomm’s stock climbs as Amazon chip deal offers investors much-needed good news",
+      "link": "https://www.marketwatch.com/story/qualcomms-stock-climbs-as-amazon-chip-deal-offers-investors-some-much-needed-good-news-5b6a95ca?mod=mw_rss_topstories",
+      "source": "MarketWatch",
+      "desc": "Qualcomm shares have missed out on the chip sector’s rally this year — but the company is now working on various chip projects with Amazon.",
+      "at": 1788903120000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 1,
+      "srcs": 1,
+      "firstAt": 1788903120000,
+      "_kind": null
+    },
+    {
       "title": "Bombardier’s stock drops as the U.S.-Canada trade war intensifies. Here’s what Trump is targeting next.",
       "link": "https://www.marketwatch.com/story/bombardiers-stock-drops-as-the-u-s-canada-trade-war-intensifies-heres-what-trump-may-target-next-b389065e?mod=mw_rss_topstories",
       "source": "MarketWatch",
@@ -19,7 +33,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788902580000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USD/CAD": "down",
+        "XAU/USD": "up"
+      },
+      "why": "Trade war weakens CAD, boosts gold"
     },
     {
       "title": "U.S. strikes Iranian tankers after more attempted attacks on Navy warship - NBC News",
@@ -40,7 +59,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788900878000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Geopolitical risk boosts gold and oil"
     },
     {
       "title": "US hits remaining parts of Iran's aviation sector with sanctions in latest move to isolate Tehran - AP News",
@@ -61,7 +86,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788901800000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Sanctions increase geopolitical risk premium"
     },
     {
       "title": "S&P revises VF Corp. outlook to positive on lower leverage",
@@ -76,7 +107,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788901764000,
-      "_kind": null
+      "_kind": null,
+      "why": "Single stock news, index impact unclear"
     },
     {
       "title": "Trump administration sanctions all Iranian airlines in aviation crackdown - Middle East Eye",
@@ -96,7 +128,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 3,
-      "firstAt": 1788898660000
+      "firstAt": 1788898660000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Sanctions heighten geopolitical uncertainty"
     },
     {
       "title": "Stocks making the biggest moves after hours: ServiceTitan, Mission Produce, Chime Financial and more",
@@ -111,7 +149,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788900992000
+      "firstAt": 1788900992000,
+      "why": "Mixed individual stock moves, no index direction"
     },
     {
       "title": "China August inflation seen rebounding as trade data flags demand gap",
@@ -134,7 +173,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788900933000
+      "firstAt": 1788900933000,
+      "why": "China data has limited direct FX impact"
     },
     {
       "title": "US strikes Iranian tankers after more attempted missile attacks on Navy warship - Boston Herald",
@@ -154,7 +194,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788900878000
+      "firstAt": 1788900878000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Military strikes drive risk-off sentiment"
     },
     {
       "title": "Stocks stumble after Labor Day. This year’s easy gains may be over.",
@@ -171,7 +217,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788900840000
+      "firstAt": 1788900840000,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Rate hike fears weigh on stocks"
     },
     {
       "title": "Trump directs GSA to take steps to remove Canadian goods from agency lists",
@@ -185,7 +235,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788900519000
+      "firstAt": 1788900519000,
+      "dir": {
+        "USD/CAD": "up"
+      },
+      "why": "Trade restrictions weaken Canadian dollar"
     },
     {
       "title": "Police bodycam captures Russian missile strike on Kyiv",
@@ -205,7 +259,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788900232000
+      "firstAt": 1788900232000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "War escalation boosts safe havens and oil"
     },
     {
       "title": "investingLive Americas FX news wrap 8 Sept: USD mixed, yields rise. Trader await inflation data.",
@@ -228,7 +288,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788899985000
+      "firstAt": 1788899985000,
+      "why": "Mixed signals, no clear directional bias"
     },
     {
       "title": "11 European nations to sanction Israeli settlements in the West Bank - Euronews.com",
@@ -248,7 +309,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788897453000
+      "firstAt": 1788897453000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Sanctions increase geopolitical risk premium"
     },
     {
       "title": "After British Sanctions on Israel, Jerusalem Must Counter Britain in the South Atlantic - Middle East Forum",
@@ -269,7 +336,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 3,
-      "firstAt": 1788897293000
+      "firstAt": 1788897293000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up"
+      },
+      "why": "Geopolitical tension supports gold and oil"
     },
     {
       "title": "U.S. stocks lower at close of trade; Dow Jones Industrial Average down 1.17%",
@@ -284,7 +356,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788899458000
+      "firstAt": 1788899458000,
+      "dir": {
+        "US500": "down",
+        "US30": "down"
+      },
+      "why": "Stocks lower, Dow down significantly"
     },
     {
       "title": "Canada stocks lower at close of trade; S&P/TSX Composite down 1.07%",
@@ -353,19 +430,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788897293000
-    },
-    {
-      "title": "Novartis’s failed trial for cholesterol drug leads to broad biopharma stock selloff",
-      "link": "https://www.marketwatch.com/story/novartiss-failed-trial-for-cholesterol-drug-leads-to-broad-biopharma-selloff-2d487746?mod=mw_rss_topstories",
-      "source": "MarketWatch",
-      "desc": "Along with several other drugmakers, Novartis has bet that lowering Lp(a) will cut the risk of sometimes fatal cardiovascular events.",
-      "at": 1788898980000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1788898980000
     },
     {
       "title": "Iran-backed Houthis attack four Saudi cities in expansion of Middle East war, 73 hurt - Reuters",
@@ -1753,10 +1817,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-08T21:34:25.932Z",
-  "updatedAt": "2026-09-08T21:34:25.932Z"
+  "headlinesAt": "2026-09-08T21:35:43.971Z",
+  "updatedAt": "2026-09-08T21:35:43.971Z"
 }
