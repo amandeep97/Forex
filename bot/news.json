@@ -1,35 +1,679 @@
 {
-  "calendar": [],
-  "headlines": [
+  "calendar": [
     {
-      "title": "Dollar falls into 152 yen zone amid BOJ rate hike speculation - 毎日新聞",
-      "link": "https://news.google.com/rss/articles/CBMic0FVX3lxTE5aQ1M4SmMtcGNsUzVIcHBSUGFhb2hES0NsOUJDVDNVZUFuRF9GN2VPVUhsWEpPb0xBRGZCVGt6eHNSWGt2TnNHamJhbDlZRlFBSnJWN0lFZzNCdUhNZVBrUE1xSUI2NzA0aXh1M3NHb3dRQk0?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMic0FVX3lxTE5aQ1M4SmMtcGNsUzVIcHBSUGFhb2hES0NsOUJDVDNVZUFuRF9GN2VPVUhsWEpPb0xBRGZCVGt6eHNSWGt2TnNHamJhbDlZRlFBSnJWN0lFZzNCdUhNZVBrUE1xSUI2NzA0aXh1M3NHb3dRQk0?oc=5\" target=\"_blank\">Dollar falls into 152 yen zone amid BOJ rate hike sp",
-      "at": 1788853279000,
-      "inst": [
-        "USD/JPY"
-      ],
-      "ccy": [
-        "USD",
-        "JPY"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788853279000,
-      "_kind": null,
-      "dir": {
-        "USD/JPY": "down"
-      },
-      "why": "Dollar falls against yen"
+      "title": "Sentix Investor Confidence",
+      "country": "EUR",
+      "impact": "low",
+      "at": 1788769800000,
+      "forecast": "2.1",
+      "previous": "0.9",
+      "actual": ""
     },
+    {
+      "title": "Final Employment Change q/q",
+      "country": "EUR",
+      "impact": "low",
+      "at": 1788771600000,
+      "forecast": "0.1%",
+      "previous": "0.1%",
+      "actual": ""
+    },
+    {
+      "title": "Revised GDP q/q",
+      "country": "EUR",
+      "impact": "low",
+      "at": 1788771600000,
+      "forecast": "0.4%",
+      "previous": "0.4%",
+      "actual": ""
+    },
+    {
+      "title": "Bank Holiday",
+      "country": "CAD",
+      "impact": "holiday",
+      "at": 1788782400000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "Bank Holiday",
+      "country": "USD",
+      "impact": "holiday",
+      "at": 1788782400000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "Manufacturing Sales q/q",
+      "country": "NZD",
+      "impact": "low",
+      "at": 1788821100000,
+      "forecast": "",
+      "previous": "2.8%",
+      "actual": ""
+    },
+    {
+      "title": "BRC Retail Sales Monitor y/y",
+      "country": "GBP",
+      "impact": "low",
+      "at": 1788822060000,
+      "forecast": "1.2%",
+      "previous": "1.0%",
+      "actual": ""
+    },
+    {
+      "title": "Average Cash Earnings y/y",
+      "country": "JPY",
+      "impact": "low",
+      "at": 1788823800000,
+      "forecast": "3.8%",
+      "previous": "3.4%",
+      "actual": ""
+    },
+    {
+      "title": "Bank Lending y/y",
+      "country": "JPY",
+      "impact": "low",
+      "at": 1788825000000,
+      "forecast": "5.5%",
+      "previous": "5.4%",
+      "actual": ""
+    },
+    {
+      "title": "Current Account",
+      "country": "JPY",
+      "impact": "low",
+      "at": 1788825000000,
+      "forecast": "2.48T",
+      "previous": "1.40T",
+      "actual": ""
+    },
+    {
+      "title": "Final GDP Price Index y/y",
+      "country": "JPY",
+      "impact": "low",
+      "at": 1788825000000,
+      "forecast": "2.6%",
+      "previous": "2.6%",
+      "actual": ""
+    },
+    {
+      "title": "Final GDP q/q",
+      "country": "JPY",
+      "impact": "low",
+      "at": 1788825000000,
+      "forecast": "0.4%",
+      "previous": "0.3%",
+      "actual": ""
+    },
+    {
+      "title": "Westpac Consumer Sentiment",
+      "country": "AUD",
+      "impact": "low",
+      "at": 1788827400000,
+      "forecast": "",
+      "previous": "6.0%",
+      "actual": ""
+    },
+    {
+      "title": "NAB Business Confidence",
+      "country": "AUD",
+      "impact": "low",
+      "at": 1788831000000,
+      "forecast": "",
+      "previous": "-6",
+      "actual": ""
+    },
+    {
+      "title": "Trade Balance",
+      "country": "CNY",
+      "impact": "low",
+      "at": 1788834900000,
+      "forecast": "805B",
+      "previous": "767B",
+      "actual": ""
+    },
+    {
+      "title": "USD-Denominated Trade Balance",
+      "country": "CNY",
+      "impact": "low",
+      "at": 1788834900000,
+      "forecast": "118.6B",
+      "previous": "112.5B",
+      "actual": ""
+    },
+    {
+      "title": "RBA Assist Gov Hunter Speaks",
+      "country": "AUD",
+      "impact": "low",
+      "at": 1788837600000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "Economy Watchers Sentiment",
+      "country": "JPY",
+      "impact": "low",
+      "at": 1788843600000,
+      "forecast": "46.3",
+      "previous": "45.7",
+      "actual": ""
+    },
+    {
+      "title": "German Trade Balance",
+      "country": "EUR",
+      "impact": "low",
+      "at": 1788847200000,
+      "forecast": "16.0B",
+      "previous": "15.4B",
+      "actual": ""
+    },
+    {
+      "title": "French Trade Balance",
+      "country": "EUR",
+      "impact": "low",
+      "at": 1788849900000,
+      "forecast": "-6.0B",
+      "previous": "-5.8B",
+      "actual": ""
+    },
+    {
+      "title": "RBA Deputy Gov Hauser Speaks",
+      "country": "AUD",
+      "impact": "low",
+      "at": 1788859800000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "NFIB Small Business Index",
+      "country": "USD",
+      "impact": "low",
+      "at": 1788861600000,
+      "forecast": "99.4",
+      "previous": "99.8",
+      "actual": ""
+    },
+    {
+      "title": "Monetary Policy Report Hearings",
+      "country": "GBP",
+      "impact": "medium",
+      "at": 1788873300000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "Consumer Credit m/m",
+      "country": "USD",
+      "impact": "low",
+      "at": 1788894000000,
+      "forecast": "11.9B",
+      "previous": "14.2B",
+      "actual": ""
+    },
+    {
+      "title": "M2 Money Stock y/y",
+      "country": "JPY",
+      "impact": "low",
+      "at": 1788911400000,
+      "forecast": "2.2%",
+      "previous": "2.2%",
+      "actual": ""
+    },
+    {
+      "title": "CPI y/y",
+      "country": "CNY",
+      "impact": "low",
+      "at": 1788917400000,
+      "forecast": "0.8%",
+      "previous": "0.5%",
+      "actual": ""
+    },
+    {
+      "title": "PPI y/y",
+      "country": "CNY",
+      "impact": "low",
+      "at": 1788917400000,
+      "forecast": "3.6%",
+      "previous": "3.5%",
+      "actual": ""
+    },
+    {
+      "title": "Prelim Machine Tool Orders y/y",
+      "country": "JPY",
+      "impact": "low",
+      "at": 1788933600000,
+      "forecast": "",
+      "previous": "50.4%",
+      "actual": ""
+    },
+    {
+      "title": "French Industrial Production m/m",
+      "country": "EUR",
+      "impact": "low",
+      "at": 1788936300000,
+      "forecast": "0.2%",
+      "previous": "0.1%",
+      "actual": ""
+    },
+    {
+      "title": "German 10-y Bond Auction",
+      "country": "EUR",
+      "impact": "low",
+      "at": 1788946920000,
+      "forecast": "",
+      "previous": "3.26|1.1",
+      "actual": ""
+    },
+    {
+      "title": "ADP Weekly Employment Change",
+      "country": "USD",
+      "impact": "low",
+      "at": 1788956100000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "ADP Weekly Employment Change",
+      "country": "USD",
+      "impact": "low",
+      "at": 1788956160000,
+      "forecast": "",
+      "previous": "11.8K",
+      "actual": ""
+    },
+    {
+      "title": "ECB President Lagarde Speaks",
+      "country": "EUR",
+      "impact": "medium",
+      "at": 1788973200000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "German Buba President Nagel Speaks",
+      "country": "EUR",
+      "impact": "low",
+      "at": 1788973200000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "10-y Bond Auction",
+      "country": "USD",
+      "impact": "low",
+      "at": 1788973260000,
+      "forecast": "",
+      "previous": "4.68|2.5",
+      "actual": ""
+    },
+    {
+      "title": "API Weekly Statistical Bulletin",
+      "country": "USD",
+      "impact": "low",
+      "at": 1788985800000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "RICS House Price Balance",
+      "country": "GBP",
+      "impact": "low",
+      "at": 1788994860000,
+      "forecast": "-30%",
+      "previous": "-30%",
+      "actual": ""
+    },
+    {
+      "title": "MI Inflation Expectations",
+      "country": "AUD",
+      "impact": "low",
+      "at": 1789002000000,
+      "forecast": "",
+      "previous": "4.9%",
+      "actual": ""
+    },
+    {
+      "title": "German Final CPI m/m",
+      "country": "EUR",
+      "impact": "low",
+      "at": 1789020000000,
+      "forecast": "0.2%",
+      "previous": "0.2%",
+      "actual": ""
+    },
+    {
+      "title": "Italian Industrial Production m/m",
+      "country": "EUR",
+      "impact": "low",
+      "at": 1789027200000,
+      "forecast": "0.3%",
+      "previous": "-1.0%",
+      "actual": ""
+    },
+    {
+      "title": "Main Refinancing Rate",
+      "country": "EUR",
+      "impact": "high",
+      "at": 1789042500000,
+      "forecast": "2.65%",
+      "previous": "2.40%",
+      "actual": ""
+    },
+    {
+      "title": "Monetary Policy Statement",
+      "country": "EUR",
+      "impact": "high",
+      "at": 1789042500000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "Core PPI m/m",
+      "country": "USD",
+      "impact": "high",
+      "at": 1789043400000,
+      "forecast": "0.3%",
+      "previous": "0.2%",
+      "actual": ""
+    },
+    {
+      "title": "PPI m/m",
+      "country": "USD",
+      "impact": "high",
+      "at": 1789043400000,
+      "forecast": "0.4%",
+      "previous": "0.0%",
+      "actual": ""
+    },
+    {
+      "title": "Unemployment Claims",
+      "country": "USD",
+      "impact": "medium",
+      "at": 1789043400000,
+      "forecast": "205K",
+      "previous": "206K",
+      "actual": ""
+    },
+    {
+      "title": "ECB Press Conference",
+      "country": "EUR",
+      "impact": "high",
+      "at": 1789044300000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "Existing Home Sales",
+      "country": "USD",
+      "impact": "low",
+      "at": 1789048800000,
+      "forecast": "3.98M",
+      "previous": "4.06M",
+      "actual": ""
+    },
+    {
+      "title": "Final Wholesale Inventories m/m",
+      "country": "USD",
+      "impact": "low",
+      "at": 1789048800000,
+      "forecast": "1.2%",
+      "previous": "1.3%",
+      "actual": ""
+    },
+    {
+      "title": "Natural Gas Storage",
+      "country": "USD",
+      "impact": "low",
+      "at": 1789050600000,
+      "forecast": "",
+      "previous": "30B",
+      "actual": ""
+    },
+    {
+      "title": "Crude Oil Inventories",
+      "country": "USD",
+      "impact": "low",
+      "at": 1789056000000,
+      "forecast": "",
+      "previous": "-4.5M",
+      "actual": ""
+    },
+    {
+      "title": "30-y Bond Auction",
+      "country": "USD",
+      "impact": "low",
+      "at": 1789059660000,
+      "forecast": "",
+      "previous": "5.22|2.4",
+      "actual": ""
+    },
+    {
+      "title": "BusinessNZ Manufacturing Index",
+      "country": "NZD",
+      "impact": "low",
+      "at": 1789079400000,
+      "forecast": "",
+      "previous": "54.3",
+      "actual": ""
+    },
+    {
+      "title": "BSI Manufacturing Index",
+      "country": "JPY",
+      "impact": "low",
+      "at": 1789084200000,
+      "forecast": "2.5",
+      "previous": "-1.8",
+      "actual": ""
+    },
+    {
+      "title": "PPI y/y",
+      "country": "JPY",
+      "impact": "low",
+      "at": 1789084200000,
+      "forecast": "7.4%",
+      "previous": "7.2%",
+      "actual": ""
+    },
+    {
+      "title": "GDP m/m",
+      "country": "GBP",
+      "impact": "high",
+      "at": 1789106400000,
+      "forecast": "0.0%",
+      "previous": "0.3%",
+      "actual": ""
+    },
+    {
+      "title": "Construction Output m/m",
+      "country": "GBP",
+      "impact": "low",
+      "at": 1789106400000,
+      "forecast": "0.1%",
+      "previous": "-0.1%",
+      "actual": ""
+    },
+    {
+      "title": "Goods Trade Balance",
+      "country": "GBP",
+      "impact": "low",
+      "at": 1789106400000,
+      "forecast": "-22.6B",
+      "previous": "-23.0B",
+      "actual": ""
+    },
+    {
+      "title": "Index of Services 3m/3m",
+      "country": "GBP",
+      "impact": "low",
+      "at": 1789106400000,
+      "forecast": "0.5%",
+      "previous": "0.5%",
+      "actual": ""
+    },
+    {
+      "title": "Industrial Production m/m",
+      "country": "GBP",
+      "impact": "low",
+      "at": 1789106400000,
+      "forecast": "-0.2%",
+      "previous": "-0.2%",
+      "actual": ""
+    },
+    {
+      "title": "Manufacturing Production m/m",
+      "country": "GBP",
+      "impact": "low",
+      "at": 1789106400000,
+      "forecast": "0.2%",
+      "previous": "-0.5%",
+      "actual": ""
+    },
+    {
+      "title": "SECO Consumer Climate",
+      "country": "CHF",
+      "impact": "low",
+      "at": 1789110000000,
+      "forecast": "-33",
+      "previous": "-35",
+      "actual": ""
+    },
+    {
+      "title": "Italian Quarterly Unemployment Rate",
+      "country": "EUR",
+      "impact": "low",
+      "at": 1789113600000,
+      "forecast": "5.4%",
+      "previous": "5.3%",
+      "actual": ""
+    },
+    {
+      "title": "Consumer Inflation Expectations",
+      "country": "GBP",
+      "impact": "low",
+      "at": 1789115400000,
+      "forecast": "",
+      "previous": "4.0%",
+      "actual": ""
+    },
+    {
+      "title": "SNB Chairman Schlegel Speaks",
+      "country": "CHF",
+      "impact": "medium",
+      "at": 1789118100000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "Core CPI m/m",
+      "country": "USD",
+      "impact": "high",
+      "at": 1789129800000,
+      "forecast": "0.2%",
+      "previous": "0.2%",
+      "actual": ""
+    },
+    {
+      "title": "Core CPI y/y",
+      "country": "USD",
+      "impact": "high",
+      "at": 1789129800000,
+      "forecast": "2.4%",
+      "previous": "2.5%",
+      "actual": ""
+    },
+    {
+      "title": "CPI m/m",
+      "country": "USD",
+      "impact": "high",
+      "at": 1789129800000,
+      "forecast": "0.4%",
+      "previous": "0.1%",
+      "actual": ""
+    },
+    {
+      "title": "CPI y/y",
+      "country": "USD",
+      "impact": "high",
+      "at": 1789129800000,
+      "forecast": "3.4%",
+      "previous": "3.4%",
+      "actual": ""
+    },
+    {
+      "title": "ECB President Lagarde Speaks",
+      "country": "EUR",
+      "impact": "medium",
+      "at": 1789135200000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "Prelim UoM Consumer Sentiment",
+      "country": "USD",
+      "impact": "medium",
+      "at": 1789135200000,
+      "forecast": "51.0",
+      "previous": "51.0",
+      "actual": ""
+    },
+    {
+      "title": "Prelim UoM Inflation Expectations",
+      "country": "USD",
+      "impact": "medium",
+      "at": 1789135200000,
+      "forecast": "",
+      "previous": "4.3%",
+      "actual": ""
+    },
+    {
+      "title": "Federal Budget Balance",
+      "country": "USD",
+      "impact": "low",
+      "at": 1789149600000,
+      "forecast": "-221.1B",
+      "previous": "-432.3B",
+      "actual": ""
+    },
+    {
+      "title": "ECB President Lagarde Speaks",
+      "country": "EUR",
+      "impact": "medium",
+      "at": 1789198200000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "BRICS Summit",
+      "country": "All",
+      "impact": "low",
+      "at": 1789200900000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    }
+  ],
+  "headlines": [
     {
       "title": "Bessent’s Yen Bet Is Paying Off, For Now - WSJ",
       "link": "https://news.google.com/rss/articles/CBMirAFBVV95cUxPSW9NdE4tbmFYaUd5UEhkTlppaTlERENhYUFNcmtXTVpGbE5KdlBCNTN3MDFzbVlTZHhjTDZackhmQUQzQXlEVU5fMlp5WFh3a2hBSFlNU2FnbUE4RFZjX3RTX3NlV1hQWFJqU1gzeEV6Y3h6RWxBVG56VF9WQkJGYzEwSWZndjhwWGhFTEw0alJBRFJLbFpIM013VW5TcmtOTnFObGNxQlBLWVhn?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMirAFBVV95cUxPSW9NdE4tbmFYaUd5UEhkTlppaTlERENhYUFNcmtXTVpGbE5KdlBCNTN3MDFzbVlTZHhjTDZackhmQUQzQXlEVU5fMlp5WFh3a2hBSFlNU2FnbUE4RFZjX3RTX3NlV1hQWFJqU1gzeEV6Y3h6RWxBVG56VF9WQkJGYzEwSWZndjhwWGhFTEw0alJBRFJLbFpIM013VW5TcmtOTnFObGNxQlBLWV",
-      "at": 1788853275000,
+      "at": 1788853380000,
       "inst": [
         "USD/JPY"
       ],
@@ -40,9 +684,27 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788853275000,
-      "_kind": null,
-      "why": "Ambiguous commentary on yen performance"
+      "firstAt": 1788853380000,
+      "_kind": null
+    },
+    {
+      "title": "Dollar falls into 152 yen zone amid BOJ rate hike speculation - 毎日新聞",
+      "link": "https://news.google.com/rss/articles/CBMic0FVX3lxTE5aQ1M4SmMtcGNsUzVIcHBSUGFhb2hES0NsOUJDVDNVZUFuRF9GN2VPVUhsWEpPb0xBRGZCVGt6eHNSWGt2TnNHamJhbDlZRlFBSnJWN0lFZzNCdUhNZVBrUE1xSUI2NzA0aXh1M3NHb3dRQk0?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMic0FVX3lxTE5aQ1M4SmMtcGNsUzVIcHBSUGFhb2hES0NsOUJDVDNVZUFuRF9GN2VPVUhsWEpPb0xBRGZCVGt6eHNSWGt2TnNHamJhbDlZRlFBSnJWN0lFZzNCdUhNZVBrUE1xSUI2NzA0aXh1M3NHb3dRQk0?oc=5\" target=\"_blank\">Dollar falls into 152 yen zone amid BOJ rate hike sp",
+      "at": 1788853301000,
+      "inst": [
+        "USD/JPY"
+      ],
+      "ccy": [
+        "USD",
+        "JPY"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788853301000,
+      "_kind": null
     },
     {
       "title": "Russia Launches Large Attack on Kyiv Hours After Kushner, Witkoff Leave - Newsweek",
@@ -62,14 +724,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788851250000,
-      "_kind": null,
-      "dir": {
-        "XAU/USD": "up",
-        "USOIL": "up",
-        "UKOIL": "up"
-      },
-      "why": "Geopolitical risk boosts safe havens and oil"
+      "firstAt": 1788851172000,
+      "_kind": null
     },
     {
       "title": "Gold rises ahead of US inflation data release - UA.NEWS",
@@ -88,11 +744,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788852740000,
-      "_kind": null,
-      "dir": {
-        "XAU/USD": "up"
-      },
-      "why": "Gold rises ahead of data"
+      "_kind": null
     },
     {
       "title": "Australia targets social media algorithms with new user-choice rules",
@@ -109,8 +761,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788852673000,
-      "_kind": null,
-      "why": "Regulatory news lacks clear market direction"
+      "_kind": null
     },
     {
       "title": "Goldman ups oil price forecasts as Mideast disruptions seen extending into 2027",
@@ -127,11 +778,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788852468000,
-      "_kind": null,
-      "dir": {
-        "USOIL": "up"
-      },
-      "why": "Goldman raises oil price forecasts"
+      "_kind": null
     },
     {
       "title": "FTSE 100 today: Stocks flat as Hormuz tensions grip energy markets",
@@ -152,11 +799,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788852295000,
-      "_kind": null,
-      "dir": {
-        "USOIL": "up"
-      },
-      "why": "Stocks flat, energy tensions support oil"
+      "_kind": null
     },
     {
       "title": "Russian drone and missile strikes on Ukrainian capital kill 2 people, ending pause for U.S. talks - NBC News",
@@ -176,13 +819,27 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788850092000,
-      "dir": {
-        "XAU/USD": "up",
-        "USOIL": "up",
-        "UKOIL": "up"
-      },
-      "why": "Ukraine strikes boost risk assets"
+      "firstAt": 1788850092000
+    },
+    {
+      "title": "Iran-backed Houthis attack Saudi energy facilities, wounding dozens and sending oil prices higher - Al-Monitor",
+      "link": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxPN0FOQUNrRmdhQ2Q0VHdmQVFGYkVCNk9wSkpxZ2hQdXlVbFUtbWUzaGdycXFLT200S3FhdGRvVXlvUE56SHJNOFlWNXNQN1dsTjFHaWQ3a3lmdkRES0FaQ21DV3FfVXZFTkhBRWlqcUVPdGhKbmlEVVpVNmtiTW9EaHpFREF0TXRHcE5DaEJLdkQxZ3VvN1loeXZWUk5ObGJNSDJJMnlsN3E4TGh6V18wOS1VZzV4ZlgzUjhCQW5VWWk?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiwAFBVV95cUxPN0FOQUNrRmdhQ2Q0VHdmQVFGYkVCNk9wSkpxZ2hQdXlVbFUtbWUzaGdycXFLT200S3FhdGRvVXlvUE56SHJNOFlWNXNQN1dsTjFHaWQ3a3lmdkRES0FaQ21DV3FfVXZFTkhBRWlqcUVPdGhKbmlEVVpVNmtiTW9EaHpFREF0TXRHcE5DaEJLdkQxZ3VvN1loeXZWUk5ObGJNSDJJMnlsN3E4TG",
+      "at": 1788852053000,
+      "inst": [
+        "USOIL",
+        "XAU/USD",
+        "UKOIL"
+      ],
+      "ccy": [
+        "OIL",
+        "XAU"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788850906000
     },
     {
       "title": "European shares dip as higher crude revives inflation worries; Novartis drags",
@@ -200,12 +857,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788851906000,
-      "dir": {
-        "USOIL": "up",
-        "UKOIL": "up"
-      },
-      "why": "Higher crude prices mentioned"
+      "firstAt": 1788851906000
     },
     {
       "title": "Dow futures slip amid Fed hike bets, surging oil",
@@ -223,12 +875,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788851657000,
-      "dir": {
-        "USOIL": "up",
-        "US30": "down"
-      },
-      "why": "Oil surges, Dow futures slip"
+      "firstAt": 1788851657000
     },
     {
       "title": "London Gas Oil surges to highs with overbought RSI: Live levels",
@@ -244,11 +891,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788851466000,
-      "dir": {
-        "USOIL": "up"
-      },
-      "why": "Gas oil surges to highs"
+      "firstAt": 1788851466000
     },
     {
       "title": "Brent Oil nears $101.20 resistance with overbought RSI: Live levels",
@@ -265,12 +908,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788851466000,
-      "dir": {
-        "USOIL": "up",
-        "UKOIL": "up"
-      },
-      "why": "Brent nears resistance, implies strength"
+      "firstAt": 1788851466000
     },
     {
       "title": "Natural Gas stalls below $3 as momentum fades: Live levels",
@@ -284,11 +922,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788851466000,
-      "dir": {
-        "NATGAS": "down"
-      },
-      "why": "Momentum fades, stalls below level"
+      "firstAt": 1788851466000
     },
     {
       "title": "Silver consolidates near $68 resistance: Hourly levels",
@@ -304,8 +938,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788851480000,
-      "why": "Silver consolidates near resistance"
+      "firstAt": 1788851480000
     },
     {
       "title": "Crude Oil WTI overbought at RSI 75.8: Live levels",
@@ -322,12 +955,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788851466000,
-      "dir": {
-        "USOIL": "up",
-        "UKOIL": "up"
-      },
-      "why": "WTI overbought implies recent strength"
+      "firstAt": 1788851466000
     },
     {
       "title": "Gold clings to 38.2% Fib support at $4,451: Live levels",
@@ -441,7 +1069,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788848064000
+      "firstAt": 1788850092000
     },
     {
       "title": "French trade deficit grows larger in July on higher imports again",
@@ -617,27 +1245,7 @@
       "firstAt": 1788848340000
     },
     {
-      "title": "Russian Strikes Kill Two in Kyiv as Ukraine Advances Air Defense Talks - Межа. Новини України.",
-      "link": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE1GWWtjZENteHNzQTlSemtOdjBQc0p5S1M3d0tPSGhkZ2pUeVVwbFpkbmZfaFJybXZXZXZYeHBuNTZFMjlRdTU4cmQwcVltNG1sbExLVzBfa0g1NUZMWGpub0ZGV0F3QVJv?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiaEFVX3lxTE1GWWtjZENteHNzQTlSemtOdjBQc0p5S1M3d0tPSGhkZ2pUeVVwbFpkbmZfaFJybXZXZXZYeHBuNTZFMjlRdTU4cmQwcVltNG1sbExLVzBfa0g1NUZMWGpub0ZGV0F3QVJv?oc=5\" target=\"_blank\">Russian Strikes Kill Two in Kyiv as Ukraine Advances Air Defense Ta",
-      "at": 1788848064000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788845700000
-    },
-    {
-      "title": "Houthi attacks in Saudi Arabia disrupt energy facilities, wound dozens - jpost.com",
+      "title": "Houthi attacks in Saudi Arabia disrupt energy facilities, wound dozens - The Jerusalem Post",
       "link": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE9IRTc0R2dFUFIyaHNXbmZsNk1LMmpEZk43cEhNLU5RWmtwYmpzSHRwNXZGWG10ZlJyMUxnS05IMEZWZ1k2YmE4WW9Yb0VlQzVmRXFYY2YyOF80c1lB?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiXEFVX3lxTE9IRTc0R2dFUFIyaHNXbmZsNk1LMmpEZk43cEhNLU5RWmtwYmpzSHRwNXZGWG10ZlJyMUxnS05IMEZWZ1k2YmE4WW9Yb0VlQzVmRXFYY2YyOF80c1lB?oc=5\" target=\"_blank\">Houthi attacks in Saudi Arabia disrupt energy facilities, wound dozens</a>&nbsp;&nb",
@@ -1183,7 +1791,7 @@
       "firstAt": 1788836940000
     },
     {
-      "title": "Russian strikes resume, killing two in Kyiv despite US mediation - Euronews.com",
+      "title": "Russian strikes resume, killing two in Kyiv despite US mediation - euronews.com",
       "link": "https://news.google.com/rss/articles/CBMirgFBVV95cUxORzIzY2FPbEtSdmg1TUdpMS1vOC1VcGttTEx0c196MG9aRTFMd2o4RzZ0X1F0QVhCSEtzS2d6S0I4WTdCUHJ4eXBnT0t6YUpoWHRQNUN1LWRKRl94SFZLbURaMU5tc3hDUUdUUlNyU2ZMV2xLRV90Q3RhRERlUUpYYmhRdlhFUW9HR3ZHYVFRdnNDYUVjQWFFTHpGZFkyTVpZMnl0Sm5PYjMyZHhrMEE?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMirgFBVV95cUxORzIzY2FPbEtSdmg1TUdpMS1vOC1VcGttTEx0c196MG9aRTFMd2o4RzZ0X1F0QVhCSEtzS2d6S0I4WTdCUHJ4eXBnT0t6YUpoWHRQNUN1LWRKRl94SFZLbURaMU5tc3hDUUdUUlNyU2ZMV2xLRV90Q3RhRERlUUpYYmhRdlhFUW9HR3ZHYVFRdnNDYUVjQWFFTHpGZFkyTVpZMnl0Sm5PYjMyZH",
@@ -1498,26 +2106,6 @@
       "firstAt": 1788828523000
     },
     {
-      "title": "Zelensky to Axios: U.S. exploring Russia-Ukraine winter de-escalation steps - Axios",
-      "link": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPS1JUc284NjBMMkppZ29XSm9kUjBwSnpvcjhxT05xTG1rWGViQkswMEh4SzdPZ1NKN0VTQVUxcWc1T1ByMEJEUGdUS01nbVU0eFd3anRTX1h3aVo2QWNHcW96dzhoR3MzbWlrYS15TG1hYkZ1Zm1SMHRGVjZKeTFabnNqRWtIRHQ0LUdXYW9kd3huUQ?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMikgFBVV95cUxPS1JUc284NjBMMkppZ29XSm9kUjBwSnpvcjhxT05xTG1rWGViQkswMEh4SzdPZ1NKN0VTQVUxcWc1T1ByMEJEUGdUS01nbVU0eFd3anRTX1h3aVo2QWNHcW96dzhoR3MzbWlrYS15TG1hYkZ1Zm1SMHRGVjZKeTFabnNqRWtIRHQ0LUdXYW9kd3huUQ?oc=5\" target=\"_blank\">Zelensky ",
-      "at": 1788828249000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788828249000
-    },
-    {
       "title": "Today’s Market Recap: Brent Crude Nears $100, Gold and Bitcoin Under Pressure as US-Iran Conflict Escalates - TradingKey",
       "link": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxONWt6QmkzNHhoU0FPRTllQXRmck9sZ1dMaG9wc1NBeFpHeUU0SnBRZGdjN0EyblRET19xNmU2aHM0d2Vmc043VFh3bnRudU9uWUdPc0R3ZGFad0tycWkwQ1NHMXQzTzZUb2Znand2MW9FT216ODIxaFJreEZIUmI0a3hhV0JfeE05cGVWZTRMRHllbi1IX09ROWJBZXByMUV6VjU0TkpkeE1iV29meVBveHZXVkVlTXZIRHJ2LXNmZkdEa1JJU19JRWN0d3hZMzZLWm55RkVkN1gxaUYzcWN0TXZ5MA?oc=5",
       "source": "Wires (macro)",
@@ -1630,7 +2218,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788826590000
+      "firstAt": 1788823956000
     },
     {
       "title": "Iran war live: Qatar warns of ‘industrial catastrophe’ if crisis continues",
@@ -1750,6 +2338,24 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788824547000
+    },
+    {
+      "title": "Rising Oil Prices and Inflation Risks Put Markets on Edge as MoneySimpler Expands Free AI Automated Trading - thecanadianpressnews.ca",
+      "link": "https://news.google.com/rss/articles/CBMirAJBVV95cUxQTDRTay1tTWNhaGlETU5Ydkk2VzBzQW1TbDY4dFZZMXlUZEFUcExMTXBMZU5nX2RXMy1SM05LNDd1bjNVNGxFY3lsMi1kNzEzNWdmdlFvWEtvdHZ5ekJJUFZpZnU2aW9KZTJ0ZXljQjhPaE96ZV93SmpndmdpZmRpZWs4a1JaUjVRbzNldjZxNjhONF8xbWQxMlR0VW5JazdJNUFLQlBDNWdXNDlxQXhqUG80NnlwQmhvcVB5Y3ZHQ3BQU0JvV2tKZ1hHdkNSSjdleXpmenNxMUhZbW54SkdIbVNNeUotb0dOVGc0Uk9zWWVWcVo2RGVzSmxPbS1rOU1DTnV5d0Q1XzF1SGdIYnVGTklwZjJwRy1jTEYwSnBUeF9uLVM2MFN3cHRWOUs?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMirAJBVV95cUxQTDRTay1tTWNhaGlETU5Ydkk2VzBzQW1TbDY4dFZZMXlUZEFUcExMTXBMZU5nX2RXMy1SM05LNDd1bjNVNGxFY3lsMi1kNzEzNWdmdlFvWEtvdHZ5ekJJUFZpZnU2aW9KZTJ0ZXljQjhPaE96ZV93SmpndmdpZmRpZWs4a1JaUjVRbzNldjZxNjhONF8xbWQxMlR0VW5JazdJNUFLQlBDNWdXND",
+      "at": 1788823956000,
+      "inst": [
+        "USOIL"
+      ],
+      "ccy": [
+        "OIL",
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788823956000
     }
   ],
   "sources": [
@@ -1772,10 +2378,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
-  "calendarAt": null,
-  "headlinesAt": "2026-09-08T07:51:41.677Z",
-  "updatedAt": "2026-09-08T07:51:41.677Z"
+  "calendarAt": "2026-09-08T07:53:26.672Z",
+  "headlinesAt": "2026-09-08T07:53:26.672Z",
+  "updatedAt": "2026-09-08T07:53:26.672Z"
 }
