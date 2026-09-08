@@ -501,7 +501,7 @@ const DEFAULT_STRAT = {
     rsiFilter: { enabled: false, comparison: 'below', value: 70 },
   },
   risk: {
-    riskType: 'percent', riskPercent: 1, riskUsdt: 10,
+    riskType: 'percent', riskPercent: 1, riskUsdt: 10, fixedUnits: 1,
     slMethod: 'swing', slAtr: 1.5, slPips: 20, slCandles: 1, slBufferPips: 3,
     tpMethod: 'rr', rrRatio: 2, tpFibLevel: 1.618,
   },
@@ -1072,7 +1072,7 @@ function StrategyEditor({ strat, onSave, onCancel }) {
 
         {/* Risk type toggle */}
         <div style={{ display: 'flex', gap: 4, padding: '4px 0 10px', borderBottom: '1px solid var(--border)' }}>
-          {[{v:'percent',l:'% Balance'},{v:'usdt',l:'Fixed USDT'},{v:'lots',l:'Fixed Lots'}].map(opt => (
+          {[{v:'percent',l:'% Balance'},{v:'usdt',l:'Fixed USDT'},{v:'lots',l:'Fixed Lots'},{v:'units',l:'Units'}].map(opt => (
             <button key={opt.v} onClick={() => set('risk.riskType', opt.v)}
               style={{ flex: 1, padding: '6px', borderRadius: 5, fontSize: 11, fontWeight: 600, cursor: 'pointer', border: `1px solid ${(s.risk.riskType||'percent')===opt.v ? '#00d4aa' : 'var(--border)'}`, background: (s.risk.riskType||'percent')===opt.v ? '#00d4aa22' : 'var(--bg2)', color: (s.risk.riskType||'percent')===opt.v ? '#00d4aa' : 'var(--text3)' }}>
               {opt.l}
@@ -1091,10 +1091,34 @@ function StrategyEditor({ strat, onSave, onCancel }) {
               <NumberInput value={s.risk.riskUsdt||10} onChange={v => set('risk.riskUsdt', v)} min={1} max={10000} step={1}/>
             </div>
           </FieldRow>
+        ) : s.risk.riskType === 'units' ? (
+          <>
+            <FieldRow label="Units">
+              <NumberInput value={s.risk.fixedUnits ?? 1} onChange={v => set('risk.fixedUnits', v)}
+                min={1} max={1000000} step={1}/>
+            </FieldRow>
+            {/* Units, because that is what OANDA trades and what the broker's
+                own ticket asks for. Lots cannot express a small metals
+                position: the smallest step here, 0.01 lots, is fifty ounces of
+                silver, and there is no way to type two. */}
+            <div style={{ padding: '2px 0 6px 12px', borderBottom: '1px solid var(--border)', fontSize: 10, color: 'var(--text3)' }}>
+              Exactly this many units, every trade. The same number the broker's own ticket asks for —
+              1 unit of silver is 1 ounce, 1 unit of EUR/USD is 1 euro. Position size does not follow
+              the stop, so the loss when it is hit varies with how wide the stop is.
+              {s.pairs?.length === 1 && (
+                <> Currently <b style={{ color: 'var(--text2)' }}>
+                  {(s.risk.fixedUnits ?? 1).toLocaleString()} units of {s.pairs[0].replace('_', '/')}
+                </b>.</>
+              )}
+            </div>
+          </>
         ) : (
           <>
             <FieldRow label="Lot Size">
-              <NumberInput value={s.risk.fixedLots||0.01} onChange={v => set('risk.fixedLots', v)} min={0.01} max={100} step={0.01}/>
+              {/* Down to four decimals: 0.01 lots is fifty ounces of silver,
+                  which a small account cannot place, and the old minimum made
+                  the field unable to express a size the broker would accept. */}
+              <NumberInput value={s.risk.fixedLots||0.01} onChange={v => set('risk.fixedLots', v)} min={0.0001} max={100} step={0.0001}/>
             </FieldRow>
             {/* Read from the same table the bot converts with. This line and
                 the bot used to disagree about silver by a factor of fifty. */}
@@ -1202,7 +1226,10 @@ function StrategyEditor({ strat, onSave, onCancel }) {
         Pairs: {(s.pairs||[]).map(p=>p.replace('_','/')).join(', ')||'None'}<br/>
         Conditions: {[s.conditions.requireBOS&&'BOS',s.conditions.requireOB&&'OB',s.conditions.requireFVG&&'FVG',s.conditions.requireOTE&&'OTE'].filter(Boolean).join(', ')||'None'}<br/>
         Sessions: {(s.conditions.sessions||[]).join(', ')||'None'}<br/>
-        Risk: {s.risk.riskType==='usdt' ? `$${s.risk.riskUsdt||10} USDT` : `${s.risk.riskPercent}%`} · SL: {s.risk.slMethod.toUpperCase()} · TP: {s.risk.tpMethod === 'rr' ? `1:${s.risk.rrRatio}` : s.risk.tpMethod}
+        Risk: {s.risk.riskType === 'usdt' ? `$${s.risk.riskUsdt || 10} USDT`
+          : s.risk.riskType === 'units' ? `${s.risk.fixedUnits ?? 1} units`
+          : s.risk.riskType === 'lots' ? `${s.risk.fixedLots || 0.01} lots`
+          : `${s.risk.riskPercent}%`} · SL: {s.risk.slMethod.toUpperCase()} · TP: {s.risk.tpMethod === 'rr' ? `1:${s.risk.rrRatio}` : s.risk.tpMethod}
       </div>
 
       <div style={{ display: 'flex', gap: 8 }}>

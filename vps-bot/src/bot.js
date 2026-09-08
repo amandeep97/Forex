@@ -491,7 +491,13 @@ class ForexBot {
     if (!P) return false;
 
     let lots, units;
-    if (risk.riskType === 'lots' && risk.fixedLots) {
+    if (risk.riskType === 'units' && risk.fixedUnits) {
+      // Units, exactly as typed. OANDA trades in units and so does its own
+      // ticket, and lots cannot express a small metals position at all — the
+      // smallest lot step is fifty ounces of silver.
+      units = Math.max(1, Math.round(risk.fixedUnits));
+      lots  = +(units / P.lotUnitsFor(pair)).toFixed(6);
+    } else if (risk.riskType === 'lots' && risk.fixedLots) {
       // One lot definition, shared with the note under the field in the app.
       // The bot used to convert BOTH metals at 100 units a lot while the screen
       // said silver was 5,000 — so 0.01 lots meant fifty ounces on one and one
