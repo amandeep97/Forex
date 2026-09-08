@@ -174,8 +174,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788856865000,
-      "_kind": "war-end"
+      "firstAt": 1788856865000
     },
     {
       "title": "Gold Falls as Investors Await U.S. Inflation Data",
@@ -192,40 +191,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1788854915000,
-      "_kind": null
-    },
-    {
-      "title": "U.S Stock Futures, Treasurys Weaken as Brent Nears $100",
-      "link": "https://www.wsj.com/finance/commodities-futures/u-s-stock-futures-treasurys-weaken-as-brent-nears-100-c29efc2f?siteid=yhoof2&yptr=yahoo",
-      "source": "Yahoo Finance",
-      "at": 1788856740000,
-      "inst": [
-        "UKOIL"
-      ],
-      "ccy": [
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788854680000
-    },
-    {
-      "title": "Marathon's Richards Says Equities Can Absorb 25 Bps Fed Hike",
-      "link": "https://finance.yahoo.com/video/marathons-richards-says-equities-absorb-083512262.html",
-      "source": "Yahoo Finance",
-      "at": 1788856512000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788856512000
+      "firstAt": 1788854915000
     },
     {
       "title": "Gold subdued as oil rises, investors await key US inflation - TradingView",
@@ -1689,6 +1655,42 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788832669000
+    },
+    {
+      "title": "Gold rises as dollar eases; US inflation data on radar - bfsi.economictimes.indiatimes.com",
+      "link": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPcnZwZTVtR1drbFlNY3RCdkdzeDZFM3VOM1EwNXAtR0ZDMmxIazVBVHFkbmhsVUdYM3lOQjE1R3ZrTGJQMlA2LUtRcW8yRzlsMGxFSXN1eDhIUEQtMkdPU1B4Ny1obUdpMjcxb1F0UGRGWW1COVBJSURYMmJUbjhHYWhaWXA5WkY3NW12NENJOHZRbVVFSzB5MlE2LW44R3VkcndncDBpVWdSUElGdzdrRG4yUlHSAboBQVVfeXFMTzdoeUdVanBrUUNRV0tYNzhzamVmem1SYlVya1ZFZ3g0RlR0RVJqZ3RCNERENVk1bTc0TXV0ekJ0VllNSmEyakZqMGRyYW9kcThoaHpVdmY0cnpiWHNKZmZmejlBMHZyZU1uaTctUnZzN09kQjlXSGttV1cyRGtLdmZaZ1hlUFJ0cUh1U2JFcy1CRVVaMlUzaHQzTVRqMnRsNV9yRHZXdU1laDhIYTBhT3VpZHBxbWhxRjNn?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMitAFBVV95cUxPcnZwZTVtR1drbFlNY3RCdkdzeDZFM3VOM1EwNXAtR0ZDMmxIazVBVHFkbmhsVUdYM3lOQjE1R3ZrTGJQMlA2LUtRcW8yRzlsMGxFSXN1eDhIUEQtMkdPU1B4Ny1obUdpMjcxb1F0UGRGWW1COVBJSURYMmJUbjhHYWhaWXA5WkY3NW12NENJOHZRbVVFSzB5MlE2LW44R3VkcndncDBpVWdSUE",
+      "at": 1788834983000,
+      "inst": [
+        "XAU/USD"
+      ],
+      "ccy": [
+        "USD",
+        "XAU"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788833105000
+    },
+    {
+      "title": "BREAKING NEWS: Dollar weakens further to 152 yen level on BOJ rate hike speculation - Japan Wire by Kyodo News",
+      "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBGeWhPcWNZUDN5dERlenN0NTJxZDI0c3VubWViZlZmZzNHemZkUnY1T3poMmN5WW4zVzBKQjJtSDhpbk54aWFab1ZhMFdNbW9CbWhodDFuV3NWdw?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiWkFVX3lxTFBGeWhPcWNZUDN5dERlenN0NTJxZDI0c3VubWViZlZmZzNHemZkUnY1T3poMmN5WW4zVzBKQjJtSDhpbk54aWFab1ZhMFdNbW9CbWhodDFuV3NWdw?oc=5\" target=\"_blank\">BREAKING NEWS: Dollar weakens further to 152 yen level on BOJ rate hike speculation</",
+      "at": 1788834900000,
+      "inst": [
+        "USD/JPY"
+      ],
+      "ccy": [
+        "USD",
+        "JPY"
+      ],
+      "sev": 3,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788832915000
     }
   ],
   "sources": [
@@ -1711,10 +1713,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-08T09:10:56.353Z",
-  "updatedAt": "2026-09-08T09:10:56.353Z"
+  "headlinesAt": "2026-09-08T09:12:10.100Z",
+  "updatedAt": "2026-09-08T09:12:10.100Z"
 }
