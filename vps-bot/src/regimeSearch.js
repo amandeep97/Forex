@@ -50,13 +50,17 @@
 const path = require('path');
 const { pathToFileURL } = require('url');
 const {
-  sideOf, welch, zFor, runAll, baselineFor, scoreRule, probit,
+  sideOf, welch, zFor, runAll, baselineFor, scoreRule, probit, loadExits,
   BLOCK_MS, STOP_ATR, DIRS, MIN_SEEN,
 } = require('./regimeStudy');
 
 const SHARED = pathToFileURL(path.join(__dirname, '..', '..', 'shared', 'moveFeatures.mjs')).href;
 
-const METHOD_VERSION = 1;
+//   2 — the EXIT is searched, not assumed, and M15 enters. Every rule before
+//       this was scored with one exit: a one ATR stop, a 2R target. That is a
+//       result about a PAIR reported as a result about entries. And M15 is the
+//       timeframe actually traded, which had never been looked at.
+const METHOD_VERSION = 2;
 
 // ── Scope ───────────────────────────────────────────────────────────────────
 //
@@ -66,9 +70,16 @@ const METHOD_VERSION = 1;
 // several minutes. M15 over four years would be 140,000 bars each and is left
 // out for that reason alone — it is the timeframe you trade, and it is the
 // obvious next step once this proves worth the wait.
+//
+// Years are PER TIMEFRAME. Four years of M15 is 140,000 bars an instrument and
+// would take longer than the answer is worth; one year is 35,000, which is six
+// times the sample the hourly study has ever had, on the timeframe actually
+// traded. Holds are in BARS, so twelve means twelve hours on H1 and three on
+// M15 — the same number would otherwise silently ask a different question.
 const TIMEFRAMES = [
-  { tf: 'H4', ms: 4 * 3600e3, holds: [6, 12] },     // a day and two days out
-  { tf: 'H1', ms: 3600e3, holds: [12, 24] },        // half a day and a day
+  { tf: 'H4',  ms: 4 * 3600e3, holds: [6, 12],  years: 4 },   // a day, two days
+  { tf: 'H1',  ms: 3600e3,     holds: [12, 24], years: 4 },   // half a day, a day
+  { tf: 'M15', ms: 900e3,      holds: [16, 48], years: 1 },   // four hours, twelve
 ];
 
 const YEARS = 4;
@@ -130,12 +141,12 @@ function splitUniverse(universe = UNIVERSE) {
  * Six of eight individually is a different and much stronger statement, and it
  * is the one that cannot be produced by one lucky market.
  */
-function perInstrument(sets, rule, dir, hold, inSlice, baselinesBySym) {
+function perInstrument(sets, rule, dir, hold, inSlice, baselinesBySym, exit = null) {
   const pred = f => rule.all.every(k => f.keys.has(k));
   const rows = [];
   for (const s of sets) {
-    const r = runAll([s], pred, hold, dir, inSlice);
-    const b = baselinesBySym[`${s.sym}|${dir}|${hold}`];
+    const r = runAll([s], pred, hold, dir, inSlice, exit);
+    const b = baselinesBySym[`${s.sym}|${dir}|${hold}${exit ? `|${exit.id}` : ''}`];
     if (!r || !b || r.n < 5) continue;
     rows.push({ sym: s.sym, n: r.n, expR: r.expR, edgeR: +(r.expR - b.expR).toFixed(3) });
   }
@@ -194,6 +205,7 @@ async function runRegimeSearch({ oanda, log = () => {}, now = Date.now(),
                                  universe = UNIVERSE, timeframes = TIMEFRAMES,
                                  years = YEARS } = {}) {
   const M = await import(SHARED);
+  const X = await loadExits();
   const from = now - years * 365 * 86400e3;
   const recentStart = now - RECENT_DAYS * 86400e3;
   const { search, proof } = splitUniverse(universe);
@@ -205,11 +217,12 @@ async function runRegimeSearch({ oanda, log = () => {}, now = Date.now(),
   const out = [];
   const skipped = [];
 
-  for (const { tf, ms, holds } of timeframes) {
+  for (const { tf, ms, holds, years: tfYears } of timeframes) {
     const bars = {};
+    const tfFrom = now - (tfYears ?? years) * 365 * 86400e3;
     for (const u of universe) {
       try {
-        const cs = await oanda.getCandlesSince(u.sym, tf, from, { to: now, max: 200000 });
+        const cs = await oanda.getCandlesSince(u.sym, tf, tfFrom, { to: now, max: 200000 });
         // A short series is dropped rather than padded. An instrument with two
         // years where the others have four would be searched over a different
         // market and pooled as though it were the same one.
@@ -248,16 +261,19 @@ async function runRegimeSearch({ oanda, log = () => {}, now = Date.now(),
         unseen:    () => true,
       };
 
+      // One set of baselines PER EXIT. A rule on a two-ATR stop compared against
+      // a one-ATR baseline would report the stop width as an edge, which is the
+      // most obvious way searching exits could manufacture a result.
       const baselines = {};
-      for (const dir of DIRS) {
-        baselines[`discovery|${dir}|${hold}`] = baselineFor(sSets, hold, dir, slices.discovery);
-        baselines[`holdout|${dir}|${hold}`]   = baselineFor(sSets, hold, dir, slices.holdout);
-        baselines[`unseen|${dir}|${hold}`]    = baselineFor(pSets, hold, dir, slices.unseen);
-      }
       const perSymBase = {};
-      for (const s of pSets) {
+      for (const ex of X.EXITS) {
         for (const dir of DIRS) {
-          perSymBase[`${s.sym}|${dir}|${hold}`] = baselineFor([s], hold, dir, slices.unseen);
+          baselines[`discovery|${dir}|${hold}|${ex.id}`] = baselineFor(sSets, hold, dir, slices.discovery, ex);
+          baselines[`holdout|${dir}|${hold}|${ex.id}`]   = baselineFor(sSets, hold, dir, slices.holdout, ex);
+          baselines[`unseen|${dir}|${hold}|${ex.id}`]    = baselineFor(pSets, hold, dir, slices.unseen, ex);
+          for (const s of pSets) {
+            perSymBase[`${s.sym}|${dir}|${hold}|${ex.id}`] = baselineFor([s], hold, dir, slices.unseen, ex);
+          }
         }
       }
 
@@ -275,18 +291,36 @@ async function runRegimeSearch({ oanda, log = () => {}, now = Date.now(),
         .filter(([, n]) => n >= MIN_SEEN && n <= 0.8 * discBars)
         .map(([k]) => ({ all: [k] }));
 
-      const scoreOn = (rule, dir) => {
-        const r = scoreRule(rule, dir, hold, sSets, {
-          discovery: slices.discovery, holdout: slices.holdout,
-        }, baselines);
-        return r;
+      // Score a rule under ONE exit. The exit is part of the hypothesis, chosen
+      // on the discovery half exactly like the entry, and the holdout judges
+      // the pair. Choosing the entry on discovery and then shopping for an exit
+      // on the holdout would be fitting the holdout, which is the one thing
+      // this whole design exists to prevent.
+      const scoreOn = (rule, dir, ex) => {
+        const pred = f => rule.all.every(k => f.keys.has(k));
+        const out = { id: `${rule.all.join('&')}|${dir}|${hold}|${ex.id}`,
+                      all: rule.all, dir, hold, exit: ex.id, exitLabel: ex.label };
+        for (const name of ['discovery', 'holdout']) {
+          const r = runAll(sSets, pred, hold, dir, slices[name], ex);
+          const b = baselines[`${name}|${dir}|${hold}|${ex.id}`];
+          out[name] = r && b ? {
+            n: r.n, expR: r.expR, win: r.win, resolved: r.resolved,
+            medBars: r.medBars, openPct: r.openPct,
+            baseExpR: b.expR, baseWin: b.win, baseN: b.n,
+            edgeR: +(r.expR - b.expR).toFixed(3),
+            t: welch(r.rs, b.rs),
+          } : null;
+        }
+        return out;
       };
 
       const searched = [];
       for (const rule of singles) {
         for (const dir of DIRS) {
-          const r = scoreOn(rule, dir);
-          if (r.discovery && r.discovery.n >= MIN_A) searched.push(r);
+          for (const ex of X.EXITS) {
+            const r = scoreOn(rule, dir, ex);
+            if (r.discovery && r.discovery.n >= MIN_A) searched.push(r);
+          }
         }
       }
 
@@ -307,8 +341,10 @@ async function runRegimeSearch({ oanda, log = () => {}, now = Date.now(),
           if (pairSeen.has(id)) continue;
           pairSeen.add(id);
           for (const dir of DIRS) {
-            const r = scoreOn({ all: id.split('&') }, dir);
-            if (r.discovery && r.discovery.n >= MIN_A) searched.push(r);
+            for (const ex of X.EXITS) {
+              const r = scoreOn({ all: id.split('&') }, dir, ex);
+              if (r.discovery && r.discovery.n >= MIN_A) searched.push(r);
+            }
           }
         }
       }
@@ -321,18 +357,36 @@ async function runRegimeSearch({ oanda, log = () => {}, now = Date.now(),
 
       for (const r of carried) {
         const pred = f => r.all.every(k => f.keys.has(k));
-        const u = runAll(pSets, pred, r.hold, r.dir, slices.unseen);
-        const ub = baselines[`unseen|${r.dir}|${r.hold}`];
+        const ex = X.exitById(r.exit) || X.DEFAULT_EXIT;
+        const u = runAll(pSets, pred, r.hold, r.dir, slices.unseen, ex);
+        const ub = baselines[`unseen|${r.dir}|${r.hold}|${ex.id}`];
         r.unseen = u && ub ? {
           n: u.n, expR: u.expR, win: u.win, resolved: u.resolved,
           baseExpR: ub.expR, baseWin: ub.win,
           edgeR: +(u.expR - ub.expR).toFixed(3),
           t: welch(u.rs, ub.rs),
         } : null;
-        r.spread = perInstrument(pSets, r, r.dir, r.hold, slices.unseen, perSymBase);
+        r.spread = perInstrument(pSets, r, r.dir, r.hold, slices.unseen, perSymBase, ex);
         r.tf = tf;
         r.label = r.all.map(k => M.PHRASE[k] || k).join(' + ');
         r.verdict = wideVerdict(r);
+
+        // ── Which half was wrong ─────────────────────────────────────────────
+        //
+        // The same entry, on the unseen markets, under EVERY exit. This is the
+        // question the whole file was built to answer: an entry that pays with
+        // no stop and loses with one is a direction that works and a stop that
+        // does not, and a bare "it failed" hides which.
+        const byExit = {};
+        for (const other of X.EXITS) {
+          const ru = runAll(pSets, pred, r.hold, r.dir, slices.unseen, other);
+          const bu = baselines[`unseen|${r.dir}|${r.hold}|${other.id}`];
+          byExit[other.id] = ru && bu
+            ? { n: ru.n, expR: ru.expR, edgeR: +(ru.expR - bu.expR).toFixed(3), t: welch(ru.rs, bu.rs) }
+            : null;
+        }
+        r.byExit = byExit;
+        r.diagnosis = X.exitDiagnosis(byExit);
         delete r.discovery.rs; delete r.holdout?.rs;
         out.push(r);
       }
@@ -355,7 +409,8 @@ async function runRegimeSearch({ oanda, log = () => {}, now = Date.now(),
     asOf: new Date(now).toISOString(),
     methodVersion: METHOD_VERSION,
     years,
-    timeframes: timeframes.map(t => t.tf),
+    timeframes: timeframes.map(t => ({ tf: t.tf, years: t.years ?? years, holds: t.holds })),
+    exits: X.EXITS.map(e => ({ id: e.id, label: e.label })),
     split: { searched: search.map(u => u.sym), unseen: proof.map(u => u.sym) },
     skipped,
     thresholds: { MIN_A, MIN_B, MIN_P, CARRY, MIN_INSTRUMENTS, holdoutZ: +zFor(CARRY).toFixed(2) },

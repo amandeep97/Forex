@@ -60,6 +60,12 @@ const { pathToFileURL } = require('url');
 const { tradeRun } = require('./feed');
 
 const SHARED = pathToFileURL(path.join(__dirname, '..', '..', 'shared', 'moveFeatures.mjs')).href;
+const EXITS_URL = pathToFileURL(path.join(__dirname, '..', '..', 'shared', 'exits.mjs')).href;
+
+// Loaded once, lazily, because runAll is on the hot path and cannot await.
+// The narrow study never passes an exit, so it keeps the behaviour it had.
+let _exits = null;
+async function loadExits() { if (!_exits) _exits = await import(EXITS_URL); return _exits; }
 const MACRO = pathToFileURL(path.join(__dirname, '..', '..', 'shared', 'macroFit.mjs')).href;
 
 // ── Shape of the study ──────────────────────────────────────────────────────
@@ -219,13 +225,20 @@ function entriesOf(feats, pred, hold, inSlice) {
 // target at twice the stop, or the end of the window. Both touched inside one
 // bar is scored as the loss — hourly OHLC cannot order them, and assuming the
 // target is how a backtest manufactures an edge that does not survive contact.
-function runAll(sets, pred, hold, dir, inSlice) {
+function runAll(sets, pred, hold, dir, inSlice, exit = null) {
   const rs = [];
   let tgt = 0, stp = 0, open = 0;
   const bars = [];
   for (const s of sets) {
     for (const i of entriesOf(s.feats, pred, hold, inSlice)) {
-      const r = tradeRun(s.cs, i, hold, s.feats[i].atr, dir, STOP_ATR);
+      // No exit given means the original one — a one ATR stop and a 2R target.
+      // The narrow study passes nothing and is therefore unchanged by this.
+      // loadExits() must have been awaited before an exit is passed. Saying so
+      // beats a null dereference twelve frames down inside a hot loop.
+      if (exit && !_exits) throw new Error('runAll: await loadExits() before passing an exit');
+      const r = exit
+        ? _exits.runTrade(s.cs, i, hold, s.feats[i].atr, dir, exit)
+        : tradeRun(s.cs, i, hold, s.feats[i].atr, dir, STOP_ATR);
       rs.push(r.r);
       bars.push(r.n);
       if (r.open) open++;
@@ -251,8 +264,12 @@ function runAll(sets, pred, hold, dir, inSlice) {
 // with the same stop. Measured on a live board once before — nearly every
 // bullish pattern "worked" and nearly every bearish one "failed", across every
 // asset class at once. That is not pattern skill. That is a rising market.
-function baselineFor(sets, hold, dir, inSlice) {
-  return runAll(sets, () => true, hold, dir, inSlice);
+function baselineFor(sets, hold, dir, inSlice, exit = null) {
+  // The baseline MUST use the same exit as the rule it is compared against.
+  // Measuring a wide-stop rule against a tight-stop baseline would report the
+  // stop width as an edge, which is the most obvious way this whole idea could
+  // manufacture a result.
+  return runAll(sets, () => true, hold, dir, inSlice, exit);
 }
 
 // One candidate, fully scored: the search half, the untouched half, and the
@@ -830,7 +847,7 @@ module.exports = {
   // measured. A second copy would eventually disagree, and the two studies
   // would report different numbers for the same rule with nothing to say which
   // was right.
-  runAll, baselineFor, scoreRule, probit, DIRS,
+  runAll, baselineFor, scoreRule, probit, DIRS, loadExits,
   BLOCK_MS, HOLDS, STOP_ATR, MIN_A, MIN_B, CARRY, METALS, TF,
   ZIGZAG_K, BIG_LEG, SMALL_LEG, METHOD_VERSION, MIN_SEEN,
 };

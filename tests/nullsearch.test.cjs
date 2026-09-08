@@ -22,18 +22,39 @@ const check = (n, c, e = '') => { console.log(`${c ? '  ok  ' : '  FAIL'}  ${n}$
 
 const H = 3600e3;
 
-// A geometric random walk. No drift, no mean reversion, no seasonality — the
-// ONLY structure is the one the search is supposed to fail to find.
+// mulberry32, not the linear congruential generator the other test files use.
+//
+// This is not fussiness. The LCG that was here has a mean of 0.4952 rather than
+// 0.5 — a bias of about one percent of its range. Over four thousand bars that
+// is invisible. Over the thirty-five thousand bars in a year of M15 it
+// compounds into a FIFTY PERCENT decline, and every series it generates trends
+// hard downward.
+//
+// The first M15 null run reported ten of ten rules confirmed, almost all short.
+// The search was not broken. It had correctly found a real trend in data this
+// file was calling noise, and the test would have gone on certifying the search
+// as sound while feeding it a signal.
+function mulberry32(a) {
+  return function () {
+    a |= 0; a = a + 0x6D2B79F5 | 0;
+    let t = Math.imul(a ^ a >>> 15, 1 | a);
+    t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+    return ((t ^ t >>> 14) >>> 0) / 4294967296;
+  };
+}
+
+// An ADDITIVE walk on price, so there is no compounding for a bias to ride on
+// even if a future generator has one. No drift, no mean reversion, no
+// seasonality — the only structure is the one the search must fail to find.
 function walk(sym, seed, tfMs, from, to) {
-  let s = seed + sym.split('').reduce((a, c) => a + c.charCodeAt(0), 0);
-  const rnd = () => (s = (s * 1103515245 + 12345) % 2147483648) / 2147483648;
+  const rnd = mulberry32(seed + sym.split('').reduce((a, c) => a + c.charCodeAt(0), 0));
   const out = [];
   let p = 100;
   for (let t = from; t < to; t += tfMs) {
     const o = p;
-    const c = p * (1 + (rnd() - 0.5) * 0.004);
-    const hi = Math.max(o, c) * (1 + rnd() * 0.001);
-    const lo = Math.min(o, c) * (1 - rnd() * 0.001);
+    const c = p + (rnd() - 0.5) * 0.4;
+    const hi = Math.max(o, c) + rnd() * 0.1;
+    const lo = Math.min(o, c) - rnd() * 0.1;
     out.push({ t, o, h: hi, l: lo, c, v: 50 + Math.floor(rnd() * 50) });
     p = c;
   }
@@ -49,11 +70,38 @@ async function runOnNoise(seed) {
   };
   return runRegimeSearch({
     oanda, now: NOW, years: 2, log: () => {},
-    timeframes: [{ tf: 'H4', ms: TF_MS, holds: [6] }],
+    // M15 as well as H4. The failure only appeared at M15's sample size, so a
+    // null test that skips it is testing the wrong thing.
+    timeframes: [
+      { tf: 'H4', ms: TF_MS, holds: [6], years: 2 },
+      { tf: 'M15', ms: 900e3, holds: [16], years: 1 },
+    ],
   });
 }
 
 (async () => {
+  // ── The test data itself is tested first ──────────────────────────────────
+  //
+  // A null test is only worth the data it runs on. If the generator drifts,
+  // the search finds the drift, reports it honestly, and this file calls that
+  // a false positive — certifying nothing while looking rigorous. So the
+  // generator is checked before anything is asked of the search.
+  {
+    const ends = [7, 4242, 918273].map((seed) => {
+      const cs = walk('XAU_USD', seed, TF_MS, NOW - 365 * 86400e3, NOW);
+      return { n: cs.length, first: cs[0].c, last: cs[cs.length - 1].c };
+    });
+    const drifts = ends.map(e => (e.last - e.first) / e.first);
+    const worst = Math.max(...drifts.map(Math.abs));
+    check('the generator produces series with no meaningful drift',
+      worst < 0.15, `worst ${(worst * 100).toFixed(1)}% over ${ends[0].n} bars`,
+      'the LCG this used to use ended 50% down every time, and the search rightly found it');
+    check('and the drift is not all in one direction across seeds',
+      !(drifts.every(d => d > 0) || drifts.every(d => d < 0)) || worst < 0.05,
+      drifts.map(d => `${(d * 100).toFixed(1)}%`).join(', '),
+      'three out of three the same way is a biased generator, not three coincidences');
+  }
+
   // Three seeds, because one clean run could be luck rather than a working
   // defence — which is the exact mistake this whole file exists to catch.
   const seeds = [7, 4242, 918273];
