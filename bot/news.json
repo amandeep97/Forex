@@ -20,7 +20,8 @@
       "rel": 2,
       "srcs": 3,
       "firstAt": 1788879120000,
-      "_kind": null
+      "_kind": null,
+      "why": "Geopolitical news lacks clear market direction"
     },
     {
       "title": "U.S. Treasury Yields Near 5% as Debt and Inflation Reshape Markets - Межа. Новини України.",
@@ -44,7 +45,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788881755000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "High yields strengthen dollar, hurting assets"
     },
     {
       "title": "Canada begins collecting ‘dollar-for-dollar’ tariffs on U.S. goods - ktnv.com",
@@ -63,7 +70,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1788878776000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USD/CAD": "up"
+      },
+      "why": "Tariffs likely strengthen USD against CAD"
     },
     {
       "title": "Turkey stocks higher at close of trade; BIST 100 up 1.79%",
@@ -78,7 +89,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788881431000,
-      "_kind": null
+      "_kind": null,
+      "why": "Turkey stock news irrelevant to US"
     },
     {
       "title": "Denmark stocks lower at close of trade; OMX Copenhagen 20 down 0.72%",
@@ -93,7 +105,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788881404000,
-      "_kind": null
+      "_kind": null,
+      "why": "Denmark stock news irrelevant to US"
     },
     {
       "title": "5 Pipeline Stocks Built to Make Money at Any Oil Price",
@@ -111,7 +124,29 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788881325000,
-      "_kind": null
+      "_kind": null,
+      "why": "Stock analysis lacks clear market direction"
+    },
+    {
+      "title": "Robinhood Takes Equity Stake in Crypto.com, Taps Exchange to Power Prediction Markets",
+      "link": "https://finance.yahoo.com/markets/crypto/articles/robinhood-takes-equity-stake-crypto-152516523.html",
+      "source": "Yahoo Finance",
+      "at": 1788881116000,
+      "inst": [
+        "BTC/USDT"
+      ],
+      "ccy": [
+        "BTC"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788880560000,
+      "_kind": null,
+      "dir": {
+        "BTC/USDT": "up"
+      },
+      "why": "Major exchange partnership boosts crypto sentiment"
     },
     {
       "title": "The shift in British policy on Israel is palpable",
@@ -127,7 +162,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788880847000,
-      "_kind": null
+      "_kind": null,
+      "why": "Political uncertainty lacks clear currency direction"
     },
     {
       "title": "Ukrainian TV channel building hit by Russian drone as five killed in Kyiv",
@@ -148,7 +184,30 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1788878340000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Escalation boosts gold, oil impact unclear"
+    },
+    {
+      "title": "Bitmine Buys $69M in Ether, Closes In on 5% of Ethereum Supply",
+      "link": "https://finance.yahoo.com/markets/crypto/articles/bitmine-buys-69m-ether-closes-151900594.html",
+      "source": "Yahoo Finance",
+      "at": 1788880740000,
+      "inst": [
+        "ETH/USDT"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788880740000,
+      "_kind": null,
+      "dir": {
+        "ETH/USDT": "up"
+      },
+      "why": "Large institutional buying supports price"
     },
     {
       "title": "Robinhood Partners with Crypto.com to Expand Prediction Markets",
@@ -165,7 +224,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788880560000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "BTC/USDT": "up"
+      },
+      "why": "Partnership expands crypto utility and adoption"
     },
     {
       "title": "NuScale Power Spikes 13%, Oklo Climbs 7%: Is the Nuclear Selloff Finally Exhausted?",
@@ -182,7 +245,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788880429000,
-      "_kind": null
+      "_kind": null,
+      "why": "Nuclear stock news irrelevant to gold"
     },
     {
       "title": "Jerusalem Daily: UK announces sanctions on Israeli settlement goods",
@@ -203,7 +267,8 @@
       "rel": 2,
       "srcs": 3,
       "firstAt": 1788878604000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions news lacks clear market direction"
     },
     {
       "title": "Morocco stocks higher at close of trade; Moroccan All Shares up 0.57%",
@@ -217,7 +282,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788880204000
+      "firstAt": 1788880204000,
+      "why": "Morocco stock news irrelevant to US"
     },
     {
       "title": "Consumers more worried about personal finances and jobs, New York Fed report shows",
@@ -239,7 +305,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788879944000
+      "firstAt": 1788879944000,
+      "dir": {
+        "XAU/USD": "up",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Weak sentiment boosts gold, hurts risk assets"
     },
     {
       "title": "‘Are you going to get money back to the American people?’ asks Senator Warren on tariff refund checks. Here’s the answer",
@@ -1624,53 +1696,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788865835000
-    },
-    {
-      "title": "investingLive European news wrap: Oil prices rise as Houthis escalate attacks on Saudi targets",
-      "link": "https://investinglive.com/news/investinglive-european-news-wrap-oil-prices-rise-as-houthis-escalate-attacks-on-saudi-targets/",
-      "source": "ForexLive",
-      "desc": "Headlines:Bitcoin swings wildly as volatility in Fed expectations increases ahead of US CPI and FOMC decisionToday's trade idea for oil tradersBitcoin has already won its battle, whereas Ethereum is only starting its ownHow oil prices influence inflation, inflation expectations a",
-      "at": 1788867022000,
-      "inst": [
-        "USOIL",
-        "BTC/USDT",
-        "ETH/USDT",
-        "XAU/USD",
-        "UKOIL"
-      ],
-      "ccy": [
-        "USD",
-        "OIL",
-        "BTC",
-        "XAU"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 3,
-      "firstAt": 1788865281000
-    },
-    {
-      "title": "Stock futures drop as Iran war, Canada tariffs weigh on Wall Street - qz.com",
-      "link": "https://news.google.com/rss/articles/CBMic0FVX3lxTE5pRVJ3Z2ZKM1FnU0ZHWFNUZ05WM3dMOFNrTzhoZHZjN2xyYXprUUp2Q2NXM2dJLTFEcWNRSXZSS1VzUFBJdVFkTzlNZkRycmJMRmhMYWUzYW12LTdsOWVENkc5Y09EUnplSGcyb3RYRWxZOVk?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMic0FVX3lxTE5pRVJ3Z2ZKM1FnU0ZHWFNUZ05WM3dMOFNrTzhoZHZjN2xyYXprUUp2Q2NXM2dJLTFEcWNRSXZSS1VzUFBJdVFkTzlNZkRycmJMRmhMYWUzYW12LTdsOWVENkc5Y09EUnplSGcyb3RYRWxZOVk?oc=5\" target=\"_blank\">Stock futures drop as Iran war, Canada tariffs weigh",
-      "at": 1788866907000,
-      "inst": [
-        "USD/CAD",
-        "US500",
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "CAD",
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788866907000
     }
   ],
   "sources": [
@@ -1697,6 +1722,6 @@
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-08T15:40:28.216Z",
-  "updatedAt": "2026-09-08T15:40:28.216Z"
+  "headlinesAt": "2026-09-08T15:41:28.821Z",
+  "updatedAt": "2026-09-08T15:41:28.821Z"
 }
