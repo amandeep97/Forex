@@ -27,6 +27,33 @@
       "why": "Dow dragged down by Swiss company news"
     },
     {
+      "title": "Asian stocks fall as yen surge, oil gains revive Fed rate hike concerns",
+      "link": "https://www.investing.com/news/stock-market-news/asian-stocks-mixed-as-chipmakers-rally-oil-and-rate-risks-cap-gains-4890787",
+      "source": "Investing",
+      "at": 1788854952000,
+      "inst": [
+        "USD/JPY",
+        "USOIL",
+        "US500"
+      ],
+      "ccy": [
+        "USD",
+        "JPY",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788854952000,
+      "_kind": null,
+      "dir": {
+        "USD/JPY": "down",
+        "USOIL": "up",
+        "US500": "down"
+      },
+      "why": "Yen surge, oil gains, Asian stocks fall"
+    },
+    {
       "title": "Israeli ministers call for sanctions on Britain over Falkland Islands - Middle East Eye",
       "link": "https://news.google.com/rss/articles/CBMingFBVV95cUxQVTB4NlJBNUlHMUNOVzF4QjVHUjBPdVh1VWU5RWRaODJFNi02Rl9NR2RqaTI5S053V284OTI1WjY1b2wybVNkdzB6LVFJbEs5cEROdHRpcFljUXdNSi1JZnJ3SjVRM05XMlJDeDNtalpkQjZGUzlTU2V5bmJSaTUwa1NVUTFOQWgybmxDY1BfWDZjVnJvNC0zVjRoSXVGUQ?oc=5",
       "source": "Wires (geo)",
@@ -47,7 +74,7 @@
       "srcs": 2,
       "firstAt": 1788854915000,
       "_kind": null,
-      "why": "Geopolitical tension unclear for specific instruments"
+      "why": "Geopolitical noise, no clear market direction"
     },
     {
       "title": "'Complex' Russian attack kills 2 in Kyiv after US peace talks visit, Zelenskyy says - ABC News - Breaking News, Latest News and Videos",
@@ -74,7 +101,7 @@
         "USOIL": "up",
         "UKOIL": "up"
       },
-      "why": "Conflict escalation boosts safe havens and oil"
+      "why": "Russia attack kills, geopolitical risk rises"
     },
     {
       "title": "Gold edges up in Asia as dollar eases; inflation data and Middle East tensions in focus - vtmarkets.com",
@@ -100,7 +127,20 @@
       "dir": {
         "XAU/USD": "up"
       },
-      "why": "Gold up on easing dollar and tensions"
+      "why": "Gold up as dollar eases"
+    },
+    {
+      "title": "Novartis shares plunge 10% as failed drug trial clouds growth outlook",
+      "link": "https://www.investing.com/news/stock-market-news/novartis-dm1-drug-fails-latestage-trial-clouding-development-outlook-4890810",
+      "source": "Investing",
+      "at": 1788854911000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 1,
+      "srcs": 1,
+      "firstAt": 1788854911000,
+      "_kind": null
     },
     {
       "title": "Russia strikes Kyiv and region, damaging homes, killing two, and injuring 10 – Rubryka - Rubryka",
@@ -127,7 +167,7 @@
         "USOIL": "up",
         "UKOIL": "up"
       },
-      "why": "Russia strikes boost risk assets and oil"
+      "why": "Russia strikes Kyiv, risk sentiment worsens"
     },
     {
       "title": "Oil prices extend gains as Yemen's Houthis threaten broader Saudi operation after attacks hit energy sites",
@@ -154,7 +194,7 @@
         "XAU/USD": "up",
         "UKOIL": "up"
       },
-      "why": "Houthi attacks extend oil gains and risk"
+      "why": "Houthi attacks extend oil gains"
     },
     {
       "title": "Russia Is Building a Massive Site for Missile Components Deep in Siberia, Far From NATO and Ukraine’s Strike Reach - UNITED24 Media",
@@ -179,7 +219,7 @@
       "dir": {
         "XAU/USD": "up"
       },
-      "why": "Russia missile site boosts geopolitical risk premium"
+      "why": "Russia missile site, geopolitical tension"
     },
     {
       "title": "Ferrexpo shares jump on $15 million loan facility news",
@@ -212,9 +252,9 @@
       "srcs": 1,
       "firstAt": 1788853380000,
       "dir": {
-        "USD/JPY": "down"
+        "USD/JPY": "up"
       },
-      "why": "Yen strength implies dollar weakness"
+      "why": "Bessent's yen bet paying off"
     },
     {
       "title": "Dollar falls into 152 yen zone amid BOJ rate hike speculation - 毎日新聞",
@@ -262,7 +302,7 @@
         "USOIL": "up",
         "UKOIL": "up"
       },
-      "why": "Russia attack boosts safe havens and oil"
+      "why": "Russia attack ends pause, risk off"
     },
     {
       "title": "Gold rises ahead of US inflation data release - UA.NEWS",
@@ -285,23 +325,6 @@
         "XAU/USD": "up"
       },
       "why": "Gold rises ahead of inflation data"
-    },
-    {
-      "title": "Australia targets social media algorithms with new user-choice rules",
-      "link": "https://www.investing.com/news/stock-market-news/australia-targets-social-media-algorithms-with-new-userchoice-rules-4890784",
-      "source": "Investing",
-      "at": 1788852673000,
-      "inst": [
-        "AUD/USD"
-      ],
-      "ccy": [
-        "AUD"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788852673000,
-      "why": "Social media rules unclear for currency"
     },
     {
       "title": "Goldman ups oil price forecasts as Mideast disruptions seen extending into 2027",
@@ -347,7 +370,7 @@
         "USOIL": "up",
         "UKOIL": "up"
       },
-      "why": "Russian strikes boost risk assets and oil"
+      "why": "Russian strikes kill, geopolitical risk"
     },
     {
       "title": "Russia strikes Odesa's 7th Kilometre Market overnight, injuring 3 people - Українська правда",
@@ -373,7 +396,7 @@
         "USOIL": "up",
         "UKOIL": "up"
       },
-      "why": "Russia strikes Odesa boost risk and oil"
+      "why": "Russia strikes Odesa, risk sentiment"
     },
     {
       "title": "Iran-backed Houthis attack Saudi energy facilities, wounding dozens and sending oil prices higher - Al-Monitor",
@@ -1739,24 +1762,6 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1788824845000
-    },
-    {
-      "title": "Japan wage growth strongest since 1997, cementing BOJ hike case",
-      "link": "https://investinglive.com/news/japan-wage-growth-strongest-since-1997-cementing-boj-hike-case/",
-      "source": "ForexLive",
-      "desc": "The news headline for the data is here ICYMI:Japan wages data, July 2026: Headline earnings +4.7% y/y (expected +3.9%, prior +4%)Since then we've had:Japan revised Q2 GDP: +1.4% y/y (preliminary 1.1%)I'll have more to come on that GDP data, but for now, wrappoing up the wages dat",
-      "at": 1788825456000,
-      "inst": [
-        "USD/JPY"
-      ],
-      "ccy": [
-        "JPY",
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788825456000
     }
   ],
   "sources": [
@@ -1783,6 +1788,6 @@
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-08T08:17:42.643Z",
-  "updatedAt": "2026-09-08T08:17:42.643Z"
+  "headlinesAt": "2026-09-08T08:19:13.106Z",
+  "updatedAt": "2026-09-08T08:19:13.106Z"
 }
