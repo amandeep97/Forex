@@ -2,6 +2,29 @@
   "calendar": [],
   "headlines": [
     {
+      "title": "Australian Dollar: RBA inflation focus underpins carry – BBH - FXStreet",
+      "link": "https://news.google.com/rss/articles/CBMiogFBVV95cUxPTjFRbmU3U2xxdjVHaUJNSnVQS21rR0kxdXlvU3lKRmFqR09iQkVqTno5VGpzRDhSQ1JjUzFHYXRYdjZ1TDBsdnpGQkIycmdqdkRxYU5mcW5qdXdDQXdnWjFEUFBPSUtrR3Z6X0lTWHRwMTBkZnR6WU5NcFNHZDhGZTJ0RjZETVR0V3U5anFQYWkxTjY0dmpZTEhJbVJQNHBBaVE?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiogFBVV95cUxPTjFRbmU3U2xxdjVHaUJNSnVQS21rR0kxdXlvU3lKRmFqR09iQkVqTno5VGpzRDhSQ1JjUzFHYXRYdjZ1TDBsdnpGQkIycmdqdkRxYU5mcW5qdXdDQXdnWjFEUFBPSUtrR3Z6X0lTWHRwMTBkZnR6WU5NcFNHZDhGZTJ0RjZETVR0V3U5anFQYWkxTjY0dmpZTEhJbVJQNHBBaVE?oc=5\" targ",
+      "at": 1788867416000,
+      "inst": [
+        "AUD/USD"
+      ],
+      "ccy": [
+        "USD",
+        "AUD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788867416000,
+      "_kind": null,
+      "dir": {
+        "AUD/USD": "up"
+      },
+      "why": "RBA inflation focus supports carry trade"
+    },
+    {
       "title": "Bitcoin and ethereum prices today, Tuesday, September 8, 2026: Crypto prices sliding as U.S.-Iran fighting continues",
       "link": "https://finance.yahoo.com/personal-finance/investing/article/bitcoin-and-ethereum-prices-today-tuesday-september-8-2026-crypto-prices-sliding-as-us-iran-fighting-continues-113441984.html",
       "source": "Yahoo Finance",
@@ -17,7 +40,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788865835000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "BTC/USDT": "down",
+        "ETH/USDT": "down"
+      },
+      "why": "Crypto prices sliding due to conflict"
     },
     {
       "title": "Multiplier Holdings acquires New Zealand advisory practice Greenhawk",
@@ -34,7 +62,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788867257000,
-      "_kind": null
+      "_kind": null,
+      "why": "Corporate acquisition news, no clear FX impact"
     },
     {
       "title": "Beneath the surface, the next stock-market leaders are getting ready to break out, says Morgan Stanley",
@@ -50,7 +79,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788867120000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Morgan Stanley expects AI stocks to rise"
     },
     {
       "title": "investingLive European news wrap: Oil prices rise as Houthis escalate attacks on Saudi targets",
@@ -75,7 +108,11 @@
       "rel": 2,
       "srcs": 4,
       "firstAt": 1788864840000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil rises on attacks; crypto volatile"
     },
     {
       "title": "2 Turnaround Stocks Wall Street Hates That I've Been Buying in 2026",
@@ -90,7 +127,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788866689000,
-      "_kind": null
+      "_kind": null,
+      "why": "Specific stock picks, no broad market direction"
     },
     {
       "title": "Factbox-Airlines gradually restore Middle East services after Iran conflict",
@@ -108,9 +146,15 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 4,
+      "srcs": 3,
       "firstAt": 1788864803000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Conflict de-escalation reduces risk premium"
     },
     {
       "title": "IREN Limited Has Cratered Over 3 Months: A Top-Ranked Wall Street Name Says It’s Due to Double",
@@ -125,7 +169,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788866689000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Stock expected to double after crash"
     },
     {
       "title": "Kalshi’s $400 million-plus monthly commodity trade volume outpaces early crypto growth",
@@ -142,7 +190,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788866684000,
-      "_kind": null
+      "_kind": null,
+      "why": "Competitor volume news, no direct price impact"
     },
     {
       "title": "Why Berkshire Hathaway Looks Likely to Invest in More Artificial Intelligence (AI) Stocks",
@@ -157,7 +206,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788866401000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Berkshire likely to invest in AI stocks"
     },
     {
       "title": "Yen Short Squeeze Runs Into Middle East War Escalation - Seeking Alpha",
@@ -178,9 +231,15 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 3,
+      "srcs": 2,
       "firstAt": 1788864803000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USD/JPY": "down",
+        "XAU/USD": "up",
+        "USOIL": "up"
+      },
+      "why": "Yen squeeze and war escalation boost risk assets"
     },
     {
       "title": "Silver prices today, Tuesday, September 8, 2026: Silver prices holding over $66 as Iran conflict wages on",
@@ -202,29 +261,13 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1788865835000,
-      "_kind": null
-    },
-    {
-      "title": "Middle East Tensions Surge as Inflation Data Looms Over Markets - Devdiscourse",
-      "link": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxNYXVZVk5RRWtWc3RtU1Q1VGdISEx2TTU4aHRNWkhwTWRrNGxiUzNCdFVWTzJGNDFZZW5CTTlZSTNudnpsWDJZT3JNc2QyeTllZS1hM0hoWHZDVDZpbzZpYnZ6cFFUNkE2c1VlSkkta3VUYVhzQWcyN2dUY0FlcWh6NjVNY1pia0VGdkx5djUzUVF2bWthQUJ4SUxjMjR0bDhiQzNValQyOHhYR1poOFRneGI0MldGcHRF0gG-AUFVX3lxTFBFVGJQR184S1QzZm9VRDc0SktTbVJnbmtzTng2N1NVeTZ1c3FZZEM3RThmVXpuczlwOWdZby1udnJiR3pfTzUzcjFOcFY1NGxweVc1RkNTRS1DSHItYzI2UXgtRUItOTlyNHd5dmJaZVM1MHZBVXJFS0s3RXg5ZWczTWtEcE1zMHltX2s4QkhBelpjN1JIcVc0MVdkUjQyVmJrMmxFN3NxR3ZWd1RncHRIMFhNS29YakNEcWtJX2c?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiuAFBVV95cUxNYXVZVk5RRWtWc3RtU1Q1VGdISEx2TTU4aHRNWkhwTWRrNGxiUzNCdFVWTzJGNDFZZW5CTTlZSTNudnpsWDJZT3JNc2QyeTllZS1hM0hoWHZDVDZpbzZpYnZ6cFFUNkE2c1VlSkkta3VUYVhzQWcyN2dUY0FlcWh6NjVNY1pia0VGdkx5djUzUVF2bWthQUJ4SUxjMjR0bDhiQzNValQyOHhYR1",
-      "at": 1788866169000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL",
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 3,
-      "firstAt": 1788864803000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAG/USD": "up",
+        "XAU/USD": "up",
+        "USOIL": "up"
+      },
+      "why": "Prices holding/rising as conflict continues"
     },
     {
       "title": "Russia Strikes “We – Ukraine” TV Channel - REFORM.news",
@@ -245,7 +288,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788864513000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Russia strike increases geopolitical risk premium"
     },
     {
       "title": "Citi turns more bullish on trucking stocks",
@@ -260,7 +309,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788866114000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Citi turns bullish on trucking stocks"
     },
     {
       "title": "Stocks making the biggest moves premarket: Peloton Interactive, Roivant Sciences, Boston Scientific & more",
@@ -276,7 +329,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1788865560000,
-      "_kind": null
+      "_kind": null,
+      "why": "Individual stock moves, no broad market direction"
     },
     {
       "title": "Gold prices today, Tuesday, September 8, 2026: Gold moves lower following fresh escalations with Iran",
@@ -392,7 +446,7 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 3,
+      "srcs": 2,
       "firstAt": 1788864803000
     },
     {
@@ -644,7 +698,7 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 3,
+      "srcs": 2,
       "firstAt": 1788864803000
     },
     {
@@ -1695,6 +1749,6 @@
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-08T11:38:26.948Z",
-  "updatedAt": "2026-09-08T11:38:26.948Z"
+  "headlinesAt": "2026-09-08T11:39:28.437Z",
+  "updatedAt": "2026-09-08T11:39:28.437Z"
 }
