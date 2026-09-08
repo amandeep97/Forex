@@ -705,7 +705,7 @@
   ],
   "headlines": [
     {
-      "title": "🔴 Live: At least two killed in Kyiv as Russia renews strikes after three-day pause - France 24",
+      "title": "🔴 Live: At least two killed in Kyiv as Russia renews strikes after three-day pause - france24.com",
       "link": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxOTDV2MnBJNXdwaFhvSEc2ZmYyNmZ1WFpKZmM5SVJQMHJCdVpITU91TGxiX2RNdGxrbVVkQmEyTS1QajJaX2FETDJZek5TbFNHa0diRk5XdG5fRVdGdFFmcHpWSWdiQ29nUFJMWmZtM2JYYjV0OEd6NURSZG9HcHF0Mko3dE9QRWI3cllLc3dvRWxXb2NMR2lESk1PdlNmYU44Q0xiSTFTQ1dsOHVQT2lXY3N0anZ4Um1RZjRVNUdRRUhwd3h4czgxc3ZFeURGSDdoOTdoOW9n?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMi1gFBVV95cUxOTDV2MnBJNXdwaFhvSEc2ZmYyNmZ1WFpKZmM5SVJQMHJCdVpITU91TGxiX2RNdGxrbVVkQmEyTS1QajJaX2FETDJZek5TbFNHa0diRk5XdG5fRVdGdFFmcHpWSWdiQ29nUFJMWmZtM2JYYjV0OEd6NURSZG9HcHF0Mko3dE9QRWI3cllLc3dvRWxXb2NMR2lESk1PdlNmYU44Q0xiSTFTQ1dsOH",
@@ -1055,7 +1055,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788839940000
+      "firstAt": 1788839940000,
+      "why": "Ceasefire talks unclear for markets"
     },
     {
       "title": "Ukraine updates: Explosions rock Kyiv as 3-day truce ends - dw.com",
@@ -1075,7 +1076,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788837358000
+      "firstAt": 1788837358000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Escalation boosts safe havens and oil"
     },
     {
       "title": "Russian Missile-Drone Barrage Kills 2 in Kyiv - Kyiv Post",
@@ -1095,7 +1102,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788839812000
+      "firstAt": 1788839812000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Missile strikes increase geopolitical risk"
     },
     {
       "title": "North Korea and Russia open first road bridge linking both countries",
@@ -1115,7 +1128,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788839607000
+      "firstAt": 1788839607000,
+      "why": "Infrastructure news lacks immediate market impact"
     },
     {
       "title": "investingLive Asia-Pacific market news: Yen surges to six-month high",
@@ -1134,7 +1148,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788839443000
+      "firstAt": 1788839443000,
+      "dir": {
+        "USD/JPY": "down"
+      },
+      "why": "Yen surge lowers USD/JPY pair"
     },
     {
       "title": "Dollar briefly falls into 152 yen zone amid BOJ rate hike speculation - 毎日新聞",
@@ -1152,7 +1170,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788837180000
+      "firstAt": 1788837180000,
+      "dir": {
+        "USD/JPY": "down"
+      },
+      "why": "Dollar falls against yen"
     },
     {
       "title": "Why isn’t oil above $100 despite supply disruptions?",
@@ -1168,7 +1190,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788838586000
+      "firstAt": 1788838586000,
+      "why": "Question implies lack of price rise"
     },
     {
       "title": "Oil extends gains after US and Iran strike ships - arabnews.jp",
@@ -1188,7 +1211,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788838258000
+      "firstAt": 1788838258000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Oil gains on supply disruption"
     },
     {
       "title": "Gold gains as dollar eases with US inflation data on radar - BusinessLine",
@@ -1206,7 +1234,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788838187000
+      "firstAt": 1788838187000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Gold gains as dollar eases"
     },
     {
       "title": "Russia launches deadly strikes on Kyiv as pause during US envoy visits ends - Al Jazeera",
@@ -1226,7 +1258,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788834772000
+      "firstAt": 1788834772000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Deadly strikes boost risk assets"
     },
     {
       "title": "Moment an Israel strike hits close to a reporter live on air in Lebanon - The Lufkin Daily News",
@@ -1246,7 +1284,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788837305000
+      "firstAt": 1788837305000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Lebanon strike increases geopolitical tension"
     },
     {
       "title": "Yen extends rally as BOJ hike bets gather pace",
@@ -1262,7 +1306,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788837279000
+      "firstAt": 1788837279000,
+      "dir": {
+        "USD/JPY": "down"
+      },
+      "why": "Yen rally lowers USD/JPY"
     },
     {
       "title": "Yen Hits Six-Month High Against Dollar on BOJ Rate-Hike Bets - WSJ",
@@ -1280,7 +1328,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788834900000
+      "firstAt": 1788834900000,
+      "dir": {
+        "USD/JPY": "down"
+      },
+      "why": "Yen high lowers USD/JPY"
     },
     {
       "title": "China’s central bank boosts gold reserves by most since 2023",
@@ -1297,7 +1349,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788836979000
+      "firstAt": 1788836979000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Central bank buying supports gold"
     },
     {
       "title": "Oil prices climb after reports of Saudi Aramco refinery being hit by Houthi rebels",
@@ -1315,7 +1371,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788836940000
+      "firstAt": 1788836940000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Refinery hit boosts oil prices"
     },
     {
       "title": "China August trade balance shows imports below expectations",
@@ -2366,7 +2427,7 @@
       "firstAt": 1788806278000
     },
     {
-      "title": "Israel warns of 'full-scale war' if Palestinian Authority launches Oct. 7-style attack - France 24",
+      "title": "Israel warns of 'full-scale war' if Palestinian Authority launches Oct. 7-style attack - france24.com",
       "link": "https://news.google.com/rss/articles/CBMizAFBVV95cUxPV2Zma0g5QlppYUFHakdTeEhCVjhFVUUwX2NpNW12ZklHLUlJa1F4RXY2WFRhR0dsVkxzRDJNTkhsdUVtUEVYcHcwUDRqR0xwZGtQMWY0UUZhejRaYTdadl9qU0lhQkl5aHE1ZXg5dzJsSWVndlFlSUpKTTRTQ2xjNXBJYTM5dWZWb09xSmtkQ3AtWWFwejd1dVBCUndraWphRHcyNWQ0ZlFoNF8zZmdLUURLRkpzUXhzelJDTlpiNGpmOEhmLTM0UTVOLXY?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMizAFBVV95cUxPV2Zma0g5QlppYUFHakdTeEhCVjhFVUUwX2NpNW12ZklHLUlJa1F4RXY2WFRhR0dsVkxzRDJNTkhsdUVtUEVYcHcwUDRqR0xwZGtQMWY0UUZhejRaYTdadl9qU0lhQkl5aHE1ZXg5dzJsSWVndlFlSUpKTTRTQ2xjNXBJYTM5dWZWb09xSmtkQ3AtWWFwejd1dVBCUndraWphRHcyNWQ0ZlFoNF",
@@ -2449,7 +2510,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-08T05:45:57.439Z",
-  "headlinesAt": "2026-09-08T05:45:57.439Z",
-  "updatedAt": "2026-09-08T05:45:57.439Z"
+  "calendarAt": "2026-09-08T05:46:57.664Z",
+  "headlinesAt": "2026-09-08T05:46:57.664Z",
+  "updatedAt": "2026-09-08T05:46:57.664Z"
 }
