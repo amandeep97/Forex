@@ -20,7 +20,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788856322000,
-      "_kind": null
+      "_kind": null,
+      "why": "Geopolitical impact on economy unclear"
     },
     {
       "title": "The bond market continues to tighten the screws, and everything else is feeling it",
@@ -44,7 +45,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788856296000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Rising yields pressure risk assets"
     },
     {
       "title": "Indonesia stocks higher at close of trade; IDX Composite Index up 0.97%",
@@ -59,7 +65,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788856204000,
-      "_kind": null
+      "_kind": null,
+      "why": "Indonesia news irrelevant to US"
     },
     {
       "title": "Oerlikon sets new 2030 targets, shares gain",
@@ -93,7 +100,13 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1788854157000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Middle East conflict boosts safe havens"
     },
     {
       "title": "Euro yields push higher with crude near $100 and ECB hike imminent",
@@ -113,7 +126,35 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788855653000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Crude near $100 implies price rise"
+    },
+    {
+      "title": "Gold ticks up with US inflation data on radar - The Star",
+      "link": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxNd0JBX0VjdmdqeHB5eTBWLXZwaUVNWGk1MXR2RDBGMTZqbkdYMVhZdUNxRFBpazExWkVTSzEza1NpaElCQ2ZNU1hQbG85aTVwQ1BjVHR0RUZhQV9kOEt6ZGNCVGhibjFBeXZFcS1pZ2Q5Vi0yRkdrbW9saTRySzBWY05aMlFvVkU3TmV1UjlVZUhvbXIzZWF5aHJOdlpDUXU5eXBZa0hjVVZwdw?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiqgFBVV95cUxNd0JBX0VjdmdqeHB5eTBWLXZwaUVNWGk1MXR2RDBGMTZqbkdYMVhZdUNxRFBpazExWkVTSzEza1NpaElCQ2ZNU1hQbG85aTVwQ1BjVHR0RUZhQV9kOEt6ZGNCVGhibjFBeXZFcS1pZ2Q5Vi0yRkdrbW9saTRySzBWY05aMlFvVkU3TmV1UjlVZUhvbXIzZWF5aHJOdlpDUXU5eXBZa0hjVVZwdw",
+      "at": 1788855420000,
+      "inst": [
+        "XAU/USD"
+      ],
+      "ccy": [
+        "XAU",
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788852740000,
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Gold ticks up explicitly stated"
     },
     {
       "title": "Crypto platforms have lost over $3.63 billion to cyberattacks — even though most of them did security checks",
@@ -131,7 +172,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788855371000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "BTC/USDT": "down"
+      },
+      "why": "Cyberattacks signal security risks"
     },
     {
       "title": "Sterling today: Pound slips as yen-fuelled dollar uncertainty keeps G10 on edge",
@@ -151,7 +196,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788855366000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "GBP/USD": "down"
+      },
+      "why": "Pound slips explicitly stated"
     },
     {
       "title": "Why the Dow is being dragged down by a Swiss company’s bad news",
@@ -171,7 +220,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788855300000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US30": "down"
+      },
+      "why": "Dow dragged down by bad news"
     },
     {
       "title": "'Complex' Russian attack kills 2 in Kyiv after US peace talks visit, Zelenskyy says - ABC News - Breaking News, Latest News and Videos",
@@ -192,7 +245,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1788852960000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "War escalation supports gold"
     },
     {
       "title": "Asian stocks fall as yen surge, oil gains revive Fed rate hike concerns",
@@ -212,7 +269,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788854952000
+      "firstAt": 1788854952000,
+      "dir": {
+        "USD/JPY": "down",
+        "USOIL": "up",
+        "US500": "down"
+      },
+      "why": "Yen surge, oil gains, stocks fall"
     },
     {
       "title": "Israeli ministers call for sanctions on Britain over Falkland Islands - Middle East Eye",
@@ -233,7 +296,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1788854915000
+      "firstAt": 1788854915000,
+      "why": "Political dispute lacks market direction"
     },
     {
       "title": "Gold edges up in Asia as dollar eases; inflation data and Middle East tensions in focus - VT Markets",
@@ -254,7 +318,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1788852740000
+      "firstAt": 1788852740000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Gold edges up explicitly stated"
     },
     {
       "title": "Novartis shares plunge 10% as failed drug trial clouds growth outlook",
@@ -286,7 +354,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 3,
-      "firstAt": 1788851925000
+      "firstAt": 1788851925000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Energy facility disruption boosts oil"
     },
     {
       "title": "Russia strikes Kyiv and region, damaging homes, killing two, and injuring 10 – Rubryka - Rubryka",
@@ -306,7 +380,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1788852060000
+      "firstAt": 1788852060000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "War escalation supports gold"
     },
     {
       "title": "Oil prices extend gains as Yemen's Houthis threaten broader Saudi operation after attacks hit energy sites",
@@ -1489,16 +1567,18 @@
       "firstAt": 1788832915000
     },
     {
-      "title": "Gold ticks up with US inflation data on radar - Reuters",
+      "title": "Gold subdued as oil rises, investors await key US inflation - Reuters",
       "link": "https://news.google.com/rss/articles/CBMiogFBVV95cUxPZVFOMG93MEp4ZjJ0VUtRcWQxVTRKYTJOb3RwbTZpMnNyZlJ5eFdCRGhNTXF4b2MyRGpXWTh0T1N1d28tUGRfSW80bmFNT1RNelFYMTlLU2ctZEZpYmsyNjZRb2ROTnVqMkVuX2Z3UU12UDlCV2cxSmd1MzR2dktuNUtOR3ZXdjR2YnAyUlJDYjFtWmwybURmNEdLMHk3SFBQNVE?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiogFBVV95cUxPZVFOMG93MEp4ZjJ0VUtRcWQxVTRKYTJOb3RwbTZpMnNyZlJ5eFdCRGhNTXF4b2MyRGpXWTh0T1N1d28tUGRfSW80bmFNT1RNelFYMTlLU2ctZEZpYmsyNjZRb2ROTnVqMkVuX2Z3UU12UDlCV2cxSmd1MzR2dktuNUtOR3ZXdjR2YnAyUlJDYjFtWmwybURmNEdLMHk3SFBQNVE?oc=5\" targ",
       "at": 1788834480000,
       "inst": [
-        "XAU/USD"
+        "XAU/USD",
+        "USOIL"
       ],
       "ccy": [
         "XAU",
+        "OIL",
         "USD"
       ],
       "sev": 2,
@@ -1672,26 +1752,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788830413000
-    },
-    {
-      "title": "Russia resumes strikes on Kyiv after three-day halt - Arab News",
-      "link": "https://news.google.com/rss/articles/CBMilAFBVV95cUxNRWxsZ0U0V1Nlb0FaZFZaSGxIRG0yTVNZanJ2M2Y2ZjVqWHFaemlTVUZjQi03U0YyZ29IWnVmaWU3NFNPQk1HVTc3Z1VWbEI4eXN2NTVrSFhiM2xtUVBDT1RqT2JKbjJKYkxpNE81dzVSZGl3ODBvYll4eDNaT011TDZQYVlLS0w2T2gwU0dZTmZHQVZs?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMilAFBVV95cUxNRWxsZ0U0V1Nlb0FaZFZaSGxIRG0yTVNZanJ2M2Y2ZjVqWHFaemlTVUZjQi03U0YyZ29IWnVmaWU3NFNPQk1HVTc3Z1VWbEI4eXN2NTVrSFhiM2xtUVBDT1RqT2JKbjJKYkxpNE81dzVSZGl3ODBvYll4eDNaT011TDZQYVlLS0w2T2gwU0dZTmZHQVZs?oc=5\" target=\"_blank\">Russia ",
-      "at": 1788828581000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788828581000
     }
   ],
   "sources": [
@@ -1718,6 +1778,6 @@
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-08T08:39:39.562Z",
-  "updatedAt": "2026-09-08T08:39:39.562Z"
+  "headlinesAt": "2026-09-08T08:41:12.565Z",
+  "updatedAt": "2026-09-08T08:41:12.565Z"
 }
