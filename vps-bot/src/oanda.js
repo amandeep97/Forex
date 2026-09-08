@@ -134,6 +134,32 @@ class OandaClient {
       currency:        data.account.currency,
       openTradeCount: +data.account.openTradeCount,
       unrealizedPL:   +data.account.unrealizedPL,
+      // Margin, which the bot had no way to see. Without it every order that
+      // could not be afforded was still sent, rejected, and logged as CANCELLED
+      // — the account filled with red rows saying "reduce lot size" for a
+      // condition that was knowable before anything left the machine.
+      marginAvailable: +data.account.marginAvailable,
+      marginUsed:      +data.account.marginUsed,
+    };
+  }
+
+  // What the VENUE requires for this instrument, rather than a constant here.
+  //
+  // Margin on metals is nothing like margin on a major, it differs by
+  // regulator, and it changes. Asking is one request and it is right; assuming
+  // 5% would have said a silver trade was affordable when the real rate is
+  // over 20%. minimumTradeSize is the other half — a size below it is rejected
+  // outright, and it is why the OANDA ticket says "Units (Min 1)".
+  async getInstrumentDetail(instrument) {
+    const data = await this._req(
+      `/accounts/${this.accountId}/instruments?instruments=${instrument}`);
+    const i = (data.instruments || [])[0];
+    if (!i) return null;
+    return {
+      marginRate: +i.marginRate,
+      minimumTradeSize: +(i.minimumTradeSize ?? 1),
+      tradeUnitsPrecision: +(i.tradeUnitsPrecision ?? 0),
+      displayName: i.displayName || instrument,
     };
   }
 

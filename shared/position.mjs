@@ -119,3 +119,70 @@ export async function quoteToUsdFor(pair, price, rateFor = null) {
   const inverse = await rateFor(`USD_${q}`);
   return inverse != null && inverse > 0 ? 1 / inverse : null;
 }
+
+// ── What a "lot" is ─────────────────────────────────────────────────────────
+//
+// One definition, because there were two and they disagreed by fifty times.
+// The strategy editor's own note said "Gold/XAU: 1 lot = 100 oz · Silver:
+// 1 lot = 5,000 oz". The bot converted BOTH metals at 100. So a silver
+// strategy set to 0.01 lots meant 50 ounces on the screen and 1 ounce in the
+// order, and neither number was wrong on its own — they were just different.
+//
+// These are the conventional contract sizes. OANDA itself trades in units, so
+// this exists only to translate what a person typed.
+export const LOT_UNITS = { XAU: 100, XAG: 5000, BTC: 1, ETH: 1, DEFAULT: 100000 };
+
+export function lotUnitsFor(pair) {
+  const p = String(pair || '').toUpperCase();
+  for (const k of ['XAU', 'XAG', 'BTC', 'ETH']) if (p.includes(k)) return LOT_UNITS[k];
+  return LOT_UNITS.DEFAULT;
+}
+
+/** Units for a lot count the user typed. Rounded to whole units — OANDA's. */
+export function unitsForLots(pair, lots) {
+  const n = Number(lots);
+  if (!Number.isFinite(n) || n <= 0) return 0;
+  return Math.round(n * lotUnitsFor(pair));
+}
+
+/**
+ * Can this account actually place it?
+ *
+ * The bot used to find out by sending the order and reading the rejection. The
+ * screenshots that prompted this show eight consecutive CANCELLED rows, all
+ * "Not enough margin — reduce lot size", for a condition that was knowable
+ * before anything was sent.
+ *
+ * Margin is computed the way the venue computes it: notional in the QUOTE
+ * currency, times the instrument's own margin rate, converted into the account
+ * currency. Nothing here is a constant — the rate comes from OANDA and the
+ * conversion from live prices — because a 5% guess would call a silver trade
+ * affordable when the real rate is over twenty.
+ *
+ * @returns {{ ok:boolean, required:number|null, affordable:number|null, why?:string }}
+ */
+export function affordCheck({ units, price, marginRate, marginAvailable,
+                              toHome = 1, minUnits = 1, headroom = 0.95 }) {
+  if (!(units > 0)) return { ok: false, required: null, affordable: null, why: 'no position to place' };
+  if (marginRate == null || !(marginRate > 0) || marginAvailable == null || toHome == null) {
+    // Unknown is NOT a pass. The whole point is to stop guessing.
+    return { ok: false, required: null, affordable: null,
+      why: 'margin could not be read, so affordability is unknown' };
+  }
+  const perUnit = price * marginRate * toHome;
+  const required = units * perUnit;
+  // A little headroom: the price moves between this check and the fill, and a
+  // rejection costs the whole trade rather than a fraction of it.
+  const budget = marginAvailable * headroom;
+  const affordable = Math.floor(budget / perUnit);
+
+  if (required <= budget) return { ok: true, required, affordable };
+  return {
+    ok: false, required, affordable,
+    why: affordable >= minUnits
+      ? `needs ${required.toFixed(2)} margin, ${marginAvailable.toFixed(2)} available `
+        + `— ${affordable} units would fit`
+      : `needs ${required.toFixed(2)} margin and only ${marginAvailable.toFixed(2)} is available; `
+        + `even the minimum ${minUnits} unit${minUnits === 1 ? '' : 's'} does not fit`,
+  };
+}

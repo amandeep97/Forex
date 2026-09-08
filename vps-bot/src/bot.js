@@ -487,11 +487,18 @@ class ForexBot {
     const rr = tp == null ? null : +((Math.abs(tp - cp) / pip) / slPips).toFixed(2);
     if (rr != null && rr < 1.5) { this.log(`${pair}: RR too low (${rr})`); return false; }
 
+    const P = await this._positionModule();
+    if (!P) return false;
+
     let lots, units;
     if (risk.riskType === 'lots' && risk.fixedLots) {
+      // One lot definition, shared with the note under the field in the app.
+      // The bot used to convert BOTH metals at 100 units a lot while the screen
+      // said silver was 5,000 — so 0.01 lots meant fifty ounces on one and one
+      // ounce on the other.
       lots  = risk.fixedLots;
-      const isMetals = pair.includes('XAU') || pair.includes('XAG');
-      units = isMetals ? Math.round(lots * 100) : Math.round(lots * 100_000);
+      units = P.unitsForLots(pair, lots);
+      if (!units) { this.log(`${pair}: lot size ${lots} is not a position — skip`); return false; }
     } else {
       // Risk-based sizing, from the stop distance rather than from a pip table.
       // See shared/position.mjs — the old rule assumed $10 per pip per lot and
@@ -507,6 +514,20 @@ class ForexBot {
       lots  = +(units / (pair.includes('XAU') || pair.includes('XAG') ? 100 : 100_000)).toFixed(4);
       this.log(`${pair}: ${units} units — risking ${sized.risk.toFixed(2)} of a ${riskUsd.toFixed(2)} budget`);
     }
+    // ── Can the account actually place it? ───────────────────────────────
+    //
+    // Asked BEFORE the order goes out. It used to be answered by OANDA
+    // rejecting it, which filled the activity list with CANCELLED rows saying
+    // "not enough margin — reduce lot size" for something knowable here. The
+    // margin rate comes from OANDA per instrument rather than from a constant:
+    // metals are nothing like a major, and a five percent guess would have
+    // called this affordable when the real rate is over twenty.
+    const afford = await this._affordable(pair, cp, units, account);
+    if (!afford.ok) {
+      this.log(`${pair}: cannot afford ${units} units — ${afford.why}`);
+      return false;
+    }
+
     const signedUnits = dir === 'long' ? units : -units;
 
     const tradeId = genTradeId();
@@ -707,20 +728,61 @@ class ForexBot {
     return mod.stopFor({ dir, price: cp, pip, risk, smc, candles, spread });
   }
 
+  async _positionModule() {
+    try {
+      if (!this._position) this._position = await import(POSITION_URL);
+      return this._position;
+    } catch (e) {
+      this.warn(`Position module not loadable (${e.message}) — skipping. Run git pull on the VPS.`);
+      return null;
+    }
+  }
+
+  // What one unit of an instrument's quote currency is worth in the ACCOUNT's
+  // currency. Margin available is quoted in the account currency and the trade
+  // is not, so without this the two numbers cannot be compared at all.
+  async _toHome(pair, price, accountCurrency) {
+    const P = await this._positionModule();
+    if (!P) return null;
+    const rateFor = async (sym) => {
+      try {
+        const cs = await this.oanda.getCandles(sym, 'M1', 2);
+        return cs?.length ? cs[cs.length - 1].c : null;
+      } catch { return null; }
+    };
+    const quoteToUsd = await P.quoteToUsdFor(pair, price, rateFor);
+    if (quoteToUsd == null) return null;
+    const home = String(accountCurrency || 'USD').toUpperCase();
+    if (home === 'USD') return quoteToUsd;
+    const usdToHome = await P.quoteToUsdFor(`USD_${home}`, 1, rateFor)
+      // quoteToUsdFor answers "quote in USD"; for USD_CAD that is 1/rate, and
+      // what is wanted here is the other direction.
+      .then(v => (v != null && v > 0 ? 1 / v : null));
+    return usdToHome == null ? null : quoteToUsd * usdToHome;
+  }
+
+  async _affordable(pair, price, units, account) {
+    const P = await this._positionModule();
+    if (!P) return { ok: false, why: 'position module not loadable' };
+    const detail = await this.oanda.getInstrumentDetail(pair).catch(() => null);
+    const toHome = await this._toHome(pair, price, account?.currency);
+    return P.affordCheck({
+      units, price,
+      marginRate: detail?.marginRate ?? null,
+      marginAvailable: account?.marginAvailable ?? null,
+      minUnits: detail?.minimumTradeSize ?? 1,
+      toHome,
+    });
+  }
+
   // Position size, from shared/position.mjs. A cross-quoted instrument
   // (EUR_JPY, UK100_GBP, DE30_EUR) needs the value of its quote currency in
   // USD; that is fetched, and a failure to fetch it REFUSES the trade rather
   // than defaulting to 1, which would size a DAX trade as though euros were
   // dollars.
   async _sizeFor(pair, entry, stop, riskUsd) {
-    let mod;
-    try {
-      if (!this._position) this._position = await import(POSITION_URL);
-      mod = this._position;
-    } catch (e) {
-      this.warn(`Position module not loadable (${e.message}) — skipping. Run git pull on the VPS.`);
-      return { units: 0, risk: 0, why: 'position module not loadable' };
-    }
+    const mod = await this._positionModule();
+    if (!mod) return { units: 0, risk: 0, why: 'position module not loadable' };
     const rateFor = async (sym) => {
       try {
         const cs = await this.oanda.getCandles(sym, 'M1', 2);

@@ -9,7 +9,8 @@
 //
 // So the checks here are: does the size actually cost what was asked, does FX
 // come out unchanged, and does it REFUSE rather than clamp when it cannot.
-import { unitsFor, quoteToUsdFor, quoteOf, baseOf } from '../shared/position.mjs';
+import { unitsFor, quoteToUsdFor, quoteOf, baseOf,
+         LOT_UNITS, lotUnitsFor, unitsForLots, affordCheck } from '../shared/position.mjs';
 
 let fails = 0;
 const check = (n, c, e = '') => { console.log(`${c ? '  ok  ' : '  FAIL'}  ${n}${e ? ' — ' + e : ''}`); if (!c) fails++; };
@@ -129,6 +130,74 @@ const near = (a, b, tol = 0.02) => Math.abs(a - b) <= tol;
   check('and ignoring the conversion would have oversized it',
     Math.floor(500 / 100) === 5,
     'treating euros as dollars gives 5 units — 540 of risk against a 500 budget');
+}
+
+// ── What a lot is, in one place ─────────────────────────────────────────────
+//
+// There were two definitions and they disagreed by fifty times. The strategy
+// editor's note said silver was 5,000 ounces a lot; the bot converted every
+// metal at 100. So 0.01 lots of silver meant fifty ounces on the screen and one
+// ounce in the order.
+{
+  check('a silver lot is five thousand ounces, not a hundred',
+    lotUnitsFor('XAG_USD') === 5000 && LOT_UNITS.XAG === 5000);
+  check('and gold is a hundred, which is where the two used to agree',
+    lotUnitsFor('XAU_USD') === 100);
+  check('forex is the hundred thousand everyone means by a lot',
+    lotUnitsFor('EUR_USD') === 100000 && lotUnitsFor('USD_JPY') === 100000);
+
+  check('0.01 lots of silver is fifty ounces',
+    unitsForLots('XAG_USD', 0.01) === 50, String(unitsForLots('XAG_USD', 0.01)),
+    'the bot used to send 1');
+  check('0.01 lots of gold is one ounce', unitsForLots('XAU_USD', 0.01) === 1);
+  check('and nonsense is no position rather than a rounded guess',
+    unitsForLots('XAG_USD', 0) === 0 && unitsForLots('XAG_USD', -1) === 0
+    && unitsForLots('XAG_USD', 'x') === 0);
+}
+
+// ── Can the account place it, asked BEFORE the order goes out ──────────────
+//
+// Eight consecutive CANCELLED rows on the activity list, every one of them
+// "Not enough margin — reduce lot size", for a condition knowable here. These
+// numbers are the real ones off the account: silver at 66.6, margin available
+// 51.47 CAD, and OANDA charging 20.23 CAD on a single ounce.
+{
+  const SILVER = { price: 66.6, marginRate: 0.22, toHome: 1.38 };
+
+  const one = affordCheck({ units: 1, marginAvailable: 51.47, ...SILVER });
+  check('one ounce of silver fits, and the number matches the broker ticket',
+    one.ok === true && Math.abs(one.required - 20.2) < 0.3,
+    `${one.required.toFixed(2)} CAD required — the broker said 20.23`);
+
+  const fifty = affordCheck({ units: 50, marginAvailable: 51.47, ...SILVER });
+  check('fifty does not, and it is refused rather than sent',
+    fifty.ok === false, fifty.why);
+  check('and the refusal says how many WOULD fit',
+    fifty.affordable === 2, `${fifty.affordable} units`,
+    'the broker ticket said Units Available 2');
+
+  const broke = affordCheck({ units: 1, marginAvailable: 5, ...SILVER });
+  check('when not even the minimum fits, it says that instead',
+    broke.ok === false && /even the minimum/.test(broke.why), broke.why);
+
+  // The failure that matters most: unknown must not read as affordable.
+  check('an unreadable margin rate is refused, not waved through',
+    affordCheck({ units: 1, price: 66.6, marginRate: null, marginAvailable: 51.47, toHome: 1.38 }).ok === false);
+  check('and so is an unknown balance, or an unknown conversion',
+    affordCheck({ units: 1, price: 66.6, marginRate: 0.22, marginAvailable: null, toHome: 1.38 }).ok === false
+    && affordCheck({ units: 1, price: 66.6, marginRate: 0.22, marginAvailable: 51.47, toHome: null }).ok === false,
+    'guessing here is how the red rows happened in the first place');
+
+  // Headroom, so a price tick between the check and the fill is not a rejection.
+  const exact = affordCheck({ units: 1, marginAvailable: 20.3, ...SILVER });
+  check('a position that only just fits is refused, not sent on the edge',
+    exact.ok === false,
+    'a rejection costs the whole trade; five percent of headroom costs nothing');
+
+  // A USD account needs no conversion and must behave identically.
+  const usd = affordCheck({ units: 1, price: 66.6, marginRate: 0.22, marginAvailable: 100 });
+  check('a USD account converts by one and is unaffected',
+    usd.ok === true && Math.abs(usd.required - 14.65) < 0.05, usd.required.toFixed(2));
 }
 
 console.log(fails ? `\n${fails} FAILED` : '\nall passed');
