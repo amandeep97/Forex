@@ -21,7 +21,7 @@
       "srcs": 1,
       "firstAt": 1788850017000,
       "_kind": null,
-      "why": "No clear market impact from train strike."
+      "why": "No clear directional impact on markets."
     },
     {
       "title": "European stocks fall as crude extends advance following Iranian threats",
@@ -68,7 +68,7 @@
       "srcs": 1,
       "firstAt": 1788848577000,
       "_kind": null,
-      "why": "Economic impact unclear for immediate direction."
+      "why": "Economic impact unclear for immediate price."
     },
     {
       "title": "Japan stocks lower at close of trade; Nikkei 225 down 1.69%",
@@ -109,7 +109,7 @@
       "srcs": 1,
       "firstAt": 1788848064000,
       "_kind": null,
-      "why": "Geopolitical tension, no clear direction."
+      "why": "Geopolitical tension, no clear price signal."
     },
     {
       "title": "French trade deficit grows larger in July on higher imports again",
@@ -137,7 +137,7 @@
       "dir": {
         "EUR/USD": "down"
       },
-      "why": "Wider deficit weakens Euro."
+      "why": "Wider deficit weakens Euro sentiment."
     },
     {
       "title": "Gold Climbs to $4,435 as Dollar Weakness Offsets Rate-Hike Gloom - finance.biggo.com",
@@ -182,7 +182,7 @@
       "srcs": 1,
       "firstAt": 1788847689000,
       "_kind": null,
-      "why": "Resumed strikes, no clear direction."
+      "why": "Conflict resumes, no clear market direction."
     },
     {
       "title": "Russia launches missile strikes against Kyiv as pause in raids ends - Financial Times",
@@ -204,7 +204,53 @@
       "srcs": 1,
       "firstAt": 1788847689000,
       "_kind": null,
-      "why": "Missile strikes, no clear direction."
+      "why": "Missile strikes, no clear price impact."
+    },
+    {
+      "title": "Videos capture massive fires at Saratov oil refinery following drone strike - The New Voice of Ukraine",
+      "link": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNU3g5WjBVLXlJejBaX3p3b0NoRGFLMmRCQjFfWDdMSkpFZFJIWmMwaW9pM05mcTdwSTlaZUpvaFFqZEIyMmRFT0pELVg0dVk3Y29reXNGV0FmTmptdUtuQ3UzRlRCZ2lfblpGLWVfWTI2ai1zUnRxblZ4VXRlWW10eHh5VVcxLVZhNk9MRU5HUDlRS0NTcjRVYllEVDlueVR2YVk5TzNwbU01VWhmbUNGcXlLUTkxb1BxRE8tSHRlUTFXVnM0dXfSAbsBQVVfeXFMTk9PMFR1TU1wYXFIRlBHLVE3Y0RGSFBUUkkwSTVhZGV1RlMwcV9DYkEycVVPMVlnakZJTGM2VEUxTWFaSTA1SlRyQVVtSDlDd1JMdnlpajNOYVVMQUVuMzJaYkJaSTQzb2lOUi1xZm1QUDVQQndBb0h3NHVUWGhoTVU3MGN2bTdoSWNaMngyUGRFS2o1SGpGUEZQUUN5YjZDd00xdHUzOGpHNDVld2VIMjZjcGcya3drcmYwMA?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMixgFBVV95cUxNU3g5WjBVLXlJejBaX3p3b0NoRGFLMmRCQjFfWDdMSkpFZFJIWmMwaW9pM05mcTdwSTlaZUpvaFFqZEIyMmRFT0pELVg0dVk3Y29reXNGV0FmTmptdUtuQ3UzRlRCZ2lfblpGLWVfWTI2ai1zUnRxblZ4VXRlWW10eHh5VVcxLVZhNk9MRU5HUDlRS0NTcjRVYllEVDlueVR2YVk5TzNwbU01VW",
+      "at": 1788849840000,
+      "inst": [
+        "USOIL",
+        "XAU/USD",
+        "UKOIL"
+      ],
+      "ccy": [
+        "OIL",
+        "XAU"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788848058000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Refinery fire suggests supply disruption risk."
+    },
+    {
+      "title": "Russian Forces Attack Market Near Odesa, Injuring a Guard - Межа. Новини України.",
+      "link": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9LX09tZW5ITHdYXzc4eEtRbmw2ak1NUk8wR0d5MlJzdXZ5WTNlQUNyU3hGNms0Rk0xZlFPWENHV1ZQdF90N3JZTEhLM2FEbEowaVA2b2tUWkk2UEs5bTg3RWNoMkFMSzVZWXc?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiakFVX3lxTE9LX09tZW5ITHdYXzc4eEtRbmw2ak1NUk8wR0d5MlJzdXZ5WTNlQUNyU3hGNms0Rk0xZlFPWENHV1ZQdF90N3JZTEhLM2FEbEowaVA2b2tUWkk2UEs5bTg3RWNoMkFMSzVZWXc?oc=5\" target=\"_blank\">Russian Forces Attack Market Near Odesa, Injuring a Guard</a>&nb",
+      "at": 1788849282000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788849282000,
+      "why": "Local attack, no broad market impact."
     },
     {
       "title": "What are the main events for today?",
@@ -256,7 +302,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788848064000,
-      "why": "Drone strikes, no clear direction."
+      "why": "Casualties reported, no clear price signal."
     },
     {
       "title": "Trump and Burnham Discuss Ukraine Ceasefire Efforts and Middle East Security - Межа. Новини України.",
@@ -277,7 +323,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788848100000,
-      "why": "Ceasefire talks, no clear direction."
+      "why": "Diplomatic talks, no clear market direction."
     },
     {
       "title": "WAR: Russia Resumes Strikes On Ukraine Despite Trump’s Mediation - Channels Television",
@@ -297,8 +343,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788847689000,
-      "why": "Resumed strikes, no clear direction."
+      "firstAt": 1788846433000,
+      "why": "War resumes, no clear price impact."
     },
     {
       "title": "'Good to have choice': Australians on opting out of social media algorithms",
@@ -315,8 +361,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788848410000,
-      "why": "Social media policy, no market impact."
+      "firstAt": 1788848410000
     },
     {
       "title": "Drones attack Saratov Oil Refinery in Russia overnight - Ukrinform",
@@ -336,8 +381,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788848340000,
-      "why": "Refinery attack, no clear direction."
+      "firstAt": 1788846433000
     },
     {
       "title": "UK’s Burnham Risks Trump Anger With New Sanctions on Israel - Bloomberg.com",
@@ -380,6 +424,26 @@
       "firstAt": 1788845700000
     },
     {
+      "title": "Drones Reportedly Attack Russia’s Saratov Oil Refinery, Damage and Casualties Remain Unclear - Межа. Новини України.",
+      "link": "https://news.google.com/rss/articles/CBMibkFVX3lxTE5XVHA1RzNBWENXVVViZnBlTGZCb1hqelRHVHlVRk5BbjFRZGtnT3dtVWQ1Ulk0ZFQtbzFacnlzZjFCZHQ1OXRTelpMdV9NZFQwR09oTnVQTnFIaU8yRngtRDBINkItTkNIdi1TSDJn?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMibkFVX3lxTE5XVHA1RzNBWENXVVViZnBlTGZCb1hqelRHVHlVRk5BbjFRZGtnT3dtVWQ1Ulk0ZFQtbzFacnlzZjFCZHQ1OXRTelpMdV9NZFQwR09oTnVQTnFIaU8yRngtRDBINkItTkNIdi1TSDJn?oc=5\" target=\"_blank\">Drones Reportedly Attack Russia’s Saratov Oil Refinery, Dam",
+      "at": 1788848058000,
+      "inst": [
+        "USOIL",
+        "XAU/USD",
+        "UKOIL"
+      ],
+      "ccy": [
+        "OIL",
+        "XAU"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788846433000
+    },
+    {
       "title": "Two dead as Russia resumes strikes on Kyiv after US peace envoys depart - RTE.ie",
       "link": "https://news.google.com/rss/articles/CBMic0FVX3lxTFBmc01yMWh4OUl2bmhqbkhKSWUxZkpSRHRBUXMxZTF4T2dnNkdyWVVBUmNaSmJjeGpMdHQ5eFhqblJUN0sxZWVQYkVGZkFoaGROZTNoUmlkS2FpOVgtc2YzcTUyeDhWT0w4bERYN1U0MkYyY28?oc=5",
       "source": "Wires (geo)",
@@ -397,7 +461,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788847689000
+      "firstAt": 1788846433000
     },
     {
       "title": "Germany's trade surplus widens sharply in July as imports slump",
@@ -489,6 +553,46 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788846540000
+    },
+    {
+      "title": "'Run To Bunkers': Russia Attack Alert Across Ukraine; Kyiv 'Burns' Soon After Witkoff & Kushner Left - The Times of India",
+      "link": "https://news.google.com/rss/articles/CBMigwJBVV95cUxNS2YtWXZRN2dwR1lGVEtZSG5OeEc3ekdzaWxsSWdsQ0wxMWN5MnV4M1doM0ZDSkRQM0NBRHVkUm4yX0VoYVczcHlEcklCdWUxZHNrTkJ1MVBJNXZDaE1JaGx2ZkhiOHN3MmRYREtnWXJ4OFVLYXRFOWdXbjh2ZlI4elp3cEhzODNUNDRkelJHbnhLMlpRZDNhVm1fNENVQTl0R2sxY0NnUEhhUnpKbFpLR2NkTGxzSlVOQnJWNi1BY1kwemJmTVM0alZnY3hQUm5sN0RXY3hWdThKNHpxLVNSR0JqaWFDNUpGLUdkZTdzZnVibGxHTnZDOW9mNERLeWp6bEw40gGIAkFVX3lxTFBxUEZPaThfeHFQVVZNN3RWaGd6S0NyX2QzdXd6OUNzRXBXb2YxWVlRMHl1dVRwNzJhbnF5SjRmblMzUTlmaU1hVmE2M3kxalFrMFZiUmFBOXIySnpHZFlablZVeGxwVXdXd2pwd2hqZ3h2eHd6RnVhSkppcnJEVmp6WDlTMUU2QVZ6d2x0RzVWNklNZzBKeWo4NW1jWU5XTWV2VE1BUDJ5TEFuX0VQUVpqYVBoMC1vSG1YcUgzQUVZRVBuSjQ1WXZIT2Z0NmVNZzZHRk1PV0ZTdUpXQVdqd18tVi03MVpnTk03bXp6a09UY29ZWDhBT21tcU9YcW5BMzVxNExfNWQ1Tg?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMigwJBVV95cUxNS2YtWXZRN2dwR1lGVEtZSG5OeEc3ekdzaWxsSWdsQ0wxMWN5MnV4M1doM0ZDSkRQM0NBRHVkUm4yX0VoYVczcHlEcklCdWUxZHNrTkJ1MVBJNXZDaE1JaGx2ZkhiOHN3MmRYREtnWXJ4OFVLYXRFOWdXbjh2ZlI4elp3cEhzODNUNDRkelJHbnhLMlpRZDNhVm1fNENVQTl0R2sxY0NnUEhhUn",
+      "at": 1788846433000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 3,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788845100000
+    },
+    {
+      "title": "Poland scrambles fighter jets during massive Russian airstrike on Ukraine - The New Voice of Ukraine",
+      "link": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPY2lsY19aMkhlV0c3czQ4Q0hsdlduRkt1bnNVbnRGTWdxREstcklYWktFVTlfZy01RExCOWlFTUYtdEplUFYxaGdkX1VDN3BPeGg4SVRGSW1teE1NMW9QMnVzWkJKbTc5dlg3d05vUFBTdHI5VW9Ya18yUDRsOW41UWk4RW1jVEotaS1RRDBtMUc2Nmo4ZV9UeUUxSEtROVNfN041b1BveGo5ZlVRLURqVG1NVkUxVElnTHA00gG3AUFVX3lxTE01dkFXcUN5T3dDSnU0ZHlKd3ZqMmJFalJrcWdHYi1WUl9GWFl2VTVQYVNmU1NNUUNPN2FvelYtUmlFMUJaVjlaNjFrMjZqN2xHVWhraG84TFR5YmU2T0FkTHlhWGVyc2RVTUJ6eWswVDhrMlVnQ3NOWi10YjJldEl2b2NNb19JUkJPakNSQzF5dVg0SXA4V0ZRLUpPem44aUxoSzhkdUt5WWdaQjBQVnVvZkZ2UnFRbw?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiuwFBVV95cUxPY2lsY19aMkhlV0c3czQ4Q0hsdlduRkt1bnNVbnRGTWdxREstcklYWktFVTlfZy01RExCOWlFTUYtdEplUFYxaGdkX1VDN3BPeGg4SVRGSW1teE1NMW9QMnVzWkJKbTc5dlg3d05vUFBTdHI5VW9Ya18yUDRsOW41UWk4RW1jVEotaS1RRDBtMUc2Nmo4ZV9UeUUxSEtROVNfN041b1BveGo5Zl",
+      "at": 1788846060000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788845700000
     },
     {
       "title": "Ukraine Says At Least Two Killed in Russian Attack On Kyiv - Bloomberg.com",
@@ -585,7 +689,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788843052000
+      "firstAt": 1788841560000
     },
     {
       "title": "Euro holds steady above 1.1600 as markets brace for US inflation data and ECB rate decision - FXStreet",
@@ -680,6 +784,26 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1788841402000
+    },
+    {
+      "title": "Two dead, 7 injured in Russia's attack on Kyiv - Breakingthenews.net",
+      "link": "https://news.google.com/rss/articles/CBMilAFBVV95cUxPWGU2U0p0Z1lDMzJSeGhGRUszU1RfVHNaN1RoQWc2QWptTWZSVURMeFJRRHVlaVMzMTdOWC1IMl9hUm5qM3pLSno2Y3NlYUZvUFJ6Y1hhLVFDaGs5QU5MX0ppa191WWREMU5CZXUxZWM4bHZ2eENTaXZIY2xqRmQ5b0xGa3AydWVWakowcmV6Q1hDbEpW?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMilAFBVV95cUxPWGU2U0p0Z1lDMzJSeGhGRUszU1RfVHNaN1RoQWc2QWptTWZSVURMeFJRRHVlaVMzMTdOWC1IMl9hUm5qM3pLSno2Y3NlYUZvUFJ6Y1hhLVFDaGs5QU5MX0ppa191WWREMU5CZXUxZWM4bHZ2eENTaXZIY2xqRmQ5b0xGa3AydWVWakowcmV6Q1hDbEpW?oc=5\" target=\"_blank\">Two dea",
+      "at": 1788841560000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 3,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788841560000
     },
     {
       "title": "Scores wounded as Iran-backed Houthis attack Saudi Arabia - edition.cnn.com",
@@ -1264,6 +1388,26 @@
       "firstAt": 1788832237000
     },
     {
+      "title": "Polish airspace secured amid Russia's attack on Ukraine - Breakingthenews.net",
+      "link": "https://news.google.com/rss/articles/CBMiogFBVV95cUxOdUhncldWTjFaMVRDanRZVFdTejczVnNkeFh6Wl9hZ1ZMYlhsd3VNaGphMlJiRncyQ0JsSTNnRHRwZlZ2UGFWZklBRzAwRTQ5c00wdklfdWEyQTFNa2lGeE1fRGtoTFdxRHZ4UzdaWE9VTW9Xb3FiN0ZKTkY3SEk1T004ZjV2ekhhTDIybHJBNWZOc19XWFg0ejl5clhMMUFIMUE?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiogFBVV95cUxOdUhncldWTjFaMVRDanRZVFdTejczVnNkeFh6Wl9hZ1ZMYlhsd3VNaGphMlJiRncyQ0JsSTNnRHRwZlZ2UGFWZklBRzAwRTQ5c00wdklfdWEyQTFNa2lGeE1fRGtoTFdxRHZ4UzdaWE9VTW9Xb3FiN0ZKTkY3SEk1T004ZjV2ekhhTDIybHJBNWZOc19XWFg0ejl5clhMMUFIMUE?oc=5\" targ",
+      "at": 1788832200000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 3,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788832200000
+    },
+    {
       "title": "Iran threatens US with new 'economic warfare' and missiles as Houthis attack Saudi Arabia - Reuters",
       "link": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNT2RnNWprQ01ScjN2Q05RSHRWdmRqVzh2U01LUVVPVmhiRDVYNER3anQxQlNWV24wS3RZR2ZqS1FxNnFKWFRqSmlYbnQwSFk1eU5Cbnh1SVpxbTZCWUwtelFqbFV6LTNLVHZZbGRaYTVucy1VT1JwNDZPM3gydkZRU2VCWHFoVnpTVU9ILXlfRHpKMnBsT3RJOUlkejRzT1FJa25YekFnMVl6dUJnbERxeXo1UnpOZTVaQ281aFJrbjFEWmN3T2c?oc=5",
       "source": "Wires (geo)",
@@ -1390,6 +1534,26 @@
       "firstAt": 1788828523000
     },
     {
+      "title": "Crude oil tests the path to $100 as Iran-US escalation threatens Gulf supplies - The News Pakistan",
+      "link": "https://news.google.com/rss/articles/CBMitwFBVV95cUxPeHB0UVBTWEhRYlRtLWpYVkpIMXFEX3E4YmN2eEJSVFB5S3BqRURqcGhCRnpmcUR5Y1FHQ0Q1c25HY05Hbm5oMmZMaFltWjJlQWRnbXE1SUVBeEI3VjQwYTJOZVJCNDdlOHd3NlZXc1FndlR3bFdBLWdLLVBzdS1pdjZkQzZ0WkVNNlc5ZzkwMmoxMjhvZnlKVzhMZmtwX2E3cVE0ZlNrckJPMkhkT2hyemFQVjQtbW8?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMitwFBVV95cUxPeHB0UVBTWEhRYlRtLWpYVkpIMXFEX3E4YmN2eEJSVFB5S3BqRURqcGhCRnpmcUR5Y1FHQ0Q1c25HY05Hbm5oMmZMaFltWjJlQWRnbXE1SUVBeEI3VjQwYTJOZVJCNDdlOHd3NlZXc1FndlR3bFdBLWdLLVBzdS1pdjZkQzZ0WkVNNlc5ZzkwMmoxMjhvZnlKVzhMZmtwX2E3cVE0ZlNrckJPMk",
+      "at": 1788828488000,
+      "inst": [
+        "USOIL",
+        "UKOIL",
+        "XAU/USD"
+      ],
+      "ccy": [
+        "OIL",
+        "XAU"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1788828122000
+    },
+    {
       "title": "Today’s Market Recap: Brent Crude Nears $100, Gold and Bitcoin Under Pressure as US-Iran Conflict Escalates - TradingKey",
       "link": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxONWt6QmkzNHhoU0FPRTllQXRmck9sZ1dMaG9wc1NBeFpHeUU0SnBRZGdjN0EyblRET19xNmU2aHM0d2Vmc043VFh3bnRudU9uWUdPc0R3ZGFad0tycWkwQ1NHMXQzTzZUb2Znand2MW9FT216ODIxaFJreEZIUmI0a3hhV0JfeE05cGVWZTRMRHllbi1IX09ROWJBZXByMUV6VjU0TkpkeE1iV29meVBveHZXVkVlTXZIRHJ2LXNmZkdEa1JJU19JRWN0d3hZMzZLWm55RkVkN1gxaUYzcWN0TXZ5MA?oc=5",
       "source": "Wires (macro)",
@@ -1408,7 +1572,7 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 1,
+      "srcs": 2,
       "firstAt": 1788828122000
     },
     {
@@ -1579,152 +1743,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788825017000
-    },
-    {
-      "title": "Qatar calls for phased de-escalation for sustainable solution to Iran war - Anadolu Ajansı",
-      "link": "https://news.google.com/rss/articles/CBMiugFBVV95cUxORlMyS0IxSmJLd19HcG80V1djUVhYeFdubmFHQjU3am5FRG1ONjdQbnhPX3NSNHNwaF9la3ZfbGF0Qlc5WS1zVmVYV0d3YzNnRXZpcGtnaU1WTEZxSElLWkFfaUpLa3ZmNzFEXzFzMmNpTlk1NjlGM1pZY0kzLUtyazJZelczN2sxeERSSkNPR0o2VDZ0V3Z3RUd4bTk4dGhSTVdNRTFYNXNja05yX2pQQ3ZXcUdSQW9ValE?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiugFBVV95cUxORlMyS0IxSmJLd19HcG80V1djUVhYeFdubmFHQjU3am5FRG1ONjdQbnhPX3NSNHNwaF9la3ZfbGF0Qlc5WS1zVmVYV0d3YzNnRXZpcGtnaU1WTEZxSElLWkFfaUpLa3ZmNzFEXzFzMmNpTlk1NjlGM1pZY0kzLUtyazJZelczN2sxeERSSkNPR0o2VDZ0V3Z3RUd4bTk4dGhSTVdNRTFYNXNja0",
-      "at": 1788824845000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1788824845000
-    },
-    {
-      "title": "US markets will await inflation data and Apple presentation - UA.NEWS",
-      "link": "https://news.google.com/rss/articles/CBMimAFBVV95cUxPM0k5QmNpWlpaSHpFNzdoUXA1bzBCM1ZxVWx2QjZtVE1jMHItQlhXODZWLVVoQUZnb2tieUFWMmlfUzhPN0R0VWhwSFFqZVk0NXBEVFFoSmx1dUN3U3FuUVpNekhwemZaRkZQWVpPUlZCSDgyOTRZWmtBTGVadGZCb00ybk8zUWxXRzhoMlM2V0ttNFJJSG95RQ?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMimAFBVV95cUxPM0k5QmNpWlpaSHpFNzdoUXA1bzBCM1ZxVWx2QjZtVE1jMHItQlhXODZWLVVoQUZnb2tieUFWMmlfUzhPN0R0VWhwSFFqZVk0NXBEVFFoSmx1dUN3U3FuUVpNekhwemZaRkZQWVpPUlZCSDgyOTRZWmtBTGVadGZCb00ybk8zUWxXRzhoMlM2V0ttNFJJSG95RQ?oc=5\" target=\"_blank\">U",
-      "at": 1788824547000,
-      "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788824547000
-    },
-    {
-      "title": "Japan wages data, July 2026: Headline earnings +4.7% y/y (expected +3.9%, prior +4%)",
-      "link": "https://investinglive.com/news/japan-wages-data-july-2026-headline-earnings-4-7-y-y-expected-3-9-prior-4/",
-      "source": "ForexLive",
-      "desc": "Just the data on this post. July 2026. Average Cash Earnings YY 4.7% expected 3.9%, prior 4.0%Real wages + 2.4% y/y biggest increase since May 2021 seventh consecutive month of gainsADDED, details here: Japan wage growth strongest since 1997, cementing BOJ hike caseComing up soon",
-      "at": 1788823892000,
-      "inst": [
-        "USD/JPY"
-      ],
-      "ccy": [
-        "JPY"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788823892000
-    },
-    {
-      "title": "China says it will pump $54 billion into banks and insurers — but their stocks still fell",
-      "link": "https://www.cnbc.com/2026/09/07/china-state-banks-lenders-insurers-capital-solvency-bankrupt-nim-.html",
-      "source": "CNBC Markets",
-      "desc": "With a bigger capital cushion, financial institutions may also be asked to do more to mobilize resources in capital markets, analysts say.",
-      "at": 1788823390000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788823390000
-    },
-    {
-      "title": "BRC data shows summer retail boost fading fast as GBP watches consumer signals",
-      "link": "https://investinglive.com/news/brc-data-shows-summer-retail-boost-fading-fast-as-gbp-watches-consumer-signals/",
-      "source": "ForexLive",
-      "desc": "The retail slowdown adds another soft data point to the pile the Bank of England will weigh into its next policy assessment, with the loss of momentum in both BRC and Barclays readings, plus the sharp pullback in consumer confidence, reinforcing a narrative of a UK consumer losin",
-      "at": 1788823099000,
-      "inst": [
-        "GBP/USD"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788823099000
-    },
-    {
-      "title": "South Korea Q2 GDP, final, +0.6% (vs. expected +0.6%, prior +1.8%)",
-      "link": "https://investinglive.com/news/south-korea-q2-gdp-final-0-6-vs-expected-0-6-prior-1-8/",
-      "source": "ForexLive",
-      "desc": "Data catch up. South Korean GDP Growth Final, Q2 2026:QQ +0.6%expected +0.6%, prior +1.8%YY +3.7% expected +3.7%, prior +3.6%---New Zealand Manufacturing Activity Volume Q2 2026:QQ +0.8%prior +3.6%Manufacturing Activity: QQ +3.1%prior +2.8%Kiwi $ little moved. This article was wr",
-      "at": 1788823064000,
-      "inst": [
-        "NZD/USD"
-      ],
-      "ccy": [
-        "NZD",
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788823064000
-    },
-    {
-      "title": "Bitcoin trades like gold amid Fed rate hike unc... - Pluang",
-      "link": "https://news.google.com/rss/articles/CBMirgFBVV95cUxOcG5kbjdMZDVERkYwY2ZRSWhFanhvb0hkbkJIYkJrZUVrdEx6ZGJFd3RJdGNnemgxMjBYMUlMaDZ0MjdhWVR5UzJKT3RfX3BkZ2N2X0VZWXdJNjB4VWdGMlV0NTJTSWVTb3N2LUV2MDFBb0V6NFlNWmJoQkR0ZmFpTXFmOVRKTUxvNGhfbmw2MDB5S3N6U2NGWVJhWVhBUXlkQ0R2TDBsZk9aLTVXZFE?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMirgFBVV95cUxOcG5kbjdMZDVERkYwY2ZRSWhFanhvb0hkbkJIYkJrZUVrdEx6ZGJFd3RJdGNnemgxMjBYMUlMaDZ0MjdhWVR5UzJKT3RfX3BkZ2N2X0VZWXdJNjB4VWdGMlV0NTJTSWVTb3N2LUV2MDFBb0V6NFlNWmJoQkR0ZmFpTXFmOVRKTUxvNGhfbmw2MDB5S3N6U2NGWVJhWVhBUXlkQ0R2TDBsZk9aLT",
-      "at": 1788822406000,
-      "inst": [
-        "XAU/USD",
-        "BTC/USDT"
-      ],
-      "ccy": [
-        "USD",
-        "XAU",
-        "BTC"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788822406000
-    },
-    {
-      "title": "Rising Oil Prices and Inflation Risks Put Markets on Edge as MoneySimpler Expands Free AI Automated Trading - manilatimes.net",
-      "link": "https://news.google.com/rss/articles/CBMijgJBVV95cUxNNWZpV21PTVBHaEY0anFEaFFoakdsTV90TVBWYWROemFfR1pBZDlEdUdqeTVjUDJ5Q01DRklNdWFucEpHdENfcGNMaU5jQVRadXJoVkQ1LVNFQ2piRzVrb2JHeXZoN0dJVTg0YlZYencxbHpuX09NOG9XRU03T1J3MC15M0hkVnpsZlhCLXhOdUZRYmo1S2toUWI1LUtwVjJzUGZOUjhLTUhhYklwWjR5c1N5ZmRfMGtwVFl1RF9YWk9fX2NGa0piV2ZiWVoyTDA1al9hRjZHZ1dOajJHMnIyY3JaNWRucnJpcWFzbVc0Vnd0eDRhcGhMUmJzczJ3XzVhYjYtbXJXekJQWVhGbXfSAZMCQVVfeXFMTkxwSlhiaVN4bGNSa0NCSFlEUGpkaTJXQnd0cVhGYWpGV0Y1SGYzczlJNkgwM2xiYU1yLXJ6ZTNjWjhGb2VYcFBBSTBVaThWVjZRbkZ5b0YzUFVVemljeUF6a044ZmlxeHpoWjNVd3oyZXVVOHVqd0lyR0o4SnZMM2xfR1prc1pMMlpoNGFxNkNmVXlxUWZNbW9Gd1U2SUZ2Z1pCTTBhdzUwTkF5ZmM2N3NSZm5EYUYzN3hfRTk3cmlaVV9PZ2Qtc3lYZ2xNZ01YWTVLX1F3UDNfUlJYQVZSY1psRjVVS0Rvb2VBWGh3dThyTnFvbU42WF9ncklNQTJaY2dqSWk1dDdvaHdzcWVibmNYV28?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMijgJBVV95cUxNNWZpV21PTVBHaEY0anFEaFFoakdsTV90TVBWYWROemFfR1pBZDlEdUdqeTVjUDJ5Q01DRklNdWFucEpHdENfcGNMaU5jQVRadXJoVkQ1LVNFQ2piRzVrb2JHeXZoN0dJVTg0YlZYencxbHpuX09NOG9XRU03T1J3MC15M0hkVnpsZlhCLXhOdUZRYmo1S2toUWI1LUtwVjJzUGZOUjhLTUhhYk",
-      "at": 1788821871000,
-      "inst": [
-        "USOIL"
-      ],
-      "ccy": [
-        "OIL",
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788821871000
     }
   ],
   "sources": [
@@ -1747,10 +1765,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-08T07:13:12.999Z",
-  "updatedAt": "2026-09-08T07:13:12.999Z"
+  "headlinesAt": "2026-09-08T07:14:58.555Z",
+  "updatedAt": "2026-09-08T07:14:58.555Z"
 }
