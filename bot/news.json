@@ -637,7 +637,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788904753000,
-      "_kind": null
+      "_kind": null,
+      "why": "AI adoption news lacks clear market direction"
     },
     {
       "title": "Paul Adams: British-Israeli relations at lowest ebb in decades",
@@ -653,7 +654,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788903991000,
-      "_kind": null
+      "_kind": null,
+      "why": "Geopolitical tension unclear for currency direction"
     },
     {
       "title": "Paramount says California AG contradicted bond arguments in TV interviews",
@@ -685,7 +687,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788900878000
+      "firstAt": 1788900878000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Escalation boosts safe havens and oil"
     },
     {
       "title": "Qualcomm’s stock climbs as Amazon chip deal offers investors much-needed good news",
@@ -718,7 +726,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1788903087000
+      "firstAt": 1788903087000,
+      "why": "Sanctions on settlements unclear for markets"
     },
     {
       "title": "Mexico stocks higher at close of trade; S&P/BMV IPC up 0.52%",
@@ -732,7 +741,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788903004000
+      "firstAt": 1788903004000,
+      "why": "Mexico market news irrelevant to US index"
     },
     {
       "title": "Bombardier’s stock drops as the U.S.-Canada trade war intensifies. Here’s what Trump is targeting next.",
@@ -751,7 +761,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788902580000
+      "firstAt": 1788902580000,
+      "dir": {
+        "USD/CAD": "up"
+      },
+      "why": "Trade war strengthens dollar, gold unclear"
     },
     {
       "title": "Colombia stocks higher at close of trade; COLCAP up 0.15%",
@@ -765,7 +779,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788902703000
+      "firstAt": 1788902703000,
+      "why": "Colombia market news irrelevant to US index"
     },
     {
       "title": "US sanctions all remaining Iranian airlines, with 27 carriers hit in fresh action - The Times of India",
@@ -785,7 +800,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788901303000
+      "firstAt": 1788901303000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Sanctions increase geopolitical risk premium"
     },
     {
       "title": "U.S. strikes Iranian tankers after more attempted attacks on Navy warship - NBC News",
@@ -805,7 +826,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788900878000
+      "firstAt": 1788900878000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Military strikes boost risk assets"
     },
     {
       "title": "US hits remaining parts of Iran's aviation sector with sanctions in latest move to isolate Tehran - AP News",
@@ -825,7 +852,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788901800000
+      "firstAt": 1788901800000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Sanctions isolate Iran, raising risk"
     },
     {
       "title": "Trump administration sanctions all Iranian airlines in aviation crackdown - Middle East Eye",
@@ -845,7 +878,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1788898660000
+      "firstAt": 1788898660000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Aviation sanctions increase geopolitical tension"
     },
     {
       "title": "Stocks making the biggest moves after hours: ServiceTitan, Mission Produce, Chime Financial and more",
@@ -860,7 +899,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788900992000
+      "firstAt": 1788900992000,
+      "why": "Individual stock moves unclear for index"
     },
     {
       "title": "China August inflation seen rebounding as trade data flags demand gap",
@@ -883,7 +923,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788900933000
+      "firstAt": 1788900933000,
+      "why": "China inflation data unclear for these pairs"
     },
     {
       "title": "US strikes Iranian tankers after more attempted missile attacks on Navy warship - Boston Herald",
@@ -903,7 +944,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788900878000
+      "firstAt": 1788900878000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Military escalation drives risk assets up"
     },
     {
       "title": "Trump directs GSA to take steps to remove Canadian goods from agency lists",
@@ -917,7 +964,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788900519000
+      "firstAt": 1788900519000,
+      "dir": {
+        "USD/CAD": "up"
+      },
+      "why": "Trade action strengthens US dollar"
     },
     {
       "title": "Police bodycam captures Russian missile strike on Kyiv",
@@ -2370,10 +2421,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-08T22:13:26.195Z",
-  "headlinesAt": "2026-09-08T22:13:26.195Z",
-  "updatedAt": "2026-09-08T22:13:26.195Z"
+  "calendarAt": "2026-09-08T22:14:42.035Z",
+  "headlinesAt": "2026-09-08T22:14:42.035Z",
+  "updatedAt": "2026-09-08T22:14:42.035Z"
 }
