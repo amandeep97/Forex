@@ -75,13 +75,17 @@ const MACRO = pathToFileURL(path.join(__dirname, '..', '..', 'shared', 'macroFit
 //   3 — the dollar and the ten-year enter as conditions: how much of the metal
 //       is macro-explained, whether its dollar relationship is the normal one
 //       or has broken, and how far it has moved beyond what the two account for.
+//   5 — rules that survived a previous run are re-scored every run whatever
+//       they rank, and their verdicts kept as a sequence. Version 4 crowded
+//       the previous survivor out of the top twelve and simply stopped
+//       mentioning it, which reads exactly like a failure and was not one.
 //   4 — candles enter, as two separate questions. The strict sweep-and-reclaim
 //       hammer and star, and the app's 34-pattern registry graded by its own
 //       strength label instead of flattened into bullish/bearish/doji the way
 //       the strategy builder flattens it. Conditions too rare or too common to
 //       test are now reported rather than silently dropped, because "it fired
 //       thirty-one times in a year" is a different answer from "it failed".
-const METHOD_VERSION = 4;
+const METHOD_VERSION = 5;
 
 const TF = 'H1';
 const RECENT_DAYS = 365;        // "these days"
@@ -291,6 +295,64 @@ function verdictOf(r) {
   return 'fades';
 }
 
+// ── Re-testing a rule that survived before ──────────────────────────────────
+//
+// A rule that survived a previous run stopped being reported the moment it fell
+// out of the top twelve by discovery edge, and it fell out silently. That
+// happened on the run that added the candle conditions: last week's survivor
+// was not beaten on the holdout, it was crowded out by new candidates competing
+// for the same twelve slots, and the panel simply stopped mentioning it. From
+// the outside that is indistinguishable from it having failed.
+//
+// So every prior survivor is re-scored on every run, whatever it ranks, and its
+// verdicts are kept as a sequence. "held, held, faded, failed" is the most
+// useful thing this study can produce about any rule, and it cannot be produced
+// by a ranking.
+//
+// The threshold is 1.96, NOT the corrected one. That is deliberate and it is
+// the whole statistical point of a watchlist: this rule was not selected from
+// this run's search, so it is a single pre-registered hypothesis rather than
+// the best of twelve, and correcting it for tests it never took part in would
+// be punishing it for company it does not keep. It is the closest thing to a
+// genuine out-of-sample test available here — the data is new, time has passed,
+// and nothing about the rule was chosen with any of it in view.
+function watchVerdict(r) {
+  const A = r.discovery, B = r.holdout;
+  if (!B || B.n < MIN_B) return 'thin';
+  if (B.edgeR <= 0) return 'failed';
+  if (A && Math.sign(B.edgeR) !== Math.sign(A.edgeR)) return 'failed';
+  if (B.t != null && B.t >= 1.96) return 'held';
+  return 'faded';
+}
+
+// The survivors worth re-testing: whatever held last time, plus whatever was
+// already on the watchlist and has not been dropped.
+//
+// A rule leaves the list after three consecutive runs without holding. Keeping
+// it forever would turn the section into a graveyard nobody reads; dropping it
+// on one bad run would throw away the sequence that makes it worth having.
+const WATCH_STRIKES = 3;
+
+function watchlistFrom(previous) {
+  const out = new Map();
+  const add = (all, dir, hold, history) => {
+    const id = `${all.join('&')}|${dir}|${hold}`;
+    if (!out.has(id)) out.set(id, { all, dir, hold, history: history || [] });
+  };
+  for (const r of previous?.rules || []) {
+    if (r.verdict === 'confirmed' || r.verdict === 'holds') {
+      add(r.all, r.dir, r.hold, [{ asOf: previous.asOf, verdict: r.verdict }]);
+    }
+  }
+  for (const w of previous?.carriedForward || []) {
+    const recent = (w.history || []).slice(-WATCH_STRIKES);
+    const dead = recent.length >= WATCH_STRIKES && recent.every(h => h.verdict === 'failed');
+    if (dead) continue;
+    add(w.all, w.dir, w.hold, w.history || []);
+  }
+  return [...out.values()];
+}
+
 // Is it actually new? The same rule over the three years before the recent
 // window. Working now AND then is an edge but not news; working then and not
 // now is the more useful warning, and it is the one nobody ever prints.
@@ -458,7 +520,8 @@ function drift(recentFeats, priorFeats, keysOf, minPct = 1) {
 // ── The run ─────────────────────────────────────────────────────────────────
 
 async function runRegimeStudy({ oanda, log = () => {}, now = Date.now(),
-                                recentDays = RECENT_DAYS, priorDays = PRIOR_DAYS } = {}) {
+                                recentDays = RECENT_DAYS, priorDays = PRIOR_DAYS,
+                                previous = null } = {}) {
   const M = await import(SHARED);
   const MF = await import(MACRO);
 
@@ -630,6 +693,37 @@ async function runRegimeStudy({ oanda, log = () => {}, now = Date.now(),
     novelty: noveltyOf(r),
   }));
 
+  // ── Rules that survived a previous run, re-scored whatever they rank ──────
+  //
+  // Scored with the SAME machinery on the SAME slices as everything else, so
+  // the numbers are comparable. What differs is the threshold and the reason
+  // for it: these were not selected out of this run's search, so they are
+  // pre-registered hypotheses rather than the best of twelve.
+  const carriedIds = new Set(carried.map(r => r.id));
+  const watchlist = watchlistFrom(previous);
+  const carriedForward = [];
+  for (const w of watchlist) {
+    const r = scoreRule({ all: w.all }, w.dir, w.hold, sets, SLICES[w.hold], baselines);
+    // A rule whose conditions no longer exist in the vocabulary — a definition
+    // changed under it — is dropped rather than scored as a failure. Reporting
+    // "failed" for a rule that cannot be evaluated would be a lie about the
+    // market when the truth is about the code.
+    const known = w.all.every(k => seen.has(k) || (r.discovery?.n ?? 0) > 0);
+    const verdict = known ? watchVerdict(r) : 'condition retired';
+    carriedForward.push({
+      ...r,
+      label: M.labelOf({ all: w.all }),
+      verdict,
+      novelty: noveltyOf(r),
+      alsoCarriedThisRun: carriedIds.has(r.id),
+      history: [...(w.history || []), { asOf: new Date(now).toISOString(), verdict }].slice(-8),
+    });
+  }
+  if (carriedForward.length) {
+    log(`Regime study: re-tested ${carriedForward.length} rule(s) that survived before — `
+      + carriedForward.map(w => w.verdict).join(', '));
+  }
+
   // ── Anatomy and drift ─────────────────────────────────────────────────────
   const anat = {};
   const drifts = {};
@@ -706,6 +800,9 @@ async function runRegimeStudy({ oanda, log = () => {}, now = Date.now(),
       bars: Object.fromEntries(METALS.map(m => [m.sym, raw[m.sym].length])),
     },
     rules: carried,
+    // Re-tested every run whatever they rank, so a rule that stops being
+    // reported has actually failed rather than merely been crowded out.
+    carriedForward,
     tally,
     untested,
     discBars,
@@ -727,6 +824,7 @@ module.exports = {
   // Exported for tests: the holdout split, the entry spacing, the comparison
   // and the verdict are the four places this could quietly fake a result.
   sideOf, blockOf, entriesOf, welch, zFor, verdictOf, noveltyOf, anatomy, drift,
+  watchVerdict, watchlistFrom, WATCH_STRIKES,
   // The scoring core, reused by the wide search in regimeSearch.js so there is
   // one definition of what a trade is, what a baseline is, and how an edge is
   // measured. A second copy would eventually disagree, and the two studies

@@ -19,6 +19,13 @@ const C = {
   'this market only': '#f59e0b', 'generalises, not current': '#f59e0b',
   'untested elsewhere': '#64748b',
 };
+// The watchlist has its own words, because they answer a different question
+// from the search's: not "did this survive selection" but "is it still true".
+const WATCH_C = {
+  held: '#22c55e', faded: '#f59e0b', failed: '#ef4444',
+  thin: '#64748b', 'condition retired': '#64748b',
+};
+
 const NOVEL = {
   new: '#22c55e', 'stronger-now': '#84cc16', longstanding: '#94a3b8',
   faded: '#f59e0b', marginal: '#64748b', 'no-history': '#64748b',
@@ -462,6 +469,43 @@ export default function RegimePanel() {
               </div>
             );
           })}
+        </div>
+      )}
+
+      {/* ── Rules that survived before ──────────────────────────────────────── */}
+      {open === 'rules' && !!study?.carriedForward?.length && (
+        <div>
+          <Head note={'Re-scored every run whatever they rank, so a rule that stops being '
+            + 'reported has actually failed rather than been crowded out by new candidates '
+            + 'competing for the same twelve slots. The threshold here is the uncorrected one, '
+            + 'deliberately: these were not selected out of this run\'s search, so each is a '
+            + 'single pre-registered claim rather than the best of twelve.'}>
+            Survived a previous run ({study.carriedForward.length})
+          </Head>
+          {study.carriedForward.map(w => (
+            <div key={w.id} style={{ marginTop: 6, padding: '7px 10px', borderRadius: 6,
+              background: 'var(--bg)', border: '1px solid var(--border)' }}>
+              <Row style={{ flexWrap: 'wrap' }}>
+                <span style={{ fontSize: 9, padding: '1px 6px', borderRadius: 3,
+                  background: `${WATCH_C[w.verdict] || '#64748b'}22`,
+                  color: WATCH_C[w.verdict] || '#64748b' }}>{w.verdict}</span>
+                <span style={{ fontSize: 11, color: 'var(--text2)' }}>
+                  {w.dir === 'up' ? '▲' : '▼'} {w.label} · hold {w.hold}h
+                </span>
+              </Row>
+              {w.holdout && (
+                <div style={{ fontSize: 10.5, color: 'var(--text3)', marginTop: 4 }}>
+                  This run, on the half it never saw: {w.holdout.edgeR > 0 ? '+' : ''}{w.holdout.edgeR}R
+                  {' '}against {w.holdout.baseExpR}R for a random entry, over {w.holdout.n} trades.
+                </div>
+              )}
+              {w.history?.length > 1 && (
+                <div style={{ fontSize: 10, color: 'var(--text3)', marginTop: 3 }}>
+                  Run by run: {w.history.map(h => h.verdict).join(' → ')}
+                </div>
+              )}
+            </div>
+          ))}
         </div>
       )}
 
