@@ -29,7 +29,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788863222000,
-      "_kind": "escalation"
+      "_kind": "escalation",
+      "why": "IPO news unrelated to gold"
     },
     {
       "title": "After an 18% summer selloff in chip stocks, Citi asks what comes next",
@@ -44,7 +45,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788863077000,
-      "_kind": null
+      "_kind": null,
+      "why": "Question about future direction, no clear signal"
     },
     {
       "title": "Australia targets social media algorithms with new user-choice rules",
@@ -61,7 +63,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788863072000,
-      "_kind": null
+      "_kind": null,
+      "why": "Regulatory news, unclear market impact"
     },
     {
       "title": "Russian forces attack We-Ukraine TV channel office, people injured - Ukrinform",
@@ -82,7 +85,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788862980000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Escalation boosts safe havens and oil"
     },
     {
       "title": "Weeks After Nancy Pelosi Disclosed A $3 Million Bet, Bloom Energy Is Joining The S&P 500 And The Stock Is Soaring",
@@ -97,7 +106,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788862810000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Stock soaring, positive for index"
     },
     {
       "title": "European stocks slip as crude extends advance following Iranian threats",
@@ -116,7 +129,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788862390000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up",
+        "US500": "down"
+      },
+      "why": "Oil up, stocks slip on threats"
     },
     {
       "title": "Five spots to watch as the bond market creeps up on 5%",
@@ -150,7 +169,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788861060000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Strikes resume, risk-off sentiment"
     },
     {
       "title": "Russia and Ukraine trade deadly strikes after temporary ceasefire ends - 41nbc.com",
@@ -171,7 +196,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788861060000,
-      "_kind": "war-end"
+      "_kind": "war-end",
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Deadly strikes, geopolitical risk premium"
     },
     {
       "title": "US payrolls rebound as markets eye September inflation and Fed hike odds; sterling slips, yen watched - VT Markets",
@@ -192,7 +223,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788862050000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "GBP/USD": "down",
+        "USD/JPY": "down"
+      },
+      "why": "Sterling slips, yen surges on BOJ"
     },
     {
       "title": "Fantastic News for Tesla Stock Investors!",
@@ -224,7 +260,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788861874000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Weaker dollar boosts gold demand"
     },
     {
       "title": "How Ukrainian Drone Strikes Are Pounding Russia’s Economy - WSJ",
@@ -245,7 +285,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788861722000,
-      "_kind": null
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Economic damage, supply risk, risk-off"
     },
     {
       "title": "How South Korea finds itself trapped in the US-Iran war",
@@ -265,7 +310,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788861652000
+      "firstAt": 1788861652000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "War threats, blockade, risk-off"
     },
     {
       "title": "Why investors are looking to Africa’s packaging industry for growth",
@@ -305,7 +356,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788861401000
+      "firstAt": 1788861401000,
+      "dir": {
+        "USD/JPY": "down"
+      },
+      "why": "Yen surges, dollar weakens"
     },
     {
       "title": "Russia Still Uses Foreign Electronics in Advanced Weapons Despite Sanctions - Межа. Новини України.",
@@ -325,7 +380,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788861343000
+      "firstAt": 1788861343000,
+      "why": "Sanctions evasion news, no clear direction"
     },
     {
       "title": "Iran Strikes Expose US Vulnerabilities As Washington Weighs Smaller Middle East Footprint: Report - اسلام تايمز",
@@ -345,7 +401,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788860115000
+      "firstAt": 1788860115000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "US vulnerabilities, geopolitical risk"
     },
     {
       "title": "Philippines Central Bank Eyes 12-Month Freeze on New Payment Operator Licenses as Crypto Rules Tighten",
@@ -362,7 +424,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788861134000
+      "firstAt": 1788861134000,
+      "dir": {
+        "BTC/USDT": "down"
+      },
+      "why": "Tightening crypto rules bearish for Bitcoin."
     },
     {
       "title": "Russia hits Kyiv, Ukraine strikes occupied Crimea to end 3-day lull - Daily Sabah",
@@ -382,7 +448,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788858946000
+      "firstAt": 1788858946000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Escalating conflict boosts safe havens and oil."
     },
     {
       "title": "AM Markets Need to Know: Canada tariffs, Iran oil outlook, and more (SPX:) - Seeking Alpha",
@@ -401,7 +473,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1788858775000
+      "firstAt": 1788858775000,
+      "why": "General market summary lacks specific direction."
     },
     {
       "title": "MicroStrategy Puts Its Bitcoin Identity on a $250 Pair of Nike Jordans",
@@ -417,7 +490,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788860901000
+      "firstAt": 1788860901000,
+      "why": "Marketing stunt has no clear price impact."
     },
     {
       "title": "Vaxcyte's CEO Parted With Shares for Taxes. Here's What Long-Term Investors Should Know About the Firm",
@@ -445,7 +519,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788860585000
+      "firstAt": 1788860585000,
+      "why": "Question about price levels implies no move."
     },
     {
       "title": "Brent rises near $100/bbl after Iran threat to Gulf energy infrastructure",
@@ -461,7 +536,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 3,
-      "firstAt": 1788858412000
+      "firstAt": 1788858412000,
+      "dir": {
+        "UKOIL": "up"
+      },
+      "why": "Brent rises near $100 on Iran threat."
     },
     {
       "title": "Iran-backed Houthis attack four Saudi cities in expansion of Middle East war, 73 hurt - Al-Monitor",
@@ -481,7 +560,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788858412000
+      "firstAt": 1788858412000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Saudi attacks boost gold and oil prices."
     },
     {
       "title": "If a Stock Market Crash Is Coming, Investors Will Want to Own This Dividend King",
@@ -507,7 +592,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788859561000
+      "firstAt": 1788859561000,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Tech giants rattling Wall Street implies bearishness."
     },
     {
       "title": "3 Dividend Stocks Trading Near Their 52-Week Lows",
@@ -521,7 +610,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788859202000
+      "firstAt": 1788859202000,
+      "why": "Dividend stocks near lows is neutral news."
     },
     {
       "title": "3 of the Best Growth Stocks to Buy for Less Than $100 Right Now",
@@ -535,7 +625,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788859202000
+      "firstAt": 1788859202000,
+      "why": "Stock picks do not imply index direction."
     },
     {
       "title": "Investing in Gold or the S&P 500: What's the Best Move for Investors in the Final Quarter of 2026?",
@@ -552,7 +643,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1788856980000
+      "firstAt": 1788856980000,
+      "why": "Comparative investment question lacks directional bias."
     },
     {
       "title": "ExxonMobil's CEO Called Venezuela 'Uninvestable.' Trump Says It's Going In Anyway. Here's Why Investors Should Pay Attention.",
@@ -584,7 +676,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788859176000
+      "firstAt": 1788859176000,
+      "why": "Political speculation lacks immediate market impact."
     },
     {
       "title": "The yen's sudden surge upsets the carry trade faithful",
@@ -600,7 +693,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788859100000
+      "firstAt": 1788859100000,
+      "dir": {
+        "USD/JPY": "down"
+      },
+      "why": "Yen surge implies USD/JPY decline."
     },
     {
       "title": "Russian strikes on Ukraine’s Kyiv kill at least two people - Al Jazeera",
@@ -620,7 +717,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788857693000
+      "firstAt": 1788857693000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Russian strikes boost safe havens and oil."
     },
     {
       "title": "Over 200 US seniors hand over fortunes in $250M gold scheme — 40+ indicted after bullion melted down in Florida",
@@ -636,7 +739,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788858900000
+      "firstAt": 1788858900000,
+      "why": "Scam news has no clear price impact."
     },
     {
       "title": "Brent Approaches $100 as Markets Assess Iran Threats to Gulf Energy Infrastructure",
@@ -1638,6 +1742,6 @@
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-08T10:31:57.677Z",
-  "updatedAt": "2026-09-08T10:31:57.677Z"
+  "headlinesAt": "2026-09-08T10:32:58.847Z",
+  "updatedAt": "2026-09-08T10:32:58.847Z"
 }
