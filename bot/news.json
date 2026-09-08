@@ -1155,8 +1155,8 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788821871000,
+      "srcs": 2,
+      "firstAt": 1788819300000,
       "why": "General market commentary, no specific price driver."
     },
     {
@@ -1259,23 +1259,25 @@
       "why": "Retaliation threats escalate geopolitical risk."
     },
     {
-      "title": "U.K.’s Burnham risks Trump anger with new sanctions on Israel - japantimes.co.jp",
+      "title": "U.K.’s Burnham risks Trump anger with new sanctions on Israel - The Japan Times",
       "link": "https://news.google.com/rss/articles/CBMiogFBVV95cUxNSllBZWdCLWI1OFdEVGhvdnRPQU1kMjZocUdPQ3lXQmV0c0RwR0xvWno5WktQNzRpbG5tOTR4eXJfSWFHUzEtb2VvWGNBbjlUWHI1YUtxRU1FZDBBQzhBNTFjSmhRb1hWM2JVQnJpTkttX2d6bGdkVTEzMFZUeWpURHpPbkJ0U1RUS2hqcnVEVGVjSVJ3U0FnNFpiVGRYUUNvWHc?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiogFBVV95cUxNSllBZWdCLWI1OFdEVGhvdnRPQU1kMjZocUdPQ3lXQmV0c0RwR0xvWno5WktQNzRpbG5tOTR4eXJfSWFHUzEtb2VvWGNBbjlUWHI1YUtxRU1FZDBBQzhBNTFjSmhRb1hWM2JVQnJpTkttX2d6bGdkVTEzMFZUeWpURHpPbkJ0U1RUS2hqcnVEVGVjSVJ3U0FnNFpiVGRYUUNvWHc?oc=5\" targ",
       "at": 1788819300000,
       "inst": [
+        "USD/JPY",
         "XAU/USD",
         "USOIL",
         "UKOIL"
       ],
       "ccy": [
+        "JPY",
         "XAU",
         "OIL"
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 1,
+      "srcs": 2,
       "firstAt": 1788816605000,
       "why": "Geopolitical noise, no clear market direction"
     },
@@ -1368,7 +1370,7 @@
       "why": "Humanitarian news, no clear market signal"
     },
     {
-      "title": "Oil prices surge as US-Iran strikes intensify in Strait of Hormuz - Al Jazeera",
+      "title": "Oil prices surge as US-Iran strikes intensify in Strait of Hormuz - aljazeera.com",
       "link": "https://news.google.com/rss/articles/CBMirAFBVV95cUxQcDlzUXFCcVJvUER3Ym1FeE9mREQ1a3FuaGV6T2hOdlV4WHU1bkRTN3V0eFVfNDJvYTRrSHFoMW9uSlBtaXNoQVJ2Sk42d1BNRmFjejAwaXg4a2swdTR4WFFnaVRBMFkzZUdjQmhfRnZIcGR3Qm9SYVZ5YkZQSDhJcUZOcDE3TlUyZTFaUnkwcWV5dWJOMXEwUGlTOFJhaGE5RXZHOW5qZDV2S0dM0gGyAUFVX3lxTE1xQXhqajhaRnRSRklMaUlJeWFCdU5Gb01qSXd6VmVNLUdaY0w5TTA2Rjk0bk9mdDgyZ0F2QTU4TkRXTzF3OUNnc3NxY2M5ZEVscXZBVXR5YXd4Z0hfVmtDMWQ5YThhMm5yY1RfcTFrTDFJaWFNalEybjk4SE1GRU1WTG5vdDNETEN6U0ZabThTQVdnNFpxR1dWM0VhYVJHSy1WMXo2Z0p1MkMwX1paQ0dpR3c?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMirAFBVV95cUxQcDlzUXFCcVJvUER3Ym1FeE9mREQ1a3FuaGV6T2hOdlV4WHU1bkRTN3V0eFVfNDJvYTRrSHFoMW9uSlBtaXNoQVJ2Sk42d1BNRmFjejAwaXg4a2swdTR4WFFnaVRBMFkzZUdjQmhfRnZIcGR3Qm9SYVZ5YkZQSDhJcUZOcDE3TlUyZTFaUnkwcWV5dWJOMXEwUGlTOFJhaGE5RXZHOW5qZDV2S0",
@@ -1654,7 +1656,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788810622000
+      "firstAt": 1788810622000,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Hot jobs report causes stock decline"
     },
     {
       "title": "What are the implications of AfD’s electoral rise for Germany and Europe?",
@@ -1962,7 +1968,7 @@
       "why": "Trade ban risks UK economic stability"
     },
     {
-      "title": "Russia shutters German consulate as diplomatic freeze deepens - Al Jazeera",
+      "title": "Russia shutters German consulate as diplomatic freeze deepens - aljazeera.com",
       "link": "https://news.google.com/rss/articles/CBMiowFBVV95cUxNRVQzTGtETDlpLVh5REoxMXJhVmRxTWdSeWpQNDFuNWEwemhhY2xfMW1HTVFvX01hcTdiRjJ0ZHFGN0x5RVVkampPRVpWQVR1QzdVOUJEQWNBLWVNNTJGekNFV1dLYkxoODRxdVJqMl9NS1VRM2ZnRndRZXZKNzNIaGttamlOMWpTVGVRMk1jSmFwUTEtUjVGTDU4dUlWVTBqX2pn0gGoAUFVX3lxTE04ck9yOXQwSkNCcHJTUGpaamQycE1nZFZQcjczOHJnZHhvOFAyWllMaTZVcDlGcGVMT2NQMXlxb3VSY1F2ellsaFo5Z01zM0RtdnItb1RILTJwbGpKaWtFbmN3V3pVYnkyRGM4V2lRbXVsX2hSbGtPU09qMGhfZVBiRHBNa0d6NWJQbWxrMENkdDQ3eWhHSHhCT3VmNm1TaEZiNndZR3hjaQ?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiowFBVV95cUxNRVQzTGtETDlpLVh5REoxMXJhVmRxTWdSeWpQNDFuNWEwemhhY2xfMW1HTVFvX01hcTdiRjJ0ZHFGN0x5RVVkampPRVpWQVR1QzdVOUJEQWNBLWVNNTJGekNFV1dLYkxoODRxdVJqMl9NS1VRM2ZnRndRZXZKNzNIaGttamlOMWpTVGVRMk1jSmFwUTEtUjVGTDU4dUlWVTBqX2pn0gGoAUFVX3",
@@ -2076,6 +2082,32 @@
       "why": "Funeral has no clear market impact"
     },
     {
+      "title": "Zelensky to Axios: U.S. exploring Russia-Ukraine winter de-escalation steps - Axios",
+      "link": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPS1JUc284NjBMMkppZ29XSm9kUjBwSnpvcjhxT05xTG1rWGViQkswMEh4SzdPZ1NKN0VTQVUxcWc1T1ByMEJEUGdUS01nbVU0eFd3anRTX1h3aVo2QWNHcW96dzhoR3MzbWlrYS15TG1hYkZ1Zm1SMHRGVjZKeTFabnNqRWtIRHQ0LUdXYW9kd3huUQ?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMikgFBVV95cUxPS1JUc284NjBMMkppZ29XSm9kUjBwSnpvcjhxT05xTG1rWGViQkswMEh4SzdPZ1NKN0VTQVUxcWc1T1ByMEJEUGdUS01nbVU0eFd3anRTX1h3aVo2QWNHcW96dzhoR3MzbWlrYS15TG1hYkZ1Zm1SMHRGVjZKeTFabnNqRWtIRHQ0LUdXYW9kd3huUQ?oc=5\" target=\"_blank\">Zelensky ",
+      "at": 1788802969000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788802969000,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "De-escalation steps reduce geopolitical risk premium"
+    },
+    {
       "title": "Video: Israeli Strikes Kill at Least 11 in Southern Lebanon - The New York Times",
       "link": "https://news.google.com/rss/articles/CBMiogFBVV95cUxNWTd0VS1abFB6YWJiNmd5MXpBdXYzVnBTUjkwai0xVnRDZWt3LXB1bS1LdktMdEZPVlZCTHZSUmN6T1hpMENXZmxULXYzTE1HM1BXeWR2aHJXdmpiTGdZaFhXZHo5bVdjTEVTVUM5b0REbVdxNmk4aGg5cGZZeVowUnUzOFEwTzVaUldwYkFjQTZUOFFJbl9KYzdIVVR1SUx1NkE?oc=5",
       "source": "Wires (geo)",
@@ -2123,32 +2155,6 @@
         "XAU/USD": "down"
       },
       "why": "Gold retreats on rate-hike worries"
-    },
-    {
-      "title": "Zelensky to Axios: U.S. exploring Russia-Ukraine winter de-escalation steps - Axios",
-      "link": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPS1JUc284NjBMMkppZ29XSm9kUjBwSnpvcjhxT05xTG1rWGViQkswMEh4SzdPZ1NKN0VTQVUxcWc1T1ByMEJEUGdUS01nbVU0eFd3anRTX1h3aVo2QWNHcW96dzhoR3MzbWlrYS15TG1hYkZ1Zm1SMHRGVjZKeTFabnNqRWtIRHQ0LUdXYW9kd3huUQ?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMikgFBVV95cUxPS1JUc284NjBMMkppZ29XSm9kUjBwSnpvcjhxT05xTG1rWGViQkswMEh4SzdPZ1NKN0VTQVUxcWc1T1ByMEJEUGdUS01nbVU0eFd3anRTX1h3aVo2QWNHcW96dzhoR3MzbWlrYS15TG1hYkZ1Zm1SMHRGVjZKeTFabnNqRWtIRHQ0LUdXYW9kd3huUQ?oc=5\" target=\"_blank\">Zelensky ",
-      "at": 1788802373000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788802373000,
-      "dir": {
-        "XAU/USD": "down",
-        "USOIL": "down",
-        "UKOIL": "down"
-      },
-      "why": "De-escalation steps reduce geopolitical risk premium"
     },
     {
       "title": "Katz threatens 'all-out war' on PA over West Bank 'October 7-style attack' terror threat to Israel - The Jerusalem Post",
@@ -2373,7 +2379,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788799418000,
+      "firstAt": 1788797220000,
       "dir": {
         "XAU/USD": "up",
         "USOIL": "up"
@@ -2430,7 +2436,7 @@
       "why": "Ukraine refinery strikes boost oil and gold"
     },
     {
-      "title": "Iran threatens retaliation against U.S. tanker strikes - cbsnews.com",
+      "title": "Iran threatens retaliation against U.S. tanker strikes - CBS News",
       "link": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxQWVdKVEdqckV3OHRCSDNZVnFMTGlFZTdNRGIxQnJaN3duT0tTd3ViREltMDRGU0I0TXNOX3I5ZUQ3cFdJRWxCY3BKYkNTcVJ3b09fU1htWVNlM0ItM3Rrclgxbl9fMEcwa1doV25FSENJcWdqOGlraElKdFczRkJfMEhyaDZqLWpFLTVz?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiiwFBVV95cUxQWVdKVEdqckV3OHRCSDNZVnFMTGlFZTdNRGIxQnJaN3duT0tTd3ViREltMDRGU0I0TXNOX3I5ZUQ3cFdJRWxCY3BKYkNTcVJ3b09fU1htWVNlM0ItM3Rrclgxbl9fMEcwa1doV25FSENJcWdqOGlraElKdFczRkJfMEhyaDZqLWpFLTVz?oc=5\" target=\"_blank\">Iran threatens reta",
@@ -2546,7 +2552,7 @@
       "why": "Tech rally lacks clear directional impact on FX."
     },
     {
-      "title": "Polymarket Ukraine Odds for Russia Ceasefire Slashed to 13% - finance.yahoo.com",
+      "title": "Polymarket Ukraine Odds for Russia Ceasefire Slashed to 13% - Yahoo Finance",
       "link": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxOODRobzJINVI4VTFMSVlCbDJBTnEyeGpWYmhHaFRxVXlQWUpYS3ZmN3FEWHp1MUlYazlZOEtSZmtBODFSaWZzdnc3eWFPRHVULUlTM3V2dnRXYnhuNFZsQU5Rd2hGY29ndk9Fb1JjTEducnpua25qUEtzSl9Ya3ppQ3h0OGRKdS0zNWZJOHJ0Z3I4aFpqbFdUdVNsSnJEOTMzQ2pqWmtRb3Q?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiqAFBVV95cUxOODRobzJINVI4VTFMSVlCbDJBTnEyeGpWYmhHaFRxVXlQWUpYS3ZmN3FEWHp1MUlYazlZOEtSZmtBODFSaWZzdnc3eWFPRHVULUlTM3V2dnRXYnhuNFZsQU5Rd2hGY29ndk9Fb1JjTEducnpua25qUEtzSl9Ya3ppQ3h0OGRKdS0zNWZJOHJ0Z3I4aFpqbFdUdVNsSnJEOTMzQ2pqWmtRb3Q?oc",
@@ -2679,7 +2685,7 @@
       "why": "Stagflation risk and high energy costs support gold."
     },
     {
-      "title": "Iran threatens retaliation after U.S. strikes to oil tankers - cbsnews.com",
+      "title": "Iran threatens retaliation after U.S. strikes to oil tankers - CBS News",
       "link": "https://news.google.com/rss/articles/CBMinwFBVV95cUxNLUxMYWpLazNMYnp6X3lZZTFmb1ZOUFlZam54YlQzTDJtQl9DSmRKVjdid3JlNXdlWXhqNHVxXy16MW5TR2gyMTAwLVZiWTFXa3JoUThEbDB0dHJwMko1Si13QzRjNDVNaW93aUo4SUQ3eUx6cmVoVmlfYWdaZG50QWdMUnlKek1jUEp2ZjBBWW5RTGVQZThNN2dSYVRZaUk?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMinwFBVV95cUxNLUxMYWpLazNMYnp6X3lZZTFmb1ZOUFlZam54YlQzTDJtQl9DSmRKVjdid3JlNXdlWXhqNHVxXy16MW5TR2gyMTAwLVZiWTFXa3JoUThEbDB0dHJwMko1Si13QzRjNDVNaW93aUo4SUQ3eUx6cmVoVmlfYWdaZG50QWdMUnlKek1jUEp2ZjBBWW5RTGVQZThNN2dSYVRZaUk?oc=5\" target=\"",
@@ -2725,10 +2731,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-08T00:42:34.213Z",
-  "headlinesAt": "2026-09-08T00:42:34.213Z",
-  "updatedAt": "2026-09-08T00:42:34.213Z"
+  "calendarAt": "2026-09-08T00:45:21.114Z",
+  "headlinesAt": "2026-09-08T00:45:21.114Z",
+  "updatedAt": "2026-09-08T00:45:21.114Z"
 }
