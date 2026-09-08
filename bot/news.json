@@ -660,7 +660,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788864075000,
-      "_kind": "war-end"
+      "_kind": "war-end",
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Gaza violence boosts gold safe-haven demand"
     },
     {
       "title": "Morning Bid: Yen at work",
@@ -677,7 +681,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788863785000,
-      "_kind": null
+      "_kind": null,
+      "why": "Generic morning bid, no clear direction"
     },
     {
       "title": "Citi expects BOJ rate hike to 1.25%, says political votes and Fed hold key to yen",
@@ -695,7 +700,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788863507000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USD/JPY": "down"
+      },
+      "why": "BOJ hike expectation strengthens yen"
     },
     {
       "title": "Russia strikes Kyiv after pause for U.S. envoys' visit - NBC News",
@@ -716,7 +725,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788861060000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Russia strikes boost gold safe-haven demand"
     },
     {
       "title": "Australia targets social media algorithms with new user-choice rules",
@@ -733,7 +746,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788863461000,
-      "_kind": null
+      "_kind": null,
+      "why": "Social media rules unclear for currency"
     },
     {
       "title": "India stocks lower at close of trade; Nifty 50 down 0.61%",
@@ -748,7 +762,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788863405000,
-      "_kind": null
+      "_kind": null,
+      "why": "India stocks unrelated to US index"
     },
     {
       "title": "Saudi Arabia says 73 wounded as Houthis attack civilian and energy sites - Al Jazeera",
@@ -771,7 +786,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788861363000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up"
+      },
+      "why": "Houthi attacks boost gold and oil"
     },
     {
       "title": "Goldman Sachs maintains neutral stance amid market shifts",
@@ -805,7 +825,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788861060000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Russia strikes boost gold safe-haven demand"
     },
     {
       "title": "Russia Pounds Kyiv In Deadly Overnight Attack - Radio Free Europe/Radio Liberty",
@@ -826,7 +850,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788861060000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Russia strikes boost gold safe-haven demand"
     },
     {
       "title": "Barclays turns more cautious on European pharma into 2027, favors these stocks",
@@ -841,7 +869,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788863250000,
-      "_kind": null
+      "_kind": null,
+      "why": "European pharma news irrelevant to US500"
     },
     {
       "title": "Worried About the September Effect? Here’s What History Tells Us About Investing During What’s Generally Been the Worst Month for Stocks.",
@@ -856,7 +885,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788860677000,
-      "_kind": null
+      "_kind": null,
+      "why": "Historical analysis, no immediate direction"
     },
     {
       "title": "After an 18% summer selloff in chip stocks, Citi asks what comes next",
@@ -871,7 +901,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788863077000,
-      "_kind": null
+      "_kind": null,
+      "why": "Question about future, no current direction"
     },
     {
       "title": "At least two people dead after Russian strikes on Kyiv - BBC",
@@ -892,7 +923,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788861060000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Russia strikes boost gold safe-haven demand"
     },
     {
       "title": "Russian forces attack We-Ukraine TV channel office, people injured - Ukrinform",
@@ -913,7 +948,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788862980000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Russia strikes boost gold safe-haven demand"
     },
     {
       "title": "Iran threatens new escalation as US pressure mounts | Morning in America - Yahoo",
@@ -934,7 +973,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788862962000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Iran escalation boosts gold and oil"
     },
     {
       "title": "Weeks After Nancy Pelosi Disclosed A $3 Million Bet, Bloom Energy Is Joining The S&P 500 And The Stock Is Soaring",
@@ -2283,10 +2328,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-08T10:45:59.785Z",
-  "headlinesAt": "2026-09-08T10:45:59.785Z",
-  "updatedAt": "2026-09-08T10:45:59.785Z"
+  "calendarAt": "2026-09-08T10:47:12.537Z",
+  "headlinesAt": "2026-09-08T10:47:12.537Z",
+  "updatedAt": "2026-09-08T10:47:12.537Z"
 }
