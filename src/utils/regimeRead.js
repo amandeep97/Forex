@@ -27,6 +27,24 @@ export const REGIME_URL =
 // not survive the holdout is not a rule and must never be shown as one.
 export const LIVE_VERDICTS = ['confirmed', 'holds'];
 
+export const SEARCH_URL =
+  'https://raw.githubusercontent.com/amandeep97/Forex/main/bot/regime-search.json';
+
+// The cross-market search publishes seven verdicts, not five, because it has
+// two holdouts and they can fail separately. Only these two mean the rule
+// cleared BOTH — time and instruments — significantly.
+//
+// "this market only" and "generalises, not current" are deliberately NOT here.
+// Each is half a result, they are worth reading, and showing them as rules
+// would be exactly the overstatement the second holdout exists to prevent.
+export const SEARCH_LIVE = ['confirmed', 'holds'];
+
+export async function fetchRegimeSearch(signal = null) {
+  const res = await fetch(`${SEARCH_URL}?t=${Math.floor(Date.now() / 3e5)}`, { signal });
+  if (!res.ok) throw new Error(`cross-market search ${res.status}`);
+  return res.json();
+}
+
 export async function fetchRegimeStudy(signal = null) {
   const res = await fetch(`${REGIME_URL}?t=${Math.floor(Date.now() / 3e5)}`, { signal });
   if (!res.ok) throw new Error(`regime study ${res.status}`);

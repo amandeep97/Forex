@@ -1,10 +1,11 @@
 # Tests
 
 ```
-npm test                 # lint, typecheck, then all 59
+npm test                 # lint, typecheck, then all 61
 npm run lint             # the linter alone, warnings included
 npm run typecheck        # shared/ must stay at zero type errors
 npm run typecheck:audit  # the rest, visible but not yet enforced
+npm test nullsearch      # the search, pointed at pure noise
 npm test stops plan      # only files whose name contains "stops" or "plan"
 ```
 
@@ -177,3 +178,19 @@ what the code is FOR.
 by `typecheck:audit` rather than by `npm test`. Enforcing them today would mean
 fixing 274 things before anyone could add one line. They are visible, they are
 worth working down, and the honest position is that they are not done.
+
+## The null test
+
+`tests/nullsearch.test.cjs` points the cross-market search at pure random-walk
+data and asserts it finds nothing. It is the most important check in the
+directory and the one that is almost never written: every other test asks
+whether the arithmetic is right, and this one asks whether the machine can tell
+a market from a coin.
+
+It earned its place on the first run. The verdict returned "holds" as soon as
+both holdouts came back POSITIVE, which is a coin flip twice, and it reported
+seven of ten carried rules as holding on noise. Both holdouts now have to be
+statistically significant rather than merely the right sign. Across three seeds
+the search now returns zero confirmed and about one hold per run, which is what
+the arithmetic predicts for an uncorrected threshold and is why "confirmed"
+carries the corrected one.
