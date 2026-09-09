@@ -11,6 +11,7 @@ import { INSTRUMENTS } from '../data/instruments';
 import { CLASS, CLASS_ORDER } from '../data/instruments';
 import { stageFilterForBacktest } from '../utils/feedToBacktest';
 import { runConsensusFor } from '../utils/consensus';
+import { pct } from '../../shared/premiumDiscount.mjs';
 
 const C = {
   bg:'#080c11', panel:'#0b1118', line:'#16202b', dim:'#475569', txt:'#cbd5e1',
@@ -94,6 +95,28 @@ function Rarity({ perMonth, label }) {
 // away, and making someone tap through to find out whether anything agrees is
 // a chore, not a discipline. This surfaces what Consensus concluded; it is not
 // a fifth opinion, and it says "no read" rather than inventing one.
+// Where price sits inside its own range, on the three timeframes that matter.
+//
+// H4 is the one that can block a trade, so it is printed first and coloured.
+// M15 and M2 never block; they answer "is this the moment", which is a
+// different question and deserves to look different on screen.
+function Location({ reads }) {
+  const tfs = ['H4', 'M15', 'M2'].filter(tf => reads[tf]);
+  if (!tfs.length) return null;
+  const colOf = z => z === 'premium' ? '#f87171'
+                   : z === 'discount' ? '#4ade80'
+                   : z === 'outside' ? '#94a3b8' : '#a1a1aa';
+  return (
+    <span style={{ fontSize:9, fontFamily:C.mono, color:C.dim, display:'flex', gap:7, flexWrap:'wrap' }}>
+      {tfs.map(tf => (
+        <span key={tf} style={{ opacity: tf === 'H4' ? 1 : 0.7 }}>
+          {tf} <strong style={{ color: colOf(reads[tf].zone) }}>{pct(reads[tf].pos)}</strong>
+        </span>
+      ))}
+    </span>
+  );
+}
+
 function Verdict({ read }) {
   if (read === undefined) return <span style={{ fontSize:9, color:'#2b3644', fontFamily:C.mono }}>reading…</span>;
   if (!read) return null;
@@ -124,6 +147,15 @@ function Verdict({ read }) {
       )}
       {read.vetoes?.length > 0 && (
         <span style={{ fontSize:9, color:'#a78bfa', fontFamily:C.mono }}>⛔ {read.vetoes[0]}</span>
+      )}
+      {/* Where price sits, on the three ranges. Printed whatever the verdict is:
+          on a block it shows what did the blocking, and on a clean LONG it is
+          the difference between buying the bottom of the range and the top. */}
+      {v.location && <Location reads={v.location} />}
+      {v.timing && (
+        <span style={{ fontSize:9, color:C.warn, fontFamily:C.mono, width:'100%', paddingLeft:1 }}>
+          ⏳ {v.timing}
+        </span>
       )}
     </div>
   );

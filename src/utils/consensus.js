@@ -20,6 +20,7 @@ import { techScore } from './commandScore';
 import { scorePairToday } from './pairStats';
 import { fetchSpreadStress, fetchPositioning, oandaCreds } from './flowFeed';
 import { get, pooled } from './marketCache';
+import { locationCheck } from '../../shared/premiumDiscount.mjs';
 
 export const FAMILIES = {
   structure:  { label:'Structure',  from:'Signals — H4/H1/M15, OB/FVG' },
@@ -56,13 +57,21 @@ async function readSources(inst, cfg) {
   const missing = [];
 
   // 1 & 2. Structure and factors both need candles, so fetch once and share.
-  let h4 = null, h1 = null, m15 = null;
+  //
+  // M2 joins them for the location read only. It is never used to decide a
+  // direction and no strategy is measured on it — at two minutes the spread is
+  // roughly a quarter of a one-ATR stop, which is more than any edge this
+  // project has measured. Reading where price sits costs nothing, because
+  // nothing is being traded on that bar.
+  let h4 = null, h1 = null, m15 = null, m2 = null;
   if (instr && oandaCreds()?.apiKey) {
     try {
-      [h4, h1, m15] = await Promise.all([
+      [h4, h1, m15, m2] = await Promise.all([
         get('candles', sym, () => fetchOHLC(instr, 'H4', 60),  { params:'H4-td'  }).then(r => r.value),
         get('candles', sym, () => fetchOHLC(instr, 'H1', 90),  { params:'H1-td'  }).then(r => r.value),
         get('candles', sym, () => fetchOHLC(instr, 'M15', 90), { params:'M15-td' }).then(r => r.value),
+        get('candles', sym, () => fetchOHLC(instr, 'M2', 120), { params:'M2-loc' }).then(r => r.value)
+          .catch(() => null),
       ]);
     } catch { /* handled by the missing list below */ }
   }
@@ -124,11 +133,19 @@ async function readSources(inst, cfg) {
   const ev = eventsNear(sym, cfg.eventBlackoutMin);
   if (ev.length) vetoes.push(`${ev[0].country} ${ev[0].title} in ${Math.round((ev[0].ms - Date.now())/60000)}m`);
 
-  return { votes, missing, vetoes };
+  // The location veto cannot be decided here: it depends on which way the
+  // engines came out, and that is not known until the votes are counted. So the
+  // inputs travel to verdictOf and the check runs there, once, with a direction.
+  const fastest = (m2 && m2.length ? m2 : m15 && m15.length ? m15 : h1 && h1.length ? h1 : h4) || null;
+  const location = fastest && fastest.length
+    ? { byTf: { H4: h4 || [], M15: m15 || [], M2: m2 || [] }, price: fastest[fastest.length - 1].c }
+    : null;
+
+  return { votes, missing, vetoes, location };
 }
 
 // ── Verdict ───────────────────────────────────────────────────────────────────
-function verdictOf(votes, vetoes, cfg) {
+function verdictOf(votes, vetoes, cfg, location = null) {
   const cast = Object.entries(votes).filter(([, v]) => v.dir);
   const up = cast.filter(([, v]) => v.dir === 'up');
   const dn = cast.filter(([, v]) => v.dir === 'down');
@@ -140,9 +157,21 @@ function verdictOf(votes, vetoes, cfg) {
   }
   const dir = up.length ? 'up' : 'down';
   const agree = Math.max(up.length, dn.length);
-  if (vetoes.length) return { state:'blocked', dir, agree, against:0 };
-  if (agree < cfg.minAgree) return { state:'weak', dir, agree, against:0 };
-  return { state:'aligned', dir, agree, against:0 };
+
+  // Where price sits, now that there is a direction to judge it against.
+  //
+  // This runs before the count is compared to minAgree on purpose. Four engines
+  // agreeing on a long at the top of the range is not a better trade than three
+  // agreeing there — it is the same bad location with more votes behind it, and
+  // letting a high count outrank the level is how the FEED came to show a long
+  // into resistance in the first place.
+  const loc = location ? locationCheck(location.byTf, location.price, dir) : null;
+  const all = loc?.veto ? [...vetoes, loc.veto] : vetoes;
+
+  const extra = { location: loc?.reads || null, timing: loc?.timing || null };
+  if (all.length) return { state:'blocked', dir, agree, against:0, vetoes: all, ...extra };
+  if (agree < cfg.minAgree) return { state:'weak', dir, agree, against:0, ...extra };
+  return { state:'aligned', dir, agree, against:0, ...extra };
 }
 
 // One instrument, same code path as the full sweep.
@@ -157,10 +186,14 @@ export async function runConsensusFor(sym, overrides = {}) {
   const inst = bySymbol(sym);
   if (!inst || !inst.can.candles) return null;
   try {
-    const { votes, missing, vetoes } = await readSources(inst, cfg);
+    const { votes, missing, vetoes, location } = await readSources(inst, cfg);
+    const verdict = verdictOf(votes, vetoes, cfg, location);
     return {
-      sym: inst.sym, cls: inst.cls, inst, votes, missing, vetoes,
-      verdict: verdictOf(votes, vetoes, cfg),
+      sym: inst.sym, cls: inst.cls, inst, votes, missing,
+      // The location veto is decided inside verdictOf, so the row's list has to
+      // come back from there or the screen shows a block with no reason on it.
+      vetoes: verdict.vetoes || vetoes,
+      verdict,
       sources: Object.keys(votes).length, total: Object.keys(FAMILIES).length,
     };
   } catch (e) {
@@ -175,9 +208,10 @@ export async function runConsensus(overrides = {}) {
 
   const rows = await pooled(list, async inst => {
     try {
-      const { votes, missing, vetoes } = await readSources(inst, cfg);
-      const verdict = verdictOf(votes, vetoes, cfg);
-      return { sym: inst.sym, cls: inst.cls, inst, votes, missing, vetoes, verdict,
+      const { votes, missing, vetoes, location } = await readSources(inst, cfg);
+      const verdict = verdictOf(votes, vetoes, cfg, location);
+      return { sym: inst.sym, cls: inst.cls, inst, votes, missing,
+               vetoes: verdict.vetoes || vetoes, verdict,
                sources: Object.keys(votes).length, total: Object.keys(FAMILIES).length };
     } catch (e) { return { sym: inst.sym, cls: inst.cls, inst, error: e.message, votes:{}, missing:[], vetoes:[],
                            verdict:{ state:'no-read', agree:0 } }; }
