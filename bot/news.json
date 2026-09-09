@@ -18,7 +18,12 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1788911687000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USD/CAD": "down",
+        "XAU/USD": "up"
+      },
+      "why": "Trade war hurts CAD, boosts gold."
     },
     {
       "title": "Canada begins collecting ‘dollar-for-dollar’ tariffs on U.S. goods - KMTV 3 News Now",
@@ -37,7 +42,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788912024000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USD/CAD": "down"
+      },
+      "why": "Retaliatory tariffs weaken Canadian dollar."
     },
     {
       "title": "US increases pressure on Iran with sanctions targeting aviation sector - Al Jazeera",
@@ -58,7 +67,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788911325000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Sanctions boost safe havens and oil."
     },
     {
       "title": "US to ban Canadian dairy, alcohol, motor vehicle imports on September 29",
@@ -73,28 +88,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1788911687000,
-      "_kind": null
-    },
-    {
-      "title": "US bombs five Iranian oil tankers after its navy is attacked",
-      "link": "https://www.aljazeera.com/video/newsfeed/2026/9/8/us-bombs-five-iranian-oil-tankers-after-its-navy-is-attacked?traffic_source=rss",
-      "source": "Al Jazeera",
-      "desc": "The US military has released video of its forces destroying what it says are five Iranian crude oil tankers.",
-      "at": 1788911365000,
-      "inst": [
-        "USOIL",
-        "UKOIL",
-        "XAU/USD"
-      ],
-      "ccy": [
-        "OIL",
-        "XAU"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1788908958000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USD/CAD": "down"
+      },
+      "why": "Import bans hurt Canadian economy."
     },
     {
       "title": "Oil, tariffs and uncertainty shake markets: What it means for investors - WKRC",
@@ -112,7 +110,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788911325000,
-      "_kind": null
+      "_kind": null,
+      "why": "General market uncertainty, no clear direction."
     },
     {
       "title": "Gold slumps to near $4,350 amid oil-driven inflation fears, US inflation data in focus - FXStreet",
@@ -132,7 +131,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788910349000
+      "firstAt": 1788910349000,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "up"
+      },
+      "why": "Gold slumps, oil drives inflation fears."
     },
     {
       "title": "Gold Holds Decline as Mideast Tensions Bolster Rate-Hike Case - Bloomberg.com",
@@ -149,7 +153,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788909947000
+      "firstAt": 1788909947000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Rate hike case weighs on gold."
     },
     {
       "title": "Canadian Dollar and Crude Oil After the 50% Tariffs - CME Group",
@@ -169,7 +177,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788909748000
+      "firstAt": 1788909748000,
+      "dir": {
+        "USD/CAD": "down",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Tariffs hurt CAD, boost oil prices."
     },
     {
       "title": "US military says it destroyed 5 more Iranian oil tankers after missile attacks on Navy warship - AP News",
@@ -188,8 +202,14 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 2,
-      "firstAt": 1788908958000
+      "srcs": 1,
+      "firstAt": 1788908958000,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Tanker destruction boosts oil and gold."
     },
     {
       "title": "Hegseth is shaking up the Pentagon as the US wages war - but at what cost?",
@@ -206,7 +226,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788909101000
+      "firstAt": 1788909101000,
+      "why": "Pentagon reshuffle unclear for gold."
     },
     {
       "title": "Japan factory mood hits near 5-year high as chip demand lifts Reuters Tankan",
@@ -223,7 +244,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788909004000
+      "firstAt": 1788909004000,
+      "dir": {
+        "USD/JPY": "down"
+      },
+      "why": "Stronger BoJ case weakens yen pair."
     },
     {
       "title": "War expands as Houthis attack Saudi cities and US strikes Iranian tankers - Reuters",
@@ -242,8 +267,14 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 2,
-      "firstAt": 1788908958000
+      "srcs": 1,
+      "firstAt": 1788908958000,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "War escalation boosts oil and gold."
     },
     {
       "title": "US markets fall over high oil prices and inflation concerns - news24.com.au",
@@ -261,7 +292,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788908869000
+      "firstAt": 1788908869000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "High oil prices cited in market fall."
     },
     {
       "title": "Paramount says California AG contradicted bond arguments in TV interviews",
@@ -293,7 +328,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788906321000
+      "firstAt": 1788906321000,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Iran strikes boost oil and gold."
     },
     {
       "title": "How to invest in a booming stock market that’s way cheaper than the S&P 500",
@@ -308,7 +349,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788907800000
+      "firstAt": 1788907800000,
+      "why": "Poland reclassification irrelevant to S&P 500."
     },
     {
       "title": "S&P 500 falls as AI worries hit software makers - Reuters",
@@ -968,6 +1010,21 @@
       "firstAt": 1788893100000
     },
     {
+      "title": "Does the UK have a legal obligation to redress the harms of slavery?",
+      "link": "https://www.aljazeera.com/video/inside-story/2026/9/8/does-the-uk-have-a-legal-obligation-to-redress-the-harms-of-slavery?traffic_source=rss",
+      "source": "Al Jazeera",
+      "desc": "Jamaica petitions the British monarch over questions about the legality of the transatlantic slave trade.",
+      "at": 1788894073000,
+      "inst": [
+        "GBP/USD"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788894073000
+    },
+    {
       "title": "US Treasury slaps sanctions on Iranian airlines, accuses them of transporting arms - The Times of Israel",
       "link": "https://news.google.com/rss/articles/CBMisgFBVV95cUxPSS03MVJDUThnY05nSWk5VGZVTnNXRFFMVlR2eHBDMmQ5OHpvUDd5cXBQc3lNeVZwOG90bzZmVHhZOU54aFhPSG1tYk5fdHh4VTlEcTBtZUpxM2dnOUUyY0Z0UU5hNEl5ODVQMkxiaHJHWl8zWTZXUXdEVkFkUnJ5UkxNN2tUWVF4Q2M1bGJEaTMxZmpiMG1kdlQySGN3RFRSS3o0UFBFc04yQlFiVF9VSTFB0gG3AUFVX3lxTFB4OVBtazBXWks4bWZFWXY4Z25LUkNLcmhINHNXcmJURFJBQzBjNnNsQnJ4T3FiTEJfZ25oZkZpeUd4UElfNTVsSW9VUVhwLVlJTXdDVks3OHFZdGxsQXR6eGJtdWhLYzItRm9Mbm1idWZtY0lYYkhITjM0Q3lrRWxDN2E4cUxmZGhDQVctbDhEN1Q5aEVqVmdQcjhMS0ZTY2lTblRRZy1Ocm1jTlZtSkZxZUJnR0F0VQ?oc=5",
       "source": "Wires (geo)",
@@ -1028,6 +1085,26 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1788893100000
+    },
+    {
+      "title": "China and Qatar are strengthening bilateral ties: What that really means",
+      "link": "https://www.aljazeera.com/features/2026/9/8/china-and-qatar-are-strengthening-bilateral-ties-what-that-really-means?traffic_source=rss",
+      "source": "Al Jazeera",
+      "desc": "Beijing says it will increase coordination with Doha to help de-escalate regional tensions amid the ongoing war on Iran.",
+      "at": 1788893079000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788893079000
     },
     {
       "title": "Dollar slips ahead of key inflation data this week, yen hits over seven-month high",
@@ -1709,26 +1786,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788876732000
-    },
-    {
-      "title": "How the Latest Iran Sanctions Could Impact Central Asia - The National Interest",
-      "link": "https://news.google.com/rss/articles/CBMirgFBVV95cUxNcEFHT1hJdWd2Vk1QWlo1bDhVNVpkLTNOZUxwZ2xQeGJ5cU1MZkMxTGM1V0x3Y2s3dklYTF82WDNwYUQ5dExISGJtYnh2SnpXTy1vZUZ6YmVlTUd4aXFfZ04yaGtVQVdaeHhUdHp3a3dtbVRhVDJDYUNaWk5LS3oxLWdQdVFsQW10b0doYW8yUy0xRHJPemN0Ylp4THhvYlRrZEJJUXE1bHlIMms0X2c?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMirgFBVV95cUxNcEFHT1hJdWd2Vk1QWlo1bDhVNVpkLTNOZUxwZ2xQeGJ5cU1MZkMxTGM1V0x3Y2s3dklYTF82WDNwYUQ5dExISGJtYnh2SnpXTy1vZUZ6YmVlTUd4aXFfZ04yaGtVQVdaeHhUdHp3a3dtbVRhVDJDYUNaWk5LS3oxLWdQdVFsQW10b0doYW8yUy0xRHJPemN0Ylp4THhvYlRrZEJJUXE1bHlIMm",
-      "at": 1788877279000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788877229000
     }
   ],
   "sources": [
@@ -1755,6 +1812,6 @@
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-09T00:06:56.486Z",
-  "updatedAt": "2026-09-09T00:06:56.486Z"
+  "headlinesAt": "2026-09-09T00:07:57.466Z",
+  "updatedAt": "2026-09-09T00:07:57.467Z"
 }
