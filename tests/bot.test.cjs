@@ -58,12 +58,24 @@ engulf[29] = { t:engulf[29].t, o:99.9, h:101.6, l:99.7, c:101.4, v:100 };  // en
   check('EMA: too few bars fails',     bot._checkEMA(rising.slice(0,10), { enabled:true, period:50, side:'above' }) === false);
 
   // ── VWAP ─────────────────────────────────────────────────────────────────
-  const today = Math.floor(Date.now()/86400e3)*86400e3;
+  //
+  // The clock is PINNED. This used to build its bars from the UTC day start and
+  // then call a function that recomputed the day start itself, so a run that
+  // straddled midnight UTC built the fixture for one day and judged it against
+  // the next. It failed once, at 00:09 UTC, and passed on every rerun — the
+  // worst kind of test, because the natural response is to assume it was
+  // nothing.
+  const NOON = Date.UTC(2026, 8, 8, 12, 0, 0);
+  const today = Date.UTC(2026, 8, 8);
   const intra = Array.from({length:10}, (_,i) => ({ t: today + i*3600e3, o:100, h:100+i, l:100, c:100+i, v:10 }));
-  check('VWAP: price above session VWAP', bot._checkVWAP(intra, { enabled:true, side:'above' }) === true);
-  check('VWAP: disabled passes',          bot._checkVWAP(intra, { enabled:false }) === true);
+  check('VWAP: price above session VWAP', bot._checkVWAP(intra, { enabled:true, side:'above' }, NOON) === true);
+  check('VWAP: disabled passes',          bot._checkVWAP(intra, { enabled:false }, NOON) === true);
   check('VWAP: no bars today fails',      bot._checkVWAP(
-    [{ t: today - 5*86400e3, o:1,h:1,l:1,c:1,v:1 }], { enabled:true, side:'above' }) === false);
+    [{ t: today - 5*86400e3, o:1,h:1,l:1,c:1,v:1 }], { enabled:true, side:'above' }, NOON) === false);
+  check('VWAP: and the answer does not depend on when the test is run',
+    bot._checkVWAP(intra, { enabled:true, side:'above' }, today + 23*3600e3) === true
+    && bot._checkVWAP(intra, { enabled:true, side:'above' }, today + 86400e3) === false,
+    'same bars, a day later, correctly no longer today');
 
   // ── TP method ────────────────────────────────────────────────────────────
   check('trail returns no target',   bot._calcTP('long', 100, 98, { tpMethod:'trail', trailAtr:5 }, 0.01) === null);
