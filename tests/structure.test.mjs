@@ -13,7 +13,7 @@
 //   And the trend was decided twice by two different measures that were free
 //   to disagree with each other.
 import {
-  findSwings, alternate, readStructure, detectBreak, breakSatisfies, SWING_LOOK,
+  findSwings, alternate, readStructure, detectBreak, detectBreaks, breakSatisfies, SWING_LOOK,
 } from '../shared/structure.mjs';
 
 let fails = 0;
@@ -189,6 +189,54 @@ function series(legs, start = 100) {
       brk.structure === read, `${brk.structure} vs ${read}`,
       'two measures of trend in one analysis could disagree, and did');
   }
+}
+
+// ── The list the screener and the chart draw from ──────────────────────────
+//
+// A THIRD copy of this logic lived in smcAnalysis.js for the screener, and it
+// carried the same defect: the trend came from comparing the last swing high in
+// the window to the FIRST one, and there was no ranging state at all. So a
+// sideways market was forced to be bullish or bearish and every break in it was
+// tagged as continuing or reversing a trend that was not there.
+{
+  const cs = series([[6, -1], [4, 0.6], [7, -1], [4, 0.6], [7, -1], [10, 1.4]]);
+  const list = detectBreaks(cs);
+  check('the list and the single read agree on the newest break',
+    list.length > 0 && list[0].type === (detectBreak(cs).hasCHoCH ? 'CHoCH' : 'BOS')
+    && list[0].direction === detectBreak(cs).direction,
+    `${list[0]?.type} ${list[0]?.direction}`,
+    'the tag on a screener row and the bot decision must not disagree');
+
+  check('it is newest first, so a stale break never leads',
+    list.every((b, i) => i === 0 || b.index <= list[i - 1].index),
+    list.map(b => b.index).join(' > '));
+
+  check('and it carries the shape the chart draws',
+    list.every(b => typeof b.price === 'number' && typeof b.index === 'number'
+      && typeof b.label === 'string' && /[↑↓]/.test(b.label)));
+
+  // The screener's old code had no ranging state, so this is the case that
+  // could not previously be expressed at all.
+  const flat = series([[6, 1], [6, -1], [6, 1], [6, -1], [8, 2]]);
+  const fl = detectBreaks(flat);
+  check('a break in a ranging market is neither BOS nor CHoCH',
+    fl.every(b => b.type !== 'BOS' && b.type !== 'CHoCH'),
+    fl.map(b => b.type).join(', ') || '(none)',
+    'there is no trend to continue or reverse and saying otherwise invents one');
+
+  check('each swing level is only broken once',
+    (() => {
+      const seen = new Set();
+      return list.every(b => {
+        const k = `${b.direction}${b.price}`;
+        if (seen.has(k)) return false;
+        seen.add(k); return true;
+      });
+    })(),
+    'one level broken on six consecutive bars is one break, not six');
+
+  check('too little history gives an empty list rather than a guess',
+    detectBreaks(series([[5, 1]])).length === 0);
 }
 
 console.log(fails ? `\n${fails} FAILED` : '\nall passed');

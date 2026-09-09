@@ -7,6 +7,7 @@ import { detectCandlePatterns, detectStrongReversal, getPatternN, setPatternN } 
 import { analyzeSMC } from '../utils/smcAnalysis';
 import { computeRSI, computeMFI, computeEMA, computeMACD, detectRSIDivergence, detectEqualHighsLows } from '../utils/indicatorCalc';
 import { computeVWAP, detectFVGsAndOBs, detectLiqLevels, computePOC, computeValueArea } from '../utils/smcHelpers';
+import { readStructure } from '../../shared/structure.mjs';
 import ChartModal from './ChartModal';
 import TechnicalPanel from './TechnicalPanel';
 import OandaConnect from './OandaConnect';
@@ -517,8 +518,16 @@ export default function Screener() {
         const bears3     = [h4Bias, h1Bias, m15Bias].filter(b => b === 'bear').length;
         const mtfConsensus = bulls3 >= 2 ? 'bull' : bears3 >= 2 ? 'bear' : 'mixed';
 
-        const structure = (bosBullish||chochBullish) ? 'bullish'
-                        : (bosBearish||chochBearish) ? 'bearish' : 'neutral';
+        // Structure is HIGHER HIGHS AND HIGHER LOWS, read from the swings.
+        //
+        // It used to be derived from the break tags: any bullish break at all
+        // made the row "bullish structure". A downtrend with one recent change
+        // of character upward — which is by definition a downtrend that has not
+        // reversed yet — was filed as bullish. So the Structure Direction filter
+        // did not filter on structure; it filtered on "something broke upward
+        // recently", and those are different questions.
+        const read = readStructure(candles);
+        const structure = read.structure === 'ranging' ? 'neutral' : read.structure;
 
         // EMAs
         const ema20  = computeEMA(candles, 20);

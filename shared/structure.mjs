@@ -204,3 +204,48 @@ export function breakSatisfies(brk, dir) {
   if (!brk || (!brk.hasBOS && !brk.hasCHoCH)) return false;
   return brk.direction === (dir === 'long' ? 'bullish' : 'bearish');
 }
+
+/**
+ * Every recent break, newest first — for a chart or a tag row that wants to
+ * show more than the latest one.
+ *
+ * Same classification as detectBreak, which now delegates here, so the tag on a
+ * screener row and the decision the bot makes cannot disagree about whether a
+ * break was a continuation or a reversal.
+ *
+ * @param {Candle[]} cs
+ * @param {{ look?:number, within?:number, max?:number }} [opts]
+ */
+export function detectBreaks(cs, { look = 2, within = 18, max = 6 } = {}) {
+  if (!cs || cs.length < 20) return [];
+  const n = cs.length;
+  const trend = readStructure(cs.slice(0, n - 1), 3).structure;
+  const seq = alternate(findSwings(cs.slice(0, n - 1), look));
+  const out = [];
+  const used = new Set();
+
+  for (let i = n - 1; i >= Math.max(look * 2, n - within) && out.length < max; i--) {
+    const c = cs[i];
+    const usable = seq.filter(s => s.idx + look < i);
+    const hi = usable.find(s => s.kind === 'high' && c.c > s.price && !used.has(`H${s.idx}`));
+    const lo = usable.find(s => s.kind === 'low' && c.c < s.price && !used.has(`L${s.idx}`));
+    // Both in one bar is a range expansion, not a structural statement.
+    if (hi && lo) continue;
+    const s = hi || lo;
+    if (!s) continue;
+    used.add(`${s.kind === 'high' ? 'H' : 'L'}${s.idx}`);
+    const direction = hi ? 'bullish' : 'bearish';
+    const withTrend = (trend === 'bullish' && hi) || (trend === 'bearish' && lo);
+    const against = (trend === 'bullish' && lo) || (trend === 'bearish' && hi);
+    // Ranging gets neither label. Forcing one, as the screener used to by
+    // having no ranging state at all, means every break in a sideways market is
+    // called a continuation or a reversal of a trend that is not there.
+    const type = withTrend ? 'BOS' : against ? 'CHoCH' : 'BREAK';
+    out.push({
+      type, direction, price: s.price, index: i, structure: trend,
+      label: `${type} ${hi ? '\u2191' : '\u2193'}`,
+    });
+  }
+  return out;
+}
+

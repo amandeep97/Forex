@@ -3,6 +3,8 @@
 // Works on any OHLC array with { o, h, l, c } fields.
 
 // ── helpers ───────────────────────────────────────────────────────────────────
+import { detectBreaks } from '../../shared/structure.mjs';
+
 const body    = c => Math.abs(c.c - c.o);
 const isGreen = c => c.c >= c.o;
 const isRed   = c => c.c <  c.o;
@@ -94,36 +96,13 @@ export function detectLiquidity(candles) {
 
 // ── Break of Structure / Change of Character ──────────────────────────────────
 export function detectBOSCHoCH(candles) {
-  if (!candles || candles.length < 12) return [];
-  const n = candles.length;
-  const { highs, lows } = findSwings(candles.slice(0, n - 1), 2);
-  const signals = [];
-  const used = new Set();
-
-  const trendBullish = highs.length >= 2 && highs[highs.length - 1].price > highs[0].price;
-
-  const checkFrom = Math.max(5, n - 18);
-  for (let i = checkFrom; i < n; i++) {
-    const c = candles[i];
-
-    for (const sh of highs.filter(s => s.index < i - 1 && !used.has(`H${s.index}`))) {
-      if (c.c > sh.price) {
-        used.add(`H${sh.index}`);
-        const isBOS = trendBullish;
-        signals.push({ type: isBOS ? 'BOS' : 'CHoCH', direction: 'bullish', price: sh.price, index: i, label: (isBOS ? 'BOS' : 'CHoCH') + ' ↑' });
-        break;
-      }
-    }
-    for (const sl of lows.filter(s => s.index < i - 1 && !used.has(`L${s.index}`))) {
-      if (c.c < sl.price) {
-        used.add(`L${sl.index}`);
-        const isBOS = !trendBullish;
-        signals.push({ type: isBOS ? 'BOS' : 'CHoCH', direction: 'bearish', price: sl.price, index: i, label: (isBOS ? 'BOS' : 'CHoCH') + ' ↓' });
-        break;
-      }
-    }
-  }
-  return signals.slice(-6);
+  // Delegated to shared/structure.mjs, which the bot loads and the strategy
+  // editor imports. This was a THIRD independent copy and it carried the same
+  // defect the other two did: the trend was decided by comparing the last swing
+  // high in the window to the FIRST one, and there was no ranging state at all,
+  // so a sideways market was forced to be bullish or bearish and every break in
+  // it was labelled a continuation or a reversal of a trend that was not there.
+  return detectBreaks(candles).slice().reverse();
 }
 
 // ── Support & Resistance ──────────────────────────────────────────────────────
