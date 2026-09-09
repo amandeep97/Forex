@@ -18,7 +18,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788948182000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up",
+        "US30": "down"
+      },
+      "why": "Oil up, Dow futures down"
     },
     {
       "title": "Explainer-Oil tops $100 on conflict worries. Why isn’t it even higher?",
@@ -35,7 +41,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788948088000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil tops $100 on conflict"
     },
     {
       "title": "Mortgage & refinance rates today, Wednesday, September 9, 2026: Fixed rates inch upward, 5/1 ARM breaks past 7% as oil prices rise",
@@ -52,7 +62,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788948000000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil prices rise"
     },
     {
       "title": "European equities stumble under threat of Middle East strikes, ECB hike - Investing.com",
@@ -76,7 +90,13 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1788945505000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "EUR/USD": "down",
+        "US500": "down",
+        "XAU/USD": "up"
+      },
+      "why": "Equities stumble, gold rises on risk"
     },
     {
       "title": "“I Am the House Now”: 34 Years Ago, Bessent Helped Soros “Break the Bank of England.” Now He’s Daring Traders to Bet Against the Yen.",
@@ -95,7 +115,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788947593000,
-      "_kind": null
+      "_kind": null,
+      "why": "Historical reference, no clear direction"
     },
     {
       "title": "Wall Street Loves CVS Health Stock Right Now. Should You?",
@@ -110,7 +131,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788947400000,
-      "_kind": null
+      "_kind": null,
+      "why": "Single stock news, index unclear"
     },
     {
       "title": "Iran Targets U.S. Base, Ships in Overnight Barrage as Escalation Intensifies - Haaretz",
@@ -131,7 +153,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788946574000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Escalation boosts safe havens and oil"
     },
     {
       "title": "Oil hits $100 a barrel for first time since July after US and Houthi strikes",
@@ -152,7 +180,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788947259000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up",
+        "XAU/USD": "up"
+      },
+      "why": "Oil hits $100, geopolitical risk"
     },
     {
       "title": "Australian Dollar weakens vs Japanese Yen as BoJ hike bets build - FXStreet",
@@ -172,7 +206,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788947182000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USD/JPY": "down",
+        "AUD/USD": "down"
+      },
+      "why": "BoJ hike bets strengthen Yen"
     },
     {
       "title": "Gold inches higher on weaker dollar; investors eye rate outlook, Mideast violence",
@@ -190,7 +229,10 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1788946508000,
-      "_kind": null
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Gold inches higher on weaker dollar"
     },
     {
       "title": "+102%, +54%, +48%: These AI-picked energy stocks keep climbing",
@@ -204,7 +246,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788946890000
+      "firstAt": 1788946890000,
+      "why": "Specific stocks, index direction unclear"
     },
     {
       "title": "Canada begins collecting ‘dollar-for-dollar’ tariffs on U.S. goods - tmj4.com",
@@ -222,7 +265,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788946885000
+      "firstAt": 1788946885000,
+      "dir": {
+        "USD/CAD": "down"
+      },
+      "why": "Tariffs hurt US, support CAD"
     },
     {
       "title": "Chinese EV stocks near 52-week lows: Is now the right time to buy?",
@@ -236,7 +283,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788946640000
+      "firstAt": 1788946640000,
+      "why": "Chinese stocks, US index unclear"
     },
     {
       "title": "Iran sends wave of missiles toward U.S. base in Jordan after vowing escalation - The Washington Post",
@@ -256,7 +304,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788946574000
+      "firstAt": 1788946574000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Missile strikes boost risk assets"
     },
     {
       "title": "Gold Holds Decline as Mideast Tensions Bolster Rate-Hike Case - Bloomberg.com",
@@ -273,7 +327,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1788946508000
+      "firstAt": 1788946508000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold holds decline on rate hikes"
     },
     {
       "title": "Yen holds near seven-month high as dollar stumbles to two-week low with $100 oil",
@@ -565,24 +623,21 @@
       "firstAt": 1788943770000
     },
     {
-      "title": "Trump, briefed in advance, didn’t ask UK to wait with settlement sanctions — official - The Times of Israel",
+      "title": "Trump, briefed in advance, didn’t ask UK to wait with settlement sanctions — official - timesofisrael.com",
       "link": "https://news.google.com/rss/articles/CBMisAFBVV95cUxObEV4RVdoWFhEaUZIYWR2U20tRGZtX1VYaFJOVGd3aDFReUtOMVRWTFZGVEVwSE5iMzNqMWgzcmVwSUJ1RUs2ODZTNDlWdjJFYWxNdWtQdHJ1cTdENFRUZDhNSDhybHo3bnlIQmZyMk1seUMzNEZpX3ZaZkZNT2hmMlpLS1prT3c3cmhVaHJuVkpKRzhTSFFYMjZBZjU1S0dZX3RtZE5JVGFVc0NTUUZJVdIBtgFBVV95cUxOOGhqX3pmZHc2eXlFUmdHYmdSZl9EclphcUxwdXlZQWJucm9YUkEyX2VQYmRiWTUzNk1jSXVXS2h3UmlHa3ZBUVBPYl9GcVJXdzlFbTl1ZUZxMWl6cWFISHk2cWhnZGFGc0wzZXFXQjdzampPdTRaMFRTTkxhTzJHWXVkanVSclhTV3J2V1RRQkxxZ3ItRWE2Sy1sbWhESmlzNExIR01mQlVfOVlVeUs1QlZDN25tdw?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMisAFBVV95cUxObEV4RVdoWFhEaUZIYWR2U20tRGZtX1VYaFJOVGd3aDFReUtOMVRWTFZGVEVwSE5iMzNqMWgzcmVwSUJ1RUs2ODZTNDlWdjJFYWxNdWtQdHJ1cTdENFRUZDhNSDhybHo3bnlIQmZyMk1seUMzNEZpX3ZaZkZNT2hmMlpLS1prT3c3cmhVaHJuVkpKRzhTSFFYMjZBZjU1S0dZX3RtZE5JVGFVc0",
       "at": 1788943669000,
       "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
+        "XAU/USD"
       ],
       "ccy": [
-        "XAU",
-        "OIL"
+        "XAU"
       ],
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788941692000
+      "firstAt": 1788943669000
     },
     {
       "title": "Australian Dollar hits fresh four-month highs amid USD weakness, strong Chinese inflation - FXStreet",
@@ -1714,10 +1769,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-09T10:13:41.819Z",
-  "updatedAt": "2026-09-09T10:13:41.819Z"
+  "headlinesAt": "2026-09-09T10:15:30.051Z",
+  "updatedAt": "2026-09-09T10:15:30.051Z"
 }
