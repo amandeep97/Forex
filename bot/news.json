@@ -479,7 +479,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788988804000,
-      "_kind": null
+      "_kind": null,
+      "why": "Corporate acquisition news, no clear market direction."
     },
     {
       "title": "Russia stocks lower at close of trade; MOEX Russia Index down 0.40%",
@@ -494,7 +495,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788988803000,
-      "_kind": null
+      "_kind": null,
+      "why": "Russian market news, no direct US impact."
     },
     {
       "title": "Oil surges above $100 a barrel as US and Iran launch new attacks, while gasoline prices also jump - AP News",
@@ -515,7 +517,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788986116000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Oil surges on conflict, gold rises on fear."
     },
     {
       "title": "Mizuho Highlights Top U.S. Oil & Gas Stocks Amid Middle East Tensions",
@@ -536,7 +544,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788988633000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Positive for oil stocks, neutral for broader market."
     },
     {
       "title": "The bull market’s biggest enemy right now could be Bessent’s interventions",
@@ -556,14 +568,19 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788988620000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USD/JPY": "down",
+        "US500": "down"
+      },
+      "why": "Stronger yen and yields hurt stocks and USD/JPY."
     },
     {
       "title": "Trump says Iran war ‘will end immediately’ after US midterm elections - Al Jazeera",
       "link": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxORjlXYnh6SC1CYy0yV2NYM1lHLTJEaHoyNmNhQ0tFWnpnWDBPLVE5Q1A2a0hDNEJHT1V5QWFlZGIxbGlfSWVRQmNmQUFXM2pJelRVQjhxNVlwRkN0QnV1Y2Rtb3VzdlJOWDFvSTlQMGdHS0hLM3FmMUhfbExodjd5eHVXZWp2VEZiUmZyTmpEUmpMRjRuRTJKdTlLOHJKNmdZQzhVbWVYS2VEQUnSAbABQVVfeXFMUGxTOHpwQkh6Nll0Tlo5eHlndU9XNnBrU1pRZzNMUGtuSFRkQlZqd1JuRzhPRVN2RmxGaWxXSVpIZ3hBMGM5ZzFUdzFKVUhZZ0VQS1c3Z1hKakxqS0ZPakpBa19YdHN4ZUVFWmtpZ3dPSTFXZkZwMkZXOERqLTZvWXJvUmdwckZ3aWxRd0V5Uy1tTlh1eE1YWGNwOVJfeHg2V0dnMEJjWXIxcmY3TnVXblM?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiqwFBVV95cUxORjlXYnh6SC1CYy0yV2NYM1lHLTJEaHoyNmNhQ0tFWnpnWDBPLVE5Q1A2a0hDNEJHT1V5QWFlZGIxbGlfSWVRQmNmQUFXM2pJelRVQjhxNVlwRkN0QnV1Y2Rtb3VzdlJOWDFvSTlQMGdHS0hLM3FmMUhfbExodjd5eHVXZWp2VEZiUmZyTmpEUmpMRjRuRTJKdTlLOHJKNmdZQzhVbWVYS2VEQU",
-      "at": 1788988383000,
+      "at": 1788988619000,
       "inst": [
         "XAU/USD",
         "USOIL",
@@ -577,7 +594,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788986682000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "War ending reduces risk premium for oil and gold."
     },
     {
       "title": "investingLive Americas FX news wrap 9 Sept: Oil is a problem as war likely to continue",
@@ -598,7 +621,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788988135000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "US500": "down",
+        "XAU/USD": "up"
+      },
+      "why": "Oil rises, stocks fall, gold up on war."
     },
     {
       "title": "Navan raises fiscal 2027 forecast on strong corporate travel demand, customer growth",
@@ -631,7 +660,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1788985438000
+      "firstAt": 1788985438000,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Peace deal reduces geopolitical risk premium."
     },
     {
       "title": "Israel sanctions will not hurt intelligence sharing between spy agencies, says Miliband - The Guardian",
@@ -651,7 +686,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788987300000
+      "firstAt": 1788987300000,
+      "why": "Diplomatic news, no clear immediate market impact."
     },
     {
       "title": "US-Iran Strikes Push Oil Above $100 as Hormuz Traffic Remains Sluggish - WWD",
@@ -671,7 +707,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788987117000
+      "firstAt": 1788987117000,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Strikes push oil up, gold up on risk."
     },
     {
       "title": "Oil’s surge back above $100 fuels fresh inflation fears at a crucial time for interest rates",
@@ -689,7 +731,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788986160000
+      "firstAt": 1788986160000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil surge fuels inflation fears, bullish for oil."
     },
     {
       "title": "Oil surges above $100 a barrel amid escalation of U.S., Iran war - Hays Post",
@@ -709,7 +755,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788986116000
+      "firstAt": 1788986116000,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Escalation drives oil and gold prices higher."
     },
     {
       "title": "Two die at Moldovan border as Russia-Ukraine drone war rages",
@@ -729,7 +781,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788985684000
+      "firstAt": 1788985684000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "War rages, slight gold support, oil unclear."
     },
     {
       "title": "Economic and event calendar in Asia Thursday, September 10, 2026 ... m'eh",
@@ -752,7 +808,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788985519000
+      "firstAt": 1788985519000,
+      "why": "No impactful data, market direction unclear."
     },
     {
       "title": "IAEA board refers Iran to UN Security Council over nuclear ‘non-compliance’ - Al Jazeera",
@@ -772,7 +829,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1788985371000
+      "firstAt": 1788985371000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Nuclear non-compliance increases geopolitical risk premium."
     },
     {
       "title": "Ukraine strikes deep into Russia’s Arctic gas heartland as Trump pushes Putin toward peace - Fox News",
@@ -1824,26 +1887,6 @@
       "firstAt": 1788970680000
     },
     {
-      "title": "Diesel price leaps after Iran war escalation - TheTrucker.com",
-      "link": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNdEhCTjVXWngwVk4yMVFGa2Q5amo4bTBUQ3FJdE1PU2RtVG83Mm1jRzJ4TDkwanl0ZzBhWDFNLUN4RWxiQlFzV19fTXE5amVuMlpwcUtrTDJLdW1qVDhJZ0hENFU1T2l2TmZEMTNiNTJfRUV0WHBXWC1QcFN4YmRJVGlRWXExdTFVZHNEQkxEQkhKLTBlOTMyUWhB?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMimgFBVV95cUxNdEhCTjVXWngwVk4yMVFGa2Q5amo4bTBUQ3FJdE1PU2RtVG83Mm1jRzJ4TDkwanl0ZzBhWDFNLUN4RWxiQlFzV19fTXE5amVuMlpwcUtrTDJLdW1qVDhJZ0hENFU1T2l2TmZEMTNiNTJfRUV0WHBXWC1QcFN4YmRJVGlRWXExdTFVZHNEQkxEQkhKLTBlOTMyUWhB?oc=5\" target=\"_blank\"",
-      "at": 1788970370000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788970370000
-    },
-    {
       "title": "Gold price recovers ahead of US inflation data - Mining.com.au",
       "link": "https://news.google.com/rss/articles/CBMieEFVX3lxTE9RT3ZzX2ZSVS00QlUtSTVNQXVMdVlSSlRYQTh3d0R0RTZPOHpPU1BSZWd6YXNWR0Z6U2lyZlI0cW1aUWNBYUJ6VnpjNWZIRDItYmZ0S3B0QVN6TDg0MGRBZFZuaVR6YmkyMzUwQjhMSjdtalRrWkRlRA?oc=5",
       "source": "Wires (macro)",
@@ -2214,6 +2257,26 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788962693000
+    },
+    {
+      "title": "Press Review - The Times: 'Counterproductive' sanctions on Israel don't match the 'theatrical rhetoric' - France 24",
+      "link": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxNZ1RJQzd0NE9TQmU1NHZWRnB0WmhRU01sdndiSTk5Zl8xRTFtWFFMQTQ5X3I5Rl9qaU5CU1VtdFZDelRSOU5OeHdNWnhUbWktSGJYQkY3QjVoeVAyRkYxTEdpS3ppMW1MUWJEc0pkblJvVkpZaFN5NF9YdE1KdmkwTF9LazhEUFZkY3h0b1gxRTZfZnpPcHhYQ2RRNm45WU5pVTVuUzJaaGdiMENtTGFNNTZqbC1KZlhnNTdUUkp1RWxadUFSSzJFUHEwZkJNQ0FiXzd2UW9FZ0JIdw?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi2gFBVV95cUxNZ1RJQzd0NE9TQmU1NHZWRnB0WmhRU01sdndiSTk5Zl8xRTFtWFFMQTQ5X3I5Rl9qaU5CU1VtdFZDelRSOU5OeHdNWnhUbWktSGJYQkY3QjVoeVAyRkYxTEdpS3ppMW1MUWJEc0pkblJvVkpZaFN5NF9YdE1KdmkwTF9LazhEUFZkY3h0b1gxRTZfZnpPcHhYQ2RRNm45WU5pVTVuUzJaaGdiME",
+      "at": 1788960952000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788960952000
     }
   ],
   "sources": [
@@ -2236,10 +2299,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-09T21:26:58.032Z",
-  "headlinesAt": "2026-09-09T21:26:58.032Z",
-  "updatedAt": "2026-09-09T21:26:58.032Z"
+  "calendarAt": "2026-09-09T21:28:13.870Z",
+  "headlinesAt": "2026-09-09T21:28:13.870Z",
+  "updatedAt": "2026-09-09T21:28:13.870Z"
 }
