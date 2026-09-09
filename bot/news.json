@@ -2,6 +2,31 @@
   "calendar": [],
   "headlines": [
     {
+      "title": "Brent crude oil rises above $100 a barrel as Middle East conflict intensifies",
+      "link": "https://finance.yahoo.com/news/brent-crude-rises-above-100-073722479.html",
+      "source": "Yahoo Finance",
+      "at": 1788967309000,
+      "inst": [
+        "USOIL",
+        "UKOIL",
+        "XAU/USD"
+      ],
+      "ccy": [
+        "OIL",
+        "XAU"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788967309000,
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Oil rises on Middle East conflict"
+    },
+    {
       "title": "U.S. stocks extend losses, bonds slide after Treasury buyback update disappoints",
       "link": "https://www.investing.com/news/stock-market-news/us-stock-futures-muted-as-oil-nears-100-fed-hike-bets-rise-4892640",
       "source": "Investing",
@@ -15,8 +40,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 3,
-      "firstAt": 1788966479000,
-      "_kind": null
+      "firstAt": 1788967037000,
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Stocks extend losses after Treasury update"
     },
     {
       "title": "Treasury to buy back more government bonds than previously announced",
@@ -40,7 +69,30 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1788967080000,
-      "_kind": null
+      "_kind": null,
+      "why": "Treasury buyback update lacks clear direction"
+    },
+    {
+      "title": "$6 Billion Treasury Buyback Fails To Calm 'Fever' As Oil Prices Jump",
+      "link": "https://www.investors.com/news/treasury-yields-bessent-buyback-sp-500-gold-oil-prices/?src=A00220&yptr=yahoo",
+      "source": "Yahoo Finance",
+      "at": 1788967037000,
+      "inst": [
+        "USOIL"
+      ],
+      "ccy": [
+        "USD",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1788967037000,
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil prices jump despite Treasury news"
     },
     {
       "title": "Oil’s surge back above $100 fuels fresh inflation fears at a crucial time for interest rates",
@@ -59,7 +111,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788966840000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil surge fuels inflation fears"
     },
     {
       "title": "US Hits Several Iran Oil Tankers in Response to Warship Attack - Energy Connects",
@@ -80,7 +136,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788966802000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "US hits Iran tankers, oil risk"
     },
     {
       "title": "Iran Is Using Tether to Bypass Sanctions: Crypto’s Biggest Real-World Use Case Just Got Darker - Bitcoin Foundation",
@@ -103,7 +164,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788966745000,
-      "_kind": null
+      "_kind": null,
+      "why": "Iran sanctions news unclear for assets"
     },
     {
       "title": "Morocco stocks higher at close of trade; Moroccan All Shares up 0.13%",
@@ -118,7 +180,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788966604000,
-      "_kind": null
+      "_kind": null,
+      "why": "Morocco stocks unrelated to US500"
     },
     {
       "title": "Mark Zuckerberg's Net Worth Jumped $13 Billion in a Week as Meta Stock Extended Its Rally",
@@ -147,24 +210,6 @@
       "_kind": null
     },
     {
-      "title": "$6 Billion Treasury Buyback Fails To Calm 'Fever' As Oil Prices Jump",
-      "link": "https://www.investors.com/news/treasury-yields-bessent-buyback-sp-500-gold-oil-prices/?src=A00220&yptr=yahoo",
-      "source": "Yahoo Finance",
-      "at": 1788966479000,
-      "inst": [
-        "USOIL"
-      ],
-      "ccy": [
-        "USD",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1788966479000,
-      "_kind": null
-    },
-    {
       "title": "Chewy Stock Slumps As In-Line Earnings Not Enough To Escape Wall Street's Doghouse",
       "link": "https://www.investors.com/news/technology/chewy-stock-q2-2026-earnings-chwy-news/?src=A00220&yptr=yahoo",
       "source": "Yahoo Finance",
@@ -177,7 +222,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788966472000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Chewy stock slumps on earnings"
     },
     {
       "title": "Top 5 Stocks Poised to Profit From the CHIPS Quantum Incentive Wave",
@@ -192,7 +241,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788966313000,
-      "_kind": null
+      "_kind": null,
+      "why": "CHIPS incentive wave direction unclear"
     },
     {
       "title": "4 AI Stocks Are Joining the S&P 500: Buy, Hold, or Pass?",
@@ -207,7 +257,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788966180000,
-      "_kind": null
+      "_kind": null,
+      "why": "AI stocks S&P 500 inclusion neutral"
     },
     {
       "title": "Casey's shares slide despite earnings beat as inside sales growth disappoints",
@@ -235,7 +286,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788966004000,
-      "_kind": null
+      "_kind": null,
+      "why": "Norway stocks unrelated to US500"
     },
     {
       "title": "Israel stocks lower at close of trade; TA 35 down 0.06%",
@@ -249,7 +301,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788965703000
+      "firstAt": 1788965703000,
+      "why": "Israel stocks unrelated to US500"
     },
     {
       "title": "Dell seeks $4 billion in bond sale to refinance near-term debt and fund AI growth",
@@ -293,7 +346,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1788963558000
+      "firstAt": 1788963558000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up"
+      },
+      "why": "Gold climbs, oil rally continues"
     },
     {
       "title": "Gold Prices rise as Dollar weakens ahead of US inflation data - سانا",
@@ -311,7 +369,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1788963558000
+      "firstAt": 1788963558000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Gold rises as dollar weakens"
     },
     {
       "title": "Iran sends wave of missiles toward U.S. base in Jordan after vowing escalation - washingtonpost.com",
@@ -584,25 +646,6 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 4,
-      "firstAt": 1788960720000
-    },
-    {
-      "title": "Brent crude oil rises above $100 a barrel as Middle East conflict intensifies",
-      "link": "https://www.investing.com/news/commodities-news/brent-crude-rises-above-100-a-barrel-as-middle-east-conflict-escalates-4892829",
-      "source": "Investing Cmdty",
-      "at": 1788962067000,
-      "inst": [
-        "USOIL",
-        "UKOIL",
-        "XAU/USD"
-      ],
-      "ccy": [
-        "OIL",
-        "XAU"
-      ],
-      "sev": 1,
-      "rel": 2,
       "srcs": 3,
       "firstAt": 1788960720000
     },
@@ -620,7 +663,7 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 3,
+      "srcs": 2,
       "firstAt": 1788960720000
     },
     {
@@ -680,7 +723,7 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 3,
+      "srcs": 2,
       "firstAt": 1788960720000
     },
     {
@@ -1656,6 +1699,6 @@
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-09T15:25:46.031Z",
-  "updatedAt": "2026-09-09T15:25:46.031Z"
+  "headlinesAt": "2026-09-09T15:27:13.322Z",
+  "updatedAt": "2026-09-09T15:27:13.322Z"
 }
