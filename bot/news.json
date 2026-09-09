@@ -17,10 +17,15 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788937849000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Oil rally extends on escalating conflict"
     },
     {
-      "title": "Bessent’s Yen Bet Is Paying Off—for Now - WSJ",
+      "title": "Bessent’s Yen Bet Is Paying Off—for Now - wsj.com",
       "link": "https://news.google.com/rss/articles/CBMirAFBVV95cUxPSW9NdE4tbmFYaUd5UEhkTlppaTlERENhYUFNcmtXTVpGbE5KdlBCNTN3MDFzbVlTZHhjTDZackhmQUQzQXlEVU5fMlp5WFh3a2hBSFlNU2FnbUE4RFZjX3RTX3NlV1hQWFJqU1gzeEV6Y3h6RWxBVG56VF9WQkJGYzEwSWZndjhwWGhFTEw0alJBRFJLbFpIM013VW5TcmtOTnFObGNxQlBLWVhn?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMirAFBVV95cUxPSW9NdE4tbmFYaUd5UEhkTlppaTlERENhYUFNcmtXTVpGbE5KdlBCNTN3MDFzbVlTZHhjTDZackhmQUQzQXlEVU5fMlp5WFh3a2hBSFlNU2FnbUE4RFZjX3RTX3NlV1hQWFJqU1gzeEV6Y3h6RWxBVG56VF9WQkJGYzEwSWZndjhwWGhFTEw0alJBRFJLbFpIM013VW5TcmtOTnFObGNxQlBLWV",
@@ -36,7 +41,30 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788938557000,
-      "_kind": null
+      "_kind": null,
+      "why": "Yen bet paying off, direction unclear"
+    },
+    {
+      "title": "Medicine shortages grow in Iran as US tightens sanctions, blockade - aljazeera.com",
+      "link": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxOZXhhMzgzU2tDTWZJMjhIYV9SSVEzMmpEOGpqdTYtY2RfV3Q0dmdNSjhtMjdrSzhIZHVyek9oc0FoQkdZUHRxemk3STdVMDJ3bU1zT2lWN3hoTHlCbFpNSUdlNUI3X201VDctam80SVZseUxMdkROSHBGRXN1QzJEZ0RWLUt5TUt0a00tVnFaYVZ6LTlvX1lRd05PMEFOVE40ZE8xUy03Q2fSAa4BQVVfeXFMT2FPWW5uSzdsZ0dPOS0zWG1JSnpQTlBnUnNzc05ZNDQ0QUFxVUpKWWFqa0tNQURwcjNSNEhtb0V3a25aVWpyOWM4d3pJeEZxMjVfRXJNRVJ3N1lJMlVDN0ZrcEtCSG90dmx6THV1anNxWTBSdzl4eDAwckQxRndlQ0NPcGwyblBta1NucHdGTHFxV0x0WEdKSmE3YnJUaDV1WnhSb3FEbTA5enYyZFZ3?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiqAFBVV95cUxOZXhhMzgzU2tDTWZJMjhIYV9SSVEzMmpEOGpqdTYtY2RfV3Q0dmdNSjhtMjdrSzhIZHVyek9oc0FoQkdZUHRxemk3STdVMDJ3bU1zT2lWN3hoTHlCbFpNSUdlNUI3X201VDctam80SVZseUxMdkROSHBGRXN1QzJEZ0RWLUt5TUt0a00tVnFaYVZ6LTlvX1lRd05PMEFOVE40ZE8xUy03Q2fSAa",
+      "at": 1788938325000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788938325000,
+      "_kind": "escalation",
+      "why": "Sanctions news, no clear price direction"
     },
     {
       "title": "FTSE 100 today: Stocks retreat as Gulf strikes send oil toward $100",
@@ -54,7 +82,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788938206000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "US500": "down"
+      },
+      "why": "Oil up, stocks retreat on strikes"
     },
     {
       "title": "Ukraine Strikes Russian Black Sea Fuel Hub Handling 4 Million Tons a Year - UNITED24 Media",
@@ -75,7 +108,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788935580000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Supply risk boosts oil, gold unclear"
     },
     {
       "title": "Silver consolidates in Ichimoku cloud chop zone: Live levels",
@@ -92,7 +130,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788937826000,
-      "_kind": null
+      "_kind": null,
+      "why": "Silver consolidating, no clear direction"
     },
     {
       "title": "Crude Oil WTI overbought 6% above 50-MA, doji warns: Live levels",
@@ -110,7 +149,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1788937826000,
-      "_kind": null
+      "_kind": null,
+      "why": "Technical warning, no clear direction"
     },
     {
       "title": "Natural Gas tests $2.874 support with momentum warning: Live levels",
@@ -125,7 +165,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1788937826000,
-      "_kind": null
+      "_kind": null,
+      "why": "Testing support, no clear direction"
     },
     {
       "title": "Brent Oil nears $101.20 double-top resistance: Live levels",
@@ -143,7 +184,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788937826000,
-      "_kind": null
+      "_kind": null,
+      "why": "Testing resistance, no clear direction"
     },
     {
       "title": "London Gas Oil trapped below $1,393 resistance: Live levels",
@@ -160,7 +202,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788937826000,
-      "_kind": null
+      "_kind": null,
+      "why": "Trapped below resistance, no clear direction"
     },
     {
       "title": "Gold trapped in $4,400-$4,480 squeeze: Live levels",
@@ -177,7 +220,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788937826000,
-      "_kind": null
+      "_kind": null,
+      "why": "Gold in squeeze, no clear direction"
     },
     {
       "title": "Iran attacks US base in Jordan, ships near Hormuz after tankers sunk - Reuters",
@@ -198,7 +242,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788937005000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Escalation boosts safe havens and oil"
     },
     {
       "title": "European equities stumble under threat of Middle East strikes, ECB hike",
@@ -221,7 +271,12 @@
       "rel": 2,
       "srcs": 3,
       "firstAt": 1788936300000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down",
+        "XAU/USD": "up"
+      },
+      "why": "Equities down, gold up on risk"
     },
     {
       "title": "Oil nears $100 as fresh Middle East strikes raise supply risks - Arab News",
@@ -242,7 +297,13 @@
       "rel": 2,
       "srcs": 3,
       "firstAt": 1788936300000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Supply risks boost oil and gold"
     },
     {
       "title": "United States Dollar Index (DXY) bears eye August low around 98.50 ahead of US inflation - FXStreet",
@@ -266,7 +327,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788937430000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "EUR/USD": "up",
+        "GBP/USD": "up"
+      },
+      "why": "Dollar weakness implies currency pair gains"
     },
     {
       "title": "Japan stocks lower at close of trade; Nikkei 225 down 0.19%",
@@ -1007,6 +1074,29 @@
       "firstAt": 1788922957000
     },
     {
+      "title": "United States Dollar Index weakens despite rising inflation concerns, Fed rate hike bets - FXStreet",
+      "link": "https://news.google.com/rss/articles/CBMiygFBVV95cUxQdWJzSTFnSVdQSzloS2FaMkktcnBpM2dNQ0hORTBjdmRZVFN2dUJUb242UEk5Z2dLdktpUTBQcnc4eHlFWWg4d21yT2pmNlpIaDBmVTlyYk9QYU1rQWRGV2I0WkVxZ3k4WFJITEhSa3NYcWdIZFVkU2E0YWw4cUZyRTcwRmV2eHFtVGVnbzVGdnZrLTlnT2twUUcxMTMyU3BKcG9OdG5SQXRPOGdYYk9BdnRFNlVRaXE3UGNBTS02V0ZQa1hONmR4ZnNB?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiygFBVV95cUxQdWJzSTFnSVdQSzloS2FaMkktcnBpM2dNQ0hORTBjdmRZVFN2dUJUb242UEk5Z2dLdktpUTBQcnc4eHlFWWg4d21yT2pmNlpIaDBmVTlyYk9QYU1rQWRGV2I0WkVxZ3k4WFJITEhSa3NYcWdIZFVkU2E0YWw4cUZyRTcwRmV2eHFtVGVnbzVGdnZrLTlnT2twUUcxMTMyU3BKcG9OdG5SQXRPOG",
+      "at": 1788924422000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788924422000
+    },
+    {
       "title": "China inflation rebounds on energy costs, but the demand story hasn't changed - recap",
       "link": "https://investinglive.com/news/china-inflation-rebounds-on-energy-costs-but-the-demand-story-hasn-t-changed-recap/",
       "source": "ForexLive",
@@ -1348,7 +1438,7 @@
       "firstAt": 1788916778000
     },
     {
-      "title": "Oil Rises to Multimonth Highs on Middle East Escalation - WSJ",
+      "title": "Oil Rises to Multimonth Highs on Middle East Escalation - wsj.com",
       "link": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPZXN4SjRoM0xmMlNtYmUwcWlRRlhqUnhEcEdGUl9FVzBqbVBIOVhCNi1wcWdEc2RZN2FPQi10WmkyX25jR0RlT0F3WUNvdVBXUHJjM2lIeVV2SldTanFHdlhwSm83VG50Wmx4WDZoeHYyWUZ5WkpVSmFvUmhESk9LZXlnSXRpQXdNRTZQYURIOG9tM1U4QkhBQmdqZ3FjdGJHTTd1dWltRlBCSmFJbzNZeERzUllZU3F2U2dV?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiuwFBVV95cUxPZXN4SjRoM0xmMlNtYmUwcWlRRlhqUnhEcEdGUl9FVzBqbVBIOVhCNi1wcWdEc2RZN2FPQi10WmkyX25jR0RlT0F3WUNvdVBXUHJjM2lIeVV2SldTanFHdlhwSm83VG50Wmx4WDZoeHYyWUZ5WkpVSmFvUmhESk9LZXlnSXRpQXdNRTZQYURIOG9tM1U4QkhBQmdqZ3FjdGJHTTd1dWltRlBCSm",
@@ -1366,26 +1456,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788916715000
-    },
-    {
-      "title": "Gold Slips As Oil-Led Inflation Fears Keep Rates High - Finimize",
-      "link": "https://news.google.com/rss/articles/CBMiigFBVV95cUxNTVQyMEc2cE5WcTdXZjh5YzBuUjZPbGM5WTVZWEtBM2VoUUptOUEwTVFWVWR4X3A3LWszX18tUWx0RTdzYURiZWVFaElRc0YzY0pSVDJXVGxncFdDZjdwVjM1SXlfc0RMNnRSZTNkdGl5TTdZY0Q3b0lsRHJCUlZiTzVldkVRTEtXZFE?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiigFBVV95cUxNTVQyMEc2cE5WcTdXZjh5YzBuUjZPbGM5WTVZWEtBM2VoUUptOUEwTVFWVWR4X3A3LWszX18tUWx0RTdzYURiZWVFaElRc0YzY0pSVDJXVGxncFdDZjdwVjM1SXlfc0RMNnRSZTNkdGl5TTdZY0Q3b0lsRHJCUlZiTzVldkVRTEtXZFE?oc=5\" target=\"_blank\">Gold Slips As Oil-Le",
-      "at": 1788916262000,
-      "inst": [
-        "XAU/USD",
-        "USOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL",
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788914460000
     },
     {
       "title": "Jordanian air defences intercept Iranian missile barrage",
@@ -1461,7 +1531,7 @@
       "firstAt": 1788914760000
     },
     {
-      "title": "Gold Slips; Traders Eye Inflation Data - WSJ",
+      "title": "Gold Slips; Traders Eye Inflation Data - wsj.com",
       "link": "https://news.google.com/rss/articles/CBMimgFBVV95cUxOWU8wU2xDUU9NVUEtQ0hQdzhSQTJQRmtNNWpJTllxcFFlVElWSFp3MWpXN0RmNnBvcl9IcWpBMXJtNEZSTlVmNUIxTmpoNG8yRTBzMDhBby14M0hJWXBaZElLMkp4YzR0a3h5Ukxsd0VEal94MGJ1bndRX055ZHUyenh3YjY2TlpkUlFjcS03Q0ZjZVRzaGNERGh3?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMimgFBVV95cUxOWU8wU2xDUU9NVUEtQ0hQdzhSQTJQRmtNNWpJTllxcFFlVElWSFp3MWpXN0RmNnBvcl9IcWpBMXJtNEZSTlVmNUIxTmpoNG8yRTBzMDhBby14M0hJWXBaZElLMkp4YzR0a3h5Ukxsd0VEal94MGJ1bndRX055ZHUyenh3YjY2TlpkUlFjcS03Q0ZjZVRzaGNERGh3?oc=5\" target=\"_blank\"",
@@ -1678,26 +1748,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788908869000
-    },
-    {
-      "title": "Rubio warns Iran: Every time they attack US ships, they will lose tankers - Israel National News",
-      "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBLVFZrdXEzcy1XVGc3NGNYeVF2XzZwNVlqZnVnSHZBS21maGQzZERhaXFoX2xlTlhrSF81SDdGWmF0ZlF2UVJzV0ZaYjRrYWhmSEU1MzZqeXRwUQ?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiWkFVX3lxTFBLVFZrdXEzcy1XVGc3NGNYeVF2XzZwNVlqZnVnSHZBS21maGQzZERhaXFoX2xlTlhrSF81SDdGWmF0ZlF2UVJzV0ZaYjRrYWhmSEU1MzZqeXRwUQ?oc=5\" target=\"_blank\">Rubio warns Iran: Every time they attack US ships, they will lose tankers</a>&nbsp;&n",
-      "at": 1788908826000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788906321000
     }
   ],
   "sources": [
@@ -1724,6 +1774,6 @@
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-09T07:25:30.126Z",
-  "updatedAt": "2026-09-09T07:25:30.126Z"
+  "headlinesAt": "2026-09-09T07:26:30.175Z",
+  "updatedAt": "2026-09-09T07:26:30.175Z"
 }
