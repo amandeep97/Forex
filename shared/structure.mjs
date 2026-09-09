@@ -36,7 +36,12 @@
 // between reading structure and reading two arrays.
 
 /**
- * @typedef {{ t:number, o:number, h:number, l:number, c:number, v?:number }} Candle
+ * `t` is optional and may be a string: nothing here reads it, the bot carries
+ * epoch milliseconds and the app's OANDA fetch carries an ISO timestamp. Typing
+ * it as a required number said this module could not accept the candles the app
+ * has been handing it all along, which was a wrong description of working code.
+ *
+ * @typedef {{ t?:number|string, o:number, h:number, l:number, c:number, v?:number }} Candle
  * @typedef {{ kind:'high'|'low', price:number, idx:number }} Swing
  */
 
