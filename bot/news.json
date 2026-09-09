@@ -18,7 +18,55 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788937430000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil surges toward $100"
+    },
+    {
+      "title": "European shares dip as oil nears $100, Mideast tensions fan inflation fears",
+      "link": "https://www.investing.com/news/stock-market-news/european-shares-dip-as-oil-nears-100-mideast-tensions-fan-inflation-fears-4892813",
+      "source": "Investing",
+      "at": 1788939032000,
+      "inst": [
+        "USOIL"
+      ],
+      "ccy": [
+        "OIL",
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788939032000,
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil nears $100"
+    },
+    {
+      "title": "U.S. stock futures muted as oil nears $100, Fed hike bets remain",
+      "link": "https://www.investing.com/news/stock-market-news/us-stock-futures-muted-as-oil-nears-100-fed-hike-bets-rise-4892640",
+      "source": "Investing",
+      "at": 1788938879000,
+      "inst": [
+        "USOIL"
+      ],
+      "ccy": [
+        "USD",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788938879000,
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil nears $100"
     },
     {
       "title": "Oil extends rally, Brent nears $100/bbl as U.S.-Iran fighting escalates",
@@ -36,7 +84,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788937849000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Oil extends rally"
     },
     {
       "title": "Bessent’s Yen Bet Is Paying Off—for Now - wsj.com",
@@ -55,7 +108,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788938557000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USD/JPY": "up"
+      },
+      "why": "Yen bet paying off"
     },
     {
       "title": "Medicine shortages grow in Iran as US tightens sanctions, blockade - Al Jazeera",
@@ -76,7 +133,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788938325000,
-      "_kind": "escalation"
+      "_kind": "escalation",
+      "why": "Iran sanctions, unclear market impact"
     },
     {
       "title": "FTSE 100 today: Stocks retreat as Gulf strikes send oil toward $100",
@@ -94,7 +152,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788938206000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Gulf strikes send oil toward $100"
     },
     {
       "title": "Ukraine Strikes Russian Black Sea Fuel Hub Handling 4 Million Tons a Year - UNITED24 Media",
@@ -115,7 +177,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788935580000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Ukraine strikes fuel hub"
     },
     {
       "title": "Silver consolidates in Ichimoku cloud chop zone: Live levels",
@@ -132,7 +199,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788937826000,
-      "_kind": null
+      "_kind": null,
+      "why": "Silver consolidates"
     },
     {
       "title": "Crude Oil WTI overbought 6% above 50-MA, doji warns: Live levels",
@@ -150,7 +218,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1788937826000,
-      "_kind": null
+      "_kind": null,
+      "why": "WTI overbought, doji warns"
     },
     {
       "title": "Natural Gas tests $2.874 support with momentum warning: Live levels",
@@ -165,7 +234,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1788937826000,
-      "_kind": null
+      "_kind": null,
+      "why": "Natural Gas tests support"
     },
     {
       "title": "Brent Oil nears $101.20 double-top resistance: Live levels",
@@ -183,7 +253,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788937826000,
-      "_kind": null
+      "_kind": null,
+      "why": "Brent nears resistance"
     },
     {
       "title": "London Gas Oil trapped below $1,393 resistance: Live levels",
@@ -200,7 +271,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788937826000,
-      "_kind": null
+      "_kind": null,
+      "why": "Gas Oil trapped below resistance"
     },
     {
       "title": "Gold trapped in $4,400-$4,480 squeeze: Live levels",
@@ -217,7 +289,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788937826000,
-      "_kind": null
+      "_kind": null,
+      "why": "Gold trapped in squeeze"
     },
     {
       "title": "Aftermath of a Russian drone attack on a Ukraine-Moldova border crossing in Odesa region - lufkindailynews.com",
@@ -238,7 +311,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788935526000,
-      "_kind": null
+      "_kind": null,
+      "why": "Drone attack aftermath, unclear impact"
     },
     {
       "title": "Iran attacks US base in Jordan, ships near Hormuz after tankers sunk - Reuters",
@@ -343,23 +417,6 @@
       "firstAt": 1788937430000
     },
     {
-      "title": "Japan stocks lower at close of trade; Nikkei 225 down 0.19%",
-      "link": "https://www.investing.com/news/stock-market-news/japan-stocks-lower-at-close-of-trade-nikkei-225-down-019-4892769",
-      "source": "Investing",
-      "at": 1788937205000,
-      "inst": [
-        "USD/JPY",
-        "US500"
-      ],
-      "ccy": [
-        "JPY"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788937205000
-    },
-    {
       "title": "Iraq seeks major OPEC+ quota increase during capacity review, Bloomberg reports",
       "link": "https://www.investing.com/news/commodities-news/iraq-seeks-major-opec-quota-increase-during-capacity-review-bloomberg-reports-4892768",
       "source": "Investing Cmdty",
@@ -375,24 +432,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788937195000
-    },
-    {
-      "title": "Asian stocks mixed as chip rally offsets oil-fueled inflation concerns",
-      "link": "https://www.investing.com/news/stock-market-news/asian-stocks-mixed-as-chip-rally-offsets-oilfueled-inflation-concerns-4892696",
-      "source": "Investing",
-      "at": 1788937115000,
-      "inst": [
-        "USOIL",
-        "US500"
-      ],
-      "ccy": [
-        "OIL",
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788937115000
     },
     {
       "title": "CENTCOM Destroys Five Iranian Tankers, Iran Strikes Jordan - MiGFlug",
@@ -968,7 +1007,7 @@
       "link": "https://news.google.com/rss/articles/CBMihAFBVV95cUxORE16aWlUYmRpRzFwb1BEdjdILTBhTkNTSGpvZm0zR1JRNlUzSmtLT19yWURKRjFDejZOS0hEeGk2bU5TSXpPQUlOWndVRVRVVC1XVWk2ZWpQbjg0ai1WUU0zR2VmZllWS2lKcmN1N0hjZ1ptRlRVejVNSlhtaVhfVmZHTjA?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMihAFBVV95cUxORE16aWlUYmRpRzFwb1BEdjdILTBhTkNTSGpvZm0zR1JRNlUzSmtLT19yWURKRjFDejZOS0hEeGk2bU5TSXpPQUlOWndVRVRVVC1XVWk2ZWpQbjg0ai1WUU0zR2VmZllWS2lKcmN1N0hjZ1ptRlRVejVNSlhtaVhfVmZHTjA?oc=5\" target=\"_blank\">Iran turns to crypto to get ",
-      "at": 1788926523000,
+      "at": 1788926407000,
       "inst": [
         "BTC/USDT",
         "XAU/USD",
@@ -1118,29 +1157,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788922957000
-    },
-    {
-      "title": "United States Dollar Index weakens despite rising inflation concerns, Fed rate hike bets - FXStreet",
-      "link": "https://news.google.com/rss/articles/CBMiygFBVV95cUxQdWJzSTFnSVdQSzloS2FaMkktcnBpM2dNQ0hORTBjdmRZVFN2dUJUb242UEk5Z2dLdktpUTBQcnc4eHlFWWg4d21yT2pmNlpIaDBmVTlyYk9QYU1rQWRGV2I0WkVxZ3k4WFJITEhSa3NYcWdIZFVkU2E0YWw4cUZyRTcwRmV2eHFtVGVnbzVGdnZrLTlnT2twUUcxMTMyU3BKcG9OdG5SQXRPOGdYYk9BdnRFNlVRaXE3UGNBTS02V0ZQa1hONmR4ZnNB?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiygFBVV95cUxQdWJzSTFnSVdQSzloS2FaMkktcnBpM2dNQ0hORTBjdmRZVFN2dUJUb242UEk5Z2dLdktpUTBQcnc4eHlFWWg4d21yT2pmNlpIaDBmVTlyYk9QYU1rQWRGV2I0WkVxZ3k4WFJITEhSa3NYcWdIZFVkU2E0YWw4cUZyRTcwRmV2eHFtVGVnbzVGdnZrLTlnT2twUUcxMTMyU3BKcG9OdG5SQXRPOG",
-      "at": 1788924422000,
-      "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788924422000
     },
     {
       "title": "China inflation rebounds on energy costs, but the demand story hasn't changed - recap",
@@ -1699,6 +1715,26 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788910349000
+    },
+    {
+      "title": "Canadian Dollar and Crude Oil After the 50% Tariffs - CME Group",
+      "link": "https://news.google.com/rss/articles/CBMinwFBVV95cUxQUVQzTWtXRjVCVDFJam42bE01M3NvTWNTT2RocUw3dVpOVm8xenh2UVBOcjFKTTcxUWl3a3RzQkNVMDdxeG5XTWhsRkZWbEhYQWEyODczMUlQSklackExY0RSQV96OENhSE5WaUYzSWtIQXVuTXRGNEIxdkI3WWF2N2pnSW1Nb2hMQnEtTWNsMEVvVTB6d2h6NGdJc05HNzQ?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMinwFBVV95cUxQUVQzTWtXRjVCVDFJam42bE01M3NvTWNTT2RocUw3dVpOVm8xenh2UVBOcjFKTTcxUWl3a3RzQkNVMDdxeG5XTWhsRkZWbEhYQWEyODczMUlQSklackExY0RSQV96OENhSE5WaUYzSWtIQXVuTXRGNEIxdkI3WWF2N2pnSW1Nb2hMQnEtTWNsMEVvVTB6d2h6NGdJc05HNzQ?oc=5\" target=\"",
+      "at": 1788909748000,
+      "inst": [
+        "USD/CAD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "USD",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788909748000
     }
   ],
   "sources": [
@@ -1721,10 +1757,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-09T07:34:43.067Z",
-  "updatedAt": "2026-09-09T07:34:43.067Z"
+  "headlinesAt": "2026-09-09T07:35:59.151Z",
+  "updatedAt": "2026-09-09T07:35:59.151Z"
 }
