@@ -13,16 +13,17 @@ import { fetchBinanceKlines, venueFor, probeInstrument } from '../utils/binanceK
 import { discoverBinancePerps, allInstruments, addCustom, removeCustom, loadCustom,
          publishTradfiList, syncPublished, loadPublished } from '../utils/binanceDiscovery';
 import { ghRead, ghWrite } from '../utils/githubSync';
+import { unsupportedReason } from '../../shared/timeframes.mjs';
 
-const TF_GRAN = {'1M':'M1','5M':'M5','15M':'M15','30M':'M30','1H':'H1','4H':'H4','8H':'H8','D':'D','W':'W'};
-const TFS = ['1M','5M','15M','30M','1H','4H','8H','D','W'];
+const TF_GRAN = {'1M':'M1','2M':'M2','5M':'M5','15M':'M15','30M':'M30','1H':'H1','4H':'H4','8H':'H8','D':'D','W':'W'};
+const TFS = ['1M','2M','5M','15M','30M','1H','4H','8H','D','W'];
 const COUNTS = [100,500,1000,2000,5000,10000,20000,50000,100000,200000];
 
 // Bars per TRADING day. FX, metals, indices and energy trade around the clock
 // five days a week, so calendar coverage is roughly 7/5 of the trading days a
 // bar count buys — a distinction that decides whether an intraday search has
 // six months of history or four.
-const BARS_PER_TRADING_DAY = { '1M':1440, '5M':288, '15M':96, '30M':48, '1H':24, '4H':6, '8H':3, 'D':1, 'W':0.2 };
+const BARS_PER_TRADING_DAY = { '1M':1440, '2M':720, '5M':288, '15M':96, '30M':48, '1H':24, '4H':6, '8H':3, 'D':1, 'W':0.2 };
 
 // What a timeframe/bar-count pair will actually cover, shown before the search
 // runs rather than as a refusal afterwards.
@@ -194,6 +195,8 @@ const CAT_COLORS = {
   Momentum:'#0ea5e9', Trend:'#a78bfa', SMC:'#00d4aa', ICT:'#8b5cf6', Pattern:'#eab308',
 };
 
+// Binance has no 2m interval — its list goes 1m, 3m, 5m. There is deliberately
+// no '2M' key here, and the lookup below refuses rather than substituting.
 const BINANCE_TF = {'1M':'1m','5M':'5m','15M':'15m','30M':'30m','1H':'1h','4H':'4h','8H':'8h','D':'1d','W':'1w'};
 
 // Both APIs cap a single request (OANDA 5000, Binance 1000). To grade honestly
@@ -259,7 +262,13 @@ async function fetchCandles(symbol, tf, count) {
   const inst = allInstruments().find(i => i.sym === symbol);
   if (inst?.binance || inst?.bfut) {
     try {
-      const cs = await fetchBinanceKlines(inst, BINANCE_TF[tf] || '1h', count);
+      // A missing key used to fall through to '1h'. With M2 in the picker that
+      // meant a crypto backtest silently running on hourly candles under a
+      // label saying 2M, printing a plausible win rate for a timeframe that was
+      // never tested. Refusing is the only honest option.
+      const bTf = BINANCE_TF[tf];
+      if (!bTf) throw new Error(unsupportedReason('binance', TF_GRAN[tf] || tf) || `${tf} unavailable on Binance`);
+      const cs = await fetchBinanceKlines(inst, bTf, count);
       if (cs.length >= 20) {
         const v = venueFor(inst);
         return { candles:cs, src:`Binance ${v.venue} · ${cs.length} bars${spanLabel(cs)}` };

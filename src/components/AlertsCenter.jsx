@@ -50,7 +50,7 @@ export default function AlertsCenter({ onClose }) {
   const isCrypto = !!inst?.binance;
   const TF_OPTIONS = isCrypto
     ? ['M1','M3','M5','M15','M30','H1','H4','D']
-    : ['M1','M5','M15','M30','H1','H4','D'];
+    : ['M1','M2','M5','M15','M30','H1','H4','D'];
 
   // Show current price when picking instrument; clamp TF if it's no longer valid
   useEffect(() => {

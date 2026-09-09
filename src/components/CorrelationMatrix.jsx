@@ -33,7 +33,7 @@ const INSTRUMENTS = [
   { key:'USB10Y_USD', label:'US10Y', color:'#818cf8', cls:'rate' },
 ];
 
-const TF_OPTIONS = ['M15', 'H1', 'H4', 'D'];
+const TF_OPTIONS = ['M2', 'M15', 'H1', 'H4', 'D'];
 const LB_OPTIONS = [
   { v: 20,  l: '20 bars' },
   { v: 50,  l: '50 bars' },

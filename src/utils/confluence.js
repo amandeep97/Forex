@@ -669,7 +669,7 @@ const KIND_WEIGHT = { trigger: 1.35, swing: 1.0, intraday: 0.55 };
 // Against the wall clock it was also wrong in a second way. If the feed last
 // refreshed an instrument four hours ago, an event on its most recent bar is
 // already "old" by a clock and is still the latest thing that happened.
-const TF_MS = { M15: 900e3, M30: 1800e3, H1: 3600e3, H4: 14400e3, D: 86400e3 };
+const TF_MS = { M2: 120e3, M15: 900e3, M30: 1800e3, H1: 3600e3, H4: 14400e3, D: 86400e3 };
 const MAX_BARS_AGO = 2;
 
 function freshness(at, tf, asOf) {

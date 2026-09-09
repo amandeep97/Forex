@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback, useRef, useMemo } from 'react';
 import DOWPatterns from './DOWPatterns';
 import { binanceCandles } from '../utils/binanceKlines';
+import { unsupportedReason, TF_MINUTES } from '../../shared/timeframes.mjs';
 
 // ── Config ────────────────────────────────────────────────────────────────────
 const PAIRS = [
@@ -46,13 +47,16 @@ const PHASES = {
 // Timeframe config — pages:2 × 5000 candles = up to 10k per pair
 // H4 ×2 pages ≈ 4.6 years · H1 ≈ 14 months · M30 ≈ 7 months · M15 ≈ 3.5 months
 const TF_CONFIG = {
+  // M2 is OANDA-only and short-horizon by nature: 10k bars is about two weeks,
+  // so it is offered for looking rather than for a multi-year study.
+  M2:  { label:'2m',  gran:'M2',  liveCount:300, pages:2, futureCandles:15 },
   M15: { label:'15m', gran:'M15', liveCount:200, pages:2, futureCandles:12 },
   M30: { label:'30m', gran:'M30', liveCount:120, pages:2, futureCandles:8  },
   H1:  { label:'1H',  gran:'H1',  liveCount:100, pages:2, futureCandles:6  },
   H4:  { label:'4H',  gran:'H4',  liveCount:80,  pages:2, futureCandles:5  },
 };
 
-const TF_HIST_LABEL = { M15:'~3.5 months', M30:'~7 months', H1:'~14 months', H4:'~4.6 years' };
+const TF_HIST_LABEL = { M2:'~2 weeks', M15:'~3.5 months', M30:'~7 months', H1:'~14 months', H4:'~4.6 years' };
 
 // ── OANDA ─────────────────────────────────────────────────────────────────────
 function getCreds() {
@@ -144,10 +148,15 @@ async function fetchCandlesAll(pairKey, gran, pages = 2) {
 }
 
 // ── Binance (Crypto) ──────────────────────────────────────────────────────────
+// No M2 key on purpose: Binance's interval list goes 1m, 3m, 5m. The lookups
+// below refuse rather than falling back, because a study labelled 2m that
+// silently ran on hourly candles would print a plausible number for a
+// timeframe nobody tested.
 const BINANCE_GRAN = { M15:'15m', M30:'30m', H1:'1h', H4:'4h' };
 
 async function fetchBinanceCandles(symbol, gran, count) {
-  const interval = BINANCE_GRAN[gran] || '1h';
+  const interval = BINANCE_GRAN[gran];
+  if (!interval) throw new Error(unsupportedReason('binance', gran) || `${gran} unavailable on Binance`);
   try {
     const got = await binanceCandles(symbol, interval, count + 1);
     const res = { ok: got.length > 0, json: async () => got.map(c => [c.t, c.o, c.h, c.l, c.c, c.v]) };
@@ -160,7 +169,8 @@ async function fetchBinanceCandles(symbol, gran, count) {
 }
 
 async function fetchBinanceCandlesAll(symbol, gran, pages = 2) {
-  const interval = BINANCE_GRAN[gran] || '1h';
+  const interval = BINANCE_GRAN[gran];
+  if (!interval) throw new Error(unsupportedReason('binance', gran) || `${gran} unavailable on Binance`);
   // Binance max 1000 candles/request vs OANDA 5000 — multiply pages to get same coverage
   const binancePages = pages * 5;
   // Was a hand-rolled paging loop against the spot host — a second copy of the
@@ -1598,7 +1608,7 @@ const COND_TYPES = [
   { id:'session',   label:'Session',    options:['Asian','London','Overlap','NY'],                         desc:'Trading session (ET time)' },
   { id:'swept',     label:'Swept',      options:['high','low'],                                            desc:'Which swing was swept' },
   { id:'direction', label:'Direction',  options:['bullish','bearish'],                                     desc:'Expected move direction' },
-  { id:'tf',        label:'Timeframe',  options:['M15','M30','H1','H4'],                                   desc:'Candle timeframe' },
+  { id:'tf',        label:'Timeframe',  options:['M2','M15','M30','H1','H4'],                                   desc:'Candle timeframe' },
   { id:'group',     label:'Group',      options:['Forex','Metals','Indices','Crypto'],                     desc:'Asset class' },
   { id:'pair',      label:'Pair',       options:PAIRS.map(p=>p.label),                                    desc:'Specific instrument' },
   { id:'hour_from',  label:'ET Hour ≥',      options:Array.from({length:24},(_,i)=>String(i).padStart(2,'0')), desc:'From this ET hour' },
@@ -2323,7 +2333,9 @@ export default function AlphaLab() {
     const newPhases = {};
     const newSweeps = [];
     const utcHour   = new Date().getUTCHours();
-    const resolveHrs = tfCfg.futureCandles * (scanTF==='M15'?0.25:scanTF==='M30'?0.5:scanTF==='H4'?4:1);
+    // Hours per bar, from the one table that knows bar widths. The chain of
+    // ternaries this replaces had no M2 branch and would have fallen to 1 hour.
+    const resolveHrs = tfCfg.futureCandles * ((TF_MINUTES[scanTF] || 60) / 60);
 
     await Promise.all(PAIRS.map(async pair => {
       const candles = await fetchCandles(pair.key, tfCfg.gran, tfCfg.liveCount);

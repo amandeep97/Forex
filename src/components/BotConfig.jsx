@@ -440,6 +440,7 @@ const ALL_PAIRS = PAIR_GROUPS.flatMap(g => g.pairs.map(p => p.v));
 const TFS = [
   { v:'M1',  l:'1 Min' },
   { v:'M5',  l:'5 Min' },
+  { v:'M2', l:'2 Min' },
   { v:'M15', l:'15 Min' },
   { v:'M30', l:'30 Min' },
   { v:'H1',  l:'1 Hour' },
@@ -1049,7 +1050,7 @@ function StrategyEditor({ strat, onSave, onCancel }) {
               ))}
               <FieldRow label="Check Timeframe">
                 <Select value={s.conditions.intermarketFilter?.tf||'H1'} onChange={v => set('conditions.intermarketFilter.tf', v)}
-                  options={[{v:'M15',l:'M15'},{v:'M30',l:'M30'},{v:'H1',l:'H1'},{v:'H4',l:'H4'}]}/>
+                  options={[{v:'M2',l:'M2'},{v:'M15',l:'M15'},{v:'M30',l:'M30'},{v:'H1',l:'H1'},{v:'H4',l:'H4'}]}/>
               </FieldRow>
             </div>
           )}

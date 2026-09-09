@@ -546,7 +546,7 @@ function ConnectTab({ onLog, signalPair, onSignalUsed }) {
             {ALL_PAIRS.map(p => <option key={p} value={p}>{p.replace('_','/')}</option>)}
           </select>
           <select value={tf} onChange={e => { setTf(e.target.value); setSignal(null); }} style={{ ...INP, width: 72 }}>
-            {['M5','M15','M30','H1','H4','D'].map(t => <option key={t} value={t === 'D' ? 'D' : t}>{t}</option>)}
+            {['M2','M5','M15','M30','H1','H4','D'].map(t => <option key={t} value={t === 'D' ? 'D' : t}>{t}</option>)}
           </select>
           <div>
             <div style={{ fontSize: 10, color: '#64748b', marginBottom: 3 }}>Lot Size</div>

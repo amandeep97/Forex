@@ -46,6 +46,7 @@ function Toggle({ label, checked, onChange, description }) {
 }
 
 const SIGNAL_TF_OPTIONS = [
+  { value: '2m',  label: '2m'  },
   { value: '15m', label: '15m' }, { value: '30m', label: '30m' },
   { value: '1h',  label: '1H'  }, { value: '2h',  label: '2H'  },
   { value: '4h',  label: '4H'  }, { value: '6h',  label: '6H'  },

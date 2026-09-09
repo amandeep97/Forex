@@ -169,7 +169,7 @@ export default function CommandCenter() {
     const classes = [...new Set(Object.values(feed.instruments || {}).map(r => r.cls))];
     const afford = [];
     for (const cls of classes) {
-      for (const tf of ['M15', 'M30', 'H1', 'H4', 'D']) {
+      for (const tf of ['M2', 'M15', 'M30', 'H1', 'H4', 'D']) {
         const shares = [];
         for (const rec of Object.values(feed.instruments || {})) {
           if (rec.cls !== cls) continue;
@@ -440,14 +440,14 @@ export default function CommandCenter() {
                 <table style={{ borderCollapse:'collapse', fontSize:10.5, color:'var(--text3)' }}>
                   <thead><tr>
                     <th style={{ textAlign:'left', padding:'2px 8px 2px 0' }}></th>
-                    {['M15','M30','H1','H4','D'].map(tf =>
+                    {['M2','M15','M30','H1','H4','D'].map(tf =>
                       <th key={tf} style={{ padding:'2px 7px', fontWeight:600 }}>{tf}</th>)}
                   </tr></thead>
                   <tbody>
                     {[...new Set(evidenceReport.afford.map(a => a.cls))].map(cls => (
                       <tr key={cls}>
                         <td style={{ padding:'2px 8px 2px 0', color:'var(--text2)' }}>{cls}</td>
-                        {['M15','M30','H1','H4','D'].map(tf => {
+                        {['M2','M15','M30','H1','H4','D'].map(tf => {
                           const a = evidenceReport.afford.find(x => x.cls === cls && x.tf === tf);
                           if (!a) return <td key={tf} style={{ padding:'2px 7px', textAlign:'center' }}>—</td>;
                           const ok = a.share <= MAX_COST_SHARE;
@@ -541,7 +541,7 @@ export default function CommandCenter() {
           {[['all','Both ways'],['up','Bullish'],['down','Bearish']].map(([v,l]) => (
             <button key={v} onClick={() => setDir(v)} style={pill(dir===v)}>{l}</button>
           ))}
-          {[['all','Any TF'],['M15','15m'],['M30','30m'],['H1','1H'],['H4','H4'],['D','Daily']].map(([v,l]) => (
+          {[['all','Any TF'],['M2','2m'],['M15','15m'],['M30','30m'],['H1','1H'],['H4','H4'],['D','Daily']].map(([v,l]) => (
             <button key={v} onClick={() => setTf(v)} style={pill(tf===v)}>{l}</button>
           ))}
           <button onClick={() => setOnlyStrong(v => !v)} style={pill(onlyStrong)}>Strong hammer / star</button>

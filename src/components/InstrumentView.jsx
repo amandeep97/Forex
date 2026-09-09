@@ -271,7 +271,7 @@ export default function InstrumentView({ sym: symProp, onBack }) {
           <Card title="PRICE" src={px?.error ? 'error' : px ? 'live' : 'unavailable'}
             note={px?.source ? `${px.source} · ${tf}` : px?.error || ''}>
             <div style={{ display:'flex', gap:4, marginBottom:7 }}>
-              {['M15','H1','H4','D'].map(t => (
+              {['M2','M15','H1','H4','D'].map(t => (
                 <button key={t} onClick={()=>setTf(t)}
                   style={{ fontSize:9, fontWeight:700, padding:'2px 7px', borderRadius:2, cursor:'pointer',
                     border:`1px solid ${tf===t?'#00d4aa55':C.line}`, background:tf===t?'#00d4aa15':'transparent',

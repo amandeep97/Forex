@@ -113,6 +113,14 @@ export async function probeInstrument(inst, interval = '1d') {
 // so a screen asks for candles by instrument and never picks a host.
 
 // Binance intervals, keyed by every timeframe spelling used across the app.
+//
+// There is no two-minute entry and there cannot be: Binance's interval list
+// goes 1m, 3m, 5m. M2 is offered across the app because OANDA serves it, so
+// the spellings for it are named below and refused explicitly rather than
+// left to the generic fallback, which would hand back hourly candles under a
+// label saying two minutes.
+export const NO_BINANCE_TF = ['M2', '2M', '2m'];
+
 export const BINANCE_TF = {
   '1M':'1m', M1:'1m', '5M':'5m', M5:'5m', '15M':'15m', M15:'15m',
   '30M':'30m', M30:'30m', '1H':'1h', H1:'1h', '2H':'2h', H2:'2h',
@@ -124,6 +132,9 @@ export const isBinance = inst => typeof inst === 'string' ? !!inst : !!(inst?.bi
 
 // Single page, for callers that only ever wanted a handful of bars.
 export async function binanceCandles(inst, tf, count = 200) {
+  if (NO_BINANCE_TF.includes(tf)) {
+    throw new Error('Binance has no 2-minute interval — its list goes 1m, 3m, 5m');
+  }
   const itv = BINANCE_TF[tf] || (typeof tf === 'string' && /^\d/.test(tf) ? tf : '1h');
   return fetchBinanceKlines(inst, itv, count);
 }
