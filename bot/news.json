@@ -516,7 +516,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788935580000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Ukraine attack boosts gold, oil unclear"
     },
     {
       "title": "Israel to take action against France, orders British consulate closure - The Jerusalem Post",
@@ -532,7 +536,56 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788935491000,
-      "_kind": null
+      "_kind": null,
+      "why": "Geopolitical news, no clear GBP direction"
+    },
+    {
+      "title": "Oil nears $100 as fresh Middle East strikes raise supply risks",
+      "link": "https://www.investing.com/news/commodities-news/oil-jumps-1-in-early-trade-after-iran-launches-missiles-at-jordan-4892628",
+      "source": "Investing Cmdty",
+      "at": 1788935427000,
+      "inst": [
+        "USOIL",
+        "XAU/USD",
+        "UKOIL"
+      ],
+      "ccy": [
+        "OIL",
+        "XAU"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788935427000,
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Supply risks push oil and gold up"
+    },
+    {
+      "title": "Australia stocks lower at close of trade; S&P/ASX 200 down 0.11%",
+      "link": "https://www.investing.com/news/stock-market-news/australia-stocks-lower-at-close-of-trade-spasx-200-down-011-4892737",
+      "source": "Investing",
+      "at": 1788935404000,
+      "inst": [
+        "AUD/USD",
+        "US500"
+      ],
+      "ccy": [
+        "AUD"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1788932877000,
+      "_kind": null,
+      "dir": {
+        "AUD/USD": "down"
+      },
+      "why": "Australian stocks lower, US unaffected"
     },
     {
       "title": "US slaps import ban on Canadian alcohol, motorbikes and other goods",
@@ -551,7 +604,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788935337000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USD/CAD": "up",
+        "XAU/USD": "up"
+      },
+      "why": "Trade war weakens CAD, boosts gold"
     },
     {
       "title": "Adani Enterprises shares jump as airport unit enters into $1 billion fundraising deal",
@@ -583,6 +641,20 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788935065000,
+      "_kind": null,
+      "why": "No major events, direction unclear"
+    },
+    {
+      "title": "Purplebricks reports 7% revenue growth in challenging UK market",
+      "link": "https://www.investing.com/news/stock-market-news/purplebricks-reports-7-revenue-growth-in-challenging-uk-market-93CH-4892725",
+      "source": "Investing",
+      "at": 1788934614000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 1,
+      "srcs": 1,
+      "firstAt": 1788934614000,
       "_kind": null
     },
     {
@@ -601,7 +673,56 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788934473000,
-      "_kind": null
+      "_kind": null,
+      "why": "Rainfall news irrelevant to forex"
+    },
+    {
+      "title": "Gold rebounds above $4,400 as weaker dollar, easing Fed pressure support bullion",
+      "link": "https://www.investing.com/news/commodities-news/gold-rebounds-as-dollar-eases-but-fed-hike-risks-cap-gains-4892653",
+      "source": "Investing Cmdty",
+      "at": 1788934077000,
+      "inst": [
+        "XAU/USD"
+      ],
+      "ccy": [
+        "USD",
+        "XAU"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788934077000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Weaker dollar supports gold rebound"
+    },
+    {
+      "title": "Taiwan stocks higher at close of trade; Taiwan Weighted up 0.06%",
+      "link": "https://www.investing.com/news/stock-market-news/taiwan-stocks-higher-at-close-of-trade-taiwan-weighted-up-006-4892714",
+      "source": "Investing",
+      "at": 1788933604000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788933604000,
+      "why": "Taiwan stocks news, US unaffected"
+    },
+    {
+      "title": "Zara owner Inditex reports strong August trading amid heatwaves",
+      "link": "https://www.investing.com/news/stock-market-news/zara-owner-inditex-reports-strong-august-trading-amid-heatwaves-4892713",
+      "source": "Investing",
+      "at": 1788933276000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 1,
+      "srcs": 1,
+      "firstAt": 1788933276000
     },
     {
       "title": "Why US-Iran war over Hormuz is threatening the Gulf’s waters - Al Jazeera",
@@ -621,7 +742,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788933152000
+      "firstAt": 1788933152000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Hormuz threat boosts oil and gold"
     },
     {
       "title": "Australia considers new Israel sanctions but won’t join UK in banning trade with ‘settler terrorists’ - The Guardian",
@@ -642,8 +769,9 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788932877000
+      "srcs": 2,
+      "firstAt": 1788932877000,
+      "why": "Sanctions news, no clear market impact"
     },
     {
       "title": "Israel’s war leaves Lebanon’s schools balancing students and the displaced",
@@ -663,7 +791,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788932171000
+      "firstAt": 1788932171000,
+      "why": "Humanitarian news, no market direction"
     },
     {
       "title": "How Ukrainian Drone Strikes Are Pounding Russia’s Economy - wsj.com",
@@ -683,7 +812,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788931932000
+      "firstAt": 1788931932000,
+      "why": "Economic impact unclear for markets"
     },
     {
       "title": "Dollar-Yen Holds Steady Around 153 as Traders Await US Inflation Data - finance.biggo.com",
@@ -701,7 +831,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788931870000
+      "firstAt": 1788931870000,
+      "why": "Dollar-yen steady, awaiting data"
     },
     {
       "title": "At least five killed in large-scale overnight Russian attack on Kyiv - Euronews.com",
@@ -721,7 +852,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788931364000
+      "firstAt": 1788931364000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Ukraine attack boosts gold, oil unclear"
     },
     {
       "title": "US strikes 5 Iranian oil tankers; Tehran targets Jordan base, US warships - Al Jazeera",
@@ -857,7 +992,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788927216000
+      "firstAt": 1788929220000
     },
     {
       "title": "US-Iran tanker escalation pushes oil close to $100 - agbi.com",
@@ -951,26 +1086,6 @@
       "firstAt": 1788927870000
     },
     {
-      "title": "Oil nears $100 as fresh Middle East strikes raise supply risks By Reuters - Investing.com",
-      "link": "https://news.google.com/rss/articles/CBMivgFBVV95cUxQN3ptWFN5aFZTRWJvZWxLQXlOSjFnZUQyT0htd0FzQ1BWUEFGUDkybVNWWXJvWmJPQnlrRGV0RGpfUVZpOXJhYWNHTC12aVI1enY4NWJ0VmkwOTlFOFJNVGVKSUNtNzVCd2ZwWDJrYkR3SUUxaHZIX19BcmVZVTNLMGo2WEZKcjY0d3RPTWRhYUgyaGR1MEFlQ0I2Q2Eta0wtWWtNY0Y1dWdTUFVRYWxiU0lEaFhXaDBrT1dYZVdR?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMivgFBVV95cUxQN3ptWFN5aFZTRWJvZWxLQXlOSjFnZUQyT0htd0FzQ1BWUEFGUDkybVNWWXJvWmJPQnlrRGV0RGpfUVZpOXJhYWNHTC12aVI1enY4NWJ0VmkwOTlFOFJNVGVKSUNtNzVCd2ZwWDJrYkR3SUUxaHZIX19BcmVZVTNLMGo2WEZKcjY0d3RPTWRhYUgyaGR1MEFlQ0I2Q2Eta0wtWWtNY0Y1dWdTUF",
-      "at": 1788927216000,
-      "inst": [
-        "USOIL",
-        "XAU/USD",
-        "UKOIL"
-      ],
-      "ccy": [
-        "OIL",
-        "XAU"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788927216000
-    },
-    {
       "title": "China's EV makers shift gears to focus on humanoids as car market slows",
       "link": "https://www.cnbc.com/2026/09/09/chinas-ev-makers-shift-gears-to-focus-on-humanoids-as-car-market-slows.html",
       "source": "CNBC Markets",
@@ -1041,24 +1156,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788926523000
-    },
-    {
-      "title": "Asian stocks mixed as chip rally offsets oil-fueled inflation concerns",
-      "link": "https://www.investing.com/news/stock-market-news/asian-stocks-mixed-as-chip-rally-offsets-oilfueled-inflation-concerns-4892696",
-      "source": "Investing",
-      "at": 1788926258000,
-      "inst": [
-        "USOIL",
-        "US500"
-      ],
-      "ccy": [
-        "OIL",
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788926258000
     },
     {
       "title": "Canada begins collecting ‘dollar-for-dollar’ tariffs on U.S. goods - FOX 17 West Michigan News",
@@ -1345,8 +1442,8 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 2,
-      "firstAt": 1788918233000
+      "srcs": 1,
+      "firstAt": 1788918777000
     },
     {
       "title": "New Zealand Dollar holds gains above 0.5850 after Chinese inflation data - FXStreet",
@@ -1447,23 +1544,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788917400000
-    },
-    {
-      "title": "Gold rebounds as dollar eases, but Fed hike risks cap gains",
-      "link": "https://www.investing.com/news/commodities-news/gold-rebounds-as-dollar-eases-but-fed-hike-risks-cap-gains-4892653",
-      "source": "Investing Cmdty",
-      "at": 1788918233000,
-      "inst": [
-        "XAU/USD"
-      ],
-      "ccy": [
-        "USD",
-        "XAU"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1788918233000
     },
     {
       "title": "Oil extends rally, Brent nears $100/bbl as U.S.-Iran tensions escalate",
@@ -1627,23 +1707,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788916095000
-    },
-    {
-      "title": "U.S. stock futures muted as oil nears $100, Fed hike bets rise",
-      "link": "https://www.investing.com/news/stock-market-news/us-stock-futures-muted-as-oil-nears-100-fed-hike-bets-rise-4892640",
-      "source": "Investing",
-      "at": 1788916042000,
-      "inst": [
-        "USOIL"
-      ],
-      "ccy": [
-        "USD",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788916042000
     },
     {
       "title": "As Canada’s retaliatory tariffs on US goods take effect, tensions soar - Al Jazeera",
@@ -2139,43 +2202,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788900992000
-    },
-    {
-      "title": "China August inflation seen rebounding as trade data flags demand gap",
-      "link": "https://investinglive.com/news/china-august-inflation-seen-rebounding-as-trade-data-flags-demand-gap/",
-      "source": "ForexLive",
-      "desc": "A rebound in headline CPI toward consensus would ease immediate deflation concerns without altering the broader policy picture, given the move is expected to be driven by a food price base effect rather than a genuine demand recovery. A miss, echoing July's shortfall against fore",
-      "at": 1788900933000,
-      "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788900933000
-    },
-    {
-      "title": "Trump directs GSA to take steps to remove Canadian goods from agency lists",
-      "link": "https://www.investing.com/news/commodities-news/trump-directs-gsa-to-take-steps-to-remove-canadian-goods-from-agency-lists-4892456",
-      "source": "Investing Cmdty",
-      "at": 1788900519000,
-      "inst": [
-        "USD/CAD"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788900519000
     }
   ],
   "sources": [
@@ -2198,10 +2224,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-09T06:38:28.109Z",
-  "headlinesAt": "2026-09-09T06:38:28.109Z",
-  "updatedAt": "2026-09-09T06:38:28.109Z"
+  "calendarAt": "2026-09-09T06:39:43.026Z",
+  "headlinesAt": "2026-09-09T06:39:43.026Z",
+  "updatedAt": "2026-09-09T06:39:43.026Z"
 }
