@@ -471,6 +471,28 @@
   ],
   "headlines": [
     {
+      "title": "Turkey takes note of US/Iran-related sanctions announcement, finance minister says - Reuters",
+      "link": "https://news.google.com/rss/articles/CBMiywFBVV95cUxQZEc2WXdwT28wZUJZR1NCTTYxbWdneDRaZy1fRlNodXVIQzBVNUt1NjF6N2ZGaWo5cjU2S040VnliY0R1djNtZlNNWm5ocFR0TmtHYnp6Z1NHLUlJZTlTVWJoRlRrVzFsLTVMdWRlbHFzQkR3R21GM2J0U3FVMWktakxteldKaGxUR3dBbVgydFVOMEp5RWpveVlfS09hTC0wM2VNZDFqLXpJSV9aUUtBT3hscDVDMmR3QmR3U2RZYW5yTnUtLXlaam9CNA?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiywFBVV95cUxQZEc2WXdwT28wZUJZR1NCTTYxbWdneDRaZy1fRlNodXVIQzBVNUt1NjF6N2ZGaWo5cjU2S040VnliY0R1djNtZlNNWm5ocFR0TmtHYnp6Z1NHLUlJZTlTVWJoRlRrVzFsLTVMdWRlbHFzQkR3R21GM2J0U3FVMWktakxteldKaGxUR3dBbVgydFVOMEp5RWpveVlfS09hTC0wM2VNZDFqLXpJSV",
+      "at": 1788978752000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788978752000,
+      "_kind": null,
+      "why": "Sanctions note lacks immediate market impact"
+    },
+    {
       "title": "Houthi attacks on Saudi Arabia could activate defence pact, Pakistan says",
       "link": "https://www.aljazeera.com/news/2026/9/9/pakistan-warns-mecca-defense-pact-will-activate-after-houthi-attacks?traffic_source=rss",
       "source": "Al Jazeera",
@@ -489,7 +511,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788978670000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Houthi attacks escalate regional geopolitical risk"
     },
     {
       "title": "How significant are new European sanctions on illegal Israeli settlements? - Al Jazeera",
@@ -510,7 +538,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788978394000,
-      "_kind": null
+      "_kind": null,
+      "why": "Settlement sanctions have negligible market impact"
     },
     {
       "title": "Iran strikes ships, expands no-go zone outside Hormuz strait - France 24",
@@ -531,7 +560,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788977017000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Iran strikes expand Hormuz no-go zone"
     },
     {
       "title": "C3.ai (NYSE:AI) shares In Focus As Markets Weigh Inflation - Kalkine Media",
@@ -555,7 +590,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788978240000,
-      "_kind": null
+      "_kind": null,
+      "why": "Single stock news irrelevant to FX"
     },
     {
       "title": "U.S. stocks and bonds fall as Treasury buyback update disappoints, oil tops $100",
@@ -574,7 +610,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788978082000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "US500": "down"
+      },
+      "why": "Oil tops $100, stocks fall"
     },
     {
       "title": "Why Markets May Be Overpricing A September Fed Rate Hike - Forbes",
@@ -597,7 +638,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788977630000
+      "firstAt": 1788977630000,
+      "why": "Opinion piece on Fed pricing"
     },
     {
       "title": "Brent tops $100 for first time since May as U.S.-Iran military action escalates",
@@ -616,7 +658,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788977213000
+      "firstAt": 1788977213000,
+      "dir": {
+        "UKOIL": "up",
+        "XAU/USD": "up",
+        "USOIL": "up"
+      },
+      "why": "Brent tops $100 on Iran escalation"
     },
     {
       "title": "What is the nuclear Non-Proliferation Treaty? - Reuters",
@@ -633,7 +681,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788977203000
+      "firstAt": 1788977203000,
+      "why": "Educational article on NPT treaty"
     },
     {
       "title": "AMD, Facebook among market cap stock movers on Wednesday",
@@ -665,7 +714,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788977017000
+      "firstAt": 1788977017000,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Oil hits $100 on US-Iran strikes"
     },
     {
       "title": "Russian Attack Hits Sumy Shopping Mall, Leaving Three Dead and Two Injured - UNITED24 Media",
@@ -685,7 +740,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788976853000
+      "firstAt": 1788976853000,
+      "why": "Local attack lacks broad market impact"
     },
     {
       "title": "PPI, jobless claims, home sales and oil inventories due Thursday",
@@ -702,7 +758,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788976848000
+      "firstAt": 1788976848000,
+      "why": "Upcoming data release, no direction yet"
     },
     {
       "title": "Commodity prices near 18-year high, threatening global inflation - Nikkei Asia",
@@ -725,7 +782,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788976560000
+      "firstAt": 1788976560000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "High commodities boost gold, inflation risk"
     },
     {
       "title": "‘It’s a good start’: prominent Israelis welcome UK sanctions on illegal settlements - The Guardian",
@@ -742,7 +803,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788976500000
+      "firstAt": 1788976500000,
+      "why": "Political reaction to sanctions, no market move"
     },
     {
       "title": "US EIA hikes oil price forecasts as Iran war drains global stockpile",
@@ -761,7 +823,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788976128000
+      "firstAt": 1788976128000,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "EIA hikes forecasts on Iran war"
     },
     {
       "title": "Brent crude oil rises above $100 a barrel as Middle East conflict intensifies",
@@ -2177,26 +2245,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788950934000
-    },
-    {
-      "title": "US and Iran trade strikes overnight as gas prices continue to rise - WFAA",
-      "link": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxNbWhTRVFJMTZRTTEwMEJWLXRyd3FwVFI4RzFuajBtemRiajhhZ0JZQzhBOXZwaG9oeGszT1BJV0R1SjljZWZ1MWswU1paaWtRS01fVlZpS08tb25TOWwxemdWOGUtWGNXOFhuX1NISnNObldmTk0wdDNHQkduNG5BclJOSEZ6TURmcjlDbFowTGpyTldJeVppZWNIZjdfaExaNXFKYnpzbHBQQ3NGQnhKYi1mTzR1WE1xSGJwV3NNeTFQWENzUk5pMERFLWdvQ29JNHZETDE3MHNOUVhSTUE?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi3gFBVV95cUxNbWhTRVFJMTZRTTEwMEJWLXRyd3FwVFI4RzFuajBtemRiajhhZ0JZQzhBOXZwaG9oeGszT1BJV0R1SjljZWZ1MWswU1paaWtRS01fVlZpS08tb25TOWwxemdWOGUtWGNXOFhuX1NISnNObldmTk0wdDNHQkduNG5BclJOSEZ6TURmcjlDbFowTGpyTldJeVppZWNIZjdfaExaNXFKYnpzbHBQQ3",
-      "at": 1788950880000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788950880000
     }
   ],
   "sources": [
@@ -2219,10 +2267,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-09T18:46:13.685Z",
-  "headlinesAt": "2026-09-09T18:46:13.685Z",
-  "updatedAt": "2026-09-09T18:46:13.685Z"
+  "calendarAt": "2026-09-09T18:48:02.214Z",
+  "headlinesAt": "2026-09-09T18:48:02.214Z",
+  "updatedAt": "2026-09-09T18:48:02.214Z"
 }
