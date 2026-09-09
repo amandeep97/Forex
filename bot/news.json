@@ -18,7 +18,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788916155000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USD/CAD": "down",
+        "XAU/USD": "up"
+      },
+      "why": "Trade war hurts CAD, boosts gold"
     },
     {
       "title": "Gold Slips As Oil-Led Inflation Fears Keep Rates High - Finimize",
@@ -39,7 +44,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788916142000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "up"
+      },
+      "why": "Gold slips, oil-led inflation fears"
     },
     {
       "title": "Jordanian air defences intercept Iranian missile barrage",
@@ -60,7 +70,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788916095000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Missile interception boosts risk assets"
     },
     {
       "title": "U.S. stock futures muted as oil nears $100, Fed hike bets rise",
@@ -78,7 +94,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788916042000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil nears $100, supply concerns"
     },
     {
       "title": "Israel, welcome to the sanctions era: • U.K. heralds new reality that won't end with Netanyahu - Haaretz",
@@ -99,7 +119,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788914568000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions news unclear for markets"
     },
     {
       "title": "As Canada’s retaliatory tariffs on US goods take effect, tensions soar - Al Jazeera",
@@ -117,7 +138,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788915375000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USD/CAD": "down"
+      },
+      "why": "Retaliatory tariffs weaken Canadian dollar"
     },
     {
       "title": "Oil jumps $1 in early trade after Iran launches missiles at Jordan",
@@ -134,7 +159,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1788912864000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil jumps on Iran missile launch"
     },
     {
       "title": "Gold holds decline as Mideast tensions bolster rate hike case - The Business Times",
@@ -152,7 +181,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788914336000
+      "firstAt": 1788914336000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold declines on rate hike bets"
     },
     {
       "title": "Israel's Netanyahu denies UAE warned him of October 7 attack - dw.com",
@@ -172,7 +205,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788914568000
+      "firstAt": 1788914568000,
+      "why": "Political denial, no market impact"
     },
     {
       "title": "Gold slides to $4,400 as rate-hike odds firm ahead of next week's Fed decision - KITCO",
@@ -190,7 +224,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788914336000
+      "firstAt": 1788914336000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold slides on firm rate-hike odds"
     },
     {
       "title": "Ringgit opens higher vs US dollar amid rate-hike expectations - Free Malaysia Today",
@@ -225,7 +263,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788911784000
+      "firstAt": 1788911784000,
+      "why": "Sanctions analysis, no immediate direction"
     },
     {
       "title": "Brent crude nears $100 a barrel as U.S.-Iran tit-for-tat strikes stoke supply worries - cnbc.com",
@@ -245,7 +284,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788913920000
+      "firstAt": 1788913920000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up",
+        "XAU/USD": "up"
+      },
+      "why": "Supply worries boost oil and gold"
     },
     {
       "title": "Bombardier’s stock drops as the U.S.-Canada trade war intensifies. Here’s what Trump is targeting next.",
@@ -264,7 +309,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788913020000
+      "firstAt": 1788913020000,
+      "dir": {
+        "USD/CAD": "down",
+        "XAU/USD": "up"
+      },
+      "why": "Trade war intensifies, CAD weakens"
     },
     {
       "title": "Anti-AfD protesters rally in Cologne after far-right election win",
@@ -297,10 +347,16 @@
       "sev": 1,
       "rel": 2,
       "srcs": 3,
-      "firstAt": 1788910980000
+      "firstAt": 1788910980000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Escalation boosts oil and gold"
     },
     {
-      "title": "US military says it destroyed 5 more Iranian oil tankers after missile attacks on Navy warship - apnews.com",
+      "title": "US military says it destroyed 5 more Iranian oil tankers after missile attacks on Navy warship - AP News",
       "link": "https://news.google.com/rss/articles/CBMijAFBVV95cUxOUlN5b1FuNFl6ajd5T0Z0MVppWHZ5Y2hFOHJ4dkd0X1dqMGljMHlOX0FZNE9HSXU4SmoxVUVQVEs5OUg2OG8yM1NyazNZQ1VPU1dCS3p0NmNsUk5rVjBMY0xONjRQWGRtTk1vZkNFOC1PWElwcGZmbk9SUzVRS3JCeTlhN25heDc1b0dWbA?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMijAFBVV95cUxOUlN5b1FuNFl6ajd5T0Z0MVppWHZ5Y2hFOHJ4dkd0X1dqMGljMHlOX0FZNE9HSXU4SmoxVUVQVEs5OUg2OG8yM1NyazNZQ1VPU1dCS3p0NmNsUk5rVjBMY0xONjRQWGRtTk1vZkNFOC1PWElwcGZmbk9SUzVRS3JCeTlhN25heDc1b0dWbA?oc=5\" target=\"_blank\">US military says ",
@@ -317,7 +373,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1788910980000
+      "firstAt": 1788910980000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up",
+        "XAU/USD": "up"
+      },
+      "why": "Tanker destruction stokes supply fears"
     },
     {
       "title": "US attacks 5 Iranian oil tankers, Tehran retaliates with strikes on Jordan",
@@ -449,7 +511,7 @@
       "firstAt": 1788911325000
     },
     {
-      "title": "US strikes Iranian tankers plus other key Mideast news - apnews.com",
+      "title": "US strikes Iranian tankers plus other key Mideast news - AP News",
       "link": "https://news.google.com/rss/articles/CBMitwFBVV95cUxPTUgxSWZaOWhTSTVEbEFLYURrY3Rac2FMMll6dk1rTDZFbThMc24yY3FNWHlLcks1dXV6cl9mWEIxdUxGUmx6NlUyek1lWFFISXFpSUxEY2Ixbzg5b3J2ZVZtemN0eTd5bHgxRzNzOG5MMUltajZvSmU3UlNSb3VwMFR2TTlnTFhlNGplRzVld2hBODMyb2p1eFl3TTZ0ZWZOUTNHV0k3UzZVSTBmVWNwNzgtcDdraWc?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMitwFBVV95cUxPTUgxSWZaOWhTSTVEbEFLYURrY3Rac2FMMll6dk1rTDZFbThMc24yY3FNWHlLcks1dXV6cl9mWEIxdUxGUmx6NlUyek1lWFFISXFpSUxEY2Ixbzg5b3J2ZVZtemN0eTd5bHgxRzNzOG5MMUltajZvSmU3UlNSb3VwMFR2TTlnTFhlNGplRzVld2hBODMyb2p1eFl3TTZ0ZWZOUTNHV0k3UzZVST",
@@ -783,7 +845,7 @@
       "firstAt": 1788902340000
     },
     {
-      "title": "US hits remaining parts of Iran's aviation sector with sanctions in latest move to isolate Tehran - apnews.com",
+      "title": "US hits remaining parts of Iran's aviation sector with sanctions in latest move to isolate Tehran - AP News",
       "link": "https://news.google.com/rss/articles/CBMikwFBVV95cUxPakJ2NUxyYjhUX1hndHdnUG4wS09xRFhjM1JXVkNET3hidmk5ejdlX1hJZ2o0MG41bG5ncDlqWGpROUlFR3F1dC1hQ3loSlN0cXZFWDBqNXVPSXFycUk5OTlmckV3ZDlwdlFodmZVQmF4Y3ZUZ0xPMEVHNUcwVXg2Qkw5Nzk0cUFEaWV1cUU4V1pnaDg?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMikwFBVV95cUxPakJ2NUxyYjhUX1hndHdnUG4wS09xRFhjM1JXVkNET3hidmk5ejdlX1hJZ2o0MG41bG5ncDlqWGpROUlFR3F1dC1hQ3loSlN0cXZFWDBqNXVPSXFycUk5OTlmckV3ZDlwdlFodmZVQmF4Y3ZUZ0xPMEVHNUcwVXg2Qkw5Nzk0cUFEaWV1cUU4V1pnaDg?oc=5\" target=\"_blank\">US hits ",
@@ -1730,6 +1792,6 @@
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-09T01:17:28.249Z",
-  "updatedAt": "2026-09-09T01:17:28.249Z"
+  "headlinesAt": "2026-09-09T01:18:27.742Z",
+  "updatedAt": "2026-09-09T01:18:27.742Z"
 }
