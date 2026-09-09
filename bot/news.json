@@ -496,7 +496,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788959011000,
-      "_kind": null
+      "_kind": null,
+      "why": "Tariff news impact on CAD unclear"
     },
     {
       "title": "UBS raises oil price forecasts for the next three quarters",
@@ -513,6 +514,23 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788958665000,
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "UBS raises oil price forecasts"
+    },
+    {
+      "title": "Energy Stock Showdown: MLPX Beats ICLN on Yield and Returns",
+      "link": "https://finance.yahoo.com/energy/articles/energy-stock-showdown-mlpx-beats-125601074.html",
+      "source": "Yahoo Finance",
+      "at": 1788958561000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788957300000,
       "_kind": null
     },
     {
@@ -529,7 +547,31 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788958500000,
-      "_kind": null
+      "_kind": null,
+      "why": "European stock advice, not US"
+    },
+    {
+      "title": "Stock Market Today: Dow Falls Amid Rising Oil Prices; Apple Shares Drop Ahead Of iPhone Event (Live Coverage)",
+      "link": "https://www.investors.com/market-trend/stock-market-today/dow-jones-sp500-nasdaq-oil-prices-apple-stock-aapl-iphone-event/?src=A00220&yptr=yahoo",
+      "source": "Yahoo Finance",
+      "at": 1788958496000,
+      "inst": [
+        "USOIL",
+        "US30"
+      ],
+      "ccy": [
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788956015000,
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "US30": "down"
+      },
+      "why": "Oil rises, Dow falls"
     },
     {
       "title": "US strikes Iranian tankers, denies reports of Iran hitting warships - USA Today",
@@ -550,7 +592,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788958384000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Geopolitical conflict boosts safe havens and oil"
     },
     {
       "title": "European stocks slump to multi-month lows with oil at $100 and ECB hike in sight",
@@ -570,7 +618,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788958312000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "US500": "down"
+      },
+      "why": "Oil high, stocks slump, EUR unclear"
     },
     {
       "title": "Baltic dry bulk freight index rises 1% on stronger rates",
@@ -616,7 +669,13 @@
       "rel": 2,
       "srcs": 3,
       "firstAt": 1788955835000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up",
+        "XAU/USD": "up"
+      },
+      "why": "Conflict intensifies, oil and gold rise"
     },
     {
       "title": "Saudi Arabia stocks lower at close of trade; Tadawul All Share down 0.19%",
@@ -631,7 +690,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788957903000,
-      "_kind": null
+      "_kind": null,
+      "why": "Saudi stocks news, not US"
     },
     {
       "title": "Meta’s stock jumps as new personal AI agent Muse addresses a major investor concern",
@@ -662,7 +722,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788957603000
+      "firstAt": 1788957603000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil topping $100"
     },
     {
       "title": "U.S. Treasury yields rise as Brent breaches $100 threshold ahead of inflation data",
@@ -679,7 +743,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788957562000
+      "firstAt": 1788957562000,
+      "dir": {
+        "UKOIL": "up"
+      },
+      "why": "Brent breaches $100 threshold"
     },
     {
       "title": "South Korean mills reportedly purchase 100,000 tons of wheat from US and Canada",
@@ -695,7 +763,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788957483000
+      "firstAt": 1788957483000,
+      "why": "Wheat purchase impact on CAD unclear"
     },
     {
       "title": "What Happens to Bitcoin Price If the Fed Raises Interest Rates on Sept. 16?",
@@ -712,7 +781,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788957435000
+      "firstAt": 1788957435000,
+      "why": "Hypothetical question about Fed rates"
     },
     {
       "title": "Iran sends wave of missiles toward U.S. base in Jordan after vowing escalation - The Washington Post",
@@ -732,7 +802,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788957238000
+      "firstAt": 1788957238000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Missile attack boosts risk assets"
     },
     {
       "title": "Wall Street Isn't Talking About High-Yield Medtronic Stock -- Here's Why It Should Be",
@@ -746,7 +822,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788957300000
+      "firstAt": 1788957300000,
+      "why": "Single stock news, not index"
     },
     {
       "title": "Iran Warns of ‘Dangerous Escalation’ after US Attacks on Commercial Vessels - Palestine Chronicle",
@@ -766,19 +843,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1788954540000
-    },
-    {
-      "title": "Coinbase’s Kalshi Push Gets New Backbone With ION’s Real-Time Trading Tech",
-      "link": "https://finance.yahoo.com/markets/crypto/articles/coinbase-kalshi-push-gets-backbone-122819341.html",
-      "source": "Yahoo Finance",
-      "at": 1788956899000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1788956899000
+      "firstAt": 1788954540000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Escalation warnings boost oil and gold"
     },
     {
       "title": "Brent crude surpasses $100 a barrel as Iran, US escalate attacks",
@@ -859,23 +930,6 @@
       "rel": 2,
       "srcs": 3,
       "firstAt": 1788954914000
-    },
-    {
-      "title": "Stock Market Today: Dow Falls Amid Rising Oil Prices; Apple Shares Drop Ahead Of iPhone Event (Live Coverage)",
-      "link": "https://www.investors.com/market-trend/stock-market-today/dow-jones-sp500-nasdaq-oil-prices-apple-stock-aapl-iphone-event/?src=A00220&yptr=yahoo",
-      "source": "Yahoo Finance",
-      "at": 1788956007000,
-      "inst": [
-        "USOIL",
-        "US30"
-      ],
-      "ccy": [
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788956007000
     },
     {
       "title": "Brent oil crosses $100 for first time in two months as Middle East conflict flares",
@@ -1010,7 +1064,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1788954540000
+      "firstAt": 1788953492000
     },
     {
       "title": "Daily Briefing Sept. 9 – ‘As a Jew,’ UK’s Miliband announces sanctions on settlements - The Times of Israel",
@@ -1134,26 +1188,6 @@
       "firstAt": 1788953798000
     },
     {
-      "title": "US widens Iran sanctions to airlines and overseas firms - Nation Thailand",
-      "link": "https://news.google.com/rss/articles/CBMiX0FVX3lxTFBleGR6d3hXQlI4eEhrQl8xd2Raa0pCR25SZ1ZCSDdQb1hqYWp1c2tUdzFERjBVQTZFOXFDYy1rUFc0OGhicmpfc2VmU2UtSklocklkd2FjNlkxekpnbFo0?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiX0FVX3lxTFBleGR6d3hXQlI4eEhrQl8xd2Raa0pCR25SZ1ZCSDdQb1hqYWp1c2tUdzFERjBVQTZFOXFDYy1rUFc0OGhicmpfc2VmU2UtSklocklkd2FjNlkxekpnbFo0?oc=5\" target=\"_blank\">US widens Iran sanctions to airlines and overseas firms</a>&nbsp;&nbsp;<font co",
-      "at": 1788953640000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788953640000
-    },
-    {
       "title": "Ukraine Hunts Russia’s Black Sea Fleet, Strikes Mangust Patrol Boat in Occupied Crimea - UNITED24 Media",
       "link": "https://news.google.com/rss/articles/CBMiywFBVV95cUxPR0huTHIyMlNqZmx3aTRrWmEzVlcycmQ3Rk5XTGozaTAxbTVWZFhjbnhwU21FRU11VHhYWEhFMUtVdy0xZ0pOVFdCa0d4ZHVJNUVpMVFvOVVkZHI1d1JoRld4eTBHWGpXZUJ5M20tVzl5dUg2SWJMWFA1TjIzcUV2ZV9QLU1VTzlleF9GYkxpUjAxVWlKS00xVjJYMlZkT0RsQU1iMmF1Ym1wSGxIMk41YUNxVUl4cy1aMElXVm1IemtGa1prVnFzTmMyOA?oc=5",
       "source": "Wires (geo)",
@@ -1213,6 +1247,26 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1788953626000
+    },
+    {
+      "title": "Iran Strikes U.S.-Used Base in Jordan as Regional Fighting Widens - kboi.com",
+      "link": "https://news.google.com/rss/articles/CBMingFBVV95cUxQSHhpdzdQeU9LUjFTUFNZZmlqWksyVUZ0LVJTWnhBVjIwNHhScEVYamRSSTdZSDFMWURKTTc3MEFxUVJyblNjcnBsQk40T2E4OXVBVHAyN1N3YjNHN292SVVRZDZiNWxacDJGMzNjRUZvWTFlUkZWQjZHLWQzWDhWOUpBdmV1ak9yOUl6VTJfelRZeVo1ZmtwWU9GRjNMUQ?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMingFBVV95cUxQSHhpdzdQeU9LUjFTUFNZZmlqWksyVUZ0LVJTWnhBVjIwNHhScEVYamRSSTdZSDFMWURKTTc3MEFxUVJyblNjcnBsQk40T2E4OXVBVHAyN1N3YjNHN292SVVRZDZiNWxacDJGMzNjRUZvWTFlUkZWQjZHLWQzWDhWOUpBdmV1ak9yOUl6VTJfelRZeVo1ZmtwWU9GRjNMUQ?oc=5\" target=\"_",
+      "at": 1788953492000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788950880000
     },
     {
       "title": "Why US-Iran war over Hormuz is threatening the Gulf’s waters - Al Jazeera",
@@ -1931,6 +1985,26 @@
       "firstAt": 1788944693000
     },
     {
+      "title": "US hits Iran's aviation sector with sanctions - El Dorado News-Times",
+      "link": "https://news.google.com/rss/articles/CBMilgFBVV95cUxOaXdLc0xBV3p2elF1bzFjb25VS0dJOVZMZnBnaW1YR1djbHFoVjQ1T05iOWhrZkw5S2c3SVBzOGtrNUtxVUhzZGIwWGpETVViZ0dVekRiU2c2eVpRZnZBRTRTdFo1em9KWnJDY3FkamJnVFRQX1RVY2RPR3pDeEdTX3dGVW1kWkF0QTFDTVlEZFAxbFhua1E?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMilgFBVV95cUxOaXdLc0xBV3p2elF1bzFjb25VS0dJOVZMZnBnaW1YR1djbHFoVjQ1T05iOWhrZkw5S2c3SVBzOGtrNUtxVUhzZGIwWGpETVViZ0dVekRiU2c2eVpRZnZBRTRTdFo1em9KWnJDY3FkamJnVFRQX1RVY2RPR3pDeEdTX3dGVW1kWkF0QTFDTVlEZFAxbFhua1E?oc=5\" target=\"_blank\">US h",
+      "at": 1788944400000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788944400000
+    },
+    {
       "title": "Oil nears $100 as fresh Middle East strikes raise supply risks",
       "link": "https://www.investing.com/news/commodities-news/oil-jumps-1-in-early-trade-after-iran-launches-missiles-at-jordan-4892628",
       "source": "Investing Cmdty",
@@ -2112,24 +2186,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788941051000
-    },
-    {
-      "title": "Gold clings to intraday gains above $4,400 as bearish USD counters Fed hike bets - FXStreet",
-      "link": "https://news.google.com/rss/articles/CBMiywFBVV95cUxPbHByVVI2WnhSWVV5dDhhWnhCaTlRSTM1dk9nX1pyWEZhRHdIMnFfSUVVVnFRWVpjMXR4S3ZUZDRTRVQyUlNBb2hIRDJfWDBjTUx4dUJNSF9LbUg1YUhlSm9uWlZNMWNSTlhmbEQza3M0ZmVaS3poSktLUEJnWGh2RjVoZEJzaDlRSVNhaWRsRnVEVlFLM0RacV9zRlFPWjZuUGRIMUxWYlF5UGtlUTZWZWVvWGdqU3NXZFlaajk4eVBTSk5FMGRvdjk2aw?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiywFBVV95cUxPbHByVVI2WnhSWVV5dDhhWnhCaTlRSTM1dk9nX1pyWEZhRHdIMnFfSUVVVnFRWVpjMXR4S3ZUZDRTRVQyUlNBb2hIRDJfWDBjTUx4dUJNSF9LbUg1YUhlSm9uWlZNMWNSTlhmbEQza3M0ZmVaS3poSktLUEJnWGh2RjVoZEJzaDlRSVNhaWRsRnVEVlFLM0RacV9zRlFPWjZuUGRIMUxWYlF5UG",
-      "at": 1788940992000,
-      "inst": [
-        "XAU/USD"
-      ],
-      "ccy": [
-        "USD",
-        "XAU"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788939000000
     }
   ],
   "sources": [
@@ -2155,7 +2211,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-09T13:11:27.471Z",
-  "headlinesAt": "2026-09-09T13:11:27.471Z",
-  "updatedAt": "2026-09-09T13:11:27.471Z"
+  "calendarAt": "2026-09-09T13:13:00.085Z",
+  "headlinesAt": "2026-09-09T13:13:00.085Z",
+  "updatedAt": "2026-09-09T13:13:00.085Z"
 }
