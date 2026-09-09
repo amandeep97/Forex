@@ -462,6 +462,19 @@
   ],
   "headlines": [
     {
+      "title": "Navan beats quarterly estimates, raises forecast; shares tumble on cost concerns",
+      "link": "https://www.investing.com/news/stock-market-news/navan-raises-fiscal-2027-forecast-on-strong-corporate-travel-demand-customer-growth-4894480",
+      "source": "Investing",
+      "at": 1788996286000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 1,
+      "srcs": 1,
+      "firstAt": 1788996286000,
+      "_kind": null
+    },
+    {
       "title": "Trump says the US-Iran war will end right after midterms",
       "link": "https://www.aljazeera.com/video/newsfeed/2026/9/9/trump-says-the-us-iran-war-will-end-right-after-midterms?traffic_source=rss",
       "source": "Al Jazeera",
@@ -480,10 +493,16 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1788995660000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "War ending reduces geopolitical risk premium"
     },
     {
-      "title": "Gold rebounds above $4,400 on weaker Dollar, US PPI inflation data looms - fxstreet.com",
+      "title": "Gold rebounds above $4,400 on weaker Dollar, US PPI inflation data looms - FXStreet",
       "link": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQd0lLQ0VmWTdzcmg2bGJvUzVScnVZY2x0QUtodHRuanhxX19DRFRsd3BYWkZKMVVwTklOOFBMNHIweTNkOGZIMThqY3ZPS29OM1hBZjFxaTBkRHBXdGZrWC1ONXJVaTQzc1dvQURsbE9yZUw3OWI5M2d3RTBkYnQ2RktFbzh0UUo2SWFFZFZKZnoyMU0td3oyeWtlUzR1MTdZWHdERjJXM2k4YmVZQm9sM1g5OA?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiswFBVV95cUxQd0lLQ0VmWTdzcmg2bGJvUzVScnVZY2x0QUtodHRuanhxX19DRFRsd3BYWkZKMVVwTklOOFBMNHIweTNkOGZIMThqY3ZPS29OM1hBZjFxaTBkRHBXdGZrWC1ONXJVaTQzc1dvQURsbE9yZUw3OWI5M2d3RTBkYnQ2RktFbzh0UUo2SWFFZFZKZnoyMU0td3oyeWtlUzR1MTdZWHdERjJXM2k4Ym",
@@ -499,7 +518,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788996162000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Gold rebounds on weaker dollar"
     },
     {
       "title": "Iran war looms over Trump at Republican midterm convention in Dallas",
@@ -520,7 +543,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1788995660000,
-      "_kind": null
+      "_kind": null,
+      "why": "Political convention news lacks direct market impact"
     },
     {
       "title": "Sep. 09: More Strikes, Higher Oil Prices in Iran War; Why an Algorithm is Cutting Disability Benefits - NBC News",
@@ -541,7 +565,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788995240000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Strikes and higher oil prices cited"
     },
     {
       "title": "Diesel prices hit another record high. If you’re shocked, wait until you see your grocery bill.",
@@ -564,7 +594,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788994260000
+      "firstAt": 1788994260000,
+      "why": "High prices impact CPI, direction unclear"
     },
     {
       "title": "Oil Prices Surge Above $100 as Inflation Fears Grow, MoneySimpler Expands AI Automated Trading - markets.businessinsider.com",
@@ -582,7 +613,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788991380000
+      "firstAt": 1788991380000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil prices surge above $100"
     },
     {
       "title": "Israel sanctions will not hurt intelligence sharing between spy agencies, says Miliband - The Guardian",
@@ -602,7 +637,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788992100000
+      "firstAt": 1788992100000,
+      "why": "Sanctions news lacks immediate market direction"
     },
     {
       "title": "American Eagle sticks to annual sales forecast again, shares slump",
@@ -634,7 +670,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788992649000
+      "firstAt": 1788992649000,
+      "why": "Ukraine strike news unclear for these assets"
     },
     {
       "title": "‘It’s a good start’: prominent Israelis welcome UK sanctions on illegal settlements - The Guardian",
@@ -651,7 +688,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788992100000
+      "firstAt": 1788992100000,
+      "why": "Sanctions on settlements have no clear gold impact"
     },
     {
       "title": "Senior UK rabbis come out in support of sanctions on Israeli settlements - The Guardian",
@@ -671,7 +709,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788992100000
+      "firstAt": 1788992100000,
+      "why": "Political support for sanctions lacks market direction"
     },
     {
       "title": "Asian Stocks to Fall as Oil Stokes Inflation Fears: Markets Wrap - Bloomberg",
@@ -690,7 +729,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788992036000
+      "firstAt": 1788992036000,
+      "dir": {
+        "USOIL": "up",
+        "US500": "down"
+      },
+      "why": "Oil stokes inflation fears, stocks fall"
     },
     {
       "title": "Iran fires electro-optical missile for first time — aiming at US warships: report - New York Post",
@@ -710,7 +754,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788991800000
+      "firstAt": 1788991800000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "New missile threat escalates geopolitical risk"
     },
     {
       "title": "Canada’s Enbridge to buy Tallgrass crude oil business for $2.55 billion",
@@ -729,7 +779,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788991591000
+      "firstAt": 1788991591000,
+      "why": "Corporate acquisition has no clear market direction"
     },
     {
       "title": "Stock Market Stretches Losing Streak As Oil Prices, Treasury Yields Climb; Key Inflation Data Next - Investor's Business Daily",
@@ -747,7 +798,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788991380000
+      "firstAt": 1788991380000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil prices climb"
     },
     {
       "title": "Hunter Biden’s memecoin flops, falling 95% just hours after launch",
@@ -764,7 +819,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788991320000
+      "firstAt": 1788991320000,
+      "why": "Memecoin flop does not clearly move Bitcoin"
     },
     {
       "title": "Oil surges above $100 a barrel as US and Iran launch new attacks, while gasoline prices also jump - AP News",
@@ -1244,7 +1300,7 @@
       "firstAt": 1788983862000
     },
     {
-      "title": "Chinese Yuan: Uptrend intact with muted inflation against US Dollar – BBH - fxstreet.com",
+      "title": "Chinese Yuan: Uptrend intact with muted inflation against US Dollar – BBH - FXStreet",
       "link": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQaGJPS3NpV0tZNGRTUHZBQ3RvQWJXX2JuWVc1eTR0YnJBTXExd2lCSTRPNS1UZ2hqckR5MXlQMUc4dGtvcjRfX2s5OTFkemxDQVZ5aVdVampjSjFnNHo5c0Mzb19JY0Zma1RJWm9XY2dDYkVPTUQ4SUJLbDVnbkhESGJCbnR0bE5hazZWa1daYm5GS09DLTI1cWZMWGRqb2ZvNHZ0YTRxWlJESmYtVXdjUnU0WQ?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiswFBVV95cUxQaGJPS3NpV0tZNGRTUHZBQ3RvQWJXX2JuWVc1eTR0YnJBTXExd2lCSTRPNS1UZ2hqckR5MXlQMUc4dGtvcjRfX2s5OTFkemxDQVZ5aVdVampjSjFnNHo5c0Mzb19JY0Zma1RJWm9XY2dDYkVPTUQ4SUJLbDVnbkhESGJCbnR0bE5hazZWa1daYm5GS09DLTI1cWZMWGRqb2ZvNHZ0YTRxWlJESm",
@@ -2044,7 +2100,7 @@
       "firstAt": 1788967683000
     },
     {
-      "title": "Gold loses momentum as US Dollar, yields rise after Treasury buyback announcement - fxstreet.com",
+      "title": "Gold loses momentum as US Dollar, yields rise after Treasury buyback announcement - FXStreet",
       "link": "https://news.google.com/rss/articles/CBMitwFBVV95cUxPZmh1WWlncHRrTzhBNVh6OVZvZVNidVh1QUl1UVFVMk9KaURUYlg4NTlzTHFFN0J2cjlVT1dxM1RMYTFHdWV4WEN2QVJranQ5MGtrdmF3TkdLckdZSEx1Mm5wQ1J3eFNWbkNlM1BBQy1JLXE3NjRoNFQ5MVUxVTlyNDFUYnBmZURJeTNSODVIM0dia3pnMW1Ua0g5NXZuTWpWck1iNzRUTWYzUUxKcnFQRWc1U25EWlU?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMitwFBVV95cUxPZmh1WWlncHRrTzhBNVh6OVZvZVNidVh1QUl1UVFVMk9KaURUYlg4NTlzTHFFN0J2cjlVT1dxM1RMYTFHdWV4WEN2QVJranQ5MGtrdmF3TkdLckdZSEx1Mm5wQ1J3eFNWbkNlM1BBQy1JLXE3NjRoNFQ5MVUxVTlyNDFUYnBmZURJeTNSODVIM0dia3pnMW1Ua0g5NXZuTWpWck1iNzRUTWYzUU",
@@ -2162,7 +2218,7 @@
       "firstAt": 1788964321000
     },
     {
-      "title": "Gold: Inflation data key catalyst – TD Securities - fxstreet.com",
+      "title": "Gold: Inflation data key catalyst – TD Securities - FXStreet",
       "link": "https://news.google.com/rss/articles/CBMikwFBVV95cUxPQ2xYYVlRTlhkTUVJclVZdm44NE1EdUdKNW5DelBvRFZRdlkwbGZRUW14OENuNXJWMnNUUXJ0YklJak9pZmNOQVQxc21heTZOekhwd0V4Rk5GOHg0dmpPbE5RZ0xHcVVKam1EN3hyTHktZ1RmQUFXVktkbkRGM1dSS2prTldzamd4R01QcGRvaVBNaFU?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMikwFBVV95cUxPQ2xYYVlRTlhkTUVJclVZdm44NE1EdUdKNW5DelBvRFZRdlkwbGZRUW14OENuNXJWMnNUUXJ0YklJak9pZmNOQVQxc21heTZOekhwd0V4Rk5GOHg0dmpPbE5RZ0xHcVVKam1EN3hyTHktZ1RmQUFXVktkbkRGM1dSS2prTldzamd4R01QcGRvaVBNaFU?oc=5\" target=\"_blank\">Gold: In",
@@ -2178,26 +2234,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788964222000
-    },
-    {
-      "title": "Ukraine Strikes Russian Warships And Oil Terminal In Novorossiisk - Radio Free Europe/Radio Liberty",
-      "link": "https://news.google.com/rss/articles/CBMipgFBVV95cUxNVjZFYlFPWnMtTEJOd3pkdUdIQ0pHOTJZSUIwYmZSdWVkN0lGOURSYjdMVEJFT3dFTnpZVXZZV0trZV94NjVpY2hEYUtPVjl0TmJ5ZjJ4cDQxR0txeGNNeWVDWXhMUkM5MUNrcHUzb3RrSlc3QUJHRUdDSURDN0t2aXBIX0pQMGw2dkp2N2dzbExSbEhpSWgtNkFqdDdGbjg3d3g4eUNR0gGoAUFVX3lxTFA4ZGdmZWFKTEloekxLOTJNYTJPc2RHbW00enhvOGREN2VzaGFFSEJGYS16V0hoUEJLS25SdXA1UFlhaWF0OTNnOUNaUDZaMU5kYk9WWmhyRVg3SWozemloQ05qRzhIclA4UkdrLWVza2h2YjZhNjhTMUdFRlFZbVJIV0U0OE4ycVB5dWQxS3VHdU84TmdFWWF0QjhYa2FfRjdpdTZIWWw3eg?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMipgFBVV95cUxNVjZFYlFPWnMtTEJOd3pkdUdIQ0pHOTJZSUIwYmZSdWVkN0lGOURSYjdMVEJFT3dFTnpZVXZZV0trZV94NjVpY2hEYUtPVjl0TmJ5ZjJ4cDQxR0txeGNNeWVDWXhMUkM5MUNrcHUzb3RrSlc3QUJHRUdDSURDN0t2aXBIX0pQMGw2dkp2N2dzbExSbEhpSWgtNkFqdDdGbjg3d3g4eUNR0gGoAU",
-      "at": 1788962693000,
-      "inst": [
-        "USOIL",
-        "XAU/USD",
-        "UKOIL"
-      ],
-      "ccy": [
-        "OIL",
-        "XAU"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788962693000
     }
   ],
   "sources": [
@@ -2220,10 +2256,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-09T23:34:13.440Z",
-  "headlinesAt": "2026-09-09T23:34:13.440Z",
-  "updatedAt": "2026-09-09T23:34:13.440Z"
+  "calendarAt": "2026-09-09T23:36:00.559Z",
+  "headlinesAt": "2026-09-09T23:36:00.559Z",
+  "updatedAt": "2026-09-09T23:36:00.559Z"
 }
