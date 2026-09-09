@@ -18,7 +18,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1788963558000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Gold spikes on no Fed hike signal"
     },
     {
       "title": "Gold: Inflation data key catalyst – TD Securities - FXStreet",
@@ -37,7 +41,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788964222000,
-      "_kind": null
+      "_kind": null,
+      "why": "Inflation data key catalyst, direction unclear"
     },
     {
       "title": "S&P upgrades Smithfield Foods rating to BBB on parent upgrade",
@@ -52,7 +57,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788963576000,
-      "_kind": null
+      "_kind": null,
+      "why": "Single stock rating upgrade, index impact unclear"
     },
     {
       "title": "Dollar sinks as yen surges, oil nears $100 and ECB hike bets grow",
@@ -74,7 +80,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788963561000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "EUR/USD": "up",
+        "USD/JPY": "down",
+        "USOIL": "up"
+      },
+      "why": "Dollar sinks, yen surges, oil nears $100"
     },
     {
       "title": "Gold climbs on weaker dollar; investors eye rate outlook, Mideast violence",
@@ -92,28 +104,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1788963558000,
-      "_kind": null
-    },
-    {
-      "title": "What is Jordan’s Al-Azraq base and why is Iran targeting it?",
-      "link": "https://www.aljazeera.com/news/2026/9/9/what-is-jordans-al-azraq-base-and-why-is-iran-targeting-it?traffic_source=rss",
-      "source": "Al Jazeera",
-      "desc": "Tehran appears to be increasingly targeting Jordanian assets in the latest round of escalation with the US.",
-      "at": 1788963540000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1788962774000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Gold climbs on weaker dollar"
     },
     {
       "title": "S&P 500 tests pivotal 200-period MA support: Live levels",
@@ -128,7 +123,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788963434000,
-      "_kind": null
+      "_kind": null,
+      "why": "Testing support level, direction unclear"
     },
     {
       "title": "Prediction: These 3 Artificial Intelligence (AI) Stocks Will Be the Top Performers to End 2026",
@@ -143,7 +139,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788963180000,
-      "_kind": null
+      "_kind": null,
+      "why": "Prediction of specific stocks, index unclear"
     },
     {
       "title": "Meta stock surges with Wall Street bullish on new AI agent",
@@ -158,7 +155,8 @@
       "rel": 2,
       "srcs": 3,
       "firstAt": 1788961320000,
-      "_kind": null
+      "_kind": null,
+      "why": "Single stock surge, index impact unclear"
     },
     {
       "title": "Stock Market Today: Dow Off 350 Points As Oil Surges; Chevron Shares Move Past A Buy Point (Live Coverage)",
@@ -176,7 +174,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788962977000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "US30": "down"
+      },
+      "why": "Oil surges, Dow off 350 points"
     },
     {
       "title": "Iran sends wave of missiles toward U.S. base in Jordan after vowing escalation - The Washington Post",
@@ -195,8 +198,14 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 2,
-      "firstAt": 1788962774000
+      "srcs": 1,
+      "firstAt": 1788962774000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Geopolitical escalation boosts safe havens and oil"
     },
     {
       "title": "Iran threatens maritime sanctions on vessels entering newly declared zone without authorization - Anadolu Ajansı",
@@ -216,7 +225,28 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788962769000
+      "firstAt": 1788962769000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Maritime threats boost safe havens and oil"
+    },
+    {
+      "title": "ExxonMobil Touts Permian Synergies, Guyana Cash Flow and LNG Growth at Barclays Conference",
+      "link": "https://finance.yahoo.com/energy/articles/exxonmobil-touts-permian-synergies-guyana-140524820.html",
+      "source": "Yahoo Finance",
+      "at": 1788962724000,
+      "inst": [
+        "NATGAS"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788962724000,
+      "why": "Company conference remarks, no clear price direction"
     },
     {
       "title": "Ukraine Strikes Russian Warships And Oil Terminal In Novorossiisk - Radio Free Europe/Radio Liberty",
@@ -236,7 +266,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788962693000
+      "firstAt": 1788962693000,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Strikes on oil terminal boost oil and gold"
     },
     {
       "title": "Could the Ukraine War Slow Down This Winter? - The National Interest",
@@ -256,7 +292,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788962686000
+      "firstAt": 1788962686000,
+      "why": "Speculative question about winter war impact"
     },
     {
       "title": "Rising Markets Lift Primerica’s (PRI) Investment Sales Outlook",
@@ -284,7 +321,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788962260000
+      "firstAt": 1788962260000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil tops $100, yields tick higher"
     },
     {
       "title": "Wall Street slides as oil clears $100/bbl amid Middle East escalation - Seeking Alpha",
@@ -896,7 +937,7 @@
       "firstAt": 1788953141000
     },
     {
-      "title": "U.K. defends sanctions on Israeli settlements after 30-day consulate closure order - cnbc.com",
+      "title": "U.K. defends sanctions on Israeli settlements after 30-day consulate closure order - CNBC",
       "link": "https://news.google.com/rss/articles/CBMiggFBVV95cUxOak1fSE5GeXUtVWtTUF91RzZaWUZZRU5OLVVseHpLNnVNNzJkOU1CVDdja2NGR2xkQUY5dnpOaWUydXdvbHlSODZtZnVrUFh4OHFqQllXOEtfUWg4RTFDTjQ2MFpFZ0NUNndkbHdVbFZrMlU5T1NFYW1ha0Q5eUFPZEdB0gGHAUFVX3lxTFAxc2tOU3U3anVFR1FDLWdqRnpLbTZJc1NsNUVZdDZJQzkzZGVkMWx0bEdhTmtndjJVQmx4TzZIcjhYNDUzZjBPd29kSlB2RUxXSk1yd01SQTJSb3BLajluMWhRalBjcXhKUHV0azlxaTRxeFJhaW43dWlxdGFOXzVVYVF3RkVuSQ?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiggFBVV95cUxOak1fSE5GeXUtVWtTUF91RzZaWUZZRU5OLVVseHpLNnVNNzJkOU1CVDdja2NGR2xkQUY5dnpOaWUydXdvbHlSODZtZnVrUFh4OHFqQllXOEtfUWg4RTFDTjQ2MFpFZ0NUNndkbHdVbFZrMlU5T1NFYW1ha0Q5eUFPZEdB0gGHAUFVX3lxTFAxc2tOU3U3anVFR1FDLWdqRnpLbTZJc1NsNUVZdD",
@@ -1176,7 +1217,7 @@
       "firstAt": 1788950934000
     },
     {
-      "title": "Morning Call Sheet: Oil, inflation and rates test markets - cnbc.com",
+      "title": "Morning Call Sheet: Oil, inflation and rates test markets - CNBC",
       "link": "https://news.google.com/rss/articles/CBMinwFBVV95cUxNenBHb2hJOFZySDF5ZTU4MHNfVVRtaE5UeWFjc3NHMUtlMzE4UUZNN0RiMXRET2szMnVfSF9kU3BIR0Q2VURIbmlkZkVneTdhQXA5d05oTlZrZnV0S2NnM1N1VjFrV0w5TkdTNDNST2lyZ0NpSlhZRlFWVHgta2czdmhkRmJsTFFvWnVVSE9WLUNTWnMzV3ZzbUV5ZjBSeDA?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMinwFBVV95cUxNenBHb2hJOFZySDF5ZTU4MHNfVVRtaE5UeWFjc3NHMUtlMzE4UUZNN0RiMXRET2szMnVfSF9kU3BIR0Q2VURIbmlkZkVneTdhQXA5d05oTlZrZnV0S2NnM1N1VjFrV0w5TkdTNDNST2lyZ0NpSlhZRlFWVHgta2czdmhkRmJsTFFvWnVVSE9WLUNTWnMzV3ZzbUV5ZjBSeDA?oc=5\" target=\"",
@@ -1681,10 +1722,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-09T14:36:59.716Z",
-  "updatedAt": "2026-09-09T14:36:59.716Z"
+  "headlinesAt": "2026-09-09T14:38:13.354Z",
+  "updatedAt": "2026-09-09T14:38:13.354Z"
 }
