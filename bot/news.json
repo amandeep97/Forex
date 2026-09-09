@@ -2,29 +2,6 @@
   "calendar": [],
   "headlines": [
     {
-      "title": "Iran turns to crypto to get around sanctions - Financial Times",
-      "link": "https://news.google.com/rss/articles/CBMihAFBVV95cUxORE16aWlUYmRpRzFwb1BEdjdILTBhTkNTSGpvZm0zR1JRNlUzSmtLT19yWURKRjFDejZOS0hEeGk2bU5TSXpPQUlOWndVRVRVVC1XVWk2ZWpQbjg0ai1WUU0zR2VmZllWS2lKcmN1N0hjZ1ptRlRVejVNSlhtaVhfVmZHTjA?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMihAFBVV95cUxORE16aWlUYmRpRzFwb1BEdjdILTBhTkNTSGpvZm0zR1JRNlUzSmtLT19yWURKRjFDejZOS0hEeGk2bU5TSXpPQUlOWndVRVRVVC1XVWk2ZWpQbjg0ai1WUU0zR2VmZllWS2lKcmN1N0hjZ1ptRlRVejVNSlhtaVhfVmZHTjA?oc=5\" target=\"_blank\">Iran turns to crypto to get ",
-      "at": 1788926407000,
-      "inst": [
-        "BTC/USDT",
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "BTC",
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788926407000,
-      "_kind": null
-    },
-    {
       "title": "Canada begins collecting ‘dollar-for-dollar’ tariffs on U.S. goods - FOX 17 West Michigan News",
       "link": "https://news.google.com/rss/articles/CBMirgFBVV95cUxQYlpGWS1EeFRQQlE2NnBYVnhuY3RqT2wweE1QWUhGSU11QmFPQy1QdGF1NV83OEF6ZHVNcVBnRjh0c0VldEQ0LUpmcTRqUnZqM2RWdGl6TElrUHpLZlFmNDdiamxTZURRNXdnd2dyS21uNEk3elZBaUZfVlp3YnhlRExJMGVLdi1XMmdsS2hnU0w3X3lMX1RRVWdQWm1VN3Y3aDVlbWRFZGpoQnBDemc?oc=5",
       "source": "Wires (macro)",
@@ -41,7 +18,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788925951000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USD/CAD": "down"
+      },
+      "why": "Trade war hurts Canada, weakens CAD"
     },
     {
       "title": "Gold Holds Decline as Mideast Tensions Bolster Rate-Hike Case - Bloomberg.com",
@@ -59,7 +40,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788924021000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold holds decline, rate hike case"
     },
     {
       "title": "investingLive Asia-Pacific market news: War escalation supports oil",
@@ -80,10 +65,15 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788924860000
+      "firstAt": 1788924860000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "War escalation supports oil prices"
     },
     {
-      "title": "Gold bounces off one-week low on soft USD; upside seems capped ahead of US inflation data - fxstreet.com",
+      "title": "Gold bounces off one-week low on soft USD; upside seems capped ahead of US inflation data - FXStreet",
       "link": "https://news.google.com/rss/articles/CBMiywFBVV95cUxPbHByVVI2WnhSWVV5dDhhWnhCaTlRSTM1dk9nX1pyWEZhRHdIMnFfSUVVVnFRWVpjMXR4S3ZUZDRTRVQyUlNBb2hIRDJfWDBjTUx4dUJNSF9LbUg1YUhlSm9uWlZNMWNSTlhmbEQza3M0ZmVaS3poSktLUEJnWGh2RjVoZEJzaDlRSVNhaWRsRnVEVlFLM0RacV9zRlFPWjZuUGRIMUxWYlF5UGtlUTZWZWVvWGdqU3NXZFlaajk4eVBTSk5FMGRvdjk2aw?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiywFBVV95cUxPbHByVVI2WnhSWVV5dDhhWnhCaTlRSTM1dk9nX1pyWEZhRHdIMnFfSUVVVnFRWVpjMXR4S3ZUZDRTRVQyUlNBb2hIRDJfWDBjTUx4dUJNSF9LbUg1YUhlSm9uWlZNMWNSTlhmbEQza3M0ZmVaS3poSktLUEJnWGh2RjVoZEJzaDlRSVNhaWRsRnVEVlFLM0RacV9zRlFPWjZuUGRIMUxWYlF5UG",
@@ -98,30 +88,14 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788924021000
+      "firstAt": 1788924021000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Gold bounces off low on soft USD"
     },
     {
-      "title": "live Kyiv attacks Russian oil terminal as drones strike Ukraine - AnewZ",
-      "link": "https://news.google.com/rss/articles/CBMioAFBVV95cUxONnU3ZDdUdXRJZlEtcWV6aWJQNFlMWkJ5Ry11MXlMQkhLb3F4Q21fQ0VvbzZRQ1VkMWxncjFvOEw4YWZGRk5vSFc2MnhnVUJ6UFRaSVk1TFNVSnJDUW5oQndOb2hYRE52T1NLdWFZeWdkZWZ2bVgxeVE2bE5mUnZkbi1MbENDRFJUOXVWQkFVWjUtaVJRUFNfT0Zwb1VwdFps?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMioAFBVV95cUxONnU3ZDdUdXRJZlEtcWV6aWJQNFlMWkJ5Ry11MXlMQkhLb3F4Q21fQ0VvbzZRQ1VkMWxncjFvOEw4YWZGRk5vSFc2MnhnVUJ6UFRaSVk1TFNVSnJDUW5oQndOb2hYRE52T1NLdWFZeWdkZWZ2bVgxeVE2bE5mUnZkbi1MbENDRFJUOXVWQkFVWjUtaVJRUFNfT0Zwb1VwdFps?oc=5\" target=",
-      "at": 1788924300000,
-      "inst": [
-        "USOIL",
-        "XAU/USD",
-        "UKOIL"
-      ],
-      "ccy": [
-        "OIL",
-        "XAU"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788924300000
-    },
-    {
-      "title": "US attacks 5 Iranian oil tankers, Tehran retaliates with strikes on Jordan - aljazeera.com",
+      "title": "US attacks 5 Iranian oil tankers, Tehran retaliates with strikes on Jordan - Al Jazeera",
       "link": "https://news.google.com/rss/articles/CBMitwFBVV95cUxQSVZkSGpmVEVQUWxwTVJzMktrLWQ1R0RESXZqbktnZlo3SmJGM0prNEs3dVg0UUp3WWlzQVdZaUdONHQwOWFwVFU0R19hbm1zZGIyVVFqWkJ3S2c2dEpQQUJ4SHd4VE52UXBwa2pHSGZjWFd3U0xQeTFLQVIzZFBQdS11Y1VoY3NzVGlsTF9WYTduYVVZaUhlV05ob3c0RWFWY3M2Q19zSnlYdkpOTW13LUZrdFpKclnSAbwBQVVfeXFMT3pFYTcwbEJBMkxXWEEya3hZRFhRbzV0dTg4SkFIay1nWkthZFlEY3pFTUNVMnhuRnpTdTZkSzcwT0tmNjBncmpaNzk1akNsUldnWEZkVXNrejB6UEUtMXRpTXhQbHVQYkRiSDZxclQ0S1BUdVc0d1lUT0FmNGdfdzVLLU80czBXSHIwSXJCT3lqTXBCc29qaE9KZk5xM3JjSXBCSm1XX0JEd0VqNjNnY19DMHo3S2M0aWZQWU8?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMitwFBVV95cUxQSVZkSGpmVEVQUWxwTVJzMktrLWQ1R0RESXZqbktnZlo3SmJGM0prNEs3dVg0UUp3WWlzQVdZaUdONHQwOWFwVFU0R19hbm1zZGIyVVFqWkJ3S2c2dEpQQUJ4SHd4VE52UXBwa2pHSGZjWFd3U0xQeTFLQVIzZFBQdS11Y1VoY3NzVGlsTF9WYTduYVVZaUhlV05ob3c0RWFWY3M2Q19zSnlYdk",
@@ -138,7 +112,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788924113000
+      "firstAt": 1788924113000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Geopolitical risk boosts safe havens and oil"
     },
     {
       "title": "Gold firms on softer dollar, inflation data and Mideast risks in focus - theedgemalaysia.com",
@@ -156,7 +136,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788921780000
+      "firstAt": 1788921780000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Gold firms on softer dollar"
     },
     {
       "title": "US slaps import ban on Canadian alcohol, motorbikes and other goods",
@@ -174,7 +158,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788923012000
+      "firstAt": 1788923012000,
+      "dir": {
+        "USD/CAD": "down"
+      },
+      "why": "Trade war weakens CAD, gold unclear"
     },
     {
       "title": "China inflation rebounds on energy costs, but the demand story hasn't changed - recap",
@@ -197,7 +185,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788923009000
+      "firstAt": 1788923009000,
+      "why": "China inflation data, no clear FX direction"
     },
     {
       "title": "Australia considers new Israel sanctions but won’t join UK in banning trade with ‘settler terrorists’ - The Guardian",
@@ -219,7 +208,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788922750000
+      "firstAt": 1788922750000,
+      "why": "Sanctions news, no clear market direction"
     },
     {
       "title": "UK settlement sanctions on Israel threaten critical intelligence, security ties - The Jerusalem Post",
@@ -239,7 +229,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788922750000
+      "firstAt": 1788922750000,
+      "why": "Sanctions news, no clear market direction"
     },
     {
       "title": "Gold and Silver Price Forecast: XAU/USD Eyes Breakout as US Inflation Data Looms - FXEmpire",
@@ -259,7 +250,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788919506000
+      "firstAt": 1788919506000,
+      "why": "Forecast headline, no immediate direction"
     },
     {
       "title": "U.S. strikes Iran tankers; President Trump honors 9/11 victims - krem.com",
@@ -279,7 +271,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788918960000
+      "firstAt": 1788918960000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Strikes on tankers boost risk assets"
     },
     {
       "title": "Oil nears $100 as fresh Middle East strikes raise supply risks",
@@ -298,7 +296,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1788919200000
+      "firstAt": 1788919200000,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Oil nears $100, supply risks"
     },
     {
       "title": "Record-breaking rain disrupts daily life in Nagoya, Japan",
@@ -315,7 +319,8 @@
       "sev": 3,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788920623000
+      "firstAt": 1788920623000,
+      "why": "Rain news, no clear FX direction"
     },
     {
       "title": "US military says it destroyed 5 more Iranian oil tankers after missile attacks on Navy warship - AP News",
@@ -335,7 +340,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788920160000
+      "firstAt": 1788920160000,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Tanker destruction raises supply risks"
     },
     {
       "title": "Yemen’s Saudi-backed forces strike Houthis on western coast",
@@ -376,7 +387,7 @@
       "firstAt": 1788918233000
     },
     {
-      "title": "New Zealand Dollar holds gains above 0.5850 after Chinese inflation data - fxstreet.com",
+      "title": "New Zealand Dollar holds gains above 0.5850 after Chinese inflation data - FXStreet",
       "link": "https://news.google.com/rss/articles/CBMitAFBVV95cUxNNWl6QlBuOUk2YVg3dHNuSkxfaTFnMUVxd21YbV9vRk9aWk14U3didGxqRl94RjdqVFVZeDRxM040RW10Wk5rYXUxVkoxTmVWYmxQclpKd2VEQVYwUnV1b2JGd3lPSWVBY0QyMVNaLUx5RGZwdjlNYzJDQ0tTTTJ2cjdqMDYwNGtVZkVNSjFwMGtuLWZXb1hmeG5qVTFOUGJfVGpsYklfaXZzOGlubHplNW5kUHc?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMitAFBVV95cUxNNWl6QlBuOUk2YVg3dHNuSkxfaTFnMUVxd21YbV9vRk9aWk14U3didGxqRl94RjdqVFVZeDRxM040RW10Wk5rYXUxVkoxTmVWYmxQclpKd2VEQVYwUnV1b2JGd3lPSWVBY0QyMVNaLUx5RGZwdjlNYzJDQ0tTTTJ2cjdqMDYwNGtVZkVNSjFwMGtuLWZXb1hmeG5qVTFOUGJfVGpsYklfaXZzOG",
@@ -434,7 +445,7 @@
       "firstAt": 1788918960000
     },
     {
-      "title": "Australian Dollar remains on the front foot vs weak USD after China's inflation data - fxstreet.com",
+      "title": "Australian Dollar remains on the front foot vs weak USD after China's inflation data - FXStreet",
       "link": "https://news.google.com/rss/articles/CBMixAFBVV95cUxQSDctLUY1ekhDclB1ODFiNXVjVzlTdlJTQ21TYXN1Rm04ekJqdXRkdENvdXF0TU5CQjFRdzFSVW1aLV95RThFdEtzTHlLUFl5Umt6Sjg0NXAwR0lzclJjMC0yQXBHMHVkQml2RjJqTjlSTU5FT3FtTnVWTENTWXg5OV9uQ2F4NFpDUXI0YkpmeTJBSmdCYV9Kb2NNN1Y1eGtkd2pGa1ctY0lCLVF5TkVfc0FvaXNGQ2pUMTFzVUtUQzE0WVlC?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMixAFBVV95cUxQSDctLUY1ekhDclB1ODFiNXVjVzlTdlJTQ21TYXN1Rm04ekJqdXRkdENvdXF0TU5CQjFRdzFSVW1aLV95RThFdEtzTHlLUFl5Umt6Sjg0NXAwR0lzclJjMC0yQXBHMHVkQml2RjJqTjlSTU5FT3FtTnVWTENTWXg5OV9uQ2F4NFpDUXI0YkpmeTJBSmdCYV9Kb2NNN1Y1eGtkd2pGa1ctY0lCLV",
@@ -649,7 +660,7 @@
       "firstAt": 1788916042000
     },
     {
-      "title": "As Canada’s retaliatory tariffs on US goods take effect, tensions soar - aljazeera.com",
+      "title": "As Canada’s retaliatory tariffs on US goods take effect, tensions soar - Al Jazeera",
       "link": "https://news.google.com/rss/articles/CBMioAFBVV95cUxNU2phM3hPekhiRHo2akRRdU1UZ3RyMkhmX0hBYS1PMVJ6R0Nucy03bi1vMGs4c0JzR29TNENaMms2b2p2UVFMSDFwTzlMcmZEQTJKTGwzUkc5T0h2eTFFTnBPSF95S29LTFRZTFhWMFgyQ2hvQ21Rdy1jVmVxWHh5elAyb1ZPQUlMc1VvTmlDZ3MwUW93elU0RHF2anVoN25F0gGmAUFVX3lxTE9DUnVDUUNxNWxaallNU01pSDkzT2dab2QtQkp0bFhwRHNOakg2NlJHcUUyWE9WWHlwTjhUalRNSTZvUVhyTWdYTXBadWpVcERaaDRvOGFNVGpFR0pfRjJxcFAyUnVRMnNiWHJmcUw4c0staW1ObkZvZVBMQWhLQzZ4aDFGcHpBZmhkRm9NNGxMZ2Z2b014RUdjZDR0LTBzWGVKalg2Unc?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMioAFBVV95cUxNU2phM3hPekhiRHo2akRRdU1UZ3RyMkhmX0hBYS1PMVJ6R0Nucy03bi1vMGs4c0JzR29TNENaMms2b2p2UVFMSDFwTzlMcmZEQTJKTGwzUkc5T0h2eTFFTnBPSF95S29LTFRZTFhWMFgyQ2hvQ21Rdy1jVmVxWHh5elAyb1ZPQUlMc1VvTmlDZ3MwUW93elU0RHF2anVoN25F0gGmAUFVX3lxTE",
@@ -809,6 +820,27 @@
       "firstAt": 1788912966000
     },
     {
+      "title": "U.S. Stocks Rise as Oil Gains on Iran Escalation - WSJ",
+      "link": "https://news.google.com/rss/articles/CBMilgFBVV95cUxNYlk4Zy16MWpXSTlja2xjZnBqUG1fMjJkelNVT2FYXzNzUndMc0tJUjRBcWIzeVUwMEFfZEY5akw1b0tIZ1kteWI5eVZwVmUxYWFfUlJUYTJwZHVmaGh5czBaQzRSMi1nLVpqeEtEWUJxdEZvclpzeUlSMXpDM3hZcWVCRERkcTNwNWpzRExuc0hiWkU2UVE?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMilgFBVV95cUxNYlk4Zy16MWpXSTlja2xjZnBqUG1fMjJkelNVT2FYXzNzUndMc0tJUjRBcWIzeVUwMEFfZEY5akw1b0tIZ1kteWI5eVZwVmUxYWFfUlJUYTJwZHVmaGh5czBaQzRSMi1nLVpqeEtEWUJxdEZvclpzeUlSMXpDM3hZcWVCRERkcTNwNWpzRExuc0hiWkU2UVE?oc=5\" target=\"_blank\">U.S.",
+      "at": 1788912390000,
+      "inst": [
+        "USOIL",
+        "US500",
+        "XAU/USD",
+        "UKOIL"
+      ],
+      "ccy": [
+        "OIL",
+        "XAU"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788912390000
+    },
+    {
       "title": "Iran war live: US, Iran attack oil tankers; crude heads to $100",
       "link": "https://www.aljazeera.com/news/liveblog/2026/9/9/iran-war-live-us-hits-iranian-tankers-irgc-attacks-us-base-in-jordan?traffic_source=rss",
       "source": "Al Jazeera",
@@ -829,7 +861,7 @@
       "firstAt": 1788912000000
     },
     {
-      "title": "US increases pressure on Iran with sanctions targeting aviation sector - aljazeera.com",
+      "title": "US increases pressure on Iran with sanctions targeting aviation sector - Al Jazeera",
       "link": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPdl9VWjlIRndSLUZheEI5V2dxTmw1YVFNcWtQWkVQaDRoZGNGb0pPbm80dFdlQWVsQmlOZi0zZ29VU1dpYXEzQldsNW9Kclh2bFF1QmduQXZWMHJ3Q2lUQlMxckpOdTlEQ0x0WWJjdlJLelhJUnNFLUVaMTk1UkR3THNTazJPNnNZQ3F2STBSVzQyQkxCdW5zbzFNcEVuSkFhclBvTGlxYlBmTTFtcVBZ0gG0AUFVX3lxTE1RZjFwVXNIUFdXRTFKbGgtQUN0Q1ppTTd1eHpmeFB3N25XaEhwSU9TbFp5MWYtNm9FZWQzUVBaYV9vRU5wdWFwZkxPV194M1pfelRDc21ldWhJTVB1cDhzT3U4TjRMZzgwem9iaURYUjlYSjlfWlpfSjdNSmh0RjQwZG9mT2RkLWkyczJoei1FN1Zld0I1MGl6OHNyWVdVemFPaERyWTcxM1RfSGRMU0FtazFHTg?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMirwFBVV95cUxPdl9VWjlIRndSLUZheEI5V2dxTmw1YVFNcWtQWkVQaDRoZGNGb0pPbm80dFdlQWVsQmlOZi0zZ29VU1dpYXEzQldsNW9Kclh2bFF1QmduQXZWMHJ3Q2lUQlMxckpOdTlEQ0x0WWJjdlJLelhJUnNFLUVaMTk1UkR3THNTazJPNnNZQ3F2STBSVzQyQkxCdW5zbzFNcEVuSkFhclBvTGlxYlBmTT",
@@ -846,7 +878,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788911784000
+      "firstAt": 1788911344000
     },
     {
       "title": "US to ban Canadian dairy, alcohol, motor vehicle imports on September 29",
@@ -900,7 +932,7 @@
       "firstAt": 1788911365000
     },
     {
-      "title": "Gold slumps to near $4,350 amid oil-driven inflation fears, US inflation data in focus - fxstreet.com",
+      "title": "Gold slumps to near $4,350 amid oil-driven inflation fears, US inflation data in focus - FXStreet",
       "link": "https://news.google.com/rss/articles/CBMixgFBVV95cUxQYXZ3Vkc1OTFKTU5TcHV0dnNFOWlHVDQ4Mlp0d0pUdDQ5RXFOTTFWMkh5alBqc3dCeXhNWnFJN3FoYWdFNFRCekRmVmtfYXVDd09tQjZsdS04S3pIdXpfR2R3SVZIcTVxcnJDMVYzZHBUd01OWlJGWmJybkVQamVoNjhNV0hreUNnQWVlbnRySElrODJrTnRhNG9sYm5kY21QbG5GdFRZN1dlMm91QU1za1JPZV8yV2l1dGRXOEhGeDc3V0h1SkE?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMixgFBVV95cUxQYXZ3Vkc1OTFKTU5TcHV0dnNFOWlHVDQ4Mlp0d0pUdDQ5RXFOTTFWMkh5alBqc3dCeXhNWnFJN3FoYWdFNFRCekRmVmtfYXVDd09tQjZsdS04S3pIdXpfR2R3SVZIcTVxcnJDMVYzZHBUd01OWlJGWmJybkVQamVoNjhNV0hreUNnQWVlbnRySElrODJrTnRhNG9sYm5kY21QbG5GdFRZN1dlMm",
@@ -1125,7 +1157,7 @@
       "firstAt": 1788903120000
     },
     {
-      "title": "UK, France among 12 states backing sanctions on illegal Israeli settlements - aljazeera.com",
+      "title": "UK, France among 12 states backing sanctions on illegal Israeli settlements - Al Jazeera",
       "link": "https://news.google.com/rss/articles/CBMimAFBVV95cUxNckVaZzMwTGstY192LThVZnM0VHdzeTBGaVB5RTNLUTZoaWxySlYwbF9lTDQ2LUQxNjZXMXB4bEVBSzlvMU8wSVpPNzJyaTMxbTY5Z0U2NE5QR3FNcW1BczlFWTUySGVvTE5YQWpEamVQeG43V05tR3ZXelNoMWZnbTh0dk9EZDFFVzVfWDFXLThHRFN5Wjl2cdIBngFBVV95cUxQX0IxUzc4YnJneU8ySFNVeDhoZXJzZXFRd05pUHRwZS1nekNaSEY4RjF4YVVrV3cyRDFmWUw4dG5ubEkxNkdpdVJYUThqN3FwVjdBVWxnakt5a3dVR3NKMDNWbG5LdWpBSDVUMkZPOWZzd05ROXlXangxaGd0R1YwWjBicXV6TXBSSUJhVElmb1hkbkJYZUZQTkJIN2FBQQ?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMimAFBVV95cUxNckVaZzMwTGstY192LThVZnM0VHdzeTBGaVB5RTNLUTZoaWxySlYwbF9lTDQ2LUQxNjZXMXB4bEVBSzlvMU8wSVpPNzJyaTMxbTY5Z0U2NE5QR3FNcW1BczlFWTUySGVvTE5YQWpEamVQeG43V05tR3ZXelNoMWZnbTh0dk9EZDFFVzVfWDFXLThHRFN5Wjl2cdIBngFBVV95cUxQX0IxUzc4Yn",
@@ -1604,7 +1636,7 @@
       "firstAt": 1788892731000
     },
     {
-      "title": "At least five people killed in Russia’s attacks on Ukraine’s Kyiv - aljazeera.com",
+      "title": "At least five people killed in Russia’s attacks on Ukraine’s Kyiv - Al Jazeera",
       "link": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxNaEhXSHNycHhKQldXbnlyVks3dUh0NDZIbHB2YU43MXkxaXdaZVg2NHZIelJ4emhyZk9PVWZiUzRwcUxONDd2VnRwVC00Z0toeXZvNE84aUpxZ2I2MUdVRFhQT0tqUmJkc3NHRHMtVnE1dmk5dlZvQXBlSVQ2V28xM0NZajhDTFpRdEhKYjcxdlQ2ZFNpRFphalBjMDlQQ2ZTemdhR0ZWR2QxZ9IBrwFBVV95cUxPX0VZRUtqcjA2cWRYN19LdEpzRFJTWlRfdHo4c29qSGloM2hoME5KU01Fb1JhNDl0eDhrN1B1WmxBeVFVMkJ6Z0FVTUZkN0lMXzdVb3JTblJpT0Q5SlRoQVJBTmlzMUFBWDJSTFdUendRYnFXV3JjRXVDZEg4cHRCRF9ENW15Z1VjdG5obkdFV2QtcVVEQi1mVWFrSmlmTVNSMXdWaVRhTkEySkNpc3kw?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiqgFBVV95cUxNaEhXSHNycHhKQldXbnlyVks3dUh0NDZIbHB2YU43MXkxaXdaZVg2NHZIelJ4emhyZk9PVWZiUzRwcUxONDd2VnRwVC00Z0toeXZvNE84aUpxZ2I2MUdVRFhQT0tqUmJkc3NHRHMtVnE1dmk5dlZvQXBlSVQ2V28xM0NZajhDTFpRdEhKYjcxdlQ2ZFNpRFphalBjMDlQQ2ZTemdhR0ZWR2QxZ9",
@@ -1722,6 +1754,23 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1788887454000
+    },
+    {
+      "title": "Northwest European gasoline margins drop as crude prices rise",
+      "link": "https://www.investing.com/news/commodities-news/northwest-european-gasoline-margins-drop-as-crude-prices-rise-93CH-4892163",
+      "source": "Investing Cmdty",
+      "at": 1788888572000,
+      "inst": [
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788888572000
     }
   ],
   "sources": [
@@ -1748,6 +1797,6 @@
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-09T04:08:56.441Z",
-  "updatedAt": "2026-09-09T04:08:56.441Z"
+  "headlinesAt": "2026-09-09T04:09:58.327Z",
+  "updatedAt": "2026-09-09T04:09:58.327Z"
 }
