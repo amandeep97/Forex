@@ -2,6 +2,33 @@
   "calendar": [],
   "headlines": [
     {
+      "title": "Oil surges above $100 a barrel as US and Iran launch new attacks, while gasoline prices also jump - AP News",
+      "link": "https://news.google.com/rss/articles/CBMiogFBVV95cUxQdGg1NEo3VVRGTDl0eEFZVkVVWjVUTGtmVC1haUp5c2kzb1NYcXMzNFlVZk9rQl92VTNFREZuSDlBTEhYQ19Lci1ZV2tCTk1tLVRDMEcydzk4ZEZOY3dEMUhhSlU5eXdOVnBLQWRxUlk1bXl3QjNQWklTYm9jdVZ6NHB6V0FkamhIUFJJYjhsMVk5XzlOWnZfbm1IVTVmR05TYmc?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiogFBVV95cUxQdGg1NEo3VVRGTDl0eEFZVkVVWjVUTGtmVC1haUp5c2kzb1NYcXMzNFlVZk9rQl92VTNFREZuSDlBTEhYQ19Lci1ZV2tCTk1tLVRDMEcydzk4ZEZOY3dEMUhhSlU5eXdOVnBLQWRxUlk1bXl3QjNQWklTYm9jdVZ6NHB6V0FkamhIUFJJYjhsMVk5XzlOWnZfbm1IVTVmR05TYmc?oc=5\" targ",
+      "at": 1788980880000,
+      "inst": [
+        "USOIL",
+        "XAU/USD",
+        "UKOIL"
+      ],
+      "ccy": [
+        "OIL",
+        "XAU"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788978324000,
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Oil surges, gold rises on geopolitical risk"
+    },
+    {
       "title": "Gold climbs on subdued US dollar as inflation data awaited amid oil rally - Reuters",
       "link": "https://news.google.com/rss/articles/CBMitgFBVV95cUxPaWZnRkUxTUlfT1ZLS0tEcVFtTGFLZ2VmSElSal8tdTM3eTg2ZDI4TEJWYVV2eG1Xelc2ZVBmcE9fOThpM295OEtsQ1VWcURQNU1PSFVLa3BILVpqdXFFakdlRU5QeERQTEVpalRreE9tM3djQ1lrcl9fdm4zNWFOdFhjbHFwTWUyTHpuaDliVFZ3enpUYTlqSE5tWHUwQlpkdW9sMUZIakk1T2tjb1FXdE9yaWp4dw?oc=5",
       "source": "Wires (macro)",
@@ -20,7 +47,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788980505000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up"
+      },
+      "why": "Gold climbs, oil rallies on weak dollar"
     },
     {
       "title": "Why are borrowing costs rising across the world?",
@@ -84,7 +116,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788979995000,
-      "_kind": null
+      "_kind": null,
+      "why": "Ukraine drone war news, no clear market direction"
     },
     {
       "title": "Moody's (NYSE:MCO) Shares In Focus As Markets Weigh Inflation - Kalkine Media",
@@ -108,7 +141,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788978240000,
-      "_kind": null
+      "_kind": null,
+      "why": "Moody's share focus, no clear FX direction"
     },
     {
       "title": "Turkey takes note of US/Iran-related sanctions announcement, finance minister says - Reuters",
@@ -128,7 +162,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788978752000
+      "firstAt": 1788978752000,
+      "why": "Turkey notes sanctions, no immediate price impact"
     },
     {
       "title": "Explosion at depot storing weapons left from Syria war kills 14",
@@ -145,7 +180,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788978739000
+      "firstAt": 1788978739000,
+      "why": "Syria explosion, no clear gold direction"
     },
     {
       "title": "AutoNation (NYSE:AN) Shares In Focus As Markets Weigh Inflation - Kalkine Media",
@@ -168,7 +204,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788978240000
+      "firstAt": 1788978240000,
+      "why": "AutoNation share focus, no clear FX direction"
     },
     {
       "title": "Houthi attacks on Saudi Arabia could activate defence pact, Pakistan says",
@@ -188,7 +225,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788978670000
+      "firstAt": 1788978670000,
+      "why": "Houthi attack warning, no clear price direction"
     },
     {
       "title": "How significant are new European sanctions on illegal Israeli settlements? - Al Jazeera",
@@ -208,7 +246,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788978394000
+      "firstAt": 1788978394000,
+      "why": "European sanctions on settlements, no clear direction"
     },
     {
       "title": "NEWS: US sanctions Golden Global, Turkish bank accused of enabling Iran - AML Intelligence",
@@ -226,7 +265,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1788976128000
+      "firstAt": 1788976128000,
+      "why": "US sanctions on Turkish bank, no clear direction"
     },
     {
       "title": "Iran strikes ships, expands no-go zone outside Hormuz strait - France 24",
@@ -246,7 +286,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788978314000
+      "firstAt": 1788978314000,
+      "why": "Iran strikes ships, no clear price direction"
     },
     {
       "title": "C3.ai (NYSE:AI) shares In Focus As Markets Weigh Inflation - Kalkine Media",
@@ -269,7 +310,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788978240000
+      "firstAt": 1788978240000,
+      "why": "C3.ai share focus, no clear FX direction"
     },
     {
       "title": "U.S. stocks and bonds fall as Treasury buyback update disappoints, oil tops $100",
@@ -287,7 +329,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788978082000
+      "firstAt": 1788978082000,
+      "dir": {
+        "USOIL": "up",
+        "US500": "down"
+      },
+      "why": "Oil tops $100, stocks fall on Treasury news"
     },
     {
       "title": "Why Markets May Be Overpricing A September Fed Rate Hike - Forbes",
@@ -310,7 +357,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788977630000
+      "firstAt": 1788977630000,
+      "why": "Fed rate hike speculation, no clear direction"
     },
     {
       "title": "Brent tops $100 for first time since May as U.S.-Iran military action escalates",
@@ -329,7 +377,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788977213000
+      "firstAt": 1788977213000,
+      "dir": {
+        "UKOIL": "up",
+        "USOIL": "up"
+      },
+      "why": "Brent tops $100 on US-Iran escalation"
     },
     {
       "title": "What is the nuclear Non-Proliferation Treaty? - Reuters",
@@ -1439,7 +1492,7 @@
       "firstAt": 1788955831000
     },
     {
-      "title": "Tankers caught at centre of US-Iran escalation spiral - Seatrade Maritime News",
+      "title": "Tankers caught at centre of US-Iran escalation spiral - seatrade-maritime.com",
       "link": "https://news.google.com/rss/articles/CBMinAFBVV95cUxOeVBNUWQ2a3MtMTFsd1dZX0NRRU1VT0tHRGNfME9FMkxSNkpiV2xTdTRhUTN2aW81UTJSX3U2T2JoTlc2dENNVTkyTUdQRHQzcWdFbl93M3cyOWxrM3pDVjRZNTdKd3JkS01tbUtkSl8yN0lhNnE5QW1UWnhndktQTnFmNVBvaFNvdkNBbWhBUlVXM3JJZkRUSWFtenI?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMinAFBVV95cUxOeVBNUWQ2a3MtMTFsd1dZX0NRRU1VT0tHRGNfME9FMkxSNkpiV2xTdTRhUTN2aW81UTJSX3U2T2JoTlc2dENNVTkyTUdQRHQzcWdFbl93M3cyOWxrM3pDVjRZNTdKd3JkS01tbUtkSl8yN0lhNnE5QW1UWnhndktQTnFmNVBvaFNvdkNBbWhBUlVXM3JJZkRUSWFtenI?oc=5\" target=\"_bla",
@@ -1651,28 +1704,8 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 2,
+      "srcs": 1,
       "firstAt": 1788950483000
-    },
-    {
-      "title": "Oil rises past $100 a barrel after the latest wave of Middle East attacks - AP News",
-      "link": "https://news.google.com/rss/articles/CBMiogFBVV95cUxQdGg1NEo3VVRGTDl0eEFZVkVVWjVUTGtmVC1haUp5c2kzb1NYcXMzNFlVZk9rQl92VTNFREZuSDlBTEhYQ19Lci1ZV2tCTk1tLVRDMEcydzk4ZEZOY3dEMUhhSlU5eXdOVnBLQWRxUlk1bXl3QjNQWklTYm9jdVZ6NHB6V0FkamhIUFJJYjhsMVk5XzlOWnZfbm1IVTVmR05TYmc?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiogFBVV95cUxQdGg1NEo3VVRGTDl0eEFZVkVVWjVUTGtmVC1haUp5c2kzb1NYcXMzNFlVZk9rQl92VTNFREZuSDlBTEhYQ19Lci1ZV2tCTk1tLVRDMEcydzk4ZEZOY3dEMUhhSlU5eXdOVnBLQWRxUlk1bXl3QjNQWklTYm9jdVZ6NHB6V0FkamhIUFJJYjhsMVk5XzlOWnZfbm1IVTVmR05TYmc?oc=5\" targ",
-      "at": 1788952920000,
-      "inst": [
-        "USOIL",
-        "XAU/USD",
-        "UKOIL"
-      ],
-      "ccy": [
-        "OIL",
-        "XAU"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1788952920000
     },
     {
       "title": "U.S. military destroys 5 Iranian oil tankers. And, the Smithsonian head resigns - NPR",
@@ -1760,6 +1793,6 @@
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-09T19:15:12.579Z",
-  "updatedAt": "2026-09-09T19:15:12.579Z"
+  "headlinesAt": "2026-09-09T19:16:45.402Z",
+  "updatedAt": "2026-09-09T19:16:45.402Z"
 }
