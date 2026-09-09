@@ -507,6 +507,28 @@
   ],
   "headlines": [
     {
+      "title": "Israel’s war leaves Lebanon’s schools balancing students and the displaced",
+      "link": "https://www.aljazeera.com/features/2026/9/9/israels-war-leaves-lebanons-schools-balancing-students-and-the-displaced?traffic_source=rss",
+      "source": "Al Jazeera",
+      "desc": "Schools in Lebanon are set to start on September 15, but many still host people displaced by Israel's war.",
+      "at": 1788932171000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788932171000,
+      "_kind": null,
+      "why": "Lebanon school logistics, no direct market impact"
+    },
+    {
       "title": "Austal shares rise 6% on up to $1.35 billion bid for U.S. business",
       "link": "https://www.investing.com/news/stock-market-news/austal-shares-rise-6-on-up-to-135-billion-bid-for-us-business-4892710",
       "source": "Investing",
@@ -538,7 +560,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788931932000,
-      "_kind": null
+      "_kind": null,
+      "why": "Ukraine drone strikes, unclear immediate market direction"
     },
     {
       "title": "Dollar-Yen Holds Steady Around 153 as Traders Await US Inflation Data - finance.biggo.com",
@@ -557,7 +580,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788931870000,
-      "_kind": null
+      "_kind": null,
+      "why": "Dollar-yen steady, awaiting inflation data"
     },
     {
       "title": "At least five killed in large-scale overnight Russian aerial attack on Ukraine's capital - Euronews.com",
@@ -578,7 +602,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788931364000,
-      "_kind": null
+      "_kind": null,
+      "why": "Russian attack on Ukraine, no clear price signal"
     },
     {
       "title": "Russia bridge opens, Songdowon sanctions and North Korea’s forgotten UK insurer - NK News",
@@ -598,7 +623,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788930446000
+      "firstAt": 1788930446000,
+      "why": "North Korea sanctions and bridge news, neutral"
     },
     {
       "title": "Gold edges higher as weaker US dollar offsets inflation risks - The Straits Times",
@@ -616,7 +642,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788929974000
+      "firstAt": 1788929974000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Gold edges higher on weaker dollar"
     },
     {
       "title": "Gold price firms on softer dollar; inflation data and US-Iran war in focus - thehindubusinessline.com",
@@ -637,7 +667,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788929974000
+      "firstAt": 1788929974000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Gold firms on softer dollar"
     },
     {
       "title": "Asian currencies gain as yen holds near seven-month high, dollar slips",
@@ -654,7 +688,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788929747000
+      "firstAt": 1788929747000,
+      "dir": {
+        "USD/JPY": "down"
+      },
+      "why": "Dollar slips, yen holds near high"
     },
     {
       "title": "Swiss Franc strengthens as US Dollar holds losses despite Fed rate hike odds - FXStreet",
@@ -672,7 +710,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788928976000
+      "firstAt": 1788928976000,
+      "dir": {
+        "USD/CHF": "down"
+      },
+      "why": "Swiss franc strengthens, dollar holds losses"
     },
     {
       "title": "Gold Prices Fall Below Key Level as Fed Rate Hike Expectations Rise - News and Statistics - IndexBox",
@@ -690,7 +732,37 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788925800000
+      "firstAt": 1788925800000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold falls as Fed hike expectations rise"
+    },
+    {
+      "title": "US strikes Iranian oil tankers as Tehran targets American base in Jordan",
+      "link": "https://www.bbc.co.uk/news/articles/cyvznqypz0yo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC World",
+      "desc": "Oil prices edged closer to $100 a barrel after an escalation in the tit-for-tat strikes between the US and Iran.",
+      "at": 1788927998000,
+      "inst": [
+        "USOIL",
+        "XAU/USD",
+        "UKOIL"
+      ],
+      "ccy": [
+        "OIL",
+        "XAU"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788927998000,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "US-Iran escalation pushes oil and gold up"
     },
     {
       "title": "Hong Kong's first leader after British handover dies",
@@ -705,7 +777,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788927870000
+      "firstAt": 1788927870000,
+      "why": "Hong Kong leader death, no GBP impact"
     },
     {
       "title": "China's EV makers shift gears to focus on humanoids as car market slows",
@@ -735,7 +808,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788926685000
+      "firstAt": 1788926685000,
+      "why": "Taiwan conflict warning, no immediate price move"
     },
     {
       "title": "Iran turns to crypto to get around sanctions - Financial Times",
@@ -757,7 +831,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788926523000
+      "firstAt": 1788926523000,
+      "why": "Iran uses crypto, no clear directional bias"
     },
     {
       "title": "Canada begins collecting ‘dollar-for-dollar’ tariffs on U.S. goods - FOX 17 West Michigan News",
@@ -775,7 +850,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788924520000
+      "firstAt": 1788924520000,
+      "dir": {
+        "USD/CAD": "down"
+      },
+      "why": "Canada tariffs likely weaken CAD, strengthen USD"
     },
     {
       "title": "Gold Holds Decline as Mideast Tensions Bolster Rate-Hike Case - Bloomberg.com",
@@ -2078,7 +2157,7 @@
       "firstAt": 1788899460000
     },
     {
-      "title": "Trump’s Israel settlement sanctions dilemma - Politico",
+      "title": "Trump’s Israel settlement sanctions dilemma - politico.com",
       "link": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxPaXdSNE0wUnItNXVEZWFzSTR1alZDemFqaXkzS3haMGl4UFdGUFhweXdrcV80Q25XOEo1YU9jQ2M5NTIzYmdOelJvWDJ2NC1QMFZBWEpBNHAtVjJpQW1GSk5oVGE3d2NuWlJ5clhQX1RjWWFNSWw1TEVobk91aDVpSkM5MU9xLVo0LU83aVp2OVBGRGJ6Wl9ONGxEWnA0azlybDVfRXV0RnJMMlJjUVBsdkFkSUowbFpBXzFlaW5jbU8?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiwAFBVV95cUxPaXdSNE0wUnItNXVEZWFzSTR1alZDemFqaXkzS3haMGl4UFdGUFhweXdrcV80Q25XOEo1YU9jQ2M5NTIzYmdOelJvWDJ2NC1QMFZBWEpBNHAtVjJpQW1GSk5oVGE3d2NuWlJ5clhQX1RjWWFNSWw1TEVobk91aDVpSkM5MU9xLVo0LU83aVp2OVBGRGJ6Wl9ONGxEWnA0azlybDVfRXV0RnJMMl",
@@ -2159,45 +2238,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788898072000
-    },
-    {
-      "title": "Brent briefly tops $99/bbl as U.S. and Iran continue to escalate military action",
-      "link": "https://www.investing.com/news/commodities-news/oil-extends-climb-after-iran-threat-to-gulf-energy-infrastructure-4890768",
-      "source": "Investing Cmdty",
-      "at": 1788897639000,
-      "inst": [
-        "UKOIL",
-        "XAU/USD",
-        "USOIL"
-      ],
-      "ccy": [
-        "OIL",
-        "XAU"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788897639000
-    },
-    {
-      "title": "Trump administration sanctions all Iranian airlines in aviation crackdown - Middle East Eye",
-      "link": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxPNVI3cWhHN2oxckFwejJhMnI3QU50UlFQMlZPVWRpTTQ1d1NyWUJMZHc3Wkw3Tml5YzZFaUh2ZmY1Uk9fTUZKNTlWa3N3SUVmMV9vcTBLODdaQXFwcEVSN2NEUGxDNmJlYjVJdTFxa3JxeC1MRHYzcUpJSEZ2NzFGcUVmVUNMcTJ6NF9BY1g3bDZ5UVR1NVNtQjZlVkRKajZPTWV5b2ptQk4?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiqAFBVV95cUxPNVI3cWhHN2oxckFwejJhMnI3QU50UlFQMlZPVWRpTTQ1d1NyWUJMZHc3Wkw3Tml5YzZFaUh2ZmY1Uk9fTUZKNTlWa3N3SUVmMV9vcTBLODdaQXFwcEVSN2NEUGxDNmJlYjVJdTFxa3JxeC1MRHYzcUpJSEZ2NzFGcUVmVUNMcTJ6NF9BY1g3bDZ5UVR1NVNtQjZlVkRKajZPTWV5b2ptQk4?oc",
-      "at": 1788897576000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788897576000
     }
   ],
   "sources": [
@@ -2223,7 +2263,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-09T05:46:11.236Z",
-  "headlinesAt": "2026-09-09T05:46:11.236Z",
-  "updatedAt": "2026-09-09T05:46:11.236Z"
+  "calendarAt": "2026-09-09T05:47:44.194Z",
+  "headlinesAt": "2026-09-09T05:47:44.194Z",
+  "updatedAt": "2026-09-09T05:47:44.194Z"
 }
