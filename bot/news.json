@@ -2,6 +2,29 @@
   "calendar": [],
   "headlines": [
     {
+      "title": "Oil’s surge back above $100 fuels fresh inflation fears at a crucial time for interest rates",
+      "link": "https://www.marketwatch.com/story/brent-crude-reaches-100-as-war-in-iran-intensifies-b73832e2?mod=mw_rss_topstories",
+      "source": "MarketWatch",
+      "desc": "Oil prices rose above $100 a barrel on Wednesday for the first time in seven weeks, reviving concerns about global energy supply disruptions and a fresh inflationary shock just as major central banks prepare to make key interest-rate decisions later this month.",
+      "at": 1788966840000,
+      "inst": [
+        "USOIL"
+      ],
+      "ccy": [
+        "OIL",
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788966840000,
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil prices surge above $100."
+    },
+    {
       "title": "US Hits Several Iran Oil Tankers in Response to Warship Attack - Energy Connects",
       "link": "https://news.google.com/rss/articles/CBMivwFBVV95cUxNZDYxSXpzNWF2ME9yWk9yRWQ4WkVsTGhHR1h0a1hzOGdUMTAyeUtCLWpIWUNzTzU0by00cmNBTWdxd3dxNE41RzJ2d2N0QWZQSmtlaUNuclNNM0FUUndDcEZGUVZHVWNZaFRWUUcybjBRUksxNElLVGdSWFhXLTVoWEFMbXlIY05CcTBJUk1jOVpfX1p5WUFDeVBQSktiOFZqSmEyMDdqR3lhbHpQam9kam1PeVdubGZOQnRuRGthbw?oc=5",
       "source": "Wires (geo)",
@@ -20,7 +43,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788966802000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Supply disruption fears boost oil and gold."
     },
     {
       "title": "Iran Is Using Tether to Bypass Sanctions: Crypto’s Biggest Real-World Use Case Just Got Darker - Bitcoin Foundation",
@@ -43,13 +72,49 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788966745000,
+      "_kind": null,
+      "why": "Sanctions news lacks clear directional impact."
+    },
+    {
+      "title": "ODDITY shares surge on Q2 beat and raised FY26 guidance",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/oddity-shares-surge-q2-beat-150800285.html",
+      "source": "Yahoo Finance",
+      "at": 1788966480000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 1,
+      "srcs": 1,
+      "firstAt": 1788966480000,
       "_kind": null
     },
     {
-      "title": "U.S. stocks slip amid focus on Apple event; yields mixed ahead of buyback update",
-      "link": "https://www.investing.com/news/stock-market-news/us-stock-futures-muted-as-oil-nears-100-fed-hike-bets-rise-4892640",
-      "source": "Investing",
-      "at": 1788966035000,
+      "title": "$6 Billion Treasury Buyback Fails To Calm 'Fever' As Oil Prices Jump",
+      "link": "https://www.investors.com/news/treasury-yields-bessent-buyback-sp-500-gold-oil-prices/?src=A00220&yptr=yahoo",
+      "source": "Yahoo Finance",
+      "at": 1788966479000,
+      "inst": [
+        "USOIL"
+      ],
+      "ccy": [
+        "USD",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788966479000,
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil prices jump despite buyback."
+    },
+    {
+      "title": "Chewy Stock Slumps As In-Line Earnings Not Enough To Escape Wall Street's Doghouse",
+      "link": "https://www.investors.com/news/technology/chewy-stock-q2-2026-earnings-chwy-news/?src=A00220&yptr=yahoo",
+      "source": "Yahoo Finance",
+      "at": 1788966472000,
       "inst": [
         "US500"
       ],
@@ -57,14 +122,15 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788966035000,
-      "_kind": null
+      "firstAt": 1788966052000,
+      "_kind": null,
+      "why": "Single stock news, index impact unclear."
     },
     {
-      "title": "Norway stocks higher at close of trade; Oslo OBX up 0.84%",
-      "link": "https://www.investing.com/news/stock-market-news/norway-stocks-higher-at-close-of-trade-oslo-obx-up-084-4894053",
-      "source": "Investing",
-      "at": 1788966004000,
+      "title": "Top 5 Stocks Poised to Profit From the CHIPS Quantum Incentive Wave",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/top-5-stocks-poised-profit-150513070.html",
+      "source": "Yahoo Finance",
+      "at": 1788966313000,
       "inst": [
         "US500"
       ],
@@ -72,8 +138,97 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788966004000,
+      "firstAt": 1788966313000,
+      "_kind": null,
+      "why": "Sector news, broad index impact unclear."
+    },
+    {
+      "title": "4 AI Stocks Are Joining the S&P 500: Buy, Hold, or Pass?",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/4-ai-stocks-joining-p-150300778.html",
+      "source": "Yahoo Finance",
+      "at": 1788966180000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788966180000,
+      "_kind": null,
+      "why": "Index inclusion news, direction unclear."
+    },
+    {
+      "title": "Casey's shares slide despite earnings beat as inside sales growth disappoints",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/caseys-shares-slide-despite-earnings-150200709.html",
+      "source": "Yahoo Finance",
+      "at": 1788966120000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 1,
+      "srcs": 1,
+      "firstAt": 1788966120000,
       "_kind": null
+    },
+    {
+      "title": "UBS expects Bank of England to hold rates but strike more hawkish tone",
+      "link": "https://finance.yahoo.com/economy/policy/articles/ubs-expects-bank-england-hold-150100550.html",
+      "source": "Yahoo Finance",
+      "at": 1788966060000,
+      "inst": [
+        "GBP/USD"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788966060000,
+      "_kind": null,
+      "dir": {
+        "GBP/USD": "up"
+      },
+      "why": "Hawkish BoE tone supports British Pound."
+    },
+    {
+      "title": "Oracle Stock: Wall Street Sees Massive Upside. Here’s My Price Target",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/oracle-stock-wall-street-sees-150052759.html",
+      "source": "Yahoo Finance",
+      "at": 1788966052000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788966052000,
+      "_kind": null,
+      "why": "Single stock news, index impact unclear."
+    },
+    {
+      "title": "Gold Doubled. Gold-Miner Profits Tripled — Guess Which One Wall Street Is Sleeping On",
+      "link": "https://finance.yahoo.com/markets/commodities/articles/gold-doubled-gold-miner-profits-150052375.html",
+      "source": "Yahoo Finance",
+      "at": 1788966052000,
+      "inst": [
+        "XAU/USD",
+        "US500"
+      ],
+      "ccy": [
+        "XAU"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788966052000,
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Gold strong, equity impact unclear."
     },
     {
       "title": "Israel stocks lower at close of trade; TA 35 down 0.06%",
@@ -88,7 +243,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788965703000,
-      "_kind": null
+      "_kind": null,
+      "why": "Regional stock news, US index unclear."
     },
     {
       "title": "Dell seeks $4 billion in bond sale to refinance near-term debt and fund AI growth",
@@ -129,32 +285,21 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788965403000,
-      "_kind": null
+      "_kind": null,
+      "why": "Regional stock news, US index unclear."
     },
     {
-      "title": "FormFactor Director Sells 2,100 Shares",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/formfactor-director-sells-2-100-145001178.html",
-      "source": "Yahoo Finance",
-      "at": 1788965401000,
+      "title": "Chime shares jump as Stride deal puts fintech on path to bank charter",
+      "link": "https://www.investing.com/news/stock-market-news/chime-shares-jump-10-as-stride-deal-puts-fintech-on-path-to-bank-charter-4893295",
+      "source": "Investing",
+      "at": 1788965332000,
       "inst": [],
       "ccy": [],
       "sev": 1,
       "rel": 1,
       "srcs": 1,
-      "firstAt": 1788965401000,
+      "firstAt": 1788965332000,
       "_kind": null
-    },
-    {
-      "title": "AMD Rises 3% as CFO Lifts AI Chip Market Forecast Toward $3 Trillion; Intel Ticks Up",
-      "link": "https://finance.yahoo.com/technology/ai/articles/amd-rises-3-cfo-lifts-144521803.html",
-      "source": "Yahoo Finance",
-      "at": 1788965121000,
-      "inst": [],
-      "ccy": [],
-      "sev": 2,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1788965121000
     },
     {
       "title": "Gold climbs on subdued US dollar as inflation data awaited amid oil rally - marketscreener.com",
@@ -174,7 +319,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1788963558000
+      "firstAt": 1788963558000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up"
+      },
+      "why": "Weak dollar and oil rally lift gold."
     },
     {
       "title": "Gold Prices rise as Dollar weakens ahead of US inflation data - سانا",
@@ -192,7 +342,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1788963558000
+      "firstAt": 1788963558000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Weaker dollar boosts gold prices."
     },
     {
       "title": "Iran sends wave of missiles toward U.S. base in Jordan after vowing escalation - The Washington Post",
@@ -211,8 +365,14 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 2,
-      "firstAt": 1788963779000
+      "srcs": 1,
+      "firstAt": 1788963779000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Geopolitical escalation boosts safe havens and oil."
     },
     {
       "title": "Russian Oil Region 2,500km from Ukraine Declares First-Ever Drone Attack Threat - UNITED24 Media",
@@ -233,6 +393,18 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788962693000
+    },
+    {
+      "title": "AMD, Dell among market cap stock movers on Wednesday",
+      "link": "https://www.investing.com/news/stock-market-news/amd-dell-among-market-cap-stock-movers-on-wednesday-93CH-4894012",
+      "source": "Investing",
+      "at": 1788964543000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 1,
+      "srcs": 1,
+      "firstAt": 1788964543000
     },
     {
       "title": "Gold Spikes 3% After Fresh Poll Signals No Fed Rate Hike In 2026 - NDTV Profit",
@@ -269,6 +441,18 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788964222000
+    },
+    {
+      "title": "MercadoLibre stock falls as company taps debt markets",
+      "link": "https://www.investing.com/news/stock-market-news/mercadolibre-stock-falls-as-company-taps-debt-markets-93CH-4893993",
+      "source": "Investing",
+      "at": 1788964156000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 1,
+      "srcs": 1,
+      "firstAt": 1788964156000
     },
     {
       "title": "2 Killed, 3 Injured as Russian Drones Strike Ukraine-Moldova Border Crossing in Odesa Region - kyivpost.com",
@@ -339,8 +523,8 @@
       "ccy": [],
       "sev": 1,
       "rel": 2,
-      "srcs": 3,
-      "firstAt": 1788961320000
+      "srcs": 2,
+      "firstAt": 1788962215000
     },
     {
       "title": "Stock Market Today: Dow Off 350 Points As Oil Surges; Chevron Shares Move Past A Buy Point (Live Coverage)",
@@ -417,34 +601,6 @@
       "firstAt": 1788962693000
     },
     {
-      "title": "Rising Markets Lift Primerica’s (PRI) Investment Sales Outlook",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/rising-markets-lift-primerica-pri-135802709.html",
-      "source": "Yahoo Finance",
-      "at": 1788962282000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1788962282000
-    },
-    {
-      "title": "Bond yields tick higher as oil tops $100: AlphaCheck",
-      "link": "https://finance.yahoo.com/markets/article/bond-yields-tick-higher-as-oil-tops-100-alphacheck-135740415.html",
-      "source": "Yahoo Finance",
-      "at": 1788962260000,
-      "inst": [
-        "USOIL"
-      ],
-      "ccy": [
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788962260000
-    },
-    {
       "title": "Wall Street slides as oil clears $100/bbl amid Middle East escalation - Seeking Alpha",
       "link": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQV2RNQjlMUVlQVWozTUtVelpxbmMzcUt5N2gwQlp0d0JWNHhXRWFPUDFMLW95UmwwbXB5THdCbnVXdTFEc0IzcHhSNjRTX0U5cDVXV3pHRzB5MU4zbWlUeFVyb19WMDZQeUpTUFFERm1HVXRLeVJ1TnMyVThQc3duMGwzT2FISEw2WXJET2ZSQzZRcjhfbVVjMEQ0UUNhTS1PbXFKQjFoQXo?oc=5",
       "source": "Wires (geo)",
@@ -500,25 +656,6 @@
       "rel": 2,
       "srcs": 3,
       "firstAt": 1788960720000
-    },
-    {
-      "title": "Oil’s return above $100 a barrel puts inflation back at the center of Wall Street’s concerns",
-      "link": "https://www.marketwatch.com/story/brent-crude-reaches-100-as-war-in-iran-intensifies-b73832e2?mod=mw_rss_topstories",
-      "source": "MarketWatch",
-      "desc": "Oil prices rose above $100 a barrel on Wednesday for the first time in seven weeks, reviving concerns about global energy supply disruptions and a fresh inflationary shock just as major central banks prepare to make key interest-rate decisions later this month.",
-      "at": 1788961320000,
-      "inst": [
-        "USOIL",
-        "US500"
-      ],
-      "ccy": [
-        "OIL",
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 3,
-      "firstAt": 1788961320000
     },
     {
       "title": "Press Review - The Times: 'Counterproductive' sanctions on Israel don't match the 'theatrical rhetoric' - France 24",
@@ -1523,120 +1660,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788949440000
-    },
-    {
-      "title": "US to ban imports of some Canadian alcohol, dairy goods and motorbikes",
-      "link": "https://www.bbc.co.uk/news/articles/c99dm1000p7o?at_medium=RSS&at_campaign=rss",
-      "source": "BBC World",
-      "desc": "It is the latest strike in a long trade war, and comes after Canadian counter-tariffs on US goods come into force.",
-      "at": 1788949240000,
-      "inst": [
-        "USD/CAD",
-        "XAU/USD"
-      ],
-      "ccy": [
-        "XAU"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788949240000
-    },
-    {
-      "title": "Opinion | Israel's response to U.K. settlement sanctions is a media-hyped nothingburger - Haaretz",
-      "link": "https://news.google.com/rss/articles/CBMikAJBVV95cUxNYUgxbDk0NUtXdDd2SlBHaE8zQWh5eUdyeVNkUnF4ODhOQXZZb2ZUWnZPMjVySk9JUC0zME85Z3NjWGJnWXFleFZBdF9jOVlyT1R1cVZzTlBIakVLT1BLcGd3WnVrVkxCSFdYOVlXLUZpNmxKbzdIbndIN2UybnN0UGIwS3prWWFzSElJNGpya09ISm9NQ1pXdnJVa3V0TUQxS3ZSRU5rZDJhWGdjRUxEV3BUSWZYWHF2Z3JLQWRlVkFXd2J2V3pHaDVHajlVTTB2TVN6OFQ5Z1JBRWNKbUFMUzZLNVdObFNSS1lSMEFKUmVVY0wzc29BSnVWYmlPNFRjMVZEc0VwcS0tc01ZWFFHRw?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMikAJBVV95cUxNYUgxbDk0NUtXdDd2SlBHaE8zQWh5eUdyeVNkUnF4ODhOQXZZb2ZUWnZPMjVySk9JUC0zME85Z3NjWGJnWXFleFZBdF9jOVlyT1R1cVZzTlBIakVLT1BLcGd3WnVrVkxCSFdYOVlXLUZpNmxKbzdIbndIN2UybnN0UGIwS3prWWFzSElJNGpya09ISm9NQ1pXdnJVa3V0TUQxS3ZSRU5rZDJhWG",
-      "at": 1788949140000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL",
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788949140000
-    },
-    {
-      "title": "ECB preview: A rate hike expected as markets focus on Lagarde, inflation and future policy - investingLive",
-      "link": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxOTUJnRVJoZ3NGQ1BSTndURkEyLV9jTkJ1eHJrMklrWGRCd01hQ1V4Um96S05iZDQyMlduaHpIV2JzYjZnMUh3NFVQSzFmQ1gzRVg2N2RqRTVlTWZfb1lhVzBkY3JFY0RRa0V5c0F6S2NsTGwzV3hhYVhRbVBIMDg1S2hHUDlaLVFKYWNsSXZFcVhDbTdvUVdEQ3RsTlBmeUI5MHNZV2czS1dpWFhPVDZHZndVSHZZQnNNRFVROXlnbXp0X3QyYlFSLQ?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiyAFBVV95cUxOTUJnRVJoZ3NGQ1BSTndURkEyLV9jTkJ1eHJrMklrWGRCd01hQ1V4Um96S05iZDQyMlduaHpIV2JzYjZnMUh3NFVQSzFmQ1gzRVg2N2RqRTVlTWZfb1lhVzBkY3JFY0RRa0V5c0F6S2NsTGwzV3hhYVhRbVBIMDg1S2hHUDlaLVFKYWNsSXZFcVhDbTdvUVdEQ3RsTlBmeUI5MHNZV2czS1dpWF",
-      "at": 1788948603000,
-      "inst": [
-        "EUR/USD"
-      ],
-      "ccy": [
-        "EUR",
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788948603000
-    },
-    {
-      "title": "The war in the Gulf will have to end in compromise",
-      "link": "https://www.aljazeera.com/opinions/2026/9/9/the-war-in-the-gulf-will-have-to-end-in-compromise?traffic_source=rss",
-      "source": "Al Jazeera",
-      "desc": "Iran has not surrendered, and the war’s original aims remain unmet.",
-      "at": 1788948544000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1788948544000
-    },
-    {
-      "title": "US strike sinks Iranian tanker, sparking retaliatory missile barrage at Jordan - Yahoo",
-      "link": "https://news.google.com/rss/articles/CBMinAFBVV95cUxOUngxdHpBMHZpVEprbFJrMmZqMnlOVmM2VlVZdkhSdUhGTmF5ZEFxXzBicXJUcU1Dc1l2WVd3d3VBaHVVYks5Y1kzb0pISkNuYXg5bmgtMy1fYVZXWTJrZnZQU0ZvczVPMUh2NnB2VGw4SDRSazZUNHRZNXhpYTZtc3kzemdGNUp4QUh6NmdzMHo0QnA3LS1YeUx2dXY?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMinAFBVV95cUxOUngxdHpBMHZpVEprbFJrMmZqMnlOVmM2VlVZdkhSdUhGTmF5ZEFxXzBicXJUcU1Dc1l2WVd3d3VBaHVVYks5Y1kzb0pISkNuYXg5bmgtMy1fYVZXWTJrZnZQU0ZvczVPMUh2NnB2VGw4SDRSazZUNHRZNXhpYTZtc3kzemdGNUp4QUh6NmdzMHo0QnA3LS1YeUx2dXY?oc=5\" target=\"_bla",
-      "at": 1788948540000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788948540000
-    },
-    {
-      "title": "Sterling today: Pound eases, dollar steadies after weak run",
-      "link": "https://www.investing.com/news/forex-news/sterling-today-pound-eases-dollar-steadies-after-weak-run-4893054",
-      "source": "Investing FX",
-      "at": 1788948296000,
-      "inst": [
-        "GBP/USD"
-      ],
-      "ccy": [
-        "USD",
-        "GBP"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788948296000
     }
   ],
   "sources": [
@@ -1659,10 +1682,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-09T15:16:14.142Z",
-  "updatedAt": "2026-09-09T15:16:14.142Z"
+  "headlinesAt": "2026-09-09T15:18:00.758Z",
+  "updatedAt": "2026-09-09T15:18:00.758Z"
 }
