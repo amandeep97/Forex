@@ -7,6 +7,7 @@ import { checkIndicatorFilters } from '../../shared/strategyFilters.mjs';
 import { stopFor, pipSizeFor } from '../../shared/stopLoss.mjs';
 import { LOT_UNITS, unitsForLots } from '../../shared/position.mjs';
 import { detectStrongReversal } from '../../shared/candlePatterns.mjs';
+import { readStructure, detectBreak, breakSatisfies } from '../../shared/structure.mjs';
 import { CANDLE_PATTERNS } from '../../shared/candlePatterns.mjs';
 
 // ── SMC engine (browser port of vps-bot/src/smc.js) ──────────────────────────
@@ -37,27 +38,15 @@ function findSwings(candles, look = 3) {
   return { highs, lows };
 }
 
-function detectStructure(candles) {
-  const { highs, lows } = findSwings(candles, 3);
-  if (highs.length < 2 || lows.length < 2) return 'ranging';
-  const lastH1 = highs[highs.length - 2], lastH2 = highs[highs.length - 1];
-  const lastL1 = lows[lows.length - 2],   lastL2 = lows[lows.length - 1];
-  if (lastH2.price > lastH1.price && lastL2.price > lastL1.price) return 'bullish';
-  if (lastH2.price < lastH1.price && lastL2.price < lastL1.price) return 'bearish';
-  return 'ranging';
-}
-
-function detectBOS(candles) {
-  if (candles.length < 20) return false;
-  const n = candles.length;
-  const { highs, lows } = findSwings(candles.slice(0, n - 1), 2);
-  for (let i = Math.max(5, n - 15); i < n; i++) {
-    const c = candles[i];
-    if (highs.some(s => s.idx < i - 1 && c.c > s.price)) return true;
-    if (lows.some(s  => s.idx < i - 1 && c.c < s.price)) return true;
-  }
-  return false;
-}
+// Structure and breaks come from shared/structure.mjs, which the bot loads too.
+//
+// The versions that were here read the last two swing highs and the last two
+// swing lows as separate lists with no regard for the order the four points
+// occurred in, and detectBOS returned a bare boolean that was true for a break
+// in EITHER direction. So this preview would tell you a long matched when the
+// break had been downward, and the bot — which at least tracked direction —
+// might refuse it. One definition now.
+const detectStructure = (candles) => readStructure(candles).structure;
 
 function detectOrderBlocks(candles) {
   if (candles.length < 10) return [];
@@ -181,8 +170,17 @@ async function scanPair(pair, strat) {
     }
 
     // BOS
-    if (cond.requireBOS && !detectBOS(cs))
-      return { pair, pass: false, reason: 'No BOS/CHoCH detected', rsi, structure };
+    if (cond.requireBOS) {
+      const brk = detectBreak(cs);
+      // The direction has to match the trade. A long asking for a break of
+      // structure does not mean "any break"; it means price broke UP.
+      if (!breakSatisfies(brk, dir === 'short' ? 'short' : 'long')) {
+        return { pair, pass: false, rsi, structure,
+          reason: brk.direction
+            ? `Break of structure was ${brk.direction}, not ${dir === 'short' ? 'bearish' : 'bullish'}`
+            : 'No break of structure or change of character' };
+      }
+    }
 
     // Price zone
     if (cond.priceZone && cond.priceZone !== 'any') {

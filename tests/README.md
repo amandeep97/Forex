@@ -1,7 +1,7 @@
 # Tests
 
 ```
-npm test                 # lint, typecheck, then all 62
+npm test                 # lint, typecheck, then all 63
 npm run lint             # the linter alone, warnings included
 npm run typecheck        # shared/ must stay at zero type errors
 npm run typecheck:audit  # the rest, visible but not yet enforced
