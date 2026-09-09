@@ -20,7 +20,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788935619000,
-      "_kind": null
+      "_kind": null,
+      "why": "Geopolitical news lacks clear market direction"
     },
     {
       "title": "Air defenses down 165 drones in overnight Russian attack on Ukraine - Ukrinform",
@@ -41,7 +42,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788935580000,
-      "_kind": null
+      "_kind": null,
+      "why": "Ukraine conflict update, no clear direction"
     },
     {
       "title": "Israel to take action against France, orders British consulate closure - The Jerusalem Post",
@@ -57,7 +59,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788935491000,
-      "_kind": null
+      "_kind": null,
+      "why": "Diplomatic dispute, unclear market impact"
     },
     {
       "title": "Oil nears $100 as fresh Middle East strikes raise supply risks",
@@ -77,7 +80,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788935427000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Supply risks push oil and gold up"
     },
     {
       "title": "Australia stocks lower at close of trade; S&P/ASX 200 down 0.11%",
@@ -95,7 +104,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1788932877000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "AUD/USD": "down"
+      },
+      "why": "Australian stocks lower, no US impact"
     },
     {
       "title": "US slaps import ban on Canadian alcohol, motorbikes and other goods",
@@ -114,7 +127,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788935337000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USD/CAD": "up"
+      },
+      "why": "Trade war strengthens dollar, gold unclear"
     },
     {
       "title": "Adani Enterprises shares jump as airport unit enters into $1 billion fundraising deal",
@@ -146,7 +163,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788935065000,
-      "_kind": null
+      "_kind": null,
+      "why": "Minor data, no significant direction"
     },
     {
       "title": "Purplebricks reports 7% revenue growth in challenging UK market",
@@ -177,7 +195,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788934473000,
-      "_kind": null
+      "_kind": null,
+      "why": "Weather event, no clear FX impact"
     },
     {
       "title": "Gold rebounds above $4,400 as weaker dollar, easing Fed pressure support bullion",
@@ -194,7 +213,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788934077000
+      "firstAt": 1788934077000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Weaker dollar supports gold rebound"
     },
     {
       "title": "Taiwan stocks higher at close of trade; Taiwan Weighted up 0.06%",
@@ -208,7 +231,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788933604000
+      "firstAt": 1788933604000,
+      "why": "Taiwan stocks up, no US impact"
     },
     {
       "title": "Zara owner Inditex reports strong August trading amid heatwaves",
@@ -240,7 +264,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788933152000
+      "firstAt": 1788933152000,
+      "why": "Geopolitical risk, direction unclear"
     },
     {
       "title": "Australia considers new Israel sanctions but won’t join UK in banning trade with ‘settler terrorists’ - The Guardian",
@@ -262,7 +287,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1788932877000
+      "firstAt": 1788932877000,
+      "why": "Sanctions news, no clear market move"
     },
     {
       "title": "Israel’s war leaves Lebanon’s schools balancing students and the displaced",
@@ -282,7 +308,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788932171000
+      "firstAt": 1788932171000,
+      "why": "Humanitarian news, no market direction"
     },
     {
       "title": "How Ukrainian Drone Strikes Are Pounding Russia’s Economy - wsj.com",
@@ -302,7 +329,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788931932000
+      "firstAt": 1788931932000,
+      "why": "Economic impact unclear for markets"
     },
     {
       "title": "Dollar-Yen Holds Steady Around 153 as Traders Await US Inflation Data - finance.biggo.com",
@@ -320,7 +348,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788931870000
+      "firstAt": 1788931870000,
+      "why": "Currency steady, awaiting data"
     },
     {
       "title": "At least five killed in large-scale overnight Russian attack on Kyiv - Euronews.com",
@@ -1688,10 +1717,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-09T06:42:28.047Z",
-  "updatedAt": "2026-09-09T06:42:28.047Z"
+  "headlinesAt": "2026-09-09T06:43:43.504Z",
+  "updatedAt": "2026-09-09T06:43:43.504Z"
 }
