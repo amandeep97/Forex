@@ -18,7 +18,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788950925000,
-      "_kind": null
+      "_kind": null,
+      "why": "Lobbying news lacks immediate market direction."
     },
     {
       "title": "US and Iran trade strikes overnight as gas prices continue to rise - WFAA",
@@ -39,7 +40,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788950843000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Geopolitical strikes boost safe havens and oil."
     },
     {
       "title": "Bitcoin Climbs as Oil Tops $100, Equities Drop After Iran Strikes - Moomoo",
@@ -63,7 +70,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788950843000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "US500": "down",
+        "BTC/USDT": "up"
+      },
+      "why": "Oil up, equities down, Bitcoin climbs."
     },
     {
       "title": "Russian FIMI Network Distorts Claims About Strikes on Ukraine - mezha.net",
@@ -84,7 +97,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788950789000,
-      "_kind": null
+      "_kind": null,
+      "why": "Disinformation claims have no clear market impact."
     },
     {
       "title": "How Ukrainian Drone Strikes Are Pounding Russia’s Economy - WSJ",
@@ -105,7 +119,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788950748000,
-      "_kind": null
+      "_kind": null,
+      "why": "Economic damage analysis lacks immediate price signal."
     },
     {
       "title": "Yemen war escalates: Who are the key actors involved?",
@@ -123,7 +138,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788950709000,
-      "_kind": null
+      "_kind": null,
+      "why": "Conflict overview does not specify new escalation."
     },
     {
       "title": "Dow Jones Futures Fall As Oil Prices Push Stocks Toward Breaking Point; Apple iPhone Event Due",
@@ -142,7 +158,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788948921000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "US500": "down",
+        "US30": "down"
+      },
+      "why": "Oil pushes stocks down, implying oil rise."
     },
     {
       "title": "Gold price today, Wednesday, September 9, 2026: Gold prices drop following U.S. strikes on five Iranian oil tankers",
@@ -162,7 +184,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788948000000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Gold drops, oil rises on tanker strikes."
     },
     {
       "title": "China oil demand to fall 8.9% in 2026, Sinopec says",
@@ -179,7 +207,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788950250000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "China demand drop is bearish for oil."
     },
     {
       "title": "Oil and gas electrification: why the sector’s big shift has a power problem",
@@ -196,7 +228,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788950173000,
-      "_kind": null
+      "_kind": null,
+      "why": "Long-term electrification shift is unclear for price."
     },
     {
       "title": "Video: Fire Point weapons accounted for about 60% of Ukraine's strikes against Russia in 2026 - UA.NEWS",
@@ -217,7 +250,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788950171000,
-      "_kind": null
+      "_kind": null,
+      "why": "Weapon statistics have no direct market impact."
     },
     {
       "title": "Qualcomm, Corning, Casey’s, Braze, and More Stocks That Explain Today’s Market",
@@ -231,7 +265,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1788949860000
+      "firstAt": 1788949860000,
+      "why": "General market explanation lacks specific direction."
     },
     {
       "title": "Miliband rejects chief rabbi’s claim that West Bank sanctions put UK Jews at risk - The Guardian",
@@ -248,7 +283,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788949440000
+      "firstAt": 1788949440000,
+      "why": "Political statement unrelated to gold price."
     },
     {
       "title": "Bessent’s Yen Bet Is Paying Off—for Now - WSJ",
@@ -266,7 +302,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788949416000
+      "firstAt": 1788949416000,
+      "dir": {
+        "USD/JPY": "up"
+      },
+      "why": "Yen weakness implies USD/JPY rise."
     },
     {
       "title": "US to ban imports of some Canadian alcohol, dairy goods and motorbikes",
@@ -284,7 +324,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788949240000
+      "firstAt": 1788949240000,
+      "dir": {
+        "USD/CAD": "up"
+      },
+      "why": "Trade war strengthens USD, weakens CAD."
     },
     {
       "title": "TSMC’s High-NA Plan Gives ASML a Catalyst, but Investors Face Two Different Timelines",
@@ -1710,10 +1754,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-09T11:01:28.871Z",
-  "updatedAt": "2026-09-09T11:01:28.871Z"
+  "headlinesAt": "2026-09-09T11:02:43.137Z",
+  "updatedAt": "2026-09-09T11:02:43.137Z"
 }
