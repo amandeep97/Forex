@@ -55,6 +55,11 @@ const PATTERNS_URL = pathToFileURL(path.join(__dirname, '..', '..', 'src', 'util
 const FILTERS_URL = pathToFileURL(path.join(__dirname, '..', '..', 'shared', 'strategyFilters.mjs')).href;
 const STOPS_URL = pathToFileURL(path.join(__dirname, '..', '..', 'shared', 'stopLoss.mjs')).href;
 const POSITION_URL = pathToFileURL(path.join(__dirname, '..', '..', 'shared', 'position.mjs')).href;
+// Market structure, shared with the app. It existed twice and the two copies
+// had already drifted: the app's returned a bare boolean that was true for a
+// break in EITHER direction, the bot's distinguished BOS from CHoCH, and
+// neither screen could say which was right.
+const STRUCTURE_URL = pathToFileURL(path.join(__dirname, '..', '..', 'shared', 'structure.mjs')).href;
 
 // EMA and VWAP are unambiguous enough to compute here; there is no second
 // definition to drift away from.
@@ -446,6 +451,15 @@ class ForexBot {
     const dir = this._resolveDirection(direction, smc);
     if (!dir) { this.log(`${pair}: direction mismatch`); return false; }
 
+    // The shared structure read, so the app's preview and this decision cannot
+    // disagree about what a break is or which way it went.
+    const ST = await this._structureModule();
+    const brk = ST ? ST.detectBreak(candles) : null;
+    if (brk && conditions.requireBOS && !ST.breakSatisfies(brk, dir)) {
+      this.log(`${pair}: no ${dir === 'long' ? 'bullish' : 'bearish'} break of structure`
+        + `${brk.direction ? ` — the break was ${brk.direction}` : ''}`);
+    }
+
     // Price zone check — discount for longs, premium for shorts
     const zoneRequired = conditions.priceZone || 'any';
     const zoneOk = zoneRequired === 'any' ||
@@ -455,7 +469,13 @@ class ForexBot {
     const pass = {
       structure:  !conditions.structure || conditions.structure === 'any' || smc.structure === conditions.structure,
       priceZone:  zoneOk,
-      bos:        !conditions.requireBOS || smc.hasBOS,
+      // Direction is checked now. This used to be `!requireBOS || smc.hasBOS`
+      // with no direction term at all, so a LONG strategy passed on price
+      // breaking DOWN through a swing low. And a change of character — the one
+      // signal that marks a reversal starting — could not satisfy a control
+      // named "BOS / CHoCH", because only hasBOS was read.
+      bos:        !conditions.requireBOS
+        || (ST ? ST.breakSatisfies(brk, dir) : smc.hasBOS),
       ob:         !conditions.requireOB  || (dir === 'long' ? smc.hasBullOB : smc.hasBearOB),
       fvg:        !conditions.requireFVG || (dir === 'long' ? smc.hasBullFVG : smc.hasBearFVG),
       ote:        !conditions.requireOTE || (dir === 'long' ? smc.inOTEBull  : smc.inOTEBear),
@@ -780,6 +800,16 @@ class ForexBot {
       spread = await this._spreadNow(pair);
     }
     return mod.stopFor({ dir, price: cp, pip, risk, smc, candles, spread });
+  }
+
+  async _structureModule() {
+    try {
+      if (!this._structure) this._structure = await import(STRUCTURE_URL);
+      return this._structure;
+    } catch (e) {
+      this.warn(`Structure module not loadable (${e.message}) — skipping. Run git pull on the VPS.`);
+      return null;
+    }
   }
 
   async _positionModule() {
