@@ -69,8 +69,14 @@ function emaAt(candles, period) {
 // Session VWAP, anchored to the start of the current UTC day — the reference
 // intraday traders actually use. Anchoring to the fetch window instead would
 // give a different number every time the bot restarted.
-function vwapToday(candles) {
-  const dayStart = Math.floor(Date.now() / 86400e3) * 86400e3;
+// `now` is a parameter, not a wall-clock read, so this can be tested without a
+// race. It had one: a test built its bars from the UTC day start and this
+// recomputed the day start when called, so a run that straddled midnight UTC
+// built the fixture for yesterday and evaluated it against today. Once a day,
+// for a fraction of a second, the suite failed for no reason anyone could
+// reproduce — which is worse than a test that fails every time.
+function vwapToday(candles, now = Date.now()) {
+  const dayStart = Math.floor(now / 86400e3) * 86400e3;
   let pv = 0, vol = 0;
   for (const c of candles) {
     if (c.t < dayStart) continue;
@@ -738,9 +744,9 @@ class ForexBot {
     return (filter.side || 'above') === 'above' ? cp > e : cp < e;
   }
 
-  _checkVWAP(candles, filter) {
+  _checkVWAP(candles, filter, now = Date.now()) {
     if (!filter?.enabled) return true;
-    const v = vwapToday(candles);
+    const v = vwapToday(candles, now);
     // Before the first bar of the UTC day there is no VWAP yet. Passing would
     // mean the filter quietly switches itself off every night at midnight.
     if (v == null) return false;
