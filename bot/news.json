@@ -498,7 +498,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788953999000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Geopolitical escalation boosts safe havens and oil."
     },
     {
       "title": "Gold buyers struggle near $4,400 amid Fed rate hike bets, rising Oil prices - FXStreet",
@@ -519,7 +525,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788953798000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "up"
+      },
+      "why": "Gold pressured by Fed bets; oil rises."
     },
     {
       "title": "Ukraine Hunts Russia’s Black Sea Fleet, Strikes Mangust Patrol Boat in Occupied Crimea - united24media.com",
@@ -540,7 +551,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788951562000,
-      "_kind": null
+      "_kind": null,
+      "why": "Ukraine strike news unclear for these assets."
     },
     {
       "title": "investingLive European markets wrap: Brent crude hits $100, equities fall",
@@ -562,27 +574,15 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 3,
+      "srcs": 2,
       "firstAt": 1788952749000,
-      "_kind": null
-    },
-    {
-      "title": "Brent crude oil hits $100 a barrel for first time since July",
-      "link": "https://finance.yahoo.com/markets/commodities/articles/brent-crude-oil-hits-100-113006420.html",
-      "source": "Yahoo Finance",
-      "at": 1788953406000,
-      "inst": [
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 4,
-      "firstAt": 1788950843000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up",
+        "US500": "down"
+      },
+      "why": "Oil hits $100; equities fall on inflation."
     },
     {
       "title": "Miliband defends UK settlement sanctions, says Israel’s retaliatory response is regrettable - The Jerusalem Post",
@@ -603,7 +603,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788953229000,
-      "_kind": null
+      "_kind": null,
+      "why": "Political commentary lacks direct market impact."
     },
     {
       "title": "Step Aside, ExxonMobil: 2 Foundational AI Stocks Now Pay Larger Dividends",
@@ -618,7 +619,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788953161000,
-      "_kind": null
+      "_kind": null,
+      "why": "Dividend comparison does not imply direction."
     },
     {
       "title": "Bitcoin and ethereum prices today, Wednesday, September 9, 2026: Ongoing escalations in the Middle East are keeping a lid on crypto",
@@ -636,26 +638,12 @@
       "rel": 2,
       "srcs": 3,
       "firstAt": 1788950483000,
-      "_kind": null
-    },
-    {
-      "title": "Dow Jones Futures Fall As Oil Prices Push Stocks Toward Breaking Point; Apple iPhone Event Due",
-      "link": "https://www.investors.com/market-trend/stock-market-today/dow-jones-futures-oil-prices-amd-hpe-new-buys-apple-iphone-event/?src=A00220&yptr=yahoo",
-      "source": "Yahoo Finance",
-      "at": 1788953045000,
-      "inst": [
-        "USOIL",
-        "US500",
-        "US30"
-      ],
-      "ccy": [
-        "OIL"
-      ],
-      "sev": 3,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788953045000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "BTC/USDT": "down",
+        "ETH/USDT": "down"
+      },
+      "why": "Escalations keep a lid on crypto prices."
     },
     {
       "title": "Strategists say S&P 500 could top 8,000 — but risks of a pullback are mounting",
@@ -671,7 +659,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788953040000,
-      "_kind": null
+      "_kind": null,
+      "why": "Bullish targets offset by mounting pullback risks."
     },
     {
       "title": "TSX futures slip as traders eye oil price surge, incoming U.S. inflation data",
@@ -689,7 +678,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788952810000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Traders eye oil price surge."
     },
     {
       "title": "Brent crude rises above $100 a barrel as Middle East conflict intensifies",
@@ -709,7 +702,13 @@
       "rel": 2,
       "srcs": 4,
       "firstAt": 1788950843000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up",
+        "XAU/USD": "up"
+      },
+      "why": "Conflict intensifies, boosting oil and gold."
     },
     {
       "title": "Chime shares jump 10% as Stride deal puts fintech on path to bank charter",
@@ -723,6 +722,24 @@
       "srcs": 2,
       "firstAt": 1788951639000,
       "_kind": null
+    },
+    {
+      "title": "First copper-gold concentrate produced at Eldorado’s Skouries site",
+      "link": "https://finance.yahoo.com/markets/commodities/articles/first-copper-gold-concentrate-produced-111819936.html",
+      "source": "Yahoo Finance",
+      "at": 1788952699000,
+      "inst": [
+        "XAU/USD"
+      ],
+      "ccy": [
+        "XAU"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788952699000,
+      "_kind": null,
+      "why": "Single mine production news is neutral."
     },
     {
       "title": "U.S. military destroys 5 Iranian oil tankers. And, the Smithsonian head resigns - NPR",
@@ -742,7 +759,37 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1788950483000
+      "firstAt": 1788950483000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up",
+        "XAU/USD": "up"
+      },
+      "why": "Tanker destruction signals supply risk and fear."
+    },
+    {
+      "title": "Dow Jones Futures Fall As Oil Prices Push Stocks Toward Breaking Point; Apple iPhone Event Due",
+      "link": "https://www.investors.com/market-trend/stock-market-today/dow-jones-futures-oil-prices-amd-hpe-new-buys-apple-iphone-event/?src=A00220&yptr=yahoo",
+      "source": "Yahoo Finance",
+      "at": 1788952343000,
+      "inst": [
+        "USOIL",
+        "US500",
+        "US30"
+      ],
+      "ccy": [
+        "OIL"
+      ],
+      "sev": 3,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788952343000,
+      "dir": {
+        "USOIL": "up",
+        "US500": "down",
+        "US30": "down"
+      },
+      "why": "Oil surge pushes stocks lower."
     },
     {
       "title": "European stocks hit multi-lows with oil at $100 and ECB hike in sight",
@@ -761,7 +808,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788951992000
+      "firstAt": 1788951992000,
+      "dir": {
+        "EUR/USD": "down",
+        "USOIL": "up",
+        "US500": "down"
+      },
+      "why": "ECB hike and oil shock hurt stocks/EUR."
     },
     {
       "title": "Analysis-Fearless US stock market vulnerable to shocks as midterms loom",
@@ -788,7 +841,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788951780000
+      "firstAt": 1788951780000,
+      "why": "European stock advice irrelevant to US index."
     },
     {
       "title": "Melius sees oil prices climb on extended Jizan plant shutdown",
@@ -2169,10 +2223,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-09T11:44:57.344Z",
-  "headlinesAt": "2026-09-09T11:44:57.344Z",
-  "updatedAt": "2026-09-09T11:44:57.344Z"
+  "calendarAt": "2026-09-09T11:46:15.269Z",
+  "headlinesAt": "2026-09-09T11:46:15.269Z",
+  "updatedAt": "2026-09-09T11:46:15.269Z"
 }
