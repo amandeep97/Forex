@@ -20,7 +20,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788939989000,
-      "_kind": null
+      "_kind": null,
+      "why": "Political news, no direct market impact"
     },
     {
       "title": "Iran Strikes Back After US Military Destroys Five Oil Tankers - Marine News Magazine",
@@ -41,7 +42,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788939298000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Supply disruption and geopolitical risk"
     },
     {
       "title": "US-Iran tanker strikes in Hormuz send Brent past $100 - turkiyetoday.com",
@@ -62,7 +69,13 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1788939298000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "UKOIL": "up",
+        "XAU/USD": "up",
+        "USOIL": "up"
+      },
+      "why": "Brent past $100, conflict escalation"
     },
     {
       "title": "Brent crude rises above $100 a barrel as Middle East conflict escalates",
@@ -82,7 +95,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788939548000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up",
+        "XAU/USD": "up"
+      },
+      "why": "Brent above $100, conflict escalation"
     },
     {
       "title": "US August PPI Preview: Producer Inflation May Reaccelerate, How Will US Stocks, Dollar, and Gold React? - tradingkey.com",
@@ -102,7 +121,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788937430000,
-      "_kind": null
+      "_kind": null,
+      "why": "Preview of data, outcome unknown"
     },
     {
       "title": "Guterres calls for Israel to withdraw from Lebanon, condemns regional escalation - The Jerusalem Post",
@@ -123,7 +143,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788937454000,
-      "_kind": null
+      "_kind": null,
+      "why": "Diplomatic call, no immediate price move"
     },
     {
       "title": "US Pressure Forced UK to Soften Israel Sanctions - www.israelhayom.com",
@@ -144,7 +165,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788939989000,
-      "_kind": null
+      "_kind": null,
+      "why": "Political maneuvering, no direct market impact"
     },
     {
       "title": "The ECB is virtually certain to hike rates Thursday. Here is why Wall Street is bracing for what comes next.",
@@ -164,7 +186,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788939720000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "EUR/USD": "up"
+      },
+      "why": "ECB hike expected, supportive for Euro"
     },
     {
       "title": "Euro bonds sell-off persists as energy spikes ahead of ECB rate decision",
@@ -182,7 +208,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788939634000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "EUR/USD": "up"
+      },
+      "why": "Energy spike supports Euro via ECB hike"
     },
     {
       "title": "Brent hits $100/bbl as U.S.-Iran fighting escalates",
@@ -199,7 +229,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1788939298000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "UKOIL": "up"
+      },
+      "why": "Brent hits $100, escalation"
     },
     {
       "title": "Brent Nears $100 as U.S.-Iran Escalation, Houthi Strikes Deepen Gulf Supply Fears - WSJ",
@@ -220,7 +254,13 @@
       "rel": 2,
       "srcs": 3,
       "firstAt": 1788937005000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "UKOIL": "up",
+        "XAU/USD": "up",
+        "USOIL": "up"
+      },
+      "why": "Supply fears, Brent nears $100"
     },
     {
       "title": "Oil surges toward $100 as inflation risks reshape global markets - FXStreet",
@@ -239,7 +279,10 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788937430000,
-      "_kind": null
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil surges toward $100"
     },
     {
       "title": "European shares dip as oil nears $100, Mideast tensions fan inflation fears",
@@ -256,7 +299,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788939032000
+      "firstAt": 1788939032000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil nears $100, tensions high"
     },
     {
       "title": "U.S. stock futures muted as oil nears $100, Fed hike bets remain",
@@ -273,7 +320,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788938879000
+      "firstAt": 1788938879000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil nears $100, inflation fears"
     },
     {
       "title": "Medicine shortages grow in Iran as US tightens sanctions, blockade - Al Jazeera",
@@ -293,7 +344,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788938325000
+      "firstAt": 1788938325000,
+      "why": "Sanctions news, no immediate price signal"
     },
     {
       "title": "FTSE 100 today: Stocks retreat as Gulf strikes send oil toward $100",
@@ -310,7 +362,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1788938206000
+      "firstAt": 1788938206000,
+      "dir": {
+        "USOIL": "up",
+        "US500": "down"
+      },
+      "why": "Oil up, stocks down on strikes"
     },
     {
       "title": "Ukraine Strikes Russian Black Sea Fuel Hub Handling 4 Million Tons a Year - UNITED24 Media",
@@ -330,7 +387,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788935580000
+      "firstAt": 1788935580000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Supply risk boosts oil, gold unclear"
     },
     {
       "title": "Silver consolidates in Ichimoku cloud chop zone: Live levels",
@@ -346,7 +408,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788937826000
+      "firstAt": 1788937826000,
+      "why": "Silver consolidating, no clear direction"
     },
     {
       "title": "Crude Oil WTI overbought 6% above 50-MA, doji warns: Live levels",
@@ -363,7 +426,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788937826000
+      "firstAt": 1788937826000,
+      "why": "Overbought warning, direction unclear"
     },
     {
       "title": "Natural Gas tests $2.874 support with momentum warning: Live levels",
@@ -377,7 +441,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788937826000
+      "firstAt": 1788937826000,
+      "why": "Testing support, momentum warning"
     },
     {
       "title": "Brent Oil nears $101.20 double-top resistance: Live levels",
@@ -394,7 +459,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1788937826000
+      "firstAt": 1788937826000,
+      "why": "Near resistance, direction unclear"
     },
     {
       "title": "London Gas Oil trapped below $1,393 resistance: Live levels",
@@ -410,7 +476,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788937826000
+      "firstAt": 1788937826000,
+      "why": "Trapped below resistance, unclear"
     },
     {
       "title": "Gold trapped in $4,400-$4,480 squeeze: Live levels",
@@ -426,7 +493,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788937826000
+      "firstAt": 1788937826000,
+      "why": "Gold in squeeze, unclear"
     },
     {
       "title": "Aftermath of a Russian drone attack on a Ukraine-Moldova border crossing in Odesa region - lufkindailynews.com",
@@ -446,7 +514,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788935526000
+      "firstAt": 1788935526000,
+      "why": "Drone attack, no clear market impact"
     },
     {
       "title": "Israel tells British consulate in East Jerusalem to close within 30 days, sources say - Reuters",
@@ -461,7 +530,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788935491000
+      "firstAt": 1788935491000,
+      "why": "Geopolitical news, no clear FX impact"
     },
     {
       "title": "Oil nears $100 as fresh Middle East strikes raise supply risks - Arab News",
@@ -481,7 +551,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1788936300000
+      "firstAt": 1788936300000,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Supply risks boost oil and gold"
     },
     {
       "title": "United States Dollar Index (DXY) bears eye August low around 98.50 ahead of US inflation - FXStreet",
@@ -504,7 +580,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788937430000
+      "firstAt": 1788937430000,
+      "dir": {
+        "XAU/USD": "up",
+        "EUR/USD": "up",
+        "GBP/USD": "up"
+      },
+      "why": "Dollar weakness bullish for metals, FX"
     },
     {
       "title": "Iraq seeks major OPEC+ quota increase during capacity review, Bloomberg reports",
@@ -521,7 +603,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788937195000
+      "firstAt": 1788937195000,
+      "dir": {
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Quota increase implies supply boost"
     },
     {
       "title": "Russia’s Key Black Sea Port Hit in Overnight Drone Attack - bloomberg.com",
@@ -541,7 +628,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788937140000
+      "firstAt": 1788937140000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Port hit boosts oil, gold unclear"
     },
     {
       "title": "CENTCOM Destroys Five Iranian Tankers, Iran Strikes Jordan - MiGFlug",
@@ -561,7 +653,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788937005000
+      "firstAt": 1788937005000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Escalation boosts risk assets, oil"
     },
     {
       "title": "Gold gains 1% with US inflation data, Middle East risks in focus - The Star",
@@ -1711,10 +1809,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-09T08:01:57.450Z",
-  "updatedAt": "2026-09-09T08:01:57.450Z"
+  "headlinesAt": "2026-09-09T08:03:14.686Z",
+  "updatedAt": "2026-09-09T08:03:14.686Z"
 }
