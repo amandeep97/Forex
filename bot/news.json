@@ -16,7 +16,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788950173000,
-      "_kind": null
+      "_kind": null,
+      "why": "Long-term structural shift, no immediate price direction."
     },
     {
       "title": "U.S. stock futures subdued as oil exceeds $100",
@@ -33,7 +34,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788949903000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil price explicitly stated to exceed $100."
     },
     {
       "title": "India stocks lower at close of trade; Nifty 50 down 0.86%",
@@ -48,7 +53,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788949805000,
-      "_kind": null
+      "_kind": null,
+      "why": "News concerns Indian stocks, not US S&P 500."
     },
     {
       "title": "European stocks hit multi-lows with oil at $100 and ECB hike in sight",
@@ -68,7 +74,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788949667000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "EUR/USD": "down",
+        "USOIL": "up",
+        "US500": "down"
+      },
+      "why": "ECB hike supports EUR; oil high; stocks low."
     },
     {
       "title": "Bessent’s Yen Bet Is Paying Off—for Now - WSJ",
@@ -87,7 +99,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788949416000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USD/JPY": "down"
+      },
+      "why": "Yen strength implies USD/JPY decline."
     },
     {
       "title": "How Much Longer Can the Current Bull Market Last? History Provides a Clear Answer.",
@@ -119,7 +135,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788949240000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USD/CAD": "down",
+        "XAU/USD": "up"
+      },
+      "why": "Trade war weakens CAD; uncertainty boosts gold."
     },
     {
       "title": "Billionaire Israel Englander Is Doubling Down on These 2 Outstanding Dividend Stocks. Should You?",
@@ -134,7 +155,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788949202000,
-      "_kind": null
+      "_kind": null,
+      "why": "Specific stock advice, no broad index direction."
     },
     {
       "title": "Crypto, banks take lobbying war to US senators’ home states ahead of key vote",
@@ -153,7 +175,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788949131000,
-      "_kind": null
+      "_kind": null,
+      "why": "Lobbying news has no clear price impact."
     },
     {
       "title": "TSMC’s High-NA Plan Gives ASML a Catalyst, but Investors Face Two Different Timelines",
@@ -186,7 +209,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788949094000,
-      "_kind": null
+      "_kind": null,
+      "why": "Agricultural news irrelevant to these instruments."
     },
     {
       "title": "Oil tops $100 as U.S.-Iran fighting escalates",
@@ -203,7 +227,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788948953000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil price explicitly stated to top $100."
     },
     {
       "title": "Sterling Rises as Markets Raise BOE Rate Hike Expectations",
@@ -221,7 +249,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788948900000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "GBP/USD": "up"
+      },
+      "why": "Rate hike expectations support Sterling."
     },
     {
       "title": "Dow Jones Futures Fall As Oil Prices Push Stocks Toward Breaking Point; Apple iPhone Event Due",
@@ -240,7 +272,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788948857000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "US500": "down",
+        "US30": "down"
+      },
+      "why": "Oil up; futures fall due to oil pressure."
     },
     {
       "title": "Brent crude rises above $100 a barrel as Middle East conflict intensifies",
@@ -260,7 +298,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788948800000,
-      "_kind": null
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up",
+        "XAU/USD": "up"
+      },
+      "why": "Conflict drives oil and safe-haven gold higher."
     },
     {
       "title": "ECB preview: A rate hike expected as markets focus on Lagarde, inflation and future policy - investingLive",
@@ -278,7 +321,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788948598000
+      "firstAt": 1788948598000,
+      "dir": {
+        "EUR/USD": "up"
+      },
+      "why": "Expected ECB rate hike supports Euro."
     },
     {
       "title": "The war in the Gulf will have to end in compromise",
@@ -298,7 +345,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788948544000
+      "firstAt": 1788948544000,
+      "why": "Geopolitical commentary without immediate price signal."
     },
     {
       "title": "Analysis-Starbucks CEO Niccol brought back customers, investors want margins next",
@@ -497,7 +545,7 @@
       "firstAt": 1788946885000
     },
     {
-      "title": "Israel tells Britain to close East Jerusalem consulate within 30 days, sources say - Reuters",
+      "title": "Israel tells Britain to close East Jerusalem consulate within 30 days, sources say - reuters.com",
       "link": "https://news.google.com/rss/articles/CBMixgFBVV95cUxOeVBIZHl1MUMxTUtJRldJbUNCTnBMejE5akQ1aVNzYVFYczZaZEZ1bnluRF9jeVBvZDQ5Y21tV0VaQ2ZiN1FLYlQxcGMtTy1rZC1PLUw3X0x6bnk2QmVMZl9QanVJWXVoTGtNbE80REJzSWE5UkVEdllzSjJXVi1naG04Zk9kanJmTXVMTlpsQ29EWkxPdm5pZ0Y1NWg1S3F6dFZoSW9FanBDN3BkZ2RCSUhFdk41THkzVF9hejNGSWJYVkV6clE?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMixgFBVV95cUxOeVBIZHl1MUMxTUtJRldJbUNCTnBMejE5akQ1aVNzYVFYczZaZEZ1bnluRF9jeVBvZDQ5Y21tV0VaQ2ZiN1FLYlQxcGMtTy1rZC1PLUw3X0x6bnk2QmVMZl9QanVJWXVoTGtNbE80REJzSWE5UkVEdllzSjJXVi1naG04Zk9kanJmTXVMTlpsQ29EWkxPdm5pZ0Y1NWg1S3F6dFZoSW9FanBDN3",
@@ -940,7 +988,7 @@
       "firstAt": 1788941985000
     },
     {
-      "title": "Merz says disaster narrowly averted in Russia-prepared drone attack at airport - Reuters",
+      "title": "Merz says disaster narrowly averted in Russia-prepared drone attack at airport - reuters.com",
       "link": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPdkdqZ1VHdHB2Y2dBRzdFZkZqeTJ6dFpxdXg2WktkTk1CcGQzYVlOOXB5UjROcngwWVdaZ09YVkROUDhSYzlTVGtGdjU4NjEtTm9PejlzRElibW9lSm1wNV94MHRibHJfYk04d1NnZDE5cXMxd3VnRFBaUmJyeEpBdTFsREtvRHJUQWNUcVNFT2tKYlFtbDZNSnZrbUM4T01JY0ZIc1dWNWZRbTZxY0NwWHQ4Tm4?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMitAFBVV95cUxPdkdqZ1VHdHB2Y2dBRzdFZkZqeTJ6dFpxdXg2WktkTk1CcGQzYVlOOXB5UjROcngwWVdaZ09YVkROUDhSYzlTVGtGdjU4NjEtTm9PejlzRElibW9lSm1wNV94MHRibHJfYk04d1NnZDE5cXMxd3VnRFBaUmJyeEpBdTFsREtvRHJUQWNUcVNFT2tKYlFtbDZNSnZrbUM4T01JY0ZIc1dWNWZRbT",
@@ -1664,10 +1712,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-09T10:41:41.706Z",
-  "updatedAt": "2026-09-09T10:41:41.706Z"
+  "headlinesAt": "2026-09-09T10:43:28.911Z",
+  "updatedAt": "2026-09-09T10:43:28.911Z"
 }
