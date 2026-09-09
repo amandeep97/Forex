@@ -480,6 +480,31 @@
   ],
   "headlines": [
     {
+      "title": "Yen holds near seven-month high as dollar stumbles to two-week low with $100 oil",
+      "link": "https://www.investing.com/news/forex-news/asian-currencies-gain-as-yen-holds-near-sevenmonth-high-dollar-slips-4892703",
+      "source": "Investing FX",
+      "at": 1788946368000,
+      "inst": [
+        "USD/JPY",
+        "USOIL"
+      ],
+      "ccy": [
+        "USD",
+        "JPY",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788946368000,
+      "_kind": null,
+      "dir": {
+        "USD/JPY": "down",
+        "USOIL": "up"
+      },
+      "why": "Dollar weak, oil strong"
+    },
+    {
       "title": "Oil hits $100 a barrel for first time since July after US and Houthi strikes",
       "link": "https://www.bbc.co.uk/news/articles/cyvznqypz0yo?at_medium=RSS&at_campaign=rss",
       "source": "BBC World",
@@ -498,7 +523,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788946095000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up",
+        "XAU/USD": "up"
+      },
+      "why": "Oil surge, geopolitical risk"
     },
     {
       "title": "US to ban imports of some Canadian alcohol, dairy goods and motorbikes",
@@ -517,7 +548,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788945710000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USD/CAD": "up"
+      },
+      "why": "Trade war hits CAD"
     },
     {
       "title": "Silicon Valley-backed Covenant unveils low-cost, mass-producible cruise missile",
@@ -534,7 +569,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788945521000,
-      "_kind": null
+      "_kind": null,
+      "why": "No clear market impact"
     },
     {
       "title": "Brent crude rises above $100 a barrel as Middle East conflict intensifies",
@@ -554,7 +590,13 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1788943770000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up",
+        "XAU/USD": "up"
+      },
+      "why": "Conflict drives oil, gold"
     },
     {
       "title": "US Hits Several Iran Oil Tankers in Response to Warship Attack - Bloomberg.com",
@@ -575,7 +617,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788945483000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up",
+        "XAU/USD": "up"
+      },
+      "why": "Supply risk boosts oil"
     },
     {
       "title": "Dow Jones Futures Fall As Brent Oil Prices Hit $100, Apple iPhone Event Due; AMD, HPE Are New Buys",
@@ -594,7 +642,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788945476000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up",
+        "US30": "down"
+      },
+      "why": "Oil up, stocks down"
     },
     {
       "title": "UK food prices to hit 4% inflation by year-end, says FDF",
@@ -617,7 +671,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788945207000,
-      "_kind": null
+      "_kind": null,
+      "why": "Inflation data, no direction"
     },
     {
       "title": "Amazon sells sterling bonds for first time amid AI funding rush",
@@ -634,7 +689,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788945180000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "GBP/USD": "down"
+      },
+      "why": "Sterling bond selling pressure"
     },
     {
       "title": "Workers at Yancoal Australia mine vote to strike over pay",
@@ -651,7 +710,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788945146000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "AUD/USD": "down"
+      },
+      "why": "Strike hurts coal exports"
     },
     {
       "title": "Citi sees limited euro gains despite hawkish ECB rate hike outlook",
@@ -669,7 +732,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788944780000,
-      "_kind": null
+      "_kind": null,
+      "why": "Limited gains expected"
     },
     {
       "title": "2 Killed, 3 Injured as Russian Drones Strike Ukraine-Moldova Border Crossing in Odesa Region - Kyiv Post",
@@ -690,7 +754,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788944254000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "War escalation boosts safe havens"
     },
     {
       "title": "Miliband defends UK settlement sanctions, says Israel’s retaliatory response is regrettable - The Jerusalem Post",
@@ -710,7 +780,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788944593000
+      "firstAt": 1788944593000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Geopolitical tension persists"
     },
     {
       "title": "Ukraine Detains Suspected Russian Spotter Linked to Planned Strikes on Energy Facilities - Межа. Новини України.",
@@ -730,23 +806,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788944254000
-    },
-    {
-      "title": "European shares slip as Brent breaches $100",
-      "link": "https://www.investing.com/news/stock-market-news/european-shares-dip-as-oil-nears-100-mideast-tensions-fan-inflation-fears-4892813",
-      "source": "Investing",
-      "at": 1788944086000,
-      "inst": [
-        "UKOIL"
-      ],
-      "ccy": [
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788944086000
+      "firstAt": 1788944254000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Energy threat boosts risk assets"
     },
     {
       "title": "Markets Falter as Middle East Tensions Fuel Inflation Fears - Devdiscourse",
@@ -767,7 +833,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1788943770000
+      "firstAt": 1788943770000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Inflation fears lift oil, gold"
     },
     {
       "title": "Oil nears $100 as fresh Middle East strikes raise supply risks",
@@ -1902,23 +1974,6 @@
       "firstAt": 1788929974000
     },
     {
-      "title": "Asian currencies gain as yen holds near seven-month high, dollar slips",
-      "link": "https://www.investing.com/news/forex-news/asian-currencies-gain-as-yen-holds-near-sevenmonth-high-dollar-slips-4892703",
-      "source": "Investing FX",
-      "at": 1788929747000,
-      "inst": [
-        "USD/JPY"
-      ],
-      "ccy": [
-        "USD",
-        "JPY"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788929747000
-    },
-    {
       "title": "Oil hits $100 on US-Iran war escalation - Arabian Gulf Business Insight | AGBI",
       "link": "https://news.google.com/rss/articles/CBMihwFBVV95cUxNQjJINnVETmprSVVNWmw2MHh6WTJUbFhic0dYLWdGTnpCaDd6MVRTTVpVMGRXVHB6QkdPN2ItNmltNklZSVpJVlRKQklkbnBDSEFzQzYyckVzV0hFa0I5N2ExOXotTm9NcGZsMjJtd0tfOTdocmVHMG1zZ2R3eEM2UG1VS0szUlU?oc=5",
       "source": "Wires (geo)",
@@ -2176,6 +2231,29 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788923676000
+    },
+    {
+      "title": "China inflation rebounds on energy costs, but the demand story hasn't changed - recap",
+      "link": "https://investinglive.com/news/china-inflation-rebounds-on-energy-costs-but-the-demand-story-hasn-t-changed-recap/",
+      "source": "ForexLive",
+      "desc": "Both readings landing in line with or above forecast removes the immediate deflation-scare risk that was in play after July's shortfall, but the composition of the beat matters more than the headline. NBS attributing the CPI rebound to rising energy prices rather than a broad pic",
+      "at": 1788923009000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788923009000
     }
   ],
   "sources": [
@@ -2198,10 +2276,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-09T09:33:57.333Z",
-  "headlinesAt": "2026-09-09T09:33:57.333Z",
-  "updatedAt": "2026-09-09T09:33:57.333Z"
+  "calendarAt": "2026-09-09T09:35:14.963Z",
+  "headlinesAt": "2026-09-09T09:35:14.963Z",
+  "updatedAt": "2026-09-09T09:35:14.963Z"
 }
