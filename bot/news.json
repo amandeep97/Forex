@@ -505,7 +505,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788979995000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "War escalation boosts gold, oil unclear"
     },
     {
       "title": "Turkey takes note of US/Iran-related sanctions announcement, finance minister says - Reuters",
@@ -526,7 +530,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788978752000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions note, no clear direction"
     },
     {
       "title": "AutoNation (NYSE:AN) Shares In Focus As Markets Weigh Inflation - Kalkine Media",
@@ -550,7 +555,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788978240000,
-      "_kind": null
+      "_kind": null,
+      "why": "Stock focus, no clear direction"
     },
     {
       "title": "Houthi attacks on Saudi Arabia could activate defence pact, Pakistan says",
@@ -571,7 +577,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788978670000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Houthi attacks boost oil and gold"
     },
     {
       "title": "Drones strike Russia’s largest gas production complex for first time, 3,000 km from Ukraine, media reports - Ukrinform",
@@ -592,27 +604,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788978540000,
-      "_kind": null
-    },
-    {
-      "title": "How significant are new European sanctions on illegal Israeli settlements? - Al Jazeera",
-      "link": "https://news.google.com/rss/articles/CBMixgFBVV95cUxOekt2U1BJaHpuVGpKdDVNZGp6S2E1dThGZlZlMG1WdFR1MGplTmFMWFdBdFVHaFB4LXVtaWZFYlN5QVpqYjZ0bWpQa2FoZE1JYnF0MWV0d1FDekFrVHJyOTBla1Vib1d2VDViUndUblpvMFNibFh1alV4U1E0VWlrcjh4XzlHclRUTHZXTlVpMEMwZUNiSUllTVpUdHg5Mi15elA5SUJIRm01NndweGdCd09uOVQwbXI1X0hCSG93Rm8xODBTYUHSAcsBQVVfeXFMT0FWbTJVWktrY094SkpFa1k0WUZMMUhGcngtcHRMVXpBMVhZcXFIR1RTRFRlc2g0RU1XRTZFbXFHSjlrd1lFMFhQYkZNLTVhdHhvVXQ1NkJyZi1XbTJZa1pQMlBSSzgxRkpoV25PMUgwTG5Qb3RETl9vaWtrd3MzZ3lfRU5TVkFVcllIMEhvT2RIUGlHTVlkVHBsNXBrSGJnYlFCclZqUnEyYTRCMUlOYzB5cnAyYzhHMmtyTWlObUlXdnpqd1ZsSnpxWHM?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMixgFBVV95cUxOekt2U1BJaHpuVGpKdDVNZGp6S2E1dThGZlZlMG1WdFR1MGplTmFMWFdBdFVHaFB4LXVtaWZFYlN5QVpqYjZ0bWpQa2FoZE1JYnF0MWV0d1FDekFrVHJyOTBla1Vib1d2VDViUndUblpvMFNibFh1alV4U1E0VWlrcjh4XzlHclRUTHZXTlVpMEMwZUNiSUllTVpUdHg5Mi15elA5SUJIRm01Nn",
-      "at": 1788978394000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788978394000
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Gas strike boosts oil and gold"
     },
     {
       "title": "Iran strikes ships, expands no-go zone outside Hormuz strait - France 24",
@@ -632,7 +629,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788977017000
+      "firstAt": 1788978314000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Hormuz strikes boost oil and gold"
     },
     {
       "title": "C3.ai (NYSE:AI) shares In Focus As Markets Weigh Inflation - Kalkine Media",
@@ -655,7 +658,29 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788978240000
+      "firstAt": 1788978240000,
+      "why": "Stock focus, no clear direction"
+    },
+    {
+      "title": "How significant are new European sanctions on illegal Israeli settlements?",
+      "link": "https://www.aljazeera.com/video/inside-story/2026/9/9/how-significant-are-new-european-sanctions-on-illegal-israeli-settlements?traffic_source=rss",
+      "source": "Al Jazeera",
+      "desc": "Israel is accused of the ethnic cleansing of Palestinians.",
+      "at": 1788978207000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788978207000,
+      "why": "Sanctions news, no clear direction"
     },
     {
       "title": "U.S. stocks and bonds fall as Treasury buyback update disappoints, oil tops $100",
@@ -673,7 +698,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788978082000
+      "firstAt": 1788978082000,
+      "dir": {
+        "USOIL": "up",
+        "US500": "down"
+      },
+      "why": "Oil tops 100, stocks fall"
     },
     {
       "title": "Why Markets May Be Overpricing A September Fed Rate Hike - Forbes",
@@ -696,7 +726,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788977630000
+      "firstAt": 1788977630000,
+      "why": "Fed hike debate, no clear direction"
     },
     {
       "title": "Brent tops $100 for first time since May as U.S.-Iran military action escalates",
@@ -715,7 +746,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788977213000
+      "firstAt": 1788977213000,
+      "dir": {
+        "UKOIL": "up",
+        "XAU/USD": "up",
+        "USOIL": "up"
+      },
+      "why": "Brent tops 100, gold rises"
     },
     {
       "title": "What is the nuclear Non-Proliferation Treaty? - Reuters",
@@ -732,7 +769,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788977203000
+      "firstAt": 1788977203000,
+      "why": "Educational article, no clear direction"
     },
     {
       "title": "AMD, Facebook among market cap stock movers on Wednesday",
@@ -745,26 +783,6 @@
       "rel": 1,
       "srcs": 1,
       "firstAt": 1788977135000
-    },
-    {
-      "title": "Oil Hits $100 a Barrel for First Time Since July as U.S. and Iran Trade Strikes - Time Magazine",
-      "link": "https://news.google.com/rss/articles/CBMihwFBVV95cUxOSzRMSkhJeDE2cHhYOEUyanVuU2w1cHFLU3B1b2lMZjFtc3J4ZElqVzJfMnlQYTJYRzJHU19oMXBSejM4XzljemR2SVJXd29BR2diZnB5cEtIelJzTEtwNkYxQ0Rqb3ZXWVBTMmtKeXE1TnZLeENoZzZ3Uk50OTNhQ1VxUW9mRk0?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMihwFBVV95cUxOSzRMSkhJeDE2cHhYOEUyanVuU2w1cHFLU3B1b2lMZjFtc3J4ZElqVzJfMnlQYTJYRzJHU19oMXBSejM4XzljemR2SVJXd29BR2diZnB5cEtIelJzTEtwNkYxQ0Rqb3ZXWVBTMmtKeXE1TnZLeENoZzZ3Uk50OTNhQ1VxUW9mRk0?oc=5\" target=\"_blank\">Oil Hits $100 a Barrel f",
-      "at": 1788977017000,
-      "inst": [
-        "USOIL",
-        "XAU/USD",
-        "UKOIL"
-      ],
-      "ccy": [
-        "OIL",
-        "XAU"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788977017000
     },
     {
       "title": "Russian Attack Hits Sumy Shopping Mall, Leaving Three Dead and Two Injured - UNITED24 Media",
@@ -784,7 +802,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788976853000
+      "firstAt": 1788976853000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "War escalation boosts gold, oil unclear"
     },
     {
       "title": "Commodity prices near 18-year high, threatening global inflation - Nikkei Asia",
@@ -807,7 +829,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788976560000
+      "firstAt": 1788976560000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Inflation threat boosts gold, FX unclear"
     },
     {
       "title": "‘It’s a good start’: prominent Israelis welcome UK sanctions on illegal settlements - theguardian.com",
@@ -824,7 +850,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788976500000
+      "firstAt": 1788976500000,
+      "why": "Sanctions news, no clear direction"
     },
     {
       "title": "US EIA hikes oil price forecasts as Iran war drains global stockpile",
@@ -1027,6 +1054,26 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788972120000
+    },
+    {
+      "title": "US military carries out strikes near Iran's Kharg Island - Fox News",
+      "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFBlMDVzcXZQZXFXYjg0aUtGMTBqNGV5YjVKQThSbmdFTHN2X0NnMjRaejRwRkRhQUdvNnpIMm9za0dTN3J1WENwNDlDQ2pXOGRjTjhmbDJ3?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiVkFVX3lxTFBlMDVzcXZQZXFXYjg0aUtGMTBqNGV5YjVKQThSbmdFTHN2X0NnMjRaejRwRkRhQUdvNnpIMm9za0dTN3J1WENwNDlDQ2pXOGRjTjhmbDJ3?oc=5\" target=\"_blank\">US military carries out strikes near Iran's Kharg Island</a>&nbsp;&nbsp;<font color=\"#6f6f6",
+      "at": 1788972095000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788970740000
     },
     {
       "title": "U.S. and Iran strike each other again, further driving up gas prices - 13newsnow.com",
@@ -2230,10 +2277,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-09T18:58:12.207Z",
-  "headlinesAt": "2026-09-09T18:58:12.207Z",
-  "updatedAt": "2026-09-09T18:58:12.207Z"
+  "calendarAt": "2026-09-09T19:00:00.050Z",
+  "headlinesAt": "2026-09-09T19:00:00.050Z",
+  "updatedAt": "2026-09-09T19:00:00.050Z"
 }
