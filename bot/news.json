@@ -484,7 +484,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788968634000,
-      "_kind": null
+      "_kind": null,
+      "why": "General midday movers list, no clear direction."
     },
     {
       "title": "As the UK sanctions Israeli settlements, is the two-state solution dead?",
@@ -505,7 +506,26 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788968609000,
-      "_kind": null
+      "_kind": null,
+      "why": "Geopolitical news lacks immediate market impact."
+    },
+    {
+      "title": "NuScale Power: 1 Catalyst That Will Make or Break This Nuclear Stock",
+      "link": "https://finance.yahoo.com/energy/articles/nuscale-power-1-catalyst-break-154300709.html",
+      "source": "Yahoo Finance",
+      "at": 1788968580000,
+      "inst": [
+        "XAU/USD"
+      ],
+      "ccy": [
+        "XAU"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788968580000,
+      "_kind": null,
+      "why": "Stock-specific news irrelevant to gold."
     },
     {
       "title": "Sudan gold ban takes effect in Switzerland on Thursday",
@@ -523,7 +543,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788968561000,
-      "_kind": null
+      "_kind": null,
+      "why": "Supply ban impact on price unclear."
     },
     {
       "title": "Jerusalem Daily: Israel retaliates over sanctions on illegal settlements - Al Jazeera",
@@ -544,7 +565,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788968554000,
-      "_kind": null
+      "_kind": null,
+      "why": "Retaliation threat unclear for immediate price."
     },
     {
       "title": "Chicago wheat futures drop amid Ukraine diplomacy efforts",
@@ -576,7 +598,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788968484000,
-      "_kind": null
+      "_kind": null,
+      "why": "Price already at $100, direction unclear."
     },
     {
       "title": "Ukraine Strikes Deepest Yet Into Russia, Reaching a Region Behind 80% of Its Gas Production - UNITED24 Media",
@@ -597,7 +620,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788968457000,
-      "_kind": null
+      "_kind": null,
+      "why": "Strategic strike, immediate market impact unclear."
     },
     {
       "title": "Amazon and Oracle Are Extremely Anxious About The Upcoming Fed Meeting",
@@ -620,7 +644,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788968246000,
-      "_kind": null
+      "_kind": null,
+      "why": "Corporate anxiety does not dictate FX direction."
     },
     {
       "title": "One third of Gulf oil is still missing despite ’dark crossings’, data shows",
@@ -637,7 +662,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788968234000,
-      "_kind": null
+      "_kind": null,
+      "why": "Supply data ambiguous for price direction."
     },
     {
       "title": "Ukraine wants FIA to impose sanctions on Russian automobile federation: Report - Anadolu Ajansı",
@@ -658,7 +684,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788968226000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions on auto federation irrelevant to oil."
     },
     {
       "title": "Turkey stocks higher at close of trade; BIST 100 up 0.70%",
@@ -673,7 +700,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788968128000,
-      "_kind": null
+      "_kind": null,
+      "why": "Turkey stocks do not move US500."
     },
     {
       "title": "Poland stocks lower at close of trade; WIG30 down 0.91%",
@@ -688,7 +716,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788968103000,
-      "_kind": null
+      "_kind": null,
+      "why": "Poland stocks do not move US500."
     },
     {
       "title": "History Says This ETF Could Be the Safest Place to Invest During a Bear Market",
@@ -720,7 +749,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788968019000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "XAG/USD": "down"
+      },
+      "why": "Headline explicitly states sliding."
     },
     {
       "title": "U.S. Treasury yields rise sharply as buyback announcement underwhelms",
@@ -743,7 +777,13 @@
       "rel": 2,
       "srcs": 3,
       "firstAt": 1788967037000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Rising yields strengthen dollar, bearish for metals/FX."
     },
     {
       "title": "Iran sends wave of missiles toward U.S. base in Jordan after vowing escalation - The Washington Post",
@@ -764,7 +804,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788967990000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Missile attack escalates risk, bullish for safe havens."
     },
     {
       "title": "Jim Cramer Called the Magnificent Seven Cheap but the Three Building AI Factories Are All Trailing the S&P",
@@ -835,29 +881,6 @@
       "_kind": null
     },
     {
-      "title": "Treasury Yields Rise Despite Record $6B Debt Buyback",
-      "link": "https://finance.yahoo.com/real-estate/articles/treasury-yields-rise-despite-record-152432163.html",
-      "source": "Yahoo Finance",
-      "at": 1788967472000,
-      "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 3,
-      "firstAt": 1788967037000,
-      "_kind": null
-    },
-    {
       "title": "Brent crude oil rises above $100 a barrel as Middle East conflict intensifies",
       "link": "https://www.investing.com/news/commodities-news/brent-crude-rises-above-100-a-barrel-as-middle-east-conflict-escalates-4892829",
       "source": "Investing Cmdty",
@@ -875,19 +898,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788967466000,
-      "_kind": null
-    },
-    {
-      "title": "Signet Jewelers shares soar as retailer lifts profit outlook on cost discipline",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/signet-jewelers-shares-soar-retailer-152300025.html",
-      "source": "Yahoo Finance",
-      "at": 1788967380000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1788967380000,
       "_kind": null
     },
     {
@@ -2135,6 +2145,25 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1788950789000
+    },
+    {
+      "title": "Gold price today, Wednesday, September 9, 2026: Gold prices drop following U.S. strikes on five Iranian oil tankers",
+      "link": "https://finance.yahoo.com/personal-finance/investing/article/gold-price-today-wednesday-september-9-2026-gold-prices-drop-following-us-strikes-on-five-iranian-oil-tankers-104123795.html",
+      "source": "Yahoo Finance",
+      "at": 1788950483000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1788948000000
     }
   ],
   "sources": [
@@ -2157,10 +2186,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-09T15:52:57.425Z",
-  "headlinesAt": "2026-09-09T15:52:57.425Z",
-  "updatedAt": "2026-09-09T15:52:57.425Z"
+  "calendarAt": "2026-09-09T15:54:15.066Z",
+  "headlinesAt": "2026-09-09T15:54:15.066Z",
+  "updatedAt": "2026-09-09T15:54:15.066Z"
 }
