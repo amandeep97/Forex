@@ -23,6 +23,42 @@
       "_kind": null
     },
     {
+      "title": "Stock Market Indexes Drop, But One Megacap Gained 6.3%",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/stock-market-indexes-drop-one-164232172.html",
+      "source": "Yahoo Finance",
+      "at": 1788972152000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 1,
+      "srcs": 1,
+      "firstAt": 1788972152000,
+      "_kind": null
+    },
+    {
+      "title": "US treasury to buy back $6bn in government debt to alleviate bond market",
+      "link": "https://finance.yahoo.com/economy/policy/articles/us-treasury-buy-back-6bn-164106445.html",
+      "source": "Yahoo Finance",
+      "at": 1788972066000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788972066000,
+      "_kind": null
+    },
+    {
       "title": "Iran, U.S. attack tankers in biggest shipping strikes of war - Honolulu Star-Advertiser",
       "link": "https://news.google.com/rss/articles/CBMitgFBVV95cUxPTlRydXpsRDl1UHR4ZDBtT1VLM1k5ZDZuc1pjOXJRYmlpOVZXV1BtR3Q5TW1MM2tKVjdpRWVqeWQ5OEZtRjMyZGRlYTNBc0JwX2IzLXBrRXFlSDV5ZWxheXZDOS1yaHgzaDVvczBOU25FOXItU2QzenhOQjgxZGtEWmVGdklXalVyOFR1UTJQdUh1UXpLd0FNOE5HdnpYeE81ajBHYzdfdEJ1cTR4LXVFTUFYYWJZUQ?oc=5",
       "source": "Wires (geo)",
@@ -494,8 +530,8 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 3,
-      "firstAt": 1788967037000
+      "srcs": 2,
+      "firstAt": 1788967378000
     },
     {
       "title": "Iran sends wave of missiles toward U.S. base in Jordan after vowing escalation - The Washington Post",
@@ -607,25 +643,8 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 3,
+      "srcs": 2,
       "firstAt": 1788964941000
-    },
-    {
-      "title": "$6 Billion Treasury Buyback Fails To Calm 'Fever' As Oil Prices Jump",
-      "link": "https://www.investors.com/news/treasury-yields-bessent-buyback-sp-500-gold-oil-prices/?src=A00220&yptr=yahoo",
-      "source": "Yahoo Finance",
-      "at": 1788967037000,
-      "inst": [
-        "USOIL"
-      ],
-      "ccy": [
-        "USD",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 3,
-      "firstAt": 1788967037000
     },
     {
       "title": "Oil’s surge back above $100 fuels fresh inflation fears at a crucial time for interest rates",
@@ -1692,22 +1711,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788948296000
-    },
-    {
-      "title": "Mortgage & refinance rates today, Wednesday, September 9, 2026: Fixed rates inch upward, 5/1 ARM breaks past 7% as oil prices rise",
-      "link": "https://finance.yahoo.com/personal-finance/mortgages/article/mortgage--refinance-rates-today-wednesday-september-9-2026-fixed-rates-inch-upward-51-arm-breaks-past-7-as-oil-prices-rise-100000700.html",
-      "source": "Yahoo Finance",
-      "at": 1788948000000,
-      "inst": [
-        "USOIL"
-      ],
-      "ccy": [
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788948000000
     }
   ],
   "sources": [
@@ -1730,10 +1733,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-09T16:57:27.971Z",
-  "updatedAt": "2026-09-09T16:57:27.971Z"
+  "headlinesAt": "2026-09-09T16:58:42.634Z",
+  "updatedAt": "2026-09-09T16:58:42.634Z"
 }
