@@ -471,21 +471,6 @@
   ],
   "headlines": [
     {
-      "title": "S&P upgrades Smithfield Foods rating to BBB on parent upgrade",
-      "link": "https://www.investing.com/news/stock-market-news/sp-upgrades-smithfield-foods-rating-to-bbb-on-parent-upgrade-93CH-4893971",
-      "source": "Investing",
-      "at": 1788963576000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788963576000,
-      "_kind": null
-    },
-    {
       "title": "Dollar sinks as yen surges, oil nears $100 and ECB hike bets grow",
       "link": "https://www.investing.com/news/forex-news/asian-currencies-gain-as-yen-holds-near-sevenmonth-high-dollar-slips-4892703",
       "source": "Investing FX",
@@ -505,7 +490,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788963561000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "EUR/USD": "up",
+        "USD/JPY": "down",
+        "USOIL": "up"
+      },
+      "why": "Dollar weak, yen strong, oil rises"
     },
     {
       "title": "Gold climbs on weaker dollar; investors eye rate outlook, Mideast violence",
@@ -523,22 +514,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788963558000,
-      "_kind": null
-    },
-    {
-      "title": "S&P 500 tests pivotal 200-period MA support: Live levels",
-      "link": "https://www.investing.com/news/stock-market-news/sp-500-stalls-midrange-eyes-7780-break-live-levels-93CH-4890669",
-      "source": "Investing",
-      "at": 1788963437000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788963434000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Gold climbs on weaker dollar"
     },
     {
       "title": "Meta stock surges with Wall Street bullish on new AI agent",
@@ -551,9 +531,13 @@
       "ccy": [],
       "sev": 1,
       "rel": 2,
-      "srcs": 2,
+      "srcs": 3,
       "firstAt": 1788961320000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Meta surges, Wall Street bullish"
     },
     {
       "title": "Stock Market Today: Dow Off 350 Points As Oil Surges; Chevron Shares Move Past A Buy Point (Live Coverage)",
@@ -571,7 +555,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788962977000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "US30": "down"
+      },
+      "why": "Dow falls, oil surges"
     },
     {
       "title": "Iran sends wave of missiles toward U.S. base in Jordan after vowing escalation - The Washington Post",
@@ -592,10 +581,16 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788962774000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Geopolitical risk boosts safe havens, oil"
     },
     {
-      "title": "Iran threatens maritime sanctions on vessels entering newly declared zone without authorization - aa.com.tr",
+      "title": "Iran threatens maritime sanctions on vessels entering newly declared zone without authorization - Anadolu Ajansı",
       "link": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxONmt4T0hXenhNbFNkRlM0WFZTWjU4QjF2cTBHdGV6N0xORWFPOU1EU2ZyZkZWVHZpczVrTkRPRE80elpwZEI1ZHZRcWRzU2J6Y21OcjZvUDg2REtqRTlDMlAzLWwyMmhvdmlkME1GamgxR044YTU0eUpUcjNDd0Z3aVZ0aXJGd21JcURJWkRJOTJaTkkyMF9RUGV4T2xEZDhWdWZBc29aeExUTWFYYUhsSllDeS1rWHVhempoU21wQkREV09OWnVaN3pnNERJNjVxdTNaYjgzdm5MMHFsSmtiXw?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMi4AFBVV95cUxONmt4T0hXenhNbFNkRlM0WFZTWjU4QjF2cTBHdGV6N0xORWFPOU1EU2ZyZkZWVHZpczVrTkRPRE80elpwZEI1ZHZRcWRzU2J6Y21OcjZvUDg2REtqRTlDMlAzLWwyMmhvdmlkME1GamgxR044YTU0eUpUcjNDd0Z3aVZ0aXJGd21JcURJWkRJOTJaTkkyMF9RUGV4T2xEZDhWdWZBc29aeExUTW",
@@ -613,7 +608,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788961968000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Maritime threats boost risk assets"
     },
     {
       "title": "ExxonMobil Touts Permian Synergies, Guyana Cash Flow and LNG Growth at Barclays Conference",
@@ -628,7 +629,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788962724000,
-      "_kind": null
+      "_kind": null,
+      "why": "Exxon comments lack clear directional signal"
     },
     {
       "title": "Ukraine Strikes Russian Warships And Oil Terminal In Novorossiisk - Radio Free Europe/Radio Liberty",
@@ -649,7 +651,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788962693000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Ukraine strikes boost risk, oil supply"
     },
     {
       "title": "Could the Ukraine War Slow Down This Winter? - The National Interest",
@@ -670,7 +678,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788962686000,
-      "_kind": null
+      "_kind": null,
+      "why": "Speculative headline, unclear immediate impact"
     },
     {
       "title": "Rising Markets Lift Primerica’s (PRI) Investment Sales Outlook",
@@ -682,8 +691,7 @@
       "sev": 1,
       "rel": 1,
       "srcs": 1,
-      "firstAt": 1788962282000,
-      "_kind": null
+      "firstAt": 1788962282000
     },
     {
       "title": "Bond yields tick higher as oil tops $100: AlphaCheck",
@@ -700,7 +708,37 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788962260000,
-      "_kind": null
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil tops $100"
+    },
+    {
+      "title": "Wall Street slides as oil clears $100/bbl amid Middle East escalation - Seeking Alpha",
+      "link": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQV2RNQjlMUVlQVWozTUtVelpxbmMzcUt5N2gwQlp0d0JWNHhXRWFPUDFMLW95UmwwbXB5THdCbnVXdTFEc0IzcHhSNjRTX0U5cDVXV3pHRzB5MU4zbWlUeFVyb19WMDZQeUpTUFFERm1HVXRLeVJ1TnMyVThQc3duMGwzT2FISEw2WXJET2ZSQzZRcjhfbVVjMEQ0UUNhTS1PbXFKQjFoQXo?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiqAFBVV95cUxQV2RNQjlMUVlQVWozTUtVelpxbmMzcUt5N2gwQlp0d0JWNHhXRWFPUDFMLW95UmwwbXB5THdCbnVXdTFEc0IzcHhSNjRTX0U5cDVXV3pHRzB5MU4zbWlUeFVyb19WMDZQeUpTUFFERm1HVXRLeVJ1TnMyVThQc3duMGwzT2FISEw2WXJET2ZSQzZRcjhfbVVjMEQ0UUNhTS1PbXFKQjFoQXo?oc",
+      "at": 1788962215000,
+      "inst": [
+        "USOIL",
+        "US500",
+        "XAU/USD",
+        "UKOIL"
+      ],
+      "ccy": [
+        "OIL",
+        "XAU"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 4,
+      "firstAt": 1788960720000,
+      "dir": {
+        "USOIL": "up",
+        "US500": "down",
+        "XAU/USD": "up"
+      },
+      "why": "Oil up, stocks down, gold up"
     },
     {
       "title": "Brent crude oil rises above $100 a barrel as Middle East conflict intensifies",
@@ -719,7 +757,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 3,
-      "firstAt": 1788960720000
+      "firstAt": 1788960720000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up",
+        "XAU/USD": "up"
+      },
+      "why": "Brent rises, conflict intensifies"
     },
     {
       "title": "Turkish, Kazakh, and Malaysian Companies Hit With New US Sanctions Over Iran - The Diplomat – Asia-Pacific Current Affairs Magazine",
@@ -739,7 +783,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788961968000
+      "firstAt": 1788961968000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Sanctions boost risk, oil supply concerns"
     },
     {
       "title": "Oil Prices Jump, Treasury Yields Firm With Bessent Set To Calm 'Fever'",
@@ -756,7 +806,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788961570000
+      "firstAt": 1788961570000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil prices jump"
     },
     {
       "title": "Refining bottlenecks are emerging as the next big oil problem as Middle East skirmishes flare up",
@@ -773,7 +827,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 3,
-      "firstAt": 1788960720000
+      "firstAt": 1788960720000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Refining bottlenecks push prices higher"
     },
     {
       "title": "Oil’s return above $100 a barrel puts inflation back at the center of Wall Street’s concerns",
@@ -791,7 +849,7 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 2,
+      "srcs": 3,
       "firstAt": 1788961320000
     },
     {
@@ -2128,12 +2186,28 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788945483000
+    },
+    {
+      "title": "Citi sees limited euro gains despite hawkish ECB rate hike outlook",
+      "link": "https://www.investing.com/news/forex-news/citi-sees-limited-euro-gains-despite-hawkish-ecb-rate-hike-outlook-93CH-4892946",
+      "source": "Investing FX",
+      "at": 1788944780000,
+      "inst": [
+        "EUR/USD"
+      ],
+      "ccy": [
+        "EUR",
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788944780000
     }
   ],
   "sources": [
     "ForexLive",
     "MarketWatch",
-    "Investing",
     "Investing FX",
     "Investing Cmdty",
     "CNBC Markets",
@@ -2145,15 +2219,19 @@
   ],
   "failed": [
     {
+      "name": "Investing",
+      "why": "network timeout at: https://www.investing.com/rss/news_25.rss"
+    },
+    {
       "name": "FXStreet",
       "why": "403"
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-09T14:27:11.967Z",
-  "headlinesAt": "2026-09-09T14:27:11.967Z",
-  "updatedAt": "2026-09-09T14:27:11.967Z"
+  "calendarAt": "2026-09-09T14:29:15.090Z",
+  "headlinesAt": "2026-09-09T14:29:15.090Z",
+  "updatedAt": "2026-09-09T14:29:15.090Z"
 }
