@@ -483,7 +483,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788961252000,
-      "_kind": null
+      "_kind": null,
+      "why": "Corporate news, no clear FX impact"
     },
     {
       "title": "Oil Prices Jump, Treasury Yields Firm With Bessent Set To Calm 'Fever'",
@@ -501,7 +502,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788961570000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil prices jump explicitly"
     },
     {
       "title": "Refining bottlenecks are emerging as the next big oil problem as Middle East skirmishes flare up",
@@ -519,7 +524,11 @@
       "rel": 2,
       "srcs": 3,
       "firstAt": 1788960643000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Refining bottlenecks push prices higher"
     },
     {
       "title": "US startup Covenant to launch cruise missile production in Germany next year",
@@ -537,7 +546,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788961445000,
-      "_kind": null
+      "_kind": null,
+      "why": "Geopolitical news, direction unclear"
     },
     {
       "title": "Stock Market Today: Dow Falls As Brent Crosses $100 A Barrel; Apple Shares Drop Ahead Of iPhone Event (Live Coverage)",
@@ -556,7 +566,13 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1788960643000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up",
+        "US30": "down"
+      },
+      "why": "Brent crosses $100, Dow falls"
     },
     {
       "title": "Wall St indexes open lower as oil crosses $100",
@@ -573,7 +589,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788961400000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil crosses $100"
     },
     {
       "title": "Chime shares jump as Stride deal puts fintech on path to bank charter",
@@ -607,7 +627,12 @@
       "rel": 2,
       "srcs": 3,
       "firstAt": 1788960643000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Oil rises, gold direction unclear"
     },
     {
       "title": "Medtronic Is on the Cusp of Becoming a Dividend King. Is the Stock a Buy for Income Investors?",
@@ -652,7 +677,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788960871000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up",
+        "US500": "down"
+      },
+      "why": "Oil tops $100, risk to stocks"
     },
     {
       "title": "Press Review - The Times: 'Counterproductive' sanctions on Israel don't match the 'theatrical rhetoric' - France 24",
@@ -673,7 +704,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788960952000,
-      "_kind": null
+      "_kind": null,
+      "why": "Press review, no clear direction"
     },
     {
       "title": "$100,000 in Cash Quietly Loses About $3,000 a Year to Inflation. Here’s Where Retirees Are Parking It Instead",
@@ -696,7 +728,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788960940000,
-      "_kind": null
+      "_kind": null,
+      "why": "Inflation article, no clear direction"
     },
     {
       "title": "Marvell CEO Matt Murphy says trust with big tech drove stock surge",
@@ -711,7 +744,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788960937000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US100": "up"
+      },
+      "why": "Stock surge mentioned"
     },
     {
       "title": "Crypto Firm Block Files For U.S. Bank Charter",
@@ -728,7 +765,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788960846000,
-      "_kind": null
+      "_kind": null,
+      "why": "Bank charter filing, neutral impact"
     },
     {
       "title": "Gold Slips, Silver Jumps in Delhi Amid Inflation Fears - Rediff MoneyWiz",
@@ -749,7 +787,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788960889000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "XAG/USD": "up"
+      },
+      "why": "Gold slips, silver jumps"
     },
     {
       "title": "Brent oil tops $100 as Middle East conflict intensifies, stoking supply fears",
@@ -769,7 +812,12 @@
       "rel": 2,
       "srcs": 3,
       "firstAt": 1788960643000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Oil tops $100, gold unclear"
     },
     {
       "title": "U.S. stocks open lower amid oil above $100 and caution ahead of key inflation data",
@@ -788,7 +836,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788960865000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "US500": "down"
+      },
+      "why": "Oil above $100, stocks lower"
     },
     {
       "title": "Look Very Hard at Microsoft and Alphabet as Rate Hike Fears Roil Markets - 24/7 Wall St.",
@@ -860,8 +913,7 @@
       "sev": 1,
       "rel": 1,
       "srcs": 1,
-      "firstAt": 1788960350000,
-      "_kind": null
+      "firstAt": 1788960350000
     },
     {
       "title": "Bessent says, ‘I am the house now.’ What that means for the yen — and U.S. stocks.",
@@ -2154,7 +2206,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-09T13:54:31.612Z",
-  "headlinesAt": "2026-09-09T13:54:31.612Z",
-  "updatedAt": "2026-09-09T13:54:31.612Z"
+  "calendarAt": "2026-09-09T13:55:58.917Z",
+  "headlinesAt": "2026-09-09T13:55:58.917Z",
+  "updatedAt": "2026-09-09T13:55:58.917Z"
 }
