@@ -489,7 +489,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788973980000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Geopolitical conflict boosts oil and gold"
     },
     {
       "title": "Stock Market Today: Dow Slumps As Oil Jumps; AI Stock Lumentum Tops Entry (Live Coverage)",
@@ -507,7 +513,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788973814000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "US30": "down"
+      },
+      "why": "Oil jumps, Dow slumps"
     },
     {
       "title": "SpaceX Falls More Than 4% as 319 Million Shares Unlock",
@@ -537,7 +548,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788973658000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "UKOIL": "up"
+      },
+      "why": "Brent crude breaches $100"
     },
     {
       "title": "Block seeks national trust charter to offer crypto custody",
@@ -554,7 +569,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788973553000,
-      "_kind": null
+      "_kind": null,
+      "why": "Regulatory news, unclear market impact"
     },
     {
       "title": "DocuSign CFO Sells 45,000 Shares for $3.1 Million, Reducing Direct Holdings by a Whopping 36%",
@@ -614,7 +630,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788973440000,
-      "_kind": null
+      "_kind": null,
+      "why": "Diplomatic comment, no direct market impact"
     },
     {
       "title": "Oil hits $100 a barrel for first time since July after US and Houthi strikes",
@@ -634,7 +651,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788972413000
+      "firstAt": 1788972413000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up",
+        "XAU/USD": "up"
+      },
+      "why": "Oil hits $100, geopolitical risk"
     },
     {
       "title": "Renewed Middle East Fighting Keeps Bid in Oil - WSJ",
@@ -651,7 +674,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788972120000
+      "firstAt": 1788972120000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Middle East fighting keeps bid in oil"
     },
     {
       "title": "Beloved burger chain goes full MAGA, and sales are soaring. Can you make money on the Trump Train? 3 stocks to bet on",
@@ -665,7 +692,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788971400000
+      "firstAt": 1788971400000,
+      "why": "Specific stock news, unclear index impact"
     },
     {
       "title": "U.S. and Iran strike each other again, further driving up gas prices - 13newsnow.com",
@@ -685,7 +713,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788971100000
+      "firstAt": 1788971100000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Strikes drive up gas prices"
     },
     {
       "title": "U.S., Iran continue to exchange strikes - CBS News",
@@ -705,7 +739,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788970740000
+      "firstAt": 1788970740000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Continued strikes increase risk premium"
     },
     {
       "title": "Gasoline refining margins drop in Europe as crude tops $100",
@@ -722,7 +762,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788970682000
+      "firstAt": 1788970682000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Crude tops $100"
     },
     {
       "title": "Fed rate hike hinges on two key inflation reports in the next two days",
@@ -745,7 +790,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788970680000
+      "firstAt": 1788970680000,
+      "why": "Inflation data pending, direction unclear"
     },
     {
       "title": "Diesel price leaps after Iran war escalation - TheTrucker.com",
@@ -765,7 +811,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788967990000
+      "firstAt": 1788967990000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Diesel price leaps on war escalation"
     },
     {
       "title": "Investors worried about rising bond yields are keeping a close eye on this corner of the market",
@@ -782,10 +834,14 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788970140000
+      "firstAt": 1788970140000,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Rising yields pressure small-cap stocks"
     },
     {
-      "title": "Gold price recovers ahead of US inflation data - mining.com.au",
+      "title": "Gold price recovers ahead of US inflation data - Mining.com.au",
       "link": "https://news.google.com/rss/articles/CBMieEFVX3lxTE9RT3ZzX2ZSVS00QlUtSTVNQXVMdVlSSlRYQTh3d0R0RTZPOHpPU1BSZWd6YXNWR0Z6U2lyZlI0cW1aUWNBYUJ6VnpjNWZIRDItYmZ0S3B0QVN6TDg0MGRBZFZuaVR6YmkyMzUwQjhMSjdtalRrWkRlRA?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMieEFVX3lxTE9RT3ZzX2ZSVS00QlUtSTVNQXVMdVlSSlRYQTh3d0R0RTZPOHpPU1BSZWd6YXNWR0Z6U2lyZlI0cW1aUWNBYUJ6VnpjNWZIRDItYmZ0S3B0QVN6TDg0MGRBZFZuaVR6YmkyMzUwQjhMSjdtalRrWkRlRA?oc=5\" target=\"_blank\">Gold price recovers ahead of US inflation dat",
@@ -800,7 +856,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788970050000
+      "firstAt": 1788970050000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Gold price recovers"
     },
     {
       "title": "European gas prices climb above €80 amid Hormuz tensions",
@@ -1137,7 +1197,7 @@
       "firstAt": 1788967774000
     },
     {
-      "title": "Crude Surge Rekindles Inflation Fears; Markets Slide - hdfcsky.com",
+      "title": "Crude Surge Rekindles Inflation Fears; Markets Slide - HDFC Sky",
       "link": "https://news.google.com/rss/articles/CBMikwFBVV95cUxOYlhOcWJOM1BBdVNSY0xyRTZ6ejY1ZXkxMVVzLUNJenVBaTQ5Q2FBc0Y0QTVGS3g2c3IxbmliNUJCWUxPMlRnNUctWWFaRkFjcEFKRVZtQ3RRZ2Q3RkNiR0dZVGJ1c0l3Y3l5ZnBuc3NFRGE1cmpZeFNPZGNWbG1PUUc0OWM4VGlxUVR4ZmNzQVJQY3M?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMikwFBVV95cUxOYlhOcWJOM1BBdVNSY0xyRTZ6ejY1ZXkxMVVzLUNJenVBaTQ5Q2FBc0Y0QTVGS3g2c3IxbmliNUJCWUxPMlRnNUctWWFaRkFjcEFKRVZtQ3RRZ2Q3RkNiR0dZVGJ1c0l3Y3l5ZnBuc3NFRGE1cmpZeFNPZGNWbG1PUUc0OWM4VGlxUVR4ZmNzQVJQY3M?oc=5\" target=\"_blank\">Crude Su",
@@ -2188,7 +2248,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-09T17:29:27.903Z",
-  "headlinesAt": "2026-09-09T17:29:27.903Z",
-  "updatedAt": "2026-09-09T17:29:27.903Z"
+  "calendarAt": "2026-09-09T17:30:30.577Z",
+  "headlinesAt": "2026-09-09T17:30:30.577Z",
+  "updatedAt": "2026-09-09T17:30:30.577Z"
 }
