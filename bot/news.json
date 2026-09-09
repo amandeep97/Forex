@@ -2,6 +2,29 @@
   "calendar": [],
   "headlines": [
     {
+      "title": "Bitcoin and ethereum prices today, Wednesday, September 9, 2026: Ongoing escalations in the Middle East are keeping a lid on crypto",
+      "link": "https://finance.yahoo.com/personal-finance/investing/article/bitcoin-and-ethereum-prices-today-wednesday-september-9-2026-ongoing-escalations-in-the-middle-east-are-keeping-a-lid-on-crypto-112541573.html",
+      "source": "Yahoo Finance",
+      "at": 1788953141000,
+      "inst": [
+        "BTC/USDT",
+        "ETH/USDT"
+      ],
+      "ccy": [
+        "BTC"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 3,
+      "firstAt": 1788950483000,
+      "_kind": null,
+      "dir": {
+        "BTC/USDT": "down",
+        "ETH/USDT": "down"
+      },
+      "why": "Escalations keeping a lid on crypto prices"
+    },
+    {
       "title": "Strategists say S&P 500 could top 8,000 — but risks of a pullback are mounting",
       "link": "https://www.marketwatch.com/story/strategists-say-s-p-500-could-top-8-000-but-risks-of-a-pullback-are-mounting-e1629564?mod=mw_rss_topstories",
       "source": "MarketWatch",
@@ -15,7 +38,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788953040000,
-      "_kind": null
+      "_kind": null,
+      "why": "High targets but mounting pullback risks"
     },
     {
       "title": "TSX futures slip as traders eye oil price surge, incoming U.S. inflation data",
@@ -33,7 +57,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788952810000,
-      "_kind": null
+      "_kind": null,
+      "why": "Traders eye oil surge and inflation data"
     },
     {
       "title": "Brent crude rises above $100 a barrel as Middle East conflict intensifies",
@@ -51,9 +76,15 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 2,
+      "srcs": 3,
       "firstAt": 1788950843000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up",
+        "XAU/USD": "up"
+      },
+      "why": "Brent rises above $100 on conflict"
     },
     {
       "title": "Chime shares jump 10% as Stride deal puts fintech on path to bank charter",
@@ -83,7 +114,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788952699000,
-      "_kind": null
+      "_kind": null,
+      "why": "New copper-gold production at Skouries site"
     },
     {
       "title": "U.S. military destroys 5 Iranian oil tankers. And, the Smithsonian head resigns - NPR",
@@ -104,7 +136,38 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1788950483000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Military destroys Iranian tankers, supply risk"
+    },
+    {
+      "title": "Dow Jones Futures Fall As Oil Prices Push Stocks Toward Breaking Point; Apple iPhone Event Due",
+      "link": "https://www.investors.com/market-trend/stock-market-today/dow-jones-futures-oil-prices-amd-hpe-new-buys-apple-iphone-event/?src=A00220&yptr=yahoo",
+      "source": "Yahoo Finance",
+      "at": 1788952343000,
+      "inst": [
+        "USOIL",
+        "US500",
+        "US30"
+      ],
+      "ccy": [
+        "OIL"
+      ],
+      "sev": 3,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788952343000,
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "US500": "down",
+        "US30": "down"
+      },
+      "why": "Oil pushes stocks toward breaking point"
     },
     {
       "title": "Ukrainian drone attack on Novorossiysk kills four as Russia reports nearly 600 drones intercepted - AzerNews",
@@ -125,7 +188,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788952249000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Ukrainian drone attack on Russian oil hub"
     },
     {
       "title": "European stocks hit multi-lows with oil at $100 and ECB hike in sight",
@@ -145,7 +214,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788951992000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "EUR/USD": "down",
+        "USOIL": "up",
+        "US500": "down"
+      },
+      "why": "European stocks hit multi-lows, oil high"
     },
     {
       "title": "Analysis-Fearless US stock market vulnerable to shocks as midterms loom",
@@ -179,26 +254,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788950130000,
-      "_kind": null
-    },
-    {
-      "title": "Dow Jones Futures Fall As Oil Prices Push Stocks Toward Breaking Point; Apple iPhone Event Due",
-      "link": "https://www.investors.com/market-trend/stock-market-today/dow-jones-futures-oil-prices-amd-hpe-new-buys-apple-iphone-event/?src=A00220&yptr=yahoo",
-      "source": "Yahoo Finance",
-      "at": 1788951910000,
-      "inst": [
-        "USOIL",
-        "US500",
-        "US30"
-      ],
-      "ccy": [
-        "OIL"
-      ],
-      "sev": 3,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788951910000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Iran sends missiles, vows escalation"
     },
     {
       "title": "Market Volatility Is Picking Up. Here's the ETF That History Says Has Always Rewarded Patient Investors",
@@ -227,7 +289,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788951780000,
-      "_kind": null
+      "why": "UBS recommends buying European stocks"
     },
     {
       "title": "Melius sees oil prices climb on extended Jizan plant shutdown",
@@ -244,7 +306,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788951691000
+      "firstAt": 1788951691000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Melius sees oil climb on shutdown"
     },
     {
       "title": "Silver price today, Wednesday, September 9, 2026: Silver prices hold in the $66 range as U.S.-Iranian attacks continue",
@@ -265,7 +331,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788950483000
+      "firstAt": 1788950483000,
+      "why": "Silver holds range as attacks continue"
     },
     {
       "title": "Russia and Ukraine exchange strikes as two killed at Moldova border - Yahoo",
@@ -285,7 +352,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788950789000
+      "firstAt": 1788950789000,
+      "why": "Russia and Ukraine exchange strikes"
     },
     {
       "title": "NEOS Gold High Income ETF (IAUI): An Income-Focused Approach to Gold Exposure",
@@ -301,7 +369,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788951521000
+      "firstAt": 1788951521000,
+      "why": "New gold income ETF launch"
     },
     {
       "title": "The losers of the US-Canada trade war",
@@ -394,7 +463,7 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 2,
+      "srcs": 3,
       "firstAt": 1788950843000
     },
     {
@@ -1641,19 +1710,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788936265000
-    },
-    {
-      "title": "Adani Enterprises shares jump as airport unit enters into $1 billion fundraising deal",
-      "link": "https://www.cnbc.com/2026/09/09/adani-enterprises-airport-fundraise-shares.html",
-      "source": "CNBC Markets",
-      "desc": "The investors will subscribe to new shares in three tranches and collectively own about 5.54% of the airport operator after the final tranche.",
-      "at": 1788935219000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1788935219000
     }
   ],
   "sources": [
@@ -1680,6 +1736,6 @@
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-09T11:32:59.481Z",
-  "updatedAt": "2026-09-09T11:32:59.481Z"
+  "headlinesAt": "2026-09-09T11:33:59.745Z",
+  "updatedAt": "2026-09-09T11:33:59.745Z"
 }
