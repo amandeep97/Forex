@@ -2,6 +2,164 @@
   "calendar": [],
   "headlines": [
     {
+      "title": "FTSE 100 today: Stocks drop to 7-week low as U.S.-Iran war drives Brent above $100",
+      "link": "https://www.investing.com/news/stock-market-news/ftse-100-today-stocks-retreat-as-gulf-strikes-send-oil-toward-100-4892795",
+      "source": "Investing",
+      "at": 1788970120000,
+      "inst": [
+        "UKOIL",
+        "US500",
+        "XAU/USD",
+        "USOIL"
+      ],
+      "ccy": [
+        "OIL",
+        "XAU"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1788967466000,
+      "_kind": null,
+      "dir": {
+        "UKOIL": "up",
+        "US500": "down",
+        "XAU/USD": "up"
+      },
+      "why": "War drives oil up, stocks down"
+    },
+    {
+      "title": "Portugal stocks lower at close of trade; PSI down 0.38%",
+      "link": "https://www.investing.com/news/stock-market-news/portugal-stocks-lower-at-close-of-trade-psi-down-038-4894159",
+      "source": "Investing",
+      "at": 1788970082000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788970082000,
+      "_kind": null,
+      "why": "Portugal stocks down, no US impact"
+    },
+    {
+      "title": "Netherlands stocks lower at close of trade; AEX down 1.27%",
+      "link": "https://www.investing.com/news/stock-market-news/netherlands-stocks-lower-at-close-of-trade-aex-down-127-4894155",
+      "source": "Investing",
+      "at": 1788970055000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788970055000,
+      "_kind": null,
+      "why": "Netherlands stocks down, no US impact"
+    },
+    {
+      "title": "Italy stocks lower at close of trade; Investing.com Italy 40 down 0.60%",
+      "link": "https://www.investing.com/news/stock-market-news/italy-stocks-lower-at-close-of-trade-investingcom-italy-40-down-060-4894153",
+      "source": "Investing",
+      "at": 1788970029000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788970029000,
+      "_kind": null,
+      "why": "Italy stocks down, no US impact"
+    },
+    {
+      "title": "Germany stocks lower at close of trade; DAX down 1.74%",
+      "link": "https://www.investing.com/news/stock-market-news/germany-stocks-lower-at-close-of-trade-dax-down-174-4894150",
+      "source": "Investing",
+      "at": 1788969978000,
+      "inst": [
+        "EUR/USD",
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788969978000,
+      "_kind": null,
+      "why": "German stocks down, no clear FX/US"
+    },
+    {
+      "title": "France stocks lower at close of trade; CAC 40 down 1.94%",
+      "link": "https://www.investing.com/news/stock-market-news/france-stocks-lower-at-close-of-trade-cac-40-down-194-4894149",
+      "source": "Investing",
+      "at": 1788969932000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788969932000,
+      "_kind": null,
+      "why": "French stocks down, no US impact"
+    },
+    {
+      "title": "U.S. stocks and bonds slide as Treasury buyback update disappoints, oil tops $100",
+      "link": "https://www.investing.com/news/stock-market-news/us-stock-futures-muted-as-oil-nears-100-fed-hike-bets-rise-4892640",
+      "source": "Investing",
+      "at": 1788969910000,
+      "inst": [
+        "USOIL",
+        "US500"
+      ],
+      "ccy": [
+        "USD",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 4,
+      "firstAt": 1788967378000,
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "US500": "down"
+      },
+      "why": "US stocks slide, oil tops $100"
+    },
+    {
+      "title": "European gas prices climb above €80 amid Hormuz tensions",
+      "link": "https://www.investing.com/news/commodities-news/european-gas-prices-climb-above-80-amid-hormuz-tensions-93CH-4894146",
+      "source": "Investing Cmdty",
+      "at": 1788969775000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788969775000,
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Hormuz tensions boost oil and gold"
+    },
+    {
       "title": "Two die at Moldovan border as Russia-Ukraine drone war rages",
       "link": "https://www.bbc.co.uk/news/articles/cvgyvpxe3yjo?at_medium=RSS&at_campaign=rss",
       "source": "BBC World",
@@ -20,7 +178,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788969714000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Ukraine war escalates, gold safe haven"
     },
     {
       "title": "Treasury will buy more government bonds than previously announced. The market remains ‘underwhelmed.’",
@@ -43,7 +205,63 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1788967205000,
+      "firstAt": 1788969180000,
+      "_kind": null,
+      "why": "Treasury buyback underwhelms market"
+    },
+    {
+      "title": "Cathie Wood Goes Bargain Hunting: 3 Stocks She Just Bought",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/cathie-wood-goes-bargain-hunting-155300681.html",
+      "source": "Yahoo Finance",
+      "at": 1788969180000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788969180000,
+      "_kind": null,
+      "why": "Cathie Wood buys specific stocks"
+    },
+    {
+      "title": "Regional Bank CEO Sells 4,333 Shares As a Result of Tax Withholding",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/regional-bank-ceo-sells-4-155002732.html",
+      "source": "Yahoo Finance",
+      "at": 1788969002000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 1,
+      "srcs": 1,
+      "firstAt": 1788969001000,
+      "_kind": null
+    },
+    {
+      "title": "Lyft Executive Lindsay Llewellyn Sells 13,204 Shares for $219,715",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/lyft-executive-lindsay-llewellyn-sells-155001424.html",
+      "source": "Yahoo Finance",
+      "at": 1788969001000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 1,
+      "srcs": 1,
+      "firstAt": 1788969001000,
+      "_kind": null
+    },
+    {
+      "title": "What Is an ETF? I Think It's the Single Best Starting Point for New Investors.",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/etf-think-single-best-starting-155000891.html",
+      "source": "Yahoo Finance",
+      "at": 1788969000000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 1,
+      "srcs": 1,
+      "firstAt": 1788969000000,
       "_kind": null
     },
     {
@@ -65,7 +283,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788968700000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Israel retaliation increases geopolitical risk"
     },
     {
       "title": "Stocks making the biggest moves midday: Meta, Centerspace, Apple, Casey's General Stores, Signet & more",
@@ -81,7 +303,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788968634000,
-      "_kind": null
+      "_kind": null,
+      "why": "Individual stock moves, no index direction"
     },
     {
       "title": "As the UK sanctions Israeli settlements, is the two-state solution dead?",
@@ -102,24 +325,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788968609000,
-      "_kind": null
-    },
-    {
-      "title": "NuScale Power: 1 Catalyst That Will Make or Break This Nuclear Stock",
-      "link": "https://finance.yahoo.com/energy/articles/nuscale-power-1-catalyst-break-154300709.html",
-      "source": "Yahoo Finance",
-      "at": 1788968580000,
-      "inst": [
-        "XAU/USD"
-      ],
-      "ccy": [
-        "XAU"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788968580000,
-      "_kind": null
+      "_kind": null,
+      "why": "UK sanctions analysis, no market move"
     },
     {
       "title": "Sudan gold ban takes effect in Switzerland on Thursday",
@@ -137,7 +344,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788968561000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sudan gold ban, no clear direction"
     },
     {
       "title": "Chicago wheat futures drop amid Ukraine diplomacy efforts",
@@ -210,28 +418,6 @@
       "_kind": null
     },
     {
-      "title": "Amazon and Oracle Are Extremely Anxious About The Upcoming Fed Meeting",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/amazon-oracle-extremely-anxious-upcoming-153726832.html",
-      "source": "Yahoo Finance",
-      "at": 1788968246000,
-      "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788968246000
-    },
-    {
       "title": "One third of Gulf oil is still missing despite ’dark crossings’, data shows",
       "link": "https://www.investing.com/news/commodities-news/one-third-of-gulf-oil-is-still-missing-despite-dark-crossings-data-shows-4894113",
       "source": "Investing Cmdty",
@@ -248,7 +434,7 @@
       "firstAt": 1788968234000
     },
     {
-      "title": "Ukraine wants FIA to impose sanctions on Russian automobile federation: Report - aa.com.tr",
+      "title": "Ukraine wants FIA to impose sanctions on Russian automobile federation: Report - Anadolu Ajansı",
       "link": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxPYXZtQVZSUmEtaGdUVG92ekV4bEhTd3c2aWplOFhhSkVaUmpOQXRrakV3UE9XTWF5YUEzRjhTX01tTnMyemwyR0FjemwtQ2stcWxWb2tIdW41QTBnLUhTVEdjUmI2QUwxT3pvekNXR1BXVkl0WFBHbGxMQlZCYkJnN25mbWFSLUNGaWd6SXhGdGNHUk1xY2V0Q2o2ZVkwTGZlYm0xUzlwYmhCRldDR01UWDZNMXdCaFFRZWRYVXJfblVuUTlBZER0Zw?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiyAFBVV95cUxPYXZtQVZSUmEtaGdUVG92ekV4bEhTd3c2aWplOFhhSkVaUmpOQXRrakV3UE9XTWF5YUEzRjhTX01tTnMyemwyR0FjemwtQ2stcWxWb2tIdW41QTBnLUhTVEdjUmI2QUwxT3pvekNXR1BXVkl0WFBHbGxMQlZCYkJnN25mbWFSLUNGaWd6SXhGdGNHUk1xY2V0Q2o2ZVkwTGZlYm0xUzlwYmhCRl",
@@ -266,34 +452,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788968226000
-    },
-    {
-      "title": "Turkey stocks higher at close of trade; BIST 100 up 0.70%",
-      "link": "https://www.investing.com/news/stock-market-news/turkey-stocks-higher-at-close-of-trade-bist-100-up-070-4894108",
-      "source": "Investing",
-      "at": 1788968128000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788968128000
-    },
-    {
-      "title": "Poland stocks lower at close of trade; WIG30 down 0.91%",
-      "link": "https://www.investing.com/news/stock-market-news/poland-stocks-lower-at-close-of-trade-wig30-down-091-4894106",
-      "source": "Investing",
-      "at": 1788968103000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788968103000
     },
     {
       "title": "Why is Gold Spot Silver Spot stock sliding today?",
@@ -373,18 +531,24 @@
       "firstAt": 1788966472000
     },
     {
-      "title": "Denmark stocks lower at close of trade; OMX Copenhagen 20 down 1.26%",
-      "link": "https://www.investing.com/news/stock-market-news/denmark-stocks-lower-at-close-of-trade-omx-copenhagen-20-down-126-4894094",
-      "source": "Investing",
-      "at": 1788967803000,
+      "title": "Iran's IRGC set to declare new ‘sanctions zone’ beyond Hormuz: What to know - Al-Monitor",
+      "link": "https://news.google.com/rss/articles/CBMirwFBVV95cUxQcU1sdGc4clBWTVBPMWZDU18wSW5Yb0hySElkelV2U3Z6eGZ3RWJfcmdOeWVncmc4dzlIZHgyNkZnT1E5Z0pMbW1oYjNfSklWSWtyM0xOVTN1aHdzVktISGVvcGtNRVc2V1ZoTkFnN0pMRlNZRm9xdWhKd3I4SHQ2YU5Yc0J4V0VDdTJLRlFNTVZnQUY3YUl6UUxGRGZ3WmFDbGhkRE5fYzFoLThzVzNV?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMirwFBVV95cUxQcU1sdGc4clBWTVBPMWZDU18wSW5Yb0hySElkelV2U3Z6eGZ3RWJfcmdOeWVncmc4dzlIZHgyNkZnT1E5Z0pMbW1oYjNfSklWSWtyM0xOVTN1aHdzVktISGVvcGtNRVc2V1ZoTkFnN0pMRlNZRm9xdWhKd3I4SHQ2YU5Yc0J4V0VDdTJLRlFNTVZnQUY3YUl6UUxGRGZ3WmFDbGhkRE5fYzFoLT",
+      "at": 1788967774000,
       "inst": [
-        "US500"
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
       ],
-      "ccy": [],
-      "sev": 1,
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788967803000
+      "firstAt": 1788967774000
     },
     {
       "title": "Crude Surge Rekindles Inflation Fears; Markets Slide - HDFC Sky",
@@ -421,7 +585,7 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 1,
+      "srcs": 2,
       "firstAt": 1788967466000
     },
     {
@@ -443,22 +607,6 @@
       "firstAt": 1788964891000
     },
     {
-      "title": "U.S. stocks extend losses, bonds slide after Treasury buyback update disappoints",
-      "link": "https://www.investing.com/news/stock-market-news/us-stock-futures-muted-as-oil-nears-100-fed-hike-bets-rise-4892640",
-      "source": "Investing",
-      "at": 1788967205000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 5,
-      "firstAt": 1788967037000
-    },
-    {
       "title": "$6 Billion Treasury Buyback Fails To Calm 'Fever' As Oil Prices Jump",
       "link": "https://www.investors.com/news/treasury-yields-bessent-buyback-sp-500-gold-oil-prices/?src=A00220&yptr=yahoo",
       "source": "Yahoo Finance",
@@ -472,7 +620,7 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 4,
+      "srcs": 3,
       "firstAt": 1788967037000
     },
     {
@@ -534,20 +682,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788966705000
-    },
-    {
-      "title": "Morocco stocks higher at close of trade; Moroccan All Shares up 0.13%",
-      "link": "https://www.investing.com/news/stock-market-news/morocco-stocks-higher-at-close-of-trade-moroccan-all-shares-up-013-4894070",
-      "source": "Investing",
-      "at": 1788966604000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788966604000
     },
     {
       "title": "Chewy Stock Slumps As In-Line Earnings Not Enough To Escape Wall Street's Doghouse",
@@ -634,20 +768,6 @@
       "firstAt": 1788962693000
     },
     {
-      "title": "Lufthansa to buy cargo terminal operator in Germany",
-      "link": "https://finance.yahoo.com/small-business/articles/lufthansa-buy-cargo-terminal-operator-143624152.html",
-      "source": "Yahoo Finance",
-      "at": 1788964584000,
-      "inst": [
-        "EUR/USD"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788964584000
-    },
-    {
       "title": "Gold Spikes 3% After Fresh Poll Signals No Fed Rate Hike In 2026 - NDTV Profit",
       "link": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxQeEwzQnMtWHBaRUJuMzlCUjJnOS0xTEN6dU9SamQxSUVMRVZVUmF2WXBULTJ5V2lBdzFCdmMtVVNoYUxLbXJkeDZtUy1tdGV4SjJxejR0Z29zY1BsNHhRUmwzT3RuN0xJTTZMem5pY05ES25pME1IWkVJUG1SSnRMWV9TdDQxdGNiRW9NU0RHUnlEc0VaWUxXaURkaUduRDl3Zm1mN2xxS2hTaGPSAbMBQVVfeXFMUGJfRXctRXQtU3BlSS1DVFFtaE84WWhRZlRoX3RjZFZHOEtvUzhxWXpPNmZJNjBlM3llalVRaXhDSUN1RWFDeXNNczZwbFl4aUctSzRZYUw3OE5wbGZzUTI4X3Y2QjdYSi1ETjVQQ2lLOC1OUjMzdVhPTXBaU0dzTU5NcGpHQlVYMlU0clFOLTFBVWxxemZzdWtNNGNfM2I3SGFGYzhmbEJpLUNXd3NvNW9PZFk?oc=5",
       "source": "Wires (macro)",
@@ -663,7 +783,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1788962730000
+      "firstAt": 1788963558000
     },
     {
       "title": "Gold: Inflation data key catalyst – TD Securities - FXStreet",
@@ -739,10 +859,10 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1788962730000
+      "firstAt": 1788963558000
     },
     {
-      "title": "Iran threatens maritime sanctions on vessels entering newly declared zone without authorization - aa.com.tr",
+      "title": "Iran threatens maritime sanctions on vessels entering newly declared zone without authorization - Anadolu Ajansı",
       "link": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxONmt4T0hXenhNbFNkRlM0WFZTWjU4QjF2cTBHdGV6N0xORWFPOU1EU2ZyZkZWVHZpczVrTkRPRE80elpwZEI1ZHZRcWRzU2J6Y21OcjZvUDg2REtqRTlDMlAzLWwyMmhvdmlkME1GamgxR044YTU0eUpUcjNDd0Z3aVZ0aXJGd21JcURJWkRJOTJaTkkyMF9RUGV4T2xEZDhWdWZBc29aeExUTWFYYUhsSllDeS1rWHVhempoU21wQkREV09OWnVaN3pnNERJNjVxdTNaYjgzdm5MMHFsSmtiXw?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMi4AFBVV95cUxONmt4T0hXenhNbFNkRlM0WFZTWjU4QjF2cTBHdGV6N0xORWFPOU1EU2ZyZkZWVHZpczVrTkRPRE80elpwZEI1ZHZRcWRzU2J6Y21OcjZvUDg2REtqRTlDMlAzLWwyMmhvdmlkME1GamgxR044YTU0eUpUcjNDd0Z3aVZ0aXJGd21JcURJWkRJOTJaTkkyMF9RUGV4T2xEZDhWdWZBc29aeExUTW",
@@ -760,23 +880,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788962769000
-    },
-    {
-      "title": "Gold Holds Decline as Mideast Tensions Bolster Rate-Hike Case - Bloomberg.com",
-      "link": "https://news.google.com/rss/articles/CBMisgFBVV95cUxOSDRhUW5CNmRzN1FsZkxLVkl1ampaZ19UcjQwaHp3OGUyMnBESWxBZnVFZnR5Z2I0UG5kQVBid1BRSmNoV21nY1ctUDZoaG5VWV9mNGR3RG5Nd2JDcjhUbE1qN1VrV3ZJYmI4LUJyVU5HVE9scTdONFNLTWNwajVGWmNjUlFkWVljQUQ0emZmc2ZiNXRTZ256dUpKZGVXZG9WXzU4ZXltTU0zUTExWGx2eVF3?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMisgFBVV95cUxOSDRhUW5CNmRzN1FsZkxLVkl1ampaZ19UcjQwaHp3OGUyMnBESWxBZnVFZnR5Z2I0UG5kQVBid1BRSmNoV21nY1ctUDZoaG5VWV9mNGR3RG5Nd2JDcjhUbE1qN1VrV3ZJYmI4LUJyVU5HVE9scTdONFNLTWNwajVGWmNjUlFkWVljQUQ0emZmc2ZiNXRTZ256dUpKZGVXZG9WXzU4ZXltTU0zUT",
-      "at": 1788962730000,
-      "inst": [
-        "XAU/USD"
-      ],
-      "ccy": [
-        "XAU"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1788962730000
     },
     {
       "title": "Ukraine Strikes Russian Warships And Oil Terminal In Novorossiisk - Radio Free Europe/Radio Liberty",
@@ -983,7 +1086,7 @@
       "firstAt": 1788960219000
     },
     {
-      "title": "Iran and US hit tankers in biggest wave of attacks on shipping since war began - Reuters",
+      "title": "Iran and US hit tankers in biggest wave of attacks on shipping since war began - reuters.com",
       "link": "https://news.google.com/rss/articles/CBMiugFBVV95cUxOZ2FPaUNRYjRBWnd2cmxkT044cmZYbENZYnhTWXAzUGxadUpEZ3N3aHpVSEtodVVsWUt6djBaeFhjUm5JOGVrNEE1SXlaUkxoSzBVaUpaWjZTdkdXZzItRTFOaGtMZWVtbEhpdUFSUWgwczNXa2VqZ3ktdzVhajBmYllFNVJIaUxnMDBLazE4S0VSTzZSbVFxMDZSUVY4aHIxVmhkcUpZeF85TzZYV2tqWkE5bVNWM29qWlE?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiugFBVV95cUxOZ2FPaUNRYjRBWnd2cmxkT044cmZYbENZYnhTWXAzUGxadUpEZ3N3aHpVSEtodVVsWUt6djBaeFhjUm5JOGVrNEE1SXlaUkxoSzBVaUpaWjZTdkdXZzItRTFOaGtMZWVtbEhpdUFSUWgwczNXa2VqZ3ktdzVhajBmYllFNVJIaUxnMDBLazE4S0VSTzZSbVFxMDZSUVY4aHIxVmhkcUpZeF85Tz",
@@ -1076,22 +1179,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788958925000
-    },
-    {
-      "title": "UBS raises oil price forecasts for the next three quarters",
-      "link": "https://www.investing.com/news/commodities-news/ubs-raises-oil-price-forecasts-for-the-next-three-quarters-4893655",
-      "source": "Investing Cmdty",
-      "at": 1788958665000,
-      "inst": [
-        "USOIL"
-      ],
-      "ccy": [
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788958665000
     },
     {
       "title": "Why UBS is telling investors to forget Europe’s ‘tired caricature’ and buy its stocks",
@@ -1399,26 +1486,6 @@
       "firstAt": 1788953940000
     },
     {
-      "title": "Sissi urges de-escalation as Israel attacks Gaza, Lebanon - africanews.com",
-      "link": "https://news.google.com/rss/articles/CBMimwFBVV95cUxPSWxBS1A4RzJGVlRvZkVZX0ZRdEFnWGM0cWowOGFkeEVNeDFINFNzbXFhX083YzJnaGlaX3RZaHJTaGRCWHNsT3NRUWdEeGFSUVpoMDBRVHRhT25HZkp5ODlPNWpCMnE3SmQ0aURKMVItbE9QTVFjdzF0V2RhY014cnhWWHVwaEIxRDhjVmxTa1Rxa1lTVXJKNmNoZ9IBoAFBVV95cUxNbDlwQ25HMVhNYXVTU0pqUEVUNUhLYWhsTHp2UW8zY0JGenB3WExUYTlkY0hlOHZSM0FtR1lQYTYta19uOGZQYTliM2o4VzFmRnJaREo0OERqUVVyTngyOGVnM040bEhCcFNxS1JZRkxjdlllY3plSzBad0FDdHBTZkJkQVAteEw2NnhGSDJaVDZkN1B4SzUzR3JYY0U2MGdC?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMimwFBVV95cUxPSWxBS1A4RzJGVlRvZkVZX0ZRdEFnWGM0cWowOGFkeEVNeDFINFNzbXFhX083YzJnaGlaX3RZaHJTaGRCWHNsT3NRUWdEeGFSUVpoMDBRVHRhT25HZkp5ODlPNWpCMnE3SmQ0aURKMVItbE9QTVFjdzF0V2RhY014cnhWWHVwaEIxRDhjVmxTa1Rxa1lTVXJKNmNoZ9IBoAFBVV95cUxNbDlwQ2",
-      "at": 1788953897000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788953897000
-    },
-    {
       "title": "Ukraine Hunts Russia’s Black Sea Fleet, Strikes Mangust Patrol Boat in Occupied Crimea - UNITED24 Media",
       "link": "https://news.google.com/rss/articles/CBMiywFBVV95cUxPR0huTHIyMlNqZmx3aTRrWmEzVlcycmQ3Rk5XTGozaTAxbTVWZFhjbnhwU21FRU11VHhYWEhFMUtVdy0xZ0pOVFdCa0d4ZHVJNUVpMVFvOVVkZHI1d1JoRld4eTBHWGpXZUJ5M20tVzl5dUg2SWJMWFA1TjIzcUV2ZV9QLU1VTzlleF9GYkxpUjAxVWlKS00xVjJYMlZkT0RsQU1iMmF1Ym1wSGxIMk41YUNxVUl4cy1aMElXVm1IemtGa1prVnFzTmMyOA?oc=5",
       "source": "Wires (geo)",
@@ -1482,7 +1549,7 @@
       "firstAt": 1788950934000
     },
     {
-      "title": "Morning Call Sheet: Oil, inflation and rates test markets - CNBC",
+      "title": "Morning Call Sheet: Oil, inflation and rates test markets - cnbc.com",
       "link": "https://news.google.com/rss/articles/CBMinwFBVV95cUxNenBHb2hJOFZySDF5ZTU4MHNfVVRtaE5UeWFjc3NHMUtlMzE4UUZNN0RiMXRET2szMnVfSF9kU3BIR0Q2VURIbmlkZkVneTdhQXA5d05oTlZrZnV0S2NnM1N1VjFrV0w5TkdTNDNST2lyZ0NpSlhZRlFWVHgta2czdmhkRmJsTFFvWnVVSE9WLUNTWnMzV3ZzbUV5ZjBSeDA?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMinwFBVV95cUxNenBHb2hJOFZySDF5ZTU4MHNfVVRtaE5UeWFjc3NHMUtlMzE4UUZNN0RiMXRET2szMnVfSF9kU3BIR0Q2VURIbmlkZkVneTdhQXA5d05oTlZrZnV0S2NnM1N1VjFrV0w5TkdTNDNST2lyZ0NpSlhZRlFWVHgta2czdmhkRmJsTFFvWnVVSE9WLUNTWnMzV3ZzbUV5ZjBSeDA?oc=5\" target=\"",
@@ -1598,7 +1665,7 @@
       "firstAt": 1788950483000
     },
     {
-      "title": "Russia and Ukraine exchange strikes as two killed at Moldova border - bbc.co.uk",
+      "title": "Russia and Ukraine exchange strikes as two killed at Moldova border - BBC",
       "link": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE9uM05yalhHY2hSR0ZCVFNqZkNralIwazdpOE1XamdhZFMybHBPYms0M1NNamFmY1FUNWxPT0NTaGhvLThpa0pJZHM5dzgyVnVjaWFGV2xOZmJlWVhl?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiXEFVX3lxTE9uM05yalhHY2hSR0ZCVFNqZkNralIwazdpOE1XamdhZFMybHBPYms0M1NNamFmY1FUNWxPT0NTaGhvLThpa0pJZHM5dzgyVnVjaWFGV2xOZmJlWVhl?oc=5\" target=\"_blank\">Russia and Ukraine exchange strikes as two killed at Moldova border</a>&nbsp;&nbsp;",
@@ -1635,43 +1702,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788951484000
-    },
-    {
-      "title": "The war in the Gulf will have to end in compromise - Al Jazeera",
-      "link": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNLUtjN2RWaE5RWUtnX2tUQjhzb2Y3VXVfN2tDTjE5bDdOMlJpdkN2X2dReldzMF84Skd5V09nODZPTHB0emFqcmo0TWpJUnRHaFdHeFBoRnN4dWg4U3NKVEJRZ1JOazVfMUN0eGxPWTNaZzZRMkJ2MGZBV3FyeHY3d3JsZEZwTURvY0xQSmUzekhDSXc0cEVnLTJ30gGfAUFVX3lxTE1MbzR1Zk8yUGNGTF9ZYzkyWW9xel9pdTZobV80cDdVZVBXeHZpTUV6OHl0ak5XSEhra0gtZ1ZuUm9FT3ZFSjZJcU5RYV90WlNjMzV0bXowOWRaS1JkSHh3THo4Tm5XSGlSN294cE9UVVdWZHVPOG9FcDBjX3d3WmEyTmY0Nlk0dnFGVkREalFfckd4bjJHUDduaTlmV2FpUQ?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMimgFBVV95cUxNLUtjN2RWaE5RWUtnX2tUQjhzb2Y3VXVfN2tDTjE5bDdOMlJpdkN2X2dReldzMF84Skd5V09nODZPTHB0emFqcmo0TWpJUnRHaFdHeFBoRnN4dWg4U3NKVEJRZ1JOazVfMUN0eGxPWTNaZzZRMkJ2MGZBV3FyeHY3d3JsZEZwTURvY0xQSmUzekhDSXc0cEVnLTJ30gGfAUFVX3lxTE1MbzR1Zk",
-      "at": 1788950934000,
-      "inst": [
-        "XAU/USD"
-      ],
-      "ccy": [
-        "XAU"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788950934000
-    },
-    {
-      "title": "Russian FIMI Network Distorts Claims About Strikes on Ukraine - Межа. Новини України.",
-      "link": "https://news.google.com/rss/articles/CBMidEFVX3lxTE9TU2J2SUhVYXNMZmROR2FBV1MzTFlfTDRwRmZsZ2tyNlFCb2JqdndfOWgwSW54RHY0WWR2LThPbjZ2UUljNUVjREI5YmJxYVJhWWZrVm15UVdTZUF3U09iZ1lSWW03cjdPMDk5VnBFcjlnbnJZ?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMidEFVX3lxTE9TU2J2SUhVYXNMZmROR2FBV1MzTFlfTDRwRmZsZ2tyNlFCb2JqdndfOWgwSW54RHY0WWR2LThPbjZ2UUljNUVjREI5YmJxYVJhWWZrVm15UVdTZUF3U09iZ1lSWW03cjdPMDk5VnBFcjlnbnJZ?oc=5\" target=\"_blank\">Russian FIMI Network Distorts Claims About Strikes ",
-      "at": 1788950789000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788950789000
     }
   ],
   "sources": [
@@ -1698,6 +1728,6 @@
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-09T16:08:12.205Z",
-  "updatedAt": "2026-09-09T16:08:12.206Z"
+  "headlinesAt": "2026-09-09T16:10:14.986Z",
+  "updatedAt": "2026-09-09T16:10:14.986Z"
 }
