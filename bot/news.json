@@ -46,7 +46,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788970740000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Geopolitical conflict boosts safe havens and oil."
     },
     {
       "title": "Dow weighs exit from $20 billion partnership with Aramco, Bloomberg News reports",
@@ -61,7 +67,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788970710000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US30": "down"
+      },
+      "why": "Dow weighs exit from Aramco partnership."
     },
     {
       "title": "Gasoline refining margins drop in Europe as crude tops $100",
@@ -79,7 +89,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788970682000,
-      "_kind": null
+      "_kind": null,
+      "why": "Refining margins drop, crude price neutral."
     },
     {
       "title": "Fed rate hike hinges on two key inflation reports in the next two days",
@@ -103,7 +114,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788970680000,
-      "_kind": null
+      "_kind": null,
+      "why": "Inflation data uncertainty, no clear direction."
     },
     {
       "title": "U.S. and Iran strike each again, further driving up gas prices - 13newsnow.com",
@@ -124,7 +136,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788970560000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Strikes drive up gas prices and gold."
     },
     {
       "title": "Energy Stock Insider Doubles Down, Buys 2,500 Shares Worth More Than $140,000",
@@ -158,7 +176,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788967990000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "War escalation boosts diesel and safe havens."
     },
     {
       "title": "European stocks tumble to multi-month lows with oil at $100 and ECB hike in sight",
@@ -178,22 +202,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788970302000,
-      "_kind": null
-    },
-    {
-      "title": "U.K. stocks lower at close of trade; Investing.com United Kingdom 100 down 1.40%",
-      "link": "https://www.investing.com/news/stock-market-news/uk-stocks-lower-at-close-of-trade-investingcom-united-kingdom-100-down-140-4894163",
-      "source": "Investing",
-      "at": 1788970157000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788970157000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "EUR/USD": "down",
+        "USOIL": "up",
+        "US500": "down"
+      },
+      "why": "Stocks tumble, oil rises, ECB hike risk."
     },
     {
       "title": "Investors worried about rising bond yields are keeping a close eye on this corner of the market",
@@ -211,88 +226,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788970140000,
-      "_kind": null
-    },
-    {
-      "title": "Sweden stocks lower at close of trade; OMX Stockholm 30 down 1.62%",
-      "link": "https://www.investing.com/news/stock-market-news/sweden-stocks-lower-at-close-of-trade-omx-stockholm-30-down-162-4894162",
-      "source": "Investing",
-      "at": 1788970131000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788970131000,
-      "_kind": null
-    },
-    {
-      "title": "FTSE 100 today: Stocks drop to 7-week low as U.S.-Iran war drives Brent above $100",
-      "link": "https://www.investing.com/news/stock-market-news/ftse-100-today-stocks-retreat-as-gulf-strikes-send-oil-toward-100-4892795",
-      "source": "Investing",
-      "at": 1788970120000,
-      "inst": [
-        "UKOIL",
-        "US500",
-        "XAU/USD",
-        "USOIL"
-      ],
-      "ccy": [
-        "OIL",
-        "XAU"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1788967466000,
-      "_kind": null
-    },
-    {
-      "title": "Spain stocks lower at close of trade; IBEX 35 down 1.58%",
-      "link": "https://www.investing.com/news/stock-market-news/spain-stocks-lower-at-close-of-trade-ibex-35-down-158-4894160",
-      "source": "Investing",
-      "at": 1788970106000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788970106000,
-      "_kind": null
-    },
-    {
-      "title": "Portugal stocks lower at close of trade; PSI down 0.38%",
-      "link": "https://www.investing.com/news/stock-market-news/portugal-stocks-lower-at-close-of-trade-psi-down-038-4894159",
-      "source": "Investing",
-      "at": 1788970082000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788970082000,
-      "_kind": null
-    },
-    {
-      "title": "Netherlands stocks lower at close of trade; AEX down 1.27%",
-      "link": "https://www.investing.com/news/stock-market-news/netherlands-stocks-lower-at-close-of-trade-aex-down-127-4894155",
-      "source": "Investing",
-      "at": 1788970055000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788970055000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Rising bond yields pressure small-cap stocks."
     },
     {
       "title": "Gold price recovers ahead of US inflation data - mining.com.au",
@@ -311,7 +249,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788970050000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Gold price recovers ahead of data."
     },
     {
       "title": "European gas prices climb above €80 amid Hormuz tensions",
@@ -331,7 +273,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788969775000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Hormuz tensions boost gas prices and gold."
     },
     {
       "title": "Chime Wins Price-Target Hikes On Stride Deal And Raised Guidance, But Shares Slash Early Gains",
@@ -343,8 +291,7 @@
       "sev": 1,
       "rel": 1,
       "srcs": 1,
-      "firstAt": 1788969740000,
-      "_kind": null
+      "firstAt": 1788969740000
     },
     {
       "title": "Two die at Moldovan border as Russia-Ukraine drone war rages",
@@ -365,7 +312,10 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788969714000,
-      "_kind": null
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Ukraine war escalates, gold benefits, oil unclear."
     },
     {
       "title": "Treasury will buy more government bonds than previously announced. The market remains ‘underwhelmed.’",
@@ -388,7 +338,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788969180000
+      "firstAt": 1788969180000,
+      "why": "Treasury bond buyback, market underwhelmed."
     },
     {
       "title": "Jerusalem Daily: Israel retaliates over sanctions on illegal settlements - Al Jazeera",
@@ -408,7 +359,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788968700000
+      "firstAt": 1788968700000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Israel retaliation boosts risk assets and oil."
     },
     {
       "title": "Stocks making the biggest moves midday: Meta, Centerspace, Apple, Casey's General Stores, Signet & more",
@@ -423,7 +380,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788968634000
+      "firstAt": 1788968634000,
+      "why": "Individual stock moves, no broad index direction."
     },
     {
       "title": "As the UK sanctions Israeli settlements, is the two-state solution dead?",
@@ -443,7 +401,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788968609000
+      "firstAt": 1788968609000,
+      "why": "UK sanctions analysis, no immediate market impact."
     },
     {
       "title": "Sudan gold ban takes effect in Switzerland on Thursday",
@@ -694,7 +653,7 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 2,
+      "srcs": 1,
       "firstAt": 1788967466000
     },
     {
@@ -1675,6 +1634,122 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788950934000
+    },
+    {
+      "title": "Russian FIMI Network Distorts Claims About Strikes on Ukraine - Межа. Новини України.",
+      "link": "https://news.google.com/rss/articles/CBMidEFVX3lxTE9TU2J2SUhVYXNMZmROR2FBV1MzTFlfTDRwRmZsZ2tyNlFCb2JqdndfOWgwSW54RHY0WWR2LThPbjZ2UUljNUVjREI5YmJxYVJhWWZrVm15UVdTZUF3U09iZ1lSWW03cjdPMDk5VnBFcjlnbnJZ?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMidEFVX3lxTE9TU2J2SUhVYXNMZmROR2FBV1MzTFlfTDRwRmZsZ2tyNlFCb2JqdndfOWgwSW54RHY0WWR2LThPbjZ2UUljNUVjREI5YmJxYVJhWWZrVm15UVdTZUF3U09iZ1lSWW03cjdPMDk5VnBFcjlnbnJZ?oc=5\" target=\"_blank\">Russian FIMI Network Distorts Claims About Strikes ",
+      "at": 1788950789000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788950789000
+    },
+    {
+      "title": "Gold price today, Wednesday, September 9, 2026: Gold prices drop following U.S. strikes on five Iranian oil tankers",
+      "link": "https://finance.yahoo.com/personal-finance/investing/article/gold-price-today-wednesday-september-9-2026-gold-prices-drop-following-us-strikes-on-five-iranian-oil-tankers-104123795.html",
+      "source": "Yahoo Finance",
+      "at": 1788950483000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1788948000000
+    },
+    {
+      "title": "US to ban imports of some Canadian alcohol, dairy goods and motorbikes",
+      "link": "https://www.bbc.co.uk/news/articles/c99dm1000p7o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC World",
+      "desc": "It is the latest strike in a long trade war, and comes after Canadian counter-tariffs on US goods come into force.",
+      "at": 1788949240000,
+      "inst": [
+        "USD/CAD",
+        "XAU/USD"
+      ],
+      "ccy": [
+        "XAU"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788949240000
+    },
+    {
+      "title": "Opinion | Israel's response to U.K. settlement sanctions is a media-hyped nothingburger - Haaretz",
+      "link": "https://news.google.com/rss/articles/CBMikAJBVV95cUxNYUgxbDk0NUtXdDd2SlBHaE8zQWh5eUdyeVNkUnF4ODhOQXZZb2ZUWnZPMjVySk9JUC0zME85Z3NjWGJnWXFleFZBdF9jOVlyT1R1cVZzTlBIakVLT1BLcGd3WnVrVkxCSFdYOVlXLUZpNmxKbzdIbndIN2UybnN0UGIwS3prWWFzSElJNGpya09ISm9NQ1pXdnJVa3V0TUQxS3ZSRU5rZDJhWGdjRUxEV3BUSWZYWHF2Z3JLQWRlVkFXd2J2V3pHaDVHajlVTTB2TVN6OFQ5Z1JBRWNKbUFMUzZLNVdObFNSS1lSMEFKUmVVY0wzc29BSnVWYmlPNFRjMVZEc0VwcS0tc01ZWFFHRw?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMikAJBVV95cUxNYUgxbDk0NUtXdDd2SlBHaE8zQWh5eUdyeVNkUnF4ODhOQXZZb2ZUWnZPMjVySk9JUC0zME85Z3NjWGJnWXFleFZBdF9jOVlyT1R1cVZzTlBIakVLT1BLcGd3WnVrVkxCSFdYOVlXLUZpNmxKbzdIbndIN2UybnN0UGIwS3prWWFzSElJNGpya09ISm9NQ1pXdnJVa3V0TUQxS3ZSRU5rZDJhWG",
+      "at": 1788949140000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL",
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788949140000
+    },
+    {
+      "title": "ECB preview: A rate hike expected as markets focus on Lagarde, inflation and future policy - investingLive",
+      "link": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxOTUJnRVJoZ3NGQ1BSTndURkEyLV9jTkJ1eHJrMklrWGRCd01hQ1V4Um96S05iZDQyMlduaHpIV2JzYjZnMUh3NFVQSzFmQ1gzRVg2N2RqRTVlTWZfb1lhVzBkY3JFY0RRa0V5c0F6S2NsTGwzV3hhYVhRbVBIMDg1S2hHUDlaLVFKYWNsSXZFcVhDbTdvUVdEQ3RsTlBmeUI5MHNZV2czS1dpWFhPVDZHZndVSHZZQnNNRFVROXlnbXp0X3QyYlFSLQ?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiyAFBVV95cUxOTUJnRVJoZ3NGQ1BSTndURkEyLV9jTkJ1eHJrMklrWGRCd01hQ1V4Um96S05iZDQyMlduaHpIV2JzYjZnMUh3NFVQSzFmQ1gzRVg2N2RqRTVlTWZfb1lhVzBkY3JFY0RRa0V5c0F6S2NsTGwzV3hhYVhRbVBIMDg1S2hHUDlaLVFKYWNsSXZFcVhDbTdvUVdEQ3RsTlBmeUI5MHNZV2czS1dpWF",
+      "at": 1788948603000,
+      "inst": [
+        "EUR/USD"
+      ],
+      "ccy": [
+        "EUR",
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788948603000
+    },
+    {
+      "title": "US strike sinks Iranian tanker, sparking retaliatory missile barrage at Jordan - Yahoo",
+      "link": "https://news.google.com/rss/articles/CBMinAFBVV95cUxOUngxdHpBMHZpVEprbFJrMmZqMnlOVmM2VlVZdkhSdUhGTmF5ZEFxXzBicXJUcU1Dc1l2WVd3d3VBaHVVYks5Y1kzb0pISkNuYXg5bmgtMy1fYVZXWTJrZnZQU0ZvczVPMUh2NnB2VGw4SDRSazZUNHRZNXhpYTZtc3kzemdGNUp4QUh6NmdzMHo0QnA3LS1YeUx2dXY?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMinAFBVV95cUxOUngxdHpBMHZpVEprbFJrMmZqMnlOVmM2VlVZdkhSdUhGTmF5ZEFxXzBicXJUcU1Dc1l2WVd3d3VBaHVVYks5Y1kzb0pISkNuYXg5bmgtMy1fYVZXWTJrZnZQU0ZvczVPMUh2NnB2VGw4SDRSazZUNHRZNXhpYTZtc3kzemdGNUp4QUh6NmdzMHo0QnA3LS1YeUx2dXY?oc=5\" target=\"_bla",
+      "at": 1788948540000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788948540000
     }
   ],
   "sources": [
@@ -1701,6 +1776,6 @@
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-09T16:31:27.880Z",
-  "updatedAt": "2026-09-09T16:31:27.880Z"
+  "headlinesAt": "2026-09-09T16:32:30.185Z",
+  "updatedAt": "2026-09-09T16:32:30.185Z"
 }
