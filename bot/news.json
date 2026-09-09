@@ -489,22 +489,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788961968000,
-      "_kind": null
-    },
-    {
-      "title": "Uber initiated, Thermo Fisher upgraded: Wall Street's top analyst calls",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/uber-initiated-thermo-fisher-upgraded-135116768.html",
-      "source": "Yahoo Finance",
-      "at": 1788961876000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788961876000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions impact unclear for these instruments."
     },
     {
       "title": "Brown-Forman adds Switzerland to Coca-Cola HBC tie-ups",
@@ -518,40 +504,9 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788961831000,
-      "_kind": null
-    },
-    {
-      "title": "U.S. Natural Gas Futures Decline as Weather Cools",
-      "link": "https://www.wsj.com/finance/commodities-futures/u-s-natural-gas-futures-decline-as-weather-cools-bbbc4b22?siteid=yhoof2&yptr=yahoo",
-      "source": "Yahoo Finance",
-      "at": 1788961680000,
-      "inst": [
-        "NATGAS"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788961680000,
-      "_kind": null
-    },
-    {
-      "title": "IonQ’s CEO Shares How Long It Will Take Quantum Computers To Hack Bitcoin’s Encryption. And Argues It Will Happen Sooner Than Expected",
-      "link": "https://finance.yahoo.com/markets/crypto/articles/ionq-ceo-shares-long-quantum-134746393.html",
-      "source": "Yahoo Finance",
-      "at": 1788961666000,
-      "inst": [
-        "BTC/USDT"
-      ],
-      "ccy": [
-        "BTC"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788961666000,
-      "_kind": null
+      "firstAt": 1788961252000,
+      "_kind": null,
+      "why": "Corporate news, no clear FX direction."
     },
     {
       "title": "Oil Prices Jump, Treasury Yields Firm With Bessent Set To Calm 'Fever'",
@@ -569,7 +524,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788961570000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil prices jump explicitly stated."
     },
     {
       "title": "Refining bottlenecks are emerging as the next big oil problem as Middle East skirmishes flare up",
@@ -585,24 +544,13 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 3,
+      "srcs": 4,
       "firstAt": 1788959782000,
-      "_kind": null
-    },
-    {
-      "title": "The Next Winners May Not Be the Stocks You Expect",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/next-winners-may-not-stocks-134551101.html",
-      "source": "Yahoo Finance",
-      "at": 1788961551000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788961551000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Refining bottlenecks threaten to push prices higher."
     },
     {
       "title": "US startup Covenant to launch cruise missile production in Germany next year",
@@ -620,7 +568,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788961445000,
-      "_kind": null
+      "_kind": null,
+      "why": "Defense news, no clear immediate direction."
     },
     {
       "title": "Stock Market Today: Dow Falls As Brent Crosses $100 A Barrel; Apple Shares Drop Ahead Of iPhone Event (Live Coverage)",
@@ -639,7 +588,13 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1788960643000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up",
+        "US30": "down"
+      },
+      "why": "Brent crosses $100, Dow falls."
     },
     {
       "title": "Wall St indexes open lower as oil crosses $100",
@@ -656,25 +611,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788961400000,
-      "_kind": null
-    },
-    {
-      "title": "ECB, Fed Policy Differentials to Be Key for Euro, Dollar in Coming Months",
-      "link": "https://www.wsj.com/finance/currencies/yen-strengthens-on-prospects-of-two-boj-rate-hikes-by-year-end-c56a9483?siteid=yhoof2&yptr=yahoo",
-      "source": "Yahoo Finance",
-      "at": 1788961380000,
-      "inst": [
-        "EUR/USD"
-      ],
-      "ccy": [
-        "USD",
-        "EUR"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788961380000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil crosses $100, implies price rise."
     },
     {
       "title": "Chime shares jump as Stride deal puts fintech on path to bank charter",
@@ -685,8 +626,8 @@
       "ccy": [],
       "sev": 1,
       "rel": 1,
-      "srcs": 1,
-      "firstAt": 1788961359000,
+      "srcs": 2,
+      "firstAt": 1788960846000,
       "_kind": null
     },
     {
@@ -706,9 +647,65 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 3,
+      "srcs": 4,
       "firstAt": 1788959782000,
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Oil rises above $100, gold unclear."
+    },
+    {
+      "title": "Medtronic Is on the Cusp of Becoming a Dividend King. Is the Stock a Buy for Income Investors?",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/medtronic-cusp-becoming-dividend-king-134100796.html",
+      "source": "Yahoo Finance",
+      "at": 1788961260000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 1,
+      "srcs": 1,
+      "firstAt": 1788961252000,
       "_kind": null
+    },
+    {
+      "title": "Warning: 3 High-Yield ETFs That Could Plunge By Next Year",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/warning-3-high-yield-etfs-133727558.html",
+      "source": "Yahoo Finance",
+      "at": 1788961047000,
+      "inst": [],
+      "ccy": [],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788961047000,
+      "_kind": null
+    },
+    {
+      "title": "Brent Tops $100 as Morgan Stanley Warns Oil, Rates Are ‘Main Risks’ to Stocks",
+      "link": "https://finance.yahoo.com/energy/articles/brent-tops-100-morgan-stanley-133654209.html",
+      "source": "Yahoo Finance",
+      "at": 1788961014000,
+      "inst": [
+        "USOIL",
+        "UKOIL",
+        "US500"
+      ],
+      "ccy": [
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788960871000,
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up",
+        "US500": "down"
+      },
+      "why": "Brent tops $100, risk to stocks."
     },
     {
       "title": "Press Review - The Times: 'Counterproductive' sanctions on Israel don't match the 'theatrical rhetoric' - France 24",
@@ -729,7 +726,51 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788959340000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions rhetoric, no clear price direction."
+    },
+    {
+      "title": "$100,000 in Cash Quietly Loses About $3,000 a Year to Inflation. Here’s Where Retirees Are Parking It Instead",
+      "link": "https://finance.yahoo.com/markets/options/articles/100-000-cash-quietly-loses-133540931.html",
+      "source": "Yahoo Finance",
+      "at": 1788960940000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788960940000,
+      "_kind": null,
+      "why": "Inflation article, no specific asset direction."
+    },
+    {
+      "title": "Marvell CEO Matt Murphy says trust with big tech drove stock surge",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/marvell-ceo-matt-murphy-says-133537609.html",
+      "source": "Yahoo Finance",
+      "at": 1788960937000,
+      "inst": [
+        "US100"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788960937000,
+      "_kind": null,
+      "dir": {
+        "US100": "up"
+      },
+      "why": "CEO comments drove stock surge."
     },
     {
       "title": "Crypto Firm Block Files For U.S. Bank Charter",
@@ -745,8 +786,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788960900000,
-      "_kind": null
+      "firstAt": 1788960846000,
+      "_kind": null,
+      "dir": {
+        "BTC/USDT": "up"
+      },
+      "why": "Bank charter filing is positive for crypto."
     },
     {
       "title": "Gold Slips, Silver Jumps in Delhi Amid Inflation Fears - Rediff MoneyWiz",
@@ -767,7 +812,37 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788960889000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "XAG/USD": "up"
+      },
+      "why": "Gold slips, silver jumps explicitly stated."
+    },
+    {
+      "title": "Brent oil tops $100 as Middle East conflict intensifies, stoking supply fears",
+      "link": "https://finance.yahoo.com/energy/articles/brent-oil-tops-100-middle-133121562.html",
+      "source": "Yahoo Finance",
+      "at": 1788960871000,
+      "inst": [
+        "USOIL",
+        "UKOIL",
+        "XAU/USD"
+      ],
+      "ccy": [
+        "OIL",
+        "XAU"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 4,
+      "firstAt": 1788959782000,
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Brent tops $100, gold direction unclear."
     },
     {
       "title": "U.S. stocks open lower amid oil above $100 and caution ahead of key inflation data",
@@ -947,7 +1022,7 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 3,
+      "srcs": 4,
       "firstAt": 1788959782000
     },
     {
@@ -1118,6 +1193,26 @@
       "firstAt": 1788957562000
     },
     {
+      "title": "Iran Warns of ‘Dangerous Escalation’ after US Attacks on Commercial Vessels - Palestine Chronicle",
+      "link": "https://news.google.com/rss/articles/CBMirgFBVV95cUxNRWR3S2ZaeFQyTzlJQ2hxTXNHeWVmVjdGSThLa0dqUGlxMThJRDZpb2dLWjdDZDBGUmF6cEdETGxGRnFKWENQeER0dmJ2a0NwbVRucjl6VmxmQk1LN1BwUkY0dDUwQnBZcnVaV21FUE9aZmRUQUpkVXN1cDhHcHctYVN3UElqWmJQT2JjcUx2dUk5Y1NHRk5uX1RWZXBFc0d5Q2ROVkFETnJrdjJtZVE?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMirgFBVV95cUxNRWR3S2ZaeFQyTzlJQ2hxTXNHeWVmVjdGSThLa0dqUGlxMThJRDZpb2dLWjdDZDBGUmF6cEdETGxGRnFKWENQeER0dmJ2a0NwbVRucjl6VmxmQk1LN1BwUkY0dDUwQnBZcnVaV21FUE9aZmRUQUpkVXN1cDhHcHctYVN3UElqWmJQT2JjcUx2dUk5Y1NHRk5uX1RWZXBFc0d5Q2ROVkFETnJrdj",
+      "at": 1788957543000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1788956785000
+    },
+    {
       "title": "South Korean mills reportedly purchase 100,000 tons of wheat from US and Canada",
       "link": "https://www.investing.com/news/commodities-news/south-korean-mills-reportedly-purchase-100000-tons-of-wheat-from-us-and-canada-93CH-4893589",
       "source": "Investing Cmdty",
@@ -1151,27 +1246,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788957238000
-    },
-    {
-      "title": "Iran Warns of ‘Dangerous Escalation’ after US Attacks on Commercial Vessels - Palestine Chronicle",
-      "link": "https://news.google.com/rss/articles/CBMirgFBVV95cUxNRWR3S2ZaeFQyTzlJQ2hxTXNHeWVmVjdGSThLa0dqUGlxMThJRDZpb2dLWjdDZDBGUmF6cEdETGxGRnFKWENQeER0dmJ2a0NwbVRucjl6VmxmQk1LN1BwUkY0dDUwQnBZcnVaV21FUE9aZmRUQUpkVXN1cDhHcHctYVN3UElqWmJQT2JjcUx2dUk5Y1NHRk5uX1RWZXBFc0d5Q2ROVkFETnJrdjJtZVE?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMirgFBVV95cUxNRWR3S2ZaeFQyTzlJQ2hxTXNHeWVmVjdGSThLa0dqUGlxMThJRDZpb2dLWjdDZDBGUmF6cEdETGxGRnFKWENQeER0dmJ2a0NwbVRucjl6VmxmQk1LN1BwUkY0dDUwQnBZcnVaV21FUE9aZmRUQUpkVXN1cDhHcHctYVN3UElqWmJQT2JjcUx2dUk5Y1NHRk5uX1RWZXBFc0d5Q2ROVkFETnJrdj",
-      "at": 1788957238000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1788954540000
+      "firstAt": 1788957374000
     },
     {
       "title": "Brent crude surpasses $100 a barrel as Iran, US escalate attacks",
@@ -2092,42 +2167,21 @@
       "firstAt": 1788946368000
     },
     {
-      "title": "Russia Strikes Border Crossing Between Ukraine And Moldova - reform.news",
-      "link": "https://news.google.com/rss/articles/CBMiigFBVV95cUxNUGN0Ym10VlQwNnBJZ2R1d1d3NjBsTjJHRHJ5Sjl3T1NXNjdoSUdwbklSTGQ1VFU1VkxnZV9Bd0tDeVJPUmFkUVJJTWFQelZNWWFnT2p3UzFnWC1oaEFaNWdaSVpwOEh4dXY4c2tIRWNIbWY4Sk5nT0dlb3ZlUWxYd0pIRTlsZTBNcGfSAY8BQVVfeXFMT0tsMVRpWkVNM0YtVVI3NU9DMlJTNUVwVmVud2p3S3ZtUC1TQUxxbVVxVW1LMnYyMnVuenYzNWFnM1RJWDdQMnpVby1mbndFbVNBRmFfalMzVlJZQ1NVeDdza2tRaHU0Q3RvZ05TYXBrTWpBTzl2NGlRZVRiUlp0MU5PSjRiMGlGUm4xbnJVMTg?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiigFBVV95cUxNUGN0Ym10VlQwNnBJZ2R1d1d3NjBsTjJHRHJ5Sjl3T1NXNjdoSUdwbklSTGQ1VFU1VkxnZV9Bd0tDeVJPUmFkUVJJTWFQelZNWWFnT2p3UzFnWC1oaEFaNWdaSVpwOEh4dXY4c2tIRWNIbWY4Sk5nT0dlb3ZlUWxYd0pIRTlsZTBNcGfSAY8BQVVfeXFMT0tsMVRpWkVNM0YtVVI3NU9DMlJTNU",
-      "at": 1788946234000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788944703000
-    },
-    {
-      "title": "Gold returns above $4,400 as dollar weakens ahead of US inflation data - Yahoo Finance",
-      "link": "https://news.google.com/rss/articles/CBMimgFBVV95cUxQMTBfdkpBdFNMNFM4dVNsYmFWRDdtS05oMUd5cVZ2NndPX29IMWZTeWs5cG5OQzdaZ0IzTkt3OHd6Vm8xMTZOUFB0Rm5YM1p5VjRia2tXSXdZeUdOMnJZbGM4bEZBN01Ib1JST0FXZktmNV9ycU0wd2RFeE9BU1BkcUloSmx0UDE5ME5ud2R0cHhVR2hMaGFCUHd3?oc=5",
+      "title": "Markets Pause: Inflation Data Shape China and Hong Kong Stocks - Devdiscourse",
+      "link": "https://news.google.com/rss/articles/CBMitgFBVV95cUxOMDNEYm9HTzN3MUtpdVZjaktVNHU0VnRrNjlRbW95Q0FMa2NRb0VSXzRVNXNhN3dGaDRQVTctc01JODJhckp1Q0JTbXRGeHVpcDNUdUZGT3FSV1Z2NUN3eUhjcVc5a2JwRV9YUGxYY1g5Y1dvV2lscFRMc01vemgtWGE0NkE0UnhzUjZ3UTlOeGtSODRhYllNZWZ3dDB6ZV95eldqeXBJQmZxTkNfWFR5dlI2V2YtUdIBuwFBVV95cUxNQXk4NWJkSzY3MlhhUmN0dU1nVWF0OE1WWUJkT1Y2aGVQblJOY3UtUHJDeE5ldGE4YmZnRTBheWtlTlRha3V6dkMzaW9hcjdkalJMbE5ibVNTN1h2T1lKMUg1LUNZZldTcmhfUkxfQWpoUUtCeEZ6Zm9JdGRsV09adHVXQVdZX1NWQnB1dEo3SHVkUFBTMWthTlR0MGZQbFpWbXlQS1Z3UjFmV1VvNkhCR09iczhZUHVRemRZ?oc=5",
       "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMimgFBVV95cUxQMTBfdkpBdFNMNFM4dVNsYmFWRDdtS05oMUd5cVZ2NndPX29IMWZTeWs5cG5OQzdaZ0IzTkt3OHd6Vm8xMTZOUFB0Rm5YM1p5VjRia2tXSXdZeUdOMnJZbGM4bEZBN01Ib1JST0FXZktmNV9ycU0wd2RFeE9BU1BkcUloSmx0UDE5ME5ud2R0cHhVR2hMaGFCUHd3?oc=5\" target=\"_blank\"",
-      "at": 1788946097000,
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMitgFBVV95cUxOMDNEYm9HTzN3MUtpdVZjaktVNHU0VnRrNjlRbW95Q0FMa2NRb0VSXzRVNXNhN3dGaDRQVTctc01JODJhckp1Q0JTbXRGeHVpcDNUdUZGT3FSV1Z2NUN3eUhjcVc5a2JwRV9YUGxYY1g5Y1dvV2lscFRMc01vemgtWGE0NkE0UnhzUjZ3UTlOeGtSODRhYllNZWZ3dDB6ZV95eldqeXBJQmZxTk",
+      "at": 1788946361000,
       "inst": [
-        "XAU/USD"
+        "US500"
       ],
       "ccy": [
-        "USD",
-        "XAU"
+        "USD"
       ],
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788946097000
+      "firstAt": 1788946361000
     }
   ],
   "sources": [
@@ -2150,10 +2204,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-09T14:01:27.965Z",
-  "headlinesAt": "2026-09-09T14:01:27.965Z",
-  "updatedAt": "2026-09-09T14:01:27.965Z"
+  "calendarAt": "2026-09-09T14:02:43.988Z",
+  "headlinesAt": "2026-09-09T14:02:43.988Z",
+  "updatedAt": "2026-09-09T14:02:43.988Z"
 }
