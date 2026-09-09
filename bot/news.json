@@ -23,7 +23,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788994260000,
-      "_kind": null
+      "_kind": null,
+      "why": "Inflation data impact unclear"
     },
     {
       "title": "Oil Prices Surge Above $100 as Inflation Fears Grow, MoneySimpler Expands AI Automated Trading - markets.businessinsider.com",
@@ -42,7 +43,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788991380000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil prices surge above $100"
     },
     {
       "title": "Israel sanctions will not hurt intelligence sharing between spy agencies, says Miliband - The Guardian",
@@ -63,7 +68,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788992100000,
-      "_kind": null
+      "_kind": null,
+      "why": "Diplomatic news, no market impact"
     },
     {
       "title": "American Eagle sticks to annual sales forecast again, shares slump",
@@ -95,7 +101,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788992649000
+      "firstAt": 1788992649000,
+      "why": "Ukraine strike, no clear direction"
     },
     {
       "title": "‘It’s a good start’: prominent Israelis welcome UK sanctions on illegal settlements - The Guardian",
@@ -112,7 +119,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788992100000
+      "firstAt": 1788992100000,
+      "why": "Political news, no market impact"
     },
     {
       "title": "Senior UK rabbis come out in support of sanctions on Israeli settlements - The Guardian",
@@ -132,7 +140,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788992100000
+      "firstAt": 1788992100000,
+      "why": "Political news, no market impact"
     },
     {
       "title": "Canada’s Enbridge to buy Tallgrass crude oil business for $2.55 billion",
@@ -151,7 +160,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788991591000
+      "firstAt": 1788991591000,
+      "why": "Corporate acquisition, no clear direction"
     },
     {
       "title": "Stock Market Stretches Losing Streak As Oil Prices, Treasury Yields Climb; Key Inflation Data Next - Investor's Business Daily",
@@ -169,7 +179,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788991380000
+      "firstAt": 1788991380000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil prices climb"
     },
     {
       "title": "Hunter Biden’s memecoin flops, falling 95% just hours after launch",
@@ -186,7 +200,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788991320000
+      "firstAt": 1788991320000,
+      "why": "Memecoin flop, no BTC direction"
     },
     {
       "title": "Ukraine Carried Out Its Deepest Drone Strike On Russia Ever - TWZ",
@@ -206,7 +221,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788989555000
+      "firstAt": 1788989555000,
+      "why": "Ukraine strike, no clear direction"
     },
     {
       "title": "Mexico stocks lower at close of trade; S&P/BMV IPC down 0.39%",
@@ -220,7 +236,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788989403000
+      "firstAt": 1788989403000,
+      "why": "Mexico stocks lower, US unclear"
     },
     {
       "title": "Oil surges above $100 a barrel as US and Iran launch new attacks, while gasoline prices also jump - AP News",
@@ -240,7 +257,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788986116000
+      "firstAt": 1788986116000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Oil surges on US-Iran attacks"
     },
     {
       "title": "The bull market’s biggest enemy right now could be Bessent’s interventions",
@@ -259,7 +281,12 @@
       "sev": 3,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788988620000
+      "firstAt": 1788988620000,
+      "dir": {
+        "USD/JPY": "down",
+        "US500": "down"
+      },
+      "why": "Stronger yen, higher yields bearish"
     },
     {
       "title": "Trump says Iran war ‘will end immediately’ after US midterm elections - Al Jazeera",
@@ -279,7 +306,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788988619000
+      "firstAt": 1788988619000,
+      "why": "Political statement, no clear direction"
     },
     {
       "title": "the Bell: Oil-driven inflation worries rattle the markets | 2026-09-09 | Investing News - Stockhouse",
@@ -297,7 +325,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788988500000
+      "firstAt": 1788988500000,
+      "why": "Inflation worries, no clear direction"
     },
     {
       "title": "investingLive Americas FX news wrap 9 Sept: Oil is a problem as war likely to continue",
@@ -1111,7 +1140,7 @@
       "firstAt": 1788978314000
     },
     {
-      "title": "Why Markets May Be Overpricing A September Fed Rate Hike - forbes.com",
+      "title": "Why Markets May Be Overpricing A September Fed Rate Hike - Forbes",
       "link": "https://news.google.com/rss/articles/CBMirgFBVV95cUxQaUlZSndVVWZwTEZLYS1BWWRYTEN0NlVWdXFwRUk3RzRoN1B5Y3B3QUd6Rkx5STVNVVFHTVhWdnpCcWppeTFiY1BBeXdLcUZvUE9SdG85VGNVbHYteloxdjhkSW02TXZwR0FhY1pfM1ZVUVZZRDNRWDJzWlpyVVJxR2E5LW9RTlVhc2M3bnFNejMzVjBEUldRLW0wRHlfLTdaX25RZFY4STU0cWZscUE?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMirgFBVV95cUxQaUlZSndVVWZwTEZLYS1BWWRYTEN0NlVWdXFwRUk3RzRoN1B5Y3B3QUd6Rkx5STVNVVFHTVhWdnpCcWppeTFiY1BBeXdLcUZvUE9SdG85VGNVbHYteloxdjhkSW02TXZwR0FhY1pfM1ZVUVZZRDNRWDJzWlpyVVJxR2E5LW9RTlVhc2M3bnFNejMzVjBEUldRLW0wRHlfLTdaX25RZFY4STU0cW",
@@ -1767,6 +1796,6 @@
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-09T22:55:30.530Z",
-  "updatedAt": "2026-09-09T22:55:30.530Z"
+  "headlinesAt": "2026-09-09T22:57:00.759Z",
+  "updatedAt": "2026-09-09T22:57:00.759Z"
 }
