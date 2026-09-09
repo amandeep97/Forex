@@ -489,7 +489,13 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1788950483000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Supply disruption and geopolitical risk boost prices"
     },
     {
       "title": "European stocks hit multi-lows with oil at $100 and ECB hike in sight",
@@ -509,7 +515,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788951992000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "EUR/USD": "down",
+        "USOIL": "up",
+        "US500": "down"
+      },
+      "why": "Stock lows and oil spike signal risk-off"
     },
     {
       "title": "Analysis-Fearless US stock market vulnerable to shocks as midterms loom",
@@ -543,7 +555,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788950130000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Escalation drives safe-haven and energy demand"
     },
     {
       "title": "Market Volatility Is Picking Up. Here's the ETF That History Says Has Always Rewarded Patient Investors",
@@ -572,7 +590,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788951780000,
-      "_kind": null
+      "_kind": null,
+      "why": "European stock advice irrelevant to US index"
     },
     {
       "title": "Melius sees oil prices climb on extended Jizan plant shutdown",
@@ -590,7 +609,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788951691000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Supply cut supports higher oil prices"
     },
     {
       "title": "Silver price today, Wednesday, September 9, 2026: Silver prices hold in the $66 range as U.S.-Iranian attacks continue",
@@ -612,7 +635,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788950483000,
-      "_kind": null
+      "_kind": null,
+      "why": "Prices holding steady amid ongoing conflict"
     },
     {
       "title": "Russia and Ukraine exchange strikes as two killed at Moldova border - Yahoo",
@@ -633,7 +657,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788950171000,
-      "_kind": null
+      "_kind": null,
+      "why": "Regional conflict lacks clear market direction"
     },
     {
       "title": "NEOS Gold High Income ETF (IAUI): An Income-Focused Approach to Gold Exposure",
@@ -650,7 +675,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788951521000,
-      "_kind": null
+      "_kind": null,
+      "why": "ETF product news lacks directional bias"
     },
     {
       "title": "Raymond James sees National Bank of Canada stock weakness ahead",
@@ -667,7 +693,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788951429000,
-      "_kind": null
+      "_kind": null,
+      "why": "Bank stock weakness unclear for currency"
     },
     {
       "title": "3 reasons why S&P 500 may drop up to 10% in the near term: RBC",
@@ -682,7 +709,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788951382000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Analyst predicts significant near-term index drop"
     },
     {
       "title": "Skip the Mine, Pocket the Gold: 5 Royalty Streamers Are Crushing Producers in 2026",
@@ -699,7 +730,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788950483000,
-      "_kind": null
+      "_kind": null,
+      "why": "Stock comparison irrelevant to spot gold"
     },
     {
       "title": "Dow Jones Futures Fall As Oil Prices Push Stocks Toward Breaking Point; Apple iPhone Event Due",
@@ -718,7 +750,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788948921000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "US500": "down",
+        "US30": "down"
+      },
+      "why": "Oil rise weighs on equity futures"
     },
     {
       "title": "Crypto, banks take lobbying war to US senators’ home states ahead of key vote",
@@ -737,7 +775,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788951277000,
-      "_kind": null
+      "_kind": null,
+      "why": "Lobbying news has no immediate price impact"
     },
     {
       "title": "NuScale Stock vs. Oklo Stock: Wall Street Says Buy One and Sell the Other.",
@@ -752,7 +791,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788951000000,
-      "_kind": null
+      "_kind": null,
+      "why": "Individual stock news irrelevant to index"
     },
     {
       "title": "US and Iran trade strikes overnight as gas prices continue to rise - WFAA",
@@ -772,7 +812,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788950130000
+      "firstAt": 1788950130000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Strikes and rising gas prices boost assets"
     },
     {
       "title": "Bitcoin trades with gold, not equities, as Brent crude breaks $100: Crypto Markets Today - CoinDesk",
@@ -2162,10 +2208,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-09T11:18:58.967Z",
-  "headlinesAt": "2026-09-09T11:18:58.967Z",
-  "updatedAt": "2026-09-09T11:18:58.967Z"
+  "calendarAt": "2026-09-09T11:20:13.412Z",
+  "headlinesAt": "2026-09-09T11:20:13.412Z",
+  "updatedAt": "2026-09-09T11:20:13.412Z"
 }
