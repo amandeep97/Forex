@@ -535,31 +535,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788924860000,
-      "_kind": null
-    },
-    {
-      "title": "Why is United States Dollar Index declining despite Fed rate hike bets? - FXStreet",
-      "link": "https://news.google.com/rss/articles/CBMiygFBVV95cUxQdWJzSTFnSVdQSzloS2FaMkktcnBpM2dNQ0hORTBjdmRZVFN2dUJUb242UEk5Z2dLdktpUTBQcnc4eHlFWWg4d21yT2pmNlpIaDBmVTlyYk9QYU1rQWRGV2I0WkVxZ3k4WFJITEhSa3NYcWdIZFVkU2E0YWw4cUZyRTcwRmV2eHFtVGVnbzVGdnZrLTlnT2twUUcxMTMyU3BKcG9OdG5SQXRPOGdYYk9BdnRFNlVRaXE3UGNBTS02V0ZQa1hONmR4ZnNB?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiygFBVV95cUxQdWJzSTFnSVdQSzloS2FaMkktcnBpM2dNQ0hORTBjdmRZVFN2dUJUb242UEk5Z2dLdktpUTBQcnc4eHlFWWg4d21yT2pmNlpIaDBmVTlyYk9QYU1rQWRGV2I0WkVxZ3k4WFJITEhSa3NYcWdIZFVkU2E0YWw4cUZyRTcwRmV2eHFtVGVnbzVGdnZrLTlnT2twUUcxMTMyU3BKcG9OdG5SQXRPOG",
-      "at": 1788924422000,
-      "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788924422000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "War escalation supports oil prices"
     },
     {
       "title": "US attacks 5 Iranian oil tankers, Tehran retaliates with strikes on Jordan - Al Jazeera",
@@ -580,7 +561,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788924113000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "US attacks Iranian tankers, geopolitical risk"
     },
     {
       "title": "Gold firms on softer dollar, inflation data and Mideast risks in focus - The Edge Malaysia",
@@ -599,7 +586,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788921720000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Gold firms on softer dollar"
     },
     {
       "title": "US slaps import ban on Canadian alcohol, motorbikes and other goods",
@@ -617,7 +608,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788923012000
+      "firstAt": 1788923012000,
+      "why": "Trade war news, unclear direction"
     },
     {
       "title": "China inflation rebounds on energy costs, but the demand story hasn't changed - recap",
@@ -640,7 +632,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788923009000
+      "firstAt": 1788923009000,
+      "why": "China inflation data, no clear direction"
     },
     {
       "title": "Australia considers new Israel sanctions but won’t join UK in banning trade with ‘settler terrorists’ - The Guardian",
@@ -662,7 +655,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788922750000
+      "firstAt": 1788922750000,
+      "why": "Australia sanctions news, unclear impact"
     },
     {
       "title": "UK settlement sanctions on Israel threaten critical intelligence, security ties - The Jerusalem Post",
@@ -682,7 +676,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788922750000
+      "firstAt": 1788922750000,
+      "why": "UK sanctions news, unclear market impact"
     },
     {
       "title": "Gold and Silver Price Forecast: XAU/USD Eyes Breakout as US Inflation Data Looms - FXEmpire",
@@ -702,7 +697,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788919506000
+      "firstAt": 1788919506000,
+      "why": "Forecast headline, no immediate direction"
     },
     {
       "title": "U.S. strikes Iran tankers; President Trump honors 9/11 victims - krem.com",
@@ -722,7 +718,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788918960000
+      "firstAt": 1788918960000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "US strikes Iran tankers, risk off"
     },
     {
       "title": "Oil nears $100 as fresh Middle East strikes raise supply risks",
@@ -741,7 +743,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788921031000
+      "firstAt": 1788921031000,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Oil nears $100 on supply risks"
     },
     {
       "title": "Record-breaking rain disrupts daily life in Nagoya, Japan",
@@ -758,7 +766,8 @@
       "sev": 3,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788920623000
+      "firstAt": 1788920623000,
+      "why": "Rain in Nagoya, no market impact"
     },
     {
       "title": "US military says it destroyed 5 more Iranian oil tankers after missile attacks on Navy warship - AP News",
@@ -778,7 +787,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788920160000
+      "firstAt": 1788920160000,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "US destroys Iranian tankers, supply risk"
     },
     {
       "title": "Yemen’s Saudi-backed forces strike Houthis on western coast",
@@ -798,7 +813,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788919562000
+      "firstAt": 1788919562000,
+      "why": "Yemen strikes, unclear immediate impact"
     },
     {
       "title": "Gold subdued on inflation worries, rate hike expectations - The Economic Times",
@@ -816,7 +832,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1788918233000
+      "firstAt": 1788918233000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold subdued on inflation worries"
     },
     {
       "title": "New Zealand Dollar holds gains above 0.5850 after Chinese inflation data - FXStreet",
@@ -834,7 +854,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788918863000
+      "firstAt": 1788918863000,
+      "dir": {
+        "NZD/USD": "up"
+      },
+      "why": "NZD holds gains above 0.5850"
     },
     {
       "title": "MAJOR ESCALATION: US pushes aggression to cripple Iran economically - Fox News",
@@ -2236,6 +2260,29 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788888572000
+    },
+    {
+      "title": "U.S. Treasury sells $58 billion of 3 or notes at a high yield of 4.474%",
+      "link": "https://investinglive.com/news/u-s-treasury-sells-58-billion-of-3-or-notes-at-a-high-yield-of-4-474/",
+      "source": "ForexLive",
+      "desc": "The 1st coupon auction of the week was met with average demand. The US treasury sold $58 billion of 3 or notes at a high yield of 4.474%. The WI level at the time of the auction was just above that level at 4.75% creating a tale of -0.1 basis points.Bid to cover 2.72X was higher ",
+      "at": 1788887548000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788887548000
     }
   ],
   "sources": [
@@ -2258,10 +2305,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-09T03:41:13.084Z",
-  "headlinesAt": "2026-09-09T03:41:13.084Z",
-  "updatedAt": "2026-09-09T03:41:13.084Z"
+  "calendarAt": "2026-09-09T03:42:58.006Z",
+  "headlinesAt": "2026-09-09T03:42:58.006Z",
+  "updatedAt": "2026-09-09T03:42:58.006Z"
 }
