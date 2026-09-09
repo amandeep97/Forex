@@ -42,7 +42,7 @@ import { tellsUsSomething, MIN_EXP_R, MAX_COST_SHARE } from './confluence';
 const TF_ORDER = ['D', 'H4', 'H1', 'M30', 'M15'];
 const SWING_TFS = new Set(['D', 'H4']);
 
-const TF_MS = { D: 86400e3, H4: 14400e3, H1: 3600e3, M30: 1800e3, M15: 900e3 };
+const TF_MS = { D: 86400e3, H4: 14400e3, H1: 3600e3, M30: 1800e3, M15: 900e3, M2: 120e3 };
 
 // The feed's forward windows, used only when a piece of evidence has no record
 // of its own. Kept in step with HORIZON in vps-bot/src/feed.js.

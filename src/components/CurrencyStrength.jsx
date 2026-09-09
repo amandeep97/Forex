@@ -19,7 +19,7 @@ const SETUP_PAIRS = [
   'EUR_CAD','EUR_AUD','GBP_AUD','GBP_CAD','NZD_JPY','CHF_JPY','USD_NZD',
 ];
 
-const TF_OPTIONS = ['M15','H1','H4','D'];
+const TF_OPTIONS = ['M2','M15','H1','H4','D'];
 const PERIOD_OPTIONS = [10, 20, 50];
 
 function getOandaCreds() {

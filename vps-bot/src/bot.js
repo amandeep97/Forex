@@ -33,7 +33,7 @@ const TRADES_PATH   = 'bot/trades.json';
 const CONTROL_PATH  = 'bot/vps-control.json';
 
 // Timeframe → milliseconds, for the "one entry per bar" guard.
-const TF_MS = { M1:60e3, M5:300e3, M15:900e3, M30:1800e3, H1:3600e3, H2:7200e3, H4:14400e3, H6:21600e3, H12:43200e3, D:86400e3, W:604800e3 };
+const TF_MS = { M1:60e3, M2:120e3, M5:300e3, M15:900e3, M30:1800e3, H1:3600e3, H2:7200e3, H4:14400e3, H6:21600e3, H12:43200e3, D:86400e3, W:604800e3 };
 // Start (ms) of the current candle for a timeframe — floor of now to the TF grid.
 function barStartMs(tf) {
   const ms = TF_MS[tf] || 900e3;

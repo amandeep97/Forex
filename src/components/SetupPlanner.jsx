@@ -10,7 +10,7 @@ const PAIRS = [
   'XAU/USD','XAG/USD',
   'US30','NAS100','SPX500','GER40','JPN225','UK100',
 ];
-const TFS = ['M15','M30','H1','H4','D1','W1'];
+const TFS = ['M2','M15','M30','H1','H4','D1','W1'];
 
 const STATUS = {
   planned:     { label:'Planned',     color:'#f59e0b', bg:'#f59e0b18' },

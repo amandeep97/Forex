@@ -12,8 +12,8 @@ import ChartDrawTools, { sliceVisible, maxPanOffset } from './ChartDrawTools';
 import { binanceCandles, isBinance } from '../utils/binanceKlines';
 import { bySymbol } from '../data/instruments';
 
-const TFS    = ['M1','M5','M15','M30','H1','H2','H4','H6','H12','D','W'];
-const TV_TF  = { M1:'1',M5:'5',M15:'15',M30:'30',H1:'60',H2:'120',H4:'240',H6:'360',H12:'720',D:'D',W:'W' };
+const TFS    = ['M1','M2','M5','M15','M30','H1','H2','H4','H6','H12','D','W'];
+const TV_TF  = { M1:'1',M2:'2',M5:'5',M15:'15',M30:'30',H1:'60',H2:'120',H4:'240',H6:'360',H12:'720',D:'D',W:'W' };
 
 // Instrument format helpers
 // Indices/metals/energy have no slash (e.g. "US100") and need the real OANDA_MAP
