@@ -495,7 +495,48 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788956594000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "UKOIL": "up"
+      },
+      "why": "Brent breaches $100 threshold"
+    },
+    {
+      "title": "Forget Oklo: This Nuclear Stock Could Be the Better Buy",
+      "link": "https://finance.yahoo.com/energy/articles/forget-oklo-nuclear-stock-could-122000495.html",
+      "source": "Yahoo Finance",
+      "at": 1788956400000,
+      "inst": [
+        "XAU/USD"
+      ],
+      "ccy": [
+        "XAU"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788956400000,
+      "_kind": null,
+      "why": "Nuclear stock news irrelevant to gold"
+    },
+    {
+      "title": "Wall Street raises S&P 500 targets past 8,000 amid pullback risks",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/wall-street-raises-p-500-121952136.html",
+      "source": "Yahoo Finance",
+      "at": 1788956392000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788956392000,
+      "_kind": null,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "S&P 500 targets raised past 8,000"
     },
     {
       "title": "How has Israel hit back against sanctions by the UK, others? - Al Jazeera",
@@ -516,7 +557,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788954796000,
-      "_kind": null
+      "_kind": null,
+      "why": "Geopolitical news lacks clear market direction"
     },
     {
       "title": "Gold Gains as Dollar Eases and US-Iran Tensions Keep Inflation in Focus - Fana News -",
@@ -538,7 +580,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1788953628000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Gold gains as dollar eases"
     },
     {
       "title": "Dow Jones Futures Fall As Oil Prices Push Stocks Toward Breaking Point; Apple iPhone Event Due",
@@ -557,7 +603,13 @@
       "rel": 2,
       "srcs": 3,
       "firstAt": 1788954914000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "US500": "down",
+        "US30": "down"
+      },
+      "why": "Oil pushes stocks down"
     },
     {
       "title": "Stock Market Today: Dow Falls Amid Rising Oil Prices; Apple Shares Drop Ahead Of iPhone Event (Live Coverage)",
@@ -575,7 +627,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788956007000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "US30": "down"
+      },
+      "why": "Dow falls amid rising oil"
     },
     {
       "title": "Passive Income Investors Are Buying 5 Well-Known High-Yield Stocks Near 52-Week Lows",
@@ -590,7 +647,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788955967000,
-      "_kind": null
+      "_kind": null,
+      "why": "Specific stock news, not index direction"
     },
     {
       "title": "U.S. Stock Futures Slip, Treasurys Weaken After Oil Tops $100",
@@ -607,7 +665,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788955860000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil tops $100"
     },
     {
       "title": "Brent oil crosses $100 for first time in two months as Middle East conflict flares",
@@ -627,7 +689,12 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1788953141000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Brent crosses $100 on conflict"
     },
     {
       "title": "U.K. defends sanctions on Israeli settlements after 30-day consulate closure order - CNBC",
@@ -648,7 +715,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1788953277000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions news lacks clear market impact"
     },
     {
       "title": "Tankers caught at centre of US-Iran escalation spiral - Seatrade Maritime News",
@@ -669,35 +737,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1788954540000,
-      "_kind": null
-    },
-    {
-      "title": "DeepSeek taps CITIC Securities for Shanghai STAR Market IPO",
-      "link": "https://finance.yahoo.com/technology/ai/articles/deepseek-taps-citic-securities-shanghai-120650036.html",
-      "source": "Yahoo Finance",
-      "at": 1788955610000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1788955610000,
-      "_kind": null
-    },
-    {
-      "title": "Here Are Tuesday’s Top Wall Street Analyst Research Calls: Abercrombie & Fitch, Affirm Holdings, Eagle Materials, Klarna Group, Martin Marietta Materials, Oklo, Qualcomm, Robinhood Markets, Ulta Beauty, and More",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/tuesday-top-wall-street-analyst-120643579.html",
-      "source": "Yahoo Finance",
-      "at": 1788955603000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788955603000,
-      "_kind": null
+      "_kind": null,
+      "why": "Escalation news lacks clear price direction"
     },
     {
       "title": "Amazon set to raise over $5 billion in first sterling bond sale, lead managers say",
@@ -714,24 +755,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788955593000,
-      "_kind": null
-    },
-    {
-      "title": "Bitcoin Is Down for 2026. Here Is the Exact Price It Has to Reclaim by December 31 to Break Even",
-      "link": "https://finance.yahoo.com/markets/crypto/articles/bitcoin-down-2026-exact-price-120537310.html",
-      "source": "Yahoo Finance",
-      "at": 1788955537000,
-      "inst": [
-        "BTC/USDT"
-      ],
-      "ccy": [
-        "BTC"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788953141000,
-      "_kind": null
+      "_kind": null,
+      "why": "Bond sale news unclear for FX"
     },
     {
       "title": "Top Utility Stocks to Watch, According to Jefferies",
@@ -745,7 +770,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788955355000
+      "firstAt": 1788955355000,
+      "why": "Sector-specific stock watchlist"
     },
     {
       "title": "Brent oil tops $100 as Middle East conflict intensifies, stoking supply fears",
@@ -764,7 +790,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 3,
-      "firstAt": 1788953141000
+      "firstAt": 1788953141000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Brent tops $100 on supply fears"
     },
     {
       "title": "Stocks making the biggest moves premarket: Apple, Casey's General Store, Signet Jewelers & more",
@@ -1433,18 +1464,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788949140000
-    },
-    {
-      "title": "TSMC’s High-NA Plan Gives ASML a Catalyst, but Investors Face Two Different Timelines",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/tsmc-high-na-plan-gives-101831920.html",
-      "source": "Yahoo Finance",
-      "at": 1788949111000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1788949111000
     },
     {
       "title": "Oil tops $100 as U.S.-Iran fighting escalates",
@@ -2130,6 +2149,46 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788940914000
+    },
+    {
+      "title": "Israel targets UK in retaliation for West Bank sanctions - Le Monde.fr",
+      "link": "https://news.google.com/rss/articles/CBMiygFBVV95cUxPNy01aGg0c1R2cWR0X2tvT24xRmZwR3JOTjh2ci1pLUdmLWpOMWVPUVhzVk02b0lEOENxcjlNMXBLR2JkSS1BbXlURkQxMnc5eDhOVmV5WTBUUWxyMWJ4TG81cHdXNGk0MDhTYnR4SVkyU1N0anFzVkJ1LVVFa3pUTjRhMnpPTUR3Vkk5bWZtYk1PLXJpcmhjMUV5NTNISV9pcjRiNG9RampKN0daYkp2THpHTG9yZkU3Y1RJZi0xR1Zpb0lHVTRrTE5B?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiygFBVV95cUxPNy01aGg0c1R2cWR0X2tvT24xRmZwR3JOTjh2ci1pLUdmLWpOMWVPUVhzVk02b0lEOENxcjlNMXBLR2JkSS1BbXlURkQxMnc5eDhOVmV5WTBUUWxyMWJ4TG81cHdXNGk0MDhTYnR4SVkyU1N0anFzVkJ1LVVFa3pUTjRhMnpPTUR3Vkk5bWZtYk1PLXJpcmhjMUV5NTNISV9pcjRiNG9RampKN0",
+      "at": 1788940753000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788939857000
+    },
+    {
+      "title": "Israel planning action against France following West Bank settlement sanctions - The Jerusalem Post",
+      "link": "https://news.google.com/rss/articles/CBMiXEFVX3lxTFBCbGY1bjdxVGxmSElBN2I4eXkxVWNKM0JkU1dod2dVTnUxOWRsb2J5NU5MbUVDb3lORG5HYzcybXdHQkFPTjhPVHp3d3FtSXlYU0hHYzhiN1ROa0tw?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiXEFVX3lxTFBCbGY1bjdxVGxmSElBN2I4eXkxVWNKM0JkU1dod2dVTnUxOWRsb2J5NU5MbUVDb3lORG5HYzcybXdHQkFPTjhPVHp3d3FtSXlYU0hHYzhiN1ROa0tw?oc=5\" target=\"_blank\">Israel planning action against France following West Bank settlement sanctions</a>&",
+      "at": 1788939857000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788939857000
     }
   ],
   "sources": [
@@ -2152,10 +2211,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-09T12:33:43.602Z",
-  "headlinesAt": "2026-09-09T12:33:43.602Z",
-  "updatedAt": "2026-09-09T12:33:43.602Z"
+  "calendarAt": "2026-09-09T12:34:59.296Z",
+  "headlinesAt": "2026-09-09T12:34:59.296Z",
+  "updatedAt": "2026-09-09T12:34:59.296Z"
 }
