@@ -558,7 +558,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788918856000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "AUD/USD": "up"
+      },
+      "why": "AUD holds gains vs weak USD"
     },
     {
       "title": "Australian Dollar inches higher against Japanese Yen following China’s inflation data - FXStreet",
@@ -578,7 +582,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788918856000,
-      "_kind": null
+      "_kind": null,
+      "why": "AUD higher vs JPY, USD/JPY unclear"
     },
     {
       "title": "Gold Slips As Oil-Led Inflation Fears Keep Rates High - Finimize",
@@ -599,7 +604,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788918777000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "up"
+      },
+      "why": "Gold slips, oil-led inflation fears"
     },
     {
       "title": "UK announces sanctions on West Bank settlements prompting furious Israeli response",
@@ -621,7 +631,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1788917400000,
-      "_kind": null
+      "_kind": null,
+      "why": "UK sanctions news, no clear market direction"
     },
     {
       "title": "How Ukrainian Drone Strikes Are Pounding Russia’s Economy - WSJ",
@@ -642,7 +653,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788918308000,
-      "_kind": null
+      "_kind": null,
+      "why": "Ukraine strikes impact unclear for markets"
     },
     {
       "title": "Gold rebounds as dollar eases, but Fed hike risks cap gains",
@@ -660,7 +672,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788918233000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Gold rebounds as dollar eases"
     },
     {
       "title": "US strikes Iranian tankers plus other key Mideast news - apnews.com",
@@ -681,7 +697,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788918180000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "US strikes Iranian tankers, risk-off"
     },
     {
       "title": "Oil extends rally, Brent nears $100/bbl as U.S.-Iran tensions escalate",
@@ -701,7 +723,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788918059000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up",
+        "XAU/USD": "up"
+      },
+      "why": "Oil rally, Brent nears $100"
     },
     {
       "title": "New escalation between the US and Iran: Washington sinks 5 tankers as Tehran strikes American base in Jordan - voz.us",
@@ -722,7 +750,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788917922000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "US-Iran escalation, risk assets fall"
     },
     {
       "title": "China August CPI 0.8% y/y (expected 0.8%, prior 0.5%)",
@@ -746,7 +780,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788917422000,
-      "_kind": null
+      "_kind": null,
+      "why": "China CPI in line, no clear direction"
     },
     {
       "title": "Will UK sanctions have any impact on Israel’s ‘settler terrorists’ in West Bank? - The Guardian",
@@ -767,7 +802,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1788917400000,
-      "_kind": null
+      "_kind": null,
+      "why": "UK sanctions impact unclear"
     },
     {
       "title": "US slaps import ban on Canadian alcohol and other goods",
@@ -785,7 +821,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788916155000
+      "firstAt": 1788916155000,
+      "dir": {
+        "USD/CAD": "up"
+      },
+      "why": "Trade war escalation, CAD weakens"
     },
     {
       "title": "Jordanian air defences intercept Iranian missile barrage",
@@ -805,7 +845,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788916095000
+      "firstAt": 1788916095000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Iranian missile barrage, geopolitical risk"
     },
     {
       "title": "U.S. stock futures muted as oil nears $100, Fed hike bets rise",
@@ -822,7 +868,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788916042000
+      "firstAt": 1788916042000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil nears $100, Fed hike bets"
     },
     {
       "title": "As Canada’s retaliatory tariffs on US goods take effect, tensions soar - Al Jazeera",
@@ -839,7 +889,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788915615000
+      "firstAt": 1788915615000,
+      "dir": {
+        "USD/CAD": "up"
+      },
+      "why": "Canada retaliatory tariffs, CAD weakens"
     },
     {
       "title": "Israel, welcome to the sanctions era: • U.K. heralds new reality that won't end with Netanyahu - Haaretz",
@@ -2273,10 +2327,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-09T01:58:56.310Z",
-  "headlinesAt": "2026-09-09T01:58:56.310Z",
-  "updatedAt": "2026-09-09T01:58:56.310Z"
+  "calendarAt": "2026-09-09T02:00:12.491Z",
+  "headlinesAt": "2026-09-09T02:00:12.491Z",
+  "updatedAt": "2026-09-09T02:00:12.491Z"
 }
