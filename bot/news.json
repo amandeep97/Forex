@@ -471,6 +471,45 @@
   ],
   "headlines": [
     {
+      "title": "European stocks hit multi-lows with oil at $100 and ECB hike in sight",
+      "link": "https://www.investing.com/news/stock-market-news/european-equities-stumble-under-threat-of-middle-east-strikes-ecb-hike-4892721",
+      "source": "Investing",
+      "at": 1788951992000,
+      "inst": [
+        "EUR/USD",
+        "USOIL",
+        "US500"
+      ],
+      "ccy": [
+        "EUR",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788951992000,
+      "_kind": null,
+      "dir": {
+        "EUR/USD": "down",
+        "USOIL": "up",
+        "US500": "down"
+      },
+      "why": "Stocks fall, oil rises, ECB hike implies stronger euro."
+    },
+    {
+      "title": "Analysis-Fearless US stock market vulnerable to shocks as midterms loom",
+      "link": "https://www.investing.com/news/stock-market-news/analysisfearless-us-stock-market-vulnerable-to-shocks-as-midterms-loom-4893266",
+      "source": "Investing",
+      "at": 1788951990000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 1,
+      "srcs": 1,
+      "firstAt": 1788951990000,
+      "_kind": null
+    },
+    {
       "title": "Iran sends wave of missiles toward U.S. base in Jordan after vowing escalation - The Washington Post",
       "link": "https://news.google.com/rss/articles/CBMizAFBVV95cUxPYXl5NEhWdWhSUHJZanQ3LU5Jd0dyWHhUN1RYVVROUHFWcnV2WjEwNzl3VWtjX0cxanNGanNUV1NEZGZTeXYwNDh6T0tIT0hQYkVsTzZGNzA0SWlONVZWOEZwRmY1OWdGUmZLMmkyNWt2Uk5fQnFNWVF2ZlBXcmdfdmowSG9fUWJBWFE1MHU1bXdwYUpsb0EwSEVkSjEtYWFvRWpwd2lvdUpZZWdXOWNlRm5wRVV5N1plM1RUMGpXc1BwWTEwcWYyaDZ6emk?oc=5",
       "source": "Wires (geo)",
@@ -489,7 +528,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788950130000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Geopolitical escalation boosts safe havens and oil."
     },
     {
       "title": "Why UBS is telling investors to forget Europe’s ‘tired caricature’ and buy its stocks",
@@ -505,7 +550,30 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788951780000,
-      "_kind": null
+      "_kind": null,
+      "why": "European stock advice does not directly impact US index."
+    },
+    {
+      "title": "Melius sees oil prices climb on extended Jizan plant shutdown",
+      "link": "https://www.investing.com/news/stock-market-news/melius-sees-oil-prices-climb-on-extended-jizan-plant-shutdown-93CH-4893234",
+      "source": "Investing",
+      "at": 1788951691000,
+      "inst": [
+        "USOIL"
+      ],
+      "ccy": [
+        "OIL",
+        "USD"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788951691000,
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Supply disruption expected to push oil prices higher."
     },
     {
       "title": "Silver price today, Wednesday, September 9, 2026: Silver prices hold in the $66 range as U.S.-Iranian attacks continue",
@@ -527,7 +595,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788950483000,
-      "_kind": null
+      "_kind": null,
+      "why": "Prices holding steady amid ongoing conflict."
     },
     {
       "title": "Russia and Ukraine exchange strikes as two killed at Moldova border - bbc.com",
@@ -548,7 +617,63 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788950171000,
-      "_kind": null
+      "_kind": null,
+      "why": "Routine conflict update without clear directional shift."
+    },
+    {
+      "title": "NEOS Gold High Income ETF (IAUI): An Income-Focused Approach to Gold Exposure",
+      "link": "https://finance.yahoo.com/markets/options/articles/neos-gold-high-income-etf-105841772.html",
+      "source": "Yahoo Finance",
+      "at": 1788951521000,
+      "inst": [
+        "XAU/USD"
+      ],
+      "ccy": [
+        "XAU"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788951521000,
+      "_kind": null,
+      "why": "ETF product description lacks market direction."
+    },
+    {
+      "title": "Raymond James sees National Bank of Canada stock weakness ahead",
+      "link": "https://www.investing.com/news/stock-market-news/raymond-james-sees-national-bank-of-canada-stock-weakness-ahead-93CH-4893214",
+      "source": "Investing",
+      "at": 1788951429000,
+      "inst": [
+        "USD/CAD"
+      ],
+      "ccy": [
+        "CAD"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788951429000,
+      "_kind": null,
+      "why": "Bank stock weakness does not clearly move currency."
+    },
+    {
+      "title": "3 reasons why S&P 500 may drop up to 10% in the near term: RBC",
+      "link": "https://www.investing.com/news/stock-market-news/3-reasons-why-sp-500-may-drop-up-to-10-in-the-near-term-rbc-4893212",
+      "source": "Investing",
+      "at": 1788951382000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788951382000,
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Analyst predicts significant near-term drop in index."
     },
     {
       "title": "Skip the Mine, Pocket the Gold: 5 Royalty Streamers Are Crushing Producers in 2026",
@@ -565,7 +690,53 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788950483000,
-      "_kind": null
+      "_kind": null,
+      "why": "Stock performance comparison does not move spot gold."
+    },
+    {
+      "title": "Dow Jones Futures Fall As Oil Prices Push Stocks Toward Breaking Point; Apple iPhone Event Due",
+      "link": "https://www.investors.com/market-trend/stock-market-today/dow-jones-futures-oil-prices-amd-hpe-new-buys-apple-iphone-event/?src=A00220&yptr=yahoo",
+      "source": "Yahoo Finance",
+      "at": 1788951303000,
+      "inst": [
+        "USOIL",
+        "US500",
+        "US30"
+      ],
+      "ccy": [
+        "OIL"
+      ],
+      "sev": 3,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788948921000,
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "US500": "down",
+        "US30": "down"
+      },
+      "why": "Oil prices rise, pushing stock futures lower."
+    },
+    {
+      "title": "Crypto, banks take lobbying war to US senators’ home states ahead of key vote",
+      "link": "https://www.investing.com/news/stock-market-news/crypto-banks-take-lobbying-war-to-us-senators-home-states-ahead-of-key-vote-4893059",
+      "source": "Investing",
+      "at": 1788951277000,
+      "inst": [
+        "BTC/USDT",
+        "XAU/USD"
+      ],
+      "ccy": [
+        "BTC",
+        "XAU"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788951277000,
+      "_kind": null,
+      "why": "Lobbying news has no immediate price impact."
     },
     {
       "title": "NuScale Stock vs. Oklo Stock: Wall Street Says Buy One and Sell the Other.",
@@ -580,26 +751,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788951000000,
-      "_kind": null
-    },
-    {
-      "title": "Crypto, banks take lobbying war to US senators’ home states ahead of key vote",
-      "link": "https://www.investing.com/news/stock-market-news/crypto-banks-take-lobbying-war-to-us-senators-home-states-ahead-of-key-vote-4893059",
-      "source": "Investing",
-      "at": 1788950925000,
-      "inst": [
-        "BTC/USDT",
-        "XAU/USD"
-      ],
-      "ccy": [
-        "BTC",
-        "XAU"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788950925000,
-      "_kind": null
+      "_kind": null,
+      "why": "Individual stock advice does not move the index."
     },
     {
       "title": "US and Iran trade strikes overnight as gas prices continue to rise - WFAA",
@@ -620,7 +773,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788950130000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Strikes and rising gas prices boost oil and gold."
     },
     {
       "title": "Bitcoin trades with gold, not equities, as Brent crude breaks $100: Crypto Markets Today - CoinDesk",
@@ -644,7 +803,12 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1788948800000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Brent breaks $100, gold trades with it."
     },
     {
       "title": "Russian FIMI Network Distorts Claims About Strikes on Ukraine - mezha.net",
@@ -707,25 +871,6 @@
       "_kind": null
     },
     {
-      "title": "Dow Jones Futures Fall As Oil Prices Push Stocks Toward Breaking Point; Apple iPhone Event Due",
-      "link": "https://www.investors.com/market-trend/stock-market-today/dow-jones-futures-oil-prices-amd-hpe-new-buys-apple-iphone-event/?src=A00220&yptr=yahoo",
-      "source": "Yahoo Finance",
-      "at": 1788950620000,
-      "inst": [
-        "USOIL",
-        "US500",
-        "US30"
-      ],
-      "ccy": [
-        "OIL"
-      ],
-      "sev": 3,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788948921000,
-      "_kind": null
-    },
-    {
       "title": "Gold price today, Wednesday, September 9, 2026: Gold prices drop following U.S. strikes on five Iranian oil tankers",
       "link": "https://finance.yahoo.com/personal-finance/investing/article/gold-price-today-wednesday-september-9-2026-gold-prices-drop-following-us-strikes-on-five-iranian-oil-tankers-104123795.html",
       "source": "Yahoo Finance",
@@ -742,8 +887,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1788948000000,
-      "_kind": null
+      "firstAt": 1788948000000
     },
     {
       "title": "China oil demand to fall 8.9% in 2026, Sinopec says",
@@ -760,22 +904,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788950250000
-    },
-    {
-      "title": "Oil and gas electrification: why the sector’s big shift has a power problem",
-      "link": "https://finance.yahoo.com/energy/articles/oil-gas-electrification-why-sector-103613731.html",
-      "source": "Yahoo Finance",
-      "at": 1788950173000,
-      "inst": [
-        "USOIL"
-      ],
-      "ccy": [
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788950173000
     },
     {
       "title": "Video: Fire Point weapons accounted for about 60% of Ukraine's strikes against Russia in 2026 - UA.NEWS",
@@ -1911,7 +2039,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788936300000
+      "firstAt": 1788936660000
     },
     {
       "title": "Medicine shortages grow in Iran as US tightens sanctions, blockade - Al Jazeera",
@@ -2047,25 +2175,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788936300000
-    },
-    {
-      "title": "Gold gains 1% with US inflation data, Middle East risks in focus - The Star",
-      "link": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxNVnNXVjNoZVFjZTZEYkdTbEd3QWkxR1VvR2dRbm9GRm1rdWFKREJHNkpLZUprZE0zakM0bkRTQlpxX3RiSUFWalRSUmxQSERRWHM0ZE5LaFAyREVvMmt3TTk2U1ZyU2wtR0k5d3lDTnJwbVhSR0gzSV9LR3I4M3ZEMWYyMVJ5a1RXZWFPRUloODJad1gyMUtvUTZ0cFdZV1N1QTN4RkYzdVg2YUI3TzFLd0h5Yi1NQXdIUmhuZ2swS04?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiwAFBVV95cUxNVnNXVjNoZVFjZTZEYkdTbEd3QWkxR1VvR2dRbm9GRm1rdWFKREJHNkpLZUprZE0zakM0bkRTQlpxX3RiSUFWalRSUmxQSERRWHM0ZE5LaFAyREVvMmt3TTk2U1ZyU2wtR0k5d3lDTnJwbVhSR0gzSV9LR3I4M3ZEMWYyMVJ5a1RXZWFPRUloODJad1gyMUtvUTZ0cFdZV1N1QTN4RkYzdVg2YU",
-      "at": 1788936300000,
-      "inst": [
-        "XAU/USD"
-      ],
-      "ccy": [
-        "XAU",
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1788936265000
+      "firstAt": 1788936660000
     },
     {
       "title": "Oil Prices Near $100 as Middle East Escalation Stokes Supply Fears - Kurdistan24",
@@ -2084,73 +2194,8 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 2,
+      "srcs": 1,
       "firstAt": 1788936265000
-    },
-    {
-      "title": "Adani Enterprises shares jump as airport unit enters into $1 billion fundraising deal",
-      "link": "https://www.cnbc.com/2026/09/09/adani-enterprises-airport-fundraise-shares.html",
-      "source": "CNBC Markets",
-      "desc": "The investors will subscribe to new shares in three tranches and collectively own about 5.54% of the airport operator after the final tranche.",
-      "at": 1788935219000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1788935219000
-    },
-    {
-      "title": "What are the main events for today?",
-      "link": "https://investinglive.com/news/what-are-the-main-events-for-today-38/",
-      "source": "ForexLive",
-      "desc": "EUROPEAN SESSIONIn the European session, we don't have anything on the agenda other than the French industrial production report. The data is not going to change anything for the ECB, so the market reaction will likely be muted. As a reminder, the ECB is widely expected to hike i",
-      "at": 1788935065000,
-      "inst": [
-        "EUR/USD"
-      ],
-      "ccy": [
-        "EUR"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788935065000
-    },
-    {
-      "title": "Asian Games athletes forced to evacuate amid record rainfall in Japan",
-      "link": "https://www.aljazeera.com/sports/2026/9/9/asian-games-athletes-forced-to-evacuate-amid-record-rainfall-in-japan?traffic_source=rss",
-      "source": "Al Jazeera",
-      "desc": "Rainwater leaked into competition venues a day before some preopening ceremony competitions beginning on Thursday.",
-      "at": 1788934473000,
-      "inst": [
-        "USD/JPY"
-      ],
-      "ccy": [
-        "JPY"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788934473000
-    },
-    {
-      "title": "A hawkish RBA pushes Aussie dollar to four-month high - AFR",
-      "link": "https://news.google.com/rss/articles/CBMirAFBVV95cUxPdTY2Y2I0cUxFTi1BZGZWSnV0ZFQyakVFVnpBaFNRbk1IS2h5dFM2dmliY0dkNEs5ZEwtTGRraEU1WUpaUVgybExuSzlYV0UzZnVxRzNOMmFpRENUTEdHbDdva0JKUnFXUTJnV3pIQ19GMXFXZjE1eTNkZjQ2Ujg3b0IwWkJYZTNfYTEyUVoxREM1ZnN1VFhLbm5rU0MxSWtxeXJyZXJKNWN3aWxM?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMirAFBVV95cUxPdTY2Y2I0cUxFTi1BZGZWSnV0ZFQyakVFVnpBaFNRbk1IS2h5dFM2dmliY0dkNEs5ZEwtTGRraEU1WUpaUVgybExuSzlYV0UzZnVxRzNOMmFpRENUTEdHbDdva0JKUnFXUTJnV3pIQ19GMXFXZjE1eTNkZjQ2Ujg3b0IwWkJYZTNfYTEyUVoxREM1ZnN1VFhLbm5rU0MxSWtxeXJyZXJKNWN3aW",
-      "at": 1788934260000,
-      "inst": [
-        "AUD/USD"
-      ],
-      "ccy": [
-        "USD",
-        "AUD"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788934260000
     }
   ],
   "sources": [
@@ -2173,10 +2218,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-09T11:10:59.523Z",
-  "headlinesAt": "2026-09-09T11:10:59.523Z",
-  "updatedAt": "2026-09-09T11:10:59.523Z"
+  "calendarAt": "2026-09-09T11:12:14.466Z",
+  "headlinesAt": "2026-09-09T11:12:14.466Z",
+  "updatedAt": "2026-09-09T11:12:14.466Z"
 }
