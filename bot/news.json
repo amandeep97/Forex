@@ -535,7 +535,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788924860000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "War escalation supports oil prices"
     },
     {
       "title": "US attacks 5 Iranian oil tankers, Tehran retaliates with strikes on Jordan - aljazeera.com",
@@ -556,7 +561,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788924113000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Attacks on tankers boost oil and gold"
     },
     {
       "title": "Gold firms on softer dollar, inflation data and Mideast risks in focus - theedgemalaysia.com",
@@ -575,7 +586,10 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788921720000,
-      "_kind": null
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Gold firms on softer dollar"
     },
     {
       "title": "US slaps import ban on Canadian alcohol, motorbikes and other goods",
@@ -593,7 +607,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788923012000
+      "firstAt": 1788923012000,
+      "why": "Trade war news unclear for pairs"
     },
     {
       "title": "China inflation rebounds on energy costs, but the demand story hasn't changed - recap",
@@ -616,7 +631,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788923009000
+      "firstAt": 1788923009000,
+      "why": "China inflation data neutral for FX"
     },
     {
       "title": "Australia considers new Israel sanctions but won’t join UK in banning trade with ‘settler terrorists’ - The Guardian",
@@ -638,7 +654,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788922750000
+      "firstAt": 1788922750000,
+      "why": "Sanctions news unclear for markets"
     },
     {
       "title": "UK settlement sanctions on Israel threaten critical intelligence, security ties - The Jerusalem Post",
@@ -658,7 +675,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788922750000
+      "firstAt": 1788922750000,
+      "why": "Sanctions news unclear for markets"
     },
     {
       "title": "Gold and Silver Price Forecast: XAU/USD Eyes Breakout as US Inflation Data Looms - FXEmpire",
@@ -678,7 +696,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788919506000
+      "firstAt": 1788919506000,
+      "why": "Forecast mentions breakout but no direction"
     },
     {
       "title": "U.S. strikes Iran tankers; President Trump honors 9/11 victims - krem.com",
@@ -698,7 +717,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788918960000
+      "firstAt": 1788918960000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Strikes on tankers boost oil and gold"
     },
     {
       "title": "Oil nears $100 as fresh Middle East strikes raise supply risks",
@@ -717,7 +742,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788921031000
+      "firstAt": 1788921031000,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Oil nears $100 on supply risks"
     },
     {
       "title": "Record-breaking rain disrupts daily life in Nagoya, Japan",
@@ -734,7 +765,8 @@
       "sev": 3,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788920623000
+      "firstAt": 1788920623000,
+      "why": "Rain news irrelevant to forex"
     },
     {
       "title": "US military says it destroyed 5 more Iranian oil tankers after missile attacks on Navy warship - AP News",
@@ -754,7 +786,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788920160000
+      "firstAt": 1788920160000,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Destruction of tankers boosts oil and gold"
     },
     {
       "title": "Yemen’s Saudi-backed forces strike Houthis on western coast",
@@ -774,7 +812,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788919562000
+      "firstAt": 1788919562000,
+      "why": "Yemen strikes unclear for oil direction"
     },
     {
       "title": "Gold subdued on inflation worries, rate hike expectations - The Economic Times",
@@ -792,7 +831,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1788918233000
+      "firstAt": 1788918233000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold subdued on inflation worries"
     },
     {
       "title": "New Zealand Dollar holds gains above 0.5850 after Chinese inflation data - FXStreet",
@@ -810,7 +853,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788918863000
+      "firstAt": 1788918863000,
+      "dir": {
+        "NZD/USD": "up"
+      },
+      "why": "NZD holds gains above 0.5850"
     },
     {
       "title": "Oil inches closer to $100 per barrel as Iran strikes US targets in Jordan - The Times of India",
@@ -1427,6 +1474,24 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788909004000
+    },
+    {
+      "title": "US markets fall over high oil prices and inflation concerns - news24.com.au",
+      "link": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxQQnlpY2RXTTE0TFpLd1Jtd1NXOE9sTEtTaVBwcTZ2bTVFLXlxVDBqcklYRDNXX1JiaE9HSUFxTEJKYUdSQjhqQzVPU1Btb0VkX3c4Wk5lZmVoUUFsaTI3QmpCam9GMjRVS2pJVm8wTDhlYWJzWURUdzY2N0daNEw3VE1FelVpODB3NlhKMkNmWDkzRTB1SUY2U1U0Y3VTYnBiSklQTjlIc1RXa2pVSFl2bUVwQ2RPZGlUd21MRVZKTkxHcTNsVldobnRwZU1Pb0ZaN0FQcVBVTmbSAd4BQVVfeXFMUHNlYW5KNVpPcDZlZGdiSzZIN0QxN3QzamlDRUlxOXp0VzV5MENXd3NZdTJaYkNhWXZkUk5qREZLNW9vbUNCbC1ZRjN0d2FneS1FMTduRlMwNGNHMGZYdzY4WXo5Y1p2S2RaNms0RldCeGRZcU4wVm1WOWlzb2I2dTdkSUhwSHduZUg4bmQwN3ljeEtwVmtkRkN0cHNieklWZ3ZOUHJSSzdJSW1PcXIzQ0w4Y0NIYUt2a3hNR0VzSmkwOFE4S1JHVVAzRS1GTEpXVmt6anpfcjZyck1GNDNR?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi2AFBVV95cUxQQnlpY2RXTTE0TFpLd1Jtd1NXOE9sTEtTaVBwcTZ2bTVFLXlxVDBqcklYRDNXX1JiaE9HSUFxTEJKYUdSQjhqQzVPU1Btb0VkX3c4Wk5lZmVoUUFsaTI3QmpCam9GMjRVS2pJVm8wTDhlYWJzWURUdzY2N0daNEw3VE1FelVpODB3NlhKMkNmWDkzRTB1SUY2U1U0Y3VTYnBiSklQTjlIc1RXa2",
+      "at": 1788908869000,
+      "inst": [
+        "USOIL"
+      ],
+      "ccy": [
+        "OIL",
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788908869000
     },
     {
       "title": "Rubio warns Iran: Every time they attack US ships, they will lose tankers - Israel National News",
@@ -2219,26 +2284,6 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1788887454000
-    },
-    {
-      "title": "Russia launches massive, deadly, and ‘complex’ attack against Ukraine - Colorado Politics",
-      "link": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPV2x5ejRHTGgwcl9OUnBIZ3BoSUFEalRzTGw4ODlLYURCcGszb1BjUTVVb1Q5Um1lNUQ4VjJITDZIeVpHLUEtSURMSTRhNVBCSkhZeE1XV1FHVVdMbkd6c00wR0RQQkg1MkdTR2UwdzlRcDNJMEN5d1hiZEg1TkxPbUlGbFFZaURqc2JwekM0SjlVMDRCYzVtMjlTX0tEb0hwMkZzRGZUYkhTU1VpRWVn?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMirwFBVV95cUxPV2x5ejRHTGgwcl9OUnBIZ3BoSUFEalRzTGw4ODlLYURCcGszb1BjUTVVb1Q5Um1lNUQ4VjJITDZIeVpHLUEtSURMSTRhNVBCSkhZeE1XV1FHVVdMbkd6c00wR0RQQkg1MkdTR2UwdzlRcDNJMEN5d1hiZEg1TkxPbUlGbFFZaURqc2JwekM0SjlVMDRCYzVtMjlTX0tEb0hwMkZzRGZUYkhTU1",
-      "at": 1788886514000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788886514000
     }
   ],
   "sources": [
@@ -2264,7 +2309,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-09T03:49:56.051Z",
-  "headlinesAt": "2026-09-09T03:49:56.051Z",
-  "updatedAt": "2026-09-09T03:49:56.051Z"
+  "calendarAt": "2026-09-09T03:50:59.481Z",
+  "headlinesAt": "2026-09-09T03:50:59.481Z",
+  "updatedAt": "2026-09-09T03:50:59.481Z"
 }
