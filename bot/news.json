@@ -23,7 +23,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789058337000,
-      "_kind": null
+      "_kind": null,
+      "why": "Legal suit has no clear market direction."
     },
     {
       "title": "Limitless Metals: $105 Oil, Rising Treasury Yields and Fed Rate-Hike Expectations Reshape 2026 Gold Outlook - Yahoo Finance",
@@ -44,7 +45,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789057169000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil price mentioned, gold outlook unclear."
     },
     {
       "title": "White House copper tariff plan stalls amid affordability concerns, sources say",
@@ -67,7 +72,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789058189000,
-      "_kind": null
+      "_kind": null,
+      "why": "Tariff stall has no clear direction."
     },
     {
       "title": "Eli Lilly Stock Has Become a Trillion-Dollar Giant. Is It Too Late to Buy?",
@@ -97,7 +103,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789058100000,
-      "_kind": null
+      "_kind": null,
+      "why": "Stock pick article, no broad market direction."
     },
     {
       "title": "Jerusalem Daily: Israeli strikes devastate Gaza",
@@ -118,7 +125,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789057657000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Geopolitical conflict typically boosts gold safe-haven deman"
     },
     {
       "title": "Big Bond Buyback, Decline in Home Sales and More of Today’s Top Money News",
@@ -150,7 +161,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789057500000,
-      "_kind": null
+      "_kind": null,
+      "why": "Strong dollar and high yields hurt gold and FX."
     },
     {
       "title": "US Equity Indexes Drop as Treasury Yields Jump Following Hot Producer Price Inflation Print - marketscreener.com",
@@ -173,7 +185,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789057140000
+      "firstAt": 1789057140000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Rising yields and strong dollar pressure gold and FX."
     },
     {
       "title": "SentinelOne CEO Tomer Weingarten Sells 38,759 Shares for Tax Withholding",
@@ -204,7 +222,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789057200000
+      "firstAt": 1789057200000,
+      "dir": {
+        "USOIL": "up",
+        "US500": "down"
+      },
+      "why": "High oil and yields hurt stocks, boost oil."
     },
     {
       "title": "Institutional Investors Are Loading Up on Madrigal Pharmaceuticals Stock. Should You?",
@@ -236,7 +259,36 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789057169000
+      "firstAt": 1789057169000,
+      "dir": {
+        "XAU/USD": "down",
+        "BTC/USDT": "down"
+      },
+      "why": "Rate-hike bets drive down gold and bitcoin."
+    },
+    {
+      "title": "UK Stock Markets Tumble Amid Inflation and Interest Rate Worries - Devdiscourse",
+      "link": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQWUttVlJiQ3oyNDRZRzdubGY0TXFTdFB1ckRaalhub3lNOHBtTERwb2NWTDZFRlhHWHR1M3U1UDNad2o0ZVl0WFJMTkZFTHZrcGhPTnNET2tJVEV3bE9ETkxzSHZPWlRKSDVUQ3FaTE9BX255WDU0VE1hRHJFMXE0YkhETVBBSlFhR3hMQk5vRGRVZnh0X3h4dnFna2diYTVIdXZBT1BQbVlsZ2laTG1hN0xyS0lHTVM1b1HSAb8BQVVfeXFMTXV5cWNpdGtfVl83d0N4cHlIMFpOOFRDdVFQc0NCQmxRZlBEeXRnUS1QdU1TOHpWVEc2ak5oeGUyTTFDWmhUSkZEU1ZFdGZ4SFYxa1lzQW5VaFBYWW13RHkycUd2bVpJbnQ3dVJuR3RCNGhLOHZ5WFVsNkdxczI2anNabnlBUGZDOV9HR2VUQUpJdlJVUzMzVTJQQ0kyUDc5MVNxdncyY09RUlNMcGxnUmhJR0xuaE1nNXM4TC1WN28?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiugFBVV95cUxQWUttVlJiQ3oyNDRZRzdubGY0TXFTdFB1ckRaalhub3lNOHBtTERwb2NWTDZFRlhHWHR1M3U1UDNad2o0ZVl0WFJMTkZFTHZrcGhPTnNET2tJVEV3bE9ETkxzSHZPWlRKSDVUQ3FaTE9BX255WDU0VE1hRHJFMXE0YkhETVBBSlFhR3hMQk5vRGRVZnh0X3h4dnFna2diYTVIdXZBT1BQbVlsZ2",
+      "at": 1789057149000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789057149000,
+      "why": "UK stock focus, unclear for gold/FX."
     },
     {
       "title": "Global Bond Yields Hit Multiyear Highs, Oil Fuels Inflation Fears - WSJ",
@@ -254,7 +306,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789057140000
+      "firstAt": 1789057140000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil fuels inflation fears, implying high prices."
     },
     {
       "title": "Stock Market Today: Dow Slides As Oil Hits $100; Nvidia Drops Amid News Of Palantir Partnership (Live Coverage)",
@@ -271,7 +327,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789057095000
+      "firstAt": 1789057095000,
+      "dir": {
+        "USOIL": "up",
+        "US30": "down"
+      },
+      "why": "Oil hits $100, Dow slides."
     },
     {
       "title": "European equities fall following ECB rate hike to highest since 2025",
@@ -289,7 +350,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789056965000
+      "firstAt": 1789056965000,
+      "dir": {
+        "EUR/USD": "up",
+        "US500": "down"
+      },
+      "why": "ECB hike supports euro, equities fall."
     },
     {
       "title": "Oil surges 5%, Brent and US crude both over $100 on more tanker attacks",
@@ -306,7 +372,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789056775000
+      "firstAt": 1789056775000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Tanker attacks cause oil prices to surge."
     },
     {
       "title": "FTSE 100 today: Stocks slip as ECB hikes rates, oil surges",
@@ -325,7 +396,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789056604000
+      "firstAt": 1789056604000,
+      "dir": {
+        "EUR/USD": "up",
+        "USOIL": "up",
+        "US500": "down"
+      },
+      "why": "ECB hike boosts euro, oil surges, stocks slip."
     },
     {
       "title": "U.K. stocks lower at close of trade; Investing.com United Kingdom 100 down 0.56%",
@@ -1592,7 +1669,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789037537000
+      "firstAt": 1789039818000
     },
     {
       "title": "Dollar edges higher ahead of European Central Bank, US inflation data - freemalaysiatoday.com",
@@ -1671,26 +1748,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789039043000
-    },
-    {
-      "title": "Dollar crawls higher ahead of ECB, US inflation data; $100 oil spooks investors - Euronext Markets: Real-time Stock Market Data | live",
-      "link": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxNVkhobUx6N3p5WnRJTzM0M2FGYllsRm1sYWY2U2p4X3NINXRTcnJRaDRzZ0RibUdIeHlTNmxydlF0TW0xd2dXTUZja0dFalVQS1J4cUxmNjRERWRoWW1EX095dnozVXRaSGg5Q2pXZXp0UFo0OE1iRnA0U3NPakkwUGw3b2VMZ1lVRndZb204S2U0Ql9xVkdoV2FnM19hcVpsdUlta2Q4MlpZOEVaVWN2MWNiQXRIRUNl?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiuAFBVV95cUxNVkhobUx6N3p5WnRJTzM0M2FGYllsRm1sYWY2U2p4X3NINXRTcnJRaDRzZ0RibUdIeHlTNmxydlF0TW0xd2dXTUZja0dFalVQS1J4cUxmNjRERWRoWW1EX095dnozVXRaSGg5Q2pXZXp0UFo0OE1iRnA0U3NPakkwUGw3b2VMZ1lVRndZb204S2U0Ql9xVkdoV2FnM19hcVpsdUlta2Q4MlpZOE",
-      "at": 1789038466000,
-      "inst": [
-        "EUR/USD",
-        "USOIL"
-      ],
-      "ccy": [
-        "USD",
-        "EUR",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789035898000
     }
   ],
   "sources": [
@@ -1717,6 +1774,6 @@
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-10T16:53:00.602Z",
-  "updatedAt": "2026-09-10T16:53:00.602Z"
+  "headlinesAt": "2026-09-10T16:54:02.800Z",
+  "updatedAt": "2026-09-10T16:54:02.800Z"
 }
