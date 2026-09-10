@@ -390,6 +390,25 @@
   ],
   "headlines": [
     {
+      "title": "AI Server Stocks Slide as Two-Day Run Unwinds: Hewlett Packard Enterprise Sinks 4%, Dell Pulls Back, Super Micro Sits Out the Selloff",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/ai-server-stocks-slide-two-160216380.html",
+      "source": "Yahoo Finance",
+      "at": 1789056136000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789056136000,
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "AI server stocks slide, unwinding gains"
+    },
+    {
       "title": "SpaceX shares higher as data center overhaul, budding UK defense deal in focus",
       "link": "https://finance.yahoo.com/markets/stocks/article/spacex-shares-higher-as-data-center-overhaul-budding-uk-defense-deal-in-focus-160039841.html",
       "source": "Yahoo Finance",
@@ -421,7 +440,35 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789054355000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Russia strikes Sumy, geopolitical tension rises"
+    },
+    {
+      "title": "How Dangerous Are Top Neoclouds as Rate Hike Odds Increase?",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/dangerous-top-neoclouds-rate-hike-155550272.html",
+      "source": "Yahoo Finance",
+      "at": 1789055750000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789055750000,
+      "_kind": null,
+      "why": "Rate hike odds increase, market uncertainty"
     },
     {
       "title": "Trump says ‘no damage’ to US war planes from Iran attack - The Hill",
@@ -442,7 +489,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789055400000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "No US damage, de-escalation signals"
     },
     {
       "title": "Russia strikes petrol station in Kyiv, global agribusiness in Dnipro",
@@ -462,7 +515,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789055398000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Russia strikes Kyiv, geopolitical risk"
     },
     {
       "title": "BofA Names Top MENA Oil Stocks for Late 2026",
@@ -480,7 +537,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789055396000,
-      "_kind": null
+      "_kind": null,
+      "why": "BofA names top MENA oil stocks"
     },
     {
       "title": "Bitcoin Selling Pressure Drops to Historic Lows Amid Rebound",
@@ -497,7 +555,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789055340000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "BTC/USDT": "up"
+      },
+      "why": "Bitcoin selling pressure drops to lows"
     },
     {
       "title": "Treasury yields surge toward the danger zone for stocks, as inflation pressures heat up",
@@ -517,7 +579,12 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789053338000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "US500": "down"
+      },
+      "why": "Yields surge, oil prices at highs"
     },
     {
       "title": "Oil jumps to $105 a barrel after Middle East tanker attacks escalate",
@@ -536,7 +603,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789054584000
+      "firstAt": 1789054584000,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Oil jumps after tanker attacks escalate"
     },
     {
       "title": "Turkey stocks lower at close of trade; BIST 100 down 0.77%",
@@ -550,7 +623,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789054528000
+      "firstAt": 1789054528000,
+      "why": "Turkey stocks lower, irrelevant to US"
     },
     {
       "title": "Poland stocks lower at close of trade; WIG30 down 0.81%",
@@ -564,7 +638,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789054503000
+      "firstAt": 1789054503000,
+      "why": "Poland stocks lower, irrelevant to US"
     },
     {
       "title": "Renewable-energy mandates are actually bad for consumers. They’re not great for solar stocks, either.",
@@ -579,7 +654,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789054440000
+      "firstAt": 1789054440000,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Mandates bad for solar stocks, costs"
     },
     {
       "title": "Gold price down but weathering ECB's 25 basis point rate hike - KITCO",
@@ -599,7 +678,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789054425000
+      "firstAt": 1789054425000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "up"
+      },
+      "why": "Gold down, ECB hikes rates"
     },
     {
       "title": "Nasdaq Pours Millions Into Crypto Platform Partnership For Tokenized Trading",
@@ -616,7 +700,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789054381000
+      "firstAt": 1789054381000,
+      "dir": {
+        "US100": "up",
+        "BTC/USDT": "up"
+      },
+      "why": "Nasdaq crypto partnership, tokenized trading"
     },
     {
       "title": "Ukraine: Russian drone strike damages TV channel in Kyiv, injuring six media workers - European Federation of Journalists",
@@ -636,7 +725,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789052603000
+      "firstAt": 1789052603000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Ukraine drone strike, geopolitical tension"
     },
     {
       "title": "Now’s your chance to make money during the best bond market for yields in decades — if you get over Treasury jitters",
@@ -2039,44 +2132,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789035898000
-    },
-    {
-      "title": "The UK’s sanctions on Israeli settlements are a great victory – but must be only the beginning | Em Hilton - The Guardian",
-      "link": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQbGZ4RmZuR1hJVTNRRlZkZGx1eWprOXNHSHJ2ZWZ4SVprWEhIQjM4NER6SXE0WEN3Q1V4RGYtWllGamhMQkFfdXZHQWlSV0h1S0JtVTVsRXB6R21LbXRrT1NhSXNMNVBQRnVaaTZOcGlyZkYzRThvOEkxS2J6S0tjSVZKbTBSRzdrUFV4eV9wdFpycWk0bGowbTRYRDg5M0wwMXlzSEotOHBmNGgydmhKTFVzOVY?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMitAFBVV95cUxQbGZ4RmZuR1hJVTNRRlZkZGx1eWprOXNHSHJ2ZWZ4SVprWEhIQjM4NER6SXE0WEN3Q1V4RGYtWllGamhMQkFfdXZHQWlSV0h1S0JtVTVsRXB6R21LbXRrT1NhSXNMNVBQRnVaaTZOcGlyZkYzRThvOEkxS2J6S0tjSVZKbTBSRzdrUFV4eV9wdFpycWk0bGowbTRYRDg5M0wwMXlzSEotOHBmNG",
-      "at": 1789034400000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789034400000
-    },
-    {
-      "title": "Nervy markets await US inflation data after ECB hikes rate again - marketscreener.com",
-      "link": "https://news.google.com/rss/articles/CBMipwFBVV95cUxNbjYtV0VoT1RYbjk1b3ZfWF82Mnl6Z01kZ3hjMm8wcmZzOHdoT1RtYWxZZVNQOGJIX1BTRVI5NzFZRzNEY0tMZnZhdURKTmh2dkpYZC1FZnRjZnRHRGNVdE9XVGxQVC1GUXMyN0ZZUllYVXBmRFdiYjJqNk9CWTB6OXE5TlVKNUdTQ3gyVy12dkdETnZoOFcwX0hQb2l0X2VVb1pWcExUaw?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMipwFBVV95cUxNbjYtV0VoT1RYbjk1b3ZfWF82Mnl6Z01kZ3hjMm8wcmZzOHdoT1RtYWxZZVNQOGJIX1BTRVI5NzFZRzNEY0tMZnZhdURKTmh2dkpYZC1FZnRjZnRHRGNVdE9XVGxQVC1GUXMyN0ZZUllYVXBmRFdiYjJqNk9CWTB6OXE5TlVKNUdTQ3gyVy12dkdETnZoOFcwX0hQb2l0X2VVb1pWcExUaw?oc=",
-      "at": 1789033425000,
-      "inst": [
-        "EUR/USD"
-      ],
-      "ccy": [
-        "EUR",
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789033359000
     }
   ],
   "sources": [
@@ -2102,7 +2157,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-10T16:10:30.674Z",
-  "headlinesAt": "2026-09-10T16:10:30.674Z",
-  "updatedAt": "2026-09-10T16:10:30.674Z"
+  "calendarAt": "2026-09-10T16:11:30.758Z",
+  "headlinesAt": "2026-09-10T16:11:30.758Z",
+  "updatedAt": "2026-09-10T16:11:30.758Z"
 }
