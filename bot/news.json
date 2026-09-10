@@ -2,6 +2,32 @@
   "calendar": [],
   "headlines": [
     {
+      "title": "investingLive European markets wrap: Oil and bond yields push higher as ECB decision looms",
+      "link": "https://investinglive.com/news/investinglive-european-markets-wrap-oil-and-bond-yields-push-higher-as-ecb-decision-looms/",
+      "source": "ForexLive",
+      "desc": "Headlines:Oil prices above $100 continue to lift bond yields as inflation fears growEuropean stocks edge higher as investors brace for ECB decisionStock movers today: Meta leads AI optimism while ServiceTitan and Navan show the cost of missing expectationsOracle earnings preview:",
+      "at": 1789041913000,
+      "inst": [
+        "EUR/USD",
+        "USOIL",
+        "US500"
+      ],
+      "ccy": [
+        "EUR",
+        "OIL",
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1789039775000,
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil rises, ECB decision looms"
+    },
+    {
       "title": "Iran Used Oil-for-goods Deals With China to Bypass Sanctions, Sources Say - haaretz.com",
       "link": "https://news.google.com/rss/articles/CBMiiAJBVV95cUxPWnlGQjR4TlJkbFAzMGN6YlVyUWxCbnFpQ3Z5VlRQbUFRaGEyT0FtUWNFaFpXNUNEd2ViQ2J5WktCVXBQQ2YzTXpKbEtmN3BkbXFUbTkybnliZHJQLU5mZzcwT01xRVozZS04bTBJdUhKZkVxOERHY2FWeGVISExvUWpFRWh2QW5seHp2M3lOQnR6cEdvZUN4cUwtYi1nNG9QdEJKY1dnQS0tQTI0N0d2amFkWkd3d1lnbEFTbUJrWldxN0VKMXlQQjhPZEdTMG1aaUZlVDNCZVhUMXFLZDVYS3lzQUVuLVBSY0t6MVhXWkZLal8wSE9iVm82bjItU3pDZUFhc0dER1E?oc=5",
       "source": "Wires (geo)",
@@ -20,7 +46,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789041720000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions bypass news, no clear direction"
     },
     {
       "title": "Dow Jones Futures Rise, Oil Prices Keep Climbing; Inflation Data Due.",
@@ -39,7 +66,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789041385000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "US30": "up"
+      },
+      "why": "Dow futures rise, oil climbs"
     },
     {
       "title": "Netflix (NFLX) Shares Pressured by Weak Q2 Outlook",
@@ -68,7 +100,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789041293000,
-      "_kind": null
+      "_kind": null,
+      "why": "Individual stock moves, index unclear"
     },
     {
       "title": "Which International ETF Is the Better Buy: Schwab's Emerging Markets SCHE or iShares' World ETF URTH?",
@@ -100,7 +133,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789039389000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "EUR/USD": "down"
+      },
+      "why": "Dollar bid, bearish for EUR"
     },
     {
       "title": "Vertiv Has Cooled For 3 Months: A Wall Street Strategist Says It Will Rebound 45% Very Soon",
@@ -115,7 +152,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789039320000,
-      "_kind": null
+      "_kind": null,
+      "why": "Single stock rebound, index unclear"
     },
     {
       "title": "TSX futures tick lower ahead of U.S. inflation data",
@@ -138,7 +176,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789040530000,
-      "_kind": null
+      "_kind": null,
+      "why": "TSX futures lower, no direct link"
     },
     {
       "title": "Ryanair CEO Michael O'Leary warns of airfare hikes amid high oil prices",
@@ -155,7 +194,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789040434000,
-      "_kind": null
+      "_kind": null,
+      "why": "High oil prices noted, no change"
     },
     {
       "title": "In A SpaceX-Tesla Merger, Elon Musk May Be The Big Winner. What It May Mean For Other Investors.",
@@ -190,7 +230,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789039863000
+      "firstAt": 1789039863000,
+      "why": "General market test, no direction"
     },
     {
       "title": "Bitcoin and ethereum prices today, Thursday, September 10, 2026: Crypto prices slide back with inflation data on tap",
@@ -208,7 +249,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789039818000
+      "firstAt": 1789039818000,
+      "dir": {
+        "BTC/USDT": "down",
+        "ETH/USDT": "down"
+      },
+      "why": "Crypto prices slide back"
     },
     {
       "title": "Dollar edges higher ahead of European Central Bank, US inflation data - Free Malaysia Today",
@@ -230,8 +276,14 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789039171000
+      "srcs": 2,
+      "firstAt": 1789039171000,
+      "dir": {
+        "XAU/USD": "up",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Dollar higher, bearish for pairs"
     },
     {
       "title": "Chart Alert: EUR/USD Minor Uptrend Intact Ahead of ECB as Markets Brace for 25bp Rate Hike - Action Forex",
@@ -249,7 +301,11 @@
       "sev": 3,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789039389000
+      "firstAt": 1789039389000,
+      "dir": {
+        "EUR/USD": "up"
+      },
+      "why": "EUR/USD uptrend intact"
     },
     {
       "title": "Investors are missing the good news right in front of them, this Wall Street strategist argues",
@@ -264,7 +320,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789039320000
+      "firstAt": 1789039320000,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Strong earnings, bullish sentiment"
     },
     {
       "title": "Canadian Dollar weakens as USD/CAD climbs before US PPI data - FXStreet",
@@ -281,7 +341,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789039171000
+      "firstAt": 1789039171000,
+      "dir": {
+        "USD/CAD": "up"
+      },
+      "why": "USD/CAD climbs, CAD weakens"
     },
     {
       "title": "The Houthis are testing the limits of Saudi restraint",
@@ -301,7 +365,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789039043000
+      "firstAt": 1789039043000,
+      "why": "Geopolitical risk, no clear direction"
     },
     {
       "title": "Trump threatens new Iran strike after US detects activity at nuclear site - Straight Arrow",
@@ -1653,29 +1718,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789008275000
-    },
-    {
-      "title": "Trump ties $5,000 payment promise to a full Republican midterm sweep",
-      "link": "https://investinglive.com/news/trump-ties-5-000-payment-promise-to-a-full-republican-midterm-sweep/",
-      "source": "ForexLive",
-      "desc": "A pledge of this scale, if it were ever legislated, would represent a meaningful debt expansion at a moment when concerns about the deficit and Treasury issuance are already weighing on bond markets. For now, the promise is conditional on a Republican sweep in November and carrie",
-      "at": 1789008553000,
-      "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789008553000
     }
   ],
   "sources": [
@@ -1698,10 +1740,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-10T12:07:44.689Z",
-  "updatedAt": "2026-09-10T12:07:44.689Z"
+  "headlinesAt": "2026-09-10T12:09:32.329Z",
+  "updatedAt": "2026-09-10T12:09:32.329Z"
 }
