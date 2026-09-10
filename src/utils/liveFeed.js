@@ -18,6 +18,41 @@ import { ghRead, ghWrite, isGithubConfigured } from './githubSync';
 const FEED_URL = 'https://raw.githubusercontent.com/amandeep97/Forex/main/bot/feed.json';
 const FILTERS_PATH = 'bot/feed-filters.json';
 
+// The sweep model's results, measured on the VPS.
+//
+// It used to be computed in the browser, inside the consensus code, which meant
+// it only ran while a tab was open — the one case where a two-minute
+// confirmation is not needed. The bot runs it every minute whether anyone is
+// watching or not, so the app reads the answer instead of working it out.
+const LIQUIDITY_URL = 'https://raw.githubusercontent.com/amandeep97/Forex/main/bot/liquidity.json';
+
+let liqCache = { at: 0, data: null };
+
+/**
+ * Rows keyed by symbol, or null when the bot has not published yet.
+ *
+ * Cached for a minute: the bot cannot produce a new answer faster than its own
+ * tick, so asking more often only costs a request.
+ */
+export async function fetchLiquidity({ force = false } = {}) {
+  const now = Date.now();
+  if (!force && liqCache.data && now - liqCache.at < 60e3) return liqCache.data;
+  try {
+    const r = await fetch(`${LIQUIDITY_URL}?t=${Math.floor(now / 60e3)}`);
+    if (!r.ok) return liqCache.data;
+    const j = await r.json();
+    const bySym = {};
+    for (const row of j.rows || []) bySym[row.sym] = row;
+    // `watching` matters as much as the rows: an instrument the bot has levels
+    // for but has not scanned is a different state from one it scanned and
+    // found nothing in, and the screen must be able to say which.
+    const data = { at: j.at, bySym, watching: new Set(j.watching || []) };
+    liqCache = { at: now, data };
+    return data;
+  } catch { return liqCache.data; }
+}
+
+
 const FILTERS_KEY   = 'live_feed_filters_v1';
 const ACTIVE_KEY    = 'live_feed_active_v1';
 const SYNCED_KEY    = 'live_feed_synced_v1';

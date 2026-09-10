@@ -14,6 +14,7 @@ const { fetchAllCOT, checkCOTFilter } = require('./cotFetcher');
 const { AlertChecker } = require('./alertChecker');
 const { FeedBuilder, measure }  = require('./feed');
 const { FeedNotifier } = require('./feedNotify');
+const { LiquidityScanner } = require('./liquidityScan');
 const { Updater }      = require('./updater');
 const { NewsFetcher }  = require('./newsFetcher');
 const { runCOTStudy }  = require('./cotStudy');
@@ -122,6 +123,12 @@ class ForexBot {
       : new FeedBuilder({
           oanda: this.oanda, github: this.github, log: this.log.bind(this),
           notifier: new FeedNotifier({ github: this.github, telegram: this.telegram, env, log: this.log.bind(this) }),
+        });
+    this.liquidity = env.LIQUIDITY_ENABLED === 'false'
+      ? null
+      : new LiquidityScanner({
+          oanda: this.oanda, github: this.github, telegram: this.telegram,
+          env, log: this.log.bind(this),
         });
   }
 
@@ -268,6 +275,20 @@ class ForexBot {
     // stop switch: it places no orders, and "which instruments are worth
     // looking at on Monday" is a question best answered over the weekend.
     if (this.feed) await this.feed.tick().catch(e => this.warn(`Feed: ${e.message}`));
+
+    // The sweep model, on the same schedule and for the same reason: a
+    // two-minute confirmation is exactly what a person cannot sit and wait for,
+    // so it has to run whether anyone is watching or not. It reuses the feed's
+    // last known prices to decide which instruments are near a level and worth
+    // spending a request on — without that it would need a request per
+    // instrument just to find out that no request was needed.
+    if (this.liquidity) {
+      const prices = {};
+      for (const [sym, rec] of Object.entries(this.feed?.data || {})) {
+        if (Number.isFinite(rec?.price)) prices[sym] = rec.price;
+      }
+      await this.liquidity.tick(prices).catch(e => this.warn(`Liquidity: ${e.message}`));
+    }
 
     // Does an extreme in positioning precede anything? The app has been
     // asserting that it does — "crowded long, the side that unwinds badly" —

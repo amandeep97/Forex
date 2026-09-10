@@ -12,6 +12,7 @@ import { CLASS, CLASS_ORDER } from '../data/instruments';
 import { stageFilterForBacktest } from '../utils/feedToBacktest';
 import { runConsensusFor } from '../utils/consensus';
 import { pct } from '../../shared/premiumDiscount.mjs';
+import { fetchLiquidity } from '../utils/liveFeed';
 
 const C = {
   bg:'#080c11', panel:'#0b1118', line:'#16202b', dim:'#475569', txt:'#cbd5e1',
@@ -126,29 +127,27 @@ function Location({ reads }) {
 // confirming yet, SETUP is confirmed and available, and MISSED is confirmed
 // and gone. Collapsing the last two into one is how a move you watched go past
 // ends up looking like a live ticket.
-function SweepSetup({ s }) {
-  if (!s?.sweep) return null;
-  // From the sweep itself, not from the top-level `dir`. Which side was taken
-  // is the fact; the copy on the outer object is a convenience, and reading the
-  // convenience is what let a swept low announce itself as a bearish setup.
-  const long = s.sweep.dir === 'long';
-  const state = !s.confirm ? 'taken' : s.ready ? 'setup' : 'missed';
+function SweepSetup({ s, stale }) {
+  if (!s) return null;
+  const long = s.dir === 'long';
+  const state = s.state || (!s.confirm ? 'taken' : s.ready ? 'setup' : 'missed');
   const col = state === 'setup' ? (long ? C.good : C.bad)
             : state === 'missed' ? '#64748b' : C.warn;
   const label = state === 'setup' ? `SWEEP ${long ? 'LONG' : 'SHORT'}`
               : state === 'missed' ? 'SWEEP — MISSED'
               : 'LIQUIDITY TAKEN';
-  const dp = s.entry != null && Math.abs(s.entry) < 20 ? 5 : 2;
+  const dp = Math.abs(s.level.price) < 20 ? 5 : 2;
   return (
-    <span style={{ display:'flex', gap:8, alignItems:'center', flexWrap:'wrap', width:'100%', marginTop:3 }}>
+    <span style={{ display:'flex', gap:8, alignItems:'center', flexWrap:'wrap', width:'100%', marginTop:3,
+      opacity: stale ? 0.45 : 1 }}>
       <span style={{ fontSize:10, fontWeight:900, color:col, fontFamily:C.mono,
         border:`1px solid ${col}44`, background:`${col}0d`, borderRadius:3, padding:'1px 7px' }}>
         {label}
       </span>
       <span style={{ fontSize:9, color:C.dim, fontFamily:C.mono }}>
-        {s.sweep.level.label} at {s.sweep.level.price.toFixed(dp)}
+        {s.level.label} at {s.level.price.toFixed(dp)}
       </span>
-      {state === 'setup' && (
+      {state === 'setup' && s.entry != null && (
         <span style={{ fontSize:9, fontFamily:C.mono, color:C.dim }}>
           entry <strong style={{ color:C.txt }}>{s.entry.toFixed(dp)}</strong>
           {' · '}stop <strong style={{ color:C.bad }}>{s.stop.toFixed(dp)}</strong>
@@ -165,13 +164,34 @@ function SweepSetup({ s }) {
           confirmed {s.age} bars ago
         </span>
       )}
+      {stale && (
+        <span style={{ fontSize:9, color:'#64748b', fontFamily:C.mono }}>· last measured over 10m ago</span>
+      )}
     </span>
   );
 }
 
-function Verdict({ read }) {
-  if (read === undefined) return <span style={{ fontSize:9, color:'#2b3644', fontFamily:C.mono }}>reading…</span>;
-  if (!read) return null;
+function Verdict({ read, liq, sym }) {
+  // The sweep comes from the VPS and stands on its own. It must render whether
+  // or not the browser-side consensus has finished, or failed, or was never
+  // able to run for want of an OANDA key — the bot needs none of that.
+  const row = liq?.bySym?.[sym] || null;
+  const stale = row ? Date.now() - row.at > 10 * 60e3 : false;
+  const sweep = row?.setup ? <SweepSetup s={row.setup} stale={stale}/> : null;
+
+  if (read === undefined) {
+    return (
+      <div style={{ display:'flex', gap:8, alignItems:'center', flexWrap:'wrap', marginTop:5, paddingLeft:20 }}>
+        <span style={{ fontSize:9, color:'#2b3644', fontFamily:C.mono }}>reading…</span>
+        {sweep}
+      </div>
+    );
+  }
+  if (!read) {
+    return sweep
+      ? <div style={{ display:'flex', flexWrap:'wrap', marginTop:5, paddingLeft:20 }}>{sweep}</div>
+      : null;
+  }
   const v = read.verdict || {};
   const sig = read.votes?.structure?.signal;
   const state = v.state;
@@ -204,7 +224,7 @@ function Verdict({ read }) {
           on a block it shows what did the blocking, and on a clean LONG it is
           the difference between buying the bottom of the range and the top. */}
       {v.location && <Location reads={v.location} />}
-      {read.liquidity && <SweepSetup s={read.liquidity} />}
+      {sweep}
       {v.timing && (
         <span style={{ fontSize:9, color:C.warn, fontFamily:C.mono, width:'100%', paddingLeft:1 }}>
           ⏳ {v.timing}
@@ -215,7 +235,7 @@ function Verdict({ read }) {
 }
 
 // ── One matching instrument ───────────────────────────────────────────────────
-function Row({ r, filter, shortlisted, onWatch, onOpen, read }) {
+function Row({ r, filter, shortlisted, onWatch, onOpen, read, liq }) {
   const cls = CLASS[r.cls];
   const rarity = rarityFor(r.rec, filter);
   const since = sinceShortlist(shortlisted, r.price);
@@ -263,7 +283,7 @@ function Row({ r, filter, shortlisted, onWatch, onOpen, read }) {
         ))}
       </div>
 
-      <Verdict read={read}/>
+      <Verdict read={read} liq={liq} sym={r.sym}/>
 
       {shortlisted && (
         <div style={{ fontSize:9, color:C.warn, fontFamily:C.mono, marginTop:4, paddingLeft:20 }}>
@@ -516,6 +536,8 @@ export default function LiveFeed({ onOpen }) {
   const [syncMsg, setSyncMsg] = useState(null);
   const [testPush, setTestPush] = useState(null);
   const [reads, setReads] = useState({});      // sym -> consensus row | null
+  // Measured on the VPS, not here. See fetchLiquidity.
+  const [liq, setLiq] = useState(null);
   const [syncing, setSyncing] = useState(false);
   const started = useRef(false);
 
@@ -531,6 +553,15 @@ export default function LiveFeed({ onOpen }) {
   }, []);
 
   useEffect(() => { if (!started.current) { started.current = true; load(false); } }, [load]);
+
+  // The bot republishes at most once a tick, so a minute is the right cadence.
+  useEffect(() => {
+    let alive = true;
+    const pull = () => fetchLiquidity().then(d => { if (alive) setLiq(d); }).catch(() => {});
+    pull();
+    const id = setInterval(pull, 60e3);
+    return () => { alive = false; clearInterval(id); };
+  }, []);
 
   // The VPS keeps measuring while the tab sits open, so pick up new publishes
   useEffect(() => {
@@ -852,7 +883,7 @@ export default function LiveFeed({ onOpen }) {
           </div>
         )}
         {res?.rows.map(r => (
-          <Row key={r.sym} r={r} filter={active} shortlisted={shortlist[r.sym]} read={reads[r.sym]}
+          <Row key={r.sym} r={r} filter={active} shortlisted={shortlist[r.sym]} read={reads[r.sym]} liq={liq}
             onWatch={row => setShortlist(shortlistToggle(row.sym, {
               price: row.price,
               reason: row.passed.map(p => p.label).join(' + '),
