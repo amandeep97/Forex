@@ -18,7 +18,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789033364000,
-      "_kind": null
+      "_kind": null,
+      "why": "Markets await data, direction unclear"
     },
     {
       "title": "Euro hovers near two-week high as ECB decision looms while dollar stays flat",
@@ -36,7 +37,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789032629000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "EUR/USD": "up"
+      },
+      "why": "Euro hovers near two-week high"
     },
     {
       "title": "The ECB is virtually certain to raise rates. Wall Street is bracing for what comes next.",
@@ -56,7 +61,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789032420000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "EUR/USD": "up"
+      },
+      "why": "ECB hike supports euro, stocks bracing"
     },
     {
       "title": "Forget Gold at $4,400? Morningstar Economist Says This Bond Trade Could Be a Better Inflation Hedge - Benzinga",
@@ -74,7 +83,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789029716000
+      "firstAt": 1789029716000,
+      "why": "Bond trade suggested over gold"
     },
     {
       "title": "Bond Yields Edge Up as Investors Await ECB Rate Hike, U.S. Treasury Buybacks - marketscreener.com",
@@ -92,7 +102,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789031464000
+      "firstAt": 1789031464000,
+      "why": "Yields up, awaiting ECB decision"
     },
     {
       "title": "Sterling today: Pound rises as BoE rate hike bets build",
@@ -109,7 +120,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789031452000
+      "firstAt": 1789031452000,
+      "dir": {
+        "GBP/USD": "up"
+      },
+      "why": "Pound rises on BoE hike bets"
     },
     {
       "title": "Brent holds above $100 as tanker attacks dampen hopes for Hormuz traffic recovery",
@@ -128,7 +143,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789031207000
+      "firstAt": 1789031207000,
+      "dir": {
+        "UKOIL": "up",
+        "USOIL": "up"
+      },
+      "why": "Oil holds above $100 on attacks"
     },
     {
       "title": "Swiss Franc gives back gains, but US Dollar struggles with Inflation data on tap - FXStreet",
@@ -146,7 +166,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789028160000
+      "firstAt": 1789028160000,
+      "dir": {
+        "USD/CHF": "down"
+      },
+      "why": "Franc gives back gains, dollar struggles"
     },
     {
       "title": "Asian markets: Stocks drop as oil spike fans inflation and interest rate fears - RTL Today",
@@ -165,7 +189,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789030125000
+      "firstAt": 1789030125000,
+      "dir": {
+        "USOIL": "up",
+        "US500": "down"
+      },
+      "why": "Oil spike, stocks drop on inflation"
     },
     {
       "title": "Don’t Panic About a Bond Market Selloff. It Could Be a Sign of Economic Strength - Morningstar",
@@ -195,7 +224,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789028867000
+      "firstAt": 1789028867000,
+      "why": "Yields hold near peaks, awaiting ECB"
     },
     {
       "title": "European natural gas holds near multi-year peaks on supply risks; ECB decision due",
@@ -212,7 +242,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789028513000
+      "firstAt": 1789028513000,
+      "dir": {
+        "NATGAS": "up"
+      },
+      "why": "Gas peaks on supply risks, ECB due"
     },
     {
       "title": "Gold Rises Ahead Of US Inflation Data, Eyes US$4,500 - BusinessToday Malaysia",
@@ -230,7 +264,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789026052000
+      "firstAt": 1789026052000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Gold rises ahead of inflation data"
     },
     {
       "title": "US Dollar Price Forecast: DXY Stays Weak as ECB Hike Looms and Inflation Risks Rise; EUR/USD and GBP/USD in Focus - FXEmpire",
@@ -248,7 +286,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789028160000
+      "firstAt": 1789028160000,
+      "dir": {
+        "EUR/USD": "up"
+      },
+      "why": "Dollar weak, ECB hike looms"
     },
     {
       "title": "Treasury yields steady as investors await key wholesale inflation data - CNBC",
@@ -271,7 +313,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789027997000
+      "firstAt": 1789027997000,
+      "why": "Yields steady, awaiting inflation data"
     },
     {
       "title": "Novy Urengoy: Ukraine’s Deepest Drone Strike of the War - MiGFlug",
@@ -291,7 +334,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789027529000
+      "firstAt": 1789027529000,
+      "why": "Drone strike, no clear market direction"
     },
     {
       "title": "Russian attacks kill 7 in Ukraine as Kyiv targets gas plants deep in Arctic - Al Jazeera",
@@ -1720,10 +1764,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-10T09:54:13.784Z",
-  "updatedAt": "2026-09-10T09:54:13.784Z"
+  "headlinesAt": "2026-09-10T09:55:32.793Z",
+  "updatedAt": "2026-09-10T09:55:32.793Z"
 }
