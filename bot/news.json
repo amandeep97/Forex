@@ -406,7 +406,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789047675000,
-      "_kind": null
+      "_kind": null,
+      "why": "Prices holding steady, awaiting data."
     },
     {
       "title": "Wholesale inflation stirred up by Iran war and high oil prices. What does it mean for the Fed?",
@@ -428,7 +429,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789047420000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "High oil costs, inflation uncertainty."
     },
     {
       "title": "ECB Rate Hike and Hot US Inflation Data Slam Global Markets in a \"Black Wednesday\" - finance.biggo.com",
@@ -447,7 +453,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789047300000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "EUR/USD": "down"
+      },
+      "why": "Hot US data strengthens dollar."
     },
     {
       "title": "U.S. stocks fall at the open, bonds slide after August producer inflation report",
@@ -464,7 +474,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789045440000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Stocks fall after inflation report."
     },
     {
       "title": "Nestle CEO says Middle East conflict driving inflation, higher supplier costs",
@@ -485,7 +499,12 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789046664000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Conflict drives inflation and costs."
     },
     {
       "title": "Stock Market Today: Tech Futures Sell Off After Inflation Surprise; Oil, Yields Surge (Live Coverage)",
@@ -503,7 +522,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789046031000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil surges on inflation surprise."
     },
     {
       "title": "Russia’s Crude Output Fell in August as Ukraine Steps Up Strikes - Bloomberg.com",
@@ -524,7 +547,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789046730000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Supply drop supports oil prices."
     },
     {
       "title": "Oil jumps to $105 a barrel after Middle East tanker attacks escalate",
@@ -544,7 +572,13 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789046664000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up",
+        "XAU/USD": "up"
+      },
+      "why": "Escalation boosts oil and safe havens."
     },
     {
       "title": "Is LightPath (LPTH) a Hidden Winner in Missile Defense and Space?",
@@ -561,7 +595,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789046601000,
-      "_kind": null
+      "_kind": null,
+      "why": "Stock-specific news, no gold impact."
     },
     {
       "title": "Memory Stocks Slide as Rates and Oil Swamp JPMorgan’s Overweight Call: SK Hynix Sinks 5%, Western Digital Drops 3%, Micron Slips",
@@ -579,7 +614,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789046536000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "US500": "down"
+      },
+      "why": "Oil swamps stocks, rates rise."
     },
     {
       "title": "Sterling today: Pound pares gains as dollar firms on U.S. inflation data",
@@ -597,7 +637,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789046531000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "GBP/USD": "down"
+      },
+      "why": "Dollar firms, pound pares gains."
     },
     {
       "title": "Nasdaq invests $100 million in Kraken parent Payward for tokenized stocks",
@@ -613,7 +657,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789046447000,
-      "_kind": null
+      "_kind": null,
+      "why": "Nasdaq investment, broad market neutral."
     },
     {
       "title": "We Named 3 Dividend Stocks to Dominate 2026. Only One Beat the S&P 500.",
@@ -628,7 +673,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789046431000,
-      "_kind": null
+      "_kind": null,
+      "why": "Dividend stock performance, no direction."
     },
     {
       "title": "OPEC Further Cuts Demand Growth Forecast as Oil Surpasses $100 a Barrel",
@@ -645,7 +691,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789045625000
+      "firstAt": 1789045625000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Oil surpasses $100, demand cut."
     },
     {
       "title": "AMD Stock’s 10-Year, 6,800% Rally Was Just the Beginning. Here’s Where AMD Could Be Headed Next",
@@ -676,7 +727,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789046031000
+      "firstAt": 1789046031000,
+      "dir": {
+        "XAU/USD": "down",
+        "XAG/USD": "down"
+      },
+      "why": "Surging yields cause metals to fall."
     },
     {
       "title": "OPEC further lowers 2026 global oil demand growth forecast",
@@ -2094,7 +2150,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-10T13:49:31.260Z",
-  "headlinesAt": "2026-09-10T13:49:31.260Z",
-  "updatedAt": "2026-09-10T13:49:31.260Z"
+  "calendarAt": "2026-09-10T13:50:31.832Z",
+  "headlinesAt": "2026-09-10T13:50:31.832Z",
+  "updatedAt": "2026-09-10T13:50:31.832Z"
 }
