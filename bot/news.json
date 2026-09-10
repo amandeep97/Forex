@@ -23,28 +23,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789050857000,
-      "_kind": null
-    },
-    {
-      "title": "Ukraine: Russian drone strike damages TV channel in Kyiv, injuring six media workers - International Federation of Journalists - IFJ",
-      "link": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxQTVI5UUlOVnBLTHFJa3hnbXpZNXNBSUVvZ01UZmdYOVNVTWFXaWRMUlhXNzdHVU84TFZVX3ozWlBGQTg5YVlHTUV4NVpNdm1WU0w4Vm5SQlZSRFlKWGNtZENCYjhHbmhBSjRldzF5TExlM3FDSHV6a2JOcnJDUk5lRnMxcHJVUUlSbEZCaU4zQXFHSXpPdGhpU3JVaWtfdHdvSG1PTFpfTHJ4akl4N1ZacTNJYUhHNkhJa3Bwa0xuUUtzd2RvMG05X29wMllJNTlzaldxa3h4dDRBUG9melVQckhsbDUtTDVET2piQ0llSXk?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi8AFBVV95cUxQTVI5UUlOVnBLTHFJa3hnbXpZNXNBSUVvZ01UZmdYOVNVTWFXaWRMUlhXNzdHVU84TFZVX3ozWlBGQTg5YVlHTUV4NVpNdm1WU0w4Vm5SQlZSRFlKWGNtZENCYjhHbmhBSjRldzF5TExlM3FDSHV6a2JOcnJDUk5lRnMxcHJVUUlSbEZCaU4zQXFHSXpPdGhpU3JVaWtfdHdvSG1PTFpfTHJ4ak",
-      "at": 1789050809000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789050809000,
-      "_kind": null
+      "_kind": null,
+      "why": "Treasury buyback impact unclear"
     },
     {
       "title": "Shoe Station Shares Fall as Promotions and Late Back-to-school Continue to Hit Industry Players",
@@ -113,7 +93,34 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789047300000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Rate hike odds jump"
+    },
+    {
+      "title": "US 30-year Treasury yield hits 5.34%, highest since 2007, as oil fuels rate-hike bets - CNBC TV18",
+      "link": "https://news.google.com/rss/articles/CBMizgFBVV95cUxQUEk0LU5KYzlabUpFNUhvNExlaXlDbHR3d05tNGNra2tvVFU1N0hRb19LN0ZqUG1zX3BER01NWWxCZWp5d05pMm1PbF9ETXF1YlByUE9DWkFHQlpPY2tnYzFxcmE0YXdmQVVma0l3bEtBZ09aSW04SGQ2N0pKNFJUM3c1RzlyTkIxR3FxSlVLVWhOald2SE10c3U4THNpcmNOTy02clAwaFF4NHNSamhuTS1vbTdJejVXMFVQWTh6Y1hacmFNX1VPMC1GenQ4QdIB0wFBVV95cUxNY2F3UXJtNDQwYjJwY2RUY2FQU3ptbUpzb0pqSnprMWVUa3dOTF9QOGg3VVRQMWk5REFKSXhWY1BBWWlDUlROSmZWbzhTS0JJNU9CbkZGajR0M3NKaXdQTnlPOFR0U2hFRjZuZjE3SjBoOVcxaEI3U0c2ZEJ1M0lfVHJiaTZCcF9Gc3dRVklhOThYWDBBRmZwMFdFREZiVS05bUtlV2QwLUdmd2xlNUpkejg3Rl9NdzVzX3JLb3hONXlpYk1Mcy1fUllPcDRlZTRhWmdZ?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMizgFBVV95cUxQUEk0LU5KYzlabUpFNUhvNExlaXlDbHR3d05tNGNra2tvVFU1N0hRb19LN0ZqUG1zX3BER01NWWxCZWp5d05pMm1PbF9ETXF1YlByUE9DWkFHQlpPY2tnYzFxcmE0YXdmQVVma0l3bEtBZ09aSW04SGQ2N0pKNFJUM3c1RzlyTkIxR3FxSlVLVWhOald2SE10c3U4THNpcmNOTy02clAwaFF4NH",
+      "at": 1789049686000,
+      "inst": [
+        "USOIL"
+      ],
+      "ccy": [
+        "USD",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1789048060000,
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil fuels rate-hike bets"
     },
     {
       "title": "Stock Market Today: Nasdaq On Losing Streak As Oil Surges; Apple Advances On iPhone Launch (Live Coverage)",
@@ -131,7 +138,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789049645000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "US100": "down"
+      },
+      "why": "Oil surges, Nasdaq losing streak"
     },
     {
       "title": "Gold slips amid pressure from firmer dollar, elevated Treasury yields",
@@ -148,7 +160,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 3,
-      "firstAt": 1789046975000
+      "firstAt": 1789046975000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold slips on dollar, yields"
     },
     {
       "title": "Dollar rises as hot U.S. inflation, ECB hike reshape currency markets",
@@ -165,7 +181,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789046975000
+      "firstAt": 1789046975000,
+      "dir": {
+        "EUR/USD": "down"
+      },
+      "why": "Dollar rises on inflation"
     },
     {
       "title": "US August existing home sales 3.98m vs 3.98m expected",
@@ -197,7 +217,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789048811000
+      "firstAt": 1789048811000,
+      "why": "New trading platform launch"
     },
     {
       "title": "Markets see a near 50-50 chance the European Central Bank will hike again in October",
@@ -220,7 +241,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789047300000
+      "firstAt": 1789047300000,
+      "why": "ECB hike odds 50-50"
     },
     {
       "title": "Treasury yields rise as investors raise bets on Fed rate hike: AlphaCheck",
@@ -241,8 +263,14 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789048612000
+      "srcs": 3,
+      "firstAt": 1789048612000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Yields rise on Fed bets"
     },
     {
       "title": "Coinbase CEO Says Bitcoin Has Bottomed",
@@ -258,7 +286,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789048500000
+      "firstAt": 1789048500000,
+      "dir": {
+        "BTC/USDT": "up"
+      },
+      "why": "Bitcoin has bottomed"
     },
     {
       "title": "Brent tops $104 as Mideast strikes dent hopes for renewed Hormuz shipping",
@@ -277,7 +309,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789047000000
+      "firstAt": 1789047000000,
+      "dir": {
+        "UKOIL": "up",
+        "USOIL": "up"
+      },
+      "why": "Brent tops $104 on strikes"
     },
     {
       "title": "Nasdaq Invests $100 Million In Kraken Parent Company",
@@ -291,7 +328,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789048320000
+      "firstAt": 1789048320000,
+      "why": "Nasdaq invests in Kraken"
     },
     {
       "title": "Gold falls over 1% as U.S. inflation data boosts Fed hike bets - marketscreener.com",
@@ -309,7 +347,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789046975000
+      "firstAt": 1789046975000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold falls on inflation data"
     },
     {
       "title": "10-year Treasury at highest level since 2023 as oil prices jump to $105: Chart of the Day",
@@ -325,8 +367,12 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789048060000
+      "srcs": 2,
+      "firstAt": 1789048060000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil prices jump to $105"
     },
     {
       "title": "Crypto Exchange Bybit To Launch European Super App",
@@ -342,7 +388,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789048020000
+      "firstAt": 1789048020000,
+      "why": "Bybit launches European app"
     },
     {
       "title": "Gold prices hold above $4,400 as markets await inflation data - argaam.com",
@@ -1647,23 +1694,23 @@
       "firstAt": 1789030459000
     },
     {
-      "title": "Stock market today: Dow, S&P 500, Nasdaq extend losses as bond yields jump, oil holds above $100",
-      "link": "https://finance.yahoo.com/markets/live/stock-market-today-thursday-september-10-dow-sp-500-nasdaq-083717303.html",
-      "source": "Yahoo Finance",
-      "at": 1789029437000,
+      "title": "Asian markets: Stocks drop as oil spike fans inflation and interest rate fears - RTL Today",
+      "link": "https://news.google.com/rss/articles/CBMiswFBVV95cUxNWEMxS2RoNHFfeGtmQ3BwRmZlNEZMd2hTX0xCczFCWkUyYnExdC1jc0hpM0pPWFNyel9lUzRldjI0U2J2SXJ0a0V6czNuSkZmMi14NGNOQlBwMmFGM0Z0TGc3alhjZWFURFRuQ21hbXZaNkpScmRVMmZBN2pidFl1eWlFR3VVZ2E4azVtMjZaWDNaUG5tTjQ0WWgwQllkZXl1Zm9QTUhWZ0IyeWkyQlV4Wkhzdw?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiswFBVV95cUxNWEMxS2RoNHFfeGtmQ3BwRmZlNEZMd2hTX0xCczFCWkUyYnExdC1jc0hpM0pPWFNyel9lUzRldjI0U2J2SXJ0a0V6czNuSkZmMi14NGNOQlBwMmFGM0Z0TGc3alhjZWFURFRuQ21hbXZaNkpScmRVMmZBN2pidFl1eWlFR3VVZ2E4azVtMjZaWDNaUG5tTjQ0WWgwQllkZXl1Zm9QTUhWZ0IyeW",
+      "at": 1789030125000,
       "inst": [
         "USOIL",
-        "US500",
-        "US100",
-        "US30"
+        "US500"
       ],
       "ccy": [
-        "OIL"
+        "OIL",
+        "USD"
       ],
-      "sev": 1,
+      "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789029437000
+      "firstAt": 1789030125000
     }
   ],
   "sources": [
@@ -1686,10 +1733,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-10T14:42:29.848Z",
-  "updatedAt": "2026-09-10T14:42:29.848Z"
+  "headlinesAt": "2026-09-10T14:43:46.953Z",
+  "updatedAt": "2026-09-10T14:43:46.953Z"
 }
