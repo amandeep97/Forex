@@ -128,7 +128,10 @@ function Location({ reads }) {
 // ends up looking like a live ticket.
 function SweepSetup({ s }) {
   if (!s?.sweep) return null;
-  const long = s.dir === 'long';
+  // From the sweep itself, not from the top-level `dir`. Which side was taken
+  // is the fact; the copy on the outer object is a convenience, and reading the
+  // convenience is what let a swept low announce itself as a bearish setup.
+  const long = s.sweep.dir === 'long';
   const state = !s.confirm ? 'taken' : s.ready ? 'setup' : 'missed';
   const col = state === 'setup' ? (long ? C.good : C.bad)
             : state === 'missed' ? '#64748b' : C.warn;

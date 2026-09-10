@@ -249,6 +249,25 @@ const LOW_LEVEL = [{ kind: 'PDL', price: 90, side: 'low', label: "yesterday's lo
     w ? `ready ${w.ready}, confirm ${w.confirm}` : 'null',
     'this is the row that says "watch", and it must not carry an entry price');
 
+  // Shipped broken. The waiting row read `dir` off the setup, the early return
+  // did not carry it, and the undefined fell through a ternary to "bearish" —
+  // so a swept LOW announced itself as waiting for a bearish break, on screen,
+  // in the app. Both returns carry the direction now.
+  check('the waiting state still knows which way the sweep points',
+    w.dir === w.sweep.dir && (w.dir === 'long' || w.dir === 'short'),
+    `dir ${w.dir}, sweep ${w.sweep.dir}`,
+    'a direction that exists internally but never travels out is the same defect as one never computed');
+
+  const lowSwept = [];
+  let z = 104;
+  z = leg(lowSwept, 9, -1, z);      // down through yesterday's low at 100
+  leg(lowSwept, 14, 0.6, z);        // and back above it
+  const lw = sweepSetup({ daily, exec: lowSwept });
+  check('a swept LOW waits for a BULLISH break, never a bearish one',
+    lw !== null && lw.sweep.level.side === 'low' && lw.dir === 'long',
+    lw ? `${lw.sweep.level.label} → ${lw.dir}` : 'null',
+    'this is exactly what was wrong on screen');
+
   check('no sweep at all produces nothing',
     sweepSetup({ daily, exec: (() => { const a = []; leg(a, 25, 0.05, 104); return a; })() }) === null,
     'price that never left the range between the levels swept nothing');
