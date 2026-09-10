@@ -2,6 +2,30 @@
   "calendar": [],
   "headlines": [
     {
+      "title": "CPI Card Group stock tumbles on secondary share offering",
+      "link": "https://www.investing.com/news/stock-market-news/cpi-card-group-stock-tumbles-on-secondary-share-offering-93CH-4896912",
+      "source": "Investing",
+      "at": 1789072560000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789072560000,
+      "_kind": null,
+      "why": "Single stock news, no macro impact"
+    },
+    {
       "title": "US slaps new sanctions on networks aiding Iran's proxies in Middle East - Reuters",
       "link": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQQ2p0aERlM3VXMFFWMkg4ZUtIejRIWDdUNUtlbnkwLWlyTWFBNGMyUzBUVnczaGdsNGIxcjJNT3BIekZrQXhOVEdwY0ZaQ0RZVmE2SW5RWTdLN1F6M01vbXZyMXF1OE9XbHphN1dnRWxwWmNyV2V2WDg3dGVOTDR3TXd5dDFwcEl6X2pxd05LRmc4d2NkUzFMS3piTFg1eWppdW8xNWNHd0VYZ3EwOFM4a19SMmNkeE9TZlE?oc=5",
       "source": "Wires (geo)",
@@ -20,7 +44,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789071539000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Sanctions increase geopolitical risk premium"
     },
     {
       "title": "U.S. stocks lower at close of trade; Dow Jones Industrial Average down 0.60%",
@@ -36,7 +66,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789072259000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down",
+        "US30": "down"
+      },
+      "why": "Stocks lower, Dow down 0.60%"
     },
     {
       "title": "Canada stocks lower at close of trade; S&P/TSX Composite down 1.11%",
@@ -54,7 +89,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789072230000,
-      "_kind": null
+      "_kind": null,
+      "why": "Canadian market news, no US impact"
     },
     {
       "title": "Brazil stocks higher at close of trade; Bovespa up 1.42%",
@@ -69,7 +105,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789072204000,
-      "_kind": null
+      "_kind": null,
+      "why": "Brazilian market news, no US impact"
     },
     {
       "title": "Treasury yields surge after Bessent’s beefed-up buyback operation fails to calm market",
@@ -93,7 +130,13 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789071384000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Yields surge, dollar strengthens"
     },
     {
       "title": "US Treasury Sanctions Iraqi Businessmen Over Iran Support - Kurdistan24",
@@ -115,7 +158,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789071830000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Sanctions increase geopolitical risk premium"
     },
     {
       "title": "Russian strike on Ukraine shopping centre kills at least six - France 24",
@@ -136,7 +185,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789070763000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Escalation increases geopolitical risk premium"
     },
     {
       "title": "US slaps new sanctions on networks 'aiding Iran's proxies' - The New Arab",
@@ -157,7 +212,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789071539000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Sanctions increase geopolitical risk premium"
     },
     {
       "title": "S&P 500 ends down as Treasury yields rise and traders fret about inflation - Yahoo Finance",
@@ -175,7 +236,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789070953000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "S&P 500 ends down on yields"
     },
     {
       "title": "investingLive Americas market news wrap: Oil climbs 7%",
@@ -195,7 +260,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789071256000,
-      "_kind": null
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Oil climbs 7%"
     },
     {
       "title": "Markets Reprice for Fed as Inflation and Oil Surge - Briefs Finance",
@@ -213,26 +282,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789070953000
-    },
-    {
-      "title": "U.S. stocks end in the red as PPI boosts Fed rate hike bets, WTI crude tops $100",
-      "link": "https://www.investing.com/news/stock-market-news/us-stock-futures-steady-after-wall-st-falls-on-higher-yields-ppi-cpi-awaited-4894822",
-      "source": "Investing",
-      "at": 1789070947000,
-      "inst": [
-        "USOIL",
-        "UKOIL",
-        "US500"
-      ],
-      "ccy": [
-        "USD",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789070947000
+      "firstAt": 1789070953000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil surge mentioned in headline"
     },
     {
       "title": "Could Pakistan enter Yemen conflict under Mecca agreement?",
@@ -252,7 +306,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789070764000
+      "firstAt": 1789070764000,
+      "why": "No military response discussed, uncertainty remains"
     },
     {
       "title": "Russian strikes kill 15 in Ukraine as Canada offers aid for air defences - Al Jazeera",
@@ -274,7 +329,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789070763000
+      "firstAt": 1789070763000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up"
+      },
+      "why": "Escalation increases geopolitical risk premium"
     },
     {
       "title": "Stocks are sliding as this ‘negative risk trinity’ spooks investors",
@@ -291,7 +351,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789070760000
+      "firstAt": 1789070760000,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Stocks sliding on risk factors"
     },
     {
       "title": "Jeremy Siegel: Equity markets will react positively to a rate cut next week - CNBC",
@@ -611,7 +675,7 @@
       "firstAt": 1789066020000
     },
     {
-      "title": "Treasury yields hit 2008 highs as inflation and rate hike odds rise; Meta upgraded on AI potential. - pluang.com",
+      "title": "Treasury yields hit 2008 highs as inflation and rate hike odds rise; Meta upgraded on AI potential. - Pluang",
       "link": "https://news.google.com/rss/articles/CBMilAFBVV95cUxNckNTdnFsZU1LZEFPUWZzRUJNajFtdnQ5TmVQR194YzFFS1BVU0prRTAwZW5rdzk2U2QtVmNrSFMtbEZXU1RKcUVpN29KdWZpNGRyemJ4QmN0aTBucFBkYy1vemdwWHdRYjNDeDBfSWUyUnlCMk96UE00bzJzcjFEWlVmTnFwVjFLTlFPUmZaQmZydUJJ?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMilAFBVV95cUxNckNTdnFsZU1LZEFPUWZzRUJNajFtdnQ5TmVQR194YzFFS1BVU0prRTAwZW5rdzk2U2QtVmNrSFMtbEZXU1RKcUVpN29KdWZpNGRyemJ4QmN0aTBucFBkYy1vemdwWHdRYjNDeDBfSWUyUnlCMk96UE00bzJzcjFEWlVmTnFwVjFLTlFPUmZaQmZydUJJ?oc=5\" target=\"_blank\">Treasur",
@@ -1722,26 +1786,6 @@
       "firstAt": 1789048612000
     },
     {
-      "title": "HOW ABOUT NOW INSTEAD? Trump Says Iran War to End after US Midterm Elections, Threatens to Attack Pickaxe Mountain - EnergyNow",
-      "link": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxOb2tDZWxRRkpxMWFfY1hhRDZKVS1WclRycUpKOFNyNmtBei05OUszWDRQM2lTWWJaemVHV1o0c2QtNjNrRUFPc1RXdHJlcDdHd0owWXZJbmE1Qi1YclVDdnRFa0szcTFmaGlnUUhBcnRQZTBBSXotOTE1b2Y0MWZiZExLZ2pCcy11QWlkQTlVeTF3dHBoY3l1dUt6SnFEem56Y3pJRlpjOG5DYXIyUHpsV0paVEhYa1RsYmNZdkxWSlZ2RF93VldCbmZBeUl5RjQzSFFSaGs3QUVHZw?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi2gFBVV95cUxOb2tDZWxRRkpxMWFfY1hhRDZKVS1WclRycUpKOFNyNmtBei05OUszWDRQM2lTWWJaemVHV1o0c2QtNjNrRUFPc1RXdHJlcDdHd0owWXZJbmE1Qi1YclVDdnRFa0szcTFmaGlnUUhBcnRQZTBBSXotOTE1b2Y0MWZiZExLZ2pCcy11QWlkQTlVeTF3dHBoY3l1dUt6SnFEem56Y3pJRlpjOG5DYX",
-      "at": 1789048423000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789048423000
-    },
-    {
       "title": "Gold prices hold above $4,400 as markets await inflation data - ارقام",
       "link": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9fZFpzWmFVbjdTVjBZLTV4aThQbXhfcEJpR3hxemktSkd2UmZONUtKN1JmZ0hvLWlqUktfbzFmSEZrRldXc0Z4MExqcFpCTVdEU096b29yelo3WkRQd2IyRWtBX0dRRE5xb1E?oc=5",
       "source": "Wires (macro)",
@@ -1776,6 +1820,24 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789045980000
+    },
+    {
+      "title": "Gold Steadies Near $4,400 as Traders Weigh Fed Rate-Hike Path - Bloomberg.com",
+      "link": "https://news.google.com/rss/articles/CBMisAFBVV95cUxOaFRXcGQwNTFkN3pOdUk5d28xYXFuUzk5elZ0cEotYUpLY3lJTnAwMUs3OWVVMTIzQ1M0d2c0N0QzcG13aDJNWllJVGJ3THdmdnhad1JmaUtwemVERFVVY2tHamV5a0JWaXJJa05ZenhLdGtKci0xSHdqWlpBTkxjVEQ0a3MxUFVYVTJXZDJGc0VUazVPa1JXRTBsa1k5NUdTeEZLVkp0ZHdMMEh4MlNqeg?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMisAFBVV95cUxOaFRXcGQwNTFkN3pOdUk5d28xYXFuUzk5elZ0cEotYUpLY3lJTnAwMUs3OWVVMTIzQ1M0d2c0N0QzcG13aDJNWllJVGJ3THdmdnhad1JmaUtwemVERFVVY2tHamV5a0JWaXJJa05ZenhLdGtKci0xSHdqWlpBTkxjVEQ0a3MxUFVYVTJXZDJGc0VUazVPa1JXRTBsa1k5NUdTeEZLVkp0ZHdMME",
+      "at": 1789047487000,
+      "inst": [
+        "XAU/USD"
+      ],
+      "ccy": [
+        "USD",
+        "XAU"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789047487000
     }
   ],
   "sources": [
@@ -1802,6 +1864,6 @@
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-10T20:44:13.977Z",
-  "updatedAt": "2026-09-10T20:44:13.977Z"
+  "headlinesAt": "2026-09-10T20:45:47.736Z",
+  "updatedAt": "2026-09-10T20:45:47.736Z"
 }
