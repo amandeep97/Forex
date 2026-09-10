@@ -379,7 +379,37 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789070953000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil surge mentioned in headline"
+    },
+    {
+      "title": "U.S. stocks end in the red as PPI boosts Fed rate hike bets, WTI crude tops $100",
+      "link": "https://www.investing.com/news/stock-market-news/us-stock-futures-steady-after-wall-st-falls-on-higher-yields-ppi-cpi-awaited-4894822",
+      "source": "Investing",
+      "at": 1789070947000,
+      "inst": [
+        "USOIL",
+        "UKOIL",
+        "US500"
+      ],
+      "ccy": [
+        "USD",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789070947000,
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up",
+        "US500": "down"
+      },
+      "why": "Stocks red, crude tops $100"
     },
     {
       "title": "Stocks are sliding as this ‘negative risk trinity’ spooks investors",
@@ -397,24 +427,24 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789070760000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Stocks sliding, investors cautious"
     },
     {
-      "title": "Wall Street dips as Treasury yields rise and investors fret about inflation By Reuters - Investing.com",
-      "link": "https://news.google.com/rss/articles/CBMixgFBVV95cUxPdmZqTUFmRC12TmxGcElod2NpRUhCWnNKaGZnNndiaE9JbEJ4ZEpJcjc5SzB5R3pFUnY0V1lMZUNIeDZUSG5aYTEtT2hFeklCYVp2SFJIb3plNUtsblpwVFNjaFhLNUUtU196dFU1UkVidkoxNnUyLWExN1p4MkI5bEdLZHd4S2hBWHRGRjRiY0FSeUMtSzhHZGlXczc4QnRIeXA0NGRsSmtSeUpDblY1RVdWUUNyQm5vOGxoOGtPS1lwVkV1aEE?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMixgFBVV95cUxPdmZqTUFmRC12TmxGcElod2NpRUhCWnNKaGZnNndiaE9JbEJ4ZEpJcjc5SzB5R3pFUnY0V1lMZUNIeDZUSG5aYTEtT2hFeklCYVp2SFJIb3plNUtsblpwVFNjaFhLNUUtU196dFU1UkVidkoxNnUyLWExN1p4MkI5bEdLZHd4S2hBWHRGRjRiY0FSeUMtSzhHZGlXczc4QnRIeXA0NGRsSmtSeU",
-      "at": 1789069426000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789066978000
+      "title": "Stellantis CEO says global auto market split into U.S. and rest of world",
+      "link": "https://www.investing.com/news/stock-market-news/stellantis-ceo-says-global-auto-market-split-into-us-and-rest-of-world-93CH-4896814",
+      "source": "Investing",
+      "at": 1789070746000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 1,
+      "srcs": 1,
+      "firstAt": 1789068651000,
+      "_kind": null
     },
     {
       "title": "Jeremy Siegel: Equity markets will react positively to a rate cut next week - CNBC",
@@ -437,7 +467,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789069237000
+      "firstAt": 1789069237000,
+      "why": "Equity focus, unclear FX impact"
     },
     {
       "title": "It’s not just Hormuz. Another war is providing fresh price shocks to fuel and food.",
@@ -457,7 +488,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789069080000
+      "firstAt": 1789069080000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "War shocks fuel prices"
     },
     {
       "title": "US slaps new sanctions on networks aiding Iran's proxies in Middle East - Reuters",
@@ -477,7 +513,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789066200000
+      "firstAt": 1789066200000,
+      "why": "Sanctions news, unclear immediate price impact"
     },
     {
       "title": "Gold, silver prices retreat as US inflation, ECB rate hike pressure markets - Anadolu Ajansı",
@@ -499,7 +536,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789067522000
+      "firstAt": 1789067522000,
+      "dir": {
+        "XAU/USD": "down",
+        "XAG/USD": "down",
+        "EUR/USD": "down"
+      },
+      "why": "Gold retreats, ECB hike pressure"
     },
     {
       "title": "Washington nonprofit Better Markets sues Federal Reserve over capital rule overhaul - Reuters",
@@ -522,7 +565,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789068055000
+      "firstAt": 1789068055000,
+      "why": "Legal suit, no direct market impact"
     },
     {
       "title": "Crude Oil WTI hits RSI 81 after parabolic surge: Live levels",
@@ -538,8 +582,13 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789067926000
+      "srcs": 1,
+      "firstAt": 1789067926000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Parabolic surge, high RSI"
     },
     {
       "title": "London Gas Oil tests $1,491.5 with RSI divergence: Live levels",
@@ -554,22 +603,9 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789067926000
-    },
-    {
-      "title": "Dow Jones hits extreme oversold at 52,021: Live levels",
-      "link": "https://www.investing.com/news/stock-market-news/dow-jones-clings-to-200sma-at-53148-live-levels-93CH-4890671",
-      "source": "Investing",
-      "at": 1789067938000,
-      "inst": [
-        "US30"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789067926000
+      "srcs": 1,
+      "firstAt": 1789067926000,
+      "why": "Technical level test, no clear direction"
     },
     {
       "title": "Natural Gas locked below $2.89-$2.92 resistance: Live levels",
@@ -582,8 +618,12 @@
       "ccy": [],
       "sev": 1,
       "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789067926000
+      "srcs": 1,
+      "firstAt": 1789067926000,
+      "dir": {
+        "NATGAS": "down"
+      },
+      "why": "Locked below resistance"
     },
     {
       "title": "Brent Oil RSI hits 84 in parabolic run: Live levels",
@@ -599,8 +639,13 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789067926000
+      "srcs": 1,
+      "firstAt": 1789067926000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Parabolic run, high RSI"
     },
     {
       "title": "Silver tests 200 SMA at $63.53 amid double top breakdown: Live",
@@ -616,7 +661,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789067926000
+      "firstAt": 1789067926000,
+      "dir": {
+        "XAG/USD": "down"
+      },
+      "why": "Double top breakdown"
     },
     {
       "title": "Oil surges 6%, Brent and US crude both surpass $100 on more tanker attacks",
@@ -633,7 +682,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789067577000
+      "firstAt": 1789067577000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Oil surges 6% on attacks"
     },
     {
       "title": "Gold slips about 2% as dollar strengthens on increased Fed rate hike bets",
@@ -650,7 +704,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789067522000
+      "firstAt": 1789067522000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold slips, dollar strengthens"
     },
     {
       "title": "Russia and China oppose push to reactivate UN Iran sanctions committee - thenationalnews.com",
@@ -685,7 +743,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789066978000
+      "firstAt": 1789064397000
     },
     {
       "title": "Russian strikes kill seven in Ukraine industrial hub of Pavlohrad - Reuters",
@@ -886,6 +944,23 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789064704000
+    },
+    {
+      "title": "Wall Street dips as Treasury yields rise and investors fret about inflation - Yahoo Finance",
+      "link": "https://news.google.com/rss/articles/CBMilAFBVV95cUxOcXhUZmJ6bjV6VWtwRWNYSTdoX3N2SlZpYVpDOFh0LTBxNXJxeG5XUE5wX2pyejBaZnN5YTdMSGZPbTJKTXZiWWpibzNlZnllTGNDR214VGFGaXdLZWlVUjk0ZmoxekEyTTh0eHZVck1wNjVTbkVROGhYRDBCRkduaUVPejNpclhUQldITTRCc1kwbGpm?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMilAFBVV95cUxOcXhUZmJ6bjV6VWtwRWNYSTdoX3N2SlZpYVpDOFh0LTBxNXJxeG5XUE5wX2pyejBaZnN5YTdMSGZPbTJKTXZiWWpibzNlZnllTGNDR214VGFGaXdLZWlVUjk0ZmoxekEyTTh0eHZVck1wNjVTbkVROGhYRDBCRkduaUVPejNpclhUQldITTRCc1kwbGpm?oc=5\" target=\"_blank\">Wall St",
+      "at": 1789064397000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 3,
+      "firstAt": 1789064352000
     },
     {
       "title": "Oil Prices Keep Soaring And Treasury Yields Remain High. Chances Of a Fed Hike Are Greater. - International Business Times",
@@ -2094,26 +2169,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789045584000
-    },
-    {
-      "title": "Trump expects Iran war to end after November midterms despite regional escalation - سانا",
-      "link": "https://news.google.com/rss/articles/CBMiTEFVX3lxTFBXUUdLUmNUTUx6dVdJQVpjQWltS3QxMk1NY19HejJIRVlTZFJadUpZVDJBMGhVSzNYVFN0NGxxbnBqNmhRTFN5Nmd1UEk?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiTEFVX3lxTFBXUUdLUmNUTUx6dVdJQVpjQWltS3QxMk1NY19HejJIRVlTZFJadUpZVDJBMGhVSzNYVFN0NGxxbnBqNmhRTFN5Nmd1UEk?oc=5\" target=\"_blank\">Trump expects Iran war to end after November midterms despite regional escalation</a>&nbsp;&nbsp;<font c",
-      "at": 1789045257000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789045257000
     }
   ],
   "sources": [
@@ -2136,10 +2191,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-10T20:15:45.232Z",
-  "headlinesAt": "2026-09-10T20:15:45.232Z",
-  "updatedAt": "2026-09-10T20:15:45.232Z"
+  "calendarAt": "2026-09-10T20:17:02.660Z",
+  "headlinesAt": "2026-09-10T20:17:02.660Z",
+  "updatedAt": "2026-09-10T20:17:02.660Z"
 }
