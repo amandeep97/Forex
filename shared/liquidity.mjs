@@ -215,7 +215,12 @@ export function sweepSetup(series, { within = 60, maxBars = 30, pad = 0.1, fresh
   if (!sweep) return null;
 
   const confirm = confirmation(exec, sweep, { maxBars });
-  if (!confirm) return { sweep, levels, confirm: null, ready: false };
+  // `dir` belongs on BOTH returns. Leaving it off this one shipped a live
+  // defect: the waiting row read `setup.dir`, got undefined, and its ternary
+  // fell to the else branch — so every swept level, high or low, was announced
+  // as waiting for a bearish break. A swept LOW is bullish. The direction was
+  // correct inside the sweep the whole time and simply never travelled out.
+  if (!confirm) return { sweep, levels, confirm: null, ready: false, dir: sweep.dir };
 
   const depth = Math.abs(sweep.extreme - sweep.level.price);
   const cushion = Math.max(depth * pad, 0);
