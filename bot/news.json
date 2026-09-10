@@ -470,7 +470,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788998580000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Conflict worsens, boosting oil and gold."
     },
     {
       "title": "Iran war live: Iran media say ‘enemy’ projectiles hit Sirik areas",
@@ -491,7 +497,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788998400000,
-      "_kind": null
+      "_kind": null,
+      "why": "Mixed signals on conflict and dialogue."
     },
     {
       "title": "Gold eases on chance of US rate hike, but bull case endures - Arabian Gulf Business Insight | AGBI",
@@ -510,7 +517,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788996798000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold eases on rate hike fears."
     },
     {
       "title": "Massive Strike Against Iran And Botched Counterstrike Sends Oil Past $100 - Ship & Bunker",
@@ -531,7 +542,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788998285000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Strike sends oil past $100, gold up."
     },
     {
       "title": "Trump Takes No Position on Allies’ Sanctions Against Israeli Settlements - The New York Times",
@@ -552,7 +569,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788995400000,
-      "_kind": null
+      "_kind": null,
+      "why": "No clear market impact from sanctions news."
     },
     {
       "title": "Gold Steadies Near $4,400 as Traders Weigh Fed Rate-Hike Path - Bloomberg",
@@ -570,7 +588,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788996798000
+      "firstAt": 1788996798000,
+      "why": "Gold steadies near $4,400, direction unclear."
     },
     {
       "title": "Navan beats quarterly estimates, raises forecast; shares tumble on cost concerns",
@@ -602,7 +621,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1788995738000
+      "firstAt": 1788995738000,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "War ending reduces risk premium for assets."
     },
     {
       "title": "Gold rebounds above $4,400 on weaker Dollar, US PPI inflation data looms - FXStreet",
@@ -620,7 +645,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788996162000
+      "firstAt": 1788996162000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Gold rebounds on weaker dollar."
     },
     {
       "title": "Iran war looms over Trump at Republican midterm convention in Dallas",
@@ -640,7 +669,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1788995738000
+      "firstAt": 1788995738000,
+      "why": "Political news, no direct market direction."
     },
     {
       "title": "Senior UK rabbis come out in support of sanctions on Israeli settlements - The Guardian",
@@ -660,7 +690,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788993000000
+      "firstAt": 1788993000000,
+      "why": "Sanctions support news, no clear market move."
     },
     {
       "title": "Sep. 09: More Strikes, Higher Oil Prices in Iran War; Why an Algorithm is Cutting Disability Benefits - NBC News",
@@ -680,7 +711,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788995240000
+      "firstAt": 1788995240000,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "More strikes drive higher oil and gold."
     },
     {
       "title": "Diesel prices hit another record high. If you’re shocked, wait until you see your grocery bill.",
@@ -703,7 +740,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788994260000
+      "firstAt": 1788994260000,
+      "why": "Inflation data looms, direction unclear."
     },
     {
       "title": "Oil Prices Surge Above $100 as Inflation Fears Grow, MoneySimpler Expands AI Automated Trading - markets.businessinsider.com",
@@ -721,7 +759,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788991380000
+      "firstAt": 1788991380000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil prices surge above $100."
     },
     {
       "title": "Israel sanctions will not hurt intelligence sharing between spy agencies, says Miliband - The Guardian",
@@ -741,7 +783,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788992160000
+      "firstAt": 1788992160000,
+      "why": "Intelligence sharing news, no market impact."
     },
     {
       "title": "American Eagle sticks to annual sales forecast again, shares slump",
@@ -773,7 +816,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788992649000
+      "firstAt": 1788992649000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Ukraine strike boosts gold, oil unclear."
     },
     {
       "title": "‘It’s a good start’: prominent Israelis welcome UK sanctions on illegal settlements - The Guardian",
@@ -2213,10 +2260,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-10T00:14:28.007Z",
-  "headlinesAt": "2026-09-10T00:14:28.007Z",
-  "updatedAt": "2026-09-10T00:14:28.007Z"
+  "calendarAt": "2026-09-10T00:15:46.000Z",
+  "headlinesAt": "2026-09-10T00:15:46.000Z",
+  "updatedAt": "2026-09-10T00:15:46.000Z"
 }
