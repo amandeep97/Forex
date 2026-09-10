@@ -453,6 +453,26 @@
   ],
   "headlines": [
     {
+      "title": "Gold Steady Ahead of U.S. Inflation Data - WSJ",
+      "link": "https://news.google.com/rss/articles/CBMinAFBVV95cUxOd2lEWUlvclZDZlN4bDhHcERRNHR3OFJKd1hHNFIxaTJfRUFGRnEtT00zZHZoZHpySHpOdUcwMjBaSE9lU1VLZENEWHVDbHd0XzdIUldvcTRFM0traWtrSzdOdVh6RnZrTmk2dlctRUY3VTVJNXJUTUd4YWk0UVZwMS1vaXlwckZ3Q3BPNUh6US1PQnZqMDZtcmlIakI?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMinAFBVV95cUxOd2lEWUlvclZDZlN4bDhHcERRNHR3OFJKd1hHNFIxaTJfRUFGRnEtT00zZHZoZHpySHpOdUcwMjBaSE9lU1VLZENEWHVDbHd0XzdIUldvcTRFM0traWtrSzdOdVh6RnZrTmk2dlctRUY3VTVJNXJUTUd4YWk0UVZwMS1vaXlwckZ3Q3BPNUh6US1PQnZqMDZtcmlIakI?oc=5\" target=\"_bla",
+      "at": 1789001640000,
+      "inst": [
+        "XAU/USD"
+      ],
+      "ccy": [
+        "XAU",
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789000260000,
+      "_kind": null,
+      "why": "Gold steady ahead of data"
+    },
+    {
       "title": "U.S. stock futures steady after Wall St falls on higher yields; PPI, CPI awaited",
       "link": "https://www.investing.com/news/stock-market-news/us-stock-futures-steady-after-wall-st-falls-on-higher-yields-ppi-cpi-awaited-4894822",
       "source": "Investing",
@@ -473,7 +493,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789001404000,
-      "_kind": null
+      "_kind": null,
+      "why": "Futures steady, awaiting inflation data"
     },
     {
       "title": "Brent settles at over $100 a barrel as Middle East conflict intensifies",
@@ -493,7 +514,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789001361000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up",
+        "XAU/USD": "up"
+      },
+      "why": "Oil surges on Middle East conflict"
     },
     {
       "title": "Oil surges above $100 a barrel as US and Iran launch new attacks, while gasoline prices also jump - AP News",
@@ -514,7 +541,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789000500000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Oil surges on US-Iran attacks"
     },
     {
       "title": "Nvidia enters partnerships to build out more Australian data center capacity",
@@ -529,7 +562,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789000234000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "AUD/USD": "up"
+      },
+      "why": "Nvidia boosts Australian data centers"
     },
     {
       "title": "Gold little changed with US inflation data in sight - TradingView",
@@ -548,7 +585,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788998691000,
-      "_kind": null
+      "_kind": null,
+      "why": "Gold little changed pre-data"
     },
     {
       "title": "Nvidia teams up with Australian partners to build AI factory capacity",
@@ -563,7 +601,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789000234000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "AUD/USD": "up"
+      },
+      "why": "Nvidia builds Australian AI capacity"
     },
     {
       "title": "Gold Holds Steady As Traders Wait On US Inflation Data - Finimize",
@@ -581,7 +623,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788996162000
+      "firstAt": 1788996162000,
+      "why": "Gold holds steady pre-data"
     },
     {
       "title": "Oil prices rise further as U.S.-Iran conflict worsens",
@@ -600,7 +643,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788998580000
+      "firstAt": 1788998580000,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Oil rises on worsening conflict"
     },
     {
       "title": "Iran war live: Iran media say ‘enemy’ projectiles hit Sirik areas",
@@ -620,7 +669,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788998400000
+      "firstAt": 1788998400000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Iran conflict intensifies, strikes reported"
     },
     {
       "title": "Gold eases on chance of US rate hike, but bull case endures - Arabian Gulf Business Insight | AGBI",
@@ -638,7 +693,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788996798000
+      "firstAt": 1788996798000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold eases on rate hike chance"
     },
     {
       "title": "Massive Strike Against Iran And Botched Counterstrike Sends Oil Past $100 - Ship & Bunker",
@@ -658,7 +717,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788998285000
+      "firstAt": 1788998285000,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Oil past $100 on Iran strike"
     },
     {
       "title": "Trump Takes No Position on Allies’ Sanctions Against Israeli Settlements - The New York Times",
@@ -678,7 +743,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788995400000
+      "firstAt": 1788995400000,
+      "why": "Trump silent on settlement sanctions"
     },
     {
       "title": "Gold Steadies Near $4,400 as Traders Weigh Fed Rate-Hike Path - Bloomberg.com",
@@ -696,7 +762,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788996798000
+      "firstAt": 1788996798000,
+      "why": "Gold steadies near $4,400"
     },
     {
       "title": "Navan beats quarterly estimates, raises forecast; shares tumble on cost concerns",
@@ -727,8 +794,14 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 2,
-      "firstAt": 1788995738000
+      "srcs": 1,
+      "firstAt": 1788995738000,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Trump says war ends soon"
     },
     {
       "title": "Gold rebounds above $4,400 on weaker Dollar, US PPI inflation data looms - fxstreet.com",
@@ -765,7 +838,7 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 2,
+      "srcs": 1,
       "firstAt": 1788995738000
     },
     {
@@ -2168,28 +2241,6 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1788967378000
-    },
-    {
-      "title": "Iran Is Using Tether to Bypass Sanctions: Crypto’s Biggest Real-World Use Case Just Got Darker - bitcoinfoundation.org",
-      "link": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxOSVA4S0FuUVh6SmEzUjd4VWdoU2NWN01GTU1BY1FJU0dnWXh1My1uaEQ5NWFhYW9pb0xGNWl3UFlDV3VVT082V0JMZFZqcHlYa20wemxicElkdmlOVDg0a2pzSWZwb1ByX0ZfQWF0bk81SVR3eFZKU3FPM3VXVVdIQ2p6MDFjVWlHZEx4ZlBhZmswY3dqRVJqYy0zakVBSjBocVdqTmNseXdTaVpxSmNQT1JkcmFxb09maUMyZFBlOWhaQkU2c0ZmR1RTVjMtZUhXd1JJdWM2aw?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi1wFBVV95cUxOSVA4S0FuUVh6SmEzUjd4VWdoU2NWN01GTU1BY1FJU0dnWXh1My1uaEQ5NWFhYW9pb0xGNWl3UFlDV3VVT082V0JMZFZqcHlYa20wemxicElkdmlOVDg0a2pzSWZwb1ByX0ZfQWF0bk81SVR3eFZKU3FPM3VXVVdIQ2p6MDFjVWlHZEx4ZlBhZmswY3dqRVJqYy0zakVBSjBocVdqTmNseXdTaV",
-      "at": 1788966705000,
-      "inst": [
-        "BTC/USDT",
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "BTC",
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788966447000
     }
   ],
   "sources": [
@@ -2212,10 +2263,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-10T00:57:58.083Z",
-  "headlinesAt": "2026-09-10T00:57:58.083Z",
-  "updatedAt": "2026-09-10T00:57:58.083Z"
+  "calendarAt": "2026-09-10T00:59:15.231Z",
+  "headlinesAt": "2026-09-10T00:59:15.231Z",
+  "updatedAt": "2026-09-10T00:59:15.231Z"
 }
