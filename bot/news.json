@@ -20,7 +20,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788997725000,
-      "_kind": null
+      "_kind": null,
+      "why": "No clear market impact"
     },
     {
       "title": "Gold Steadies Near $4,400 as Traders Weigh Fed Rate-Hike Path - Bloomberg.com",
@@ -39,7 +40,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788996798000,
-      "_kind": null
+      "_kind": null,
+      "why": "Gold steady, weighing Fed path"
     },
     {
       "title": "Navan beats quarterly estimates, raises forecast; shares tumble on cost concerns",
@@ -71,7 +73,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1788995738000
+      "firstAt": 1788995738000,
+      "why": "War end speculation, unclear direction"
     },
     {
       "title": "Gold rebounds above $4,400 on weaker Dollar, US PPI inflation data looms - fxstreet.com",
@@ -89,7 +92,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788996162000
+      "firstAt": 1788996162000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Gold rebounds on weaker dollar"
     },
     {
       "title": "Iran war looms over Trump at Republican midterm convention in Dallas",
@@ -109,7 +116,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1788995738000
+      "firstAt": 1788995738000,
+      "why": "Political news, no direct market impact"
     },
     {
       "title": "Sep. 09: More Strikes, Higher Oil Prices in Iran War; Why an Algorithm is Cutting Disability Benefits - NBC News",
@@ -129,7 +137,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788995240000
+      "firstAt": 1788995240000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Strikes and higher oil prices"
     },
     {
       "title": "Diesel prices hit another record high. If you’re shocked, wait until you see your grocery bill.",
@@ -152,7 +165,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788994260000
+      "firstAt": 1788994260000,
+      "why": "Inflation concerns, unclear direction"
     },
     {
       "title": "Oil Prices Surge Above $100 as Inflation Fears Grow, MoneySimpler Expands AI Automated Trading - markets.businessinsider.com",
@@ -170,7 +184,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788991380000
+      "firstAt": 1788991380000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil prices surge above $100"
     },
     {
       "title": "Israel sanctions will not hurt intelligence sharing between spy agencies, says Miliband - The Guardian",
@@ -190,7 +208,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788992100000
+      "firstAt": 1788992100000,
+      "why": "Diplomatic news, no market impact"
     },
     {
       "title": "American Eagle sticks to annual sales forecast again, shares slump",
@@ -222,7 +241,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788992649000
+      "firstAt": 1788992649000,
+      "why": "Ukraine strike, no clear market impact"
     },
     {
       "title": "‘It’s a good start’: prominent Israelis welcome UK sanctions on illegal settlements - The Guardian",
@@ -239,7 +259,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788992100000
+      "firstAt": 1788992100000,
+      "why": "Political reaction, no market impact"
     },
     {
       "title": "Senior UK rabbis come out in support of sanctions on Israeli settlements - The Guardian",
@@ -259,7 +280,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788992100000
+      "firstAt": 1788992100000,
+      "why": "Political support, no market impact"
     },
     {
       "title": "Asian Stocks to Fall as Oil Stokes Inflation Fears: Markets Wrap - Bloomberg.com",
@@ -278,7 +300,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788992036000
+      "firstAt": 1788992036000,
+      "dir": {
+        "USOIL": "up",
+        "US500": "down"
+      },
+      "why": "Oil stokes inflation, stocks fall"
     },
     {
       "title": "Iran fires electro-optical missile for first time — aiming at US warships: report - New York Post",
@@ -298,7 +325,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788991800000
+      "firstAt": 1788991800000,
+      "why": "Military report, unclear market impact"
     },
     {
       "title": "Canada’s Enbridge to buy Tallgrass crude oil business for $2.55 billion",
@@ -317,7 +345,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788991591000
+      "firstAt": 1788991591000,
+      "why": "Corporate acquisition, no market impact"
     },
     {
       "title": "Stock Market Stretches Losing Streak As Oil Prices, Treasury Yields Climb; Key Inflation Data Next - Investor's Business Daily",
@@ -1756,6 +1785,6 @@
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-10T00:00:28.768Z",
-  "updatedAt": "2026-09-10T00:00:28.768Z"
+  "headlinesAt": "2026-09-10T00:01:29.644Z",
+  "updatedAt": "2026-09-10T00:01:29.644Z"
 }
