@@ -405,7 +405,11 @@
       "rel": 2,
       "srcs": 3,
       "firstAt": 1789046975000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold slips due to firmer dollar"
     },
     {
       "title": "Dollar rises as hot U.S. inflation, ECB hike reshape currency markets",
@@ -423,7 +427,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789046975000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "EUR/USD": "down"
+      },
+      "why": "Dollar rises, pressuring euro pair"
     },
     {
       "title": "Mark Cuban Wants Workers to Own Company Stock. Social Security Counts the Shares That Vest but Ignores the Ones They Sell.",
@@ -459,7 +467,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789046712000,
-      "_kind": null
+      "_kind": null,
+      "why": "AI debt stats, no clear FX direction"
     },
     {
       "title": "Micron Could Be the Next Nvidia For Patient Investors",
@@ -506,7 +515,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789048811000,
-      "_kind": null
+      "_kind": null,
+      "why": "New trading platform launch, neutral impact"
     },
     {
       "title": "Markets see a near 50-50 chance the European Central Bank will hike again in October",
@@ -530,7 +540,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789047300000,
-      "_kind": null
+      "_kind": null,
+      "why": "Uncertain ECB hike odds, mixed signals"
     },
     {
       "title": "Treasury yields rise as investors raise bets on Fed rate hike: AlphaCheck",
@@ -553,7 +564,13 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789048612000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Rising yields and Fed hike bets"
     },
     {
       "title": "Coinbase CEO Says Bitcoin Has Bottomed",
@@ -570,7 +587,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789048500000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "BTC/USDT": "up"
+      },
+      "why": "CEO claims Bitcoin has bottomed"
     },
     {
       "title": "Brent tops $104 as Mideast strikes dent hopes for renewed Hormuz shipping",
@@ -590,7 +611,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789048470000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "UKOIL": "up",
+        "USOIL": "up"
+      },
+      "why": "Oil surges on Mideast shipping fears"
     },
     {
       "title": "Nasdaq Invests $100 Million In Kraken Parent Company",
@@ -605,7 +631,10 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789048320000,
-      "_kind": null
+      "dir": {
+        "US100": "up"
+      },
+      "why": "Nasdaq invests in crypto parent company"
     },
     {
       "title": "Gold falls over 1% as U.S. inflation data boosts Fed hike bets - marketscreener.com",
@@ -623,7 +652,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789046975000
+      "firstAt": 1789046975000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold falls on high inflation data"
     },
     {
       "title": "10-year treasury at highest level since 2023 as oil prices jump to $105: Chart of the Day",
@@ -640,7 +673,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789048060000
+      "firstAt": 1789048060000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil prices jump to $105"
     },
     {
       "title": "Crypto Exchange Bybit To Launch European Super App",
@@ -656,7 +693,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789048020000
+      "firstAt": 1789048020000,
+      "why": "Bybit app launch, neutral for price"
     },
     {
       "title": "Stock Market Today: Nasdaq Sells Off After Inflation Surprise; Oil, Yields Surge (Live Coverage)",
@@ -674,7 +712,12 @@
       "sev": 3,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789046031000
+      "firstAt": 1789046031000,
+      "dir": {
+        "USOIL": "up",
+        "US100": "down"
+      },
+      "why": "Nasdaq sells off, oil surges"
     },
     {
       "title": "Gold prices hold above $4,400 as markets await inflation data - ارقام",
@@ -692,7 +735,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789045144000
+      "firstAt": 1789045144000,
+      "why": "Gold holds steady awaiting data"
     },
     {
       "title": "Gold Falls 1.39% After U.S. PPI Report Shows Higher Inflation - News and Statistics - IndexBox",
@@ -710,7 +754,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789045144000
+      "firstAt": 1789045144000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold falls after high PPI report"
     },
     {
       "title": "Wholesale inflation stirred up by Iran war and high oil prices. What does it mean for the Fed?",
@@ -1094,7 +1142,7 @@
       "firstAt": 1789043410000
     },
     {
-      "title": "Video Trump says 'movement' detected at Pickaxe Mt., threatens new strikes on Iran - abcnews.com",
+      "title": "Video Trump says 'movement' detected at Pickaxe Mt., threatens new strikes on Iran - ABC News - Breaking News, Latest News and Videos",
       "link": "https://news.google.com/rss/articles/CBMiTEFVX3lxTE9vZDczak1zdFJydlZocFlCNS1MNklKcWtuWVc3LXVPUlNVRVA2bG1KZkhpY1R5LTZMQzNIVUtqV3FDdWZGNUpQOGgwaVo?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiTEFVX3lxTE9vZDczak1zdFJydlZocFlCNS1MNklKcWtuWVc3LXVPUlNVRVA2bG1KZkhpY1R5LTZMQzNIVUtqV3FDdWZGNUpQOGgwaVo?oc=5\" target=\"_blank\">Video Trump says 'movement' detected at Pickaxe Mt., threatens new strikes on Iran</a>&nbsp;&nbsp;<font ",
@@ -1108,7 +1156,7 @@
         "XAU",
         "OIL"
       ],
-      "sev": 1,
+      "sev": 3,
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789043358000
@@ -1335,6 +1383,24 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789041293000
+    },
+    {
+      "title": "Nervy markets await ECB rate hike, US inflation data - Free Malaysia Today",
+      "link": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQaXJXS05qbTRENnhRSUVhQlRLaE40MG9pNF9aQlhEbzlvTVlSTlg1UGpMeFdzNnBTZk1BdFpKaGVKQ2lXY1lMVFRabm9kLXc0T0xwZVREak4tR3BIcFgwdmRJOE9BalJ1Ty1HOGVOd1g0cnliMml1UHNtYVBrZHJmNl9oZWkzRXBQa2pJZThRaHdxM0N0Mm1zRHVua3c0WERDZ2VQcmQxTnNObExZTmFSYXU2cDA?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMitAFBVV95cUxQaXJXS05qbTRENnhRSUVhQlRLaE40MG9pNF9aQlhEbzlvTVlSTlg1UGpMeFdzNnBTZk1BdFpKaGVKQ2lXY1lMVFRabm9kLXc0T0xwZVREak4tR3BIcFgwdmRJOE9BalJ1Ty1HOGVOd1g0cnliMml1UHNtYVBrZHJmNl9oZWkzRXBQa2pJZThRaHdxM0N0Mm1zRHVua3c0WERDZ2VQcmQxTnNObE",
+      "at": 1789040412000,
+      "inst": [
+        "EUR/USD"
+      ],
+      "ccy": [
+        "EUR",
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789039775000
     },
     {
       "title": "Morning Call Sheet: Inflation, rates and AI spending test markets - CNBC",
@@ -2013,7 +2079,7 @@
       "firstAt": 1789028513000
     },
     {
-      "title": "NATO aircraft deployed in Poland as Russian jet-powered drones strike Ukraine - abcnews.com",
+      "title": "NATO aircraft deployed in Poland as Russian jet-powered drones strike Ukraine - ABC News - Breaking News, Latest News and Videos",
       "link": "https://news.google.com/rss/articles/CBMirgFBVV95cUxOempkRllMNmRTeE5KMHh6Wm5RRkduSWI0bmlKTERLQUduOGVqVmtEZEJqX1NydFJ4MHRXdTNVNHpNcXdpX3lUVi14eHFTNzR2bUxUUkowZHN3d3U4aWdtbDdzUFVYekVWQnlqV3lwczQzVnRiekFyRmNJS2Y3dWdkNFF4blVFeVJzUGh1dEFrNm04Unp2eTlSUGtIanVEQjBtcXBBM0JjOTNLdUw2aWfSAbMBQVVfeXFMUE5vTllfRkI5R25aRXBLeHNvZ0JwNDBGMXNISGtrT29Xb01ZLUlYUVdKd2kwVFQxek91NlhaVUI5bjAyaDBJdmotem13Qll0dUJJT3EzMGVST0c4MEtCZGFMclNnU1dqMzFIRWpKV2xmeGw2bjJiOVVMR0xZcVlPNU9DWnhiV2ctaEFVdzVDQUlKazV4anN3N0RPNkgwazI5TkFSNm5uOUNFMlFmWWJZWVF5X1k?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMirgFBVV95cUxOempkRllMNmRTeE5KMHh6Wm5RRkduSWI0bmlKTERLQUduOGVqVmtEZEJqX1NydFJ4MHRXdTNVNHpNcXdpX3lUVi14eHFTNzR2bUxUUkowZHN3d3U4aWdtbDdzUFVYekVWQnlqV3lwczQzVnRiekFyRmNJS2Y3dWdkNFF4blVFeVJzUGh1dEFrNm04Unp2eTlSUGtIanVEQjBtcXBBM0JjOTNLdU",
@@ -2027,7 +2093,7 @@
         "XAU",
         "OIL"
       ],
-      "sev": 1,
+      "sev": 3,
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789027245000
@@ -2049,29 +2115,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789028160000
-    },
-    {
-      "title": "Treasury yields move higher as investors await key wholesale inflation data - CNBC",
-      "link": "https://news.google.com/rss/articles/CBMibkFVX3lxTE9EaFNHbGNZVzJjeVppT2pHMkg3NW9EMnk2S3V5MExsRVNVeUxlNVRrb3N1aWh4Ni1VaWJmakFWVUZ1UHN3T0lSZTNMWkx2Y2d6ZmxvY0xUTGFiUnJ6MjlwOXJtTGRkQ3M0RE5QMnl30gFzQVVfeXFMTTRucHY0eHZ5TU5CbG8xWGZDUF9CR1dHaXBXUFJwLUxBMTZMTnRnaG5vSl93S2E3aDRfUU5meEcxMGVYcEhWSDNWQThsNjIyelZYZFJUVVFfTVM4c0lLNlVnM0xQLWNTVWI4VTc5bDdtYVMwQQ?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMibkFVX3lxTE9EaFNHbGNZVzJjeVppT2pHMkg3NW9EMnk2S3V5MExsRVNVeUxlNVRrb3N1aWh4Ni1VaWJmakFWVUZ1UHN3T0lSZTNMWkx2Y2d6ZmxvY0xUTGFiUnJ6MjlwOXJtTGRkQ3M0RE5QMnl30gFzQVVfeXFMTTRucHY0eHZ5TU5CbG8xWGZDUF9CR1dHaXBXUFJwLUxBMTZMTnRnaG5vSl93S2E3aDRfUU",
-      "at": 1789027997000,
-      "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789027997000
     }
   ],
   "sources": [
@@ -2094,10 +2137,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-10T14:20:45.227Z",
-  "headlinesAt": "2026-09-10T14:20:45.227Z",
-  "updatedAt": "2026-09-10T14:20:45.227Z"
+  "calendarAt": "2026-09-10T14:22:32.251Z",
+  "headlinesAt": "2026-09-10T14:22:32.251Z",
+  "updatedAt": "2026-09-10T14:22:32.251Z"
 }
