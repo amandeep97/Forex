@@ -2,6 +2,46 @@
   "calendar": [],
   "headlines": [
     {
+      "title": "Nasdaq invests $100 million in Kraken parent Payward for tokenized stocks",
+      "link": "https://finance.yahoo.com/markets/crypto/articles/nasdaq-invests-100-million-kraken-132047317.html",
+      "source": "Yahoo Finance",
+      "at": 1789046447000,
+      "inst": [
+        "US500",
+        "US100"
+      ],
+      "ccy": [],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789046447000,
+      "_kind": null,
+      "why": "Nasdaq investment in crypto firm"
+    },
+    {
+      "title": "OPEC Further Cuts Demand Growth Forecast as Oil Surpasses $100 a Barrel",
+      "link": "https://www.wsj.com/business/energy-oil/opec-further-cuts-this-years-oil-demand-growth-forecast-79ed23ad?siteid=yhoof2&yptr=yahoo",
+      "source": "Yahoo Finance",
+      "at": 1789046280000,
+      "inst": [
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1789045625000,
+      "_kind": null,
+      "dir": {
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "OPEC cuts demand growth forecast"
+    },
+    {
       "title": "AMD Stock’s 10-Year, 6,800% Rally Was Just the Beginning. Here’s Where AMD Could Be Headed Next",
       "link": "https://finance.yahoo.com/markets/stocks/articles/amd-stock-10-6-800-131506191.html",
       "source": "Yahoo Finance",
@@ -32,7 +72,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789046031000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "XAG/USD": "down"
+      },
+      "why": "Gold and silver fall on yields"
     },
     {
       "title": "La-Z-Boy Director Janet Kerr Sells 3,653 Shares for $116,000",
@@ -65,20 +110,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789045729000,
-      "_kind": null
-    },
-    {
-      "title": "Bank of America says rising bond yields aren't a threat to AI trade yet",
-      "link": "https://finance.yahoo.com/technology/ai/articles/bank-america-says-rising-bond-130713306.html",
-      "source": "Yahoo Finance",
-      "at": 1789045633000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789045633000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "EUR/USD": "down",
+        "USOIL": "up",
+        "US500": "down"
+      },
+      "why": "ECB hike, oil surge, stocks reverse"
     },
     {
       "title": "OPEC further lowers 2026 global oil demand growth forecast",
@@ -94,9 +132,14 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 1,
+      "srcs": 2,
       "firstAt": 1789045625000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "OPEC lowers demand growth forecast"
     },
     {
       "title": "Oil jumps to $105 a barrel after Middle East tanker attacks escalate",
@@ -116,7 +159,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789045588000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Oil jumps on Middle East attacks"
     },
     {
       "title": "Canadian whisky on the rocks? Crown Royal is set to avoid Trump’s new ban.",
@@ -134,7 +183,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789045380000,
-      "_kind": null
+      "_kind": null,
+      "why": "Whisky ban reprieve unclear for CAD"
     },
     {
       "title": "Trump expects Iran war to end after November midterms despite regional escalation - سانا",
@@ -155,7 +205,13 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789043358000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Trump expects Iran war to end"
     },
     {
       "title": "Washington tariff plans for copper imports stall, premiums drop",
@@ -177,7 +233,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789044981000
+      "firstAt": 1789044981000,
+      "why": "Copper tariff plans stall, premiums drop"
     },
     {
       "title": "Investors are missing the good news right in front of them, this Wall Street strategist argues",
@@ -192,7 +249,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789044780000
+      "firstAt": 1789044780000,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Strategist highlights strong Q2 earnings"
     },
     {
       "title": "Sector-Wide Demand Pushes Caterpillar (CAT) Shares Higher",
@@ -227,7 +288,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789042320000
+      "firstAt": 1789042320000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Yields rise on hot PPI data"
     },
     {
       "title": "Building U.S. data centers is getting so expensive that AI companies are moving overseas",
@@ -242,7 +309,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789044540000
+      "firstAt": 1789044540000,
+      "dir": {
+        "US100": "down"
+      },
+      "why": "AI data center costs rising"
     },
     {
       "title": "Russia strikes petrol station in Kyiv, global agribusiness in Dnipro - Reuters",
@@ -262,7 +333,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789042275000
+      "firstAt": 1789042275000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Russia strikes Kyiv, Dnipro assets"
     },
     {
       "title": "Global bond yields rise as ECB hikes and hot U.S PPI fuels higher rate bets",
@@ -279,7 +356,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789044531000
+      "firstAt": 1789044531000,
+      "dir": {
+        "EUR/USD": "down"
+      },
+      "why": "ECB hike, yields rise, EUR weak"
     },
     {
       "title": "Gold prices dip slightly as ECB raises interest rates amid persistent inflation concerns - Pluang",
@@ -299,7 +380,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789042978000
+      "firstAt": 1789042978000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down"
+      },
+      "why": "Gold dips, ECB hikes rates"
     },
     {
       "title": "Stock Market Today: Dow Falls After Surprise Inflation Data; Nvidia Chipmaker Slides On Sales (Live Coverage)",
@@ -673,36 +759,6 @@
       "firstAt": 1789041720000
     },
     {
-      "title": "How Stocks Perform After Fed Rate Decisions",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/stocks-perform-fed-rate-decisions-120011505.html",
-      "source": "Yahoo Finance",
-      "at": 1789041611000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789041611000
-    },
-    {
-      "title": "Nike loses its spot in the S&P 100 after an 18-year streak as shares crater nearly 80% from their peak",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/nike-loses-spot-p-100-120000497.html",
-      "source": "Yahoo Finance",
-      "at": 1789041600000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789041600000
-    },
-    {
       "title": "Markets Keep Worrying About Oil Prices, Inflation - RTTNews",
       "link": "https://news.google.com/rss/articles/CBMijgFBVV95cUxQaGRldHFGR1h2ejFqV201dGtMc0k0UzlvZWMxazBlSHhTSVp1WC14aHFvYlhSZlRmOFFhZGhKRGJNTGRxbmtoUHgxVnRMdm1VTlV5VDNKbldoQmUxSXM3YngxMkJqWUVidHBkaEFZZG81allEblJWaHdOR0Q5YUp2OWM5TGRDaVk1NGNGVUNB?oc=5",
       "source": "Wires (macro)",
@@ -719,18 +775,6 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789039863000
-    },
-    {
-      "title": "Netflix (NFLX) Shares Pressured by Weak Q2 Outlook",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/netflix-nflx-shares-pressured-weak-115559393.html",
-      "source": "Yahoo Finance",
-      "at": 1789041359000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1789041359000
     },
     {
       "title": "Stocks making the biggest moves premarket: Macy's, Meta, Apple, Novartis and more",
@@ -764,18 +808,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789041284000
-    },
-    {
-      "title": "Eversource Energy Offers Stable Fundamentals, Growing Yield",
-      "link": "https://www.investors.com/research/the-income-investor/eversource-energy-es-stock-stable-fundamentals-growing-yield/?src=A00220&yptr=yahoo",
-      "source": "Yahoo Finance",
-      "at": 1789040971000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789040971000
     },
     {
       "title": "Morning Call Sheet: Inflation, rates and AI spending test markets - CNBC",
@@ -1661,6 +1693,64 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789026085000
+    },
+    {
+      "title": "Gold holds steady above $4,400 as traders await US inflation data for Fed rate cues - FXStreet",
+      "link": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxQcXdUMnc4MWo5VTJTSmhiNVV6OW80cEJDaEhmZ05UY2JiX0U0R2ViYkNCOE4xWlRMdVVSdWZ3R3E3dXdmR3YxM2NsS1VDaldBNVA4QWt0am9GWGNwZk1xZDU1aGlJdDFrRFFfQmZycngyZHNqYUc4dTR5akVwZ3JXam51Y3hVUUlmNmxXaV95ZVhRSU93NlBJTVJjN1ZlYjQtUGRmNTNmZXFVUG0zTy1hRDFBR0pzalJSbG00TzJtTE9Idw?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiwgFBVV95cUxQcXdUMnc4MWo5VTJTSmhiNVV6OW80cEJDaEhmZ05UY2JiX0U0R2ViYkNCOE4xWlRMdVVSdWZ3R3E3dXdmR3YxM2NsS1VDaldBNVA4QWt0am9GWGNwZk1xZDU1aGlJdDFrRFFfQmZycngyZHNqYUc4dTR5akVwZ3JXam51Y3hVUUlmNmxXaV95ZVhRSU93NlBJTVJjN1ZlYjQtUGRmNTNmZXFVUG",
+      "at": 1789026052000,
+      "inst": [
+        "XAU/USD"
+      ],
+      "ccy": [
+        "USD",
+        "XAU"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789024327000
+    },
+    {
+      "title": "Brent Holds Above $100 on U.S.-Iran Escalation - WSJ",
+      "link": "https://news.google.com/rss/articles/CBMipAFBVV95cUxPWFBUTWh0bXNxSnhsbmZLVjFFUDNTYTRlT3FKcW1VSlppUnYzT2J3VklDUzhBMVZxSWlzcGkyOGkwcmpGVllpUEFaaFlnaXJFcE5iUTlWOTRTWjRrVHh0MG5ELVhBZ0N2SG1qdGhXQnh1RGRCS29rZ1ZyOThzbk5fSmxiS2g0dXZ0SXY2aFFMbEhJYm9ENXkwQ1l3NTZLQm5TV2FTRQ?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMipAFBVV95cUxPWFBUTWh0bXNxSnhsbmZLVjFFUDNTYTRlT3FKcW1VSlppUnYzT2J3VklDUzhBMVZxSWlzcGkyOGkwcmpGVllpUEFaaFlnaXJFcE5iUTlWOTRTWjRrVHh0MG5ELVhBZ0N2SG1qdGhXQnh1RGRCS29rZ1ZyOThzbk5fSmxiS2g0dXZ0SXY2aFFMbEhJYm9ENXkwQ1l3NTZLQm5TV2FTRQ?oc=5\" t",
+      "at": 1789025675000,
+      "inst": [
+        "UKOIL",
+        "XAU/USD",
+        "USOIL"
+      ],
+      "ccy": [
+        "OIL",
+        "XAU"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789025675000
+    },
+    {
+      "title": "Oil prices surge amid escalation in fighting between US and Iran - WCAX",
+      "link": "https://news.google.com/rss/articles/CBMinAFBVV95cUxNb2lSUUJDS3lJLVJ4aDRaUGlfTzFueUUtdm5nS0Y2YTJtSnFzcDdrM3pVeTVSVnhlY1FtbGdseFdudzZsV3RBTE9ZV3JJekZSZmszb1Y5c21DMjk2c1JpNmRZT2hESzNmdzJWQ21KdXlLVDB2OG1qUUphMWRHRjlHZGdjblNOd052Qm9jOVdZbFhJOElnR3Fra1JqZ0g?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMinAFBVV95cUxNb2lSUUJDS3lJLVJ4aDRaUGlfTzFueUUtdm5nS0Y2YTJtSnFzcDdrM3pVeTVSVnhlY1FtbGdseFdudzZsV3RBTE9ZV3JJekZSZmszb1Y5c21DMjk2c1JpNmRZT2hESzNmdzJWQ21KdXlLVDB2OG1qUUphMWRHRjlHZGdjblNOd052Qm9jOVdZbFhJOElnR3Fra1JqZ0g?oc=5\" target=\"_bla",
+      "at": 1789025400000,
+      "inst": [
+        "USOIL",
+        "XAU/USD",
+        "UKOIL"
+      ],
+      "ccy": [
+        "OIL",
+        "XAU"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789023900000
     }
   ],
   "sources": [
@@ -1687,6 +1777,6 @@
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-10T13:29:59.499Z",
-  "updatedAt": "2026-09-10T13:29:59.499Z"
+  "headlinesAt": "2026-09-10T13:31:04.291Z",
+  "updatedAt": "2026-09-10T13:31:04.291Z"
 }
