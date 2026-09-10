@@ -2,7 +2,7 @@
   "calendar": [],
   "headlines": [
     {
-      "title": "Treasury yields surge after poor 30-year auction and new buyback operation fails to calm market",
+      "title": "Treasury yields surge after poor 30-year auction and new buyback operation fail to calm market",
       "link": "https://www.marketwatch.com/story/treasury-yields-surge-toward-the-danger-zone-for-stocks-as-inflation-pressures-heat-up-fe0f9aa6?mod=mw_rss_topstories",
       "source": "MarketWatch",
       "desc": "Oil prices were at their highest levels since late May, while rising wholesale inflation data sent benchmark 10-year yields closer to the key 5% level.",
@@ -18,7 +18,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789064001000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil prices at highest levels since May."
     },
     {
       "title": "US Sinks Iranian Oil Tankers as Iran Strikes Back - Hudson Institute",
@@ -39,7 +43,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789065169000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Geopolitical conflict boosts oil and gold."
     },
     {
       "title": "International gold prices fall over 1% as US inflation, oil prices lift rate-hike bets - The New Indian Express",
@@ -60,7 +70,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789064816000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "up"
+      },
+      "why": "Gold falls, oil rises on inflation."
     },
     {
       "title": "Iran’s hardliners bet on escalation as options narrow - Iran International",
@@ -81,7 +96,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789064704000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Escalation fears boost safe havens and oil."
     },
     {
       "title": "Alcoa says U.S. aluminum premium to stay high despite tariff cut",
@@ -104,7 +125,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789064198000,
-      "_kind": null
+      "_kind": null,
+      "why": "Alcoa news has no clear FX impact."
     },
     {
       "title": "The US Treasury bought $5.187 billion in 10-20 year notes",
@@ -128,7 +150,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789064001000,
-      "_kind": null
+      "_kind": null,
+      "why": "Treasury buyback result is neutral for FX."
     },
     {
       "title": "Restaurant stocks rise as cyclosporiasis outbreak ends",
@@ -143,7 +166,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789063942000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Restaurant stocks rise on outbreak end."
     },
     {
       "title": "Trump administration offers rare muted response on new sanctions against Israel - KVIA",
@@ -163,7 +190,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789063783000
+      "firstAt": 1789063783000,
+      "why": "Muted response implies no immediate market move."
     },
     {
       "title": "U.S. Wholesale Inflation Hits 5.4% as Markets Await CPI, MoneySimpler Expands AI Automated Trading - manilatimes.net",
@@ -186,7 +214,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789063561000
+      "firstAt": 1789063561000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "High inflation hurts gold and dollar pairs."
     },
     {
       "title": "AMD, Intel among market cap stock movers on Thursday",
@@ -213,7 +247,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789061418000
+      "firstAt": 1789061418000,
+      "why": "AI news impact on index is unclear."
     },
     {
       "title": "CPI report and Michigan consumer sentiment due Friday",
@@ -235,7 +270,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789063244000
+      "firstAt": 1789063244000,
+      "why": "Upcoming data release has no current direction."
     },
     {
       "title": "OFAC Issues Expansive Sanctions Targeting Iran’s Civil Aviation Sector - globaltradeandsanctionslaw.com",
@@ -255,7 +291,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789063094000
+      "firstAt": 1789063094000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Sanctions increase geopolitical risk premium."
     },
     {
       "title": "Oil surges 6%, Brent and US crude both surpass $100 on more tanker attacks",
@@ -272,7 +314,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789062869000
+      "firstAt": 1789062869000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Oil surges 6% on tanker attacks."
     },
     {
       "title": "UNSC permanent members spar over Iran sanctions snapback - TRT World",
@@ -292,7 +339,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789062432000
+      "firstAt": 1789062432000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Sanctions dispute boosts risk assets."
     },
     {
       "title": "Israel preparing for possible Iranian escalation over holiday, but hasn't issued any warnings -- report - The Times of Israel",
@@ -312,7 +365,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789062055000
+      "firstAt": 1789062055000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Escalation fears boost gold and oil."
     },
     {
       "title": "Investors should be eating up these 9 restaurant stocks, analysts say",
@@ -1789,6 +1848,6 @@
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-10T18:40:01.956Z",
-  "updatedAt": "2026-09-10T18:40:01.956Z"
+  "headlinesAt": "2026-09-10T18:41:02.963Z",
+  "updatedAt": "2026-09-10T18:41:02.963Z"
 }
