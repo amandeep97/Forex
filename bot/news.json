@@ -407,10 +407,15 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789057200000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "US500": "down"
+      },
+      "why": "Oil up, yields up, stocks down"
     },
     {
-      "title": "Bitcoin and Gold Outlook slide as US PPI drives rate-hike bets - FXStreet",
+      "title": "Bitcoin and Gold Outlook: BTC and XAU drop as US PPI broadens rate-hike bets - FXStreet",
       "link": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxPRHJabm5GanQ2VEJ6NDYwNDh0SUxJSDhWMkp2dUNkTnlxZ0h6Rkw3QlJkTmN6enVuMFV4WjlOeDNCZzRFRmpuX0xuWDBvR3ZnVkJ1d09FYmJPWHNGRnBvV0hFLXUwWDRYdWU5SktFeU1US3BGTDBKeWhXUXNsNDdvNEhkanM4X3RTT1VuWExCN0tQcElubmhsWVpqdUlJOFlQWlpEOEM3dVpWZjdFenltSU9kc2RHOXdpTUdtdGUzem45Yjg0S2c4Q2VBeTBLYTJB?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMi0AFBVV95cUxPRHJabm5GanQ2VEJ6NDYwNDh0SUxJSDhWMkp2dUNkTnlxZ0h6Rkw3QlJkTmN6enVuMFV4WjlOeDNCZzRFRmpuX0xuWDBvR3ZnVkJ1d09FYmJPWHNGRnBvV0hFLXUwWDRYdWU5SktFeU1US3BGTDBKeWhXUXNsNDdvNEhkanM4X3RTT1VuWExCN0tQcElubmhsWVpqdUlJOFlQWlpEOEM3dVpWZj",
@@ -428,7 +433,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789057169000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "BTC/USDT": "down"
+      },
+      "why": "Gold and Bitcoin drop on rate bets"
     },
     {
       "title": "European equities fall following ECB rate hike to highest since 2025",
@@ -447,7 +457,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789056965000,
-      "_kind": null
+      "_kind": null,
+      "why": "ECB hike, unclear impact on pairs"
     },
     {
       "title": "Oil surges 5%, Brent and US crude both over $100 on more tanker attacks",
@@ -465,7 +476,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789056775000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Oil surges on tanker attacks"
     },
     {
       "title": "FTSE 100 today: Stocks slip as ECB hikes rates, oil surges",
@@ -485,7 +501,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789056604000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "US500": "down"
+      },
+      "why": "Stocks slip, oil surges, ECB hike"
     },
     {
       "title": "U.K. stocks lower at close of trade; Investing.com United Kingdom 100 down 0.56%",
@@ -500,7 +521,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789056431000,
-      "_kind": null
+      "_kind": null,
+      "why": "UK stocks lower, irrelevant to US"
     },
     {
       "title": "3 Shaky Consumer Dividend Stocks Flashing Warning Signs",
@@ -515,7 +537,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789056525000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Dividend stocks flashing warning signs"
     },
     {
       "title": "Spain stocks lower at close of trade; IBEX 35 down 0.18%",
@@ -530,7 +556,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789056508000,
-      "_kind": null
+      "_kind": null,
+      "why": "Spain stocks lower, irrelevant to US"
     },
     {
       "title": "Portugal stocks higher at close of trade; PSI up 0.11%",
@@ -545,7 +572,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789056483000,
-      "_kind": null
+      "_kind": null,
+      "why": "Portugal stocks higher, irrelevant to US"
     },
     {
       "title": "Netherlands stocks lower at close of trade; AEX down 0.78%",
@@ -560,7 +588,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789056456000,
-      "_kind": null
+      "_kind": null,
+      "why": "Netherlands stocks lower, irrelevant to US"
     },
     {
       "title": "Italy stocks lower at close of trade; Investing.com Italy 40 down 0.07%",
@@ -575,7 +604,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789056431000,
-      "_kind": null
+      "_kind": null,
+      "why": "Italy stocks lower, irrelevant to US"
     },
     {
       "title": "3 High-Yield Energy Stocks to Buy in September for Steady Income",
@@ -590,7 +620,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789056300000,
-      "_kind": null
+      "_kind": null,
+      "why": "Buy energy stocks, no index direction"
     },
     {
       "title": "Bank of America flags a $163B risk hanging over stocks",
@@ -605,7 +636,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789056180000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Bank of America flags stock risk"
     },
     {
       "title": "AI Server Stocks Slide as Two-Day Run Unwinds: Hewlett Packard Enterprise Sinks 4%, Dell Pulls Back, Super Micro Sits Out the Selloff",
@@ -620,7 +655,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789056136000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "AI server stocks slide, selloff"
     },
     {
       "title": "SpaceX shares higher as data center overhaul, budding UK defense deal in focus",
@@ -654,7 +693,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789054355000,
-      "_kind": null
+      "_kind": null,
+      "why": "Russia strikes, unclear market impact"
     },
     {
       "title": "Trump says ‘no damage’ to US war planes from Iran attack - The Hill",
@@ -710,7 +750,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789052420000
+      "firstAt": 1789055050000
     },
     {
       "title": "Renewable-energy mandates are actually bad for consumers. They’re not great for solar stocks, either.",
@@ -762,7 +802,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789052420000
+      "firstAt": 1789052603000
     },
     {
       "title": "Now’s your chance to make money during the best bond market for yields in decades — if you get over Treasury jitters",
@@ -904,26 +944,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789052603000
-    },
-    {
-      "title": "Russia sanctions bill faces make-or-break moment before US midterms, Ukraine says - The Kyiv Independent",
-      "link": "https://news.google.com/rss/articles/CBMirgFBVV95cUxOQjhGdkg5S1pxcHZSTnF3MTY1MXRQY3VKYjctampyeGhYTk1iX1JVTzVEQjZIZkRNVmpYZ1I2WFg1bnFKSU1yaHI4SGJMTDY4UzNPNTJxQzRLQUhKOENLXzBpamFSUkE2SklObEw2T1lfcGdUcURTVU9NM0d2bTZ5M01hVXVnNWRkZU9ITk5TLUp2cUN5ZllPcTA1LUM4WGJBZ3FqSFJMdnV2ckJxcFE?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMirgFBVV95cUxOQjhGdkg5S1pxcHZSTnF3MTY1MXRQY3VKYjctampyeGhYTk1iX1JVTzVEQjZIZkRNVmpYZ1I2WFg1bnFKSU1yaHI4SGJMTDY4UzNPNTJxQzRLQUhKOENLXzBpamFSUkE2SklObEw2T1lfcGdUcURTVU9NM0d2bTZ5M01hVXVnNWRkZU9ITk5TLUp2cUN5ZllPcTA1LUM4WGJBZ3FqSFJMdnV2ck",
-      "at": 1789052420000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789052420000
     },
     {
       "title": "$100 Oil Jolts Treasury Yields; Fed Rate-Hike Odds Jump - Investor's Business Daily",
@@ -2063,6 +2083,26 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789037979000
+    },
+    {
+      "title": "Multiple U.S. military aircraft damaged in Iranian strikes on military base in Jordan, sources say - CBS News",
+      "link": "https://news.google.com/rss/articles/CBMiowFBVV95cUxNbHFMdm1iMUYteWtiRFBvb2xqMldYbXhxajFtY213NGx2X0NoNEF0dHJiX3Mwa1Buel9JaXFZWTJ0VkFHOWczbkRiRTRhS3Bjbm5saHJRejRjWnBrQmlGMXZfLTViZm9XTlFaVk4ybUZTaVA2MkRiY1hZTFNjVTlJQldoNWlKNUU0dGhPY1YwZ19jTE1iREVNdGtRaFY2V05iZ3R3?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiowFBVV95cUxNbHFMdm1iMUYteWtiRFBvb2xqMldYbXhxajFtY213NGx2X0NoNEF0dHJiX3Mwa1Buel9JaXFZWTJ0VkFHOWczbkRiRTRhS3Bjbm5saHJRejRjWnBrQmlGMXZfLTViZm9XTlFaVk4ybUZTaVA2MkRiY1hZTFNjVTlJQldoNWlKNUU0dGhPY1YwZ19jTE1iREVNdGtRaFY2V05iZ3R3?oc=5\" tar",
+      "at": 1789037700000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789037700000
     }
   ],
   "sources": [
@@ -2088,7 +2128,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-10T16:27:13.885Z",
-  "headlinesAt": "2026-09-10T16:27:13.885Z",
-  "updatedAt": "2026-09-10T16:27:13.885Z"
+  "calendarAt": "2026-09-10T16:28:47.411Z",
+  "headlinesAt": "2026-09-10T16:28:47.411Z",
+  "updatedAt": "2026-09-10T16:28:47.411Z"
 }
