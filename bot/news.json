@@ -19,7 +19,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789034828000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "UKOIL": "up",
+        "XAU/USD": "up",
+        "USOIL": "up"
+      },
+      "why": "Mideast strikes boost oil and gold"
     },
     {
       "title": "Qatar beat Iran in men’s basketball as Asian Games begin in Japan",
@@ -37,7 +43,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789034818000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sports news irrelevant to currency"
     },
     {
       "title": "Analysis • Saudi-Houthi escalation threatens to draw Iran and the U.S. back into war - Haaretz",
@@ -58,7 +65,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789034460000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Escalation fears boost safe havens and oil"
     },
     {
       "title": "Israeli checkpoints in the West Bank are choking the Palestinian economy",
@@ -79,7 +92,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789033683000,
-      "_kind": null
+      "_kind": null,
+      "why": "Local economic news, no market impact"
     },
     {
       "title": "Nervy markets await ECB rate hike, US inflation data - marketscreener.com",
@@ -97,7 +111,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789033359000
+      "firstAt": 1789033359000,
+      "why": "Awaiting data, direction unclear"
     },
     {
       "title": "Nervy markets await ECB rate hike, US inflation data - TradingView",
@@ -115,7 +130,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789033359000
+      "firstAt": 1789033359000,
+      "why": "Awaiting data, direction unclear"
     },
     {
       "title": "Bond Yields Edge Up as Investors Await ECB Rate Hike, U.S. Treasury Buybacks - WSJ",
@@ -133,7 +149,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789033140000
+      "firstAt": 1789033140000,
+      "why": "Yields up, mixed signals for pair"
     },
     {
       "title": "Euro hovers near two-week high as ECB decision looms while dollar stays flat",
@@ -150,7 +167,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789032629000
+      "firstAt": 1789032629000,
+      "dir": {
+        "EUR/USD": "up"
+      },
+      "why": "Euro near high, dollar flat"
     },
     {
       "title": "The ECB is virtually certain to raise rates. Wall Street is bracing for what comes next.",
@@ -169,7 +190,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789032420000
+      "firstAt": 1789032420000,
+      "dir": {
+        "EUR/USD": "up"
+      },
+      "why": "ECB hike supports euro, stocks uncertain"
     },
     {
       "title": "Forget Gold at $4,400? Morningstar Economist Says This Bond Trade Could Be a Better Inflation Hedge - Benzinga",
@@ -187,7 +212,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789031869000
+      "firstAt": 1789031869000,
+      "why": "Alternative hedge mentioned, no clear direction"
     },
     {
       "title": "Sterling today: Pound rises as BoE rate hike bets build",
@@ -204,7 +230,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789031452000
+      "firstAt": 1789031452000,
+      "dir": {
+        "GBP/USD": "up"
+      },
+      "why": "Pound rises on BoE hike bets"
     },
     {
       "title": "Brent holds above $100 as tanker attacks dampen hopes for Hormuz traffic recovery",
@@ -223,7 +253,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789031207000
+      "firstAt": 1789031207000,
+      "dir": {
+        "UKOIL": "up",
+        "XAU/USD": "up",
+        "USOIL": "up"
+      },
+      "why": "Tanker attacks support oil and gold"
     },
     {
       "title": "Swiss Franc gives back gains, but US Dollar struggles with Inflation data on tap - FXStreet",
@@ -241,7 +277,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789028160000
+      "firstAt": 1789028160000,
+      "dir": {
+        "USD/CHF": "down"
+      },
+      "why": "Dollar struggles, franc gives back gains"
     },
     {
       "title": "Asian markets: Stocks drop as oil spike fans inflation and interest rate fears - RTL Today",
@@ -260,7 +300,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789030125000
+      "firstAt": 1789030125000,
+      "dir": {
+        "USOIL": "up",
+        "US500": "down"
+      },
+      "why": "Oil spike, stocks drop on inflation"
     },
     {
       "title": "Euro zone yields hold near multi-year peaks as ECB rate decision looms",
@@ -277,7 +322,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789028867000
+      "firstAt": 1789028867000,
+      "why": "Yields high, awaiting ECB decision"
     },
     {
       "title": "European natural gas holds near multi-year peaks on supply risks; ECB decision due",
@@ -1717,10 +1763,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.ig.com/uk?source=dailyfx"
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-10T10:16:08.623Z",
-  "updatedAt": "2026-09-10T10:16:08.623Z"
+  "headlinesAt": "2026-09-10T10:17:14.684Z",
+  "updatedAt": "2026-09-10T10:17:14.684Z"
 }
