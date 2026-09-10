@@ -453,26 +453,6 @@
   ],
   "headlines": [
     {
-      "title": "GLOBAL MARKETS-Wall Street dips as $100 oil, inflation worries weigh on investors - wealthinsights.metrobank.com.ph",
-      "link": "https://news.google.com/rss/articles/CBMiygFBVV95cUxNUFViWVFvWm84c1FZSnhWXzNpZy0wTURMVjBOR212NWpobU00YXRiMms4Q2ZNLTZnd3BSWkk4TC16U2VpUk16NjZocEJNZGdVUHFBTjRRVE1rNXJIQzMtWEFGSGVraV8tMmRTRjUxNkFtdG5NSDdPY190ZVhwSzFudHlLV09BUUQyeV9KSjlHTVN6dzJtaElnOWdta1B6ZTFFN094Vy1ZZGVpc19LdUxWY3Z3cDZ3elVxcUhGbFdlSE9nZUI5ejRCY3V3?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiygFBVV95cUxNUFViWVFvWm84c1FZSnhWXzNpZy0wTURMVjBOR212NWpobU00YXRiMms4Q2ZNLTZnd3BSWkk4TC16U2VpUk16NjZocEJNZGdVUHFBTjRRVE1rNXJIQzMtWEFGSGVraV8tMmRTRjUxNkFtdG5NSDdPY190ZVhwSzFudHlLV09BUUQyeV9KSjlHTVN6dzJtaElnOWdta1B6ZTFFN094Vy1ZZGVpc1",
-      "at": 1788999828000,
-      "inst": [
-        "USOIL",
-        "US500"
-      ],
-      "ccy": [
-        "OIL",
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788999828000,
-      "_kind": null
-    },
-    {
       "title": "Oil prices rise further as U.S.-Iran conflict worsens",
       "link": "https://www.investing.com/news/commodities-news/oil-prices-rise-further-as-usiran-conflict-worsens-4894781",
       "source": "Investing Cmdty",
@@ -490,7 +470,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788998580000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Conflict worsens, boosting oil and gold."
     },
     {
       "title": "Iran war live: Iran media say ‘enemy’ projectiles hit Sirik areas",
@@ -510,7 +496,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788998400000
+      "firstAt": 1788998400000,
+      "why": "Mixed signals on conflict and dialogue."
     },
     {
       "title": "Gold eases on chance of US rate hike, but bull case endures - Arabian Gulf Business Insight | AGBI",
@@ -528,7 +515,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788996798000
+      "firstAt": 1788996798000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold eases on rate hike fears."
     },
     {
       "title": "Massive Strike Against Iran And Botched Counterstrike Sends Oil Past $100 - Ship & Bunker",
@@ -548,7 +539,34 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788998285000
+      "firstAt": 1788998285000,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Strikes send oil past $100, gold up."
+    },
+    {
+      "title": "Trump Takes No Position on Allies’ Sanctions Against Israeli Settlements - The New York Times",
+      "link": "https://news.google.com/rss/articles/CBMioAFBVV95cUxQZjJiLTVfMllEMFlqaDdYOWwtaGJ6SDIzZUExcUMxYTJjbDNwR09zQkdIeTdkY1NkVTB0eWo1Skc4SW5WU3pBTzdIazZsNExnSTJhNTYzbEJ6TUltUVMwbmdXWExPMVA4bWc0OXphUUxaS3ROc3RHdTN0Wm1oa0lFRmdmTmRINzRIdnNJdlpPaEVfbHpkRWJvdndjdGtiU3BX?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMioAFBVV95cUxQZjJiLTVfMllEMFlqaDdYOWwtaGJ6SDIzZUExcUMxYTJjbDNwR09zQkdIeTdkY1NkVTB0eWo1Skc4SW5WU3pBTzdIazZsNExnSTJhNTYzbEJ6TUltUVMwbmdXWExPMVA4bWc0OXphUUxaS3ROc3RHdTN0Wm1oa0lFRmdmTmRINzRIdnNJdlpPaEVfbHpkRWJvdndjdGtiU3BX?oc=5\" target=",
+      "at": 1788997725000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788995400000,
+      "why": "No clear market impact from sanctions news."
     },
     {
       "title": "Gold Steadies Near $4,400 as Traders Weigh Fed Rate-Hike Path - Bloomberg.com",
@@ -566,7 +584,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788996798000
+      "firstAt": 1788996798000,
+      "why": "Gold steadies near $4,400, direction unclear."
     },
     {
       "title": "Navan beats quarterly estimates, raises forecast; shares tumble on cost concerns",
@@ -598,7 +617,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1788995738000
+      "firstAt": 1788995738000,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "War ending reduces risk premium for assets."
     },
     {
       "title": "Gold rebounds above $4,400 on weaker Dollar, US PPI inflation data looms - FXStreet",
@@ -616,7 +641,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788996162000
+      "firstAt": 1788996162000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Gold rebounds on weaker dollar."
     },
     {
       "title": "Iran war looms over Trump at Republican midterm convention in Dallas",
@@ -636,7 +665,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1788995738000
+      "firstAt": 1788995738000,
+      "why": "Political news, no direct market direction."
     },
     {
       "title": "Senior UK rabbis come out in support of sanctions on Israeli settlements - theguardian.com",
@@ -656,7 +686,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788995400000
+      "firstAt": 1788995400000,
+      "why": "Sanctions support, no clear price impact."
     },
     {
       "title": "Sep. 09: More Strikes, Higher Oil Prices in Iran War; Why an Algorithm is Cutting Disability Benefits - NBC News",
@@ -676,7 +707,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788995240000
+      "firstAt": 1788995240000,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "More strikes drive higher oil and gold."
     },
     {
       "title": "Diesel prices hit another record high. If you’re shocked, wait until you see your grocery bill.",
@@ -699,7 +736,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788994260000
+      "firstAt": 1788994260000,
+      "why": "Inflation data looms, direction unclear."
     },
     {
       "title": "Oil Prices Surge Above $100 as Inflation Fears Grow, MoneySimpler Expands AI Automated Trading - markets.businessinsider.com",
@@ -717,7 +755,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788991380000
+      "firstAt": 1788991380000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil prices surge above $100."
     },
     {
       "title": "Israel sanctions will not hurt intelligence sharing between spy agencies, says Miliband - theguardian.com",
@@ -737,7 +779,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788993000000
+      "firstAt": 1788993000000,
+      "why": "Intelligence sharing continues, no market impact."
     },
     {
       "title": "American Eagle sticks to annual sales forecast again, shares slump",
@@ -769,7 +812,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788992649000
+      "firstAt": 1788992649000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Ukraine strike boosts gold, oil unclear."
     },
     {
       "title": "‘It’s a good start’: prominent Israelis welcome UK sanctions on illegal settlements - theguardian.com",
@@ -2050,8 +2097,8 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 2,
-      "firstAt": 1788967378000
+      "srcs": 1,
+      "firstAt": 1788968012000
     },
     {
       "title": "Iran's IRGC set to declare new ‘sanctions zone’ beyond Hormuz: What to know - Al-Monitor",
@@ -2091,24 +2138,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788967683000
-    },
-    {
-      "title": "Gold loses momentum as US Dollar, yields rise after Treasury buyback announcement - FXStreet",
-      "link": "https://news.google.com/rss/articles/CBMitwFBVV95cUxPZmh1WWlncHRrTzhBNVh6OVZvZVNidVh1QUl1UVFVMk9KaURUYlg4NTlzTHFFN0J2cjlVT1dxM1RMYTFHdWV4WEN2QVJranQ5MGtrdmF3TkdLckdZSEx1Mm5wQ1J3eFNWbkNlM1BBQy1JLXE3NjRoNFQ5MVUxVTlyNDFUYnBmZURJeTNSODVIM0dia3pnMW1Ua0g5NXZuTWpWck1iNzRUTWYzUUxKcnFQRWc1U25EWlU?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMitwFBVV95cUxPZmh1WWlncHRrTzhBNVh6OVZvZVNidVh1QUl1UVFVMk9KaURUYlg4NTlzTHFFN0J2cjlVT1dxM1RMYTFHdWV4WEN2QVJranQ5MGtrdmF3TkdLckdZSEx1Mm5wQ1J3eFNWbkNlM1BBQy1JLXE3NjRoNFQ5MVUxVTlyNDFUYnBmZURJeTNSODVIM0dia3pnMW1Ua0g5NXZuTWpWck1iNzRUTWYzUU",
-      "at": 1788967378000,
-      "inst": [
-        "XAU/USD"
-      ],
-      "ccy": [
-        "USD",
-        "XAU"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1788967378000
     },
     {
       "title": "Iran Is Using Tether to Bypass Sanctions: Crypto’s Biggest Real-World Use Case Just Got Darker - Bitcoin Foundation",
@@ -2151,6 +2180,24 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788966447000
+    },
+    {
+      "title": "Gold: Inflation data key catalyst – TD Securities - Mitrade",
+      "link": "https://news.google.com/rss/articles/CBMigwFBVV95cUxOeVFuWUlDNDhXQkpPNGNoSmVidGRxX0JMaDRUTTlyTFMtRmdPZjgtTzJHWGo2UUFEajZwRXljdXVmV25NczBoNTI2MUlmRG5MMkY5Y0M5RWRmeTROS25ubkF2V0QwYTAwYTQzQU1rWl8zQkJROXRZaVZFT1RvTVAteldjOA?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMigwFBVV95cUxOeVFuWUlDNDhXQkpPNGNoSmVidGRxX0JMaDRUTTlyTFMtRmdPZjgtTzJHWGo2UUFEajZwRXljdXVmV25NczBoNTI2MUlmRG5MMkY5Y0M5RWRmeTROS25ubkF2V0QwYTAwYTQzQU1rWl8zQkJROXRZaVZFT1RvTVAteldjOA?oc=5\" target=\"_blank\">Gold: Inflation data key cata",
+      "at": 1788965014000,
+      "inst": [
+        "XAU/USD"
+      ],
+      "ccy": [
+        "XAU",
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788965014000
     },
     {
       "title": "Russian Oil Region 2,500km from Ukraine Declares First-Ever Drone Attack Threat - UNITED24 Media",
@@ -2213,10 +2260,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-10T00:31:27.964Z",
-  "headlinesAt": "2026-09-10T00:31:27.964Z",
-  "updatedAt": "2026-09-10T00:31:27.964Z"
+  "calendarAt": "2026-09-10T00:32:46.021Z",
+  "headlinesAt": "2026-09-10T00:32:46.021Z",
+  "updatedAt": "2026-09-10T00:32:46.021Z"
 }
