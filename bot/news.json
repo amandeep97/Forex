@@ -20,7 +20,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789002064000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Escalation boosts safe havens and oil"
     },
     {
       "title": "Gold holds near $4,400 as traders await inflation data for Fed clues - Investing.com",
@@ -39,7 +45,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789000260000,
-      "_kind": null
+      "_kind": null,
+      "why": "Gold steady awaiting data"
     },
     {
       "title": "U.S. stock futures steady after Wall St falls on higher yields; PPI, CPI awaited",
@@ -62,7 +69,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789001404000,
-      "_kind": null
+      "_kind": null,
+      "why": "Futures steady, awaiting data"
     },
     {
       "title": "Brent settles at over $100 a barrel as Middle East conflict intensifies",
@@ -82,7 +90,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789001361000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up",
+        "XAU/USD": "up"
+      },
+      "why": "Conflict intensifies, oil and gold rise"
     },
     {
       "title": "Oil surges above $100 a barrel as US and Iran launch new attacks, while gasoline prices also jump - AP News",
@@ -102,7 +116,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789000500000
+      "firstAt": 1789000500000,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Attacks surge oil and gold"
     },
     {
       "title": "Treasury’s Market Challenge Backfires Amid Inflation Fears - Sharecafe",
@@ -125,7 +145,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789000459000
+      "firstAt": 1789000459000,
+      "dir": {
+        "XAU/USD": "up",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Inflation fears boost gold, hurt FX"
     },
     {
       "title": "Nvidia enters partnerships to build out more Australian data center capacity",
@@ -139,7 +165,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789000234000
+      "firstAt": 1789000234000,
+      "dir": {
+        "AUD/USD": "up"
+      },
+      "why": "Nvidia investment boosts Australian economy"
     },
     {
       "title": "Gold little changed with US inflation data in sight - TradingView",
@@ -157,7 +187,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788998691000
+      "firstAt": 1788998691000,
+      "why": "Gold unchanged awaiting inflation data"
     },
     {
       "title": "Nvidia teams up with Australian partners to build AI factory capacity",
@@ -171,7 +202,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789000234000
+      "firstAt": 1789000234000,
+      "dir": {
+        "AUD/USD": "up"
+      },
+      "why": "Nvidia partnership boosts Australian economy"
     },
     {
       "title": "Gold Holds Steady As Traders Wait On US Inflation Data - Finimize",
@@ -189,7 +224,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788996162000
+      "firstAt": 1788996162000,
+      "why": "Gold steady awaiting inflation data"
     },
     {
       "title": "Oil prices rise further as U.S.-Iran conflict worsens",
@@ -208,7 +244,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788998580000
+      "firstAt": 1788998580000,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Conflict worsens, oil and gold rise"
     },
     {
       "title": "Iran war live: Iran media say ‘enemy’ projectiles hit Sirik areas",
@@ -228,7 +270,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788998400000
+      "firstAt": 1788998400000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Strikes boost safe havens and oil"
     },
     {
       "title": "Gold eases on chance of US rate hike, but bull case endures - Arabian Gulf Business Insight | AGBI",
@@ -246,7 +294,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788996798000
+      "firstAt": 1788996798000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Rate hike chance eases gold"
     },
     {
       "title": "Massive Strike Against Iran And Botched Counterstrike Sends Oil Past $100 - Ship & Bunker",
@@ -266,7 +318,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788998285000
+      "firstAt": 1788998285000,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Strike sends oil past $100"
     },
     {
       "title": "Trump Takes No Position on Allies’ Sanctions Against Israeli Settlements - The New York Times",
@@ -286,7 +344,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788995400000
+      "firstAt": 1788995400000,
+      "why": "No clear market impact"
     },
     {
       "title": "Gold Steadies Near $4,400 as Traders Weigh Fed Rate-Hike Path - Bloomberg.com",
@@ -327,7 +386,7 @@
       "firstAt": 1788995738000
     },
     {
-      "title": "Gold rebounds above $4,400 on weaker Dollar, US PPI inflation data looms - fxstreet.com",
+      "title": "Gold rebounds above $4,400 on weaker Dollar, US PPI inflation data looms - FXStreet",
       "link": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQd0lLQ0VmWTdzcmg2bGJvUzVScnVZY2x0QUtodHRuanhxX19DRFRsd3BYWkZKMVVwTklOOFBMNHIweTNkOGZIMThqY3ZPS29OM1hBZjFxaTBkRHBXdGZrWC1ONXJVaTQzc1dvQURsbE9yZUw3OWI5M2d3RTBkYnQ2RktFbzh0UUo2SWFFZFZKZnoyMU0td3oyeWtlUzR1MTdZWHdERjJXM2k4YmVZQm9sM1g5OA?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiswFBVV95cUxQd0lLQ0VmWTdzcmg2bGJvUzVScnVZY2x0QUtodHRuanhxX19DRFRsd3BYWkZKMVVwTklOOFBMNHIweTNkOGZIMThqY3ZPS29OM1hBZjFxaTBkRHBXdGZrWC1ONXJVaTQzc1dvQURsbE9yZUw3OWI5M2d3RTBkYnQ2RktFbzh0UUo2SWFFZFZKZnoyMU0td3oyeWtlUzR1MTdZWHdERjJXM2k4Ym",
@@ -1037,7 +1096,7 @@
       "firstAt": 1788983862000
     },
     {
-      "title": "Chinese Yuan: Uptrend intact with muted inflation against US Dollar – BBH - fxstreet.com",
+      "title": "Chinese Yuan: Uptrend intact with muted inflation against US Dollar – BBH - FXStreet",
       "link": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQaGJPS3NpV0tZNGRTUHZBQ3RvQWJXX2JuWVc1eTR0YnJBTXExd2lCSTRPNS1UZ2hqckR5MXlQMUc4dGtvcjRfX2s5OTFkemxDQVZ5aVdVampjSjFnNHo5c0Mzb19JY0Zma1RJWm9XY2dDYkVPTUQ4SUJLbDVnbkhESGJCbnR0bE5hazZWa1daYm5GS09DLTI1cWZMWGRqb2ZvNHZ0YTRxWlJESmYtVXdjUnU0WQ?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiswFBVV95cUxQaGJPS3NpV0tZNGRTUHZBQ3RvQWJXX2JuWVc1eTR0YnJBTXExd2lCSTRPNS1UZ2hqckR5MXlQMUc4dGtvcjRfX2s5OTFkemxDQVZ5aVdVampjSjFnNHo5c0Mzb19JY0Zma1RJWm9XY2dDYkVPTUQ4SUJLbDVnbkhESGJCbnR0bE5hazZWa1daYm5GS09DLTI1cWZMWGRqb2ZvNHZ0YTRxWlJESm",
@@ -1729,7 +1788,7 @@
       "firstAt": 1788967683000
     },
     {
-      "title": "Gold loses momentum as US Dollar, yields rise after Treasury buyback announcement - fxstreet.com",
+      "title": "Gold loses momentum as US Dollar, yields rise after Treasury buyback announcement - FXStreet",
       "link": "https://news.google.com/rss/articles/CBMitwFBVV95cUxPZmh1WWlncHRrTzhBNVh6OVZvZVNidVh1QUl1UVFVMk9KaURUYlg4NTlzTHFFN0J2cjlVT1dxM1RMYTFHdWV4WEN2QVJranQ5MGtrdmF3TkdLckdZSEx1Mm5wQ1J3eFNWbkNlM1BBQy1JLXE3NjRoNFQ5MVUxVTlyNDFUYnBmZURJeTNSODVIM0dia3pnMW1Ua0g5NXZuTWpWck1iNzRUTWYzUUxKcnFQRWc1U25EWlU?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMitwFBVV95cUxPZmh1WWlncHRrTzhBNVh6OVZvZVNidVh1QUl1UVFVMk9KaURUYlg4NTlzTHFFN0J2cjlVT1dxM1RMYTFHdWV4WEN2QVJranQ5MGtrdmF3TkdLckdZSEx1Mm5wQ1J3eFNWbkNlM1BBQy1JLXE3NjRoNFQ5MVUxVTlyNDFUYnBmZURJeTNSODVIM0dia3pnMW1Ua0g5NXZuTWpWck1iNzRUTWYzUU",
@@ -1771,6 +1830,6 @@
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-10T01:10:12.622Z",
-  "updatedAt": "2026-09-10T01:10:12.622Z"
+  "headlinesAt": "2026-09-10T01:11:43.772Z",
+  "updatedAt": "2026-09-10T01:11:43.772Z"
 }
