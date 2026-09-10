@@ -390,6 +390,23 @@
   ],
   "headlines": [
     {
+      "title": "Renewable-energy mandates are actually bad for consumers. They’re not great for solar stocks, either.",
+      "link": "https://www.marketwatch.com/story/renewable-energy-mandates-are-actually-bad-for-consumers-theyre-not-great-for-solar-stocks-either-bdfa13bb?mod=mw_rss_topstories",
+      "source": "MarketWatch",
+      "desc": "Renewable-energy mandates in blue states are a major driver of higher electricity bills, adding directly to the cost-of-living problem.",
+      "at": 1789054440000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789054440000,
+      "_kind": null,
+      "why": "Sector-specific negative, unclear for broad index"
+    },
+    {
       "title": "Ukraine: Russian drone strike damages TV channel in Kyiv, injuring six media workers - European Federation of Journalists",
       "link": "https://news.google.com/rss/articles/CBMiywFBVV95cUxQRUdRLVFQaXRHalJCOHptbUhyQW1ScGdmQ2REanFSZ1RJYzJDN2wyMFZ4V0Y1SjZfZkxaMUhIMm1GNS1YUUNpcU5DcDc2ZHlsbktNZXQ5Z2VDQ0dqUzVYdjJlcjdFWlVsOWRwM3dZY2h0WGFHa1ZMR2FUejFjdU5WZUo5WVZfTExRWjlmRjJSUGg4NThXWkFMZjVaNjhZcjk4Q2tFSmJkNDNoYjh3czdWdXJTOVB3bzlWdXN0YzJLN2ktUmMybkJRQ3h6SQ?oc=5",
       "source": "Wires (geo)",
@@ -408,7 +425,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789054355000,
-      "_kind": null
+      "_kind": null,
+      "why": "Geopolitical event, no immediate price direction"
     },
     {
       "title": "Treasury yields climb on inflation data and oil price surge By Investing.com - Investing.com South Africa",
@@ -427,7 +445,11 @@
       "rel": 2,
       "srcs": 3,
       "firstAt": 1789051620000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil price surge mentioned explicitly"
     },
     {
       "title": "Now’s your chance to make money during the best bond market for yields in decades — if you get over Treasury jitters",
@@ -451,7 +473,8 @@
       "rel": 2,
       "srcs": 3,
       "firstAt": 1789051620000,
-      "_kind": null
+      "_kind": null,
+      "why": "Bond yield discussion, no clear FX direction"
     },
     {
       "title": "Meta is winning over Wall Street with its new Muse AI agent",
@@ -467,7 +490,31 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789053267000,
-      "_kind": null
+      "_kind": null,
+      "why": "Single stock positive, unclear for index"
+    },
+    {
+      "title": "Stock Market Today: Dow Slides As Oil Rocks Higher; Sandisk Slumps As SpaceX Rises (Live Coverage)",
+      "link": "https://www.investors.com/market-trend/stock-market-today/dow-jones-sp500-nasdaq-inflation-data-nvidia-chipmaker-tsmc/?src=A00220&yptr=yahoo",
+      "source": "Yahoo Finance",
+      "at": 1789053746000,
+      "inst": [
+        "USOIL",
+        "US30"
+      ],
+      "ccy": [
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789053746000,
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "US30": "down"
+      },
+      "why": "Oil rocks higher, Dow slides"
     },
     {
       "title": "Treasury yields surge toward the danger zone for stocks, as inflation pressures heat up",
@@ -487,7 +534,12 @@
       "rel": 2,
       "srcs": 3,
       "firstAt": 1789051620000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "US500": "down"
+      },
+      "why": "Oil high, yields surge bearish for stocks"
     },
     {
       "title": "Fed Rate Hike Odds Rise to 61% After PPI Comes in Hotter than Expected",
@@ -510,7 +562,13 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789051260000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Hot PPI raises rate hike odds, hawkish"
     },
     {
       "title": "Meta Stock Scores Wall Street Upgrade After Muse AI App Launch",
@@ -525,7 +583,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789053267000,
-      "_kind": null
+      "_kind": null,
+      "why": "Single stock upgrade, unclear for index"
     },
     {
       "title": "Permanent 5 members clash in UN Security Council about Iran sanctions snapback - Anadolu Ajansı",
@@ -546,6 +605,20 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789051200000,
+      "_kind": null,
+      "why": "UN clash, no clear immediate market impact"
+    },
+    {
+      "title": "1-800-Flowers.com posts wider fourth-quarter loss, issues weak profit forecast for fiscal 2027",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/1-800-flowers-com-posts-151300606.html",
+      "source": "Yahoo Finance",
+      "at": 1789053180000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789053180000,
       "_kind": null
     },
     {
@@ -561,7 +634,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789053062000,
-      "_kind": null
+      "_kind": null,
+      "why": "General dividend stock list, no direction"
     },
     {
       "title": "Morocco stocks lower at close of trade; Moroccan All Shares down 0.27%",
@@ -576,53 +650,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789053003000,
-      "_kind": null
-    },
-    {
-      "title": "‘I Am the House Now,’ Bessent Warns — But Bond Traders Keep Raising Yields Anyway",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/am-house-now-bessent-warns-150914527.html",
-      "source": "Yahoo Finance",
-      "at": 1789052954000,
-      "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789052954000,
-      "_kind": null
-    },
-    {
-      "title": "Inflation Is About to Hit Hard as Diesel Prices Soar to Record Near $6 a Gallon",
-      "link": "https://finance.yahoo.com/economy/articles/inflation-hit-hard-diesel-prices-150640473.html",
-      "source": "Yahoo Finance",
-      "at": 1789052800000,
-      "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789052800000,
-      "_kind": null
+      "_kind": null,
+      "why": "Moroccan market news, irrelevant to US500"
     },
     {
       "title": "Gasoil stocks in ARA hub climb 4% on higher US imports",
@@ -637,7 +666,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789052796000,
-      "_kind": null
+      "_kind": null,
+      "why": "Gasoil stocks news, irrelevant to US500"
     },
     {
       "title": "Russian Attack on Civilian Shipping in Odesa Region Kills Two Azerbaijani Nationals - united24media.com",
@@ -657,7 +687,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789052603000
+      "firstAt": 1789052603000,
+      "why": "Geopolitical event, no immediate price direction"
     },
     {
       "title": "Norway stocks lower at close of trade; Oslo OBX down 0.62%",
@@ -671,7 +702,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789052153000
+      "firstAt": 1789052153000,
+      "why": "Norwegian market news, irrelevant to US500"
     },
     {
       "title": "Israel stocks lower at close of trade; TA 35 down 1.22%",
@@ -867,23 +899,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789047300000
-    },
-    {
-      "title": "Stock Market Today: Nasdaq On Losing Streak As Oil Surges; Apple Advances On iPhone Launch (Live Coverage)",
-      "link": "https://www.investors.com/market-trend/stock-market-today/dow-jones-sp500-nasdaq-inflation-data-nvidia-chipmaker-tsmc/?src=A00220&yptr=yahoo",
-      "source": "Yahoo Finance",
-      "at": 1789049645000,
-      "inst": [
-        "USOIL",
-        "US100"
-      ],
-      "ccy": [
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789049645000
     },
     {
       "title": "Gold slips amid pressure from firmer dollar, elevated Treasury yields",
@@ -2116,7 +2131,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-10T15:35:14.145Z",
-  "headlinesAt": "2026-09-10T15:35:14.145Z",
-  "updatedAt": "2026-09-10T15:35:14.145Z"
+  "calendarAt": "2026-09-10T15:36:47.059Z",
+  "headlinesAt": "2026-09-10T15:36:47.059Z",
+  "updatedAt": "2026-09-10T15:36:47.059Z"
 }
