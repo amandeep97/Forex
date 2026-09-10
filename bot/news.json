@@ -423,7 +423,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789032629000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "EUR/USD": "up"
+      },
+      "why": "Euro near high, dollar flat"
     },
     {
       "title": "The ECB is virtually certain to raise rates. Wall Street is bracing for what comes next.",
@@ -443,7 +447,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789032420000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "EUR/USD": "up"
+      },
+      "why": "ECB hike certain, Wall Street bracing"
     },
     {
       "title": "Forget Gold at $4,400? Morningstar Economist Says This Bond Trade Could Be a Better Inflation Hedge - Benzinga",
@@ -462,7 +470,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789029716000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Bond trade better hedge than gold"
     },
     {
       "title": "Bond Yields Edge Up as Investors Await ECB Rate Hike, U.S. Treasury Buybacks - marketscreener.com",
@@ -481,7 +493,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789031464000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "EUR/USD": "up"
+      },
+      "why": "Yields up, ECB hike awaited"
     },
     {
       "title": "Sterling today: Pound rises as BoE rate hike bets build",
@@ -499,7 +515,10 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789031452000,
-      "_kind": null
+      "dir": {
+        "GBP/USD": "up"
+      },
+      "why": "Pound rises on BoE hike bets"
     },
     {
       "title": "Brent holds above $100 as tanker attacks dampen hopes for Hormuz traffic recovery",
@@ -518,7 +537,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789031207000
+      "firstAt": 1789031207000,
+      "dir": {
+        "UKOIL": "up",
+        "USOIL": "up"
+      },
+      "why": "Brent holds above $100 on attacks"
     },
     {
       "title": "Swiss Franc gives back gains, but US Dollar struggles with Inflation data on tap - FXStreet",
@@ -536,7 +560,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789028365000
+      "firstAt": 1789028365000,
+      "dir": {
+        "USD/CHF": "down"
+      },
+      "why": "Franc gives back gains, dollar struggles"
     },
     {
       "title": "Asian markets: Stocks drop as oil spike fans inflation and interest rate fears - RTL Today",
@@ -555,7 +583,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789030125000
+      "firstAt": 1789030125000,
+      "dir": {
+        "USOIL": "up",
+        "US500": "down"
+      },
+      "why": "Stocks drop, oil spike fans fears"
     },
     {
       "title": "Don’t Panic About a Bond Market Selloff. It Could Be a Sign of Economic Strength - Morningstar",
@@ -585,7 +618,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789028867000
+      "firstAt": 1789028867000,
+      "dir": {
+        "EUR/USD": "up"
+      },
+      "why": "Yields near peaks, ECB decision looms"
     },
     {
       "title": "European natural gas holds near multi-year peaks on supply risks; ECB decision due",
@@ -602,7 +639,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789028513000
+      "firstAt": 1789028513000,
+      "dir": {
+        "NATGAS": "up"
+      },
+      "why": "Gas near peaks, ECB decision due"
     },
     {
       "title": "Gold Rises Ahead Of US Inflation Data, Eyes US$4,500 - BusinessToday Malaysia",
@@ -620,7 +661,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789028365000
+      "firstAt": 1789028365000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Gold rises, eyes $4,500"
     },
     {
       "title": "Treasury yields steady as investors await key wholesale inflation data - CNBC",
@@ -643,7 +688,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789027997000
+      "firstAt": 1789027997000,
+      "why": "Yields steady, awaiting inflation data"
     },
     {
       "title": "Novy Urengoy: Ukraine’s Deepest Drone Strike of the War - MiGFlug",
@@ -663,7 +709,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789027529000
+      "firstAt": 1789027529000,
+      "why": "Ukraine drone strike, no market direction"
     },
     {
       "title": "Russian attacks kill 7 in Ukraine as Kyiv targets gas plants deep in Arctic - Al Jazeera",
@@ -683,7 +730,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789027245000
+      "firstAt": 1789027245000,
+      "why": "Ukraine attacks, no clear market direction"
     },
     {
       "title": "UBS Group states that \"gold prices have fully priced in Federal Reserve policy\": a September rate hike would lead to a slight decline, while no hike would trigger a significant surge. - 富途牛牛",
@@ -701,7 +749,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789026834000
+      "firstAt": 1789026834000,
+      "why": "UBS: gold priced in Fed policy"
     },
     {
       "title": "At least three killed in Russian attack as Zelenskyy travels to Canada - Euronews.com",
@@ -2127,7 +2176,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-10T09:39:58.602Z",
-  "headlinesAt": "2026-09-10T09:39:58.602Z",
-  "updatedAt": "2026-09-10T09:39:58.602Z"
+  "calendarAt": "2026-09-10T09:41:04.054Z",
+  "headlinesAt": "2026-09-10T09:41:04.054Z",
+  "updatedAt": "2026-09-10T09:41:04.054Z"
 }
