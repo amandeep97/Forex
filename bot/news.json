@@ -378,7 +378,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789066978000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Wall Street dips on rising yields"
     },
     {
       "title": "Jeremy Siegel: Equity markets will react positively to a rate cut next week - CNBC",
@@ -402,7 +406,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789069237000,
-      "_kind": null
+      "_kind": null,
+      "why": "Equity focus, unclear FX direction"
     },
     {
       "title": "It’s not just Hormuz. Another war is providing fresh price shocks to fuel and food.",
@@ -423,7 +428,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789069080000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "War shocks fuel prices upward"
     },
     {
       "title": "US slaps new sanctions on networks aiding Iran's proxies in Middle East - Reuters",
@@ -443,7 +453,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789066200000
+      "firstAt": 1789066200000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Sanctions on Iran proxies boost oil"
     },
     {
       "title": "Gold, silver prices retreat as US inflation, ECB rate hike pressure markets - Anadolu Ajansı",
@@ -465,7 +480,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789067522000
+      "firstAt": 1789067522000,
+      "dir": {
+        "XAU/USD": "down",
+        "XAG/USD": "down",
+        "EUR/USD": "down"
+      },
+      "why": "Inflation and ECB hike pressure assets"
     },
     {
       "title": "Washington nonprofit Better Markets sues Federal Reserve over capital rule overhaul - Reuters",
@@ -488,7 +509,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789068055000
+      "firstAt": 1789068055000,
+      "why": "Fed lawsuit, no clear market direction"
     },
     {
       "title": "Crude Oil WTI hits RSI 81 after parabolic surge: Live levels",
@@ -505,7 +527,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789067926000
+      "firstAt": 1789067926000,
+      "why": "Technical level, no clear direction"
     },
     {
       "title": "London Gas Oil tests $1,491.5 with RSI divergence: Live levels",
@@ -521,7 +544,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789067926000
+      "firstAt": 1789067926000,
+      "why": "Technical level, no clear direction"
     },
     {
       "title": "Dow Jones hits extreme oversold at 52,021: Live levels",
@@ -535,7 +559,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789067926000
+      "firstAt": 1789067926000,
+      "why": "Technical level, no clear direction"
     },
     {
       "title": "Natural Gas locked below $2.89-$2.92 resistance: Live levels",
@@ -549,7 +574,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789067926000
+      "firstAt": 1789067926000,
+      "why": "Technical level, no clear direction"
     },
     {
       "title": "Brent Oil RSI hits 84 in parabolic run: Live levels",
@@ -566,7 +592,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789067926000
+      "firstAt": 1789067926000,
+      "why": "Technical level, no clear direction"
     },
     {
       "title": "Silver tests 200 SMA at $63.53 amid double top breakdown: Live",
@@ -582,7 +609,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789067926000
+      "firstAt": 1789067926000,
+      "why": "Technical level, no clear direction"
     },
     {
       "title": "Oil surges 6%, Brent and US crude both surpass $100 on more tanker attacks",
@@ -599,7 +627,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789067577000
+      "firstAt": 1789067577000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Oil surges on tanker attacks"
     },
     {
       "title": "Gold slips about 2% as dollar strengthens on increased Fed rate hike bets",
@@ -616,7 +649,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789067522000
+      "firstAt": 1789067522000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold slips as dollar strengthens"
     },
     {
       "title": "Russia and China oppose push to reactivate UN Iran sanctions committee - thenationalnews.com",
@@ -636,7 +673,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789067135000
+      "firstAt": 1789067135000,
+      "why": "Geopolitical opposition, unclear market impact"
     },
     {
       "title": "OpenAI targets work of Wall Street junior bankers with new ChatGPT for Financial Services",
@@ -2142,10 +2180,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-10T20:04:59.685Z",
-  "headlinesAt": "2026-09-10T20:04:59.686Z",
-  "updatedAt": "2026-09-10T20:04:59.686Z"
+  "calendarAt": "2026-09-10T20:06:17.114Z",
+  "headlinesAt": "2026-09-10T20:06:17.114Z",
+  "updatedAt": "2026-09-10T20:06:17.114Z"
 }
