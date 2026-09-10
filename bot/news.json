@@ -18,7 +18,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789039775000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "EUR/USD": "down"
+      },
+      "why": "Dollar bid weakens euro"
     },
     {
       "title": "Stocks making the biggest moves premarket: Macy's, Meta, Apple, Novartis and more",
@@ -34,7 +38,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789040286000,
-      "_kind": null
+      "_kind": null,
+      "why": "Individual stock moves, no index direction"
     },
     {
       "title": "Morning Call Sheet: Inflation, rates and AI spending test markets - CNBC",
@@ -58,7 +63,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789039863000,
-      "_kind": null
+      "_kind": null,
+      "why": "General market test, no clear direction"
     },
     {
       "title": "Dollar edges higher ahead of European Central Bank, US inflation data - Free Malaysia Today",
@@ -82,7 +88,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789039171000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Dollar higher weakens pairs and gold"
     },
     {
       "title": "Britain spent $40 million on SpaceX satellite services",
@@ -97,7 +109,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789039755000,
-      "_kind": null
+      "_kind": null,
+      "why": "Minor spending news, no market impact"
     },
     {
       "title": "Investors are missing the good news right in front of them, this Wall Street strategist argues",
@@ -113,7 +126,10 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789039320000,
-      "_kind": null
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Strong earnings viewed as bullish"
     },
     {
       "title": "Canadian Dollar weakens as USD/CAD climbs before US PPI data - FXStreet",
@@ -130,7 +146,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789039171000
+      "firstAt": 1789039171000,
+      "dir": {
+        "USD/CAD": "up"
+      },
+      "why": "USD/CAD climbs explicitly stated"
     },
     {
       "title": "The Houthis are testing the limits of Saudi restraint",
@@ -150,7 +170,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789039043000
+      "firstAt": 1789039043000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Geopolitical risk boosts safe havens and oil"
     },
     {
       "title": "Trump threatens new Iran strike after US detects activity at nuclear site - Straight Arrow",
@@ -170,7 +196,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789037033000
+      "firstAt": 1789037033000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Iran strike threat boosts risk assets"
     },
     {
       "title": "Gold ticks up on softer dollar; US inflation data on tap - maaal.com",
@@ -188,7 +220,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789038922000
+      "firstAt": 1789038922000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Gold ticks up on softer dollar"
     },
     {
       "title": "Gold comes under pressure ahead of US PPI as Fed rate hike risks linger - FXStreet",
@@ -206,7 +242,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789038470000
+      "firstAt": 1789038470000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold under pressure from rate hike risks"
     },
     {
       "title": "Global Bond Yields Hit Multiyear Highs Ahead of ECB Decision, U.S. Treasury Buybacks - WSJ",
@@ -224,7 +264,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789038225000
+      "firstAt": 1789038225000,
+      "why": "High yields ambiguous for EUR/USD"
     },
     {
       "title": "Oil is driving the rise in long-term yields; Everything else is just noise",
@@ -244,7 +285,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789038116000
+      "firstAt": 1789038116000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Oil driving yields implies oil strength"
     },
     {
       "title": "Fighting escalates in Yemen; Houthi attacks trigger alerts in Saudi Arabia - Al Jazeera",
@@ -264,7 +310,13 @@
       "sev": 3,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789038093000
+      "firstAt": 1789038093000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Yemen escalation boosts risk assets"
     },
     {
       "title": "History shows the bar to disrupt AI is surprisingly high, says Bank of America",
@@ -287,7 +339,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789038060000
+      "firstAt": 1789038060000,
+      "why": "Equity resilience argument, no FX direction"
     },
     {
       "title": "IAEA accuses Iran of ‘noncompliance’: Why, and what now?",
@@ -1722,6 +1775,6 @@
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-10T11:51:12.971Z",
-  "updatedAt": "2026-09-10T11:51:12.971Z"
+  "headlinesAt": "2026-09-10T11:53:00.107Z",
+  "updatedAt": "2026-09-10T11:53:00.107Z"
 }
