@@ -17,7 +17,30 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789023605000,
-      "_kind": null
+      "_kind": null,
+      "why": "Japan stock news, no US equity impact"
+    },
+    {
+      "title": "Gold rises toward $4,420 as weaker dollar offsets Treasury yield pressure",
+      "link": "https://www.investing.com/news/commodities-news/gold-holds-near-4400-as-traders-await-inflation-data-for-fed-clues-4894825",
+      "source": "Investing Cmdty",
+      "at": 1789023455000,
+      "inst": [
+        "XAU/USD"
+      ],
+      "ccy": [
+        "USD",
+        "XAU"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789023455000,
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Gold rises on weaker dollar"
     },
     {
       "title": "Deutsche Bank Flags 3 Buy-rated Leisure Stocks After August Selloff",
@@ -32,7 +55,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789023392000,
-      "_kind": null
+      "_kind": null,
+      "why": "Specific stock ratings, not broad index"
     },
     {
       "title": "Iran using barter system with China to bypass sanctions, sources tell Reuters - The Times of Israel",
@@ -53,7 +77,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789020300000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions evasion news, unclear market impact"
     },
     {
       "title": "What are the main events for today?",
@@ -72,7 +97,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789022625000,
-      "_kind": null
+      "_kind": null,
+      "why": "Expected ECB hike, no surprise"
     },
     {
       "title": "U.S. stock futures tick up after Wall St falls on higher yields; PPI, CPI awaited",
@@ -95,7 +121,48 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789022522000,
-      "_kind": null
+      "_kind": null,
+      "why": "Futures tick up, awaiting data"
+    },
+    {
+      "title": "Brent holds above $100 as tanker attacks deepen supply fears",
+      "link": "https://www.investing.com/news/commodities-news/brent-holds-above-100-as-tanker-attacks-deepen-supply-fear-4894851",
+      "source": "Investing Cmdty",
+      "at": 1789022191000,
+      "inst": [
+        "UKOIL"
+      ],
+      "ccy": [
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789022191000,
+      "_kind": null,
+      "dir": {
+        "UKOIL": "up"
+      },
+      "why": "Supply fears support oil prices"
+    },
+    {
+      "title": "Gold Holds Steady Ahead of Inflation Data, US Interest Rate Path - Fana News -",
+      "link": "https://news.google.com/rss/articles/CBMiowFBVV95cUxNbHVtb0JIdEluQThHTjVSMFg0UGl3VzVLYnNLd3VTN1VhcWRDaUJCU3h0WmxDdjlCNi1GVmFoN211dVF6b1k1WHQxb2w1VU9fYV9FN05Yc0ZsRnJiRTdTbV9LTVVSZlFRY0Vrakh2TmVMZF85dGdtd2c5OTlLLS1mSmtvaWtXSDJMOGY4XzNVOFNXcXZTWWdNUjNIdWdhYWJDdnVj?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiowFBVV95cUxNbHVtb0JIdEluQThHTjVSMFg0UGl3VzVLYnNLd3VTN1VhcWRDaUJCU3h0WmxDdjlCNi1GVmFoN211dVF6b1k1WHQxb2w1VU9fYV9FN05Yc0ZsRnJiRTdTbV9LTVVSZlFRY0Vrakh2TmVMZF85dGdtd2c5OTlLLS1mSmtvaWtXSDJMOGY4XzNVOFNXcXZTWWdNUjNIdWdhYWJDdnVj?oc=5\" tar",
+      "at": 1789021853000,
+      "inst": [
+        "XAU/USD"
+      ],
+      "ccy": [
+        "XAU",
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789019619000,
+      "why": "Gold holds steady ahead of data"
     },
     {
       "title": "Australia stocks lower at close of trade; S&P/ASX 200 down 1.03%",
@@ -112,7 +179,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789021804000
+      "firstAt": 1789021804000,
+      "why": "Australian stock news, no US impact"
     },
     {
       "title": "Asia stocks fall with oil surge, yields in focus; U.S. inflation on tap",
@@ -130,7 +198,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789021466000
+      "firstAt": 1789021466000,
+      "dir": {
+        "USOIL": "up",
+        "US500": "down"
+      },
+      "why": "Oil surge, stocks fall on yields"
     },
     {
       "title": "Ukraine War, Day 1,660: Kyiv Strikes More Than 3,000 Km Into Russia - EA WorldView",
@@ -150,7 +223,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789021209000
+      "firstAt": 1789021209000,
+      "why": "War update, unclear immediate market direction"
     },
     {
       "title": "Gold Steadies Near $4,400 as Traders Weigh Fed Rate-Hike Path - Bloomberg.com",
@@ -168,7 +242,28 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789021200000
+      "firstAt": 1789021200000,
+      "why": "Gold steadies, weighing Fed path"
+    },
+    {
+      "title": "Trump says Iran war to end after US midterm elections, threatens to attack Pickaxe Mountain",
+      "link": "https://www.investing.com/news/commodities-news/trump-says-iran-war-to-end-after-us-midterm-elections-threatens-to-attack-pickaxe-mountain-4894975",
+      "source": "Investing Cmdty",
+      "at": 1789021107000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 3,
+      "firstAt": 1789019798000,
+      "why": "Political statement, unclear market impact"
     },
     {
       "title": "Norway core CPI rises as expected in August",
@@ -190,7 +285,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789021062000
+      "firstAt": 1789021062000,
+      "why": "Norway CPI, no direct impact"
     },
     {
       "title": "Japan baseball great and atomic bomb survivor Isao Harimoto dies aged 86",
@@ -207,27 +303,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789020996000
-    },
-    {
-      "title": "Trump says Iran war to end after US midterm elections, threatens to attack Pickaxe Mountain - Reuters",
-      "link": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxQX1VBYmFiQnhuQWRpWDFRNjQ3ZzBFUTEzUmxneFZQTmtfOHducTVIZlU3LXFwRjVSbS1EYTNjMVY1dGlzODdfblBPSzFqWm90bWhfeFBUVVlDdjN2YUFoS1VNekY4U1VHcW1WTXQzS1ZTYjI2YzZ1OFFaZzJMZm9DTEpWY25jMlJsOHNUYklSbkR3Z2pNc1ZUcUNhN3VnWHdIV2U5RklKVldodktsWE5rczRlMVFfZzJZV3VJSzlhdEpRV1VzLXc2Sw?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiyAFBVV95cUxQX1VBYmFiQnhuQWRpWDFRNjQ3ZzBFUTEzUmxneFZQTmtfOHducTVIZlU3LXFwRjVSbS1EYTNjMVY1dGlzODdfblBPSzFqWm90bWhfeFBUVVlDdjN2YUFoS1VNekY4U1VHcW1WTXQzS1ZTYjI2YzZ1OFFaZzJMZm9DTEpWY25jMlJsOHNUYklSbkR3Z2pNc1ZUcUNhN3VnWHdIV2U5RklKVldodk",
-      "at": 1789020780000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789019798000
+      "firstAt": 1789020996000,
+      "why": "Obituary, no financial market impact"
     },
     {
       "title": "Iran Damages US A-10, F-15s with Missile Attack on Air Base in Jordan - Air & Space Forces Magazine",
@@ -246,7 +323,7 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 1,
+      "srcs": 2,
       "firstAt": 1789018260000
     },
     {
@@ -584,6 +661,22 @@
       "firstAt": 1789012092000
     },
     {
+      "title": "Asian currencies steady as risk-off tone weighs, yen holds near highs",
+      "link": "https://www.investing.com/news/forex-news/asian-currencies-steady-as-riskoff-tone-weighs-yen-holds-near-highs-4894923",
+      "source": "Investing FX",
+      "at": 1789011667000,
+      "inst": [
+        "USD/JPY"
+      ],
+      "ccy": [
+        "JPY"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789011667000
+    },
+    {
       "title": "United States Dollar Index weakens ahead of critical US inflation reports - FXStreet",
       "link": "https://news.google.com/rss/articles/CBMitwFBVV95cUxQSGlyY281QnY2NzVWMXphODVPQXB5QXhiSndtckdSb0ZzaTlMU09LLW5xZC00Y2oxdjBQVFJRZmxwcXVDTW0taGNRaHRtVlM0MU5WZTN0RHdjb1BtYjJDcFZ1NnQtbjhrNWNXSjJ2Z2JVT3U1eTRTQ0JNZXk3eGM4U00wcWtNYWhtSGdlRlVCaS04SkdCZlVaM1pVZzZoWEtlNXU4N2FscDhwZ1lDdThSdldlTjVFNXM?oc=5",
       "source": "Wires (macro)",
@@ -681,7 +774,7 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 2,
+      "srcs": 3,
       "firstAt": 1789007027000
     },
     {
@@ -1152,6 +1245,25 @@
       "firstAt": 1789001640000
     },
     {
+      "title": "Brent settles at over $100 a barrel as Middle East conflict intensifies",
+      "link": "https://www.investing.com/news/commodities-news/brent-crude-rises-above-100-a-barrel-as-middle-east-conflict-escalates-4892829",
+      "source": "Investing Cmdty",
+      "at": 1789001361000,
+      "inst": [
+        "USOIL",
+        "UKOIL",
+        "XAU/USD"
+      ],
+      "ccy": [
+        "OIL",
+        "XAU"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789001361000
+    },
+    {
       "title": "Oil surges above $100 a barrel as US and Iran launch new attacks, while gasoline prices also jump - AP News",
       "link": "https://news.google.com/rss/articles/CBMiogFBVV95cUxQdGg1NEo3VVRGTDl0eEFZVkVVWjVUTGtmVC1haUp5c2kzb1NYcXMzNFlVZk9rQl92VTNFREZuSDlBTEhYQ19Lci1ZV2tCTk1tLVRDMEcydzk4ZEZOY3dEMUhhSlU5eXdOVnBLQWRxUlk1bXl3QjNQWklTYm9jdVZ6NHB6V0FkamhIUFJJYjhsMVk5XzlOWnZfbm1IVTVmR05TYmc?oc=5",
       "source": "Wires (geo)",
@@ -1190,6 +1302,25 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788999780000
+    },
+    {
+      "title": "Oil prices upbeat, Brent pinned above $100/barrel as U.S.-Iran conflict worsens",
+      "link": "https://www.investing.com/news/commodities-news/oil-prices-rise-further-as-usiran-conflict-worsens-4894781",
+      "source": "Investing Cmdty",
+      "at": 1788998580000,
+      "inst": [
+        "USOIL",
+        "UKOIL",
+        "XAU/USD"
+      ],
+      "ccy": [
+        "OIL",
+        "XAU"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788998580000
     },
     {
       "title": "Iran war live: Iran media say ‘enemy’ projectiles hit Sirik areas",
@@ -1608,145 +1739,31 @@
       "firstAt": 1788983582000
     },
     {
-      "title": "Brent Crude Tops $100 A Barrel on Middle East Escalation - WSJ",
-      "link": "https://news.google.com/rss/articles/CBMixgFBVV95cUxPejBxVFJDamd2bjlxby1vZmhhSXc3bERlOXJLTVdia2dYWUNpdEhNU2Zxdk9mTHV0RFpSY1lSNFFrYXQ3RDZ1QjVWSndZMHFBRERLeEktalp5eDFYRlEzME9ndjZDYzEzSFdCa0s0RGRsQ09wR3V3akg4ejFpaWFSQUwxUFBnSkpXZW1yLVdpZHFwejBFX2pTN1RwNTYzanpaTmhIUEduenY2bUs4Z0NsUlA3SmZxZ0ZYekRnRzkzVHVXUXdZZHc?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMixgFBVV95cUxPejBxVFJDamd2bjlxby1vZmhhSXc3bERlOXJLTVdia2dYWUNpdEhNU2Zxdk9mTHV0RFpSY1lSNFFrYXQ3RDZ1QjVWSndZMHFBRERLeEktalp5eDFYRlEzME9ndjZDYzEzSFdCa0s0RGRsQ09wR3V3akg4ejFpaWFSQUwxUFBnSkpXZW1yLVdpZHFwejBFX2pTN1RwNTYzanpaTmhIUEduenY2bU",
-      "at": 1788983582000,
-      "inst": [
-        "USOIL",
-        "UKOIL",
-        "XAU/USD"
-      ],
-      "ccy": [
-        "OIL",
-        "XAU"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788983582000
-    },
-    {
-      "title": "Oil hits $101 per barrel as U.S. and Iran trade new strikes - CBS News",
-      "link": "https://news.google.com/rss/articles/CBMikAFBVV95cUxOMUo0T3BlaEVQVVItbUQ5OUU2YVFSSEQ4Q0ZGUHhwa0g4dUwxWTN6ckZiYjlnQ2d4R0k3WGxDN2NMdHB5bEl5Y1R2bDdLYVd5UGM1TW82dUZJbVphb2xmYkRmQXNyaFgwbDlNUDVmeDkwZElrQ1ZCMnhtOFZRS1ZRR24yVlkxbXF4Q2tacTNaUFg?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMikAFBVV95cUxOMUo0T3BlaEVQVVItbUQ5OUU2YVFSSEQ4Q0ZGUHhwa0g4dUwxWTN6ckZiYjlnQ2d4R0k3WGxDN2NMdHB5bEl5Y1R2bDdLYVd5UGM1TW82dUZJbVphb2xmYkRmQXNyaFgwbDlNUDVmeDkwZElrQ1ZCMnhtOFZRS1ZRR24yVlkxbXF4Q2tacTNaUFg?oc=5\" target=\"_blank\">Oil hits $10",
-      "at": 1788982440000,
-      "inst": [
-        "USOIL",
-        "XAU/USD",
-        "UKOIL"
-      ],
-      "ccy": [
-        "OIL",
-        "XAU"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788982440000
-    },
-    {
-      "title": "Dollar Tree may have duped shoppers with tariffs, refunds, according to lawsuit - Supermarket News",
-      "link": "https://news.google.com/rss/articles/CBMixwFBVV95cUxPMnM3UFl2ZVVMYjgzZFI2MTJEU3ZxcmtsaWtTZGNhS2Fma3NUZ1VOZHFJTkx0V3hpVDR4VXlBWHY5LXJWYkdOTGo2SXRaWHVLcHhUQWZzdW84YjRtcWwwVi1GUUFBMWhYSkVHallteVZscldPcEtpdGc2MU1WR0E1T3N1OXVyeUNSZEJhWHFxSFRuNEFlb2ktdW05X0JlRFNkc2hBUkFPUWIxeWRKNkhlV29mYW05cVZBMEdZRDU1MkVrUzlyRUxN?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMixwFBVV95cUxPMnM3UFl2ZVVMYjgzZFI2MTJEU3ZxcmtsaWtTZGNhS2Fma3NUZ1VOZHFJTkx0V3hpVDR4VXlBWHY5LXJWYkdOTGo2SXRaWHVLcHhUQWZzdW84YjRtcWwwVi1GUUFBMWhYSkVHallteVZscldPcEtpdGc2MU1WR0E1T3N1OXVyeUNSZEJhWHFxSFRuNEFlb2ktdW05X0JlRFNkc2hBUkFPUWIxeW",
-      "at": 1788980078000,
-      "inst": [],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1788980078000
-    },
-    {
-      "title": "Turkey takes note of US/Iran-related sanctions announcement, finance minister says - Reuters",
-      "link": "https://news.google.com/rss/articles/CBMiywFBVV95cUxQZEc2WXdwT28wZUJZR1NCTTYxbWdneDRaZy1fRlNodXVIQzBVNUt1NjF6N2ZGaWo5cjU2S040VnliY0R1djNtZlNNWm5ocFR0TmtHYnp6Z1NHLUlJZTlTVWJoRlRrVzFsLTVMdWRlbHFzQkR3R21GM2J0U3FVMWktakxteldKaGxUR3dBbVgydFVOMEp5RWpveVlfS09hTC0wM2VNZDFqLXpJSV9aUUtBT3hscDVDMmR3QmR3U2RZYW5yTnUtLXlaam9CNA?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiywFBVV95cUxQZEc2WXdwT28wZUJZR1NCTTYxbWdneDRaZy1fRlNodXVIQzBVNUt1NjF6N2ZGaWo5cjU2S040VnliY0R1djNtZlNNWm5ocFR0TmtHYnp6Z1NHLUlJZTlTVWJoRlRrVzFsLTVMdWRlbHFzQkR3R21GM2J0U3FVMWktakxteldKaGxUR3dBbVgydFVOMEp5RWpveVlfS09hTC0wM2VNZDFqLXpJSV",
-      "at": 1788978752000,
+      "title": "Spot gold up 1% amid muted dollar, elevated oil prices, and a slide in U.S. bonds",
+      "link": "https://www.investing.com/news/commodities-news/gold-rebounds-as-dollar-eases-but-fed-hike-risks-cap-gains-4892653",
+      "source": "Investing Cmdty",
+      "at": 1788984031000,
       "inst": [
         "XAU/USD",
-        "USOIL",
-        "UKOIL"
+        "USOIL"
       ],
       "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788978752000
-    },
-    {
-      "title": "Strike on Shopping Centre in Sumy in Northern Ukraine Kills Two, Governor Says - U.S. News & World Report",
-      "link": "https://news.google.com/rss/articles/CBMizgFBVV95cUxPbkQxWWN6WkVCSXVVREkyYmRlU1pqV09jUzNIWVN5S3dWQm5VZ3g3Z3prOGd3LTJVZC1VQ3BFemthLXI1MHpaaGtEM1A3NmlmUnB5X3NidXBRNS0xMmJ1MkJFSVdtclNmdjFTZ2lTSHBXY2doRExHQlZKYU9nVUlYYzZHMGJ1bGdTZ0Z3cUVYaHBNT2ZVVFpFcDBYcUgyY2QwYzVYWWhZWEZRRHBia2V6eEg3RXZWWDFKT3NSS3pUa3BWY2loTFY2VkJwWmtZZw?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMizgFBVV95cUxPbkQxWWN6WkVCSXVVREkyYmRlU1pqV09jUzNIWVN5S3dWQm5VZ3g3Z3prOGd3LTJVZC1VQ3BFemthLXI1MHpaaGtEM1A3NmlmUnB5X3NidXBRNS0xMmJ1MkJFSVdtclNmdjFTZ2lTSHBXY2doRExHQlZKYU9nVUlYYzZHMGJ1bGdTZ0Z3cUVYaHBNT2ZVVFpFcDBYcUgyY2QwYzVYWWhZWEZRRH",
-      "at": 1788978227000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
+        "USD",
         "XAU",
         "OIL"
       ],
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788978227000
-    },
-    {
-      "title": "Why Markets May Be Overpricing A September Fed Rate Hike - Forbes",
-      "link": "https://news.google.com/rss/articles/CBMirgFBVV95cUxQaUlZSndVVWZwTEZLYS1BWWRYTEN0NlVWdXFwRUk3RzRoN1B5Y3B3QUd6Rkx5STVNVVFHTVhWdnpCcWppeTFiY1BBeXdLcUZvUE9SdG85VGNVbHYteloxdjhkSW02TXZwR0FhY1pfM1ZVUVZZRDNRWDJzWlpyVVJxR2E5LW9RTlVhc2M3bnFNejMzVjBEUldRLW0wRHlfLTdaX25RZFY4STU0cWZscUE?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMirgFBVV95cUxQaUlZSndVVWZwTEZLYS1BWWRYTEN0NlVWdXFwRUk3RzRoN1B5Y3B3QUd6Rkx5STVNVVFHTVhWdnpCcWppeTFiY1BBeXdLcUZvUE9SdG85VGNVbHYteloxdjhkSW02TXZwR0FhY1pfM1ZVUVZZRDNRWDJzWlpyVVJxR2E5LW9RTlVhc2M3bnFNejMzVjBEUldRLW0wRHlfLTdaX25RZFY4STU0cW",
-      "at": 1788977630000,
-      "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788977100000
-    },
-    {
-      "title": "What is the nuclear Non-Proliferation Treaty? - Reuters",
-      "link": "https://news.google.com/rss/articles/CBMikwFBVV95cUxNY0hxZGV1eEd0SE91UkV2elVWY1dYRDRqeDgwOW16SWdMVloweWVSVTdFUnJSeXdNSlozMXl3cWlEVDZTZ0ozblhkMWRxemF4cUZXVDUzNEU3UE5xM2FVZWUzTEF2Qkg1N2pudkhPRllxeTE5V1RFZXNsWHVIVzB0VEx0bHpscWZwa1BDZDlEZzFZSkk?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMikwFBVV95cUxNY0hxZGV1eEd0SE91UkV2elVWY1dYRDRqeDgwOW16SWdMVloweWVSVTdFUnJSeXdNSlozMXl3cWlEVDZTZ0ozblhkMWRxemF4cUZXVDUzNEU3UE5xM2FVZWUzTEF2Qkg1N2pudkhPRllxeTE5V1RFZXNsWHVIVzB0VEx0bHpscWZwa1BDZDlEZzFZSkk?oc=5\" target=\"_blank\">What is ",
-      "at": 1788977203000,
-      "inst": [
-        "XAU/USD"
-      ],
-      "ccy": [
-        "XAU"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788977203000
+      "firstAt": 1788984031000
     }
   ],
   "sources": [
     "ForexLive",
     "MarketWatch",
     "Investing",
+    "Investing FX",
+    "Investing Cmdty",
     "CNBC Markets",
     "Yahoo Finance",
     "Al Jazeera",
@@ -1755,14 +1772,6 @@
     "Wires (macro)"
   ],
   "failed": [
-    {
-      "name": "Investing FX",
-      "why": "502"
-    },
-    {
-      "name": "Investing Cmdty",
-      "why": "502"
-    },
     {
       "name": "FXStreet",
       "why": "403"
@@ -1773,6 +1782,6 @@
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-10T07:04:58.907Z",
-  "updatedAt": "2026-09-10T07:04:58.907Z"
+  "headlinesAt": "2026-09-10T07:06:03.007Z",
+  "updatedAt": "2026-09-10T07:06:03.007Z"
 }
