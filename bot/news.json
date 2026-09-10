@@ -1,15 +1,6 @@
 {
   "calendar": [
     {
-      "title": "ADP Weekly Employment Change",
-      "country": "USD",
-      "impact": "low",
-      "at": 1788956100000,
-      "forecast": "",
-      "previous": "10.0K",
-      "actual": ""
-    },
-    {
       "title": "German Buba President Nagel Speaks",
       "country": "EUR",
       "impact": "low",
@@ -399,6 +390,29 @@
   ],
   "headlines": [
     {
+      "title": "U.S. Dollar Bid Ahead Of ECB Rate Hike - Seeking Alpha",
+      "link": "https://news.google.com/rss/articles/CBMigwFBVV95cUxPclhqZ3BUNkNFVllIYTlScm15ZDBweHgxQm5YQUdCOHFxTHpEckJqYnJKRS0ycjNFMEZyV0ZIbmRhQXBxWldCMTVzTU1BSmQyMzVJNlNaZjJtOHNPRHBMa2J0QVBGVU1NdEtBSUxQdzZERzk4N2VHVGFOdmdqWEkxa20zYw?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMigwFBVV95cUxPclhqZ3BUNkNFVllIYTlScm15ZDBweHgxQm5YQUdCOHFxTHpEckJqYnJKRS0ycjNFMEZyV0ZIbmRhQXBxWldCMTVzTU1BSmQyMzVJNlNaZjJtOHNPRHBMa2J0QVBGVU1NdEtBSUxQdzZERzk4N2VHVGFOdmdqWEkxa20zYw?oc=5\" target=\"_blank\">U.S. Dollar Bid Ahead Of ECB ",
+      "at": 1789042320000,
+      "inst": [
+        "EUR/USD"
+      ],
+      "ccy": [
+        "USD",
+        "EUR"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789039775000,
+      "_kind": null,
+      "dir": {
+        "EUR/USD": "down"
+      },
+      "why": "Dollar bid weakens euro"
+    },
+    {
       "title": "Dollar crawls higher ahead of ECB, US inflation data; US$100 oil spooks investors - The Business Times",
       "link": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxQYnFyV2dVQzdoZ1ozT2MyN1NYM1hBS05ycmJZVDVMSkFJeGdGaHJYQlZBX1dKd01mdVMzRWhQSTNLdEhzdnBJQV94X0xaeVkxckthcktUcHVaaktnenV0ZEdsZ1NVT25YTDhJNTE0aGFKMkF0NDZmQ2tkV2UzcUdHQUpMQ0pzakhIZlpiVmhueDZ4LUZiU3V3elVLUkNjWUNSRGpPQndIaEVEYllDaFdaOGtpaTRXTjNOYXlOd3duRkVwSkNYS0NtZld6MG5EYWlMNmpDWFEyUXBEQQ?oc=5",
       "source": "Wires (macro)",
@@ -417,7 +431,35 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789039775000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "EUR/USD": "down",
+        "USOIL": "up"
+      },
+      "why": "Dollar up, oil spooks investors"
+    },
+    {
+      "title": "OPEC further lowers 2026 global oil demand growth forecast",
+      "link": "https://www.investing.com/news/commodities-news/opec-further-lowers-2026-global-oil-demand-growth-forecast-4895797",
+      "source": "Investing Cmdty",
+      "at": 1789041988000,
+      "inst": [
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789041988000,
+      "_kind": null,
+      "dir": {
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Lower demand forecast bearish oil"
     },
     {
       "title": "investingLive European markets wrap: Oil and bond yields push higher as ECB decision looms",
@@ -439,7 +481,12 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789039775000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "US500": "up"
+      },
+      "why": "Oil, yields, stocks higher"
     },
     {
       "title": "Iran Used Oil-for-goods Deals With China to Bypass Sanctions, Sources Say - haaretz.com",
@@ -460,7 +507,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789041720000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions bypass unclear market impact"
     },
     {
       "title": "Beyond Meta and Nuclear: Inside Vistra’s Real Power Play",
@@ -477,7 +525,34 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789041644000,
-      "_kind": null
+      "_kind": null,
+      "why": "Irrelevant corporate news"
+    },
+    {
+      "title": "Nestle CEO says Middle East conflict driving inflation, higher supplier costs",
+      "link": "https://www.investing.com/news/stock-market-news/nestle-ceo-says-middle-east-conflict-driving-inflation-higher-supplier-costs-4895741",
+      "source": "Investing",
+      "at": 1789041631000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL",
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789041631000,
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Conflict drives inflation, oil costs"
     },
     {
       "title": "Dow Jones Futures Rise, Oil Prices Keep Climbing; Inflation Data Due.",
@@ -496,7 +571,12 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789041360000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "US30": "up"
+      },
+      "why": "Dow, oil prices rising"
     },
     {
       "title": "Markets Keep Worrying About Oil Prices, Inflation - rttnews.com",
@@ -515,7 +595,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789039863000,
-      "_kind": null
+      "_kind": null,
+      "why": "Worrying implies uncertainty, no clear move"
     },
     {
       "title": "Netflix (NFLX) Shares Pressured by Weak Q2 Outlook",
@@ -531,6 +612,22 @@
       "_kind": null
     },
     {
+      "title": "Nasdaq to invest $100 million in Kraken parent to deepen tokenization push",
+      "link": "https://www.investing.com/news/stock-market-news/nasdaq-to-invest-100-million-in-kraken-parent-to-deepen-tokenization-push-4895735",
+      "source": "Investing",
+      "at": 1789041333000,
+      "inst": [
+        "US100"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789041333000,
+      "_kind": null,
+      "why": "Corporate investment, unclear index impact"
+    },
+    {
       "title": "Stocks making the biggest moves premarket: Macy's, Meta, Apple, Novartis and more",
       "link": "https://www.cnbc.com/2026/09/10/stocks-making-the-biggest-moves-premarket-.html",
       "source": "CNBC Markets",
@@ -544,7 +641,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789041293000,
-      "_kind": null
+      "_kind": null,
+      "why": "Mixed individual stock moves"
     },
     {
       "title": "Eversource Energy Offers Stable Fundamentals, Growing Yield",
@@ -573,25 +671,6 @@
       "_kind": null
     },
     {
-      "title": "US Dollar Bid Ahead of ECB Rate Hike - Investing.com",
-      "link": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxOYUFqaU51RkNBT2YyaWYyTGl6UGZPMjFvaDR6elJUbXhHTmpmNE9tX0swNks5Z2RLU2pFc2ZFOGFtX3ZjQlFVWEFsUVZBaE8yM0hRMFVDM241cC1YM0drVlNmNnhlU1h6Vm9fcVE3eGUyMlpxc0hVNXZDY29WQUY3NDA3MWFFdF95?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiiAFBVV95cUxOYUFqaU51RkNBT2YyaWYyTGl6UGZPMjFvaDR6elJUbXhHTmpmNE9tX0swNks5Z2RLU2pFc2ZFOGFtX3ZjQlFVWEFsUVZBaE8yM0hRMFVDM241cC1YM0drVlNmNnhlU1h6Vm9fcVE3eGUyMlpxc0hVNXZDY29WQUY3NDA3MWFFdF95?oc=5\" target=\"_blank\">US Dollar Bid Ahead of ",
-      "at": 1789040782000,
-      "inst": [
-        "EUR/USD"
-      ],
-      "ccy": [
-        "USD",
-        "EUR"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789039389000,
-      "_kind": null
-    },
-    {
       "title": "Vertiv Has Cooled For 3 Months: A Wall Street Strategist Says It Will Rebound 45% Very Soon",
       "link": "https://finance.yahoo.com/markets/stocks/articles/vertiv-cooled-3-months-wall-114456669.html",
       "source": "Yahoo Finance",
@@ -604,29 +683,7 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789039320000,
-      "_kind": null
-    },
-    {
-      "title": "TSX futures tick lower ahead of U.S. inflation data",
-      "link": "https://www.investing.com/news/stock-market-news/tsx-futures-tick-lower-ahead-of-us-inflation-data-4895707",
-      "source": "Investing",
-      "at": 1789040530000,
-      "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789040530000
+      "why": "Single stock rebound, unclear index"
     },
     {
       "title": "Morning Call Sheet: Inflation, rates and AI spending test markets - CNBC",
@@ -649,7 +706,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789039863000
+      "firstAt": 1789039863000,
+      "why": "General market test, no direction"
     },
     {
       "title": "Dollar edges higher ahead of European Central Bank, US inflation data - Free Malaysia Today",
@@ -672,7 +730,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789039171000
+      "firstAt": 1789039171000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Dollar higher weakens pairs"
     },
     {
       "title": "Chart Alert: EUR/USD Minor Uptrend Intact Ahead of ECB as Markets Brace for 25bp Rate Hike - Action Forex",
@@ -690,7 +754,11 @@
       "sev": 3,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789039389000
+      "firstAt": 1789039389000,
+      "dir": {
+        "EUR/USD": "up"
+      },
+      "why": "Minor uptrend intact"
     },
     {
       "title": "Investors are missing the good news right in front of them, this Wall Street strategist argues",
@@ -1624,7 +1692,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789024329000
+      "firstAt": 1789024333000
     },
     {
       "title": "Gold firms on weaker dollar as markets await US inflation data - TradingView",
@@ -1946,7 +2014,7 @@
       "firstAt": 1789015266000
     },
     {
-      "title": "Currency markets subdued as oil shock lifts global yields; ECB, US inflation eyed - finance.yahoo.com",
+      "title": "Currency markets subdued as oil shock lifts global yields; ECB, US inflation eyed - Yahoo Finance",
       "link": "https://news.google.com/rss/articles/CBMipgFBVV95cUxOTlU0dmFwbkJCUFZ6YV85YUM1YWg1dHRjZ0hWZlNPM3lvdHlnN3hRUC1HRG5kZTZVUElGZkFjSmVoZGo5MXR1UnNRSG1ZT3pTcnNjb3l0S1AtMzNJbU9xZjJjaURpS25fZThpc21hdkV2VGZKZXhscTNfSWFDOEFWQ1FCeDVjRldxQWQ3S09lcDE5NjlJZXBzWHh1bUprSjBiUkx1NzJB?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMipgFBVV95cUxOTlU0dmFwbkJCUFZ6YV85YUM1YWg1dHRjZ0hWZlNPM3lvdHlnN3hRUC1HRG5kZTZVUElGZkFjSmVoZGo5MXR1UnNRSG1ZT3pTcnNjb3l0S1AtMzNJbU9xZjJjaURpS25fZThpc21hdkV2VGZKZXhscTNfSWFDOEFWQ1FCeDVjRldxQWQ3S09lcDE5NjlJZXBzWHh1bUprSjBiUkx1NzJB?oc=5\"",
@@ -2036,46 +2104,6 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789012092000
-    },
-    {
-      "title": "US suffered major aircraft losses after Iran strike on Jordan base: Report - The Times of India",
-      "link": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxQRjRTZ3gzNnQ3OEZYSVNqYWhPRUFBVkp5aTN3WTNoVENsX2g0Z0hlLTFjbjdzYzlOREt4MzZ6MVR0YjdGdmU1NU42SHFEYmh0WTRKQlYyUzdUbmx6QVk5OVlRNklETVlvZ2k1OG90dHRrQ2xYeE56akw0d213SUNjM2pzTWxnVTk1cTFlZmtLYUt2S05NX2o0Mk1iYWtKS0VmaWFBX1hNbTBGZUtfZmlHZE5pY0MzcnNoeXg4Z0F2SVZybVlGY2VMWEdlaGZqT2NtWDBrZUkwaFJfS0tkeDd3Sm11N1JyWXZn0gHuAUFVX3lxTE41S3BYZHNwUzczMjF1T1JsNkJuRXU5U3F6QWc5dlRvRW5OaWU0S0VCZEU3RVRzc1RNNGdrWG1yU29KS1Rzd1U3QWYwWEs3MXB3aGV4UXZpYVJmWkIyTHRYTnpKaWxTWU5QRnh2TDJDQ2hvTC1FcExPQkxja1E2UDRYZ0JKRFRXTFAtdWxKZlFEWFQtWmJTQU9ic3g5Q1dqbFg5LWJDQVBrWjUzTkFHS2tmQ0Z1dVdROVhkdDdOSU8xZ21UVnZsRmVNYXpZQVplcHB0T1pxSzd5Uml5dHJvZDdyWFJ6WTIwM1p4QlJsM2c?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi6AFBVV95cUxQRjRTZ3gzNnQ3OEZYSVNqYWhPRUFBVkp5aTN3WTNoVENsX2g0Z0hlLTFjbjdzYzlOREt4MzZ6MVR0YjdGdmU1NU42SHFEYmh0WTRKQlYyUzdUbmx6QVk5OVlRNklETVlvZ2k1OG90dHRrQ2xYeE56akw0d213SUNjM2pzTWxnVTk1cTFlZmtLYUt2S05NX2o0Mk1iYWtKS0VmaWFBX1hNbTBGZU",
-      "at": 1789010820000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789010820000
-    },
-    {
-      "title": "Netanyahu to sue Haaretz over claims UAE warned him before October 7 attack",
-      "link": "https://www.aljazeera.com/news/2026/9/10/netanyahu-to-sue-haaretz-over-claims-uae-warned-him-before-october-7-attack?traffic_source=rss",
-      "source": "Al Jazeera",
-      "desc": "Israeli prime minister denies claim that UAE president warned him of Hamas plans before the 2023 attacks.",
-      "at": 1789010092000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789010092000
     }
   ],
   "sources": [
@@ -2098,10 +2126,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-10T12:14:43.507Z",
-  "headlinesAt": "2026-09-10T12:14:43.507Z",
-  "updatedAt": "2026-09-10T12:14:43.507Z"
+  "calendarAt": "2026-09-10T12:16:32.048Z",
+  "headlinesAt": "2026-09-10T12:16:32.048Z",
+  "updatedAt": "2026-09-10T12:16:32.048Z"
 }
