@@ -376,7 +376,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789060140000,
-      "_kind": null
+      "_kind": null,
+      "why": "Product launch impact on index unclear"
     },
     {
       "title": "Canadian dollar edges lower as oil stays above $100, US inflation data in focus - Investing.com Nigeria",
@@ -396,7 +397,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789061238000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USD/CAD": "up"
+      },
+      "why": "CAD lower implies USD/CAD up"
     },
     {
       "title": "TSX hits five-week low as oil surge, hotter US inflation weigh on stocks",
@@ -415,7 +420,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789060928000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Inflation weighs on stocks"
     },
     {
       "title": "Roblox Chief Legal Officer Sells 5,773 Shares in Planned Equity Liquidity",
@@ -456,7 +465,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789060140000,
-      "_kind": null
+      "_kind": null,
+      "why": "Single stock news, index impact unclear"
     },
     {
       "title": "Cutting Canada tariffs alone won’t flatten US aluminum premium, Alcoa says",
@@ -473,7 +483,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789059998000,
-      "_kind": null
+      "_kind": null,
+      "why": "Tariff news impact on CAD unclear"
     },
     {
       "title": "AGG vs. BND: two nearly identical bond ETFs with little relative edge",
@@ -509,7 +520,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789059949000,
-      "_kind": null
+      "_kind": null,
+      "why": "Preview implies uncertainty, no direction"
     },
     {
       "title": "Six Days After Cramer Warned Nuclear Is Too Hard to Build, Google Signed Its First Nuclear Deal Ever",
@@ -526,7 +538,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789059927000,
-      "_kind": null
+      "_kind": null,
+      "why": "Nuclear deal impact on gold unclear"
     },
     {
       "title": "US warplanes damaged in Iran strikes on Jordan base - Iran International",
@@ -547,7 +560,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789059883000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Geopolitical conflict boosts safe havens and oil"
     },
     {
       "title": "Uber shares rise after CEO buys $10M of stock",
@@ -584,7 +603,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789059800000,
-      "_kind": null
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "High yields strengthen dollar, hurting pairs"
     },
     {
       "title": "Better Markets’ Lawsuit Against the Federal Reserve and Vice Chair Bowman for Corruption - Better Markets",
@@ -607,7 +631,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789058337000
+      "firstAt": 1789058337000,
+      "why": "Lawsuit impact on markets unclear"
     },
     {
       "title": "UK borrowing costs hit 19-year high oil prices fuel inflation fears - This is Money",
@@ -625,7 +650,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789059157000
+      "firstAt": 1789059157000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil prices fuel inflation fears"
     },
     {
       "title": "Imperial Petroleum Inc. Q2 2026 Earnings Call Summary",
@@ -639,7 +668,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789059075000
+      "firstAt": 1789059075000,
+      "why": "Earnings call summary lacks direction"
     },
     {
       "title": "Russian strikes kill 11 in Ukraine as Kyiv targets gas plants in Arctic - Al Jazeera",
@@ -659,7 +689,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789058966000
+      "firstAt": 1789058966000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Ukraine conflict boosts safe havens and oil"
     },
     {
       "title": "GFL (GFL) Closes the SECURE Waste Infrastructure Acquisition With 75M New Shares and a US$1B Term Loan. Can Scale Offset Dilution and Leverage?",
@@ -691,7 +727,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789057169000
+      "firstAt": 1789057169000,
+      "dir": {
+        "XAU/USD": "down",
+        "BTC/USDT": "down"
+      },
+      "why": "Inflation pushes gold and Bitcoin down"
     },
     {
       "title": "Trump’s Iran war now has a midterm election problem",
@@ -711,7 +752,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789058614000
+      "firstAt": 1789058614000,
+      "why": "Political problem impact on markets unclear"
     },
     {
       "title": "Washington nonprofit Better Markets sues Federal Reserve over capital rule overhaul - Reuters",
@@ -2088,7 +2130,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-10T17:32:32.196Z",
-  "headlinesAt": "2026-09-10T17:32:32.196Z",
-  "updatedAt": "2026-09-10T17:32:32.196Z"
+  "calendarAt": "2026-09-10T17:33:31.077Z",
+  "headlinesAt": "2026-09-10T17:33:31.077Z",
+  "updatedAt": "2026-09-10T17:33:31.077Z"
 }
