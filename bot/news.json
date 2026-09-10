@@ -441,7 +441,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789020614000,
-      "_kind": null
+      "_kind": null,
+      "why": "Inflation data matches expectations, no clear direction."
     },
     {
       "title": "EXCLUSIVE: How a billion-dollar sanctions dodge kept Chinese goods flowing to Iran - Reuters",
@@ -463,7 +464,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789020300000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions evasion news lacks immediate market impact."
     },
     {
       "title": "Iran war won't end until after crucial November elections, says Trump",
@@ -484,7 +486,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789019798000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Prolonged conflict implies sustained high oil and gold."
     },
     {
       "title": "Gold Rises as Dollar Weakens Ahead of US Inflation Data... - jordannews.jo",
@@ -503,7 +511,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789019119000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Weaker dollar directly boosts gold prices."
     },
     {
       "title": "New Zealand Dollar edges higher to near 0.5850 ahead of US PPI inflation data - tmgm.com",
@@ -522,7 +534,10 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789016735000,
-      "_kind": null
+      "dir": {
+        "NZD/USD": "up"
+      },
+      "why": "NZD explicitly stated to be edging higher."
     },
     {
       "title": "Iran’s UN envoy calls new aviation sanctions ‘economic terrorism’ - Middle East Eye",
@@ -543,7 +558,7 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789016735000,
-      "_kind": null
+      "why": "Diplomatic rhetoric without immediate supply or demand shift"
     },
     {
       "title": "Zverev defeats Van de Zandschulp in straight sets to enter US Open semis",
@@ -558,7 +573,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789018435000
+      "firstAt": 1789018435000,
+      "why": "Sports news is irrelevant to currency markets."
     },
     {
       "title": "US Treasury bond buyback: Why yields are still rising",
@@ -581,7 +597,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789017913000
+      "firstAt": 1789017913000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Rising yields typically strengthen dollar, weakening pairs."
     },
     {
       "title": "Fighting escalates in Yemen; Houthi attacks trigger alerts in Saudi Arabia",
@@ -601,7 +623,13 @@
       "sev": 3,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789016979000
+      "firstAt": 1789016979000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Escalating conflict boosts safe-haven and oil demand."
     },
     {
       "title": "Gold Rose As Weaker Dollar Boosted Demand Amid Middle East Inflation Risks Today By Kedia Advisory - Investing.com India",
@@ -619,7 +647,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789016138000
+      "firstAt": 1789016138000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Weaker dollar and inflation risks boost gold."
     },
     {
       "title": "Gold edges higher on weaker dollar, US inflation data in focus - BusinessLine",
@@ -637,7 +669,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789016138000
+      "firstAt": 1789016138000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Weaker dollar supports higher gold prices."
     },
     {
       "title": "Ukrainian drones strike Russian Caspian Sea port in Dagestan",
@@ -657,7 +693,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789015266000
+      "firstAt": 1789015266000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Military escalation increases geopolitical risk premium."
     },
     {
       "title": "Brent holds above $100 as tanker attacks deepen supply fear",
@@ -673,7 +715,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789013961000
+      "firstAt": 1789013961000,
+      "dir": {
+        "UKOIL": "up"
+      },
+      "why": "Supply fears keep Brent crude prices high."
     },
     {
       "title": "KLCI Seen Tracking Wall Street As Markets React To Rising Global Inflation Concerns - BusinessToday Malaysia",
@@ -690,7 +736,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789013567000
+      "firstAt": 1789013567000,
+      "why": "Tracking Wall Street implies no independent directional bias"
     },
     {
       "title": "Why the US is staying so measured about allies’ sanctions on Israeli settlements - Politico",
@@ -710,7 +757,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789012860000
+      "firstAt": 1789012860000,
+      "why": "Diplomatic stance on settlements has no direct market impact"
     },
     {
       "title": "Gold holds steady above $4,400 as traders seem hesitant ahead of US inflation data - FXStreet",
@@ -1921,7 +1969,7 @@
       "firstAt": 1788982443000
     },
     {
-      "title": "Oil hits $101 per barrel as U.S. and Iran trade new strikes - CBS News",
+      "title": "Oil hits $101 per barrel as U.S. and Iran trade new strikes - cbsnews.com",
       "link": "https://news.google.com/rss/articles/CBMikAFBVV95cUxOMUo0T3BlaEVQVVItbUQ5OUU2YVFSSEQ4Q0ZGUHhwa0g4dUwxWTN6ckZiYjlnQ2d4R0k3WGxDN2NMdHB5bEl5Y1R2bDdLYVd5UGM1TW82dUZJbVphb2xmYkRmQXNyaFgwbDlNUDVmeDkwZElrQ1ZCMnhtOFZRS1ZRR24yVlkxbXF4Q2tacTNaUFg?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMikAFBVV95cUxOMUo0T3BlaEVQVVItbUQ5OUU2YVFSSEQ4Q0ZGUHhwa0g4dUwxWTN6ckZiYjlnQ2d4R0k3WGxDN2NMdHB5bEl5Y1R2bDdLYVd5UGM1TW82dUZJbVphb2xmYkRmQXNyaFgwbDlNUDVmeDkwZElrQ1ZCMnhtOFZRS1ZRR24yVlkxbXF4Q2tacTNaUFg?oc=5\" target=\"_blank\">Oil hits $10",
@@ -2189,7 +2237,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-10T06:14:44.312Z",
-  "headlinesAt": "2026-09-10T06:14:44.312Z",
-  "updatedAt": "2026-09-10T06:14:44.312Z"
+  "calendarAt": "2026-09-10T06:16:14.480Z",
+  "headlinesAt": "2026-09-10T06:16:14.480Z",
+  "updatedAt": "2026-09-10T06:16:14.480Z"
 }
