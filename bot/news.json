@@ -435,7 +435,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789026085000,
-      "_kind": null
+      "_kind": null,
+      "why": "Political agenda news, no immediate market impact"
     },
     {
       "title": "Asian currencies steady as dollar holds firm, euro and sterling rise",
@@ -455,7 +456,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789025723000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "EUR/USD": "up",
+        "GBP/USD": "up"
+      },
+      "why": "Euro and sterling rise against dollar"
     },
     {
       "title": "Euro zone yields hold near multi-year peaks as ECB rate decision looms",
@@ -473,7 +479,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789025561000,
-      "_kind": null
+      "_kind": null,
+      "why": "Yields steady, direction unclear for currency"
     },
     {
       "title": "Oil prices surge amid escalation in fighting between US and Iran - WAFB",
@@ -494,7 +501,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789023900000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Oil surges, gold rises on conflict"
     },
     {
       "title": "Why is Associated British Foods stock tumbling today?",
@@ -509,7 +522,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789025353000,
-      "_kind": null
+      "_kind": null,
+      "why": "Single stock news, unclear for currency"
     },
     {
       "title": "Brent Holds Above $100 on U.S.-Iran Escalation - WSJ",
@@ -530,7 +544,13 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789022191000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "UKOIL": "up",
+        "XAU/USD": "up",
+        "USOIL": "up"
+      },
+      "why": "Brent holds high, implies oil strength"
     },
     {
       "title": "FTSE 100 today: Stocks rise ahead of ECB rate decision",
@@ -548,7 +568,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789024512000
+      "firstAt": 1789024512000,
+      "why": "Stocks rise, but currency direction unclear"
     },
     {
       "title": "Silver fakeout risk as price stalls at $68: Hourly levels",
@@ -564,7 +585,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789024333000
+      "firstAt": 1789024333000,
+      "why": "Technical analysis, no clear directional bias"
     },
     {
       "title": "Crude Oil WTI shows RSI divergence at $95.70: Hourly levels",
@@ -581,7 +603,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789024333000
+      "firstAt": 1789024333000,
+      "why": "Technical divergence, no clear direction"
     },
     {
       "title": "London Gas Oil stuck in $1,343-$1,432 range: Live levels",
@@ -597,7 +620,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789024293000
+      "firstAt": 1789024293000,
+      "why": "Range-bound market, no clear direction"
     },
     {
       "title": "Brent Oil stalls at $101.87 with RSI overbought: Live levels",
@@ -614,7 +638,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789024293000
+      "firstAt": 1789024293000,
+      "why": "Overbought signal, potential reversal or stall"
     },
     {
       "title": "Natural Gas clings to $2.773 Fib support, deeply oversold: Live levels",
@@ -628,7 +653,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789024293000
+      "firstAt": 1789024293000,
+      "why": "Oversold support, direction unclear"
     },
     {
       "title": "Gold slips below 50 SMA in choppy range: Live levels",
@@ -644,7 +670,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789024293000
+      "firstAt": 1789024293000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold slips below moving average"
     },
     {
       "title": "‘We worry now’: Oil tops $100, diesel hits record highs amid Iran war escalation - Fortune",
@@ -664,7 +694,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789023900000
+      "firstAt": 1789023900000,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Oil tops $100, safe haven demand"
     },
     {
       "title": "European equities stabilize from sell-off as traders brace for ECB decision",
@@ -681,7 +717,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789023879000
+      "firstAt": 1789023879000,
+      "why": "Equities stabilize, currency direction unclear"
     },
     {
       "title": "Japan stocks higher at close of trade; Nikkei 225 up 0.14%",
@@ -2137,7 +2174,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-10T07:47:30.174Z",
-  "headlinesAt": "2026-09-10T07:47:30.174Z",
-  "updatedAt": "2026-09-10T07:47:30.174Z"
+  "calendarAt": "2026-09-10T07:48:30.020Z",
+  "headlinesAt": "2026-09-10T07:48:30.020Z",
+  "updatedAt": "2026-09-10T07:48:30.020Z"
 }
