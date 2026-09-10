@@ -411,7 +411,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789043003000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Rising yields strengthen dollar, hurt gold and EUR/GBP."
     },
     {
       "title": "Gold price today: Why gold is near $4,400 ahead of US inflation data | Hindustan Times - Hindustan Times",
@@ -430,6 +436,20 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789042020000,
+      "_kind": null,
+      "why": "Gold near $4,400, direction unclear ahead of data."
+    },
+    {
+      "title": "The Stock Market Is Triggering a Warning That Warren Buffett Calls \"Playing With Fire.\" Here's What History Says Comes Next.",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/stock-market-triggering-warning-warren-122000739.html",
+      "source": "Yahoo Finance",
+      "at": 1789042800000,
+      "inst": [],
+      "ccy": [],
+      "sev": 2,
+      "rel": 1,
+      "srcs": 1,
+      "firstAt": 1789042043000,
       "_kind": null
     },
     {
@@ -445,7 +465,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789042379000,
-      "_kind": null
+      "_kind": null,
+      "why": "Nike S&P 500 status irrelevant to index direction."
     },
     {
       "title": "U.S. Dollar Bid Ahead Of ECB Rate Hike - Seeking Alpha",
@@ -464,7 +485,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789039775000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "EUR/USD": "down"
+      },
+      "why": "Dollar bid implies EUR/USD decline."
     },
     {
       "title": "Ukraine War, Day 1,660: Kyiv Strikes More Than 3,000 Km Into Russia - eaworldview.com",
@@ -485,7 +510,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789042275000,
-      "_kind": null
+      "_kind": null,
+      "why": "War escalation impact on markets is ambiguous."
     },
     {
       "title": "Meet the Cheap High-Yield Dividend Stock That's Crushing the Market in 2026",
@@ -513,10 +539,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789041293000,
-      "_kind": null
+      "_kind": null,
+      "why": "List of analyst calls lacks net directional bias."
     },
     {
-      "title": "Stock Market Today: Dow Rises Ahead Of Key Inflation Data; Nvidia Chipmaker Falls On Sales (Live Coverage)",
+      "title": "Stock Market Today: Dow Barely Up Ahead Of Inflation Data; Nvidia Chipmaker Falls On Sales (Live Coverage)",
       "link": "https://www.investors.com/market-trend/stock-market-today/dow-jones-sp500-nasdaq-inflation-data-nvidia-chipmaker-tsmc/?src=A00220&yptr=yahoo",
       "source": "Yahoo Finance",
       "at": 1789042043000,
@@ -530,7 +557,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789039775000,
-      "_kind": null
+      "_kind": null,
+      "why": "Dow barely up, direction is neutral."
     },
     {
       "title": "Dow Jones Futures Rise, Techs Fall As Oil Prices, Yields Keep Climbing. Inflation Data Due.",
@@ -549,7 +577,12 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789041360000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "US30": "up"
+      },
+      "why": "Futures rise, oil prices climb."
     },
     {
       "title": "Dollar crawls higher ahead of ECB, US inflation data - The Business Times",
@@ -568,7 +601,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789039775000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "EUR/USD": "down"
+      },
+      "why": "Dollar higher implies EUR/USD lower."
     },
     {
       "title": "OPEC further lowers 2026 global oil demand growth forecast",
@@ -586,7 +623,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789041988000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Lower demand forecast is bearish for oil."
     },
     {
       "title": "Health Care Roundup: Market Talk",
@@ -620,7 +662,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789041915000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions silence offers no clear market signal."
     },
     {
       "title": "investingLive European markets wrap: Oil and bond yields push higher as ECB decision looms",
@@ -642,39 +685,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789039775000,
-      "_kind": null
-    },
-    {
-      "title": "3 AI Chip Stocks to Buy in September",
-      "link": "https://finance.yahoo.com/technology/ai/articles/3-ai-chip-stocks-buy-120500772.html",
-      "source": "Yahoo Finance",
-      "at": 1789041900000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789041900000,
-      "_kind": null
-    },
-    {
-      "title": "Coinbase CEO: Senate Test Could Define Two Paths for US Crypto Rules",
-      "link": "https://finance.yahoo.com/markets/crypto/articles/coinbase-ceo-senate-test-could-120452434.html",
-      "source": "Yahoo Finance",
-      "at": 1789041892000,
-      "inst": [
-        "BTC/USDT"
-      ],
-      "ccy": [
-        "BTC"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789041892000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil up, stocks edge higher, EUR unclear."
     },
     {
       "title": "Iran Used Oil-for-goods Deals With China to Bypass Sanctions, Sources Say - haaretz.com",
@@ -695,7 +710,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789041720000,
-      "_kind": null
+      "why": "Sanctions bypass news has unclear market impact."
     },
     {
       "title": "Nestle CEO says Middle East conflict driving inflation, higher supplier costs",
@@ -715,7 +730,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789041631000
+      "firstAt": 1789041631000,
+      "why": "Inflation comments lack specific directional catalyst."
     },
     {
       "title": "How Stocks Perform After Fed Rate Decisions",
@@ -731,7 +747,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789041611000
+      "firstAt": 1789041611000,
+      "why": "Historical performance article, no current direction."
     },
     {
       "title": "Nike loses its spot in the S&P 100 after an 18-year streak as shares crater nearly 80% from their peak",
@@ -764,18 +781,6 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789039863000
-    },
-    {
-      "title": "Netflix (NFLX) Shares Pressured by Weak Q2 Outlook",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/netflix-nflx-shares-pressured-weak-115559393.html",
-      "source": "Yahoo Finance",
-      "at": 1789041359000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1789041359000
     },
     {
       "title": "Nasdaq to invest $100 million in Kraken parent to deepen tokenization push",
@@ -2048,6 +2053,42 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789017913000
+    },
+    {
+      "title": "Gold edges higher on weaker dollar, US inflation data in focus - thehindubusinessline.com",
+      "link": "https://news.google.com/rss/articles/CBMiywFBVV95cUxQUGlYQVc2eDViaEhLT2s4WHhtcE01dHpIaDRHR3NSUGMwZ2kxYzg4V0xvcDBsT0kxY0IzVER2TUhsazY2UWphcE1DU2FwcHpZQk5hRG1KUFl5TzgzMGtjMUJFOFJvU1hvU1d5MDdSSU5qa3dHamJqZlhyVXZCZ1dvZkY2MzFZbVk3bVhuc1k3azlXZE04MW1ka243SjN2RjZDMFhoS2RQZTBidkNacEpRRGJlTmp6OFQ2SHR5YXVIUmlFbFhiREFjdTBUWdIB0gFBVV95cUxORGtFUTBPckdMbi1KejRjb2ZTTEZQd09BX2d4Tmx4X3VaNlVZa3U0QktDOHZEZ3RWX21pblU1RkFVLWZLVndGRnJqY1FhRF9rV2xDQzN2SHA4Zjd2ZXRkMXlmRmRRTVdnek9jeVRHVnNGZF8xdnVYQ2h6emQ2WDh6MzdFdmptLUFPVFhSU1BDU012N2xfLVlaYkhDLXFVV3ZBdV9FX2w2REtwM01ubVVQekFJZDBkSEFoQUJIN1FxRjEyV19vMjNPUFlkb3ZOWDFxbkE?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiywFBVV95cUxQUGlYQVc2eDViaEhLT2s4WHhtcE01dHpIaDRHR3NSUGMwZ2kxYzg4V0xvcDBsT0kxY0IzVER2TUhsazY2UWphcE1DU2FwcHpZQk5hRG1KUFl5TzgzMGtjMUJFOFJvU1hvU1d5MDdSSU5qa3dHamJqZlhyVXZCZ1dvZkY2MzFZbVk3bVhuc1k3azlXZE04MW1ka243SjN2RjZDMFhoS2RQZTBidk",
+      "at": 1789016138000,
+      "inst": [
+        "XAU/USD"
+      ],
+      "ccy": [
+        "USD",
+        "XAU"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789013928000
+    },
+    {
+      "title": "Gold edges higher on weaker dollar, U.S. inflation data in focus - CNBC",
+      "link": "https://news.google.com/rss/articles/CBMinwFBVV95cUxQUlVHNWZsR1A2bWVBM0E3LWtNQklza1d1UmI1Ni1VeFBaSnNjOW1NNE90RTdiWE1sRWt1MFBlLWxKZzZyYkdjQzJmYkZ4RzhUaGd0TGdTZERHaG9RYXJEUGpmTy1UTUxHZFowZV96djNqMFRRWFg5RGFRRHUzWFI5TlpGRWx2dWdVY25wRWxaU2dDaUZpWEdsYlNpcHFXQjTSAaQBQVVfeXFMUEluaVd4MXpTb1Z1bllyYndkNGY5cHZkS1hkcG9sNkh1cmJrcEI0Wm9EYUlKWVAyWkM2aGxnMXZ5WDJydVhmUHlaN2l3UFNwNzRxTGNSUlVEM1lLVy04NDJZcW94enZlMGg3dHltS2FDNVgzSHJCNmM1emZBVDlaZE5hNVRwNmdETGtKX3NPV3MySFc1UHc5RVZyajA2UUYwNkhVSk0?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMinwFBVV95cUxQUlVHNWZsR1A2bWVBM0E3LWtNQklza1d1UmI1Ni1VeFBaSnNjOW1NNE90RTdiWE1sRWt1MFBlLWxKZzZyYkdjQzJmYkZ4RzhUaGd0TGdTZERHaG9RYXJEUGpmTy1UTUxHZFowZV96djNqMFRRWFg5RGFRRHUzWFI5TlpGRWx2dWdVY25wRWxaU2dDaUZpWEdsYlNpcHFXQjTSAaQBQVVfeXFMUE",
+      "at": 1789015849000,
+      "inst": [
+        "XAU/USD"
+      ],
+      "ccy": [
+        "USD",
+        "XAU"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789013928000
     }
   ],
   "sources": [
@@ -2073,7 +2114,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-10T12:31:45.136Z",
-  "headlinesAt": "2026-09-10T12:31:45.136Z",
-  "updatedAt": "2026-09-10T12:31:45.136Z"
+  "calendarAt": "2026-09-10T12:33:16.612Z",
+  "headlinesAt": "2026-09-10T12:33:16.612Z",
+  "updatedAt": "2026-09-10T12:33:16.612Z"
 }
