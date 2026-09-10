@@ -375,7 +375,13 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789071384000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Yields surge, dollar strengthens, risk-off"
     },
     {
       "title": "S&P 500 ends down as Treasury yields rise and traders fret about inflation - Yahoo Finance",
@@ -393,7 +399,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789070953000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Stocks end down on yield rise"
     },
     {
       "title": "investingLive Americas market news wrap: Oil climbs 7%",
@@ -413,7 +423,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789071256000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Oil climbs 7 percent"
     },
     {
       "title": "Markets Reprice for Fed as Inflation and Oil Surge - Briefs Finance",
@@ -432,7 +447,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789070953000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil surge mentioned in headline"
     },
     {
       "title": "U.S. stocks end in the red as PPI boosts Fed rate hike bets, WTI crude tops $100",
@@ -452,7 +471,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789070947000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up",
+        "US500": "down"
+      },
+      "why": "Crude tops 100, stocks red"
     },
     {
       "title": "Could Pakistan enter Yemen conflict under Mecca agreement?",
@@ -473,7 +498,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789070764000,
-      "_kind": null
+      "_kind": null,
+      "why": "No clear market direction implied"
     },
     {
       "title": "Russian strikes kill 15 in Ukraine as Canada offers aid for air defences - aljazeera.com",
@@ -496,7 +522,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789070763000,
-      "_kind": null
+      "_kind": null,
+      "why": "Geopolitical news, no clear direction"
     },
     {
       "title": "Stocks are sliding as this ‘negative risk trinity’ spooks investors",
@@ -514,7 +541,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789070760000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Stocks sliding on risk spooks"
     },
     {
       "title": "Stellantis CEO says global auto market split into U.S. and rest of world",
@@ -550,7 +581,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789069237000
+      "firstAt": 1789069237000,
+      "why": "Equity focus, FX direction unclear"
     },
     {
       "title": "It’s not just Hormuz. Another war is providing fresh price shocks to fuel and food.",
@@ -570,7 +602,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789069080000
+      "firstAt": 1789069080000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "War shocks fuel prices"
     },
     {
       "title": "US slaps new sanctions on networks aiding Iran's proxies in Middle East - Reuters",
@@ -590,7 +627,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789066200000
+      "firstAt": 1789066200000,
+      "why": "Sanctions news, direction unclear"
     },
     {
       "title": "Oil Futures Jump as Middle East Escalation Raises Supply Worries - wsj.com",
@@ -610,7 +648,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789066200000
+      "firstAt": 1789066200000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Oil futures jump on supply worries"
     },
     {
       "title": "Gold, silver prices retreat as US inflation, ECB rate hike pressure markets - Anadolu Ajansı",
@@ -632,7 +675,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789067522000
+      "firstAt": 1789067522000,
+      "dir": {
+        "XAU/USD": "down",
+        "XAG/USD": "down",
+        "EUR/USD": "down"
+      },
+      "why": "Gold retreats, ECB hike pressure"
     },
     {
       "title": "Washington nonprofit Better Markets sues Federal Reserve over capital rule overhaul - Reuters",
@@ -655,7 +704,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789068055000
+      "firstAt": 1789068055000,
+      "why": "Legal suit, no market direction"
     },
     {
       "title": "Crude Oil WTI hits RSI 81 after parabolic surge: Live levels",
@@ -672,7 +722,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789067926000
+      "firstAt": 1789067926000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Parabolic surge in crude oil"
     },
     {
       "title": "London Gas Oil tests $1,491.5 with RSI divergence: Live levels",
@@ -2150,7 +2205,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-10T20:30:44.563Z",
-  "headlinesAt": "2026-09-10T20:30:44.563Z",
-  "updatedAt": "2026-09-10T20:30:44.563Z"
+  "calendarAt": "2026-09-10T20:32:15.679Z",
+  "headlinesAt": "2026-09-10T20:32:15.679Z",
+  "updatedAt": "2026-09-10T20:32:15.679Z"
 }
