@@ -363,6 +363,30 @@
   ],
   "headlines": [
     {
+      "title": "Alcoa says U.S. aluminum premium to stay high despite tariff cut",
+      "link": "https://www.investing.com/news/stock-market-news/alcoa-says-us-aluminum-premium-to-stay-high-despite-tariff-cut-93CH-4896685",
+      "source": "Investing",
+      "at": 1789064198000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789064198000,
+      "_kind": null,
+      "why": "Aluminum premium news has no clear FX impact"
+    },
+    {
       "title": "The US Treasury bought $5.187 billion in 10-20 year notes",
       "link": "https://investinglive.com/news/the-us-treasury-bought-5-187-billion-in-10-20-year-notes/",
       "source": "ForexLive",
@@ -384,7 +408,49 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789064001000,
-      "_kind": null
+      "_kind": null,
+      "why": "Treasury auction result is neutral for FX"
+    },
+    {
+      "title": "Restaurant stocks rise as cyclosporiasis outbreak ends",
+      "link": "https://www.investing.com/news/stock-market-news/restaurant-stocks-rise-as-cyclosporiasis-outbreak-ends-93CH-4896680",
+      "source": "Investing",
+      "at": 1789063942000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789063942000,
+      "_kind": null,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Restaurant stocks rise on positive news"
+    },
+    {
+      "title": "Trump administration offers rare muted response on new sanctions against Israel - KVIA",
+      "link": "https://news.google.com/rss/articles/CBMizgFBVV95cUxQdzJYcW9mN2xfQnJsU3NUTHV3a2ZnMlhDZUhPc0JLOXNfdHJUcjJpdGttVnV4anJWR2NxY0IxeDAydDd4bUxYa1VzQi1qdWw2NE5UYlJvLU0yOTRkU0k0eVUtMVBkaGZxVG9XRVVtbzNZQjNqQTFTU3M5Sk5TRERUWlpzdzZyQ0JGRUpubGg1Z1lkVUNfLTFHN0lvX1BlLXYwVUNBdXhUZVBtU3ZjeW02N2x2Z2wyTzJxYWxfTldqTjdvOFZzeEZqTmFMaUlrUQ?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMizgFBVV95cUxQdzJYcW9mN2xfQnJsU3NUTHV3a2ZnMlhDZUhPc0JLOXNfdHJUcjJpdGttVnV4anJWR2NxY0IxeDAydDd4bUxYa1VzQi1qdWw2NE5UYlJvLU0yOTRkU0k0eVUtMVBkaGZxVG9XRVVtbzNZQjNqQTFTU3M5Sk5TRERUWlpzdzZyQ0JGRUpubGg1Z1lkVUNfLTFHN0lvX1BlLXYwVUNBdXhUZVBtU3",
+      "at": 1789063783000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789063783000,
+      "_kind": null,
+      "why": "Muted response implies no immediate market move"
     },
     {
       "title": "U.S. Wholesale Inflation Hits 5.4% as Markets Await CPI, MoneySimpler Expands AI Automated Trading - The Manila Times",
@@ -408,6 +474,20 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789063561000,
+      "_kind": null,
+      "why": "Wholesale inflation data direction is ambiguous"
+    },
+    {
+      "title": "AMD, Intel among market cap stock movers on Thursday",
+      "link": "https://www.investing.com/news/stock-market-news/amd-intel-among-market-cap-stock-movers-on-thursday-93CH-4896674",
+      "source": "Investing",
+      "at": 1789063485000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 1,
+      "srcs": 1,
+      "firstAt": 1789063485000,
       "_kind": null
     },
     {
@@ -424,7 +504,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789061418000,
-      "_kind": null
+      "_kind": null,
+      "why": "AI tool launch impact on index is unclear"
     },
     {
       "title": "CPI report and Michigan consumer sentiment due Friday",
@@ -447,28 +528,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789063244000,
-      "_kind": null
-    },
-    {
-      "title": "Trump administration offers rare muted response on new sanctions against Israel - applevalleynewsnow.com",
-      "link": "https://news.google.com/rss/articles/CBMiogJBVV95cUxOQ1FZZm1tNUtkWTJsaENUdHM1QVBaN3JlMVZHSEZpeFlLbC1CRVF4MUQ4TFA2Z1NWaVVVMVVnZmltRlMwQU91T05oUjlpRG9zVXNSNTBqcHoxclhDSHpiLWl2dGJRMHlmRkstTnl5WExtcHdvZFBYXzZuY09tcGF2MjF6RURyTHJMSHg3dmhqbDF2TWFoZVlyRUlVZGNYQ3cxYUUwWUd1UXZwWFc5YkdoZE11aFRrSmpIcXZjLUJWVlA0bkY3S0RFdHEzXzlXOTJIcnYwM3BDMDI3TVVNX0RtYkI2UTZ4VDJ0aU9YRVpyZ2hKc1E0bThGV2JUWGZTY2tDeHpYU09ZdXhvb01XSmRuLXM5M0J6OGtObS04bVdtb0FRdw?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiogJBVV95cUxOQ1FZZm1tNUtkWTJsaENUdHM1QVBaN3JlMVZHSEZpeFlLbC1CRVF4MUQ4TFA2Z1NWaVVVMVVnZmltRlMwQU91T05oUjlpRG9zVXNSNTBqcHoxclhDSHpiLWl2dGJRMHlmRkstTnl5WExtcHdvZFBYXzZuY09tcGF2MjF6RURyTHJMSHg3dmhqbDF2TWFoZVlyRUlVZGNYQ3cxYUUwWUd1UXZwWF",
-      "at": 1789063219000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789063219000,
-      "_kind": null
+      "_kind": null,
+      "why": "Upcoming data release has no current direction"
     },
     {
       "title": "OFAC Issues Expansive Sanctions Targeting Iran’s Civil Aviation Sector - globaltradeandsanctionslaw.com",
@@ -489,7 +550,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789063094000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions on aviation have unclear oil impact"
     },
     {
       "title": "Oil surges 6%, Brent and US crude both surpass $100 on more tanker attacks",
@@ -507,7 +569,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789062869000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Oil surges on tanker attacks"
     },
     {
       "title": "UNSC permanent members spar over Iran sanctions snapback - TRT World",
@@ -527,7 +594,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789062432000
+      "firstAt": 1789062432000,
+      "why": "UNSC dispute has no clear market direction"
     },
     {
       "title": "Israel preparing for possible Iranian escalation over holiday, but hasn't issued any warnings -- report - The Times of Israel",
@@ -547,7 +615,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789062055000
+      "firstAt": 1789062055000,
+      "why": "Preparation for escalation is not an event"
     },
     {
       "title": "Investors should be eating up these 9 restaurant stocks, analysts say",
@@ -564,7 +633,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789061700000
+      "firstAt": 1789061700000,
+      "why": "Specific stock advice does not move index"
     },
     {
       "title": "Donald Trump promises $5K dividend as rising inflation, oil prices rattle markets - Fox Business",
@@ -582,7 +652,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789059600000
+      "firstAt": 1789059600000,
+      "why": "Political promise does not change oil price"
     },
     {
       "title": "Gold and Bitcoin drop as US inflation boosts Tr... - Pluang",
@@ -602,7 +673,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789061556000
+      "firstAt": 1789061556000,
+      "dir": {
+        "XAU/USD": "down",
+        "BTC/USDT": "down"
+      },
+      "why": "Gold and Bitcoin drop on inflation"
     },
     {
       "title": "Family of four killed as they slept in Israeli strike on Gaza",
@@ -622,7 +698,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789061548000
+      "firstAt": 1789061548000,
+      "why": "Gaza strike news has no clear market direction"
     },
     {
       "title": "Canadian dollar edges lower as oil stays above $100, US inflation data in focus - Investing.com",
@@ -644,38 +721,24 @@
       "firstAt": 1789061419000
     },
     {
-      "title": "Why Canadian copper stocks are plunging after copper hit a record high?",
-      "link": "https://www.investing.com/news/stock-market-news/why-canadian-copper-stocks-are-plunging-after-copper-hit-a-record-high-4896605",
-      "source": "Investing",
-      "at": 1789061049000,
+      "title": "Polish PM: Poland expects Russia may attack border crossing points with Ukraine - pravda.com.ua",
+      "link": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE00VXFyQVhRNlR6WE5KakNRZ2RBRllIalRLelJvMWRkZW95VVFIeVY2cFpQUlFwUUdmNFFxVmlHeW1EeWxVQ3ZURlE5NWFOSDc4TjVCQXZBRS1Tc3paV0RaRXFmdnjSAXBBVV95cUxQbV9YZWpueVlOeHlEZzd0R2E5bmZQSGtEZGhSUWZ3bDYzdnpyX016R3ZCU0gxZjM0TFdWbXpMVlRGY1BMdS1WNTFySHp2ZFJkSHU1TkR1bTBiNU1lRU4yU2RHWkdiNS1BV1d6V21aYW45?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiZEFVX3lxTE00VXFyQVhRNlR6WE5KakNRZ2RBRllIalRLelJvMWRkZW95VVFIeVY2cFpQUlFwUUdmNFFxVmlHeW1EeWxVQ3ZURlE5NWFOSDc4TjVCQXZBRS1Tc3paV0RaRXFmdnjSAXBBVV95cUxQbV9YZWpueVlOeHlEZzd0R2E5bmZQSGtEZGhSUWZ3bDYzdnpyX016R3ZCU0gxZjM0TFdWbXpMVlRGY1BMdS",
+      "at": 1789060380000,
       "inst": [
-        "USD/CAD",
-        "US500"
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
       ],
-      "ccy": [],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789061049000
-    },
-    {
-      "title": "Canada 10-year yield jumps as oil surge, inflation fears drive bond selloff",
-      "link": "https://www.investing.com/news/stock-market-news/canada-10year-yield-jumps-as-oil-surge-inflation-fears-drive-bond-selloff-4896606",
-      "source": "Investing",
-      "at": 1789061049000,
-      "inst": [
-        "USD/CAD",
-        "USOIL"
-      ],
-      "ccy": [
-        "CAD",
-        "OIL",
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789061049000
+      "firstAt": 1789060380000
     },
     {
       "title": "US warplanes damaged in Iran strikes on Jordan base - Iran International",
@@ -1829,7 +1892,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789043003000
+      "firstAt": 1789043219000
     },
     {
       "title": "Washington tariff plans for copper imports stall, premiums drop",
@@ -1944,7 +2007,7 @@
       "link": "https://news.google.com/rss/articles/CBMiowFBVV95cUxPM2I0ZFhfWDkyd3d4VVJUMExmRW00UzFjaTF2bDBVN00zczZVSF8tR0ZSTnFFakZ6RHBBOVoxVjlaZV9fWDJQcWFma1g3d2tRbUJPbmZ5bEhxY2NDcTdNbXJRRUZUemtBQmRoSlhKWFRoY1lYZndzYzk5R2VvSTBScEs1MHE2dmlZaWdpdEcxMTRTeUQwTFRlcEFDMEJDYlUtbldZ?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiowFBVV95cUxPM2I0ZFhfWDkyd3d4VVJUMExmRW00UzFjaTF2bDBVN00zczZVSF8tR0ZSTnFFakZ6RHBBOVoxVjlaZV9fWDJQcWFma1g3d2tRbUJPbmZ5bEhxY2NDcTdNbXJRRUZUemtBQmRoSlhKWFRoY1lYZndzYzk5R2VvSTBScEs1MHE2dmlZaWdpdEcxMTRTeUQwTFRlcEFDMEJDYlUtbldZ?oc=5\" tar",
-      "at": 1789043003000,
+      "at": 1789043219000,
       "inst": [
         "XAU/USD"
       ],
@@ -1955,7 +2018,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789043003000
+      "firstAt": 1789043219000
     },
     {
       "title": "OPEC cuts 2026 oil demand growth forecast for fifth month",
@@ -2088,39 +2151,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789039863000
-    },
-    {
-      "title": "Stocks making the biggest moves premarket: Macy's, Meta, Apple, Novartis and more",
-      "link": "https://www.cnbc.com/2026/09/10/stocks-making-the-biggest-moves-premarket-.html",
-      "source": "CNBC Markets",
-      "desc": "These are the stocks posting the largest moves in the premarket.",
-      "at": 1789041293000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789041293000
-    },
-    {
-      "title": "Nervy markets await ECB rate hike, US inflation data - Free Malaysia Today",
-      "link": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQaXJXS05qbTRENnhRSUVhQlRLaE40MG9pNF9aQlhEbzlvTVlSTlg1UGpMeFdzNnBTZk1BdFpKaGVKQ2lXY1lMVFRabm9kLXc0T0xwZVREak4tR3BIcFgwdmRJOE9BalJ1Ty1HOGVOd1g0cnliMml1UHNtYVBrZHJmNl9oZWkzRXBQa2pJZThRaHdxM0N0Mm1zRHVua3c0WERDZ2VQcmQxTnNObExZTmFSYXU2cDA?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMitAFBVV95cUxQaXJXS05qbTRENnhRSUVhQlRLaE40MG9pNF9aQlhEbzlvTVlSTlg1UGpMeFdzNnBTZk1BdFpKaGVKQ2lXY1lMVFRabm9kLXc0T0xwZVREak4tR3BIcFgwdmRJOE9BalJ1Ty1HOGVOd1g0cnliMml1UHNtYVBrZHJmNl9oZWkzRXBQa2pJZThRaHdxM0N0Mm1zRHVua3c0WERDZ2VQcmQxTnNObE",
-      "at": 1789040412000,
-      "inst": [
-        "EUR/USD"
-      ],
-      "ccy": [
-        "EUR",
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789040412000
     }
   ],
   "sources": [
@@ -2146,7 +2176,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-10T18:23:29.708Z",
-  "headlinesAt": "2026-09-10T18:23:29.708Z",
-  "updatedAt": "2026-09-10T18:23:29.708Z"
+  "calendarAt": "2026-09-10T18:24:32.826Z",
+  "headlinesAt": "2026-09-10T18:24:32.826Z",
+  "updatedAt": "2026-09-10T18:24:32.826Z"
 }
