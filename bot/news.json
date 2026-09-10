@@ -18,7 +18,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789021466000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "US500": "down"
+      },
+      "why": "Oil surge, stocks fall"
     },
     {
       "title": "Ukraine War, Day 1,660: Kyiv Strikes More Than 3,000 Km Into Russia - EA WorldView",
@@ -39,7 +44,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789021220000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "War escalation boosts safe havens"
     },
     {
       "title": "Trump says Iran war to end after US midterm elections, threatens to attack Pickaxe Mountain",
@@ -59,7 +70,13 @@
       "rel": 2,
       "srcs": 3,
       "firstAt": 1789019798000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "War end expectation lowers risk"
     },
     {
       "title": "Norway core CPI rises as expected in August",
@@ -82,7 +99,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789021062000,
-      "_kind": null
+      "_kind": null,
+      "why": "Norway data irrelevant to pairs"
     },
     {
       "title": "Iran Damages US A-10, F-15s with Missile Attack on Air Base in Jordan - Air & Space Forces Magazine",
@@ -103,7 +121,13 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789018260000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Escalation boosts risk assets"
     },
     {
       "title": "Germany August CPI: Energy shock keeps inflation pressures elevated",
@@ -121,7 +145,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789020614000,
-      "_kind": null
+      "_kind": null,
+      "why": "Inflation as expected, no shock"
     },
     {
       "title": "Jefferies Names Top Power and Utility Stocks for Fall",
@@ -136,7 +161,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789020462000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sector specific, broad market unclear"
     },
     {
       "title": "Taiwan stocks lower at close of trade; Taiwan Weighted down 0.52%",
@@ -151,7 +177,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789020304000,
-      "_kind": null
+      "_kind": null,
+      "why": "Taiwan data, US market unclear"
     },
     {
       "title": "EXCLUSIVE: How a billion-dollar sanctions dodge kept Chinese goods flowing to Iran - Reuters",
@@ -173,7 +200,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789020300000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions news, direction unclear"
     },
     {
       "title": "Iran war won't end until after crucial November elections, says Trump",
@@ -193,7 +221,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789019798000
+      "firstAt": 1789019798000,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Prolonged war supports oil, gold"
     },
     {
       "title": "Gold Rises as Dollar Weakens Ahead of US Inflation Data... - jordannews.jo",
@@ -211,7 +245,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789019119000
+      "firstAt": 1789019119000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Dollar weakens, gold rises"
     },
     {
       "title": "New Zealand Dollar edges higher to near 0.5850 ahead of US PPI inflation data - tmgm.com",
@@ -229,7 +267,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789016735000
+      "firstAt": 1789016735000,
+      "dir": {
+        "NZD/USD": "up"
+      },
+      "why": "NZD edges higher"
     },
     {
       "title": "Iran’s UN envoy calls new aviation sanctions ‘economic terrorism’ - Middle East Eye",
@@ -249,7 +291,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789016735000
+      "firstAt": 1789016735000,
+      "why": "Diplomatic statement, no clear direction"
     },
     {
       "title": "Zverev defeats Van de Zandschulp in straight sets to enter US Open semis",
@@ -264,7 +307,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789018435000
+      "firstAt": 1789018435000,
+      "why": "Sports news, no financial impact"
     },
     {
       "title": "Iran’s Strikes on Base in Jordan Caused Limited Damage, U.S. Officials Say - The New York Times",
@@ -284,7 +328,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789018260000
+      "firstAt": 1789018260000,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Limited damage reduces risk premium"
     },
     {
       "title": "US Treasury bond buyback: Why yields are still rising",
@@ -1752,10 +1802,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-10T06:28:30.503Z",
-  "updatedAt": "2026-09-10T06:28:30.503Z"
+  "headlinesAt": "2026-09-10T06:29:44.875Z",
+  "updatedAt": "2026-09-10T06:29:44.875Z"
 }
