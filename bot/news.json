@@ -17,7 +17,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789028513000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "NATGAS": "up"
+      },
+      "why": "Gas peaks on supply risks; ECB pending"
     },
     {
       "title": "Gold Rises Ahead Of US Inflation Data, Eyes US$4,500 - BusinessToday Malaysia",
@@ -36,7 +40,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789028365000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Gold rises ahead of inflation data"
     },
     {
       "title": "Treasury yields steady as investors await key wholesale inflation data - cnbc.com",
@@ -60,7 +68,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789027997000,
-      "_kind": null
+      "_kind": null,
+      "why": "Yields steady awaiting inflation data"
     },
     {
       "title": "Hemnet shares sink 15% after board pauses share buyback",
@@ -94,7 +103,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789027529000,
-      "_kind": null
+      "_kind": null,
+      "why": "Ukraine drone strike news unclear"
     },
     {
       "title": "Russian attacks kill 7 in Ukraine as Kyiv targets gas plants deep in Arctic - Al Jazeera",
@@ -114,7 +124,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789026712000
+      "firstAt": 1789026712000,
+      "why": "Ukraine attacks unclear for markets"
     },
     {
       "title": "At least two killed in Russian attacks as Zelenskyy travels to Canada - Euronews.com",
@@ -136,7 +147,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789026712000
+      "firstAt": 1789026712000,
+      "why": "Zelenskyy travels to Canada; attacks"
     },
     {
       "title": "Israeli attacks kill at least four Palestinians in northern Gaza",
@@ -156,7 +168,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789026321000
+      "firstAt": 1789026321000,
+      "why": "Gaza attacks unclear for markets"
     },
     {
       "title": "October 7 attack should be a major issue on Israel’s 2026 election agenda, says analyst - cnbc.com",
@@ -176,7 +189,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789026085000
+      "firstAt": 1789026085000,
+      "why": "Israel election agenda unclear for markets"
     },
     {
       "title": "Asian currencies steady as dollar holds firm, euro and sterling rise",
@@ -195,7 +209,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789025723000
+      "firstAt": 1789025723000,
+      "dir": {
+        "EUR/USD": "up",
+        "GBP/USD": "up"
+      },
+      "why": "Euro and sterling rise"
     },
     {
       "title": "Euro zone yields hold near multi-year peaks as ECB rate decision looms",
@@ -212,7 +231,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789025561000
+      "firstAt": 1789025561000,
+      "why": "Yields hold near peaks"
     },
     {
       "title": "Oil prices surge amid escalation in fighting between US and Iran - WAFB",
@@ -232,7 +252,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789023900000
+      "firstAt": 1789023900000,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Oil surges; gold up on escalation"
     },
     {
       "title": "Why is Associated British Foods stock tumbling today?",
@@ -246,7 +272,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789025353000
+      "firstAt": 1789025353000,
+      "why": "Stock tumble unclear for currency"
     },
     {
       "title": "Gold Broadly Stable Ahead of Key U.S. Inflation Figures - wsj.com",
@@ -264,7 +291,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789025040000
+      "firstAt": 1789025040000,
+      "why": "Gold stable ahead of inflation"
     },
     {
       "title": "Brent Holds Above $100 on U.S.-Iran Escalation - wsj.com",
@@ -284,7 +312,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789022191000
+      "firstAt": 1789022191000,
+      "dir": {
+        "UKOIL": "up",
+        "XAU/USD": "up",
+        "USOIL": "up"
+      },
+      "why": "Brent holds above $100 on escalation"
     },
     {
       "title": "FTSE 100 today: Stocks rise ahead of ECB rate decision",
@@ -302,7 +336,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789024512000
+      "firstAt": 1789024512000,
+      "why": "Stocks rise; ECB decision pending"
     },
     {
       "title": "Silver fakeout risk as price stalls at $68: Hourly levels",
@@ -1030,24 +1065,6 @@
       "firstAt": 1789006914000
     },
     {
-      "title": "Gold Holds Near $4,400 as Markets Watch U.S. Inflation Readings - Briefs Finance",
-      "link": "https://news.google.com/rss/articles/CBMikgFBVV95cUxNVDQ5SUZjR2xkOFBvYTRNODNIOWhmdF9mU19WaUlsS0V5MzRFTE9PQ3NqaThqNUZneFdiM3NKaGVqSE55NlFQTDF2QmpISktfMWNjM0U0Wl9wbzVmbVdsTnRfTXRUblBaYkEzS2dMajZVSXVCMzlzSS1XZEJMNVUxQXFRc2JVd1FkaHVkcjZpdWhWUQ?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMikgFBVV95cUxNVDQ5SUZjR2xkOFBvYTRNODNIOWhmdF9mU19WaUlsS0V5MzRFTE9PQ3NqaThqNUZneFdiM3NKaGVqSE55NlFQTDF2QmpISktfMWNjM0U0Wl9wbzVmbVdsTnRfTXRUblBaYkEzS2dMajZVSXVCMzlzSS1XZEJMNVUxQXFRc2JVd1FkaHVkcjZpdWhWUQ?oc=5\" target=\"_blank\">Gold Hold",
-      "at": 1789007363000,
-      "inst": [
-        "XAU/USD"
-      ],
-      "ccy": [
-        "XAU",
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789005060000
-    },
-    {
       "title": "Gold little changed with US inflation data in sight - The Economic Times",
       "link": "https://news.google.com/rss/articles/CBMiswJBVV95cUxQLXdJbUtwa2lLaG02OFczdmo3ck5vcTFVYlR1RHJQd0hxMlFQMkZXRnlhXzc1QzBpbVBmUUpMRWZJd2ctREc4azNEeUxPMWRsSDVQVVRjNUlUNF91cWVKUk5TVXdybzZ2RmFZS3NLQVpjTHFvTXZhSlMxSXJiYzZsT0wtQnhVb3NXQWJrNEFldWJNV1lrNjV4SWFwV1dhblJNQm85d1JPbzlXckhlZ1dCU094S1VGOEpmY0NjaGpWN2phQkR0SW9BVEc1SVJFSUhZekhldF9GMHh1Z19tWkljSGVJSjFyLXQxZ0FmZVNjWWtHUHA1bTlza3lkWFlZVFp1OFo4b25tNjhUWFViXzVtS2hTR2FwOVB4S1ppY0tRczBEWnNVX0xSSUxRUVZJcUhYb2hj0gHPAUFVX3lxTE4yR1pnZlA3dXlzMGJVTTgxOGNyUVV3VEZyRk9MN3RDLU5YVWNJdk93cE1wTFhtek1fbkJhdjV3dHQ2TVp6ZlRsSm81Mll4RERNZFo5UHg1a0ZRdkFPOHRRWE5HaUNjdzFWbVg3cHFvR2s1TENjaFBLbUJPbk5MS0Nvdk82VDN4U05rLVZ5bzNlWkdCMmdYRkc3QWRzX2EzRmJXQmo3OW1wNFJJNThObGJzMTVlWmJEX1JfdWRQbEtDZjlLVFdKNGFramUyMWVoNA?oc=5",
       "source": "Wires (macro)",
@@ -1304,6 +1321,26 @@
       "firstAt": 1789002000000
     },
     {
+      "title": "Iran Update, September 9, 2026 - Institute for the Study of War",
+      "link": "https://news.google.com/rss/articles/CBMihgFBVV95cUxQNzNkUFMzeGwwTmU2amMwNkRLRnp2VmVlTTRmdDNjMVp2SlFXUGxickFpT0NEQ0FtaDdBNHlyMEJSaVZpdVVHbnZka3NTaVA2OGlfZzdTenRCRzEzdDVvR1JiX244eUMwbmJoZnY3amFxNGY1OHNPTHJJVmMyc19XVElOVXdZUQ?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMihgFBVV95cUxQNzNkUFMzeGwwTmU2amMwNkRLRnp2VmVlTTRmdDNjMVp2SlFXUGxickFpT0NEQ0FtaDdBNHlyMEJSaVZpdVVHbnZka3NTaVA2OGlfZzdTenRCRzEzdDVvR1JiX244eUMwbmJoZnY3amFxNGY1OHNPTHJJVmMyc19XVElOVXdZUQ?oc=5\" target=\"_blank\">Iran Update, September 9,",
+      "at": 1789000631000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789000631000
+    },
+    {
       "title": "Oil surges above $100 a barrel as US and Iran launch new attacks, while gasoline prices also jump - AP News",
       "link": "https://news.google.com/rss/articles/CBMiogFBVV95cUxQdGg1NEo3VVRGTDl0eEFZVkVVWjVUTGtmVC1haUp5c2kzb1NYcXMzNFlVZk9rQl92VTNFREZuSDlBTEhYQ19Lci1ZV2tCTk1tLVRDMEcydzk4ZEZOY3dEMUhhSlU5eXdOVnBLQWRxUlk1bXl3QjNQWklTYm9jdVZ6NHB6V0FkamhIUFJJYjhsMVk5XzlOWnZfbm1IVTVmR05TYmc?oc=5",
       "source": "Wires (geo)",
@@ -1418,7 +1455,25 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788993499000
+      "firstAt": 1788992963000
+    },
+    {
+      "title": "Gold Holds Near $4,400 as Markets Watch U.S. Inflation Readings - Briefs Finance",
+      "link": "https://news.google.com/rss/articles/CBMikgFBVV95cUxNVDQ5SUZjR2xkOFBvYTRNODNIOWhmdF9mU19WaUlsS0V5MzRFTE9PQ3NqaThqNUZneFdiM3NKaGVqSE55NlFQTDF2QmpISktfMWNjM0U0Wl9wbzVmbVdsTnRfTXRUblBaYkEzS2dMajZVSXVCMzlzSS1XZEJMNVUxQXFRc2JVd1FkaHVkcjZpdWhWUQ?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMikgFBVV95cUxNVDQ5SUZjR2xkOFBvYTRNODNIOWhmdF9mU19WaUlsS0V5MzRFTE9PQ3NqaThqNUZneFdiM3NKaGVqSE55NlFQTDF2QmpISktfMWNjM0U0Wl9wbzVmbVdsTnRfTXRUblBaYkEzS2dMajZVSXVCMzlzSS1XZEJMNVUxQXFRc2JVd1FkaHVkcjZpdWhWUQ?oc=5\" target=\"_blank\">Gold Hold",
+      "at": 1788992963000,
+      "inst": [
+        "XAU/USD"
+      ],
+      "ccy": [
+        "XAU",
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788992963000
     },
     {
       "title": "The bull market’s biggest enemy right now could be Bessent’s interventions",
@@ -1678,26 +1733,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788982440000
-    },
-    {
-      "title": "Brent Crude Tops $100 A Barrel on Middle East Escalation - wsj.com",
-      "link": "https://news.google.com/rss/articles/CBMixgFBVV95cUxPejBxVFJDamd2bjlxby1vZmhhSXc3bERlOXJLTVdia2dYWUNpdEhNU2Zxdk9mTHV0RFpSY1lSNFFrYXQ3RDZ1QjVWSndZMHFBRERLeEktalp5eDFYRlEzME9ndjZDYzEzSFdCa0s0RGRsQ09wR3V3akg4ejFpaWFSQUwxUFBnSkpXZW1yLVdpZHFwejBFX2pTN1RwNTYzanpaTmhIUEduenY2bUs4Z0NsUlA3SmZxZ0ZYekRnRzkzVHVXUXdZZHc?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMixgFBVV95cUxPejBxVFJDamd2bjlxby1vZmhhSXc3bERlOXJLTVdia2dYWUNpdEhNU2Zxdk9mTHV0RFpSY1lSNFFrYXQ3RDZ1QjVWSndZMHFBRERLeEktalp5eDFYRlEzME9ndjZDYzEzSFdCa0s0RGRsQ09wR3V3akg4ejFpaWFSQUwxUFBnSkpXZW1yLVdpZHFwejBFX2pTN1RwNTYzanpaTmhIUEduenY2bU",
-      "at": 1788982140000,
-      "inst": [
-        "USOIL",
-        "UKOIL",
-        "XAU/USD"
-      ],
-      "ccy": [
-        "OIL",
-        "XAU"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788982140000
     }
   ],
   "sources": [
@@ -1720,10 +1755,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-10T08:34:13.202Z",
-  "updatedAt": "2026-09-10T08:34:13.202Z"
+  "headlinesAt": "2026-09-10T08:35:33.577Z",
+  "updatedAt": "2026-09-10T08:35:33.577Z"
 }
