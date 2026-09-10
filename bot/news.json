@@ -17,7 +17,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789004018000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "AUD/USD": "down"
+      },
+      "why": "Australian Dollar weakens to near 0.7200"
     },
     {
       "title": "‘It’s a good start’: prominent Israelis welcome UK sanctions on illegal settlements - The Guardian",
@@ -35,7 +39,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789003860000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions news unclear for gold direction"
     },
     {
       "title": "Brent holds above $100 as tanker attacks deepen supply fear",
@@ -52,7 +57,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789003831000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "UKOIL": "up"
+      },
+      "why": "Brent holds above $100 on supply fear"
     },
     {
       "title": "Gold holds near $4,400 as traders await inflation data for Fed clues - Investing.com Canada",
@@ -73,7 +82,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789003313000,
-      "_kind": null
+      "_kind": null,
+      "why": "Gold holds near $4,400 awaiting data"
     },
     {
       "title": "Gold Steadies Near $4,400 as Traders Assess Fed Rate-Hike Outlook - ndtvprofit.com",
@@ -92,7 +102,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789003313000,
-      "_kind": null
+      "_kind": null,
+      "why": "Gold steadies near $4,400 assessing outlook"
     },
     {
       "title": "Rio Tinto wins Aboriginal consent for Winu copper-gold mine",
@@ -108,7 +119,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789002283000
+      "firstAt": 1789002283000,
+      "why": "Mining consent news unclear for gold"
     },
     {
       "title": "With Close Calls on U.S. Warships, Iran Shows New Appetite for Escalation - WSJ",
@@ -128,7 +140,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789002000000
+      "firstAt": 1789002000000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Iran escalation boosts risk assets and oil"
     },
     {
       "title": "Aftermath of Russian strikes in Kiev, Ukraine - Global Times",
@@ -148,7 +166,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789002000000
+      "firstAt": 1789002000000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Ukraine strikes boost gold safe-haven demand"
     },
     {
       "title": "U.S. stock futures steady after Wall St falls on higher yields; PPI, CPI awaited",
@@ -170,7 +192,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789001404000
+      "firstAt": 1789001404000,
+      "why": "Futures steady, awaiting inflation data"
     },
     {
       "title": "Brent settles at over $100 a barrel as Middle East conflict intensifies",
@@ -189,7 +212,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789001361000
+      "firstAt": 1789001361000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up",
+        "XAU/USD": "up"
+      },
+      "why": "Brent over $100, conflict boosts gold"
     },
     {
       "title": "Oil surges above $100 a barrel as US and Iran launch new attacks, while gasoline prices also jump - AP News",
@@ -209,7 +238,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789000500000
+      "firstAt": 1789000500000,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Oil surges, attacks boost gold safe-haven"
     },
     {
       "title": "Treasury’s Market Challenge Backfires Amid Inflation Fears - Sharecafe",
@@ -232,7 +267,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789000459000
+      "firstAt": 1789000459000,
+      "dir": {
+        "XAU/USD": "up",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Inflation fears boost gold, weaken EUR/GBP"
     },
     {
       "title": "Nvidia enters partnerships to build out more Australian data center capacity",
@@ -246,7 +287,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789000358000
+      "firstAt": 1789000358000,
+      "dir": {
+        "AUD/USD": "up"
+      },
+      "why": "Nvidia data centers boost Australian economy"
     },
     {
       "title": "Gold little changed with US inflation data in sight - tradingview.com",
@@ -264,7 +309,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788998691000
+      "firstAt": 1788998691000,
+      "why": "Gold little changed with data in sight"
     },
     {
       "title": "Gold Holds Steady As Traders Wait On US Inflation Data - Finimize",
@@ -282,7 +328,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788996162000
+      "firstAt": 1788996162000,
+      "why": "Gold holds steady awaiting inflation data"
     },
     {
       "title": "Oil prices rise further as U.S.-Iran conflict worsens",
@@ -1772,10 +1819,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-10T01:49:58.068Z",
-  "updatedAt": "2026-09-10T01:49:58.068Z"
+  "headlinesAt": "2026-09-10T01:51:16.069Z",
+  "updatedAt": "2026-09-10T01:51:16.069Z"
 }
