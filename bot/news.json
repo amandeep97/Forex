@@ -409,7 +409,51 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789047420000,
-      "_kind": null
+      "_kind": null,
+      "why": "Inflation data impact on Fed unclear"
+    },
+    {
+      "title": "U.S. stocks fall at the open, bonds slide after August producer inflation report",
+      "link": "https://www.investing.com/news/stock-market-news/us-stock-futures-steady-after-wall-st-falls-on-higher-yields-ppi-cpi-awaited-4894822",
+      "source": "Investing",
+      "at": 1789047242000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1789045440000,
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Stocks fall after inflation report"
+    },
+    {
+      "title": "Nestle CEO says Middle East conflict driving inflation, higher supplier costs",
+      "link": "https://www.investing.com/news/stock-market-news/nestle-ceo-says-middle-east-conflict-driving-inflation-higher-supplier-costs-4895741",
+      "source": "Investing",
+      "at": 1789047077000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL",
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1789046664000,
+      "_kind": null,
+      "why": "General inflation comment, no direct price move"
     },
     {
       "title": "Russia’s Crude Output Fell in August as Ukraine Steps Up Strikes - Bloomberg.com",
@@ -430,7 +474,38 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789046730000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Lower supply supports oil prices"
+    },
+    {
+      "title": "Oil jumps to $105 a barrel after Middle East tanker attacks escalate",
+      "link": "https://www.investing.com/news/commodities-news/brent-holds-above-100-as-tanker-attacks-deepen-supply-fear-4894851",
+      "source": "Investing Cmdty",
+      "at": 1789046664000,
+      "inst": [
+        "USOIL",
+        "XAU/USD",
+        "UKOIL"
+      ],
+      "ccy": [
+        "OIL",
+        "XAU"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1789046664000,
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up",
+        "XAU/USD": "up"
+      },
+      "why": "Escalation drives oil and gold higher"
     },
     {
       "title": "Is LightPath (LPTH) a Hidden Winner in Missile Defense and Space?",
@@ -447,7 +522,52 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789046601000,
-      "_kind": null
+      "_kind": null,
+      "why": "Stock news unrelated to gold price"
+    },
+    {
+      "title": "Memory Stocks Slide as Rates and Oil Swamp JPMorgan’s Overweight Call: SK Hynix Sinks 5%, Western Digital Drops 3%, Micron Slips",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/memory-stocks-slide-rates-oil-132216451.html",
+      "source": "Yahoo Finance",
+      "at": 1789046536000,
+      "inst": [
+        "USOIL",
+        "US500"
+      ],
+      "ccy": [
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789046536000,
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Stocks slide on rates and oil"
+    },
+    {
+      "title": "Sterling today: Pound pares gains as dollar firms on U.S. inflation data",
+      "link": "https://www.investing.com/news/forex-news/sterling-today-pound-rises-as-boe-rate-hike-bets-build-4895211",
+      "source": "Investing FX",
+      "at": 1789046531000,
+      "inst": [
+        "GBP/USD"
+      ],
+      "ccy": [
+        "USD",
+        "GBP"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789046531000,
+      "_kind": null,
+      "dir": {
+        "GBP/USD": "down"
+      },
+      "why": "Dollar firms, pound pares gains"
     },
     {
       "title": "Nasdaq invests $100 million in Kraken parent Payward for tokenized stocks",
@@ -463,7 +583,24 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789046447000,
-      "_kind": null
+      "_kind": null,
+      "why": "Nasdaq investment, no clear market direction"
+    },
+    {
+      "title": "We Named 3 Dividend Stocks to Dominate 2026. Only One Beat the S&P 500.",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/named-3-dividend-stocks-dominate-132031835.html",
+      "source": "Yahoo Finance",
+      "at": 1789046431000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789046431000,
+      "_kind": null,
+      "why": "Dividend stock performance, no market direction"
     },
     {
       "title": "OPEC Further Cuts Demand Growth Forecast as Oil Surpasses $100 a Barrel",
@@ -481,7 +618,12 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789045625000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Lower demand forecast bearish for oil"
     },
     {
       "title": "AMD Stock’s 10-Year, 6,800% Rally Was Just the Beginning. Here’s Where AMD Could Be Headed Next",
@@ -514,39 +656,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789046031000,
-      "_kind": null
-    },
-    {
-      "title": "La-Z-Boy Director Janet Kerr Sells 3,653 Shares for $116,000",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/la-z-boy-director-janet-131301293.html",
-      "source": "Yahoo Finance",
-      "at": 1789045981000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1789045981000,
-      "_kind": null
-    },
-    {
-      "title": "FTSE 100 today: Stocks reverse gains as ECB hikes rates, oil surges",
-      "link": "https://www.investing.com/news/stock-market-news/ftse-100-today-stocks-rise-ahead-of-ecb-rate-decision-4895022",
-      "source": "Investing",
-      "at": 1789045729000,
-      "inst": [
-        "EUR/USD",
-        "USOIL",
-        "US500"
-      ],
-      "ccy": [
-        "EUR",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789045729000
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "XAG/USD": "down"
+      },
+      "why": "Gold and silver fall on yields"
     },
     {
       "title": "OPEC further lowers 2026 global oil demand growth forecast",
@@ -563,26 +678,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789045625000
-    },
-    {
-      "title": "Oil jumps to $105 a barrel after Middle East tanker attacks escalate",
-      "link": "https://www.investing.com/news/commodities-news/brent-holds-above-100-as-tanker-attacks-deepen-supply-fear-4894851",
-      "source": "Investing Cmdty",
-      "at": 1789045588000,
-      "inst": [
-        "USOIL",
-        "XAU/USD",
-        "UKOIL"
-      ],
-      "ccy": [
-        "OIL",
-        "XAU"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789045588000
+      "firstAt": 1789045625000,
+      "dir": {
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Lower demand forecast bearish for oil"
     },
     {
       "title": "Canadian whisky on the rocks? Crown Royal is set to avoid Trump’s new ban.",
@@ -599,7 +700,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789045380000
+      "firstAt": 1789045380000,
+      "why": "Whisky ban reprieve, no clear FX impact"
     },
     {
       "title": "Trump expects Iran war to end after November midterms despite regional escalation - سانا",
@@ -619,7 +721,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789043358000
+      "firstAt": 1789043358000,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "War end expectation reduces risk premium"
     },
     {
       "title": "Washington tariff plans for copper imports stall, premiums drop",
@@ -1766,23 +1874,6 @@
       "firstAt": 1789031464000
     },
     {
-      "title": "Sterling today: Pound rises as BoE rate hike bets build",
-      "link": "https://www.investing.com/news/forex-news/sterling-today-pound-rises-as-boe-rate-hike-bets-build-4895211",
-      "source": "Investing FX",
-      "at": 1789031452000,
-      "inst": [
-        "GBP/USD"
-      ],
-      "ccy": [
-        "GBP",
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789031452000
-    },
-    {
       "title": "Russia strikes Kyiv after pause for U.S. envoys' visit - NBC News",
       "link": "https://news.google.com/rss/articles/CBMipAFBVV95cUxNa0E2b3dxRVhMWGp5bTJ2d0ltTTFmVHVmaTdXaGstRTFwTjBTV0RXb0xxRllZWUVpWGVITlRxUm4tSFRQYk9wYnlvVEZpQ200SUNfQ2dTTFByT3VXeVhQOUNyOGt2dF9IZjZrTmlpTUpESjBHSUp1VVhLdHNmVTAxcndFOWg0NmZwU25VUWxVdXl4R19wcVZPUzczbU04bzB5TzM2Wg?oc=5",
       "source": "Wires (geo)",
@@ -1876,19 +1967,20 @@
       "firstAt": 1789030125000
     },
     {
-      "title": "Stock market today: Nasdaq futures sink, Dow and S&P 500 look to snap 3-day losing streak ahead of inflation data",
+      "title": "Stock market today: Dow, S&P 500, Nasdaq extend losses as bond yields jump, oil holds above $100",
       "link": "https://finance.yahoo.com/markets/live/stock-market-today-thursday-september-10-dow-sp-500-nasdaq-083717303.html",
       "source": "Yahoo Finance",
       "at": 1789029437000,
       "inst": [
+        "USOIL",
         "US500",
         "US100",
         "US30"
       ],
       "ccy": [
-        "USD"
+        "OIL"
       ],
-      "sev": 2,
+      "sev": 1,
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789029437000
@@ -2032,44 +2124,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789026321000
-    },
-    {
-      "title": "October 7 attack should be a major issue on Israel’s 2026 election agenda, says analyst - CNBC",
-      "link": "https://news.google.com/rss/articles/CBMisAFBVV95cUxOS3hWLW85ajBzaTAzaEFfNzBwV0VrRjl4dXV2SmVjb2JEZEJnRzAxcDZWUXA4aDFIQ0RQYS1DSEFYN1ZhVUQ4WDdRZnRwN0QxWUk1eVFzTVJkOWdpczNDeWN3WnBuZEUzOE1EZzRYZk5LekcxLW5oVVh1eWM2ZXJ3SHd4QVpuc0JpQURTNWp4T2p1NDFOaFNmZHc3ZE9XdlhRc2JLai1UT3pzQ0ZRZG52LQ?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMisAFBVV95cUxOS3hWLW85ajBzaTAzaEFfNzBwV0VrRjl4dXV2SmVjb2JEZEJnRzAxcDZWUXA4aDFIQ0RQYS1DSEFYN1ZhVUQ4WDdRZnRwN0QxWUk1eVFzTVJkOWdpczNDeWN3WnBuZEUzOE1EZzRYZk5LekcxLW5oVVh1eWM2ZXJ3SHd4QVpuc0JpQURTNWp4T2p1NDFOaFNmZHc3ZE9XdlhRc2JLai1UT3pzQ0",
-      "at": 1789026085000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789026085000
-    },
-    {
-      "title": "Gold holds steady above $4,400 as traders await US inflation data for Fed rate cues - FXStreet",
-      "link": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxQcXdUMnc4MWo5VTJTSmhiNVV6OW80cEJDaEhmZ05UY2JiX0U0R2ViYkNCOE4xWlRMdVVSdWZ3R3E3dXdmR3YxM2NsS1VDaldBNVA4QWt0am9GWGNwZk1xZDU1aGlJdDFrRFFfQmZycngyZHNqYUc4dTR5akVwZ3JXam51Y3hVUUlmNmxXaV95ZVhRSU93NlBJTVJjN1ZlYjQtUGRmNTNmZXFVUG0zTy1hRDFBR0pzalJSbG00TzJtTE9Idw?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiwgFBVV95cUxQcXdUMnc4MWo5VTJTSmhiNVV6OW80cEJDaEhmZ05UY2JiX0U0R2ViYkNCOE4xWlRMdVVSdWZ3R3E3dXdmR3YxM2NsS1VDaldBNVA4QWt0am9GWGNwZk1xZDU1aGlJdDFrRFFfQmZycngyZHNqYUc4dTR5akVwZ3JXam51Y3hVUUlmNmxXaV95ZVhRSU93NlBJTVJjN1ZlYjQtUGRmNTNmZXFVUG",
-      "at": 1789026052000,
-      "inst": [
-        "XAU/USD"
-      ],
-      "ccy": [
-        "USD",
-        "XAU"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789026052000
     }
   ],
   "sources": [
@@ -2095,7 +2149,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-10T13:40:12.567Z",
-  "headlinesAt": "2026-09-10T13:40:12.567Z",
-  "updatedAt": "2026-09-10T13:40:12.567Z"
+  "calendarAt": "2026-09-10T13:41:31.938Z",
+  "headlinesAt": "2026-09-10T13:41:31.938Z",
+  "updatedAt": "2026-09-10T13:41:31.938Z"
 }
