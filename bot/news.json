@@ -4,15 +4,6 @@
       "title": "ADP Weekly Employment Change",
       "country": "USD",
       "impact": "low",
-      "at": 1788956040000,
-      "forecast": "",
-      "previous": "11.8K",
-      "actual": ""
-    },
-    {
-      "title": "ADP Weekly Employment Change",
-      "country": "USD",
-      "impact": "low",
       "at": 1788956100000,
       "forecast": "",
       "previous": "10.0K",
@@ -472,6 +463,23 @@
       "_kind": null
     },
     {
+      "title": "Beyond Meta and Nuclear: Inside Vistra’s Real Power Play",
+      "link": "https://finance.yahoo.com/energy/articles/beyond-meta-nuclear-inside-vistra-120044566.html",
+      "source": "Yahoo Finance",
+      "at": 1789041644000,
+      "inst": [
+        "XAU/USD"
+      ],
+      "ccy": [
+        "XAU"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789041644000,
+      "_kind": null
+    },
+    {
       "title": "Dow Jones Futures Rise, Oil Prices Keep Climbing; Inflation Data Due.",
       "link": "https://www.investors.com/market-trend/stock-market-today/dow-jones-futures-oil-prices-yields-meta-spacex-apple-iphone-inflation-data/?src=A00220&yptr=yahoo",
       "source": "Yahoo Finance",
@@ -536,6 +544,19 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789041293000,
+      "_kind": null
+    },
+    {
+      "title": "Eversource Energy Offers Stable Fundamentals, Growing Yield",
+      "link": "https://www.investors.com/research/the-income-investor/eversource-energy-es-stock-stable-fundamentals-growing-yield/?src=A00220&yptr=yahoo",
+      "source": "Yahoo Finance",
+      "at": 1789040971000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789040971000,
       "_kind": null
     },
     {
@@ -608,34 +629,6 @@
       "firstAt": 1789040530000
     },
     {
-      "title": "Ryanair CEO Michael O'Leary warns of airfare hikes amid high oil prices",
-      "link": "https://finance.yahoo.com/energy/articles/ryanair-ceo-michael-oleary-warns-114034142.html",
-      "source": "Yahoo Finance",
-      "at": 1789040434000,
-      "inst": [
-        "USOIL"
-      ],
-      "ccy": [
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789040434000
-    },
-    {
-      "title": "In A SpaceX-Tesla Merger, Elon Musk May Be The Big Winner. What It May Mean For Other Investors.",
-      "link": "https://www.investors.com/news/spacex-tesla-merger-elon-musk-stock-holders-impact/?src=A00220&yptr=yahoo",
-      "source": "Yahoo Finance",
-      "at": 1789040222000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1789040222000
-    },
-    {
       "title": "Morning Call Sheet: Inflation, rates and AI spending test markets - CNBC",
       "link": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxPV1V5VHJQMDZCQ29zTWEzZ19vT0lSUVpVaEpHTmhLMHFVOUxIN3phbnhNbUx4UHpFM2ZabVlta2ZWNUNpMWwtbkp6a0Zqd0NHdDBmRVJoSEp5RDR6WXRsa2RJaDhWcDU4TnlSbjEyWG9qWkltSTY2T05Gbm84LUtmVkRRZzF3dlFWcTJFdDB2ZmlkQU5hZVFfWlVrRklQd2tfVF83TDhVM3FXUQ?oc=5",
       "source": "Wires (macro)",
@@ -657,24 +650,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789039863000
-    },
-    {
-      "title": "Bitcoin and ethereum prices today, Thursday, September 10, 2026: Crypto prices slide back with inflation data on tap",
-      "link": "https://finance.yahoo.com/personal-finance/investing/article/bitcoin-and-ethereum-prices-today-thursday-september-10-2026-crypto-prices-slide-back-with-inflation-data-on-tap-113018195.html",
-      "source": "Yahoo Finance",
-      "at": 1789039818000,
-      "inst": [
-        "BTC/USDT",
-        "ETH/USDT"
-      ],
-      "ccy": [
-        "BTC",
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789039818000
     },
     {
       "title": "Dollar edges higher ahead of European Central Bank, US inflation data - Free Malaysia Today",
@@ -2081,6 +2056,26 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789010820000
+    },
+    {
+      "title": "Netanyahu to sue Haaretz over claims UAE warned him before October 7 attack",
+      "link": "https://www.aljazeera.com/news/2026/9/10/netanyahu-to-sue-haaretz-over-claims-uae-warned-him-before-october-7-attack?traffic_source=rss",
+      "source": "Al Jazeera",
+      "desc": "Israeli prime minister denies claim that UAE president warned him of Hamas plans before the 2023 attacks.",
+      "at": 1789010092000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789010092000
     }
   ],
   "sources": [
@@ -2103,10 +2098,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-10T12:13:30.683Z",
-  "headlinesAt": "2026-09-10T12:13:30.683Z",
-  "updatedAt": "2026-09-10T12:13:30.683Z"
+  "calendarAt": "2026-09-10T12:14:43.507Z",
+  "headlinesAt": "2026-09-10T12:14:43.507Z",
+  "updatedAt": "2026-09-10T12:14:43.507Z"
 }
