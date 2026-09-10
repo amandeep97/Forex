@@ -403,11 +403,7 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789043460000,
-      "_kind": null,
-      "dir": {
-        "US500": "up"
-      },
-      "why": "Strong earnings underappreciated, bullish sentiment."
+      "_kind": null
     },
     {
       "title": "Treasury yields march up to new multi-year highs after PPI inflation data lands - Seeking Alpha",
@@ -431,13 +427,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789042320000,
-      "_kind": null,
-      "dir": {
-        "XAU/USD": "down",
-        "EUR/USD": "down",
-        "GBP/USD": "down"
-      },
-      "why": "Rising yields hurt gold and EUR/GBP."
+      "_kind": null
     },
     {
       "title": "S&P 500, Nasdaq futures extend losses slightly after August PPI data",
@@ -455,12 +445,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789043809000,
-      "_kind": null,
-      "dir": {
-        "US500": "down",
-        "US100": "down"
-      },
-      "why": "Futures extend losses after PPI data."
+      "_kind": null
     },
     {
       "title": "Building U.S. data centers is getting so expensive that AI companies are moving overseas",
@@ -476,8 +461,28 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789044540000,
-      "_kind": null,
-      "why": "Data center costs unclear for Nasdaq."
+      "_kind": null
+    },
+    {
+      "title": "Russia strikes petrol station in Kyiv, global agribusiness in Dnipro - Reuters",
+      "link": "https://news.google.com/rss/articles/CBMiowFBVV95cUxONEVtQVJxa3hqaktCVV9ValNCTzFSNGRORVhUcTRMcUxnLUh6RHZNeDkyWlNpbTFxRUxETVoyajVzZi1IaHQ1SGNldW5QWXZRLWRrTjZ6WC02ZndibmpqU0t4VXVXTmF1QUJVZ0pyV3dFVWh3Qm5oTU8zMWVUZGRzTVhzUXlYNUhHZ1FVa1hVcF9wUThDTjJmaGtzQ21sc3E2bXN3?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiowFBVV95cUxONEVtQVJxa3hqaktCVV9ValNCTzFSNGRORVhUcTRMcUxnLUh6RHZNeDkyWlNpbTFxRUxETVoyajVzZi1IaHQ1SGNldW5QWXZRLWRrTjZ6WC02ZndibmpqU0t4VXVXTmF1QUJVZ0pyV3dFVWh3Qm5oTU8zMWVUZGRzTVhzUXlYNUhHZ1FVa1hVcF9wUThDTjJmaGtzQ21sc3E2bXN3?oc=5\" tar",
+      "at": 1789044538000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789042275000,
+      "_kind": null
     },
     {
       "title": "Global bond yields rise as ECB hikes and hot U.S PPI fuels higher rate bets",
@@ -495,11 +500,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789044531000,
-      "_kind": null,
-      "dir": {
-        "EUR/USD": "down"
-      },
-      "why": "Hot US PPI fuels higher rate bets."
+      "_kind": null
     },
     {
       "title": "Gold prices dip slightly as ECB raises interest rates amid persistent inflation concerns - Pluang",
@@ -520,11 +521,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789042978000,
-      "_kind": null,
-      "dir": {
-        "XAU/USD": "down"
-      },
-      "why": "Gold dips; ECB hike mixed for EUR."
+      "_kind": null
     },
     {
       "title": "Saudi Arabia stocks lower at close of trade; Tadawul All Share down 0.08%",
@@ -539,8 +536,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789044303000,
-      "_kind": null,
-      "why": "Saudi stocks irrelevant to US500."
+      "_kind": null
     },
     {
       "title": "Which Energy Stocks Are Top Buys? Stifel Lists Best Oil And Gas Picks",
@@ -558,8 +554,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789044103000,
-      "_kind": null,
-      "why": "Stock picks do not imply direction."
+      "_kind": null
     },
     {
       "title": "OPEC further lowers 2026 global oil demand growth forecast",
@@ -577,12 +572,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789042686000,
-      "_kind": null,
-      "dir": {
-        "USOIL": "down",
-        "UKOIL": "down"
-      },
-      "why": "Lower demand forecast bearish for oil."
+      "_kind": null
     },
     {
       "title": "U.S. stock futures add to losses after mixed August producer inflation report",
@@ -605,8 +595,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789043809000,
-      "_kind": null,
-      "why": "Mixed inflation report, unclear direction."
+      "_kind": null
     },
     {
       "title": "Wholesale inflation stirred up by Iran war and high oil prices. What does it mean for the Fed?",
@@ -628,12 +617,7 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789043611000,
-      "_kind": null,
-      "dir": {
-        "USOIL": "up",
-        "UKOIL": "up"
-      },
-      "why": "High oil prices cited in headline."
+      "_kind": null
     },
     {
       "title": "ECB raises interest rates again amid Iran war inflation pressure",
@@ -656,37 +640,7 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789043611000,
-      "_kind": null,
-      "dir": {
-        "XAU/USD": "down",
-        "USOIL": "up"
-      },
-      "why": "ECB hike mixed; Iran war boosts oil."
-    },
-    {
-      "title": "Gold price down but weathering ECB's 25 basis point rate hike - KITCO",
-      "link": "https://news.google.com/rss/articles/CBMipAFBVV95cUxOZjFqYVkwZS1VMzVvWGlmcVpkUUpHNFFHdUd4OXd5WHZtZHFCMVQydzh2amFZeTRobkNyRFRVQU1lYWpHampKUTR5aWdrMXQzS3hsWWFjdXlEMHdxdmhXVGluYUE4dlVhUDVXT3Bpdm9LUHdseVIwWmNrOGZHYlRJdko0Z1lqMjRCV3VycEtmc1pJQ0dIdGdPV2FmanBqeG9jS3dVbg?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMipAFBVV95cUxOZjFqYVkwZS1VMzVvWGlmcVpkUUpHNFFHdUd4OXd5WHZtZHFCMVQydzh2amFZeTRobkNyRFRVQU1lYWpHampKUTR5aWdrMXQzS3hsWWFjdXlEMHdxdmhXVGluYUE4dlVhUDVXT3Bpdm9LUHdseVIwWmNrOGZHYlRJdko0Z1lqMjRCV3VycEtmc1pJQ0dIdGdPV2FmanBqeG9jS3dVbg?oc=5\" t",
-      "at": 1789043516000,
-      "inst": [
-        "XAU/USD",
-        "EUR/USD"
-      ],
-      "ccy": [
-        "EUR",
-        "XAU",
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789042978000,
-      "_kind": null,
-      "dir": {
-        "XAU/USD": "down"
-      },
-      "why": "Gold down; ECB hike mixed for EUR."
+      "_kind": null
     },
     {
       "title": "New Fed Chair Kevin Warsh Sparked a \"Credibility Shock\" on Wall Street After His Latest Rate Decision. 3 Reasons Investors Should Care",
@@ -703,8 +657,7 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789043247000,
-      "_kind": null,
-      "why": "Credibility shock impact unclear for stocks."
+      "_kind": null
     },
     {
       "title": "Jobless claims show steady US employment picture. Initial claims 206K vs 205k estimate",
@@ -728,8 +681,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789043458000,
-      "_kind": null,
-      "why": "Steady employment picture, no clear direction."
+      "_kind": null
     },
     {
       "title": "US August PPI 5.4% vs 5.3% expected",
@@ -792,8 +744,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789041284000,
-      "_kind": null
+      "firstAt": 1789041284000
     },
     {
       "title": "Kevin Warsh's Fed strategy risks 'unproductive volatility' in markets: Jan Hatzius",
@@ -815,8 +766,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789043247000,
-      "_kind": null
+      "firstAt": 1789043247000
     },
     {
       "title": "Nvidia partners with 8 Australian firms for 2GW AI buildout",
@@ -1643,6 +1593,26 @@
       "firstAt": 1789030519000
     },
     {
+      "title": "Gold price down but weathering ECB's 25 basis point rate hike - KITCO",
+      "link": "https://news.google.com/rss/articles/CBMipAFBVV95cUxOZjFqYVkwZS1VMzVvWGlmcVpkUUpHNFFHdUd4OXd5WHZtZHFCMVQydzh2amFZeTRobkNyRFRVQU1lYWpHampKUTR5aWdrMXQzS3hsWWFjdXlEMHdxdmhXVGluYUE4dlVhUDVXT3Bpdm9LUHdseVIwWmNrOGZHYlRJdko0Z1lqMjRCV3VycEtmc1pJQ0dIdGdPV2FmanBqeG9jS3dVbg?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMipAFBVV95cUxOZjFqYVkwZS1VMzVvWGlmcVpkUUpHNFFHdUd4OXd5WHZtZHFCMVQydzh2amFZeTRobkNyRFRVQU1lYWpHampKUTR5aWdrMXQzS3hsWWFjdXlEMHdxdmhXVGluYUE4dlVhUDVXT3Bpdm9LUHdseVIwWmNrOGZHYlRJdko0Z1lqMjRCV3VycEtmc1pJQ0dIdGdPV2FmanBqeG9jS3dVbg?oc=5\" t",
+      "at": 1789031820000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD"
+      ],
+      "ccy": [
+        "EUR",
+        "XAU",
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789031820000
+    },
+    {
       "title": "Bond Yields Edge Up as Investors Await ECB Rate Hike, U.S. Treasury Buybacks - marketscreener.com",
       "link": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNbTM5akNhMHVRbmNSRFlDOWVTeDh1aDRuSUk3VFV0YTBRei1JaGlBVnFXYVNNekJtS3BPdkVrTW1RckxMbEpMUXZsZmNjUVJLU3RiUmZoSm5nTl9WUXhKUzdUM1ZqQUNIZWJXaTJ2NFZmVkpLQjhuaVl3eVMxOGUwSkhkdk5URUhXYUZuaXBQYlQtcEhHQ3JSTEthS1ZINHRFU18wNzI3VXQ0bVhUc3owMTFzZDBXck9LeVhWYlZrNjlVT3ZYanc?oc=5",
       "source": "Wires (macro)",
@@ -2128,27 +2098,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789020614000
-    },
-    {
-      "title": "EXCLUSIVE: How a billion-dollar sanctions dodge kept Chinese goods flowing to Iran - Reuters",
-      "link": "https://news.google.com/rss/articles/CBMivgFBVV95cUxPQXdBWlltZS1pUU8wZnFqc21wUDExNGZub0prbEtxYTNwS2J3UU91eTQ4aXZTUGNwWjdGZGxVZUNiY2dHbXVNbl9tNE4zSlVqVDJaZFlmMkZ6Slo3RndJczlqMTlsYlVGOEEteGNreDFjR0JabWhJaTNCTHNtUUozWDFVSm56QldwaXFjbnBQZWlxdGtsVFdmcDFDTHNjMzBaN2NkNlNzUGV0MXhZR3hBdmFUMV9LLU9ZYWxBTW5n?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMivgFBVV95cUxPQXdBWlltZS1pUU8wZnFqc21wUDExNGZub0prbEtxYTNwS2J3UU91eTQ4aXZTUGNwWjdGZGxVZUNiY2dHbXVNbl9tNE4zSlVqVDJaZFlmMkZ6Slo3RndJczlqMTlsYlVGOEEteGNreDFjR0JabWhJaTNCTHNtUUozWDFVSm56QldwaXFjbnBQZWlxdGtsVFdmcDFDTHNjMzBaN2NkNlNzUGV0MX",
-      "at": 1789020300000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "USD",
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789020300000
     }
   ],
   "sources": [
@@ -2174,7 +2123,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-10T12:57:45.132Z",
-  "headlinesAt": "2026-09-10T12:57:45.132Z",
-  "updatedAt": "2026-09-10T12:57:45.132Z"
+  "calendarAt": "2026-09-10T12:59:14.855Z",
+  "headlinesAt": "2026-09-10T12:59:14.855Z",
+  "updatedAt": "2026-09-10T12:59:14.855Z"
 }
