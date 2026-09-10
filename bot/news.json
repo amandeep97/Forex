@@ -407,7 +407,12 @@
       "rel": 2,
       "srcs": 3,
       "firstAt": 1789049094000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "US500": "down"
+      },
+      "why": "Oil high, yields hurt stocks"
     },
     {
       "title": "$100 Oil Jolts Treasury Yields; Fed Rate-Hike Odds Jump",
@@ -425,7 +430,11 @@
       "rel": 2,
       "srcs": 4,
       "firstAt": 1789049094000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil price jolts yields"
     },
     {
       "title": "Copper Stocks Tumble as Tariff Doubt Reverses Record Rally: Freeport-McMoRan Sinks 8%, Teck Resources and Southern Copper Drop 7%",
@@ -442,7 +451,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789051401000,
-      "_kind": null
+      "_kind": null,
+      "why": "Copper stocks specific, not index"
     },
     {
       "title": "Tomorrow’s CPI Report Could Send Rate-Hike Odds Even Higher",
@@ -465,7 +475,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789051260000,
-      "_kind": null
+      "_kind": null,
+      "why": "Future CPI event, direction unclear"
     },
     {
       "title": "Tomorrow’s CPI Report Could Send Rate-Hike Odds Even Higher - 24/7 Wall St.",
@@ -489,7 +500,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789051260000,
-      "_kind": null
+      "_kind": null,
+      "why": "Future CPI event, direction unclear"
     },
     {
       "title": "Gold and Crypto Fall as Hot US Inflation Rattles Markets - BeInCrypto",
@@ -510,7 +522,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789051260000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "BTC/USDT": "down"
+      },
+      "why": "Hot inflation rattles markets"
     },
     {
       "title": "How Chinese Goods Reached Iran Despite Billions in Sanctions - Modern Diplomacy",
@@ -531,7 +548,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789051200000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions news, no clear direction"
     },
     {
       "title": "Why Tech Workers Are Borrowing Against Their Startup Shares: Techdollar CEO",
@@ -581,7 +599,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789050857000,
-      "_kind": null
+      "why": "Buyback news, no clear direction"
     },
     {
       "title": "European Markets Tumble Amid Interest Rate Hike Fears - Devdiscourse",
@@ -604,7 +622,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789047300000
+      "firstAt": 1789047300000,
+      "dir": {
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "European markets tumble on rates"
     },
     {
       "title": "Stock Market Today: Nasdaq On Losing Streak As Oil Surges; Apple Advances On iPhone Launch (Live Coverage)",
@@ -621,7 +644,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789049645000
+      "firstAt": 1789049645000,
+      "dir": {
+        "USOIL": "up",
+        "US100": "down"
+      },
+      "why": "Oil surges, Nasdaq losing streak"
     },
     {
       "title": "Gold slips amid pressure from firmer dollar, elevated Treasury yields",
@@ -638,7 +666,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 4,
-      "firstAt": 1789046975000
+      "firstAt": 1789046975000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold slips on dollar, yields"
     },
     {
       "title": "Dollar rises as hot U.S. inflation, ECB hike reshape currency markets",
@@ -655,7 +687,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789046975000
+      "firstAt": 1789046975000,
+      "dir": {
+        "EUR/USD": "down"
+      },
+      "why": "Dollar rises on inflation"
     },
     {
       "title": "US August existing home sales 3.98m vs 3.98m expected",
@@ -687,7 +723,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789048811000
+      "firstAt": 1789048811000,
+      "why": "New trading product launch"
     },
     {
       "title": "Russia Strikes Moldova Border as Ukraine Hits Black Sea Port - Crude Oil Prices Today | OilPrice.com",
@@ -707,7 +744,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789046730000
+      "firstAt": 1789046730000,
+      "why": "Geopolitical news, no clear direction"
     },
     {
       "title": "Markets see a near 50-50 chance the European Central Bank will hike again in October",
@@ -730,7 +768,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789047300000
+      "firstAt": 1789047300000,
+      "why": "50-50 odds, no clear direction"
     },
     {
       "title": "Treasury yields rise as investors raise bets on Fed rate hike: AlphaCheck",
@@ -804,24 +843,6 @@
       "firstAt": 1789048320000
     },
     {
-      "title": "Gold falls over 1% as U.S. inflation data boosts Fed hike bets - marketscreener.com",
-      "link": "https://news.google.com/rss/articles/CBMiswFBVV95cUxNRC1LMHhGSTZJa1MxUzlaR29xQUNzQU1ma0NQOGRjVHNyWkZuUEhvYWZlMURmeHVxMlplc3MtQnpvbGRNT1ByTXFsVGV1QnFjOE1nUUFkWDVrUnkwbm5PSGtpbFVGYjl5aU52OTlOV1d2REhLS05mSkNnS3VxR1Q5MmNHbVFQdDZad3FLZWpLbHpzYTQyajJZc0pfX1NCaFgxWkMxb1FuNnBQeThvWVlrb0NrNA?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiswFBVV95cUxNRC1LMHhGSTZJa1MxUzlaR29xQUNzQU1ma0NQOGRjVHNyWkZuUEhvYWZlMURmeHVxMlplc3MtQnpvbGRNT1ByTXFsVGV1QnFjOE1nUUFkWDVrUnkwbm5PSGtpbFVGYjl5aU52OTlOV1d2REhLS05mSkNnS3VxR1Q5MmNHbVFQdDZad3FLZWpLbHpzYTQyajJZc0pfX1NCaFgxWkMxb1FuNnBQeT",
-      "at": 1789048092000,
-      "inst": [
-        "XAU/USD"
-      ],
-      "ccy": [
-        "USD",
-        "XAU"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789046975000
-    },
-    {
       "title": "10-year Treasury at highest level since 2023 as oil prices jump to $105: Chart of the Day",
       "link": "https://finance.yahoo.com/markets/article/10-year-treasury-at-highest-level-since-2023-as-oil-prices-jump-to-105-chart-of-the-day-134740387.html",
       "source": "Yahoo Finance",
@@ -853,6 +874,24 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789048020000
+    },
+    {
+      "title": "Gold falls as dollar, yields rise ahead of inflation data - Zawya",
+      "link": "https://news.google.com/rss/articles/CBMingFBVV95cUxOSHFaVnZKSEpGVDJZWnRVZlJ4TGM5Z1h2TGVpOHp3UmZFS0Qxc0dMOEstRlBIeW5INk9Ua0Ezc19sOTFodWczRzBoYmFibjZIMGtvM1VtUlhLMGJHUWp0XzlhR2ROWUNPTi0tM0JYNGk1c1o2U21ZRHRXMVR2ZmFCS3BFek44V0xMeGFnSjE2UGtMdVYxVXhxLWVRTnY1UQ?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMingFBVV95cUxOSHFaVnZKSEpGVDJZWnRVZlJ4TGM5Z1h2TGVpOHp3UmZFS0Qxc0dMOEstRlBIeW5INk9Ua0Ezc19sOTFodWczRzBoYmFibjZIMGtvM1VtUlhLMGJHUWp0XzlhR2ROWUNPTi0tM0JYNGk1c1o2U21ZRHRXMVR2ZmFCS3BFek44V0xMeGFnSjE2UGtMdVYxVXhxLWVRTnY1UQ?oc=5\" target=\"_",
+      "at": 1789048020000,
+      "inst": [
+        "XAU/USD"
+      ],
+      "ccy": [
+        "USD",
+        "XAU"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1789046975000
     },
     {
       "title": "Gold prices hold above $4,400 as markets await inflation data - argaam.com",
@@ -909,6 +948,26 @@
       "firstAt": 1789045144000
     },
     {
+      "title": "Escalation in the Middle East and Beyond — Mobility Report (25 August – 07 September) - ReliefWeb",
+      "link": "https://news.google.com/rss/articles/CBMirgFBVV95cUxNRS1pUFZTM0tLNUl4bDF6MkJGekIycmJ0Zkh6X3dDZkNsaUdNRWYzYU5pX3RzSmFWLXRZb1VGMEVkVzVBZEROYjREcnN4Q2J2bDJCbHB6ZjVRMGdzYkU1azRYUXEtWEppeV9sRVFBRDdkWmFYMXZrNW9PTE1xVUVqUUl1bFRndE0wc09tLTFYNVl4dUZNR3FXRTByUlFDS014ZThuX19WQjNCNUlQMlE?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMirgFBVV95cUxNRS1pUFZTM0tLNUl4bDF6MkJGekIycmJ0Zkh6X3dDZkNsaUdNRWYzYU5pX3RzSmFWLXRZb1VGMEVkVzVBZEROYjREcnN4Q2J2bDJCbHB6ZjVRMGdzYkU1azRYUXEtWEppeV9sRVFBRDdkWmFYMXZrNW9PTE1xVUVqUUl1bFRndE0wc09tLTFYNVl4dUZNR3FXRTByUlFDS014ZThuX19WQjNCNU",
+      "at": 1789047292000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1789046664000
+    },
+    {
       "title": "Gold slides as US PPI reinforces Fed hike expectations, US Dollar and yields rise - FXStreet",
       "link": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQYklVVlJZM1pNWnE2bWtET1BDRVBLZUIwQXVPd1lJd1ctTTdUVVVlM0pmbGo5b0hlT3dNZi1Sd05PbnAtako1cm9YelRsVWVfNTg1akdMWXgydTVvbUd4Z3FRVHVRdU9tS2VJRHdIWXlZOUdjVHIzYkQ1VkxRcmFDaXBtQXAzVnUyVDlzbEF0aVVIUUE0ajVhZ1lFSWhTUFBmREFXYUt1MVQtdmc2VXdFaUk4Z3U?oc=5",
       "source": "Wires (macro)",
@@ -962,7 +1021,7 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 1,
+      "srcs": 2,
       "firstAt": 1789046664000
     },
     {
@@ -1447,7 +1506,7 @@
       "firstAt": 1789041293000
     },
     {
-      "title": "Nervy markets await ECB rate hike, US inflation data - freemalaysiatoday.com",
+      "title": "Nervy markets await ECB rate hike, US inflation data - Free Malaysia Today",
       "link": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQaXJXS05qbTRENnhRSUVhQlRLaE40MG9pNF9aQlhEbzlvTVlSTlg1UGpMeFdzNnBTZk1BdFpKaGVKQ2lXY1lMVFRabm9kLXc0T0xwZVREak4tR3BIcFgwdmRJOE9BalJ1Ty1HOGVOd1g0cnliMml1UHNtYVBrZHJmNl9oZWkzRXBQa2pJZThRaHdxM0N0Mm1zRHVua3c0WERDZ2VQcmQxTnNObExZTmFSYXU2cDA?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMitAFBVV95cUxQaXJXS05qbTRENnhRSUVhQlRLaE40MG9pNF9aQlhEbzlvTVlSTlg1UGpMeFdzNnBTZk1BdFpKaGVKQ2lXY1lMVFRabm9kLXc0T0xwZVREak4tR3BIcFgwdmRJOE9BalJ1Ty1HOGVOd1g0cnliMml1UHNtYVBrZHJmNl9oZWkzRXBQa2pJZThRaHdxM0N0Mm1zRHVua3c0WERDZ2VQcmQxTnNObE",
@@ -1462,7 +1521,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789040412000
+      "firstAt": 1789039775000
     },
     {
       "title": "Morning Call Sheet: Inflation, rates and AI spending test markets - CNBC",
@@ -1506,7 +1565,7 @@
       "firstAt": 1789037537000
     },
     {
-      "title": "Dollar edges higher ahead of European Central Bank, US inflation data - freemalaysiatoday.com",
+      "title": "Dollar edges higher ahead of European Central Bank, US inflation data - Free Malaysia Today",
       "link": "https://news.google.com/rss/articles/CBMitAFBVV95cUxNMTlHaHlyUXkxVVc3VFdBZUpTVU9FdE9kdkZDQ0NKbmpTZGZqYjREUFVkbGxuV0h3SHpYQnQwM1JQd0ROMmI5THZJR1l3ZWM5aWNJSE1iZFg0WXpHbWQ1RHFrUll2LS10REVBeVZVdXpOaEI2SElNeWNCMEtxeGo4WHVtLXJ1ektCaThualBCczNIb09HcFk2NnBIMHdYZDFwQTR6NV9GTWQ3RE9xLW9xcjJ1VzA?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMitAFBVV95cUxNMTlHaHlyUXkxVVc3VFdBZUpTVU9FdE9kdkZDQ0NKbmpTZGZqYjREUFVkbGxuV0h3SHpYQnQwM1JQd0ROMmI5THZJR1l3ZWM5aWNJSE1iZFg0WXpHbWQ1RHFrUll2LS10REVBeVZVdXpOaEI2SElNeWNCMEtxeGo4WHVtLXJ1ektCaThualBCczNIb09HcFk2NnBIMHdYZDFwQTR6NV9GTWQ3RE",
@@ -2067,24 +2126,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789030519000
-    },
-    {
-      "title": "Gold ticks up on softer dollar; US inflation data on tap - marketscreener.com",
-      "link": "https://news.google.com/rss/articles/CBMirAFBVV95cUxPbTNwZEFaczJaZjk5ZFRlaXJyckw4QldpTVVXU2txZkZqY0xReXBtOUlwRExTeXVNbXplblI0ekdqRzBRZ2dORFRwN3pWSzlVb21KRkFRS3hWTjRZZmF2WkJneTJVd3QxMkpma2tkNEZzeGRhZEdfOWp5SnpiOWU4Tzh4T2RCVEI0TGhaaWMyNTVraDJ3V1lBakh0TElWc2paUTkzVjExVE1MWVFl?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMirAFBVV95cUxPbTNwZEFaczJaZjk5ZFRlaXJyckw4QldpTVVXU2txZkZqY0xReXBtOUlwRExTeXVNbXplblI0ekdqRzBRZ2dORFRwN3pWSzlVb21KRkFRS3hWTjRZZmF2WkJneTJVd3QxMkpma2tkNEZzeGRhZEdfOWp5SnpiOWU4Tzh4T2RCVEI0TGhaaWMyNTVraDJ3V1lBakh0TElWc2paUTkzVjExVE1MWV",
-      "at": 1789030519000,
-      "inst": [
-        "XAU/USD"
-      ],
-      "ccy": [
-        "USD",
-        "XAU"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789030519000
     }
   ],
   "sources": [
@@ -2110,7 +2151,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-10T15:03:28.927Z",
-  "headlinesAt": "2026-09-10T15:03:28.927Z",
-  "updatedAt": "2026-09-10T15:03:28.927Z"
+  "calendarAt": "2026-09-10T15:04:31.922Z",
+  "headlinesAt": "2026-09-10T15:04:31.922Z",
+  "updatedAt": "2026-09-10T15:04:31.922Z"
 }
