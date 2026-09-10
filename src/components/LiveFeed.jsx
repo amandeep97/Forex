@@ -117,6 +117,55 @@ function Location({ reads }) {
   );
 }
 
+// The sweep model: a higher-timeframe level taken and given back, then a
+// two-minute break confirming the turn.
+//
+// It sits apart from the engine vote on purpose. The vote says which way the
+// evidence leans; this says a specific thing already happened. Three states,
+// and they are genuinely different: TAKEN is a level swept with nothing
+// confirming yet, SETUP is confirmed and available, and MISSED is confirmed
+// and gone. Collapsing the last two into one is how a move you watched go past
+// ends up looking like a live ticket.
+function SweepSetup({ s }) {
+  if (!s?.sweep) return null;
+  const long = s.dir === 'long';
+  const state = !s.confirm ? 'taken' : s.ready ? 'setup' : 'missed';
+  const col = state === 'setup' ? (long ? C.good : C.bad)
+            : state === 'missed' ? '#64748b' : C.warn;
+  const label = state === 'setup' ? `SWEEP ${long ? 'LONG' : 'SHORT'}`
+              : state === 'missed' ? 'SWEEP — MISSED'
+              : 'LIQUIDITY TAKEN';
+  const dp = s.entry != null && Math.abs(s.entry) < 20 ? 5 : 2;
+  return (
+    <span style={{ display:'flex', gap:8, alignItems:'center', flexWrap:'wrap', width:'100%', marginTop:3 }}>
+      <span style={{ fontSize:10, fontWeight:900, color:col, fontFamily:C.mono,
+        border:`1px solid ${col}44`, background:`${col}0d`, borderRadius:3, padding:'1px 7px' }}>
+        {label}
+      </span>
+      <span style={{ fontSize:9, color:C.dim, fontFamily:C.mono }}>
+        {s.sweep.level.label} at {s.sweep.level.price.toFixed(dp)}
+      </span>
+      {state === 'setup' && (
+        <span style={{ fontSize:9, fontFamily:C.mono, color:C.dim }}>
+          entry <strong style={{ color:C.txt }}>{s.entry.toFixed(dp)}</strong>
+          {' · '}stop <strong style={{ color:C.bad }}>{s.stop.toFixed(dp)}</strong>
+          {' · '}risk <strong style={{ color:C.txt }}>{s.risk.toFixed(dp)}</strong>
+        </span>
+      )}
+      {state === 'taken' && (
+        <span style={{ fontSize:9, color:C.dim, fontFamily:C.mono }}>
+          waiting for a {long ? 'bullish' : 'bearish'} break on M2
+        </span>
+      )}
+      {state === 'missed' && (
+        <span style={{ fontSize:9, color:'#64748b', fontFamily:C.mono }}>
+          confirmed {s.age} bars ago
+        </span>
+      )}
+    </span>
+  );
+}
+
 function Verdict({ read }) {
   if (read === undefined) return <span style={{ fontSize:9, color:'#2b3644', fontFamily:C.mono }}>reading…</span>;
   if (!read) return null;
@@ -152,6 +201,7 @@ function Verdict({ read }) {
           on a block it shows what did the blocking, and on a clean LONG it is
           the difference between buying the bottom of the range and the top. */}
       {v.location && <Location reads={v.location} />}
+      {read.liquidity && <SweepSetup s={read.liquidity} />}
       {v.timing && (
         <span style={{ fontSize:9, color:C.warn, fontFamily:C.mono, width:'100%', paddingLeft:1 }}>
           ⏳ {v.timing}
