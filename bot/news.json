@@ -403,7 +403,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789043460000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Strong earnings underappreciated, bullish sentiment."
     },
     {
       "title": "Treasury yields march up to new multi-year highs after PPI inflation data lands - Seeking Alpha",
@@ -427,7 +431,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789042320000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Rising yields hurt gold and EUR/GBP."
     },
     {
       "title": "S&P 500, Nasdaq futures extend losses slightly after August PPI data",
@@ -445,7 +455,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789043809000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down",
+        "US100": "down"
+      },
+      "why": "Futures extend losses after PPI data."
     },
     {
       "title": "Building U.S. data centers is getting so expensive that AI companies are moving overseas",
@@ -461,7 +476,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789044540000,
-      "_kind": null
+      "_kind": null,
+      "why": "Data center costs unclear for Nasdaq."
     },
     {
       "title": "Global bond yields rise as ECB hikes and hot U.S PPI fuels higher rate bets",
@@ -479,7 +495,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789044531000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "EUR/USD": "down"
+      },
+      "why": "Hot US PPI fuels higher rate bets."
     },
     {
       "title": "Gold prices dip slightly as ECB raises interest rates amid persistent inflation concerns - Pluang",
@@ -500,7 +520,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789042978000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold dips; ECB hike mixed for EUR."
     },
     {
       "title": "Saudi Arabia stocks lower at close of trade; Tadawul All Share down 0.08%",
@@ -515,7 +539,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789044303000,
-      "_kind": null
+      "_kind": null,
+      "why": "Saudi stocks irrelevant to US500."
     },
     {
       "title": "Which Energy Stocks Are Top Buys? Stifel Lists Best Oil And Gas Picks",
@@ -533,43 +558,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789044103000,
-      "_kind": null
-    },
-    {
-      "title": "U.S. wholesale inflation hits 5.4% annually in August 2026",
-      "link": "https://finance.yahoo.com/economy/articles/u-wholesale-inflation-hits-5-124104461.html",
-      "source": "Yahoo Finance",
-      "at": 1789044064000,
-      "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789043809000,
-      "_kind": null
-    },
-    {
-      "title": "Which Short-Term Bond ETF Is the Better Buy: iShares' ISTB or Schwab's SCHO?",
-      "link": "https://finance.yahoo.com/markets/options/articles/short-term-bond-etf-better-123816016.html",
-      "source": "Yahoo Finance",
-      "at": 1789043896000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789043896000,
-      "_kind": null
+      "_kind": null,
+      "why": "Stock picks do not imply direction."
     },
     {
       "title": "OPEC further lowers 2026 global oil demand growth forecast",
@@ -587,7 +577,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789042686000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Lower demand forecast bearish for oil."
     },
     {
       "title": "U.S. stock futures add to losses after mixed August producer inflation report",
@@ -608,9 +603,10 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 2,
+      "srcs": 1,
       "firstAt": 1789043809000,
-      "_kind": null
+      "_kind": null,
+      "why": "Mixed inflation report, unclear direction."
     },
     {
       "title": "Wholesale inflation stirred up by Iran war and high oil prices. What does it mean for the Fed?",
@@ -632,7 +628,12 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789043611000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "High oil prices cited in headline."
     },
     {
       "title": "ECB raises interest rates again amid Iran war inflation pressure",
@@ -655,7 +656,12 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789043611000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "up"
+      },
+      "why": "ECB hike mixed; Iran war boosts oil."
     },
     {
       "title": "Gold price down but weathering ECB's 25 basis point rate hike - KITCO",
@@ -676,7 +682,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789042978000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold down; ECB hike mixed for EUR."
     },
     {
       "title": "New Fed Chair Kevin Warsh Sparked a \"Credibility Shock\" on Wall Street After His Latest Rate Decision. 3 Reasons Investors Should Care",
@@ -693,7 +703,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789043247000,
-      "_kind": null
+      "_kind": null,
+      "why": "Credibility shock impact unclear for stocks."
     },
     {
       "title": "Jobless claims show steady US employment picture. Initial claims 206K vs 205k estimate",
@@ -717,7 +728,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789043458000,
-      "_kind": null
+      "_kind": null,
+      "why": "Steady employment picture, no clear direction."
     },
     {
       "title": "US August PPI 5.4% vs 5.3% expected",
@@ -805,6 +817,20 @@
       "srcs": 1,
       "firstAt": 1789043247000,
       "_kind": null
+    },
+    {
+      "title": "Nvidia partners with 8 Australian firms for 2GW AI buildout",
+      "link": "https://finance.yahoo.com/technology/ai/articles/nvidia-partners-8-australian-firms-122438874.html",
+      "source": "Yahoo Finance",
+      "at": 1789043078000,
+      "inst": [
+        "AUD/USD"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789043078000
     },
     {
       "title": "US government bond yields rise ahead of wholesale inflation data - UA.NEWS",
@@ -2102,6 +2128,27 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789020614000
+    },
+    {
+      "title": "EXCLUSIVE: How a billion-dollar sanctions dodge kept Chinese goods flowing to Iran - Reuters",
+      "link": "https://news.google.com/rss/articles/CBMivgFBVV95cUxPQXdBWlltZS1pUU8wZnFqc21wUDExNGZub0prbEtxYTNwS2J3UU91eTQ4aXZTUGNwWjdGZGxVZUNiY2dHbXVNbl9tNE4zSlVqVDJaZFlmMkZ6Slo3RndJczlqMTlsYlVGOEEteGNreDFjR0JabWhJaTNCTHNtUUozWDFVSm56QldwaXFjbnBQZWlxdGtsVFdmcDFDTHNjMzBaN2NkNlNzUGV0MXhZR3hBdmFUMV9LLU9ZYWxBTW5n?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMivgFBVV95cUxPQXdBWlltZS1pUU8wZnFqc21wUDExNGZub0prbEtxYTNwS2J3UU91eTQ4aXZTUGNwWjdGZGxVZUNiY2dHbXVNbl9tNE4zSlVqVDJaZFlmMkZ6Slo3RndJczlqMTlsYlVGOEEteGNreDFjR0JabWhJaTNCTHNtUUozWDFVSm56QldwaXFjbnBQZWlxdGtsVFdmcDFDTHNjMzBaN2NkNlNzUGV0MX",
+      "at": 1789020300000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "USD",
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789020300000
     }
   ],
   "sources": [
@@ -2124,10 +2171,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-10T12:56:30.490Z",
-  "headlinesAt": "2026-09-10T12:56:30.490Z",
-  "updatedAt": "2026-09-10T12:56:30.490Z"
+  "calendarAt": "2026-09-10T12:57:45.132Z",
+  "headlinesAt": "2026-09-10T12:57:45.132Z",
+  "updatedAt": "2026-09-10T12:57:45.132Z"
 }
