@@ -406,7 +406,91 @@
       "rel": 2,
       "srcs": 3,
       "firstAt": 1789051620000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil price surge mentioned in headline"
+    },
+    {
+      "title": "Morocco stocks lower at close of trade; Moroccan All Shares down 0.27%",
+      "link": "https://www.investing.com/news/stock-market-news/morocco-stocks-lower-at-close-of-trade-moroccan-all-shares-down-027-4896409",
+      "source": "Investing",
+      "at": 1789053003000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789053003000,
+      "_kind": null,
+      "why": "Moroccan stocks irrelevant to US index"
+    },
+    {
+      "title": "‘I Am the House Now,’ Bessent Warns — But Bond Traders Keep Raising Yields Anyway",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/am-house-now-bessent-warns-150914527.html",
+      "source": "Yahoo Finance",
+      "at": 1789052954000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789052954000,
+      "_kind": null,
+      "why": "Bond yields rising, direction unclear for FX"
+    },
+    {
+      "title": "Inflation Is About to Hit Hard as Diesel Prices Soar to Record Near $6 a Gallon",
+      "link": "https://finance.yahoo.com/economy/articles/inflation-hit-hard-diesel-prices-150640473.html",
+      "source": "Yahoo Finance",
+      "at": 1789052800000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789052800000,
+      "_kind": null,
+      "why": "Inflation impact on FX unclear"
+    },
+    {
+      "title": "Gasoil stocks in ARA hub climb 4% on higher US imports",
+      "link": "https://www.investing.com/news/commodities-news/gasoil-stocks-in-ara-hub-climb-4-on-higher-us-imports-93CH-4896401",
+      "source": "Investing Cmdty",
+      "at": 1789052796000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789052796000,
+      "_kind": null,
+      "why": "Gasoil stocks irrelevant to US index"
     },
     {
       "title": "Russian Attack on Civilian Shipping in Odesa Region Kills Two Azerbaijani Nationals - united24media.com",
@@ -427,7 +511,32 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789052603000,
-      "_kind": null
+      "_kind": null,
+      "why": "Geopolitical event, market reaction unclear"
+    },
+    {
+      "title": "Macy's raises annual profit forecast on tariff refunds, quarterly sales beat",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/macys-raises-annual-profit-forecast-145700246.html",
+      "source": "Yahoo Finance",
+      "at": 1789052220000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789052220000,
+      "_kind": null,
+      "why": "Macy's earnings irrelevant to FX"
     },
     {
       "title": "Norway stocks lower at close of trade; Oslo OBX down 0.62%",
@@ -442,7 +551,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789052153000,
-      "_kind": null
+      "_kind": null,
+      "why": "Norwegian stocks irrelevant to US index"
     },
     {
       "title": "Israel stocks lower at close of trade; TA 35 down 1.22%",
@@ -457,7 +567,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789052128000,
-      "_kind": null
+      "_kind": null,
+      "why": "Israeli stocks irrelevant to US index"
     },
     {
       "title": "Greece stocks lower at close of trade; Athens General Composite down 0.15%",
@@ -472,7 +583,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789052103000,
-      "_kind": null
+      "_kind": null,
+      "why": "Greek stocks irrelevant to US index"
     },
     {
       "title": "Crypto Mining Stocks Fall Harder Than Bitcoin on a Risk-Off Tape: Cipher Mining Sinks 6%, MARA and Riot Drop 4%",
@@ -490,20 +602,12 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789051260000,
-      "_kind": null
-    },
-    {
-      "title": "Insider Sees Opportunity, Buys 10,000 Shares of REIT Valued at Nearly $725,000",
-      "link": "https://finance.yahoo.com/real-estate/articles/insider-sees-opportunity-buys-10-145001003.html",
-      "source": "Yahoo Finance",
-      "at": 1789051801000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1789051801000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down",
+        "BTC/USDT": "down"
+      },
+      "why": "Risk-off tape, crypto stocks falling"
     },
     {
       "title": "Treasury yields surge toward the danger zone for stocks, as inflation pressures heat up",
@@ -523,7 +627,12 @@
       "rel": 2,
       "srcs": 4,
       "firstAt": 1789049094000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "US500": "down"
+      },
+      "why": "Oil high, yields surge bearish for stocks"
     },
     {
       "title": "$100 Oil Jolts Treasury Yields; Fed Rate-Hike Odds Jump",
@@ -541,7 +650,11 @@
       "rel": 2,
       "srcs": 4,
       "firstAt": 1789049094000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "$100 Oil implies price surge"
     },
     {
       "title": "$100 Oil Jolts Treasury Yields; Fed Rate-Hike Odds Jump - Investor's Business Daily",
@@ -560,7 +673,10 @@
       "rel": 2,
       "srcs": 4,
       "firstAt": 1789049094000,
-      "_kind": null
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "$100 Oil implies price surge"
     },
     {
       "title": "Tomorrow’s CPI Report Could Send Rate-Hike Odds Even Higher - 24/7 Wall St.",
@@ -583,7 +699,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789051260000
+      "firstAt": 1789051260000,
+      "why": "Future CPI report, current direction unclear"
     },
     {
       "title": "Gold and Crypto Fall as Hot US Inflation Rattles Markets - BeInCrypto",
@@ -624,18 +741,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789051200000
-    },
-    {
-      "title": "Intel, Cooper Companies among market cap stock movers on Thursday",
-      "link": "https://www.investing.com/news/stock-market-news/intel-cooper-companies-among-market-cap-stock-movers-on-thursday-93CH-4896328",
-      "source": "Investing",
-      "at": 1789050973000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1789050973000
     },
     {
       "title": "Treasury’s $6B Buyback: Inflation and Your Money - moneylion.com",
@@ -832,22 +937,6 @@
       "firstAt": 1789048612000
     },
     {
-      "title": "Coinbase CEO Says Bitcoin Has Bottomed",
-      "link": "https://finance.yahoo.com/markets/crypto/articles/coinbase-ceo-says-bitcoin-bottomed-135500049.html",
-      "source": "Yahoo Finance",
-      "at": 1789048500000,
-      "inst": [
-        "BTC/USDT"
-      ],
-      "ccy": [
-        "BTC"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789048500000
-    },
-    {
       "title": "Brent tops $104 as Mideast strikes dent hopes for renewed Hormuz shipping",
       "link": "https://www.investing.com/news/commodities-news/oil-prices-rise-further-as-usiran-conflict-worsens-4894781",
       "source": "Investing Cmdty",
@@ -865,20 +954,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789048470000
-    },
-    {
-      "title": "Nasdaq Invests $100 Million In Kraken Parent Company",
-      "link": "https://finance.yahoo.com/markets/crypto/articles/nasdaq-invests-100-million-kraken-135200836.html",
-      "source": "Yahoo Finance",
-      "at": 1789048320000,
-      "inst": [
-        "US100"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789048320000
     },
     {
       "title": "10-year Treasury at highest level since 2023 as oil prices jump to $105: Chart of the Day",
@@ -2052,24 +2127,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789031820000
-    },
-    {
-      "title": "Bond Yields Edge Up as Investors Await ECB Rate Hike, U.S. Treasury Buybacks - marketscreener.com",
-      "link": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNbTM5akNhMHVRbmNSRFlDOWVTeDh1aDRuSUk3VFV0YTBRei1JaGlBVnFXYVNNekJtS3BPdkVrTW1RckxMbEpMUXZsZmNjUVJLU3RiUmZoSm5nTl9WUXhKUzdUM1ZqQUNIZWJXaTJ2NFZmVkpLQjhuaVl3eVMxOGUwSkhkdk5URUhXYUZuaXBQYlQtcEhHQ3JSTEthS1ZINHRFU18wNzI3VXQ0bVhUc3owMTFzZDBXck9LeVhWYlZrNjlVT3ZYanc?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMixgFBVV95cUxNbTM5akNhMHVRbmNSRFlDOWVTeDh1aDRuSUk3VFV0YTBRei1JaGlBVnFXYVNNekJtS3BPdkVrTW1RckxMbEpMUXZsZmNjUVJLU3RiUmZoSm5nTl9WUXhKUzdUM1ZqQUNIZWJXaTJ2NFZmVkpLQjhuaVl3eVMxOGUwSkhkdk5URUhXYUZuaXBQYlQtcEhHQ3JSTEthS1ZINHRFU18wNzI3VXQ0bV",
-      "at": 1789031464000,
-      "inst": [
-        "EUR/USD"
-      ],
-      "ccy": [
-        "USD",
-        "EUR"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789031464000
     }
   ],
   "sources": [
@@ -2095,7 +2152,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-10T15:16:15.836Z",
-  "headlinesAt": "2026-09-10T15:16:15.836Z",
-  "updatedAt": "2026-09-10T15:16:15.836Z"
+  "calendarAt": "2026-09-10T15:17:46.641Z",
+  "headlinesAt": "2026-09-10T15:17:46.641Z",
+  "updatedAt": "2026-09-10T15:17:46.641Z"
 }
