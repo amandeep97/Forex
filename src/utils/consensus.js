@@ -21,6 +21,7 @@ import { scorePairToday } from './pairStats';
 import { fetchSpreadStress, fetchPositioning, oandaCreds } from './flowFeed';
 import { get, pooled } from './marketCache';
 import { locationCheck } from '../../shared/premiumDiscount.mjs';
+import { sweepSetup } from '../../shared/liquidity.mjs';
 
 export const FAMILIES = {
   structure:  { label:'Structure',  from:'Signals — H4/H1/M15, OB/FVG' },
@@ -63,14 +64,18 @@ async function readSources(inst, cfg) {
   // roughly a quarter of a one-ATR stop, which is more than any edge this
   // project has measured. Reading where price sits costs nothing, because
   // nothing is being traded on that bar.
-  let h4 = null, h1 = null, m15 = null, m2 = null;
+  let h4 = null, h1 = null, m15 = null, m2 = null, daily = null, weekly = null;
   if (instr && oandaCreds()?.apiKey) {
     try {
-      [h4, h1, m15, m2] = await Promise.all([
+      [h4, h1, m15, m2, daily, weekly] = await Promise.all([
         get('candles', sym, () => fetchOHLC(instr, 'H4', 60),  { params:'H4-td'  }).then(r => r.value),
         get('candles', sym, () => fetchOHLC(instr, 'H1', 90),  { params:'H1-td'  }).then(r => r.value),
         get('candles', sym, () => fetchOHLC(instr, 'M15', 90), { params:'M15-td' }).then(r => r.value),
-        get('candles', sym, () => fetchOHLC(instr, 'M2', 120), { params:'M2-loc' }).then(r => r.value)
+        get('candles', sym, () => fetchOHLC(instr, 'M2', 200), { params:'M2-loc' }).then(r => r.value)
+          .catch(() => null),
+        get('candles', sym, () => fetchOHLC(instr, 'D', 10),   { params:'D-liq'  }).then(r => r.value)
+          .catch(() => null),
+        get('candles', sym, () => fetchOHLC(instr, 'W', 6),    { params:'W-liq'  }).then(r => r.value)
           .catch(() => null),
       ]);
     } catch { /* handled by the missing list below */ }
@@ -141,7 +146,21 @@ async function readSources(inst, cfg) {
     ? { byTf: { H4: h4 || [], M15: m15 || [], M2: m2 || [] }, price: fastest[fastest.length - 1].c }
     : null;
 
-  return { votes, missing, vetoes, location };
+  // The sweep model, computed on the same candles.
+  //
+  // It is deliberately NOT a vote. The engines answer "which way does the
+  // evidence lean"; this answers "has a specific thing already happened". A
+  // swept level with a confirmed turn stands on its own whether or not four
+  // technical models happen to agree, and folding it into the count would let
+  // three disagreeing engines cancel an event that is a matter of record.
+  let liquidity = null;
+  try {
+    if (m2 && m2.length >= 20) {
+      liquidity = sweepSetup({ daily: daily || [], weekly: weekly || [], h4: h4 || [], exec: m2 });
+    }
+  } catch { liquidity = null; }
+
+  return { votes, missing, vetoes, location, liquidity };
 }
 
 // ── Verdict ───────────────────────────────────────────────────────────────────
@@ -186,10 +205,10 @@ export async function runConsensusFor(sym, overrides = {}) {
   const inst = bySymbol(sym);
   if (!inst || !inst.can.candles) return null;
   try {
-    const { votes, missing, vetoes, location } = await readSources(inst, cfg);
+    const { votes, missing, vetoes, location, liquidity } = await readSources(inst, cfg);
     const verdict = verdictOf(votes, vetoes, cfg, location);
     return {
-      sym: inst.sym, cls: inst.cls, inst, votes, missing,
+      sym: inst.sym, cls: inst.cls, inst, votes, missing, liquidity,
       // The location veto is decided inside verdictOf, so the row's list has to
       // come back from there or the screen shows a block with no reason on it.
       vetoes: verdict.vetoes || vetoes,
@@ -208,9 +227,9 @@ export async function runConsensus(overrides = {}) {
 
   const rows = await pooled(list, async inst => {
     try {
-      const { votes, missing, vetoes, location } = await readSources(inst, cfg);
+      const { votes, missing, vetoes, location, liquidity } = await readSources(inst, cfg);
       const verdict = verdictOf(votes, vetoes, cfg, location);
-      return { sym: inst.sym, cls: inst.cls, inst, votes, missing,
+      return { sym: inst.sym, cls: inst.cls, inst, votes, missing, liquidity,
                vetoes: verdict.vetoes || vetoes, verdict,
                sources: Object.keys(votes).length, total: Object.keys(FAMILIES).length };
     } catch (e) { return { sym: inst.sym, cls: inst.cls, inst, error: e.message, votes:{}, missing:[], vetoes:[],
