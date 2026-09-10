@@ -20,7 +20,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789076350000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "War escalation boosts safe havens and oil."
     },
     {
       "title": "S&P 500 ends down as Treasury yields rise and traders fret about inflation - Free Malaysia Today",
@@ -38,7 +44,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789074256000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Stocks end down on inflation and yields."
     },
     {
       "title": "Oil Surges Past $100, 10-Year Treasury Yield Hits 4.91% as Inflation Fears Mount - finance.biggo.com",
@@ -57,7 +67,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789074256000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil surges past $100 on inflation fears."
     },
     {
       "title": "Republican midterm convention live: Trump headlines day 2 of Dallas rally",
@@ -86,7 +100,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789075803000,
-      "_kind": null
+      "_kind": null,
+      "why": "Mexico stocks news irrelevant to US index."
     },
     {
       "title": "Colombia stocks higher at close of trade; COLCAP up 1.65%",
@@ -101,7 +116,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789075503000,
-      "_kind": null
+      "_kind": null,
+      "why": "Colombia stocks news irrelevant to US index."
     },
     {
       "title": "Russian strike hits shopping centre in central Ukraine - aljazeera.com",
@@ -122,7 +138,13 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789074222000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Ukraine strike boosts risk aversion and oil."
     },
     {
       "title": "Brent tops $108, WTI surpasses $103 as oil prices soar on Middle East escalation",
@@ -142,7 +164,13 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789072652000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up",
+        "XAU/USD": "up"
+      },
+      "why": "Middle East escalation drives oil and gold up."
     },
     {
       "title": "Russia stocks higher at close of trade; MOEX Russia Index up 1.77%",
@@ -157,7 +185,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789075203000,
-      "_kind": null
+      "_kind": null,
+      "why": "Russia stocks news irrelevant to US index."
     },
     {
       "title": "Israel says it destroyed key Hezbollah tunnels in southern Lebanon",
@@ -178,7 +207,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789075156000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Hezbollah tunnels destroyed reduces regional risk premium."
     },
     {
       "title": "Gaza hospitals ration power as fuel shortages deepen",
@@ -196,7 +231,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789075029000,
-      "_kind": null
+      "why": "Gaza fuel shortage has negligible global oil impact."
     },
     {
       "title": "U.S. Treasury Yields Surge on Inflation Pressures; Odds of September Fed Rate Hike Top 70% - bloomingbit",
@@ -219,7 +254,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789072800000
+      "firstAt": 1789072800000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Yields surge and Fed hike odds boost dollar."
     },
     {
       "title": "Bath & Body Works gains in extended trading as Barington pushes for a sale",
@@ -251,7 +292,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789071830000
+      "firstAt": 1789071830000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "US sanctions on Iran boost risk and oil."
     },
     {
       "title": "US Equity Indexes Decline as Treasury Yields Soar Amid Hot Wholesale Inflation Print, Escalation in Iran War Threatens Red Sea Chokepoint - marketscreener.com",
@@ -272,7 +319,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 3,
-      "firstAt": 1789071830000
+      "firstAt": 1789071830000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Yields soar and Iran war threat boost oil/gold."
     },
     {
       "title": "Russian strike hits shopping centre in central Ukraine",
@@ -292,7 +345,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789074222000
+      "firstAt": 1789074222000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Ukraine strike boosts risk aversion and oil."
     },
     {
       "title": "ICE canola futures rise as soy products and crude oil gain",
@@ -309,7 +368,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789074184000
+      "firstAt": 1789074184000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Crude oil gains lift canola futures."
     },
     {
       "title": "Adobe’s latest earnings leave Wall Street wanting more",
@@ -1759,10 +1823,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-10T21:46:15.266Z",
-  "updatedAt": "2026-09-10T21:46:15.266Z"
+  "headlinesAt": "2026-09-10T21:48:00.823Z",
+  "updatedAt": "2026-09-10T21:48:00.823Z"
 }
