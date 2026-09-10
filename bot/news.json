@@ -363,6 +363,29 @@
   ],
   "headlines": [
     {
+      "title": "Oil surges 6%, Brent and US crude both surpass $100 on more tanker attacks",
+      "link": "https://www.investing.com/news/commodities-news/brent-holds-above-100-as-tanker-attacks-deepen-supply-fear-4894851",
+      "source": "Investing Cmdty",
+      "at": 1789062869000,
+      "inst": [
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789062869000,
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Oil surges on tanker attacks"
+    },
+    {
       "title": "UNSC permanent members spar over Iran sanctions snapback - TRT World",
       "link": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE1IMTE0VURPbW1sOU9iRnNzMHZTdFlFVTZWTFE3bXZUMWtGZ1EzdlB6ZmNZaUduT0daOC1WWl9CeXpwdHBTNTRPTTFXUzI4aXRoZDFOZU9OSUE?oc=5",
       "source": "Wires (geo)",
@@ -381,7 +404,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789062432000,
-      "_kind": null
+      "_kind": null,
+      "why": "UNSC dispute over Iran sanctions"
     },
     {
       "title": "OpenAI launches ChatGPT for Financial Services for Wall Street",
@@ -395,8 +419,9 @@
       "sev": 1,
       "rel": 2,
       "srcs": 3,
-      "firstAt": 1789060193000,
-      "_kind": null
+      "firstAt": 1789061287000,
+      "_kind": null,
+      "why": "OpenAI launches financial services tool"
     },
     {
       "title": "Israel preparing for possible Iranian escalation over holiday, but hasn't issued any warnings -- report - The Times of Israel",
@@ -417,7 +442,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789062055000,
-      "_kind": null
+      "_kind": null,
+      "why": "Israel prepares for Iranian escalation"
     },
     {
       "title": "An e.l.f. Beauty Insider Sells 5,512 Shares for $606,320",
@@ -448,7 +474,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789061986000,
-      "_kind": null
+      "_kind": null,
+      "why": "Nuclear stocks slide on sector split"
     },
     {
       "title": "Where Will the Nasdaq Be in 2036? History Has Good and Bad News for Growth Investors.",
@@ -463,7 +490,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789061760000,
-      "_kind": null
+      "_kind": null,
+      "why": "Nasdaq 2036 outlook analysis"
     },
     {
       "title": "Investors should be eating up these 9 restaurant stocks, analysts say",
@@ -481,7 +509,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789061700000,
-      "_kind": null
+      "_kind": null,
+      "why": "Analysts recommend restaurant stocks"
     },
     {
       "title": "Donald Trump promises $5K dividend as rising inflation, oil prices rattle markets - Fox Business",
@@ -500,7 +529,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789059600000,
-      "_kind": null
+      "_kind": null,
+      "why": "Trump dividend promise amid oil rise"
     },
     {
       "title": "Gold and Bitcoin drop as US inflation boosts Tr... - Pluang",
@@ -521,7 +551,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789061556000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "BTC/USDT": "down"
+      },
+      "why": "Gold and Bitcoin drop on inflation"
     },
     {
       "title": "Family of four killed as they slept in Israeli strike on Gaza",
@@ -542,7 +577,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789061548000,
-      "_kind": null
+      "_kind": null,
+      "why": "Israeli strike kills Gaza family"
     },
     {
       "title": "OpenAI targets work of Wall Street junior bankers with new ChatGPT for Financial Services",
@@ -556,9 +592,10 @@
       "ccy": [],
       "sev": 1,
       "rel": 2,
-      "srcs": 2,
+      "srcs": 3,
       "firstAt": 1789061287000,
-      "_kind": null
+      "_kind": null,
+      "why": "OpenAI targets junior bankers"
     },
     {
       "title": "Canadian dollar edges lower as oil stays above $100, US inflation data in focus - Investing.com Nigeria",
@@ -578,7 +615,10 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789061238000,
-      "_kind": null
+      "dir": {
+        "USD/CAD": "up"
+      },
+      "why": "CAD lower as oil stays high"
     },
     {
       "title": "Why Canadian copper stocks are plunging after copper hit a record high?",
@@ -593,7 +633,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789061049000
+      "firstAt": 1789061049000,
+      "why": "Canadian copper stocks plunge"
     },
     {
       "title": "Canada 10-year yield jumps as oil surge, inflation fears drive bond selloff",
@@ -612,25 +653,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789061049000
-    },
-    {
-      "title": "TSX hits five-week low as oil surge, hotter US inflation weigh on stocks",
-      "link": "https://www.investing.com/news/stock-market-news/tsx-futures-tick-lower-ahead-of-us-inflation-data-4895707",
-      "source": "Investing",
-      "at": 1789060928000,
-      "inst": [
-        "USOIL",
-        "US500"
-      ],
-      "ccy": [
-        "OIL",
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789060928000
+      "firstAt": 1789061049000,
+      "why": "Canada yield jumps on oil surge"
     },
     {
       "title": "Stock Market Today: Dow Drops As Fear Gauge Spikes; Copper Players Tumble On Tariff News (Live Coverage)",
@@ -646,7 +670,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789060802000
+      "firstAt": 1789060802000,
+      "dir": {
+        "US30": "down"
+      },
+      "why": "Dow drops as fear gauge spikes"
     },
     {
       "title": "US warplanes damaged in Iran strikes on Jordan base - Iran International",
@@ -1023,23 +1051,6 @@
       "firstAt": 1789057140000
     },
     {
-      "title": "Oil surges 5%, Brent and US crude both over $100 on more tanker attacks",
-      "link": "https://www.investing.com/news/commodities-news/brent-holds-above-100-as-tanker-attacks-deepen-supply-fear-4894851",
-      "source": "Investing Cmdty",
-      "at": 1789056775000,
-      "inst": [
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789056775000
-    },
-    {
       "title": "Oil jumps to $105, pushing up chances of a US interest rate increase",
       "link": "https://www.aljazeera.com/economy/2026/9/10/oil-jumps-to-105-pushing-up-chances-of-a-us-interest-rate-increase?traffic_source=rss",
       "source": "Al Jazeera",
@@ -1136,26 +1147,6 @@
         "OIL"
       ],
       "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789052420000
-    },
-    {
-      "title": "Corvis Urged the US to Ease Iran and Russia Oil Sanctions as Prices Surged - Межа. Новини України.",
-      "link": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE9zMzNZMXkzdzJSQnlBTWlUbkFpeWtpSFZmN1BDcXRJdE44cks2dUQxX0pzd1NDM0YxcFBEenZORHlnVWtWaVJYaVVZeE5VUlpnWG1JOWYtdTgxSzJVVE9ScWZiNE84Mms?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiZ0FVX3lxTE9zMzNZMXkzdzJSQnlBTWlUbkFpeWtpSFZmN1BDcXRJdE44cks2dUQxX0pzd1NDM0YxcFBEenZORHlnVWtWaVJYaVVZeE5VUlpnWG1JOWYtdTgxSzJVVE9ScWZiNE84Mms?oc=5\" target=\"_blank\">Corvis Urged the US to Ease Iran and Russia Oil Sanctions as Prices ",
-      "at": 1789054776000,
-      "inst": [
-        "USOIL",
-        "XAU/USD",
-        "UKOIL"
-      ],
-      "ccy": [
-        "OIL",
-        "XAU"
-      ],
-      "sev": 2,
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789052420000
@@ -1303,7 +1294,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789052603000
+      "firstAt": 1789051499000
     },
     {
       "title": "Russia sanctions bill faces make-or-break moment before US midterms, Ukraine says - The Kyiv Independent",
@@ -1323,7 +1314,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789052420000
+      "firstAt": 1789051499000
     },
     {
       "title": "$100 Oil Jolts Treasury Yields; Fed Rate-Hike Odds Jump - Investor's Business Daily",
@@ -1365,6 +1356,26 @@
       "rel": 2,
       "srcs": 3,
       "firstAt": 1789049094000
+    },
+    {
+      "title": "Russia Kills 2 Azeris in Tugboat Attack Off Odesa Coast - Kyiv Post",
+      "link": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE9aQzJpRHlYX0NVYXlBUmd6ZFF3dHRqcElOT2h5RWVNbFdqVnJ3eHB2WFdtS3BrX282SDdoa3FkRFJzbVhjclk4MjhPOA?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiS0FVX3lxTE9aQzJpRHlYX0NVYXlBUmd6ZFF3dHRqcElOT2h5RWVNbFdqVnJ3eHB2WFdtS3BrX282SDdoa3FkRFJzbVhjclk4MjhPOA?oc=5\" target=\"_blank\">Russia Kills 2 Azeris in Tugboat Attack Off Odesa Coast</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">Kyiv Post</f",
+      "at": 1789051499000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789051499000
     },
     {
       "title": "Gold slides as US PPI reinforces Fed hike expectations, US Dollar and yields rise - FXStreet",
@@ -1696,7 +1707,7 @@
       "firstAt": 1789045144000
     },
     {
-      "title": "Gold Steadies Near $4,400 as Traders Weigh Fed Rate-Hike Path - bloomberg.com",
+      "title": "Gold Steadies Near $4,400 as Traders Weigh Fed Rate-Hike Path - Bloomberg.com",
       "link": "https://news.google.com/rss/articles/CBMisAFBVV95cUxOaFRXcGQwNTFkN3pOdUk5d28xYXFuUzk5elZ0cEotYUpLY3lJTnAwMUs3OWVVMTIzQ1M0d2c0N0QzcG13aDJNWllJVGJ3THdmdnhad1JmaUtwemVERFVVY2tHamV5a0JWaXJJa05ZenhLdGtKci0xSHdqWlpBTkxjVEQ0a3MxUFVYVTJXZDJGc0VUazVPa1JXRTBsa1k5NUdTeEZLVkp0ZHdMMEh4MlNqeg?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMisAFBVV95cUxOaFRXcGQwNTFkN3pOdUk5d28xYXFuUzk5elZ0cEotYUpLY3lJTnAwMUs3OWVVMTIzQ1M0d2c0N0QzcG13aDJNWllJVGJ3THdmdnhad1JmaUtwemVERFVVY2tHamV5a0JWaXJJa05ZenhLdGtKci0xSHdqWlpBTkxjVEQ0a3MxUFVYVTJXZDJGc0VUazVPa1JXRTBsa1k5NUdTeEZLVkp0ZHdMME",
@@ -1752,7 +1763,7 @@
       "firstAt": 1789047292000
     },
     {
-      "title": "Russia’s Crude Output Fell in August as Ukraine Steps Up Strikes - bloomberg.com",
+      "title": "Russia’s Crude Output Fell in August as Ukraine Steps Up Strikes - Bloomberg.com",
       "link": "https://news.google.com/rss/articles/CBMitgFBVV95cUxOSm1TSU44LWdUTGlKTk5EZi1XQzhYUGFremZ2cXBWcHNudUtNYVVuZUVpbjc4Mk15bmNkOUZ0aHE4Y3BZX1FrUFl4clF4cURWLVhQMUtib1AweVExODZHblY1RzBaRUkyWXBsWTRrdmVXTm5ydU1UQmlDdWtFbG0xbTJBWGtqQmNPdFN6TU5tNTVuTmE5Q1ZUZDRaMS00NEs0dlJnNjdsTzBFMzlvN2R2Tmlac3Jndw?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMitgFBVV95cUxOSm1TSU44LWdUTGlKTk5EZi1XQzhYUGFremZ2cXBWcHNudUtNYVVuZUVpbjc4Mk15bmNkOUZ0aHE4Y3BZX1FrUFl4clF4cURWLVhQMUtib1AweVExODZHblY1RzBaRUkyWXBsWTRrdmVXTm5ydU1UQmlDdWtFbG0xbTJBWGtqQmNPdFN6TU5tNTVuTmE5Q1ZUZDRaMS00NEs0dlJnNjdsTzBFMz",
@@ -2079,6 +2090,27 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789041915000
+    },
+    {
+      "title": "investingLive European markets wrap: Oil and bond yields push higher as ECB decision looms",
+      "link": "https://investinglive.com/news/investinglive-european-markets-wrap-oil-and-bond-yields-push-higher-as-ecb-decision-looms/",
+      "source": "ForexLive",
+      "desc": "Headlines:Oil prices above $100 continue to lift bond yields as inflation fears growEuropean stocks edge higher as investors brace for ECB decisionStock movers today: Meta leads AI optimism while ServiceTitan and Navan show the cost of missing expectationsOracle earnings preview:",
+      "at": 1789041913000,
+      "inst": [
+        "EUR/USD",
+        "USOIL",
+        "US500"
+      ],
+      "ccy": [
+        "EUR",
+        "OIL",
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1789039775000
     }
   ],
   "sources": [
@@ -2101,10 +2133,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-10T17:56:29.341Z",
-  "headlinesAt": "2026-09-10T17:56:29.341Z",
-  "updatedAt": "2026-09-10T17:56:29.341Z"
+  "calendarAt": "2026-09-10T17:57:47.308Z",
+  "headlinesAt": "2026-09-10T17:57:47.308Z",
+  "updatedAt": "2026-09-10T17:57:47.308Z"
 }
