@@ -405,7 +405,25 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 2,
+      "srcs": 3,
+      "firstAt": 1789049094000,
+      "_kind": null
+    },
+    {
+      "title": "$100 Oil Jolts Treasury Yields; Fed Rate-Hike Odds Jump",
+      "link": "https://www.investors.com/news/10-year-treasury-yield-crude-oil-federal-reserve-bessent-buyback/?src=A00220&yptr=yahoo",
+      "source": "Yahoo Finance",
+      "at": 1789051656000,
+      "inst": [
+        "USOIL"
+      ],
+      "ccy": [
+        "USD",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 4,
       "firstAt": 1789049094000,
       "_kind": null
     },
@@ -513,6 +531,19 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789051200000,
+      "_kind": null
+    },
+    {
+      "title": "Why Tech Workers Are Borrowing Against Their Startup Shares: Techdollar CEO",
+      "link": "https://finance.yahoo.com/technology/articles/why-tech-workers-borrowing-against-143800542.html",
+      "source": "Yahoo Finance",
+      "at": 1789051080000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 1,
+      "srcs": 1,
+      "firstAt": 1789051080000,
       "_kind": null
     },
     {
@@ -2054,43 +2085,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789030519000
-    },
-    {
-      "title": "Swiss Franc gives back gains, but US Dollar struggles with Inflation data on tap - FXStreet",
-      "link": "https://news.google.com/rss/articles/CBMivwFBVV95cUxQOFJsRGQ1YWNSUE1ieG9tdWU5NnRmTU5QbjFnZVVmYlIzZnMyQlE0QzkwMm1MVndlOHhpb1hPbDRvVGNRamp3dnhKZHpSbEtrMXc0LWVEdGZsVEpJQ3VvbHBYMFlGY3ozeVdkOXBFWFhtY2VLWlhMbmhORk9yTWt0U2JaeVdzY2FTd3ZLdHBoWWZMbjBqd0N2NUVuMm5uY3g2VWc3S3VnTlhMX1NHNE9iaDd5SnlleDVoSzFiR2xTMA?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMivwFBVV95cUxQOFJsRGQ1YWNSUE1ieG9tdWU5NnRmTU5QbjFnZVVmYlIzZnMyQlE0QzkwMm1MVndlOHhpb1hPbDRvVGNRamp3dnhKZHpSbEtrMXc0LWVEdGZsVEpJQ3VvbHBYMFlGY3ozeVdkOXBFWFhtY2VLWlhMbmhORk9yTWt0U2JaeVdzY2FTd3ZLdHBoWWZMbjBqd0N2NUVuMm5uY3g2VWc3S3VnTlhMX1",
-      "at": 1789030459000,
-      "inst": [
-        "USD/CHF"
-      ],
-      "ccy": [
-        "USD",
-        "CHF"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789030459000
-    },
-    {
-      "title": "Stock market today: Dow, S&P 500, Nasdaq extend losses as bond yields jump, oil holds above $100",
-      "link": "https://finance.yahoo.com/markets/live/stock-market-today-thursday-september-10-dow-sp-500-nasdaq-083717303.html",
-      "source": "Yahoo Finance",
-      "at": 1789029437000,
-      "inst": [
-        "USOIL",
-        "US500",
-        "US100",
-        "US30"
-      ],
-      "ccy": [
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789029437000
     }
   ],
   "sources": [
@@ -2113,10 +2107,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-10T14:59:03.555Z",
-  "headlinesAt": "2026-09-10T14:59:03.555Z",
-  "updatedAt": "2026-09-10T14:59:03.555Z"
+  "calendarAt": "2026-09-10T15:00:15.322Z",
+  "headlinesAt": "2026-09-10T15:00:15.322Z",
+  "updatedAt": "2026-09-10T15:00:15.322Z"
 }
