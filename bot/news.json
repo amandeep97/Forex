@@ -479,8 +479,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789032629000,
-      "_kind": null
+      "firstAt": 1789032629000
     },
     {
       "title": "The ECB is virtually certain to raise rates. Wall Street is bracing for what comes next.",
@@ -517,7 +516,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789029716000
+      "firstAt": 1789031869000
     },
     {
       "title": "Sterling today: Pound rises as BoE rate hike bets build",
@@ -591,19 +590,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789030125000
-    },
-    {
-      "title": "Don’t Panic About a Bond Market Selloff. It Could Be a Sign of Economic Strength - Morningstar",
-      "link": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxOblJ5N2t5X3BrMVZFRDZodmI3RUx4WTBTUXM1MnhQZ0xpM1E2WWNmbGxqM1pTU2xlRDJpOVNEbGhhX3YtNUdweDByeE5YQ3c2RUprTkRvdHgxMExBWFVIcnBCaTNtVnp3T2IySHlEblJQaW42b21tSnB3T3JFa3ZYbm1FV1pSRjh3aGk0TkI2My1RY0tlbjhvVmNhQnBnNFo4cjZXQm1UblctTDQ?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiqwFBVV95cUxOblJ5N2t5X3BrMVZFRDZodmI3RUx4WTBTUXM1MnhQZ0xpM1E2WWNmbGxqM1pTU2xlRDJpOVNEbGhhX3YtNUdweDByeE5YQ3c2RUprTkRvdHgxMExBWFVIcnBCaTNtVnp3T2IySHlEblJQaW42b21tSnB3T3JFa3ZYbm1FV1pSRjh3aGk0TkI2My1RY0tlbjhvVmNhQnBnNFo4cjZXQm1UblctTD",
-      "at": 1789029716000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789029716000
     },
     {
       "title": "Euro zone yields hold near multi-year peaks as ECB rate decision looms",
@@ -2097,11 +2083,35 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788985438000
+    },
+    {
+      "title": "Economic and event calendar in Asia Thursday, September 10, 2026 ... m'eh",
+      "link": "https://investinglive.com/news/economic-and-event-calendar-in-asia-thursday-september-10-2026-m-eh/",
+      "source": "ForexLive",
+      "desc": "The economic calendar for Asia today does not show impactful data releases. We will, of course, have ongoing war developments to deal with, along with specualtion ahead of US inflation reports due Thursday (PPI) and Friday (CPI - what Goldman Sachs expect ('benign') here). This a",
+      "at": 1788985519000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1788985519000
     }
   ],
   "sources": [
     "ForexLive",
     "MarketWatch",
+    "Investing",
     "Investing FX",
     "Investing Cmdty",
     "CNBC Markets",
@@ -2113,19 +2123,15 @@
   ],
   "failed": [
     {
-      "name": "Investing",
-      "why": "502"
-    },
-    {
       "name": "FXStreet",
       "why": "403"
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-10T09:59:42.949Z",
-  "headlinesAt": "2026-09-10T09:59:42.949Z",
-  "updatedAt": "2026-09-10T09:59:42.949Z"
+  "calendarAt": "2026-09-10T10:01:28.823Z",
+  "headlinesAt": "2026-09-10T10:01:28.823Z",
+  "updatedAt": "2026-09-10T10:01:28.823Z"
 }
