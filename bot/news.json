@@ -2,6 +2,33 @@
   "calendar": [],
   "headlines": [
     {
+      "title": "Iran Damages A-10, F-15s with Missile Attack on Air Base in Jordan - Air & Space Forces Magazine",
+      "link": "https://news.google.com/rss/articles/CBMiogFBVV95cUxONnVBM3l5TkRqUGxHTEF0d0pvbm56N3pGSjFQX052cFZGS3N6ZHRiOWhKVDFLY2Q3cFhmeDUweWNyakU3eS11bmJlUGlETkZfYUY1aUlCcWxEOUs0cTVZcS1DOEg1Q3M5LXpGVGJFZkpQUGg3WVpEUHF0b0wyVTF3dlFVb253dlg4dG9laElUR01acFJpemtueVFNSDNnTVNjNlE?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiogFBVV95cUxONnVBM3l5TkRqUGxHTEF0d0pvbm56N3pGSjFQX052cFZGS3N6ZHRiOWhKVDFLY2Q3cFhmeDUweWNyakU3eS11bmJlUGlETkZfYUY1aUlCcWxEOUs0cTVZcS1DOEg1Q3M5LXpGVGJFZkpQUGg3WVpEUHF0b0wyVTF3dlFVb253dlg4dG9laElUR01acFJpemtueVFNSDNnTVNjNlE?oc=5\" targ",
+      "at": 1789009425000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789007027000,
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Geopolitical risk boosts safe havens and oil"
+    },
+    {
       "title": "Trump promises $5,000 checks if Republicans win the midterms. But he also promised tariff dividends last year that never came.",
       "link": "https://www.marketwatch.com/story/trump-promises-5-000-checks-if-republicans-win-the-midterms-but-he-also-promised-tariff-dividends-last-year-that-never-came-d062c602?mod=mw_rss_topstories",
       "source": "MarketWatch",
@@ -23,7 +50,8 @@
       "rel": 2,
       "srcs": 3,
       "firstAt": 1789007027000,
-      "_kind": null
+      "_kind": null,
+      "why": "Political promise lacks immediate market impact"
     },
     {
       "title": "Gold edges higher on weaker dollar, US inflation data in focus - Reuters",
@@ -42,7 +70,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789006914000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Weaker dollar supports gold prices"
     },
     {
       "title": "Bank of Japan may need to raise rates quickly if inflation rises, board member Masu says",
@@ -60,7 +92,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789008676000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USD/JPY": "down"
+      },
+      "why": "BoJ rate hike expectations strengthen yen"
     },
     {
       "title": "Trump ties $5,000 payment promise to a full Republican midterm sweep",
@@ -84,7 +120,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789008553000,
-      "_kind": null
+      "_kind": null,
+      "why": "Debt concerns ambiguous for currency direction"
     },
     {
       "title": "Iran's Pickaxe Mountain sees construction surge as US weighs underground strikes - jpost.com",
@@ -105,7 +142,13 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789007431000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Escalating conflict risks boost oil and gold"
     },
     {
       "title": "United States Dollar Index (DXY) bears eye August low around 98.50 ahead of US inflation - tmgm.com",
@@ -129,7 +172,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789008275000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "EUR/USD": "up",
+        "GBP/USD": "up"
+      },
+      "why": "Dollar weakness supports gold and euro"
     },
     {
       "title": "Gold futures break 3-day slide ahead of August inflation data. - CME Group",
@@ -148,7 +197,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789006914000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Gold breaks slide, indicating upward momentum"
     },
     {
       "title": "Gold Holds Near $4,400 as Markets Watch U.S. Inflation Readings - Briefs Finance",
@@ -166,7 +219,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789005060000
+      "firstAt": 1789005060000,
+      "why": "Gold holds steady, no clear direction"
     },
     {
       "title": "Gold little changed with US inflation data in sight - The Economic Times",
@@ -184,7 +238,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789005060000
+      "firstAt": 1789005060000,
+      "why": "Gold little changed, awaiting data"
     },
     {
       "title": "Commodity Corner: Brent crude breaches $100/bbl on supply concerns; gold steady ahead of US inflation data - TradingView",
@@ -205,7 +260,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789003831000
+      "firstAt": 1789003831000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Oil surges on supply, gold steady"
     },
     {
       "title": "Currency markets subdued as oil shock lifts global yields; ECB, U.S. inflation eyed - Reuters",
@@ -225,7 +285,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789006020000
+      "firstAt": 1789006020000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil shock lifts yields, currency subdued"
     },
     {
       "title": "Fires reported in Russia's Dagestan amid Ukrainian drone attack - The Kyiv Independent",
@@ -245,7 +309,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789004613000
+      "firstAt": 1789004613000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Ukraine-Russia conflict escalation boosts risk assets"
     },
     {
       "title": "Hunter Biden memecoin $LAPTOP loses 95% of market value just hours after launch",
@@ -262,7 +332,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789005840000
+      "firstAt": 1789005840000,
+      "why": "Memecoin failure does not move Bitcoin"
     },
     {
       "title": "Asian stocks fall as oil stokes inflation fears - The Business Times",
@@ -281,7 +352,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789005060000
+      "firstAt": 1789005060000,
+      "dir": {
+        "USOIL": "up",
+        "US500": "down"
+      },
+      "why": "Oil stokes inflation fears, stocks fall"
     },
     {
       "title": "LNG stocks to watch as prices top multi-year highs",
@@ -1680,7 +1756,7 @@
       "link": "https://news.google.com/rss/articles/CBMijwFBVV95cUxNY0QzZm5WUGd3WFd4dzM0ak00QnpWSlRHVXRqNXEzcmNMaUxjNlQyMUNDUlZJSXNUd0xWUmRxaWZFZ29KT0lxS1lqM1VCSWF5Sm56WTBDa0h5YVFtNFh2ZXBDZ2l4cEVKdk5obVJJcEMwaHYwcGVTcFE0enhEOFpVTENIcVYzNnM4aVlqby1Ocw?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMijwFBVV95cUxNY0QzZm5WUGd3WFd4dzM0ak00QnpWSlRHVXRqNXEzcmNMaUxjNlQyMUNDUlZJSXNUd0xWUmRxaWZFZ29KT0lxS1lqM1VCSWF5Sm56WTBDa0h5YVFtNFh2ZXBDZ2l4cEVKdk5obVJJcEMwaHYwcGVTcFE0enhEOFpVTENIcVYzNnM4aVlqby1Ocw?oc=5\" target=\"_blank\">Why Israel Re",
-      "at": 1788973990000,
+      "at": 1788973991000,
       "inst": [
         "XAU/USD",
         "USOIL",
@@ -1693,7 +1769,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1788973990000
+      "firstAt": 1788973991000
     },
     {
       "title": "Iran strikes back as tensions escalate - 11Alive.com",
@@ -1734,26 +1810,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1788972413000
-    },
-    {
-      "title": "US military carries out strikes near Iran's Kharg Island - Fox News",
-      "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFBlMDVzcXZQZXFXYjg0aUtGMTBqNGV5YjVKQThSbmdFTHN2X0NnMjRaejRwRkRhQUdvNnpIMm9za0dTN3J1WENwNDlDQ2pXOGRjTjhmbDJ3?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiVkFVX3lxTFBlMDVzcXZQZXFXYjg0aUtGMTBqNGV5YjVKQThSbmdFTHN2X0NnMjRaejRwRkRhQUdvNnpIMm9za0dTN3J1WENwNDlDQ2pXOGRjTjhmbDJ3?oc=5\" target=\"_blank\">US military carries out strikes near Iran's Kharg Island</a>&nbsp;&nbsp;<font color=\"#6f6f6",
-      "at": 1788972095000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1788970740000
     }
   ],
   "sources": [
@@ -1776,10 +1832,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-10T03:07:58.130Z",
-  "updatedAt": "2026-09-10T03:07:58.130Z"
+  "headlinesAt": "2026-09-10T03:09:15.293Z",
+  "updatedAt": "2026-09-10T03:09:15.293Z"
 }
