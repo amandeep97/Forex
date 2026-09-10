@@ -390,24 +390,6 @@
   ],
   "headlines": [
     {
-      "title": "Gold slips amid pressure from firmer dollar, elevated Treasury yields",
-      "link": "https://www.investing.com/news/commodities-news/gold-holds-near-4400-as-traders-await-inflation-data-for-fed-clues-4894825",
-      "source": "Investing Cmdty",
-      "at": 1789049094000,
-      "inst": [
-        "XAU/USD"
-      ],
-      "ccy": [
-        "USD",
-        "XAU"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 3,
-      "firstAt": 1789046975000,
-      "_kind": null
-    },
-    {
       "title": "US August existing home sales 3.98m vs 3.98m expected",
       "link": "https://investinglive.com/news/us-august-existing-home-sales-3-98m-vs-3-98m-expected/",
       "source": "ForexLive",
@@ -439,7 +421,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789048811000,
-      "_kind": null
+      "_kind": null,
+      "why": "New trading venue, no price direction."
     },
     {
       "title": "Markets see a near 50-50 chance the European Central Bank will hike again in October",
@@ -463,7 +446,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789047300000,
-      "_kind": null
+      "_kind": null,
+      "why": "Uncertain ECB decision, mixed market views."
     },
     {
       "title": "Treasury yields rise as investors raise bets on Fed rate hike: AlphaCheck",
@@ -484,9 +468,15 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 2,
+      "srcs": 1,
       "firstAt": 1789048612000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Higher yields and Fed hike bets."
     },
     {
       "title": "Brent tops $104 as Mideast strikes dent hopes for renewed Hormuz shipping",
@@ -506,7 +496,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789048470000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "UKOIL": "up",
+        "USOIL": "up"
+      },
+      "why": "Supply fears boost oil, gold unclear."
     },
     {
       "title": "Meta upgraded, Nvidia initiated: Wall Street's top analyst calls",
@@ -521,7 +516,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789048336000,
-      "_kind": null
+      "_kind": null,
+      "why": "Mixed analyst calls, no clear direction."
     },
     {
       "title": "Got $5,000? 3 No-Brainer Artificial Intelligence (AI) Stocks to Buy Right Now.",
@@ -536,7 +532,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789048200000,
-      "_kind": null
+      "_kind": null,
+      "why": "Specific stock picks, not index direction."
     },
     {
       "title": "Gold falls over 1% as U.S. inflation data boosts Fed hike bets - marketscreener.com",
@@ -555,7 +552,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789046975000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold falls on inflation and hike bets."
     },
     {
       "title": "10-year treasury at highest level since 2023 as oil prices jump to $105: Chart of the Day",
@@ -573,7 +574,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789048060000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil prices jump to $105."
     },
     {
       "title": "Crypto Exchange Bybit To Launch European Super App",
@@ -590,7 +595,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789048020000,
-      "_kind": null
+      "_kind": null,
+      "why": "Exchange expansion, no direct price impact."
     },
     {
       "title": "Germany’s Limetax secures $41.9m financing for agentic tax platform",
@@ -605,7 +611,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789047961000,
-      "_kind": null
+      "_kind": null,
+      "why": "Company financing, no macro impact."
     },
     {
       "title": "Stock Market Today (Sept. 10, 2026): Dow futures edge higher ahead of inflation reports",
@@ -622,7 +629,10 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789047710000,
-      "_kind": null
+      "dir": {
+        "US30": "up"
+      },
+      "why": "Dow futures edge higher."
     },
     {
       "title": "Stock Market Today: Nasdaq Sells Off After Inflation Surprise; Oil, Yields Surge (Live Coverage)",
@@ -640,7 +650,12 @@
       "sev": 3,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789046031000
+      "firstAt": 1789046031000,
+      "dir": {
+        "USOIL": "up",
+        "US100": "down"
+      },
+      "why": "Oil surges, Nasdaq sells off."
     },
     {
       "title": "Gold prices hold above $4,400 as markets await inflation data - ارقام",
@@ -658,7 +673,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789045144000
+      "firstAt": 1789045144000,
+      "why": "Gold holds steady, awaiting data."
     },
     {
       "title": "Gold Falls 1.39% After U.S. PPI Report Shows Higher Inflation - News and Statistics - IndexBox",
@@ -676,7 +692,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789045144000
+      "firstAt": 1789045144000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold falls after high inflation report."
     },
     {
       "title": "Wholesale inflation stirred up by Iran war and high oil prices. What does it mean for the Fed?",
@@ -697,7 +717,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789047420000
+      "firstAt": 1789047420000,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "down",
+        "UKOIL": "up"
+      },
+      "why": "High oil, inflation hurts gold."
     },
     {
       "title": "ECB Rate Hike and Hot US Inflation Data Slam Global Markets in a \"Black Wednesday\" - finance.biggo.com",
@@ -732,7 +758,7 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 3,
+      "srcs": 2,
       "firstAt": 1789045144000
     },
     {
@@ -1717,6 +1743,23 @@
       "firstAt": 1789035898000
     },
     {
+      "title": "Gold choppy as investors eye weaker dollar, Treasury yield pressure",
+      "link": "https://www.investing.com/news/commodities-news/gold-holds-near-4400-as-traders-await-inflation-data-for-fed-clues-4894825",
+      "source": "Investing Cmdty",
+      "at": 1789035698000,
+      "inst": [
+        "XAU/USD"
+      ],
+      "ccy": [
+        "USD",
+        "XAU"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789035698000
+    },
+    {
       "title": "Russia’s new shelling tactics deepen suffering in Ukraine",
       "link": "https://www.aljazeera.com/news/2026/9/10/russias-new-shelling-tactics-deepen-suffering-in-ukraine?traffic_source=rss",
       "source": "Al Jazeera",
@@ -2097,7 +2140,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-10T14:12:15.428Z",
-  "headlinesAt": "2026-09-10T14:12:15.428Z",
-  "updatedAt": "2026-09-10T14:12:15.428Z"
+  "calendarAt": "2026-09-10T14:13:45.033Z",
+  "headlinesAt": "2026-09-10T14:13:45.033Z",
+  "updatedAt": "2026-09-10T14:13:45.033Z"
 }
