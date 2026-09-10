@@ -451,7 +451,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789005060000,
-      "_kind": null
+      "_kind": null,
+      "why": "Gold little changed with US inflation data in sight"
     },
     {
       "title": "Currency markets subdued as oil shock lifts global yields; ECB, U.S. inflation eyed - Reuters",
@@ -471,7 +472,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789006020000
+      "firstAt": 1789006020000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil shock lifts yields; markets subdued"
     },
     {
       "title": "Fires reported in Russia's Dagestan amid Ukrainian drone attack - The Kyiv Independent",
@@ -491,7 +496,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789004613000
+      "firstAt": 1789004613000,
+      "why": "Fires in Dagestan; unclear immediate market impact"
     },
     {
       "title": "Hunter Biden memecoin $LAPTOP loses 95% of market value just hours after launch",
@@ -508,7 +514,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789005840000
+      "firstAt": 1789005840000,
+      "why": "Memecoin crash; no clear BTC direction"
     },
     {
       "title": "LNG stocks to watch as prices top multi-year highs",
@@ -523,7 +530,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789005268000
+      "firstAt": 1789005268000,
+      "dir": {
+        "NATGAS": "up"
+      },
+      "why": "LNG stocks watch; gas prices top highs"
     },
     {
       "title": "Gold steadies near US$4,400 as traders weigh Fed rate hike path - The Business Times",
@@ -541,7 +552,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789003313000
+      "firstAt": 1789003313000,
+      "why": "Gold steadies near US$4,400"
     },
     {
       "title": "US-Iran Strikes Push Oil Above $100 as Hormuz Traffic Remains Sluggish - WWD",
@@ -561,7 +573,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789004615000
+      "firstAt": 1789004615000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "US-Iran strikes push oil above $100"
     },
     {
       "title": "New record set: Ukrainian drones strike Russian gas facility over 3,000 km away in Siberia - The Kyiv Independent",
@@ -581,7 +598,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789004580000
+      "firstAt": 1789004580000,
+      "why": "Ukrainian drones strike Russian gas facility"
     },
     {
       "title": "Ukraine war briefing: Arctic attack extends Kyiv’s strike reach into Russian gas heartland - The Guardian",
@@ -601,7 +619,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789004580000
+      "firstAt": 1789004580000,
+      "why": "Arctic attack extends strike reach"
     },
     {
       "title": "Pakistan warns Iran to rein in Houthis as Riyadh strikes back - The Japan Times",
@@ -623,7 +642,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789004100000
+      "firstAt": 1789004100000,
+      "why": "Pakistan warns Iran; geopolitical tension"
     },
     {
       "title": "Australian Dollar weakens to near 0.7200 as traders await US PPI inflation data - fxstreet.com",
@@ -640,7 +660,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789001700000
+      "firstAt": 1789001700000,
+      "dir": {
+        "AUD/USD": "down"
+      },
+      "why": "Australian Dollar weakens to near 0.7200"
     },
     {
       "title": "‘It’s a good start’: prominent Israelis welcome UK sanctions on illegal settlements - The Guardian",
@@ -657,7 +681,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789003860000
+      "firstAt": 1789003860000,
+      "why": "UK sanctions on settlements; no gold impact"
     },
     {
       "title": "Brent holds above $100 as tanker attacks deepen supply fear",
@@ -673,7 +698,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789003831000
+      "firstAt": 1789003831000,
+      "dir": {
+        "UKOIL": "up"
+      },
+      "why": "Brent holds above $100 on supply fear"
     },
     {
       "title": "Gold holds near $4,400 as traders await inflation data for Fed clues - Investing.com Canada",
@@ -693,7 +722,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789003313000
+      "firstAt": 1789003313000,
+      "why": "Gold holds near $4,400; awaiting data"
     },
     {
       "title": "Gold Steadies Near $4,400 as Traders Assess Fed Rate-Hike Outlook - NDTV Profit",
@@ -711,7 +741,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789003313000
+      "firstAt": 1789003313000,
+      "why": "Gold steadies near $4,400"
     },
     {
       "title": "Huawei denies stealing secrets, violating Iran sanctions as US trial begins - Nikkei Asia",
@@ -1865,7 +1896,7 @@
       "firstAt": 1788980078000
     },
     {
-      "title": "Moody's (NYSE:MCO) Shares In Focus As Markets Weigh Inflation - kalkinemedia.com",
+      "title": "Moody's (NYSE:MCO) Shares In Focus As Markets Weigh Inflation - Kalkine Media",
       "link": "https://news.google.com/rss/articles/CBMiowFBVV95cUxOZ1VKbERBeWQxWXNrbHdWLV9hMlZWNkxjUW9EQnJYNmlkVXNzX0tqS204X3NCdkpOSU03QjdNNW0zMzdCSk43eHZVVXpjdmR4dHltcE9rMmR2N3lyeDM0V2oxaUNWeG9ZdlhZMjVkbHpCVUk3Y2xmeTlVUzBDbmVhMVpNTFFjcjlBZWFVOG9hQjNhdHNUS1o1ZUpWOTB6SzY1Z2tv?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiowFBVV95cUxOZ1VKbERBeWQxWXNrbHdWLV9hMlZWNkxjUW9EQnJYNmlkVXNzX0tqS204X3NCdkpOSU03QjdNNW0zMzdCSk43eHZVVXpjdmR4dHltcE9rMmR2N3lyeDM0V2oxaUNWeG9ZdlhZMjVkbHpCVUk3Y2xmeTlVUzBDbmVhMVpNTFFjcjlBZWFVOG9hQjNhdHNUS1o1ZUpWOTB6SzY1Z2tv?oc=5\" tar",
@@ -2204,10 +2235,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-10T02:37:27.811Z",
-  "headlinesAt": "2026-09-10T02:37:27.811Z",
-  "updatedAt": "2026-09-10T02:37:27.811Z"
+  "calendarAt": "2026-09-10T02:38:44.068Z",
+  "headlinesAt": "2026-09-10T02:38:44.068Z",
+  "updatedAt": "2026-09-10T02:38:44.068Z"
 }
