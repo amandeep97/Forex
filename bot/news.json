@@ -379,7 +379,7 @@
       "title": "US treasury sells $22 billion of 30 year bonds at a high yield of 5.308%",
       "link": "https://investinglive.com/news/us-treasury-sells-22-billion-of-30-year-bonds-at-a-high-yield-of-5-308/",
       "source": "ForexLive",
-      "desc": "The U.S. Treasury has auctioned off $22 million and 30 year bonds at a high yield of 5.308%WI level at the time of the auction 5.335%Tail 2.7 basis pointsBid to cover 2.61X versus average of DIrects (domestic buyers) 18.3%Indirects (international buyers) 79.5%Dealers (they get th",
+      "desc": "The U.S. Treasury has auctioned off $22 million and 30 year bonds at a high yield of 5.308%WI level at the time of the auction 5.335%Tail -2.7 basis points versus 013 basis points averageBid to cover 2.61X versus average of 2.38XDIrects (domestic buyers) 18.3% versus 22.1% averag",
       "at": 1789059800000,
       "inst": [
         "XAU/USD",
@@ -397,7 +397,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789059800000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "High yields strengthen dollar, hurt gold and FX"
     },
     {
       "title": "Russian Forces Strike Pavlohrad, Leaving Four Dead and Over 60 Injured - UNITED24 Media",
@@ -418,7 +424,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789058814000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "War escalation boosts safe havens and oil"
     },
     {
       "title": "Nestle CEO says Middle East conflict driving inflation, higher supplier costs",
@@ -439,7 +451,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789059655000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Conflict-driven inflation supports gold and oil prices"
     },
     {
       "title": "Better Markets’ Lawsuit Against the Federal Reserve and Vice Chair Bowman for Corruption - Better Markets",
@@ -463,25 +481,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789058337000,
-      "_kind": null
-    },
-    {
-      "title": "What Is the Best Crypto to Buy Before the Fed Decides on September 16: XRP or Solana?",
-      "link": "https://finance.yahoo.com/markets/crypto/articles/best-crypto-buy-fed-decides-165846455.html",
-      "source": "Yahoo Finance",
-      "at": 1789059526000,
-      "inst": [
-        "BTC/USDT"
-      ],
-      "ccy": [
-        "USD",
-        "BTC"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789059526000,
-      "_kind": null
+      "_kind": null,
+      "why": "Legal suit has no clear market direction"
     },
     {
       "title": "Oracle fiscal Q1 2027 earnings preview: AI backlog conversion in focus",
@@ -494,87 +495,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789059253000,
-      "_kind": null
-    },
-    {
-      "title": "Hyperliquid Just Became the Fifth-Largest Holding in Hashdex’s Crypto ETF. Multicoin Is Selling Into It",
-      "link": "https://finance.yahoo.com/markets/crypto/articles/hyperliquid-just-became-fifth-largest-165412986.html",
-      "source": "Yahoo Finance",
-      "at": 1789059252000,
-      "inst": [
-        "BTC/USDT"
-      ],
-      "ccy": [
-        "BTC"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789059252000,
-      "_kind": null
-    },
-    {
-      "title": "UK borrowing costs hit 19-year high oil prices fuel inflation fears - This is Money",
-      "link": "https://news.google.com/rss/articles/CBMikwJBVV95cUxQb0pBLWhPRGVoZVhPdDZXdV90dVZEOVpGOHJabWg4dTdnZ2Zzelp1dWNxUl9EMFNnLXBSaV9icVFxOUZHbENHRXA3M3NOMzdKcGkwMGJZME4yY2RHT1k3RVdVRGxXYk5ZaHhub0hhUkVMWVZDMlZZOHdaMzF3RWF3cGpwdlJZbXN0dDIwWGw3V2hvcVQyRUhBdHh5cHExN04tUmJrUm02OXJDU1pVX0NVUjFVajJ1WFY2bnB4YnpwWHBIX0FXT2d0QmZhV1N3RnJyS2FZZW44OVQxOVB1X052d2JmWlhrSkVjOGlHZ2p5VzI2VGpXMXZxbzdwTzlUa05lQjFmM0JvWUhsenBWdUVnNDJ5dw?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMikwJBVV95cUxQb0pBLWhPRGVoZVhPdDZXdV90dVZEOVpGOHJabWg4dTdnZ2Zzelp1dWNxUl9EMFNnLXBSaV9icVFxOUZHbENHRXA3M3NOMzdKcGkwMGJZME4yY2RHT1k3RVdVRGxXYk5ZaHhub0hhUkVMWVZDMlZZOHdaMzF3RWF3cGpwdlJZbXN0dDIwWGw3V2hvcVQyRUhBdHh5cHExN04tUmJrUm02OXJDU1",
-      "at": 1789059157000,
-      "inst": [
-        "USOIL"
-      ],
-      "ccy": [
-        "OIL",
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789059157000,
-      "_kind": null
-    },
-    {
-      "title": "Stock Market Midday, Sept. 10: Surging Oil Prices Pressure Markets Again",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/stock-market-midday-sept-10-165147946.html",
-      "source": "Yahoo Finance",
-      "at": 1789059107000,
-      "inst": [
-        "USOIL"
-      ],
-      "ccy": [
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789057095000,
-      "_kind": null
-    },
-    {
-      "title": "Imperial Petroleum Inc. Q2 2026 Earnings Call Summary",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/imperial-petroleum-inc-q2-2026-165134748.html",
-      "source": "Yahoo Finance",
-      "at": 1789059094000,
-      "inst": [
-        "USOIL"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789059075000,
-      "_kind": null
-    },
-    {
-      "title": "Darling Ingredients CEO Sells 5,000 Shares",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/darling-ingredients-ceo-sells-5-165001602.html",
-      "source": "Yahoo Finance",
-      "at": 1789059001000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1789058933000,
       "_kind": null
     },
     {
@@ -591,19 +511,6 @@
       "_kind": null
     },
     {
-      "title": "A Wix Insider Buys Then Immediately Sells Company Shares. Here's a Closer Look at the Transaction.",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/wix-insider-buys-then-immediately-164853715.html",
-      "source": "Yahoo Finance",
-      "at": 1789058933000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1789058933000,
-      "_kind": null
-    },
-    {
       "title": "Skyworks Solutions Surges 10%, Qorvo Climbs 6% While Chip Stocks Fall: Is the Merger Finally Clearing?",
       "link": "https://finance.yahoo.com/markets/stocks/articles/skyworks-solutions-surges-10-qorvo-164726893.html",
       "source": "Yahoo Finance",
@@ -616,7 +523,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789058846000,
-      "_kind": null
+      "_kind": null,
+      "why": "Mixed chip stock moves, unclear index impact"
     },
     {
       "title": "US inflation rise pushes gold, Bitcoin down as Fed rate hike bets grow. - Pluang",
@@ -637,7 +545,28 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789057169000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "BTC/USDT": "down"
+      },
+      "why": "Inflation and rate hike bets lower assets"
+    },
+    {
+      "title": "Rare Earth Stocks Tumble on U.S.-China Thaw Hopes: USA Rare Earth Sinks 4%, MP Materials Drops 5%, Critical Metals Slips",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/rare-earth-stocks-tumble-u-164104081.html",
+      "source": "Yahoo Finance",
+      "at": 1789058464000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789058464000,
+      "_kind": null,
+      "why": "Sector-specific drop, unclear broad index impact"
     },
     {
       "title": "Washington nonprofit Better Markets sues Federal Reserve over capital rule overhaul - Reuters",
@@ -661,7 +590,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789058337000,
-      "_kind": null
+      "_kind": null,
+      "why": "Legal news lacks direct market direction"
     },
     {
       "title": "Limitless Metals: $105 Oil, Rising Treasury Yields and Fed Rate-Hike Expectations Reshape 2026 Gold Outlook - Yahoo Finance",
@@ -682,7 +612,40 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789057169000,
-      "_kind": null
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "up"
+      },
+      "why": "High yields hurt gold, oil outlook positive"
+    },
+    {
+      "title": "Eli Lilly Stock Has Become a Trillion-Dollar Giant. Is It Too Late to Buy?",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/eli-lilly-stock-become-trillion-163516555.html",
+      "source": "Yahoo Finance",
+      "at": 1789058116000,
+      "inst": [],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 1,
+      "rel": 1,
+      "srcs": 1,
+      "firstAt": 1789058116000
+    },
+    {
+      "title": "Want to Make a Fortune From the AI Power Boom? Buy These 2 Industrial Stocks",
+      "link": "https://finance.yahoo.com/technology/ai/articles/want-fortune-ai-power-boom-163500791.html",
+      "source": "Yahoo Finance",
+      "at": 1789058100000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789058100000,
+      "why": "Stock recommendation, no immediate market direction"
     },
     {
       "title": "Jerusalem Daily: Israeli strikes devastate Gaza",
@@ -702,7 +665,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789057657000
+      "firstAt": 1789057657000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Gaza strikes boost safe havens and oil"
     },
     {
       "title": "Oil Surges Past $100, Inflation Alarms Ring — Dollar Posts Biggest Gain in Nearly Two Weeks, G10 Currencies Retreat Across the Board - finance.biggo.com",
@@ -720,7 +689,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789057500000
+      "firstAt": 1789057500000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil surges past $100 on inflation alarms"
     },
     {
       "title": "US Equity Indexes Drop as Treasury Yields Jump Following Hot Producer Price Inflation Print - marketscreener.com",
@@ -743,7 +716,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789057140000
+      "firstAt": 1789057140000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Yields jump, dollar strengthens, gold falls"
     },
     {
       "title": "Treasury yields surge toward the danger zone for stocks, as inflation pressures heat up",
@@ -762,7 +741,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789057200000
+      "firstAt": 1789057200000,
+      "dir": {
+        "USOIL": "up",
+        "US500": "down"
+      },
+      "why": "Oil high, yields surge hurt stocks"
     },
     {
       "title": "Bitcoin and Gold Outlook: BTC and XAU drop as US PPI broadens rate-hike bets - FXStreet",
@@ -782,7 +766,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789057169000
+      "firstAt": 1789057169000,
+      "dir": {
+        "XAU/USD": "down",
+        "BTC/USDT": "down"
+      },
+      "why": "PPI data drives rate hike fears, assets drop"
     },
     {
       "title": "UK Stock Markets Tumble Amid Inflation and Interest Rate Worries - Devdiscourse",
@@ -804,7 +793,7 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 2,
+      "srcs": 1,
       "firstAt": 1789057149000
     },
     {
@@ -992,6 +981,23 @@
       "firstAt": 1789054440000
     },
     {
+      "title": "Nasdaq Pours Millions Into Crypto Platform Partnership For Tokenized Trading",
+      "link": "https://www.investors.com/news/nasdaq-pours-millions-into-crypto-platform-partnership-for-tokenized-trading/?src=A00220&yptr=yahoo",
+      "source": "Yahoo Finance",
+      "at": 1789054381000,
+      "inst": [
+        "US100",
+        "BTC/USDT"
+      ],
+      "ccy": [
+        "BTC"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789054381000
+    },
+    {
       "title": "Ukraine: Russian drone strike damages TV channel in Kyiv, injuring six media workers - European Federation of Journalists",
       "link": "https://news.google.com/rss/articles/CBMiywFBVV95cUxQRUdRLVFQaXRHalJCOHptbUhyQW1ScGdmQ2REanFSZ1RJYzJDN2wyMFZ4V0Y1SjZfZkxaMUhIMm1GNS1YUUNpcU5DcDc2ZHlsbktNZXQ5Z2VDQ0dqUzVYdjJlcjdFWlVsOWRwM3dZY2h0WGFHa1ZMR2FUejFjdU5WZUo5WVZfTExRWjlmRjJSUGg4NThXWkFMZjVaNjhZcjk4Q2tFSmJkNDNoYjh3czdWdXJTOVB3bzlWdXN0YzJLN2ktUmMybkJRQ3h6SQ?oc=5",
       "source": "Wires (geo)",
@@ -1163,6 +1169,24 @@
       "firstAt": 1789049094000
     },
     {
+      "title": "Gold slides as US PPI reinforces Fed hike expectations, US Dollar and yields rise - FXStreet",
+      "link": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQYklVVlJZM1pNWnE2bWtET1BDRVBLZUIwQXVPd1lJd1ctTTdUVVVlM0pmbGo5b0hlT3dNZi1Sd05PbnAtako1cm9YelRsVWVfNTg1akdMWXgydTVvbUd4Z3FRVHVRdU9tS2VJRHdIWXlZOUdjVHIzYkQ1VkxRcmFDaXBtQXAzVnUyVDlzbEF0aVVIUUE0ajVhZ1lFSWhTUFBmREFXYUt1MVQtdmc2VXdFaUk4Z3U?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMitAFBVV95cUxQYklVVlJZM1pNWnE2bWtET1BDRVBLZUIwQXVPd1lJd1ctTTdUVVVlM0pmbGo5b0hlT3dNZi1Sd05PbnAtako1cm9YelRsVWVfNTg1akdMWXgydTVvbUd4Z3FRVHVRdU9tS2VJRHdIWXlZOUdjVHIzYkQ1VkxRcmFDaXBtQXAzVnUyVDlzbEF0aVVIUUE0ajVhZ1lFSWhTUFBmREFXYUt1MVQtdm",
+      "at": 1789051264000,
+      "inst": [
+        "XAU/USD"
+      ],
+      "ccy": [
+        "USD",
+        "XAU"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 3,
+      "firstAt": 1789048986000
+    },
+    {
       "title": "Tomorrow’s CPI Report Could Send Rate-Hike Odds Even Higher - 24/7 Wall St.",
       "link": "https://news.google.com/rss/articles/CBMipAFBVV95cUxNM0hPYjI0MDAxVVlUN3dvSlZqcVZNSXZpNzJoVlVmTlBUaEFCTVd1UU95cGxsUlY4UDZvNXZTZFJKdXM4VjZiN1BRalFRQkpubjN2Zk1pNTNZbTNLaVNfUVAxdThBdjVmekhPRFQyMkVQRDYyS18xQkxITFY3QjRlRmNVV3NKM2xEMmNGbmY1OEVJVWVzQXM4d0hnczZHY01OTG5rSg?oc=5",
       "source": "Wires (macro)",
@@ -1306,7 +1330,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789046975000
+      "firstAt": 1789048020000
     },
     {
       "title": "Dollar rises as hot U.S. inflation, ECB hike reshape currency markets",
@@ -1323,7 +1347,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789046975000
+      "firstAt": 1789048986000
     },
     {
       "title": "US August existing home sales 3.98m vs 3.98m expected",
@@ -1435,7 +1459,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789046975000
+      "firstAt": 1789047630000
     },
     {
       "title": "Gold prices hold above $4,400 as markets await inflation data - ارقام",
@@ -1510,24 +1534,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789047292000
-    },
-    {
-      "title": "Gold slides as US PPI reinforces Fed hike expectations, US Dollar and yields rise - FXStreet",
-      "link": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQYklVVlJZM1pNWnE2bWtET1BDRVBLZUIwQXVPd1lJd1ctTTdUVVVlM0pmbGo5b0hlT3dNZi1Sd05PbnAtako1cm9YelRsVWVfNTg1akdMWXgydTVvbUd4Z3FRVHVRdU9tS2VJRHdIWXlZOUdjVHIzYkQ1VkxRcmFDaXBtQXAzVnUyVDlzbEF0aVVIUUE0ajVhZ1lFSWhTUFBmREFXYUt1MVQtdmc2VXdFaUk4Z3U?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMitAFBVV95cUxQYklVVlJZM1pNWnE2bWtET1BDRVBLZUIwQXVPd1lJd1ctTTdUVVVlM0pmbGo5b0hlT3dNZi1Sd05PbnAtako1cm9YelRsVWVfNTg1akdMWXgydTVvbUd4Z3FRVHVRdU9tS2VJRHdIWXlZOUdjVHIzYkQ1VkxRcmFDaXBtQXAzVnUyVDlzbEF0aVVIUUE0ajVhZ1lFSWhTUFBmREFXYUt1MVQtdm",
-      "at": 1789046975000,
-      "inst": [
-        "XAU/USD"
-      ],
-      "ccy": [
-        "USD",
-        "XAU"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 3,
-      "firstAt": 1789045144000
     },
     {
       "title": "Russia’s Crude Output Fell in August as Ukraine Steps Up Strikes - Bloomberg.com",
@@ -2065,7 +2071,62 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789037537000
+      "firstAt": 1789039818000
+    },
+    {
+      "title": "Chart Alert: EUR/USD Minor Uptrend Intact Ahead of ECB as Markets Brace for 25bp Rate Hike - Action Forex",
+      "link": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxNdjF1elkyS1dyS1dqUmR3UjVwUTNLVGJLYTh0cGhjdjhqTGR4MWdMZlFFNWxManJuRzR3NWRvT29wWVZGWGZ6bW9yV252MHJqdDN4d3dzQmFRQTY5Yy1adW5aWVpUSjlEWFNjYU83TFB5UG5ZRUs1anFKQkZTeE1VeWZOdDExTjNKVEZESEliSU8wSll6RkVOMHlmQndYZ0g0UUJfY0stemNQUUdIYlBVQWRiVVljZ1l2eHh0ajl6RlpxVmZ2V3FDSTFxemNtLU9UaUx4LXU0amxTSzFkbVVDYXQ4ZjZUeHJiZEFUOWFR?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi7gFBVV95cUxNdjF1elkyS1dyS1dqUmR3UjVwUTNLVGJLYTh0cGhjdjhqTGR4MWdMZlFFNWxManJuRzR3NWRvT29wWVZGWGZ6bW9yV252MHJqdDN4d3dzQmFRQTY5Yy1adW5aWVpUSjlEWFNjYU83TFB5UG5ZRUs1anFKQkZTeE1VeWZOdDExTjNKVEZESEliSU8wSll6RkVOMHlmQndYZ0g0UUJfY0stemNQUU",
+      "at": 1789039389000,
+      "inst": [
+        "EUR/USD"
+      ],
+      "ccy": [
+        "EUR",
+        "USD"
+      ],
+      "sev": 3,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789038466000
+    },
+    {
+      "title": "Canadian Dollar weakens as USD/CAD climbs before US PPI data - FXStreet",
+      "link": "https://news.google.com/rss/articles/CBMitgFBVV95cUxQU2ZVbFpuZDcwVVhIbmJONmVFYklXZThCZlN3eTVXVGNZalNuRVRFX281VUVDc3Fzd2xxZHlULWpvNDZoZGcwLXlwbVJFQ3hNak1KWVIxOC1kaGxnZEdkZlpZay1zcngxVnFfd2d6b1JTWFRLMzlSQ3JuMVVVRVozZzB4UGlOT1ZFYVF4bDl5SFFZbHJrMG9Eckp2Q2VHS3EwU3dkem5kYzJfNDVaM3NNYV9jd20xZw?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMitgFBVV95cUxQU2ZVbFpuZDcwVVhIbmJONmVFYklXZThCZlN3eTVXVGNZalNuRVRFX281VUVDc3Fzd2xxZHlULWpvNDZoZGcwLXlwbVJFQ3hNak1KWVIxOC1kaGxnZEdkZlpZay1zcngxVnFfd2d6b1JTWFRLMzlSQ3JuMVVVRVozZzB4UGlOT1ZFYVF4bDl5SFFZbHJrMG9Eckp2Q2VHS3EwU3dkem5kYzJfND",
+      "at": 1789039171000,
+      "inst": [
+        "USD/CAD"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789038466000
+    },
+    {
+      "title": "The Houthis are testing the limits of Saudi restraint",
+      "link": "https://www.aljazeera.com/opinions/2026/9/10/the-houthis-are-testing-the-limits-of-saudi-restraint?traffic_source=rss",
+      "source": "Al Jazeera",
+      "desc": "Riyadh needs to restore deterrence without being pulled back into a prolonged Yemen war.",
+      "at": 1789039043000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789039043000
     }
   ],
   "sources": [
@@ -2088,10 +2149,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-10T17:08:02.111Z",
-  "headlinesAt": "2026-09-10T17:08:02.111Z",
-  "updatedAt": "2026-09-10T17:08:02.111Z"
+  "calendarAt": "2026-09-10T17:09:15.244Z",
+  "headlinesAt": "2026-09-10T17:09:15.244Z",
+  "updatedAt": "2026-09-10T17:09:15.244Z"
 }
