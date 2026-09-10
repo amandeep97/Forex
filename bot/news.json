@@ -405,7 +405,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789045380000,
-      "_kind": null
+      "_kind": null,
+      "why": "Whisky ban reprieve unclear for currency."
     },
     {
       "title": "Investors are missing the good news right in front of them, this Wall Street strategist argues",
@@ -421,7 +422,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789044485000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Strong earnings underappreciated, bullish for stocks."
     },
     {
       "title": "Sector-Wide Demand Pushes Caterpillar (CAT) Shares Higher",
@@ -458,7 +463,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789042320000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Rising yields hurt gold and risk assets."
     },
     {
       "title": "S&P 500, Nasdaq futures extend losses slightly after August PPI data",
@@ -476,7 +487,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789043809000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down",
+        "US100": "down"
+      },
+      "why": "Futures extend losses after PPI data."
     },
     {
       "title": "Building U.S. data centers is getting so expensive that AI companies are moving overseas",
@@ -492,7 +508,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789044540000,
-      "_kind": null
+      "_kind": null,
+      "why": "Data center costs unclear for Nasdaq."
     },
     {
       "title": "Russia strikes petrol station in Kyiv, global agribusiness in Dnipro - Reuters",
@@ -513,7 +530,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789042275000,
-      "_kind": null
+      "_kind": null,
+      "why": "Ukraine strikes unclear for markets."
     },
     {
       "title": "Global bond yields rise as ECB hikes and hot U.S PPI fuels higher rate bets",
@@ -531,7 +549,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789044531000,
-      "_kind": null
+      "_kind": null,
+      "why": "Mixed yield signals for Euro pair."
     },
     {
       "title": "Microsoft Remains Down Over 12 Months: A Wall Street Bull Expects 75% Gains to Materialize Soon",
@@ -546,7 +565,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789044485000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Bull expects significant gains in Microsoft."
     },
     {
       "title": "Gold prices dip slightly as ECB raises interest rates amid persistent inflation concerns - Pluang",
@@ -567,7 +590,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789042978000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down"
+      },
+      "why": "ECB hike and yields pressure gold, euro."
     },
     {
       "title": "Saudi Arabia stocks lower at close of trade; Tadawul All Share down 0.08%",
@@ -582,7 +610,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789044303000,
-      "_kind": null
+      "_kind": null,
+      "why": "Saudi stocks irrelevant to US index."
     },
     {
       "title": "Stock Market Today: Dow Falls After Surprise Inflation Data; Nvidia Chipmaker Slides On Sales (Live Coverage)",
@@ -599,7 +628,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789042033000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US30": "down"
+      },
+      "why": "Dow falls after inflation data."
     },
     {
       "title": "Which Energy Stocks Are Top Buys? Stifel Lists Best Oil And Gas Picks",
@@ -617,7 +650,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789044103000,
-      "_kind": null
+      "_kind": null,
+      "why": "Stock picks unclear for broad markets."
     },
     {
       "title": "U.S. wholesale inflation hits 5.4% annually in August 2026",
@@ -640,7 +674,13 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789043809000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "High inflation boosts yields, hurts assets."
     },
     {
       "title": "Which Short-Term Bond ETF Is the Better Buy: iShares' ISTB or Schwab's SCHO?",
@@ -670,7 +710,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789042686000
+      "firstAt": 1789042686000,
+      "dir": {
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Lower demand forecast bearish for oil."
     },
     {
       "title": "U.S. stock futures add to losses after mixed August producer inflation report",
@@ -692,7 +737,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789043809000
+      "firstAt": 1789043809000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Stock losses and yields pressure gold, FX."
     },
     {
       "title": "Wholesale inflation stirred up by Iran war and high oil prices. What does it mean for the Fed?",
@@ -2072,7 +2123,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-10T13:06:59.568Z",
-  "headlinesAt": "2026-09-10T13:06:59.568Z",
-  "updatedAt": "2026-09-10T13:06:59.568Z"
+  "calendarAt": "2026-09-10T13:08:00.494Z",
+  "headlinesAt": "2026-09-10T13:08:00.494Z",
+  "updatedAt": "2026-09-10T13:08:00.494Z"
 }
