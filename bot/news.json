@@ -83,8 +83,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789161603000,
-      "_kind": null
+      "firstAt": 1789161603000
     },
     {
       "title": "investingLive Americas FX news wrap 11 Sept: US CPI raises odds for Fed rate hike",
@@ -128,23 +127,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789158412000
-    },
-    {
-      "title": "S&P 500 ends higher as strong inflation data cements rate-hike bets - straitstimes.com",
-      "link": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPRkc2bjg2MmExLVdlQXgybWdCeFY2RTVMMm1IWV9XdUdZTTNwbXA5T3lhbDh5blFOYk10aEpaeGk4OV9wejR1RW1iYnI0cFUwZjJpNjRxYnBhSDQwMjF1YzZZNzdPTi1PRjNFQmJQTHBrMk5TelFSbnFRcXFfeDVVNFlTZGJkSjlIVkxlMzVJQ2R0UzFuOXgzY0JoRGtadDZUem9zWWtLdC1uS0p3bzdIS2pvRmh2ZWV2X251bFIwYw?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMivwFBVV95cUxPRkc2bjg2MmExLVdlQXgybWdCeFY2RTVMMm1IWV9XdUdZTTNwbXA5T3lhbDh5blFOYk10aEpaeGk4OV9wejR1RW1iYnI0cFUwZjJpNjRxYnBhSDQwMjF1YzZZNzdPTi1PRjNFQmJQTHBrMk5TelFSbnFRcXFfeDVVNFlTZGJkSjlIVkxlMzVJQ2R0UzFuOXgzY0JoRGtadDZUem9zWWtLdC1uS0",
-      "at": 1789160760000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789160760000
     },
     {
       "title": "\"Ukraine Will Retaliate Against Russian Strikes On Energy This Winter,\" Zelenskyy Warns - UNITED24 Media",
@@ -1712,6 +1694,26 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789142612000
+    },
+    {
+      "title": "Estonian intelligence on Ukrainian strikes on Russian plants 3,000 km away: situation has changed - pravda.com.ua",
+      "link": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE1PT1NJV0RObnVOWTFjRVZkR0hKZ2xfWkxZemVDM3dXcm5vX2RTSU5URGxDVkxhUUliQWtPcXFyREdxb1FkemQ2akxRTWlISlAzWTVtOXgtNEZ5TXJCaFFaMlBmR2LSAXBBVV95cUxOYmtmSWI5YWtkZDlHbjZsRzdQQmJOb2llVGh5dmpKRkpIdGxKZXUxLThEazN4ZDFzS1o1MndnU3JPdjM2ZFo5TndiNkxob3ZIQmlVb2ZwdUh2eFhBcnBEMHpsVFM2akpIQXZyNjAxS21q?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiZEFVX3lxTE1PT1NJV0RObnVOWTFjRVZkR0hKZ2xfWkxZemVDM3dXcm5vX2RTSU5URGxDVkxhUUliQWtPcXFyREdxb1FkemQ2akxRTWlISlAzWTVtOXgtNEZ5TXJCaFFaMlBmR2LSAXBBVV95cUxOYmtmSWI5YWtkZDlHbjZsRzdQQmJOb2llVGh5dmpKRkpIdGxKZXUxLThEazN4ZDFzS1o1MndnU3JPdjM2ZF",
+      "at": 1789142400000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789142400000
     }
   ],
   "sources": [
@@ -1734,10 +1736,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-11T21:50:00.793Z",
-  "updatedAt": "2026-09-11T21:50:00.793Z"
+  "headlinesAt": "2026-09-11T21:51:15.667Z",
+  "updatedAt": "2026-09-11T21:51:15.667Z"
 }
