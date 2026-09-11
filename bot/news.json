@@ -237,7 +237,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789149417000,
-      "_kind": null
+      "_kind": null,
+      "why": "General market moves, no specific direction."
     },
     {
       "title": "Brent Hits $100 as U.S.-Iran Escalation, Houthi Strikes Deepen Gulf Supply Fears - wsj.com",
@@ -258,7 +259,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789149270000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "UKOIL": "up",
+        "XAU/USD": "up",
+        "USOIL": "up"
+      },
+      "why": "Supply fears boost oil and gold."
     },
     {
       "title": "House to take up Russia sanctions bill next week - The Hill",
@@ -279,7 +286,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789147723000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions bill timing unclear for markets."
     },
     {
       "title": "Investing.com’s stocks of the week",
@@ -294,7 +302,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789149105000,
-      "_kind": null
+      "_kind": null,
+      "why": "General weekly stock list, no direction."
     },
     {
       "title": "Why Treasury’s $6 billion bond buyback didn’t lower mortgage rates",
@@ -317,7 +326,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789148963000,
-      "_kind": null
+      "_kind": null,
+      "why": "Bond buyback impact on rates unclear."
     },
     {
       "title": "U.S. stocks surge as oil slide offsets rise in Fed rate hike bets",
@@ -336,7 +346,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789148879000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "down",
+        "US500": "up"
+      },
+      "why": "Stocks surge, oil slides."
     },
     {
       "title": "Canadian dollar weakens to nine-day low on Fed rate hike bets - Reuters",
@@ -354,7 +369,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789148813000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USD/CAD": "up"
+      },
+      "why": "Canadian dollar weakens, dollar strengthens."
     },
     {
       "title": "General Motors leads U.S. auto stocks on technicals",
@@ -369,7 +388,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789148701000,
-      "_kind": null
+      "_kind": null,
+      "why": "Technical analysis, no clear direction."
     },
     {
       "title": "Is gold really a hedge against inflation?",
@@ -387,7 +407,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789148482000,
-      "_kind": null
+      "_kind": null,
+      "why": "Rhetorical question, no market direction."
     },
     {
       "title": "House to vote on Russia sanctions bill next week - Punchbowl News",
@@ -407,7 +428,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789145220000
+      "firstAt": 1789145220000,
+      "why": "Sanctions bill timing unclear for markets."
     },
     {
       "title": "Rising petrol costs drive sharp inflation increase in US in August",
@@ -430,7 +452,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789145884000
+      "firstAt": 1789145884000,
+      "why": "Inflation data impact on FX unclear."
     },
     {
       "title": "U.S. Stocks Rise as Inflation Figure Boosts Odds of Rate Hike - wsj.com",
@@ -447,7 +470,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789147680000
+      "firstAt": 1789147680000,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Stocks rise on rate hike odds."
     },
     {
       "title": "UK sanctions on West Bank settlers are the right step | Letters - The Guardian",
@@ -464,7 +491,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789147560000
+      "firstAt": 1789147560000,
+      "why": "Opinion piece, no market direction."
     },
     {
       "title": "U.S. 10-year Treasury yield pulls back after August CPI data - qz.com",
@@ -487,7 +515,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789147493000
+      "firstAt": 1789147493000,
+      "why": "Yield pullback impact on FX unclear."
     },
     {
       "title": "Russian Attacks Kill 6, Wound 33 Across Multiple Regions in Ukraine - kyivpost.com",
@@ -507,7 +536,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789146900000
+      "firstAt": 1789146900000,
+      "why": "Ukraine attacks, no clear market direction."
     },
     {
       "title": "OFAC Increases the Scope of Sanctions on Iran - thompsonhinesmartrade.com",
@@ -631,6 +661,22 @@
       "firstAt": 1789145186000
     },
     {
+      "title": "Why is Silver Spot stock climbing today?",
+      "link": "https://www.investing.com/news/commodities-news/why-is-silver-spot-stock-climbing-today-93CH-4898269",
+      "source": "Investing Cmdty",
+      "at": 1789146159000,
+      "inst": [
+        "XAG/USD"
+      ],
+      "ccy": [
+        "XAG"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789146159000
+    },
+    {
       "title": "US consumer inflation picks up in August",
       "link": "https://finance.yahoo.com/economy/policy/articles/us-consumer-inflation-picks-august-123741290.html",
       "source": "Yahoo Finance",
@@ -663,6 +709,22 @@
       "rel": 1,
       "srcs": 1,
       "firstAt": 1789145832000
+    },
+    {
+      "title": "Oil falls but on track for sharp weekly gain on supply concerns; US diesel hits record high",
+      "link": "https://www.investing.com/news/commodities-news/oil-prices-set-to-end-week-over-100-for-first-time-in-nearly-4-months-4897153",
+      "source": "Investing Cmdty",
+      "at": 1789145672000,
+      "inst": [
+        "USOIL"
+      ],
+      "ccy": [
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789145672000
     },
     {
       "title": "EU ambassadors fail to extend sanctions against Russia due to opposition from Slovakia and France - pravda.com.ua",
@@ -1387,6 +1449,25 @@
       "firstAt": 1789136350000
     },
     {
+      "title": "Oil tanker rates hit record highs following Iran, US shipping attacks",
+      "link": "https://www.investing.com/news/commodities-news/oil-tanker-rates-hit-record-highs-following-iran-us-shipping-attacks-4898157",
+      "source": "Investing Cmdty",
+      "at": 1789137766000,
+      "inst": [
+        "USOIL",
+        "XAU/USD",
+        "UKOIL"
+      ],
+      "ccy": [
+        "OIL",
+        "XAU"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789137766000
+    },
+    {
       "title": "Rate hike on the cards? Markets say increasingly likely (US10Y:) - Seeking Alpha",
       "link": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQbkQxcV94ZGtQcTRLUVFKZ2Z5TDRVRHVLaDFmNmV3NUFPTGpyUS1yMWVCdk9ValFlNXdJRUpjdHpGUjlyRVlwcVp2bnJqYlVic0s0V1ZoMXNSam5kUjFLMFNGRUlfQ3RUMm9GQ3dwSGZfR08teHF1bTlzNW1tZGlvd2dGUkR6WFhuWmhVNGdHMUtVbmhKQW4w?oc=5",
       "source": "Wires (macro)",
@@ -1586,6 +1667,39 @@
       "firstAt": 1789135943000
     },
     {
+      "title": "Gold vs. platinum: Which metal should investors own in Q4?",
+      "link": "https://www.investing.com/news/commodities-news/gold-vs-platinum-which-metal-should-investors-own-in-q4-4898114",
+      "source": "Investing Cmdty",
+      "at": 1789135881000,
+      "inst": [
+        "XAU/USD"
+      ],
+      "ccy": [
+        "XAU"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789135881000
+    },
+    {
+      "title": "Gold edges higher amid dip-buying following U.S. inflation data",
+      "link": "https://www.investing.com/news/commodities-news/gold-steadies-after-sharp-drop-as-hotter-ppi-lifts-fed-hike-bets-4897138",
+      "source": "Investing Cmdty",
+      "at": 1789135311000,
+      "inst": [
+        "XAU/USD"
+      ],
+      "ccy": [
+        "XAU",
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1789134694000
+    },
+    {
       "title": "Dollar edges higher against euro after US inflation data - businesstimes.com.sg",
       "link": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxQa2JhcEtfQUlkNmF5ZXJSRWVKZTlDUHlzenYwM3pNWXR0enFfQ2szX09KZzM1T1c5QXBTZDMwMVJ5WHN0TDVFTlRoRkhVeHZjMEpxbnlaaVhRbkZRZFZOSk5ZVWFiVll5T1NoR21lN3VqbDVDVlBuLTJaNV9DQzRKMW5wendMTUFsTUdUUlhZaG1Ec2lRMjhaR2cyQzhMUGQ3bXNoYUptNV84aGdPNFV0RDRya1JsM3Q5dWxjbVVubHM?oc=5",
       "source": "Wires (macro)",
@@ -1618,7 +1732,7 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 1,
+      "srcs": 2,
       "firstAt": 1789132090000
     },
     {
@@ -1777,6 +1891,18 @@
       "firstAt": 1789130305000
     },
     {
+      "title": "Baltic dry bulk freight index falls to lowest in over a week",
+      "link": "https://www.investing.com/news/commodities-news/baltic-dry-bulk-freight-index-falls-to-lowest-in-over-a-week-93CH-4897981",
+      "source": "Investing Cmdty",
+      "at": 1789132181000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 1,
+      "srcs": 1,
+      "firstAt": 1789132181000
+    },
+    {
       "title": "Gold prices inch up amid steady US inflation, b... - Pluang",
       "link": "https://news.google.com/rss/articles/CBMikAFBVV95cUxNVkxUQ05CR1g1bUllblp4VjdDRHVEWFotd3ZVaFo2QXpwM2c5YlkwLURtVVdrcE90Sk1vWElTaG4tVWc2bHl2akxReEpNbTdJdzlxYUpneTJucm81TEZZa3BOMm9fa1Vyb1ZneE1yOXl1akREY1UzZnVYZkt3Y1otVURXSHctNUpBbkxJVWk0MlU?oc=5",
       "source": "Wires (macro)",
@@ -1811,126 +1937,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789131846000
-    },
-    {
-      "title": "U.S. 10-year yield briefly breaks 5% for first time since 2024 after Aug CPI",
-      "link": "https://www.investing.com/news/forex-news/european-debt-extended-in-5week-decline-on-rate-hikes-and-surging-oil-prices-4897325",
-      "source": "Investing FX",
-      "at": 1789131808000,
-      "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789131808000
-    },
-    {
-      "title": "Saudi crown prince urged Trump to strike Houthis amid Red Sea threat - Axios",
-      "link": "https://news.google.com/rss/articles/CBMiekFVX3lxTFB4c1pTQTlsM2RTNkhPSl9hTktNX1hJeDZFZUpoVE9mUUNubTFxTGtLNFd3MmxFWWZEcWNGMmxycmd6dkZDOTYxNXZua3lUc0tHQ3BmRWdfNWNnc1N5RmVTM3dSQktOOV96bDlRQUg1cW8yX1AwOHk4a0N3?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiekFVX3lxTFB4c1pTQTlsM2RTNkhPSl9hTktNX1hJeDZFZUpoVE9mUUNubTFxTGtLNFd3MmxFWWZEcWNGMmxycmd6dkZDOTYxNXZua3lUc0tHQ3BmRWdfNWNnc1N5RmVTM3dSQktOOV96bDlRQUg1cW8yX1AwOHk4a0N3?oc=5\" target=\"_blank\">Saudi crown prince urged Trump to strike Ho",
-      "at": 1789131496000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789131496000
-    },
-    {
-      "title": "Ukraine Sees Russian-Iranian Sanctions Networks Converging As US Targets Tankers - Radio Free Europe/Radio Liberty",
-      "link": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQXzUyb3dlTUQwVW5qV09hbEJQSzBIejU4SGhEaVFNNkxvRXBYeWVrcnQxcjF2VXhjTE91dXpiYlhleUVlMTltUExnZzdzYXZ6UGNheFRjdmpEMjR5MTlkcEhiUlpvOGVkeGVKVDY4TVRpenU0eVNINzJiMVBCblg3ZXEzMG1kR1NvcVNUV3hmUVRDejBEVndERDBubDJ4aHpyRTFJR1B1QXFhLWdEc2pwUzlXbjM3RFRmLXfSAbwBQVVfeXFMTXVWVDFfQ19LWl9oTi1hRTdFbGtsQ2FVV08yaDVteWtQcmhPWHJ4REZaSTNuaGZhTVNMcVhJeUhYMEhjN2ZQN1lfSkFuWVVvQTlBUEtGWlFGaEIzYmVjaFMzLVQtQld4Q2VrZ0xOOFZHRWV6a1FQa0NpSkdfUGEtVkJuazBCQmpQX3lQa1pwZVkybDFocUdGcE5wZHNXdGkxZnlSQTdLNDNEWktmWTBxQWRsZ2VMcnhVb3VpMWg?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiugFBVV95cUxQXzUyb3dlTUQwVW5qV09hbEJQSzBIejU4SGhEaVFNNkxvRXBYeWVrcnQxcjF2VXhjTE91dXpiYlhleUVlMTltUExnZzdzYXZ6UGNheFRjdmpEMjR5MTlkcEhiUlpvOGVkeGVKVDY4TVRpenU0eVNINzJiMVBCblg3ZXEzMG1kR1NvcVNUV3hmUVRDejBEVndERDBubDJ4aHpyRTFJR1B1QXFhLW",
-      "at": 1789131454000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789131454000
-    },
-    {
-      "title": "UAE Stocks Edged Up As Markets Waited For US Inflation - finimize.com",
-      "link": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxQSWlNdndJS0p1VnpNVVo0akJneXBUZkhNa0J5TkdJQlVJWExyUDlfeGNrWnR2dGlxNU1LUldfVkpnZllRemM5ckRsSkRJUVJqNXNXejJtVEJlc0ZHQmJ0NW90dXR0QWs5YjhIZVBzaUlFOGgtRTUtUE9nRnl1MG45azB6WUhWeWh1c3E0?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiiwFBVV95cUxQSWlNdndJS0p1VnpNVVo0akJneXBUZkhNa0J5TkdJQlVJWExyUDlfeGNrWnR2dGlxNU1LUldfVkpnZllRemM5ckRsSkRJUVJqNXNXejJtVEJlc0ZHQmJ0NW90dXR0QWs5YjhIZVBzaUlFOGgtRTUtUE9nRnl1MG45azB6WUhWeWh1c3E0?oc=5\" target=\"_blank\">UAE Stocks Edged Up",
-      "at": 1789130761000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789130371000
-    },
-    {
-      "title": "Inflation picked up as gas prices marched higher due to conflict in Middle East - spectrumlocalnews.com",
-      "link": "https://news.google.com/rss/articles/CBMisAFBVV95cUxOU2ktR1R6UjBpUXdPd3RWMTUyQXQ4Q0tvY2J3bUFHdDVHOWlCU3RZLVRPcU1BQzVqamt3YnlKUVBENUp2YXJPazBiZmtFaHo5RmxVbjFnTmxLbzVOMUV4WWRjOXpUWkt4YmNYZGtlR1F5S0JFSzlMd0hqQ2pDdFVkY0xRU3VLaXpRNGR6ZENUdjNrWmFreUVYREhJUVJGMWRMZHpvT01IZS10TDMyaTlDeQ?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMisAFBVV95cUxOU2ktR1R6UjBpUXdPd3RWMTUyQXQ4Q0tvY2J3bUFHdDVHOWlCU3RZLVRPcU1BQzVqamt3YnlKUVBENUp2YXJPazBiZmtFaHo5RmxVbjFnTmxLbzVOMUV4WWRjOXpUWkt4YmNYZGtlR1F5S0JFSzlMd0hqQ2pDdFVkY0xRU3VLaXpRNGR6ZENUdjNrWmFreUVYREhJUVJGMWRMZHpvT01IZS10TD",
-      "at": 1789130580000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL",
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789128060000
-    },
-    {
-      "title": "Gold Gains on Softer Oil; US Inflation Data in Focus - ASHARQ AL-AWSAT English",
-      "link": "https://news.google.com/rss/articles/CBMikwFBVV95cUxNMEVZNnlUQ1JlWUNyUjgwWFhfNFV1bko4aGswZDFrVlV2SUFaa01vakpkMUw2d3cycWNWdmpRdEVuVHVRRjRuOU1kLW1UN2hfS2hhaDVlMlNoZmlxTEZHWEk1V01mczZtRDk2REl4aWdJNmxwcUlWZEdYWUM1LW5zTnNLTElqSXNGWkI2Qk5nNDdHTTA?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMikwFBVV95cUxNMEVZNnlUQ1JlWUNyUjgwWFhfNFV1bko4aGswZDFrVlV2SUFaa01vakpkMUw2d3cycWNWdmpRdEVuVHVRRjRuOU1kLW1UN2hfS2hhaDVlMlNoZmlxTEZHWEk1V01mczZtRDk2REl4aWdJNmxwcUlWZEdYWUM1LW5zTnNLTElqSXNGWkI2Qk5nNDdHTTA?oc=5\" target=\"_blank\">Gold Gai",
-      "at": 1789130546000,
-      "inst": [
-        "XAU/USD",
-        "USOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL",
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789128060000
     }
   ],
   "sources": [
@@ -1938,6 +1944,7 @@
     "MarketWatch",
     "Investing",
     "Investing FX",
+    "Investing Cmdty",
     "CNBC Markets",
     "Yahoo Finance",
     "Al Jazeera",
@@ -1947,10 +1954,6 @@
   ],
   "failed": [
     {
-      "name": "Investing Cmdty",
-      "why": "network timeout at: https://www.investing.com/rss/news_11.rss"
-    },
-    {
       "name": "FXStreet",
       "why": "403"
     },
@@ -1959,7 +1962,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-11T18:00:46.637Z",
-  "headlinesAt": "2026-09-11T18:00:46.637Z",
-  "updatedAt": "2026-09-11T18:00:46.637Z"
+  "calendarAt": "2026-09-11T18:02:02.422Z",
+  "headlinesAt": "2026-09-11T18:02:02.422Z",
+  "updatedAt": "2026-09-11T18:02:02.422Z"
 }
