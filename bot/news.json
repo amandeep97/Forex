@@ -353,7 +353,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789111137000,
-      "_kind": null
+      "_kind": null,
+      "why": "Forecast distribution discussion, no directional bias."
     },
     {
       "title": "Gold on track for third straight weekly loss as US inflation data looms​‌ - The Star",
@@ -372,7 +373,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789108478000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold on track for weekly loss."
     },
     {
       "title": "European stocks heading for worst week since April as ECB hike batters risk",
@@ -390,7 +395,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789110303000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "EUR/USD": "down",
+        "US500": "down"
+      },
+      "why": "ECB hike batters risk, stocks falling."
     },
     {
       "title": "These Five Stocks are Citi’s Top Picks in the Chinese Internet Sector",
@@ -405,7 +415,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789110117000,
-      "_kind": null
+      "_kind": null,
+      "why": "Specific stock picks, unclear broad market impact."
     },
     {
       "title": "Oil prices set to end week above $100 for first time in nearly 4 months",
@@ -422,7 +433,10 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789110026000,
-      "_kind": null
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil prices set to end week higher."
     },
     {
       "title": "Japan stocks lower at close of trade; Nikkei 225 down 1.87%",
@@ -439,7 +453,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789110005000
+      "firstAt": 1789110005000,
+      "why": "Japan stocks lower, no clear US/JPY direction."
     },
     {
       "title": "Iran gains stronger leverage as oil surges above $100, forcing urgent diplomatic solutions",
@@ -457,7 +472,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789109834000
+      "firstAt": 1789109834000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Oil surges above $100, prices rising."
     },
     {
       "title": "Scoop: MBS urged Trump to strike Houthis amid Red Sea threat - axios.com",
@@ -477,7 +497,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789109757000
+      "firstAt": 1789109757000,
+      "why": "Geopolitical threat, direction unclear without price data."
     },
     {
       "title": "New Zealand Dollar gathers strength above 0.5800, all eyes on US CPI inflation data - FXStreet",
@@ -495,7 +516,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789109651000
+      "firstAt": 1789109651000,
+      "dir": {
+        "NZD/USD": "up"
+      },
+      "why": "New Zealand Dollar gathers strength."
     },
     {
       "title": "Gold Price Forecast: PPI and Oil Prices Fuel Inflation Concerns, Can CPI Change Gold's Direction? - TradingKey",
@@ -515,7 +540,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789106305000
+      "firstAt": 1789106305000,
+      "why": "Forecast article, no immediate directional signal."
     },
     {
       "title": "Why SAIC Motor shares climbed today",
@@ -544,7 +570,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789108204000
+      "firstAt": 1789108204000,
+      "why": "Australia stocks lower, no clear US/AUD direction."
     },
     {
       "title": "Dow Jones Futures Rise, Oil Prices Fall, Oracle Jumps; CPI Inflation Data To Inform Fed - Investor's Business Daily",
@@ -563,7 +590,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789107420000
+      "firstAt": 1789107420000,
+      "dir": {
+        "USOIL": "down",
+        "US30": "up"
+      },
+      "why": "Dow futures rise, oil prices fall."
     },
     {
       "title": "Bond Sell-Off Pushes Global Markets Lower as Oil Fuels Inflation Fears - Межа. Новини України.",
@@ -581,7 +613,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789106040000
+      "firstAt": 1789106040000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil fuels inflation fears, prices rising."
     },
     {
       "title": "Gold rebounds toward $4,350 after sharp drop as Fed hike bets stay elevated",
@@ -598,7 +634,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789106525000
+      "firstAt": 1789106525000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Gold rebounds toward higher levels."
     },
     {
       "title": "UK July monthly GDP +0.4% vs 0.0% m/m expected",
@@ -621,7 +661,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789106410000
+      "firstAt": 1789106410000,
+      "dir": {
+        "GBP/USD": "up"
+      },
+      "why": "UK GDP beats expectations, bullish for GBP."
     },
     {
       "title": "Gold on track for third weekly loss as US inflation data looms​‌ - BusinessLine",
@@ -2033,10 +2077,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-11T07:30:31.180Z",
-  "headlinesAt": "2026-09-11T07:30:31.180Z",
-  "updatedAt": "2026-09-11T07:30:31.180Z"
+  "calendarAt": "2026-09-11T07:31:46.286Z",
+  "headlinesAt": "2026-09-11T07:31:46.286Z",
+  "updatedAt": "2026-09-11T07:31:46.286Z"
 }
