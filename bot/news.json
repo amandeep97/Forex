@@ -324,7 +324,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789122006000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "EUR/USD": "down",
+        "US500": "down"
+      },
+      "why": "ECB hike batters risk, European stocks worst week"
     },
     {
       "title": "U.S. oil price dips below $100 while diesel passes $6, marking fresh record",
@@ -343,7 +348,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789121520000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Oil prices edged lower on diplomatic talks reports"
     },
     {
       "title": "Oracle shares are climbing after results. What Wall Street analysts are saying now.",
@@ -359,7 +369,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789121100000,
-      "_kind": null
+      "_kind": null,
+      "why": "Oracle specific news, unclear broad index impact"
     },
     {
       "title": "Mortgage and refinance interest rates today, Friday, September 11, 2026: Rates shoot up ahead of CPI data",
@@ -382,7 +393,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789120800000,
-      "_kind": null
+      "_kind": null,
+      "why": "Rates up ahead of CPI, direction unclear"
     },
     {
       "title": "Russian forces kill 9, injure 145 across Ukraine over past day as Moscow expands gas station strikes to Kyiv - The Kyiv Independent",
@@ -403,7 +415,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789120739000,
-      "_kind": null
+      "_kind": null,
+      "why": "Ukraine conflict update, no clear price direction"
     },
     {
       "title": "Gold edges higher ahead of key U.S. inflation data",
@@ -421,7 +434,10 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789118054000,
-      "_kind": null
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Gold edges higher ahead of inflation data"
     },
     {
       "title": "Yen caps two-week winning streak as dollar and euro flatline ahead of U.S CPI",
@@ -440,7 +456,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789119996000
+      "firstAt": 1789119996000,
+      "why": "Dollar and euro flatline ahead of CPI"
     },
     {
       "title": "As Saudi tensions with Iran-backed Houthis escalate, mediator Pakistan faces pressure to choose a side - Reuters",
@@ -460,7 +477,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789119518000
+      "firstAt": 1789119518000,
+      "why": "Geopolitical tension, no explicit price movement stated"
     },
     {
       "title": "Oil prices drop but remain on track to close week above $100",
@@ -476,7 +494,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789119331000
+      "firstAt": 1789119331000,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Oil prices drop but remain above $100"
     },
     {
       "title": "Oil set to end week above $100 for first time since mid-May as US diesel hits record high",
@@ -492,7 +514,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789119047000
+      "firstAt": 1789119047000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil set to end week above $100"
     },
     {
       "title": "UN Security Council Votes to Enforce Iran Sanctions - IranWire",
@@ -512,7 +538,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789118746000
+      "firstAt": 1789118746000,
+      "why": "UN vote on sanctions, no immediate price signal"
     },
     {
       "title": "Gold Recovers Toward $4,350 Ahead of US Inflation Report - Yahoo Finance UK",
@@ -530,7 +557,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789116209000
+      "firstAt": 1789116209000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Gold recovers toward $4,350 ahead of report"
     },
     {
       "title": "Japan, India, Ukraine: Why some countries are uneasy about new UN map",
@@ -547,7 +578,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789117902000
+      "firstAt": 1789117902000,
+      "why": "UN map controversy, no currency impact"
     },
     {
       "title": "Sterling today: Pound steady as UK GDP beats, dollar firms on CPI bets",
@@ -564,7 +596,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789117762000
+      "firstAt": 1789117762000,
+      "why": "Pound steady, dollar firms, mixed signals"
     },
     {
       "title": "Yossi Abravanel: Despite sanctions, Israel must keep communication open with Europe - The Times of Israel",
@@ -584,7 +617,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789117099000
+      "firstAt": 1789117099000,
+      "why": "Diplomatic commentary, no market direction implied"
     },
     {
       "title": "Five dead and dozens injured in coach crash in Swiss Alps",
@@ -2017,7 +2051,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-11T10:25:30.674Z",
-  "headlinesAt": "2026-09-11T10:25:30.674Z",
-  "updatedAt": "2026-09-11T10:25:30.674Z"
+  "calendarAt": "2026-09-11T10:27:02.513Z",
+  "headlinesAt": "2026-09-11T10:27:02.513Z",
+  "updatedAt": "2026-09-11T10:27:02.513Z"
 }
