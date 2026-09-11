@@ -20,7 +20,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789106305000,
-      "_kind": null
+      "_kind": null,
+      "why": "Inflation concerns ambiguous for gold and oil."
     },
     {
       "title": "Why SAIC Motor shares climbed today",
@@ -51,7 +52,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789108204000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "AUD/USD": "down"
+      },
+      "why": "Australian stocks lower, no US equity signal."
     },
     {
       "title": "Dow Jones Futures Rise, Oil Prices Fall, Oracle Jumps; CPI Inflation Data To Inform Fed - Investor's Business Daily",
@@ -71,7 +76,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789107420000,
-      "_kind": null
+      "dir": {
+        "USOIL": "down",
+        "US30": "up"
+      },
+      "why": "Oil falls, Dow futures rise."
     },
     {
       "title": "Bond Sell-Off Pushes Global Markets Lower as Oil Fuels Inflation Fears - Межа. Новини України.",
@@ -89,7 +98,35 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789106040000
+      "firstAt": 1789106040000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil fuels inflation fears, likely higher prices."
+    },
+    {
+      "title": "Gold ETFs Fall Over 1%, Silver ETFs Drop Up To 3%: Is The Bullion Rally Losing Steam? - ndtvprofit.com",
+      "link": "https://news.google.com/rss/articles/CBMizgFBVV95cUxNeFFPZ2NHS1Y0c2xwNE90d0tTWkNDM1lORGN4aVdyR0VwNHFKWnlRN2ZtNVN2YVJib0hIWGg0ZHZXTVJfOElmQXo2MXVhX3pjZXVhRGpPZ2lwNDZjRWk5ejVMelhHTFktSUFNeFFVOG5BNXNLSTl1b2tWenVwcmRsUkdqYmNsZ1d3bGJNX2VoMVNTOE9HNVhNem9wLWhackEtRzZ3M0NaeGFGVTVkSzdLSk1HN18xUU1pWEQxRVAxMnpTbGhqZE5kWVJ6TGtLZ9IB1gFBVV95cUxQY2tYc3hKSEpnS2FzYTA4VXFhOTZmVkJqVlE5RUc0TmtrM25BSlVlQ3BweGJJR0c4NHNtLTJmaVU0Mzh5QW1Zck5wLUNYYzAxYWlIblNaZ0dWWEY4V05BYzVCWmNxcXhPUlNQX1hmNW1vQ19qSTl2LUh0ZUVhd0RaYk1zbTRoQ1dSRXI4cmpLMmNEaWRpbmRBb3NsS3E5NzlzSzU4SF82S24wTXhKc0hvMFJBenBZUVRyQUc3MmN1S3NITWdydHZSM3dGZnpMMF9LUTd3RFNR?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMizgFBVV95cUxNeFFPZ2NHS1Y0c2xwNE90d0tTWkNDM1lORGN4aVdyR0VwNHFKWnlRN2ZtNVN2YVJib0hIWGg0ZHZXTVJfOElmQXo2MXVhX3pjZXVhRGpPZ2lwNDZjRWk5ejVMelhHTFktSUFNeFFVOG5BNXNLSTl1b2tWenVwcmRsUkdqYmNsZ1d3bGJNX2VoMVNTOE9HNVhNem9wLWhackEtRzZ3M0NaeGFGVT",
+      "at": 1789107216000,
+      "inst": [
+        "XAU/USD",
+        "XAG/USD"
+      ],
+      "ccy": [
+        "XAU",
+        "XAG"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1789106525000,
+      "dir": {
+        "XAU/USD": "down",
+        "XAG/USD": "down"
+      },
+      "why": "ETF outflows signal bearish sentiment for metals."
     },
     {
       "title": "US issues new sanctions targeting Iran’s proxies - A News",
@@ -109,7 +146,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789107060000
+      "firstAt": 1789107060000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Sanctions boost safe-haven gold and oil supply risk."
     },
     {
       "title": "Sanctions are pressure tool, can't form Iran's fate - en.mehrnews.com",
@@ -129,7 +172,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789107060000
+      "firstAt": 1789107060000,
+      "why": "Commentary on sanctions lacks immediate market direction."
     },
     {
       "title": "Oil prices set to end week above $100 for first time in nearly 4 months",
@@ -145,7 +189,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789106856000
+      "firstAt": 1789106856000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil prices set to end week higher."
     },
     {
       "title": "Taiwan stocks lower at close of trade; Taiwan Weighted down 1.47%",
@@ -159,7 +207,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789106703000
+      "firstAt": 1789106703000,
+      "why": "Taiwan stocks lower, no direct US impact."
     },
     {
       "title": "Gold rebounds toward $4,350 after sharp drop as Fed hike bets stay elevated",
@@ -175,8 +224,12 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789106525000
+      "srcs": 2,
+      "firstAt": 1789106525000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Gold rebounds after sharp drop."
     },
     {
       "title": "Milky Mist shares surge over 100% since August IPO: What comes next?",
@@ -211,7 +264,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789106410000
+      "firstAt": 1789106410000,
+      "dir": {
+        "GBP/USD": "up"
+      },
+      "why": "Strong UK GDP supports pound, others unclear."
     },
     {
       "title": "Gold on track for third weekly loss as US inflation data looms​‌ - BusinessLine",
@@ -229,7 +286,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789106305000
+      "firstAt": 1789106305000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold on track for weekly loss."
     },
     {
       "title": "Drone strikes kill two in Russia; eight injured in Kyiv",
@@ -248,7 +309,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789106146000
+      "firstAt": 1789106146000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Geopolitical violence boosts safe-haven and oil risk premium"
     },
     {
       "title": "Global bond selloff pushes 10-year US yield toward 5% on oil, rate-hike fears - reuters.com",
@@ -265,25 +332,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789106040000
-    },
-    {
-      "title": "Gold on track for third weekly loss as U.S. inflation data looms​‌ - CNBC",
-      "link": "https://news.google.com/rss/articles/CBMioAFBVV95cUxQZDVOa1pBNW14c2JSQVN3RmdwLU9YSV9ieVhiN1NoOHV5RWhXRjlubXFVVFlZeHJubkI3Vm9qTC1GZUdvWlZmVEpVT3hKUXcwendGcjcwaDZDQmU0aXZrQzNZWVU3d0Z0V01ZbTktUTRaM2luVzRvd1NINUtMYkE0d2NNU2VEUnljNXozSkdiLUZIdlM5VmZVSHdheUhZM3dO0gGmAUFVX3lxTE9maXlxNFZRSXBfeUgwbm5rd1oyamlPcVB3akFhMUd1cF9GN1lQdEUwVHpudnNCY05iLWpBaDN1TlF2cGo2NWkyVnFweXVsUXpnWDBvYmlLMUQ0Rm9oSmVQa1pwbGlyUDJBaW0xY0w1eEJSMDRvd3JEd3FLMURsM1dtWm5oaG5yaFFGSjV4NFR5N1Btc2w2WHEyLWhiOUluUkhmejZHeFE?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMioAFBVV95cUxQZDVOa1pBNW14c2JSQVN3RmdwLU9YSV9ieVhiN1NoOHV5RWhXRjlubXFVVFlZeHJubkI3Vm9qTC1GZUdvWlZmVEpVT3hKUXcwendGcjcwaDZDQmU0aXZrQzNZWVU3d0Z0V01ZbTktUTRaM2luVzRvd1NINUtMYkE0d2NNU2VEUnljNXozSkdiLUZIdlM5VmZVSHdheUhZM3dO0gGmAUFVX3lxTE",
-      "at": 1789103469000,
-      "inst": [
-        "XAU/USD"
-      ],
-      "ccy": [
-        "XAU",
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789103469000
+      "firstAt": 1789106040000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil drives bond selloff and rate-hike fears."
     },
     {
       "title": "US steps up Iran pressure with major bank sanctions next week - middle-east-online.com",
@@ -303,7 +356,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789103025000
+      "firstAt": 1789103025000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "New Iran sanctions boost gold and oil risk."
     },
     {
       "title": "Asian currencies weaken as yen slips, dollar holds near weekly high",
@@ -549,7 +608,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789096151000
+      "firstAt": 1789094160000
     },
     {
       "title": "Israeli experts split over impact of Western sanctions on entities linked to West Bank settlements - Anadolu Ajansı",
@@ -648,6 +707,24 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789094735000
+    },
+    {
+      "title": "⁠Gold on track for third weekly loss as US inflation data looms​‌ - reuters.com",
+      "link": "https://news.google.com/rss/articles/CBMiogFBVV95cUxOMk9xQnh0dkJvU0VUbjhfa0E5ZHhmb21sU1k4RWktNC0tdERMUlFyb05jamhUa0p0dUEwejVJbHlUaWp6VnZuUEJrc0ZmYzBMM1RwaUp0SUdWWXBiU2pRVUF4ZlRsQk1fVmY2MUlTcTFFV3RjSnQzSE5UUHdKWHJYcV9YaUVmZ01PVnVUWHI0MzU4dnJja25CTmpxc3N4STVOb1E?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiogFBVV95cUxOMk9xQnh0dkJvU0VUbjhfa0E5ZHhmb21sU1k4RWktNC0tdERMUlFyb05jamhUa0p0dUEwejVJbHlUaWp6VnZuUEJrc0ZmYzBMM1RwaUp0SUdWWXBiU2pRVUF4ZlRsQk1fVmY2MUlTcTFFV3RjSnQzSE5UUHdKWHJYcV9YaUVmZ01PVnVUWHI0MzU4dnJja25CTmpxc3N4STVOb1E?oc=5\" targ",
+      "at": 1789094160000,
+      "inst": [
+        "XAU/USD"
+      ],
+      "ccy": [
+        "XAU",
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789092948000
     },
     {
       "title": "Gold and Crypto Fall as Hot US Inflation Rattles Markets - Mitrade",
@@ -1337,7 +1414,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789074477000
+      "firstAt": 1789072652000
     },
     {
       "title": "Fed, eyeing inflation data, may lean toward a hike, traders bet - reuters.com",
@@ -1475,6 +1552,26 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789072800000
+    },
+    {
+      "title": "U.S. And Iran Escalation Pushes Oil Above $100, Brent Tops $101: 13 outlets compared - NewsCord",
+      "link": "https://news.google.com/rss/articles/CBMizAFBVV95cUxNazY2T3dxcGZYWUxQY2RDVzZkbVBzUG1HTHRoejBweGVUMzBzd3NINHpSdnNzVS1DSkNGb1dvS2dMcTJHVHlBTjhobTFNQnpIcnh2TnlNdU53NDAtbEtoRXNmdHFqRmwwT2dGOUd6NDgzaGFBOWpMUFp4VkRRYUFKdDhBcmxseUQ2VngwMXV4QldjM2hLMzhkbVI4U1F5TjFuaEozdWVwNTV4Z0ZWaVJUeDV0aWtJWjh3Z080N0JTeEh2MENSUjROMzlTc0s?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMizAFBVV95cUxNazY2T3dxcGZYWUxQY2RDVzZkbVBzUG1HTHRoejBweGVUMzBzd3NINHpSdnNzVS1DSkNGb1dvS2dMcTJHVHlBTjhobTFNQnpIcnh2TnlNdU53NDAtbEtoRXNmdHFqRmwwT2dGOUd6NDgzaGFBOWpMUFp4VkRRYUFKdDhBcmxseUQ2VngwMXV4QldjM2hLMzhkbVI4U1F5TjFuaEozdWVwNTV4Z0",
+      "at": 1789072652000,
+      "inst": [
+        "USOIL",
+        "UKOIL",
+        "XAU/USD"
+      ],
+      "ccy": [
+        "OIL",
+        "XAU"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1789072652000
     },
     {
       "title": "Treasury yields surge after Bessent’s beefed-up buyback operation fails to calm market",
@@ -1662,44 +1759,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789068585000
-    },
-    {
-      "title": "Washington nonprofit Better Markets sues Federal Reserve over capital rule overhaul - reuters.com",
-      "link": "https://news.google.com/rss/articles/CBMiygFBVV95cUxQb3hQU3Y4VWFmRkpaUll6bmx3MzFKYlFzS0x6VjNsc1ZjdjZCUDhaYVdxdXRFSUd5bGFScjdZWHJLaGx6ZDdROUd1SnpzbE5NaWxpa3d6OGJqX000QThqOGVxUXZrdnE2djFJSHp6Z1YzTVlIUzNHcjliMmVfU0Ixb21jNmRudUwxeWItZTlSUDhpaTRNbmRMbndpZWVEOW1TSWdvR2ZxYXZVQXc0SFllLWI3UlM0Z2k0XzcxRWpFR0E3UUo1bjczRXNR?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiygFBVV95cUxQb3hQU3Y4VWFmRkpaUll6bmx3MzFKYlFzS0x6VjNsc1ZjdjZCUDhaYVdxdXRFSUd5bGFScjdZWHJLaGx6ZDdROUd1SnpzbE5NaWxpa3d6OGJqX000QThqOGVxUXZrdnE2djFJSHp6Z1YzTVlIUzNHcjliMmVfU0Ixb21jNmRudUwxeWItZTlSUDhpaTRNbmRMbndpZWVEOW1TSWdvR2ZxYXZVQX",
-      "at": 1789068055000,
-      "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789068055000
-    },
-    {
-      "title": "OpenAI targets work of Wall Street junior bankers with new ChatGPT for Financial Services",
-      "link": "https://www.cnbc.com/2026/09/10/openai-chatgpt-for-financial-services-targets-work-of-junior-bankers.html",
-      "source": "CNBC Markets",
-      "desc": "OpenAI launched ChatGPT for Financial Services, targeting the labor-intensive research, modeling and pitchbook tasks traditionally handled by junior bankers.",
-      "at": 1789066978000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789066978000
     }
   ],
   "sources": [
@@ -1722,10 +1781,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-11T06:47:15.423Z",
-  "updatedAt": "2026-09-11T06:47:15.423Z"
+  "headlinesAt": "2026-09-11T06:49:01.654Z",
+  "updatedAt": "2026-09-11T06:49:01.654Z"
 }
