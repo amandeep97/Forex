@@ -309,6 +309,30 @@
   ],
   "headlines": [
     {
+      "title": "U.S. oil price dips below $100 while diesel passes $6, marking fresh record",
+      "link": "https://www.marketwatch.com/story/u-s-oil-price-dips-below-100-while-diesel-passes-6-marking-fresh-record-a3b6e6fb?mod=mw_rss_topstories",
+      "source": "MarketWatch",
+      "desc": "Brent crude and West Texas Intermediate’s front-month contracts edged lower on reports of plans for diplomatic talks between Gulf states.",
+      "at": 1789121520000,
+      "inst": [
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789121520000,
+      "_kind": null,
+      "dir": {
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Oil prices edged lower on diplomatic talks."
+    },
+    {
       "title": "Oracle shares are climbing after results. What Wall Street analysts are saying now.",
       "link": "https://www.marketwatch.com/story/oracle-shares-are-climbing-after-results-what-wall-street-analysts-are-saying-now-0d4517ae?mod=mw_rss_topstories",
       "source": "MarketWatch",
@@ -322,7 +346,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789121100000,
-      "_kind": null
+      "_kind": null,
+      "why": "Oracle specific news, unclear for index."
     },
     {
       "title": "Mortgage and refinance interest rates today, Friday, September 11, 2026: Rates shoot up ahead of CPI data",
@@ -345,7 +370,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789120800000,
-      "_kind": null
+      "_kind": null,
+      "why": "Rates up, unclear direction for FX."
     },
     {
       "title": "Russian forces kill 9, injure 145 across Ukraine over past day as Moscow expands gas station strikes to Kyiv - The Kyiv Independent",
@@ -366,7 +392,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789120739000,
-      "_kind": null
+      "_kind": null,
+      "why": "Ukraine conflict update, no clear market direction."
     },
     {
       "title": "Gold edges higher ahead of key U.S. inflation data",
@@ -384,7 +411,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789119099000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Gold edges higher ahead of data."
     },
     {
       "title": "Yen caps two-week winning streak as dollar and euro flatline ahead of U.S CPI",
@@ -404,7 +435,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789119996000,
-      "_kind": null
+      "_kind": null,
+      "why": "Dollar and euro flatline ahead of CPI."
     },
     {
       "title": "As Saudi tensions with Iran-backed Houthis escalate, mediator Pakistan faces pressure to choose a side - Reuters",
@@ -424,7 +456,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789119518000
+      "firstAt": 1789119518000,
+      "why": "Geopolitical tension, no clear price direction."
     },
     {
       "title": "Oil prices drop but remain on track to close week above $100",
@@ -440,7 +473,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789119331000
+      "firstAt": 1789119331000,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Oil prices drop but remain high."
     },
     {
       "title": "Gold gains on softer oil prices, US inflation data in focus - marketscreener.com",
@@ -460,7 +497,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789119099000
+      "firstAt": 1789119099000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "down"
+      },
+      "why": "Gold gains, oil prices softer."
     },
     {
       "title": "Oil set to end week above $100 for first time since mid-May as US diesel hits record high",
@@ -476,7 +518,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789119047000
+      "firstAt": 1789119047000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil set to end week above $100."
     },
     {
       "title": "UN Security Council Votes to Enforce Iran Sanctions - IranWire",
@@ -496,7 +542,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789118746000
+      "firstAt": 1789118746000,
+      "why": "Sanctions vote, unclear immediate market impact."
     },
     {
       "title": "Japan, India, Ukraine: Why some countries are uneasy about new UN map",
@@ -513,7 +560,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789117902000
+      "firstAt": 1789117902000,
+      "why": "UN map controversy, no FX impact."
     },
     {
       "title": "Sterling today: Pound steady as UK GDP beats, dollar firms on CPI bets",
@@ -530,7 +578,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789117762000
+      "firstAt": 1789117762000,
+      "why": "Pound steady, dollar firms on CPI bets."
     },
     {
       "title": "Yossi Abravanel: Despite sanctions, Israel must keep communication open with Europe - The Times of Israel",
@@ -550,7 +599,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789117099000
+      "firstAt": 1789117099000,
+      "why": "Diplomatic comment, no clear market direction."
     },
     {
       "title": "Five dead and dozens injured in coach crash in Swiss Alps",
@@ -567,7 +617,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789116860000
+      "firstAt": 1789116860000,
+      "why": "Swiss accident, no clear FX direction."
     },
     {
       "title": "Gold hits one-week low as markets await U.S. inflation data - سانا",
@@ -1981,23 +2032,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789079100000
-    },
-    {
-      "title": "Stocks and Treasuries Find Relief Before CPI Print: Markets Wrap - Bloomberg.com",
-      "link": "https://news.google.com/rss/articles/CBMilAFBVV95cUxNdWtrNXA0SFF6bzRNNjVfYkFKMXVEMS0yTTVGNXJhMFJqSzlibVZ6MUtDdmVkb014NkRmZEhXSEwyVzZ5S2FoY2hBZHgzMG4tQjYtczBVWWotazYyU3JmamdjWkxyRTlCNGJsX3Rmb3VtZHdUSU1haW1sTkFtY29uQ0pUaXE5VmI4S0M1TGpzTEc3UnhJ?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMilAFBVV95cUxNdWtrNXA0SFF6bzRNNjVfYkFKMXVEMS0yTTVGNXJhMFJqSzlibVZ6MUtDdmVkb014NkRmZEhXSEwyVzZ5S2FoY2hBZHgzMG4tQjYtczBVWWotazYyU3JmamdjWkxyRTlCNGJsX3Rmb3VtZHdUSU1haW1sTkFtY29uQ0pUaXE5VmI4S0M1TGpzTEc3UnhJ?oc=5\" target=\"_blank\">Stocks ",
-      "at": 1789078553000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789078553000
     }
   ],
   "sources": [
@@ -2020,10 +2054,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-11T10:14:14.964Z",
-  "headlinesAt": "2026-09-11T10:14:14.964Z",
-  "updatedAt": "2026-09-11T10:14:14.964Z"
+  "calendarAt": "2026-09-11T10:16:04.539Z",
+  "headlinesAt": "2026-09-11T10:16:04.539Z",
+  "updatedAt": "2026-09-11T10:16:04.539Z"
 }
