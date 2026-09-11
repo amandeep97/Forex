@@ -2,6 +2,35 @@
   "calendar": [],
   "headlines": [
     {
+      "title": "US consumer inflation picks up in August",
+      "link": "https://finance.yahoo.com/economy/policy/articles/us-consumer-inflation-picks-august-123741290.html",
+      "source": "Yahoo Finance",
+      "at": 1789145884000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789145521000,
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Hot inflation boosts gold, weakens dollar pairs"
+    },
+    {
       "title": "Stocks making the biggest moves midday: Dell, Skyworks Solutions, GameStop & more",
       "link": "https://www.cnbc.com/2026/09/11/stocks-making-the-biggest-moves-midday-dell-swks-gme.html",
       "source": "CNBC Markets",
@@ -13,9 +42,10 @@
       "ccy": [],
       "sev": 1,
       "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789145850000,
-      "_kind": null
+      "srcs": 2,
+      "firstAt": 1789145599000,
+      "_kind": null,
+      "why": "Individual stock moves, no clear index direction"
     },
     {
       "title": "Exclusive-White House weighs how to use Defense Production Act to expand US oil refining capacity, sources say",
@@ -32,7 +62,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789145721000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Expanded refining capacity implies increased supply"
     },
     {
       "title": "Tesla eyes European freight market with long-delayed Semi truck",
@@ -62,29 +96,70 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789145672000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Oil falls despite weekly gain"
     },
     {
-      "title": "A Rate Hike Is Basically Locked In, and Stock Market Indexes Rose Anyway",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/rate-hike-basically-locked-stock-164529292.html",
+      "title": "Stock Market Midday, Sept. 11: Stocks Rise as Falling Oil Prices Outweigh Sticky Inflation",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/stock-market-midday-sept-11-165319326.html",
       "source": "Yahoo Finance",
-      "at": 1789145129000,
+      "at": 1789145599000,
       "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
+        "USOIL",
         "US500"
       ],
       "ccy": [
+        "OIL",
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1789145521000,
+      "_kind": null,
+      "dir": {
+        "USOIL": "down",
+        "US500": "up"
+      },
+      "why": "Stocks rise as oil prices fall"
+    },
+    {
+      "title": "August Inflation Came in Hot, and the Odds of a September Rate Hike Are Now 85%. But There's a Silver Lining Driving Stocks Higher.",
+      "link": "https://finance.yahoo.com/economy/policy/articles/august-inflation-came-hot-odds-165201591.html",
+      "source": "Yahoo Finance",
+      "at": 1789145521000,
+      "inst": [
+        "XAG/USD",
+        "US500"
+      ],
+      "ccy": [
+        "XAG",
         "USD"
       ],
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789142625000,
+      "firstAt": 1789145521000,
+      "_kind": null,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Stocks higher, silver direction unclear"
+    },
+    {
+      "title": "TeraWulf Rallies 7% as Miner Selloff Reverses; Applied Digital Gains 4%, IREN Sits Out the Rally",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/terawulf-rallies-7-miner-selloff-165043514.html",
+      "source": "Yahoo Finance",
+      "at": 1789145443000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 1,
+      "srcs": 1,
+      "firstAt": 1789145443000,
       "_kind": null
     },
     {
@@ -101,7 +176,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789145100000,
-      "_kind": null
+      "_kind": null,
+      "why": "Vague safe haven reference, no clear direction"
     },
     {
       "title": "Senate Intelligence Committee Will Examine Iran Escalation Threat - Legis1",
@@ -122,7 +198,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789144933000,
-      "_kind": null
+      "_kind": null,
+      "why": "Geopolitical risk assessment, no immediate price move"
     },
     {
       "title": "This Oil Stock Sails Near Entry, Profits Soar 452% As Strait of Hormuz Crisis Flares Up",
@@ -139,7 +216,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789142623000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Strait of Hormuz crisis flares up"
     },
     {
       "title": "Canada 10-year yield slips as markets digest U.S. inflation data - Investing.com Canada",
@@ -158,24 +239,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789144676000,
-      "_kind": null
-    },
-    {
-      "title": "Forget NuScale: This Nuclear Energy Stock Is the Smarter Bet Right Now",
-      "link": "https://finance.yahoo.com/energy/articles/forget-nuscale-nuclear-energy-stock-163500644.html",
-      "source": "Yahoo Finance",
-      "at": 1789144500000,
-      "inst": [
-        "XAU/USD"
-      ],
-      "ccy": [
-        "XAU"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789142623000,
-      "_kind": null
+      "_kind": null,
+      "why": "Yield slip, unclear currency impact"
     },
     {
       "title": "Your Social Security check could go up another $71 next year. That’s not necessarily good news.",
@@ -198,19 +263,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789144320000
-    },
-    {
-      "title": "Financial Services Roundup: Market Talk",
-      "link": "https://www.wsj.com/business/financial-services-roundup-market-talk-a516c8f3?siteid=yhoof2&yptr=yahoo",
-      "source": "Yahoo Finance",
-      "at": 1789144260000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 2,
-      "firstAt": 1789142791000
+      "firstAt": 1789144320000,
+      "dir": {
+        "XAU/USD": "up",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Persistent inflation supports gold, weakens dollar pairs"
     },
     {
       "title": "US diplomacy under fire as Russia escalates attacks on Ukrainian officials",
@@ -230,7 +289,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789144248000
+      "firstAt": 1789144248000,
+      "why": "Geopolitical tension, no clear immediate direction"
     },
     {
       "title": "Wall St bounces as oil cools, inflation risks keeps Fed in focus",
@@ -247,7 +307,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789144187000
+      "firstAt": 1789144187000,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Oil cools, Wall St bounces"
     },
     {
       "title": "US House to vote on Russia sanctions backed by late Senator Graham - Reuters",
@@ -267,7 +331,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789144009000
+      "firstAt": 1789144009000,
+      "why": "Sanctions vote, no immediate price impact"
     },
     {
       "title": "Russian Lawmaker Says Ukraine ‘Close’ to Oreshnik Strike - Kyiv Post",
@@ -287,7 +352,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789143592000
+      "firstAt": 1789143592000,
+      "why": "Escalation threat, no clear immediate direction"
     },
     {
       "title": "Saudi Arabia's MBS pressed Trump to strike Houthis in Yemen, sources say - CBS News",
@@ -393,7 +459,7 @@
       "ccy": [],
       "sev": 1,
       "rel": 2,
-      "srcs": 3,
+      "srcs": 2,
       "firstAt": 1789141380000
     },
     {
@@ -501,7 +567,7 @@
       "firstAt": 1789140645000
     },
     {
-      "title": "US Airline Sanctions Sever Some of Iran’s Last Outside Links - Bloomberg.com",
+      "title": "US Airline Sanctions Sever Some of Iran’s Last Outside Links - bloomberg.com",
       "link": "https://news.google.com/rss/articles/CBMisAFBVV95cUxQbXo4M0E3RV9FQjE0cUdsM2ZWNkpsNlJTU2hSN1NrUnNabXNtcWZNTmgyYkdXckE1ZUdwZEEwbXpoRGNmRmt2QmJ4SGhfV0RGVlJsd0NSQUxDTGlaZ05PdEFtSzdRYnFYNHctdGVNdHNpU0ItYkktYlo1aHltNTR4VGRncWVRa3J0WW1xTnEzMi01UkI2T281Wm0zdHBLSnNwWEZuemhWX1JSbGF1Qlg0Tw?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMisAFBVV95cUxQbXo4M0E3RV9FQjE0cUdsM2ZWNkpsNlJTU2hSN1NrUnNabXNtcWZNTmgyYkdXckE1ZUdwZEEwbXpoRGNmRmt2QmJ4SGhfV0RGVlJsd0NSQUxDTGlaZ05PdEFtSzdRYnFYNHctdGVNdHNpU0ItYkktYlo1aHltNTR4VGRncWVRa3J0WW1xTnEzMi01UkI2T281Wm0zdHBLSnNwWEZuemhWX1JSbG",
@@ -657,7 +723,7 @@
       "firstAt": 1789140660000
     },
     {
-      "title": "Russia Sanctions Bill Scheduled for a US House Vote Next Week - Bloomberg.com",
+      "title": "Russia Sanctions Bill Scheduled for a US House Vote Next Week - bloomberg.com",
       "link": "https://news.google.com/rss/articles/CBMisgFBVV95cUxPdzhXU0hyclZKWmQ2bU5ueU05ZDhjcE9LdHlhTVFTMHpCcjZpbnVKYjk1MHd0ZVpFYlhabVNlaVVLTkxpNlJGWVlrU09RcXV3a040QUg3MnFzVDBNMU90Y1lTb01OcTBHRDBXbWs0N2stT0JXTWo2ZnpSbjhTQ1Y1YVZiZGR3UEVwV0lVY2VFdk02QW5VejRUNWZMbHRNUnlfR3ZWa1FmY3ltb3pualdpbG1B?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMisgFBVV95cUxPdzhXU0hyclZKWmQ2bU5ueU05ZDhjcE9LdHlhTVFTMHpCcjZpbnVKYjk1MHd0ZVpFYlhabVNlaVVLTkxpNlJGWVlrU09RcXV3a040QUg3MnFzVDBNMU90Y1lTb01OcTBHRDBXbWs0N2stT0JXTWo2ZnpSbjhTQ1Y1YVZiZGR3UEVwV0lVY2VFdk02QW5VejRUNWZMbHRNUnlfR3ZWa1FmY3ltb3",
@@ -1441,7 +1507,7 @@
       "firstAt": 1789128060000
     },
     {
-      "title": "Gold Gains on Softer Oil; US Inflation Data in Focus - english.aawsat.com",
+      "title": "Gold Gains on Softer Oil; US Inflation Data in Focus - ASHARQ AL-AWSAT English",
       "link": "https://news.google.com/rss/articles/CBMikwFBVV95cUxNMEVZNnlUQ1JlWUNyUjgwWFhfNFV1bko4aGswZDFrVlV2SUFaa01vakpkMUw2d3cycWNWdmpRdEVuVHVRRjRuOU1kLW1UN2hfS2hhaDVlMlNoZmlxTEZHWEk1V01mczZtRDk2REl4aWdJNmxwcUlWZEdYWUM1LW5zTnNLTElqSXNGWkI2Qk5nNDdHTTA?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMikwFBVV95cUxNMEVZNnlUQ1JlWUNyUjgwWFhfNFV1bko4aGswZDFrVlV2SUFaa01vakpkMUw2d3cycWNWdmpRdEVuVHVRRjRuOU1kLW1UN2hfS2hhaDVlMlNoZmlxTEZHWEk1V01mczZtRDk2REl4aWdJNmxwcUlWZEdYWUM1LW5zTnNLTElqSXNGWkI2Qk5nNDdHTTA?oc=5\" target=\"_blank\">Gold Gai",
@@ -1696,25 +1762,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789128576000
-    },
-    {
-      "title": "Dow Jones Futures Rise, Oil Prices Fall, Oracle Jumps; CPI Inflation Data To Inform Fed - Investor's Business Daily",
-      "link": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxPZGdpMlBVbExibHozSndzcGVmRE9SOVdnMnJDbmFSX2NSbjRQamJhd3R6dEkxX2tlaTkwdWRjVlplWkpsQTJoamljRzhQcXZkUmhDTmgtRWY0U1RwRUlEYUdoRmVmVkktM3FDNWpyVXRFNkpEWGl5ZlhHaGNadmVKTUx5NlhlQXE1ejdTUlowM0dGM1lPRkdTb2xRV2pKczR6aWtoLXRMWG11RDlUaXRuZDc3eUh1SDBmQ2NZQ2laTzBXMGtVQ0NpVjNhU2FvZ1ItWDhQWV9n?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi1gFBVV95cUxPZGdpMlBVbExibHozSndzcGVmRE9SOVdnMnJDbmFSX2NSbjRQamJhd3R6dEkxX2tlaTkwdWRjVlplWkpsQTJoamljRzhQcXZkUmhDTmgtRWY0U1RwRUlEYUdoRmVmVkktM3FDNWpyVXRFNkpEWGl5ZlhHaGNadmVKTUx5NlhlQXE1ejdTUlowM0dGM1lPRkdTb2xRV2pKczR6aWtoLXRMWG11RD",
-      "at": 1789128060000,
-      "inst": [
-        "USOIL",
-        "US30"
-      ],
-      "ccy": [
-        "USD",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789125613000
     }
   ],
   "sources": [
@@ -1737,10 +1784,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-11T17:04:00.650Z",
-  "updatedAt": "2026-09-11T17:04:00.650Z"
+  "headlinesAt": "2026-09-11T17:05:18.426Z",
+  "updatedAt": "2026-09-11T17:05:18.426Z"
 }
