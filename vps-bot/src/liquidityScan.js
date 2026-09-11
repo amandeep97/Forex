@@ -50,7 +50,18 @@ const LEVEL_JOBS = 4;
 const SCAN_JOBS = 8;
 
 // How close to a level is worth spending a request on, in H4 ATR.
+//
+// The daily high and low get a wider band than the rest. They are the levels an
+// intraday trader is actually waiting on, so being told about the approach
+// early is the point rather than an expense to minimise; an H4 swing only earns
+// a request once price is nearly on it.
 const NEAR_ATR = 1.0;
+const NEAR_ATR_DAILY = 2.0;
+
+// How close counts as "approaching", reported on the row. Tighter than the
+// scan band: a request is worth spending well before a level is worth
+// mentioning on screen.
+const APPROACH_ATR = 0.5;
 
 // A setup is announced once. Re-announcing the same sweep every two minutes
 // while it remains valid would train you to ignore the alert.
@@ -113,8 +124,11 @@ class LiquidityScanner {
   _near(sym, price) {
     const rec = this.levels.get(sym);
     if (!rec || !rec.levels.length || !Number.isFinite(price)) return false;
-    const band = rec.atr ? rec.atr * NEAR_ATR : Math.abs(price) * 0.002;
-    return rec.levels.some(l => Math.abs(price - l.price) <= band);
+    const unit = rec.atr || Math.abs(price) * 0.002;
+    return rec.levels.some(l => {
+      const daily = l.kind === 'PDH' || l.kind === 'PDL';
+      return Math.abs(price - l.price) <= unit * (daily ? NEAR_ATR_DAILY : NEAR_ATR);
+    });
   }
 
   async _scan(inst) {
@@ -130,6 +144,10 @@ class LiquidityScanner {
     if (!m2 || m2.length < 20) throw new Error('no M2 data');
 
     const setup = this._withLevels(m2, cached.levels);
+    // The other half of the instruction. "Swept or NEAR the daily high or low"
+    // is one request with two states, and only the sweep was reported before —
+    // proximity existed purely as a cost gate and the number was thrown away.
+    const near = this.lib.approach(m2, cached.levels, cached.atr, { within: APPROACH_ATR });
 
     const rec = {
       sym: inst.sym,
@@ -138,6 +156,13 @@ class LiquidityScanner {
       price: +m2[m2.length - 1].c,
       scanned: true,
       setup: setup ? this._slim(setup) : null,
+      // An approach carries no direction on purpose: price walking up to
+      // yesterday's high may sweep it and turn, or go through and run, and
+      // which one happens is exactly what has not been decided yet.
+      near: near ? {
+        kind: near.level.kind, price: near.level.price, label: near.level.label,
+        distance: +near.distance.toFixed(6), atrPct: +near.pct.toFixed(2),
+      } : null,
     };
     this.results.set(inst.sym, rec);
     return rec;
@@ -209,7 +234,12 @@ class LiquidityScanner {
 
   _signature() {
     return JSON.stringify([...this.results.entries()]
-      .map(([sym, r]) => [sym, r.setup?.state || null, r.setup?.level?.price ?? null, r.setup?.dir || null])
+      .map(([sym, r]) => [sym, r.setup?.state || null, r.setup?.level?.price ?? null, r.setup?.dir || null,
+        r.near?.kind || null,
+        // Bucketed, not raw. Publishing the exact distance would rewrite the
+        // file every two minutes on any instrument merely drifting near a
+        // level, which is most of them on a quiet day.
+        r.near ? Math.round(r.near.atrPct * 10) : null])
       .sort());
   }
 
@@ -275,8 +305,16 @@ class LiquidityScanner {
       // "not checked" rather than showing nothing and implying "nothing there".
       watching: this._instruments().filter(i => this.levels.get(i.sym)?.levels?.length).map(i => i.sym),
       rows: [...this.results.values()].sort((a, b) => {
-        const rank = s => (s?.setup?.state === 'setup' ? 3 : s?.setup?.state === 'taken' ? 2 : s?.setup ? 1 : 0);
-        return rank(b) - rank(a) || a.sym.localeCompare(b.sym);
+        // A live setup outranks a taken level, which outranks an approach to
+        // the daily high or low, which outranks an approach to anything else.
+        const rank = r => r?.setup?.state === 'setup' ? 5
+          : r?.setup?.state === 'taken' ? 4
+          : r?.setup ? 3
+          : (r?.near?.kind === 'PDH' || r?.near?.kind === 'PDL') ? 2
+          : r?.near ? 1 : 0;
+        return rank(b) - rank(a)
+          || (a.near?.atrPct ?? 9) - (b.near?.atrPct ?? 9)
+          || a.sym.localeCompare(b.sym);
       }),
     };
     try {
@@ -287,4 +325,4 @@ class LiquidityScanner {
   }
 }
 
-module.exports = { LiquidityScanner, PATH, NEAR_ATR, LEVELS_TTL, SCAN_TTL, atrOf };
+module.exports = { LiquidityScanner, PATH, NEAR_ATR, NEAR_ATR_DAILY, APPROACH_ATR, LEVELS_TTL, SCAN_TTL, atrOf };

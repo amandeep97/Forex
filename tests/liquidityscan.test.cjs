@@ -22,7 +22,7 @@
 //
 //   And an alert fires once per sweep. Re-announcing the same setup every two
 //   minutes is how you teach someone to ignore the alert.
-const { LiquidityScanner, atrOf, NEAR_ATR } = require('../vps-bot/src/liquidityScan');
+const { LiquidityScanner, atrOf, NEAR_ATR, NEAR_ATR_DAILY } = require('../vps-bot/src/liquidityScan');
 
 let fails = 0;
 const check = (n, c, e = '') => { console.log(`${c ? '  ok  ' : '  FAIL'}  ${n}${e ? ' — ' + e : ''}`); if (!c) fails++; };
@@ -213,6 +213,50 @@ function sweptM2() {
     check('and a setup that is not ready never announces at all',
       sent.length === 2, `${sent.length} messages`,
       'the waiting state is not something to wake someone for');
+  }
+
+  // ── The daily high and low get a wider watch band ────────────────────────
+  //
+  // They are the levels an intraday trader is actually waiting on, so being
+  // told early is the point. An H4 swing has to be nearly touched before it is
+  // worth a request.
+  {
+    const s = new LiquidityScanner({ oanda: fakeOanda(), github: noGithub, log: quiet });
+    s.levels.set('D', { levels: [{ kind:'PDH', price:110, side:'high', label:"yesterday's high" }], atr: 2, at: Date.now() });
+    s.levels.set('H', { levels: [{ kind:'H4H', price:110, side:'high', label:'H4 swing high' }], atr: 2, at: Date.now() });
+
+    const between = 110 - 2 * ((NEAR_ATR + NEAR_ATR_DAILY) / 2);
+    check('a daily level is watched from further out than an H4 swing',
+      s._near('D', between) === true && s._near('H', between) === false,
+      `price ${between}, daily band ${2 * NEAR_ATR_DAILY}, other band ${2 * NEAR_ATR}`,
+      'the daily high and low are the request; H4 swings are the nice-to-have');
+
+    check('and both are still watched when price is right on them',
+      s._near('D', 110) === true && s._near('H', 110) === true);
+  }
+
+  // ── An approach is published, not just used and discarded ────────────────
+  {
+    const oanda = fakeOanda(() => flat(40, 109));   // near 110, never beyond it
+    const s = new LiquidityScanner({ oanda, github: noGithub, log: quiet });
+    const sym = s._instruments()[0].sym;
+    s.levels.set(sym, {
+      levels: [{ kind:'PDH', price:110, side:'high', label:"yesterday's high" }],
+      atr: 4, at: Date.now(),
+    });
+    await s.tick({ [sym]: 109 });
+    const rec = s.results.get(sym);
+
+    check('price approaching a level with no sweep still produces a row',
+      rec && rec.setup === null && rec.near !== null,
+      rec ? `setup ${rec.setup}, near ${rec.near?.kind}` : 'no record',
+      'proximity used to exist only as a cost gate and the number was thrown away');
+    check('and the row says which level and how far in its own scale',
+      rec.near.kind === 'PDH' && rec.near.atrPct > 0,
+      `${rec.near.label} ${rec.near.atrPct} ATR away`);
+    check('an approach carries no direction',
+      !('dir' in rec.near),
+      'price at yesterday\'s high may sweep and turn or go straight through');
   }
 
   console.log(fails ? `\n${fails} FAILED` : '\nall passed');
