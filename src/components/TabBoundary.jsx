@@ -25,17 +25,28 @@ import { Component } from 'react';
 export default class TabBoundary extends Component {
   constructor(props) {
     super(props);
-    this.state = { err: null };
+    this.state = { err: null, where: null };
   }
 
   static getDerivedStateFromError(err) {
     return { err };
   }
 
+  // The message alone is not enough to act on. "Illegal constructor" says a Web
+  // API was called without `new`, and nothing about WHICH component did it —
+  // and an error that only reproduces on one engine cannot be chased without
+  // that. React hands the component stack here and nowhere else, so it is kept.
+  componentDidCatch(err, info) {
+    this.setState({ where: info?.componentStack || null });
+    // Also to the console, where a remote-inspected device can see the whole
+    // thing rather than the three frames that fit on a phone.
+    console.error('[TabBoundary]', err, info?.componentStack);
+  }
+
   componentDidUpdate(prev) {
     // Switching tabs clears the error. The next tab deserves its own attempt.
     if (prev.resetKey !== this.props.resetKey && this.state.err) {
-      this.setState({ err: null });
+      this.setState({ err: null, where: null });
     }
   }
 
@@ -57,7 +68,7 @@ export default class TabBoundary extends Component {
   }
 
   render() {
-    const { err } = this.state;
+    const { err, where } = this.state;
     if (!err) return this.props.children;
 
     // A chunk that failed to download reads differently from a bug in the tab,
@@ -80,6 +91,13 @@ export default class TabBoundary extends Component {
         <div style={{ marginTop:8, fontSize:9, color:'#334155', wordBreak:'break-word' }}>
           {String(err.message || err)}
         </div>
+        {where && (
+          <pre style={{ marginTop:6, fontSize:8, color:'#475569', lineHeight:1.5,
+            whiteSpace:'pre-wrap', wordBreak:'break-word', maxHeight:150, overflowY:'auto',
+            background:'#080c11', border:'1px solid #16202b', borderRadius:4, padding:'6px' }}>
+            {where.trim().split('\n').slice(0, 8).join('\n')}
+          </pre>
+        )}
         <button onClick={() => this.hardReload()}
           style={{ marginTop:10, fontSize:11, fontWeight:700, padding:'6px 12px', borderRadius:4,
             cursor:'pointer', border:'1px solid #00d4aa55', background:'#00d4aa15', color:'#00d4aa',

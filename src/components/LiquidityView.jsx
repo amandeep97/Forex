@@ -64,7 +64,12 @@ const dpFor = p => (Math.abs(p) < 20 ? 5 : Math.abs(p) < 500 ? 3 : 2);
 // as one thing: a hunt on a slow timeframe, then a turn on a fast one, with
 // both times attached. A row of codes would need translating in your head every
 // time, and the translation is where a wrong read comes from.
-function Event({ e, onOpen }) {
+// Named HuntEvent, not Event. A module-scoped `function Event` shadows the DOM
+// global inside this file, and a bundler that later merges scopes can turn that
+// into "Illegal constructor" — a Web API called without `new` — somewhere else
+// entirely. The name costs nothing; the class of bug it avoids is one that only
+// shows up on some engines.
+function HuntEvent({ e, onOpen }) {
   const long = e.dir === 'long';
   const col = e.state === 'setup' ? (long ? C.good : C.bad)
             : e.state === 'missed' ? '#64748b' : C.warn;
@@ -241,7 +246,7 @@ export default function LiquidityView({ onOpen }) {
               something on it is not measuring anything.
             </div>
           </div>
-        ) : events.map((e, i) => <Event key={`${e.sym}-${e.levelPrice}-${i}`} e={e} onOpen={onOpen}/>)}
+        ) : events.map((e, i) => <HuntEvent key={`${e.sym}-${e.levelPrice}-${i}`} e={e} onOpen={onOpen}/>)}
       </div>
 
       {/* ── The table ── */}
