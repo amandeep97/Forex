@@ -237,7 +237,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789155000000,
-      "_kind": null
+      "_kind": null,
+      "why": "Neutral corporate news, no clear index direction."
     },
     {
       "title": "US House Will Consider Russia Sanctions Bill With Tariffs of Up to 500% - mezha.net",
@@ -258,7 +259,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789152980000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Sanctions boost gold, oil impact unclear."
     },
     {
       "title": "RBC hires Bank of America’s Mills for Canada rates sales role - Bloomberg",
@@ -275,7 +280,30 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789154586000,
-      "_kind": null
+      "_kind": null,
+      "why": "Personnel change, no market direction."
+    },
+    {
+      "title": "How US leaders remembered the 25th anniversary of the 9/11 attacks",
+      "link": "https://www.aljazeera.com/news/2026/9/11/how-us-leaders-remembered-the-25th-anniversary-of-the-9-11?traffic_source=rss",
+      "source": "Al Jazeera",
+      "desc": "Trump drew parallels to the US's present-day war against Iran, while figures like Abdul El-Sayed called for inclusivity.",
+      "at": 1789154508000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789154508000,
+      "_kind": null,
+      "why": "Political commentary, no direct market impact."
     },
     {
       "title": "Natural Gas holds 200-period MA after double top failure: Live levels",
@@ -290,7 +318,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789154289000,
-      "_kind": null
+      "_kind": null,
+      "why": "Technical analysis, no clear directional bias."
     },
     {
       "title": "London Gas Oil stalls at $1,480 after overbought surge: Live levels",
@@ -307,7 +336,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789154289000,
-      "_kind": null
+      "_kind": null,
+      "why": "Technical stall, no clear direction."
     },
     {
       "title": "Nasdaq 100 trapped in 29,000-29,750 range: Live levels",
@@ -322,7 +352,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789154289000,
-      "_kind": null
+      "_kind": null,
+      "why": "Range-bound market, no clear direction."
     },
     {
       "title": "Crude Oil WTI rejects $104.44 hard: Live mean-reversion levels",
@@ -340,7 +371,12 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789154289000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Rejection at resistance signals bearish pressure."
     },
     {
       "title": "Silver holds $64.90 but faces $67.30 resistance: Live levels",
@@ -357,7 +393,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789154289000,
-      "_kind": null
+      "_kind": null,
+      "why": "Mixed technical signals, no clear direction."
     },
     {
       "title": "Brent Oil blow-off top at $109.68 signals pullback: Live levels",
@@ -375,7 +412,12 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789154289000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Blow-off top signals imminent pullback."
     },
     {
       "title": "Gold clings to $4,356 support in bearish structure: Live levels",
@@ -392,7 +434,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789154289000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Bearish structure implies downward pressure."
     },
     {
       "title": "Dollar up on Fed rate hike bets, yen set for first two-week win streak since May",
@@ -410,7 +456,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789154241000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USD/JPY": "up"
+      },
+      "why": "Dollar up, yen down, pair rises."
     },
     {
       "title": "Zelensky urges Trump to impose new Russia sanctions 'now', after deadly Ukraine strikes - France 24",
@@ -431,7 +481,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789151363000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Sanctions urge boosts gold, oil unclear."
     },
     {
       "title": "Canadian dollar weakens to nine-day low on Fed rate hike bets - Forex Factory",
@@ -448,7 +502,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789153680000
+      "firstAt": 1789153680000,
+      "dir": {
+        "USD/CAD": "up"
+      },
+      "why": "Weaker CAD implies stronger USD pair."
     },
     {
       "title": "US House Prepares Vote on Russia Sanctions Bill Giving Trump 100% Tariff Powers - united24media.com",
@@ -469,7 +527,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789152980000
+      "firstAt": 1789152980000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Sanctions boost gold, oil impact unclear."
     },
     {
       "title": "Oil falls but head for 8% weekly gain on tight supply; US diesel hits record",
@@ -1919,24 +1981,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789130761000
-    },
-    {
-      "title": "Gold prices inch up amid steady US inflation, b... - Pluang",
-      "link": "https://news.google.com/rss/articles/CBMikAFBVV95cUxNVkxUQ05CR1g1bUllblp4VjdDRHVEWFotd3ZVaFo2QXpwM2c5YlkwLURtVVdrcE90Sk1vWElTaG4tVWc2bHl2akxReEpNbTdJdzlxYUpneTJucm81TEZZa3BOMm9fa1Vyb1ZneE1yOXl1akREY1UzZnVYZkt3Y1otVURXSHctNUpBbkxJVWk0MlU?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMikAFBVV95cUxNVkxUQ05CR1g1bUllblp4VjdDRHVEWFotd3ZVaFo2QXpwM2c5YlkwLURtVVdrcE90Sk1vWElTaG4tVWc2bHl2akxReEpNbTdJdzlxYUpneTJucm81TEZZa3BOMm9fa1Vyb1ZneE1yOXl1akREY1UzZnVYZkt3Y1otVURXSHctNUpBbkxJVWk0MlU?oc=5\" target=\"_blank\">Gold prices ",
-      "at": 1789132090000,
-      "inst": [
-        "XAU/USD"
-      ],
-      "ccy": [
-        "XAU",
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789132090000
     }
   ],
   "sources": [
@@ -1962,7 +2006,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-11T19:40:45.494Z",
-  "headlinesAt": "2026-09-11T19:40:45.494Z",
-  "updatedAt": "2026-09-11T19:40:45.494Z"
+  "calendarAt": "2026-09-11T19:42:18.057Z",
+  "headlinesAt": "2026-09-11T19:42:18.058Z",
+  "updatedAt": "2026-09-11T19:42:18.058Z"
 }
