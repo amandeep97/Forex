@@ -19,7 +19,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789102310000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Geopolitical risk boosts gold, oil unclear."
     },
     {
       "title": "Premier of Germany’s Lower Saxony walks high wire between VW cuts and AfD",
@@ -34,7 +38,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789103592000,
-      "_kind": null
+      "_kind": null,
+      "why": "Political noise, no clear directional bias."
     },
     {
       "title": "Gold on track for third weekly loss as U.S. inflation data looms​‌ - CNBC",
@@ -53,7 +58,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789103469000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold tracking weekly loss, bearish sentiment."
     },
     {
       "title": "SK Hynix nears key resistance after 44% rally: Live levels",
@@ -65,8 +74,7 @@
       "sev": 1,
       "rel": 1,
       "srcs": 1,
-      "firstAt": 1789103193000,
-      "_kind": null
+      "firstAt": 1789103193000
     },
     {
       "title": "Novartis investors turn spotlight on M&A after trial setbacks",
@@ -78,8 +86,7 @@
       "sev": 1,
       "rel": 1,
       "srcs": 1,
-      "firstAt": 1789103187000,
-      "_kind": null
+      "firstAt": 1789103187000
     },
     {
       "title": "US steps up Iran pressure with major bank sanctions next week - middle-east-online.com",
@@ -99,7 +106,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789103025000
+      "firstAt": 1789103025000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Iran sanctions boost risk assets and oil."
     },
     {
       "title": "Asian currencies weaken as yen slips, dollar holds near weekly high",
@@ -116,7 +129,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789102511000
+      "firstAt": 1789102511000,
+      "dir": {
+        "USD/JPY": "up"
+      },
+      "why": "Dollar holds high, yen slips, pair rises."
     },
     {
       "title": "Dollar-Yen in Upper 154 Range in Tokyo as Early Fed Rate Hike Bets Spur Dollar Buybacks - finance.biggo.com",
@@ -134,7 +151,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789102082000
+      "firstAt": 1789102082000,
+      "dir": {
+        "USD/JPY": "up"
+      },
+      "why": "Dollar buybacks push pair to upper range."
     },
     {
       "title": "Russia now importing fuel from South Korea, Turkey because of Ukraine drone strikes, report says - The Kyiv Independent",
@@ -154,7 +175,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789102310000
+      "firstAt": 1789102310000,
+      "why": "Supply shift, no clear price direction."
     },
     {
       "title": "Anthropic claims Claude AI used for missile projects, global espionage",
@@ -171,7 +193,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789102105000
+      "firstAt": 1789102105000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Espionage claims heighten geopolitical risk premium."
     },
     {
       "title": "Gold Falls As Strong Producer Prices Boost Fed Rate Hike Bets And Dollar By Kedia Advisory - Investing.com India",
@@ -189,7 +215,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789102082000
+      "firstAt": 1789102082000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Strong data boosts dollar, gold falls."
     },
     {
       "title": "Bond Markets Brace for Impact Amid Inflation and Global Tensions - devdiscourse.com",
@@ -212,7 +242,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789101900000
+      "firstAt": 1789101900000,
+      "why": "General tension, no specific directional signal."
     },
     {
       "title": "US Market: Rising US debt, inflation keep pressure on long-term Treasury yields - The Economic Times",
@@ -235,7 +266,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789101838000
+      "firstAt": 1789101838000,
+      "why": "Yield pressure, mixed implications for FX."
     },
     {
       "title": "White House copper tariff plan stalls amid affordability concerns, sources say",
@@ -257,7 +289,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789101752000
+      "firstAt": 1789101752000,
+      "why": "Tariff stall, no clear market impact."
     },
     {
       "title": "What are the main events for today?",
@@ -275,7 +308,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789101609000
+      "firstAt": 1789101609000,
+      "why": "GDP data expected neutral, no direction."
     },
     {
       "title": "Trump declines Saudi crown prince's call for US strikes on Houthis - report - The Jerusalem Post",
@@ -295,7 +329,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789101272000
+      "firstAt": 1789101272000,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Reduced strike risk lowers oil and gold."
     },
     {
       "title": "Oil prices set to end week above $100 for first time in nearly 4 months",
@@ -311,7 +351,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789099994000
+      "firstAt": 1789099994000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil prices rising, bullish for crude."
     },
     {
       "title": "investingLive Asia-Pacific market news: Oil holds near highs",
@@ -728,21 +772,20 @@
       "firstAt": 1789088478000
     },
     {
-      "title": "Oil prices rise, Brent tests $110 a barrel as M.East supply risks grow",
+      "title": "Oil prices reverse course, fall 1% on report of Iran, Oman seeking Hormuz deal",
       "link": "https://www.investing.com/news/commodities-news/oil-prices-rise-brent-tests-110-a-barrel-as-meast-supply-risks-grow-4897144",
       "source": "Investing Cmdty",
       "at": 1789088463000,
       "inst": [
-        "USOIL",
-        "UKOIL"
+        "USOIL"
       ],
       "ccy": [
         "OIL"
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789088463000
+      "srcs": 2,
+      "firstAt": 1789086264000
     },
     {
       "title": "Bessent says 'a large bank' will be sanctioned on Monday as part of Iran strategy - CNBC",
@@ -982,7 +1025,7 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 1,
+      "srcs": 2,
       "firstAt": 1789079762000
     },
     {
@@ -1020,10 +1063,10 @@
       "firstAt": 1789079876000
     },
     {
-      "title": "Five killed and 67 injured in Russian strike on shopping centre, Ukraine says - bbc.com",
-      "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE4wZ1I2cDl6cUFVQXozYjI3WmRUVTdOYTNvZ3JNcktjMjZUZHVUdEdPMmxNckIyenVKQlJxUEktRHFRR1QxVzlGQ0FMZ2NBZTkxOEJTVG1aaWI4Zw?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiWkFVX3lxTE4wZ1I2cDl6cUFVQXozYjI3WmRUVTdOYTNvZ3JNcktjMjZUZHVUdEdPMmxNckIyenVKQlJxUEktRHFRR1QxVzlGQ0FMZ2NBZTkxOEJTVG1aaWI4Zw?oc=5\" target=\"_blank\">Five killed and 67 injured in Russian strike on shopping centre, Ukraine says</a>&nbs",
+      "title": "Five killed and 67 injured in Russian strike on shopping centre, Ukraine says",
+      "link": "https://www.bbc.co.uk/news/articles/cpvelrmp1vmo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC World",
+      "desc": "The attack in Pavlohrad city centre was the third Russian strike on a mall within days, local media report.",
       "at": 1789079762000,
       "inst": [
         "XAU/USD",
@@ -1036,7 +1079,7 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 1,
+      "srcs": 2,
       "firstAt": 1789079058000
     },
     {
@@ -1093,7 +1136,7 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 1,
+      "srcs": 2,
       "firstAt": 1789079058000
     },
     {
@@ -1737,6 +1780,6 @@
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-11T05:36:15.767Z",
-  "updatedAt": "2026-09-11T05:36:15.767Z"
+  "headlinesAt": "2026-09-11T05:37:47.671Z",
+  "updatedAt": "2026-09-11T05:37:47.671Z"
 }
