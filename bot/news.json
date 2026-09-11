@@ -254,7 +254,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789138543000,
-      "_kind": null
+      "_kind": null,
+      "why": "Single company news, no broad index impact"
     },
     {
       "title": "Norway stocks higher at close of trade; Oslo OBX up 0.06%",
@@ -269,7 +270,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789138504000,
-      "_kind": null
+      "_kind": null,
+      "why": "Norwegian market news, irrelevant to US index"
     },
     {
       "title": "S&P downgrades Lucky Strike Entertainment rating on weak margins",
@@ -284,7 +286,37 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789138451000,
-      "_kind": null
+      "_kind": null,
+      "why": "Single company downgrade, negligible index impact"
+    },
+    {
+      "title": "With Just 5 Days to Next FOMC Meeting, Odds of Fed Rate Hike Surge to Over 85%",
+      "link": "https://finance.yahoo.com/economy/policy/articles/just-5-days-next-fomc-145150594.html",
+      "source": "Yahoo Finance",
+      "at": 1789138310000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1789136350000,
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Higher rate hike odds strengthen dollar"
     },
     {
       "title": "Greece stocks higher at close of trade; Athens General Composite up 1.07%",
@@ -299,20 +331,24 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789138203000,
-      "_kind": null
+      "_kind": null,
+      "why": "Greek market news, irrelevant to US index"
     },
     {
-      "title": "AXTQ Is a Trading Tool, Not a Portfolio Holding. Know the Difference Before You Buy",
-      "link": "https://finance.yahoo.com/markets/options/articles/axtq-trading-tool-not-portfolio-144537542.html",
+      "title": "2 Robotaxi Stocks to Buy in September for the Next Decade of Growth",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/2-robotaxi-stocks-buy-september-145000559.html",
       "source": "Yahoo Finance",
-      "at": 1789137937000,
-      "inst": [],
+      "at": 1789138200000,
+      "inst": [
+        "US500"
+      ],
       "ccy": [],
       "sev": 1,
-      "rel": 1,
+      "rel": 2,
       "srcs": 1,
-      "firstAt": 1789137937000,
-      "_kind": null
+      "firstAt": 1789138200000,
+      "_kind": null,
+      "why": "Specific stock picks, no clear index direction"
     },
     {
       "title": "Markets Turn Higher As Investors Overlook Inflation Numbers - Seeking Alpha",
@@ -336,7 +372,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789136350000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "EUR/USD": "up",
+        "GBP/USD": "up"
+      },
+      "why": "Markets turn higher implies risk-on, dollar soft"
     },
     {
       "title": "US 10-year borrowing costs pull back from 5% in reprieve for Bessent - Reuters",
@@ -360,7 +402,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789137788000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "EUR/USD": "up",
+        "GBP/USD": "up"
+      },
+      "why": "Yields pull back implies dollar weakness"
     },
     {
       "title": "Oil tanker rates hit record highs following Iran, US shipping attacks",
@@ -380,7 +428,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789137766000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Geopolitical risk boosts oil and gold"
     },
     {
       "title": "Rate hike on the cards? Markets say increasingly likely - TradingView",
@@ -402,24 +456,15 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 1,
+      "srcs": 2,
       "firstAt": 1789136350000,
-      "_kind": null
-    },
-    {
-      "title": "Bitmine Surges 8% on Ethereum Strength After Cantor Fitzgerald Doubles Its Target, SharpLink Advances 9%, Strategy Gains 4%",
-      "link": "https://finance.yahoo.com/markets/crypto/articles/bitmine-surges-8-ethereum-strength-144117927.html",
-      "source": "Yahoo Finance",
-      "at": 1789137677000,
-      "inst": [
-        "ETH/USDT"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789137677000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Likely rate hike strengthens dollar"
     },
     {
       "title": "Arista Networks, SanDisk among market cap stock movers on Friday",
@@ -451,7 +496,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789134804000
+      "firstAt": 1789134804000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Escalating conflict boosts safe havens and oil"
     },
     {
       "title": "U.S. Stocks Rise, Treasury Yields Slip Despite Stubborn Inflation - WSJ",
@@ -468,7 +519,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789137180000
+      "firstAt": 1789137180000,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Stocks rise explicitly stated"
     },
     {
       "title": "The iPhone Duo enters China’s crowded foldable market — and faces a price test",
@@ -501,7 +556,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789134804000
+      "firstAt": 1789134804000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "War escalation boosts safe havens and oil"
     },
     {
       "title": "US Imposes New Sanctions On Hezbollah And Irania Proxy Networks | LIVE BLOG - i24NEWS",
@@ -518,7 +579,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789137018000
+      "firstAt": 1789137018000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Sanctions increase geopolitical risk, boosting gold"
     },
     {
       "title": "Stock Market Leaders Often Shine, Helped By This Sign Of Liquidity Strength",
@@ -552,7 +617,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789136878000
+      "firstAt": 1789135483000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Higher inflation strengthens dollar expectations"
     },
     {
       "title": "Stock Market Today: Dow Rallies On Surprise Inflation Data; This Tech Icon Eyes A Breakout (Live Coverage)",
@@ -568,7 +639,7 @@
       "sev": 3,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789136557000
+      "firstAt": 1789135509000
     },
     {
       "title": "Gold Miner's Luster Lures Funds; Stock Trades Around Buy Point",
@@ -606,7 +677,7 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 1,
+      "srcs": 2,
       "firstAt": 1789134694000
     },
     {
@@ -689,6 +760,42 @@
       "firstAt": 1789135881000
     },
     {
+      "title": "Tech stocks rally as oil prices fall, inflation remains sticky: AlphaCheck",
+      "link": "https://finance.yahoo.com/markets/article/tech-stocks-rally-as-oil-prices-fall-inflation-remains-sticky-alphacheck-140509850.html",
+      "source": "Yahoo Finance",
+      "at": 1789135509000,
+      "inst": [
+        "USOIL",
+        "US500",
+        "US100"
+      ],
+      "ccy": [
+        "OIL",
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789135509000
+    },
+    {
+      "title": "Wall St climbs after August inflation report, oil price slide",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/wall-st-futures-recover-oil-095547409.html",
+      "source": "Yahoo Finance",
+      "at": 1789135483000,
+      "inst": [
+        "USOIL"
+      ],
+      "ccy": [
+        "OIL",
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1789133390000
+    },
+    {
       "title": "Gold edges higher amid dip-buying following U.S. inflation data - Investing.com India",
       "link": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQT2dnVDlBTV9lblVwa3BMNzA3MWNKNjhTUEFhNF8welcwOFdWaEZLRjRlV1JSdEFOZVdGRlBwbTZMWUthSFJ2RTVPdU5pQTJkdy1TbmJEN0tnX2NiWVpVQnRsT0xzeFhrRV81X3NCdlJuWTlKZ1F6cGdraWR5M3k0a19vUlh4LU9YRHdRSU1pdVZpVkhfRjA2ejM0dkdfTmxxTEpKTnQzZDhiWW03aWVWMmZTT3hCWjBMRzdr?oc=5",
       "source": "Wires (macro)",
@@ -765,6 +872,18 @@
       "firstAt": 1789132090000
     },
     {
+      "title": "Macy’s (M) Raises Guidance After Strong Q2 Results, But Investors Remain Cautious",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/macy-m-raises-guidance-strong-134158247.html",
+      "source": "Yahoo Finance",
+      "at": 1789134118000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 1,
+      "srcs": 1,
+      "firstAt": 1789134118000
+    },
+    {
       "title": "The four reasons stocks could embark on a ‘face-ripper rally’ as soon as this morning",
       "link": "https://www.marketwatch.com/story/the-four-reasons-stocks-are-about-to-embark-on-a-face-ripper-rally-e1e05e5e?mod=mw_rss_topstories",
       "source": "MarketWatch",
@@ -799,7 +918,7 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 1,
+      "srcs": 2,
       "firstAt": 1789133390000
     },
     {
@@ -1890,65 +2009,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789122457000
-    },
-    {
-      "title": "U.S. stocks jump after oil prices ease and inflation update comes in near expectations - BNN Bloomberg",
-      "link": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxPY2JPWkZQalVDSDZDVUJyTDktQ0EzNkU0eDZoMHFnbWZEY1ktVlpHRUVuYk1kdGhCR2xsUi03bklLNU1KdFBMdnhxdm93U0NwdDJfQ25HOE4tdkFQWGt3cXN1WE52NWh0X3o1MVphTDJTZDFGdGhGNUs5VmV3d3VFZVRRQUhfbG45STk3MUFFVm92ZURqZWdjOUZCRFFwOG4yT2k1TFY0UmdjdUM4OGtXX0ZSbDZfdEpDQUsyZVRvbWU2bW84OVBOemw3ZFpOeGxlUGJwZg?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi1AFBVV95cUxPY2JPWkZQalVDSDZDVUJyTDktQ0EzNkU0eDZoMHFnbWZEY1ktVlpHRUVuYk1kdGhCR2xsUi03bklLNU1KdFBMdnhxdm93U0NwdDJfQ25HOE4tdkFQWGt3cXN1WE52NWh0X3o1MVphTDJTZDFGdGhGNUs5VmV3d3VFZVRRQUhfbG45STk3MUFFVm92ZURqZWdjOUZCRFFwOG4yT2k1TFY0UmdjdU",
-      "at": 1789120158000,
-      "inst": [
-        "USOIL",
-        "US500"
-      ],
-      "ccy": [
-        "OIL",
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789120158000
-    },
-    {
-      "title": "UN Security Council Votes to Enforce Iran Sanctions - IranWire",
-      "link": "https://news.google.com/rss/articles/CBMikgFBVV95cUxNbEdfN0FjQ3lBOG52R19xcV9HLTBXU3AwWnJ2a2htZnR5Xy1TSHZJMVduOWo1S01EOF9jWTRwbXhTV3A5amxyR2RYVjQ4RS1WdnN0SDRsbzBlTUt6NDFrVnlmX25pOHNGTHZIbkd6dDZQUXA0ZklmaVdwNTR6Mm9BTlZYSk15eFhPVnh5eU9FdlVJdw?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMikgFBVV95cUxNbEdfN0FjQ3lBOG52R19xcV9HLTBXU3AwWnJ2a2htZnR5Xy1TSHZJMVduOWo1S01EOF9jWTRwbXhTV3A5amxyR2RYVjQ4RS1WdnN0SDRsbzBlTUt6NDFrVnlmX25pOHNGTHZIbkd6dDZQUXA0ZklmaVdwNTR6Mm9BTlZYSk15eFhPVnh5eU9FdlVJdw?oc=5\" target=\"_blank\">UN Securi",
-      "at": 1789118746000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789118746000
-    },
-    {
-      "title": "Gold falls back into the major $4300 support ahead of US CPI, as surging oil prices increase rate hike bets - investingLive",
-      "link": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxQdnhJb2tiTjFvZ3ZuaExubmxpdXltMDVrcEtFYU0zbzBYbFU1OERheUJMc2F2MnRyd0xuQXVmUm9PU2thU1lSeE42UDRxX2lFZ1FKZk4tNTA3MFZya185MFo4Z2pWd19EQTROSjJxNDNfTlQxcmwxakQxRlVTU1N4VlFSaTBEaHlnVEpXTlRnODJ3c29sSE43RFd1ZUtLUDJ6UGlmV2VhTC10OTB6cWxfeU9aR2ZXX2J5WS15SFBYb1dlYzNwQ3NEYVVQNmJQeTNqNnRoeDJfa2lJbmJ2?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi3AFBVV95cUxQdnhJb2tiTjFvZ3ZuaExubmxpdXltMDVrcEtFYU0zbzBYbFU1OERheUJMc2F2MnRyd0xuQXVmUm9PU2thU1lSeE42UDRxX2lFZ1FKZk4tNTA3MFZya185MFo4Z2pWd19EQTROSjJxNDNfTlQxcmwxakQxRlVTU1N4VlFSaTBEaHlnVEpXTlRnODJ3c29sSE43RFd1ZUtLUDJ6UGlmV2VhTC10OT",
-      "at": 1789118144000,
-      "inst": [
-        "XAU/USD",
-        "USOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL",
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789118054000
     }
   ],
   "sources": [
@@ -1971,10 +2031,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-11T15:09:00.819Z",
-  "headlinesAt": "2026-09-11T15:09:00.819Z",
-  "updatedAt": "2026-09-11T15:09:00.819Z"
+  "calendarAt": "2026-09-11T15:10:16.943Z",
+  "headlinesAt": "2026-09-11T15:10:16.943Z",
+  "updatedAt": "2026-09-11T15:10:16.943Z"
 }
