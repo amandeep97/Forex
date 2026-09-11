@@ -1,6 +1,7 @@
 import { useState, useEffect, lazy, Suspense } from 'react';
 import { useAlertsEngine } from './hooks/useAlertsEngine';
 import Screener from './components/Screener';          // eager — default tab
+import TabBoundary from './components/TabBoundary';
 import { allInstruments } from './data/forexData';
 import './App.css';
 
@@ -287,6 +288,10 @@ export default function App() {
 
       {/* ── Content ───────────────────────────────────────────────────────── */}
       <main className="app-main">
+      {/* A failed chunk used to unmount the whole app — no header, no tabs, a
+          black screen. It is caught here and reported as one tab failing.
+          Keyed on the active tab so one failure does not poison the rest. */}
+      <TabBoundary resetKey={activeTab}>
       <Suspense fallback={<TabSpinner />}>
         <div style={{ display: activeTab === 'cmd' ? 'block' : 'none', overflowY:'auto', height:'calc(100vh - 120px)' }}>
           {visitedTabs.has('cmd') && <CommandCenter />}
@@ -381,6 +386,7 @@ export default function App() {
           {visitedTabs.has('alphalab') && <AlphaLab />}
         </div>
       </Suspense>
+      </TabBoundary>
       </main>
 
       {/* ── Footer ────────────────────────────────────────────────────────── */}
