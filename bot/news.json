@@ -23,7 +23,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789109651000,
-      "_kind": null
+      "_kind": null,
+      "why": "Dollar consolidation implies no clear directional bias."
     },
     {
       "title": "Gold on track for third straight weekly loss as US inflation data looms​‌ - KLSE Screener",
@@ -42,7 +43,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789111836000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold on track for weekly loss."
     },
     {
       "title": "Trainline shares jump 3% after H1 sales and revenue beat forecasts",
@@ -73,7 +78,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789111600000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Gold rebounds after sharp drop."
     },
     {
       "title": "FTSE 100 today: Stocks flat as UK GDP beat offsets Hormuz fears",
@@ -90,7 +99,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789111421000,
-      "_kind": null
+      "_kind": null,
+      "why": "Stocks flat as factors offset each other."
     },
     {
       "title": "Traditional portfolio diversification isn’t cutting it anymore. Here’s where to pivot, says this $624 billion fund manager.",
@@ -128,7 +138,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789111137000,
-      "_kind": null
+      "_kind": null,
+      "why": "Forecast distribution analysis, no immediate direction."
     },
     {
       "title": "Morgan Stanley cuts Novo Nordisk on growth, patent cliff concerns; shares dip",
@@ -158,7 +169,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789110708000
+      "firstAt": 1789110708000,
+      "dir": {
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "WTI rejected at resistance, suggesting downside."
     },
     {
       "title": "Asian stocks tumble as oil surge, Fed hike bets overshadow chip optimism",
@@ -176,7 +192,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789110725000
+      "firstAt": 1789110725000,
+      "dir": {
+        "USOIL": "up",
+        "US500": "down"
+      },
+      "why": "Oil surge, stocks tumble on Fed bets."
     },
     {
       "title": "Brent Oil stalls at $109.68 after parabolic surge: Live levels",
@@ -193,7 +214,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789110708000
+      "firstAt": 1789110708000,
+      "why": "Brent stalls after surge, direction unclear."
     },
     {
       "title": "Gold trapped near $4,340 support with RSI divergence: Live levels",
@@ -209,7 +231,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789110708000
+      "firstAt": 1789110708000,
+      "why": "Gold trapped near support, mixed signals."
     },
     {
       "title": "Natural Gas teeters at $2.82 support amid bearish signals: Live",
@@ -223,7 +246,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789110717000
+      "firstAt": 1789110717000,
+      "dir": {
+        "NATGAS": "down"
+      },
+      "why": "Natural gas teeters at support, bearish signals."
     },
     {
       "title": "Silver breaks 3% below 20-period MA: Live levels",
@@ -239,7 +266,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789110708000
+      "firstAt": 1789110708000,
+      "dir": {
+        "XAG/USD": "down"
+      },
+      "why": "Silver breaks below moving average."
     },
     {
       "title": "London Gas Oil hits overbought extreme, reversal looms: Live levels",
@@ -255,7 +286,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789110708000
+      "firstAt": 1789110708000,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Gas oil overbought, reversal looms."
     },
     {
       "title": "War, sanctions and inflation leave Iran short of hundreds of medicines - Euronews.com",
@@ -276,7 +311,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789110646000
+      "firstAt": 1789110646000,
+      "why": "Geopolitical news, no clear immediate price direction."
     },
     {
       "title": "European stocks heading for worst week since April as ECB hike batters risk",
@@ -293,7 +329,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789110303000
+      "firstAt": 1789110303000,
+      "dir": {
+        "EUR/USD": "down",
+        "US500": "down"
+      },
+      "why": "ECB hike batters risk, stocks worst week."
     },
     {
       "title": "These Five Stocks are Citi’s Top Picks in the Chinese Internet Sector",
@@ -307,7 +348,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789110117000
+      "firstAt": 1789110117000,
+      "why": "Specific stock picks, no broad index direction."
     },
     {
       "title": "Oil prices set to end week above $100 for first time in nearly 4 months",
@@ -1696,6 +1738,6 @@
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-11T07:43:00.134Z",
-  "updatedAt": "2026-09-11T07:43:00.134Z"
+  "headlinesAt": "2026-09-11T07:44:01.304Z",
+  "updatedAt": "2026-09-11T07:44:01.304Z"
 }
