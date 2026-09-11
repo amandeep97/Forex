@@ -237,7 +237,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789164360000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Safe haven asset highlighted as investment."
     },
     {
       "title": "Stocks making the biggest moves midday: Dell, Skyworks Solutions, GameStop & more",
@@ -252,7 +256,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789163493000
+      "firstAt": 1789163493000,
+      "why": "Neutral report on individual stock moves."
     },
     {
       "title": "Gold little changed even as U.S. inflation data supports Fed rate-hike bets - TradingView",
@@ -270,7 +275,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789163405000
+      "firstAt": 1789163405000,
+      "why": "Gold price explicitly stated as little changed."
     },
     {
       "title": "Saudi Arabia says East-West pipeline hit by drones launched from Iraq",
@@ -290,7 +296,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789162247000
+      "firstAt": 1789162247000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Supply disruption and geopolitical risk boost prices."
     },
     {
       "title": "Bitcoin could benefit from failed Treasury intervention despite persistent inflation — CoinShares - FXStreet",
@@ -308,7 +320,11 @@
       "sev": 3,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789162246000
+      "firstAt": 1789162246000,
+      "dir": {
+        "BTC/USDT": "up"
+      },
+      "why": "Explicit statement that Bitcoin could benefit."
     },
     {
       "title": "Mexico stocks lower at close of trade; S&P/BMV IPC down 0.28%",
@@ -322,7 +338,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789162203000
+      "firstAt": 1789162203000,
+      "why": "Mexico market news, irrelevant to US index."
     },
     {
       "title": "Colombia stocks lower at close of trade; COLCAP down 1.41%",
@@ -336,7 +353,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789161903000
+      "firstAt": 1789161903000,
+      "why": "Colombia market news, irrelevant to US index."
     },
     {
       "title": "Russia stocks lower at close of trade; MOEX Russia Index down 1.14%",
@@ -350,7 +368,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789161603000
+      "firstAt": 1789161603000,
+      "why": "Russia market news, irrelevant to US index."
     },
     {
       "title": "investingLive Americas FX news wrap 11 Sept: US CPI raises odds for Fed rate hike",
@@ -372,7 +391,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789161528000
+      "firstAt": 1789161528000,
+      "dir": {
+        "US500": "up",
+        "XAU/USD": "down"
+      },
+      "why": "Stocks rebound; rate hike odds hurt gold."
     },
     {
       "title": "More than 500,000 Russian troops killed in Ukraine, UK defense chief says - WCAX",
@@ -392,7 +416,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789159787000
+      "firstAt": 1789159787000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "War escalation supports safe haven gold."
     },
     {
       "title": "US To Vote On Russia Sanctions Bill Next Week, Giving Trump More Tariff Power - NDTV",
@@ -413,7 +441,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789158412000
+      "firstAt": 1789158412000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Sanctions and tariffs increase geopolitical risk."
     },
     {
       "title": "\"Ukraine Will Retaliate Against Russian Strikes On Energy This Winter,\" Zelenskyy Warns - UNITED24 Media",
@@ -433,7 +465,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789157400000
+      "firstAt": 1789157400000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Energy strike threats boost oil and gold."
     },
     {
       "title": "Salesforce’s stock has been riding a wave of AI optimism. Here’s what Wall Street wants to see next.",
@@ -448,7 +486,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789159440000
+      "firstAt": 1789159440000,
+      "why": "Single stock news, no clear index direction."
     },
     {
       "title": "US Equity Indexes Rise After August Inflation Print Triggers Rally in Shorter-Maturity Treasury Yields, Crude Oil Slumps - marketscreener.com",
@@ -467,7 +506,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789159341000
+      "firstAt": 1789159341000,
+      "dir": {
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Crude oil explicitly stated to slump."
     },
     {
       "title": "Ukraine Strikes Back Amid Intensified Drone Attacks from Russia - Devdiscourse",
@@ -487,7 +531,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789156991000
+      "firstAt": 1789156991000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Intensified attacks support safe haven gold."
     },
     {
       "title": "UK-Israel relations 2026: E1 settlement plan, trade and sanctions - The House of Commons Library",
@@ -1945,10 +1993,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-11T22:26:31.330Z",
-  "headlinesAt": "2026-09-11T22:26:31.330Z",
-  "updatedAt": "2026-09-11T22:26:31.330Z"
+  "calendarAt": "2026-09-11T22:27:48.203Z",
+  "headlinesAt": "2026-09-11T22:27:48.203Z",
+  "updatedAt": "2026-09-11T22:27:48.203Z"
 }
