@@ -291,6 +291,19 @@
   ],
   "headlines": [
     {
+      "title": "Costco shares are at a longest losing streak since 2016. Should you buy the stock?",
+      "link": "https://www.investing.com/news/stock-market-news/costco-shares-are-at-a-longest-losing-streak-since-2016-should-you-buy-the-stock-93CH-4897840",
+      "source": "Investing",
+      "at": 1789128872000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 1,
+      "srcs": 1,
+      "firstAt": 1789128872000,
+      "_kind": null
+    },
+    {
       "title": "Iran war: Saudi-Houthi escalation intensifies Yemen conflict - DW.com",
       "link": "https://news.google.com/rss/articles/CBMilwFBVV95cUxNSEktSm1yT29OUHRmUXVjZzdaOFJ0dkFsYnJHaEpuZXhQaUV2WWJxREJZSjZfTWVHSEhoVTlYQ0ZiVElLcU5tMy02S040YzRyY2g0NU44ME1WQkFIcnU3cFl4TmNEZ1JtcXBJNGFKU0tCOEtCYXhHWDBNb081c0ZkQ3oxS0Z1R0Y3VEU5aHJEZ2M5T3FLX05Z0gGXAUFVX3lxTFB2V1BGaWc2MHVZTDUxMzRTRGJNcVlzcEFqR1Z5eTVnNVNuWlBLS2pIaTR1akYwQnZCZ0tJQ1F4RlVUUm80UXQtbldieENyU0pPRFl2RDFKamxzQ0RtOElBTTJTcE5rbDdLbWdxX2RnQ3hqZVJ6akJXa2VwS0taYVBSOXctRlpZZDRrNDhsSUFvMVNhUHpFbEU?oc=5",
       "source": "Wires (geo)",
@@ -529,39 +542,6 @@
       "firstAt": 1789126447000
     },
     {
-      "title": "U.S. stock futures rise as oil drops ahead of key inflation data",
-      "link": "https://www.investing.com/news/stock-market-news/us-stock-futures-steady-with-cpi-on-tap-oracle-firms-on-strong-earnings-4897114",
-      "source": "Investing",
-      "at": 1789126094000,
-      "inst": [
-        "USOIL"
-      ],
-      "ccy": [
-        "OIL",
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789126094000
-    },
-    {
-      "title": "Micron offers Taiwan workers up to 68-month bonuses as strike threat looms",
-      "link": "https://www.investing.com/news/stock-market-news/micron-offers-taiwan-workers-up-to-68month-bonuses-as-strike-threat-looms-4897688",
-      "source": "Investing",
-      "at": 1789126015000,
-      "inst": [
-        "XAU/USD"
-      ],
-      "ccy": [
-        "XAU"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789126015000
-    },
-    {
       "title": "Stocks making the biggest moves premarket: GameStop, Oracle, Adobe, RH & more",
       "link": "https://www.cnbc.com/2026/09/11/stocks-making-the-biggest-moves-premarket-gme-orcl-adbe-rh.html",
       "source": "CNBC Markets",
@@ -573,8 +553,8 @@
       "ccy": [],
       "sev": 1,
       "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789125503000
+      "srcs": 1,
+      "firstAt": 1789125904000
     },
     {
       "title": "Oil Prices and Inflation Fears: Markets on Edge - devdiscourse.com",
@@ -2002,6 +1982,26 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789097931000
+    },
+    {
+      "title": "U.N. Security Council Holds Briefing on Iran Sanctions & Nuclear Program - C-SPAN",
+      "link": "https://news.google.com/rss/articles/CBMivgFBVV95cUxObmM3VW51TmMycS1nTXZlWFhud1B4X1VfVkVQRThnVk5wdnpvYmQ1Ri1xNXluYXprakQ4M19MQWtmN0xpa0VBUzV1cWdkN25uVUk5bW15YlZKVEhHMzJrdnBpNmZyLWFaZVEyczR0UXlRbERiTVpMc3FoaTlHQUF5X1BKTHphM3d5SEJveGNSS250UGlob0lLMzRlNkJSRDRNcjFtcGJuOWVQMDBSVHlSbDVDXzlOemRyb3pIVWxn?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMivgFBVV95cUxObmM3VW51TmMycS1nTXZlWFhud1B4X1VfVkVQRThnVk5wdnpvYmQ1Ri1xNXluYXprakQ4M19MQWtmN0xpa0VBUzV1cWdkN25uVUk5bW15YlZKVEhHMzJrdnBpNmZyLWFaZVEyczR0UXlRbERiTVpMc3FoaTlHQUF5X1BKTHphM3d5SEJveGNSS250UGlob0lLMzRlNkJSRDRNcjFtcGJuOWVQMD",
+      "at": 1789097098000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789097098000
     }
   ],
   "sources": [
@@ -2024,10 +2024,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-11T12:19:00.541Z",
-  "headlinesAt": "2026-09-11T12:19:00.541Z",
-  "updatedAt": "2026-09-11T12:19:00.541Z"
+  "calendarAt": "2026-09-11T12:20:15.228Z",
+  "headlinesAt": "2026-09-11T12:20:15.228Z",
+  "updatedAt": "2026-09-11T12:20:15.228Z"
 }
