@@ -327,7 +327,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789111836000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold falls, oil high but direction unclear"
     },
     {
       "title": "European debt extended in 5-week decline on rate hikes and surging oil prices",
@@ -344,7 +348,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789110303000,
-      "_kind": null
+      "_kind": null,
+      "why": "Oil prices surging, direction unclear"
     },
     {
       "title": "Asian currencies subdued as dollar holds near weekly high, yen slips",
@@ -362,7 +367,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789112703000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USD/JPY": "up"
+      },
+      "why": "Dollar holds high, yen slips"
     },
     {
       "title": "Forex Today: US Dollar consolidates gains as focus shifts to cricital inflation report - FXStreet",
@@ -386,7 +395,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789109651000,
-      "_kind": null
+      "_kind": null,
+      "why": "Dollar consolidates, awaiting inflation data"
     },
     {
       "title": "Gold on track for third straight weekly loss as US inflation data looms​‌ - KLSE Screener",
@@ -404,7 +414,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789111836000
+      "firstAt": 1789111836000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold on track for weekly loss"
     },
     {
       "title": "Trainline shares jump 3% after H1 sales and revenue beat forecasts",
@@ -433,7 +447,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789111600000
+      "firstAt": 1789111600000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Gold rebounds after sharp drop"
     },
     {
       "title": "FTSE 100 today: Stocks flat as UK GDP beat offsets Hormuz fears",
@@ -449,7 +467,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789111421000
+      "firstAt": 1789111421000,
+      "why": "Stocks flat, GDP beat offsets fears"
     },
     {
       "title": "Traditional portfolio diversification isn’t cutting it anymore. Here’s where to pivot, says this $624 billion fund manager.",
@@ -485,7 +504,8 @@
       "sev": 3,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789111137000
+      "firstAt": 1789111137000,
+      "why": "Forecast distribution, no immediate direction"
     },
     {
       "title": "Morgan Stanley cuts Novo Nordisk on growth, patent cliff concerns; shares dip",
@@ -514,7 +534,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789110708000
+      "firstAt": 1789110708000,
+      "dir": {
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "WTI rejected, bulls defend support"
     },
     {
       "title": "Asian stocks tumble as oil surge, Fed hike bets overshadow chip optimism",
@@ -532,7 +557,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789110725000
+      "firstAt": 1789110725000,
+      "dir": {
+        "USOIL": "up",
+        "US500": "down"
+      },
+      "why": "Oil surge, stocks tumble"
     },
     {
       "title": "Brent Oil stalls at $109.68 after parabolic surge: Live levels",
@@ -549,7 +579,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789110708000
+      "firstAt": 1789110708000,
+      "why": "Brent stalls after parabolic surge"
     },
     {
       "title": "Gold trapped near $4,340 support with RSI divergence: Live levels",
@@ -565,7 +596,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789110708000
+      "firstAt": 1789110708000,
+      "why": "Gold trapped near support"
     },
     {
       "title": "Natural Gas teeters at $2.82 support amid bearish signals: Live",
@@ -579,7 +611,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789110717000
+      "firstAt": 1789110717000,
+      "dir": {
+        "NATGAS": "down"
+      },
+      "why": "Natural gas teeters at support, bearish"
     },
     {
       "title": "Silver breaks 3% below 20-period MA: Live levels",
@@ -595,7 +631,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789110708000
+      "firstAt": 1789110708000,
+      "dir": {
+        "XAG/USD": "down"
+      },
+      "why": "Silver breaks below moving average"
     },
     {
       "title": "London Gas Oil hits overbought extreme, reversal looms: Live levels",
@@ -611,7 +651,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789110708000
+      "firstAt": 1789110708000,
+      "why": "Gas oil overbought, reversal looms"
     },
     {
       "title": "War, sanctions and inflation leave Iran short of hundreds of medicines - Euronews.com",
@@ -1994,10 +2035,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-11T08:03:15.190Z",
-  "headlinesAt": "2026-09-11T08:03:15.190Z",
-  "updatedAt": "2026-09-11T08:03:15.190Z"
+  "calendarAt": "2026-09-11T08:04:31.116Z",
+  "headlinesAt": "2026-09-11T08:04:31.116Z",
+  "updatedAt": "2026-09-11T08:04:31.116Z"
 }
