@@ -14,7 +14,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789133579000,
-      "_kind": null
+      "_kind": null,
+      "why": "Equity risk premium context unclear"
     },
     {
       "title": "Coffee traders’ big shipments are set to boost exchange stocks and weigh on prices",
@@ -29,7 +30,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789133447000,
-      "_kind": null
+      "_kind": null,
+      "why": "Coffee news irrelevant to index"
     },
     {
       "title": "Ukraine’s long-range sanctions struck targets in eight regions of the Russian Federation — Zelenskyy - unn.ua",
@@ -50,7 +52,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789132612000,
-      "_kind": null
+      "_kind": null,
+      "why": "Geopolitical news direction unclear"
     },
     {
       "title": "Russian attacks on Kyiv petrol stations kill two, Ukrainian strikes kill three in Russia",
@@ -70,7 +73,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789132200000,
-      "_kind": null
+      "_kind": null,
+      "why": "Geopolitical news direction unclear"
     },
     {
       "title": "The four reasons stocks could embark on a ‘face-ripper rally’ as soon as this morning",
@@ -86,7 +90,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789133400000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Bullish rally prediction for stocks"
     },
     {
       "title": "Fed rate hike odds rise to 90% after August CPI report - qz.com",
@@ -110,7 +118,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789133390000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Stronger dollar hurts gold and pairs"
     },
     {
       "title": "U.S. futures gain on slide in oil prices, bonds mostly fall after CPI report",
@@ -128,7 +142,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789133319000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Oil prices slide mentioned"
     },
     {
       "title": "Dollar strengthens against euro after US inflation data - UA.NEWS",
@@ -147,7 +165,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789130814000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "EUR/USD": "down"
+      },
+      "why": "Dollar strengthens against euro"
     },
     {
       "title": "Oil falls but on track for 8% weekly gain on supply concerns; US diesel hits record high",
@@ -164,25 +186,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789133107000,
-      "_kind": null
-    },
-    {
-      "title": "The dystopian legal architecture of the ‘war on terror’ must be dismantled",
-      "link": "https://www.aljazeera.com/opinions/2026/9/11/the-dystopian-legal-architecture-of-the-war-on-terror-must-be-dismantled?traffic_source=rss",
-      "source": "Al Jazeera",
-      "desc": "A quarter-century after 9/11, we are still living under the security order it unleashed.",
-      "at": 1789133098000,
-      "inst": [
-        "XAU/USD"
-      ],
-      "ccy": [
-        "XAU"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789133098000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Oil falls despite weekly gain"
     },
     {
       "title": "German union demands Volkswagen commitment to 2024 labour agreement",
@@ -197,7 +205,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789133092000,
-      "_kind": null
+      "_kind": null,
+      "why": "Labor news unclear for currency"
     },
     {
       "title": "Dollar Wavers as Inflation Aids Fed Hike Bets While Oil Falls - bloomberg.com",
@@ -216,7 +225,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789130814000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Oil falls while dollar wavers"
     },
     {
       "title": "Bernstein Names Best 3 Transport Stocks to Own Amid Structural Supply Reset",
@@ -231,7 +244,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789132746000,
-      "_kind": null
+      "_kind": null,
+      "why": "Specific stock picks not index"
     },
     {
       "title": "Russian strikes kill two in Kyiv as Moscow targets capital’s fuel stations - Al Jazeera",
@@ -252,7 +266,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789132200000,
-      "_kind": null
+      "_kind": null,
+      "why": "Geopolitical news direction unclear"
     },
     {
       "title": "Baltic dry bulk freight index falls to lowest in over a week",
@@ -284,7 +299,10 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789132090000,
-      "_kind": null
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Gold prices inch up"
     },
     {
       "title": "Japanese Yen rallies as US Dollar loses post-inflation momentum - FXStreet",
@@ -302,7 +320,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789130814000
+      "firstAt": 1789130814000,
+      "dir": {
+        "USD/JPY": "down"
+      },
+      "why": "Yen rallies as dollar loses momentum"
     },
     {
       "title": "U.S. 10-year yield briefly breaks 5% for first time since 2024 after Aug CPI",
@@ -1726,6 +1748,24 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789110646000
+    },
+    {
+      "title": "Iran gains stronger leverage as oil surges above $100, forcing urgent diplomatic solutions",
+      "link": "https://investinglive.com/news/iran-gains-stronger-leverage-as-oil-surges-above-100-forcing-urgent-diplomatic-solutions/",
+      "source": "ForexLive",
+      "desc": "Oil prices have surged above $100 a barrel this week as the market started to price in a prolonged disruption to energy flows after Trump's midterm comments. Brent climbed as high as around $109 yesterday, while WTI moved above $104, with both benchmarks on track for their strong",
+      "at": 1789109834000,
+      "inst": [
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789109834000
     }
   ],
   "sources": [
@@ -1752,6 +1792,6 @@
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-11T13:38:17.220Z",
-  "updatedAt": "2026-09-11T13:38:17.220Z"
+  "headlinesAt": "2026-09-11T13:39:46.233Z",
+  "updatedAt": "2026-09-11T13:39:46.233Z"
 }
