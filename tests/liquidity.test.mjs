@@ -19,7 +19,8 @@
 //   Confirming before the sweep. A break that happened first is not evidence
 //   about a liquidity event that had not occurred yet.
 import {
-  keyLevels, findSweep, confirmation, sweepSetup, approach, levelStates, tsOf, H4_SWINGS, LEVEL_RANK,
+  keyLevels, findSweep, confirmation, sweepSetup, approach, levelStates, tsOf, lastClosed,
+  H4_SWINGS, LEVEL_RANK,
 } from '../shared/liquidity.mjs';
 import { detectBreaks } from '../shared/structure.mjs';
 
@@ -37,41 +38,81 @@ function leg(out, n, step, from, hPad = 0.2, lPad = 0.05) {
   return p;
 }
 
-// ── Levels come from COMPLETED candles ─────────────────────────────────────
+// ── Levels come from the last CLOSED candle, decided by time ───────────────
+//
+// This was `cs[length - 2]`, on the reasoning that the last daily candle is
+// today and still forming. The reasoning was right and the index was wrong:
+// both candle clients already drop incomplete candles, so the last element WAS
+// yesterday and taking the one before it gave the day before yesterday. On
+// screen that read as "yesterday's low" while naming a level two days old, and
+// "last week's low" while naming the week before last. Spotted by eye against a
+// chart, not by any test — which is why these now pin the behaviour.
+const DAY = 86400e3, WEEK = 7 * DAY;
 {
+  // A daily series as the client actually returns it: complete candles only,
+  // so the LAST one is yesterday.
+  const t0 = Date.UTC(2026, 8, 7);
   const daily = [
-    { o: 100, h: 110, l: 95, c: 105 },   // older
-    { o: 105, h: 118, l: 101, c: 112 },  // YESTERDAY — the one that counts
-    { o: 112, h: 113, l: 111, c: 112 },  // today, still forming
+    { t: t0,           o: 100, h: 110, l: 95,  c: 105 },
+    { t: t0 + DAY,     o: 105, h: 112, l: 99,  c: 108 },
+    { t: t0 + 2 * DAY, o: 108, h: 118, l: 101, c: 112 },   // YESTERDAY
   ];
-  const weekly = [
-    { o: 90, h: 120, l: 88, c: 115 },
-    { o: 115, h: 130, l: 108, c: 120 },  // last week
-    { o: 120, h: 121, l: 119, c: 120 },  // this week, still forming
-  ];
-  const ls = keyLevels({ daily, weekly });
+  const now = t0 + 3 * DAY + 6 * 3600e3;   // partway through today
 
-  const pdh = ls.find(l => l.kind === 'PDH');
-  check("yesterday's high is the level, not today's",
-    pdh.price === 118, `${pdh.price}`,
-    "today's high is wherever price is — sweeping it is arithmetic, not an event");
+  const ls = keyLevels({ daily }, { now });
+  check("yesterday's high is the last CLOSED candle, not the one before it",
+    ls.find(l => l.kind === 'PDH').price === 118,
+    `${ls.find(l => l.kind === 'PDH').price}, expected 118 not 112`,
+    'the index version returned 112 — the day before yesterday — under a label saying yesterday');
   check("and yesterday's low likewise",
-    ls.find(l => l.kind === 'PDL').price === 101);
-  check('last week gives its own pair',
-    ls.find(l => l.kind === 'PWH').price === 130 && ls.find(l => l.kind === 'PWL').price === 108);
+    ls.find(l => l.kind === 'PDL').price === 101,
+    `${ls.find(l => l.kind === 'PDL').price}`);
 
-  check('every level knows which side it is',
-    ls.every(l => (l.side === 'high') === /H$/.test(l.kind)),
-    ls.map(l => `${l.kind}:${l.side}`).join(' '));
+  // The same series WITH today's forming candle appended, as a raw response
+  // would have it. The answer must not change.
+  const withToday = [...daily, { t: t0 + 3 * DAY, o: 112, h: 113, l: 111, c: 112 }];
+  check('an unfinished candle at the end is skipped, and the answer is the same',
+    keyLevels({ daily: withToday }, { now }).find(l => l.kind === 'PDH').price === 118,
+    'deciding by time is right whether or not the client filtered for us');
+
+  check('a candle whose period HAS ended is used even if it is last',
+    lastClosed(daily, now) === daily[2]);
+  check('and one still in progress is not',
+    lastClosed(withToday, now) === daily[2],
+    "today's high is wherever price happens to be; sweeping it is arithmetic, not an event");
+
+  // Weekly, same shape.
+  const w0 = Date.UTC(2026, 7, 24);
+  const weekly = [
+    { t: w0,            o: 90,  h: 120, l: 88,  c: 115 },
+    { t: w0 + WEEK,     o: 115, h: 125, l: 105, c: 120 },
+    { t: w0 + 2 * WEEK, o: 120, h: 130, l: 108, c: 126 },  // LAST WEEK
+  ];
+  const wNow = w0 + 3 * WEEK + 2 * DAY;
+  const wl = keyLevels({ weekly }, { now: wNow });
+  check("last week's high and low come from last week, not the week before",
+    wl.find(l => l.kind === 'PWH').price === 130 && wl.find(l => l.kind === 'PWL').price === 108,
+    `${wl.find(l => l.kind === 'PWH').price} / ${wl.find(l => l.kind === 'PWL').price}, expected 130 / 108`,
+    'this is the US500 row: a level named "last week" that belonged to the week before');
+
+  // The weekend hazard the bar width has to survive.
+  const overWeekend = [
+    { t: Date.UTC(2026, 8, 3), o: 1, h: 2, l: 0.5, c: 1.5 },   // Thu
+    { t: Date.UTC(2026, 8, 4), o: 1, h: 3, l: 0.6, c: 2.0 },   // Fri
+    { t: Date.UTC(2026, 8, 7), o: 2, h: 4, l: 1.0, c: 3.0 },   // Mon — a 3-day gap
+  ];
+  check('a Monday after a weekend is judged on a one-day bar, not a three-day one',
+    lastClosed(overWeekend, Date.UTC(2026, 8, 8, 6)) === overWeekend[2],
+    'taking the LAST gap as the bar width would call Monday unfinished for two days');
 
   check('no data means no levels rather than invented ones',
-    keyLevels({}).length === 0 && keyLevels({ daily: [{ o:1,h:1,l:1,c:1 }] }).length === 0,
-    'one candle has no PRIOR candle');
+    keyLevels({}).length === 0 && keyLevels({ daily: [{ t: 0, o:1,h:1,l:1,c:1 }] }, { now: DAY }).length === 1 * 2,
+    'one candle is still a closed candle if its period has passed');
 
   // H4 swings, capped
   const h4 = [];
   let p = 100;
-  for (const [n, s] of [[6,1],[6,-1],[7,1],[6,-1],[7,1],[6,-1],[7,1],[6,-1]]) p = leg(h4, n, s, p);
+  for (const [n, sp] of [[6,1],[6,-1],[7,1],[6,-1],[7,1],[6,-1],[7,1],[6,-1]]) p = leg(h4, n, sp, p);
   const withH4 = keyLevels({ h4 });
   check('recent H4 swings become levels, and only the recent ones',
     withH4.filter(l => l.kind === 'H4H').length <= H4_SWINGS
@@ -195,7 +236,10 @@ const LOW_LEVEL = [{ kind: 'PDL', price: 90, side: 'low', label: "yesterday's lo
   p = leg(exec, 4, 0.4, p);         // pullback again
   leg(exec, 6, -0.6, p);            // and again
 
-  const daily = [{ o:100,h:105,l:95,c:104 }, { o:104,h:110,l:100,c:106 }, { o:106,h:107,l:105,c:106 }];
+  // The client returns complete candles only, so the LAST one is yesterday.
+  // This fixture used to carry a trailing "today" candle and rely on the code
+  // stepping back one — which was the off-by-one itself.
+  const daily = [{ o:100,h:105,l:95,c:104 }, { o:104,h:110,l:100,c:106 }];
   const out = sweepSetup({ daily, exec });
 
   check('a confirmed sweep produces a direction, an entry and a stop',
