@@ -269,6 +269,19 @@
   ],
   "headlines": [
     {
+      "title": "Baltic dry bulk freight index falls to lowest in over a week",
+      "link": "https://www.investing.com/news/commodities-news/baltic-dry-bulk-freight-index-falls-to-lowest-in-over-a-week-93CH-4897981",
+      "source": "Investing Cmdty",
+      "at": 1789132181000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 1,
+      "srcs": 1,
+      "firstAt": 1789132181000,
+      "_kind": null
+    },
+    {
       "title": "Gold prices inch up amid steady US inflation, b... - Pluang",
       "link": "https://news.google.com/rss/articles/CBMikAFBVV95cUxNVkxUQ05CR1g1bUllblp4VjdDRHVEWFotd3ZVaFo2QXpwM2c5YlkwLURtVVdrcE90Sk1vWElTaG4tVWc2bHl2akxReEpNbTdJdzlxYUpneTJucm81TEZZa3BOMm9fa1Vyb1ZneE1yOXl1akREY1UzZnVYZkt3Y1otVURXSHctNUpBbkxJVWk0MlU?oc=5",
       "source": "Wires (macro)",
@@ -285,7 +298,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789132090000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Gold prices inch up"
     },
     {
       "title": "Dollar edges higher against euro after U.S. inflation data - marketscreener.com",
@@ -304,7 +321,30 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789130814000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "EUR/USD": "down"
+      },
+      "why": "Dollar edges higher against euro"
+    },
+    {
+      "title": "Japan signs first emergency LNG deal with Malaysia’s Petronas",
+      "link": "https://www.investing.com/news/stock-market-news/japan-signs-first-emergency-lng-deal-with-malaysias-petronas-93CH-4897974",
+      "source": "Investing",
+      "at": 1789131902000,
+      "inst": [
+        "USD/JPY",
+        "NATGAS"
+      ],
+      "ccy": [
+        "JPY"
+      ],
+      "sev": 3,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789131902000,
+      "_kind": null,
+      "why": "LNG deal unrelated to listed instruments"
     },
     {
       "title": "Japanese Yen rallies as US Dollar loses post-inflation momentum - FXStreet",
@@ -323,27 +363,24 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789130814000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USD/JPY": "down"
+      },
+      "why": "Yen rallies, dollar loses momentum"
     },
     {
-      "title": "Celsius Holdings stock rises after CEO purchases shares",
-      "link": "https://www.investing.com/news/stock-market-news/celsius-holdings-stock-rises-after-ceo-purchases-shares-93CH-4897938",
-      "source": "Investing",
-      "at": 1789131481000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1789131481000,
-      "_kind": null
-    },
-    {
-      "title": "European stocks rebound after U.S. CPI; set for worst week since April",
-      "link": "https://www.investing.com/news/stock-market-news/european-stocks-heading-for-worst-week-since-april-as-ecb-hike-batters-risk-4897227",
-      "source": "Investing",
-      "at": 1789131412000,
+      "title": "U.S. 10-year yield briefly breaks 5% for first time since 2024 after Aug CPI",
+      "link": "https://www.investing.com/news/forex-news/european-debt-extended-in-5week-decline-on-rate-hikes-and-surging-oil-prices-4897325",
+      "source": "Investing FX",
+      "at": 1789131808000,
       "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
         "US500"
       ],
       "ccy": [
@@ -352,8 +389,72 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789131412000,
+      "firstAt": 1789131808000,
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Yields break 5%, bearish for FX/Gold"
+    },
+    {
+      "title": "Thursday’s insider activity: GameStop CEO buys $20M in shares",
+      "link": "https://www.investing.com/news/stock-market-news/thursdays-insider-activity-gamestop-ceo-buys-20m-in-shares-93CH-4897960",
+      "source": "Investing",
+      "at": 1789131707000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 1,
+      "srcs": 1,
+      "firstAt": 1789131707000,
       "_kind": null
+    },
+    {
+      "title": "Fed seen likely to raise rates next week after inflation report",
+      "link": "https://www.investing.com/news/stock-market-news/fed-seen-likely-to-raise-rates-next-week-after-inflation-report-4897958",
+      "source": "Investing",
+      "at": 1789131684000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789131684000,
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Rate hike expectations bearish for assets"
+    },
+    {
+      "title": "German union demands Volkswagen commitment to 2024 labour agreement",
+      "link": "https://www.investing.com/news/stock-market-news/german-union-demands-volkswagen-commitment-to-2024-labour-agreement-4897957",
+      "source": "Investing",
+      "at": 1789131682000,
+      "inst": [
+        "EUR/USD"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789131682000,
+      "_kind": null,
+      "why": "Labour agreement news unclear for FX"
     },
     {
       "title": "U.S. oil prices fall for first time in 2 weeks, providing a relief to stock investors",
@@ -372,7 +473,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789131180000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Oil prices fall for first time"
     },
     {
       "title": "The four reasons stocks could embark on a ‘face-ripper rally’ as soon as this morning",
@@ -388,7 +494,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789130940000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Stocks could embark on rally"
     },
     {
       "title": "Dollar steadies after US inflation data, yen set for second weekly gain",
@@ -406,51 +516,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789130814000,
-      "_kind": null
-    },
-    {
-      "title": "Wall St futures pare gains slightly after August inflation data",
-      "link": "https://www.investing.com/news/stock-market-news/wall-st-futures-pare-gains-slightly-after-august-inflation-data-4897902",
-      "source": "Investing",
-      "at": 1789130579000,
-      "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789130231000
-    },
-    {
-      "title": "U.S. 10-year yield briefly breaks 5% for first time since 2024 after Aug CPI",
-      "link": "https://www.investing.com/news/forex-news/european-debt-extended-in-5week-decline-on-rate-hikes-and-surging-oil-prices-4897325",
-      "source": "Investing FX",
-      "at": 1789130579000,
-      "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789130579000
+      "_kind": null,
+      "dir": {
+        "USD/JPY": "down"
+      },
+      "why": "Yen set for weekly gain"
     },
     {
       "title": "Are Rising Treasury Yields Part Of Warsh's Inflation Strategy? - Seeking Alpha",
@@ -473,7 +543,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789130305000
+      "firstAt": 1789130305000,
+      "why": "Speculative question about strategy"
     },
     {
       "title": "Global Markets Brace for Rate Decisions, Inflation and Political Risks - Межа. Новини України.",
@@ -496,7 +567,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789129248000
+      "firstAt": 1789129248000,
+      "why": "Markets brace for decisions, no direction"
     },
     {
       "title": "U.S. Stock Futures Rise, Treasury Yields Stay Elevated Ahead of Key Inflation Data - marketscreener.com",
@@ -519,23 +591,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789128060000
-    },
-    {
-      "title": "Wall Street futures hold on to gains after in-line to slightly hot U.S. CPI report",
-      "link": "https://www.investing.com/news/stock-market-news/us-stock-futures-steady-with-cpi-on-tap-oracle-firms-on-strong-earnings-4897114",
-      "source": "Investing",
-      "at": 1789130231000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789130231000
+      "firstAt": 1789128060000,
+      "why": "Futures rise, yields elevated, mixed signals"
     },
     {
       "title": "Yossi Abravanel: Despite sanctions, Israel must keep communication open with Europe - timesofisrael.com",
@@ -555,7 +612,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789130025000
+      "firstAt": 1789130025000,
+      "why": "Geopolitical communication news, no clear direction"
     },
     {
       "title": "US August CPI 3.4% vs 3.4% expected",
@@ -578,25 +636,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789129807000
-    },
-    {
-      "title": "FTSE 100 today: Stocks rise as strong UK GDP offsets Mideast war fears",
-      "link": "https://www.investing.com/news/stock-market-news/ftse-100-today-stocks-flat-as-uk-gdp-beat-offsets-hormuz-fears-4897308",
-      "source": "Investing",
-      "at": 1789129568000,
-      "inst": [
-        "US500",
-        "XAU/USD"
-      ],
-      "ccy": [
-        "XAU",
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789129568000
+      "firstAt": 1789129807000,
+      "why": "CPI in line with expectations"
     },
     {
       "title": "Oil prices drop but remain on track to close week above $100",
@@ -787,7 +828,7 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 1,
+      "srcs": 2,
       "firstAt": 1789124400000
     },
     {
@@ -1014,6 +1055,23 @@
       "firstAt": 1789124400000
     },
     {
+      "title": "Gold price today, Friday, September 11, 2026: Gold opens at lowest level in over a month ahead of CPI data",
+      "link": "https://finance.yahoo.com/personal-finance/investing/article/gold-price-today-friday-september-11-2026-gold-opens-at-lowest-level-in-over-a-month-ahead-of-cpi-data-111016419.html",
+      "source": "Yahoo Finance",
+      "at": 1789125016000,
+      "inst": [
+        "XAU/USD"
+      ],
+      "ccy": [
+        "XAU",
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1789123045000
+    },
+    {
       "title": "Drone Strikes and Sanctions Weaken Russia’s Oil Refining Industry, IEA Warns - Межа. Новини України.",
       "link": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE9kdzJybnpPTTk3cERuaElUVmh4OTBSSUx2UHFHM0N5WnI3RWhTbDZ3cjk1LXNvbUhQQ3N5cTdDLVJUelZDTzhNT0E0VVdDdDNPYnVPQ2NBRl9Pd29KMnBDSTJlT2o?oc=5",
       "source": "Wires (geo)",
@@ -1126,7 +1184,7 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 1,
+      "srcs": 2,
       "firstAt": 1789123045000
     },
     {
@@ -1218,7 +1276,7 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 2,
+      "srcs": 3,
       "firstAt": 1789120588000
     },
     {
@@ -1968,26 +2026,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789103469000
-    },
-    {
-      "title": "US steps up Iran pressure with major bank sanctions next week - middle-east-online.com",
-      "link": "https://news.google.com/rss/articles/CBMikAFBVV95cUxNSGo4S3FfV28zYzlpWDV0dFU1d3Y3QVR4cUFPbmdlWm12UFBkY0FoVkxHT0NYRjYxQmNjVVVsanVZcjlyTDlsV2FYekQxcFp2dmdmbHhhTGJzQTBhWWp4Q25kNWt2Sm5CV1hVc1pHaVNkc1VMSG53SWJQTUg0VVJ1R3ZOTUowMnY1b2llV2xFbW0?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMikAFBVV95cUxNSGo4S3FfV28zYzlpWDV0dFU1d3Y3QVR4cUFPbmdlWm12UFBkY0FoVkxHT0NYRjYxQmNjVVVsanVZcjlyTDlsV2FYekQxcFp2dmdmbHhhTGJzQTBhWWp4Q25kNWt2Sm5CV1hVc1pHaVNkc1VMSG53SWJQTUg0VVJ1R3ZOTUowMnY1b2llV2xFbW0?oc=5\" target=\"_blank\">US steps up ",
-      "at": 1789103177000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789103177000
     }
   ],
   "sources": [
@@ -2013,7 +2051,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-11T13:13:46.758Z",
-  "headlinesAt": "2026-09-11T13:13:46.758Z",
-  "updatedAt": "2026-09-11T13:13:46.758Z"
+  "calendarAt": "2026-09-11T13:15:18.222Z",
+  "headlinesAt": "2026-09-11T13:15:18.222Z",
+  "updatedAt": "2026-09-11T13:15:18.222Z"
 }
