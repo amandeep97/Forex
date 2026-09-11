@@ -326,7 +326,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789119392000,
-      "_kind": null
+      "_kind": null,
+      "why": "Geopolitical news lacks clear directional impact"
     },
     {
       "title": "Oil prices drop but remain on track to close week above $100",
@@ -343,7 +344,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789119331000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Oil prices drop explicitly stated"
     },
     {
       "title": "Gold gains on softer oil prices, US inflation data in focus - marketscreener.com",
@@ -364,7 +369,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789119099000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "down"
+      },
+      "why": "Gold gains, oil prices softer"
     },
     {
       "title": "Yen caps two-week winning streak as dollar and euro flatline ahead of U.S CPI",
@@ -384,7 +394,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789119071000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USD/JPY": "down"
+      },
+      "why": "Dollar flat, yen caps winning streak"
     },
     {
       "title": "Oil set to end week above $100 for first time since mid-May as US diesel hits record high",
@@ -401,7 +415,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789119047000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil set to end week above $100"
     },
     {
       "title": "UN Security Council Votes to Enforce Iran Sanctions - IranWire",
@@ -422,7 +440,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789118763000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions vote unclear for immediate price"
     },
     {
       "title": "As Saudi tensions with Iran-backed Houthis escalate, mediator Pakistan faces pressure to choose a side - Reuters",
@@ -443,7 +462,26 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789118292000,
-      "_kind": null
+      "_kind": null,
+      "why": "Tensions escalate but direction unclear"
+    },
+    {
+      "title": "Japan, India, Ukraine: Why some countries are uneasy about new UN map",
+      "link": "https://www.aljazeera.com/news/2026/9/11/japan-india-ukraine-why-some-countries-are-uneasy-about-new-un-map?traffic_source=rss",
+      "source": "Al Jazeera",
+      "desc": "The countries are not opposed to a new map per se; they're testy about the colour shades.",
+      "at": 1789117902000,
+      "inst": [
+        "USD/JPY"
+      ],
+      "ccy": [
+        "JPY"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789117902000,
+      "why": "Map controversy irrelevant to currency"
     },
     {
       "title": "Sterling today: Pound steady as UK GDP beats, dollar firms on CPI bets",
@@ -460,7 +498,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789117762000
+      "firstAt": 1789117762000,
+      "why": "Pound steady, dollar firms"
     },
     {
       "title": "Oracle shares rise as AI cloud backlog beats estimates",
@@ -492,7 +531,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789117099000
+      "firstAt": 1789117099000,
+      "why": "Diplomatic statement lacks market impact"
     },
     {
       "title": "Five dead and dozens injured in coach crash in Swiss Alps",
@@ -509,7 +549,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789116860000
+      "firstAt": 1789116860000,
+      "why": "Accident news irrelevant to currency"
     },
     {
       "title": "Vetoquinol shares surge 16% after 22% first-half profit growth, strong cash flow",
@@ -539,7 +580,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789114631000
+      "firstAt": 1789114631000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold hits one-week low"
     },
     {
       "title": "Treasury yields steady as traders await consumer inflation data amid oil price pressure - CNBC",
@@ -557,7 +602,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789115757000
+      "firstAt": 1789115757000,
+      "why": "Yields steady, awaiting data"
     },
     {
       "title": "U.S. Rate Hike Fears Weigh on China and Hong Kong Markets - Devdiscourse",
@@ -580,7 +626,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 3,
-      "firstAt": 1789113628000
+      "firstAt": 1789113628000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Rate hike fears weigh on markets"
     },
     {
       "title": "Drones attack chemical plant in Russia's Perm Krai – CCD - Ukrinform",
@@ -600,7 +652,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789115400000
+      "firstAt": 1789115400000,
+      "why": "Drone attack unclear for prices"
     },
     {
       "title": "European natural gas pauses rally but logs fifth weekly gain on Middle East risks",
@@ -1971,23 +2024,6 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789079762000
-    },
-    {
-      "title": "Want Apple’s $1,999 foldable iPhone Duo? Here’s what T-Mobile, AT&T and Verizon are doing to lower the cost.",
-      "link": "https://www.marketwatch.com/story/want-apples-1-999-foldable-iphone-duo-heres-what-t-mobile-at-t-and-verizon-are-doing-to-lower-the-cost-6b2d3065?mod=mw_rss_topstories",
-      "source": "MarketWatch",
-      "desc": "Wireless carriers are rolling out their initial iPhone promotions, but analysts say there’s no price war just yet.",
-      "at": 1789079100000,
-      "inst": [
-        "XAU/USD"
-      ],
-      "ccy": [
-        "XAU"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789079100000
     }
   ],
   "sources": [
@@ -2013,7 +2049,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-11T09:46:46.324Z",
-  "headlinesAt": "2026-09-11T09:46:46.324Z",
-  "updatedAt": "2026-09-11T09:46:46.324Z"
+  "calendarAt": "2026-09-11T09:48:17.293Z",
+  "headlinesAt": "2026-09-11T09:48:17.293Z",
+  "updatedAt": "2026-09-11T09:48:17.293Z"
 }
