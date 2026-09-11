@@ -330,7 +330,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789124400000,
-      "_kind": null
+      "_kind": null,
+      "why": "Inflation data pending, direction unclear"
     },
     {
       "title": "Gold price today, Friday, September 11, 2026: Gold opens at lowest level in over a month ahead of CPI data",
@@ -348,7 +349,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789123045000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold opens at lowest level"
     },
     {
       "title": "Drone Strikes and Sanctions Weaken Russia’s Oil Refining Industry, IEA Warns - Межа. Новини України.",
@@ -369,7 +374,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789124874000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Supply disruption supports oil prices"
     },
     {
       "title": "Australian Dollar holds firm as RBA rate hike bets rise, US CPI looms - FXStreet",
@@ -388,7 +398,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789124400000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "AUD/USD": "up"
+      },
+      "why": "RBA rate hike bets rise"
     },
     {
       "title": "Ukrainian Flamingo missiles strike chemical plant in Russia's Volgograd, Fire Point says - kyivindependent.com",
@@ -409,7 +423,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789124433000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Geopolitical risk boosts safe havens, oil"
     },
     {
       "title": "Will US Consumer Price Index data change expectations for a September Fed rate hike? - FXStreet",
@@ -433,7 +453,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789124400000,
-      "_kind": null
+      "_kind": null,
+      "why": "Awaiting CPI data for direction"
     },
     {
       "title": "Morning Call Sheet: Inflation, oil and AI put markets to the test - CNBC",
@@ -452,7 +473,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789124378000,
-      "_kind": null
+      "_kind": null,
+      "why": "Markets testing inflation and oil"
     },
     {
       "title": "The four reasons stocks are about to embark on a ‘face-ripper rally’",
@@ -468,7 +490,10 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789124280000,
-      "_kind": null
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Predicts face-ripper rally for stocks"
     },
     {
       "title": "U.S. stock futures rise as oil drops ahead of key inflation data",
@@ -485,7 +510,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789123798000
+      "firstAt": 1789123798000,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Oil drops ahead of inflation data"
     },
     {
       "title": "Wedbush Names Top Cybersecurity Stocks as AI Reshapes Sector",
@@ -499,7 +528,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789123428000
+      "firstAt": 1789123428000,
+      "why": "Sector-specific news, broad market unclear"
     },
     {
       "title": "Trump says war to end \"immediately\" after midterms as Iran damages U.S. jets in strikes - cbsnews.com",
@@ -519,7 +549,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789123399000
+      "firstAt": 1789123399000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "War escalation boosts risk assets"
     },
     {
       "title": "Never mind the bond yields, Bank of America shows where the real threat to the economy lies",
@@ -550,7 +586,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 3,
-      "firstAt": 1789120588000
+      "firstAt": 1789120588000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Gold edges higher ahead of data"
     },
     {
       "title": "US diesel hits record $6.06 a gallon as Iran war squeezes supply",
@@ -569,7 +609,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789123011000
+      "firstAt": 1789123011000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "War squeezes supply, boosts prices"
     },
     {
       "title": "Oil set for weekly gain of over 7% on supply disruptions; US diesel hits record high",
@@ -585,7 +631,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789122993000
+      "firstAt": 1789122993000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil set for weekly gain"
     },
     {
       "title": "Israel says ready for more strikes on Hezbollah after tunnel detonation - Arab News",
@@ -605,7 +655,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789122701000
+      "firstAt": 1789122701000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Conflict escalation supports risk assets"
     },
     {
       "title": "As Saudi tensions with Iran-backed Houthis escalate, mediator Pakistan faces pressure to choose a side - Reuters",
@@ -2027,7 +2083,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-11T11:28:14.601Z",
-  "headlinesAt": "2026-09-11T11:28:14.601Z",
-  "updatedAt": "2026-09-11T11:28:14.601Z"
+  "calendarAt": "2026-09-11T11:29:46.264Z",
+  "headlinesAt": "2026-09-11T11:29:46.264Z",
+  "updatedAt": "2026-09-11T11:29:46.264Z"
 }
