@@ -180,11 +180,14 @@ class LiquidityScanner {
   // Here the levels already exist, so the two halves are run directly. Same
   // functions, same rules — only the fetch is skipped.
   _withLevels(m2, levels) {
-    const { findSweep, confirmation } = this.lib;
+    const { findSweep, confirmation, tsOf } = this.lib;
     const sweep = findSweep(m2, levels);
     if (!sweep) return null;
+    // When the hunt happened, in wall-clock time. "18 minutes ago" is what
+    // decides whether a setup is still worth looking at; a bar index is not.
+    const sweptAt = tsOf(m2[sweep.at]);
     const confirm = confirmation(m2, sweep);
-    if (!confirm) return { sweep, confirm: null, ready: false, dir: sweep.dir };
+    if (!confirm) return { sweep, sweptAt, confirm: null, ready: false, dir: sweep.dir };
 
     const depth = Math.abs(sweep.extreme - sweep.level.price);
     const entry = m2[confirm.index].c;
@@ -194,6 +197,7 @@ class LiquidityScanner {
     const valid = sweep.dir === 'long' ? entry > stop : entry < stop;
     return {
       sweep, confirm, dir: sweep.dir, entry, stop, age, fresh,
+      sweptAt, confirmedAt: tsOf(m2[confirm.index]),
       ready: valid && fresh,
       risk: Math.abs(entry - stop),
       reason: `${sweep.level.label} swept and reclaimed, then ${confirm.type} ${sweep.dir === 'long' ? 'up' : 'down'}`
@@ -216,6 +220,7 @@ class LiquidityScanner {
         out[st.kind] = {
           state: st.state, price: st.price, dir: st.dir,
           atrPct: st.atrPct == null ? null : +st.atrPct.toFixed(2),
+          at: st.atTime ?? null,
         };
       }
     }
@@ -235,6 +240,8 @@ class LiquidityScanner {
       stop: s.stop ?? null,
       risk: s.risk ?? null,
       age: s.age ?? null,
+      sweptAt: s.sweptAt ?? null,
+      confirmedAt: s.confirmedAt ?? null,
       confirm: s.confirm ? { type: s.confirm.type, direction: s.confirm.direction } : null,
       reason: s.reason || null,
     };

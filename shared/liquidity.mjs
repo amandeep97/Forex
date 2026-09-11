@@ -75,6 +75,19 @@ export const LEVEL_RANK = { PDH: 3, PDL: 3, PWH: 2, PWL: 2, H4H: 1, H4L: 1 };
 const rankOf = l => LEVEL_RANK[l?.kind] ?? 0;
 
 /**
+ * A candle's time as epoch milliseconds.
+ *
+ * The bot carries numbers and the app's OANDA fetch carries ISO strings, and
+ * both feed these functions. Reading `.t` raw and arithmetic-ing it works for
+ * one and silently produces NaN for the other.
+ */
+export function tsOf(c) {
+  if (!c || c.t == null) return null;
+  const t = typeof c.t === 'number' ? c.t : Date.parse(c.t);
+  return Number.isFinite(t) ? t : null;
+}
+
+/**
  * The levels, from completed higher-timeframe candles.
  *
  * "Completed" is the whole point of taking [length - 2]: the last element of a
@@ -258,6 +271,10 @@ export function levelStates(cs, levels, atr, { within = 60, near = 0.5 } = {}) {
       distance, atrPct,
       extreme: at !== null ? extreme : null,
       at,
+      // The bar index is useless to a screen. WHEN it happened is the thing a
+      // person needs to decide whether it is still worth acting on, and it was
+      // computed and thrown away in every earlier version.
+      atTime: at !== null ? tsOf(cs[at]) : null,
     };
   });
 }
