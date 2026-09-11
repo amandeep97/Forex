@@ -38,6 +38,19 @@ const { INSTRUMENTS } = require('./instruments');
 
 const PATH = 'bot/liquidity.json';
 
+// Bump this whenever the MEANING of a level changes.
+//
+// Restoring levels across restarts made the bot cheap and made it impossible to
+// ship a correction. The off-by-one fix went live and the screen kept showing
+// the old prices, because the levels were restored from a file written by the
+// old code and the only thing that expires them is an hour-old timestamp. Worse,
+// every restart restored them again, so the hour kept being reset in effect.
+//
+// A version stamp fixes it at the root: levels computed by a different method
+// are not stale, they are WRONG, and no amount of waiting makes them right. On
+// restore they are dropped and rebuilt.
+const LEVEL_METHOD = 2;
+
 // Levels are yesterday's and last week's, so an hour is generous.
 const LEVELS_TTL = 60 * 60e3;
 // A two-minute bar closes every two minutes; there is nothing to gain by
@@ -46,7 +59,14 @@ const SCAN_TTL = 2 * 60e3;
 
 // Per-tick budgets, kept small on purpose. The feed's own queue gets 26 a tick
 // and this must not compete with it for the whole allowance.
-const LEVEL_JOBS = 4;
+// Twelve rather than four. A full rebuild is 40 instruments at three requests
+// each; at four a tick that is ten minutes, and the bot has been restarting more
+// often than that, so it never finished and the levels never updated. At twelve
+// it is under four minutes. The feed's own queue is separate and still gets its
+// 26 a tick — this competes for OANDA's rate limit, not for the feed's slots,
+// and a burst of level fetches once an hour is affordable where a burst of
+// two-minute fetches every two minutes was not.
+const LEVEL_JOBS = 12;
 const SCAN_JOBS = 8;
 
 // How close to a level is worth spending a request on, in H4 ATR.
@@ -114,10 +134,19 @@ class LiquidityScanner {
     try {
       const cur = await this.github.readJSON(PATH);
       this.sha = cur?.sha || null;
+      // Levels from an older method are discarded rather than trusted. The
+      // results are still worth keeping so the screen is not empty while they
+      // rebuild, but they are marked so nothing reads them as current.
+      const fileMethod = cur?.content?.method ?? 1;
+      const usable = fileMethod === LEVEL_METHOD;
+      if (!usable) {
+        this.log(`Liquidity: file was built by method ${fileMethod}, current is `
+          + `${LEVEL_METHOD} — rebuilding every level rather than trusting them`);
+      }
       for (const r of cur?.content?.rows || []) {
         if (!r?.sym) continue;
         this.results.set(r.sym, r);
-        if (Array.isArray(r.lv) && r.lv.length) {
+        if (usable && Array.isArray(r.lv) && r.lv.length) {
           this.levels.set(r.sym, {
             levels: r.lv.map(([kind, price, side, label]) => ({ kind, price, side, label })),
             atr: r.atr ?? null,
@@ -384,6 +413,8 @@ class LiquidityScanner {
 
     const payload = {
       at: new Date().toISOString(),
+      // So a future process can tell whether these levels mean what it means.
+      method: LEVEL_METHOD,
       near: NEAR_ATR,
       scanned: this.results.size,
       // How many instruments the scan COULD cover, so a screen can say "8 of
@@ -416,4 +447,5 @@ class LiquidityScanner {
   }
 }
 
-module.exports = { LiquidityScanner, PATH, NEAR_ATR, NEAR_ATR_DAILY, APPROACH_ATR, LEVELS_TTL, SCAN_TTL, atrOf };
+module.exports = { LiquidityScanner, PATH, NEAR_ATR, NEAR_ATR_DAILY, APPROACH_ATR,
+  LEVELS_TTL, SCAN_TTL, LEVEL_JOBS, LEVEL_METHOD, atrOf };

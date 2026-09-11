@@ -22,7 +22,7 @@
 //
 //   And an alert fires once per sweep. Re-announcing the same setup every two
 //   minutes is how you teach someone to ignore the alert.
-const { LiquidityScanner, atrOf, NEAR_ATR, NEAR_ATR_DAILY } = require('../vps-bot/src/liquidityScan');
+const { LiquidityScanner, atrOf, NEAR_ATR, NEAR_ATR_DAILY, LEVEL_JOBS, LEVEL_METHOD } = require('../vps-bot/src/liquidityScan');
 
 let fails = 0;
 const check = (n, c, e = '') => { console.log(`${c ? '  ok  ' : '  FAIL'}  ${n}${e ? ' — ' + e : ''}`); if (!c) fails++; };
@@ -133,8 +133,8 @@ function sweptM2() {
       m2Calls === 0, `${m2Calls} M2 requests`,
       'the expensive series is the one that must be earned');
     check('the level work is capped per pass',
-      lvlCalls <= 4 * 3, `${lvlCalls} requests, 3 per instrument`,
-      'refreshing all fifty at once would starve the feed for a whole tick');
+      lvlCalls <= LEVEL_JOBS * 3, `${lvlCalls} requests, 3 per instrument, cap ${LEVEL_JOBS}`,
+      'refreshing all forty at once would spend 120 requests in one tick');
   }
 
   {
@@ -318,6 +318,9 @@ function sweptM2() {
   {
     const saved = {
       at: new Date().toISOString(),
+      // Without this the levels are dropped as an older method's — which is the
+      // point of the version stamp, and would make this test assert nothing.
+      method: LEVEL_METHOD,
       rows: [{
         sym: 'EUR/USD', at: Date.now() - 60e3, price: 1.08, scanned: true,
         setup: null, near: null, levels: { PDH: { state:'swept', price:1.09, dir:'short', atrPct:0.1 } },
@@ -370,6 +373,60 @@ function sweptM2() {
     check('the two are honest about each other',
       published.withLevels <= published.eligible,
       `${published.withLevels} of ${published.eligible}`);
+  }
+
+  // ── A code change must invalidate cached levels ──────────────────────────
+  //
+  // Restoring levels across restarts made the bot cheap and made shipping a
+  // correction impossible. The off-by-one fix went live and the screen kept the
+  // old prices: the levels came back from a file written by the old code, and
+  // the only thing that expires them is an hour-old timestamp — which every
+  // restart effectively reset. Stale is a timing problem; wrong is not, and
+  // waiting never fixes wrong.
+  {
+    const oldFile = {
+      at: new Date().toISOString(),
+      method: 1,                       // built by the previous method
+      rows: [{
+        sym: 'EUR/USD', at: Date.now(), price: 1.08, scanned: true, setup: null, near: null,
+        levels: {}, lv: [['PDH', 1.09, 'high', 'y high']], atr: 0.004, lvAt: Date.now(),
+      }],
+    };
+    const gh = { async readJSON() { return { content: oldFile, sha: 'a' }; }, async writeJSON() { return 'b'; } };
+    const s = new LiquidityScanner({ oanda: fakeOanda(), github: gh, log: quiet });
+    await s._restore();
+
+    check('levels built by an older method are dropped, not trusted',
+      !s.levels.has('EUR/USD'),
+      `${s.levels.size} level set(s) restored`,
+      'an hour-old timestamp cannot expire a level that was never right');
+    check('but the results are kept, so the screen is not blank while they rebuild',
+      s.results.has('EUR/USD'),
+      'showing nothing and showing something wrong are both bad; this is neither');
+
+    // The same file at the current method restores normally.
+    const cur = { ...oldFile, method: 2 };
+    const s2 = new LiquidityScanner({
+      oanda: fakeOanda(),
+      github: { async readJSON() { return { content: cur, sha: 'a' }; }, async writeJSON() { return 'b'; } },
+      log: quiet,
+    });
+    await s2._restore();
+    check('and a file from the CURRENT method still restores its levels',
+      s2.levels.has('EUR/USD'),
+      'versioning must not throw away the saving it was built for');
+  }
+
+  {
+    const s = new LiquidityScanner({ oanda: fakeOanda(), github: noGithub, log: quiet });
+    s.results.set('A', { sym:'A', at: Date.now(), setup:null, near:null, levels:{} });
+    let published = null;
+    s.github = { async writeJSON(path, payload) { published = payload; return 'sha'; } };
+    s.lastSig = null;
+    await s._publish();
+    check('the published file states which method built it',
+      published?.method === 2, String(published?.method),
+      'without it, a future process cannot tell whether the levels mean what it means');
   }
 
   console.log(fails ? `\n${fails} FAILED` : '\nall passed');
