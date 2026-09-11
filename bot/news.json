@@ -344,6 +344,24 @@
       "_kind": null
     },
     {
+      "title": "U.S. stock futures rise as oil drops ahead of key inflation data",
+      "link": "https://www.investing.com/news/stock-market-news/us-stock-futures-steady-with-cpi-on-tap-oracle-firms-on-strong-earnings-4897114",
+      "source": "Investing",
+      "at": 1789123798000,
+      "inst": [
+        "USOIL"
+      ],
+      "ccy": [
+        "OIL",
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789123798000,
+      "_kind": null
+    },
+    {
       "title": "Treasury yields soar to almost 5% on inflation fears - Semafor",
       "link": "https://news.google.com/rss/articles/CBMimgFBVV95cUxOWUplSkd5OS1wUEFNeVhyWG5YTTNuWEVHMnRHXzR6YjdJaTVLQm1zUzZMX00wYlBfbFdueFhscFFmVnJqMnB1aHJma1dvM2l6d2c3b1RNa3d1MzFCRVlyY1NybUZyRy1waTBDb3FvRkFMbDVCZmdidTJmVDZab3hKcU1raTQtVi04QmpObnpFUmVlWld6ejh5U2Rn?oc=5",
       "source": "Wires (macro)",
@@ -560,23 +578,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789122457000
-    },
-    {
-      "title": "European stocks heading for worst week since April as ECB hike batters risk",
-      "link": "https://www.investing.com/news/stock-market-news/european-stocks-heading-for-worst-week-since-april-as-ecb-hike-batters-risk-4897227",
-      "source": "Investing",
-      "at": 1789122453000,
-      "inst": [
-        "EUR/USD",
-        "US500"
-      ],
-      "ccy": [
-        "EUR"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789122453000
     },
     {
       "title": "Brent Hits $100 as U.S.-Iran Escalation, Houthi Strikes Deepen Gulf Supply Fears - WSJ",
@@ -1307,21 +1308,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789110717000
-    },
-    {
-      "title": "Natural Gas teeters at $2.82 support amid bearish signals: Live",
-      "link": "https://www.investing.com/news/commodities-news/natural-gas-stuck-between-287303-live-levels-93CH-4890483",
-      "source": "Investing Cmdty",
-      "at": 1789110717000,
-      "inst": [
-        "NATGAS"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789110717000
+      "firstAt": 1789110720000
     },
     {
       "title": "War, sanctions and inflation leave Iran short of hundreds of medicines - Euronews.com",
@@ -1990,6 +1977,24 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789089660000
+    },
+    {
+      "title": "Bonds, stocks selloff pauses as oil retreats from multi-month high - Reuters",
+      "link": "https://news.google.com/rss/articles/CBMifEFVX3lxTE1rQ3pYNkdSYUhxbHl1RjJnc01XMWdUV2NHRFBXaTJhN0FzcUtqV3RFOU5EaUZyTnZYTVJ5ZlduWkJGTzB1Wm8xdmpLdXNBSzdubXRLbmxZRlQtTkh4YkRrbjUwQVFScUVBM3MxLTdITll1ZnZmUGljV1NtRXk?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMifEFVX3lxTE1rQ3pYNkdSYUhxbHl1RjJnc01XMWdUV2NHRFBXaTJhN0FzcUtqV3RFOU5EaUZyTnZYTVJ5ZlduWkJGTzB1Wm8xdmpLdXNBSzdubXRLbmxZRlQtTkh4YkRrbjUwQVFScUVBM3MxLTdITll1ZnZmUGljV1NtRXk?oc=5\" target=\"_blank\">Bonds, stocks selloff pauses as oil retr",
+      "at": 1789088160000,
+      "inst": [
+        "USOIL",
+        "US500"
+      ],
+      "ccy": [
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789088160000
     }
   ],
   "sources": [
@@ -2012,10 +2017,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-11T11:04:47.753Z",
-  "headlinesAt": "2026-09-11T11:04:47.753Z",
-  "updatedAt": "2026-09-11T11:04:47.753Z"
+  "calendarAt": "2026-09-11T11:06:01.651Z",
+  "headlinesAt": "2026-09-11T11:06:01.651Z",
+  "updatedAt": "2026-09-11T11:06:01.651Z"
 }
