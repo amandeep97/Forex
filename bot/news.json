@@ -258,7 +258,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789134694000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Gold rebounds on cooling inflation data"
     },
     {
       "title": "Office of Ukrainian Telecom Kyivstar Targeted as Russia Escalates Jet Drone Attacks - Kyiv Post",
@@ -279,7 +283,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789134804000,
-      "_kind": null
+      "_kind": null,
+      "why": "Ukraine telecom attack, no clear market direction"
     },
     {
       "title": "U.S. Stocks Rise, Treasury Yields Slip Despite Stubborn Inflation - WSJ",
@@ -297,7 +302,27 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789137180000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "US stocks rise despite inflation"
+    },
+    {
+      "title": "4 Dividend Stocks That Match the Monthly Rhythm of Retirement",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/4-dividend-stocks-match-monthly-143252688.html",
+      "source": "Yahoo Finance",
+      "at": 1789137172000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789137172000,
+      "_kind": null,
+      "why": "Dividend stock article, no market direction"
     },
     {
       "title": "Yuan rises in volatile trading after US inflation data",
@@ -320,7 +345,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789137112000,
-      "_kind": null
+      "_kind": null,
+      "why": "Yuan rise, no clear direction for others"
     },
     {
       "title": "The iPhone Duo enters China’s crowded foldable market — and faces a price test",
@@ -355,7 +381,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789134804000,
-      "_kind": null
+      "_kind": null,
+      "why": "Ukraine troop casualties, no clear market impact"
     },
     {
       "title": "Stock Market Leaders Often Shine, Helped By This Sign Of Liquidity Strength",
@@ -369,6 +396,35 @@
       "srcs": 1,
       "firstAt": 1789136557000,
       "_kind": null
+    },
+    {
+      "title": "US consumer inflation picks up in August",
+      "link": "https://finance.yahoo.com/economy/policy/articles/us-consumer-inflation-picks-august-123741290.html",
+      "source": "Yahoo Finance",
+      "at": 1789136878000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789135483000,
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Inflation pickup implies stronger dollar, bearish metals"
     },
     {
       "title": "Stock Market Today: Dow Rallies On Surprise Inflation Data; This Tech Icon Eyes A Breakout (Live Coverage)",
@@ -385,7 +441,11 @@
       "rel": 2,
       "srcs": 3,
       "firstAt": 1789135509000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US30": "up"
+      },
+      "why": "Dow rallies on surprise inflation data"
     },
     {
       "title": "Gold Miner's Luster Lures Funds; Stock Trades Around Buy Point",
@@ -402,7 +462,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789136543000,
-      "_kind": null
+      "_kind": null,
+      "why": "Gold miner stock analysis, not spot gold"
     },
     {
       "title": "Global Markets Brace for Fed Rate Hike Amid Inflation Surge - Devdiscourse",
@@ -426,7 +487,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789134694000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Fed hike fears strengthen dollar, bearish metals"
     },
     {
       "title": "Global Hotspots: Middle East escalation by the Yemeni Houthis - New Lines Institute",
@@ -447,7 +514,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789136324000,
-      "_kind": null
+      "_kind": null,
+      "why": "Middle East escalation, direction unclear"
     },
     {
       "title": "Nasdaq 100 trapped in 900-pt range, breakout pending: Live levels",
@@ -462,7 +530,7 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789136201000,
-      "_kind": null
+      "why": "Nasdaq trapped in range, breakout pending"
     },
     {
       "title": "Ukraine Strikes Two Russian Pantsir-S1 Systems and Aircraft Engine Parts Plant - UNITED24 Media",
@@ -482,7 +550,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789134804000
+      "firstAt": 1789134804000,
+      "why": "Ukraine strikes Russian systems, no clear market direction"
     },
     {
       "title": "UMich September consumer sentiment 47.8 vs 51.0 expected",
@@ -505,7 +574,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789135943000
+      "firstAt": 1789135943000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Weak sentiment, high inflation implies stronger dollar"
     },
     {
       "title": "Gold vs. platinum: Which metal should investors own in Q4?",
@@ -521,7 +596,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789135881000
+      "firstAt": 1789135881000,
+      "why": "Comparison article, no clear directional bias"
     },
     {
       "title": "Tech stocks rally as oil prices fall, inflation remains sticky: AlphaCheck",
@@ -1500,8 +1576,8 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789126447000
+      "srcs": 1,
+      "firstAt": 1789126489000
     },
     {
       "title": "Stocks making the biggest moves premarket: GameStop, Oracle, Adobe, RH & more",
@@ -1935,40 +2011,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789116209000
-    },
-    {
-      "title": "Japan, India, Ukraine: Why some countries are uneasy about new UN map",
-      "link": "https://www.aljazeera.com/news/2026/9/11/japan-india-ukraine-why-some-countries-are-uneasy-about-new-un-map?traffic_source=rss",
-      "source": "Al Jazeera",
-      "desc": "The countries are not opposed to a new map per se; they're testy about the colour shades.",
-      "at": 1789117902000,
-      "inst": [
-        "USD/JPY"
-      ],
-      "ccy": [
-        "JPY"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789117902000
-    },
-    {
-      "title": "Sterling today: Pound steady as UK GDP beats, dollar firms on CPI bets",
-      "link": "https://www.investing.com/news/forex-news/sterling-today-pound-steady-as-uk-gdp-beats-dollar-firms-on-cpi-bets-4897403",
-      "source": "Investing FX",
-      "at": 1789117762000,
-      "inst": [
-        "GBP/USD"
-      ],
-      "ccy": [
-        "USD",
-        "GBP"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789117762000
     }
   ],
   "sources": [
@@ -1994,7 +2036,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-11T14:46:18.086Z",
-  "headlinesAt": "2026-09-11T14:46:18.086Z",
-  "updatedAt": "2026-09-11T14:46:18.086Z"
+  "calendarAt": "2026-09-11T14:47:48.809Z",
+  "headlinesAt": "2026-09-11T14:47:48.809Z",
+  "updatedAt": "2026-09-11T14:47:48.809Z"
 }
