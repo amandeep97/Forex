@@ -18,7 +18,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789113509000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold hits one-week low"
     },
     {
       "title": "Treasury yields steady as traders await consumer inflation data amid oil price pressure - CNBC",
@@ -37,7 +41,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789115757000,
-      "_kind": null
+      "_kind": null,
+      "why": "Yields steady, oil pressure unclear"
     },
     {
       "title": "Drones attack chemical plant in Russia's Perm Krai – CCD - ukrinform.net",
@@ -58,7 +63,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789115400000,
-      "_kind": null
+      "_kind": null,
+      "why": "Geopolitical risk, direction unclear"
     },
     {
       "title": "Jefferies sees range-bound India markets amid macro headwinds",
@@ -86,7 +92,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789115250000,
-      "_kind": null
+      "_kind": null,
+      "why": "Pauses rally, weekly gain"
     },
     {
       "title": "Adobe beats Q3 targets, but shares slide on soft Q4 sales guidance",
@@ -130,7 +137,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789114832000,
-      "_kind": null
+      "_kind": null,
+      "why": "Historical analysis, no market impact"
     },
     {
       "title": "Bank of England expected to hold rates at 3.75% next week says BofA",
@@ -145,7 +153,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789114802000,
-      "_kind": null
+      "_kind": null,
+      "why": "Rate hold expected"
     },
     {
       "title": "How 9/11 helped Israel sell its war on Palestinians to America",
@@ -166,7 +175,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789114698000,
-      "_kind": null
+      "why": "Geopolitical commentary, no direct impact"
     },
     {
       "title": "U.S.-Iran Escalation to Delay Oil Flow Recovery Into Next Year, IEA Says - WSJ",
@@ -186,7 +195,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789114620000
+      "firstAt": 1789114620000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Oil flow recovery delayed"
     },
     {
       "title": "Russia Continues Attacks on Kyiv Gas Stations, Hitting One in Double-Tap Strike - UNITED24 Media",
@@ -206,7 +220,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789112380000
+      "firstAt": 1789112380000,
+      "why": "Attacks on gas stations"
     },
     {
       "title": "Fed Rate Hike Expectations Intensify, Copper, Gold, and Silver Under Collective Pressure - nai500.com",
@@ -226,7 +241,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789113946000
+      "firstAt": 1789113946000,
+      "dir": {
+        "XAU/USD": "down",
+        "XAG/USD": "down"
+      },
+      "why": "Rate hike expectations pressure metals"
     },
     {
       "title": "Gold Price Forecast: Fed Rate Hike Bets Rise as Oil and US Dollar Pressure Gold - Mitrade",
@@ -246,7 +266,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789111600000
+      "firstAt": 1789111600000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Dollar pressure weighs on gold"
     },
     {
       "title": "Budanov Warns Russia as Ukraine Prepares to Deepen Strikes - mezha.net",
@@ -266,7 +290,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789112380000
+      "firstAt": 1789112380000,
+      "why": "Ukraine prepares strikes, unclear impact"
     },
     {
       "title": "Ukraine Strikes Degrade Russian Oil-Refining Industry, IEA Says - Bloomberg.com",
@@ -286,7 +311,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789112072000
+      "firstAt": 1789112072000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Refining industry degraded, supply risk"
     },
     {
       "title": "Russia strikes 2 gas stations, injures at least 4 in Kyiv during morning rush hour - The Kyiv Independent",
@@ -306,7 +336,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789113581000
+      "firstAt": 1789113581000,
+      "why": "Strikes injure civilians, no market move"
     },
     {
       "title": "Gold falls as inflation fears and high Oil prices weigh on the precious metal - FXStreet",
@@ -326,7 +357,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789111836000
+      "firstAt": 1789111836000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Inflation and oil weigh on gold"
     },
     {
       "title": "Oil prices set to end week above $100 for first time in nearly 4 months",
@@ -1695,10 +1730,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-11T08:47:30.123Z",
-  "updatedAt": "2026-09-11T08:47:30.123Z"
+  "headlinesAt": "2026-09-11T08:48:46.302Z",
+  "updatedAt": "2026-09-11T08:48:46.302Z"
 }
