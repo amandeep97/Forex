@@ -179,12 +179,21 @@ export function findSweep(cs, levels, { within = 60 } = {}) {
  * it hunt the weekly low — a single best-level answer hides five of the six
  * facts, and which one survives depends on a ranking the reader cannot see.
  *
- * Four states, and the distinction between the first two is the whole model:
+ * Five states, and the distinction between the first two is the whole model:
  *
- *   swept   went beyond the level and came back. Liquidity taken.
- *   through went beyond and STAYED. A breakout, the opposite trade.
+ *   swept   crossed the level and came back. Liquidity taken.
+ *   through crossed it and STAYED. A breakout, the opposite trade.
+ *   behind  beyond it for the entire window — the level is behind price and
+ *           nothing happened here recently.
  *   near    within the band, not taken yet. The waiting state.
  *   quiet   far enough away to be no part of today.
+ *
+ * "Crossed" means price was on BOTH sides inside the window. The first version
+ * asked only whether some bar went beyond the level, which is true for any
+ * level price has been on the far side of for days, so a level broken last week
+ * read exactly like one broken ten minutes ago and the table came out a wall of
+ * one colour. It reported where price IS; the table is meant to show what it
+ * DID.
  *
  * @param {Candle[]} cs execution series, newest last
  * @param {Level[]} levels
@@ -192,7 +201,7 @@ export function findSweep(cs, levels, { within = 60 } = {}) {
  * @param {{ within?:number, near?:number }} [opts] `within` is how many bars
  *        back a sweep may have happened; `near` is the approach band in ATR.
  * @returns {Array<{kind:string, price:number, label:string, side:string,
- *                  state:'swept'|'through'|'near'|'quiet', dir:'long'|'short'|null,
+ *                  state:'swept'|'through'|'behind'|'near'|'quiet', dir:'long'|'short'|null,
  *                  distance:number, atrPct:number|null, extreme:number|null, at:number|null}>}
  */
 export function levelStates(cs, levels, atr, { within = 60, near = 0.5 } = {}) {
@@ -207,23 +216,37 @@ export function levelStates(cs, levels, atr, { within = 60, near = 0.5 } = {}) {
     const atrPct = atr > 0 ? distance / atr : null;
 
     // Did price go beyond it at any point in the window, and how far?
+    //
+    // `wasInside` is the half this originally lacked, and leaving it out turned
+    // the whole table purple. Without it, "some bar went beyond the level" is
+    // true for any level price has simply been on the far side of for days —
+    // every bar in the window is beyond it, so a level broken last Tuesday read
+    // exactly like one broken ten minutes ago. That reports where price IS, not
+    // what it DID, and the table is meant to show events.
     let extreme = high ? -Infinity : Infinity;
     /** @type {number|null} */
     let at = null;
+    let wasInside = false;
     for (let i = from; i < n; i++) {
       const beyond = high ? cs[i].h > level.price : cs[i].l < level.price;
-      if (!beyond) continue;
+      if (!beyond) { wasInside = true; continue; }
       const v = high ? cs[i].h : cs[i].l;
       if (high ? v > extreme : v < extreme) { extreme = v; at = i; }
     }
-    const wentBeyond = at !== null;
+    // A crossing needs both: price beyond the level AND price on the original
+    // side, inside the same window. One without the other is not an event.
+    const crossed = at !== null && wasInside;
     // Back on the original side NOW is what separates a sweep from a breakout.
     const backInside = high ? price < level.price : price > level.price;
 
-    /** @type {'swept'|'through'|'near'|'quiet'} */
+    /** @type {'swept'|'through'|'behind'|'near'|'quiet'} */
     let state = 'quiet';
-    if (wentBeyond && backInside) state = 'swept';
-    else if (wentBeyond) state = 'through';
+    if (crossed && backInside) state = 'swept';
+    else if (crossed) state = 'through';
+    // Beyond it for the whole window: the level is behind price and is not an
+    // event any more. Worth showing — it says which side of the level you are
+    // on — but it must not look like something that just happened.
+    else if (at !== null) state = 'behind';
     else if (atrPct !== null && atrPct <= near) state = 'near';
 
     return {
@@ -233,7 +256,7 @@ export function levelStates(cs, levels, atr, { within = 60, near = 0.5 } = {}) {
       // and a breakout points the other way from a sweep of the same level.
       dir: state === 'swept' ? (high ? 'short' : 'long') : null,
       distance, atrPct,
-      extreme: wentBeyond ? extreme : null,
+      extreme: at !== null ? extreme : null,
       at,
     };
   });

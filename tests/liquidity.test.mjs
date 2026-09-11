@@ -414,7 +414,7 @@ function detectableEarlier(cs, sweep, idx) {
   // Beyond and STAYING is a breakout, not a hunt.
   const through = [];
   p = 104;
-  leg(through, 12, 1, p);           // closes at 116, above 110
+  leg(through, 12, 1, p);           // starts below 110, closes at 116 above it
   const tst = levelStates(through, levels, 4);
   check('past the level and still there reads through, never swept',
     tst.find(x => x.kind === 'PDH').state === 'through',
@@ -422,6 +422,23 @@ function detectableEarlier(cs, sweep, idx) {
     'a breakout is the opposite trade; one colour for both would make the table worse than nothing');
   check('and a breakout implies no reversal direction',
     tst.find(x => x.kind === 'PDH').dir === null);
+
+  // The defect that turned the whole live table one colour: a level price has
+  // simply been on the far side of for days had every bar beyond it, so "some
+  // bar went beyond" was true and it read as a fresh breakout.
+  const longGone = [];
+  leg(longGone, 30, 0.05, 130);     // never once below 110 in the window
+  const lg = levelStates(longGone, levels, 4);
+  check('a level price left long ago reads behind, not through',
+    lg.find(x => x.kind === 'PDH').state === 'behind',
+    lg.find(x => x.kind === 'PDH').state,
+    'reporting where price IS rather than what it DID is what made eight of eight rows purple');
+  check('and behind carries no direction either',
+    lg.find(x => x.kind === 'PDH').dir === null);
+  check('a crossing needs price on BOTH sides inside the window',
+    tst.find(x => x.kind === 'PDH').state === 'through'
+    && lg.find(x => x.kind === 'PDH').state === 'behind',
+    'the same level, the same side of it, told apart only by whether price crossed recently');
 
   // Approaching but not taken.
   const nearBy = [];
