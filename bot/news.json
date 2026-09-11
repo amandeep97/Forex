@@ -309,6 +309,28 @@
   ],
   "headlines": [
     {
+      "title": "Gold price today, Friday, September 11, 2026: Gold opens at lowest level in over a month ahead of CPI data",
+      "link": "https://finance.yahoo.com/personal-finance/investing/article/gold-price-today-friday-september-11-2026-gold-opens-at-lowest-level-in-over-a-month-ahead-of-cpi-data-111016419.html",
+      "source": "Yahoo Finance",
+      "at": 1789125016000,
+      "inst": [
+        "XAU/USD"
+      ],
+      "ccy": [
+        "XAU",
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 3,
+      "firstAt": 1789122613000,
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold opens at lowest level in over a month"
+    },
+    {
       "title": "Drone Strikes and Sanctions Weaken Russia’s Oil Refining Industry, IEA Warns - Межа. Новини України.",
       "link": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE9kdzJybnpPTTk3cERuaElUVmh4OTBSSUx2UHFHM0N5WnI3RWhTbDZ3cjk1LXNvbUhQQ3N5cTdDLVJUelZDTzhNT0E0VVdDdDNPYnVPQ2NBRl9Pd29KMnBDSTJlT2o?oc=5",
       "source": "Wires (geo)",
@@ -327,7 +349,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789124874000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Supply disruption weakens refining, supporting oil prices"
     },
     {
       "title": "Australian Dollar holds firm as RBA rate hike bets rise, US CPI looms - FXStreet",
@@ -346,7 +373,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789124400000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "AUD/USD": "up"
+      },
+      "why": "Rate hike bets support Australian Dollar"
     },
     {
       "title": "Ukrainian Flamingo missiles strike chemical plant in Russia's Volgograd, Fire Point says - kyivindependent.com",
@@ -367,7 +398,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789122657000,
-      "_kind": null
+      "_kind": null,
+      "why": "Geopolitical strike news, direction unclear for markets"
     },
     {
       "title": "Will US Consumer Price Index data change expectations for a September Fed rate hike? - FXStreet",
@@ -389,9 +421,10 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 1,
+      "srcs": 2,
       "firstAt": 1789124400000,
-      "_kind": null
+      "_kind": null,
+      "why": "Awaiting CPI data, direction uncertain"
     },
     {
       "title": "Morning Call Sheet: Inflation, oil and AI put markets to the test - CNBC",
@@ -410,7 +443,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789124378000,
-      "_kind": null
+      "_kind": null,
+      "why": "General market overview, no specific direction"
     },
     {
       "title": "The four reasons stocks are about to embark on a ‘face-ripper rally’",
@@ -426,7 +460,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789124280000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Predicts a 'face-ripper rally' for stocks"
     },
     {
       "title": "U.S. stock futures rise as oil drops ahead of key inflation data",
@@ -444,7 +482,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789123798000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Oil drops ahead of key inflation data"
     },
     {
       "title": "Treasury yields soar to almost 5% on inflation fears - Semafor",
@@ -468,7 +510,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789123560000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Soaring yields and inflation fears hurt risk assets"
     },
     {
       "title": "Wedbush Names Top Cybersecurity Stocks as AI Reshapes Sector",
@@ -482,7 +530,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789123428000
+      "firstAt": 1789123428000,
+      "why": "Sector-specific stock picks, no broad market direction"
     },
     {
       "title": "Trump says war to end \"immediately\" after midterms as Iran damages U.S. jets in strikes - cbsnews.com",
@@ -502,7 +551,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789123399000
+      "firstAt": 1789123399000,
+      "why": "Conflicting geopolitical signals, direction unclear"
     },
     {
       "title": "Never mind the bond yields, Bank of America shows where the real threat to the economy lies",
@@ -532,8 +582,12 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789120588000
+      "srcs": 3,
+      "firstAt": 1789120588000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Gold edges higher ahead of inflation data"
     },
     {
       "title": "US diesel hits record $6.06 a gallon as Iran war squeezes supply",
@@ -552,7 +606,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789123011000
+      "firstAt": 1789123011000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Record diesel prices indicate tight oil supply"
     },
     {
       "title": "Oil set for weekly gain of over 7% on supply disruptions; US diesel hits record high",
@@ -568,7 +627,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789122993000
+      "firstAt": 1789122993000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil set for weekly gain on supply disruptions"
     },
     {
       "title": "Russian attack on Kyiv petrol stations kills two, Ukrainian strikes kill two in Russia",
@@ -587,7 +650,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789120739000
+      "firstAt": 1789120739000,
+      "why": "Escalating conflict, immediate market direction unclear"
     },
     {
       "title": "Three AI-powered strategies pull ahead of the S&P 500 in September",
@@ -1974,26 +2038,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789091307000
-    },
-    {
-      "title": "Russian Offensive Campaign Assessment, September 10, 2026 - Institute for the Study of War",
-      "link": "https://news.google.com/rss/articles/CBMirgFBVV95cUxQYUxQUjNYeU15V093N0VURjVlWVJYX3FjOVFCTmIteldnRUdTOGtJYUVzQkhfSVJDX1BEZjd6MmR5RU5xcEE4RGZzdDV1YTVJa1VUUU1SNVNpNWVURVgxT3RkaGdDaUowdkJSRjBPQkp4bVdjclQxVG1sSk4zVEFrc0dKR193U2pWa0R0VllIS2w0Vk5Ma0lZbktjbE83R2JlNXFsWGI5Ti1ITG1sOHc?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMirgFBVV95cUxQYUxQUjNYeU15V093N0VURjVlWVJYX3FjOVFCTmIteldnRUdTOGtJYUVzQkhfSVJDX1BEZjd6MmR5RU5xcEE4RGZzdDV1YTVJa1VUUU1SNVNpNWVURVgxT3RkaGdDaUowdkJSRjBPQkp4bVdjclQxVG1sSk4zVEFrc0dKR193U2pWa0R0VllIS2w0Vk5Ma0lZbktjbE83R2JlNXFsWGI5Ti1ITG",
-      "at": 1789090535000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789090535000
     }
   ],
   "sources": [
@@ -2019,7 +2063,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-11T11:14:02.736Z",
-  "headlinesAt": "2026-09-11T11:14:02.736Z",
-  "updatedAt": "2026-09-11T11:14:02.736Z"
+  "calendarAt": "2026-09-11T11:15:03.174Z",
+  "headlinesAt": "2026-09-11T11:15:03.174Z",
+  "updatedAt": "2026-09-11T11:15:03.174Z"
 }
