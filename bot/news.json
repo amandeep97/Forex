@@ -17,7 +17,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789160760000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "S&P 500 ends higher"
     },
     {
       "title": "\"Ukraine Will Retaliate Against Russian Strikes On Energy This Winter,\" Zelenskyy Warns - UNITED24 Media",
@@ -38,7 +42,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789158300000,
-      "_kind": null
+      "_kind": null,
+      "why": "Geopolitical warning, no immediate price impact"
     },
     {
       "title": "Salesforce’s stock has been riding a wave of AI optimism. Here’s what Wall Street wants to see next.",
@@ -54,7 +59,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789159440000,
-      "_kind": null
+      "why": "Salesforce specific, unclear for index"
     },
     {
       "title": "Russian attacks on Kyiv petrol stations kill two, Ukrainian strikes kill three in Russia",
@@ -73,7 +78,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789156991000
+      "firstAt": 1789156991000,
+      "why": "Conflict news, direction unclear"
     },
     {
       "title": "US Equity Indexes Rise After August Inflation Print Triggers Rally in Shorter-Maturity Treasury Yields, Crude Oil Slumps - marketscreener.com",
@@ -92,7 +98,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789159341000
+      "firstAt": 1789159341000,
+      "dir": {
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Crude oil slumps"
     },
     {
       "title": "UK-Israel relations 2026: E1 settlement plan, trade and sanctions - The House of Commons Library",
@@ -112,7 +123,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789158412000
+      "firstAt": 1789158412000,
+      "why": "Long-term policy analysis, no immediate impact"
     },
     {
       "title": "Schiff on CapitalCosm: Debt, the Dollar, and the Inflation Election - SchiffGold.com",
@@ -135,7 +147,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789158559000
+      "firstAt": 1789158559000,
+      "why": "Opinion piece, no clear direction"
     },
     {
       "title": "Zelensky Says Ukraine Won’t Go Hungry Despite Black Sea Blockade - Kyiv Post",
@@ -155,7 +168,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789157145000
+      "firstAt": 1789157145000,
+      "why": "Ukraine resilience, no clear market impact"
     },
     {
       "title": "Oil on track to settle above $100 a barrel after whopping 20% two-week surge",
@@ -171,7 +185,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789158844000
+      "firstAt": 1789158844000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil on track to settle higher"
     },
     {
       "title": "Oil grades decline as US drilling rises and Hormuz talks advance",
@@ -187,7 +205,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789158778000
+      "firstAt": 1789158778000,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Oil grades decline"
     },
     {
       "title": "Dollar rises against euro and Swiss franc after US inflation data - marketscreener.com",
@@ -207,7 +229,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789158559000
+      "firstAt": 1789158559000,
+      "dir": {
+        "EUR/USD": "down",
+        "USD/CHF": "up"
+      },
+      "why": "Dollar rises against euro and franc"
     },
     {
       "title": "U.S. stocks higher at close of trade; Dow Jones Industrial Average up 0.98%",
@@ -222,7 +249,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789158661000
+      "firstAt": 1789158661000,
+      "dir": {
+        "US500": "up",
+        "US30": "up"
+      },
+      "why": "U.S. stocks higher at close"
     },
     {
       "title": "Canada stocks higher at close of trade; S&P/TSX Composite up 0.54%",
@@ -239,7 +271,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789158631000
+      "firstAt": 1789158631000,
+      "why": "Canada stocks higher, US unclear"
     },
     {
       "title": "Why Dell and HPE were the S&P 500’s top-performing stocks today",
@@ -256,7 +289,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789158600000
+      "firstAt": 1789158600000,
+      "why": "Specific stocks, index direction unclear"
     },
     {
       "title": "Zelensky calls for stronger US sanctions against Russia, says Ukraine must engage in peace talks with Moscow - The Kyiv Independent",
@@ -276,7 +310,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789155964000
+      "firstAt": 1789155964000,
+      "why": "Sanctions call, no immediate price impact"
     },
     {
       "title": "Dollar Wavers as Inflation Aids Fed Hike Bets While Oil Falls - Bloomberg.com",
@@ -1732,10 +1767,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-11T21:13:32.318Z",
-  "updatedAt": "2026-09-11T21:13:32.318Z"
+  "headlinesAt": "2026-09-11T21:14:47.044Z",
+  "updatedAt": "2026-09-11T21:14:47.044Z"
 }
