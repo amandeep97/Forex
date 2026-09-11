@@ -299,7 +299,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789129807000,
-      "_kind": null
+      "_kind": null,
+      "why": "Inflation data in line with expectations"
     },
     {
       "title": "Wall Street futures gain as oil retreats ahead of key consumer inflation data",
@@ -318,7 +319,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789129629000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "down",
+        "US500": "up"
+      },
+      "why": "Futures gain, oil retreats"
     },
     {
       "title": "FTSE 100 today: Stocks rise as strong UK GDP offsets Mideast war fears",
@@ -337,7 +343,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789129568000,
-      "_kind": null
+      "_kind": null,
+      "why": "UK stocks rise, no direct US impact"
     },
     {
       "title": "Oil prices drop but remain on track to close week above $100",
@@ -354,7 +361,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789129352000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Oil prices drop"
     },
     {
       "title": "Costco shares are at a longest losing streak since 2016. Should you buy the stock?",
@@ -387,7 +398,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789128341000
+      "firstAt": 1789128341000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Escalation boosts safe havens and oil"
     },
     {
       "title": "U.S. Treasury yields linger near multi-year highs ahead of CPI",
@@ -409,7 +426,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789127819000
+      "firstAt": 1789127819000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "High yields pressure gold and FX"
     },
     {
       "title": "Oil falls but on track for 8% weekly gain on supply concerns; US diesel hits record high",
@@ -425,7 +448,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789127673000
+      "firstAt": 1789127673000,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Oil falls despite weekly gain"
     },
     {
       "title": "LIVE: Russia, Ukraine trade strikes as casualties reported - Latest news from Azerbaijan",
@@ -445,7 +472,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789127325000
+      "firstAt": 1789127325000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Conflict strikes boost risk assets"
     },
     {
       "title": "UK sanctions on Israeli settlements include those in Syria's Golan Heights - Middle East Eye",
@@ -465,7 +498,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789127006000
+      "firstAt": 1789127006000,
+      "why": "Sanctions news unclear for markets"
     },
     {
       "title": "UBS warns September rate hike may spark a short-term gold selloff - Investing.com",
@@ -483,7 +517,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789124400000
+      "firstAt": 1789124400000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Rate hike warning sparks gold selloff"
     },
     {
       "title": "Oil nears $100 as fresh Middle East strikes raise supply risks",
@@ -502,7 +540,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789127006000
+      "firstAt": 1789127006000,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Supply risks push oil and gold up"
     },
     {
       "title": "Explainer-Oil tops $100 on conflict worries. Why isn’t it even higher?",
@@ -518,7 +562,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789126989000
+      "firstAt": 1789126989000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil tops $100 on conflict"
     },
     {
       "title": "investingLive European news wrap: The calm before the storm?",
@@ -538,7 +586,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789126823000
+      "firstAt": 1789126823000,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "up"
+      },
+      "why": "Gold falls, oil surges on rate bets"
     },
     {
       "title": "Fixing the interest rate in Russia at 14%... The Central Bank explains the reasons for inflation pressures. - صوت الإمارات",
@@ -561,7 +614,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789126800000
+      "firstAt": 1789126800000,
+      "why": "Russian rate decision irrelevant to these pairs"
     },
     {
       "title": "Bitcoin and ethereum prices today, Friday, September 11, 2026: Bitcoin falls below $77,000 with key inflation data on deck",
@@ -579,7 +633,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789124400000
+      "firstAt": 1789124400000,
+      "dir": {
+        "BTC/USDT": "down",
+        "ETH/USDT": "down"
+      },
+      "why": "Bitcoin falls below key level"
     },
     {
       "title": "Israel says ready for more strikes on Hezbollah after tunnel detonation - Al Arabiya English",
@@ -2010,7 +2069,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-11T12:40:00.701Z",
-  "headlinesAt": "2026-09-11T12:40:00.701Z",
-  "updatedAt": "2026-09-11T12:40:00.701Z"
+  "calendarAt": "2026-09-11T12:41:32.185Z",
+  "headlinesAt": "2026-09-11T12:41:32.185Z",
+  "updatedAt": "2026-09-11T12:41:32.185Z"
 }
