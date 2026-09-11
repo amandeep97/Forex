@@ -20,7 +20,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789103948000,
-      "_kind": null
+      "_kind": null,
+      "why": "Geopolitical conflict news, direction unclear."
     },
     {
       "title": "Silver ETFs fall over 3% as global silver extends losses on rising Fed rate hike bets; gold ETFs also down - tradingview.com",
@@ -41,7 +42,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789104540000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "XAG/USD": "down"
+      },
+      "why": "ETF outflows and rate hike bets."
     },
     {
       "title": "Russian air strikes injure eight in Kyiv, Ukraine hits Ozon in Saratov",
@@ -60,7 +66,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789102310000
+      "firstAt": 1789102310000,
+      "why": "Conflict update, no clear market direction."
     },
     {
       "title": "Premier of Germany’s Lower Saxony walks high wire between VW cuts and AfD",
@@ -74,7 +81,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789103592000
+      "firstAt": 1789103592000,
+      "why": "Political nuance, no clear FX impact."
     },
     {
       "title": "Gold on track for third weekly loss as U.S. inflation data looms​‌ - cnbc.com",
@@ -92,7 +100,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789103469000
+      "firstAt": 1789103469000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold tracking weekly loss."
     },
     {
       "title": "SK Hynix nears key resistance after 44% rally: Live levels",
@@ -136,7 +148,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789103025000
+      "firstAt": 1789103025000,
+      "why": "Sanctions news, direction ambiguous."
     },
     {
       "title": "Asian currencies weaken as yen slips, dollar holds near weekly high",
@@ -153,7 +166,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789102511000
+      "firstAt": 1789102511000,
+      "dir": {
+        "USD/JPY": "up"
+      },
+      "why": "Dollar holds high, yen slips."
     },
     {
       "title": "Dollar-Yen in Upper 154 Range in Tokyo as Early Fed Rate Hike Bets Spur Dollar Buybacks - finance.biggo.com",
@@ -171,7 +188,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789102500000
+      "firstAt": 1789102500000,
+      "dir": {
+        "USD/JPY": "up"
+      },
+      "why": "Dollar buybacks spur yen weakness."
     },
     {
       "title": "Russia now importing fuel from South Korea, Turkey because of Ukraine drone strikes, report says - The Kyiv Independent",
@@ -191,7 +212,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789102310000
+      "firstAt": 1789102310000,
+      "why": "Supply chain shift, no clear price signal."
     },
     {
       "title": "Anthropic claims Claude AI used for missile projects, global espionage",
@@ -208,7 +230,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789102105000
+      "firstAt": 1789102105000,
+      "why": "AI espionage claim, no direct market link."
     },
     {
       "title": "Bond Markets Brace for Impact Amid Inflation and Global Tensions - devdiscourse.com",
@@ -231,7 +254,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789101900000
+      "firstAt": 1789101900000,
+      "why": "General market tension, no specific direction."
     },
     {
       "title": "US Market: Rising US debt, inflation keep pressure on long-term Treasury yields - The Economic Times",
@@ -254,7 +278,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789101838000
+      "firstAt": 1789101838000,
+      "why": "Yield pressure, mixed implications for FX."
     },
     {
       "title": "White House copper tariff plan stalls amid affordability concerns, sources say",
@@ -276,7 +301,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789101752000
+      "firstAt": 1789101752000,
+      "why": "Tariff stall, no clear directional bias."
     },
     {
       "title": "What are the main events for today?",
@@ -294,7 +320,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789101609000
+      "firstAt": 1789101609000,
+      "why": "GDP data expected neutral, no clear move."
     },
     {
       "title": "Trump declines Saudi crown prince's call for US strikes on Houthis - report - The Jerusalem Post",
@@ -314,7 +341,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789101272000
+      "firstAt": 1789101272000,
+      "why": "Diplomatic refusal, no clear market impact."
     },
     {
       "title": "Oil prices set to end week above $100 for first time in nearly 4 months",
@@ -1734,10 +1762,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-11T05:55:15.319Z",
-  "updatedAt": "2026-09-11T05:55:15.319Z"
+  "headlinesAt": "2026-09-11T05:57:01.669Z",
+  "updatedAt": "2026-09-11T05:57:01.669Z"
 }
