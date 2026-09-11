@@ -58,6 +58,23 @@ const LABEL_OF = { PDH:"yesterday's high", PDL:"yesterday's low",
 
 const dpFor = p => (Math.abs(p) < 20 ? 5 : Math.abs(p) < 500 ? 3 : 2);
 
+// ── What leads, and what waits behind a toggle ───────────────────────────────
+//
+// Thirty-four hunts in one list is not a feed, it is a haystack. Most of them
+// are crosses nobody here trades — EUR/NZD, NZD/CAD, AUD/CHF — and they push
+// gold and the majors off the first screen.
+//
+// So the list is split by what is actually traded rather than by anything the
+// data says. This is a preference, not a measurement, and it is written as one:
+// nothing is hidden, the rest is one tap away and still counted.
+const MAJORS = new Set([
+  'XAU/USD', 'XAG/USD',
+  'EUR/USD', 'GBP/USD', 'USD/JPY', 'USD/CHF', 'AUD/USD', 'USD/CAD', 'NZD/USD',
+  'US500', 'US100', 'US30', 'JPN225', 'GER40', 'UK100',
+  'USOIL', 'UKOIL', 'BTC/USD', 'ETH/USD',
+]);
+const isMajor = sym => MAJORS.has(sym);
+
 // Local clock, 24-hour. The reader's own time, not UTC: a list is checked
 // against the clock on their phone, not against a timezone they have to convert.
 const clockOf = ms => new Date(ms).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
@@ -154,6 +171,7 @@ export default function LiquidityView({ onOpen }) {
   const [liq, setLiq] = useState(null);
   const [err, setErr] = useState(null);
   const [showQuiet, setShowQuiet] = useState(false);
+  const [showRest, setShowRest] = useState(false);
   const [tick, setTick] = useState(0);
 
   useEffect(() => {
@@ -177,7 +195,7 @@ export default function LiquidityView({ onOpen }) {
   // from `setup`, so a daily hunt with no confirmation still appears — the
   // waiting state is most of what you look at, and `setup` only ever names one
   // level per instrument.
-  const events = [];
+  let events = [];
   for (const r of rows) {
     for (const [kind, c] of Object.entries(r.levels)) {
       if (c.state !== 'swept') continue;
@@ -197,10 +215,31 @@ export default function LiquidityView({ onOpen }) {
         // When something last HAPPENED on this row: the sweep, or the
         // confirmation if one has printed since. This is the sort key, and it
         // is the only one — see the sort below.
+        kind,
         lastAt: Math.max(c.at || 0, s?.confirmedAt || 0),
       });
     }
   }
+  // One event per level TAKEN, not per level DEFINED.
+  //
+  // Yesterday's low and a 4H swing low are often the same price — EUR/GBP had
+  // both at 0.85821, taken by the same bar at the same minute — and the list
+  // printed it twice. That is one thing that happened, described two ways, and
+  // it made a quiet market look busy. They collapse to the highest-ranked
+  // level, so the row says "yesterday's low" rather than "a 4H swing low",
+  // which is the one a trader is actually watching.
+  const RANK = { PDH:3, PDL:3, PWH:2, PWL:2, H4H:1, H4L:1 };
+  const byEvent = new Map();
+  for (const e of events) {
+    // Same instrument, same price, same minute is the same event. The price is
+    // rounded because a daily level and an H4 swing that coincide are equal to
+    // the tick, not to the float.
+    const key = `${e.sym}|${e.levelPrice.toFixed(6)}|${Math.round((e.lastAt || 0) / 60e3)}`;
+    const prev = byEvent.get(key);
+    if (!prev || (RANK[e.kind] || 0) > (RANK[prev.kind] || 0)) byEvent.set(key, e);
+  }
+  events = [...byEvent.values()];
+
   // Newest first, by time, and by nothing else.
   //
   // This used to sort by a rank — live setups first, then daily levels, then
@@ -215,6 +254,12 @@ export default function LiquidityView({ onOpen }) {
   // event on the screen, and burying it under sweeps that have done nothing
   // since would be the same mistake in the other direction.
   events.sort((a, b) => (b.lastAt || 0) - (a.lastAt || 0));
+
+  // Metals, majors and indices lead; crosses wait behind a toggle. Both halves
+  // stay in time order — the split decides what you see first, never how the
+  // rows within it are arranged.
+  const lead = events.filter(e => isMajor(e.sym));
+  const rest = events.filter(e => !isMajor(e.sym));
 
   const live = new Set(['swept', 'through', 'near']);
   const active = rows.filter(r => Object.values(r.levels).some(v => live.has(v.state)));
@@ -271,7 +316,7 @@ export default function LiquidityView({ onOpen }) {
       <div style={{ margin:'10px', background:C.panel, border:`1px solid ${C.line}`, borderRadius:5, overflow:'hidden' }}>
         <div style={{ padding:'7px 10px', borderBottom:`1px solid ${C.line}`, fontSize:10,
           color:C.warn, fontFamily:C.mono, fontWeight:700 }}>
-          HUNTS · {events.length}
+          HUNTS · {lead.length}{rest.length ? <span style={{ color:'#334155' }}> of {events.length}</span> : null}
         </div>
         {events.length === 0 ? (
           <div style={{ padding:12, fontSize:10, color:C.dim, lineHeight:1.6 }}>
@@ -282,7 +327,21 @@ export default function LiquidityView({ onOpen }) {
               something on it is not measuring anything.
             </div>
           </div>
-        ) : events.map((e, i) => <HuntEvent key={`${e.sym}-${e.levelPrice}-${i}`} e={e} onOpen={onOpen}/>)}
+        ) : lead.map((e, i) => <HuntEvent key={`${e.sym}-${e.levelPrice}-${i}`} e={e} onOpen={onOpen}/>)}
+
+        {rest.length > 0 && (
+          <>
+            <button onClick={() => setShowRest(v => !v)}
+              style={{ width:'100%', padding:'7px 10px', textAlign:'left', cursor:'pointer',
+                border:'none', borderTop:`1px solid ${C.line}`, background:'transparent',
+                color:C.dim, fontSize:9, fontFamily:C.mono }}>
+              {showRest ? '▾ hide' : '▸ show'} {rest.length} on crosses and minors
+            </button>
+            {showRest && rest.map((e, i) => (
+              <HuntEvent key={`r-${e.sym}-${e.levelPrice}-${i}`} e={e} onOpen={onOpen}/>
+            ))}
+          </>
+        )}
       </div>
 
       {/* ── The table ── */}

@@ -405,7 +405,10 @@ function sweptM2() {
       'showing nothing and showing something wrong are both bad; this is neither');
 
     // The same file at the current method restores normally.
-    const cur = { ...oldFile, method: 2 };
+    // LEVEL_METHOD, not a literal: a test that hard-codes the version fails on
+    // the next bump for no reason, which trains people to edit tests instead of
+    // reading them.
+    const cur = { ...oldFile, method: LEVEL_METHOD };
     const s2 = new LiquidityScanner({
       oanda: fakeOanda(),
       github: { async readJSON() { return { content: cur, sha: 'a' }; }, async writeJSON() { return 'b'; } },
@@ -425,7 +428,7 @@ function sweptM2() {
     s.lastSig = null;
     await s._publish();
     check('the published file states which method built it',
-      published?.method === 2, String(published?.method),
+      published?.method === LEVEL_METHOD, String(published?.method),
       'without it, a future process cannot tell whether the levels mean what it means');
   }
 

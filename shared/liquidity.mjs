@@ -72,6 +72,21 @@ export const H4_SWINGS = 3;
  */
 export const LEVEL_RANK = { PDH: 3, PDL: 3, PWH: 2, PWL: 2, H4H: 1, H4L: 1 };
 
+/**
+ * How far beyond a level price must hold before the break counts, in ATR.
+ *
+ * Without this the swept/through split turns on a hair. US500 sat 2.9 points
+ * above yesterday's high — on an instrument whose four-hour range is tens of
+ * points — and was reported as a breakout rather than a hunt, so the event the
+ * screen was built to show never appeared. Three points beyond a level is not
+ * price holding above it; it is price still standing on it.
+ *
+ * A level is only decisively broken once price is clear of it. Inside this
+ * margin the level is still contested, and a contested level that was taken and
+ * is being fought over is exactly the hunt.
+ */
+export const RECLAIM_ATR = 0.15;
+
 const rankOf = l => LEVEL_RANK[l?.kind] ?? 0;
 
 /**
@@ -295,8 +310,11 @@ export function levelStates(cs, levels, atr, { within = 60, near = 0.5 } = {}) {
     // A crossing needs both: price beyond the level AND price on the original
     // side, inside the same window. One without the other is not an event.
     const crossed = at !== null && wasInside;
-    // Back on the original side NOW is what separates a sweep from a breakout.
-    const backInside = high ? price < level.price : price > level.price;
+    // Back on the original side NOW is what separates a sweep from a breakout —
+    // with a margin, because without one the distinction turns on a hair and a
+    // price three points beyond a level got called a breakout. See RECLAIM_ATR.
+    const tol = atr > 0 ? atr * RECLAIM_ATR : 0;
+    const backInside = high ? price < level.price + tol : price > level.price - tol;
 
     /** @type {'swept'|'through'|'behind'|'near'|'quiet'} */
     let state = 'quiet';
