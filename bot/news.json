@@ -242,6 +242,70 @@
   ],
   "headlines": [
     {
+      "title": "S&P upgrades SK Innovation outlook on refining strength",
+      "link": "https://www.investing.com/news/stock-market-news/sp-upgrades-sk-innovation-outlook-on-refining-strength-93CH-4898172",
+      "source": "Investing",
+      "at": 1789138543000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789138543000,
+      "_kind": null,
+      "why": "Single company news, negligible index impact"
+    },
+    {
+      "title": "Norway stocks higher at close of trade; Oslo OBX up 0.06%",
+      "link": "https://www.investing.com/news/stock-market-news/norway-stocks-higher-at-close-of-trade-oslo-obx-up-006-4898171",
+      "source": "Investing",
+      "at": 1789138504000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789138504000,
+      "_kind": null,
+      "why": "Norwegian market news, irrelevant to US"
+    },
+    {
+      "title": "S&P downgrades Lucky Strike Entertainment rating on weak margins",
+      "link": "https://www.investing.com/news/stock-market-news/sp-downgrades-lucky-strike-entertainment-rating-on-weak-margins-93CH-4898170",
+      "source": "Investing",
+      "at": 1789138451000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789138451000,
+      "_kind": null,
+      "why": "Single company downgrade, negligible index impact"
+    },
+    {
+      "title": "Greece stocks higher at close of trade; Athens General Composite up 1.07%",
+      "link": "https://www.investing.com/news/stock-market-news/greece-stocks-higher-at-close-of-trade-athens-general-composite-up-107-4898167",
+      "source": "Investing",
+      "at": 1789138203000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789138203000,
+      "_kind": null,
+      "why": "Greek market news, irrelevant to US"
+    },
+    {
       "title": "AXTQ Is a Trading Tool, Not a Portfolio Holding. Know the Difference Before You Buy",
       "link": "https://finance.yahoo.com/markets/options/articles/axtq-trading-tool-not-portfolio-144537542.html",
       "source": "Yahoo Finance",
@@ -276,7 +340,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789136350000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "EUR/USD": "up",
+        "GBP/USD": "up"
+      },
+      "why": "Markets turn higher, risk-on sentiment"
     },
     {
       "title": "Oil tanker rates hit record highs following Iran, US shipping attacks",
@@ -296,7 +366,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789137766000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Supply disruption boosts oil and gold"
     },
     {
       "title": "Rate hike on the cards? Markets say increasingly likely (US10Y:) - Seeking Alpha",
@@ -320,7 +396,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789136350000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Rate hike expectations strengthen dollar"
     },
     {
       "title": "Bitmine Surges 8% on Ethereum Strength After Cantor Fitzgerald Doubles Its Target, SharpLink Advances 9%, Strategy Gains 4%",
@@ -335,7 +417,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789137677000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "ETH/USDT": "up"
+      },
+      "why": "Ethereum strength and price target hike"
     },
     {
       "title": "Arista Networks, SanDisk among market cap stock movers on Friday",
@@ -367,7 +453,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789134694000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Gold rebounds on cooling inflation data"
     },
     {
       "title": "Office of Ukrainian Telecom Kyivstar Targeted as Russia Escalates Jet Drone Attacks - Kyiv Post",
@@ -388,7 +478,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789134804000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Geopolitical escalation boosts safe-haven gold"
     },
     {
       "title": "U.S. Stocks Rise, Treasury Yields Slip Despite Stubborn Inflation - WSJ",
@@ -406,30 +500,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789137180000,
-      "_kind": null
-    },
-    {
-      "title": "Yuan rises in volatile trading after US inflation data",
-      "link": "https://www.investing.com/news/stock-market-news/yuan-rises-in-volatile-trading-after-us-inflation-data-93CH-4898150",
-      "source": "Investing",
-      "at": 1789137112000,
-      "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789137112000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Stocks rise despite inflation concerns"
     },
     {
       "title": "The iPhone Duo enters China’s crowded foldable market — and faces a price test",
@@ -442,8 +517,7 @@
       "sev": 1,
       "rel": 1,
       "srcs": 1,
-      "firstAt": 1789137029000,
-      "_kind": null
+      "firstAt": 1789137029000
     },
     {
       "title": "More than 500,000 Russian troops killed in Ukraine, UK defense chief says - The Washington Post",
@@ -464,7 +538,10 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789134804000,
-      "_kind": null
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "War escalation boosts safe-haven gold"
     },
     {
       "title": "Stock Market Leaders Often Shine, Helped By This Sign Of Liquidity Strength",
@@ -476,8 +553,7 @@
       "sev": 1,
       "rel": 1,
       "srcs": 1,
-      "firstAt": 1789136557000,
-      "_kind": null
+      "firstAt": 1789136557000
     },
     {
       "title": "US consumer inflation picks up in August",
@@ -499,7 +575,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789136878000
+      "firstAt": 1789136878000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Higher inflation strengthens dollar expectations"
     },
     {
       "title": "Stock Market Today: Dow Rallies On Surprise Inflation Data; This Tech Icon Eyes A Breakout (Live Coverage)",
@@ -515,7 +597,11 @@
       "sev": 3,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789136557000
+      "firstAt": 1789135809000,
+      "dir": {
+        "US30": "up"
+      },
+      "why": "Dow rallies on surprise inflation data"
     },
     {
       "title": "Gold Miner's Luster Lures Funds; Stock Trades Around Buy Point",
@@ -531,7 +617,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789136543000
+      "firstAt": 1789136543000,
+      "why": "Fund flows unclear, no direct price signal"
     },
     {
       "title": "Global Markets Brace for Fed Rate Hike Amid Inflation Surge - Devdiscourse",
@@ -1913,64 +2000,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789120158000
-    },
-    {
-      "title": "UN Security Council Votes to Enforce Iran Sanctions - IranWire",
-      "link": "https://news.google.com/rss/articles/CBMikgFBVV95cUxNbEdfN0FjQ3lBOG52R19xcV9HLTBXU3AwWnJ2a2htZnR5Xy1TSHZJMVduOWo1S01EOF9jWTRwbXhTV3A5amxyR2RYVjQ4RS1WdnN0SDRsbzBlTUt6NDFrVnlmX25pOHNGTHZIbkd6dDZQUXA0ZklmaVdwNTR6Mm9BTlZYSk15eFhPVnh5eU9FdlVJdw?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMikgFBVV95cUxNbEdfN0FjQ3lBOG52R19xcV9HLTBXU3AwWnJ2a2htZnR5Xy1TSHZJMVduOWo1S01EOF9jWTRwbXhTV3A5amxyR2RYVjQ4RS1WdnN0SDRsbzBlTUt6NDFrVnlmX25pOHNGTHZIbkd6dDZQUXA0ZklmaVdwNTR6Mm9BTlZYSk15eFhPVnh5eU9FdlVJdw?oc=5\" target=\"_blank\">UN Securi",
-      "at": 1789118746000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789118746000
-    },
-    {
-      "title": "Gold falls back into the major $4300 support ahead of US CPI, as surging oil prices increase rate hike bets - investingLive",
-      "link": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxQdnhJb2tiTjFvZ3ZuaExubmxpdXltMDVrcEtFYU0zbzBYbFU1OERheUJMc2F2MnRyd0xuQXVmUm9PU2thU1lSeE42UDRxX2lFZ1FKZk4tNTA3MFZya185MFo4Z2pWd19EQTROSjJxNDNfTlQxcmwxakQxRlVTU1N4VlFSaTBEaHlnVEpXTlRnODJ3c29sSE43RFd1ZUtLUDJ6UGlmV2VhTC10OTB6cWxfeU9aR2ZXX2J5WS15SFBYb1dlYzNwQ3NEYVVQNmJQeTNqNnRoeDJfa2lJbmJ2?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi3AFBVV95cUxQdnhJb2tiTjFvZ3ZuaExubmxpdXltMDVrcEtFYU0zbzBYbFU1OERheUJMc2F2MnRyd0xuQXVmUm9PU2thU1lSeE42UDRxX2lFZ1FKZk4tNTA3MFZya185MFo4Z2pWd19EQTROSjJxNDNfTlQxcmwxakQxRlVTU1N4VlFSaTBEaHlnVEpXTlRnODJ3c29sSE43RFd1ZUtLUDJ6UGlmV2VhTC10OT",
-      "at": 1789118144000,
-      "inst": [
-        "XAU/USD",
-        "USOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL",
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789118054000
-    },
-    {
-      "title": "Gold Recovers Toward $4,350 Ahead of US Inflation Report - Yahoo Finance UK",
-      "link": "https://news.google.com/rss/articles/CBMigAFBVV95cUxNa3FUTWZXTnhRaVBDR2M4LUY2TGZHLUg4ci04TTVLcWl6d0lubnR3YXhWWnhUTWxnR0ZUeHRCTkZZQkpBZWRJZ3pkbjlJbUlOYkpDNnFFQjRJdHJ3WDdqUVU1ajhQSWIxWi1qaFNZUWlhY3h2Ym5GdEZ2dk1zQXozZw?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMigAFBVV95cUxNa3FUTWZXTnhRaVBDR2M4LUY2TGZHLUg4ci04TTVLcWl6d0lubnR3YXhWWnhUTWxnR0ZUeHRCTkZZQkpBZWRJZ3pkbjlJbUlOYkpDNnFFQjRJdHJ3WDdqUVU1ajhQSWIxWi1qaFNZUWlhY3h2Ym5GdEZ2dk1zQXozZw?oc=5\" target=\"_blank\">Gold Recovers Toward $4,350 Ahead",
-      "at": 1789118054000,
-      "inst": [
-        "XAU/USD"
-      ],
-      "ccy": [
-        "XAU",
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789116209000
     }
   ],
   "sources": [
@@ -1993,10 +2022,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-11T14:59:15.593Z",
-  "headlinesAt": "2026-09-11T14:59:15.593Z",
-  "updatedAt": "2026-09-11T14:59:15.593Z"
+  "calendarAt": "2026-09-11T15:01:03.230Z",
+  "headlinesAt": "2026-09-11T15:01:03.230Z",
+  "updatedAt": "2026-09-11T15:01:03.230Z"
 }
