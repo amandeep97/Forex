@@ -58,6 +58,10 @@ const LABEL_OF = { PDH:"yesterday's high", PDL:"yesterday's low",
 
 const dpFor = p => (Math.abs(p) < 20 ? 5 : Math.abs(p) < 500 ? 3 : 2);
 
+// Local clock, 24-hour. The reader's own time, not UTC: a list is checked
+// against the clock on their phone, not against a timezone they have to convert.
+const clockOf = ms => new Date(ms).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
+
 // ── One event, as a sentence ─────────────────────────────────────────────────
 //
 // Written out rather than abbreviated because the whole point is that it reads
@@ -84,8 +88,13 @@ function HuntEvent({ e, onOpen }) {
           border:`1px solid ${C.warn}44`, background:'#f59e0b0d', borderRadius:3, padding:'0 5px' }}>
           {e.tf} HUNT
         </span>
-        <span style={{ marginLeft:'auto', fontSize:8, color:'#334155', fontFamily:C.mono }}>
-          {e.sweptAt ? ago(Date.now() - e.sweptAt) : ''}
+        {/* Clock time as well as the age. "18m ago" cannot be checked against
+            the row above it at a glance; 09:22 can, and a list that claims to be
+            in time order has to be verifiable. */}
+        <span style={{ marginLeft:'auto', fontSize:8, color:'#334155', fontFamily:C.mono,
+          textAlign:'right', lineHeight:1.4 }}>
+          {e.lastAt ? clockOf(e.lastAt) : ''}
+          <div style={{ opacity:0.7 }}>{e.lastAt ? ago(Date.now() - e.lastAt) : ''}</div>
         </span>
       </div>
 
@@ -185,11 +194,27 @@ export default function LiquidityView({ onOpen }) {
         state: s?.state || 'taken',
         confirmedAt: s?.confirmedAt || null,
         entry: s?.entry ?? null, stop: s?.stop ?? null, risk: s?.risk ?? null,
-        rank: (s?.state === 'setup' ? 100 : 0) + (TF_OF[kind] === '1D' ? 10 : TF_OF[kind] === '1W' ? 5 : 1),
+        // When something last HAPPENED on this row: the sweep, or the
+        // confirmation if one has printed since. This is the sort key, and it
+        // is the only one — see the sort below.
+        lastAt: Math.max(c.at || 0, s?.confirmedAt || 0),
       });
     }
   }
-  events.sort((a, b) => b.rank - a.rank || (b.sweptAt || 0) - (a.sweptAt || 0));
+  // Newest first, by time, and by nothing else.
+  //
+  // This used to sort by a rank — live setups first, then daily levels, then
+  // weekly, then H4 — with time only breaking ties inside a group. Every row
+  // carries its age on it, so the result read as a list whose timestamps jumped
+  // around at random: 18m, 38m, 1h, 2h, 18m. A reader cannot see the ranking,
+  // only the times, and a feed whose visible order contradicts its visible
+  // labels is worse than one with no order at all.
+  //
+  // The key is when something last happened, not when the sweep was: a level
+  // taken two hours ago whose reversal confirmed four minutes ago IS the newest
+  // event on the screen, and burying it under sweeps that have done nothing
+  // since would be the same mistake in the other direction.
+  events.sort((a, b) => (b.lastAt || 0) - (a.lastAt || 0));
 
   const live = new Set(['swept', 'through', 'near']);
   const active = rows.filter(r => Object.values(r.levels).some(v => live.has(v.state)));
