@@ -119,6 +119,11 @@ const CELL = {
   swept:   { bg:'#f59e0b22', fg:'#fbbf24', mark:'HUNT' },
   through: { bg:'#8b5cf622', fg:'#a78bfa', mark:'THRU' },
   near:    { bg:'#38bdf822', fg:'#38bdf8', mark:'near' },
+  // Beyond the level for the whole window. It says which side of the level you
+  // are on and nothing more, so it is drawn almost as faintly as empty. The
+  // first version had no such state and painted these THRU, which made most of
+  // the table look like a fresh breakout.
+  behind:  { bg:'transparent',  fg:'#334155', mark:'—' },
   quiet:   { bg:'transparent',  fg:'#1e293b', mark:'·' },
 };
 
@@ -142,7 +147,10 @@ function LiquidityPanel({ liq }) {
 
   const rows = Object.values(liq.bySym || {}).filter(r => r.levels);
   // An instrument where every column is quiet says nothing and costs a line.
-  const active = rows.filter(r => Object.values(r.levels).some(v => v.state !== 'quiet'));
+  // "Behind" is not activity. An instrument whose only marks are levels it left
+  // days ago belongs under the toggle with the quiet ones.
+  const live = new Set(['swept', 'through', 'near']);
+  const active = rows.filter(r => Object.values(r.levels).some(v => live.has(v.state)));
   const shown = all ? rows : active;
 
   const rank = r => {
@@ -163,7 +171,7 @@ function LiquidityPanel({ liq }) {
         <strong style={{ fontSize:11, color:'#38bdf8', fontFamily:C.mono, letterSpacing:0.5 }}>LIQUIDITY</strong>
         <span style={{ fontSize:9, color:C.dim }}>which level got hunted</span>
         <span style={{ marginLeft:'auto', fontSize:8, color:'#334155', fontFamily:C.mono }}>
-          VPS · {liq.at ? ago(Date.parse(liq.at)) : '—'} · {rows.length} watched
+          VPS · {liq.at ? ago(Date.now() - Date.parse(liq.at)) : '\u2014'} · {rows.length} watched
         </span>
       </div>
 
@@ -172,6 +180,7 @@ function LiquidityPanel({ liq }) {
         <span style={{ color:CELL.swept.fg }}>HUNT = taken and given back</span>
         <span style={{ color:CELL.through.fg }}>THRU = went past and stayed</span>
         <span style={{ color:CELL.near.fg }}>near = ATR away, not taken</span>
+        <span style={{ color:CELL.behind.fg }}>— = behind price, nothing recent</span>
       </div>
 
       {shown.length === 0 ? (
