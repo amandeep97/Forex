@@ -345,7 +345,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789095476000,
-      "_kind": null
+      "_kind": null,
+      "why": "Geopolitical uncertainty, no clear directional impact"
     },
     {
       "title": "Why is the Australian Dollar falling despite RBA hawkish stance? - fxstreet.com",
@@ -364,7 +365,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789095116000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "AUD/USD": "down"
+      },
+      "why": "Explicitly states Australian Dollar is falling"
     },
     {
       "title": "Dow Jones Futures, Oracle Jumps After Oil Prices, Yields Surge; CPI Inflation Due - Investor's Business Daily",
@@ -384,7 +389,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789094940000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil prices surge, Dow direction unclear"
     },
     {
       "title": "⁠Gold on track for third weekly loss as US inflation data looms​‌ - reuters.com",
@@ -402,7 +411,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789092948000
+      "firstAt": 1789092948000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold on track for weekly loss"
     },
     {
       "title": "Gold and Crypto Fall as Hot US Inflation Rattles Markets - Mitrade",
@@ -422,7 +435,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789092948000
+      "firstAt": 1789092948000,
+      "dir": {
+        "XAU/USD": "down",
+        "BTC/USDT": "down"
+      },
+      "why": "Gold and Crypto explicitly falling"
     },
     {
       "title": "The iPhone Duo enters China’s crowded foldable market — and faces a price test",
@@ -454,7 +472,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789091306000
+      "firstAt": 1789091306000,
+      "why": "Local incident, no clear market direction"
     },
     {
       "title": "Trump’s Iran war echoes post-attack ‘forever wars’ - The Daily Star",
@@ -474,7 +493,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789091258000
+      "firstAt": 1789091258000,
+      "why": "Historical analysis, no immediate market impact"
     },
     {
       "title": "Iran strikes U.S. base in Jordan overnight - krem.com",
@@ -494,7 +514,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789089660000
+      "firstAt": 1789089660000,
+      "why": "Escalation risk, but direction ambiguous"
     },
     {
       "title": "Could Israel have avoided Western sanctions? Former diplomats say the warning signs were clear - Ynetnews",
@@ -514,7 +535,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789089585000
+      "firstAt": 1789089585000,
+      "why": "Diplomatic analysis, no clear market signal"
     },
     {
       "title": "Oil prices set to end week over $100 for first time in nearly 4 months",
@@ -530,7 +552,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789089504000
+      "firstAt": 1789089504000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil prices set to end week higher"
     },
     {
       "title": "Coach crash kills several people in Swiss Alps",
@@ -547,7 +573,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789088478000
+      "firstAt": 1789088478000,
+      "why": "Tragedy, no clear currency direction"
     },
     {
       "title": "Oil prices rise, Brent tests $110 a barrel as M.East supply risks grow",
@@ -564,7 +591,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789088463000
+      "firstAt": 1789088463000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Oil prices rise, Brent tests high"
     },
     {
       "title": "Bessent says 'a large bank' will be sanctioned on Monday as part of Iran strategy - CNBC",
@@ -587,7 +619,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789088040000
+      "firstAt": 1789088040000,
+      "why": "Sanctions news, direction unclear for these pairs"
     },
     {
       "title": "Gold steadies after sharp drop as hotter PPI lifts Fed hike bets",
@@ -604,7 +637,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789085460000
+      "firstAt": 1789085460000,
+      "why": "Gold steadies after drop, direction neutral"
     },
     {
       "title": "Why is Uber pulling out of some African markets?",
@@ -634,7 +668,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789087385000
+      "firstAt": 1789087385000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Oil surges, prices surpass $100"
     },
     {
       "title": "Japan wholesale inflation stays hot in August, cements case for BOJ hike",
@@ -2093,7 +2132,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-11T03:08:01.148Z",
-  "headlinesAt": "2026-09-11T03:08:01.148Z",
-  "updatedAt": "2026-09-11T03:08:01.148Z"
+  "calendarAt": "2026-09-11T03:09:01.247Z",
+  "headlinesAt": "2026-09-11T03:09:01.247Z",
+  "updatedAt": "2026-09-11T03:09:01.247Z"
 }
