@@ -17,7 +17,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789096800000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions news unclear for gold direction"
     },
     {
       "title": "Asian stocks tumble as oil surge, Fed hike bets overshadow chip optimism",
@@ -36,7 +37,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789096487000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "US500": "down"
+      },
+      "why": "Oil surge, stocks tumble"
     },
     {
       "title": "Gold Price Forecast: Will US CPI inflation revive XAU/USD uptrend? - FXStreet",
@@ -55,7 +61,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789094160000,
-      "_kind": null
+      "_kind": null,
+      "why": "Forecast question, no clear direction"
     },
     {
       "title": "Israeli experts split over impact of Western sanctions on entities linked to West Bank settlements - Anadolu Ajansı",
@@ -75,7 +82,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789095476000
+      "firstAt": 1789095476000,
+      "why": "Sanctions impact unclear for markets"
     },
     {
       "title": "Which tech stocks are most vulnerable to surging yields?",
@@ -90,7 +98,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789095322000
+      "firstAt": 1789095322000,
+      "dir": {
+        "US500": "down",
+        "US100": "down"
+      },
+      "why": "Surging yields hurt tech stocks"
     },
     {
       "title": "Why is the Australian Dollar falling despite RBA hawkish stance? - FXStreet",
@@ -108,7 +121,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789095116000
+      "firstAt": 1789095116000,
+      "dir": {
+        "AUD/USD": "down"
+      },
+      "why": "Australian Dollar falling"
     },
     {
       "title": "Dow Jones Futures, Oracle Jumps After Oil Prices, Yields Surge; CPI Inflation Due - Investor's Business Daily",
@@ -127,7 +144,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789094940000
+      "firstAt": 1789094940000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil prices surge, futures mixed"
     },
     {
       "title": "Young republicans break with Trump over Iran war",
@@ -147,7 +168,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789094752000
+      "firstAt": 1789094752000,
+      "why": "Political divide unclear for markets"
     },
     {
       "title": "⁠Gold on track for third weekly loss as US inflation data looms​‌ - Reuters",
@@ -165,7 +187,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789092948000
+      "firstAt": 1789092948000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold on track for loss"
     },
     {
       "title": "Gold and Crypto Fall as Hot US Inflation Rattles Markets - Mitrade",
@@ -185,7 +211,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789092948000
+      "firstAt": 1789092948000,
+      "dir": {
+        "XAU/USD": "down",
+        "BTC/USDT": "down"
+      },
+      "why": "Gold and Crypto Fall"
     },
     {
       "title": "The iPhone Duo enters China’s crowded foldable market — and faces a price test",
@@ -218,7 +249,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789091258000
+      "firstAt": 1789091258000,
+      "why": "War echoes unclear for direction"
     },
     {
       "title": "Global bond sell-off resumes as surging oil prices stoke fears about inflation - The Guardian",
@@ -236,7 +268,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789090200000
+      "firstAt": 1789090200000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Surging oil prices stoke fears"
     },
     {
       "title": "Iran strikes U.S. base in Jordan overnight - krem.com",
@@ -256,7 +292,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789089660000
+      "firstAt": 1789089660000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Iran strikes base, risk premium"
     },
     {
       "title": "Could Israel have avoided Western sanctions? Former diplomats say the warning signs were clear - Ynetnews",
@@ -276,7 +318,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789089585000
+      "firstAt": 1789089585000,
+      "why": "Diplomatic analysis, no market impact"
     },
     {
       "title": "Oil prices set to end week over $100 for first time in nearly 4 months",
@@ -292,7 +335,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789089504000
+      "firstAt": 1789089504000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil prices set to end high"
     },
     {
       "title": "Coach crash kills several people in Swiss Alps",
@@ -1763,6 +1810,6 @@
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-11T03:37:14.390Z",
-  "updatedAt": "2026-09-11T03:37:14.390Z"
+  "headlinesAt": "2026-09-11T03:38:45.001Z",
+  "updatedAt": "2026-09-11T03:38:45.001Z"
 }
