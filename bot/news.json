@@ -296,7 +296,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789131412000,
-      "_kind": null
+      "_kind": null,
+      "why": "Rebound noted but weekly loss dominates."
     },
     {
       "title": "U.S. oil prices fall for first time in 2 weeks, providing a relief to stock investors",
@@ -315,7 +316,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789131180000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Oil prices fall on diplomatic talk reports."
     },
     {
       "title": "The four reasons stocks could embark on a ‘face-ripper rally’ as soon as this morning",
@@ -331,7 +337,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789130940000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Bullish prediction of face-ripper rally."
     },
     {
       "title": "Dollar steadies after US inflation data, yen set for second weekly gain",
@@ -349,7 +359,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789130814000,
-      "_kind": null
+      "_kind": null,
+      "why": "Dollar steady, yen gains weekly."
     },
     {
       "title": "Wall St futures pare gains slightly after August inflation data",
@@ -372,7 +383,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789130231000,
-      "_kind": null
+      "_kind": null,
+      "why": "Futures pare gains, direction unclear."
     },
     {
       "title": "U.S. 10-year yield briefly breaks 5% for first time since 2024 after Aug CPI",
@@ -395,7 +407,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789130579000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Yields break 5%, bearish for FX/Gold."
     },
     {
       "title": "Are Rising Treasury Yields Part Of Warsh's Inflation Strategy? - Seeking Alpha",
@@ -419,7 +437,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789130305000,
-      "_kind": null
+      "_kind": null,
+      "why": "Speculative article on inflation strategy."
     },
     {
       "title": "Global Markets Brace for Rate Decisions, Inflation and Political Risks - Межа. Новини України.",
@@ -443,7 +462,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789129248000,
-      "_kind": null
+      "_kind": null,
+      "why": "General market bracing, no specific direction."
     },
     {
       "title": "U.S. Stock Futures Rise, Treasury Yields Stay Elevated Ahead of Key Inflation Data - marketscreener.com",
@@ -467,7 +487,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789128060000,
-      "_kind": null
+      "_kind": null,
+      "why": "Futures rise, yields elevated, mixed signals."
     },
     {
       "title": "Wall Street futures hold on to gains after in-line to slightly hot U.S. CPI report",
@@ -484,7 +505,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789130231000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Futures hold gains after CPI report."
     },
     {
       "title": "Yossi Abravanel: Despite sanctions, Israel must keep communication open with Europe - timesofisrael.com",
@@ -505,7 +530,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789130025000,
-      "_kind": null
+      "_kind": null,
+      "why": "Geopolitical commentary, no direct market impact."
     },
     {
       "title": "US August CPI 3.4% vs 3.4% expected",
@@ -528,7 +554,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789129807000
+      "firstAt": 1789129807000,
+      "why": "CPI in-line with expectations, neutral."
     },
     {
       "title": "FTSE 100 today: Stocks rise as strong UK GDP offsets Mideast war fears",
@@ -546,7 +573,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789129568000
+      "firstAt": 1789129568000,
+      "why": "UK stocks rise, US/Gold unclear."
     },
     {
       "title": "Oil prices drop but remain on track to close week above $100",
@@ -562,7 +590,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789129352000
+      "firstAt": 1789129352000,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Oil prices drop intraday."
     },
     {
       "title": "Investors Brace for Possible Fed Rate Hike as Markets Weigh Uncertainty - IndexBox",
@@ -585,7 +617,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789129248000
+      "firstAt": 1789129248000,
+      "why": "Bracing for uncertainty, no clear direction."
     },
     {
       "title": "Iran war: Saudi-Houthi escalation intensifies Yemen conflict - dw.com",
@@ -833,8 +866,8 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789126447000
+      "srcs": 1,
+      "firstAt": 1789126489000
     },
     {
       "title": "Stocks making the biggest moves premarket: GameStop, Oracle, Adobe, RH & more",
@@ -1302,23 +1335,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789117762000
-    },
-    {
-      "title": "Five dead and dozens injured in coach crash in Swiss Alps",
-      "link": "https://www.bbc.co.uk/news/articles/cx2z70xr0y3o?at_medium=RSS&at_campaign=rss",
-      "source": "BBC World",
-      "desc": "The tourist coach was carrying dozens of Dutch passengers when it overturned in the south-eastern Swiss Alps.",
-      "at": 1789116860000,
-      "inst": [
-        "USD/CHF"
-      ],
-      "ccy": [
-        "CHF"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789116860000
     },
     {
       "title": "Gold hits one-week low as markets await U.S. inflation data - سانا",
@@ -1995,6 +2011,26 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789102310000
+    },
+    {
+      "title": "Russia sanctions bill, criticized by Democrats, awaits House return - NJ Spotlight News",
+      "link": "https://news.google.com/rss/articles/CBMirAFBVV95cUxPUjllTVNaUk9fQ3RVYmFzVXpaOGNjYkZHNnJPeEs2ZnlrLXRQWWVnakpkY20zOEZZTFp0VHQwX2Y1d09mVERUR0lvTTBTV0phMjRiT1ZUNUlDNGE5Q2t0UEJzMDhTQ3VjNFJTclRTdHBIVWJZM3Y5d3FUWnRaTFZvSDBWZVhfRnRENnBrN0hBMFhfY1FNMGdZU0dfQXVDSURqdldSTWRVRUlkaEhs?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMirAFBVV95cUxPUjllTVNaUk9fQ3RVYmFzVXpaOGNjYkZHNnJPeEs2ZnlrLXRQWWVnakpkY20zOEZZTFp0VHQwX2Y1d09mVERUR0lvTTBTV0phMjRiT1ZUNUlDNGE5Q2t0UEJzMDhTQ3VjNFJTclRTdHBIVWJZM3Y5d3FUWnRaTFZvSDBWZVhfRnRENnBrN0hBMFhfY1FNMGdZU0dfQXVDSURqdldSTWRVRUlkaE",
+      "at": 1789102023000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789102023000
     }
   ],
   "sources": [
@@ -2006,7 +2042,6 @@
     "CNBC Markets",
     "Yahoo Finance",
     "Al Jazeera",
-    "BBC World",
     "Wires (geo)",
     "Wires (macro)"
   ],
@@ -2018,9 +2053,13 @@
     {
       "name": "DailyFX",
       "why": "no items parsed"
+    },
+    {
+      "name": "BBC World",
+      "why": "network timeout at: https://feeds.bbci.co.uk/news/world/rss.xml"
     }
   ],
-  "calendarAt": "2026-09-11T13:00:31.761Z",
-  "headlinesAt": "2026-09-11T13:00:31.761Z",
-  "updatedAt": "2026-09-11T13:00:31.761Z"
+  "calendarAt": "2026-09-11T13:01:46.806Z",
+  "headlinesAt": "2026-09-11T13:01:46.806Z",
+  "updatedAt": "2026-09-11T13:01:46.806Z"
 }
