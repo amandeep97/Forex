@@ -19,7 +19,7 @@
 //   Confirming before the sweep. A break that happened first is not evidence
 //   about a liquidity event that had not occurred yet.
 import {
-  keyLevels, findSweep, confirmation, sweepSetup, H4_SWINGS,
+  keyLevels, findSweep, confirmation, sweepSetup, approach, H4_SWINGS, LEVEL_RANK,
 } from '../shared/liquidity.mjs';
 import { detectBreaks } from '../shared/structure.mjs';
 
@@ -129,7 +129,11 @@ const LOW_LEVEL = [{ kind: 'PDL', price: 90, side: 'low', label: "yesterday's lo
     sl !== null && sl.dir === 'long', sl ? sl.dir : 'null');
 }
 
-// ── Two levels at once is one event, and the deeper one ran the stops ──────
+// ── Two levels at once is one event ────────────────────────────────────────
+//
+// This test used to assert the level taken FURTHEST wins, which was the rule
+// until a live run showed why it is wrong. See the ranking block below: depth
+// now breaks ties within a rank and no longer outranks the level's importance.
 {
   const both = [];
   let p = 104;
@@ -137,10 +141,10 @@ const LOW_LEVEL = [{ kind: 'PDL', price: 90, side: 'low', label: "yesterday's lo
   leg(both, 12, -1, p);
   const two = [
     { kind: 'H4H', price: 108, side: 'high', label: 'H4 swing high' },
-    { kind: 'PDH', price: 110, side: 'high', label: "yesterday's high" },
+    { kind: 'H4H', price: 110, side: 'high', label: 'a higher H4 swing high' },
   ];
   const s = findSweep(both, two);
-  check('when two levels are taken, the one taken furthest is reported',
+  check('between two levels of equal standing, the one taken furthest is reported',
     s.level.price === 108, `${s.level.kind} at ${s.level.price}`,
     'depth beyond 108 is larger than depth beyond 110 for the same extreme');
 }
@@ -282,6 +286,89 @@ function detectableEarlier(cs, sweep, idx) {
   const want = sweep.dir === 'long' ? 'bullish' : 'bearish';
   return detectBreaks(cs, { within: Math.min(30, cs.length - 1), max: 8 })
     .some(b => b.direction === want && b.index > sweep.at && b.index < idx);
+}
+
+// ── Daily levels outrank the rest ──────────────────────────────────────────
+//
+// The first version ranked by depth alone, so an H4 swing an inch away beat
+// yesterday's high a mile away. On the first live run it reported an H4 swing
+// low on EUR/USD and never mentioned the daily levels — for an intraday trader
+// those ARE the liquidity, and the H4 swing is a smaller landmark that happened
+// to be nearer.
+{
+  check('the daily high and low rank above weekly, which rank above H4',
+    LEVEL_RANK.PDH > LEVEL_RANK.PWH && LEVEL_RANK.PWH > LEVEL_RANK.H4H
+    && LEVEL_RANK.PDL === LEVEL_RANK.PDH,
+    `PDH ${LEVEL_RANK.PDH} PWH ${LEVEL_RANK.PWH} H4H ${LEVEL_RANK.H4H}`);
+
+  const cs = [];
+  let p = 104;
+  p = leg(cs, 10, 1, p);          // up through both 108 and 110
+  leg(cs, 12, -1, p);             // and back below
+
+  // The H4 swing is taken FURTHER, so depth alone would pick it.
+  const mixed = [
+    { kind: 'H4H', price: 108, side: 'high', label: 'H4 swing high' },
+    { kind: 'PDH', price: 110, side: 'high', label: "yesterday's high" },
+  ];
+  const s = findSweep(cs, mixed);
+  check("yesterday's high wins over a more deeply swept H4 swing",
+    s.level.kind === 'PDH', `${s.level.kind} at ${s.level.price}`,
+    'this is the EUR/USD row: an H4 swing reported while the daily levels went unmentioned');
+
+  check('and depth still decides between two levels of the same rank',
+    findSweep(cs, [
+      { kind: 'H4H', price: 108, side: 'high', label: 'a' },
+      { kind: 'H4H', price: 109, side: 'high', label: 'b' },
+    ]).level.price === 108,
+    'ranking must not throw away the tie-break that was there before');
+}
+
+// ── Approaching a level, which had no representation at all ────────────────
+{
+  const at = price => [{ t: 0, o: price, c: price, h: price + 0.05, l: price - 0.05, v: 1 }];
+  const levels = [
+    { kind: 'PDH', price: 110, side: 'high', label: "yesterday's high" },
+    { kind: 'H4H', price: 106, side: 'high', label: 'H4 swing high' },
+    { kind: 'PDL', price: 100, side: 'low', label: "yesterday's low" },
+  ];
+
+  const near = approach(at(109.5), levels, 2);
+  check('price walking up to a level is reported before it is taken',
+    near !== null && near.level.kind === 'PDH', near ? near.level.kind : 'null',
+    'this is the state a trader actually waits in and it had no line on the screen');
+  check('with the distance in the instrument\'s own scale',
+    Math.abs(near.pct - 0.25) < 1e-9, `${near.pct} ATR`,
+    'a fixed pip count cannot serve gold at 4300 and EUR/USD at 1.08');
+
+  check('a level already gone past is not an approach',
+    approach(at(111), [levels[0]], 2) === null,
+    'beyond the level is a sweep or a breakout — both are other functions\' business');
+
+  check('and a level far away is not one either',
+    approach(at(104), [levels[0]], 2) === null, 'three ATR away is not "approaching"');
+
+  // Both inside the band, so the choice is genuinely about rank. With a
+  // smaller ATR the daily level simply is not approaching, and preferring the
+  // H4 one there is correct rather than a ranking failure — the first version
+  // of this check confused the two.
+  check('the daily level wins even when an H4 level is closer',
+    approach(at(105.9), levels, 10).level.kind === 'PDH',
+    `${approach(at(105.9), levels, 10).level.kind}, PDH 4.1 away and H4H 0.1 away, band 5`,
+    'same ranking as a sweep, for the same reason');
+
+  check('approaching a LOW works the same way',
+    approach(at(100.6), [levels[2]], 2)?.level.kind === 'PDL');
+
+  check('an approach carries no direction',
+    !('dir' in (approach(at(109.5), levels, 2) || {})),
+    'price at yesterday\'s high may sweep and turn or go straight through, and that is the undecided part');
+
+  check('no levels, no price or no scale produces nothing rather than a guess',
+    approach(at(109.5), [], 2) === null
+    && approach([], levels, 2) === null
+    && approach(at(109.5), levels, 0) === null
+    && approach(at(109.5), levels, null) === null);
 }
 
 console.log(fails ? `\n${fails} FAILED` : '\nall passed');

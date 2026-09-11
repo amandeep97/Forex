@@ -51,10 +51,28 @@ import { findSwings, alternate, detectBreaks } from './structure.mjs';
  *             reclaimed:boolean }} Sweep
  * @typedef {{ type:string, direction:string, price:number, index:number,
  *             structure:string, label:string }} Break
+ * @typedef {{ level:Level, distance:number, atr:number, pct:number }} Approach
  */
 
 /** How many recent H4 swings are worth watching. Older ones have been traded through. */
 export const H4_SWINGS = 3;
+
+/**
+ * Which levels matter more, when several are in play.
+ *
+ * This is not decoration. The first version ranked levels by how far price went
+ * beyond them, so an H4 swing an inch away beat yesterday's high a mile away,
+ * and on the first live run the model reported an H4 swing low on EUR/USD while
+ * the daily levels went unmentioned. For an intraday trader the daily high and
+ * low are THE liquidity — they are where a whole session's stops sit — and an
+ * H4 swing is a lesser landmark that happens to be closer.
+ *
+ * Depth still breaks ties within a rank. It no longer outranks the level's own
+ * importance.
+ */
+export const LEVEL_RANK = { PDH: 3, PDL: 3, PWH: 2, PWL: 2, H4H: 1, H4L: 1 };
+
+const rankOf = l => LEVEL_RANK[l?.kind] ?? 0;
 
 /**
  * The levels, from completed higher-timeframe candles.
@@ -100,8 +118,10 @@ export function keyLevels({ daily, weekly, h4 } = {}) {
  * original side. Price still sitting beyond the level is a breakout and returns
  * nothing, which is the correct answer rather than a missing feature.
  *
- * When several levels qualify, the one taken FURTHEST is returned. Taking two
- * levels at once is one event, and the deeper one is the one that ran the stops.
+ * When several levels qualify the most IMPORTANT one is returned — yesterday's
+ * high and low first, then last week's, then H4 swings — with depth breaking
+ * ties inside a rank. Taking two levels at once is one event, and which of them
+ * to name is a question about what a trader is watching, not about arithmetic.
  *
  * @param {Candle[]} cs execution series, newest last
  * @param {Level[]} levels
@@ -133,12 +153,65 @@ export function findSweep(cs, levels, { within = 60 } = {}) {
     }
     if (at < 0) continue;
 
+    // Rank first, depth only to break a tie inside a rank. Yesterday's high
+    // beats an H4 swing even when the H4 swing was taken further, because for
+    // an intraday trader the daily level is where the session's stops are and
+    // the H4 swing is a smaller landmark that happened to be nearer.
     const depth = Math.abs(extreme - level.price);
-    if (!best || depth > Math.abs(best.extreme - best.level.price)) {
+    const better = !best
+      || rankOf(level) > rankOf(best.level)
+      || (rankOf(level) === rankOf(best.level) && depth > Math.abs(best.extreme - best.level.price));
+    if (better) {
       // Sweeping a high is bearish and sweeping a low is bullish. There is no
       // third case: the side taken decides the direction, not a preference.
       best = { level, extreme, at, dir: high ? 'short' : 'long', reclaimed: true };
     }
+  }
+  return best;
+}
+
+/**
+ * Price approaching a level it has not taken yet.
+ *
+ * The other half of the request, and the half that was missing. "Swept or NEAR
+ * the daily high or low" is one instruction with two states, and only the sweep
+ * was ever reported. Proximity existed in the bot purely as a cost gate —
+ * decide whether an instrument is worth a request, then throw the number away —
+ * so the screen could never say "price is eight pips under yesterday's high,
+ * watch it", which is the state a trader actually waits in.
+ *
+ * An approach is NOT a trade and carries no direction. Price walking up to
+ * yesterday's high may sweep it and reverse, or go through it and run. Which of
+ * those happens is exactly what has not been decided yet, and naming a side
+ * here would be inventing the answer.
+ *
+ * @param {Candle[]} cs
+ * @param {Level[]} levels
+ * @param {number} atr the instrument's own scale — a fixed pip count cannot
+ *        serve gold at 4300 and EUR/USD at 1.08
+ * @param {{ within?:number }} [opts] how many ATR counts as approaching
+ * @returns {{ level:Level, distance:number, atr:number, pct:number }|null}
+ */
+export function approach(cs, levels, atr, { within = 0.5 } = {}) {
+  if (!cs || !cs.length || !levels?.length || !(atr > 0)) return null;
+  const price = cs[cs.length - 1].c;
+  if (!Number.isFinite(price)) return null;
+
+  /** @type {Approach|null} */
+  let best = null;
+  for (const level of levels) {
+    // Only levels price has NOT gone past. Beyond it is a sweep or a breakout,
+    // both of which are other functions' business.
+    const untaken = level.side === 'high' ? price < level.price : price > level.price;
+    if (!untaken) continue;
+    const distance = Math.abs(price - level.price);
+    if (distance > atr * within) continue;
+    // Same ranking as a sweep: a daily level being approached matters more than
+    // an H4 swing being approached, however much closer the H4 swing is.
+    const better = !best
+      || rankOf(level) > rankOf(best.level)
+      || (rankOf(level) === rankOf(best.level) && distance < best.distance);
+    if (better) best = { level, distance, atr, pct: distance / atr };
   }
   return best;
 }

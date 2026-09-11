@@ -90,6 +90,82 @@ function Rarity({ perMonth, label }) {
   );
 }
 
+
+// ── Daily liquidity, straight from the VPS ───────────────────────────────────
+//
+// Its own panel rather than a decoration on filter matches, because the two
+// selections have nothing to do with each other. The feed shows instruments
+// that matched the filter you picked; the scanner watches whatever is near a
+// level right now. An instrument sitting on yesterday's high is the thing you
+// said you wanted to see, and it was invisible unless it happened to satisfy an
+// unrelated filter first.
+//
+// Daily levels lead. Everything else is a second section, collapsed by default,
+// because "yesterday's high and low, swept or approached" is the request and
+// H4 swings are the nice-to-have.
+function LiquidityPanel({ liq }) {
+  const [showRest, setShowRest] = useState(false);
+  if (!liq) return null;
+
+  const rows = Object.values(liq.bySym || {});
+  const isDaily = r => ['PDH', 'PDL'].includes(r.setup?.level?.kind || r.near?.kind);
+  const interesting = r => r.setup || r.near;
+
+  const daily = rows.filter(r => interesting(r) && isDaily(r));
+  const rest  = rows.filter(r => interesting(r) && !isDaily(r));
+
+  const stale = r => Date.now() - r.at > 10 * 60e3;
+  const line = r => (
+    <div key={r.sym} style={{ padding:'6px 10px', borderTop:`1px solid ${C.line}` }}>
+      <div style={{ display:'flex', gap:8, alignItems:'baseline', flexWrap:'wrap' }}>
+        <strong style={{ fontSize:11, color:C.txt, fontFamily:C.mono, minWidth:64 }}>{r.sym}</strong>
+        <span style={{ fontSize:9, color:'#334155', fontFamily:C.mono }}>{r.price}</span>
+      </div>
+      {r.setup
+        ? <SweepSetup s={r.setup} stale={stale(r)}/>
+        : <Approaching n={r.near} stale={stale(r)}/>}
+    </div>
+  );
+
+  return (
+    <div style={{ margin:'8px 10px', background:C.panel, border:`1px solid ${C.line}`, borderRadius:5, overflow:'hidden' }}>
+      <div style={{ padding:'7px 10px', borderBottom:`1px solid ${C.line}`, display:'flex',
+        gap:8, alignItems:'baseline', flexWrap:'wrap' }}>
+        <strong style={{ fontSize:11, color:'#38bdf8', fontFamily:C.mono, letterSpacing:0.5 }}>DAILY LIQUIDITY</strong>
+        <span style={{ fontSize:9, color:C.dim }}>
+          yesterday&rsquo;s high and low — approached, swept, or confirmed
+        </span>
+        <span style={{ marginLeft:'auto', fontSize:8, color:'#334155', fontFamily:C.mono }}>
+          VPS · {liq.at ? ago(Date.parse(liq.at)) : '—'} · {rows.length} watched
+        </span>
+      </div>
+
+      {daily.length === 0 && (
+        <div style={{ padding:'10px', fontSize:10, color:C.dim, lineHeight:1.6 }}>
+          Nothing at a daily level right now.
+          <div style={{ marginTop:2, color:'#334155' }}>
+            The VPS is watching {rows.length} instrument(s) and checks every minute. This panel
+            fills itself in when price comes within half an average four-hour range of yesterday&rsquo;s
+            high or low — no need to keep the app open.
+          </div>
+        </div>
+      )}
+      {daily.map(line)}
+
+      {rest.length > 0 && (
+        <div style={{ borderTop:`1px solid ${C.line}` }}>
+          <button onClick={() => setShowRest(v => !v)}
+            style={{ ...btn(showRest), width:'100%', borderRadius:0, border:'none', padding:'6px',
+              textAlign:'left', fontFamily:C.mono }}>
+            {showRest ? '▾' : '▸'} {rest.length} at weekly or H4 levels
+          </button>
+          {showRest && rest.map(line)}
+        </div>
+      )}
+    </div>
+  );
+}
+
 // ── The read, from the engines that already produced it ──────────────────────
 // The feed says "look at these" and stops, on purpose — it measures no
 // direction of its own. But the four-engine verdict already exists one tap
@@ -127,6 +203,34 @@ function Location({ reads }) {
 // confirming yet, SETUP is confirmed and available, and MISSED is confirmed
 // and gone. Collapsing the last two into one is how a move you watched go past
 // ends up looking like a live ticket.
+// Price walking into a level it has not taken yet.
+//
+// The half of the request that was missing. "Swept or NEAR the daily high or
+// low" is one instruction with two states; only the sweep was ever shown, and
+// the state a trader actually waits in had no line on the screen at all.
+//
+// No direction, on purpose. Price approaching yesterday's high may sweep it and
+// turn or go straight through, and which one happens is the thing that has not
+// been decided.
+function Approaching({ n, stale }) {
+  if (!n) return null;
+  const daily = n.kind === 'PDH' || n.kind === 'PDL';
+  const col = daily ? '#38bdf8' : '#475569';
+  const dp = Math.abs(n.price) < 20 ? 5 : 2;
+  return (
+    <span style={{ display:'flex', gap:8, alignItems:'center', flexWrap:'wrap', width:'100%', marginTop:3,
+      opacity: stale ? 0.45 : 1 }}>
+      <span style={{ fontSize:10, fontWeight:900, color:col, fontFamily:C.mono,
+        border:`1px solid ${col}44`, background:`${col}0d`, borderRadius:3, padding:'1px 7px' }}>
+        NEAR {daily ? 'DAILY' : ''}
+      </span>
+      <span style={{ fontSize:9, color:C.dim, fontFamily:C.mono }}>
+        {n.label} at {n.price.toFixed(dp)} · {n.atrPct.toFixed(2)} ATR away
+      </span>
+    </span>
+  );
+}
+
 function SweepSetup({ s, stale }) {
   if (!s) return null;
   const long = s.dir === 'long';
@@ -177,7 +281,11 @@ function Verdict({ read, liq, sym }) {
   // able to run for want of an OANDA key — the bot needs none of that.
   const row = liq?.bySym?.[sym] || null;
   const stale = row ? Date.now() - row.at > 10 * 60e3 : false;
-  const sweep = row?.setup ? <SweepSetup s={row.setup} stale={stale}/> : null;
+  // A sweep supersedes an approach: once the level is taken, "price is near it"
+  // is no longer the interesting fact about it.
+  const sweep = row?.setup
+    ? <SweepSetup s={row.setup} stale={stale}/>
+    : row?.near ? <Approaching n={row.near} stale={stale}/> : null;
 
   if (read === undefined) {
     return (
@@ -859,6 +967,8 @@ export default function LiveFeed({ onOpen }) {
           </div>
         </div>
       )}
+
+      <LiquidityPanel liq={liq}/>
 
       {/* ── Matches ── */}
       <div style={{ margin:'8px 10px', background:C.panel, border:`1px solid ${C.line}`, borderRadius:5, overflow:'hidden' }}>
