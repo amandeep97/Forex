@@ -20,7 +20,38 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789118763000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Sanctions imply supply risk, bullish oil."
+    },
+    {
+      "title": "As Saudi tensions with Iran-backed Houthis escalate, mediator Pakistan faces pressure to choose a side - Reuters",
+      "link": "https://news.google.com/rss/articles/CBMixgFBVV95cUxOeEtIRmd6Qm1XMzBxWWhjWXkwU3NPaFY0Nk1HTWdNQzhlSEg2ZlJMQ1BCcS02UTRVcFpBRXZtb3laVXI4Q0VOdVd4RXBNdFhNSU1taGRya3NoVlItcVdmMXBlaTVFcjdMNE9UMGU5T0JidVVjbV9Sc3ZjMzMyeXZLaGV2MHRlUktWTklJN25ubkdjVE56UjJiSDFQYU5sUDQ3eUVuV0JXS1dXcnM4WWJ6dTdZY2EwWnR6MlBlTEdKOFZTTFZOYXc?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMixgFBVV95cUxOeEtIRmd6Qm1XMzBxWWhjWXkwU3NPaFY0Nk1HTWdNQzhlSEg2ZlJMQ1BCcS02UTRVcFpBRXZtb3laVXI4Q0VOdVd4RXBNdFhNSU1taGRya3NoVlItcVdmMXBlaTVFcjdMNE9UMGU5T0JidVVjbV9Sc3ZjMzMyeXZLaGV2MHRlUktWTklJN25ubkdjVE56UjJiSDFQYU5sUDQ3eUVuV0JXS1dXcn",
+      "at": 1789118292000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789118292000,
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Geopolitical tension supports oil prices."
     },
     {
       "title": "Sterling today: Pound steady as UK GDP beats, dollar firms on CPI bets",
@@ -38,7 +69,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789117762000,
-      "_kind": null
+      "_kind": null,
+      "why": "Mixed signals, pound steady."
     },
     {
       "title": "Oracle shares rise as AI cloud backlog beats estimates",
@@ -70,7 +102,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789117246000
+      "firstAt": 1789117246000,
+      "why": "Conflict news, unclear immediate market impact."
     },
     {
       "title": "Yossi Abravanel: Despite sanctions, Israel must keep communication open with Europe - The Times of Israel",
@@ -90,7 +123,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789117099000
+      "firstAt": 1789117099000,
+      "why": "Diplomatic commentary, no direct market impact."
     },
     {
       "title": "Five dead and dozens injured in coach crash in Swiss Alps",
@@ -107,7 +141,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789116860000
+      "firstAt": 1789116860000,
+      "why": "Local accident, no macro impact."
     },
     {
       "title": "Vetoquinol shares surge 16% after 22% first-half profit growth, strong cash flow",
@@ -137,7 +172,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789114631000
+      "firstAt": 1789114631000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold hits low, bearish sentiment."
     },
     {
       "title": "Oil set to end week above $100 for first time since mid-May as US diesel hits record high",
@@ -153,13 +192,17 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789115822000
+      "firstAt": 1789115822000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil above $100, bullish trend."
     },
     {
       "title": "Treasury yields steady as traders await consumer inflation data amid oil price pressure - CNBC",
-      "link": "https://news.google.com/rss/articles/CBMib0FVX3lxTE5BYnVhZnRLMjNfTURqaGdKS3kweldtU0ZzdmlLZllvcE1uUzRBbjFCNmdjcjdJTmozVUhUbG5JX2lWVnRSQm5kMTUyQmlFbXhNRnlXS1RaYUcyZk1XN0JPaDhpZjdKYkxhcEV0RHE1UQ?oc=5",
+      "link": "https://news.google.com/rss/articles/CBMib0FVX3lxTE5BYnVhZnRLMjNfTURqaGdKS3kweldtU0ZzdmlLZllvcE1uUzRBbjFCNmdjcjdJTmozVUhUbG5JX2lWVnRSQm5kMTUyQmlFbXhNRnlXS1RaYUcyZk1XN0JPaDhpZjdKYkxhcEV0RHE1UdIBdEFVX3lxTE1ldmROYW9MQTFHWEx3b0Q5SWwzMjFDd3BNQkd1RExKdk9HRWZubEVydUJDTXZkS3N0MWwtQkllTWVIVDhtRWFhQ3FwU1FpSGxKYXo1aGQta2dweEpJQmtEdERzaDVZWVdwRmNuRGRKaGVha0dj?oc=5",
       "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMib0FVX3lxTE5BYnVhZnRLMjNfTURqaGdKS3kweldtU0ZzdmlLZllvcE1uUzRBbjFCNmdjcjdJTmozVUhUbG5JX2lWVnRSQm5kMTUyQmlFbXhNRnlXS1RaYUcyZk1XN0JPaDhpZjdKYkxhcEV0RHE1UQ?oc=5\" target=\"_blank\">Treasury yields steady as traders await consumer inflatio",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMib0FVX3lxTE5BYnVhZnRLMjNfTURqaGdKS3kweldtU0ZzdmlLZllvcE1uUzRBbjFCNmdjcjdJTmozVUhUbG5JX2lWVnRSQm5kMTUyQmlFbXhNRnlXS1RaYUcyZk1XN0JPaDhpZjdKYkxhcEV0RHE1UdIBdEFVX3lxTE1ldmROYW9MQTFHWEx3b0Q5SWwzMjFDd3BNQkd1RExKdk9HRWZubEVydUJDTXZkS3N0MW",
       "at": 1789115757000,
       "inst": [
         "USOIL"
@@ -171,7 +214,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789115757000
+      "firstAt": 1789115757000,
+      "why": "Yields steady, awaiting data, no clear direction."
     },
     {
       "title": "U.S. Rate Hike Fears Weigh on China and Hong Kong Markets - Devdiscourse",
@@ -194,7 +238,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 3,
-      "firstAt": 1789113628000
+      "firstAt": 1789113628000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Rate hike fears strengthen dollar, bearish pairs."
     },
     {
       "title": "Drones attack chemical plant in Russia's Perm Krai – CCD - ukrinform.net",
@@ -214,7 +264,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789115400000
+      "firstAt": 1789115400000,
+      "why": "Specific attack, unclear broad market impact."
     },
     {
       "title": "European natural gas pauses rally but logs fifth weekly gain on Middle East risks",
@@ -228,7 +279,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789115250000
+      "firstAt": 1789115250000,
+      "dir": {
+        "NATGAS": "up"
+      },
+      "why": "Logs weekly gain, bullish trend."
     },
     {
       "title": "What did 25 years of the “war on terror” leave behind?",
@@ -245,7 +300,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789114832000
+      "firstAt": 1789114832000,
+      "why": "Historical analysis, no market impact."
     },
     {
       "title": "How 9/11 helped Israel sell its war on Palestinians to America",
@@ -265,7 +321,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789114698000
+      "firstAt": 1789114698000,
+      "why": "Political commentary, no market impact."
     },
     {
       "title": "Gold Falls as Inflation Fears and High Oil Prices Weigh on the Precious Metal - Action Forex",
@@ -285,7 +342,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789112215000
+      "firstAt": 1789112215000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold falls, oil high but direction unclear."
     },
     {
       "title": "U.S.-Iran Escalation to Delay Oil Flow Recovery Into Next Year, IEA Says - WSJ",
@@ -765,6 +826,26 @@
       "firstAt": 1789109834000
     },
     {
+      "title": "Saudi crown prince urged Trump to strike Houthis amid Red Sea threat - axios.com",
+      "link": "https://news.google.com/rss/articles/CBMiekFVX3lxTFB4c1pTQTlsM2RTNkhPSl9hTktNX1hJeDZFZUpoVE9mUUNubTFxTGtLNFd3MmxFWWZEcWNGMmxycmd6dkZDOTYxNXZua3lUc0tHQ3BmRWdfNWNnc1N5RmVTM3dSQktOOV96bDlRQUg1cW8yX1AwOHk4a0N3?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiekFVX3lxTFB4c1pTQTlsM2RTNkhPSl9hTktNX1hJeDZFZUpoVE9mUUNubTFxTGtLNFd3MmxFWWZEcWNGMmxycmd6dkZDOTYxNXZua3lUc0tHQ3BmRWdfNWNnc1N5RmVTM3dSQktOOV96bDlRQUg1cW8yX1AwOHk4a0N3?oc=5\" target=\"_blank\">Saudi crown prince urged Trump to strike Ho",
+      "at": 1789109757000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789109757000
+    },
+    {
       "title": "New Zealand Dollar gathers strength above 0.5800, all eyes on US CPI inflation data - FXStreet",
       "link": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxOQ2FGQ3lHSGhrbkw5QU1mQ0xNcDJUTUp4MEVxUTdmQmdQaEZJSkkwaGJpR1BvbnFvbDhDa09rT2NONU9kT1BRSjdPaGhDSkZpcjIya3JPQnAxekEyY192YUR1ZVljQWxKOEtrT0w3d05IM1NldnBYMTlyUXMzRTNqVHdEY3IyNlBmeUwwVmQ2bnV5RFhvRDR0akNOMURIU21IbUlMSmdWWnVLSEZVakdUUlp1LWIyTlBrdER2QWMzNjZjUQ?oc=5",
       "source": "Wires (macro)",
@@ -917,7 +998,7 @@
       "firstAt": 1789106040000
     },
     {
-      "title": "Russia launches Banderol drone missile and over 160 other drones to attack Ukraine - pravda.com.ua",
+      "title": "Russia launches Banderol drone missile and over 160 other drones to attack Ukraine - Українська правда",
       "link": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE9ZZUxmVHI3dm1OLWVBR1NyTGwtTkV0RTJxQ2dmbEVSdzkxckhraUxFLWlJdmdlb3M4Q0RSQW5GOHNvWGpRMjRSSEllNWwxVDBvWVh5aEFtbmtHS0dJaFlYc0tZeWXSAXBBVV95cUxNOVRSdGdNX3lvemJBckJNTFdVSDNZamdWODM0ejVyWk8wdFR0OFg3bjBwMEtoZ29xd09FY1dGZEJ3ZjNzWm5Xdk1jNEx6U0VtSzNjdEpWZjRVZThkU3dfRWxhQ291S0M0eExkSmFTdFkx?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiZEFVX3lxTE9ZZUxmVHI3dm1OLWVBR1NyTGwtTkV0RTJxQ2dmbEVSdzkxckhraUxFLWlJdmdlb3M4Q0RSQW5GOHNvWGpRMjRSSEllNWwxVDBvWVh5aEFtbmtHS0dJaFlYc0tZeWXSAXBBVV95cUxNOVRSdGdNX3lvemJBckJNTFdVSDNZamdWODM0ejVyWk8wdFR0OFg3bjBwMEtoZ29xd09FY1dGZEJ3ZjNzWm",
@@ -1617,62 +1698,21 @@
       "firstAt": 1789079100000
     },
     {
-      "title": "Palestinian president warns of ‘dangerous escalation’ by Israel - Anadolu Ajansı",
-      "link": "https://news.google.com/rss/articles/CBMipAFBVV95cUxPU2xnSU5vUTg5STJBSFR0MzkzQ051SW1qYmlwQmtTdzZtSGYwbGk0NWRLSWQ2aHpab3duWW9pVXM0QXRWUnFWNjdPbGE4cV9hNmxZdllocFNoTW84MG9SU3FKV0t6Z3N4NnJ4RVhlZEJRbWJkSlk1Umk5RHRHRVNybl9oN0M0Tm8xNzFpOElLMWNUaEV6VEdkSkt3S3Rya2xiT0hZMA?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMipAFBVV95cUxPU2xnSU5vUTg5STJBSFR0MzkzQ051SW1qYmlwQmtTdzZtSGYwbGk0NWRLSWQ2aHpab3duWW9pVXM0QXRWUnFWNjdPbGE4cV9hNmxZdllocFNoTW84MG9SU3FKV0t6Z3N4NnJ4RVhlZEJRbWJkSlk1Umk5RHRHRVNybl9oN0M0Tm8xNzFpOElLMWNUaEV6VEdkSkt3S3Rya2xiT0hZMA?oc=5\" t",
-      "at": 1789078496000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789078496000
-    },
-    {
-      "title": "Better Markets’ Lawsuit Against the Federal Reserve and Vice Chair Bowman for Corruption - Better Markets",
-      "link": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxQZGJ4dzlZdXpBVEtjTGdtWVpvYlV6dTJrY2s0ZWtMWlJhTzZKbUg4SmpLWl9HLVJFZVAyd0NOblJJbXdEbUM4VVBfcVcwa2tiUkVLbXE5UVB2eTNVUVlVNk9OQ1loTEhWZ1U0dnlSOWNFQ2gyc09EX3VGNGt3RzFGNHRzS3ZERXpaTUxYVFZ6RExJMnpzTlJOOVp6Q0t0WEtpRTNCRlQxSXlhMThKVGJyZnd1UTdiVTNuYmxDS002MFA?oc=5",
+      "title": "Stocks and Treasuries Find Relief Before CPI Print: Markets Wrap - Bloomberg.com",
+      "link": "https://news.google.com/rss/articles/CBMilAFBVV95cUxNdWtrNXA0SFF6bzRNNjVfYkFKMXVEMS0yTTVGNXJhMFJqSzlibVZ6MUtDdmVkb014NkRmZEhXSEwyVzZ5S2FoY2hBZHgzMG4tQjYtczBVWWotazYyU3JmamdjWkxyRTlCNGJsX3Rmb3VtZHdUSU1haW1sTkFtY29uQ0pUaXE5VmI4S0M1TGpzTEc3UnhJ?oc=5",
       "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiwAFBVV95cUxQZGJ4dzlZdXpBVEtjTGdtWVpvYlV6dTJrY2s0ZWtMWlJhTzZKbUg4SmpLWl9HLVJFZVAyd0NOblJJbXdEbUM4VVBfcVcwa2tiUkVLbXE5UVB2eTNVUVlVNk9OQ1loTEhWZ1U0dnlSOWNFQ2gyc09EX3VGNGt3RzFGNHRzS3ZERXpaTUxYVFZ6RExJMnpzTlJOOVp6Q0t0WEtpRTNCRlQxSXlhMT",
-      "at": 1789078392000,
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMilAFBVV95cUxNdWtrNXA0SFF6bzRNNjVfYkFKMXVEMS0yTTVGNXJhMFJqSzlibVZ6MUtDdmVkb014NkRmZEhXSEwyVzZ5S2FoY2hBZHgzMG4tQjYtczBVWWotazYyU3JmamdjWkxyRTlCNGJsX3Rmb3VtZHdUSU1haW1sTkFtY29uQ0pUaXE5VmI4S0M1TGpzTEc3UnhJ?oc=5\" target=\"_blank\">Stocks ",
+      "at": 1789078553000,
       "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
         "US500"
       ],
       "ccy": [
         "USD"
       ],
-      "sev": 1,
+      "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789078392000
-    },
-    {
-      "title": "Here are the stocks to favor in the fourth quarter — and those you should avoid",
-      "link": "https://www.marketwatch.com/story/here-are-the-stocks-to-favor-in-the-fourth-quarter-and-those-you-should-avoid-cf2dd10b?mod=mw_rss_topstories",
-      "source": "MarketWatch",
-      "desc": "Large caps tend to outperform small caps as year’s end approaches.",
-      "at": 1789077720000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789077720000
+      "firstAt": 1789078553000
     }
   ],
   "sources": [
@@ -1699,6 +1739,6 @@
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-11T09:32:14.736Z",
-  "updatedAt": "2026-09-11T09:32:14.736Z"
+  "headlinesAt": "2026-09-11T09:33:48.154Z",
+  "updatedAt": "2026-09-11T09:33:48.154Z"
 }
