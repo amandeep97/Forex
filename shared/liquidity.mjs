@@ -171,6 +171,75 @@ export function findSweep(cs, levels, { within = 60 } = {}) {
 }
 
 /**
+ * Every level's own state, so a screen can put one in each column.
+ *
+ * findSweep and approach both answer "which ONE level matters most", which is
+ * the right question for an alert and the wrong one for a table. Asked for a
+ * row per instrument with a column per level — did it hunt the daily high, did
+ * it hunt the weekly low — a single best-level answer hides five of the six
+ * facts, and which one survives depends on a ranking the reader cannot see.
+ *
+ * Four states, and the distinction between the first two is the whole model:
+ *
+ *   swept   went beyond the level and came back. Liquidity taken.
+ *   through went beyond and STAYED. A breakout, the opposite trade.
+ *   near    within the band, not taken yet. The waiting state.
+ *   quiet   far enough away to be no part of today.
+ *
+ * @param {Candle[]} cs execution series, newest last
+ * @param {Level[]} levels
+ * @param {number} atr the instrument's own scale
+ * @param {{ within?:number, near?:number }} [opts] `within` is how many bars
+ *        back a sweep may have happened; `near` is the approach band in ATR.
+ * @returns {Array<{kind:string, price:number, label:string, side:string,
+ *                  state:'swept'|'through'|'near'|'quiet', dir:'long'|'short'|null,
+ *                  distance:number, atrPct:number|null, extreme:number|null, at:number|null}>}
+ */
+export function levelStates(cs, levels, atr, { within = 60, near = 0.5 } = {}) {
+  if (!cs || !cs.length || !levels?.length) return [];
+  const n = cs.length;
+  const from = Math.max(0, n - within);
+  const price = cs[n - 1].c;
+
+  return levels.map(level => {
+    const high = level.side === 'high';
+    const distance = Math.abs(price - level.price);
+    const atrPct = atr > 0 ? distance / atr : null;
+
+    // Did price go beyond it at any point in the window, and how far?
+    let extreme = high ? -Infinity : Infinity;
+    /** @type {number|null} */
+    let at = null;
+    for (let i = from; i < n; i++) {
+      const beyond = high ? cs[i].h > level.price : cs[i].l < level.price;
+      if (!beyond) continue;
+      const v = high ? cs[i].h : cs[i].l;
+      if (high ? v > extreme : v < extreme) { extreme = v; at = i; }
+    }
+    const wentBeyond = at !== null;
+    // Back on the original side NOW is what separates a sweep from a breakout.
+    const backInside = high ? price < level.price : price > level.price;
+
+    /** @type {'swept'|'through'|'near'|'quiet'} */
+    let state = 'quiet';
+    if (wentBeyond && backInside) state = 'swept';
+    else if (wentBeyond) state = 'through';
+    else if (atrPct !== null && atrPct <= near) state = 'near';
+
+    return {
+      kind: level.kind, price: level.price, label: level.label, side: level.side,
+      state,
+      // Only a sweep implies a direction. "Near" has not decided anything yet
+      // and a breakout points the other way from a sweep of the same level.
+      dir: state === 'swept' ? (high ? 'short' : 'long') : null,
+      distance, atrPct,
+      extreme: wentBeyond ? extreme : null,
+      at,
+    };
+  });
+}
+
+/**
  * Price approaching a level it has not taken yet.
  *
  * The other half of the request, and the half that was missing. "Swept or NEAR

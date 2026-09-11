@@ -19,7 +19,7 @@
 //   Confirming before the sweep. A break that happened first is not evidence
 //   about a liquidity event that had not occurred yet.
 import {
-  keyLevels, findSweep, confirmation, sweepSetup, approach, H4_SWINGS, LEVEL_RANK,
+  keyLevels, findSweep, confirmation, sweepSetup, approach, levelStates, H4_SWINGS, LEVEL_RANK,
 } from '../shared/liquidity.mjs';
 import { detectBreaks } from '../shared/structure.mjs';
 
@@ -369,6 +369,78 @@ function detectableEarlier(cs, sweep, idx) {
     && approach([], levels, 2) === null
     && approach(at(109.5), levels, 0) === null
     && approach(at(109.5), levels, null) === null);
+}
+
+// ── A state for every level, so a table can have a column each ─────────────
+//
+// findSweep and approach answer "which ONE level matters most", which is right
+// for an alert and wrong for a screen. Asked for a column per level — did it
+// hunt the daily high, did it hunt the weekly low — a single best-level answer
+// hides five of the six facts, and which one survives depends on a ranking the
+// reader cannot see.
+{
+  const levels = [
+    { kind:'PDH', price:110, side:'high', label:"yesterday's high" },
+    { kind:'PDL', price:100, side:'low',  label:"yesterday's low" },
+    { kind:'PWH', price:120, side:'high', label:"last week's high" },
+    { kind:'H4H', price:107, side:'high', label:'H4 swing high' },
+  ];
+
+  // Up through 110 (and 107), back below both, nowhere near 120 or 100.
+  const cs = [];
+  let p = 104;
+  p = leg(cs, 8, 1, p);
+  leg(cs, 8, -1, p);
+
+  const st = levelStates(cs, levels, 4);
+  const by = k => st.find(x => x.kind === k);
+
+  check('every level gets its own entry, not just the winner',
+    st.length === levels.length, `${st.length} of ${levels.length}`,
+    'a column per level is the whole request');
+
+  check("the daily high reads swept",
+    by('PDH').state === 'swept', by('PDH').state);
+  check('and so does the H4 swing it passed on the way',
+    by('H4H').state === 'swept', by('H4H').state,
+    'both were taken; reporting only one of them is what hid the other five facts');
+  check('a level price never went near reads quiet',
+    by('PWH').state === 'quiet', by('PWH').state);
+
+  check('a swept level carries its direction and a quiet one does not',
+    by('PDH').dir === 'short' && by('PWH').dir === null,
+    `PDH ${by('PDH').dir}, PWH ${by('PWH').dir}`);
+
+  // Beyond and STAYING is a breakout, not a hunt.
+  const through = [];
+  p = 104;
+  leg(through, 12, 1, p);           // closes at 116, above 110
+  const tst = levelStates(through, levels, 4);
+  check('past the level and still there reads through, never swept',
+    tst.find(x => x.kind === 'PDH').state === 'through',
+    tst.find(x => x.kind === 'PDH').state,
+    'a breakout is the opposite trade; one colour for both would make the table worse than nothing');
+  check('and a breakout implies no reversal direction',
+    tst.find(x => x.kind === 'PDH').dir === null);
+
+  // Approaching but not taken.
+  const nearBy = [];
+  p = 100.5;
+  leg(nearBy, 10, 0.05, p);         // drifts up to ~101, just above the 100 low
+  const nst = levelStates(nearBy, levels, 4, { near: 0.5 });
+  check('a level price is walking toward reads near',
+    nst.find(x => x.kind === 'PDL').state === 'near',
+    nst.find(x => x.kind === 'PDL').state);
+  check('with the distance in the instrument\'s own scale',
+    nst.find(x => x.kind === 'PDL').atrPct > 0
+    && nst.find(x => x.kind === 'PDL').atrPct <= 0.5,
+    `${nst.find(x => x.kind === 'PDL').atrPct} ATR`);
+  check('and near carries no direction, because nothing has been decided',
+    nst.find(x => x.kind === 'PDL').dir === null,
+    'price at the level may sweep and turn or go straight through');
+
+  check('no levels or no candles gives an empty table rather than a guess',
+    levelStates(cs, [], 4).length === 0 && levelStates([], levels, 4).length === 0);
 }
 
 console.log(fails ? `\n${fails} FAILED` : '\nall passed');

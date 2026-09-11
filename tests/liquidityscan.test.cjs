@@ -259,6 +259,55 @@ function sweptM2() {
       'price at yesterday\'s high may sweep and turn or go straight through');
   }
 
+  // ── The published table: one column per level ────────────────────────────
+  {
+    const oanda = fakeOanda(sweptM2);
+    const s = new LiquidityScanner({ oanda, github: noGithub, log: quiet });
+    const sym = s._instruments()[0].sym;
+    s.levels.set(sym, {
+      levels: [
+        { kind:'PDH', price:110, side:'high', label:"yesterday's high" },
+        { kind:'PDL', price:100, side:'low',  label:"yesterday's low" },
+        { kind:'H4H', price:107, side:'high', label:'H4 swing high' },
+        { kind:'H4H', price:112, side:'high', label:'a further H4 swing high' },
+      ],
+      atr: 4, at: Date.now(),
+    });
+    await s.tick({ [sym]: 110 });
+    const rec = s.results.get(sym);
+
+    check('the record carries a state per level, not one winner',
+      rec.levels && Object.keys(rec.levels).length >= 3,
+      Object.entries(rec.levels || {}).map(([k, v]) => `${k}=${v.state}`).join(' '),
+      'a column per level is the request; a single best level hides the rest');
+
+    check('the daily high reads as hunted',
+      rec.levels.PDH?.state === 'swept', rec.levels.PDH?.state);
+    check('and a level nowhere near price stays quiet',
+      rec.levels.PDL?.state === 'quiet', rec.levels.PDL?.state);
+
+    check('two H4 swings on the same side collapse into one column',
+      typeof rec.levels.H4H === 'object' && !Array.isArray(rec.levels.H4H),
+      'a column can only hold one, so the more advanced state wins and the nearest breaks ties');
+
+    check('each cell carries its price and distance for the tooltip',
+      Number.isFinite(rec.levels.PDH.price)
+      && (rec.levels.PDH.atrPct === null || Number.isFinite(rec.levels.PDH.atrPct)));
+  }
+
+  // ── A column changing state has to rewrite the file ──────────────────────
+  {
+    const s = new LiquidityScanner({ oanda: fakeOanda(), github: noGithub, log: quiet });
+    s.results.set('A', { sym:'A', at: Date.now(), setup: null, near: null,
+      levels: { PDH: { state:'near', price:110, dir:null, atrPct:0.3 } } });
+    const before = s._signature();
+    s.results.set('A', { sym:'A', at: Date.now(), setup: null, near: null,
+      levels: { PDH: { state:'swept', price:110, dir:'short', atrPct:0.1 } } });
+    check('near becoming swept changes the signature',
+      s._signature() !== before,
+      'the table is the point; if the signature cannot see a column change the file never gets written');
+  }
+
   console.log(fails ? `\n${fails} FAILED` : '\nall passed');
   process.exit(fails ? 1 : 0);
 })();
