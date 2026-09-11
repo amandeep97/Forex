@@ -242,7 +242,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789145220000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions bill vote timing unclear for markets"
     },
     {
       "title": "UK sanctions on West Bank settlers are the right step | Letters - The Guardian",
@@ -260,7 +261,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789147560000,
-      "_kind": null
+      "_kind": null,
+      "why": "Editorial opinion on sanctions, no market impact"
     },
     {
       "title": "Russian Attacks Kill 6, Wound 33 Across Multiple Regions in Ukraine - Kyiv Post",
@@ -281,7 +283,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789146900000,
-      "_kind": null
+      "_kind": null,
+      "why": "Routine conflict update, no immediate price signal"
     },
     {
       "title": "OFAC Increases the Scope of Sanctions on Iran - thompsonhinesmartrade.com",
@@ -302,7 +305,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789147283000,
-      "_kind": null
+      "_kind": null,
+      "why": "Iran sanctions scope increase, direction ambiguous"
     },
     {
       "title": "Bitcoin, Ether rebound as short liquidations hit $427 million",
@@ -320,7 +324,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789147175000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "BTC/USDT": "up",
+        "ETH/USDT": "up"
+      },
+      "why": "Rebound driven by short liquidations"
     },
     {
       "title": "Market earnings outlook: selective optimism as oil and inflation set the tone",
@@ -338,7 +347,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789146343000,
-      "_kind": null
+      "_kind": null,
+      "why": "Selective optimism, no clear directional bias"
     },
     {
       "title": "‘Apple and Microsoft Look Like Value Stocks’: Morningstar on SanDisk’s 2,107% Year",
@@ -353,7 +363,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789147032000,
-      "_kind": null
+      "_kind": null,
+      "why": "Valuation commentary, no immediate price direction"
     },
     {
       "title": "Apple’s $164 Billion Rally Hinges on iPhone Duo Adoption Among 6 Million Premium Buyers",
@@ -387,7 +398,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789146900000,
-      "_kind": null
+      "_kind": null,
+      "why": "Military strike news, market reaction unclear"
     },
     {
       "title": "AMC Gains 5% on Tokenization Truce Signal, Robinhood Barely Budges; Cinemark Treads Water",
@@ -404,7 +416,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789146805000,
-      "_kind": "war-end"
+      "_kind": "war-end",
+      "why": "AMC news irrelevant to gold price"
     },
     {
       "title": "US Dollar Weekly Forecast: Can sticky inflation rescue the Dollar? - fxstreet.com",
@@ -428,7 +441,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789146782000,
-      "_kind": null
+      "_kind": null,
+      "why": "Forecast question, no definitive direction stated"
     },
     {
       "title": "Why a shrinking population doesn’t have to be the kiss of death for an economy or stock market",
@@ -461,7 +475,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789146375000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "down",
+        "US500": "up"
+      },
+      "why": "Stocks surge, oil slides"
     },
     {
       "title": "Stock Market Today: Dow Rallies On Surprise Inflation Data; Analog Devices Retakes Key Level (Live Coverage)",
@@ -478,7 +497,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789146343000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US30": "up"
+      },
+      "why": "Dow rallies on inflation data"
     },
     {
       "title": "MoneyHero Limited Class A Ordinary Shares Q3 2026 Earnings Call Summary",
@@ -506,7 +529,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789146324000,
-      "_kind": null
+      "_kind": null,
+      "why": "Technical setups mentioned, no price direction"
     },
     {
       "title": "Why is Silver Spot stock climbing today?",
@@ -522,7 +546,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789146159000
+      "firstAt": 1789146159000,
+      "dir": {
+        "XAG/USD": "up"
+      },
+      "why": "Silver spot stock climbing"
     },
     {
       "title": "Exclusive-White House weighs how to use Defense Production Act to expand US oil refining capacity, sources say",
@@ -538,7 +566,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789146067000
+      "firstAt": 1789146067000,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Expanding refining capacity implies increased supply"
     },
     {
       "title": "US consumer inflation picks up in August",
@@ -1926,7 +1958,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-11T17:33:47.641Z",
-  "headlinesAt": "2026-09-11T17:33:47.641Z",
-  "updatedAt": "2026-09-11T17:33:47.641Z"
+  "calendarAt": "2026-09-11T17:35:19.278Z",
+  "headlinesAt": "2026-09-11T17:35:19.278Z",
+  "updatedAt": "2026-09-11T17:35:19.278Z"
 }
