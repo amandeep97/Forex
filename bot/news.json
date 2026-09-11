@@ -267,7 +267,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789132887000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "EUR/USD": "down"
+      },
+      "why": "Dollar higher against euro"
     },
     {
       "title": "Ukraine Strikes Russian Aircraft Engine Plant, Pantsir Air Defenses – General Staff - Kyiv Post",
@@ -288,7 +292,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789132612000,
-      "_kind": null
+      "_kind": null,
+      "why": "Geopolitical conflict, direction unclear"
     },
     {
       "title": "Leopold Aschenbrenner resumes options trading activity",
@@ -316,7 +321,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789134513000,
-      "_kind": null
+      "_kind": null,
+      "why": "Coffee news, irrelevant to index"
     },
     {
       "title": "Wall St opens higher after August inflation report",
@@ -339,7 +345,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789133390000,
-      "_kind": null
+      "_kind": null,
+      "why": "Stocks higher, mixed for FX"
     },
     {
       "title": "Gold climbs on dip buying, Fed hike bets rise after US inflation data - marketscreener.com",
@@ -358,7 +365,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789132090000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Gold climbs on dip buying"
     },
     {
       "title": "U.S. stocks surge at the open as oil slide offsets rise in Fed rate hike bets",
@@ -377,7 +388,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789133917000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "down",
+        "US500": "up"
+      },
+      "why": "Stocks surge, oil slide"
     },
     {
       "title": "Crude Oil Raises Inflation Concerns as Treasury Yields Weigh on Stocks - stonex.com",
@@ -398,7 +414,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789133861000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Yields weigh on stocks"
     },
     {
       "title": "Equity risk premium falls to 2002 levels. What it means for stocks",
@@ -412,7 +432,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789133579000
+      "firstAt": 1789133579000,
+      "why": "Risk premium analysis, no direction"
     },
     {
       "title": "Ukraine’s long-range sanctions struck targets in eight regions of the Russian Federation — Zelenskyy - Українські Національні Новини (УНН)",
@@ -432,7 +453,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789132612000
+      "firstAt": 1789132612000,
+      "why": "Ukraine strikes, direction unclear"
     },
     {
       "title": "Russian attacks on Kyiv petrol stations kill two, Ukrainian strikes kill three in Russia",
@@ -451,7 +473,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789132200000
+      "firstAt": 1789132200000,
+      "why": "Attacks reported, direction unclear"
     },
     {
       "title": "The four reasons stocks could embark on a ‘face-ripper rally’ as soon as this morning",
@@ -466,7 +489,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789133400000
+      "firstAt": 1789133400000,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Bullish rally prediction"
     },
     {
       "title": "Fed rate hike odds rise to 90% after August CPI report - qz.com",
@@ -489,7 +516,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789133390000
+      "firstAt": 1789133390000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Hike odds rise, dollar up"
     },
     {
       "title": "Dollar steadies after US inflation data, yen set for second weekly gain - Investing.com",
@@ -507,7 +540,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789131246000
+      "firstAt": 1789131246000,
+      "why": "Dollar steadies, no clear move"
     },
     {
       "title": "Dollar strengthens against euro after US inflation data - UA.NEWS",
@@ -525,7 +559,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789131246000
+      "firstAt": 1789131246000,
+      "dir": {
+        "EUR/USD": "down"
+      },
+      "why": "Dollar strengthens against euro"
     },
     {
       "title": "Oil falls but on track for 8% weekly gain on supply concerns; US diesel hits record high",
@@ -541,7 +579,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789133107000
+      "firstAt": 1789133107000,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Oil falls on supply concerns"
     },
     {
       "title": "The dystopian legal architecture of the ‘war on terror’ must be dismantled",
@@ -1989,7 +2031,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-11T14:03:47.960Z",
-  "headlinesAt": "2026-09-11T14:03:47.960Z",
-  "updatedAt": "2026-09-11T14:03:47.960Z"
+  "calendarAt": "2026-09-11T14:05:17.293Z",
+  "headlinesAt": "2026-09-11T14:05:17.293Z",
+  "updatedAt": "2026-09-11T14:05:17.293Z"
 }
