@@ -242,7 +242,43 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789151009000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Geopolitical tension boosts safe havens and oil."
+    },
+    {
+      "title": "US 10-year borrowing costs pull back from 5% in reprieve for Bessent - Reuters",
+      "link": "https://news.google.com/rss/articles/CBMivgFBVV95cUxNUXdFU1JwNmpyVFVfRzltQlQwcVJDUmFOWHVzNGdjWlZfZmJSd2FFQ2VpbFdOVTFQRHJtMlhremRVa2JSeWc5Smptc2J4Mmp0QnZoMTQ4NGdLaVBiekNRYlNqdWRtOTV2TUdIbmFkaTdCNmlRams2emVUc2Nsb244bW1hNHIwSHdDRm93M25LZGJlT3p0LTNaTE1kSTk5SHRSVFVkdXNuQjhHQ29UZm4yeHNqeEg2RkVwYVA3clpR?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMivgFBVV95cUxNUXdFU1JwNmpyVFVfRzltQlQwcVJDUmFOWHVzNGdjWlZfZmJSd2FFQ2VpbFdOVTFQRHJtMlhremRVa2JSeWc5Smptc2J4Mmp0QnZoMTQ4NGdLaVBiekNRYlNqdWRtOTV2TUdIbmFkaTdCNmlRams2emVUc2Nsb244bW1hNHIwSHdDRm93M25LZGJlT3p0LTNaTE1kSTk5SHRSVFVkdXNuQjhHQ2",
+      "at": 1789150719000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789150719000,
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "EUR/USD": "up",
+        "GBP/USD": "up"
+      },
+      "why": "Lower yields reduce pressure on risk assets."
     },
     {
       "title": "Gold Heads for Third Weekly Decline as Traders Brace for US Inflation Data - finance.biggo.com",
@@ -260,8 +296,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789150620000,
-      "_kind": null
+      "firstAt": 1789149799000,
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold declines ahead of inflation data."
     },
     {
       "title": "UK’s Israel sanctions reignite sovereignty dispute between UK and Argentina over Falkland/Malvinas Islands - latinamericareports.com",
@@ -282,7 +322,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789150276000,
-      "_kind": null
+      "_kind": null,
+      "why": "Diplomatic dispute lacks clear market impact."
     },
     {
       "title": "The Fed could raise interest rates three times. Here’s where the market could face the stiffest test.",
@@ -306,7 +347,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789150140000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Rate hike expectations weigh on assets."
     },
     {
       "title": "GE Vernova and IBM among market cap stock movers on Friday",
@@ -336,6 +383,29 @@
       "_kind": null
     },
     {
+      "title": "Gold rises on dip-buying even as Fed rate hike bets rise after US inflation data - marketscreener.com",
+      "link": "https://news.google.com/rss/articles/CBMizgFBVV95cUxQb0Vha0FyTzlqSUxPbGhMRzdUU0hpT2puanltRmk1YW5VenNTQ0xkaFZCUENWazZ0TmtPdEs0RWxrQzFWN0V5TktQUngwRHJ3Ym5LR3lvbnpTNHQtb09PQUlIT2d1cGt3U3BDN2JyQkxkQ25tWEo4NFEyWndGR0FRclJZSVRBOTY4Q1ZWbUZnVzlZY0xDQnNnU29EODRFYUVBQzZHXzRCcnJQY3FIY0N0b2I2RzJSN0xSSTdYM0FhU1VsUWhReU9McmM4YTVRZw?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMizgFBVV95cUxQb0Vha0FyTzlqSUxPbGhMRzdUU0hpT2puanltRmk1YW5VenNTQ0xkaFZCUENWazZ0TmtPdEs0RWxrQzFWN0V5TktQUngwRHJ3Ym5LR3lvbnpTNHQtb09PQUlIT2d1cGt3U3BDN2JyQkxkQ25tWEo4NFEyWndGR0FRclJZSVRBOTY4Q1ZWbUZnVzlZY0xDQnNnU29EODRFYUVBQzZHXzRCcnJQY3",
+      "at": 1789149799000,
+      "inst": [
+        "XAU/USD"
+      ],
+      "ccy": [
+        "USD",
+        "XAU"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789149799000,
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Gold rises on dip-buying despite rate bets."
+    },
+    {
       "title": "Generali options flow: 20,000-contract Dec 2027 put dominates trading",
       "link": "https://www.investing.com/news/stock-market-news/generali-options-flow-20000contract-dec-2027-put-dominates-trading-93CH-4898312",
       "source": "Investing",
@@ -345,8 +415,7 @@
       "sev": 1,
       "rel": 1,
       "srcs": 1,
-      "firstAt": 1789149678000,
-      "_kind": null
+      "firstAt": 1789149678000
     },
     {
       "title": "US House to take up Graham's Russia sanctions bill next week - The Kyiv Independent",
@@ -366,7 +435,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789147620000
+      "firstAt": 1789147620000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Sanctions bill increases geopolitical risk premium."
     },
     {
       "title": "Stocks making the biggest moves midday: Dell, Skyworks Solutions, GameStop & more",
@@ -381,7 +456,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789149417000
+      "firstAt": 1789149417000,
+      "why": "Individual stock moves do not signal index direction."
     },
     {
       "title": "GSK to close German vaccine plant, 641 jobs at risk",
@@ -395,7 +471,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789149376000
+      "firstAt": 1789149376000,
+      "dir": {
+        "EUR/USD": "down"
+      },
+      "why": "German job losses weaken Eurozone sentiment."
     },
     {
       "title": "Brent Hits $100 as U.S.-Iran Escalation, Houthi Strikes Deepen Gulf Supply Fears - wsj.com",
@@ -415,7 +495,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789149270000
+      "firstAt": 1789149270000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Supply fears drive oil and gold higher."
     },
     {
       "title": "House to take up Russia sanctions bill next week - thehill.com",
@@ -435,7 +521,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789147723000
+      "firstAt": 1789147723000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Sanctions bill increases geopolitical risk premium."
     },
     {
       "title": "Investing.com’s stocks of the week",
@@ -449,7 +541,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789149105000
+      "firstAt": 1789149105000,
+      "why": "Weekly stock picks lack directional bias."
     },
     {
       "title": "U.S. stocks surge as oil slide offsets rise in Fed rate hike bets",
@@ -467,7 +560,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789148879000
+      "firstAt": 1789148879000,
+      "dir": {
+        "USOIL": "down",
+        "US500": "up"
+      },
+      "why": "Stocks surge as oil slide offsets rate fears."
     },
     {
       "title": "Canadian dollar weakens to nine-day low on Fed rate hike bets - Reuters",
@@ -484,7 +582,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789148813000
+      "firstAt": 1789148813000,
+      "dir": {
+        "USD/CAD": "up"
+      },
+      "why": "Canadian dollar weakens against US dollar."
     },
     {
       "title": "General Motors leads U.S. auto stocks on technicals",
@@ -498,30 +600,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789148701000
-    },
-    {
-      "title": "US 10-year borrowing costs pull back from 5% in reprieve for Bessent - Reuters",
-      "link": "https://news.google.com/rss/articles/CBMivgFBVV95cUxNUXdFU1JwNmpyVFVfRzltQlQwcVJDUmFOWHVzNGdjWlZfZmJSd2FFQ2VpbFdOVTFQRHJtMlhremRVa2JSeWc5Smptc2J4Mmp0QnZoMTQ4NGdLaVBiekNRYlNqdWRtOTV2TUdIbmFkaTdCNmlRams2emVUc2Nsb244bW1hNHIwSHdDRm93M25LZGJlT3p0LTNaTE1kSTk5SHRSVFVkdXNuQjhHQ29UZm4yeHNqeEg2RkVwYVA3clpR?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMivgFBVV95cUxNUXdFU1JwNmpyVFVfRzltQlQwcVJDUmFOWHVzNGdjWlZfZmJSd2FFQ2VpbFdOVTFQRHJtMlhremRVa2JSeWc5Smptc2J4Mmp0QnZoMTQ4NGdLaVBiekNRYlNqdWRtOTV2TUdIbmFkaTdCNmlRams2emVUc2Nsb244bW1hNHIwSHdDRm93M25LZGJlT3p0LTNaTE1kSTk5SHRSVFVkdXNuQjhHQ2",
-      "at": 1789148589000,
-      "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789148589000
+      "firstAt": 1789148701000,
+      "why": "Single sector technicals do not move index."
     },
     {
       "title": "US declares end of largest recorded cyclosporiasis outbreak",
@@ -1089,7 +1169,7 @@
       "firstAt": 1789142612000
     },
     {
-      "title": "U.S. Treasury Yields Surge on Oil, Inflation Pressures - chosun.com",
+      "title": "U.S. Treasury Yields Surge on Oil, Inflation Pressures - 조선일보",
       "link": "https://news.google.com/rss/articles/CBMijgFBVV95cUxQTGFFVjBQQThWRHVRMDh1dkQ0WlB1akpqWlFCemFiTWdLbWtnVC1EX3RXNi1lYXVuc1VXRHVjT00wcEw4TXZSV0pDanJDYnU0Y2pzSU42bExGNU9VYllYNWc1WV9tVVBiUGt2dE15U0JxUFZuQ2JqbXZDYUswc3dnS01NY2gxeUZMdTdhdFhB?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMijgFBVV95cUxQTGFFVjBQQThWRHVRMDh1dkQ0WlB1akpqWlFCemFiTWdLbWtnVC1EX3RXNi1lYXVuc1VXRHVjT00wcEw4TXZSV0pDanJDYnU0Y2pzSU42bExGNU9VYllYNWc1WV9tVVBiUGt2dE15U0JxUFZuQ2JqbXZDYUswc3dnS01NY2gxeUZMdTdhdFhB?oc=5\" target=\"_blank\">U.S. Treasury Y",
@@ -1897,24 +1977,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789130546000
-    },
-    {
-      "title": "Japanese Yen rallies as US Dollar loses post-inflation momentum - fxstreet.com",
-      "link": "https://news.google.com/rss/articles/CBMitgFBVV95cUxObW52OTA2bHMxdEdoaTdhOTFOdVE0ZE9lQlFHc2JVNy02UXBBUUtna2dJalVuUEs0YnVJMlZrdFdfbGZzaUZJRlNBMm5BTmxmamQxdHhJUjlseG5IYzU3YlBNUkdXTUxkTlByU2Y3VkxBU0VmcDdzQnFWLURhV0VSZmYyMzJuemI3NGV6RXJacTl4NEIxT09yMExubnBVd3JBTVM1NjJGMGxWbDl0Nl9renlYYW0tUQ?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMitgFBVV95cUxObW52OTA2bHMxdEdoaTdhOTFOdVE0ZE9lQlFHc2JVNy02UXBBUUtna2dJalVuUEs0YnVJMlZrdFdfbGZzaUZJRlNBMm5BTmxmamQxdHhJUjlseG5IYzU3YlBNUkdXTUxkTlByU2Y3VkxBU0VmcDdzQnFWLURhV0VSZmYyMzJuemI3NGV6RXJacTl4NEIxT09yMExubnBVd3JBTVM1NjJGMGxWbD",
-      "at": 1789131846000,
-      "inst": [
-        "USD/JPY"
-      ],
-      "ccy": [
-        "USD",
-        "JPY"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789131846000
     }
   ],
   "sources": [
@@ -1937,10 +1999,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-11T18:29:45.548Z",
-  "headlinesAt": "2026-09-11T18:29:45.548Z",
-  "updatedAt": "2026-09-11T18:29:45.548Z"
+  "calendarAt": "2026-09-11T18:31:34.697Z",
+  "headlinesAt": "2026-09-11T18:31:34.697Z",
+  "updatedAt": "2026-09-11T18:31:34.697Z"
 }
