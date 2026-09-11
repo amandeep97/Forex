@@ -2,6 +2,33 @@
   "calendar": [],
   "headlines": [
     {
+      "title": "Iran war live: IRGC attacks US unmanned vessel in Hormuz; two ships hit",
+      "link": "https://www.aljazeera.com/news/liveblog/2026/9/11/iran-war-live-irgc-attacks-us-unmanned-vessel-in-hormuz-two-ships-hit?traffic_source=rss",
+      "source": "Al Jazeera",
+      "desc": "IRGC says it attacked a US unmanned vessel in Hormuz, while UKMTO says projectiles hit two ships off Oman.",
+      "at": 1789084800000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789084800000,
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Hormuz conflict boosts oil and gold"
+    },
+    {
       "title": "Japan August PPI surges +7.6% y/y (expected +7.4%, prior +7.2%)",
       "link": "https://investinglive.com/news/japan-august-ppi-surges-7-6-y-y-expected-7-4-prior-7-2/",
       "source": "ForexLive",
@@ -18,7 +45,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789084492000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USD/JPY": "up"
+      },
+      "why": "Hot PPI supports yen weakness"
     },
     {
       "title": "US sanctions supporters of Iran-backed militias - Yahoo",
@@ -39,7 +70,39 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789084121000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Sanctions increase geopolitical risk premium"
+    },
+    {
+      "title": "UN envoy warns Security Council Yemen’s war has entered ‘dangerous phase’",
+      "link": "https://www.aljazeera.com/news/2026/9/10/un-envoy-warns-security-council-yemens-war-has-entered-dangerous-phase?traffic_source=rss",
+      "source": "Al Jazeera",
+      "desc": "Envoy for Yemen Hans Grundberg demands urgent steps to protect civilians and trade routes amid Houthi escalation.",
+      "at": 1789083967000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789083967000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Yemen escalation boosts risk assets"
     },
     {
       "title": "Gold Holds Drop as Rising Oil, Inflation Bolster Rate-Hike Bets - Bloomberg.com",
@@ -59,7 +122,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789083283000
+      "firstAt": 1789083283000,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "up"
+      },
+      "why": "Gold falls on rate hike bets"
     },
     {
       "title": "Israeli strike destroys family home in southern Lebanon - Middle East Eye",
@@ -79,7 +147,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789080180000
+      "firstAt": 1789080180000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Lebanon strike boosts gold safe haven"
     },
     {
       "title": "NZ manufacturing growth slows in August but stays above long-term average",
@@ -96,7 +168,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789079876000
+      "firstAt": 1789079876000,
+      "dir": {
+        "NZD/USD": "down"
+      },
+      "why": "Slowing manufacturing weakens New Zealand dollar"
     },
     {
       "title": "Want Apple’s $1,999 foldable iPhone Duo? Here’s what T-Mobile, AT&T and Verizon are doing to lower the cost.",
@@ -113,7 +189,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789079100000
+      "firstAt": 1789079100000,
+      "why": "Consumer tech news irrelevant to gold"
     },
     {
       "title": "Asian Stocks, Bonds to Drop on Oil, Inflation Woes: Markets Wrap - Bloomberg.com",
@@ -132,7 +209,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789078553000
+      "firstAt": 1789078553000,
+      "dir": {
+        "USOIL": "up",
+        "US500": "down"
+      },
+      "why": "Oil inflation woes hurt stocks"
     },
     {
       "title": "Palestinian president warns of ‘dangerous escalation’ by Israel - Anadolu Ajansı",
@@ -152,7 +234,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789078496000
+      "firstAt": 1789078496000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Israel escalation boosts risk assets"
     },
     {
       "title": "Better Markets’ Lawsuit Against the Federal Reserve and Vice Chair Bowman for Corruption - Better Markets",
@@ -175,7 +263,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789078392000
+      "firstAt": 1789078392000,
+      "why": "Legal news lacks market direction"
     },
     {
       "title": "Here are the stocks to favor in the fourth quarter — and those you should avoid",
@@ -190,7 +279,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789077720000
+      "firstAt": 1789077720000,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Large caps favored for Q4"
     },
     {
       "title": "How the U.S. Treasury's New Aviation Sanctions on Iran Extend Beyond Tehran - Time Magazine",
@@ -211,7 +304,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789077210000
+      "firstAt": 1789077210000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Iran sanctions boost risk assets"
     },
     {
       "title": "Russo-Ukrainian war, day 1660: Ukraine strikes further into Russia than ever before, hitting gas plants over 3,000 km from its border - Euromaidan Press",
@@ -231,7 +330,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789074445000
+      "firstAt": 1789074445000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Ukraine strikes boost risk assets"
     },
     {
       "title": "Escalation with Iran: On the way to tense high holidays after destruction of Hezbollah's key ridge - Ynetnews",
@@ -251,7 +356,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789074256000
+      "firstAt": 1789074256000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Iran escalation boosts risk assets"
     },
     {
       "title": "Trump’s Iran war echoes post-attack ‘forever wars’ - The Daily Star",
@@ -735,7 +846,7 @@
       "firstAt": 1789071256000
     },
     {
-      "title": "US slaps new sanctions on networks aiding Hezbollah and other Iranian proxies - timesofisrael.com",
+      "title": "US slaps new sanctions on networks aiding Hezbollah and other Iranian proxies - The Times of Israel",
       "link": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxOX0RTOUFkenNLdnRFZk1UaGFIckVCTUJqX3ppNGtrTklXdHpfSXRpZDdHRmVwSXg2YXVmNG5SS1RIb092RmkwWE82ZUd1dU9TVC0tQjA0UEZSbXZpX1FSZ2hNV2o0NldCV1Jrekh0eDRpUTNUQUQ5Nm91WFNJRy0yMlZXZWFIcy1nRXdnZ3pVc0JrMFo0VUp3WmI3WUJremwxbGpFNWNDYmU2UlU3Q1N5eGx6a25iWEEyUGN6ZlpzSUQ?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiwAFBVV95cUxOX0RTOUFkenNLdnRFZk1UaGFIckVCTUJqX3ppNGtrTklXdHpfSXRpZDdHRmVwSXg2YXVmNG5SS1RIb092RmkwWE82ZUd1dU9TVC0tQjA0UEZSbXZpX1FSZ2hNV2o0NldCV1Jrekh0eDRpUTNUQUQ5Nm91WFNJRy0yMlZXZWFIcy1nRXdnZ3pVc0JrMFo0VUp3WmI3WUJremwxbGpFNWNDYmU2Ul",
@@ -1320,7 +1431,7 @@
       "firstAt": 1789062388000
     },
     {
-      "title": "Israel preparing for possible Iranian escalation over holiday, but hasn't issued any warnings -- report - timesofisrael.com",
+      "title": "Israel preparing for possible Iranian escalation over holiday, but hasn't issued any warnings -- report - The Times of Israel",
       "link": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxNWEFBYVpfSEtKdWlGeXdaa3d3ME9fbHpocHdwU0tkWDJjVXpObmVyVk9BdkdUOWxfVTIyV0ZacnQxeVo1YW5BMG16TDZkM3EwM2gzWjlHUWNUSmVaRGVPN3JlSGtXS3hwcEpQamZYYk1wZWtYYlA0ZzdRSzFMVXRQRjRCTUtuRWFYVHBsZEJwQWx0TnlyS3FlemxRSGd1Tm9JZzJ6MkNKOFFxQi1CTW9UWEE5NXhOTDBUSW5EdGpPcUJNbWJESE14OF92SXJORThXaldWbzg0LW12Y3FY?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMi3AFBVV95cUxNWEFBYVpfSEtKdWlGeXdaa3d3ME9fbHpocHdwU0tkWDJjVXpObmVyVk9BdkdUOWxfVTIyV0ZacnQxeVo1YW5BMG16TDZkM3EwM2gzWjlHUWNUSmVaRGVPN3JlSGtXS3hwcEpQamZYYk1wZWtYYlA0ZzdRSzFMVXRQRjRCTUtuRWFYVHBsZEJwQWx0TnlyS3FlemxRSGd1Tm9JZzJ6MkNKOFFxQi",
@@ -1395,26 +1506,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789061633000
-    },
-    {
-      "title": "Family of four killed as they slept in Israeli strike on Gaza",
-      "link": "https://www.aljazeera.com/video/newsfeed/2026/9/10/family-of-four-killed-as-they-slept-in-israeli-strike-on-gaza?traffic_source=rss",
-      "source": "Al Jazeera",
-      "desc": "Four members of a Palestinian family, including girls aged 8 and 12, were killed in an Israeli air attack as they slept",
-      "at": 1789061548000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789061548000
     },
     {
       "title": "Polish PM: Poland expects Russia may attack border crossing points with Ukraine - Українська правда",
@@ -1712,26 +1803,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789051499000
-    },
-    {
-      "title": "Gold and Crypto Fall as Hot US Inflation Rattles Markets - Yahoo Finance",
-      "link": "https://news.google.com/rss/articles/CBMimAFBVV95cUxNRVRZNlRvSGhVX0FWTERPdnRGakE2a05EVC1yZUxfcXJUYXoweWFEMkJsSTcwT2V1U3FMU1dtTDRzNkZHQ3J2amdjYzF2SGZtbWJxdWtYbHZmZlQtQ2RuV1Q1bkZXSm1nUF9OX1pKcTdQU2JtQjE0amY0OTBJd0RhMXZLdkgwUEtwT3ByRHhnZ2Yzdk1IZDVMSg?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMimAFBVV95cUxNRVRZNlRvSGhVX0FWTERPdnRGakE2a05EVC1yZUxfcXJUYXoweWFEMkJsSTcwT2V1U3FMU1dtTDRzNkZHQ3J2amdjYzF2SGZtbWJxdWtYbHZmZlQtQ2RuV1Q1bkZXSm1nUF9OX1pKcTdQU2JtQjE0amY0OTBJd0RhMXZLdkgwUEtwT3ByRHhnZ2Yzdk1IZDVMSg?oc=5\" target=\"_blank\">G",
-      "at": 1789051281000,
-      "inst": [
-        "XAU/USD",
-        "BTC/USDT"
-      ],
-      "ccy": [
-        "XAU",
-        "BTC",
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789048612000
     }
   ],
   "sources": [
@@ -1758,6 +1829,6 @@
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-11T00:14:43.925Z",
-  "updatedAt": "2026-09-11T00:14:43.925Z"
+  "headlinesAt": "2026-09-11T00:16:47.364Z",
+  "updatedAt": "2026-09-11T00:16:47.364Z"
 }
