@@ -17,7 +17,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789088478000,
-      "_kind": null
+      "_kind": null,
+      "why": "Local accident has no clear macro impact."
     },
     {
       "title": "Oil prices rise, Brent tests $110 a barrel as M.East supply risks grow",
@@ -35,7 +36,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789088463000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Oil prices rise on supply risks."
     },
     {
       "title": "Gold steadies after sharp drop as hotter PPI lifts Fed hike bets",
@@ -53,6 +59,24 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789085460000,
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Hotter PPI lifts Fed hike bets, pressuring gold."
+    },
+    {
+      "title": "Why is Uber pulling out of some African markets?",
+      "link": "https://www.aljazeera.com/news/2026/9/11/why-is-uber-pulling-out-of-some-african-markets?traffic_source=rss",
+      "source": "Al Jazeera",
+      "desc": "Uber’s exits from Nigeria and Uganda highlight the growing challenges of making ride-hailing work in Africa.",
+      "at": 1789087910000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 1,
+      "srcs": 1,
+      "firstAt": 1789087910000,
       "_kind": null
     },
     {
@@ -70,7 +94,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789087385000
+      "firstAt": 1789087385000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Oil surges on tanker attacks."
     },
     {
       "title": "Japan wholesale inflation stays hot in August, cements case for BOJ hike",
@@ -88,7 +117,11 @@
       "sev": 3,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789084492000
+      "firstAt": 1789084492000,
+      "dir": {
+        "USD/JPY": "down"
+      },
+      "why": "Hot inflation cements case for BOJ hike."
     },
     {
       "title": "U.S. Sanctions 14 Individuals and Five Entities Linked to Iran and Hezbollah - WANA News Agency",
@@ -108,7 +141,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789086420000
+      "firstAt": 1789086420000,
+      "why": "Sanctions news lacks immediate clear directional impact."
     },
     {
       "title": "U.S. stock futures steady with CPI on tap; Oracle firms on strong earnings",
@@ -130,7 +164,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789086147000
+      "firstAt": 1789086147000,
+      "why": "Futures steady, no clear directional bias."
     },
     {
       "title": "The iPhone Duo enters China’s crowded foldable market — and faces a price test",
@@ -158,7 +193,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789085820000
+      "firstAt": 1789085820000,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Adobe earnings disappoint, weighing on sentiment."
     },
     {
       "title": "Gold stays under pressure as surging oil strengthens Fed rate-hike bets - The Business Times",
@@ -178,7 +217,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789083283000
+      "firstAt": 1789083283000,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "up"
+      },
+      "why": "Surging oil strengthens Fed rate-hike bets."
     },
     {
       "title": "Iran war live: IRGC attacks US unmanned vessel in Hormuz; two ships hit",
@@ -198,7 +242,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789084800000
+      "firstAt": 1789084800000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Hormuz attacks boost risk premium for oil and gold."
     },
     {
       "title": "Japan August PPI surges +7.6% y/y (expected +7.4%, prior +7.2%)",
@@ -216,7 +266,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789084492000
+      "firstAt": 1789084492000,
+      "dir": {
+        "USD/JPY": "down"
+      },
+      "why": "Hot PPI reinforces BOJ rate hike expectations."
     },
     {
       "title": "US sanctions supporters of Iran-backed militias - Yahoo",
@@ -236,7 +290,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789084121000
+      "firstAt": 1789084121000,
+      "why": "Sanctions news lacks immediate clear directional impact."
     },
     {
       "title": "UN envoy warns Security Council Yemen’s war has entered ‘dangerous phase’",
@@ -256,7 +311,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789083967000
+      "firstAt": 1789083967000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Yemen war escalation boosts risk assets and oil."
     },
     {
       "title": "Gold Set for Weekly Drop as Oil, Inflation Boost Rate-Hike Bets - Bloomberg.com",
@@ -276,7 +337,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789083283000
+      "firstAt": 1789083283000,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "up"
+      },
+      "why": "Oil and inflation boost rate-hike bets, hurting gold."
     },
     {
       "title": "Israeli strike destroys family home in southern Lebanon - Middle East Eye",
@@ -296,7 +362,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789080180000
+      "firstAt": 1789080180000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Lebanon strike increases geopolitical risk premium."
     },
     {
       "title": "NZ manufacturing growth slows in August but stays above long-term average",
@@ -1730,26 +1802,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789051200000
-    },
-    {
-      "title": "UN Security Council holds briefing on Iran sanctions - iranintl.com",
-      "link": "https://news.google.com/rss/articles/CBMiUkFVX3lxTFBiNno3QlpSRkZoZVlxYy1oS2RRYW8zbU81dHdJLVJYUllCMUgtNDVQRkJidzZ4RDBJREFGSm1tOUFEcTB1Q0dRWm16bENmZXhNRkE?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiUkFVX3lxTFBiNno3QlpSRkZoZVlxYy1oS2RRYW8zbU81dHdJLVJYUllCMUgtNDVQRkJidzZ4RDBJREFGSm1tOUFEcTB1Q0dRWm16bENmZXhNRkE?oc=5\" target=\"_blank\">UN Security Council holds briefing on Iran sanctions</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">iranin",
-      "at": 1789051786000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789049348000
     }
   ],
   "sources": [
@@ -1772,10 +1824,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-11T01:18:31.252Z",
-  "updatedAt": "2026-09-11T01:18:31.252Z"
+  "headlinesAt": "2026-09-11T01:19:46.120Z",
+  "updatedAt": "2026-09-11T01:19:46.120Z"
 }
