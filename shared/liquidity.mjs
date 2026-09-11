@@ -88,20 +88,66 @@ export function tsOf(c) {
 }
 
 /**
+ * The most recent candle whose period has actually ENDED.
+ *
+ * This used to be `cs[cs.length - 2]`, on the reasoning that the last element of
+ * a daily series is today and still forming. That reasoning is right and the
+ * index was wrong, because both candle clients already drop incomplete candles
+ * before returning. So the last element WAS yesterday, and taking the one before
+ * it gave the day before yesterday — reported on screen as "yesterday's low",
+ * and the week before last as "last week's low". Caught by eye against a chart:
+ * the level named for US500 was a week too old.
+ *
+ * Deciding by index cannot be made safe, because it depends on a filter applied
+ * in a different file. Deciding by TIME is the same answer either way: a candle
+ * stamped at `t` for a bar of width `w` is finished once `t + w` has passed, so
+ * an incomplete candle is skipped if present and nothing is skipped if it is
+ * not.
+ *
+ * The bar width comes from the series itself — the smallest gap between
+ * consecutive candles. The smallest, not the last: FX skips weekends, so the
+ * final gap on a daily series is three days as often as one, and a Monday would
+ * otherwise be treated as a three-day bar and judged unfinished for two days.
+ *
+ * @param {Candle[]} cs
+ * @param {number} [now]
+ * @returns {Candle|null}
+ */
+export function lastClosed(cs, now = Date.now()) {
+  if (!cs || !cs.length) return null;
+  const times = cs.map(tsOf).filter(t => Number.isFinite(t));
+  if (times.length < 2) return cs.length ? cs[cs.length - 1] : null;
+
+  let width = Infinity;
+  for (let i = 1; i < times.length; i++) {
+    const gap = times[i] - times[i - 1];
+    if (gap > 0 && gap < width) width = gap;
+  }
+  if (!Number.isFinite(width)) return cs[cs.length - 1];
+
+  for (let i = cs.length - 1; i >= 0; i--) {
+    const t = tsOf(cs[i]);
+    if (t != null && t + width <= now) return cs[i];
+  }
+  return null;
+}
+
+/**
  * The levels, from completed higher-timeframe candles.
  *
- * "Completed" is the whole point of taking [length - 2]: the last element of a
- * daily series is TODAY, still forming, and its high is wherever price happens
- * to be. Sweeping a level that is still being drawn is not an event, it is
- * arithmetic — today's high is by definition never exceeded by today's price.
+ * "Completed" matters and is decided by time, not by position. See lastClosed:
+ * picking an index assumed something about a filter applied in another file,
+ * and the assumption was wrong in exactly the direction nobody checks — every
+ * level was one period too old.
  *
  * @param {{ daily?:Candle[], weekly?:Candle[], h4?:Candle[] }} series
+ * @param {{ now?:number }} [opts]
  * @returns {Level[]}
  */
-export function keyLevels({ daily, weekly, h4 } = {}) {
+export function keyLevels({ daily, weekly, h4 } = {}, { now = Date.now() } = {}) {
   /** @type {Level[]} */
   const out = [];
-  const prior = cs => (cs && cs.length >= 2 ? cs[cs.length - 2] : null);
+  const prior = cs => lastClosed(cs, now);
 
   const d = prior(daily);
   if (d) {
