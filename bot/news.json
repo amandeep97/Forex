@@ -242,7 +242,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789152980000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions statement lacks immediate market impact"
     },
     {
       "title": "Adobe options market signals bearish positioning with put/call ratio of 1.57",
@@ -276,7 +277,13 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789151009000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Supply disruption boosts oil and gold"
     },
     {
       "title": "More than 500,000 Russian troops killed in Ukraine, U.K. defense chief says - Pittsburgh Post-Gazette",
@@ -297,7 +304,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789152181000,
-      "_kind": null
+      "_kind": null,
+      "why": "Casualty report has no direct market effect"
     },
     {
       "title": "Are AI-written resumes more likely to get you a job? The answer may surprise you.",
@@ -310,8 +318,7 @@
       "sev": 3,
       "rel": 1,
       "srcs": 1,
-      "firstAt": 1789151520000,
-      "_kind": null
+      "firstAt": 1789151520000
     },
     {
       "title": "Saudi Arabia shuts East-West Pipeline after attacks",
@@ -330,7 +337,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789151452000
+      "firstAt": 1789151452000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Pipeline shutdown increases oil supply risk"
     },
     {
       "title": "EU Sanctions on 3,000 Russians Stall as France Joins Slovakia’s Delisting Push - Kyiv Post",
@@ -347,7 +360,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789149517000
+      "firstAt": 1789149517000,
+      "why": "Sanctions stall has unclear market impact"
     },
     {
       "title": "U.S. stocks surge as oil slide offsets rise in Fed rate hike bets",
@@ -365,7 +379,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789151192000
+      "firstAt": 1789151192000,
+      "dir": {
+        "USOIL": "down",
+        "US500": "up"
+      },
+      "why": "Oil slide offsets rate hike fears"
     },
     {
       "title": "Zelensky urges US to sanction Russia ‘now’ over deadly strikes - Arab News",
@@ -385,7 +404,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789151009000
+      "firstAt": 1789151009000,
+      "why": "Political rhetoric lacks immediate market impact"
     },
     {
       "title": "Gold Heads for Third Weekly Decline as Traders Brace for US Inflation Data - finance.biggo.com",
@@ -403,7 +423,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789149799000
+      "firstAt": 1789149799000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold declines ahead of inflation data"
     },
     {
       "title": "The Fed could raise interest rates three times. Here’s where the market could face the stiffest test.",
@@ -426,7 +450,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789150140000
+      "firstAt": 1789150140000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Rate hike bets strengthen dollar"
     },
     {
       "title": "GE Vernova and IBM among market cap stock movers on Friday",
@@ -469,7 +499,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789149799000
+      "firstAt": 1789149799000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Gold rises on dip-buying activity"
     },
     {
       "title": "US House to take up Graham's Russia sanctions bill next week - The Kyiv Independent",
@@ -489,7 +523,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789147620000
+      "firstAt": 1789147620000,
+      "why": "Sanctions bill timing has no clear impact"
     },
     {
       "title": "Stocks making the biggest moves midday: Dell, Skyworks Solutions, GameStop & more",
@@ -504,7 +539,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789149417000
+      "firstAt": 1789149417000,
+      "why": "Individual stock moves do not define index"
     },
     {
       "title": "Brent Hits $100 as U.S.-Iran Escalation, Houthi Strikes Deepen Gulf Supply Fears - wsj.com",
@@ -524,7 +560,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789149270000
+      "firstAt": 1789149270000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Escalation drives oil and gold higher"
     },
     {
       "title": "House to take up Russia sanctions bill next week - The Hill",
@@ -544,7 +586,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789147723000
+      "firstAt": 1789147723000,
+      "why": "Sanctions bill timing has no clear impact"
     },
     {
       "title": "Canadian dollar weakens to nine-day low on Fed rate hike bets - Reuters",
@@ -561,7 +604,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789148813000
+      "firstAt": 1789148813000,
+      "dir": {
+        "USD/CAD": "up"
+      },
+      "why": "Dollar strength weakens Canadian dollar"
     },
     {
       "title": "US declares end of largest recorded cyclosporiasis outbreak",
@@ -1604,7 +1651,7 @@
       "firstAt": 1789136018000
     },
     {
-      "title": "Ukraine Strikes Two Russian Pantsir-S1 Systems and Aircraft Engine Parts Plant - UNITED24 Media",
+      "title": "Ukraine Strikes Two Russian Pantsir-S1 Systems and Aircraft Engine Parts Plant - united24media.com",
       "link": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxOOEpBcFcweWxfY1YtbTAtUXdhMXZNclBPU3JhSmczTi00Vjh4UTI2d2g3ZlYyeWp0aDF2UW5td2ZlR19ncl8tV2xOU1dPalVZRTg2Vk80Zkl5cUdQVzJBdGVJSlhwODBnWnBKZDkteDY2MHc4WVpQSHEzNFpieUw2NVNGdUVwUkVZeTRIMlExQTRxcDEzbzVYSmVqSV9DUTBFVS1PVW9IWHl1MkZuR0s0UERmZTdVU3l0eG9Sb1E1UTljQ0E?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiwwFBVV95cUxOOEpBcFcweWxfY1YtbTAtUXdhMXZNclBPU3JhSmczTi00Vjh4UTI2d2g3ZlYyeWp0aDF2UW5td2ZlR19ncl8tV2xOU1dPalVZRTg2Vk80Zkl5cUdQVzJBdGVJSlhwODBnWnBKZDkteDY2MHc4WVpQSHEzNFpieUw2NVNGdUVwUkVZeTRIMlExQTRxcDEzbzVYSmVqSV9DUTBFVS1PVW9IWHl1Mk",
@@ -1941,10 +1988,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-11T19:02:16.290Z",
-  "headlinesAt": "2026-09-11T19:02:16.290Z",
-  "updatedAt": "2026-09-11T19:02:16.290Z"
+  "calendarAt": "2026-09-11T19:04:02.977Z",
+  "headlinesAt": "2026-09-11T19:04:02.977Z",
+  "updatedAt": "2026-09-11T19:04:02.977Z"
 }
