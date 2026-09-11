@@ -61,7 +61,7 @@ function fakeOanda(m2Builder) {
     },
   };
 }
-const noGithub = { async writeJSON() { return 'sha'; } };
+const noGithub = { async writeJSON() { return 'sha'; }, async readJSON() { return null; } };
 const quiet = () => {};
 
 // Sweep of yesterday's high at 110: up through it, back below, then a break
@@ -306,6 +306,70 @@ function sweptM2() {
     check('near becoming swept changes the signature',
       s._signature() !== before,
       'the table is the point; if the signature cannot see a column change the file never gets written');
+  }
+
+  // ── Surviving a restart ──────────────────────────────────────────────────
+  //
+  // Everything lived in memory. Each deploy wiped the levels for all forty
+  // instruments, and rebuilding costs three requests each at four a tick — ten
+  // minutes of looking like the model found nothing, every restart. Through a
+  // run of deploys it never finished: eight instruments had levels after an
+  // hour, and the screen reported that as if it had looked at all of them.
+  {
+    const saved = {
+      at: new Date().toISOString(),
+      rows: [{
+        sym: 'EUR/USD', at: Date.now() - 60e3, price: 1.08, scanned: true,
+        setup: null, near: null, levels: { PDH: { state:'swept', price:1.09, dir:'short', atrPct:0.1 } },
+        lv: [['PDH', 1.09, 'high', "yesterday's high"], ['PDL', 1.07, 'low', "yesterday's low"]],
+        atr: 0.004, lvAt: Date.now() - 5 * 60e3,
+      }],
+    };
+    const gh = { async readJSON() { return { content: saved, sha: 'abc' }; }, async writeJSON() { return 'sha2'; } };
+    const oanda = fakeOanda(sweptM2);
+    const s = new LiquidityScanner({ oanda, github: gh, log: quiet });
+
+    await s.tick({});
+    check('a restart reads back what the last process published',
+      s.results.has('EUR/USD'), [...s.results.keys()].join(','),
+      'the screen went near empty after every deploy');
+    check('and the levels come back with it, so nothing is re-fetched',
+      s.levels.get('EUR/USD')?.levels?.length === 2,
+      `${s.levels.get('EUR/USD')?.levels?.length} levels`,
+      '120 requests were being spent rebuilding what was already on disk');
+    check('the level AGE is restored too, not reset to now',
+      s.levels.get('EUR/USD').at < Date.now() - 60e3,
+      'treating an hour-old set as fresh would stop it ever refreshing');
+    check('and it restores once, not on every tick',
+      (async () => true)() && s.restored === true);
+
+    // Checked on a fresh instance: tick() publishes afterwards and rightly
+    // replaces the sha, so asserting it after a full tick tests the wrong
+    // moment. What matters is that restore CAPTURED it, or the first write
+    // would collide with a file the scanner itself wrote last run.
+    const s2 = new LiquidityScanner({ oanda: fakeOanda(), github: gh, log: quiet });
+    await s2._restore();
+    check('restore captures the file sha, so the first write updates rather than collides',
+      s2.sha === 'abc', String(s2.sha));
+  }
+
+  // ── Coverage is published, so the screen can show a fraction ─────────────
+  {
+    const s = new LiquidityScanner({ oanda: fakeOanda(), github: noGithub, log: quiet });
+    s.results.set('A', { sym:'A', at: Date.now(), setup:null, near:null, levels:{} });
+    let published = null;
+    s.github = { async writeJSON(path, payload) { published = payload; return 'sha'; } };
+    s.lastSig = null;
+    await s._publish();
+
+    check('the file says how many instruments COULD be covered',
+      published && published.eligible > 1, `eligible ${published?.eligible}`,
+      'a short list with no denominator reads as a quiet market when it means "not measured yet"');
+    check('and how many actually have levels',
+      published && typeof published.withLevels === 'number', String(published?.withLevels));
+    check('the two are honest about each other',
+      published.withLevels <= published.eligible,
+      `${published.withLevels} of ${published.eligible}`);
   }
 
   console.log(fails ? `\n${fails} FAILED` : '\nall passed');

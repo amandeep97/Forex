@@ -46,7 +46,14 @@ export async function fetchLiquidity({ force = false } = {}) {
     // `watching` matters as much as the rows: an instrument the bot has levels
     // for but has not scanned is a different state from one it scanned and
     // found nothing in, and the screen must be able to say which.
-    const data = { at: j.at, bySym, watching: new Set(j.watching || []) };
+    const data = {
+      at: j.at, bySym, watching: new Set(j.watching || []),
+      // Coverage, so the screen can report a fraction. Without the denominator
+      // a short list reads as a quiet market when it actually means the bot has
+      // not reached the rest yet.
+      eligible: j.eligible ?? null,
+      withLevels: j.withLevels ?? null,
+    };
     liqCache = { at: now, data };
     return data;
   } catch { return liqCache.data; }
