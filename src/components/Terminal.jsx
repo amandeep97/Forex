@@ -1,6 +1,7 @@
 import { useState, useCallback } from 'react';
 import Scanner from './Scanner';
 import LiveFeed from './LiveFeed';
+import LiquidityView from './LiquidityView';
 import InstrumentView from './InstrumentView';
 
 // One screen, two modes and a detail view — the terminal idiom.
@@ -20,8 +21,14 @@ import InstrumentView from './InstrumentView';
 // computed when you press refresh; FEED is the same measures taken every minute
 // by the VPS and filtered by rules you write. Putting them side by side in the
 // nav bar would recreate exactly the FLOW/Scan duplication this file undid.
+// LIQUIDITY earns its own mode rather than a panel inside FEED because it
+// selects on something else entirely. FEED shows what matched the filters you
+// wrote; LIQUIDITY shows whatever is at a level right now, whether or not any
+// filter happens to cover it. Bolted onto FEED, an instrument sitting on
+// yesterday's high was invisible unless an unrelated rule let it through.
 const MODES = [
   { id:'feed', label:'FEED', hint:'24/7 · your filters' },
+  { id:'liq',  label:'LIQUIDITY', hint:'24/7 · who hunted what' },
   { id:'scan', label:'SCAN', hint:'snapshot · fixed rules' },
 ];
 
@@ -51,7 +58,9 @@ export default function Terminal() {
           {MODES.find(m => m.id === mode)?.hint}
         </span>
       </div>
-      {mode === 'feed' ? <LiveFeed onOpen={open}/> : <Scanner onOpen={open}/>}
+      {mode === 'feed' ? <LiveFeed onOpen={open}/>
+        : mode === 'liq' ? <LiquidityView onOpen={open}/>
+        : <Scanner onOpen={open}/>}
     </div>
   );
 }

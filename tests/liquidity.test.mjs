@@ -19,7 +19,7 @@
 //   Confirming before the sweep. A break that happened first is not evidence
 //   about a liquidity event that had not occurred yet.
 import {
-  keyLevels, findSweep, confirmation, sweepSetup, approach, levelStates, H4_SWINGS, LEVEL_RANK,
+  keyLevels, findSweep, confirmation, sweepSetup, approach, levelStates, tsOf, H4_SWINGS, LEVEL_RANK,
 } from '../shared/liquidity.mjs';
 import { detectBreaks } from '../shared/structure.mjs';
 
@@ -458,6 +458,39 @@ function detectableEarlier(cs, sweep, idx) {
 
   check('no levels or no candles gives an empty table rather than a guess',
     levelStates(cs, [], 4).length === 0 && levelStates([], levels, 4).length === 0);
+}
+
+// ── When it happened ──────────────────────────────────────────────────────
+//
+// A bar index tells a screen nothing. "Eighteen minutes ago" is what decides
+// whether a hunt is still worth acting on, and every earlier version computed
+// the index and threw the time away.
+{
+  const levels = [{ kind:'PDH', price:110, side:'high', label:"yesterday's high" }];
+  const cs = [];
+  let p = 104;
+  p = leg(cs, 8, 1, p);
+  leg(cs, 8, -1, p);
+  const st = levelStates(cs, levels, 4).find(x => x.kind === 'PDH');
+
+  check('a swept level reports WHEN, not just which bar',
+    Number.isFinite(st.atTime), String(st.atTime));
+  check('and the time is the sweeping bar\'s own',
+    st.atTime === tsOf(cs[st.at]), `${st.atTime} vs bar ${st.at}`,
+    'off by one bar here is two minutes of wrongness on every row');
+
+  check('a level nothing happened at reports no time rather than zero',
+    levelStates(cs, [{ kind:'PWH', price:200, side:'high', label:'far' }], 4)[0].atTime === null,
+    'zero is a real timestamp and would render as 1970');
+
+  // Both spellings, because the bot passes numbers and the app passes ISO.
+  check('candle times work as epoch numbers and as ISO strings',
+    tsOf({ t: 1757000000000 }) === 1757000000000
+    && tsOf({ t: '2026-09-11T03:00:00.000Z' }) === Date.parse('2026-09-11T03:00:00.000Z'),
+    'reading .t raw works for one and silently produces NaN for the other');
+
+  check('and a candle with no time says so',
+    tsOf({}) === null && tsOf(null) === null && tsOf({ t: 'not a date' }) === null);
 }
 
 console.log(fails ? `\n${fails} FAILED` : '\nall passed');
