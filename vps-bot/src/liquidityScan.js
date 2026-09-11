@@ -49,7 +49,7 @@ const PATH = 'bot/liquidity.json';
 // A version stamp fixes it at the root: levels computed by a different method
 // are not stale, they are WRONG, and no amount of waiting makes them right. On
 // restore they are dropped and rebuilt.
-const LEVEL_METHOD = 2;
+const LEVEL_METHOD = 3;
 
 // Levels are yesterday's and last week's, so an hour is generous.
 const LEVELS_TTL = 60 * 60e3;

@@ -20,7 +20,7 @@
 //   about a liquidity event that had not occurred yet.
 import {
   keyLevels, findSweep, confirmation, sweepSetup, approach, levelStates, tsOf, lastClosed,
-  H4_SWINGS, LEVEL_RANK,
+  H4_SWINGS, LEVEL_RANK, RECLAIM_ATR,
 } from '../shared/liquidity.mjs';
 import { detectBreaks } from '../shared/structure.mjs';
 
@@ -535,6 +535,46 @@ function detectableEarlier(cs, sweep, idx) {
 
   check('and a candle with no time says so',
     tsOf({}) === null && tsOf(null) === null && tsOf({ t: 'not a date' }) === null);
+}
+
+// ── A hair past the level is not a breakout ────────────────────────────────
+//
+// US500 sat 2.9 points above yesterday's high, on an instrument whose four-hour
+// range is tens of points, and was reported as THROUGH rather than HUNT — so
+// the event the screen exists to show never appeared. Three points beyond a
+// level is not price holding above it; it is price standing on it.
+{
+  const levels = [{ kind:'PDH', price:110, side:'high', label:"yesterday's high" }];
+  const ATR = 20;
+
+  // Crossed the level and is now barely above it — inside the hold margin.
+  const barely = [];
+  let p = 104;
+  p = leg(barely, 8, 1, p);          // up through 110
+  leg(barely, 3, -0.4, p);           // drifts back to just above it
+  const justAbove = levelStates(barely, levels, ATR).find(x => x.kind === 'PDH');
+  check('price a fraction of a range above the level reads as a hunt, not a breakout',
+    justAbove.state === 'swept',
+    `${justAbove.state}, price ${barely[barely.length-1].c.toFixed(2)} vs level 110, margin ${ATR * RECLAIM_ATR}`,
+    'this is the US500 row: the daily high was taken and the screen called it a breakout');
+
+  // Clear of it by more than the margin: a real breakout.
+  const clear = [];
+  p = 104;
+  leg(clear, 14, 1, p);              // finishes well above 110
+  const wellAbove = levelStates(clear, levels, ATR).find(x => x.kind === 'PDH');
+  check('and price clear of the level by more than the margin still reads as a breakout',
+    wellAbove.state === 'through',
+    `${wellAbove.state}, price ${clear[clear.length-1].c.toFixed(2)}`,
+    'the distinction has to survive, or every breakout becomes a reversal signal');
+
+  check('the margin scales with the instrument',
+    levelStates(barely, levels, 0.5).find(x => x.kind === 'PDH').state === 'through',
+    'the same 3 points is a breakout on something that moves 0.5 a day and noise on something that moves 20');
+
+  check('and with no scale to measure against, the old strict test stands',
+    levelStates(barely, levels, 0).find(x => x.kind === 'PDH').state === 'through',
+    'inventing a margin without an ATR would be picking a number out of the air');
 }
 
 console.log(fails ? `\n${fails} FAILED` : '\nall passed');
