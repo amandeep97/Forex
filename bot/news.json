@@ -245,7 +245,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789146782000,
-      "_kind": null
+      "_kind": null,
+      "why": "Forecast headline, no immediate directional signal."
     },
     {
       "title": "Why a shrinking population doesn’t have to be the kiss of death for an economy or stock market",
@@ -278,7 +279,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789146375000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "down",
+        "US500": "up"
+      },
+      "why": "Stocks surge, oil slides."
     },
     {
       "title": "Qualcomm and Meta Platforms show best technical setups among big tech",
@@ -293,7 +299,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789146324000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US100": "up"
+      },
+      "why": "Best technical setups imply bullish bias."
     },
     {
       "title": "Generac CEO Aaron Jagdfeld Sells 5,000 Shares",
@@ -323,7 +333,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789146159000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAG/USD": "up"
+      },
+      "why": "Silver spot stock climbing."
     },
     {
       "title": "Exclusive-White House weighs how to use Defense Production Act to expand US oil refining capacity, sources say",
@@ -340,7 +354,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789146067000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Expanding refining capacity increases supply."
     },
     {
       "title": "US consumer inflation picks up in August",
@@ -363,7 +381,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789145884000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Higher inflation supports stronger dollar."
     },
     {
       "title": "Stocks making the biggest moves midday: Dell, Skyworks Solutions, GameStop & more",
@@ -379,7 +403,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789145850000,
-      "_kind": null
+      "_kind": null,
+      "why": "Individual stock moves, no index direction."
     },
     {
       "title": "Turn Shopify Stock Sell-Off Into A Profit Opportunity With This Spread Strategy",
@@ -422,10 +447,14 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789145672000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Oil falls despite weekly gain."
     },
     {
-      "title": "EU ambassadors fail to extend sanctions against Russia due to opposition from Slovakia and France - Українська правда",
+      "title": "EU ambassadors fail to extend sanctions against Russia due to opposition from Slovakia and France - pravda.com.ua",
       "link": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE1MZ1Y5VVUwUTh6UFh2RmdFdjZQSmlMejEyUHY3REpJUVVUU1NiYWhnSklCS1hSU0h3aHNZU1hFa1dMbFRqdGNYRFlTbGpmX0ZlR25hbGJ4UkxFUDNrLXp4TjliUUbSAXBBVV95cUxQVV9UVHJJajJnVm5tWTRpMGZRU1BsbmpzTHdtd1FTMzFydGp5MFhHd1ZPUUltdnhnbk5CeFNpS1d0VnQ1azl4X29SLUEyR1p0WnhnWG5rbDl0NXBYYzU2QnF3NTREaDUtM2d4RnNTVERk?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiZEFVX3lxTE1MZ1Y5VVUwUTh6UFh2RmdFdjZQSmlMejEyUHY3REpJUVVUU1NiYWhnSklCS1hSU0h3aHNZU1hFa1dMbFRqdGNYRFlTbGpmX0ZlR25hbGJ4UkxFUDNrLXp4TjliUUbSAXBBVV95cUxQVV9UVHJJajJnVm5tWTRpMGZRU1BsbmpzTHdtd1FTMzFydGp5MFhHd1ZPUUltdnhnbk5CeFNpS1d0VnQ1az",
@@ -442,7 +471,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789144009000
+      "firstAt": 1789144009000,
+      "why": "Sanctions failure ambiguous for oil/gold."
     },
     {
       "title": "This investment is safe from both Trump and the Democrats — and it pays 4.7%",
@@ -457,7 +487,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789145100000
+      "firstAt": 1789145100000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Promotes safe haven investment."
     },
     {
       "title": "Senate Intelligence Committee Will Examine Iran Escalation Threat - Legis1",
@@ -477,7 +511,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789144933000
+      "firstAt": 1789144933000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Iran escalation threat boosts risk assets."
     },
     {
       "title": "This Oil Stock Sails Near Entry, Profits Soar 452% As Strait of Hormuz Crisis Flares Up",
@@ -493,7 +533,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789142623000
+      "firstAt": 1789142623000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Strait of Hormuz crisis flares up."
     },
     {
       "title": "Canada 10-year yield slips as markets digest U.S. inflation data - Investing.com Canada",
@@ -511,7 +555,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789144676000
+      "firstAt": 1789144676000,
+      "why": "Yield slip, no clear FX direction."
     },
     {
       "title": "Your Social Security check could go up another $71 next year. That’s not necessarily good news.",
@@ -534,7 +579,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789144320000
+      "firstAt": 1789144320000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Persistent inflation supports dollar strength."
     },
     {
       "title": "US diplomacy under fire as Russia escalates attacks on Ukrainian officials",
@@ -554,7 +605,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789144248000
+      "firstAt": 1789144248000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Russia escalation increases geopolitical risk."
     },
     {
       "title": "Wall St bounces as oil cools, inflation risks keeps Fed in focus",
@@ -803,7 +860,7 @@
       "firstAt": 1789142556000
     },
     {
-      "title": "Estonian intelligence on Ukrainian strikes on Russian plants 3,000 km away: situation has changed - Українська правда",
+      "title": "Estonian intelligence on Ukrainian strikes on Russian plants 3,000 km away: situation has changed - pravda.com.ua",
       "link": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE1PT1NJV0RObnVOWTFjRVZkR0hKZ2xfWkxZemVDM3dXcm5vX2RTSU5URGxDVkxhUUliQWtPcXFyREdxb1FkemQ2akxRTWlISlAzWTVtOXgtNEZ5TXJCaFFaMlBmR2LSAXBBVV95cUxOYmtmSWI5YWtkZDlHbjZsRzdQQmJOb2llVGh5dmpKRkpIdGxKZXUxLThEazN4ZDFzS1o1MndnU3JPdjM2ZFo5TndiNkxob3ZIQmlVb2ZwdUh2eFhBcnBEMHpsVFM2akpIQXZyNjAxS21q?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiZEFVX3lxTE1PT1NJV0RObnVOWTFjRVZkR0hKZ2xfWkxZemVDM3dXcm5vX2RTSU5URGxDVkxhUUliQWtPcXFyREdxb1FkemQ2akxRTWlISlAzWTVtOXgtNEZ5TXJCaFFaMlBmR2LSAXBBVV95cUxOYmtmSWI5YWtkZDlHbjZsRzdQQmJOb2llVGh5dmpKRkpIdGxKZXUxLThEazN4ZDFzS1o1MndnU3JPdjM2ZF",
@@ -843,7 +900,7 @@
       "firstAt": 1789140645000
     },
     {
-      "title": "US Airline Sanctions Sever Some of Iran’s Last Outside Links - bloomberg.com",
+      "title": "US Airline Sanctions Sever Some of Iran’s Last Outside Links - Bloomberg.com",
       "link": "https://news.google.com/rss/articles/CBMisAFBVV95cUxQbXo4M0E3RV9FQjE0cUdsM2ZWNkpsNlJTU2hSN1NrUnNabXNtcWZNTmgyYkdXckE1ZUdwZEEwbXpoRGNmRmt2QmJ4SGhfV0RGVlJsd0NSQUxDTGlaZ05PdEFtSzdRYnFYNHctdGVNdHNpU0ItYkktYlo1aHltNTR4VGRncWVRa3J0WW1xTnEzMi01UkI2T281Wm0zdHBLSnNwWEZuemhWX1JSbGF1Qlg0Tw?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMisAFBVV95cUxQbXo4M0E3RV9FQjE0cUdsM2ZWNkpsNlJTU2hSN1NrUnNabXNtcWZNTmgyYkdXckE1ZUdwZEEwbXpoRGNmRmt2QmJ4SGhfV0RGVlJsd0NSQUxDTGlaZ05PdEFtSzdRYnFYNHctdGVNdHNpU0ItYkktYlo1aHltNTR4VGRncWVRa3J0WW1xTnEzMi01UkI2T281Wm0zdHBLSnNwWEZuemhWX1JSbG",
@@ -986,7 +1043,7 @@
       "firstAt": 1789140728000
     },
     {
-      "title": "Russia Sanctions Bill Scheduled for a House Vote Next Week - bloomberg.com",
+      "title": "Russia Sanctions Bill Scheduled for a House Vote Next Week - Bloomberg.com",
       "link": "https://news.google.com/rss/articles/CBMisgFBVV95cUxPdzhXU0hyclZKWmQ2bU5ueU05ZDhjcE9LdHlhTVFTMHpCcjZpbnVKYjk1MHd0ZVpFYlhabVNlaVVLTkxpNlJGWVlrU09RcXV3a040QUg3MnFzVDBNMU90Y1lTb01OcTBHRDBXbWs0N2stT0JXTWo2ZnpSbjhTQ1Y1YVZiZGR3UEVwV0lVY2VFdk02QW5VejRUNWZMbHRNUnlfR3ZWa1FmY3ltb3pualdpbG1B?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMisgFBVV95cUxPdzhXU0hyclZKWmQ2bU5ueU05ZDhjcE9LdHlhTVFTMHpCcjZpbnVKYjk1MHd0ZVpFYlhabVNlaVVLTkxpNlJGWVlrU09RcXV3a040QUg3MnFzVDBNMU90Y1lTb01OcTBHRDBXbWs0N2stT0JXTWo2ZnpSbjhTQ1Y1YVZiZGR3UEVwV0lVY2VFdk02QW5VejRUNWZMbHRNUnlfR3ZWa1FmY3ltb3",
@@ -1943,10 +2000,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-11T17:21:02.768Z",
-  "headlinesAt": "2026-09-11T17:21:02.768Z",
-  "updatedAt": "2026-09-11T17:21:02.768Z"
+  "calendarAt": "2026-09-11T17:22:17.170Z",
+  "headlinesAt": "2026-09-11T17:22:17.170Z",
+  "updatedAt": "2026-09-11T17:22:17.170Z"
 }
