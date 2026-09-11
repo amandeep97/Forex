@@ -324,7 +324,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789117762000,
-      "_kind": null
+      "_kind": null,
+      "why": "Mixed signals, pound steady"
     },
     {
       "title": "Oracle shares rise as AI cloud backlog beats estimates",
@@ -357,7 +358,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789117246000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Geopolitical risk boosts safe havens, oil"
     },
     {
       "title": "Yossi Abravanel: Despite sanctions, Israel must keep communication open with Europe - The Times of Israel",
@@ -378,7 +385,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789117099000,
-      "_kind": null
+      "_kind": null,
+      "why": "Diplomatic news, no clear market impact"
     },
     {
       "title": "Five dead and dozens injured in coach crash in Swiss Alps",
@@ -395,7 +403,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789116860000
+      "firstAt": 1789116860000,
+      "why": "Local accident, no macro impact"
     },
     {
       "title": "Vetoquinol shares surge 16% after 22% first-half profit growth, strong cash flow",
@@ -425,7 +434,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789114631000
+      "firstAt": 1789114631000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold hits one-week low"
     },
     {
       "title": "Oil set to end week above $100 for first time since mid-May as US diesel hits record high",
@@ -441,7 +454,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789115822000
+      "firstAt": 1789115822000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil ends week above $100"
     },
     {
       "title": "Treasury yields steady as traders await consumer inflation data amid oil price pressure - CNBC",
@@ -459,7 +476,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789115757000
+      "firstAt": 1789115757000,
+      "why": "Yields steady, awaiting data"
     },
     {
       "title": "U.S. Rate Hike Fears Weigh on China and Hong Kong Markets - Devdiscourse",
@@ -482,7 +500,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 3,
-      "firstAt": 1789113628000
+      "firstAt": 1789113628000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Rate hike fears weigh on markets"
     },
     {
       "title": "Drones attack chemical plant in Russia's Perm Krai – CCD - ukrinform.net",
@@ -502,7 +526,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789115400000
+      "firstAt": 1789115400000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Drone attack boosts risk assets"
     },
     {
       "title": "European natural gas pauses rally but logs fifth weekly gain on Middle East risks",
@@ -516,7 +546,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789115250000
+      "firstAt": 1789115250000,
+      "dir": {
+        "NATGAS": "up"
+      },
+      "why": "Gas logs fifth weekly gain"
     },
     {
       "title": "What did 25 years of the “war on terror” leave behind?",
@@ -533,7 +567,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789114832000
+      "firstAt": 1789114832000,
+      "why": "Historical analysis, no market impact"
     },
     {
       "title": "How 9/11 helped Israel sell its war on Palestinians to America",
@@ -553,7 +588,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789114698000
+      "firstAt": 1789114698000,
+      "why": "Political commentary, no market impact"
     },
     {
       "title": "Gold Falls as Inflation Fears and High Oil Prices Weigh on the Precious Metal - Action Forex",
@@ -573,7 +609,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789112215000
+      "firstAt": 1789112215000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold falls on inflation fears"
     },
     {
       "title": "U.S.-Iran Escalation to Delay Oil Flow Recovery Into Next Year, IEA Says - WSJ",
@@ -593,7 +633,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789114620000
+      "firstAt": 1789114620000,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Escalation delays oil flow recovery"
     },
     {
       "title": "Global Markets Brace for Inflation Risks Amid Oil Price Fluctuations - Devdiscourse",
@@ -611,7 +657,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789114600000
+      "firstAt": 1789114600000,
+      "why": "Markets brace for inflation risks"
     },
     {
       "title": "Fed Rate Hike Expectations Intensify, Copper, Gold, and Silver Under Collective Pressure - NAI500",
@@ -2006,7 +2053,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-11T09:27:00.030Z",
-  "headlinesAt": "2026-09-11T09:27:00.030Z",
-  "updatedAt": "2026-09-11T09:27:00.030Z"
+  "calendarAt": "2026-09-11T09:28:02.287Z",
+  "headlinesAt": "2026-09-11T09:28:02.287Z",
+  "updatedAt": "2026-09-11T09:28:02.287Z"
 }
