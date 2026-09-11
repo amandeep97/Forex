@@ -210,7 +210,11 @@ export default function LiquidityView({ onOpen }) {
           <strong style={{ fontSize:14, color:'#38bdf8', fontFamily:C.mono, letterSpacing:1 }}>LIQUIDITY</strong>
           <span style={{ fontSize:10, color:C.dim }}>who hunted what, and when</span>
           <span style={{ marginLeft:'auto', fontSize:8, color:'#334155', fontFamily:C.mono }}>
-            VPS · {liq?.at ? ago(Date.now() - Date.parse(liq.at)) : '—'} · {rows.length} watched
+            VPS · {liq?.at ? ago(Date.now() - Date.parse(liq.at)) : '—'}
+            {' · '}
+            {liq?.eligible
+              ? `${liq.withLevels ?? rows.length} of ${liq.eligible} measured`
+              : `${rows.length} measured`}
           </span>
         </div>
         <div style={{ fontSize:9, color:'#334155', lineHeight:1.7, marginTop:5 }}>
@@ -219,6 +223,13 @@ export default function LiquidityView({ onOpen }) {
           The reversal is confirmed on 2-minute candles, which is why this cannot be a screen you
           have to sit in front of. <strong style={{ color:C.dim }}>Not a measured edge:</strong> this
           model has never been tested here, and no version of it has survived a holdout.
+          {liq?.eligible && (liq.withLevels ?? 0) < liq.eligible && (
+            <span style={{ color:C.warn }}>
+              {' '}Coverage is {liq.withLevels} of {liq.eligible} instruments — the rest have not been
+              measured yet, so their absence here is not a finding. The bot builds levels for four a
+              minute after a restart.
+            </span>
+          )}
         </div>
       </div>
 

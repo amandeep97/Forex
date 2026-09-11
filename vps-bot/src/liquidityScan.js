@@ -92,6 +92,46 @@ class LiquidityScanner {
     this.seq = 0;
     this.servedAt = new Map();
     this.lib = null;
+    this.restored = false;
+  }
+
+  // Pick up where the last process left off.
+  //
+  // Everything lived in memory and nothing survived a restart, so each deploy
+  // wiped the levels for all 40 instruments and the screen went back to near
+  // empty. Rebuilding takes three requests an instrument at four instruments a
+  // tick — ten minutes of looking like the model found nothing, and 120 wasted
+  // requests, every single time the bot restarts. During a run of deploys it
+  // never finished: eight instruments had levels after an hour, and the app
+  // reported that as though it had looked at everything.
+  //
+  // The published file already carries what is needed, so it is read back once
+  // at startup. The level timestamp is restored with it, so an hour-old set
+  // still expires on schedule rather than being treated as fresh.
+  async _restore() {
+    if (this.restored) return;
+    this.restored = true;
+    try {
+      const cur = await this.github.readJSON(PATH);
+      this.sha = cur?.sha || null;
+      for (const r of cur?.content?.rows || []) {
+        if (!r?.sym) continue;
+        this.results.set(r.sym, r);
+        if (Array.isArray(r.lv) && r.lv.length) {
+          this.levels.set(r.sym, {
+            levels: r.lv.map(([kind, price, side, label]) => ({ kind, price, side, label })),
+            atr: r.atr ?? null,
+            at: r.lvAt || 0,
+          });
+        }
+      }
+      if (this.results.size) {
+        this.log(`Liquidity: restored ${this.results.size} instrument(s), `
+          + `${this.levels.size} with levels — no rebuild needed`);
+      }
+    } catch (e) {
+      this.log(`Liquidity restore: ${e.message} — starting cold`);
+    }
   }
 
   // shared/ is ESM and this file is CommonJS, so the one copy of the rule is
@@ -171,6 +211,11 @@ class LiquidityScanner {
       // there are up to three a side and a column can only hold one, so the
       // one price is closest to is the one that matters.
       levels: this._columns(states),
+      // The raw level set and its scale, so a restart does not have to re-fetch
+      // D, W and H4 for every instrument before it can say anything.
+      lv: cached.levels.map(l => [l.kind, l.price, l.side, l.label]),
+      atr: cached.atr,
+      lvAt: cached.at,
     };
     this.results.set(inst.sym, rec);
     return rec;
@@ -288,6 +333,7 @@ class LiquidityScanner {
    * whether it is worth a request.
    */
   async tick(prices = {}) {
+    await this._restore();
     const now = Date.now();
     const insts = this._instruments();
 
@@ -340,6 +386,12 @@ class LiquidityScanner {
       at: new Date().toISOString(),
       near: NEAR_ATR,
       scanned: this.results.size,
+      // How many instruments the scan COULD cover, so a screen can say "8 of
+      // 40" rather than implying it looked at all of them. Eight rows with no
+      // denominator reads as "the market was quiet"; it meant "the bot has not
+      // got to the other thirty-two yet".
+      eligible: this._instruments().length,
+      withLevels: this._instruments().filter(i => this.levels.get(i.sym)?.levels?.length).length,
       // Instruments with levels but no scan yet are listed so the app can say
       // "not checked" rather than showing nothing and implying "nothing there".
       watching: this._instruments().filter(i => this.levels.get(i.sym)?.levels?.length).map(i => i.sym),
