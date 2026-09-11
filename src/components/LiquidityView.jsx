@@ -75,6 +75,66 @@ const MAJORS = new Set([
 ]);
 const isMajor = sym => MAJORS.has(sym);
 
+// ── The filter bar ───────────────────────────────────────────────────────────
+//
+// Modelled on SCAN's, because that idiom already works here and a second
+// vocabulary for the same job is a tax on the reader.
+//
+// Three axes, because there are exactly three questions worth asking of this
+// list and no more: is it actionable, which level got taken, and what kind of
+// instrument. Anything else would be options for their own sake.
+//
+// Every chip carries its own count, so the bar answers "is there anything in
+// there" without a tap. A filter you have to try before you know whether it is
+// empty is a filter that gets used once.
+const STATES = [
+  { id:'all',     label:'All' },
+  { id:'setup',   label:'Ready' },
+  { id:'taken',   label:'Waiting' },
+  { id:'missed',  label:'Missed' },
+];
+const TFS = [
+  { id:'all', label:'All' },
+  { id:'1D',  label:'1D' },
+  { id:'1W',  label:'1W' },
+  { id:'4H',  label:'4H' },
+];
+const CLASSES = [
+  { id:'all',    label:'All' },
+  { id:'major',  label:'Majors' },
+  { id:'metal',  label:'Metals' },
+  { id:'index',  label:'Indices' },
+  { id:'fx',     label:'FX' },
+  { id:'energy', label:'Energy' },
+  { id:'crypto', label:'Crypto' },
+];
+
+function Chips({ options, value, onChange, counts }) {
+  return (
+    <div style={{ display:'flex', gap:5, flexWrap:'wrap', alignItems:'center' }}>
+      {options.map(o => {
+        const n = counts?.[o.id];
+        // A chip with nothing behind it is shown, dimmed, rather than hidden.
+        // Removing it would make the bar's shape change as the market moves,
+        // and a control that appears and disappears is harder to learn than one
+        // that is simply empty.
+        const empty = n === 0;
+        const on = value === o.id;
+        return (
+          <button key={o.id} onClick={() => onChange(o.id)} disabled={empty && !on}
+            style={{ fontSize:9, fontWeight:700, padding:'3px 8px', borderRadius:3,
+              cursor: empty && !on ? 'default' : 'pointer', fontFamily:C.mono,
+              border:`1px solid ${on ? '#38bdf855' : C.line}`,
+              background: on ? '#38bdf815' : 'transparent',
+              color: on ? '#38bdf8' : empty ? '#243040' : C.dim }}>
+            {o.label}{n != null && <span style={{ opacity:0.65 }}> {n}</span>}
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
 // Local clock, 24-hour. The reader's own time, not UTC: a list is checked
 // against the clock on their phone, not against a timezone they have to convert.
 const clockOf = ms => new Date(ms).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
@@ -171,7 +231,9 @@ export default function LiquidityView({ onOpen }) {
   const [liq, setLiq] = useState(null);
   const [err, setErr] = useState(null);
   const [showQuiet, setShowQuiet] = useState(false);
-  const [showRest, setShowRest] = useState(false);
+  const [fState, setFState] = useState('all');
+  const [fTf, setFTf] = useState('all');
+  const [fClass, setFClass] = useState('all');
   const [tick, setTick] = useState(0);
 
   useEffect(() => {
@@ -215,7 +277,7 @@ export default function LiquidityView({ onOpen }) {
         // When something last HAPPENED on this row: the sweep, or the
         // confirmation if one has printed since. This is the sort key, and it
         // is the only one — see the sort below.
-        kind,
+        kind, cls: r.cls,
         lastAt: Math.max(c.at || 0, s?.confirmedAt || 0),
       });
     }
@@ -255,11 +317,29 @@ export default function LiquidityView({ onOpen }) {
   // since would be the same mistake in the other direction.
   events.sort((a, b) => (b.lastAt || 0) - (a.lastAt || 0));
 
-  // Metals, majors and indices lead; crosses wait behind a toggle. Both halves
-  // stay in time order — the split decides what you see first, never how the
-  // rows within it are arranged.
-  const lead = events.filter(e => isMajor(e.sym));
-  const rest = events.filter(e => !isMajor(e.sym));
+  // ── Filtering, and the counts the chips show ──
+  //
+  // Each axis is counted against the OTHER two, not against everything, so the
+  // number on a chip is what you will actually get if you press it. Counting
+  // against the unfiltered list would promise rows that the current selection
+  // then removes, which is worse than no number at all.
+  const matchState = (e, v) => v === 'all' || e.state === v;
+  const matchTf = (e, v) => v === 'all' || e.tf === v;
+  const matchClass = (e, v) => v === 'all'
+    || (v === 'major' ? isMajor(e.sym) : e.cls === v);
+
+  const countBy = (options, axis) => Object.fromEntries(options.map(o => [o.id,
+    events.filter(e =>
+      (axis === 'state' ? matchState(e, o.id) : matchState(e, fState))
+      && (axis === 'tf' ? matchTf(e, o.id) : matchTf(e, fTf))
+      && (axis === 'cls' ? matchClass(e, o.id) : matchClass(e, fClass))).length]));
+
+  const stateCounts = countBy(STATES, 'state');
+  const tfCounts = countBy(TFS, 'tf');
+  const classCounts = countBy(CLASSES, 'cls');
+
+  const shownEvents = events.filter(e =>
+    matchState(e, fState) && matchTf(e, fTf) && matchClass(e, fClass));
 
   const live = new Set(['swept', 'through', 'near']);
   const active = rows.filter(r => Object.values(r.levels).some(v => live.has(v.state)));
@@ -316,8 +396,23 @@ export default function LiquidityView({ onOpen }) {
       <div style={{ margin:'10px', background:C.panel, border:`1px solid ${C.line}`, borderRadius:5, overflow:'hidden' }}>
         <div style={{ padding:'7px 10px', borderBottom:`1px solid ${C.line}`, fontSize:10,
           color:C.warn, fontFamily:C.mono, fontWeight:700 }}>
-          HUNTS · {lead.length}{rest.length ? <span style={{ color:'#334155' }}> of {events.length}</span> : null}
+          HUNTS · {shownEvents.length}
+          {shownEvents.length !== events.length && (
+            <span style={{ color:'#334155' }}> of {events.length}</span>
+          )}
         </div>
+
+        {/* Three axes: actionable, which level, what kind. Counted so the bar
+            answers "is anything in there" without a tap. */}
+        {events.length > 0 && (
+          <div style={{ padding:'7px 10px', borderBottom:`1px solid ${C.line}`,
+            display:'flex', flexDirection:'column', gap:5 }}>
+            <Chips options={STATES} value={fState} onChange={setFState} counts={stateCounts}/>
+            <Chips options={TFS} value={fTf} onChange={setFTf} counts={tfCounts}/>
+            <Chips options={CLASSES} value={fClass} onChange={setFClass} counts={classCounts}/>
+          </div>
+        )}
+
         {events.length === 0 ? (
           <div style={{ padding:12, fontSize:10, color:C.dim, lineHeight:1.6 }}>
             No level has been taken and given back on any watched instrument.
@@ -327,21 +422,17 @@ export default function LiquidityView({ onOpen }) {
               something on it is not measuring anything.
             </div>
           </div>
-        ) : lead.map((e, i) => <HuntEvent key={`${e.sym}-${e.levelPrice}-${i}`} e={e} onOpen={onOpen}/>)}
-
-        {rest.length > 0 && (
-          <>
-            <button onClick={() => setShowRest(v => !v)}
-              style={{ width:'100%', padding:'7px 10px', textAlign:'left', cursor:'pointer',
-                border:'none', borderTop:`1px solid ${C.line}`, background:'transparent',
-                color:C.dim, fontSize:9, fontFamily:C.mono }}>
-              {showRest ? '▾ hide' : '▸ show'} {rest.length} on crosses and minors
-            </button>
-            {showRest && rest.map((e, i) => (
-              <HuntEvent key={`r-${e.sym}-${e.levelPrice}-${i}`} e={e} onOpen={onOpen}/>
-            ))}
-          </>
-        )}
+        ) : shownEvents.length === 0 ? (
+          <div style={{ padding:12, fontSize:10, color:C.dim, lineHeight:1.6 }}>
+            Nothing matches this filter.
+            <div style={{ marginTop:3, color:'#334155' }}>
+              {events.length} hunt(s) are live on other instruments or timeframes. The counts on
+              each chip say where they are.
+            </div>
+          </div>
+        ) : shownEvents.map((e, i) => (
+          <HuntEvent key={`${e.sym}-${e.levelPrice}-${i}`} e={e} onOpen={onOpen}/>
+        ))}
       </div>
 
       {/* ── The table ── */}
