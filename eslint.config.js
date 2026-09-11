@@ -70,7 +70,79 @@ export default [
       // The bot's log lines and the studies print deliberately.
       'no-console': 'off',
       'no-empty': ['error', { allowEmptyCatch: true }],
+
     },
+  },
+
+
+  // ── Component files only: a JSX name that is really a browser global ──────
+  //
+  // The third bug to reach the phone. A component called `Location` was defined
+  // and used in LiveFeed. A refactor moved the definition out and left the
+  // `<Location/>` call site behind. Nothing complained: `Location` IS defined —
+  // it is the DOM Location interface — so the reference resolved, React was
+  // handed a Web API constructor, called it as a function, and the whole
+  // Terminal tab died with "Illegal constructor". It survived a headless
+  // browser check too, because that line only renders when the consensus has an
+  // OANDA key and CI has none.
+  //
+  // The obvious rule, no-restricted-globals, does NOT catch this. ESLint's
+  // scope analysis creates no reference for a JSX element name — that is the
+  // whole reason react/jsx-uses-vars exists — so the rule sees nothing. It also
+  // fired on the push code, which uses `Notification` as the global it is.
+  // Wrong in both directions: noisy where the code was right, silent where it
+  // was wrong.
+  //
+  // So this looks at the JSX name itself, and only flags it when nothing in
+  // scope declares it. A component of your own called `Image` is fine; a
+  // `<Image/>` with no Image in scope is a deleted definition.
+  {
+    files: ['src/**/*.jsx'],
+    plugins: {
+      local: {
+        rules: {
+          'no-dom-global-components': {
+            meta: {
+              type: 'problem',
+              docs: { description: 'JSX element names must not resolve to a browser global' },
+              schema: [],
+            },
+            create(context) {
+              const DOM = new Set([
+                'Location', 'Event', 'Text', 'Image', 'Option', 'Selection', 'Range',
+                'Comment', 'Notification', 'Audio', 'History', 'Screen', 'Storage',
+                'Worker', 'Request', 'Response', 'Headers', 'Document', 'Navigator',
+                'Attr', 'Element', 'Node', 'Performance', 'Animation', 'Window',
+              ]);
+              const declared = (scope, name) => {
+                for (let s = scope; s; s = s.upper) {
+                  // The global scope is where the DOM names live, so reaching it
+                  // without a match is exactly the failure case.
+                  if (s.type === 'global') return false;
+                  if (s.variables.some(v => v.name === name)) return true;
+                }
+                return false;
+              };
+              return {
+                JSXIdentifier(node) {
+                  if (node.parent?.type !== 'JSXOpeningElement' || node.parent.name !== node) return;
+                  if (!DOM.has(node.name)) return;
+                  const sc = context.sourceCode.getScope(node);
+                  if (declared(sc, node.name)) return;
+                  context.report({
+                    node,
+                    message: `<${node.name}/> resolves to the browser's ${node.name} global, not a component. `
+                      + 'React will call a Web API constructor as a function and the tab will die with '
+                      + '"Illegal constructor". The definition was probably deleted or renamed.',
+                  });
+                },
+              };
+            },
+          },
+        },
+      },
+    },
+    rules: { 'local/no-dom-global-components': 'error' },
   },
 
   // ── Shared modules: no DOM, no Node. That is the whole contract. ──────────
