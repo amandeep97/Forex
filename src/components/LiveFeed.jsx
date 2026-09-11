@@ -91,6 +91,36 @@ function Rarity({ perMonth, label }) {
 }
 
 
+// Where price sits inside its own range, on the three timeframes that matter.
+//
+// H4 is the one that can block a trade, so it is printed first and coloured.
+// M15 and M2 never block; they answer "is this the moment", which is a
+// different question and deserves to look different on screen.
+//
+// It is called RangeRead and not Location. This component WAS called Location,
+// and when the liquidity table moved out of this file the definition went with
+// it while the `<Location/>` call site stayed. Nothing complained: `Location` is
+// a real browser global, so the reference still resolved — to the DOM Location
+// interface — and React called a Web API constructor as a function. The whole
+// tab died with "Illegal constructor", on devices that had an OANDA key and so
+// actually reached this line. A name no global owns cannot fail that quietly.
+function RangeRead({ reads }) {
+  const tfs = ['H4', 'M15', 'M2'].filter(tf => reads[tf]);
+  if (!tfs.length) return null;
+  const colOf = z => z === 'premium' ? '#f87171'
+                   : z === 'discount' ? '#4ade80'
+                   : z === 'outside' ? '#94a3b8' : '#a1a1aa';
+  return (
+    <span style={{ fontSize:9, fontFamily:C.mono, color:C.dim, display:'flex', gap:7, flexWrap:'wrap' }}>
+      {tfs.map(tf => (
+        <span key={tf} style={{ opacity: tf === 'H4' ? 1 : 0.7 }}>
+          {tf} <strong style={{ color: colOf(reads[tf].zone) }}>{pct(reads[tf].pos)}</strong>
+        </span>
+      ))}
+    </span>
+  );
+}
+
 // The per-row liquidity line. The full table moved to its own LIQUIDITY mode
 // in the Terminal, because it selects on something the filters know nothing
 // about; what stays here is the one-line context for a row the filter already
@@ -223,7 +253,7 @@ function Verdict({ read, liq, sym }) {
       {/* Where price sits, on the three ranges. Printed whatever the verdict is:
           on a block it shows what did the blocking, and on a clean LONG it is
           the difference between buying the bottom of the range and the top. */}
-      {v.location && <Location reads={v.location} />}
+      {v.location && <RangeRead reads={v.location} />}
       {sweep}
       {v.timing && (
         <span style={{ fontSize:9, color:C.warn, fontFamily:C.mono, width:'100%', paddingLeft:1 }}>
