@@ -309,6 +309,33 @@
   ],
   "headlines": [
     {
+      "title": "Iran war: Saudi-Houthi escalation intensifies Yemen conflict - DW.com",
+      "link": "https://news.google.com/rss/articles/CBMilwFBVV95cUxNSEktSm1yT29OUHRmUXVjZzdaOFJ0dkFsYnJHaEpuZXhQaUV2WWJxREJZSjZfTWVHSEhoVTlYQ0ZiVElLcU5tMy02S040YzRyY2g0NU44ME1WQkFIcnU3cFl4TmNEZ1JtcXBJNGFKU0tCOEtCYXhHWDBNb081c0ZkQ3oxS0Z1R0Y3VEU5aHJEZ2M5T3FLX05Z0gGXAUFVX3lxTFB2V1BGaWc2MHVZTDUxMzRTRGJNcVlzcEFqR1Z5eTVnNVNuWlBLS2pIaTR1akYwQnZCZ0tJQ1F4RlVUUm80UXQtbldieENyU0pPRFl2RDFKamxzQ0RtOElBTTJTcE5rbDdLbWdxX2RnQ3hqZVJ6akJXa2VwS0taYVBSOXctRlpZZDRrNDhsSUFvMVNhUHpFbEU?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMilwFBVV95cUxNSEktSm1yT29OUHRmUXVjZzdaOFJ0dkFsYnJHaEpuZXhQaUV2WWJxREJZSjZfTWVHSEhoVTlYQ0ZiVElLcU5tMy02S040YzRyY2g0NU44ME1WQkFIcnU3cFl4TmNEZ1JtcXBJNGFKU0tCOEtCYXhHWDBNb081c0ZkQ3oxS0Z1R0Y3VEU5aHJEZ2M5T3FLX05Z0gGXAUFVX3lxTFB2V1BGaWc2MH",
+      "at": 1789128157000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789128157000,
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Geopolitical escalation boosts safe havens and oil."
+    },
+    {
       "title": "U.S. Treasury yields linger near multi-year highs ahead of CPI",
       "link": "https://www.investing.com/news/forex-news/european-debt-extended-in-5week-decline-on-rate-hikes-and-surging-oil-prices-4897325",
       "source": "Investing FX",
@@ -329,7 +356,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789127819000,
-      "_kind": null
+      "_kind": null,
+      "why": "Yields high, direction unclear pending CPI."
     },
     {
       "title": "Oil falls but on track for 8% weekly gain on supply concerns; US diesel hits record high",
@@ -346,7 +374,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789127673000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Oil falls despite weekly gain."
     },
     {
       "title": "UBS warns September rate hike may spark a short-term gold selloff - Investing.com India",
@@ -365,10 +397,14 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789125146000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Rate hike warning sparks gold selloff."
     },
     {
-      "title": "LIVE: Russia, Ukraine trade strikes as casualties reported - news.az",
+      "title": "LIVE: Russia, Ukraine trade strikes as casualties reported - Latest news from Azerbaijan",
       "link": "https://news.google.com/rss/articles/CBMigwFBVV95cUxPbmVmZ28ycE9yVTRJQ2QzMEE0YXBqT2U1RThDcEdpZV83ZGFYSGY3RjlBTlhFaGUxYWdiTDAwZ1YzRWVob2VGWjh5QzhoeXh0YXdsVktUZ1hZaHNrSEhtQWgxTHZWWXBvekEwVEQ0NGkwWmh0MGtuaG5aaHo5SXphQndENA?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMigwFBVV95cUxPbmVmZ28ycE9yVTRJQ2QzMEE0YXBqT2U1RThDcEdpZV83ZGFYSGY3RjlBTlhFaGUxYWdiTDAwZ1YzRWVob2VGWjh5QzhoeXh0YXdsVktUZ1hZaHNrSEhtQWgxTHZWWXBvekEwVEQ0NGkwWmh0MGtuaG5aaHo5SXphQndENA?oc=5\" target=\"_blank\">LIVE: Russia, Ukraine trade s",
@@ -385,29 +421,14 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789127189000,
-      "_kind": null
-    },
-    {
-      "title": "Ukraine strikes oil refinery in Russia’s Saratov - news.az",
-      "link": "https://news.google.com/rss/articles/CBMid0FVX3lxTE5kOVFBNDhsdEQzWklFUlZjcWZ6MWdtTTRfZDQtWTNKTmFlWlVKdURtM0NhaXo1cXcteFdvQm9rZURmQmNzZmlSNU5MNDdva0M1OFpMS1hLenhwRWppdnYxRkQ5cW9KTFF0Z28zWGxVaXV5YW5CazNj?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMid0FVX3lxTE5kOVFBNDhsdEQzWklFUlZjcWZ6MWdtTTRfZDQtWTNKTmFlWlVKdURtM0NhaXo1cXcteFdvQm9rZURmQmNzZmlSNU5MNDdva0M1OFpMS1hLenhwRWppdnYxRkQ5cW9KTFF0Z28zWGxVaXV5YW5CazNj?oc=5\" target=\"_blank\">Ukraine strikes oil refinery in Russia’s Sarato",
-      "at": 1789127189000,
-      "inst": [
-        "USOIL",
-        "XAU/USD",
-        "UKOIL"
-      ],
-      "ccy": [
-        "OIL",
-        "XAU"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789124874000,
-      "_kind": null
+      "firstAt": 1789127325000,
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "War strikes boost safe havens and oil."
     },
     {
       "title": "Oil nears $100 as fresh Middle East strikes raise supply risks",
@@ -427,7 +448,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789127006000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Supply risks push oil and gold up."
     },
     {
       "title": "Explainer-Oil tops $100 on conflict worries. Why isn’t it even higher?",
@@ -444,7 +471,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789126989000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil tops $100 on conflict worries."
     },
     {
       "title": "investingLive European news wrap: The calm before the storm?",
@@ -464,7 +495,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789126823000
+      "firstAt": 1789126823000,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "up"
+      },
+      "why": "Gold falls, oil surges on rate bets."
     },
     {
       "title": "Fixing the interest rate in Russia at 14%... The Central Bank explains the reasons for inflation pressures. - صوت الإمارات",
@@ -487,7 +523,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789126800000
+      "firstAt": 1789126800000,
+      "why": "Russian rate news irrelevant to these pairs."
     },
     {
       "title": "Bitcoin and ethereum prices today, Friday, September 11, 2026: Bitcoin falls below $77,000 with key inflation data on deck",
@@ -505,7 +542,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789124400000
+      "firstAt": 1789124400000,
+      "dir": {
+        "BTC/USDT": "down",
+        "ETH/USDT": "down"
+      },
+      "why": "Bitcoin falls below key support level."
     },
     {
       "title": "TSX futures point higher ahead of key U.S. inflation data",
@@ -527,7 +569,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789126688000
+      "firstAt": 1789126688000,
+      "why": "TSX futures rise, no direct FX impact."
     },
     {
       "title": "Israel says ready for more strikes on Hezbollah after tunnel detonation - Al Arabiya English",
@@ -547,7 +590,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789126447000
+      "firstAt": 1789126447000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up"
+      },
+      "why": "Israel-Hezbollah strikes boost risk assets."
     },
     {
       "title": "Gold gains on softer oil; US inflation data in focus - TradingView",
@@ -567,7 +615,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789126480000
+      "firstAt": 1789126480000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "down"
+      },
+      "why": "Gold gains, oil softer."
     },
     {
       "title": "U.S. stock futures rise as oil drops ahead of key inflation data",
@@ -584,7 +637,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789126094000
+      "firstAt": 1789126094000,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Oil drops ahead of inflation data."
     },
     {
       "title": "Micron offers Taiwan workers up to 68-month bonuses as strike threat looms",
@@ -600,7 +657,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789126015000
+      "firstAt": 1789126015000,
+      "why": "Micron news irrelevant to gold."
     },
     {
       "title": "Stocks making the biggest moves premarket: GameStop, Oracle, Adobe, RH & more",
@@ -1024,7 +1082,7 @@
       "firstAt": 1789119996000
     },
     {
-      "title": "Gold Holds Drop as Rising Oil, Inflation Bolster Rate-Hike Bets - Bloomberg.com",
+      "title": "Gold Holds Drop as Rising Oil, Inflation Bolster Rate-Hike Bets - bloomberg.com",
       "link": "https://news.google.com/rss/articles/CBMiswFBVV95cUxOVGhHQjNJeHVkNWVhb0tENXo0X0VGbVhWSG9BVHk4ZlZsenBBMEtHa1RSdFAxb2pPbnRWV0lqS05xTzhTUUNXRTVkVG50bk9ibzk1VjVvejVuRXR5d29rWEdFN3MybjYtMFBCOXJjRXU3X21lamt0LTdmaUtTNk1DMzBwM3A0eEhZRUpiM3h6WUdzWk1VVzgxbW4wMnQ5bmJJVGFpLTBmYl81MWx5eUVaVVluVQ?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiswFBVV95cUxOVGhHQjNJeHVkNWVhb0tENXo0X0VGbVhWSG9BVHk4ZlZsenBBMEtHa1RSdFAxb2pPbnRWV0lqS05xTzhTUUNXRTVkVG50bk9ibzk1VjVvejVuRXR5d29rWEdFN3MybjYtMFBCOXJjRXU3X21lamt0LTdmaUtTNk1DMzBwM3A0eEhZRUpiM3h6WUdzWk1VVzgxbW4wMnQ5bmJJVGFpLTBmYl81MW",
@@ -1436,7 +1494,7 @@
       "firstAt": 1789113564000
     },
     {
-      "title": "Ukraine Strikes Degrade Russian Oil-Refining Industry, IEA Says - Bloomberg.com",
+      "title": "Ukraine Strikes Degrade Russian Oil-Refining Industry, IEA Says - bloomberg.com",
       "link": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPLVMzdG1pRVdJcjIxU2kxbTN5UnVwOFM3WTlKZWdnWTFMOXRCNl9rLU5UdWVsWUxpYmRBOWkzV3YyRVZLSGd3Qkk2SXpadUNLa05FSTFsSzMyNXd4eW5nc1RNU3RWMW9ZaTVtTlhBTUE4amJ6bjR3dVhncENFaUFWOUZGc01YNnZvX1I3cU4xM2MtT2txVDFpUUFnZkxvZHFRQW9mVDNsU0tPQVpBRUVzRzlKcw?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiswFBVV95cUxPLVMzdG1pRVdJcjIxU2kxbTN5UnVwOFM3WTlKZWdnWTFMOXRCNl9rLU5UdWVsWUxpYmRBOWkzV3YyRVZLSGd3Qkk2SXpadUNLa05FSTFsSzMyNXd4eW5nc1RNU3RWMW9ZaTVtTlhBTUE4amJ6bjR3dVhncENFaUFWOUZGc01YNnZvX1I3cU4xM2MtT2txVDFpUUFnZkxvZHFRQW9mVDNsU0tPQV",
@@ -2046,7 +2104,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-11T12:10:32.718Z",
-  "headlinesAt": "2026-09-11T12:10:32.718Z",
-  "updatedAt": "2026-09-11T12:10:32.718Z"
+  "calendarAt": "2026-09-11T12:12:33.854Z",
+  "headlinesAt": "2026-09-11T12:12:33.854Z",
+  "updatedAt": "2026-09-11T12:12:33.854Z"
 }
