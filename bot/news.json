@@ -245,7 +245,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789146782000,
-      "_kind": null
+      "_kind": null,
+      "why": "Forecast headline lacks specific directional data."
     },
     {
       "title": "Why a shrinking population doesn’t have to be the kiss of death for an economy or stock market",
@@ -278,7 +279,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789146375000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "down",
+        "US500": "up"
+      },
+      "why": "Stocks surge, oil slides."
     },
     {
       "title": "Qualcomm and Meta Platforms show best technical setups among big tech",
@@ -293,7 +299,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789146324000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US100": "up"
+      },
+      "why": "Best technical setups imply bullish bias."
     },
     {
       "title": "Why is Silver Spot stock climbing today?",
@@ -310,7 +320,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789146159000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAG/USD": "up"
+      },
+      "why": "Silver spot stock climbing."
     },
     {
       "title": "Exclusive-White House weighs how to use Defense Production Act to expand US oil refining capacity, sources say",
@@ -327,7 +341,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789146067000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Expanding refining capacity increases supply."
     },
     {
       "title": "US consumer inflation picks up in August",
@@ -350,7 +368,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789145521000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Hot inflation strengthens dollar, weakens metals."
     },
     {
       "title": "Stocks making the biggest moves midday: Dell, Skyworks Solutions, GameStop & more",
@@ -366,7 +390,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789145599000,
-      "_kind": null
+      "_kind": null,
+      "why": "Individual stock moves do not define index."
     },
     {
       "title": "Turn Shopify Stock Sell-Off Into A Profit Opportunity With This Spread Strategy",
@@ -409,7 +434,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789145672000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Oil falls despite weekly gain."
     },
     {
       "title": "Stock Market Midday, Sept. 11: Stocks Rise as Falling Oil Prices Outweigh Sticky Inflation",
@@ -428,7 +457,12 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789145521000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "down",
+        "US500": "up"
+      },
+      "why": "Stocks rise, oil prices fall."
     },
     {
       "title": "August Inflation Came in Hot, and the Odds of a September Rate Hike Are Now 85%. But There's a Silver Lining Driving Stocks Higher.",
@@ -447,7 +481,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789145521000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAG/USD": "up",
+        "US500": "up"
+      },
+      "why": "Silver lining driving stocks higher."
     },
     {
       "title": "EU ambassadors fail to extend sanctions against Russia due to opposition from Slovakia and France - Українська правда",
@@ -468,7 +507,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789144009000,
-      "_kind": null
+      "why": "Sanctions failure impact unclear."
     },
     {
       "title": "This investment is safe from both Trump and the Democrats — and it pays 4.7%",
@@ -483,7 +522,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789145100000
+      "firstAt": 1789145100000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Safe haven investment implies bullishness."
     },
     {
       "title": "Senate Intelligence Committee Will Examine Iran Escalation Threat - Legis1",
@@ -503,7 +546,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789144933000
+      "firstAt": 1789144933000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Escalation threat boosts safe havens and oil."
     },
     {
       "title": "This Oil Stock Sails Near Entry, Profits Soar 452% As Strait of Hormuz Crisis Flares Up",
@@ -519,7 +568,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789142623000
+      "firstAt": 1789142623000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Strait of Hormuz crisis flares up."
     },
     {
       "title": "Canada 10-year yield slips as markets digest U.S. inflation data - Investing.com Canada",
@@ -537,7 +590,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789144676000
+      "firstAt": 1789144676000,
+      "why": "Yield slip direction ambiguous for pair."
     },
     {
       "title": "Your Social Security check could go up another $71 next year. That’s not necessarily good news.",
@@ -809,6 +863,24 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789142623000
+    },
+    {
+      "title": "U.S. Treasury Yields Surge on Oil, Inflation Pressures - 조선일보",
+      "link": "https://news.google.com/rss/articles/CBMijgFBVV95cUxQTGFFVjBQQThWRHVRMDh1dkQ0WlB1akpqWlFCemFiTWdLbWtnVC1EX3RXNi1lYXVuc1VXRHVjT00wcEw4TXZSV0pDanJDYnU0Y2pzSU42bExGNU9VYllYNWc1WV9tVVBiUGt2dE15U0JxUFZuQ2JqbXZDYUswc3dnS01NY2gxeUZMdTdhdFhB?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMijgFBVV95cUxQTGFFVjBQQThWRHVRMDh1dkQ0WlB1akpqWlFCemFiTWdLbWtnVC1EX3RXNi1lYXVuc1VXRHVjT00wcEw4TXZSV0pDanJDYnU0Y2pzSU42bExGNU9VYllYNWc1WV9tVVBiUGt2dE15U0JxUFZuQ2JqbXZDYUswc3dnS01NY2gxeUZMdTdhdFhB?oc=5\" target=\"_blank\">U.S. Treasury Y",
+      "at": 1789142556000,
+      "inst": [
+        "USOIL"
+      ],
+      "ccy": [
+        "USD",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789142556000
     },
     {
       "title": "Estonian intelligence on Ukrainian strikes on Russian plants 3,000 km away: situation has changed - Українська правда",
@@ -1083,24 +1155,6 @@
       "firstAt": 1789139445000
     },
     {
-      "title": "Dollar edges higher against Swiss franc after US inflation data - marketscreener.com",
-      "link": "https://news.google.com/rss/articles/CBMitwFBVV95cUxPc3NtMkwzSmNnN2E5OTBTTjRHS3prZFdhSGYxNEo0Z0dwZkRzM04xYkt3cGhRMnF5OWhpWFNPX2NhVTc0UUd3Y1Nuemw0R2pqb1FSZXNCcl81YU1jeXpIR1ZNSWFkZHBVZEFVOFRpVEs2eEJ5djJLTXM1RURHalZlQWppcHR1c3Y0QktydUJxLTVNb2s4UTJHVnVEMWV1NlU5Tm9zWVdZMUdON0lrSTBvYy1qMGdodEk?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMitwFBVV95cUxPc3NtMkwzSmNnN2E5OTBTTjRHS3prZFdhSGYxNEo0Z0dwZkRzM04xYkt3cGhRMnF5OWhpWFNPX2NhVTc0UUd3Y1Nuemw0R2pqb1FSZXNCcl81YU1jeXpIR1ZNSWFkZHBVZEFVOFRpVEs2eEJ5djJLTXM1RURHalZlQWppcHR1c3Y0QktydUJxLTVNb2s4UTJHVnVEMWV1NlU5Tm9zWVdZMUdON0",
-      "at": 1789139423000,
-      "inst": [
-        "USD/CHF"
-      ],
-      "ccy": [
-        "USD",
-        "CHF"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789139208000
-    },
-    {
       "title": "Dollar Wavers as Inflation Aids Fed Hike Bets While Oil Falls - bloomberg.com",
       "link": "https://news.google.com/rss/articles/CBMisgFBVV95cUxQeWlMZGtUTzRWWVpPMGVET0dKdGZIN2NvNWZrNE1acjJrWnVleGVlMmk5WFVoNGV2NGhKZFM0WENiTWtiU3A1UTdpZGVQVUQ4dTNzQmxsczM0cERDMk5IWmNTdDNmNFh1c0szOG05R25jNXdUR3hORTU0RGpySDdSbm1oMHNHSkNtY0F6ZHlKZ3BkbmJhQUxGM1NzNWczLW8yclhQZlZzRDlSMjRBV08xOTl3?oc=5",
       "source": "Wires (macro)",
@@ -1123,7 +1177,7 @@
       "link": "https://news.google.com/rss/articles/CBMijwFBVV95cUxONEQ0NklZSUV1TFFkNk1MTTgzQlF4RnFCeEJ3SGdKdUJYYVQ3bFdwUkgtdmpLeFNlbUxmT21iQWFlWGMtTEFERTE4UUNWZ1lwUlVadTQwRnRFamZINjVvcFJsNmZQLWpQSGphX0dOdGUtZDFmdXFLTFFYaVUxS2FpZjBOTFVMSzBSUGQ1dGJ0d9IBjwFBVV95cUxQbnM3TEx3ZlI1ZjNVSkxrSDV6Y0ZDUXNFOUFWelhFeE82ci1tVjZMOWtraHNkMHprQzVsZ0p3XzhsbW5lajM3UWJtZG5uc1ZoRVNfOW9QR3ZPUGxnYk9KY2lhaUtDNHhBM3pseS1jY1VVX3RzRHU2Um5TaHlTMmxiNUtocnNUTkMtblk3T3Yzbw?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMijwFBVV95cUxONEQ0NklZSUV1TFFkNk1MTTgzQlF4RnFCeEJ3SGdKdUJYYVQ3bFdwUkgtdmpLeFNlbUxmT21iQWFlWGMtTEFERTE4UUNWZ1lwUlVadTQwRnRFamZINjVvcFJsNmZQLWpQSGphX0dOdGUtZDFmdXFLTFFYaVUxS2FpZjBOTFVMSzBSUGQ1dGJ0d9IBjwFBVV95cUxQbnM3TEx3ZlI1ZjNVSkxrSD",
-      "at": 1789139014000,
+      "at": 1789138628000,
       "inst": [
         "XAU/USD",
         "USOIL",
@@ -1136,7 +1190,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789139014000
+      "firstAt": 1789138628000
     },
     {
       "title": "More than 500,000 Russian troops killed in Ukraine, U.K. defense chief says - Los Angeles Times",
@@ -1180,26 +1234,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789136350000
-    },
-    {
-      "title": "Ukraine Codifies “Steppe Wind” Strike Drone With 90+ km Range and Optical Guidance - UNITED24 Media",
-      "link": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxOZHdPZU9ud3RRdXQtWDVZNllMMkh1Z1dEN2YtcGRlTUdlbjYxamZCZWxxaFlpdEZHQ09FUndUY1F2YUpkRm8tTVo3LXBQYnU4MGotWjIyVklrMkptSTZ1ekdjVVRDRzFEbkdLak1NOFQxbjdocDlmb0l4Q2NZX2tzam1rUXhhR1Zka3gwU3ROa3c2T21rdVJ0QmtRNUtJVHZ2cmJtdm1QRUZBbjZwNmJSYU5hYjBMNHEyalUtLVVRVXJfUQ?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiwgFBVV95cUxOZHdPZU9ud3RRdXQtWDVZNllMMkh1Z1dEN2YtcGRlTUdlbjYxamZCZWxxaFlpdEZHQ09FUndUY1F2YUpkRm8tTVo3LXBQYnU4MGotWjIyVklrMkptSTZ1ekdjVVRDRzFEbkdLak1NOFQxbjdocDlmb0l4Q2NZX2tzam1rUXhhR1Zka3gwU3ROa3c2T21rdVJ0QmtRNUtJVHZ2cmJtdm1QRUZBbj",
-      "at": 1789137825000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789136018000
     },
     {
       "title": "Oil tanker rates hit record highs following Iran, US shipping attacks",
@@ -1712,29 +1746,6 @@
       "firstAt": 1789130207000
     },
     {
-      "title": "U.S. Stock Markets Show Resilience Amid Inflation Worries - Devdiscourse",
-      "link": "https://news.google.com/rss/articles/CBMirgFBVV95cUxPUW9LMG84T2IzbUhjMDdPNFVPa2ViTE9PV0FYUl9xZW5UcHlSOHg3R0NFR0dWYU5nUklHZ3o0UGRtYURQUE0xNXVEcjFSQVJtTnRsZVF1R25Mc2JDTTZvV01ZTXdtbzU5dHY5RWNBdFBJWDB5RlViSF9xNkJPNWpZaEtYLTcxa28tWllEOTFOczBybDFBZ2d1bXI1b1drcVVDdTdBRGRyb0prVV9VMWfSAbMBQVVfeXFMT2JkaExVQWRfR0VRM1NCWi1BaU43aThoMElaRFVuaUhRZDRvbUliZi1NdXJQM2tsU1BtRk5ZY0tHVUxuZTU5UFhpYjgwVmw3TWZnQWR3bVZQS090MGx6MGRORHpYWWdiam52ZnNQam1Xd0l2R1plVUI2eExlYUpBWnJsbzFGcVVJei1XX1d5WDA4dGhqUkJrZVFVLVE0RzgtVXVOLXcwNHpGWjF3VjlKV0RGWG8?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMirgFBVV95cUxPUW9LMG84T2IzbUhjMDdPNFVPa2ViTE9PV0FYUl9xZW5UcHlSOHg3R0NFR0dWYU5nUklHZ3o0UGRtYURQUE0xNXVEcjFSQVJtTnRsZVF1R25Mc2JDTTZvV01ZTXdtbzU5dHY5RWNBdFBJWDB5RlViSF9xNkJPNWpZaEtYLTcxa28tWllEOTFOczBybDFBZ2d1bXI1b1drcVVDdTdBRGRyb0prVV",
-      "at": 1789131813000,
-      "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789130305000
-    },
-    {
       "title": "U.S. 10-year yield briefly breaks 5% for first time since 2024 after Aug CPI",
       "link": "https://www.investing.com/news/forex-news/european-debt-extended-in-5week-decline-on-rate-hikes-and-surging-oil-prices-4897325",
       "source": "Investing FX",
@@ -1928,6 +1939,45 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789130207000
+    },
+    {
+      "title": "US August CPI 3.4% vs 3.4% expected",
+      "link": "https://investinglive.com/news/us-august-cpi-vs-3-4-expected/",
+      "source": "ForexLive",
+      "desc": "Prior was 3.4%Unrounded +3.397% vs +3.365% priorCPI m/m +0.4% vs +0.4% expPrior CPI was +0.1%Unrounded CPI m/m +0.396% vs +0.074% priorCore readings:Core y/y 2.4% vs 2.4% expectedPrior core was 2.5%Core unrounded +2.446% y/yCore m/m +0.3% vs +0.2% expectedPrior m/m +0.2%Unrounded",
+      "at": 1789129807000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789129807000
+    },
+    {
+      "title": "Oil prices drop but remain on track to close week above $100",
+      "link": "https://www.investing.com/news/commodities-news/oil-prices-rise-brent-tests-110-a-barrel-as-meast-supply-risks-grow-4897144",
+      "source": "Investing Cmdty",
+      "at": 1789129352000,
+      "inst": [
+        "USOIL"
+      ],
+      "ccy": [
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789129352000
     }
   ],
   "sources": [
@@ -1953,7 +2003,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-11T17:17:02.508Z",
-  "headlinesAt": "2026-09-11T17:17:02.508Z",
-  "updatedAt": "2026-09-11T17:17:02.508Z"
+  "calendarAt": "2026-09-11T17:19:04.294Z",
+  "headlinesAt": "2026-09-11T17:19:04.294Z",
+  "updatedAt": "2026-09-11T17:19:04.294Z"
 }
