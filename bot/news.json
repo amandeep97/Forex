@@ -344,7 +344,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789098489000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Ukraine conflict escalates, boosting gold safe haven demand."
     },
     {
       "title": "investingLive Asia-Pacific market news: Oil holds near highs",
@@ -367,7 +371,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789098312000,
-      "_kind": null
+      "_kind": null,
+      "why": "Oil holds highs; BOJ hike expected but pace unclear."
     },
     {
       "title": "Trump’s Iran war echoes post-attack ‘forever wars’ - The Daily Star",
@@ -387,7 +392,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789097900000
+      "firstAt": 1789097900000,
+      "why": "Iran war echoes past conflicts; no immediate market directio"
     },
     {
       "title": "Russia and China oppose push to reactivate UN Iran sanctions committee - thenationalnews.com",
@@ -407,7 +413,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789097625000
+      "firstAt": 1789097625000,
+      "why": "Russia/China oppose UN sanctions; geopolitical tension persi"
     },
     {
       "title": "Republican midterm convention wraps up in Dallas, Texas: Key takeaways",
@@ -437,7 +444,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789096800000
+      "firstAt": 1789096800000,
+      "why": "New sanctions on Hezbollah/Iran; unclear immediate market im"
     },
     {
       "title": "Asian stocks tumble as oil surge, Fed hike bets overshadow chip optimism",
@@ -455,7 +463,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789096487000
+      "firstAt": 1789096487000,
+      "dir": {
+        "USOIL": "up",
+        "US500": "down"
+      },
+      "why": "Oil surge and Fed hike bets weigh on stocks."
     },
     {
       "title": "Gold Price Forecast: Will US CPI inflation revive XAU/USD uptrend? - FXStreet",
@@ -473,7 +486,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789094160000
+      "firstAt": 1789094160000,
+      "why": "Forecast asks if CPI revives gold uptrend; uncertain."
     },
     {
       "title": "Dow Jones Futures, Oracle Jumps After Oil Prices, Yields Surge; CPI Inflation Due - Investor's Business Daily",
@@ -492,7 +506,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789095780000
+      "firstAt": 1789095780000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil prices surge; Dow futures mixed with Oracle jump."
     },
     {
       "title": "Israeli experts split over impact of Western sanctions on entities linked to West Bank settlements - aa.com.tr",
@@ -512,7 +530,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789095476000
+      "firstAt": 1789095476000,
+      "why": "Experts split on West Bank sanctions impact; no clear signal"
     },
     {
       "title": "Which tech stocks are most vulnerable to surging yields?",
@@ -527,7 +546,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789095322000
+      "firstAt": 1789095322000,
+      "dir": {
+        "US500": "down",
+        "US100": "down"
+      },
+      "why": "Surging yields make tech stocks vulnerable to declines."
     },
     {
       "title": "Why is the Australian Dollar falling despite RBA hawkish stance? - FXStreet",
@@ -545,7 +569,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789095116000
+      "firstAt": 1789095116000,
+      "dir": {
+        "AUD/USD": "down"
+      },
+      "why": "Australian Dollar falling despite hawkish RBA stance."
     },
     {
       "title": "Iranian strikes damaged multiple aircraft at Jordan base, report says - Middle East Eye",
@@ -565,7 +593,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789095060000
+      "firstAt": 1789095060000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Iranian strikes on Jordan base escalate Middle East tensions"
     },
     {
       "title": "Young republicans break with Trump over Iran war",
@@ -585,7 +619,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789094752000
+      "firstAt": 1789094752000,
+      "why": "Republican divide over Iran war; no direct market impact."
     },
     {
       "title": "⁠Gold on track for third weekly loss as US inflation data looms​‌ - Reuters",
@@ -603,7 +638,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789092948000
+      "firstAt": 1789092948000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold on track for third weekly loss ahead of CPI."
     },
     {
       "title": "Gold and Crypto Fall as Hot US Inflation Rattles Markets - Mitrade",
@@ -623,7 +662,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789092948000
+      "firstAt": 1789092948000,
+      "dir": {
+        "XAU/USD": "down",
+        "BTC/USDT": "down"
+      },
+      "why": "Hot US inflation rattles markets, hitting gold and crypto."
     },
     {
       "title": "The iPhone Duo enters China’s crowded foldable market — and faces a price test",
@@ -2082,7 +2126,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-11T04:09:48.227Z",
-  "headlinesAt": "2026-09-11T04:09:48.227Z",
-  "updatedAt": "2026-09-11T04:09:48.227Z"
+  "calendarAt": "2026-09-11T04:11:16.097Z",
+  "headlinesAt": "2026-09-11T04:11:16.097Z",
+  "updatedAt": "2026-09-11T04:11:16.097Z"
 }
