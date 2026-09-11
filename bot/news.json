@@ -20,7 +20,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789089660000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Geopolitical conflict boosts safe havens and oil."
     },
     {
       "title": "Oil prices set to end week over $100 for first time in nearly 4 months",
@@ -37,7 +43,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789089504000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil prices rising above $100."
     },
     {
       "title": "South Korea, Japan stocks decline as Asian shares drop on oil, inflation concern - The Business Times",
@@ -59,7 +69,12 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789087036000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "US500": "down"
+      },
+      "why": "Oil up, stocks down on inflation fears."
     },
     {
       "title": "Coach crash kills several people in Swiss Alps",
@@ -77,7 +92,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789088478000,
-      "_kind": null
+      "why": "No clear directional impact on currency."
     },
     {
       "title": "Oil prices rise, Brent tests $110 a barrel as M.East supply risks grow",
@@ -95,7 +110,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789088463000,
-      "_kind": null
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Supply risks drive oil prices higher."
     },
     {
       "title": "Gold steadies after sharp drop as hotter PPI lifts Fed hike bets",
@@ -112,7 +131,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789085460000
+      "firstAt": 1789085460000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Hotter PPI lifts Fed hike bets, pressuring gold."
     },
     {
       "title": "Why is Uber pulling out of some African markets?",
@@ -142,7 +165,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789087385000
+      "firstAt": 1789087385000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Tanker attacks cause oil prices to surge."
     },
     {
       "title": "Japan wholesale inflation stays hot in August, cements case for BOJ hike",
@@ -160,7 +188,11 @@
       "sev": 3,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789084492000
+      "firstAt": 1789084492000,
+      "dir": {
+        "USD/JPY": "down"
+      },
+      "why": "Hot inflation cements case for BOJ hike."
     },
     {
       "title": "U.S. Sanctions 14 Individuals and Five Entities Linked to Iran and Hezbollah - WANA News Agency",
@@ -180,7 +212,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789086420000
+      "firstAt": 1789086420000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Sanctions increase geopolitical risk, boosting oil and gold."
     },
     {
       "title": "U.S. stock futures steady with CPI on tap; Oracle firms on strong earnings",
@@ -202,7 +240,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789086147000
+      "firstAt": 1789086147000,
+      "why": "Futures steady, no clear directional bias."
     },
     {
       "title": "The iPhone Duo enters China’s crowded foldable market — and faces a price test",
@@ -230,7 +269,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789085820000
+      "firstAt": 1789085820000,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Disappointing earnings weigh on stock sentiment."
     },
     {
       "title": "Gold holds drop as rising oil, inflation bolster US rate-hike bets - The Business Times",
@@ -250,7 +293,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789083283000
+      "firstAt": 1789083283000,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "up"
+      },
+      "why": "Oil up, gold down on rate hike bets."
     },
     {
       "title": "Iran war live: IRGC attacks US unmanned vessel in Hormuz; two ships hit",
@@ -270,7 +318,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789084800000
+      "firstAt": 1789084800000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Escalating war risks boost oil and safe havens."
     },
     {
       "title": "Japan August PPI surges +7.6% y/y (expected +7.4%, prior +7.2%)",
@@ -288,7 +342,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789084492000
+      "firstAt": 1789084492000,
+      "dir": {
+        "USD/JPY": "down"
+      },
+      "why": "Hot PPI reinforces BOJ rate hike expectations."
     },
     {
       "title": "US sanctions supporters of Iran-backed militias - Yahoo",
@@ -308,7 +366,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789084121000
+      "firstAt": 1789084121000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Sanctions increase geopolitical risk, boosting oil and gold."
     },
     {
       "title": "UN envoy warns Security Council Yemen’s war has entered ‘dangerous phase’",
@@ -422,7 +486,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789079762000
+      "firstAt": 1789079058000
     },
     {
       "title": "Want Apple’s $1,999 foldable iPhone Duo? Here’s what T-Mobile, AT&T and Verizon are doing to lower the cost.",
@@ -440,6 +504,26 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789079100000
+    },
+    {
+      "title": "Russian strikes kill seven in Ukraine industrial hub of Pavlohrad - Reuters",
+      "link": "https://news.google.com/rss/articles/CBMiowFBVV95cUxONEVtQVJxa3hqaktCVV9ValNCTzFSNGRORVhUcTRMcUxnLUh6RHZNeDkyWlNpbTFxRUxETVoyajVzZi1IaHQ1SGNldW5QWXZRLWRrTjZ6WC02ZndibmpqU0t4VXVXTmF1QUJVZ0pyV3dFVWh3Qm5oTU8zMWVUZGRzTVhzUXlYNUhHZ1FVa1hVcF9wUThDTjJmaGtzQ21sc3E2bXN3?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiowFBVV95cUxONEVtQVJxa3hqaktCVV9ValNCTzFSNGRORVhUcTRMcUxnLUh6RHZNeDkyWlNpbTFxRUxETVoyajVzZi1IaHQ1SGNldW5QWXZRLWRrTjZ6WC02ZndibmpqU0t4VXVXTmF1QUJVZ0pyV3dFVWh3Qm5oTU8zMWVUZGRzTVhzUXlYNUhHZ1FVa1hVcF9wUThDTjJmaGtzQ21sc3E2bXN3?oc=5\" tar",
+      "at": 1789079058000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789077100000
     },
     {
       "title": "Asian Stocks, Bonds to Drop on Oil, Inflation Woes: Markets Wrap - Bloomberg.com",
@@ -1208,26 +1292,6 @@
       "firstAt": 1789066935000
     },
     {
-      "title": "Russian strikes kill seven in Ukraine industrial hub of Pavlohrad - Reuters",
-      "link": "https://news.google.com/rss/articles/CBMiowFBVV95cUxONEVtQVJxa3hqaktCVV9ValNCTzFSNGRORVhUcTRMcUxnLUh6RHZNeDkyWlNpbTFxRUxETVoyajVzZi1IaHQ1SGNldW5QWXZRLWRrTjZ6WC02ZndibmpqU0t4VXVXTmF1QUJVZ0pyV3dFVWh3Qm5oTU8zMWVUZGRzTVhzUXlYNUhHZ1FVa1hVcF9wUThDTjJmaGtzQ21sc3E2bXN3?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiowFBVV95cUxONEVtQVJxa3hqaktCVV9ValNCTzFSNGRORVhUcTRMcUxnLUh6RHZNeDkyWlNpbTFxRUxETVoyajVzZi1IaHQ1SGNldW5QWXZRLWRrTjZ6WC02ZndibmpqU0t4VXVXTmF1QUJVZ0pyV3dFVWh3Qm5oTU8zMWVUZGRzTVhzUXlYNUhHZ1FVa1hVcF9wUThDTjJmaGtzQ21sc3E2bXN3?oc=5\" tar",
-      "at": 1789066772000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789066772000
-    },
-    {
       "title": "US slaps new sanctions on networks aiding Iran’s proxies in Middle East - Al Arabiya English",
       "link": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxPNkFINWcwR0VWUlAyLWhTSU5oWXluXzBvYjk4WUhRRUc5M0t0ZnFGQm9Bb28weUMzbXFEd3pfbFdJR0hTX0otVU1UMVYtTDBqQ2R2T3VkczJFOUJKMzEtTW5lUlp2SEV0Xy1zZkI4UzFKcjRxc18xSGhQa0cydHlfRXNkTE92ZDhMVkpOalprcGpEUnM1VFFuYmhYalU2MnJIekJCdlRTM3hBRGtPMm92VGpwVDFKYzVIZnBSWkwzX0dobERWSGZvMtIBzgFBVV95cUxNQnF1aFFLVzA2Nzg1T3J2OTc3bEJ5WG1DUF9UeEZ6VDZyMkZJS1lWT1otWVBkaHItcUEtQXg1d2JUZnNRQVh3bmZCbzU4U0xpMlJ2bTlPVnpVQ2hIVTVWNC04akQ1eWFsdG41WDdabTI5d3NqaFNwRE1QV2kzT21PY0ktYlJFS3Q3TGp2LTdtUVRzQk93RFBYMFY5Q0dldlZhbU9pV0NMNGg1bDRvMzJxQk5JYkpXaUxrSjB4X3hnaU5SRFRXTW9kc0hfYUFUQQ?oc=5",
       "source": "Wires (geo)",
@@ -1764,10 +1828,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-11T01:30:46.417Z",
-  "updatedAt": "2026-09-11T01:30:46.417Z"
+  "headlinesAt": "2026-09-11T01:32:31.057Z",
+  "updatedAt": "2026-09-11T01:32:31.057Z"
 }
