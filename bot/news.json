@@ -18,7 +18,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789094160000,
-      "_kind": null
+      "_kind": null,
+      "why": "Forecast question implies uncertainty"
     },
     {
       "title": "Israeli experts split over impact of Western sanctions on entities linked to West Bank settlements - Anadolu Ajansı",
@@ -39,7 +40,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789095476000,
-      "_kind": null
+      "_kind": null,
+      "why": "Expert split implies no clear direction"
     },
     {
       "title": "Why is the Australian Dollar falling despite RBA hawkish stance? - FXStreet",
@@ -58,7 +60,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789095116000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "AUD/USD": "down"
+      },
+      "why": "Explicitly states dollar is falling"
     },
     {
       "title": "Dow Jones Futures, Oracle Jumps After Oil Prices, Yields Surge; CPI Inflation Due - Investor's Business Daily",
@@ -77,7 +83,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789094940000
+      "firstAt": 1789094940000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil surges, stocks mixed"
     },
     {
       "title": "Young republicans break with Trump over Iran war",
@@ -97,7 +107,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789094752000
+      "firstAt": 1789094752000,
+      "why": "Political news, unclear market impact"
     },
     {
       "title": "⁠Gold on track for third weekly loss as US inflation data looms​‌ - reuters.com",
@@ -115,7 +126,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789092948000
+      "firstAt": 1789092948000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold on track for loss"
     },
     {
       "title": "Gold and Crypto Fall as Hot US Inflation Rattles Markets - Mitrade",
@@ -135,7 +150,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789092948000
+      "firstAt": 1789092948000,
+      "dir": {
+        "XAU/USD": "down",
+        "BTC/USDT": "down"
+      },
+      "why": "Both assets explicitly falling"
     },
     {
       "title": "The iPhone Duo enters China’s crowded foldable market — and faces a price test",
@@ -166,7 +186,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789091307000
+      "firstAt": 1789091307000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Lingering near one-week low"
     },
     {
       "title": "Russian air strikes injure two, cause fire in 9-storey apartment building in Kyiv, officials say",
@@ -185,7 +209,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789091306000
+      "firstAt": 1789091306000,
+      "why": "Local incident, unclear macro impact"
     },
     {
       "title": "Trump’s Iran war echoes post-attack ‘forever wars’ - The Daily Star",
@@ -205,7 +230,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789091258000
+      "firstAt": 1789091258000,
+      "why": "Geopolitical commentary, unclear immediate direction"
     },
     {
       "title": "Global bond sell-off resumes as surging oil prices stoke fears about inflation - The Guardian",
@@ -223,7 +249,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789090200000
+      "firstAt": 1789090200000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Surging oil prices explicitly stated"
     },
     {
       "title": "Iran strikes U.S. base in Jordan overnight - krem.com",
@@ -243,7 +273,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789089660000
+      "firstAt": 1789089660000,
+      "why": "Geopolitical event, direction unclear"
     },
     {
       "title": "Could Israel have avoided Western sanctions? Former diplomats say the warning signs were clear - Ynetnews",
@@ -263,7 +294,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789089585000
+      "firstAt": 1789089585000,
+      "why": "Diplomatic commentary, no clear market move"
     },
     {
       "title": "Oil prices set to end week over $100 for first time in nearly 4 months",
@@ -279,7 +311,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789089504000
+      "firstAt": 1789089504000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Prices set to end higher"
     },
     {
       "title": "Coach crash kills several people in Swiss Alps",
@@ -296,7 +332,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789088478000
+      "firstAt": 1789088478000,
+      "why": "Local accident, no clear FX impact"
     },
     {
       "title": "Oil prices rise, Brent tests $110 a barrel as M.East supply risks grow",
@@ -439,7 +476,7 @@
       "firstAt": 1789085820000
     },
     {
-      "title": "Gold stays under pressure as surging oil strengthens Fed rate-hike bets - The Business Times",
+      "title": "Gold stays under pressure as surging oil strengthens Fed rate-hike bets - businesstimes.com.sg",
       "link": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxPR0p5Szh2QmpISkh6bFZnMi1LX0hFUHpnR1RPYWJvY1k3S0EzREhsakNIMDRmZnNNWDMzcEZkdnMxOS1GMGppaEMwUTE1MTBiQ3Rkd3hBYWdTWW0yWi1LcDU0TWh5Q1A4cXJzbnZ2dWhFdXRxREZCY2cxX04tX2JsUm1VbGFFVzVFMGFVcWRkVWJEZmdITnJkNDJ2ZVNpME5LbEg5cHpnNVpzT1NHTm1VbmhZRjB4S2tHemw0QTdLVFhQWW9kMWYycm5sMFVGdDV1a096Qg?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMi1AFBVV95cUxPR0p5Szh2QmpISkh6bFZnMi1LX0hFUHpnR1RPYWJvY1k3S0EzREhsakNIMDRmZnNNWDMzcEZkdnMxOS1GMGppaEMwUTE1MTBiQ3Rkd3hBYWdTWW0yWi1LcDU0TWh5Q1A4cXJzbnZ2dWhFdXRxREZCY2cxX04tX2JsUm1VbGFFVzVFMGFVcWRkVWJEZmdITnJkNDJ2ZVNpME5LbEg5cHpnNVpzT1",
@@ -826,7 +863,7 @@
       "firstAt": 1789077210000
     },
     {
-      "title": "US stocks: S&P 500 ends down as Treasury yields rise and traders fret about inflation - The Business Times",
+      "title": "US stocks: S&P 500 ends down as Treasury yields rise and traders fret about inflation - businesstimes.com.sg",
       "link": "https://news.google.com/rss/articles/CBMi7wFBVV95cUxQeGhxNFNITERzYTJZampfamcxSmsxNmk3MnlVZU51Ulhickl0c0xXWGdIbmFTMWptS21adGZPS0FQdXVOa3EwN3RDTGNPR0ZkZ1ZoaWtlUk1iRURIRGRmMlNPbmc5bWpyOFJfRHpLSWR3UkdPX2l5V1o0ZmJ4cUQyV0V6d3FGRUcyMHBOX1ZPYjVtWkJyOURpSzZIbVJvMnk1UHQtSDR2YTdiWmZpOVc0V0xJYlVwcXVZbExUd1Y0emR5RGNmbUc4NG9zVTFyYVF0T2ZPR3FablVkOFdlRTVPcl82cXhTYmJKQldDNThtaw?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMi7wFBVV95cUxQeGhxNFNITERzYTJZampfamcxSmsxNmk3MnlVZU51Ulhickl0c0xXWGdIbmFTMWptS21adGZPS0FQdXVOa3EwN3RDTGNPR0ZkZ1ZoaWtlUk1iRURIRGRmMlNPbmc5bWpyOFJfRHpLSWR3UkdPX2l5V1o0ZmJ4cUQyV0V6d3FGRUcyMHBOX1ZPYjVtWkJyOURpSzZIbVJvMnk1UHQtSDR2YTdiWm",
@@ -922,10 +959,10 @@
       "firstAt": 1789075029000
     },
     {
-      "title": "11 Wounded, Including 3 Children, as Russia Strikes Sumy - kyivpost.com",
+      "title": "11 Wounded, Including 3 Children, as Russia Strikes Sumy - Kyiv Post",
       "link": "https://news.google.com/rss/articles/CBMiS0FVX3lxTFBnckNEcTA5X3d1b2dkcXlXUFJrZHpGUkRkLVdMaVVBZ05ROEM5VWdwYWZWNG1sQXNTanlzNmFtUHZLUE0yQ0hBNUNCQQ?oc=5",
       "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiS0FVX3lxTFBnckNEcTA5X3d1b2dkcXlXUFJrZHpGUkRkLVdMaVVBZ05ROEM5VWdwYWZWNG1sQXNTanlzNmFtUHZLUE0yQ0hBNUNCQQ?oc=5\" target=\"_blank\">11 Wounded, Including 3 Children, as Russia Strikes Sumy</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">kyivpost.co",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiS0FVX3lxTFBnckNEcTA5X3d1b2dkcXlXUFJrZHpGUkRkLVdMaVVBZ05ROEM5VWdwYWZWNG1sQXNTanlzNmFtUHZLUE0yQ0hBNUNCQQ?oc=5\" target=\"_blank\">11 Wounded, Including 3 Children, as Russia Strikes Sumy</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">Kyiv Post</",
       "at": 1789074445000,
       "inst": [
         "XAU/USD",
@@ -939,7 +976,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789074445000
+      "firstAt": 1789073337000
     },
     {
       "title": "US targets Iran-linked networks as sanctions campaign expands - iranintl.com",
@@ -1382,7 +1419,7 @@
       "firstAt": 1789066200000
     },
     {
-      "title": "Analysis • Israel's opposition answered the U.K.'s West Bank sanctions with a shrug - Haaretz",
+      "title": "Analysis • Israel's opposition answered the U.K.'s West Bank sanctions with a shrug - haaretz.com",
       "link": "https://news.google.com/rss/articles/CBMikAJBVV95cUxNejdHbmFqSjJNTGRTVzR0eC1SU2xRME1MMTBWZVY4dFVBYmVqOEw1bG8wamlDa2JINzFUWUVHYjZ0MWlYckowODRoNlpwbUpvWHpwMFVKWWQ3enFUWUI3S3NJbnEza0dXQ2hxejRSbVFvS2RLYW10UXNsMjMxR1dQQm5qQzZWdmdiV0owTnZfTlBuVnQ3X0t2andRMDRSVTk4aF9Xal95QnZLd0xzUGhCYXg2VGZ3Wk9hcWxqa3JJQ1dkZjVDM2pPOXh0Q0REVUpoQjBHSjh1YWJtRUs1TFgxM1pTRUswZ0ZjRlV3cjg2dmhIQ2hmNl9QN21DWGl6aU9CeDJPWXluaFl3Q2hLY0d6Wg?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMikAJBVV95cUxNejdHbmFqSjJNTGRTVzR0eC1SU2xRME1MMTBWZVY4dFVBYmVqOEw1bG8wamlDa2JINzFUWUVHYjZ0MWlYckowODRoNlpwbUpvWHpwMFVKWWQ3enFUWUI3S3NJbnEza0dXQ2hxejRSbVFvS2RLYW10UXNsMjMxR1dQQm5qQzZWdmdiV0owTnZfTlBuVnQ3X0t2andRMDRSVTk4aF9Xal95QnZLd0",
@@ -1767,6 +1804,6 @@
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-11T03:19:43.950Z",
-  "updatedAt": "2026-09-11T03:19:43.950Z"
+  "headlinesAt": "2026-09-11T03:21:45.838Z",
+  "updatedAt": "2026-09-11T03:21:45.838Z"
 }
