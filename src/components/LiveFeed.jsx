@@ -91,76 +91,140 @@ function Rarity({ perMonth, label }) {
 }
 
 
-// ── Daily liquidity, straight from the VPS ───────────────────────────────────
+// ── The liquidity table ──────────────────────────────────────────────────────
 //
-// Its own panel rather than a decoration on filter matches, because the two
-// selections have nothing to do with each other. The feed shows instruments
-// that matched the filter you picked; the scanner watches whatever is near a
-// level right now. An instrument sitting on yesterday's high is the thing you
-// said you wanted to see, and it was invisible unless it happened to satisfy an
-// unrelated filter first.
+// A row per instrument, a COLUMN PER LEVEL. The point is to answer "which one
+// got hunted" by looking, not by reading a sentence.
 //
-// Daily levels lead. Everything else is a second section, collapsed by default,
-// because "yesterday's high and low, swept or approached" is the request and
-// H4 swings are the nice-to-have.
+// Earlier versions reported the single most important level per instrument and
+// hid the other five. That is the right shape for an alert, which can only say
+// one thing, and the wrong shape for a screen: the reader cannot see the
+// ranking, so a quiet daily high and a swept weekly low are indistinguishable
+// from a swept daily high with everything else quiet.
+//
+// Four states, and the first two are the whole model. SWEPT went past the level
+// and came back — liquidity taken. THROUGH went past and stayed, which is a
+// breakout and the opposite trade. Showing those as the same colour would make
+// the table worse than nothing.
+const COLS = [
+  { key:'PDH', head:'D-High', title:"yesterday's high" },
+  { key:'PDL', head:'D-Low',  title:"yesterday's low" },
+  { key:'PWH', head:'W-High', title:"last week's high" },
+  { key:'PWL', head:'W-Low',  title:"last week's low" },
+  { key:'H4H', head:'4H-Hi',  title:'nearest H4 swing high' },
+  { key:'H4L', head:'4H-Lo',  title:'nearest H4 swing low' },
+];
+
+const CELL = {
+  swept:   { bg:'#f59e0b22', fg:'#fbbf24', mark:'HUNT' },
+  through: { bg:'#8b5cf622', fg:'#a78bfa', mark:'THRU' },
+  near:    { bg:'#38bdf822', fg:'#38bdf8', mark:'near' },
+  quiet:   { bg:'transparent',  fg:'#1e293b', mark:'·' },
+};
+
+function Cell({ c }) {
+  const st = CELL[c?.state || 'quiet'] || CELL.quiet;
+  return (
+    <td title={c ? `${c.state} · ${c.price}${c.atrPct != null ? ` · ${c.atrPct} ATR away` : ''}` : 'no level'}
+      style={{ background:st.bg, color:st.fg, fontFamily:C.mono, fontSize:8.5, fontWeight:700,
+        textAlign:'center', padding:'4px 2px', borderLeft:`1px solid ${C.line}`, whiteSpace:'nowrap' }}>
+      {c ? st.mark : ''}
+      {c?.state === 'near' && c.atrPct != null && (
+        <div style={{ fontSize:7, fontWeight:400, opacity:0.75 }}>{c.atrPct}</div>
+      )}
+    </td>
+  );
+}
+
 function LiquidityPanel({ liq }) {
-  const [showRest, setShowRest] = useState(false);
+  const [all, setAll] = useState(false);
   if (!liq) return null;
 
-  const rows = Object.values(liq.bySym || {});
-  const isDaily = r => ['PDH', 'PDL'].includes(r.setup?.level?.kind || r.near?.kind);
-  const interesting = r => r.setup || r.near;
+  const rows = Object.values(liq.bySym || {}).filter(r => r.levels);
+  // An instrument where every column is quiet says nothing and costs a line.
+  const active = rows.filter(r => Object.values(r.levels).some(v => v.state !== 'quiet'));
+  const shown = all ? rows : active;
 
-  const daily = rows.filter(r => interesting(r) && isDaily(r));
-  const rest  = rows.filter(r => interesting(r) && !isDaily(r));
+  const rank = r => {
+    const v = k => r.levels?.[k]?.state;
+    const daily = ['PDH','PDL'].some(k => v(k) === 'swept') ? 4
+                : ['PDH','PDL'].some(k => v(k) === 'near') ? 2 : 0;
+    const other = Object.values(r.levels || {}).some(x => x.state === 'swept') ? 1 : 0;
+    return daily + other + (r.setup?.state === 'setup' ? 8 : 0);
+  };
+  shown.sort((a, b) => rank(b) - rank(a) || a.sym.localeCompare(b.sym));
 
   const stale = r => Date.now() - r.at > 10 * 60e3;
-  const line = r => (
-    <div key={r.sym} style={{ padding:'6px 10px', borderTop:`1px solid ${C.line}` }}>
-      <div style={{ display:'flex', gap:8, alignItems:'baseline', flexWrap:'wrap' }}>
-        <strong style={{ fontSize:11, color:C.txt, fontFamily:C.mono, minWidth:64 }}>{r.sym}</strong>
-        <span style={{ fontSize:9, color:'#334155', fontFamily:C.mono }}>{r.price}</span>
-      </div>
-      {r.setup
-        ? <SweepSetup s={r.setup} stale={stale(r)}/>
-        : <Approaching n={r.near} stale={stale(r)}/>}
-    </div>
-  );
 
   return (
     <div style={{ margin:'8px 10px', background:C.panel, border:`1px solid ${C.line}`, borderRadius:5, overflow:'hidden' }}>
       <div style={{ padding:'7px 10px', borderBottom:`1px solid ${C.line}`, display:'flex',
         gap:8, alignItems:'baseline', flexWrap:'wrap' }}>
-        <strong style={{ fontSize:11, color:'#38bdf8', fontFamily:C.mono, letterSpacing:0.5 }}>DAILY LIQUIDITY</strong>
-        <span style={{ fontSize:9, color:C.dim }}>
-          yesterday&rsquo;s high and low — approached, swept, or confirmed
-        </span>
+        <strong style={{ fontSize:11, color:'#38bdf8', fontFamily:C.mono, letterSpacing:0.5 }}>LIQUIDITY</strong>
+        <span style={{ fontSize:9, color:C.dim }}>which level got hunted</span>
         <span style={{ marginLeft:'auto', fontSize:8, color:'#334155', fontFamily:C.mono }}>
           VPS · {liq.at ? ago(Date.parse(liq.at)) : '—'} · {rows.length} watched
         </span>
       </div>
 
-      {daily.length === 0 && (
-        <div style={{ padding:'10px', fontSize:10, color:C.dim, lineHeight:1.6 }}>
-          Nothing at a daily level right now.
+      <div style={{ display:'flex', gap:10, padding:'5px 10px', flexWrap:'wrap',
+        borderBottom:`1px solid ${C.line}`, fontSize:8, fontFamily:C.mono }}>
+        <span style={{ color:CELL.swept.fg }}>HUNT = taken and given back</span>
+        <span style={{ color:CELL.through.fg }}>THRU = went past and stayed</span>
+        <span style={{ color:CELL.near.fg }}>near = ATR away, not taken</span>
+      </div>
+
+      {shown.length === 0 ? (
+        <div style={{ padding:10, fontSize:10, color:C.dim, lineHeight:1.6 }}>
+          No level touched on any of the {rows.length} instrument(s) measured so far.
           <div style={{ marginTop:2, color:'#334155' }}>
-            The VPS is watching {rows.length} instrument(s) and checks every minute. This panel
-            fills itself in when price comes within half an average four-hour range of yesterday&rsquo;s
-            high or low — no need to keep the app open.
+            The VPS checks every minute whether the app is open or not. On a cold start it
+            builds levels a few instruments at a time, so this fills in over about ten minutes.
           </div>
         </div>
-      )}
-      {daily.map(line)}
-
-      {rest.length > 0 && (
-        <div style={{ borderTop:`1px solid ${C.line}` }}>
-          <button onClick={() => setShowRest(v => !v)}
-            style={{ ...btn(showRest), width:'100%', borderRadius:0, border:'none', padding:'6px',
-              textAlign:'left', fontFamily:C.mono }}>
-            {showRest ? '▾' : '▸'} {rest.length} at weekly or H4 levels
-          </button>
-          {showRest && rest.map(line)}
+      ) : (
+        <div style={{ overflowX:'auto' }}>
+          <table style={{ borderCollapse:'collapse', width:'100%', minWidth:330 }}>
+            <thead>
+              <tr>
+                <th style={{ textAlign:'left', fontSize:8, color:C.dim, fontFamily:C.mono,
+                  fontWeight:400, padding:'4px 6px' }}>pair</th>
+                {COLS.map(c => (
+                  <th key={c.key} title={c.title}
+                    style={{ fontSize:8, color: c.key.startsWith('PD') ? '#38bdf8' : C.dim,
+                      fontFamily:C.mono, fontWeight:700, padding:'4px 2px',
+                      borderLeft:`1px solid ${C.line}` }}>{c.head}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {shown.map(r => (
+                <tr key={r.sym} style={{ borderTop:`1px solid ${C.line}`, opacity: stale(r) ? 0.45 : 1 }}>
+                  <td style={{ padding:'4px 6px', whiteSpace:'nowrap' }}>
+                    <div style={{ fontSize:10, color:C.txt, fontFamily:C.mono, fontWeight:700 }}>{r.sym}</div>
+                    {r.setup?.state === 'setup' && (
+                      <div style={{ fontSize:8, color: r.setup.dir === 'long' ? C.good : C.bad, fontFamily:C.mono }}>
+                        {r.setup.dir === 'long' ? 'LONG' : 'SHORT'} {r.setup.entry}
+                      </div>
+                    )}
+                    {r.setup?.state === 'taken' && (
+                      <div style={{ fontSize:8, color:C.warn, fontFamily:C.mono }}>awaiting M2</div>
+                    )}
+                  </td>
+                  {COLS.map(c => <Cell key={c.key} c={r.levels[c.key]}/>)}
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
+      )}
+
+      {rows.length > active.length && (
+        <button onClick={() => setAll(v => !v)}
+          style={{ ...btn(all), width:'100%', borderRadius:0, border:'none', borderTop:`1px solid ${C.line}`,
+            padding:'5px', textAlign:'left', fontFamily:C.mono }}>
+          {all ? '▾ hide' : '▸ show'} {rows.length - active.length} with nothing near a level
+        </button>
       )}
     </div>
   );

@@ -148,6 +148,10 @@ class LiquidityScanner {
     // is one request with two states, and only the sweep was reported before —
     // proximity existed purely as a cost gate and the number was thrown away.
     const near = this.lib.approach(m2, cached.levels, cached.atr, { within: APPROACH_ATR });
+    // Every level's own state, so the screen can put one in each column.
+    // Reporting only the best one hides five of the six facts, and which one
+    // survives depends on a ranking the reader cannot see.
+    const states = this.lib.levelStates(m2, cached.levels, cached.atr, { near: APPROACH_ATR });
 
     const rec = {
       sym: inst.sym,
@@ -163,6 +167,10 @@ class LiquidityScanner {
         kind: near.level.kind, price: near.level.price, label: near.level.label,
         distance: +near.distance.toFixed(6), atrPct: +near.pct.toFixed(2),
       } : null,
+      // One entry per level. H4 swings collapse to the nearest of each side —
+      // there are up to three a side and a column can only hold one, so the
+      // one price is closest to is the one that matters.
+      levels: this._columns(states),
     };
     this.results.set(inst.sym, rec);
     return rec;
@@ -191,6 +199,27 @@ class LiquidityScanner {
       reason: `${sweep.level.label} swept and reclaimed, then ${confirm.type} ${sweep.dir === 'long' ? 'up' : 'down'}`
         + (fresh ? '' : ` — ${age} bars ago, the entry has gone`),
     };
+  }
+
+  // One state per column, keyed by level kind. The daily and weekly levels are
+  // unique so they map straight across; the H4 swings are not, so each side
+  // keeps whichever is in the most advanced state, and among equals the nearest.
+  _columns(states) {
+    const rank = { swept: 3, through: 2, near: 1, quiet: 0 };
+    const out = {};
+    for (const st of states) {
+      const cur = out[st.kind];
+      const better = !cur
+        || rank[st.state] > rank[cur.state]
+        || (rank[st.state] === rank[cur.state] && (st.atrPct ?? 9) < (cur.atrPct ?? 9));
+      if (better) {
+        out[st.kind] = {
+          state: st.state, price: st.price, dir: st.dir,
+          atrPct: st.atrPct == null ? null : +st.atrPct.toFixed(2),
+        };
+      }
+    }
+    return out;
   }
 
   // Only what a row needs. The full candle arrays and the level list would make
@@ -239,7 +268,10 @@ class LiquidityScanner {
         // Bucketed, not raw. Publishing the exact distance would rewrite the
         // file every two minutes on any instrument merely drifting near a
         // level, which is most of them on a quiet day.
-        r.near ? Math.round(r.near.atrPct * 10) : null])
+        r.near ? Math.round(r.near.atrPct * 10) : null,
+        // A column changing state is the whole point of the table, so the
+        // signature has to see it or the file never gets rewritten.
+        Object.entries(r.levels || {}).map(([k, v]) => `${k}:${v.state}`).sort().join(',')])
       .sort());
   }
 
