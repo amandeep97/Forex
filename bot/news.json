@@ -245,7 +245,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789157280000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Persistent inflation supports gold, weakens currencies."
     },
     {
       "title": "US Markets Wrap: Trading ends in the green despite red hot inflation data - Business Post",
@@ -269,7 +275,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789157145000,
-      "_kind": null
+      "_kind": null,
+      "why": "Markets green despite inflation, direction unclear."
     },
     {
       "title": "IEA Says Ukraine Strikes Degrade Russian Oil Refining Sector - Rigzone",
@@ -290,7 +297,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789156991000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Refining damage tightens supply, bullish for oil."
     },
     {
       "title": "Declassified documents show UK aware of Israeli war crimes for 24 years",
@@ -311,7 +323,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789156781000,
-      "_kind": null
+      "_kind": null,
+      "why": "Geopolitical news, no clear market direction."
     },
     {
       "title": "The Houthis have opened a new front in the Middle East oil war that’s pushing up prices",
@@ -332,7 +345,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789156680000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Supply disruption pushes oil up, gold safe haven."
     },
     {
       "title": "Zelensky: Sanctions against Russia must be imposed now and they must be strong - Ukrinform",
@@ -353,7 +372,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789153994000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions call, immediate market impact unclear."
     },
     {
       "title": "Markets will absorb a rate hike if the cycle is shallow, says JPMorgan's Dubravko Lakos - CNBC",
@@ -376,7 +396,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789153720000
+      "firstAt": 1789153720000,
+      "why": "Commentary on rate hikes, no clear direction."
     },
     {
       "title": "Zelenskyy urges US sanctions on Russia ‘now’ after deadly strikes - Türkiye Today",
@@ -396,7 +417,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789153584000
+      "firstAt": 1789153584000,
+      "why": "Sanctions call, immediate market impact unclear."
     },
     {
       "title": "Lightning Houthi advance in Yemen may bring dangerous new dimension to Iran war",
@@ -416,7 +438,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789153267000
+      "firstAt": 1789153267000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Escalation risk boosts oil and gold safe haven."
     },
     {
       "title": "Amid war and sanctions, many Iranians are losing their jobs and struggling to get by - NPR",
@@ -433,7 +461,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789155575000
+      "firstAt": 1789155575000,
+      "why": "Iran economic struggle, no clear market direction."
     },
     {
       "title": "Gold headed for a weekly loss of nearly 2% on surging oil, raised Fed hike bets",
@@ -452,7 +481,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789155446000
+      "firstAt": 1789155446000,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "up"
+      },
+      "why": "Gold falls on oil surge and Fed bets."
     },
     {
       "title": "S&P Global downgrades Hormel Foods outlook on high leverage",
@@ -466,7 +500,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789155162000
+      "firstAt": 1789155162000,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Downgrade outlook on high leverage is bearish."
     },
     {
       "title": "Salesforce’s stock has been riding a wave of AI optimism. Here’s what Wall Street wants to see next.",
@@ -481,7 +519,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789155000000
+      "firstAt": 1789155000000,
+      "why": "AI optimism, but specific stock focus, unclear index."
     },
     {
       "title": "Energy Markets Rattled After Saudi Pipeline Attacks - The New York Times",
@@ -501,7 +540,34 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789152328000
+      "firstAt": 1789152328000,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Pipeline attacks disrupt supply, bullish oil and gold."
+    },
+    {
+      "title": "US House Will Consider Russia Sanctions Bill With Tariffs of Up to 500% - Межа. Новини України.",
+      "link": "https://news.google.com/rss/articles/CBMiX0FVX3lxTFBPZ1JtQk1idUlKQnFmZkJyb0p0WmRzbThRNEpreW5KcldxNU9Vbk1BWUxpZmQ3SnBnMzRLbFhJVHNwemRmdXRvTFp6Q01FeklYYTdEOHNpRUU2dzZhUERj?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiX0FVX3lxTFBPZ1JtQk1idUlKQnFmZkJyb0p0WmRzbThRNEpreW5KcldxNU9Vbk1BWUxpZmQ3SnBnMzRLbFhJVHNwemRmdXRvTFp6Q01FeklYYTdEOHNpRUU2dzZhUERj?oc=5\" target=\"_blank\">US House Will Consider Russia Sanctions Bill With Tariffs of Up to 500%</a>&nbs",
+      "at": 1789154650000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789152980000,
+      "why": "Sanctions bill consideration, immediate impact unclear."
     },
     {
       "title": "Zelenskyy urges US to immediately strengthen sanctions against Russia - shelter.in.ua",
@@ -1432,7 +1498,7 @@
       "firstAt": 1789141680000
     },
     {
-      "title": "August CPI Rises 0.4% - Fed Hike Odds Near 90% - Briefs Finance",
+      "title": "August CPI Rises 0.4% - Fed Hike Odds Near 90% - briefs.co",
       "link": "https://news.google.com/rss/articles/CBMikgFBVV95cUxNc1lIdFRnODZIWXk1MW9BSXdkLXlMOHZ3M0d3b0h6VnAtazFwMnBvV3ExNjlWdXJKTDVGLXZmaEVtbUlCZnNoUUNXUFFYMUhJaThDcV9lSEw0OExIY3VQOWFsV0xELTc4aU0zZVYxU0dOcmxPZFVXNnVUZFd0Y2Y5VkwxY1RuVFl4TkgxX2FPTkNGZw?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMikgFBVV95cUxNc1lIdFRnODZIWXk1MW9BSXdkLXlMOHZ3M0d3b0h6VnAtazFwMnBvV3ExNjlWdXJKTDVGLXZmaEVtbUlCZnNoUUNXUFFYMUhJaThDcV9lSEw0OExIY3VQOWFsV0xELTc4aU0zZVYxU0dOcmxPZFVXNnVUZFd0Y2Y5VkwxY1RuVFl4TkgxX2FPTkNGZw?oc=5\" target=\"_blank\">August CP",
@@ -1513,7 +1579,7 @@
       "firstAt": 1789139725000
     },
     {
-      "title": "With Fed rate hike all but assured, here's how markets might react - CoinDesk",
+      "title": "With Fed rate hike all but assured, here's how markets might react - coindesk.com",
       "link": "https://news.google.com/rss/articles/CBMizwFBVV95cUxQa3UyTm1wWDNDZjFHdGZSMDFCOHAtQ3h0cWxxQXdZY2pNYXBtLXJBXzFpNUhXLVJrOTFVc3lBakd1Z0JsYU93MGhhX3VXZHNsMWJ4YnlaXzVDdWRNdHRuYkJRSV9aWWRyMVlFTEQ4R3VLcS1ycHBMOEUxS21jbHJ3eUxHajNScVRrRXBWQWhITUpzVzQwNWdOLXF6UzJHRDRRZ29FeDBJSW1KZ3JFTHphdUhSdWdVbGFRZk5PQzM2ZlE3Ty1JbHkwa2JvejAxY2M?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMizwFBVV95cUxQa3UyTm1wWDNDZjFHdGZSMDFCOHAtQ3h0cWxxQXdZY2pNYXBtLXJBXzFpNUhXLVJrOTFVc3lBakd1Z0JsYU93MGhhX3VXZHNsMWJ4YnlaXzVDdWRNdHRuYkJRSV9aWWRyMVlFTEQ4R3VLcS1ycHBMOEUxS21jbHJ3eUxHajNScVRrRXBWQWhITUpzVzQwNWdOLXF6UzJHRDRRZ29FeDBJSW1KZ3",
@@ -1839,6 +1905,24 @@
       "firstAt": 1789134694000
     },
     {
+      "title": "Gold price holds near high after preliminary Consumer Sentiment falls to 47.8, inflation expectations spike - kitco.com",
+      "link": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQQUhKUDBrcnJKSEEyUGpqMmt4akpYZEdMYzdXSHBHanNvNW5LeURhQlpGUkFsZXlndW1iZWswelJ3RTV5WWtWRVJ0YzdYbWs4MFRvZTBSSDR5VklPUnRjVnVfTnoxNDNhNTdBc1YtTG5NS19zVnBQNmpSSHRCMnJ6ZDFTcm9YcDZiTXNrWE1nQnhPY2t4dm85YXN4emNXVmpqMmFBOVN3bHluVGlVU0wyTF9rdHl2T0FFUGxn?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiuwFBVV95cUxQQUhKUDBrcnJKSEEyUGpqMmt4akpYZEdMYzdXSHBHanNvNW5LeURhQlpGUkFsZXlndW1iZWswelJ3RTV5WWtWRVJ0YzdYbWs4MFRvZTBSSDR5VklPUnRjVnVfTnoxNDNhNTdBc1YtTG5NS19zVnBQNmpSSHRCMnJ6ZDFTcm9YcDZiTXNrWE1nQnhPY2t4dm85YXN4emNXVmpqMmFBOVN3bHluVG",
+      "at": 1789136235000,
+      "inst": [
+        "XAU/USD"
+      ],
+      "ccy": [
+        "XAU",
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789134694000
+    },
+    {
       "title": "Attack damages Bunge oilseeds plant in Ukraine - World Grain",
       "link": "https://news.google.com/rss/articles/CBMikwFBVV95cUxQSlVPaWxUczNVOUFpd3MtWmpCUzFfSExuRE9rWG1zZVNzRUlnbDlWR0JSUTh3OWVDNTZaUlJicmdIMHFEVzNOeVpSY1hzUGxXS2hvb1hrTVhQSF85WVpUdXliYi1pVEdxdHFGOUNGN21TclpEaTFXQms3bFpZaFhqZ1p1OHJ2Q0YyMmpQQ0tQS3ZoaFE?oc=5",
       "source": "Wires (geo)",
@@ -1918,47 +2002,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789132909000
-    },
-    {
-      "title": "No Fed Jitters? Gold Spikes Nearly 2% Even As US Inflation Stats Bolster Next Week Rate Hike Bets - NDTV Profit",
-      "link": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxQYnVRR0RFajFEbHBJN1ZjTFBaZWtkV1RYc0dPYVp5VHB5NmthN0xuN3ViTkk3dFpGNzJIbGNZMUJqUDNDbUNvSEhjNmpMUlVkQndXOUNYZ0UzV1BLTXVSelNnUnZTMzN4R3lpbHdITVhTRWVpeHFrbWRRYXRFNHExOW03NkYzV3hCeFpPNDBJOGJBY3BER1JRdTd4OXMtNE9oV0JJZkhvdlY2YjVrTEs2Yk10cjdOVnFhVTd0OGpSdkFEbHpFdjZsTFA2UkRUNnRSbTJpWlJ30gHeAUFVX3lxTE1Gb0xELVR6aUREeVRMS0R1WGRMRXVjRDdLN3pmaTFobWFQbkVDUDFud0YyeFJYWXdIbE1qYldGRHc1emtPWmZrVkQ2eDNRYWE2RFJCYlh0MHE5Vm5vZjNxVXJKTmcxem9uTGVOWF8wenpJQzZVbTkwc1RZc2FXUUFZOFBnQU5LTTZJby04QWtYcUI5Zm4zMEt1dHl5YkhwRHhPM2pTamkxTC00c0MyNlVFRFotOHNadzF3c2JmbkI5azQ4cE1QSlEzTk54RU1NS21QaWdaRkE5eDVXWHdOUQ?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi1gFBVV95cUxQYnVRR0RFajFEbHBJN1ZjTFBaZWtkV1RYc0dPYVp5VHB5NmthN0xuN3ViTkk3dFpGNzJIbGNZMUJqUDNDbUNvSEhjNmpMUlVkQndXOUNYZ0UzV1BLTXVSelNnUnZTMzN4R3lpbHdITVhTRWVpeHFrbWRRYXRFNHExOW03NkYzV3hCeFpPNDBJOGJBY3BER1JRdTd4OXMtNE9oV0JJZkhvdlY2Yj",
-      "at": 1789134694000,
-      "inst": [
-        "XAU/USD"
-      ],
-      "ccy": [
-        "USD",
-        "XAU"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789132090000
-    },
-    {
-      "title": "Fed rate hike odds rise to 90% after August CPI report - qz.com",
-      "link": "https://news.google.com/rss/articles/CBMidkFVX3lxTE5leTZ3OTB1RnF0UzhZc3I0a3ZoSkw4R0RXQkc4ZHo2cWJvQlUtbVpVVmRvZE5kSWd6RGZHOUEzbkxPSVRVUG1zcVctUlpRTGt4SjVPZHZnZEx3ZVZwY3p3YjlOMFhrUWVUNGEyMnc5eHZ5Y1hWalE?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMidkFVX3lxTE5leTZ3OTB1RnF0UzhZc3I0a3ZoSkw4R0RXQkc4ZHo2cWJvQlUtbVpVVmRvZE5kSWd6RGZHOUEzbkxPSVRVUG1zcVctUlpRTGt4SjVPZHZnZEx3ZVZwY3p3YjlOMFhrUWVUNGEyMnc5eHZ5Y1hWalE?oc=5\" target=\"_blank\">Fed rate hike odds rise to 90% after August CPI ",
-      "at": 1789133390000,
-      "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789133390000
     }
   ],
   "sources": [
@@ -1984,7 +2027,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-11T20:20:15.724Z",
-  "headlinesAt": "2026-09-11T20:20:15.724Z",
-  "updatedAt": "2026-09-11T20:20:15.724Z"
+  "calendarAt": "2026-09-11T20:21:48.923Z",
+  "headlinesAt": "2026-09-11T20:21:48.923Z",
+  "updatedAt": "2026-09-11T20:21:48.923Z"
 }
