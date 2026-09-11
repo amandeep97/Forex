@@ -333,7 +333,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789106525000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Gold rebounds toward higher levels"
     },
     {
       "title": "UK July monthly GDP +0.4% vs 0.0% m/m expected",
@@ -357,7 +361,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789106410000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "GBP/USD": "up"
+      },
+      "why": "Strong UK GDP supports pound"
     },
     {
       "title": "Gold on track for third weekly loss as US inflation data looms​‌ - BusinessLine",
@@ -376,7 +384,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789106305000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold on track for weekly loss"
     },
     {
       "title": "Drone strikes kill two in Russia; eight injured in Kyiv",
@@ -396,7 +408,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789105869000,
-      "_kind": null
+      "_kind": null,
+      "why": "Geopolitical news lacks clear market direction"
     },
     {
       "title": "Global bond selloff pushes 10-year US yield toward 5% on oil, rate-hike fears - Reuters",
@@ -414,7 +427,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789106040000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Bond selloff and rate fears hurt oil"
     },
     {
       "title": "LIVE: Russia, Ukraine trade strikes as casualties reported - Latest news from Azerbaijan",
@@ -435,27 +452,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789105869000,
-      "_kind": null
-    },
-    {
-      "title": "Silver ETFs fall over 3% as global silver extends losses on rising Fed rate hike bets; gold ETFs also down - tradingview.com",
-      "link": "https://news.google.com/rss/articles/CBMi-wFBVV95cUxPbVBwTl9Pc0pBdjdVR3hrUkxBQ1cxRXBMUDJBZGJ0SUZHSzFQUGN4N3JzNnc0NkEyX3AxVkgtTThrVC1OeEdOQVp0dWFWTUp0N1lwc2pGOFBNc0Rab3lvaEdwQ1prZUFHY0d2UWJ1WHFMNnp5a3BKWHV3b0pJRGg1SmxQQWlBLXF2RVRKMzU3S205MlJXSzJPQWZrcUxlVGFKX01saDlkVXM1RkwwOERITlptdXRiMUZjbFdZR2RUM290UVhMLW1WRU54WFU1NkZxZFF6bzZvVG16SUVBVy1DTzNNQ1BfNG10WWpLTWhSclZ6eExGUGVzcVIwYw?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi-wFBVV95cUxPbVBwTl9Pc0pBdjdVR3hrUkxBQ1cxRXBMUDJBZGJ0SUZHSzFQUGN4N3JzNnc0NkEyX3AxVkgtTThrVC1OeEdOQVp0dWFWTUp0N1lwc2pGOFBNc0Rab3lvaEdwQ1prZUFHY0d2UWJ1WHFMNnp5a3BKWHV3b0pJRGg1SmxQQWlBLXF2RVRKMzU3S205MlJXSzJPQWZrcUxlVGFKX01saDlkVXM1Rk",
-      "at": 1789104540000,
-      "inst": [
-        "XAU/USD",
-        "XAG/USD"
-      ],
-      "ccy": [
-        "USD",
-        "XAU",
-        "XAG"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789104540000
+      "_kind": null,
+      "why": "Ongoing conflict news, no clear direction"
     },
     {
       "title": "Premier of Germany’s Lower Saxony walks high wire between VW cuts and AfD",
@@ -469,7 +467,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789103592000
+      "firstAt": 1789103592000,
+      "why": "Political news lacks clear market impact"
     },
     {
       "title": "Gold on track for third weekly loss as U.S. inflation data looms​‌ - CNBC",
@@ -487,7 +486,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789103469000
+      "firstAt": 1789103469000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold on track for weekly loss"
     },
     {
       "title": "SK Hynix nears key resistance after 44% rally: Live levels",
@@ -531,7 +534,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789103025000
+      "firstAt": 1789103025000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Iran sanctions pressure supports oil prices"
     },
     {
       "title": "Asian currencies weaken as yen slips, dollar holds near weekly high",
@@ -548,7 +556,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789102511000
+      "firstAt": 1789102511000,
+      "dir": {
+        "USD/JPY": "up"
+      },
+      "why": "Dollar holds high, yen slips"
     },
     {
       "title": "Dollar-Yen in Upper 154 Range in Tokyo as Early Fed Rate Hike Bets Spur Dollar Buybacks - finance.biggo.com",
@@ -566,7 +578,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789102500000
+      "firstAt": 1789102500000,
+      "dir": {
+        "USD/JPY": "up"
+      },
+      "why": "Dollar buybacks push pair higher"
     },
     {
       "title": "Russia now importing fuel from South Korea, Turkey because of Ukraine drone strikes, report says - The Kyiv Independent",
@@ -586,7 +602,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789102310000
+      "firstAt": 1789102310000,
+      "why": "Import shift news, unclear market impact"
     },
     {
       "title": "Anthropic claims Claude AI used for missile projects, global espionage",
@@ -603,7 +620,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789102105000
+      "firstAt": 1789102105000,
+      "why": "AI espionage news, no clear gold impact"
     },
     {
       "title": "Bond Markets Brace for Impact Amid Inflation and Global Tensions - devdiscourse.com",
@@ -626,7 +644,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789101900000
+      "firstAt": 1789101900000,
+      "why": "General market tension, no clear direction"
     },
     {
       "title": "US Market: Rising US debt, inflation keep pressure on long-term Treasury yields - The Economic Times",
@@ -649,7 +668,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789101838000
+      "firstAt": 1789101838000,
+      "why": "US debt pressure, unclear FX direction"
     },
     {
       "title": "White House copper tariff plan stalls amid affordability concerns, sources say",
@@ -2028,6 +2048,25 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789066020000
+    },
+    {
+      "title": "Fed tightening bets boost dollar, euro slips after ECB hike while yen halts rally",
+      "link": "https://www.investing.com/news/forex-news/asian-currencies-steady-as-riskoff-tone-weighs-yen-holds-near-highs-4894923",
+      "source": "Investing FX",
+      "at": 1789065806000,
+      "inst": [
+        "EUR/USD",
+        "USD/JPY"
+      ],
+      "ccy": [
+        "USD",
+        "EUR",
+        "JPY"
+      ],
+      "sev": 3,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789065806000
     }
   ],
   "sources": [
@@ -2050,10 +2089,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-11T06:10:14.330Z",
-  "headlinesAt": "2026-09-11T06:10:14.330Z",
-  "updatedAt": "2026-09-11T06:10:14.330Z"
+  "calendarAt": "2026-09-11T06:12:01.871Z",
+  "headlinesAt": "2026-09-11T06:12:01.871Z",
+  "updatedAt": "2026-09-11T06:12:01.871Z"
 }
