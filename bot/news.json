@@ -1,24 +1,5 @@
 {
-  "calendar": [
-    {
-      "title": "ECB President Lagarde Speaks",
-      "country": "EUR",
-      "impact": "medium",
-      "at": 1789200000000,
-      "forecast": "",
-      "previous": "",
-      "actual": ""
-    },
-    {
-      "title": "BRICS Summit",
-      "country": "All",
-      "impact": "low",
-      "at": 1789200900000,
-      "forecast": "",
-      "previous": "",
-      "actual": ""
-    }
-  ],
+  "calendar": [],
   "headlines": [
     {
       "title": "China Provided Iran With Satellite Images Used in Deadly Attack on American Troops, Report Says Ahead of Meeting Between Trump and Xi - The New York Sun",
@@ -39,7 +20,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789236774000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Geopolitical tension boosts gold, oil unclear"
     },
     {
       "title": "8 killed in Russian strikes on Ukraine as Putin warns Europe against sending troops - The Seattle Times",
@@ -60,7 +45,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789234119000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "War escalation supports gold, oil unclear"
     },
     {
       "title": "Oracle’s Ellison cancels plan to sell up to 50 mln shares",
@@ -88,7 +77,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789234580000
+      "firstAt": 1789234580000,
+      "why": "Entertainment news, no market impact"
     },
     {
       "title": "Selling the war: Purges, polygraphs and propaganda",
@@ -108,7 +98,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789234316000
+      "firstAt": 1789234316000,
+      "why": "Political narrative, no clear market direction"
     },
     {
       "title": "Russian attacks on Kyiv petrol stations kill two, Ukrainian strikes kill three in Russia",
@@ -127,7 +118,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789233025000
+      "firstAt": 1789233025000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Conflict escalation supports gold, oil unclear"
     },
     {
       "title": "Russian attacks kill six, injure dozens in Ukraine, Moscow says it hits ships, plants - Reuters",
@@ -147,7 +142,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789233025000
+      "firstAt": 1789233025000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "War intensity supports gold, oil unclear"
     },
     {
       "title": "Saudis shut down oil pipeline as Houthis tighten grip on Red Sea shipping",
@@ -163,7 +162,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789233865000
+      "firstAt": 1789233865000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Supply disruption boosts oil prices"
     },
     {
       "title": "Ukraine braces for harsh winter as Russian attacks hit economy - Reuters",
@@ -183,7 +186,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789233025000
+      "firstAt": 1789233025000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Economic damage supports gold, oil unclear"
     },
     {
       "title": "Saudi pipeline attack update: East-west Saudi oil pipeline attack is blamed on Iran-backed militias in Iraq - ABC11 News",
@@ -203,7 +210,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789233378000
+      "firstAt": 1789233378000,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Supply risk boosts oil and gold"
     },
     {
       "title": "Live - China offers help to end war ahead of Iran-Arab talks in Oman - iranintl.com",
@@ -223,7 +236,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789233360000
+      "firstAt": 1789233360000,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Diplomatic de-escalation lowers risk premiums"
     },
     {
       "title": "U.S. House of Representatives to take up Russia sanctions bill next week - The Hindu",
@@ -243,7 +262,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789233344000
+      "firstAt": 1789233344000,
+      "why": "Sanctions bill, no immediate price impact"
     },
     {
       "title": "Ukraine's economy hobbled by Russian strikes - RTL Today",
@@ -263,7 +283,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789233025000
+      "firstAt": 1789233025000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Economic instability supports gold, oil unclear"
     },
     {
       "title": "A Tale of Two Dollars: Why Dollar General Outpaced Dollar Tree This Quarter",
@@ -309,7 +333,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789232280000
+      "firstAt": 1789232280000,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Supply control threat boosts oil and gold"
     },
     {
       "title": "Escalation in Ukraine: The Rising Civilian Toll Amid Intensified Strikes - Devdiscourse",
@@ -329,7 +359,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789230076000
+      "firstAt": 1789230076000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Civilian toll supports gold, oil unclear"
     },
     {
       "title": "Russia Launches 410 Attack Drones Against Ukraine, Air Defenses Neutralize 336 - Межа. Новини України.",
@@ -349,7 +383,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789227960000
+      "firstAt": 1789227960000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Military escalation supports gold, oil unclear"
     },
     {
       "title": "Dow Jones Futures: Fed Rate Hike Seen As Oil, Yields Pressure Stocks; Apple, Moderna Are New Buys",
@@ -1765,10 +1803,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-12T18:26:02.714Z",
-  "headlinesAt": "2026-09-12T18:26:02.714Z",
-  "updatedAt": "2026-09-12T18:26:02.714Z"
+  "calendarAt": null,
+  "headlinesAt": "2026-09-12T18:27:18.267Z",
+  "updatedAt": "2026-09-12T18:27:18.267Z"
 }
