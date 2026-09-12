@@ -1,24 +1,5 @@
 {
-  "calendar": [
-    {
-      "title": "ECB President Lagarde Speaks",
-      "country": "EUR",
-      "impact": "medium",
-      "at": 1789200000000,
-      "forecast": "",
-      "previous": "",
-      "actual": ""
-    },
-    {
-      "title": "BRICS Summit",
-      "country": "All",
-      "impact": "low",
-      "at": 1789200900000,
-      "forecast": "",
-      "previous": "",
-      "actual": ""
-    }
-  ],
+  "calendar": [],
   "headlines": [
     {
       "title": "Can XRP Flip Bitcoin?",
@@ -35,7 +16,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789248272000,
-      "_kind": null
+      "_kind": null,
+      "why": "Speculative question, no clear direction."
     },
     {
       "title": "Ethereum ETFs Took In $216 Million on Friday. Bitcoin’s Lost Money for a Fourth Day and XRP’s Took Zero",
@@ -53,7 +35,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789247500000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "BTC/USDT": "down",
+        "ETH/USDT": "up"
+      },
+      "why": "Bitcoin losing money, Ethereum ETF inflows."
     },
     {
       "title": "Escalating Tensions: Russian Strikes Intensify Across Ukraine - devdiscourse.com",
@@ -73,7 +60,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789244845000
+      "firstAt": 1789244845000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Escalating tensions boost safe havens and oil."
     },
     {
       "title": "Russian attacks kill nine, injure dozens in Ukraine; Russia says it hits ships, plants - Reuters",
@@ -93,7 +86,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789244845000
+      "firstAt": 1789244845000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Russian attacks intensify geopolitical risk."
     },
     {
       "title": "Why Is Bitcoin Dropping Today?",
@@ -109,7 +108,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789246195000
+      "firstAt": 1789246195000,
+      "dir": {
+        "BTC/USDT": "down"
+      },
+      "why": "Headline explicitly states Bitcoin is dropping."
     },
     {
       "title": "Second crypto billionaire donates record $49m to far-right Reform UK",
@@ -126,7 +129,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789245837000
+      "firstAt": 1789245837000,
+      "why": "Political donation, no direct market impact."
     },
     {
       "title": "Iran joins Russia, China at BRICS conference calling for a halt to ‘escalation’ in Middle East - New York Post",
@@ -146,7 +150,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789245660000
+      "firstAt": 1789245660000,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Call for de-escalation reduces risk premium."
     },
     {
       "title": "How Low Can Bitcoin Go?",
@@ -162,7 +172,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789244996000
+      "firstAt": 1789244996000,
+      "dir": {
+        "BTC/USDT": "down"
+      },
+      "why": "Question implies continued downward pressure."
     },
     {
       "title": "Only Roland Garros towel left, says Ukraine tennis player after Russian strike hits flat",
@@ -182,7 +196,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789244845000
+      "firstAt": 1789244845000,
+      "why": "Human interest story, no market impact."
     },
     {
       "title": "Ukraine tennis player's apartment destroyed in Russian strike - BBC",
@@ -202,7 +217,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789244845000
+      "firstAt": 1789244845000,
+      "why": "Human interest story, no market impact."
     },
     {
       "title": "Zelenskyy Urges Partners to Tighten Sanctions on Russian Oligarchs - Межа. Новини України.",
@@ -222,7 +238,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789243077000
+      "firstAt": 1789243077000,
+      "why": "Sanctions call, no immediate price impact."
     },
     {
       "title": "BRICS Urges Israel To Withdraw Forces From Lebanese Territories After Lebanon Ceasefire: 12 outlets compared - NewsCord",
@@ -242,7 +259,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789242868000
+      "firstAt": 1789242868000,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Ceasefire and withdrawal reduce geopolitical risk."
     },
     {
       "title": "Live - China offers help to end war ahead of Iran-Arab talks in Oman - Iran International",
@@ -262,7 +285,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789242720000
+      "firstAt": 1789242720000,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Diplomatic efforts to end war reduce risk."
     },
     {
       "title": "Saudis shut down oil pipeline as Houthis tighten grip on Red Sea shipping",
@@ -278,7 +307,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789241786000
+      "firstAt": 1789241786000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Pipeline shutdown restricts supply, raising prices."
     },
     {
       "title": "Russian drones target Volyn, Rivne oblasts in rare mass attack in western Ukraine - The Kyiv Independent",
@@ -298,7 +331,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789238669000
+      "firstAt": 1789238669000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Mass drone attack increases geopolitical risk."
     },
     {
       "title": "Will Houthi advances in Yemen give Iran leverage in its war with the US?",
@@ -1771,7 +1810,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-12T21:36:47.217Z",
-  "headlinesAt": "2026-09-12T21:36:47.217Z",
-  "updatedAt": "2026-09-12T21:36:47.217Z"
+  "calendarAt": null,
+  "headlinesAt": "2026-09-12T21:38:20.231Z",
+  "updatedAt": "2026-09-12T21:38:20.231Z"
 }
