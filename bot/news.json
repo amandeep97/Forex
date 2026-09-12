@@ -1,5 +1,33 @@
 {
-  "calendar": [],
+  "calendar": [
+    {
+      "title": "Federal Budget Balance",
+      "country": "USD",
+      "impact": "low",
+      "at": 1789149480000,
+      "forecast": "-221.1B",
+      "previous": "-432.3B",
+      "actual": ""
+    },
+    {
+      "title": "ECB President Lagarde Speaks",
+      "country": "EUR",
+      "impact": "medium",
+      "at": 1789200000000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "BRICS Summit",
+      "country": "All",
+      "impact": "low",
+      "at": 1789200900000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    }
+  ],
   "headlines": [
     {
       "title": "Sibiga called for tougher sanctions against Russia's military-industrial complex following the attack on the Odesa region - UA.NEWS",
@@ -83,6 +111,26 @@
       "srcs": 1,
       "firstAt": 1789220906000,
       "_kind": null
+    },
+    {
+      "title": "Trump says Iran probably responsible for attack on Saudi oil pipeline - arabnews.com",
+      "link": "https://news.google.com/rss/articles/CBMitAFBVV95cUxOMk1UTUU2djNhekg3U0pvVnY1ajNJR2p5bkxxMnNXbFZoUGJOWGxlM3lmMGp0WnotRVVaX3Z5enNlczlFVEIzZFBzSl9FLTFjb0hnVm1HMks5WlhaZnkyZnRVOEhBX1hJOGpHY1dRYThGV1ZDVzFycHNNa1MxckJXaEtBQXFDWFd3c0FBSHRaMkRWeFZGMHZubjFNZVUwbW9RN1MxbnFoM1ZGOWRJdzVZNzVrZjk?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMitAFBVV95cUxOMk1UTUU2djNhekg3U0pvVnY1ajNJR2p5bkxxMnNXbFZoUGJOWGxlM3lmMGp0WnotRVVaX3Z5enNlczlFVEIzZFBzSl9FLTFjb0hnVm1HMks5WlhaZnkyZnRVOEhBX1hJOGpHY1dRYThGV1ZDVzFycHNNa1MxckJXaEtBQXFDWFd3c0FBSHRaMkRWeFZGMHZubjFNZVUwbW9RN1MxbnFoM1ZGOW",
+      "at": 1789220159000,
+      "inst": [
+        "USOIL",
+        "XAU/USD",
+        "UKOIL"
+      ],
+      "ccy": [
+        "OIL",
+        "XAU"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789219575000
     },
     {
       "title": "Scott Bessent gives candid assessment of U.S. economy",
@@ -370,26 +418,6 @@
       "firstAt": 1789214732000
     },
     {
-      "title": "BRICS voices concern over Middle East, condemns unilateral sanctions at India summit - Ottumwa Courier",
-      "link": "https://news.google.com/rss/articles/CBMikAJBVV95cUxPZVFtckFYNm0zbEdhMDBPQVRudWN4b09PZ1BVLUFnVGxuNjNnR1lmaG1mTmJrMk1lQUlzWFNzNVdmRkNoVVVrd3ZOVF81cHhkZUF4TTN2U0Q1Tk5UcnBhNzRWY2Fpd2s5c2lrMHY4MkpJMG5pdWp1TmVVUDdBNmVYZldJNE9nemlSRUROSFNzc25mQnE1VVY2aHc5cG5NWUdUdHFYc1MxR2VwZEh4X2k4NndNUHFMYWp0dnE3M0luUVdsRUxwT1RRTHZMQnhzR2F5TEtOSHlGM0FYTTdMQzhWVXROSDlDLU5DYVc1SFZLSDcxaGFYN2ZTWmh5QnEyaFVZR2ZNdXRjbUJzR2FVTmpTVA?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMikAJBVV95cUxPZVFtckFYNm0zbEdhMDBPQVRudWN4b09PZ1BVLUFnVGxuNjNnR1lmaG1mTmJrMk1lQUlzWFNzNVdmRkNoVVVrd3ZOVF81cHhkZUF4TTN2U0Q1Tk5UcnBhNzRWY2Fpd2s5c2lrMHY4MkpJMG5pdWp1TmVVUDdBNmVYZldJNE9nemlSRUROSFNzc25mQnE1VVY2aHc5cG5NWUdUdHFYc1MxR2VwZE",
-      "at": 1789215784000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789215596000
-    },
-    {
       "title": "Canadian boycott of US products pushes grocers to adapt, explore new supply sources",
       "link": "https://www.investing.com/news/stock-market-news/canadian-boycott-of-us-products-pushes-grocers-to-adapt-explore-new-supply-sources-4898644",
       "source": "Investing",
@@ -402,26 +430,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789215545000
-    },
-    {
-      "title": "Trump says Iran probably responsible for attack on Saudi oil pipeline - arabnews.com",
-      "link": "https://news.google.com/rss/articles/CBMitAFBVV95cUxOMk1UTUU2djNhekg3U0pvVnY1ajNJR2p5bkxxMnNXbFZoUGJOWGxlM3lmMGp0WnotRVVaX3Z5enNlczlFVEIzZFBzSl9FLTFjb0hnVm1HMks5WlhaZnkyZnRVOEhBX1hJOGpHY1dRYThGV1ZDVzFycHNNa1MxckJXaEtBQXFDWFd3c0FBSHRaMkRWeFZGMHZubjFNZVUwbW9RN1MxbnFoM1ZGOWRJdzVZNzVrZjk?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMitAFBVV95cUxOMk1UTUU2djNhekg3U0pvVnY1ajNJR2p5bkxxMnNXbFZoUGJOWGxlM3lmMGp0WnotRVVaX3Z5enNlczlFVEIzZFBzSl9FLTFjb0hnVm1HMks5WlhaZnkyZnRVOEhBX1hJOGpHY1dRYThGV1ZDVzFycHNNa1MxckJXaEtBQXFDWFd3c0FBSHRaMkRWeFZGMHZubjFNZVUwbW9RN1MxbnFoM1ZGOW",
-      "at": 1789215475000,
-      "inst": [
-        "USOIL",
-        "XAU/USD",
-        "UKOIL"
-      ],
-      "ccy": [
-        "OIL",
-        "XAU"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 3,
-      "firstAt": 1789214732000
     },
     {
       "title": "Saudi Arabia shuts key oil pipeline after drone attack launched from Iraq",
@@ -1726,6 +1734,29 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789151363000
+    },
+    {
+      "title": "Volatile Markets: Interest Rate Hike Looms as Fed Meets - devdiscourse.com",
+      "link": "https://news.google.com/rss/articles/CBMirAFBVV95cUxOa0tVSExfcEJLYlVyRFFkTURKd1VMTHZUd3huLVZ4aWdXT2dWaWhwaWUwV3NlNXFXckE3VlNHRWJLRnF6MGozVXdKTVBBd01fOHBpdnY5ZWdzTk85d292YWMwdmJwWVJCUGxEMGJSQjhwVENMX0ZEdVBqT2NRNDBSYlc4RVlkTFZUNjVKTWRsMlB4RU1tQnRlbVprVVF2R1lUQklRcEl4UkszVFNL0gGyAUFVX3lxTE1QYnhSN2VIVl95dmpWVDU3bnlwTENFdXFBV1huRjVVRUtMMlFCeDVzTnpNZVZtZGVRWU9ackx3X3d0dmhjaUFBdzhRd215dUdiV2VqNUlVZkFoSVB0MXhWYUdubF9IVWxJdFE4aHZyNVJZbnBzdnB4US1ORWpzU0dORkhreklieUZXYm9ta3djN2xRbnlQRWNVM1RaRlJ5RVJUR1l2dzJhSWNMajRvTDBIUkE?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMirAFBVV95cUxOa0tVSExfcEJLYlVyRFFkTURKd1VMTHZUd3huLVZ4aWdXT2dWaWhwaWUwV3NlNXFXckE3VlNHRWJLRnF6MGozVXdKTVBBd01fOHBpdnY5ZWdzTk85d292YWMwdmJwWVJCUGxEMGJSQjhwVENMX0ZEdVBqT2NRNDBSYlc4RVlkTFZUNjVKTWRsMlB4RU1tQnRlbVprVVF2R1lUQklRcEl4UkszVF",
+      "at": 1789153720000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789152840000
     }
   ],
   "sources": [
@@ -1751,7 +1782,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": null,
-  "headlinesAt": "2026-09-12T14:08:16.478Z",
-  "updatedAt": "2026-09-12T14:08:16.478Z"
+  "calendarAt": "2026-09-12T14:09:46.580Z",
+  "headlinesAt": "2026-09-12T14:09:46.580Z",
+  "updatedAt": "2026-09-12T14:09:46.580Z"
 }
