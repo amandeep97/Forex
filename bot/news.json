@@ -1,200 +1,5 @@
 {
-  "calendar": [
-    {
-      "title": "GDP m/m",
-      "country": "GBP",
-      "impact": "high",
-      "at": 1789106400000,
-      "forecast": "0.0%",
-      "previous": "0.3%",
-      "actual": ""
-    },
-    {
-      "title": "Construction Output m/m",
-      "country": "GBP",
-      "impact": "low",
-      "at": 1789106400000,
-      "forecast": "0.1%",
-      "previous": "-0.1%",
-      "actual": ""
-    },
-    {
-      "title": "Goods Trade Balance",
-      "country": "GBP",
-      "impact": "low",
-      "at": 1789106400000,
-      "forecast": "-22.6B",
-      "previous": "-23.0B",
-      "actual": ""
-    },
-    {
-      "title": "Index of Services 3m/3m",
-      "country": "GBP",
-      "impact": "low",
-      "at": 1789106400000,
-      "forecast": "0.5%",
-      "previous": "0.5%",
-      "actual": ""
-    },
-    {
-      "title": "Industrial Production m/m",
-      "country": "GBP",
-      "impact": "low",
-      "at": 1789106400000,
-      "forecast": "-0.2%",
-      "previous": "-0.2%",
-      "actual": ""
-    },
-    {
-      "title": "Manufacturing Production m/m",
-      "country": "GBP",
-      "impact": "low",
-      "at": 1789106400000,
-      "forecast": "0.2%",
-      "previous": "-0.5%",
-      "actual": ""
-    },
-    {
-      "title": "SECO Consumer Climate",
-      "country": "CHF",
-      "impact": "low",
-      "at": 1789110000000,
-      "forecast": "-33",
-      "previous": "-35",
-      "actual": ""
-    },
-    {
-      "title": "Italian Quarterly Unemployment Rate",
-      "country": "EUR",
-      "impact": "low",
-      "at": 1789113600000,
-      "forecast": "5.4%",
-      "previous": "5.3%",
-      "actual": ""
-    },
-    {
-      "title": "Consumer Inflation Expectations",
-      "country": "GBP",
-      "impact": "low",
-      "at": 1789115400000,
-      "forecast": "",
-      "previous": "4.0%",
-      "actual": ""
-    },
-    {
-      "title": "SNB Chairman Schlegel Speaks",
-      "country": "CHF",
-      "impact": "medium",
-      "at": 1789118100000,
-      "forecast": "",
-      "previous": "",
-      "actual": ""
-    },
-    {
-      "title": "Core CPI m/m",
-      "country": "USD",
-      "impact": "high",
-      "at": 1789129800000,
-      "forecast": "0.2%",
-      "previous": "0.2%",
-      "actual": "0.22",
-      "actualFrom": "BLS",
-      "actualNum": 0.22,
-      "vsPrevious": 0.02,
-      "forecastNum": 0.2,
-      "surprise": 0.02,
-      "surprisePct": 10,
-      "beat": "above"
-    },
-    {
-      "title": "Core CPI y/y",
-      "country": "USD",
-      "impact": "high",
-      "at": 1789129800000,
-      "forecast": "2.4%",
-      "previous": "2.5%",
-      "actual": ""
-    },
-    {
-      "title": "CPI m/m",
-      "country": "USD",
-      "impact": "high",
-      "at": 1789129800000,
-      "forecast": "0.4%",
-      "previous": "0.1%",
-      "actual": "0.07",
-      "actualFrom": "BLS",
-      "actualNum": 0.07,
-      "vsPrevious": -0.03,
-      "forecastNum": 0.4,
-      "surprise": -0.33,
-      "surprisePct": -82.5,
-      "beat": "below"
-    },
-    {
-      "title": "CPI y/y",
-      "country": "USD",
-      "impact": "high",
-      "at": 1789129800000,
-      "forecast": "3.4%",
-      "previous": "3.4%",
-      "actual": ""
-    },
-    {
-      "title": "ECB President Lagarde Speaks",
-      "country": "EUR",
-      "impact": "medium",
-      "at": 1789135200000,
-      "forecast": "",
-      "previous": "",
-      "actual": ""
-    },
-    {
-      "title": "Prelim UoM Consumer Sentiment",
-      "country": "USD",
-      "impact": "medium",
-      "at": 1789135200000,
-      "forecast": "51.0",
-      "previous": "51.0",
-      "actual": ""
-    },
-    {
-      "title": "Prelim UoM Inflation Expectations",
-      "country": "USD",
-      "impact": "medium",
-      "at": 1789135200000,
-      "forecast": "",
-      "previous": "4.3%",
-      "actual": ""
-    },
-    {
-      "title": "Federal Budget Balance",
-      "country": "USD",
-      "impact": "low",
-      "at": 1789149480000,
-      "forecast": "-221.1B",
-      "previous": "-432.3B",
-      "actual": ""
-    },
-    {
-      "title": "ECB President Lagarde Speaks",
-      "country": "EUR",
-      "impact": "medium",
-      "at": 1789200000000,
-      "forecast": "",
-      "previous": "",
-      "actual": ""
-    },
-    {
-      "title": "BRICS Summit",
-      "country": "All",
-      "impact": "low",
-      "at": 1789200900000,
-      "forecast": "",
-      "previous": "",
-      "actual": ""
-    }
-  ],
+  "calendar": [],
   "headlines": [
     {
       "title": "The Fed could raise interest rates three times. Here’s where the market could face the stiffest test.",
@@ -218,7 +23,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789170840000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Fed rate hikes strengthen dollar, hurt assets"
     },
     {
       "title": "Markets may be making a horrible miscalculation on AI and inflation - afr.com",
@@ -242,7 +53,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789170720000,
-      "_kind": null
+      "_kind": null,
+      "why": "Speculative headline, unclear market impact"
     },
     {
       "title": "Russian attacks on Kyiv petrol stations kill two, Ukrainian strikes kill three in Russia",
@@ -261,7 +73,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789169785000
+      "firstAt": 1789169785000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Geopolitical conflict boosts safe havens and oil"
     },
     {
       "title": "Israel strikes Hezbollah base in Lebanon, causing 4.1-magnitude tremor - upi.com",
@@ -281,7 +99,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789169408000
+      "firstAt": 1789169408000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Middle East escalation supports risk-off and oil"
     },
     {
       "title": "House tees up vote on Russia sanctions bill, but prospects for passage are uncertain - The Seattle Times",
@@ -301,7 +125,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789166779000
+      "firstAt": 1789166779000,
+      "why": "Uncertain passage limits immediate market impact"
     },
     {
       "title": "The next trillion matters more for gold than the next Fed rate hike - kitco.com",
@@ -319,7 +144,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789166261000
+      "firstAt": 1789166261000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Gold favored over rate hike concerns"
     },
     {
       "title": "This investment is safe from both Trump and the Democrats — and it pays 4.7%",
@@ -334,7 +163,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789164360000
+      "firstAt": 1789164360000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Safe haven narrative supports gold prices"
     },
     {
       "title": "Stocks making the biggest moves midday: Dell, Skyworks Solutions, GameStop & more",
@@ -349,7 +182,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789163493000
+      "firstAt": 1789163493000,
+      "why": "Individual stock moves, no broad index signal"
     },
     {
       "title": "Gold little changed even as U.S. inflation data supports Fed rate-hike bets (GLD:NYSEARCA) - Seeking Alpha",
@@ -367,7 +201,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789163405000
+      "firstAt": 1789163405000,
+      "why": "Gold little changed despite inflation data"
     },
     {
       "title": "Bitcoin could benefit from failed Treasury intervention despite persistent inflation — CoinShares - Mitrade",
@@ -385,7 +220,11 @@
       "sev": 3,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789162923000
+      "firstAt": 1789162923000,
+      "dir": {
+        "BTC/USDT": "up"
+      },
+      "why": "Failed intervention seen as bullish for Bitcoin"
     },
     {
       "title": "Saudi Arabia says East-West pipeline hit by drones launched from Iraq",
@@ -405,7 +244,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789162247000
+      "firstAt": 1789162247000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Pipeline attack disrupts supply, boosts oil and gold"
     },
     {
       "title": "Mexico stocks lower at close of trade; S&P/BMV IPC down 0.28%",
@@ -419,7 +264,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789162203000
+      "firstAt": 1789162203000,
+      "why": "Mexico-specific news, no US market impact"
     },
     {
       "title": "investingLive Americas FX news wrap 11 Sept: US CPI raises odds for Fed rate hike",
@@ -441,7 +287,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789161528000
+      "firstAt": 1789161528000,
+      "why": "Mixed signals, no clear directional bias"
     },
     {
       "title": "US To Vote On Russia Sanctions Bill Next Week, Giving Trump More Tariff Power - NDTV",
@@ -462,7 +309,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789158412000
+      "firstAt": 1789158412000,
+      "why": "Sanctions bill uncertain, limited immediate impact"
     },
     {
       "title": "IEA Says Ukraine Strikes Degrade Russian Oil Refining Sector - Rigzone",
@@ -482,7 +330,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789159250000
+      "firstAt": 1789159250000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Refining damage supports oil prices and safe havens"
     },
     {
       "title": "\"Ukraine Will Retaliate Against Russian Strikes On Energy This Winter,\" Zelenskyy Warns - UNITED24 Media",
@@ -763,7 +617,7 @@
       "firstAt": 1789155798000
     },
     {
-      "title": "Inflation Comes In Hot - WSJ",
+      "title": "Inflation Comes In Hot - wsj.com",
       "link": "https://news.google.com/rss/articles/CBMidEFVX3lxTE1fNnRXSkpvQUJidkxSOXQ1Z1lKWG1VQzJrbXNLWUNaaE5GYUtZLU9JQ0JlVEM2MTlyMFFVcm9zZ0pOQklaOGE1Q0NGdlJIS282eXlSNWlYUFVzUURKOXJUQ2N5U1JXdGVQSGJmMHE5azhoUXBn?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMidEFVX3lxTE1fNnRXSkpvQUJidkxSOXQ1Z1lKWG1VQzJrbXNLWUNaaE5GYUtZLU9JQ0JlVEM2MTlyMFFVcm9zZ0pOQklaOGE1Q0NGdlJIS282eXlSNWlYUFVzUURKOXJUQ2N5U1JXdGVQSGJmMHE5azhoUXBn?oc=5\" target=\"_blank\">Inflation Comes In Hot</a>&nbsp;&nbsp;<font color=\"",
@@ -1299,7 +1153,7 @@
       "firstAt": 1789152980000
     },
     {
-      "title": "U.S. Stocks Gain as Inflation Figure Boosts Odds of Rate Hike - WSJ",
+      "title": "U.S. Stocks Gain as Inflation Figure Boosts Odds of Rate Hike - wsj.com",
       "link": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxOQTU4U2E5eHdCS1RuSzRBV3p4R0lyUVZqRkYzNWFiZDFKc1lfNmt2dmxockZfc3hiNi0ya1JkenExQXc1anNMTm55RlZ6WWI2bkxmcjl3QkRKdHlTSV96S1B2VXdCdFVuYUhuRUNWZ25wNWdMamRBU2JtTlhVamNqSkJrOTRDOHpTczZSUHBrTEJFT29KVm4wckJSWjF2SG1FcmNPSUtENWQ?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiqAFBVV95cUxOQTU4U2E5eHdCS1RuSzRBV3p4R0lyUVZqRkYzNWFiZDFKc1lfNmt2dmxockZfc3hiNi0ya1JkenExQXc1anNMTm55RlZ6WWI2bkxmcjl3QkRKdHlTSV96S1B2VXdCdFVuYUhuRUNWZ25wNWdMamRBU2JtTlhVamNqSkJrOTRDOHpTczZSUHBrTEJFT29KVm4wckJSWjF2SG1FcmNPSUtENWQ?oc",
@@ -1500,26 +1354,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789148280000
-    },
-    {
-      "title": "US House to vote on new Russia sanctions on Sept. 14 - Breakingthenews.net",
-      "link": "https://news.google.com/rss/articles/CBMingFBVV95cUxNcVZEQ21FaDJjR2R3V3JHcTRkaVZvNVM2cmlKbzNYSTFKb3VVSVMyX0JFalljMVhVbXFWUW51QmthcnQtdDhfTWkxNUlOOUx5T1ZlT2FLcGNNNDA1YTZ1ZENiYmJUSTRISk5pbVNTTHppSjJpQ1BXMWNLM0lGcnBoTXJmX2c3ZlZScXkzTzhnNzM5Zld4ekJaTkFVUDR2QQ?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMingFBVV95cUxNcVZEQ21FaDJjR2R3V3JHcTRkaVZvNVM2cmlKbzNYSTFKb3VVSVMyX0JFalljMVhVbXFWUW51QmthcnQtdDhfTWkxNUlOOUx5T1ZlT2FLcGNNNDA1YTZ1ZENiYmJUSTRISk5pbVNTTHppSjJpQ1BXMWNLM0lGcnBoTXJmX2c3ZlZScXkzTzhnNzM5Zld4ekJaTkFVUDR2QQ?oc=5\" target=\"_",
-      "at": 1789147800000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 3,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789145220000
     },
     {
       "title": "House to vote on Russia sanctions bill next week - Punchbowl News",
@@ -1922,6 +1756,24 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789140973000
+    },
+    {
+      "title": "Bitcoin Rises as Markets Digest Inflation Data Ahead of Fed Rate Decision - Decrypt",
+      "link": "https://news.google.com/rss/articles/CBMie0FVX3lxTE54dWdXS2NJQlhRSDNSODdjWTN1aDA3Mkx0ZXVLVmQ3UWVYenhuaXNKUUZzLVBsZzZNLU1JMU9ERV9WMVFrdzlCSHB5MUVMS0pVckh1TWFnTEhpeGFHaE5Xb1dldzJWcjNxR1ZBbmY5ODBoVUN1YXZvUDd5d9IBgwFBVV95cUxPYmY2ZjZOLUszQ0RqWG1Jdm44c3ZseV9Zc0xydkpCV1NtWG1VY3oxdzlVN053QkJQa0twLWstMl9MNmhRQklYb2xocmd2Tmc3cTYyX0xjSzBRUHNMd2RXUVBuZjNKdkdHcExGQVVrbEtnYkVsSmpPQWxYOUZ6X1BUNnJkRQ?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMie0FVX3lxTE54dWdXS2NJQlhRSDNSODdjWTN1aDA3Mkx0ZXVLVmQ3UWVYenhuaXNKUUZzLVBsZzZNLU1JMU9ERV9WMVFrdzlCSHB5MUVMS0pVckh1TWFnTEhpeGFHaE5Xb1dldzJWcjNxR1ZBbmY5ODBoVUN1YXZvUDd5d9IBgwFBVV95cUxPYmY2ZjZOLUszQ0RqWG1Jdm44c3ZseV9Zc0xydkpCV1NtWG1VY3",
+      "at": 1789140728000,
+      "inst": [
+        "BTC/USDT"
+      ],
+      "ccy": [
+        "USD",
+        "BTC"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789140728000
     }
   ],
   "sources": [
@@ -1947,7 +1799,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-12T00:08:15.968Z",
-  "headlinesAt": "2026-09-12T00:08:15.968Z",
-  "updatedAt": "2026-09-12T00:08:15.968Z"
+  "calendarAt": null,
+  "headlinesAt": "2026-09-12T00:09:47.154Z",
+  "updatedAt": "2026-09-12T00:09:47.154Z"
 }
