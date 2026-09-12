@@ -1,24 +1,5 @@
 {
-  "calendar": [
-    {
-      "title": "ECB President Lagarde Speaks",
-      "country": "EUR",
-      "impact": "medium",
-      "at": 1789200000000,
-      "forecast": "",
-      "previous": "",
-      "actual": ""
-    },
-    {
-      "title": "BRICS Summit",
-      "country": "All",
-      "impact": "low",
-      "at": 1789200900000,
-      "forecast": "",
-      "previous": "",
-      "actual": ""
-    }
-  ],
+  "calendar": [],
   "headlines": [
     {
       "title": "Saudis shut down oil pipeline as Houthis tighten grip on Red Sea shipping",
@@ -35,7 +16,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789241786000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Pipeline shutdown tightens oil supply"
     },
     {
       "title": "Russian drones target Volyn, Rivne oblasts in rare mass attack in western Ukraine - kyivindependent.com",
@@ -56,7 +41,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789238669000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Ukraine attacks boost gold safe-haven demand"
     },
     {
       "title": "RingCentral Chief Accounting Officer Sells 4,568 Shares",
@@ -84,7 +73,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789240800000,
-      "_kind": null
+      "_kind": null,
+      "why": "General risk warning, no specific direction"
     },
     {
       "title": "Will Houthi advances in Yemen give Iran leverage in its war with the US?",
@@ -105,7 +95,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789240657000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Red Sea threat boosts oil and gold"
     },
     {
       "title": "Iran and UAE back joint BRICS statement urging restraint in war",
@@ -124,7 +120,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789238177000
+      "firstAt": 1789238177000,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Diplomatic restraint reduces geopolitical risk premium"
     },
     {
       "title": "Iraq probes drone strikes on Saudi Arabia, shuts three crossings to Iran - Al Jazeera",
@@ -144,7 +146,37 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789238520000
+      "firstAt": 1789238520000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Saudi strikes and border closures raise risk"
+    },
+    {
+      "title": "Russian attacks kill nine, injure dozens in Ukraine, Moscow says it hits ships, plants - Reuters",
+      "link": "https://news.google.com/rss/articles/CBMixwFBVV95cUxQcjF5NXdIeXlKQWY5RXRJTmlfVjFfWlNwZm9TOVNOREUxcmUwTk9MRmFUbWZzQnhNZTY1V3d2R2hBZGhlU1ZOT1licGJRdzUwcXhEbmJGTEdkNi1xRUlQUGJ0VnN0MjFLMWJGem1Ta0hGZ21ILXQybi1nS0xuUGo0Wjkta0dzZjhNOUVGTFZNcWJqTURPRzI2bngtdjg1dnZSVUZ4WjZLeF9DWU91M1ZlQjRUZ1FaMjNBc0pEMUhTMnR2Mnh1b0dZ?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMixwFBVV95cUxQcjF5NXdIeXlKQWY5RXRJTmlfVjFfWlNwZm9TOVNOREUxcmUwTk9MRmFUbWZzQnhNZTY1V3d2R2hBZGhlU1ZOT1licGJRdzUwcXhEbmJGTEdkNi1xRUlQUGJ0VnN0MjFLMWJGem1Ta0hGZ21ILXQybi1nS0xuUGo0Wjkta0dzZjhNOUVGTFZNcWJqTURPRzI2bngtdjg1dnZSVUZ4WjZLeF9DWU",
+      "at": 1789239439000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789237350000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Ukraine escalation boosts gold safe-haven demand"
     },
     {
       "title": "WisdomTree COO Lilien Jarrett Sells 30,000 Shares for $737,000",
@@ -176,7 +208,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789237350000
+      "firstAt": 1789237350000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Ukraine escalation boosts gold safe-haven demand"
     },
     {
       "title": "Attack that closed key Saudi pipeline is blamed on Iran-backed militias in Iraq - New York Post",
@@ -196,7 +232,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789235934000
+      "firstAt": 1789235934000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Saudi pipeline attack blamed on Iran-backed groups"
     },
     {
       "title": "Iran, UAE hold first talks at BRICS summit since conflict began",
@@ -216,7 +258,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 3,
-      "firstAt": 1789235934000
+      "firstAt": 1789235934000,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "High-level talks suggest de-escalation potential"
     },
     {
       "title": "How Concerned Should Income Investors Be About Pfizer's Dividend?",
@@ -260,7 +308,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789235934000
+      "firstAt": 1789235934000,
+      "why": "Speculative tariff question, unclear market impact"
     },
     {
       "title": "8 killed in Russian strikes on Ukraine as Putin warns Europe against sending troops - ABC News - Breaking News, Latest News and Videos",
@@ -280,7 +329,11 @@
       "sev": 3,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789237350000
+      "firstAt": 1789237350000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Ukraine escalation boosts gold safe-haven demand"
     },
     {
       "title": "Canadian boycott of US products pushes grocers to adapt, explore new supply sources",
@@ -294,7 +347,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789236750000
+      "firstAt": 1789236750000,
+      "dir": {
+        "USD/CAD": "down"
+      },
+      "why": "Boycott weakens US trade, bearish for USD"
     },
     {
       "title": "Iran Finds Escalation Is Fruitful Path to Leverage in War With U.S. - The New York Times",
@@ -314,7 +371,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789236430000
+      "firstAt": 1789236430000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Iran escalation strategy boosts risk assets"
     },
     {
       "title": "Oracle’s Ellison cancels plan to sell up to 50 mln shares",
@@ -347,7 +410,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789233344000
+      "firstAt": 1789233344000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "BRICS anti-dollar narrative boosts gold demand"
     },
     {
       "title": "Céline Dion fans prepare for comeback concert in Paris",
@@ -404,26 +471,6 @@
       "firstAt": 1789233025000
     },
     {
-      "title": "Russian attacks kill six, injure dozens in Ukraine, Moscow says it hits ships, plants - Reuters",
-      "link": "https://news.google.com/rss/articles/CBMixwFBVV95cUxQcjF5NXdIeXlKQWY5RXRJTmlfVjFfWlNwZm9TOVNOREUxcmUwTk9MRmFUbWZzQnhNZTY1V3d2R2hBZGhlU1ZOT1licGJRdzUwcXhEbmJGTEdkNi1xRUlQUGJ0VnN0MjFLMWJGem1Ta0hGZ21ILXQybi1nS0xuUGo0Wjkta0dzZjhNOUVGTFZNcWJqTURPRzI2bngtdjg1dnZSVUZ4WjZLeF9DWU91M1ZlQjRUZ1FaMjNBc0pEMUhTMnR2Mnh1b0dZ?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMixwFBVV95cUxQcjF5NXdIeXlKQWY5RXRJTmlfVjFfWlNwZm9TOVNOREUxcmUwTk9MRmFUbWZzQnhNZTY1V3d2R2hBZGhlU1ZOT1licGJRdzUwcXhEbmJGTEdkNi1xRUlQUGJ0VnN0MjFLMWJGem1Ta0hGZ21ILXQybi1nS0xuUGo0Wjkta0dzZjhNOUVGTFZNcWJqTURPRzI2bngtdjg1dnZSVUZ4WjZLeF9DWU",
-      "at": 1789234119000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789233025000
-    },
-    {
       "title": "Ukraine braces for harsh winter as Russian attacks hit economy - Reuters",
       "link": "https://news.google.com/rss/articles/CBMingFBVV95cUxOeDhWQzZ1XzNhR29sQnlqci1HYVJBcW9CM0RuMl9MVHRZbzJVSE1tLXllUGRVYUlVZjhfYS0xbmxfM0lGSEQwUHNsaE1YMDJWNFhHTDZwQ2VYS0JOTzAzd2lVTXFhUWJLTEc4blVyQjVNdUFuOG52M0VUV1oyTGY5aGlCUUJqYy16Z3REaHdJZ295UUxXNmREMElhcEJIUQ?oc=5",
       "source": "Wires (geo)",
@@ -441,7 +488,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789233025000
+      "firstAt": 1789231252000
     },
     {
       "title": "Trump says Iran likely behind Saudi pipeline attack as US weighs next moves - Fox News",
@@ -541,7 +588,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789233025000
+      "firstAt": 1789231252000
     },
     {
       "title": "A Tale of Two Dollars: Why Dollar General Outpaced Dollar Tree This Quarter",
@@ -590,11 +637,11 @@
       "firstAt": 1789232280000
     },
     {
-      "title": "Escalation in Ukraine: The Rising Civilian Toll Amid Intensified Strikes - devdiscourse.com",
-      "link": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxQN1pEblFMMTdwZzNTZUYtRVB5Q2hEbHdtZW5rOUhCWjI3OVJ0NENoWmEyUkhYWlBXNGRZVFVLM2ZkUGd6MHZfVlBEbk11TGdPQnFpc2pWX1lYREJ4d2Vha29UNVUzRVZqeXowd2VNck8xZUJrbXNjaW5ndXNTTW4yZjRKVnlhWHpvOTdqd0ExQmRxdzhQdmhPVlpSbEhub0JfWVN6T2pqNnd3M1dLNjU2Ui1OTTdJQ2U5RkowSWNhbGVZRlHSAcgBQVVfeXFMT2MwOURlTndQUGFKQ2dGYjJYaUFvTklHdjdKd0NtNWY3V0Nza3lwbjFnd2R2UG5HVjlBaC12dHd2VXlKYTRESExIS2tWUlBzY3BjbnpvQjJyS0daQlk0bDlHTmYtWEZWVkh0RU9oQnV0WHVOVDcwLUY2WEFXcUw5dFBqVHF2allaX0xxanIxZEJMUWVkdTdXWDJQNmxxcnppOE1sTVBNazVmT2dXRFU3TzdDQmNHMVNWSjgwVUtmNHhJcHltUUc3dXk?oc=5",
+      "title": "Russian attacks kill six, injure dozens in Ukraine, Moscow says it hits ships, plants - Yahoo News UK",
+      "link": "https://news.google.com/rss/articles/CBMifEFVX3lxTFBfU1ZyRlphcHEtbURNQ3hqZnNGWldWNWRDTXNGalVMRWxFRnp2WmZzSmxUUUxBTkd4MzRteFk2b0l0RGpMOTR6TWtnaTNyVUNWbjFaZmtyUjhUeGNBSUhGNFBKeE5NeEl4NlpGMnpYZS1wQXFrTVR3c2RVdFY?oc=5",
       "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiwwFBVV95cUxQN1pEblFMMTdwZzNTZUYtRVB5Q2hEbHdtZW5rOUhCWjI3OVJ0NENoWmEyUkhYWlBXNGRZVFVLM2ZkUGd6MHZfVlBEbk11TGdPQnFpc2pWX1lYREJ4d2Vha29UNVUzRVZqeXowd2VNck8xZUJrbXNjaW5ndXNTTW4yZjRKVnlhWHpvOTdqd0ExQmRxdzhQdmhPVlpSbEhub0JfWVN6T2pqNnd3M1",
-      "at": 1789231159000,
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMifEFVX3lxTFBfU1ZyRlphcHEtbURNQ3hqZnNGWldWNWRDTXNGalVMRWxFRnp2WmZzSmxUUUxBTkd4MzRteFk2b0l0RGpMOTR6TWtnaTNyVUNWbjFaZmtyUjhUeGNBSUhGNFBKeE5NeEl4NlpGMnpYZS1wQXFrTVR3c2RVdFY?oc=5\" target=\"_blank\">Russian attacks kill six, injure dozens ",
+      "at": 1789231252000,
       "inst": [
         "XAU/USD",
         "USOIL",
@@ -604,7 +651,7 @@
         "XAU",
         "OIL"
       ],
-      "sev": 2,
+      "sev": 1,
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789230076000
@@ -1755,7 +1802,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-12T19:46:04.918Z",
-  "headlinesAt": "2026-09-12T19:46:04.918Z",
-  "updatedAt": "2026-09-12T19:46:04.918Z"
+  "calendarAt": null,
+  "headlinesAt": "2026-09-12T19:47:05.269Z",
+  "updatedAt": "2026-09-12T19:47:05.269Z"
 }
