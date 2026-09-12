@@ -57,6 +57,30 @@
   ],
   "headlines": [
     {
+      "title": "Scott Bessent gives candid assessment of U.S. economy",
+      "link": "https://finance.yahoo.com/economy/articles/scott-bessent-gives-candid-assessment-133300911.html",
+      "source": "Yahoo Finance",
+      "at": 1789219980000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789219980000,
+      "_kind": null,
+      "why": "Candid assessment lacks specific directional data."
+    },
+    {
       "title": "Ukraine strikes FPV drone production facility, UAV warehouses near Taganrog - Ukrinform",
       "link": "https://news.google.com/rss/articles/CBMixwFBVV95cUxQTDY5UlJJZ0VVYU1mRzhwSElDNjZuZUFwMHBWaTBCVk1BWkszN3ptQ1NlUTFMRzVYc1RidUFPYlktOE9TT2xzX1JEdXNya3ZEYWI2LWxrbjRHZm1EWEVIeEFzdnBsZmh6TkFod1Y4NnkxQVB3aDdSMVFzUWo5SXJFVk5pRjNwYS1WVnRXejRwWkJOa1puUkFiTWtyeENpRE9MVjA0VEx1UDFQUlNXVklZOVFESW9wR1dHenZJc3otUi1iS0Vfampv0gHHAUFVX3lxTFBMNjlSUklnRVVhTWZHOHBISUM2Nm5lQXAwcFZpMEJWTUFaSzM3em1DU2VRMUxHNVhzVGJ1QU9iWS04T1NPbHNfUkR1c3JrdkRhYjYtbGtuNEdmbURYRUh4QXN2cGxmaHpOQWh3Vjg2eTFBUHdoN1IxUXNRajlJckVWTmlGM3BhLVZWdFd6NHBaQk5rWm5SQWJNa3J4Q2lET0xWMDRUTHVQMVBSU1dWSVk5UURJb3BHV0d6dklzei1SLWJLRV9qam8?oc=5",
       "source": "Wires (geo)",
@@ -75,7 +99,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789219800000,
-      "_kind": null
+      "_kind": null,
+      "why": "Ukraine strike news has no clear market impact."
     },
     {
       "title": "Are the UK sanctions on Israel real progress, or more illusion? - Mondoweiss",
@@ -96,7 +121,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789219800000,
-      "_kind": null
+      "_kind": null,
+      "why": "UK sanctions opinion piece, no market impact."
     },
     {
       "title": "Trump says Iran likely responsible for attack on vital Saudi oil pipeline - Egypt Independent",
@@ -117,7 +143,49 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789219575000,
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Iran attack on Saudi pipeline boosts oil, gold."
+    },
+    {
+      "title": "Will Midterm Elections Cause the Stock Market to Plunge? 75 Years of History Offer an Unexpected Answer.",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/midterm-elections-cause-stock-market-132601186.html",
+      "source": "Yahoo Finance",
+      "at": 1789219561000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 1,
+      "srcs": 1,
+      "firstAt": 1789219200000,
       "_kind": null
+    },
+    {
+      "title": "d OECD commercial oil inventories have “barely drawn since the war began,” reflecting a smaller-than-expected supply deficit and the concentration of inventory declines in strategic reserves, oil stored on water and China.",
+      "link": "https://finance.yahoo.com/energy/articles/d-oecd-commercial-oil-inventories-132600424.html",
+      "source": "Yahoo Finance",
+      "at": 1789219560000,
+      "inst": [
+        "USOIL",
+        "XAU/USD"
+      ],
+      "ccy": [
+        "OIL",
+        "XAU"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789219560000,
+      "_kind": null,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Smaller supply deficit implies lower oil prices."
     },
     {
       "title": "Iran Says It’s No Longer Bound by the Nuclear Treaty. What That Does to Oil, Gold, and Bitcoin",
@@ -139,7 +207,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789219226000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up"
+      },
+      "why": "Nuclear treaty exit increases geopolitical risk premium."
     },
     {
       "title": "If a Stock Market Crash Is Coming, History Says This 1 Move Protects Investors Every Single Time",
@@ -153,18 +226,6 @@
       "srcs": 1,
       "firstAt": 1789219200000,
       "_kind": null
-    },
-    {
-      "title": "Some Dividend Growth ETFs Are Beating the Broad Market -- Is It Sustainable?",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/dividend-growth-etfs-beating-broad-130500806.html",
-      "source": "Yahoo Finance",
-      "at": 1789218300000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1789218300000
     },
     {
       "title": "Russian Strikes Kill Four in Donetsk Region, Including a Medic - Межа. Новини України.",
@@ -184,7 +245,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789218095000
+      "firstAt": 1789218095000,
+      "why": "Routine war news, no immediate market direction."
     },
     {
       "title": "Ray Dalio and Bloomberg analysts reveal where to put $10,000 as stocks hit highs and bonds sell off in 2026",
@@ -198,21 +260,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789218000000
-    },
-    {
-      "title": "3 Agentic AI Stocks to Own Before AI Changes the World as We Know It",
-      "link": "https://finance.yahoo.com/technology/ai/articles/3-agentic-ai-stocks-own-125000827.html",
-      "source": "Yahoo Finance",
-      "at": 1789217400000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789217400000
+      "firstAt": 1789218000000,
+      "why": "Investment advice article, no direct market signal."
     },
     {
       "title": "Inflation is outpacing wage growth again, squeezing Americans’ paychecks",
@@ -235,7 +284,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789217355000
+      "firstAt": 1789217355000,
+      "dir": {
+        "XAU/USD": "up",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "High inflation weakens dollar, boosts gold."
     },
     {
       "title": "Dow Jones Futures: Fed Rate Hike Seen As Oil, Yields Pressure Stocks; Apple, Moderna Are New Buys",
@@ -254,7 +309,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789217302000
+      "firstAt": 1789217302000,
+      "dir": {
+        "USOIL": "up",
+        "US500": "down",
+        "US30": "down"
+      },
+      "why": "Oil and yields pressure stocks, Fed hike seen."
     },
     {
       "title": "BRICS leaders voice concern over Middle East, condemn unilateral sanctions at India summit - The Killeen Daily Herald",
@@ -274,7 +335,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789215596000
+      "firstAt": 1789215596000,
+      "why": "BRICS summit statements lack immediate market impact."
     },
     {
       "title": "Why stocks haven't tanked despite higher bond yields: Chart of the Day",
@@ -288,7 +350,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789216426000
+      "firstAt": 1789216426000,
+      "why": "Explains stock resilience, no new directional catalyst."
     },
     {
       "title": "Saudi pipeline attack: Iraq races to contain fallout after Iran-backed militias accused of attacking east-west Saudi oil pipeline - ABC7 Chicago",
@@ -308,7 +371,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 3,
-      "firstAt": 1789214732000
+      "firstAt": 1789214732000,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Pipeline attack confirms supply risk, boosts commodities."
     },
     {
       "title": "BRICS voices concern over Middle East, condemns unilateral sanctions at India summit - Ottumwa Courier",
@@ -328,7 +397,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789215596000
+      "firstAt": 1789215596000,
+      "why": "BRICS summit statements lack immediate market impact."
     },
     {
       "title": "Canadian boycott of US products pushes grocers to adapt, explore new supply sources",
@@ -342,7 +412,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789215545000
+      "firstAt": 1789215545000,
+      "dir": {
+        "USD/CAD": "down"
+      },
+      "why": "Boycott hurts US trade, weakens dollar vs CAD."
     },
     {
       "title": "Trump says Iran probably responsible for attack on Saudi oil pipeline - arabnews.com",
@@ -1413,7 +1487,7 @@
       "firstAt": 1789158778000
     },
     {
-      "title": "Dollar Steady Amid Inflation Concerns and Global Oil Unrest - devdiscourse.com",
+      "title": "Dollar Steady Amid Inflation Concerns and Global Oil Unrest - Devdiscourse",
       "link": "https://news.google.com/rss/articles/CBMiswFBVV95cUxOX01pNmVpcWROQjhLNjhQbF91bFJlemFuUmoyRGI2VjRSTW1xWmZNSzVLV1VlRG4tSVN1aTg1YUIwUmV3MXFKWFdiMzVVR0xndl9MT2xKeXZYTHB0YmtkUVRYN0hhbHdBR1IxbU01SXhfdnhxNnA5NmhpTWo1OXdqU1d4dFdfTnBpai1hdFBhcDRnVkMtZFhMRmxvbi1sSEpfZER5QUVxSkJGRDkzWlkydElkMNIBuAFBVV95cUxQNTVxNHozRDVMX2RxWktjYkJzLU5qU3JQRGV0SFpfMEN6ekFlM3NhdWxpMC1XMTdwaGVRNnNvLW1iTTVPcUhqMVdLZHZaeG5xTk1pZ2p6Qnl3Nnp6UUkyekI0bjY1RFZUNWpjTGxmN2FMY2ZKRldyc0VPTzdINzdaQ0RCM1JvLU5DWGZaTmEzdDc4VWUwR2laaXhMQnJ1Skg4ZnRIeW9OOWJCZEtWakxZcW9hNDcwNEly?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiswFBVV95cUxOX01pNmVpcWROQjhLNjhQbF91bFJlemFuUmoyRGI2VjRSTW1xWmZNSzVLV1VlRG4tSVN1aTg1YUIwUmV3MXFKWFdiMzVVR0xndl9MT2xKeXZYTHB0YmtkUVRYN0hhbHdBR1IxbU01SXhfdnhxNnA5NmhpTWo1OXdqU1d4dFdfTnBpai1hdFBhcDRnVkMtZFhMRmxvbi1sSEpfZER5QUVxSkJGRD",
@@ -1709,7 +1783,7 @@
       "firstAt": 1789151363000
     },
     {
-      "title": "Volatile Markets: Interest Rate Hike Looms as Fed Meets - devdiscourse.com",
+      "title": "Volatile Markets: Interest Rate Hike Looms as Fed Meets - Devdiscourse",
       "link": "https://news.google.com/rss/articles/CBMirAFBVV95cUxOa0tVSExfcEJLYlVyRFFkTURKd1VMTHZUd3huLVZ4aWdXT2dWaWhwaWUwV3NlNXFXckE3VlNHRWJLRnF6MGozVXdKTVBBd01fOHBpdnY5ZWdzTk85d292YWMwdmJwWVJCUGxEMGJSQjhwVENMX0ZEdVBqT2NRNDBSYlc4RVlkTFZUNjVKTWRsMlB4RU1tQnRlbVprVVF2R1lUQklRcEl4UkszVFNL0gGyAUFVX3lxTE1QYnhSN2VIVl95dmpWVDU3bnlwTENFdXFBV1huRjVVRUtMMlFCeDVzTnpNZVZtZGVRWU9ackx3X3d0dmhjaUFBdzhRd215dUdiV2VqNUlVZkFoSVB0MXhWYUdubF9IVWxJdFE4aHZyNVJZbnBzdnB4US1ORWpzU0dORkhreklieUZXYm9ta3djN2xRbnlQRWNVM1RaRlJ5RVJUR1l2dzJhSWNMajRvTDBIUkE?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMirAFBVV95cUxOa0tVSExfcEJLYlVyRFFkTURKd1VMTHZUd3huLVZ4aWdXT2dWaWhwaWUwV3NlNXFXckE3VlNHRWJLRnF6MGozVXdKTVBBd01fOHBpdnY5ZWdzTk85d292YWMwdmJwWVJCUGxEMGJSQjhwVENMX0ZEdVBqT2NRNDBSYlc4RVlkTFZUNjVKTWRsMlB4RU1tQnRlbVprVVF2R1lUQklRcEl4UkszVF",
@@ -1747,27 +1821,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789153680000
-    },
-    {
-      "title": "US House Prepares Vote on Russia Sanctions Bill Giving Trump 100% Tariff Powers - UNITED24 Media",
-      "link": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxPSnUteS1JMXdkT0lJNWFKNnRwOGRuX1RlRU0wWnMtMnE0VGRzN0g0bWhyNkYzdkVHR0Y3RHd6c3hBSUZCSlMxck1tblRGVG5iMzNxRjBTZlpmZ3JXZTJXMWdkVUxOVGZVczkwMk9YV19PWFU0cy0yY2dVN0pTVnA1WlFpOVVmOVJXcERGZGc0UDNKNE5JTEVXMUtCcHpLWmNfeExHWG5GZzRDdnczSVBHTVVQeW5MZ2dJTklRbm1NYUsyRDg?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiwwFBVV95cUxPSnUteS1JMXdkT0lJNWFKNnRwOGRuX1RlRU0wWnMtMnE0VGRzN0g0bWhyNkYzdkVHR0Y3RHd6c3hBSUZCSlMxck1tblRGVG5iMzNxRjBTZlpmZ3JXZTJXMWdkVUxOVGZVczkwMk9YV19PWFU0cy0yY2dVN0pTVnA1WlFpOVVmOVJXcERGZGc0UDNKNE5JTEVXMUtCcHpLWmNfeExHWG5GZzRDdn",
-      "at": 1789153584000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL",
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789153200000
     }
   ],
   "sources": [
@@ -1793,7 +1846,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-12T13:45:01.890Z",
-  "headlinesAt": "2026-09-12T13:45:01.890Z",
-  "updatedAt": "2026-09-12T13:45:01.890Z"
+  "calendarAt": "2026-09-12T13:47:06.094Z",
+  "headlinesAt": "2026-09-12T13:47:06.094Z",
+  "updatedAt": "2026-09-12T13:47:06.094Z"
 }
