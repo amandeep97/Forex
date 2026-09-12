@@ -33,7 +33,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789234580000
+      "firstAt": 1789234580000,
+      "why": "Celebrity news, no direct market impact"
     },
     {
       "title": "Selling the war: Purges, polygraphs and propaganda",
@@ -53,7 +54,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789234316000
+      "firstAt": 1789234316000,
+      "why": "Political narrative, no clear price signal"
     },
     {
       "title": "Russian attacks on Kyiv petrol stations kill two, Ukrainian strikes kill three in Russia",
@@ -72,7 +74,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 3,
-      "firstAt": 1789232787000
+      "firstAt": 1789232787000,
+      "why": "Conflict news, direction unclear"
     },
     {
       "title": "Saudis shut down oil pipeline as Houthis tighten grip on Red Sea shipping",
@@ -88,7 +91,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789233865000
+      "firstAt": 1789233865000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Supply disruption implies higher oil prices"
     },
     {
       "title": "Saudi pipeline attack update: East-west Saudi oil pipeline attack is blamed on Iran-backed militias in Iraq - ABC11 News",
@@ -108,7 +115,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789233378000
+      "firstAt": 1789233378000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Pipeline attack suggests supply risk"
     },
     {
       "title": "Live - China offers help to end war ahead of Iran-Arab talks in Oman - Iran International",
@@ -128,7 +140,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789233360000
+      "firstAt": 1789233360000,
+      "why": "Diplomatic efforts, no clear direction"
     },
     {
       "title": "U.S. House of Representatives to take up Russia sanctions bill next week - The Hindu",
@@ -148,7 +161,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789233344000
+      "firstAt": 1789233344000,
+      "why": "Sanctions bill, impact uncertain"
     },
     {
       "title": "Ukraine's economy hobbled by Russian strikes - RTL Today",
@@ -168,7 +182,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 3,
-      "firstAt": 1789230441000
+      "firstAt": 1789230441000,
+      "why": "Economic damage, no clear price move"
     },
     {
       "title": "A Tale of Two Dollars: Why Dollar General Outpaced Dollar Tree This Quarter",
@@ -201,7 +216,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 3,
-      "firstAt": 1789230441000
+      "firstAt": 1789230441000,
+      "why": "Winter outlook, no immediate signal"
     },
     {
       "title": "BioMarin Shares Jump 5% After Global Patent Settlement With Ascendis",
@@ -233,7 +249,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789232280000
+      "firstAt": 1789232280000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Control push implies supply constraints"
     },
     {
       "title": "Russian attacks kill six, injure dozens in Ukraine, Moscow says it hits ships, plants - Reuters",
@@ -253,7 +274,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789230076000
+      "firstAt": 1789230076000,
+      "why": "Escalation, but no clear direction"
     },
     {
       "title": "Escalation in Ukraine: The Rising Civilian Toll Amid Intensified Strikes - Devdiscourse",
@@ -273,7 +295,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789230076000
+      "firstAt": 1789230076000,
+      "why": "Civilian toll, no market direction"
     },
     {
       "title": "8 killed in Russian strikes on Ukraine as Putin warns Europe against sending troops - The Seattle Times",
@@ -293,7 +316,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789230076000
+      "firstAt": 1789230076000,
+      "why": "Military strikes, no clear signal"
     },
     {
       "title": "Russia Launches 410 Attack Drones Against Ukraine, Air Defenses Neutralize 336 - Межа. Новини України.",
@@ -313,7 +337,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789227960000
+      "firstAt": 1789227960000,
+      "why": "Drone attacks, no clear direction"
     },
     {
       "title": "Dow Jones Futures: Fed Rate Hike Seen As Oil, Yields Pressure Stocks; Apple, Moderna Are New Buys",
@@ -332,7 +357,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789230125000
+      "firstAt": 1789230125000,
+      "dir": {
+        "US500": "down",
+        "US30": "down"
+      },
+      "why": "Rate hike pressure weighs on stocks"
     },
     {
       "title": "Apple, Taiwan Semi Lead Five Stocks Near Buy Points",
@@ -1776,7 +1806,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-12T18:07:46.703Z",
-  "headlinesAt": "2026-09-12T18:07:46.703Z",
-  "updatedAt": "2026-09-12T18:07:46.703Z"
+  "calendarAt": "2026-09-12T18:09:17.683Z",
+  "headlinesAt": "2026-09-12T18:09:17.683Z",
+  "updatedAt": "2026-09-12T18:09:17.683Z"
 }
