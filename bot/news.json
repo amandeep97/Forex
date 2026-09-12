@@ -1,5 +1,33 @@
 {
-  "calendar": [],
+  "calendar": [
+    {
+      "title": "Federal Budget Balance",
+      "country": "USD",
+      "impact": "low",
+      "at": 1789149480000,
+      "forecast": "-221.1B",
+      "previous": "-432.3B",
+      "actual": ""
+    },
+    {
+      "title": "ECB President Lagarde Speaks",
+      "country": "EUR",
+      "impact": "medium",
+      "at": 1789200000000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "BRICS Summit",
+      "country": "All",
+      "impact": "low",
+      "at": 1789200900000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    }
+  ],
   "headlines": [
     {
       "title": "5 killed in Russian strikes on Ukraine as Putin warns Europe against sending troops - WHEC.com",
@@ -20,6 +48,21 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789225212000,
+      "_kind": null
+    },
+    {
+      "title": "Cramer Asked Who Was Buying Gigantic Bloom Energy Calls. A Pelosi Filing Named Two of the Same Stocks Weeks Earlier.",
+      "link": "https://finance.yahoo.com/markets/options/articles/cramer-asked-buying-gigantic-bloom-145041797.html",
+      "source": "Yahoo Finance",
+      "at": 1789224641000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789224641000,
       "_kind": null
     },
     {
@@ -89,8 +132,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789223700000,
-      "_kind": null
+      "firstAt": 1789223700000
     },
     {
       "title": "Greg Abel Is Betting on Homebuilders Even as the Pending Home Sales Index Sits Near Its Second-Lowest Reading Ever, Down 36% Since 2021. Is Berkshire Early to a Housing Recovery, or Just Early?",
@@ -102,8 +144,7 @@
       "sev": 1,
       "rel": 1,
       "srcs": 1,
-      "firstAt": 1789223700000,
-      "_kind": null
+      "firstAt": 1789223700000
     },
     {
       "title": "Trump says a unified Ireland would be ‘fantastic’ during Irish visit",
@@ -702,7 +743,19 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789212118000
+      "firstAt": 1789211573000
+    },
+    {
+      "title": "Oracle Just Added $30 Billion in AI Contracts. Nvidia Investors Should Read the Fine Print",
+      "link": "https://finance.yahoo.com/technology/ai/articles/oracle-just-added-30-billion-111550996.html",
+      "source": "Yahoo Finance",
+      "at": 1789211750000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 1,
+      "srcs": 1,
+      "firstAt": 1789211750000
     },
     {
       "title": "Russia strikes cargo vessels, steel plants across Ukraine - Al Jazeera",
@@ -723,6 +776,20 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789211661000
+    },
+    {
+      "title": "Jim Cramer Discusses Adobe Inc. (NASDAQ:ADBE) & “False” Cuts",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/jim-cramer-discusses-adobe-inc-111253006.html",
+      "source": "Yahoo Finance",
+      "at": 1789211573000,
+      "inst": [
+        "US100"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789211573000
     },
     {
       "title": "Far-right protesters rally against Islam on 9/11 anniversary",
@@ -1665,63 +1732,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789153720000
-    },
-    {
-      "title": "Lightning Houthi advance in Yemen may bring dangerous new dimension to Iran war",
-      "link": "https://www.bbc.co.uk/news/articles/c3v4zgzr1kxo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC World",
-      "desc": "The capture by the rebels of a stretch of Yemen's strategic coastline is the group's most impressive military coup for several years.",
-      "at": 1789155898000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789155898000
-    },
-    {
-      "title": "US House to vote on Russia sanctions backed by late Senator Graham - Reuters",
-      "link": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPYXo0TE8tLVZ2VzF0TjRlTFJBbEZIRDVqWndXMTNMb0VlT1lxd1JBMEdpNGJmaVE2a2Q2emtmTUZ2NVdvOUloVEdrdnVrOVRnSTRWbmd4MGNSUzFXR3JUR0o5ZHloaU5JRzd5TVNtenpjd3ZBNk5aZU9ubVE5aTRlTUtFM0M1dWFCUGVZcEp0b01SejVmS0p4Z2RHV2YyRm1PQUR0UzUxeUtJM2NmQzJVdTVsRQ?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiswFBVV95cUxPYXo0TE8tLVZ2VzF0TjRlTFJBbEZIRDVqWndXMTNMb0VlT1lxd1JBMEdpNGJmaVE2a2Q2emtmTUZ2NVdvOUloVEdrdnVrOVRnSTRWbmd4MGNSUzFXR3JUR0o5ZHloaU5JRzd5TVNtenpjd3ZBNk5aZU9ubVE5aTRlTUtFM0M1dWFCUGVZcEp0b01SejVmS0p4Z2RHV2YyRm1PQUR0UzUxeUtJM2",
-      "at": 1789155798000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789153584000
-    },
-    {
-      "title": "Amid war and sanctions, many Iranians are losing their jobs and struggling to get by - NPR",
-      "link": "https://news.google.com/rss/articles/CBMidkFVX3lxTE5EUGplTllYUzJCdTI5bTZ3aU9ySkpzV2VLQWFwLXc1VnBaS1JhZW9wVy1OUGIwWDFyWVBacFVfYXZYekVPZ0dXZVNPQS13V2xQVUFORFBlNkdXMG9nMDUyVGlNX1lHYzMxNGxxT2tiLU5KYy13dXc?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMidkFVX3lxTE5EUGplTllYUzJCdTI5bTZ3aU9ySkpzV2VLQWFwLXc1VnBaS1JhZW9wVy1OUGIwWDFyWVBacFVfYXZYekVPZ0dXZVNPQS13V2xQVUFORFBlNkdXMG9nMDUyVGlNX1lHYzMxNGxxT2tiLU5KYy13dXc?oc=5\" target=\"_blank\">Amid war and sanctions, many Iranians are losing",
-      "at": 1789155575000,
-      "inst": [
-        "XAU/USD"
-      ],
-      "ccy": [
-        "XAU"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789155575000
     }
   ],
   "sources": [
@@ -1747,7 +1757,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": null,
-  "headlinesAt": "2026-09-12T15:04:33.628Z",
-  "updatedAt": "2026-09-12T15:04:33.628Z"
+  "calendarAt": "2026-09-12T15:05:33.996Z",
+  "headlinesAt": "2026-09-12T15:05:33.996Z",
+  "updatedAt": "2026-09-12T15:05:33.996Z"
 }
