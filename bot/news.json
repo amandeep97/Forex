@@ -78,7 +78,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789217355000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "High inflation boosts gold, weakens dollar pairs"
     },
     {
       "title": "AMD Just Raised the Top of the Company's 2030 Market to $3 Trillion",
@@ -119,7 +125,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789216426000,
-      "_kind": null
+      "_kind": null,
+      "why": "Explains stock resilience, no clear direction"
     },
     {
       "title": "Saudi pipeline attack: Iraq races to contain fallout after Iran-backed militias accused of attacking east-west Saudi oil pipeline - ABC7 Chicago",
@@ -140,7 +147,13 @@
       "rel": 2,
       "srcs": 3,
       "firstAt": 1789215013000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Pipeline attack boosts oil and gold prices"
     },
     {
       "title": "BRICS leaders voice concern over Middle East, condemn unilateral sanctions at India summit - Union-Bulletin",
@@ -161,7 +174,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789215596000,
-      "_kind": null
+      "_kind": null,
+      "why": "Diplomatic concern, no immediate market impact"
     },
     {
       "title": "Canadian boycott of US products pushes grocers to adapt, explore new supply sources",
@@ -175,7 +189,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789215545000
+      "firstAt": 1789215545000,
+      "why": "Supply chain adaptation, no clear FX direction"
     },
     {
       "title": "Trump says Iran probably responsible for attack on Saudi oil pipeline - Arab News",
@@ -195,7 +210,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 3,
-      "firstAt": 1789215013000
+      "firstAt": 1789215013000,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Iran blame increases geopolitical risk premium"
     },
     {
       "title": "Saudi Arabia shuts key oil pipeline after drone attack launched from Iraq",
@@ -215,7 +236,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 3,
-      "firstAt": 1789215013000
+      "firstAt": 1789215013000,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Pipeline shutdown tightens supply, boosts risk assets"
     },
     {
       "title": "Trump: Iran probably ‘behind’ Saudi oil pipeline attack - Al Jazeera",
@@ -235,7 +262,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 3,
-      "firstAt": 1789212375000
+      "firstAt": 1789212375000,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Iran attribution heightens geopolitical tensions"
     },
     {
       "title": "Trump: Iran probably ‘behind’ Saudi oil pipeline attack",
@@ -255,7 +288,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 3,
-      "firstAt": 1789212375000
+      "firstAt": 1789212375000,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Iran attribution heightens geopolitical tensions"
     },
     {
       "title": "Yemen government forces say Houthi ‘members, vehicles’ targeted in Mocha",
@@ -275,7 +314,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789214269000
+      "firstAt": 1789214269000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Red Sea conflict boosts risk assets"
     },
     {
       "title": "At least 11 killed in Russian attacks on Ukraine as Kyiv strikes Russia's 'shadow fleet' - euronews.com",
@@ -295,7 +340,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789211661000
+      "firstAt": 1789211661000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Ukraine conflict boosts gold, oil unclear"
     },
     {
       "title": "Saudis shut down oil pipeline as Houthis tighten grip on Red Sea shipping",
@@ -311,7 +360,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789212986000
+      "firstAt": 1789212986000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Pipeline shutdown and Red Sea risk boost oil"
     },
     {
       "title": "Christian Charities, Bishops Team Up with British Government to Push Israel Sanctions - Middle East Forum",
@@ -332,7 +385,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789212382000
+      "firstAt": 1789212382000,
+      "why": "Political advocacy, no direct market impact"
     },
     {
       "title": "Iran used Chinese satellite images for attack on US base in Jordan, says report - Middle East Eye",
@@ -352,7 +406,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789211568000
+      "firstAt": 1789211568000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Iran-US tension boosts gold, oil unclear"
     },
     {
       "title": "Iran-backed Iraqi militias deny responsibility for Saudi pipeline attack - Free Press Kashmir",
@@ -372,7 +430,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789211568000
+      "firstAt": 1789211568000,
+      "why": "Denial of responsibility, no clear direction"
     },
     {
       "title": "Trump says Iran likely responsible for attack on vital Saudi oil pipeline - CNN",
@@ -1783,10 +1842,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-12T12:52:47.961Z",
-  "headlinesAt": "2026-09-12T12:52:47.961Z",
-  "updatedAt": "2026-09-12T12:52:47.961Z"
+  "calendarAt": "2026-09-12T12:54:03.351Z",
+  "headlinesAt": "2026-09-12T12:54:03.351Z",
+  "updatedAt": "2026-09-12T12:54:03.351Z"
 }
