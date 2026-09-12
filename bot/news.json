@@ -19,7 +19,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789181864000
+      "firstAt": 1789181864000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Geopolitical tension boosts gold, oil unclear"
     },
     {
       "title": "Saudis shut down oil pipeline as Houthis tighten grip on Red Sea shipping",
@@ -35,7 +39,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789181310000
+      "firstAt": 1789181310000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Pipeline shutdown tightens supply, bullish oil"
     },
     {
       "title": "North Korea fires ballistic missiles off eastern coast, Seoul says",
@@ -52,7 +60,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789179959000
+      "firstAt": 1789179959000,
+      "why": "Geopolitical risk unclear for yen direction"
     },
     {
       "title": "Putin and Pezeshkian call out US dominance ahead of BRICS",
@@ -87,7 +96,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789178700000
+      "firstAt": 1789178700000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Supply disruption and risk boost gold, oil"
     },
     {
       "title": "World Muslim League, Bahrain condemn drone attack on Saudi Arabia - Middle East Eye",
@@ -107,10 +122,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789178700000
+      "firstAt": 1789178700000,
+      "why": "Diplomatic condemnation lacks immediate market impact"
     },
     {
-      "title": "UK sanctions on West Bank settlers are the right step | Letters - theguardian.com",
+      "title": "UK sanctions on West Bank settlers are the right step | Letters - The Guardian",
       "link": "https://news.google.com/rss/articles/CBMioAFBVV95cUxPX2pzdjIzV1JZd28wekFHbGRWTTJjREFMZ1Q3UjY3bTNpbTgtbU5neGdIQ1AwSndKR0tscnpReVpacGg1QTAxSXMzUlVHZlpkS1JweXRmNWY2SHZ4OUd4NnE4aTVycWR3YmQxRDBmOE5sVkhyeFgxWjRNRWV0M2VWTkhIaWdxeTVyU3RQakhqZ0haMXRBUDViY0lzQl8zR1lN?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMioAFBVV95cUxPX2pzdjIzV1JZd28wekFHbGRWTTJjREFMZ1Q3UjY3bTNpbTgtbU5neGdIQ1AwSndKR0tscnpReVpacGg1QTAxSXMzUlVHZlpkS1JweXRmNWY2SHZ4OUd4NnE4aTVycWR3YmQxRDBmOE5sVkhyeFgxWjRNRWV0M2VWTkhIaWdxeTVyU3RQakhqZ0haMXRBUDViY0lzQl8zR1lN?oc=5\" target=",
@@ -124,7 +140,29 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789176660000
+      "firstAt": 1789176660000,
+      "why": "Sanctions news unclear for gold direction"
+    },
+    {
+      "title": "US said to link Chinese satellite imagery to Iran strike - Breakingthenews.net",
+      "link": "https://news.google.com/rss/articles/CBMiowFBVV95cUxOd0JWLUVLV3JlMFJCTXJjYTkwM2VoRG83dndQdTFuZkNqQ1E4ZTRPSEVqVzI2LVNFcGpzMGtWWEZnWWhPa3dUZGRsNDY3UEhLdFExY3hwTEttY01KeV91NzItTF9UYm9HdE9qNC1nbTUtVTRVV1U4d21OWjhKdGpidERBRUZodGxBam11ZExqU29sMmNjWllZNnQtU3pXbUt4RkZV?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiowFBVV95cUxOd0JWLUVLV3JlMFJCTXJjYTkwM2VoRG83dndQdTFuZkNqQ1E4ZTRPSEVqVzI2LVNFcGpzMGtWWEZnWWhPa3dUZGRsNDY3UEhLdFExY3hwTEttY01KeV91NzItTF9UYm9HdE9qNC1nbTUtVTRVV1U4d21OWjhKdGpidERBRUZodGxBam11ZExqU29sMmNjWllZNnQtU3pXbUt4RkZV?oc=5\" tar",
+      "at": 1789176240000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 3,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789176240000,
+      "why": "Speculative link unclear for market direction"
     },
     {
       "title": "How Canadians are bracing for the impact of Trump’s trade war",
@@ -143,7 +181,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789174320000
+      "firstAt": 1789174320000,
+      "why": "Trade war impact on CAD unclear"
     },
     {
       "title": "Iraq closes border crossing with Iran, 'pursuing' drone attack perpetrators - Middle East Eye",
@@ -163,7 +202,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789173960000
+      "firstAt": 1789173960000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Regional instability boosts gold, oil unclear"
     },
     {
       "title": "Temple Israel welcomes congregants home six months after attack - The Detroit News",
@@ -183,7 +226,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789172760000
+      "firstAt": 1789172760000,
+      "why": "Local news irrelevant to global markets"
     },
     {
       "title": "At BRICS, Putin Slams West's \"Ugly\" Trade Tactics, Cites \"30,000 Sanctions\" - NDTV",
@@ -200,7 +244,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789172532000
+      "firstAt": 1789172532000,
+      "why": "Political rhetoric unclear for gold direction"
     },
     {
       "title": "Iran war live: Houthis control Red Sea coast, Saudi pipeline shut down",
@@ -220,7 +265,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789171200000
+      "firstAt": 1789171200000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Supply shock and risk boost gold, oil"
     },
     {
       "title": "The Fed could raise interest rates three times. Here’s where the market could face the stiffest test.",
@@ -243,7 +294,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789170840000
+      "firstAt": 1789170840000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Rate hike expectations strengthen dollar, lower gold"
     },
     {
       "title": "Markets may be making a horrible miscalculation on AI and inflation - AFR",
@@ -266,7 +323,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789170720000
+      "firstAt": 1789170720000,
+      "why": "Inflation outlook unclear for currency direction"
     },
     {
       "title": "Russian attacks on Kyiv petrol stations kill two, Ukrainian strikes kill three in Russia",
@@ -285,7 +343,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789169785000
+      "firstAt": 1789169785000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Escalation boosts gold, oil impact unclear"
     },
     {
       "title": "Schiff on CapitalCosm: Debt, the Dollar, and the Inflation Election - SchiffGold.com",
@@ -472,23 +534,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789158412000
-    },
-    {
-      "title": "S&P 500 ends higher as strong inflation data cements rate hike bets - The Straits Times",
-      "link": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPRkc2bjg2MmExLVdlQXgybWdCeFY2RTVMMm1IWV9XdUdZTTNwbXA5T3lhbDh5blFOYk10aEpaeGk4OV9wejR1RW1iYnI0cFUwZjJpNjRxYnBhSDQwMjF1YzZZNzdPTi1PRjNFQmJQTHBrMk5TelFSbnFRcXFfeDVVNFlTZGJkSjlIVkxlMzVJQ2R0UzFuOXgzY0JoRGtadDZUem9zWWtLdC1uS0p3bzdIS2pvRmh2ZWV2X251bFIwYw?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMivwFBVV95cUxPRkc2bjg2MmExLVdlQXgybWdCeFY2RTVMMm1IWV9XdUdZTTNwbXA5T3lhbDh5blFOYk10aEpaeGk4OV9wejR1RW1iYnI0cFUwZjJpNjRxYnBhSDQwMjF1YzZZNzdPTi1PRjNFQmJQTHBrMk5TelFSbnFRcXFfeDVVNFlTZGJkSjlIVkxlMzVJQ2R0UzFuOXgzY0JoRGtadDZUem9zWWtLdC1uS0",
-      "at": 1789160760000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789160760000
     },
     {
       "title": "The Fed can hike, but it won’t derail gold’s long-term bull market – analysts - KITCO",
@@ -1585,7 +1630,7 @@
       "firstAt": 1789145638000
     },
     {
-      "title": "EU ambassadors fail to extend sanctions against Russia due to opposition from Slovakia and France - pravda.com.ua",
+      "title": "EU ambassadors fail to extend sanctions against Russia due to opposition from Slovakia and France - Українська правда",
       "link": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE1MZ1Y5VVUwUTh6UFh2RmdFdjZQSmlMejEyUHY3REpJUVVUU1NiYWhnSklCS1hSU0h3aHNZU1hFa1dMbFRqdGNYRFlTbGpmX0ZlR25hbGJ4UkxFUDNrLXp4TjliUUbSAXBBVV95cUxQVV9UVHJJajJnVm5tWTRpMGZRU1BsbmpzTHdtd1FTMzFydGp5MFhHd1ZPUUltdnhnbk5CeFNpS1d0VnQ1azl4X29SLUEyR1p0WnhnWG5rbDl0NXBYYzU2QnF3NTREaDUtM2d4RnNTVERk?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiZEFVX3lxTE1MZ1Y5VVUwUTh6UFh2RmdFdjZQSmlMejEyUHY3REpJUVVUU1NiYWhnSklCS1hSU0h3aHNZU1hFa1dMbFRqdGNYRFlTbGpmX0ZlR25hbGJ4UkxFUDNrLXp4TjliUUbSAXBBVV95cUxQVV9UVHJJajJnVm5tWTRpMGZRU1BsbmpzTHdtd1FTMzFydGp5MFhHd1ZPUUltdnhnbk5CeFNpS1d0VnQ1az",
@@ -1693,7 +1738,7 @@
       "firstAt": 1789141680000
     },
     {
-      "title": "Estonian intelligence on Ukrainian strikes on Russian plants 3,000 km away: situation has changed - pravda.com.ua",
+      "title": "Estonian intelligence on Ukrainian strikes on Russian plants 3,000 km away: situation has changed - Українська правда",
       "link": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE1PT1NJV0RObnVOWTFjRVZkR0hKZ2xfWkxZemVDM3dXcm5vX2RTSU5URGxDVkxhUUliQWtPcXFyREdxb1FkemQ2akxRTWlISlAzWTVtOXgtNEZ5TXJCaFFaMlBmR2LSAXBBVV95cUxOYmtmSWI5YWtkZDlHbjZsRzdQQmJOb2llVGh5dmpKRkpIdGxKZXUxLThEazN4ZDFzS1o1MndnU3JPdjM2ZFo5TndiNkxob3ZIQmlVb2ZwdUh2eFhBcnBEMHpsVFM2akpIQXZyNjAxS21q?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiZEFVX3lxTE1PT1NJV0RObnVOWTFjRVZkR0hKZ2xfWkxZemVDM3dXcm5vX2RTSU5URGxDVkxhUUliQWtPcXFyREdxb1FkemQ2akxRTWlISlAzWTVtOXgtNEZ5TXJCaFFaMlBmR2LSAXBBVV95cUxOYmtmSWI5YWtkZDlHbjZsRzdQQmJOb2llVGh5dmpKRkpIdGxKZXUxLThEazN4ZDFzS1o1MndnU3JPdjM2ZF",
@@ -1733,10 +1778,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-12T04:19:01.461Z",
-  "updatedAt": "2026-09-12T04:19:01.461Z"
+  "headlinesAt": "2026-09-12T04:20:18.794Z",
+  "updatedAt": "2026-09-12T04:20:18.794Z"
 }
