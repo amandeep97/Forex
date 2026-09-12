@@ -1,5 +1,200 @@
 {
-  "calendar": [],
+  "calendar": [
+    {
+      "title": "GDP m/m",
+      "country": "GBP",
+      "impact": "high",
+      "at": 1789106400000,
+      "forecast": "0.0%",
+      "previous": "0.3%",
+      "actual": ""
+    },
+    {
+      "title": "Construction Output m/m",
+      "country": "GBP",
+      "impact": "low",
+      "at": 1789106400000,
+      "forecast": "0.1%",
+      "previous": "-0.1%",
+      "actual": ""
+    },
+    {
+      "title": "Goods Trade Balance",
+      "country": "GBP",
+      "impact": "low",
+      "at": 1789106400000,
+      "forecast": "-22.6B",
+      "previous": "-23.0B",
+      "actual": ""
+    },
+    {
+      "title": "Index of Services 3m/3m",
+      "country": "GBP",
+      "impact": "low",
+      "at": 1789106400000,
+      "forecast": "0.5%",
+      "previous": "0.5%",
+      "actual": ""
+    },
+    {
+      "title": "Industrial Production m/m",
+      "country": "GBP",
+      "impact": "low",
+      "at": 1789106400000,
+      "forecast": "-0.2%",
+      "previous": "-0.2%",
+      "actual": ""
+    },
+    {
+      "title": "Manufacturing Production m/m",
+      "country": "GBP",
+      "impact": "low",
+      "at": 1789106400000,
+      "forecast": "0.2%",
+      "previous": "-0.5%",
+      "actual": ""
+    },
+    {
+      "title": "SECO Consumer Climate",
+      "country": "CHF",
+      "impact": "low",
+      "at": 1789110000000,
+      "forecast": "-33",
+      "previous": "-35",
+      "actual": ""
+    },
+    {
+      "title": "Italian Quarterly Unemployment Rate",
+      "country": "EUR",
+      "impact": "low",
+      "at": 1789113600000,
+      "forecast": "5.4%",
+      "previous": "5.3%",
+      "actual": ""
+    },
+    {
+      "title": "Consumer Inflation Expectations",
+      "country": "GBP",
+      "impact": "low",
+      "at": 1789115400000,
+      "forecast": "",
+      "previous": "4.0%",
+      "actual": ""
+    },
+    {
+      "title": "SNB Chairman Schlegel Speaks",
+      "country": "CHF",
+      "impact": "medium",
+      "at": 1789118100000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "Core CPI m/m",
+      "country": "USD",
+      "impact": "high",
+      "at": 1789129800000,
+      "forecast": "0.2%",
+      "previous": "0.2%",
+      "actual": "0.22",
+      "actualFrom": "BLS",
+      "actualNum": 0.22,
+      "vsPrevious": 0.02,
+      "forecastNum": 0.2,
+      "surprise": 0.02,
+      "surprisePct": 10,
+      "beat": "above"
+    },
+    {
+      "title": "Core CPI y/y",
+      "country": "USD",
+      "impact": "high",
+      "at": 1789129800000,
+      "forecast": "2.4%",
+      "previous": "2.5%",
+      "actual": ""
+    },
+    {
+      "title": "CPI m/m",
+      "country": "USD",
+      "impact": "high",
+      "at": 1789129800000,
+      "forecast": "0.4%",
+      "previous": "0.1%",
+      "actual": "0.07",
+      "actualFrom": "BLS",
+      "actualNum": 0.07,
+      "vsPrevious": -0.03,
+      "forecastNum": 0.4,
+      "surprise": -0.33,
+      "surprisePct": -82.5,
+      "beat": "below"
+    },
+    {
+      "title": "CPI y/y",
+      "country": "USD",
+      "impact": "high",
+      "at": 1789129800000,
+      "forecast": "3.4%",
+      "previous": "3.4%",
+      "actual": ""
+    },
+    {
+      "title": "ECB President Lagarde Speaks",
+      "country": "EUR",
+      "impact": "medium",
+      "at": 1789135200000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "Prelim UoM Consumer Sentiment",
+      "country": "USD",
+      "impact": "medium",
+      "at": 1789135200000,
+      "forecast": "51.0",
+      "previous": "51.0",
+      "actual": ""
+    },
+    {
+      "title": "Prelim UoM Inflation Expectations",
+      "country": "USD",
+      "impact": "medium",
+      "at": 1789135200000,
+      "forecast": "",
+      "previous": "4.3%",
+      "actual": ""
+    },
+    {
+      "title": "Federal Budget Balance",
+      "country": "USD",
+      "impact": "low",
+      "at": 1789149480000,
+      "forecast": "-221.1B",
+      "previous": "-432.3B",
+      "actual": ""
+    },
+    {
+      "title": "ECB President Lagarde Speaks",
+      "country": "EUR",
+      "impact": "medium",
+      "at": 1789200000000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "BRICS Summit",
+      "country": "All",
+      "impact": "low",
+      "at": 1789200900000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    }
+  ],
   "headlines": [
     {
       "title": "Iran war live: Houthis control Red Sea coast, Saudi pipeline shut down",
@@ -43,8 +238,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789170840000,
-      "_kind": null
+      "firstAt": 1789170840000
     },
     {
       "title": "Markets may be making a horrible miscalculation on AI and inflation - afr.com",
@@ -537,7 +731,7 @@
       "firstAt": 1789158600000
     },
     {
-      "title": "Dollar Wavers as Inflation Aids Fed Hike Bets While Oil Falls - Bloomberg.com",
+      "title": "Dollar Wavers as Inflation Aids Fed Hike Bets While Oil Falls - bloomberg.com",
       "link": "https://news.google.com/rss/articles/CBMisgFBVV95cUxQeWlMZGtUTzRWWVpPMGVET0dKdGZIN2NvNWZrNE1acjJrWnVleGVlMmk5WFVoNGV2NGhKZFM0WENiTWtiU3A1UTdpZGVQVUQ4dTNzQmxsczM0cERDMk5IWmNTdDNmNFh1c0szOG05R25jNXdUR3hORTU0RGpySDdSbm1oMHNHSkNtY0F6ZHlKZ3BkbmJhQUxGM1NzNWczLW8yclhQZlZzRDlSMjRBV08xOTl3?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMisgFBVV95cUxQeWlMZGtUTzRWWVpPMGVET0dKdGZIN2NvNWZrNE1acjJrWnVleGVlMmk5WFVoNGV2NGhKZFM0WENiTWtiU3A1UTdpZGVQVUQ4dTNzQmxsczM0cERDMk5IWmNTdDNmNFh1c0szOG05R25jNXdUR3hORTU0RGpySDdSbm1oMHNHSkNtY0F6ZHlKZ3BkbmJhQUxGM1NzNWczLW8yclhQZlZzRDlSMj",
@@ -735,29 +929,6 @@
       "firstAt": 1789153994000
     },
     {
-      "title": "Markets will absorb a rate hike if the cycle is shallow, says JPMorgan's Dubravko Lakos - CNBC",
-      "link": "https://news.google.com/rss/articles/CBMixwFBVV95cUxOMTFXM21hWlBfQ1hLb00yQTl1MkN2YlEtSUFrejhMWl9FSkxJN2NnbmlnQ0VBSHNZU3Rac2dCR0Q0eVRtNERhVFlLZ0lENjhYMnpmaTlKeWZ6UVM0VEpkOW5TSHpzZDJyblRrd2dDY1cxYTdQUVMzdll5dFdPX0FTY1dSdWtKV05ISFRBX2F3dEVJSmFxQ2ZrV2FkNk9zX2JZT09QVnNZOHNjMEdLd2hwRUFneERtZDBETm9iVjdvczFGd3ktM1FF?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMixwFBVV95cUxOMTFXM21hWlBfQ1hLb00yQTl1MkN2YlEtSUFrejhMWl9FSkxJN2NnbmlnQ0VBSHNZU3Rac2dCR0Q0eVRtNERhVFlLZ0lENjhYMnpmaTlKeWZ6UVM0VEpkOW5TSHpzZDJyblRrd2dDY1cxYTdQUVMzdll5dFdPX0FTY1dSdWtKV05ISFRBX2F3dEVJSmFxQ2ZrV2FkNk9zX2JZT09QVnNZOHNjME",
-      "at": 1789156311000,
-      "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789153720000
-    },
-    {
       "title": "Lightning Houthi advance in Yemen may bring dangerous new dimension to Iran war",
       "link": "https://www.bbc.co.uk/news/articles/c3v4zgzr1kxo?at_medium=RSS&at_campaign=rss",
       "source": "BBC World",
@@ -886,6 +1057,29 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789152980000
+    },
+    {
+      "title": "Markets will absorb a rate hike if the cycle is shallow, says JPMorgan's Dubravko Lakos - CNBC",
+      "link": "https://news.google.com/rss/articles/CBMixwFBVV95cUxOMTFXM21hWlBfQ1hLb00yQTl1MkN2YlEtSUFrejhMWl9FSkxJN2NnbmlnQ0VBSHNZU3Rac2dCR0Q0eVRtNERhVFlLZ0lENjhYMnpmaTlKeWZ6UVM0VEpkOW5TSHpzZDJyblRrd2dDY1cxYTdQUVMzdll5dFdPX0FTY1dSdWtKV05ISFRBX2F3dEVJSmFxQ2ZrV2FkNk9zX2JZT09QVnNZOHNjMEdLd2hwRUFneERtZDBETm9iVjdvczFGd3ktM1FF?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMixwFBVV95cUxOMTFXM21hWlBfQ1hLb00yQTl1MkN2YlEtSUFrejhMWl9FSkxJN2NnbmlnQ0VBSHNZU3Rac2dCR0Q0eVRtNERhVFlLZ0lENjhYMnpmaTlKeWZ6UVM0VEpkOW5TSHpzZDJyblRrd2dDY1cxYTdQUVMzdll5dFdPX0FTY1dSdWtKV05ISFRBX2F3dEVJSmFxQ2ZrV2FkNk9zX2JZT09QVnNZOHNjME",
+      "at": 1789154512000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789153720000
     },
     {
       "title": "How US leaders remembered the 25th anniversary of the 9/11 attacks",
@@ -1228,24 +1422,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789149830000
-    },
-    {
-      "title": "Gold rises on dip-buying even as Fed rate hike bets rise after US inflation data - marketscreener.com",
-      "link": "https://news.google.com/rss/articles/CBMizgFBVV95cUxQb0Vha0FyTzlqSUxPbGhMRzdUU0hpT2puanltRmk1YW5VenNTQ0xkaFZCUENWazZ0TmtPdEs0RWxrQzFWN0V5TktQUngwRHJ3Ym5LR3lvbnpTNHQtb09PQUlIT2d1cGt3U3BDN2JyQkxkQ25tWEo4NFEyWndGR0FRclJZSVRBOTY4Q1ZWbUZnVzlZY0xDQnNnU29EODRFYUVBQzZHXzRCcnJQY3FIY0N0b2I2RzJSN0xSSTdYM0FhU1VsUWhReU9McmM4YTVRZw?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMizgFBVV95cUxQb0Vha0FyTzlqSUxPbGhMRzdUU0hpT2puanltRmk1YW5VenNTQ0xkaFZCUENWazZ0TmtPdEs0RWxrQzFWN0V5TktQUngwRHJ3Ym5LR3lvbnpTNHQtb09PQUlIT2d1cGt3U3BDN2JyQkxkQ25tWEo4NFEyWndGR0FRclJZSVRBOTY4Q1ZWbUZnVzlZY0xDQnNnU29EODRFYUVBQzZHXzRCcnJQY3",
-      "at": 1789149799000,
-      "inst": [
-        "XAU/USD"
-      ],
-      "ccy": [
-        "USD",
-        "XAU"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789149799000
     },
     {
       "title": "US lawmakers set to vote on Graham-backed Russia sanctions - Latest news from Azerbaijan",
@@ -1721,6 +1897,29 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789141380000
+    },
+    {
+      "title": "U.S. inflation accelerated last month as gas prices spiked, squeezing Americans' finances - PBS",
+      "link": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxNejZvT2dPR1FuOFBHT3JybFdwRTJLNEttQUNSTzZBUDlIcXh3elM3blhxeDVoQ05WWFdmbndvdTZoV3VaczdEZTJRNTFPQ013QWRmYlkyN0JZUVdObDlaSlZQTm5uSnZjSWlOR3BPbVpTQnR1MlJrU3BNMmxSZU91S0hieDBJNERmZUFvS3owelRYRUtSb2xfTVJ2amZaM3RQNkotdGE5N3B0YnF4bDBYWjViWUo3OE5sSnNPM2ZGWWTSAcYBQVVfeXFMT1hWb1dmaHZpUlBkcE56S0QyVUhJdGV1ZEtxV05DOXlfOGJLZlY3Wnh6QlVlaW5XUWVqMnhvRzZ1eHRicEJBSi1aUEk0Vk1jbFBhaHdaaVI3MXJjODZmMWZLd21GanFTQWFpUEVmTko2Zm1BUEY3b3pVNGFGWHZaVWtZRE5RV1RycFljQWxlZ3d4cl9zaEt6b1V1dlczdHBnNURpNklVU2xnYUZMakhobEFCQVpyNkhVU29oUTRyWkF6LTl6S0xn?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiwAFBVV95cUxNejZvT2dPR1FuOFBHT3JybFdwRTJLNEttQUNSTzZBUDlIcXh3elM3blhxeDVoQ05WWFdmbndvdTZoV3VaczdEZTJRNTFPQ013QWRmYlkyN0JZUVdObDlaSlZQTm5uSnZjSWlOR3BPbVpTQnR1MlJrU3BNMmxSZU91S0hieDBJNERmZUFvS3owelRYRUtSb2xfTVJ2amZaM3RQNkotdGE5N3B0Yn",
+      "at": 1789140973000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789140973000
     }
   ],
   "sources": [
@@ -1743,10 +1942,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
-  "calendarAt": null,
-  "headlinesAt": "2026-09-12T00:22:45.422Z",
-  "updatedAt": "2026-09-12T00:22:45.422Z"
+  "calendarAt": "2026-09-12T00:24:30.863Z",
+  "headlinesAt": "2026-09-12T00:24:30.863Z",
+  "updatedAt": "2026-09-12T00:24:30.863Z"
 }
