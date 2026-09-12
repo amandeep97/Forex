@@ -1,5 +1,33 @@
 {
-  "calendar": [],
+  "calendar": [
+    {
+      "title": "Federal Budget Balance",
+      "country": "USD",
+      "impact": "low",
+      "at": 1789149480000,
+      "forecast": "-221.1B",
+      "previous": "-432.3B",
+      "actual": ""
+    },
+    {
+      "title": "ECB President Lagarde Speaks",
+      "country": "EUR",
+      "impact": "medium",
+      "at": 1789200000000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "BRICS Summit",
+      "country": "All",
+      "impact": "low",
+      "at": 1789200900000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    }
+  ],
   "headlines": [
     {
       "title": "Canadian boycott of US products pushes grocers to adapt, explore new supply sources",
@@ -14,7 +42,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789228469000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USD/CAD": "down"
+      },
+      "why": "Boycott hurts Canada, weakens CAD"
     },
     {
       "title": "Top Economist Says the Fed Should Hike Rates 50 Basis Points Next Week. The Bond Market Is Already Near His Danger Zone.",
@@ -37,7 +69,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789228095000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Hawkish Fed hike expectations strengthen dollar"
     },
     {
       "title": "Attack on key Saudi pipeline is blamed on Iran-backed militias in Iraq - spectrumlocalnews.com",
@@ -58,7 +96,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789225962000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Saudi pipeline attack boosts oil, gold"
     },
     {
       "title": "Russian strikes kill three, injure dozens across Ukraine, Zelenskyy says - TVP World",
@@ -79,7 +123,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789227136000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Ukraine strikes boost gold safe haven"
     },
     {
       "title": "Prediction: This High-Yield Dow Dividend Stock Will Become a Dividend King Before the End of the Year.",
@@ -94,7 +142,10 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789227052000,
-      "_kind": null
+      "dir": {
+        "US30": "up"
+      },
+      "why": "Positive dividend stock prediction"
     },
     {
       "title": "5 Big Yields That Could Be Slashed: Income Investors Beware",
@@ -126,7 +177,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789227136000
+      "firstAt": 1789227136000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Ukraine escalation boosts gold safe haven"
     },
     {
       "title": "Rivian Sacrificed Its 2027 Profit Target. Here's Why Investors Should Applaud.",
@@ -158,7 +213,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789225560000
+      "firstAt": 1789225560000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Iran escalation boosts oil, gold"
     },
     {
       "title": "Trump says Iran likely responsible for attack on vital Saudi oil pipeline - KWWL",
@@ -178,7 +239,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789223772000
+      "firstAt": 1789223772000,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Iran blamed for pipeline attack"
     },
     {
       "title": "NuScale Power Stock Jumps 15% in 1 Day. Here's How Nuclear Energy Investors Should Respond.",
@@ -194,7 +261,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789226100000
+      "firstAt": 1789226100000,
+      "why": "Nuclear stock news irrelevant to gold"
     },
     {
       "title": "Trump says Iran probably responsible for attack on Saudi oil pipeline - アラブニュース",
@@ -214,7 +282,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789223772000
+      "firstAt": 1789223772000,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Iran blamed for pipeline attack"
     },
     {
       "title": "Iran and UAE back joint BRICS statement urging restraint in war",
@@ -233,7 +307,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789225943000
+      "firstAt": 1789225943000,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Restraint call reduces geopolitical risk"
     },
     {
       "title": "Iran got Chinese satellite images before deadly strike on US troops: Report - The Straits Times",
@@ -253,7 +333,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789225560000
+      "firstAt": 1789225560000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "US troop strike boosts gold"
     },
     {
       "title": "Israeli attack wounds nine Palestinians in southern Gaza - middleeasteye.net",
@@ -273,7 +357,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789224900000
+      "firstAt": 1789224900000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Gaza violence boosts gold safe haven"
     },
     {
       "title": "Iranian official tells Al Jazeera IAEA ruling was imposed by US and Israel",
@@ -293,7 +381,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789224588000
+      "firstAt": 1789224588000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Nuclear tensions boost gold safe haven"
     },
     {
       "title": "Saudis shut down oil pipeline as Houthis tighten grip on Red Sea shipping",
@@ -309,7 +401,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789224148000
+      "firstAt": 1789224148000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Pipeline shutdown tightens oil supply"
     },
     {
       "title": "Three killed in Russian air strikes on 10 regions of Ukraine - Al Jazeera",
@@ -1749,7 +1845,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": null,
-  "headlinesAt": "2026-09-12T16:05:16.396Z",
-  "updatedAt": "2026-09-12T16:05:16.396Z"
+  "calendarAt": "2026-09-12T16:06:48.254Z",
+  "headlinesAt": "2026-09-12T16:06:48.254Z",
+  "updatedAt": "2026-09-12T16:06:48.254Z"
 }
