@@ -1,60 +1,5 @@
 {
-  "calendar": [
-    {
-      "title": "ECB President Lagarde Speaks",
-      "country": "EUR",
-      "impact": "medium",
-      "at": 1789135200000,
-      "forecast": "",
-      "previous": "",
-      "actual": ""
-    },
-    {
-      "title": "Prelim UoM Consumer Sentiment",
-      "country": "USD",
-      "impact": "medium",
-      "at": 1789135200000,
-      "forecast": "51.0",
-      "previous": "51.0",
-      "actual": ""
-    },
-    {
-      "title": "Prelim UoM Inflation Expectations",
-      "country": "USD",
-      "impact": "medium",
-      "at": 1789135200000,
-      "forecast": "",
-      "previous": "4.3%",
-      "actual": ""
-    },
-    {
-      "title": "Federal Budget Balance",
-      "country": "USD",
-      "impact": "low",
-      "at": 1789149480000,
-      "forecast": "-221.1B",
-      "previous": "-432.3B",
-      "actual": ""
-    },
-    {
-      "title": "ECB President Lagarde Speaks",
-      "country": "EUR",
-      "impact": "medium",
-      "at": 1789200000000,
-      "forecast": "",
-      "previous": "",
-      "actual": ""
-    },
-    {
-      "title": "BRICS Summit",
-      "country": "All",
-      "impact": "low",
-      "at": 1789200900000,
-      "forecast": "",
-      "previous": "",
-      "actual": ""
-    }
-  ],
+  "calendar": [],
   "headlines": [
     {
       "title": "Saudi pipeline attack: Iraq races to contain fallout after Iran-backed militias accused of attacking east-west Saudi oil pipeline - ABC7 New York",
@@ -75,7 +20,13 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789215045000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Supply disruption and geopolitical risk boost prices."
     },
     {
       "title": "BRICS leaders voice concern over Middle East, condemn unilateral sanctions at India summit - Mankato Free Press",
@@ -96,7 +47,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789215784000,
-      "_kind": null
+      "_kind": null,
+      "why": "Diplomatic statements lack immediate market impact."
     },
     {
       "title": "BRICS voices concern over Middle East, condemns unilateral sanctions at India summit - Traverse City Record-Eagle",
@@ -117,7 +69,26 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789215784000,
-      "_kind": null
+      "_kind": null,
+      "why": "Diplomatic statements lack immediate market impact."
+    },
+    {
+      "title": "September Has Historically Been a Difficult Month for Bitcoin. This Is the Most Likely Scenario for What Happens Next.",
+      "link": "https://finance.yahoo.com/markets/crypto/articles/september-historically-difficult-month-bitcoin-122000222.html",
+      "source": "Yahoo Finance",
+      "at": 1789215600000,
+      "inst": [
+        "BTC/USDT"
+      ],
+      "ccy": [
+        "BTC"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789215600000,
+      "_kind": null,
+      "why": "Historical analysis does not dictate current direction."
     },
     {
       "title": "Canadian boycott of US products pushes grocers to adapt, explore new supply sources",
@@ -132,7 +103,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789215545000,
-      "_kind": null
+      "_kind": null,
+      "why": "Supply chain adaptation is a long-term factor."
     },
     {
       "title": "Saudi Arabia shuts key oil pipeline after drone attack launched from Iraq",
@@ -153,22 +125,13 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789215045000,
-      "_kind": null
-    },
-    {
-      "title": "These 5 Boring Stocks Are Quietly Crushing the Market and Making Investors Rich",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/5-boring-stocks-quietly-crushing-121359124.html",
-      "source": "Yahoo Finance",
-      "at": 1789215239000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789215239000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Pipeline shutdown and military escalation raise risk."
     },
     {
       "title": "Trump: Iran probably ‘behind’ Saudi oil pipeline attack - Al Jazeera",
@@ -189,7 +152,13 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789212375000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Attribution to Iran increases geopolitical tension."
     },
     {
       "title": "At least 11 killed in Russian attacks on Ukraine as Kyiv strikes Russia's 'shadow fleet' - euronews.com",
@@ -209,7 +178,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789211661000
+      "firstAt": 1789211661000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Ukraine conflict escalation boosts safe-haven demand."
     },
     {
       "title": "Saudis shut down oil pipeline as Houthis tighten grip on Red Sea shipping",
@@ -225,7 +198,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789212986000
+      "firstAt": 1789212986000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Pipeline shutdown and Red Sea risks raise prices."
     },
     {
       "title": "Christian Charities, Bishops Team Up with British Government to Push Israel Sanctions - Middle East Forum",
@@ -246,7 +223,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789212382000
+      "firstAt": 1789212382000,
+      "why": "Political advocacy has no direct market effect."
     },
     {
       "title": "Iran used Chinese satellite images for attack on US base in Jordan, says report - Middle East Eye",
@@ -266,7 +244,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789211290000
+      "firstAt": 1789211290000,
+      "why": "Report on past attack lacks new impact."
     },
     {
       "title": "Iran-backed Iraqi militias deny responsibility for Saudi pipeline attack - Free Press Kashmir",
@@ -286,7 +265,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789211290000
+      "firstAt": 1789211290000,
+      "why": "Denial of responsibility does not change supply."
     },
     {
       "title": "Trump says Iran likely responsible for attack on vital Saudi oil pipeline - CNN",
@@ -306,7 +286,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789209378000
+      "firstAt": 1789209378000,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Iran attribution heightens geopolitical risk premium."
     },
     {
       "title": "Russia strikes cargo vessels, steel plants across Ukraine - Al Jazeera",
@@ -326,7 +312,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789210034000
+      "firstAt": 1789210034000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Ukraine strikes boost gold, oil unaffected."
     },
     {
       "title": "Trump says Iran probably responsible for attack on Saudi oil pipeline - Arab News",
@@ -346,7 +336,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 3,
-      "firstAt": 1789208666000
+      "firstAt": 1789208666000,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Iran attribution heightens geopolitical risk premium."
     },
     {
       "title": "Far-right protesters rally against Islam on 9/11 anniversary",
@@ -1790,10 +1786,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-12T12:36:47.726Z",
-  "headlinesAt": "2026-09-12T12:36:47.726Z",
-  "updatedAt": "2026-09-12T12:36:47.726Z"
+  "calendarAt": null,
+  "headlinesAt": "2026-09-12T12:38:05.011Z",
+  "updatedAt": "2026-09-12T12:38:05.011Z"
 }
