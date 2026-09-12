@@ -1,5 +1,60 @@
 {
-  "calendar": [],
+  "calendar": [
+    {
+      "title": "ECB President Lagarde Speaks",
+      "country": "EUR",
+      "impact": "medium",
+      "at": 1789135200000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "Prelim UoM Consumer Sentiment",
+      "country": "USD",
+      "impact": "medium",
+      "at": 1789135200000,
+      "forecast": "51.0",
+      "previous": "51.0",
+      "actual": ""
+    },
+    {
+      "title": "Prelim UoM Inflation Expectations",
+      "country": "USD",
+      "impact": "medium",
+      "at": 1789135200000,
+      "forecast": "",
+      "previous": "4.3%",
+      "actual": ""
+    },
+    {
+      "title": "Federal Budget Balance",
+      "country": "USD",
+      "impact": "low",
+      "at": 1789149480000,
+      "forecast": "-221.1B",
+      "previous": "-432.3B",
+      "actual": ""
+    },
+    {
+      "title": "ECB President Lagarde Speaks",
+      "country": "EUR",
+      "impact": "medium",
+      "at": 1789200000000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "BRICS Summit",
+      "country": "All",
+      "impact": "low",
+      "at": 1789200900000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    }
+  ],
   "headlines": [
     {
       "title": "Russian Strikes Kill Four in Donetsk Region, Including a Medic - Межа. Новини України.",
@@ -116,8 +171,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789215596000,
-      "_kind": null
+      "firstAt": 1789215596000
     },
     {
       "title": "Will the Fed Raise Rates on September 16? Polymarket Now Says 83%. Here’s What It Means for XRP and Bitcoin",
@@ -134,8 +188,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789215600000,
-      "_kind": null
+      "firstAt": 1789215600000
     },
     {
       "title": "AMD Just Raised the Top of the Company's 2030 Market to $3 Trillion",
@@ -784,7 +837,7 @@
       "firstAt": 1789201356000
     },
     {
-      "title": "US ties Chinese satellite imagery to deadly Iran strike - Türkiye Today",
+      "title": "US ties Chinese satellite imagery to deadly Iran strike - turkiyetoday.com",
       "link": "https://news.google.com/rss/articles/CBMioAFBVV95cUxQNkYyUkRsb2tTS1RYX0RzS3JHWjRoVHlocWxYME5Nbzd2SzN6eE5qZlhwYTRrTk1kME56UDBXMkFoZFpKYkN2dTc4SFVKX21JbkNfQzZ0Nm00RFppVjh4dVNGbHBsYmU4YlJuVVRqak1GNGdnRzNiZ2N1eUloQk1ZRGdBakdnZlpPeUJsN2tGRXdRNHBGT1dWYXF2SzJDSjFy?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMioAFBVV95cUxQNkYyUkRsb2tTS1RYX0RzS3JHWjRoVHlocWxYME5Nbzd2SzN6eE5qZlhwYTRrTk1kME56UDBXMkFoZFpKYkN2dTc4SFVKX21JbkNfQzZ0Nm00RFppVjh4dVNGbHBsYmU4YlJuVVRqak1GNGdnRzNiZ2N1eUloQk1ZRGdBakdnZlpPeUJsN2tGRXdRNHBGT1dWYXF2SzJDSjFy?oc=5\" target=",
@@ -1006,6 +1059,26 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789190264000
+    },
+    {
+      "title": "Drones attack Tolyatti and Taganrog in Russia, sparking fires at industrial sites – photos, videos - pravda.com.ua",
+      "link": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE1pempqNDlFcU1uZFFyMkFrNDFwVERVbnVWa2w0aWtIVElQZ00wSG1GcDVIWVhmVG1JR3lqLW94Z3dsTlB1ZHYxZ29DUkNzQnN0a3B2WUowVDEwTXIwX2JQdHZBS1XSAXBBVV95cUxPazdhTXptOVhsLXJHY3FZVklLN21HRW9BMmpGcjdUYTJ5eEVzTk1Mb0c3QjNNTXZ0OUJGWkhhb0htRnZzTmJ6ZDEwX0QtSmkxeFlGcWV3Y2hydGltUWxNcEN1UFB0WGowelBrc3ZlenRJ?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiZEFVX3lxTE1pempqNDlFcU1uZFFyMkFrNDFwVERVbnVWa2w0aWtIVElQZ00wSG1GcDVIWVhmVG1JR3lqLW94Z3dsTlB1ZHYxZ29DUkNzQnN0a3B2WUowVDEwTXIwX2JQdHZBS1XSAXBBVV95cUxPazdhTXptOVhsLXJHY3FZVklLN21HRW9BMmpGcjdUYTJ5eEVzTk1Mb0c3QjNNTXZ0OUJGWkhhb0htRnZzTm",
+      "at": 1789185060000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789185060000
     },
     {
       "title": "UK sanctions on West Bank settlers are the right step | Letters - The Guardian",
@@ -1665,23 +1738,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789152840000
-    },
-    {
-      "title": "Canadian dollar weakens to nine-day low on Fed rate hike bets - Forex Factory",
-      "link": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPNFlBekVBeThqNnJOUTJ1d1YxMFpRVzlhSjZCQU1uSmxhbjJfS3RHeGN4clFmTWNkeUxLYTI4d2s1LVY1eVJoQXpkUXNQUlAyWUdORkNmbE82QlVTc24xNVduZzdYZ1c5V0lNLXlRUnI3ZkRHNHFlMUFVcjhiY0V4eGpGbkFkX3RYOFEzYTBlbHo2d9IBlwFBVV95cUxQTnh3ekJ6Y0FvNzhOYS1ydFdSTlJGQzlTTlRvTjZuSmtPQ1hlUWUtVFJlZkZRaE8tdGhHaFRrUUZJZEdycDhDSkcxc2RfdFFWYWRZYUNnWVFjR1prREpPNWhsaHY5dDRzdno4WlhqM1RIMjJXQzdwWnpFTlNxZThIZURuWE85Z2NBMmw4bWg3aU9uR0xjWHo4?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMikgFBVV95cUxPNFlBekVBeThqNnJOUTJ1d1YxMFpRVzlhSjZCQU1uSmxhbjJfS3RHeGN4clFmTWNkeUxLYTI4d2s1LVY1eVJoQXpkUXNQUlAyWUdORkNmbE82QlVTc24xNVduZzdYZ1c5V0lNLXlRUnI3ZkRHNHFlMUFVcjhiY0V4eGpGbkFkX3RYOFEzYTBlbHo2d9IBlwFBVV95cUxQTnh3ekJ6Y0FvNzhOYS",
-      "at": 1789153680000,
-      "inst": [
-        "USD/CAD"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789153680000
     }
   ],
   "sources": [
@@ -1704,10 +1760,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
-  "calendarAt": null,
-  "headlinesAt": "2026-09-12T13:14:46.682Z",
-  "updatedAt": "2026-09-12T13:14:46.682Z"
+  "calendarAt": "2026-09-12T13:16:03.430Z",
+  "headlinesAt": "2026-09-12T13:16:03.430Z",
+  "updatedAt": "2026-09-12T13:16:03.430Z"
 }
