@@ -1,5 +1,110 @@
 {
-  "calendar": [],
+  "calendar": [
+    {
+      "title": "Core CPI m/m",
+      "country": "USD",
+      "impact": "high",
+      "at": 1789129800000,
+      "forecast": "0.2%",
+      "previous": "0.2%",
+      "actual": "0.22",
+      "actualFrom": "BLS",
+      "actualNum": 0.22,
+      "vsPrevious": 0.02,
+      "forecastNum": 0.2,
+      "surprise": 0.02,
+      "surprisePct": 10,
+      "beat": "above"
+    },
+    {
+      "title": "Core CPI y/y",
+      "country": "USD",
+      "impact": "high",
+      "at": 1789129800000,
+      "forecast": "2.4%",
+      "previous": "2.5%",
+      "actual": ""
+    },
+    {
+      "title": "CPI m/m",
+      "country": "USD",
+      "impact": "high",
+      "at": 1789129800000,
+      "forecast": "0.4%",
+      "previous": "0.1%",
+      "actual": "0.07",
+      "actualFrom": "BLS",
+      "actualNum": 0.07,
+      "vsPrevious": -0.03,
+      "forecastNum": 0.4,
+      "surprise": -0.33,
+      "surprisePct": -82.5,
+      "beat": "below"
+    },
+    {
+      "title": "CPI y/y",
+      "country": "USD",
+      "impact": "high",
+      "at": 1789129800000,
+      "forecast": "3.4%",
+      "previous": "3.4%",
+      "actual": ""
+    },
+    {
+      "title": "ECB President Lagarde Speaks",
+      "country": "EUR",
+      "impact": "medium",
+      "at": 1789135200000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "Prelim UoM Consumer Sentiment",
+      "country": "USD",
+      "impact": "medium",
+      "at": 1789135200000,
+      "forecast": "51.0",
+      "previous": "51.0",
+      "actual": ""
+    },
+    {
+      "title": "Prelim UoM Inflation Expectations",
+      "country": "USD",
+      "impact": "medium",
+      "at": 1789135200000,
+      "forecast": "",
+      "previous": "4.3%",
+      "actual": ""
+    },
+    {
+      "title": "Federal Budget Balance",
+      "country": "USD",
+      "impact": "low",
+      "at": 1789149480000,
+      "forecast": "-221.1B",
+      "previous": "-432.3B",
+      "actual": ""
+    },
+    {
+      "title": "ECB President Lagarde Speaks",
+      "country": "EUR",
+      "impact": "medium",
+      "at": 1789200000000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "BRICS Summit",
+      "country": "All",
+      "impact": "low",
+      "at": 1789200900000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    }
+  ],
   "headlines": [
     {
       "title": "3 killed in Russian strikes on Ukraine as Putin warns Europe against sending troops - KTLA",
@@ -41,27 +146,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789204380000,
-      "_kind": null
-    },
-    {
-      "title": "Drones Strike Russian Aviation Plant Servicing Tu-95 Bombers and Chemical Giant in Tolyatti - UNITED24 Media",
-      "link": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxPNzNPa3pyeGswaGRwVldMQ213NTJwSlp3cXdtVEp4dS1FcnlYWThiMnNzLVlaR2JLY2gzbE0tRzQwcGN3T25VRVIwRFVOUXVWNjBDQlRuYmt4VkhLSVNWNEZXYUJ6MDIySGRwbmFYN21LM0NxVU1XelliWFlMS2dYUXdkbUlnV01qdEJkVFR3YkczTXUzRW9ETWR6MkljeHo5VHdiV3E4RlBhYk43UlZNRThjVTA2Z05ud2NhdzdBM1pmaUV4MnIteXlTMGNjYzR1WjR0dA?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi1AFBVV95cUxPNzNPa3pyeGswaGRwVldMQ213NTJwSlp3cXdtVEp4dS1FcnlYWThiMnNzLVlaR2JLY2gzbE0tRzQwcGN3T25VRVIwRFVOUXVWNjBDQlRuYmt4VkhLSVNWNEZXYUJ6MDIySGRwbmFYN21LM0NxVU1XelliWFlMS2dYUXdkbUlnV01qdEJkVFR3YkczTXUzRW9ETWR6MkljeHo5VHdiV3E4RlBhYk",
-      "at": 1789203927000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789201356000,
       "_kind": null
     },
     {
@@ -576,6 +660,26 @@
       "firstAt": 1789189380000
     },
     {
+      "title": "US House of Representatives to take up Russia sanctions bill next week - theprint.in",
+      "link": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxPemx5aDRreWRuRlhWYVpvWVlCMkFMTEFDdWhzbUs4bzREbC1ZNmNVWmdtOXNLSmdjRk54YjlkTHZyZlNvdmhmU25rWUNnSVNBdVkyYUdVMUw5WV9xT3pJdGNWNW9lSWNvLWFRMERrdDNvTDlQTTctdlBlc0VhSmNmamtGOHVMMWJKcG1SZ0pCWnRoT3RMajZJS1Fhdkpkc3lfQ2lWdVBIS0zSAa4BQVVfeXFMTzltTXdubFZXdXhacVhxZWZhZHBWdmxodVRlYVJDSm8xakE2XzFVRm1sVkNfc0ZRQlZvcHlmcTJjZFlwUnlUWWVXa0NuXzFPejR3YjRqcUwyTkw3X1VTR2NFMUFNWmNzRk94YlFidzc5N3Y2Tl9QRXQxNkZEdjltNEhtOWtjalNlX3lwenFHbXpBalJKeUpCVXRhZjVIYmJMZDVMQ0pYRHZucWFJQmZ3?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiqAFBVV95cUxPemx5aDRreWRuRlhWYVpvWVlCMkFMTEFDdWhzbUs4bzREbC1ZNmNVWmdtOXNLSmdjRk54YjlkTHZyZlNvdmhmU25rWUNnSVNBdVkyYUdVMUw5WV9xT3pJdGNWNW9lSWNvLWFRMERrdDNvTDlQTTctdlBlc0VhSmNmamtGOHVMMWJKcG1SZ0pCWnRoT3RMajZJS1Fhdkpkc3lfQ2lWdVBIS0zSAa",
+      "at": 1789188303000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789188303000
+    },
+    {
       "title": "Saudi Arabia shuts key oil pipeline after drone attack launched from Iraq",
       "link": "https://www.bbc.co.uk/news/articles/c62m933465eo?at_medium=RSS&at_campaign=rss",
       "source": "BBC World",
@@ -722,23 +826,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789172760000
-    },
-    {
-      "title": "At BRICS, Putin Slams West's \"Ugly\" Trade Tactics, Cites \"30,000 Sanctions\" - NDTV",
-      "link": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxQS3c1QW1fdnkySnp1TVA5WGhIWkVtS0N4VHBscDZha3JBREQ5eXRqTWM2T2tSQXRrdG1ZZUV4Wjg2eEducFBQcFp1QXZhZ215X0VmeVZtMmVMajdfWGkzbkpISGRNYXlxRnZNYUtXT2hMMzdXUHFmZkN2NFpfR0VEZEJWTDNlLU1QQXF5WjlwN3o2U0ZRalpULTZtVlZENXQtajYyX1JUUmdOaUh1RDFja0E0Y1hiT1ppUmItdHY2UWE1TUczWGZnTG83T0RKWHU20gHYAUFVX3lxTE5VQ2pQd0lLaUJRU2UyRm5XdjBGRUZjYktvQkg5X1VyQ0Njc1dHTkpGNERRTE9ac3BlcWh1SDhPaW1Ydll2VnlYeUVnNEM4cmxwcVM1Mi1nVlFxNEFWRVlUSF8wSHdqQzJwNUt4SnR4bWZsSndUSE9JYU1keVY3M2ZtSWJUVUlDYkZHcmRNb2ZuWFo5eUNoM0FLQjNtTktTV2J6YjJHNUNsZFFIMDFDZ0ZqbGFNdXhtdHJCZmlUenFhVWRyendSV2JmS0xpQnhxZHI0YmV2NzhQRg?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi0AFBVV95cUxQS3c1QW1fdnkySnp1TVA5WGhIWkVtS0N4VHBscDZha3JBREQ5eXRqTWM2T2tSQXRrdG1ZZUV4Wjg2eEducFBQcFp1QXZhZ215X0VmeVZtMmVMajdfWGkzbkpISGRNYXlxRnZNYUtXT2hMMzdXUHFmZkN2NFpfR0VEZEJWTDNlLU1QQXF5WjlwN3o2U0ZRalpULTZtVlZENXQtajYyX1JUUmdOaU",
-      "at": 1789172532000,
-      "inst": [
-        "XAU/USD"
-      ],
-      "ccy": [
-        "XAU"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789172532000
     },
     {
       "title": "Iran war live: Yemen government counterattacks Houthis with air strikes",
@@ -1614,26 +1701,6 @@
       "firstAt": 1789152840000
     },
     {
-      "title": "Strikes shut down key Saudi pipeline as Iran-backed Houthis tighten grip on crucial shipping lane - NBC News",
-      "link": "https://news.google.com/rss/articles/CBMitgFBVV95cUxQN1ltMThONzFHT21BQW1uY3BGRnNsVUNiVldxOHhpcFhycXR1WmNhVXo5WHptV0k4VDV5U1ZtNXBkbnM4N2VxdldMc0tJRjRqU3NWQ3hnbHBacl9VZmVBYnB6RGt6dFlUVHBlbEh4ajRRYVFfaHhmNXRvT2NQT3dVWDFMSWo4UEc4b1lKT1lQMUR5ZUp1ZFNOdzZ5TG5NNEpTVm9BOHA4YkNsQXdOaFlVTTQ2WEVLdw?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMitgFBVV95cUxQN1ltMThONzFHT21BQW1uY3BGRnNsVUNiVldxOHhpcFhycXR1WmNhVXo5WHptV0k4VDV5U1ZtNXBkbnM4N2VxdldMc0tJRjRqU3NWQ3hnbHBacl9VZmVBYnB6RGt6dFlUVHBlbEh4ajRRYVFfaHhmNXRvT2NQT3dVWDFMSWo4UEc4b1lKT1lQMUR5ZUp1ZFNOdzZ5TG5NNEpTVm9BOHA4YkNsQX",
-      "at": 1789152328000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789152328000
-    },
-    {
       "title": "EU Sanctions on 3,000 Russians Stall as France Joins Slovakia’s Delisting Push - kyivpost.com",
       "link": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE03YWlZMG5aY0pWRWlvZDFkX0lXdFdQNUNuWDhGeTBXSExmT2daTFo0UHJnQjRUeDdscWUzQVJudExUNUVZUm5CRmtwZw?oc=5",
       "source": "Wires (geo)",
@@ -1722,6 +1789,51 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789147723000
+    },
+    {
+      "title": "Why Treasury’s $6 billion bond buyback didn’t lower mortgage rates",
+      "link": "https://finance.yahoo.com/personal-finance/mortgages/article/why-treasurys-6-billion-bond-buyback-didnt-lower-mortgage-rates-174923069.html",
+      "source": "Yahoo Finance",
+      "at": 1789148963000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789148963000
+    },
+    {
+      "title": "10-Year Treasury Yield Nears 5% as Markets Brace for a September Fed Rate Hike - Tekedia",
+      "link": "https://news.google.com/rss/articles/CBMipAFBVV95cUxNbzZiQXhTNm5CNXgxc09aX0lySWNTbmF4WkN4cG1KZkVHc21faDBBMVI4d2NzWEVXYnJzSHJJX2NBTkJFYnhfWWVfR2tqNUxTZmNyU05CVnFNZmFoTGttOUg4azZDdkllcEE4YnhjQlpkeWMza0VLVHFleUVpUFRzTGw3bmpQNDBfd0M4VDc4VFRoQmlrWV9Lb2tTN3d1Q0Q4RW5USg?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMipAFBVV95cUxNbzZiQXhTNm5CNXgxc09aX0lySWNTbmF4WkN4cG1KZkVHc21faDBBMVI4d2NzWEVXYnJzSHJJX2NBTkJFYnhfWWVfR2tqNUxTZmNyU05CVnFNZmFoTGttOUg4azZDdkllcEE4YnhjQlpkeWMza0VLVHFleUVpUFRzTGw3bmpQNDBfd0M4VDc4VFRoQmlrWV9Lb2tTN3d1Q0Q4RW5USg?oc=5\" t",
+      "at": 1789148700000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789147493000
     }
   ],
   "sources": [
@@ -1747,7 +1859,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": null,
-  "headlinesAt": "2026-09-12T09:28:16.343Z",
-  "updatedAt": "2026-09-12T09:28:16.343Z"
+  "calendarAt": "2026-09-12T09:29:46.066Z",
+  "headlinesAt": "2026-09-12T09:29:46.066Z",
+  "updatedAt": "2026-09-12T09:29:46.066Z"
 }
