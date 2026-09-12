@@ -1,5 +1,24 @@
 {
-  "calendar": [],
+  "calendar": [
+    {
+      "title": "ECB President Lagarde Speaks",
+      "country": "EUR",
+      "impact": "medium",
+      "at": 1789200000000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "BRICS Summit",
+      "country": "All",
+      "impact": "low",
+      "at": 1789200900000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    }
+  ],
   "headlines": [
     {
       "title": "Iran, UAE hold first talks at BRICS summit since conflict began",
@@ -20,7 +39,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789238177000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Diplomatic talks reduce geopolitical risk premium"
     },
     {
       "title": "How Concerned Should Income Investors Be About Pfizer's Dividend?",
@@ -54,7 +79,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789237350000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Escalation boosts safe-haven demand for gold"
     },
     {
       "title": "GameStop Billionaire Ryan Cohen Buys 1 Million Shares for $20 Million. What This Large Purchase Means for GME",
@@ -88,7 +117,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789236774000,
-      "_kind": null
+      "_kind": null,
+      "why": "Tariff speculation unclear for these instruments"
     },
     {
       "title": "8 killed in Russian strikes on Ukraine as Putin warns Europe against sending troops - ABC News - Breaking News, Latest News and Videos",
@@ -109,7 +139,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789237350000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Escalation boosts safe-haven demand for gold"
     },
     {
       "title": "China Provided Iran With Satellite Images Used in Deadly Attack on American Troops, Report Says Ahead of Meeting Between Trump and Xi - The New York Sun",
@@ -129,7 +163,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789236430000
+      "firstAt": 1789236430000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Geopolitical tension boosts safe-haven demand"
     },
     {
       "title": "Canadian boycott of US products pushes grocers to adapt, explore new supply sources",
@@ -143,7 +181,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789236750000
+      "firstAt": 1789236750000,
+      "dir": {
+        "USD/CAD": "down"
+      },
+      "why": "Boycott hurts US economy, weakens dollar"
     },
     {
       "title": "Iran Finds Escalation Is Fruitful Path to Leverage in War With U.S. - The New York Times",
@@ -163,7 +205,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789236430000
+      "firstAt": 1789236430000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Escalation rhetoric boosts risk assets"
     },
     {
       "title": "Oracle’s Ellison cancels plan to sell up to 50 mln shares",
@@ -190,7 +238,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789234580000
+      "firstAt": 1789234580000,
+      "why": "Entertainment news has no market impact"
     },
     {
       "title": "Selling the war: Purges, polygraphs and propaganda",
@@ -210,7 +259,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789234316000
+      "firstAt": 1789234316000,
+      "why": "Political commentary lacks direct market signal"
     },
     {
       "title": "Russian attacks on Kyiv petrol stations kill two, Ukrainian strikes kill three in Russia",
@@ -229,7 +279,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789233696000
+      "firstAt": 1789233696000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Escalation boosts safe-haven demand for gold"
     },
     {
       "title": "Russian attacks kill six, injure dozens in Ukraine, Moscow says it hits ships, plants - Reuters",
@@ -249,7 +303,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789233696000
+      "firstAt": 1789233696000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Escalation boosts safe-haven demand for gold"
     },
     {
       "title": "Saudis shut down oil pipeline as Houthis tighten grip on Red Sea shipping",
@@ -265,7 +323,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789233865000
+      "firstAt": 1789233865000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Supply disruption boosts oil prices"
     },
     {
       "title": "Ukraine braces for harsh winter as Russian attacks hit economy - Reuters",
@@ -285,7 +347,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789233696000
+      "firstAt": 1789233696000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Economic damage boosts safe-haven demand"
     },
     {
       "title": "Saudi pipeline attack update: East-west Saudi oil pipeline attack is blamed on Iran-backed militias in Iraq - ABC11 News",
@@ -305,7 +371,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789231914000
+      "firstAt": 1789231914000,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Supply disruption and tension boost prices"
     },
     {
       "title": "Live - China offers help to end war ahead of Iran-Arab talks in Oman - Iran International",
@@ -325,7 +397,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789233360000
+      "firstAt": 1789233360000,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Diplomatic efforts reduce geopolitical risk premium"
     },
     {
       "title": "U.S. House of Representatives to take up Russia sanctions bill next week - The Hindu",
@@ -1347,7 +1425,7 @@
       "link": "https://news.google.com/rss/articles/CBMiswFBVV95cUxNM05ZUHdkZVNUdzFKZzRrZW0wRkgzbWZNbE55Wk00TWgxNkFjVXRUdENGS0NJcm5LWHhkWVJWMVNTNU5YSGRvWGZIWnhkSzNRNzFYNHlYUmNTNHc4WVBsdlpFbFh1LXktYmozTTZOYkhPVlRlZzY4RllGamstNkJvSENmMUZobV8zQldNdlIxVjY3QnVGTk9Ba21SVmgyWF9uX3I0Ri1zR2JmV1JXQVFoanRsMA?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiswFBVV95cUxNM05ZUHdkZVNUdzFKZzRrZW0wRkgzbWZNbE55Wk00TWgxNkFjVXRUdENGS0NJcm5LWHhkWVJWMVNTNU5YSGRvWGZIWnhkSzNRNzFYNHlYUmNTNHc4WVBsdlpFbFh1LXktYmozTTZOYkhPVlRlZzY4RllGamstNkJvSENmMUZobV8zQldNdlIxVjY3QnVGTk9Ba21SVmgyWF9uX3I0Ri1zR2JmV1",
-      "at": 1789180171000,
+      "at": 1789178220000,
       "inst": [
         "XAU/USD",
         "USOIL",
@@ -1360,7 +1438,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789180171000
+      "firstAt": 1789178220000
     },
     {
       "title": "UK sanctions on West Bank settlers are the right step | Letters - The Guardian",
@@ -1555,6 +1633,24 @@
       "firstAt": 1789158412000
     },
     {
+      "title": "The Fed can hike, but it won’t derail gold’s long-term bull market – analysts - KITCO",
+      "link": "https://news.google.com/rss/articles/CBMirwFBVV95cUxQVWtELUtFS3c2Q1NDcDNwR2Q2Ymd4Zms4WWE1bE9zeUFDZGNmNUMzTFJ1Um00OWwxTzNtRlcyOU00SmIwX3B0d1JmQ0puX0NsS0NrbjJ2d2dlczZpbkw0eG5PcS1yVXRUblFRTXZZUU1rQ2J1bERfZEpNYlpqYlpaWFl0bFhIVDI0SlhPd0tqR1Mxc1lWOFNNaG40Wjk0YVhpUlBqcjBzSjNqQlhXNzVr?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMirwFBVV95cUxQVWtELUtFS3c2Q1NDcDNwR2Q2Ymd4Zms4WWE1bE9zeUFDZGNmNUMzTFJ1Um00OWwxTzNtRlcyOU00SmIwX3B0d1JmQ0puX0NsS0NrbjJ2d2dlczZpbkw0eG5PcS1yVXRUblFRTXZZUU1rQ2J1bERfZEpNYlpqYlpaWFl0bFhIVDI0SlhPd0tqR1Mxc1lWOFNNaG40Wjk0YVhpUlBqcjBzSjNqQl",
+      "at": 1789160561000,
+      "inst": [
+        "XAU/USD"
+      ],
+      "ccy": [
+        "USD",
+        "XAU"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789160561000
+    },
+    {
       "title": "House tees up vote on Russia sanctions bill, but prospects for passage are uncertain - ABC News - Breaking News, Latest News and Videos",
       "link": "https://news.google.com/rss/articles/CBMinwFBVV95cUxOak43U3VCaFFIbm5COXBQTFVyT1hYWF9KMWpUU1ZybHdZVWs0VEVrcURQeWVBcUU5QzlXYjZKV0VJWnNIWWRWSktmZWZwZVlDc3d4NktybmhtTEpncE5XNXd6a1FqeThIbElQRHJkTDZJRU05VlllejdFdjFUMS1JUWdCNEU3OXdNYkMtUDR5blBrWDUtdDVhSWJVOC0wZ2_SAaQBQVVfeXFMTmwxYWlyRk05dkxaaDJNQVYyR01DMXFDYlZSd1NvUV96ekdlNk95b2RGSjNQZEtTMDVON2hoaGQ5clJWSnN0X2htVVhzUDB0NlgtYnd2enl5VDVFbVRRQ296ZE5TaHpEelh6TFVnaUZORTByYmJZNzJwbXJiUjdpeDFmZXBxbVh4a0M1MllHTWljMXJEWHlaRG9HX2xqWnJRZUFOZnU?oc=5",
       "source": "Wires (geo)",
@@ -1698,29 +1794,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789155798000
-    },
-    {
-      "title": "Inflation Comes In Hot - wsj.com",
-      "link": "https://news.google.com/rss/articles/CBMidEFVX3lxTE1fNnRXSkpvQUJidkxSOXQ1Z1lKWG1VQzJrbXNLWUNaaE5GYUtZLU9JQ0JlVEM2MTlyMFFVcm9zZ0pOQklaOGE1Q0NGdlJIS282eXlSNWlYUFVzUURKOXJUQ2N5U1JXdGVQSGJmMHE5azhoUXBn?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMidEFVX3lxTE1fNnRXSkpvQUJidkxSOXQ1Z1lKWG1VQzJrbXNLWUNaaE5GYUtZLU9JQ0JlVEM2MTlyMFFVcm9zZ0pOQklaOGE1Q0NGdlJIS282eXlSNWlYUFVzUURKOXJUQ2N5U1JXdGVQSGJmMHE5azhoUXBn?oc=5\" target=\"_blank\">Inflation Comes In Hot</a>&nbsp;&nbsp;<font color=\"",
-      "at": 1789158180000,
-      "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789158180000
     }
   ],
   "sources": [
@@ -1746,7 +1819,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": null,
-  "headlinesAt": "2026-09-12T18:50:48.102Z",
-  "updatedAt": "2026-09-12T18:50:48.102Z"
+  "calendarAt": "2026-09-12T18:52:19.227Z",
+  "headlinesAt": "2026-09-12T18:52:19.227Z",
+  "updatedAt": "2026-09-12T18:52:19.227Z"
 }
