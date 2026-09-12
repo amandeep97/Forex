@@ -19,7 +19,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789176193000
+      "firstAt": 1789176193000,
+      "dir": {
+        "XAU/USD": "up",
+        "XAG/USD": "up"
+      },
+      "why": "Gold and Silver Prices Rise"
     },
     {
       "title": "Saudis shut down oil pipeline as Houthis tighten grip on Red Sea shipping",
@@ -35,7 +40,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789175909000
+      "firstAt": 1789175909000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Pipeline shutdown tightens oil supply"
     },
     {
       "title": "Exclusive | U.S. Links Chinese Satellite Imagery to Iranian Strike That Killed Three Troops - WSJ",
@@ -55,7 +64,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789174800000
+      "firstAt": 1789174800000,
+      "why": "Geopolitical news lacks clear market direction"
     },
     {
       "title": "How Canadians are bracing for the impact of Trump’s trade war",
@@ -74,7 +84,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789174320000
+      "firstAt": 1789174320000,
+      "why": "Trade war impact unclear for markets"
     },
     {
       "title": "Iraq closes border crossing with Iran, 'pursuing' drone attack perpetrators - Middle East Eye",
@@ -94,7 +105,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789173960000
+      "firstAt": 1789173960000,
+      "why": "Border closure impact unclear for markets"
     },
     {
       "title": "Temple Israel welcomes congregants home six months after attack - The Detroit News",
@@ -114,7 +126,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789172760000
+      "firstAt": 1789172760000,
+      "why": "Local news irrelevant to global markets"
     },
     {
       "title": "At BRICS, Putin Slams West's \"Ugly\" Trade Tactics, Cites \"30,000 Sanctions\" - NDTV",
@@ -131,7 +144,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789172532000
+      "firstAt": 1789172532000,
+      "why": "Political rhetoric lacks direct market impact"
     },
     {
       "title": "Iran war live: Houthis control Red Sea coast, Saudi pipeline shut down",
@@ -151,7 +165,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789171200000
+      "firstAt": 1789171200000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Pipeline shutdown boosts oil, gold unclear"
     },
     {
       "title": "The Fed could raise interest rates three times. Here’s where the market could face the stiffest test.",
@@ -174,7 +193,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789170840000
+      "firstAt": 1789170840000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Rate hike expectations strengthen dollar"
     },
     {
       "title": "Markets may be making a horrible miscalculation on AI and inflation - AFR",
@@ -197,7 +222,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789170720000
+      "firstAt": 1789170720000,
+      "why": "Inflation miscalculation warning lacks direction"
     },
     {
       "title": "US 10-year borrowing costs pull back from 5% in reprieve for Bessent - Reuters",
@@ -220,7 +246,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789170529000
+      "firstAt": 1789170529000,
+      "dir": {
+        "XAU/USD": "up",
+        "EUR/USD": "up",
+        "GBP/USD": "up"
+      },
+      "why": "Yield pullback weakens dollar, boosts assets"
     },
     {
       "title": "Russian attacks on Kyiv petrol stations kill two, Ukrainian strikes kill three in Russia",
@@ -239,7 +271,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789169785000
+      "firstAt": 1789169785000,
+      "why": "Conflict news lacks clear market direction"
     },
     {
       "title": "Israel strikes Hezbollah base in Lebanon, causing 4.1-magnitude tremor - upi.com",
@@ -259,7 +292,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789169408000
+      "firstAt": 1789169408000,
+      "why": "Military strike lacks clear market direction"
     },
     {
       "title": "This investment is safe from both Trump and the Democrats — and it pays 4.7%",
@@ -274,7 +308,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789164360000
+      "firstAt": 1789164360000,
+      "why": "Safe haven mention lacks price direction"
     },
     {
       "title": "Stocks making the biggest moves midday: Dell, Skyworks Solutions, GameStop & more",
@@ -289,7 +324,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789163493000
+      "firstAt": 1789163493000,
+      "why": "Stock moves listed without direction"
     },
     {
       "title": "Bitcoin could benefit from failed Treasury intervention despite persistent inflation — CoinShares - tmgm.com",
@@ -1741,10 +1777,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-12T02:00:32.494Z",
-  "updatedAt": "2026-09-12T02:00:32.494Z"
+  "headlinesAt": "2026-09-12T02:01:47.114Z",
+  "updatedAt": "2026-09-12T02:01:47.114Z"
 }
