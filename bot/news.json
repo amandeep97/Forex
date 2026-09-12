@@ -1,33 +1,5 @@
 {
-  "calendar": [
-    {
-      "title": "Federal Budget Balance",
-      "country": "USD",
-      "impact": "low",
-      "at": 1789149480000,
-      "forecast": "-221.1B",
-      "previous": "-432.3B",
-      "actual": ""
-    },
-    {
-      "title": "ECB President Lagarde Speaks",
-      "country": "EUR",
-      "impact": "medium",
-      "at": 1789200000000,
-      "forecast": "",
-      "previous": "",
-      "actual": ""
-    },
-    {
-      "title": "BRICS Summit",
-      "country": "All",
-      "impact": "low",
-      "at": 1789200900000,
-      "forecast": "",
-      "previous": "",
-      "actual": ""
-    }
-  ],
+  "calendar": [],
   "headlines": [
     {
       "title": "8 killed in Russian strikes on Ukraine as Putin warns Europe against sending troops - Los Angeles Times",
@@ -48,6 +20,27 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789231159000,
+      "_kind": null
+    },
+    {
+      "title": "Saudi pipeline attack update: East-west Saudi oil pipeline attack is blamed on Iran-backed militias in Iraq - ABC11 News",
+      "link": "https://news.google.com/rss/articles/CBMizwFBVV95cUxQemVRSkVCSDdpQXN2UmVfYWtTdkdXQTFUbHJxY0MtV2pCVlJkR0pSTUd0YXFHS011MnQ5RTFYUmVwcTg5VDNUNjZYLVlnSkc1WFVGYXNmUXFnbDhqTldpb3NtZDkwMmJCUkY3X19haXpURDY0VG1nRXV3Yk1ja3F2c2gyVXhTa1hybkZSM1Zmd1hLZU43R0t4SGdFNE9ucVh1Nkg3ZzZkbTNxYlVUamM1M3A1bThvelEyQWJFcVJQb2oybzdwN0QtZ0tqbDEzSVnSAdQBQVVfeXFMTW1laFVVWGJLcjNzSldrUmV6TlRGc0N0TDgwNUlTTEp6ZWd6VUpITDF3NXFiSzAwd1FJLWc4WnA5bm9VQmFSRTJLVUFycDFNUGpHelFPNXVGS2E4bThTSDVMbU9WMVVPYm5vUGREOVZhMjVYVDhtcS00VEw4eXM2Y3g2Wi10TldqSGc1dzkyUGRHc196X1lVa2NyTHpqbVk3Q0EyY3pSN1NvajladWNzQV9IaTFxb0ZIN21HVlM5SFZ2MzNQSWJtQmtLSk1XcldpS24tYm8?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMizwFBVV95cUxQemVRSkVCSDdpQXN2UmVfYWtTdkdXQTFUbHJxY0MtV2pCVlJkR0pSTUd0YXFHS011MnQ5RTFYUmVwcTg5VDNUNjZYLVlnSkc1WFVGYXNmUXFnbDhqTldpb3NtZDkwMmJCUkY3X19haXpURDY0VG1nRXV3Yk1ja3F2c2gyVXhTa1hybkZSM1Zmd1hLZU43R0t4SGdFNE9ucVh1Nkg3ZzZkbTNxYl",
+      "at": 1789233378000,
+      "inst": [
+        "USOIL",
+        "XAU/USD",
+        "UKOIL"
+      ],
+      "ccy": [
+        "OIL",
+        "XAU"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789233378000,
       "_kind": null
     },
     {
@@ -112,29 +105,6 @@
       "_kind": null
     },
     {
-      "title": "6 Money Missteps Amid Inflation That Erode Boomers' Retirement Income",
-      "link": "https://finance.yahoo.com/healthcare/articles/6-money-missteps-amid-inflation-170027674.html",
-      "source": "Yahoo Finance",
-      "at": 1789232427000,
-      "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789232427000,
-      "_kind": null
-    },
-    {
       "title": "Iran Push To Control World Oil Indicated By Pipeline Attack - Newsweek",
       "link": "https://news.google.com/rss/articles/CBMimAFBVV95cUxPQkhtVG80U1VlYlJFVzVWV2lZbHVpSzFpaHZrLVhkVnJhOVFfTktHTm1TSllDN1RScG9vWHhJVG1oWW96d3Fhd1V0MkNxU21YZER5YUFydzRGWGk4aHA2a21KM3BLRnFlLUg4cUJCdUVsVTktRzJhQTJFTEp6ck9fZjFwYjgxTUg0QVhvZ0dZbjNFNng1SFdjbQ?oc=5",
       "source": "Wires (geo)",
@@ -152,8 +122,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789232280000,
-      "_kind": null
+      "firstAt": 1789232280000
     },
     {
       "title": "Live - China offers help to end war ahead of Iran-Arab talks in Oman - Iran International",
@@ -329,26 +298,6 @@
       "firstAt": 1789227420000
     },
     {
-      "title": "Trump says Iran likely responsible for attack that shut vital Saudi oil pipeline - KWWL",
-      "link": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxQX0Z5aE9OamNUVUZNNTlLdXlKMHFoWGpNZUowNmFSZDRrLUNqSkM4b2JMMUVZeVJTd19RZzRidmRvMklnV3VtUGZLMUY5X2Nmby14TXlpekJjbWZVWDR2cFREdjduVWhRNkZIamwwWnh4VjQ2ZThKMVQyMFJCT1lnb3AtRDVTY0Jfd3dzZUZLeXdCazZBd3o3LVZVTEo2cnYzSUJxTy1ZdGNpYXNfSEo2ZXA1aW9VRnNzbnVxM1BwMk1DRDhfalBpY09zSVllMk5tWFAzd0lsdC0xZzVSaFNFLVN2ME9VeFlsMDF0Qw?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi7AFBVV95cUxQX0Z5aE9OamNUVUZNNTlLdXlKMHFoWGpNZUowNmFSZDRrLUNqSkM4b2JMMUVZeVJTd19RZzRidmRvMklnV3VtUGZLMUY5X2Nmby14TXlpekJjbWZVWDR2cFREdjduVWhRNkZIamwwWnh4VjQ2ZThKMVQyMFJCT1lnb3AtRDVTY0Jfd3dzZUZLeXdCazZBd3o3LVZVTEo2cnYzSUJxTy1ZdGNpYX",
-      "at": 1789229211000,
-      "inst": [
-        "USOIL",
-        "XAU/USD",
-        "UKOIL"
-      ],
-      "ccy": [
-        "OIL",
-        "XAU"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789226820000
-    },
-    {
       "title": "Will the Houthi attacks activate the Mecca Pact?",
       "link": "https://www.aljazeera.com/opinions/2026/9/12/will-the-houthi-attacks-activate-the-mecca-pact?traffic_source=rss",
       "source": "Al Jazeera",
@@ -421,26 +370,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789227960000
-    },
-    {
-      "title": "Attack on key Saudi pipeline is blamed on Iran-backed militias in Iraq - spectrumlocalnews.com",
-      "link": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQYlYzcW5yOGcyNVFsV18tQko4MGFOeFZHS1kxSWJiTGo2UGMyNmdrNll4aGxfdUdOTkMwaE9BQVI5dU80b3NtTW9jLVRvZzZXZ3lXWUl4d2dQTkJBQXRQMWo3RF9yRDdzQkQ3bnJ1UVZtVkRQUENlelZCY1drajdQUmlndl9abUNtN0hjZElGZWJaNUtxdmlIVw?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMimAFBVV95cUxQYlYzcW5yOGcyNVFsV18tQko4MGFOeFZHS1kxSWJiTGo2UGMyNmdrNll4aGxfdUdOTkMwaE9BQVI5dU80b3NtTW9jLVRvZzZXZ3lXWUl4d2dQTkJBQXRQMWo3RF9yRDdzQkQ3bnJ1UVZtVkRQUENlelZCY1drajdQUmlndl9abUNtN0hjZElGZWJaNUtxdmlIVw?oc=5\" target=\"_blank\">A",
-      "at": 1789227480000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789225962000
     },
     {
       "title": "Russian strikes kill three, injure dozens across Ukraine, Zelenskyy says - TVP World",
@@ -978,7 +907,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 3,
-      "firstAt": 1789212113000
+      "firstAt": 1789214732000
     },
     {
       "title": "Yemen government forces say Houthi ‘members, vehicles’ targeted in Mocha",
@@ -1062,24 +991,24 @@
       "firstAt": 1789212704000
     },
     {
-      "title": "Trump says Iran probably responsible for attack on Saudi pipeline - CNN",
-      "link": "https://news.google.com/rss/articles/CBMiggFBVV95cUxNOHViTWhuNW0tNXFrZFB5N3RlYVIydFd3a3BGYmVEa2p6eFYtbUtHaXM4ZmFrSFl0bmpsY1JNeVJKRHBFektaUklfQi1DNTVOVjBmYlFqdU5RQkp1X0UyMGJFU0lRencwMXNjQl8zZlo5SGRmUGUtSHBSVkZVcDVMQnBR?oc=5",
+      "title": "Trump says Iran likely responsible for attack that shut vital Saudi oil pipeline - CNN",
+      "link": "https://news.google.com/rss/articles/CBMifEFVX3lxTFBCN05SU2luNWgwQnpYOGtmWndwclVrMERSUmFna1RDQnVRM1J4SEd3TUxieTMwSWNTcnNycXNUMWZ1cFdjalpVMVNxZHhsdFA2RUNmc2RMeXk3aHhrLWU2YURqZDdwU3ZTTGppTjZxX3NSYTBIcXdPdlEyZDI?oc=5",
       "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiggFBVV95cUxNOHViTWhuNW0tNXFrZFB5N3RlYVIydFd3a3BGYmVEa2p6eFYtbUtHaXM4ZmFrSFl0bmpsY1JNeVJKRHBFektaUklfQi1DNTVOVjBmYlFqdU5RQkp1X0UyMGJFU0lRencwMXNjQl8zZlo5SGRmUGUtSHBSVkZVcDVMQnBR?oc=5\" target=\"_blank\">Trump says Iran probably respon",
-      "at": 1789212113000,
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMifEFVX3lxTFBCN05SU2luNWgwQnpYOGtmWndwclVrMERSUmFna1RDQnVRM1J4SEd3TUxieTMwSWNTcnNycXNUMWZ1cFdjalpVMVNxZHhsdFA2RUNmc2RMeXk3aHhrLWU2YURqZDdwU3ZTTGppTjZxX3NSYTBIcXdPdlEyZDI?oc=5\" target=\"_blank\">Trump says Iran likely responsible for a",
+      "at": 1789212031000,
       "inst": [
-        "XAU/USD",
         "USOIL",
+        "XAU/USD",
         "UKOIL"
       ],
       "ccy": [
-        "XAU",
-        "OIL"
+        "OIL",
+        "XAU"
       ],
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789210085000
+      "firstAt": 1789212031000
     },
     {
       "title": "Far-right protesters rally against Islam on 9/11 anniversary",
@@ -1095,11 +1024,10 @@
       "firstAt": 1789210267000
     },
     {
-      "title": "Trump: Iran 'probably' responsible for attack on Saudi pipeline, Houthis don't want US involved in Yemen - The Times of Israel",
-      "link": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxNbUgxeDhQNHRydFZWUGI5U2czcER1RmdlZ3VyNXhMNjd2RnExNmNEY2VyMUs2TXdqVkszdlFjYnhsR1g2bE5iLVZYT3pYQ2lqTFg1Vzg2Uzhra25DcjhVZkppTVMwTExTWktBc2V3LTlYNXl2RVlyaE5NMEt4T090aDh6amFHN3JNLUFUWmZKQnNYdlRrdTRWLWVRM3JfZ0tiWVNBYWg2a3MtR01IRGt4OUt2UzRRR0NITDB5eFRNa3M1bU1LM25FWVVUSmVuMXJUME1VYVg0bjdNVjI3SGc?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi3gFBVV95cUxNbUgxeDhQNHRydFZWUGI5U2czcER1RmdlZ3VyNXhMNjd2RnExNmNEY2VyMUs2TXdqVkszdlFjYnhsR1g2bE5iLVZYT3pYQ2lqTFg1Vzg2Uzhra25DcjhVZkppTVMwTExTWktBc2V3LTlYNXl2RVlyaE5NMEt4T090aDh6amFHN3JNLUFUWmZKQnNYdlRrdTRWLWVRM3JfZ0tiWVNBYWg2a3MtR0",
-      "at": 1789210085000,
+      "title": "Trump says Iran probably responsible for attack on Saudi pipeline",
+      "link": "https://www.investing.com/news/commodities-news/trump-says-iran-probably-responsible-for-attack-on-saudi-pipeline-4898645",
+      "source": "Investing Cmdty",
+      "at": 1789208666000,
       "inst": [
         "XAU/USD",
         "USOIL",
@@ -1111,8 +1039,8 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789210085000
+      "srcs": 1,
+      "firstAt": 1789208666000
     },
     {
       "title": "3 killed in Russian strikes on Ukraine as Putin warns Europe against sending troops - The Boston Globe",
@@ -1768,6 +1696,46 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789153720000
+    },
+    {
+      "title": "Lightning Houthi advance in Yemen may bring dangerous new dimension to Iran war",
+      "link": "https://www.bbc.co.uk/news/articles/c3v4zgzr1kxo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC World",
+      "desc": "The capture by the rebels of a stretch of Yemen's strategic coastline is the group's most impressive military coup for several years.",
+      "at": 1789155898000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789155898000
+    },
+    {
+      "title": "US House to vote on Russia sanctions backed by late Senator Graham - Reuters",
+      "link": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPYXo0TE8tLVZ2VzF0TjRlTFJBbEZIRDVqWndXMTNMb0VlT1lxd1JBMEdpNGJmaVE2a2Q2emtmTUZ2NVdvOUloVEdrdnVrOVRnSTRWbmd4MGNSUzFXR3JUR0o5ZHloaU5JRzd5TVNtenpjd3ZBNk5aZU9ubVE5aTRlTUtFM0M1dWFCUGVZcEp0b01SejVmS0p4Z2RHV2YyRm1PQUR0UzUxeUtJM2NmQzJVdTVsRQ?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiswFBVV95cUxPYXo0TE8tLVZ2VzF0TjRlTFJBbEZIRDVqWndXMTNMb0VlT1lxd1JBMEdpNGJmaVE2a2Q2emtmTUZ2NVdvOUloVEdrdnVrOVRnSTRWbmd4MGNSUzFXR3JUR0o5ZHloaU5JRzd5TVNtenpjd3ZBNk5aZU9ubVE5aTRlTUtFM0M1dWFCUGVZcEp0b01SejVmS0p4Z2RHV2YyRm1PQUR0UzUxeUtJM2",
+      "at": 1789155798000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789153584000
     }
   ],
   "sources": [
@@ -1793,7 +1761,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-12T17:28:16.808Z",
-  "headlinesAt": "2026-09-12T17:28:16.808Z",
-  "updatedAt": "2026-09-12T17:28:16.808Z"
+  "calendarAt": null,
+  "headlinesAt": "2026-09-12T17:29:48.121Z",
+  "updatedAt": "2026-09-12T17:29:48.121Z"
 }
