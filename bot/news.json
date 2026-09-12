@@ -1,5 +1,24 @@
 {
-  "calendar": [],
+  "calendar": [
+    {
+      "title": "ECB President Lagarde Speaks",
+      "country": "EUR",
+      "impact": "medium",
+      "at": 1789200000000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "BRICS Summit",
+      "country": "All",
+      "impact": "low",
+      "at": 1789200900000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    }
+  ],
   "headlines": [
     {
       "title": "3 killed in Russian strikes on Ukraine as Putin warns Europe against sending troops - Courthouse News",
@@ -20,7 +39,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789237350000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Geopolitical risk boosts gold, oil unclear"
     },
     {
       "title": "Iran, UAE hold first talks at BRICS summit since conflict began",
@@ -41,7 +64,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789238177000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Diplomatic talks reduce geopolitical risk premium"
     },
     {
       "title": "How Concerned Should Income Investors Be About Pfizer's Dividend?",
@@ -88,7 +117,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789237937000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions speculation unclear for immediate direction"
     },
     {
       "title": "8 killed in Russian strikes on Ukraine as Putin warns Europe against sending troops - ABC News - Breaking News, Latest News and Videos",
@@ -108,7 +138,11 @@
       "sev": 3,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789237350000
+      "firstAt": 1789237350000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Escalation boosts gold, oil impact unclear"
     },
     {
       "title": "Canadian boycott of US products pushes grocers to adapt, explore new supply sources",
@@ -122,7 +156,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789236750000
+      "firstAt": 1789236750000,
+      "dir": {
+        "USD/CAD": "down"
+      },
+      "why": "Boycott hurts US trade, weakens dollar"
     },
     {
       "title": "Iran Finds Escalation Is Fruitful Path to Leverage in War With U.S. - The New York Times",
@@ -142,7 +180,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789236430000
+      "firstAt": 1789236430000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Escalation rhetoric boosts risk assets"
     },
     {
       "title": "Oracle’s Ellison cancels plan to sell up to 50 mln shares",
@@ -169,7 +213,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789234580000
+      "firstAt": 1789234580000,
+      "why": "Entertainment news has no market impact"
     },
     {
       "title": "Selling the war: Purges, polygraphs and propaganda",
@@ -189,7 +234,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789234316000
+      "firstAt": 1789234316000,
+      "why": "Political narrative unclear for markets"
     },
     {
       "title": "Russian attacks on Kyiv petrol stations kill two, Ukrainian strikes kill three in Russia",
@@ -208,7 +254,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789233696000
+      "firstAt": 1789233696000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Conflict escalation supports gold, oil unclear"
     },
     {
       "title": "Russian attacks kill six, injure dozens in Ukraine, Moscow says it hits ships, plants - Reuters",
@@ -228,7 +278,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789233696000
+      "firstAt": 1789233696000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "War escalation boosts gold, oil unclear"
     },
     {
       "title": "Saudis shut down oil pipeline as Houthis tighten grip on Red Sea shipping",
@@ -244,7 +298,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789233865000
+      "firstAt": 1789233865000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Pipeline shutdown tightens oil supply"
     },
     {
       "title": "Ukraine braces for harsh winter as Russian attacks hit economy - Reuters",
@@ -264,7 +322,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789233696000
+      "firstAt": 1789233696000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Economic damage supports gold, oil unclear"
     },
     {
       "title": "Saudi pipeline attack update: East-west Saudi oil pipeline attack is blamed on Iran-backed militias in Iraq - ABC11 News",
@@ -284,7 +346,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789231914000
+      "firstAt": 1789231914000,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Pipeline attack tightens supply, boosts risk"
     },
     {
       "title": "Live - China offers help to end war ahead of Iran-Arab talks in Oman - Iran International",
@@ -304,7 +372,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789233360000
+      "firstAt": 1789233360000,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Diplomatic efforts reduce geopolitical risk"
     },
     {
       "title": "U.S. House of Representatives to take up Russia sanctions bill next week - The Hindu",
@@ -324,7 +398,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789233344000
+      "firstAt": 1789233344000,
+      "why": "Legislative process unclear for immediate impact"
     },
     {
       "title": "A Tale of Two Dollars: Why Dollar General Outpaced Dollar Tree This Quarter",
@@ -1741,7 +1816,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": null,
-  "headlinesAt": "2026-09-12T18:59:16.779Z",
-  "updatedAt": "2026-09-12T18:59:16.779Z"
+  "calendarAt": "2026-09-12T19:00:48.751Z",
+  "headlinesAt": "2026-09-12T19:00:48.751Z",
+  "updatedAt": "2026-09-12T19:00:48.751Z"
 }
