@@ -1,5 +1,24 @@
 {
-  "calendar": [],
+  "calendar": [
+    {
+      "title": "ECB President Lagarde Speaks",
+      "country": "EUR",
+      "impact": "medium",
+      "at": 1789200000000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "BRICS Summit",
+      "country": "All",
+      "impact": "low",
+      "at": 1789200900000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    }
+  ],
   "headlines": [
     {
       "title": "Iran war: Iraq says Saudi pipeline attack originated from its territory - Nine.com.au",
@@ -65,8 +84,7 @@
       "sev": 1,
       "rel": 1,
       "srcs": 1,
-      "firstAt": 1789249801000,
-      "_kind": null
+      "firstAt": 1789249801000
     },
     {
       "title": "Russia's Lavrov says yes to talks, no to ceasefire with Ukraine - Yahoo",
@@ -164,27 +182,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789250810000
-    },
-    {
-      "title": "US-Iran tensions add another layer of volatility to gold as oil prices complicate Fed outlook - Business Today",
-      "link": "https://news.google.com/rss/articles/CBMi9gFBVV95cUxON3hQc3dIRzFTdnF5eXRoTkcyY2dHc0xhczZIbFNBYmlrZWl6RFhKYUJNMUJwZmNFOFJieXlSNjU5WE0tWWR4WkJMTlRlQmRINXdBR2x3SmM5TDcxdXhVU3g2YUxDc2xMTjFXZDBOX29RVUVmY0FpTXM1cXVIenpDc2pqcGJIdmJiOVZxUHJYenFQb3R0MklDTF85Ri1aTm5YRE5DTVBtZ1dTWU5WMW5lU1VRWklCUUZ4dHB6OUxzTzUzWmxxeU83a1VvYW9tM2FNck9LcDY5aTJ3QkpabWx3emQ3enVTc0hvOGNwTW1kTmlMcE5aU2fSAfsBQVVfeXFMTmhDejFNYkk2UHByMnpzSFVLdFcwZGVMT2xoLUVIYTh6STQ2eVl0RjdFY3hjOVZKcWRVTzd1eUcwV2RKNC1pMlU4V3YyU1ZNcy1Kd0thOUEzcGtXb0dDUnhsdmJzM1NqU0VwSWJXMjZlMkE0RDMzUmNudkFGaVU1NUZWODNIRG5PdGFSWUdlSzVoMW13NXh0dXFUd2o4alRpaEd5bjRwMFFMZ3hUZUtWRlNaYVVEN0l2XzQyZlQ3OW5aUUpDTjRrZ0NGZzB5VW9QT05aMTNzUkhPVi1jc2owbS1QdWZ5UEhnU0JheXctZ0FfS0JmVVh4RXpiVTg?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi9gFBVV95cUxON3hQc3dIRzFTdnF5eXRoTkcyY2dHc0xhczZIbFNBYmlrZWl6RFhKYUJNMUJwZmNFOFJieXlSNjU5WE0tWWR4WkJMTlRlQmRINXdBR2x3SmM5TDcxdXhVU3g2YUxDc2xMTjFXZDBOX29RVUVmY0FpTXM1cXVIenpDc2pqcGJIdmJiOVZxUHJYenFQb3R0MklDTF85Ri1aTm5YRE5DTVBtZ1dTWU",
-      "at": 1789250701000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "USD",
-        "XAU",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789250701000
     },
     {
       "title": "Nvidia (NVDA)’s 2 GW Australia AI Push Could Deepen Its Infrastructure Advantage",
@@ -1729,6 +1726,18 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789158778000
+    },
+    {
+      "title": "Argentine farmers boost soybean sales on price rally",
+      "link": "https://www.investing.com/news/commodities-news/argentine-farmers-boost-soybean-sales-on-price-rally-93CH-4898409",
+      "source": "Investing Cmdty",
+      "at": 1789158555000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 1,
+      "srcs": 1,
+      "firstAt": 1789158555000
     }
   ],
   "sources": [
@@ -1751,10 +1760,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
-  "calendarAt": null,
-  "headlinesAt": "2026-09-12T23:05:17.492Z",
-  "updatedAt": "2026-09-12T23:05:17.492Z"
+  "calendarAt": "2026-09-12T23:07:02.501Z",
+  "headlinesAt": "2026-09-12T23:07:02.501Z",
+  "updatedAt": "2026-09-12T23:07:02.501Z"
 }
