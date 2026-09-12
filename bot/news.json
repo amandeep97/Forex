@@ -1,6 +1,162 @@
 {
-  "calendar": [],
+  "calendar": [
+    {
+      "title": "SNB Chairman Schlegel Speaks",
+      "country": "CHF",
+      "impact": "medium",
+      "at": 1789118100000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "Core CPI m/m",
+      "country": "USD",
+      "impact": "high",
+      "at": 1789129800000,
+      "forecast": "0.2%",
+      "previous": "0.2%",
+      "actual": "0.22",
+      "actualFrom": "BLS",
+      "actualNum": 0.22,
+      "vsPrevious": 0.02,
+      "forecastNum": 0.2,
+      "surprise": 0.02,
+      "surprisePct": 10,
+      "beat": "above"
+    },
+    {
+      "title": "Core CPI y/y",
+      "country": "USD",
+      "impact": "high",
+      "at": 1789129800000,
+      "forecast": "2.4%",
+      "previous": "2.5%",
+      "actual": ""
+    },
+    {
+      "title": "CPI m/m",
+      "country": "USD",
+      "impact": "high",
+      "at": 1789129800000,
+      "forecast": "0.4%",
+      "previous": "0.1%",
+      "actual": "0.07",
+      "actualFrom": "BLS",
+      "actualNum": 0.07,
+      "vsPrevious": -0.03,
+      "forecastNum": 0.4,
+      "surprise": -0.33,
+      "surprisePct": -82.5,
+      "beat": "below"
+    },
+    {
+      "title": "CPI y/y",
+      "country": "USD",
+      "impact": "high",
+      "at": 1789129800000,
+      "forecast": "3.4%",
+      "previous": "3.4%",
+      "actual": ""
+    },
+    {
+      "title": "ECB President Lagarde Speaks",
+      "country": "EUR",
+      "impact": "medium",
+      "at": 1789135200000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "Prelim UoM Consumer Sentiment",
+      "country": "USD",
+      "impact": "medium",
+      "at": 1789135200000,
+      "forecast": "51.0",
+      "previous": "51.0",
+      "actual": ""
+    },
+    {
+      "title": "Prelim UoM Inflation Expectations",
+      "country": "USD",
+      "impact": "medium",
+      "at": 1789135200000,
+      "forecast": "",
+      "previous": "4.3%",
+      "actual": ""
+    },
+    {
+      "title": "Federal Budget Balance",
+      "country": "USD",
+      "impact": "low",
+      "at": 1789149480000,
+      "forecast": "-221.1B",
+      "previous": "-432.3B",
+      "actual": ""
+    },
+    {
+      "title": "ECB President Lagarde Speaks",
+      "country": "EUR",
+      "impact": "medium",
+      "at": 1789200000000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "BRICS Summit",
+      "country": "All",
+      "impact": "low",
+      "at": 1789200900000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    }
+  ],
   "headlines": [
+    {
+      "title": "Drones Strike Russian Aviation Plant Servicing Tu-95 Bombers and Chemical Giant in Tolyatti - UNITED24 Media",
+      "link": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxPNzNPa3pyeGswaGRwVldMQ213NTJwSlp3cXdtVEp4dS1FcnlYWThiMnNzLVlaR2JLY2gzbE0tRzQwcGN3T25VRVIwRFVOUXVWNjBDQlRuYmt4VkhLSVNWNEZXYUJ6MDIySGRwbmFYN21LM0NxVU1XelliWFlMS2dYUXdkbUlnV01qdEJkVFR3YkczTXUzRW9ETWR6MkljeHo5VHdiV3E4RlBhYk43UlZNRThjVTA2Z05ud2NhdzdBM1pmaUV4MnIteXlTMGNjYzR1WjR0dA?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi1AFBVV95cUxPNzNPa3pyeGswaGRwVldMQ213NTJwSlp3cXdtVEp4dS1FcnlYWThiMnNzLVlaR2JLY2gzbE0tRzQwcGN3T25VRVIwRFVOUXVWNjBDQlRuYmt4VkhLSVNWNEZXYUJ6MDIySGRwbmFYN21LM0NxVU1XelliWFlMS2dYUXdkbUlnV01qdEJkVFR3YkczTXUzRW9ETWR6MkljeHo5VHdiV3E4RlBhYk",
+      "at": 1789203927000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789201356000,
+      "_kind": null
+    },
+    {
+      "title": "Russian attacks kill 11, injure 96 across Ukraine as Odesa comes under mass overnight strike - kyivindependent.com",
+      "link": "https://news.google.com/rss/articles/CBMivAFBVV95cUxOQXRVVkJ1ZUFyZDVXTFJISDQyblkxNFpSVHJHV1pHMlRxRzlpVWhQcE5KVkM5X1V1WXdaMnBvV25NYm85aTExLVhVTThra0tRaUxrQjRpM3JhOXJqNkdvRXhnbkdYZ0drMmVXYkpOSGZzbjJqZk1wdFdxcloxVzRoQ0xBYkRNNjFHYXptbkhRSmVmZWQxNWZCai1oX2VsdkVNVEF0MmMtY3pqWl95ZjhCYjl4bmU1NE12RHBvbg?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMivAFBVV95cUxOQXRVVkJ1ZUFyZDVXTFJISDQyblkxNFpSVHJHV1pHMlRxRzlpVWhQcE5KVkM5X1V1WXdaMnBvV25NYm85aTExLVhVTThra0tRaUxrQjRpM3JhOXJqNkdvRXhnbkdYZ0drMmVXYkpOSGZzbjJqZk1wdFdxcloxVzRoQ0xBYkRNNjFHYXptbkhRSmVmZWQxNWZCai1oX2VsdkVNVEF0MmMtY3pqWl",
+      "at": 1789203839000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1789201356000,
+      "_kind": null
+    },
     {
       "title": "Latest Russian Strikes On Ukraine Kill 2 In Zaporizhzhia, Wound At Least 17 In Odesa - Radio Free Europe/Radio Liberty",
       "link": "https://news.google.com/rss/articles/CBMipAFBVV95cUxNWWFKcGQyZng3Qm91WWtqUzFtWGRTZjZBb3M5R2N1Q0F2Y2YzOVpTWHczVHA0TmdVbTg0ODF3YXh0T2xCdHNaSHNVbTc4R1dtMld6SzgxWkFZUXlZNjFXTS1GSWFQVEdKWFhmWVVsM0otWm55dW9QVTJOcjJaUFBpQmwxNzdqYjJad09ZTnJYekUzcEo5cXhMOXpsQXQ1UFVjY2djU9IBpwFBVV95cUxNUnBOY0I0aDNHdnRqZ1lDSnIxOFhnOXU3cDN5RnQ5X2pDSWtrRGhXTk55VE13eXFNQjJoQVFZT3gxbExzMW5yX2lqdHN3NjZyeWZfU3dpaGFCZlhjVVJ1ekxBMngwaC1sRUoyVWNRSTNYUkNDTWNSaHpCQno1VzVqZkE2WWpURWV1aHVob1JOdlpnTFUwSFZSbVd1cF9RbVdDQmdncWZRbw?oc=5",
@@ -58,8 +214,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789201356000,
-      "_kind": null
+      "firstAt": 1789201356000
     },
     {
       "title": "Russia strikes cargo vessels, steel plants across Ukraine",
@@ -513,26 +668,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789189380000
-    },
-    {
-      "title": "US House of Representatives to take up Russia sanctions bill next week - theprint.in",
-      "link": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxPemx5aDRreWRuRlhWYVpvWVlCMkFMTEFDdWhzbUs4bzREbC1ZNmNVWmdtOXNLSmdjRk54YjlkTHZyZlNvdmhmU25rWUNnSVNBdVkyYUdVMUw5WV9xT3pJdGNWNW9lSWNvLWFRMERrdDNvTDlQTTctdlBlc0VhSmNmamtGOHVMMWJKcG1SZ0pCWnRoT3RMajZJS1Fhdkpkc3lfQ2lWdVBIS0zSAa4BQVVfeXFMTzltTXdubFZXdXhacVhxZWZhZHBWdmxodVRlYVJDSm8xakE2XzFVRm1sVkNfc0ZRQlZvcHlmcTJjZFlwUnlUWWVXa0NuXzFPejR3YjRqcUwyTkw3X1VTR2NFMUFNWmNzRk94YlFidzc5N3Y2Tl9QRXQxNkZEdjltNEhtOWtjalNlX3lwenFHbXpBalJKeUpCVXRhZjVIYmJMZDVMQ0pYRHZucWFJQmZ3?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiqAFBVV95cUxPemx5aDRreWRuRlhWYVpvWVlCMkFMTEFDdWhzbUs4bzREbC1ZNmNVWmdtOXNLSmdjRk54YjlkTHZyZlNvdmhmU25rWUNnSVNBdVkyYUdVMUw5WV9xT3pJdGNWNW9lSWNvLWFRMERrdDNvTDlQTTctdlBlc0VhSmNmamtGOHVMMWJKcG1SZ0pCWnRoT3RMajZJS1Fhdkpkc3lfQ2lWdVBIS0zSAa",
-      "at": 1789188303000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789188303000
     },
     {
       "title": "Saudi Arabia shuts key oil pipeline after drone attack launched from Iraq",
@@ -1186,19 +1321,17 @@
       "firstAt": 1789157943000
     },
     {
-      "title": "Russian attacks on Kyiv petrol stations kill two; Ukrainian strikes kill three in Russia - Japan Today",
+      "title": "Russian attacks on Kyiv petrol stations kill two; Ukrainian strikes kill three in Russia - japantoday.com",
       "link": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxQdHZNRGdqcndjSjNjcTB3akJyejVFUVRvRi1ZLWxlTzZtUU5iVEF3X2RjdVlLRklIRmVjaDh3ZWNQN0dKUWFJb3NRSjV1WjVJN3VmdDJBeDctOEQtS0NpaXpDVzBsc1ZZMWFfcDJFVl9sY1pMR0hVRmowOGVrMEo1Yzd6dERoT0M5V01KZDZMeldKQ1VYZVowckxuX2xjQWhubWcwS1l2a1FoSm1JUF9fcFdpRTdvQ2FhY3hvcWR5X0tLS1U?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiwwFBVV95cUxQdHZNRGdqcndjSjNjcTB3akJyejVFUVRvRi1ZLWxlTzZtUU5iVEF3X2RjdVlLRklIRmVjaDh3ZWNQN0dKUWFJb3NRSjV1WjVJN3VmdDJBeDctOEQtS0NpaXpDVzBsc1ZZMWFfcDJFVl9sY1pMR0hVRmowOGVrMEo1Yzd6dERoT0M5V01KZDZMeldKQ1VYZVowckxuX2xjQWhubWcwS1l2a1FoSm",
       "at": 1789157400000,
       "inst": [
-        "USD/JPY",
         "XAU/USD",
         "USOIL",
         "UKOIL"
       ],
       "ccy": [
-        "JPY",
         "XAU",
         "OIL"
       ],
@@ -1705,29 +1838,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789148963000
-    },
-    {
-      "title": "10-Year Treasury Yield Nears 5% as Markets Brace for a September Fed Rate Hike - Tekedia",
-      "link": "https://news.google.com/rss/articles/CBMipAFBVV95cUxNbzZiQXhTNm5CNXgxc09aX0lySWNTbmF4WkN4cG1KZkVHc21faDBBMVI4d2NzWEVXYnJzSHJJX2NBTkJFYnhfWWVfR2tqNUxTZmNyU05CVnFNZmFoTGttOUg4azZDdkllcEE4YnhjQlpkeWMza0VLVHFleUVpUFRzTGw3bmpQNDBfd0M4VDc4VFRoQmlrWV9Lb2tTN3d1Q0Q4RW5USg?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMipAFBVV95cUxNbzZiQXhTNm5CNXgxc09aX0lySWNTbmF4WkN4cG1KZkVHc21faDBBMVI4d2NzWEVXYnJzSHJJX2NBTkJFYnhfWWVfR2tqNUxTZmNyU05CVnFNZmFoTGttOUg4azZDdkllcEE4YnhjQlpkeWMza0VLVHFleUVpUFRzTGw3bmpQNDBfd0M4VDc4VFRoQmlrWV9Lb2tTN3d1Q0Q4RW5USg?oc=5\" t",
-      "at": 1789148700000,
-      "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789147493000
     }
   ],
   "sources": [
@@ -1750,10 +1860,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
-  "calendarAt": null,
-  "headlinesAt": "2026-09-12T09:10:46.228Z",
-  "updatedAt": "2026-09-12T09:10:46.228Z"
+  "calendarAt": "2026-09-12T09:12:02.840Z",
+  "headlinesAt": "2026-09-12T09:12:02.840Z",
+  "updatedAt": "2026-09-12T09:12:02.840Z"
 }
