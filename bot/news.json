@@ -1,5 +1,110 @@
 {
-  "calendar": [],
+  "calendar": [
+    {
+      "title": "Core CPI m/m",
+      "country": "USD",
+      "impact": "high",
+      "at": 1789129800000,
+      "forecast": "0.2%",
+      "previous": "0.2%",
+      "actual": "0.22",
+      "actualFrom": "BLS",
+      "actualNum": 0.22,
+      "vsPrevious": 0.02,
+      "forecastNum": 0.2,
+      "surprise": 0.02,
+      "surprisePct": 10,
+      "beat": "above"
+    },
+    {
+      "title": "Core CPI y/y",
+      "country": "USD",
+      "impact": "high",
+      "at": 1789129800000,
+      "forecast": "2.4%",
+      "previous": "2.5%",
+      "actual": ""
+    },
+    {
+      "title": "CPI m/m",
+      "country": "USD",
+      "impact": "high",
+      "at": 1789129800000,
+      "forecast": "0.4%",
+      "previous": "0.1%",
+      "actual": "0.07",
+      "actualFrom": "BLS",
+      "actualNum": 0.07,
+      "vsPrevious": -0.03,
+      "forecastNum": 0.4,
+      "surprise": -0.33,
+      "surprisePct": -82.5,
+      "beat": "below"
+    },
+    {
+      "title": "CPI y/y",
+      "country": "USD",
+      "impact": "high",
+      "at": 1789129800000,
+      "forecast": "3.4%",
+      "previous": "3.4%",
+      "actual": ""
+    },
+    {
+      "title": "ECB President Lagarde Speaks",
+      "country": "EUR",
+      "impact": "medium",
+      "at": 1789135200000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "Prelim UoM Consumer Sentiment",
+      "country": "USD",
+      "impact": "medium",
+      "at": 1789135200000,
+      "forecast": "51.0",
+      "previous": "51.0",
+      "actual": ""
+    },
+    {
+      "title": "Prelim UoM Inflation Expectations",
+      "country": "USD",
+      "impact": "medium",
+      "at": 1789135200000,
+      "forecast": "",
+      "previous": "4.3%",
+      "actual": ""
+    },
+    {
+      "title": "Federal Budget Balance",
+      "country": "USD",
+      "impact": "low",
+      "at": 1789149480000,
+      "forecast": "-221.1B",
+      "previous": "-432.3B",
+      "actual": ""
+    },
+    {
+      "title": "ECB President Lagarde Speaks",
+      "country": "EUR",
+      "impact": "medium",
+      "at": 1789200000000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "BRICS Summit",
+      "country": "All",
+      "impact": "low",
+      "at": 1789200900000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    }
+  ],
   "headlines": [
     {
       "title": "At least 11 killed in Russian attacks on Ukraine as Kyiv strikes Russia's 'shadow fleet' - euronews.com",
@@ -58,8 +163,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789212704000,
-      "_kind": null
+      "firstAt": 1789212704000
     },
     {
       "title": "Iran used Chinese satellite images for attack on US base in Jordan, says report - Middle East Eye",
@@ -1227,29 +1331,6 @@
       "firstAt": 1789157943000
     },
     {
-      "title": "Your Social Security COLA could go up another $71 a month in 2027. That’s not necessarily good news.",
-      "link": "https://www.marketwatch.com/story/your-social-security-check-could-go-up-another-71-next-year-thats-not-necessarily-good-news-f952c08a?mod=mw_rss_topstories",
-      "source": "MarketWatch",
-      "desc": "A higher COLA is a sign that persistent inflation isn’t going anywhere.",
-      "at": 1789157280000,
-      "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789157280000
-    },
-    {
       "title": "US Markets Wrap: Trading ends in the green despite red hot inflation data - Business Post",
       "link": "https://news.google.com/rss/articles/CBMirgFBVV95cUxNck02cUlndTJrclJmZ1RISVI0MURleGZ1UDVMOW54TmRYN0k5QUw2RWZxcHBTY2ZlUThWVm5lMG1oemMxSUhqaHJrV0U3Ry1zakNmZVI1RWpCY3p3NXA3NmJBMzl4MDVzZHRocUhGXzFkVHBFWE01ZWViV0JsNm1NLVM5UTQyVEhYT0ZzbU5zUkZHbzZOVHo3Tm5BaVAxQVRfOUNTdUFaZnFLaERjYnc?oc=5",
       "source": "Wires (macro)",
@@ -1725,6 +1806,29 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789148963000
+    },
+    {
+      "title": "10-Year Treasury Yield Nears 5% as Markets Brace for a September Fed Rate Hike - Tekedia",
+      "link": "https://news.google.com/rss/articles/CBMipAFBVV95cUxNbzZiQXhTNm5CNXgxc09aX0lySWNTbmF4WkN4cG1KZkVHc21faDBBMVI4d2NzWEVXYnJzSHJJX2NBTkJFYnhfWWVfR2tqNUxTZmNyU05CVnFNZmFoTGttOUg4azZDdkllcEE4YnhjQlpkeWMza0VLVHFleUVpUFRzTGw3bmpQNDBfd0M4VDc4VFRoQmlrWV9Lb2tTN3d1Q0Q4RW5USg?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMipAFBVV95cUxNbzZiQXhTNm5CNXgxc09aX0lySWNTbmF4WkN4cG1KZkVHc21faDBBMVI4d2NzWEVXYnJzSHJJX2NBTkJFYnhfWWVfR2tqNUxTZmNyU05CVnFNZmFoTGttOUg4azZDdkllcEE4YnhjQlpkeWMza0VLVHFleUVpUFRzTGw3bmpQNDBfd0M4VDc4VFRoQmlrWV9Lb2tTN3d1Q0Q4RW5USg?oc=5\" t",
+      "at": 1789148700000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789147493000
     }
   ],
   "sources": [
@@ -1750,7 +1854,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": null,
-  "headlinesAt": "2026-09-12T12:00:46.306Z",
-  "updatedAt": "2026-09-12T12:00:46.306Z"
+  "calendarAt": "2026-09-12T12:02:16.568Z",
+  "headlinesAt": "2026-09-12T12:02:16.568Z",
+  "updatedAt": "2026-09-12T12:02:16.568Z"
 }
