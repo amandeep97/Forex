@@ -1,5 +1,146 @@
 {
-  "calendar": [],
+  "calendar": [
+    {
+      "title": "SECO Consumer Climate",
+      "country": "CHF",
+      "impact": "low",
+      "at": 1789110000000,
+      "forecast": "-33",
+      "previous": "-35",
+      "actual": ""
+    },
+    {
+      "title": "Italian Quarterly Unemployment Rate",
+      "country": "EUR",
+      "impact": "low",
+      "at": 1789113600000,
+      "forecast": "5.4%",
+      "previous": "5.3%",
+      "actual": ""
+    },
+    {
+      "title": "Consumer Inflation Expectations",
+      "country": "GBP",
+      "impact": "low",
+      "at": 1789115400000,
+      "forecast": "",
+      "previous": "4.0%",
+      "actual": ""
+    },
+    {
+      "title": "SNB Chairman Schlegel Speaks",
+      "country": "CHF",
+      "impact": "medium",
+      "at": 1789118100000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "Core CPI m/m",
+      "country": "USD",
+      "impact": "high",
+      "at": 1789129800000,
+      "forecast": "0.2%",
+      "previous": "0.2%",
+      "actual": "0.22",
+      "actualFrom": "BLS",
+      "actualNum": 0.22,
+      "vsPrevious": 0.02,
+      "forecastNum": 0.2,
+      "surprise": 0.02,
+      "surprisePct": 10,
+      "beat": "above"
+    },
+    {
+      "title": "Core CPI y/y",
+      "country": "USD",
+      "impact": "high",
+      "at": 1789129800000,
+      "forecast": "2.4%",
+      "previous": "2.5%",
+      "actual": ""
+    },
+    {
+      "title": "CPI m/m",
+      "country": "USD",
+      "impact": "high",
+      "at": 1789129800000,
+      "forecast": "0.4%",
+      "previous": "0.1%",
+      "actual": "0.07",
+      "actualFrom": "BLS",
+      "actualNum": 0.07,
+      "vsPrevious": -0.03,
+      "forecastNum": 0.4,
+      "surprise": -0.33,
+      "surprisePct": -82.5,
+      "beat": "below"
+    },
+    {
+      "title": "CPI y/y",
+      "country": "USD",
+      "impact": "high",
+      "at": 1789129800000,
+      "forecast": "3.4%",
+      "previous": "3.4%",
+      "actual": ""
+    },
+    {
+      "title": "ECB President Lagarde Speaks",
+      "country": "EUR",
+      "impact": "medium",
+      "at": 1789135200000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "Prelim UoM Consumer Sentiment",
+      "country": "USD",
+      "impact": "medium",
+      "at": 1789135200000,
+      "forecast": "51.0",
+      "previous": "51.0",
+      "actual": ""
+    },
+    {
+      "title": "Prelim UoM Inflation Expectations",
+      "country": "USD",
+      "impact": "medium",
+      "at": 1789135200000,
+      "forecast": "",
+      "previous": "4.3%",
+      "actual": ""
+    },
+    {
+      "title": "Federal Budget Balance",
+      "country": "USD",
+      "impact": "low",
+      "at": 1789149480000,
+      "forecast": "-221.1B",
+      "previous": "-432.3B",
+      "actual": ""
+    },
+    {
+      "title": "ECB President Lagarde Speaks",
+      "country": "EUR",
+      "impact": "medium",
+      "at": 1789200000000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "BRICS Summit",
+      "country": "All",
+      "impact": "low",
+      "at": 1789200900000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    }
+  ],
   "headlines": [
     {
       "title": "Zelensky Warns Russia of Retaliation Over Winter Energy Attacks - Kyiv Post",
@@ -19,11 +160,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789192763000,
-      "dir": {
-        "XAU/USD": "up"
-      },
-      "why": "War escalation boosts gold, oil unclear"
+      "firstAt": 1789192763000
     },
     {
       "title": "Ukraine faces 'toughest winter' since Russia's full-scale invasion, UN official tells BBC",
@@ -43,8 +180,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789192515000,
-      "why": "Winter energy crisis, no clear market direction"
+      "firstAt": 1789192515000
     },
     {
       "title": "Iran used Chinese satellite images for attack on US base in Jordan - Middle East Eye",
@@ -64,8 +200,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789192020000,
-      "why": "Geopolitical detail, no immediate market impact"
+      "firstAt": 1789192020000
     },
     {
       "title": "‘War on terror’: How 9/11 changed the language of conflict",
@@ -82,8 +217,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789190765000,
-      "why": "Historical analysis, no market impact"
+      "firstAt": 1789190765000
     },
     {
       "title": "Chileans clash over 9/11 military coup legacy",
@@ -100,8 +234,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789190549000,
-      "why": "Local political unrest, no gold impact"
+      "firstAt": 1789190549000
     },
     {
       "title": "BRICS meets in India: What’s on the agenda, why it matters",
@@ -121,8 +254,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789190529000,
-      "why": "Summit agenda, no specific market signal"
+      "firstAt": 1789190529000
     },
     {
       "title": "Global funds retreat from Indian stocks as some cut exposure to zero - Bloomberg",
@@ -136,8 +268,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789190264000,
-      "why": "India-specific fund flows, no US impact"
+      "firstAt": 1789190264000
     },
     {
       "title": "Russia strikes multi-story apartment building in Odesa, injuring at least 12 - Yahoo",
@@ -157,11 +288,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789189380000,
-      "dir": {
-        "XAU/USD": "up"
-      },
-      "why": "War escalation boosts gold, oil unclear"
+      "firstAt": 1789189380000
     },
     {
       "title": "US House of Representatives to take up Russia sanctions bill next week - theprint.in",
@@ -181,8 +308,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789188303000,
-      "why": "Sanctions bill, direction unclear"
+      "firstAt": 1789188303000
     },
     {
       "title": "Saudi Arabia shuts key oil pipeline after drone attack launched from Iraq",
@@ -202,13 +328,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789188190000,
-      "dir": {
-        "XAU/USD": "up",
-        "USOIL": "up",
-        "UKOIL": "up"
-      },
-      "why": "Supply disruption and war risk boost assets"
+      "firstAt": 1789188190000
     },
     {
       "title": "Chinese entities provided Iran with satellite images of air base in Jordan before deadly missile strike: report - New York Post",
@@ -228,8 +348,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789184700000,
-      "why": "Geopolitical detail, no immediate market impact"
+      "firstAt": 1789184700000
     },
     {
       "title": "Zelensky panics over Putin's missile-like drones, vows winter energy war if Russia strikes? | Videos - Hindustan Times",
@@ -249,11 +368,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789181864000,
-      "dir": {
-        "XAU/USD": "up"
-      },
-      "why": "War rhetoric boosts gold, oil unclear"
+      "firstAt": 1789181864000
     },
     {
       "title": "Saudis shut down oil pipeline as Houthis tighten grip on Red Sea shipping",
@@ -269,11 +384,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789181310000,
-      "dir": {
-        "USOIL": "up"
-      },
-      "why": "Supply disruption and shipping risk boost oil"
+      "firstAt": 1789181310000
     },
     {
       "title": "North Korea fires ballistic missiles off eastern coast, Seoul says",
@@ -290,8 +401,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789179959000,
-      "why": "North Korea missile, no clear JPY direction"
+      "firstAt": 1789179959000
     },
     {
       "title": "Putin and Pezeshkian call out US dominance ahead of BRICS",
@@ -326,13 +436,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789179532000,
-      "dir": {
-        "XAU/USD": "up",
-        "USOIL": "up",
-        "UKOIL": "up"
-      },
-      "why": "Supply disruption and war risk boost assets"
+      "firstAt": 1789179532000
     },
     {
       "title": "UK sanctions on West Bank settlers are the right step | Letters - The Guardian",
@@ -1771,7 +1875,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": null,
-  "headlinesAt": "2026-09-12T06:32:17.183Z",
-  "updatedAt": "2026-09-12T06:32:17.183Z"
+  "calendarAt": "2026-09-12T06:33:45.843Z",
+  "headlinesAt": "2026-09-12T06:33:45.843Z",
+  "updatedAt": "2026-09-12T06:33:45.843Z"
 }
