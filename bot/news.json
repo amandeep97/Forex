@@ -1,24 +1,5 @@
 {
-  "calendar": [
-    {
-      "title": "ECB President Lagarde Speaks",
-      "country": "EUR",
-      "impact": "medium",
-      "at": 1789200000000,
-      "forecast": "",
-      "previous": "",
-      "actual": ""
-    },
-    {
-      "title": "BRICS Summit",
-      "country": "All",
-      "impact": "low",
-      "at": 1789200900000,
-      "forecast": "",
-      "previous": "",
-      "actual": ""
-    }
-  ],
+  "calendar": [],
   "headlines": [
     {
       "title": "Iraq probes drone strikes on Saudi Arabia, shuts three crossings to Iran - Al Jazeera",
@@ -39,6 +20,25 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789239456000,
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Geopolitical risk boosts gold and oil"
+    },
+    {
+      "title": "WisdomTree COO Lilien Jarrett Sells 30,000 Shares for $737,000",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/wisdomtree-coo-lilien-jarrett-sells-185501162.html",
+      "source": "Yahoo Finance",
+      "at": 1789239301000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 1,
+      "srcs": 1,
+      "firstAt": 1789239301000,
       "_kind": null
     },
     {
@@ -60,7 +60,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789237350000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Ukraine conflict escalates, boosting safe havens"
     },
     {
       "title": "Iran, UAE hold first talks at BRICS summit since conflict began",
@@ -80,7 +84,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789235934000
+      "firstAt": 1789235934000,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Diplomatic talks reduce geopolitical risk premium"
     },
     {
       "title": "How Concerned Should Income Investors Be About Pfizer's Dividend?",
@@ -92,7 +102,7 @@
       "sev": 1,
       "rel": 1,
       "srcs": 1,
-      "firstAt": 1789236263000
+      "firstAt": 1789238100000
     },
     {
       "title": "GameStop Billionaire Ryan Cohen Buys 1 Million Shares for $20 Million. What This Large Purchase Means for GME",
@@ -124,7 +134,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789235934000
+      "firstAt": 1789235934000,
+      "why": "Tariff speculation unclear for these assets"
     },
     {
       "title": "8 killed in Russian strikes on Ukraine as Putin warns Europe against sending troops - ABC News - Breaking News, Latest News and Videos",
@@ -144,7 +155,11 @@
       "sev": 3,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789237350000
+      "firstAt": 1789237350000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Ukraine conflict escalates, boosting safe havens"
     },
     {
       "title": "Canadian boycott of US products pushes grocers to adapt, explore new supply sources",
@@ -158,7 +173,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789236750000
+      "firstAt": 1789236750000,
+      "dir": {
+        "USD/CAD": "down"
+      },
+      "why": "Boycott hurts US economy, weakens dollar"
     },
     {
       "title": "Iran Finds Escalation Is Fruitful Path to Leverage in War With U.S. - The New York Times",
@@ -178,7 +197,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789236430000
+      "firstAt": 1789236430000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Iran escalation rhetoric boosts risk assets"
     },
     {
       "title": "Oracle’s Ellison cancels plan to sell up to 50 mln shares",
@@ -211,7 +236,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789233344000
+      "firstAt": 1789233344000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Dollar devaluation fears boost gold"
     },
     {
       "title": "Céline Dion fans prepare for comeback concert in Paris",
@@ -226,7 +255,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789234580000
+      "firstAt": 1789234580000,
+      "why": "Entertainment news irrelevant to currency pair"
     },
     {
       "title": "Selling the war: Purges, polygraphs and propaganda",
@@ -246,7 +276,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789234316000
+      "firstAt": 1789234316000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "War challenges boost safe haven demand"
     },
     {
       "title": "Russian attacks on Kyiv petrol stations kill two, Ukrainian strikes kill three in Russia",
@@ -265,7 +299,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789233025000
+      "firstAt": 1789233025000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Ukraine conflict escalates, boosting safe havens"
     },
     {
       "title": "Russian attacks kill six, injure dozens in Ukraine, Moscow says it hits ships, plants - Reuters",
@@ -285,7 +323,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789233025000
+      "firstAt": 1789233025000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Ukraine conflict escalates, boosting safe havens"
     },
     {
       "title": "Saudis shut down oil pipeline as Houthis tighten grip on Red Sea shipping",
@@ -301,7 +343,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789233865000
+      "firstAt": 1789233865000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Supply disruption boosts oil prices"
     },
     {
       "title": "Ukraine braces for harsh winter as Russian attacks hit economy - Reuters",
@@ -321,7 +367,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789233025000
+      "firstAt": 1789233025000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Ukraine economic damage boosts safe havens"
     },
     {
       "title": "Trump says Iran likely behind Saudi pipeline attack as US weighs next moves - Fox News",
@@ -341,7 +391,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789231914000
+      "firstAt": 1789231914000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Iran attribution boosts oil and gold"
     },
     {
       "title": "Saudi pipeline attack update: East-west Saudi oil pipeline attack is blamed on Iran-backed militias in Iraq - ABC11 News",
@@ -1711,29 +1767,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789155798000
-    },
-    {
-      "title": "Inflation Comes In Hot - WSJ",
-      "link": "https://news.google.com/rss/articles/CBMidEFVX3lxTE1fNnRXSkpvQUJidkxSOXQ1Z1lKWG1VQzJrbXNLWUNaaE5GYUtZLU9JQ0JlVEM2MTlyMFFVcm9zZ0pOQklaOGE1Q0NGdlJIS282eXlSNWlYUFVzUURKOXJUQ2N5U1JXdGVQSGJmMHE5azhoUXBn?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMidEFVX3lxTE1fNnRXSkpvQUJidkxSOXQ1Z1lKWG1VQzJrbXNLWUNaaE5GYUtZLU9JQ0JlVEM2MTlyMFFVcm9zZ0pOQklaOGE1Q0NGdlJIS282eXlSNWlYUFVzUURKOXJUQ2N5U1JXdGVQSGJmMHE5azhoUXBn?oc=5\" target=\"_blank\">Inflation Comes In Hot</a>&nbsp;&nbsp;<font color=\"",
-      "at": 1789158180000,
-      "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789158180000
     }
   ],
   "sources": [
@@ -1759,7 +1792,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-12T19:11:16.837Z",
-  "headlinesAt": "2026-09-12T19:11:16.837Z",
-  "updatedAt": "2026-09-12T19:11:16.837Z"
+  "calendarAt": null,
+  "headlinesAt": "2026-09-12T19:12:48.737Z",
+  "updatedAt": "2026-09-12T19:12:48.737Z"
 }
