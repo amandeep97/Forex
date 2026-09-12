@@ -33,7 +33,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789252681000,
-      "_kind": null
+      "_kind": null,
+      "why": "Historical performance comparison, no current direction."
     },
     {
       "title": "Not Nvidia. Not Micron. This Dirt Cheap “Magnificent Seven” Stock Could Be the Biggest Winner of the Trillion-Dollar AI Race – Here’s the Case.",
@@ -65,7 +66,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789251018000
+      "firstAt": 1789251018000,
+      "why": "Sports news, no economic impact."
     },
     {
       "title": "Iraq probes drone strikes on Saudi Arabia, shuts three crossings to Iran - Al Jazeera",
@@ -85,7 +87,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789250850000
+      "firstAt": 1789250850000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Geopolitical risk boosts safe havens and oil."
     },
     {
       "title": "Russian Strikes Kill 9 Across Ukraine, As Zelenskyy Offers To Meet Putin At Miami G20 - Radio Free Europe/Radio Liberty",
@@ -105,7 +113,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789250810000
+      "firstAt": 1789250810000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "War escalation boosts gold; oil unclear."
     },
     {
       "title": "Nvidia (NVDA)’s 2 GW Australia AI Push Could Deepen Its Infrastructure Advantage",
@@ -121,7 +133,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789249801000
+      "firstAt": 1789249801000,
+      "dir": {
+        "AUD/USD": "up"
+      },
+      "why": "Major tech investment boosts Australian economy."
     },
     {
       "title": "The AI Infrastructure Stock That Could Make Investors Millionaires Is Hiding in Plain Sight, and Wall Street Isn’t Paying Attention",
@@ -135,7 +151,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789249801000
+      "firstAt": 1789249801000,
+      "why": "Speculative single stock, unclear index impact."
     },
     {
       "title": "10-Year Treasury Nears 5%, Raising CRE Financing Risk",
@@ -157,7 +174,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789249034000
+      "firstAt": 1789249034000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "High rates boost gold; FX impact unclear."
     },
     {
       "title": "Escalating Tensions: Russian Strikes Intensify Across Ukraine - Devdiscourse",
@@ -177,7 +198,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789244845000
+      "firstAt": 1789244845000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "War escalation boosts gold; oil unclear."
     },
     {
       "title": "Russian attacks kill nine, injure dozens in Ukraine; Russia says it hits ships, plants - Reuters",
@@ -197,7 +222,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789244845000
+      "firstAt": 1789244845000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "War escalation boosts gold; oil unclear."
     },
     {
       "title": "Second crypto billionaire donates record $49m to far-right Reform UK",
@@ -214,7 +243,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789245837000
+      "firstAt": 1789245837000,
+      "why": "Political donation, no direct crypto impact."
     },
     {
       "title": "Iran joins Russia, China at BRICS conference calling for a halt to ‘escalation’ in Middle East - New York Post",
@@ -234,7 +264,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789245660000
+      "firstAt": 1789245660000,
+      "why": "Diplomatic call for de-escalation, unclear impact."
     },
     {
       "title": "Only Roland Garros towel left, says Ukraine tennis player after Russian strike hits flat",
@@ -254,7 +285,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789244845000
+      "firstAt": 1789244845000,
+      "why": "Human interest story, no market impact."
     },
     {
       "title": "Ukraine tennis player's apartment destroyed in Russian strike - BBC",
@@ -274,7 +306,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789244845000
+      "firstAt": 1789244845000,
+      "why": "Human interest story, no market impact."
     },
     {
       "title": "Zelenskyy Urges Partners to Tighten Sanctions on Russian Oligarchs - Межа. Новини України.",
@@ -294,7 +327,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789243077000
+      "firstAt": 1789243077000,
+      "why": "Sanctions call, no immediate market move."
     },
     {
       "title": "BRICS Urges Israel To Withdraw Forces From Lebanese Territories After Lebanon Ceasefire: 12 outlets compared - NewsCord",
@@ -314,7 +348,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789242868000
+      "firstAt": 1789242868000,
+      "why": "Diplomatic statement, no clear market direction."
     },
     {
       "title": "Live - China offers help to end war ahead of Iran-Arab talks in Oman - Iran International",
@@ -1561,7 +1596,7 @@
       "firstAt": 1789161528000
     },
     {
-      "title": "US To Vote On Russia Sanctions Bill Next Week, Giving Trump More Tariff Power - ndtv.com",
+      "title": "US To Vote On Russia Sanctions Bill Next Week, Giving Trump More Tariff Power - NDTV",
       "link": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxON1h0SENhUXRQQzFPbHhMcUdyWmtzMU5GZHEwRHZFZjFiM1c2Q0xTS2wxWkpLdG9YSEF2SXU4cXQ1LXhFYmpURmVGcEYwX1ExRmM2V291RTNpRzQyV0ttR2RMemlCdTFUR290TTduMlVlSVdkaEhkdVhrQmE3U2Q1S2R2bUI2c0o1UEs4eDFyc2VJYXp0eTY1dGJyOVR1VWlkQV9UY0ZGUTk1Zko1RWV5bGh0ZkJBOVd30gHAAUFVX3lxTE1WZW9UeHRKZTkwZFAwTXAxTmhlSGtfeVVGb2N4YUNkcDZka2p1TmpPQVJWNl8xdEhrTXpGMEFpUHlveHBnR3lRQ2xtQzZNTElXOVdmd1pjMlhnN0dQbnVQaVRQRnl0bjdic0tjTGlKZmdzem5mSFJ6UFNXdGtHcnExcmluTGNNTjBQSl9ld1loLW02OHZ1dUNNeW92T1drb3dnUVlmQmh1ZXFzU2U3VUxhNC0wSExxODlIRG9OYWJnaQ?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiuAFBVV95cUxON1h0SENhUXRQQzFPbHhMcUdyWmtzMU5GZHEwRHZFZjFiM1c2Q0xTS2wxWkpLdG9YSEF2SXU4cXQ1LXhFYmpURmVGcEYwX1ExRmM2V291RTNpRzQyV0ttR2RMemlCdTFUR290TTduMlVlSVdkaEhkdVhrQmE3U2Q1S2R2bUI2c0o1UEs4eDFyc2VJYXp0eTY1dGJyOVR1VWlkQV9UY0ZGUTk1Zk",
@@ -1771,7 +1806,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-12T22:45:04.106Z",
-  "headlinesAt": "2026-09-12T22:45:04.106Z",
-  "updatedAt": "2026-09-12T22:45:04.106Z"
+  "calendarAt": "2026-09-12T22:46:06.148Z",
+  "headlinesAt": "2026-09-12T22:46:06.148Z",
+  "updatedAt": "2026-09-12T22:46:06.148Z"
 }
