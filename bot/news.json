@@ -1,110 +1,5 @@
 {
-  "calendar": [
-    {
-      "title": "Core CPI m/m",
-      "country": "USD",
-      "impact": "high",
-      "at": 1789129800000,
-      "forecast": "0.2%",
-      "previous": "0.2%",
-      "actual": "0.22",
-      "actualFrom": "BLS",
-      "actualNum": 0.22,
-      "vsPrevious": 0.02,
-      "forecastNum": 0.2,
-      "surprise": 0.02,
-      "surprisePct": 10,
-      "beat": "above"
-    },
-    {
-      "title": "Core CPI y/y",
-      "country": "USD",
-      "impact": "high",
-      "at": 1789129800000,
-      "forecast": "2.4%",
-      "previous": "2.5%",
-      "actual": ""
-    },
-    {
-      "title": "CPI m/m",
-      "country": "USD",
-      "impact": "high",
-      "at": 1789129800000,
-      "forecast": "0.4%",
-      "previous": "0.1%",
-      "actual": "0.07",
-      "actualFrom": "BLS",
-      "actualNum": 0.07,
-      "vsPrevious": -0.03,
-      "forecastNum": 0.4,
-      "surprise": -0.33,
-      "surprisePct": -82.5,
-      "beat": "below"
-    },
-    {
-      "title": "CPI y/y",
-      "country": "USD",
-      "impact": "high",
-      "at": 1789129800000,
-      "forecast": "3.4%",
-      "previous": "3.4%",
-      "actual": ""
-    },
-    {
-      "title": "ECB President Lagarde Speaks",
-      "country": "EUR",
-      "impact": "medium",
-      "at": 1789135200000,
-      "forecast": "",
-      "previous": "",
-      "actual": ""
-    },
-    {
-      "title": "Prelim UoM Consumer Sentiment",
-      "country": "USD",
-      "impact": "medium",
-      "at": 1789135200000,
-      "forecast": "51.0",
-      "previous": "51.0",
-      "actual": ""
-    },
-    {
-      "title": "Prelim UoM Inflation Expectations",
-      "country": "USD",
-      "impact": "medium",
-      "at": 1789135200000,
-      "forecast": "",
-      "previous": "4.3%",
-      "actual": ""
-    },
-    {
-      "title": "Federal Budget Balance",
-      "country": "USD",
-      "impact": "low",
-      "at": 1789149480000,
-      "forecast": "-221.1B",
-      "previous": "-432.3B",
-      "actual": ""
-    },
-    {
-      "title": "ECB President Lagarde Speaks",
-      "country": "EUR",
-      "impact": "medium",
-      "at": 1789200000000,
-      "forecast": "",
-      "previous": "",
-      "actual": ""
-    },
-    {
-      "title": "BRICS Summit",
-      "country": "All",
-      "impact": "low",
-      "at": 1789200900000,
-      "forecast": "",
-      "previous": "",
-      "actual": ""
-    }
-  ],
+  "calendar": [],
   "headlines": [
     {
       "title": "Israel kills Hamas commander in Gaza strike despite US sponsored truce - The Arab Weekly",
@@ -125,7 +20,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789204302000,
-      "_kind": "war-end"
+      "_kind": "war-end",
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Gaza conflict escalates, boosting gold safe haven demand."
     },
     {
       "title": "Drones Strike Russian Aviation Plant Servicing Tu-95 Bombers and Chemical Giant in Tolyatti - UNITED24 Media",
@@ -146,7 +45,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789201356000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Ukraine strikes Russian assets, increasing geopolitical risk"
     },
     {
       "title": "Russian attacks kill 11, injure 96 across Ukraine as Odesa comes under mass overnight strike - kyivindependent.com",
@@ -167,7 +70,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789201356000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Russian attacks on Ukraine raise geopolitical tensions."
     },
     {
       "title": "Latest Russian Strikes On Ukraine Kill 2 In Zaporizhzhia, Wound At Least 17 In Odesa - Radio Free Europe/Radio Liberty",
@@ -188,7 +95,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789201356000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Russian strikes on Ukraine increase risk premium."
     },
     {
       "title": "9/11 at 25: How the ‘War on Terror’ helped mainstream Europe’s far right",
@@ -206,7 +117,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789202941000,
-      "_kind": null
+      "_kind": null,
+      "why": "Historical political analysis, no immediate market impact."
     },
     {
       "title": "Russia strikes cargo vessels, steel plants across Ukraine - aljazeera.com",
@@ -226,7 +138,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789201356000
+      "firstAt": 1789201356000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Russia strikes Ukrainian infrastructure, escalating conflict"
     },
     {
       "title": "Russia strikes cargo vessels, steel plants across Ukraine",
@@ -246,7 +162,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789201356000
+      "firstAt": 1789201356000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Russia strikes Ukrainian industrial facilities, raising risk"
     },
     {
       "title": "Russia Launches Large-Scale Missile and Drone Attack Across Ukraine, Killing at Least Four - UNITED24 Media",
@@ -266,7 +186,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789201356000
+      "firstAt": 1789201356000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Large-scale Russian attack on Ukraine boosts gold."
     },
     {
       "title": "US ties Chinese satellite imagery to deadly Iran strike - Türkiye Today",
@@ -286,7 +210,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789198980000
+      "firstAt": 1789198980000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "US-Iran tensions escalate, supporting safe-haven assets."
     },
     {
       "title": "Iran Slams US Sanctions as ‘Colonial Enterprise’ - تسنیم",
@@ -306,7 +234,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789198980000
+      "firstAt": 1789198980000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Iran condemns US sanctions, increasing geopolitical risk."
     },
     {
       "title": "Zelenskyy Vows Strikes on Russian Energy Infrastructure in Response to Attacks on Ukraine’s - reform.news",
@@ -326,7 +258,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789199917000
+      "firstAt": 1789199917000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Ukraine vows strikes on Russian energy, raising risk."
     },
     {
       "title": "Live - Iran ties Hormuz reopening to end of blockade as Washington vows to fight on - Iran International",
@@ -346,7 +282,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789199902000
+      "firstAt": 1789199902000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Iran links Hormuz to blockade end, high uncertainty."
     },
     {
       "title": "How a billion-dollar sanctions dodge kept Chinese goods flowing to Iran - The Japan Times",
@@ -369,7 +309,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789198980000
+      "firstAt": 1789198980000,
+      "why": "Sanctions evasion story, no clear directional signal."
     },
     {
       "title": "Fed Rate Hike Odds Surge to Nearly 90% for Next Week; Markets Bet on at Least 3 More Hikes by Next Summer - finance.biggo.com",
@@ -392,7 +333,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789196189000
+      "firstAt": 1789196189000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Higher Fed hike odds strengthen dollar, hurt gold/EUR/GBP."
     },
     {
       "title": "Saudis shut down oil pipeline as Houthis tighten grip on Red Sea shipping",
@@ -408,7 +355,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789197883000
+      "firstAt": 1789197883000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Saudi pipeline shutdown threatens supply, bullish for oil."
     },
     {
       "title": "Ukraine strikes Russian refinery as Moscow escalates Kyiv attacks - TVP World",
@@ -1850,10 +1801,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-12T09:16:04.049Z",
-  "headlinesAt": "2026-09-12T09:16:04.049Z",
-  "updatedAt": "2026-09-12T09:16:04.049Z"
+  "calendarAt": null,
+  "headlinesAt": "2026-09-12T09:17:18.733Z",
+  "updatedAt": "2026-09-12T09:17:18.733Z"
 }
