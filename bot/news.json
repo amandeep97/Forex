@@ -1,5 +1,33 @@
 {
-  "calendar": [],
+  "calendar": [
+    {
+      "title": "Federal Budget Balance",
+      "country": "USD",
+      "impact": "low",
+      "at": 1789149480000,
+      "forecast": "-221.1B",
+      "previous": "-432.3B",
+      "actual": ""
+    },
+    {
+      "title": "ECB President Lagarde Speaks",
+      "country": "EUR",
+      "impact": "medium",
+      "at": 1789200000000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "BRICS Summit",
+      "country": "All",
+      "impact": "low",
+      "at": 1789200900000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    }
+  ],
   "headlines": [
     {
       "title": "5 killed in Russian strikes on Ukraine as Putin warns Europe against sending troops - San Antonio Express-News",
@@ -61,6 +89,27 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789225943000,
+      "_kind": null
+    },
+    {
+      "title": "Attack on key Saudi pipeline is blamed on Iran-backed militias in Iraq - The Washington Post",
+      "link": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxOQ2RxMkl0ODFZXzI1R0xjamVHOTBYNWpTdDNDRERJeTloTXZzR3hFTHZ0TGNUT2NBSXI4cmVOVmgxM3JkVVVJc3VGcTF2U3dJeUxrXzg0Q3hXOU8xV1RmcVFVX0otWjFCWFVzTGxNTmxKd2tLRFlFVFhwUS1Pa0hjWE9fcVBVNGEtcGc0NmY3ekstR1dWbExvSk9qZFNhaUtFaTI5WGlLQy1xUFJKWXhCTDNSZm1SUTdZY2p3bzBtcVNRZw?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiwgFBVV95cUxOQ2RxMkl0ODFZXzI1R0xjamVHOTBYNWpTdDNDRERJeTloTXZzR3hFTHZ0TGNUT2NBSXI4cmVOVmgxM3JkVVVJc3VGcTF2U3dJeUxrXzg0Q3hXOU8xV1RmcVFVX0otWjFCWFVzTGxNTmxKd2tLRFlFVFhwUS1Pa0hjWE9fcVBVNGEtcGc0NmY3ekstR1dWbExvSk9qZFNhaUtFaTI5WGlLQy1xUF",
+      "at": 1789225800000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789223772000,
       "_kind": null
     },
     {
@@ -1146,7 +1195,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789191720000
+      "firstAt": 1789192763000
     },
     {
       "title": "Ukraine faces 'toughest winter' since Russia's full-scale invasion, UN official tells BBC",
@@ -1165,28 +1214,8 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789191720000
-    },
-    {
-      "title": "Russia attacks Ukraine with missiles and drones, strikes reported at 20 locations - Українська правда",
-      "link": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE9ZRGxJZVY3ZDktWmh5LXpJdHBvLWdOM1RyYl81SU12bUZVLXFoSWtweVVuUnlwY2RzanU4MHcwUmhFSnI4aHpUbUVRZUZpdmZNUDUwUkZmTjRHWnRXM3pGd0NpVmTSAXBBVV95cUxQcVVTeWcyVGp0amcyejhyazM2NS1JRWZVYTFsSmFVY0FYVHhpWjJTYkxaUk9LQWxpX3FHLVQ1YktrY2ZUcGFVbFN2cUlGWERsRGtvTnZVNTR4dVNnY2ZpYWVJR2lNRjF5MzVKU1hDRm5T?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiZEFVX3lxTE9ZRGxJZVY3ZDktWmh5LXpJdHBvLWdOM1RyYl81SU12bUZVLXFoSWtweVVuUnlwY2RzanU4MHcwUmhFSnI4aHpUbUVRZUZpdmZNUDUwUkZmTjRHWnRXM3pGd0NpVmTSAXBBVV95cUxQcVVTeWcyVGp0amcyejhyazM2NS1JRWZVYTFsSmFVY0FYVHhpWjJTYkxaUk9LQWxpX3FHLVQ1YktrY2ZUcG",
-      "at": 1789191720000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789191720000
+      "srcs": 1,
+      "firstAt": 1789192515000
     },
     {
       "title": "Global funds retreat from Indian stocks as some cut exposure to zero - Bloomberg",
@@ -1737,10 +1766,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
-  "calendarAt": null,
-  "headlinesAt": "2026-09-12T15:26:47.092Z",
-  "updatedAt": "2026-09-12T15:26:47.092Z"
+  "calendarAt": "2026-09-12T15:28:03.399Z",
+  "headlinesAt": "2026-09-12T15:28:03.399Z",
+  "updatedAt": "2026-09-12T15:28:03.399Z"
 }
