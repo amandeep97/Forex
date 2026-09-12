@@ -1,5 +1,24 @@
 {
-  "calendar": [],
+  "calendar": [
+    {
+      "title": "ECB President Lagarde Speaks",
+      "country": "EUR",
+      "impact": "medium",
+      "at": 1789200000000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "BRICS Summit",
+      "country": "All",
+      "impact": "low",
+      "at": 1789200900000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    }
+  ],
   "headlines": [
     {
       "title": "Why Is Bitcoin Dropping Today?",
@@ -16,7 +35,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789246195000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "BTC/USDT": "down"
+      },
+      "why": "Bitcoin dropping today"
     },
     {
       "title": "Second crypto billionaire donates record $49m to far-right Reform UK",
@@ -34,7 +57,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789245837000,
-      "_kind": null
+      "_kind": null,
+      "why": "Crypto donation unrelated to price"
     },
     {
       "title": "How Low Can Bitcoin Go?",
@@ -50,7 +74,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789244996000
+      "firstAt": 1789244996000,
+      "dir": {
+        "BTC/USDT": "down"
+      },
+      "why": "Question implies further decline"
     },
     {
       "title": "Only Roland Garros towel left, says Ukraine tennis player after Russian strike hits flat",
@@ -70,7 +98,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789244845000
+      "firstAt": 1789244845000,
+      "why": "Personal tragedy, no market impact"
     },
     {
       "title": "Ukraine tennis player's apartment destroyed in Russian strike - BBC",
@@ -90,7 +119,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789244845000
+      "firstAt": 1789244845000,
+      "why": "Personal tragedy, no market impact"
     },
     {
       "title": "Zelenskyy Urges Partners to Tighten Sanctions on Russian Oligarchs - Межа. Новини України.",
@@ -110,7 +140,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789243077000
+      "firstAt": 1789243077000,
+      "why": "Sanctions call, no immediate impact"
     },
     {
       "title": "BRICS Urges Israel To Withdraw Forces From Lebanese Territories After Lebanon Ceasefire: 12 outlets compared - NewsCord",
@@ -130,7 +161,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789242868000
+      "firstAt": 1789242868000,
+      "why": "Diplomatic statement, no clear direction"
     },
     {
       "title": "Live - China offers help to end war ahead of Iran-Arab talks in Oman - Iran International",
@@ -150,7 +182,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789242720000
+      "firstAt": 1789242720000,
+      "why": "Diplomatic talks, no clear direction"
     },
     {
       "title": "Saudis shut down oil pipeline as Houthis tighten grip on Red Sea shipping",
@@ -166,7 +199,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789241786000
+      "firstAt": 1789241786000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Pipeline shutdown increases supply risk"
     },
     {
       "title": "1 Magnificent Growth Stock Down 55% to Buy Right Now, According to Wall Street",
@@ -180,7 +217,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789241700000
+      "firstAt": 1789241700000,
+      "why": "Single stock buy recommendation"
     },
     {
       "title": "Russian drones target Volyn, Rivne oblasts in rare mass attack in western Ukraine - The Kyiv Independent",
@@ -200,7 +238,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789238669000
+      "firstAt": 1789238669000,
+      "why": "Ongoing conflict, no new shock"
     },
     {
       "title": "RingCentral Chief Accounting Officer Sells 4,568 Shares",
@@ -226,7 +265,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789240800000
+      "firstAt": 1789240800000,
+      "why": "General risk warning, no direction"
     },
     {
       "title": "Will Houthi advances in Yemen give Iran leverage in its war with the US?",
@@ -246,7 +286,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789240657000
+      "firstAt": 1789240657000,
+      "why": "Geopolitical analysis, no clear direction"
     },
     {
       "title": "Iran and UAE back joint BRICS statement urging restraint in war",
@@ -265,7 +306,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789238177000
+      "firstAt": 1789238177000,
+      "why": "Diplomatic restraint, no clear direction"
     },
     {
       "title": "Iraq probes drone strikes on Saudi Arabia, shuts three crossings to Iran - Al Jazeera",
@@ -285,7 +327,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789239456000
+      "firstAt": 1789239456000,
+      "why": "Border closure, no clear direction"
     },
     {
       "title": "Russian attacks kill nine, injure dozens in Ukraine, Moscow says it hits ships, plants - Reuters",
@@ -1743,7 +1786,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": null,
-  "headlinesAt": "2026-09-12T21:07:32.512Z",
-  "updatedAt": "2026-09-12T21:07:32.512Z"
+  "calendarAt": "2026-09-12T21:08:33.707Z",
+  "headlinesAt": "2026-09-12T21:08:33.707Z",
+  "updatedAt": "2026-09-12T21:08:33.707Z"
 }
