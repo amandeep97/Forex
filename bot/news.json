@@ -1,110 +1,5 @@
 {
-  "calendar": [
-    {
-      "title": "Core CPI m/m",
-      "country": "USD",
-      "impact": "high",
-      "at": 1789129800000,
-      "forecast": "0.2%",
-      "previous": "0.2%",
-      "actual": "0.22",
-      "actualFrom": "BLS",
-      "actualNum": 0.22,
-      "vsPrevious": 0.02,
-      "forecastNum": 0.2,
-      "surprise": 0.02,
-      "surprisePct": 10,
-      "beat": "above"
-    },
-    {
-      "title": "Core CPI y/y",
-      "country": "USD",
-      "impact": "high",
-      "at": 1789129800000,
-      "forecast": "2.4%",
-      "previous": "2.5%",
-      "actual": ""
-    },
-    {
-      "title": "CPI m/m",
-      "country": "USD",
-      "impact": "high",
-      "at": 1789129800000,
-      "forecast": "0.4%",
-      "previous": "0.1%",
-      "actual": "0.07",
-      "actualFrom": "BLS",
-      "actualNum": 0.07,
-      "vsPrevious": -0.03,
-      "forecastNum": 0.4,
-      "surprise": -0.33,
-      "surprisePct": -82.5,
-      "beat": "below"
-    },
-    {
-      "title": "CPI y/y",
-      "country": "USD",
-      "impact": "high",
-      "at": 1789129800000,
-      "forecast": "3.4%",
-      "previous": "3.4%",
-      "actual": ""
-    },
-    {
-      "title": "ECB President Lagarde Speaks",
-      "country": "EUR",
-      "impact": "medium",
-      "at": 1789135200000,
-      "forecast": "",
-      "previous": "",
-      "actual": ""
-    },
-    {
-      "title": "Prelim UoM Consumer Sentiment",
-      "country": "USD",
-      "impact": "medium",
-      "at": 1789135200000,
-      "forecast": "51.0",
-      "previous": "51.0",
-      "actual": ""
-    },
-    {
-      "title": "Prelim UoM Inflation Expectations",
-      "country": "USD",
-      "impact": "medium",
-      "at": 1789135200000,
-      "forecast": "",
-      "previous": "4.3%",
-      "actual": ""
-    },
-    {
-      "title": "Federal Budget Balance",
-      "country": "USD",
-      "impact": "low",
-      "at": 1789149480000,
-      "forecast": "-221.1B",
-      "previous": "-432.3B",
-      "actual": ""
-    },
-    {
-      "title": "ECB President Lagarde Speaks",
-      "country": "EUR",
-      "impact": "medium",
-      "at": 1789200000000,
-      "forecast": "",
-      "previous": "",
-      "actual": ""
-    },
-    {
-      "title": "BRICS Summit",
-      "country": "All",
-      "impact": "low",
-      "at": 1789200900000,
-      "forecast": "",
-      "previous": "",
-      "actual": ""
-    }
-  ],
+  "calendar": [],
   "headlines": [
     {
       "title": "Saudi Arabia shuts key oil pipeline after drone attack launched from Iraq",
@@ -125,25 +20,19 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789215350000,
-      "_kind": null,
-      "dir": {
-        "USOIL": "up",
-        "XAU/USD": "up",
-        "UKOIL": "up"
-      },
-      "why": "Supply disruption and geopolitical risk boost oil and gold."
+      "_kind": null
     },
     {
-      "title": "Prediction: Owning 100 Shares of Amazon Stock Will Turn $25,000 Into $50,000 by 2030",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/prediction-owning-100-shares-amazon-115200934.html",
+      "title": "Robinhood Markets Targets Global Growth With Tokenization, AI Trading and Wealth Push",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/robinhood-markets-targets-global-growth-120158612.html",
       "source": "Yahoo Finance",
-      "at": 1789213920000,
+      "at": 1789214518000,
       "inst": [],
       "ccy": [],
       "sev": 1,
       "rel": 1,
       "srcs": 1,
-      "firstAt": 1789213920000,
+      "firstAt": 1789214518000,
       "_kind": null
     },
     {
@@ -164,11 +53,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789211661000,
-      "dir": {
-        "XAU/USD": "up"
-      },
-      "why": "Ukraine conflict escalation supports gold as safe haven."
+      "firstAt": 1789211661000
     },
     {
       "title": "Saudis shut down oil pipeline as Houthis tighten grip on Red Sea shipping",
@@ -184,11 +69,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789212986000,
-      "dir": {
-        "USOIL": "up"
-      },
-      "why": "Pipeline shutdown and Red Sea risks increase oil supply conc"
+      "firstAt": 1789212986000
     },
     {
       "title": "Christian Charities, Bishops Team Up with British Government to Push Israel Sanctions - Middle East Forum",
@@ -209,8 +90,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789212382000,
-      "why": "Political news lacks clear immediate market direction."
+      "firstAt": 1789212382000
     },
     {
       "title": "Iran used Chinese satellite images for attack on US base in Jordan, says report - Middle East Eye",
@@ -230,11 +110,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789211290000,
-      "dir": {
-        "XAU/USD": "up"
-      },
-      "why": "Geopolitical tension involving Iran supports gold safe-haven"
+      "firstAt": 1789211290000
     },
     {
       "title": "Trump says Iran likely responsible for attack on vital Saudi oil pipeline - cnn.com",
@@ -254,13 +130,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789209378000,
-      "dir": {
-        "USOIL": "up",
-        "XAU/USD": "up",
-        "UKOIL": "up"
-      },
-      "why": "Iran attribution heightens geopolitical risk for oil and gol"
+      "firstAt": 1789209378000
     },
     {
       "title": "Russia strikes cargo vessels, steel plants across Ukraine - Al Jazeera",
@@ -280,11 +150,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789210034000,
-      "dir": {
-        "XAU/USD": "up"
-      },
-      "why": "Russian strikes on Ukraine infrastructure support gold safe-"
+      "firstAt": 1789210034000
     },
     {
       "title": "Trump says Iran probably responsible for attack on Saudi oil pipeline - Arab News",
@@ -304,13 +170,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 3,
-      "firstAt": 1789208666000,
-      "dir": {
-        "USOIL": "up",
-        "XAU/USD": "up",
-        "UKOIL": "up"
-      },
-      "why": "Iran blame for pipeline attack increases geopolitical risk p"
+      "firstAt": 1789208666000
     },
     {
       "title": "Far-right protesters rally against Islam on 9/11 anniversary",
@@ -343,11 +203,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789210034000,
-      "dir": {
-        "XAU/USD": "up"
-      },
-      "why": "Escalating Russia-Ukraine conflict supports gold as safe hav"
+      "firstAt": 1789210034000
     },
     {
       "title": "Saudi Arabia shuts critical oil pipeline after drone attack: What it means",
@@ -367,13 +223,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 3,
-      "firstAt": 1789207287000,
-      "dir": {
-        "USOIL": "up",
-        "XAU/USD": "up",
-        "UKOIL": "up"
-      },
-      "why": "Critical pipeline shutdown and border closure boost oil and "
+      "firstAt": 1789208666000
     },
     {
       "title": "Trump says Iran probably responsible for attack on Saudi pipeline",
@@ -392,13 +242,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 3,
-      "firstAt": 1789207287000,
-      "dir": {
-        "XAU/USD": "up",
-        "USOIL": "up",
-        "UKOIL": "up"
-      },
-      "why": "Iran accusation for pipeline attack raises geopolitical risk"
+      "firstAt": 1789208666000
     },
     {
       "title": "Russian Strike Injures Rescuer in Kramatorsk During a Repeated Attack - Межа. Новини України.",
@@ -418,11 +262,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789208512000,
-      "dir": {
-        "XAU/USD": "up"
-      },
-      "why": "Russian strikes on Ukraine support gold safe-haven demand."
+      "firstAt": 1789208512000
     },
     {
       "title": "Will Lindsey Graham Sanctions Bill Disturb Putin’s Russia? - The Diplomatic Insight",
@@ -442,8 +282,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789208009000,
-      "why": "Sanctions bill speculation lacks clear immediate market impa"
+      "firstAt": 1789208009000
     },
     {
       "title": "Canadian boycott of US products pushes grocers to adapt, explore new supply sources",
@@ -457,34 +296,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789207592000,
-      "why": "Boycott news has unclear immediate impact on currency pair."
-    },
-    {
-      "title": "Trump Accuses Iran of Saudi Pipeline Attack - Devdiscourse",
-      "link": "https://news.google.com/rss/articles/CBMingFBVV95cUxNbVlxalNqenNxZnFZZVhhcEhRRW0tcHRzd0g0bEg4YkVTY3FDbEFzenJjX2dXQlBRbmRsTzRBSEZVdTFsRF9UU2xqTHE4T0VpaF9ZUUJYNDJkWWdpSDFwc2JlRS04TXVBY09lYTcyMy1UOS02UVdRdG1IV2E0T1N0WmtWX1NweTdQRG9jYmNmdHFNMG10WUFia2cxSDdXQdIBowFBVV95cUxOTXVrMXRQWDdQSmVxeXV5czRMeWh4WTJqbjUxYzQyMm1YUFlzWFIzSkVCaGMwdmpIRXN6YzR2SnQ1NEg3aVNpQ1F3Y0htWUVZNkhXU2h3RGd2ZHRUdFcxTENoc2lRZFVmakRyQkFZa0dSd2x6MlRBRlNVMnBNaFJ1Nng5cmhsb2xjZ3drbnZPem1hdUJFcHNNSlBxaDBfNmE1M2ln?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMingFBVV95cUxNbVlxalNqenNxZnFZZVhhcEhRRW0tcHRzd0g0bEg4YkVTY3FDbEFzenJjX2dXQlBRbmRsTzRBSEZVdTFsRF9UU2xqTHE4T0VpaF9ZUUJYNDJkWWdpSDFwc2JlRS04TXVBY09lYTcyMy1UOS02UVdRdG1IV2E0T1N0WmtWX1NweTdQRG9jYmNmdHFNMG10WUFia2cxSDdXQdIBowFBVV95cUxOTX",
-      "at": 1789207287000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 3,
-      "firstAt": 1789207287000,
-      "dir": {
-        "XAU/USD": "up",
-        "USOIL": "up",
-        "UKOIL": "up"
-      },
-      "why": "Iran accusation for pipeline attack increases geopolitical r"
+      "firstAt": 1789207592000
     },
     {
       "title": "EUWAX AG Hits Near 52‑Week High as ECB Rate Hike Fades, Markets Rally - InsuranceNewsNet",
@@ -1877,6 +1689,28 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789147723000
+    },
+    {
+      "title": "Why Treasury’s $6 billion bond buyback didn’t lower mortgage rates",
+      "link": "https://finance.yahoo.com/personal-finance/mortgages/article/why-treasurys-6-billion-bond-buyback-didnt-lower-mortgage-rates-174923069.html",
+      "source": "Yahoo Finance",
+      "at": 1789148963000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789148963000
     }
   ],
   "sources": [
@@ -1902,7 +1736,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-12T12:21:19.142Z",
-  "headlinesAt": "2026-09-12T12:21:19.142Z",
-  "updatedAt": "2026-09-12T12:21:19.142Z"
+  "calendarAt": null,
+  "headlinesAt": "2026-09-12T12:22:46.282Z",
+  "updatedAt": "2026-09-12T12:22:46.283Z"
 }
