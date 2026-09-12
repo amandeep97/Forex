@@ -48,7 +48,29 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789221792000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Restraint call reduces geopolitical risk premium"
+    },
+    {
+      "title": "Meet Wall Street’s 3 Safest High-Yield Dividend Stocks",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/meet-wall-street-3-safest-140044128.html",
+      "source": "Yahoo Finance",
+      "at": 1789221644000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789221644000,
+      "_kind": null,
+      "why": "General dividend stock advice, no specific direction"
     },
     {
       "title": "Sibiga called for tougher sanctions against Russia's military-industrial complex following the attack on the Odesa region - UA.NEWS",
@@ -69,7 +91,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789221616000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Tougher sanctions increase geopolitical risk and supply fear"
     },
     {
       "title": "U.S. 10-Year Treasury Yields Hold Near Multiyear Highs As August CPI Data Fuels Fed Rate Hike Bets - foreignpolicyjournal.com",
@@ -93,7 +121,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789221420000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Higher yields and rate hike bets strengthen dollar"
     },
     {
       "title": "Trump indicates Iran behind attack on Saudi oil pipeline - سانا",
@@ -114,7 +148,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789219575000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Iran attack on Saudi pipeline boosts oil and gold"
     },
     {
       "title": "Bridgewater Founder Dalio Urges Investors to Dump Bonds for Gold Allocation",
@@ -131,7 +171,10 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789220906000,
-      "_kind": null
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Dalio urges gold allocation, bullish for gold"
     },
     {
       "title": "Trump says Iran probably responsible for attack on Saudi oil pipeline - Arab News",
@@ -151,29 +194,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789217498000
-    },
-    {
-      "title": "Scott Bessent gives candid assessment of U.S. economy",
-      "link": "https://finance.yahoo.com/economy/articles/scott-bessent-gives-candid-assessment-133300911.html",
-      "source": "Yahoo Finance",
-      "at": 1789219980000,
-      "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789219980000
+      "firstAt": 1789217498000,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Iran attack on Saudi pipeline boosts oil and gold"
     },
     {
       "title": "Are the UK sanctions on Israel real progress, or more illusion? - Mondoweiss",
@@ -193,7 +220,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789219800000
+      "firstAt": 1789219800000,
+      "why": "UK sanctions on Israel unclear market impact"
     },
     {
       "title": "Ukraine strikes FPV drone production facility, UAV warehouses near Taganrog - Ukrinform",
@@ -213,7 +241,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789219800000
+      "firstAt": 1789219800000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Ukraine strike on drone facility, minor geopolitical risk"
     },
     {
       "title": "Trump says Iran likely responsible for attack on vital Saudi oil pipeline - Egypt Independent",
@@ -233,25 +265,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789217498000
-    },
-    {
-      "title": "d OECD commercial oil inventories have “barely drawn since the war began,” reflecting a smaller-than-expected supply deficit and the concentration of inventory declines in strategic reserves, oil stored on water and China.",
-      "link": "https://finance.yahoo.com/energy/articles/d-oecd-commercial-oil-inventories-132600424.html",
-      "source": "Yahoo Finance",
-      "at": 1789219560000,
-      "inst": [
-        "USOIL",
-        "XAU/USD"
-      ],
-      "ccy": [
-        "OIL",
-        "XAU"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789219560000
+      "firstAt": 1789217498000,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Iran attack on Saudi pipeline boosts oil and gold"
     },
     {
       "title": "Fed rate-hike odds surge as Warsh faces inflation-weary markets - thestreet.com",
@@ -274,7 +294,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789219020000
+      "firstAt": 1789219020000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Fed rate hike odds surge, strengthens dollar"
     },
     {
       "title": "Russian Strikes Kill Four in Donetsk Region, Including a Medic - Межа. Новини України.",
@@ -294,7 +320,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789216500000
+      "firstAt": 1789216500000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Russian strikes in Donetsk, minor geopolitical risk"
     },
     {
       "title": "Ray Dalio and Bloomberg analysts reveal where to put $10,000 as stocks hit highs and bonds sell off in 2026",
@@ -308,7 +338,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789218000000
+      "firstAt": 1789218000000,
+      "why": "General investment advice, no specific direction"
     },
     {
       "title": "Donald Trump tells reporters Iran was likely responsible for attack on Saudi pipline - The Jerusalem Post",
@@ -328,7 +359,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 3,
-      "firstAt": 1789215013000
+      "firstAt": 1789215013000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Iran attack on Saudi pipeline boosts oil and gold"
     },
     {
       "title": "Inflation is outpacing wage growth again, squeezing Americans’ paychecks",
@@ -351,7 +388,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789217355000
+      "firstAt": 1789217355000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Inflation outpacing wages, strengthens dollar via rate expec"
     },
     {
       "title": "Dow Jones Futures: Fed Rate Hike Seen As Oil, Yields Pressure Stocks; Apple, Moderna Are New Buys",
@@ -658,7 +701,7 @@
       "firstAt": 1789210085000
     },
     {
-      "title": "3 killed in Russian strikes on Ukraine as Putin warns Europe against sending troops - ABC News - Breaking News, Latest News and Videos",
+      "title": "3 killed in Russian strikes on Ukraine as Putin warns Europe against sending troops - abcnews.com",
       "link": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxOSV9fWnNmUDMzT2FLZW1JNGViVXh0aldMYzZpOEhydWJmZWJCaThsOG9lQ2hvdlRGS3BwVlVHSE11YnhPbUcwX0ExejRRNlM0Y3FCMzhIUE1qdnQ3ZVBiR2UtcWQ1Y1B0Z1N4QnBDckdzU0VSbnN5ZVRhTWlOQlJDdTBRQ1l3dnBsV0E3T1RUbmZSYXg1V3ZUV3I2QmRoQkNFT0RtaGhlZmrSAa4BQVVfeXFMT2JjS0VpZUkzVU1HOWlZNEtfb0xCVGxPNjRybm8xZzZEUWhMWk5IMkZJTE9IQndlOUx3RDE4YS1IZ3ZCM3NKTHBYbmNlMDZKekFYVmdVSGFwdmd3c1BaWWc3anhURWlRY2w0VnY4azRENHVBVUM2NF9hNm5QZHYwd0dBeDVBVGdYN25LS1BVb1ROZXZkOWg1S1R0LUQ4R0NSVzZFd09SQjBvRHZtTFFn?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiqAFBVV95cUxOSV9fWnNmUDMzT2FLZW1JNGViVXh0aldMYzZpOEhydWJmZWJCaThsOG9lQ2hvdlRGS3BwVlVHSE11YnhPbUcwX0ExejRRNlM0Y3FCMzhIUE1qdnQ3ZVBiR2UtcWQ1Y1B0Z1N4QnBDckdzU0VSbnN5ZVRhTWlOQlJDdTBRQ1l3dnBsV0E3T1RUbmZSYXg1V3ZUV3I2QmRoQkNFT0RtaGhlZmrSAa",
@@ -672,7 +715,7 @@
         "XAU",
         "OIL"
       ],
-      "sev": 3,
+      "sev": 2,
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789211661000
@@ -1428,7 +1471,7 @@
       "firstAt": 1789158412000
     },
     {
-      "title": "House tees up vote on Russia sanctions bill, but prospects for passage are uncertain - ABC News - Breaking News, Latest News and Videos",
+      "title": "House tees up vote on Russia sanctions bill, but prospects for passage are uncertain - abcnews.com",
       "link": "https://news.google.com/rss/articles/CBMinwFBVV95cUxOak43U3VCaFFIbm5COXBQTFVyT1hYWF9KMWpUU1ZybHdZVWs0VEVrcURQeWVBcUU5QzlXYjZKV0VJWnNIWWRWSktmZWZwZVlDc3d4NktybmhtTEpncE5XNXd6a1FqeThIbElQRHJkTDZJRU05VlllejdFdjFUMS1JUWdCNEU3OXdNYkMtUDR5blBrWDUtdDVhSWJVOC0wZ2_SAaQBQVVfeXFMTmwxYWlyRk05dkxaaDJNQVYyR01DMXFDYlZSd1NvUV96ekdlNk95b2RGSjNQZEtTMDVON2hoaGQ5clJWSnN0X2htVVhzUDB0NlgtYnd2enl5VDVFbVRRQ296ZE5TaHpEelh6TFVnaUZORTByYmJZNzJwbXJiUjdpeDFmZXBxbVh4a0M1MllHTWljMXJEWHlaRG9HX2xqWnJRZUFOZnU?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMinwFBVV95cUxOak43U3VCaFFIbm5COXBQTFVyT1hYWF9KMWpUU1ZybHdZVWs0VEVrcURQeWVBcUU5QzlXYjZKV0VJWnNIWWRWSktmZWZwZVlDc3d4NktybmhtTEpncE5XNXd6a1FqeThIbElQRHJkTDZJRU05VlllejdFdjFUMS1JUWdCNEU3OXdNYkMtUDR5blBrWDUtdDVhSWJVOC0wZ2_SAaQBQVVfeXFMTm",
@@ -1442,7 +1485,7 @@
         "XAU",
         "OIL"
       ],
-      "sev": 3,
+      "sev": 2,
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789158412000
@@ -1745,6 +1788,23 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789155446000
+    },
+    {
+      "title": "Medvedev Says Lithuania Would ‘Disappear From the Map’ Over Nuclear Weapons Move - Kyiv Post",
+      "link": "https://news.google.com/rss/articles/CBMiS0FVX3lxTFBYOEMzMEZtdHNGaEpDd2tIdzQxUGVSMEV5ZTNPZ24xRWdDYl9RV2pSemZ1RzFGS1B3WG5FbHRkNVNiYm8zVnhBZ1hZdw?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiS0FVX3lxTFBYOEMzMEZtdHNGaEpDd2tIdzQxUGVSMEV5ZTNPZ24xRWdDYl9RV2pSemZ1RzFGS1B3WG5FbHRkNVNiYm8zVnhBZ1hZdw?oc=5\" target=\"_blank\">Medvedev Says Lithuania Would ‘Disappear From the Map’ Over Nuclear Weapons Move</a>&nbsp;&nbsp;<font col",
+      "at": 1789155217000,
+      "inst": [
+        "XAU/USD"
+      ],
+      "ccy": [
+        "XAU"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789155217000
     }
   ],
   "sources": [
@@ -1770,7 +1830,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-12T14:18:16.485Z",
-  "headlinesAt": "2026-09-12T14:18:16.485Z",
-  "updatedAt": "2026-09-12T14:18:16.485Z"
+  "calendarAt": "2026-09-12T14:19:49.700Z",
+  "headlinesAt": "2026-09-12T14:19:49.700Z",
+  "updatedAt": "2026-09-12T14:19:49.700Z"
 }
