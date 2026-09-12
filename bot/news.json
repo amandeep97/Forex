@@ -1,5 +1,24 @@
 {
-  "calendar": [],
+  "calendar": [
+    {
+      "title": "ECB President Lagarde Speaks",
+      "country": "EUR",
+      "impact": "medium",
+      "at": 1789200000000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "BRICS Summit",
+      "country": "All",
+      "impact": "low",
+      "at": 1789200900000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    }
+  ],
   "headlines": [
     {
       "title": "Zelenskyy Urges Partners to Tighten Sanctions on Russian Oligarchs - Межа. Новини України.",
@@ -20,7 +39,30 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789243077000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions news lacks immediate market impact."
+    },
+    {
+      "title": "BRICS Urges Israel To Withdraw Forces From Lebanese Territories After Lebanon Ceasefire: 12 outlets compared - NewsCord",
+      "link": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxNRVluWjhqWXY5LU9KckdMYzA2TkxHZTRESlI2bzNCd2RRSnkwRW9ZMkZfNEs4SDdmUFlBUG8yM2pmQkRuaGVDWjhHVHJ4SS0xQkg3WnUyTTFjNV9LOGxDZzVZVnpFdFBkeDdsRTNudm5FTXlvZjdQZnBzWjE5cjVkdkdNazhoRTRkTS11bkR3RVlmRXdFcFhmQnlCTG40R1ZndnM1aUd1eWpCUVVTaC1PNlNibzFCYUstT1NrXzdhOTJtVUNydEVyTHhGajFCZk05OEt6Y0Z6V2FWYU1OeF95dXM5bG5Xd2tjaXc?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi6gFBVV95cUxNRVluWjhqWXY5LU9KckdMYzA2TkxHZTRESlI2bzNCd2RRSnkwRW9ZMkZfNEs4SDdmUFlBUG8yM2pmQkRuaGVDWjhHVHJ4SS0xQkg3WnUyTTFjNV9LOGxDZzVZVnpFdFBkeDdsRTNudm5FTXlvZjdQZnBzWjE5cjVkdkdNazhoRTRkTS11bkR3RVlmRXdFcFhmQnlCTG40R1ZndnM1aUd1eWpCUV",
+      "at": 1789242868000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1789242868000,
+      "_kind": null,
+      "why": "Geopolitical statement without direct market trigger."
     },
     {
       "title": "Saudis shut down oil pipeline as Houthis tighten grip on Red Sea shipping",
@@ -36,7 +78,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789241786000
+      "firstAt": 1789241786000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Pipeline shutdown reduces supply, raising prices."
     },
     {
       "title": "1 Magnificent Growth Stock Down 55% to Buy Right Now, According to Wall Street",
@@ -50,7 +96,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789241700000
+      "firstAt": 1789241700000,
+      "why": "Single stock advice doesn't move index."
     },
     {
       "title": "Russian drones target Volyn, Rivne oblasts in rare mass attack in western Ukraine - kyivindependent.com",
@@ -70,7 +117,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789238669000
+      "firstAt": 1789238669000,
+      "why": "Routine conflict news, no new shock."
     },
     {
       "title": "RingCentral Chief Accounting Officer Sells 4,568 Shares",
@@ -96,7 +144,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789240800000
+      "firstAt": 1789240800000,
+      "why": "General risk warning, no specific direction."
     },
     {
       "title": "Will Houthi advances in Yemen give Iran leverage in its war with the US?",
@@ -116,7 +165,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789240657000
+      "firstAt": 1789240657000,
+      "why": "Speculative geopolitical analysis, no immediate action."
     },
     {
       "title": "Iran and UAE back joint BRICS statement urging restraint in war",
@@ -135,7 +185,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789238177000
+      "firstAt": 1789238177000,
+      "why": "Diplomatic statement, unclear market impact."
     },
     {
       "title": "Iraq probes drone strikes on Saudi Arabia, shuts three crossings to Iran - Al Jazeera",
@@ -155,7 +206,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789238520000
+      "firstAt": 1789238520000,
+      "why": "Investigation news, no immediate supply change."
     },
     {
       "title": "Russian attacks kill nine, injure dozens in Ukraine, Moscow says it hits ships, plants - Reuters",
@@ -175,7 +227,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789237350000
+      "firstAt": 1789237350000,
+      "why": "Ongoing conflict, no new directional catalyst."
     },
     {
       "title": "WisdomTree COO Lilien Jarrett Sells 30,000 Shares for $737,000",
@@ -207,7 +260,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789237350000
+      "firstAt": 1789237350000,
+      "why": "Routine conflict update, no market shift."
     },
     {
       "title": "Attack that closed key Saudi pipeline is blamed on Iran-backed militias in Iraq - New York Post",
@@ -227,7 +281,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789235934000
+      "firstAt": 1789235934000,
+      "why": "Attribution of previous event, no new data."
     },
     {
       "title": "Iran, UAE hold first talks at BRICS summit since conflict began",
@@ -247,7 +302,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 3,
-      "firstAt": 1789235934000
+      "firstAt": 1789235934000,
+      "why": "Diplomatic talks, outcome uncertain."
     },
     {
       "title": "Russia Sanctions Bill: Can Trump Impose 100% Tariffs on India and China? - Diplomacy and Law",
@@ -267,7 +323,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789235934000
+      "firstAt": 1789235934000,
+      "why": "Hypothetical tariff question, no confirmed action."
     },
     {
       "title": "8 killed in Russian strikes on Ukraine as Putin warns Europe against sending troops - ABC News - Breaking News, Latest News and Videos",
@@ -287,7 +344,8 @@
       "sev": 3,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789237350000
+      "firstAt": 1789237350000,
+      "why": "Routine conflict update, no market shift."
     },
     {
       "title": "Canadian boycott of US products pushes grocers to adapt, explore new supply sources",
@@ -1697,26 +1755,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789158412000
-    },
-    {
-      "title": "Zelensky Says Ukraine Won’t Go Hungry Despite Black Sea Blockade - Kyiv Post",
-      "link": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE93TTBBcnBRaGhvaVJNMEozQ1VBWWFqZFRsdDVPRXpPbkxhZnBhbmlDN0dJdkU1cGZUdE85ZjUwbEczVTFWUmtsX0pHOA?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiS0FVX3lxTE93TTBBcnBRaGhvaVJNMEozQ1VBWWFqZFRsdDVPRXpPbkxhZnBhbmlDN0dJdkU1cGZUdE85ZjUwbEczVTFWUmtsX0pHOA?oc=5\" target=\"_blank\">Zelensky Says Ukraine Won’t Go Hungry Despite Black Sea Blockade</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">Kyi",
-      "at": 1789158940000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789158940000
     }
   ],
   "sources": [
@@ -1739,10 +1777,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
-  "calendarAt": null,
-  "headlinesAt": "2026-09-12T20:12:50.262Z",
-  "updatedAt": "2026-09-12T20:12:50.262Z"
+  "calendarAt": "2026-09-12T20:15:05.817Z",
+  "headlinesAt": "2026-09-12T20:15:05.817Z",
+  "updatedAt": "2026-09-12T20:15:05.817Z"
 }
