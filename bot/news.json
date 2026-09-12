@@ -1,5 +1,110 @@
 {
-  "calendar": [],
+  "calendar": [
+    {
+      "title": "Core CPI m/m",
+      "country": "USD",
+      "impact": "high",
+      "at": 1789129800000,
+      "forecast": "0.2%",
+      "previous": "0.2%",
+      "actual": "0.22",
+      "actualFrom": "BLS",
+      "actualNum": 0.22,
+      "vsPrevious": 0.02,
+      "forecastNum": 0.2,
+      "surprise": 0.02,
+      "surprisePct": 10,
+      "beat": "above"
+    },
+    {
+      "title": "Core CPI y/y",
+      "country": "USD",
+      "impact": "high",
+      "at": 1789129800000,
+      "forecast": "2.4%",
+      "previous": "2.5%",
+      "actual": ""
+    },
+    {
+      "title": "CPI m/m",
+      "country": "USD",
+      "impact": "high",
+      "at": 1789129800000,
+      "forecast": "0.4%",
+      "previous": "0.1%",
+      "actual": "0.07",
+      "actualFrom": "BLS",
+      "actualNum": 0.07,
+      "vsPrevious": -0.03,
+      "forecastNum": 0.4,
+      "surprise": -0.33,
+      "surprisePct": -82.5,
+      "beat": "below"
+    },
+    {
+      "title": "CPI y/y",
+      "country": "USD",
+      "impact": "high",
+      "at": 1789129800000,
+      "forecast": "3.4%",
+      "previous": "3.4%",
+      "actual": ""
+    },
+    {
+      "title": "ECB President Lagarde Speaks",
+      "country": "EUR",
+      "impact": "medium",
+      "at": 1789135200000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "Prelim UoM Consumer Sentiment",
+      "country": "USD",
+      "impact": "medium",
+      "at": 1789135200000,
+      "forecast": "51.0",
+      "previous": "51.0",
+      "actual": ""
+    },
+    {
+      "title": "Prelim UoM Inflation Expectations",
+      "country": "USD",
+      "impact": "medium",
+      "at": 1789135200000,
+      "forecast": "",
+      "previous": "4.3%",
+      "actual": ""
+    },
+    {
+      "title": "Federal Budget Balance",
+      "country": "USD",
+      "impact": "low",
+      "at": 1789149480000,
+      "forecast": "-221.1B",
+      "previous": "-432.3B",
+      "actual": ""
+    },
+    {
+      "title": "ECB President Lagarde Speaks",
+      "country": "EUR",
+      "impact": "medium",
+      "at": 1789200000000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "BRICS Summit",
+      "country": "All",
+      "impact": "low",
+      "at": 1789200900000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    }
+  ],
   "headlines": [
     {
       "title": "3 killed in Russian strikes on Ukraine as Putin warns Europe against sending troops - WGN Radio 720",
@@ -20,7 +125,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789204268000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Geopolitical risk boosts gold, oil unclear"
     },
     {
       "title": "EUWAX AG Hits Near 52‑Week High as ECB Rate Hike Fades, Markets Rally - InsuranceNewsNet",
@@ -39,27 +148,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789205389000,
-      "_kind": null
-    },
-    {
-      "title": "Live updates • Report: U.S. ties Chinese satellite imagery to Iranian strike that killed troops - Haaretz",
-      "link": "https://news.google.com/rss/articles/CBMikwJBVV95cUxPM3J4WG9qS3FTb1I2eXFfWG44N1EtRHhlbmUyS0FFT3E1N3FLV2J5a0RWS3dndzZNTEJvWjg1NjRwQmVsakZoLXRxbE01WEVvd2FTRVJmdGxfVS05d0YtWnBsbTVzVnZsMXMyeUV3d3FGa1NmYXMyLWhBQVJFRDN5S3JJTEItNUJ6U3FLZ2pPb2R3cW43U3ZTSnNEU3l0cUpvM2FOU3M1LWxDa1BqLXpraDBoYnpFV0E0VVB0U3RESGlhd3U0NDR6OXZLaEVBVFVfanhVV1FZc2FqUlRDRnhwOUM2b3JGNTVkUm5jbnZtRUFJX19semJaeTVkUi1UYzFsY2ZzSUZhM3REeTJicVpNOG45cw?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMikwJBVV95cUxPM3J4WG9qS3FTb1I2eXFfWG44N1EtRHhlbmUyS0FFT3E1N3FLV2J5a0RWS3dndzZNTEJvWjg1NjRwQmVsakZoLXRxbE01WEVvd2FTRVJmdGxfVS05d0YtWnBsbTVzVnZsMXMyeUV3d3FGa1NmYXMyLWhBQVJFRDN5S3JJTEItNUJ6U3FLZ2pPb2R3cW43U3ZTSnNEU3l0cUpvM2FOU3M1LWxDa1",
-      "at": 1789204380000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789204380000
+      "_kind": null,
+      "dir": {
+        "EUR/USD": "down"
+      },
+      "why": "ECB hike fades, markets rally"
     },
     {
       "title": "Russia strikes cargo vessels, steel plants across Ukraine - Al Jazeera",
@@ -79,7 +172,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789202328000
+      "firstAt": 1789202328000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Ukraine strikes boost gold, oil unclear"
     },
     {
       "title": "Drones Strike Russian Aviation Plant Servicing Tu-95 Bombers and Chemical Giant in Tolyatti - UNITED24 Media",
@@ -99,7 +196,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789201356000
+      "firstAt": 1789201356000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Ukraine strikes Russia, gold up, oil flat"
     },
     {
       "title": "Ukraine's General Staff confirms strike on Russia's Tolyatti plant that produces rubber for rocket fuel - Українська правда",
@@ -119,7 +220,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789203780000
+      "firstAt": 1789203780000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Ukraine strikes Russia, gold up, oil flat"
     },
     {
       "title": "Latest Russian Strikes On Ukraine Kill 2 In Zaporizhzhia, Wound At Least 17 In Odesa - Radio Free Europe/Radio Liberty",
@@ -139,7 +244,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789201356000
+      "firstAt": 1789201356000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Ukraine strikes boost gold, oil unclear"
     },
     {
       "title": "9/11 at 25: How the ‘War on Terror’ helped mainstream Europe’s far right",
@@ -156,7 +265,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789202941000
+      "firstAt": 1789202941000,
+      "why": "Historical analysis, no immediate market impact"
     },
     {
       "title": "Russia strikes cargo vessels, steel plants across Ukraine",
@@ -176,7 +286,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789201356000
+      "firstAt": 1789201356000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Ukraine strikes boost gold, oil unclear"
     },
     {
       "title": "Russia Launches Large-Scale Missile and Drone Attack Across Ukraine, Killing at Least Four - UNITED24 Media",
@@ -196,7 +310,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789201356000
+      "firstAt": 1789201356000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Ukraine strikes boost gold, oil unclear"
     },
     {
       "title": "US ties Chinese satellite imagery to deadly Iran strike - Türkiye Today",
@@ -216,7 +334,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789198980000
+      "firstAt": 1789198980000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Iran strike news boosts gold, oil flat"
     },
     {
       "title": "Iran Slams US Sanctions as ‘Colonial Enterprise’ - tasnimnews.ir",
@@ -236,7 +358,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789198980000
+      "firstAt": 1789198980000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Iran sanctions news boosts gold, oil flat"
     },
     {
       "title": "Live - Iran ties Hormuz reopening to end of blockade as Washington vows to fight on - Iran International",
@@ -256,7 +382,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789199902000
+      "firstAt": 1789199902000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Hormuz tension boosts gold, oil unclear"
     },
     {
       "title": "How a billion-dollar sanctions dodge kept Chinese goods flowing to Iran - The Japan Times",
@@ -279,7 +409,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789198980000
+      "firstAt": 1789198980000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Sanctions news boosts gold, others unclear"
     },
     {
       "title": "Fed Rate Hike Odds Surge to Nearly 90% for Next Week; Markets Bet on at Least 3 More Hikes by Next Summer - finance.biggo.com",
@@ -302,7 +436,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789196189000
+      "firstAt": 1789196189000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Fed hike odds surge, dollar up"
     },
     {
       "title": "Saudis shut down oil pipeline as Houthis tighten grip on Red Sea shipping",
@@ -318,7 +458,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789197883000
+      "firstAt": 1789197883000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Pipeline shutdown boosts oil prices"
     },
     {
       "title": "Ukraine strikes Russian refinery as Moscow escalates Kyiv attacks - TVP World",
@@ -1720,6 +1864,28 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789147723000
+    },
+    {
+      "title": "Why Treasury’s $6 billion bond buyback didn’t lower mortgage rates",
+      "link": "https://finance.yahoo.com/personal-finance/mortgages/article/why-treasurys-6-billion-bond-buyback-didnt-lower-mortgage-rates-174923069.html",
+      "source": "Yahoo Finance",
+      "at": 1789148963000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789148963000
     }
   ],
   "sources": [
@@ -1742,10 +1908,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
-  "calendarAt": null,
-  "headlinesAt": "2026-09-12T09:51:46.194Z",
-  "updatedAt": "2026-09-12T09:51:46.194Z"
+  "calendarAt": "2026-09-12T09:53:33.896Z",
+  "headlinesAt": "2026-09-12T09:53:33.896Z",
+  "updatedAt": "2026-09-12T09:53:33.896Z"
 }
