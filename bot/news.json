@@ -1,5 +1,137 @@
 {
-  "calendar": [],
+  "calendar": [
+    {
+      "title": "Italian Quarterly Unemployment Rate",
+      "country": "EUR",
+      "impact": "low",
+      "at": 1789113600000,
+      "forecast": "5.4%",
+      "previous": "5.3%",
+      "actual": ""
+    },
+    {
+      "title": "Consumer Inflation Expectations",
+      "country": "GBP",
+      "impact": "low",
+      "at": 1789115400000,
+      "forecast": "",
+      "previous": "4.0%",
+      "actual": ""
+    },
+    {
+      "title": "SNB Chairman Schlegel Speaks",
+      "country": "CHF",
+      "impact": "medium",
+      "at": 1789118100000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "Core CPI m/m",
+      "country": "USD",
+      "impact": "high",
+      "at": 1789129800000,
+      "forecast": "0.2%",
+      "previous": "0.2%",
+      "actual": "0.22",
+      "actualFrom": "BLS",
+      "actualNum": 0.22,
+      "vsPrevious": 0.02,
+      "forecastNum": 0.2,
+      "surprise": 0.02,
+      "surprisePct": 10,
+      "beat": "above"
+    },
+    {
+      "title": "Core CPI y/y",
+      "country": "USD",
+      "impact": "high",
+      "at": 1789129800000,
+      "forecast": "2.4%",
+      "previous": "2.5%",
+      "actual": ""
+    },
+    {
+      "title": "CPI m/m",
+      "country": "USD",
+      "impact": "high",
+      "at": 1789129800000,
+      "forecast": "0.4%",
+      "previous": "0.1%",
+      "actual": "0.07",
+      "actualFrom": "BLS",
+      "actualNum": 0.07,
+      "vsPrevious": -0.03,
+      "forecastNum": 0.4,
+      "surprise": -0.33,
+      "surprisePct": -82.5,
+      "beat": "below"
+    },
+    {
+      "title": "CPI y/y",
+      "country": "USD",
+      "impact": "high",
+      "at": 1789129800000,
+      "forecast": "3.4%",
+      "previous": "3.4%",
+      "actual": ""
+    },
+    {
+      "title": "ECB President Lagarde Speaks",
+      "country": "EUR",
+      "impact": "medium",
+      "at": 1789135200000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "Prelim UoM Consumer Sentiment",
+      "country": "USD",
+      "impact": "medium",
+      "at": 1789135200000,
+      "forecast": "51.0",
+      "previous": "51.0",
+      "actual": ""
+    },
+    {
+      "title": "Prelim UoM Inflation Expectations",
+      "country": "USD",
+      "impact": "medium",
+      "at": 1789135200000,
+      "forecast": "",
+      "previous": "4.3%",
+      "actual": ""
+    },
+    {
+      "title": "Federal Budget Balance",
+      "country": "USD",
+      "impact": "low",
+      "at": 1789149480000,
+      "forecast": "-221.1B",
+      "previous": "-432.3B",
+      "actual": ""
+    },
+    {
+      "title": "ECB President Lagarde Speaks",
+      "country": "EUR",
+      "impact": "medium",
+      "at": 1789200000000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "BRICS Summit",
+      "country": "All",
+      "impact": "low",
+      "at": 1789200900000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    }
+  ],
   "headlines": [
     {
       "title": "US House Schedules Vote on Graham Russia Sanctions Legislation - Kyiv Post",
@@ -20,7 +152,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789195142000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions vote scheduled, no immediate market impact."
     },
     {
       "title": "United States Dollar Index retreats from post-CPI high, all eyes on Fed - tmgm.com",
@@ -44,7 +177,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789196043000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "EUR/USD": "up",
+        "GBP/USD": "up"
+      },
+      "why": "Dollar retreats, boosting gold and euro pairs."
     },
     {
       "title": "Russian strikes kill civilians in Kyiv as Ukraine hits targets inside Russia - Межа. Новини України.",
@@ -65,7 +204,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789192515000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Escalating conflict boosts safe-haven gold demand."
     },
     {
       "title": "Targeting the Lifeline: Iran’s Strike on the U.S. Air Support Chain - - WANA News Agency",
@@ -86,7 +229,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789194873000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Iran strike on US assets boosts gold."
     },
     {
       "title": "Zelensky Warns Russia of Retaliation Over Winter Energy Attacks - Kyiv Post",
@@ -106,7 +253,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789192763000
+      "firstAt": 1789192763000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Retaliation warnings increase geopolitical risk for gold."
     },
     {
       "title": "Ukraine faces 'toughest winter' since Russia's full-scale invasion, UN official tells BBC",
@@ -126,7 +277,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789192515000
+      "firstAt": 1789192515000,
+      "why": "Winter energy crisis news, no clear price direction."
     },
     {
       "title": "Iran used Chinese satellite images for attack on US base in Jordan - Middle East Eye",
@@ -146,7 +298,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789192020000
+      "firstAt": 1789192020000,
+      "why": "Satellite imagery details, no immediate market impact."
     },
     {
       "title": "‘War on terror’: How 9/11 changed the language of conflict",
@@ -163,7 +316,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789190765000
+      "firstAt": 1789190765000,
+      "why": "Historical analysis, no current market impact."
     },
     {
       "title": "Chileans clash over 9/11 military coup legacy",
@@ -180,7 +334,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789190549000
+      "firstAt": 1789190549000,
+      "why": "Chilean protests, no direct gold impact."
     },
     {
       "title": "BRICS meets in India: What’s on the agenda, why it matters",
@@ -200,7 +355,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789190529000
+      "firstAt": 1789190529000,
+      "why": "BRICS summit agenda, no immediate price signal."
     },
     {
       "title": "Global funds retreat from Indian stocks as some cut exposure to zero - Bloomberg",
@@ -214,7 +370,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789190264000
+      "firstAt": 1789190264000,
+      "why": "Indian stock fund flows, no US market impact."
     },
     {
       "title": "Russia strikes multi-story apartment building in Odesa, injuring at least 12 - Yahoo",
@@ -234,7 +391,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789189380000
+      "firstAt": 1789189380000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Russian strikes boost safe-haven gold demand."
     },
     {
       "title": "US House of Representatives to take up Russia sanctions bill next week - ThePrint",
@@ -254,7 +415,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789188303000
+      "firstAt": 1789188303000,
+      "why": "Sanctions bill timing, no immediate market move."
     },
     {
       "title": "Saudi Arabia shuts key oil pipeline after drone attack launched from Iraq",
@@ -274,7 +436,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789188190000
+      "firstAt": 1789188190000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Pipeline shutdown boosts oil and gold prices."
     },
     {
       "title": "Ukraine Strikes Different Targets Across 7 Russian Regions - mb.ntd.com",
@@ -294,7 +462,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789185730000
+      "firstAt": 1789185730000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Ukraine strikes Russia, boosting safe-haven gold."
     },
     {
       "title": "Zelensky panics over Putin's missile-like drones, vows winter energy war if Russia strikes? | Videos - Hindustan Times",
@@ -1748,10 +1920,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": null,
-  "headlinesAt": "2026-09-12T07:01:03.015Z",
-  "updatedAt": "2026-09-12T07:01:03.015Z"
+  "calendarAt": "2026-09-12T07:02:17.073Z",
+  "headlinesAt": "2026-09-12T07:02:17.073Z",
+  "updatedAt": "2026-09-12T07:02:17.073Z"
 }
