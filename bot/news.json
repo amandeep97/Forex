@@ -20,7 +20,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789250850000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Middle East conflict risk boosts safe havens, oil"
     },
     {
       "title": "Nvidia (NVDA)’s 2 GW Australia AI Push Could Deepen Its Infrastructure Advantage",
@@ -37,7 +43,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789249801000,
-      "_kind": null
+      "_kind": null,
+      "why": "No clear directional impact on currency"
     },
     {
       "title": "The AI Infrastructure Stock That Could Make Investors Millionaires Is Hiding in Plain Sight, and Wall Street Isn’t Paying Attention",
@@ -52,7 +59,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789249801000,
-      "_kind": null
+      "_kind": null,
+      "why": "Vague stock tip, no clear index direction"
     },
     {
       "title": "10-Year Treasury Nears 5%, Raising CRE Financing Risk",
@@ -74,7 +82,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789249034000
+      "firstAt": 1789249034000,
+      "why": "High rates ambiguous for FX, gold"
     },
     {
       "title": "Can XRP Flip Bitcoin?",
@@ -90,7 +99,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789248272000
+      "firstAt": 1789248272000,
+      "why": "Rhetorical question, no clear price signal"
     },
     {
       "title": "Ethereum ETFs Took In $216 Million on Friday. Bitcoin’s Lost Money for a Fourth Day and XRP’s Took Zero",
@@ -107,7 +117,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789247500000
+      "firstAt": 1789247500000,
+      "dir": {
+        "BTC/USDT": "down",
+        "ETH/USDT": "up"
+      },
+      "why": "Bitcoin outflows bearish, Ethereum inflows bullish"
     },
     {
       "title": "Escalating Tensions: Russian Strikes Intensify Across Ukraine - devdiscourse.com",
@@ -127,7 +142,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789244845000
+      "firstAt": 1789244845000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Ukraine conflict boosts gold, oil unclear"
     },
     {
       "title": "Russian attacks kill nine, injure dozens in Ukraine; Russia says it hits ships, plants - Reuters",
@@ -147,7 +166,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789244845000
+      "firstAt": 1789244845000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Ukraine attacks boost gold, oil unclear"
     },
     {
       "title": "Second crypto billionaire donates record $49m to far-right Reform UK",
@@ -164,7 +187,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789245837000
+      "firstAt": 1789245837000,
+      "why": "Political donation, no direct crypto impact"
     },
     {
       "title": "Iran joins Russia, China at BRICS conference calling for a halt to ‘escalation’ in Middle East - nypost.com",
@@ -184,7 +208,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789245660000
+      "firstAt": 1789245660000,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "De-escalation calls reduce risk premium"
     },
     {
       "title": "Only Roland Garros towel left, says Ukraine tennis player after Russian strike hits flat",
@@ -204,7 +234,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789244845000
+      "firstAt": 1789244845000,
+      "why": "Human interest story, no market impact"
     },
     {
       "title": "Ukraine tennis player's apartment destroyed in Russian strike - BBC",
@@ -224,7 +255,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789244845000
+      "firstAt": 1789244845000,
+      "why": "Human interest story, no market impact"
     },
     {
       "title": "Zelenskyy Urges Partners to Tighten Sanctions on Russian Oligarchs - mezha.net",
@@ -244,7 +276,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789243077000
+      "firstAt": 1789243077000,
+      "why": "Sanctions call, no immediate price move"
     },
     {
       "title": "BRICS Urges Israel To Withdraw Forces From Lebanese Territories After Lebanon Ceasefire: 12 outlets compared - newscord.org",
@@ -264,7 +297,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789242868000
+      "firstAt": 1789242868000,
+      "why": "Diplomatic pressure, no clear price direction"
     },
     {
       "title": "Live - China offers help to end war ahead of Iran-Arab talks in Oman - Iran International",
@@ -284,7 +318,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789242720000
+      "firstAt": 1789242720000,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Diplomatic efforts suggest de-escalation, lower risk"
     },
     {
       "title": "Saudis shut down oil pipeline as Houthis tighten grip on Red Sea shipping",
@@ -1762,6 +1802,6 @@
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-12T22:18:32.860Z",
-  "updatedAt": "2026-09-12T22:18:32.860Z"
+  "headlinesAt": "2026-09-12T22:19:34.012Z",
+  "updatedAt": "2026-09-12T22:19:34.012Z"
 }
