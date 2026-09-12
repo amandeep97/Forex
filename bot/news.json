@@ -17,7 +17,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789190765000,
-      "_kind": null
+      "_kind": null,
+      "why": "Historical linguistic analysis, no market impact."
     },
     {
       "title": "Chileans clash over 9/11 military coup legacy",
@@ -35,7 +36,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789190549000,
-      "_kind": null
+      "_kind": null,
+      "why": "Local political protest, negligible global impact."
     },
     {
       "title": "BRICS meets in India: What’s on the agenda, why it matters",
@@ -56,7 +58,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789190529000,
-      "_kind": null
+      "_kind": null,
+      "why": "Summit agenda discussion, no immediate price driver."
     },
     {
       "title": "Global funds retreat from Indian stocks as some cut exposure to zero - Bloomberg",
@@ -70,7 +73,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789190264000
+      "firstAt": 1789190264000,
+      "why": "Indian stock flows, irrelevant to US index."
     },
     {
       "title": "Russia strikes multi-story apartment building in Odesa, injuring at least 12 - The Kyiv Independent",
@@ -90,7 +94,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789189426000
+      "firstAt": 1789189426000,
+      "why": "Ongoing conflict news, no new directional catalyst."
     },
     {
       "title": "Iraq suspends flights to Iran, closes border crossings after Saudi drone attack - IraqiNews",
@@ -110,7 +115,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789188190000
+      "firstAt": 1789188190000,
+      "why": "Regional disruption, but pipeline status unclear."
     },
     {
       "title": "US House of Representatives to take up Russia sanctions bill next week - theprint.in",
@@ -130,7 +136,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789188303000
+      "firstAt": 1789188303000,
+      "why": "Sanctions bill procedural, no immediate market move."
     },
     {
       "title": "Saudi Arabia shuts key oil pipeline after drone attack launched from Iraq",
@@ -150,7 +157,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789188190000
+      "firstAt": 1789188190000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Pipeline shutdown implies immediate supply disruption."
     },
     {
       "title": "Chinese entities provided Iran with satellite images of air base in Jordan before deadly missile strike: report - New York Post",
@@ -170,7 +182,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789184700000
+      "firstAt": 1789184700000,
+      "why": "Geopolitical tension, but no direct supply impact."
     },
     {
       "title": "Saudis shut down oil pipeline as Houthis tighten grip on Red Sea shipping",
@@ -186,7 +199,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789181310000
+      "firstAt": 1789181310000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Pipeline shutdown and Red Sea risk boost oil."
     },
     {
       "title": "North Korea fires ballistic missiles off eastern coast, Seoul says",
@@ -203,7 +220,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789179959000
+      "firstAt": 1789179959000,
+      "why": "North Korea missile test, no clear FX direction."
     },
     {
       "title": "Putin and Pezeshkian call out US dominance ahead of BRICS",
@@ -238,7 +256,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789178700000
+      "firstAt": 1789178700000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Confirmed pipeline damage supports higher oil prices."
     },
     {
       "title": "World Muslim League, Bahrain condemn drone attack on Saudi Arabia - middleeasteye.net",
@@ -258,7 +281,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789178700000
+      "firstAt": 1789178700000,
+      "why": "Diplomatic condemnation, no direct market impact."
     },
     {
       "title": "UK sanctions on West Bank settlers are the right step | Letters - The Guardian",
@@ -275,7 +299,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789176660000
+      "firstAt": 1789176660000,
+      "why": "UK political opinion piece, no market relevance."
     },
     {
       "title": "How Canadians are bracing for the impact of Trump’s trade war",
@@ -294,7 +319,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789174320000
+      "firstAt": 1789174320000,
+      "why": "Consumer sentiment, no clear directional signal."
     },
     {
       "title": "Temple Israel welcomes congregants home six months after attack - The Detroit News",
@@ -1731,10 +1757,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-12T05:48:45.861Z",
-  "updatedAt": "2026-09-12T05:48:45.861Z"
+  "headlinesAt": "2026-09-12T05:50:33.167Z",
+  "updatedAt": "2026-09-12T05:50:33.167Z"
 }
