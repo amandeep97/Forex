@@ -1,15 +1,6 @@
 {
   "calendar": [
     {
-      "title": "Federal Budget Balance",
-      "country": "USD",
-      "impact": "low",
-      "at": 1789149480000,
-      "forecast": "-221.1B",
-      "previous": "-432.3B",
-      "actual": ""
-    },
-    {
       "title": "ECB President Lagarde Speaks",
       "country": "EUR",
       "impact": "medium",
@@ -120,7 +111,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789231914000
+      "firstAt": 1789233378000
     },
     {
       "title": "Live - China offers help to end war ahead of Iran-Arab talks in Oman - Iran International",
@@ -193,7 +184,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 3,
-      "firstAt": 1789231303000
+      "firstAt": 1789230441000
     },
     {
       "title": "Plexus Director Karen Rapp Sells 500 Shares for $120,400",
@@ -237,7 +228,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789232280000
+      "firstAt": 1789230402000
     },
     {
       "title": "Russian attacks kill six, injure dozens in Ukraine, Moscow says it hits ships, plants - Reuters",
@@ -277,7 +268,47 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789229760000
+      "firstAt": 1789230076000
+    },
+    {
+      "title": "8 killed in Russian strikes on Ukraine as Putin warns Europe against sending troops - The Seattle Times",
+      "link": "https://news.google.com/rss/articles/CBMizAFBVV95cUxNMTRzX29wU3ZKamkwTXpzMWVRTlRGdDMtTEVyVVpSU1JaMTdKUjBObGtQTExidFJfUEhLcktodVc1Vm9HWGtRSTcxUlBTdjFGWmdqLXExZmo4V3laZFZaUlE1dWxlSms5SzgzZFRTWmVIazdicEdseTl5RlBxQWVnMG9EUUd5YlZ6ME5BMHNpaElobUtfQ2xvcWZpdThkYlBpczA3ZE5qcXZxWlQ3U3FzSWJPaVQtQXI5enNBOW5taGM5Tng1dHB1bm8zQS0?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMizAFBVV95cUxNMTRzX29wU3ZKamkwTXpzMWVRTlRGdDMtTEVyVVpSU1JaMTdKUjBObGtQTExidFJfUEhLcktodVc1Vm9HWGtRSTcxUlBTdjFGWmdqLXExZmo4V3laZFZaUlE1dWxlSms5SzgzZFRTWmVIazdicEdseTl5RlBxQWVnMG9EUUd5YlZ6ME5BMHNpaElobUtfQ2xvcWZpdThkYlBpczA3ZE5qcXZxWl",
+      "at": 1789230441000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1789229477000
+    },
+    {
+      "title": "Attack that closed key Saudi pipeline is blamed on Iran-backed militias in Iraq - Washington Times",
+      "link": "https://news.google.com/rss/articles/CBMitgFBVV95cUxNWTd5Wmk5Q3ZaSVpCczJTY0hlM3VjMDFIWnhBQTlrZkRBQXFhV0VEM0VjcXBadW5WSkFDekxiNmw3Vm91OS1WNU1qUm9VV2lVcmFmM0dHVVhNM013bDljcWduanExWktjZzhfRnU2QTBVTE9mbjg4VENTbHFoN0ZlWm1ZMGdSY0p2eHd6SFpOYTJSZlg3WWNIcGw0b0wzNnRDLU9UbDVfYjlLcC14YVJZQ1ZPSTVXdw?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMitgFBVV95cUxNWTd5Wmk5Q3ZaSVpCczJTY0hlM3VjMDFIWnhBQTlrZkRBQXFhV0VEM0VjcXBadW5WSkFDekxiNmw3Vm91OS1WNU1qUm9VV2lVcmFmM0dHVVhNM013bDljcWduanExWktjZzhfRnU2QTBVTE9mbjg4VENTbHFoN0ZlWm1ZMGdSY0p2eHd6SFpOYTJSZlg3WWNIcGw0b0wzNnRDLU9UbDVfYjlLcC",
+      "at": 1789230402000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789230402000
     },
     {
       "title": "Russia Launches 410 Attack Drones Against Ukraine, Air Defenses Neutralize 336 - Межа. Новини України.",
@@ -348,26 +379,6 @@
         "OIL"
       ],
       "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789227420000
-    },
-    {
-      "title": "8 killed, dozens wounded in Russian strikes on Ukraine as Putin warns Europe against sending troops - nypost.com",
-      "link": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxQNmFaME84XzRYTG83Tkhvb3VGUDNYWkctYVc1RWs0UWhnLXltRDFJYmxQckR2MlVtYm9EZERXaUJ1Sl9RaGFtYTRCbDI3a1EyS0pxbXU3V3hGNWtQV01IZlBsSTg2Zm5LWEtib2tGTHRuOVpIdTR4WVBYR0Z2ekZNYnM3YUJMV2lMMzhETXJCbmduM1hoSTdlMEwzbVZGamJXWFlvNTJnT0VaYzBXUWk5VFJPRHVELVB4UVJBNjlwdXJsVEJpV3NiMjd0bGZvbmx0RkRkMjBxbw?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi1wFBVV95cUxQNmFaME84XzRYTG83Tkhvb3VGUDNYWkctYVc1RWs0UWhnLXltRDFJYmxQckR2MlVtYm9EZERXaUJ1Sl9RaGFtYTRCbDI3a1EyS0pxbXU3V3hGNWtQV01IZlBsSTg2Zm5LWEtib2tGTHRuOVpIdTR4WVBYR0Z2ekZNYnM3YUJMV2lMMzhETXJCbmduM1hoSTdlMEwzbVZGamJXWFlvNTJnT0VaYz",
-      "at": 1789229760000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789227420000
@@ -699,26 +710,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789221561000
-    },
-    {
-      "title": "Are the UK sanctions on Israel real progress, or more illusion? - Mondoweiss",
-      "link": "https://news.google.com/rss/articles/CBMimAFBVV95cUxNMzNWV3QyU2pIeXA4N081dmF2MjBGMzhLdXZrekFvRjdyaWQtUkxyLU03TjVSLUNWZlhoMkEyWUJxWlhHeDJZZGZHZG9TMEN0QWc4cmdTRkVhYUJudVNqdHFRbnhFa2VhVjZkTHdvRTFKQUtMR2ZqRW04RzNuZGVUZm9UM0FieTU0LUU4aTYwSUFGWlF1Z3lzRg?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMimAFBVV95cUxNMzNWV3QyU2pIeXA4N081dmF2MjBGMzhLdXZrekFvRjdyaWQtUkxyLU03TjVSLUNWZlhoMkEyWUJxWlhHeDJZZGZHZG9TMEN0QWc4cmdTRkVhYUJudVNqdHFRbnhFa2VhVjZkTHdvRTFKQUtMR2ZqRW04RzNuZGVUZm9UM0FieTU0LUU4aTYwSUFGWlF1Z3lzRg?oc=5\" target=\"_blank\">A",
-      "at": 1789219800000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789219800000
     },
     {
       "title": "Ukraine strikes FPV drone production facility, UAV warehouses near Taganrog - Ukrinform",
@@ -1145,6 +1136,26 @@
       "firstAt": 1789205296000
     },
     {
+      "title": "US links Chinese satellite imagery to Iranian strike that killed 3 soldiers: Report - Middle East Monitor",
+      "link": "https://news.google.com/rss/articles/CBMixAFBVV95cUxQX3ZiYTRISW1GX0ZjWlVuVU51RWJtem1KSVlzbXBMaHJWVTc0ZTYtcm56emRfZFpVVDI4dDIzYW9DYzAxZGV3RHlIcHFZTkktYXFhWGIyS2Ffc285bFlqTm9VWTVVclFNWk90OUhJM3ZmaUVnRWloY3htX2RGNEFlRkw3MUI4Y2FzOEF4Yk10N2I1ZDA4R2dhOWVpVUF4X1VSczFhSVdKQXBVUDVMZEJUcWxSZ09tU25UN3UzU0xJQ283dUha0gHKAUFVX3lxTE1VbWhwWXRMS1lId19PZlNybmlsU2c1NXI3dzhMWml4aDBaZ2dldWRKLTRzSE90TVp6NGNRTzVZRzlmeTRyOUFMazBBaWNCZ1pvQ3FJaWE2dXhNMUt2Mi1QWDRUQmRaLVFib1lvWHptdnRLMTFFRWxCaDZ1bzk4bGowQTNFWGlvTFN6RTh6Yzc4WTk3c3NlZkVPb2FJTFlWSENPOVl1T2RDdkVfTUgwWU1Vd0hkLU1HTFdaWVRvZlhjSFVsanpCYkpNc2c?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMixAFBVV95cUxQX3ZiYTRISW1GX0ZjWlVuVU51RWJtem1KSVlzbXBMaHJWVTc0ZTYtcm56emRfZFpVVDI4dDIzYW9DYzAxZGV3RHlIcHFZTkktYXFhWGIyS2Ffc285bFlqTm9VWTVVclFNWk90OUhJM3ZmaUVnRWloY3htX2RGNEFlRkw3MUI4Y2FzOEF4Yk10N2I1ZDA4R2dhOWVpVUF4X1VSczFhSVdKQXBVUD",
+      "at": 1789201980000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789200973000
+    },
+    {
       "title": "US ties Chinese satellite imagery to deadly Iran strike - Türkiye Today",
       "link": "https://news.google.com/rss/articles/CBMioAFBVV95cUxQNkYyUkRsb2tTS1RYX0RzS3JHWjRoVHlocWxYME5Nbzd2SzN6eE5qZlhwYTRrTk1kME56UDBXMkFoZFpKYkN2dTc4SFVKX21JbkNfQzZ0Nm00RFppVjh4dVNGbHBsYmU4YlJuVVRqak1GNGdnRzNiZ2N1eUloQk1ZRGdBakdnZlpPeUJsN2tGRXdRNHBGT1dWYXF2SzJDSjFy?oc=5",
       "source": "Wires (geo)",
@@ -1227,6 +1238,26 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789193271000
+    },
+    {
+      "title": "Zelensky Warns Russia of Retaliation Over Winter Energy Attacks - kyivpost.com",
+      "link": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE9LSm1NSGN0ek5xSHlwTnB4MWJnWW1xWlBvVGFLNVd0Yk1EcVFQZ1YyZ3o4RnJVQ2FiZ2Z1VkRYck9JYmp4YUVnY3BmVQ?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiS0FVX3lxTE9LSm1NSGN0ek5xSHlwTnB4MWJnWW1xWlBvVGFLNVd0Yk1EcVFQZ1YyZ3o4RnJVQ2FiZ2Z1VkRYck9JYmp4YUVnY3BmVQ?oc=5\" target=\"_blank\">Zelensky Warns Russia of Retaliation Over Winter Energy Attacks</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">kyiv",
+      "at": 1789192763000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789192763000
     },
     {
       "title": "Ukraine faces 'toughest winter' since Russia's full-scale invasion, UN official tells BBC",
@@ -1718,43 +1749,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789155898000
-    },
-    {
-      "title": "US House to vote on Russia sanctions backed by late Senator Graham - Reuters",
-      "link": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPYXo0TE8tLVZ2VzF0TjRlTFJBbEZIRDVqWndXMTNMb0VlT1lxd1JBMEdpNGJmaVE2a2Q2emtmTUZ2NVdvOUloVEdrdnVrOVRnSTRWbmd4MGNSUzFXR3JUR0o5ZHloaU5JRzd5TVNtenpjd3ZBNk5aZU9ubVE5aTRlTUtFM0M1dWFCUGVZcEp0b01SejVmS0p4Z2RHV2YyRm1PQUR0UzUxeUtJM2NmQzJVdTVsRQ?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiswFBVV95cUxPYXo0TE8tLVZ2VzF0TjRlTFJBbEZIRDVqWndXMTNMb0VlT1lxd1JBMEdpNGJmaVE2a2Q2emtmTUZ2NVdvOUloVEdrdnVrOVRnSTRWbmd4MGNSUzFXR3JUR0o5ZHloaU5JRzd5TVNtenpjd3ZBNk5aZU9ubVE5aTRlTUtFM0M1dWFCUGVZcEp0b01SejVmS0p4Z2RHV2YyRm1PQUR0UzUxeUtJM2",
-      "at": 1789155798000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789153584000
-    },
-    {
-      "title": "Amid war and sanctions, many Iranians are losing their jobs and struggling to get by - NPR",
-      "link": "https://news.google.com/rss/articles/CBMidkFVX3lxTE5EUGplTllYUzJCdTI5bTZ3aU9ySkpzV2VLQWFwLXc1VnBaS1JhZW9wVy1OUGIwWDFyWVBacFVfYXZYekVPZ0dXZVNPQS13V2xQVUFORFBlNkdXMG9nMDUyVGlNX1lHYzMxNGxxT2tiLU5KYy13dXc?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMidkFVX3lxTE5EUGplTllYUzJCdTI5bTZ3aU9ySkpzV2VLQWFwLXc1VnBaS1JhZW9wVy1OUGIwWDFyWVBacFVfYXZYekVPZ0dXZVNPQS13V2xQVUFORFBlNkdXMG9nMDUyVGlNX1lHYzMxNGxxT2tiLU5KYy13dXc?oc=5\" target=\"_blank\">Amid war and sanctions, many Iranians are losing",
-      "at": 1789155575000,
-      "inst": [
-        "XAU/USD"
-      ],
-      "ccy": [
-        "XAU"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789155575000
     }
   ],
   "sources": [
@@ -1777,10 +1771,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-12T17:57:16.909Z",
-  "headlinesAt": "2026-09-12T17:57:16.909Z",
-  "updatedAt": "2026-09-12T17:57:16.909Z"
+  "calendarAt": "2026-09-12T17:58:33.952Z",
+  "headlinesAt": "2026-09-12T17:58:33.952Z",
+  "updatedAt": "2026-09-12T17:58:33.952Z"
 }
