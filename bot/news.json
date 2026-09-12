@@ -48,7 +48,46 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789227701000,
+      "_kind": null,
+      "why": "Routine drone attack, no clear market impact."
+    },
+    {
+      "title": "Do You Really Need Bond ETFs Before Age 50? Here's What I'd Do.",
+      "link": "https://finance.yahoo.com/markets/options/articles/really-bond-etfs-age-50-162500746.html",
+      "source": "Yahoo Finance",
+      "at": 1789230300000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789230300000,
       "_kind": null
+    },
+    {
+      "title": "Dow Jones Futures: Fed Rate Hike Seen As Oil, Yields Pressure Stocks; Apple, Moderna Are New Buys",
+      "link": "https://www.investors.com/market-trend/stock-market-today/dow-jones-futures-100-oil-surging-yields-pressure-stocks-with-fed-rate-hike-seen-apple-leads-new-buys/?src=A00220&yptr=yahoo",
+      "source": "Yahoo Finance",
+      "at": 1789230285000,
+      "inst": [
+        "USOIL",
+        "US500",
+        "US30"
+      ],
+      "ccy": [
+        "USD",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789230125000,
+      "_kind": null,
+      "dir": {
+        "US500": "down",
+        "US30": "down"
+      },
+      "why": "Fed hike odds pressure stocks, oil neutral."
     },
     {
       "title": "Attack on key pipeline in Saudi Arabia blamed on Iran-backed militias located in Iraq territory - cbs8.com",
@@ -69,7 +108,32 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789229211000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Saudi pipeline attack boosts oil, gold safe haven."
+    },
+    {
+      "title": "Apple, Taiwan Semi Lead Five Stocks Near Buy Points",
+      "link": "https://www.investors.com/news/apple-taiwan-semiconductor-lead-5-top-stocks-near-buy-points/?src=A00220&yptr=yahoo",
+      "source": "Yahoo Finance",
+      "at": 1789230125000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789230125000,
+      "_kind": null,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Stocks near buy points suggest bullish sentiment."
     },
     {
       "title": "Ukraine strikes Russian military sites near Taganrog, SBU says - Межа. Новини України.",
@@ -90,7 +154,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789227420000,
-      "_kind": null
+      "_kind": null,
+      "why": "Ukraine strikes, no clear immediate market direction."
     },
     {
       "title": "Fed rate-hike odds surge as Warsh faces inflation-weary markets",
@@ -113,7 +178,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789229820000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Fed hike odds surge, stronger dollar weakens pairs."
     },
     {
       "title": "Cushman & Wakefield Insider Sells 12,500 Shares",
@@ -147,7 +218,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789227420000,
-      "_kind": null
+      "_kind": null,
+      "why": "Economic damage report, no immediate price signal."
     },
     {
       "title": "Trump says Iran likely responsible for attack that shut vital Saudi oil pipeline - KWWL",
@@ -168,7 +240,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789226820000,
-      "_kind": null
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Iran blamed for pipeline attack, risk premium rises."
     },
     {
       "title": "Will the Houthi attacks activate the Mecca Pact?",
@@ -189,7 +266,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789229208000,
-      "_kind": null
+      "why": "Geopolitical speculation, no confirmed market impact."
     },
     {
       "title": "Canadian boycott of US products pushes grocers to adapt, explore new supply sources",
@@ -204,7 +281,10 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789229183000,
-      "_kind": null
+      "dir": {
+        "USD/CAD": "down"
+      },
+      "why": "Boycott hurts US trade, weakens dollar vs CAD."
     },
     {
       "title": "3 Forgotten AI Stocks That Should Rebound From Their Corrections",
@@ -218,7 +298,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789229100000
+      "firstAt": 1789229100000,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "AI stocks expected to rebound, bullish for index."
     },
     {
       "title": "Russia's Lavrov says yes to talks, no to ceasefire with Ukraine - yahoo.com",
@@ -238,7 +322,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789227960000
+      "firstAt": 1789227960000,
+      "why": "Diplomatic stance, no clear immediate market move."
     },
     {
       "title": "5 Dividend Powerhouses Yielding Above 5% That Wall Street Still Backs",
@@ -252,19 +337,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789228936000
-    },
-    {
-      "title": "Palantir's Growth Has Kept Accelerating, but Can the Rally Continue?",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/palantirs-growth-kept-accelerating-rally-155500148.html",
-      "source": "Yahoo Finance",
-      "at": 1789228500000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1789228500000
+      "firstAt": 1789228936000,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Dividend stocks backed by Wall Street, bullish."
     },
     {
       "title": "Russia launches more than 400 attack drones at Ukraine in one day, most of them downed - Українська правда",
@@ -284,7 +361,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789227960000
+      "firstAt": 1789227960000,
+      "why": "Routine drone attack, no clear market direction."
     },
     {
       "title": "8 killed in Russian strikes on Ukraine as Putin warns Europe against sending troops - Union-Bulletin",
@@ -304,7 +382,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789227420000
+      "firstAt": 1789227420000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Escalation warnings boost gold, oil impact unclear."
     },
     {
       "title": "Russian strikes kill three, injure dozens across Ukraine, Zelenskyy says - TVP World",
@@ -714,25 +796,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789217355000
-    },
-    {
-      "title": "Dow Jones Futures: Fed Rate Hike Seen As Oil, Yields Pressure Stocks; Apple, Moderna Are New Buys",
-      "link": "https://www.investors.com/market-trend/stock-market-today/dow-jones-futures-100-oil-surging-yields-pressure-stocks-with-fed-rate-hike-seen-apple-leads-new-buys/?src=A00220&yptr=yahoo",
-      "source": "Yahoo Finance",
-      "at": 1789217302000,
-      "inst": [
-        "USOIL",
-        "US500",
-        "US30"
-      ],
-      "ccy": [
-        "USD",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789217302000
     },
     {
       "title": "SBU and Military Strike Russian Chemical Plants and Taganrog Hub - kyivpost.com",
@@ -1728,29 +1791,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789157943000
-    },
-    {
-      "title": "US Markets Wrap: Trading ends in the green despite red hot inflation data - Business Post",
-      "link": "https://news.google.com/rss/articles/CBMirgFBVV95cUxNck02cUlndTJrclJmZ1RISVI0MURleGZ1UDVMOW54TmRYN0k5QUw2RWZxcHBTY2ZlUThWVm5lMG1oemMxSUhqaHJrV0U3Ry1zakNmZVI1RWpCY3p3NXA3NmJBMzl4MDVzZHRocUhGXzFkVHBFWE01ZWViV0JsNm1NLVM5UTQyVEhYT0ZzbU5zUkZHbzZOVHo3Tm5BaVAxQVRfOUNTdUFaZnFLaERjYnc?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMirgFBVV95cUxNck02cUlndTJrclJmZ1RISVI0MURleGZ1UDVMOW54TmRYN0k5QUw2RWZxcHBTY2ZlUThWVm5lMG1oemMxSUhqaHJrV0U3Ry1zakNmZVI1RWpCY3p3NXA3NmJBMzl4MDVzZHRocUhGXzFkVHBFWE01ZWViV0JsNm1NLVM5UTQyVEhYT0ZzbU5zUkZHbzZOVHo3Tm5BaVAxQVRfOUNTdUFaZnFLaE",
-      "at": 1789157156000,
-      "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789157156000
     }
   ],
   "sources": [
@@ -1773,10 +1813,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-12T16:36:18.220Z",
-  "headlinesAt": "2026-09-12T16:36:18.220Z",
-  "updatedAt": "2026-09-12T16:36:18.220Z"
+  "calendarAt": "2026-09-12T16:38:10.603Z",
+  "headlinesAt": "2026-09-12T16:38:10.603Z",
+  "updatedAt": "2026-09-12T16:38:10.603Z"
 }
