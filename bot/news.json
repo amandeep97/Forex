@@ -1,5 +1,110 @@
 {
-  "calendar": [],
+  "calendar": [
+    {
+      "title": "Core CPI m/m",
+      "country": "USD",
+      "impact": "high",
+      "at": 1789129800000,
+      "forecast": "0.2%",
+      "previous": "0.2%",
+      "actual": "0.22",
+      "actualFrom": "BLS",
+      "actualNum": 0.22,
+      "vsPrevious": 0.02,
+      "forecastNum": 0.2,
+      "surprise": 0.02,
+      "surprisePct": 10,
+      "beat": "above"
+    },
+    {
+      "title": "Core CPI y/y",
+      "country": "USD",
+      "impact": "high",
+      "at": 1789129800000,
+      "forecast": "2.4%",
+      "previous": "2.5%",
+      "actual": ""
+    },
+    {
+      "title": "CPI m/m",
+      "country": "USD",
+      "impact": "high",
+      "at": 1789129800000,
+      "forecast": "0.4%",
+      "previous": "0.1%",
+      "actual": "0.07",
+      "actualFrom": "BLS",
+      "actualNum": 0.07,
+      "vsPrevious": -0.03,
+      "forecastNum": 0.4,
+      "surprise": -0.33,
+      "surprisePct": -82.5,
+      "beat": "below"
+    },
+    {
+      "title": "CPI y/y",
+      "country": "USD",
+      "impact": "high",
+      "at": 1789129800000,
+      "forecast": "3.4%",
+      "previous": "3.4%",
+      "actual": ""
+    },
+    {
+      "title": "ECB President Lagarde Speaks",
+      "country": "EUR",
+      "impact": "medium",
+      "at": 1789135200000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "Prelim UoM Consumer Sentiment",
+      "country": "USD",
+      "impact": "medium",
+      "at": 1789135200000,
+      "forecast": "51.0",
+      "previous": "51.0",
+      "actual": ""
+    },
+    {
+      "title": "Prelim UoM Inflation Expectations",
+      "country": "USD",
+      "impact": "medium",
+      "at": 1789135200000,
+      "forecast": "",
+      "previous": "4.3%",
+      "actual": ""
+    },
+    {
+      "title": "Federal Budget Balance",
+      "country": "USD",
+      "impact": "low",
+      "at": 1789149480000,
+      "forecast": "-221.1B",
+      "previous": "-432.3B",
+      "actual": ""
+    },
+    {
+      "title": "ECB President Lagarde Speaks",
+      "country": "EUR",
+      "impact": "medium",
+      "at": 1789200000000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "BRICS Summit",
+      "country": "All",
+      "impact": "low",
+      "at": 1789200900000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    }
+  ],
   "headlines": [
     {
       "title": "Trump says Iran probably responsible for attack on Saudi oil pipeline - Arab News",
@@ -75,8 +180,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789210047000,
-      "_kind": null
+      "firstAt": 1789210047000
     },
     {
       "title": "Saudi Arabia shuts critical oil pipeline after drone attack: What it means",
@@ -385,26 +489,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789198980000
-    },
-    {
-      "title": "Live - Iran ties Hormuz reopening to end of blockade as Washington vows to fight on - Iran International",
-      "link": "https://news.google.com/rss/articles/CBMiXkFVX3lxTFBWUkFCaXFNOVJFN2ZucUJZTEIyTW1YS2owX21jVGhhS2V4VFlLVXRvdkR5aURSZmlTX0hSRFRQeGlrNlZqWGRnb0hMb2JJdklBQzIzdlctdERIc2RPSUE?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiXkFVX3lxTFBWUkFCaXFNOVJFN2ZucUJZTEIyTW1YS2owX21jVGhhS2V4VFlLVXRvdkR5aURSZmlTX0hSRFRQeGlrNlZqWGRnb0hMb2JJdklBQzIzdlctdERIc2RPSUE?oc=5\" target=\"_blank\">Live - Iran ties Hormuz reopening to end of blockade as Washington vows to fight",
-      "at": 1789199902000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789199902000
     },
     {
       "title": "How a billion-dollar sanctions dodge kept Chinese goods flowing to Iran - japantimes.co.jp",
@@ -1590,26 +1674,6 @@
       "firstAt": 1789152720000
     },
     {
-      "title": "Strikes shut down key Saudi pipeline as Iran-backed Houthis tighten grip on crucial shipping lane - NBC News",
-      "link": "https://news.google.com/rss/articles/CBMitgFBVV95cUxQN1ltMThONzFHT21BQW1uY3BGRnNsVUNiVldxOHhpcFhycXR1WmNhVXo5WHptV0k4VDV5U1ZtNXBkbnM4N2VxdldMc0tJRjRqU3NWQ3hnbHBacl9VZmVBYnB6RGt6dFlUVHBlbEh4ajRRYVFfaHhmNXRvT2NQT3dVWDFMSWo4UEc4b1lKT1lQMUR5ZUp1ZFNOdzZ5TG5NNEpTVm9BOHA4YkNsQXdOaFlVTTQ2WEVLdw?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMitgFBVV95cUxQN1ltMThONzFHT21BQW1uY3BGRnNsVUNiVldxOHhpcFhycXR1WmNhVXo5WHptV0k4VDV5U1ZtNXBkbnM4N2VxdldMc0tJRjRqU3NWQ3hnbHBacl9VZmVBYnB6RGt6dFlUVHBlbEh4ajRRYVFfaHhmNXRvT2NQT3dVWDFMSWo4UEc4b1lKT1lQMUR5ZUp1ZFNOdzZ5TG5NNEpTVm9BOHA4YkNsQX",
-      "at": 1789152328000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789152328000
-    },
-    {
       "title": "EU Sanctions on 3,000 Russians Stall as France Joins Slovakia’s Delisting Push - Kyiv Post",
       "link": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE03YWlZMG5aY0pWRWlvZDFkX0lXdFdQNUNuWDhGeTBXSExmT2daTFo0UHJnQjRUeDdscWUzQVJudExUNUVZUm5CRmtwZw?oc=5",
       "source": "Wires (geo)",
@@ -1720,6 +1784,46 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789148963000
+    },
+    {
+      "title": "10-Year Treasury Yield Nears 5% as Markets Brace for a September Fed Rate Hike - Tekedia",
+      "link": "https://news.google.com/rss/articles/CBMipAFBVV95cUxNbzZiQXhTNm5CNXgxc09aX0lySWNTbmF4WkN4cG1KZkVHc21faDBBMVI4d2NzWEVXYnJzSHJJX2NBTkJFYnhfWWVfR2tqNUxTZmNyU05CVnFNZmFoTGttOUg4azZDdkllcEE4YnhjQlpkeWMza0VLVHFleUVpUFRzTGw3bmpQNDBfd0M4VDc4VFRoQmlrWV9Lb2tTN3d1Q0Q4RW5USg?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMipAFBVV95cUxNbzZiQXhTNm5CNXgxc09aX0lySWNTbmF4WkN4cG1KZkVHc21faDBBMVI4d2NzWEVXYnJzSHJJX2NBTkJFYnhfWWVfR2tqNUxTZmNyU05CVnFNZmFoTGttOUg4azZDdkllcEE4YnhjQlpkeWMza0VLVHFleUVpUFRzTGw3bmpQNDBfd0M4VDc4VFRoQmlrWV9Lb2tTN3d1Q0Q4RW5USg?oc=5\" t",
+      "at": 1789148700000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789147493000
+    },
+    {
+      "title": "Is gold really a hedge against inflation?",
+      "link": "https://finance.yahoo.com/personal-finance/investing/article/is-gold-a-hedge-against-inflation-174122603.html",
+      "source": "Yahoo Finance",
+      "at": 1789148482000,
+      "inst": [
+        "XAU/USD"
+      ],
+      "ccy": [
+        "XAU",
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789148482000
     }
   ],
   "sources": [
@@ -1742,10 +1846,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
-  "calendarAt": null,
-  "headlinesAt": "2026-09-12T11:17:16.193Z",
-  "updatedAt": "2026-09-12T11:17:16.193Z"
+  "calendarAt": "2026-09-12T11:18:31.747Z",
+  "headlinesAt": "2026-09-12T11:18:31.747Z",
+  "updatedAt": "2026-09-12T11:18:31.747Z"
 }
