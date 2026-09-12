@@ -1,5 +1,110 @@
 {
-  "calendar": [],
+  "calendar": [
+    {
+      "title": "Core CPI m/m",
+      "country": "USD",
+      "impact": "high",
+      "at": 1789129800000,
+      "forecast": "0.2%",
+      "previous": "0.2%",
+      "actual": "0.22",
+      "actualFrom": "BLS",
+      "actualNum": 0.22,
+      "vsPrevious": 0.02,
+      "forecastNum": 0.2,
+      "surprise": 0.02,
+      "surprisePct": 10,
+      "beat": "above"
+    },
+    {
+      "title": "Core CPI y/y",
+      "country": "USD",
+      "impact": "high",
+      "at": 1789129800000,
+      "forecast": "2.4%",
+      "previous": "2.5%",
+      "actual": ""
+    },
+    {
+      "title": "CPI m/m",
+      "country": "USD",
+      "impact": "high",
+      "at": 1789129800000,
+      "forecast": "0.4%",
+      "previous": "0.1%",
+      "actual": "0.07",
+      "actualFrom": "BLS",
+      "actualNum": 0.07,
+      "vsPrevious": -0.03,
+      "forecastNum": 0.4,
+      "surprise": -0.33,
+      "surprisePct": -82.5,
+      "beat": "below"
+    },
+    {
+      "title": "CPI y/y",
+      "country": "USD",
+      "impact": "high",
+      "at": 1789129800000,
+      "forecast": "3.4%",
+      "previous": "3.4%",
+      "actual": ""
+    },
+    {
+      "title": "ECB President Lagarde Speaks",
+      "country": "EUR",
+      "impact": "medium",
+      "at": 1789135200000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "Prelim UoM Consumer Sentiment",
+      "country": "USD",
+      "impact": "medium",
+      "at": 1789135200000,
+      "forecast": "51.0",
+      "previous": "51.0",
+      "actual": ""
+    },
+    {
+      "title": "Prelim UoM Inflation Expectations",
+      "country": "USD",
+      "impact": "medium",
+      "at": 1789135200000,
+      "forecast": "",
+      "previous": "4.3%",
+      "actual": ""
+    },
+    {
+      "title": "Federal Budget Balance",
+      "country": "USD",
+      "impact": "low",
+      "at": 1789149480000,
+      "forecast": "-221.1B",
+      "previous": "-432.3B",
+      "actual": ""
+    },
+    {
+      "title": "ECB President Lagarde Speaks",
+      "country": "EUR",
+      "impact": "medium",
+      "at": 1789200000000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "BRICS Summit",
+      "country": "All",
+      "impact": "low",
+      "at": 1789200900000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    }
+  ],
   "headlines": [
     {
       "title": "Saudis shut down oil pipeline as Houthis tighten grip on Red Sea shipping",
@@ -62,19 +167,19 @@
       "_kind": null
     },
     {
-      "title": "Trump says Iran probably responsible for attack on Saudi pipeline - CNN",
+      "title": "Trump says Iran likely responsible for attack on vital Saudi oil pipeline - CNN",
       "link": "https://news.google.com/rss/articles/CBMifEFVX3lxTFBCN05SU2luNWgwQnpYOGtmWndwclVrMERSUmFna1RDQnVRM1J4SEd3TUxieTMwSWNTcnNycXNUMWZ1cFdjalpVMVNxZHhsdFA2RUNmc2RMeXk3aHhrLWU2YURqZDdwU3ZTTGppTjZxX3NSYTBIcXdPdlEyZDI?oc=5",
       "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMifEFVX3lxTFBCN05SU2luNWgwQnpYOGtmWndwclVrMERSUmFna1RDQnVRM1J4SEd3TUxieTMwSWNTcnNycXNUMWZ1cFdjalpVMVNxZHhsdFA2RUNmc2RMeXk3aHhrLWU2YURqZDdwU3ZTTGppTjZxX3NSYTBIcXdPdlEyZDI?oc=5\" target=\"_blank\">Trump says Iran probably responsible for",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMifEFVX3lxTFBCN05SU2luNWgwQnpYOGtmWndwclVrMERSUmFna1RDQnVRM1J4SEd3TUxieTMwSWNTcnNycXNUMWZ1cFdjalpVMVNxZHhsdFA2RUNmc2RMeXk3aHhrLWU2YURqZDdwU3ZTTGppTjZxX3NSYTBIcXdPdlEyZDI?oc=5\" target=\"_blank\">Trump says Iran likely responsible for a",
       "at": 1789212031000,
       "inst": [
-        "XAU/USD",
         "USOIL",
+        "XAU/USD",
         "UKOIL"
       ],
       "ccy": [
-        "XAU",
-        "OIL"
+        "OIL",
+        "XAU"
       ],
       "sev": 1,
       "rel": 2,
@@ -99,8 +204,8 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 3,
-      "firstAt": 1789209378000
+      "srcs": 4,
+      "firstAt": 1789208666000
     },
     {
       "title": "Saudi Arabia shuts key oil pipeline after drone attack launched from Iraq",
@@ -119,8 +224,8 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 3,
-      "firstAt": 1789209378000
+      "srcs": 4,
+      "firstAt": 1789208666000
     },
     {
       "title": "Far-right protesters rally against Islam on 9/11 anniversary",
@@ -172,7 +277,26 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 3,
+      "srcs": 4,
+      "firstAt": 1789206960000
+    },
+    {
+      "title": "Trump says Iran probably responsible for attack on Saudi pipeline",
+      "link": "https://www.investing.com/news/commodities-news/trump-says-iran-probably-responsible-for-attack-on-saudi-pipeline-4898645",
+      "source": "Investing Cmdty",
+      "at": 1789208666000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 4,
       "firstAt": 1789206960000
     },
     {
@@ -246,7 +370,7 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 2,
+      "srcs": 3,
       "firstAt": 1789206960000
     },
     {
@@ -266,7 +390,7 @@
       ],
       "sev": 3,
       "rel": 2,
-      "srcs": 2,
+      "srcs": 3,
       "firstAt": 1789206960000
     },
     {
@@ -1705,29 +1829,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789148963000
-    },
-    {
-      "title": "10-Year Treasury Yield Nears 5% as Markets Brace for a September Fed Rate Hike - Tekedia",
-      "link": "https://news.google.com/rss/articles/CBMipAFBVV95cUxNbzZiQXhTNm5CNXgxc09aX0lySWNTbmF4WkN4cG1KZkVHc21faDBBMVI4d2NzWEVXYnJzSHJJX2NBTkJFYnhfWWVfR2tqNUxTZmNyU05CVnFNZmFoTGttOUg4azZDdkllcEE4YnhjQlpkeWMza0VLVHFleUVpUFRzTGw3bmpQNDBfd0M4VDc4VFRoQmlrWV9Lb2tTN3d1Q0Q4RW5USg?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMipAFBVV95cUxNbzZiQXhTNm5CNXgxc09aX0lySWNTbmF4WkN4cG1KZkVHc21faDBBMVI4d2NzWEVXYnJzSHJJX2NBTkJFYnhfWWVfR2tqNUxTZmNyU05CVnFNZmFoTGttOUg4azZDdkllcEE4YnhjQlpkeWMza0VLVHFleUVpUFRzTGw3bmpQNDBfd0M4VDc4VFRoQmlrWV9Lb2tTN3d1Q0Q4RW5USg?oc=5\" t",
-      "at": 1789148700000,
-      "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789147493000
     }
   ],
   "sources": [
@@ -1753,7 +1854,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": null,
-  "headlinesAt": "2026-09-12T11:48:01.742Z",
-  "updatedAt": "2026-09-12T11:48:01.742Z"
+  "calendarAt": "2026-09-12T11:49:03.138Z",
+  "headlinesAt": "2026-09-12T11:49:03.138Z",
+  "updatedAt": "2026-09-12T11:49:03.138Z"
 }
