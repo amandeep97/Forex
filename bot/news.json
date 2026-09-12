@@ -1,5 +1,146 @@
 {
-  "calendar": [],
+  "calendar": [
+    {
+      "title": "SECO Consumer Climate",
+      "country": "CHF",
+      "impact": "low",
+      "at": 1789110000000,
+      "forecast": "-33",
+      "previous": "-35",
+      "actual": ""
+    },
+    {
+      "title": "Italian Quarterly Unemployment Rate",
+      "country": "EUR",
+      "impact": "low",
+      "at": 1789113600000,
+      "forecast": "5.4%",
+      "previous": "5.3%",
+      "actual": ""
+    },
+    {
+      "title": "Consumer Inflation Expectations",
+      "country": "GBP",
+      "impact": "low",
+      "at": 1789115400000,
+      "forecast": "",
+      "previous": "4.0%",
+      "actual": ""
+    },
+    {
+      "title": "SNB Chairman Schlegel Speaks",
+      "country": "CHF",
+      "impact": "medium",
+      "at": 1789118100000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "Core CPI m/m",
+      "country": "USD",
+      "impact": "high",
+      "at": 1789129800000,
+      "forecast": "0.2%",
+      "previous": "0.2%",
+      "actual": "0.22",
+      "actualFrom": "BLS",
+      "actualNum": 0.22,
+      "vsPrevious": 0.02,
+      "forecastNum": 0.2,
+      "surprise": 0.02,
+      "surprisePct": 10,
+      "beat": "above"
+    },
+    {
+      "title": "Core CPI y/y",
+      "country": "USD",
+      "impact": "high",
+      "at": 1789129800000,
+      "forecast": "2.4%",
+      "previous": "2.5%",
+      "actual": ""
+    },
+    {
+      "title": "CPI m/m",
+      "country": "USD",
+      "impact": "high",
+      "at": 1789129800000,
+      "forecast": "0.4%",
+      "previous": "0.1%",
+      "actual": "0.07",
+      "actualFrom": "BLS",
+      "actualNum": 0.07,
+      "vsPrevious": -0.03,
+      "forecastNum": 0.4,
+      "surprise": -0.33,
+      "surprisePct": -82.5,
+      "beat": "below"
+    },
+    {
+      "title": "CPI y/y",
+      "country": "USD",
+      "impact": "high",
+      "at": 1789129800000,
+      "forecast": "3.4%",
+      "previous": "3.4%",
+      "actual": ""
+    },
+    {
+      "title": "ECB President Lagarde Speaks",
+      "country": "EUR",
+      "impact": "medium",
+      "at": 1789135200000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "Prelim UoM Consumer Sentiment",
+      "country": "USD",
+      "impact": "medium",
+      "at": 1789135200000,
+      "forecast": "51.0",
+      "previous": "51.0",
+      "actual": ""
+    },
+    {
+      "title": "Prelim UoM Inflation Expectations",
+      "country": "USD",
+      "impact": "medium",
+      "at": 1789135200000,
+      "forecast": "",
+      "previous": "4.3%",
+      "actual": ""
+    },
+    {
+      "title": "Federal Budget Balance",
+      "country": "USD",
+      "impact": "low",
+      "at": 1789149480000,
+      "forecast": "-221.1B",
+      "previous": "-432.3B",
+      "actual": ""
+    },
+    {
+      "title": "ECB President Lagarde Speaks",
+      "country": "EUR",
+      "impact": "medium",
+      "at": 1789200000000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "BRICS Summit",
+      "country": "All",
+      "impact": "low",
+      "at": 1789200900000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    }
+  ],
   "headlines": [
     {
       "title": "Zelensky Warns Russia of Retaliation Over Winter Energy Attacks - Kyiv Post",
@@ -1031,23 +1172,6 @@
       "firstAt": 1789153720000
     },
     {
-      "title": "Amid war and sanctions, many Iranians are losing their jobs and struggling to get by - NPR",
-      "link": "https://news.google.com/rss/articles/CBMidkFVX3lxTE5EUGplTllYUzJCdTI5bTZ3aU9ySkpzV2VLQWFwLXc1VnBaS1JhZW9wVy1OUGIwWDFyWVBacFVfYXZYekVPZ0dXZVNPQS13V2xQVUFORFBlNkdXMG9nMDUyVGlNX1lHYzMxNGxxT2tiLU5KYy13dXc?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMidkFVX3lxTE5EUGplTllYUzJCdTI5bTZ3aU9ySkpzV2VLQWFwLXc1VnBaS1JhZW9wVy1OUGIwWDFyWVBacFVfYXZYekVPZ0dXZVNPQS13V2xQVUFORFBlNkdXMG9nMDUyVGlNX1lHYzMxNGxxT2tiLU5KYy13dXc?oc=5\" target=\"_blank\">Amid war and sanctions, many Iranians are losing",
-      "at": 1789155575000,
-      "inst": [
-        "XAU/USD"
-      ],
-      "ccy": [
-        "XAU"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789155575000
-    },
-    {
       "title": "Gold headed for a weekly loss of nearly 2% on surging oil, raised Fed hike bets",
       "link": "https://www.investing.com/news/commodities-news/gold-steadies-after-sharp-drop-as-hotter-ppi-lifts-fed-hike-bets-4897138",
       "source": "Investing Cmdty",
@@ -1392,7 +1516,7 @@
       "firstAt": 1789147723000
     },
     {
-      "title": "House to take up Russia sanctions bill next week - thehill.com",
+      "title": "House to take up Russia sanctions bill next week - The Hill",
       "link": "https://news.google.com/rss/articles/CBMic0FVX3lxTFBLTHg3ZC1GTXJLTVBzRWgyTnUtdXY4bl9qUS1qLWVfT0FKOE1oZFJRRS1xNkRja19NRkZTTmZTcUt6TldOa2xSRl9VYzVkTElzQ0czbXQwY1dPVTN3TzUtanVyUjQ1SVo2ZU54R3pwSnU3YlXSAXhBVV95cUxQRTlUUEdUNlR2ZlRyVlhZYlFBa1lTTmVtM25BSXlVVXQtT2I1a29lQTZ6cmRMWFBjLVVuRlZ5YXNXemNHd2dxMzlaVFhocXBuZWlGT1lnZ2NIeWY4TThBWTB1amp0VlZLM2RnYkZOMGNVN2p4M0tIcTQ?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMic0FVX3lxTFBLTHg3ZC1GTXJLTVBzRWgyTnUtdXY4bl9qUS1qLWVfT0FKOE1oZFJRRS1xNkRja19NRkZTTmZTcUt6TldOa2xSRl9VYzVkTElzQ0czbXQwY1dPVTN3TzUtanVyUjQ1SVo2ZU54R3pwSnU3YlXSAXhBVV95cUxQRTlUUEdUNlR2ZlRyVlhZYlFBa1lTTmVtM25BSXlVVXQtT2I1a29lQTZ6cmRMWF",
@@ -1669,6 +1793,26 @@
       "firstAt": 1789142400000
     },
     {
+      "title": "Sanctions Weaken Russia’s Oil Refining Sector as Drone Strikes Disrupt Recovery - Межа. Новини України.",
+      "link": "https://news.google.com/rss/articles/CBMidEFVX3lxTFBzVzZvbXhBTC1ReGhiYlJWWm1IdWpCN0t3MkxVUGpuemN0LUpzYjlIdjVwdzBlUVFzUmI0aWhZOHAxNzBSenFYSmpCTTdLSEQtYlhVcjJmanJFNUpzcVB3X2E4QUEtYnVrb29JTTJLYVZKZlRL?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMidEFVX3lxTFBzVzZvbXhBTC1ReGhiYlJWWm1IdWpCN0t3MkxVUGpuemN0LUpzYjlIdjVwdzBlUVFzUmI0aWhZOHAxNzBSenFYSmpCTTdLSEQtYlhVcjJmanJFNUpzcVB3X2E4QUEtYnVrb29JTTJLYVZKZlRL?oc=5\" target=\"_blank\">Sanctions Weaken Russia’s Oil Refining Sector as Dr",
+      "at": 1789142338000,
+      "inst": [
+        "USOIL",
+        "XAU/USD",
+        "UKOIL"
+      ],
+      "ccy": [
+        "OIL",
+        "XAU"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789141686000
+    },
+    {
       "title": "Gold prices holding its ground following muted U.S. CPI data - KITCO",
       "link": "https://news.google.com/rss/articles/CBMipwFBVV95cUxOX2hXb1kyb0xYU2ktbjNLaVJRRTFqSndNTXBMZ0ZFV2lxa3BMdHAwQl9XX1JCeTdHSDZrV3JZY19kVnVLQmdHVUY2WHNsaEF3ZTRtc1VBeFAyUXZuVVZra0JOcDZmLUZ1TUd5Um1ST3oyWWpRc0Jic0EzQzQ0bzBwejNyME10eEVfWTVGdHd6dHR5QUItSlBGY2dEc1N0aElrNzNDQWdYUQ?oc=5",
       "source": "Wires (macro)",
@@ -1687,22 +1831,24 @@
       "firstAt": 1789141680000
     },
     {
-      "title": "Gold climbs on dip-buying, Fed rate hike bets rise after US inflation data - The Korea Times",
-      "link": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxQQzB6V1c1bWRPbjB3UUllSmNwRVpDUVI2OUIyemQzM09QSWVvNE5laThROFVPMTBqekZZc3NaZjBHMjh1YmZVRWlkNVNKUGc5ejZvam5FakZIOTRtbWVfSi1zbVlyc19ILWhvcC1kS0JINHpuaDY3Qm1sUVBXYzMtZVhHLVE1RWZIdmdkS1pObGdyMTd6UXRkUEdDeXJFQXVfenRJQ2J4RmttblczUHJzS25nb1NHQnNv0gG-AUFVX3lxTE5QZjVlNXhFTTNjX1dBTElGUzNJcDNDMmw1NVRYaWxDdG02Q0tONTFqOXRMZzZTSDF2SlVjTGNTQTFYY01TUG1OR2lXaWtKRGpESG9mQUkzanUyUXc2Q1g2dENCYXl4WnhGTlA5RnlYTnU4YzNpNHBrNlA3NDdSQU9PT1QwNFp1N2lKNjdGMy1XNWd2VHB2Sy00UVFXSWp6RXJxLUVNOGpWVHBfaTZxSkJKN3NFTlFaNXVURnc3NVE?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiuAFBVV95cUxQQzB6V1c1bWRPbjB3UUllSmNwRVpDUVI2OUIyemQzM09QSWVvNE5laThROFVPMTBqekZZc3NaZjBHMjh1YmZVRWlkNVNKUGc5ejZvam5FakZIOTRtbWVfSi1zbVlyc19ILWhvcC1kS0JINHpuaDY3Qm1sUVBXYzMtZVhHLVE1RWZIdmdkS1pObGdyMTd6UXRkUEdDeXJFQXVfenRJQ2J4Rmttbl",
-      "at": 1789141680000,
+      "title": "Russia Sanctions Bill Scheduled for a House Vote Next Week - Bloomberg.com",
+      "link": "https://news.google.com/rss/articles/CBMisgFBVV95cUxPdzhXU0hyclZKWmQ2bU5ueU05ZDhjcE9LdHlhTVFTMHpCcjZpbnVKYjk1MHd0ZVpFYlhabVNlaVVLTkxpNlJGWVlrU09RcXV3a040QUg3MnFzVDBNMU90Y1lTb01OcTBHRDBXbWs0N2stT0JXTWo2ZnpSbjhTQ1Y1YVZiZGR3UEVwV0lVY2VFdk02QW5VejRUNWZMbHRNUnlfR3ZWa1FmY3ltb3pualdpbG1B?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMisgFBVV95cUxPdzhXU0hyclZKWmQ2bU5ueU05ZDhjcE9LdHlhTVFTMHpCcjZpbnVKYjk1MHd0ZVpFYlhabVNlaVVLTkxpNlJGWVlrU09RcXV3a040QUg3MnFzVDBNMU90Y1lTb01OcTBHRDBXbWs0N2stT0JXTWo2ZnpSbjhTQ1Y1YVZiZGR3UEVwV0lVY2VFdk02QW5VejRUNWZMbHRNUnlfR3ZWa1FmY3ltb3",
+      "at": 1789141686000,
       "inst": [
-        "XAU/USD"
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
       ],
       "ccy": [
-        "USD",
-        "XAU"
+        "XAU",
+        "OIL"
       ],
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789139725000
+      "firstAt": 1789141686000
     }
   ],
   "sources": [
@@ -1725,10 +1871,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
-  "calendarAt": null,
-  "headlinesAt": "2026-09-12T06:12:15.858Z",
-  "updatedAt": "2026-09-12T06:12:15.858Z"
+  "calendarAt": "2026-09-12T06:14:01.212Z",
+  "headlinesAt": "2026-09-12T06:14:01.212Z",
+  "updatedAt": "2026-09-12T06:14:01.212Z"
 }
