@@ -1,33 +1,5 @@
 {
-  "calendar": [
-    {
-      "title": "Federal Budget Balance",
-      "country": "USD",
-      "impact": "low",
-      "at": 1789149480000,
-      "forecast": "-221.1B",
-      "previous": "-432.3B",
-      "actual": ""
-    },
-    {
-      "title": "ECB President Lagarde Speaks",
-      "country": "EUR",
-      "impact": "medium",
-      "at": 1789200000000,
-      "forecast": "",
-      "previous": "",
-      "actual": ""
-    },
-    {
-      "title": "BRICS Summit",
-      "country": "All",
-      "impact": "low",
-      "at": 1789200900000,
-      "forecast": "",
-      "previous": "",
-      "actual": ""
-    }
-  ],
+  "calendar": [],
   "headlines": [
     {
       "title": "Russian attacks kill six, injure dozens in Ukraine, Moscow says it hits ships, plants - Reuters",
@@ -48,11 +20,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789229477000,
-      "_kind": null,
-      "dir": {
-        "XAU/USD": "up"
-      },
-      "why": "War escalation boosts gold safe-haven demand."
+      "_kind": null
     },
     {
       "title": "Jim Cramer Flips the Script: Why Older Investors Should Ditch Growth Stocks for 30-Year Treasuries",
@@ -67,11 +35,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789229100000,
-      "_kind": null,
-      "dir": {
-        "US500": "down"
-      },
-      "why": "Advice to ditch growth stocks implies bearishness."
+      "_kind": null
     },
     {
       "title": "Russia Launches 410 Attack Drones Against Ukraine, Air Defenses Neutralize 336 - Межа. Новини України.",
@@ -91,12 +55,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789227960000,
-      "_kind": null,
-      "dir": {
-        "XAU/USD": "up"
-      },
-      "why": "Military conflict supports gold safe-haven buying."
+      "firstAt": 1789227960000
     },
     {
       "title": "Attack on key pipeline in Saudi Arabia blamed on Iran-backed militias located in Iraq territory - fox43.com",
@@ -116,14 +75,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789229211000,
-      "_kind": null,
-      "dir": {
-        "XAU/USD": "up",
-        "USOIL": "up",
-        "UKOIL": "up"
-      },
-      "why": "Pipeline attack disrupts supply, boosting oil and gold."
+      "firstAt": 1789229211000
     },
     {
       "title": "Do You Really Need Bond ETFs Before Age 50? Here's What I'd Do.",
@@ -154,12 +106,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789230125000,
-      "dir": {
-        "US500": "down",
-        "US30": "down"
-      },
-      "why": "Oil and yields pressure stocks, implying bearishness."
+      "firstAt": 1789230125000
     },
     {
       "title": "Apple, Taiwan Semi Lead Five Stocks Near Buy Points",
@@ -173,11 +120,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789230125000,
-      "dir": {
-        "US500": "up"
-      },
-      "why": "Stocks near buy points suggest bullish momentum."
+      "firstAt": 1789230125000
     },
     {
       "title": "Ukraine strikes Russian military sites near Taganrog, SBU says - Межа. Новини України.",
@@ -197,11 +140,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789227420000,
-      "dir": {
-        "XAU/USD": "up"
-      },
-      "why": "Ukraine strikes on Russia boost gold safe-haven."
+      "firstAt": 1789227420000
     },
     {
       "title": "Fed rate-hike odds surge as Warsh faces inflation-weary markets",
@@ -223,16 +162,10 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789229820000,
-      "dir": {
-        "XAU/USD": "down",
-        "EUR/USD": "down",
-        "GBP/USD": "down"
-      },
-      "why": "Higher rate hike odds strengthen dollar, hurting pairs."
+      "firstAt": 1789229820000
     },
     {
-      "title": "8 killed, dozens wounded in Russian strikes on Ukraine as Putin warns Europe against sending troops - New York Post",
+      "title": "8 killed, dozens wounded in Russian strikes on Ukraine as Putin warns Europe against sending troops - nypost.com",
       "link": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxQNmFaME84XzRYTG83Tkhvb3VGUDNYWkctYVc1RWs0UWhnLXltRDFJYmxQckR2MlVtYm9EZERXaUJ1Sl9RaGFtYTRCbDI3a1EyS0pxbXU3V3hGNWtQV01IZlBsSTg2Zm5LWEtib2tGTHRuOVpIdTR4WVBYR0Z2ekZNYnM3YUJMV2lMMzhETXJCbmduM1hoSTdlMEwzbVZGamJXWFlvNTJnT0VaYzBXUWk5VFJPRHVELVB4UVJBNjlwdXJsVEJpV3NiMjd0bGZvbmx0RkRkMjBxbw?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMi1wFBVV95cUxQNmFaME84XzRYTG83Tkhvb3VGUDNYWkctYVc1RWs0UWhnLXltRDFJYmxQckR2MlVtYm9EZERXaUJ1Sl9RaGFtYTRCbDI3a1EyS0pxbXU3V3hGNWtQV01IZlBsSTg2Zm5LWEtib2tGTHRuOVpIdTR4WVBYR0Z2ekZNYnM3YUJMV2lMMzhETXJCbmduM1hoSTdlMEwzbVZGamJXWFlvNTJnT0VaYz",
@@ -249,11 +182,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789227420000,
-      "dir": {
-        "XAU/USD": "up"
-      },
-      "why": "Escalating violence boosts gold safe-haven demand."
+      "firstAt": 1789227420000
     },
     {
       "title": "Cushman & Wakefield Insider Sells 12,500 Shares",
@@ -285,11 +214,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789227420000,
-      "dir": {
-        "XAU/USD": "up"
-      },
-      "why": "Economic damage from strikes supports gold safe-haven."
+      "firstAt": 1789227420000
     },
     {
       "title": "Trump says Iran likely responsible for attack that shut vital Saudi oil pipeline - KWWL",
@@ -309,13 +234,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789226820000,
-      "dir": {
-        "USOIL": "up",
-        "XAU/USD": "up",
-        "UKOIL": "up"
-      },
-      "why": "Iran blame for pipeline attack boosts oil and gold."
+      "firstAt": 1789226820000
     },
     {
       "title": "Will the Houthi attacks activate the Mecca Pact?",
@@ -335,13 +254,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789229208000,
-      "dir": {
-        "XAU/USD": "up",
-        "USOIL": "up",
-        "UKOIL": "up"
-      },
-      "why": "Houthi attacks and potential intervention boost risk assets."
+      "firstAt": 1789229208000
     },
     {
       "title": "Canadian boycott of US products pushes grocers to adapt, explore new supply sources",
@@ -355,11 +268,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789229183000,
-      "dir": {
-        "USD/CAD": "down"
-      },
-      "why": "Boycott of US products weakens dollar relative to CAD."
+      "firstAt": 1789229183000
     },
     {
       "title": "3 Forgotten AI Stocks That Should Rebound From Their Corrections",
@@ -373,11 +282,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789229100000,
-      "dir": {
-        "US500": "up"
-      },
-      "why": "Stocks expected to rebound from corrections."
+      "firstAt": 1789229100000
     },
     {
       "title": "Russia's Lavrov says yes to talks, no to ceasefire with Ukraine - Yahoo",
@@ -397,11 +302,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789227960000,
-      "dir": {
-        "XAU/USD": "up"
-      },
-      "why": "No ceasefire implies continued conflict, boosting gold."
+      "firstAt": 1789227960000
     },
     {
       "title": "Russia launches more than 400 attack drones at Ukraine in one day, most of them downed - pravda.com.ua",
@@ -619,7 +520,7 @@
       "firstAt": 1789224148000
     },
     {
-      "title": "Three killed in Russian air strikes on 10 regions of Ukraine - aljazeera.com",
+      "title": "Three killed in Russian air strikes on 10 regions of Ukraine - Al Jazeera",
       "link": "https://news.google.com/rss/articles/CBMingFBVV95cUxPWVZZYUw3SGx6TDJld21TNnJ2Z0I3YmMzc2FDcmRuX3d5UXRJQkVFSGpZazdUMmxrWjBuN0lhd0Nxc1lpRDhzbTdHOHJoSkxLNXY0X0o5eXlQSk16WVFjekpOU0JQc2JSRTNCNURQald1NzhHT295QVJNa0I4QlJlVzI4eTk1Z2VnNDFTUFdUajJ6ZE9rT0tPeGU4OHVFd9IBowFBVV95cUxNQUc4ZzBSSTNwMTZreGNGQWVoMnBxd0lRZ002UzdySk1xQ2tQVlA2OVN2djBRVk5IUEtjTUNoNG13ZW5rQ2w3bVpzT2xXdW4xTTA2Q3p0ZUJvVVh0a285Nm9kOUlUT21qWEotcFRQTUhCOGQ3ckNkTGswSmxZdWpNUk1Ybkk5MGtmeEdIay1RVWdlMVZDYkM0My1iMnFDeXdOb2tn?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMingFBVV95cUxPWVZZYUw3SGx6TDJld21TNnJ2Z0I3YmMzc2FDcmRuX3d5UXRJQkVFSGpZazdUMmxrWjBuN0lhd0Nxc1lpRDhzbTdHOHJoSkxLNXY0X0o5eXlQSk16WVFjekpOU0JQc2JSRTNCNURQald1NzhHT295QVJNa0I4QlJlVzI4eTk1Z2VnNDFTUFdUajJ6ZE9rT0tPeGU4OHVFd9IBowFBVV95cUxNQU",
@@ -873,7 +774,7 @@
       "firstAt": 1789216500000
     },
     {
-      "title": "Rabbi condemns Labour’s Israel sanctions - telegraph.co.uk",
+      "title": "Rabbi condemns Labour’s Israel sanctions - The Telegraph",
       "link": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxOYzRGTnFacUlLdGxKMS0tdG9GSGE4el9tQm9mRWx6THp2SU9ZUGpLbDZRenlBdjhRUHgwV3ZWR203a1FDUldhVXJJYkhMblFXR2h1ZWxxcTI0X3lsSjlTWkdILVhsOGNCZTZrUnA0eUhNeVNPUEVadnVzTGgza1pqZkZycmpKS2tXaVY4?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiiwFBVV95cUxOYzRGTnFacUlLdGxKMS0tdG9GSGE4el9tQm9mRWx6THp2SU9ZUGpLbDZRenlBdjhRUHgwV3ZWR203a1FDUldhVXJJYkhMblFXR2h1ZWxxcTI0X3lsSjlTWkdILVhsOGNCZTZrUnA0eUhNeVNPUEVadnVzTGgza1pqZkZycmpKS2tXaVY4?oc=5\" target=\"_blank\">Rabbi condemns Labo",
@@ -933,7 +834,7 @@
       "firstAt": 1789214732000
     },
     {
-      "title": "Trump: Iran probably ‘behind’ Saudi oil pipeline attack - aljazeera.com",
+      "title": "Trump: Iran probably ‘behind’ Saudi oil pipeline attack - Al Jazeera",
       "link": "https://news.google.com/rss/articles/CBMipgFBVV95cUxPSXhlZTE4Z2M1VTFMejZmSE15WGU5bGxCVUtoMTZ2X0VsZXhaWnhlTzJpV0NSd2liZUp5VVExY2VIcGVodE5JbE5vclk2YlNFWVhseWNEZ0JFMlVwajcwSkhyWTdwWXU5SGVHTG9WZFFkUXlNelM4UVZoSHdTSk1LSGNJOVA3V3Jhd0Ffc1M3MTQ3SE5tX0dWaGZ4TzRiRVZESjRrWlZn0gGrAUFVX3lxTFBNazkwX29zQkxhd2IxeXVDY2JqNUVDWFVqeTY1QlhzaDFTc09aMkdBTmR3dzlNN0c5M2lGZGozQXljVDExSF9lak5OMUZHb0JPazZ2dllFYUVUeVRvbFhEekRwa3VwRWtqV0hJbkl4WWhtWS03dE1BTERxWHNCZmdpS1k3T0NMeXJuM0JiOGZabER5SWhSbE5aXy1LVmZtQmwtSkFnS2xNMUpJbw?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMipgFBVV95cUxPSXhlZTE4Z2M1VTFMejZmSE15WGU5bGxCVUtoMTZ2X0VsZXhaWnhlTzJpV0NSd2liZUp5VVExY2VIcGVodE5JbE5vclk2YlNFWVhseWNEZ0JFMlVwajcwSkhyWTdwWXU5SGVHTG9WZFFkUXlNelM4UVZoSHdTSk1LSGNJOVA3V3Jhd0Ffc1M3MTQ3SE5tX0dWaGZ4TzRiRVZESjRrWlZn0gGrAU",
@@ -1013,7 +914,7 @@
       "firstAt": 1789214269000
     },
     {
-      "title": "At least 11 killed in Russian attacks on Ukraine as Kyiv strikes Russia's 'shadow fleet' - euronews.com",
+      "title": "At least 11 killed in Russian attacks on Ukraine as Kyiv strikes Russia's 'shadow fleet' - Euronews.com",
       "link": "https://news.google.com/rss/articles/CBMiywFBVV95cUxPYWtVVkZYS2hNNGNKZG1PZmpDRVVObmszWnhaSG9pZDFwSG42ejVjSThVV2Vfd3VHRUE3OVpPVElocXRCUE1xZFZXZVBmemE3RmRrRWcwU1JqRklQdkctal9tbXJqbDFyc09wUzRmZWpGYl9Kb3RTZk5Gbk5jRHRNM2pBWXhfSVl0ZWw0Y0ExQ00wRFNhQjZpVExraldrSWFZZHY2WTdWWjF4QjVfRFN5OHJNQkJIQ2JBc0RCSGlJazVncXNsMW5TQzBIdw?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiywFBVV95cUxPYWtVVkZYS2hNNGNKZG1PZmpDRVVObmszWnhaSG9pZDFwSG42ejVjSThVV2Vfd3VHRUE3OVpPVElocXRCUE1xZFZXZVBmemE3RmRrRWcwU1JqRklQdkctal9tbXJqbDFyc09wUzRmZWpGYl9Kb3RTZk5Gbk5jRHRNM2pBWXhfSVl0ZWw0Y0ExQ00wRFNhQjZpVExraldrSWFZZHY2WTdWWjF4Qj",
@@ -1488,7 +1389,7 @@
       "firstAt": 1789169785000
     },
     {
-      "title": "The next trillion matters more for gold than the next Fed rate hike - kitco.com",
+      "title": "The next trillion matters more for gold than the next Fed rate hike - KITCO",
       "link": "https://news.google.com/rss/articles/CBMinAFBVV95cUxQdk4wRk9WZDFNeU0tNDV1N3loWHJfV0dDODB1Rlh0RkVHQmFlY1BydmdXanA0RGt2ODVoUlItd1ZnNk94SFRkY0tRX09BVUNac1dYUDVqMzVaUzJvdDFvVEVqaEZKU3RZSEhFeWZfTUlMQjh2dTVDRFl2cjB3NGJFRjRGZ3NuUnI2VWpxeTM1akFWZk1oTW5pdnVldVc?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMinAFBVV95cUxQdk4wRk9WZDFNeU0tNDV1N3loWHJfV0dDODB1Rlh0RkVHQmFlY1BydmdXanA0RGt2ODVoUlItd1ZnNk94SFRkY0tRX09BVUNac1dYUDVqMzVaUzJvdDFvVEVqaEZKU3RZSEhFeWZfTUlMQjh2dTVDRFl2cjB3NGJFRjRGZ3NuUnI2VWpxeTM1akFWZk1oTW5pdnVldVc?oc=5\" target=\"_bla",
@@ -1837,7 +1738,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-12T16:55:48.633Z",
-  "headlinesAt": "2026-09-12T16:55:48.633Z",
-  "updatedAt": "2026-09-12T16:55:48.633Z"
+  "calendarAt": null,
+  "headlinesAt": "2026-09-12T16:57:16.904Z",
+  "updatedAt": "2026-09-12T16:57:16.904Z"
 }
