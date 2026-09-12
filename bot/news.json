@@ -75,7 +75,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789218095000,
-      "_kind": null
+      "_kind": null,
+      "why": "Ukraine conflict news, no clear market direction"
     },
     {
       "title": "3 Agentic AI Stocks to Own Before AI Changes the World as We Know It",
@@ -90,7 +91,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789217400000,
-      "_kind": null
+      "_kind": null,
+      "why": "General AI stock advice, no specific direction"
     },
     {
       "title": "Inflation is outpacing wage growth again, squeezing Americans’ paychecks",
@@ -114,7 +116,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789217355000,
-      "_kind": null
+      "_kind": null,
+      "why": "US inflation data, no clear directional bias"
     },
     {
       "title": "Dow Jones Futures: Fed Rate Hike Seen As Oil, Yields Pressure Stocks; Apple, Moderna Are New Buys",
@@ -134,7 +137,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789217302000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down",
+        "US30": "down"
+      },
+      "why": "Fed hike pressure weighs on stocks"
     },
     {
       "title": "BRICS leaders voice concern over Middle East, condemn unilateral sanctions at India summit - The Killeen Daily Herald",
@@ -153,9 +161,10 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789217126000,
-      "_kind": null
+      "srcs": 2,
+      "firstAt": 1789215596000,
+      "_kind": null,
+      "why": "Diplomatic statements, no immediate market impact"
     },
     {
       "title": "Saudi pipeline attack: Iraq races to contain fallout after Iran-backed militias accused of attacking east-west Saudi oil pipeline - ABC7 Chicago",
@@ -174,8 +183,14 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789215045000
+      "srcs": 3,
+      "firstAt": 1789215013000,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Pipeline attack boosts oil and gold"
     },
     {
       "title": "Canadian boycott of US products pushes grocers to adapt, explore new supply sources",
@@ -189,7 +204,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789215545000
+      "firstAt": 1789215545000,
+      "why": "Boycott news, unclear impact on CAD"
     },
     {
       "title": "Trump says Iran probably responsible for attack on Saudi oil pipeline - Arab News",
@@ -208,8 +224,14 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789215045000
+      "srcs": 3,
+      "firstAt": 1789215013000,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Iran attribution increases geopolitical risk"
     },
     {
       "title": "Saudi Arabia shuts key oil pipeline after drone attack launched from Iraq",
@@ -228,8 +250,14 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789215045000
+      "srcs": 3,
+      "firstAt": 1789215013000,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Pipeline shutdown reduces supply, boosts prices"
     },
     {
       "title": "Trump: Iran probably ‘behind’ Saudi oil pipeline attack - Al Jazeera",
@@ -248,8 +276,61 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789212382000
+      "srcs": 3,
+      "firstAt": 1789212382000,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Iran attribution increases geopolitical risk"
+    },
+    {
+      "title": "Trump: Iran probably ‘behind’ Saudi oil pipeline attack",
+      "link": "https://www.aljazeera.com/video/newsfeed/2026/9/12/trump-iran-probably-behind-saudi-oil-pipeline-attack?traffic_source=rss",
+      "source": "Al Jazeera",
+      "desc": "Trump: Iran probably ‘behind’ Saudi oil pipeline attack",
+      "at": 1789215013000,
+      "inst": [
+        "USOIL",
+        "XAU/USD",
+        "UKOIL"
+      ],
+      "ccy": [
+        "OIL",
+        "XAU"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 3,
+      "firstAt": 1789212382000,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Iran attribution increases geopolitical risk"
+    },
+    {
+      "title": "Yemen government forces say Houthi ‘members, vehicles’ targeted in Mocha",
+      "link": "https://www.aljazeera.com/news/2026/9/12/yemen-government-forces-say-houthi-members-vehicles-targeted-in-mocha?traffic_source=rss",
+      "source": "Al Jazeera",
+      "desc": "Yemeni government forces says they launched air strikes on Houthi fighters along the Red Sea coast.",
+      "at": 1789214269000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789214269000,
+      "why": "Yemen conflict, no clear market direction"
     },
     {
       "title": "At least 11 killed in Russian attacks on Ukraine as Kyiv strikes Russia's 'shadow fleet' - Euronews.com",
@@ -269,7 +350,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789211661000
+      "firstAt": 1789211661000,
+      "why": "Ukraine conflict news, no clear market direction"
     },
     {
       "title": "Saudis shut down oil pipeline as Houthis tighten grip on Red Sea shipping",
@@ -285,7 +367,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789212986000
+      "firstAt": 1789212986000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Pipeline shutdown and Red Sea risk boost oil"
     },
     {
       "title": "Israeli drone strike injures 9 Gazans in new ceasefire violation - Middle East Monitor",
@@ -305,7 +391,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789212382000
+      "firstAt": 1789212382000,
+      "why": "Gaza conflict news, no clear market direction"
     },
     {
       "title": "Christian Charities, Bishops Team Up with British Government to Push Israel Sanctions - Middle East Forum",
@@ -345,7 +432,7 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 1,
+      "srcs": 2,
       "firstAt": 1789210085000
     },
     {
@@ -365,7 +452,7 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 1,
+      "srcs": 2,
       "firstAt": 1789210085000
     },
     {
@@ -864,60 +951,6 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789191720000
-    },
-    {
-      "title": "‘War on terror’: How 9/11 changed the language of conflict",
-      "link": "https://www.aljazeera.com/news/2026/9/12/war-on-terror-how-9-11-changed-the-language-of?traffic_source=rss",
-      "source": "Al Jazeera",
-      "desc": "The events of September 11, 2001 spawned a new lexicon which effectively sanitised the erosion of human rights.",
-      "at": 1789190765000,
-      "inst": [
-        "XAU/USD"
-      ],
-      "ccy": [
-        "XAU"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789190765000
-    },
-    {
-      "title": "Chileans clash over 9/11 military coup legacy",
-      "link": "https://www.aljazeera.com/video/newsfeed/2026/9/12/chileans-clash-over-9-11-military-coup?traffic_source=rss",
-      "source": "Al Jazeera",
-      "desc": "Protesters and police have clashed in Chile, as the country marked 53 years of the military coup.",
-      "at": 1789190549000,
-      "inst": [
-        "XAU/USD"
-      ],
-      "ccy": [
-        "XAU"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789190549000
-    },
-    {
-      "title": "BRICS meets in India: What’s on the agenda, why it matters",
-      "link": "https://www.aljazeera.com/news/2026/9/12/brics-meets-in-india-whats-on-the-agenda-why-it-matters?traffic_source=rss",
-      "source": "Al Jazeera",
-      "desc": "This year's summit comes amid the US-Israel war on Iran, Russia's war on Ukraine and global economic challenges.",
-      "at": 1789190529000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789190529000
     },
     {
       "title": "Global funds retreat from Indian stocks as some cut exposure to zero - Bloomberg",
@@ -1774,6 +1807,28 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789147723000
+    },
+    {
+      "title": "Why Treasury’s $6 billion bond buyback didn’t lower mortgage rates",
+      "link": "https://finance.yahoo.com/personal-finance/mortgages/article/why-treasurys-6-billion-bond-buyback-didnt-lower-mortgage-rates-174923069.html",
+      "source": "Yahoo Finance",
+      "at": 1789148963000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789148963000
     }
   ],
   "sources": [
@@ -1799,7 +1854,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-12T13:04:48.776Z",
-  "headlinesAt": "2026-09-12T13:04:48.776Z",
-  "updatedAt": "2026-09-12T13:04:48.776Z"
+  "calendarAt": "2026-09-12T13:06:17.679Z",
+  "headlinesAt": "2026-09-12T13:06:17.679Z",
+  "updatedAt": "2026-09-12T13:06:17.679Z"
 }
