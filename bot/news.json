@@ -30,6 +30,23 @@
   ],
   "headlines": [
     {
+      "title": "Trump says a unified Ireland would be ‘fantastic’ during Irish visit",
+      "link": "https://www.aljazeera.com/news/2026/9/12/trump-says-a-unified-ireland-would-be-fantastic-during-irish-visit?traffic_source=rss",
+      "source": "Al Jazeera",
+      "desc": "British Prime Minister Andy Burnham maintains there is not enough popular support for Northern Ireland to leave the UK.",
+      "at": 1789222828000,
+      "inst": [
+        "GBP/USD"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1789221380000,
+      "_kind": null,
+      "why": "Political rhetoric lacks immediate market impact."
+    },
+    {
       "title": "The Tax Math That Makes These Dividend Stocks Worth Much More Inside a Roth",
       "link": "https://finance.yahoo.com/markets/stocks/articles/tax-math-makes-dividend-stocks-141758936.html",
       "source": "Yahoo Finance",
@@ -42,7 +59,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789221644000,
-      "_kind": null
+      "_kind": null,
+      "why": "General dividend advice, no specific direction."
     },
     {
       "title": "Sybiha on attack on Odesa region: Russia continues terror against civilians - Ukrinform",
@@ -62,8 +80,9 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789221616000,
-      "_kind": null
+      "firstAt": 1789222500000,
+      "_kind": null,
+      "why": "Conflict news, no clear immediate price signal."
     },
     {
       "title": "BRICS summit backs call for restraint amid US-Iran tensions - The Jerusalem Post",
@@ -83,7 +102,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789221792000
+      "firstAt": 1789221792000,
+      "why": "Diplomatic call for restraint, unclear impact."
     },
     {
       "title": "Meet Wall Street’s 3 Safest High-Yield Dividend Stocks",
@@ -97,27 +117,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789221644000
-    },
-    {
-      "title": "Sibiga called for tougher sanctions against Russia's military-industrial complex following the attack on the Odesa region - UA.NEWS",
-      "link": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNLXNWTkVuSHEzTGwzSDNUS3NHTUxZbHUwU1VpOWZVODNMOTc1alRkdU9xYkUwQ052TW11Y2xKQlFRVUhTUlVLd2h3a2dhNmgxY0tPM1B4Wk9xUXhsVVpVa3Y5TnltUlBYb3R4ZVhBeHJNNnhKVS1oREhWaGl4N0ZPVHlrdUNhbnRqWFhhNHEyNUxOSFRPek5GMUFjYU1UdVF4NFBHdXRfN2xlTWM?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiqwFBVV95cUxNLXNWTkVuSHEzTGwzSDNUS3NHTUxZbHUwU1VpOWZVODNMOTc1alRkdU9xYkUwQ052TW11Y2xKQlFRVUhTUlVLd2h3a2dhNmgxY0tPM1B4Wk9xUXhsVVpVa3Y5TnltUlBYb3R4ZVhBeHJNNnhKVS1oREhWaGl4N0ZPVHlrdUNhbnRqWFhhNHEyNUxOSFRPek5GMUFjYU1UdVF4NFBHdXRfN2xlTW",
-      "at": 1789221616000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789221616000
+      "firstAt": 1789221644000,
+      "why": "Stock picking article, no market direction."
     },
     {
       "title": "U.S. 10-Year Treasury Yields Hold Near Multiyear Highs As August CPI Data Fuels Fed Rate Hike Bets - foreignpolicyjournal.com",
@@ -140,7 +141,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789219800000
+      "firstAt": 1789219800000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Higher yields strengthen dollar, bearish for pairs."
     },
     {
       "title": "Trump indicates Iran behind attack on Saudi oil pipeline - سانا",
@@ -160,7 +167,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789219575000
+      "firstAt": 1789219575000,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Geopolitical risk boosts oil and gold."
     },
     {
       "title": "Trump says Iran probably responsible for attack on Saudi oil pipeline - arabnews.com",
@@ -180,7 +193,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789217498000
+      "firstAt": 1789217498000,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Geopolitical risk boosts oil and gold."
     },
     {
       "title": "Scott Bessent dismisses 'Bloomberg Terminal bros' as 10-year Treasury yield hits 4.94% despite $5.2B buyback",
@@ -202,7 +221,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789219800000
+      "firstAt": 1789219800000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "High yields strengthen dollar, bearish for pairs."
     },
     {
       "title": "Are the UK sanctions on Israel real progress, or more illusion? - Mondoweiss",
@@ -222,7 +247,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789219800000
+      "firstAt": 1789219800000,
+      "why": "Sanctions commentary, no clear market direction."
     },
     {
       "title": "Ukraine strikes FPV drone production facility, UAV warehouses near Taganrog - Ukrinform",
@@ -242,7 +268,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789219800000
+      "firstAt": 1789219800000,
+      "why": "Military strike, no clear immediate price signal."
     },
     {
       "title": "Trump says Iran likely responsible for attack on vital Saudi oil pipeline - Egypt Independent",
@@ -262,7 +289,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789217498000
+      "firstAt": 1789217498000,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Geopolitical risk boosts oil and gold."
     },
     {
       "title": "Fed rate-hike odds surge as Warsh faces inflation-weary markets - thestreet.com",
@@ -285,7 +318,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789219020000
+      "firstAt": 1789219020000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Rate hike bets strengthen dollar, bearish pairs."
     },
     {
       "title": "Russian Strikes Kill Four in Donetsk Region, Including a Medic - Межа. Новини України.",
@@ -305,7 +344,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789216500000
+      "firstAt": 1789216500000,
+      "why": "Conflict news, no clear immediate price signal."
     },
     {
       "title": "Ray Dalio and Bloomberg analysts reveal where to put $10,000 as stocks hit highs and bonds sell off in 2026",
@@ -319,7 +359,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789218000000
+      "firstAt": 1789218000000,
+      "why": "Investment advice, no specific market direction."
     },
     {
       "title": "Donald Trump tells reporters Iran was likely responsible for attack on Saudi pipline - The Jerusalem Post",
@@ -588,7 +629,7 @@
       "firstAt": 1789212986000
     },
     {
-      "title": "Israeli drone strike injures 9 Gazans in new ceasefire violation - middleeastmonitor.com",
+      "title": "Israeli drone strike injures 9 Gazans in new ceasefire violation - Middle East Monitor",
       "link": "https://news.google.com/rss/articles/CBMirAFBVV95cUxQREdZREV3bG9wN1U1RmxSS1RnSUtROXRLay1QZ1BsNzdVOXUxbjByUjIyZmx0Vmd6MWNhQnB1anlKOHphSHIzYUdyb3FuWXFCNUUtNTJEaWc3YjlFemV2UWRJS193RmJTWTJGM3QtUURoTTQ4Z0lJTnhrVFV3b3BaWU9ZQnV2YnNLck9HLUczc3libGpUM1VLMk8tQUhxeXR1RDdOeGEzQml0WU9j0gGyAUFVX3lxTE5jcnR2NjZFNkVaTFRZSGZ6NkFmTTJ4dzBOb0syN0c0aUs2NnZFVDlqazhIUXhSMTltZ3lMcnZuUTU0cUZSR3JNWUI2LUxTZ0tXU2swNEJ6N1gzZE51Uy1IZDE2MTZ6OEx1QXNlUU1BTUtCNFlXbGZsUnhNeXZmaFlpTFAzN3BncFF6SlI5anFNU2N4Z3ZwWjRlaFFiLTQtT0pzRWZiR1lGSnpIQlJpTEdSblE?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMirAFBVV95cUxQREdZREV3bG9wN1U1RmxSS1RnSUtROXRLay1QZ1BsNzdVOXUxbjByUjIyZmx0Vmd6MWNhQnB1anlKOHphSHIzYUdyb3FuWXFCNUUtNTJEaWc3YjlFemV2UWRJS193RmJTWTJGM3QtUURoTTQ4Z0lJTnhrVFV3b3BaWU9ZQnV2YnNLck9HLUczc3libGpUM1VLMk8tQUhxeXR1RDdOeGEzQml0WU",
@@ -604,8 +645,8 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789212960000
+      "srcs": 2,
+      "firstAt": 1789212382000
     },
     {
       "title": "Christian Charities, Bishops Team Up with British Government to Push Israel Sanctions - Middle East Forum",
@@ -669,7 +710,7 @@
       "firstAt": 1789210085000
     },
     {
-      "title": "3 killed in Russian strikes on Ukraine as Putin warns Europe against sending troops - abcnews.com",
+      "title": "3 killed in Russian strikes on Ukraine as Putin warns Europe against sending troops - ABC News - Breaking News, Latest News and Videos",
       "link": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxOSV9fWnNmUDMzT2FLZW1JNGViVXh0aldMYzZpOEhydWJmZWJCaThsOG9lQ2hvdlRGS3BwVlVHSE11YnhPbUcwX0ExejRRNlM0Y3FCMzhIUE1qdnQ3ZVBiR2UtcWQ1Y1B0Z1N4QnBDckdzU0VSbnN5ZVRhTWlOQlJDdTBRQ1l3dnBsV0E3T1RUbmZSYXg1V3ZUV3I2QmRoQkNFT0RtaGhlZmrSAa4BQVVfeXFMT2JjS0VpZUkzVU1HOWlZNEtfb0xCVGxPNjRybm8xZzZEUWhMWk5IMkZJTE9IQndlOUx3RDE4YS1IZ3ZCM3NKTHBYbmNlMDZKekFYVmdVSGFwdmd3c1BaWWc3anhURWlRY2w0VnY4azRENHVBVUM2NF9hNm5QZHYwd0dBeDVBVGdYN25LS1BVb1ROZXZkOWg1S1R0LUQ4R0NSVzZFd09SQjBvRHZtTFFn?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiqAFBVV95cUxOSV9fWnNmUDMzT2FLZW1JNGViVXh0aldMYzZpOEhydWJmZWJCaThsOG9lQ2hvdlRGS3BwVlVHSE11YnhPbUcwX0ExejRRNlM0Y3FCMzhIUE1qdnQ3ZVBiR2UtcWQ1Y1B0Z1N4QnBDckdzU0VSbnN5ZVRhTWlOQlJDdTBRQ1l3dnBsV0E3T1RUbmZSYXg1V3ZUV3I2QmRoQkNFT0RtaGhlZmrSAa",
@@ -683,7 +724,7 @@
         "XAU",
         "OIL"
       ],
-      "sev": 2,
+      "sev": 3,
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789211661000
@@ -700,7 +741,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789210592000
+      "firstAt": 1789211573000
     },
     {
       "title": "Oracle Just Added $30 Billion in AI Contracts. Nvidia Investors Should Read the Fine Print",
@@ -746,35 +787,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789210592000
-    },
-    {
-      "title": "Jim Cramer Couldn’t Blame Anyone Who Held These Two Elon Musk Stocks",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/jim-cramer-couldn-t-blame-105852649.html",
-      "source": "Yahoo Finance",
-      "at": 1789210732000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789210732000
-    },
-    {
-      "title": "Jim Cramer Wondered Whether Microsoft Corporation (NASDAQ:MSFT) Isn’t “That” Dependent On AI",
-      "link": "https://finance.yahoo.com/technology/ai/articles/jim-cramer-wondered-whether-microsoft-105632101.html",
-      "source": "Yahoo Finance",
-      "at": 1789210592000,
-      "inst": [
-        "US100"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789210592000
+      "firstAt": 1789211573000
     },
     {
       "title": "Far-right protesters rally against Islam on 9/11 anniversary",
@@ -807,7 +820,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 3,
-      "firstAt": 1789208666000
+      "firstAt": 1789208454000
     },
     {
       "title": "Iraq closes three border crossings with Iran after attack that shut Saudi pipeline, officials say - The Times of Israel",
@@ -827,7 +840,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 3,
-      "firstAt": 1789208666000
+      "firstAt": 1789208454000
     },
     {
       "title": "Saudi Arabia shuts critical oil pipeline after drone attack: What it means",
@@ -847,7 +860,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 3,
-      "firstAt": 1789208666000
+      "firstAt": 1789208454000
     },
     {
       "title": "Iran pursues cautious escalation ahead of US midterms - Dhaka Tribune",
@@ -886,7 +899,27 @@
       "sev": 1,
       "rel": 2,
       "srcs": 3,
-      "firstAt": 1789208666000
+      "firstAt": 1789208454000
+    },
+    {
+      "title": "Live - Trump says Iran likely behind Saudi pipeline attack, sees war ending 'very soon' - Iran International",
+      "link": "https://news.google.com/rss/articles/CBMiXkFVX3lxTFBWUkFCaXFNOVJFN2ZucUJZTEIyTW1YS2owX21jVGhhS2V4VFlLVXRvdkR5aURSZmlTX0hSRFRQeGlrNlZqWGRnb0hMb2JJdklBQzIzdlctdERIc2RPSUE?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiXkFVX3lxTFBWUkFCaXFNOVJFN2ZucUJZTEIyTW1YS2owX21jVGhhS2V4VFlLVXRvdkR5aURSZmlTX0hSRFRQeGlrNlZqWGRnb0hMb2JJdklBQzIzdlctdERIc2RPSUE?oc=5\" target=\"_blank\">Live - Trump says Iran likely behind Saudi pipeline attack, sees war ending 'ver",
+      "at": 1789208454000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 3,
+      "firstAt": 1789208454000
     },
     {
       "title": "EUWAX AG Hits Near 52‑Week High as ECB Rate Hike Fades, Markets Rally - InsuranceNewsNet",
@@ -964,10 +997,10 @@
       "firstAt": 1789202941000
     },
     {
-      "title": "Russia attacks on cargo vessels, steel plants across Ukraine kill 3",
+      "title": "Three killed in Russian air strikes on 10 regions of Ukraine",
       "link": "https://www.aljazeera.com/news/2026/9/12/russia-strikes-cargo-vessels-steel-plants-across-ukraine?traffic_source=rss",
       "source": "Al Jazeera",
-      "desc": "Russia's Defence Ministry says its forces have struck several industrial facilities across Ukraine.",
+      "desc": "Russia attacks have targeted cargo vessels, steel plants and industrial facilities across Ukraine.",
       "at": 1789202328000,
       "inst": [
         "XAU/USD",
@@ -978,10 +1011,10 @@
         "XAU",
         "OIL"
       ],
-      "sev": 1,
+      "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789201356000
+      "firstAt": 1789202328000
     },
     {
       "title": "Russia Launches Large-Scale Missile and Drone Attack Across Ukraine, Killing at Least Four - UNITED24 Media",
@@ -1000,7 +1033,7 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 2,
+      "srcs": 1,
       "firstAt": 1789201356000
     },
     {
@@ -1021,30 +1054,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789198980000
-    },
-    {
-      "title": "How a billion-dollar sanctions dodge kept Chinese goods flowing to Iran - The Japan Times",
-      "link": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxNSUMyZDhVOF9wZkpNMEZiN195MGlucEtkUWJ0ckFuUjFieFlBYmtfZmt4WTZSb1MzdHV5ZWZDbXRlek1wSVhPUzNCOTJXS3ZnNExaa05ubzVUejJMWHd3UWotbXRkTndHUVFfSW92Sk5LSVdwR0lfZDN2QTJ5Y202RUZHZWNkZmc4T1RZ?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiiwFBVV95cUxNSUMyZDhVOF9wZkpNMEZiN195MGlucEtkUWJ0ckFuUjFieFlBYmtfZmt4WTZSb1MzdHV5ZWZDbXRlek1wSVhPUzNCOTJXS3ZnNExaa05ubzVUejJMWHd3UWotbXRkTndHUVFfSW92Sk5LSVdwR0lfZDN2QTJ5Y202RUZHZWNkZmc4T1RZ?oc=5\" target=\"_blank\">How a billion-dolla",
-      "at": 1789198980000,
-      "inst": [
-        "USD/JPY",
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "USD",
-        "JPY",
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789198980000
+      "firstAt": 1789200973000
     },
     {
       "title": "Fed Rate Hike Odds Surge to Nearly 90% for Next Week; Markets Bet on at Least 3 More Hikes by Next Summer - finance.biggo.com",
@@ -1461,7 +1471,7 @@
       "firstAt": 1789158412000
     },
     {
-      "title": "House tees up vote on Russia sanctions bill, but prospects for passage are uncertain - abcnews.com",
+      "title": "House tees up vote on Russia sanctions bill, but prospects for passage are uncertain - ABC News - Breaking News, Latest News and Videos",
       "link": "https://news.google.com/rss/articles/CBMinwFBVV95cUxOak43U3VCaFFIbm5COXBQTFVyT1hYWF9KMWpUU1ZybHdZVWs0VEVrcURQeWVBcUU5QzlXYjZKV0VJWnNIWWRWSktmZWZwZVlDc3d4NktybmhtTEpncE5XNXd6a1FqeThIbElQRHJkTDZJRU05VlllejdFdjFUMS1JUWdCNEU3OXdNYkMtUDR5blBrWDUtdDVhSWJVOC0wZ2_SAaQBQVVfeXFMTmwxYWlyRk05dkxaaDJNQVYyR01DMXFDYlZSd1NvUV96ekdlNk95b2RGSjNQZEtTMDVON2hoaGQ5clJWSnN0X2htVVhzUDB0NlgtYnd2enl5VDVFbVRRQ296ZE5TaHpEelh6TFVnaUZORTByYmJZNzJwbXJiUjdpeDFmZXBxbVh4a0M1MllHTWljMXJEWHlaRG9HX2xqWnJRZUFOZnU?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMinwFBVV95cUxOak43U3VCaFFIbm5COXBQTFVyT1hYWF9KMWpUU1ZybHdZVWs0VEVrcURQeWVBcUU5QzlXYjZKV0VJWnNIWWRWSktmZWZwZVlDc3d4NktybmhtTEpncE5XNXd6a1FqeThIbElQRHJkTDZJRU05VlllejdFdjFUMS1JUWdCNEU3OXdNYkMtUDR5blBrWDUtdDVhSWJVOC0wZ2_SAaQBQVVfeXFMTm",
@@ -1475,7 +1485,7 @@
         "XAU",
         "OIL"
       ],
-      "sev": 2,
+      "sev": 3,
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789158412000
@@ -1741,7 +1751,43 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789153584000
+      "firstAt": 1789153200000
+    },
+    {
+      "title": "Amid war and sanctions, many Iranians are losing their jobs and struggling to get by - NPR",
+      "link": "https://news.google.com/rss/articles/CBMidkFVX3lxTE5EUGplTllYUzJCdTI5bTZ3aU9ySkpzV2VLQWFwLXc1VnBaS1JhZW9wVy1OUGIwWDFyWVBacFVfYXZYekVPZ0dXZVNPQS13V2xQVUFORFBlNkdXMG9nMDUyVGlNX1lHYzMxNGxxT2tiLU5KYy13dXc?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMidkFVX3lxTE5EUGplTllYUzJCdTI5bTZ3aU9ySkpzV2VLQWFwLXc1VnBaS1JhZW9wVy1OUGIwWDFyWVBacFVfYXZYekVPZ0dXZVNPQS13V2xQVUFORFBlNkdXMG9nMDUyVGlNX1lHYzMxNGxxT2tiLU5KYy13dXc?oc=5\" target=\"_blank\">Amid war and sanctions, many Iranians are losing",
+      "at": 1789155575000,
+      "inst": [
+        "XAU/USD"
+      ],
+      "ccy": [
+        "XAU"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789155575000
+    },
+    {
+      "title": "Gold headed for a weekly loss of nearly 2% on surging oil, raised Fed hike bets",
+      "link": "https://www.investing.com/news/commodities-news/gold-steadies-after-sharp-drop-as-hotter-ppi-lifts-fed-hike-bets-4897138",
+      "source": "Investing Cmdty",
+      "at": 1789155446000,
+      "inst": [
+        "XAU/USD",
+        "USOIL"
+      ],
+      "ccy": [
+        "USD",
+        "XAU",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789155446000
     }
   ],
   "sources": [
@@ -1764,10 +1810,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-12T14:33:46.268Z",
-  "headlinesAt": "2026-09-12T14:33:46.268Z",
-  "updatedAt": "2026-09-12T14:33:46.268Z"
+  "calendarAt": "2026-09-12T14:35:35.361Z",
+  "headlinesAt": "2026-09-12T14:35:35.361Z",
+  "updatedAt": "2026-09-12T14:35:35.361Z"
 }
