@@ -30,6 +30,33 @@
   ],
   "headlines": [
     {
+      "title": "Attack on key pipeline in Saudi Arabia blamed on Iran-backed militias located in Iraq territory - WQAD",
+      "link": "https://news.google.com/rss/articles/CBMi-gFBVV95cUxPeFhOdzF6Njg0eFJpWUlOekFnS0diOUFWUVcyMXdRaW5CUDRFS1NGX1Y1eklXZWY0eWpwamZNNzItOUpBZ0lCVHNxMjdRQU1JV0wwR24ySVJFMEZHbXdtX28ydTR2Q1hWNHVSNmNMMnNXVW5DN0kwQnBTc0NlVGpxMnZfNVJFWVVtdmJNZzZnVlRocWNOM2tCdzkxelZfOGJJemZIcF9ZeHRwbGRrQk9hV0tJSjRYYTB0UWpVa2Vzb0VwQTRfSGlWcTc0R1FCN0c4bDF4VDVYb3ZjUHl6Vm1nb3ZIY2x3U05xNTRQVFl0S0FYMkQyanpYa1BR?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi-gFBVV95cUxPeFhOdzF6Njg0eFJpWUlOekFnS0diOUFWUVcyMXdRaW5CUDRFS1NGX1Y1eklXZWY0eWpwamZNNzItOUpBZ0lCVHNxMjdRQU1JV0wwR24ySVJFMEZHbXdtX28ydTR2Q1hWNHVSNmNMMnNXVW5DN0kwQnBTc0NlVGpxMnZfNVJFWVVtdmJNZzZnVlRocWNOM2tCdzkxelZfOGJJemZIcF9ZeHRwbG",
+      "at": 1789230255000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789229211000,
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Supply disruption boosts oil and gold."
+    },
+    {
       "title": "Ukraine strikes Russian military sites near Taganrog, SBU says - Межа. Новини України.",
       "link": "https://news.google.com/rss/articles/CBMieEFVX3lxTFBHeUtGVFVpNGU1ZUFDd0wzUVBwY092V2pOcFlTSFBoajFHYnNaSUhKeVRJSGFoX1ZvbUdYTGZpNkpzX2RwOTUtLTNGTHVKUFYwb0tGVEFSWXZQWEdib25Ha29IZno5elAzOU54WTJaLWdxUFVzbDFuSw?oc=5",
       "source": "Wires (geo)",
@@ -48,7 +75,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789227420000,
-      "_kind": null
+      "_kind": null,
+      "why": "Ukraine strikes Russian sites, no clear market impact."
     },
     {
       "title": "Ukraine’s economy hobbled by Russian strikes - Arab News",
@@ -69,7 +97,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789227420000,
-      "_kind": null
+      "_kind": null,
+      "why": "Ukraine economy hobbled, no direct market direction."
     },
     {
       "title": "Trump says Iran likely responsible for attack that shut vital Saudi oil pipeline - KWWL",
@@ -90,7 +119,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789226820000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Iran blamed for pipeline attack, risk premium rises."
     },
     {
       "title": "Canadian boycott of US products pushes grocers to adapt, explore new supply sources",
@@ -105,7 +140,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789229183000,
-      "_kind": null
+      "_kind": null,
+      "why": "Boycott adaptation news, no clear currency direction."
     },
     {
       "title": "3 Forgotten AI Stocks That Should Rebound From Their Corrections",
@@ -120,7 +156,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789229100000,
-      "_kind": null
+      "_kind": null,
+      "why": "Stock pick article, no broad market direction."
     },
     {
       "title": "Russia's Lavrov says yes to talks, no to ceasefire with Ukraine - Yahoo",
@@ -141,7 +178,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789227960000,
-      "_kind": null
+      "_kind": null,
+      "why": "Diplomatic stance, no immediate market impact."
     },
     {
       "title": "5 Dividend Powerhouses Yielding Above 5% That Wall Street Still Backs",
@@ -156,7 +194,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789228936000,
-      "_kind": null
+      "_kind": null,
+      "why": "Dividend stock list, no broad market direction."
     },
     {
       "title": "Palantir's Growth Has Kept Accelerating, but Can the Rally Continue?",
@@ -168,8 +207,7 @@
       "sev": 1,
       "rel": 1,
       "srcs": 1,
-      "firstAt": 1789228500000,
-      "_kind": null
+      "firstAt": 1789228500000
     },
     {
       "title": "Top Economist Says the Fed Should Hike Rates 50 Basis Points Next Week. The Bond Market Is Already Near His Danger Zone.",
@@ -191,7 +229,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789228095000
+      "firstAt": 1789228095000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Hawkish Fed expectations strengthen dollar."
     },
     {
       "title": "Russia launches more than 400 attack drones at Ukraine in one day, most of them downed - Українська правда",
@@ -211,14 +255,15 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789227960000
+      "firstAt": 1789227960000,
+      "why": "Drone attacks, no clear supply or risk shift."
     },
     {
-      "title": "Attack on key Saudi pipeline is blamed on Iran-backed militias in Iraq - spectrumlocalnews.com",
-      "link": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQM0xfbnpfbEFaSEM1bVRFaThtN1JsOS04VzRrN2pGd3JONTBNeklqZDJUZmdWc3otRlRqdGFzbVdqd3JFVWszZjBCRzNZYi1LOExYanp4X2NDYkhpS0QtWTd2RVpCQXdDLW9UYzdmQ3FrRGtGSjJweXpYa2NxVzFua0IzbjRPNmFJd3R3WmdQQmVudXhCT3Rv?oc=5",
+      "title": "8 killed in Russian strikes on Ukraine as Putin warns Europe against sending troops - Union-Bulletin",
+      "link": "https://news.google.com/rss/articles/CBMihgJBVV95cUxNa09oZE5OS0lIdUNRVThqay03b3FwaDcxdUY4UnVnS0lPVnBiOHZFYkR3ZHlCancza05PY0MyWFBDbE5vZndrWFdUY0prMnE4N21MeDhXR1BWNFRJUlFkVEtOODBnZU50UkRtN3phdGdPcmlvYTJOMEZxNHhNM3NaSmswUlhWWk41VVBGVTJwVGVoN3NTS2pUZ2MxOWdRNUwzTkpaNzUwUVhQZFFqSUNIelR6Wm96SXRTQ250Y3Rldk1SNzBLbFItXzdEamJkTGZDZWZUM0M2SVZtLWRmNURHSUY1OVduVUlXdUZOUzB2OEo1ekZWZ0lxNlc1RW9aMXpHMXp0Nld3?oc=5",
       "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMilwFBVV95cUxQM0xfbnpfbEFaSEM1bVRFaThtN1JsOS04VzRrN2pGd3JONTBNeklqZDJUZmdWc3otRlRqdGFzbVdqd3JFVWszZjBCRzNZYi1LOExYanp4X2NDYkhpS0QtWTd2RVpCQXdDLW9UYzdmQ3FrRGtGSjJweXpYa2NxVzFua0IzbjRPNmFJd3R3WmdQQmVudXhCT3Rv?oc=5\" target=\"_blank\">Att",
-      "at": 1789227480000,
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMihgJBVV95cUxNa09oZE5OS0lIdUNRVThqay03b3FwaDcxdUY4UnVnS0lPVnBiOHZFYkR3ZHlCancza05PY0MyWFBDbE5vZndrWFdUY0prMnE4N21MeDhXR1BWNFRJUlFkVEtOODBnZU50UkRtN3phdGdPcmlvYTJOMEZxNHhNM3NaSmswUlhWWk41VVBGVTJwVGVoN3NTS2pUZ2MxOWdRNUwzTkpaNzUwUVhQZF",
+      "at": 1789227701000,
       "inst": [
         "XAU/USD",
         "USOIL",
@@ -228,10 +273,11 @@
         "XAU",
         "OIL"
       ],
-      "sev": 1,
+      "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789225962000
+      "firstAt": 1789227420000,
+      "why": "Casualties reported, no clear market direction."
     },
     {
       "title": "Russian strikes kill three, injure dozens across Ukraine, Zelenskyy says - TVP World",
@@ -251,7 +297,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789225044000
+      "firstAt": 1789227420000,
+      "why": "Strikes reported, no clear market direction."
     },
     {
       "title": "Iran used Chinese satellite images for attack on US base in Jordan, says report - middleeasteye.net",
@@ -271,7 +318,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789225962000
+      "firstAt": 1789225962000,
+      "why": "Satellite use report, no clear market direction."
     },
     {
       "title": "Iran Finds Escalation Is a Fruitful Path to Leverage in War With U.S. - The New York Times",
@@ -291,7 +339,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789226583000
+      "firstAt": 1789226583000,
+      "why": "Geopolitical analysis, no immediate market direction."
     },
     {
       "title": "Trump says Iran probably responsible for attack on Saudi oil pipeline - アラブニュース",
@@ -311,7 +360,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789223772000
+      "firstAt": 1789223772000,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Iran blamed for pipeline attack, risk premium rises."
     },
     {
       "title": "Iran and UAE back joint BRICS statement urging restraint in war",
@@ -331,26 +386,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789225943000
-    },
-    {
-      "title": "5 killed in Russian strikes on Ukraine as Putin warns Europe against sending troops - The Seattle Times",
-      "link": "https://news.google.com/rss/articles/CBMizAFBVV95cUxNMTRzX29wU3ZKamkwTXpzMWVRTlRGdDMtTEVyVVpSU1JaMTdKUjBObGtQTExidFJfUEhLcktodVc1Vm9HWGtRSTcxUlBTdjFGWmdqLXExZmo4V3laZFZaUlE1dWxlSms5SzgzZFRTWmVIazdicEdseTl5RlBxQWVnMG9EUUd5YlZ6ME5BMHNpaElobUtfQ2xvcWZpdThkYlBpczA3ZE5qcXZxWlQ3U3FzSWJPaVQtQXI5enNBOW5taGM5Tng1dHB1bm8zQS0?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMizAFBVV95cUxNMTRzX29wU3ZKamkwTXpzMWVRTlRGdDMtTEVyVVpSU1JaMTdKUjBObGtQTExidFJfUEhLcktodVc1Vm9HWGtRSTcxUlBTdjFGWmdqLXExZmo4V3laZFZaUlE1dWxlSms5SzgzZFRTWmVIazdicEdseTl5RlBxQWVnMG9EUUd5YlZ6ME5BMHNpaElobUtfQ2xvcWZpdThkYlBpczA3ZE5qcXZxWl",
-      "at": 1789225044000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789224034000
     },
     {
       "title": "Israeli attack wounds nine Palestinians in southern Gaza - middleeasteye.net",
@@ -429,7 +464,7 @@
       "firstAt": 1789224034000
     },
     {
-      "title": "Saudi pipeline strike reveals reach of Iran’s Iraqi proxies - The Jerusalem Post",
+      "title": "Saudi pipeline strike reveals reach of Iran’s Iraqi proxies - jpost.com",
       "link": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE5QRFg1a1ZKclM1bTVob2c0alBRQS03bUtFQUJXTHNnQlM3M0NJLUNYcEhFZGlfWlRxa0tBcUhqRFVRTzFWdXFGUFFhYjBZRDkzSWlDNFFFS295eF9v?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiXEFVX3lxTE5QRFg1a1ZKclM1bTVob2c0alBRQS03bUtFQUJXTHNnQlM3M0NJLUNYcEhFZGlfWlRxa0tBcUhqRFVRTzFWdXFGUFFhYjBZRDkzSWlDNFFFS295eF9v?oc=5\" target=\"_blank\">Saudi pipeline strike reveals reach of Iran’s Iraqi proxies</a>&nbsp;&nbsp;<font co",
@@ -464,27 +499,7 @@
       "firstAt": 1789221380000
     },
     {
-      "title": "Sybiha on attack on Odesa region: Russia continues terror against civilians - Ukrinform",
-      "link": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxQQjBQc0VpZDQyT1pFUE5rU0RtX1dBVHFjbmU4bU1QVFMxNHBYZ01udkNJQUMyeEtFTkx5QmtHazg2Q25jUWZIN1Z4d2FWaWN6ekR5QkkzSENpOGxCQThVVUx2YjZyNmtuVk1lNXp3bFN4LU9IQjg4ZHR3SWJUTXVoTmNXbENmZ3M1WWRhOWZGU2xPS0VlS2ladEpubnNLU0thODRoSnoyWERMemNTLXBELWgxeFhEVmlOMnFoSlJHZ0xOUzVGZ1NvTtIBzgFBVV95cUxQdEVaTGRURkJxVHhLd0dGdDNqWUF4NjlLRnJGdW56dGZucVNkeTl1bzRjOUFQWU1nNUV5N0xBQjBBX3NPM3B3YzlXTnlZUXN1UVZLUDhHYVU1MUgyNDR0OVRBd0xJR1pONDVoYUw0eTF4aGpFbjc0bTlWZGo2SkxoX0lJbGxNVkdUQ0pYeWd2WV9ubmNxdW9KcmlzTEIzNkgtdGR5dmpyQmNDLVR1YnNvSFZjSVVUbWtkQzJ0YURnSmtiQnZKS0lKN1pJQ2dfdw?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiyAFBVV95cUxQQjBQc0VpZDQyT1pFUE5rU0RtX1dBVHFjbmU4bU1QVFMxNHBYZ01udkNJQUMyeEtFTkx5QmtHazg2Q25jUWZIN1Z4d2FWaWN6ekR5QkkzSENpOGxCQThVVUx2YjZyNmtuVk1lNXp3bFN4LU9IQjg4ZHR3SWJUTXVoTmNXbENmZ3M1WWRhOWZGU2xPS0VlS2ladEpubnNLU0thODRoSnoyWERMem",
-      "at": 1789222500000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789222500000
-    },
-    {
-      "title": "BRICS summit backs call for restraint amid US-Iran tensions - The Jerusalem Post",
+      "title": "BRICS summit backs call for restraint amid US-Iran tensions - jpost.com",
       "link": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE5CWU55NXpKeW4xNHUwLW1uRUN1Z1lrR2tVaWtDTjllQzFvaUdDMlRjYzZXaFRVemhENDlMdzcwbDFJSG9abkVNT1VySmU0Ml9WRkNCQnFXclpLMXk5WGl3?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiX0FVX3lxTE5CWU55NXpKeW4xNHUwLW1uRUN1Z1lrR2tVaWtDTjllQzFvaUdDMlRjYzZXaFRVemhENDlMdzcwbDFJSG9abkVNT1VySmU0Ml9WRkNCQnFXclpLMXk5WGl3?oc=5\" target=\"_blank\">BRICS summit backs call for restraint amid US-Iran tensions</a>&nbsp;&nbsp;<fon",
@@ -626,7 +641,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789215655000
+      "firstAt": 1789216500000
     },
     {
       "title": "Ray Dalio and Bloomberg analysts reveal where to put $10,000 as stocks hit highs and bonds sell off in 2026",
@@ -643,7 +658,7 @@
       "firstAt": 1789218000000
     },
     {
-      "title": "Donald Trump tells reporters Iran was likely responsible for attack on Saudi pipline - The Jerusalem Post",
+      "title": "Donald Trump tells reporters Iran was likely responsible for attack on Saudi pipline - jpost.com",
       "link": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE5ma0Q3Uk1CN0NMVG9ISDNsTE5SeFYzd1M5N0RRdGw0dllaVjJ0cjZ5UmhKZ0ZWNXBsUk1oSUNDZ0Z6eDhJQTNKTVpya180UzhaUkZNMm1pYmk0OExCaXZrdDVCVGY?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiZEFVX3lxTE5ma0Q3Uk1CN0NMVG9ISDNsTE5SeFYzd1M5N0RRdGw0dllaVjJ0cjZ5UmhKZ0ZWNXBsUk1oSUNDZ0Z6eDhJQTNKTVpya180UzhaUkZNMm1pYmk0OExCaXZrdDVCVGY?oc=5\" target=\"_blank\">Donald Trump tells reporters Iran was likely responsible for attack on S",
@@ -725,11 +740,11 @@
       "firstAt": 1789216500000
     },
     {
-      "title": "BRICS leaders voice concern over Middle East, condemn unilateral sanctions at India summit - The Killeen Daily Herald",
-      "link": "https://news.google.com/rss/articles/CBMi_wFBVV95cUxNbkF5dGNHSnBBYWM2bTN2UVVKTm0teE9EaG9kY1FwYS1CVkpPZTd2NEhuMmtLdUZNa3VJOVZBRWVNSzcxcTltZGRQek1uRnUwSVI4Y0IzMUY1RGNXQmNIMEMxLWd4Rk8zc0RQZVJYVFZuX3JPVVZDakI5SXRUbzZaVTVuZ2dMcDR3Rkl1d3NvOVV4VFlBX3dMdHlLdEJEVzhmSXBxNmZac2haNmw2YngtVFJsbUNwb3NoRU5NY1RXdFRzMEpkclBlZlJuNGU1UHBiM1RoalV1eWlYYVFLM0dPc2ZGeTdqbzM0ZG03Q2NIWkd1QURpd0RoOEN4b0NnWTg?oc=5",
+      "title": "BRICS leaders voice concern over Middle East, condemn unilateral sanctions at India summit - AP News",
+      "link": "https://news.google.com/rss/articles/CBMioAFBVV95cUxPREdaZmR6TnMxUGFHT280OUlwV1VleHUzc0MzSDc0X2Z6Y3hEdF9aLUZRaVpYNmIwYmtOSGdjWWltTjkyanJhM2NWRUZnMVdnMFJMSVlRMjRuWVZMajVpQ2lOck5McHRYNzJLYmR4R2hkc3M2YzRBTTM2NjlOaHVhcFB0YTZhWkVDVUNpMEZxZDViTjhWWXZGVVhqbFpkR045?oc=5",
       "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi_wFBVV95cUxNbkF5dGNHSnBBYWM2bTN2UVVKTm0teE9EaG9kY1FwYS1CVkpPZTd2NEhuMmtLdUZNa3VJOVZBRWVNSzcxcTltZGRQek1uRnUwSVI4Y0IzMUY1RGNXQmNIMEMxLWd4Rk8zc0RQZVJYVFZuX3JPVVZDakI5SXRUbzZaVTVuZ2dMcDR3Rkl1d3NvOVV4VFlBX3dMdHlLdEJEVzhmSXBxNmZac2haNm",
-      "at": 1789217126000,
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMioAFBVV95cUxPREdaZmR6TnMxUGFHT280OUlwV1VleHUzc0MzSDc0X2Z6Y3hEdF9aLUZRaVpYNmIwYmtOSGdjWWltTjkyanJhM2NWRUZnMVdnMFJMSVlRMjRuWVZMajVpQ2lOck5McHRYNzJLYmR4R2hkc3M2YzRBTTM2NjlOaHVhcFB0YTZhWkVDVUNpMEZxZDViTjhWWXZGVVhqbFpkR045?oc=5\" target=",
+      "at": 1789217100000,
       "inst": [
         "XAU/USD",
         "USOIL",
@@ -762,7 +777,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789215655000
+      "firstAt": 1789216500000
     },
     {
       "title": "Why stocks haven't tanked despite higher bond yields: Chart of the Day",
@@ -797,26 +812,6 @@
       "rel": 2,
       "srcs": 3,
       "firstAt": 1789214732000
-    },
-    {
-      "title": "Deadly Russian strikes hit Ukraine after Putin's warning to European leaders - CBC",
-      "link": "https://news.google.com/rss/articles/CBMiggFBVV95cUxQMTJuU01BSExSd3BnTE5sR3VjSVdzeE43aHYwbTRjUENsTUU2RWxiV3E4UllRS2U5SVhJdnlpa0JUQ3hEYnliY2ZMM2hpOXhTSGpSMEpReEpZYnpndUgyUEJDSXhISkZXNGJDNFJBdmlQbG56Mk82RjVjS2RBSE5nT1Jn?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiggFBVV95cUxQMTJuU01BSExSd3BnTE5sR3VjSVdzeE43aHYwbTRjUENsTUU2RWxiV3E4UllRS2U5SVhJdnlpa0JUQ3hEYnliY2ZMM2hpOXhTSGpSMEpReEpZYnpndUgyUEJDSXhISkZXNGJDNFJBdmlQbG56Mk82RjVjS2RBSE5nT1Jn?oc=5\" target=\"_blank\">Deadly Russian strikes hit Ukra",
-      "at": 1789215655000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789213766000
     },
     {
       "title": "Saudi Arabia shuts key oil pipeline after drone attack launched from Iraq",
@@ -856,7 +851,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 3,
-      "firstAt": 1789212600000
+      "firstAt": 1789214732000
     },
     {
       "title": "Trump: Iran probably ‘behind’ Saudi oil pipeline attack",
@@ -876,7 +871,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 3,
-      "firstAt": 1789212600000
+      "firstAt": 1789214732000
     },
     {
       "title": "Trump suspects Iran is behind Saudi pipeline attack, says Houthis 'don’t want us to go after them' - Yahoo",
@@ -980,26 +975,6 @@
       "firstAt": 1789212704000
     },
     {
-      "title": "Iran says four accused of plotting attack killed in Saravan - middleeasteye.net",
-      "link": "https://news.google.com/rss/articles/CBMirwFBVV95cUxNT3NvTnI3dDhLa2c4WFBNeGZIWjVwRGh3OFI1WEVYRTEzMTRPRDNfWVFqSURSd1ZIbDQ1NVloWlhDOU9lZlczSVZycWZubGt3YTN4Y3QzTnJENHFDd2FEa3lOLWVpeTdpUnVqdy1QVWsydnRjbVgyOGRHdlEyZEM5MDdZTUVjWmMxZ3FBd0doTVEwMW1XSXBaTU1YcDgwbE0teHppWmRwZTBBejBFRnJF?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMirwFBVV95cUxNT3NvTnI3dDhLa2c4WFBNeGZIWjVwRGh3OFI1WEVYRTEzMTRPRDNfWVFqSURSd1ZIbDQ1NVloWlhDOU9lZlczSVZycWZubGt3YTN4Y3QzTnJENHFDd2FEa3lOLWVpeTdpUnVqdy1QVWsydnRjbVgyOGRHdlEyZEM5MDdZTUVjWmMxZ3FBd0doTVEwMW1XSXBaTU1YcDgwbE0teHppWmRwZTBBej",
-      "at": 1789212600000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789212113000
-    },
-    {
       "title": "Trump says Iran probably responsible for attack on Saudi pipeline - CNN",
       "link": "https://news.google.com/rss/articles/CBMiggFBVV95cUxNOHViTWhuNW0tNXFrZFB5N3RlYVIydFd3a3BGYmVEa2p6eFYtbUtHaXM4ZmFrSFl0bmpsY1JNeVJKRHBFektaUklfQi1DNTVOVjBmYlFqdU5RQkp1X0UyMGJFU0lRencwMXNjQl8zZlo5SGRmUGUtSHBSVkZVcDVMQnBR?oc=5",
       "source": "Wires (geo)",
@@ -1053,6 +1028,26 @@
       "firstAt": 1789209378000
     },
     {
+      "title": "3 killed in Russian strikes on Ukraine as Putin warns Europe against sending troops - The Boston Globe",
+      "link": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPa2xkVnV5UFkyTDJJTmtGZHFXYXNRQUJFNDJkdkxaUmhDWFA4ejgzUjZyMTlUQ2FIdWdZZTdzUlpqR3RWeDlwVnJwZGt2NW9hYUNZX05pdzk3UWVtQm83bVp6VllRSjcxOUtUdDI5dHJET05qYnotc3JWenJPeGlZV1poMWxPZUlPWXMxTVRlakNmMmhpelVuMnFTa3lBRlFOdl9tN0lYMmJXeXFVSm40?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMirwFBVV95cUxPa2xkVnV5UFkyTDJJTmtGZHFXYXNRQUJFNDJkdkxaUmhDWFA4ejgzUjZyMTlUQ2FIdWdZZTdzUlpqR3RWeDlwVnJwZGt2NW9hYUNZX05pdzk3UWVtQm83bVp6VllRSjcxOUtUdDI5dHJET05qYnotc3JWenJPeGlZV1poMWxPZUlPWXMxTVRlakNmMmhpelVuMnFTa3lBRlFOdl9tN0lYMmJXeX",
+      "at": 1789207925000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789207925000
+    },
+    {
       "title": "EUWAX AG Hits Near 52‑Week High as ECB Rate Hike Fades, Markets Rally - InsuranceNewsNet",
       "link": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxPV1BENWpkdWF4YUFMYVYzQkZfYW0xU2w5emZVdUQzWldZMWMzcTQxSERvbmZPZlc3djRhaHNidkxzbXNmQWFNUTJocHREYVZqeVVrbjVWS3pBNzF5S2dLT0pCV01oTzdKUVAyel92aHhzQXRwSlBCcmtjNnJ5QnNwclM4MVo0cmRCT2tJMTdqWFFRV0RERDJKSExfbGZ6VUZBZ1BiazlzSXVnUQ?oc=5",
       "source": "Wires (macro)",
@@ -1089,26 +1084,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789205296000
-    },
-    {
-      "title": "Ukraine's General Staff confirms strike on Russia's Tolyatti plant that produces rubber for rocket fuel - Українська правда",
-      "link": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE9ib2xraVJCTkdlWXFhRV9SX1RKZkVUdmVCeU1Eczg2bjhpNmhQWFdqa3JLNmFDeWoxS2dQSTRkdGhWbThzY0RrbnVMWEV2SXQ0NGExd0pIazBmVWZZSTR0M2NVNmbSAXBBVV95cUxPVWlObjVEOGNxNVFGRkxIektxU1BGVHZRYzY5dE1xbWZWQXBYYktGemt5WDdOeUxJTzhac3BKQ2pOVk43YW9wTVhDb1lTUnh2T2ptMGdPUlhiakI3eXNZLVl4Nm9USGI4WmcwRWcwcC1N?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiZEFVX3lxTE9ib2xraVJCTkdlWXFhRV9SX1RKZkVUdmVCeU1Eczg2bjhpNmhQWFdqa3JLNmFDeWoxS2dQSTRkdGhWbThzY0RrbnVMWEV2SXQ0NGExd0pIazBmVWZZSTR0M2NVNmbSAXBBVV95cUxPVWlObjVEOGNxNVFGRkxIektxU1BGVHZRYzY5dE1xbWZWQXBYYktGemt5WDdOeUxJTzhac3BKQ2pOVk43YW",
-      "at": 1789203780000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789203780000
     },
     {
       "title": "9/11 at 25: How the ‘War on Terror’ helped mainstream Europe’s far right",
@@ -1758,6 +1733,69 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789157156000
+    },
+    {
+      "title": "Markets will absorb a rate hike if the cycle is shallow, says JPMorgan's Dubravko Lakos - CNBC",
+      "link": "https://news.google.com/rss/articles/CBMixwFBVV95cUxOMTFXM21hWlBfQ1hLb00yQTl1MkN2YlEtSUFrejhMWl9FSkxJN2NnbmlnQ0VBSHNZU3Rac2dCR0Q0eVRtNERhVFlLZ0lENjhYMnpmaTlKeWZ6UVM0VEpkOW5TSHpzZDJyblRrd2dDY1cxYTdQUVMzdll5dFdPX0FTY1dSdWtKV05ISFRBX2F3dEVJSmFxQ2ZrV2FkNk9zX2JZT09QVnNZOHNjMEdLd2hwRUFneERtZDBETm9iVjdvczFGd3ktM1FF?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMixwFBVV95cUxOMTFXM21hWlBfQ1hLb00yQTl1MkN2YlEtSUFrejhMWl9FSkxJN2NnbmlnQ0VBSHNZU3Rac2dCR0Q0eVRtNERhVFlLZ0lENjhYMnpmaTlKeWZ6UVM0VEpkOW5TSHpzZDJyblRrd2dDY1cxYTdQUVMzdll5dFdPX0FTY1dSdWtKV05ISFRBX2F3dEVJSmFxQ2ZrV2FkNk9zX2JZT09QVnNZOHNjME",
+      "at": 1789156020000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789153720000
+    },
+    {
+      "title": "Lightning Houthi advance in Yemen may bring dangerous new dimension to Iran war",
+      "link": "https://www.bbc.co.uk/news/articles/c3v4zgzr1kxo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC World",
+      "desc": "The capture by the rebels of a stretch of Yemen's strategic coastline is the group's most impressive military coup for several years.",
+      "at": 1789155898000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789155898000
+    },
+    {
+      "title": "US House to vote on Russia sanctions backed by late Senator Graham - Reuters",
+      "link": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPYXo0TE8tLVZ2VzF0TjRlTFJBbEZIRDVqWndXMTNMb0VlT1lxd1JBMEdpNGJmaVE2a2Q2emtmTUZ2NVdvOUloVEdrdnVrOVRnSTRWbmd4MGNSUzFXR3JUR0o5ZHloaU5JRzd5TVNtenpjd3ZBNk5aZU9ubVE5aTRlTUtFM0M1dWFCUGVZcEp0b01SejVmS0p4Z2RHV2YyRm1PQUR0UzUxeUtJM2NmQzJVdTVsRQ?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiswFBVV95cUxPYXo0TE8tLVZ2VzF0TjRlTFJBbEZIRDVqWndXMTNMb0VlT1lxd1JBMEdpNGJmaVE2a2Q2emtmTUZ2NVdvOUloVEdrdnVrOVRnSTRWbmd4MGNSUzFXR3JUR0o5ZHloaU5JRzd5TVNtenpjd3ZBNk5aZU9ubVE5aTRlTUtFM0M1dWFCUGVZcEp0b01SejVmS0p4Z2RHV2YyRm1PQUR0UzUxeUtJM2",
+      "at": 1789155798000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789153584000
     }
   ],
   "sources": [
@@ -1783,7 +1821,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-12T16:24:46.980Z",
-  "headlinesAt": "2026-09-12T16:24:46.980Z",
-  "updatedAt": "2026-09-12T16:24:46.980Z"
+  "calendarAt": "2026-09-12T16:26:20.881Z",
+  "headlinesAt": "2026-09-12T16:26:20.881Z",
+  "updatedAt": "2026-09-12T16:26:20.881Z"
 }
