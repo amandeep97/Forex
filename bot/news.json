@@ -1,5 +1,24 @@
 {
-  "calendar": [],
+  "calendar": [
+    {
+      "title": "ECB President Lagarde Speaks",
+      "country": "EUR",
+      "impact": "medium",
+      "at": 1789200000000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "BRICS Summit",
+      "country": "All",
+      "impact": "low",
+      "at": 1789200900000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    }
+  ],
   "headlines": [
     {
       "title": "Iran joins Russia, China at BRICS conference calling for a halt to ‘escalation’ in Middle East - New York Post",
@@ -1585,27 +1604,6 @@
       "firstAt": 1789161528000
     },
     {
-      "title": "US To Vote On Russia Sanctions Bill Next Week, Giving Trump More Tariff Power - NDTV",
-      "link": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxON1h0SENhUXRQQzFPbHhMcUdyWmtzMU5GZHEwRHZFZjFiM1c2Q0xTS2wxWkpLdG9YSEF2SXU4cXQ1LXhFYmpURmVGcEYwX1ExRmM2V291RTNpRzQyV0ttR2RMemlCdTFUR290TTduMlVlSVdkaEhkdVhrQmE3U2Q1S2R2bUI2c0o1UEs4eDFyc2VJYXp0eTY1dGJyOVR1VWlkQV9UY0ZGUTk1Zko1RWV5bGh0ZkJBOVd30gHAAUFVX3lxTE1WZW9UeHRKZTkwZFAwTXAxTmhlSGtfeVVGb2N4YUNkcDZka2p1TmpPQVJWNl8xdEhrTXpGMEFpUHlveHBnR3lRQ2xtQzZNTElXOVdmd1pjMlhnN0dQbnVQaVRQRnl0bjdic0tjTGlKZmdzem5mSFJ6UFNXdGtHcnExcmluTGNNTjBQSl9ld1loLW02OHZ1dUNNeW92T1drb3dnUVlmQmh1ZXFzU2U3VUxhNC0wSExxODlIRG9OYWJnaQ?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiuAFBVV95cUxON1h0SENhUXRQQzFPbHhMcUdyWmtzMU5GZHEwRHZFZjFiM1c2Q0xTS2wxWkpLdG9YSEF2SXU4cXQ1LXhFYmpURmVGcEYwX1ExRmM2V291RTNpRzQyV0ttR2RMemlCdTFUR290TTduMlVlSVdkaEhkdVhrQmE3U2Q1S2R2bUI2c0o1UEs4eDFyc2VJYXp0eTY1dGJyOVR1VWlkQV9UY0ZGUTk1Zk",
-      "at": 1789160914000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL",
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789158412000
-    },
-    {
       "title": "The Fed can hike, but it won’t derail gold’s long-term bull market – analysts - KITCO",
       "link": "https://news.google.com/rss/articles/CBMirwFBVV95cUxQVWtELUtFS3c2Q1NDcDNwR2Q2Ymd4Zms4WWE1bE9zeUFDZGNmNUMzTFJ1Um00OWwxTzNtRlcyOU00SmIwX3B0d1JmQ0puX0NsS0NrbjJ2d2dlczZpbkw0eG5PcS1yVXRUblFRTXZZUU1rQ2J1bERfZEpNYlpqYlpaWFl0bFhIVDI0SlhPd0tqR1Mxc1lWOFNNaG40Wjk0YVhpUlBqcjBzSjNqQlhXNzVr?oc=5",
       "source": "Wires (macro)",
@@ -1721,6 +1719,22 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789158844000
+    },
+    {
+      "title": "Oil grades decline as US drilling rises and Hormuz talks advance",
+      "link": "https://www.investing.com/news/commodities-news/oil-grades-decline-as-us-drilling-rises-and-hormuz-talks-advance-93CH-4898422",
+      "source": "Investing Cmdty",
+      "at": 1789158778000,
+      "inst": [
+        "USOIL"
+      ],
+      "ccy": [
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789158778000
     }
   ],
   "sources": [
@@ -1743,10 +1757,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
-  "calendarAt": null,
-  "headlinesAt": "2026-09-12T20:50:47.418Z",
-  "updatedAt": "2026-09-12T20:50:47.419Z"
+  "calendarAt": "2026-09-12T20:52:32.938Z",
+  "headlinesAt": "2026-09-12T20:52:32.938Z",
+  "updatedAt": "2026-09-12T20:52:32.938Z"
 }
