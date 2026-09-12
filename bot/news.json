@@ -215,7 +215,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789171200000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Supply disruption and geopolitical risk boost prices."
     },
     {
       "title": "The Fed could raise interest rates three times. Here’s where the market could face the stiffest test.",
@@ -238,7 +244,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789170840000
+      "firstAt": 1789170840000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Higher rates pressure gold and risk assets."
     },
     {
       "title": "Markets may be making a horrible miscalculation on AI and inflation - afr.com",
@@ -261,7 +273,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789170720000
+      "firstAt": 1789170720000,
+      "why": "Inflation concerns unclear for specific asset direction."
     },
     {
       "title": "Russian attacks on Kyiv petrol stations kill two, Ukrainian strikes kill three in Russia",
@@ -280,7 +293,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789169785000
+      "firstAt": 1789169785000,
+      "why": "No clear immediate impact on oil or gold."
     },
     {
       "title": "Israel strikes Hezbollah base in Lebanon, causing 4.1-magnitude tremor - Yahoo",
@@ -300,7 +314,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789169408000
+      "firstAt": 1789169408000,
+      "why": "Lebanon strike has no clear oil/gold impact."
     },
     {
       "title": "House tees up vote on Russia sanctions bill, but prospects for passage are uncertain - The Seattle Times",
@@ -320,7 +335,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789166779000
+      "firstAt": 1789166779000,
+      "why": "Sanctions bill uncertainty offers no clear direction."
     },
     {
       "title": "The next trillion matters more for gold than the next Fed rate hike - KITCO",
@@ -338,7 +354,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789166261000
+      "firstAt": 1789166261000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Gold favored over rate hikes for value."
     },
     {
       "title": "This investment is safe from both Trump and the Democrats — and it pays 4.7%",
@@ -353,7 +373,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789164360000
+      "firstAt": 1789164360000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Safe haven narrative supports gold prices."
     },
     {
       "title": "Stocks making the biggest moves midday: Dell, Skyworks Solutions, GameStop & more",
@@ -368,7 +392,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789163493000
+      "firstAt": 1789163493000,
+      "why": "Individual stock moves do not signal index trend."
     },
     {
       "title": "Gold little changed even as U.S. inflation data supports Fed rate-hike bets (GLD:NYSEARCA) - Seeking Alpha",
@@ -386,7 +411,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789163405000
+      "firstAt": 1789163405000,
+      "why": "Gold little changed despite inflation data."
     },
     {
       "title": "Bitcoin could benefit from failed Treasury intervention despite persistent inflation — CoinShares - Mitrade",
@@ -404,7 +430,11 @@
       "sev": 3,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789162923000
+      "firstAt": 1789162923000,
+      "dir": {
+        "BTC/USDT": "up"
+      },
+      "why": "Failed intervention seen as bullish for Bitcoin."
     },
     {
       "title": "Saudi Arabia says East-West pipeline hit by drones launched from Iraq",
@@ -424,7 +454,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789162247000
+      "firstAt": 1789162247000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Pipeline attack disrupts supply, boosting oil and gold."
     },
     {
       "title": "Mexico stocks lower at close of trade; S&P/BMV IPC down 0.28%",
@@ -438,7 +474,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789162203000
+      "firstAt": 1789162203000,
+      "why": "Mexico stock drop irrelevant to US indices."
     },
     {
       "title": "investingLive Americas FX news wrap 11 Sept: US CPI raises odds for Fed rate hike",
@@ -460,7 +497,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789161528000
+      "firstAt": 1789161528000,
+      "why": "Mixed signals with no clear directional bias."
     },
     {
       "title": "US To Vote On Russia Sanctions Bill Next Week, Giving Trump More Tariff Power - NDTV",
@@ -481,7 +519,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789158412000
+      "firstAt": 1789158412000,
+      "why": "Sanctions vote uncertainty offers no clear direction."
     },
     {
       "title": "IEA Says Ukraine Strikes Degrade Russian Oil Refining Sector - Rigzone",
@@ -1945,7 +1984,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-12T00:24:30.863Z",
-  "headlinesAt": "2026-09-12T00:24:30.863Z",
-  "updatedAt": "2026-09-12T00:24:30.863Z"
+  "calendarAt": "2026-09-12T00:25:33.222Z",
+  "headlinesAt": "2026-09-12T00:25:33.222Z",
+  "updatedAt": "2026-09-12T00:25:33.222Z"
 }
