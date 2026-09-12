@@ -1,20 +1,58 @@
 {
-  "calendar": [],
+  "calendar": [
+    {
+      "title": "Federal Budget Balance",
+      "country": "USD",
+      "impact": "low",
+      "at": 1789149480000,
+      "forecast": "-221.1B",
+      "previous": "-432.3B",
+      "actual": ""
+    },
+    {
+      "title": "ECB President Lagarde Speaks",
+      "country": "EUR",
+      "impact": "medium",
+      "at": 1789200000000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "BRICS Summit",
+      "country": "All",
+      "impact": "low",
+      "at": 1789200900000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    }
+  ],
   "headlines": [
     {
-      "title": "Prediction: This High-Yield Dow Dividend Stock Will Become a Dividend King Before the End of the Year.",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/prediction-high-yield-dow-dividend-153500615.html",
-      "source": "Yahoo Finance",
-      "at": 1789227300000,
+      "title": "Russian strikes kill three, injure dozens across Ukraine, Zelenskyy says - TVP World",
+      "link": "https://news.google.com/rss/articles/CBMimwFBVV95cUxNU0VGZjZ1b2RHbnQzS0d5a3JBWTBKX0dQNDYzczJwNGxNLUNKNjNfSGttVEQtTThNenVZQ3F1MWdkWTJ2SXV0QnFEZlIwUzUzU2tDY0Z6WGVjaDRqQXZBOHJIRDlsSm9yaDZYMjVpMUlhc05wTzhua3VFNm0wV1dFOG5FNVJyTWdBQkw2YXQ1MnBHQVJ5V1ZVQU9ydw?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMimwFBVV95cUxNU0VGZjZ1b2RHbnQzS0d5a3JBWTBKX0dQNDYzczJwNGxNLUNKNjNfSGttVEQtTThNenVZQ3F1MWdkWTJ2SXV0QnFEZlIwUzUzU2tDY0Z6WGVjaDRqQXZBOHJIRDlsSm9yaDZYMjVpMUlhc05wTzhua3VFNm0wV1dFOG5FNVJyTWdBQkw2YXQ1MnBHQVJ5V1ZVQU9ydw?oc=5\" target=\"_blan",
+      "at": 1789227420000,
       "inst": [
-        "US30"
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
       ],
-      "ccy": [],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789227052000,
-      "_kind": null
+      "firstAt": 1789224817000,
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Ukraine conflict escalates, boosting gold demand."
     },
     {
       "title": "5 Big Yields That Could Be Slashed: Income Investors Beware",
@@ -61,7 +99,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789226583000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Iran escalation fears boost safe havens and oil."
     },
     {
       "title": "NuScale Power Stock Jumps 15% in 1 Day. Here's How Nuclear Energy Investors Should Respond.",
@@ -77,7 +121,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789226100000
+      "firstAt": 1789226100000,
+      "why": "Nuclear stock news irrelevant to gold price."
     },
     {
       "title": "Trump says Iran probably responsible for attack on Saudi oil pipeline - アラブニュース",
@@ -97,7 +142,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789223772000
+      "firstAt": 1789223772000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Iran attack on Saudi pipeline boosts oil and gold."
     },
     {
       "title": "Iran and UAE back joint BRICS statement urging restraint in war",
@@ -116,7 +167,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789225943000
+      "firstAt": 1789225943000,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Call for restraint reduces geopolitical risk premium."
     },
     {
       "title": "Israeli attack wounds nine Palestinians in southern Gaza - Middle East Eye",
@@ -136,7 +193,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789224900000
+      "firstAt": 1789224900000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Gaza violence supports gold, oil impact unclear."
     },
     {
       "title": "5 killed in Russian strikes on Ukraine as Putin warns Europe against sending troops - Yakima Herald-Republic",
@@ -156,7 +217,26 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789224034000
+      "firstAt": 1789224034000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Ukraine strikes and troop warnings boost gold."
+    },
+    {
+      "title": "Cramer Asked Who Was Buying Gigantic Bloom Energy Calls. A Pelosi Filing Named Two of the Same Stocks Weeks Earlier.",
+      "link": "https://finance.yahoo.com/markets/options/articles/cramer-asked-buying-gigantic-bloom-145041797.html",
+      "source": "Yahoo Finance",
+      "at": 1789224641000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789224641000,
+      "why": "Stock-specific news, no clear index direction."
     },
     {
       "title": "Iranian official tells Al Jazeera IAEA ruling was imposed by US and Israel",
@@ -176,27 +256,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789224588000
-    },
-    {
-      "title": "Attack on key Saudi pipeline is blamed on Iran-backed militias in Iraq - WGN Radio 720",
-      "link": "https://news.google.com/rss/articles/CBMixwFBVV95cUxObWpiNUU2WC1FdlJCcU1aN1VHVVRoQTNyWV9MVDhpXzVWbXNNY1gycDE3aTJqVTdQSThtdUlyUjdMZno0WHBxdHpRUG9mQ2FQV1EyenI1V0NIejFwc3FTaG0zcDhUc2JYanZ5akNGaTN4andzS3NTNy16c05aeGdvVnpUa0hjQUxWLXlteXlwZzhjOHNvSWRtMHBjX3dQbFVVN1A2eGRoa2pPcDJYQURPYTA1Zl9lYXRoQWRTbjNvOTBSR3ZVWEM00gHMAUFVX3lxTE5UaHBhZk53QmxqVndXSVV1VmlGQWI5X0Z2RkdLbnlISi16eEt1NnB4WEw5M3h0M2g5SWRyeUozeWtxRVRVb1lsVml3QXJLenBpZGV4bDlFZzJibzBNRlJCNDhYNWY4R011TnlPOWxteG5VSVpmeVFGRTByX2liYjhoSjJESHFEN3ZKb0JYU3c1NUhzZTJfUEJ0UFVYMHVMS000YkI3REJvVWNkX0ZXYzJEYjFoRXhRWXl0RkFRa3J4ajRFc3JtTkFLbHcwQw?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMixwFBVV95cUxObWpiNUU2WC1FdlJCcU1aN1VHVVRoQTNyWV9MVDhpXzVWbXNNY1gycDE3aTJqVTdQSThtdUlyUjdMZno0WHBxdHpRUG9mQ2FQV1EyenI1V0NIejFwc3FTaG0zcDhUc2JYanZ5akNGaTN4andzS3NTNy16c05aeGdvVnpUa0hjQUxWLXlteXlwZzhjOHNvSWRtMHBjX3dQbFVVN1A2eGRoa2pPcD",
-      "at": 1789224446000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789223772000
+      "firstAt": 1789224588000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Iran-US tensions support gold, oil impact unclear."
     },
     {
       "title": "Saudis shut down oil pipeline as Houthis tighten grip on Red Sea shipping",
@@ -212,7 +276,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789224148000
+      "firstAt": 1789224148000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Pipeline shutdown and Red Sea risks boost oil."
     },
     {
       "title": "Three killed in Russian air strikes on 10 regions of Ukraine - Al Jazeera",
@@ -232,7 +300,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789224034000
+      "firstAt": 1789224034000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Ukraine strikes boost gold, oil impact unclear."
     },
     {
       "title": "Saudi pipeline strike reveals reach of Iran’s Iraqi proxies - jpost.com",
@@ -252,7 +324,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789221090000
+      "firstAt": 1789221090000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Pipeline strike and proxy reach boost oil and gold."
     },
     {
       "title": "Trump says a unified Ireland would be ‘fantastic’ during Irish visit",
@@ -267,7 +345,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789221380000
+      "firstAt": 1789221380000,
+      "why": "Political comment lacks clear immediate market impact."
     },
     {
       "title": "Sybiha on attack on Odesa region: Russia continues terror against civilians - Ukrinform",
@@ -287,7 +366,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789222500000
+      "firstAt": 1789222500000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Ukraine terror attacks support gold, oil unclear."
     },
     {
       "title": "BRICS summit backs call for restraint amid US-Iran tensions - jpost.com",
@@ -307,7 +390,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789221792000
+      "firstAt": 1789221792000,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "BRICS restraint call reduces geopolitical risk premium."
     },
     {
       "title": "Trump indicates Iran behind attack on Saudi oil pipeline - سانا",
@@ -1050,10 +1139,10 @@
       "firstAt": 1789198266000
     },
     {
-      "title": "US House to Vote Next Week on Graham’s Russia Sanctions Bill - Kyiv Post",
+      "title": "US House to Vote Next Week on Graham’s Russia Sanctions Bill - kyivpost.com",
       "link": "https://news.google.com/rss/articles/CBMiS0FVX3lxTFAzekdyalJBYm1zc2p3MzZ2dkROcFd0aFRYVWM5Vnh6Smd2WTFGelJCYnVtZm84NUFaWEZRTWpmQjd5clJyTHZ2ZmdGZw?oc=5",
       "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiS0FVX3lxTFAzekdyalJBYm1zc2p3MzZ2dkROcFd0aFRYVWM5Vnh6Smd2WTFGelJCYnVtZm84NUFaWEZRTWpmQjd5clJyTHZ2ZmdGZw?oc=5\" target=\"_blank\">US House to Vote Next Week on Graham’s Russia Sanctions Bill</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">Kyiv Po",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiS0FVX3lxTFAzekdyalJBYm1zc2p3MzZ2dkROcFd0aFRYVWM5Vnh6Smd2WTFGelJCYnVtZm84NUFaWEZRTWpmQjd5clJyTHZ2ZmdGZw?oc=5\" target=\"_blank\">US House to Vote Next Week on Graham’s Russia Sanctions Bill</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">kyivpos",
       "at": 1789198266000,
       "inst": [
         "XAU/USD",
@@ -1068,26 +1157,6 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789198266000
-    },
-    {
-      "title": "Ukraine strikes Russian refinery as Moscow escalates Kyiv attacks - TVP World",
-      "link": "https://news.google.com/rss/articles/CBMikwFBVV95cUxQZXd0cXdLanluSVp2UVlPemMxUG4wM3M1eDFjbTYxWjBGSlFBbmRlbndob0RTWFZsTzhHUGdLYS13d3ozVEFnMEJyeWVEb1Jlcm9EN2RxbnpDRGJBbXdNdHc2X1hKX2Uyd0VQa0t1OENOMVhjTnpGVlNhZk50b2FOTzlXZ0ZodDZHRHZyaTBNQzVlQ0E?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMikwFBVV95cUxQZXd0cXdLanluSVp2UVlPemMxUG4wM3M1eDFjbTYxWjBGSlFBbmRlbndob0RTWFZsTzhHUGdLYS13d3ozVEFnMEJyeWVEb1Jlcm9EN2RxbnpDRGJBbXdNdHc2X1hKX2Uyd0VQa0t1OENOMVhjTnpGVlNhZk50b2FOTzlXZ0ZodDZHRHZyaTBNQzVlQ0E?oc=5\" target=\"_blank\">Ukraine ",
-      "at": 1789196940000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789196940000
     },
     {
       "title": "United States Dollar Index retreats from post-CPI high, all eyes on Fed - tmgm.com",
@@ -1474,10 +1543,10 @@
       "firstAt": 1789159440000
     },
     {
-      "title": "Zelensky Says Ukraine Won’t Go Hungry Despite Black Sea Blockade - Kyiv Post",
+      "title": "Zelensky Says Ukraine Won’t Go Hungry Despite Black Sea Blockade - kyivpost.com",
       "link": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE93TTBBcnBRaGhvaVJNMEozQ1VBWWFqZFRsdDVPRXpPbkxhZnBhbmlDN0dJdkU1cGZUdE85ZjUwbEczVTFWUmtsX0pHOA?oc=5",
       "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiS0FVX3lxTE93TTBBcnBRaGhvaVJNMEozQ1VBWWFqZFRsdDVPRXpPbkxhZnBhbmlDN0dJdkU1cGZUdE85ZjUwbEczVTFWUmtsX0pHOA?oc=5\" target=\"_blank\">Zelensky Says Ukraine Won’t Go Hungry Despite Black Sea Blockade</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">Kyi",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiS0FVX3lxTE93TTBBcnBRaGhvaVJNMEozQ1VBWWFqZFRsdDVPRXpPbkxhZnBhbmlDN0dJdkU1cGZUdE85ZjUwbEczVTFWUmtsX0pHOA?oc=5\" target=\"_blank\">Zelensky Says Ukraine Won’t Go Hungry Despite Black Sea Blockade</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">kyi",
       "at": 1789158940000,
       "inst": [
         "XAU/USD",
@@ -1490,8 +1559,8 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789157156000
+      "srcs": 1,
+      "firstAt": 1789158940000
     },
     {
       "title": "Oil on track to settle above $100 a barrel after whopping 20% two-week surge",
@@ -1635,7 +1704,7 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 2,
+      "srcs": 1,
       "firstAt": 1789157156000
     },
     {
@@ -1717,6 +1786,25 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789155575000
+    },
+    {
+      "title": "Gold headed for a weekly loss of nearly 2% on surging oil, raised Fed hike bets",
+      "link": "https://www.investing.com/news/commodities-news/gold-steadies-after-sharp-drop-as-hotter-ppi-lifts-fed-hike-bets-4897138",
+      "source": "Investing Cmdty",
+      "at": 1789155446000,
+      "inst": [
+        "XAU/USD",
+        "USOIL"
+      ],
+      "ccy": [
+        "USD",
+        "XAU",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789155446000
     }
   ],
   "sources": [
@@ -1739,10 +1827,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
-  "calendarAt": null,
-  "headlinesAt": "2026-09-12T15:49:47.963Z",
-  "updatedAt": "2026-09-12T15:49:47.964Z"
+  "calendarAt": "2026-09-12T15:51:05.651Z",
+  "headlinesAt": "2026-09-12T15:51:05.651Z",
+  "updatedAt": "2026-09-12T15:51:05.651Z"
 }
