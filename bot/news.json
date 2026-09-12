@@ -1,34 +1,21 @@
 {
-  "calendar": [
-    {
-      "title": "Federal Budget Balance",
-      "country": "USD",
-      "impact": "low",
-      "at": 1789149480000,
-      "forecast": "-221.1B",
-      "previous": "-432.3B",
-      "actual": ""
-    },
-    {
-      "title": "ECB President Lagarde Speaks",
-      "country": "EUR",
-      "impact": "medium",
-      "at": 1789200000000,
-      "forecast": "",
-      "previous": "",
-      "actual": ""
-    },
-    {
-      "title": "BRICS Summit",
-      "country": "All",
-      "impact": "low",
-      "at": 1789200900000,
-      "forecast": "",
-      "previous": "",
-      "actual": ""
-    }
-  ],
+  "calendar": [],
   "headlines": [
+    {
+      "title": "Canadian boycott of US products pushes grocers to adapt, explore new supply sources",
+      "link": "https://www.investing.com/news/stock-market-news/canadian-boycott-of-us-products-pushes-grocers-to-adapt-explore-new-supply-sources-4898644",
+      "source": "Investing",
+      "at": 1789228469000,
+      "inst": [
+        "USD/CAD"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789228469000,
+      "_kind": null
+    },
     {
       "title": "Top Economist Says the Fed Should Hike Rates 50 Basis Points Next Week. The Bond Market Is Already Near His Danger Zone.",
       "link": "https://finance.yahoo.com/economy/policy/articles/top-economist-says-fed-hike-154815533.html",
@@ -119,8 +106,7 @@
       "sev": 2,
       "rel": 1,
       "srcs": 1,
-      "firstAt": 1789227233000,
-      "_kind": null
+      "firstAt": 1789227233000
     },
     {
       "title": "5 killed in Russian strikes on Ukraine as Putin warns Europe against sending troops - The Press Democrat",
@@ -173,6 +159,26 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789225560000
+    },
+    {
+      "title": "Trump says Iran likely responsible for attack on vital Saudi oil pipeline - KWWL",
+      "link": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxQU1AydTVVcE5NUWI2ZHpqUW1hTUc2U0dBVk9OYnBXa1RQNVBBVzlXLUtPSklEU0JjWXVLMXNOQmFsQ0FBN2lIWS14bVRSQ25IT1BIaHNnZWFVUWxnQjAzY3AwVnRLemxKX1dOZzY3dnZtbUM2UW43aThQWnF4eUhGLTBBaWJqVlNlLVU5LXFNNTVCZllaYmloRzJCTHlDNVRESDNkUWpUVXhEM01rRHhvSThINXZaMlNXMklXSEFySkJGVTBSSDh5LThpajNucThkal9ZektCOE1sQ2tDX1lNbklycw?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi4wFBVV95cUxQU1AydTVVcE5NUWI2ZHpqUW1hTUc2U0dBVk9OYnBXa1RQNVBBVzlXLUtPSklEU0JjWXVLMXNOQmFsQ0FBN2lIWS14bVRSQ25IT1BIaHNnZWFVUWxnQjAzY3AwVnRLemxKX1dOZzY3dnZtbUM2UW43aThQWnF4eUhGLTBBaWJqVlNlLVU5LXFNNTVCZllaYmloRzJCTHlDNVRESDNkUWpUVXhEM0",
+      "at": 1789226189000,
+      "inst": [
+        "USOIL",
+        "XAU/USD",
+        "UKOIL"
+      ],
+      "ccy": [
+        "OIL",
+        "XAU"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789223772000
     },
     {
       "title": "NuScale Power Stock Jumps 15% in 1 Day. Here's How Nuclear Energy Investors Should Respond.",
@@ -326,7 +332,7 @@
       "firstAt": 1789224034000
     },
     {
-      "title": "Saudi pipeline strike reveals reach of Iran’s Iraqi proxies - jpost.com",
+      "title": "Saudi pipeline strike reveals reach of Iran’s Iraqi proxies - The Jerusalem Post",
       "link": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE5QRFg1a1ZKclM1bTVob2c0alBRQS03bUtFQUJXTHNnQlM3M0NJLUNYcEhFZGlfWlRxa0tBcUhqRFVRTzFWdXFGUFFhYjBZRDkzSWlDNFFFS295eF9v?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiXEFVX3lxTE5QRFg1a1ZKclM1bTVob2c0alBRQS03bUtFQUJXTHNnQlM3M0NJLUNYcEhFZGlfWlRxa0tBcUhqRFVRTzFWdXFGUFFhYjBZRDkzSWlDNFFFS295eF9v?oc=5\" target=\"_blank\">Saudi pipeline strike reveals reach of Iran’s Iraqi proxies</a>&nbsp;&nbsp;<font co",
@@ -381,7 +387,7 @@
       "firstAt": 1789222500000
     },
     {
-      "title": "BRICS summit backs call for restraint amid US-Iran tensions - jpost.com",
+      "title": "BRICS summit backs call for restraint amid US-Iran tensions - The Jerusalem Post",
       "link": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE5CWU55NXpKeW4xNHUwLW1uRUN1Z1lrR2tVaWtDTjllQzFvaUdDMlRjYzZXaFRVemhENDlMdzcwbDFJSG9abkVNT1VySmU0Ml9WRkNCQnFXclpLMXk5WGl3?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiX0FVX3lxTE5CWU55NXpKeW4xNHUwLW1uRUN1Z1lrR2tVaWtDTjllQzFvaUdDMlRjYzZXaFRVemhENDlMdzcwbDFJSG9abkVNT1VySmU0Ml9WRkNCQnFXclpLMXk5WGl3?oc=5\" target=\"_blank\">BRICS summit backs call for restraint amid US-Iran tensions</a>&nbsp;&nbsp;<fon",
@@ -540,7 +546,7 @@
       "firstAt": 1789218000000
     },
     {
-      "title": "Donald Trump tells reporters Iran was likely responsible for attack on Saudi pipline - jpost.com",
+      "title": "Donald Trump tells reporters Iran was likely responsible for attack on Saudi pipline - The Jerusalem Post",
       "link": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE5ma0Q3Uk1CN0NMVG9ISDNsTE5SeFYzd1M5N0RRdGw0dllaVjJ0cjZ5UmhKZ0ZWNXBsUk1oSUNDZ0Z6eDhJQTNKTVpya180UzhaUkZNMm1pYmk0OExCaXZrdDVCVGY?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiZEFVX3lxTE5ma0Q3Uk1CN0NMVG9ISDNsTE5SeFYzd1M5N0RRdGw0dllaVjJ0cjZ5UmhKZ0ZWNXBsUk1oSUNDZ0Z6eDhJQTNKTVpya180UzhaUkZNMm1pYmk0OExCaXZrdDVCVGY?oc=5\" target=\"_blank\">Donald Trump tells reporters Iran was likely responsible for attack on S",
@@ -696,20 +702,6 @@
       "firstAt": 1789213766000
     },
     {
-      "title": "Canadian boycott of US products pushes grocers to adapt, explore new supply sources",
-      "link": "https://www.investing.com/news/stock-market-news/canadian-boycott-of-us-products-pushes-grocers-to-adapt-explore-new-supply-sources-4898644",
-      "source": "Investing",
-      "at": 1789215545000,
-      "inst": [
-        "USD/CAD"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789215545000
-    },
-    {
       "title": "Saudi Arabia shuts key oil pipeline after drone attack launched from Iraq",
       "link": "https://www.bbc.co.uk/news/articles/c62m933465eo?at_medium=RSS&at_campaign=rss",
       "source": "BBC World",
@@ -787,7 +779,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 3,
-      "firstAt": 1789212600000
+      "firstAt": 1789212113000
     },
     {
       "title": "Yemen government forces say Houthi ‘members, vehicles’ targeted in Mocha",
@@ -888,47 +880,27 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789212031000
+      "firstAt": 1789212113000
     },
     {
-      "title": "Trump says Iran likely responsible for attack that shut vital Saudi oil pipeline - cnn.com",
-      "link": "https://news.google.com/rss/articles/CBMifEFVX3lxTFBCN05SU2luNWgwQnpYOGtmWndwclVrMERSUmFna1RDQnVRM1J4SEd3TUxieTMwSWNTcnNycXNUMWZ1cFdjalpVMVNxZHhsdFA2RUNmc2RMeXk3aHhrLWU2YURqZDdwU3ZTTGppTjZxX3NSYTBIcXdPdlEyZDI?oc=5",
+      "title": "Trump says Iran probably responsible for attack on Saudi pipeline - CNN",
+      "link": "https://news.google.com/rss/articles/CBMiggFBVV95cUxNOHViTWhuNW0tNXFrZFB5N3RlYVIydFd3a3BGYmVEa2p6eFYtbUtHaXM4ZmFrSFl0bmpsY1JNeVJKRHBFektaUklfQi1DNTVOVjBmYlFqdU5RQkp1X0UyMGJFU0lRencwMXNjQl8zZlo5SGRmUGUtSHBSVkZVcDVMQnBR?oc=5",
       "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMifEFVX3lxTFBCN05SU2luNWgwQnpYOGtmWndwclVrMERSUmFna1RDQnVRM1J4SEd3TUxieTMwSWNTcnNycXNUMWZ1cFdjalpVMVNxZHhsdFA2RUNmc2RMeXk3aHhrLWU2YURqZDdwU3ZTTGppTjZxX3NSYTBIcXdPdlEyZDI?oc=5\" target=\"_blank\">Trump says Iran likely responsible for a",
-      "at": 1789212031000,
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiggFBVV95cUxNOHViTWhuNW0tNXFrZFB5N3RlYVIydFd3a3BGYmVEa2p6eFYtbUtHaXM4ZmFrSFl0bmpsY1JNeVJKRHBFektaUklfQi1DNTVOVjBmYlFqdU5RQkp1X0UyMGJFU0lRencwMXNjQl8zZlo5SGRmUGUtSHBSVkZVcDVMQnBR?oc=5\" target=\"_blank\">Trump says Iran probably respon",
+      "at": 1789212113000,
       "inst": [
-        "USOIL",
         "XAU/USD",
+        "USOIL",
         "UKOIL"
       ],
       "ccy": [
-        "OIL",
-        "XAU"
+        "XAU",
+        "OIL"
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789209378000
-    },
-    {
-      "title": "Trump says Iran likely responsible for attack on vital Saudi oil pipeline - Yahoo News Singapore",
-      "link": "https://news.google.com/rss/articles/CBMigAFBVV95cUxPVk9rS0toYlV1RjlvQXVJbHRrVDZaTTdmemV0MHdkM1BLUjZaRDNzODlsNXJDeDNZUWZ6aHdfWWhmUGZuMW12dlluM0FJeEZHRVZHRzdSbktvblB1MGNsVTlJRjRkVXFBNHgwbHNEc3FwYjhpWkt3SnoyMWpLdTVTNg?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMigAFBVV95cUxPVk9rS0toYlV1RjlvQXVJbHRrVDZaTTdmemV0MHdkM1BLUjZaRDNzODlsNXJDeDNZUWZ6aHdfWWhmUGZuMW12dlluM0FJeEZHRVZHRzdSbktvblB1MGNsVTlJRjRkVXFBNHgwbHNEc3FwYjhpWkt3SnoyMWpLdTVTNg?oc=5\" target=\"_blank\">Trump says Iran likely responsibl",
-      "at": 1789212031000,
-      "inst": [
-        "USOIL",
-        "XAU/USD",
-        "UKOIL"
-      ],
-      "ccy": [
-        "OIL",
-        "XAU"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789209378000
+      "srcs": 1,
+      "firstAt": 1789212113000
     },
     {
       "title": "Far-right protesters rally against Islam on 9/11 anniversary",
@@ -960,27 +932,8 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 3,
-      "firstAt": 1789208666000
-    },
-    {
-      "title": "Trump says Iran probably responsible for attack on Saudi pipeline",
-      "link": "https://www.investing.com/news/commodities-news/trump-says-iran-probably-responsible-for-attack-on-saudi-pipeline-4898645",
-      "source": "Investing Cmdty",
-      "at": 1789208666000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789208666000
+      "srcs": 1,
+      "firstAt": 1789209378000
     },
     {
       "title": "EUWAX AG Hits Near 52‑Week High as ECB Rate Hike Fades, Markets Rally - InsuranceNewsNet",
@@ -1361,26 +1314,6 @@
       "firstAt": 1789169785000
     },
     {
-      "title": "Israel strikes Hezbollah base in Lebanon, causing 4.1-magnitude tremor - upi.com",
-      "link": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxNSUdEMlVkb0diNFYzUXpQTmt0eFk2SzA4U2xFUHQta01XbjduVk93eGhNS2JJa0o4SnI0TkVvSldBeUN5eHF2dVozU2k1VDZERXVWalZaUUY0c1hTaFlsU3hNTVRFR0NHeXNVNDJJMlpqMUc0NVZTV3piSzFWMFltc29kRGJac0I2MTBB0gGQAUFVX3lxTE9jZmZBSG41Vm93bmNVT253VmltVE83dF9DbUp4NmJSRElOUGl6TklPNldMY0hac2dWMHd0Tjg4b2lHT2lIY0xDYTRkQ0NfR0RxZ0xtb0J1b2tLak1tSUNYSnlRRWk2SEx0Ukw2eVV5QXlFbkk3RlZ3VkV1d1AxZEExQTRyV2ZhWFN0QWFPQl8zQg?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiiwFBVV95cUxNSUdEMlVkb0diNFYzUXpQTmt0eFk2SzA4U2xFUHQta01XbjduVk93eGhNS2JJa0o4SnI0TkVvSldBeUN5eHF2dVozU2k1VDZERXVWalZaUUY0c1hTaFlsU3hNTVRFR0NHeXNVNDJJMlpqMUc0NVZTV3piSzFWMFltc29kRGJac0I2MTBB0gGQAUFVX3lxTE9jZmZBSG41Vm93bmNVT253VmltVE",
-      "at": 1789169408000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789169408000
-    },
-    {
       "title": "The next trillion matters more for gold than the next Fed rate hike - KITCO",
       "link": "https://news.google.com/rss/articles/CBMinAFBVV95cUxQdk4wRk9WZDFNeU0tNDV1N3loWHJfV0dDODB1Rlh0RkVHQmFlY1BydmdXanA0RGt2ODVoUlItd1ZnNk94SFRkY0tRX09BVUNac1dYUDVqMzVaUzJvdDFvVEVqaEZKU3RZSEhFeWZfTUlMQjh2dTVDRFl2cjB3NGJFRjRGZ3NuUnI2VWpxeTM1akFWZk1oTW5pdnVldVc?oc=5",
       "source": "Wires (macro)",
@@ -1751,6 +1684,46 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789153720000
+    },
+    {
+      "title": "Lightning Houthi advance in Yemen may bring dangerous new dimension to Iran war",
+      "link": "https://www.bbc.co.uk/news/articles/c3v4zgzr1kxo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC World",
+      "desc": "The capture by the rebels of a stretch of Yemen's strategic coastline is the group's most impressive military coup for several years.",
+      "at": 1789155898000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789155898000
+    },
+    {
+      "title": "US House to vote on Russia sanctions backed by late Senator Graham - Reuters",
+      "link": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPYXo0TE8tLVZ2VzF0TjRlTFJBbEZIRDVqWndXMTNMb0VlT1lxd1JBMEdpNGJmaVE2a2Q2emtmTUZ2NVdvOUloVEdrdnVrOVRnSTRWbmd4MGNSUzFXR3JUR0o5ZHloaU5JRzd5TVNtenpjd3ZBNk5aZU9ubVE5aTRlTUtFM0M1dWFCUGVZcEp0b01SejVmS0p4Z2RHV2YyRm1PQUR0UzUxeUtJM2NmQzJVdTVsRQ?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiswFBVV95cUxPYXo0TE8tLVZ2VzF0TjRlTFJBbEZIRDVqWndXMTNMb0VlT1lxd1JBMEdpNGJmaVE2a2Q2emtmTUZ2NVdvOUloVEdrdnVrOVRnSTRWbmd4MGNSUzFXR3JUR0o5ZHloaU5JRzd5TVNtenpjd3ZBNk5aZU9ubVE5aTRlTUtFM0M1dWFCUGVZcEp0b01SejVmS0p4Z2RHV2YyRm1PQUR0UzUxeUtJM2",
+      "at": 1789155798000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789153584000
     }
   ],
   "sources": [
@@ -1776,7 +1749,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-12T16:03:47.200Z",
-  "headlinesAt": "2026-09-12T16:03:47.200Z",
-  "updatedAt": "2026-09-12T16:03:47.200Z"
+  "calendarAt": null,
+  "headlinesAt": "2026-09-12T16:05:16.396Z",
+  "updatedAt": "2026-09-12T16:05:16.396Z"
 }
