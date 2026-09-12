@@ -1,5 +1,33 @@
 {
-  "calendar": [],
+  "calendar": [
+    {
+      "title": "Federal Budget Balance",
+      "country": "USD",
+      "impact": "low",
+      "at": 1789149480000,
+      "forecast": "-221.1B",
+      "previous": "-432.3B",
+      "actual": ""
+    },
+    {
+      "title": "ECB President Lagarde Speaks",
+      "country": "EUR",
+      "impact": "medium",
+      "at": 1789200000000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "BRICS Summit",
+      "country": "All",
+      "impact": "low",
+      "at": 1789200900000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    }
+  ],
   "headlines": [
     {
       "title": "Sibiga called for tougher sanctions against Russia's military-industrial complex following the attack on the Odesa region - UA.NEWS",
@@ -20,7 +48,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789221616000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Sanctions boost gold, oil impact unclear"
     },
     {
       "title": "U.S. 10-Year Treasury Yields Hold Near Multiyear Highs As August CPI Data Fuels Fed Rate Hike Bets - foreignpolicyjournal.com",
@@ -44,7 +76,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789221420000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "High yields hurt gold and FX"
     },
     {
       "title": "Trump indicates Iran behind attack on Saudi oil pipeline - سانا",
@@ -65,7 +103,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789219575000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Pipeline attack boosts oil and gold"
     },
     {
       "title": "Bridgewater Founder Dalio Urges Investors to Dump Bonds for Gold Allocation",
@@ -82,7 +126,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789220906000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Dalio urges gold allocation"
     },
     {
       "title": "Scott Bessent gives candid assessment of U.S. economy",
@@ -105,7 +153,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789219980000,
-      "_kind": null
+      "why": "Economic assessment lacks specific direction"
     },
     {
       "title": "Are the UK sanctions on Israel real progress, or more illusion? - Mondoweiss",
@@ -125,7 +173,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789219800000
+      "firstAt": 1789219800000,
+      "why": "Sanctions debate unclear for markets"
     },
     {
       "title": "Ukraine strikes FPV drone production facility, UAV warehouses near Taganrog - Ukrinform",
@@ -145,7 +194,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789219800000
+      "firstAt": 1789219800000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Ukraine strike boosts gold sentiment"
     },
     {
       "title": "Trump says Iran likely responsible for attack on vital Saudi oil pipeline - Egypt Independent",
@@ -165,7 +218,25 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789219575000
+      "firstAt": 1789219575000,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Iran attack boosts oil and gold"
+    },
+    {
+      "title": "Will Midterm Elections Cause the Stock Market to Plunge? 75 Years of History Offer an Unexpected Answer.",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/midterm-elections-cause-stock-market-132601186.html",
+      "source": "Yahoo Finance",
+      "at": 1789219561000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 1,
+      "srcs": 1,
+      "firstAt": 1789219561000
     },
     {
       "title": "d OECD commercial oil inventories have “barely drawn since the war began,” reflecting a smaller-than-expected supply deficit and the concentration of inventory declines in strategic reserves, oil stored on water and China.",
@@ -183,7 +254,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789219560000
+      "firstAt": 1789219560000,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "High inventories bearish for oil"
     },
     {
       "title": "Fed rate-hike odds surge as Warsh faces inflation-weary markets - thestreet.com",
@@ -206,7 +281,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789219020000
+      "firstAt": 1789219020000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Rate hike odds hurt assets"
     },
     {
       "title": "Russian Strikes Kill Four in Donetsk Region, Including a Medic - Межа. Новини України.",
@@ -226,7 +307,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789216500000
+      "firstAt": 1789216500000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "War escalation boosts gold"
     },
     {
       "title": "Ray Dalio and Bloomberg analysts reveal where to put $10,000 as stocks hit highs and bonds sell off in 2026",
@@ -240,7 +325,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789218000000
+      "firstAt": 1789218000000,
+      "why": "Investment advice unclear for direction"
     },
     {
       "title": "Inflation is outpacing wage growth again, squeezing Americans’ paychecks",
@@ -263,7 +349,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789217355000
+      "firstAt": 1789217355000,
+      "dir": {
+        "XAU/USD": "up",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Inflation boosts gold, hurts FX"
     },
     {
       "title": "Dow Jones Futures: Fed Rate Hike Seen As Oil, Yields Pressure Stocks; Apple, Moderna Are New Buys",
@@ -282,7 +374,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789217302000
+      "firstAt": 1789217302000,
+      "dir": {
+        "USOIL": "up",
+        "US500": "down",
+        "US30": "down"
+      },
+      "why": "Oil up, stocks pressured by yields"
     },
     {
       "title": "BRICS leaders voice concern over Middle East, condemn unilateral sanctions at India summit - The Killeen Daily Herald",
@@ -302,7 +400,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789215596000
+      "firstAt": 1789215596000,
+      "why": "Diplomatic statements unclear for markets"
     },
     {
       "title": "Zelenskyy reports strikes on Russian chemical plants and destruction of Su-33 and 2 Mi-8 helicopters – video - pravda.com.ua",
@@ -586,7 +685,7 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 2,
+      "srcs": 1,
       "firstAt": 1789212382000
     },
     {
@@ -606,7 +705,7 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 3,
+      "srcs": 2,
       "firstAt": 1789210085000
     },
     {
@@ -626,7 +725,7 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 3,
+      "srcs": 2,
       "firstAt": 1789210085000
     },
     {
@@ -650,32 +749,6 @@
       "firstAt": 1789211661000
     },
     {
-      "title": "Jim Cramer Said Robinhood Markets (NASDAQ:HOOD) Just Keeps On Growing",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/jim-cramer-said-robinhood-markets-112158281.html",
-      "source": "Yahoo Finance",
-      "at": 1789212118000,
-      "inst": [
-        "US100"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789210592000
-    },
-    {
-      "title": "Oracle Just Added $30 Billion in AI Contracts. Nvidia Investors Should Read the Fine Print",
-      "link": "https://finance.yahoo.com/technology/ai/articles/oracle-just-added-30-billion-111550996.html",
-      "source": "Yahoo Finance",
-      "at": 1789211750000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1789211750000
-    },
-    {
       "title": "Russia strikes cargo vessels, steel plants across Ukraine - Al Jazeera",
       "link": "https://news.google.com/rss/articles/CBMingFBVV95cUxPWVZZYUw3SGx6TDJld21TNnJ2Z0I3YmMzc2FDcmRuX3d5UXRJQkVFSGpZazdUMmxrWjBuN0lhd0Nxc1lpRDhzbTdHOHJoSkxLNXY0X0o5eXlQSk16WVFjekpOU0JQc2JSRTNCNURQald1NzhHT295QVJNa0I4QlJlVzI4eTk1Z2VnNDFTUFdUajJ6ZE9rT0tPeGU4OHVFd9IBowFBVV95cUxNQUc4ZzBSSTNwMTZreGNGQWVoMnBxd0lRZ002UzdySk1xQ2tQVlA2OVN2djBRVk5IUEtjTUNoNG13ZW5rQ2w3bVpzT2xXdW4xTTA2Q3p0ZUJvVVh0a285Nm9kOUlUT21qWEotcFRQTUhCOGQ3ckNkTGswSmxZdWpNUk1Ybkk5MGtmeEdIay1RVWdlMVZDYkM0My1iMnFDeXdOb2tn?oc=5",
       "source": "Wires (geo)",
@@ -694,48 +767,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789211661000
-    },
-    {
-      "title": "Jim Cramer Discusses Adobe Inc. (NASDAQ:ADBE) & “False” Cuts",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/jim-cramer-discusses-adobe-inc-111253006.html",
-      "source": "Yahoo Finance",
-      "at": 1789211573000,
-      "inst": [
-        "US100"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789210592000
-    },
-    {
-      "title": "Jim Cramer Couldn’t Blame Anyone Who Held These Two Elon Musk Stocks",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/jim-cramer-couldn-t-blame-105852649.html",
-      "source": "Yahoo Finance",
-      "at": 1789210732000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789210732000
-    },
-    {
-      "title": "Jim Cramer Wondered Whether Microsoft Corporation (NASDAQ:MSFT) Isn’t “That” Dependent On AI",
-      "link": "https://finance.yahoo.com/technology/ai/articles/jim-cramer-wondered-whether-microsoft-105632101.html",
-      "source": "Yahoo Finance",
-      "at": 1789210592000,
-      "inst": [
-        "US100"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789210592000
     },
     {
       "title": "Donald Trump tells reporters Iran was likely responsible for attack on Saudi pipline - The Jerusalem Post",
@@ -905,7 +936,7 @@
       "firstAt": 1789202941000
     },
     {
-      "title": "Russia strikes cargo vessels, steel plants across Ukraine",
+      "title": "Russia attacks on cargo vessels, steel plants across Ukraine kill 3",
       "link": "https://www.aljazeera.com/news/2026/9/12/russia-strikes-cargo-vessels-steel-plants-across-ukraine?traffic_source=rss",
       "source": "Al Jazeera",
       "desc": "Russia's Defence Ministry says its forces have struck several industrial facilities across Ukraine.",
@@ -1716,6 +1747,73 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789155217000
+    },
+    {
+      "title": "Natural Gas holds 200-period MA after double top failure: Live levels",
+      "link": "https://www.investing.com/news/commodities-news/natural-gas-stuck-between-287303-live-levels-93CH-4890483",
+      "source": "Investing Cmdty",
+      "at": 1789154334000,
+      "inst": [
+        "NATGAS"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789154326000
+    },
+    {
+      "title": "London Gas Oil stalls at $1,480 after overbought surge: Live levels",
+      "link": "https://www.investing.com/news/commodities-news/london-gas-oil-stretched-10-above-50ma-live-levels-93CH-4890480",
+      "source": "Investing Cmdty",
+      "at": 1789154326000,
+      "inst": [
+        "USOIL"
+      ],
+      "ccy": [
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789154326000
+    },
+    {
+      "title": "Dollar up on Fed rate hike bets, yen set for first two-week win streak since May",
+      "link": "https://www.investing.com/news/forex-news/asian-currencies-weaken-as-yen-slips-dollar-holds-near-weekly-high-4897219",
+      "source": "Investing FX",
+      "at": 1789154241000,
+      "inst": [
+        "USD/JPY"
+      ],
+      "ccy": [
+        "USD",
+        "JPY"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789154241000
+    },
+    {
+      "title": "Zelensky urges Trump to impose new Russia sanctions 'now', after deadly Ukraine strikes - France 24",
+      "link": "https://news.google.com/rss/articles/CBMixwFBVV95cUxQNnhVRTdXcWV6Uk5Ja2pBaktMYzMtYURWUW5iXzdqdnZqM2haZmxEeXlHdzNtb0xjSDBKUlpQQm1RM3RlZzRDSDJxWWdvNHZaRVZhWUpjcnVCcHA0N0dieHowSWFZVkg3Y3dvTWVYN09weFA1Q1dkVW4xTEphYlZGVnVSZUpDaE9tMU1Td0ZoNnFYYWJIMDR3Ry1EQnF3ZXB1YkZLS2QxVEJXalg2NkRMQ2dWbDY0ZVZaazRWVVhDcDhkZ3UtbzZF?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMixwFBVV95cUxQNnhVRTdXcWV6Uk5Ja2pBaktMYzMtYURWUW5iXzdqdnZqM2haZmxEeXlHdzNtb0xjSDBKUlpQQm1RM3RlZzRDSDJxWWdvNHZaRVZhWUpjcnVCcHA0N0dieHowSWFZVkg3Y3dvTWVYN09weFA1Q1dkVW4xTEphYlZGVnVSZUpDaE9tMU1Td0ZoNnFYYWJIMDR3Ry1EQnF3ZXB1YkZLS2QxVEJXal",
+      "at": 1789153994000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789151363000
     }
   ],
   "sources": [
@@ -1738,10 +1836,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": null,
-  "headlinesAt": "2026-09-12T14:03:03.617Z",
-  "updatedAt": "2026-09-12T14:03:03.617Z"
+  "calendarAt": "2026-09-12T14:05:19.939Z",
+  "headlinesAt": "2026-09-12T14:05:19.939Z",
+  "updatedAt": "2026-09-12T14:05:19.939Z"
 }
