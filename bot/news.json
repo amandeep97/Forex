@@ -20,7 +20,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789172760000,
-      "_kind": null
+      "_kind": null,
+      "why": "Local news, no market impact"
     },
     {
       "title": "At BRICS, Putin Slams West's \"Ugly\" Trade Tactics, Cites \"30,000 Sanctions\" - NDTV",
@@ -38,7 +39,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789172532000,
-      "_kind": null
+      "_kind": null,
+      "why": "Geopolitical rhetoric, unclear immediate impact"
     },
     {
       "title": "Iran war live: Houthis control Red Sea coast, Saudi pipeline shut down",
@@ -58,7 +60,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789171200000
+      "firstAt": 1789171200000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Supply disruption and conflict risk"
     },
     {
       "title": "The Fed could raise interest rates three times. Here’s where the market could face the stiffest test.",
@@ -81,7 +89,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789170840000
+      "firstAt": 1789170840000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Higher rates hurt gold and FX"
     },
     {
       "title": "Markets may be making a horrible miscalculation on AI and inflation - afr.com",
@@ -104,7 +118,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789170720000
+      "firstAt": 1789170720000,
+      "why": "Speculative analysis, no clear direction"
     },
     {
       "title": "Russian attacks on Kyiv petrol stations kill two, Ukrainian strikes kill three in Russia",
@@ -123,7 +138,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789169785000
+      "firstAt": 1789169785000,
+      "why": "Conflict news, unclear market impact"
     },
     {
       "title": "Israel strikes Hezbollah base in Lebanon, causing 4.1-magnitude tremor - upi.com",
@@ -143,7 +159,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789169408000
+      "firstAt": 1789169408000,
+      "why": "Regional conflict, unclear market impact"
     },
     {
       "title": "House tees up vote on Russia sanctions bill, but prospects for passage are uncertain - The Seattle Times",
@@ -163,7 +180,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789166779000
+      "firstAt": 1789166779000,
+      "why": "Uncertain legislative outcome"
     },
     {
       "title": "This investment is safe from both Trump and the Democrats — and it pays 4.7%",
@@ -178,7 +196,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789164360000
+      "firstAt": 1789164360000,
+      "why": "Vague investment advice, no direction"
     },
     {
       "title": "Stocks making the biggest moves midday: Dell, Skyworks Solutions, GameStop & more",
@@ -193,7 +212,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789163493000
+      "firstAt": 1789163493000,
+      "why": "Stock-specific moves, no index direction"
     },
     {
       "title": "Gold little changed even as U.S. inflation data supports Fed rate-hike bets (GLD:NYSEARCA) - Seeking Alpha",
@@ -211,7 +231,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789163405000
+      "firstAt": 1789163405000,
+      "why": "Gold little changed despite data"
     },
     {
       "title": "Bitcoin could benefit from failed Treasury intervention despite persistent inflation — CoinShares - Mitrade",
@@ -229,7 +250,11 @@
       "sev": 3,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789162923000
+      "firstAt": 1789162923000,
+      "dir": {
+        "BTC/USDT": "up"
+      },
+      "why": "Potential benefit from intervention failure"
     },
     {
       "title": "Saudi Arabia says East-West pipeline hit by drones launched from Iraq",
@@ -249,7 +274,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789162247000
+      "firstAt": 1789162247000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Pipeline attack disrupts oil supply"
     },
     {
       "title": "Mexico stocks lower at close of trade; S&P/BMV IPC down 0.28%",
@@ -263,7 +293,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789162203000
+      "firstAt": 1789162203000,
+      "why": "Mexico stocks, not US index"
     },
     {
       "title": "investingLive Americas FX news wrap 11 Sept: US CPI raises odds for Fed rate hike",
@@ -285,7 +316,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789161528000
+      "firstAt": 1789161528000,
+      "why": "Mixed signals, no clear direction"
     },
     {
       "title": "US To Vote On Russia Sanctions Bill Next Week, Giving Trump More Tariff Power - NDTV",
@@ -1744,6 +1776,6 @@
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-12T00:41:15.501Z",
-  "updatedAt": "2026-09-12T00:41:15.501Z"
+  "headlinesAt": "2026-09-12T00:42:46.735Z",
+  "updatedAt": "2026-09-12T00:42:46.735Z"
 }
