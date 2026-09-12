@@ -1,5 +1,110 @@
 {
-  "calendar": [],
+  "calendar": [
+    {
+      "title": "Core CPI m/m",
+      "country": "USD",
+      "impact": "high",
+      "at": 1789129800000,
+      "forecast": "0.2%",
+      "previous": "0.2%",
+      "actual": "0.22",
+      "actualFrom": "BLS",
+      "actualNum": 0.22,
+      "vsPrevious": 0.02,
+      "forecastNum": 0.2,
+      "surprise": 0.02,
+      "surprisePct": 10,
+      "beat": "above"
+    },
+    {
+      "title": "Core CPI y/y",
+      "country": "USD",
+      "impact": "high",
+      "at": 1789129800000,
+      "forecast": "2.4%",
+      "previous": "2.5%",
+      "actual": ""
+    },
+    {
+      "title": "CPI m/m",
+      "country": "USD",
+      "impact": "high",
+      "at": 1789129800000,
+      "forecast": "0.4%",
+      "previous": "0.1%",
+      "actual": "0.07",
+      "actualFrom": "BLS",
+      "actualNum": 0.07,
+      "vsPrevious": -0.03,
+      "forecastNum": 0.4,
+      "surprise": -0.33,
+      "surprisePct": -82.5,
+      "beat": "below"
+    },
+    {
+      "title": "CPI y/y",
+      "country": "USD",
+      "impact": "high",
+      "at": 1789129800000,
+      "forecast": "3.4%",
+      "previous": "3.4%",
+      "actual": ""
+    },
+    {
+      "title": "ECB President Lagarde Speaks",
+      "country": "EUR",
+      "impact": "medium",
+      "at": 1789135200000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "Prelim UoM Consumer Sentiment",
+      "country": "USD",
+      "impact": "medium",
+      "at": 1789135200000,
+      "forecast": "51.0",
+      "previous": "51.0",
+      "actual": ""
+    },
+    {
+      "title": "Prelim UoM Inflation Expectations",
+      "country": "USD",
+      "impact": "medium",
+      "at": 1789135200000,
+      "forecast": "",
+      "previous": "4.3%",
+      "actual": ""
+    },
+    {
+      "title": "Federal Budget Balance",
+      "country": "USD",
+      "impact": "low",
+      "at": 1789149480000,
+      "forecast": "-221.1B",
+      "previous": "-432.3B",
+      "actual": ""
+    },
+    {
+      "title": "ECB President Lagarde Speaks",
+      "country": "EUR",
+      "impact": "medium",
+      "at": 1789200000000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "BRICS Summit",
+      "country": "All",
+      "impact": "low",
+      "at": 1789200900000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    }
+  ],
   "headlines": [
     {
       "title": "Saudi Arabia shuts key oil pipeline after drone attack launched from Iraq",
@@ -20,7 +125,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789215350000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Supply disruption and geopolitical risk boost oil and gold."
     },
     {
       "title": "Prediction: Owning 100 Shares of Amazon Stock Will Turn $25,000 Into $50,000 by 2030",
@@ -53,7 +164,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789211661000
+      "firstAt": 1789211661000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Ukraine conflict escalation supports gold as safe haven."
     },
     {
       "title": "Saudis shut down oil pipeline as Houthis tighten grip on Red Sea shipping",
@@ -69,7 +184,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789212986000
+      "firstAt": 1789212986000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Pipeline shutdown and Red Sea risks increase oil supply conc"
     },
     {
       "title": "Christian Charities, Bishops Team Up with British Government to Push Israel Sanctions - Middle East Forum",
@@ -90,7 +209,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789212382000
+      "firstAt": 1789212382000,
+      "why": "Political news lacks clear immediate market direction."
     },
     {
       "title": "Iran used Chinese satellite images for attack on US base in Jordan, says report - Middle East Eye",
@@ -110,7 +230,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789211290000
+      "firstAt": 1789211290000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Geopolitical tension involving Iran supports gold safe-haven"
     },
     {
       "title": "Trump says Iran likely responsible for attack on vital Saudi oil pipeline - cnn.com",
@@ -130,7 +254,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789209378000
+      "firstAt": 1789209378000,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Iran attribution heightens geopolitical risk for oil and gol"
     },
     {
       "title": "Russia strikes cargo vessels, steel plants across Ukraine - Al Jazeera",
@@ -150,7 +280,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789210034000
+      "firstAt": 1789210034000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Russian strikes on Ukraine infrastructure support gold safe-"
     },
     {
       "title": "Trump says Iran probably responsible for attack on Saudi oil pipeline - Arab News",
@@ -170,7 +304,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 3,
-      "firstAt": 1789208666000
+      "firstAt": 1789208666000,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Iran blame for pipeline attack increases geopolitical risk p"
     },
     {
       "title": "Far-right protesters rally against Islam on 9/11 anniversary",
@@ -203,7 +343,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789210034000
+      "firstAt": 1789210034000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Escalating Russia-Ukraine conflict supports gold as safe hav"
     },
     {
       "title": "Saudi Arabia shuts critical oil pipeline after drone attack: What it means",
@@ -223,7 +367,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 3,
-      "firstAt": 1789207287000
+      "firstAt": 1789207287000,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Critical pipeline shutdown and border closure boost oil and "
     },
     {
       "title": "Trump says Iran probably responsible for attack on Saudi pipeline",
@@ -242,7 +392,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 3,
-      "firstAt": 1789207287000
+      "firstAt": 1789207287000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Iran accusation for pipeline attack raises geopolitical risk"
     },
     {
       "title": "Russian Strike Injures Rescuer in Kramatorsk During a Repeated Attack - Межа. Новини України.",
@@ -262,7 +418,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789208512000
+      "firstAt": 1789208512000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Russian strikes on Ukraine support gold safe-haven demand."
     },
     {
       "title": "Will Lindsey Graham Sanctions Bill Disturb Putin’s Russia? - The Diplomatic Insight",
@@ -282,7 +442,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789208009000
+      "firstAt": 1789208009000,
+      "why": "Sanctions bill speculation lacks clear immediate market impa"
     },
     {
       "title": "Canadian boycott of US products pushes grocers to adapt, explore new supply sources",
@@ -296,7 +457,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789207592000
+      "firstAt": 1789207592000,
+      "why": "Boycott news has unclear immediate impact on currency pair."
     },
     {
       "title": "Trump Accuses Iran of Saudi Pipeline Attack - Devdiscourse",
@@ -316,7 +478,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 3,
-      "firstAt": 1789207287000
+      "firstAt": 1789207287000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Iran accusation for pipeline attack increases geopolitical r"
     },
     {
       "title": "EUWAX AG Hits Near 52‑Week High as ECB Rate Hike Fades, Markets Rally - InsuranceNewsNet",
@@ -1583,7 +1751,7 @@
       "firstAt": 1789152840000
     },
     {
-      "title": "The next trillion matters more for gold than the next Fed rate hike - kitco.com",
+      "title": "The next trillion matters more for gold than the next Fed rate hike - KITCO",
       "link": "https://news.google.com/rss/articles/CBMinAFBVV95cUxQdk4wRk9WZDFNeU0tNDV1N3loWHJfV0dDODB1Rlh0RkVHQmFlY1BydmdXanA0RGt2ODVoUlItd1ZnNk94SFRkY0tRX09BVUNac1dYUDVqMzVaUzJvdDFvVEVqaEZKU3RZSEhFeWZfTUlMQjh2dTVDRFl2cjB3NGJFRjRGZ3NuUnI2VWpxeTM1akFWZk1oTW5pdnVldVc?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMinAFBVV95cUxQdk4wRk9WZDFNeU0tNDV1N3loWHJfV0dDODB1Rlh0RkVHQmFlY1BydmdXanA0RGt2ODVoUlItd1ZnNk94SFRkY0tRX09BVUNac1dYUDVqMzVaUzJvdDFvVEVqaEZKU3RZSEhFeWZfTUlMQjh2dTVDRFl2cjB3NGJFRjRGZ3NuUnI2VWpxeTM1akFWZk1oTW5pdnVldVc?oc=5\" target=\"_bla",
@@ -1734,7 +1902,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": null,
-  "headlinesAt": "2026-09-12T12:19:46.905Z",
-  "updatedAt": "2026-09-12T12:19:46.905Z"
+  "calendarAt": "2026-09-12T12:21:19.142Z",
+  "headlinesAt": "2026-09-12T12:21:19.142Z",
+  "updatedAt": "2026-09-12T12:21:19.142Z"
 }
