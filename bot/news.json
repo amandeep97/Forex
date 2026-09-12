@@ -1,6 +1,43 @@
 {
-  "calendar": [],
+  "calendar": [
+    {
+      "title": "ECB President Lagarde Speaks",
+      "country": "EUR",
+      "impact": "medium",
+      "at": 1789200000000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "BRICS Summit",
+      "country": "All",
+      "impact": "low",
+      "at": 1789200900000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    }
+  ],
   "headlines": [
+    {
+      "title": "How Low Can Bitcoin Go?",
+      "link": "https://finance.yahoo.com/markets/crypto/articles/low-bitcoin-202956373.html",
+      "source": "Yahoo Finance",
+      "at": 1789244996000,
+      "inst": [
+        "BTC/USDT"
+      ],
+      "ccy": [
+        "BTC"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789244996000,
+      "_kind": null,
+      "why": "Question implies uncertainty, no clear direction."
+    },
     {
       "title": "Only Roland Garros towel left, says Ukraine tennis player after Russian strike hits flat",
       "link": "https://www.bbc.co.uk/news/articles/c4gr33g3evlo?at_medium=RSS&at_campaign=rss",
@@ -20,7 +57,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789244845000,
-      "_kind": null
+      "_kind": null,
+      "why": "Personal tragedy, no market impact."
     },
     {
       "title": "Zelenskyy Urges Partners to Tighten Sanctions on Russian Oligarchs - Межа. Новини України.",
@@ -40,7 +78,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789243077000
+      "firstAt": 1789243077000,
+      "why": "Sanctions call, no immediate price move."
     },
     {
       "title": "BRICS Urges Israel To Withdraw Forces From Lebanese Territories After Lebanon Ceasefire: 12 outlets compared - NewsCord",
@@ -60,7 +99,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789242868000
+      "firstAt": 1789242868000,
+      "why": "Diplomatic statement, no direct market impact."
     },
     {
       "title": "Saudis shut down oil pipeline as Houthis tighten grip on Red Sea shipping",
@@ -76,7 +116,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789241786000
+      "firstAt": 1789241786000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Supply disruption raises oil prices."
     },
     {
       "title": "1 Magnificent Growth Stock Down 55% to Buy Right Now, According to Wall Street",
@@ -90,7 +134,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789241700000
+      "firstAt": 1789241700000,
+      "why": "Single stock advice, index impact unclear."
     },
     {
       "title": "Russian drones target Volyn, Rivne oblasts in rare mass attack in western Ukraine - The Kyiv Independent",
@@ -110,7 +155,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789238669000
+      "firstAt": 1789238669000,
+      "why": "Escalation noted, but direction ambiguous."
     },
     {
       "title": "RingCentral Chief Accounting Officer Sells 4,568 Shares",
@@ -122,7 +168,7 @@
       "sev": 1,
       "rel": 1,
       "srcs": 1,
-      "firstAt": 1789239301000
+      "firstAt": 1789241101000
     },
     {
       "title": "Investing in the Vanguard S&P 500 ETF (VOO)? Beware of This 1 Sneaky Risk.",
@@ -136,7 +182,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789240800000
+      "firstAt": 1789240800000,
+      "why": "Risk warning, no clear directional bias."
     },
     {
       "title": "Will Houthi advances in Yemen give Iran leverage in its war with the US?",
@@ -156,7 +203,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789240657000
+      "firstAt": 1789240657000,
+      "why": "Geopolitical analysis, no clear price signal."
     },
     {
       "title": "Iran and UAE back joint BRICS statement urging restraint in war",
@@ -175,7 +223,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789238177000
+      "firstAt": 1789238177000,
+      "why": "Diplomatic talks, no clear market impact."
     },
     {
       "title": "Iraq probes drone strikes on Saudi Arabia, shuts three crossings to Iran - Al Jazeera",
@@ -195,7 +244,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789239456000
+      "firstAt": 1789239456000,
+      "why": "Investigation and border closure, impact unclear."
     },
     {
       "title": "Russian attacks kill nine, injure dozens in Ukraine, Moscow says it hits ships, plants - Reuters",
@@ -215,19 +265,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789237350000
-    },
-    {
-      "title": "WisdomTree COO Lilien Jarrett Sells 30,000 Shares for $737,000",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/wisdomtree-coo-lilien-jarrett-sells-185501162.html",
-      "source": "Yahoo Finance",
-      "at": 1789239301000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1789239301000
+      "firstAt": 1789237350000,
+      "why": "War escalation, but direction is ambiguous."
     },
     {
       "title": "3 killed in Russian strikes on Ukraine as Putin warns Europe against sending troops - Courthouse News",
@@ -247,7 +286,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789237350000
+      "firstAt": 1789237350000,
+      "why": "War escalation, but direction is ambiguous."
     },
     {
       "title": "Iran, UAE hold first talks at BRICS summit since conflict began",
@@ -267,7 +307,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 3,
-      "firstAt": 1789235934000
+      "firstAt": 1789235934000,
+      "why": "Diplomatic talks, no clear market impact."
     },
     {
       "title": "Russia Sanctions Bill: Can Trump Impose 100% Tariffs on India and China? - Diplomacy and Law",
@@ -287,7 +328,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789235934000
+      "firstAt": 1789235934000,
+      "why": "Hypothetical tariff question, no clear impact."
     },
     {
       "title": "8 killed in Russian strikes on Ukraine as Putin warns Europe against sending troops - ABC News - Breaking News, Latest News and Videos",
@@ -1741,10 +1783,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
-  "calendarAt": null,
-  "headlinesAt": "2026-09-12T20:42:17.047Z",
-  "updatedAt": "2026-09-12T20:42:17.047Z"
+  "calendarAt": "2026-09-12T20:44:04.964Z",
+  "headlinesAt": "2026-09-12T20:44:04.964Z",
+  "updatedAt": "2026-09-12T20:44:04.964Z"
 }
