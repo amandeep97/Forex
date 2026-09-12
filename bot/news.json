@@ -2,19 +2,6 @@
   "calendar": [],
   "headlines": [
     {
-      "title": "LPL Financial Group Managing Director Sells 308 Shares for $110,100",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/lpl-financial-group-managing-director-231501958.html",
-      "source": "Yahoo Finance",
-      "at": 1789254901000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1789254901000,
-      "_kind": null
-    },
-    {
       "title": "Iran war: Iraq says Saudi pipeline attack originated from its territory - Nine.com.au",
       "link": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxON2xGMTBMYVpTMWJVd3ExN0h0VFpoUmFQZkU3Yzlwc1ZfUjRvVi1kaUYtRGFSN2pHb1hReUFlOTdvem5XaTZaZFh1blpYSmpiV0VyaDFjTWt1Z3JuYlJCb0JZZlFoVE1PQ3FleGVGTlNNdm81Q1lhUlpTVkpzR1NyMTBTWEQteUtIVzZJTEh1c0R6VS1nN2ljN0gxWXBrekQ5QkdnZHR4ZDNqWjFZbi1mN2E3aE5OZ3dBQmVoclVwY3RFeGlBR1hGNUQ0a3llU01fYjRDbHRldkZQS3pySGc?oc=5",
       "source": "Wires (geo)",
@@ -32,7 +19,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789250850000
+      "firstAt": 1789250850000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Middle East conflict escalation boosts risk assets"
     },
     {
       "title": "$10,000 in Tesla When It Joined the S&P 500 Would Be About $15,700 Today. An Index Fund Would Have Done Better.",
@@ -46,7 +39,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789252681000
+      "firstAt": 1789252681000,
+      "why": "Historical performance comparison, no current direction"
     },
     {
       "title": "Tens of thousands march across Germany to protest far-right party AfD",
@@ -61,7 +55,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789252623000
+      "firstAt": 1789252623000,
+      "why": "Political protest, no clear FX impact"
     },
     {
       "title": "Not Nvidia. Not Micron. This Dirt Cheap “Magnificent Seven” Stock Could Be the Biggest Winner of the Trillion-Dollar AI Race – Here’s the Case.",
@@ -95,7 +90,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789250998000
+      "firstAt": 1789250998000,
+      "why": "Diplomatic stance, no immediate market move"
     },
     {
       "title": "USA edge Spain to book Women’s Basketball World Cup final against France",
@@ -112,7 +108,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789251018000
+      "firstAt": 1789251018000,
+      "why": "Sports news, irrelevant to currency"
     },
     {
       "title": "Russian attacks kill 10, injure dozens in Ukraine; Russia says it hits ships, plants - Reuters",
@@ -132,7 +129,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789250810000
+      "firstAt": 1789250810000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Ukraine conflict continues, gold safe haven"
     },
     {
       "title": "Iraq probes drone strikes on Saudi Arabia, shuts three crossings to Iran - Al Jazeera",
@@ -152,7 +153,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789248780000
+      "firstAt": 1789248780000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Supply disruption risk in Middle East"
     },
     {
       "title": "Russian Strikes Kill 9 Across Ukraine, As Zelenskyy Offers To Meet Putin At Miami G20 - Radio Free Europe/Radio Liberty",
@@ -172,7 +179,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789250810000
+      "firstAt": 1789250810000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Ukraine conflict persists, gold support"
     },
     {
       "title": "Nvidia (NVDA)’s 2 GW Australia AI Push Could Deepen Its Infrastructure Advantage",
@@ -188,7 +199,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789249801000
+      "firstAt": 1789249801000,
+      "dir": {
+        "AUD/USD": "up"
+      },
+      "why": "Major tech investment boosts Australian economy"
     },
     {
       "title": "The AI Infrastructure Stock That Could Make Investors Millionaires Is Hiding in Plain Sight, and Wall Street Isn’t Paying Attention",
@@ -202,7 +217,36 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789249801000
+      "firstAt": 1789249801000,
+      "why": "Speculative stock pick, no index direction"
+    },
+    {
+      "title": "10-Year Treasury Nears 5%, Raising CRE Financing Risk",
+      "link": "https://finance.yahoo.com/real-estate/articles/10-treasury-nears-5-raising-213714187.html",
+      "source": "Yahoo Finance",
+      "at": 1789249034000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789249034000,
+      "dir": {
+        "XAU/USD": "up",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Rising yields strengthen dollar, hurt gold"
     },
     {
       "title": "Houthis accuse Saudi Arabia of launching 129 strikes in 48 hours - Middle East Eye",
@@ -222,7 +266,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789248780000
+      "firstAt": 1789248780000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Middle East escalation increases risk premium"
     },
     {
       "title": "Escalating Tensions: Russian Strikes Intensify Across Ukraine - Devdiscourse",
@@ -242,7 +292,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789244845000
+      "firstAt": 1789244845000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Ukraine conflict intensity supports gold"
     },
     {
       "title": "Second crypto billionaire donates record $49m to far-right Reform UK",
@@ -259,7 +313,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789245837000
+      "firstAt": 1789245837000,
+      "why": "Political donation, no direct crypto impact"
     },
     {
       "title": "Iran joins Russia, China at BRICS conference calling for a halt to ‘escalation’ in Middle East - New York Post",
@@ -279,7 +334,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789245660000
+      "firstAt": 1789245660000,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Diplomatic de-escalation reduces risk premium"
     },
     {
       "title": "Only Roland Garros towel left, says Ukraine tennis player after Russian strike hits flat",
@@ -987,7 +1048,7 @@
       "firstAt": 1789221561000
     },
     {
-      "title": "Ukraine strikes FPV drone production facility, UAV warehouses near Taganrog - ukrinform.net",
+      "title": "Ukraine strikes FPV drone production facility, UAV warehouses near Taganrog - Ukrinform",
       "link": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxOMlROZlpocXU5YXR1Qk5HVWJlNDQ4LUF3Tm1pY1FMWV91dHZHTU9vQUt4ZmRFS1F5dTAwSktMTllvUGJuX1pBWW50NE1VQXlrWFJValoyZ2x0SXo2N2toS19uZzh4Z0tLQ0hZRExwQy11ZC1ucUpPdjlkSHFmVDMtWk92SnRqbl96WHdFaVhSM2lialI3LUJSaF9TLTFLcHlWWURVa1pZRl9XVGd6T20tMjhnLUM2cDg4RVR1QWpNaDR6d9IBxwFBVV95cUxQTDY5UlJJZ0VVYU1mRzhwSElDNjZuZUFwMHBWaTBCVk1BWkszN3ptQ1NlUTFMRzVYc1RidUFPYlktOE9TT2xzX1JEdXNya3ZEYWI2LWxrbjRHZm1EWEVIeEFzdnBsZmh6TkFod1Y4NnkxQVB3aDdSMVFzUWo5SXJFVk5pRjNwYS1WVnRXejRwWkJOa1puUkFiTWtyeENpRE9MVjA0VEx1UDFQUlNXVklZOVFESW9wR1dHenZJc3otUi1iS0Vfampv?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiwgFBVV95cUxOMlROZlpocXU5YXR1Qk5HVWJlNDQ4LUF3Tm1pY1FMWV91dHZHTU9vQUt4ZmRFS1F5dTAwSktMTllvUGJuX1pBWW50NE1VQXlrWFJValoyZ2x0SXo2N2toS19uZzh4Z0tLQ0hZRExwQy11ZC1ucUpPdjlkSHFmVDMtWk92SnRqbl96WHdFaVhSM2lialI3LUJSaF9TLTFLcHlWWURVa1pZRl9XVG",
@@ -1729,10 +1790,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-12T23:29:16.909Z",
-  "updatedAt": "2026-09-12T23:29:16.910Z"
+  "headlinesAt": "2026-09-12T23:31:04.325Z",
+  "updatedAt": "2026-09-12T23:31:04.325Z"
 }
