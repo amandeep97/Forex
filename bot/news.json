@@ -1,5 +1,200 @@
 {
-  "calendar": [],
+  "calendar": [
+    {
+      "title": "GDP m/m",
+      "country": "GBP",
+      "impact": "high",
+      "at": 1789106400000,
+      "forecast": "0.0%",
+      "previous": "0.3%",
+      "actual": ""
+    },
+    {
+      "title": "Construction Output m/m",
+      "country": "GBP",
+      "impact": "low",
+      "at": 1789106400000,
+      "forecast": "0.1%",
+      "previous": "-0.1%",
+      "actual": ""
+    },
+    {
+      "title": "Goods Trade Balance",
+      "country": "GBP",
+      "impact": "low",
+      "at": 1789106400000,
+      "forecast": "-22.6B",
+      "previous": "-23.0B",
+      "actual": ""
+    },
+    {
+      "title": "Index of Services 3m/3m",
+      "country": "GBP",
+      "impact": "low",
+      "at": 1789106400000,
+      "forecast": "0.5%",
+      "previous": "0.5%",
+      "actual": ""
+    },
+    {
+      "title": "Industrial Production m/m",
+      "country": "GBP",
+      "impact": "low",
+      "at": 1789106400000,
+      "forecast": "-0.2%",
+      "previous": "-0.2%",
+      "actual": ""
+    },
+    {
+      "title": "Manufacturing Production m/m",
+      "country": "GBP",
+      "impact": "low",
+      "at": 1789106400000,
+      "forecast": "0.2%",
+      "previous": "-0.5%",
+      "actual": ""
+    },
+    {
+      "title": "SECO Consumer Climate",
+      "country": "CHF",
+      "impact": "low",
+      "at": 1789110000000,
+      "forecast": "-33",
+      "previous": "-35",
+      "actual": ""
+    },
+    {
+      "title": "Italian Quarterly Unemployment Rate",
+      "country": "EUR",
+      "impact": "low",
+      "at": 1789113600000,
+      "forecast": "5.4%",
+      "previous": "5.3%",
+      "actual": ""
+    },
+    {
+      "title": "Consumer Inflation Expectations",
+      "country": "GBP",
+      "impact": "low",
+      "at": 1789115400000,
+      "forecast": "",
+      "previous": "4.0%",
+      "actual": ""
+    },
+    {
+      "title": "SNB Chairman Schlegel Speaks",
+      "country": "CHF",
+      "impact": "medium",
+      "at": 1789118100000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "Core CPI m/m",
+      "country": "USD",
+      "impact": "high",
+      "at": 1789129800000,
+      "forecast": "0.2%",
+      "previous": "0.2%",
+      "actual": "0.22",
+      "actualFrom": "BLS",
+      "actualNum": 0.22,
+      "vsPrevious": 0.02,
+      "forecastNum": 0.2,
+      "surprise": 0.02,
+      "surprisePct": 10,
+      "beat": "above"
+    },
+    {
+      "title": "Core CPI y/y",
+      "country": "USD",
+      "impact": "high",
+      "at": 1789129800000,
+      "forecast": "2.4%",
+      "previous": "2.5%",
+      "actual": ""
+    },
+    {
+      "title": "CPI m/m",
+      "country": "USD",
+      "impact": "high",
+      "at": 1789129800000,
+      "forecast": "0.4%",
+      "previous": "0.1%",
+      "actual": "0.07",
+      "actualFrom": "BLS",
+      "actualNum": 0.07,
+      "vsPrevious": -0.03,
+      "forecastNum": 0.4,
+      "surprise": -0.33,
+      "surprisePct": -82.5,
+      "beat": "below"
+    },
+    {
+      "title": "CPI y/y",
+      "country": "USD",
+      "impact": "high",
+      "at": 1789129800000,
+      "forecast": "3.4%",
+      "previous": "3.4%",
+      "actual": ""
+    },
+    {
+      "title": "ECB President Lagarde Speaks",
+      "country": "EUR",
+      "impact": "medium",
+      "at": 1789135200000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "Prelim UoM Consumer Sentiment",
+      "country": "USD",
+      "impact": "medium",
+      "at": 1789135200000,
+      "forecast": "51.0",
+      "previous": "51.0",
+      "actual": ""
+    },
+    {
+      "title": "Prelim UoM Inflation Expectations",
+      "country": "USD",
+      "impact": "medium",
+      "at": 1789135200000,
+      "forecast": "",
+      "previous": "4.3%",
+      "actual": ""
+    },
+    {
+      "title": "Federal Budget Balance",
+      "country": "USD",
+      "impact": "low",
+      "at": 1789149480000,
+      "forecast": "-221.1B",
+      "previous": "-432.3B",
+      "actual": ""
+    },
+    {
+      "title": "ECB President Lagarde Speaks",
+      "country": "EUR",
+      "impact": "medium",
+      "at": 1789200000000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "BRICS Summit",
+      "country": "All",
+      "impact": "low",
+      "at": 1789200900000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    }
+  ],
   "headlines": [
     {
       "title": "Iraq suspends flights to Iran, closes border crossings after Saudi drone attack - IraqiNews",
@@ -19,8 +214,14 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789189124000,
-      "_kind": null
+      "firstAt": 1789186843000,
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Geopolitical tension boosts safe havens and oil."
     },
     {
       "title": "FOUR FIREFIGHTERS INJURED IN SECONDARY EXPLOSION CAUSED BY RUSSIAN ATTACK – UKRAINE - Firefighter Close Calls",
@@ -40,7 +241,37 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789187161000
+      "firstAt": 1789187161000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "War news boosts gold, oil impact unclear."
+    },
+    {
+      "title": "Saudi Arabia shuts key oil pipeline after drone attack launched from Iraq - BBC",
+      "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE1WYkFDZzd0RXNwRTVPRHhYcTlPRG12WmJXWU9fYVZ6YjBjOUFUMXNoZEhYMjRpcEF4WGNhNmVnQzZ4eDl5Y0d3dDZQTVZnd0xNWExUY2JvSWhxdw?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiWkFVX3lxTE1WYkFDZzd0RXNwRTVPRHhYcTlPRG12WmJXWU9fYVZ6YjBjOUFUMXNoZEhYMjRpcEF4WGNhNmVnQzZ4eDl5Y0d3dDZQTVZnd0xNWExUY2JvSWhxdw?oc=5\" target=\"_blank\">Saudi Arabia shuts key oil pipeline after drone attack launched from Iraq</a>&nbsp;&n",
+      "at": 1789186843000,
+      "inst": [
+        "USOIL",
+        "XAU/USD",
+        "UKOIL"
+      ],
+      "ccy": [
+        "OIL",
+        "XAU"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789186843000,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Pipeline shutdown boosts oil and gold."
     },
     {
       "title": "Saudis shut down oil pipeline as Houthis tighten grip on Red Sea shipping",
@@ -56,7 +287,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789181310000
+      "firstAt": 1789181310000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Supply disruption and shipping risks boost oil."
     },
     {
       "title": "North Korea fires ballistic missiles off eastern coast, Seoul says",
@@ -73,7 +308,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789179959000
+      "firstAt": 1789179959000,
+      "why": "Geopolitical risk unclear for specific currency pair."
     },
     {
       "title": "Putin and Pezeshkian call out US dominance ahead of BRICS",
@@ -108,7 +344,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789178700000
+      "firstAt": 1789178700000,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Confirmed pipeline damage boosts oil and gold."
     },
     {
       "title": "World Muslim League, Bahrain condemn drone attack on Saudi Arabia - Middle East Eye",
@@ -128,7 +370,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789178700000
+      "firstAt": 1789178700000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Condemnation of attack signals rising regional tension."
     },
     {
       "title": "UK sanctions on West Bank settlers are the right step | Letters - The Guardian",
@@ -145,7 +393,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789176660000
+      "firstAt": 1789176660000,
+      "why": "Sanctions news has negligible direct market impact."
     },
     {
       "title": "How Canadians are bracing for the impact of Trump’s trade war",
@@ -164,7 +413,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789174320000
+      "firstAt": 1789174320000,
+      "why": "Trade war impact on CAD/USD is ambiguous."
     },
     {
       "title": "Iraq closes border crossing with Iran, 'pursuing' drone attack perpetrators - Middle East Eye",
@@ -184,7 +434,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789173960000
+      "firstAt": 1789173960000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Border closure and investigation boost risk assets."
     },
     {
       "title": "Temple Israel welcomes congregants home six months after attack - detroitnews.com",
@@ -204,7 +460,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789172760000
+      "firstAt": 1789172760000,
+      "why": "Local news has no macro market impact."
     },
     {
       "title": "At BRICS, Putin Slams West's \"Ugly\" Trade Tactics, Cites \"30,000 Sanctions\" - ndtv.com",
@@ -221,7 +478,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789172532000
+      "firstAt": 1789172532000,
+      "why": "Political rhetoric lacks immediate market direction."
     },
     {
       "title": "Iran war live: Houthis control Red Sea coast, Saudi pipeline shut down",
@@ -241,7 +499,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789171200000
+      "firstAt": 1789171200000,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Houthi control and pipeline shutdown boost prices."
     },
     {
       "title": "The Fed could raise interest rates three times. Here’s where the market could face the stiffest test.",
@@ -264,7 +528,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789170840000
+      "firstAt": 1789170840000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Rate hike expectations strengthen dollar, weaken metals."
     },
     {
       "title": "Markets may be making a horrible miscalculation on AI and inflation - AFR",
@@ -287,7 +557,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789170720000
+      "firstAt": 1789170720000,
+      "why": "Inflation outlook is ambiguous for these pairs."
     },
     {
       "title": "Russian attacks on Kyiv petrol stations kill two, Ukrainian strikes kill three in Russia",
@@ -507,7 +778,7 @@
       "firstAt": 1789160561000
     },
     {
-      "title": "House tees up vote on Russia sanctions bill, but prospects for passage are uncertain - ABC News - Breaking News, Latest News and Videos",
+      "title": "House tees up vote on Russia sanctions bill, but prospects for passage are uncertain - abcnews.com",
       "link": "https://news.google.com/rss/articles/CBMinwFBVV95cUxOak43U3VCaFFIbm5COXBQTFVyT1hYWF9KMWpUU1ZybHdZVWs0VEVrcURQeWVBcUU5QzlXYjZKV0VJWnNIWWRWSktmZWZwZVlDc3d4NktybmhtTEpncE5XNXd6a1FqeThIbElQRHJkTDZJRU05VlllejdFdjFUMS1JUWdCNEU3OXdNYkMtUDR5blBrWDUtdDVhSWJVOC0wZ2_SAaQBQVVfeXFMTmwxYWlyRk05dkxaaDJNQVYyR01DMXFDYlZSd1NvUV96ekdlNk95b2RGSjNQZEtTMDVON2hoaGQ5clJWSnN0X2htVVhzUDB0NlgtYnd2enl5VDVFbVRRQ296ZE5TaHpEelh6TFVnaUZORTByYmJZNzJwbXJiUjdpeDFmZXBxbVh4a0M1MllHTWljMXJEWHlaRG9HX2xqWnJRZUFOZnU?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMinwFBVV95cUxOak43U3VCaFFIbm5COXBQTFVyT1hYWF9KMWpUU1ZybHdZVWs0VEVrcURQeWVBcUU5QzlXYjZKV0VJWnNIWWRWSktmZWZwZVlDc3d4NktybmhtTEpncE5XNXd6a1FqeThIbElQRHJkTDZJRU05VlllejdFdjFUMS1JUWdCNEU3OXdNYkMtUDR5blBrWDUtdDVhSWJVOC0wZ2_SAaQBQVVfeXFMTm",
@@ -521,7 +792,7 @@
         "XAU",
         "OIL"
       ],
-      "sev": 3,
+      "sev": 2,
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789158412000
@@ -1683,29 +1954,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789141680000
-    },
-    {
-      "title": "With Fed rate hike all but assured, here's how markets might react - CoinDesk",
-      "link": "https://news.google.com/rss/articles/CBMizwFBVV95cUxQa3UyTm1wWDNDZjFHdGZSMDFCOHAtQ3h0cWxxQXdZY2pNYXBtLXJBXzFpNUhXLVJrOTFVc3lBakd1Z0JsYU93MGhhX3VXZHNsMWJ4YnlaXzVDdWRNdHRuYkJRSV9aWWRyMVlFTEQ4R3VLcS1ycHBMOEUxS21jbHJ3eUxHajNScVRrRXBWQWhITUpzVzQwNWdOLXF6UzJHRDRRZ29FeDBJSW1KZ3JFTHphdUhSdWdVbGFRZk5PQzM2ZlE3Ty1JbHkwa2JvejAxY2M?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMizwFBVV95cUxQa3UyTm1wWDNDZjFHdGZSMDFCOHAtQ3h0cWxxQXdZY2pNYXBtLXJBXzFpNUhXLVJrOTFVc3lBakd1Z0JsYU93MGhhX3VXZHNsMWJ4YnlaXzVDdWRNdHRuYkJRSV9aWWRyMVlFTEQ4R3VLcS1ycHBMOEUxS21jbHJ3eUxHajNScVRrRXBWQWhITUpzVzQwNWdOLXF6UzJHRDRRZ29FeDBJSW1KZ3",
-      "at": 1789141556000,
-      "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789141556000
     }
   ],
   "sources": [
@@ -1728,10 +1976,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
-  "calendarAt": null,
-  "headlinesAt": "2026-09-12T05:03:15.666Z",
-  "updatedAt": "2026-09-12T05:03:15.666Z"
+  "calendarAt": "2026-09-12T05:05:04.727Z",
+  "headlinesAt": "2026-09-12T05:05:04.727Z",
+  "updatedAt": "2026-09-12T05:05:04.727Z"
 }
