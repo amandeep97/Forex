@@ -2,6 +2,35 @@
   "calendar": [],
   "headlines": [
     {
+      "title": "10-Year Treasury Nears 5%, Raising CRE Financing Risk",
+      "link": "https://finance.yahoo.com/real-estate/articles/10-treasury-nears-5-raising-213714187.html",
+      "source": "Yahoo Finance",
+      "at": 1789249034000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789249034000,
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Higher yields hurt bonds, boost dollar, gold up."
+    },
+    {
       "title": "Can XRP Flip Bitcoin?",
       "link": "https://finance.yahoo.com/markets/crypto/articles/xrp-flip-bitcoin-212432380.html",
       "source": "Yahoo Finance",
@@ -16,7 +45,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789248272000,
-      "_kind": null
+      "_kind": null,
+      "why": "Rhetorical question, no clear directional signal."
     },
     {
       "title": "Ethereum ETFs Took In $216 Million on Friday. Bitcoin’s Lost Money for a Fourth Day and XRP’s Took Zero",
@@ -33,7 +63,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789247500000
+      "firstAt": 1789247500000,
+      "dir": {
+        "BTC/USDT": "down",
+        "ETH/USDT": "up"
+      },
+      "why": "Bitcoin losing money, Ethereum ETFs gaining inflows."
     },
     {
       "title": "Escalating Tensions: Russian Strikes Intensify Across Ukraine - devdiscourse.com",
@@ -53,7 +88,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789244845000
+      "firstAt": 1789244845000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Escalating war tensions boost safe havens and oil."
     },
     {
       "title": "Russian attacks kill nine, injure dozens in Ukraine; Russia says it hits ships, plants - Reuters",
@@ -73,7 +114,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789244845000
+      "firstAt": 1789244845000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Russian attacks intensify conflict, boosting risk assets."
     },
     {
       "title": "Why Is Bitcoin Dropping Today?",
@@ -89,7 +136,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789246195000
+      "firstAt": 1789246195000,
+      "dir": {
+        "BTC/USDT": "down"
+      },
+      "why": "Headline explicitly states Bitcoin is dropping."
     },
     {
       "title": "Second crypto billionaire donates record $49m to far-right Reform UK",
@@ -106,7 +157,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789245837000
+      "firstAt": 1789245837000,
+      "why": "Political donation news, no direct crypto impact."
     },
     {
       "title": "Iran joins Russia, China at BRICS conference calling for a halt to ‘escalation’ in Middle East - New York Post",
@@ -126,7 +178,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789245660000
+      "firstAt": 1789245660000,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Call for de-escalation reduces geopolitical risk premium."
     },
     {
       "title": "How Low Can Bitcoin Go?",
@@ -142,7 +200,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789244996000
+      "firstAt": 1789244996000,
+      "dir": {
+        "BTC/USDT": "down"
+      },
+      "why": "Question implies continued downward price pressure."
     },
     {
       "title": "Only Roland Garros towel left, says Ukraine tennis player after Russian strike hits flat",
@@ -162,7 +224,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789244845000
+      "firstAt": 1789244845000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Specific strike confirms ongoing conflict intensity."
     },
     {
       "title": "Ukraine tennis player's apartment destroyed in Russian strike - BBC",
@@ -182,7 +250,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789244845000
+      "firstAt": 1789244845000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Confirmed destruction of property by Russian strike."
     },
     {
       "title": "Zelenskyy Urges Partners to Tighten Sanctions on Russian Oligarchs - Межа. Новини України.",
@@ -202,7 +276,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789243077000
+      "firstAt": 1789243077000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Tighter sanctions increase geopolitical and supply risks."
     },
     {
       "title": "BRICS Urges Israel To Withdraw Forces From Lebanese Territories After Lebanon Ceasefire: 12 outlets compared - NewsCord",
@@ -222,7 +302,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789242868000
+      "firstAt": 1789242868000,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Diplomatic pressure for withdrawal suggests de-escalation."
     },
     {
       "title": "Live - China offers help to end war ahead of Iran-Arab talks in Oman - iranintl.com",
@@ -242,7 +328,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789242720000
+      "firstAt": 1789242720000,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Diplomatic efforts to end war reduce risk."
     },
     {
       "title": "Saudis shut down oil pipeline as Houthis tighten grip on Red Sea shipping",
@@ -258,7 +350,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789241786000
+      "firstAt": 1789241786000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Pipeline shutdown and shipping threats boost oil prices."
     },
     {
       "title": "Russian drones target Volyn, Rivne oblasts in rare mass attack in western Ukraine - The Kyiv Independent",
@@ -357,7 +453,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789237949000
+      "firstAt": 1789238669000
     },
     {
       "title": "Attack that closed key Saudi pipeline is blamed on Iran-backed militias in Iraq - New York Post",
@@ -398,26 +494,6 @@
       "rel": 2,
       "srcs": 3,
       "firstAt": 1789235934000
-    },
-    {
-      "title": "8 killed in Russian strikes on Ukraine as Putin warns Europe against sending troops - ABC News - Breaking News, Latest News and Videos",
-      "link": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxOSV9fWnNmUDMzT2FLZW1JNGViVXh0aldMYzZpOEhydWJmZWJCaThsOG9lQ2hvdlRGS3BwVlVHSE11YnhPbUcwX0ExejRRNlM0Y3FCMzhIUE1qdnQ3ZVBiR2UtcWQ1Y1B0Z1N4QnBDckdzU0VSbnN5ZVRhTWlOQlJDdTBRQ1l3dnBsV0E3T1RUbmZSYXg1V3ZUV3I2QmRoQkNFT0RtaGhlZmrSAa4BQVVfeXFMT2JjS0VpZUkzVU1HOWlZNEtfb0xCVGxPNjRybm8xZzZEUWhMWk5IMkZJTE9IQndlOUx3RDE4YS1IZ3ZCM3NKTHBYbmNlMDZKekFYVmdVSGFwdmd3c1BaWWc3anhURWlRY2w0VnY4azRENHVBVUM2NF9hNm5QZHYwd0dBeDVBVGdYN25LS1BVb1ROZXZkOWg1S1R0LUQ4R0NSVzZFd09SQjBvRHZtTFFn?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiqAFBVV95cUxOSV9fWnNmUDMzT2FLZW1JNGViVXh0aldMYzZpOEhydWJmZWJCaThsOG9lQ2hvdlRGS3BwVlVHSE11YnhPbUcwX0ExejRRNlM0Y3FCMzhIUE1qdnQ3ZVBiR2UtcWQ1Y1B0Z1N4QnBDckdzU0VSbnN5ZVRhTWlOQlJDdTBRQ1l3dnBsV0E3T1RUbmZSYXg1V3ZUV3I2QmRoQkNFT0RtaGhlZmrSAa",
-      "at": 1789237949000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 3,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789237949000
     },
     {
       "title": "Russia Sanctions Bill: Can Trump Impose 100% Tariffs on India and China? - Diplomacy and Law",
@@ -472,6 +548,26 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789236695000
+    },
+    {
+      "title": "Iran Finds Escalation Is Fruitful Path to Leverage in War With U.S. - nytimes.com",
+      "link": "https://news.google.com/rss/articles/CBMinAFBVV95cUxNeGt3bmM5Z3hRbkRTZlVJbUhxRnY2YmdMNUVJVHRaNTNJeXlYYzNNdFNZcW9qdjBta0Q5cDNTUWxfZjZVUzdNRUV1U0VVNERzeERvUE5VS3p0VTk3V3JkN3JjV01tOU1va2Z1djJxbU1LbHlPVkFBZzRsb054Z1dhOXcwOGV4LWVBaElIa1U2bnE0akJJZTlwMms5MUU?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMinAFBVV95cUxNeGt3bmM5Z3hRbkRTZlVJbUhxRnY2YmdMNUVJVHRaNTNJeXlYYzNNdFNZcW9qdjBta0Q5cDNTUWxfZjZVUzdNRUV1U0VVNERzeERvUE5VS3p0VTk3V3JkN3JjV01tOU1va2Z1djJxbU1LbHlPVkFBZzRsb054Z1dhOXcwOGV4LWVBaElIa1U2bnE0akJJZTlwMms5MUU?oc=5\" target=\"_bla",
+      "at": 1789236430000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789236430000
     },
     {
       "title": "Oracle’s Ellison cancels plan to sell up to 50 mln shares",
@@ -737,7 +833,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789230076000
+      "firstAt": 1789229760000
     },
     {
       "title": "Fed rate-hike odds surge as Warsh faces inflation-weary markets - Yahoo Finance Singapore",
@@ -761,6 +857,26 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789229820000
+    },
+    {
+      "title": "8 killed, dozens wounded in Russian strikes on Ukraine as Putin warns Europe against sending troops - New York Post",
+      "link": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxQNmFaME84XzRYTG83Tkhvb3VGUDNYWkctYVc1RWs0UWhnLXltRDFJYmxQckR2MlVtYm9EZERXaUJ1Sl9RaGFtYTRCbDI3a1EyS0pxbXU3V3hGNWtQV01IZlBsSTg2Zm5LWEtib2tGTHRuOVpIdTR4WVBYR0Z2ekZNYnM3YUJMV2lMMzhETXJCbmduM1hoSTdlMEwzbVZGamJXWFlvNTJnT0VaYzBXUWk5VFJPRHVELVB4UVJBNjlwdXJsVEJpV3NiMjd0bGZvbmx0RkRkMjBxbw?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi1wFBVV95cUxQNmFaME84XzRYTG83Tkhvb3VGUDNYWkctYVc1RWs0UWhnLXltRDFJYmxQckR2MlVtYm9EZERXaUJ1Sl9RaGFtYTRCbDI3a1EyS0pxbXU3V3hGNWtQV01IZlBsSTg2Zm5LWEtib2tGTHRuOVpIdTR4WVBYR0Z2ekZNYnM3YUJMV2lMMzhETXJCbmduM1hoSTdlMEwzbVZGamJXWFlvNTJnT0VaYz",
+      "at": 1789229760000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789229760000
     },
     {
       "title": "Will the Houthi attacks activate the Mecca Pact?",
@@ -801,26 +917,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789227960000
-    },
-    {
-      "title": "Iran Finds Escalation Is Fruitful Path to Leverage in War With U.S. - nytimes.com",
-      "link": "https://news.google.com/rss/articles/CBMinAFBVV95cUxNeGt3bmM5Z3hRbkRTZlVJbUhxRnY2YmdMNUVJVHRaNTNJeXlYYzNNdFNZcW9qdjBta0Q5cDNTUWxfZjZVUzdNRUV1U0VVNERzeERvUE5VS3p0VTk3V3JkN3JjV01tOU1va2Z1djJxbU1LbHlPVkFBZzRsb054Z1dhOXcwOGV4LWVBaElIa1U2bnE0akJJZTlwMms5MUU?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMinAFBVV95cUxNeGt3bmM5Z3hRbkRTZlVJbUhxRnY2YmdMNUVJVHRaNTNJeXlYYzNNdFNZcW9qdjBta0Q5cDNTUWxfZjZVUzdNRUV1U0VVNERzeERvUE5VS3p0VTk3V3JkN3JjV01tOU1va2Z1djJxbU1LbHlPVkFBZzRsb054Z1dhOXcwOGV4LWVBaElIa1U2bnE0akJJZTlwMms5MUU?oc=5\" target=\"_bla",
-      "at": 1789226584000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789226584000
     },
     {
       "title": "Ukrainians tell of their survival under Russian attack – video - The Guardian",
@@ -1562,7 +1658,7 @@
       "firstAt": 1789161528000
     },
     {
-      "title": "US To Vote On Russia Sanctions Bill Next Week, Giving Trump More Tariff Power - ndtv.com",
+      "title": "US To Vote On Russia Sanctions Bill Next Week, Giving Trump More Tariff Power - NDTV",
       "link": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxON1h0SENhUXRQQzFPbHhMcUdyWmtzMU5GZHEwRHZFZjFiM1c2Q0xTS2wxWkpLdG9YSEF2SXU4cXQ1LXhFYmpURmVGcEYwX1ExRmM2V291RTNpRzQyV0ttR2RMemlCdTFUR290TTduMlVlSVdkaEhkdVhrQmE3U2Q1S2R2bUI2c0o1UEs4eDFyc2VJYXp0eTY1dGJyOVR1VWlkQV9UY0ZGUTk1Zko1RWV5bGh0ZkJBOVd30gHAAUFVX3lxTE1WZW9UeHRKZTkwZFAwTXAxTmhlSGtfeVVGb2N4YUNkcDZka2p1TmpPQVJWNl8xdEhrTXpGMEFpUHlveHBnR3lRQ2xtQzZNTElXOVdmd1pjMlhnN0dQbnVQaVRQRnl0bjdic0tjTGlKZmdzem5mSFJ6UFNXdGtHcnExcmluTGNNTjBQSl9ld1loLW02OHZ1dUNNeW92T1drb3dnUVlmQmh1ZXFzU2U3VUxhNC0wSExxODlIRG9OYWJnaQ?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiuAFBVV95cUxON1h0SENhUXRQQzFPbHhMcUdyWmtzMU5GZHEwRHZFZjFiM1c2Q0xTS2wxWkpLdG9YSEF2SXU4cXQ1LXhFYmpURmVGcEYwX1ExRmM2V291RTNpRzQyV0ttR2RMemlCdTFUR290TTduMlVlSVdkaEhkdVhrQmE3U2Q1S2R2bUI2c0o1UEs4eDFyc2VJYXp0eTY1dGJyOVR1VWlkQV9UY0ZGUTk1Zk",
@@ -1714,18 +1810,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789158778000
-    },
-    {
-      "title": "Argentine farmers boost soybean sales on price rally",
-      "link": "https://www.investing.com/news/commodities-news/argentine-farmers-boost-soybean-sales-on-price-rally-93CH-4898409",
-      "source": "Investing Cmdty",
-      "at": 1789158555000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1789158555000
     }
   ],
   "sources": [
@@ -1748,10 +1832,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-12T21:50:46.925Z",
-  "updatedAt": "2026-09-12T21:50:46.925Z"
+  "headlinesAt": "2026-09-12T21:52:35.808Z",
+  "updatedAt": "2026-09-12T21:52:35.808Z"
 }
