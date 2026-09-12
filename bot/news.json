@@ -1,24 +1,5 @@
 {
-  "calendar": [
-    {
-      "title": "ECB President Lagarde Speaks",
-      "country": "EUR",
-      "impact": "medium",
-      "at": 1789200000000,
-      "forecast": "",
-      "previous": "",
-      "actual": ""
-    },
-    {
-      "title": "BRICS Summit",
-      "country": "All",
-      "impact": "low",
-      "at": 1789200900000,
-      "forecast": "",
-      "previous": "",
-      "actual": ""
-    }
-  ],
+  "calendar": [],
   "headlines": [
     {
       "title": "Ethereum ETFs Took In $216 Million on Friday. Bitcoin’s Lost Money for a Fourth Day and XRP’s Took Zero",
@@ -340,7 +321,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789239456000
+      "firstAt": 1789238520000
     },
     {
       "title": "3 killed in Russian strikes on Ukraine as Putin warns Europe against sending troops - Courthouse News",
@@ -361,6 +342,26 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789237350000
+    },
+    {
+      "title": "Attack that closed key Saudi pipeline is blamed on Iran-backed militias in Iraq - New York Post",
+      "link": "https://news.google.com/rss/articles/CBMivgFBVV95cUxOZlFZQW84bk14RDRWY09LUDZfTXpTN1ZqeHBrNmd4c0dOdnZCNFVoYXlhMzRiVEdjYWpqQ0lPNHZJV2xzZ3d2MWRqdDZuWnlINndianVqdDJ5MXotY1lTSG5UYTVJZ1FlNE9SMFRDUnJkTXRZTW5XbmZVYWswcDVuOG1GSndZODhnRnhfX2oybUpHZndTa1hhNFFUSVNFXzRUQ1N4TUgxLVRmOTdiRWJtSXFYUTRIYnB2WExBMFZB?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMivgFBVV95cUxOZlFZQW84bk14RDRWY09LUDZfTXpTN1ZqeHBrNmd4c0dOdnZCNFVoYXlhMzRiVEdjYWpqQ0lPNHZJV2xzZ3d2MWRqdDZuWnlINndianVqdDJ5MXotY1lTSG5UYTVJZ1FlNE9SMFRDUnJkTXRZTW5XbmZVYWswcDVuOG1GSndZODhnRnhfX2oybUpHZndTa1hhNFFUSVNFXzRUQ1N4TUgxLVRmOT",
+      "at": 1789238520000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789235934000
     },
     {
       "title": "Iran, UAE hold first talks at BRICS summit since conflict began",
@@ -541,7 +542,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789233025000
+      "firstAt": 1789233696000
     },
     {
       "title": "Ukraine braces for harsh winter as Russian attacks hit economy - Reuters",
@@ -561,7 +562,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789233025000
+      "firstAt": 1789233696000
     },
     {
       "title": "Trump says Iran likely behind Saudi pipeline attack as US weighs next moves - Fox News",
@@ -622,26 +623,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789233300000
-    },
-    {
-      "title": "Ukraine's economy hobbled by Russian strikes - RTL Today",
-      "link": "https://news.google.com/rss/articles/CBMijgFBVV95cUxNVHREY1JlemRVX1ViaGdvWUhMcUJRbWl1V1ZPTG1QemdBWjhJYmFDT3hMQ2ZKcVR4WXhMcGowajhGRXQ0RENHTjhhaEJ3NG5pRzlKdy1mZXRVaV9CbThwcVdJaEhwZEx5TEpKU3VkdmFGRXNBa3JtWG1feFVhMlQzZTZ5dl9YNUNvM1VkX1lB?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMijgFBVV95cUxNVHREY1JlemRVX1ViaGdvWUhMcUJRbWl1V1ZPTG1QemdBWjhJYmFDT3hMQ2ZKcVR4WXhMcGowajhGRXQ0RENHTjhhaEJ3NG5pRzlKdy1mZXRVaV9CbThwcVdJaEhwZEx5TEpKU3VkdmFGRXNBa3JtWG1feFVhMlQzZTZ5dl9YNUNvM1VkX1lB?oc=5\" target=\"_blank\">Ukraine's econo",
-      "at": 1789233025000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789233025000
     },
     {
       "title": "A Tale of Two Dollars: Why Dollar General Outpaced Dollar Tree This Quarter",
@@ -1763,10 +1744,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-12T21:26:32.457Z",
-  "headlinesAt": "2026-09-12T21:26:32.457Z",
-  "updatedAt": "2026-09-12T21:26:32.457Z"
+  "calendarAt": null,
+  "headlinesAt": "2026-09-12T21:28:16.970Z",
+  "updatedAt": "2026-09-12T21:28:16.970Z"
 }
