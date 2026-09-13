@@ -876,6 +876,32 @@
   ],
   "headlines": [
     {
+      "title": "Trump calls on Ukraine to halt strikes on Russian diesel, saying attacks are causing a shortage - The Washington Post",
+      "link": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxOVDVoSWRMd0l6YnpnYV83MkJpRGtRaTNzRmFpQXktbkFaeVVxNWJIRU5uV0QybXZEbTZXMmJ5Zzk1SkxfeEc4T21XZkRzN2dPOWIydDZiZjFlN1ZrTXhXRm10b25ZeG0xczQ3MWhlRnduQ1g4eTdfZlVJOE1FbGZqbS03dV9mQ0JNUzNwOGZpUTYzTmQxdldZbGhpc3NUM0ltYkNWR1dhZVlkeE9qLXJvYWhBdk8tZVFlWFpkcW9nV3lGQ3lsOTU0M3RDbDRaWHkzV2psaVNoR0hhN3hwYkdZNzJHQlVsS00?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi5wFBVV95cUxOVDVoSWRMd0l6YnpnYV83MkJpRGtRaTNzRmFpQXktbkFaeVVxNWJIRU5uV0QybXZEbTZXMmJ5Zzk1SkxfeEc4T21XZkRzN2dPOWIydDZiZjFlN1ZrTXhXRm10b25ZeG0xczQ3MWhlRnduQ1g4eTdfZlVJOE1FbGZqbS03dV9mQ0JNUzNwOGZpUTYzTmQxdldZbGhpc3NUM0ltYkNWR1dhZVlkeE",
+      "at": 1789306844000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789304781000,
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Diesel shortage implies supply constraints"
+    },
+    {
       "title": "New attacks in Hormuz and Saudi test nerves as war’s spread worsens oil disruption",
       "link": "https://www.investing.com/news/commodities-news/new-report-of-attack-on-strait-of-hormuz-shipping-fans-fears-of-threats-to-oil-supplies-4898701",
       "source": "Investing Cmdty",
@@ -893,7 +919,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789306226000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "War spread worsens oil disruption"
     },
     {
       "title": "Russia strikes passenger train near Polish border as drone swarms reach deeper into western Ukraine - euromaidanpress.com",
@@ -914,7 +946,10 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789304781000,
-      "_kind": null
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Escalation near Poland boosts safe havens"
     },
     {
       "title": "Ukraine drone strikes kill four as Russia attacks close to Poland border - Al Jazeera",
@@ -934,7 +969,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789304781000
+      "firstAt": 1789304781000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Ukraine-Russia escalation boosts safe havens"
     },
     {
       "title": "Air defense, sanctions against russia, the path to peace, and EU accession - the foreign ministers of Ukraine and Estonia held a meeting - Українські Національні Новини (УНН)",
@@ -954,7 +993,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789304944000
+      "firstAt": 1789304944000,
+      "why": "Diplomatic meeting lacks immediate market impact"
     },
     {
       "title": "Poland warns of 'real' threat after Russian drones strike Ukraine near its border - The Kyiv Independent",
@@ -974,7 +1014,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789303380000
+      "firstAt": 1789303380000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Real threat near Poland boosts gold"
     },
     {
       "title": "The Houthis’ escalation in Yemen could flop - Al Jazeera",
@@ -991,7 +1035,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789303190000
+      "firstAt": 1789303190000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Escalation flop reduces geopolitical risk premium"
     },
     {
       "title": "NEW: China reportedly aided Iran in deadly attack on US forces - Fox News",
@@ -1011,7 +1059,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789304535000
+      "firstAt": 1789304535000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "China aiding Iran escalates geopolitical risk"
     },
     {
       "title": "The price of almost everything on your dinner table is climbing at once — and Wall Street is taking notice",
@@ -1033,7 +1087,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789304400000
+      "firstAt": 1789304400000,
+      "dir": {
+        "US500": "down",
+        "XAU/USD": "up"
+      },
+      "why": "Inflation concerns hurt stocks, boost gold"
     },
     {
       "title": "The Iran war reveals the limits of BRICS",
@@ -1055,7 +1114,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789303618000
+      "firstAt": 1789303618000,
+      "why": "BRICS limits analysis lacks clear direction"
     },
     {
       "title": "Saudi Arabia stocks lower at close of trade; Tadawul All Share down 1.30%",
@@ -1069,7 +1129,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789303503000
+      "firstAt": 1789303503000,
+      "why": "Saudi stocks unrelated to US index"
     },
     {
       "title": "Russian strike on Ukraine-Poland border shows war at Europe's 'doorstep' - ABC News & Headlines – Australian Broadcasting Corporation",
@@ -1090,7 +1151,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789303380000
+      "firstAt": 1789303380000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "War at Europe's doorstep boosts gold"
     },
     {
       "title": "The Houthis’ escalation in Yemen could flop",
@@ -1110,7 +1175,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789303190000
+      "firstAt": 1789303190000,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Houthi escalation flop reduces risk premium"
     },
     {
       "title": "U.S. equity ETFs see outflows of $4.5 billion as traders price in Fed rate hike",
@@ -1132,7 +1203,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789303023000
+      "firstAt": 1789303023000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Fed hike expectations strengthen dollar"
     },
     {
       "title": "Saudi pipeline outage threatens loss of 4% of global oil supply",
@@ -1148,7 +1225,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789302624000
+      "firstAt": 1789302624000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Pipeline outage threatens global oil supply"
     },
     {
       "title": "Russia hits Poland-Ukraine border area amid wave of attacks targeting gas stations, Kyiv says - CNN",
@@ -1559,6 +1640,26 @@
       "firstAt": 1789293191000
     },
     {
+      "title": "Iraq To Open Iran Crossings After Drone Attack Prompts Saudi Pipeline Closure - ndtv.com",
+      "link": "https://news.google.com/rss/articles/CBMiugFBVV95cUxOb0UtNjNQa1VtbU1qYXlXM2RrT3EwclBNV05wcHlpOWJnWjJ2SmVEQzVaV2k2SXp5S3NNNndyYmRTczllV3VDVVNSRzhQeE1KazFwZm13emNuNDRPSTJOQWI1WjdITy1JSHRoLXptalY0T0NfTGZjMXJPTFhqS0d5WEdBYU0wcS1pQUVHWlhFWmNDdElZNFhjb0dobG1nbVNGUTVZd2Jld2REbkJNd0hxanZJM2ZPVi13bFHSAcIBQVVfeXFMT3BhaFpRalNCZVgzcHZlOHZlel92dmNwem03SjY3aXk0bTI3Qy0ycy1MNVlaUjdGa0t4UUNxYUJNWWVCdVpDcDE3MlU4dE5XeUl3THVLWnMwb1FIYzVZZ083cUpWNFlLUnB3YURwQ1Q0ajFIeEw0eGItbjh3eXlWb0pRNk9FYTJ4b2k1MG5JeWFzbXd3WjdWVVBXcWYzYy1OSE01Y3Mxdnh3aDlpZHVhaFFBSkUwd1llRVRPQ2lOWjFsRXc?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiugFBVV95cUxOb0UtNjNQa1VtbU1qYXlXM2RrT3EwclBNV05wcHlpOWJnWjJ2SmVEQzVaV2k2SXp5S3NNNndyYmRTczllV3VDVVNSRzhQeE1KazFwZm13emNuNDRPSTJOQWI1WjdITy1JSHRoLXptalY0T0NfTGZjMXJPTFhqS0d5WEdBYU0wcS1pQUVHWlhFWmNDdElZNFhjb0dobG1nbVNGUTVZd2Jld2REbk",
+      "at": 1789291521000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789290720000
+    },
+    {
       "title": "Egypt’s Sisi calls on Iran to halt escalation, seek peaceful settlement - Middle East Monitor",
       "link": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQNHc2cHY5cFF2MVRSMjZERXV2M2NuVWZnLXBzUjdfc0FRenlqd3FKXy1aWXJYYm9YT1djMlk5WlZCcExtRUFvMTBURFJiTVF2SUdHdVZhVnJtcVBQbDNvekk3MGtvdHRtYzF2OVVhTTdrRlVWNlVfSS1xYUVCWDZLOWlmVEotZ01sNGRSNlo0eVN5bzdqQzJaaVdUcnU2Z08zQzZoaEFLSThFM1kzM3ZUT0hxRdIBuAFBVV95cUxQa0xMeUJOSXJoZU1UVlpERUZFQVdNZUhzUDZtZkRVM2ZIQWlFbTRHaUkzdUZremd0RmFjell6Yk1uWmRxa2RnTmRfQUs5UHhURENBQ0FoUUhNczVnbmM1SFdsVkpxdEU2dnRZWG1fX21SR3U2T2h6NEVpN1gyd1ctcy1FaTRRWG9qWkZGSnlzS19qU3Z2cEJBWENXMUNicWFMNzJtOFNUVmpTQlNFMl9tS0t5bl9NZ3pJ?oc=5",
       "source": "Wires (geo)",
@@ -1887,26 +1988,6 @@
       "firstAt": 1789281137000
     },
     {
-      "title": "Ukraine Is Better Prepared for Winter Strikes, Koretskyi Says - Kyiv Post",
-      "link": "https://news.google.com/rss/articles/CBMiS0FVX3lxTFBuaTJTQ3RpNFl2RFNUVndsQTlIYmVEWGVTblFVX1FrakpnWjd4bk1mX0NrQ2NFbUE0WG9qUXVOZS1oajV6NWJnanZBcw?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiS0FVX3lxTFBuaTJTQ3RpNFl2RFNUVndsQTlIYmVEWGVTblFVX1FrakpnWjd4bk1mX0NrQ2NFbUE0WG9qUXVOZS1oajV6NWJnanZBcw?oc=5\" target=\"_blank\">Ukraine Is Better Prepared for Winter Strikes, Koretskyi Says</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">Kyiv P",
-      "at": 1789280909000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789280909000
-    },
-    {
       "title": "Iran claims that US attack on Iranian commercial ship killed one - Euronews.com",
       "link": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQVklNZUowcXpQaGRlb3hpVnpVSFpMc3lhNy11dnFybnAxRENzLWdZaGdNak90bmZpeU9IZmgydUZJWTVQUWVJUXREMFFIWnl1cjBHYnZGVDlrWlowTUtzbmNtNzk2R3lDMGkyNG1QemFCX3JZckU0cXNoS0Z4dExwdDB3U2ZkSVdEOTU4cHhoRVcyUDdtWWE0WFcyS0Z4TjJoWUdzS0dZeWJvQjczVXUwTFpxd3BhcG9Xb3Nn?oc=5",
       "source": "Wires (geo)",
@@ -2208,27 +2289,7 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789244845000
-    },
-    {
-      "title": "Ukraine tennis player's apartment destroyed in Russian strike - BBC",
-      "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE15RnNVc2QtRTBVcmQ5cV82bFFJQlJQUlV3WVU4d1lWRTVBVlhISk5JOFhjSld3RGF5UXQyWDZHcDNEaXRpM2FQa3R3azhmWlVzYU9HR3VWcmxrUQ?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiWkFVX3lxTE15RnNVc2QtRTBVcmQ5cV82bFFJQlJQUlV3WVU4d1lWRTVBVlhISk5JOFhjSld3RGF5UXQyWDZHcDNEaXRpM2FQa3R3azhmWlVzYU9HR3VWcmxrUQ?oc=5\" target=\"_blank\">Ukraine tennis player's apartment destroyed in Russian strike</a>&nbsp;&nbsp;<font co",
-      "at": 1789244845000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 2,
+      "srcs": 1,
       "firstAt": 1789244845000
     },
     {
@@ -2466,6 +2527,20 @@
       "firstAt": 1789216362000
     },
     {
+      "title": "Ray Dalio and Bloomberg analysts reveal where to put $10,000 as stocks hit highs and bonds sell off in 2026",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/ray-dalio-bloomberg-analysts-reveal-130000521.html",
+      "source": "Yahoo Finance",
+      "at": 1789218000000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789218000000
+    },
+    {
       "title": "Inflation is outpacing wage growth again, squeezing Americans’ paychecks",
       "link": "https://www.cnbc.com/2026/09/12/inflation-is-outpacing-wage-growth-again-squeezing-americans-paychecks.html",
       "source": "CNBC Markets",
@@ -2585,20 +2660,6 @@
       "rel": 1,
       "srcs": 1,
       "firstAt": 1789213920000
-    },
-    {
-      "title": "How Much Do You Really Need Invested in Dividend Stocks to Replace a $25,000 Income?",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/much-really-invested-dividend-stocks-115031676.html",
-      "source": "Yahoo Finance",
-      "at": 1789213831000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789213831000
     }
   ],
   "sources": [
@@ -2621,10 +2682,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-13T13:40:48.147Z",
-  "headlinesAt": "2026-09-13T13:40:48.147Z",
-  "updatedAt": "2026-09-13T13:40:48.147Z"
+  "calendarAt": "2026-09-13T13:42:36.683Z",
+  "headlinesAt": "2026-09-13T13:42:36.683Z",
+  "updatedAt": "2026-09-13T13:42:36.683Z"
 }
