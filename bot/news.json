@@ -876,21 +876,6 @@
   ],
   "headlines": [
     {
-      "title": "3 of the Most Resilient High-Yield Dividend Stocks in the Chemical Sector: A Safety Deep Dive",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/3-most-resilient-high-yield-161652798.html",
-      "source": "Yahoo Finance",
-      "at": 1789316212000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789316212000,
-      "_kind": null
-    },
-    {
       "title": "Ukrainian drone evades Russian helicopter fire to strike oil tanker - Al Jazeera",
       "link": "https://news.google.com/rss/articles/CBMikgFBVV95cUxNVEt2d1JVSGYxTWJkWUs2ZWZKMzVZaVAzMVZsUkpiQWhaUUdOMjRwOWJfQ2J5YzNyOWRKS3QybUIwNXFYRWtiZDFvRWZaYTRyT3VfRk01cGgxeTJLa1hMVzRhVmJiRzNvcld4Y1VLcmhCQzVaMDRLeVVJUTNnNGpJQUR0SDdRaHEwY25yWlROUjVyZ9IBlwFBVV95cUxNTFpBenBrZlFuemRuZHhGeTgxQlBOLTlLWldoMG1lcXJOUzRHQTZsc2xGUXQyQUNkUHdfWHFVU0s4OVVyblNVUzNKRm1iOUp2UG9SWVh6YjhXaHd3Uk1wOHo5elFnR0xrYXZaZE9wZUxZaUl4ZE9rbUZMRGN4S05LZXRKMUM5bi1salktdkRpTmlaNnMyOXEw?oc=5",
       "source": "Wires (geo)",
@@ -909,7 +894,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789314900000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Oil tanker strike boosts oil and gold"
     },
     {
       "title": "Trump Urges Federal Reserve To Cut Rates As Market Bets On Warsh Hike",
@@ -932,7 +923,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789315899000,
-      "_kind": null
+      "_kind": null,
+      "why": "Conflicting rate signals create market uncertainty"
     },
     {
       "title": "Could Upstart 10x From Here? The AI Fintech Platform Could Be the Most Misunderstood Stock on the Market",
@@ -969,7 +961,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789315429000,
-      "_kind": null
+      "_kind": null,
+      "why": "Peso news irrelevant to listed instruments"
     },
     {
       "title": "A $93 trillion trading boom puts CME in an unusual spot",
@@ -999,7 +992,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789315232000,
-      "_kind": null
+      "_kind": null,
+      "why": "Index criteria change lacks immediate price impact"
     },
     {
       "title": "Turkish and Syrian FMs rail at Israel over recent strikes on airbase - The Times of Israel",
@@ -1020,7 +1014,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789313400000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Geopolitical tension boosts safe havens and oil"
     },
     {
       "title": "Trump calls on Ukraine to stop strikes on Russian diesel targets - thenationalnews.com",
@@ -1041,7 +1041,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789313400000,
-      "_kind": null
+      "why": "Diplomatic call lacks immediate market direction"
     },
     {
       "title": "Dow Jones Futures: Fed Meeting Ahead; Anthropic's Amodei, OpenAI's Altman, SpaceX's Musk Call For AI Slowdown",
@@ -1057,7 +1057,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789314733000
+      "firstAt": 1789313769000,
+      "why": "Mixed signals from Fed and AI sector"
     },
     {
       "title": "Central Bank of AI: Analyst Says NVIDIA Could Sit on $1.4 Trillion — Dwarfing Hyperscalers and Wall Street",
@@ -1073,7 +1074,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789314603000
+      "firstAt": 1789314603000,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "NVIDIA valuation boost supports tech stocks"
     },
     {
       "title": "Pay is back on the rise for job switchers, even in low-hire job market",
@@ -1105,7 +1110,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789314278000
+      "firstAt": 1789314278000,
+      "why": "Diplomatic details lack immediate market impact"
     },
     {
       "title": "HSBC Raises 2026 S&P 500 Target to 8,100 on Earnings Outlook",
@@ -1119,7 +1125,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789314180000
+      "firstAt": 1789314180000,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Higher S&P 500 target is bullish"
     },
     {
       "title": "Ukraine Blames Russia For 'Systemic Attack' On Railways After Drone Hits Train - NDTV",
@@ -1139,7 +1149,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789313400000
+      "firstAt": 1789313400000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Ukraine attack boosts gold, oil unclear"
     },
     {
       "title": "Russian forces launched over 300 attack drones on Ukraine on 13 September - Українська правда",
@@ -1159,7 +1173,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789313400000
+      "firstAt": 1789313400000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Escalation boosts gold, oil impact unclear"
     },
     {
       "title": "Trump calls on Ukraine to halt strikes on Russian diesel, saying attacks are causing a shortage - valleynewslive.com",
@@ -1179,7 +1197,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789313400000
+      "firstAt": 1789313400000,
+      "why": "Diplomatic dispute lacks clear price direction"
     },
     {
       "title": "New attacks in Hormuz and Saudi test nerves as war’s spread worsens oil disruption",
@@ -1198,7 +1217,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789313801000
+      "firstAt": 1789313801000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Hormuz attacks boost oil and gold"
     },
     {
       "title": "Trump blames Zelenskyy for diesel shortage, tells Ukraine to stop strikes on Russian supplies - The Times of India",
@@ -1218,7 +1243,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789313400000
+      "firstAt": 1789313400000,
+      "why": "Political blame game lacks market direction"
     },
     {
       "title": "Canadian boycott of US products pushes grocers to adapt, explore new supply sources",
@@ -2050,6 +2076,26 @@
       "firstAt": 1789293191000
     },
     {
+      "title": "Iraq To Open Iran Crossings After Drone Attack Prompts Saudi Pipeline Closure - NDTV",
+      "link": "https://news.google.com/rss/articles/CBMiugFBVV95cUxOb0UtNjNQa1VtbU1qYXlXM2RrT3EwclBNV05wcHlpOWJnWjJ2SmVEQzVaV2k2SXp5S3NNNndyYmRTczllV3VDVVNSRzhQeE1KazFwZm13emNuNDRPSTJOQWI1WjdITy1JSHRoLXptalY0T0NfTGZjMXJPTFhqS0d5WEdBYU0wcS1pQUVHWlhFWmNDdElZNFhjb0dobG1nbVNGUTVZd2Jld2REbkJNd0hxanZJM2ZPVi13bFHSAcIBQVVfeXFMT3BhaFpRalNCZVgzcHZlOHZlel92dmNwem03SjY3aXk0bTI3Qy0ycy1MNVlaUjdGa0t4UUNxYUJNWWVCdVpDcDE3MlU4dE5XeUl3THVLWnMwb1FIYzVZZ083cUpWNFlLUnB3YURwQ1Q0ajFIeEw0eGItbjh3eXlWb0pRNk9FYTJ4b2k1MG5JeWFzbXd3WjdWVVBXcWYzYy1OSE01Y3Mxdnh3aDlpZHVhaFFBSkUwd1llRVRPQ2lOWjFsRXc?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiugFBVV95cUxOb0UtNjNQa1VtbU1qYXlXM2RrT3EwclBNV05wcHlpOWJnWjJ2SmVEQzVaV2k2SXp5S3NNNndyYmRTczllV3VDVVNSRzhQeE1KazFwZm13emNuNDRPSTJOQWI1WjdITy1JSHRoLXptalY0T0NfTGZjMXJPTFhqS0d5WEdBYU0wcS1pQUVHWlhFWmNDdElZNFhjb0dobG1nbVNGUTVZd2Jld2REbk",
+      "at": 1789291521000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789291521000
+    },
+    {
       "title": "Egypt’s Sisi calls on Iran to halt escalation, seek peaceful settlement - Middle East Monitor",
       "link": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQNHc2cHY5cFF2MVRSMjZERXV2M2NuVWZnLXBzUjdfc0FRenlqd3FKXy1aWXJYYm9YT1djMlk5WlZCcExtRUFvMTBURFJiTVF2SUdHdVZhVnJtcVBQbDNvekk3MGtvdHRtYzF2OVVhTTdrRlVWNlVfSS1xYUVCWDZLOWlmVEotZ01sNGRSNlo0eVN5bzdqQzJaaVdUcnU2Z08zQzZoaEFLSThFM1kzM3ZUT0hxRdIBuAFBVV95cUxQa0xMeUJOSXJoZU1UVlpERUZFQVdNZUhzUDZtZkRVM2ZIQWlFbTRHaUkzdUZremd0RmFjell6Yk1uWmRxa2RnTmRfQUs5UHhURENBQ0FoUUhNczVnbmM1SFdsVkpxdEU2dnRZWG1fX21SR3U2T2h6NEVpN1gyd1ctcy1FaTRRWG9qWkZGSnlzS19qU3Z2cEJBWENXMUNicWFMNzJtOFNUVmpTQlNFMl9tS0t5bl9NZ3pJ?oc=5",
       "source": "Wires (geo)",
@@ -2597,7 +2643,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-13T16:25:33.991Z",
-  "headlinesAt": "2026-09-13T16:25:33.991Z",
-  "updatedAt": "2026-09-13T16:25:33.991Z"
+  "calendarAt": "2026-09-13T16:26:36.243Z",
+  "headlinesAt": "2026-09-13T16:26:36.243Z",
+  "updatedAt": "2026-09-13T16:26:36.243Z"
 }
