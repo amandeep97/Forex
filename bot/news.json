@@ -2,6 +2,19 @@
   "calendar": [],
   "headlines": [
     {
+      "title": "Anthropic tells investors it will be profitable for second straight quarter, FT reports",
+      "link": "https://www.investing.com/news/stock-market-news/anthropic-tells-investors-it-will-be-profitable-for-second-straight-quarter-ft-reports-4898761",
+      "source": "Investing",
+      "at": 1789340429000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 1,
+      "srcs": 1,
+      "firstAt": 1789340429000,
+      "_kind": null
+    },
+    {
       "title": "Dow Jones Futures Fall, Techs Tumble As Anthropic Leads Call For AI Slowdown; Fed Meeting Ahead",
       "link": "https://www.investors.com/market-trend/stock-market-today/dow-jones-futures-fed-meeting-anthropic-amodei-openai-altman-spacex-musk-ai-model-slowdown/?src=A00220&yptr=yahoo",
       "source": "Yahoo Finance",
@@ -16,7 +29,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789337520000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US30": "down"
+      },
+      "why": "Dow futures fall, techs tumble"
     },
     {
       "title": "SpaceX vs. Apple: Wall Street Sees Strong Upside for One of These Stocks and Remains Neutral On the Other",
@@ -31,7 +48,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789339396000,
-      "_kind": null
+      "_kind": null,
+      "why": "Stock-specific news, index impact unclear"
     },
     {
       "title": "NZ services sector expands for third month as PSI rises to 51.2",
@@ -49,7 +67,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789339417000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "NZD/USD": "up"
+      },
+      "why": "NZ services sector expands, stabilising"
     },
     {
       "title": "Wall Street Week Ahead: Markets brace for Federal Reserve rate decision - IndiaIPO",
@@ -67,7 +89,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789337520000,
-      "_kind": null
+      "_kind": null,
+      "why": "Markets brace for Fed decision"
     },
     {
       "title": "Berkshire Hathaway Stock Is Trailing the S&P 500 by About 10 Points This Year. History Says That Usually Doesn't Last.",
@@ -81,7 +104,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789338000000
+      "firstAt": 1789338000000,
+      "why": "Berkshire trailing S&P, no index direction"
     },
     {
       "title": "Zverev defeats Shelton in four sets to win his first US Open title",
@@ -96,7 +120,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789338814000
+      "firstAt": 1789338814000,
+      "why": "Tennis result, no FX impact"
     },
     {
       "title": "Oil prices jump more than $3 after new strikes on Saudi, Strait of Hormuz",
@@ -115,7 +140,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789338265000
+      "firstAt": 1789338265000,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Oil jumps, geopolitical risk rises"
     },
     {
       "title": "Stock Futures Slide, Oil Rises Ahead of Fed Rate Decision",
@@ -132,7 +163,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789337520000
+      "firstAt": 1789337520000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil rises ahead of Fed"
     },
     {
       "title": "Tehran and Muscat delay talks, citing regional consensus need",
@@ -152,7 +187,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789336250000
+      "firstAt": 1789336250000,
+      "why": "Talks delayed, tensions persist"
     },
     {
       "title": "Cybersecurity Is the Next Big Market for Artificial Intelligence (AI), According to Jensen Huang. This Super Stock-Split Stock Is the One to Own.",
@@ -196,7 +232,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789334402000
+      "firstAt": 1789334402000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Russia strikes Ukraine, risk off"
     },
     {
       "title": "Trump demands Ukraine halt refinery strikes as diesel surges - The Spokesman-Review",
@@ -216,7 +256,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789334495000
+      "firstAt": 1789334495000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Diesel surges, refinery strikes halt"
     },
     {
       "title": "This Dating App's Shares Have Crashed 96% Since IPO, Yet Blackstone Nearly Doubled Its Money — Now the PE Giant Is Swiping Left and Cashing Out: Report",
@@ -248,7 +293,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789334495000
+      "firstAt": 1789334495000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Russia escalation near border"
     },
     {
       "title": "Russia stocks lower at close of trade; MOEX Russia Index down 1.21%",
@@ -262,7 +311,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789334402000
+      "firstAt": 1789334402000,
+      "why": "Russia stocks lower, US index unaffected"
     },
     {
       "title": "Cathie Wood Sees an Economic Boom Wall Street Isn’t Pricing In",
@@ -276,7 +326,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789331279000
+      "firstAt": 1789331279000,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Cathie Wood sees economic boom"
     },
     {
       "title": "Pro-Palestine protest demands Australia increases pressure on Israel",
@@ -293,7 +347,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789333334000
+      "firstAt": 1789333334000,
+      "why": "Protest demands, no clear FX move"
     },
     {
       "title": "Further Oil Price Spikes Could Rekindle Recession Fears",
@@ -1647,19 +1702,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789300480000
-    },
-    {
-      "title": "NFL and midterm elections set up prediction markets for a critical fall season",
-      "link": "https://www.cnbc.com/2026/09/13/nfl-and-midterms-mark-key-fall-season-for-prediction-markets.html",
-      "source": "CNBC Markets",
-      "desc": "The 2025 football season and 2024 presidential election pushed prediction markets into the prominence they enjoy today.",
-      "at": 1789300353000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1789300353000
     }
   ],
   "sources": [
@@ -1682,10 +1724,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-13T23:08:50.264Z",
-  "updatedAt": "2026-09-13T23:08:50.264Z"
+  "headlinesAt": "2026-09-13T23:10:07.518Z",
+  "updatedAt": "2026-09-13T23:10:07.518Z"
 }
