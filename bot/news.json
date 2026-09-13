@@ -921,6 +921,38 @@
   ],
   "headlines": [
     {
+      "title": "Dow Jones Futures: Will Anthropic-Led Call For Slowdown Hit AI Stocks? Fed Meeting Ahead",
+      "link": "https://www.investors.com/market-trend/stock-market-today/dow-jones-futures-fed-meeting-anthropic-amodei-openai-altman-spacex-musk-ai-model-slowdown/?src=A00220&yptr=yahoo",
+      "source": "Yahoo Finance",
+      "at": 1789336576000,
+      "inst": [
+        "US500",
+        "US30"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789336576000,
+      "_kind": null,
+      "why": "AI slowdown concerns vs Fed meeting uncertainty"
+    },
+    {
+      "title": "Cybersecurity Is the Next Big Market for Artificial Intelligence (AI), According to Jensen Huang. This Super Stock-Split Stock Is the One to Own.",
+      "link": "https://finance.yahoo.com/technology/ai/articles/cybersecurity-next-big-market-artificial-215000090.html",
+      "source": "Yahoo Finance",
+      "at": 1789336200000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 1,
+      "srcs": 1,
+      "firstAt": 1789336200000,
+      "_kind": null
+    },
+    {
       "title": "State Street XLV vs. iShares IXJ: Here's How These Healthcare ETFs Stack Up for Investors",
       "link": "https://finance.yahoo.com/healthcare/articles/state-street-xlv-vs-ishares-214442363.html",
       "source": "Yahoo Finance",
@@ -952,7 +984,10 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789333292000,
-      "_kind": null
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Geopolitical risk boosts gold, oil unclear"
     },
     {
       "title": "Trump demands Ukraine halt refinery strikes as diesel surges - The Spokesman-Review",
@@ -972,27 +1007,15 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789333292000
+      "firstAt": 1789333292000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Diesel surge implies oil price increase"
     },
     {
-      "title": "Dow Jones Futures: Will Anthropic-Led Call For Slowdown Hit AI Stocks? Fed Meeting Ahead",
-      "link": "https://www.investors.com/market-trend/stock-market-today/dow-jones-futures-fed-meeting-anthropic-amodei-openai-altman-spacex-musk-ai-model-slowdown/?src=A00220&yptr=yahoo",
-      "source": "Yahoo Finance",
-      "at": 1789334959000,
-      "inst": [
-        "US500",
-        "US30"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789334959000
-    },
-    {
-      "title": "Poland, Ukraine accuse Russia of ‘escalation’ after strikes near border - aljazeera.com",
+      "title": "Poland, Ukraine accuse Russia of ‘escalation’ after strikes near border - Al Jazeera",
       "link": "https://news.google.com/rss/articles/CBMirgFBVV95cUxPXzktYVdWUndESk9zSmhqdlhJbkdVdzdHWGh5a3Njd0o5d21WQUdlUGtHQ1h6blBQeW40a2NQS2VDVjlIS1dvcUJBU3d5cDNYX3N1YnBKOEVzbVBVRmppUFBZM2lBMVcxbDNpZWJaYVl2RThhS2RNZlhFNlRHdlBLelZvcUxNbFZ5Qi1MUjFRTTY0RC1aN0Z4QkNzeUp6cDNSWmxkNFJ1VGJDQzJHZVHSAbMBQVVfeXFMUDFRYU95bmtPcGRialBJZTN1LVgxS0lWNUZkZWJHdkYxSkhLdlloc25hRjRhSFFnS2RSdFZKU0tmVE0xWjJDN00weGpqdklBTWZweGVneHhPMTdjRmhsQnBRa2pBU1Z0cGR0ZnY1ekVoak5iZjllTEpyTWlIcnQ5ZnhPVnEyQjdSZVYxc2RuZ2YtTnU1MTdCR3pyWV9IUXAtRzlScmtweE1YbFZGNzNLdVZYTGM?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMirgFBVV95cUxPXzktYVdWUndESk9zSmhqdlhJbkdVdzdHWGh5a3Njd0o5d21WQUdlUGtHQ1h6blBQeW40a2NQS2VDVjlIS1dvcUJBU3d5cDNYX3N1YnBKOEVzbVBVRmppUFBZM2lBMVcxbDNpZWJaYVl2RThhS2RNZlhFNlRHdlBLelZvcUxNbFZ5Qi1MUjFRTTY0RC1aN0Z4QkNzeUp6cDNSWmxkNFJ1VGJDQz",
@@ -1009,7 +1032,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789333292000
+      "firstAt": 1789333292000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Escalation fears support gold, oil unclear"
     },
     {
       "title": "Russia stocks lower at close of trade; MOEX Russia Index down 1.21%",
@@ -1023,7 +1050,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789334402000
+      "firstAt": 1789334402000,
+      "why": "Russian index drop irrelevant to US"
     },
     {
       "title": "Cathie Wood Sees an Economic Boom Wall Street Isn’t Pricing In",
@@ -1037,7 +1065,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789331279000
+      "firstAt": 1789331279000,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Bullish economic boom outlook for stocks"
     },
     {
       "title": "Pro-Palestine protest demands Australia increases pressure on Israel",
@@ -1054,7 +1086,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789333334000
+      "firstAt": 1789333334000,
+      "why": "Protest news has no clear FX impact"
     },
     {
       "title": "Russo-Ukrainian war, day 1663: Russia strikes a passenger train near the Polish border as drone swarms push deeper into western Ukraine - Euromaidan Press",
@@ -1074,7 +1107,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789333292000
+      "firstAt": 1789333292000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "War escalation supports gold, oil unclear"
     },
     {
       "title": "Further Oil Price Spikes Could Rekindle Recession Fears",
@@ -1090,7 +1127,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789333200000
+      "firstAt": 1789333200000,
+      "why": "Recession fears bearish, price spikes bullish"
     },
     {
       "title": "Kushner: US used Israel’s isolation after ‘terrible’ Doha strike to secure Gaza deal - The Times of Israel",
@@ -1110,7 +1148,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789331807000
+      "firstAt": 1789331807000,
+      "why": "Diplomatic news lacks clear market direction"
     },
     {
       "title": "VOOG vs. VONG: Which Powerhouse Vanguard ETF Is the Stronger Choice for Investors?",
@@ -1142,7 +1181,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789332480000
+      "firstAt": 1789332480000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Iran attack attribution boosts risk assets"
     },
     {
       "title": "Can a warming Arctic become an important commercial highway?",
@@ -1162,7 +1207,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789332291000
+      "firstAt": 1789332291000,
+      "why": "Arctic route news is long-term/unclear"
     },
     {
       "title": "Your Social Security COLA could go up another $71 per month in 2027. That’s not necessarily good news.",
@@ -1185,10 +1231,16 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789331760000
+      "firstAt": 1789331760000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Persistent inflation implies hawkish Fed, strong USD"
     },
     {
-      "title": "US Envoy Jared Kushner says Doha attack left Israel ‘globally isolated’ - aljazeera.com",
+      "title": "US Envoy Jared Kushner says Doha attack left Israel ‘globally isolated’ - Al Jazeera",
       "link": "https://news.google.com/rss/articles/CBMilAFBVV95cUxPV2ZFUFdhRnNtMnotQ0NHYUkxWGNEaDc1TWc2UlYybW51eTNhLXhOZDY5N21zc0ZFSGVwWkRmbjZJU1k2RVJna2x2eHU0V1M4R29zcHo3Q0FwODNMWk5zby1TdDNyOHFoRmlRQUxkNFd6MWpnLVpkZU9nTTlZSENJSmtrQ1VuQU8tTHh0UjdzNmtDdmdj0gGaAUFVX3lxTE1WNHVxQzlVMEY0c3Mwc1lGNXUyZWZDX3l2OFJzR3BsT2h5N3hqbG1qVWJuVlpkejB2NS02NHljTVBCcjlUYURBM3lLaUM5bF8xazZUS2xHWnFWbXJiUkJxQU1OTDFJRlVSYzU5ajcxYkpEdWhqUXdneEtBOHQwWkxRaklJUFg0N2ROaFdCaFNjYWM5X2stTkJ4S1E?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMilAFBVV95cUxPV2ZFUFdhRnNtMnotQ0NHYUkxWGNEaDc1TWc2UlYybW51eTNhLXhOZDY5N21zc0ZFSGVwWkRmbjZJU1k2RVJna2x2eHU0V1M4R29zcHo3Q0FwODNMWk5zby1TdDNyOHFoRmlRQUxkNFd6MWpnLVpkZU9nTTlZSENJSmtrQ1VuQU8tTHh0UjdzNmtDdmdj0gGaAUFVX3lxTE1WNHVxQzlVMEY0c3",
@@ -1205,7 +1257,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789331807000
+      "firstAt": 1789331807000,
+      "why": "Diplomatic commentary lacks direct market impact"
     },
     {
       "title": "'Senseless attack': Ex UK PM Johnson narrowly misses Russian attack on Ukraine-Poland railway - The Jerusalem Post",
@@ -1226,7 +1279,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789329540000
+      "firstAt": 1789329540000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Near-miss attack highlights geopolitical risk for gold"
     },
     {
       "title": "US will scrap Irish whisky tariff, Trump says",
@@ -1849,7 +1906,7 @@
       "firstAt": 1789318757000
     },
     {
-      "title": "Ukrainian drone evades Russian helicopter fire to strike oil tanker - aljazeera.com",
+      "title": "Ukrainian drone evades Russian helicopter fire to strike oil tanker - Al Jazeera",
       "link": "https://news.google.com/rss/articles/CBMikgFBVV95cUxNVEt2d1JVSGYxTWJkWUs2ZWZKMzVZaVAzMVZsUkpiQWhaUUdOMjRwOWJfQ2J5YzNyOWRKS3QybUIwNXFYRWtiZDFvRWZaYTRyT3VfRk01cGgxeTJLa1hMVzRhVmJiRzNvcld4Y1VLcmhCQzVaMDRLeVVJUTNnNGpJQUR0SDdRaHEwY25yWlROUjVyZ9IBlwFBVV95cUxNTFpBenBrZlFuemRuZHhGeTgxQlBOLTlLWldoMG1lcXJOUzRHQTZsc2xGUXQyQUNkUHdfWHFVU0s4OVVyblNVUzNKRm1iOUp2UG9SWVh6YjhXaHd3Uk1wOHo5elFnR0xrYXZaZE9wZUxZaUl4ZE9rbUZMRGN4S05LZXRKMUM5bi1salktdkRpTmlaNnMyOXEw?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMikgFBVV95cUxNVEt2d1JVSGYxTWJkWUs2ZWZKMzVZaVAzMVZsUkpiQWhaUUdOMjRwOWJfQ2J5YzNyOWRKS3QybUIwNXFYRWtiZDFvRWZaYTRyT3VfRk01cGgxeTJLa1hMVzRhVmJiRzNvcld4Y1VLcmhCQzVaMDRLeVVJUTNnNGpJQUR0SDdRaHEwY25yWlROUjVyZ9IBlwFBVV95cUxNTFpBenBrZlFuemRuZH",
@@ -2178,7 +2235,7 @@
       "firstAt": 1789310400000
     },
     {
-      "title": "Trump calls on Ukraine to stop targeting Russian refineries as both countries trade strikes - cbsnews.com",
+      "title": "Trump calls on Ukraine to stop targeting Russian refineries as both countries trade strikes - CBS News",
       "link": "https://news.google.com/rss/articles/CBMieEFVX3lxTE1Xbk9rb0syNTlqZ1JvZjFBZTVqUjVkaDNhNmVwY1E1UkZtTllUY0JZNkV1YXBOdkZOcXo4ZU9kMXMzd0JLZ0lDZmN4WnpjZU9mWjI3ajhQczlJdDdyQ2hySFRJOHFCRTdUZjNVb3NEV21zMU1TZC0tVg?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMieEFVX3lxTE1Xbk9rb0syNTlqZ1JvZjFBZTVqUjVkaDNhNmVwY1E1UkZtTllUY0JZNkV1YXBOdkZOcXo4ZU9kMXMzd0JLZ0lDZmN4WnpjZU9mWjI3ajhQczlJdDdyQ2hySFRJOHFCRTdUZjNVb3NEV21zMU1TZC0tVg?oc=5\" target=\"_blank\">Trump calls on Ukraine to stop targeting Russ",
@@ -2270,7 +2327,7 @@
       "firstAt": 1789304535000
     },
     {
-      "title": "Ukraine drone strikes kill four as Russia attacks close to Poland border - aljazeera.com",
+      "title": "Ukraine drone strikes kill four as Russia attacks close to Poland border - Al Jazeera",
       "link": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPRTExU1oxVVhFSW9hSWw2LUhaQWo5cklRcmFPWFQ3bWpick9vbE9aQk03c1gyZWdLZXlFNHVLeGVSSV9hZy1vVm5sd20wSEFlLWs4Y1FXNG03Y0p1ZEliMzAzZG05dHFod3YybUZ4bFVpcEs0TDY3SFZSa25XQ3NMRkFNWlFKb25HbUJJX3lnT3RUQTFmNWZKYzM3ellZdjFEVVdJZTZkdjdYOTcyY2ZzeE5hTdIBuAFBVV95cUxOTjl6aEJnRHUzRkdabU5IbWpJLUN3NENnSUVnbGpsY0xTZFphaWlOQnNEX2Nhc3lVMmdtUDh5Z1ZaQlhOVTEwbllUdmpIMUNwb2k0a0FXaHNUX2lCMXppVUN5ejNOYXNCQTNUeFoxOXVYREoxMXhYdlpsXy1UN0NSYl9jdW1GRl9aMHVBWElQT011cTdzX1BOLVFraGN1bm1XNkhvNkJ2QjRFUEVPeWNzdzA0a1Vkbkst?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiswFBVV95cUxPRTExU1oxVVhFSW9hSWw2LUhaQWo5cklRcmFPWFQ3bWpick9vbE9aQk03c1gyZWdLZXlFNHVLeGVSSV9hZy1vVm5sd20wSEFlLWs4Y1FXNG03Y0p1ZEliMzAzZG05dHFod3YybUZ4bFVpcEs0TDY3SFZSa25XQ3NMRkFNWlFKb25HbUJJX3lnT3RUQTFmNWZKYzM3ellZdjFEVVdJZTZkdjdYOT",
@@ -2290,7 +2347,7 @@
       "firstAt": 1789302362000
     },
     {
-      "title": "The Houthis’ escalation in Yemen could flop - aljazeera.com",
+      "title": "The Houthis’ escalation in Yemen could flop - Al Jazeera",
       "link": "https://news.google.com/rss/articles/CBMikAFBVV95cUxQUU1JRDM0cll6QVJrSExZaS1Wekpxel9OTFdDWjZYa0dQRVZOU29mN3ZvWENxeF9YdmhOTXpqNGNnQTd3QnpzUGpfNlJrOUt2S1A0VVJTYm0wSzRFb0Q2MUtVeE8zM3F2U21hdzN2UjFtSzh5alpxV3JBbDZHbFktbEhkNUNLdkFpbUtfdnVRM2LSAZYBQVVfeXFMT2NsYUdMWWpuUHM0WGhrN3l3TWdNTUw4QUNpRGVOa0RzdVhmZEVBNjVvUWwxWUdtVFJ0RnhBUFE4TXFLMmFydmRNMXJ4aE4wVDdiT0EwbFZHTThQMnRwcHczVV9ZVEM3aU5wdDBrT3lucERwSVdqbHBrbnBzc285WjhydVNjUnN1RndLckl3NTNPem9GbXN3?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMikAFBVV95cUxQUU1JRDM0cll6QVJrSExZaS1Wekpxel9OTFdDWjZYa0dQRVZOU29mN3ZvWENxeF9YdmhOTXpqNGNnQTd3QnpzUGpfNlJrOUt2S1A0VVJTYm0wSzRFb0Q2MUtVeE8zM3F2U21hdzN2UjFtSzh5alpxV3JBbDZHbFktbEhkNUNLdkFpbUtfdnVRM2LSAZYBQVVfeXFMT2NsYUdMWWpuUHM0WGhrN3",
@@ -2586,26 +2643,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789294678000
-    },
-    {
-      "title": "Russia launches more than 450 drones in overnight attacks on Ukraine - Euronews.com",
-      "link": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxNdWluWlVtenI5U1gxT2N0bzhWLXh3bUJRQ0hCMVQ4LVQ4NThoZktDT0lNeVZaVVNFNFFTU1lPV0NTdUVKT3pTWU92MkxSV1FoNlo2eTJwSmZMbnROeHhNeHAzV252VG1zM3JHcExydmUtbTlaN1Q5N2Z5a0kyVVBJdjcyZm1uXzVyZk83SUtUNHBTSFU4QVRfRmotaEJST0RfRGsxSWVxcktDZkZXYk1DaVBfbHl4Z1luU1ZKeGVrbGhXNHMyQmdVdmstanhORGo4d1E?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi0gFBVV95cUxNdWluWlVtenI5U1gxT2N0bzhWLXh3bUJRQ0hCMVQ4LVQ4NThoZktDT0lNeVZaVVNFNFFTU1lPV0NTdUVKT3pTWU92MkxSV1FoNlo2eTJwSmZMbnROeHhNeHAzV252VG1zM3JHcExydmUtbTlaN1Q5N2Z5a0kyVVBJdjcyZm1uXzVyZk83SUtUNHBTSFU4QVRfRmotaEJST0RfRGsxSWVxcktDZk",
-      "at": 1789293191000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789293191000
     }
   ],
   "sources": [
@@ -2628,10 +2665,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-13T22:04:48.582Z",
-  "headlinesAt": "2026-09-13T22:04:48.582Z",
-  "updatedAt": "2026-09-13T22:04:48.582Z"
+  "calendarAt": "2026-09-13T22:06:35.357Z",
+  "headlinesAt": "2026-09-13T22:06:35.357Z",
+  "updatedAt": "2026-09-13T22:06:35.357Z"
 }
