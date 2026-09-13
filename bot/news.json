@@ -2,46 +2,6 @@
   "calendar": [],
   "headlines": [
     {
-      "title": "Trump Blames Iran for Drone Attack on Saudi Oil Pipeline - RTV News",
-      "link": "https://news.google.com/rss/articles/CBMiX0FVX3lxTFBOVy1yWjJXTS1MckpybkhnRHBCSndYMGsxb2ZsNkUzRHVLM3JLelJlUjJTbmREVHdpeFJrMU9ERTI2OGlYcjJEd04wdVpjVXgyVjdyWWJESWZqWFZtUC1z?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiX0FVX3lxTFBOVy1yWjJXTS1MckpybkhnRHBCSndYMGsxb2ZsNkUzRHVLM3JLelJlUjJTbmREVHdpeFJrMU9ERTI2OGlYcjJEd04wdVpjVXgyVjdyWWJESWZqWFZtUC1z?oc=5\" target=\"_blank\">Trump Blames Iran for Drone Attack on Saudi Oil Pipeline</a>&nbsp;&nbsp;<font c",
-      "at": 1789268457000,
-      "inst": [
-        "USOIL",
-        "XAU/USD",
-        "UKOIL"
-      ],
-      "ccy": [
-        "OIL",
-        "XAU"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789266732000
-    },
-    {
-      "title": "Attack that closed key Saudi pipeline is blamed on Iran-backed militias in Iraq - Pittsburgh Post-Gazette",
-      "link": "https://news.google.com/rss/articles/CBMirgFBVV95cUxPUFFPZ2RmaWpCWlhqYlZiWW9xaE1sQTk1VVBOX1dOQkVsQ3JFeTd5cklNcE0wdzRuckJvNnFFb1VRYmJVUktnakhvaFplMDZDU1liWnF1NVBwc3JYRnE5YWhfYmpDWTU2TVdZYzlXX011T1EzaGNkM1p6UzlUMzBRT0lvejZMMWt1Zloxal9zYzlyNUgyQ0pRSHJwWnlXNE5sR2FxRFJ5VnE5Wmh1YlE?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMirgFBVV95cUxPUFFPZ2RmaWpCWlhqYlZiWW9xaE1sQTk1VVBOX1dOQkVsQ3JFeTd5cklNcE0wdzRuckJvNnFFb1VRYmJVUktnakhvaFplMDZDU1liWnF1NVBwc3JYRnE5YWhfYmpDWTU2TVdZYzlXX011T1EzaGNkM1p6UzlUMzBRT0lvejZMMWt1Zloxal9zYzlyNUgyQ0pRSHJwWnlXNE5sR2FxRFJ5VnE5Wm",
-      "at": 1789268376000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789266732000
-    },
-    {
       "title": "Iraq seizes drone-launching platform used for targeting Saudi oil pipeline",
       "link": "https://www.aljazeera.com/news/2026/9/13/iraq-seizes-drone-launching-platform-used-for-targeting-saudi-oil-pipeline?traffic_source=rss",
       "source": "Al Jazeera",
@@ -58,8 +18,38 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789266732000
+      "srcs": 1,
+      "firstAt": 1789266732000,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Oil supply risk increases prices"
+    },
+    {
+      "title": "ASX to rise as investors pin hopes on Fed’s Warsh cooling bond markets - AFR",
+      "link": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxObXJ1ZWMwVUFaZmgxSHNwZWlaZVlEWm1ldzRDNHpicVMyS1VRM1pycHhBaHMxOFdiM2JhMU1kVVg5MWl5SEdYdUFTYnozbHoyYlFnbkxEV01tZ1dtb2xXOWlJanhoSnFfQTVxbFMxMHNTSFRZQWNBMjlPb1djLVJ0VmoyakpUUy0tRThBaWYtanNyVWFqUUdCdURCalZ1bzIxbnliemtfRk15NENFbC1Gd2MyZE5QSjBsSXNGeTdkNjNiQ3h5T0FfYg?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiyAFBVV95cUxObXJ1ZWMwVUFaZmgxSHNwZWlaZVlEWm1ldzRDNHpicVMyS1VRM1pycHhBaHMxOFdiM2JhMU1kVVg5MWl5SEdYdUFTYnozbHoyYlFnbkxEV01tZ1dtb2xXOWlJanhoSnFfQTVxbFMxMHNTSFRZQWNBMjlPb1djLVJ0VmoyakpUUy0tRThBaWYtanNyVWFqUUdCdURCalZ1bzIxbnliemtfRk15NE",
+      "at": 1789266720000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789266720000,
+      "why": "ASX focus, unclear FX impact"
     },
     {
       "title": "New report of attack on Strait of Hormuz shipping fans fears of threats to oil supplies",
@@ -78,7 +68,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789266271000
+      "firstAt": 1789266271000,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Strait of Hormuz threat boosts oil"
     },
     {
       "title": "Markets brace for Fed decision as oil nears $110, gold rebounds and stocks slide - Moneycontrol.com",
@@ -99,7 +95,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789263417000
+      "firstAt": 1789263417000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "US500": "down"
+      },
+      "why": "Oil high, gold up, stocks slide"
     },
     {
       "title": "Iran’s Pezeshkian: ‘We are not at war with Saudi Arabia’",
@@ -119,7 +121,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789263176000
+      "firstAt": 1789263176000,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "De-escalation reduces geopolitical risk premium"
     },
     {
       "title": "Ukraine war briefing: Nine killed and dozens wounded in Russian strikes as Kyiv braces for harsh winter - The Guardian",
@@ -139,7 +147,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789260840000
+      "firstAt": 1789260840000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Ukraine conflict boosts safe-haven gold"
     },
     {
       "title": "8 killed in Russian strikes on Ukraine as Putin warns Europe against sending troops - WISN",
@@ -159,7 +171,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789260840000
+      "firstAt": 1789260840000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Ukraine strikes boost safe-haven gold"
     },
     {
       "title": "BRICS leaders voice concern over Middle East, condemn unilateral sanctions at India summit - New Castle News",
@@ -179,10 +195,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789259537000
+      "firstAt": 1789259537000,
+      "why": "Diplomatic statements lack immediate market impact"
     },
     {
-      "title": "Russia Sanctions Bill: Can Trump Impose 100% Tariffs on India and China? - Diplomacy and Law",
+      "title": "Russia Sanctions Bill: Can Trump Impose 100% Tariffs on India and China? - diplomacyandlaw.com",
       "link": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9VZ2kwRTN6VGpfdkxNajEza21JVlh0a2RlakE1bEhiUHJTOGVnYkllc2FyeHBvZlc2eXlPVUxCTjBSdkJaN0pZS3BfdjIxWnJDc3Q2MDFBbmtERjRZZVhUYktYaEw3SlR2Mmc?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiakFVX3lxTE9VZ2kwRTN6VGpfdkxNajEza21JVlh0a2RlakE1bEhiUHJTOGVnYkllc2FyeHBvZlc2eXlPVUxCTjBSdkJaN0pZS3BfdjIxWnJDc3Q2MDFBbmtERjRZZVhUYktYaEw3SlR2Mmc?oc=5\" target=\"_blank\">Russia Sanctions Bill: Can Trump Impose 100% Tariffs on India an",
@@ -199,7 +216,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789259537000
+      "firstAt": 1789259537000,
+      "why": "Tariff speculation unclear for these assets"
     },
     {
       "title": "Houthi projectile wounds two, damages mosque in Jazan region, Saudi says",
@@ -219,7 +237,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789259069000
+      "firstAt": 1789259069000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Houthi attack increases regional risk"
     },
     {
       "title": "SpaceX weighting in Nasdaq 100 set to more than double - Bloomberg",
@@ -233,7 +257,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789258079000
+      "firstAt": 1789258079000,
+      "dir": {
+        "US100": "up"
+      },
+      "why": "SpaceX weighting increase boosts index"
     },
     {
       "title": "Iran war live: Saudi Arabia and Houthis trade strikes over Bab al-Mandeb",
@@ -253,7 +281,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789257640000
+      "firstAt": 1789257640000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Saudi-Houthi strikes raise oil risk"
     },
     {
       "title": "Houthis claim attack on Saudi Arabia's Sharurah base - Middle East Eye",
@@ -273,7 +307,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789253265000
+      "firstAt": 1789253265000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Houthi attack on Saudi base"
     },
     {
       "title": "Iran war: Iraq says Saudi pipeline attack originated from its territory - Nine.com.au",
@@ -293,7 +333,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789251064000
+      "firstAt": 1789251064000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Pipeline attack confirms supply risk"
     },
     {
       "title": "Tens of thousands march across Germany to protest far-right party AfD",
@@ -308,7 +354,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789252623000
+      "firstAt": 1789252623000,
+      "why": "Protests unlikely to move EUR/USD"
     },
     {
       "title": "Iraq probes drone strikes on Saudi Arabia, shuts three crossings to Iran - Al Jazeera",
@@ -1728,6 +1775,18 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789158180000
+    },
+    {
+      "title": "Jim Cramer Explains Why Enbridge (ENB) Offers a Secure Play During Market Volatility",
+      "link": "https://finance.yahoo.com/energy/articles/jim-cramer-explains-why-enbridge-202059687.html",
+      "source": "Yahoo Finance",
+      "at": 1789158059000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 1,
+      "srcs": 1,
+      "firstAt": 1789158059000
     }
   ],
   "sources": [
@@ -1750,10 +1809,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-13T03:58:47.418Z",
-  "updatedAt": "2026-09-13T03:58:47.418Z"
+  "headlinesAt": "2026-09-13T04:00:35.626Z",
+  "updatedAt": "2026-09-13T04:00:35.626Z"
 }
