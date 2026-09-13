@@ -19,8 +19,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789275116000,
-      "_kind": null
+      "firstAt": 1789275116000
     },
     {
       "title": "Russian attack sparks fire in Ukraine's Khmelnytskyi - Breakingthenews.net",
@@ -249,7 +248,7 @@
       "title": "Houthi projectile wounds two, damages mosque in Jazan region, Saudi says",
       "link": "https://www.aljazeera.com/news/2026/9/13/houthi-projectile-wounds-two-damages-mosque-in-jazan-region-saudi-says?traffic_source=rss",
       "source": "Al Jazeera",
-      "desc": "The Houthis claim their attack targeted a Saudi military base in Sharurah.",
+      "desc": "The Houthis say they carried out a strike targeting a Saudi military base in Sharurah, Najran province.",
       "at": 1789259069000,
       "inst": [
         "XAU/USD",
@@ -280,19 +279,19 @@
       "firstAt": 1789258079000
     },
     {
-      "title": "Iran war live: Saudi Arabia and Houthis trade strikes over Bab al-Mandeb",
+      "title": "Iran war live: Tens of thousands displaced as Yemen fighting escalates",
       "link": "https://www.aljazeera.com/news/liveblog/2026/9/13/iran-war-live-saudi-arabia-and-houthis-trade-strikes-over-bab-al-mandeb?traffic_source=rss",
       "source": "Al Jazeera",
-      "desc": "Houthis accuse Saudi Arabia of launching 129 strikes in 48 hours as fears grow over impact on Riyadh’s oil industry.",
+      "desc": "Houthi forces and Yemen's internationally recognised government trade strikes as fighting intensifies.",
       "at": 1789257640000,
       "inst": [
-        "USOIL",
         "XAU/USD",
+        "USOIL",
         "UKOIL"
       ],
       "ccy": [
-        "OIL",
-        "XAU"
+        "XAU",
+        "OIL"
       ],
       "sev": 2,
       "rel": 2,
@@ -1471,32 +1470,6 @@
       "firstAt": 1789163936000
     },
     {
-      "title": "Sell the Nvidia Shares That Made Your Retirement or Ride Them Into It? These 3 ETFs Are the Middle Path",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/sell-nvidia-shares-made-retirement-215531809.html",
-      "source": "Yahoo Finance",
-      "at": 1789163731000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1789163731000
-    },
-    {
-      "title": "2 Stocks Cathie Wood Is Snapping Up at a Discount Right Now",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/2-stocks-cathie-wood-snapping-215300205.html",
-      "source": "Yahoo Finance",
-      "at": 1789163580000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789162740000
-    },
-    {
       "title": "Stocks making the biggest moves midday: Dell, Skyworks Solutions, GameStop & more",
       "link": "https://www.cnbc.com/2026/09/11/stocks-making-the-biggest-moves-midday-dell-swks-gme.html",
       "source": "CNBC Markets",
@@ -1643,6 +1616,24 @@
       "firstAt": 1789158412000
     },
     {
+      "title": "Stocks Shake Off CPI Report and Rally on Lower Oil Prices",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/stocks-shake-off-cpi-report-205136694.html",
+      "source": "Yahoo Finance",
+      "at": 1789159896000,
+      "inst": [
+        "USOIL",
+        "US500"
+      ],
+      "ccy": [
+        "OIL",
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789159896000
+    },
+    {
       "title": "Meeks, Beyer, Neal Statement On Russia Sanctions Legislation - House.gov",
       "link": "https://news.google.com/rss/articles/CBMirAFBVV95cUxQb3VfTFo3Qlp1eWItOVE1Qnl6bndkUzFrVHFBX3pIUGVGR2lublBLNFJsZ005Ul85RE15VFZnbkFjRHVHSm9IMFNKdWVvdXRCdkc1RmJ5RHpWT0Zta0xmNjQ5MkJ2NUZqUlNZN1B1a3BpZVowUlM5amRnS2xTeWdQeU85aWhfVUxhRVhubW1VZm1pMjhmZlhxMEhRUklTSHpIQkdGRGNVU2MtQTF1?oc=5",
       "source": "Wires (geo)",
@@ -1701,6 +1692,22 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789158940000
+    },
+    {
+      "title": "Oil on track to settle above $100 a barrel after whopping 20% two-week surge",
+      "link": "https://www.investing.com/news/commodities-news/oil-prices-rise-brent-tests-110-a-barrel-as-meast-supply-risks-grow-4897144",
+      "source": "Investing Cmdty",
+      "at": 1789158844000,
+      "inst": [
+        "USOIL"
+      ],
+      "ccy": [
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789158844000
     }
   ],
   "sources": [
@@ -1723,10 +1730,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-13T05:21:05.173Z",
-  "updatedAt": "2026-09-13T05:21:05.173Z"
+  "headlinesAt": "2026-09-13T05:22:18.918Z",
+  "updatedAt": "2026-09-13T05:22:18.918Z"
 }
