@@ -1,5 +1,24 @@
 {
-  "calendar": [],
+  "calendar": [
+    {
+      "title": "ECB President Lagarde Speaks",
+      "country": "EUR",
+      "impact": "medium",
+      "at": 1789200000000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "BRICS Summit",
+      "country": "All",
+      "impact": "low",
+      "at": 1789200900000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    }
+  ],
   "headlines": [
     {
       "title": "Iraq seizes drone-launching platform used for targeting Saudi oil pipeline",
@@ -19,8 +38,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789266732000,
-      "_kind": null
+      "firstAt": 1789266732000
     },
     {
       "title": "8 killed in Russian strikes on Ukraine as Putin warns Europe - The Business Standard",
@@ -762,6 +780,26 @@
       "firstAt": 1789230076000
     },
     {
+      "title": "France explains why it wants EU sanctions on Russian oligarch Usmanov lifted - Українська правда",
+      "link": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE5pTVJTekdsWU5xdlc2SDJYSkxNX3RQdW5OYWhDZlluUGlLM0MyZVRFYVk1V29LQjhQZEM4ZW9JcDlaaktSRm4wdWgxc05Kam5rOGNnbXVGdHZmeWZvTFJkUHFrM2zSAXBBVV95cUxPTjU5SGZkU1hoY3BuM0IzLTBDZzBwQUVxcVBQRzN2dDFHY2lidHg2WGl2azMzT3ZNbUZRNGQxV2ZhSnQyR0daR3VhZW54dXVUVHJ2R0YyUXlTN0taeXZmU2lDbzdqZmF0YlA1cEcxdkZ4?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiZEFVX3lxTE5pTVJTekdsWU5xdlc2SDJYSkxNX3RQdW5OYWhDZlluUGlLM0MyZVRFYVk1V29LQjhQZEM4ZW9JcDlaaktSRm4wdWgxc05Kam5rOGNnbXVGdHZmeWZvTFJkUHFrM2zSAXBBVV95cUxPTjU5SGZkU1hoY3BuM0IzLTBDZzBwQUVxcVBQRzN2dDFHY2lidHg2WGl2azMzT3ZNbUZRNGQxV2ZhSnQyR0",
+      "at": 1789231200000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789231200000
+    },
+    {
       "title": "Ukraine strikes Russian military sites near Taganrog, SBU says - Межа. Новини України.",
       "link": "https://news.google.com/rss/articles/CBMieEFVX3lxTFBHeUtGVFVpNGU1ZUFDd0wzUVBwY092V2pOcFlTSFBoajFHYnNaSUhKeVRJSGFoX1ZvbUdYTGZpNkpzX2RwOTUtLTNGTHVKUFYwb0tGVEFSWXZQWEdib25Ha29IZno5elAzOU54WTJaLWdxUFVzbDFuSw?oc=5",
       "source": "Wires (geo)",
@@ -1346,7 +1384,7 @@
       "firstAt": 1789176660000
     },
     {
-      "title": "Temple Israel welcomes congregants home six months after attack - detroitnews.com",
+      "title": "Temple Israel welcomes congregants home six months after attack - The Detroit News",
       "link": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxOa0VweERMVmUxVUhsMmZERnZXOEt5UjJ2cExFVFEyLUtoUkpqMU9iM09VbXhZbXIyZUltNE8zcHFWMXZJVUpHSjRPaHFyby1nejh3dmt5TXZfUll2ck5HWjhvRGh6ODF0ZDAxNmlzdWtXWVltcDlaanNESmJodFlOams2VGdCelhpdUo1cWNXWkRyNzl0c3lYaXRKVmZyeG5IbU55Z2NOMTJFR1JwUFpUaXM5WmdoY0lMMFVTamNzY0NrenpGQ0IxallYRXN1NDd2Zjg4Y2ZHNW11bmM4eEtxN1pCbnVXUQ?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMi5gFBVV95cUxOa0VweERMVmUxVUhsMmZERnZXOEt5UjJ2cExFVFEyLUtoUkpqMU9iM09VbXhZbXIyZUltNE8zcHFWMXZJVUpHSjRPaHFyby1nejh3dmt5TXZfUll2ck5HWjhvRGh6ODF0ZDAxNmlzdWtXWVltcDlaanNESmJodFlOams2VGdCelhpdUo1cWNXWkRyNzl0c3lYaXRKVmZyeG5IbU55Z2NOMTJFR1",
@@ -1725,29 +1763,6 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789158180000
-    },
-    {
-      "title": "Inflation Comes In Hot - WSJ",
-      "link": "https://news.google.com/rss/articles/CBMidEFVX3lxTE1fNnRXSkpvQUJidkxSOXQ1Z1lKWG1VQzJrbXNLWUNaaE5GYUtZLU9JQ0JlVEM2MTlyMFFVcm9zZ0pOQklaOGE1Q0NGdlJIS282eXlSNWlYUFVzUURKOXJUQ2N5U1JXdGVQSGJmMHE5azhoUXBn?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMidEFVX3lxTE1fNnRXSkpvQUJidkxSOXQ1Z1lKWG1VQzJrbXNLWUNaaE5GYUtZLU9JQ0JlVEM2MTlyMFFVcm9zZ0pOQklaOGE1Q0NGdlJIS282eXlSNWlYUFVzUURKOXJUQ2N5U1JXdGVQSGJmMHE5azhoUXBn?oc=5\" target=\"_blank\">Inflation Comes In Hot</a>&nbsp;&nbsp;<font color=\"",
-      "at": 1789158180000,
-      "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789158180000
     }
   ],
   "sources": [
@@ -1770,10 +1785,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
-  "calendarAt": null,
-  "headlinesAt": "2026-09-13T03:02:17.233Z",
-  "updatedAt": "2026-09-13T03:02:17.233Z"
+  "calendarAt": "2026-09-13T03:04:04.421Z",
+  "headlinesAt": "2026-09-13T03:04:04.421Z",
+  "updatedAt": "2026-09-13T03:04:04.421Z"
 }
