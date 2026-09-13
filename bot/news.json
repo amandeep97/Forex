@@ -891,14 +891,18 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789326000000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "High yields warn stocks"
     },
     {
       "title": "Inside Iran’s internal crisis as Israel prepares for possible escalation - The Jerusalem Post",
       "link": "https://news.google.com/rss/articles/CBMiakFVX3lxTE1KZGdHdjZ0TndqdXROTlNBTlRVdG1VZmlHSC1EcTZZRmVSeWc2NkpYTGdJTDJGMzVWSkM5Uy1YbjcwRkxmWl9tYVc2WFZnSDA1SVJzZEkxZXpfc1ExMWViN0NZUFZmV0w0aUE?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiakFVX3lxTE1KZGdHdjZ0TndqdXROTlNBTlRVdG1VZmlHSC1EcTZZRmVSeWc2NkpYTGdJTDJGMzVWSkM5Uy1YbjcwRkxmWl9tYVc2WFZnSDA1SVJzZEkxZXpfc1ExMWViN0NZUFZmV0w0aUE?oc=5\" target=\"_blank\">Inside Iran’s internal crisis as Israel prepares for possible es",
-      "at": 1789325717000,
+      "at": 1789325866000,
       "inst": [
         "XAU/USD",
         "USOIL",
@@ -911,8 +915,14 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789325717000,
-      "_kind": null
+      "firstAt": 1789325866000,
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Escalation risk boosts safe havens, oil"
     },
     {
       "title": "Poland Says Russian Strike on Yahodyn Checkpoint Will Strengthen Support for Ukraine - Межа. Новини України.",
@@ -932,8 +942,39 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789325449000,
-      "_kind": null
+      "firstAt": 1789323737000,
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Geopolitical tension supports gold"
+    },
+    {
+      "title": "The 10-Year Treasury Bond Yields Nearly 5% Right Now. Here's Why I'd Still Choose PepsiCo for Passive Income.",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/10-treasury-bond-yields-nearly-185000151.html",
+      "source": "Yahoo Finance",
+      "at": 1789325400000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789325400000,
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "High yields pressure gold"
     },
     {
       "title": "Most Investors Think Netflix (NFLX) Is Too Expensive. I Think They're Wrong.",
@@ -966,7 +1007,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789324063000
+      "firstAt": 1789324063000,
+      "why": "Domestic Ukraine news, no market impact"
     },
     {
       "title": "Israeli Officials Reject Kushner’s Account Of Doha Strike’s Role In Gaza Deal - i24NEWS",
@@ -986,7 +1028,32 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789323800000
+      "firstAt": 1789323800000,
+      "why": "Diplomatic dispute, no clear market signal"
+    },
+    {
+      "title": "Russian drone strike hits Ukraine near Polish border - Modern Ghana",
+      "link": "https://news.google.com/rss/articles/CBMiX0FVX3lxTFBPYk1MeGZ5SERjSUJPWEp3ejhaOVdSZjhFNlhkNEU2RnFiUGdXNlViUnJPa1kwRW0yT0lBTFV3LS1hZEczWHU0TkxnU0ZqaXFxMnNqSGR3ZjJEWVNib0Q00gFcQVVfeXFMT3ItYkVuR3p2ajBVbmhhYWswa09VdzRSdjlWWTdwTnVlcUhIdnFjTUpaZnhFQVhQS0xpUjNSc1pxeWZEYWhyeXprdDQ5NWd1YjFyaHFDQ1FLQi14Q2k?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiX0FVX3lxTFBPYk1MeGZ5SERjSUJPWEp3ejhaOVdSZjhFNlhkNEU2RnFiUGdXNlViUnJPa1kwRW0yT0lBTFV3LS1hZEczWHU0TkxnU0ZqaXFxMnNqSGR3ZjJEWVNib0Q00gFcQVVfeXFMT3ItYkVuR3p2ajBVbmhhYWswa09VdzRSdjlWWTdwTnVlcUhIdnFjTUpaZnhFQVhQS0xpUjNSc1pxeWZEYWhyeXprdD",
+      "at": 1789323737000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789322292000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Ukraine strike boosts gold demand"
     },
     {
       "title": "Bessent is doubling down with weekly bank sanctions",
@@ -1003,7 +1070,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789323420000
+      "firstAt": 1789323420000,
+      "why": "Sanctions news, unclear gold direction"
     },
     {
       "title": "Trump tells Zelenskyy to stop hitting Russian diesel supplies",
@@ -1023,7 +1091,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789323312000
+      "firstAt": 1789323312000,
+      "dir": {
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Calls to stop attacks lower oil"
     },
     {
       "title": "Strike on Iranian cargo ship in the Strait of Hormuz kills 1, Iranian media say - Los Angeles Times",
@@ -1043,7 +1116,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789323250000
+      "firstAt": 1789323250000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Hormuz strike boosts oil, gold"
     },
     {
       "title": "Chinese Satellite Intel Linked To Iran Strike That Killed 3 US Troops: Report - NDTV",
@@ -1063,7 +1142,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789323036000
+      "firstAt": 1789323036000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "US troop deaths boost risk assets"
     },
     {
       "title": "Fighting in Yemen intensifies, and Houthis launch more attacks on Saudi Arabia - AP News",
@@ -1083,7 +1168,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789322760000
+      "firstAt": 1789322760000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Yemen attacks boost oil, gold"
     },
     {
       "title": "Dow Jones Futures: Fed Meeting Ahead; Anthropic's Amodei, OpenAI's Altman, SpaceX's Musk Call For AI Slowdown",
@@ -1099,7 +1190,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789322737000
+      "firstAt": 1789322737000,
+      "why": "Fed meeting, AI news, mixed signals"
     },
     {
       "title": "Failing to Act in the West Bank or in the West, Israel Brought U.K.’s Sanctions Upon Itself - Middle East Forum",
@@ -1119,7 +1211,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789322672000
+      "firstAt": 1789322672000,
+      "why": "UK sanctions, no clear market impact"
     },
     {
       "title": "McDonald's Yields 3%, the Highest in Over 6 Years. Is the Dow Dividend Stock a Value Trap or Too Cheap to Ignore?",
@@ -1133,7 +1226,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789320960000
+      "firstAt": 1789320960000,
+      "why": "McDonald's yield analysis, no index direction"
     },
     {
       "title": "Goldman Sachs Says AI Is Driving Half of S&P 500 Earnings Growth. That Number Cuts Both Ways.",
@@ -2509,45 +2603,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789286597000
-    },
-    {
-      "title": "Russian drone attack injures five in Ukraine's Odesa, officials say - Reuters",
-      "link": "https://news.google.com/rss/articles/CBMisAFBVV95cUxQZFIyUS1HT3JDbGVMeFdxNzBQcHB0TFJXRlRGRnNuYjgwVGpUWW9CWER1QlJIUFZhT3l5LVlzQThxdTRlbXpPbWlucXYtSE9GRkpyOG5FNS12TkhfaTJNdmNIb25rYUZObThRM1ZadDEzSVlNelY1Zm12SHgxZkNUZXhuRHZzVERQZXp0ZE5qQjFNbExmTUZud2RJbkFac1FUdm1uN3ZqakFfbHJBWkN4Sg?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMisAFBVV95cUxQZFIyUS1HT3JDbGVMeFdxNzBQcHB0TFJXRlRGRnNuYjgwVGpUWW9CWER1QlJIUFZhT3l5LVlzQThxdTRlbXpPbWlucXYtSE9GRkpyOG5FNS12TkhfaTJNdmNIb25rYUZObThRM1ZadDEzSVlNelY1Zm12SHgxZkNUZXhuRHZzVERQZXp0ZE5qQjFNbExmTUZud2RJbkFac1FUdm1uN3ZqakFfbH",
-      "at": 1789286023000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789286023000
-    },
-    {
-      "title": "Russian nuclear head says Ukraine attacked fuel trucks, endangered Zaporizhzhia plant",
-      "link": "https://www.investing.com/news/commodities-news/russian-nuclear-head-says-ukraine-attacked-fuel-trucks-endangered-zaporizhzhia-plant-4898712",
-      "source": "Investing Cmdty",
-      "at": 1789283187000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789283187000
     }
   ],
   "sources": [
@@ -2573,7 +2628,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-13T19:02:19.996Z",
-  "headlinesAt": "2026-09-13T19:02:19.996Z",
-  "updatedAt": "2026-09-13T19:02:19.996Z"
+  "calendarAt": "2026-09-13T19:03:51.671Z",
+  "headlinesAt": "2026-09-13T19:03:51.671Z",
+  "updatedAt": "2026-09-13T19:03:51.671Z"
 }
