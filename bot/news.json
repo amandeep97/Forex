@@ -16,7 +16,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789311156000,
-      "_kind": null
+      "_kind": null,
+      "why": "AI slowdown call lacks clear market direction"
     },
     {
       "title": "A Bear Market Is Coming at Some Point. History Says That's Actually Good News for Investors.",
@@ -48,7 +49,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789310220000
+      "firstAt": 1789310220000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Ukraine strikes boost gold, oil unclear"
     },
     {
       "title": "Trump Demands Ukraine Halt Refinery Strikes as Diesel Surges - Bloomberg.com",
@@ -68,7 +73,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789307635000
+      "firstAt": 1789307635000,
+      "dir": {
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Halt strikes implies reduced oil supply risk"
     },
     {
       "title": "Trump calls on Ukraine to stop targeting Russian refineries as both countries trade strikes - CBS News",
@@ -88,7 +98,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789307635000
+      "firstAt": 1789307635000,
+      "dir": {
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Call to stop refinery strikes lowers oil risk"
     },
     {
       "title": "Bank of America sends strong warning to stock market investors",
@@ -115,7 +130,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789308104000
+      "firstAt": 1789308104000,
+      "why": "Boxer death has no financial impact"
     },
     {
       "title": "Trending stocks this week as markets end lower amid inflation, yield jitters (SP500:) (DJI:) (COMP:IND:) - Seeking Alpha",
@@ -132,7 +148,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789307887000
+      "firstAt": 1789307887000,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Markets end lower amid inflation jitters"
     },
     {
       "title": "Surging inflation puts interest rates back in focus as policymakers meet in Japan, US and UK - The Guardian",
@@ -150,7 +170,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789307760000
+      "firstAt": 1789307760000,
+      "why": "Inflation focus unclear for specific currency pair"
     },
     {
       "title": "Trump calls on Ukraine to halt strikes on Russian diesel, saying attacks causing a shortage - Toledo Blade",
@@ -170,7 +191,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789304973000
+      "firstAt": 1789304973000,
+      "dir": {
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Halt diesel strikes reduces oil supply risk"
     },
     {
       "title": "Trump Issues Warning to Zelensky Over Strikes on Russia - Newsweek",
@@ -190,7 +216,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789304973000
+      "firstAt": 1789304973000,
+      "dir": {
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Warning to halt strikes lowers oil risk"
     },
     {
       "title": "New attacks in Hormuz and Saudi test nerves as war’s spread worsens oil disruption",
@@ -209,7 +240,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789306226000
+      "firstAt": 1789306226000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Hormuz attacks worsen oil disruption and risk"
     },
     {
       "title": "Trump calls on Zelenskyy to halt Ukraine strikes on Russian diesel, saying attacks are causing a shortage - Journal-News.com",
@@ -229,7 +266,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789304781000
+      "firstAt": 1789304781000,
+      "dir": {
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Halt diesel strikes reduces oil supply risk"
     },
     {
       "title": "Ukraine drone strikes kill four as Russia attacks close to Poland border - Al Jazeera",
@@ -249,7 +291,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789304781000
+      "firstAt": 1789304781000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Escalation near Poland boosts gold, oil unclear"
     },
     {
       "title": "Poland warns of 'real' threat after Russian drones strike Ukraine near its border - The Kyiv Independent",
@@ -269,7 +315,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789303380000
+      "firstAt": 1789303380000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Poland threat warning boosts gold, oil unclear"
     },
     {
       "title": "The Houthis’ escalation in Yemen could flop - Al Jazeera",
@@ -286,7 +336,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789303190000
+      "firstAt": 1789303190000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Houthi escalation flop reduces geopolitical risk"
     },
     {
       "title": "NEW: China reportedly aided Iran in deadly attack on US forces - Fox News",
@@ -306,7 +360,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789304409000
+      "firstAt": 1789304409000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "China aiding Iran escalates geopolitical risk"
     },
     {
       "title": "Chinese Imagery Linked to Deadly Iran Attack on US - stl.news",
@@ -1642,18 +1702,6 @@
       "firstAt": 1789223912000
     },
     {
-      "title": "XRP Eyes Recovery to $1.55 as RLUSD Market Cap Grows by 50%",
-      "link": "https://finance.yahoo.com/markets/crypto/articles/xrp-eyes-recovery-1-55-143258369.html",
-      "source": "Yahoo Finance",
-      "at": 1789223578000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1789223578000
-    },
-    {
       "title": "Scott Bessent dismisses 'Bloomberg Terminal bros' as 10-year Treasury yield hits 4.94% despite $5.2B buyback",
       "link": "https://finance.yahoo.com/economy/policy/articles/scott-bessent-dismisses-bloomberg-terminal-133000792.html",
       "source": "Yahoo Finance",
@@ -1697,6 +1745,26 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789219020000
+    },
+    {
+      "title": "Saudi pipeline attack update: East-west Saudi oil pipeline attack is blamed on Iran-backed militias in Iraq - ABC7 Chicago",
+      "link": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxOT3JkQlJJT01DdERDZjRhbTVKX3ZfaU9hOFNEWWJkRHBOWjE1enZDMGgxOE13VHhtTmR4U3ZWZlNvUEQ5MFpNWkhLLUtVQmFLOTNvT0VDZlFSRzVCeGxicmY4cXFaQllFQTdQQUpvZkw3OWYzaEZCSm9rc2tEX2pPZXV5aXhpRTVIdzNnTXZ4SzdteWJTNWZRbHJ2eHhBX003YktPblRXZVFwODlIOEtpRkxZdmpKWUNmTkgtMHBDV0hMOVdadEVFaWlBaFROdmdfNXJNWWFWQdIB3AFBVV95cUxOM2dZcFk3cUNyRTFudUxMamFoVnh3SlQ1VmxzZ0tNVkF6WXRCWnZJWE9KR1FOTTd4V3B4bWRuWnYwbFZTQ0tTdkluSmZfb0J3bFd2N3JXQVg2U1NaYUN2RkV0T3l6NUctVWlFdDdHUVZpZ1pGdUlTSVQzZThCQnpBaXlqOWhnMzBFZlk2STRBSzNCWklDWms5alV4LXNYLW41ekEwYUU0Vndjckw2WVFkNzNPWVVGbUdxdEdJYmxOZjdHQjdXLTdzN05yMWVNRWFteFpnVUhicXJmdzBn?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi1wFBVV95cUxOT3JkQlJJT01DdERDZjRhbTVKX3ZfaU9hOFNEWWJkRHBOWjE1enZDMGgxOE13VHhtTmR4U3ZWZlNvUEQ5MFpNWkhLLUtVQmFLOTNvT0VDZlFSRzVCeGxicmY4cXFaQllFQTdQQUpvZkw3OWYzaEZCSm9rc2tEX2pPZXV5aXhpRTVIdzNnTXZ4SzdteWJTNWZRbHJ2eHhBX003YktPblRXZVFwOD",
+      "at": 1789218850000,
+      "inst": [
+        "USOIL",
+        "XAU/USD",
+        "UKOIL"
+      ],
+      "ccy": [
+        "OIL",
+        "XAU"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789216362000
     }
   ],
   "sources": [
@@ -1723,6 +1791,6 @@
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-13T15:16:18.150Z",
-  "updatedAt": "2026-09-13T15:16:18.150Z"
+  "headlinesAt": "2026-09-13T15:17:51.606Z",
+  "updatedAt": "2026-09-13T15:17:51.606Z"
 }
