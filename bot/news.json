@@ -20,7 +20,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789326780000,
-      "_kind": null
+      "_kind": null,
+      "why": "Personal tragedy, no market impact"
     },
     {
       "title": "Fighting in Yemen intensifies, and Houthis launch more attacks on Saudi Arabia - apnews.com",
@@ -41,7 +42,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789326600000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Yemen conflict boosts oil and gold"
     },
     {
       "title": "EU 'strongly condemns' Russian strikes near Ukraine-Poland border - Anadolu Ajansı",
@@ -62,7 +69,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789325958000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Geopolitical tension supports gold"
     },
     {
       "title": "Meet the Magnificent Momentum-Driven ETF Obliterating the S&P 500 in 2026",
@@ -77,7 +88,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789326300000,
-      "_kind": null
+      "_kind": null,
+      "why": "ETF performance, no clear direction"
     },
     {
       "title": "Dow Jones Futures: Fed Meeting Ahead; Anthropic's Amodei, OpenAI's Altman, SpaceX's Musk Call For AI Slowdown",
@@ -94,7 +106,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789326124000,
-      "_kind": null
+      "_kind": null,
+      "why": "Mixed signals, no clear direction"
     },
     {
       "title": "Fed rate hikes won’t bring down gas prices. Why the bond market is pushing for them anyway.",
@@ -112,7 +125,10 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789326000000,
-      "_kind": null
+      "dir": {
+        "US500": "down"
+      },
+      "why": "High yields warn for stocks"
     },
     {
       "title": "Poland, Ukraine slam Russian strikes near border as 'escalation' - Arab News",
@@ -132,7 +148,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789323737000
+      "firstAt": 1789323737000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Escalation supports gold"
     },
     {
       "title": "Inside Iran’s internal crisis as Israel prepares for possible escalation - The Jerusalem Post",
@@ -152,7 +172,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789325866000
+      "firstAt": 1789325866000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Iran crisis boosts oil and gold"
     },
     {
       "title": "The 10-Year Treasury Bond Yields Nearly 5% Right Now. Here's Why I'd Still Choose PepsiCo for Passive Income.",
@@ -174,7 +200,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789325400000
+      "firstAt": 1789325400000,
+      "why": "Stock pick, no FX direction"
     },
     {
       "title": "Most Investors Think Netflix (NFLX) Is Too Expensive. I Think They're Wrong.",
@@ -206,7 +233,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789324063000
+      "firstAt": 1789324063000,
+      "why": "Domestic sanction, no market impact"
     },
     {
       "title": "Israeli Officials Reject Kushner’s Account Of Doha Strike’s Role In Gaza Deal - i24news.tv",
@@ -226,7 +254,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789323800000
+      "firstAt": 1789323800000,
+      "why": "Political dispute, no market impact"
     },
     {
       "title": "Russian drone strike hits Ukraine near Polish border - Modern Ghana",
@@ -246,7 +275,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789322324000
+      "firstAt": 1789322324000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Border strike supports gold"
     },
     {
       "title": "Bessent is doubling down with weekly bank sanctions",
@@ -263,7 +296,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789323420000
+      "firstAt": 1789323420000,
+      "why": "Sanctions, no clear direction"
     },
     {
       "title": "Trump tells Zelenskyy to stop hitting Russian diesel supplies",
@@ -283,7 +317,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789323312000
+      "firstAt": 1789323312000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Diesel attacks boost oil prices"
     },
     {
       "title": "Chinese Satellite Intel Linked To Iran Strike That Killed 3 US Troops: Report - NDTV",
@@ -303,7 +342,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789323036000
+      "firstAt": 1789323036000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "US troop deaths boost risk assets"
     },
     {
       "title": "Stock Futures Poised to Trade Ahead of Fed Rate Decision",
@@ -1709,10 +1754,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-13T19:29:35.712Z",
-  "updatedAt": "2026-09-13T19:29:35.712Z"
+  "headlinesAt": "2026-09-13T19:30:51.472Z",
+  "updatedAt": "2026-09-13T19:30:51.472Z"
 }
