@@ -1,5 +1,24 @@
 {
-  "calendar": [],
+  "calendar": [
+    {
+      "title": "ECB President Lagarde Speaks",
+      "country": "EUR",
+      "impact": "medium",
+      "at": 1789200000000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "BRICS Summit",
+      "country": "All",
+      "impact": "low",
+      "at": 1789200900000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    }
+  ],
   "headlines": [
     {
       "title": "Iran’s Pezeshkian: ‘We are not at war with Saudi Arabia’",
@@ -19,7 +38,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789263176000
+      "firstAt": 1789263176000,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "De-escalation reduces geopolitical risk premium"
     },
     {
       "title": "Ukraine war briefing: Nine killed and dozens wounded in Russian strikes as Kyiv braces for harsh winter - The Guardian",
@@ -39,7 +64,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789262640000
+      "firstAt": 1789262640000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Ukraine conflict escalates, boosting safe havens"
     },
     {
       "title": "BRICS leaders voice concern over Middle East, condemn unilateral sanctions at India summit - AP News",
@@ -59,7 +88,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789259537000
+      "firstAt": 1789259537000,
+      "why": "Diplomatic statements lack immediate market impact"
     },
     {
       "title": "Russia Sanctions Bill: Can Trump Impose 100% Tariffs on India and China? - Diplomacy and Law",
@@ -79,7 +109,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789259537000
+      "firstAt": 1789259537000,
+      "why": "Speculative tariff news unclear for these assets"
     },
     {
       "title": "Houthi projectile wounds two, damages mosque in Jazan region, Saudi says",
@@ -99,7 +130,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789259069000
+      "firstAt": 1789259069000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Houthi attack increases Middle East risk"
     },
     {
       "title": "SpaceX weighting in Nasdaq 100 set to more than double - Bloomberg",
@@ -113,7 +150,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789258079000
+      "firstAt": 1789258079000,
+      "dir": {
+        "US100": "up"
+      },
+      "why": "Higher weighting boosts index attractiveness"
     },
     {
       "title": "Iran war live: Saudi Arabia and Houthis trade strikes over Bab al-Mandeb",
@@ -133,7 +174,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789257640000
+      "firstAt": 1789257640000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Saudi oil industry fears spike prices"
     },
     {
       "title": "Houthis claim attack on Saudi Arabia's Sharurah base - Middle East Eye",
@@ -153,7 +200,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789253265000
+      "firstAt": 1789253265000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Military strike heightens regional instability"
     },
     {
       "title": "Iran war: Iraq says Saudi pipeline attack originated from its territory - Nine.com.au",
@@ -173,7 +226,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789251064000
+      "firstAt": 1789251064000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Pipeline attack threatens oil supply security"
     },
     {
       "title": "Tens of thousands march across Germany to protest far-right party AfD",
@@ -188,7 +247,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789252623000
+      "firstAt": 1789252623000,
+      "why": "Protests unlikely to impact currency immediately"
     },
     {
       "title": "Iraq probes drone strikes on Saudi Arabia, shuts three crossings to Iran - Al Jazeera",
@@ -208,7 +268,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789248585000
+      "firstAt": 1789248585000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Border closures signal rising regional tensions"
     },
     {
       "title": "USA edge Spain to book Women’s Basketball World Cup final against France",
@@ -225,7 +291,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789251018000
+      "firstAt": 1789251018000,
+      "why": "Sports news irrelevant to currency markets"
     },
     {
       "title": "Russian attacks kill 10, injure dozens in Ukraine; Russia says it hits ships, plants - reuters.com",
@@ -245,7 +312,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789250810000
+      "firstAt": 1789250810000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Ukraine strikes boost gold, oil neutral"
     },
     {
       "title": "Russian Strikes Kill 9 Across Ukraine, As Zelenskyy Offers To Meet Putin At Miami G20 - Radio Free Europe/Radio Liberty",
@@ -265,7 +336,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789250810000
+      "firstAt": 1789250810000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Ukraine violence supports gold demand"
     },
     {
       "title": "Trump: Iran probably ‘behind’ Saudi oil pipeline attack - Al Jazeera",
@@ -285,7 +360,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789248585000
+      "firstAt": 1789248585000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Iran blame increases geopolitical risk premium"
     },
     {
       "title": "Iraq says Saudi pipeline attack originated from its territory, and other Mideast news - AP News",
@@ -1747,7 +1828,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": null,
-  "headlinesAt": "2026-09-13T02:27:32.629Z",
-  "updatedAt": "2026-09-13T02:27:32.629Z"
+  "calendarAt": "2026-09-13T02:28:34.005Z",
+  "headlinesAt": "2026-09-13T02:28:34.005Z",
+  "updatedAt": "2026-09-13T02:28:34.005Z"
 }
