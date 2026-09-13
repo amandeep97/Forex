@@ -876,6 +876,34 @@
   ],
   "headlines": [
     {
+      "title": "The price of almost everything on your dinner table is climbing at once — and Wall Street is taking notice",
+      "link": "https://www.marketwatch.com/story/the-price-of-almost-everything-on-your-dinner-table-is-climbing-at-once-and-wall-street-is-taking-notice-9623d1fc?mod=mw_rss_topstories",
+      "source": "MarketWatch",
+      "desc": "Rising crop prices are making the current inflation problem bigger than just oil and the Iran war.",
+      "at": 1789304400000,
+      "inst": [
+        "USOIL",
+        "US500",
+        "XAU/USD",
+        "UKOIL"
+      ],
+      "ccy": [
+        "OIL",
+        "XAU",
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789304400000,
+      "_kind": null,
+      "dir": {
+        "US500": "down",
+        "XAU/USD": "up"
+      },
+      "why": "Inflation fears hurt stocks, boost gold."
+    },
+    {
       "title": "The Iran war reveals the limits of BRICS",
       "link": "https://www.aljazeera.com/opinions/2026/9/13/the-iran-war-reveals-the-limits-of?traffic_source=rss",
       "source": "Al Jazeera",
@@ -896,7 +924,24 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789303618000,
-      "_kind": null
+      "_kind": null,
+      "why": "Geopolitical analysis, no clear price direction."
+    },
+    {
+      "title": "Saudi Arabia stocks lower at close of trade; Tadawul All Share down 1.30%",
+      "link": "https://www.investing.com/news/stock-market-news/saudi-arabia-stocks-lower-at-close-of-trade-tadawul-all-share-down-130-4898732",
+      "source": "Investing",
+      "at": 1789303503000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789303503000,
+      "_kind": null,
+      "why": "Saudi market news, irrelevant to US index."
     },
     {
       "title": "The Houthis’ escalation in Yemen could flop",
@@ -917,7 +962,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789303190000,
-      "_kind": null
+      "_kind": null,
+      "why": "Speculative outcome, unclear immediate impact."
     },
     {
       "title": "U.S. equity ETFs see outflows of $4.5 billion as traders price in Fed rate hike",
@@ -940,7 +986,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789303023000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Strong dollar from rate hike fears."
     },
     {
       "title": "Saudi pipeline outage threatens loss of 4% of global oil supply",
@@ -956,7 +1008,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789302624000
+      "firstAt": 1789302624000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Supply loss threatens global oil availability."
     },
     {
       "title": "Russia hits Poland-Ukraine border area amid wave of attacks targeting gas stations, Kyiv says - cnn.com",
@@ -976,7 +1032,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789299600000
+      "firstAt": 1789299600000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "War escalation boosts safe-haven gold demand."
     },
     {
       "title": "New report of attack on Strait of Hormuz shipping fans fears of threats to oil supplies",
@@ -995,7 +1055,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789301544000
+      "firstAt": 1789301544000,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Supply threat boosts oil and gold."
     },
     {
       "title": "China reportedly helped Iran in deadly attack on US forces - Fox News",
@@ -1015,7 +1081,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789301093000
+      "firstAt": 1789301093000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Geopolitical tension boosts safe-haven gold."
     },
     {
       "title": "BRICS summit 2026: What are the key takeaways?",
@@ -1035,7 +1105,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789301079000
+      "firstAt": 1789301079000,
+      "why": "Summit takeaways, no clear market signal."
     },
     {
       "title": "Goldman picks China healthcare stocks for a post-AI trade",
@@ -1050,7 +1121,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789300480000
+      "firstAt": 1789300480000,
+      "why": "China-specific news, unclear US index impact."
     },
     {
       "title": "NFL and midterm elections set up prediction markets for a critical fall season",
@@ -1083,7 +1155,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789299924000
+      "firstAt": 1789299924000,
+      "why": "Human interest story, no market impact."
     },
     {
       "title": "Kyiv says Russia strikes area near Ukrainian-Polish border - Latest news from Azerbaijan",
@@ -1103,7 +1176,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789299600000
+      "firstAt": 1789299600000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "War escalation boosts safe-haven gold."
     },
     {
       "title": "Russia strikes truck near Polish border in western Ukraine - The Times of India",
@@ -1123,7 +1200,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789297080000
+      "firstAt": 1789297080000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "War escalation boosts safe-haven gold."
     },
     {
       "title": "Defence forces strike Russian drone launch site and repeaters in occupied territories – Ukraine's General Sta - Українська правда",
@@ -1143,7 +1224,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789298940000
+      "firstAt": 1789298940000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "War escalation boosts safe-haven gold."
     },
     {
       "title": "Iran war reshapes Brics ties but also exposes divisions",
@@ -2037,20 +2122,6 @@
       "firstAt": 1789260360000
     },
     {
-      "title": "SpaceX weighting in Nasdaq 100 set to more than double - Bloomberg",
-      "link": "https://www.investing.com/news/stock-market-news/spacex-weighting-in-nasdaq-100-set-to-more-than-double--bloomberg-4898698",
-      "source": "Investing",
-      "at": 1789258079000,
-      "inst": [
-        "US100"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789258079000
-    },
-    {
       "title": "EUR/USD could retest 1.17 after Fed decision - Citi says",
       "link": "https://www.investing.com/news/forex-news/eurusd-could-retest-117-after-fed-decision--citi-says-4898692",
       "source": "Investing FX",
@@ -2580,20 +2651,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789210732000
-    },
-    {
-      "title": "Jim Cramer Said Robinhood Markets (NASDAQ:HOOD) Just Keeps On Growing",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/jim-cramer-said-robinhood-markets-112158281.html",
-      "source": "Yahoo Finance",
-      "at": 1789212118000,
-      "inst": [
-        "US100"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789210152000
     }
   ],
   "sources": [
@@ -2619,7 +2676,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-13T13:02:19.825Z",
-  "headlinesAt": "2026-09-13T13:02:19.825Z",
-  "updatedAt": "2026-09-13T13:02:19.825Z"
+  "calendarAt": "2026-09-13T13:03:51.832Z",
+  "headlinesAt": "2026-09-13T13:03:51.832Z",
+  "updatedAt": "2026-09-13T13:03:51.832Z"
 }
