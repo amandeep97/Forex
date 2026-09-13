@@ -907,7 +907,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789314278000,
-      "_kind": null
+      "_kind": null,
+      "why": "Geopolitical headline lacks clear market direction"
     },
     {
       "title": "Trump calls on Ukraine to halt strikes on Russian diesel, saying attacks are causing a shortage - valleynewslive.com",
@@ -928,7 +929,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789313389000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Diesel shortage implies higher oil prices"
     },
     {
       "title": "New attacks in Hormuz and Saudi test nerves as war’s spread worsens oil disruption",
@@ -948,7 +954,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789313801000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "War spread worsens oil disruption"
     },
     {
       "title": "Trump Urges Federal Reserve To Cut Rates As Market Bets On Warsh Hike",
@@ -971,7 +983,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789313539000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Rate cut call supports gold"
     },
     {
       "title": "Trump blames Zelenskyy for diesel shortage, tells Ukraine to stop strikes on Russian supplies - The Times of India",
@@ -992,7 +1008,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789313389000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Diesel shortage implies higher oil prices"
     },
     {
       "title": "Trump calls on Ukraine to stop strikes on Russian diesel targets - thenationalnews.com",
@@ -1013,7 +1034,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789313389000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Diesel shortage implies higher oil prices"
     },
     {
       "title": "Five Dividend Stocks Crushing Inflation With Consistent Dividend Payout Growth",
@@ -1029,7 +1055,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789313195000
+      "firstAt": 1789313195000,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Positive dividend growth outlook"
     },
     {
       "title": "Canadian boycott of US products pushes grocers to adapt, explore new supply sources",
@@ -1043,7 +1073,47 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789312707000
+      "firstAt": 1789312707000,
+      "dir": {
+        "USD/CAD": "down"
+      },
+      "why": "Boycott weakens US economic position"
+    },
+    {
+      "title": "Jim Cramer says big tech stock could double in 3–5 years",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/jim-cramer-says-big-tech-151700059.html",
+      "source": "Yahoo Finance",
+      "at": 1789312620000,
+      "inst": [
+        "US100"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789312620000,
+      "dir": {
+        "US100": "up"
+      },
+      "why": "Bullish tech stock prediction"
+    },
+    {
+      "title": "Prediction: 2 AI Semiconductor Stocks That Will Join Micron and Broadcom in the $1 Trillion Club by 2028",
+      "link": "https://finance.yahoo.com/technology/ai/articles/prediction-2-ai-semiconductor-stocks-151500907.html",
+      "source": "Yahoo Finance",
+      "at": 1789312500000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789312500000,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Bullish semiconductor stock prediction"
     },
     {
       "title": "Dow Jones Futures: Fed Meeting Ahead; Anthropic's Amodei, OpenAI's Altman, SpaceX's Musk Call For AI Slowdown",
@@ -1059,7 +1129,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789311156000
+      "firstAt": 1789311156000,
+      "why": "Mixed signals on AI and Fed"
     },
     {
       "title": "Russian drone strikes train behind Boris Johnson’s in Ukraine - The Telegraph",
@@ -1079,7 +1150,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789310220000
+      "firstAt": 1789310220000,
+      "why": "Geopolitical headline lacks clear market direction"
     },
     {
       "title": "Trump Demands Ukraine Halt Refinery Strikes as Diesel Surges - Bloomberg.com",
@@ -1099,7 +1171,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789310220000
+      "firstAt": 1789310220000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Diesel surge implies higher oil prices"
     },
     {
       "title": "Trump calls on Ukraine to stop targeting Russian refineries as both countries trade strikes - CBS News",
@@ -1119,7 +1196,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789310220000
+      "firstAt": 1789310220000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Refinery strikes imply higher oil prices"
     },
     {
       "title": "Surging inflation puts interest rates back in focus as policymakers meet in Japan, US and UK - theguardian.com",
@@ -1137,7 +1219,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789309560000
+      "firstAt": 1789309560000,
+      "why": "Inflation focus unclear for direction"
     },
     {
       "title": "Legendary Canadian boxer George Chuvalo dies aged 89",
@@ -2540,46 +2623,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789233696000
-    },
-    {
-      "title": "Iran Finds Escalation Is Fruitful Path to Leverage in War With U.S. - The New York Times",
-      "link": "https://news.google.com/rss/articles/CBMinAFBVV95cUxNeGt3bmM5Z3hRbkRTZlVJbUhxRnY2YmdMNUVJVHRaNTNJeXlYYzNNdFNZcW9qdjBta0Q5cDNTUWxfZjZVUzdNRUV1U0VVNERzeERvUE5VS3p0VTk3V3JkN3JjV01tOU1va2Z1djJxbU1LbHlPVkFBZzRsb054Z1dhOXcwOGV4LWVBaElIa1U2bnE0akJJZTlwMms5MUU?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMinAFBVV95cUxNeGt3bmM5Z3hRbkRTZlVJbUhxRnY2YmdMNUVJVHRaNTNJeXlYYzNNdFNZcW9qdjBta0Q5cDNTUWxfZjZVUzdNRUV1U0VVNERzeERvUE5VS3p0VTk3V3JkN3JjV01tOU1va2Z1djJxbU1LbHlPVkFBZzRsb054Z1dhOXcwOGV4LWVBaElIa1U2bnE0akJJZTlwMms5MUU?oc=5\" target=\"_bla",
-      "at": 1789226584000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789226584000
-    },
-    {
-      "title": "Ukrainians tell of their survival under Russian attack – video - theguardian.com",
-      "link": "https://news.google.com/rss/articles/CBMioAFBVV95cUxNcXpDWC1HZGdlYkVpeWs0aHRta0tlUHp3N1V2MU1XQVJMcHBvSk0yaDBSNmZsSjAtdFVoSVpiNE53empMcFN4TDR6N1ZpZGxOSkU0eDJPQXpWVjZ4bklwWUt3U2JoaUlEaWJkdGszRmFScW1kd2tlYVFMS19JalZtYXptOXNZTGRFQXhCNmEzbWktV3VlZDN0UFJoSV9XaEU1?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMioAFBVV95cUxNcXpDWC1HZGdlYkVpeWs0aHRta0tlUHp3N1V2MU1XQVJMcHBvSk0yaDBSNmZsSjAtdFVoSVpiNE53empMcFN4TDR6N1ZpZGxOSkU0eDJPQXpWVjZ4bklwWUt3U2JoaUlEaWJkdGszRmFScW1kd2tlYVFMS19JalZtYXptOXNZTGRFQXhCNmEzbWktV3VlZDN0UFJoSV9XaEU1?oc=5\" target=",
-      "at": 1789226580000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789226580000
     }
   ],
   "sources": [
@@ -2605,7 +2648,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-13T15:57:05.546Z",
-  "headlinesAt": "2026-09-13T15:57:05.546Z",
-  "updatedAt": "2026-09-13T15:57:05.546Z"
+  "calendarAt": "2026-09-13T15:58:05.850Z",
+  "headlinesAt": "2026-09-13T15:58:05.850Z",
+  "updatedAt": "2026-09-13T15:58:05.850Z"
 }
