@@ -236,18 +236,6 @@
       "firstAt": 1789315899000
     },
     {
-      "title": "Could Upstart 10x From Here? The AI Fintech Platform Could Be the Most Misunderstood Stock on the Market",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/could-upstart-10x-ai-fintech-160501346.html",
-      "source": "Yahoo Finance",
-      "at": 1789315501000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1789315501000
-    },
-    {
       "title": "Peso may slide to new lows vs dollar as conflict drives up price pressures, rate hike expectations - BusinessWorld Online",
       "link": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxNeThDdHBPR3dSR2RnTHBzeGdBT1NZV0gzNFEwcEdnWXQ5VlR2SEpPODNSTkVjaG5fMnJQS0ZBTDVidmdvRzZ1Ukh5UUE5MXdzdnZHNXJEWnVESkJzbUpkUUFJNjhXRHJRdzIxWldIVDRUOGtMeXVuRk1CSFdCb2c1aHFhNFJlOThGRWpnaFpRVHFaeVhFTVNha0JhWjlTdENGNGp1ekg0VTVZeVV2NjN0REhnUEYzLTU2cjMzZkg2R0g5N0pxZW8xNHcxNnhUZUE2RlRrbEpCVmh1UDZDbVZqYWdtdGNOckwwTDhQMFl3?oc=5",
       "source": "Wires (macro)",
@@ -269,18 +257,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789315429000
-    },
-    {
-      "title": "A $93 trillion trading boom puts CME in an unusual spot",
-      "link": "https://finance.yahoo.com/markets/options/articles/93-trillion-trading-boom-puts-160300956.html",
-      "source": "Yahoo Finance",
-      "at": 1789315380000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1789315380000
     },
     {
       "title": "S&P Dow Jones Indices loosens Canadian index inclusion criteria",
@@ -1673,6 +1649,48 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789260360000
+    },
+    {
+      "title": "EUR/USD could retest 1.17 after Fed decision - Citi says",
+      "link": "https://www.investing.com/news/forex-news/eurusd-could-retest-117-after-fed-decision--citi-says-4898692",
+      "source": "Investing FX",
+      "at": 1789253568000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789253568000
+    },
+    {
+      "title": "Iraq probes drone strikes on Saudi Arabia, shuts three crossings to Iran - Al Jazeera",
+      "link": "https://news.google.com/rss/articles/CBMisgFBVV95cUxQSEVTcUVKTUpBQnAwT0wzS3EwYlhlQ1VEZzhiaUEyc0czQ1NIOWRXVWZoVDIxQXV0Y1ZFWnc1ZXFhdERrMGVhZS1ER3JsWG5nOG0zM195SzBsTmNJSWlDNlJVNW9kTDFvVURkOVdFUDVpLUVGYnhqR2tHaTVjNkFibzJ4emhjbWoyTnNiZVN2Y256ZElLODBTOHVaVDluMlFTNEdZallKVnNXVlhxVml3Ykt30gG3AUFVX3lxTE9wdDJScDJXV3F4bFV0STZfd3NhcTAxYmdxQ2ZrazlvUGZlYmN0WnNpYmdXMm9VTmc5N3d6bkVRa1l0WDVUTjJGR3g0WHJ3R2pNMXV3XzBtTDd0LVNGUlZfNTZmZ216dThzWURDcm1iU05DaFlVdVEwMlhMZFA5d0twQTRJNklkVU9qNzNXc0dtRi03SHN0RDhhUHBNZmVtTjN4Ul9YTnktOHF6eGdMUDI1QW9GQWVsSQ?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMisgFBVV95cUxQSEVTcUVKTUpBQnAwT0wzS3EwYlhlQ1VEZzhiaUEyc0czQ1NIOWRXVWZoVDIxQXV0Y1ZFWnc1ZXFhdERrMGVhZS1ER3JsWG5nOG0zM195SzBsTmNJSWlDNlJVNW9kTDFvVURkOVdFUDVpLUVGYnhqR2tHaTVjNkFibzJ4emhjbWoyTnNiZVN2Y256ZElLODBTOHVaVDluMlFTNEdZallKVnNXVl",
+      "at": 1789251064000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789249620000
     }
   ],
   "sources": [
@@ -1695,10 +1713,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-13T17:10:34.450Z",
-  "updatedAt": "2026-09-13T17:10:34.450Z"
+  "headlinesAt": "2026-09-13T17:11:48.886Z",
+  "updatedAt": "2026-09-13T17:11:48.887Z"
 }
