@@ -20,7 +20,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789334495000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Diesel surge implies oil price increase"
     },
     {
       "title": "Poland, Ukraine accuse Russia of ‘escalation’ after strikes near border - aljazeera.com",
@@ -41,7 +46,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789334495000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Escalation boosts gold safe-haven demand"
     },
     {
       "title": "Russia stocks lower at close of trade; MOEX Russia Index down 1.21%",
@@ -56,7 +65,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789334402000,
-      "_kind": null
+      "_kind": null,
+      "why": "Russian index move irrelevant to US"
     },
     {
       "title": "Cathie Wood Sees an Economic Boom Wall Street Isn’t Pricing In",
@@ -71,7 +81,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789331279000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Economic boom expectation is bullish"
     },
     {
       "title": "Pro-Palestine protest demands Australia increases pressure on Israel",
@@ -88,7 +102,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789333334000
+      "firstAt": 1789333334000,
+      "why": "Protest has no clear market impact"
     },
     {
       "title": "Kushner: US used Israel’s isolation after ‘terrible’ Doha strike to secure Gaza deal - The Times of Israel",
@@ -108,7 +123,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789331807000
+      "firstAt": 1789331807000,
+      "why": "Diplomatic news lacks clear directional signal"
     },
     {
       "title": "VOOG vs. VONG: Which Powerhouse Vanguard ETF Is the Stronger Choice for Investors?",
@@ -140,7 +156,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789332480000
+      "firstAt": 1789332480000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Iran attack risk boosts oil and gold"
     },
     {
       "title": "Dow Jones Futures: Will Anthropic-Led Call For Slowdown Hit AI Stocks? Fed Meeting Ahead",
@@ -157,7 +179,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789332294000
+      "firstAt": 1789332294000,
+      "dir": {
+        "US500": "down",
+        "US30": "down"
+      },
+      "why": "AI slowdown calls bearish for tech"
     },
     {
       "title": "Can a warming Arctic become an important commercial highway?",
@@ -177,7 +204,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789332291000
+      "firstAt": 1789332291000,
+      "why": "Arctic route news is speculative/long-term"
     },
     {
       "title": "Your Social Security COLA could go up another $71 per month in 2027. That’s not necessarily good news.",
@@ -200,7 +228,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789331760000
+      "firstAt": 1789331760000,
+      "why": "Inflation signal is ambiguous for FX"
     },
     {
       "title": "US Envoy Jared Kushner says Doha attack left Israel ‘globally isolated’ - aljazeera.com",
@@ -220,7 +249,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789331807000
+      "firstAt": 1789331807000,
+      "why": "Geopolitical commentary without immediate price driver"
     },
     {
       "title": "'Senseless attack': Ex UK PM Johnson narrowly misses Russian attack on Ukraine-Poland railway - The Jerusalem Post",
@@ -241,7 +271,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789331405000
+      "firstAt": 1789331405000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Russian attack boosts gold safe-haven"
     },
     {
       "title": "US will scrap Irish whisky tariff, Trump says",
@@ -264,7 +298,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789331397000
+      "firstAt": 1789331397000,
+      "dir": {
+        "EUR/USD": "up",
+        "GBP/USD": "up"
+      },
+      "why": "Tariff scrap supports Irish/European sentiment"
     },
     {
       "title": "Wall Street’s AI trade on watch as Altman, Musk join calls for slowing development",
@@ -278,7 +317,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789331279000
+      "firstAt": 1789331279000,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "AI slowdown calls bearish for tech"
     },
     {
       "title": "New attacks in Hormuz and Saudi test nerves as war’s spread worsens oil disruption",
@@ -297,7 +340,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789330707000
+      "firstAt": 1789330707000,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "War spread worsens oil disruption"
     },
     {
       "title": "This investment is safe from both Trump and the Democrats — and it pays 4.7%",
@@ -493,6 +542,20 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789326600000
+    },
+    {
+      "title": "Meet the Magnificent Momentum-Driven ETF Obliterating the S&P 500 in 2026",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/meet-magnificent-momentum-driven-etf-190500364.html",
+      "source": "Yahoo Finance",
+      "at": 1789326300000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789326300000
     },
     {
       "title": "Polish Prime Minister Tusk warns: Russia’s escalation is becoming a fact - European Interest",
@@ -1681,19 +1744,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789293191000
-    },
-    {
-      "title": "Dramatic insider warnings over AI fall flat with some in Silicon Valley",
-      "link": "https://www.bbc.co.uk/news/articles/cq635037g18o?at_medium=RSS&at_campaign=rss",
-      "source": "BBC World",
-      "desc": "A recent spate of stark warnings about the dangers of AI has been met with scepticism by executives and investors.",
-      "at": 1789290310000,
-      "inst": [],
-      "ccy": [],
-      "sev": 2,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1789290310000
     }
   ],
   "sources": [
@@ -1720,6 +1770,6 @@
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-13T21:39:05.445Z",
-  "updatedAt": "2026-09-13T21:39:05.445Z"
+  "headlinesAt": "2026-09-13T21:40:06.149Z",
+  "updatedAt": "2026-09-13T21:40:06.149Z"
 }
