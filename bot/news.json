@@ -894,7 +894,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789304781000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Geopolitical risk boosts gold, oil unclear"
     },
     {
       "title": "Ukraine drone strikes kill four as Russia attacks close to Poland border - Al Jazeera",
@@ -915,7 +919,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789304781000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Conflict escalation supports gold, oil neutral"
     },
     {
       "title": "Poland warns of 'real' threat after Russian drones strike Ukraine near its border - The Kyiv Independent",
@@ -936,7 +944,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789304781000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Border threat increases gold demand"
     },
     {
       "title": "The Houthis’ escalation in Yemen could flop - Al Jazeera",
@@ -954,7 +966,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789303190000,
-      "_kind": null
+      "_kind": null,
+      "why": "Unclear impact on gold prices"
     },
     {
       "title": "NEW: China reportedly aided Iran in deadly attack on US forces - Fox News",
@@ -975,7 +988,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789304535000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Geopolitical tension supports gold, oil unclear"
     },
     {
       "title": "The price of almost everything on your dinner table is climbing at once — and Wall Street is taking notice",
@@ -998,7 +1015,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789304400000,
-      "_kind": null
+      "dir": {
+        "US500": "down",
+        "XAU/USD": "up"
+      },
+      "why": "Inflation fears hurt stocks, boost gold"
     },
     {
       "title": "The Iran war reveals the limits of BRICS",
@@ -1020,7 +1041,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789303618000
+      "firstAt": 1789303618000,
+      "why": "Geopolitical analysis, no clear price direction"
     },
     {
       "title": "Saudi Arabia stocks lower at close of trade; Tadawul All Share down 1.30%",
@@ -1034,7 +1056,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789303503000
+      "firstAt": 1789303503000,
+      "why": "Saudi stocks unrelated to US index"
     },
     {
       "title": "The Houthis’ escalation in Yemen could flop",
@@ -1054,7 +1077,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789303190000
+      "firstAt": 1789303190000,
+      "why": "Speculative outcome, no clear direction"
     },
     {
       "title": "U.S. equity ETFs see outflows of $4.5 billion as traders price in Fed rate hike",
@@ -1076,7 +1100,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789303023000
+      "firstAt": 1789303023000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Strong dollar weakens gold and FX"
     },
     {
       "title": "Saudi pipeline outage threatens loss of 4% of global oil supply",
@@ -1092,7 +1122,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789302624000
+      "firstAt": 1789302624000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Supply loss threatens oil prices"
     },
     {
       "title": "Russia hits Poland-Ukraine border area amid wave of attacks targeting gas stations, Kyiv says - CNN",
@@ -1112,7 +1146,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789299600000
+      "firstAt": 1789299600000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Border attacks boost gold, oil neutral"
     },
     {
       "title": "New report of attack on Strait of Hormuz shipping fans fears of threats to oil supplies",
@@ -1131,7 +1169,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789301544000
+      "firstAt": 1789301544000,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Supply fears boost oil and gold"
     },
     {
       "title": "China reportedly helped Iran in deadly attack on US forces - Fox News",
@@ -1151,7 +1195,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789301093000
+      "firstAt": 1789301093000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Geopolitical risk supports gold, oil unclear"
     },
     {
       "title": "BRICS summit 2026: What are the key takeaways?",
@@ -1171,7 +1219,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789301079000
+      "firstAt": 1789301079000,
+      "why": "Summit analysis, no clear market impact"
     },
     {
       "title": "Goldman picks China healthcare stocks for a post-AI trade",
@@ -1442,7 +1491,7 @@
       "firstAt": 1789294678000
     },
     {
-      "title": "Iran dares US to test Hormuz control as ship attack leaves 1 dead, 4 hurt - Türkiye Today",
+      "title": "Iran dares US to test Hormuz control as ship attack leaves 1 dead, 4 hurt - turkiyetoday.com",
       "link": "https://news.google.com/rss/articles/CBMitwFBVV95cUxOd0l0U1Npemp5MFdmTjk5cTlrQ2R6ZG9mcDF0LVVXbk9ENkxranlNaGdzaC10R2xFbmFQb2ZXX2pVSHRYTG1xeGFGaHh3ZHZfM0VDUFNKcWl4a3RXUkM4MExQX2FyTV9NbGNFZVN5eHZlYzZBUGlFeXBYd3FMejVOVWxaQlBmeW1WRjNXb0wzWnBvQXRBWVlsR2UzVndMZFJDck0xaWdCMXI3c05FSEJnOGotcVE3blk?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMitwFBVV95cUxOd0l0U1Npemp5MFdmTjk5cTlrQ2R6ZG9mcDF0LVVXbk9ENkxranlNaGdzaC10R2xFbmFQb2ZXX2pVSHRYTG1xeGFGaHh3ZHZfM0VDUFNKcWl4a3RXUkM4MExQX2FyTV9NbGNFZVN5eHZlYzZBUGlFeXBYd3FMejVOVWxaQlBmeW1WRjNXb0wzWnBvQXRBWVlsR2UzVndMZFJDck0xaWdCMXI3c0",
@@ -1830,7 +1879,7 @@
       "firstAt": 1789281872000
     },
     {
-      "title": "Russia Sanctions Bill: Can Trump Impose 100% Tariffs on India and China? - Diplomacy and Law",
+      "title": "Russia Sanctions Bill: Can Trump Impose 100% Tariffs on India and China? - diplomacyandlaw.com",
       "link": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9VZ2kwRTN6VGpfdkxNajEza21JVlh0a2RlakE1bEhiUHJTOGVnYkllc2FyeHBvZlc2eXlPVUxCTjBSdkJaN0pZS3BfdjIxWnJDc3Q2MDFBbmtERjRZZVhUYktYaEw3SlR2Mmc?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiakFVX3lxTE9VZ2kwRTN6VGpfdkxNajEza21JVlh0a2RlakE1bEhiUHJTOGVnYkllc2FyeHBvZlc2eXlPVUxCTjBSdkJaN0pZS3BfdjIxWnJDc3Q2MDFBbmtERjRZZVhUYktYaEw3SlR2Mmc?oc=5\" target=\"_blank\">Russia Sanctions Bill: Can Trump Impose 100% Tariffs on India an",
@@ -2627,7 +2676,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-13T13:30:05.394Z",
-  "headlinesAt": "2026-09-13T13:30:05.394Z",
-  "updatedAt": "2026-09-13T13:30:05.394Z"
+  "calendarAt": "2026-09-13T13:31:05.393Z",
+  "headlinesAt": "2026-09-13T13:31:05.393Z",
+  "updatedAt": "2026-09-13T13:31:05.393Z"
 }
