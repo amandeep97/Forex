@@ -896,7 +896,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789303618000,
-      "_kind": null
+      "_kind": null,
+      "why": "Geopolitical analysis lacks clear directional signal."
     },
     {
       "title": "The Houthis’ escalation in Yemen could flop",
@@ -917,7 +918,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789303190000,
-      "_kind": null
+      "_kind": null,
+      "why": "Escalation may fail, direction unclear."
     },
     {
       "title": "U.S. equity ETFs see outflows of $4.5 billion as traders price in Fed rate hike",
@@ -940,7 +942,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789303023000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Fed hike expectations strengthen dollar, weaken metals."
     },
     {
       "title": "Saudi pipeline outage threatens loss of 4% of global oil supply",
@@ -957,7 +965,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789302624000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Supply loss threatens global oil availability."
     },
     {
       "title": "Russia hits Poland-Ukraine border area amid wave of attacks targeting gas stations, Kyiv says - cnn.com",
@@ -977,7 +989,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789299600000
+      "firstAt": 1789299600000,
+      "why": "Border strikes have limited direct market impact."
     },
     {
       "title": "New report of attack on Strait of Hormuz shipping fans fears of threats to oil supplies",
@@ -996,7 +1009,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789301544000
+      "firstAt": 1789301544000,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Strait of Hormuz threat boosts oil and gold."
     },
     {
       "title": "China reportedly helped Iran in deadly attack on US forces - Fox News",
@@ -1016,7 +1035,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789301093000
+      "firstAt": 1789301093000,
+      "why": "Geopolitical tension without clear immediate price driver."
     },
     {
       "title": "BRICS summit 2026: What are the key takeaways?",
@@ -1036,7 +1056,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789301079000
+      "firstAt": 1789301079000,
+      "why": "Summit divisions do not dictate immediate prices."
     },
     {
       "title": "Goldman picks China healthcare stocks for a post-AI trade",
@@ -1051,7 +1072,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789300480000
+      "firstAt": 1789300480000,
+      "why": "China stock pick irrelevant to US index."
     },
     {
       "title": "NFL and midterm elections set up prediction markets for a critical fall season",
@@ -1084,7 +1106,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789299924000
+      "firstAt": 1789299924000,
+      "why": "Humanitarian crisis lacks direct market direction."
     },
     {
       "title": "Kyiv says Russia strikes area near Ukrainian-Polish border - Latest news from Azerbaijan",
@@ -1104,7 +1127,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789299600000
+      "firstAt": 1789299600000,
+      "why": "Border strikes have limited direct market impact."
     },
     {
       "title": "Russia strikes truck near Polish border in western Ukraine - The Times of India",
@@ -1124,7 +1148,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789297080000
+      "firstAt": 1789297080000,
+      "why": "Border strikes have limited direct market impact."
     },
     {
       "title": "Defence forces strike Russian drone launch site and repeaters in occupied territories – Ukraine's General Sta - pravda.com.ua",
@@ -1144,7 +1169,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789298940000
+      "firstAt": 1789298940000,
+      "why": "Military strike details lack clear market signal."
     },
     {
       "title": "Iran war reshapes Brics ties but also exposes divisions",
@@ -1164,7 +1190,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789298622000
+      "firstAt": 1789298622000,
+      "why": "Geopolitical analysis lacks clear directional signal."
     },
     {
       "title": "Zelensky says Russia launched 78 missiles, about 2,100 attack drones and 1,700 aerial bombs at Ukraine over pa - ukrinform.net",
@@ -1184,7 +1211,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789295182000
+      "firstAt": 1789295182000,
+      "why": "War intensity reported, direction unclear."
     },
     {
       "title": "Fighting continues between Yemen gov’t forces, Houthis: What is the latest?",
@@ -1344,7 +1372,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789292640000
+      "firstAt": 1789291763000
     },
     {
       "title": "Russia hits truck near Polish border in latest strike near NATO - reuters.com",
@@ -1935,7 +1963,7 @@
       "firstAt": 1789266732000
     },
     {
-      "title": "ASX to rise ahead of pivotal week of central bank meetings - afr.com",
+      "title": "ASX to rise ahead of pivotal week of central bank meetings - AFR",
       "link": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxObXJ1ZWMwVUFaZmgxSHNwZWlaZVlEWm1ldzRDNHpicVMyS1VRM1pycHhBaHMxOFdiM2JhMU1kVVg5MWl5SEdYdUFTYnozbHoyYlFnbkxEV01tZ1dtb2xXOWlJanhoSnFfQTVxbFMxMHNTSFRZQWNBMjlPb1djLVJ0VmoyakpUUy0tRThBaWYtanNyVWFqUUdCdURCalZ1bzIxbnliemtfRk15NENFbC1Gd2MyZE5QSjBsSXNGeTdkNjNiQ3h5T0FfYg?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiyAFBVV95cUxObXJ1ZWMwVUFaZmgxSHNwZWlaZVlEWm1ldzRDNHpicVMyS1VRM1pycHhBaHMxOFdiM2JhMU1kVVg5MWl5SEdYdUFTYnozbHoyYlFnbkxEV01tZ1dtb2xXOWlJanhoSnFfQTVxbFMxMHNTSFRZQWNBMjlPb1djLVJ0VmoyakpUUy0tRThBaWYtanNyVWFqUUdCdURCalZ1bzIxbnliemtfRk15NE",
@@ -2074,7 +2102,7 @@
       "firstAt": 1789253568000
     },
     {
-      "title": "Iraq probes drone strikes on Saudi Arabia, shuts three crossings to Iran - aljazeera.com",
+      "title": "Iraq probes drone strikes on Saudi Arabia, shuts three crossings to Iran - Al Jazeera",
       "link": "https://news.google.com/rss/articles/CBMisgFBVV95cUxQSEVTcUVKTUpBQnAwT0wzS3EwYlhlQ1VEZzhiaUEyc0czQ1NIOWRXVWZoVDIxQXV0Y1ZFWnc1ZXFhdERrMGVhZS1ER3JsWG5nOG0zM195SzBsTmNJSWlDNlJVNW9kTDFvVURkOVdFUDVpLUVGYnhqR2tHaTVjNkFibzJ4emhjbWoyTnNiZVN2Y256ZElLODBTOHVaVDluMlFTNEdZallKVnNXVlhxVml3Ykt30gG3AUFVX3lxTE9wdDJScDJXV3F4bFV0STZfd3NhcTAxYmdxQ2ZrazlvUGZlYmN0WnNpYmdXMm9VTmc5N3d6bkVRa1l0WDVUTjJGR3g0WHJ3R2pNMXV3XzBtTDd0LVNGUlZfNTZmZ216dThzWURDcm1iU05DaFlVdVEwMlhMZFA5d0twQTRJNklkVU9qNzNXc0dtRi03SHN0RDhhUHBNZmVtTjN4Ul9YTnktOHF6eGdMUDI1QW9GQWVsSQ?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMisgFBVV95cUxQSEVTcUVKTUpBQnAwT0wzS3EwYlhlQ1VEZzhiaUEyc0czQ1NIOWRXVWZoVDIxQXV0Y1ZFWnc1ZXFhdERrMGVhZS1ER3JsWG5nOG0zM195SzBsTmNJSWlDNlJVNW9kTDFvVURkOVdFUDVpLUVGYnhqR2tHaTVjNkFibzJ4emhjbWoyTnNiZVN2Y256ZElLODBTOHVaVDluMlFTNEdZallKVnNXVl",
@@ -2134,7 +2162,7 @@
       "firstAt": 1789248420000
     },
     {
-      "title": "Putin warns Europe against sending troops to Ukraine: \"That means a war with Russia\" - CBS News",
+      "title": "Putin warns Europe against sending troops to Ukraine: \"That means a war with Russia\" - cbsnews.com",
       "link": "https://news.google.com/rss/articles/CBMie0FVX3lxTFB3NkN4dzR3OFV4VjhxckRrT2tudkF0V1JYNHdPUUw2OHlRWjAtVjB2LUItUUJzRjdWTnhwR0hCMTZFN1ZtcEp1ZG5pSkhIRjkycjBXaGJnVHpqd3Uwc2VBTlJ3WG5wMUxkS3VsM2sxMENZdG5SbUllc25XQQ?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMie0FVX3lxTFB3NkN4dzR3OFV4VjhxckRrT2tudkF0V1JYNHdPUUw2OHlRWjAtVjB2LUItUUJzRjdWTnhwR0hCMTZFN1ZtcEp1ZG5pSkhIRjkycjBXaGJnVHpqd3Uwc2VBTlJ3WG5wMUxkS3VsM2sxMENZdG5SbUllc25XQQ?oc=5\" target=\"_blank\">Putin warns Europe against sending troops",
@@ -2365,7 +2393,7 @@
       "firstAt": 1789226580000
     },
     {
-      "title": "Three killed in Russian air strikes on 10 regions of Ukraine - aljazeera.com",
+      "title": "Three killed in Russian air strikes on 10 regions of Ukraine - Al Jazeera",
       "link": "https://news.google.com/rss/articles/CBMingFBVV95cUxPWVZZYUw3SGx6TDJld21TNnJ2Z0I3YmMzc2FDcmRuX3d5UXRJQkVFSGpZazdUMmxrWjBuN0lhd0Nxc1lpRDhzbTdHOHJoSkxLNXY0X0o5eXlQSk16WVFjekpOU0JQc2JSRTNCNURQald1NzhHT295QVJNa0I4QlJlVzI4eTk1Z2VnNDFTUFdUajJ6ZE9rT0tPeGU4OHVFd9IBowFBVV95cUxNQUc4ZzBSSTNwMTZreGNGQWVoMnBxd0lRZ002UzdySk1xQ2tQVlA2OVN2djBRVk5IUEtjTUNoNG13ZW5rQ2w3bVpzT2xXdW4xTTA2Q3p0ZUJvVVh0a285Nm9kOUlUT21qWEotcFRQTUhCOGQ3ckNkTGswSmxZdWpNUk1Ybkk5MGtmeEdIay1RVWdlMVZDYkM0My1iMnFDeXdOb2tn?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMingFBVV95cUxPWVZZYUw3SGx6TDJld21TNnJ2Z0I3YmMzc2FDcmRuX3d5UXRJQkVFSGpZazdUMmxrWjBuN0lhd0Nxc1lpRDhzbTdHOHJoSkxLNXY0X0o5eXlQSk16WVFjekpOU0JQc2JSRTNCNURQald1NzhHT295QVJNa0I4QlJlVzI4eTk1Z2VnNDFTUFdUajJ6ZE9rT0tPeGU4OHVFd9IBowFBVV95cUxNQU",
@@ -2620,7 +2648,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-13T12:54:05.513Z",
-  "headlinesAt": "2026-09-13T12:54:05.513Z",
-  "updatedAt": "2026-09-13T12:54:05.513Z"
+  "calendarAt": "2026-09-13T12:56:09.949Z",
+  "headlinesAt": "2026-09-13T12:56:09.949Z",
+  "updatedAt": "2026-09-13T12:56:09.949Z"
 }
