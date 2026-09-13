@@ -1,24 +1,5 @@
 {
-  "calendar": [
-    {
-      "title": "ECB President Lagarde Speaks",
-      "country": "EUR",
-      "impact": "medium",
-      "at": 1789200000000,
-      "forecast": "",
-      "previous": "",
-      "actual": ""
-    },
-    {
-      "title": "BRICS Summit",
-      "country": "All",
-      "impact": "low",
-      "at": 1789200900000,
-      "forecast": "",
-      "previous": "",
-      "actual": ""
-    }
-  ],
+  "calendar": [],
   "headlines": [
     {
       "title": "Iran’s Pezeshkian: ‘We are not at war with Saudi Arabia’",
@@ -1635,18 +1616,6 @@
       "firstAt": 1789158180000
     },
     {
-      "title": "Jim Cramer Explains Why Enbridge (ENB) Offers a Secure Play During Market Volatility",
-      "link": "https://finance.yahoo.com/energy/articles/jim-cramer-explains-why-enbridge-202059687.html",
-      "source": "Yahoo Finance",
-      "at": 1789158059000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1789158059000
-    },
-    {
       "title": "Oil falls but head for 8% weekly gain on tight supply; US diesel hits record",
       "link": "https://www.investing.com/news/commodities-news/oil-prices-set-to-end-week-over-100-for-first-time-in-nearly-4-months-4897153",
       "source": "Investing Cmdty",
@@ -1661,22 +1630,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789157943000
-    },
-    {
-      "title": "S&P 500 ends higher as strong inflation data cements rate-hike bets",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/wall-st-futures-recover-oil-095547409.html",
-      "source": "Yahoo Finance",
-      "at": 1789157845000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789157845000
     },
     {
       "title": "Lululemon’s Guidance Cut Sent Shares Down 18%, Was It An Overreaction?",
@@ -1700,7 +1653,7 @@
       "sev": 1,
       "rel": 1,
       "srcs": 1,
-      "firstAt": 1789155252000
+      "firstAt": 1789157465000
     },
     {
       "title": "Markets will absorb a rate hike if the cycle is shallow, says JPMorgan's Dubravko Lakos - CNBC",
@@ -1744,6 +1697,48 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789155898000
+    },
+    {
+      "title": "US House to vote on Russia sanctions backed by late Senator Graham - Reuters",
+      "link": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPYXo0TE8tLVZ2VzF0TjRlTFJBbEZIRDVqWndXMTNMb0VlT1lxd1JBMEdpNGJmaVE2a2Q2emtmTUZ2NVdvOUloVEdrdnVrOVRnSTRWbmd4MGNSUzFXR3JUR0o5ZHloaU5JRzd5TVNtenpjd3ZBNk5aZU9ubVE5aTRlTUtFM0M1dWFCUGVZcEp0b01SejVmS0p4Z2RHV2YyRm1PQUR0UzUxeUtJM2NmQzJVdTVsRQ?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiswFBVV95cUxPYXo0TE8tLVZ2VzF0TjRlTFJBbEZIRDVqWndXMTNMb0VlT1lxd1JBMEdpNGJmaVE2a2Q2emtmTUZ2NVdvOUloVEdrdnVrOVRnSTRWbmd4MGNSUzFXR3JUR0o5ZHloaU5JRzd5TVNtenpjd3ZBNk5aZU9ubVE5aTRlTUtFM0M1dWFCUGVZcEp0b01SejVmS0p4Z2RHV2YyRm1PQUR0UzUxeUtJM2",
+      "at": 1789155798000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789153584000
+    },
+    {
+      "title": "Dollar Gains Ground as CPI Report Produces Higher Odds for a Fed Rate Hike",
+      "link": "https://finance.yahoo.com/markets/currencies/articles/dollar-gains-ground-cpi-report-194239304.html",
+      "source": "Yahoo Finance",
+      "at": 1789155759000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 3,
+      "firstAt": 1789153720000
     }
   ],
   "sources": [
@@ -1766,10 +1761,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-13T01:52:04.514Z",
-  "headlinesAt": "2026-09-13T01:52:04.514Z",
-  "updatedAt": "2026-09-13T01:52:04.514Z"
+  "calendarAt": null,
+  "headlinesAt": "2026-09-13T01:54:17.798Z",
+  "updatedAt": "2026-09-13T01:54:17.798Z"
 }
