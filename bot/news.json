@@ -2,6 +2,42 @@
   "calendar": [],
   "headlines": [
     {
+      "title": "VOOG vs. VONG: Which Powerhouse Vanguard ETF Is the Stronger Choice for Investors?",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/voog-vs-vong-powerhouse-vanguard-205014404.html",
+      "source": "Yahoo Finance",
+      "at": 1789332614000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 1,
+      "srcs": 1,
+      "firstAt": 1789332614000,
+      "_kind": null
+    },
+    {
+      "title": "Dow Jones Futures: Will Anthropic-Led Call For Slowdown Hit AI Stocks? Fed Meeting Ahead",
+      "link": "https://www.investors.com/market-trend/stock-market-today/dow-jones-futures-fed-meeting-anthropic-amodei-openai-altman-spacex-musk-ai-model-slowdown/?src=A00220&yptr=yahoo",
+      "source": "Yahoo Finance",
+      "at": 1789332294000,
+      "inst": [
+        "US500",
+        "US30"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789332294000,
+      "_kind": null,
+      "dir": {
+        "US500": "down",
+        "US30": "down"
+      },
+      "why": "AI slowdown fears hit tech stocks"
+    },
+    {
       "title": "Your Social Security COLA could go up another $71 per month in 2027. That’s not necessarily good news.",
       "link": "https://www.marketwatch.com/story/your-social-security-check-could-go-up-another-71-next-year-thats-not-necessarily-good-news-f952c08a?mod=mw_rss_topstories",
       "source": "MarketWatch",
@@ -29,7 +65,7 @@
         "EUR/USD": "down",
         "GBP/USD": "down"
       },
-      "why": "Persistent inflation signals hawkish Fed, stronger dollar."
+      "why": "Persistent inflation fears boost gold, hurt FX"
     },
     {
       "title": "US Envoy Jared Kushner says Doha attack left Israel ‘globally isolated’ - Al Jazeera",
@@ -51,7 +87,7 @@
       "srcs": 1,
       "firstAt": 1789331807000,
       "_kind": null,
-      "why": "Geopolitical rhetoric without immediate market impact."
+      "why": "Geopolitical news lacks clear market direction"
     },
     {
       "title": "'Senseless attack': Ex UK PM Johnson narrowly misses Russian attack on Ukraine-Poland railway - The Jerusalem Post",
@@ -74,30 +110,7 @@
       "srcs": 1,
       "firstAt": 1789331405000,
       "_kind": null,
-      "why": "Unrelated political anecdote, no market direction."
-    },
-    {
-      "title": "Dow Jones Futures: Will Anthropic-Led Call For Slowdown Hit AI Stocks? Fed Meeting Aheadan, SpaceX's Musk Call For AI Slowdown",
-      "link": "https://www.investors.com/market-trend/stock-market-today/dow-jones-futures-fed-meeting-anthropic-amodei-openai-altman-spacex-musk-ai-model-slowdown/?src=A00220&yptr=yahoo",
-      "source": "Yahoo Finance",
-      "at": 1789331619000,
-      "inst": [
-        "US500",
-        "US30"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789331619000,
-      "_kind": null,
-      "dir": {
-        "US500": "down",
-        "US30": "down"
-      },
-      "why": "Calls for AI slowdown hurt tech stocks."
+      "why": "Geopolitical news lacks clear market direction"
     },
     {
       "title": "US will scrap Irish whisky tariff, Trump says",
@@ -121,11 +134,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789331397000,
-      "_kind": null,
       "dir": {
-        "EUR/USD": "up"
+        "EUR/USD": "up",
+        "GBP/USD": "up"
       },
-      "why": "Tariff removal boosts Irish exports, mild EUR support."
+      "why": "Tariff removal boosts Irish/European sentiment"
     },
     {
       "title": "Wall Street’s AI trade on watch as Altman, Musk join calls for slowing development",
@@ -143,7 +156,7 @@
       "dir": {
         "US500": "down"
       },
-      "why": "AI slowdown calls weigh on tech-heavy index."
+      "why": "AI development slowdown fears weigh on stocks"
     },
     {
       "title": "New attacks in Hormuz and Saudi test nerves as war’s spread worsens oil disruption",
@@ -164,11 +177,11 @@
       "srcs": 1,
       "firstAt": 1789330707000,
       "dir": {
-        "XAU/USD": "up",
         "USOIL": "up",
+        "XAU/USD": "up",
         "UKOIL": "up"
       },
-      "why": "Hormuz attacks disrupt supply, boost oil and gold."
+      "why": "War spread worsens oil disruption and risk"
     },
     {
       "title": "This investment is safe from both Trump and the Democrats — and it pays 4.7%",
@@ -184,7 +197,10 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789329300000,
-      "why": "Vague safe haven claim, no specific direction."
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Safe haven narrative supports gold prices"
     },
     {
       "title": "Guyana’s oil boom and challenges",
@@ -205,7 +221,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789329300000,
-      "why": "Guyana specific news, negligible global market impact."
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Oil revenue increase signals higher prices"
     },
     {
       "title": "Should You Buy Bristol Myers Squibb Stock Right Now for the Yield Alone?",
@@ -250,7 +270,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789328232000,
-      "why": "Market anticipation, no immediate directional catalyst."
+      "why": "Market anticipation lacks immediate directional bias"
     },
     {
       "title": "ETFs vs. Mutual Funds vs. Individual Stocks: Why I'm Putting More Into ETFs in 2027",
@@ -265,7 +285,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789328100000,
-      "why": "Investment strategy advice, no market direction."
+      "why": "Investment strategy discussion lacks market direction"
     },
     {
       "title": "Trump says he will remove all Irish whiskey tariffs as he ends two-day visit",
@@ -290,9 +310,10 @@
       "srcs": 1,
       "firstAt": 1789328076000,
       "dir": {
-        "EUR/USD": "up"
+        "EUR/USD": "up",
+        "GBP/USD": "up"
       },
-      "why": "Tariff removal supports Irish economy, mild EUR positive."
+      "why": "Tariff removal positive for European trade"
     },
     {
       "title": "Fund manager's Fed interest rate outlook will frustrate consumers",
@@ -315,7 +336,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789327980000,
-      "why": "Vague outlook, no clear directional signal."
+      "why": "Vague outlook lacks specific directional signal"
     },
     {
       "title": "Kyiv Says Russia Strikes Near Polish Border... - jordannews.jo",
@@ -336,10 +357,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789325983000,
-      "dir": {
-        "XAU/USD": "up"
-      },
-      "why": "Escalation near border boosts gold safe haven demand."
+      "why": "Geopolitical news lacks clear market direction"
     },
     {
       "title": "Global markets slide this week as oil surges, rate-hike fears intensify - TradingView",
@@ -360,7 +378,7 @@
       "dir": {
         "USOIL": "up"
       },
-      "why": "Oil surges on rate-hike and supply fears."
+      "why": "Oil surges on rate-hike and risk fears"
     },
     {
       "title": "Fighting in Yemen intensifies, and Houthis launch more attacks on Saudi Arabia - AP News",
@@ -474,7 +492,7 @@
       "firstAt": 1789325866000
     },
     {
-      "title": "Israeli settlers injure two Palestinians in attack east of Salfit - Middle East Eye",
+      "title": "Israeli settlers injure two Palestinians in attack east of Salfit - middleeasteye.net",
       "link": "https://news.google.com/rss/articles/CBMitwFBVV95cUxNOFpCbERDWTNlYXlId2l1NlRpVzhvekl6ZFpKYnJCdmdnN3h5SFZPcGNFWlZLN0NDS3g3UkRJSDBRZzRIYW5mUDdjYUhBbDNxV2VYRjBFN01CMUlrVnB5ajluOW5WWUZjZ2ROMXZ5djdJTVNkQU9TSndvR3Rpd0RZWmllWmhSLXJrRUFFeEFVU2laOS1sNUppY0l4eXNoNmo5dmI1WlVvNjZVUW94ZlRtaEZYWFNWY0E?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMitwFBVV95cUxNOFpCbERDWTNlYXlId2l1NlRpVzhvekl6ZFpKYnJCdmdnN3h5SFZPcGNFWlZLN0NDS3g3UkRJSDBRZzRIYW5mUDdjYUhBbDNxV2VYRjBFN01CMUlrVnB5ajluOW5WWUZjZ2ROMXZ5djdJTVNkQU9TSndvR3Rpd0RZWmllWmhSLXJrRUFFeEFVU2laOS1sNUppY0l4eXNoNmo5dmI1WlVvNjZVUW",
@@ -534,18 +552,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789324877000
-    },
-    {
-      "title": "Most Investors Think Netflix (NFLX) Is Too Expensive. I Think They're Wrong.",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/most-investors-think-netflix-nflx-183500889.html",
-      "source": "Yahoo Finance",
-      "at": 1789324500000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1789324500000
     },
     {
       "title": "Russia strikes Polish-Ukrainian border area - The Daily Star",
@@ -994,7 +1000,7 @@
       "firstAt": 1789316098000
     },
     {
-      "title": "‘Putin’s terror’ at NATO’s door: Russia strikes Kyiv-Warsaw train near Polish border - tvpworld.com",
+      "title": "‘Putin’s terror’ at NATO’s door: Russia strikes Kyiv-Warsaw train near Polish border - TVP World",
       "link": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPV0RIZVlPRFNzLUJQd0NRQU5WSUNXcm1VbHhVdnBrRTNfVnNmWk02ZFVrOGk3Zzk3cGVjVFBhelVBYUFrQ1BNLUxiY2ZvQkxzUU1IRnp3aXpLS2RCWldaOHRKbWFwa1ZjM1ZoM0N3anB0YlMzT3J1TGw1NE5INnZPOEFQSEJzMWVIeHFEWnBpLUZoNTk3ZjYzSmdkeExfcWs1RnZ3Q0VGMU1HVzBjTHhF?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMirwFBVV95cUxPV0RIZVlPRFNzLUJQd0NRQU5WSUNXcm1VbHhVdnBrRTNfVnNmWk02ZFVrOGk3Zzk3cGVjVFBhelVBYUFrQ1BNLUxiY2ZvQkxzUU1IRnp3aXpLS2RCWldaOHRKbWFwa1ZjM1ZoM0N3anB0YlMzT3J1TGw1NE5INnZPOEFQSEJzMWVIeHFEWnBpLUZoNTk3ZjYzSmdkeExfcWs1RnZ3Q0VGMU1HVz",
@@ -1761,6 +1767,6 @@
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-13T20:59:51.903Z",
-  "updatedAt": "2026-09-13T20:59:51.903Z"
+  "headlinesAt": "2026-09-13T21:01:20.002Z",
+  "updatedAt": "2026-09-13T21:01:20.002Z"
 }
