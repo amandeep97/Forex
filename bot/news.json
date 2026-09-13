@@ -14,7 +14,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789284228000,
-      "_kind": null
+      "_kind": null,
+      "why": "Investment shift unclear for currency direction"
     },
     {
       "title": "Exclusive | U.S. Links Chinese Satellite Imagery to Iranian Strike That Killed Three Troops - WSJ",
@@ -35,7 +36,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789284068000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Geopolitical tension boosts gold, oil unclear"
     },
     {
       "title": "Russian nuclear head says Ukraine attacked fuel trucks, endangered Zaporizhzhia plant",
@@ -55,7 +60,10 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789283187000,
-      "_kind": "escalation"
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Nuclear risk boosts gold, oil unclear"
     },
     {
       "title": "Iran to Pursue International Prosecution of Perpetrators of Lamerd Attack - تسنیم",
@@ -75,7 +83,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789282403000
+      "firstAt": 1789282403000,
+      "why": "Legal action unclear for markets"
     },
     {
       "title": "BRICS leaders voice concern over Middle East, condemn unilateral sanctions at India summit - The Korea Times",
@@ -95,7 +104,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789281137000
+      "firstAt": 1789281137000,
+      "why": "Diplomatic statements unclear for direction"
     },
     {
       "title": "Russia Sanctions Bill: Can Trump Impose 100% Tariffs on India and China? - diplomacyandlaw.com",
@@ -115,7 +125,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789281137000
+      "firstAt": 1789281137000,
+      "why": "Tariff speculation unclear for direction"
     },
     {
       "title": "Iran war: Saudi-Houthi escalation intensifies Yemen conflict - Inquirer.net",
@@ -135,7 +146,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789281000000
+      "firstAt": 1789281000000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Escalation boosts gold and oil prices"
     },
     {
       "title": "Ukrainian air defenses down 409 drones used by Russia to attack Ukraine overnight - Ukrinform",
@@ -155,7 +172,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789277407000
+      "firstAt": 1789277407000,
+      "why": "Routine defense action unclear for markets"
     },
     {
       "title": "New report of attack on Strait of Hormuz shipping fans fears of threats to oil supplies",
@@ -174,7 +192,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789278146000
+      "firstAt": 1789278146000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Supply threat boosts gold and oil"
     },
     {
       "title": "Iran says ‘US attack’ on commercial vessel in Gulf kills 1, injures 3 - Anadolu Ajansı",
@@ -194,7 +218,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789277968000
+      "firstAt": 1789277968000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Casualties and conflict boost safe havens"
     },
     {
       "title": "Russia imports record fuel from India as Ukraine strikes hit refineries - The Hindu",
@@ -214,7 +244,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789277407000
+      "firstAt": 1789277407000,
+      "why": "Import data unclear for price direction"
     },
     {
       "title": "Attack that closed key Saudi pipeline is blamed on Iran-backed militias in Iraq - Pittsburgh Post-Gazette",
@@ -234,7 +265,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789277276000
+      "firstAt": 1789277276000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Pipeline attack boosts oil and gold"
     },
     {
       "title": "BRICS calls for de-escalation in Middle East, opposes unilateral sanctions - Pajhwok Afghan News",
@@ -254,7 +291,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789275116000
+      "firstAt": 1789275116000,
+      "why": "Diplomatic calls unclear for direction"
     },
     {
       "title": "Russian attack sparks fire in Ukraine's Khmelnytskyi - Breakingthenews.net",
@@ -274,7 +312,8 @@
       "sev": 3,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789273260000
+      "firstAt": 1789273260000,
+      "why": "Local fire unclear for global markets"
     },
     {
       "title": "Iran war endgame - Dawn",
@@ -294,7 +333,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789268968000
+      "firstAt": 1789268968000,
+      "why": "Endgame speculation unclear for direction"
     },
     {
       "title": "New Strait of Hormuz ship attack raises oil supply fears as Iran war widens - Investing.com Nigeria",
@@ -1705,10 +1745,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-13T07:35:47.886Z",
-  "updatedAt": "2026-09-13T07:35:47.886Z"
+  "headlinesAt": "2026-09-13T07:37:04.716Z",
+  "updatedAt": "2026-09-13T07:37:04.716Z"
 }
