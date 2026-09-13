@@ -1,5 +1,24 @@
 {
-  "calendar": [],
+  "calendar": [
+    {
+      "title": "ECB President Lagarde Speaks",
+      "country": "EUR",
+      "impact": "medium",
+      "at": 1789200000000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "BRICS Summit",
+      "country": "All",
+      "impact": "low",
+      "at": 1789200900000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    }
+  ],
   "headlines": [
     {
       "title": "Ukraine war briefing: Nine killed and dozens wounded in Russian strikes as Kyiv braces for harsh winter - The Guardian",
@@ -20,7 +39,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789262640000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "War escalation boosts gold, oil unclear"
     },
     {
       "title": "BRICS leaders voice concern over Middle East, condemn unilateral sanctions at India summit - AP News",
@@ -40,7 +63,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789259537000
+      "firstAt": 1789259537000,
+      "why": "Diplomatic concerns, no clear market direction"
     },
     {
       "title": "Russia Sanctions Bill: Can Trump Impose 100% Tariffs on India and China? - Diplomacy and Law",
@@ -60,7 +84,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789259537000
+      "firstAt": 1789259537000,
+      "why": "Sanctions speculation, direction unclear"
     },
     {
       "title": "Houthi projectile wounds two, damages mosque in Jazan region, Saudi says",
@@ -80,7 +105,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789259069000
+      "firstAt": 1789259069000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Saudi attack boosts gold and oil"
     },
     {
       "title": "SpaceX weighting in Nasdaq 100 set to more than double - Bloomberg",
@@ -94,7 +125,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789258079000
+      "firstAt": 1789258079000,
+      "dir": {
+        "US100": "up"
+      },
+      "why": "SpaceX weighting increase boosts index"
     },
     {
       "title": "Iran war live: Saudi Arabia and Houthis trade strikes over Bab al-Mandeb",
@@ -114,7 +149,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789257640000
+      "firstAt": 1789257640000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Saudi oil fears boost gold and oil"
     },
     {
       "title": "Houthis claim attack on Saudi Arabia's Sharurah base - Middle East Eye",
@@ -134,7 +175,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789253265000
+      "firstAt": 1789253265000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Saudi base attack boosts gold and oil"
     },
     {
       "title": "Iran war: Iraq says Saudi pipeline attack originated from its territory - Nine.com.au",
@@ -154,7 +201,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789251064000
+      "firstAt": 1789251064000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Pipeline attack boosts gold and oil"
     },
     {
       "title": "Tens of thousands march across Germany to protest far-right party AfD",
@@ -169,7 +222,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789252623000
+      "firstAt": 1789252623000,
+      "why": "Protests unlikely to move currency"
     },
     {
       "title": "Iraq probes drone strikes on Saudi Arabia, shuts three crossings to Iran - Al Jazeera",
@@ -189,7 +243,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789248585000
+      "firstAt": 1789248585000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Regional instability boosts gold and oil"
     },
     {
       "title": "USA edge Spain to book Women’s Basketball World Cup final against France",
@@ -206,7 +266,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789251018000
+      "firstAt": 1789251018000,
+      "why": "Sports news irrelevant to currency"
     },
     {
       "title": "Russian attacks kill 10, injure dozens in Ukraine; Russia says it hits ships, plants - reuters.com",
@@ -226,7 +287,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789250810000
+      "firstAt": 1789250810000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Ukraine strikes boost gold, oil unclear"
     },
     {
       "title": "Russian Strikes Kill 9 Across Ukraine, As Zelenskyy Offers To Meet Putin At Miami G20 - Radio Free Europe/Radio Liberty",
@@ -246,7 +311,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789250810000
+      "firstAt": 1789250810000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Ukraine strikes boost gold, oil unclear"
     },
     {
       "title": "Trump: Iran probably ‘behind’ Saudi oil pipeline attack - Al Jazeera",
@@ -266,7 +335,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789248585000
+      "firstAt": 1789248585000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Iran blame boosts gold and oil"
     },
     {
       "title": "Iraq says Saudi pipeline attack originated from its territory, and other Mideast news - AP News",
@@ -286,7 +361,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789249620000
+      "firstAt": 1789249620000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Pipeline attack boosts gold and oil"
     },
     {
       "title": "Live - Iran says not at war with Saudi Arabia ahead of Oman talks with GCC - Iran International",
@@ -1766,7 +1847,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": null,
-  "headlinesAt": "2026-09-13T01:32:33.001Z",
-  "updatedAt": "2026-09-13T01:32:33.001Z"
+  "calendarAt": "2026-09-13T01:33:34.045Z",
+  "headlinesAt": "2026-09-13T01:33:34.045Z",
+  "updatedAt": "2026-09-13T01:33:34.045Z"
 }
