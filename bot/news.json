@@ -893,8 +893,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789289470000,
-      "_kind": null
+      "firstAt": 1789288099000,
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Ukraine strikes boost gold, oil unclear"
     },
     {
       "title": "Ukraine Strikes Russian Refinery: A Fiery Escalation - Devdiscourse",
@@ -914,8 +918,14 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789289470000,
-      "_kind": null
+      "firstAt": 1789287404000,
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Refinery strike boosts gold and oil"
     },
     {
       "title": "Russian Drone Strike Hits Kyiv-Warsaw Train Just 2 Kilometers From Polish Border - UNITED24 Media",
@@ -936,7 +946,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789289411000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Escalation near Poland boosts gold"
     },
     {
       "title": "Israeli strike kills two people in Gaza, medics say - Reuters",
@@ -957,7 +971,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789289375000,
-      "_kind": null
+      "_kind": null,
+      "why": "Gaza strike has no clear market impact"
     },
     {
       "title": "Iran, Turkey, Iraq Stress Need to Prevent Regional Escalation - اسلام تايمز",
@@ -977,7 +992,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789289041000
+      "firstAt": 1789286700000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Regional tension boosts gold slightly"
     },
     {
       "title": "The 5 market worries investors can’t ignore, according to Citi",
@@ -1009,7 +1028,37 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789288200000
+      "firstAt": 1789288099000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Ukraine attacks boost gold sentiment"
+    },
+    {
+      "title": "Russia Strikes Ukraine Power Sites as Kyiv Targets Refining Hub - Bloomberg.com",
+      "link": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQSFROQlhvM04wSkNEbWZrQ0s3Q3FWNEpCaHFUb1hvbVV1UHFjTHlSa0xQUDVORk5heUhCM0MtdUprTlR4eDUyRnNwT3dXZEdlRHUzT0VrdHQzMHdxOVFXMU5yN1docXlyS1QxNXBEZjBmZWQ5U0NiNGs3VEpFczFGUTdEOGRSSG44WTdrcjdtVXJlaHp3alVNUVppbmxJeWxRZl9JYnZLTlA4SXFUN084bkxsRkI?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMitAFBVV95cUxQSFROQlhvM04wSkNEbWZrQ0s3Q3FWNEpCaHFUb1hvbVV1UHFjTHlSa0xQUDVORk5heUhCM0MtdUprTlR4eDUyRnNwT3dXZEdlRHUzT0VrdHQzMHdxOVFXMU5yN1docXlyS1QxNXBEZjBmZWQ5U0NiNGs3VEpFczFGUTdEOGRSSG44WTdrcjdtVXJlaHp3alVNUVppbmxJeWxRZl9JYnZLTlA4SX",
+      "at": 1789288099000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789286841000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Refining hub strike boosts oil and gold"
     },
     {
       "title": "US Fed interest rate decision, inflation data, oil to drive markets in holiday-shortened week: Analysts - BusinessLine",
@@ -1027,7 +1076,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789287998000
+      "firstAt": 1789287998000,
+      "why": "Market drivers listed, no direction implied"
     },
     {
       "title": "New report of attack on Strait of Hormuz shipping fans fears of threats to oil supplies",
@@ -1046,7 +1096,37 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789287889000
+      "firstAt": 1789287889000,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Hormuz threat boosts oil and gold"
+    },
+    {
+      "title": "8 killed in Russian strikes on Ukraine, Putin warns Europe on troops - 1News",
+      "link": "https://news.google.com/rss/articles/CBMipgFBVV95cUxONzVuN0xiNlVSWmxYaDdOcklSM0dBcmdWenBlOHhxNjJXSEFtOEZFM3ZCV0JpdjloWjAyZXl2dDloYzE5UmtNV1NJelJKM21pUjdhQW1GUG1yVFZ3MlQ5VmFPY0hjUlZSTkhkR1dWMnpmS3VFZ3h1MVJsZk5vb0FSVG9CNmNyTjAxOWVadUFsNzd3MWhGZkk2TlJ2azBVYi05OUJSR3Fn?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMipgFBVV95cUxONzVuN0xiNlVSWmxYaDdOcklSM0dBcmdWenBlOHhxNjJXSEFtOEZFM3ZCV0JpdjloWjAyZXl2dDloYzE5UmtNV1NJelJKM21pUjdhQW1GUG1yVFZ3MlQ5VmFPY0hjUlZSTkhkR1dWMnpmS3VFZ3h1MVJsZk5vb0FSVG9CNmNyTjAxOWVadUFsNzd3MWhGZkk2TlJ2azBVYi05OUJSR3Fn?oc=5\"",
+      "at": 1789287404000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789286023000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Ukraine strikes boost gold sentiment"
     },
     {
       "title": "Mosque and homes damaged in Saudi Arabia after alleged Houthi strike",
@@ -1066,7 +1146,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789287236000
+      "firstAt": 1789287236000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Saudi strike boosts oil and gold"
     },
     {
       "title": "Western Ukraine under attack: Fires, casualties and the aftermath of Russia's massive strike - newsukraine.rbc.ua",
@@ -1086,7 +1172,32 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789284480000
+      "firstAt": 1789284480000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Ukraine attacks boost gold sentiment"
+    },
+    {
+      "title": "Iraq to reopen Iran crossings after drone attack - Al Arabiya English",
+      "link": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxOSHYzWWxfaS1ySzNUT1RUckVKbm4teVYtZjRqS2N3aUZJN0hCWkRtX1hJd1FOUW5pWnFJU05Palc5MnhmYXBmRGk1bjdIS00xTDRmVTMtZ2loTWR3RnFvNkpUUFpDVTZqQnhyYlpKYjhVTngtSnJYYjR0aGdGbWZsUEt5dFVUeXZOQkFKRlRsMUpfRk50Y2traGhReEhmXzlTNnRKRTduNkxpZ9IBrwFBVV95cUxQN0RLV2ZxeWwxYWxQendCNFU5SVd1UG5DeGhQa2ExNU9KZGducjBFUjhnelN2MmhleXhycmEwbVpOdjNRUGRlNkZ2b1RMaTBOUnFTNC1ySXZhNlZRYUNLdmNRbWxlZXFCTFZzZmRSOXA1VnNoZlhDdkcwbHJ4UFpsOVBGcXFHWkhwd25TVE9WS0F0VDFFOU1RbkFmUFZiVG9vSXZ3UmxuOVNjMEd5dDFR?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiqgFBVV95cUxOSHYzWWxfaS1ySzNUT1RUckVKbm4teVYtZjRqS2N3aUZJN0hCWkRtX1hJd1FOUW5pWnFJU05Palc5MnhmYXBmRGk1bjdIS00xTDRmVTMtZ2loTWR3RnFvNkpUUFpDVTZqQnhyYlpKYjhVTngtSnJYYjR0aGdGbWZsUEt5dFVUeXZOQkFKRlRsMUpfRk50Y2traGhReEhmXzlTNnRKRTduNkxpZ9",
+      "at": 1789286700000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789286700000,
+      "why": "Crossing reopening has no clear direction"
     },
     {
       "title": "US Fed, Inflation, Oil to Drive Markets in Holiday Week - Rediff MoneyWiz",
@@ -1104,7 +1215,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789286597000
+      "firstAt": 1789286597000,
+      "why": "Market drivers listed, no direction implied"
     },
     {
       "title": "Russian drone attack injures five in Ukraine's Odesa, officials say - Reuters",
@@ -1124,7 +1236,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789286023000
+      "firstAt": 1789286023000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Ukraine drone attack boosts gold"
     },
     {
       "title": "Egypt’s Sisi calls on Iran to halt escalation, seek peaceful settlement - Anadolu Ajansı",
@@ -1340,6 +1456,26 @@
       "firstAt": 1789278180000
     },
     {
+      "title": "Iran says ‘US attack’ on commercial vessel in Gulf kills 1, injures 3 - Anadolu Ajansı",
+      "link": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNX3JXLXdiTERacDN6VDg5b0toR2RaUWNLR0NEd2RWX0tXZUMxVWw3a3A1OXZjNlVkaEpGQlJnQlhDYzRKbTVieUZGNU1lSWtVMTYzWjdOTUwxOW9MUXVfX19kWlV2Rmo3a0lKZ1dDZS1TUVVNNzlxVHY2Rl9FSW4wSGdXcnl2U1huOHNiNm9CNk1lcGxuS1N0bGlkdmFZRnJ2dzNCeHlJN3VYcmdKRWdfMQ?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMisAFBVV95cUxNX3JXLXdiTERacDN6VDg5b0toR2RaUWNLR0NEd2RWX0tXZUMxVWw3a3A1OXZjNlVkaEpGQlJnQlhDYzRKbTVieUZGNU1lSWtVMTYzWjdOTUwxOW9MUXVfX19kWlV2Rmo3a0lKZ1dDZS1TUVVNNzlxVHY2Rl9FSW4wSGdXcnl2U1huOHNiNm9CNk1lcGxuS1N0bGlkdmFZRnJ2dzNCeHlJN3VYcm",
+      "at": 1789277968000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789277968000
+    },
+    {
       "title": "Russia imports record fuel from India as Ukraine strikes hit refineries - The Hindu",
       "link": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxQSzVqNjRoU0V3NHJoeWRwYmRFbURDOU5tNmduUXFwcGI0NTNkSUgyMEIxSXo1NmQ4azJuNXUxWHpzcmlBT2NPMFhlb3d1TTZ6WDBubExRTHJfWlJyd0otOG5oVkFtTGNVSGhpQ2V6VnFOZElvUUxsdld6bXA1amxzYUNva2dSYXdWUXJoenRRdGtLZXd2YmttaDdWdEtib2txR0haelJtZlFEOTd1R1B0SmtVZDF1QTJYc1V1QjJXN19CSGxndHFyZXU0SU1pVGpY0gHXAUFVX3lxTE04ZTRndFBmS0hVNnlvS1ZfZkVNYlRNMFIzbUJQWUNpa1dqd3ktN3dWU1puVzl2VzhfdlI1NlFqZHd5ZjVDbEdQdG1KVWNCbVFzNVdaLU9VN2RQd0ZqbW5VbTFpc2xlQUUxT2xLdmVqeXYtTXNjbi1ES3BVOFcwMVY2dF9HXzNEeTZOZUk3ZUU4SWJlS3VfaHpmX3dRRVAzRFpvb3JMUzJBWWFMc1pLV2ExWnFKamFrWWlsVC1ROGRXNVN5ZWV3Ny1mS0NGel9VS0RrVnpwTzRv?oc=5",
       "source": "Wires (geo)",
@@ -1358,26 +1494,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789277407000
-    },
-    {
-      "title": "BRICS calls for de-escalation in Middle East, opposes unilateral sanctions - Pajhwok Afghan News",
-      "link": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxNQlNxYU43di0ybFJwUnV0MzltQjVOSTloeEdzYnBkaHBCbDdLamp1aWQ1Z3Faa280emZfcEQ1c0pyTE5DeFZjUzZhZ1RzTVdsd1B1b2xjTmFzM0dEc1BESFlrc1RxdmpZb3c3cDMtdDRpRk4zYTM3WU5jcm1FN2c1UDlLYlRtajQ2WHlYRUNXLVpGanI5U0J1NWFteFJrZVhLcTh2djFmeGk?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiqAFBVV95cUxNQlNxYU43di0ybFJwUnV0MzltQjVOSTloeEdzYnBkaHBCbDdLamp1aWQ1Z3Faa280emZfcEQ1c0pyTE5DeFZjUzZhZ1RzTVdsd1B1b2xjTmFzM0dEc1BESFlrc1RxdmpZb3c3cDMtdDRpRk4zYTM3WU5jcm1FN2c1UDlLYlRtajQ2WHlYRUNXLVpGanI5U0J1NWFteFJrZVhLcTh2djFmeGk?oc",
-      "at": 1789275116000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789275116000
     },
     {
       "title": "Russian attack sparks fire in Ukraine's Khmelnytskyi - Breakingthenews.net",
@@ -1914,7 +2030,7 @@
       "firstAt": 1789226580000
     },
     {
-      "title": "Trump says Iran probably responsible for attack on Saudi oil pipeline - アラブニュース",
+      "title": "Trump says Iran probably responsible for attack on Saudi oil pipeline - arabnews.jp",
       "link": "https://news.google.com/rss/articles/CBMitwFBVV95cUxPYTJWSkV2LTRwVXRhcUtDTjBtSTRwSHBia2dNMTZ2Zml2RVNUbnE4QWNoY081NXFNcUdqR0QxcURPdXFTU0o4MGJMNU9uQzFVWlA4c0d4YUtoSDU3cjdvWUZURDltVlFXUXdON1N0ZkVSdHhsWllzVzRfVk9jck10UGQzc3VBazlrX29Nc2RndWZ1eWpEcEhIam02alJUam1VeUNXYjBpRjBGMXZOQUtoeE4wcFJCQW8?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMitwFBVV95cUxPYTJWSkV2LTRwVXRhcUtDTjBtSTRwSHBia2dNMTZ2Zml2RVNUbnE4QWNoY081NXFNcUdqR0QxcURPdXFTU0o4MGJMNU9uQzFVWlA4c0d4YUtoSDU3cjdvWUZURDltVlFXUXdON1N0ZkVSdHhsWllzVzRfVk9jck10UGQzc3VBazlrX29Nc2RndWZ1eWpEcEhIam02alJUam1VeUNXYjBpRjBGMX",
@@ -2055,26 +2171,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789216362000
-    },
-    {
-      "title": "Donald Trump tells reporters Iran was likely responsible for attack on Saudi pipline - The Jerusalem Post",
-      "link": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE5ma0Q3Uk1CN0NMVG9ISDNsTE5SeFYzd1M5N0RRdGw0dllaVjJ0cjZ5UmhKZ0ZWNXBsUk1oSUNDZ0Z6eDhJQTNKTVpya180UzhaUkZNMm1pYmk0OExCaXZrdDVCVGY?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiZEFVX3lxTE5ma0Q3Uk1CN0NMVG9ISDNsTE5SeFYzd1M5N0RRdGw0dllaVjJ0cjZ5UmhKZ0ZWNXBsUk1oSUNDZ0Z6eDhJQTNKTVpya180UzhaUkZNMm1pYmk0OExCaXZrdDVCVGY?oc=5\" target=\"_blank\">Donald Trump tells reporters Iran was likely responsible for attack on S",
-      "at": 1789217498000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789215350000
     },
     {
       "title": "Inflation is outpacing wage growth again, squeezing Americans’ paychecks",
@@ -2333,28 +2429,8 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789198266000
-    },
-    {
-      "title": "US House to Vote Next Week on Graham’s Russia Sanctions Bill - Kyiv Post",
-      "link": "https://news.google.com/rss/articles/CBMiS0FVX3lxTFAzekdyalJBYm1zc2p3MzZ2dkROcFd0aFRYVWM5Vnh6Smd2WTFGelJCYnVtZm84NUFaWEZRTWpmQjd5clJyTHZ2ZmdGZw?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiS0FVX3lxTFAzekdyalJBYm1zc2p3MzZ2dkROcFd0aFRYVWM5Vnh6Smd2WTFGelJCYnVtZm84NUFaWEZRTWpmQjd5clJyTHZ2ZmdGZw?oc=5\" target=\"_blank\">US House to Vote Next Week on Graham’s Russia Sanctions Bill</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">Kyiv Po",
-      "at": 1789198266000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789198266000
+      "srcs": 1,
+      "firstAt": 1789198500000
     },
     {
       "title": "Canadian Stocks Are Ignoring Escalating Trade War With U.S.—for Now",
@@ -2480,7 +2556,7 @@
       "firstAt": 1789181365000
     },
     {
-      "title": "Exclusive | U.S. Links Chinese Satellite Imagery to Iranian Strike That Killed Three Troops - WSJ",
+      "title": "Exclusive | U.S. Links Chinese Satellite Imagery to Iranian Strike That Killed Three Troops - wsj.com",
       "link": "https://news.google.com/rss/articles/CBMiswFBVV95cUxNM05ZUHdkZVNUdzFKZzRrZW0wRkgzbWZNbE55Wk00TWgxNkFjVXRUdENGS0NJcm5LWHhkWVJWMVNTNU5YSGRvWGZIWnhkSzNRNzFYNHlYUmNTNHc4WVBsdlpFbFh1LXktYmozTTZOYkhPVlRlZzY4RllGamstNkJvSENmMUZobV8zQldNdlIxVjY3QnVGTk9Ba21SVmgyWF9uX3I0Ri1zR2JmV1JXQVFoanRsMA?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiswFBVV95cUxNM05ZUHdkZVNUdzFKZzRrZW0wRkgzbWZNbE55Wk00TWgxNkFjVXRUdENGS0NJcm5LWHhkWVJWMVNTNU5YSGRvWGZIWnhkSzNRNzFYNHlYUmNTNHc4WVBsdlpFbFh1LXktYmozTTZOYkhPVlRlZzY4RllGamstNkJvSENmMUZobV8zQldNdlIxVjY3QnVGTk9Ba21SVmgyWF9uX3I0Ri1zR2JmV1",
@@ -2573,20 +2649,6 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789172989000
-    },
-    {
-      "title": "Baldness Drug Stocks like Veradermics (MANE) and Absci (ABSI) Are Chasing the Same Wall Street Magic as Ozempic",
-      "link": "https://finance.yahoo.com/healthcare/articles/baldness-drug-stocks-veradermics-mane-002949530.html",
-      "source": "Yahoo Finance",
-      "at": 1789172989000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789172989000
     }
   ],
   "sources": [
@@ -2612,7 +2674,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-13T09:15:38.721Z",
-  "headlinesAt": "2026-09-13T09:15:38.721Z",
-  "updatedAt": "2026-09-13T09:15:38.721Z"
+  "calendarAt": "2026-09-13T09:17:36.749Z",
+  "headlinesAt": "2026-09-13T09:17:36.749Z",
+  "updatedAt": "2026-09-13T09:17:36.749Z"
 }
