@@ -2,37 +2,6 @@
   "calendar": [],
   "headlines": [
     {
-      "title": "VOOG vs. VONG: Which Powerhouse Vanguard ETF Is the Stronger Choice for Investors?",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/voog-vs-vong-powerhouse-vanguard-205014404.html",
-      "source": "Yahoo Finance",
-      "at": 1789332614000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1789332614000,
-      "_kind": null
-    },
-    {
-      "title": "Dow Jones Futures: Will Anthropic-Led Call For Slowdown Hit AI Stocks? Fed Meeting Ahead",
-      "link": "https://www.investors.com/market-trend/stock-market-today/dow-jones-futures-fed-meeting-anthropic-amodei-openai-altman-spacex-musk-ai-model-slowdown/?src=A00220&yptr=yahoo",
-      "source": "Yahoo Finance",
-      "at": 1789332294000,
-      "inst": [
-        "US500",
-        "US30"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789332294000,
-      "_kind": null
-    },
-    {
       "title": "Your Social Security COLA could go up another $71 per month in 2027. That’s not necessarily good news.",
       "link": "https://www.marketwatch.com/story/your-social-security-check-could-go-up-another-71-next-year-thats-not-necessarily-good-news-f952c08a?mod=mw_rss_topstories",
       "source": "MarketWatch",
@@ -54,7 +23,13 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789331760000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Persistent inflation signals hawkish Fed, stronger dollar."
     },
     {
       "title": "US Envoy Jared Kushner says Doha attack left Israel ‘globally isolated’ - Al Jazeera",
@@ -75,7 +50,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789331807000,
-      "_kind": null
+      "_kind": null,
+      "why": "Geopolitical rhetoric without immediate market impact."
     },
     {
       "title": "'Senseless attack': Ex UK PM Johnson narrowly misses Russian attack on Ukraine-Poland railway - The Jerusalem Post",
@@ -96,8 +72,32 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789329560000,
-      "_kind": null
+      "firstAt": 1789331405000,
+      "_kind": null,
+      "why": "Unrelated political anecdote, no market direction."
+    },
+    {
+      "title": "Dow Jones Futures: Will Anthropic-Led Call For Slowdown Hit AI Stocks? Fed Meeting Aheadan, SpaceX's Musk Call For AI Slowdown",
+      "link": "https://www.investors.com/market-trend/stock-market-today/dow-jones-futures-fed-meeting-anthropic-amodei-openai-altman-spacex-musk-ai-model-slowdown/?src=A00220&yptr=yahoo",
+      "source": "Yahoo Finance",
+      "at": 1789331619000,
+      "inst": [
+        "US500",
+        "US30"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789331619000,
+      "_kind": null,
+      "dir": {
+        "US500": "down",
+        "US30": "down"
+      },
+      "why": "Calls for AI slowdown hurt tech stocks."
     },
     {
       "title": "US will scrap Irish whisky tariff, Trump says",
@@ -121,7 +121,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789331397000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "EUR/USD": "up"
+      },
+      "why": "Tariff removal boosts Irish exports, mild EUR support."
     },
     {
       "title": "Wall Street’s AI trade on watch as Altman, Musk join calls for slowing development",
@@ -135,7 +139,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789331279000
+      "firstAt": 1789331279000,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "AI slowdown calls weigh on tech-heavy index."
     },
     {
       "title": "New attacks in Hormuz and Saudi test nerves as war’s spread worsens oil disruption",
@@ -154,27 +162,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789330707000
-    },
-    {
-      "title": "Trump calls on Ukraine to halt strikes on Russian diesel fuel, saying attacks are causing a shortage - Oskaloosa Herald",
-      "link": "https://news.google.com/rss/articles/CBMikAJBVV95cUxOMVppc3BXdFI2VzlDWUlJTmg5WGFiN08xTE1HVVlUSFpJaGVvRlloNlVSeGNfLWp4ODhMRlVHY3VJTXUxTzlLYTF6UFRnaWtHQ2FWNE1HQS12MmM0bGJQblhXYTcxc3FBSEphdy1kSWhoNGo0WllMOUZucUN5MkpaQjdGZzdnbnk4bWhYWW5YelBXYUw4b29LRmVaTGpnS3NLRVdqQ2Ixb2JQWmhxTXdJZmRpOFFTMFZRQkI3QWZQRVBZaFFCVVhSUXhZQUF0YnM4Z1g4WFJZeXRjd0FXLXlfX0lST05kQnJHZ1AxNTVuTHZ0c3N6ZVN1NkJyTmJtYWFmVS1OdVJtdzY0WUM5bGJHYw?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMikAJBVV95cUxOMVppc3BXdFI2VzlDWUlJTmg5WGFiN08xTE1HVVlUSFpJaGVvRlloNlVSeGNfLWp4ODhMRlVHY3VJTXUxTzlLYTF6UFRnaWtHQ2FWNE1HQS12MmM0bGJQblhXYTcxc3FBSEphdy1kSWhoNGo0WllMOUZucUN5MkpaQjdGZzdnbnk4bWhYWW5YelBXYUw4b29LRmVaTGpnS3NLRVdqQ2Ixb2JQWm",
-      "at": 1789329560000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789329560000
+      "firstAt": 1789330707000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Hormuz attacks disrupt supply, boost oil and gold."
     },
     {
       "title": "This investment is safe from both Trump and the Democrats — and it pays 4.7%",
@@ -189,7 +183,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789329300000
+      "firstAt": 1789329300000,
+      "why": "Vague safe haven claim, no specific direction."
     },
     {
       "title": "Guyana’s oil boom and challenges",
@@ -209,7 +204,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789329300000
+      "firstAt": 1789329300000,
+      "why": "Guyana specific news, negligible global market impact."
     },
     {
       "title": "Should You Buy Bristol Myers Squibb Stock Right Now for the Yield Alone?",
@@ -253,7 +249,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789328232000
+      "firstAt": 1789328232000,
+      "why": "Market anticipation, no immediate directional catalyst."
     },
     {
       "title": "ETFs vs. Mutual Funds vs. Individual Stocks: Why I'm Putting More Into ETFs in 2027",
@@ -267,7 +264,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789328100000
+      "firstAt": 1789328100000,
+      "why": "Investment strategy advice, no market direction."
     },
     {
       "title": "Trump says he will remove all Irish whiskey tariffs as he ends two-day visit",
@@ -290,7 +288,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789328076000
+      "firstAt": 1789328076000,
+      "dir": {
+        "EUR/USD": "up"
+      },
+      "why": "Tariff removal supports Irish economy, mild EUR positive."
     },
     {
       "title": "Fund manager's Fed interest rate outlook will frustrate consumers",
@@ -312,7 +314,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789327980000
+      "firstAt": 1789327980000,
+      "why": "Vague outlook, no clear directional signal."
     },
     {
       "title": "Kyiv Says Russia Strikes Near Polish Border... - jordannews.jo",
@@ -332,7 +335,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789325983000
+      "firstAt": 1789325983000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Escalation near border boosts gold safe haven demand."
     },
     {
       "title": "Global markets slide this week as oil surges, rate-hike fears intensify - TradingView",
@@ -349,7 +356,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789327613000
+      "firstAt": 1789327613000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil surges on rate-hike and supply fears."
     },
     {
       "title": "Fighting in Yemen intensifies, and Houthis launch more attacks on Saudi Arabia - AP News",
@@ -505,6 +516,58 @@
       "firstAt": 1789325400000
     },
     {
+      "title": "Al-Sisi targets $12bn Egypt-India trade, urges Iran to halt regional escalation - Dailynewsegypt",
+      "link": "https://news.google.com/rss/articles/CBMivAFBVV95cUxOa3ExNEZxSG42Qm1NM0RYYXFSYkhTSm9LVXVHLXd0TXZsSXJ6aXQ0SGc5YWFiQklnQVphd1NLaUJncm1JZGlmNDR5QmgzZUVSUUlwVzR2TkNHZjJab0NoUmNqRmd6TzcxVFEtSnZKSlVRWmtuV1VNUE42VmV3eGtNRXdqUmdTTm5mSnpaNG5RS0g5NXFYZll1NXgtb1RoXzhLcWx0RXpVOGI3V3hpMktWclNhek5ONE1GVVdvdw?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMivAFBVV95cUxOa3ExNEZxSG42Qm1NM0RYYXFSYkhTSm9LVXVHLXd0TXZsSXJ6aXQ0SGc5YWFiQklnQVphd1NLaUJncm1JZGlmNDR5QmgzZUVSUUlwVzR2TkNHZjJab0NoUmNqRmd6TzcxVFEtSnZKSlVRWmtuV1VNUE42VmV3eGtNRXdqUmdTTm5mSnpaNG5RS0g5NXFYZll1NXgtb1RoXzhLcWx0RXpVOGI3V3",
+      "at": 1789324877000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789324877000
+    },
+    {
+      "title": "Most Investors Think Netflix (NFLX) Is Too Expensive. I Think They're Wrong.",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/most-investors-think-netflix-nflx-183500889.html",
+      "source": "Yahoo Finance",
+      "at": 1789324500000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 1,
+      "srcs": 1,
+      "firstAt": 1789324500000
+    },
+    {
+      "title": "Russia strikes Polish-Ukrainian border area - The Daily Star",
+      "link": "https://news.google.com/rss/articles/CBMinAFBVV95cUxONkZ2MU9PNkdEeHNRdE5jSUtIN1JUd2ZmV05GWExreTdBeDY4TTRjTnhPNkxYLTNiQUs2S1FEWGU0WEVjYXo0akNKUjNXTzlkSGl6eEhGbFNsQk5qczZGaDNualk0YS1jQWs4M1BBYUJHVnoyVHoxeEI4S2FJaVBXWFdhZ29rNWVnalBRWm9SQ2VkZlZTd0REa3Z5aE8?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMinAFBVV95cUxONkZ2MU9PNkdEeHNRdE5jSUtIN1JUd2ZmV05GWExreTdBeDY4TTRjTnhPNkxYLTNiQUs2S1FEWGU0WEVjYXo0akNKUjNXTzlkSGl6eEhGbFNsQk5qczZGaDNualk0YS1jQWs4M1BBYUJHVnoyVHoxeEI4S2FJaVBXWFdhZ29rNWVnalBRWm9SQ2VkZlZTd0REa3Z5aE8?oc=5\" target=\"_bla",
+      "at": 1789324488000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1789321920000
+    },
+    {
       "title": "Ukraine's Zelenskiy imposes sanctions on former press secretary - Reuters",
       "link": "https://news.google.com/rss/articles/CBMiowFBVV95cUxQd1VBMmEzZldmZWJscDBPb3hwTERGU2hNYVhFOUh1b0Q1NjhDYXlMRWlRUDFZNXdWdjR6bmZkR0UxTGs0MFlvcXViM1F1aTdzSjdpUEFGMldoRHhvRE5PYkVad19FLU15RHNUdHhpYy1KUHp6d3hiX0w3T2puNnRtNlNNNzlVb0x5cWs2eHZHLW5yckJJV2p0cnlLTDFxWTZpTGx3?oc=5",
       "source": "Wires (geo)",
@@ -642,10 +705,10 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789319848000
+      "firstAt": 1789321800000
     },
     {
-      "title": "Poland, Ukraine slam Russian strikes near border as 'escalation' - france24.com",
+      "title": "Poland, Ukraine slam Russian strikes near border as 'escalation' - France 24",
       "link": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQZDhYc2RRZDVyMVhuZkZIU2R6SDRYQzJZQ1dRUHJLcnBYY1VXY0ZmejJBMWFIMUEwWV9VY20tcVlleU00VElqcllpcG81dlNWR2lkWENUVWdRMGJFZ3NORDdlWU9KZjFJS3FVbzl5QzlCVjJ2MHRRazFhSFZoX2w5SFNOR282NDlZSW52R25fWUVEQmJ5NkNLRHNhNms5bnVGTGQzSDhLVjQ?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiqAFBVV95cUxQZDhYc2RRZDVyMVhuZkZIU2R6SDRYQzJZQ1dRUHJLcnBYY1VXY0ZmejJBMWFIMUEwWV9VY20tcVlleU00VElqcllpcG81dlNWR2lkWENUVWdRMGJFZ3NORDdlWU9KZjFJS3FVbzl5QzlCVjJ2MHRRazFhSFZoX2w5SFNOR282NDlZSW52R25fWUVEQmJ5NkNLRHNhNms5bnVGTGQzSDhLVjQ?oc",
@@ -662,7 +725,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789319848000
+      "firstAt": 1789321700000
     },
     {
       "title": "Boris Johnson, Ex-CIA chief were at Ukraine station before Russia strike near Poland border - firstpost.com",
@@ -683,6 +746,26 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789321700000
+    },
+    {
+      "title": "Russian drone strike hits Ukraine near Polish border - NBC News",
+      "link": "https://news.google.com/rss/articles/CBMipAFBVV95cUxPekNYeWg0TmJJa3RRUi1fTmZLRlFtYUUwdi1iUy1fMHNRTGFacGs5MTl1ak9qSHVXdHhNY3hZOTMyUXQ4Uk5MeUZCbHFISy1VRnVwM0VURE9zVnpMVEEwWV96Y2xwY0pzeFlDNktNRy1tb2tpdXEyOVVJS2ctNE51T0tDNm9RVHR2cEVsXzJ1Rjh2STJGVkVLVFQ5V2lsamVfU1cyaw?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMipAFBVV95cUxPekNYeWg0TmJJa3RRUi1fTmZLRlFtYUUwdi1iUy1fMHNRTGFacGs5MTl1ak9qSHVXdHhNY3hZOTMyUXQ4Uk5MeUZCbHFISy1VRnVwM0VURE9zVnpMVEEwWV96Y2xwY0pzeFlDNktNRy1tb2tpdXEyOVVJS2ctNE51T0tDNm9RVHR2cEVsXzJ1Rjh2STJGVkVLVFQ5V2lsamVfU1cyaw?oc=5\" t",
+      "at": 1789322218000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789321800000
     },
     {
       "title": "Russia strikes Ukrainian train near Poland border minutes after Boris Johnson, European leaders pass thro - The Times of India",
@@ -722,7 +805,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789321700000
+      "firstAt": 1789319040000
     },
     {
       "title": "Jared Kushner: US leveraged Israel’s failed Doha strike to secure Gaza agreement - The Jerusalem Post",
@@ -783,24 +866,24 @@
       "firstAt": 1789320180000
     },
     {
-      "title": "Sikorsky Disagreed with Trump Regarding Ukraine's Strikes on Russian Oil Refineries - UA.NEWS",
-      "link": "https://news.google.com/rss/articles/CBMipwFBVV95cUxNQk9VUG1mTjdkazNYcDRJZlZPa1NuYmgyQjF5cGRVQmM3bld0QlJZa0NQaGVuaFhyb3R1Qi11b19lX1dOOE1uQXV6VkhBak1PWEIwUkh4am1CUEVKTmVSM0k1VTlmZXFuLWIwX09aODRSU0gycmZlc0dfRkhPLUtWYS1pNGlXaFNINFZWX296Rm0yZnVrTVNxR3JZZFlZaFRTM2NhOTZwRQ?oc=5",
+      "title": "Trump calls on Ukraine to halt strikes on Russian diesel fuel, saying attacks causing a shortage - AP News",
+      "link": "https://news.google.com/rss/articles/CBMitwFBVV95cUxNLS1ZV0kyb2w5c2szWC15SGgxZGVsMXM4dDNiVkdTdmRPcV9kQ001dnpkODMya0xkTWQtLWhoYzZsdlFUVFV5SnJaVGpUbUNaaW4xNEN0VTVGdDlRempoRzhMYV9PcGo0UWhjUkhlZnJMRHVVVzB6WDBybXVMY1dfM181b3JYXzZIclJpU0xHbjRPdVpmUUJpbHFvdTYwdHFOWUVVYmp2M3hsN1hhcGJSbGRSV1Vqak0?oc=5",
       "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMipwFBVV95cUxNQk9VUG1mTjdkazNYcDRJZlZPa1NuYmgyQjF5cGRVQmM3bld0QlJZa0NQaGVuaFhyb3R1Qi11b19lX1dOOE1uQXV6VkhBak1PWEIwUkh4am1CUEVKTmVSM0k1VTlmZXFuLWIwX09aODRSU0gycmZlc0dfRkhPLUtWYS1pNGlXaFNINFZWX296Rm0yZnVrTVNxR3JZZFlZaFRTM2NhOTZwRQ?oc=",
-      "at": 1789319848000,
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMitwFBVV95cUxNLS1ZV0kyb2w5c2szWC15SGgxZGVsMXM4dDNiVkdTdmRPcV9kQ001dnpkODMya0xkTWQtLWhoYzZsdlFUVFV5SnJaVGpUbUNaaW4xNEN0VTVGdDlRempoRzhMYV9PcGo0UWhjUkhlZnJMRHVVVzB6WDBybXVMY1dfM181b3JYXzZIclJpU0xHbjRPdVpmUUJpbHFvdTYwdHFOWUVVYmp2M3hsN1",
+      "at": 1789319040000,
       "inst": [
-        "USOIL",
         "XAU/USD",
+        "USOIL",
         "UKOIL"
       ],
       "ccy": [
-        "OIL",
-        "XAU"
+        "XAU",
+        "OIL"
       ],
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789318980000
+      "firstAt": 1789316978000
     },
     {
       "title": "Trump demands Ukraine halt refinery strikes as diesel surges - The Derrick",
@@ -891,7 +974,7 @@
       "firstAt": 1789316666000
     },
     {
-      "title": "WSJ: US Links Chinese Satellite Images to Iran Strike That Killed 3 - yahoo.com",
+      "title": "WSJ: US Links Chinese Satellite Images to Iran Strike That Killed 3 - Yahoo",
       "link": "https://news.google.com/rss/articles/CBMijAFBVV95cUxPZGZKbWt5N0Mwbm1fdEExTmVIYW41VXN1WWtTbi1Hd3Z3Z3dZSHgxVzA3Y1lOUnY1YldiWXhJWS1TSS04ZERnWkp1ODUxLW55ajh6VEZJZWFzSDBUOUlVZ2ptX2FSeDVPcXFuaGMtbkVYR1UtU3p1WU9Lckc4VU43TWIxaXpOT2hVSzg2bQ?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMijAFBVV95cUxPZGZKbWt5N0Mwbm1fdEExTmVIYW41VXN1WWtTbi1Hd3Z3Z3dZSHgxVzA3Y1lOUnY1YldiWXhJWS1TSS04ZERnWkp1ODUxLW55ajh6VEZJZWFzSDBUOUlVZ2ptX2FSeDVPcXFuaGMtbkVYR1UtU3p1WU9Lckc4VU43TWIxaXpOT2hVSzg2bQ?oc=5\" target=\"_blank\">WSJ: US Links Chi",
@@ -1072,7 +1155,7 @@
       "firstAt": 1789313683000
     },
     {
-      "title": "Trump calls on Ukraine to halt strikes on Russian diesel, saying attacks are causing a shortage - Hartford Courant",
+      "title": "Trump calls on Ukraine to halt strikes on Russian diesel, saying attacks are causing a shortage - courant.com",
       "link": "https://news.google.com/rss/articles/CBMiygFBVV95cUxQcXA4MWlTYnhnazg0OHlwUGlOTGF5MkF4U3BjWHgtRnJiVFVJQ2FDa0xwdFlOTm9xYzBPZDJJQlU4YjExNElMUTFVV1gxY0JpVnNTeVU5M1JzNDJNMFAtUXJaZms1dS1RZElVOXlBVHdsVWVHMVdVM3FMNG84LWRlMkdWUXF3X3FwcVFVZHNkWmZaR3FQZ2prbUJXLXJ3RWVwaE1GczRwYi13YkUwMWZtODlmZ3lUVTdWZ0dvWDJBc1FjeUZpWXVxWHZB?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiygFBVV95cUxQcXA4MWlTYnhnazg0OHlwUGlOTGF5MkF4U3BjWHgtRnJiVFVJQ2FDa0xwdFlOTm9xYzBPZDJJQlU4YjExNElMUTFVV1gxY0JpVnNTeVU5M1JzNDJNMFAtUXJaZms1dS1RZElVOXlBVHdsVWVHMVdVM3FMNG84LWRlMkdWUXF3X3FwcVFVZHNkWmZaR3FQZ2prbUJXLXJ3RWVwaE1GczRwYi13Yk",
@@ -1198,7 +1281,7 @@
       "firstAt": 1789310400000
     },
     {
-      "title": "Trump calls on Ukraine to stop targeting Russian refineries as both countries trade strikes - cbsnews.com",
+      "title": "Trump calls on Ukraine to stop targeting Russian refineries as both countries trade strikes - CBS News",
       "link": "https://news.google.com/rss/articles/CBMieEFVX3lxTE1Xbk9rb0syNTlqZ1JvZjFBZTVqUjVkaDNhNmVwY1E1UkZtTllUY0JZNkV1YXBOdkZOcXo4ZU9kMXMzd0JLZ0lDZmN4WnpjZU9mWjI3ajhQczlJdDdyQ2hySFRJOHFCRTdUZjNVb3NEV21zMU1TZC0tVg?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMieEFVX3lxTE1Xbk9rb0syNTlqZ1JvZjFBZTVqUjVkaDNhNmVwY1E1UkZtTllUY0JZNkV1YXBOdkZOcXo4ZU9kMXMzd0JLZ0lDZmN4WnpjZU9mWjI3ajhQczlJdDdyQ2hySFRJOHFCRTdUZjNVb3NEV21zMU1TZC0tVg?oc=5\" target=\"_blank\">Trump calls on Ukraine to stop targeting Russ",
@@ -1402,7 +1485,7 @@
       "firstAt": 1789303380000
     },
     {
-      "title": "Saudi pipeline attack exposes potent Iraqi militia threat - ft.com",
+      "title": "Saudi pipeline attack exposes potent Iraqi militia threat - Financial Times",
       "link": "https://news.google.com/rss/articles/CBMihAFBVV95cUxNRUtLcHVFU1ItTkFOajQ2WWN0NG5kZ2x5dXdrOWdpNDNWQ3RDOXJCaGlJNjliWlR4Ym1rdTNBUURtSmZzUEdYcDdvM21VUGNMcnR2dEZ3bnRoZ21kMW9lVk9nOFVqcHl0UUZ3WWgySXdSZ2VtYUdaLXJyQ1FKYnU2a0JLRGE?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMihAFBVV95cUxNRUtLcHVFU1ItTkFOajQ2WWN0NG5kZ2x5dXdrOWdpNDNWQ3RDOXJCaGlJNjliWlR4Ym1rdTNBUURtSmZzUEdYcDdvM21VUGNMcnR2dEZ3bnRoZ21kMW9lVk9nOFVqcHl0UUZ3WWgySXdSZ2VtYUdaLXJyQ1FKYnU2a0JLRGE?oc=5\" target=\"_blank\">Saudi pipeline attack expose",
@@ -1531,7 +1614,7 @@
       "firstAt": 1789300353000
     },
     {
-      "title": "Russia strikes Ukraine train line moments after foreign dignitaries pass - ft.com",
+      "title": "Russia strikes Ukraine train line moments after foreign dignitaries pass - Financial Times",
       "link": "https://news.google.com/rss/articles/CBMihAFBVV95cUxOWTJzQkI5aGdteWVCN1JlcXg4RlNGWFdTbW9iMXBoSHE3SjIwdzNWSGlaV3F2NXkwNmwyY0NuUlBheFRJLXd5VExtMVB1VWRxUTFrVUlXbUlYT2xQcFVqSTVHLVlzYzZKYW9jbFJoQ29rZHM5RmF6ejRUd1p6Nm1mSmNfTHc?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMihAFBVV95cUxOWTJzQkI5aGdteWVCN1JlcXg4RlNGWFdTbW9iMXBoSHE3SjIwdzNWSGlaV3F2NXkwNmwyY0NuUlBheFRJLXd5VExtMVB1VWRxUTFrVUlXbUlYT2xQcFVqSTVHLVlzYzZKYW9jbFJoQ29rZHM5RmF6ejRUd1p6Nm1mSmNfTHc?oc=5\" target=\"_blank\">Russia strikes Ukraine train",
@@ -1652,44 +1735,6 @@
       "rel": 1,
       "srcs": 1,
       "firstAt": 1789290310000
-    },
-    {
-      "title": "Russia Strikes Ukraine Power Sites as Kyiv Targets Refining Hub - Bloomberg.com",
-      "link": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQSFROQlhvM04wSkNEbWZrQ0s3Q3FWNEpCaHFUb1hvbVV1UHFjTHlSa0xQUDVORk5heUhCM0MtdUprTlR4eDUyRnNwT3dXZEdlRHUzT0VrdHQzMHdxOVFXMU5yN1docXlyS1QxNXBEZjBmZWQ5U0NiNGs3VEpFczFGUTdEOGRSSG44WTdrcjdtVXJlaHp3alVNUVppbmxJeWxRZl9JYnZLTlA4SXFUN084bkxsRkI?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMitAFBVV95cUxQSFROQlhvM04wSkNEbWZrQ0s3Q3FWNEpCaHFUb1hvbVV1UHFjTHlSa0xQUDVORk5heUhCM0MtdUprTlR4eDUyRnNwT3dXZEdlRHUzT0VrdHQzMHdxOVFXMU5yN1docXlyS1QxNXBEZjBmZWQ5U0NiNGs3VEpFczFGUTdEOGRSSG44WTdrcjdtVXJlaHp3alVNUVppbmxJeWxRZl9JYnZLTlA4SX",
-      "at": 1789288099000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789288099000
-    },
-    {
-      "title": "US Fed interest rate decision, inflation data, oil to drive markets in holiday-shortened week: Analysts - BusinessLine",
-      "link": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxPcktwd2Jwd24yWWJXNEdHSVJlZ3R0VlduekpaZzlLeVoxSFptN3VIUGdBS05rMGtjajBPaGJFQzRUM0ZFV0U0bEk4MlV0djZYdWg1YVZaVG5Ud3dyNjJTRG1oOVN2by1ZQ0ZoZ1djM05KS1ZIZV9TZlAwZ3FYeDNsaXBDYXU3WTBEWGlmbG1fVXVCNndjS2JwT1E5UWtWTVRMQVI2SkdlMDc4UDIwMHV1R3BwZXZjdlV6Y3pRb3RzeDZWZ080Si1GVjZrYXN5eTZ3NTdaaEgtWkg4dEpEY2VobEVsaXczUEw5b0hvX0tqN0JRN1RfWVIzatIB_wFBVV95cUxNeEFFN2JaazJCOVBrTDU5YVBRTTJDSDBXb2I4S0k2SUk5N3JSUUI3UF9oSEJmUUphOFVRdHRjd0JHM0hOT3Z4UDIwSlpGMzhHZnltTkZXUFNiUjdnXzZuc0FZTzlLNHA4dG5PMnMwT2c2REZNVEFQQnFEd1E1dGNKOE5raFFmdmgxRlBIbzIzMVd6V1FIdnpIV0U4cVBhaFJ4N3ZlS0xGdE90R19VY3gtV3RRN0lJZzdUTmF2Wk5kUkFwYnhvUFhXRG1zU0NFNmtWVVVyZ2oyNHRNdDlualduTW9fSjFiaERTY3JmX3lMMnVpNVRvN0xzNnRYYlhZQ0k?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi-AFBVV95cUxPcktwd2Jwd24yWWJXNEdHSVJlZ3R0VlduekpaZzlLeVoxSFptN3VIUGdBS05rMGtjajBPaGJFQzRUM0ZFV0U0bEk4MlV0djZYdWg1YVZaVG5Ud3dyNjJTRG1oOVN2by1ZQ0ZoZ1djM05KS1ZIZV9TZlAwZ3FYeDNsaXBDYXU3WTBEWGlmbG1fVXVCNndjS2JwT1E5UWtWTVRMQVI2SkdlMDc4UD",
-      "at": 1789287998000,
-      "inst": [
-        "USOIL"
-      ],
-      "ccy": [
-        "USD",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789287998000
     }
   ],
   "sources": [
@@ -1712,10 +1757,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-13T20:58:34.289Z",
-  "updatedAt": "2026-09-13T20:58:34.289Z"
+  "headlinesAt": "2026-09-13T20:59:51.903Z",
+  "updatedAt": "2026-09-13T20:59:51.903Z"
 }
