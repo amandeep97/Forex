@@ -20,7 +20,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789334402000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Geopolitical risk boosts gold, oil unclear."
     },
     {
       "title": "Trump demands Ukraine halt refinery strikes as diesel surges - The Spokesman-Review",
@@ -41,7 +45,35 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789334495000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Diesel surge implies oil price increase."
+    },
+    {
+      "title": "Dow Jones Futures: Will Anthropic-Led Call For Slowdown Hit AI Stocks? Fed Meeting Ahead",
+      "link": "https://www.investors.com/market-trend/stock-market-today/dow-jones-futures-fed-meeting-anthropic-amodei-openai-altman-spacex-musk-ai-model-slowdown/?src=A00220&yptr=yahoo",
+      "source": "Yahoo Finance",
+      "at": 1789334959000,
+      "inst": [
+        "US500",
+        "US30"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789334959000,
+      "_kind": null,
+      "dir": {
+        "US500": "down",
+        "US30": "down"
+      },
+      "why": "AI slowdown call hits tech stocks."
     },
     {
       "title": "Poland, Ukraine accuse Russia of ‘escalation’ after strikes near border - aljazeera.com",
@@ -61,7 +93,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789334495000
+      "firstAt": 1789334495000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Escalation fears boost gold, oil unclear."
     },
     {
       "title": "Russia stocks lower at close of trade; MOEX Russia Index down 1.21%",
@@ -75,7 +111,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789334402000
+      "firstAt": 1789334402000,
+      "why": "Russian index drop irrelevant to US."
     },
     {
       "title": "Cathie Wood Sees an Economic Boom Wall Street Isn’t Pricing In",
@@ -89,7 +126,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789331279000
+      "firstAt": 1789331279000,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Economic boom expectation is bullish."
     },
     {
       "title": "Pro-Palestine protest demands Australia increases pressure on Israel",
@@ -106,7 +147,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789333334000
+      "firstAt": 1789333334000,
+      "why": "Protest has no clear market impact."
     },
     {
       "title": "Kushner: US used Israel’s isolation after ‘terrible’ Doha strike to secure Gaza deal - The Times of Israel",
@@ -126,7 +168,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789331807000
+      "firstAt": 1789331807000,
+      "why": "Diplomatic news, no clear direction."
     },
     {
       "title": "VOOG vs. VONG: Which Powerhouse Vanguard ETF Is the Stronger Choice for Investors?",
@@ -158,24 +201,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789332480000
-    },
-    {
-      "title": "Dow Jones Futures: Will Anthropic-Led Call For Slowdown Hit AI Stocks? Fed Meeting Ahead",
-      "link": "https://www.investors.com/market-trend/stock-market-today/dow-jones-futures-fed-meeting-anthropic-amodei-openai-altman-spacex-musk-ai-model-slowdown/?src=A00220&yptr=yahoo",
-      "source": "Yahoo Finance",
-      "at": 1789332294000,
-      "inst": [
-        "US500",
-        "US30"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789332294000
+      "firstAt": 1789332480000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Iran attack risk boosts gold and oil."
     },
     {
       "title": "Can a warming Arctic become an important commercial highway?",
@@ -195,7 +227,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789332291000
+      "firstAt": 1789332291000,
+      "why": "Long-term route shift, no immediate impact."
     },
     {
       "title": "Your Social Security COLA could go up another $71 per month in 2027. That’s not necessarily good news.",
@@ -218,7 +251,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789331760000
+      "firstAt": 1789331760000,
+      "why": "Inflation signal, direction unclear for FX."
     },
     {
       "title": "US Envoy Jared Kushner says Doha attack left Israel ‘globally isolated’ - aljazeera.com",
@@ -238,7 +272,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789331807000
+      "firstAt": 1789331807000,
+      "why": "Diplomatic commentary, no clear direction."
     },
     {
       "title": "'Senseless attack': Ex UK PM Johnson narrowly misses Russian attack on Ukraine-Poland railway - The Jerusalem Post",
@@ -259,7 +294,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789331405000
+      "firstAt": 1789331405000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Near-miss attack boosts gold, oil unclear."
     },
     {
       "title": "US will scrap Irish whisky tariff, Trump says",
@@ -282,7 +321,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789331397000
+      "firstAt": 1789331397000,
+      "dir": {
+        "EUR/USD": "up",
+        "GBP/USD": "up"
+      },
+      "why": "Tariff scrap boosts EUR and GBP."
     },
     {
       "title": "Wall Street’s AI trade on watch as Altman, Musk join calls for slowing development",
@@ -296,7 +340,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789331279000
+      "firstAt": 1789331279000,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "AI slowdown calls bearish for tech."
     },
     {
       "title": "New attacks in Hormuz and Saudi test nerves as war’s spread worsens oil disruption",
@@ -511,20 +559,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789326600000
-    },
-    {
-      "title": "Meet the Magnificent Momentum-Driven ETF Obliterating the S&P 500 in 2026",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/meet-magnificent-momentum-driven-etf-190500364.html",
-      "source": "Yahoo Finance",
-      "at": 1789326300000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789326300000
     },
     {
       "title": "Polish Prime Minister Tusk warns: Russia’s escalation is becoming a fact - European Interest",
@@ -1686,6 +1720,24 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789286023000
+    },
+    {
+      "title": "US Fed interest rate decision, inflation data, oil to drive markets in holiday-shortened week: Analysts - BusinessLine",
+      "link": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxPcktwd2Jwd24yWWJXNEdHSVJlZ3R0VlduekpaZzlLeVoxSFptN3VIUGdBS05rMGtjajBPaGJFQzRUM0ZFV0U0bEk4MlV0djZYdWg1YVZaVG5Ud3dyNjJTRG1oOVN2by1ZQ0ZoZ1djM05KS1ZIZV9TZlAwZ3FYeDNsaXBDYXU3WTBEWGlmbG1fVXVCNndjS2JwT1E5UWtWTVRMQVI2SkdlMDc4UDIwMHV1R3BwZXZjdlV6Y3pRb3RzeDZWZ080Si1GVjZrYXN5eTZ3NTdaaEgtWkg4dEpEY2VobEVsaXczUEw5b0hvX0tqN0JRN1RfWVIzatIB_wFBVV95cUxNeEFFN2JaazJCOVBrTDU5YVBRTTJDSDBXb2I4S0k2SUk5N3JSUUI3UF9oSEJmUUphOFVRdHRjd0JHM0hOT3Z4UDIwSlpGMzhHZnltTkZXUFNiUjdnXzZuc0FZTzlLNHA4dG5PMnMwT2c2REZNVEFQQnFEd1E1dGNKOE5raFFmdmgxRlBIbzIzMVd6V1FIdnpIV0U4cVBhaFJ4N3ZlS0xGdE90R19VY3gtV3RRN0lJZzdUTmF2Wk5kUkFwYnhvUFhXRG1zU0NFNmtWVVVyZ2oyNHRNdDlualduTW9fSjFiaERTY3JmX3lMMnVpNVRvN0xzNnRYYlhZQ0k?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi-AFBVV95cUxPcktwd2Jwd24yWWJXNEdHSVJlZ3R0VlduekpaZzlLeVoxSFptN3VIUGdBS05rMGtjajBPaGJFQzRUM0ZFV0U0bEk4MlV0djZYdWg1YVZaVG5Ud3dyNjJTRG1oOVN2by1ZQ0ZoZ1djM05KS1ZIZV9TZlAwZ3FYeDNsaXBDYXU3WTBEWGlmbG1fVXVCNndjS2JwT1E5UWtWTVRMQVI2SkdlMDc4UD",
+      "at": 1789287998000,
+      "inst": [
+        "USOIL"
+      ],
+      "ccy": [
+        "USD",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789287998000
     }
   ],
   "sources": [
@@ -1712,6 +1764,6 @@
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-13T21:52:04.367Z",
-  "updatedAt": "2026-09-13T21:52:04.367Z"
+  "headlinesAt": "2026-09-13T21:53:05.979Z",
+  "updatedAt": "2026-09-13T21:53:05.979Z"
 }
