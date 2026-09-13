@@ -20,7 +20,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789318365000,
-      "_kind": null
+      "_kind": null,
+      "why": "Geopolitical noise, no clear directional impact"
     },
     {
       "title": "Ukraine has imposed sanctions on 20 vessels of russia’s shadow fleet, enterprises of the Rostec corporation, and propagandists - Українські Національні Новини (УНН)",
@@ -41,7 +42,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789318307000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions news, unclear immediate market impact"
     },
     {
       "title": "Billionaire Bill Ackman Trimmed This Big Tech Position to Back These 2 AI Contenders",
@@ -56,7 +58,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789318200000,
-      "_kind": null
+      "_kind": null,
+      "why": "Portfolio rebalancing, no clear index direction"
     },
     {
       "title": "Nvidia CEO Jensen Huang doubles down on his big 2030 market bet",
@@ -89,7 +92,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789317300000
+      "firstAt": 1789317300000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Escalating conflict boosts safe havens and oil"
     },
     {
       "title": "Ukraine war latest: Kyiv-Warsaw train struck by Russian drone near Polish border as mass attack targets western Ukraine - kyivindependent.com",
@@ -109,7 +118,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789314900000
+      "firstAt": 1789314900000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "War escalation supports gold, oil unclear"
     },
     {
       "title": "Sept. 16 Will Provide a Clearer Path for Interest Rates -- These 3 High-Yield Dividend Stocks Win Either Way",
@@ -123,7 +136,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789316212000
+      "firstAt": 1789316212000,
+      "why": "Stock-specific advice, no broad index signal"
     },
     {
       "title": "Anthropic selects Nasdaq for IPO, Business Insider reports",
@@ -137,7 +151,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789316666000
+      "firstAt": 1789316666000,
+      "why": "IPO news, neutral for index direction"
     },
     {
       "title": "Ukrainian drone evades Russian helicopter fire to strike oil tanker - Al Jazeera",
@@ -157,7 +172,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789314900000
+      "firstAt": 1789314900000,
+      "why": "Single incident, insufficient for clear trend"
     },
     {
       "title": "3 of the Most Resilient High-Yield Dividend Stocks in the Chemical Sector: A Safety Deep Dive",
@@ -171,7 +187,32 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789316212000
+      "firstAt": 1789316212000,
+      "why": "Sector-specific analysis, no index direction"
+    },
+    {
+      "title": "WSJ: US Links Chinese Satellite Images to Iran Strike That Killed 3 - Yahoo",
+      "link": "https://news.google.com/rss/articles/CBMijAFBVV95cUxPZGZKbWt5N0Mwbm1fdEExTmVIYW41VXN1WWtTbi1Hd3Z3Z3dZSHgxVzA3Y1lOUnY1YldiWXhJWS1TSS04ZERnWkp1ODUxLW55ajh6VEZJZWFzSDBUOUlVZ2ptX2FSeDVPcXFuaGMtbkVYR1UtU3p1WU9Lckc4VU43TWIxaXpOT2hVSzg2bQ?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMijAFBVV95cUxPZGZKbWt5N0Mwbm1fdEExTmVIYW41VXN1WWtTbi1Hd3Z3Z3dZSHgxVzA3Y1lOUnY1YldiWXhJWS1TSS04ZERnWkp1ODUxLW55ajh6VEZJZWFzSDBUOUlVZ2ptX2FSeDVPcXFuaGMtbkVYR1UtU3p1WU9Lckc4VU43TWIxaXpOT2hVSzg2bQ?oc=5\" target=\"_blank\">WSJ: US Links Chi",
+      "at": 1789316098000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789316098000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Geopolitical tension supports gold, oil unclear"
     },
     {
       "title": "‘Putin’s terror’ at NATO’s door: Russia strikes Kyiv-Warsaw train near Polish border - TVP World",
@@ -191,7 +232,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789313794000
+      "firstAt": 1789313794000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "NATO border incident boosts gold demand"
     },
     {
       "title": "Trump Urges Federal Reserve To Cut Rates As Market Bets On Warsh Hike",
@@ -213,7 +258,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789315899000
+      "firstAt": 1789315899000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Rate cut hopes support gold, FX unclear"
     },
     {
       "title": "Could Upstart 10x From Here? The AI Fintech Platform Could Be the Most Misunderstood Stock on the Market",
@@ -248,7 +297,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789315429000
+      "firstAt": 1789315429000,
+      "why": "Peso specific, no clear USD pair impact"
     },
     {
       "title": "A $93 trillion trading boom puts CME in an unusual spot",
@@ -276,10 +326,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789315232000
+      "firstAt": 1789315232000,
+      "why": "Index methodology change, no price direction"
     },
     {
-      "title": "Turkish and Syrian FMs rail at Israel over recent strikes on airbase - timesofisrael.com",
+      "title": "Turkish and Syrian FMs rail at Israel over recent strikes on airbase - The Times of Israel",
       "link": "https://news.google.com/rss/articles/CBMitAFBVV95cUxNcEdNeDR2eHYyTWpaOExaWEcyVzkxdGQzMUpveHREenFNUm1GbjNuZ3BpRE5wUmpqZTdKSkJRZFZhSXktSFVNYThtRjFXV01XTWdjeTR5TGxMWUtYNzZWTldhQzBhXzhkclZ4RVhtekloM3ozNVdCQUp5dW1LNHh1c25vRTVyM1pTMWtMcFpJM2lRNnBtRjMtUnF2TWZYNTgweXhKTmdrdWlEUlpFNEl4ZjlTVG4?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMitAFBVV95cUxNcEdNeDR2eHYyTWpaOExaWEcyVzkxdGQzMUpveHREenFNUm1GbjNuZ3BpRE5wUmpqZTdKSkJRZFZhSXktSFVNYThtRjFXV01XTWdjeTR5TGxMWUtYNzZWTldhQzBhXzhkclZ4RVhtekloM3ozNVdCQUp5dW1LNHh1c25vRTVyM1pTMWtMcFpJM2lRNnBtRjMtUnF2TWZYNTgweXhKTmdrdWlEUl",
@@ -296,7 +347,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789315203000
+      "firstAt": 1789313400000,
+      "why": "Diplomatic dispute, no clear market move"
     },
     {
       "title": "Ukraine’s economy hobbled by Russian strikes - Taipei Times",
@@ -670,26 +722,6 @@
       "firstAt": 1789304781000
     },
     {
-      "title": "Russia continues attacks on Odesa Oblast: 24 injured, including children – photos - Українська правда",
-      "link": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE5MQXp4MlY3dlBNaC1QNERISktOb0xOUlNCVVNMYm5ueWdSZnBGeWtJUnlJX2JUdlBZTERCTUVBVXdpbVdDbkV5N1FQMk9oT3Q4QW5tY1hxb1k0cmhheXNlLXRBTjHSAXBBVV95cUxQSlpKUHpjbDR3cmxLS1daTlVBZUNZb0JuMG1UZGVKN3BjYW9Oa2owMmZMRFFzSV93VXgzUkJrekZhY3k4MVBqNUFvSkxlQzdTY3JtRkZnVGdSVnVpLVo3UmpkZC02aHNBb0R6dVBvRGQw?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiZEFVX3lxTE5MQXp4MlY3dlBNaC1QNERISktOb0xOUlNCVVNMYm5ueWdSZnBGeWtJUnlJX2JUdlBZTERCTUVBVXdpbVdDbkV5N1FQMk9oT3Q4QW5tY1hxb1k0cmhheXNlLXRBTjHSAXBBVV95cUxQSlpKUHpjbDR3cmxLS1daTlVBZUNZb0JuMG1UZGVKN3BjYW9Oa2owMmZMRFFzSV93VXgzUkJrekZhY3k4MV",
-      "at": 1789305120000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789304973000
-    },
-    {
       "title": "Ukraine drone strikes kill four as Russia attacks close to Poland border - Al Jazeera",
       "link": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPRTExU1oxVVhFSW9hSWw2LUhaQWo5cklRcmFPWFQ3bWpick9vbE9aQk03c1gyZWdLZXlFNHVLeGVSSV9hZy1vVm5sd20wSEFlLWs4Y1FXNG03Y0p1ZEliMzAzZG05dHFod3YybUZ4bFVpcEs0TDY3SFZSa25XQ3NMRkFNWlFKb25HbUJJX3lnT3RUQTFmNWZKYzM3ellZdjFEVVdJZTZkdjdYOTcyY2ZzeE5hTdIBuAFBVV95cUxOTjl6aEJnRHUzRkdabU5IbWpJLUN3NENnSUVnbGpsY0xTZFphaWlOQnNEX2Nhc3lVMmdtUDh5Z1ZaQlhOVTEwbllUdmpIMUNwb2k0a0FXaHNUX2lCMXppVUN5ejNOYXNCQTNUeFoxOXVYREoxMXhYdlpsXy1UN0NSYl9jdW1GRl9aMHVBWElQT011cTdzX1BOLVFraGN1bm1XNkhvNkJ2QjRFUEVPeWNzdzA0a1Vkbkst?oc=5",
       "source": "Wires (geo)",
@@ -924,6 +956,26 @@
       "firstAt": 1789302624000
     },
     {
+      "title": "Woman wearing Star of David assaulted with broken bottle in Berlin antisemitic attack - The Times of Israel",
+      "link": "https://news.google.com/rss/articles/CBMisgFBVV95cUxNWDFDZ0FZam9VQlZwWHZtZWQxak1teHZzb09pSFhfX3JuVUItQW9jTjZxcm9sNnozUjhMU1VqMmZMbzhpVXExVlJ5OUx3eUNlWWJ3YjN6OEduZF9UNC1PQ01zN2Z2ZnRUcFJ4eGJ2NmRrR2dtdFlIYUNHNVczSy1Tam5sQkF0T212VTY0Q2MweE9wWTRkTHlzNDlqMS1iNXM1d3E3RmxTLTdnRWdrQ1llSmtR0gG3AUFVX3lxTE5yaGp6dU1rdGtBdHBIQjRqVUpnQTNfbUZSRFlyaWdueUZOUkc4M1NOSmxNWDI1anVhNU5YSEI5c011VkZDMHpaNUhpYWJoRGdoNzFZNWUwdG1LS2h2cnloN05sZUc0Tmg5ZzZDNHJBa2pWSHlTalhJbnI0SGZKOVpoazhQOHJScmVKVTZuejBaaEg0ZER5MmRucmQ0NUNWY0hiUzNRMmEtVzByVk51b0I0NTg2WWlHdw?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMisgFBVV95cUxNWDFDZ0FZam9VQlZwWHZtZWQxak1teHZzb09pSFhfX3JuVUItQW9jTjZxcm9sNnozUjhMU1VqMmZMbzhpVXExVlJ5OUx3eUNlWWJ3YjN6OEduZF9UNC1PQ01zN2Z2ZnRUcFJ4eGJ2NmRrR2dtdFlIYUNHNVczSy1Tam5sQkF0T212VTY0Q2MweE9wWTRkTHlzNDlqMS1iNXM1d3E3RmxTLTdnRW",
+      "at": 1789301701000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789301701000
+    },
+    {
       "title": "China reportedly helped Iran in deadly attack on US forces - Fox News",
       "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE9MLXFhbVFMUkFILVNzdTB6N1B0elA2WTdiZlNGeHVST0ttT0dQQlRKQkZuMWR0WkNtTVBUNUwxWldNODFOLWxEeEFBRWdLcXVZTjU2Vm13?oc=5",
       "source": "Wires (geo)",
@@ -1015,6 +1067,26 @@
       "firstAt": 1789300353000
     },
     {
+      "title": "Russia strikes Ukraine train line moments after foreign dignitaries pass - Financial Times",
+      "link": "https://news.google.com/rss/articles/CBMihAFBVV95cUxOWTJzQkI5aGdteWVCN1JlcXg4RlNGWFdTbW9iMXBoSHE3SjIwdzNWSGlaV3F2NXkwNmwyY0NuUlBheFRJLXd5VExtMVB1VWRxUTFrVUlXbUlYT2xQcFVqSTVHLVlzYzZKYW9jbFJoQ29rZHM5RmF6ejRUd1p6Nm1mSmNfTHc?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMihAFBVV95cUxOWTJzQkI5aGdteWVCN1JlcXg4RlNGWFdTbW9iMXBoSHE3SjIwdzNWSGlaV3F2NXkwNmwyY0NuUlBheFRJLXd5VExtMVB1VWRxUTFrVUlXbUlYT2xQcFVqSTVHLVlzYzZKYW9jbFJoQ29rZHM5RmF6ejRUd1p6Nm1mSmNfTHc?oc=5\" target=\"_blank\">Russia strikes Ukraine train",
+      "at": 1789300061000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789300061000
+    },
+    {
       "title": "A dignified life is a ‘distant dream’ for many Iranian families amid US war",
       "link": "https://www.aljazeera.com/economy/2026/9/13/a-dignified-life-is-a-distant-dream-for-many-iranian-families-amid-us-war?traffic_source=rss",
       "source": "Al Jazeera",
@@ -1072,7 +1144,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789295182000
+      "firstAt": 1789297080000
     },
     {
       "title": "Fighting continues between Yemen gov’t forces, Houthis: What is the latest?",
@@ -1131,28 +1203,6 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789295848000
-    },
-    {
-      "title": "Russia launches more than 450 drones in overnight attacks while Ukraine strikes oil refineries - Yahoo News Canada",
-      "link": "https://news.google.com/rss/articles/CBMifEFVX3lxTFBKQmphNVVvbTU4U0J2ZmJoMmE2N2ZDWXl4MjZFNUNiRnhSVmkxeFVqY3c4YkRRREpKSUxOczlsbUNVMnVCVjVNOUw0dFZDX3BxMW9pdFVsdDJ3ODFWeHdtMVBRMEl4WlQtUkI1VThwOGhsTjhXNWRySU9RQVM?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMifEFVX3lxTFBKQmphNVVvbTU4U0J2ZmJoMmE2N2ZDWXl4MjZFNUNiRnhSVmkxeFVqY3c4YkRRREpKSUxOczlsbUNVMnVCVjVNOUw0dFZDX3BxMW9pdFVsdDJ3ODFWeHdtMVBRMEl4WlQtUkI1VThwOGhsTjhXNWRySU9RQVM?oc=5\" target=\"_blank\">Russia launches more than 450 drones in ",
-      "at": 1789295182000,
-      "inst": [
-        "USD/CAD",
-        "USOIL",
-        "XAU/USD",
-        "UKOIL"
-      ],
-      "ccy": [
-        "CAD",
-        "OIL",
-        "XAU"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789293191000
     },
     {
       "title": "Israeli attack on Gaza kills two Palestinians",
@@ -1657,26 +1707,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789253568000
-    },
-    {
-      "title": "Iraq probes drone strikes on Saudi Arabia, shuts three crossings to Iran - Al Jazeera",
-      "link": "https://news.google.com/rss/articles/CBMisgFBVV95cUxQSEVTcUVKTUpBQnAwT0wzS3EwYlhlQ1VEZzhiaUEyc0czQ1NIOWRXVWZoVDIxQXV0Y1ZFWnc1ZXFhdERrMGVhZS1ER3JsWG5nOG0zM195SzBsTmNJSWlDNlJVNW9kTDFvVURkOVdFUDVpLUVGYnhqR2tHaTVjNkFibzJ4emhjbWoyTnNiZVN2Y256ZElLODBTOHVaVDluMlFTNEdZallKVnNXVlhxVml3Ykt30gG3AUFVX3lxTE9wdDJScDJXV3F4bFV0STZfd3NhcTAxYmdxQ2ZrazlvUGZlYmN0WnNpYmdXMm9VTmc5N3d6bkVRa1l0WDVUTjJGR3g0WHJ3R2pNMXV3XzBtTDd0LVNGUlZfNTZmZ216dThzWURDcm1iU05DaFlVdVEwMlhMZFA5d0twQTRJNklkVU9qNzNXc0dtRi03SHN0RDhhUHBNZmVtTjN4Ul9YTnktOHF6eGdMUDI1QW9GQWVsSQ?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMisgFBVV95cUxQSEVTcUVKTUpBQnAwT0wzS3EwYlhlQ1VEZzhiaUEyc0czQ1NIOWRXVWZoVDIxQXV0Y1ZFWnc1ZXFhdERrMGVhZS1ER3JsWG5nOG0zM195SzBsTmNJSWlDNlJVNW9kTDFvVURkOVdFUDVpLUVGYnhqR2tHaTVjNkFibzJ4emhjbWoyTnNiZVN2Y256ZElLODBTOHVaVDluMlFTNEdZallKVnNXVl",
-      "at": 1789251064000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789249620000
     }
   ],
   "sources": [
@@ -1703,6 +1733,6 @@
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-13T17:07:04.063Z",
-  "updatedAt": "2026-09-13T17:07:04.063Z"
+  "headlinesAt": "2026-09-13T17:08:09.463Z",
+  "updatedAt": "2026-09-13T17:08:09.463Z"
 }
