@@ -53,8 +53,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789257640000,
-      "_kind": null
+      "firstAt": 1789257640000
     },
     {
       "title": "Russian FM Lavrov says yes to talks, no to ceasefire with Ukraine - anews.com.tr",
@@ -1384,6 +1383,24 @@
       "firstAt": 1789170840000
     },
     {
+      "title": "Gold rises on dip-buying even as Fed rate hike bets rise after US inflation data - Reuters",
+      "link": "https://news.google.com/rss/articles/CBMiogFBVV95cUxOMk9xQnh0dkJvU0VUbjhfa0E5ZHhmb21sU1k4RWktNC0tdERMUlFyb05jamhUa0p0dUEwejVJbHlUaWp6VnZuUEJrc0ZmYzBMM1RwaUp0SUdWWXBiU2pRVUF4ZlRsQk1fVmY2MUlTcTFFV3RjSnQzSE5UUHdKWHJYcV9YaUVmZ01PVnVUWHI0MzU4dnJja25CTmpxc3N4STVOb1E?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiogFBVV95cUxOMk9xQnh0dkJvU0VUbjhfa0E5ZHhmb21sU1k4RWktNC0tdERMUlFyb05jamhUa0p0dUEwejVJbHlUaWp6VnZuUEJrc0ZmYzBMM1RwaUp0SUdWWXBiU2pRVUF4ZlRsQk1fVmY2MUlTcTFFV3RjSnQzSE5UUHdKWHJYcV9YaUVmZ01PVnVUWHI0MzU4dnJja25CTmpxc3N4STVOb1E?oc=5\" targ",
+      "at": 1789170831000,
+      "inst": [
+        "XAU/USD"
+      ],
+      "ccy": [
+        "USD",
+        "XAU"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789170831000
+    },
+    {
       "title": "Markets may be making a horrible miscalculation on AI and inflation - AFR",
       "link": "https://news.google.com/rss/articles/CBMitgFBVV95cUxNb2ZOX2puLWJJZUlvd1ByaGFIb2M4UFFNU28yallDSmJKcWN1ajI3cHN6R2F2YnFvY2NlLW00eHdBeFBsYnhVVE1TRjI0emRNQVVsNEE2VVgtQ0FuQXJIallCNzhTRFdsU2ZvSVJzWUdlV190Z0xjZms2bmVESURCZk5UbWdFTmxLXzhjd2ZsQ0lNalVoSkdCMlR0cXVadnRTZ3BWNzBSU3YxR2IydG02LXRENXRlUQ?oc=5",
       "source": "Wires (macro)",
@@ -1500,7 +1517,7 @@
       "firstAt": 1789158412000
     },
     {
-      "title": "The Fed can hike, but it won’t derail gold’s long-term bull market – analysts - KITCO",
+      "title": "The Fed can hike, but it won’t derail gold’s long-term bull market – analysts - kitco.com",
       "link": "https://news.google.com/rss/articles/CBMirwFBVV95cUxQVWtELUtFS3c2Q1NDcDNwR2Q2Ymd4Zms4WWE1bE9zeUFDZGNmNUMzTFJ1Um00OWwxTzNtRlcyOU00SmIwX3B0d1JmQ0puX0NsS0NrbjJ2d2dlczZpbkw0eG5PcS1yVXRUblFRTXZZUU1rQ2J1bERfZEpNYlpqYlpaWFl0bFhIVDI0SlhPd0tqR1Mxc1lWOFNNaG40Wjk0YVhpUlBqcjBzSjNqQlhXNzVr?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMirwFBVV95cUxQVWtELUtFS3c2Q1NDcDNwR2Q2Ymd4Zms4WWE1bE9zeUFDZGNmNUMzTFJ1Um00OWwxTzNtRlcyOU00SmIwX3B0d1JmQ0puX0NsS0NrbjJ2d2dlczZpbkw0eG5PcS1yVXRUblFRTXZZUU1rQ2J1bERfZEpNYlpqYlpaWFl0bFhIVDI0SlhPd0tqR1Mxc1lWOFNNaG40Wjk0YVhpUlBqcjBzSjNqQl",
@@ -1740,25 +1757,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789155575000
-    },
-    {
-      "title": "Gold headed for a weekly loss of nearly 2% on surging oil, raised Fed hike bets",
-      "link": "https://www.investing.com/news/commodities-news/gold-steadies-after-sharp-drop-as-hotter-ppi-lifts-fed-hike-bets-4897138",
-      "source": "Investing Cmdty",
-      "at": 1789155446000,
-      "inst": [
-        "XAU/USD",
-        "USOIL"
-      ],
-      "ccy": [
-        "USD",
-        "XAU",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789155446000
     }
   ],
   "sources": [
@@ -1781,10 +1779,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-13T00:30:33.876Z",
-  "headlinesAt": "2026-09-13T00:30:33.876Z",
-  "updatedAt": "2026-09-13T00:30:33.876Z"
+  "calendarAt": "2026-09-13T00:31:47.218Z",
+  "headlinesAt": "2026-09-13T00:31:47.218Z",
+  "updatedAt": "2026-09-13T00:31:47.218Z"
 }
