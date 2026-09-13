@@ -20,7 +20,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789259537000,
-      "_kind": null
+      "_kind": null,
+      "why": "Geopolitical concern, no clear market direction"
     },
     {
       "title": "Russia Sanctions Bill: Can Trump Impose 100% Tariffs on India and China? - Diplomacy and Law",
@@ -41,7 +42,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789259537000,
-      "_kind": null
+      "why": "Sanctions speculation, unclear immediate impact"
     },
     {
       "title": "Houthi projectile wounds two, damages mosque in Jazan region, Saudi says",
@@ -61,7 +62,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789259069000
+      "firstAt": 1789259069000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Escalating conflict boosts safe havens and oil"
     },
     {
       "title": "SpaceX weighting in Nasdaq 100 set to more than double - Bloomberg",
@@ -75,7 +82,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789258079000
+      "firstAt": 1789258079000,
+      "dir": {
+        "US100": "up"
+      },
+      "why": "SpaceX weighting increase boosts Nasdaq index"
     },
     {
       "title": "Iran war live: Saudi Arabia and Houthis trade strikes over Bab al-Mandeb",
@@ -95,7 +106,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789257640000
+      "firstAt": 1789257640000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Saudi oil industry fears spike prices"
     },
     {
       "title": "Russian FM Lavrov says yes to talks, no to ceasefire with Ukraine - A News",
@@ -115,7 +132,34 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789257397000
+      "firstAt": 1789257397000,
+      "why": "Diplomatic stance, no clear market signal"
+    },
+    {
+      "title": "Houthis claim attack on Saudi Arabia's Sharurah base - Middle East Eye",
+      "link": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQNkZSa3Y5QXNxbUJkeGJoOVFsOFcxWkJCSlJBakNTN2xtakJqTkllaGt1cGUtVnJkTkk2TGxhWHE4WG5lajhVaXV2STRNZVZTS1Via1Rxc3IzTEVCRnF5YTduVk8tSS1UdTE2QTNpVy10NlBIU3pLdHY0ZzN0U0xyblpHZFRWTkhRa3JjeXEyUzhVekUxdmFJWm1UN1QyUVI3NWkzTlE3dTU?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiqAFBVV95cUxQNkZSa3Y5QXNxbUJkeGJoOVFsOFcxWkJCSlJBakNTN2xtakJqTkllaGt1cGUtVnJkTkk2TGxhWHE4WG5lajhVaXV2STRNZVZTS1Via1Rxc3IzTEVCRnF5YTduVk8tSS1UdTE2QTNpVy10NlBIU3pLdHY0ZzN0U0xyblpHZFRWTkhRa3JjeXEyUzhVekUxdmFJWm1UN1QyUVI3NWkzTlE3dTU?oc",
+      "at": 1789254540000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789253265000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Military attack increases regional risk premium"
     },
     {
       "title": "Iran war: Iraq says Saudi pipeline attack originated from its territory - Nine.com.au",
@@ -135,7 +179,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789250850000
+      "firstAt": 1789250850000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Pipeline attack threatens supply, boosts oil"
     },
     {
       "title": "Tens of thousands march across Germany to protest far-right party AfD",
@@ -150,7 +200,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789252623000
+      "firstAt": 1789252623000,
+      "why": "Political protest, no direct FX impact"
     },
     {
       "title": "USA edge Spain to book Women’s Basketball World Cup final against France",
@@ -167,7 +218,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789251018000
+      "firstAt": 1789251018000,
+      "why": "Sports news, irrelevant to currency markets"
     },
     {
       "title": "Russian attacks kill 10, injure dozens in Ukraine; Russia says it hits ships, plants - Reuters",
@@ -187,7 +239,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789250810000
+      "firstAt": 1789250810000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Ukraine attacks boost gold, oil unclear"
     },
     {
       "title": "Iraq probes drone strikes on Saudi Arabia, shuts three crossings to Iran - Al Jazeera",
@@ -207,7 +263,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789248585000
+      "firstAt": 1789248585000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Border closures and strikes raise risk"
     },
     {
       "title": "Russian Strikes Kill 9 Across Ukraine, As Zelenskyy Offers To Meet Putin At Miami G20 - Radio Free Europe/Radio Liberty",
@@ -227,7 +289,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789250810000
+      "firstAt": 1789250810000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Ukraine strikes boost gold, oil neutral"
     },
     {
       "title": "Iraq says Saudi pipeline attack originated from its territory, and other Mideast news - AP News",
@@ -247,7 +313,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789249620000
+      "firstAt": 1789249620000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Pipeline attack confirms supply risk"
     },
     {
       "title": "Live - Iran says not at war with Saudi Arabia ahead of Oman talks with GCC - Iran International",
@@ -267,7 +339,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789248585000
+      "firstAt": 1789248585000,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "De-escalation statement reduces risk premium"
     },
     {
       "title": "Second crypto billionaire donates record $49m to far-right Reform UK",
@@ -642,26 +720,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789231390000
-    },
-    {
-      "title": "Trump says Iran likely behind Saudi pipeline attack as US weighs next moves - Fox News",
-      "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFBGWTYtVW9QRWJJeWJqZ0F6M3NVRDF2dWhwNjZkQ3hwNTdfdEwtRzhUYlhvMFllZFBJYUhLVW5LeVB1bFNZOE9BOHlsS3FtVlpUV2JlWEV3?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiVkFVX3lxTFBGWTYtVW9QRWJJeWJqZ0F6M3NVRDF2dWhwNjZkQ3hwNTdfdEwtRzhUYlhvMFllZFBJYUhLVW5LeVB1bFNZOE9BOHlsS3FtVlpUV2JlWEV3?oc=5\" target=\"_blank\">Trump says Iran likely behind Saudi pipeline attack as US weighs next moves</a>&nbsp;&nbsp;",
-      "at": 1789233611000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789233300000
     },
     {
       "title": "U.S. House of Representatives to take up Russia sanctions bill next week - The Hindu",
@@ -1709,7 +1767,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789153584000
+      "firstAt": 1789153994000
     },
     {
       "title": "Amid war and sanctions, many Iranians are losing their jobs and struggling to get by - NPR",
@@ -1772,6 +1830,6 @@
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-13T01:01:18.606Z",
-  "updatedAt": "2026-09-13T01:01:18.606Z"
+  "headlinesAt": "2026-09-13T01:02:50.354Z",
+  "updatedAt": "2026-09-13T01:02:50.354Z"
 }
