@@ -20,7 +20,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789340494000,
-      "_kind": null
+      "_kind": null,
+      "why": "Geopolitical headline lacks clear market direction"
     },
     {
       "title": "Canadian CRE Investors Shrug Off Trade War, Spend $9B On U.S. Assets",
@@ -38,7 +39,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789340703000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USD/CAD": "down"
+      },
+      "why": "CAD strength from US asset purchases"
     },
     {
       "title": "Inflation fight puts Kevin Warsh on the line as US Fed decision looms over global markets - Malay Mail",
@@ -62,7 +67,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789340514000,
-      "_kind": null
+      "_kind": null,
+      "why": "Fed uncertainty creates mixed market signals"
     },
     {
       "title": "Trump calls on Ukraine to halt strikes on Russian diesel fuel, says attacks causing shortage - thehindu.com",
@@ -83,7 +89,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789340494000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Diesel shortage implies higher oil prices"
     },
     {
       "title": "Anthropic tells investors it will be profitable for second straight quarter, FT reports",
@@ -95,8 +106,7 @@
       "sev": 1,
       "rel": 1,
       "srcs": 1,
-      "firstAt": 1789340429000,
-      "_kind": null
+      "firstAt": 1789340429000
     },
     {
       "title": "Bitcoin Faces 87% Fed Hike Odds Wednesday: Will Treasury Save the Rally?",
@@ -114,7 +124,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789340400000,
-      "_kind": null
+      "why": "High hike odds bearish, rally support bullish"
     },
     {
       "title": "Dow Jones Futures Fall, Techs Tumble As Anthropic Leads Call For AI Slowdown; Fed Meeting Ahead",
@@ -130,7 +140,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789337520000
+      "firstAt": 1789337520000,
+      "dir": {
+        "US30": "down"
+      },
+      "why": "Futures fall and techs tumble"
     },
     {
       "title": "SpaceX vs. Apple: Wall Street Sees Strong Upside for One of These Stocks and Remains Neutral On the Other",
@@ -144,7 +158,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789339396000
+      "firstAt": 1789339396000,
+      "why": "Specific stock news, unclear index impact"
     },
     {
       "title": "NZ services sector expands for third month as PSI rises to 51.2",
@@ -161,7 +176,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789339417000
+      "firstAt": 1789339417000,
+      "dir": {
+        "NZD/USD": "up"
+      },
+      "why": "Services sector expansion supports NZD"
     },
     {
       "title": "Wall Street Week Ahead: Markets brace for Federal Reserve rate decision - IndiaIPO",
@@ -178,7 +197,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789337520000
+      "firstAt": 1789337520000,
+      "why": "Market bracing for decision implies uncertainty"
     },
     {
       "title": "Berkshire Hathaway Stock Is Trailing the S&P 500 by About 10 Points This Year. History Says That Usually Doesn't Last.",
@@ -192,7 +212,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789338000000
+      "firstAt": 1789338000000,
+      "why": "Berkshire underperformance doesn't dictate index direction"
     },
     {
       "title": "Zverev defeats Shelton in four sets to win his first US Open title",
@@ -207,7 +228,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789338814000
+      "firstAt": 1789338814000,
+      "why": "Tennis result irrelevant to currency pair"
     },
     {
       "title": "Oil Jumps as Shutdown of Saudi Pipeline Deepens Energy Crisis",
@@ -224,7 +246,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789338513000
+      "firstAt": 1789338513000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Pipeline shutdown deepens energy crisis"
     },
     {
       "title": "Oil prices jump more than $3 after new strikes on Saudi, Strait of Hormuz",
@@ -243,7 +269,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789338265000
+      "firstAt": 1789338265000,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Strikes on Saudi and Hormuz boost prices"
     },
     {
       "title": "Stock Futures Slide, Oil Rises Ahead of Fed Rate Decision",
@@ -260,7 +292,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789337520000
+      "firstAt": 1789337520000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil rises ahead of Fed decision"
     },
     {
       "title": "Tehran and Muscat delay talks, citing regional consensus need",
@@ -280,7 +316,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789336250000
+      "firstAt": 1789336250000,
+      "why": "Delayed talks create uncertainty, no clear direction"
     },
     {
       "title": "Cybersecurity Is the Next Big Market for Artificial Intelligence (AI), According to Jensen Huang. This Super Stock-Split Stock Is the One to Own.",
@@ -1686,10 +1723,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-13T23:29:49.145Z",
-  "updatedAt": "2026-09-13T23:29:49.145Z"
+  "headlinesAt": "2026-09-13T23:31:36.879Z",
+  "updatedAt": "2026-09-13T23:31:36.879Z"
 }
