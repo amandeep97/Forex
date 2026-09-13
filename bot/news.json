@@ -20,7 +20,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789321109000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Escalation boosts gold, oil impact unclear"
     },
     {
       "title": "Bank of America has strong message for Marvell stock investors",
@@ -67,7 +71,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789320180000
+      "firstAt": 1789320180000,
+      "why": "Political commentary, no clear market direction"
     },
     {
       "title": "Trump calls on Ukraine to stop targeting Russian refineries as both countries trade strikes - cbsnews.com",
@@ -87,7 +92,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789318980000
+      "firstAt": 1789318980000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Conflict escalation supports gold, oil mixed"
     },
     {
       "title": "Sikorsky Disagreed with Trump Regarding Ukraine's Strikes on Russian Oil Refineries - UA.NEWS",
@@ -107,7 +116,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789318980000
+      "firstAt": 1789318980000,
+      "why": "Political disagreement, no direct market signal"
     },
     {
       "title": "Fighting in Yemen intensifies, and Houthis launch more attacks on Saudi Arabia - apnews.com",
@@ -127,7 +137,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789319280000
+      "firstAt": 1789319280000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Yemen conflict boosts gold and oil"
     },
     {
       "title": "Trump calls on Ukraine to halt strikes on Russian diesel fuel, saying attacks causing a shortage - Oskaloosa Herald",
@@ -147,7 +163,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789316967000
+      "firstAt": 1789316967000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Diesel shortage implies higher oil prices"
     },
     {
       "title": "Trump demands Ukraine halt refinery strikes as diesel surges - The Derrick",
@@ -167,7 +188,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789318980000
+      "firstAt": 1789318980000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Diesel surge indicates bullish oil sentiment"
     },
     {
       "title": "AMD and Intel’s Shared AI Instructions Reach GCC. Can Software Cooperation Strengthen Both Stocks?",
@@ -181,7 +207,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789318757000
+      "firstAt": 1789318757000,
+      "why": "Technical cooperation, no clear price direction"
     },
     {
       "title": "Kushner calls Israel’s strike in Qatar a failed military operation - UA.NEWS",
@@ -201,7 +228,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789318365000
+      "firstAt": 1789318365000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Geopolitical tension supports gold, oil unclear"
     },
     {
       "title": "Ukraine war latest: Kyiv-Warsaw train struck by Russian drone near Polish border as mass attack targets western Ukraine - The Kyiv Independent",
@@ -221,7 +252,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789315197000
+      "firstAt": 1789315197000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "War escalation boosts gold, oil unclear"
     },
     {
       "title": "Fed, crude, dollar and Iran war: 4 factors that could move gold next week - The Times of India",
@@ -242,7 +277,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789316880000
+      "firstAt": 1789316880000,
+      "why": "List of factors, no specific direction"
     },
     {
       "title": "Anthropic selects Nasdaq for IPO, Business Insider reports",
@@ -256,7 +292,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789316666000
+      "firstAt": 1789316666000,
+      "why": "IPO news, no immediate index direction"
     },
     {
       "title": "Ukrainian drone evades Russian helicopter fire to strike oil tanker - Al Jazeera",
@@ -276,7 +313,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789316462000
+      "firstAt": 1789316462000,
+      "why": "Single incident, no clear market impact"
     },
     {
       "title": "WSJ: US Links Chinese Satellite Images to Iran Strike That Killed 3 - Yahoo",
@@ -296,7 +334,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789316098000
+      "firstAt": 1789316098000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Iran strike news boosts gold sentiment"
     },
     {
       "title": "‘Putin’s terror’ at NATO’s door: Russia strikes Kyiv-Warsaw train near Polish border - TVP World",
@@ -316,7 +358,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789313794000
+      "firstAt": 1789313794000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "NATO border strike boosts gold, oil flat"
     },
     {
       "title": "Trump Urges Federal Reserve To Cut Rates As Market Bets On Warsh Hike",
@@ -1715,10 +1761,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-13T17:59:33.775Z",
-  "updatedAt": "2026-09-13T17:59:33.775Z"
+  "headlinesAt": "2026-09-13T18:00:51.731Z",
+  "updatedAt": "2026-09-13T18:00:51.731Z"
 }
