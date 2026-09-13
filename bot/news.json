@@ -891,7 +891,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789307887000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Markets end lower amid inflation jitters"
     },
     {
       "title": "Trump calls on Ukraine to halt strikes on Russian diesel, saying attacks are causing a shortage - The Washington Post",
@@ -912,7 +916,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789304781000,
-      "_kind": null
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Diesel shortage fears boost oil prices"
     },
     {
       "title": "New attacks in Hormuz and Saudi test nerves as war’s spread worsens oil disruption",
@@ -931,7 +939,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789306226000
+      "firstAt": 1789306226000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "War spread worsens oil disruption"
     },
     {
       "title": "Trump calls on Zelenskyy to halt Ukraine strikes on Russian diesel, saying attacks are causing a shortage - Journal-News.com",
@@ -951,7 +965,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789304781000
+      "firstAt": 1789304781000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Diesel shortage concerns support oil prices"
     },
     {
       "title": "Russia strikes passenger train near Polish border as drone swarms reach deeper into western Ukraine - Euromaidan Press",
@@ -971,7 +990,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789304781000
+      "firstAt": 1789304781000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Escalating conflict boosts safe-haven demand"
     },
     {
       "title": "Ukraine drone strikes kill four as Russia attacks close to Poland border - Al Jazeera",
@@ -991,7 +1014,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789304781000
+      "firstAt": 1789304781000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "War escalation drives gold higher"
     },
     {
       "title": "Poland warns of 'real' threat after Russian drones strike Ukraine near its border - The Kyiv Independent",
@@ -1011,7 +1038,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789303380000
+      "firstAt": 1789303380000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Geopolitical risk boosts gold demand"
     },
     {
       "title": "The Houthis’ escalation in Yemen could flop - Al Jazeera",
@@ -1028,7 +1059,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789303190000
+      "firstAt": 1789303190000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Escalation flop reduces geopolitical risk premium"
     },
     {
       "title": "NEW: China reportedly aided Iran in deadly attack on US forces - foxnews.com",
@@ -1048,7 +1083,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789304535000
+      "firstAt": 1789304535000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "China-Iran attack boosts risk assets"
     },
     {
       "title": "The price of almost everything on your dinner table is climbing at once — and Wall Street is taking notice",
@@ -1070,7 +1111,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789304400000
+      "firstAt": 1789304400000,
+      "dir": {
+        "US500": "down",
+        "XAU/USD": "up"
+      },
+      "why": "Rising inflation hurts stocks, boosts gold"
     },
     {
       "title": "The Iran war reveals the limits of BRICS",
@@ -1092,7 +1138,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789303618000
+      "firstAt": 1789303618000,
+      "why": "BRICS limits unclear for specific assets"
     },
     {
       "title": "Saudi Arabia stocks lower at close of trade; Tadawul All Share down 1.30%",
@@ -1106,7 +1153,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789303503000
+      "firstAt": 1789303503000,
+      "why": "Saudi stocks unrelated to US index"
     },
     {
       "title": "Russian strike on Ukraine-Poland border shows war at Europe's 'doorstep' - ABC News & Headlines – Australian Broadcasting Corporation",
@@ -1127,7 +1175,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789303380000
+      "firstAt": 1789303380000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "War at Europe's doorstep boosts gold"
     },
     {
       "title": "The Houthis’ escalation in Yemen could flop",
@@ -1147,7 +1199,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789303190000
+      "firstAt": 1789303190000,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Houthi escalation flop reduces risk premium"
     },
     {
       "title": "U.S. equity ETFs see outflows of $4.5 billion as traders price in Fed rate hike",
@@ -1169,7 +1227,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789303023000
+      "firstAt": 1789303023000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Fed hike expectations strengthen dollar"
     },
     {
       "title": "Saudi pipeline outage threatens loss of 4% of global oil supply",
@@ -2479,6 +2543,32 @@
       "firstAt": 1789218000000
     },
     {
+      "title": "Is Nike's Index Demotion a Warning or a Buying Opportunity?",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/nikes-index-demotion-warning-buying-125500367.html",
+      "source": "Yahoo Finance",
+      "at": 1789217700000,
+      "inst": [],
+      "ccy": [],
+      "sev": 2,
+      "rel": 1,
+      "srcs": 1,
+      "firstAt": 1789217700000
+    },
+    {
+      "title": "3 Agentic AI Stocks to Own Before AI Changes the World as We Know It",
+      "link": "https://finance.yahoo.com/technology/ai/articles/3-agentic-ai-stocks-own-125000827.html",
+      "source": "Yahoo Finance",
+      "at": 1789217400000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789217400000
+    },
+    {
       "title": "Inflation is outpacing wage growth again, squeezing Americans’ paychecks",
       "link": "https://www.cnbc.com/2026/09/12/inflation-is-outpacing-wage-growth-again-squeezing-americans-paychecks.html",
       "source": "CNBC Markets",
@@ -2500,6 +2590,39 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789217355000
+    },
+    {
+      "title": "Tom Lee Says Crypto Will Be “Really Bullish” For the Next 12 Months",
+      "link": "https://finance.yahoo.com/markets/crypto/articles/tom-lee-says-crypto-really-124755930.html",
+      "source": "Yahoo Finance",
+      "at": 1789217275000,
+      "inst": [
+        "BTC/USDT"
+      ],
+      "ccy": [
+        "BTC"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789217275000
+    },
+    {
+      "title": "Will the Fed Raise Rates on September 16? Polymarket Now Says 83%. Here’s What It Means for XRP and Bitcoin",
+      "link": "https://finance.yahoo.com/markets/crypto/articles/fed-raise-rates-september-16-124522934.html",
+      "source": "Yahoo Finance",
+      "at": 1789217122000,
+      "inst": [
+        "BTC/USDT"
+      ],
+      "ccy": [
+        "USD",
+        "BTC"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789215600000
     },
     {
       "title": "AMD Just Raised the Top of the Company's 2030 Market to $3 Trillion",
@@ -2524,76 +2647,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789216487000
-    },
-    {
-      "title": "Why stocks haven't tanked despite higher bond yields: Chart of the Day",
-      "link": "https://finance.yahoo.com/news/why-stocks-havent-tanked-despite-higher-bond-yields-chart-of-the-day-123346395.html",
-      "source": "Yahoo Finance",
-      "at": 1789216426000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789216426000
-    },
-    {
-      "title": "Saudi pipeline attack: Iraq races to contain fallout after Iran-backed militias accused of attacking east-west Saudi oil pipeline - ABC7 Los Angeles",
-      "link": "https://news.google.com/rss/articles/CBMizgFBVV95cUxOSzVrVWRBQ1Ztc252aURkN0o5T3Ztd3FWMkxTc3lIYnN6SHhvZ3k4alhKVWxyVU1VNU1CTXlPNEgteHl4V1ZKMkZqUjltb09uRzY5ZURycmdlalNCV3FJQTJLWjRvYWVQWXh1emtobklCRnRPcUc0bFc2VVJvcFZRbTdiWHhKLUExaDdUblZIUG1VR0h6WE9oYUJscno1Y1NWVDVucTVmNU5EZXVXdENkX05EVEt1VDlmMEZyRFM0Z20wUTZ2djJReTNXMWwtd9IB0wFBVV95cUxNbU5mSHVMWV8zTFJwMmRwLWlYdEswM0s5Q29MbHd3eGdBZWlIaDZYa2s1ZWcxbzRpTWcyVmI2NmtPXzhhQ1VMOVVKempGZUt3blBCdV9fdUFRYkVOeHhNOTBCdWI0VndIeHZiM3ZFQkxVenk3eUxSc1FzTmM5VG9BMklrUW8yX3dRMTd3ZTJnWEg3aldoclJuaUFsZGMtUWpkZGZBVGlSVGFVSnBaRlJQWUlVekNQRmRsWkd1NDg0cnJLWENzNURLOTJ4ckpaRGduYUUw?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMizgFBVV95cUxOSzVrVWRBQ1Ztc252aURkN0o5T3Ztd3FWMkxTc3lIYnN6SHhvZ3k4alhKVWxyVU1VNU1CTXlPNEgteHl4V1ZKMkZqUjltb09uRzY5ZURycmdlalNCV3FJQTJLWjRvYWVQWXh1emtobklCRnRPcUc0bFc2VVJvcFZRbTdiWHhKLUExaDdUblZIUG1VR0h6WE9oYUJscno1Y1NWVDVucTVmNU5EZX",
-      "at": 1789216362000,
-      "inst": [
-        "USOIL",
-        "XAU/USD",
-        "UKOIL"
-      ],
-      "ccy": [
-        "OIL",
-        "XAU"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789214732000
-    },
-    {
-      "title": "September Has Historically Been a Difficult Month for Bitcoin. This Is the Most Likely Scenario for What Happens Next.",
-      "link": "https://finance.yahoo.com/markets/crypto/articles/september-historically-difficult-month-bitcoin-122000222.html",
-      "source": "Yahoo Finance",
-      "at": 1789215600000,
-      "inst": [
-        "BTC/USDT"
-      ],
-      "ccy": [
-        "BTC"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789215600000
-    },
-    {
-      "title": "Saudi Arabia shuts key oil pipeline after drone attack launched from Iraq",
-      "link": "https://www.bbc.co.uk/news/articles/c62m933465eo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC World",
-      "desc": "Iraq removes a military commander and opens investigations into the attack that came from an area bordering Iran.",
-      "at": 1789215350000,
-      "inst": [
-        "USOIL",
-        "XAU/USD",
-        "UKOIL"
-      ],
-      "ccy": [
-        "OIL",
-        "XAU"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789214732000
     }
   ],
   "sources": [
@@ -2616,10 +2669,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-13T14:10:04.986Z",
-  "headlinesAt": "2026-09-13T14:10:04.986Z",
-  "updatedAt": "2026-09-13T14:10:04.986Z"
+  "calendarAt": "2026-09-13T14:11:22.207Z",
+  "headlinesAt": "2026-09-13T14:11:22.207Z",
+  "updatedAt": "2026-09-13T14:11:22.207Z"
 }
