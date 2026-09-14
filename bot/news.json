@@ -2,6 +2,21 @@
   "calendar": [],
   "headlines": [
     {
+      "title": "Goldman raises Gilt yield forecast as energy prices curb rate-cut hopes",
+      "link": "https://www.investing.com/news/stock-market-news/goldman-raises-gilt-yield-forecast-as-energy-prices-curb-ratecut-hopes-4898887",
+      "source": "Investing",
+      "at": 1789371768000,
+      "inst": [],
+      "ccy": [
+        "GBP"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789371768000,
+      "_kind": null
+    },
+    {
       "title": "Canadian Dollar: CPI test for BoC inflation warning – BBH - FXStreet",
       "link": "https://news.google.com/rss/articles/CBMingFBVV95cUxQaEI2RnFSNXZFYTd3YXpicWJzcG9XaUZIbGgyZi1RQVhTMWNEV2xELWxNOURBUmk5TGF5VF9na0FYRWQtQURlZkVMb00wWU1jYV92Wl9scjlCRDhheGhuNXFoZ19JTFVYb1J2cFBwYzhJU2J6Zm5pS2E0OWUyb0RjNkVWcWl3aUVJYU14aXRuWjBVRjdieHhfUFpaVEtLdw?oc=5",
       "source": "Wires (macro)",
@@ -18,7 +33,33 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789370589000,
-      "_kind": null
+      "_kind": null,
+      "why": "Inflation data test, direction unclear"
+    },
+    {
+      "title": "Euro yields hold at multi-year peaks as crude surge precedes c.bank decisions",
+      "link": "https://www.investing.com/news/forex-news/euro-yields-hold-at-multiyear-peaks-as-crude-surge-precedes-cbank-decisions-4898851",
+      "source": "Investing FX",
+      "at": 1789371488000,
+      "inst": [
+        "EUR/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "EUR",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789371488000,
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Crude surge, yields high"
     },
     {
       "title": "Asian currencies under pressure as dollar gains, yen stays elevated",
@@ -36,7 +77,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789371204000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USD/JPY": "up"
+      },
+      "why": "Dollar gains, yen elevated"
     },
     {
       "title": "Overnight drone strikes hit three Russian regions, leaving casualties and damage - Межа. Новини України.",
@@ -57,7 +102,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789370954000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Geopolitical risk boosts safe havens, oil"
     },
     {
       "title": "Video. Drone strikes hit key Ukraine-Poland supply route, sparking border fires - Euronews.com",
@@ -78,7 +129,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789370849000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Supply route hit, risk off"
     },
     {
       "title": "New Zealand Dollar declines as US Dollar gains on Fed rate hike bets - FXStreet",
@@ -97,7 +154,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789370589000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "NZD/USD": "down"
+      },
+      "why": "NZD declines on dollar gains"
     },
     {
       "title": "AI-linked stocks slump after top lab CEOs call for slowing technology’s development",
@@ -112,7 +173,10 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789370310000,
-      "_kind": null
+      "dir": {
+        "US500": "down"
+      },
+      "why": "AI stocks slump on slowdown calls"
     },
     {
       "title": "Bali police investigate after Australian man and children found dead in home",
@@ -127,54 +191,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789370135000
-    },
-    {
-      "title": "Chip, memory stocks fall amid calls for AI development slowdown",
-      "link": "https://www.investing.com/news/stock-market-news/chip-memory-stocks-fall-amid-calls-for-ai-development-slowdown-4898878",
-      "source": "Investing",
-      "at": 1789370090000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789370090000
-    },
-    {
-      "title": "FTSE 100 today: Stocks gain as Mideast supply fears lift oil",
-      "link": "https://www.investing.com/news/stock-market-news/ftse-100-today-stocks-gain-as-mideast-supply-fears-lift-oil-4898877",
-      "source": "Investing",
-      "at": 1789370084000,
-      "inst": [
-        "USOIL",
-        "US500"
-      ],
-      "ccy": [
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789370084000
-    },
-    {
-      "title": "European stocks slip on AI safety pause, Fed rate bets weigh on sentiment",
-      "link": "https://www.investing.com/news/stock-market-news/european-stocks-slip-on-ai-safety-pause-fed-rate-bets-weigh-on-sentiment-4898834",
-      "source": "Investing",
-      "at": 1789370025000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789370025000
+      "firstAt": 1789370135000,
+      "why": "Local tragedy, no macro impact"
     },
     {
       "title": "Crude Oil WTI stalls near $104.46 highs on fading momentum: Live",
@@ -191,7 +209,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789369873000
+      "firstAt": 1789369873000,
+      "why": "Stalls near highs, fading momentum"
     },
     {
       "title": "Natural Gas tests $2.899 resistance cluster: Hourly levels",
@@ -204,8 +223,9 @@
       "ccy": [],
       "sev": 1,
       "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789369892000
+      "srcs": 1,
+      "firstAt": 1789369892000,
+      "why": "Testing resistance, direction unclear"
     },
     {
       "title": "London Gas Oil surges near $1,524 resistance: Live levels",
@@ -221,7 +241,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789369873000
+      "firstAt": 1789369873000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Gas oil surges near resistance"
     },
     {
       "title": "Silver tests 200 SMA at $64.08 amid double top risk: Live levels",
@@ -237,7 +261,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789369873000
+      "firstAt": 1789369873000,
+      "why": "Testing SMA, double top risk"
     },
     {
       "title": "Gold clings to $4,355 confluence support: Live levels",
@@ -253,7 +278,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789369873000
+      "firstAt": 1789369873000,
+      "why": "Clings to support, direction unclear"
     },
     {
       "title": "Brent Oil consolidates near $107.64 amid bull fatigue: Live levels",
@@ -270,7 +296,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789369873000
+      "firstAt": 1789369873000,
+      "why": "Consolidates amid bull fatigue"
     },
     {
       "title": "How a billion-dollar sanctions dodge kept Chinese goods flowing to Iran - The Daily Star",
@@ -291,7 +318,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789369244000
+      "firstAt": 1789369244000,
+      "why": "Sanctions dodge, no clear direction"
     },
     {
       "title": "Saudi pipeline outage threatens loss of 4% of global oil supply",
@@ -645,7 +673,7 @@
       "firstAt": 1789362000000
     },
     {
-      "title": "Fighting in Yemen intensifies, and Houthis launch more attacks on Saudi Arabia - apnews.com",
+      "title": "Fighting in Yemen intensifies, and Houthis launch more attacks on Saudi Arabia - AP News",
       "link": "https://news.google.com/rss/articles/CBMimwFBVV95cUxNYmtucHBpX1JrQVh4ZVl5UDVCMER5bjYtb2NPcUVPZzFrZlZSZERNTjN3YTVKTDhxc3BzbkdMRS05YllDZ3VJeW03c2pRSHNmYkxKTnBWNE1IVm9VYndFdjZlQS0zck1zeUM0QTA4S0p5cUM5MTYxRjNxX052S2xOaXE1Ql9zYXBpc19SZThRR1VwVWpEbkFoNE1YMA?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMimwFBVV95cUxNYmtucHBpX1JrQVh4ZVl5UDVCMER5bjYtb2NPcUVPZzFrZlZSZERNTjN3YTVKTDhxc3BzbkdMRS05YllDZ3VJeW03c2pRSHNmYkxKTnBWNE1IVm9VYndFdjZlQS0zck1zeUM0QTA4S0p5cUM5MTYxRjNxX052S2xOaXE1Ql9zYXBpc19SZThRR1VwVWpEbkFoNE1YMA?oc=5\" target=\"_blan",
@@ -723,7 +751,7 @@
       "firstAt": 1789356084000
     },
     {
-      "title": "Gold slips as oil rally fans rate-hike bets ahead of Fed meeting - reuters.com",
+      "title": "Gold slips as oil rally fans rate-hike bets ahead of Fed meeting - Reuters",
       "link": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxQNmx1T0lGQjE3MEJmVkdNRXl5eXpxRzNrQk0zQUJzdGNqcXhEWTA3TW5iZVFIVDBuTVZ3ZU5EWHVRektNVVlXUFpfV29tNmlPcHZtVXQzOF9Oa055ZEloY3p6UEpvMTAtNWtHekV1MTVUbzNnZVhqU25aZjQ2aW1UZDB4aktQdjI0MGlZRnZueUN4eGRJWEdreWJXdF9fMTNhTVNOVTdKQ1JKQQ?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiqgFBVV95cUxQNmx1T0lGQjE3MEJmVkdNRXl5eXpxRzNrQk0zQUJzdGNqcXhEWTA3TW5iZVFIVDBuTVZ3ZU5EWHVRektNVVlXUFpfV29tNmlPcHZtVXQzOF9Oa055ZEloY3p6UEpvMTAtNWtHekV1MTVUbzNnZVhqU25aZjQ2aW1UZDB4aktQdjI0MGlZRnZueUN4eGRJWEdreWJXdF9fMTNhTVNOVTdKQ1JKQQ",
@@ -743,7 +771,7 @@
       "firstAt": 1789356084000
     },
     {
-      "title": "Trump calls on Ukraine to halt strikes on Russian diesel fuel, citing a global shortage - apnews.com",
+      "title": "Trump calls on Ukraine to halt strikes on Russian diesel fuel, citing a global shortage - AP News",
       "link": "https://news.google.com/rss/articles/CBMitwFBVV95cUxNLS1ZV0kyb2w5c2szWC15SGgxZGVsMXM4dDNiVkdTdmRPcV9kQ001dnpkODMya0xkTWQtLWhoYzZsdlFUVFV5SnJaVGpUbUNaaW4xNEN0VTVGdDlRempoRzhMYV9PcGo0UWhjUkhlZnJMRHVVVzB6WDBybXVMY1dfM181b3JYXzZIclJpU0xHbjRPdVpmUUJpbHFvdTYwdHFOWUVVYmp2M3hsN1hhcGJSbGRSV1Vqak0?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMitwFBVV95cUxNLS1ZV0kyb2w5c2szWC15SGgxZGVsMXM4dDNiVkdTdmRPcV9kQ001dnpkODMya0xkTWQtLWhoYzZsdlFUVFV5SnJaVGpUbUNaaW4xNEN0VTVGdDlRempoRzhMYV9PcGo0UWhjUkhlZnJMRHVVVzB6WDBybXVMY1dfM181b3JYXzZIclJpU0xHbjRPdVpmUUJpbHFvdTYwdHFOWUVVYmp2M3hsN1",
@@ -760,7 +788,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789357440000
+      "firstAt": 1789356840000
     },
     {
       "title": "Japanese PM-backed candidate wins Okinawa gubernatorial election",
@@ -1049,7 +1077,7 @@
       "firstAt": 1789350093000
     },
     {
-      "title": "Gold prices dip as oil-driven inflation concerns weigh - The Economic Times",
+      "title": "Gold prices dip as oil-driven inflation concerns weigh - economictimes.com",
       "link": "https://news.google.com/rss/articles/CBMizgFBVV95cUxNQkNhdHVfeHRVTDdBRnptQnp0SWJ1YVVPNTdTS0JEQUVxMFVMUm5PSUMyVldEZEFKTWN3UWJ0VnNzRDJBdTJWeEJCU3NiWG8wdUp5RGFFeldCMUoxTzFWSVJvN0lRN2Q5QmxFSno1NUZhQXRlX0haZEU4NUtYMjRMXzBkamYxSFhqNHMwWV9FNEF1SmRqZExpVkJiaUlzT2d4UEFTSUUySjBLSl9UVTJzQkxkeWU5alVhQmh0ZXFNbTBIemRBODkyU191VVdEQdIB0wFBVV95cUxORXRkc3k4RmdXVjlVcDFrSGdEdWpQdEVZb3RjZlhxXzlEVkFkZ253TDYzQXZ3QTFWZm9Udy1oOFhyRUQ1cTNhWDhmR2R4UWFFcjhDay1QTlBvcUd0Q0Q2ajBOZ0Q4ZERqQ3N0dkZkdTdxQUM1SnBOWlZhRXRodnI0RFQwZXBJZ1R4WmhIbWJlaV92QVpfQTNSQ0J4SExzczNkR0kzOG1JOU10WXZtNGNOS19ldzloZVBfYXVUd1oxQkw0andoQ0EzTmZLYXFtd1JJXzVj?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMizgFBVV95cUxNQkNhdHVfeHRVTDdBRnptQnp0SWJ1YVVPNTdTS0JEQUVxMFVMUm5PSUMyVldEZEFKTWN3UWJ0VnNzRDJBdTJWeEJCU3NiWG8wdUp5RGFFeldCMUoxTzFWSVJvN0lRN2Q5QmxFSno1NUZhQXRlX0haZEU4NUtYMjRMXzBkamYxSFhqNHMwWV9FNEF1SmRqZExpVkJiaUlzT2d4UEFTSUUySjBLSl",
@@ -1218,7 +1246,7 @@
       "firstAt": 1789347000000
     },
     {
-      "title": "Trump downplays report China entities helped Iran before attack that killed US troops - reuters.com",
+      "title": "Trump downplays report China entities helped Iran before attack that killed US troops - Reuters",
       "link": "https://news.google.com/rss/articles/CBMixAFBVV95cUxPZF9XUXZXZ0J5UzkzN2pGQlpxQkI3dklSRmIyMDUzYWZqdzhZQXdYMlF5djdTNjAzcGUxRUVDdHdOU3hXWGlGb0J5bVAzTWRlWjNYaWV3eUczcHB2R3dudTBYZmRtZ3lOVy00ZUJycDJtZUlJMTZNaHRRVEFVRHdPUEpjSVhyTUpOd2Q4R2Z5ZGlscTdSNzd6VHRLSXJWMTc4NUlaZzAydWhRekFJdDF4R19nMmJhSVNsLWRLMUJTc2xOT0pU?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMixAFBVV95cUxPZF9XUXZXZ0J5UzkzN2pGQlpxQkI3dklSRmIyMDUzYWZqdzhZQXdYMlF5djdTNjAzcGUxRUVDdHdOU3hXWGlGb0J5bVAzTWRlWjNYaWV3eUczcHB2R3dudTBYZmRtZ3lOVy00ZUJycDJtZUlJMTZNaHRRVEFVRHdPUEpjSVhyTUpOd2Q4R2Z5ZGlscTdSNzd6VHRLSXJWMTc4NUlaZzAydWhRek",
@@ -1354,7 +1382,7 @@
       "firstAt": 1789340514000
     },
     {
-      "title": "Bitcoin Faces 87% Fed Hike Odds Wednesday: Will Treasury Save the Rally? - BeInCrypto",
+      "title": "Bitcoin Faces 87% Fed Hike Odds Wednesday: Will Treasury Save the Rally? - beincrypto.com",
       "link": "https://news.google.com/rss/articles/CBMibEFVX3lxTE1RZmtqUlllVEszSFFLN19Rc29iZUhLMWtxYkJpVjlobWZlZ3FrR2dxelhKQ3M0OVZla0pzY3pueWhWT2N3bmpqT0FZTFI0UXZVdHZOVmNENnAwY1Z1aGl3cWxYZktrSnBrUHZ2bg?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMibEFVX3lxTE1RZmtqUlllVEszSFFLN19Rc29iZUhLMWtxYkJpVjlobWZlZ3FrR2dxelhKQ3M0OVZla0pzY3pueWhWT2N3bmpqT0FZTFI0UXZVdHZOVmNENnAwY1Z1aGl3cWxYZktrSnBrUHZ2bg?oc=5\" target=\"_blank\">Bitcoin Faces 87% Fed Hike Odds Wednesday: Will Treasury Save",
@@ -1698,6 +1726,23 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789326060000
+    },
+    {
+      "title": "Fed rate hikes won’t bring down gas prices. Why the bond market is pushing for them anyway.",
+      "link": "https://www.marketwatch.com/story/fed-rate-hikes-wont-bring-down-gas-prices-why-the-bond-market-is-pushing-for-them-anyway-98f2c7e3?mod=mw_rss_topstories",
+      "source": "MarketWatch",
+      "desc": "The 10-year Treasury yield is sitting on the doorstep of 5%, and that’s a warning sign for stocks.",
+      "at": 1789326000000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789326000000
     }
   ],
   "sources": [
@@ -1724,6 +1769,6 @@
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-14T07:48:34.756Z",
-  "updatedAt": "2026-09-14T07:48:34.756Z"
+  "headlinesAt": "2026-09-14T07:49:37.960Z",
+  "updatedAt": "2026-09-14T07:49:37.960Z"
 }
