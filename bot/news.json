@@ -934,6 +934,41 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789386662000,
+      "_kind": null,
+      "why": "Neutral premarket stock moves summary"
+    },
+    {
+      "title": "AirBaltic files for Chapter 11 bankruptcy as Iran war costs bite",
+      "link": "https://www.investing.com/news/stock-market-news/airbaltic-files-for-chapter-11-bankruptcy-in-new-york-4898855",
+      "source": "Investing",
+      "at": 1789386591000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789386591000,
+      "_kind": null,
+      "why": "Bankruptcy news lacks clear market direction"
+    },
+    {
+      "title": "On Holding (ONON) stock analysis: Contrarian bull case faces market skepticism",
+      "link": "https://www.investing.com/news/stock-market-news/on-holding-onon-stock-analysis-contrarian-bull-case-faces-market-skepticism-93CH-4899360",
+      "source": "Investing",
+      "at": 1789386561000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 1,
+      "srcs": 1,
+      "firstAt": 1789386561000,
       "_kind": null
     },
     {
@@ -955,7 +990,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789386394000,
-      "_kind": null
+      "_kind": null,
+      "why": "Drone tech news unclear for markets"
     },
     {
       "title": "Bitcoin and ethereum prices today, Monday, September 14, 2026: Crypto prices trying to hold as rate-hike expectations grow",
@@ -973,7 +1009,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789384705000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "BTC/USDT": "down",
+        "ETH/USDT": "down"
+      },
+      "why": "Rate hikes pressure crypto prices"
     },
     {
       "title": "Dow Jones Futures: Techs Tumble As Anthropic Leads AI Slowdown Call; Fed Meeting Ahead",
@@ -990,7 +1031,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789386160000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US30": "down"
+      },
+      "why": "Tech tumble weighs on Dow"
     },
     {
       "title": "The 12% Yield Monthly Income ETF I’d Rather Own in a Taxable Brokerage Account",
@@ -1024,7 +1069,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789384920000,
-      "_kind": null
+      "_kind": null,
+      "why": "Geopolitical analysis unclear for immediate direction"
     },
     {
       "title": "Kremlin welcomes Trump's call on Ukraine to halt strikes on diese - globalbankingandfinance.com",
@@ -1045,7 +1091,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789384920000,
-      "_kind": null
+      "_kind": null,
+      "why": "Diplomatic call unclear for markets"
     },
     {
       "title": "Stocks dented by AI warnings; oil jumps again",
@@ -1063,7 +1110,37 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789385865000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "US500": "down"
+      },
+      "why": "Oil jumps, stocks dented by AI"
+    },
+    {
+      "title": "Dow Jones, Nasdaq, S&P 500 weekly preview: Imminent rate hike to test equities",
+      "link": "https://www.investing.com/news/stock-market-news/dow-jones-nasdaq-sp-500-weekly-preview-imminent-rate-hike-to-test-equities-4899320",
+      "source": "Investing",
+      "at": 1789385857000,
+      "inst": [
+        "US500",
+        "US100",
+        "US30"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789385857000,
+      "_kind": null,
+      "dir": {
+        "US500": "down",
+        "US100": "down",
+        "US30": "down"
+      },
+      "why": "Rate hike tests equities negatively"
     },
     {
       "title": "Drone strike on train is calculated escalation by Putin, German minister says",
@@ -1081,7 +1158,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789385844000,
-      "_kind": null
+      "_kind": null,
+      "why": "Escalation comment unclear for direction"
     },
     {
       "title": "Carney, locked in US trade war, pitches Canada to global investment titans",
@@ -1100,20 +1178,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789385797000,
-      "_kind": null
-    },
-    {
-      "title": "Johnson & Johnson shares rise on Apollo Global takeover talks",
-      "link": "https://www.investing.com/news/stock-market-news/johnson--johnson-shares-rise-on-apollo-global-takeover-talks-93CH-4899307",
-      "source": "Investing",
-      "at": 1789385750000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1789385750000,
-      "_kind": null
+      "_kind": null,
+      "why": "Trade war pitch unclear for direction"
     },
     {
       "title": "Poland pledges to strengthen security after drone strikes along border with Ukraine - clickorlando.com",
@@ -1134,7 +1200,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789384860000,
-      "_kind": null
+      "_kind": null,
+      "why": "Security pledge unclear for markets"
     },
     {
       "title": "The S&P 500 Is Trading at a Valuation Not Seen in a Generation. History Has 1 Very Specific Lesson for Investors.",
@@ -1149,20 +1216,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789385640000,
-      "_kind": null
-    },
-    {
-      "title": "GS now sees \"clearer catalyst path\" for Meta shares post settlement & Muse launch",
-      "link": "https://www.investing.com/news/stock-market-news/gs-now-sees-clearer-catalyst-path-for-meta-shares-post-settlement--muse-launch-4899298",
-      "source": "Investing",
-      "at": 1789385542000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1789385542000,
-      "_kind": null
+      "_kind": null,
+      "why": "Valuation warning unclear for direction"
     },
     {
       "title": "How have interest rate expectations changed after last week's events?",
@@ -1186,7 +1241,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789385383000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Rate hikes strengthen dollar, lower assets"
     },
     {
       "title": "Silver prices today, Monday, September 14, 2026: Silver slides as rate-hike expectations grow",
@@ -1203,7 +1264,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789384705000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAG/USD": "down"
+      },
+      "why": "Silver slides on rate hike fears"
     },
     {
       "title": "Tim Cook Could Have Purchased Any of 488 S&P 500 Companies With $879 Billion. Instead, He Bought Something That Changed Apple's Fortune Forever.",
@@ -1217,8 +1282,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789385161000,
-      "_kind": null
+      "firstAt": 1789385161000
     },
     {
       "title": "Euronext, Deutsche Boerse Shares Rise After CEO’s Merger Comments",
@@ -1383,7 +1447,7 @@
       "firstAt": 1789384060000
     },
     {
-      "title": "Gold slip as firm inflation bolsters Fed hike bets",
+      "title": "Gold slips as firm inflation bolsters Fed hike bets",
       "link": "https://www.investing.com/news/commodities-news/gold-slips-as-hotter-us-inflation-lifts-fed-hike-bets-oil-stokes-price-pressures-4898789",
       "source": "Investing Cmdty",
       "at": 1789384060000,
@@ -2577,25 +2641,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789370589000
-    },
-    {
-      "title": "Euro yields hold at multi-year peaks as crude surge precedes c.bank decisions",
-      "link": "https://www.investing.com/news/forex-news/euro-yields-hold-at-multiyear-peaks-as-crude-surge-precedes-cbank-decisions-4898851",
-      "source": "Investing FX",
-      "at": 1789371488000,
-      "inst": [
-        "EUR/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "EUR",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789371488000
     }
   ],
   "sources": [
@@ -2621,7 +2666,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-14T11:55:21.411Z",
-  "headlinesAt": "2026-09-14T11:55:21.411Z",
-  "updatedAt": "2026-09-14T11:55:21.411Z"
+  "calendarAt": "2026-09-14T11:56:52.755Z",
+  "headlinesAt": "2026-09-14T11:56:52.755Z",
+  "updatedAt": "2026-09-14T11:56:52.755Z"
 }
