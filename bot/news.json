@@ -937,7 +937,29 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789395294000,
-      "_kind": null
+      "_kind": null,
+      "why": "Inflation steady, no clear directional bias"
+    },
+    {
+      "title": "Marriott International (MAR)’s Middle East Headwind Eases, but War Risks Remain",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/marriott-international-mar-middle-east-145034601.html",
+      "source": "Yahoo Finance",
+      "at": 1789397434000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789397434000,
+      "_kind": null,
+      "why": "Geopolitical risks remain, direction unclear"
     },
     {
       "title": "Greece stocks lower at close of trade; Athens General Composite down 1.16%",
@@ -952,7 +974,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789397403000,
-      "_kind": null
+      "_kind": null,
+      "why": "Greece-specific news, no US impact"
     },
     {
       "title": "Russian drone strike hits train near Poland-Ukraine border – video - The Guardian",
@@ -973,13 +996,43 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789397160000,
+      "_kind": null,
+      "why": "Escalation risk, but immediate direction unclear"
+    },
+    {
+      "title": "HSBC Holdings (HSBC) Reshapes European Operations with German Exit",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/hsbc-holdings-hsbc-reshapes-european-144430696.html",
+      "source": "Yahoo Finance",
+      "at": 1789397070000,
+      "inst": [
+        "EUR/USD"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789397070000,
+      "_kind": null,
+      "why": "Corporate restructuring, no macro impact"
+    },
+    {
+      "title": "Definium, Up 190% This Year, Succeeds Again With Synthetic LSD; Shares Fly",
+      "link": "https://www.investors.com/news/technology/definium-therapeutics-synthetic-lsd-generalized-anxiety-disorder/?src=A00220&yptr=yahoo",
+      "source": "Yahoo Finance",
+      "at": 1789397035000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 1,
+      "srcs": 1,
+      "firstAt": 1789397035000,
       "_kind": null
     },
     {
       "title": "Dow Rethinks its $20 Billion Saudi Chemicals Bet",
       "link": "https://finance.yahoo.com/markets/stocks/articles/dow-rethinks-20-billion-saudi-144104986.html",
       "source": "Yahoo Finance",
-      "at": 1789396864000,
+      "at": 1789396797000,
       "inst": [
         "US30"
       ],
@@ -987,8 +1040,9 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789396864000,
-      "_kind": null
+      "firstAt": 1789396797000,
+      "_kind": null,
+      "why": "Corporate strategy, no clear market move"
     },
     {
       "title": "Gulf states call off meeting with Iran; Houthis launch new attack on Saudi",
@@ -1008,7 +1062,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789396465000,
-      "_kind": null
+      "_kind": null,
+      "why": "Geopolitical tension, direction ambiguous"
     },
     {
       "title": "Global AI stocks fall as industry chiefs call for slowing development",
@@ -1023,7 +1078,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789396617000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "AI stocks fall, negative for tech-heavy index"
     },
     {
       "title": "Fiscal pressure from Iran War clouds Gulf States’ US spending plans",
@@ -1044,7 +1103,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789396465000,
-      "_kind": null
+      "_kind": null,
+      "why": "Fiscal pressure, no clear price signal"
     },
     {
       "title": "Stock Market Today: Dow Falls, Oil Jumps On Houthi Moves; Chip Stocks Dive After AI Warning (Live Coverage)",
@@ -1063,7 +1123,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789396442000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "US500": "down",
+        "US30": "down"
+      },
+      "why": "Oil jumps, stocks fall on Houthi moves"
     },
     {
       "title": "AirBaltic files for Chapter 11 bankruptcy as Iran war costs bite",
@@ -1081,9 +1147,10 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789395234000,
-      "_kind": null
+      "srcs": 1,
+      "firstAt": 1789396378000,
+      "_kind": null,
+      "why": "Bankruptcy news, no clear asset direction"
     },
     {
       "title": "EU Fails to Renew Russia Sanctions as Slovakia Seeks to Protect Russian Oligarchs - UNITED24 Media",
@@ -1104,7 +1171,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789393890000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions failure, no clear price impact"
     },
     {
       "title": "Prediction: This Could Be One of the Best Stocks to Own Through 2030",
@@ -1119,7 +1187,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789396224000,
-      "_kind": null
+      "why": "Single stock prediction, no index impact"
     },
     {
       "title": "Hub Group warns of Nasdaq delisting notice; flags H1 operating loss",
@@ -1133,7 +1201,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789396003000
+      "firstAt": 1789396003000,
+      "why": "Single stock delisting risk, no index impact"
     },
     {
       "title": "Kremlin welcomes Trump’s call on Ukraine to halt strikes on diesel facilities",
@@ -1152,7 +1221,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789394207000
+      "firstAt": 1789394207000,
+      "why": "Diplomatic move, no clear market direction"
     },
     {
       "title": "‘Silent Cold War’: Why calls to slow AI have sparked new US–China frontier",
@@ -1170,18 +1240,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789395809000
-    },
-    {
-      "title": "Insider at Medical Device Maker Buys More Than 7,500 Shares",
-      "link": "https://finance.yahoo.com/healthcare/articles/insider-medical-device-maker-buys-141501240.html",
-      "source": "Yahoo Finance",
-      "at": 1789395301000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1789395301000
     },
     {
       "title": "Week Ahead: Fed, BOJ, UK Inflation and Oil Could Drive Global Markets Next Week - equiti.com",
@@ -1202,18 +1260,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789394281000
-    },
-    {
-      "title": "ServiceNow Climbs 5% as Software Sidesteps AI Selloff; Adobe Gains 4%, Salesforce Ticks Up",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/servicenow-climbs-5-software-sidesteps-141146226.html",
-      "source": "Yahoo Finance",
-      "at": 1789395106000,
-      "inst": [],
-      "ccy": [],
-      "sev": 2,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1789395106000
     },
     {
       "title": "Russia’s Strikes on Ukraine Were Supported by Relays in Belarus — Demchenko - reform.news",
@@ -1520,7 +1566,7 @@
       "ccy": [],
       "sev": 1,
       "rel": 2,
-      "srcs": 2,
+      "srcs": 1,
       "firstAt": 1789393020000
     },
     {
@@ -1619,18 +1665,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789392214000
-    },
-    {
-      "title": "Definium, Up 190% This Year, Succeeds Again With LSD; Shares Fly",
-      "link": "https://www.investors.com/news/technology/definium-therapeutics-synthetic-lsd-generalized-anxiety-disorder/?src=A00220&yptr=yahoo",
-      "source": "Yahoo Finance",
-      "at": 1789392197000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1789392197000
     },
     {
       "title": "Russia aims to 'scare' Western countries after strike near a train at Ukraine-Poland border: EU - trtworld.com",
@@ -2578,7 +2612,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-14T14:59:05.498Z",
-  "headlinesAt": "2026-09-14T14:59:05.498Z",
-  "updatedAt": "2026-09-14T14:59:05.498Z"
+  "calendarAt": "2026-09-14T15:01:08.457Z",
+  "headlinesAt": "2026-09-14T15:01:08.457Z",
+  "updatedAt": "2026-09-14T15:01:08.457Z"
 }
