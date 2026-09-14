@@ -936,7 +936,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789391161000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil up on supply fears, stocks gain"
     },
     {
       "title": "Treasury Yield Premium Surges Amid Inflation and Debt Worries - Investing.com Canada",
@@ -955,7 +959,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789390453000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USD/CAD": "up"
+      },
+      "why": "Stronger dollar weighs on Canadian loonie"
     },
     {
       "title": "European stocks fall on AI safety warnings, Fed rate hike bets weigh on sentiment",
@@ -972,7 +980,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789391005000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "AI warnings and Fed bets weigh on stocks"
     },
     {
       "title": "US Treasury Yields Climb Toward 5% as Oil Prices Stoke Inflation Fears - Межа. Новини України.",
@@ -991,7 +1003,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789388308000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil prices stoke inflation fears"
     },
     {
       "title": "Japan’s Umios invests in Thailand’s Pataya Food Industries",
@@ -1008,7 +1024,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789390950000,
-      "_kind": null
+      "_kind": null,
+      "why": "Corporate investment news, no FX impact"
     },
     {
       "title": "Stock Market Today: Dow Falls On Surging Oil; Nvidia Sells Off On AI Warning (Live Coverage)",
@@ -1026,7 +1043,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789390754000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "US30": "down"
+      },
+      "why": "Oil surges, Dow falls on Nvidia"
     },
     {
       "title": "Saudi east-west pipeline will be out of service for 3-5 weeks - report",
@@ -1047,7 +1069,12 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789390087000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Pipeline outage boosts oil supply concerns"
     },
     {
       "title": "Waldencast stock tumbles on plan to delist from Nasdaq",
@@ -1062,7 +1089,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789390655000,
-      "_kind": null
+      "_kind": null,
+      "why": "Single stock delisting, no index impact"
     },
     {
       "title": "Canadian dollar struggles for direction as steady inflation meets stronger dollar - Investing.com Canada",
@@ -1081,7 +1109,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789390453000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USD/CAD": "up"
+      },
+      "why": "Stronger dollar pressures Canadian currency"
     },
     {
       "title": "Novo Nordisk rebrands as Novo to compete in obesity market",
@@ -1111,7 +1143,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789390087000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Pipeline shutdown causes oil price jump"
     },
     {
       "title": "5 Top Monthly-Pay REITs for Lifetime, Inflation-Resistant Income",
@@ -1134,7 +1170,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789389906000,
-      "_kind": null
+      "_kind": null,
+      "why": "REIT list, no direct market direction"
     },
     {
       "title": "Royal Road Minerals begins drilling at Güíntar gold-copper-silver target",
@@ -1153,7 +1190,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789389720000,
-      "_kind": null
+      "_kind": null,
+      "why": "Specific mining project, no broad market impact"
     },
     {
       "title": "They Sold the House to Their Son at Full Price and Rented It Back for $2,200 a Month. They Still Live There, He Deducts the Depreciation, and Not One Dollar Ever Passed Through a Nursing-Home Application",
@@ -1183,7 +1221,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789389480000
+      "firstAt": 1789389480000,
+      "why": "Corporate governance news, no price impact"
     },
     {
       "title": "Gulf states call off meeting with Iran, Houthis launch new attack - The Detroit News",
@@ -1203,7 +1242,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789389420000
+      "firstAt": 1789389420000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Geopolitical tensions boost safe havens and oil"
     },
     {
       "title": "Stocks making the biggest moves premarket: Intel, Marvell, CrowdStrike & more",
@@ -1218,7 +1263,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789389375000
+      "firstAt": 1789389375000,
+      "why": "Individual stock moves, no index direction"
     },
     {
       "title": "10-year treasury yield rises as oil prices jump",
@@ -2615,7 +2661,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-14T13:10:08.708Z",
-  "headlinesAt": "2026-09-14T13:10:08.708Z",
-  "updatedAt": "2026-09-14T13:10:08.708Z"
+  "calendarAt": "2026-09-14T13:12:10.250Z",
+  "headlinesAt": "2026-09-14T13:12:10.250Z",
+  "updatedAt": "2026-09-14T13:12:10.250Z"
 }
