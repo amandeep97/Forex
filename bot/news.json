@@ -20,7 +20,45 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789370849000,
-      "_kind": null
+      "_kind": null,
+      "why": "Geopolitical news, no clear immediate direction"
+    },
+    {
+      "title": "Chevron eyes Argentina, Mediterranean for global LNG growth, deal with India",
+      "link": "https://www.investing.com/news/stock-market-news/chevron-eyes-argentina-mediterranean-for-global-lng-growth-deal-with-india-4898918",
+      "source": "Investing",
+      "at": 1789372851000,
+      "inst": [
+        "NATGAS"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789372851000,
+      "_kind": null,
+      "why": "LNG growth news, unclear for gas"
+    },
+    {
+      "title": "AirBaltic files for Chapter 11 bankruptcy as Iran war costs bite",
+      "link": "https://www.investing.com/news/stock-market-news/airbaltic-files-for-chapter-11-bankruptcy-in-new-york-4898855",
+      "source": "Investing",
+      "at": 1789372524000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789372524000,
+      "_kind": null,
+      "why": "Bankruptcy news, unclear for these assets"
     },
     {
       "title": "US House set to vote on sweeping Russia sanctions bill - Quantum Commodity Intelligence",
@@ -41,7 +79,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789372231000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions bill, direction unclear"
     },
     {
       "title": "Trump calls on Zelenskyy to halt Ukraine strikes on Russian diesel - Yahoo",
@@ -61,7 +100,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789370954000
+      "firstAt": 1789370954000,
+      "why": "Diplomatic call, unclear impact"
     },
     {
       "title": "Goldman raises Gilt yield forecast as energy prices curb rate-cut hopes",
@@ -93,7 +133,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789370589000
+      "firstAt": 1789370589000,
+      "why": "CPI test, outcome unknown"
     },
     {
       "title": "Euro yields hold at multi-year peaks as crude surge precedes c.bank decisions",
@@ -112,7 +153,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789371488000
+      "firstAt": 1789371488000,
+      "why": "Yields and crude surge, mixed signals"
     },
     {
       "title": "Asian currencies under pressure as dollar gains, yen stays elevated",
@@ -129,7 +171,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789371204000
+      "firstAt": 1789371204000,
+      "dir": {
+        "USD/JPY": "up"
+      },
+      "why": "Dollar gains, yen elevated"
     },
     {
       "title": "Overnight drone strikes hit three Russian regions, leaving casualties and damage - Межа. Новини України.",
@@ -149,7 +195,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789370954000
+      "firstAt": 1789370954000,
+      "why": "Drone strikes, unclear market impact"
     },
     {
       "title": "Video. Drone strikes hit key Ukraine-Poland supply route, sparking border fires - Euronews.com",
@@ -169,7 +216,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789370849000
+      "firstAt": 1789370849000,
+      "why": "Supply route hit, unclear direction"
     },
     {
       "title": "Indonesian Rupiah slips due to stronger US Dollar, soaring oil prices - FXStreet",
@@ -187,21 +235,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789370589000
-    },
-    {
-      "title": "AI-linked stocks slump after top lab CEOs call for slowing technology’s development",
-      "link": "https://www.investing.com/news/stock-market-news/ailinked-asian-stocks-slump-after-top-lab-ceos-call-for-slowing-down-technologys-development-4898809",
-      "source": "Investing",
-      "at": 1789370310000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789370310000
+      "firstAt": 1789370589000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Soaring oil prices mentioned"
     },
     {
       "title": "Bali police investigate after Australian man and children found dead in home",
@@ -216,7 +254,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789370135000
+      "firstAt": 1789370135000,
+      "why": "Crime news, no market impact"
     },
     {
       "title": "Crude Oil WTI stalls near $104.46 highs on fading momentum: Live",
@@ -233,7 +272,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789369873000
+      "firstAt": 1789369873000,
+      "why": "Stalling near highs, no clear direction"
     },
     {
       "title": "Natural Gas tests $2.899 resistance cluster: Hourly levels",
@@ -247,7 +287,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789369892000
+      "firstAt": 1789369892000,
+      "why": "Testing resistance, direction unclear"
     },
     {
       "title": "London Gas Oil surges near $1,524 resistance: Live levels",
@@ -263,7 +304,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789369873000
+      "firstAt": 1789369873000,
+      "why": "Gas oil surge, not crude oil"
     },
     {
       "title": "Silver tests 200 SMA at $64.08 amid double top risk: Live levels",
@@ -1683,23 +1725,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789328076000
-    },
-    {
-      "title": "Global markets slide this week as oil surges, rate-hike fears intensify - tradingview.com",
-      "link": "https://news.google.com/rss/articles/CBMizgFBVV95cUxOQVprR0xCR2JGTUdHUlFnbkhRLUJSSGlULXYxZVlWLUxyMUZYaUg5T3BhMmFJbXBlRllLX1Rnc1JTeHJiakhJRnF4c2hGU1hzVlB3WW5WQ3JWQld2T21tLWJzN0swMkJTRUtCckJuajBlTkoyTXY1RE9LaE1lSzF6SExUVWhQc1RrektTZHRmVXItSFB2aGdxMm9rbkY3X0c3ekxnSVRRajFWV2d5VzRzT2xHVndsV0ZfbHVyYTE0Wl91TE42d21pY1dEbV9tdw?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMizgFBVV95cUxOQVprR0xCR2JGTUdHUlFnbkhRLUJSSGlULXYxZVlWLUxyMUZYaUg5T3BhMmFJbXBlRllLX1Rnc1JTeHJiakhJRnF4c2hGU1hzVlB3WW5WQ3JWQld2T21tLWJzN0swMkJTRUtCckJuajBlTkoyTXY1RE9LaE1lSzF6SExUVWhQc1RrektTZHRmVXItSFB2aGdxMm9rbkY3X0c3ekxnSVRRajFWV2",
-      "at": 1789327613000,
-      "inst": [
-        "USOIL"
-      ],
-      "ccy": [
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789327613000
     }
   ],
   "sources": [
@@ -1722,10 +1747,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-14T08:14:49.633Z",
-  "updatedAt": "2026-09-14T08:14:49.633Z"
+  "headlinesAt": "2026-09-14T08:16:38.521Z",
+  "updatedAt": "2026-09-14T08:16:38.521Z"
 }
