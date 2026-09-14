@@ -944,7 +944,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789341168000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil prices jump on Middle East tensions"
     },
     {
       "title": "Dow Jones Futures Fall, Techs Tumble As Anthropic Leads Call For AI Slowdown; Fed Meeting Ahead",
@@ -961,7 +965,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789343284000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US30": "down"
+      },
+      "why": "Dow futures fall on tech slump"
     },
     {
       "title": "Carney explores Canada as EU associate member, WSJ reports",
@@ -980,7 +988,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789342853000,
-      "_kind": null
+      "_kind": null,
+      "why": "Long-term structural trade relationship news"
     },
     {
       "title": "Australian Dollar declines to near 0.7150 as hot US inflation data boost case for Fed rate hike - FXStreet",
@@ -998,7 +1007,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789342787000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "AUD/USD": "down"
+      },
+      "why": "AUD declines on hot US inflation"
     },
     {
       "title": "Trump Urges Federal Reserve To Cut Rates As Market Bets On Warsh Hike",
@@ -1021,7 +1034,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789342451000,
-      "_kind": null
+      "why": "Conflicting Fed rate signals create uncertainty"
     },
     {
       "title": "2 Monster Stocks to Buy and Hold for at Least the Next 5 Years",
@@ -1035,7 +1048,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789341900000
+      "firstAt": 1789341900000,
+      "why": "General stock recommendation without market direction"
     },
     {
       "title": "Russian Strikes on Ukraine Hits Near David Petraeus, ex-C.I.A. Chief - The New York Times",
@@ -1055,7 +1069,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789340494000
+      "firstAt": 1789340494000,
+      "why": "Geopolitical event without clear immediate price impact"
     },
     {
       "title": "Shares slip in Asia as oil climbs, rate hikes loom",
@@ -1071,7 +1086,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789341147000
+      "firstAt": 1789341147000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil climbs as shares slip"
     },
     {
       "title": "Canadian CRE Investors Shrug Off Trade War, Spend $9B On U.S. Assets",
@@ -1088,7 +1107,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789340703000
+      "firstAt": 1789340703000,
+      "why": "Investment flow news lacks immediate directional clarity"
     },
     {
       "title": "Inflation fight puts Kevin Warsh on the line as US Fed decision looms over global markets - Malay Mail",
@@ -1111,7 +1131,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789340514000
+      "firstAt": 1789340514000,
+      "why": "Fed decision uncertainty dominates market sentiment"
     },
     {
       "title": "Trump calls on Ukraine to halt strikes on Russian diesel fuel, says attacks causing shortage - The Hindu",
@@ -1131,7 +1152,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789340494000
+      "firstAt": 1789340494000,
+      "why": "Geopolitical call without immediate price reaction"
     },
     {
       "title": "Anthropic tells investors it will be profitable for second straight quarter, FT reports",
@@ -1159,7 +1181,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789340400000
+      "firstAt": 1789340400000,
+      "why": "Warning of volatility without current direction"
     },
     {
       "title": "Bitcoin Faces 87% Fed Hike Odds Wednesday: Will Treasury Save the Rally?",
@@ -1176,7 +1199,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789340400000
+      "firstAt": 1789340400000,
+      "why": "High hike odds create uncertainty"
     },
     {
       "title": "SpaceX vs. Apple: Wall Street Sees Strong Upside for One of These Stocks and Remains Neutral On the Other",
@@ -1190,7 +1214,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789339396000
+      "firstAt": 1789339396000,
+      "why": "Specific stock analysis, not index direction"
     },
     {
       "title": "NZ services sector expands for third month as PSI rises to 51.2",
@@ -1207,7 +1232,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789339417000
+      "firstAt": 1789339417000,
+      "why": "Modest data lacks clear directional impact"
     },
     {
       "title": "Wall Street Week Ahead: Markets brace for Federal Reserve rate decision - IndiaIPO",
@@ -2593,7 +2619,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-14T00:03:48.536Z",
-  "headlinesAt": "2026-09-14T00:03:48.536Z",
-  "updatedAt": "2026-09-14T00:03:48.536Z"
+  "calendarAt": "2026-09-14T00:05:22.478Z",
+  "headlinesAt": "2026-09-14T00:05:22.478Z",
+  "updatedAt": "2026-09-14T00:05:22.478Z"
 }
