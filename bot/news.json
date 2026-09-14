@@ -18,7 +18,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789377381000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Inflation raises rate hike odds, hurting gold"
     },
     {
       "title": "AI-linked stocks slump after top lab CEOs call for slowing technology’s development",
@@ -33,7 +37,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789377154000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "AI stocks slump on development slowdown calls"
     },
     {
       "title": "Wall Street’s new pair trade: Long software, short chips",
@@ -46,47 +54,10 @@
       "ccy": [],
       "sev": 2,
       "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789376730000,
-      "_kind": null
-    },
-    {
-      "title": "Is it finally time? Why the Fed may raise rates for first time since 2023.",
-      "link": "https://finance.yahoo.com/economy/policy/articles/finally-time-why-fed-may-090806668.html",
-      "source": "Yahoo Finance",
-      "at": 1789376886000,
-      "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 1,
-      "rel": 2,
       "srcs": 1,
-      "firstAt": 1789376886000,
-      "_kind": null
-    },
-    {
-      "title": "Wall Street Is Obsessed With the Anthropic IPO. Here's the AI Cooling Stock Nobody Is Talking About.",
-      "link": "https://finance.yahoo.com/technology/ai/articles/wall-street-obsessed-anthropic-ipo-090800055.html",
-      "source": "Yahoo Finance",
-      "at": 1789376880000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 2,
       "firstAt": 1789376730000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sector rotation strategy, no clear index direction"
     },
     {
       "title": "Russian Attack on Books in Ukraine: 16 Million Copies Lost and an Industry on the Brink - El Mundo America",
@@ -107,7 +78,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789375944000,
-      "_kind": null
+      "_kind": null,
+      "why": "Cultural loss, no direct market impact"
     },
     {
       "title": "Stocks rattled by AI CEO warnings; oil and bonds add to gloom",
@@ -125,7 +97,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789376808000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "down",
+        "US500": "down"
+      },
+      "why": "Stocks and oil fall on AI warnings"
     },
     {
       "title": "Wall Street says rate hikes won’t kill the bull market",
@@ -138,24 +115,13 @@
       "ccy": [],
       "sev": 2,
       "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789376730000,
-      "_kind": null
-    },
-    {
-      "title": "Novartis Just Shook Up a Multibillion-Dollar Drug Race. What It Means for Eli Lilly Stock.",
-      "link": "https://finance.yahoo.com/healthcare/articles/novartis-just-shook-multibillion-dollar-090400043.html",
-      "source": "Yahoo Finance",
-      "at": 1789376640000,
-      "inst": [],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 1,
-      "rel": 1,
       "srcs": 1,
-      "firstAt": 1789376640000,
-      "_kind": null
+      "firstAt": 1789376730000,
+      "_kind": null,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Bull market expected to survive rate hikes"
     },
     {
       "title": "Bitcoin Suisse to Cut Up to Half Its Swiss Jobs in Overseas Shift",
@@ -174,7 +140,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789376463000,
-      "_kind": null
+      "_kind": null,
+      "why": "Company restructuring, no clear market direction"
     },
     {
       "title": "Katılımevim Tasarruf Finansman shares fall 10% on board changes",
@@ -204,7 +171,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789376134000,
-      "_kind": null
+      "_kind": null,
+      "why": "Refinery ownership change, no clear price signal"
     },
     {
       "title": "Vietnam vehicle market falls 13% in August – VAMA",
@@ -237,7 +205,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789375944000
+      "firstAt": 1789375944000,
+      "why": "Geopolitical tension, no immediate price impact"
     },
     {
       "title": "GSK shares rise 2.5% on positive lung cancer drug trial data",
@@ -250,6 +219,18 @@
       "rel": 1,
       "srcs": 1,
       "firstAt": 1789375888000
+    },
+    {
+      "title": "The Stock Market Is Repeating a Pattern Last Seen Decades Ago -- Here's What History Says Happens Next",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/stock-market-repeating-pattern-last-085000781.html",
+      "source": "Yahoo Finance",
+      "at": 1789375800000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 1,
+      "srcs": 1,
+      "firstAt": 1789373159000
     },
     {
       "title": "South Korean officials decry ‘worst ever’ Asian Games accommodation",
@@ -266,7 +247,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789375769000
+      "firstAt": 1789375769000,
+      "why": "Accommodation issues, no currency market impact"
     },
     {
       "title": "Why Arabian Drilling shares are rallying today",
@@ -297,7 +279,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789374783000
+      "firstAt": 1789374783000,
+      "dir": {
+        "EUR/USD": "down",
+        "USD/CAD": "up"
+      },
+      "why": "Euro drops, dollar strengthens on Fed pressure"
     },
     {
       "title": "EU fails to agree Russia sanctions rollover with one day to spare - politico.eu",
@@ -317,7 +304,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789375136000
+      "firstAt": 1789375136000,
+      "why": "Sanctions delay, no immediate market direction"
     },
     {
       "title": "Saudi pipeline outage threatens loss of 4% of global oil supply",
@@ -333,7 +321,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789375011000
+      "firstAt": 1789375011000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Pipeline outage threatens significant oil supply loss"
     },
     {
       "title": "US Dollar: Inflation-driven rate risks and premium – Commerzbank - FXStreet",
@@ -356,7 +348,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789374783000
+      "firstAt": 1789374783000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Dollar premium on rate risks hurts metals, FX"
     },
     {
       "title": "Turkey’s FM says Israeli strikes on Syria are indirectly benefiting ISIS - Middle East Monitor",
@@ -376,7 +374,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789372892000
+      "firstAt": 1789372892000,
+      "why": "Geopolitical comment, no clear market direction"
     },
     {
       "title": "Sterling today: Pound slips as oil-driven dollar rally weighs",
@@ -1639,6 +1638,46 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789349400000
+    },
+    {
+      "title": "Trump dismisses report China entities helped Iran before attack that killed US troops - Arab News",
+      "link": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxOUGcxbkM1ZjNzOV9oQ1FhNGVwdGhTZS1qY2FCNzBpelhDYmpnM0NkUGVpdC1obmxVTWJkbEhhU1FiaUtHNnhDbUhNeGxoT0t1aHktajFiUEpJVzBQS1hTbUp4Y0FqUjk0cXdOSlVDVUR3UmlZSkptdGd4M2h5UlFLTU8yclFuU1NyaG5zb0hpNE8zLXlNUGwxSWJkUGNaZk1aTWlKczUxOVE2eVctSENVc1I0MTU4MUZaSEZ4cGNqRmkxQQ?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiwgFBVV95cUxOUGcxbkM1ZjNzOV9oQ1FhNGVwdGhTZS1qY2FCNzBpelhDYmpnM0NkUGVpdC1obmxVTWJkbEhhU1FiaUtHNnhDbUhNeGxoT0t1aHktajFiUEpJVzBQS1hTbUp4Y0FqUjk0cXdOSlVDVUR3UmlZSkptdGd4M2h5UlFLTU8yclFuU1NyaG5zb0hpNE8zLXlNUGwxSWJkUGNaZk1aTWlKczUxOVE2eV",
+      "at": 1789348110000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789347000000
+    },
+    {
+      "title": "Trump downplays report China entities helped Iran before attack that killed US troops - Reuters",
+      "link": "https://news.google.com/rss/articles/CBMixAFBVV95cUxPZF9XUXZXZ0J5UzkzN2pGQlpxQkI3dklSRmIyMDUzYWZqdzhZQXdYMlF5djdTNjAzcGUxRUVDdHdOU3hXWGlGb0J5bVAzTWRlWjNYaWV3eUczcHB2R3dudTBYZmRtZ3lOVy00ZUJycDJtZUlJMTZNaHRRVEFVRHdPUEpjSVhyTUpOd2Q4R2Z5ZGlscTdSNzd6VHRLSXJWMTc4NUlaZzAydWhRekFJdDF4R19nMmJhSVNsLWRLMUJTc2xOT0pU?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMixAFBVV95cUxPZF9XUXZXZ0J5UzkzN2pGQlpxQkI3dklSRmIyMDUzYWZqdzhZQXdYMlF5djdTNjAzcGUxRUVDdHdOU3hXWGlGb0J5bVAzTWRlWjNYaWV3eUczcHB2R3dudTBYZmRtZ3lOVy00ZUJycDJtZUlJMTZNaHRRVEFVRHdPUEpjSVhyTUpOd2Q4R2Z5ZGlscTdSNzd6VHRLSXJWMTc4NUlaZzAydWhRek",
+      "at": 1789347000000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789347000000
     }
   ],
   "sources": [
@@ -1661,10 +1700,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-14T09:23:36.381Z",
-  "updatedAt": "2026-09-14T09:23:36.381Z"
+  "headlinesAt": "2026-09-14T09:24:52.065Z",
+  "updatedAt": "2026-09-14T09:24:52.065Z"
 }
