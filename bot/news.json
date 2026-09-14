@@ -20,7 +20,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789425120000,
-      "_kind": null
+      "_kind": null,
+      "why": "De-escalation signals unclear market impact"
     },
     {
       "title": "Zelenskyy says Ukraine ready for de-escalation if Russia reciprocates - turkiyetoday.com",
@@ -41,7 +42,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789423069000,
-      "_kind": null
+      "_kind": null,
+      "why": "De-escalation signals unclear market impact"
     },
     {
       "title": "Ukraine signals openness to pausing strikes on Russian energy targets - Semafor",
@@ -61,7 +63,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789423069000
+      "firstAt": 1789423069000,
+      "why": "Pause in strikes unclear for oil"
     },
     {
       "title": "The U.S. dollar rises as investors anticipate an interest rate hike - marketplace.org",
@@ -84,7 +87,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789425119000
+      "firstAt": 1789425119000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Dollar rises on rate hike bets"
     },
     {
       "title": "Saudi Arabia's Key Pipeline Shutdown Sends Crude Surging as U.S. Rate Hike Bets Rattle Dollar, Gold, and Copper - finance.biggo.com",
@@ -105,7 +114,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 3,
-      "firstAt": 1789423626000
+      "firstAt": 1789423626000,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Pipeline shutdown surges oil, dollar rattle"
     },
     {
       "title": "Breakfast briefing: Markets demand rate rises to fight inflation - Forex Factory",
@@ -128,7 +143,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789424820000
+      "firstAt": 1789424820000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Rate rise demand strengthens dollar"
     },
     {
       "title": "US slaps new penalties on Russia's VTB Bank over Iran sanctions evasion - kyivindependent.com",
@@ -148,7 +169,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789422240000
+      "firstAt": 1789422240000,
+      "why": "Sanctions unclear for gold and oil"
     },
     {
       "title": "Stocks fall as oil and bond yields rise",
@@ -165,7 +187,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789424414000
+      "firstAt": 1789424414000,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Stocks fall as oil yields rise"
     },
     {
       "title": "US hits major Russian bank VTB with Iran-linked sanctions - Al-Monitor",
@@ -185,7 +211,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789422240000
+      "firstAt": 1789422240000,
+      "why": "Sanctions unclear for gold and oil"
     },
     {
       "title": "Houthis attack Saudi Arabia as Gulf-Iran talks are postponed",
@@ -204,7 +231,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 3,
-      "firstAt": 1789423626000
+      "firstAt": 1789423626000,
+      "why": "Houthi attack unclear for oil direction"
     },
     {
       "title": "Canada 10-year yield rises as inflation, oil prices keep bond markets on edge - Investing.com",
@@ -224,7 +252,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789423120000
+      "firstAt": 1789423120000,
+      "why": "Yield rise unclear for CAD direction"
     },
     {
       "title": "Zelenskyy says Ukraine will pause strikes on Russia if Kremlin spares critical infrastructure - PBS",
@@ -244,7 +273,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789423069000
+      "firstAt": 1789423069000,
+      "why": "De-escalation signals unclear market impact"
     },
     {
       "title": "Loonie holds near 12-day low as oil support fails to offset dollar strength",
@@ -263,7 +293,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789422848000
+      "firstAt": 1789422848000,
+      "dir": {
+        "USD/CAD": "up"
+      },
+      "why": "Dollar strength pushes CAD lower"
     },
     {
       "title": "Treasury hits Russia's VTB Bank with new sanctions over Iran ties - CNBC",
@@ -284,7 +318,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789420327000
+      "firstAt": 1789420327000,
+      "why": "Sanctions unclear for gold and oil"
     },
     {
       "title": "U.S. Sanctions Russian Bank in Latest Target for Campaign Against Iran - WSJ",
@@ -304,7 +339,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789420327000
+      "firstAt": 1789420327000,
+      "why": "Sanctions unclear for gold and oil"
     },
     {
       "title": "Nazi Attack on School in Israel: A Global Warning - The Times of Israel",
@@ -1756,6 +1792,6 @@
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-14T23:04:20.622Z",
-  "updatedAt": "2026-09-14T23:04:20.622Z"
+  "headlinesAt": "2026-09-14T23:05:52.269Z",
+  "updatedAt": "2026-09-14T23:05:52.269Z"
 }
