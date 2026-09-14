@@ -45,7 +45,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789374783000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "EUR/USD": "down",
+        "USD/CAD": "up"
+      },
+      "why": "Euro drops, dollar gains on Fed pressure"
     },
     {
       "title": "UBS upgrades Allegiant Travel to Buy, sees 35% upside after sell-off",
@@ -79,7 +84,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789375136000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions failure unclear for immediate market direction"
     },
     {
       "title": "Saudi pipeline outage threatens loss of 4% of global oil supply",
@@ -96,7 +102,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789375011000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Supply loss threatens oil availability"
     },
     {
       "title": "Indonesia stocks lower at close of trade; IDX Composite Index down 0.57%",
@@ -111,7 +121,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789374902000,
-      "_kind": null
+      "_kind": null,
+      "why": "Indonesia news irrelevant to US stocks"
     },
     {
       "title": "US Dollar: Inflation-driven rate risks and premium – Commerzbank - FXStreet",
@@ -135,7 +146,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789374783000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Dollar premium weighs on gold and pairs"
     },
     {
       "title": "Turkey’s FM says Israeli strikes on Syria are indirectly benefiting ISIS - Middle East Monitor",
@@ -156,7 +173,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789372892000,
-      "_kind": null
+      "_kind": null,
+      "why": "Geopolitical comment lacks direct market impact"
     },
     {
       "title": "Why Rum shares are surging today",
@@ -188,7 +206,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789373798000
+      "firstAt": 1789373798000,
+      "dir": {
+        "GBP/USD": "down",
+        "USOIL": "up"
+      },
+      "why": "Dollar rally weighs on pound, oil up"
     },
     {
       "title": "Russia May Launch More Drone Strikes on Ukraine From North and East - Межа. Новини України.",
@@ -208,7 +231,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789370849000
+      "firstAt": 1789370849000,
+      "why": "Drone strikes unclear for immediate direction"
     },
     {
       "title": "Gold slips toward $4,300 as hotter inflation lifts Fed hike bets - Investing.com",
@@ -226,7 +250,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789372399000
+      "firstAt": 1789372399000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Hotter inflation lifts Fed hike bets"
     },
     {
       "title": "US House set to vote on sweeping Russia sanctions bill - Quantum Commodity Intelligence",
@@ -246,7 +274,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789372231000
+      "firstAt": 1789372231000,
+      "why": "Sanctions bill vote direction unclear"
     },
     {
       "title": "Trump calls on Zelenskyy to halt Ukraine strikes on Russian diesel - Yahoo",
@@ -266,7 +295,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789370521000
+      "firstAt": 1789370521000,
+      "why": "Diplomatic call unclear for market direction"
     },
     {
       "title": "Canadian Dollar: CPI test for BoC inflation warning – BBH - FXStreet",
@@ -284,7 +314,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789370589000
+      "firstAt": 1789370589000,
+      "why": "CPI test outcome unknown"
     },
     {
       "title": "Euro yields hold at multi-year peaks as crude surge precedes c.bank decisions",
@@ -303,7 +334,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789371488000
+      "firstAt": 1789371488000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Crude surge precedes central bank decisions"
     },
     {
       "title": "Asian currencies under pressure as dollar gains, yen stays elevated",
@@ -320,7 +356,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789371204000
+      "firstAt": 1789371204000,
+      "dir": {
+        "USD/JPY": "up"
+      },
+      "why": "Dollar gains, yen stays elevated"
     },
     {
       "title": "Video. Drone strikes hit key Ukraine-Poland supply route, sparking border fires - Euronews.com",
@@ -340,7 +380,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789370849000
+      "firstAt": 1789370849000,
+      "why": "Supply route hit, direction unclear"
     },
     {
       "title": "Indonesian Rupiah slips due to stronger US Dollar, soaring oil prices - FXStreet",
@@ -1710,6 +1751,6 @@
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-14T08:55:38.030Z",
-  "updatedAt": "2026-09-14T08:55:38.030Z"
+  "headlinesAt": "2026-09-14T08:56:41.842Z",
+  "updatedAt": "2026-09-14T08:56:41.842Z"
 }
