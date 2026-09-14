@@ -937,7 +937,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789387528000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Inflation raises rate hike odds, gold slips"
     },
     {
       "title": "Russian Strike on Train Station Near Poland Seen as Warning to Kyiv’s Allies - The New York Times",
@@ -958,7 +962,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789384860000,
-      "_kind": null
+      "_kind": null,
+      "why": "Geopolitical warning, unclear immediate market impact"
     },
     {
       "title": "Oil over $100 has JPMorgan stock-market strategists fearing a missing out on a swift decline",
@@ -979,7 +984,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789387140000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Pipeline closure drives oil prices higher"
     },
     {
       "title": "Dow Jones Futures: Techs Tumble As Anthropic Leads AI Slowdown Call; Fed Meeting Ahead",
@@ -996,7 +1006,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789387069000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US30": "down"
+      },
+      "why": "Tech stocks tumble on AI slowdown fears"
     },
     {
       "title": "investingLive European markets wrap: Oil surges, Fed rate hike bets rise as AI fears hit stocks",
@@ -1019,7 +1033,41 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789386903000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "US500": "down"
+      },
+      "why": "Oil surges, stocks hit by AI fears"
+    },
+    {
+      "title": "Goldman Sachs, JPMorgan expect Fed rate hike this week",
+      "link": "https://finance.yahoo.com/economy/policy/articles/goldman-sachs-jpmorgan-expect-fed-115501487.html",
+      "source": "Yahoo Finance",
+      "at": 1789386901000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789386901000,
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Fed rate hike expectations strengthen dollar"
     },
     {
       "title": "Stocks making the biggest moves premarket: Intel, Marvell, CrowdStrike & more",
@@ -1035,7 +1083,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789386662000,
-      "_kind": null
+      "_kind": null,
+      "why": "Individual stock moves, no clear index direction"
     },
     {
       "title": "ASML Fell For a Month Straight: A Prominent Wall Street Ratings Agency Says It Will Return 70% From Today",
@@ -1050,7 +1099,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789384500000,
-      "_kind": null
+      "_kind": null,
+      "why": "Single stock rating, unclear index impact"
     },
     {
       "title": "The Stock Market Is Doing Something Incredibly Rare Right Now, and History Has Promising News for Investors",
@@ -1083,7 +1133,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789386591000,
-      "_kind": null
+      "_kind": null,
+      "why": "Airline bankruptcy, unclear macro market impact"
     },
     {
       "title": "On Holding (ONON) stock analysis: Contrarian bull case faces market skepticism",
@@ -1117,7 +1168,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789384860000,
-      "_kind": null
+      "_kind": null,
+      "why": "Diplomatic statement, no clear market direction"
     },
     {
       "title": "Nvidia, chip stocks fall as AI CEOs call for slowdown",
@@ -1132,7 +1184,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789386394000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Chip stocks fall on AI slowdown calls"
     },
     {
       "title": "Bitcoin and ethereum prices today, Monday, September 14, 2026: Crypto prices trying to hold as rate-hike expectations grow",
@@ -1150,7 +1206,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789384705000,
-      "_kind": null
+      "_kind": null,
+      "why": "Crypto holding prices, rate hike uncertainty"
     },
     {
       "title": "The 12% Yield Monthly Income ETF I’d Rather Own in a Taxable Brokerage Account",
@@ -1183,7 +1240,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789384920000
+      "firstAt": 1789384920000,
+      "why": "Geopolitical analysis, no immediate price signal"
     },
     {
       "title": "Kremlin welcomes Trump's call on Ukraine to halt strikes on diese - globalbankingandfinance.com",
@@ -1203,7 +1261,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789384920000
+      "firstAt": 1789384920000,
+      "why": "Diplomatic call, unclear market direction"
     },
     {
       "title": "Stocks dented by AI warnings; oil jumps again",
@@ -1220,7 +1279,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789385865000
+      "firstAt": 1789385865000,
+      "dir": {
+        "USOIL": "up",
+        "US500": "down"
+      },
+      "why": "Oil jumps, stocks dented by AI warnings"
     },
     {
       "title": "Dow Jones, Nasdaq, S&P 500 weekly preview: Imminent rate hike to test equities",
@@ -1347,20 +1411,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789384705000
-    },
-    {
-      "title": "Tim Cook Could Have Purchased Any of 488 S&P 500 Companies With $879 Billion. Instead, He Bought Something That Changed Apple's Fortune Forever.",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/tim-cook-could-purchased-488-112601409.html",
-      "source": "Yahoo Finance",
-      "at": 1789385161000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789385161000
     },
     {
       "title": "Kremlin Welcomes Trump’s Call for Ukraine to Halt Strikes on Russian Refineries - Межа. Новини України.",
@@ -2613,10 +2663,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-14T12:11:05.512Z",
-  "headlinesAt": "2026-09-14T12:11:05.512Z",
-  "updatedAt": "2026-09-14T12:11:05.512Z"
+  "calendarAt": "2026-09-14T12:12:23.227Z",
+  "headlinesAt": "2026-09-14T12:12:23.227Z",
+  "updatedAt": "2026-09-14T12:12:23.227Z"
 }
