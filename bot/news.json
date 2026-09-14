@@ -939,7 +939,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789394281000,
-      "_kind": null
+      "_kind": null,
+      "why": "General outlook, no specific direction."
     },
     {
       "title": "Global AI stocks fall as industry chiefs call for slowing development",
@@ -954,7 +955,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789395146000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "AI stocks fall, weighing on index."
     },
     {
       "title": "ServiceNow Climbs 5% as Software Sidesteps AI Selloff; Adobe Gains 4%, Salesforce Ticks Up",
@@ -996,7 +1001,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789394700000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "ETH/USDT": "up"
+      },
+      "why": "Large corporate purchase supports price."
     },
     {
       "title": "Why is Trump warning Zelenskyy not to hit Russian diesel refineries?",
@@ -1017,7 +1026,12 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789394207000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Diesel shortage implies higher oil prices."
     },
     {
       "title": "CFO Sells Nearly 20,000 Shares of Regional Bank for More Than $960,000",
@@ -1077,7 +1091,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789394532000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Escalation fears boost safe-haven gold."
     },
     {
       "title": "Tech stocks today: AI warnings send shock through chip stocks",
@@ -1093,7 +1111,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789394494000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down",
+        "US100": "down"
+      },
+      "why": "AI warnings hurt chip stocks."
     },
     {
       "title": "Gold slips as firm inflation bolsters Fed hike bets",
@@ -1111,7 +1134,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789394040000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Firm inflation boosts Fed hike bets."
     },
     {
       "title": "Strategy Again Leaves Bitcoin Holdings Unchanged",
@@ -1128,7 +1155,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789394460000,
-      "_kind": null
+      "_kind": null,
+      "why": "No change in holdings, neutral."
     },
     {
       "title": "AMD Is Sitting at $515. Here Is What Most U.S. Investors Should Actually Do About It.",
@@ -1158,7 +1186,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789394381000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Mideast fighting and delays push prices up."
     },
     {
       "title": "Nasdaq Leads US Stocks Lower as AI Development Debate Weighs on Technology Sector: Dow Jones, S&P, Wall Street",
@@ -1175,7 +1207,13 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789393747000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down",
+        "US100": "down",
+        "US30": "down"
+      },
+      "why": "AI debate weighs on tech sector."
     },
     {
       "title": "Gold Price Outlook 2026: Can Fed Rate Hike Expectations Stop the Next Rally? - equiti.com",
@@ -1194,7 +1232,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789394040000,
-      "_kind": null
+      "_kind": null,
+      "why": "Outlook article, no immediate direction."
     },
     {
       "title": "New Ukraine Strike Record vs Kremlin Refineries, Trump Says Drones Should Quit - Kyiv Post",
@@ -1214,7 +1253,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789393890000
+      "firstAt": 1789393890000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Refinery strikes imply supply disruption."
     },
     {
       "title": "Gold falls to over one-month low as oil rally, inflation data boost rate hike bets - Bangkok Post",
@@ -1234,7 +1278,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789394040000
+      "firstAt": 1789394040000,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "up"
+      },
+      "why": "Oil rally and hike bets hurt gold."
     },
     {
       "title": "Ukraine May Have Killed Russia’s General Sergei Milchakov in Strike on Donetsk Headquarters - UNITED24 Media",
@@ -1254,7 +1303,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789392494000
+      "firstAt": 1789392494000,
+      "why": "Specific strike, unclear market impact."
     },
     {
       "title": "S&P 500 and Nasdaq open lower as AI jitters hit Nvidia, chipmakers",
@@ -1269,7 +1319,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789393747000
+      "firstAt": 1789393747000,
+      "dir": {
+        "US500": "down",
+        "US100": "down"
+      },
+      "why": "AI jitters hit Nvidia and chipmakers."
     },
     {
       "title": "Chip stocks fall as oil prices gain, Treasury yields stay elevated: AlphaCheck",
@@ -1390,6 +1445,26 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789393004000
+    },
+    {
+      "title": "Saudi oil pipeline hit in strikes will be mostly out of service for several weeks - PBS",
+      "link": "https://news.google.com/rss/articles/CBMitwFBVV95cUxQVVpYWE4zLVJiUVlxU0FOY0I5LWxZWHNWeThtZDhDVS1PWl9ucmktSFpwa3ktcFJRS3JXbmI5elgxZVB1YjItUVVhaHlfal9LMUg5cXlKQV9GUnA5VjEwWDVyNHV4TS0tS25GcHA4OHR1QlJxNHVUNXpIWDJNb1NzZ2FYVFBBTFFtRFQ2Z1ZpWF9UM3VaU3dPM3l3T0ZDNmFSZVpKSUgtSW90S0sxN2NhLTRsampIbGPSAbwBQVVfeXFMUDNGZWJhZnNXU1MzUE9JZDN1U3NKX2Rjckk3SmdLd29IdGtuakw2bXU2Nnptc29xOEtVM05KYnlVZkdYZHBzN2tabGc4cXpkTzl0dmlwOHgzUy1IVU80Mlp1RzdrcTVWTk9Ucjg2YVQwdFJ0aTVINS01ZGhZVFVmcF84dWQ3V2lKMXNCWC1lU25CVkswRFUxdHJFY3JKNXlqLWhoVVhyeGd3RU1KMWUyOUdEUTEyZ09XUUpQMko?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMitwFBVV95cUxQVVpYWE4zLVJiUVlxU0FOY0I5LWxZWHNWeThtZDhDVS1PWl9ucmktSFpwa3ktcFJRS3JXbmI5elgxZVB1YjItUVVhaHlfal9LMUg5cXlKQV9GUnA5VjEwWDVyNHV4TS0tS25GcHA4OHR1QlJxNHVUNXpIWDJNb1NzZ2FYVFBBTFFtRFQ2Z1ZpWF9UM3VaU3dPM3l3T0ZDNmFSZVpKSUgtSW90S0",
+      "at": 1789392805000,
+      "inst": [
+        "USOIL",
+        "XAU/USD",
+        "UKOIL"
+      ],
+      "ccy": [
+        "OIL",
+        "XAU"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 3,
+      "firstAt": 1789390686000
     },
     {
       "title": "Corn futures rise after USDA cuts harvest outlook",
@@ -2390,26 +2465,6 @@
       "firstAt": 1789380080000
     },
     {
-      "title": "Israel Upset by Kushner's Admission that U.S. Used Doha Strike to Push Israel on Gaza - cbn.com",
-      "link": "https://news.google.com/rss/articles/CBMinAFBVV95cUxQZ2Z4THZGaFQwcW5VckhRTF9Cb2NtNlVBT3NLcUdiRzZoM1lWZVAwQk5aR0tGNGVmcEZlQ3Fudk8tRnJEc2FjY2NkN3hPN1Rna05zSUR3WU9PUFJfSjhyRFp6R3NYNW5fbnpMQVNaVFI5b1FEc0RPTFh5cUNxRU40NFJVRkNqUWZUOGlwb09JbmYwbmktaHpaVlI5cnM?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMinAFBVV95cUxQZ2Z4THZGaFQwcW5VckhRTF9Cb2NtNlVBT3NLcUdiRzZoM1lWZVAwQk5aR0tGNGVmcEZlQ3Fudk8tRnJEc2FjY2NkN3hPN1Rna05zSUR3WU9PUFJfSjhyRFp6R3NYNW5fbnpMQVNaVFI5b1FEc0RPTFh5cUNxRU40NFJVRkNqUWZUOGlwb09JbmYwbmktaHpaVlI5cnM?oc=5\" target=\"_bla",
-      "at": 1789380052000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789380052000
-    },
-    {
       "title": "Best high-yield savings interest rates today, Monday, September 14, 2026: Earn up to 4.10% APY",
       "link": "https://finance.yahoo.com/personal-finance/banking/article/best-high-yield-savings-interest-rates-today-monday-september-14-2026-earn-up-to-410-apy-100000167.html",
       "source": "Yahoo Finance",
@@ -2574,10 +2629,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-14T14:27:06.070Z",
-  "headlinesAt": "2026-09-14T14:27:06.070Z",
-  "updatedAt": "2026-09-14T14:27:06.070Z"
+  "calendarAt": "2026-09-14T14:28:23.680Z",
+  "headlinesAt": "2026-09-14T14:28:23.680Z",
+  "updatedAt": "2026-09-14T14:28:23.680Z"
 }
