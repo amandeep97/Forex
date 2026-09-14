@@ -16,7 +16,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789345564000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Risk-off sentiment boosts gold safe haven demand."
     },
     {
       "title": "Anthropic tells investors it will post second straight quarterly profit - FT",
@@ -49,7 +53,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789344720000
+      "firstAt": 1789344720000,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Supply disruption risks lift oil and gold."
     },
     {
       "title": "Iran war live: Oman says Hormuz talks with Iran, Gulf states postponed",
@@ -69,7 +79,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789344000000
+      "firstAt": 1789344000000,
+      "why": "Postponed talks create uncertainty, direction unclear."
     },
     {
       "title": "Oil prices jump over 3% on more M.East action, Hormuz meeting delay",
@@ -85,7 +96,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789341168000
+      "firstAt": 1789341168000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Middle East action and delays push oil up."
     },
     {
       "title": "Carney explores Canada as EU associate member, WSJ reports",
@@ -103,7 +118,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789342853000
+      "firstAt": 1789342853000,
+      "why": "Long-term structural story, no immediate direction."
     },
     {
       "title": "Australian Dollar declines to near 0.7150 as hot US inflation data boost case for Fed rate hike - FXStreet",
@@ -120,7 +136,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789342787000
+      "firstAt": 1789342787000,
+      "dir": {
+        "AUD/USD": "down"
+      },
+      "why": "Hot US data weakens AUD against USD."
     },
     {
       "title": "Russian Strikes on Ukraine Hits Near David Petraeus, ex-C.I.A. Chief - The New York Times",
@@ -140,7 +160,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789340494000
+      "firstAt": 1789340494000,
+      "why": "Ukraine strike news has no clear market impact."
     },
     {
       "title": "Shares slip in Asia as oil climbs, rate hikes loom",
@@ -156,7 +177,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789341147000
+      "firstAt": 1789341147000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil climbs on rate hike fears and supply."
     },
     {
       "title": "Inflation fight puts Kevin Warsh on the line as US Fed decision looms over global markets - Malay Mail",
@@ -179,7 +204,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789340514000
+      "firstAt": 1789340514000,
+      "why": "Fed decision uncertainty creates mixed signals."
     },
     {
       "title": "Trump calls on Ukraine to halt strikes on Russian diesel fuel, says attacks causing shortage - The Hindu",
@@ -199,7 +225,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789340494000
+      "firstAt": 1789340494000,
+      "why": "Geopolitical call lacks immediate clear price impact."
     },
     {
       "title": "Anthropic tells investors it will be profitable for second straight quarter, FT reports",
@@ -229,7 +256,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789340400000
+      "firstAt": 1789340400000,
+      "dir": {
+        "BTC/USDT": "down"
+      },
+      "why": "High hike odds weigh on risk assets."
     },
     {
       "title": "NZ services sector expands for third month as PSI rises to 51.2",
@@ -246,7 +277,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789339417000
+      "firstAt": 1789339417000,
+      "dir": {
+        "NZD/USD": "up"
+      },
+      "why": "Services sector expansion supports New Zealand dollar."
     },
     {
       "title": "Wall Street Week Ahead: Markets brace for Federal Reserve rate decision - IndiaIPO",
@@ -263,7 +298,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789339396000
+      "firstAt": 1789339396000,
+      "why": "Market bracing for decision implies uncertainty."
     },
     {
       "title": "Zverev defeats Shelton in four sets to win his first US Open title",
@@ -278,7 +314,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789338814000
+      "firstAt": 1789338814000,
+      "why": "Tennis result has no financial market impact."
     },
     {
       "title": "Oil prices jump more than $3 after new strikes on Saudi, Strait of Hormuz",
@@ -297,7 +334,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789338265000
+      "firstAt": 1789338265000,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Strikes on Saudi and Hormuz risk lift prices."
     },
     {
       "title": "Tehran and Muscat delay talks, citing regional consensus need",
@@ -1041,20 +1084,6 @@
       "firstAt": 1789315200000
     },
     {
-      "title": "Anthropic selects Nasdaq for IPO, Business Insider reports",
-      "link": "https://www.investing.com/news/stock-market-news/anthropic-selects-nasdaq-for-ipo-business-insider-reports-4898744",
-      "source": "Investing",
-      "at": 1789316666000,
-      "inst": [
-        "US100"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789316666000
-    },
-    {
       "title": "‘Putin’s terror’ at NATO’s door: Russia 'strikes Kyiv-Warsaw train' near Polish border - TVP World",
       "link": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPV0RIZVlPRFNzLUJQd0NRQU5WSUNXcm1VbHhVdnBrRTNfVnNmWk02ZFVrOGk3Zzk3cGVjVFBhelVBYUFrQ1BNLUxiY2ZvQkxzUU1IRnp3aXpLS2RCWldaOHRKbWFwa1ZjM1ZoM0N3anB0YlMzT3J1TGw1NE5INnZPOEFQSEJzMWVIeHFEWnBpLUZoNTk3ZjYzSmdkeExfcWs1RnZ3Q0VGMU1HVzBjTHhF?oc=5",
       "source": "Wires (geo)",
@@ -1701,6 +1730,24 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789286597000
+    },
+    {
+      "title": "US Fed, Inflation, Oil to Drive Markets in Holiday Week - Rediff MoneyWiz",
+      "link": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQZXBXNW13eTFwVEZGbFFTbzd3aGV0M0F3bkZBckpib2RlR1RtVExxdVdlUnI1b2hROXBjVHVjbVN5ejJnd0pSUUx0ektqZjZUdTNLeTJ0ZzFETU5paU1YUGlOUm42X2szcXZNNjRpQldkYmdBU0MxNFRuLTdTa2FBTU1QamxJYjY5UFF6cm9rR0JXX0pxV2RKZUFIOVhVVjNKRVFSRG9SLWbSAa4BQVVfeXFMTmdtVDBGbWpZSFdFaVZpYjVibk9DOFgweHBiLS1HX2hEbTg0UUJhV0NCRlJpNDVpeFJMTTRCajRUdGxnOXluMHJURjYySmdCMUdsaDE5R1RYaC11d0p1UHJybDNmN2F2eVR2TlBPakRXSFVJRFEyeHlvdVg4eHY2V0RPNElHckRPVXhpdWh0ZDVNRTd5b1NaZHNLcktZemtubi1wUzNWVlFmakpVZmJR?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiqAFBVV95cUxQZXBXNW13eTFwVEZGbFFTbzd3aGV0M0F3bkZBckpib2RlR1RtVExxdVdlUnI1b2hROXBjVHVjbVN5ejJnd0pSUUx0ektqZjZUdTNLeTJ0ZzFETU5paU1YUGlOUm42X2szcXZNNjRpQldkYmdBU0MxNFRuLTdTa2FBTU1QamxJYjY5UFF6cm9rR0JXX0pxV2RKZUFIOVhVVjNKRVFSRG9SLWbSAa",
+      "at": 1789286597000,
+      "inst": [
+        "USOIL"
+      ],
+      "ccy": [
+        "USD",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789286597000
     }
   ],
   "sources": [
@@ -1727,6 +1774,6 @@
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-14T00:48:35.740Z",
-  "updatedAt": "2026-09-14T00:48:35.740Z"
+  "headlinesAt": "2026-09-14T00:49:36.137Z",
+  "updatedAt": "2026-09-14T00:49:36.137Z"
 }
