@@ -2,6 +2,25 @@
   "calendar": [],
   "headlines": [
     {
+      "title": "Chip, memory stocks fall amid calls for AI development slowdown",
+      "link": "https://www.investing.com/news/stock-market-news/chip-memory-stocks-fall-amid-calls-for-ai-development-slowdown-4898878",
+      "source": "Investing",
+      "at": 1789379503000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789379503000,
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Chip stocks fall, dragging index down"
+    },
+    {
       "title": "Gold slips below $4,300 as Fed rate hike bets strengthen - Proactive Investors",
       "link": "https://news.google.com/rss/articles/CBMipgFBVV95cUxOeWVCYjVtV3p5Nk9aUFVkM3p3M2UtZ1BZYjJMYmdGb24zSDkxb1RuUWhGS2tIckl2VF9vVTlkYVpMLXRVNVhGYm5yMnRoMjI2OXhGc011aWNSZ0pnQkprdW5TckZFYmRLekhBVFNoNEpxaTBEaUtlWWlhQVlUM050SUdDTkQ3ZERPZU5tUXU2dzVVMlpLR3B1MTUwMUxDenBLTTB1aXJn?oc=5",
       "source": "Wires (macro)",
@@ -18,6 +37,23 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789377893000,
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold slips on stronger Fed hike bets"
+    },
+    {
+      "title": "China urges more FX hedging as strong yuan hits exporters, sources say",
+      "link": "https://finance.yahoo.com/markets/currencies/articles/china-urges-more-fx-hedging-094330539.html",
+      "source": "Yahoo Finance",
+      "at": 1789379010000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 1,
+      "srcs": 1,
+      "firstAt": 1789379010000,
       "_kind": null
     },
     {
@@ -39,7 +75,43 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789377548000,
-      "_kind": null
+      "_kind": null,
+      "why": "Geopolitical news lacks clear directional impact"
+    },
+    {
+      "title": "AI-linked stocks slump after top lab CEOs call for slowing technology’s development",
+      "link": "https://www.investing.com/news/stock-market-news/ailinked-asian-stocks-slump-after-top-lab-ceos-call-for-slowing-down-technologys-development-4898809",
+      "source": "Investing",
+      "at": 1789378948000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1789378587000,
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "AI stocks slump, pressuring broader market"
+    },
+    {
+      "title": "Stocks to Watch Monday: Nvidia, Oracle, SoftBank",
+      "link": "https://www.wsj.com/livecoverage/stock-market-today-dow-sp-500-nasdaq-09-14-2026/card/stocks-to-watch-monday-nvidia-oracle-softbank-z8oHxWLCC1rwQAwr0oUs?siteid=yhoof2&yptr=yahoo",
+      "source": "Yahoo Finance",
+      "at": 1789378674000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789378674000,
+      "_kind": null,
+      "why": "Stocks to watch list, no direction"
     },
     {
       "title": "AI stocks get drilled because of Anthropic CEO Dario Amodei's 3,800 word warning",
@@ -54,7 +126,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789378597000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "AI stocks drilled, negative sentiment"
     },
     {
       "title": "Euro Declines as Dollar Gains on Fed Rate-Rise Expectations",
@@ -72,7 +148,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789378322000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "EUR/USD": "down"
+      },
+      "why": "Euro declines as dollar gains"
     },
     {
       "title": "Gold prices slip as strong US inflation raises fed rate hike odds - The Statesman",
@@ -91,24 +171,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789377893000,
-      "_kind": null
-    },
-    {
-      "title": "Deutsche Bank sees Fed meeting volatility risk for stocks",
-      "link": "https://www.investing.com/news/stock-market-news/deutsche-bank-sees-fed-meeting-volatility-risk-for-stocks-93CH-4899001",
-      "source": "Investing",
-      "at": 1789378331000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789378331000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold slips on higher rate hike odds"
     },
     {
       "title": "Swiss Franc nears yearly lows as Fed rate hike bets boost US Dollar - FXStreet",
@@ -127,7 +194,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789378322000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USD/CHF": "up"
+      },
+      "why": "Dollar boosts, franc nears yearly lows"
     },
     {
       "title": "Trump Issues Warning to Zelensky Over Strikes on Russia - Newsweek",
@@ -148,7 +219,31 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789378194000,
-      "_kind": null
+      "_kind": null,
+      "why": "Geopolitical warning, unclear market impact"
+    },
+    {
+      "title": "US Stock Futures Fall as AI Safety Concerns and Middle East Developments Weigh on Markets: Dow Jones, S&P, Nasdaq, Wall Street",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/us-stock-futures-fall-ai-092940971.html",
+      "source": "Yahoo Finance",
+      "at": 1789378180000,
+      "inst": [
+        "US500",
+        "US100",
+        "US30"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789377961000,
+      "_kind": null,
+      "dir": {
+        "US500": "down",
+        "US100": "down",
+        "US30": "down"
+      },
+      "why": "Futures fall on AI and Middle East"
     },
     {
       "title": "UK food inflation set to climb despite calmer global grain markets - Proactive Investors",
@@ -172,7 +267,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789378151000,
-      "_kind": null
+      "_kind": null,
+      "why": "UK inflation data, unclear FX impact"
     },
     {
       "title": "How investors are reacting to the AI pause calls from Anthropic and other frontier labs",
@@ -200,8 +296,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789376880000,
-      "_kind": null
+      "firstAt": 1789377961000,
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Buffett advice implies market overvaluation/fear"
     },
     {
       "title": "Ukrainian Drone Strike in Sochi Wounds 5 - The Moscow Times",
@@ -222,7 +322,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789377924000,
-      "_kind": null
+      "_kind": null,
+      "why": "Drone strike news, unclear immediate impact"
     },
     {
       "title": "Gold falls on growing Fed rate hike bets ahead of policy meeting - marketscreener.com",
@@ -241,7 +342,10 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789377893000,
-      "_kind": null
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold falls on Fed rate hike bets"
     },
     {
       "title": "Peso sinks to record low as dollar gains on rate-hike bets - Inquirer.net",
@@ -256,8 +360,7 @@
       "sev": 1,
       "rel": 1,
       "srcs": 1,
-      "firstAt": 1789377840000,
-      "_kind": null
+      "firstAt": 1789377840000
     },
     {
       "title": "Yemen gov’t forces advance in Taiz as Houthis claim attack on Saudi Arabia",
@@ -359,42 +462,6 @@
       "firstAt": 1789377000000
     },
     {
-      "title": "Is it finally time? Why the Fed may raise rates for first time since 2023.",
-      "link": "https://finance.yahoo.com/economy/policy/articles/finally-time-why-fed-may-090806668.html",
-      "source": "Yahoo Finance",
-      "at": 1789376886000,
-      "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789376886000
-    },
-    {
-      "title": "Wall Street Is Obsessed With the Anthropic IPO. Here's the AI Cooling Stock Nobody Is Talking About.",
-      "link": "https://finance.yahoo.com/technology/ai/articles/wall-street-obsessed-anthropic-ipo-090800055.html",
-      "source": "Yahoo Finance",
-      "at": 1789376880000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789376880000
-    },
-    {
       "title": "Russian Attack on Books in Ukraine: 16 Million Copies Lost and an Industry on the Brink - El Mundo America",
       "link": "https://news.google.com/rss/articles/CBMif0FVX3lxTFB1R0k5R2N4SS1fMW11YU5GYnlmUjd0am82ZnZNTjlHSWhscTZwYnR0QWtxR0VWVERFUk05TjlMQ1VIcU50VHNaMnBNM2NqbGFEdGs0NmtZMXIzUWtsRDMtRnlScWpSWFR2OTFFUVhhV2FvMVo5S2IyV2tvOG11V28?oc=5",
       "source": "Wires (geo)",
@@ -413,20 +480,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789374980000
-    },
-    {
-      "title": "Novartis Just Shook Up a Multibillion-Dollar Drug Race. What It Means for Eli Lilly Stock.",
-      "link": "https://finance.yahoo.com/healthcare/articles/novartis-just-shook-multibillion-dollar-090400043.html",
-      "source": "Yahoo Finance",
-      "at": 1789376640000,
-      "inst": [],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1789376640000
     },
     {
       "title": "Africa's biggest oil refinery opens to public ownership, sparking excitement among retail investors",
@@ -1662,23 +1715,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789352378000
-    },
-    {
-      "title": "Satellite images show extent of damage to major Saudi pipeline, amid global oil supply fears - theguardian.com",
-      "link": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxONThDR2dBM2V3OWhrWDdHQ0xsRzB0eTBsZzB6cEszMjN4ZEZiQ2ZCRUdfZ1FRMGNQTk5aY081QnlSN0tjOEZrUFBHYjQtbUxxa25oaW9XVGM1QlV0QkhpVC12WldMZHlVUDR0YVhUTHVnbGJIMGo1VGJmdXJxMFgtZGtBRGJOdVN5SUQ1R0ExcEUwd1dBWktOSFBySmpwMEN4MXc0OHRZclREdw?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiqgFBVV95cUxONThDR2dBM2V3OWhrWDdHQ0xsRzB0eTBsZzB6cEszMjN4ZEZiQ2ZCRUdfZ1FRMGNQTk5aY081QnlSN0tjOEZrUFBHYjQtbUxxa25oaW9XVGM1QlV0QkhpVC12WldMZHlVUDR0YVhUTHVnbGJIMGo1VGJmdXJxMFgtZGtBRGJOdVN5SUQ1R0ExcEUwd1dBWktOSFBySmpwMEN4MXc0OHRZclREdw",
-      "at": 1789353900000,
-      "inst": [
-        "USOIL"
-      ],
-      "ccy": [
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789353900000
     }
   ],
   "sources": [
@@ -1705,6 +1741,6 @@
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-14T09:53:51.345Z",
-  "updatedAt": "2026-09-14T09:53:51.345Z"
+  "headlinesAt": "2026-09-14T09:55:23.447Z",
+  "updatedAt": "2026-09-14T09:55:23.447Z"
 }
