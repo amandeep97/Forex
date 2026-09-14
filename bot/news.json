@@ -18,7 +18,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789428310000,
-      "_kind": null
+      "_kind": null,
+      "why": "Yields up, oil direction unclear"
     },
     {
       "title": "Iran strikes on US diplomatic facilities raise war cost - The Hill",
@@ -39,7 +40,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789428000000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "War fears boost safe havens, oil"
     },
     {
       "title": "Iran strikes on US diplomatic facilities in 4 Gulf countries cost $184M: IG report - The Hill",
@@ -60,7 +67,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789428000000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Conflict costs drive risk assets up"
     },
     {
       "title": "AI doomsday fears are arriving at the worst possible time for the stock market",
@@ -93,7 +106,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789427676000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold falls on higher yields"
     },
     {
       "title": "Zelensky says Ukraine ready to de-escalate if Russia halts strikes - France 24",
@@ -113,7 +130,13 @@
       "sev": 3,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789425120000
+      "firstAt": 1789425120000,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "De-escalation lowers geopolitical risk premium"
     },
     {
       "title": "US slaps sanctions on key Russian bank to put pressure on Iran - Yahoo",
@@ -133,7 +156,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789424680000
+      "firstAt": 1789424680000,
+      "why": "Sanctions impact unclear for these assets"
     },
     {
       "title": "Zelenskyy says Ukraine ready for de-escalation if Russia reciprocates - Türkiye Today",
@@ -153,7 +177,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789423069000
+      "firstAt": 1789423069000,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "De-escalation signals reduce risk premium"
     },
     {
       "title": "Ukraine signals openness to pausing strikes on Russian energy targets - Semafor",
@@ -173,7 +203,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789423069000
+      "firstAt": 1789423069000,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Pause in strikes lowers risk"
     },
     {
       "title": "The U.S. dollar rises as investors anticipate an interest rate hike - marketplace.org",
@@ -196,7 +232,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789425119000
+      "firstAt": 1789425119000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Stronger dollar pressures gold, euro, pound"
     },
     {
       "title": "Saudi Arabia's Key Pipeline Shutdown Sends Crude Surging as U.S. Rate Hike Bets Rattle Dollar, Gold, and Copper - finance.biggo.com",
@@ -217,7 +259,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 3,
-      "firstAt": 1789423626000
+      "firstAt": 1789423626000,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Oil surges, gold falls on rates"
     },
     {
       "title": "Breakfast briefing: Markets demand rate rises to fight inflation - Forex Factory",
@@ -240,7 +288,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789424820000
+      "firstAt": 1789424820000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Rate hike bets strengthen dollar"
     },
     {
       "title": "US slaps new penalties on Russia's VTB Bank over Iran sanctions evasion - The Kyiv Independent",
@@ -260,7 +314,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789422240000
+      "firstAt": 1789422240000,
+      "why": "Sanctions news lacks clear directional impact"
     },
     {
       "title": "Stocks fall as oil and bond yields rise",
@@ -277,7 +332,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789424414000
+      "firstAt": 1789424414000,
+      "dir": {
+        "USOIL": "up",
+        "US500": "down"
+      },
+      "why": "Oil rises, stocks fall"
     },
     {
       "title": "Houthis attack Saudi Arabia as Gulf-Iran talks are postponed",
@@ -296,7 +356,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 3,
-      "firstAt": 1789423626000
+      "firstAt": 1789423626000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Houthi attacks boost risk assets"
     },
     {
       "title": "Canada 10-year yield rises as inflation, oil prices keep bond markets on edge - Investing.com",
@@ -316,7 +382,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789423120000
+      "firstAt": 1789423120000,
+      "dir": {
+        "USD/CAD": "up",
+        "USOIL": "up"
+      },
+      "why": "Oil rise supports CAD, yields up"
     },
     {
       "title": "Zelenskyy says Ukraine will pause strikes on Russia if Kremlin spares critical infrastructure - PBS",
@@ -1744,10 +1815,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-14T23:38:51.833Z",
-  "updatedAt": "2026-09-14T23:38:51.833Z"
+  "headlinesAt": "2026-09-14T23:40:38.328Z",
+  "updatedAt": "2026-09-14T23:40:38.328Z"
 }
