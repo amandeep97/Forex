@@ -930,9 +930,28 @@
       "ccy": [],
       "sev": 2,
       "rel": 1,
-      "srcs": 2,
-      "firstAt": 1789394375000,
+      "srcs": 1,
+      "firstAt": 1789394700000,
       "_kind": null
+    },
+    {
+      "title": "Bitmine Purchases Another $68 Million Of Ethereum",
+      "link": "https://finance.yahoo.com/markets/crypto/articles/bitmine-purchases-another-68-million-140500872.html",
+      "source": "Yahoo Finance",
+      "at": 1789394700000,
+      "inst": [
+        "ETH/USDT"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789394700000,
+      "_kind": null,
+      "dir": {
+        "ETH/USDT": "up"
+      },
+      "why": "Large corporate purchase supports price"
     },
     {
       "title": "Why is Trump warning Zelenskyy not to hit Russian diesel refineries?",
@@ -953,6 +972,37 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789394207000,
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Diesel shortage implies supply constraints"
+    },
+    {
+      "title": "Why the Bond Market Expects Two More Rate Hikes and Three Cuts After That",
+      "link": "https://finance.yahoo.com/economy/policy/articles/why-bond-market-expects-two-140315683.html",
+      "source": "Yahoo Finance",
+      "at": 1789394595000,
+      "inst": [],
+      "ccy": [],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789394595000,
+      "_kind": null
+    },
+    {
+      "title": "Kalshi To Offer U.S. Stock And Commodities Trading",
+      "link": "https://finance.yahoo.com/markets/options/articles/kalshi-offer-u-stock-commodities-140300562.html",
+      "source": "Yahoo Finance",
+      "at": 1789394580000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 1,
+      "srcs": 1,
+      "firstAt": 1789394580000,
       "_kind": null
     },
     {
@@ -974,7 +1024,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789394532000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Geopolitical escalation boosts safe havens"
     },
     {
       "title": "Tech stocks today: AI warnings send shock through chip stocks",
@@ -990,6 +1044,42 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789394494000,
+      "_kind": null,
+      "dir": {
+        "US500": "down",
+        "US100": "down"
+      },
+      "why": "AI warnings hurt chip stocks"
+    },
+    {
+      "title": "Strategy Again Leaves Bitcoin Holdings Unchanged",
+      "link": "https://finance.yahoo.com/markets/crypto/articles/strategy-again-leaves-bitcoin-holdings-140100959.html",
+      "source": "Yahoo Finance",
+      "at": 1789394460000,
+      "inst": [
+        "BTC/USDT"
+      ],
+      "ccy": [
+        "BTC"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789394460000,
+      "_kind": null,
+      "why": "No change in holdings"
+    },
+    {
+      "title": "AMD Is Sitting at $515. Here Is What Most U.S. Investors Should Actually Do About It.",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/amd-sitting-515-most-u-140030239.html",
+      "source": "Yahoo Finance",
+      "at": 1789394430000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 1,
+      "srcs": 1,
+      "firstAt": 1789394430000,
       "_kind": null
     },
     {
@@ -1007,7 +1097,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789394381000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Prices top $109 on fighting"
     },
     {
       "title": "New Ukraine Strike Record vs Kremlin Refineries, Trump Says Drones Should Quit - Kyiv Post",
@@ -1028,7 +1122,12 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789393890000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Refinery strikes imply supply risk"
     },
     {
       "title": "Gold falls to over one-month low as oil rally, inflation data boost rate hike bets - Bangkok Post",
@@ -1049,7 +1148,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789394040000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "up"
+      },
+      "why": "Gold falls, oil rally boosts rates"
     },
     {
       "title": "Ukraine May Have Killed Russia’s General Sergei Milchakov in Strike on Donetsk Headquarters - UNITED24 Media",
@@ -1070,7 +1174,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789392494000,
-      "_kind": null
+      "_kind": null,
+      "why": "Single event, unclear market impact"
     },
     {
       "title": "S&P 500 and Nasdaq open lower as AI jitters hit Nvidia, chipmakers",
@@ -1086,7 +1191,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789393747000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down",
+        "US100": "down"
+      },
+      "why": "Open lower on AI jitters"
     },
     {
       "title": "Stifel sees Canada Arctic defense spending as key investment theme",
@@ -1103,7 +1213,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789393719000,
-      "_kind": null
+      "_kind": null,
+      "why": "Investment theme, no immediate direction"
     },
     {
       "title": "S&P 500, Nasdaq fall on AI slowdown fears, oil price surge",
@@ -1122,7 +1233,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789393699000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "US500": "down",
+        "US100": "down"
+      },
+      "why": "Oil surge, stocks fall on AI"
     },
     {
       "title": "Nike downgraded, Affirm upgraded: Wall Street's top analyst calls",
@@ -1137,7 +1254,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789393559000,
-      "_kind": null
+      "_kind": null,
+      "why": "Mixed individual stock calls"
     },
     {
       "title": "Stifel Picks Top U.S. Energy Midstream Stocks Amid Accelerating Power Demand",
@@ -1152,7 +1270,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789393558000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sector-specific stock picks"
     },
     {
       "title": "Chip stocks fall as oil prices gain, Treasury yields stay elevated: AlphaCheck",
@@ -1170,8 +1289,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789392214000,
-      "_kind": null
+      "firstAt": 1789393519000,
+      "dir": {
+        "USOIL": "up",
+        "US500": "down"
+      },
+      "why": "Oil gains, chip stocks fall"
     },
     {
       "title": "Here’s how to prepare your portfolio for the Fed’s next interest-rate moves",
@@ -1187,9 +1310,8 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789392659000,
-      "_kind": null
+      "srcs": 1,
+      "firstAt": 1789393500000
     },
     {
       "title": "Stock Market Today: Dow Falls On Surging Oil; Nvidia, Micron, Sandisk Dive On AI Warning (Live Coverage)",
@@ -1206,8 +1328,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789393020000,
-      "_kind": null
+      "firstAt": 1789393020000
     },
     {
       "title": "FTSE 100 today: Stocks gain as Mideast supply fears lift oil",
@@ -1276,7 +1397,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789392214000
+      "firstAt": 1789393020000
     },
     {
       "title": "Unwanted in the U.S., old oil equipment finds a new home in Venezuela",
@@ -1311,18 +1432,6 @@
       "firstAt": 1789392788000
     },
     {
-      "title": "Clear Secure Chief Accounting Officer Sells 6,059 Shares",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/clear-secure-chief-accounting-officer-133301555.html",
-      "source": "Yahoo Finance",
-      "at": 1789392781000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1789392781000
-    },
-    {
       "title": "Corn futures rise after USDA cuts harvest outlook",
       "link": "https://www.investing.com/news/commodities-news/corn-futures-rise-after-usda-cuts-harvest-outlook-93CH-4899785",
       "source": "Investing Cmdty",
@@ -1335,20 +1444,6 @@
       "firstAt": 1789392707000
     },
     {
-      "title": "Tesla Could Be Building Its Next Trillion-Dollar Opportunity. Here’s Where Its Headed",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/tesla-could-building-next-trillion-133059317.html",
-      "source": "Yahoo Finance",
-      "at": 1789392659000,
-      "inst": [],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 2,
-      "firstAt": 1789392659000
-    },
-    {
       "title": "Soybean futures rise as U.S.-China meeting approaches",
       "link": "https://www.investing.com/news/commodities-news/soybean-futures-rise-as-uschina-meeting-approaches-93CH-4899775",
       "source": "Investing Cmdty",
@@ -1359,20 +1454,6 @@
       "rel": 1,
       "srcs": 1,
       "firstAt": 1789392631000
-    },
-    {
-      "title": "This Analyst Says A Full Reversion to the Mean Would Take the S&P 500 From 7,000 to 2,500",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/analyst-says-full-reversion-mean-133014828.html",
-      "source": "Yahoo Finance",
-      "at": 1789392614000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789392614000
     },
     {
       "title": "‘Attacks will be fully autonomous’: Russia, Ukraine race towards AI warfare - Al Jazeera",
@@ -1393,32 +1474,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789392104000
-    },
-    {
-      "title": "Stellantis Shares Fall After Morgan Stanley Downgrades Stock to Underweight",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/stellantis-shares-fall-morgan-stanley-132407100.html",
-      "source": "Yahoo Finance",
-      "at": 1789392247000,
-      "inst": [],
-      "ccy": [],
-      "sev": 2,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1789392247000
-    },
-    {
-      "title": "Chip Stocks Tumble as AI Pacing Call Reaches Beyond Memory: Intel Drops 7%, AMD Sinks 6%, NVIDIA Pulls Back",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/chip-stocks-tumble-ai-pacing-132334555.html",
-      "source": "Yahoo Finance",
-      "at": 1789392214000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789392214000
     },
     {
       "title": "Canadian Dollar remains under pressure following mixed inflation data - fxstreet.com",
@@ -1681,25 +1736,6 @@
       "rel": 1,
       "srcs": 1,
       "firstAt": 1789388212000
-    },
-    {
-      "title": "Etihad Airways sees strong demand, higher passenger capacity despite Iran war, CEO says",
-      "link": "https://finance.yahoo.com/news/etihad-airways-sees-strong-demand-121621387.html",
-      "source": "Yahoo Finance",
-      "at": 1789388181000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789388181000
     },
     {
       "title": "U.S. Treasury yields hold near multi-year highs as Fed hike bets anchor curve",
@@ -2558,6 +2594,26 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789379340000
+    },
+    {
+      "title": "Iran says ties with Türkiye remain 'strong' as US sanctions pressure grows - Türkiye Today",
+      "link": "https://news.google.com/rss/articles/CBMitwFBVV95cUxOd3Z4dll5ekFKcnhIVnY2Y2VMaEVEWlhBNVk5YXZUU3NLbjU4WjlZTE90cGw2ODlsOE9tRE1LRUtGYVljSV92M2NHc1kycUFNTXdDcGFqNWI3VTJuU1JEVUNMS3JVRm92T1h3SWM1SXVFZk56Y1BWd3d0YWhRcHJKVVVzYkhWakxaU0NEUzdwS0NXWmRyb2N0ZHFXSWlsYzlCZnkwY0kwQ3dVWGQ2MVJoNFNpZTZHdG8?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMitwFBVV95cUxOd3Z4dll5ekFKcnhIVnY2Y2VMaEVEWlhBNVk5YXZUU3NLbjU4WjlZTE90cGw2ODlsOE9tRE1LRUtGYVljSV92M2NHc1kycUFNTXdDcGFqNWI3VTJuU1JEVUNMS3JVRm92T1h3SWM1SXVFZk56Y1BWd3d0YWhRcHJKVVVzYkhWakxaU0NEUzdwS0NXWmRyb2N0ZHFXSWlsYzlCZnkwY0kwQ3dVWG",
+      "at": 1789378996000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789378996000
     }
   ],
   "sources": [
@@ -2583,7 +2639,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-14T14:14:21.877Z",
-  "headlinesAt": "2026-09-14T14:14:21.877Z",
-  "updatedAt": "2026-09-14T14:14:21.877Z"
+  "calendarAt": "2026-09-14T14:15:53.402Z",
+  "headlinesAt": "2026-09-14T14:15:53.402Z",
+  "updatedAt": "2026-09-14T14:15:53.402Z"
 }
