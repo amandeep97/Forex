@@ -939,7 +939,28 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789400979000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Oil prices rise on US-Iran tensions."
+    },
+    {
+      "title": "YPF Lines Up Buyers for $24 Billion Vaca Muerta LNG Project",
+      "link": "https://finance.yahoo.com/energy/articles/ypf-lines-buyers-24-billion-154703112.html",
+      "source": "Yahoo Finance",
+      "at": 1789400823000,
+      "inst": [
+        "NATGAS"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789400823000,
+      "_kind": null,
+      "why": "LNG project news unclear for spot gas."
     },
     {
       "title": "Russian drone attack hits Kyivstar office in Ukraine - Data Center Dynamics",
@@ -958,9 +979,62 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 1,
+      "srcs": 2,
       "firstAt": 1789400350000,
-      "_kind": null
+      "_kind": null,
+      "why": "Ukraine drone attack, no clear market direction."
+    },
+    {
+      "title": "Strategy Buys Back $139 Million of STRC, Bitcoin Stack Frozen for Second Week",
+      "link": "https://finance.yahoo.com/markets/crypto/articles/strategy-buys-back-139-million-154146051.html",
+      "source": "Yahoo Finance",
+      "at": 1789400506000,
+      "inst": [
+        "BTC/USDT"
+      ],
+      "ccy": [
+        "BTC"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789400506000,
+      "_kind": null,
+      "why": "Bitcoin stack frozen, no clear direction."
+    },
+    {
+      "title": "JEPQ and QYLD Both Sell Nasdaq Calls for Income, Yet Only One Has Protected Its Share Price",
+      "link": "https://finance.yahoo.com/markets/options/articles/jepq-qyld-both-sell-nasdaq-154132731.html",
+      "source": "Yahoo Finance",
+      "at": 1789400492000,
+      "inst": [
+        "US100"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789400492000,
+      "_kind": null,
+      "why": "ETF income strategy, no index direction."
+    },
+    {
+      "title": "Silver Miners Are Sitting on Record Cash Hoard — More Than Double the 2011 Rally",
+      "link": "https://finance.yahoo.com/markets/commodities/articles/silver-miners-sitting-record-cash-154123009.html",
+      "source": "Yahoo Finance",
+      "at": 1789400483000,
+      "inst": [
+        "XAG/USD"
+      ],
+      "ccy": [
+        "XAG"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789400483000,
+      "_kind": null,
+      "why": "Miner cash hoard, no spot silver direction."
     },
     {
       "title": "10-year Treasury yield briefly tops 5%, hitting its highest level since 2007 as bond-market selloff deepens",
@@ -977,9 +1051,13 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 3,
+      "srcs": 2,
       "firstAt": 1789399680000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil prices marching higher with yields."
     },
     {
       "title": "Trump says Russia, Ukraine will halt energy strikes as diesel hits record high - KUTV",
@@ -1000,7 +1078,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789399320000,
-      "_kind": null
+      "_kind": null,
+      "why": "Energy strike halt, mixed signals."
     },
     {
       "title": "Russia’s drone strike near Ukraine-Poland border puts NATO neighbors on edge - cnn.com",
@@ -1021,7 +1100,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789400225000,
-      "_kind": null
+      "_kind": null,
+      "why": "NATO edge, no clear market direction."
     },
     {
       "title": "Global AI stocks fall as industry chiefs call for slowing development",
@@ -1036,7 +1116,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789400209000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Global AI stocks fall, dragging index."
     },
     {
       "title": "Carney, locked in US trade war, pitches Canada to global investment titans",
@@ -1055,7 +1139,29 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789400189000,
-      "_kind": null
+      "_kind": null,
+      "why": "Trade war pitch, no clear direction."
+    },
+    {
+      "title": "California Diesel Prices Hit Record $8.14 a Gallon as Global Oil Supply Takes Another Hit",
+      "link": "https://finance.yahoo.com/news/california-diesel-prices-hit-record-153522001.html",
+      "source": "Yahoo Finance",
+      "at": 1789400122000,
+      "inst": [
+        "USOIL"
+      ],
+      "ccy": [
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789400122000,
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Diesel record high, supply hit."
     },
     {
       "title": "Poland stocks lower at close of trade; WIG30 down 0.55%",
@@ -1070,7 +1176,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789400103000,
-      "_kind": null
+      "_kind": null,
+      "why": "Poland stocks lower, no US direction."
     },
     {
       "title": "US Treasury Yields Hit Highest Since 2023 As Markets Price In 90% Chance Of Fed Rate Hike - NDTV Profit",
@@ -1094,30 +1201,13 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789398078000,
-      "_kind": null
-    },
-    {
-      "title": "10-Year Treasury Yield Just Passed 5%, Here’s What Happened To The Market When The Same Thing Happened In 2007",
-      "link": "https://finance.yahoo.com/news/10-treasury-yield-just-passed-153357000.html",
-      "source": "Yahoo Finance",
-      "at": 1789400037000,
-      "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 3,
-      "firstAt": 1789399680000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Yields hit high, Fed hike priced."
     },
     {
       "title": "World shares slide as oil prices jump and bond yields climb",
@@ -1134,7 +1224,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789399869000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil prices jump, shares slide."
     },
     {
       "title": "Turkey stocks lower at close of trade; BIST 100 down 1.60%",
@@ -1167,7 +1261,7 @@
       "_kind": null
     },
     {
-      "title": "Dollar Strengthens as Treasury Yields Rise Amid Inflation Fears -- Market Talk - moomoo.com",
+      "title": "Dollar Strengthens as Treasury Yields Rise Amid Inflation Fears -- Market Talk - Moomoo",
       "link": "https://news.google.com/rss/articles/CBMisgFBVV95cUxPRXh4YXZqQlhWZ2s3em1HYUlILS1vMG9NQkhvSVEyTHc5b3lKSnl0OTRmTEx1c1BwUWdIRU01cFRkVVdRSF9EcTZrY1RUR2lBbXJHUlRSY016Y0JMVjB3eGJ0MmRHUGl4b0ppc3NuVjJfcHVTQnd0MW1BUWhPN2hRVDhPTGhmeWdYVVBHNUx5NkduczhYdDAxTGpaN3RLSDh6Wm9IZ3BaS3h5TGdpV3JYV1dR?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMisgFBVV95cUxPRXh4YXZqQlhWZ2s3em1HYUlILS1vMG9NQkhvSVEyTHc5b3lKSnl0OTRmTEx1c1BwUWdIRU01cFRkVVdRSF9EcTZrY1RUR2lBbXJHUlRSY016Y0JMVjB3eGJ0MmRHUGl4b0ppc3NuVjJfcHVTQnd0MW1BUWhPN2hRVDhPTGhmeWdYVVBHNUx5NkduczhYdDAxTGpaN3RLSDh6Wm9IZ3BaS3h5TG",
@@ -1186,7 +1280,7 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 3,
+      "srcs": 2,
       "firstAt": 1789399680000,
       "_kind": null
     },
@@ -1205,7 +1299,7 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 3,
+      "srcs": 2,
       "firstAt": 1789398427000,
       "_kind": null
     },
@@ -1292,26 +1386,6 @@
       "srcs": 1,
       "firstAt": 1789399320000,
       "_kind": null
-    },
-    {
-      "title": "How Iran's regional allies' attacks in Yemen are compounding the war's impact on oil prices - CBS News",
-      "link": "https://news.google.com/rss/articles/CBMimwFBVV95cUxOSHhya01Ob2EwaVdodUgtaFRpWTBnOHlrWnNwTnF0bXdQMVJaVEx4T203SktTSzVkYzRRei1ZZFI2MnZvM2l3MkRBNmFya0QwS0NuNVVnaEk4U3l5TEYySG1yYkVSWGxEUnBBbllnZGpkYkc1Q3Y4cGhGcklYNjNlSkhZMGszQWg2STVRMkFLcUlMS2lVeFYxV3hFbw?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMimwFBVV95cUxOSHhya01Ob2EwaVdodUgtaFRpWTBnOHlrWnNwTnF0bXdQMVJaVEx4T203SktTSzVkYzRRei1ZZFI2MnZvM2l3MkRBNmFya0QwS0NuNVVnaEk4U3l5TEYySG1yYkVSWGxEUnBBbllnZGpkYkc1Q3Y4cGhGcklYNjNlSkhZMGszQWg2STVRMkFLcUlMS2lVeFYxV3hFbw?oc=5\" target=\"_blan",
-      "at": 1789398733000,
-      "inst": [
-        "USOIL",
-        "XAU/USD",
-        "UKOIL"
-      ],
-      "ccy": [
-        "OIL",
-        "XAU"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789398733000
     },
     {
       "title": "EU extends Russia sanctions for one week only, after France insists on delisting Usmanov - EUobserver",
@@ -1613,7 +1687,7 @@
       "firstAt": 1789397012000
     },
     {
-      "title": "Gold falls as Fed rate hike bets, rising Oil push Treasury yields to 5% - FXStreet",
+      "title": "Gold falls as Fed rate hike bets, rising Oil push Treasury yields to 5% - fxstreet.com",
       "link": "https://news.google.com/rss/articles/CBMinwFBVV95cUxNMERmMkpOUkQ0WE5Lb3poSWFrSGpPalloVmxmRU5iLUFXRXc5WTBIWFQtNjl0bWVHWUxYMWduMGZkODFKd1hOOWN4VE41ZlhRTlFlUUVkRXBSNEpPZkxuMEZuUWJoSDBKTF9zNEdWOFJSRFZXRFJ5T2N1bC1uOUtCQVJfM05mYWMxNXVEd29wbEQ2TGUyY0ZWamJqQVNYUms?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMinwFBVV95cUxNMERmMkpOUkQ0WE5Lb3poSWFrSGpPalloVmxmRU5iLUFXRXc5WTBIWFQtNjl0bWVHWUxYMWduMGZkODFKd1hOOWN4VE41ZlhRTlFlUUVkRXBSNEpPZkxuMEZuUWJoSDBKTF9zNEdWOFJSRFZXRFJ5T2N1bC1uOUtCQVJfM05mYWMxNXVEd29wbEQ2TGUyY0ZWamJqQVNYUms?oc=5\" target=\"",
@@ -1916,7 +1990,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789394040000
+      "firstAt": 1789392686000
     },
     {
       "title": "Oil prices top $109 on fresh Mideast fighting, Hormuz meeting delay",
@@ -1950,7 +2024,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789394040000
+      "firstAt": 1789392686000
     },
     {
       "title": "New Ukraine Strike Record vs Kremlin Refineries, Trump Says Drones Should Quit - Kyiv Post",
@@ -1990,7 +2064,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789394040000
+      "firstAt": 1789392686000
     },
     {
       "title": "Ukraine May Have Killed Russia’s General Sergei Milchakov in Strike on Donetsk Headquarters - UNITED24 Media",
@@ -2131,6 +2205,26 @@
       "firstAt": 1789392707000
     },
     {
+      "title": "Gold price fall nearly 2% as oil surge and near-5% Treasury yields bolster Fed rate-hike expectations - Kitco AM Report - KITCO",
+      "link": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxOdHhTNWdPX1Y1X1FSLUVIU0d3NHNCYmpXMG9jZ1NDWmdUVERDeGhuM21rSTJRMDVHaHozeW4xZ3lfLU9oRU9UMVZzNDh2R1FyVE9oRFhuX2lERnllYXlnWFlmWHdQSFdNUjh1MXAzbkQ3al8yMHVWZzBkZGRnbHZJTUhkd2Y3Mm5qbk1yc1R5VjdmSU9jRG9ibFlJc2gyQXgwdkE0ODZma012WHJ3eEpNQW1palhzRHhkM05N?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiuwFBVV95cUxOdHhTNWdPX1Y1X1FSLUVIU0d3NHNCYmpXMG9jZ1NDWmdUVERDeGhuM21rSTJRMDVHaHozeW4xZ3lfLU9oRU9UMVZzNDh2R1FyVE9oRFhuX2lERnllYXlnWFlmWHdQSFdNUjh1MXAzbkQ3al8yMHVWZzBkZGRnbHZJTUhkd2Y3Mm5qbk1yc1R5VjdmSU9jRG9ibFlJc2gyQXgwdkE0ODZma012WH",
+      "at": 1789392686000,
+      "inst": [
+        "XAU/USD",
+        "USOIL"
+      ],
+      "ccy": [
+        "USD",
+        "XAU",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1789392686000
+    },
+    {
       "title": "Soybean futures rise as U.S.-China meeting approaches",
       "link": "https://www.investing.com/news/commodities-news/soybean-futures-rise-as-uschina-meeting-approaches-93CH-4899775",
       "source": "Investing Cmdty",
@@ -2163,7 +2257,7 @@
       "firstAt": 1789392494000
     },
     {
-      "title": "Canadian Dollar remains under pressure following mixed inflation data - FXStreet",
+      "title": "Canadian Dollar remains under pressure following mixed inflation data - fxstreet.com",
       "link": "https://news.google.com/rss/articles/CBMisgFBVV95cUxPd0RyVWJOZ2VHLTFPbnJHUy10eVJjX0pRS184WU1uNWFsdE1ROVFkR2lIazk4NmdQX2FVZzZJZ3pyRk1kZlo5YUFnblh6eTJVSDBHMWgtQlh6ZDM4N2VlYjd5QzR3LTdEcWQtMmNlTXU3SG5hRHRJT2NFSFdCSk84SW5CRXBaSEVrUHRZeXFVemtDVVlJVTFkaUtsVjAzUXkxQUhPVWFoSXhLdlB5eVh0SGRn?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMisgFBVV95cUxPd0RyVWJOZ2VHLTFPbnJHUy10eVJjX0pRS184WU1uNWFsdE1ROVFkR2lIazk4NmdQX2FVZzZJZ3pyRk1kZlo5YUFnblh6eTJVSDBHMWgtQlh6ZDM4N2VlYjd5QzR3LTdEcWQtMmNlTXU3SG5hRHRJT2NFSFdCSk84SW5CRXBaSEVrUHRZeXFVemtDVVlJVTFkaUtsVjAzUXkxQUhPVWFoSXhLdl",
@@ -2325,24 +2419,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789389048000
-    },
-    {
-      "title": "Gold falls on growing Fed rate hike bets ahead of policy meeting - TradingView",
-      "link": "https://news.google.com/rss/articles/CBMizwFBVV95cUxPS1E4eTc3MWUzenoxbzZLNnlrQXV6SDBTbGljX21sck5xelFDQ19oaXI5cUl5N000MzNiSjJJWDNfSnVib0R1NGRQSzdNcHM1bFZ3Y1YwRnVXbGV3a0hONFdraHM0Sm9sVDJsRzU1UjdhdV9hcFBQQ21PQmJzMUszNkE0OGxXQmFsSGZMQ0l5VURFVUxRMnNmc0lXRXhtRUdiN1VsMUlXSGMyTnRrZTh2SjFQUFZoYTZwLW11X2ZMTFpuUDJVTlAxaG1sN3hXODA?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMizwFBVV95cUxPS1E4eTc3MWUzenoxbzZLNnlrQXV6SDBTbGljX21sck5xelFDQ19oaXI5cUl5N000MzNiSjJJWDNfSnVib0R1NGRQSzdNcHM1bFZ3Y1YwRnVXbGV3a0hONFdraHM0Sm9sVDJsRzU1UjdhdV9hcFBQQ21PQmJzMUszNkE0OGxXQmFsSGZMQ0l5VURFVUxRMnNmc0lXRXhtRUdiN1VsMUlXSGMyTn",
-      "at": 1789388981000,
-      "inst": [
-        "XAU/USD"
-      ],
-      "ccy": [
-        "USD",
-        "XAU"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789388253000
     },
     {
       "title": "investingLive European markets wrap: Oil surges, Fed rate hike bets rise as AI fears hit stocks - investingLive",
@@ -2512,66 +2588,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789387140000
-    },
-    {
-      "title": "Ukraine war briefing: Poland calls for ‘double’ support to Kyiv after Russian train attack - The Guardian",
-      "link": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxNSzE1VFdieUNGbG1DaEFONGlOcW9JNlFQZHc0Z2VNcmtSNEEtTXE1QWpSNVRKcm5kclBXbWNLRk9YX1dmaWhjWlQ0ZnNtUG1RUTZTMGZ5UTZsUUt5VEpxRHhQTHh2bHFpX1B4blBzTmdreDhaNHFZbFlGTTFPbGFsMHk0OGNUVkdhbVlvVE1hMUQ1Q2gyVVA3c2tJeEplcXhjVHc2UC1FU3JvQmRkRkdBdUdnMmtNdnlTa1dmUUc3UlFRaFl1bnVyUW54ajQ2ZThpb1Q5aVJuVlpoZjJ2Z1E?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi3gFBVV95cUxNSzE1VFdieUNGbG1DaEFONGlOcW9JNlFQZHc0Z2VNcmtSNEEtTXE1QWpSNVRKcm5kclBXbWNLRk9YX1dmaWhjWlQ0ZnNtUG1RUTZTMGZ5UTZsUUt5VEpxRHhQTHh2bHFpX1B4blBzTmdreDhaNHFZbFlGTTFPbGFsMHk0OGNUVkdhbVlvVE1hMUQ1Q2gyVVA3c2tJeEplcXhjVHc2UC1FU3JvQm",
-      "at": 1789386660000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789384954000
-    },
-    {
-      "title": "First Thing: Oil prices surge as attacks on Saudi Arabia stoke supply fears - The Guardian",
-      "link": "https://news.google.com/rss/articles/CBMitwFBVV95cUxNMzd6WVd1M2ZRd2c1V1EtZHZTc1VVbDVFTkV1VnowajhNd3NjOUdOMDZ1N0ZyaC1SUXVXem9QMmVHNnFmQzJxejBkSHRRUmxrdUtmNUFKUV9kVTFLX2VOSXVMUTQtTU00STVmQ2xPQkxQQTEwRzlmQ2hIbFVESXNKbFFkMjdNZGZFa1hIUHhiRHY0MnFhVUZIYUU5VWJ4c0Jyb3NWUmtvWVJYTDYzNFpodVJjNzlLUkU?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMitwFBVV95cUxNMzd6WVd1M2ZRd2c1V1EtZHZTc1VVbDVFTkV1VnowajhNd3NjOUdOMDZ1N0ZyaC1SUXVXem9QMmVHNnFmQzJxejBkSHRRUmxrdUtmNUFKUV9kVTFLX2VOSXVMUTQtTU00STVmQ2xPQkxQQTEwRzlmQ2hIbFVESXNKbFFkMjdNZGZFa1hIUHhiRHY0MnFhVUZIYUU5VWJ4c0Jyb3NWUmtvWVJYTD",
-      "at": 1789386600000,
-      "inst": [
-        "USOIL",
-        "XAU/USD",
-        "UKOIL"
-      ],
-      "ccy": [
-        "OIL",
-        "XAU"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789384705000
-    },
-    {
-      "title": "Russian strike on passenger train will not deter Ukraine’s backers, Nato chief says - The Guardian",
-      "link": "https://news.google.com/rss/articles/CBMilwFBVV95cUxNckRIQkFXdUlrT2NDbDFSU2N5OWVqSjJwOWlGMTNTdW5DR1hUSnJkT2I3RUh0SUR5RFhsRlJ6dERmaVVjMUI0aXQxQkRoYWU2TUdwTGhrc0RZUF9seTE2YXdGbF9PUC1aRkJYdmVJa2M2TFRBSzRacU1Ib09nUWpIWUxjUzlWS01OcFFBdkpKLWNCV213bnNz?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMilwFBVV95cUxNckRIQkFXdUlrT2NDbDFSU2N5OWVqSjJwOWlGMTNTdW5DR1hUSnJkT2I3RUh0SUR5RFhsRlJ6dERmaVVjMUI0aXQxQkRoYWU2TUdwTGhrc0RZUF9seTE2YXdGbF9PUC1aRkJYdmVJa2M2TFRBSzRacU1Ib09nUWpIWUxjUzlWS01OcFFBdkpKLWNCV213bnNz?oc=5\" target=\"_blank\">Rus",
-      "at": 1789386420000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789384954000
     }
   ],
   "sources": [
@@ -2597,7 +2613,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-14T15:51:07.973Z",
-  "headlinesAt": "2026-09-14T15:51:07.973Z",
-  "updatedAt": "2026-09-14T15:51:07.973Z"
+  "calendarAt": "2026-09-14T15:52:08.989Z",
+  "headlinesAt": "2026-09-14T15:52:08.989Z",
+  "updatedAt": "2026-09-14T15:52:08.989Z"
 }
