@@ -941,7 +941,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789381416000,
-      "_kind": null
+      "_kind": null,
+      "why": "Geopolitical noise, no clear market direction"
     },
     {
       "title": "AirBaltic files for Chapter 11 bankruptcy as Iran war costs bite",
@@ -961,7 +962,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789383330000,
-      "_kind": null
+      "_kind": null,
+      "why": "Bankruptcy news, unclear macro impact"
     },
     {
       "title": "India's inflation rises further to 4.82% in August, reinforcing rate hike expectations",
@@ -985,7 +987,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789383204000,
-      "_kind": null
+      "_kind": null,
+      "why": "India data, irrelevant to listed pairs"
     },
     {
       "title": "FTSE 100 today: Stocks gain as Mideast supply fears lift oil",
@@ -1003,7 +1006,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789383034000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil up on supply fears, stocks gain"
     },
     {
       "title": "Dow Jones Futures: Techs Tumble As Anthropic Leads Call For AI Slowdown; Fed Meeting Ahead",
@@ -1020,7 +1027,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789382985000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US30": "down"
+      },
+      "why": "Techs tumble, AI slowdown fears"
     },
     {
       "title": "Russia strikes Ukrainian passenger train - Semafor",
@@ -1041,7 +1052,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789380523000,
-      "_kind": null
+      "_kind": null,
+      "why": "Geopolitical event, no clear price signal"
     },
     {
       "title": "U.S. links Chinese satellite images to DEADLY Iran strike, per WSJ - Modern Ghana",
@@ -1062,7 +1074,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789382557000,
-      "_kind": null
+      "_kind": null,
+      "why": "Geopolitical attribution, no clear market move"
     },
     {
       "title": "If You'd Invested $5,000 in the S&P 500 at the Great Recession Bottom, Here's What You'd Have Today",
@@ -1077,7 +1090,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789382280000,
-      "_kind": null
+      "_kind": null,
+      "why": "Historical performance, no current direction"
     },
     {
       "title": "Unwanted in the U.S., old oil equipment finds a new home in Venezuela",
@@ -1094,7 +1108,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789382236000,
-      "_kind": null
+      "why": "Equipment relocation, negligible supply impact"
     },
     {
       "title": "European stocks slip on AI safety pause, Fed rate bets weigh on sentiment",
@@ -1110,7 +1124,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789382125000
+      "firstAt": 1789382125000,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Stocks slip on AI and Fed bets"
     },
     {
       "title": "Fed rate hikes won’t bring down gas prices. Why the bond market is pushing for them anyway.",
@@ -1127,7 +1145,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789382100000
+      "firstAt": 1789382100000,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "High yields warn for stocks"
     },
     {
       "title": "4 Simple ETFs Built for Long-Term Buy-and-Hold Investors",
@@ -1153,7 +1175,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789381988000
+      "firstAt": 1789381988000,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Chip stocks fall on AI slowdown"
     },
     {
       "title": "Gold Is Down Since the Iran War Began. This Obscure Shipping ETF Is Up 1,168%.",
@@ -1172,7 +1198,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789381971000
+      "firstAt": 1789381971000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold down since war began"
     },
     {
       "title": "Gulf states call off meeting with Iran, Houthis launch new attack on Saudi",
@@ -1191,7 +1221,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789381953000
+      "firstAt": 1789381953000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Escalation fears lift oil prices"
     },
     {
       "title": "Why escalation is central to Iran's war strategy - India Today",
@@ -1211,7 +1246,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789381871000
+      "firstAt": 1789381871000,
+      "why": "Strategic analysis, no immediate price signal"
     },
     {
       "title": "Oil prices jump on fresh Mideast fighting, Hormuz meeting delay",
@@ -1724,6 +1760,26 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789378500000
+    },
+    {
+      "title": "EU ambassadors fail to agree on extending sanctions against Russia - Українська правда",
+      "link": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE5oV2FNdU84U2dUTHRhaGgzMjdfck9hanh5THVSci1KWjFoZHg3V056ZGdJbFVTOXk2N2t1cWdjWElqWW1IV2xwRDFGMjRUbU1oOGtvb2ZwNWp4NGp3UE5LcXozTjfSAXBBVV95cUxPODdTeU44Z0hJdC1kUHhaYkF5SmZNMlI2ekZwdFpDV094V29vYUFiODNJUU4zajMwektUQ1dxcXp4MC1GWXJ5Yk5mLUJmN0JBeEJ2UmViZlUyam1UdHJYVEo5VEhFMGJYY3lES2VnS0xR?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiZEFVX3lxTE5oV2FNdU84U2dUTHRhaGgzMjdfck9hanh5THVSci1KWjFoZHg3V056ZGdJbFVTOXk2N2t1cWdjWElqWW1IV2xwRDFGMjRUbU1oOGtvb2ZwNWp4NGp3UE5LcXozTjfSAXBBVV95cUxPODdTeU44Z0hJdC1kUHhaYkF5SmZNMlI2ekZwdFpDV094V29vYUFiODNJUU4zajMwektUQ1dxcXp4MC1GWX",
+      "at": 1789378440000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789378440000
     },
     {
       "title": "Swiss Franc nears yearly lows as Fed rate hike bets boost US Dollar - FXStreet",
@@ -2565,26 +2621,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789365702000
-    },
-    {
-      "title": "Trump calls on Ukraine to halt strikes on Russian diesel, saying attacks are causing a shortage - ET EnergyWorld",
-      "link": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxOb194bktaUklRUHFCVkhtVTB3dnZXRzFoTEwxUl9ScERMUUlHNWZtZWRpS2JaUHVkcGdJT2NzNkhCYWJTcmdTcEktQ09PV3dxUEhOaVdNbERXemthd2F6VnE1U25qQmg1VUxLTjJzcEdXQkxucEd4Vk1oX2xpSDh1LXpadWcyaElmZ3VyaDlkTnNaWDl2bmQwby1PUUxoLTl1SkIzU09sTWFJYkNSVzRjNEVjc1pzVXpwNUppdGdFeUlhOWdKSkdlVzI1Q3VZRlFPaS1wRFc5TXJXSEFTRTZTRDV2ZGs1VHo0bjA5bDlORm45MVJzWWxMZdIB_gFBVV95cUxOdXpVeWJVdm5fUzhFT0UxS05OWXZvTS1fWk9mbTlwcVp4cDFHVkdGZ2xmMnJwbG1HbnRxZmswN0p3WTZQR2EzUTN0MU95bklzYkJRTDVGSWNxRFA1NVFMcWhQZGloQk1RTXFVU0NlVDNxN2pwbnVmTUp0eEU0QXJQdVE4em0xZ3hKanFGYWo1UUVySDg0c2ZBMnJpeWdoQUN0VVNrSy01Rmw1eUplYk4wQlI5MHRsR05RckgyNXh6Uld6X0M5RzVDTzMxcUFiUFEwZ3hpNjhnVlREdWJNWkgwTFlvMVpGOEJ5U2lPbC1Jd0tpTVNGUmxVcm1fdWszUQ?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi-AFBVV95cUxOb194bktaUklRUHFCVkhtVTB3dnZXRzFoTEwxUl9ScERMUUlHNWZtZWRpS2JaUHVkcGdJT2NzNkhCYWJTcmdTcEktQ09PV3dxUEhOaVdNbERXemthd2F6VnE1U25qQmg1VUxLTjJzcEdXQkxucEd4Vk1oX2xpSDh1LXpadWcyaElmZ3VyaDlkTnNaWDl2bmQwby1PUUxoLTl1SkIzU09sTWFJYk",
-      "at": 1789364522000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789361940000
     }
   ],
   "sources": [
@@ -2610,7 +2646,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-14T11:06:19.631Z",
-  "headlinesAt": "2026-09-14T11:06:19.631Z",
-  "updatedAt": "2026-09-14T11:06:19.631Z"
+  "calendarAt": "2026-09-14T11:07:53.176Z",
+  "headlinesAt": "2026-09-14T11:07:53.176Z",
+  "updatedAt": "2026-09-14T11:07:53.176Z"
 }
