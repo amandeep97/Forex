@@ -2,6 +2,32 @@
   "calendar": [],
   "headlines": [
     {
+      "title": "Houthis attack Saudi Arabia as Gulf-Iran talks are postponed",
+      "link": "https://www.investing.com/news/commodities-news/diplomacy-stumbles-with-postponement-of-meeting-on-strait-of-hormuz-proposal-4898762",
+      "source": "Investing Cmdty",
+      "at": 1789418206000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 3,
+      "firstAt": 1789416300000,
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Geopolitical risk boosts gold and oil"
+    },
+    {
       "title": "The 10 most overvalued housing markets in America",
       "link": "https://www.marketwatch.com/story/the-10-most-overvalued-housing-markets-in-america-6d28efdf?mod=mw_rss_topstories",
       "source": "MarketWatch",
@@ -29,7 +55,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789418063000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Bank fee outlook weighs on sentiment"
     },
     {
       "title": "U.S. stocks lower at close of trade; Dow Jones Industrial Average down 0.29%",
@@ -45,7 +75,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789417863000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down",
+        "US30": "down"
+      },
+      "why": "Stocks lower at close of trade"
     },
     {
       "title": "Canada stocks higher at close of trade; S&P/TSX Composite up 0.01%",
@@ -63,7 +98,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789417833000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USD/CAD": "down"
+      },
+      "why": "Canada stocks higher, CAD stronger"
     },
     {
       "title": "Stocks fall as oil and bond yields rise",
@@ -81,7 +120,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789417824000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "US500": "down"
+      },
+      "why": "Oil rises, stocks fall"
     },
     {
       "title": "Brazil stocks lower at close of trade; Bovespa down 0.91%",
@@ -96,7 +140,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789417805000,
-      "_kind": null
+      "_kind": null,
+      "why": "Brazil stocks lower, no US impact"
     },
     {
       "title": "Oil pares gains on Iran diplomacy hopes, amid focus on key Saudi pipeline closure",
@@ -113,7 +158,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789416540000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Oil pares gains on diplomacy hopes"
     },
     {
       "title": "Finland shelters under French nuclear umbrella amid Russian, US uncertainty",
@@ -134,7 +183,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789417220000,
-      "_kind": null
+      "_kind": null,
+      "why": "Nuclear umbrella news unclear for markets"
     },
     {
       "title": "Economic & event calendar Asia Tuesday, September 15, 2026: China set to report August activity",
@@ -158,7 +208,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789417151000,
-      "_kind": null
+      "_kind": null,
+      "why": "Economic calendar, no immediate direction"
     },
     {
       "title": "Shafaq News..US targets Russia’s VTB with Iran-related sanctions - شفق نيوز",
@@ -179,24 +230,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789416843000,
-      "_kind": null
-    },
-    {
-      "title": "U.S. stocks end well off session lows as oil pares gains, countering slide in tech",
-      "link": "https://www.investing.com/news/stock-market-news/us-stock-futures-slide-on-calls-to-slow-ai-development-meast-escalation-4898779",
-      "source": "Investing",
-      "at": 1789416716000,
-      "inst": [
-        "USOIL",
-        "US500"
-      ],
-      "ccy": [
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789416716000
+      "why": "Sanctions news unclear for direction"
     },
     {
       "title": "Iran backed Houthi attack on Saudi pipeline threatens global supply - The Center Square",
@@ -216,7 +250,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789416540000
+      "firstAt": 1789416540000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Pipeline threat boosts oil and gold"
     },
     {
       "title": "Saudi Arabia may be just days away from not being able to export much oil",
@@ -233,8 +273,12 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789416300000
+      "srcs": 2,
+      "firstAt": 1789416300000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Export disruption drives oil prices up"
     },
     {
       "title": "Trump announced an ‘energy ceasefire’ between Russia and Ukraine, but the Financial Times reports that Moscow has not agreed to any deal - Meduza",
@@ -254,7 +298,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789414684000
+      "firstAt": 1789414684000,
+      "why": "Ceasefire uncertainty, no clear direction"
     },
     {
       "title": "US Government Announces New Iran Sanctions Measures - JD Supra",
@@ -274,7 +319,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789414186000
+      "firstAt": 1789414186000,
+      "why": "Sanctions announcement, direction unclear"
     },
     {
       "title": "Wheat futures fall on Black Sea conflict de-escalation hopes",
@@ -290,7 +336,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789414793000
+      "firstAt": 1789414793000,
+      "why": "Wheat news irrelevant to gold"
     },
     {
       "title": "Trump: Ukraine, Russia to Halt Strikes Ahead of Possible New Trilateral Talks - Kyiv Post",
@@ -395,7 +442,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789413475000
+      "firstAt": 1789413477000
     },
     {
       "title": "Crude Oil WTI bearish engulfing at $104.91: Live levels",
@@ -412,7 +459,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789413475000
+      "firstAt": 1789413477000
     },
     {
       "title": "London Gas Oil reverses from $1,530 high: Live levels",
@@ -428,7 +475,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789413475000
+      "firstAt": 1789413477000
     },
     {
       "title": "Brent Oil flashes bearish Marubozu at $105.32: Live levels",
@@ -445,7 +492,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789413475000
+      "firstAt": 1789413477000
     },
     {
       "title": "Silver tests 200 SMA at $63.92 with bearish momentum: Live levels",
@@ -461,7 +508,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789413475000
+      "firstAt": 1789413477000
     },
     {
       "title": "Fed Extends Pause on Reserve Management Purchases to Mid-October - Bloomberg.com",
@@ -999,7 +1046,7 @@
       "firstAt": 1789405981000
     },
     {
-      "title": "Donald Trump claims Russia and Ukraine have agreed energy truce - Financial Times",
+      "title": "Donald Trump claims Russia and Ukraine have agreed energy truce - ft.com",
       "link": "https://news.google.com/rss/articles/CBMihAFBVV95cUxQOXFPZ2FQOWs4aW93RkhsSWJKMlF1ZFREMGVzSTVQakdSNW12MW1HWTRnNHJPbmtTN3NqNEl0T2RqUXVZRW1QRk5LWWpNRU5RMDBlc2VyeXpnMkl1VDBqd0lzRXpZUTd5RnpWSUl0RkpOam9WZXVsUnZESURKV1BVQnpCZk8?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMihAFBVV95cUxQOXFPZ2FQOWs4aW93RkhsSWJKMlF1ZFREMGVzSTVQakdSNW12MW1HWTRnNHJPbmtTN3NqNEl0T2RqUXVZRW1QRk5LWWpNRU5RMDBlc2VyeXpnMkl1VDBqd0lzRXpZUTd5RnpWSUl0RkpOam9WZXVsUnZESURKV1BVQnpCZk8?oc=5\" target=\"_blank\">Donald Trump claims Russia a",
@@ -1276,7 +1323,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789402768000
+      "firstAt": 1789403189000
     },
     {
       "title": "Trump says Ukraine and Russia agree not to attack energy facilities - Ukrinform",
@@ -1376,7 +1423,7 @@
       "firstAt": 1789403022000
     },
     {
-      "title": "France in ‘astonishing’ push to lift EU sanctions on Russian oligarch - Financial Times",
+      "title": "France in ‘astonishing’ push to lift EU sanctions on Russian oligarch - ft.com",
       "link": "https://news.google.com/rss/articles/CBMihAFBVV95cUxPWWVMQVJUNktVX1hlSUJsbUhwYmNTZkhZMlFjSmxGWFR0OC04M3NCekJ3QjFVLUNvM0ZadXB2MHhBRGpDOTVkZVBoaDFFSG5GOGtzSlFvRjgzYXVQLWRoLWg3SDg0UXlGYWFfd3ZwNm1LU21uREVGU2ZfY0JCSmNJR2p3ZjY?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMihAFBVV95cUxPWWVMQVJUNktVX1hlSUJsbUhwYmNTZkhZMlFjSmxGWFR0OC04M3NCekJ3QjFVLUNvM0ZadXB2MHhBRGpDOTVkZVBoaDFFSG5GOGtzSlFvRjgzYXVQLWRoLWg3SDg0UXlGYWFfd3ZwNm1LU21uREVGU2ZfY0JCSmNJR2p3ZjY?oc=5\" target=\"_blank\">France in ‘astonishing’ push",
@@ -1766,6 +1813,6 @@
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-14T20:43:35.796Z",
-  "updatedAt": "2026-09-14T20:43:35.796Z"
+  "headlinesAt": "2026-09-14T20:44:37.447Z",
+  "updatedAt": "2026-09-14T20:44:37.447Z"
 }
