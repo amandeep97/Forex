@@ -20,7 +20,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789372231000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Sanctions boost safe havens and oil supply risk."
     },
     {
       "title": "Trump calls on Zelenskyy to halt Ukraine strikes on Russian diesel - Yahoo",
@@ -41,7 +47,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789370954000,
-      "_kind": null
+      "_kind": null,
+      "why": "Diplomatic call lacks immediate market directional impact."
     },
     {
       "title": "Goldman raises Gilt yield forecast as energy prices curb rate-cut hopes",
@@ -75,7 +82,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789370589000,
-      "_kind": null
+      "_kind": null,
+      "why": "CPI test implies uncertainty, no clear direction."
     },
     {
       "title": "Euro yields hold at multi-year peaks as crude surge precedes c.bank decisions",
@@ -95,7 +103,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789371488000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "EUR/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Yield peaks and crude surge support EUR and oil."
     },
     {
       "title": "Asian currencies under pressure as dollar gains, yen stays elevated",
@@ -113,7 +127,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789371204000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USD/JPY": "up"
+      },
+      "why": "Dollar gains and yen pressure imply pair rise."
     },
     {
       "title": "Overnight drone strikes hit three Russian regions, leaving casualties and damage - Межа. Новини України.",
@@ -134,7 +152,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789370954000,
-      "_kind": null
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Escalation boosts safe havens and oil supply risk."
     },
     {
       "title": "Video. Drone strikes hit key Ukraine-Poland supply route, sparking border fires - Euronews.com",
@@ -154,7 +177,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789370849000
+      "firstAt": 1789370849000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Supply route disruption boosts oil and safe havens."
     },
     {
       "title": "New Zealand Dollar declines as US Dollar gains on Fed rate hike bets - FXStreet",
@@ -172,7 +201,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789370589000
+      "firstAt": 1789370589000,
+      "dir": {
+        "NZD/USD": "down"
+      },
+      "why": "Dollar gains on Fed bets weaken NZD."
     },
     {
       "title": "AI-linked stocks slump after top lab CEOs call for slowing technology’s development",
@@ -186,7 +219,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789370310000
+      "firstAt": 1789370310000,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "AI stock slump drags index lower."
     },
     {
       "title": "Bali police investigate after Australian man and children found dead in home",
@@ -201,7 +238,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789370135000
+      "firstAt": 1789370135000,
+      "why": "Local tragedy has no clear macro impact."
     },
     {
       "title": "Crude Oil WTI stalls near $104.46 highs on fading momentum: Live",
@@ -218,7 +256,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789369873000
+      "firstAt": 1789369873000,
+      "why": "Stalling price action indicates no clear direction."
     },
     {
       "title": "Natural Gas tests $2.899 resistance cluster: Hourly levels",
@@ -232,7 +271,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789369892000
+      "firstAt": 1789369892000,
+      "why": "Testing resistance implies uncertainty, no clear break."
     },
     {
       "title": "London Gas Oil surges near $1,524 resistance: Live levels",
@@ -248,7 +288,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789369873000
+      "firstAt": 1789369873000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Surge in related product implies bullish oil sentiment."
     },
     {
       "title": "Silver tests 200 SMA at $64.08 amid double top risk: Live levels",
@@ -264,7 +308,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789369873000
+      "firstAt": 1789369873000,
+      "why": "Testing support with risk implies no clear direction."
     },
     {
       "title": "Gold clings to $4,355 confluence support: Live levels",
@@ -280,7 +325,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789369873000
+      "firstAt": 1789369873000,
+      "why": "Clinging to support implies no clear direction."
     },
     {
       "title": "Brent Oil consolidates near $107.64 amid bull fatigue: Live levels",
@@ -1725,10 +1771,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-14T07:59:20.082Z",
-  "updatedAt": "2026-09-14T07:59:20.082Z"
+  "headlinesAt": "2026-09-14T08:00:37.834Z",
+  "updatedAt": "2026-09-14T08:00:37.834Z"
 }
