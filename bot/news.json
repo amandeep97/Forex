@@ -942,7 +942,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789374783000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Dollar premium weighs on metals and pairs"
     },
     {
       "title": "Why Rum shares are surging today",
@@ -975,7 +981,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789373798000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "GBP/USD": "down",
+        "USOIL": "up"
+      },
+      "why": "Dollar rally weighs on pound, oil up"
     },
     {
       "title": "Russia May Launch More Drone Strikes on Ukraine From North and East - mezha.net",
@@ -995,7 +1006,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789370849000
+      "firstAt": 1789370849000,
+      "why": "Geopolitical risk unclear for specific instruments"
     },
     {
       "title": "Chevron eyes Argentina, Mediterranean for global LNG growth, deal with India",
@@ -1009,7 +1021,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789372851000
+      "firstAt": 1789372851000,
+      "why": "LNG growth news unclear for spot gas"
     },
     {
       "title": "AirBaltic files for Chapter 11 bankruptcy as Iran war costs bite",
@@ -1028,7 +1041,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789372524000
+      "firstAt": 1789372524000,
+      "why": "Bankruptcy news unclear for these instruments"
     },
     {
       "title": "Gold slips toward $4,300 as hotter inflation lifts Fed hike bets - Investing.com",
@@ -1046,7 +1060,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789372399000
+      "firstAt": 1789372399000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Hotter inflation lifts Fed hike bets, gold slips"
     },
     {
       "title": "US House set to vote on sweeping Russia sanctions bill - Quantum Commodity Intelligence",
@@ -1066,7 +1084,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789372231000
+      "firstAt": 1789372231000,
+      "why": "Sanctions bill direction unclear for these assets"
     },
     {
       "title": "Trump calls on Zelenskyy to halt Ukraine strikes on Russian diesel - Yahoo",
@@ -1086,7 +1105,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789370521000
+      "firstAt": 1789370521000,
+      "why": "Diplomatic call unclear for oil and gold"
     },
     {
       "title": "Goldman raises Gilt yield forecast as energy prices curb rate-cut hopes",
@@ -1118,7 +1138,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789370589000
+      "firstAt": 1789370589000,
+      "why": "CPI test direction unclear for CAD"
     },
     {
       "title": "Euro yields hold at multi-year peaks as crude surge precedes c.bank decisions",
@@ -1137,7 +1158,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789371488000
+      "firstAt": 1789371488000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Crude surge precedes central bank decisions"
     },
     {
       "title": "Asian currencies under pressure as dollar gains, yen stays elevated",
@@ -1154,7 +1180,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789371204000
+      "firstAt": 1789371204000,
+      "dir": {
+        "USD/JPY": "up"
+      },
+      "why": "Dollar gains, yen stays elevated"
     },
     {
       "title": "Video. Drone strikes hit key Ukraine-Poland supply route, sparking border fires - Euronews.com",
@@ -1174,7 +1204,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789370849000
+      "firstAt": 1789370849000,
+      "why": "Supply route strikes unclear for markets"
     },
     {
       "title": "Indonesian Rupiah slips due to stronger US Dollar, soaring oil prices - FXStreet",
@@ -1192,7 +1223,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789370589000
+      "firstAt": 1789370589000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Soaring oil prices mentioned in headline"
     },
     {
       "title": "Trump urges Ukraine to stop ‘knocking out’ Russian oil refineries as U.S. diesel hits record - CNBC",
@@ -1209,7 +1244,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789370521000
+      "firstAt": 1789370521000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Diesel hits record, refineries targeted"
     },
     {
       "title": "Bali police investigate after Australian man and children found dead in home",
@@ -1224,7 +1263,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789370135000
+      "firstAt": 1789370135000,
+      "why": "Local crime news irrelevant to currency"
     },
     {
       "title": "Crude Oil WTI stalls near $104.46 highs on fading momentum: Live",
@@ -2633,10 +2673,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-14T08:40:35.447Z",
-  "headlinesAt": "2026-09-14T08:40:35.447Z",
-  "updatedAt": "2026-09-14T08:40:35.447Z"
+  "calendarAt": "2026-09-14T08:41:51.166Z",
+  "headlinesAt": "2026-09-14T08:41:51.166Z",
+  "updatedAt": "2026-09-14T08:41:51.166Z"
 }
