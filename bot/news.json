@@ -951,7 +951,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789409640000,
-      "_kind": null
+      "_kind": null,
+      "why": "Yield pullback unclear for oil direction"
     },
     {
       "title": "Ukraine Wants Specifics From Partners on Halting Strikes, Zelensky Says - The Moscow Times",
@@ -972,7 +973,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789408746000,
-      "_kind": null
+      "_kind": null,
+      "why": "Ukraine seeks specifics, no clear direction"
     },
     {
       "title": "Trump says Russia, Ukraine agree to halt strikes on each other's energy facilities - A News",
@@ -993,7 +995,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789406625000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Ceasefire talks reduce geopolitical risk premium"
     },
     {
       "title": "Global AI stocks fall as industry chiefs call for slowing development",
@@ -1008,7 +1016,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789409203000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "AI stocks fall on slowing development calls"
     },
     {
       "title": "GE Vernova and Corning among market cap stock movers on Monday",
@@ -1038,7 +1050,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789408837000,
-      "_kind": null
+      "_kind": null,
+      "why": "Data release due, direction unknown"
     },
     {
       "title": "Trump says Ukraine and Russia agreed to halt strikes on energy. Zelenskyy is not so sure. - politico.eu",
@@ -1059,7 +1072,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789406100000,
-      "_kind": null
+      "_kind": null,
+      "why": "Disagreement on ceasefire creates uncertainty"
     },
     {
       "title": "Stocks making the biggest moves midday: Zscaler, CrowdStrike, Marvell Technology, Rum Group & more",
@@ -1075,7 +1089,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789408734000,
-      "_kind": null
+      "_kind": null,
+      "why": "Individual stock moves, no index direction"
     },
     {
       "title": "Trump: AI will be the greatest economic development engine in history",
@@ -1094,7 +1109,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789408431000
+      "firstAt": 1789408431000,
+      "why": "AI optimism unclear for gold/oil"
     },
     {
       "title": "Iran’s proxy money machine: How the Houthis built a multibillion-dollar network despite US sanctions - Fox News",
@@ -1115,7 +1131,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789407791000
+      "firstAt": 1789407791000,
+      "why": "Houthi network details, no immediate impact"
     },
     {
       "title": "Gold has delivered 23% returns since 2019: Why investors should factor in inflation when estimating future returns - Livemint",
@@ -1133,7 +1150,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789407990000
+      "firstAt": 1789407990000,
+      "why": "Historical returns analysis, no new signal"
     },
     {
       "title": "Inflation is sinking your high-yield savings account’s returns. Here’s one way to fight it.",
@@ -1156,7 +1174,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789407960000
+      "firstAt": 1789407960000,
+      "why": "Savings account advice, no market direction"
     },
     {
       "title": "Risk trades steadily rebound on Trump's talk about AI and energy",
@@ -1174,7 +1193,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789407818000
+      "firstAt": 1789407818000,
+      "dir": {
+        "USOIL": "up",
+        "US500": "up"
+      },
+      "why": "Risk trades rebound on AI/energy talk"
     },
     {
       "title": "Houthis attack Saudi Arabia as Gulf-Iran talks are postponed",
@@ -1193,7 +1217,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789407791000
+      "firstAt": 1789407791000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Houthi attack increases geopolitical risk"
     },
     {
       "title": "Carney pitches Canada to global investors amid US trade war",
@@ -1212,7 +1242,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789407046000
+      "firstAt": 1789407046000,
+      "dir": {
+        "USD/CAD": "down"
+      },
+      "why": "Canada investment pitch weakens USD/CAD"
     },
     {
       "title": "Congress returns with packed legislative agenda from budget resolution to Russia sanctions - The Hill",
@@ -1232,7 +1266,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789405981000
+      "firstAt": 1789405981000,
+      "why": "Legislative agenda unclear for markets"
     },
     {
       "title": "Carney, locked in US trade war, pitches Canada to global investment titans",
@@ -2681,7 +2716,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-14T18:25:50.632Z",
-  "headlinesAt": "2026-09-14T18:25:50.632Z",
-  "updatedAt": "2026-09-14T18:25:50.632Z"
+  "calendarAt": "2026-09-14T18:27:22.624Z",
+  "headlinesAt": "2026-09-14T18:27:22.624Z",
+  "updatedAt": "2026-09-14T18:27:22.624Z"
 }
