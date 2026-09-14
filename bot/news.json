@@ -2,6 +2,31 @@
   "calendar": [],
   "headlines": [
     {
+      "title": "S&P 500, Nasdaq fall on AI slowdown fears, oil price surge",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/p-500-nasdaq-fall-ai-134819710.html",
+      "source": "Yahoo Finance",
+      "at": 1789393699000,
+      "inst": [
+        "USOIL",
+        "US500",
+        "US100"
+      ],
+      "ccy": [
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1789392918000,
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "US500": "down",
+        "US100": "down"
+      },
+      "why": "Oil up, stocks down on AI fears"
+    },
+    {
       "title": "Chip stocks fall as oil prices gain, Treasury yields stay elevated: AlphaCheck",
       "link": "https://finance.yahoo.com/markets/article/chip-stocks-fall-as-oil-prices-gain-treasury-yields-stay-elevated-alphacheck-134519544.html",
       "source": "Yahoo Finance",
@@ -18,7 +43,12 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789390971000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "US500": "down"
+      },
+      "why": "Oil gains, chip stocks fall"
     },
     {
       "title": "Here’s how to prepare your portfolio for the Fed’s next interest-rate moves",
@@ -36,7 +66,31 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789392659000,
-      "_kind": null
+      "_kind": null,
+      "why": "Portfolio advice, no immediate direction"
+    },
+    {
+      "title": "Stock Market Today: Dow Falls On Surging Oil; Nvidia, Micron, Sandisk Dive On AI Warning (Live Coverage)",
+      "link": "https://www.investors.com/market-trend/stock-market-today/dow-jones-sp500-nasdaq-oil-prices-nvidia-nvda-stock-ai-warning/?src=A00220&yptr=yahoo",
+      "source": "Yahoo Finance",
+      "at": 1789393461000,
+      "inst": [
+        "USOIL",
+        "US30"
+      ],
+      "ccy": [
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1789391893000,
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "US30": "down"
+      },
+      "why": "Dow falls, oil surges"
     },
     {
       "title": "FTSE 100 today: Stocks gain as Mideast supply fears lift oil",
@@ -54,7 +108,56 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789393377000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil up, FTSE up, US unclear"
+    },
+    {
+      "title": "NATO chief Rutte vows more support for Ukraine after Russian drone strikes near Polish border - the-journal.com",
+      "link": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxOQmMxSVcyNjdwd0NmMzRnZWZXX3lpdm45aC1YRGExUnFINkxUR0pWUG5ZWkJkbmlYOWxldG9tWVJ1OS12bGx2Q1NtY2hpY2hZaXJjRG1kakczZHRHZVl5STlLTWJoc0tDc2hlakgyUE5Kd3lJcjJWM01MRkoyTU9fck1kQmpfWm9KLU8zQ2hkcVBCcFNLa0JWTk9oQk9ieGRLTlBHcGhjUFdjQVlESVNuSlFoZUQ3eDdoczBzYWtJc2s1YXFXcEU3eGdwMURuQzl4bjRIa1Q0dWoxbmNQMDhyVnJ3?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi4gFBVV95cUxOQmMxSVcyNjdwd0NmMzRnZWZXX3lpdm45aC1YRGExUnFINkxUR0pWUG5ZWkJkbmlYOWxldG9tWVJ1OS12bGx2Q1NtY2hpY2hZaXJjRG1kakczZHRHZVl5STlLTWJoc0tDc2hlakgyUE5Kd3lJcjJWM01MRkoyTU9fck1kQmpfWm9KLU8zQ2hkcVBCcFNLa0JWTk9oQk9ieGRLTlBHcGhjUFdjQV",
+      "at": 1789393115000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789391160000,
+      "_kind": null,
+      "why": "Geopolitical news, no clear market direction"
+    },
+    {
+      "title": "Stock Market Today (Sept. 14, 2026): S&P 500 falls on rising oil prices, sagging AI stocks",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/stock-market-today-sept-14-133832281.html",
+      "source": "Yahoo Finance",
+      "at": 1789393112000,
+      "inst": [
+        "USOIL",
+        "US500"
+      ],
+      "ccy": [
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789393112000,
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "US500": "down"
+      },
+      "why": "S&P falls, oil rises"
     },
     {
       "title": "Micron, Nvidia and other chip stocks fall after tech leaders call for an AI slowdown. Here’s what to know.",
@@ -70,7 +173,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789391893000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Chip stocks fall on AI warning"
     },
     {
       "title": "Unwanted in the U.S., old oil equipment finds a new home in Venezuela",
@@ -87,7 +194,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789393004000,
-      "_kind": null
+      "_kind": null,
+      "why": "Equipment relocation, no price impact"
     },
     {
       "title": "Nasdaq leads U.S. stocks lower at the open on AI development slowdown calls",
@@ -101,9 +209,14 @@
       "ccy": [],
       "sev": 1,
       "rel": 2,
-      "srcs": 1,
+      "srcs": 2,
       "firstAt": 1789392918000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down",
+        "US100": "down"
+      },
+      "why": "Nasdaq leads stocks lower"
     },
     {
       "title": "Costco rations Kirkland motor oil, raises price to $57.99",
@@ -120,7 +233,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789392788000,
-      "_kind": null
+      "_kind": null,
+      "why": "Retail product news, not crude market"
     },
     {
       "title": "Clear Secure Chief Accounting Officer Sells 6,059 Shares",
@@ -189,7 +303,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789392614000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Analyst predicts massive S&P drop"
     },
     {
       "title": "‘Attacks will be fully autonomous’: Russia, Ukraine race towards AI warfare - Al Jazeera",
@@ -210,7 +328,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789392104000,
-      "_kind": null
+      "_kind": null,
+      "why": "AI warfare news, no clear direction"
     },
     {
       "title": "Stellantis Shares Fall After Morgan Stanley Downgrades Stock to Underweight",
@@ -222,8 +341,7 @@
       "sev": 2,
       "rel": 1,
       "srcs": 1,
-      "firstAt": 1789392247000,
-      "_kind": null
+      "firstAt": 1789392247000
     },
     {
       "title": "Chip Stocks Tumble as AI Pacing Call Reaches Beyond Memory: Intel Drops 7%, AMD Sinks 6%, NVIDIA Pulls Back",
@@ -238,7 +356,10 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789391893000,
-      "_kind": null
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Chip stocks tumble"
     },
     {
       "title": "Canadian Dollar remains under pressure following mixed inflation data - FXStreet",
@@ -256,7 +377,10 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789390453000,
-      "_kind": null
+      "dir": {
+        "USD/CAD": "up"
+      },
+      "why": "CAD under pressure implies USD strength"
     },
     {
       "title": "Definium, Up 190% This Year, Succeeds Again With Synthetic LSD; Shares Fly",
@@ -268,8 +392,7 @@
       "sev": 1,
       "rel": 1,
       "srcs": 1,
-      "firstAt": 1789392197000,
-      "_kind": null
+      "firstAt": 1789392197000
     },
     {
       "title": "Russia aims to 'scare' Western countries after strike near a train at Ukraine-Poland border: EU - TRT World",
@@ -403,18 +526,6 @@
       "firstAt": 1789391160000
     },
     {
-      "title": "Skyworks Is Trading 18% Above Its Own Price Target. Overbought or Something Else?",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/skyworks-trading-18-above-own-130528031.html",
-      "source": "Yahoo Finance",
-      "at": 1789391128000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1789391128000
-    },
-    {
       "title": "US Treasury Yields Climb Toward 5% as Oil Prices Stoke Inflation Fears - Межа. Новини України.",
       "link": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE5WVWthZTc2eG9DQTlKVERSU2IwMWFiRG5BS1JPZk1IQkdzOVBMZENFY0dIbFVYYkhQS0lTUWp0ak50WVJjMDlwNC11djBMSDR3cV81dFU4aWdPbFA2c1lFLWxlRmphUQ?oc=5",
       "source": "Wires (macro)",
@@ -448,23 +559,6 @@
       "rel": 2,
       "srcs": 3,
       "firstAt": 1789390686000
-    },
-    {
-      "title": "Stock Market Today: Dow Falls On Surging Oil; Nvidia Sells Off On AI Warning (Live Coverage)",
-      "link": "https://www.investors.com/market-trend/stock-market-today/dow-jones-sp500-nasdaq-oil-prices-nvidia-nvda-stock-ai-warning/?src=A00220&yptr=yahoo",
-      "source": "Yahoo Finance",
-      "at": 1789390754000,
-      "inst": [
-        "USOIL",
-        "US30"
-      ],
-      "ccy": [
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789390754000
     },
     {
       "title": "Saudi east-west pipeline will be out of service for 3-5 weeks - report",
@@ -1587,46 +1681,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789378308000
-    },
-    {
-      "title": "Russia massively launching petrol-powered drones again, threat of attack throughout the day - Українська правда",
-      "link": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE02bXZ2U1Q1a3NUSXdodkxzNkJuU1J1cTVPUWZIOXVVaU9mWE5tMUt2X29oMGRhRUQ3cmRQRG5CMnpRUXhJbTc0VVp3b3pPRnlyMjcza0hqanpYM3BkVE5FZVRnakLSAXBBVV95cUxQUThaQXhCQXg2clFWTlVwdm1kUXB2aEJHYzEydUtIZmUyTHljbGMzdHhJaHpCM2JZbEpQWmJnd1E0MHNPOEJOb2hkWGEwZEF2UktYaWMxUDRVeXg1azFfelA5Zm5qWFJCY2VDenVnNFF4?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiZEFVX3lxTE02bXZ2U1Q1a3NUSXdodkxzNkJuU1J1cTVPUWZIOXVVaU9mWE5tMUt2X29oMGRhRUQ3cmRQRG5CMnpRUXhJbTc0VVp3b3pPRnlyMjcza0hqanpYM3BkVE5FZVRnakLSAXBBVV95cUxQUThaQXhCQXg2clFWTlVwdm1kUXB2aEJHYzEydUtIZmUyTHljbGMzdHhJaHpCM2JZbEpQWmJnd1E0MHNPOE",
-      "at": 1789378500000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789378500000
-    },
-    {
-      "title": "EU ambassadors fail to agree on extending sanctions against Russia - Українська правда",
-      "link": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE5oV2FNdU84U2dUTHRhaGgzMjdfck9hanh5THVSci1KWjFoZHg3V056ZGdJbFVTOXk2N2t1cWdjWElqWW1IV2xwRDFGMjRUbU1oOGtvb2ZwNWp4NGp3UE5LcXozTjfSAXBBVV95cUxPODdTeU44Z0hJdC1kUHhaYkF5SmZNMlI2ekZwdFpDV094V29vYUFiODNJUU4zajMwektUQ1dxcXp4MC1GWXJ5Yk5mLUJmN0JBeEJ2UmViZlUyam1UdHJYVEo5VEhFMGJYY3lES2VnS0xR?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiZEFVX3lxTE5oV2FNdU84U2dUTHRhaGgzMjdfck9hanh5THVSci1KWjFoZHg3V056ZGdJbFVTOXk2N2t1cWdjWElqWW1IV2xwRDFGMjRUbU1oOGtvb2ZwNWp4NGp3UE5LcXozTjfSAXBBVV95cUxPODdTeU44Z0hJdC1kUHhaYkF5SmZNMlI2ekZwdFpDV094V29vYUFiODNJUU4zajMwektUQ1dxcXp4MC1GWX",
-      "at": 1789378440000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789378020000
     }
   ],
   "sources": [
@@ -1653,6 +1707,6 @@
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-14T13:53:22.312Z",
-  "updatedAt": "2026-09-14T13:53:22.312Z"
+  "headlinesAt": "2026-09-14T13:54:53.011Z",
+  "updatedAt": "2026-09-14T13:54:53.011Z"
 }
