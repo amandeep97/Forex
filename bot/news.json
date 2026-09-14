@@ -2,6 +2,47 @@
   "calendar": [],
   "headlines": [
     {
+      "title": "Newmont outlook revised to positive by S&P on debt cuts",
+      "link": "https://www.investing.com/news/stock-market-news/newmont-outlook-revised-to-positive-by-sp-on-debt-cuts-93CH-4900492",
+      "source": "Investing",
+      "at": 1789419021000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789419021000,
+      "_kind": null,
+      "why": "Mining stock news, not index specific"
+    },
+    {
+      "title": "Oil settles higher after Saudi strikes stoke supply worries",
+      "link": "https://www.investing.com/news/commodities-news/oil-prices-climb-over-2-after-strikes-on-saudi-pipeline-and-ships-in-middle-east-4900107",
+      "source": "Investing Cmdty",
+      "at": 1789418945000,
+      "inst": [
+        "USOIL",
+        "XAU/USD",
+        "UKOIL"
+      ],
+      "ccy": [
+        "OIL",
+        "XAU"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1789416540000,
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Oil settles higher on supply worries"
+    },
+    {
       "title": "Warsh's credibility is on the line this week as Trump policies put pressure on Fed to hike",
       "link": "https://www.cnbc.com/2026/09/14/warshs-credibility-is-on-the-line-this-week-as-trump-policies-put-pressure-on-fed-to-hike.html",
       "source": "CNBC Markets",
@@ -18,7 +59,26 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789418943000,
-      "_kind": null
+      "_kind": null,
+      "why": "Fed policy uncertainty, no clear oil direction"
+    },
+    {
+      "title": "US oil export ban unlikely to lower energy prices, Interior secretary says",
+      "link": "https://www.investing.com/news/commodities-news/us-oil-export-ban-unlikely-to-lower-energy-prices-interior-secretary-says-4900489",
+      "source": "Investing Cmdty",
+      "at": 1789418915000,
+      "inst": [
+        "USOIL"
+      ],
+      "ccy": [
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789418915000,
+      "_kind": null,
+      "why": "Official denies price impact, direction unclear"
     },
     {
       "title": "US imposes sanctions on VTB over ties with Iran - UA.NEWS",
@@ -39,7 +99,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789418128000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions news, immediate market impact unclear"
     },
     {
       "title": "10-year Treasury yield hits 5% as oil prices jump and Fed meeting looms",
@@ -58,7 +119,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789418820000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil prices jump explicitly stated"
     },
     {
       "title": "Gold price fall deepens to $4,331 as Fed rate hike bets hit 88% - Cryptonews.net",
@@ -77,7 +142,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789418703000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold price fall deepens explicitly stated"
     },
     {
       "title": "Trump Administration Sanctions Russia’s VTB Bank Over Alleged Iran Links - Межа. Новини України.",
@@ -98,7 +167,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789416843000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions news, immediate market impact unclear"
     },
     {
       "title": "Defense: Jeffries not taking sides on Russia sanctions bill - Punchbowl News",
@@ -119,7 +189,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789418563000,
-      "_kind": null
+      "_kind": null,
+      "why": "Political stance, no direct market signal"
     },
     {
       "title": "Inside the Houthis’ expanding war economy in Yemen",
@@ -137,7 +208,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789418507000,
-      "_kind": null
+      "_kind": null,
+      "why": "Geopolitical context, no direct price signal"
     },
     {
       "title": "Houthis attack Saudi Arabia as Gulf-Iran talks are postponed",
@@ -157,7 +229,13 @@
       "rel": 2,
       "srcs": 3,
       "firstAt": 1789416300000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Attacks stoke supply and safety concerns"
     },
     {
       "title": "U.S. Imposes Sanctions on Russia’s VTB Bank Over Ties to Iran - The New York Times",
@@ -178,7 +256,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789415700000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions news, immediate market impact unclear"
     },
     {
       "title": "The 10 most overvalued housing markets in America",
@@ -208,7 +287,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789418063000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Bank shares slide, negative sector signal"
     },
     {
       "title": "U.S. stocks lower at close of trade; Dow Jones Industrial Average down 0.29%",
@@ -224,7 +307,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789417863000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down",
+        "US30": "down"
+      },
+      "why": "Stocks lower, Dow down explicitly stated"
     },
     {
       "title": "Canada stocks higher at close of trade; S&P/TSX Composite up 0.01%",
@@ -242,7 +330,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789417833000,
-      "_kind": null
+      "_kind": null,
+      "why": "Canada stocks up, US impact unclear"
     },
     {
       "title": "Stocks fall as oil and bond yields rise",
@@ -260,21 +349,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789417824000,
-      "_kind": null
-    },
-    {
-      "title": "Brazil stocks lower at close of trade; Bovespa down 0.91%",
-      "link": "https://www.investing.com/news/stock-market-news/brazil-stocks-lower-at-close-of-trade-bovespa-down-091-4900427",
-      "source": "Investing",
-      "at": 1789417805000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789417805000,
       "_kind": null
     },
     {
@@ -580,25 +654,6 @@
       "firstAt": 1789411694000
     },
     {
-      "title": "Oil settles higher after Saudi strikes stoke supply worries",
-      "link": "https://www.investing.com/news/commodities-news/oil-prices-climb-over-2-after-strikes-on-saudi-pipeline-and-ships-in-middle-east-4900107",
-      "source": "Investing Cmdty",
-      "at": 1789413504000,
-      "inst": [
-        "USOIL",
-        "XAU/USD",
-        "UKOIL"
-      ],
-      "ccy": [
-        "OIL",
-        "XAU"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789413504000
-    },
-    {
       "title": "Natural Gas stuck in $2.82-$2.88 range: Live levels",
       "link": "https://www.investing.com/news/commodities-news/natural-gas-tests-2899-resistance-cluster-hourly-levels-93CH-4898874",
       "source": "Investing Cmdty",
@@ -610,7 +665,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789413477000
+      "firstAt": 1789413479000
     },
     {
       "title": "Crude Oil WTI bearish engulfing at $104.91: Live levels",
@@ -627,7 +682,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789413477000
+      "firstAt": 1789413479000
     },
     {
       "title": "London Gas Oil reverses from $1,530 high: Live levels",
@@ -643,7 +698,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789413477000
+      "firstAt": 1789413479000
     },
     {
       "title": "Brent Oil flashes bearish Marubozu at $105.32: Live levels",
@@ -660,23 +715,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789413477000
-    },
-    {
-      "title": "Silver tests 200 SMA at $63.92 with bearish momentum: Live levels",
-      "link": "https://www.investing.com/news/commodities-news/silver-tests-200-sma-at-6408-amid-double-top-risk-live-levels-93CH-4898870",
-      "source": "Investing Cmdty",
-      "at": 1789413477000,
-      "inst": [
-        "XAG/USD"
-      ],
-      "ccy": [
-        "XAG"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789413477000
+      "firstAt": 1789413479000
     },
     {
       "title": "Fed Extends Pause on Reserve Management Purchases to Mid-October - Bloomberg.com",
@@ -1756,6 +1795,6 @@
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-14T20:55:50.980Z",
-  "updatedAt": "2026-09-14T20:55:50.980Z"
+  "headlinesAt": "2026-09-14T20:57:24.168Z",
+  "updatedAt": "2026-09-14T20:57:24.168Z"
 }
