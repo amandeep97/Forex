@@ -20,7 +20,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789384860000,
-      "_kind": null
+      "_kind": null,
+      "why": "Geopolitical headline lacks clear immediate market direction"
     },
     {
       "title": "Ukraine strikes Black Sea resort near Putin’s villa - The Telegraph",
@@ -41,7 +42,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789384920000,
-      "_kind": null
+      "_kind": null,
+      "why": "Ukraine strike news unclear for these instruments."
     },
     {
       "title": "Ukraine war briefing: Poland calls for ‘double’ support to Kyiv after Russian train attack - theguardian.com",
@@ -62,7 +64,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789384860000,
-      "_kind": null
+      "_kind": null,
+      "why": "War briefing unclear for specific asset direction."
     },
     {
       "title": "Gold prices today, Monday, September 14, 2026: Gold sinks following new attacks on Saudi pipeline and more",
@@ -82,7 +85,11 @@
       "rel": 2,
       "srcs": 3,
       "firstAt": 1789383460000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold sinks following new attacks."
     },
     {
       "title": "AI has carried the stock market. An industry pause could pull the rug out, warns this Wall Street giant.",
@@ -98,7 +105,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789384500000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "AI pause warning implies market pullback."
     },
     {
       "title": "Gold awaits Fed decision as rising rate hike bets pressure prices - FXStreet",
@@ -117,7 +128,11 @@
       "rel": 2,
       "srcs": 3,
       "firstAt": 1789384060000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Rising rate hike bets pressure gold prices."
     },
     {
       "title": "Dow Jones Futures: Techs Tumble As Anthropic Leads Call For AI Slowdown; Fed Meeting Ahead",
@@ -134,7 +149,30 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789384417000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US30": "down"
+      },
+      "why": "Techs tumble as AI slowdown called."
+    },
+    {
+      "title": "Global AI stocks fall as industry chiefs call for slowing development",
+      "link": "https://www.investing.com/news/stock-market-news/ailinked-asian-stocks-slump-after-top-lab-ceos-call-for-slowing-down-technologys-development-4898809",
+      "source": "Investing",
+      "at": 1789384409000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789384409000,
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Global AI stocks fall on slowdown calls."
     },
     {
       "title": "Gold Loses Glitter As Fed Decision Nears, Slips Below $4,300 On Strong Rate Hike Bets - NDTV Profit",
@@ -153,7 +191,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789384060000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold slips below $4,300 on hike bets."
     },
     {
       "title": "Anthropic selects Nasdaq for planned IPO listing",
@@ -168,7 +210,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789384227000,
-      "_kind": null
+      "_kind": null,
+      "why": "IPO listing news unclear for index direction."
     },
     {
       "title": "Gold slip as firm inflation bolsters Fed hike bets",
@@ -186,7 +229,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789384060000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold slips as inflation boosts hike bets."
     },
     {
       "title": "AirBaltic files for Chapter 11 bankruptcy as Iran war costs bite",
@@ -206,7 +253,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789384011000,
-      "_kind": null
+      "_kind": null,
+      "why": "AirBaltic bankruptcy unclear for these instruments."
     },
     {
       "title": "This Nuclear Stock Is Down This Month. Time to Buy the Dip?",
@@ -223,20 +271,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789383840000,
-      "_kind": null
-    },
-    {
-      "title": "India Begins Tokenizing Its $620 Billion Corporate Bond Market",
-      "link": "https://finance.yahoo.com/markets/crypto/articles/india-begins-tokenizing-620-billion-110105449.html",
-      "source": "Yahoo Finance",
-      "at": 1789383665000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789383665000,
-      "_kind": null
+      "_kind": null,
+      "why": "Nuclear stock news irrelevant to gold."
     },
     {
       "title": "French Minister Says Russia Used Train Strike to Try to Divide European Allies - Межа. Новини України.",
@@ -258,23 +294,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789381416000
-    },
-    {
-      "title": "Can the bull market survive surging oil prices & bond yields?",
-      "link": "https://www.investing.com/news/stock-market-news/can-the-bull-market-survive-surging-oil-prices--bond-yields-4899190",
-      "source": "Investing",
-      "at": 1789383508000,
-      "inst": [
-        "USOIL"
-      ],
-      "ccy": [
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789383508000
+      "firstAt": 1789381416000,
+      "why": "Political statement unclear for market direction."
     },
     {
       "title": "Iran: Strait of Hormuz to stay closed as Saudi pipeline shutdown adds pressure - newsnationnow.com",
@@ -297,7 +318,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 4,
-      "firstAt": 1789381800000
+      "firstAt": 1789381800000,
+      "why": "Strait closure and pipeline shutdown boost oil."
     },
     {
       "title": "India's inflation rises further to 4.82% in August, reinforcing rate hike expectations",
@@ -341,23 +363,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789383128000
-    },
-    {
-      "title": "FTSE 100 today: Stocks gain as Mideast supply fears lift oil",
-      "link": "https://www.investing.com/news/stock-market-news/ftse-100-today-stocks-gain-as-mideast-supply-fears-lift-oil-4898877",
-      "source": "Investing",
-      "at": 1789383034000,
-      "inst": [
-        "USOIL",
-        "US500"
-      ],
-      "ccy": [
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789383034000
     },
     {
       "title": "Russia strikes Ukrainian passenger train - Semafor",
@@ -414,22 +419,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789382236000
-    },
-    {
-      "title": "European stocks slip on AI safety pause, Fed rate bets weigh on sentiment",
-      "link": "https://www.investing.com/news/stock-market-news/european-stocks-slip-on-ai-safety-pause-fed-rate-bets-weigh-on-sentiment-4898834",
-      "source": "Investing",
-      "at": 1789382125000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789382125000
     },
     {
       "title": "Fed rate hikes won’t bring down gas prices. Why the bond market is pushing for them anyway.",
@@ -1676,6 +1665,62 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789364522000
+    },
+    {
+      "title": "UK Markets Brief: A BoE Rate Hike Surprise Is Still Possible, and Amazon Joins the Bond Boom - Morningstar",
+      "link": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxPUkJvb01BUDczbl9Tb0xseXRkOXNyUmNuOHN0Qm5Dek5JbTdoTnRWZ3N1dXJlbFg1M2hGd2o1SDZvcHJranlsLU9pSGtTWnZiYnVXZHJNXzFGbWFfemMzSXU0MlFqT2pHTm5rUWRRX3dEX1RzM05kUUwxOGg4QnlkVnBpdGJReVpYNmdiSzJ5NUZqNTJFV1BPV1BkN0x6N01WMEJ3M3NRbGFaeENDT1hwZTM3TlNiU2VxeUN0blpUdWRDcWc?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiwwFBVV95cUxPUkJvb01BUDczbl9Tb0xseXRkOXNyUmNuOHN0Qm5Dek5JbTdoTnRWZ3N1dXJlbFg1M2hGd2o1SDZvcHJranlsLU9pSGtTWnZiYnVXZHJNXzFGbWFfemMzSXU0MlFqT2pHTm5rUWRRX3dEX1RzM05kUUwxOGg4QnlkVnBpdGJReVpYNmdiSzJ5NUZqNTJFV1BPV1BkN0x6N01WMEJ3M3NRbGFaeE",
+      "at": 1789366669000,
+      "inst": [
+        "GBP/USD"
+      ],
+      "ccy": [
+        "GBP",
+        "USD"
+      ],
+      "sev": 3,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789366668000
+    },
+    {
+      "title": "Gold Softens as Markets Brace for Fed Rate Hike - TradingPedia",
+      "link": "https://news.google.com/rss/articles/CBMikgFBVV95cUxOdWZOMzBDVFRHTE9jc1VobmlSYjVMYW5KZWZ5V2stdlNvbFdIT0RGUFlrZ0RSUWpfMkc5M0FzLTVoMlBRN2ctYm9jdWlDNGczOHYwYUlzRkVoNF9RbF9ZNkZjR3ZKcVFyWURETE10VER4ODAwVWhKaGZDekU0ZXpiR0NGZmx6ZGtmR2g3TVllem1Udw?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMikgFBVV95cUxOdWZOMzBDVFRHTE9jc1VobmlSYjVMYW5KZWZ5V2stdlNvbFdIT0RGUFlrZ0RSUWpfMkc5M0FzLTVoMlBRN2ctYm9jdWlDNGczOHYwYUlzRkVoNF9RbF9ZNkZjR3ZKcVFyWURETE10VER4ODAwVWhKaGZDekU0ZXpiR0NGZmx6ZGtmR2g3TVllem1Udw?oc=5\" target=\"_blank\">Gold Soft",
+      "at": 1789366668000,
+      "inst": [
+        "XAU/USD"
+      ],
+      "ccy": [
+        "USD",
+        "XAU"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789366668000
+    },
+    {
+      "title": "A New Sanctions Regime: Targeting Israel’s West Bank Settlements - CounterPunch.org",
+      "link": "https://news.google.com/rss/articles/CBMipgFBVV95cUxPR1Q2OUNzTFk0cm5TNHdRLVFmV056Q2VvbFdFeTR4YlFHVlNhOHgxd0pMYkNtZXVVUThHZG4xSkF2NGR0M1p1OFhseEtOYUxPck83OU9ramQyQjlfM0ZJTFRnTkxmOE5BenE2eVNEMU1pdWZobEJudUkzZ29QbHZJQUFKNk1vQ1Q0bXZfWVQyTEV3ZktVODRaUUFOdjBoa2I3X3hjdklR?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMipgFBVV95cUxPR1Q2OUNzTFk0cm5TNHdRLVFmV056Q2VvbFdFeTR4YlFHVlNhOHgxd0pMYkNtZXVVUThHZG4xSkF2NGR0M1p1OFhseEtOYUxPck83OU9ramQyQjlfM0ZJTFRnTkxmOE5BenE2eVNEMU1pdWZobEJudUkzZ29QbHZJQUFKNk1vQ1Q0bXZfWVQyTEV3ZktVODRaUUFOdjBoa2I3X3hjdklR?oc=5\"",
+      "at": 1789365702000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789365702000
     }
   ],
   "sources": [
@@ -1702,6 +1747,6 @@
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-14T11:31:19.825Z",
-  "updatedAt": "2026-09-14T11:31:19.825Z"
+  "headlinesAt": "2026-09-14T11:32:53.255Z",
+  "updatedAt": "2026-09-14T11:32:53.255Z"
 }
