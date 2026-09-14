@@ -921,6 +921,75 @@
   ],
   "headlines": [
     {
+      "title": "Risk trades steadily rebound on Trump's talk about AI and energy",
+      "link": "https://investinglive.com/news/risk-trades-steadily-rebound-on-trump-s-talk-about-ai-and-energy/",
+      "source": "ForexLive",
+      "desc": "There has been a steady improvement in the mood in risk markets today and stocks are now at sessions highs, though still solidly negative. The S&P 500 is down 17 points after falling by as many as 66 points.The change in mood comes as oil gives back some gains and 10-year Treasur",
+      "at": 1789407818000,
+      "inst": [
+        "USOIL",
+        "US500"
+      ],
+      "ccy": [
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789407818000,
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "US500": "up"
+      },
+      "why": "Risk rebound lifts stocks and oil"
+    },
+    {
+      "title": "Houthis attack Saudi Arabia as Gulf-Iran talks are postponed",
+      "link": "https://www.investing.com/news/commodities-news/diplomacy-stumbles-with-postponement-of-meeting-on-strait-of-hormuz-proposal-4898762",
+      "source": "Investing Cmdty",
+      "at": 1789407791000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1789406986000,
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Geopolitical risk boosts gold and oil"
+    },
+    {
+      "title": "Global AI stocks fall as industry chiefs call for slowing development",
+      "link": "https://www.investing.com/news/stock-market-news/ailinked-asian-stocks-slump-after-top-lab-ceos-call-for-slowing-down-technologys-development-4898809",
+      "source": "Investing",
+      "at": 1789407752000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789407752000,
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "AI sector concerns weigh on stocks"
+    },
+    {
       "title": "Fed rate hike expected this week after hot inflation data",
       "link": "https://finance.yahoo.com/economy/policy/articles/fed-rate-hike-expected-week-173441081.html",
       "source": "Yahoo Finance",
@@ -941,7 +1010,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789407281000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Rate hike expectations strengthen dollar"
     },
     {
       "title": "Carney, locked in US trade war, pitches Canada to global investment titans",
@@ -960,22 +1035,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789407046000,
-      "_kind": null
-    },
-    {
-      "title": "Global AI stocks fall as industry chiefs call for slowing development",
-      "link": "https://www.investing.com/news/stock-market-news/ailinked-asian-stocks-slump-after-top-lab-ceos-call-for-slowing-down-technologys-development-4898809",
-      "source": "Investing",
-      "at": 1789407027000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789407027000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USD/CAD": "down"
+      },
+      "why": "Canada investment pitch weakens dollar"
     },
     {
       "title": "Saudi Arabia Hormuz bypass pipeline shut, oil prices surge",
@@ -992,7 +1056,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789404505000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Pipeline shutdown surges oil prices"
     },
     {
       "title": "Warsh's credibility is on the line this week as Trump policies put pressure on Fed to hike",
@@ -1011,7 +1079,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789406781000,
-      "_kind": null
+      "_kind": null,
+      "why": "Fed pressure unclear for oil"
     },
     {
       "title": "Trump: Ukraine and Russia Agree Not to Strike Each Other’s Energy Facilities - reform.news",
@@ -1032,7 +1101,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789404900000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Peace talks reduce risk premium"
     },
     {
       "title": "Zelenskyy: Ukraine Ready Not to Strike Russian Energy Infrastructure if Russia Abides by Agreement - reform.news",
@@ -1053,7 +1128,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789404900000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "De-escalation lowers geopolitical risk premium"
     },
     {
       "title": "EU Extends Russia Sanctions by 1 Week After France, Slovakia Push to Delist 2 Oligarchs - Kyiv Post",
@@ -1074,7 +1155,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789405981000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions extension has minimal market impact"
     },
     {
       "title": "RingCentral's Chief Accounting Officer Sells 4,172 Company Shares Amid a 119% One-Year Stock Surge",
@@ -1086,8 +1168,7 @@
       "sev": 1,
       "rel": 1,
       "srcs": 1,
-      "firstAt": 1789406276000,
-      "_kind": null
+      "firstAt": 1789406276000
     },
     {
       "title": "Market Indexes Drop as Chip Stocks Take the Weekend's News Badly",
@@ -1102,7 +1183,10 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789404780000,
-      "_kind": null
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Chip stocks drag indexes lower"
     },
     {
       "title": "Northwest European gasoline margins climb $3 to $52 per barrel",
@@ -1116,7 +1200,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789406048000
+      "firstAt": 1789406048000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Strong gasoline margins support oil"
     },
     {
       "title": "EU envoys extend Russia sanctions by seven days to debate six-month renewal, EU presidency says - Reuters",
@@ -1136,7 +1224,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789405981000
+      "firstAt": 1789405981000,
+      "why": "Sanctions debate has no clear direction"
     },
     {
       "title": "Stocks making the biggest moves midday: Zscaler, CrowdStrike, Marvell Technology, Rum Group & more",
@@ -1151,7 +1240,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789404780000
+      "firstAt": 1789404780000,
+      "why": "Individual stock moves unclear for index"
     },
     {
       "title": "What a Fed rate hike could mean for gold and silver prices - CBS News",
@@ -1171,7 +1261,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789405622000
+      "firstAt": 1789405622000,
+      "dir": {
+        "XAU/USD": "down",
+        "XAG/USD": "down"
+      },
+      "why": "Rate hike outlook pressures precious metals"
     },
     {
       "title": "Spot Bitcoin ETFs Lose $463M Amid ‘Difficult’ Time for Markets",
@@ -1414,8 +1509,8 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789403092000
+      "srcs": 1,
+      "firstAt": 1789403795000
     },
     {
       "title": "Why Middle East tensions are pushing oil prices above $100",
@@ -1588,25 +1683,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789400873000
-    },
-    {
-      "title": "Trump says Iran wants deal as Gulf talks delayed, Houthis strike Saudi Arabia",
-      "link": "https://www.investing.com/news/commodities-news/diplomacy-stumbles-with-postponement-of-meeting-on-strait-of-hormuz-proposal-4898762",
-      "source": "Investing Cmdty",
-      "at": 1789403092000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 3,
-      "firstAt": 1789400490000
     },
     {
       "title": "Africa's richest man launches continent's biggest share sale",
@@ -1933,10 +2009,10 @@
       "firstAt": 1789399320000
     },
     {
-      "title": "Russia’s drone strike near Ukraine-Poland border puts NATO neighbors on edge - Yahoo News Singapore",
-      "link": "https://news.google.com/rss/articles/CBMifkFVX3lxTE5Hb2w1NzlpNzVDM0gyODAwdVNXVE9XWkxSeWR2cGZibDExOTFfWVdqU1N1dXlpV2pZVTU5eFo0cmM3SDNNRmdrdVVncTFhbXJyNXlPb3M2MUlKSUlUUGxZN3FIV1NpU3pValIxVlB2VGZKaTNNZTVxcC1ZUE5CZw?oc=5",
+      "title": "Russia’s drone strike near Ukraine-Poland border puts NATO neighbors on edge - CNN",
+      "link": "https://news.google.com/rss/articles/CBMingFBVV95cUxNY0pCU2N2eGVadHpKOGpPYVZWdTdtV2d5VFdtZm9jeU9ySWZtUlVBZ2JRYXFLY3FwMl9DZ3U1Z1Q3VlFwLTZnZUVydFV5ZUdMdC1ORFhNRXMtUEtsMjhzTU1XcmtsLTN1YUxaRW5pS0t2bHNvM2dkc0Y2UWdXX256NW10cGoxSFdScjZOR243NE9VcXZwNFpRcVBIT0FyUQ?oc=5",
       "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMifkFVX3lxTE5Hb2w1NzlpNzVDM0gyODAwdVNXVE9XWkxSeWR2cGZibDExOTFfWVdqU1N1dXlpV2pZVTU5eFo0cmM3SDNNRmdrdVVncTFhbXJyNXlPb3M2MUlKSUlUUGxZN3FIV1NpU3pValIxVlB2VGZKaTNNZTVxcC1ZUE5CZw?oc=5\" target=\"_blank\">Russia’s drone strike near Ukraine-Po",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMingFBVV95cUxNY0pCU2N2eGVadHpKOGpPYVZWdTdtV2d5VFdtZm9jeU9ySWZtUlVBZ2JRYXFLY3FwMl9DZ3U1Z1Q3VlFwLTZnZUVydFV5ZUdMdC1ORFhNRXMtUEtsMjhzTU1XcmtsLTN1YUxaRW5pS0t2bHNvM2dkc0Y2UWdXX256NW10cGoxSFdScjZOR243NE9VcXZwNFpRcVBIT0FyUQ?oc=5\" target=\"_",
       "at": 1789400225000,
       "inst": [
         "XAU/USD",
@@ -2601,23 +2677,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789392494000
-    },
-    {
-      "title": "Canadian Dollar remains under pressure following mixed inflation data - FXStreet",
-      "link": "https://news.google.com/rss/articles/CBMisgFBVV95cUxPd0RyVWJOZ2VHLTFPbnJHUy10eVJjX0pRS184WU1uNWFsdE1ROVFkR2lIazk4NmdQX2FVZzZJZ3pyRk1kZlo5YUFnblh6eTJVSDBHMWgtQlh6ZDM4N2VlYjd5QzR3LTdEcWQtMmNlTXU3SG5hRHRJT2NFSFdCSk84SW5CRXBaSEVrUHRZeXFVemtDVVlJVTFkaUtsVjAzUXkxQUhPVWFoSXhLdlB5eVh0SGRn?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMisgFBVV95cUxPd0RyVWJOZ2VHLTFPbnJHUy10eVJjX0pRS184WU1uNWFsdE1ROVFkR2lIazk4NmdQX2FVZzZJZ3pyRk1kZlo5YUFnblh6eTJVSDBHMWgtQlh6ZDM4N2VlYjd5QzR3LTdEcWQtMmNlTXU3SG5hRHRJT2NFSFdCSk84SW5CRXBaSEVrUHRZeXFVemtDVVlJVTFkaUtsVjAzUXkxQUhPVWFoSXhLdl",
-      "at": 1789392214000,
-      "inst": [
-        "USD/CAD"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789392214000
     }
   ],
   "sources": [
@@ -2640,10 +2699,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-14T17:47:22.186Z",
-  "headlinesAt": "2026-09-14T17:47:22.186Z",
-  "updatedAt": "2026-09-14T17:47:22.186Z"
+  "calendarAt": "2026-09-14T17:48:38.832Z",
+  "headlinesAt": "2026-09-14T17:48:38.832Z",
+  "updatedAt": "2026-09-14T17:48:38.832Z"
 }
