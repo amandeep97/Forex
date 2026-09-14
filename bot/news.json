@@ -937,7 +937,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789407046000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USD/CAD": "down"
+      },
+      "why": "Carney pitches Canada, weakens CAD"
     },
     {
       "title": "Global AI stocks fall as industry chiefs call for slowing development",
@@ -952,7 +956,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789407027000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "AI stocks fall on slowing calls"
     },
     {
       "title": "Warsh's credibility is on the line this week as Trump policies put pressure on Fed to hike",
@@ -971,7 +979,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789406781000,
-      "_kind": null
+      "_kind": null,
+      "why": "Fed pressure, oil visibility unclear"
     },
     {
       "title": "Trump: Ukraine and Russia Agree Not to Strike Each Other’s Energy Facilities - REFORM.news",
@@ -992,7 +1001,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789404900000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Ceasefire reduces risk premium"
     },
     {
       "title": "Zelenskyy: Ukraine Ready Not to Strike Russian Energy Infrastructure if Russia Abides by Agreement - REFORM.news",
@@ -1013,7 +1028,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789404900000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Ukraine agrees to ceasefire terms"
     },
     {
       "title": "EU Extends Russia Sanctions by 1 Week After France, Slovakia Push to Delist 2 Oligarchs - Kyiv Post",
@@ -1034,7 +1055,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789405981000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions extension, minimal market impact"
     },
     {
       "title": "Northwest European gasoline margins climb $3 to $52 per barrel",
@@ -1049,7 +1071,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789406048000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Gasoline margins climb significantly"
     },
     {
       "title": "EU envoys extend Russia sanctions by seven days to debate six-month renewal, EU presidency says - Reuters",
@@ -1070,7 +1096,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789405981000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions debate continues, no change"
     },
     {
       "title": "Stocks making the biggest moves midday: Zscaler, CrowdStrike, Marvell Technology, Rum Group & more",
@@ -1086,7 +1113,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789404299000,
-      "_kind": null
+      "_kind": null,
+      "why": "Individual stock moves, index unclear"
     },
     {
       "title": "What a Fed rate hike could mean for gold and silver prices - CBS News",
@@ -1107,7 +1135,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789405622000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "XAG/USD": "down"
+      },
+      "why": "Rate hike implies higher yields"
     },
     {
       "title": "Spot Bitcoin ETFs Lose $463M Amid ‘Difficult’ Time for Markets",
@@ -1123,7 +1156,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789405500000
+      "firstAt": 1789405500000,
+      "dir": {
+        "BTC/USDT": "down"
+      },
+      "why": "ETF outflows signal bearish sentiment"
     },
     {
       "title": "Russia Strikes Passenger Train Near Ukraine-Poland Border as Boris Johnson Passes Yahodyn: 24 outlets compared - NewsCord",
@@ -1143,7 +1180,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789403280000
+      "firstAt": 1789403280000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Escalation increases geopolitical risk"
     },
     {
       "title": "DeFi Development Expands Solana Treasury to 2.39M SOL",
@@ -1165,7 +1208,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789405380000
+      "firstAt": 1789405380000,
+      "why": "Crypto news, no FX impact"
     },
     {
       "title": "This Bull Call Spread In Oil Provides A Hedge Against Stocks And Bonds",
@@ -1182,7 +1226,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789405271000
+      "firstAt": 1789405271000,
+      "why": "Hedging strategy, no directional bias"
     },
     {
       "title": "Stock Market Today: Dow Tries For A Gain, Trump Hits Out At AI Fears; This Fuel Play Clears Entry (Live Coverage)",
@@ -1196,7 +1241,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789404299000
+      "firstAt": 1789404299000,
+      "why": "Mixed signals, Dow trying to gain"
     },
     {
       "title": "Trump says Russia, Ukraine agree to halt energy strikes as Nato warns of escalation - Firstpost",
@@ -2646,10 +2692,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-14T17:36:06.097Z",
-  "headlinesAt": "2026-09-14T17:36:06.097Z",
-  "updatedAt": "2026-09-14T17:36:06.097Z"
+  "calendarAt": "2026-09-14T17:37:21.574Z",
+  "headlinesAt": "2026-09-14T17:37:21.574Z",
+  "updatedAt": "2026-09-14T17:37:21.574Z"
 }
