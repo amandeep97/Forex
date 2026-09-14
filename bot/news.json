@@ -19,7 +19,12 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789400490000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Houthi strikes boost oil, gold unclear"
     },
     {
       "title": "Africa's richest man launches continent's biggest share sale",
@@ -37,7 +42,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789403022000,
-      "_kind": null
+      "_kind": null,
+      "why": "Refinery share sale, no clear price impact"
     },
     {
       "title": "Napier AI flags sanctions screening flaws after Treasury’s Iran push - FinTech Global",
@@ -59,7 +65,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789402939000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions screening flaws, no direct market impact"
     },
     {
       "title": "French-Slovak veto deepens EU deadlock on Russia sanctions renewal - Euronews.com",
@@ -80,7 +87,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789402008000,
-      "_kind": null
+      "_kind": null,
+      "why": "EU deadlock, no clear directional signal"
     },
     {
       "title": "Canadian dollar hits 12-day low as inflation data meets expectations - Reuters",
@@ -98,7 +106,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789402609000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USD/CAD": "up"
+      },
+      "why": "CAD low implies USD strength"
     },
     {
       "title": "Trump asks Ukraine to stop strikes on Russian refineries as oil prices rise - WQAD",
@@ -119,7 +131,12 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789400383000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Refinery strikes cited as oil price driver"
     },
     {
       "title": "U.K. stocks higher at close of trade; Investing.com United Kingdom 100 up 1.05%",
@@ -134,7 +151,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789402153000,
-      "_kind": null
+      "_kind": null,
+      "why": "UK stocks news, irrelevant to US500"
     },
     {
       "title": "Spain stocks lower at close of trade; IBEX 35 down 1.38%",
@@ -149,7 +167,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789402126000,
-      "_kind": null
+      "_kind": null,
+      "why": "Spain stocks news, irrelevant to US500"
     },
     {
       "title": "Portugal stocks lower at close of trade; PSI down 1.52%",
@@ -164,7 +183,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789402100000,
-      "_kind": null
+      "_kind": null,
+      "why": "Portugal stocks news, irrelevant to US500"
     },
     {
       "title": "Netherlands stocks lower at close of trade; AEX down 0.04%",
@@ -179,7 +199,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789402069000,
-      "_kind": null
+      "_kind": null,
+      "why": "Netherlands stocks news, irrelevant to US500"
     },
     {
       "title": "EU countries extend Russia sanctions amid latest oligarch stand-off - euractiv.com",
@@ -200,7 +221,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789402008000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions extension, no immediate price direction"
     },
     {
       "title": "There Is Now An 83% to 90% Chance the Fed Raises Interest Rates on Sept. 16. Here's What History Says Would Happen to the S&P 500 Index Next.",
@@ -217,7 +239,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789401661000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Rate hike fears historically bearish for stocks"
     },
     {
       "title": "Gold hits one-month low amid Fed rate hike fears but seen as key long-term hedge against fiscal risks. - Pluang",
@@ -236,7 +262,10 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789401525000,
-      "_kind": null
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold hits one-month low on rate fears"
     },
     {
       "title": "Bloom Energy Falls 8% as AI Power Bid Unwinds Days Before Bloom’s S&P 500 Add; FuelCell Energy Drops 5%, Plug Power Dips",
@@ -250,7 +279,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789401466000
+      "firstAt": 1789401466000,
+      "why": "Single stock drop, negligible index impact"
     },
     {
       "title": "XLF vs FNCL: Which Financial Services ETF Wins Out for Investors?",
@@ -278,7 +308,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789401138000
+      "firstAt": 1789401138000,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Tough road ahead implies bearish outlook"
     },
     {
       "title": "Stock Market Today: Dow Falls, Oil Jumps On Houthi Moves; Trump Hits Out At These AI Fears (Live Coverage)",
@@ -1073,7 +1107,7 @@
       "firstAt": 1789394281000
     },
     {
-      "title": "Russia’s Strikes on Ukraine Were Supported by Relays in Belarus — Demchenko - reform.news",
+      "title": "Russia’s Strikes on Ukraine Were Supported by Relays in Belarus — Demchenko - REFORM.news",
       "link": "https://news.google.com/rss/articles/CBMingFBVV95cUxPYTVDcFNrOVVna0ZhZjdFQWhFaW9VM19BSUNFSGZQMXhFdHJ2R1NvSjVnZnktWXRJaDBLUU5XdUhvZnVWMUhPOEs5Q1NvRkdORXdpX1ZFWmQzeDhQN1J4c3ZtS2l0R2RmeTEyUUVjRGFaTVowaGptZXdvR2xnNHphbmhDQTNVblczaGpkUUY0Nm01N0xfbDlsaFNrV2ZvQdIBowFBVV95cUxOUkZoRTJzMFNnUXN6eXVFTzA2cWd5b1puOWxKcURBMzlqYzR0bTVjSThKRm9wLUYtbjNtbERLaERYSDBQY09JZ1FDQ1cyZ2d6VkZ1QVNKTENZOUxXS0FtLXpaMV9XMVFnRmZsaC1jcHpKRDBKMUdRbS02di1RbVFLN0thaWVKbVFWNW94YTZJb19pc2VCRDYtdTJVcWQ2NlVZd3dV?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMingFBVV95cUxPYTVDcFNrOVVna0ZhZjdFQWhFaW9VM19BSUNFSGZQMXhFdHJ2R1NvSjVnZnktWXRJaDBLUU5XdUhvZnVWMUhPOEs5Q1NvRkdORXdpX1ZFWmQzeDhQN1J4c3ZtS2l0R2RmeTEyUUVjRGFaTVowaGptZXdvR2xnNHphbmhDQTNVblczaGpkUUY0Nm01N0xfbDlsaFNrV2ZvQdIBowFBVV95cUxOUk",
@@ -1663,6 +1697,6 @@
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-14T16:28:35.852Z",
-  "updatedAt": "2026-09-14T16:28:35.852Z"
+  "headlinesAt": "2026-09-14T16:29:37.732Z",
+  "updatedAt": "2026-09-14T16:29:37.732Z"
 }
