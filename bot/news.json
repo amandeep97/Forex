@@ -937,7 +937,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789378560000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold drops on inflation risk assessment"
     },
     {
       "title": "Israel Upset by Kushner's Admission that U.S. Used Doha Strike to Push Israel on Gaza - cbn.com",
@@ -958,6 +962,94 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789380052000,
+      "_kind": null,
+      "why": "Geopolitical news lacks clear market direction"
+    },
+    {
+      "title": "AirBaltic files for Chapter 11 bankruptcy as Iran war costs bite",
+      "link": "https://www.investing.com/news/stock-market-news/airbaltic-files-for-chapter-11-bankruptcy-in-new-york-4898855",
+      "source": "Investing",
+      "at": 1789380032000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789380032000,
+      "_kind": null,
+      "why": "Bankruptcy news unclear for these instruments"
+    },
+    {
+      "title": "Dollar charges to near two-week peak as Fed hike bets hit near-certainty",
+      "link": "https://www.investing.com/news/forex-news/asian-currencies-weaken-as-dollar-rises-yen-holds-near-sevenmonth-high-4898821",
+      "source": "Investing FX",
+      "at": 1789380021000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1789378322000,
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Strong dollar hurts gold and pairs"
+    },
+    {
+      "title": "The market says a Fed rate hike is a done deal. Here's why it might hold steady.",
+      "link": "https://finance.yahoo.com/economy/policy/article/the-market-says-a-fed-rate-hike-is-a-done-deal-heres-why-it-might-hold-steady-100000374.html",
+      "source": "Yahoo Finance",
+      "at": 1789380000000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789380000000,
+      "_kind": null,
+      "why": "Conflicting views on Fed rate hike"
+    },
+    {
+      "title": "Best high-yield savings interest rates today, Monday, September 14, 2026: Earn up to 4.10% APY",
+      "link": "https://finance.yahoo.com/personal-finance/banking/article/best-high-yield-savings-interest-rates-today-monday-september-14-2026-earn-up-to-410-apy-100000167.html",
+      "source": "Yahoo Finance",
+      "at": 1789380000000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789380000000,
       "_kind": null
     },
     {
@@ -979,7 +1071,32 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789377924000,
-      "_kind": null
+      "_kind": null,
+      "why": "Ukraine strike news unclear for markets"
+    },
+    {
+      "title": "BofA sees dollar sideways into year-end despite Fed hike bets",
+      "link": "https://www.investing.com/news/forex-news/bofa-sees-dollar-sideways-into-yearend-despite-fed-hike-bets-93CH-4899034",
+      "source": "Investing FX",
+      "at": 1789379705000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789379705000,
+      "_kind": null,
+      "why": "Dollar expected sideways, no clear move"
     },
     {
       "title": "Chip, memory stocks fall amid calls for AI development slowdown",
@@ -994,7 +1111,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789379503000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Chip stocks fall on AI slowdown"
     },
     {
       "title": "Gold slips below $4,300 as Fed rate hike bets strengthen - proactiveinvestors.co.uk",
@@ -1013,7 +1134,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789377381000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold slips on Fed hike bets"
     },
     {
       "title": "China urges more FX hedging as strong yuan hits exporters, sources say",
@@ -1047,7 +1172,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789377548000,
-      "_kind": null
+      "_kind": null,
+      "why": "Iran-Turkey ties news unclear for markets"
     },
     {
       "title": "AI-linked stocks slump after top lab CEOs call for slowing technology’s development",
@@ -1062,7 +1188,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789378587000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "AI stocks slump on development warnings"
     },
     {
       "title": "Stocks to Watch Monday: Nvidia, Oracle, SoftBank",
@@ -1077,7 +1207,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789378674000,
-      "_kind": null
+      "_kind": null,
+      "why": "Stocks to watch, no direction given"
     },
     {
       "title": "AI stocks get drilled because of Anthropic CEO Dario Amodei's 3,800 word warning",
@@ -1092,7 +1223,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789378597000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "AI stocks drilled on CEO warning"
     },
     {
       "title": "Euro Declines as Dollar Gains on Fed Rate-Rise Expectations",
@@ -1110,7 +1245,10 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789378322000,
-      "_kind": null
+      "dir": {
+        "EUR/USD": "down"
+      },
+      "why": "Euro declines as dollar gains"
     },
     {
       "title": "Gold prices slip as strong US inflation raises fed rate hike odds - The Statesman",
@@ -1129,7 +1267,10 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789377381000,
-      "_kind": null
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold slips on strong inflation data"
     },
     {
       "title": "Forget AI Stocks: This Tech Play Is the Real Winner",
@@ -1143,8 +1284,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789378500000,
-      "_kind": null
+      "firstAt": 1789378500000
     },
     {
       "title": "Swiss Franc nears yearly lows as Fed rate hike bets boost US Dollar - FXStreet",
@@ -1161,7 +1301,7 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 2,
+      "srcs": 3,
       "firstAt": 1789378322000
     },
     {
@@ -1198,7 +1338,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789377961000
+      "firstAt": 1789378180000
     },
     {
       "title": "How investors are reacting to the AI pause calls from Anthropic and other frontier labs",
@@ -1212,20 +1352,6 @@
       "rel": 1,
       "srcs": 1,
       "firstAt": 1789378140000
-    },
-    {
-      "title": "Heed Warren Buffett's Advice: The Time to Be Fearful When Others Are Greedy Has Arrived on Wall Street",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/heed-warren-buffetts-advice-time-092601680.html",
-      "source": "Yahoo Finance",
-      "at": 1789377961000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789377961000
     },
     {
       "title": "Ukrainian Drone Strike in Sochi Wounds 5 - The Moscow Times",
@@ -1802,23 +1928,6 @@
       "firstAt": 1789371488000
     },
     {
-      "title": "Asian currencies under pressure as dollar gains, yen stays elevated",
-      "link": "https://www.investing.com/news/forex-news/asian-currencies-weaken-as-dollar-rises-yen-holds-near-sevenmonth-high-4898821",
-      "source": "Investing FX",
-      "at": 1789371204000,
-      "inst": [
-        "USD/JPY"
-      ],
-      "ccy": [
-        "USD",
-        "JPY"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789371204000
-    },
-    {
       "title": "Indonesian Rupiah slips due to stronger US Dollar, soaring oil prices - FXStreet",
       "link": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNM3NOd3VheEU4MmlvWjVKYTZvTGNDYjBHQng3RDRKTGRES0VYT2dzMDlJRWQ1cDRoWFFDWDVkTW9LN3BNMjhqSU90RVliOFBCVlU3bVlESV9YRTJpbUZ2eUotaG1vY2NmeE1iLThmQWVSQkVmcDYtOVpyRE5YWTZTZ1NaTnIza0c3UkdseW40VUoxMVh0Y29zWm9uRlZHN29JUVhXQTRXeEVudDc3OW13ag?oc=5",
       "source": "Wires (macro)",
@@ -2339,7 +2448,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789361041000
+      "firstAt": 1789361679000
     },
     {
       "title": "Arhaus (ARHS) Turns A Tariff Refund Into A Blowout Quarter",
@@ -2362,20 +2471,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789361284000
-    },
-    {
-      "title": "LGI Homes (LGIH) Raises Guidance While Wall Street Bets Against It",
-      "link": "https://finance.yahoo.com/real-estate/articles/lgi-homes-lgih-raises-guidance-044401971.html",
-      "source": "Yahoo Finance",
-      "at": 1789361041000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789361041000
     },
     {
       "title": "Fed Rate Hike In September? Goldman Sachs Changes Its Call - NDTV Profit",
@@ -2527,52 +2622,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789355646000
-    },
-    {
-      "title": "Copper edges lower as US inflation data raises bets on Fed rate hike - Business Standard",
-      "link": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxObW54VmtESlNDektGZFlYZjFaa1p3T2lfZ3QwbFk4bHN5bm56ZElIbE8tNWE5SmlEREV6VTY1MGNGY0tNcFlKLU1nNVlXelBPVlJScGM2cGwxSXlpbmFXTEpINy11VmpZNzNtY1dvN3RWa3Fyenhva19pVFNxdC1yVkZGRVVMaTZMbk1LczBzR09ESWU0N2hmZXk4ZnA5djl2dnVKWW15Ti1pZHF1eUJiLWtRN0dIRlIzUkVxZGxaSkdSckpPcWx1NHktUGIxZk130gHWAUFVX3lxTE5TalJKZ1c3czhqNEpMX1o4ZUZpYVhjR0F5M1hlTDEtbFhqdXRWWnBlSUNOckdZTmpReENBMjhTazlPS2g5ci1hLXU4amV4NmpSUXpMYmo5TUF3d1FxMW9NX1RkZjRNS1dFaVJfNHBXNDF6S09oWExQUl84NV9SVElXX0NldHNzMll3eFFkUTZiQm9ySGlZVG1YbzRoY0xhMy1rMW1LZkwwd3lfRGJkWUkta0lmWjIybVFCbVhUdnlyZTFpZk04UE45a3NQMWt5LTkwOVplc2c?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi0AFBVV95cUxObW54VmtESlNDektGZFlYZjFaa1p3T2lfZ3QwbFk4bHN5bm56ZElIbE8tNWE5SmlEREV6VTY1MGNGY0tNcFlKLU1nNVlXelBPVlJScGM2cGwxSXlpbmFXTEpINy11VmpZNzNtY1dvN3RWa3Fyenhva19pVFNxdC1yVkZGRVVMaTZMbk1LczBzR09ESWU0N2hmZXk4ZnA5djl2dnVKWW15Ti1pZH",
-      "at": 1789355505000,
-      "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789355505000
-    },
-    {
-      "title": "United States Dollar Index rises to near 99.50 as Fed rate hike bets increase - FXStreet",
-      "link": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQa29jM3duQ1lZaU1veUVQYXJHNXpSWU1peFhuQ0pkVklwNjc3bk0tbzRfeC1BQmRTQTVqTkdNbVAxY1paRzY3TGgzR1JuQ2swQnVPaWhyeEJNdGUyU29JNVBMa3pDbTY2NS1MVUYtYzRkVTloMDctWTdQNHY0RlhsOHVFdnljQkxzWTE1OUpBWHV4VkZnVE1SSWhKOHY0U1ZCSmxobkhOLUhNcEpyeFhTN09jN3ptanpMN0lr?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiuwFBVV95cUxQa29jM3duQ1lZaU1veUVQYXJHNXpSWU1peFhuQ0pkVklwNjc3bk0tbzRfeC1BQmRTQTVqTkdNbVAxY1paRzY3TGgzR1JuQ2swQnVPaWhyeEJNdGUyU29JNVBMa3pDbTY2NS1MVUYtYzRkVTloMDctWTdQNHY0RlhsOHVFdnljQkxzWTE1OUpBWHV4VkZnVE1SSWhKOHY0U1ZCSmxobkhOLUhNcE",
-      "at": 1789355391000,
-      "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789355391000
     }
   ],
   "sources": [
@@ -2595,10 +2644,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-14T10:05:23.039Z",
-  "headlinesAt": "2026-09-14T10:05:23.039Z",
-  "updatedAt": "2026-09-14T10:05:23.039Z"
+  "calendarAt": "2026-09-14T10:06:38.326Z",
+  "headlinesAt": "2026-09-14T10:06:38.326Z",
+  "updatedAt": "2026-09-14T10:06:38.326Z"
 }
