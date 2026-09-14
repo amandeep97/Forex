@@ -948,7 +948,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789352861000,
-      "_kind": null
+      "_kind": null,
+      "why": "Geopolitical tension unclear for markets"
     },
     {
       "title": "Poland, Ukraine slam Russian strikes near border as 'escalation' - Yahoo",
@@ -969,7 +970,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789352580000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Escalation boosts safe-haven gold demand"
     },
     {
       "title": "Saudi pipeline outage threatens loss of 4% of global oil supply",
@@ -986,7 +991,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789354129000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Supply loss threatens global oil availability"
     },
     {
       "title": "US used Israel's isolation after Doha strike to push Gaza deal, Kushner says - TRT World",
@@ -1007,7 +1016,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789353173000,
-      "_kind": null
+      "_kind": null,
+      "why": "Diplomatic news lacks direct market impact"
     },
     {
       "title": "Asia tech stocks tumble as AI trade doubts deepen before Fed, BOJ decisions",
@@ -1026,7 +1036,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789353324000
+      "firstAt": 1789353324000,
+      "dir": {
+        "US500": "down",
+        "US100": "down"
+      },
+      "why": "Tech stocks tumble on AI doubts"
     },
     {
       "title": "US used Israel’s isolation after Doha strike to secure Gaza deal: Kushner - Anadolu Ajansı",
@@ -1046,7 +1061,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789353173000
+      "firstAt": 1789353173000,
+      "why": "Diplomatic news lacks direct market impact"
     },
     {
       "title": "Gold prices dip as oil-driven inflation concerns weigh - The Standard (HK)",
@@ -1066,7 +1082,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789350679000
+      "firstAt": 1789350679000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold dips on inflation concerns"
     },
     {
       "title": "Telix Pharma wins FDA approval for brain cancer treatment, shares surge",
@@ -1098,7 +1118,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789352861000
+      "firstAt": 1789352861000,
+      "why": "Geopolitical tension unclear for markets"
     },
     {
       "title": "Ukraine war briefing: Poland calls for ‘double’ support to Kyiv after Russian train attack - The Guardian",
@@ -1118,7 +1139,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789352580000
+      "firstAt": 1789352580000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "War escalation boosts safe-haven gold"
     },
     {
       "title": "Anthropic, OpenAI and Google held talks on AI safety body, report says",
@@ -1151,7 +1176,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789352378000
+      "firstAt": 1789352378000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Drone attack boosts safe-haven gold"
     },
     {
       "title": "Gold slips as hot US inflation revives Fed rate-hike bets; bullion near $4,340 - Moneycontrol.com",
@@ -1169,7 +1198,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789349700000
+      "firstAt": 1789349700000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold slips on rate-hike bets"
     },
     {
       "title": "Gold Slips As Oil Reignites Rate-Hike Bets - Finimize",
@@ -1188,7 +1221,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789349700000
+      "firstAt": 1789349700000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold slips on rate-hike bets"
     },
     {
       "title": "Gold edges lower below $4,350 on imminent Fed rate hike - FXStreet",
@@ -1206,7 +1243,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789349700000
+      "firstAt": 1789349700000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold lower on imminent rate hike"
     },
     {
       "title": "Gold prices dip as oil-driven inflation concerns weigh - marketscreener.com",
@@ -1226,7 +1267,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789349700000
+      "firstAt": 1789349700000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold dips on inflation concerns"
     },
     {
       "title": "Rate hike cycle not yet an alarm for stock markets, rising oil price an increasing risk: PM - CNBC",
@@ -1244,7 +1289,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789350130000
+      "firstAt": 1789350130000,
+      "why": "Commentary on oil risk, no direction"
     },
     {
       "title": "Gold slips as hotter US inflation lifts Fed hike bets, oil stokes price pressures - Investing.com",
@@ -2676,7 +2722,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-14T03:08:34.880Z",
-  "headlinesAt": "2026-09-14T03:08:34.880Z",
-  "updatedAt": "2026-09-14T03:08:34.880Z"
+  "calendarAt": "2026-09-14T03:09:35.871Z",
+  "headlinesAt": "2026-09-14T03:09:35.871Z",
+  "updatedAt": "2026-09-14T03:09:35.872Z"
 }
