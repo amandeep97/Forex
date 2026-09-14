@@ -948,7 +948,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789344000000,
-      "_kind": null
+      "_kind": null,
+      "why": "Talks postponed, no immediate price impact"
     },
     {
       "title": "Oil prices jump over 3% on more M.East action, Hormuz meeting delay",
@@ -964,7 +965,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789341168000
+      "firstAt": 1789341168000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil prices jump on Middle East action"
     },
     {
       "title": "Carney explores Canada as EU associate member, WSJ reports",
@@ -982,7 +987,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789342853000
+      "firstAt": 1789342853000,
+      "why": "Long-term structural story, no immediate move"
     },
     {
       "title": "Australian Dollar declines to near 0.7150 as hot US inflation data boost case for Fed rate hike - FXStreet",
@@ -999,7 +1005,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789342787000
+      "firstAt": 1789342787000,
+      "dir": {
+        "AUD/USD": "down"
+      },
+      "why": "AUD declines on hot US inflation data"
     },
     {
       "title": "Russian Strikes on Ukraine Hits Near David Petraeus, ex-C.I.A. Chief - The New York Times",
@@ -1019,7 +1029,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789340494000
+      "firstAt": 1789340494000,
+      "why": "Geopolitical news, unclear market direction"
     },
     {
       "title": "Shares slip in Asia as oil climbs, rate hikes loom",
@@ -1035,7 +1046,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789341147000
+      "firstAt": 1789341147000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil climbs, shares slip"
     },
     {
       "title": "Inflation fight puts Kevin Warsh on the line as US Fed decision looms over global markets - Malay Mail",
@@ -1058,7 +1073,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789340514000
+      "firstAt": 1789340514000,
+      "why": "Fed decision looms, direction unclear"
     },
     {
       "title": "Trump calls on Ukraine to halt strikes on Russian diesel fuel, says attacks causing shortage - The Hindu",
@@ -1078,7 +1094,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789340494000
+      "firstAt": 1789340494000,
+      "why": "Trump demand, unclear immediate impact"
     },
     {
       "title": "Anthropic tells investors it will be profitable for second straight quarter, FT reports",
@@ -1108,7 +1125,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789340400000
+      "firstAt": 1789340400000,
+      "why": "High hike odds, uncertain rally outcome"
     },
     {
       "title": "NZ services sector expands for third month as PSI rises to 51.2",
@@ -1125,7 +1143,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789339417000
+      "firstAt": 1789339417000,
+      "dir": {
+        "NZD/USD": "up"
+      },
+      "why": "Services sector expands, positive for NZD"
     },
     {
       "title": "Wall Street Week Ahead: Markets brace for Federal Reserve rate decision - IndiaIPO",
@@ -1142,7 +1164,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789339396000
+      "firstAt": 1789339396000,
+      "why": "Markets brace for Fed decision"
     },
     {
       "title": "Zverev defeats Shelton in four sets to win his first US Open title",
@@ -1157,7 +1180,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789338814000
+      "firstAt": 1789338814000,
+      "why": "Tennis result irrelevant to forex"
     },
     {
       "title": "Oil prices jump more than $3 after new strikes on Saudi, Strait of Hormuz",
@@ -1176,7 +1200,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789338265000
+      "firstAt": 1789338265000,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Oil jumps, gold rises on strikes"
     },
     {
       "title": "Tehran and Muscat delay talks, citing regional consensus need",
@@ -1196,7 +1226,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789336250000
+      "firstAt": 1789336250000,
+      "why": "Talks delayed, no clear direction"
     },
     {
       "title": "Trump demands Ukraine halt refinery strikes as diesel surges - The Spokesman-Review",
@@ -1216,7 +1247,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789334495000
+      "firstAt": 1789334495000,
+      "why": "Diesel surges, but headline unclear"
     },
     {
       "title": "Poland, Ukraine accuse Russia of ‘escalation’ after strikes near border - Al Jazeera",
@@ -2650,10 +2682,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-14T00:24:19.093Z",
-  "headlinesAt": "2026-09-14T00:24:19.093Z",
-  "updatedAt": "2026-09-14T00:24:19.093Z"
+  "calendarAt": "2026-09-14T00:25:36.145Z",
+  "headlinesAt": "2026-09-14T00:25:36.145Z",
+  "updatedAt": "2026-09-14T00:25:36.145Z"
 }
