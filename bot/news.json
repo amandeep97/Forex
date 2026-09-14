@@ -945,7 +945,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789359170000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "US500": "down"
+      },
+      "why": "Oil up, stocks down on AI fears"
     },
     {
       "title": "Gold slips as oil rally fans rate hike bets ahead of Fed meeting - theedgemarkets.com",
@@ -966,7 +971,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789358144000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "up"
+      },
+      "why": "Gold down, oil up on rate bets"
     },
     {
       "title": "AI-linked Asian stocks slump after top lab CEOs call for slowing down technology’s development",
@@ -981,7 +991,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789359170000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "AI stocks slump on slowdown calls"
     },
     {
       "title": "Samsung Heavy wins $1.22 billion ship order, shares rise",
@@ -1010,7 +1024,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789358172000
+      "firstAt": 1789358172000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil holds gap higher"
     },
     {
       "title": "AI slowdown risks: the stocks most exposed if frontier labs pull back",
@@ -1024,7 +1042,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789358163000
+      "firstAt": 1789358163000,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "AI slowdown risks hit exposed stocks"
     },
     {
       "title": "Gold dips as hot US inflation boosts Fed hike odds - Briefs Finance",
@@ -1042,7 +1064,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789356084000
+      "firstAt": 1789356084000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold dips on hot inflation"
     },
     {
       "title": "Trump calls on Ukraine to halt strikes on Russian diesel fuel, citing a global shortage - The Killeen Daily Herald",
@@ -1062,7 +1088,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789355940000
+      "firstAt": 1789355940000,
+      "why": "Geopolitical news, unclear market direction"
     },
     {
       "title": "Japanese PM-backed candidate wins Okinawa gubernatorial election",
@@ -1077,7 +1104,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789357136000
+      "firstAt": 1789357136000,
+      "why": "Local election, unclear macro impact"
     },
     {
       "title": "Russia strikes closer to Ukraine’s border with Poland as town counts cost of damage - AP News",
@@ -1097,7 +1125,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789354500000
+      "firstAt": 1789354500000,
+      "why": "War news, unclear immediate direction"
     },
     {
       "title": "Trump demands Ukraine halt refinery strikes as diesel surges - The Spokesman-Review",
@@ -1117,7 +1146,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789354500000
+      "firstAt": 1789354500000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Diesel surges on refinery strike halt"
     },
     {
       "title": "Gold steady as hot US inflation bolsters chance of rate hike - Free Malaysia Today",
@@ -1135,7 +1169,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789356084000
+      "firstAt": 1789356084000,
+      "why": "Gold steady despite inflation data"
     },
     {
       "title": "Ukraine war briefing: Poland calls for ‘double’ support to Kyiv after Russian train attack - The Guardian",
@@ -1155,7 +1190,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789354500000
+      "firstAt": 1789354500000,
+      "why": "War briefing, no clear direction"
     },
     {
       "title": "Copper edges lower as US inflation data raises bets on Fed rate hike - Business Standard",
@@ -1178,7 +1214,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789355505000
+      "firstAt": 1789355505000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Dollar strength hits metals and pairs"
     },
     {
       "title": "Z.AI shares fall to 5-1/2-month low after $5 billion share, bond sale",
@@ -1213,7 +1255,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789355391000
+      "firstAt": 1789355391000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Dollar index rises, pressuring pairs"
     },
     {
       "title": "Poland, Ukraine slam Russian strikes near border as 'escalation' - Yahoo",
@@ -1233,7 +1281,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789354500000
+      "firstAt": 1789354500000,
+      "why": "Escalation news, unclear market direction"
     },
     {
       "title": "Saudi pipeline outage threatens loss of 4% of global oil supply",
@@ -2653,7 +2702,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-14T04:34:19.666Z",
-  "headlinesAt": "2026-09-14T04:34:19.666Z",
-  "updatedAt": "2026-09-14T04:34:19.666Z"
+  "calendarAt": "2026-09-14T04:35:55.896Z",
+  "headlinesAt": "2026-09-14T04:35:55.896Z",
+  "updatedAt": "2026-09-14T04:35:55.896Z"
 }
