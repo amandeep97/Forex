@@ -17,7 +17,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789358172000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil holds gap higher"
     },
     {
       "title": "Gold dips as hot US inflation boosts Fed hike odds - briefs.co",
@@ -36,7 +40,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789356084000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold dips as hot inflation"
     },
     {
       "title": "Gold slips as oil rally fans rate hike bets ahead of Fed meeting - marketscreener.com",
@@ -57,7 +65,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789356084000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "up"
+      },
+      "why": "Gold slips, oil rally"
     },
     {
       "title": "Trump calls on Ukraine to halt strikes on Russian diesel fuel, citing a global shortage - Ottumwa Courier",
@@ -78,7 +91,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789356134000,
-      "_kind": null
+      "_kind": null,
+      "why": "Trump calls halt strikes"
     },
     {
       "title": "Russia strikes closer to Ukraine’s border with Poland as town counts cost of damage - AP News",
@@ -99,7 +113,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789354500000,
-      "_kind": null
+      "_kind": null,
+      "why": "Russia strikes near border"
     },
     {
       "title": "Trump demands Ukraine halt refinery strikes as diesel surges - The Spokesman-Review",
@@ -119,7 +134,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789354500000
+      "firstAt": 1789354500000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Diesel surges on refinery strikes"
     },
     {
       "title": "Gold steady as hot US inflation bolsters chance of rate hike - Free Malaysia Today",
@@ -137,7 +157,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789356084000
+      "firstAt": 1789356084000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Hot inflation bolsters rate hike"
     },
     {
       "title": "Copper edges lower as US inflation data raises bets on Fed rate hike - Business Standard",
@@ -160,7 +184,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789355505000
+      "firstAt": 1789355505000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Inflation raises Fed hike bets"
     },
     {
       "title": "Z.AI shares fall to 5-1/2-month low after $5 billion share, bond sale",
@@ -195,7 +225,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789355391000
+      "firstAt": 1789355391000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Dollar rises on hike bets"
     },
     {
       "title": "Poland, Ukraine slam Russian strikes near border as 'escalation' - Yahoo",
@@ -215,7 +251,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789352580000
+      "firstAt": 1789352580000,
+      "why": "Poland, Ukraine slam strikes"
     },
     {
       "title": "Saudi pipeline outage threatens loss of 4% of global oil supply",
@@ -231,7 +268,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789354129000
+      "firstAt": 1789354129000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Pipeline outage threatens supply loss"
     },
     {
       "title": "US used Israel's isolation after Doha strike to push Gaza deal, Kushner says - TRT World",
@@ -251,7 +292,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789353173000
+      "firstAt": 1789353173000,
+      "why": "Gaza deal push details"
     },
     {
       "title": "Asia tech, chip stocks tumble as AI trade doubts deepen before Fed, BOJ decisions",
@@ -269,7 +311,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789353324000
+      "firstAt": 1789353324000,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Tech stocks tumble on AI doubts"
     },
     {
       "title": "US used Israel’s isolation after Doha strike to secure Gaza deal: Kushner - Anadolu Ajansı",
@@ -289,7 +335,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789353173000
+      "firstAt": 1789353173000,
+      "why": "Gaza deal push details"
     },
     {
       "title": "Telix Pharma wins FDA approval for brain cancer treatment, shares surge",
@@ -321,7 +368,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789352861000
+      "firstAt": 1789352861000,
+      "why": "Trump accuses China of spying"
     },
     {
       "title": "Ukraine war briefing: Poland calls for ‘double’ support to Kyiv after Russian train attack - The Guardian",
@@ -425,26 +473,6 @@
       "ccy": [
         "USD",
         "XAU"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789349700000
-    },
-    {
-      "title": "Gold prices dip as oil-driven inflation concerns weigh - The Economic Times",
-      "link": "https://news.google.com/rss/articles/CBMizgFBVV95cUxNQkNhdHVfeHRVTDdBRnptQnp0SWJ1YVVPNTdTS0JEQUVxMFVMUm5PSUMyVldEZEFKTWN3UWJ0VnNzRDJBdTJWeEJCU3NiWG8wdUp5RGFFeldCMUoxTzFWSVJvN0lRN2Q5QmxFSno1NUZhQXRlX0haZEU4NUtYMjRMXzBkamYxSFhqNHMwWV9FNEF1SmRqZExpVkJiaUlzT2d4UEFTSUUySjBLSl9UVTJzQkxkeWU5alVhQmh0ZXFNbTBIemRBODkyU191VVdEQdIB0wFBVV95cUxORXRkc3k4RmdXVjlVcDFrSGdEdWpQdEVZb3RjZlhxXzlEVkFkZ253TDYzQXZ3QTFWZm9Udy1oOFhyRUQ1cTNhWDhmR2R4UWFFcjhDay1QTlBvcUd0Q0Q2ajBOZ0Q4ZERqQ3N0dkZkdTdxQUM1SnBOWlZhRXRodnI0RFQwZXBJZ1R4WmhIbWJlaV92QVpfQTNSQ0J4SExzczNkR0kzOG1JOU10WXZtNGNOS19ldzloZVBfYXVUd1oxQkw0andoQ0EzTmZLYXFtd1JJXzVj?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMizgFBVV95cUxNQkNhdHVfeHRVTDdBRnptQnp0SWJ1YVVPNTdTS0JEQUVxMFVMUm5PSUMyVldEZEFKTWN3UWJ0VnNzRDJBdTJWeEJCU3NiWG8wdUp5RGFFeldCMUoxTzFWSVJvN0lRN2Q5QmxFSno1NUZhQXRlX0haZEU4NUtYMjRMXzBkamYxSFhqNHMwWV9FNEF1SmRqZExpVkJiaUlzT2d4UEFTSUUySjBLSl",
-      "at": 1789351042000,
-      "inst": [
-        "XAU/USD",
-        "USOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL",
-        "USD"
       ],
       "sev": 2,
       "rel": 2,
@@ -618,7 +646,7 @@
       "firstAt": 1789348340000
     },
     {
-      "title": "Trump dismisses report China entities helped Iran before attack that killed US troops - arabnews.com",
+      "title": "Trump dismisses report China entities helped Iran before attack that killed US troops - Arab News",
       "link": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxOUGcxbkM1ZjNzOV9oQ1FhNGVwdGhTZS1qY2FCNzBpelhDYmpnM0NkUGVpdC1obmxVTWJkbEhhU1FiaUtHNnhDbUhNeGxoT0t1aHktajFiUEpJVzBQS1hTbUp4Y0FqUjk0cXdOSlVDVUR3UmlZSkptdGd4M2h5UlFLTU8yclFuU1NyaG5zb0hpNE8zLXlNUGwxSWJkUGNaZk1aTWlKczUxOVE2eVctSENVc1I0MTU4MUZaSEZ4cGNqRmkxQQ?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiwgFBVV95cUxOUGcxbkM1ZjNzOV9oQ1FhNGVwdGhTZS1qY2FCNzBpelhDYmpnM0NkUGVpdC1obmxVTWJkbEhhU1FiaUtHNnhDbUhNeGxoT0t1aHktajFiUEpJVzBQS1hTbUp4Y0FqUjk0cXdOSlVDVUR3UmlZSkptdGd4M2h5UlFLTU8yclFuU1NyaG5zb0hpNE8zLXlNUGwxSWJkUGNaZk1aTWlKczUxOVE2eV",
@@ -1348,7 +1376,7 @@
       "firstAt": 1789324063000
     },
     {
-      "title": "Israeli Officials Reject Kushner’s Account Of Doha Strike’s Role In Gaza Deal - i24news.tv",
+      "title": "Israeli Officials Reject Kushner’s Account Of Doha Strike’s Role In Gaza Deal - i24NEWS",
       "link": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxOV0NicjNXa3VzNkMxelRibXRxLURFS25BY1Zxem81MlNlVWxJeWk2SXF0bHZ5dzR0NDZKcEhhamlLb2FkanJoM1VkTUg4T1ZjZ0dvc1JNQjVtXzBEU3dtVlVJYlV2T0dnLUFJSU8zWEt0RXhlenhYTk94aDlndUtPYlFvdnJ2cWFBcmI5WEpjX2hfWldZVlZ2NWh0UENuNTZ6MjlPd3FnMXB4UTRDdDRJMjJrUTF6dnZZVzJ1ZTY5bHctcFFMZmJ0UjRKY0FON3ZVbHc?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMi0gFBVV95cUxOV0NicjNXa3VzNkMxelRibXRxLURFS25BY1Zxem81MlNlVWxJeWk2SXF0bHZ5dzR0NDZKcEhhamlLb2FkanJoM1VkTUg4T1ZjZ0dvc1JNQjVtXzBEU3dtVlVJYlV2T0dnLUFJSU8zWEt0RXhlenhYTk94aDlndUtPYlFvdnJ2cWFBcmI5WEpjX2hfWldZVlZ2NWh0UENuNTZ6MjlPd3FnMXB4UT",
@@ -1721,6 +1749,26 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789307887000
+    },
+    {
+      "title": "Video Trump says Iran 'probably responsible' for drone attack on Saudi pipeline - ABC News - Breaking News, Latest News and Videos",
+      "link": "https://news.google.com/rss/articles/CBMiTEFVX3lxTFB4b3kyR2RHOHQ4R2ttV1JWcS0tX2tNT1ZkeURhN0FsZThUR0ZBQndBNUlQRkFmQWlaWlZzQm11SHpBR1BtTWYzR3BLRWU?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiTEFVX3lxTFB4b3kyR2RHOHQ4R2ttV1JWcS0tX2tNT1ZkeURhN0FsZThUR0ZBQndBNUlQRkFmQWlaWlZzQm11SHpBR1BtTWYzR3BLRWU?oc=5\" target=\"_blank\">Video Trump says Iran 'probably responsible' for drone attack on Saudi pipeline</a>&nbsp;&nbsp;<font col",
+      "at": 1789306459000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 3,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789304535000
     }
   ],
   "sources": [
@@ -1743,10 +1791,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-14T04:00:50.197Z",
-  "updatedAt": "2026-09-14T04:00:50.197Z"
+  "headlinesAt": "2026-09-14T04:02:08.293Z",
+  "updatedAt": "2026-09-14T04:02:08.293Z"
 }
