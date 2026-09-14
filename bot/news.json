@@ -948,7 +948,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789408837000,
-      "_kind": null
+      "_kind": null,
+      "why": "Upcoming data releases, no immediate direction."
     },
     {
       "title": "Trump says Ukraine and Russia agreed to halt strikes on energy. Zelenskyy is not so sure. - politico.eu",
@@ -969,7 +970,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789406100000,
-      "_kind": null
+      "_kind": null,
+      "why": "Conflicting reports on energy strike halt."
     },
     {
       "title": "Stocks making the biggest moves midday: Zscaler, CrowdStrike, Marvell Technology, Rum Group & more",
@@ -985,7 +987,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789408734000,
-      "_kind": null
+      "_kind": null,
+      "why": "Individual stock moves, index direction unclear."
     },
     {
       "title": "Global AI stocks fall as industry chiefs call for slowing development",
@@ -1000,7 +1003,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789408472000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "AI sector concerns weigh on tech stocks."
     },
     {
       "title": "Trump: AI will be the greatest economic development engine in history",
@@ -1020,7 +1027,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789408431000,
-      "_kind": null
+      "_kind": null,
+      "why": "General AI optimism, no specific asset impact."
     },
     {
       "title": "Iran’s proxy money machine: How the Houthis built a multibillion-dollar network despite US sanctions - Fox News",
@@ -1042,7 +1050,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789407791000,
-      "_kind": null
+      "_kind": null,
+      "why": "Geopolitical background, no immediate market move."
     },
     {
       "title": "Ukraine wants specifics from partners on halting strikes, Zelenskiy says - Reuters",
@@ -1063,7 +1072,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789408236000,
-      "_kind": null
+      "_kind": null,
+      "why": "Diplomatic uncertainty, no clear directional signal."
     },
     {
       "title": "Gold has delivered 23% returns since 2019: Why investors should factor in inflation when estimating future returns - Livemint",
@@ -1082,7 +1092,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789407990000,
-      "_kind": null
+      "_kind": null,
+      "why": "Historical performance analysis, not forward-looking."
     },
     {
       "title": "Inflation is sinking your high-yield savings account’s returns. Here’s one way to fight it.",
@@ -1106,7 +1117,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789407960000,
-      "_kind": null
+      "_kind": null,
+      "why": "General inflation commentary, no specific FX impact."
     },
     {
       "title": "Risk trades steadily rebound on Trump's talk about AI and energy",
@@ -1125,7 +1137,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789407818000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "US500": "up"
+      },
+      "why": "Risk appetite improves, stocks rebound."
     },
     {
       "title": "Houthis attack Saudi Arabia as Gulf-Iran talks are postponed",
@@ -1145,7 +1162,13 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789407791000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Geopolitical escalation boosts safe havens and oil."
     },
     {
       "title": "Carney pitches Canada to global investors amid US trade war",
@@ -1165,7 +1188,10 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789407046000,
-      "_kind": null
+      "dir": {
+        "USD/CAD": "down"
+      },
+      "why": "Positive for CAD, neutral for gold."
     },
     {
       "title": "Congress returns with packed legislative agenda from budget resolution to Russia sanctions - The Hill",
@@ -1185,7 +1211,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789405981000
+      "firstAt": 1789405981000,
+      "why": "Legislative agenda, no immediate market impact."
     },
     {
       "title": "Carney, locked in US trade war, pitches Canada to global investment titans",
@@ -1203,7 +1230,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789407046000
+      "firstAt": 1789407046000,
+      "dir": {
+        "USD/CAD": "down"
+      },
+      "why": "Positive for CAD, neutral for gold."
     },
     {
       "title": "Warsh's credibility is on the line this week as Trump policies put pressure on Fed to hike",
@@ -1221,7 +1252,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789406781000
+      "firstAt": 1789406781000,
+      "why": "Fed policy uncertainty, no clear oil direction."
     },
     {
       "title": "Trump: Ukraine and Russia Agree Not to Strike Each Other’s Energy Facilities - reform.news",
@@ -1786,24 +1818,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789399320000
-    },
-    {
-      "title": "Gold hits one-month low amid Fed rate hike fears but seen as key long-term hedge against fiscal risks. - Pluang",
-      "link": "https://news.google.com/rss/articles/CBMikwFBVV95cUxQenU4NEFSMDAtMGdEcV9WenBocEtvTG9EYjFOWDFfRFlrX3F1VTZNRWcxdGNXMFBZSEFjcGRJdk92ZG13NHZ1cVI3UWFPYWNZRXdldzdWajJMbXlob1JBN2RVbGRxYkFIdFpWWjZEejlhUklpdUhEYmVVM19RaTlNRTROenhRZUY1V2FKOUdxYWhMRUE?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMikwFBVV95cUxQenU4NEFSMDAtMGdEcV9WenBocEtvTG9EYjFOWDFfRFlrX3F1VTZNRWcxdGNXMFBZSEFjcGRJdk92ZG13NHZ1cVI3UWFPYWNZRXdldzdWajJMbXlob1JBN2RVbGRxYkFIdFpWWjZEejlhUklpdUhEYmVVM19RaTlNRTROenhRZUY1V2FKOUdxYWhMRUE?oc=5\" target=\"_blank\">Gold hit",
-      "at": 1789401525000,
-      "inst": [
-        "XAU/USD"
-      ],
-      "ccy": [
-        "USD",
-        "XAU"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789400868000
     },
     {
       "title": "Prediction market traders think gas prices will hit new highs for the year",
@@ -2658,6 +2672,26 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789391207000
+    },
+    {
+      "title": "Trump demands Ukraine halt refinery strikes as diesel surges - The Derrick",
+      "link": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxPbkctTUNvOHdsd0hzS2EyQktkLWVkOHNFcGE5MHNOMWJDS1VCN05VZmpNdlltRmlYb3VwWS1MSUF1RFhORXVjOXRPb3RhNVZ5T1ktdVhrZ3JmcndTRVRaWEplTUtVWGExSWhUVzRuQWVYSUZ1dW5xQ1RJMFc2UmhzZS0xTFFnVjVPSmNPZG5rUnJkaXlCWFU2ZTdHUDF2Q3ZSQ21EaEhJTHlqZkhnT2NkdzAzY21aUTR3bVVhLW90ZndzcGtVLWJxbDdSQ25TZE5ucHk5R1l3YkJ6YmtTb1VJb0xpSEVteXRkMUpZaw?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi7AFBVV95cUxPbkctTUNvOHdsd0hzS2EyQktkLWVkOHNFcGE5MHNOMWJDS1VCN05VZmpNdlltRmlYb3VwWS1MSUF1RFhORXVjOXRPb3RhNVZ5T1ktdVhrZ3JmcndTRVRaWEplTUtVWGExSWhUVzRuQWVYSUZ1dW5xQ1RJMFc2UmhzZS0xTFFnVjVPSmNPZG5rUnJkaXlCWFU2ZTdHUDF2Q3ZSQ21EaEhJTHlqZk",
+      "at": 1789391160000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789390506000
     }
   ],
   "sources": [
@@ -2683,7 +2717,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-14T18:11:07.819Z",
-  "headlinesAt": "2026-09-14T18:11:07.819Z",
-  "updatedAt": "2026-09-14T18:11:07.819Z"
+  "calendarAt": "2026-09-14T18:13:07.426Z",
+  "headlinesAt": "2026-09-14T18:13:07.426Z",
+  "updatedAt": "2026-09-14T18:13:07.426Z"
 }
