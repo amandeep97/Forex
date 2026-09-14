@@ -21,7 +21,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789367193000,
-      "_kind": null
+      "_kind": null,
+      "why": "General agenda, no specific directional news."
     },
     {
       "title": "Gold Softens as Markets Brace for Fed Rate Hike - TradingPedia",
@@ -40,7 +41,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789364400000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold softens due to Fed rate hike fears."
     },
     {
       "title": "UK Markets Brief: A BoE Rate Hike Surprise Is Still Possible, and Amazon Joins the Bond Boom - Morningstar",
@@ -59,7 +64,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789366629000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "GBP/USD": "up"
+      },
+      "why": "BoE rate hike surprise possible, bullish for GBP."
     },
     {
       "title": "Trump tells Ukraine to halt Russian refinery strikes - Quantum Commodity Intelligence",
@@ -80,7 +89,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789363885000,
-      "_kind": null
+      "_kind": null,
+      "why": "Geopolitical headline, unclear immediate market impact."
     },
     {
       "title": "A New Sanctions Regime: Targeting Israel’s West Bank Settlements - CounterPunch.org",
@@ -100,7 +110,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789365702000
+      "firstAt": 1789365702000,
+      "why": "Sanctions news, unclear immediate market impact."
     },
     {
       "title": "Taiwan stocks lower at close of trade; Taiwan Weighted down 0.66%",
@@ -114,7 +125,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789365604000
+      "firstAt": 1789365604000,
+      "why": "Taiwan stock movement, no direct US500 impact."
     },
     {
       "title": "FleetPartners shares surge 12% to record as takeover bidding war heats up",
@@ -130,7 +142,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789364893000
+      "firstAt": 1789364893000,
+      "why": "Stock-specific news, irrelevant to gold."
     },
     {
       "title": "Gold slips as oil rally fans rate hike bets ahead of Fed meeting - TradingView",
@@ -150,7 +163,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789364400000
+      "firstAt": 1789364400000,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "up"
+      },
+      "why": "Gold slips on rate hikes; oil rallies."
     },
     {
       "title": "LIVE: Trump urges Ukraine to stop refinery strikes as diesel prices surge - Latest news from Azerbaijan",
@@ -170,7 +188,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789364219000
+      "firstAt": 1789364219000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Diesel prices surge, bullish for oil."
     },
     {
       "title": "Poland Scrambles Security Chiefs After Russian Strike Near Border With Ukraine - Kyiv Post",
@@ -190,7 +213,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789363807000
+      "firstAt": 1789363807000,
+      "why": "Security news, unclear immediate market impact."
     },
     {
       "title": "Shares skid in Asia as oil climbs, rate hikes loom",
@@ -206,7 +230,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789363825000
+      "firstAt": 1789363825000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil climbs, shares skid."
     },
     {
       "title": "Russia strikes closer to Poland as Ukrainian border town assesses damage - lufkindailynews.com",
@@ -226,7 +254,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789363807000
+      "firstAt": 1789363807000,
+      "why": "Geopolitical strike news, unclear immediate impact."
     },
     {
       "title": "Asian currencies weaken as dollar rises, yen holds near seven-month high",
@@ -243,7 +272,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789363367000
+      "firstAt": 1789363367000,
+      "dir": {
+        "USD/JPY": "up"
+      },
+      "why": "Dollar rises, yen holds, bullish for USD/JPY."
     },
     {
       "title": "Swiss Franc weakens as US Dollar gains on Fed rate hike odds - fxstreet.com",
@@ -261,7 +294,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789362704000
+      "firstAt": 1789362704000,
+      "dir": {
+        "USD/CHF": "up"
+      },
+      "why": "Dollar gains, franc weakens, bullish for USD/CHF."
     },
     {
       "title": "Kushner: US leveraged Doha strike isolation for Gaza deal - Yeni Safak English",
@@ -281,7 +318,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789362109000
+      "firstAt": 1789362109000,
+      "why": "Diplomatic news, unclear immediate market impact."
     },
     {
       "title": "Trump downplays report China supplied satellite images aiding Jordan base attack - Middle East Eye",
@@ -1749,10 +1787,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-14T06:39:05.186Z",
-  "updatedAt": "2026-09-14T06:39:05.186Z"
+  "headlinesAt": "2026-09-14T06:40:21.864Z",
+  "updatedAt": "2026-09-14T06:40:21.864Z"
 }
