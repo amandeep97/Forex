@@ -2,6 +2,33 @@
   "calendar": [],
   "headlines": [
     {
+      "title": "Zelenskyy says Ukraine ready for de-escalation if Russia reciprocates - Türkiye Today",
+      "link": "https://news.google.com/rss/articles/CBMisgFBVV95cUxOY1hSNEM0MGpxb0tnaEtFVjUxaXNzZnFNQkVtOGpRazJEMlpOZHJuUHJXcnc5VXJkMG12SHdVY3RJVjVUYmJzNkxQelkyLW5pVUJSWmR5RWluOWc5ZUtxRm9IZGhza0dRWFVhdnFWbHozMlU1UWpKSjVTVVpuNzRuMHlmR0pYQUFhUjFlRTdPMnFTVV96bzl1bHRSa045bHpjdmlEUHpuWU5ZVXZ1NmJ6eGpB?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMisgFBVV95cUxOY1hSNEM0MGpxb0tnaEtFVjUxaXNzZnFNQkVtOGpRazJEMlpOZHJuUHJXcnc5VXJkMG12SHdVY3RJVjVUYmJzNkxQelkyLW5pVUJSWmR5RWluOWc5ZUtxRm9IZGhza0dRWFVhdnFWbHozMlU1UWpKSjVTVVpuNzRuMHlmR0pYQUFhUjFlRTdPMnFTVV96bzl1bHRSa045bHpjdmlEUHpuWU5ZVX",
+      "at": 1789425473000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789423069000,
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "De-escalation reduces geopolitical risk premium"
+    },
+    {
       "title": "Ukraine signals openness to pausing strikes on Russian energy targets - Semafor",
       "link": "https://news.google.com/rss/articles/CBMisgFBVV95cUxOWTQ5SHpkVFBWSEhORHVIZ1VKbkRKcXdzMGdJYnF4SmdJdEpiYmc3dEsxamV5RF9jb2I0blJnYkpOX0dZZ0EzbEg2eTlWMGdvRWJlRzF6a1QwN2ZvZUwtN2hjMFZFY19BX2JhZ3ZaN0pYZ0ZyX1FzX2J2dzRsU01DSXNNbUEwN0l1M2pteGszRDdCLXFkckJTOUV6aW5QTXdrSnV6WkJSLVR4M2o3YXA5MHRR?oc=5",
       "source": "Wires (geo)",
@@ -20,7 +47,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789423069000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Pause in strikes lowers supply risk"
     },
     {
       "title": "Breakfast briefing: Markets demand rate rises to fight inflation - Forex Factory",
@@ -44,7 +77,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789424820000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Rate hikes strengthen dollar, hurt gold"
     },
     {
       "title": "US slaps new penalties on Russia's VTB Bank over Iran sanctions evasion - kyivindependent.com",
@@ -65,7 +104,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789422240000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Sanctions increase geopolitical risk and supply concerns"
     },
     {
       "title": "Stocks fall as oil and bond yields rise",
@@ -83,7 +128,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789424414000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "US500": "down"
+      },
+      "why": "Oil rises, stocks fall"
     },
     {
       "title": "US hits major Russian bank VTB with Iran-linked sanctions - Al-Monitor",
@@ -103,7 +153,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789422240000
+      "firstAt": 1789422240000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Sanctions increase geopolitical risk and supply concerns"
     },
     {
       "title": "Houthis attack Saudi Arabia as Gulf-Iran talks are postponed",
@@ -122,7 +178,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789423626000
+      "firstAt": 1789423626000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Houthi attacks and postponed talks raise risk"
     },
     {
       "title": "Zelenskyy says Ukraine will pause strikes on Russia if Kremlin spares critical infrastructure - PBS",
@@ -142,7 +204,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789423069000
+      "firstAt": 1789423069000,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "De-escalation signals reduce geopolitical risk premium"
     },
     {
       "title": "Canada 10-year yield rises as inflation, oil prices keep bond markets on edge - Investing.com",
@@ -162,7 +230,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789423047000
+      "firstAt": 1789423047000,
+      "dir": {
+        "USD/CAD": "up",
+        "USOIL": "up"
+      },
+      "why": "Oil prices rise, supporting CAD but USD strong"
     },
     {
       "title": "Loonie holds near 12-day low as oil support fails to offset dollar strength",
@@ -181,7 +254,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789422848000
+      "firstAt": 1789422848000,
+      "dir": {
+        "USD/CAD": "up"
+      },
+      "why": "Dollar strength offsets oil support for CAD"
     },
     {
       "title": "Treasury hits Russia's VTB Bank with new sanctions over Iran ties - CNBC",
@@ -202,7 +279,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789420327000
+      "firstAt": 1789420327000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Sanctions increase geopolitical risk and supply concerns"
     },
     {
       "title": "U.S. Sanctions Russian Bank in Latest Target for Campaign Against Iran - WSJ",
@@ -222,7 +305,37 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789420327000
+      "firstAt": 1789420327000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Sanctions increase geopolitical risk and supply concerns"
+    },
+    {
+      "title": "Nazi Attack on School in Israel: A Global Warning - The Times of Israel",
+      "link": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxQM0hEQ1I4SEQ2d3RmWm01ek8tSE1BWElQcmZmN01vWXpRVjhsLWZaMUVpeXdRYnhDNW1DMUtMYm9zejhmRURqdDZHOUhoVkxTanRTTFRPYzhRNEFHdnNMd2E1XzhabEwtZHgyWnBFbTlyOGJKOUZMa3BZQnA0SEl0eEp2RTl1emVz?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiiAFBVV95cUxQM0hEQ1I4SEQ2d3RmWm01ek8tSE1BWElQcmZmN01vWXpRVjhsLWZaMUVpeXdRYnhDNW1DMUtMYm9zejhmRURqdDZHOUhoVkxTanRTTFRPYzhRNEFHdnNMd2E1XzhabEwtZHgyWnBFbTlyOGJKOUZMa3BZQnA0SEl0eEp2RTl1emVz?oc=5\" target=\"_blank\">Nazi Attack on School i",
+      "at": 1789422000000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789422000000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Global warning increases safe-haven demand for gold"
     },
     {
       "title": "Israeli attack targets Gaza displacement camp",
@@ -242,7 +355,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789421824000
+      "firstAt": 1789421824000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Escalation increases safe-haven demand for gold"
     },
     {
       "title": "The oil market is sending an increasingly loud warning about gas prices at the pump",
@@ -262,7 +379,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789421460000
+      "firstAt": 1789421460000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up",
+        "XAU/USD": "up"
+      },
+      "why": "Supply threats raise oil and gold prices"
     },
     {
       "title": "US 10-year Treasury yield breaches 5% as inflation, supply worries mount - The Straits Times",
@@ -541,7 +664,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789417260000
+      "firstAt": 1789416540000
     },
     {
       "title": "Warsh's credibility is on the line this week as Trump policies put pressure on Fed to hike",
@@ -770,7 +893,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789417260000
+      "firstAt": 1789416540000
     },
     {
       "title": "Ukraine will support energy ceasefire if US ensures Moscow's intent, Zelenskiy says - Reuters",
@@ -793,7 +916,7 @@
       "firstAt": 1789415700000
     },
     {
-      "title": "Satellite images show extent of damage to major Saudi pipeline, amid global oil supply fears - theguardian.com",
+      "title": "Satellite images show extent of damage to major Saudi pipeline, amid global oil supply fears - The Guardian",
       "link": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxONThDR2dBM2V3OWhrWDdHQ0xsRzB0eTBsZzB6cEszMjN4ZEZiQ2ZCRUdfZ1FRMGNQTk5aY081QnlSN0tjOEZrUFBHYjQtbUxxa25oaW9XVGM1QlV0QkhpVC12WldMZHlVUDR0YVhUTHVnbGJIMGo1VGJmdXJxMFgtZGtBRGJOdVN5SUQ1R0ExcEUwd1dBWktOSFBySmpwMEN4MXc0OHRZclREdw?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiqgFBVV95cUxONThDR2dBM2V3OWhrWDdHQ0xsRzB0eTBsZzB6cEszMjN4ZEZiQ2ZCRUdfZ1FRMGNQTk5aY081QnlSN0tjOEZrUFBHYjQtbUxxa25oaW9XVGM1QlV0QkhpVC12WldMZHlVUDR0YVhUTHVnbGJIMGo1VGJmdXJxMFgtZGtBRGJOdVN5SUQ1R0ExcEUwd1dBWktOSFBySmpwMEN4MXc0OHRZclREdw",
@@ -807,7 +930,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789417260000
+      "firstAt": 1789416540000
     },
     {
       "title": "Finland shelters under French nuclear umbrella amid Russian, US uncertainty",
@@ -871,6 +994,26 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789416843000
+    },
+    {
+      "title": "Iran backed Houthi attack on Saudi pipeline threatens global supply - The Center Square",
+      "link": "https://news.google.com/rss/articles/CBMilAFBVV95cUxOZG11NW9Gc3k0MmVod3QwVzdJdVdmMnU3bDZ2ejFOMk5Yc1c0WTBKLTcwbmVjZ0dBQnpqZExhSHVUa3VEcmRSbDNQVVI5Q3ZzYWVFWUdmT0xURHVZMXZETmgtZTdMMi16TE9sUmZ1XzF6X2VNWlR5Z2dxZFZkaXNuR0JocjBOcjRkQUE3MW1FSUlzVHZ50gGaAUFVX3lxTE82TU82UUI3Y3BaZG1kX29LdXlJdnZKdE5fMVVKZi1KMnZGMTdwdERhcVNBMVVYcG13aUs1Z3VPaHQ3R1IwbVctMEFhTnpXeXZXWjNmaXYzWmNQUlB6VlF5bEFjRHk2U05WVU1zaHdZcXMyZVl1UVBOM01LbzhkYXFBWEt3bVhabnpLa0FJY2JmeWtNcVNnTkw5MEE?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMilAFBVV95cUxOZG11NW9Gc3k0MmVod3QwVzdJdVdmMnU3bDZ2ejFOMk5Yc1c0WTBKLTcwbmVjZ0dBQnpqZExhSHVUa3VEcmRSbDNQVVI5Q3ZzYWVFWUdmT0xURHVZMXZETmgtZTdMMi16TE9sUmZ1XzF6X2VNWlR5Z2dxZFZkaXNuR0JocjBOcjRkQUE3MW1FSUlzVHZ50gGaAUFVX3lxTE82TU82UUI3Y3BaZG",
+      "at": 1789416540000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1789416540000
     },
     {
       "title": "Iran war: Reuters tracks US‑Israel strikes and widening regional risks - eciks.org",
@@ -1018,7 +1161,7 @@
       "firstAt": 1789413489000
     },
     {
-      "title": "Fed Extends Pause on Reserve Management Purchases to Mid-October - bloomberg.com",
+      "title": "Fed Extends Pause on Reserve Management Purchases to Mid-October - Bloomberg.com",
       "link": "https://news.google.com/rss/articles/CBMisgFBVV95cUxPOVRCM3FHR3JWMlY1cmFUYlVWeFM1VDJtNG4tbXFpNllCMzlyU09TOV9LZnk2UUdRZWp1Z0F6ZlJsVVFCREx6b1NvVWpVNk5kenQ4UzVsZWZlUDFpZVVVOWlIbDlLOW1TNzM5MGI3T2Z1WG5VRmVmN0JSNHliS0IyYU9ISmFhekVJdmdiaVVTUkZzX2M0b1ltaFRBNU55OHpVOUNBQWdVZldOWHNQR20yXzVR?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMisgFBVV95cUxPOVRCM3FHR3JWMlY1cmFUYlVWeFM1VDJtNG4tbXFpNllCMzlyU09TOV9LZnk2UUdRZWp1Z0F6ZlJsVVFCREx6b1NvVWpVNk5kenQ4UzVsZWZlUDFpZVVVOWlIbDlLOW1TNzM5MGI3T2Z1WG5VRmVmN0JSNHliS0IyYU9ISmFhekVJdmdiaVVTUkZzX2M0b1ltaFRBNU55OHpVOUNBQWdVZldOWH",
@@ -1610,26 +1753,6 @@
       "firstAt": 1789403795000
     },
     {
-      "title": "Russian Strike on Train Station Near Ukraine-Poland Border Seen as Warning to Kyiv’s Allies - nytimes.com",
-      "link": "https://news.google.com/rss/articles/CBMiigFBVV95cUxONE5GRm43eENLSWZIVDVrRm0xbHQzbkQwS05qQ3g0bUxrRmczdUw2ZnpLOUZWVWs3Ul9NTm9SZkdVcUJiazFVYkJXODBZcUdEb2tZdFlkU0Fiem1RQkNRYUNBMmhySkJXaXY2QWFscGxvdG1qMnNvWE9aY3JKZWpKMlpXRndNV2xpNnc?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiigFBVV95cUxONE5GRm43eENLSWZIVDVrRm0xbHQzbkQwS05qQ3g0bUxrRmczdUw2ZnpLOUZWVWs3Ul9NTm9SZkdVcUJiazFVYkJXODBZcUdEb2tZdFlkU0Fiem1RQkNRYUNBMmhySkJXaXY2QWFscGxvdG1qMnNvWE9aY3JKZWpKMlpXRndNV2xpNnc?oc=5\" target=\"_blank\">Russian Strike on Tr",
-      "at": 1789403659000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789403189000
-    },
-    {
       "title": "Trump says Ukraine and Russia agree not to attack energy facilities - Ukrinform",
       "link": "https://news.google.com/rss/articles/CBMivwFBVV95cUxOVTVkM2k1andzQmZvbEdmQ282a2dyazRkX3o4QnhHdGJIaVphamdJSi1mVklpVVk1Z2k0VW1Bb3lTUFFibmpXV1AtaGFGLUVic2FsaHVwcndjZUNuaEhGV0lQSS0wSUN5aXF2Rlh4T2hVUDhRdkVYUFJoNWNvU0NCOUxXWUFTM2kyM0FqallxejR0VTR4SlRvSU43UzQwQmpHcUtZQzBrOU0yckhPS2ZwYlk2cmNzYWxZSmJTemZRQdIBxAFBVV95cUxQdUNxclBPYkJVQ2FGUHZVeUZSd0FsTWZsX3ZWSVFFdlNrWjQzcFJRNTN1bnJZVnEwQXFZRnVXbzFNb0NpZE9MRmJhdmRZRzBCYm1GUFdqVHVwbEJzS3IybWJpSzRkM0xORzZuZ3d0U0J2elJGemVROTVuMGdsYlIwaXBqbmpHNlhleThlR3ViMlAwT0xDR0VlSkZuSExxN0E4Y29vM3pHR0Q2Z1Fra3U2ZWplRHFOZWpJeDV4UlFhVmtKelZI?oc=5",
       "source": "Wires (geo)",
@@ -1684,46 +1807,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789403295000
-    },
-    {
-      "title": "Ukraine and Russia have agreed an energy ceasefire, claims Trump - Yahoo",
-      "link": "https://news.google.com/rss/articles/CBMilwFBVV95cUxPb3NPczBXZ2NBVktxUXF0VWFYUGFDV1BqR1c2ZWdoNVJLMXBMVUJuTU80alRLc3BtSGw5eW9XTmJJaHdGb1JQSDczLXlVQTlERUJFWjZQQS0yYnFQV3d2c0QzMEd6MmpvV2p3bFd4QU5JWWVWYmRVMjNTaXhvajBTYjJOQ3VqMExFSE1SeUo0a0xrWUdvMW5v?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMilwFBVV95cUxPb3NPczBXZ2NBVktxUXF0VWFYUGFDV1BqR1c2ZWdoNVJLMXBMVUJuTU80alRLc3BtSGw5eW9XTmJJaHdGb1JQSDczLXlVQTlERUJFWjZQQS0yYnFQV3d2c0QzMEd6MmpvV2p3bFd4QU5JWWVWYmRVMjNTaXhvajBTYjJOQ3VqMExFSE1SeUo0a0xrWUdvMW5v?oc=5\" target=\"_blank\">Ukr",
-      "at": 1789403295000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789403295000
-    },
-    {
-      "title": "Could Russian strike near Ukraine-Poland border mean escalation? - BBC",
-      "link": "https://news.google.com/rss/articles/CBMiWEFVX3lxTFBNVEVhMFNkSzllZ0M2ZDd4TGlVaUkzN0RzLXBRYlV4WWR1X1Y3Q1Y3aUcwNF9nbjRlay1KRFk2YmN3MVFEeWJDb3FuaXRmaEN1VE92MkQwdEQ?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiWEFVX3lxTFBNVEVhMFNkSzllZ0M2ZDd4TGlVaUkzN0RzLXBRYlV4WWR1X1Y3Q1Y3aUcwNF9nbjRlay1KRFk2YmN3MVFEeWJDb3FuaXRmaEN1VE92MkQwdEQ?oc=5\" target=\"_blank\">Could Russian strike near Ukraine-Poland border mean escalation?</a>&nbsp;&nbsp;<font co",
-      "at": 1789403189000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789403189000
     }
   ],
   "sources": [
@@ -1746,10 +1829,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-14T22:46:20.989Z",
-  "updatedAt": "2026-09-14T22:46:20.989Z"
+  "headlinesAt": "2026-09-14T22:48:09.275Z",
+  "updatedAt": "2026-09-14T22:48:09.275Z"
 }
