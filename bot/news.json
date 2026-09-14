@@ -939,7 +939,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789397160000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Geopolitical risk boosts gold, oil unclear."
     },
     {
       "title": "Dow Rethinks its $20 Billion Saudi Chemicals Bet",
@@ -954,7 +958,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789396864000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US30": "down"
+      },
+      "why": "Dow rethinking bet implies negative sentiment."
     },
     {
       "title": "Gulf states call off meeting with Iran; Houthis launch new attack on Saudi",
@@ -974,7 +982,13 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789396465000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Escalation boosts gold and oil prices."
     },
     {
       "title": "Global AI stocks fall as industry chiefs call for slowing development",
@@ -989,7 +1003,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789396617000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "AI stocks fall directly impacts index."
     },
     {
       "title": "Fiscal pressure from Iran War clouds Gulf States’ US spending plans",
@@ -1010,7 +1028,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789396465000,
-      "_kind": null
+      "_kind": null,
+      "why": "Fiscal pressure unclear for these assets."
     },
     {
       "title": "Stock Market Today: Dow Falls, Oil Jumps On Houthi Moves; Chip Stocks Dive After AI Warning (Live Coverage)",
@@ -1029,7 +1048,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789396442000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "US500": "down",
+        "US30": "down"
+      },
+      "why": "Oil jumps, stocks fall explicitly stated."
     },
     {
       "title": "AirBaltic files for Chapter 11 bankruptcy as Iran war costs bite",
@@ -1049,7 +1074,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789395234000,
-      "_kind": null
+      "_kind": null,
+      "why": "Bankruptcy news unclear for these assets."
     },
     {
       "title": "Crowdstrike, Palo Alto Networks among Monday’s market cap stock movers",
@@ -1077,7 +1103,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789396224000,
-      "_kind": null
+      "_kind": null,
+      "why": "Specific stock prediction, index impact unclear."
     },
     {
       "title": "Hub Group warns of Nasdaq delisting notice; flags H1 operating loss",
@@ -1092,7 +1119,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789396003000,
-      "_kind": null
+      "_kind": null,
+      "why": "Single stock delisting risk, index unclear."
     },
     {
       "title": "Kremlin welcomes Trump’s call on Ukraine to halt strikes on diesel facilities",
@@ -1112,7 +1140,13 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789394207000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "De-escalation lowers risk premium for assets."
     },
     {
       "title": "‘Silent Cold War’: Why calls to slow AI have sparked new US–China frontier",
@@ -1129,7 +1163,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789395809000
+      "firstAt": 1789395809000,
+      "why": "Tech policy news unclear for gold."
     },
     {
       "title": "Insider at Medical Device Maker Buys More Than 7,500 Shares",
@@ -1161,7 +1196,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789394281000
+      "firstAt": 1789394281000,
+      "why": "Week ahead preview, no immediate direction."
     },
     {
       "title": "ServiceNow Climbs 5% as Software Sidesteps AI Selloff; Adobe Gains 4%, Salesforce Ticks Up",
@@ -1193,7 +1229,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789392494000
+      "firstAt": 1789392494000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Conflict details boost gold, oil unclear."
     },
     {
       "title": "Novo Nordisk is changing its name and its culture to try to compete in the GLP-1 diet-drug wars",
@@ -1220,7 +1260,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789394700000
+      "firstAt": 1789394700000,
+      "dir": {
+        "ETH/USDT": "up"
+      },
+      "why": "Large purchase supports Ethereum price."
     },
     {
       "title": "Why is Trump warning Zelenskyy not to hit Russian diesel refineries?",
@@ -1240,7 +1284,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789394207000
+      "firstAt": 1789394207000,
+      "why": "Political commentary, no clear price direction."
     },
     {
       "title": "Kalshi To Offer U.S. Stock And Commodities Trading",
@@ -2578,7 +2623,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-14T14:53:51.591Z",
-  "headlinesAt": "2026-09-14T14:53:51.592Z",
-  "updatedAt": "2026-09-14T14:53:51.592Z"
+  "calendarAt": "2026-09-14T14:55:22.921Z",
+  "headlinesAt": "2026-09-14T14:55:22.921Z",
+  "updatedAt": "2026-09-14T14:55:22.921Z"
 }
