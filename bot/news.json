@@ -933,7 +933,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789388664000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "AI stocks fall, dragging index down"
     },
     {
       "title": "NFL and midterm elections set up prediction markets for a critical fall season",
@@ -962,7 +966,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789387435000,
-      "_kind": null
+      "_kind": null,
+      "why": "CEO buying is company-specific, not broad"
     },
     {
       "title": "U.S. Treasury yields hold near multi-year highs as Fed hike bets anchor curve",
@@ -985,7 +990,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789388027000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Higher yields strengthen dollar, hurting metals/forex"
     },
     {
       "title": "Global AI stocks fall as industry chiefs call for slowing development",
@@ -1000,7 +1011,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789387965000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Global AI stocks fall, impacting index"
     },
     {
       "title": "Stocks dented by AI warnings; oil jumps again",
@@ -1018,7 +1033,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789387948000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "US500": "down"
+      },
+      "why": "Oil jumps, stocks dented by AI"
     },
     {
       "title": "Dow Jones Futures Fall, Techs Tumble As Oil Prices Rise, Anthropic Leads AI Slowdown Call",
@@ -1036,7 +1056,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789387895000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "US30": "down"
+      },
+      "why": "Oil rises, Dow falls on tech"
     },
     {
       "title": "Stock Market Today: Dow Falls On Rising Oil; Nvidia Sells Off On AI Warning (Live Coverage)",
@@ -1054,7 +1079,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789386600000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "US30": "down"
+      },
+      "why": "Dow falls, oil rises on warning"
     },
     {
       "title": "These 3 Pipeline Stocks Pay High Yields Without the K-1 Headache",
@@ -1069,7 +1099,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789387875000,
-      "_kind": null
+      "_kind": null,
+      "why": "Specific stock yields, no broad market impact"
     },
     {
       "title": "AI has been carrying the stock market. An industry pause could pull the rug out, warns this Wall Street giant.",
@@ -1085,7 +1116,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789386658000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "AI pause warning threatens market gains"
     },
     {
       "title": "TSX futures point lower amid AI slowdown calls, fading Mideast diplomacy hopes",
@@ -1117,7 +1152,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789387528000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold slips as rate hike odds rise"
     },
     {
       "title": "Alphabet Just Bought Into Nuclear Power. That Is Why I Am Buying Alphabet.",
@@ -1134,7 +1173,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789387435000,
-      "_kind": null
+      "_kind": null,
+      "why": "Alphabet news irrelevant to gold price"
     },
     {
       "title": "Russian Strike on Train Station Near Poland Seen as Warning to Kyiv’s Allies - The New York Times",
@@ -1155,7 +1195,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789384860000,
-      "_kind": null
+      "_kind": null,
+      "why": "Geopolitical warning, no immediate price direction"
     },
     {
       "title": "Micron Technology Shares Fall 5.2% as Semiconductor Stocks Decline",
@@ -1170,7 +1211,10 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789387096000,
-      "_kind": null
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Micron falls, semiconductor sector declines"
     },
     {
       "title": "Oil over $100 has JPMorgan stock-market strategists fearing a missing out on a swift decline",
@@ -1191,7 +1235,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789387140000,
-      "_kind": null
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Oil rises on supply disruption, gold unclear"
     },
     {
       "title": "GE Vernova Shares Fall 4.8% After GLJ Research Starts Coverage With Sell Rating",
@@ -1203,8 +1251,7 @@
       "sev": 1,
       "rel": 1,
       "srcs": 1,
-      "firstAt": 1789387096000,
-      "_kind": null
+      "firstAt": 1789387096000
     },
     {
       "title": "investingLive European markets wrap: Oil surges, Fed rate hike bets rise as AI fears hit stocks",
@@ -1226,7 +1273,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789386903000
+      "firstAt": 1789386903000,
+      "dir": {
+        "USOIL": "up",
+        "US500": "down",
+        "XAU/USD": "down"
+      },
+      "why": "Oil surges, stocks fall, gold pressured by rates"
     },
     {
       "title": "Goldman Sachs, JPMorgan expect Fed rate hike this week",
@@ -2615,10 +2668,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-14T12:28:11.351Z",
-  "headlinesAt": "2026-09-14T12:28:11.351Z",
-  "updatedAt": "2026-09-14T12:28:11.351Z"
+  "calendarAt": "2026-09-14T12:30:23.800Z",
+  "headlinesAt": "2026-09-14T12:30:23.800Z",
+  "updatedAt": "2026-09-14T12:30:23.800Z"
 }
