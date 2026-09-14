@@ -939,7 +939,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789394532000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Mideast escalation boosts safe havens and oil"
     },
     {
       "title": "Oil prices top $109 on fresh Mideast fighting, Hormuz meeting delay",
@@ -956,7 +962,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789394381000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil prices top $109 on fighting"
     },
     {
       "title": "New Ukraine Strike Record vs Kremlin Refineries, Trump Says Drones Should Quit - Kyiv Post",
@@ -977,7 +987,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789393890000,
-      "_kind": null
+      "_kind": null,
+      "why": "Ukraine strike news unclear for markets"
     },
     {
       "title": "Ukraine May Have Killed Russia’s General Sergei Milchakov in Strike on Donetsk Headquarters - UNITED24 Media",
@@ -998,7 +1009,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789392494000,
-      "_kind": null
+      "_kind": null,
+      "why": "Ukraine strike news unclear for markets"
     },
     {
       "title": "S&P 500 and Nasdaq open lower as AI jitters hit Nvidia, chipmakers",
@@ -1014,7 +1026,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789393747000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down",
+        "US100": "down"
+      },
+      "why": "AI jitters hit Nvidia, chipmakers"
     },
     {
       "title": "Stifel sees Canada Arctic defense spending as key investment theme",
@@ -1031,7 +1048,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789393719000,
-      "_kind": null
+      "_kind": null,
+      "why": "Defense spending theme unclear for CAD"
     },
     {
       "title": "S&P 500, Nasdaq fall on AI slowdown fears, oil price surge",
@@ -1050,7 +1068,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789393699000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "US500": "down",
+        "US100": "down"
+      },
+      "why": "Oil surge, AI fears hit stocks"
     },
     {
       "title": "Nike downgraded, Affirm upgraded: Wall Street's top analyst calls",
@@ -1065,7 +1089,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789393559000,
-      "_kind": null
+      "_kind": null,
+      "why": "Mixed analyst calls, no clear direction"
     },
     {
       "title": "Stifel Picks Top U.S. Energy Midstream Stocks Amid Accelerating Power Demand",
@@ -1080,7 +1105,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789393558000,
-      "_kind": null
+      "_kind": null,
+      "why": "Energy midstream picks, no clear direction"
     },
     {
       "title": "Chip stocks fall as oil prices gain, Treasury yields stay elevated: AlphaCheck",
@@ -1099,7 +1125,12 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789390971000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "US500": "down"
+      },
+      "why": "Oil gains, chip stocks fall"
     },
     {
       "title": "Here’s how to prepare your portfolio for the Fed’s next interest-rate moves",
@@ -1117,7 +1148,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789392659000,
-      "_kind": null
+      "_kind": null,
+      "why": "Portfolio prep, no clear direction"
     },
     {
       "title": "Stock Market Today: Dow Falls On Surging Oil; Nvidia, Micron, Sandisk Dive On AI Warning (Live Coverage)",
@@ -1135,7 +1167,12 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789391893000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "US30": "down"
+      },
+      "why": "Dow falls on surging oil"
     },
     {
       "title": "FTSE 100 today: Stocks gain as Mideast supply fears lift oil",
@@ -1153,7 +1190,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789393377000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil lifts, stocks gain (FTSE)"
     },
     {
       "title": "NATO chief Rutte vows more support for Ukraine after Russian drone strikes near Polish border - the-journal.com",
@@ -1174,7 +1215,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789391160000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "NATO support boosts gold, oil unclear"
     },
     {
       "title": "Stock Market Today (Sept. 14, 2026): S&P 500 falls on rising oil prices, sagging AI stocks",
@@ -1192,7 +1237,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789393112000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "US500": "down"
+      },
+      "why": "S&P falls on rising oil"
     },
     {
       "title": "Micron, Nvidia and other chip stocks fall after tech leaders call for an AI slowdown. Here’s what to know.",
@@ -1354,7 +1404,7 @@
       "firstAt": 1789391893000
     },
     {
-      "title": "Canadian Dollar remains under pressure following mixed inflation data - FXStreet",
+      "title": "Canadian Dollar remains under pressure following mixed inflation data - fxstreet.com",
       "link": "https://news.google.com/rss/articles/CBMisgFBVV95cUxPd0RyVWJOZ2VHLTFPbnJHUy10eVJjX0pRS184WU1uNWFsdE1ROVFkR2lIazk4NmdQX2FVZzZJZ3pyRk1kZlo5YUFnblh6eTJVSDBHMWgtQlh6ZDM4N2VlYjd5QzR3LTdEcWQtMmNlTXU3SG5hRHRJT2NFSFdCSk84SW5CRXBaSEVrUHRZeXFVemtDVVlJVTFkaUtsVjAzUXkxQUhPVWFoSXhLdlB5eVh0SGRn?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMisgFBVV95cUxPd0RyVWJOZ2VHLTFPbnJHUy10eVJjX0pRS184WU1uNWFsdE1ROVFkR2lIazk4NmdQX2FVZzZJZ3pyRk1kZlo5YUFnblh6eTJVSDBHMWgtQlh6ZDM4N2VlYjd5QzR3LTdEcWQtMmNlTXU3SG5hRHRJT2NFSFdCSk84SW5CRXBaSEVrUHRZeXFVemtDVVlJVTFkaUtsVjAzUXkxQUhPVWFoSXhLdl",
@@ -2063,7 +2113,7 @@
       "firstAt": 1789384444000
     },
     {
-      "title": "Gold awaits Fed decision as rising rate hike bets pressure prices - FXStreet",
+      "title": "Gold awaits Fed decision as rising rate hike bets pressure prices - fxstreet.com",
       "link": "https://news.google.com/rss/articles/CBMisgFBVV95cUxOVnFsc1JYMEJWRzJwTW1pR04xbmZxdlZNd2Jfa3dTcHVmaGpMZDZkNzQ2cUFEcHFYZ25TVjJGdFk3RDFoNkZ4UHBqaWZzZVh3WXNTbGFIcTJfcWRkVjJuajJ6dkhkd202a2NmYmp3Wlk1cGtWNDV1aFMtVms1bGNaNzBPdXF5Wmw5QWxyZXZEQm1ndC0tdjktbEJSc1B1cFFxQ1VYUXB5RktfLV9aZS1HSHhB?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMisgFBVV95cUxOVnFsc1JYMEJWRzJwTW1pR04xbmZxdlZNd2Jfa3dTcHVmaGpMZDZkNzQ2cUFEcHFYZ25TVjJGdFk3RDFoNkZ4UHBqaWZzZVh3WXNTbGFIcTJfcWRkVjJuajJ6dkhkd202a2NmYmp3Wlk1cGtWNDV1aFMtVms1bGNaNzBPdXF5Wmw5QWxyZXZEQm1ndC0tdjktbEJSc1B1cFFxQ1VYUXB5RktfLV",
@@ -2394,7 +2444,7 @@
       "firstAt": 1789378308000
     },
     {
-      "title": "Treasury Yields Surge as Inflation Fears Loom: An In-depth Analysis - devdiscourse.com",
+      "title": "Treasury Yields Surge as Inflation Fears Loom: An In-depth Analysis - Devdiscourse",
       "link": "https://news.google.com/rss/articles/CBMivAFBVV95cUxPYUc0Y3FFeDFDR1EybldIZVBEQ0w1ZTBVRnA5QlJ2U1Z4X1hJeW9rWkw4b1VXZzJORTY4QWRhWEJKbG5XaUNqWVZRU0NUSmtUbkgxSVpGcFp0WC1Zb3RESGw0Y0E3SGRYWTBDVmg5R1VvVEQzVDJHcnFhTExlQ1E4OFZ2X29zWnYyNFoyVkR6ZU14d25sZG1kaUVHZ2sxb1ZkSEhGamo4b1AxaThhQ2NLaWtmM2J5NkZLVmxFSdIBwgFBVV95cUxQdWQxSlU3c0VadlZUOVdnWDU3RFZhLXV5cWJ4MGs5STlMZFFKRjV3OElYZUF6QlZjeFZTbzBobkZIRVBPV1dRc1RzUHB0eDllS2dydXBrYld6eGtyQ09rMV9OY0w0aDh5X2J3RTY5TElVZmpYS2ZyaEl4Y09zTVpmbE5EM2J0MzVvNjd3NkRtUjVoLVJfdFBMbXRpN0NxaksxaHd0TXZ5T2N6SXZKSEZkRE5CZUVwbVlpMUQtZjB2d2tCdw?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMivAFBVV95cUxPYUc0Y3FFeDFDR1EybldIZVBEQ0w1ZTBVRnA5QlJ2U1Z4X1hJeW9rWkw4b1VXZzJORTY4QWRhWEJKbG5XaUNqWVZRU0NUSmtUbkgxSVpGcFp0WC1Zb3RESGw0Y0E3SGRYWTBDVmg5R1VvVEQzVDJHcnFhTExlQ1E4OFZ2X29zWnYyNFoyVkR6ZU14d25sZG1kaUVHZ2sxb1ZkSEhGamo4b1AxaT",
@@ -2417,10 +2467,10 @@
       "firstAt": 1789380080000
     },
     {
-      "title": "Jerusalem Upset by Kushner's Admission that U.S. Used Doha Strike to Push Israel on Gaza - cbn.com",
-      "link": "https://news.google.com/rss/articles/CBMioAFBVV95cUxQSXUtZUI4VnlleHVLZHJoWHY1dFRzZi1RQXNwSktLdmJJekdhdzZZNzBCUlRTTkZBMnBoS0lpTXNRRHhBNFdNSlFObmNwaDN5VGw2TnF5SVlQMjQ5Qk9rMjhuMG9SNWRaZ2wzNU1KaENLYWJXR1F3RlFsQ09wUjVZeTJfSzhGR1ZHZjVBWkF1Wk5Ud1dQSjMyeXQ5OHpDa0t0?oc=5",
+      "title": "Israel Upset by Kushner's Admission that U.S. Used Doha Strike to Push Israel on Gaza - cbn.com",
+      "link": "https://news.google.com/rss/articles/CBMinAFBVV95cUxQZ2Z4THZGaFQwcW5VckhRTF9Cb2NtNlVBT3NLcUdiRzZoM1lWZVAwQk5aR0tGNGVmcEZlQ3Fudk8tRnJEc2FjY2NkN3hPN1Rna05zSUR3WU9PUFJfSjhyRFp6R3NYNW5fbnpMQVNaVFI5b1FEc0RPTFh5cUNxRU40NFJVRkNqUWZUOGlwb09JbmYwbmktaHpaVlI5cnM?oc=5",
       "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMioAFBVV95cUxQSXUtZUI4VnlleHVLZHJoWHY1dFRzZi1RQXNwSktLdmJJekdhdzZZNzBCUlRTTkZBMnBoS0lpTXNRRHhBNFdNSlFObmNwaDN5VGw2TnF5SVlQMjQ5Qk9rMjhuMG9SNWRaZ2wzNU1KaENLYWJXR1F3RlFsQ09wUjVZeTJfSzhGR1ZHZjVBWkF1Wk5Ud1dQSjMyeXQ5OHpDa0t0?oc=5\" target=",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMinAFBVV95cUxQZ2Z4THZGaFQwcW5VckhRTF9Cb2NtNlVBT3NLcUdiRzZoM1lWZVAwQk5aR0tGNGVmcEZlQ3Fudk8tRnJEc2FjY2NkN3hPN1Rna05zSUR3WU9PUFJfSjhyRFp6R3NYNW5fbnpMQVNaVFI5b1FEc0RPTFh5cUNxRU40NFJVRkNqUWZUOGlwb09JbmYwbmktaHpaVlI5cnM?oc=5\" target=\"_bla",
       "at": 1789380052000,
       "inst": [
         "XAU/USD",
@@ -2569,10 +2619,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-14T14:03:35.599Z",
-  "headlinesAt": "2026-09-14T14:03:35.599Z",
-  "updatedAt": "2026-09-14T14:03:35.599Z"
+  "calendarAt": "2026-09-14T14:05:53.515Z",
+  "headlinesAt": "2026-09-14T14:05:53.515Z",
+  "updatedAt": "2026-09-14T14:05:53.515Z"
 }
