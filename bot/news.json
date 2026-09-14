@@ -20,7 +20,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789421460000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Oil supply fears drive prices higher"
     },
     {
       "title": "Colombia stocks lower at close of trade; COLCAP down 0.06%",
@@ -35,7 +40,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789421102000,
-      "_kind": null
+      "_kind": null,
+      "why": "Colombia stocks unrelated to US index"
     },
     {
       "title": "Carney, locked in US trade war, pitches Canada to global investment titans",
@@ -54,7 +60,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789421070000,
-      "_kind": null
+      "_kind": null,
+      "why": "Trade war context unclear for CAD"
     },
     {
       "title": "US 10-year Treasury yield breaches 5% as inflation, supply worries mount - The Straits Times",
@@ -78,7 +85,12 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789418820000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Rising yields hurt risk assets"
     },
     {
       "title": "Russia stocks higher at close of trade; MOEX Russia Index up 3.26%",
@@ -93,7 +105,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789420803000,
-      "_kind": null
+      "_kind": null,
+      "why": "Russia stocks unrelated to US index"
     },
     {
       "title": "Why talks in Oman between Iran and Gulf Arab states were postponed",
@@ -114,7 +127,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789420800000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Postponed talks increase geopolitical risk"
     },
     {
       "title": "US blocks Iran nuclear chief from attending key Vienna conference",
@@ -135,7 +154,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789420781000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Escalating tensions boost safe havens"
     },
     {
       "title": "Stocks fall as oil and bond yields rise",
@@ -153,7 +178,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789420707000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "US500": "down"
+      },
+      "why": "Rising yields and oil hurt stocks"
     },
     {
       "title": "Gold dips amid rising dollar as Fed rate hike bets ramp up to near certainty",
@@ -171,7 +201,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789418197000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Strong dollar and rates pressure gold"
     },
     {
       "title": "Fresh Houthi Strikes Inject New Uncertainty Into Iran War - Foreign Policy",
@@ -192,7 +226,13 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789420226000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "New strikes increase geopolitical uncertainty"
     },
     {
       "title": "US imposes fresh sanctions on Russia’s VTB Bank over alleged Iran ties",
@@ -212,7 +252,13 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789417847000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Sanctions increase geopolitical risk premium"
     },
     {
       "title": "Israel probing Naza film on Gaza for treason, inciting anti-Semitism",
@@ -233,7 +279,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789420327000,
-      "_kind": null
+      "_kind": null,
+      "why": "Gaza news unclear for gold direction"
     },
     {
       "title": "ICE canola futures rise ahead of government crop report",
@@ -262,7 +309,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789420260000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Software sector outperformance boosts index"
     },
     {
       "title": "Chip stocks were a safe AI play. Now they’ve turned into the market’s pain trade.",
@@ -278,7 +329,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789420260000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Chip stocks become market pain trade"
     },
     {
       "title": "US imposes fresh sanctions on Russia's VTB Bank over alleged Iran ties - Yahoo",
@@ -299,7 +354,13 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789417847000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Sanctions increase geopolitical risk premium"
     },
     {
       "title": "Russia Drone Strike Hits Ukrainian Train Near Poland Border After Boris Johnson Passes Yahodyn Station - NewsCord",
@@ -1226,7 +1287,7 @@
       "firstAt": 1789409760000
     },
     {
-      "title": "Ukraine wants specifics from partners over halting strikes on Russia: Zelenskyy after Trump’s post - thehindu.com",
+      "title": "Ukraine wants specifics from partners over halting strikes on Russia: Zelenskyy after Trump’s post - The Hindu",
       "link": "https://news.google.com/rss/articles/CBMi8gFBVV95cUxPbk1UOE9BZmhUbHQyV2RqLUdyLUNPZnpQeEh3d2RBUzRFV2Z4QlZuQ012RXlFcldBSHh5YnVxVHdsTnRpSEVqSFNueGxmVTdEZFhPRGpCcFYtdExIbkF0VEZMT2pZZTZaMlFtcVV1WmZkYWlJRVNPQ2dTVzVOVXFuS09yQk5adEUwSVp0YXJvazQyM3VOcFRSRGwyVS1zMlVSeW9Qc3N1R2NiZmk5WTlobVpHYTlUR1ZKdGYtZ3MxS21NZDBOUDhpSVRMOGRzRDAtVThSUnVqekNJdGY3VjdIUUs2Q1JzajNsMms3R19BR09sZ9IB-AFBVV95cUxOT0hxOWdfUDdVdUVheUJIWC1pTHhsSXZTTHp5RnNDVEV3MUxDVC1Hb09wZVZLTUpwQVRXeDNjTjROcnpDTmF0RGRhMFNxVEF1R2JjZkNGZV9zV2t3X0pENW51eUhYYmpha0h3VnZ5TkNWb21xUVBRc0lMVGg1azV1ZDJYbUNzLXkyTHNDdjF4cjNVYXhSRm5xbDRtcXZQMGhZd016NllUcTJwLXhzb1dYRVN4YjZGcGlGYzNwWTYwbFc2dkRaTzd5Mjd1NG9PNUtubklia1pQeldMT2JKUDRfUFBDQnFpUmlDNVR5ajQ0bUJXRjZuc1Zrcw?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMi8gFBVV95cUxPbk1UOE9BZmhUbHQyV2RqLUdyLUNPZnpQeEh3d2RBUzRFV2Z4QlZuQ012RXlFcldBSHh5YnVxVHdsTnRpSEVqSFNueGxmVTdEZFhPRGpCcFYtdExIbkF0VEZMT2pZZTZaMlFtcVV1WmZkYWlJRVNPQ2dTVzVOVXFuS09yQk5adEUwSVp0YXJvazQyM3VOcFRSRGwyVS1zMlVSeW9Qc3N1R2NiZm",
@@ -1737,10 +1798,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-14T21:35:06.791Z",
-  "updatedAt": "2026-09-14T21:35:06.791Z"
+  "headlinesAt": "2026-09-14T21:36:21.465Z",
+  "updatedAt": "2026-09-14T21:36:21.465Z"
 }
