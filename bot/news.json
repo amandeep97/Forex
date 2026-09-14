@@ -955,7 +955,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789388027000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "High yields strengthen dollar, hurting gold and pairs"
     },
     {
       "title": "Global AI stocks fall as industry chiefs call for slowing development",
@@ -970,7 +976,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789387965000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "AI sector weakness drags down tech-heavy index"
     },
     {
       "title": "Stocks dented by AI warnings; oil jumps again",
@@ -988,7 +998,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789387948000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "US500": "down"
+      },
+      "why": "Oil rises on supply fears; stocks fall on AI"
     },
     {
       "title": "AI has been carrying the stock market. An industry pause could pull the rug out, warns this Wall Street giant.",
@@ -1004,7 +1019,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789386658000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Citi warns AI slowdown could hurt earnings and stocks"
     },
     {
       "title": "TSX futures point lower amid AI slowdown calls, fading Mideast diplomacy hopes",
@@ -1035,25 +1054,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789387805000,
-      "_kind": null
-    },
-    {
-      "title": "Why the Houthi advance towards Yemen’s Marib, Taiz matters",
-      "link": "https://www.aljazeera.com/news/2026/9/14/why-the-houthi-advance-towards-yemens-marib-taiz-matters?traffic_source=rss",
-      "source": "Al Jazeera",
-      "desc": "Marib is home to Yemen's oil sector. Whoever controls it secures economic gains. Taiz's location makes it critical.",
-      "at": 1789387742000,
-      "inst": [
-        "USOIL"
-      ],
-      "ccy": [
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789387742000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "US30": "down"
+      },
+      "why": "Oil rises; tech stocks tumble on AI concerns"
     },
     {
       "title": "Crypto data firm Kaiko secures $110 million funding round led by S&P Global",
@@ -1071,7 +1077,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789387625000,
-      "_kind": null
+      "_kind": null,
+      "why": "Crypto funding news has no clear market direction"
     },
     {
       "title": "Adidas shares outlook: Should you own this popular stock?",
@@ -1103,7 +1110,29 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789387528000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Higher inflation and rate hike odds pressure gold"
+    },
+    {
+      "title": "Alphabet Just Bought Into Nuclear Power. That Is Why I Am Buying Alphabet.",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/alphabet-just-bought-nuclear-power-120355478.html",
+      "source": "Yahoo Finance",
+      "at": 1789387435000,
+      "inst": [
+        "XAU/USD"
+      ],
+      "ccy": [
+        "XAU"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789387435000,
+      "_kind": null,
+      "why": "Alphabet news is irrelevant to gold price direction"
     },
     {
       "title": "If the AI bubble bursts, here’s what markets could face",
@@ -1137,7 +1166,32 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789384860000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Geopolitical risk boosts safe-haven gold and oil prices"
+    },
+    {
+      "title": "Micron Technology Shares Fall 5.2% as Semiconductor Stocks Decline",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/micron-technology-shares-fall-5-115919941.html",
+      "source": "Yahoo Finance",
+      "at": 1789387159000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789387096000,
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Micron drop signals broader semiconductor and tech weakness"
     },
     {
       "title": "Oil over $100 has JPMorgan stock-market strategists fearing a missing out on a swift decline",
@@ -1158,6 +1212,25 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789387140000,
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up",
+        "XAU/USD": "up"
+      },
+      "why": "Supply disruption lifts oil; risk-off lifts gold"
+    },
+    {
+      "title": "GE Vernova Shares Fall 4.8% After GLJ Research Starts Coverage With Sell Rating",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/ge-vernova-shares-fall-4-115816088.html",
+      "source": "Yahoo Finance",
+      "at": 1789387096000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 1,
+      "srcs": 1,
+      "firstAt": 1789387096000,
       "_kind": null
     },
     {
@@ -1181,7 +1254,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789386903000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "US500": "down",
+        "XAU/USD": "up"
+      },
+      "why": "Oil surges; AI fears hit stocks; gold rises"
     },
     {
       "title": "Goldman Sachs, JPMorgan expect Fed rate hike this week",
@@ -1204,7 +1283,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789386901000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Rate hike expectations strengthen dollar, hurting gold/pairs"
     },
     {
       "title": "Stocks making the biggest moves premarket: Intel, Marvell, CrowdStrike & more",
@@ -1220,7 +1305,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789386662000,
-      "_kind": null
+      "_kind": null,
+      "why": "Mixed premarket moves offer no clear index direction"
     },
     {
       "title": "ASML Fell For a Month Straight: A Prominent Wall Street Ratings Agency Says It Will Return 70% From Today",
@@ -1235,7 +1321,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789386658000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Positive ASML outlook suggests tech sector recovery"
     },
     {
       "title": "The Stock Market Is Doing Something Incredibly Rare Right Now, and History Has Promising News for Investors",
@@ -1247,8 +1337,7 @@
       "sev": 1,
       "rel": 1,
       "srcs": 1,
-      "firstAt": 1789385640000,
-      "_kind": null
+      "firstAt": 1789386600000
     },
     {
       "title": "‘We are not scared,’ says top EU diplomat after Russian strike on passenger train - The Guardian",
@@ -1372,20 +1461,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789384920000
-    },
-    {
-      "title": "The S&P 500 Is Trading at a Valuation Not Seen in a Generation. History Has 1 Very Specific Lesson for Investors.",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/p-500-trading-valuation-not-113400167.html",
-      "source": "Yahoo Finance",
-      "at": 1789385640000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789385640000
     },
     {
       "title": "Sam Kiley: Kremlin will celebrate Russia’s attack close to Boris Johnson’s train - Yahoo",
@@ -1982,23 +2057,6 @@
       "firstAt": 1789379986000
     },
     {
-      "title": "Analysis-Bitcoin's late summer rally set to face off against the Fed, Congress",
-      "link": "https://finance.yahoo.com/news/analysis-bitcoins-summer-rally-set-100329922.html",
-      "source": "Yahoo Finance",
-      "at": 1789380305000,
-      "inst": [
-        "BTC/USDT"
-      ],
-      "ccy": [
-        "USD",
-        "BTC"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789380305000
-    },
-    {
       "title": "Gold drops as markets assess inflation risks - AzerNews",
       "link": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE1yMmtLbEZyVUdCQWdBZkt5Y3k2Znh4b3dzTF9jNzh1ckplM0QwV1VYM3prMkJ0VVRWUDBmWUJiUTFFcmJUWkJVQkRJTmFKRjZnd3NCdXBvYw?oc=5",
       "source": "Wires (macro)",
@@ -2172,7 +2230,7 @@
       "firstAt": 1789377760000
     },
     {
-      "title": "AI stocks get drilled because of Anthropic CEO Dario Amodei's 3,800 word warning",
+      "title": "AI stocks get drilled because of Anthropic CEO Dario Amodei's 3,800-word warning",
       "link": "https://finance.yahoo.com/markets/stocks/article/ai-stocks-get-drilled-because-of-anthropic-ceo-dario-amodeis-3800-word-warning-093637548.html",
       "source": "Yahoo Finance",
       "at": 1789378597000,
@@ -2601,10 +2659,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-14T12:18:37.011Z",
-  "headlinesAt": "2026-09-14T12:18:37.011Z",
-  "updatedAt": "2026-09-14T12:18:37.011Z"
+  "calendarAt": "2026-09-14T12:20:53.716Z",
+  "headlinesAt": "2026-09-14T12:20:53.716Z",
+  "updatedAt": "2026-09-14T12:20:53.716Z"
 }
