@@ -1149,6 +1149,28 @@
       "_kind": null
     },
     {
+      "title": "Chances of First Fed Rate Hike Since 2023 Now Over 90% — Markets Brace for the Warsh-Era Shock",
+      "link": "https://finance.yahoo.com/economy/policy/articles/chances-first-fed-rate-hike-150301317.html",
+      "source": "Yahoo Finance",
+      "at": 1789398181000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1789398078000
+    },
+    {
       "title": "Chances of First Fed Rate Hike Since 2023 Now Over 90% - Markets Brace for the Warsh-Era Shock - 24/7 Wall St.",
       "link": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxNUk13eTdCbEVCcXhBUGFJRXdlV2xyMFVQNjZzNUlDcWxKWDFpN0wyd1d2OGxiY3pTNmg4U1JEdHU0bmhGb1g5NS1PWXI2dW56VUtPc29wWW1VQnR6cklJeW5lOERWdjI0bEY4TVJGLTRLWFdjMTl3Z09ReFhQVlFaVWllYmVLQzBuQmVVUzVzUVBMM0RGaXBXc1lFaXloVmhVSWk4Q3F5eElHczltZDYxNnpOZFpubUVFWF96SXBlQXotVThoLTlILUNoNHRKSVMy?oc=5",
       "source": "Wires (macro)",
@@ -1168,9 +1190,8 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789398078000,
-      "_kind": null
+      "srcs": 2,
+      "firstAt": 1789398078000
     },
     {
       "title": "Prediction market traders think gas prices will hit new highs for the year",
@@ -1212,7 +1233,7 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 1,
+      "srcs": 2,
       "firstAt": 1789398078000
     },
     {
@@ -1381,18 +1402,6 @@
       "rel": 1,
       "srcs": 1,
       "firstAt": 1789397035000
-    },
-    {
-      "title": "5 Freight Markets: Why Spot Rates Are Sending Mixed Signals",
-      "link": "https://finance.yahoo.com/markets/commodities/articles/5-freight-markets-why-spot-144332811.html",
-      "source": "Yahoo Finance",
-      "at": 1789397012000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1789397012000
     },
     {
       "title": "Gold falls as Fed rate hike bets, rising Oil push Treasury yields to 5% - FXStreet",
@@ -1641,6 +1650,18 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789394207000
+    },
+    {
+      "title": "Kalshi To Offer U.S. Stock And Commodities Trading",
+      "link": "https://finance.yahoo.com/markets/options/articles/kalshi-offer-u-stock-commodities-140300562.html",
+      "source": "Yahoo Finance",
+      "at": 1789394580000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 1,
+      "srcs": 1,
+      "firstAt": 1789394580000
     },
     {
       "title": "Russian Strike on Train Station Near Ukraine-Poland Border Seen as Warning to Kyiv’s Allies - The New York Times",
@@ -2522,24 +2543,6 @@
       "rel": 2,
       "srcs": 3,
       "firstAt": 1789384444000
-    },
-    {
-      "title": "Gold awaits Fed decision as rising rate hike bets pressure prices - FXStreet",
-      "link": "https://news.google.com/rss/articles/CBMisgFBVV95cUxOVnFsc1JYMEJWRzJwTW1pR04xbmZxdlZNd2Jfa3dTcHVmaGpMZDZkNzQ2cUFEcHFYZ25TVjJGdFk3RDFoNkZ4UHBqaWZzZVh3WXNTbGFIcTJfcWRkVjJuajJ6dkhkd202a2NmYmp3Wlk1cGtWNDV1aFMtVms1bGNaNzBPdXF5Wmw5QWxyZXZEQm1ndC0tdjktbEJSc1B1cFFxQ1VYUXB5RktfLV9aZS1HSHhB?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMisgFBVV95cUxOVnFsc1JYMEJWRzJwTW1pR04xbmZxdlZNd2Jfa3dTcHVmaGpMZDZkNzQ2cUFEcHFYZ25TVjJGdFk3RDFoNkZ4UHBqaWZzZVh3WXNTbGFIcTJfcWRkVjJuajJ6dkhkd202a2NmYmp3Wlk1cGtWNDV1aFMtVms1bGNaNzBPdXF5Wmw5QWxyZXZEQm1ndC0tdjktbEJSc1B1cFFxQ1VYUXB5RktfLV",
-      "at": 1789384444000,
-      "inst": [
-        "XAU/USD"
-      ],
-      "ccy": [
-        "USD",
-        "XAU"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789384243000
     }
   ],
   "sources": [
@@ -2562,10 +2565,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-14T15:31:37.645Z",
-  "headlinesAt": "2026-09-14T15:31:37.645Z",
-  "updatedAt": "2026-09-14T15:31:37.645Z"
+  "calendarAt": "2026-09-14T15:33:50.140Z",
+  "headlinesAt": "2026-09-14T15:33:50.140Z",
+  "updatedAt": "2026-09-14T15:33:50.140Z"
 }
