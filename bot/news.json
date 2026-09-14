@@ -948,7 +948,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789348110000,
-      "_kind": null
+      "_kind": null,
+      "why": "Geopolitical denial, no clear immediate direction"
     },
     {
       "title": "Shares skid in Asia as oil rises, rate hikes loom",
@@ -964,7 +965,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789346932000
+      "firstAt": 1789346932000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil rises explicitly stated"
     },
     {
       "title": "Euro softens below 1.1600 as markets price in Fed rate hike - FXStreet",
@@ -982,7 +987,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789346842000
+      "firstAt": 1789346842000,
+      "dir": {
+        "EUR/USD": "down"
+      },
+      "why": "Euro softens below 1.1600"
     },
     {
       "title": "Gold Edges Lower as Hot US Inflation Bolsters Fed Rate-Hike Bets - Bloomberg.com",
@@ -1000,7 +1009,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789345980000
+      "firstAt": 1789345980000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold edges lower on rate hike bets"
     },
     {
       "title": "U.S. stock futures slide on calls to slow AI development, M.East escalation",
@@ -1016,7 +1029,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789345564000
+      "firstAt": 1789345564000,
+      "why": "Stock futures slide, gold direction unclear"
     },
     {
       "title": "Anthropic tells investors it will post second straight quarterly profit - FT",
@@ -1046,7 +1060,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789344780000
+      "firstAt": 1789344780000,
+      "why": "Rate hike bets for both, net effect unclear"
     },
     {
       "title": "Oil prices rise sharply as Middle East escalation risks disruption to supplies - Middle East Eye",
@@ -1066,7 +1081,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789344005000
+      "firstAt": 1789344005000,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Supply disruption risks boost oil and gold"
     },
     {
       "title": "Iran war live: Oman says Hormuz talks with Iran, Gulf states postponed",
@@ -1086,7 +1107,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789344000000
+      "firstAt": 1789344000000,
+      "why": "Talks postponed, uncertainty remains high"
     },
     {
       "title": "Russian Strikes on Ukraine Hits Near David Petraeus, ex-C.I.A. Chief - The New York Times",
@@ -1106,7 +1128,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789343329000
+      "firstAt": 1789343329000,
+      "why": "Ukraine strike news, no clear commodity direction"
     },
     {
       "title": "Oil prices jump over 3% on more M.East action, Hormuz meeting delay",
@@ -1122,7 +1145,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789343324000
+      "firstAt": 1789343324000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil prices jump over 3%"
     },
     {
       "title": "Carney explores Canada as EU associate member, WSJ reports",
@@ -1140,7 +1167,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789342853000
+      "firstAt": 1789342853000,
+      "why": "Long-term structural story, no immediate move"
     },
     {
       "title": "Australian Dollar declines to near 0.7150 as hot US inflation data boost case for Fed rate hike - FXStreet",
@@ -1157,7 +1185,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789342787000
+      "firstAt": 1789342787000,
+      "dir": {
+        "AUD/USD": "down"
+      },
+      "why": "AUD declines on Fed rate hike case"
     },
     {
       "title": "Inflation fight puts Kevin Warsh on the line as US Fed decision looms over global markets - Malay Mail",
@@ -1180,7 +1212,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789340514000
+      "firstAt": 1789340514000,
+      "why": "Fed decision looms, direction uncertain"
     },
     {
       "title": "Trump calls on Ukraine to halt strikes on Russian diesel fuel, says attacks causing shortage - The Hindu",
@@ -1200,7 +1233,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789340494000
+      "firstAt": 1789340494000,
+      "why": "Diesel shortage mention, crude direction unclear"
     },
     {
       "title": "Anthropic tells investors it will be profitable for second straight quarter, FT reports",
@@ -1230,7 +1264,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789340400000
+      "firstAt": 1789340400000,
+      "why": "High hike odds, rally uncertain"
     },
     {
       "title": "NZ services sector expands for third month as PSI rises to 51.2",
@@ -2658,7 +2693,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-14T01:29:49.162Z",
-  "headlinesAt": "2026-09-14T01:29:49.162Z",
-  "updatedAt": "2026-09-14T01:29:49.162Z"
+  "calendarAt": "2026-09-14T01:31:21.558Z",
+  "headlinesAt": "2026-09-14T01:31:21.558Z",
+  "updatedAt": "2026-09-14T01:31:21.558Z"
 }
