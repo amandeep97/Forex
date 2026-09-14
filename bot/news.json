@@ -939,12 +939,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789399320000,
-      "_kind": null,
-      "dir": {
-        "USOIL": "down",
-        "UKOIL": "down"
-      },
-      "why": "Energy strike halt lowers oil supply risk"
+      "_kind": null
     },
     {
       "title": "Dollar Strengthens as Treasury Yields Rise Amid Inflation Fears -- Market Talk - moomoo.com",
@@ -968,13 +963,7 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789399260000,
-      "_kind": null,
-      "dir": {
-        "XAU/USD": "down",
-        "EUR/USD": "down",
-        "GBP/USD": "down"
-      },
-      "why": "Strong dollar pressures gold and major pairs"
+      "_kind": null
     },
     {
       "title": "Trump says Russia, Ukraine agree to halt strikes on each other's energy facilities - Anadolu Ajansı",
@@ -995,12 +984,28 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789399320000,
-      "_kind": null,
-      "dir": {
-        "USOIL": "down",
-        "UKOIL": "down"
-      },
-      "why": "Ceasefire on energy strikes eases oil supply fears"
+      "_kind": null
+    },
+    {
+      "title": "Kremlin welcomes Trump's call on Ukraine to halt strikes on diesel facilities - The Business Standard",
+      "link": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQRDVJOVNnQnJJa2wwcjVQX2NNSnNmZTRtV0VreUVvcGlJZ2hPMTV4VkFEWERwVXlzSzVwNlpjUnpfWDhnTUdEWVV1MjZnaDYwMDBtZU5TcTFFQmZpUmk5SkNtWXNua19rRkFvT0VIOTBJWXdpYXF1dlN4WHBQMzNjZF9ZcEVSellzdUNHWjlTZ2tTZ0JaV0lwTHBBX1pQN2ZfM2lCUE5MSmY?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiqAFBVV95cUxQRDVJOVNnQnJJa2wwcjVQX2NNSnNmZTRtV0VreUVvcGlJZ2hPMTV4VkFEWERwVXlzSzVwNlpjUnpfWDhnTUdEWVV1MjZnaDYwMDBtZU5TcTFFQmZpUmk5SkNtWXNua19rRkFvT0VIOTBJWXdpYXF1dlN4WHBQMzNjZF9ZcEVSellzdUNHWjlTZ2tTZ0JaV0lwTHBBX1pQN2ZfM2lCUE5MSmY?oc",
+      "at": 1789399500000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789399320000,
+      "_kind": null
     },
     {
       "title": "Trump says Ukraine, Russia agree to stop energy strikes as US diesel prices soar past $6 - New York Post",
@@ -1021,12 +1026,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789399320000,
-      "_kind": null,
-      "dir": {
-        "USOIL": "down",
-        "UKOIL": "down"
-      },
-      "why": "Energy strike halt reduces oil supply risk"
+      "_kind": null
     },
     {
       "title": "Ukraine, Russia agree not to strike energy targets. Trump says - TVP World",
@@ -1047,12 +1047,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789399320000,
-      "_kind": null,
-      "dir": {
-        "USOIL": "down",
-        "UKOIL": "down"
-      },
-      "why": "Agreement to stop energy strikes lowers oil risk"
+      "_kind": null
     },
     {
       "title": "10-year Treasury yield tops 5% for the first time since 2007 as bond-market selloff deepens",
@@ -1071,11 +1066,7 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789399260000,
-      "_kind": null,
-      "dir": {
-        "USOIL": "up"
-      },
-      "why": "Oil prices marching higher amid bond selloff"
+      "_kind": null
     },
     {
       "title": "Nasdaq leads U.S. stocks lower on AI development slowdown calls",
@@ -1091,12 +1082,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789398931000,
-      "_kind": null,
-      "dir": {
-        "US500": "down",
-        "US100": "down"
-      },
-      "why": "Nasdaq leads stocks lower on AI slowdown"
+      "_kind": null
     },
     {
       "title": "Global AI stocks fall as industry chiefs call for slowing development",
@@ -1111,11 +1097,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789398814000,
-      "_kind": null,
-      "dir": {
-        "US500": "down"
-      },
-      "why": "Global AI stocks fall on development slowdown calls"
+      "_kind": null
     },
     {
       "title": "EU extends Russia sanctions for one week only, after France insists on delisting Usmanov - EUobserver",
@@ -1136,8 +1118,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789396282000,
-      "_kind": null,
-      "why": "Sanctions extension unclear for immediate market direction"
+      "_kind": null
     },
     {
       "title": "Morocco stocks lower at close of trade; Moroccan All Shares down 1.16%",
@@ -1151,9 +1132,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789398603000,
-      "_kind": null,
-      "why": "Moroccan stock news irrelevant to US index"
+      "firstAt": 1789398603000
     },
     {
       "title": "Cybersecurity Stocks Surge as AI Safety Warnings Spark Security Bid: CrowdStrike and Zscaler Jump 12%, Palo Alto Rallies 11%",
@@ -1167,11 +1146,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789398487000,
-      "dir": {
-        "US500": "up"
-      },
-      "why": "Cybersecurity stocks surge boosts tech sector sentiment"
+      "firstAt": 1789398487000
     },
     {
       "title": "Israeli strikes on southern Lebanese town kill 13 as fears of escalation mount - アラブニュース",
@@ -1191,13 +1166,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789398463000,
-      "dir": {
-        "XAU/USD": "up",
-        "USOIL": "up",
-        "UKOIL": "up"
-      },
-      "why": "Escalation fears boost safe havens and oil"
+      "firstAt": 1789398463000
     },
     {
       "title": "Mister Car Wash outlook cut to negative by S&P on dividend debt",
@@ -1211,8 +1180,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789398442000,
-      "why": "Single company outlook cut negligible for index"
+      "firstAt": 1789398442000
     },
     {
       "title": "Gold, silver prices retreat as oil prices surge, inflation and rate-hike concerns mount - The Economic Times",
@@ -1234,13 +1202,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789396899000,
-      "dir": {
-        "XAU/USD": "down",
-        "XAG/USD": "down",
-        "USOIL": "up"
-      },
-      "why": "Gold retreats as oil surges on inflation fears"
+      "firstAt": 1789396899000
     },
     {
       "title": "Vale S.A. (VALE) Deepens China Ties with Potential Yuan Bond Debut",
@@ -1275,13 +1237,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789398078000,
-      "dir": {
-        "XAU/USD": "down",
-        "EUR/USD": "down",
-        "GBP/USD": "down"
-      },
-      "why": "Rate hike fears strengthen dollar, hurt gold"
+      "firstAt": 1789398078000
     },
     {
       "title": "Prediction market traders think gas prices will hit new highs for the year",
@@ -1903,13 +1859,14 @@
       "firstAt": 1789393500000
     },
     {
-      "title": "Stock Market Today (Sept. 14, 2026): S&P 500 falls on rising oil prices, sagging AI stocks",
+      "title": "Stock Market Today (Sept. 14, 2026): Nasdaq, S&P 500 falls on rising oil, AI tensions",
       "link": "https://finance.yahoo.com/markets/stocks/articles/stock-market-today-sept-14-133832281.html",
       "source": "Yahoo Finance",
       "at": 1789393112000,
       "inst": [
         "USOIL",
-        "US500"
+        "US500",
+        "US100"
       ],
       "ccy": [
         "OIL"
@@ -2503,26 +2460,6 @@
       "firstAt": 1789384920000
     },
     {
-      "title": "Kremlin welcomes Trump's call on Ukraine to halt strikes on diese - Global Banking & Finance Review",
-      "link": "https://news.google.com/rss/articles/CBMingFBVV95cUxQVXoxcmRiZTBvbFR0eTYwWVhiak5kT2NEa3BzWEx3bF91OGVIQl9QUzhJcTRYQVFvZUhiaFQtMUNMZDkxemlkd2dHTk9lYzdzVmx5cDJNNFdQMnhXZW5ZR0NrcHEtSjdSZlpqV1djbG84T1NNc2dpOFp1SXpkQzJHanRoa1NQOWpDcEhTbnJUdGpqOTFlYU5SVENhdEQ0dw?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMingFBVV95cUxQVXoxcmRiZTBvbFR0eTYwWVhiak5kT2NEa3BzWEx3bF91OGVIQl9QUzhJcTRYQVFvZUhiaFQtMUNMZDkxemlkd2dHTk9lYzdzVmx5cDJNNFdQMnhXZW5ZR0NrcHEtSjdSZlpqV1djbG84T1NNc2dpOFp1SXpkQzJHanRoa1NQOWpDcEhTbnJUdGpqOTFlYU5SVENhdEQ0dw?oc=5\" target=\"_",
-      "at": 1789385939000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789384920000
-    },
-    {
       "title": "How have interest rate expectations changed after last week's events?",
       "link": "https://investinglive.com/news/how-have-interest-rate-expectations-changed-after-last-week-s-events/",
       "source": "ForexLive",
@@ -2641,10 +2578,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-14T15:39:38.857Z",
-  "headlinesAt": "2026-09-14T15:39:38.857Z",
-  "updatedAt": "2026-09-14T15:39:38.857Z"
+  "calendarAt": "2026-09-14T15:40:53.615Z",
+  "headlinesAt": "2026-09-14T15:40:53.615Z",
+  "updatedAt": "2026-09-14T15:40:53.615Z"
 }
