@@ -936,7 +936,39 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789411621000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "down",
+        "US500": "up"
+      },
+      "why": "Oil pullback offsets tech slide, stocks recover"
+    },
+    {
+      "title": "NATO pledges increased Ukraine support as Russia strikes near border - Al Jazeera",
+      "link": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxPaFh5cl9tOEktSmtJY2ZmOTc2c0NNbnF3aHlXZ3k2VHgtOW5NNzBrWlFVQkNrRERfWDRENC1PalM0VEJ3czJXWnJTWW5uQ3NqSWZXTmlqQVJlUjNXTzQ4TkZYX2dOdFl3TjRXczcxWHdwSXYxRFVXbVFFb21jR1dkeFZiY1lReWo1QnF6SVJrN3FJTkxGWnFPZ2IyZk1sckxXQnFaT2R2VFo2bjFMX2ZaS1FONFhaZDdyZ3dxcU9hQ3TSAcYBQVVfeXFMUFNVbjdTNEtoajNOM0dsVE43RUJ2V09USWpDb1BwQThseTF3MUNVTDhoaUZLZnFIRU9jWHZSQnBFeVN5REMwM25ROV9UQkN3RXlaVFpZSlhRVlZFWVEwcDBpMV9ETjJPTEZTV2VJSk8wQm5xV09rLWxIeUNYM21LQjZuQXJic2JselJPYTJrOEJ0ejkxZ2RwZWNfRFhVSXRxZTJ4Y2VxWE41TVRXRDBFX3Y2RW5ZOHRlSExEa3ZMYnkybXlJemJ3?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiwAFBVV95cUxPaFh5cl9tOEktSmtJY2ZmOTc2c0NNbnF3aHlXZ3k2VHgtOW5NNzBrWlFVQkNrRERfWDRENC1PalM0VEJ3czJXWnJTWW5uQ3NqSWZXTmlqQVJlUjNXTzQ4TkZYX2dOdFl3TjRXczcxWHdwSXYxRFVXbVFFb21jR1dkeFZiY1lReWo1QnF6SVJrN3FJTkxGWnFPZ2IyZk1sckxXQnFaT2R2VFo2bj",
+      "at": 1789411500000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789409625000,
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Geopolitical risk boosts gold and oil"
     },
     {
       "title": "US targets Russia’s VTB Bank with Iran-related sanctions",
@@ -956,7 +988,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789411414000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Sanctions increase geopolitical risk, boosting safe havens"
     },
     {
       "title": "30-year mortgage rate jumps to 7.17% — a nearly 2-year high — in the latest blow to the housing market",
@@ -980,7 +1018,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789411320000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Rising yields strengthen dollar, hurting gold and FX"
     },
     {
       "title": "Bank of America expects third-quarter investment banking fees to fall more than 10%; shares slide",
@@ -996,7 +1040,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789411148000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Bank fee outlook weakens, shares slide"
     },
     {
       "title": "The Fed may be on the verge of a serious mistake, prominent economists warn",
@@ -1020,7 +1068,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789411020000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "EUR/USD": "up",
+        "GBP/USD": "up"
+      },
+      "why": "Fed error fears weaken dollar, boost gold/FX"
     },
     {
       "title": "Ukraine Reports Strikes, Prosecutor Vote and New International Support - Межа. Новини України.",
@@ -1041,7 +1095,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789408589000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Ukraine conflict updates sustain geopolitical risk premium"
     },
     {
       "title": "Stocks making the biggest moves midday: Zscaler, CrowdStrike, Marvell Technology, Rum Group & more",
@@ -1057,7 +1117,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789410725000,
-      "_kind": null
+      "_kind": null,
+      "why": "Individual stock moves, no clear index direction"
     },
     {
       "title": "Global AI stocks fall as industry chiefs call for slowing development",
@@ -1072,7 +1133,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789410633000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "AI sector concerns weigh on tech stocks"
     },
     {
       "title": "The next Social Security ‘COLA’ could be the biggest in five years. It’s no cause for celebration.",
@@ -1096,7 +1161,35 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789410420000,
-      "_kind": null
+      "_kind": null,
+      "why": "Social Security news has minimal market impact"
+    },
+    {
+      "title": "Zelenskyy says Ukraine will pause strikes on Russia if Kremlin spares critical infrastructure | National News | 2news.com - KTVN",
+      "link": "https://news.google.com/rss/articles/CBMiiAJBVV95cUxNdmJZcy1WY2d6UEE0RFEzS1NIVzhMamhCbHRSMGFJdFM0TlJQZ2FKcWd6eWY5aXNnMjF4M1JuTVUybTJGRTNJRkpVOVZnSGZCR1BpTmhoel9CemlSNkhuT2w1Z01URzhGOWhyVk15Q2wtVEd6MEpZUVlNUFZ1OGtLRzRLeXgzMEFDdjZXdm4zLWJFWWp0NzJ3NjVZdzdrRHl6cmk5MEJ0ZC1FT3g4cnQ0SDdkU0xPTFgyZXR6QkY1dGtEWDd6TlJDbm9yelgwMDNmREV6YW80NzRiRlVNRk9QRXVwWHhWYlJzWi03eFN3MGVpbFM0S1pUZmdBdXRNNHZXMEJCZE5uRlQ?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiiAJBVV95cUxNdmJZcy1WY2d6UEE0RFEzS1NIVzhMamhCbHRSMGFJdFM0TlJQZ2FKcWd6eWY5aXNnMjF4M1JuTVUybTJGRTNJRkpVOVZnSGZCR1BpTmhoel9CemlSNkhuT2w1Z01URzhGOWhyVk15Q2wtVEd6MEpZUVlNUFZ1OGtLRzRLeXgzMEFDdjZXdm4zLWJFWWp0NzJ3NjVZdzdrRHl6cmk5MEJ0ZC1FT3",
+      "at": 1789410412000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789408589000,
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "De-escalation talk reduces geopolitical risk premium"
     },
     {
       "title": "AI doomsday fears are arriving at the worst possible time for the stock market",
@@ -1129,7 +1222,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789409760000
+      "firstAt": 1789409760000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Iran war escalation boosts oil and gold"
     },
     {
       "title": "Ukraine wants specifics from partners over halting strikes on Russia: Zelenskyy after Trump’s post - The Hindu",
@@ -1149,7 +1248,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789408589000
+      "firstAt": 1789408589000,
+      "why": "Diplomatic uncertainty, no clear immediate direction"
     },
     {
       "title": "10-year Treasury yield eases back from crucial 5% level despite concerns about AI and the surge in oil prices",
@@ -1167,7 +1267,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789409640000
+      "firstAt": 1789409640000,
+      "why": "Yield pullback neutral for oil direction"
     },
     {
       "title": "Ukraine Wants Specifics From Partners on Halting Strikes, Zelensky Says - The Moscow Times",
@@ -1187,7 +1288,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789408589000
+      "firstAt": 1789408589000,
+      "why": "Diplomatic uncertainty, no clear immediate direction"
     },
     {
       "title": "Trump declares Russia-Ukraine deal to halt strikes on energy targets as Zelenskyy voices doubt - TRT World",
@@ -1208,26 +1310,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789408589000
-    },
-    {
-      "title": "Trump says Russia, Ukraine agree to halt strikes on each other's energy facilities - A News",
-      "link": "https://news.google.com/rss/articles/CBMivwFBVV95cUxNb2Z5MHdOV1NaZUloaEZRNUlTRzNxd2ZEa3FsYzUxcE1KVjdobFdCVUVBUDlSbG1MU2lOX29hRmZBOGtKOTZVS0V0VFJ2Z0paYWlENWo3SGNnOFdDUHBKQURFQ2YzUWEybVYzWTVxY1IzTjBwTmk3Skplb2VpM1c3YUJSRGp2d2NXQXZzVkdHYTBjbk5fUTd5U1YzNjhZMnhRRU9mVzJhQmlpQUZyYUtvX25JdGtxdUFaTkUzN2RZY9IBxAFBVV95cUxQMWpqWENTMk84MVgwNDUxVjlTczBoeFpsdUNLVzRGNW1TVmlCN09KQkJrQ0RhZTNHTHEwZTRzeDM0UjFuRmtaUTFXUWhvRmI5Q0pTTzc3MHFrTDZtcmpwTnZ2SnQ4cWswX3RzYVJJRXFZYUU5cmtVQ2tKRm04Z2tYeGQ2S19uRXlkcnBVSG5FYWN1YTlfaUFYRk1LQWZhQmRDTk8xTl9uUHpyRG9jWFpUZzRoYWxJX0tRbk0wSHQ1SjlzeFdX?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMivwFBVV95cUxNb2Z5MHdOV1NaZUloaEZRNUlTRzNxd2ZEa3FsYzUxcE1KVjdobFdCVUVBUDlSbG1MU2lOX29hRmZBOGtKOTZVS0V0VFJ2Z0paYWlENWo3SGNnOFdDUHBKQURFQ2YzUWEybVYzWTVxY1IzTjBwTmk3Skplb2VpM1c3YUJSRGp2d2NXQXZzVkdHYTBjbk5fUTd5U1YzNjhZMnhRRU9mVzJhQmlpQU",
-      "at": 1789409280000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789406625000
     },
     {
       "title": "Trump says Ukraine and Russia agreed to halt strikes on energy. Zelenskyy is not so sure. - politico.eu",
@@ -1520,7 +1602,7 @@
       "firstAt": 1789406048000
     },
     {
-      "title": "EU envoys extend Russia sanctions by seven days to debate six-month renewal, EU presidency says - reuters.com",
+      "title": "EU envoys extend Russia sanctions by seven days to debate six-month renewal, EU presidency says - Reuters",
       "link": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxOeTYxSXhDTll0eGRna0pBbVlLRFM5VU1lMms4U2VSc3RhR1VVZUxyN0VXRmZKRkRLUkR6VFhlMmNNeDVSeTNnaDlyVVRkR0Z6ZUZZc1d2VmUxR0hvQXU0bU5QVWg3ZlVlRjNPMjRxaGFYY3V6VkljZWJvVHNFRTZVRGRHN3VUWURHMThrNk9sMGlhaElpUzhfaUZOaUcwUHd3VUJ5bnU2amlFYXJiNUdhU0hGVzJIVEMySjg0UHBpZmxkUQ?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiwgFBVV95cUxOeTYxSXhDTll0eGRna0pBbVlLRFM5VU1lMms4U2VSc3RhR1VVZUxyN0VXRmZKRkRLUkR6VFhlMmNNeDVSeTNnaDlyVVRkR0Z6ZUZZc1d2VmUxR0hvQXU0bU5QVWg3ZlVlRjNPMjRxaGFYY3V6VkljZWJvVHNFRTZVRGRHN3VUWURHMThrNk9sMGlhaElpUzhfaUZOaUcwUHd3VUJ5bnU2amlFYX",
@@ -1600,7 +1682,7 @@
       "firstAt": 1789403280000
     },
     {
-      "title": "Trump says Russia, Ukraine agree to halt energy strikes as Nato warns of escalation - firstpost.com",
+      "title": "Trump says Russia, Ukraine agree to halt energy strikes as Nato warns of escalation - Firstpost",
       "link": "https://news.google.com/rss/articles/CBMixwFBVV95cUxQZHJsaE5qZkliaUs4bDc5eV9Tdnl3NmRicGRnVzl5eFdlSWJyOVRxd2MtdVZBM1Qyb2l4NTFzMW9HM0NyZjltd2Nha1BNc3pNRGNOYzZkTExnRzhwMlJ3TW9vanVqcFlHX0NXTmNDZ0tUcWlyODBYWGk5ZkE2ZU5JN3Z6X1lQVGRmY3A4enozLTRUZTlYNzVmZTAyaTdPcWMzZ0xNM3hHVmVoeUVsQzRNNnBnUXJTSnhFNWdBWTY3ajJWaEJaWXhR0gHMAUFVX3lxTE41NDkwcW9veUViV1A1RW9idW9GUmFvUTZMUkRCdjE2OWJickE3UjNjZmU4a3dkWVRWNUFvM1BPcDBKWHRKU1FBU1luUVBqVWlmZWROWXNud0tSSHJTbFNkd1JSUVVmQ3NOUlBjeXJkenBnR2d3UEZtbGhZRjB4Y3JmczFxa1g1Q0p6Q3NaNHZOb1ZFcVlsOW1YRjBZLVc4V284b2QxMUltQWZIYi11YWp1bjNsWDhYSDZGSzEzaHRVOEFMQXBMaC0zRXFFcA?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMixwFBVV95cUxQZHJsaE5qZkliaUs4bDc5eV9Tdnl3NmRicGRnVzl5eFdlSWJyOVRxd2MtdVZBM1Qyb2l4NTFzMW9HM0NyZjltd2Nha1BNc3pNRGNOYzZkTExnRzhwMlJ3TW9vanVqcFlHX0NXTmNDZ0tUcWlyODBYWGk5ZkE2ZU5JN3Z6X1lQVGRmY3A4enozLTRUZTlYNzVmZTAyaTdPcWMzZ0xNM3hHVmVoeU",
@@ -1895,7 +1977,27 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789402885000
+      "firstAt": 1789402008000
+    },
+    {
+      "title": "France in ‘astonishing’ push to lift EU sanctions on Russian oligarch - Financial Times",
+      "link": "https://news.google.com/rss/articles/CBMihAFBVV95cUxPWWVMQVJUNktVX1hlSUJsbUhwYmNTZkhZMlFjSmxGWFR0OC04M3NCekJ3QjFVLUNvM0ZadXB2MHhBRGpDOTVkZVBoaDFFSG5GOGtzSlFvRjgzYXVQLWRoLWg3SDg0UXlGYWFfd3ZwNm1LU21uREVGU2ZfY0JCSmNJR2p3ZjY?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMihAFBVV95cUxPWWVMQVJUNktVX1hlSUJsbUhwYmNTZkhZMlFjSmxGWFR0OC04M3NCekJ3QjFVLUNvM0ZadXB2MHhBRGpDOTVkZVBoaDFFSG5GOGtzSlFvRjgzYXVQLWRoLWg3SDg0UXlGYWFfd3ZwNm1LU21uREVGU2ZfY0JCSmNJR2p3ZjY?oc=5\" target=\"_blank\">France in ‘astonishing’ push",
+      "at": 1789402768000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789402768000
     },
     {
       "title": "Trump asks Ukraine to stop strikes on Russian refineries as oil prices rise - WQAD",
@@ -1916,6 +2018,26 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789400220000
+    },
+    {
+      "title": "EU countries extend Russia sanctions amid latest oligarch stand-off - euractiv.com",
+      "link": "https://news.google.com/rss/articles/CBMinwFBVV95cUxNMWFGeTRaS1ZQaDEwT2RoQ3RZd2lDcHpGdVRwOGVQV1M5OE9oYlNWNDZ4VlVzOUYyeHY2M0NSZW9UdTRiejlYaUx5NWdHdUwyaWRsOXg1YzFJanlLcHQ1LUFBdEdqdmZZeGtEMndfQkNHM2pBS0V1UERPX1RCM01VT2pMZVZfSDdzNllzTzJGRm5DRXZFLVZNYTRzMGlnNzQ?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMinwFBVV95cUxNMWFGeTRaS1ZQaDEwT2RoQ3RZd2lDcHpGdVRwOGVQV1M5OE9oYlNWNDZ4VlVzOUYyeHY2M0NSZW9UdTRiejlYaUx5NWdHdUwyaWRsOXg1YzFJanlLcHQ1LUFBdEdqdmZZeGtEMndfQkNHM2pBS0V1UERPX1RCM01VT2pMZVZfSDdzNllzTzJGRm5DRXZFLVZNYTRzMGlnNzQ?oc=5\" target=\"",
+      "at": 1789402008000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789402008000
     },
     {
       "title": "North Korea thrash Bangladesh 10-0 in Asian Games women’s football",
@@ -2197,6 +2319,26 @@
       "firstAt": 1789399724000
     },
     {
+      "title": "Trump says Russia, Ukraine agree to halt strikes on each other's energy facilities - Anadolu Ajansı",
+      "link": "https://news.google.com/rss/articles/CBMivgFBVV95cUxPOWZLS0M4NUtMbVBzaU9VbUdUU1VwQTVHay1KLVNkME5nNEJuV1R3VnExNy1uNWh6dC1MaXFUZnExYXJOMExTQnM5dGFxcTktdjZXWXhpN2VLSGtfYTFwQUMyZThQMFJSX2drNktqOGZYdG9mZVBtenVDeWFyZHQwNWpFOHdmMmVzV29acnZ1NFd2eTdmMURtRmZFOUpWUnZ4NjBpMXVzMk5BNG9jRGt2SllRNTlJWGJ3aW4wcDdB?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMivgFBVV95cUxPOWZLS0M4NUtMbVBzaU9VbUdUU1VwQTVHay1KLVNkME5nNEJuV1R3VnExNy1uNWh6dC1MaXFUZnExYXJOMExTQnM5dGFxcTktdjZXWXhpN2VLSGtfYTFwQUMyZThQMFJSX2drNktqOGZYdG9mZVBtenVDeWFyZHQwNWpFOHdmMmVzV29acnZ1NFd2eTdmMURtRmZFOUpWUnZ4NjBpMXVzMk5BNG",
+      "at": 1789399577000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789399320000
+    },
+    {
       "title": "Ukraine, Russia agree not to strike energy targets. Trump says - TVP World",
       "link": "https://news.google.com/rss/articles/CBMilAFBVV95cUxQc2ZndTZVTW9mbzF2X3VfQnA5ZEV3SGNGTG9oMGJpZl92aEI4ZTNuUjl1VUd4UnYyeVFwQmwtakxQdmlwVDJ0RW8wT0hncWJ3R2dlYm8yYkp0WFd4YV9NMTJFem41RmlVTGtJMXJseVVjV0d2dE4tOXM1YzJxNEpHc2NVcHRZdVhfWEs2OGx1NlhfUU1f?oc=5",
       "source": "Wires (geo)",
@@ -2215,6 +2357,26 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789399320000
+    },
+    {
+      "title": "Vance says US in direct talks with Houthis amid Saudi escalation - Iran International",
+      "link": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE85NWVzVlNNVlhIR1BGczlxX19SVmhkd2RHXzI4b2JWRjB5emdpaWFGcnJSa2paUnNzVkp2SWpwTkpjU0dQUXpFVUNaU29EdVlZMHc?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiUkFVX3lxTE85NWVzVlNNVlhIR1BGczlxX19SVmhkd2RHXzI4b2JWRjB5emdpaWFGcnJSa2paUnNzVkp2SWpwTkpjU0dQUXpFVUNaU29EdVlZMHc?oc=5\" target=\"_blank\">Vance says US in direct talks with Houthis amid Saudi escalation</a>&nbsp;&nbsp;<font color=\"#6f",
+      "at": 1789399213000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789399213000
     },
     {
       "title": "How Iran's regional allies' attacks in Yemen are compounding the war's impact on oil prices - CBS News",
@@ -2368,7 +2530,7 @@
       "firstAt": 1789398050000
     },
     {
-      "title": "US 10-year Treasury yield hits 5% for first time since Oct 2023 ahead of Fed decision - firstpost.com",
+      "title": "US 10-year Treasury yield hits 5% for first time since Oct 2023 ahead of Fed decision - Firstpost",
       "link": "https://news.google.com/rss/articles/CBMizgFBVV95cUxOU3hDZHpyVHg4WWZ4R1RZZDZsbklfa2VYVjdUdFVkRjIwTkViYkc0LV9YR2VJSkIwZHFPWHNYNTFiRFJDSHd0QmFxVkhjajZXcDduV3lTYk5yWndXeHA2Z2Y5WkExaHM1TExPd2pIcGJXY2dSZTFOcUt1UFhnR3BjLXZoamdJQXpGTTVFTGF6b1dRdnZ5alVwZF95OExDeGhRRFA4bUZuOTNoUkRsUkIwRkxVZVJ6Wm1hUEZjNVNyeDlGYjBNZXl2alFJSWwtZ9IB0wFBVV95cUxPRFlGOU9YZFdqYWR3RWQxSUVScDlGV2FUZG9qZ3JGMDlCS3hfbGhNa2FIYTJYMWp6emRSVkhOYkUtRFFLUFl6a0lILWY1Vkt2TURtWm9sVGxCTjFmeVByOFBRdk5XV010d0s1elZFTldXS2ZsZ1c1d2xzelBTclc2cDVPaWZDMEQyYXB0R1QtTHJiOXJnQ3lnVE85SFYwbEhybDdYeTk3UEpBQndxcFRIdjNURmktQnFFcFlEanRUZXV5S3o4ZWgwTG1CSUlFSkl3dU1F?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMizgFBVV95cUxOU3hDZHpyVHg4WWZ4R1RZZDZsbklfa2VYVjdUdFVkRjIwTkViYkc0LV9YR2VJSkIwZHFPWHNYNTFiRFJDSHd0QmFxVkhjajZXcDduV3lTYk5yWndXeHA2Z2Y5WkExaHM1TExPd2pIcGJXY2dSZTFOcUt1UFhnR3BjLXZoamdJQXpGTTVFTGF6b1dRdnZ5alVwZF95OExDeGhRRFA4bUZuOTNoUk",
@@ -2593,92 +2755,6 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789394040000
-    },
-    {
-      "title": "Gold falls to over one-month low as oil rally, inflation data boost rate hike bets - Bangkok Post",
-      "link": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxPdjU1akRTSjhBRGRjd2ZDcjBfNFFxNU9PVTFuVEhrNnlidlh1ZmRkRF83ZUo2LWNaNURNMXF1NURuWjd0X1dQRTB4NXZCUU9UNGhsRGJ6NDF3M2hhOFR0RE8xR1JjeEwxX3Q2bm8yMEZiNXUxTEFTMzJlc1ZQcmtqUkRmSndSei1YNXEtRmdEQW5kWjdqMXEwRmZPX081U2o4Nm1fbXFIZnNuNTZpZ3pqSW04bFlyaXg2SC14SjhFM1BtSE5LOTFlczNzWjYxajBMYUE?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi0gFBVV95cUxPdjU1akRTSjhBRGRjd2ZDcjBfNFFxNU9PVTFuVEhrNnlidlh1ZmRkRF83ZUo2LWNaNURNMXF1NURuWjd0X1dQRTB4NXZCUU9UNGhsRGJ6NDF3M2hhOFR0RE8xR1JjeEwxX3Q2bm8yMEZiNXUxTEFTMzJlc1ZQcmtqUkRmSndSei1YNXEtRmdEQW5kWjdqMXEwRmZPX081U2o4Nm1fbXFIZnNuNT",
-      "at": 1789394040000,
-      "inst": [
-        "XAU/USD",
-        "USOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL",
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789394040000
-    },
-    {
-      "title": "Ukraine May Have Killed Russia’s General Sergei Milchakov in Strike on Donetsk Headquarters - UNITED24 Media",
-      "link": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxQX1ZiSlQ5VzhkNHZ0V1RldGpfWHJKWmdPdExzbGROcWtrWldoYmdoaXRhdXVJUU9ydlNmQzJFWGx2N2p3ZGwxcUpBN2hFeXNBb2xBRHNFeXMwY0RTWkJWeHFCdnZmeElJUDZpZF85MVFDdUVkTEZZSU1ROXNORGxhZ1NTTFNYZ2phZF9VT0FPbEVLUHlTcWtBYUxzTURiaTRuMmtvZFRGeEtpNFFmczhfblNMc05HTkU4b0ZWa2RBOFdWa1VESm1Gd1E4UHF4WDZWZ0xF?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi0wFBVV95cUxQX1ZiSlQ5VzhkNHZ0V1RldGpfWHJKWmdPdExzbGROcWtrWldoYmdoaXRhdXVJUU9ydlNmQzJFWGx2N2p3ZGwxcUpBN2hFeXNBb2xBRHNFeXMwY0RTWkJWeHFCdnZmeElJUDZpZF85MVFDdUVkTEZZSU1ROXNORGxhZ1NTTFNYZ2phZF9VT0FPbEVLUHlTcWtBYUxzTURiaTRuMmtvZFRGeEtpNF",
-      "at": 1789393890000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789392494000
-    },
-    {
-      "title": "Stock Market Today (Sept. 14, 2026): Nasdaq, S&P 500 falls on rising oil, AI tensions",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/stock-market-today-sept-14-133832281.html",
-      "source": "Yahoo Finance",
-      "at": 1789393112000,
-      "inst": [
-        "USOIL",
-        "US500",
-        "US100"
-      ],
-      "ccy": [
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789393112000
-    },
-    {
-      "title": "Unwanted in the U.S., old oil equipment finds a new home in Venezuela",
-      "link": "https://www.investing.com/news/commodities-news/unwanted-in-the-us-old-oil-equipment-finds-a-new-home-in-venezuela-4899146",
-      "source": "Investing Cmdty",
-      "at": 1789393004000,
-      "inst": [
-        "USOIL"
-      ],
-      "ccy": [
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789393004000
-    },
-    {
-      "title": "Corn futures rise after USDA cuts harvest outlook",
-      "link": "https://www.investing.com/news/commodities-news/corn-futures-rise-after-usda-cuts-harvest-outlook-93CH-4899785",
-      "source": "Investing Cmdty",
-      "at": 1789392707000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1789392707000
     }
   ],
   "sources": [
@@ -2704,7 +2780,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-14T18:52:38.411Z",
-  "headlinesAt": "2026-09-14T18:52:38.411Z",
-  "updatedAt": "2026-09-14T18:52:38.411Z"
+  "calendarAt": "2026-09-14T18:54:38.940Z",
+  "headlinesAt": "2026-09-14T18:54:38.940Z",
+  "updatedAt": "2026-09-14T18:54:38.940Z"
 }
