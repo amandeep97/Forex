@@ -1,5 +1,5 @@
 {
-  "asOf": "2026-09-07T17:52:38.673Z",
+  "asOf": "2026-09-14T17:53:26.852Z",
   "weeks": 160,
   "horizons": [
     5,
@@ -29,15 +29,11 @@
   "crowdedLong": {
     "label": "positioning at or above the 90th percentile",
     "hypothesis": "down",
-    "episodes": 39,
+    "episodes": 35,
     "bySym": [
       {
         "sym": "EUR/USD",
         "episodes": 2
-      },
-      {
-        "sym": "GBP/USD",
-        "episodes": 1
       },
       {
         "sym": "USD/JPY",
@@ -61,15 +57,15 @@
       },
       {
         "sym": "XAU/USD",
-        "episodes": 3
+        "episodes": 2
       },
       {
         "sym": "XAG/USD",
-        "episodes": 5
+        "episodes": 4
       },
       {
         "sym": "US500",
-        "episodes": 5
+        "episodes": 4
       },
       {
         "sym": "US100",
@@ -86,102 +82,42 @@
     ],
     "horizons": {
       "5": {
-        "n": 39,
+        "n": 35,
         "win": 49,
         "medAtr": -0.16,
         "baseWin": 47,
         "baseMedAtr": -0.11,
         "baseN": 1287,
         "edgeWin": 2,
-        "z": 0.25,
+        "z": 0.23,
         "stops": [
           {
             "stopAtr": 0.5,
             "rr": 2,
-            "expR": 0.144,
-            "n": 39
+            "expR": 0.095,
+            "n": 35
           },
           {
             "stopAtr": 1,
             "rr": 2,
-            "expR": 0.036,
-            "n": 39
+            "expR": 0.09,
+            "n": 35
           },
           {
             "stopAtr": 1.5,
             "rr": 2,
-            "expR": 0.011,
-            "n": 39
+            "expR": 0.056,
+            "n": 35
           }
         ]
       },
       "10": {
-        "n": 39,
-        "win": 44,
-        "medAtr": -0.6,
-        "baseWin": 45,
-        "baseMedAtr": -0.29,
-        "baseN": 1274,
-        "edgeWin": -1,
-        "z": -0.12,
-        "stops": [
-          {
-            "stopAtr": 0.5,
-            "rr": 2,
-            "expR": 0.221,
-            "n": 39
-          },
-          {
-            "stopAtr": 1,
-            "rr": 2,
-            "expR": -0.002,
-            "n": 39
-          },
-          {
-            "stopAtr": 1.5,
-            "rr": 2,
-            "expR": -0.079,
-            "n": 39
-          }
-        ]
-      },
-      "20": {
-        "n": 38,
-        "win": 50,
-        "medAtr": 0.24,
-        "baseWin": 44,
-        "baseMedAtr": -0.4,
-        "baseN": 1248,
-        "edgeWin": 6,
-        "z": 0.73,
-        "stops": [
-          {
-            "stopAtr": 0.5,
-            "rr": 2,
-            "expR": 0.184,
-            "n": 38
-          },
-          {
-            "stopAtr": 1,
-            "rr": 2,
-            "expR": -0.015,
-            "n": 38
-          },
-          {
-            "stopAtr": 1.5,
-            "rr": 2,
-            "expR": 0.036,
-            "n": 38
-          }
-        ]
-      },
-      "40": {
         "n": 35,
-        "win": 43,
-        "medAtr": -0.79,
-        "baseWin": 42,
-        "baseMedAtr": -0.81,
-        "baseN": 1196,
+        "win": 46,
+        "medAtr": -0.36,
+        "baseWin": 45,
+        "baseMedAtr": -0.28,
+        "baseN": 1274,
         "edgeWin": 1,
         "z": 0.12,
         "stops": [
@@ -194,14 +130,74 @@
           {
             "stopAtr": 1,
             "rr": 2,
-            "expR": -0.143,
+            "expR": 0.073,
             "n": 35
           },
           {
             "stopAtr": 1.5,
             "rr": 2,
-            "expR": -0.057,
+            "expR": 0.018,
             "n": 35
+          }
+        ]
+      },
+      "20": {
+        "n": 34,
+        "win": 53,
+        "medAtr": 0.41,
+        "baseWin": 44,
+        "baseMedAtr": -0.4,
+        "baseN": 1248,
+        "edgeWin": 9,
+        "z": 1.04,
+        "stops": [
+          {
+            "stopAtr": 0.5,
+            "rr": 2,
+            "expR": 0.059,
+            "n": 34
+          },
+          {
+            "stopAtr": 1,
+            "rr": 2,
+            "expR": 0.041,
+            "n": 34
+          },
+          {
+            "stopAtr": 1.5,
+            "rr": 2,
+            "expR": 0.197,
+            "n": 34
+          }
+        ]
+      },
+      "40": {
+        "n": 32,
+        "win": 41,
+        "medAtr": -0.79,
+        "baseWin": 41,
+        "baseMedAtr": -0.85,
+        "baseN": 1196,
+        "edgeWin": 0,
+        "z": 0,
+        "stops": [
+          {
+            "stopAtr": 0.5,
+            "rr": 2,
+            "expR": 0.031,
+            "n": 32
+          },
+          {
+            "stopAtr": 1,
+            "rr": 2,
+            "expR": -0.063,
+            "n": 32
+          },
+          {
+            "stopAtr": 1.5,
+            "rr": 2,
+            "expR": 0.125,
+            "n": 32
           }
         ]
       }
@@ -210,7 +206,7 @@
   "crowdedShort": {
     "label": "positioning at or below the 10th percentile",
     "hypothesis": "up",
-    "episodes": 40,
+    "episodes": 43,
     "bySym": [
       {
         "sym": "EUR/USD",
@@ -238,7 +234,7 @@
       },
       {
         "sym": "XAU/USD",
-        "episodes": 1
+        "episodes": 3
       },
       {
         "sym": "XAG/USD",
@@ -258,127 +254,127 @@
       },
       {
         "sym": "NATGAS",
-        "episodes": 6
+        "episodes": 7
       }
     ],
     "horizons": {
       "5": {
-        "n": 40,
-        "win": 57,
+        "n": 43,
+        "win": 60,
         "medAtr": 0.49,
         "baseWin": 53,
         "baseMedAtr": 0.11,
         "baseN": 1287,
-        "edgeWin": 4,
-        "z": 0.5,
+        "edgeWin": 7,
+        "z": 0.9,
         "stops": [
           {
             "stopAtr": 0.5,
             "rr": 2,
-            "expR": 0.1,
-            "n": 40
+            "expR": 0.093,
+            "n": 43
           },
           {
             "stopAtr": 1,
             "rr": 2,
-            "expR": 0.137,
-            "n": 40
+            "expR": 0.166,
+            "n": 43
           },
           {
             "stopAtr": 1.5,
             "rr": 2,
-            "expR": 0.088,
-            "n": 40
+            "expR": 0.102,
+            "n": 43
           }
         ]
       },
       "10": {
-        "n": 40,
-        "win": 60,
-        "medAtr": 0.52,
+        "n": 43,
+        "win": 58,
+        "medAtr": 0.37,
         "baseWin": 55,
         "baseMedAtr": 0.29,
         "baseN": 1274,
-        "edgeWin": 5,
-        "z": 0.63,
+        "edgeWin": 3,
+        "z": 0.39,
         "stops": [
           {
             "stopAtr": 0.5,
             "rr": 2,
-            "expR": 0.05,
-            "n": 40
+            "expR": 0.047,
+            "n": 43
           },
           {
             "stopAtr": 1,
             "rr": 2,
-            "expR": 0.032,
-            "n": 40
+            "expR": 0.056,
+            "n": 43
           },
           {
             "stopAtr": 1.5,
             "rr": 2,
-            "expR": 0.021,
-            "n": 40
+            "expR": 0.02,
+            "n": 43
           }
         ]
       },
       "20": {
-        "n": 39,
-        "win": 56,
+        "n": 43,
+        "win": 53,
         "medAtr": 0.91,
         "baseWin": 56,
         "baseMedAtr": 0.4,
         "baseN": 1248,
-        "edgeWin": 0,
-        "z": 0,
+        "edgeWin": -3,
+        "z": -0.39,
         "stops": [
           {
             "stopAtr": 0.5,
             "rr": 2,
-            "expR": 0.077,
-            "n": 39
+            "expR": 0.047,
+            "n": 43
           },
           {
             "stopAtr": 1,
             "rr": 2,
-            "expR": -0.051,
-            "n": 39
+            "expR": -0.069,
+            "n": 43
           },
           {
             "stopAtr": 1.5,
             "rr": 2,
-            "expR": 0.052,
-            "n": 39
+            "expR": -0.025,
+            "n": 43
           }
         ]
       },
       "40": {
-        "n": 35,
-        "win": 57,
-        "medAtr": 0.59,
-        "baseWin": 58,
-        "baseMedAtr": 0.84,
+        "n": 37,
+        "win": 54,
+        "medAtr": 0.46,
+        "baseWin": 59,
+        "baseMedAtr": 0.86,
         "baseN": 1196,
-        "edgeWin": -1,
-        "z": -0.12,
+        "edgeWin": -5,
+        "z": -0.61,
         "stops": [
           {
             "stopAtr": 0.5,
             "rr": 2,
-            "expR": -0.057,
-            "n": 35
+            "expR": -0.027,
+            "n": 37
           },
           {
             "stopAtr": 1,
             "rr": 2,
-            "expR": -0.229,
-            "n": 35
+            "expR": -0.189,
+            "n": 37
           },
           {
             "stopAtr": 1.5,
             "rr": 2,
-            "expR": -0.046,
-            "n": 35
+            "expR": -0.098,
+            "n": 37
           }
         ]
       }
