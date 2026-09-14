@@ -921,6 +921,45 @@
   ],
   "headlines": [
     {
+      "title": "‘My total balance should be $20 million’: I invested $1.1 million in a crypto platform. Have I lost it all?",
+      "link": "https://www.marketwatch.com/story/my-total-balance-should-be-worth-20-million-i-invested-1-1-million-in-a-crypto-platform-have-i-lost-it-all-d22da562?mod=mw_rss_topstories",
+      "source": "MarketWatch",
+      "desc": "“I invested on the recommendation of an executive vice president of a major New York investment bank.”",
+      "at": 1789414200000,
+      "inst": [
+        "BTC/USDT"
+      ],
+      "ccy": [
+        "BTC"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789414200000,
+      "_kind": null,
+      "why": "Individual loss report, no market direction."
+    },
+    {
+      "title": "CrowdStrike and Palo Alto Networks are leading software stocks toward a never-before-seen feat",
+      "link": "https://www.marketwatch.com/story/crowdstrike-and-palo-alto-networks-are-leading-software-stocks-toward-a-never-before-seen-feat-5b8989b2?mod=mw_rss_topstories",
+      "source": "MarketWatch",
+      "desc": "The software sector is on pace to outperform the chip sector by a historic degree in the face of escalating AI fears.",
+      "at": 1789414140000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789414140000,
+      "_kind": null,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Software stocks leading, outperforming chips."
+    },
+    {
       "title": "Oil settles higher after Saudi strikes stoke supply worries",
       "link": "https://www.investing.com/news/commodities-news/oil-prices-climb-over-2-after-strikes-on-saudi-pipeline-and-ships-in-middle-east-4900107",
       "source": "Investing Cmdty",
@@ -938,7 +977,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789413504000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Oil settles higher on supply worries."
     },
     {
       "title": "Nasdaq 100 coils below 29,750 resistance: Live breakout levels",
@@ -953,7 +997,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789413454000,
-      "_kind": null
+      "_kind": null,
+      "why": "Coiling below resistance, no clear direction."
     },
     {
       "title": "Natural Gas stuck in $2.82-$2.88 range: Live levels",
@@ -968,7 +1013,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789413454000,
-      "_kind": null
+      "_kind": null,
+      "why": "Stuck in range, no clear direction."
     },
     {
       "title": "Dow Jones hits triple resistance at 52,901: Live levels",
@@ -983,7 +1029,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789413454000,
-      "_kind": null
+      "_kind": null,
+      "why": "Hits resistance, no clear direction."
     },
     {
       "title": "AI wind-down risks: the stocks most exposed if frontier labs pull back",
@@ -998,7 +1045,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789413486000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "AI wind-down risks, exposure to pullback."
     },
     {
       "title": "Crude Oil WTI bearish engulfing at $104.91: Live levels",
@@ -1016,7 +1067,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789413454000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Bearish engulfing pattern for WTI."
     },
     {
       "title": "London Gas Oil reverses from $1,530 high: Live levels",
@@ -1033,7 +1088,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789413454000,
-      "_kind": null
+      "_kind": null,
+      "why": "Gas oil reversal, not crude oil."
     },
     {
       "title": "Brent Oil flashes bearish Marubozu at $105.32: Live levels",
@@ -1051,7 +1107,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789413454000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "UKOIL": "down"
+      },
+      "why": "Bearish Marubozu for Brent Oil."
     },
     {
       "title": "Silver tests 200 SMA at $63.92 with bearish momentum: Live levels",
@@ -1068,7 +1128,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789413454000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAG/USD": "down"
+      },
+      "why": "Bearish momentum at key support."
     },
     {
       "title": "S&P 500 hits 50% Fib wall at 7,712: Hourly levels",
@@ -1083,7 +1147,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789413458000,
-      "_kind": null
+      "_kind": null,
+      "why": "Hits Fibonacci wall, no clear direction."
     },
     {
       "title": "Gold breaks below key MAs with bearish momentum: Live levels",
@@ -1100,7 +1165,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789413454000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Breaks below key MAs, bearish momentum."
     },
     {
       "title": "Dollar Index stalls at 99.12 doji resistance: Hourly levels",
@@ -1116,6 +1185,28 @@
       "srcs": 1,
       "firstAt": 1789413458000,
       "_kind": null
+    },
+    {
+      "title": "Trump says China 'spies on us' after report links Chinese satellite imagery to deadly Iran strike - KTSA",
+      "link": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxQc0tLbG81OVJCaHRNMDNJUTBMTDdFOXU4YkQyOUI4cUFGMGt5NFg4Qy1DY3NWNGZwaWtzQXEwbnozQl9mTDZDTlBneE9iaWNQQkRkcDl4MFlOcmJwYml2T1JLVU5oMEpiYmxhSVRJWXA3dTVtR1JvNWJjM21zbE8xY2h0YThKQ2lLUUxPd0Y3TXplbTNOSzhhM1RyeVc4Vk03MHlsM2VqNXZlNUFvX2lkSFJqb0lCUkIt?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiuAFBVV95cUxQc0tLbG81OVJCaHRNMDNJUTBMTDdFOXU4YkQyOUI4cUFGMGt5NFg4Qy1DY3NWNGZwaWtzQXEwbnozQl9mTDZDTlBneE9iaWNQQkRkcDl4MFlOcmJwYml2T1JLVU5oMEpiYmxhSVRJWXA3dTVtR1JvNWJjM21zbE8xY2h0YThKQ2lLUUxPd0Y3TXplbTNOSzhhM1RyeVc4Vk03MHlsM2VqNXZlNU",
+      "at": 1789413000000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789413000000,
+      "_kind": null,
+      "why": "Geopolitical tension, unclear immediate market impact."
     },
     {
       "title": "Houthis attack Saudi Arabia as Gulf-Iran talks are postponed",
@@ -1135,28 +1226,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789412894000,
-      "_kind": null
-    },
-    {
-      "title": "Zelenskyy Says Ukraine Will Pause Strikes on Russia if Kremlin Spares Critical Infrastructure - Military.com",
-      "link": "https://news.google.com/rss/articles/CBMiugFBVV95cUxNaGtWRUxadVVoX1gyVVc4YVlRWDdLdVJrNERhdlVwTk5pTDJkM19YSnFkU1I1QUVERzJtbzdfSHBFNjNYaUJsZ1d0eC16UVRWTFpxai1GdmxNWmhZekROaU9qNWk3UG5hdnFBckJIRV8tQ194NVFxQmpGamNBYkFCSmhjU1Ezd3NiZHdPMU5jQ25KTURmZ002cUxLV09QeFhCRzJHc1pGZFJJQUdpQTBycUpHOG1UWndzRXc?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiugFBVV95cUxNaGtWRUxadVVoX1gyVVc4YVlRWDdLdVJrNERhdlVwTk5pTDJkM19YSnFkU1I1QUVERzJtbzdfSHBFNjNYaUJsZ1d0eC16UVRWTFpxai1GdmxNWmhZekROaU9qNWk3UG5hdnFBckJIRV8tQ194NVFxQmpGamNBYkFCSmhjU1Ezd3NiZHdPMU5jQ25KTURmZ002cUxLV09QeFhCRzJHc1pGZFJJQU",
-      "at": 1789412840000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789411694000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Houthi attacks stoke supply and risk fears."
     },
     {
       "title": "U.S. imposes Iran-related sanctions on Russia's VTB - Reuters",
@@ -1197,8 +1273,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789411935000,
-      "_kind": null
+      "firstAt": 1789411935000
     },
     {
       "title": "U.S. Dollar Gains Amid Middle East Tensions and Rate Hike Speculations - Devdiscourse",
@@ -1588,29 +1663,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789407990000
-    },
-    {
-      "title": "Inflation is sinking your high-yield savings account’s returns. Here’s one way to fight it.",
-      "link": "https://www.marketwatch.com/story/inflation-is-sinking-your-high-yield-savings-accounts-returns-heres-one-way-to-fight-it-6aa798e9?mod=mw_rss_topstories",
-      "source": "MarketWatch",
-      "desc": "4% APYs sound good. Too bad inflation is taking a bigger bite out of those yields now.",
-      "at": 1789407960000,
-      "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789407960000
     },
     {
       "title": "Risk trades steadily rebound on Trump's talk about AI and energy",
@@ -2045,11 +2097,11 @@
       "firstAt": 1789402440000
     },
     {
-      "title": "Ukraine and Russia have agreed an energy ceasefire, claims Trump - The Telegraph",
-      "link": "https://news.google.com/rss/articles/CBMioAFBVV95cUxPWUM4dm4yZC1FUWc4OXh4Y0x3R2dkWU5PVEtIMWQ4VkhyM2kxNENUUmUyYlhkbVpIcF83Y28zejRYcHRVbjM0cWcxTm9CVkRlZGlsaHplUUk2c3hMQkhyQ1dLMDJrQV9JdzVWaU9QZG1Gd29UcmJ4U0pBWGRNcGlSS3ZhOXNnaFgyWF9fSzdLd3FKZzdDdkt1VG9jQ1A0SllL?oc=5",
+      "title": "Ukraine and Russia have agreed an energy ceasefire, claims Trump - Yahoo",
+      "link": "https://news.google.com/rss/articles/CBMilwFBVV95cUxPb3NPczBXZ2NBVktxUXF0VWFYUGFDV1BqR1c2ZWdoNVJLMXBMVUJuTU80alRLc3BtSGw5eW9XTmJJaHdGb1JQSDczLXlVQTlERUJFWjZQQS0yYnFQV3d2c0QzMEd6MmpvV2p3bFd4QU5JWWVWYmRVMjNTaXhvajBTYjJOQ3VqMExFSE1SeUo0a0xrWUdvMW5v?oc=5",
       "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMioAFBVV95cUxPWUM4dm4yZC1FUWc4OXh4Y0x3R2dkWU5PVEtIMWQ4VkhyM2kxNENUUmUyYlhkbVpIcF83Y28zejRYcHRVbjM0cWcxTm9CVkRlZGlsaHplUUk2c3hMQkhyQ1dLMDJrQV9JdzVWaU9QZG1Gd29UcmJ4U0pBWGRNcGlSS3ZhOXNnaFgyWF9fSzdLd3FKZzdDdkt1VG9jQ1A0SllL?oc=5\" target=",
-      "at": 1789403280000,
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMilwFBVV95cUxPb3NPczBXZ2NBVktxUXF0VWFYUGFDV1BqR1c2ZWdoNVJLMXBMVUJuTU80alRLc3BtSGw5eW9XTmJJaHdGb1JQSDczLXlVQTlERUJFWjZQQS0yYnFQV3d2c0QzMEd6MmpvV2p3bFd4QU5JWWVWYmRVMjNTaXhvajBTYjJOQ3VqMExFSE1SeUo0a0xrWUdvMW5v?oc=5\" target=\"_blank\">Ukr",
+      "at": 1789403295000,
       "inst": [
         "XAU/USD",
         "USOIL",
@@ -2650,26 +2702,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789395294000
-    },
-    {
-      "title": "Fiscal pressure from Iran War clouds Gulf States’ US spending plans",
-      "link": "https://www.aljazeera.com/economy/2026/9/14/fiscal-pressure-from-iran-war-clouds-gulf-states-us-spending-plans?traffic_source=rss",
-      "source": "Al Jazeera",
-      "desc": "Gulf nations may prioritise domestic investments over US commitments amid economic pressures, says new report.",
-      "at": 1789396465000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789396465000
     }
   ],
   "sources": [
@@ -2692,10 +2724,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-14T19:32:21.160Z",
-  "headlinesAt": "2026-09-14T19:32:21.160Z",
-  "updatedAt": "2026-09-14T19:32:21.160Z"
+  "calendarAt": "2026-09-14T19:34:08.911Z",
+  "headlinesAt": "2026-09-14T19:34:08.911Z",
+  "updatedAt": "2026-09-14T19:34:08.911Z"
 }
