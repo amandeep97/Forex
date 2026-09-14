@@ -948,7 +948,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789365139000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions on settlements have no clear market impact."
     },
     {
       "title": "FleetPartners shares surge 12% to record as takeover bidding war heats up",
@@ -965,7 +966,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789364893000,
-      "_kind": null
+      "_kind": null,
+      "why": "FleetPartners news is irrelevant to gold prices."
     },
     {
       "title": "LIVE: Trump urges Ukraine to stop refinery strikes as diesel prices surge - Latest news from Azerbaijan",
@@ -986,7 +988,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789364219000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Diesel price surge implies higher oil costs."
     },
     {
       "title": "Poland Scrambles Security Chiefs After Russian Strike Near Border With Ukraine - Kyiv Post",
@@ -1006,7 +1013,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789363807000
+      "firstAt": 1789363807000,
+      "why": "Security scramble lacks clear immediate market direction."
     },
     {
       "title": "Shares skid in Asia as oil climbs, rate hikes loom",
@@ -1022,7 +1030,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789363825000
+      "firstAt": 1789363825000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Headline explicitly states oil climbs."
     },
     {
       "title": "Russia strikes closer to Poland as Ukrainian border town assesses damage - The Lufkin Daily News",
@@ -1042,7 +1054,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789363807000
+      "firstAt": 1789363807000,
+      "why": "Strike damage assessment is unclear for markets."
     },
     {
       "title": "Asian currencies weaken as dollar rises, yen holds near seven-month high",
@@ -1059,7 +1072,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789363367000
+      "firstAt": 1789363367000,
+      "dir": {
+        "USD/JPY": "up"
+      },
+      "why": "Dollar rises and yen holds imply JPY weakness."
     },
     {
       "title": "Swiss Franc weakens as US Dollar gains on Fed rate hike odds - fxstreet.com",
@@ -1077,7 +1094,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789362704000
+      "firstAt": 1789362704000,
+      "dir": {
+        "USD/CHF": "up"
+      },
+      "why": "Dollar gains imply Swiss Franc weakness."
     },
     {
       "title": "Kushner: US leveraged Doha strike isolation for Gaza deal - Yeni Safak English",
@@ -1097,7 +1118,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789362109000
+      "firstAt": 1789362109000,
+      "why": "Diplomatic leverage news has no clear market signal."
     },
     {
       "title": "Trump downplays report China supplied satellite images aiding Jordan base attack - Middle East Eye",
@@ -1117,7 +1139,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789362000000
+      "firstAt": 1789362000000,
+      "why": "Downplayed report lacks clear directional impact."
     },
     {
       "title": "Fighting in Yemen intensifies, and Houthis launch more attacks on Saudi Arabia - AP News",
@@ -1137,7 +1160,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789360860000
+      "firstAt": 1789360860000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Intensified Yemen fighting threatens supply, bullish oil."
     },
     {
       "title": "Fed Rate Hike In September? Goldman Sachs Changes Its Call - NDTV Profit",
@@ -1160,7 +1188,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789360364000
+      "firstAt": 1789360364000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Higher Fed hike odds strengthen dollar, bearish pairs."
     },
     {
       "title": "Asian stocks fall as AI slowdown fears deepen, oil surge lifts rate risks",
@@ -1177,7 +1211,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789359446000
+      "firstAt": 1789359446000,
+      "dir": {
+        "USOIL": "up",
+        "US500": "down"
+      },
+      "why": "Oil surge and stock falls explicitly stated."
     },
     {
       "title": "investingLive Asia-Pacific market news: Oil holds gap higher",
@@ -1194,7 +1233,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789358172000
+      "firstAt": 1789358172000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil holds gap higher implies bullish trend."
     },
     {
       "title": "Gold dips as hot US inflation boosts Fed hike odds - Briefs Finance",
@@ -1212,7 +1255,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789356084000
+      "firstAt": 1789356084000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Hot inflation boosts hike odds, bearish gold."
     },
     {
       "title": "Gold slips as oil rally fans rate hike bets ahead of Fed meeting - Reuters",
@@ -2678,7 +2725,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-14T06:04:19.111Z",
-  "headlinesAt": "2026-09-14T06:04:19.111Z",
-  "updatedAt": "2026-09-14T06:04:19.111Z"
+  "calendarAt": "2026-09-14T06:05:53.093Z",
+  "headlinesAt": "2026-09-14T06:05:53.093Z",
+  "updatedAt": "2026-09-14T06:05:53.093Z"
 }
