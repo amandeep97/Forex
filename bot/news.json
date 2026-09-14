@@ -946,7 +946,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789416300000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Supply disruption drives oil prices higher."
     },
     {
       "title": "Bank of America expects third-quarter investment banking fees to fall more than 10%; shares slide",
@@ -962,7 +966,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789416075000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Bank fee outlook weakens, shares slide."
     },
     {
       "title": "Trump announced an ‘energy ceasefire’ between Russia and Ukraine, but the Financial Times reports that Moscow has not agreed to any deal - Meduza",
@@ -983,7 +991,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789415700000,
-      "_kind": "war-end"
+      "_kind": "war-end",
+      "why": "Conflicting reports on ceasefire status."
     },
     {
       "title": "US Government Announces New Iran Sanctions Measures - JD Supra",
@@ -1004,7 +1013,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789414186000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions news lacks immediate directional clarity."
     },
     {
       "title": "Sagen plans bond sale to raise C$300 million - Bloomberg",
@@ -1029,8 +1039,7 @@
       "sev": 1,
       "rel": 1,
       "srcs": 1,
-      "firstAt": 1789414820000,
-      "_kind": null
+      "firstAt": 1789414820000
     },
     {
       "title": "Wheat futures fall on Black Sea conflict de-escalation hopes",
@@ -1047,7 +1056,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789414793000,
-      "_kind": null
+      "why": "Wheat news irrelevant to gold direction."
     },
     {
       "title": "‘My total balance should be $20 million’: I invested $1.1 million in a crypto platform. Have I lost it all?",
@@ -1064,7 +1073,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789414200000
+      "firstAt": 1789414200000,
+      "why": "Individual scam story, no market impact."
     },
     {
       "title": "Russia-Iran Sanctions Bill Could Reach Trump’s Desk Within Days, Says Congressman - Radio Free Europe/Radio Liberty",
@@ -1084,7 +1094,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789414186000
+      "firstAt": 1789414186000,
+      "why": "Legislative process too slow for immediate move."
     },
     {
       "title": "CrowdStrike and Palo Alto Networks are leading software stocks toward a never-before-seen feat",
@@ -1099,7 +1110,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789414140000
+      "firstAt": 1789414140000,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Software sector outperformance boosts index sentiment."
     },
     {
       "title": "Oil settles higher after Saudi strikes stoke supply worries",
@@ -1118,7 +1133,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789413504000
+      "firstAt": 1789413504000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Supply worries push oil prices higher."
     },
     {
       "title": "Natural Gas stuck in $2.82-$2.88 range: Live levels",
@@ -1132,7 +1152,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789413467000
+      "firstAt": 1789413467000,
+      "why": "Price stuck in narrow trading range."
     },
     {
       "title": "Crude Oil WTI bearish engulfing at $104.91: Live levels",
@@ -1149,7 +1170,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789413467000
+      "firstAt": 1789413467000,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Bearish engulfing pattern signals downward pressure."
     },
     {
       "title": "London Gas Oil reverses from $1,530 high: Live levels",
@@ -1165,7 +1190,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789413467000
+      "firstAt": 1789413467000,
+      "why": "Gas oil reversal not directly oil specific."
     },
     {
       "title": "Brent Oil flashes bearish Marubozu at $105.32: Live levels",
@@ -1182,7 +1208,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789413467000
+      "firstAt": 1789413467000,
+      "dir": {
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Bearish Marubozu pattern indicates selling pressure."
     },
     {
       "title": "Silver tests 200 SMA at $63.92 with bearish momentum: Live levels",
@@ -1198,7 +1229,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789413467000
+      "firstAt": 1789413467000,
+      "dir": {
+        "XAG/USD": "down"
+      },
+      "why": "Bearish momentum at key support level."
     },
     {
       "title": "Gold breaks below key MAs with bearish momentum: Live levels",
@@ -1214,7 +1249,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789413467000
+      "firstAt": 1789413467000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Break below moving averages with bearish momentum."
     },
     {
       "title": "Fed Extends Pause on Reserve Management Purchases to Mid-October - Bloomberg.com",
@@ -2415,7 +2454,7 @@
       "firstAt": 1789399260000
     },
     {
-      "title": "Trump says Ukraine and Russia have agreed not to strike energy facilities - Українська правда",
+      "title": "Trump says Ukraine and Russia have agreed not to strike energy facilities - pravda.com.ua",
       "link": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE5mYzlPWEpuOEJKWTlQUlpKeWtZdGxBbl9qVF9QOU9PZFZrMUc5bWl3SklXclllc3IyeC13TU04LVdjV3hoMXA2VHVOQjQyRkxVRWs5THhqX3RSSXB6Q0JEYWZTZVfSAXBBVV95cUxPVFFOZVFXR0l5M2h6QUF3VkstWklNU1JpajI5N2ZyOEl3Qzh1Uy10bGxFVnkwQ0J3cDZJYUlQbE14dWF5Z0wyalNCbW1EWEVaWXZkaXk1NDdyal91RVZZRUU1bWVuMlAtZ3RsYkF6SmlS?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiZEFVX3lxTE5mYzlPWEpuOEJKWTlQUlpKeWtZdGxBbl9qVF9QOU9PZFZrMUc5bWl3SklXclllc3IyeC13TU04LVdjV3hoMXA2VHVOQjQyRkxVRWs5THhqX3RSSXB6Q0JEYWZTZVfSAXBBVV95cUxPVFFOZVFXR0l5M2h6QUF3VkstWklNU1JpajI5N2ZyOEl3Qzh1Uy10bGxFVnkwQ0J3cDZJYUlQbE14dWF5Z0",
@@ -2702,10 +2741,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-14T20:09:36.687Z",
-  "headlinesAt": "2026-09-14T20:09:36.687Z",
-  "updatedAt": "2026-09-14T20:09:36.687Z"
+  "calendarAt": "2026-09-14T20:10:54.495Z",
+  "headlinesAt": "2026-09-14T20:10:54.495Z",
+  "updatedAt": "2026-09-14T20:10:54.495Z"
 }
