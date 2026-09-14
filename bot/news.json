@@ -939,7 +939,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789378194000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Geopolitical risk boosts gold, oil unclear"
     },
     {
       "title": "Russian Strike on Ukraine Warehouse Kills 3 - ASHARQ AL-AWSAT English",
@@ -960,7 +964,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789379986000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Conflict escalation supports gold, oil unclear"
     },
     {
       "title": "Gulf states call off meeting with Iran, Houthis launch new attack on Saudi",
@@ -980,7 +988,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789380486000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Middle East tension boosts gold and oil"
     },
     {
       "title": "Poland and Ukraine condemn Russian strikes near their border - Euronews.com",
@@ -1001,7 +1015,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789379986000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Geopolitical risk supports gold, oil unclear"
     },
     {
       "title": "Video. Poland and Ukraine condemn Russian strikes near their border - Euronews.com",
@@ -1022,7 +1040,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789379986000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Geopolitical risk supports gold, oil unclear"
     },
     {
       "title": "Analysis-Bitcoin's late summer rally set to face off against the Fed, Congress",
@@ -1040,7 +1062,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789380305000,
-      "_kind": null
+      "_kind": null,
+      "why": "Mixed outlook on Fed and Congress"
     },
     {
       "title": "Gold slips below $4,300 as oil surge fuels Fed rate-hike bets - Moneycontrol.com",
@@ -1059,9 +1082,14 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 2,
+      "srcs": 1,
       "firstAt": 1789377893000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "up"
+      },
+      "why": "Gold falls, oil surges on rate bets"
     },
     {
       "title": "Gold drops as markets assess inflation risks - AzerNews",
@@ -1078,9 +1106,13 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789378308000,
-      "_kind": null
+      "srcs": 1,
+      "firstAt": 1789378560000,
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold drops on inflation risk assessment"
     },
     {
       "title": "Israel Upset by Kushner's Admission that U.S. Used Doha Strike to Push Israel on Gaza - cbn.com",
@@ -1101,7 +1133,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789380052000,
-      "_kind": null
+      "_kind": null,
+      "why": "Diplomatic news, no clear market direction"
     },
     {
       "title": "AirBaltic files for Chapter 11 bankruptcy as Iran war costs bite",
@@ -1121,7 +1154,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789380032000,
-      "_kind": null
+      "_kind": null,
+      "why": "Bankruptcy news, no clear market direction"
     },
     {
       "title": "Dollar charges to near two-week peak as Fed hike bets hit near-certainty",
@@ -1144,7 +1178,13 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789378322000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Stronger dollar pressures gold and pairs"
     },
     {
       "title": "The market says a Fed rate hike is a done deal. Here's why it might hold steady.",
@@ -1167,7 +1207,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789380000000,
-      "_kind": null
+      "_kind": null,
+      "why": "Debate on Fed action, direction unclear"
     },
     {
       "title": "Best high-yield savings interest rates today, Monday, September 14, 2026: Earn up to 4.10% APY",
@@ -1201,6 +1242,20 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789379986000,
+      "_kind": null,
+      "why": "Military analysis, no clear market direction"
+    },
+    {
+      "title": "XRP Could Rally to $1.60 if $1.38 Breakout Confirms, Analyst Says",
+      "link": "https://finance.yahoo.com/markets/crypto/articles/xrp-could-rally-1-60-095735764.html",
+      "source": "Yahoo Finance",
+      "at": 1789379855000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 1,
+      "srcs": 1,
+      "firstAt": 1789379855000,
       "_kind": null
     },
     {
@@ -1216,7 +1271,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789379848000,
-      "_kind": null
+      "_kind": null,
+      "why": "Prediction attempt, no clear direction"
     },
     {
       "title": "Robinhood's New Blockchain Is Now Making More Money Than Ethereum. Does That Make Robinhood Stock a Buy?",
@@ -1231,7 +1287,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789379760000,
-      "_kind": null
+      "_kind": null,
+      "why": "Competitor news, no clear ETH direction"
     },
     {
       "title": "BofA sees dollar sideways into year-end despite Fed hike bets",
@@ -1286,7 +1343,7 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 2,
+      "srcs": 1,
       "firstAt": 1789377893000,
       "_kind": null
     },
@@ -1404,7 +1461,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789378308000
+      "firstAt": 1789378322000
     },
     {
       "title": "Gold prices slip as strong US inflation raises fed rate hike odds - The Statesman",
@@ -1421,7 +1478,7 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 2,
+      "srcs": 1,
       "firstAt": 1789377893000
     },
     {
@@ -1455,23 +1512,6 @@
       "rel": 2,
       "srcs": 3,
       "firstAt": 1789378322000
-    },
-    {
-      "title": "Gold Falls Toward $4,300 as US Inflation Raises Fed Rate Hike Expectations",
-      "link": "https://finance.yahoo.com/markets/commodities/articles/gold-falls-toward-4-300-093148193.html",
-      "source": "Yahoo Finance",
-      "at": 1789378308000,
-      "inst": [
-        "XAU/USD"
-      ],
-      "ccy": [
-        "USD",
-        "XAU"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789377893000
     },
     {
       "title": "Trump Issues Warning to Zelensky Over Strikes on Russia - Newsweek",
@@ -1521,7 +1561,7 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 2,
+      "srcs": 1,
       "firstAt": 1789377893000
     },
     {
@@ -1579,8 +1619,24 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 2,
+      "srcs": 3,
       "firstAt": 1789375011000
+    },
+    {
+      "title": "Middle East Oil Routes Under Pressure as Hormuz Traffic Tumbles",
+      "link": "https://finance.yahoo.com/energy/articles/middle-east-oil-routes-under-091500205.html",
+      "source": "Yahoo Finance",
+      "at": 1789377300000,
+      "inst": [
+        "USOIL"
+      ],
+      "ccy": [
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1789377300000
     },
     {
       "title": "U.S. Treasury Yields Edge Lower, German 10-Year Bund Yield Hits New 15-Year High - WSJ",
@@ -2577,24 +2633,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789356840000
-    },
-    {
-      "title": "Gold steady as hot US inflation bolsters chance of rate hike - Free Malaysia Today",
-      "link": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxORU45VDhRN0dYVHhVa2VFUjVDTm9QSHl4YmFSaWx1Y1gwdGhKTzllMUpGQ3JuZDhhQkpxSU1HTk8xN213SUg0YzBtS0NQdEVuZlN6clUxaDAtSVZFelRVUTAtMF8ycFhIR1ZWa2daVkYyTXg0Y0lLb2FMbTBEZlpIXzNPZy1SX1d3MGNSSnpUdlBQLXFUMDk0aHQyS2JJSDRQaEdlbkpOakE0VzY2Zzk2M3JqZW8zOG9HUk1GVjRfZnY?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiwAFBVV95cUxORU45VDhRN0dYVHhVa2VFUjVDTm9QSHl4YmFSaWx1Y1gwdGhKTzllMUpGQ3JuZDhhQkpxSU1HTk8xN213SUg0YzBtS0NQdEVuZlN6clUxaDAtSVZFelRVUTAtMF8ycFhIR1ZWa2daVkYyTXg0Y0lLb2FMbTBEZlpIXzNPZy1SX1d3MGNSSnpUdlBQLXFUMDk0aHQyS2JJSDRQaEdlbkpOakE0Vz",
-      "at": 1789356084000,
-      "inst": [
-        "XAU/USD"
-      ],
-      "ccy": [
-        "XAU",
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789355646000
     }
   ],
   "sources": [
@@ -2617,10 +2655,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-14T10:16:07.034Z",
-  "headlinesAt": "2026-09-14T10:16:07.034Z",
-  "updatedAt": "2026-09-14T10:16:07.034Z"
+  "calendarAt": "2026-09-14T10:17:23.467Z",
+  "headlinesAt": "2026-09-14T10:17:23.467Z",
+  "updatedAt": "2026-09-14T10:17:23.467Z"
 }
