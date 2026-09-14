@@ -936,7 +936,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789391161000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil up on supply fears, stocks gain"
     },
     {
       "title": "Treasury Yield Premium Surges Amid Inflation and Debt Worries - Investing.com Canada",
@@ -955,7 +959,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789390453000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USD/CAD": "up"
+      },
+      "why": "Stronger dollar weighs on Canadian loonie"
     },
     {
       "title": "European stocks fall on AI safety warnings, Fed rate hike bets weigh on sentiment",
@@ -972,7 +980,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789391005000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "AI warnings and Fed bets weigh on stocks"
     },
     {
       "title": "US Treasury Yields Climb Toward 5% as Oil Prices Stoke Inflation Fears - Межа. Новини України.",
@@ -991,7 +1003,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789388308000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil prices stoke inflation fears"
     },
     {
       "title": "Japan’s Umios invests in Thailand’s Pataya Food Industries",
@@ -1008,7 +1024,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789390950000,
-      "_kind": null
+      "_kind": null,
+      "why": "Corporate investment news, no FX impact"
     },
     {
       "title": "Stock Market Today: Dow Falls On Surging Oil; Nvidia Sells Off On AI Warning (Live Coverage)",
@@ -1026,7 +1043,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789390754000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "US30": "down"
+      },
+      "why": "Oil surges, Dow falls on Nvidia"
     },
     {
       "title": "Saudi east-west pipeline will be out of service for 3-5 weeks - report",
@@ -1047,7 +1069,12 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789390087000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Pipeline outage boosts oil supply concerns"
     },
     {
       "title": "Waldencast stock tumbles on plan to delist from Nasdaq",
@@ -1062,7 +1089,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789390655000,
-      "_kind": null
+      "_kind": null,
+      "why": "Single stock delisting, no index impact"
     },
     {
       "title": "Tesla registers Vietnam subsidiary, enters EV market",
@@ -1094,7 +1122,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789390453000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USD/CAD": "up"
+      },
+      "why": "Stronger dollar pressures Canadian currency"
     },
     {
       "title": "Novo Nordisk rebrands as Novo to compete in obesity market",
@@ -1124,7 +1156,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789390087000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Pipeline shutdown causes oil price jump"
     },
     {
       "title": "5 Top Monthly-Pay REITs for Lifetime, Inflation-Resistant Income",
@@ -1147,7 +1183,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789389906000,
-      "_kind": null
+      "why": "REIT list, no direct market direction"
     },
     {
       "title": "Royal Road Minerals begins drilling at Güíntar gold-copper-silver target",
@@ -1165,7 +1201,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789389720000
+      "firstAt": 1789389720000,
+      "why": "Specific mining project, no broad market impact"
     },
     {
       "title": "They Sold the House to Their Son at Full Price and Rented It Back for $2,200 a Month. They Still Live There, He Deducts the Depreciation, and Not One Dollar Ever Passed Through a Nursing-Home Application",
@@ -1195,7 +1232,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789389480000
+      "firstAt": 1789389480000,
+      "why": "Corporate governance news, no price impact"
     },
     {
       "title": "Gulf states call off meeting with Iran, Houthis launch new attack - The Detroit News",
@@ -1215,7 +1253,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789389420000
+      "firstAt": 1789389420000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Geopolitical tensions boost safe havens and oil"
     },
     {
       "title": "Stocks making the biggest moves premarket: Intel, Marvell, CrowdStrike & more",
@@ -1230,7 +1274,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789389375000
+      "firstAt": 1789389375000,
+      "why": "Individual stock moves, no index direction"
     },
     {
       "title": "10-year treasury yield rises as oil prices jump",
@@ -1286,11 +1331,11 @@
       "firstAt": 1789389048000
     },
     {
-      "title": "Gold falls on growing Fed rate hike bets ahead of policy meeting - TradingView",
-      "link": "https://news.google.com/rss/articles/CBMizwFBVV95cUxPS1E4eTc3MWUzenoxbzZLNnlrQXV6SDBTbGljX21sck5xelFDQ19oaXI5cUl5N000MzNiSjJJWDNfSnVib0R1NGRQSzdNcHM1bFZ3Y1YwRnVXbGV3a0hONFdraHM0Sm9sVDJsRzU1UjdhdV9hcFBQQ21PQmJzMUszNkE0OGxXQmFsSGZMQ0l5VURFVUxRMnNmc0lXRXhtRUdiN1VsMUlXSGMyTnRrZTh2SjFQUFZoYTZwLW11X2ZMTFpuUDJVTlAxaG1sN3hXODA?oc=5",
+      "title": "Gold falls on growing Fed rate hike bets ahead of policy meeting - Reuters",
+      "link": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxQNmx1T0lGQjE3MEJmVkdNRXl5eXpxRzNrQk0zQUJzdGNqcXhEWTA3TW5iZVFIVDBuTVZ3ZU5EWHVRektNVVlXUFpfV29tNmlPcHZtVXQzOF9Oa055ZEloY3p6UEpvMTAtNWtHekV1MTVUbzNnZVhqU25aZjQ2aW1UZDB4aktQdjI0MGlZRnZueUN4eGRJWEdreWJXdF9fMTNhTVNOVTdKQ1JKQQ?oc=5",
       "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMizwFBVV95cUxPS1E4eTc3MWUzenoxbzZLNnlrQXV6SDBTbGljX21sck5xelFDQ19oaXI5cUl5N000MzNiSjJJWDNfSnVib0R1NGRQSzdNcHM1bFZ3Y1YwRnVXbGV3a0hONFdraHM0Sm9sVDJsRzU1UjdhdV9hcFBQQ21PQmJzMUszNkE0OGxXQmFsSGZMQ0l5VURFVUxRMnNmc0lXRXhtRUdiN1VsMUlXSGMyTn",
-      "at": 1789388981000,
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiqgFBVV95cUxQNmx1T0lGQjE3MEJmVkdNRXl5eXpxRzNrQk0zQUJzdGNqcXhEWTA3TW5iZVFIVDBuTVZ3ZU5EWHVRektNVVlXUFpfV29tNmlPcHZtVXQzOF9Oa055ZEloY3p6UEpvMTAtNWtHekV1MTVUbzNnZVhqU25aZjQ2aW1UZDB4aktQdjI0MGlZRnZueUN4eGRJWEdreWJXdF9fMTNhTVNOVTdKQ1JKQQ",
+      "at": 1789389005000,
       "inst": [
         "XAU/USD"
       ],
@@ -1301,7 +1346,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789387528000
+      "firstAt": 1789388308000
     },
     {
       "title": "Oil-driven bond yield surge finally bites equities but JP Morgan says do not chase the sell-off",
@@ -1350,7 +1395,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789387528000
+      "firstAt": 1789388308000
     },
     {
       "title": "NFL and midterm elections set up prediction markets for a critical fall season",
@@ -1474,24 +1519,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789387742000
-    },
-    {
-      "title": "Gold slips lower as US inflation raises Fed rate hike odds - MorungExpress",
-      "link": "https://news.google.com/rss/articles/CBMijAFBVV95cUxQbVNlREdFc2FRNWdiQ1dGbTlaVkxzdVhvX1VEc25TQ3NFZURTTVoyVnp6MENBTDBGLXBHc3h6WkY2QkxMWkhrejhTM05iRUItOWp1LTZzUmt3c2FkX0FSeVU5cFFKbTNST09uaTFvTndNVm85ZkdlT2RSbVlnenpRR1dpSHpEN0tuQzhfXw?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMijAFBVV95cUxQbVNlREdFc2FRNWdiQ1dGbTlaVkxzdVhvX1VEc25TQ3NFZURTTVoyVnp6MENBTDBGLXBHc3h6WkY2QkxMWkhrejhTM05iRUItOWp1LTZzUmt3c2FkX0FSeVU5cFFKbTNST09uaTFvTndNVm85ZkdlT2RSbVlnenpRR1dpSHpEN0tuQzhfXw?oc=5\" target=\"_blank\">Gold slips lower ",
-      "at": 1789387528000,
-      "inst": [
-        "XAU/USD"
-      ],
-      "ccy": [
-        "USD",
-        "XAU"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789387528000
     },
     {
       "title": "Poland pledges to strengthen security after drone strikes along border with Ukraine - ABC News - Breaking News, Latest News and Videos",
@@ -2582,6 +2609,26 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789377000000
+    },
+    {
+      "title": "Gold slips as oil rally fans rate-hike bets ahead of Fed meeting - صحيفة مال",
+      "link": "https://news.google.com/rss/articles/CBMibEFVX3lxTE9oejVvVkZZTHJNdG9iWmxmRXZTaGU3bDViclBtaWctTkF6V0h2dWUteExuR1k3T2RDUHBtVFlERnBhZnFFN21Za0JXMVlvTE9SZUh2dUNEaUZ5allKOXB5bUZlRTd5Mld5WHlBbQ?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMibEFVX3lxTE9oejVvVkZZTHJNdG9iWmxmRXZTaGU3bDViclBtaWctTkF6V0h2dWUteExuR1k3T2RDUHBtVFlERnBhZnFFN21Za0JXMVlvTE9SZUh2dUNEaUZ5allKOXB5bUZlRTd5Mld5WHlBbQ?oc=5\" target=\"_blank\">Gold slips as oil rally fans rate-hike bets ahead of Fed meet",
+      "at": 1789376367000,
+      "inst": [
+        "XAU/USD",
+        "USOIL"
+      ],
+      "ccy": [
+        "USD",
+        "XAU",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789374380000
     }
   ],
   "sources": [
@@ -2607,7 +2654,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-14T13:14:35.516Z",
-  "headlinesAt": "2026-09-14T13:14:35.516Z",
-  "updatedAt": "2026-09-14T13:14:35.516Z"
+  "calendarAt": "2026-09-14T13:16:38.916Z",
+  "headlinesAt": "2026-09-14T13:16:38.916Z",
+  "updatedAt": "2026-09-14T13:16:38.916Z"
 }
