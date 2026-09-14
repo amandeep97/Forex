@@ -937,20 +937,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789378308000,
-      "_kind": null
-    },
-    {
-      "title": "‘Black Swan’ investor backs Michael Burry’s AI warning: ‘Euphoric rally’ comes before historic crash. Protect your money",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/black-swan-investor-backs-michael-101500434.html",
-      "source": "Yahoo Finance",
-      "at": 1789380900000,
-      "inst": [],
-      "ccy": [],
-      "sev": 2,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1789380900000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold falls on rate hike expectations"
     },
     {
       "title": "Russia Could Be Preparing Serious Strikes on Poland in Coming Weeks and Months, Tusk Warns - UNITED24 Media",
@@ -971,7 +962,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789378194000,
-      "_kind": null
+      "_kind": null,
+      "why": "Geopolitical warning, no immediate market impact"
     },
     {
       "title": "Russian Strike on Ukraine Warehouse Kills 3 - ASHARQ AL-AWSAT English",
@@ -992,7 +984,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789379986000,
-      "_kind": null
+      "_kind": null,
+      "why": "Ukraine strike, unclear market direction"
     },
     {
       "title": "Gulf states call off meeting with Iran, Houthis launch new attack on Saudi",
@@ -1012,7 +1005,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789380486000,
-      "_kind": null
+      "_kind": null,
+      "why": "Gulf meeting off, Houthi attack"
     },
     {
       "title": "Poland and Ukraine slam Russian strike on train near their border as 'escalation - Euronews.com",
@@ -1033,7 +1027,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789379986000,
-      "_kind": null
+      "_kind": null,
+      "why": "Poland Ukraine condemn Russian strike"
     },
     {
       "title": "Video. Poland and Ukraine condemn Russian strikes near their border - Euronews.com",
@@ -1054,7 +1049,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789379986000,
-      "_kind": null
+      "_kind": null,
+      "why": "Poland Ukraine condemn Russian strikes"
     },
     {
       "title": "Analysis-Bitcoin's late summer rally set to face off against the Fed, Congress",
@@ -1072,7 +1068,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789380305000,
-      "_kind": null
+      "_kind": null,
+      "why": "Bitcoin rally faces Fed Congress headwinds"
     },
     {
       "title": "Gold slips below $4,300 as oil surge fuels Fed rate-hike bets - Moneycontrol.com",
@@ -1093,7 +1090,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789377814000,
-      "_kind": null
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "up"
+      },
+      "why": "Gold slips, oil surge fuels hike bets"
     },
     {
       "title": "Gold drops as markets assess inflation risks - AzerNews",
@@ -1112,7 +1113,10 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789378308000,
-      "_kind": null
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold drops on inflation risk assessment"
     },
     {
       "title": "Israel Upset by Kushner's Admission that U.S. Used Doha Strike to Push Israel on Gaza - cbn.com",
@@ -1132,7 +1136,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789380052000
+      "firstAt": 1789380052000,
+      "why": "Israel upset by Kushner admission"
     },
     {
       "title": "AirBaltic files for Chapter 11 bankruptcy as Iran war costs bite",
@@ -1151,7 +1156,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789380032000
+      "firstAt": 1789380032000,
+      "why": "AirBaltic bankruptcy, Iran war costs"
     },
     {
       "title": "Dollar charges to near two-week peak as Fed hike bets hit near-certainty",
@@ -1173,7 +1179,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789378322000
+      "firstAt": 1789378322000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Dollar peaks on Fed hike certainty"
     },
     {
       "title": "The market says a Fed rate hike is a done deal. Here's why it might hold steady.",
@@ -1195,7 +1207,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789380000000
+      "firstAt": 1789380000000,
+      "why": "Fed hike done deal, possible hold"
     },
     {
       "title": "Best high-yield savings interest rates today, Monday, September 14, 2026: Earn up to 4.10% APY",
@@ -1227,7 +1240,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789379986000
+      "firstAt": 1789379986000,
+      "why": "Ukraine strike reveals Russian defenses"
     },
     {
       "title": "XRP Could Rally to $1.60 if $1.38 Breakout Confirms, Analyst Says",
@@ -1253,7 +1267,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789379848000
+      "firstAt": 1789379848000,
+      "why": "Cramer predicts NVIDIA price movement"
     },
     {
       "title": "Robinhood's New Blockchain Is Now Making More Money Than Ethereum. Does That Make Robinhood Stock a Buy?",
@@ -1423,6 +1438,23 @@
       "firstAt": 1789378584000
     },
     {
+      "title": "Euro Declines as Dollar Gains on Fed Rate-Rise Expectations",
+      "link": "https://www.wsj.com/finance/currencies/singapore-dollar-weakens-amid-escalating-middle-east-conflict-a746d8cc?siteid=yhoof2&yptr=yahoo",
+      "source": "Yahoo Finance",
+      "at": 1789378560000,
+      "inst": [
+        "EUR/USD"
+      ],
+      "ccy": [
+        "USD",
+        "EUR"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1789378308000
+    },
+    {
       "title": "Gold prices slip as strong US inflation raises fed rate hike odds - The Statesman",
       "link": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPT1ZmQ19GSTJwb095eXB3eWNiM3d5SDMzb0lrdnFNdXNoWHJVMkZqd25pblE5UWd5ekljckpMTFVSMGpCYTdtaDRQOE5sTjNkbDVZN1ZIVzMwbUl6S2k1Qk5pYzlWTEtJckk5LW9fVk5rWFd1ZTNPT1hkRHdpYVNFRjRxSkZxTHhGOEJsNk51UVpVN1VFaTVuZ3lNQ25BaEE2UktlY0VLTVZlRW16VFhhZVpLQzh3a01VaFVz0gHAAUFVX3lxTE9VZnVuYlFOMnBrN0JBTFhUNHZGRVNmdzdZZVhPdUhOb0VCYmNET0VPSWxzSExzSFFsVEpDdHhwN3YyQnFJZmh6bmU2SXZQb2lSdjZWTHRySVlHUHFCRWthdDhGUzZHbUdjWW9wSWk4eU1XQ2Vmd1p6M1dZSmpnUUlaNUd3aDFocFJ4alRmVkJJNVZNd2dRZmdKZHlTWDdUNFQ0SXBtT2lpWGY4TUVoeGJuUjBtdEhqTzVDU3gxa3FvdA?oc=5",
       "source": "Wires (macro)",
@@ -1475,7 +1507,7 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 2,
+      "srcs": 3,
       "firstAt": 1789378322000
     },
     {
@@ -1493,7 +1525,7 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 1,
+      "srcs": 2,
       "firstAt": 1789377814000
     },
     {
@@ -2601,7 +2633,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-14T10:32:19.808Z",
-  "headlinesAt": "2026-09-14T10:32:19.808Z",
-  "updatedAt": "2026-09-14T10:32:19.808Z"
+  "calendarAt": "2026-09-14T10:33:51.104Z",
+  "headlinesAt": "2026-09-14T10:33:51.104Z",
+  "updatedAt": "2026-09-14T10:33:51.104Z"
 }
