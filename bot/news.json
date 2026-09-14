@@ -921,6 +921,37 @@
   ],
   "headlines": [
     {
+      "title": "GE Vernova and Corning among market cap stock movers on Monday",
+      "link": "https://www.investing.com/news/stock-market-news/ge-vernova-and-corning-among-market-cap-stock-movers-on-monday-93CH-4900190",
+      "source": "Investing",
+      "at": 1789408904000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 1,
+      "srcs": 2,
+      "firstAt": 1789408190000,
+      "_kind": null
+    },
+    {
+      "title": "ADP employment, Empire State index, and oil inventories due Tuesday",
+      "link": "https://www.investing.com/news/stock-market-news/adp-employment-empire-state-index-and-oil-inventories-due-tuesday-93CH-4900187",
+      "source": "Investing",
+      "at": 1789408837000,
+      "inst": [
+        "USOIL"
+      ],
+      "ccy": [
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789408837000,
+      "_kind": null,
+      "why": "Upcoming data releases, no immediate direction."
+    },
+    {
       "title": "Trump says Ukraine and Russia agreed to halt strikes on energy. Zelenskyy is not so sure. - politico.eu",
       "link": "https://news.google.com/rss/articles/CBMimwFBVV95cUxQRldFLUVkSk9tSG5FRm8ycndaRVZGbVhhWEVpWmdEN2IyUm1oeUdDbllOdjlCTDExZU8xUnJRT25mUjRKZXcxR0NaN0Zna2M4UTNBcmRCdFpoLTRCYmdEUlhnMl9nTElFR0xIWThfdnRMVkRseWxydi1NdWg1ZURqYXFIVTl3TGJrN0cxTTB0WXJPa0xfVWZKXzNyRQ?oc=5",
       "source": "Wires (geo)",
@@ -939,7 +970,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789406100000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Ceasefire talks reduce geopolitical risk premium."
     },
     {
       "title": "Stocks making the biggest moves midday: Zscaler, CrowdStrike, Marvell Technology, Rum Group & more",
@@ -955,7 +991,27 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789408734000,
-      "_kind": null
+      "_kind": null,
+      "why": "Individual stock moves, index direction unclear."
+    },
+    {
+      "title": "Global AI stocks fall as industry chiefs call for slowing development",
+      "link": "https://www.investing.com/news/stock-market-news/ailinked-asian-stocks-slump-after-top-lab-ceos-call-for-slowing-down-technologys-development-4898809",
+      "source": "Investing",
+      "at": 1789408472000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789408472000,
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "AI sector concerns weigh on tech stocks."
     },
     {
       "title": "Trump: AI will be the greatest economic development engine in history",
@@ -975,7 +1031,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789408431000,
-      "_kind": null
+      "_kind": null,
+      "why": "General AI optimism, no specific asset impact."
     },
     {
       "title": "Ukraine wants specifics from partners on halting strikes, Zelenskiy says - Reuters",
@@ -996,7 +1053,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789408236000,
-      "_kind": null
+      "_kind": null,
+      "why": "Diplomatic uncertainty, no clear market direction."
     },
     {
       "title": "Corning Tumbles 12% on $2B At-the-Market Equity Offering; Coherent Sinks 11%, Lumentum Drops 9%, Fabrinet Slides 6%",
@@ -1007,7 +1065,7 @@
       "ccy": [],
       "sev": 1,
       "rel": 1,
-      "srcs": 1,
+      "srcs": 2,
       "firstAt": 1789408190000,
       "_kind": null
     },
@@ -1028,7 +1086,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789407990000,
-      "_kind": null
+      "_kind": null,
+      "why": "Historical performance analysis, no new catalyst."
     },
     {
       "title": "Inflation is sinking your high-yield savings account’s returns. Here’s one way to fight it.",
@@ -1052,7 +1111,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789407960000,
-      "_kind": null
+      "_kind": null,
+      "why": "Consumer finance advice, no macro direction."
     },
     {
       "title": "Risk trades steadily rebound on Trump's talk about AI and energy",
@@ -1071,7 +1131,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789407818000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "US500": "up"
+      },
+      "why": "Risk-on sentiment boosts stocks and oil."
     },
     {
       "title": "Houthis attack Saudi Arabia as Gulf-Iran talks are postponed",
@@ -1091,7 +1156,13 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789406986000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Geopolitical escalation boosts safe havens and oil."
     },
     {
       "title": "Carney pitches Canada to global investors amid US trade war",
@@ -1111,22 +1182,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789407046000,
-      "_kind": null
-    },
-    {
-      "title": "Global AI stocks fall as industry chiefs call for slowing development",
-      "link": "https://www.investing.com/news/stock-market-news/ailinked-asian-stocks-slump-after-top-lab-ceos-call-for-slowing-down-technologys-development-4898809",
-      "source": "Investing",
-      "at": 1789407752000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789407752000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USD/CAD": "down"
+      },
+      "why": "Positive for CAD, neutral for gold."
     },
     {
       "title": "C3.ai Jumps 7% as Software Rally Lifts Beaten-Down AI Names; UiPath Climbs 8%, SoundHound AI Gains 5%",
@@ -1138,8 +1198,7 @@
       "sev": 2,
       "rel": 1,
       "srcs": 1,
-      "firstAt": 1789407298000,
-      "_kind": null
+      "firstAt": 1789407298000
     },
     {
       "title": "Fed rate hike expected this week after hot inflation data",
@@ -1162,7 +1221,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789407281000,
-      "_kind": null
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Rate hike expectations strengthen dollar."
     },
     {
       "title": "Carney, locked in US trade war, pitches Canada to global investment titans",
@@ -1180,7 +1244,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789407046000
+      "firstAt": 1789407046000,
+      "dir": {
+        "USD/CAD": "down"
+      },
+      "why": "Positive for CAD, neutral for gold."
     },
     {
       "title": "Saudi Arabia Hormuz bypass pipeline shut, oil prices surge",
@@ -1196,7 +1264,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789404505000
+      "firstAt": 1789404505000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Supply disruption causes oil prices to surge."
     },
     {
       "title": "Warsh's credibility is on the line this week as Trump policies put pressure on Fed to hike",
@@ -1214,7 +1286,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789406781000
+      "firstAt": 1789406781000,
+      "why": "Fed policy uncertainty, no clear oil direction."
     },
     {
       "title": "Trump: Ukraine and Russia Agree Not to Strike Each Other’s Energy Facilities - reform.news",
@@ -2600,44 +2673,6 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789393890000
-    },
-    {
-      "title": "Gold Price Outlook 2026: Can Fed Rate Hike Expectations Stop the Next Rally? - equiti.com",
-      "link": "https://news.google.com/rss/articles/CBMingFBVV95cUxPa2tRZjVXV0g3SEliS2x3bV9FLTdyQ24zcDdDTEdsdWN2ZENTUFI2MURIcVQwcmJKRkRHeWFCTi00MEZjNzUtU0lrbXhmeWtscjNtdXpEZklUNWVUVVZRY2RiYjRBT29Vc0FDOVFyYkRlLU9CSnhpSzNLdXFheHI2YjRqb3hqLUExMEhSM012dnVQSTFnQ1o4ZlFxZzRMUQ?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMingFBVV95cUxPa2tRZjVXV0g3SEliS2x3bV9FLTdyQ24zcDdDTEdsdWN2ZENTUFI2MURIcVQwcmJKRkRHeWFCTi00MEZjNzUtU0lrbXhmeWtscjNtdXpEZklUNWVUVVZRY2RiYjRBT29Vc0FDOVFyYkRlLU9CSnhpSzNLdXFheHI2YjRqb3hqLUExMEhSM012dnVQSTFnQ1o4ZlFxZzRMUQ?oc=5\" target=\"_",
-      "at": 1789394281000,
-      "inst": [
-        "XAU/USD"
-      ],
-      "ccy": [
-        "USD",
-        "XAU"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789394040000
-    },
-    {
-      "title": "Gold falls to over one-month low as oil rally, inflation data boost rate hike bets - Bangkok Post",
-      "link": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxPdjU1akRTSjhBRGRjd2ZDcjBfNFFxNU9PVTFuVEhrNnlidlh1ZmRkRF83ZUo2LWNaNURNMXF1NURuWjd0X1dQRTB4NXZCUU9UNGhsRGJ6NDF3M2hhOFR0RE8xR1JjeEwxX3Q2bm8yMEZiNXUxTEFTMzJlc1ZQcmtqUkRmSndSei1YNXEtRmdEQW5kWjdqMXEwRmZPX081U2o4Nm1fbXFIZnNuNTZpZ3pqSW04bFlyaXg2SC14SjhFM1BtSE5LOTFlczNzWjYxajBMYUE?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi0gFBVV95cUxPdjU1akRTSjhBRGRjd2ZDcjBfNFFxNU9PVTFuVEhrNnlidlh1ZmRkRF83ZUo2LWNaNURNMXF1NURuWjd0X1dQRTB4NXZCUU9UNGhsRGJ6NDF3M2hhOFR0RE8xR1JjeEwxX3Q2bm8yMEZiNXUxTEFTMzJlc1ZQcmtqUkRmSndSei1YNXEtRmdEQW5kWjdqMXEwRmZPX081U2o4Nm1fbXFIZnNuNT",
-      "at": 1789394040000,
-      "inst": [
-        "XAU/USD",
-        "USOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL",
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789394040000
     }
   ],
   "sources": [
@@ -2663,7 +2698,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-14T18:03:08.055Z",
-  "headlinesAt": "2026-09-14T18:03:08.055Z",
-  "updatedAt": "2026-09-14T18:03:08.055Z"
+  "calendarAt": "2026-09-14T18:05:11.233Z",
+  "headlinesAt": "2026-09-14T18:05:11.233Z",
+  "updatedAt": "2026-09-14T18:05:11.233Z"
 }
