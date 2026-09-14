@@ -20,7 +20,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789368175000,
-      "_kind": null
+      "_kind": null,
+      "why": "Geopolitical commentary, no direct market impact."
     },
     {
       "title": "Gold slips as oil rally fans rate hike bets ahead of Fed meeting - Forex Factory",
@@ -41,7 +42,12 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789366668000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "up"
+      },
+      "why": "Oil rally, gold slips on rate hike bets."
     },
     {
       "title": "Australia stocks higher at close of trade; S&P/ASX 200 up 0.10%",
@@ -59,7 +65,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789367704000,
-      "_kind": null
+      "_kind": null,
+      "why": "Local market close, no clear USD direction."
     },
     {
       "title": "Gold slips toward $4,300 as hotter inflation lifts Fed hike bets",
@@ -77,7 +84,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789366668000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Hotter inflation lifts Fed hike bets, gold slips."
     },
     {
       "title": "What are the main events for today?",
@@ -99,7 +110,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789367193000,
-      "_kind": null
+      "_kind": null,
+      "why": "Routine agenda, no significant directional catalyst."
     },
     {
       "title": "Goldman Sachs, JPMorgan turn hawkish, expect Fed rate hike this week - Firstpost",
@@ -123,7 +135,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789367058000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Hawkish Fed expectations strengthen dollar, weaken gold/EUR/"
     },
     {
       "title": "Gold Softens as Markets Brace for Fed Rate Hike - TradingPedia",
@@ -141,7 +159,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789366629000
+      "firstAt": 1789366629000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold softens as markets brace for Fed hike."
     },
     {
       "title": "UK Markets Brief: A BoE Rate Hike Surprise Is Still Possible, and Amazon Joins the Bond Boom - Morningstar",
@@ -159,7 +181,11 @@
       "sev": 3,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789366629000
+      "firstAt": 1789366629000,
+      "dir": {
+        "GBP/USD": "up"
+      },
+      "why": "Possible BoE rate hike supports GBP."
     },
     {
       "title": "Trump tells Ukraine to halt Russian refinery strikes - Quantum Commodity Intelligence",
@@ -179,7 +205,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789363885000
+      "firstAt": 1789363885000,
+      "why": "Geopolitical statement, unclear immediate market impact."
     },
     {
       "title": "A New Sanctions Regime: Targeting Israel’s West Bank Settlements - CounterPunch.org",
@@ -199,7 +226,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789365702000
+      "firstAt": 1789365702000,
+      "why": "Sanctions news, no clear directional signal."
     },
     {
       "title": "Taiwan stocks lower at close of trade; Taiwan Weighted down 0.66%",
@@ -213,7 +241,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789365604000
+      "firstAt": 1789365604000,
+      "why": "Taiwan market move, no direct US500 impact."
     },
     {
       "title": "FleetPartners shares surge 12% to record as takeover bidding war heats up",
@@ -229,7 +258,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789364893000
+      "firstAt": 1789364893000,
+      "why": "Single stock news, irrelevant to gold."
     },
     {
       "title": "LIVE: Trump urges Ukraine to stop refinery strikes as diesel prices surge - Latest news from Azerbaijan",
@@ -249,7 +279,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789364219000
+      "firstAt": 1789364219000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Diesel prices surge, oil likely up."
     },
     {
       "title": "Poland Scrambles Security Chiefs After Russian Strike Near Border With Ukraine - Kyiv Post",
@@ -269,7 +304,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789363807000
+      "firstAt": 1789363807000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Escalation risk supports gold, oil impact unclear."
     },
     {
       "title": "Shares skid in Asia as oil climbs, rate hikes loom",
@@ -285,7 +324,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789363825000
+      "firstAt": 1789363825000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil climbs, shares skid."
     },
     {
       "title": "Russia strikes closer to Poland as Ukrainian border town assesses damage - lufkindailynews.com",
@@ -1583,7 +1626,7 @@
       "firstAt": 1789324063000
     },
     {
-      "title": "Israeli Officials Reject Kushner’s Account Of Doha Strike’s Role In Gaza Deal - i24NEWS",
+      "title": "Israeli Officials Reject Kushner’s Account Of Doha Strike’s Role In Gaza Deal - i24news.tv",
       "link": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxOV0NicjNXa3VzNkMxelRibXRxLURFS25BY1Zxem81MlNlVWxJeWk2SXF0bHZ5dzR0NDZKcEhhamlLb2FkanJoM1VkTUg4T1ZjZ0dvc1JNQjVtXzBEU3dtVlVJYlV2T0dnLUFJSU8zWEt0RXhlenhYTk94aDlndUtPYlFvdnJ2cWFBcmI5WEpjX2hfWldZVlZ2NWh0UENuNTZ6MjlPd3FnMXB4UTRDdDRJMjJrUTF6dnZZVzJ1ZTY5bHctcFFMZmJ0UjRKY0FON3ZVbHc?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMi0gFBVV95cUxOV0NicjNXa3VzNkMxelRibXRxLURFS25BY1Zxem81MlNlVWxJeWk2SXF0bHZ5dzR0NDZKcEhhamlLb2FkanJoM1VkTUg4T1ZjZ0dvc1JNQjVtXzBEU3dtVlVJYlV2T0dnLUFJSU8zWEt0RXhlenhYTk94aDlndUtPYlFvdnJ2cWFBcmI5WEpjX2hfWldZVlZ2NWh0UENuNTZ6MjlPd3FnMXB4UT",
@@ -1746,10 +1789,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-14T06:50:36.444Z",
-  "updatedAt": "2026-09-14T06:50:36.444Z"
+  "headlinesAt": "2026-09-14T06:51:53.422Z",
+  "updatedAt": "2026-09-14T06:51:53.422Z"
 }
