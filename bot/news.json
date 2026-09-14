@@ -930,6 +930,33 @@
   ],
   "headlines": [
     {
+      "title": "US Government Announces New Iran Sanctions Measures - JD Supra",
+      "link": "https://news.google.com/rss/articles/CBMigAFBVV95cUxOMHBLLW9QNG5ZSDl2cTRkTWpCdm1PTU1FaloyMG5yOTFiWjNLZGE0QTFDbkx5OWZxeVM0WC1idl9FN1N4bWZyM3R5NWxhMjRxN0lTUW9NdEVXMHFSVFI5R1l3azhlVm5JSzRhaS0weTJMQ3c1Z1lZeDktYl8tQnhGUw?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMigAFBVV95cUxOMHBLLW9QNG5ZSDl2cTRkTWpCdm1PTU1FaloyMG5yOTFiWjNLZGE0QTFDbkx5OWZxeVM0WC1idl9FN1N4bWZyM3R5NWxhMjRxN0lTUW9NdEVXMHFSVFI5R1l3azhlVm5JSzRhaS0weTJMQ3c1Z1lZeDktYl8tQnhGUw?oc=5\" target=\"_blank\">US Government Announces New Iran ",
+      "at": 1789415390000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789414186000,
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Sanctions increase geopolitical risk and oil supply fears"
+    },
+    {
       "title": "Arbitrage trading explained: types, risks, and where beginners can start",
       "link": "https://www.investing.com/news/stock-market-news/arbitrage-trading-explained-types-risks-and-where-beginners-can-start-93CH-4900283",
       "source": "Investing",
@@ -957,7 +984,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789414793000,
-      "_kind": null
+      "_kind": null,
+      "why": "Wheat news has no direct impact on gold"
     },
     {
       "title": "AUD/USD vs NZD/USD: which forex pair has more upside potential",
@@ -988,7 +1016,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789414200000,
-      "_kind": null
+      "_kind": null,
+      "why": "Individual loss story lacks market-wide directional signal"
     },
     {
       "title": "Russia-Iran Sanctions Bill Could Reach Trump’s Desk Within Days, Says Congressman - Radio Free Europe/Radio Liberty",
@@ -1009,7 +1038,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789414186000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Sanctions bill heightens geopolitical risk and supply concer"
     },
     {
       "title": "CrowdStrike and Palo Alto Networks are leading software stocks toward a never-before-seen feat",
@@ -1025,7 +1060,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789414140000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sector rotation news does not clearly move index"
     },
     {
       "title": "WTI crude leads DMA commodity rankings with strong buy signals across timeframes",
@@ -1043,7 +1079,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789414126000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Strong buy signals indicate bullish technical momentum"
     },
     {
       "title": "Oil settles higher after Saudi strikes stoke supply worries",
@@ -1062,7 +1103,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789413504000
+      "firstAt": 1789413504000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Supply worries drive oil prices higher"
     },
     {
       "title": "Natural Gas stuck in $2.82-$2.88 range: Live levels",
@@ -1076,7 +1122,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789413467000
+      "firstAt": 1789413467000,
+      "why": "Price stuck in range implies no clear direction"
     },
     {
       "title": "Crude Oil WTI bearish engulfing at $104.91: Live levels",
@@ -1093,7 +1140,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789413467000
+      "firstAt": 1789413467000,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Bearish engulfing pattern signals downward price movement"
     },
     {
       "title": "London Gas Oil reverses from $1,530 high: Live levels",
@@ -1109,7 +1160,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789413467000
+      "firstAt": 1789413467000,
+      "why": "Gas oil news is irrelevant to crude oil"
     },
     {
       "title": "Brent Oil flashes bearish Marubozu at $105.32: Live levels",
@@ -1126,7 +1178,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789413467000
+      "firstAt": 1789413467000,
+      "dir": {
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Bearish Marubozu pattern indicates strong selling pressure"
     },
     {
       "title": "Silver tests 200 SMA at $63.92 with bearish momentum: Live levels",
@@ -1142,7 +1199,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789413467000
+      "firstAt": 1789413467000,
+      "dir": {
+        "XAG/USD": "down"
+      },
+      "why": "Bearish momentum at key support level"
     },
     {
       "title": "Gold breaks below key MAs with bearish momentum: Live levels",
@@ -1158,7 +1219,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789413467000
+      "firstAt": 1789413467000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Breaking below moving averages with bearish momentum"
     },
     {
       "title": "Fed Extends Pause on Reserve Management Purchases to Mid-October - Bloomberg.com",
@@ -1181,7 +1246,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789413405000
+      "firstAt": 1789413405000,
+      "why": "Reserve management pause has negligible market impact"
     },
     {
       "title": "Trump says China 'spies on us' after report links Chinese satellite imagery to deadly Iran strike - KTSA",
@@ -1201,7 +1267,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789413000000
+      "firstAt": 1789413000000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Geopolitical tensions boost safe havens and oil prices"
     },
     {
       "title": "U.S. imposes Iran-related sanctions on Russia's VTB - Reuters",
@@ -1366,6 +1438,23 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789411320000
+    },
+    {
+      "title": "Gold falls to one-month low as rate-hike bets increase - Economies.com",
+      "link": "https://news.google.com/rss/articles/CBMirAFBVV95cUxNb2JYZTdIeENscGR6Nm8tWXZXVFJ5NkVJT2ZxRU01NkREMHpETmctNDZrbjhkdEw1b3owV3V4UXByYWZwZ05ObmJvWnpCVV9VNEZzRmw4SFlJS01LVVp4bndLRGZjSWgwQlBJeVc1MmlWbWFLTVhSdTZKSXhzTnR1UmQ0dm5LZWhzOWFQUFp4Q3JDTzdjV0FyUGktOUc1eFNacWZUZUdTclBNbmJq?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMirAFBVV95cUxNb2JYZTdIeENscGR6Nm8tWXZXVFJ5NkVJT2ZxRU01NkREMHpETmctNDZrbjhkdEw1b3owV3V4UXByYWZwZ05ObmJvWnpCVV9VNEZzRmw4SFlJS01LVVp4bndLRGZjSWgwQlBJeVc1MmlWbWFLTVhSdTZKSXhzTnR1UmQ0dm5LZWhzOWFQUFp4Q3JDTzdjV0FyUGktOUc1eFNacWZUZUdTclBNbm",
+      "at": 1789411260000,
+      "inst": [
+        "XAU/USD"
+      ],
+      "ccy": [
+        "XAU"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789411260000
     },
     {
       "title": "Bank of America expects third-quarter investment banking fees to fall more than 10%; shares slide",
@@ -1864,6 +1953,23 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789404982000
+    },
+    {
+      "title": "Canadian dollar hits 12-day low as inflation data match expectations - Economies.com",
+      "link": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPM25nUVdJaExjVk8xY3BrZXVqRDZEbHh5WU53cU9ST0tWc0dZNThnSkl2R1BtVHYzRjJkajFCel9WZWlxdGtTaWc3MThManhxVzFESEF2aTgwemNCdnZ2MEJtUk92UmY2V0stY19Sbkp1RWpZbl9MVzRKOXpESmlTNU5MVEJlQUlvODB2eEk0SGxRaWF0U1N4b2QyUF9yX0w2ZW5ZY2ZUX0YxSnQxSG90MXBiUDRhWkN3Y1Bn?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiuwFBVV95cUxPM25nUVdJaExjVk8xY3BrZXVqRDZEbHh5WU53cU9ST0tWc0dZNThnSkl2R1BtVHYzRjJkajFCel9WZWlxdGtTaWc3MThManhxVzFESEF2aTgwemNCdnZ2MEJtUk92UmY2V0stY19Sbkp1RWpZbl9MVzRKOXpESmlTNU5MVEJlQUlvODB2eEk0SGxRaWF0U1N4b2QyUF9yX0w2ZW5ZY2ZUX0YxSn",
+      "at": 1789404960000,
+      "inst": [
+        "USD/CAD"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789404960000
     },
     {
       "title": "Trump claims Moscow and Kyiv agreed to an energy ceasefire, but Zelensky says Ukraine will halt its strikes only if partners secure a genuine Russian commitment - Meduza",
@@ -2618,61 +2724,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789397918000
-    },
-    {
-      "title": "Fiscal pressure from Iran War clouds Gulf States’ US spending plans",
-      "link": "https://www.aljazeera.com/economy/2026/9/14/fiscal-pressure-from-iran-war-clouds-gulf-states-us-spending-plans?traffic_source=rss",
-      "source": "Al Jazeera",
-      "desc": "Gulf nations may prioritise domestic investments over US commitments amid economic pressures, says new report.",
-      "at": 1789396465000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789396465000
-    },
-    {
-      "title": "Global Markets: Canada’s inflation steady in August - albertafarmexpress.ca",
-      "link": "https://news.google.com/rss/articles/CBMinwFBVV95cUxQSERITlRyZF80SU9IUmx6SXNLVFhxRm9UZG9oVjVaREd3SnQyVFZpSlpXMEZhNEJNME55a3A2bjR4SF9XVFA2ZHZSYkVTLXpQMl9BR3Q1bEpoTGJDRTJhOWVqSV8yamFNcG9udEdmNDU2UDdvU3RzbHNmT2N6SUVEaW1jQlFXcVVFT05DekR3SzIxQXROXzZ6SUUwM0I5dDA?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMinwFBVV95cUxQSERITlRyZF80SU9IUmx6SXNLVFhxRm9UZG9oVjVaREd3SnQyVFZpSlpXMEZhNEJNME55a3A2bjR4SF9XVFA2ZHZSYkVTLXpQMl9BR3Q1bEpoTGJDRTJhOWVqSV8yamFNcG9udEdmNDU2UDdvU3RzbHNmT2N6SUVEaW1jQlFXcVVFT05DekR3SzIxQXROXzZ6SUUwM0I5dDA?oc=5\" target=\"",
-      "at": 1789396378000,
-      "inst": [
-        "USD/CAD"
-      ],
-      "ccy": [
-        "CAD",
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789395294000
-    },
-    {
-      "title": "‘Silent Cold War’: Why calls to slow AI have sparked new US–China frontier",
-      "link": "https://www.aljazeera.com/news/2026/9/14/silent-cold-war-why-calls-to-slow-ai-have-sparked-new-us-china?traffic_source=rss",
-      "source": "Al Jazeera",
-      "desc": "Anthropic CEO urges restricted China access to AI tech, sparking accusations of US technological dominance strategies.",
-      "at": 1789395809000,
-      "inst": [
-        "XAU/USD"
-      ],
-      "ccy": [
-        "XAU"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789395809000
     }
   ],
   "sources": [
@@ -2698,7 +2749,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-14T19:57:20.708Z",
-  "headlinesAt": "2026-09-14T19:57:20.708Z",
-  "updatedAt": "2026-09-14T19:57:20.708Z"
+  "calendarAt": "2026-09-14T19:58:53.492Z",
+  "headlinesAt": "2026-09-14T19:58:53.492Z",
+  "updatedAt": "2026-09-14T19:58:53.492Z"
 }
