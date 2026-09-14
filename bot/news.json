@@ -925,7 +925,7 @@
       "link": "https://www.cnbc.com/2026/09/14/stocks-making-the-biggest-moves-premarket-intc-mrvl-crwd.html",
       "source": "CNBC Markets",
       "desc": "These are the stocks posting the largest moves premarket.",
-      "at": 1789386110000,
+      "at": 1789386274000,
       "inst": [
         "US500"
       ],
@@ -933,8 +933,9 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789386110000,
-      "_kind": null
+      "firstAt": 1789386274000,
+      "_kind": null,
+      "why": "Neutral premarket movers list"
     },
     {
       "title": "Kremlin welcomes Trump's call on Ukraine to halt strikes on diese - Global Banking & Finance Review",
@@ -955,7 +956,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789384920000,
-      "_kind": null
+      "_kind": null,
+      "why": "Geopolitical headline lacks clear directional impact"
     },
     {
       "title": "Stocks dented by AI warnings; oil jumps again",
@@ -973,7 +975,33 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789385865000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "US500": "down"
+      },
+      "why": "Oil jumps, stocks dented by AI"
+    },
+    {
+      "title": "Dow Jones Futures: Techs Tumble As Anthropic Leads Call For AI Slowdown; Fed Meeting Ahead",
+      "link": "https://www.investors.com/market-trend/stock-market-today/dow-jones-futures-fed-meeting-anthropic-amodei-openai-altman-spacex-musk-ai-model-slowdown/?src=A00220&yptr=yahoo",
+      "source": "Yahoo Finance",
+      "at": 1789385857000,
+      "inst": [
+        "US30"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789385857000,
+      "_kind": null,
+      "dir": {
+        "US30": "down"
+      },
+      "why": "Techs tumble, Dow futures fall"
     },
     {
       "title": "Drone strike on train is calculated escalation by Putin, German minister says",
@@ -991,7 +1019,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789385844000,
-      "_kind": null
+      "_kind": null,
+      "why": "Geopolitical escalation, unclear market direction"
     },
     {
       "title": "Carney, locked in US trade war, pitches Canada to global investment titans",
@@ -1010,7 +1039,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789385797000,
-      "_kind": null
+      "_kind": null,
+      "why": "Trade war context, unclear direction"
     },
     {
       "title": "Johnson & Johnson shares rise on Apollo Global takeover talks",
@@ -1044,7 +1074,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789385712000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions unlikely to deter, neutral"
     },
     {
       "title": "GS now sees \"clearer catalyst path\" for Meta shares post settlement & Muse launch",
@@ -1081,7 +1112,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789385383000,
-      "_kind": null
+      "_kind": null,
+      "why": "Rate expectations summary, no clear move"
     },
     {
       "title": "Silver prices today, Monday, September 14, 2026: Silver slides as rate-hike expectations grow",
@@ -1098,7 +1130,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789384705000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAG/USD": "down"
+      },
+      "why": "Silver slides as rate-hike expectations grow"
     },
     {
       "title": "Tim Cook Could Have Purchased Any of 488 S&P 500 Companies With $879 Billion. Instead, He Bought Something That Changed Apple's Fortune Forever.",
@@ -1113,24 +1149,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789385161000,
-      "_kind": null
-    },
-    {
-      "title": "Dow Jones Futures: Techs Tumble As Anthropic Leads Call For AI Slowdown; Fed Meeting Ahead",
-      "link": "https://www.investors.com/market-trend/stock-market-today/dow-jones-futures-fed-meeting-anthropic-amodei-openai-altman-spacex-musk-ai-model-slowdown/?src=A00220&yptr=yahoo",
-      "source": "Yahoo Finance",
-      "at": 1789385093000,
-      "inst": [
-        "US30"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789385093000,
-      "_kind": null
+      "_kind": null,
+      "why": "Apple-specific news, unclear index impact"
     },
     {
       "title": "Euronext, Deutsche Boerse Shares Rise After CEO’s Merger Comments",
@@ -1158,7 +1178,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789385012000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "AI stocks fall, dragging index"
     },
     {
       "title": "TD Bank Mobilizes More than $108 Billion Commitment to Fuel Canada’s Infrastructure",
@@ -1175,7 +1199,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789384980000,
-      "_kind": "escalation"
+      "_kind": "escalation",
+      "why": "Infrastructure investment, unclear currency impact"
     },
     {
       "title": "Kremlin Welcomes Trump’s Call for Ukraine to Halt Strikes on Russian Refineries - Межа. Новини України.",
@@ -1196,7 +1221,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789384860000,
-      "_kind": null
+      "_kind": null,
+      "why": "Kremlin welcomes call, unclear direction"
     },
     {
       "title": "Ukraine strikes Black Sea resort near Putin’s villa - telegraph.co.uk",
@@ -1217,7 +1243,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789384920000,
-      "_kind": null
+      "_kind": null,
+      "why": "Ukraine strike, unclear market direction"
     },
     {
       "title": "Ukraine war briefing: Poland calls for ‘double’ support to Kyiv after Russian train attack - The Guardian",
@@ -1238,7 +1265,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789384860000,
-      "_kind": null
+      "_kind": null,
+      "why": "War briefing, unclear market direction"
     },
     {
       "title": "Gold prices today, Monday, September 14, 2026: Gold sinks following new attacks on Saudi pipeline and more",
@@ -1261,7 +1289,7 @@
       "_kind": null
     },
     {
-      "title": "AI has carried the stock market. An industry pause could pull the rug out, warns this Wall Street giant.",
+      "title": "AI has been carrying the stock market. An industry pause could pull the rug out, warns this Wall Street giant.",
       "link": "https://www.marketwatch.com/story/ai-has-carried-the-stock-market-an-industry-pause-could-pull-the-rug-out-warns-this-wall-street-giant-3272c960?mod=mw_rss_topstories",
       "source": "MarketWatch",
       "desc": "Citigroup warns that if artificial-intelligence model developments slow, earnings revisions could follow, and those have been a crucial factor in stock gains this year.",
@@ -1292,8 +1320,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 3,
-      "firstAt": 1789384060000,
-      "_kind": null
+      "firstAt": 1789384060000
     },
     {
       "title": "Gold Loses Glitter As Fed Decision Nears, Slips Below $4,300 On Strong Rate Hike Bets - NDTV Profit",
@@ -2614,7 +2641,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-14T11:43:51.423Z",
-  "headlinesAt": "2026-09-14T11:43:51.423Z",
-  "updatedAt": "2026-09-14T11:43:51.423Z"
+  "calendarAt": "2026-09-14T11:45:24.626Z",
+  "headlinesAt": "2026-09-14T11:45:24.626Z",
+  "updatedAt": "2026-09-14T11:45:24.626Z"
 }
