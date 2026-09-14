@@ -20,7 +20,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789420378000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions impact unclear for these instruments"
     },
     {
       "title": "Canada 10-year yield rises as inflation, oil prices keep bond markets on edge",
@@ -40,7 +41,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789422848000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USD/CAD": "up",
+        "USOIL": "up"
+      },
+      "why": "Yields and oil prices rising"
     },
     {
       "title": "Loonie holds near 12-day low as oil support fails to offset dollar strength",
@@ -60,7 +66,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789422848000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USD/CAD": "up"
+      },
+      "why": "Dollar strength, oil support fails"
     },
     {
       "title": "Treasury hits Russia's VTB Bank with new sanctions over Iran ties - cnbc.com",
@@ -82,7 +92,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789422800000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions impact unclear for these instruments"
     },
     {
       "title": "Israeli attack targets Gaza displacement camp",
@@ -103,7 +114,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789421824000,
-      "_kind": null
+      "why": "Geopolitical event, direction unclear"
     },
     {
       "title": "The oil market is sending an increasingly loud warning about gas prices at the pump",
@@ -123,7 +134,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789421460000
+      "firstAt": 1789421460000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Supply threats push oil prices higher"
     },
     {
       "title": "Mexico stocks higher at close of trade; S&P/BMV IPC up 0.46%",
@@ -137,7 +153,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789421403000
+      "firstAt": 1789421403000,
+      "why": "Mexico stocks unrelated to US index"
     },
     {
       "title": "Colombia stocks lower at close of trade; COLCAP down 0.06%",
@@ -151,7 +168,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789421102000
+      "firstAt": 1789421102000,
+      "why": "Colombia stocks unrelated to US index"
     },
     {
       "title": "US 10-year Treasury yield breaches 5% as inflation, supply worries mount - The Straits Times",
@@ -174,7 +192,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789418820000
+      "firstAt": 1789418820000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Rising yields strengthen dollar, weaken gold"
     },
     {
       "title": "Why talks in Oman between Iran and Gulf Arab states were postponed",
@@ -194,7 +218,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789420800000
+      "firstAt": 1789420800000,
+      "why": "Postponed talks, direction unclear"
     },
     {
       "title": "US blocks Iran nuclear chief from attending key Vienna conference",
@@ -214,7 +239,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789420781000
+      "firstAt": 1789420781000,
+      "why": "Diplomatic friction, direction unclear"
     },
     {
       "title": "Gold dips amid rising dollar as Fed rate hike bets ramp up to near certainty",
@@ -231,7 +257,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789418197000
+      "firstAt": 1789418197000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Rising dollar and rate bets hurt gold"
     },
     {
       "title": "Fresh Houthi Strikes Inject New Uncertainty Into Iran War - Foreign Policy",
@@ -251,7 +281,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789420378000
+      "firstAt": 1789420378000,
+      "why": "Uncertainty injected, direction unclear"
     },
     {
       "title": "Israel probing Naza film on Gaza for treason, inciting anti-Semitism",
@@ -271,7 +302,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789420327000
+      "firstAt": 1789420327000,
+      "why": "Legal probe, no clear market impact"
     },
     {
       "title": "ICE canola futures rise ahead of government crop report",
@@ -298,7 +330,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789420260000
+      "firstAt": 1789420260000,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Software sector outperformance boosts index"
     },
     {
       "title": "Chip stocks were a safe AI play. Now they’ve turned into the market’s pain trade.",
@@ -1739,6 +1775,6 @@
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-14T22:06:35.514Z",
-  "updatedAt": "2026-09-14T22:06:35.514Z"
+  "headlinesAt": "2026-09-14T22:07:37.514Z",
+  "updatedAt": "2026-09-14T22:07:37.514Z"
 }
