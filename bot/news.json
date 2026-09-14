@@ -937,7 +937,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789401525000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold hits one-month low"
     },
     {
       "title": "Stocks could have a tough road ahead if the Fed hikes rates: Chart of the Day",
@@ -954,7 +958,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789401138000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Stocks tough road ahead"
     },
     {
       "title": "Euro zone bond yields climb as Germany hits 17-year high",
@@ -971,7 +979,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789401056000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "EUR/USD": "up"
+      },
+      "why": "Euro zone yields climb"
     },
     {
       "title": "ECB’s Lagarde says Europe must produce AI technology",
@@ -988,7 +1000,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789401051000,
-      "_kind": null
+      "_kind": null,
+      "why": "AI technology comment"
     },
     {
       "title": "Prediction market traders think gas prices will hit new highs for the year",
@@ -1009,7 +1022,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789400979000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Oil prices marched higher"
     },
     {
       "title": "Trump warns Iran over Saudi pipeline attack as Middle East tensions escalate - Fox News",
@@ -1030,7 +1049,13 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789398733000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Middle East tensions escalate"
     },
     {
       "title": "BREAKING: Trump claims Ukraine, Russia agree to halt strikes on energy targets - kyivindependent.com",
@@ -1051,7 +1076,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789399260000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Agree to halt strikes"
     },
     {
       "title": "YPF Lines Up Buyers for $24 Billion Vaca Muerta LNG Project",
@@ -1066,7 +1097,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789400823000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "NATGAS": "up"
+      },
+      "why": "LNG project buyers lined up"
     },
     {
       "title": "Adyen outlook revised to positive by S&P on solid growth",
@@ -1081,7 +1116,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789400639000,
-      "_kind": null
+      "_kind": null,
+      "why": "Single company outlook revision"
     },
     {
       "title": "Russian drone attack hits Kyivstar office in Ukraine - Data Center Dynamics",
@@ -1102,7 +1138,13 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789400350000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Russian drone attack hits Kyiv"
     },
     {
       "title": "Strategy Buys Back $139 Million of STRC, Bitcoin Stack Frozen for Second Week",
@@ -1119,7 +1161,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789400506000,
-      "_kind": null
+      "_kind": null,
+      "why": "Strategy buys back shares"
     },
     {
       "title": "JEPQ and QYLD Both Sell Nasdaq Calls for Income, Yet Only One Has Protected Its Share Price",
@@ -1134,7 +1177,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789400492000,
-      "_kind": null
+      "_kind": null,
+      "why": "ETF income strategy details"
     },
     {
       "title": "Oil prices pare some gains after Trump says U.S. open to ’concept’ of Iran deal",
@@ -1151,7 +1195,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789400490000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Oil prices pare gains"
     },
     {
       "title": "Silver Miners Are Sitting on Record Cash Hoard — More Than Double the 2011 Rally",
@@ -1168,7 +1216,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789400483000,
-      "_kind": null
+      "_kind": null,
+      "why": "Miners hold record cash"
     },
     {
       "title": "10-year Treasury yield briefly tops 5%, hitting its highest level since 2007 as bond-market selloff deepens",
@@ -1187,7 +1236,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789398050000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil prices marching higher"
     },
     {
       "title": "Trump says Russia, Ukraine will halt energy strikes as diesel hits record high - KUTV",
@@ -2581,10 +2634,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-14T16:01:37.601Z",
-  "headlinesAt": "2026-09-14T16:01:37.601Z",
-  "updatedAt": "2026-09-14T16:01:37.601Z"
+  "calendarAt": "2026-09-14T16:02:51.592Z",
+  "headlinesAt": "2026-09-14T16:02:51.592Z",
+  "updatedAt": "2026-09-14T16:02:51.592Z"
 }
