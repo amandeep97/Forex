@@ -173,7 +173,13 @@ function sweptM2() {
       'a two-minute bar closes every two minutes; asking more often buys nothing');
   }
 
-  // ── One alert per sweep ──────────────────────────────────────────────────
+  // ── One alert per sweep, and it announces the PLAN ──────────────────────
+  //
+  // The alert used to fire on a confirmed setup, which is live for three
+  // two-minute bars. By the time a phone buzzes and is picked up the window has
+  // shut — the live file showed zero tradeable rows every single time it was
+  // looked at. An armed plan is a resting limit, true for hours, so the message
+  // is still worth acting on when it is read.
   {
     const sent = [];
     const s = new LiquidityScanner({
@@ -182,11 +188,10 @@ function sweptM2() {
     });
     const rec = {
       sym: 'TEST', price: 105,
-      setup: {
-        dir: 'short', ready: true, state: 'setup',
-        level: { kind:'PDH', price:110, label:"yesterday's high" },
-        entry: 105.4, stop: 112.4, risk: 7, age: 0,
-        confirm: { type:'BOS', direction:'bearish' },
+      plan: {
+        dir: 'short', state: 'armed', why: 'waiting for price to come back to the level',
+        entry: 110, stop: 112.4, risk: 2.4, target: 100, targetLabel: "yesterday's low", rr: 4.17,
+        level: { kind:'PDH', price:110, label:"yesterday's high" }, sweptAt: Date.now(),
       },
     };
     await s._announce(rec);
@@ -197,22 +202,34 @@ function sweptM2() {
       'repeating an alert while it stays valid trains you to ignore it');
 
     check('the alert carries the numbers needed to place the trade',
-      /entry/.test(sent[0]) && /stop/.test(sent[0]) && /105.4/.test(sent[0]),
+      /entry/.test(sent[0]) && /stop/.test(sent[0]) && /110/.test(sent[0]) && /112.4/.test(sent[0]),
       sent[0]?.split('\n')[0]);
+
+    check('and names the target, so the trade can be judged before it is taken',
+      /target/.test(sent[0]) && /100/.test(sent[0]),
+      'entry and stop without a target is half a trade');
+
+    check('it says LIMIT, because that is what the order is',
+      /LIMIT/.test(sent[0]), sent[0]?.split('\n')[0],
+      'a market order at the break is the thing that made every row untradeable');
 
     check('and says plainly that it is not a measured edge',
       /never been tested|not a measured edge/i.test(sent[0]),
-      'every other surface in this app carries that caveat and an alert is the one most likely to be acted on blind');
+      'an alert is the surface most likely to be acted on without reading anything else');
 
-    const other = { ...rec, setup: { ...rec.setup, level: { ...rec.setup.level, price: 115 } } };
+    const other = { ...rec, plan: { ...rec.plan, level: { ...rec.plan.level, price: 115 } } };
     await s._announce(other);
     check('a different level does announce',
       sent.length === 2, `${sent.length} messages`);
 
-    await s._announce({ ...rec, setup: { ...rec.setup, ready: false } });
-    check('and a setup that is not ready never announces at all',
+    await s._announce({ ...rec, plan: { ...rec.plan, state: 'triggered', level: { kind:'PDL', price:99, label:'x' } } });
+    check('a plan that already filled is not announced',
       sent.length === 2, `${sent.length} messages`,
-      'the waiting state is not something to wake someone for');
+      'telling someone to place an order that has already been hit is worse than silence');
+
+    await s._announce({ ...rec, plan: { ...rec.plan, state: 'dead', level: { kind:'PDL', price:98, label:'x' } } });
+    check('and a dead plan is never announced at all',
+      sent.length === 2, `${sent.length} messages`);
   }
 
   // ── The daily high and low get a wider watch band ────────────────────────

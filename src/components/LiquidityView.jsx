@@ -87,8 +87,13 @@ const isMajor = sym => MAJORS.has(sym);
 // Every chip carries its own count, so the bar answers "is there anything in
 // there" without a tap. A filter you have to try before you know whether it is
 // empty is a filter that gets used once.
+// "Armed" leads because it is the only one you can act on now. The old "Ready"
+// meant a six-minute window that was always already shut by the time anyone
+// looked; it is still here, because a break that confirmed two minutes ago is
+// worth knowing, but it is no longer the thing the screen is built around.
 const STATES = [
   { id:'all',     label:'All' },
+  { id:'armed',   label:'Armed' },
   { id:'setup',   label:'Ready' },
   { id:'taken',   label:'Waiting' },
   { id:'missed',  label:'Missed' },
@@ -158,6 +163,55 @@ const VERDICT_TONE = {
   'no instrument holdout': { fg:'#475569', label:'UNTESTED ELSEWHERE' },
 };
 
+// ── The plan ─────────────────────────────────────────────────────────────────
+//
+// The thing you can actually act on, and the reason the tab stopped being a
+// screen that always said zero.
+//
+// ARMED is the state that did not exist before: a limit resting at the swept
+// level, a stop beyond the extreme, a target at the opposite side's liquidity.
+// True for hours rather than for six minutes, so it is still worth reading when
+// you look at your phone between other things.
+const PLAN_TONE = {
+  armed:     { fg:'#00d4aa', label:'ARMED' },
+  triggered: { fg:'#38bdf8', label:'TRIGGERED' },
+  dead:      { fg:'#475569', label:'DEAD' },
+};
+
+function Plan({ p }) {
+  if (!p) return null;
+  const t = PLAN_TONE[p.state] || PLAN_TONE.dead;
+  const dp = Math.abs(p.entry) < 20 ? 5 : Math.abs(p.entry) < 500 ? 3 : 2;
+  const side = p.dir === 'long' ? 'BUY' : 'SELL';
+  const muted = p.state === 'dead';
+  return (
+    <div style={{ marginTop:6, padding:'6px 8px', borderRadius:4,
+      border:`1px solid ${t.fg}33`, background:`${t.fg}0a`, opacity: muted ? 0.5 : 1 }}>
+      <div style={{ display:'flex', gap:7, alignItems:'baseline', flexWrap:'wrap' }}>
+        <span style={{ fontSize:10, fontWeight:900, color:t.fg, fontFamily:C.mono }}>
+          {t.label} · {side} LIMIT
+        </span>
+        <span style={{ fontSize:9, color:C.dim, fontFamily:C.mono }}>{p.why}</span>
+      </div>
+      <div style={{ display:'flex', gap:10, flexWrap:'wrap', marginTop:4, fontSize:9.5, fontFamily:C.mono }}>
+        <span style={{ color:C.dim }}>entry <strong style={{ color:C.txt }}>{p.entry.toFixed(dp)}</strong></span>
+        <span style={{ color:C.dim }}>stop <strong style={{ color:C.bad }}>{p.stop.toFixed(dp)}</strong></span>
+        {p.target != null
+          ? <span style={{ color:C.dim }}>
+              target <strong style={{ color:C.good }}>{p.target.toFixed(dp)}</strong>
+              {p.rr ? <span style={{ color:C.txt }}> · {p.rr}R</span> : null}
+            </span>
+          : <span style={{ color:'#334155' }}>no opposite level to aim at</span>}
+      </div>
+      {p.targetLabel && (
+        <div style={{ fontSize:8.5, color:'#334155', fontFamily:C.mono, marginTop:2 }}>
+          drawn toward {p.targetLabel}
+        </div>
+      )}
+    </div>
+  );
+}
+
 function Record({ cell }) {
   if (!cell) return null;
   const t = VERDICT_TONE[cell.verdict] || { fg:'#475569', label:String(cell.verdict).toUpperCase() };
@@ -192,7 +246,7 @@ const clockOf = ms => new Date(ms).toLocaleTimeString([], { hour: '2-digit', min
 // into "Illegal constructor" — a Web API called without `new` — somewhere else
 // entirely. The name costs nothing; the class of bug it avoids is one that only
 // shows up on some engines.
-function HuntEvent({ e, onOpen, cell }) {
+function HuntEvent({ e, onOpen, cell, plan }) {
   const long = e.dir === 'long';
   const col = e.state === 'setup' ? (long ? C.good : C.bad)
             : e.state === 'missed' ? '#64748b' : C.warn;
@@ -236,6 +290,7 @@ function HuntEvent({ e, onOpen, cell }) {
         )}
       </div>
 
+      <Plan p={plan}/>
       <Record cell={cell}/>
 
       {e.state === 'setup' && e.entry != null && (
@@ -324,7 +379,7 @@ export default function LiquidityView({ onOpen }) {
         // When something last HAPPENED on this row: the sweep, or the
         // confirmation if one has printed since. This is the sort key, and it
         // is the only one — see the sort below.
-        kind, cls: r.cls,
+        kind, cls: r.cls, plan: r.plan || null,
         lastAt: Math.max(c.at || 0, s?.confirmedAt || 0),
       });
     }
@@ -370,7 +425,14 @@ export default function LiquidityView({ onOpen }) {
   // number on a chip is what you will actually get if you press it. Counting
   // against the unfiltered list would promise rows that the current selection
   // then removes, which is worse than no number at all.
-  const matchState = (e, v) => v === 'all' || e.state === v;
+  const matchState = (e, v) => v === 'all'
+    ? true
+    : v === 'armed'
+      // An armed plan belongs to this row only if the plan is about the level
+      // this row is about. A row for the 4H swing must not claim the daily
+      // level's plan just because both are on the same instrument.
+      ? e.plan?.state === 'armed' && e.plan?.level?.price === e.levelPrice
+      : e.state === v;
   const matchTf = (e, v) => v === 'all' || e.tf === v;
   const matchClass = (e, v) => v === 'all'
     || (v === 'major' ? isMajor(e.sym) : e.cls === v);
@@ -490,7 +552,9 @@ export default function LiquidityView({ onOpen }) {
             </div>
           </div>
         ) : shownEvents.map((e, i) => (
-          <HuntEvent key={`${e.sym}-${e.levelPrice}-${i}`} e={e} onOpen={onOpen} cell={cellFor(e)}/>
+          <HuntEvent key={`${e.sym}-${e.levelPrice}-${i}`} e={e} onOpen={onOpen}
+            cell={cellFor(e)}
+            plan={e.plan && e.plan.level?.price === e.levelPrice ? e.plan : null}/>
         ))}
       </div>
 
