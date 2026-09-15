@@ -804,6 +804,68 @@
   ],
   "headlines": [
     {
+      "title": "Gold edges down as oil-driven inflation fears lift rate-hike bets - marketscreener.com",
+      "link": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPV2pDeDVyUUoxeGdUNXpPNkZZUUs2Q2l0cEEwZ3RjS2prTk9zblRpYUdKSEJXUlBJbnRtbXpubHNNVXNleDd4TUctWW9OQkJuRTdGbExJZTQtdXlfVHZpRGhwTUZhMDZRMXJRR01aZG1TdDBJbWcxeWVCZG03ODRYQ3NEdXo2U2gxdlQ0VUVTazV3ZW9xYk5MYmN4VjU4VnJINVlVZ2pzRXJhY2tDRlowWUgwUkJ2T0l6eFE?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiugFBVV95cUxPV2pDeDVyUUoxeGdUNXpPNkZZUUs2Q2l0cEEwZ3RjS2prTk9zblRpYUdKSEJXUlBJbnRtbXpubHNNVXNleDd4TUctWW9OQkJuRTdGbExJZTQtdXlfVHZpRGhwTUZhMDZRMXJRR01aZG1TdDBJbWcxeWVCZG03ODRYQ3NEdXo2U2gxdlQ0VUVTazV3ZW9xYk5MYmN4VjU4VnJINVlVZ2pzRXJhY2",
+      "at": 1789480561000,
+      "inst": [
+        "XAU/USD",
+        "USOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL",
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1789478014000,
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "up"
+      },
+      "why": "Oil up, gold down on rate hike fears"
+    },
+    {
+      "title": "Gold struggles near $4,300 as 10-year US Treasury yield reaches 2007 high - FXStreet",
+      "link": "https://news.google.com/rss/articles/CBMipgFBVV95cUxPTjFyWnJycTFIb2dJczhvMmRESGJyVDBTWTc3Y1ZkUmxHanFuWXJRSEdPcXJLaVZDYXlfUzNzSXZSRXQ5VGJfeVZqeWo1dWNrZ1R0b0hNN3pGcVNGY1Q0Qm5pcjZzd1Z5TFRWSXRjTWNRYTZEMEdsc2ZpRDV6ZkRBZnFnLXJjYjZsNUN2VXp3ZmxrR2hzbUtHRFFkV0RwOUZjalZGOEFB?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMipgFBVV95cUxPTjFyWnJycTFIb2dJczhvMmRESGJyVDBTWTc3Y1ZkUmxHanFuWXJRSEdPcXJLaVZDYXlfUzNzSXZSRXQ5VGJfeVZqeWo1dWNrZ1R0b0hNN3pGcVNGY1Q0Qm5pcjZzd1Z5TFRWSXRjTWNRYTZEMEdsc2ZpRDV6ZkRBZnFnLXJjYjZsNUN2VXp3ZmxrR2hzbUtHRFFkV0RwOUZjalZGOEFB?oc=5\"",
+      "at": 1789480457000,
+      "inst": [
+        "XAU/USD"
+      ],
+      "ccy": [
+        "USD",
+        "XAU"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789480457000,
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "High yields pressure gold prices"
+    },
+    {
+      "title": "Elon Musk's $1 Trillion Pay Package Needs Tesla to Hit an $8.5 Trillion Market Cap. Here's What That Means for Shareholders.",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/elon-musks-1-trillion-pay-135000946.html",
+      "source": "Yahoo Finance",
+      "at": 1789480200000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 1,
+      "srcs": 1,
+      "firstAt": 1789480200000,
+      "_kind": null
+    },
+    {
       "title": "Traditional bond investors have lost money for years. These five-star portfolio managers show a better way.",
       "link": "https://www.marketwatch.com/story/heres-the-best-way-to-invest-in-bonds-for-the-long-term-according-to-these-five-star-portfolio-managers-bbf0d5e3?mod=mw_rss_topstories",
       "source": "MarketWatch",
@@ -833,7 +895,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789479795000,
-      "_kind": null
+      "_kind": null,
+      "why": "Demographic data lacks immediate market direction"
     },
     {
       "title": "Wall St tepid at open as oil prices, Treasury yields rise",
@@ -851,7 +914,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789479755000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil prices rise at open"
     },
     {
       "title": "Cathie Wood Backs AI Slowdown but Calls Extinction Fears ‘Ridiculous:’ What Do Prediction Markets Say?",
@@ -863,8 +930,32 @@
       "sev": 1,
       "rel": 1,
       "srcs": 1,
-      "firstAt": 1789479388000,
+      "firstAt": 1789479691000,
       "_kind": null
+    },
+    {
+      "title": "Stock Market Today: Dow Falls As Yields, Oil Prices Rise With Fed Meeting Starting; Nvidia Rebounds (Live Coverage)",
+      "link": "https://www.investors.com/market-trend/stock-market-today/dow-jones-sp500-nasdaq-treasury-yields-oil-prices-nvidia-stock/?src=A00220&yptr=yahoo",
+      "source": "Yahoo Finance",
+      "at": 1789479664000,
+      "inst": [
+        "USOIL",
+        "US30"
+      ],
+      "ccy": [
+        "USD",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789479664000,
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "US30": "down"
+      },
+      "why": "Oil up, Dow falls on yields"
     },
     {
       "title": "Scott Bessent testifies on Iran war, gas prices, inflation 2026 - qz.com",
@@ -886,7 +977,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789479448000,
-      "_kind": null
+      "_kind": null,
+      "why": "Testimony context unclear for immediate direction"
     },
     {
       "title": "U.S. stocks open lower amid surging yields, 10-year hits highest level since 2007",
@@ -901,37 +993,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789479377000,
-      "_kind": null
-    },
-    {
-      "title": "Ulta Beauty, Etsy upgraded: Wall Street's top analyst calls",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/qorvo-downgraded-ulta-beauty-upgraded-133354484.html",
-      "source": "Yahoo Finance",
-      "at": 1789479339000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789476960000,
-      "_kind": null
-    },
-    {
-      "title": "Anthropic, OpenAI, and xAI Want to Slow Down Artificial Intelligence (AI) Development. These 2 Stocks Could Be the Biggest Losers.",
-      "link": "https://finance.yahoo.com/technology/ai/articles/anthropic-openai-xai-want-slow-133500297.html",
-      "source": "Yahoo Finance",
-      "at": 1789479300000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789479300000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Stocks open lower on surging yields"
     },
     {
       "title": "4 Oil & Gas Stocks Stifel Is Constructive On as Energy Prices Stay High",
@@ -949,7 +1015,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789479198000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "High energy prices, mixed stock impact"
     },
     {
       "title": "Carney: Canada to allow immediate expensing for most new capital investment",
@@ -968,7 +1038,10 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789478986000,
-      "_kind": null
+      "dir": {
+        "USD/CAD": "up"
+      },
+      "why": "USD rises, CAD falls on Fed hike"
     },
     {
       "title": "Gold weakens amid pressure from growing Fed rate hike bets",
@@ -985,7 +1058,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789477259000
+      "firstAt": 1789477259000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold weakens on Fed rate hike bets"
     },
     {
       "title": "Hong Kong Crypto Exchange CoinEx To Shutdown",
@@ -1002,7 +1079,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789478940000
+      "firstAt": 1789478940000,
+      "why": "Exchange shutdown impact on price unclear"
     },
     {
       "title": "Corn futures fall on stronger dollar and improved crop ratings",
@@ -1049,7 +1127,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 3,
-      "firstAt": 1789477380000
+      "firstAt": 1789477380000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Supply disruptions push oil prices higher"
     },
     {
       "title": "Robinhood To Offer Share Redemptions And Voting Rights On Tokenized Stocks",
@@ -1063,7 +1146,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789478700000
+      "firstAt": 1789478700000,
+      "why": "Robinhood feature news lacks broad market direction"
     },
     {
       "title": "Iranian strikes have damaged hundreds of structures at U.S. bases, watchdog says - The Washington Post",
@@ -1083,7 +1167,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789476267000
+      "firstAt": 1789476267000,
+      "why": "Geopolitical news direction unclear for instruments"
     },
     {
       "title": "An AI bubble is no longer Wall Street’s biggest fear. This stock-market risk just took its place.",
@@ -1097,8 +1182,12 @@
       "ccy": [],
       "sev": 1,
       "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789476960000
+      "srcs": 1,
+      "firstAt": 1789476960000,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Bond yield rise fears weigh on stocks"
     },
     {
       "title": "Oil prices edge higher as attacks, pipeline outage deepen Saudi supply concerns",
@@ -1263,7 +1352,7 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 2,
+      "srcs": 1,
       "firstAt": 1789476960000
     },
     {
@@ -1285,24 +1374,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789476267000
-    },
-    {
-      "title": "Stock Market Today: Dow Falls As Yields, Oil Prices Rise Ahead Of Fed Meeting; Nvidia Set To Rebound (Live Coverage)",
-      "link": "https://www.investors.com/market-trend/stock-market-today/dow-jones-sp500-nasdaq-treasury-yields-oil-prices-nvidia-stock/?src=A00220&yptr=yahoo",
-      "source": "Yahoo Finance",
-      "at": 1789476738000,
-      "inst": [
-        "USOIL",
-        "US30"
-      ],
-      "ccy": [
-        "USD",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789475400000
     },
     {
       "title": "Russia backs Trump's idea of energy ceasefire with Ukraine - aa.com.tr",
@@ -1397,29 +1468,6 @@
       "firstAt": 1789476011000
     },
     {
-      "title": "Global markets on edge, rand softer as US Fed meets to tackle high inflation - IOL",
-      "link": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPQ1g0Tk1zUXluSld5VG5ubjh1TERNc1B2MDBpeFVWQWZJTFE1U3F2X0hvWUVXMHpwRlVYZUhTa1ZNWmxoMEFLbUJZSXlJbk1nQ0pGWlVxWmVqajV5QmxoX1daT1Mzc0Fvc1ZLZ3N6RXFxenY3UzQwdVdOS1FCMUphUGFRS3RKYXc1MzVETkhzUGo1YVo5U21zaWkzTk5FN2U5RGxxTmR2OGlSOEZxNnFNSGJkUFJpWHVQVVI3RDlycw?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMivwFBVV95cUxPQ1g0Tk1zUXluSld5VG5ubjh1TERNc1B2MDBpeFVWQWZJTFE1U3F2X0hvWUVXMHpwRlVYZUhTa1ZNWmxoMEFLbUJZSXlJbk1nQ0pGWlVxWmVqajV5QmxoX1daT1Mzc0Fvc1ZLZ3N6RXFxenY3UzQwdVdOS1FCMUphUGFRS3RKYXc1MzVETkhzUGo1YVo5U21zaWkzTk5FN2U5RGxxTmR2OGlSOE",
-      "at": 1789475771000,
-      "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789475771000
-    },
-    {
       "title": "The ‘Magnificent Seven’ has its mojo back. It’s on track to reach new highs.",
       "link": "https://www.marketwatch.com/story/the-magnificent-seven-has-its-mojo-back-and-is-poised-to-reach-fresh-highs-ac2c5cdb?mod=mw_rss_topstories",
       "source": "MarketWatch",
@@ -1489,14 +1537,14 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 2,
+      "srcs": 1,
       "firstAt": 1789475400000
     },
     {
-      "title": "Dollar ticks up as oil prices climb, Fed rate hike chances firm - The Business Times",
-      "link": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxPRzdGWFJXcjdxNWVJUmMzdDMxSDJ0YjhRUjhveXlBN2VMQVVlZU1HWmlEVUV5NHNJU2xGWXZLSDNtUXpCTjFtQjlveDZ5SHlodnpGZjdJbFFTWDM4eHZYZGhJVDFEb2Z1TG9kSFRPckd5S3hkNXpnRFVMMkdWUzZaeUtwVjhpcXBybFpjelFqdW9ab0RtbTctX2Z0VVU3cU9GVl9sVExacUVXQy0tUnZEcjRWYmFNSXJIbDlWUlpWemc?oc=5",
+      "title": "US dollar ticks up as oil prices climb, Fed rate hike chances firm - The Business Times",
+      "link": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNUWVRSlM3X3BpWTZRQ2ZwWDJoQkJEb0RUTkk0TTUwRTdsNnAzVGpqQm85ZUxTZzQ2dUl5TjNkZDVfTmZwWDNzVlJWN3pBd0ZRZm0tSTNEUnJQdWVEM1Zra2NWUFRCak16R0pOTEdWWUpSaXM2ODNaaHkzT0d3aU9YWUtSTXV3aHl4TWNPRVhyakRFWEVaV0VFTWhxRkNJbmRuUTB2Qk9aRDJrZ2xrampHQ3Yzb2NCVFR1cVFjVXF0dy1TWHFa?oc=5",
       "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiwAFBVV95cUxPRzdGWFJXcjdxNWVJUmMzdDMxSDJ0YjhRUjhveXlBN2VMQVVlZU1HWmlEVUV5NHNJU2xGWXZLSDNtUXpCTjFtQjlveDZ5SHlodnpGZjdJbFFTWDM4eHZYZGhJVDFEb2Z1TG9kSFRPckd5S3hkNXpnRFVMMkdWUzZaeUtwVjhpcXBybFpjelFqdW9ab0RtbTctX2Z0VVU3cU9GVl9sVExacUVXQy",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMixAFBVV95cUxNUWVRSlM3X3BpWTZRQ2ZwWDJoQkJEb0RUTkk0TTUwRTdsNnAzVGpqQm85ZUxTZzQ2dUl5TjNkZDVfTmZwWDNzVlJWN3pBd0ZRZm0tSTNEUnJQdWVEM1Zra2NWUFRCak16R0pOTEdWWUpSaXM2ODNaaHkzT0d3aU9YWUtSTXV3aHl4TWNPRVhyakRFWEVaV0VFTWhxRkNJbmRuUTB2Qk9aRDJrZ2",
       "at": 1789475160000,
       "inst": [
         "USOIL"
@@ -1623,6 +1671,24 @@
       "firstAt": 1789473600000
     },
     {
+      "title": "Dollar ticks up as oil prices climb, Fed rate hike chances firm - marketscreener.com",
+      "link": "https://news.google.com/rss/articles/CBMitgFBVV95cUxPZjQ4VFZmZkpWZG1YaHptempXZFlrcmoyWW1VbXJpWDZuVEczOWpVODgycElzcE12RnFCTkkxWXlLZDlsenNKRTRPZkk0bnIyUkZaMHhsSFdRUUNOLWwxTmNEVENxaXFJQlBWZ0pqZTVNcWdOM0RkeEg2elN3aTB0UncwZHp3RW1TT1N2OEJPQldIMWJKZ1g0UXRMSENMdi1SSnhlS3RDV2hOenJ6b2FYc2FsRUZwQQ?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMitgFBVV95cUxPZjQ4VFZmZkpWZG1YaHptempXZFlrcmoyWW1VbXJpWDZuVEczOWpVODgycElzcE12RnFCTkkxWXlLZDlsenNKRTRPZkk0bnIyUkZaMHhsSFdRUUNOLWwxTmNEVENxaXFJQlBWZ0pqZTVNcWdOM0RkeEg2elN3aTB0UncwZHp3RW1TT1N2OEJPQldIMWJKZ1g0UXRMSENMdi1SSnhlS3RDV2hOen",
+      "at": 1789473172000,
+      "inst": [
+        "USOIL"
+      ],
+      "ccy": [
+        "USD",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789473172000
+    },
+    {
       "title": "10-year Treasury yield tops 5% as Ed Yardeni warns of inflation, market pressures - Fox Business",
       "link": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE1PRDVsTGtRN1kzdWhybE5sclN5NV9RVTkzdmlGcUNicEJqampmNkJIdURocTQwcEhpYkc0RlVnVHdFcE4yWHNzQWtCd21FYmtSLU5uZHE1bGY3NnM?oc=5",
       "source": "Wires (macro)",
@@ -1643,7 +1709,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789471913000
+      "firstAt": 1789472586000
     },
     {
       "title": "US 10-year Treasury yield hits 5%: Will oil prices and Fed rate decision push yields even higher? | Hindustan Times - Hindustan Times",
@@ -1664,7 +1730,7 @@
       "firstAt": 1789470894000
     },
     {
-      "title": "How Trump's posts can still matter for investors - axios.com",
+      "title": "How Trump's posts can still matter for investors - Axios",
       "link": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFBJWUhtUUlMR2Jtd2ZSajVuWmpZaDd2RVBTUEk3bnhaVWpsYWxvZkcwQWV2S1BCZGxLWGgzZHJINXNTWUIxOWZNTTlMSlRsZ3hDTy1yZzBKVUpmNVBHbTJ0cEZpcF9waEx6?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiaEFVX3lxTFBJWUhtUUlMR2Jtd2ZSajVuWmpZaDd2RVBTUEk3bnhaVWpsYWxvZkcwQWV2S1BCZGxLWGgzZHJINXNTWUIxOWZNTTlMSlRsZ3hDTy1yZzBKVUpmNVBHbTJ0cEZpcF9waEx6?oc=5\" target=\"_blank\">How Trump's posts can still matter for investors</a>&nbsp;&nbsp;<fo",
@@ -1767,7 +1833,7 @@
       "firstAt": 1789472113000
     },
     {
-      "title": "House Democrats face divisions on Russian sanctions bill - axios.com",
+      "title": "House Democrats face divisions on Russian sanctions bill - Axios",
       "link": "https://news.google.com/rss/articles/CBMihgFBVV95cUxQbmJRaU9hVW84Ml82SXFIOE45akR5OXNySVFRVE94dkpYQTZvT09aV1k5RDR0emNncm5uaEM1VkNreFZpQmdWU014MWJqLWZPdXhtSzUxZzlqRi1nYks5V0pWOHJGenk2R3k0VDdCY25aeFQxcEowQjhxTkRwZFJzMW9WRndLZw?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMihgFBVV95cUxQbmJRaU9hVW84Ml82SXFIOE45akR5OXNySVFRVE94dkpYQTZvT09aV1k5RDR0emNncm5uaEM1VkNreFZpQmdWU014MWJqLWZPdXhtSzUxZzlqRi1nYks5V0pWOHJGenk2R3k0VDdCY25aeFQxcEowQjhxTkRwZFJzMW9WRndLZw?oc=5\" target=\"_blank\">House Democrats face divi",
@@ -1785,24 +1851,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789469880000
-    },
-    {
-      "title": "Gold struggles below $4,300 as 10-year US Treasury yield reaches 2007 high - FXStreet",
-      "link": "https://news.google.com/rss/articles/CBMipgFBVV95cUxPTjFyWnJycTFIb2dJczhvMmRESGJyVDBTWTc3Y1ZkUmxHanFuWXJRSEdPcXJLaVZDYXlfUzNzSXZSRXQ5VGJfeVZqeWo1dWNrZ1R0b0hNN3pGcVNGY1Q0Qm5pcjZzd1Z5TFRWSXRjTWNRYTZEMEdsc2ZpRDV6ZkRBZnFnLXJjYjZsNUN2VXp3ZmxrR2hzbUtHRFFkV0RwOUZjalZGOEFB?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMipgFBVV95cUxPTjFyWnJycTFIb2dJczhvMmRESGJyVDBTWTc3Y1ZkUmxHanFuWXJRSEdPcXJLaVZDYXlfUzNzSXZSRXQ5VGJfeVZqeWo1dWNrZ1R0b0hNN3pGcVNGY1Q0Qm5pcjZzd1Z5TFRWSXRjTWNRYTZEMEdsc2ZpRDV6ZkRBZnFnLXJjYjZsNUN2VXp3ZmxrR2hzbUtHRFFkV0RwOUZjalZGOEFB?oc=5\"",
-      "at": 1789471913000,
-      "inst": [
-        "XAU/USD"
-      ],
-      "ccy": [
-        "USD",
-        "XAU"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789470894000
     },
     {
       "title": "Ukraine Confirms Strikes on Rosneft’s Syzran Oil Refinery and Orion UAV Plant - united24media.com",
@@ -2495,7 +2543,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-15T13:59:37.222Z",
-  "headlinesAt": "2026-09-15T13:59:37.222Z",
-  "updatedAt": "2026-09-15T13:59:37.222Z"
+  "calendarAt": "2026-09-15T14:01:40.631Z",
+  "headlinesAt": "2026-09-15T14:01:40.631Z",
+  "updatedAt": "2026-09-15T14:01:40.631Z"
 }
