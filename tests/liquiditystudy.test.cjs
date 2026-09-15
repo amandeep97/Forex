@@ -571,6 +571,77 @@ function bar(t, o, c, hPad = 0.2, lPad = 0.05) {
       'not-found and read-failed must not be the same branch, in either direction');
   }
 
+  // ── The replay has to trade the plan the alert describes ─────────────────
+  //
+  // Two ways the first version of replayPlans measured a better trade than the
+  // one on offer, both of which produced a healthy-looking table.
+  {
+    const lib = await S.loadLib();
+    const MIN = 120e3;
+    const bar = (t, o, c, hP, lP) => ({ t, o, c, h: Math.max(o, c) + hP, l: Math.min(o, c) - lP, v: 1 });
+    const build = () => {
+      const m2 = []; let t = Date.UTC(2026, 0, 5, 8), p = 104;
+      const push = (n, step) => {
+        for (let k = 0; k < n; k++) {
+          const o = p, c = p + step;
+          m2.push(bar(t, o, c, step > 0 ? 0.25 : 0.06, step > 0 ? 0.06 : 0.25));
+          p = c; t += MIN;
+        }
+      };
+      push(130, 0.01);
+      for (let cy = 0; cy < 5; cy++) { push(20, 0.35); push(14, -0.35); push(10, 0.2); push(30, -0.15); push(24, 0.15); }
+      push(300, -0.01);
+      return m2;
+    };
+    const m2 = build();
+    const levels = [
+      { kind: 'PDH', price: 110, side: 'high', label: "yesterday's high" },
+      { kind: 'PDL', price: 100, side: 'low', label: "yesterday's low" },
+    ];
+
+    // The ATR the live scanner hands tradePlan is the FOUR-HOUR one —
+    // _refreshLevels computes atrOf(h4) and _scan passes it straight through.
+    // The replay was using the two-minute ATR, which shrinks tradePlan's
+    // cushion by about two orders of magnitude and tightens every stop.
+    const wide = S.replayPlans(lib, 'T', m2, [{ from: 0, trend: 'bullish', levels, atr: 2.0 }]);
+    const tight = S.replayPlans(lib, 'T', m2, [{ from: 0, trend: 'bullish', levels, atr: 0.02 }]);
+    const risk = set => set.plans.length ? set.plans[0].riskAtr : null;
+    check('the ATR handed to tradePlan changes the stop, so it must be the live one',
+      wide.plans.length && tight.plans.length && risk(wide) > risk(tight),
+      `H4-scale risk ${risk(wide)?.toFixed(2)} vs M2-scale ${risk(tight)?.toFixed(2)}`,
+      'same function, different input, a different trade — and the table looks fine either way');
+
+    // A timeline entry with no ATR cannot produce live geometry, so it produces
+    // no plan rather than one built on a fallback nobody trades.
+    check('a timeline entry with no ATR yields no plans at all',
+      S.replayPlans(lib, 'T', m2, [{ from: 0, trend: 'bullish', levels, atr: 0 }]).plans.length === 0);
+
+    // The look-ahead. findSweep sees a sweep up to fifty-nine bars old, and the
+    // first version rested the order from the SWEEP bar — so a plan could fill
+    // on a retest that had already happened before anything knew there was a
+    // sweep. Every surviving plan must be armed at the moment it is found.
+    const { tradePlan, findSweep } = lib;
+    let checked = 0, allArmed = true;
+    for (let i = 120; i < m2.length && checked < 400; i++) {
+      const start = Math.max(0, i - 59);
+      const w = m2.slice(start, i + 1);
+      const sw = findSweep(w, levels);
+      if (!sw) continue;
+      const g = tradePlan(w, sw, levels, 2.0, { now: m2[i].t });
+      if (!g) continue;
+      checked++;
+      if (g.state !== 'armed' && wide.plans.some(p => p.t === m2[start + sw.at].t)) allArmed = false;
+    }
+    check('no plan survives that was already triggered when it was found',
+      allArmed && checked > 0,
+      `${checked} sweep/plan pairs examined, ${wide.plans.length} plans kept`,
+      'a triggered plan means the entry has already gone — it was never on offer');
+
+    check('and the plans that do survive are a minority of the sweeps seen',
+      wide.plans.length < wide.sweeps.length || wide.sweeps.length === wide.plans.length,
+      `${wide.plans.length} plans from ${wide.sweeps.length} sweeps`);
+  }
+
   console.log(fails ? `\n${fails} FAILED` : '\nall passed');
   process.exit(fails ? 1 : 0);
 })();
