@@ -804,6 +804,28 @@
   ],
   "headlines": [
     {
+      "title": "US lawmakers spar over bill giving Trump more power to sanction Russia - The Guardian",
+      "link": "https://news.google.com/rss/articles/CBMinAFBVV95cUxPaTFNclByR2JyRkNYMFFya2dLNVZMM0R0Z0pnbnFRMm53LWxlSVRpdlU3ZHpnN3B6dXVJOGFIcTJDcVpmSEs5V0c4Q2NvMUV4SkFVUGp4RWxOSGpQWVJpbmxVS2lqRU82OThQbUlDOExJMnFQYnkzdmFjTEhSSDRDT3R5N1FDanVzN3lkMzROWlV4bXJMUnJWTVNuWlc?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMinAFBVV95cUxPaTFNclByR2JyRkNYMFFya2dLNVZMM0R0Z0pnbnFRMm53LWxlSVRpdlU3ZHpnN3B6dXVJOGFIcTJDcVpmSEs5V0c4Q2NvMUV4SkFVUGp4RWxOSGpQWVJpbmxVS2lqRU82OThQbUlDOExJMnFQYnkzdmFjTEhSSDRDT3R5N1FDanVzN3lkMzROWlV4bXJMUnJWTVNuWlc?oc=5\" target=\"_bla",
+      "at": 1789500480000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789500480000,
+      "_kind": null,
+      "why": "Political debate, no immediate market impact"
+    },
+    {
       "title": "Here’s what investors need to watch for on Wednesday — in addition to a Fed rate hike",
       "link": "https://www.marketwatch.com/story/a-fed-rate-hike-isnt-the-only-thing-investors-should-be-watching-for-on-wednesday-3157d12d?mod=mw_rss_topstories",
       "source": "MarketWatch",
@@ -819,7 +841,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789500360000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Anticipated rate hike creates angst"
     },
     {
       "title": "Dow Jones tests 52,400 support in bearish downtrend: Live levels",
@@ -834,7 +860,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789499887000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US30": "down"
+      },
+      "why": "Bearish downtrend testing support"
     },
     {
       "title": "Nasdaq 100 coiled in tight range near 29,248: Hourly levels",
@@ -849,7 +879,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789499912000,
-      "_kind": null
+      "_kind": null,
+      "why": "Coiled in tight range"
     },
     {
       "title": "Crude Oil WTI surges 22.7% above 200-MA, RSI overbought: Live levels",
@@ -867,7 +898,12 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789499887000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Surges above moving average"
     },
     {
       "title": "Natural Gas tests $3.000 resistance with weak trend: Live levels",
@@ -882,7 +918,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789499887000,
-      "_kind": null
+      "_kind": null,
+      "why": "Tests resistance with weak trend"
     },
     {
       "title": "London Gas Oil surges 5% above 20-SMA, pullback looms: Live levels",
@@ -899,7 +936,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789499887000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Surges above moving average"
     },
     {
       "title": "Silver trapped in $63-$65 range with MACD crossover: Live levels",
@@ -916,7 +957,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789499887000,
-      "_kind": null
+      "_kind": null,
+      "why": "Trapped in range"
     },
     {
       "title": "S&P 500 boxed in 83-point range near key resistance: Live levels",
@@ -931,7 +973,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789499887000,
-      "_kind": null
+      "_kind": null,
+      "why": "Boxed in range near resistance"
     },
     {
       "title": "Brent Oil consolidates at $108.50 in bull flag: Live levels",
@@ -949,7 +992,12 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789499887000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Consolidates in bull flag"
     },
     {
       "title": "Dollar Index tests key resistance at 99.65: Live levels",
@@ -981,7 +1029,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789499887000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Bear flag below resistance"
     },
     {
       "title": "Iran war has led to US munitions shortfalls, Pentagon inspector confirms",
@@ -1002,7 +1054,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789499624000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Conflict escalation, supply concerns"
     },
     {
       "title": "AWS says it can't restore service to Bahrain, UAE facilities 6 months after Iran strikes - CNBC",
@@ -1022,7 +1080,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789499086000
+      "firstAt": 1789499086000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Ongoing conflict, infrastructure damage"
     },
     {
       "title": "Iranian strikes have damaged hundreds of structures at U.S. bases, watchdog says - The Washington Post",
@@ -1042,7 +1106,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789497978000
+      "firstAt": 1789497978000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Escalating conflict, base damage"
     },
     {
       "title": "UK sanctions on Israel ‘fall far short’ of its obligations, legal experts say - The Guardian",
@@ -1062,7 +1132,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789496340000
+      "firstAt": 1789496340000,
+      "why": "Legal opinion, no direct market impact"
     },
     {
       "title": "Fed weighs September rate hike as Treasury yields rise - Fox Business",
@@ -1458,26 +1529,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789490700000
-    },
-    {
-      "title": "US lawmakers spar over bill giving Trump more power to sanction Russia - The Guardian",
-      "link": "https://news.google.com/rss/articles/CBMinAFBVV95cUxPaTFNclByR2JyRkNYMFFya2dLNVZMM0R0Z0pnbnFRMm53LWxlSVRpdlU3ZHpnN3B6dXVJOGFIcTJDcVpmSEs5V0c4Q2NvMUV4SkFVUGp4RWxOSGpQWVJpbmxVS2lqRU82OThQbUlDOExJMnFQYnkzdmFjTEhSSDRDT3R5N1FDanVzN3lkMzROWlV4bXJMUnJWTVNuWlc?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMinAFBVV95cUxPaTFNclByR2JyRkNYMFFya2dLNVZMM0R0Z0pnbnFRMm53LWxlSVRpdlU3ZHpnN3B6dXVJOGFIcTJDcVpmSEs5V0c4Q2NvMUV4SkFVUGp4RWxOSGpQWVJpbmxVS2lqRU82OThQbUlDOExJMnFQYnkzdmFjTEhSSDRDT3R5N1FDanVzN3lkMzROWlV4bXJMUnJWTVNuWlc?oc=5\" target=\"_bla",
-      "at": 1789490100000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789490100000
     },
     {
       "title": "Ukraine Strikes Russian Energy Infrastructure as Houthis Make Gains - Hudson Institute",
@@ -2463,7 +2514,7 @@
       "link": "https://news.google.com/rss/articles/CBMihgFBVV95cUxQbmJRaU9hVW84Ml82SXFIOE45akR5OXNySVFRVE94dkpYQTZvT09aV1k5RDR0emNncm5uaEM1VkNreFZpQmdWU014MWJqLWZPdXhtSzUxZzlqRi1nYks5V0pWOHJGenk2R3k0VDdCY25aeFQxcEowQjhxTkRwZFJzMW9WRndLZw?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMihgFBVV95cUxQbmJRaU9hVW84Ml82SXFIOE45akR5OXNySVFRVE94dkpYQTZvT09aV1k5RDR0emNncm5uaEM1VkNreFZpQmdWU014MWJqLWZPdXhtSzUxZzlqRi1nYks5V0pWOHJGenk2R3k0VDdCY25aeFQxcEowQjhxTkRwZFJzMW9WRndLZw?oc=5\" target=\"_blank\">House Democrats face divi",
-      "at": 1789471895000,
+      "at": 1789471993000,
       "inst": [
         "XAU/USD",
         "USOIL",
@@ -2539,10 +2590,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-15T19:35:24.196Z",
-  "headlinesAt": "2026-09-15T19:35:24.196Z",
-  "updatedAt": "2026-09-15T19:35:24.196Z"
+  "calendarAt": "2026-09-15T19:37:39.194Z",
+  "headlinesAt": "2026-09-15T19:37:39.194Z",
+  "updatedAt": "2026-09-15T19:37:39.194Z"
 }
