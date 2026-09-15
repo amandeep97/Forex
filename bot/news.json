@@ -19,7 +19,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789432950000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Supply concerns boost oil prices"
     },
     {
       "title": "U.S. Stocks Gain as Inflation Figure Boosts Odds of Rate Hike - WSJ",
@@ -37,7 +42,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789431443000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Stocks gain on rate hike odds"
     },
     {
       "title": "House Dems face Trump tariff dilemma as major Russia sanctions bill heads to floor - 930 WFMD Free Talk",
@@ -59,7 +68,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789432570000,
-      "_kind": null
+      "_kind": null,
+      "why": "Political news unclear for markets"
     },
     {
       "title": "Gold holds losses as higher oil stokes September rate hike bets - The Business Times",
@@ -80,7 +90,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789432500000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "up"
+      },
+      "why": "Gold falls, oil rises on rates"
     },
     {
       "title": "Fed Rate-Hike Odds Top 90% as 10-Year Treasury Yield Touches 5% - Seoul Economic Daily",
@@ -103,7 +118,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789429790000
+      "firstAt": 1789429790000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Strong dollar pressures gold and FX"
     },
     {
       "title": "U.S. stock futures flat as markets parse slowing AI development, Fed anticipation",
@@ -125,7 +146,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789430923000
+      "firstAt": 1789430923000,
+      "why": "Futures flat, no clear direction"
     },
     {
       "title": "‘My total balance should be $20 million’: I invested $1.1 million in a crypto platform. Have I lost it all?",
@@ -142,7 +164,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789430460000
+      "firstAt": 1789430460000,
+      "why": "Individual loss story, no market signal"
     },
     {
       "title": "Iran war live: CENTCOM disputes IRGC claim supertanker struck by Hormuz nav",
@@ -162,7 +185,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789430400000
+      "firstAt": 1789430400000,
+      "why": "Disputed claim, unclear market impact"
     },
     {
       "title": "Gold Holds Losses as Higher Oil Stokes September Rate-Hike Bets - Bloomberg.com",
@@ -181,7 +205,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789427676000
+      "firstAt": 1789427676000,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "up"
+      },
+      "why": "Gold falls, oil rises on rates"
     },
     {
       "title": "Foreign national convicted of smuggling US aerospace parts to Russia, violating sanctions - rocketcitynow.com",
@@ -201,7 +230,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789429200000
+      "firstAt": 1789429200000,
+      "why": "Sanctions news unclear for markets"
     },
     {
       "title": "U.S. benchmark bond yield breaches 5% as oil, inflation worries mount - The Globe and Mail",
@@ -219,7 +249,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789428310000
+      "firstAt": 1789428310000,
+      "why": "Yields breach 5%, oil worries mount"
     },
     {
       "title": "Iran strikes on US diplomatic facilities raise war cost - thehill.com",
@@ -239,7 +270,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789428000000
+      "firstAt": 1789428000000,
+      "why": "War costs unclear for markets"
     },
     {
       "title": "Iran strikes on US diplomatic facilities in 4 Gulf countries cost $184M: IG report - thehill.com",
@@ -259,7 +291,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789428000000
+      "firstAt": 1789428000000,
+      "why": "War costs unclear for markets"
     },
     {
       "title": "AI doomsday fears are arriving at the worst possible time for the stock market",
@@ -292,7 +325,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789427880000
+      "firstAt": 1789427880000,
+      "why": "Damage report unclear for markets"
     },
     {
       "title": "Gold falls below $4,300 as higher US yields bolster Fed rate hike bets - FXStreet",
@@ -310,7 +344,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789427676000
+      "firstAt": 1789427676000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold falls on higher yields"
     },
     {
       "title": "Zelensky says Ukraine ready to de-escalate if Russia halts strikes - france24.com",
@@ -1762,6 +1800,6 @@
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-15T00:49:36.244Z",
-  "updatedAt": "2026-09-15T00:49:36.244Z"
+  "headlinesAt": "2026-09-15T00:52:07.924Z",
+  "updatedAt": "2026-09-15T00:52:07.924Z"
 }
