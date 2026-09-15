@@ -910,7 +910,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789453214000,
-      "_kind": null
+      "_kind": null,
+      "why": "Data in-line with expectations"
     },
     {
       "title": "UK labour market cools further as payrolls fall and wage growth slows",
@@ -934,7 +935,48 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789453166000,
-      "_kind": null
+      "_kind": null,
+      "why": "Mixed data, no clear direction"
+    },
+    {
+      "title": "Gold slips below $4,300 as firmer dollar, Fed hike bets pressure bullion",
+      "link": "https://www.investing.com/news/commodities-news/gold-holds-near-4300-as-oil-disruption-lifts-fed-hike-bets-4900741",
+      "source": "Investing Cmdty",
+      "at": 1789453132000,
+      "inst": [
+        "XAU/USD"
+      ],
+      "ccy": [
+        "USD",
+        "XAU"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1789452475000,
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold slips below $4,300"
+    },
+    {
+      "title": "Micron Taiwan union presses profit-sharing demand, keeps strike preparations alive",
+      "link": "https://www.investing.com/news/stock-market-news/micron-taiwan-union-presses-profitsharing-demand-keeps-strike-preparations-alive-4900835",
+      "source": "Investing",
+      "at": 1789453109000,
+      "inst": [
+        "XAU/USD"
+      ],
+      "ccy": [
+        "XAU"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789453109000,
+      "_kind": null,
+      "why": "Irrelevant to gold prices"
     },
     {
       "title": "US blacklists Russia’s 2nd-largest VTB Bank over Iran sanctions evasion - Türkiye Today",
@@ -955,7 +997,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789452967000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions news, unclear market impact"
     },
     {
       "title": "Gold falls ₹115 on US interest rate hike fears, silver declines ₹461 - Business Standard",
@@ -974,9 +1017,14 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 1,
+      "srcs": 2,
       "firstAt": 1789452475000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "XAG/USD": "down"
+      },
+      "why": "Gold and silver decline"
     },
     {
       "title": "Insight: Ukraine races to counter Russia's jet-powered drone attacks - Reuters",
@@ -997,7 +1045,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789449795000,
-      "_kind": null
+      "_kind": null,
+      "why": "Geopolitical news, unclear direction"
     },
     {
       "title": "Taiwan stocks lower at close of trade; Taiwan Weighted down 0.73%",
@@ -1012,7 +1061,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789452005000,
-      "_kind": null
+      "_kind": null,
+      "why": "Taiwan stocks, not US"
     },
     {
       "title": "Chinese chip stocks rise after Beijing unveils 5-year electronics plan",
@@ -1027,7 +1077,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789451964000,
-      "_kind": null
+      "_kind": null,
+      "why": "Chinese stocks, not US"
     },
     {
       "title": "U.S. 10-yr yields surge past 5%: which stocks are most vulnerable?",
@@ -1041,7 +1092,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789451608000
+      "firstAt": 1789451608000,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Yields surge, vulnerable stocks"
     },
     {
       "title": "Dollar Rises Amid Oil Surge and Anticipated Fed Rate Hike - Devdiscourse",
@@ -1059,7 +1114,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789451421000
+      "firstAt": 1789451421000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil surge mentioned"
     },
     {
       "title": "Internet shutdown crosses 100 days in Pakistan-administered Kashmir",
@@ -1082,7 +1141,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789451272000
+      "firstAt": 1789451272000,
+      "why": "Irrelevant to these pairs"
     },
     {
       "title": "China's August retail sales miss forecast while investment slump deepens, piling pressure on Beijing",
@@ -1105,29 +1165,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789450874000
-    },
-    {
-      "title": "Why is United States 10-Year Treasury yield climbing today?",
-      "link": "https://www.investing.com/news/stock-market-news/why-is-united-states-10year-treasury-yield-climbing-today-93CH-4900793",
-      "source": "Investing",
-      "at": 1789450547000,
-      "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 3,
-      "firstAt": 1789448979000
+      "firstAt": 1789450874000,
+      "why": "China data, unclear impact"
     },
     {
       "title": "Asian currencies slip as yen pulls back, Fed and BOJ decisions loom",
@@ -1144,7 +1183,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789450446000
+      "firstAt": 1789450446000,
+      "dir": {
+        "USD/JPY": "down"
+      },
+      "why": "Yen pulls back, dollar weakens"
     },
     {
       "title": "Why Fed rate hike could put pressure on gold prices - Moneycontrol.com",
@@ -1162,7 +1205,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789449854000
+      "firstAt": 1789449854000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Rate hike pressures gold"
     },
     {
       "title": "Ukraine says ready to halt strikes on energy targets if Russia does so - Xinhua",
@@ -1224,7 +1271,7 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 3,
+      "srcs": 2,
       "firstAt": 1789448979000
     },
     {
@@ -1247,7 +1294,7 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 3,
+      "srcs": 2,
       "firstAt": 1789448979000
     },
     {
@@ -1542,25 +1589,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789439460000
-    },
-    {
-      "title": "Gold holds near $4,300 as oil disruption lifts Fed hike bets",
-      "link": "https://www.investing.com/news/commodities-news/gold-holds-near-4300-as-oil-disruption-lifts-fed-hike-bets-4900741",
-      "source": "Investing Cmdty",
-      "at": 1789439065000,
-      "inst": [
-        "XAU/USD",
-        "USOIL"
-      ],
-      "ccy": [
-        "USD",
-        "XAU",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789439065000
     },
     {
       "title": "Iran strikes damaged US bases, embassies across 8 countries: Pentagon watchdog - The Times of India",
@@ -2663,10 +2691,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-15T06:28:07.756Z",
-  "headlinesAt": "2026-09-15T06:28:07.756Z",
-  "updatedAt": "2026-09-15T06:28:07.756Z"
+  "calendarAt": "2026-09-15T06:29:24.080Z",
+  "headlinesAt": "2026-09-15T06:29:24.080Z",
+  "updatedAt": "2026-09-15T06:29:24.080Z"
 }
