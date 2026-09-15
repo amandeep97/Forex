@@ -822,7 +822,42 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789481329000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "up"
+      },
+      "why": "Gold down, oil up on inflation"
+    },
+    {
+      "title": "30-year mortgage rate jumps to 7.17% — a nearly 2-year high — in the latest blow to the housing market",
+      "link": "https://www.marketwatch.com/story/30-year-mortgage-rate-jumps-to-7-17-a-nearly-2-year-high-in-the-latest-blow-to-the-housing-market-aadbd63e?mod=mw_rss_topstories",
+      "source": "MarketWatch",
+      "desc": "The 10-year Treasury yield crossed a key 5% threshold on Monday, nudging the average 30-year mortgage rate upward.",
+      "at": 1789482900000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789482900000,
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "High yields hurt risk assets"
     },
     {
       "title": "Inflation is sinking your high-yield savings account’s returns. Here’s one way to fight it.",
@@ -846,7 +881,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789481640000,
-      "_kind": null
+      "_kind": null,
+      "why": "General inflation commentary, no direction"
     },
     {
       "title": "Why is Robinhood Markets stock sliding today?",
@@ -876,7 +912,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789480457000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US30": "down"
+      },
+      "why": "Dow drops on high yields"
     },
     {
       "title": "Sysco share sale said to draw massive demand from top investors",
@@ -911,7 +951,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789482000000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Sanctions support oil, gold unclear"
     },
     {
       "title": "S&P 500 trapped in range with overbought MFI at 7,671: Live levels",
@@ -926,7 +971,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789481865000,
-      "_kind": null
+      "_kind": null,
+      "why": "Range-bound market, no clear direction"
     },
     {
       "title": "Nasdaq 100 coiled in tight range with ADX at 15.6: Live levels",
@@ -941,7 +987,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789481865000,
-      "_kind": null
+      "_kind": null,
+      "why": "Tight range, no clear direction"
     },
     {
       "title": "Why one Wall Street firm thinks this year’s stock-market rally is running out of road",
@@ -963,7 +1010,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789481640000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Lower stock target, others unclear"
     },
     {
       "title": "Cathie Wood Dumps $60 Million In Crypto Stock Ahead Of Clarity Act Vote",
@@ -980,7 +1031,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789480020000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "BTC/USDT": "down"
+      },
+      "why": "Major holder selling crypto stocks"
     },
     {
       "title": "Don’t Sell Gold and Silver on Rate Hike Fear, Here’s Why - NAI500",
@@ -1001,7 +1056,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789478967000,
-      "_kind": null
+      "dir": {
+        "XAU/USD": "up",
+        "XAG/USD": "up"
+      },
+      "why": "Bullish argument against selling metals"
     },
     {
       "title": "Oil prices climb amid Libya force majeure warning, Saudi Arabia pipeline outage",
@@ -1017,7 +1076,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789481166000
+      "firstAt": 1789481166000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Supply issues push oil up"
     },
     {
       "title": "The Fed Is Expected to Raise Interest Rates Wednesday. Should You Buy the S&P 500 Before It Does?",
@@ -1033,7 +1096,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789481100000
+      "firstAt": 1789481100000,
+      "why": "Question about buying, no direction"
     },
     {
       "title": "10-year Treasury hits 2007 high as oil stays above $100: AlphaCheck",
@@ -1050,7 +1114,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789480457000
+      "firstAt": 1789480457000,
+      "why": "Oil already high, no new move"
     },
     {
       "title": "Malone Lam, 22, pleads guilty to stealing $245 million in crypto through a Google impersonation scheme",
@@ -1066,7 +1131,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789480800000
+      "firstAt": 1789480800000,
+      "why": "Crime news, no market impact"
     },
     {
       "title": "Russia and Ukraine Exchange Strikes Despite Trump's Claim of a Truce - Crude Oil Prices Today | OilPrice.com",
@@ -1086,7 +1152,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789479664000
+      "firstAt": 1789479664000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up",
+        "XAU/USD": "up"
+      },
+      "why": "Geopolitical risk boosts oil and gold"
     },
     {
       "title": "Gold struggles near $4,300 as 10-year US Treasury yield reaches 2007 high - FXStreet",
@@ -1202,7 +1274,7 @@
       "title": "Canada is a 'safe harbour' for global finance, Carney says",
       "link": "https://www.bbc.co.uk/news/articles/cmq8jdgel128o?at_medium=RSS&at_campaign=rss",
       "source": "BBC World",
-      "desc": "The prime minister is hosting a major global investment summit, with the goal of attracting investment amid a trade war with the US.",
+      "desc": "The prime minister is hosting a major global investment summit, with the goal of attracting money into the country amid a trade war with the US.",
       "at": 1789479781000,
       "inst": [
         "USD/CAD",
@@ -2456,26 +2528,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789464833000
-    },
-    {
-      "title": "Ex-CIA chief Petraeus was at Ukrainian station where Russia struck train, calls it an act of terror - The Jerusalem Post",
-      "link": "https://news.google.com/rss/articles/CBMiigFBVV95cUxNMW13UnJPaklwd3BNdElJMEJ6aXlRTk9Wby1XOVZvNlg4RHhpLUY3UkdGRm5TU2RWZkR0dFRxdUpja1hZc3pwWlVtNXBGOUdjdkdxQmNhbGlUXzdQWUxaVlMtRS16TWFqUm50dGtKeHNCZ0JHM3Vta0wwd0ZJZ3N2a3FlQTNMQkJXVVE?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiigFBVV95cUxNMW13UnJPaklwd3BNdElJMEJ6aXlRTk9Wby1XOVZvNlg4RHhpLUY3UkdGRm5TU2RWZkR0dFRxdUpja1hZc3pwWlVtNXBGOUdjdkdxQmNhbGlUXzdQWUxaVlMtRS16TWFqUm50dGtKeHNCZ0JHM3Vta0wwd0ZJZ3N2a3FlQTNMQkJXVVE?oc=5\" target=\"_blank\">Ex-CIA chief Petraeu",
-      "at": 1789464697000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789464697000
     }
   ],
   "sources": [
@@ -2501,7 +2553,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-15T14:37:54.665Z",
-  "headlinesAt": "2026-09-15T14:37:54.665Z",
-  "updatedAt": "2026-09-15T14:37:54.665Z"
+  "calendarAt": "2026-09-15T14:39:23.300Z",
+  "headlinesAt": "2026-09-15T14:39:23.300Z",
+  "updatedAt": "2026-09-15T14:39:23.300Z"
 }
