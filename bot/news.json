@@ -804,21 +804,43 @@
   ],
   "headlines": [
     {
-      "title": "US energy chief says Saudi Arabia oil pipeline should be back online within days",
-      "link": "https://www.investing.com/news/commodities-news/us-energy-chief-says-saudi-arabia-oil-pipeline-should-be-back-online-within-days-4902318",
-      "source": "Investing Cmdty",
-      "at": 1789491675000,
+      "title": "Why investors need to learn the difference between uncertainty and risk in today’s market",
+      "link": "https://www.marketwatch.com/story/what-investors-need-to-do-and-mistakes-not-to-make-in-todays-uncertain-world-8eb74333?mod=mw_rss_topstories",
+      "source": "MarketWatch",
+      "desc": "Hedge-fund founder Alec Litowitz says investor should make their identity about being adaptive, rather than trying to be right.",
+      "at": 1789492140000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 1,
+      "srcs": 1,
+      "firstAt": 1789492140000,
+      "_kind": null
+    },
+    {
+      "title": "Is the two-decade era of low interest rates over? The Fed has to decide.",
+      "link": "https://www.marketwatch.com/story/is-the-two-decade-era-of-low-interest-rates-over-the-fed-has-to-decide-0520f458?mod=mw_rss_topstories",
+      "source": "MarketWatch",
+      "desc": "High bond yields could be the result of temporary shocks — or something much longer-lasting.",
+      "at": 1789492080000,
       "inst": [
-        "USOIL"
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
       ],
       "ccy": [
-        "OIL"
+        "USD"
       ],
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789491675000,
-      "_kind": null
+      "firstAt": 1789492080000,
+      "_kind": null,
+      "why": "Uncertain Fed decision, no clear direction"
     },
     {
       "title": "Stock Market Midday, Sept. 15: Stocks Slide on AI and Bond Jitters",
@@ -833,7 +855,36 @@
       "rel": 2,
       "srcs": 3,
       "firstAt": 1789489157000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Stocks slide on AI and bond jitters"
+    },
+    {
+      "title": "Stock Market Today: Dow Dives, Oil Play Tests New Entry; Bitcoin Falls Ahead Of Clarity Act Vote (Live Coverage)",
+      "link": "https://www.investors.com/market-trend/stock-market-today/dow-jones-sp500-nasdaq-treasury-yields-oil-prices-nvidia-stock/?src=A00220&yptr=yahoo",
+      "source": "Yahoo Finance",
+      "at": 1789491131000,
+      "inst": [
+        "USOIL",
+        "US30",
+        "BTC/USDT"
+      ],
+      "ccy": [
+        "OIL",
+        "BTC"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789491131000,
+      "_kind": null,
+      "dir": {
+        "US30": "down",
+        "BTC/USDT": "down"
+      },
+      "why": "Dow dives, Bitcoin falls, oil entry test"
     },
     {
       "title": "Israeli ‘influence campaign against Qatar’ launched after October 7 attack",
@@ -854,7 +905,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789491046000,
-      "_kind": null
+      "_kind": null,
+      "why": "Geopolitical news, no immediate market impact"
     },
     {
       "title": "Institutional investors are dangerously overinvested in stocks",
@@ -870,7 +922,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789490700000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Institutional overinvestment implies correction risk"
     },
     {
       "title": "PBE vs. RSPH: Is a Biotech ETF or Equal-Weight Healthcare ETF the Better Choice for Investors?",
@@ -898,20 +954,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789490249000
-    },
-    {
-      "title": "What investors need to do — and mistakes not to make — in today’s uncertain world",
-      "link": "https://www.marketwatch.com/story/what-investors-need-to-do-and-mistakes-not-to-make-in-todays-uncertain-world-8eb74333?mod=mw_rss_topstories",
-      "source": "MarketWatch",
-      "desc": "Hedge-fund founder Alec Litowitz says investor should make their identity about being adaptive, rather than trying to be right.",
-      "at": 1789490220000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1789490220000
+      "firstAt": 1789490249000,
+      "why": "Individual stock moves, no index direction"
     },
     {
       "title": "Zumiez (ZUMZ) Falls on Weak Results and Lower Outlook, But Is the Selloff Overdone?",
@@ -940,7 +984,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789489800000
+      "firstAt": 1789489800000,
+      "why": "Individual loss story, no market direction"
     },
     {
       "title": "Stablecoin Yield Ban Would Boost Bank Lending by Just 0.02%: White House",
@@ -972,7 +1017,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789487451000
+      "firstAt": 1789487451000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Ukraine strikes energy, Houthi gains boost risk"
     },
     {
       "title": "Canadian dollar extends daily losing streak ahead of expected Fed rate hike - marketscreener.com",
@@ -989,7 +1040,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789489713000
+      "firstAt": 1789489713000,
+      "dir": {
+        "USD/CAD": "up"
+      },
+      "why": "CAD loses ahead of Fed hike"
     },
     {
       "title": "Tech stocks haven’t been this cheap since the launch of ChatGPT. Should you buy in?",
@@ -1005,7 +1060,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789489560000
+      "firstAt": 1789489560000,
+      "why": "Mixed views on tech valuation"
     },
     {
       "title": "Gold is starting to move on something a lot bigger than inflation",
@@ -1023,7 +1079,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789489260000
+      "firstAt": 1789489260000,
+      "why": "Gold moving on Fed credibility, unclear direction"
     },
     {
       "title": "Opinion: Gold is starting to move on something a lot bigger than inflation - MarketWatch",
@@ -1041,7 +1098,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789489260000
+      "firstAt": 1789489260000,
+      "why": "Opinion piece, no clear directional signal"
     },
     {
       "title": "Iranian strikes have damaged hundreds of structures at U.S. bases, watchdog says - The Washington Post",
@@ -1061,7 +1119,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789489189000
+      "firstAt": 1789489189000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Iranian strikes increase geopolitical risk premium"
     },
     {
       "title": "FTSE 100 today: Stocks slide on weak jobs data, U.S.-Iran rift lifts oil",
@@ -1078,10 +1142,15 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789489157000
+      "firstAt": 1789489157000,
+      "dir": {
+        "USOIL": "up",
+        "US500": "down"
+      },
+      "why": "Oil lifts on rift, stocks slide on jobs"
     },
     {
-      "title": "History Shows Fed Will Deliver Rate Hike Markets Have Locked In - bloomberg.com",
+      "title": "History Shows Fed Will Deliver Rate Hike Markets Have Locked In - Bloomberg.com",
       "link": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQbjR6ZjU2VjVMOGxObWpiMGhlZHdZVHpacUpRTm9YUlJxOEpNNlBaRFpua1lDcjRLSnlTQUlDNF9JVUxVYlcxQlpRelo2eXNYSHkxZ25jenRXZ0Y3SmN0c3V6bks0Y08td2FIZHkzVDFPeGJRanZtZVBxalB6RndZdjZ3enhkY1p3RG9jZUFucFgyU2hqb0F2YnVreU5FQjVPMkUwcTFnaUV5UUFJV2RpN0g0VTk?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMitAFBVV95cUxQbjR6ZjU2VjVMOGxObWpiMGhlZHdZVHpacUpRTm9YUlJxOEpNNlBaRFpua1lDcjRLSnlTQUlDNF9JVUxVYlcxQlpRelo2eXNYSHkxZ25jenRXZ0Y3SmN0c3V6bks0Y08td2FIZHkzVDFPeGJRanZtZVBxalB6RndZdjZ3enhkY1p3RG9jZUFucFgyU2hqb0F2YnVreU5FQjVPMkUwcTFnaUV5UU",
@@ -1101,7 +1170,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789489143000
+      "firstAt": 1789489143000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Fed hike locked in, hawkish for USD"
     },
     {
       "title": "19 Russian defense companies remain outside international sanctions, helping sustain Russia’s war machine - Euromaidan Press",
@@ -1325,23 +1400,6 @@
       "firstAt": 1789488360000
     },
     {
-      "title": "‘There might be a silver lining’: My friend’s wife died at 60 after a high-earning career. Can he claim her Social Security?",
-      "link": "https://www.marketwatch.com/story/there-might-be-a-silver-lining-my-friends-wife-died-at-60-after-a-high-earning-career-can-he-claim-her-social-security-eb95210a?mod=mw_rss_topstories",
-      "source": "MarketWatch",
-      "desc": "“They had been married for over 30 years when she passed.”",
-      "at": 1789488000000,
-      "inst": [
-        "XAG/USD"
-      ],
-      "ccy": [
-        "XAG"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789488000000
-    },
-    {
       "title": "Nvidia, AI Chip Stocks Look To Stem The Bleeding After Sell-Off",
       "link": "https://www.investors.com/news/technology/chip-stocks-nvidia-seek-rebound-after-ai-sell-off/?src=A00220&yptr=yahoo",
       "source": "Yahoo Finance",
@@ -1370,23 +1428,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789487786000
-    },
-    {
-      "title": "Stock Market Today: Dow Dives As Yields Jump; Bitcoin, Coinbase Fall Ahead Of Clarity Act Vote (Live Coverage)",
-      "link": "https://www.investors.com/market-trend/stock-market-today/dow-jones-sp500-nasdaq-treasury-yields-oil-prices-nvidia-stock/?src=A00220&yptr=yahoo",
-      "source": "Yahoo Finance",
-      "at": 1789487679000,
-      "inst": [
-        "US30",
-        "BTC/USDT"
-      ],
-      "ccy": [
-        "BTC"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789486287000
     },
     {
       "title": "Will Russia and Ukraine halt attacks on energy infrastructure?",
@@ -2073,7 +2114,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 3,
-      "firstAt": 1789475482000
+      "firstAt": 1789474964000
     },
     {
       "title": "German finance minister calls for gasoline price relief",
@@ -2287,7 +2328,7 @@
       "firstAt": 1789475160000
     },
     {
-      "title": "Gold Steadies as Markets Await Federal Reserve Decision - fananews.com",
+      "title": "Gold Steadies as Markets Await Federal Reserve Decision - Fana News -",
       "link": "https://news.google.com/rss/articles/CBMimAFBVV95cUxOQmhyV2RhVzdNTVpqRFdLVXhQRFp4cU0xNzJkenFPMkNqLXJFd1BpZWNqZXpwMGFLLW5kNWZvWmRpNzNmU25lLUdhdGl2NlgtZEUxQkg4UXVKMTBPZG8wbTh4SjhiSHNMZTZvSjFlcDVfQkl6S0dvc1hWLU1iOXZJTy0wZ0p0ZEpnMHA3alBITFFYNFdEdHp1bA?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMimAFBVV95cUxOQmhyV2RhVzdNTVpqRFdLVXhQRFp4cU0xNzJkenFPMkNqLXJFd1BpZWNqZXpwMGFLLW5kNWZvWmRpNzNmU25lLUdhdGl2NlgtZEUxQkg4UXVKMTBPZG8wbTh4SjhiSHNMZTZvSjFlcDVfQkl6S0dvc1hWLU1iOXZJTy0wZ0p0ZEpnMHA3alBITFFYNFdEdHp1bA?oc=5\" target=\"_blank\">G",
@@ -2419,6 +2460,24 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789472400000
+    },
+    {
+      "title": "Bitcoin and ethereum prices today, Tuesday, September 15, 2026: Crypto prices sliding this morning ahead of Fed meeting",
+      "link": "https://finance.yahoo.com/personal-finance/investing/article/bitcoin-and-ethereum-prices-today-tuesday-september-15-2026-crypto-prices-sliding-this-morning-ahead-of-fed-meeting-113732149.html",
+      "source": "Yahoo Finance",
+      "at": 1789472252000,
+      "inst": [
+        "BTC/USDT",
+        "ETH/USDT"
+      ],
+      "ccy": [
+        "USD",
+        "BTC"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1789470894000
     }
   ],
   "sources": [
@@ -2444,7 +2503,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-15T17:10:11.053Z",
-  "headlinesAt": "2026-09-15T17:10:11.053Z",
-  "updatedAt": "2026-09-15T17:10:11.053Z"
+  "calendarAt": "2026-09-15T17:11:40.324Z",
+  "headlinesAt": "2026-09-15T17:11:40.324Z",
+  "updatedAt": "2026-09-15T17:11:40.324Z"
 }
