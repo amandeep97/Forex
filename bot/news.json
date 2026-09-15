@@ -1111,24 +1111,6 @@
       "firstAt": 1789483721000
     },
     {
-      "title": "U.S. stocks slip after oil prices and the bond market crank up the pressure - BNN Bloomberg",
-      "link": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxQdGx5RDRkbm9oTEJqbTBVVm8xZnUtNnAwdUUwZzczYXRmdlhVY0tlU0JFQ1JsaDctX0Q5NXo3WTROUFlXZ3R0ejhmWWdSR0R2dEloTjFyTXdVWmVIM2lkRHhhX1M5TmlGbGZwcXk5QlR2RlFiSGg0TjBXN05qRHF4cGtSdGV5c3FNRFRiMl9CMUZIamR6SVYxSzR4RVpwbFJxZGxpbDZBbmJzU0hnbzY1a1RBMWZVNExVTzNLLUtfTEI1Wm1DMHE5a2lpVnRkbXYyTHh0ZkxSekhnQjFacHN4ZGltRjk1a0k?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi5wFBVV95cUxQdGx5RDRkbm9oTEJqbTBVVm8xZnUtNnAwdUUwZzczYXRmdlhVY0tlU0JFQ1JsaDctX0Q5NXo3WTROUFlXZ3R0ejhmWWdSR0R2dEloTjFyTXdVWmVIM2lkRHhhX1M5TmlGbGZwcXk5QlR2RlFiSGg0TjBXN05qRHF4cGtSdGV5c3FNRFRiMl9CMUZIamR6SVYxSzR4RVpwbFJxZGxpbDZBbmJzU0",
-      "at": 1789485214000,
-      "inst": [
-        "USOIL",
-        "US500"
-      ],
-      "ccy": [
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789485214000
-    },
-    {
       "title": "Russia and Ukraine launch new energy attacks despite Trump’s ceasefire claim - NBC News",
       "link": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxNY2tmQ3JOYmQ0M3dvYi1KWDhQc3JmQTZGMTF1a0t2dVh0LUNDWlR5LW96MHpWZ0ZhYUE0aGdnZURWWHJ4Y19IQi1nRVBUdWhJSDV6dnhxNUFNOEROVjFZUlJfVWE4eW50b2x0cFVTcnZrbUdEajlGX1ltbU50aTY3X0ZDUHZJaEFhUG83cGQtSXdiUFFOWXFkU2N2RWF0Y1NfWnc1TTVqZFY?oc=5",
       "source": "Wires (geo)",
@@ -1708,6 +1690,26 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789472700000
+    },
+    {
+      "title": "Denmark says Russian warship fired flares at military helicopter",
+      "link": "https://www.bbc.co.uk/news/articles/cwn8mjl31p5yo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC World",
+      "desc": "The Danish prime minister has accused Russia of \"reckless\" behaviour, while the Kremlin is yet to comment.",
+      "at": 1789472400000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789472400000
     }
   ],
   "sources": [
@@ -1730,10 +1732,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-15T20:41:07.884Z",
-  "updatedAt": "2026-09-15T20:41:07.884Z"
+  "headlinesAt": "2026-09-15T20:42:22.054Z",
+  "updatedAt": "2026-09-15T20:42:22.054Z"
 }
