@@ -912,6 +912,31 @@
   ],
   "headlines": [
     {
+      "title": "China August retail sales +0.4% y/y (expected +0.6%)",
+      "link": "https://investinglive.com/news/china-august-retail-sales-0-4-y-y-expected-0-6/",
+      "source": "ForexLive",
+      "desc": "more to come This article was written by Eamonn Sheridan at investinglive.com.",
+      "at": 1789437753000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789436296000,
+      "_kind": null,
+      "why": "Weak China data, unclear market impact"
+    },
+    {
       "title": "Silver Price Forecast: XAG/USD falls to near $63.00 amid rising inflation, Treasury yields - FXStreet",
       "link": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxObjhzRklpN3Fvem5Eak5DSFZ4YllGTE5wUlR2UjFPTEJRM29FdnRIbnZORkE0NDJnU1RXRjdkS0JXeThFdkg0ZWhJS2dLYld4R3F1Y1R0bHhOR2ExX2FLWUJIZHpKSGVUN1daZ0JzdmpUM1pNdUQyek0tc1FuaS1sNndLbXhkMDZqOC1iU1ozemhTUHEwenhIM2hUclNFcGwyRzk4aTVUYXIwOXljNGxQMDI2aDRZdHpSU3hPejRDN1BPUjVBTHJqTw?oc=5",
       "source": "Wires (macro)",
@@ -928,7 +953,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789437341000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAG/USD": "down"
+      },
+      "why": "Silver falls on rising yields"
     },
     {
       "title": "‘I Will Go Back to Ukraine at the Next Opportunity’ – Dan Fried Defies Russian Intimidation After Train Strike - Kyiv Post",
@@ -949,7 +978,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789437278000,
-      "_kind": null
+      "_kind": null,
+      "why": "Geopolitical news, no clear price direction"
     },
     {
       "title": "NY Gold Futures Fall for Third Straight Session as Rate-Hike Bets Drive Yields Higher and Dollar Strengthens - finance.biggo.com",
@@ -968,7 +998,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789436333000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold falls on rate hike bets"
     },
     {
       "title": "China home prices keep falling in August as property slump drags on",
@@ -999,7 +1033,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789436235000,
-      "_kind": null
+      "_kind": null,
+      "why": "IPO news, unclear currency impact"
     },
     {
       "title": "Stock Market Today: Gift Nifty, Inflation To Oil Prices — Five Key Factors That May Drive Sensex, Nifty 50 On September 15 - NDTV Profit",
@@ -1018,7 +1053,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789436125000,
-      "_kind": null
+      "_kind": null,
+      "why": "Market preview, no specific direction"
     },
     {
       "title": "Kremlin welcomes Trump's call on Ukraine to halt strikes on diesel facilities - Red Lake Nation News",
@@ -1038,7 +1074,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789434900000
+      "firstAt": 1789434900000,
+      "why": "Diplomatic news, unclear market impact"
     },
     {
       "title": "Recent drone strikes on Western Ukraine supported by relays from Belarusian territory — Demchenko - Ukrinform",
@@ -1058,7 +1095,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789435860000
+      "firstAt": 1789435860000,
+      "why": "War update, no clear price signal"
     },
     {
       "title": "Ukraine war briefing: No energy ceasefire until Russia stops, Zelenskyy confirms after Trump claim - The Guardian",
@@ -1078,7 +1116,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789432570000
+      "firstAt": 1789432570000,
+      "why": "War briefing, unclear immediate impact"
     },
     {
       "title": "US Fed rate hike looms, impacting NSE IPO and global markets; 10-year yields near 5% - The Economic Times",
@@ -1101,7 +1140,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789431443000
+      "firstAt": 1789431443000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Fed hike looms, dollar strengthens"
     },
     {
       "title": "Oil prices rise as Houthis attack Saudi Arabia, Hormuz talks delayed",
@@ -1120,21 +1165,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789432950000
-    },
-    {
-      "title": "Global AI stocks fall as industry chiefs call for slowing development",
-      "link": "https://www.investing.com/news/stock-market-news/ailinked-asian-stocks-slump-after-top-lab-ceos-call-for-slowing-down-technologys-development-4898809",
-      "source": "Investing",
-      "at": 1789433325000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789433325000
+      "firstAt": 1789432950000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Oil rises on Houthi attacks"
     },
     {
       "title": "Russia resupplies military bases in Syria for first time under new deal",
@@ -1154,7 +1190,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789433027000
+      "firstAt": 1789433027000,
+      "why": "Military deal, no clear price impact"
     },
     {
       "title": "Oil prices rise as Saudi pipeline outage, fresh attacks raise supply concerns",
@@ -1173,7 +1210,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789432950000
+      "firstAt": 1789432950000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Oil rises on supply concerns"
     },
     {
       "title": "Gold Holds Decline on Rate Hike Bets - TradingView",
@@ -1191,7 +1233,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789430913000
+      "firstAt": 1789430913000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold declines on rate hike bets"
     },
     {
       "title": "House Dems face Trump tariff dilemma as major Russia sanctions bill heads to floor - wfmd.com",
@@ -1212,7 +1258,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789432570000
+      "firstAt": 1789432570000,
+      "why": "Sanctions bill, unclear immediate impact"
     },
     {
       "title": "Gold holds losses as higher oil stokes September rate hike bets - The Business Times",
@@ -1276,28 +1323,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789429790000
-    },
-    {
-      "title": "U.S. stock futures flat as markets parse slowing AI development, Fed anticipation",
-      "link": "https://www.investing.com/news/stock-market-news/us-stock-futures-flat-as-markets-parse-slowing-ai-development-fed-anticipation-4900683",
-      "source": "Investing",
-      "at": 1789430923000,
-      "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789430923000
     },
     {
       "title": "US 10-Year Treasury Yield Touches 5% Intraday; Rate Hike Expectations Surpass 90% - finance.biggo.com",
@@ -2648,6 +2673,23 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789409625000
+    },
+    {
+      "title": "Gold falls to one-month low as rate-hike bets increase - Economies.com",
+      "link": "https://news.google.com/rss/articles/CBMirAFBVV95cUxNb2JYZTdIeENscGR6Nm8tWXZXVFJ5NkVJT2ZxRU01NkREMHpETmctNDZrbjhkdEw1b3owV3V4UXByYWZwZ05ObmJvWnpCVV9VNEZzRmw4SFlJS01LVVp4bndLRGZjSWgwQlBJeVc1MmlWbWFLTVhSdTZKSXhzTnR1UmQ0dm5LZWhzOWFQUFp4Q3JDTzdjV0FyUGktOUc1eFNacWZUZUdTclBNbmJq?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMirAFBVV95cUxNb2JYZTdIeENscGR6Nm8tWXZXVFJ5NkVJT2ZxRU01NkREMHpETmctNDZrbjhkdEw1b3owV3V4UXByYWZwZ05ObmJvWnpCVV9VNEZzRmw4SFlJS01LVVp4bndLRGZjSWgwQlBJeVc1MmlWbWFLTVhSdTZKSXhzTnR1UmQ0dm5LZWhzOWFQUFp4Q3JDTzdjV0FyUGktOUc1eFNacWZUZUdTclBNbm",
+      "at": 1789411260000,
+      "inst": [
+        "XAU/USD"
+      ],
+      "ccy": [
+        "XAU"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789411260000
     }
   ],
   "sources": [
@@ -2673,7 +2715,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-15T02:03:54.324Z",
-  "headlinesAt": "2026-09-15T02:03:54.324Z",
-  "updatedAt": "2026-09-15T02:03:54.324Z"
+  "calendarAt": "2026-09-15T02:05:25.244Z",
+  "headlinesAt": "2026-09-15T02:05:25.244Z",
+  "updatedAt": "2026-09-15T02:05:25.244Z"
 }
