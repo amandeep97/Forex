@@ -817,7 +817,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789490700000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Overinvested stocks signal potential correction risk"
     },
     {
       "title": "PBE vs. RSPH: Is a Biotech ETF or Equal-Weight Healthcare ETF the Better Choice for Investors?",
@@ -846,7 +850,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789490249000,
-      "_kind": null
+      "_kind": null,
+      "why": "Mixed individual stock moves, no clear index direction"
     },
     {
       "title": "What investors need to do — and mistakes not to make — in today’s uncertain world",
@@ -875,7 +880,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789490100000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Positive recommendation for dividend stocks"
     },
     {
       "title": "Crypto's Long-Sought 'De Minimis' Tax Break Gets a House Markup This Week",
@@ -892,7 +901,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789490075000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "BTC/USDT": "up"
+      },
+      "why": "Favorable tax legislation markup for crypto"
     },
     {
       "title": "Steve Eisman's 'Big Short' Partners Warn Anthropic, SpaceX IPOs Could Hurt Stocks",
@@ -907,7 +920,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789489972000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "IPOs warned to hurt stock prices"
     },
     {
       "title": "Zumiez (ZUMZ) Falls on Weak Results and Lower Outlook, But Is the Selloff Overdone?",
@@ -938,7 +955,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789489800000,
-      "_kind": null
+      "why": "Individual loss report, no market direction"
     },
     {
       "title": "Stablecoin Yield Ban Would Boost Bank Lending by Just 0.02%: White House",
@@ -950,8 +967,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789489740000,
-      "_kind": null
+      "firstAt": 1789489740000
     },
     {
       "title": "Ukraine Strikes Russian Energy Infrastructure as Houthis Make Gains - hudson.org",
@@ -972,7 +988,12 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789487451000,
-      "_kind": null
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Geopolitical conflict boosts safe havens and oil"
     },
     {
       "title": "Canadian dollar extends daily losing streak ahead of expected Fed rate hike - marketscreener.com",
@@ -990,7 +1011,10 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789489713000,
-      "_kind": null
+      "dir": {
+        "USD/CAD": "up"
+      },
+      "why": "Stronger dollar weakens Canadian currency"
     },
     {
       "title": "Tech stocks haven’t been this cheap since the launch of ChatGPT. Should you buy in?",
@@ -1006,7 +1030,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789489560000
+      "firstAt": 1789489560000,
+      "dir": {
+        "US500": "up",
+        "US100": "up"
+      },
+      "why": "Analysts suggest buying undervalued tech stocks"
     },
     {
       "title": "Gold is starting to move on something a lot bigger than inflation",
@@ -1024,7 +1053,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789489260000
+      "firstAt": 1789489260000,
+      "why": "Ambiguous narrative on Fed credibility impact"
     },
     {
       "title": "Opinion: Gold is starting to move on something a lot bigger than inflation - MarketWatch",
@@ -1042,7 +1072,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789489260000
+      "firstAt": 1789489260000,
+      "why": "Ambiguous narrative on Fed credibility impact"
     },
     {
       "title": "Iranian strikes have damaged hundreds of structures at U.S. bases, watchdog says - The Washington Post",
@@ -1062,7 +1093,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789489189000
+      "firstAt": 1789489189000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Escalating conflict boosts safe havens and oil"
     },
     {
       "title": "FTSE 100 today: Stocks slide on weak jobs data, U.S.-Iran rift lifts oil",
@@ -1079,7 +1116,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789489157000
+      "firstAt": 1789489157000,
+      "dir": {
+        "USOIL": "up",
+        "US500": "down"
+      },
+      "why": "Weak jobs data hurts stocks, conflict lifts oil"
     },
     {
       "title": "History Shows Fed Will Deliver Rate Hike Markets Have Locked In - bloomberg.com",
@@ -1102,7 +1144,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789489143000
+      "firstAt": 1789489143000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Rate hike strengthens dollar, weakens gold and FX"
     },
     {
       "title": "19 Russian defense companies remain outside international sanctions, helping sustain Russia’s war machine - Euromaidan Press",
@@ -1122,7 +1170,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789489084000
+      "firstAt": 1789489084000,
+      "why": "Sanctions news lacks immediate market direction"
     },
     {
       "title": "Wall Street may have gotten the ‘slower AI’ story all wrong",
@@ -2442,10 +2491,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-15T16:57:51.932Z",
-  "headlinesAt": "2026-09-15T16:57:51.932Z",
-  "updatedAt": "2026-09-15T16:57:51.932Z"
+  "calendarAt": "2026-09-15T17:00:11.753Z",
+  "headlinesAt": "2026-09-15T17:00:11.753Z",
+  "updatedAt": "2026-09-15T17:00:11.753Z"
 }
