@@ -2,6 +2,31 @@
   "calendar": [],
   "headlines": [
     {
+      "title": "China's August retail sales miss forecast while investment slump deepens, piling pressure on Beijing",
+      "link": "https://www.cnbc.com/2026/09/15/china-august-retail-sales-industrial-output-investment-exports-.html",
+      "source": "CNBC Markets",
+      "desc": "China's investment slump deepened, retail sales growth slowed further in August while industrial output blew past estimates as Beijing warns of supply-demand imbalance.",
+      "at": 1789465420000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789465420000,
+      "_kind": null,
+      "why": "China data weak, no clear USD direction"
+    },
+    {
       "title": "BofA survey shows European investors expect 6.3% equity returns",
       "link": "https://www.investing.com/news/stock-market-news/bofa-survey-shows-european-investors-expect-63-equity-returns-93CH-4901057",
       "source": "Investing",
@@ -32,7 +57,12 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789462761000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "EUR/USD": "down",
+        "USD/JPY": "up"
+      },
+      "why": "Dollar strength, Fed hike bets high"
     },
     {
       "title": "Gold eases on stronger US rate hike odds - marketscreener.com",
@@ -51,7 +81,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789462641000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold eases on stronger rate hike odds"
     },
     {
       "title": "Goldman Sachs expects 25bp Fed hike on Wednesday",
@@ -74,7 +108,13 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789463100000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Goldman expects Fed hike, bullish dollar"
     },
     {
       "title": "Markets are bracing for a rate hike this week. Here's what investors need to know. - Business Insider",
@@ -98,7 +138,13 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789462378000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Markets bracing for rate hike, bullish dollar"
     },
     {
       "title": "‘There might be a silver lining’: My friend’s wife died at 60 after a high-earning career. Can he claim her Social Security?",
@@ -116,7 +162,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789463700000,
-      "_kind": null
+      "_kind": null,
+      "why": "Irrelevant social security news for silver"
     },
     {
       "title": "The Best 3 Nuclear Energy Stocks to Buy and Hold for 2030 and Beyond",
@@ -134,7 +181,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789463700000,
-      "_kind": null
+      "_kind": null,
+      "why": "Nuclear stocks article, no direct market impact"
     },
     {
       "title": "German investor morale continues to rise in September but less than expected - ZEW survey",
@@ -149,7 +197,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789463336000
+      "firstAt": 1789463336000,
+      "dir": {
+        "EUR/USD": "down"
+      },
+      "why": "German sentiment weaker than expected, bearish euro"
     },
     {
       "title": "Morgan Stanley joins Goldman Sachs in 11th-hour switch to forecasting a Fed hike",
@@ -166,7 +218,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789463100000
+      "firstAt": 1789463100000,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Fed hike forecast, bearish for equities"
     },
     {
       "title": "Alnylam's Sell-Off Looks Ugly -- but Wall Street Still Sees a Much Brighter Picture",
@@ -180,7 +236,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789463040000
+      "firstAt": 1789463040000,
+      "why": "Single stock news, no broad market impact"
     },
     {
       "title": "Strive's Bitcoin Stash Hits an Even 25,000 BTC After $36.6 Million Buy",
@@ -196,7 +253,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789462865000
+      "firstAt": 1789462865000,
+      "dir": {
+        "BTC/USDT": "up"
+      },
+      "why": "Large corporate Bitcoin purchase, bullish sentiment"
     },
     {
       "title": "Dollar Dominance: Euro Suffers as Oil Prices Soar and Fed Rate Hike Looms - devdiscourse.com",
@@ -216,7 +277,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 3,
-      "firstAt": 1789462159000
+      "firstAt": 1789462159000,
+      "dir": {
+        "EUR/USD": "down",
+        "USOIL": "up"
+      },
+      "why": "Dollar dominance, oil prices soar"
     },
     {
       "title": "Dollar ticks higher as oil prices climb, Fed rate hike chances firm - The Lufkin Daily News",
@@ -234,7 +300,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789461777000
+      "firstAt": 1789461777000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil prices climb, dollar ticks higher"
     },
     {
       "title": "Gold Prices Fall as Rising Energy Costs Reinforce Rate-Hike Expectations",
@@ -250,7 +320,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789460106000
+      "firstAt": 1789460106000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold falls on rising rate hike expectations"
     },
     {
       "title": "U.S. 10-Year Yield Tops 5% as Markets Bet on Rate Hike - Seoul Economic Daily",
@@ -273,7 +347,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789462159000
+      "firstAt": 1789462159000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Yields top 5%, bullish dollar, bearish gold"
     },
     {
       "title": "'Putin Is Watching:' US House Panel Advances Russia-Iran Sanctions Bill - Radio Free Europe/Radio Liberty",
@@ -1109,29 +1189,6 @@
       "firstAt": 1789451272000
     },
     {
-      "title": "China's August retail sales miss forecast while investment slump deepens, piling pressure on Beijing",
-      "link": "https://www.cnbc.com/2026/09/15/china-august-retail-sales-industrial-output-investment-exports-.html",
-      "source": "CNBC Markets",
-      "desc": "China's investment slump deepened, retail sales growth slowed further in August while industrial output blew past estimates as Beijing warns of supply-demand imbalance.",
-      "at": 1789450874000,
-      "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789450874000
-    },
-    {
       "title": "Gold slips as oil gains strengthen case for elevated interest rates - Reuters",
       "link": "https://news.google.com/rss/articles/CBMingFBVV95cUxNVUtaVGZLb1VLWXI1QlhvSGNHeThxbkxfa3NIdk1SZFA3LWZta2JmdnBUTEtKV0dUSGg4OGVQSHYyV0w5RGY1QXEwaG02OVVoVlJmRG9xc3VwQ2RZSFh2V25neWVqS01jVm9pTFg0U29TcXdueHBXbnRuTmRuOFA0TzlyNEppVUJldE9KVFE4c3FlS04zRXRsaXNCQWhqQQ?oc=5",
       "source": "Wires (macro)",
@@ -1741,10 +1798,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-15T09:43:37.151Z",
-  "updatedAt": "2026-09-15T09:43:37.151Z"
+  "headlinesAt": "2026-09-15T09:44:52.665Z",
+  "updatedAt": "2026-09-15T09:44:52.665Z"
 }
