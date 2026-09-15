@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { fetchLiquidity, ago } from '../utils/liveFeed';
+import { fetchLiquidity, fetchLiquidityStudy, ago } from '../utils/liveFeed';
 
 // ── LIQUIDITY ────────────────────────────────────────────────────────────────
 //
@@ -135,6 +135,48 @@ function Chips({ options, value, onChange, counts }) {
   );
 }
 
+// ── What history says about this kind of hunt ────────────────────────────────
+//
+// Sixty days of two-minute bars, replayed through the same code that produced
+// the row above it. Until this existed every line on this screen was a claim
+// with nothing behind it.
+//
+// The verdict is printed, not a number dressed up as one. "Holds" means it beat
+// the instrument's own baseline AND kept the sign on a later stretch of time AND
+// kept it on instruments the selection never looked at. Anything short of that
+// is named for the way it fell short, because "fades on other instruments" and
+// "not significant" are different warnings and rounding both up to a red dot
+// would lose the distinction.
+const VERDICT_TONE = {
+  holds: { fg:'#22c55e', label:'HOLDS' },
+  'fades in time': { fg:'#f59e0b', label:'FADED IN TIME' },
+  'fades on other instruments': { fg:'#f59e0b', label:'ONLY HERE' },
+  fails: { fg:'#ef4444', label:'FAILED' },
+  'not significant': { fg:'#64748b', label:'NOT SIGNIFICANT' },
+  thin: { fg:'#475569', label:'TOO FEW' },
+  'no time holdout': { fg:'#475569', label:'UNTESTED IN TIME' },
+  'no instrument holdout': { fg:'#475569', label:'UNTESTED ELSEWHERE' },
+};
+
+function Record({ cell }) {
+  if (!cell) return null;
+  const t = VERDICT_TONE[cell.verdict] || { fg:'#475569', label:String(cell.verdict).toUpperCase() };
+  const d = cell.discovery, u = cell.unseen;
+  return (
+    <span style={{ display:'flex', gap:7, alignItems:'center', flexWrap:'wrap',
+      marginTop:4, fontSize:8.5, fontFamily:C.mono }}>
+      <span style={{ fontWeight:900, color:t.fg, border:`1px solid ${t.fg}44`,
+        background:`${t.fg}0d`, borderRadius:3, padding:'0 5px' }}>{t.label}</span>
+      <span style={{ color:'#334155' }}>
+        60d replay
+        {d?.n != null && <> · {d.n} entries</>}
+        {d?.edgeR != null && <> · {d.edgeR > 0 ? '+' : ''}{d.edgeR}R vs baseline</>}
+        {u?.edgeR != null && <> · unseen {u.edgeR > 0 ? '+' : ''}{u.edgeR}R</>}
+      </span>
+    </span>
+  );
+}
+
 // Local clock, 24-hour. The reader's own time, not UTC: a list is checked
 // against the clock on their phone, not against a timezone they have to convert.
 const clockOf = ms => new Date(ms).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
@@ -150,7 +192,7 @@ const clockOf = ms => new Date(ms).toLocaleTimeString([], { hour: '2-digit', min
 // into "Illegal constructor" — a Web API called without `new` — somewhere else
 // entirely. The name costs nothing; the class of bug it avoids is one that only
 // shows up on some engines.
-function HuntEvent({ e, onOpen }) {
+function HuntEvent({ e, onOpen, cell }) {
   const long = e.dir === 'long';
   const col = e.state === 'setup' ? (long ? C.good : C.bad)
             : e.state === 'missed' ? '#64748b' : C.warn;
@@ -194,6 +236,8 @@ function HuntEvent({ e, onOpen }) {
         )}
       </div>
 
+      <Record cell={cell}/>
+
       {e.state === 'setup' && e.entry != null && (
         <div style={{ display:'flex', gap:9, flexWrap:'wrap', marginTop:4, fontSize:9, fontFamily:C.mono }}>
           <span style={{ fontWeight:900, color:col }}>{long ? 'LONG' : 'SHORT'}</span>
@@ -234,6 +278,7 @@ export default function LiquidityView({ onOpen }) {
   const [fState, setFState] = useState('all');
   const [fTf, setFTf] = useState('all');
   const [fClass, setFClass] = useState('all');
+  const [study, setStudy] = useState(null);
   const [tick, setTick] = useState(0);
 
   useEffect(() => {
@@ -243,6 +288,8 @@ export default function LiquidityView({ onOpen }) {
       .catch(e => { if (alive) setErr(e.message); });
     pull();
     const id = setInterval(pull, 60e3);
+    // The study changes once a fortnight; a slow poll is plenty.
+    fetchLiquidityStudy().then(d => { if (alive) setStudy(d); }).catch(() => {});
     // A second timer so "18m ago" keeps counting between fetches. Without it the
     // ages freeze at whatever they were when the file last changed, which reads
     // as a stalled bot.
@@ -338,6 +385,12 @@ export default function LiquidityView({ onOpen }) {
   const tfCounts = countBy(TFS, 'tf');
   const classCounts = countBy(CLASSES, 'cls');
 
+  // The cell that describes this row. The shorter hold, because a hunt you act
+  // on now is a trade measured in tens of minutes, not hours; the longer one is
+  // in the file for anyone reading the study itself.
+  const shortHold = study?.holds?.[0];
+  const cellFor = e => study?.byCell?.[`${e.kind}|${e.session}|${shortHold}`] || null;
+
   const shownEvents = events.filter(e =>
     matchState(e, fState) && matchTf(e, fTf) && matchClass(e, fClass));
 
@@ -372,7 +425,13 @@ export default function LiquidityView({ onOpen }) {
           taken and given back — the stops beyond it were filled and price refused to stay there.
           The reversal is confirmed on 2-minute candles, which is why this cannot be a screen you
           have to sit in front of. <strong style={{ color:C.dim }}>Not a measured edge:</strong> this
-          model has never been tested here, and no version of it has survived a holdout.
+          {study?.entries
+            ? <>Replayed over {study.historyDays} days of 2-minute history: {study.entries} hunts,
+                scored against each instrument's own baseline and held out twice. Each row below
+                carries what history says about its own kind.</>
+            : <><strong style={{ color:C.dim }}>Not a measured edge:</strong> this model has never
+                been tested here, and no version of it has survived a holdout. The replay runs on
+                the VPS and publishes within a fortnight.</>}
           {liq?.eligible && (liq.withLevels ?? 0) < liq.eligible && (
             <span style={{ color:C.warn }}>
               {' '}Coverage is {liq.withLevels} of {liq.eligible} instruments — the rest have not been
@@ -431,7 +490,7 @@ export default function LiquidityView({ onOpen }) {
             </div>
           </div>
         ) : shownEvents.map((e, i) => (
-          <HuntEvent key={`${e.sym}-${e.levelPrice}-${i}`} e={e} onOpen={onOpen}/>
+          <HuntEvent key={`${e.sym}-${e.levelPrice}-${i}`} e={e} onOpen={onOpen} cell={cellFor(e)}/>
         ))}
       </div>
 
