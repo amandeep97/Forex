@@ -17,7 +17,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789506420000,
-      "_kind": null
+      "_kind": null,
+      "why": "Oil volatility noted, no clear direction."
     },
     {
       "title": "Gold dips as dollar, yields, and oil rise a day ahead of Fed’s expected rate hike",
@@ -37,7 +38,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789506242000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "up"
+      },
+      "why": "Gold dips, oil rises."
     },
     {
       "title": "Inflation killed the penny. Now it’s coming for your dollar.",
@@ -61,7 +67,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789506000000,
-      "_kind": null
+      "_kind": null,
+      "why": "Inflation concerns, no clear directional signal."
     },
     {
       "title": "Inflation Fears and Oil Surge Rattle Markets - ETF.com",
@@ -80,7 +87,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789506000000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil surge rattles markets."
     },
     {
       "title": "Opinion: Inflation killed the penny. Now it’s coming for your dollar. - MarketWatch",
@@ -104,7 +115,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789506000000,
-      "_kind": null
+      "_kind": null,
+      "why": "Inflation concerns, no clear directional signal."
     },
     {
       "title": "Why a Federal Reserve rate hike could be a ‘rare win’ for your retirement money",
@@ -128,7 +140,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789505220000,
-      "_kind": null
+      "_kind": null,
+      "why": "Retirement focus, no clear market direction."
     },
     {
       "title": "Economic and event calendar in Asia Wednesday, September 16, 2026. Busy, bit non-impactful.",
@@ -152,7 +165,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789504961000,
-      "_kind": null
+      "why": "Waiting for FOMC, no clear direction."
     },
     {
       "title": "JPMorgan expects investment banking, trading to shine in third quarter",
@@ -164,8 +177,7 @@
       "sev": 1,
       "rel": 1,
       "srcs": 1,
-      "firstAt": 1789504954000,
-      "_kind": null
+      "firstAt": 1789504954000
     },
     {
       "title": "U.S. Treasury hits Russian bank with sanctions over Iran ties - Foundation for Defense of Democracies",
@@ -186,7 +198,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789504818000
+      "firstAt": 1789504818000,
+      "why": "Sanctions news, unclear immediate market impact."
     },
     {
       "title": "Houthi escalation in the Middle East brings new pain at the pump for Americans - fox56.com",
@@ -206,7 +219,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789504754000
+      "firstAt": 1789504754000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Escalation boosts oil and gold."
     },
     {
       "title": "Dollar hits two-week high as traders gear up for anticipated Fed hike on Wednesday",
@@ -228,7 +247,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789504728000
+      "firstAt": 1789504728000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Stronger dollar pressures gold and pairs."
     },
     {
       "title": "Iran war has led to US munitions shortfalls, Pentagon inspector confirms",
@@ -248,7 +273,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789504452000
+      "firstAt": 1789504452000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "War news boosts gold, oil unclear."
     },
     {
       "title": "U.S. stocks lower at close of trade; Dow Jones Industrial Average down 0.63%",
@@ -263,7 +292,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789504262000
+      "firstAt": 1789504262000,
+      "dir": {
+        "US500": "down",
+        "US30": "down"
+      },
+      "why": "Stocks lower, Dow down."
     },
     {
       "title": "Oracle’s stock falls for the fifth day in a row — missing out on the AI bounce",
@@ -278,7 +312,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789504260000
+      "firstAt": 1789504260000,
+      "why": "Single stock news, index impact unclear."
     },
     {
       "title": "Canada stocks lower at close of trade; S&P/TSX Composite down 0.34%",
@@ -295,7 +330,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789504232000
+      "firstAt": 1789504232000,
+      "why": "Canada stocks lower, US impact unclear."
     },
     {
       "title": "Planet Labs wins €25M German satellite contract",
@@ -309,7 +345,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789504227000
+      "firstAt": 1789504227000,
+      "why": "Corporate news, no clear currency impact."
     },
     {
       "title": "Bond Market’s ‘Extreme’ Short Counts on Fed to Deliver Rate Hike - Bloomberg.com",
@@ -1761,6 +1798,6 @@
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-15T21:11:52.383Z",
-  "updatedAt": "2026-09-15T21:11:52.383Z"
+  "headlinesAt": "2026-09-15T21:13:23.874Z",
+  "updatedAt": "2026-09-15T21:13:23.874Z"
 }
