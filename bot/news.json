@@ -17,7 +17,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789509600000,
-      "_kind": null
+      "_kind": null,
+      "why": "Personal finance story, no market impact."
     },
     {
       "title": "Carney courts foreign money pitching Canada as 'safe harbour' at investment summit",
@@ -37,7 +38,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789509274000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USD/CAD": "down"
+      },
+      "why": "Strong CAD from investment pitch, gold neutral."
     },
     {
       "title": "France stalls EU Russia sanctions renewal over oligarch de-listing - France 24",
@@ -58,7 +63,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789507740000,
-      "_kind": null
+      "why": "Sanctions delay unclear for oil and gold."
     },
     {
       "title": "These 4 stocks could benefit most from a $3.2 trillion semiconductor opportunity",
@@ -73,7 +78,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789508400000
+      "firstAt": 1789508400000,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Positive semiconductor outlook boosts tech stocks."
     },
     {
       "title": "How the Iran war is transforming the relationship between stocks, bonds and oil",
@@ -94,7 +103,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789508040000
+      "firstAt": 1789508040000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "War drives oil up, gold safe haven."
     },
     {
       "title": "Houthi escalation in the Middle East brings new pain at the pump for Americans - WSTM",
@@ -114,7 +129,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789508025000
+      "firstAt": 1789508025000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Escalation raises oil prices and gold demand."
     },
     {
       "title": "US Senate crypto bill collapses in blow to industry",
@@ -131,7 +152,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789507908000
+      "firstAt": 1789507908000,
+      "dir": {
+        "BTC/USDT": "down"
+      },
+      "why": "Bill collapse is a blow to crypto."
     },
     {
       "title": "Mexico stocks lower at close of trade; S&P/BMV IPC down 1.11%",
@@ -145,7 +170,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789507803000
+      "firstAt": 1789507803000,
+      "why": "Mexico stock drop irrelevant to US index."
     },
     {
       "title": "Two Democrats cross aisle to help tee up final vote on Russia sanctions bill - The Hill",
@@ -165,7 +191,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789505940000
+      "firstAt": 1789505940000,
+      "why": "Sanctions bill progress unclear for markets."
     },
     {
       "title": "Colombia stocks lower at close of trade; COLCAP down 0.81%",
@@ -179,7 +206,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789507502000
+      "firstAt": 1789507502000,
+      "why": "Colombia stock drop irrelevant to US index."
     },
     {
       "title": "Russia stocks lower at close of trade; MOEX Russia Index down 0.92%",
@@ -193,7 +221,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789507203000
+      "firstAt": 1789507203000,
+      "why": "Russia stock drop irrelevant to US index."
     },
     {
       "title": "Latin American stocks edge higher as oil prices surge",
@@ -210,7 +239,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789507128000
+      "firstAt": 1789507128000,
+      "dir": {
+        "USOIL": "up",
+        "US500": "up"
+      },
+      "why": "Oil surge lifts LatAm stocks, implies US oil up."
     },
     {
       "title": "AI stocks are rebounding. One analyst says there’s no spending slowdown in sight.",
@@ -225,7 +259,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789506900000
+      "firstAt": 1789506900000,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "AI rebound and no slowdown signal bullishness."
     },
     {
       "title": "Northwest European gasoline margins drop over $7 on crude surge",
@@ -242,7 +280,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789506900000
+      "firstAt": 1789506900000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Crude surge explicitly mentioned in headline."
     },
     {
       "title": "If the Fed hikes rates, here's how the stock market might respond - marketplace.org",
@@ -265,7 +308,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789506900000
+      "firstAt": 1789506900000,
+      "why": "Hypothetical scenario, no current directional signal."
     },
     {
       "title": "Gold dips as dollar, yields, and oil rise a day ahead of Fed’s expected rate hike",
@@ -1760,10 +1804,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-15T22:12:52.083Z",
-  "updatedAt": "2026-09-15T22:12:52.083Z"
+  "headlinesAt": "2026-09-15T22:14:38.606Z",
+  "updatedAt": "2026-09-15T22:14:38.606Z"
 }
