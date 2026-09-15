@@ -820,7 +820,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789493072000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold set to fall toward $4,000"
     },
     {
       "title": "Oil prices surge past $108 as Saudi pipeline shutdown continues",
@@ -838,7 +842,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789491675000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil prices surge past $108"
     },
     {
       "title": "AI stocks are rebounding. One analyst says there’s no spending slowdown in sight.",
@@ -854,7 +862,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789492680000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "AI stocks rebounding, no spending slowdown"
     },
     {
       "title": "What American Eagle’s (AEO) Q2 Numbers Say Beyond the Tariff Refund Boost",
@@ -877,7 +889,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789492665000,
-      "_kind": null
+      "_kind": null,
+      "why": "Retail earnings unrelated to macro assets"
     },
     {
       "title": "IBD Stock Of The Day Scorpio Tankers Sails Toward Buy Point As Oil-Needy World Seeks Its Services",
@@ -894,7 +907,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789492644000,
-      "_kind": null
+      "_kind": null,
+      "why": "Tanker stock news, not oil price"
     },
     {
       "title": "Why investors need to learn the difference between uncertainty and risk in today’s market",
@@ -932,7 +946,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789492080000,
-      "_kind": null
+      "_kind": null,
+      "why": "Unclear Fed rate decision impact"
     },
     {
       "title": "Estee Lauder outlook revised to stable by S&P on deleveraging",
@@ -947,7 +962,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789492011000,
-      "_kind": null
+      "_kind": null,
+      "why": "Single stock outlook revision"
     },
     {
       "title": "Imperial Petroleum (IMPP) Posts Robust Q2 Topline Growth Despite Soft Fleet Utilization",
@@ -962,7 +978,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789491878000,
-      "_kind": null
+      "_kind": null,
+      "why": "Single company earnings report"
     },
     {
       "title": "US energy chief says Saudi Arabia oil pipeline should be back online within days",
@@ -979,7 +996,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789491675000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Pipeline back online reduces supply risk"
     },
     {
       "title": "Stock Market Today: Dow Dives, Oil Play Tests New Entry; Bitcoin Falls Ahead Of Clarity Act Vote (Live Coverage)",
@@ -998,7 +1019,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789491131000
+      "firstAt": 1789491131000,
+      "dir": {
+        "US30": "down",
+        "BTC/USDT": "down"
+      },
+      "why": "Dow dives, Bitcoin falls"
     },
     {
       "title": "Israeli ‘influence campaign against Qatar’ launched after October 7 attack",
@@ -1018,7 +1044,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789491046000
+      "firstAt": 1789491046000,
+      "why": "Geopolitical news, unclear immediate price impact"
     },
     {
       "title": "Institutional investors are dangerously overinvested in stocks",
@@ -1033,7 +1060,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789490700000
+      "firstAt": 1789490700000,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Institutional investors dangerously overinvested"
     },
     {
       "title": "Stocks making the biggest moves midday: Skyworks Solutions, Axon, Dave & Buster's, Revvity & more",
@@ -1048,7 +1079,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789490249000
+      "firstAt": 1789490249000,
+      "why": "Individual stock moves, no index direction"
     },
     {
       "title": "Zumiez (ZUMZ) Falls on Weak Results and Lower Outlook, But Is the Selloff Overdone?",
@@ -1077,7 +1109,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789489800000
+      "firstAt": 1789489800000,
+      "why": "Individual investor loss, no market impact"
     },
     {
       "title": "Stablecoin Yield Ban Would Boost Bank Lending by Just 0.02%: White House",
@@ -1109,7 +1142,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789487451000
+      "firstAt": 1789487451000,
+      "why": "Geopolitical conflict, unclear immediate price impact"
     },
     {
       "title": "Canadian dollar extends daily losing streak ahead of expected Fed rate hike - marketscreener.com",
@@ -2480,10 +2514,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-15T17:28:09.565Z",
-  "headlinesAt": "2026-09-15T17:28:09.565Z",
-  "updatedAt": "2026-09-15T17:28:09.565Z"
+  "calendarAt": "2026-09-15T17:29:23.619Z",
+  "headlinesAt": "2026-09-15T17:29:23.619Z",
+  "updatedAt": "2026-09-15T17:29:23.619Z"
 }
