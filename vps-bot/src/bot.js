@@ -22,8 +22,7 @@ const { runHourStudy } = require('./hourStudy');
 const { runMetalsStudy } = require('./metalsStudy');
 const { runRegimeStudy, METHOD_VERSION: REGIME_VERSION } = require('./regimeStudy');
 const { runRegimeSearch, METHOD_VERSION: SEARCH_VERSION } = require('./regimeSearch');
-const { runLiquidityStudy, scoreStudy,
-  PATH: LIQ_STUDY_PATH, METHOD_VERSION: LIQ_STUDY_VERSION } = require('./liquidityStudy');
+const { stepLiquidityStudy } = require('./liquidityStudy');
 const { INSTRUMENTS }  = require('./instruments');
 
 const COT_STUDY_PATH = 'bot/cot-study.json';
@@ -109,7 +108,7 @@ class ForexBot {
     this.metalsStudyRan = false;
     this.regimeStudyRan = false;
     this.regimeSearchRan = false;
-    this.liqStudyRan = false;
+    this.liqStudyDone = false;
     this.alertChecker = new AlertChecker({ oanda: this.oanda, github: this.github, telegram: this.telegram, env, log: this.log.bind(this) });
     this.updater = new Updater({ github: this.github, env, log: this.log.bind(this) });
     this.news = new NewsFetcher({
@@ -212,27 +211,30 @@ class ForexBot {
   // Does the sweep model pay? Replayed over sixty days of two-minute history
   // rather than logged forward for six weeks.
   //
-  // Once a fortnight, and only when the answer on file is missing, stale, or
-  // from an older method. Forty instruments of paged two-minute history is
-  // hundreds of requests and several minutes of arithmetic — not something to
-  // repeat on a tick, and the feed has to keep running throughout.
+  // A couple of instruments per tick until the whole universe is in, then score
+  // and publish.
+  //
+  // This used to be one blocking call that replayed all forty — six hundred
+  // paged requests and several minutes — with everything it had collected in a
+  // local variable and a `liqStudyRan` flag that lived on this instance. The
+  // bot restarts on every deploy, which reset the flag and threw away the
+  // partial run, so during any stretch of active development it started over
+  // and over and finished never. bot/liquidity-study.json was a 404 for its
+  // entire existence, and nothing in the logs said why: each restart printed
+  // the same hopeful "replaying the sweep model over 60 days…" line.
+  //
+  // The state now lives in a file instead of in this process, so a restart
+  // costs the two instruments that were in flight.
   async _maybeLiquidityStudy() {
-    if (this.liqStudyRan) return;
-    const cur = await this.github.readJSON(LIQ_STUDY_PATH).catch(() => null);
-    const age = cur?.content?.at ? Date.now() - Date.parse(cur.content.at) : Infinity;
-    const stale = age >= 14 * 86400e3 || cur?.content?.method !== LIQ_STUDY_VERSION;
-    if (!stale) { this.liqStudyRan = true; return; }
-
-    this.liqStudyRan = true;   // set first, so a failure does not retry every tick
-    this.log('Liquidity study: replaying the sweep model over 60 days…');
-    const raw = await runLiquidityStudy({ oanda: this.oanda, log: this.log.bind(this) });
-    const result = scoreStudy(raw);
-    await this.github.writeJSON(LIQ_STUDY_PATH, result, 'bot: liquidity sweep study', cur?.sha || null);
-
-    const held = (result.cells || []).filter(c => c.verdict === 'holds');
-    this.log(`Liquidity study published — ${result.entries} entries across `
-      + `${result.instruments} instruments, ${held.length} of ${result.cells.length} cells held both holdouts`);
-    for (const c of held.slice(0, 3)) {
+    if (this.liqStudyDone) return;
+    const r = await stepLiquidityStudy({
+      oanda: this.oanda, github: this.github, log: this.log.bind(this),
+    });
+    // 'idle' means a current answer is already published; 'published' means this
+    // tick finished one. Either way there is nothing to do until the fortnight
+    // is up, and that is checked again after the next restart.
+    if (r.state === 'idle' || r.state === 'published') this.liqStudyDone = true;
+    for (const c of (r.result?.cells || []).filter(x => x.verdict === 'holds').slice(0, 3)) {
       this.log(`  ${c.kind} ${c.session} hold ${c.hold}: unseen `
         + `${c.unseen?.edgeR > 0 ? '+' : ''}${c.unseen?.edgeR}R on ${c.unseen?.n}`);
     }

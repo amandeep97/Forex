@@ -43,6 +43,14 @@ const { INSTRUMENTS } = require('./instruments');
 
 const PATH = 'bot/liquidity-study.json';
 
+// Where a part-finished run lives between restarts. See the note above
+// emptyAggregate for why this file is kilobytes rather than megabytes.
+const PROGRESS_PATH = 'bot/liquidity-progress.json';
+
+// Instruments per tick. Each one is around fifteen paged two-minute requests
+// plus the replay, and the feed has to keep running the whole time.
+const PER_STEP = 2;
+
 // Bump when the measurement changes meaning, so a stale answer is discarded
 // rather than shown next to a model it no longer describes.
 const METHOD_VERSION = 1;
@@ -247,18 +255,6 @@ function baselineFor(lib, m2, dir, hold, exit, step = 97) {
   return n ? { expR: sum / n, n } : null;
 }
 
-function score(rows) {
-  if (!rows.length) return null;
-  const rs = rows.map(r => r.r);
-  const mean = rs.reduce((a, b) => a + b, 0) / rs.length;
-  const sd = Math.sqrt(rs.reduce((a, b) => a + (b - mean) ** 2, 0) / Math.max(1, rs.length - 1));
-  return {
-    n: rs.length,
-    expR: +mean.toFixed(4),
-    sd: +sd.toFixed(4),
-    win: +(rs.filter(r => r > 0).length / rs.length).toFixed(3),
-  };
-}
 
 /** Deterministic, class-balanced split. Same reasoning as regimeSearch's. */
 function splitUniverse(list) {
@@ -303,7 +299,8 @@ function verdict(cell) {
  * instruments of paged two-minute history is far too much for one tick and the
  * feed has to keep running while this happens.
  */
-async function runLiquidityStudy({ oanda, log = () => {}, slice = null, universe = null } = {}) {
+async function runLiquidityStudy({ oanda, log = () => {}, slice = null, universe = null,
+  from: fromOpt = null } = {}) {
   // A plain object, NOT the module namespace with a property bolted on. An ES
   // module namespace is frozen, so `lib.exits = ...` throws "object is not
   // extensible" — which a test caught before the first run did.
@@ -316,7 +313,11 @@ async function runLiquidityStudy({ oanda, log = () => {}, slice = null, universe
   const searchSyms = new Set(search.map(s => s.sym));
 
   const todo = slice ? all.filter(i => slice.includes(i.sym)) : all;
-  const from = Date.now() - HISTORY_DAYS * 86400e3;
+  // The window is passed in when a run spans several calls. Recomputing it from
+  // Date.now() on each slice would give instrument 1 and instrument 40 windows
+  // forty minutes apart, and the time holdout — a boundary inside that window —
+  // would mean something slightly different for each of them.
+  const from = fromOpt ?? Date.now() - HISTORY_DAYS * 86400e3;
 
   const collected = [];          // every entry, tagged
   const baselines = {};          // sym|dir|hold -> baseline
@@ -358,57 +359,155 @@ async function runLiquidityStudy({ oanda, log = () => {}, slice = null, universe
 }
 
 /**
- * Turn collected entries into cells with verdicts.
+ * ── Why the study is an AGGREGATE and not a pile of entries ─────────────────
  *
- * Separated from the collection so a run can accumulate across ticks and only
- * score when the whole universe is in — scoring a third of the instruments and
- * publishing it would be a number that changes meaning every hour.
+ * The study was written, tested, wired into the tick and pushed, and then never
+ * produced a file. Not once. The reason was not in the arithmetic: a full run is
+ * sixty days of paged two-minute history for forty instruments — around six
+ * hundred requests and several minutes of replay — held in ONE blocking call,
+ * with everything it had collected living in a local variable. The bot follows
+ * its own branch and restarts on every deploy. `bootedAt` in bot/vps-version.json
+ * equals `checkedAt` to the millisecond, which is what a restart looks like. Each
+ * restart set liqStudyRan back to false and began the whole run again from the
+ * first instrument, and during a stretch of active development no run ever got
+ * to the end. `slice` existed for exactly this and was always called with null.
+ *
+ * Keeping partial RESULTS instead would mean writing tens of thousands of
+ * replayed trades to a file once per slice. So nothing keeps the trades. Every
+ * number the study reports — n, mean, sd, win rate, and the edge over baseline —
+ * comes from sums that can be added to one instrument at a time: count, Σr, Σr²,
+ * wins, and Σ(r − that instrument's baseline). The progress file is a few
+ * kilobytes whether the universe is eight instruments or four hundred, and a
+ * restart costs whatever was in flight rather than everything.
+ *
+ * ── The one thing this changes about the measurement ────────────────────────
+ *
+ * The time holdout used to be the most recent third of the ENTRIES — a quantile
+ * of the data, which cannot be known until all of it is in. It is now a fixed
+ * date: two thirds of the way through the study's window. That is the same
+ * intent and a better version of it. A boundary decided by the data can be moved
+ * by the data; a date cannot, and every slice folds against the same one no
+ * matter what order the instruments were processed in.
  */
-function scoreStudy({ collected, baselines, searchSyms }) {
-  const seen = new Set(searchSyms);
-  const kinds = [...new Set(collected.map(c => c.kind))].sort();
-  // The sessions that actually appear, read from the entries the same way the
-  // kinds are. There is no session list in this file any more — the one
-  // definition is shared/sessions.mjs, and the label rode in on each entry.
-  const sessions = [...new Set(collected.map(c => c.session))].sort()
-    .map(id => ({ id, label: collected.find(c => c.session === id)?.sessionLabel || id }));
-  const cells = [];
 
-  // The time holdout: the most recent third, held back from selection.
-  const times = collected.map(c => c.t).sort((a, b) => a - b);
-  const cut = times.length ? times[Math.floor(times.length * 0.67)] : 0;
+const bucket = () => ({ n: 0, sum: 0, sumsq: 0, wins: 0, edgeSum: 0, edgeN: 0 });
 
-  for (const hold of HOLDS) {
-    for (const kind of kinds) {
-      for (const s of sessions) {
-        const mine = collected.filter(c => c.hold === hold && c.kind === kind && c.session === s.id);
-        if (!mine.length) continue;
+/** A fresh, empty aggregate for a window. */
+function emptyAggregate({ from, to = Date.now(), searchSyms = [] } = {}) {
+  return {
+    method: METHOD_VERSION,
+    from, to,
+    // Two thirds of the way through the window, in time.
+    cut: from + Math.round((to - from) * 0.67),
+    searchSyms: [...searchSyms],
+    done: [],
+    syms: [],
+    entries: 0,
+    cells: {},
+  };
+}
 
-        const edge = rows => {
-          const sc = score(rows);
-          if (!sc) return null;
-          // Each entry is compared to ITS OWN instrument's baseline, then
-          // averaged. Pooling first and subtracting one baseline would let a
-          // drifty instrument's baseline stand in for a quiet one's.
-          const deltas = rows.map(r => {
-            const b = baselines[`${r.sym}|${r.dir}|${r.hold}`];
-            return b ? r.r - b.expR : null;
-          }).filter(x => x != null);
-          const edgeR = deltas.length
-            ? deltas.reduce((a, b) => a + b, 0) / deltas.length : null;
-          return { ...sc, edgeR: edgeR == null ? null : +edgeR.toFixed(4) };
-        };
+/** Add one observation to a bucket. `edge` may be null when no baseline exists. */
+function addTo(b, r, edge) {
+  b.n++; b.sum += r; b.sumsq += r * r;
+  if (r > 0) b.wins++;
+  if (edge != null) { b.edgeSum += edge; b.edgeN++; }
+}
 
-        const discovery = edge(mine.filter(c => seen.has(c.sym) && c.t < cut));
-        const time = edge(mine.filter(c => seen.has(c.sym) && c.t >= cut));
-        const unseen = edge(mine.filter(c => !seen.has(c.sym)));
+/** Turn a bucket back into the shape verdict() and the app expect. */
+function readBucket(b) {
+  if (!b || !b.n) return null;
+  const mean = b.sum / b.n;
+  // The population form would understate the spread and make every z larger,
+  // which on a significance test is the direction that invents results.
+  const varr = b.n > 1 ? Math.max(0, (b.sumsq - b.n * mean * mean) / (b.n - 1)) : 0;
+  return {
+    n: b.n,
+    expR: +mean.toFixed(4),
+    sd: +Math.sqrt(varr).toFixed(4),
+    win: +(b.wins / b.n).toFixed(3),
+    edgeR: b.edgeN ? +(b.edgeSum / b.edgeN).toFixed(4) : null,
+  };
+}
 
-        const cell = { hold, kind, session: s.id, sessionLabel: s.label, discovery, time, unseen };
-        cell.verdict = verdict(cell);
-        cells.push(cell);
-      }
+/**
+ * Fold one slice's entries into the running aggregate.
+ *
+ * Idempotent per instrument: an instrument already in `done` is skipped, so a
+ * restart that re-runs a slice it had already folded cannot double-count it into
+ * significance.
+ */
+function foldInto(agg, { collected = [], baselines = {} } = {}) {
+  const seen = new Set(agg.searchSyms);
+  const already = new Set(agg.done);
+  for (const c of collected) {
+    if (already.has(c.sym)) continue;
+    const key = `${c.hold}|${c.kind}|${c.session}`;
+    let cell = agg.cells[key];
+    if (!cell) {
+      cell = agg.cells[key] = {
+        hold: c.hold, kind: c.kind, session: c.session,
+        sessionLabel: c.sessionLabel || c.session,
+        discovery: bucket(), time: bucket(), unseen: bucket(),
+      };
     }
+    // Each entry against ITS OWN instrument's baseline. Pooling first and
+    // subtracting one baseline would let a drifty instrument's baseline stand
+    // in for a quiet one's.
+    const b = baselines[`${c.sym}|${c.dir}|${c.hold}`];
+    const edge = b ? c.r - b.expR : null;
+
+    // Three splits, and an entry belongs to exactly one. The instrument holdout
+    // is checked first because it is the one that cannot be fitted: an
+    // instrument never looked at during selection contributes to `unseen` and to
+    // nothing else, whichever side of the date it falls on.
+    if (!seen.has(c.sym)) addTo(cell.unseen, c.r, edge);
+    else if (c.t < agg.cut) addTo(cell.discovery, c.r, edge);
+    else addTo(cell.time, c.r, edge);
+
+    agg.entries++;
+    if (!agg.syms.includes(c.sym)) agg.syms.push(c.sym);
   }
+  return agg;
+}
+
+/** Mark instruments as folded, so a re-run of the same slice is a no-op. */
+function markDone(agg, syms) {
+  for (const s of syms) if (!agg.done.includes(s)) agg.done.push(s);
+  return agg;
+}
+
+/**
+ * Turn an aggregate into cells with verdicts.
+ *
+ * Also accepts the one-shot shape — `{ collected, baselines, searchSyms }` — by
+ * folding it into a fresh aggregate first, so there is ONE scoring
+ * implementation rather than one for the incremental path and another for the
+ * direct one. Two would be free to disagree, and the disagreement would be
+ * invisible: both produce a plausible table.
+ */
+function scoreStudy(input) {
+  let agg = input;
+  if (Array.isArray(input?.collected)) {
+    const times = input.collected.map(c => c.t).filter(Number.isFinite);
+    agg = emptyAggregate({
+      from: input.from ?? (times.length ? Math.min(...times) : 0),
+      to: input.to ?? (times.length ? Math.max(...times) + 1 : 1),
+      searchSyms: input.searchSyms || [],
+    });
+    foldInto(agg, input);
+  }
+
+  const cells = Object.values(agg.cells || {}).map(c => {
+    const cell = {
+      hold: c.hold, kind: c.kind, session: c.session, sessionLabel: c.sessionLabel,
+      discovery: readBucket(c.discovery),
+      time: readBucket(c.time),
+      unseen: readBucket(c.unseen),
+    };
+    cell.verdict = verdict(cell);
+    return cell;
+  });
 
   cells.sort((a, b) => (b.discovery?.edgeR ?? -9) - (a.discovery?.edgeR ?? -9));
   return {
@@ -418,16 +517,97 @@ function scoreStudy({ collected, baselines, searchSyms }) {
     holds: HOLDS,
     cellsTested: CELLS,
     strictZ: +strictZ().toFixed(3),
-    entries: collected.length,
-    instruments: [...new Set(collected.map(c => c.sym))].length,
-    searchHalf: searchSyms,
+    entries: agg.entries || 0,
+    instruments: (agg.syms || []).length,
+    // The date the time holdout starts, published rather than implied. A
+    // holdout whose boundary is not stated cannot be checked by anyone reading
+    // the result.
+    holdoutFrom: agg.cut ? new Date(agg.cut).toISOString() : null,
+    searchHalf: agg.searchSyms || [],
     cells,
   };
 }
 
+/**
+ * One step of a run: fetch and replay a few instruments, fold them in, save.
+ *
+ * This is the piece that was missing. The study is not a job that takes several
+ * minutes once a fortnight — it is a job that takes several minutes across as
+ * many ticks as it needs, because the process it runs in does not live for
+ * several minutes when anyone is deploying.
+ *
+ * `perStep` is two, not the whole universe. Each instrument is fifteen paged
+ * two-minute requests, and the feed is running throughout.
+ *
+ * @returns {Promise<{state:'idle'|'running'|'published', done:number, total:number,
+ *   result?:object}>}
+ */
+async function stepLiquidityStudy({ oanda, github, log = () => {}, perStep = PER_STEP,
+  universe = null, now = Date.now() } = {}) {
+  const all = (universe || INSTRUMENTS.filter(i => i.can?.candles && i.oanda))
+    .map(i => ({ sym: i.sym, oanda: i.oanda, cls: i.cls }));
+
+  // Is there a published answer already, and is it still current?
+  const cur = await github.readJSON(PATH).catch(() => null);
+  const age = cur?.content?.at ? now - Date.parse(cur.content.at) : Infinity;
+  if (age < 14 * 86400e3 && cur?.content?.method === METHOD_VERSION) {
+    return { state: 'idle', done: 0, total: 0 };
+  }
+
+  // Resume, or start. A progress file from an older method is discarded rather
+  // than continued: half a run measured one way and half the other is a number
+  // that describes nothing, and it would look completely normal.
+  const prog = await github.readJSON(PROGRESS_PATH).catch(() => null);
+  let agg = prog?.content;
+  if (!agg || agg.method !== METHOD_VERSION || !agg.cells) {
+    const { search } = splitUniverse(all);
+    agg = emptyAggregate({
+      from: now - HISTORY_DAYS * 86400e3,
+      to: now,
+      searchSyms: search.map(x => x.sym),
+    });
+    log(`Liquidity study: starting a fresh ${HISTORY_DAYS}-day run over ${all.length} instruments`);
+  }
+
+  const done = new Set(agg.done);
+  const todo = all.filter(i => !done.has(i.sym)).slice(0, perStep);
+
+  if (todo.length) {
+    const raw = await runLiquidityStudy({
+      oanda, log, universe: all, from: agg.from,
+      slice: todo.map(i => i.sym),
+    });
+    foldInto(agg, raw);
+    // Marked done whether or not they yielded entries. An instrument with too
+    // little history contributes nothing and must still count as processed, or
+    // the run retries it every tick and never reaches the end.
+    markDone(agg, todo.map(i => i.sym));
+    await github.writeJSON(PROGRESS_PATH, agg, 'bot: liquidity study progress',
+      prog?.sha || null, { pretty: false });
+  }
+
+  if (agg.done.length < all.length) {
+    log(`Liquidity study: ${agg.done.length}/${all.length} instruments, ${agg.entries} entries so far`);
+    return { state: 'running', done: agg.done.length, total: all.length };
+  }
+
+  const result = scoreStudy(agg);
+  await github.writeJSON(PATH, result, 'bot: liquidity sweep study', cur?.sha || null);
+  // The progress file is emptied rather than left behind, so the next run after
+  // the fortnight is up starts clean instead of resuming a finished one.
+  await github.writeJSON(PROGRESS_PATH, { method: METHOD_VERSION, done: [], cells: {} },
+    'bot: liquidity study done', null, { pretty: false }).catch(() => {});
+
+  const held = (result.cells || []).filter(c => c.verdict === 'holds');
+  log(`Liquidity study published — ${result.entries} entries across ${result.instruments} `
+    + `instruments, ${held.length} of ${result.cells.length} cells held both holdouts`);
+  return { state: 'published', done: all.length, total: all.length, result };
+}
+
 module.exports = {
   runLiquidityStudy, scoreStudy, loadLib, replayOne, buildLevelTimeline, baselineFor,
-  splitUniverse, verdict, score, atrOf, probit, strictZ,
+  splitUniverse, verdict, atrOf, probit, strictZ,
+  stepLiquidityStudy, emptyAggregate, foldInto, markDone, readBucket, PROGRESS_PATH, PER_STEP,
   PATH, METHOD_VERSION, HOLDS, HISTORY_DAYS,
   MIN_DISCOVERY, MIN_TIME_HOLDOUT, MIN_UNSEEN, CELLS,
 };
