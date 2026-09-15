@@ -897,11 +897,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789456300000,
-      "_kind": null,
-      "dir": {
-        "US500": "down"
-      },
-      "why": "Asian stocks slip, AI rebound fades"
+      "_kind": null
     },
     {
       "title": "Gold clings to $4,320 support amid bearish momentum: Live levels",
@@ -918,11 +914,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789456274000,
-      "_kind": null,
-      "dir": {
-        "XAU/USD": "down"
-      },
-      "why": "Gold bearish momentum, clinging to support"
+      "_kind": null
     },
     {
       "title": "Brent Oil coils at $107.65 with ADX at 38: Breakout or trap?",
@@ -940,8 +932,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789456283000,
-      "_kind": null,
-      "why": "Oil coils, breakout or trap unclear"
+      "_kind": null
     },
     {
       "title": "London Gas Oil nears resistance with bearish divergence: Live levels",
@@ -958,11 +949,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789456274000,
-      "_kind": null,
-      "dir": {
-        "USOIL": "down"
-      },
-      "why": "Gas Oil bearish divergence near resistance"
+      "_kind": null
     },
     {
       "title": "Natural Gas stalls at $2.899 resistance: Live levels",
@@ -977,8 +964,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789456274000,
-      "_kind": null,
-      "why": "Natural Gas stalls at resistance"
+      "_kind": null
     },
     {
       "title": "European stocks slip ahead of Fed meeting amid expanding Gulf conflict",
@@ -995,11 +981,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789455844000,
-      "_kind": null,
-      "dir": {
-        "US500": "down"
-      },
-      "why": "European stocks slip ahead of Fed"
+      "_kind": null
     },
     {
       "title": "BofA Names Top Chinese EV Stocks for European Market Penetration",
@@ -1014,8 +996,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789455844000,
-      "_kind": null,
-      "why": "Chinese EV stocks, no US impact"
+      "_kind": null
     },
     {
       "title": "Ukraine Strikes Russian Oil Refinery as Putin Resists Energy Truce Ahead of Winter - kyivpost.com",
@@ -1036,12 +1017,7 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789453487000,
-      "_kind": null,
-      "dir": {
-        "USOIL": "up",
-        "UKOIL": "up"
-      },
-      "why": "Ukraine strikes refinery, oil supply risk"
+      "_kind": null
     },
     {
       "title": "Japan stocks lower at close of trade; Nikkei 225 down 0.00%",
@@ -1059,8 +1035,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789455605000,
-      "_kind": null,
-      "why": "Japan stocks lower, no US impact"
+      "_kind": null
     },
     {
       "title": "US textile industry accelerates shift toward new markets amid tariffs, labor shortages, and innovation - Global Sources",
@@ -1073,8 +1048,7 @@
       "sev": 2,
       "rel": 1,
       "srcs": 1,
-      "firstAt": 1789455505000,
-      "_kind": null
+      "firstAt": 1789455505000
     },
     {
       "title": "French inflation rises to 2.6% in August",
@@ -1096,8 +1070,27 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789455272000,
-      "why": "French inflation, no clear direction"
+      "firstAt": 1789455272000
+    },
+    {
+      "title": "Palestine weekly: Settlement sanctions spark diplomatic crisis",
+      "link": "https://www.aljazeera.com/news/2026/9/15/palestine-weekly-settlement-sanctions-spark-diplomatic-crisis?traffic_source=rss",
+      "source": "Al Jazeera",
+      "desc": "New B'Tselem report frames events on ground as Israel's 'project of elimination' of Palestinians.",
+      "at": 1789455230000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789455230000
     },
     {
       "title": "Wickes sees improved Q3 trading after first-half revenue growth",
@@ -1132,13 +1125,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789455072000,
-      "dir": {
-        "XAU/USD": "down",
-        "EUR/USD": "down",
-        "GBP/USD": "down"
-      },
-      "why": "Dollar strengthens, bearish for pairs"
+      "firstAt": 1789455072000
     },
     {
       "title": "Australia stocks lower at close of trade; S&P/ASX 200 down 0.88%",
@@ -1155,11 +1142,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789453804000,
-      "dir": {
-        "AUD/USD": "down"
-      },
-      "why": "Australia stocks lower, AUD pressure"
+      "firstAt": 1789453804000
     },
     {
       "title": "What are the main events for today?",
@@ -1177,8 +1160,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789453214000,
-      "why": "UK employment in-line, no direction"
+      "firstAt": 1789453214000
     },
     {
       "title": "UK labour market cools further as payrolls fall and wage growth slows",
@@ -1201,8 +1183,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789453166000,
-      "why": "UK labour market cools, mixed signals"
+      "firstAt": 1789453166000
     },
     {
       "title": "Gold slips below $4,300 as firmer dollar, Fed hike bets pressure bullion",
@@ -1219,11 +1200,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789452475000,
-      "dir": {
-        "XAU/USD": "down"
-      },
-      "why": "Gold slips, firmer dollar pressure"
+      "firstAt": 1789452475000
     },
     {
       "title": "US blacklists Russia’s 2nd-largest VTB Bank over Iran sanctions evasion - Türkiye Today",
@@ -1551,6 +1528,26 @@
       "firstAt": 1789447017000
     },
     {
+      "title": "Russia sanctions bill co-authored by late Senator Graham advances in House Committee - Українська правда",
+      "link": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE92bERSYU83TEZsM01SdVBGQ1F2VzZ1eXVhSFBuRGNiazY2bEI0UjBabDhYLW5pZlFjbld4NHFDSHpKcUF2cVhoS0tHeUFJSU90ay0yaU9KczktSFNFQ0ZuanBraV_SAXBBVV95cUxPbEVVem14NU9JcjFVbWJRMmdEb0I4TC11NGtTR1BuLTNtblY1LXVySXR0ZTlNaUNua1hGZlEyQmVOdTR4ZUxfUkc2QzF1bGxoc0tKZHQzbVBacWxLNlhSQTJjcUNaSnFVOEpSWm9EREg4?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiZEFVX3lxTE92bERSYU83TEZsM01SdVBGQ1F2VzZ1eXVhSFBuRGNiazY2bEI0UjBabDhYLW5pZlFjbld4NHFDSHpKcUF2cVhoS0tHeUFJSU90ay0yaU9KczktSFNFQ0ZuanBraV_SAXBBVV95cUxPbEVVem14NU9JcjFVbWJRMmdEb0I4TC11NGtTR1BuLTNtblY1LXVySXR0ZTlNaUNua1hGZlEyQmVOdTR4ZU",
+      "at": 1789446660000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789446660000
+    },
+    {
       "title": "Gold falls on growing Fed rate hike bets ahead of policy meeting - アラブニュース",
       "link": "https://news.google.com/rss/articles/CBMirAFBVV95cUxNM0tBOWlfQm0tVThWSlVtTnc3SEpwaUNtYVBKelJjQ19RZnhoMFZ6ODhEMThYNUdhQnRvNmE4Q1JudmFjYTg5ckpEdTNsWFd0NXJwU2VOOTZUSXJxa3gteUQtOTVWMWNUR1piSWo1MDRmUGNrdUMxZHNUbGFSdmVUTE44SGpuaEtvbU1nNHJqYkRWTG1fMElkUm12Sk5fVVZKa2std2h5d3JUMVVv?oc=5",
       "source": "Wires (macro)",
@@ -1567,6 +1564,26 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789446224000
+    },
+    {
+      "title": "Russia strikes Kyiv gas station as 1 person hospitalized - The Kyiv Independent",
+      "link": "https://news.google.com/rss/articles/CBMimgFBVV95cUxPRzVMdHlRYVkzYXd0WjJkX19FYy04MjBnclVnWUJzaGwwNi1fdkFDa3FTN01ZUWpTLVFqaVkxem5fc1l6TDJQV2VLM3VqTUhXM0pFUXFtYWF0bl9FaXhxVDRJcDVKc0xaSjc3RXlxNzJJN2lvYlpjV0xCSUpHZ3lXSUxaUWVpY183YXMwa1dNNmZNZXlnY056eUJB?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMimgFBVV95cUxPRzVMdHlRYVkzYXd0WjJkX19FYy04MjBnclVnWUJzaGwwNi1fdkFDa3FTN01ZUWpTLVFqaVkxem5fc1l6TDJQV2VLM3VqTUhXM0pFUXFtYWF0bl9FaXhxVDRJcDVKc0xaSjc3RXlxNzJJN2lvYlpjV0xCSUpHZ3lXSUxaUWVpY183YXMwa1dNNmZNZXlnY056eUJB?oc=5\" target=\"_blank\"",
+      "at": 1789445254000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789445254000
     },
     {
       "title": "Russia-Iran Sanctions Bill Could Reach Trump’s Desk Within Days, Says Congressman - Eurasia Review",
@@ -2345,26 +2362,6 @@
       "firstAt": 1789425120000
     },
     {
-      "title": "Zelenskyy says Ukraine ready for de-escalation if Russia reciprocates - Türkiye Today",
-      "link": "https://news.google.com/rss/articles/CBMisgFBVV95cUxOY1hSNEM0MGpxb0tnaEtFVjUxaXNzZnFNQkVtOGpRazJEMlpOZHJuUHJXcnc5VXJkMG12SHdVY3RJVjVUYmJzNkxQelkyLW5pVUJSWmR5RWluOWc5ZUtxRm9IZGhza0dRWFVhdnFWbHozMlU1UWpKSjVTVVpuNzRuMHlmR0pYQUFhUjFlRTdPMnFTVV96bzl1bHRSa045bHpjdmlEUHpuWU5ZVXZ1NmJ6eGpB?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMisgFBVV95cUxOY1hSNEM0MGpxb0tnaEtFVjUxaXNzZnFNQkVtOGpRazJEMlpOZHJuUHJXcnc5VXJkMG12SHdVY3RJVjVUYmJzNkxQelkyLW5pVUJSWmR5RWluOWc5ZUtxRm9IZGhza0dRWFVhdnFWbHozMlU1UWpKSjVTVVpuNzRuMHlmR0pYQUFhUjFlRTdPMnFTVV96bzl1bHRSa045bHpjdmlEUHpuWU5ZVX",
-      "at": 1789425473000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789423069000
-    },
-    {
       "title": "Ukraine signals openness to pausing strikes on Russian energy targets - Semafor",
       "link": "https://news.google.com/rss/articles/CBMisgFBVV95cUxOWTQ5SHpkVFBWSEhORHVIZ1VKbkRKcXdzMGdJYnF4SmdJdEpiYmc3dEsxamV5RF9jb2I0blJnYkpOX0dZZ0EzbEg2eTlWMGdvRWJlRzF6a1QwN2ZvZUwtN2hjMFZFY19BX2JhZ3ZaN0pYZ0ZyX1FzX2J2dzRsU01DSXNNbUEwN0l1M2pteGszRDdCLXFkckJTOUV6aW5QTXdrSnV6WkJSLVR4M2o3YXA5MHRR?oc=5",
       "source": "Wires (geo)",
@@ -2618,49 +2615,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789421460000
-    },
-    {
-      "title": "US 10-year Treasury yield breaches 5% as inflation, supply worries mount - The Straits Times",
-      "link": "https://news.google.com/rss/articles/CBMirAFBVV95cUxPeTd4dzBITFI4V0w2MGZFMl9QcXRnVmxrcEUzXzNnV05sZUg0dHItWUVjWXVVUWpYUTJPYTdNTF94U3NUaXBjeWFDalB2Qi03c0ZJZURudnJ5RzZlWGVFZGtjMkZJcFZiQmZwUnNGaHJHTlhxb295Sk1DZUk4N2VBTlRrVFZNTUJCd192MTRCaDdGdVp3S3NzaEpFeTgyNm9TSGU4a3NwTlZjMlZi?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMirAFBVV95cUxPeTd4dzBITFI4V0w2MGZFMl9QcXRnVmxrcEUzXzNnV05sZUg0dHItWUVjWXVVUWpYUTJPYTdNTF94U3NUaXBjeWFDalB2Qi03c0ZJZURudnJ5RzZlWGVFZGtjMkZJcFZiQmZwUnNGaHJHTlhxb295Sk1DZUk4N2VBTlRrVFZNTUJCd192MTRCaDdGdVp3S3NzaEpFeTgyNm9TSGU4a3NwTlZjMl",
-      "at": 1789420980000,
-      "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789418820000
-    },
-    {
-      "title": "Why talks in Oman between Iran and Gulf Arab states were postponed",
-      "link": "https://www.aljazeera.com/video/newsfeed/2026/9/14/why-talks-in-oman-between-iran-and-gulf-arab-states-were-postponed?traffic_source=rss",
-      "source": "Al Jazeera",
-      "desc": "Hopes for a breakthrough on the Iran war have taken a hit after talks in Oman between Iran-Gulf nations were postponed.",
-      "at": 1789420800000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789420800000
     }
   ],
   "sources": [
@@ -2683,10 +2637,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-15T07:27:37.983Z",
-  "headlinesAt": "2026-09-15T07:27:37.983Z",
-  "updatedAt": "2026-09-15T07:27:37.983Z"
+  "calendarAt": "2026-09-15T07:28:53.982Z",
+  "headlinesAt": "2026-09-15T07:28:53.982Z",
+  "updatedAt": "2026-09-15T07:28:53.982Z"
 }
