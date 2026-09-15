@@ -900,14 +900,18 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789459587000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "GBP/USD": "down"
+      },
+      "why": "Pound falls on disappointing UK jobs data"
     },
     {
       "title": "U.S. Sanctions Russia’s VTB Bank for Assisting Iran - IranWire",
       "link": "https://news.google.com/rss/articles/CBMijgFBVV95cUxNR2RnZGpUVElkWEhxSFV0ZXZtNnpGTXVFMWl4aGZlbl9uTWE0cDVCZkVGNTc2N1R1dktsWlBXRkJQOUJGZ05BZGZJdVQwSmdJWUxGS2dtRFFOMHZQc0ljNlFWdTRJc253OUhlbmM4ZWxvRHIyRW9KZUZaY2xqTW9uSmNEUEdYN19pSG1INUp3?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMijgFBVV95cUxNR2RnZGpUVElkWEhxSFV0ZXZtNnpGTXVFMWl4aGZlbl9uTWE0cDVCZkVGNTc2N1R1dktsWlBXRkJQOUJGZ05BZGZJdVQwSmdJWUxGS2dtRFFOMHZQc0ljNlFWdTRJc253OUhlbmM4ZWxvRHIyRW9KZUZaY2xqTW9uSmNEUEdYN19pSG1INUp3?oc=5\" target=\"_blank\">U.S. Sanctions ",
-      "at": 1789458885000,
+      "at": 1789459425000,
       "inst": [
         "XAU/USD",
         "USOIL",
@@ -921,7 +925,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789458477000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions news lacks clear immediate price direction"
     },
     {
       "title": "US textile industry accelerates shift toward new markets amid tariffs, labor shortages, and innovation - Global Sources",
@@ -955,7 +960,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789458567000,
-      "_kind": null
+      "_kind": null,
+      "why": "Euro decline vs CAD doesn't specify USD pair"
     },
     {
       "title": "Asian currencies weaken as yen pulls back, dollar nears two-week high",
@@ -973,7 +979,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789458517000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USD/JPY": "up"
+      },
+      "why": "Dollar nears high, yen pulls back"
     },
     {
       "title": "US Sanctions Russia’s VTB Bank Over Iran Sanctions Evasion, Banking Ties - The Media Line",
@@ -994,7 +1004,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789458477000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions news lacks clear immediate price direction"
     },
     {
       "title": "European sovereign debt pressured as traders price ECB hikes through early 2027",
@@ -1009,9 +1020,10 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789458422000,
-      "_kind": null
+      "srcs": 2,
+      "firstAt": 1789456733000,
+      "_kind": null,
+      "why": "Debt pressure doesn't clearly imply FX direction"
     },
     {
       "title": "Bond selloff drives US benchmark beyond 5%; stocks rattled",
@@ -1025,7 +1037,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789458168000
+      "firstAt": 1789458168000,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Bond selloff rattles stocks"
     },
     {
       "title": "The Fed may be on the verge of a serious mistake, prominent economists warn",
@@ -1048,7 +1064,30 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789457340000
+      "firstAt": 1789457340000,
+      "why": "Fed warning lacks clear immediate directional impact"
+    },
+    {
+      "title": "European Markets Tumble Amid Oil Price Surge and Rate Hike Fears - devdiscourse.com",
+      "link": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQclRMdHQ4ZGVObWlDZVJxWmFwM0NEaHVoTjVEdHMtOWJBZUliQm9TSXRJVGxTY1diRmtlYV9ZQm1PekdiMEZBZjNVT2piaHJ0M2RRNktsSVlWd0tNOUhhSjNXTkZzeDRnVEZrS2pmcDQtU1ZDWTRFYURkZVhMeUVBczZhdWRqaUdTSkdIYkRhQ1pyTEtfdmpnVXF5ZGZlbEdKcHVCUi04bUE2a1NSeE03WlRCMDE1MWNDLUHSAb8BQVVfeXFMTnQ4ZUVBNEJvTERkU3pOaVdOS2lST1BUeUZVZkZzLVpXM2RDVmZ1dHF5b2lWVHE2bU5SREVRRjJLSC0yTW9BdllNTDFVeFJMQUVMWGJpR1hLWVJkLUpuSnN4ZGNteEdkU1RSN1ZHQjg2bkoyX2tfcVpJX1J5WXlZOUNXOUVxTHMzSmVZMk1TOVJBVmx1NzUzZGpNX1VzSjdyZWxlUFk4enVXeE9yMzZab084eC1kSlY0UlcyWlVtbWM?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiugFBVV95cUxQclRMdHQ4ZGVObWlDZVJxWmFwM0NEaHVoTjVEdHMtOWJBZUliQm9TSXRJVGxTY1diRmtlYV9ZQm1PekdiMEZBZjNVT2piaHJ0M2RRNktsSVlWd0tNOUhhSjNXTkZzeDRnVEZrS2pmcDQtU1ZDWTRFYURkZVhMeUVBczZhdWRqaUdTSkdIYkRhQ1pyTEtfdmpnVXF5ZGZlbEdKcHVCUi04bUE2a1",
+      "at": 1789456733000,
+      "inst": [
+        "USOIL"
+      ],
+      "ccy": [
+        "OIL",
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1789456733000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil price surge mentioned explicitly"
     },
     {
       "title": "Israel and Saudi Arabia discuss intelligence aid amid growing Houthi attacks - The Jerusalem Post",
@@ -1068,7 +1107,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789456511000
+      "firstAt": 1789456511000,
+      "why": "Geopolitical discussion lacks clear immediate price directio"
     },
     {
       "title": "Silver tests $63.08 Fibonacci support in bearish slide: Live",
@@ -1084,7 +1124,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789456274000
+      "firstAt": 1789456274000,
+      "dir": {
+        "XAG/USD": "down"
+      },
+      "why": "Silver in bearish slide testing support"
     },
     {
       "title": "Gold clings to $4,320 support amid bearish momentum: Live levels",
@@ -1100,7 +1144,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789456274000
+      "firstAt": 1789456274000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold clings to support amid bearish momentum"
     },
     {
       "title": "Crude Oil WTI consolidates near $105 resistance: Live levels",
@@ -1117,7 +1165,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789456274000
+      "firstAt": 1789456274000,
+      "why": "Consolidation near resistance implies no clear direction"
     },
     {
       "title": "Brent Oil coils at $107.65 with ADX at 38: Breakout or trap?",
@@ -1134,7 +1183,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789456283000
+      "firstAt": 1789456283000,
+      "why": "Coiling at level implies no clear direction"
     },
     {
       "title": "London Gas Oil nears resistance with bearish divergence: Live levels",
@@ -1150,7 +1200,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789456274000
+      "firstAt": 1789456274000,
+      "why": "Gas oil near resistance, not crude oil"
     },
     {
       "title": "Natural Gas stalls at $2.899 resistance: Live levels",
@@ -1345,26 +1396,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789452967000
-    },
-    {
-      "title": "SCO anti-terrorism group condemns latest US strikes on Iran - muslimnetwork.tv",
-      "link": "https://news.google.com/rss/articles/CBMikwFBVV95cUxOQkZDeDVNWkJUemR6ejhYM1RHZDJPQWctYXVDcDZfYVE1MUc4Tm4yNjBXM2c1cDJQM2dyUkYtQW85VFFmeVpwaXBYRjlENFdRSXVDeVkyX2lnLWhScENKVzRIZDdDbnFhb0dqNUhDYWhQMkg3Y2tGdW9yOTZ6Y0JZSVN5Y041STR4cjJtcW5oSUY0Vmc?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMikwFBVV95cUxOQkZDeDVNWkJUemR6ejhYM1RHZDJPQWctYXVDcDZfYVE1MUc4Tm4yNjBXM2c1cDJQM2dyUkYtQW85VFFmeVpwaXBYRjlENFdRSXVDeVkyX2lnLWhScENKVzRIZDdDbnFhb0dqNUhDYWhQMkg3Y2tGdW9yOTZ6Y0JZSVN5Y041STR4cjJtcW5oSUY0Vmc?oc=5\" target=\"_blank\">SCO anti",
-      "at": 1789452675000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789452675000
     },
     {
       "title": "Gold falls ₹115 on US interest rate hike fears, silver declines ₹461 - business-standard.com",
@@ -2360,7 +2391,7 @@
       "firstAt": 1789427676000
     },
     {
-      "title": "Zelensky says Ukraine ready to de-escalate if Russia halts strikes - france24.com",
+      "title": "Zelensky says Ukraine ready to de-escalate if Russia halts strikes - France 24",
       "link": "https://news.google.com/rss/articles/CBMirwFBVV95cUxQenpUaU50Zk9Kekx0MnNLakNmVm9wR3NicThtNnpRR3E2dG5hOF9HQ1pFMnZQQm5sVnBzYlZmYWRkUUxXX3BRZmUzMGUzMHQ3RlZtSmFHMjhSOHAxODB3b3NTcFNqd0dmVk1vclV1Y0libDNOZHFQR25mSF9FZVpzSTlscXg0VG5HWklWdDVMRW1SVGhhazB5eGdWQVhxSEhqMEhfOWNwQXpoYnM4QVE4?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMirwFBVV95cUxQenpUaU50Zk9Kekx0MnNLakNmVm9wR3NicThtNnpRR3E2dG5hOF9HQ1pFMnZQQm5sVnBzYlZmYWRkUUxXX3BRZmUzMGUzMHQ3RlZtSmFHMjhSOHAxODB3b3NTcFNqd0dmVk1vclV1Y0libDNOZHFQR25mSF9FZVpzSTlscXg0VG5HWklWdDVMRW1SVGhhazB5eGdWQVhxSEhqMEhfOWNwQXpoYn",
@@ -2664,10 +2695,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-15T08:13:08.655Z",
-  "headlinesAt": "2026-09-15T08:13:08.655Z",
-  "updatedAt": "2026-09-15T08:13:08.655Z"
+  "calendarAt": "2026-09-15T08:14:24.666Z",
+  "headlinesAt": "2026-09-15T08:14:24.666Z",
+  "updatedAt": "2026-09-15T08:14:24.666Z"
 }
