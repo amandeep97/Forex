@@ -449,6 +449,114 @@ function sweptM2() {
       'without it, a future process cannot tell whether the levels mean what it means');
   }
 
+  // ── What KIND of hunt it is: session, 4H trend, and the partner ──────────
+  //
+  // Three labels, all of them derived from data the scanner already has, and
+  // all three easy to get wrong in a way that still renders. A session stamped
+  // from the row instead of the level puts the wrong one on half the events; a
+  // divergence computed inside _scan reads a partner that was last scanned
+  // hours ago; an inverse pair compared high-to-high reports a divergence on
+  // every single sweep.
+  {
+    const s = new LiquidityScanner({ oanda: fakeOanda(), github: noGithub, log: quiet });
+    await s._load();
+
+    // Two levels on one instrument, taken nine hours apart. This is ordinary,
+    // not exotic: yesterday's high goes at the London open and a 4H swing goes
+    // in the New York afternoon.
+    const london = Date.UTC(2026, 0, 14, 9);
+    const ny = Date.UTC(2026, 0, 14, 15);
+    const cols = s._columns([
+      { kind:'PDH', state:'swept', price:110, dir:'short', atrPct:0.1, atTime: london },
+      { kind:'H4L', state:'swept', price:98, dir:'long', atrPct:0.2, atTime: ny },
+    ]);
+    check('each level carries the session it was taken in, not the row\'s',
+      cols.PDH?.session?.id === 'london' && cols.H4L?.session?.id === 'ny',
+      `${cols.PDH?.session?.id} / ${cols.H4L?.session?.id}`,
+      'one session per row would mislabel whichever level it was not computed from');
+    check('and the overlap is flagged where it applies',
+      cols.PDH.session.overlap === false && cols.H4L.session.overlap === true,
+      'New York covers both the overlap and the thin hours after London shuts');
+    check('a level with no timestamp gets no session rather than a default',
+      s._columns([{ kind:'PDL', state:'quiet', price:90, atrPct:1, atTime:null }]).PDL.session === null);
+
+    // Divergence. Seeded directly rather than driven through _scan, because the
+    // point being tested is that it reads the PARTNER's latest record — which
+    // in production was written by a different tick.
+    const d = new LiquidityScanner({ oanda: fakeOanda(), github: noGithub, log: quiet });
+    await d._load();
+    d.corr.set(['XAU/USD', 'XAG/USD'].sort().join('|'), { r: 0.88, n: 60, at: Date.now() });
+    d.results.set('XAU/USD', { sym:'XAU/USD', levels: { PDL: { state:'swept', price: 4200 } } });
+    d.results.set('XAG/USD', { sym:'XAG/USD', levels: { PDL: { state:'near' } } });
+    d._diverge();
+    check('gold took its low while silver held — reported as "alone"',
+      d.results.get('XAU/USD').div?.verdict === 'alone'
+      && d.results.get('XAU/USD').div?.partner === 'XAG/USD',
+      JSON.stringify(d.results.get('XAU/USD').div?.verdict));
+    check('and the measured r rides along, so the claim can be judged',
+      d.results.get('XAU/USD').div?.r === 0.88 && d.results.get('XAU/USD').corr?.['XAG/USD']?.n === 60);
+
+    // Silver then takes its own low. Nothing on gold's row moves except this.
+    d.results.get('XAG/USD').levels.PDL.state = 'swept';
+    d._diverge();
+    check('once silver goes too, the same sweep reads as "together"',
+      d.results.get('XAU/USD').div?.verdict === 'together',
+      'the whole complex moving and one instrument being hunted are different events');
+
+    // And the signature has to see that change, or the published file keeps the
+    // first answer forever.
+    d.results.get('XAU/USD').at = Date.now();
+    const sigTogether = d._signature();
+    d.results.get('XAG/USD').levels.PDL.state = 'near';
+    d._diverge();
+    check('the publish signature notices the verdict flipping',
+      d._signature() !== sigTogether,
+      'nothing else on gold\'s row changes when silver takes its own level');
+
+    // An unrelated instrument makes no claim at all, rather than being paired
+    // with whatever correlated best.
+    d.results.set('EUR/NZD', { sym:'EUR/NZD', levels: { PDL: { state:'swept' } } });
+    d._diverge();
+    check('an instrument with no declared partner says nothing',
+      d.results.get('EUR/NZD').div === null && d.results.get('EUR/NZD').corr === null,
+      'screening all forty for the best correlation would pair near-duplicates and call it insight');
+
+    // A partner that has never been scanned: no levels to compare, so no claim.
+    const u = new LiquidityScanner({ oanda: fakeOanda(), github: noGithub, log: quiet });
+    await u._load();
+    u.corr.set(['XAU/USD', 'XAG/USD'].sort().join('|'), { r: 0.88, n: 60, at: Date.now() });
+    u.results.set('XAU/USD', { sym:'XAU/USD', levels: { PDL: { state:'swept' } } });
+    u._diverge();
+    check('a partner that has never been scanned produces no divergence',
+      u.results.get('XAU/USD').div === null,
+      '"not checked" and "checked and held" are different facts');
+  }
+
+  // The correlations survive a restart. They are derived from H4 returns that
+  // are deliberately not published, so without this every deploy would blank
+  // the divergence on every row until the hourly refresh had been round the
+  // whole universe again.
+  {
+    const file = {
+      method: LEVEL_METHOD,
+      rows: [{ sym:'XAU/USD', lvAt: Date.now(), atr: 20, trend: 'bullish',
+        lv: [['PDL', 4200, 'low', "yesterday's low"]],
+        corr: { 'XAG/USD': { r: 0.83, n: 58 } }, levels: {} }],
+    };
+    const s = new LiquidityScanner({
+      oanda: fakeOanda(),
+      github: { async readJSON() { return { content: file, sha: 'a' }; }, async writeJSON() { return 'b'; } },
+      log: quiet,
+    });
+    await s._restore();
+    check('measured correlations come back after a restart',
+      s.corr.get(['XAU/USD', 'XAG/USD'].sort().join('|'))?.r === 0.83,
+      `${s.corr.size} restored`);
+    check('and so does the 4H structure reading',
+      s.levels.get('XAU/USD')?.trend === 'bullish',
+      'otherwise every row reads "ranging" for an hour after each deploy');
+  }
+
   console.log(fails ? `\n${fails} FAILED` : '\nall passed');
   process.exit(fails ? 1 : 0);
 })();

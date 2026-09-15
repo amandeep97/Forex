@@ -31,19 +31,9 @@ function bar(t, o, c, hPad = 0.2, lPad = 0.05) {
   return { t, o, c, h: Math.max(o, c) + hPad, l: Math.min(o, c) - lPad, v: 1 };
 }
 
-// ── Sessions ───────────────────────────────────────────────────────────────
-{
-  const at = (h, m = 0) => Date.UTC(2026, 8, 14, h, m);
-  check('the session boundaries are the ones a trader works to',
-    S.sessionOf(at(3)) === 'asia' && S.sessionOf(at(8)) === 'london'
-    && S.sessionOf(at(14)) === 'ny' && S.sessionOf(at(20)) === 'late',
-    [3, 8, 14, 20].map(h => `${h}h=${S.sessionOf(at(h))}`).join(' '));
-
-  check('every hour of the day lands in exactly one session',
-    Array.from({ length: 24 }, (_, h) => S.sessionOf(at(h))).every(Boolean)
-    && new Set(Array.from({ length: 24 }, (_, h) => S.sessionOf(at(h)))).size === 4,
-    'an hour with no session would silently drop those entries');
-}
+// Sessions moved to tests/context.test.mjs when the definition moved to
+// shared/sessions.mjs. They are tested with the module that owns them rather
+// than with one of its three readers.
 
 // ── The threshold is corrected for how many cells were looked at ──────────
 {
@@ -105,7 +95,10 @@ function bar(t, o, c, hPad = 0.2, lPad = 0.05) {
 
   // ── Double counting: one sweep is one trade ──────────────────────────────
   {
-    const lib = await import('../shared/liquidity.mjs');
+    const lib = await S.loadLib();
+    // loadLib, not a bare namespace: replayOne needs sessions as well as
+    // liquidity, and building the handle differently here than the code does
+    // is how a test passes against a shape production never sees.
     // A sweep of 110 that stays detectable for many bars afterwards.
     const m2 = [];
     let t = Date.UTC(2026, 8, 14, 8), p = 104;

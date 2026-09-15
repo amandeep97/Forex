@@ -1,5 +1,9 @@
 import { useState, useEffect } from 'react';
 import { fetchLiquidity, fetchLiquidityStudy, ago } from '../utils/liveFeed';
+// Derived here rather than published, so the label always matches the direction
+// of the event it is printed on. The scanner publishes the structure reading;
+// both sides call the same function on it.
+import { trendAlign } from '../../shared/liquidity.mjs';
 
 // ── LIQUIDITY ────────────────────────────────────────────────────────────────
 //
@@ -112,6 +116,21 @@ const CLASSES = [
   { id:'fx',     label:'FX' },
   { id:'energy', label:'Energy' },
   { id:'crypto', label:'Crypto' },
+];
+
+// The context axis. Three ways of narrowing to the hunts that have something
+// going for them beyond the sweep itself, each one a fact the row already
+// carries rather than a score invented to sort by.
+//
+// They are filters, not a ranking, and they stay unselected by default: which
+// of them is worth anything is exactly what has not been measured, and defaults
+// are how an untested belief becomes the thing you look at every day without
+// noticing you chose it.
+const CTX = [
+  { id:'all',     label:'Any context' },
+  { id:'with',    label:'With 4H' },
+  { id:'alone',   label:'Took it alone' },
+  { id:'overlap', label:'LDN/NY' },
 ];
 
 function Chips({ options, value, onChange, counts }) {
@@ -235,6 +254,72 @@ function Record({ cell }) {
 // against the clock on their phone, not against a timezone they have to convert.
 const clockOf = ms => new Date(ms).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
 
+// ── What KIND of hunt this is ────────────────────────────────────────────────
+//
+// Three facts that do not change whether the row appears and do change what the
+// row means. They sit between the sentence and the plan on purpose: after you
+// know what happened, before you decide whether to place the order.
+//
+// None of them filters. Every one is reasoning rather than a measured result,
+// and this project has already found that a lot of sound reasoning does not
+// survive a holdout — so they are printed and the decision stays with you. When
+// the study finally publishes, its cells can settle which of them is worth
+// anything, and until then nothing here pretends to know.
+const ALIGN_TONE = {
+  with:    { fg:'#34d399', bg:'#34d3990f', bd:'#34d39933', mark:'WITH 4H' },
+  against: { fg:'#f59e0b', bg:'#f59e0b0f', bd:'#f59e0b33', mark:'VS 4H' },
+};
+const DIV_TONE = {
+  alone:    { fg:'#34d399', bg:'#34d3990f', bd:'#34d39933' },
+  together: { fg:'#64748b', bg:'#64748b0f', bd:'#64748b33' },
+};
+
+function Tag({ tone, children, title }) {
+  return (
+    <span title={title} style={{ fontSize:8.5, fontWeight:800, fontFamily:C.mono,
+      color:tone.fg, background:tone.bg, border:`1px solid ${tone.bd}`,
+      borderRadius:3, padding:'1px 5px', whiteSpace:'nowrap' }}>{children}</span>
+  );
+}
+
+function Context({ e }) {
+  const al = e.align?.align === 'with' || e.align?.align === 'against' ? e.align : null;
+  const ses = e.session;
+  const div = e.div;
+  if (!al && !ses && !div) return null;
+  const dv = div ? DIV_TONE[div.verdict] : null;
+
+  return (
+    <div style={{ display:'flex', gap:5, flexWrap:'wrap', alignItems:'center', marginTop:5 }}>
+      {al && <Tag tone={ALIGN_TONE[al.align]} title={al.text}>{ALIGN_TONE[al.align].mark}</Tag>}
+
+      {/* The overlap is called out separately from the session name because it
+          is the part that matters. "New York" covers both the hours when London
+          is still open and the thin afternoon after it has gone home, and those
+          are not the same market. */}
+      {ses && (
+        <Tag tone={ses.overlap
+          ? { fg:'#38bdf8', bg:'#38bdf80f', bd:'#38bdf833' }
+          : { fg:'#64748b', bg:'#64748b0f', bd:'#64748b33' }}
+        title={ses.overlap ? 'London and New York both open — the deepest book of the day' : `${ses.label} session`}>
+          {ses.overlap ? 'LDN/NY' : ses.label.toUpperCase()}
+        </Tag>
+      )}
+
+      {div && (
+        <span style={{ fontSize:9.5, color:C.dim, lineHeight:1.5 }}>
+          <strong style={{ color:dv.fg }}>{div.verdict === 'alone' ? 'Alone' : 'Together'}</strong>
+          {' — '}{div.text}
+          {' '}
+          <span style={{ color:'#334155', fontFamily:C.mono }} title={`${div.why} · ${div.n} four-hour bars`}>
+            (r {div.r})
+          </span>
+        </span>
+      )}
+    </div>
+  );
+}
+
 // ── One event, as a sentence ─────────────────────────────────────────────────
 //
 // Written out rather than abbreviated because the whole point is that it reads
@@ -290,6 +375,7 @@ function HuntEvent({ e, onOpen, cell, plan }) {
         )}
       </div>
 
+      <Context e={e}/>
       <Plan p={plan}/>
       <Record cell={cell}/>
 
@@ -333,6 +419,7 @@ export default function LiquidityView({ onOpen }) {
   const [fState, setFState] = useState('all');
   const [fTf, setFTf] = useState('all');
   const [fClass, setFClass] = useState('all');
+  const [fCtx, setFCtx] = useState('all');
   const [study, setStudy] = useState(null);
   const [tick, setTick] = useState(0);
 
@@ -380,6 +467,21 @@ export default function LiquidityView({ onOpen }) {
         // confirmation if one has printed since. This is the sort key, and it
         // is the only one — see the sort below.
         kind, cls: r.cls, plan: r.plan || null,
+        // The three context stamps. `session` is stamped per level by the
+        // scanner, so a daily level taken at the London open and a 4H swing
+        // taken in the New York afternoon carry their own, rather than sharing
+        // whichever one the row happened to be computed from.
+        session: c.session || null,
+        // Alignment is derived here from the row's one published structure
+        // reading and THIS event's direction, because a row's two sweeps can
+        // turn opposite ways and would need opposite labels.
+        align: c.dir ? trendAlign(r.trend, c.dir) : null,
+        trend: r.trend || null,
+        // The divergence belongs to the one level the scanner judged most
+        // important. Attaching it to every event on the instrument would put
+        // "silver held its own low" under a 4H swing high, which is a sentence
+        // about a different level.
+        div: r.div && r.div.kind === kind ? r.div : null,
         lastAt: Math.max(c.at || 0, s?.confirmedAt || 0),
       });
     }
@@ -436,25 +538,37 @@ export default function LiquidityView({ onOpen }) {
   const matchTf = (e, v) => v === 'all' || e.tf === v;
   const matchClass = (e, v) => v === 'all'
     || (v === 'major' ? isMajor(e.sym) : e.cls === v);
+  const matchCtx = (e, v) => v === 'all' ? true
+    : v === 'with' ? e.align?.align === 'with'
+      : v === 'alone' ? e.div?.verdict === 'alone'
+        : v === 'overlap' ? !!e.session?.overlap
+          : true;
 
   const countBy = (options, axis) => Object.fromEntries(options.map(o => [o.id,
     events.filter(e =>
       (axis === 'state' ? matchState(e, o.id) : matchState(e, fState))
       && (axis === 'tf' ? matchTf(e, o.id) : matchTf(e, fTf))
-      && (axis === 'cls' ? matchClass(e, o.id) : matchClass(e, fClass))).length]));
+      && (axis === 'cls' ? matchClass(e, o.id) : matchClass(e, fClass))
+      && (axis === 'ctx' ? matchCtx(e, o.id) : matchCtx(e, fCtx))).length]));
 
   const stateCounts = countBy(STATES, 'state');
   const tfCounts = countBy(TFS, 'tf');
   const classCounts = countBy(CLASSES, 'cls');
+  const ctxCounts = countBy(CTX, 'ctx');
 
   // The cell that describes this row. The shorter hold, because a hunt you act
   // on now is a trade measured in tens of minutes, not hours; the longer one is
   // in the file for anyone reading the study itself.
   const shortHold = study?.holds?.[0];
-  const cellFor = e => study?.byCell?.[`${e.kind}|${e.session}|${shortHold}`] || null;
+  // `e.session` is an object — id, label, and whether it was in the overlap.
+  // This read `${e.session}` and the field did not exist at all, so the key was
+  // always "PDL|undefined|15" and the lookup missed every time. The study has
+  // never published a file, so the miss was invisible: an empty result from an
+  // absent study and an empty result from a bad key look identical.
+  const cellFor = e => study?.byCell?.[`${e.kind}|${e.session?.id}|${shortHold}`] || null;
 
   const shownEvents = events.filter(e =>
-    matchState(e, fState) && matchTf(e, fTf) && matchClass(e, fClass));
+    matchState(e, fState) && matchTf(e, fTf) && matchClass(e, fClass) && matchCtx(e, fCtx));
 
   const live = new Set(['swept', 'through', 'near']);
   const active = rows.filter(r => Object.values(r.levels).some(v => live.has(v.state)));
@@ -531,6 +645,7 @@ export default function LiquidityView({ onOpen }) {
             <Chips options={STATES} value={fState} onChange={setFState} counts={stateCounts}/>
             <Chips options={TFS} value={fTf} onChange={setFTf} counts={tfCounts}/>
             <Chips options={CLASSES} value={fClass} onChange={setFClass} counts={classCounts}/>
+            <Chips options={CTX} value={fCtx} onChange={setFCtx} counts={ctxCounts}/>
           </div>
         )}
 

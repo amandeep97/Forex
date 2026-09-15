@@ -628,3 +628,52 @@ export function sweepSetup(series, { within = 60, maxBars = 30, pad = 0.1, fresh
       + (fresh ? '' : ` — ${age} bars ago, the entry has gone`),
   };
 }
+
+/**
+ * Is this sweep with the four-hour trend, or against it?
+ *
+ * ── Why this is the difference between the setup and the trap ───────────────
+ *
+ * The model reads a level being taken and given back as stops being collected.
+ * That read is only available when there is somewhere for price to go back TO.
+ * A daily low taken inside a four-hour uptrend is the classic version: the
+ * trend is up, the low was the last place sellers' stops were sitting, and the
+ * reclaim is the trend resuming after it collected them.
+ *
+ * The same shape inside a four-hour DOWNTREND is usually not a hunt at all. It
+ * is a downtrend making a new low, and the "reclaim" is the ordinary pullback
+ * that follows one. Buying it is standing in front of the trend and calling the
+ * trend's own behaviour a reversal signal. Both produce an identical sweep, an
+ * identical reclaim and an identical two-minute break, and nothing already on
+ * the row distinguishes them.
+ *
+ * ── What this deliberately does not do ──────────────────────────────────────
+ *
+ * It does not filter. An against-trend sweep still appears, still gets a plan,
+ * and still alerts, labelled for what it is. Dropping them would be acting on
+ * an untested belief about which of the two pays — the reasoning above is a
+ * reason to look, not a measured result, and this project has already found
+ * that plenty of sound-sounding reasoning does not survive a holdout. The
+ * study's cells can answer it later; until they do, the row says which kind it
+ * is and the decision stays with the reader.
+ *
+ * A ranging structure returns 'none' rather than being rounded to one side.
+ * There is no trend to be with or against, and inventing one to classify
+ * against is how the old structure code came to disagree with itself.
+ *
+ * @param {'bullish'|'bearish'|'ranging'|null|undefined} structure
+ * @param {'long'|'short'} dir the direction the sweep turns in
+ * @returns {{ align:'with'|'against'|'none', text:string }}
+ */
+export function trendAlign(structure, dir) {
+  if (structure !== 'bullish' && structure !== 'bearish') {
+    return { align: 'none', text: 'the 4H structure is ranging — no trend to be with or against' };
+  }
+  const with_ = (structure === 'bullish' && dir === 'long')
+    || (structure === 'bearish' && dir === 'short');
+  const trend = structure === 'bullish' ? 'up' : 'down';
+  const way = dir === 'long' ? 'up' : 'down';
+  return with_
+    ? { align: 'with', text: `with the 4H trend — structure is ${trend}, the turn is ${way}` }
+    : { align: 'against', text: `against the 4H trend — structure is ${trend}, the turn is ${way}` };
+}

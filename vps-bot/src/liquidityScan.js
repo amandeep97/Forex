@@ -116,8 +116,10 @@ class LiquidityScanner {
     this.telegram = telegram;
     this.log = log;
     this.env = env;
-    this.levels = new Map();     // sym -> { levels, atr, at }
+    this.levels = new Map();     // sym -> { levels, atr, trend, at }
     this.results = new Map();    // sym -> record
+    this.h4r = new Map();        // sym -> [[t, logReturn], …] for the pair correlations
+    this.corr = new Map();       // 'A|B' -> { r, n, at }
     this.announced = new Map();  // key -> when
     this.sha = null;
     this.lastSig = null;
@@ -162,8 +164,20 @@ class LiquidityScanner {
           this.levels.set(r.sym, {
             levels: r.lv.map(([kind, price, side, label]) => ({ kind, price, side, label })),
             atr: r.atr ?? null,
+            trend: r.trend ?? null,
             at: r.lvAt || 0,
           });
+        }
+        // The measured correlations come back too. They are derived from H4
+        // returns that are NOT published, so without this a restart would show
+        // no divergence on any row until the hourly level refresh had been
+        // round the whole universe again — up to an hour of blank, every
+        // deploy, for a number that barely moves between one hour and the next.
+        for (const [other, c] of Object.entries(r.corr || {})) {
+          const key = [r.sym, other].sort().join('|');
+          if (!this.corr.has(key) && Number.isFinite(c?.r)) {
+            this.corr.set(key, { r: c.r, n: c.n || 0, at: r.lvAt || 0 });
+          }
         }
       }
       if (this.results.size) {
@@ -178,8 +192,21 @@ class LiquidityScanner {
   // shared/ is ESM and this file is CommonJS, so the one copy of the rule is
   // loaded rather than reimplemented. A second implementation on the bot side
   // is exactly how the app and the bot came to disagree about structure.
+  //
+  // Four namespaces, spread into one plain object rather than assigned onto the
+  // liquidity namespace. An ES module namespace is frozen: `lib.pairs = ...`
+  // throws "object is not extensible", which is how the study's first run died
+  // before a test caught it.
   async _load() {
-    if (!this.lib) this.lib = await import('../../shared/liquidity.mjs');
+    if (!this.lib) {
+      const [liq, structure, sessions, pairs] = await Promise.all([
+        import('../../shared/liquidity.mjs'),
+        import('../../shared/structure.mjs'),
+        import('../../shared/sessions.mjs'),
+        import('../../shared/pairs.mjs'),
+      ]);
+      this.lib = { ...liq, structure, sessions, pairs };
+    }
     return this.lib;
   }
 
@@ -188,16 +215,29 @@ class LiquidityScanner {
   }
 
   async _refreshLevels(inst) {
-    const { keyLevels } = await this._load();
+    const lib = await this._load();
     const [daily, weekly, h4] = await Promise.all([
       this.oanda.getCandles(inst.oanda, 'D', 12),
       this.oanda.getCandles(inst.oanda, 'W', 8),
       this.oanda.getCandles(inst.oanda, 'H4', 80),
     ]);
-    const levels = keyLevels({ daily, weekly, h4 });
+    const levels = lib.keyLevels({ daily, weekly, h4 });
     const atr = atrOf(h4);
-    this.levels.set(inst.sym, { levels, atr, at: Date.now() });
-    return { levels, atr };
+
+    // The four-hour trend, from the candles already in hand. This costs no
+    // request — the H4 series was fetched for the levels and the ATR, and was
+    // then thrown away, which meant the one fact that separates a stop hunt
+    // from a downtrend making a new low was being discarded every hour.
+    const trend = lib.structure.readStructure(h4).structure;
+
+    // And the returns, kept in memory for the correlation pass. Not published:
+    // seventy-nine floats an instrument is a file three times its current size
+    // to carry an input, when the OUTPUT — one number per pair — is what any
+    // reader actually needs and restores in a line.
+    this.h4r.set(inst.sym, lib.pairs.returnsOf(h4));
+
+    this.levels.set(inst.sym, { levels, atr, trend, at: Date.now() });
+    return { levels, atr, trend };
   }
 
   // Is price close enough to any level that a two-minute look is worth a
@@ -262,12 +302,24 @@ class LiquidityScanner {
       // there are up to three a side and a column can only hold one, so the
       // one price is closest to is the one that matters.
       levels: this._columns(states),
+      // The four-hour structure this instrument is in. Published as the bare
+      // reading, not as "with" or "against": alignment depends on which way a
+      // particular sweep turns, and a row carries several sweeps that can turn
+      // different ways. Deriving it once per sweep, from one published fact,
+      // beats publishing the derived answer several times and letting the
+      // copies drift — which is how the app and the bot came to disagree about
+      // structure the first time.
+      trend: cached.trend ?? null,
       plan: plan ? {
         dir: plan.dir, state: plan.state, why: plan.why,
         entry: plan.entry, stop: plan.stop, risk: plan.risk,
         target: plan.target, targetLabel: plan.targetLabel, rr: plan.rr,
         level: { kind: plan.level.kind, price: plan.level.price, label: plan.level.label },
         sweptAt: plan.sweptAt,
+        // What kind of trade this is, in words, decided from facts that are
+        // already on the row. Neither of these filters the plan out.
+        align: this.lib.trendAlign(cached.trend, plan.dir),
+        session: this.lib.sessions.sessionStamp(plan.sweptAt),
       } : null,
       // The raw level set and its scale, so a restart does not have to re-fetch
       // D, W and H4 for every instrument before it can say anything.
@@ -324,10 +376,80 @@ class LiquidityScanner {
           state: st.state, price: st.price, dir: st.dir,
           atrPct: st.atrPct == null ? null : +st.atrPct.toFixed(2),
           at: st.atTime ?? null,
+          // Stamped per level, not per row. Two levels on one instrument are
+          // routinely taken hours apart — yesterday's high at the London open
+          // and a 4H swing in the New York afternoon — and one session on the
+          // row would put the wrong label on whichever of them it was not
+          // computed from. It is also the key the study's verdict is looked up
+          // by, so a row-level approximation would quietly read the wrong cell.
+          session: st.atTime ? this.lib.sessions.sessionStamp(st.atTime) : null,
         };
       }
     }
     return out;
+  }
+
+  // ── Did it take the level alone, or did the whole complex move? ───────────
+  //
+  // A post-pass rather than part of _scan, because the answer needs the
+  // PARTNER's scan and the two are not scanned in the same tick. Gold may be
+  // near a level and scanned while silver is nowhere near one and skipped for
+  // hours. Asking inside _scan would give whatever the partner's record said at
+  // some arbitrary earlier moment, or nothing at all, and would do it silently.
+  //
+  // Everything here is arithmetic over data already fetched. No requests.
+  _diverge() {
+    if (!this.lib) return;
+    const { partnersOf, correlate, divergence } = this.lib.pairs;
+    const RANK = { PDH: 3, PDL: 3, PWH: 2, PWL: 2, H4H: 1, H4L: 1 };
+
+    for (const rec of this.results.values()) {
+      const partners = partnersOf(rec.sym);
+      if (!partners.length) { rec.div = null; rec.corr = null; continue; }
+
+      // Correlations first, and for every partner whether or not anything was
+      // swept — the number is what makes the divergence claim readable, and
+      // recomputing it only at the moment of a sweep would mean the first sweep
+      // after a restart had no number to show.
+      const corrs = {};
+      for (const p of partners) {
+        const key = [rec.sym, p.sym].sort().join('|');
+        const a = this.h4r.get(rec.sym), b = this.h4r.get(p.sym);
+        if (a?.length && b?.length) {
+          const c = correlate(a, b);
+          if (c) this.corr.set(key, { ...c, at: Date.now() });
+        }
+        const held = this.corr.get(key);
+        if (held) corrs[p.sym] = { r: held.r, n: held.n };
+      }
+      rec.corr = Object.keys(corrs).length ? corrs : null;
+
+      // One divergence per row, for the level that matters most. A row can have
+      // three swept kinds and the feed shows them as separate events, but the
+      // daily level is the one being traded off and three near-identical
+      // sentences under one instrument is the noise this feed keeps trying to
+      // become. The `kind` travels with it so the app attaches it to the right
+      // event rather than to all of them.
+      const swept = Object.entries(rec.levels || {})
+        .filter(([, v]) => v?.state === 'swept')
+        .sort((x, y) => (RANK[y[0]] || 0) - (RANK[x[0]] || 0))[0];
+      if (!swept) { rec.div = null; continue; }
+
+      let best = null;
+      for (const p of partners) {
+        const key = [rec.sym, p.sym].sort().join('|');
+        const d = divergence({
+          sym: rec.sym, kind: swept[0], partner: p,
+          corr: this.corr.get(key) || null,
+          partnerLevels: this.results.get(p.sym)?.levels || null,
+        });
+        // The most strongly related partner wins. A pair at 0.9 and a pair at
+        // 0.55 disagreeing is not a tie, and showing the weaker one because it
+        // happened to be listed first would be arbitrary.
+        if (d && (!best || Math.abs(d.r) > Math.abs(best.r))) best = d;
+      }
+      rec.div = best;
+    }
   }
 
   // Only what a row needs. The full candle arrays and the level list would make
@@ -376,7 +498,14 @@ class LiquidityScanner {
       + (p.target != null
         ? `target <b>${p.target.toFixed(dp)}</b> — ${p.targetLabel}${p.rr ? ` · ${p.rr}R` : ''}\n`
         : `no opposite level to aim at\n`)
-      + `\n<i>The order rests until price comes back. It dies if price closes `
+      // The three things that say what KIND of trade this is. They do not
+      // change whether the message is sent — none of them has been measured
+      // here — but they are the difference between a plan you place and one you
+      // look at twice, and they cost nothing to carry.
+      + (p.align?.align && p.align.align !== 'none' ? `\n${p.align.align === 'with' ? '✓' : '⚠'} ${p.align.text}` : '')
+      + (p.session ? `\n· ${p.session.label} session${p.session.overlap ? ' (London/NY overlap)' : ''}` : '')
+      + (rec.div ? `\n· ${rec.div.text} (r ${rec.div.r}, ${rec.div.why})` : '')
+      + `\n\n<i>The order rests until price comes back. It dies if price closes `
       + `beyond ${p.stop.toFixed(dp)}. Not a measured edge — this model has never been tested here.</i>`
     ).catch(e => this.log(`Liquidity push: ${e.message}`));
   }
@@ -390,6 +519,12 @@ class LiquidityScanner {
         // level, which is most of them on a quiet day.
         r.near ? Math.round(r.near.atrPct * 10) : null,
         r.plan ? `${r.plan.state}:${r.plan.dir}:${r.plan.entry}` : null,
+        // The context stamps. Without these the file would keep the first
+        // version of a row forever: silver taking its own low after gold took
+        // one changes gold's row from "alone" to "together", and nothing else
+        // on gold's row moves when it happens.
+        r.trend || null,
+        r.div ? `${r.div.partner}:${r.div.verdict}` : null,
         // A column changing state is the whole point of the table, so the
         // signature has to see it or the file never gets rewritten.
         Object.entries(r.levels || {}).map(([k, v]) => `${k}:${v.state}`).sort().join(',')])
@@ -430,11 +565,20 @@ class LiquidityScanner {
     for (const inst of candidates) {
       this.servedAt.set(inst.sym, ++this.seq);
       try {
-        const rec = await this._scan(inst);
-        await this._announce(rec);
+        await this._scan(inst);
       } catch (e) {
         this.log(`Liquidity ${inst.sym}: ${e.message}`);
       }
+    }
+
+    // Before the alerts, not after. The message says whether the instrument
+    // took the level alone or the whole complex moved, and that is one of the
+    // few things on it that changes what you would do — sending it and working
+    // it out afterwards would put the weaker version on the phone every time.
+    this._diverge();
+    for (const inst of candidates) {
+      const rec = this.results.get(inst.sym);
+      if (rec) await this._announce(rec).catch(e => this.log(`Liquidity announce ${inst.sym}: ${e.message}`));
     }
 
     if (stale.length || candidates.length) {
