@@ -158,3 +158,98 @@ export function exitDiagnosis(byExit) {
       + `${best.edgeR}R. The condition is the problem, not the exit.`,
   };
 }
+
+/**
+ * A resting limit order with a stop and a target — the trade tradePlan describes.
+ *
+ * runTrade above answers a different question: you are IN at this bar's close,
+ * now what. That is the trade the sweep model used to publish, and the study
+ * measured it and found nothing that survived either holdout. But it is no
+ * longer the trade the bot alerts on. The plan rests a limit at the swept
+ * level, which means three things runTrade has no way to express:
+ *
+ *   IT MIGHT NOT FILL. Price sweeps the level, turns, and never comes back. No
+ *   trade happened. Counting that as a flat result would dilute every average
+ *   with trades nobody took; counting it as a win or a loss would be worse.
+ *   So a fill is reported separately from an outcome, and the fill RATE is part
+ *   of the answer rather than a detail — a plan that fills one time in ten is a
+ *   different proposition from one that always fills, at the same average R.
+ *
+ *   IT CAN DIE BEFORE IT FILLS. Price keeps going, closes beyond where the stop
+ *   would have been, and the setup is gone. The order must be cancelled there,
+ *   not left resting to be filled hours later on a move that has nothing to do
+ *   with the sweep. Without this the replay quietly buys every level that
+ *   failed, at the price it failed at.
+ *
+ *   AND IT HAS TO WAIT FOR PRICE TO LEAVE FIRST. On the sweep bar itself price
+ *   is already at the level, so an order resting there is filled instantly and
+ *   the entry is meaningless. tradePlan requires a close back the trade's side
+ *   of the level before a touch counts; this replays that requirement exactly,
+ *   because a replay of a slightly different rule measures a model nobody runs.
+ *
+ * The null for a bracket is zero, which is worth stating: with a target k times
+ * the risk away, a driftless walk hits the target 1/(1+k) of the time for +k and
+ * the stop the rest for −1, and those cancel. So an average R above zero is
+ * drift, cost, or an edge — and the sampled baseline is what separates the first
+ * of those from the third.
+ *
+ * Both levels inside one bar is resolved as the stop, here as in runTrade. OHLC
+ * does not say which came first, and assuming the target is the single easiest
+ * way to manufacture a backtest that dies on contact.
+ *
+ * @param {Candle[]} cs
+ * @param {number} from index of the sweep bar — where the order is placed
+ * @param {object} plan
+ * @param {number} plan.entry   the limit price (the swept level)
+ * @param {number} plan.stop    beyond the sweep extreme
+ * @param {number|null} plan.target null means run to the horizon
+ * @param {'up'|'down'} plan.dir
+ * @param {number} [plan.waitBars] how long the order rests before it is pulled
+ * @param {number} [plan.holdBars] how long the position is held once filled
+ * @returns {{ filled:boolean, why:string, at:number|null, r:number|null,
+ *   how:string|null, bars:number|null }}
+ */
+export function runBracket(cs, from, { entry, stop, target = null, dir = 'up',
+  waitBars = 240, holdBars = 240 }) {
+  const up = dir === 'up';
+  const risk = Math.abs(entry - stop);
+  if (!(risk > 0) || !cs?.length || from == null || from < 0) {
+    return { filled: false, why: 'no risk', at: null, r: null, how: null, bars: null };
+  }
+
+  // Phase one: the order rests. Price has to leave the level before a touch is
+  // a fill, and a close beyond the stop kills the order.
+  const lastWait = Math.min(from + waitBars, cs.length - 1);
+  let reclaimed = false;
+  /** @type {number|null} */
+  let at = null;
+  for (let j = from + 1; j <= lastWait; j++) {
+    if (up ? cs[j].c < stop : cs[j].c > stop) {
+      return { filled: false, why: 'invalidated', at: null, r: null, how: null, bars: j - from };
+    }
+    if (!reclaimed) {
+      if (up ? cs[j].c > entry : cs[j].c < entry) reclaimed = true;
+      continue;   // the reclaim bar itself cannot also be the fill
+    }
+    if (up ? cs[j].l <= entry : cs[j].h >= entry) { at = j; break; }
+  }
+  if (at === null) {
+    return { filled: false, why: reclaimed ? 'never came back' : 'never reclaimed',
+      at: null, r: null, how: null, bars: lastWait - from };
+  }
+
+  // Phase two: in the trade.
+  const lastHold = Math.min(at + holdBars, cs.length - 1);
+  for (let j = at + 1; j <= lastHold; j++) {
+    const hitStop = up ? cs[j].l <= stop : cs[j].h >= stop;
+    const hitTgt = target != null && (up ? cs[j].h >= target : cs[j].l <= target);
+    if (hitStop) return { filled: true, why: 'filled', at, r: -1, how: 'stop', bars: j - at };
+    if (hitTgt) {
+      const raw = up ? target - entry : entry - target;
+      return { filled: true, why: 'filled', at, r: +(raw / risk).toFixed(4), how: 'target', bars: j - at };
+    }
+  }
+  const raw = up ? cs[lastHold].c - entry : entry - cs[lastHold].c;
+  return { filled: true, why: 'filled', at, r: +(raw / risk).toFixed(4),
+    how: 'horizon', bars: lastHold - at };
+}

@@ -47,7 +47,17 @@ export async function fetchLiquidityStudy({ force = false } = {}) {
     // Keyed the way a row asks the question: this level kind, this session.
     const byCell = {};
     for (const c of j.cells || []) byCell[`${c.kind}|${c.session}|${c.hold}`] = c;
+    // The plan cells have no hold dimension — a limit trade runs to its stop or
+    // its target, not to a clock — so they are keyed on the two things a row
+    // actually knows about itself.
+    const byPlanCell = {};
+    for (const c of j.planCells || []) byPlanCell[`${c.kind}|${c.session}`] = c;
+    const byAlign = Object.fromEntries((j.alignCells || []).map(c => [c.align, c]));
+    const byDiv = Object.fromEntries((j.divCells || []).map(c => [c.divergence, c]));
     const data = { at: j.at, method: j.method, entries: j.entries, cells: j.cells || [], byCell,
+                   planCells: j.planCells || [], byPlanCell, byAlign, byDiv,
+                   plans: j.plans, fills: j.fills, fillRate: j.fillRate,
+                   holdoutFrom: j.holdoutFrom,
                    historyDays: j.historyDays, holds: j.holds || [] };
     studyCache = { at: now, data };
     return data;
