@@ -14,7 +14,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789485003000,
-      "_kind": null
+      "_kind": null,
+      "why": "Moroccan market news irrelevant to US."
     },
     {
       "title": "British woman abducted in Malawi, police say",
@@ -30,7 +31,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789484607000,
-      "_kind": null
+      "_kind": null,
+      "why": "Crime news has no market impact."
     },
     {
       "title": "Dollar Gains as Fed Rate Hike Looms Amid Soaring Oil Prices - Devdiscourse",
@@ -49,7 +51,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789483018000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Soaring oil prices explicitly stated."
     },
     {
       "title": "Norway stocks higher at close of trade; Oslo OBX up 0.08%",
@@ -64,7 +70,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789484158000,
-      "_kind": null
+      "_kind": null,
+      "why": "Norwegian market news irrelevant to US."
     },
     {
       "title": "U.S. banking stocks with the highest modeled upside in a rate-hike scenario",
@@ -79,7 +86,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789484141000,
-      "_kind": null
+      "_kind": null,
+      "why": "Specific sector analysis, unclear broad impact."
     },
     {
       "title": "Israel stocks lower at close of trade; TA 35 down 0.85%",
@@ -94,7 +102,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789484132000,
-      "_kind": null
+      "_kind": null,
+      "why": "Israeli market news irrelevant to US."
     },
     {
       "title": "Disney Trades Well Below Wall Street’s Target. Here’s What Closes the Gap.",
@@ -109,7 +118,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789481640000,
-      "_kind": null
+      "_kind": null,
+      "why": "Single stock analysis, unclear index impact."
     },
     {
       "title": "Bernstein Is Calling $150,000 Bitcoin by December, But Prediction Markets Are Pricing $75,000",
@@ -126,7 +136,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789483975000,
-      "_kind": null
+      "_kind": null,
+      "why": "Conflicting price targets create uncertainty."
     },
     {
       "title": "Iranian strikes have damaged hundreds of structures at U.S. bases, watchdog says - The Washington Post",
@@ -147,7 +158,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789481823000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Geopolitical conflict boosts safe havens and oil."
     },
     {
       "title": "Carney visits Europe: Can Canada seek refuge with the EU amid US trade war?",
@@ -167,7 +184,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789483782000,
-      "_kind": null
+      "_kind": null,
+      "why": "Trade war talk lacks immediate directional clarity."
     },
     {
       "title": "Russia and Ukraine launch new energy attacks despite Trump’s ceasefire claim - NBC News",
@@ -188,7 +206,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789483721000,
-      "_kind": "war-end"
+      "_kind": "war-end",
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Energy attacks and conflict boost risk assets."
     },
     {
       "title": "EU Delays Decision on Extending Russia Sanctions after Member States Fail to Agree - Hungarian Conservative",
@@ -209,7 +233,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789482000000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions delay has mixed, unclear implications."
     },
     {
       "title": "Marvell Technology Has Imploded Since June: One Defiant Wall Street Pro Says It’ll Double From Today",
@@ -224,7 +249,7 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789481640000,
-      "_kind": null
+      "why": "Single stock volatility, unclear index impact."
     },
     {
       "title": "The 10 most overvalued housing markets in America",
@@ -251,7 +276,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789483336000
+      "firstAt": 1789483336000,
+      "dir": {
+        "US30": "down"
+      },
+      "why": "Dow dives as yields jump."
     },
     {
       "title": "Lilly’s Foundayo Quickly Gains Ground in the Oral Weight-Loss Market",
@@ -283,7 +312,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789481166000
+      "firstAt": 1789481166000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Escalating war boosts safe havens and oil."
     },
     {
       "title": "Gold Under Pressure on Stronger Dollar and Fed Rate Hike Bets - TradingView",
@@ -1689,6 +1724,6 @@
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-15T15:14:22.554Z",
-  "updatedAt": "2026-09-15T15:14:22.554Z"
+  "headlinesAt": "2026-09-15T15:15:54.259Z",
+  "updatedAt": "2026-09-15T15:15:54.259Z"
 }
