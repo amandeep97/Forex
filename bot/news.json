@@ -821,7 +821,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789493460000
+      "firstAt": 1789493460000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Geopolitical tension boosts gold, oil unclear."
     },
     {
       "title": "Iranian strikes have damaged hundreds of structures at U.S. bases, watchdog says - The Washington Post",
@@ -841,7 +845,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789494300000
+      "firstAt": 1789494300000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Conflict escalation supports gold, oil unclear."
     },
     {
       "title": "Crowdstrike and Illumina among market cap stock movers on Tuesday",
@@ -873,7 +881,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789493460000
+      "firstAt": 1789493460000,
+      "why": "Diplomatic rhetoric lacks clear market direction."
     },
     {
       "title": "Federal Reserve decision, retail sales, and oil inventories due Wednesday",
@@ -890,7 +899,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789495252000
+      "firstAt": 1789495252000,
+      "why": "Upcoming data release, no immediate direction."
     },
     {
       "title": "Stocks have so far survived rising Treasury yields. But that may be about to change.",
@@ -907,7 +917,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789493673000
+      "firstAt": 1789493673000,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Rising yields threaten stock market performance."
     },
     {
       "title": "Stocks making the biggest moves midday: Skyworks Solutions, Axon, Dave & Buster's, Revvity & more",
@@ -922,7 +936,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789494928000
+      "firstAt": 1789494928000,
+      "why": "Individual stock moves, no broad index signal."
     },
     {
       "title": "Canada is a 'safe harbour' for global finance, Carney says",
@@ -941,7 +956,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789494886000
+      "firstAt": 1789494886000,
+      "dir": {
+        "USD/CAD": "down"
+      },
+      "why": "Strong CAD outlook weakens USD/CAD pair."
     },
     {
       "title": "Russia, Ukraine trade strikes despite Trump's assertion of no attacks - upi.com",
@@ -961,7 +980,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789493460000
+      "firstAt": 1789493460000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Ongoing strikes support gold, oil unclear."
     },
     {
       "title": "British woman abducted in Malawi, police say",
@@ -976,7 +999,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789494285000
+      "firstAt": 1789494285000,
+      "why": "Crime news has no market impact."
     },
     {
       "title": "US-Iran war has caused supply-chain bottlenecks in Pentagon, report finds - The Jerusalem Post",
@@ -996,7 +1020,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789493952000
+      "firstAt": 1789493952000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "War bottlenecks boost gold, oil unclear."
     },
     {
       "title": "West African crude differentials steady amid Mideast disruptions",
@@ -1013,7 +1041,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789493710000
+      "firstAt": 1789493710000,
+      "why": "Steady differentials imply no price change."
     },
     {
       "title": "Fed weighs September rate hike as Treasury yields rise - Fox Business",
@@ -1036,7 +1065,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789493440000
+      "firstAt": 1789493440000,
+      "dir": {
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Rate hike expectations strengthen dollar."
     },
     {
       "title": "Russia, Ukraine trade strikes on energy infrastructure as global oil prices skyrocket - The Hill",
@@ -1056,7 +1090,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789493460000
+      "firstAt": 1789493460000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Energy strikes and skyrocketing oil prices."
     },
     {
       "title": "Maxine Waters presses Treasury Secretary Scott Bessent on inflation - Fox Business",
@@ -1079,7 +1119,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789493440000
+      "firstAt": 1789493440000,
+      "why": "Political inquiry lacks clear market direction."
     },
     {
       "title": "Canadian dollar extends daily losing streak ahead of expected Fed rate hike - KITCO",
@@ -1096,7 +1137,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789493284000
+      "firstAt": 1789493284000,
+      "dir": {
+        "USD/CAD": "up"
+      },
+      "why": "CAD losing streak implies USD strength."
     },
     {
       "title": "U.S. 10-year treasury yield hits highest level since 2007 amid inflation fears, Fed hike bets - english.news.cn",
@@ -2535,7 +2580,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-15T18:43:37.455Z",
-  "headlinesAt": "2026-09-15T18:43:37.455Z",
-  "updatedAt": "2026-09-15T18:43:37.455Z"
+  "calendarAt": "2026-09-15T18:45:40.927Z",
+  "headlinesAt": "2026-09-15T18:45:40.927Z",
+  "updatedAt": "2026-09-15T18:45:40.927Z"
 }
