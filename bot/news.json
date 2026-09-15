@@ -832,7 +832,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789476143000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "S&P 500 target cut implies bearishness."
     },
     {
       "title": "FTSE 100 today: Stocks fall on weak jobs data, U.S.-Iran rift lifts oil",
@@ -850,7 +854,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789476869000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "US500": "down"
+      },
+      "why": "Oil lifts on rift, stocks fall."
     },
     {
       "title": "No energy ceasefire between Ukraine and Russia yet - Semafor",
@@ -871,7 +880,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789476780000,
-      "_kind": "war-end"
+      "_kind": "war-end",
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "No ceasefire supports oil prices."
     },
     {
       "title": "An AI bubble is no longer Wall Street’s biggest fear. This market risk just took its place.",
@@ -887,7 +901,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789476660000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Bond yield risk fears market decline."
     },
     {
       "title": "Gold slips to five-week low below Rs 1.50 lakh as Fed rate cut hopes weaken - Moneycontrol.com",
@@ -906,7 +924,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789476574000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold slips on weak Fed cut hopes."
     },
     {
       "title": "Saudi Arabia stocks lower at close of trade; Tadawul All Share down 0.89%",
@@ -921,7 +943,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789476304000,
-      "_kind": null
+      "_kind": null,
+      "why": "Saudi stocks news irrelevant to US500."
     },
     {
       "title": "Boomers and Retirees Can Load IRAs With 4 Quality Ultra-High-Yield Dividend Giants (One Yields 12.3%)",
@@ -950,6 +973,29 @@
       "_kind": null
     },
     {
+      "title": "Exclusive-UAE’s ADNOC buys millions of barrels of Iraqi crude, sources say",
+      "link": "https://www.investing.com/news/commodities-news/exclusiveuaes-adnoc-buys-millions-of-barrels-of-iraqi-crude-sources-say-4901718",
+      "source": "Investing Cmdty",
+      "at": 1789476175000,
+      "inst": [
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789476175000,
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Crude purchase supports oil demand."
+    },
+    {
       "title": "HIVE Digital subsidiary BUZZ HPC names capital-markets veteran to board",
       "link": "https://finance.yahoo.com/markets/stocks/articles/hive-digital-subsidiary-buzz-hpc-124200441.html",
       "source": "Yahoo Finance",
@@ -975,7 +1021,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789476092000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Low SPR levels support oil prices."
     },
     {
       "title": "Loonie slips as oil surge fuels rate worries ahead of Fed decision",
@@ -995,7 +1045,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789476011000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USD/CAD": "up",
+        "USOIL": "up"
+      },
+      "why": "Oil surge fuels rate worries, loonie slips."
     },
     {
       "title": "Energy & Utilities Roundup: Market Talk",
@@ -1023,7 +1078,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789475876000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US100": "up"
+      },
+      "why": "Major AI IPO boosts tech sentiment."
     },
     {
       "title": "The ‘Magnificent Seven’ has its mojo back. It’s on track to reach new highs.",
@@ -1052,7 +1111,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789475700000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "IPO benefits specific stocks, positive sentiment."
     },
     {
       "title": "Canada wholesale trade for the month of July 0.3% versus -0.5% estimate",
@@ -1070,7 +1133,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789475678000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USD/CAD": "down"
+      },
+      "why": "Stronger Canadian data weakens loonie."
     },
     {
       "title": "September US Empire Fed manufacturing +7.6 vs +15.0 expected",
@@ -1094,7 +1161,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789475482000,
-      "_kind": null
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Weak US data lowers yields, hurts USD."
     },
     {
       "title": "Drone Strikes Cripple Half of Russia's Top Diesel Refineries - Crude Oil Prices Today | OilPrice.com",
@@ -1115,7 +1187,12 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789474186000,
-      "_kind": null
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up",
+        "XAU/USD": "up"
+      },
+      "why": "Supply disruption and geopolitical risk lift assets."
     },
     {
       "title": "Dollar ticks up as oil prices climb, Fed rate hike chances firm - The Business Times",
@@ -1133,7 +1210,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789472586000
+      "firstAt": 1789472586000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Headline explicitly states oil prices climb."
     },
     {
       "title": "Gold Steadies as Markets Await Federal Reserve Decision - Fana News -",
@@ -2452,22 +2533,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789458477000
-    },
-    {
-      "title": "European sovereign debt pressured as traders price ECB hikes through early 2027",
-      "link": "https://www.investing.com/news/forex-news/european-sovereign-debt-pressured-as-traders-price-ecb-hikes-through-early-2027-4900845",
-      "source": "Investing FX",
-      "at": 1789458422000,
-      "inst": [
-        "EUR/USD"
-      ],
-      "ccy": [
-        "EUR"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789456733000
     }
   ],
   "sources": [
@@ -2490,10 +2555,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-15T12:59:38.261Z",
-  "headlinesAt": "2026-09-15T12:59:38.261Z",
-  "updatedAt": "2026-09-15T12:59:38.261Z"
+  "calendarAt": "2026-09-15T13:01:54.214Z",
+  "headlinesAt": "2026-09-15T13:01:54.214Z",
+  "updatedAt": "2026-09-15T13:01:54.214Z"
 }
