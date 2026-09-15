@@ -20,7 +20,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789441355000,
-      "_kind": null
+      "_kind": null,
+      "why": "Geopolitical event, direction unclear"
     },
     {
       "title": "Most markets drop as oil extends gains ahead of expected US rate hike - France 24",
@@ -39,7 +40,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789440790000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil extends gains"
     },
     {
       "title": "Oil and Treasury yields haven’t moved this closely in seven years. That’s bad news for markets - CNBC",
@@ -58,7 +63,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789440780000,
-      "_kind": null
+      "_kind": null,
+      "why": "Correlation warning, no clear direction"
     },
     {
       "title": "Santos signs deals with POSCO Steel and Western LNG",
@@ -73,7 +79,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789440261000,
-      "_kind": null
+      "_kind": null,
+      "why": "LNG deals, no price direction"
     },
     {
       "title": "United States Dollar Index strengthens above 99.50 as Fed rate hike bets rise - FXStreet",
@@ -97,7 +104,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789437392000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Stronger dollar weakens gold and pairs"
     },
     {
       "title": "Russia sanctions bill passes House Rules Committee - The Hill",
@@ -117,7 +130,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789439460000
+      "firstAt": 1789439460000,
+      "why": "Sanctions bill, impact uncertain"
     },
     {
       "title": "Waymo, Japanese partners target driverless taxi service in Tokyo in 2027",
@@ -131,7 +145,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789439066000
+      "firstAt": 1789439066000,
+      "why": "Tech news, no FX impact"
     },
     {
       "title": "Gold holds near $4,300 as oil disruption lifts Fed hike bets",
@@ -150,7 +165,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789439065000
+      "firstAt": 1789439065000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil disruption lifts prices"
     },
     {
       "title": "Ukraine war briefing: No energy ceasefire until Russia stops, Zelenskyy confirms after Trump claim - The Guardian",
@@ -170,7 +189,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789438680000
+      "firstAt": 1789438680000,
+      "why": "War briefing, no immediate price move"
     },
     {
       "title": "Iran strikes damaged US bases, embassies across 8 countries: Pentagon watchdog - The Times of India",
@@ -190,7 +210,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789438440000
+      "firstAt": 1789438440000,
+      "why": "Geopolitical tension, direction unclear"
     },
     {
       "title": "China's August retail sales miss forecast while investment slump deepens, piling pressure on Beijing",
@@ -213,7 +234,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789436296000
+      "firstAt": 1789436296000,
+      "why": "China data, indirect impact"
     },
     {
       "title": "Soaring energy prices intensify inflation concerns, stronger US dollar drags copper prices down [SMM Copper Morning Comment] - SMM Metal",
@@ -236,7 +258,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789438258000
+      "firstAt": 1789438258000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Stronger dollar drags prices down"
     },
     {
       "title": "Dollar Near Two-Week High as Oil Surge Boosts Fed Rate Hike Bets - Global Banking & Finance Review",
@@ -254,7 +282,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789436333000
+      "firstAt": 1789436333000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil surge boosts prices"
     },
     {
       "title": "China August retail sales +0.4% y/y (expected +0.6%)",
@@ -277,7 +309,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789436296000
+      "firstAt": 1789436296000,
+      "why": "China data, no clear FX direction"
     },
     {
       "title": "Dollar Surges Amid Rising Oil Prices and Fed Rate Hike Expectations - Devdiscourse",
@@ -295,7 +328,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789436333000
+      "firstAt": 1789436333000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Rising oil prices"
     },
     {
       "title": "Silver Price Forecast: XAG/USD falls to near $63.00 amid rising inflation, Treasury yields - FXStreet",
@@ -1761,6 +1798,6 @@
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-15T03:06:21.125Z",
-  "updatedAt": "2026-09-15T03:06:21.125Z"
+  "headlinesAt": "2026-09-15T03:07:52.787Z",
+  "updatedAt": "2026-09-15T03:07:52.787Z"
 }
