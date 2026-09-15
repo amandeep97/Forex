@@ -881,7 +881,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789468844000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Stocks rise after Fed hikes"
     },
     {
       "title": "U.S. stock futures drop amid surging yields, oil prices ahead of Fed meeting",
@@ -899,7 +903,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789468835000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil prices surging ahead of Fed"
     },
     {
       "title": "Amazon’s unable to restore access to AWS facility in Bahrain damaged by war",
@@ -916,7 +924,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789468833000,
-      "_kind": null
+      "_kind": null,
+      "why": "AWS outage unclear for gold"
     },
     {
       "title": "Here’s the best way to invest in bonds for the long term, according to these five-star portfolio managers",
@@ -947,7 +956,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789468322000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Fed hike odds batter sentiment"
     },
     {
       "title": "Waystar shares climb in premarket on potential sale reports",
@@ -975,7 +988,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789468204000,
-      "_kind": null
+      "_kind": null,
+      "why": "India stocks lower, US unclear"
     },
     {
       "title": "LATEST: US sanctions Russia’s VTB Bank for third time over Iran sanctions evasion - AML Intelligence",
@@ -996,7 +1010,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789466673000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions unclear for oil, gold"
     },
     {
       "title": "Warren Buffett's Favorite Market Gauge Just Hit Its Highest Level Since the 1999 Dot-Com Peak. History Says Investors Should Watch Valuations Closely.",
@@ -1029,7 +1044,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789467558000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "UKOIL": "up",
+        "USOIL": "up"
+      },
+      "why": "Brent rises on supply concerns"
     },
     {
       "title": "Russian regions report Ukrainian strikes as Rostov governor cites 'massive' missile attack - Anadolu Ajansı",
@@ -1049,8 +1069,9 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789465889000,
-      "_kind": null
+      "firstAt": 1789467525000,
+      "_kind": null,
+      "why": "Ukrainian strikes unclear for markets"
     },
     {
       "title": "Legendary investor made an estimated $100 million on 1987 crash, now says investors could see 'negative 10-year returns'",
@@ -1082,7 +1103,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789467169000
+      "firstAt": 1789467169000,
+      "why": "Warship incident unclear for markets"
     },
     {
       "title": "The Fed May Hike Again. Here’s Why CoreWeave and IREN Face Different Rate Risks",
@@ -1104,7 +1126,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789466723000
+      "firstAt": 1789466723000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Fed hike bets strengthen dollar"
     },
     {
       "title": "US sanctions target Russian bank over financial support for Iran - Fox News",
@@ -1124,7 +1152,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789465889000
+      "firstAt": 1789466673000,
+      "why": "Sanctions unclear for oil, gold"
     },
     {
       "title": "Gold weakens amid pressure from growing Fed rate hike bets",
@@ -1141,7 +1170,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789464833000
+      "firstAt": 1789464833000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold weakens on Fed hike bets"
     },
     {
       "title": "AI's safety slowdown spooks the market, delays IPOs, and hands incumbents more room to run",
@@ -1167,7 +1200,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789466400000
+      "firstAt": 1789466400000,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "AI spending expected to roll on"
     },
     {
       "title": "AI Stocks Fell, but Workday and Adobe Jumped. A Favorite AI Disruption Trade Just Flinched",
@@ -1181,27 +1218,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789466174000
-    },
-    {
-      "title": "EU extends Russia sanctions talks for a week over dispute on delisting Russian billionaire: Report - Anadolu Ajansı",
-      "link": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxOdjlyWl9VNWc5blgyUW1SSWo0STBhd3NUSGx3OTNkaFNhT0NyUWsybzJXOTZCMG5pR2gwaVF3OUJlYWRsYkZ1dnRTLUFHdFRZaEZFQVBSb3ZzNk5IRnRoMWFsWEs2aTVCbHIyREx0RHliZlNGVHhkQWMyMnYtcnRjNXZrMzJlZXFtRXhRZjJkSjNiSzdkV3FJaVE5NHZUcERHSXlId2FicVFxR1hWT1JxbG9vLTc5VFQxN1NfVEgzeTZmbzFVT0dLRGszemloMDlNaEJj?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi0wFBVV95cUxOdjlyWl9VNWc5blgyUW1SSWo0STBhd3NUSGx3OTNkaFNhT0NyUWsybzJXOTZCMG5pR2gwaVF3OUJlYWRsYkZ1dnRTLUFHdFRZaEZFQVBSb3ZzNk5IRnRoMWFsWEs2aTVCbHIyREx0RHliZlNGVHhkQWMyMnYtcnRjNXZrMzJlZXFtRXhRZjJkSjNiSzdkV3FJaVE5NHZUcERHSXlId2FicVFxR1",
-      "at": 1789465889000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789465889000
+      "firstAt": 1789466174000,
+      "why": "Mixed AI stock performance"
     },
     {
       "title": "Iran war: Regional conflict sees no signs of de-escalation - engine.online",
@@ -1221,7 +1239,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789465791000
+      "firstAt": 1789465791000,
+      "why": "Iran conflict unclear for markets"
     },
     {
       "title": "Anthropic Expects a Second Straight Quarter of Adjusted Operating Profit. Amazon and Alphabet Investors Should Read the Fine Print",
@@ -2043,7 +2062,7 @@
       "firstAt": 1789455072000
     },
     {
-      "title": "Israeli air strike wounds MSF staff, damages vehicle - middleeasteye.net",
+      "title": "Israeli air strike wounds MSF staff, damages vehicle - Middle East Eye",
       "link": "https://news.google.com/rss/articles/CBMirAFBVV95cUxQcXJMRFcwSE9URWhkbzRra2hnRktCNUw5enpHWjBFMVQyWXgwS1k3WjR6eHZCNEwzTG82UlFHUlFZaVZVV004S19HYUE3WWRFejlGR2ZwU2FRUjF3b1JkZk5mQTQxQ0FtaVRJNUJKYXdROC0wZDQ0QzJHVjFvSV9jaUxVVlByN0JxZFV5T1FFd3VpNUhzUWNuV1U1d3ZQdTVFVlgtWFItemt4Q1pN?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMirAFBVV95cUxQcXJMRFcwSE9URWhkbzRra2hnRktCNUw5enpHWjBFMVQyWXgwS1k3WjR6eHZCNEwzTG82UlFHUlFZaVZVV004S19HYUE3WWRFejlGR2ZwU2FRUjF3b1JkZk5mQTQxQ0FtaVRJNUJKYXdROC0wZDQ0QzJHVjFvSV9jaUxVVlByN0JxZFV5T1FFd3VpNUhzUWNuV1U1d3ZQdTVFVlgtWFItemt4Q1",
@@ -2534,6 +2553,24 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789442546000
+    },
+    {
+      "title": "Oil and Treasury yields haven’t moved this closely in seven years. That’s bad news for markets - CNBC",
+      "link": "https://news.google.com/rss/articles/CBMieEFVX3lxTE1QajFNYTNJSHNFdm9IaVRCSTZqM21IbllITnExcWVZdFNzek5zcE1jVkJocFZZNldiTXJfYS1SNTFPRlp3STdSUFVfTV9YOElGZl94Z2hvQXRwU21taUI3QThIUjdwVVkwUTBnUDI3QzNSTGFiMWkxb9IBfkFVX3lxTE1ybFZGX0lvUmRscWVKLVNOMm9faVh4ZUlfekhrY3RJQ2NUbFpSVVlpbHdMX3V3LW8zcjdQQjlpVFZ4T3ZXZW8yUjF1QzJvU3Y1eGwtSjdnWXdyOEdOTTB3Q1RkTXY4ODVYYnJGRkpHZEdPMWhpV1pveDhSRmxHQQ?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMieEFVX3lxTE1QajFNYTNJSHNFdm9IaVRCSTZqM21IbllITnExcWVZdFNzek5zcE1jVkJocFZZNldiTXJfYS1SNTFPRlp3STdSUFVfTV9YOElGZl94Z2hvQXRwU21taUI3QThIUjdwVVkwUTBnUDI3QzNSTGFiMWkxb9IBfkFVX3lxTE1ybFZGX0lvUmRscWVKLVNOMm9faVh4ZUlfekhrY3RJQ2NUbFpSVVlpbH",
+      "at": 1789440780000,
+      "inst": [
+        "USOIL"
+      ],
+      "ccy": [
+        "USD",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789440780000
     }
   ],
   "sources": [
@@ -2556,10 +2593,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-15T10:47:21.272Z",
-  "headlinesAt": "2026-09-15T10:47:21.272Z",
-  "updatedAt": "2026-09-15T10:47:21.272Z"
+  "calendarAt": "2026-09-15T10:48:38.294Z",
+  "headlinesAt": "2026-09-15T10:48:38.294Z",
+  "updatedAt": "2026-09-15T10:48:38.294Z"
 }
