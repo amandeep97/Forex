@@ -1,0 +1,1383 @@
+{
+  "at": "2026-09-15T02:20:48.180Z",
+  "method": 1,
+  "historyDays": 60,
+  "holds": [
+    15,
+    90
+  ],
+  "cellsTested": 24,
+  "strictZ": 3.078,
+  "entries": 5136,
+  "instruments": 40,
+  "holdoutFrom": "2026-08-26T06:52:10.399Z",
+  "searchHalf": [
+    "NATGAS",
+    "USOIL",
+    "AUD/CAD",
+    "AUD/JPY",
+    "AUD/USD",
+    "CAD/JPY",
+    "EUR/AUD",
+    "EUR/CHF",
+    "EUR/JPY",
+    "EUR/USD",
+    "GBP/CAD",
+    "GBP/JPY",
+    "GBP/USD",
+    "NZD/CHF",
+    "NZD/USD",
+    "USD/CHF",
+    "GER40",
+    "UK100",
+    "US2000",
+    "US500",
+    "XAG/USD"
+  ],
+  "cells": [
+    {
+      "hold": 15,
+      "kind": "PDL",
+      "session": "london",
+      "sessionLabel": "London",
+      "discovery": {
+        "n": 39,
+        "expR": 0.6923,
+        "sd": 1.5071,
+        "win": 0.564,
+        "edgeR": 0.7098
+      },
+      "time": {
+        "n": 20,
+        "expR": -0.0611,
+        "sd": 1.3515,
+        "win": 0.35,
+        "edgeR": -0.059
+      },
+      "unseen": {
+        "n": 59,
+        "expR": -0.0769,
+        "sd": 1.3234,
+        "win": 0.322,
+        "edgeR": -0.0734
+      },
+      "verdict": "not significant"
+    },
+    {
+      "hold": 90,
+      "kind": "PDL",
+      "session": "london",
+      "sessionLabel": "London",
+      "discovery": {
+        "n": 39,
+        "expR": 0.6923,
+        "sd": 1.5071,
+        "win": 0.564,
+        "edgeR": 0.707
+      },
+      "time": {
+        "n": 20,
+        "expR": -0.25,
+        "sd": 1.3328,
+        "win": 0.25,
+        "edgeR": -0.2417
+      },
+      "unseen": {
+        "n": 59,
+        "expR": -0.1864,
+        "sd": 1.3452,
+        "win": 0.271,
+        "edgeR": -0.1834
+      },
+      "verdict": "not significant"
+    },
+    {
+      "hold": 90,
+      "kind": "PWL",
+      "session": "london",
+      "sessionLabel": "London",
+      "discovery": {
+        "n": 16,
+        "expR": 0.5,
+        "sd": 1.5492,
+        "win": 0.5,
+        "edgeR": 0.553
+      },
+      "time": {
+        "n": 7,
+        "expR": 0.2857,
+        "sd": 1.6036,
+        "win": 0.429,
+        "edgeR": 0.2747
+      },
+      "unseen": {
+        "n": 14,
+        "expR": 0.0714,
+        "sd": 1.4917,
+        "win": 0.357,
+        "edgeR": 0.0664
+      },
+      "verdict": "thin"
+    },
+    {
+      "hold": 15,
+      "kind": "PWL",
+      "session": "london",
+      "sessionLabel": "London",
+      "discovery": {
+        "n": 16,
+        "expR": 0.5,
+        "sd": 1.5492,
+        "win": 0.5,
+        "edgeR": 0.5478
+      },
+      "time": {
+        "n": 7,
+        "expR": 0.2857,
+        "sd": 1.6036,
+        "win": 0.429,
+        "edgeR": 0.2652
+      },
+      "unseen": {
+        "n": 14,
+        "expR": 0.0714,
+        "sd": 1.4917,
+        "win": 0.357,
+        "edgeR": 0.061
+      },
+      "verdict": "thin"
+    },
+    {
+      "hold": 15,
+      "kind": "H4L",
+      "session": "london",
+      "sessionLabel": "London",
+      "discovery": {
+        "n": 20,
+        "expR": 0.5,
+        "sd": 1.539,
+        "win": 0.5,
+        "edgeR": 0.529
+      },
+      "time": {
+        "n": 15,
+        "expR": -0.2867,
+        "sd": 1.2609,
+        "win": 0.267,
+        "edgeR": -0.2815
+      },
+      "unseen": {
+        "n": 41,
+        "expR": 0.1619,
+        "sd": 1.4715,
+        "win": 0.39,
+        "edgeR": 0.1803
+      },
+      "verdict": "thin"
+    },
+    {
+      "hold": 90,
+      "kind": "H4L",
+      "session": "london",
+      "sessionLabel": "London",
+      "discovery": {
+        "n": 20,
+        "expR": 0.5,
+        "sd": 1.539,
+        "win": 0.5,
+        "edgeR": 0.5241
+      },
+      "time": {
+        "n": 15,
+        "expR": -0.2,
+        "sd": 1.3732,
+        "win": 0.267,
+        "edgeR": -0.1904
+      },
+      "unseen": {
+        "n": 41,
+        "expR": 0.1707,
+        "sd": 1.4816,
+        "win": 0.39,
+        "edgeR": 0.1844
+      },
+      "verdict": "thin"
+    },
+    {
+      "hold": 90,
+      "kind": "H4L",
+      "session": "asia",
+      "sessionLabel": "Asia",
+      "discovery": {
+        "n": 25,
+        "expR": 0.44,
+        "sd": 1.5297,
+        "win": 0.48,
+        "edgeR": 0.444
+      },
+      "time": {
+        "n": 13,
+        "expR": -0.5385,
+        "sd": 1.1266,
+        "win": 0.154,
+        "edgeR": -0.5565
+      },
+      "unseen": {
+        "n": 38,
+        "expR": 0.1842,
+        "sd": 1.4861,
+        "win": 0.395,
+        "edgeR": 0.1872
+      },
+      "verdict": "no time holdout"
+    },
+    {
+      "hold": 15,
+      "kind": "H4L",
+      "session": "asia",
+      "sessionLabel": "Asia",
+      "discovery": {
+        "n": 25,
+        "expR": 0.4178,
+        "sd": 1.4696,
+        "win": 0.48,
+        "edgeR": 0.4163
+      },
+      "time": {
+        "n": 14,
+        "expR": -0.4278,
+        "sd": 1.1589,
+        "win": 0.214,
+        "edgeR": -0.4263
+      },
+      "unseen": {
+        "n": 38,
+        "expR": 0.2115,
+        "sd": 1.4397,
+        "win": 0.421,
+        "edgeR": 0.2172
+      },
+      "verdict": "no time holdout"
+    },
+    {
+      "hold": 90,
+      "kind": "H4H",
+      "session": "ny",
+      "sessionLabel": "New York",
+      "discovery": {
+        "n": 40,
+        "expR": 0.425,
+        "sd": 1.5172,
+        "win": 0.475,
+        "edgeR": 0.4019
+      },
+      "time": {
+        "n": 10,
+        "expR": -0.4,
+        "sd": 1.2649,
+        "win": 0.2,
+        "edgeR": -0.4905
+      },
+      "unseen": {
+        "n": 72,
+        "expR": 0.125,
+        "sd": 1.4626,
+        "win": 0.375,
+        "edgeR": 0.1538
+      },
+      "verdict": "no time holdout"
+    },
+    {
+      "hold": 15,
+      "kind": "H4H",
+      "session": "ny",
+      "sessionLabel": "New York",
+      "discovery": {
+        "n": 40,
+        "expR": 0.3953,
+        "sd": 1.4396,
+        "win": 0.475,
+        "edgeR": 0.3668
+      },
+      "time": {
+        "n": 10,
+        "expR": -0.531,
+        "sd": 1.0358,
+        "win": 0.2,
+        "edgeR": -0.6137
+      },
+      "unseen": {
+        "n": 72,
+        "expR": 0.0839,
+        "sd": 1.4037,
+        "win": 0.361,
+        "edgeR": 0.106
+      },
+      "verdict": "no time holdout"
+    },
+    {
+      "hold": 15,
+      "kind": "H4L",
+      "session": "ny",
+      "sessionLabel": "New York",
+      "discovery": {
+        "n": 27,
+        "expR": 0.2222,
+        "sd": 1.5021,
+        "win": 0.407,
+        "edgeR": 0.2199
+      },
+      "time": {
+        "n": 20,
+        "expR": 0.05,
+        "sd": 1.4681,
+        "win": 0.35,
+        "edgeR": 0.055
+      },
+      "unseen": {
+        "n": 73,
+        "expR": -0.0062,
+        "sd": 1.3611,
+        "win": 0.37,
+        "edgeR": -0.0163
+      },
+      "verdict": "not significant"
+    },
+    {
+      "hold": 90,
+      "kind": "H4L",
+      "session": "ny",
+      "sessionLabel": "New York",
+      "discovery": {
+        "n": 27,
+        "expR": 0.2222,
+        "sd": 1.5021,
+        "win": 0.407,
+        "edgeR": 0.2159
+      },
+      "time": {
+        "n": 20,
+        "expR": 0.05,
+        "sd": 1.4681,
+        "win": 0.35,
+        "edgeR": 0.0564
+      },
+      "unseen": {
+        "n": 73,
+        "expR": 0.0274,
+        "sd": 1.4335,
+        "win": 0.342,
+        "edgeR": 0.016
+      },
+      "verdict": "not significant"
+    },
+    {
+      "hold": 15,
+      "kind": "PWL",
+      "session": "ny",
+      "sessionLabel": "New York",
+      "discovery": {
+        "n": 15,
+        "expR": 0.07,
+        "sd": 1.3067,
+        "win": 0.4,
+        "edgeR": 0.1003
+      },
+      "time": {
+        "n": 5,
+        "expR": 0.2,
+        "sd": 1.6432,
+        "win": 0.4,
+        "edgeR": 0.1862
+      },
+      "unseen": {
+        "n": 19,
+        "expR": 0.5055,
+        "sd": 1.4901,
+        "win": 0.526,
+        "edgeR": 0.5226
+      },
+      "verdict": "thin"
+    },
+    {
+      "hold": 90,
+      "kind": "PDH",
+      "session": "late",
+      "sessionLabel": "Late/rollover",
+      "discovery": {
+        "n": 68,
+        "expR": 0.1029,
+        "sd": 1.4572,
+        "win": 0.368,
+        "edgeR": 0.0575
+      },
+      "time": {
+        "n": 15,
+        "expR": -0.6919,
+        "sd": 0.8539,
+        "win": 0.133,
+        "edgeR": -0.7506
+      },
+      "unseen": {
+        "n": 88,
+        "expR": -0.1636,
+        "sd": 1.3434,
+        "win": 0.284,
+        "edgeR": -0.1449
+      },
+      "verdict": "not significant"
+    },
+    {
+      "hold": 90,
+      "kind": "PWL",
+      "session": "late",
+      "sessionLabel": "Late/rollover",
+      "discovery": {
+        "n": 12,
+        "expR": 0,
+        "sd": 1.4771,
+        "win": 0.333,
+        "edgeR": 0.0516
+      },
+      "time": {
+        "n": 6,
+        "expR": -0.5,
+        "sd": 1.2247,
+        "win": 0.167,
+        "edgeR": -0.4815
+      },
+      "unseen": {
+        "n": 21,
+        "expR": -0.5714,
+        "sd": 1.0757,
+        "win": 0.143,
+        "edgeR": -0.6041
+      },
+      "verdict": "thin"
+    },
+    {
+      "hold": 15,
+      "kind": "PWL",
+      "session": "late",
+      "sessionLabel": "Late/rollover",
+      "discovery": {
+        "n": 12,
+        "expR": 0,
+        "sd": 1.4771,
+        "win": 0.333,
+        "edgeR": 0.0381
+      },
+      "time": {
+        "n": 6,
+        "expR": -0.5,
+        "sd": 1.2247,
+        "win": 0.167,
+        "edgeR": -0.4894
+      },
+      "unseen": {
+        "n": 21,
+        "expR": -0.5242,
+        "sd": 1.0702,
+        "win": 0.143,
+        "edgeR": -0.5526
+      },
+      "verdict": "thin"
+    },
+    {
+      "hold": 90,
+      "kind": "PWL",
+      "session": "ny",
+      "sessionLabel": "New York",
+      "discovery": {
+        "n": 15,
+        "expR": 0,
+        "sd": 1.4639,
+        "win": 0.333,
+        "edgeR": 0.0345
+      },
+      "time": {
+        "n": 5,
+        "expR": 0.2,
+        "sd": 1.6432,
+        "win": 0.4,
+        "edgeR": 0.2031
+      },
+      "unseen": {
+        "n": 19,
+        "expR": 0.4211,
+        "sd": 1.539,
+        "win": 0.474,
+        "edgeR": 0.4359
+      },
+      "verdict": "thin"
+    },
+    {
+      "hold": 15,
+      "kind": "PDH",
+      "session": "late",
+      "sessionLabel": "Late/rollover",
+      "discovery": {
+        "n": 68,
+        "expR": 0.0656,
+        "sd": 1.4026,
+        "win": 0.382,
+        "edgeR": 0.0208
+      },
+      "time": {
+        "n": 15,
+        "expR": -0.6913,
+        "sd": 0.8548,
+        "win": 0.133,
+        "edgeR": -0.7469
+      },
+      "unseen": {
+        "n": 88,
+        "expR": -0.215,
+        "sd": 1.2757,
+        "win": 0.273,
+        "edgeR": -0.2037
+      },
+      "verdict": "not significant"
+    },
+    {
+      "hold": 90,
+      "kind": "PDL",
+      "session": "late",
+      "sessionLabel": "Late/rollover",
+      "discovery": {
+        "n": 30,
+        "expR": 0,
+        "sd": 1.4384,
+        "win": 0.333,
+        "edgeR": 0.0131
+      },
+      "time": {
+        "n": 19,
+        "expR": -0.3684,
+        "sd": 1.2566,
+        "win": 0.211,
+        "edgeR": -0.4227
+      },
+      "unseen": {
+        "n": 75,
+        "expR": -0.1169,
+        "sd": 1.355,
+        "win": 0.307,
+        "edgeR": -0.0982
+      },
+      "verdict": "not significant"
+    },
+    {
+      "hold": 90,
+      "kind": "H4H",
+      "session": "late",
+      "sessionLabel": "Late/rollover",
+      "discovery": {
+        "n": 39,
+        "expR": 0,
+        "sd": 1.4327,
+        "win": 0.333,
+        "edgeR": 0.0116
+      },
+      "time": {
+        "n": 15,
+        "expR": -0.2,
+        "sd": 1.3732,
+        "win": 0.267,
+        "edgeR": -0.2813
+      },
+      "unseen": {
+        "n": 76,
+        "expR": -0.4868,
+        "sd": 1.1372,
+        "win": 0.171,
+        "edgeR": -0.4693
+      },
+      "verdict": "not significant"
+    },
+    {
+      "hold": 90,
+      "kind": "PWH",
+      "session": "london",
+      "sessionLabel": "London",
+      "discovery": {
+        "n": 27,
+        "expR": 0,
+        "sd": 1.4412,
+        "win": 0.333,
+        "edgeR": -0.0353
+      },
+      "time": {
+        "n": 11,
+        "expR": -0.4545,
+        "sd": 1.2136,
+        "win": 0.182,
+        "edgeR": -0.5084
+      },
+      "unseen": {
+        "n": 24,
+        "expR": 0,
+        "sd": 1.4446,
+        "win": 0.333,
+        "edgeR": 0.0533
+      },
+      "verdict": "no time holdout"
+    },
+    {
+      "hold": 15,
+      "kind": "PWH",
+      "session": "london",
+      "sessionLabel": "London",
+      "discovery": {
+        "n": 27,
+        "expR": -0.0373,
+        "sd": 1.3998,
+        "win": 0.333,
+        "edgeR": -0.0648
+      },
+      "time": {
+        "n": 11,
+        "expR": -0.3337,
+        "sd": 1.22,
+        "win": 0.273,
+        "edgeR": -0.3693
+      },
+      "unseen": {
+        "n": 24,
+        "expR": 0,
+        "sd": 1.4446,
+        "win": 0.333,
+        "edgeR": 0.0434
+      },
+      "verdict": "no time holdout"
+    },
+    {
+      "hold": 15,
+      "kind": "PDL",
+      "session": "late",
+      "sessionLabel": "Late/rollover",
+      "discovery": {
+        "n": 30,
+        "expR": -0.0898,
+        "sd": 1.3241,
+        "win": 0.333,
+        "edgeR": -0.0681
+      },
+      "time": {
+        "n": 19,
+        "expR": -0.3684,
+        "sd": 1.2566,
+        "win": 0.211,
+        "edgeR": -0.409
+      },
+      "unseen": {
+        "n": 75,
+        "expR": -0.1429,
+        "sd": 1.2963,
+        "win": 0.293,
+        "edgeR": -0.1272
+      },
+      "verdict": "not significant"
+    },
+    {
+      "hold": 15,
+      "kind": "H4H",
+      "session": "late",
+      "sessionLabel": "Late/rollover",
+      "discovery": {
+        "n": 39,
+        "expR": -0.0896,
+        "sd": 1.3067,
+        "win": 0.308,
+        "edgeR": -0.0797
+      },
+      "time": {
+        "n": 15,
+        "expR": -0.2465,
+        "sd": 1.3034,
+        "win": 0.267,
+        "edgeR": -0.3153
+      },
+      "unseen": {
+        "n": 76,
+        "expR": -0.4923,
+        "sd": 1.0372,
+        "win": 0.197,
+        "edgeR": -0.4798
+      },
+      "verdict": "not significant"
+    },
+    {
+      "hold": 15,
+      "kind": "PWH",
+      "session": "ny",
+      "sessionLabel": "New York",
+      "discovery": {
+        "n": 21,
+        "expR": -0.0355,
+        "sd": 1.3466,
+        "win": 0.286,
+        "edgeR": -0.1209
+      },
+      "time": {
+        "n": 8,
+        "expR": 0.125,
+        "sd": 1.5526,
+        "win": 0.375,
+        "edgeR": 0.0141
+      },
+      "unseen": {
+        "n": 20,
+        "expR": 0.7281,
+        "sd": 1.4817,
+        "win": 0.6,
+        "edgeR": 0.7295
+      },
+      "verdict": "thin"
+    },
+    {
+      "hold": 90,
+      "kind": "PWH",
+      "session": "late",
+      "sessionLabel": "Late/rollover",
+      "discovery": {
+        "n": 17,
+        "expR": -0.1176,
+        "sd": 1.409,
+        "win": 0.294,
+        "edgeR": -0.1314
+      },
+      "time": {
+        "n": 4,
+        "expR": -0.25,
+        "sd": 1.5,
+        "win": 0.25,
+        "edgeR": -0.381
+      },
+      "unseen": {
+        "n": 22,
+        "expR": -0.2584,
+        "sd": 1.2842,
+        "win": 0.273,
+        "edgeR": -0.2431
+      },
+      "verdict": "thin"
+    },
+    {
+      "hold": 90,
+      "kind": "PDL",
+      "session": "asia",
+      "sessionLabel": "Asia",
+      "discovery": {
+        "n": 46,
+        "expR": -0.1522,
+        "sd": 1.3657,
+        "win": 0.283,
+        "edgeR": -0.143
+      },
+      "time": {
+        "n": 36,
+        "expR": -0.3333,
+        "sd": 1.2649,
+        "win": 0.222,
+        "edgeR": -0.2934
+      },
+      "unseen": {
+        "n": 71,
+        "expR": -0.1127,
+        "sd": 1.3789,
+        "win": 0.296,
+        "edgeR": -0.1076
+      },
+      "verdict": "not significant"
+    },
+    {
+      "hold": 90,
+      "kind": "H4H",
+      "session": "asia",
+      "sessionLabel": "Asia",
+      "discovery": {
+        "n": 44,
+        "expR": -0.1136,
+        "sd": 1.3846,
+        "win": 0.295,
+        "edgeR": -0.1661
+      },
+      "time": {
+        "n": 20,
+        "expR": 0.35,
+        "sd": 1.5313,
+        "win": 0.45,
+        "edgeR": 0.2972
+      },
+      "unseen": {
+        "n": 56,
+        "expR": -0.1964,
+        "sd": 1.3406,
+        "win": 0.268,
+        "edgeR": -0.193
+      },
+      "verdict": "not significant"
+    },
+    {
+      "hold": 15,
+      "kind": "PDL",
+      "session": "asia",
+      "sessionLabel": "Asia",
+      "discovery": {
+        "n": 46,
+        "expR": -0.1771,
+        "sd": 1.3077,
+        "win": 0.283,
+        "edgeR": -0.1667
+      },
+      "time": {
+        "n": 36,
+        "expR": -0.3206,
+        "sd": 1.2603,
+        "win": 0.222,
+        "edgeR": -0.2817
+      },
+      "unseen": {
+        "n": 71,
+        "expR": -0.1487,
+        "sd": 1.3357,
+        "win": 0.296,
+        "edgeR": -0.1396
+      },
+      "verdict": "not significant"
+    },
+    {
+      "hold": 15,
+      "kind": "PDH",
+      "session": "asia",
+      "sessionLabel": "Asia",
+      "discovery": {
+        "n": 92,
+        "expR": -0.1253,
+        "sd": 1.2875,
+        "win": 0.337,
+        "edgeR": -0.1679
+      },
+      "time": {
+        "n": 28,
+        "expR": 0.0714,
+        "sd": 1.4639,
+        "win": 0.357,
+        "edgeR": 0.0804
+      },
+      "unseen": {
+        "n": 83,
+        "expR": -0.1722,
+        "sd": 1.3268,
+        "win": 0.289,
+        "edgeR": -0.1692
+      },
+      "verdict": "not significant"
+    },
+    {
+      "hold": 15,
+      "kind": "H4H",
+      "session": "asia",
+      "sessionLabel": "Asia",
+      "discovery": {
+        "n": 44,
+        "expR": -0.1169,
+        "sd": 1.3451,
+        "win": 0.318,
+        "edgeR": -0.1684
+      },
+      "time": {
+        "n": 20,
+        "expR": 0.35,
+        "sd": 1.5313,
+        "win": 0.45,
+        "edgeR": 0.2964
+      },
+      "unseen": {
+        "n": 57,
+        "expR": -0.2422,
+        "sd": 1.3004,
+        "win": 0.263,
+        "edgeR": -0.2437
+      },
+      "verdict": "not significant"
+    },
+    {
+      "hold": 90,
+      "kind": "PDH",
+      "session": "asia",
+      "sessionLabel": "Asia",
+      "discovery": {
+        "n": 92,
+        "expR": -0.1639,
+        "sd": 1.344,
+        "win": 0.283,
+        "edgeR": -0.204
+      },
+      "time": {
+        "n": 28,
+        "expR": 0.0714,
+        "sd": 1.4639,
+        "win": 0.357,
+        "edgeR": 0.0793
+      },
+      "unseen": {
+        "n": 83,
+        "expR": -0.1687,
+        "sd": 1.3509,
+        "win": 0.277,
+        "edgeR": -0.167
+      },
+      "verdict": "not significant"
+    },
+    {
+      "hold": 15,
+      "kind": "PDH",
+      "session": "ny",
+      "sessionLabel": "New York",
+      "discovery": {
+        "n": 85,
+        "expR": -0.1682,
+        "sd": 1.3163,
+        "win": 0.294,
+        "edgeR": -0.212
+      },
+      "time": {
+        "n": 46,
+        "expR": 0.294,
+        "sd": 1.4387,
+        "win": 0.457,
+        "edgeR": 0.2415
+      },
+      "unseen": {
+        "n": 108,
+        "expR": -0.0893,
+        "sd": 1.3566,
+        "win": 0.315,
+        "edgeR": -0.0687
+      },
+      "verdict": "not significant"
+    },
+    {
+      "hold": 90,
+      "kind": "PWH",
+      "session": "ny",
+      "sessionLabel": "New York",
+      "discovery": {
+        "n": 21,
+        "expR": -0.1429,
+        "sd": 1.3887,
+        "win": 0.286,
+        "edgeR": -0.2241
+      },
+      "time": {
+        "n": 8,
+        "expR": 0.125,
+        "sd": 1.5526,
+        "win": 0.375,
+        "edgeR": 0.013
+      },
+      "unseen": {
+        "n": 20,
+        "expR": 0.65,
+        "sd": 1.5313,
+        "win": 0.55,
+        "edgeR": 0.6593
+      },
+      "verdict": "thin"
+    },
+    {
+      "hold": 90,
+      "kind": "H4H",
+      "session": "london",
+      "sessionLabel": "London",
+      "discovery": {
+        "n": 37,
+        "expR": -0.1892,
+        "sd": 1.3507,
+        "win": 0.27,
+        "edgeR": -0.2295
+      },
+      "time": {
+        "n": 17,
+        "expR": 0.2353,
+        "sd": 1.5219,
+        "win": 0.412,
+        "edgeR": 0.1825
+      },
+      "unseen": {
+        "n": 54,
+        "expR": 0.0556,
+        "sd": 1.4461,
+        "win": 0.352,
+        "edgeR": 0.0766
+      },
+      "verdict": "not significant"
+    },
+    {
+      "hold": 15,
+      "kind": "H4H",
+      "session": "london",
+      "sessionLabel": "London",
+      "discovery": {
+        "n": 37,
+        "expR": -0.1892,
+        "sd": 1.3507,
+        "win": 0.27,
+        "edgeR": -0.2349
+      },
+      "time": {
+        "n": 17,
+        "expR": 0.2633,
+        "sd": 1.502,
+        "win": 0.412,
+        "edgeR": 0.2095
+      },
+      "unseen": {
+        "n": 54,
+        "expR": 0.0387,
+        "sd": 1.4282,
+        "win": 0.352,
+        "edgeR": 0.0532
+      },
+      "verdict": "not significant"
+    },
+    {
+      "hold": 90,
+      "kind": "PDH",
+      "session": "ny",
+      "sessionLabel": "New York",
+      "discovery": {
+        "n": 85,
+        "expR": -0.1882,
+        "sd": 1.3407,
+        "win": 0.271,
+        "edgeR": -0.2435
+      },
+      "time": {
+        "n": 46,
+        "expR": 0.3696,
+        "sd": 1.5108,
+        "win": 0.457,
+        "edgeR": 0.3083
+      },
+      "unseen": {
+        "n": 108,
+        "expR": -0.0556,
+        "sd": 1.3998,
+        "win": 0.315,
+        "edgeR": -0.0272
+      },
+      "verdict": "not significant"
+    },
+    {
+      "hold": 15,
+      "kind": "PDH",
+      "session": "london",
+      "sessionLabel": "London",
+      "discovery": {
+        "n": 59,
+        "expR": -0.2373,
+        "sd": 1.3175,
+        "win": 0.254,
+        "edgeR": -0.2701
+      },
+      "time": {
+        "n": 38,
+        "expR": -0.0323,
+        "sd": 1.3903,
+        "win": 0.342,
+        "edgeR": -0.0854
+      },
+      "unseen": {
+        "n": 60,
+        "expR": -0.2264,
+        "sd": 1.309,
+        "win": 0.267,
+        "edgeR": -0.222
+      },
+      "verdict": "not significant"
+    },
+    {
+      "hold": 90,
+      "kind": "PDH",
+      "session": "london",
+      "sessionLabel": "London",
+      "discovery": {
+        "n": 59,
+        "expR": -0.2373,
+        "sd": 1.3175,
+        "win": 0.254,
+        "edgeR": -0.2752
+      },
+      "time": {
+        "n": 38,
+        "expR": -0.0526,
+        "sd": 1.4132,
+        "win": 0.316,
+        "edgeR": -0.1154
+      },
+      "unseen": {
+        "n": 60,
+        "expR": -0.2,
+        "sd": 1.3378,
+        "win": 0.267,
+        "edgeR": -0.1908
+      },
+      "verdict": "not significant"
+    },
+    {
+      "hold": 15,
+      "kind": "PWH",
+      "session": "late",
+      "sessionLabel": "Late/rollover",
+      "discovery": {
+        "n": 17,
+        "expR": -0.2983,
+        "sd": 1.2423,
+        "win": 0.235,
+        "edgeR": -0.3127
+      },
+      "time": {
+        "n": 4,
+        "expR": 0.0385,
+        "sd": 1.4163,
+        "win": 0.5,
+        "edgeR": -0.0813
+      },
+      "unseen": {
+        "n": 22,
+        "expR": -0.1881,
+        "sd": 1.2456,
+        "win": 0.227,
+        "edgeR": -0.1773
+      },
+      "verdict": "thin"
+    },
+    {
+      "hold": 15,
+      "kind": "PDL",
+      "session": "ny",
+      "sessionLabel": "New York",
+      "discovery": {
+        "n": 63,
+        "expR": -0.3292,
+        "sd": 1.1966,
+        "win": 0.254,
+        "edgeR": -0.3286
+      },
+      "time": {
+        "n": 35,
+        "expR": 0.4055,
+        "sd": 1.4228,
+        "win": 0.514,
+        "edgeR": 0.4265
+      },
+      "unseen": {
+        "n": 79,
+        "expR": -0.0168,
+        "sd": 1.3792,
+        "win": 0.342,
+        "edgeR": -0.0111
+      },
+      "verdict": "not significant"
+    },
+    {
+      "hold": 90,
+      "kind": "H4L",
+      "session": "late",
+      "sessionLabel": "Late/rollover",
+      "discovery": {
+        "n": 29,
+        "expR": -0.3793,
+        "sd": 1.2368,
+        "win": 0.207,
+        "edgeR": -0.3539
+      },
+      "time": {
+        "n": 22,
+        "expR": -0.4545,
+        "sd": 1.1843,
+        "win": 0.182,
+        "edgeR": -0.476
+      },
+      "unseen": {
+        "n": 57,
+        "expR": -0.4737,
+        "sd": 1.1512,
+        "win": 0.175,
+        "edgeR": -0.4627
+      },
+      "verdict": "not significant"
+    },
+    {
+      "hold": 15,
+      "kind": "H4L",
+      "session": "late",
+      "sessionLabel": "Late/rollover",
+      "discovery": {
+        "n": 29,
+        "expR": -0.3884,
+        "sd": 1.1804,
+        "win": 0.207,
+        "edgeR": -0.3639
+      },
+      "time": {
+        "n": 22,
+        "expR": -0.4545,
+        "sd": 1.1843,
+        "win": 0.182,
+        "edgeR": -0.4602
+      },
+      "unseen": {
+        "n": 57,
+        "expR": -0.3725,
+        "sd": 1.1248,
+        "win": 0.246,
+        "edgeR": -0.363
+      },
+      "verdict": "not significant"
+    },
+    {
+      "hold": 90,
+      "kind": "PDL",
+      "session": "ny",
+      "sessionLabel": "New York",
+      "discovery": {
+        "n": 63,
+        "expR": -0.381,
+        "sd": 1.2238,
+        "win": 0.206,
+        "edgeR": -0.3816
+      },
+      "time": {
+        "n": 35,
+        "expR": 0.4571,
+        "sd": 1.5213,
+        "win": 0.486,
+        "edgeR": 0.4723
+      },
+      "unseen": {
+        "n": 79,
+        "expR": -0.0506,
+        "sd": 1.4042,
+        "win": 0.316,
+        "edgeR": -0.0444
+      },
+      "verdict": "not significant"
+    },
+    {
+      "hold": 90,
+      "kind": "PWH",
+      "session": "asia",
+      "sessionLabel": "Asia",
+      "discovery": {
+        "n": 15,
+        "expR": -0.4,
+        "sd": 1.2421,
+        "win": 0.2,
+        "edgeR": -0.4553
+      },
+      "time": {
+        "n": 4,
+        "expR": -1,
+        "sd": 0,
+        "win": 0,
+        "edgeR": -1.0859
+      },
+      "unseen": {
+        "n": 18,
+        "expR": -0.3333,
+        "sd": 1.2834,
+        "win": 0.222,
+        "edgeR": -0.294
+      },
+      "verdict": "thin"
+    },
+    {
+      "hold": 15,
+      "kind": "PWH",
+      "session": "asia",
+      "sessionLabel": "Asia",
+      "discovery": {
+        "n": 15,
+        "expR": -0.4,
+        "sd": 1.2421,
+        "win": 0.2,
+        "edgeR": -0.4622
+      },
+      "time": {
+        "n": 4,
+        "expR": 0.1482,
+        "sd": 1.1811,
+        "win": 0.5,
+        "edgeR": 0.0204
+      },
+      "unseen": {
+        "n": 18,
+        "expR": -0.3333,
+        "sd": 1.2834,
+        "win": 0.222,
+        "edgeR": -0.3051
+      },
+      "verdict": "thin"
+    },
+    {
+      "hold": 15,
+      "kind": "PWL",
+      "session": "asia",
+      "sessionLabel": "Asia",
+      "discovery": {
+        "n": 23,
+        "expR": -0.5209,
+        "sd": 0.9691,
+        "win": 0.174,
+        "edgeR": -0.5308
+      },
+      "time": {
+        "n": 12,
+        "expR": 0.1147,
+        "sd": 1.4455,
+        "win": 0.417,
+        "edgeR": 0.0915
+      },
+      "unseen": {
+        "n": 25,
+        "expR": 0.0547,
+        "sd": 1.4377,
+        "win": 0.36,
+        "edgeR": 0.0719
+      },
+      "verdict": "thin"
+    },
+    {
+      "hold": 90,
+      "kind": "PWL",
+      "session": "asia",
+      "sessionLabel": "Asia",
+      "discovery": {
+        "n": 23,
+        "expR": -0.6087,
+        "sd": 1.0331,
+        "win": 0.13,
+        "edgeR": -0.6153
+      },
+      "time": {
+        "n": 12,
+        "expR": 0,
+        "sd": 1.4771,
+        "win": 0.333,
+        "edgeR": -0.0301
+      },
+      "unseen": {
+        "n": 23,
+        "expR": 0.0435,
+        "sd": 1.461,
+        "win": 0.348,
+        "edgeR": 0.0541
+      },
+      "verdict": "thin"
+    }
+  ]
+}
