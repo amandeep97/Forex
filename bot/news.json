@@ -918,7 +918,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789445594000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Oil pressure, AI rebound offsets for stocks"
     },
     {
       "title": "China's August retail sales miss forecast while investment slump deepens, piling pressure on Beijing",
@@ -942,7 +946,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789445177000,
-      "_kind": null
+      "_kind": null,
+      "why": "China data weak, unclear FX impact"
     },
     {
       "title": "investingLive Asia-Pacific market news: Oil holds near highs",
@@ -960,7 +965,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789443821000
+      "firstAt": 1789443821000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil holds near highs"
     },
     {
       "title": "Global AI stocks fall as industry chiefs call for slowing development",
@@ -974,7 +983,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789443388000
+      "firstAt": 1789443388000,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "AI stocks fall on slowing development calls"
     },
     {
       "title": "Ukraine war briefing: No energy ceasefire until Russia stops, Zelenskyy confirms after Trump claim - The Guardian",
@@ -994,7 +1007,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789443360000
+      "firstAt": 1789443360000,
+      "why": "No energy ceasefire, unclear immediate impact"
     },
     {
       "title": "Dollar Near Two-Week High On Oil Surge And Fed Rate Hike Bets - businesstoday.com.my",
@@ -1012,7 +1026,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789442912000
+      "firstAt": 1789442912000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil surge mentioned in headline"
     },
     {
       "title": "An analysis of Ukraine’s missile strike on the Progress rocket factory - The Space Review",
@@ -1032,7 +1050,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789441355000
+      "firstAt": 1789441355000,
+      "why": "Missile strike analysis, unclear market direction"
     },
     {
       "title": "Most markets drop as oil extends gains ahead of expected US rate hike - abs-cbn.com",
@@ -1050,7 +1069,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789441332000
+      "firstAt": 1789441332000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil extends gains"
     },
     {
       "title": "Oil and Treasury yields haven’t moved this closely in seven years. That’s bad news for markets - CNBC",
@@ -1068,7 +1091,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789440780000
+      "firstAt": 1789440780000,
+      "why": "Oil yields correlation, bad for markets"
     },
     {
       "title": "United States Dollar Index strengthens above 99.50 as Fed rate hike bets rise - FXStreet",
@@ -1091,7 +1115,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789437392000
+      "firstAt": 1789437392000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Dollar strengthens, bearish for pairs"
     },
     {
       "title": "Russia sanctions bill passes House Rules Committee - The Hill",
@@ -1111,7 +1141,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789439460000
+      "firstAt": 1789439460000,
+      "why": "Sanctions bill passes committee, unclear impact"
     },
     {
       "title": "Gold holds near $4,300 as oil disruption lifts Fed hike bets",
@@ -1130,7 +1161,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789439065000
+      "firstAt": 1789439065000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil disruption lifts prices, gold holds"
     },
     {
       "title": "Iran strikes damaged US bases, embassies across 8 countries: Pentagon watchdog - The Times of India",
@@ -1150,7 +1185,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789438440000
+      "firstAt": 1789438440000,
+      "why": "Iran strikes, unclear immediate market direction"
     },
     {
       "title": "Dollar Near Two-Week High as Oil Surge Boosts Fed Rate Hike Bets - Global Banking & Finance Review",
@@ -1168,7 +1204,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789436333000
+      "firstAt": 1789436333000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil surge boosts rate hike bets"
     },
     {
       "title": "China August retail sales +0.4% y/y (expected +0.6%)",
@@ -1191,7 +1231,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789436296000
+      "firstAt": 1789436296000,
+      "why": "China data miss, unclear FX direction"
     },
     {
       "title": "Dollar Surges Amid Rising Oil Prices and Fed Rate Hike Expectations - Devdiscourse",
@@ -2651,7 +2692,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-15T04:24:08.218Z",
-  "headlinesAt": "2026-09-15T04:24:08.218Z",
-  "updatedAt": "2026-09-15T04:24:08.218Z"
+  "calendarAt": "2026-09-15T04:25:09.164Z",
+  "headlinesAt": "2026-09-15T04:25:09.164Z",
+  "updatedAt": "2026-09-15T04:25:09.164Z"
 }
