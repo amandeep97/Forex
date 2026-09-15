@@ -885,6 +885,19 @@
   ],
   "headlines": [
     {
+      "title": "GSK shares rise as Berenberg upgrades to Buy on stronger drug pipeline",
+      "link": "https://www.investing.com/news/stock-market-news/gsk-shares-rise-as-berenberg-upgrades-to-buy-on-stronger-drug-pipeline-4900938",
+      "source": "Investing",
+      "at": 1789459856000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 1,
+      "srcs": 1,
+      "firstAt": 1789459856000,
+      "_kind": null
+    },
+    {
       "title": "Sterling today: Pound fall as UK jobs data disappoints, dollar firm",
       "link": "https://www.investing.com/news/forex-news/sterling-today-pound-fall-as-uk-jobs-data-disappoints-dollar-firm-4900933",
       "source": "Investing FX",
@@ -900,7 +913,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789459587000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "GBP/USD": "down"
+      },
+      "why": "Pound falls on disappointing UK jobs data"
     },
     {
       "title": "U.S. Sanctions Russia’s VTB Bank for Assisting Iran - IranWire",
@@ -921,7 +938,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789458477000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions news lacks clear immediate price direction"
     },
     {
       "title": "US textile industry accelerates shift toward new markets amid tariffs, labor shortages, and innovation - Global Sources",
@@ -953,7 +971,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789458567000
+      "firstAt": 1789458567000,
+      "why": "Euro decline vs CAD doesn't specify USD pair"
     },
     {
       "title": "Asian currencies weaken as yen pulls back, dollar nears two-week high",
@@ -970,7 +989,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789458517000
+      "firstAt": 1789458517000,
+      "dir": {
+        "USD/JPY": "up"
+      },
+      "why": "Dollar nears high, yen pulls back"
     },
     {
       "title": "US Sanctions Russia’s VTB Bank Over Iran Sanctions Evasion, Banking Ties - The Media Line",
@@ -990,7 +1013,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789458477000
+      "firstAt": 1789458477000,
+      "why": "Sanctions news lacks clear immediate price direction"
     },
     {
       "title": "European sovereign debt pressured as traders price ECB hikes through early 2027",
@@ -1006,7 +1030,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789456733000
+      "firstAt": 1789456733000,
+      "why": "Debt pressure doesn't clearly imply FX direction"
     },
     {
       "title": "Bond selloff drives US benchmark beyond 5%; stocks rattled",
@@ -1020,7 +1045,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789458168000
+      "firstAt": 1789458168000,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Bond selloff rattles stocks"
     },
     {
       "title": "Breaking news. - Danish PM condemns Russian flare attack on helicopter as 'reckless' - Euronews.com",
@@ -1040,7 +1069,8 @@
       "sev": 3,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789457713000
+      "firstAt": 1789457713000,
+      "why": "Political condemnation lacks clear market impact"
     },
     {
       "title": "The Fed may be on the verge of a serious mistake, prominent economists warn",
@@ -1063,7 +1093,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789457340000
+      "firstAt": 1789457340000,
+      "why": "Fed warning lacks clear immediate direction"
     },
     {
       "title": "European Markets Tumble Amid Oil Price Surge and Rate Hike Fears - devdiscourse.com",
@@ -1081,7 +1112,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789456733000
+      "firstAt": 1789456733000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil price surge mentioned explicitly"
     },
     {
       "title": "Israel and Saudi Arabia discuss intelligence aid amid growing Houthi attacks - The Jerusalem Post",
@@ -1101,7 +1136,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789456511000
+      "firstAt": 1789456511000,
+      "why": "Geopolitical discussion lacks clear immediate direction"
     },
     {
       "title": "Silver tests $63.08 Fibonacci support in bearish slide: Live",
@@ -1117,7 +1153,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789456274000
+      "firstAt": 1789456274000,
+      "dir": {
+        "XAG/USD": "down"
+      },
+      "why": "Silver in bearish slide testing support"
     },
     {
       "title": "Gold clings to $4,320 support amid bearish momentum: Live levels",
@@ -1133,7 +1173,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789456274000
+      "firstAt": 1789456274000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold clings to support amid bearish momentum"
     },
     {
       "title": "Crude Oil WTI consolidates near $105 resistance: Live levels",
@@ -1150,7 +1194,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789456274000
+      "firstAt": 1789456274000,
+      "why": "Consolidation near resistance implies no clear direction"
     },
     {
       "title": "Brent Oil coils at $107.65 with ADX at 38: Breakout or trap?",
@@ -1167,7 +1212,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789456283000
+      "firstAt": 1789456283000,
+      "why": "Coiling at level implies no clear direction"
     },
     {
       "title": "London Gas Oil nears resistance with bearish divergence: Live levels",
@@ -1217,7 +1263,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789453911000
+      "firstAt": 1789455740000
     },
     {
       "title": "Gold Trades Near $4,300 as Higher Oil Stokes Rate-Hike Bets - Bloomberg.com",
@@ -1280,26 +1326,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789455072000
-    },
-    {
-      "title": "Zelenskyy says Ukraine ready to halt critical infrastructure strikes if Russia does - Shoreline Media Group",
-      "link": "https://news.google.com/rss/articles/CBMimgJBVV95cUxNemZKa0U5X2kxMVIteVdzeEh0d1RjamU4TFRkYzA1NmRyZ3g5N3FhdDl3bjgyckFBN0xBMm5qZHFSUWRfOFItRl84aThiNmFyY2RxZDB1LWRHemRaUElSUFlwSEw2T2Y4VFJNRUFYSzM3eWtkbkZ4dmF2TUxfd0Y3X1VndnU1N01hbjF0aElraloxalpjaEhKUk50SGoxeWdiRWdrc2l2bDBJdDdxTkpTaE9SQy1DYmJNNDluNkNaYS1vYmdJaV80NWNxeFZWbUhkTHlpQ081VEQ1U3lCeUh3YzlRTlQ3WXpDOHhUUkQ1TnpIRVpGUGp6NkpsT0p5SVpFbzh3UDA0Z2JwRmNlX1VjR0RpalRrTlZ2LWc?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMimgJBVV95cUxNemZKa0U5X2kxMVIteVdzeEh0d1RjamU4TFRkYzA1NmRyZ3g5N3FhdDl3bjgyckFBN0xBMm5qZHFSUWRfOFItRl84aThiNmFyY2RxZDB1LWRHemRaUElSUFlwSEw2T2Y4VFJNRUFYSzM3eWtkbkZ4dmF2TUxfd0Y3X1VndnU1N01hbjF0aElraloxalpjaEhKUk50SGoxeWdiRWdrc2l2bDBJdD",
-      "at": 1789453911000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789452180000
     },
     {
       "title": "What are the main events for today?",
@@ -2058,25 +2084,6 @@
       "firstAt": 1789436296000
     },
     {
-      "title": "Oil prices surge as Houthis attack Saudi Arabia, Hormuz talks delayed",
-      "link": "https://www.investing.com/news/commodities-news/oil-prices-rise-as-houthis-attack-saudi-arabia-hormuz-talks-delayed-4900704",
-      "source": "Investing Cmdty",
-      "at": 1789433708000,
-      "inst": [
-        "USOIL",
-        "XAU/USD",
-        "UKOIL"
-      ],
-      "ccy": [
-        "OIL",
-        "XAU"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789433708000
-    },
-    {
       "title": "Russia resupplies military bases in Syria for first time under new deal",
       "link": "https://www.aljazeera.com/news/2026/9/15/russia-resupplies-military-bases-in-syria-for-first-time-under-new-deal?traffic_source=rss",
       "source": "Al Jazeera",
@@ -2319,7 +2326,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789428000000
+      "firstAt": 1789426967000
     },
     {
       "title": "AI doomsday fears are arriving at the worst possible time for the stock market",
@@ -2371,6 +2378,26 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789427676000
+    },
+    {
+      "title": "Missile shortages, damage to US facilities: Pentagon watchdog issues first review of Iran war - CNN",
+      "link": "https://news.google.com/rss/articles/CBMifkFVX3lxTE5IXzV0YjlVTWNIZVpJLVFYWk5aWDlIUFV4Sngxa24tMnNWTXFCclYxYkI2OUpYczNBZGJUUE1iVzhtb0pOY1hFVTdXZ2lYamxJMDhUNFpCMHp4N3o4em9RY0dJcjRXbkVkRm42SmE0U3NjZ1BLLXNueUtCc0xHUQ?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMifkFVX3lxTE5IXzV0YjlVTWNIZVpJLVFYWk5aWDlIUFV4Sngxa24tMnNWTXFCclYxYkI2OUpYczNBZGJUUE1iVzhtb0pOY1hFVTdXZ2lYamxJMDhUNFpCMHp4N3o4em9RY0dJcjRXbkVkRm42SmE0U3NjZ1BLLXNueUtCc0xHUQ?oc=5\" target=\"_blank\">Missile shortages, damage to US facil",
+      "at": 1789426967000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789426967000
     },
     {
       "title": "Zelensky says Ukraine ready to de-escalate if Russia halts strikes - France 24",
@@ -2657,7 +2684,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-15T08:24:52.956Z",
-  "headlinesAt": "2026-09-15T08:24:52.956Z",
-  "updatedAt": "2026-09-15T08:24:52.956Z"
+  "calendarAt": "2026-09-15T08:26:23.446Z",
+  "headlinesAt": "2026-09-15T08:26:23.446Z",
+  "updatedAt": "2026-09-15T08:26:23.446Z"
 }
