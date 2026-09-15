@@ -16,7 +16,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789502668000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil rises, WTI surges above $105"
     },
     {
       "title": "Germany, US sign agreement to deepen defense cooperation between industries",
@@ -31,7 +35,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789502437000,
-      "_kind": null
+      "_kind": null,
+      "why": "Defense cooperation unclear for currency"
     },
     {
       "title": "The Fed’s expected interest-rate hike on Wednesday could be the start of something more troubling for investors",
@@ -49,7 +54,10 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789501800000,
-      "_kind": null
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Rate hike creates angst for investors"
     },
     {
       "title": "US lawmakers spar over bill giving Trump more power to sanction Russia - The Guardian",
@@ -69,7 +77,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789501620000
+      "firstAt": 1789501620000,
+      "why": "Sanction bill unclear for markets"
     },
     {
       "title": "Bitcoin and crypto stocks remain down after US senate fails to advance regulatory bill",
@@ -86,7 +95,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789501355000
+      "firstAt": 1789501355000,
+      "dir": {
+        "US500": "down",
+        "BTC/USDT": "down"
+      },
+      "why": "Crypto stocks remain down"
     },
     {
       "title": "Crypto stocks fall as Senate blocks landmark digital asset bill",
@@ -103,7 +117,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789501139000
+      "firstAt": 1789501139000,
+      "dir": {
+        "US500": "down",
+        "BTC/USDT": "down"
+      },
+      "why": "Crypto stocks fall"
     },
     {
       "title": "Top SMid Biotechnology Stocks: JPMorgan’s Latest Pick",
@@ -117,7 +136,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789500721000
+      "firstAt": 1789500721000,
+      "why": "Biotech picks unclear for index"
     },
     {
       "title": "Israel lacking respect for dead buried in Gaza rubble: UN",
@@ -137,7 +157,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789500415000
+      "firstAt": 1789500415000,
+      "why": "Gaza news unclear for markets"
     },
     {
       "title": "Markets on edge as US Fed meets to tackle high inflation - CNA",
@@ -160,7 +181,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789500056000
+      "firstAt": 1789500056000,
+      "why": "Markets on edge, direction unclear"
     },
     {
       "title": "Crude Oil WTI surges 22.7% above 200-MA, RSI overbought: Live levels",
@@ -177,7 +199,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789499887000
+      "firstAt": 1789499887000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "WTI surges, RSI overbought"
     },
     {
       "title": "Natural Gas tests $3.000 resistance with weak trend: Live levels",
@@ -191,7 +217,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789499887000
+      "firstAt": 1789499887000,
+      "why": "Tests resistance with weak trend"
     },
     {
       "title": "London Gas Oil surges 5% above 20-SMA, pullback looms: Live levels",
@@ -207,7 +234,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789499887000
+      "firstAt": 1789499887000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Gas Oil surges, pullback looms"
     },
     {
       "title": "Silver trapped in $63-$65 range with MACD crossover: Live levels",
@@ -223,7 +254,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789499887000
+      "firstAt": 1789499887000,
+      "why": "Silver trapped in range"
     },
     {
       "title": "Brent Oil consolidates at $108.50 in bull flag: Live levels",
@@ -240,7 +272,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789499887000
+      "firstAt": 1789499887000,
+      "why": "Brent consolidates in bull flag"
     },
     {
       "title": "Gold bear flag below $4,372 resistance: Live levels",
@@ -256,7 +289,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789499887000
+      "firstAt": 1789499887000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold bear flag below resistance"
     },
     {
       "title": "Iran war has led to US munitions shortfalls, Pentagon inspector confirms",
@@ -1733,6 +1770,6 @@
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-15T20:18:52.367Z",
-  "updatedAt": "2026-09-15T20:18:52.367Z"
+  "headlinesAt": "2026-09-15T20:20:24.292Z",
+  "updatedAt": "2026-09-15T20:20:24.292Z"
 }
