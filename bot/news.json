@@ -818,6 +818,29 @@
       "_kind": null
     },
     {
+      "title": "Scott Bessent testifies on Iran war, gas prices, inflation 2026 - qz.com",
+      "link": "https://news.google.com/rss/articles/CBMihgFBVV95cUxOTkpiNTlPRFEtdnAybmtXYnRIbXJfaXhrVDN5bVh5TndwY2tqTUJBcXJDUmo2Y3hSNjNOQW1nbFBDNGxHZDJkeFNDdlNoeHA2ZnI3Zi1laGN4Z3psTnM3ZXFJOFNOWTQ5UnMtcDFzTGFhZXhDWnRtOWNYeHJLSzBUNml0Z0M4UQ?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMihgFBVV95cUxOTkpiNTlPRFEtdnAybmtXYnRIbXJfaXhrVDN5bVh5TndwY2tqTUJBcXJDUmo2Y3hSNjNOQW1nbFBDNGxHZDJkeFNDdlNoeHA2ZnI3Zi1laGN4Z3psTnM3ZXFJOFNOWTQ5UnMtcDFzTGFhZXhDWnRtOWNYeHJLSzBUNml0Z0M4UQ?oc=5\" target=\"_blank\">Scott Bessent testifies o",
+      "at": 1789479448000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL",
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789479448000,
+      "_kind": null,
+      "why": "Testimony on war and inflation lacks clear direction."
+    },
+    {
       "title": "4 Oil & Gas Stocks Stifel Is Constructive On as Energy Prices Stay High",
       "link": "https://www.investing.com/news/stock-market-news/4-oil--gas-stocks-stifel-is-constructive-on-as-energy-prices-stay-high-93CH-4901938",
       "source": "Investing",
@@ -833,7 +856,35 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789479198000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "High energy prices support oil, neutral for stocks."
+    },
+    {
+      "title": "Stock Market Today (Sept. 15, 2026): Nasdaq edges lower as oil prices surge and Treasury yields hit 2007 highs",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/stock-market-today-sept-15-133221036.html",
+      "source": "Yahoo Finance",
+      "at": 1789479141000,
+      "inst": [
+        "USOIL",
+        "US100"
+      ],
+      "ccy": [
+        "USD",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789476738000,
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "US100": "down"
+      },
+      "why": "Oil surges, Nasdaq edges lower on yields."
     },
     {
       "title": "Monday.com Director Eyal Aviad Sells 2,000 Shares",
@@ -845,7 +896,7 @@
       "sev": 1,
       "rel": 1,
       "srcs": 1,
-      "firstAt": 1789478341000,
+      "firstAt": 1789479002000,
       "_kind": null
     },
     {
@@ -865,7 +916,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789478986000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USD/CAD": "up"
+      },
+      "why": "USD rises, CAD down, implying pair up."
     },
     {
       "title": "Gold weakens amid pressure from growing Fed rate hike bets",
@@ -882,8 +937,31 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789476574000,
-      "_kind": null
+      "firstAt": 1789477259000,
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold weakens on Fed rate hike bets."
+    },
+    {
+      "title": "Hong Kong Crypto Exchange CoinEx To Shutdown",
+      "link": "https://finance.yahoo.com/markets/crypto/articles/hong-kong-crypto-exchange-coinex-132900721.html",
+      "source": "Yahoo Finance",
+      "at": 1789478940000,
+      "inst": [
+        "BTC/USDT"
+      ],
+      "ccy": [
+        "BTC",
+        "USD"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789478940000,
+      "_kind": null,
+      "why": "Single exchange shutdown has negligible market impact."
     },
     {
       "title": "Corn futures fall on stronger dollar and improved crop ratings",
@@ -933,7 +1011,28 @@
       "rel": 2,
       "srcs": 3,
       "firstAt": 1789477380000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Supply concerns push oil higher, gold unclear."
+    },
+    {
+      "title": "Robinhood To Offer Share Redemptions And Voting Rights On Tokenized Stocks",
+      "link": "https://finance.yahoo.com/markets/crypto/articles/robinhood-offer-share-redemptions-voting-132500081.html",
+      "source": "Yahoo Finance",
+      "at": 1789478700000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789478700000,
+      "_kind": null,
+      "why": "Robinhood feature is neutral for broad market."
     },
     {
       "title": "Iranian strikes have damaged hundreds of structures at U.S. bases, watchdog says - The Washington Post",
@@ -954,37 +1053,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789476267000,
-      "_kind": null
-    },
-    {
-      "title": "Executive at Iconic Energy Company Sells Nearly 4,000 Shares",
-      "link": "https://finance.yahoo.com/energy/articles/executive-iconic-energy-company-sells-131901958.html",
-      "source": "Yahoo Finance",
-      "at": 1789478341000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1789478341000,
-      "_kind": null
-    },
-    {
-      "title": "TNR Gold launches probe into Eucalyptus Resources",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/tnr-gold-launches-probe-eucalyptus-131900123.html",
-      "source": "Yahoo Finance",
-      "at": 1789478340000,
-      "inst": [
-        "XAU/USD"
-      ],
-      "ccy": [
-        "XAU"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789478340000,
-      "_kind": null
+      "_kind": null,
+      "why": "Damage report lacks immediate price direction."
     },
     {
       "title": "An AI bubble is no longer Wall Street’s biggest fear. This stock-market risk just took its place.",
@@ -1000,7 +1070,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789476960000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Bond yield risk fears imply stock downside."
     },
     {
       "title": "Oil prices edge higher as attacks, pipeline outage deepen Saudi supply concerns",
@@ -1020,7 +1094,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789478153000,
-      "_kind": null
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Supply concerns drive oil prices higher."
     },
     {
       "title": "Gulf stock markets fall as Houthi attack escalates tensions",
@@ -1039,7 +1117,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789478083000
+      "firstAt": 1789478083000,
+      "why": "Gulf stock fall doesn't clearly move oil/gold."
     },
     {
       "title": "Wells Fargo cuts S&P 500 target, sees 5%-10% downside near term",
@@ -1053,7 +1132,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789478017000
+      "firstAt": 1789478017000,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Wells Fargo cuts target, sees downside."
     },
     {
       "title": "Strike CEO Jack Mallers: Inflation Outlook, Bond Stress and BTC vs Gold - CryptoRank",
@@ -1072,7 +1155,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789478014000
+      "firstAt": 1789478014000,
+      "why": "Opinion piece on inflation and assets."
     },
     {
       "title": "Two sailors missing after tanker attacked in Strait of Hormuz, Oman says",
@@ -1092,7 +1176,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789477536000
+      "firstAt": 1789477536000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Tanker attack in Strait of Hormuz boosts oil."
     },
     {
       "title": "Saudi Arabia may be just days away from not being able to export much oil",
@@ -1158,7 +1247,7 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 2,
+      "srcs": 1,
       "firstAt": 1789477200000
     },
     {
@@ -1239,24 +1328,6 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789475400000
-    },
-    {
-      "title": "Gold slips to five-week low below Rs 1.50 lakh as Fed rate cut hopes weaken - Moneycontrol.com",
-      "link": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxQUUgtSVY3c0JfUUJuT0JxRmdaWFZGbUNJWDVoT01EbDlNRTIza0xwSE01cUlqYnhRQ3p5bUtnZGdiUWRsal9WTFlqZDZ6SzM1QmJwWDU3VWl2a3FFRkdBTDlpYl9mbVFKQ2dXSUV3R3ZSYjdLdksyQzNDcGhTRWVlUF9McVpETVJ6Z1U3bGw5Ulc5eDZ2cFJHT09meXBNRkFEa2xXUGNFaVRYc3ROaHNTVG9PUUcyMlFoZThOUEZ2ZmVtWTY4aV9UZENBRWcyQWJFRmdZM0c0OWN2NHB4Z2JsZ3lBTdIB6AFBVV95cUxOVDQtREVaTmNpRFFwOFBVc0plazhPVGRJeEprZVVaSFZaUzR4ZV9aLWF2b2VLQTBNRGluQWw0UHFaMWFfdGd3eGdoMFFvRmFNLVlhSURUQU9lV1J0a0EtMlNoWml6a3hmZGcyM0E2QXRXazFOVmNMemptdm9tU3lMLS1BOTFoNFNfM18zNlhyZWpWdWRMWnR0VnNhVFpiNlRWVG1DbG5WYlBGeVdienFIdmEwSFU0NnpmdHJzZ25CQ2ZreW0zLS1zTWNwdlNHLVYzM2ZobHAySjhWNFctdlVlUlpTTF82bDJD?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi4wFBVV95cUxQUUgtSVY3c0JfUUJuT0JxRmdaWFZGbUNJWDVoT01EbDlNRTIza0xwSE01cUlqYnhRQ3p5bUtnZGdiUWRsal9WTFlqZDZ6SzM1QmJwWDU3VWl2a3FFRkdBTDlpYl9mbVFKQ2dXSUV3R3ZSYjdLdksyQzNDcGhTRWVlUF9McVpETVJ6Z1U3bGw5Ulc5eDZ2cFJHT09meXBNRkFEa2xXUGNFaVRYc3",
-      "at": 1789476574000,
-      "inst": [
-        "XAU/USD"
-      ],
-      "ccy": [
-        "USD",
-        "XAU"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789476574000
     },
     {
       "title": "Russia backs Trump's idea of energy ceasefire with Ukraine - aa.com.tr",
@@ -2187,7 +2258,27 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789463404000
+      "firstAt": 1789464833000
+    },
+    {
+      "title": "Ex-CIA chief Petraeus was at Ukrainian station where Russia struck train, calls it an act of terror - The Jerusalem Post",
+      "link": "https://news.google.com/rss/articles/CBMiigFBVV95cUxNMW13UnJPaklwd3BNdElJMEJ6aXlRTk9Wby1XOVZvNlg4RHhpLUY3UkdGRm5TU2RWZkR0dFRxdUpja1hZc3pwWlVtNXBGOUdjdkdxQmNhbGlUXzdQWUxaVlMtRS16TWFqUm50dGtKeHNCZ0JHM3Vta0wwd0ZJZ3N2a3FlQTNMQkJXVVE?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiigFBVV95cUxNMW13UnJPaklwd3BNdElJMEJ6aXlRTk9Wby1XOVZvNlg4RHhpLUY3UkdGRm5TU2RWZkR0dFRxdUpja1hZc3pwWlVtNXBGOUdjdkdxQmNhbGlUXzdQWUxaVlMtRS16TWFqUm50dGtKeHNCZ0JHM3Vta0wwd0ZJZ3N2a3FlQTNMQkJXVVE?oc=5\" target=\"_blank\">Ex-CIA chief Petraeu",
+      "at": 1789464697000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789464697000
     },
     {
       "title": "Dollar charges to over one-week peak as Fed hike bets hit 92% while euro, yen sag",
@@ -2230,25 +2321,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789462378000
-    },
-    {
-      "title": "Gold Trades Near $4,300 as Higher Oil Stokes Rate-Hike Bets - Bloomberg.com",
-      "link": "https://news.google.com/rss/articles/CBMitAFBVV95cUxOQTdDTXo4TnMyNl9WV1g0TjFOY21nQXhLSkExY1k2TlE1QnNpSXQzNEEyX3RzOGQ3cWwwN2NyZ2t1QnBodWZnbWZEdjk3dUVPZ3EtbmItZGFGYV83ZDBEdHppeEdVZEE2ajlkX0NZcV9kbEJkelVWRzNuYjhIaW5iSGp4SW45ekw3dDRDZ1ZxQ282blJSWU5jNkZEY3BocHNKZVdXSm96Ni1rM200MmFwSUxmZTk?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMitAFBVV95cUxOQTdDTXo4TnMyNl9WV1g0TjFOY21nQXhLSkExY1k2TlE1QnNpSXQzNEEyX3RzOGQ3cWwwN2NyZ2t1QnBodWZnbWZEdjk3dUVPZ3EtbmItZGFGYV83ZDBEdHppeEdVZEE2ajlkX0NZcV9kbEJkelVWRzNuYjhIaW5iSGp4SW45ekw3dDRDZ1ZxQ282blJSWU5jNkZEY3BocHNKZVdXSm96Ni1rM2",
-      "at": 1789463404000,
-      "inst": [
-        "XAU/USD",
-        "USOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789463404000
     },
     {
       "title": "German investor morale continues to rise in September but less than expected - ZEW survey",
@@ -2398,8 +2470,8 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789460343000
+      "srcs": 2,
+      "firstAt": 1789459987000
     },
     {
       "title": "US lawmakers move amendment to Russia sanctions bill, target India, others with 100% tariff threat - The Indian Express",
@@ -2423,7 +2495,7 @@
       "firstAt": 1789460237000
     },
     {
-      "title": "Stock market today: Dow, S&P 500, Nasdaq futures retreat ahead of Fed meeting amid AI safety fears",
+      "title": "Stock market today: Dow, S&P 500, Nasdaq edge lower after 10-year Treasury yield rises",
       "link": "https://finance.yahoo.com/markets/live/stock-market-today-tuesday-september-15-dow-sp-500-nasdaq-081307838.html",
       "source": "Yahoo Finance",
       "at": 1789459987000,
@@ -2437,7 +2509,7 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 1,
+      "srcs": 2,
       "firstAt": 1789459987000
     },
     {
@@ -2459,23 +2531,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789459869000
-    },
-    {
-      "title": "Sterling today: Pound fall as UK jobs data disappoints, dollar firm",
-      "link": "https://www.investing.com/news/forex-news/sterling-today-pound-fall-as-uk-jobs-data-disappoints-dollar-firm-4900933",
-      "source": "Investing FX",
-      "at": 1789459587000,
-      "inst": [
-        "GBP/USD"
-      ],
-      "ccy": [
-        "USD",
-        "GBP"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789459587000
     }
   ],
   "sources": [
@@ -2501,7 +2556,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-15T13:45:37.904Z",
-  "headlinesAt": "2026-09-15T13:45:37.904Z",
-  "updatedAt": "2026-09-15T13:45:37.904Z"
+  "calendarAt": "2026-09-15T13:47:46.324Z",
+  "headlinesAt": "2026-09-15T13:47:46.324Z",
+  "updatedAt": "2026-09-15T13:47:46.324Z"
 }
