@@ -885,7 +885,36 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789467169000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Geopolitical tension boosts safe-haven gold demand."
+    },
+    {
+      "title": "US sanctions target Russian bank over financial support for Iran - Fox News",
+      "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE8zdWRTbTJJVXNJbEMtQkdxQm5fdnk3VkRjRHI3ZmJnNU1yODI2RU9YY0xaVWE2NGtLZV9Fc2loQktfelAtZ3Jua29LNzQwTExaMlZBcjR3?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiVkFVX3lxTE8zdWRTbTJJVXNJbEMtQkdxQm5fdnk3VkRjRHI3ZmJnNU1yODI2RU9YY0xaVWE2NGtLZV9Fc2loQktfelAtZ3Jua29LNzQwTExaMlZBcjR3?oc=5\" target=\"_blank\">US sanctions target Russian bank over financial support for Iran</a>&nbsp;&nbsp;<font color",
+      "at": 1789466673000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789465889000,
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Sanctions increase geopolitical risk, supporting gold."
     },
     {
       "title": "Gold weakens amid pressure from growing Fed rate hike bets",
@@ -903,7 +932,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789464833000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Fed rate hike bets pressure gold prices."
     },
     {
       "title": "3 Dividend Stocks Baby Boomers Should Own for the Rest of Their Lives",
@@ -918,7 +951,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789466478000,
-      "_kind": null
+      "_kind": null,
+      "why": "General advice, no specific market direction."
     },
     {
       "title": "Citi cuts gold exposure on hawkish Fed outlook",
@@ -936,7 +970,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789466475000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Citi cuts gold exposure due to hawkish Fed."
     },
     {
       "title": "AI's safety slowdown spooks the market, delays IPOs, and hands incumbents more room to run",
@@ -963,21 +1001,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789466400000,
-      "_kind": null
-    },
-    {
-      "title": "CFTC Quietly Opened Three Polymarket Insider Trading Probes, FOIA Records Show",
-      "link": "https://finance.yahoo.com/markets/crypto/articles/cftc-quietly-opened-three-polymarket-095710457.html",
-      "source": "Yahoo Finance",
-      "at": 1789466230000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1789466230000,
-      "_kind": null
+      "firstAt": 1789464583000,
+      "_kind": null,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "AI spending expected to continue, supporting tech."
     },
     {
       "title": "AI Stocks Fell, but Workday and Adobe Jumped. A Favorite AI Disruption Trade Just Flinched",
@@ -992,6 +1021,20 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789466174000,
+      "_kind": null,
+      "why": "Mixed AI stock performance, no clear trend."
+    },
+    {
+      "title": "Nvidia's Latest Move Spells Trouble for AMD and Intel Investors",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/nvidias-latest-move-spells-trouble-095500762.html",
+      "source": "Yahoo Finance",
+      "at": 1789466100000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 1,
+      "srcs": 1,
+      "firstAt": 1789466100000,
       "_kind": null
     },
     {
@@ -1015,7 +1058,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789465981000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "EUR/USD": "up",
+        "GBP/USD": "up"
+      },
+      "why": "Fed hold expectations reduce rate pressure."
     },
     {
       "title": "EU extends Russia sanctions talks for a week over dispute on delisting Russian billionaire: Report - Anadolu Ajansı",
@@ -1036,7 +1085,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789465889000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions talks delay, no immediate market impact."
     },
     {
       "title": "Iran war: Regional conflict sees no signs of de-escalation - engine.online",
@@ -1056,7 +1106,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789465791000
+      "firstAt": 1789465791000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Regional conflict escalation boosts oil and gold."
     },
     {
       "title": "Anthropic Expects a Second Straight Quarter of Adjusted Operating Profit. Amazon and Alphabet Investors Should Read the Fine Print",
@@ -1068,7 +1124,7 @@
       "sev": 1,
       "rel": 1,
       "srcs": 1,
-      "firstAt": 1789465660000
+      "firstAt": 1789465200000
     },
     {
       "title": "China's August retail sales miss forecast while investment slump deepens, piling pressure on Beijing",
@@ -1091,7 +1147,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789465574000
+      "firstAt": 1789465574000,
+      "dir": {
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Weak China data pressures global growth outlook."
     },
     {
       "title": "Gold prices fall as markets await the US Federal Reserve’s interest rate decision - صوت الإمارات",
@@ -1108,8 +1169,32 @@
       ],
       "sev": 2,
       "rel": 2,
+      "srcs": 3,
+      "firstAt": 1789463404000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold falls ahead of Fed decision."
+    },
+    {
+      "title": "Wall Street Expects Bad News From the Federal Reserve This Week. History Says a Stock Market Correction May Follow.",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/wall-street-expects-bad-news-093201393.html",
+      "source": "Yahoo Finance",
+      "at": 1789464721000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 1,
+      "rel": 2,
       "srcs": 2,
-      "firstAt": 1789463404000
+      "firstAt": 1789464583000,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Expectation of bad Fed news implies correction."
     },
     {
       "title": "Ex-CIA chief Petraeus was at Ukrainian station where Russia struck train, calls it an act of terror - jpost.com",
@@ -1129,7 +1214,37 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789464240000
+      "firstAt": 1789464240000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Ukraine attack increases geopolitical risk for gold."
+    },
+    {
+      "title": "US Stock Futures Fall Ahead of Fed Meeting as Oil and Treasury Yields Rise: Dow Jones, S&P, Nasdaq, Wall Street",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/us-stock-futures-fall-ahead-092943720.html",
+      "source": "Yahoo Finance",
+      "at": 1789464583000,
+      "inst": [
+        "USOIL",
+        "US500",
+        "US100",
+        "US30"
+      ],
+      "ccy": [
+        "USD",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789464583000,
+      "dir": {
+        "USOIL": "up",
+        "US500": "down",
+        "US100": "down"
+      },
+      "why": "Futures fall, oil rises ahead of Fed."
     },
     {
       "title": "Dollar charges to over one-week peak as Fed hike bets hit 92% while euro, yen sag",
@@ -1940,6 +2055,18 @@
       "firstAt": 1789454400000
     },
     {
+      "title": "FuboTV’s (FUBO) Revenue Explosion Meets A Skeptical Stock Market",
+      "link": "https://finance.yahoo.com/media-advertising/articles/fubotv-fubo-revenue-explosion-meets-062944401.html",
+      "source": "Yahoo Finance",
+      "at": 1789453784000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 1,
+      "srcs": 1,
+      "firstAt": 1789453784000
+    },
+    {
       "title": "What are the main events for today?",
       "link": "https://investinglive.com/news/what-are-the-main-events-for-today-42/",
       "source": "ForexLive",
@@ -2431,7 +2558,7 @@
       "firstAt": 1789440780000
     },
     {
-      "title": "Ukrainian forces reportedly strike Russia's Syzran Oil Refinery, target Ozon retail warehouse in Taganrog - The Kyiv Independent",
+      "title": "Ukrainian forces reportedly strike Russia's Syzran Oil Refinery, target Ozon retail warehouse in Taganrog - kyivindependent.com",
       "link": "https://news.google.com/rss/articles/CBMilgFBVV95cUxPQXN4MUtfV3dScFh5Z3REM3ZWSUpublhWcG1UUldPTjJRa3FCUWFTUnplNmFlWVRlZ0hxaUhvUEJyU21TbDd4ak1Sa1FFVnRyVXRUbjBra2lBRFVtS1BKdi1MZjI0eHNfTWxFQzdmN3UtNWtwY0kxcFV0QzY1dG96RFJzRUJxQnlqWXVVU3RRa1luZmpGM2c?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMilgFBVV95cUxPQXN4MUtfV3dScFh5Z3REM3ZWSUpublhWcG1UUldPTjJRa3FCUWFTUnplNmFlWVRlZ0hxaUhvUEJyU21TbDd4ak1Sa1FFVnRyVXRUbjBra2lBRFVtS1BKdi1MZjI0eHNfTWxFQzdmN3UtNWtwY0kxcFV0QzY1dG96RFJzRUJxQnlqWXVVU3RRa1luZmpGM2c?oc=5\" target=\"_blank\">Ukra",
@@ -2492,85 +2619,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789439460000
-    },
-    {
-      "title": "Iran strikes damaged US bases, embassies across 8 countries: Pentagon watchdog - The Times of India",
-      "link": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxQN3JMdVFjcUR1Q3dDTHZla05IaUpfaWtGaFkyVWRtUFc2UjhqdGlUOWVsMDdWZElJY1pBWUs2dG04Z0s3N3pRYVVFMkJDTjlKWHhQUWJuZ3ZQa1czWUxvSkxhbTlpdV9XMjBNQ0IwcUNaZFJFYURQWjJyRE1KTTZGUzdscF96bW9LM0JMREhKQjl1TGJSVE9xZnlUWS1VQng0UVFOaW1wYzR5LXV0YUNIZWpNY1VmNXk2NHd5Si1INld1Tm10eTFnZVdTOUh0blloX0ZWWUFpSlFLXzlYbXY0YdIB5gFBVV95cUxNZmphMHhWTjhWeThZR08wcTI3ZUR0MDVFZl8yWGtOZWctTUQxVk5Bd1g5ZEtFeXRiRXlseks1dHFtdWtseUoza2FUUXgtbWd6TVliM1lZMFJsNVBSX2FlSGR5Vmo3MUdUQy0xM01waS1CTGd4amxzUThCQjlKYlVRZGdTSHM5bWVsejdrQ3puSEVvYjhXa1hiRWdmZlVnMEpmYmw4bWhzbDlWOXpyRFFUUVVWRnN4YVM2ZmVhX3BtQTRtSDZWUWI2bVRLXzBmcjBSRkJieWNMUzZ2ZDR2YW9mRlFyMlExQQ?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi4AFBVV95cUxQN3JMdVFjcUR1Q3dDTHZla05IaUpfaWtGaFkyVWRtUFc2UjhqdGlUOWVsMDdWZElJY1pBWUs2dG04Z0s3N3pRYVVFMkJDTjlKWHhQUWJuZ3ZQa1czWUxvSkxhbTlpdV9XMjBNQ0IwcUNaZFJFYURQWjJyRE1KTTZGUzdscF96bW9LM0JMREhKQjl1TGJSVE9xZnlUWS1VQng0UVFOaW1wYzR5LX",
-      "at": 1789438440000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789438440000
-    },
-    {
-      "title": "China August retail sales +0.4% y/y (expected +0.6%)",
-      "link": "https://investinglive.com/news/china-august-retail-sales-0-4-y-y-expected-0-6/",
-      "source": "ForexLive",
-      "desc": "I'll be back with details and implications soon. Fixed Asset Investment (YTD) (YoY) (Aug) -7.2%expected -7.2%, prior -6.7%Retail Sales (YoY) (Aug) 0.4% expected 0.8%, prior 0.6%Industrial Production (YoY) (Aug) 5.2%expected 4.8%, prior 4.5% This article was written by Eamonn Sher",
-      "at": 1789437753000,
-      "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789436296000
-    },
-    {
-      "title": "Dollar near two-week high as oil surge lifts yields, Fed hike bets - Yahoo Finance",
-      "link": "https://news.google.com/rss/articles/CBMimgFBVV95cUxOZ0RodF9DeGJnLUpsenlibEQ0dkUwOU1MdmM1NWF0SGdkOEp5dF9iY0ZTQWh6V01jUjdPYnhYX2dNTlFpUi1odUtVam4wVnNCUDlqY3NUX2JYa0NGckRxcUNwOE5oMWdPN0Yxb2lGd3pNdS10VDJycnNzNlczNTVpcVZSLWNHNWxNYVlJQ0pSMi0yWGVtNlZTeWZ3?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMimgFBVV95cUxOZ0RodF9DeGJnLUpsenlibEQ0dkUwOU1MdmM1NWF0SGdkOEp5dF9iY0ZTQWh6V01jUjdPYnhYX2dNTlFpUi1odUtVam4wVnNCUDlqY3NUX2JYa0NGckRxcUNwOE5oMWdPN0Yxb2lGd3pNdS10VDJycnNzNlczNTVpcVZSLWNHNWxNYVlJQ0pSMi0yWGVtNlZTeWZ3?oc=5\" target=\"_blank\"",
-      "at": 1789437420000,
-      "inst": [
-        "USOIL"
-      ],
-      "ccy": [
-        "USD",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789437420000
-    },
-    {
-      "title": "Silver Price Forecast: XAG/USD falls to near $63.00 amid rising inflation, Treasury yields - FXStreet",
-      "link": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxObjhzRklpN3Fvem5Eak5DSFZ4YllGTE5wUlR2UjFPTEJRM29FdnRIbnZORkE0NDJnU1RXRjdkS0JXeThFdkg0ZWhJS2dLYld4R3F1Y1R0bHhOR2ExX2FLWUJIZHpKSGVUN1daZ0JzdmpUM1pNdUQyek0tc1FuaS1sNndLbXhkMDZqOC1iU1ozemhTUHEwenhIM2hUclNFcGwyRzk4aTVUYXIwOXljNGxQMDI2aDRZdHpSU3hPejRDN1BPUjVBTHJqTw?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiyAFBVV95cUxObjhzRklpN3Fvem5Eak5DSFZ4YllGTE5wUlR2UjFPTEJRM29FdnRIbnZORkE0NDJnU1RXRjdkS0JXeThFdkg0ZWhJS2dLYld4R3F1Y1R0bHhOR2ExX2FLWUJIZHpKSGVUN1daZ0JzdmpUM1pNdUQyek0tc1FuaS1sNndLbXhkMDZqOC1iU1ozemhTUHEwenhIM2hUclNFcGwyRzk4aTVUYXIwOX",
-      "at": 1789437341000,
-      "inst": [
-        "XAG/USD"
-      ],
-      "ccy": [
-        "USD",
-        "XAG"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789437341000
     }
   ],
   "sources": [
@@ -2593,10 +2641,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-15T10:20:07.316Z",
-  "headlinesAt": "2026-09-15T10:20:07.316Z",
-  "updatedAt": "2026-09-15T10:20:07.316Z"
+  "calendarAt": "2026-09-15T10:21:25.021Z",
+  "headlinesAt": "2026-09-15T10:21:25.021Z",
+  "updatedAt": "2026-09-15T10:21:25.021Z"
 }
