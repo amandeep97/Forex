@@ -1137,8 +1137,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789476175000,
-      "_kind": null
+      "firstAt": 1789476175000
     },
     {
       "title": "HIVE Digital subsidiary BUZZ HPC names capital-markets veteran to board",
@@ -1151,20 +1150,6 @@
       "rel": 1,
       "srcs": 1,
       "firstAt": 1789476120000
-    },
-    {
-      "title": "U.S. Strategic Petroleum Reserve hits lowest level since 1982",
-      "link": "https://finance.yahoo.com/energy/articles/u-strategic-petroleum-hits-lowest-124132562.html",
-      "source": "Yahoo Finance",
-      "at": 1789476092000,
-      "inst": [
-        "USOIL"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789476092000
     },
     {
       "title": "Loonie slips as oil surge fuels rate worries ahead of Fed decision",
@@ -2486,6 +2471,25 @@
       "rel": 1,
       "srcs": 1,
       "firstAt": 1789458750000
+    },
+    {
+      "title": "Euro declines against Canadian Dollar despite ECB rate hike hopes - FXStreet",
+      "link": "https://news.google.com/rss/articles/CBMirAFBVV95cUxPdTNwUXd6cmNLeGR5V013M2tJY3JvdDFaTk1iekpjYlJhRkpmck4xUGRUdlpvclQxOVp1WmF6T2RNeXZ4ZGRvQTlpLUFDUmdybWJ3QW9aeWd4TU1PV0FkNXhTSzlMQXZReEU5OV9ETzZNTm1oWF9fcWZ0enZRenZVQjhTcERRMDRsVU1FcWlrOHlaem9tbnFqanRzTVprRDl1UFd5QnRxSHRKcU0x?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMirAFBVV95cUxPdTNwUXd6cmNLeGR5V013M2tJY3JvdDFaTk1iekpjYlJhRkpmck4xUGRUdlpvclQxOVp1WmF6T2RNeXZ4ZGRvQTlpLUFDUmdybWJ3QW9aeWd4TU1PV0FkNXhTSzlMQXZReEU5OV9ETzZNTm1oWF9fcWZ0enZRenZVQjhTcERRMDRsVU1FcWlrOHlaem9tbnFqanRzTVprRDl1UFd5QnRxSHRKcU",
+      "at": 1789458567000,
+      "inst": [
+        "EUR/USD",
+        "USD/CAD"
+      ],
+      "ccy": [
+        "USD",
+        "EUR"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789458567000
     }
   ],
   "sources": [
@@ -2508,10 +2512,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-15T13:12:08.074Z",
-  "headlinesAt": "2026-09-15T13:12:08.074Z",
-  "updatedAt": "2026-09-15T13:12:08.074Z"
+  "calendarAt": "2026-09-15T13:13:22.409Z",
+  "headlinesAt": "2026-09-15T13:13:22.409Z",
+  "updatedAt": "2026-09-15T13:13:22.409Z"
 }
