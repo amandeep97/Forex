@@ -867,6 +867,28 @@
   ],
   "headlines": [
     {
+      "title": "EU extends Russia sanctions talks for a week over dispute on delisting Russian billionaire: Report - Anadolu Ajansı",
+      "link": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxOdjlyWl9VNWc5blgyUW1SSWo0STBhd3NUSGx3OTNkaFNhT0NyUWsybzJXOTZCMG5pR2gwaVF3OUJlYWRsYkZ1dnRTLUFHdFRZaEZFQVBSb3ZzNk5IRnRoMWFsWEs2aTVCbHIyREx0RHliZlNGVHhkQWMyMnYtcnRjNXZrMzJlZXFtRXhRZjJkSjNiSzdkV3FJaVE5NHZUcERHSXlId2FicVFxR1hWT1JxbG9vLTc5VFQxN1NfVEgzeTZmbzFVT0dLRGszemloMDlNaEJj?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi0wFBVV95cUxOdjlyWl9VNWc5blgyUW1SSWo0STBhd3NUSGx3OTNkaFNhT0NyUWsybzJXOTZCMG5pR2gwaVF3OUJlYWRsYkZ1dnRTLUFHdFRZaEZFQVBSb3ZzNk5IRnRoMWFsWEs2aTVCbHIyREx0RHliZlNGVHhkQWMyMnYtcnRjNXZrMzJlZXFtRXhRZjJkSjNiSzdkV3FJaVE5NHZUcERHSXlId2FicVFxR1",
+      "at": 1789465889000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789465889000,
+      "_kind": null,
+      "why": "Sanctions dispute unclear for markets"
+    },
+    {
       "title": "Iran war: Regional conflict sees no signs of de-escalation - engine.online",
       "link": "https://news.google.com/rss/articles/CBMimAFBVV95cUxPMEhraUNTWks1WE9uZVNpdzVpVHgtVjdXZVpmMVhheFFxY3hBRlNfLUZSTVYyTm03QU9DMTE4NzVOSmw1MTVYYVUzVFJaMGZFZVdySktRcHc0Rzg1UFRrVU9ETnR4U2t0M1RPNjJuV3J3TE8wWW4zSnF3MVN2VkFRWV9qcGVUMi1WOTl5N1AwYWZrR3E5R21TVQ?oc=5",
       "source": "Wires (geo)",
@@ -885,7 +907,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789465791000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Conflict escalation boosts safe havens, oil"
     },
     {
       "title": "China's August retail sales miss forecast while investment slump deepens, piling pressure on Beijing",
@@ -909,7 +937,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789465574000,
-      "_kind": null
+      "_kind": null,
+      "why": "China data irrelevant to these pairs"
     },
     {
       "title": "Gold prices fall as markets await the US Federal Reserve’s interest rate decision - صوت الإمارات",
@@ -927,8 +956,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789463945000,
-      "_kind": null
+      "firstAt": 1789463404000,
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold prices explicitly falling"
     },
     {
       "title": "Wall Street Expects Bad News From the Federal Reserve This Week. History Says a Stock Market Correction May Follow.",
@@ -945,7 +978,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789463040000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Correction expected after bad Fed news"
     },
     {
       "title": "US Stock Futures Fall Ahead of Fed Meeting as Oil and Treasury Yields Rise: Dow Jones, S&P, Nasdaq, Wall Street",
@@ -966,7 +1003,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789463040000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "US500": "down",
+        "US100": "down"
+      },
+      "why": "Futures fall, oil rises"
     },
     {
       "title": "BofA survey shows European investors expect 6.3% equity returns",
@@ -997,7 +1040,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789462761000
+      "firstAt": 1789462761000,
+      "dir": {
+        "EUR/USD": "down",
+        "USD/JPY": "up"
+      },
+      "why": "Dollar strength weakens euro, strengthens yen pair"
     },
     {
       "title": "Gold eases on stronger US rate hike odds - marketscreener.com",
@@ -1015,7 +1063,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789463945000
+      "firstAt": 1789463404000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold eases on rate hike odds"
     },
     {
       "title": "Goldman Sachs expects 25bp Fed hike on Wednesday",
@@ -1037,7 +1089,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789463100000
+      "firstAt": 1789463100000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Fed hike bet boosts dollar"
     },
     {
       "title": "Markets are bracing for a rate hike this week. Here's what investors need to know. - Business Insider",
@@ -1060,7 +1118,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789462378000
+      "firstAt": 1789462378000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Rate hike expectations strengthen dollar"
     },
     {
       "title": "‘There might be a silver lining’: My friend’s wife died at 60 after a high-earning career. Can he claim her Social Security?",
@@ -1077,7 +1141,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789463700000
+      "firstAt": 1789463700000,
+      "why": "Social security news irrelevant to silver"
     },
     {
       "title": "The Best 3 Nuclear Energy Stocks to Buy and Hold for 2030 and Beyond",
@@ -1094,7 +1159,32 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789463700000
+      "firstAt": 1789463700000,
+      "why": "Stock pick article, no market direction"
+    },
+    {
+      "title": "Gold Trades Near $4,300 as Higher Oil Stokes Rate-Hike Bets - Bloomberg.com",
+      "link": "https://news.google.com/rss/articles/CBMitAFBVV95cUxOQTdDTXo4TnMyNl9WV1g0TjFOY21nQXhLSkExY1k2TlE1QnNpSXQzNEEyX3RzOGQ3cWwwN2NyZ2t1QnBodWZnbWZEdjk3dUVPZ3EtbmItZGFGYV83ZDBEdHppeEdVZEE2ajlkX0NZcV9kbEJkelVWRzNuYjhIaW5iSGp4SW45ekw3dDRDZ1ZxQ282blJSWU5jNkZEY3BocHNKZVdXSm96Ni1rM200MmFwSUxmZTk?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMitAFBVV95cUxOQTdDTXo4TnMyNl9WV1g0TjFOY21nQXhLSkExY1k2TlE1QnNpSXQzNEEyX3RzOGQ3cWwwN2NyZ2t1QnBodWZnbWZEdjk3dUVPZ3EtbmItZGFGYV83ZDBEdHppeEdVZEE2ajlkX0NZcV9kbEJkelVWRzNuYjhIaW5iSGp4SW45ekw3dDRDZ1ZxQ282blJSWU5jNkZEY3BocHNKZVdXSm96Ni1rM2",
+      "at": 1789463404000,
+      "inst": [
+        "XAU/USD",
+        "USOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789463404000,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "up"
+      },
+      "why": "Higher oil stokes rate-hike bets"
     },
     {
       "title": "German investor morale continues to rise in September but less than expected - ZEW survey",
@@ -1109,7 +1199,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789463336000
+      "firstAt": 1789463336000,
+      "why": "Mixed ZEW data, unclear direction"
     },
     {
       "title": "Morgan Stanley joins Goldman Sachs in 11th-hour switch to forecasting a Fed hike",
@@ -1126,7 +1217,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789463100000
+      "firstAt": 1789463100000,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Fed hike forecast weighs on stocks"
     },
     {
       "title": "Alnylam's Sell-Off Looks Ugly -- but Wall Street Still Sees a Much Brighter Picture",
@@ -1517,23 +1612,6 @@
       "firstAt": 1789456733000
     },
     {
-      "title": "Police, Shin Bet arrest 19-year-old suspected of planning terror attack - The Jerusalem Post",
-      "link": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE1oMUNGbnhUR2FNMklZTmZEU0gybGl5RkhCV3VhQV9HNGEzRi1QSDQza2N5R0pxVThjRFlpMkdRR1ZsdEpoaWtTX2hCcmd0VlUweDh2UTV6dV9uNWxT?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiXEFVX3lxTE1oMUNGbnhUR2FNMklZTmZEU0gybGl5RkhCV3VhQV9HNGEzRi1QSDQza2N5R0pxVThjRFlpMkdRR1ZsdEpoaWtTX2hCcmd0VlUweDh2UTV6dV9uNWxT?oc=5\" target=\"_blank\">Police, Shin Bet arrest 19-year-old suspected of planning terror attack</a>&nbsp;&n",
-      "at": 1789458329000,
-      "inst": [
-        "XAU/USD"
-      ],
-      "ccy": [
-        "XAU"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789456511000
-    },
-    {
       "title": "Stocks drop, oil climbs and Treasury yields hit 19-year high - KMVU FOX 26 Medford",
       "link": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxOM3UwZUd4ekkwT25EbTFlLVdQZ2pzZEt2QWJUTUtRMjF0QUZWeF9zb0xKc1VnSEEwYkVuSm4yZmlvRXBTdGNVSHVxbzFKTEcwbWVqZF9NTW1XX3c5MDJzZHZTTHFSX3NnR1RCTmViVktsUk5fQS1XV0xCcGNrZE55TGpVU1p0R1k1NmNGcXNieHhMUURfWlZCS1BBSktYOFd1MHpJR3hpMC10czB2bGhicHl1WnpsSE9LNWhvV0JaNHVucDZHWGFBYnQxZXEydXRfTFZubGNWNUpoWUNFdXdwVUpKMzV1VVU?oc=5",
       "source": "Wires (macro)",
@@ -1630,8 +1708,8 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789455351000
+      "srcs": 1,
+      "firstAt": 1789456511000
     },
     {
       "title": "Saudi Oil Pipeline Repairs Could Take Weeks After Drone Attack",
@@ -1650,7 +1728,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789455351000
+      "firstAt": 1789456500000
     },
     {
       "title": "Silver tests $63.08 Fibonacci support in bearish slide: Live",
@@ -1790,44 +1868,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789455740000
-    },
-    {
-      "title": "Oil climbs as Saudi pipeline outage, fresh attacks heighten supply concerns",
-      "link": "https://finance.yahoo.com/news/oil-prices-rise-saudi-pipeline-003617502.html",
-      "source": "Yahoo Finance",
-      "at": 1789455351000,
-      "inst": [
-        "USOIL",
-        "XAU/USD",
-        "UKOIL"
-      ],
-      "ccy": [
-        "OIL",
-        "XAU"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789455351000
-    },
-    {
-      "title": "Gold Trades Near $4,300 as Higher Oil Stokes Rate-Hike Bets - Bloomberg.com",
-      "link": "https://news.google.com/rss/articles/CBMitAFBVV95cUxOQTdDTXo4TnMyNl9WV1g0TjFOY21nQXhLSkExY1k2TlE1QnNpSXQzNEEyX3RzOGQ3cWwwN2NyZ2t1QnBodWZnbWZEdjk3dUVPZ3EtbmItZGFGYV83ZDBEdHppeEdVZEE2ajlkX0NZcV9kbEJkelVWRzNuYjhIaW5iSGp4SW45ekw3dDRDZ1ZxQ282blJSWU5jNkZEY3BocHNKZVdXSm96Ni1rM200MmFwSUxmZTk?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMitAFBVV95cUxOQTdDTXo4TnMyNl9WV1g0TjFOY21nQXhLSkExY1k2TlE1QnNpSXQzNEEyX3RzOGQ3cWwwN2NyZ2t1QnBodWZnbWZEdjk3dUVPZ3EtbmItZGFGYV83ZDBEdHppeEdVZEE2ajlkX0NZcV9kbEJkelVWRzNuYjhIaW5iSGp4SW45ekw3dDRDZ1ZxQ282blJSWU5jNkZEY3BocHNKZVdXSm96Ni1rM2",
-      "at": 1789455240000,
-      "inst": [
-        "XAU/USD",
-        "USOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789455240000
     },
     {
       "title": "Palestine weekly: Settlement sanctions spark diplomatic crisis",
@@ -2348,26 +2388,6 @@
       "firstAt": 1789440780000
     },
     {
-      "title": "Ukrainian forces reportedly strike Russia's Syzran Oil Refinery, target Ozon retail warehouse in Taganrog - The Kyiv Independent",
-      "link": "https://news.google.com/rss/articles/CBMilgFBVV95cUxPQXN4MUtfV3dScFh5Z3REM3ZWSUpublhWcG1UUldPTjJRa3FCUWFTUnplNmFlWVRlZ0hxaUhvUEJyU21TbDd4ak1Sa1FFVnRyVXRUbjBra2lBRFVtS1BKdi1MZjI0eHNfTWxFQzdmN3UtNWtwY0kxcFV0QzY1dG96RFJzRUJxQnlqWXVVU3RRa1luZmpGM2c?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMilgFBVV95cUxPQXN4MUtfV3dScFh5Z3REM3ZWSUpublhWcG1UUldPTjJRa3FCUWFTUnplNmFlWVRlZ0hxaUhvUEJyU21TbDd4ak1Sa1FFVnRyVXRUbjBra2lBRFVtS1BKdi1MZjI0eHNfTWxFQzdmN3UtNWtwY0kxcFV0QzY1dG96RFJzRUJxQnlqWXVVU3RRa1luZmpGM2c?oc=5\" target=\"_blank\">Ukra",
-      "at": 1789440220000,
-      "inst": [
-        "USOIL",
-        "XAU/USD",
-        "UKOIL"
-      ],
-      "ccy": [
-        "OIL",
-        "XAU"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789440220000
-    },
-    {
       "title": "United States Dollar Index strengthens above 99.50 as Fed rate hike bets rise - FXStreet",
       "link": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxNZDJxdzNYZ3J5UElHc0wxV21jcEJyN1hVSUFEeVNNTHZRU3gwUUFlc1NJNHVOQmFlVVRhTzFCb0RXakpCckhOR1VoWndlM1NXaHY5NjhGZE1lYXc3WFJUMDdqOUJMekNucFEyVGpVbnNEY1o0OHhKa2pSQWpWLTgxcmEzM2wzZ0xVUk1tV0llVnZqUXJUZW5TcC10cU1qdHExMkVkN09LLUNfc01nWWxxZzBMMEdqb1U2eUlz?oc=5",
       "source": "Wires (macro)",
@@ -2409,6 +2429,26 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789439460000
+    },
+    {
+      "title": "Iran strikes damaged US bases, embassies across 8 countries: Pentagon watchdog - The Times of India",
+      "link": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxQN3JMdVFjcUR1Q3dDTHZla05IaUpfaWtGaFkyVWRtUFc2UjhqdGlUOWVsMDdWZElJY1pBWUs2dG04Z0s3N3pRYVVFMkJDTjlKWHhQUWJuZ3ZQa1czWUxvSkxhbTlpdV9XMjBNQ0IwcUNaZFJFYURQWjJyRE1KTTZGUzdscF96bW9LM0JMREhKQjl1TGJSVE9xZnlUWS1VQng0UVFOaW1wYzR5LXV0YUNIZWpNY1VmNXk2NHd5Si1INld1Tm10eTFnZVdTOUh0blloX0ZWWUFpSlFLXzlYbXY0YdIB5gFBVV95cUxNZmphMHhWTjhWeThZR08wcTI3ZUR0MDVFZl8yWGtOZWctTUQxVk5Bd1g5ZEtFeXRiRXlseks1dHFtdWtseUoza2FUUXgtbWd6TVliM1lZMFJsNVBSX2FlSGR5Vmo3MUdUQy0xM01waS1CTGd4amxzUThCQjlKYlVRZGdTSHM5bWVsejdrQ3puSEVvYjhXa1hiRWdmZlVnMEpmYmw4bWhzbDlWOXpyRFFUUVVWRnN4YVM2ZmVhX3BtQTRtSDZWUWI2bVRLXzBmcjBSRkJieWNMUzZ2ZDR2YW9mRlFyMlExQQ?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi4AFBVV95cUxQN3JMdVFjcUR1Q3dDTHZla05IaUpfaWtGaFkyVWRtUFc2UjhqdGlUOWVsMDdWZElJY1pBWUs2dG04Z0s3N3pRYVVFMkJDTjlKWHhQUWJuZ3ZQa1czWUxvSkxhbTlpdV9XMjBNQ0IwcUNaZFJFYURQWjJyRE1KTTZGUzdscF96bW9LM0JMREhKQjl1TGJSVE9xZnlUWS1VQng0UVFOaW1wYzR5LX",
+      "at": 1789438440000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789438440000
     },
     {
       "title": "China August retail sales +0.4% y/y (expected +0.6%)",
@@ -2579,6 +2619,29 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789430640000
+    },
+    {
+      "title": "Fed Rate-Hike Odds Top 90% as 10-Year Treasury Yield Touches 5% - Seoul Economic Daily",
+      "link": "https://news.google.com/rss/articles/CBMiowFBVV95cUxPV3I0WmhBdXNuMHJnVDlFZ1k3RFdSSHYtUzU3WFhzdlVydzdrcXhZQUhHWml2RHpYQ3NrOEZqNE5ZLXJyVjZ6WEZFZWxzYjM1Q0ZzVUFQcFFydWxLaV9abDNFRk5WbkVtc1F2U1lYdXVjcVZIbXpxTy15ODVSWXA5TTBFc3l3UmJsY2VrcE91SGlxS1J0N1dHa09WbG1ESFRqMGRz?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiowFBVV95cUxPV3I0WmhBdXNuMHJnVDlFZ1k3RFdSSHYtUzU3WFhzdlVydzdrcXhZQUhHWml2RHpYQ3NrOEZqNE5ZLXJyVjZ6WEZFZWxzYjM1Q0ZzVUFQcFFydWxLaV9abDNFRk5WbkVtc1F2U1lYdXVjcVZIbXpxTy15ODVSWXA5TTBFc3l3UmJsY2VrcE91SGlxS1J0N1dHa09WbG1ESFRqMGRz?oc=5\" tar",
+      "at": 1789431443000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789430323000
     }
   ],
   "sources": [
@@ -2604,7 +2667,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-15T09:55:18.099Z",
-  "headlinesAt": "2026-09-15T09:55:18.099Z",
-  "updatedAt": "2026-09-15T09:55:18.099Z"
+  "calendarAt": "2026-09-15T09:57:11.813Z",
+  "headlinesAt": "2026-09-15T09:57:11.813Z",
+  "updatedAt": "2026-09-15T09:57:11.813Z"
 }
