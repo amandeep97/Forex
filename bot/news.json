@@ -817,23 +817,6 @@
       "_kind": null
     },
     {
-      "title": "Dow drops 450 points as 10-year Treasury yield hits 5%",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/dow-drops-450-points-10-142322049.html",
-      "source": "Yahoo Finance",
-      "at": 1789482202000,
-      "inst": [
-        "US30"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789480457000,
-      "_kind": null
-    },
-    {
       "title": "Sysco share sale said to draw massive demand from top investors",
       "link": "https://www.investing.com/news/stock-market-news/sysco-share-sale-said-to-draw-massive-demand-from-top-investors-93CH-4902053",
       "source": "Investing",
@@ -866,7 +849,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789482000000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions bill impact unclear"
     },
     {
       "title": "S&P 500 trapped in range with overbought MFI at 7,671: Live levels",
@@ -881,7 +865,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789481865000,
-      "_kind": null
+      "_kind": null,
+      "why": "Range-bound market action"
     },
     {
       "title": "Nasdaq 100 coiled in tight range with ADX at 15.6: Live levels",
@@ -896,7 +881,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789481865000,
-      "_kind": null
+      "_kind": null,
+      "why": "Tight range, no direction"
     },
     {
       "title": "Why one Wall Street firm thinks this year’s stock-market rally is running out of road",
@@ -918,24 +904,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789481640000,
-      "_kind": null
-    },
-    {
-      "title": "Cathie Wood Dumps $60 Million In Crypto Stock Ahead Of Clarity Act Vote",
-      "link": "https://www.investors.com/news/cathie-wood-ark-invest-crypto-stocks-coinbase-bullish-circle-bitcoin-etf-clarity-act-vote/?src=A00220&yptr=yahoo",
-      "source": "Yahoo Finance",
-      "at": 1789481503000,
-      "inst": [
-        "BTC/USDT"
-      ],
-      "ccy": [
-        "BTC"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789480020000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Lower stock target, mixed assets"
     },
     {
       "title": "Markets on edge as US Fed meets to tackle high inflation - Macau Business",
@@ -959,7 +932,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789481329000,
-      "_kind": null
+      "_kind": null,
+      "why": "Fed meeting uncertainty"
     },
     {
       "title": "Don’t Sell Gold and Silver on Rate Hike Fear, Here’s Why - NAI500",
@@ -980,7 +954,12 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789478967000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "XAG/USD": "up"
+      },
+      "why": "Bullish argument for metals"
     },
     {
       "title": "Oil prices climb amid Libya force majeure warning, Saudi Arabia pipeline outage",
@@ -997,24 +976,26 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789481166000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Supply issues lift prices"
     },
     {
-      "title": "The Fed Is Expected to Raise Interest Rates Wednesday. Should You Buy the S&P 500 Before It Does?",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/fed-expected-raise-interest-rates-140500682.html",
+      "title": "Mauser Packaging Solutions combines US and Canadian operations",
+      "link": "https://finance.yahoo.com/small-business/articles/mauser-packaging-solutions-combines-us-140141974.html",
       "source": "Yahoo Finance",
-      "at": 1789481100000,
+      "at": 1789480901000,
       "inst": [
-        "US500"
+        "USD/CAD"
       ],
-      "ccy": [
-        "USD"
-      ],
+      "ccy": [],
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789481100000,
-      "_kind": null
+      "firstAt": 1789480901000,
+      "why": "Corporate news, no FX impact"
     },
     {
       "title": "10-year Treasury hits 2007 high as oil stays above $100: AlphaCheck",
@@ -1031,23 +1012,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789480457000
-    },
-    {
-      "title": "Malone Lam, 22, pleads guilty to stealing $245 million in crypto through a Google impersonation scheme",
-      "link": "https://finance.yahoo.com/markets/crypto/articles/malone-lam-22-pleads-guilty-140000273.html",
-      "source": "Yahoo Finance",
-      "at": 1789480800000,
-      "inst": [
-        "BTC/USDT"
-      ],
-      "ccy": [
-        "BTC"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789480800000
+      "firstAt": 1789480457000,
+      "why": "Oil already high, no new move"
     },
     {
       "title": "Russia and Ukraine Exchange Strikes Despite Trump's Claim of a Truce - Crude Oil Prices Today | OilPrice.com",
@@ -1067,7 +1033,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789479664000
+      "firstAt": 1789479664000,
+      "why": "Conflict status unclear"
     },
     {
       "title": "Gold edges down as oil-driven inflation fears lift rate-hike bets - marketscreener.com",
@@ -1087,7 +1054,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789478014000
+      "firstAt": 1789478014000,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "up"
+      },
+      "why": "Gold down, oil-driven inflation"
     },
     {
       "title": "Gold struggles near $4,300 as 10-year US Treasury yield reaches 2007 high - FXStreet",
@@ -1105,7 +1077,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789480457000
+      "firstAt": 1789480457000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "High yields pressure gold"
     },
     {
       "title": "Nvidia Rises To Key Level As Fed Rate-Decision Looms; Is Nvidia A Buy Now?",
@@ -1127,7 +1103,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789480219000
+      "firstAt": 1789480219000,
+      "why": "Nvidia news, no direct FX impact"
     },
     {
       "title": "Investor Cathie Wood Sells Crypto Stocks As Prices Rally",
@@ -1144,7 +1121,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789480020000
+      "firstAt": 1789480020000,
+      "why": "Individual sale, no market direction"
     },
     {
       "title": "Traditional bond investors have lost money for years. These five-star portfolio managers show a better way.",
@@ -1174,7 +1152,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789479795000
+      "firstAt": 1789479795000,
+      "why": "Demographic data, no immediate FX impact"
     },
     {
       "title": "Canada is a 'safe harbour' for global finance, Carney says",
@@ -1233,23 +1212,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789479448000
-    },
-    {
-      "title": "China’s Yuan Crude Oil Futures Jump to Record High",
-      "link": "https://finance.yahoo.com/energy/articles/china-yuan-crude-oil-futures-133000430.html",
-      "source": "Yahoo Finance",
-      "at": 1789479000000,
-      "inst": [
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789479000000
     },
     {
       "title": "Carney: Canada to allow immediate expensing for most new capital investment",
@@ -1566,6 +1528,22 @@
       "firstAt": 1789476267000
     },
     {
+      "title": "Cathie Wood Dumps $60 Million In Crypto Stock Ahead Of Clarity Act Vote",
+      "link": "https://www.investors.com/news/cathie-wood-ark-invest-crypto-stocks-coinbase-bullish-circle-bitcoin-etf-clarity-act-vote/?src=A00220&yptr=yahoo",
+      "source": "Yahoo Finance",
+      "at": 1789476408000,
+      "inst": [
+        "BTC/USDT"
+      ],
+      "ccy": [
+        "BTC"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789476408000
+    },
+    {
       "title": "Ukraine Strikes Russian Oil Refinery as Putin Resists Energy Truce Ahead of Winter - Kyiv Post",
       "link": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE0wU0gyemozci15Y2NWaExsRmVXLWJCRGdoTkJvT05EQ0hkdEE2VHBkYmJIbEtGVjJHUDNqZExXNnZGM0lBMnBXSmJ5TQ?oc=5",
       "source": "Wires (geo)",
@@ -1731,28 +1709,6 @@
       "firstAt": 1789474964000
     },
     {
-      "title": "10-year Treasury yield hits highest level since 2007",
-      "link": "https://finance.yahoo.com/markets/article/10-year-treasury-yield-hits-highest-level-since-2007-121942773.html",
-      "source": "Yahoo Finance",
-      "at": 1789474782000,
-      "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789472586000
-    },
-    {
       "title": "Canadian manufacturers turning to new markets amid US tariffs - bastillepost.com",
       "link": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPaUVlZXJZV1VGLVJldVk2bDItbHh5UTB6dFlMcTdscGhST3V6X1BrQjcwZDV5OFJQSWU0QmxLSmZCZGo2OER6VlhPNWktYTRSQXlUWkFxVnJFWkJJeWJiQ1dBQWlGblZ3SmtjTDNZdzd1ay1pSndrQ2NwVUI3U0NocG13cTZyWTYwd1pBRjRDZTdjdEVTeTZ3alNvV1ZfSUoxOWpJcXNMZ18zcnhSVGVmYTdTbw?oc=5",
       "source": "Wires (macro)",
@@ -1845,7 +1801,7 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 2,
+      "srcs": 1,
       "firstAt": 1789472586000
     },
     {
@@ -2466,6 +2422,86 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789464697000
+    },
+    {
+      "title": "Dollar charges to over one-week peak as Fed hike bets hit 92% while euro, yen sag",
+      "link": "https://www.investing.com/news/forex-news/asian-currencies-slip-as-yen-pulls-back-fed-and-boj-decisions-loom-4900791",
+      "source": "Investing FX",
+      "at": 1789463959000,
+      "inst": [
+        "EUR/USD",
+        "USD/JPY"
+      ],
+      "ccy": [
+        "USD",
+        "EUR",
+        "JPY"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789463959000
+    },
+    {
+      "title": "Markets are bracing for a rate hike this week. Here's what investors need to know. - Business Insider",
+      "link": "https://news.google.com/rss/articles/CBMipAFBVV95cUxQdE9PREpldGFGaks3Y1lhVUZEQjVzNjdUc0FFLXRVTEpGYjJSTXdVTXhOdlJIVUgwRTZ5eDh6LWZfOGlCVGN3OUd0OFNXMTdrcWUzWU5YdDgyVHJXeWx4Mm85dTl1aUVGZDMwZjg4NmtURTJGQVhMZHRRMVRMb0ZZRXR3bkZMcHp2aXpiSTBwaGk2WFBHZ1RyN2c3cVQtcTZMQXYtSg?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMipAFBVV95cUxQdE9PREpldGFGaks3Y1lhVUZEQjVzNjdUc0FFLXRVTEpGYjJSTXdVTXhOdlJIVUgwRTZ5eDh6LWZfOGlCVGN3OUd0OFNXMTdrcWUzWU5YdDgyVHJXeWx4Mm85dTl1aUVGZDMwZjg4NmtURTJGQVhMZHRRMVRMb0ZZRXR3bkZMcHp2aXpiSTBwaGk2WFBHZ1RyN2c3cVQtcTZMQXYtSg?oc=5\" t",
+      "at": 1789463785000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789462378000
+    },
+    {
+      "title": "German investor morale continues to rise in September but less than expected - ZEW survey",
+      "link": "https://investinglive.com/news/german-investor-morale-continues-to-rise-in-september-but-less-than-expected-zew-survey/",
+      "source": "ForexLive",
+      "desc": "Germany September ZEW survey current conditions -47.1 vs -52.1 expectedPrior -61.1Germany September ZEW survey economic sentiment 34.7 vs 40.0 expectedPrior 34.2The breakdownThe uptick in the current conditions index is encouraging, as it is a beat on estimates. However, the econ",
+      "at": 1789463336000,
+      "inst": [
+        "EUR/USD"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789463336000
+    },
+    {
+      "title": "U.S. 10-Year Yield Tops 5% as Markets Bet on Rate Hike - Seoul Economic Daily",
+      "link": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxORWpod0J6SmZaeWFVc1VlcUxzd1o4UHMxeHliM3Q3UUhVUGJwMlhIc2paLTg5X3I1VWRnUnBfcVdsOTVIaWNVV2MtNmo4T285Sjlmc1ZYQ3pFRkhfT0YzMmxaRzlLN29YWFNoanJXN1BtOW1WQTZoN191ZG1PV1NxcC1KaFl2WG5oVjFTUFRJZ3RsRDFYNVh4bmJ3bFAyR2NRaW1FMUJYSUw?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiqAFBVV95cUxORWpod0J6SmZaeWFVc1VlcUxzd1o4UHMxeHliM3Q3UUhVUGJwMlhIc2paLTg5X3I1VWRnUnBfcVdsOTVIaWNVV2MtNmo4T285Sjlmc1ZYQ3pFRkhfT0YzMmxaRzlLN29YWFNoanJXN1BtOW1WQTZoN191ZG1PV1NxcC1KaFl2WG5oVjFTUFRJZ3RsRDFYNVh4bmJ3bFAyR2NRaW1FMUJYSUw?oc",
+      "at": 1789462378000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789462159000
     }
   ],
   "sources": [
@@ -2488,10 +2524,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-15T14:31:23.887Z",
-  "headlinesAt": "2026-09-15T14:31:23.887Z",
-  "updatedAt": "2026-09-15T14:31:23.887Z"
+  "calendarAt": "2026-09-15T14:32:39.199Z",
+  "headlinesAt": "2026-09-15T14:32:39.199Z",
+  "updatedAt": "2026-09-15T14:32:39.199Z"
 }
