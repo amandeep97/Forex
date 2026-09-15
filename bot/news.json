@@ -2,6 +2,46 @@
   "calendar": [],
   "headlines": [
     {
+      "title": "Waymo, Japanese partners target driverless taxi service in Tokyo in 2027",
+      "link": "https://www.investing.com/news/stock-market-news/waymo-japanese-partners-target-driverless-taxi-service-in-tokyo-in-2027-4900742",
+      "source": "Investing",
+      "at": 1789439066000,
+      "inst": [
+        "USD/JPY"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789439066000,
+      "_kind": null,
+      "why": "Tech news, no direct currency impact"
+    },
+    {
+      "title": "Gold holds near $4,300 as oil disruption lifts Fed hike bets",
+      "link": "https://www.investing.com/news/commodities-news/gold-holds-near-4300-as-oil-disruption-lifts-fed-hike-bets-4900741",
+      "source": "Investing Cmdty",
+      "at": 1789439065000,
+      "inst": [
+        "XAU/USD",
+        "USOIL"
+      ],
+      "ccy": [
+        "USD",
+        "XAU",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789439065000,
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil up, gold mixed on Fed"
+    },
+    {
       "title": "China's August retail sales miss forecast while investment slump deepens, piling pressure on Beijing",
       "link": "https://www.cnbc.com/2026/09/15/china-august-retail-sales-industrial-output-investment-exports-.html",
       "source": "CNBC Markets",
@@ -23,7 +63,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789436296000,
-      "_kind": null
+      "_kind": null,
+      "why": "China data, no direct FX impact"
     },
     {
       "title": "Dollar Near Two-Week High as Oil Surge Boosts Fed Rate Hike Bets - Global Banking & Finance Review",
@@ -42,7 +83,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789436333000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil surge boosts Fed hike bets"
     },
     {
       "title": "China August retail sales +0.4% y/y (expected +0.6%)",
@@ -65,7 +110,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789436296000
+      "firstAt": 1789436296000,
+      "why": "China data, no direct FX impact"
     },
     {
       "title": "Dollar Surges Amid Rising Oil Prices and Fed Rate Hike Expectations - Devdiscourse",
@@ -83,7 +129,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789436333000
+      "firstAt": 1789436333000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil prices rising, dollar surging"
     },
     {
       "title": "‘I Will Go Back to Ukraine at the Next Opportunity’ – Dan Fried Defies Russian Intimidation After Train Strike - Kyiv Post",
@@ -103,7 +153,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789437390000
+      "firstAt": 1789437390000,
+      "why": "Silver falls amid rising yields"
     },
     {
       "title": "Silver Price Forecast: XAG/USD falls to near $63.00 amid rising inflation, Treasury yields - FXStreet",
@@ -121,7 +172,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789437341000
+      "firstAt": 1789437341000,
+      "why": "Gold falls on rate hike bets"
     },
     {
       "title": "NY Gold Futures Fall for Third Straight Session as Rate-Hike Bets Drive Yields Higher and Dollar Strengthens - finance.biggo.com",
@@ -139,7 +191,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789433994000
+      "firstAt": 1789433994000,
+      "why": "IPO news, no direct currency impact"
     },
     {
       "title": "China home prices keep falling in August as property slump drags on",
@@ -168,7 +221,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789436235000
+      "firstAt": 1789436235000,
+      "why": "Geopolitical news, direction unclear"
     },
     {
       "title": "Kremlin welcomes Trump's call on Ukraine to halt strikes on diesel facilities - Red Lake Nation News",
@@ -188,7 +242,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789434900000
+      "firstAt": 1789434900000,
+      "why": "War briefing, no clear direction"
     },
     {
       "title": "Ukraine war briefing: No energy ceasefire until Russia stops, Zelenskyy confirms after Trump claim - theguardian.com",
@@ -208,7 +263,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789432570000
+      "firstAt": 1789432570000,
+      "why": "Fed hike triggers selloff"
     },
     {
       "title": "Fed hike, rising US Yields could trigger fresh selloff in Indian stocks - The Economic Times",
@@ -225,7 +281,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789431443000
+      "firstAt": 1789431443000,
+      "why": "Oil rises on Houthi attacks"
     },
     {
       "title": "Oil prices rise as Houthis attack Saudi Arabia, Hormuz talks delayed",
@@ -244,7 +301,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789432950000
+      "firstAt": 1789432950000,
+      "why": "Military deal, no clear market impact"
     },
     {
       "title": "Russia resupplies military bases in Syria for first time under new deal",
@@ -1196,22 +1254,6 @@
       "firstAt": 1789418943000
     },
     {
-      "title": "US oil export ban unlikely to lower energy prices, Interior secretary says",
-      "link": "https://www.investing.com/news/commodities-news/us-oil-export-ban-unlikely-to-lower-energy-prices-interior-secretary-says-4900489",
-      "source": "Investing Cmdty",
-      "at": 1789418915000,
-      "inst": [
-        "USOIL"
-      ],
-      "ccy": [
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789418915000
-    },
-    {
       "title": "10-year Treasury yield hits 5% as oil prices jump and Fed meeting looms",
       "link": "https://www.marketwatch.com/story/10-year-treasury-yield-tops-5-for-the-first-time-since-2007-as-bond-market-selloff-deepens-14c81f75?mod=mw_rss_topstories",
       "source": "MarketWatch",
@@ -1717,26 +1759,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789409618000
-    },
-    {
-      "title": "NATO pledges more Ukraine support after Russia strikes near Poland - Al Jazeera",
-      "link": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxPaFh5cl9tOEktSmtJY2ZmOTc2c0NNbnF3aHlXZ3k2VHgtOW5NNzBrWlFVQkNrRERfWDRENC1PalM0VEJ3czJXWnJTWW5uQ3NqSWZXTmlqQVJlUjNXTzQ4TkZYX2dOdFl3TjRXczcxWHdwSXYxRFVXbVFFb21jR1dkeFZiY1lReWo1QnF6SVJrN3FJTkxGWnFPZ2IyZk1sckxXQnFaT2R2VFo2bjFMX2ZaS1FONFhaZDdyZ3dxcU9hQ3TSAcYBQVVfeXFMUFNVbjdTNEtoajNOM0dsVE43RUJ2V09USWpDb1BwQThseTF3MUNVTDhoaUZLZnFIRU9jWHZSQnBFeVN5REMwM25ROV9UQkN3RXlaVFpZSlhRVlZFWVEwcDBpMV9ETjJPTEZTV2VJSk8wQm5xV09rLWxIeUNYM21LQjZuQXJic2JselJPYTJrOEJ0ejkxZ2RwZWNfRFhVSXRxZTJ4Y2VxWE41TVRXRDBFX3Y2RW5ZOHRlSExEa3ZMYnkybXlJemJ3?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiwAFBVV95cUxPaFh5cl9tOEktSmtJY2ZmOTc2c0NNbnF3aHlXZ3k2VHgtOW5NNzBrWlFVQkNrRERfWDRENC1PalM0VEJ3czJXWnJTWW5uQ3NqSWZXTmlqQVJlUjNXTzQ4TkZYX2dOdFl3TjRXczcxWHdwSXYxRFVXbVFFb21jR1dkeFZiY1lReWo1QnF6SVJrN3FJTkxGWnFPZ2IyZk1sckxXQnFaT2R2VFo2bj",
-      "at": 1789411694000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789409625000
     }
   ],
   "sources": [
@@ -1759,10 +1781,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-15T02:34:05.695Z",
-  "updatedAt": "2026-09-15T02:34:05.695Z"
+  "headlinesAt": "2026-09-15T02:35:24.462Z",
+  "updatedAt": "2026-09-15T02:35:24.462Z"
 }
