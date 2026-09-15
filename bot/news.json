@@ -881,6 +881,19 @@
       "_kind": null
     },
     {
+      "title": "Ramit Sethi's first scholarship was $2K and he put it in the stock market. Here's the simple lesson he learned",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/ramit-sethis-first-scholarship-2k-114500607.html",
+      "source": "Yahoo Finance",
+      "at": 1789472700000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 1,
+      "srcs": 1,
+      "firstAt": 1789472700000,
+      "_kind": null
+    },
+    {
       "title": "Qualcomm’s Datacenter Pivot Is Real, but The Market Already Knows This",
       "link": "https://finance.yahoo.com/technology/ai/articles/qualcomm-datacenter-pivot-real-market-114340853.html",
       "source": "Yahoo Finance",
@@ -892,6 +905,24 @@
       "srcs": 1,
       "firstAt": 1789472620000,
       "_kind": null
+    },
+    {
+      "title": "ECB President Lagarde warns Europe must build its own AI",
+      "link": "https://finance.yahoo.com/technology/ai/articles/ecb-president-lagarde-warns-europe-114234133.html",
+      "source": "Yahoo Finance",
+      "at": 1789472554000,
+      "inst": [
+        "EUR/USD"
+      ],
+      "ccy": [
+        "EUR"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789472554000,
+      "_kind": null,
+      "why": "Geopolitical warning, no direct FX impact"
     },
     {
       "title": "RM Williams eyes Japan entry as part of international push – report",
@@ -909,7 +940,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789472432000,
-      "_kind": null
+      "_kind": null,
+      "why": "Corporate news, no clear FX direction"
     },
     {
       "title": "Denmark says Russian warship fired flares at military helicopter",
@@ -930,7 +962,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789472400000,
-      "_kind": null
+      "_kind": null,
+      "why": "Geopolitical tension, unclear immediate market impact"
     },
     {
       "title": "AI chip sell-off overblown: Zero GPU slowdown after Anthropic essay, analyst says",
@@ -944,6 +977,28 @@
       "srcs": 1,
       "firstAt": 1789472335000,
       "_kind": null
+    },
+    {
+      "title": "TSX futures edge lower as yields, oil climb ahead of Fed meeting",
+      "link": "https://www.investing.com/news/stock-market-news/tsx-futures-edge-lower-as-yields-oil-climb-ahead-of-fed-meeting-4901440",
+      "source": "Investing",
+      "at": 1789472289000,
+      "inst": [
+        "USOIL"
+      ],
+      "ccy": [
+        "USD",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789472289000,
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil explicitly stated to climb"
     },
     {
       "title": "Bitcoin and ethereum prices today, Tuesday, September 15, 2026: Crypto prices sliding this morning ahead of Fed meeting",
@@ -962,7 +1017,12 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789470894000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "BTC/USDT": "down",
+        "ETH/USDT": "down"
+      },
+      "why": "Crypto prices explicitly sliding"
     },
     {
       "title": "Benchmark US government bond yield hits 19-year peak as oil prices surge",
@@ -981,7 +1041,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789472211000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil prices explicitly surge"
     },
     {
       "title": "Stocks making the biggest moves premarket: Dave & Buster's, Enova, Etsy & more",
@@ -995,24 +1059,10 @@
       "ccy": [],
       "sev": 1,
       "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789470720000,
-      "_kind": null
-    },
-    {
-      "title": "Micron Sits Far Below Wall Street’s Target. Here’s What Gets It There.",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/micron-sits-far-below-wall-113519132.html",
-      "source": "Yahoo Finance",
-      "at": 1789472119000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
       "srcs": 1,
-      "firstAt": 1789472119000,
-      "_kind": null
+      "firstAt": 1789472191000,
+      "_kind": null,
+      "why": "Individual stock moves, no index direction"
     },
     {
       "title": "investingLive European news wrap: Crypto markets sink ahead of Clarity Act vote",
@@ -1032,22 +1082,12 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789472113000,
-      "_kind": null
-    },
-    {
-      "title": "Germany sets conditions for UniCredit takeover of Commerzbank",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/germany-sets-conditions-unicredit-takeover-113505322.html",
-      "source": "Yahoo Finance",
-      "at": 1789472105000,
-      "inst": [
-        "EUR/USD"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789472105000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "BTC/USDT": "down"
+      },
+      "why": "Oil supported, crypto markets sink"
     },
     {
       "title": "Gold struggles below $4,300 as 10-year US Treasury yield reaches 2007 high - FXStreet",
@@ -1066,7 +1106,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789470894000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold struggles below key level"
     },
     {
       "title": "Ukraine Confirms Strikes on Rosneft’s Syzran Oil Refinery and Orion UAV Plant - united24media.com",
@@ -1086,7 +1130,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789471538000
+      "firstAt": 1789471538000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Supply risk supports oil, gold unclear"
     },
     {
       "title": "Kremlin welcomes Trump's idea of energy truce with Ukraine, calls for sanctions removal - Reuters",
@@ -1106,7 +1155,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789471488000
+      "firstAt": 1789471488000,
+      "dir": {
+        "USOIL": "down",
+        "UKOIL": "down",
+        "XAU/USD": "down"
+      },
+      "why": "De-escalation reduces risk premium"
     },
     {
       "title": "Kremlin welcomes Trump’s idea of energy truce with Ukraine, calls for sanctions removal",
@@ -1125,7 +1180,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789471488000
+      "firstAt": 1789471488000,
+      "dir": {
+        "USOIL": "down",
+        "UKOIL": "down",
+        "XAU/USD": "down"
+      },
+      "why": "De-escalation reduces risk premium"
     },
     {
       "title": "It might be time to consider the ‘most hated, under-owned asset class,’ says this strategist",
@@ -1146,7 +1207,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789471440000
+      "firstAt": 1789471440000,
+      "dir": {
+        "EUR/USD": "down",
+        "USD/JPY": "up"
+      },
+      "why": "Short euro, long yen recommendation"
     },
     {
       "title": "Markets On Edge As US Fed Meets To Tackle High Inflation - Channels Television",
@@ -1169,7 +1235,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789471435000
+      "firstAt": 1789471435000,
+      "why": "General market tension, no specific direction"
     },
     {
       "title": "Silver prices today, Tuesday, September 15, 2026: Silver prices drop below $64 as Fed-decision day approaches",
@@ -1186,7 +1253,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789470894000
+      "firstAt": 1789470894000,
+      "dir": {
+        "XAG/USD": "down"
+      },
+      "why": "Silver prices explicitly drop"
     },
     {
       "title": "Dozens of aircraft, hundreds of buildings: US loss to Iran attacks revealed",
@@ -1626,20 +1697,6 @@
       "firstAt": 1789466400000
     },
     {
-      "title": "AI Stocks Fell, but Workday and Adobe Jumped. A Favorite AI Disruption Trade Just Flinched",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/ai-stocks-fell-workday-adobe-095614361.html",
-      "source": "Yahoo Finance",
-      "at": 1789466174000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789466174000
-    },
-    {
       "title": "EU extends Russia sanctions talks for a week over dispute on delisting Russian billionaire: Report - Anadolu Ajansı",
       "link": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxOdjlyWl9VNWc5blgyUW1SSWo0STBhd3NUSGx3OTNkaFNhT0NyUWsybzJXOTZCMG5pR2gwaVF3OUJlYWRsYkZ1dnRTLUFHdFRZaEZFQVBSb3ZzNk5IRnRoMWFsWEs2aTVCbHIyREx0RHliZlNGVHhkQWMyMnYtcnRjNXZrMzJlZXFtRXhRZjJkSjNiSzdkV3FJaVE5NHZUcERHSXlId2FicVFxR1hWT1JxbG9vLTc5VFQxN1NfVEgzeTZmbzFVT0dLRGszemloMDlNaEJj?oc=5",
       "source": "Wires (geo)",
@@ -1739,7 +1796,7 @@
       "firstAt": 1789464833000
     },
     {
-      "title": "Ex-CIA chief Petraeus was at Ukrainian station where Russia struck train, calls it an act of terror - The Jerusalem Post",
+      "title": "Ex-CIA chief Petraeus was at Ukrainian station where Russia struck train, calls it an act of terror - jpost.com",
       "link": "https://news.google.com/rss/articles/CBMiigFBVV95cUxNMW13UnJPaklwd3BNdElJMEJ6aXlRTk9Wby1XOVZvNlg4RHhpLUY3UkdGRm5TU2RWZkR0dFRxdUpja1hZc3pwWlVtNXBGOUdjdkdxQmNhbGlUXzdQWUxaVlMtRS16TWFqUm50dGtKeHNCZ0JHM3Vta0wwd0ZJZ3N2a3FlQTNMQkJXVVE?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiigFBVV95cUxNMW13UnJPaklwd3BNdElJMEJ6aXlRTk9Wby1XOVZvNlg4RHhpLUY3UkdGRm5TU2RWZkR0dFRxdUpja1hZc3pwWlVtNXBGOUdjdkdxQmNhbGlUXzdQWUxaVlMtRS16TWFqUm50dGtKeHNCZ0JHM3Vta0wwd0ZJZ3N2a3FlQTNMQkJXVVE?oc=5\" target=\"_blank\">Ex-CIA chief Petraeu",
@@ -2408,26 +2465,6 @@
       "firstAt": 1789455072000
     },
     {
-      "title": "Israeli air strike wounds MSF staff, damages vehicle - Middle East Eye",
-      "link": "https://news.google.com/rss/articles/CBMirAFBVV95cUxQcXJMRFcwSE9URWhkbzRra2hnRktCNUw5enpHWjBFMVQyWXgwS1k3WjR6eHZCNEwzTG82UlFHUlFZaVZVV004S19HYUE3WWRFejlGR2ZwU2FRUjF3b1JkZk5mQTQxQ0FtaVRJNUJKYXdROC0wZDQ0QzJHVjFvSV9jaUxVVlByN0JxZFV5T1FFd3VpNUhzUWNuV1U1d3ZQdTVFVlgtWFItemt4Q1pN?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMirAFBVV95cUxQcXJMRFcwSE9URWhkbzRra2hnRktCNUw5enpHWjBFMVQyWXgwS1k3WjR6eHZCNEwzTG82UlFHUlFZaVZVV004S19HYUE3WWRFejlGR2ZwU2FRUjF3b1JkZk5mQTQxQ0FtaVRJNUJKYXdROC0wZDQ0QzJHVjFvSV9jaUxVVlByN0JxZFV5T1FFd3VpNUhzUWNuV1U1d3ZQdTVFVlgtWFItemt4Q1",
-      "at": 1789454400000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789454400000
-    },
-    {
       "title": "What are the main events for today?",
       "link": "https://investinglive.com/news/what-are-the-main-events-for-today-42/",
       "source": "ForexLive",
@@ -2542,6 +2579,29 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789451421000
+    },
+    {
+      "title": "Internet shutdown crosses 100 days in Pakistan-administered Kashmir",
+      "link": "https://www.aljazeera.com/news/2026/9/15/internet-shutdown-crosses-100-days-in-pakistan-administered-kashmir?traffic_source=rss",
+      "source": "Al Jazeera",
+      "desc": "Mobile data, broadband services suspended in the territory since protests calling for electoral reform in June.",
+      "at": 1789451272000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789451272000
     }
   ],
   "sources": [
@@ -2564,10 +2624,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-15T11:56:52.151Z",
-  "headlinesAt": "2026-09-15T11:56:52.151Z",
-  "updatedAt": "2026-09-15T11:56:52.151Z"
+  "calendarAt": "2026-09-15T11:58:11.074Z",
+  "headlinesAt": "2026-09-15T11:58:11.074Z",
+  "updatedAt": "2026-09-15T11:58:11.074Z"
 }
