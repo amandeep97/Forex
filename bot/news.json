@@ -906,7 +906,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789461777000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Strong dollar pressures metals and pairs"
     },
     {
       "title": "Oil prices rise as Houthis attack Saudi Arabia, Hormuz talks delayed",
@@ -926,7 +932,12 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789459869000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Geopolitical risk boosts oil prices"
     },
     {
       "title": "Indonesia stocks lower at close of trade; IDX Composite Index down 0.93%",
@@ -941,7 +952,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789461004000,
-      "_kind": null
+      "_kind": null,
+      "why": "Indonesia news irrelevant to US index"
     },
     {
       "title": "Wickes shares jump 6% as retailer flags trading pickup, backs profit outlook",
@@ -975,7 +987,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789460244000,
-      "_kind": null
+      "why": "Ukraine energy strike status unclear"
     },
     {
       "title": "NATO jets down drone in Lithuanian airspace after bloc warns strikes will drive support for Ukraine - WPLG Local 10",
@@ -995,7 +1007,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789460244000
+      "firstAt": 1789460244000,
+      "why": "NATO drone incident lacks clear market impact"
     },
     {
       "title": "Houthis say air strikes hit Yemen after Saudi Arabia vows ‘firm’ response",
@@ -1015,7 +1028,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789459869000
+      "firstAt": 1789459869000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Saudi-Yemen conflict escalates oil supply risk"
     },
     {
       "title": "GSK shares rise as Berenberg upgrades to Buy on stronger drug pipeline",
@@ -1044,7 +1062,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789459587000
+      "firstAt": 1789459587000,
+      "dir": {
+        "GBP/USD": "down"
+      },
+      "why": "Weak UK jobs data lowers pound"
     },
     {
       "title": "U.S. Sanctions Russia’s VTB Bank for Assisting Iran - IranWire",
@@ -1064,7 +1086,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789458477000
+      "firstAt": 1789458477000,
+      "why": "Bank sanctions have limited immediate market effect"
     },
     {
       "title": "US textile industry accelerates shift toward new markets amid tariffs, labor shortages, and innovation - Global Sources",
@@ -1096,7 +1119,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789458567000
+      "firstAt": 1789458567000,
+      "why": "Conflicting signals on euro and dollar"
     },
     {
       "title": "Asian currencies weaken as yen pulls back, dollar nears two-week high",
@@ -1113,7 +1137,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789458517000
+      "firstAt": 1789458517000,
+      "dir": {
+        "USD/JPY": "up"
+      },
+      "why": "Dollar strength pushes yen lower"
     },
     {
       "title": "US Sanctions Russia’s VTB Bank Over Iran Sanctions Evasion, Banking Ties - The Media Line",
@@ -1133,7 +1161,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789458477000
+      "firstAt": 1789458477000,
+      "why": "Sanctions news lacks clear directional bias"
     },
     {
       "title": "European sovereign debt pressured as traders price ECB hikes through early 2027",
@@ -1149,27 +1178,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789456733000
-    },
-    {
-      "title": "Breaking news. - Danish PM condemns Russian flare attack on helicopter as 'reckless' - Euronews.com",
-      "link": "https://news.google.com/rss/articles/CBMiswFBVV95cUxORXhYY2dJQVhpcTNwc1gxbVozcEpTajNSMm91TXlRaU1LUGFwNXo2aTBmVlB6c2RRZUJFM2d0M1BISXRLVFRqSzVxVUVrem1MMWRmbzlVZ2hjYnJVTkE4N0FFTkVpWWxqZi1qVEpoMFM5aW9aUHRDZlRINzFidEhFd2JEYjBCTlQ3d3RJbW5pWEoxVUVSWlhuRk9NbjAybWRvZ1FMck1SUHBMbElMS3g2MzVESQ?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiswFBVV95cUxORXhYY2dJQVhpcTNwc1gxbVozcEpTajNSMm91TXlRaU1LUGFwNXo2aTBmVlB6c2RRZUJFM2d0M1BISXRLVFRqSzVxVUVrem1MMWRmbzlVZ2hjYnJVTkE4N0FFTkVpWWxqZi1qVEpoMFM5aW9aUHRDZlRINzFidEhFd2JEYjBCTlQ3d3RJbW5pWEoxVUVSWlhuRk9NbjAybWRvZ1FMck1SUHBMbE",
-      "at": 1789457713000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 3,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789457713000
+      "firstAt": 1789456733000,
+      "why": "ECB pricing impact on euro unclear"
     },
     {
       "title": "The Fed may be on the verge of a serious mistake, prominent economists warn",
@@ -1192,7 +1202,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789457340000
+      "firstAt": 1789457340000,
+      "why": "Fed mistake warning lacks clear direction"
     },
     {
       "title": "European Markets Tumble Amid Oil Price Surge and Rate Hike Fears - devdiscourse.com",
@@ -1210,27 +1221,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789456733000
-    },
-    {
-      "title": "Israel and Saudi Arabia discuss intelligence aid amid growing Houthi attacks - The Jerusalem Post",
-      "link": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE4yWWNETDJuS0xvX05ZOGNySWN1MTFaZ0xhWDdZNWgzNTM2Y2Rwb3lGZ3ZpZzdZY3kyR1Y0X3NPQmtEdjR3VERfZDlFNU5CdHo2cTFfcWxkODFGRG9u?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiXEFVX3lxTE4yWWNETDJuS0xvX05ZOGNySWN1MTFaZ0xhWDdZNWgzNTM2Y2Rwb3lGZ3ZpZzdZY3kyR1Y0X3NPQmtEdjR3VERfZDlFNU5CdHo2cTFfcWxkODFGRG9u?oc=5\" target=\"_blank\">Israel and Saudi Arabia discuss intelligence aid amid growing Houthi attacks</a>&nb",
-      "at": 1789456511000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789456511000
+      "firstAt": 1789456733000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil price surge explicitly stated"
     },
     {
       "title": "Silver tests $63.08 Fibonacci support in bearish slide: Live",
@@ -1246,7 +1241,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789456274000
+      "firstAt": 1789456274000,
+      "dir": {
+        "XAG/USD": "down"
+      },
+      "why": "Silver in bearish slide"
     },
     {
       "title": "Gold clings to $4,320 support amid bearish momentum: Live levels",
@@ -1972,26 +1971,6 @@
       "firstAt": 1789440780000
     },
     {
-      "title": "Ukrainian forces reportedly strike Russia's Syzran Oil Refinery, target Ozon retail warehouse in Taganrog - The Kyiv Independent",
-      "link": "https://news.google.com/rss/articles/CBMilgFBVV95cUxPQXN4MUtfV3dScFh5Z3REM3ZWSUpublhWcG1UUldPTjJRa3FCUWFTUnplNmFlWVRlZ0hxaUhvUEJyU21TbDd4ak1Sa1FFVnRyVXRUbjBra2lBRFVtS1BKdi1MZjI0eHNfTWxFQzdmN3UtNWtwY0kxcFV0QzY1dG96RFJzRUJxQnlqWXVVU3RRa1luZmpGM2c?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMilgFBVV95cUxPQXN4MUtfV3dScFh5Z3REM3ZWSUpublhWcG1UUldPTjJRa3FCUWFTUnplNmFlWVRlZ0hxaUhvUEJyU21TbDd4ak1Sa1FFVnRyVXRUbjBra2lBRFVtS1BKdi1MZjI0eHNfTWxFQzdmN3UtNWtwY0kxcFV0QzY1dG96RFJzRUJxQnlqWXVVU3RRa1luZmpGM2c?oc=5\" target=\"_blank\">Ukra",
-      "at": 1789440220000,
-      "inst": [
-        "USOIL",
-        "XAU/USD",
-        "UKOIL"
-      ],
-      "ccy": [
-        "OIL",
-        "XAU"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789440220000
-    },
-    {
       "title": "United States Dollar Index strengthens above 99.50 as Fed rate hike bets rise - FXStreet",
       "link": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxNZDJxdzNYZ3J5UElHc0wxV21jcEJyN1hVSUFEeVNNTHZRU3gwUUFlc1NJNHVOQmFlVVRhTzFCb0RXakpCckhOR1VoWndlM1NXaHY5NjhGZE1lYXc3WFJUMDdqOUJMekNucFEyVGpVbnNEY1o0OHhKa2pSQWpWLTgxcmEzM2wzZ0xVUk1tV0llVnZqUXJUZW5TcC10cU1qdHExMkVkN09LLUNfc01nWWxxZzBMMEdqb1U2eUlz?oc=5",
       "source": "Wires (macro)",
@@ -2622,6 +2601,64 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789423069000
+    },
+    {
+      "title": "Loonie holds near 12-day low as oil support fails to offset dollar strength",
+      "link": "https://www.investing.com/news/forex-news/loonie-holds-near-12day-low-as-oil-support-fails-to-offset-dollar-strength-4900629",
+      "source": "Investing FX",
+      "at": 1789422848000,
+      "inst": [
+        "USD/CAD",
+        "USOIL"
+      ],
+      "ccy": [
+        "USD",
+        "CAD",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789422848000
+    },
+    {
+      "title": "Treasury hits Russia's VTB Bank with new sanctions over Iran ties - CNBC",
+      "link": "https://news.google.com/rss/articles/CBMijAFBVV95cUxNaDlwYWhXMWJOc3FHSnAtRjdpR3NyQjBzcExta0hWamRLMzNDb0xNM21tQkZEdkx3R3lwcy1lVUNUSk13ZVFPOHo4RFFhUHY1RzZOQW9JZzdrVUFxUzdaNXJaa1gzR2xhNmh5am9yVFNqS3U5amg5RDlWTVotblV1SzJROUdUM1RweXhZRNIBkgFBVV95cUxNOUJKdlMwNjZyeWpER3g1REh4SkRwb3FnMlFfX2VOc0dvczh3cFNNM2xxbVo1WllIam1GblE0WE42ZDlWMzRBZExwVXdzbGIwSUtzdVQ3Szh0em5odjJsd0lBclZXcGtQNWZSWncwTmowc25Yamg1TS04SExnand1cm93UlhDVnpmamVTWDJZdTQwZw?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMijAFBVV95cUxNaDlwYWhXMWJOc3FHSnAtRjdpR3NyQjBzcExta0hWamRLMzNDb0xNM21tQkZEdkx3R3lwcy1lVUNUSk13ZVFPOHo4RFFhUHY1RzZOQW9JZzdrVUFxUzdaNXJaa1gzR2xhNmh5am9yVFNqS3U5amg5RDlWTVotblV1SzJROUdUM1RweXhZRNIBkgFBVV95cUxNOUJKdlMwNjZyeWpER3g1REh4Sk",
+      "at": 1789422800000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "USD",
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789420327000
+    },
+    {
+      "title": "Gold Price Fed Rate Hike 2026: Market Insights - GoldSilver",
+      "link": "https://news.google.com/rss/articles/CBMinwFBVV95cUxOZmh4Q2ZBSHd6MWdyN1ZMR0gxYjBqYV84ZHpfcC14akN3OTl6YmowT3NMRV9hdzVMTjAxanRhU1JIYWxZTHlfNTFzQ1ZfZzlxMEpwX1hYdXB3UW52U3p1TTFaUkdVUjRXNU9zSWJxa3N1dDl4T1dyMTlyS28ybFZTNG9ua1c2Z2NfOEF2NzJzOVNPaUJZMTBOSlprQzMxTlk?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMinwFBVV95cUxOZmh4Q2ZBSHd6MWdyN1ZMR0gxYjBqYV84ZHpfcC14akN3OTl6YmowT3NMRV9hdzVMTjAxanRhU1JIYWxZTHlfNTFzQ1ZfZzlxMEpwX1hYdXB3UW52U3p1TTFaUkdVUjRXNU9zSWJxa3N1dDl4T1dyMTlyS28ybFZTNG9ua1c2Z2NfOEF2NzJzOVNPaUJZMTBOSlprQzMxTlk?oc=5\" target=\"",
+      "at": 1789422376000,
+      "inst": [
+        "XAU/USD"
+      ],
+      "ccy": [
+        "USD",
+        "XAU"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789422376000
     }
   ],
   "sources": [
@@ -2647,7 +2684,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-15T08:51:51.239Z",
-  "headlinesAt": "2026-09-15T08:51:51.239Z",
-  "updatedAt": "2026-09-15T08:51:51.239Z"
+  "calendarAt": "2026-09-15T08:53:23.551Z",
+  "headlinesAt": "2026-09-15T08:53:23.551Z",
+  "updatedAt": "2026-09-15T08:53:23.551Z"
 }
