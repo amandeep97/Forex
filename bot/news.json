@@ -804,6 +804,34 @@
   ],
   "headlines": [
     {
+      "title": "How the Iran war is transforming the relationship between stocks, bonds and oil",
+      "link": "https://www.marketwatch.com/story/2-charts-showing-how-oil-is-becoming-the-global-markets-biggest-wild-card-ec273da8?mod=mw_rss_topstories",
+      "source": "MarketWatch",
+      "desc": "Oil is increasingly calling the tune in global markets as rising energy prices make investors nervous.",
+      "at": 1789508040000,
+      "inst": [
+        "USOIL",
+        "US500",
+        "XAU/USD",
+        "UKOIL"
+      ],
+      "ccy": [
+        "OIL",
+        "XAU"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789508040000,
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "US500": "down",
+        "XAU/USD": "up"
+      },
+      "why": "Oil surge, stock nervousness, gold safe haven"
+    },
+    {
       "title": "Mexico stocks lower at close of trade; S&P/BMV IPC down 1.11%",
       "link": "https://www.investing.com/news/stock-market-news/mexico-stocks-lower-at-close-of-trade-spbmv-ipc-down-111-4902692",
       "source": "Investing",
@@ -816,7 +844,30 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789507803000,
-      "_kind": null
+      "_kind": null,
+      "why": "Mexico stocks news, irrelevant to US"
+    },
+    {
+      "title": "Two Democrats cross aisle to help tee up final vote on Russia sanctions bill - The Hill",
+      "link": "https://news.google.com/rss/articles/CBMikAFBVV95cUxNYkMwaENYcTFqWnVmbXVXc2lBYzljTFFhOTAwVHlkelZNc2RxS2gxNTdlYVJXNW13SlBuOVpLd2xaMVBFZmY2MTY2eWNGdzN4ZDdFQ192VjBDSU9vN2ZKRU9kVVE3SjhSVndGcnZhbEV3NkdaWjJUTVRwei1RUzB3eldTNGgwcUozSXZVNTZXT1PSAZYBQVVfeXFMTlVVRDlHeDVDNElOWTJ2SzJfZDhJN0lzTUZCXzdtM0dzYjY2Y3VWQmcycFRTSjdyX2xtVzZlUlRsRDBsVm5Oakk3dkxtcnFsTXZEYnp6Ums5UGlwLVBOWHhjeUl5U0VHMWw5N1JWd040OFdsWl9oM0xqUHMzNnpLa3RpRmRSYmtnQ0VIM2pOQk9uRnYwYzZn?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMikAFBVV95cUxNYkMwaENYcTFqWnVmbXVXc2lBYzljTFFhOTAwVHlkelZNc2RxS2gxNTdlYVJXNW13SlBuOVpLd2xaMVBFZmY2MTY2eWNGdzN4ZDdFQ192VjBDSU9vN2ZKRU9kVVE3SjhSVndGcnZhbEV3NkdaWjJUTVRwei1RUzB3eldTNGgwcUozSXZVNTZXT1PSAZYBQVVfeXFMTlVVRDlHeDVDNElOWTJ2Sz",
+      "at": 1789507740000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789505940000,
+      "_kind": null,
+      "why": "Sanctions bill, no immediate market impact"
     },
     {
       "title": "Colombia stocks lower at close of trade; COLCAP down 0.81%",
@@ -831,7 +882,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789507502000,
-      "_kind": null
+      "_kind": null,
+      "why": "Colombia stocks news, irrelevant to US"
     },
     {
       "title": "Russia stocks lower at close of trade; MOEX Russia Index down 0.92%",
@@ -846,7 +898,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789507203000,
-      "_kind": null
+      "_kind": null,
+      "why": "Russia stocks news, irrelevant to US"
     },
     {
       "title": "Latin American stocks edge higher as oil prices surge",
@@ -864,7 +917,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789507128000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil surge, LatAm stocks up"
     },
     {
       "title": "Houthi escalation in the Middle East brings new pain at the pump for Americans - local21news.com",
@@ -885,7 +942,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789507023000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Houthi escalation, oil pain, gold unclear"
     },
     {
       "title": "AI stocks are rebounding. One analyst says there’s no spending slowdown in sight.",
@@ -901,7 +963,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789506900000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "AI rebound, no spending slowdown"
     },
     {
       "title": "Northwest European gasoline margins drop over $7 on crude surge",
@@ -919,7 +985,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789506900000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Crude surge, gasoline margins drop"
     },
     {
       "title": "If the Fed hikes rates, here's how the stock market might respond - marketplace.org",
@@ -943,25 +1014,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789506900000,
-      "_kind": null
-    },
-    {
-      "title": "2 charts showing how oil is becoming the market’s biggest wild card",
-      "link": "https://www.marketwatch.com/story/2-charts-showing-how-oil-is-becoming-the-global-markets-biggest-wild-card-ec273da8?mod=mw_rss_topstories",
-      "source": "MarketWatch",
-      "desc": "Oil is increasingly calling the tune in global markets as rising energy prices make investors nervous.",
-      "at": 1789506420000,
-      "inst": [
-        "USOIL"
-      ],
-      "ccy": [
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789506420000,
-      "_kind": null
+      "_kind": null,
+      "why": "Hypothetical Fed hike, no clear direction"
     },
     {
       "title": "Gold dips as dollar, yields, and oil rise a day ahead of Fed’s expected rate hike",
@@ -980,7 +1034,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789506242000
+      "firstAt": 1789506242000,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "up"
+      },
+      "why": "Gold dips, oil rises, dollar up"
     },
     {
       "title": "Inflation killed the penny. Now it’s coming for your dollar.",
@@ -1003,7 +1062,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789506000000
+      "firstAt": 1789506000000,
+      "why": "Inflation commentary, no clear direction"
     },
     {
       "title": "Opinion: Inflation killed the penny. Now it’s coming for your dollar. - MarketWatch",
@@ -1026,7 +1086,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789506000000
+      "firstAt": 1789506000000,
+      "why": "Inflation commentary, no clear direction"
     },
     {
       "title": "Inflation Fears and Oil Surge Rattle Markets - etf.com",
@@ -1044,7 +1105,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789506000000
+      "firstAt": 1789506000000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil surge, inflation fears"
     },
     {
       "title": "US lawmakers spar over bill giving Trump more power to sanction Russia - The Guardian",
@@ -1064,7 +1129,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789505940000
+      "firstAt": 1789505940000,
+      "why": "Sanctions bill debate, no clear impact"
     },
     {
       "title": "Why a Federal Reserve rate hike could be a ‘rare win’ for your retirement money",
@@ -1479,26 +1545,6 @@
       "firstAt": 1789499086000
     },
     {
-      "title": "House Democrats face divisions on Russian sanctions bill - Axios",
-      "link": "https://news.google.com/rss/articles/CBMihgFBVV95cUxQbmJRaU9hVW84Ml82SXFIOE45akR5OXNySVFRVE94dkpYQTZvT09aV1k5RDR0emNncm5uaEM1VkNreFZpQmdWU014MWJqLWZPdXhtSzUxZzlqRi1nYks5V0pWOHJGenk2R3k0VDdCY25aeFQxcEowQjhxTkRwZFJzMW9WRndLZw?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMihgFBVV95cUxQbmJRaU9hVW84Ml82SXFIOE45akR5OXNySVFRVE94dkpYQTZvT09aV1k5RDR0emNncm5uaEM1VkNreFZpQmdWU014MWJqLWZPdXhtSzUxZzlqRi1nYks5V0pWOHJGenk2R3k0VDdCY25aeFQxcEowQjhxTkRwZFJzMW9WRndLZw?oc=5\" target=\"_blank\">House Democrats face divi",
-      "at": 1789498806000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789498806000
-    },
-    {
       "title": "Iranian strikes have damaged hundreds of structures at U.S. bases, watchdog says - The Washington Post",
       "link": "https://news.google.com/rss/articles/CBMiywFBVV95cUxOWHVUdFB5Z1ZSVjdYUFp3NkJDNHdQa2M0ckdvWGNRb3E3dUVLVkp6djlUeXlvbVdGTHZZbnZVazZDOEw3dnFDTGVnQVRyV2VxZEhBWDdGS3JoTUFTMVVEcjg1dHlWQWFXbUJsOGtYQ21mZFVwLXByVWNLLXFWNWpMbm5HdElBRWZnRldTZVVlQ2lSN1dJYWxsSlE2VFRZblh2X2tjWjBqbklIQnFaSmVLZEZDZklzM0ZpYnJFYmlNRmo0Q3hlc2RrYWtHSQ?oc=5",
       "source": "Wires (geo)",
@@ -1777,7 +1823,7 @@
       "firstAt": 1789493235000
     },
     {
-      "title": "Gold set to fall toward $4,000 as Warsh faces a Fed rate-hike dilemma - FXStreet",
+      "title": "Gold set to fall toward $4,000 as Warsh faces a Fed rate-hike dilemma - fxstreet.com",
       "link": "https://news.google.com/rss/articles/CBMitgFBVV95cUxOMUJlclJ3ckFWTkZwTFlkWlVSaHFndC1vX3JLdVNyazlNUkNoWEFlNGJaUUpfWURWWTNiTUFBZHlZN0tIVnlDSGdoSk9KcUZUU2FMZXJqcWgtRW8wV2psYmJ1WGxtc0NLRGxkdFFFUHpRcFdiMXVuVnlyaWZ6SExYZi04M2pTWVNVYktETmxiY3M3RW80amg5MDlLODIyazFxQXNrZ3h5SkhybjhxMWR4TkhIb3AzQQ?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMitgFBVV95cUxOMUJlclJ3ckFWTkZwTFlkWlVSaHFndC1vX3JLdVNyazlNUkNoWEFlNGJaUUpfWURWWTNiTUFBZHlZN0tIVnlDSGdoSk9KcUZUU2FMZXJqcWgtRW8wV2psYmJ1WGxtc0NLRGxkdFFFUHpRcFdiMXVuVnlyaWZ6SExYZi04M2pTWVNVYktETmxiY3M3RW80amg5MDlLODIyazFxQXNrZ3h5Skhybj",
@@ -1964,7 +2010,7 @@
       "firstAt": 1789488821000
     },
     {
-      "title": "Gold struggles near $4,300 as 10-year US Treasury yield reaches 2007 high - FXStreet",
+      "title": "Gold struggles near $4,300 as 10-year US Treasury yield reaches 2007 high - fxstreet.com",
       "link": "https://news.google.com/rss/articles/CBMipgFBVV95cUxPTjFyWnJycTFIb2dJczhvMmRESGJyVDBTWTc3Y1ZkUmxHanFuWXJRSEdPcXJLaVZDYXlfUzNzSXZSRXQ5VGJfeVZqeWo1dWNrZ1R0b0hNN3pGcVNGY1Q0Qm5pcjZzd1Z5TFRWSXRjTWNRYTZEMEdsc2ZpRDV6ZkRBZnFnLXJjYjZsNUN2VXp3ZmxrR2hzbUtHRFFkV0RwOUZjalZGOEFB?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMipgFBVV95cUxPTjFyWnJycTFIb2dJczhvMmRESGJyVDBTWTc3Y1ZkUmxHanFuWXJRSEdPcXJLaVZDYXlfUzNzSXZSRXQ5VGJfeVZqeWo1dWNrZ1R0b0hNN3pGcVNGY1Q0Qm5pcjZzd1Z5TFRWSXRjTWNRYTZEMEdsc2ZpRDV6ZkRBZnFnLXJjYjZsNUN2VXp3ZmxrR2hzbUtHRFFkV0RwOUZjalZGOEFB?oc=5\"",
@@ -2173,6 +2219,29 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789482000000
+    },
+    {
+      "title": "Fed Rate Hike Looks Likely—What Comes Next Matters More - Investopedia",
+      "link": "https://news.google.com/rss/articles/CBMitAFBVV95cUxNSlJjT04xdnM2YS1RUlJSVUswTTdsNW4zck9ScW1WMjVyYXl6cHVoSDdSaEtUR1BYR25JbXBXYkhWUnVTclp3bGUtWW5CX2I0T0pRRWJ5WWQ2MjYyS3hpOWN5QmtMMnZmelVPdll1Qnk4MkpRR1JlWjJfUFJMUThZUXJqcHRZM09OV05vYXJFbmFVTXBlanM1OE1XZUstQ0FXYVhkelhJeVE5dWY2bDNMMkNuQW0?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMitAFBVV95cUxNSlJjT04xdnM2YS1RUlJSVUswTTdsNW4zck9ScW1WMjVyYXl6cHVoSDdSaEtUR1BYR25JbXBXYkhWUnVTclp3bGUtWW5CX2I0T0pRRWJ5WWQ2MjYyS3hpOWN5QmtMMnZmelVPdll1Qnk4MkpRR1JlWjJfUFJMUThZUXJqcHRZM09OV05vYXJFbmFVTXBlanM1OE1XZUstQ0FXYVhkelhJeVE5dW",
+      "at": 1789481627000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789481329000
     },
     {
       "title": "Don’t Sell Gold and Silver on Rate Hike Fear, Here’s Why - NAI500",
@@ -2523,21 +2592,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789474964000
-    },
-    {
-      "title": "Canadian manufacturers turning to new markets amid US tariffs - bastillepost.com",
-      "link": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPaUVlZXJZV1VGLVJldVk2bDItbHh5UTB6dFlMcTdscGhST3V6X1BrQjcwZDV5OFJQSWU0QmxLSmZCZGo2OER6VlhPNWktYTRSQXlUWkFxVnJFWkJJeWJiQ1dBQWlGblZ3SmtjTDNZdzd1ay1pSndrQ2NwVUI3U0NocG13cTZyWTYwd1pBRjRDZTdjdEVTeTZ3alNvV1ZfSUoxOWpJcXNMZ18zcnhSVGVmYTdTbw?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiswFBVV95cUxPaUVlZXJZV1VGLVJldVk2bDItbHh5UTB6dFlMcTdscGhST3V6X1BrQjcwZDV5OFJQSWU0QmxLSmZCZGo2OER6VlhPNWktYTRSQXlUWkFxVnJFWkJJeWJiQ1dBQWlGblZ3SmtjTDNZdzd1ay1pSndrQ2NwVUI3U0NocG13cTZyWTYwd1pBRjRDZTdjdEVTeTZ3alNvV1ZfSUoxOWpJcXNMZ18zcn",
-      "at": 1789474629000,
-      "inst": [
-        "USD/CAD"
-      ],
-      "ccy": [],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789474629000
     }
   ],
   "sources": [
@@ -2560,10 +2614,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-15T21:36:23.773Z",
-  "headlinesAt": "2026-09-15T21:36:23.773Z",
-  "updatedAt": "2026-09-15T21:36:23.773Z"
+  "calendarAt": "2026-09-15T21:37:40.989Z",
+  "headlinesAt": "2026-09-15T21:37:40.989Z",
+  "updatedAt": "2026-09-15T21:37:40.989Z"
 }
