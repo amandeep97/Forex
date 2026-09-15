@@ -48,7 +48,7 @@ function bar(t, o, c, hPad = 0.2, lPad = 0.05) {
 // ── Lookahead: the replay must not know today's high ───────────────────────
 (async () => {
   {
-    const lib = await import('../shared/liquidity.mjs');
+    const lib = await S.loadLib();
     // Three days. The LAST day has a wild high that must never appear in any
     // level set built during that day.
     const daily = [
@@ -344,6 +344,118 @@ function bar(t, o, c, hPad = 0.2, lPad = 0.05) {
     check('progress from an older method is restarted, not continued',
       fresh.state === 'running' && files2[S.PROGRESS_PATH].done.length === 2,
       `${fresh.state}, ${files2[S.PROGRESS_PATH].done.length} done`);
+  }
+
+  // ── The plan family: fills are counted apart from outcomes ───────────────
+  {
+    const mkPlan = (sym, t, o) => ({
+      sym, t, kind: 'PDL', session: 'london', sessionLabel: 'London',
+      dir: 'up', align: 'with', riskAtr: 1, rr: 3, ...o,
+    });
+    const from = Date.UTC(2026, 0, 1), to = Date.UTC(2026, 2, 1);
+    const early = from + 86400e3;
+    // Thirty plans on the search instrument: ten fill, twenty never retest.
+    const planned = [
+      ...Array.from({ length: 10 }, (_, i) =>
+        mkPlan('A', early + i * 3600e3, { filled: true, r: 1.2, why: 'filled' })),
+      ...Array.from({ length: 20 }, (_, i) =>
+        mkPlan('A', early + (i + 10) * 3600e3, { filled: false, r: null, why: 'never came back' })),
+    ];
+    const agg = S.emptyAggregate({ from, to, searchSyms: ['A'] });
+    S.foldPlans(agg, { planned, planBaselines: { 'A|up': { expR: 0.2, n: 400 } } });
+    S.markDone(agg, ['A']);
+    const out = S.scoreStudy(agg);
+    const cell = out.planCells.find(c => c.kind === 'PDL');
+
+    check('an unfilled plan is counted as armed, never as a flat result',
+      cell.discovery.n === 10 && cell.discovery.armed === 30,
+      `n=${cell.discovery.n} armed=${cell.discovery.armed}`,
+      'averaging a no-fill in as zero dilutes every number with orders nobody held');
+    check('the fill rate is reported next to the result, not buried',
+      cell.discovery.fillRate === 0.333 && out.fillRate === 0.333,
+      `${cell.discovery.fillRate} / ${out.fillRate}`,
+      'one fill in three at +1R is a different proposition from always filling at +1R');
+    check('the average R is over fills only',
+      Math.abs(cell.discovery.expR - 1.2) < 1e-6, String(cell.discovery.expR));
+    check('and the edge is against the matched-geometry baseline',
+      Math.abs(cell.discovery.edgeR - 1.0) < 1e-6, String(cell.discovery.edgeR),
+      '1.2R against a baseline of 0.2R');
+
+    // A plan family that never fills at all must still say how many were placed,
+    // rather than vanishing as though no plan was ever armed there.
+    const none = S.emptyAggregate({ from, to, searchSyms: ['A'] });
+    S.foldPlans(none, { planned: planned.filter(p => !p.filled), planBaselines: {} });
+    S.markDone(none, ['A']);
+    const c2 = S.scoreStudy(none).planCells.find(c => c.kind === 'PDL');
+    check('a cell where nothing ever filled reports the armed count, not nothing',
+      c2 && c2.discovery.n === 0 && c2.discovery.armed === 20 && c2.verdict === 'thin',
+      `${c2?.discovery?.armed} armed, verdict ${c2?.verdict}`);
+
+    // Alignment is pooled across kinds and sessions on purpose.
+    check('alignment is its own family, not crossed into the kind/session grid',
+      out.alignCells.length === 1 && out.alignCells[0].align === 'with'
+      && out.alignCells[0].discovery.armed === 30,
+      `${out.alignCells.length} align cell(s)`,
+      'six kinds by four sessions by three alignments is 72 chances to be fooled');
+  }
+
+  // ── Divergence: it needs two instruments, so it runs at the end ───────────
+  {
+    const lib = await S.loadLib();
+    const from = Date.UTC(2026, 0, 1), to = Date.UTC(2026, 2, 1);
+    const t0 = from + 86400e3;
+    const agg = S.emptyAggregate({ from, to, searchSyms: ['XAU/USD'] });
+
+    // Two gold plans. The first coincides with a silver sweep of the matching
+    // level; the second does not.
+    agg.pending = [
+      { sym: 'XAU/USD', t: t0, kind: 'PDL', dir: 'up', filled: true, r: 1, edge: 0.5, split: 'discovery' },
+      { sym: 'XAU/USD', t: t0 + 86400e3, kind: 'PDL', dir: 'up', filled: true, r: -1, edge: -1.2, split: 'discovery' },
+    ];
+    agg.sweepLogs = {
+      'XAU/USD': [[t0, 'PDL'], [t0 + 86400e3, 'PDL']],
+      'XAG/USD': [[t0 + 600e3, 'PDL']],     // ten minutes after the first only
+    };
+    // A strongly positive relationship, measured the way the live code measures it.
+    const ts = Array.from({ length: 60 }, (_, i) => (i + 1) * 14400e3);
+    agg.h4rs = {
+      'XAU/USD': ts.map((t, i) => [t, Math.sin(i) * 0.01]),
+      'XAG/USD': ts.map((t, i) => [t, Math.sin(i) * 0.012]),
+    };
+    S.foldDivergence(lib, agg);
+    const out = S.scoreStudy(agg);
+    const tog = out.divCells.find(c => c.divergence === 'together');
+    const alone = out.divCells.find(c => c.divergence === 'alone');
+
+    check('a sweep the partner matched within the window reads as "together"',
+      tog?.discovery?.n === 1 && Math.abs(tog.discovery.expR - 1) < 1e-6,
+      `together n=${tog?.discovery?.n}`);
+    check('and one the partner ignored reads as "alone"',
+      alone?.discovery?.n === 1 && Math.abs(alone.discovery.expR + 1) < 1e-6,
+      `alone n=${alone?.discovery?.n}`);
+
+    // A pair that is not moving together makes no claim, so neither plan is
+    // classified — "silver held" is meaningless when silver is doing its own
+    // thing, and filing those under "alone" would be the loudest possible lie.
+    const weak = S.emptyAggregate({ from, to, searchSyms: ['XAU/USD'] });
+    weak.pending = [...agg.pending];
+    weak.sweepLogs = { ...agg.sweepLogs };
+    weak.h4rs = {
+      'XAU/USD': ts.map((t, i) => [t, Math.sin(i) * 0.01]),
+      'XAG/USD': ts.map((t, i) => [t, Math.cos(i * 3.1) * 0.01]),
+    };
+    S.foldDivergence(lib, weak);
+    check('a pair that has stopped moving together classifies nothing',
+      S.scoreStudy(weak).divCells.length === 0,
+      `${S.scoreStudy(weak).divCells.length} cell(s)`);
+  }
+
+  // ── The threshold covers every cell, not one family at a time ────────────
+  {
+    check('the correction counts both entry grids plus the context cells',
+      S.CELLS === 4 * 6 + 4 * 6 + 3 + 2 && S.strictZ() > 3.3,
+      `${S.CELLS} cells, z > ${S.strictZ().toFixed(3)}`,
+      'correcting each family only within itself would make adding a family free');
   }
 
   console.log(fails ? `\n${fails} FAILED` : '\nall passed');

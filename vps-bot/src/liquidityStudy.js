@@ -35,9 +35,19 @@
 // fooled, so the threshold carries a correction for that, but it is nothing
 // like the correction a real search needs.
 //
-// And it does not simulate a limit entry, yet. The live model enters at the
-// close of the confirming bar and this replays that, faithfully, including the
-// part that is bad for a human.
+// ── Both entries, because the model changed under the study ────────────────
+//
+// The first published run measured a market entry at the close of the
+// confirming two-minute bar, and found nothing that survived either holdout.
+// By the time it published, that was no longer the rule: tradePlan rests a
+// LIMIT at the swept level, and that is what the alert describes. So both are
+// replayed now — the old entry for comparability, the plan because it is what
+// you would actually place — and the plan's geometry is read off tradePlan
+// itself rather than rebuilt here.
+//
+// Two labels the live screen prints are also measured rather than asserted:
+// whether the sweep ran with or against the four-hour trend, and whether the
+// paired instrument took its matching level at the same time.
 
 const { INSTRUMENTS } = require('./instruments');
 
@@ -53,7 +63,7 @@ const PER_STEP = 2;
 
 // Bump when the measurement changes meaning, so a stale answer is discarded
 // rather than shown next to a model it no longer describes.
-const METHOD_VERSION = 1;
+const METHOD_VERSION = 2;
 
 // Sixty days of two-minute bars is about 43,000 per instrument — nine paged
 // requests. Longer would be better and is not affordable across forty
@@ -65,6 +75,15 @@ const HISTORY_DAYS = 60;
 // because a model that only works on one horizon is a model that found a
 // horizon rather than an edge.
 const HOLDS = [15, 90];
+
+// The plan's own two horizons, in two-minute bars. 240 is eight hours, which is
+// what tradePlan's own expiry allows: the order rests that long and then the
+// setup is called stale. The position gets the same, which is generous and
+// deliberately so — a limit at a level with a target at the opposite level is
+// not a trade that resolves in thirty minutes, and capping it there would
+// measure the cap rather than the model.
+const PLAN_WAIT = 240;
+const PLAN_HOLD = 240;
 
 // The sessions used to be defined here, in UTC, and nowhere else. That was the
 // problem: the live scanner had no notion of a session at all, and the app's
@@ -85,7 +104,17 @@ const HOLDS = [15, 90];
 // collected, the easier it would be for one of them to look significant. The
 // correction has to be for the number of questions ASKED, not the number that
 // came back with an answer.
-const CELLS = 4 * 6;
+// Four sessions by six level kinds, for the market entry, and the same again
+// for the limit plan; plus three alignment cells and two divergence cells.
+//
+// One threshold covers all of them. Correcting each family only within itself
+// would mean adding a family made the individual tests no harder to pass, which
+// is exactly backwards: every cell added is another chance to be fooled, and it
+// does not matter which table it is printed in. This is stricter than the 3.078
+// the first published run used, which is the safe direction to move a
+// threshold — the result it already reported (nothing holds) cannot be
+// overturned by raising the bar.
+const CELLS = 4 * 6 + 4 * 6 + 3 + 2;
 
 // Minimum entries before a cell is allowed to say anything. Lower than the
 // regime search's because there is no search here — one hypothesis, not
@@ -103,12 +132,14 @@ const MIN_UNSEEN = 20;
  * carry two namespaces together.
  */
 async function loadLib() {
-  const [liq, exits, sessions] = await Promise.all([
+  const [liq, exits, sessions, structure, pairs] = await Promise.all([
     import('../../shared/liquidity.mjs'),
     import('../../shared/exits.mjs'),
     import('../../shared/sessions.mjs'),
+    import('../../shared/structure.mjs'),
+    import('../../shared/pairs.mjs'),
   ]);
-  return { ...liq, exits, sessions };
+  return { ...liq, exits, sessions, structure, pairs };
 }
 
 function atrOf(cs, i, period = 14) {
@@ -163,13 +194,20 @@ async function buildLevelTimeline(lib, { daily, weekly, h4 }) {
   const out = [];
   for (let i = 20; i < h4.length; i++) {
     const at = h4[i].t;
+    const past = h4.slice(0, i);
     out.push({
       from: at,
       levels: keyLevels({
         daily: daily.filter(d => d.t < at),
         weekly: weekly.filter(w => w.t < at),
-        h4: h4.slice(0, i),
+        h4: past,
       }, { now: at }),
+      // The four-hour structure as it stood at this boundary, from the same
+      // candles the levels came from and under the same discipline: bars that
+      // had closed, and no others. This is what makes "with or against the 4H
+      // trend" a testable claim rather than a label — it was asserted on the
+      // live screen with nothing behind it.
+      trend: lib.structure.readStructure(past).structure,
     });
   }
   return out;
@@ -232,6 +270,160 @@ function replayOne(lib, sym, m2, timeline, { hold }) {
     });
   }
   return entries;
+}
+
+/**
+ * The OTHER trade — the one the bot actually alerts on now.
+ *
+ * replayOne above measures a market entry at the close of the confirming
+ * two-minute bar. That was the live rule when the study was written, and the
+ * study found nothing that survived either holdout. It is no longer the rule.
+ * tradePlan rests a LIMIT at the swept level, with a stop beyond the extreme and
+ * a target at the opposite side's liquidity, and that is what goes to your
+ * phone. Measuring the old entry and reporting it as a verdict on the model
+ * would be answering a question nobody asked any more.
+ *
+ * Three differences, all of which change the answer rather than decorate it:
+ *
+ *   NO CONFIRMATION IS REQUIRED. The live plan is built from findSweep alone —
+ *   it does not wait for a two-minute break. So there are more plans than there
+ *   were entries, which is the whole reason the plan exists: the confirmation
+ *   was the part that had always already happened by the time anyone looked.
+ *
+ *   MOST OF THEM WILL NOT FILL. A plan that never gets its retest is not a
+ *   losing trade, it is not a trade. The fill rate is reported next to the
+ *   result, because a plan filling one time in four at +0.3R is a different
+ *   proposition from one filling every time at the same number.
+ *
+ *   AND THE GEOMETRY COMES FROM tradePlan ITSELF. Entry, stop and target are
+ *   read off the live function rather than reconstructed here. A reconstruction
+ *   that drifted by one cushion would measure a model nobody runs, and would
+ *   look completely healthy while doing it.
+ */
+function replayPlans(lib, sym, m2, timeline, { waitBars = PLAN_WAIT, holdBars = PLAN_HOLD } = {}) {
+  const { findSweep, tradePlan, trendAlign } = lib;
+  const { runBracket } = lib.exits;
+  const { sessionOf, SESSION_LABEL, inOverlap } = lib.sessions;
+  const plans = [];
+  const sweeps = [];        // every sweep, for the divergence pass at scoring time
+  let lastKey = null;
+
+  for (let i = 120; i < m2.length; i++) {
+    const t = m2[i].t;
+    let tl = null;
+    for (let k = timeline.length - 1; k >= 0; k--) {
+      if (timeline[k].from <= t) { tl = timeline[k]; break; }
+    }
+    if (!tl || !tl.levels.length) continue;
+
+    const start = Math.max(0, i - 59);
+    const window = m2.slice(start, i + 1);
+    const sweep = findSweep(window, tl.levels);
+    if (!sweep) { lastKey = null; continue; }
+
+    // The same suppression as replayOne, and for the same reason: a sweep stays
+    // detectable for the whole window, so without it one liquidity event becomes
+    // thirty plans and every number after that is fiction.
+    const key = `${sweep.level.kind}|${sweep.level.price}|${sweep.dir}`;
+    if (key === lastKey) continue;
+    lastKey = key;
+
+    const at = start + sweep.at;              // the sweep bar, in the full series
+    const atr = atrOf(m2, i);
+    if (!atr || atr <= 0) continue;
+
+    // Geometry from the live function. Only the window is passed, because that
+    // is all the live scanner has when it builds a plan.
+    const geom = tradePlan(window, sweep, tl.levels, atr, { now: t });
+    if (!geom || !(Math.abs(geom.entry - geom.stop) > 0)) continue;
+
+    const dir = sweep.dir === 'long' ? 'up' : 'down';
+    sweeps.push([t, sweep.level.kind]);
+
+    // A plan whose life runs past the end of the data is dropped rather than
+    // marked to market at the last bar available. The final eight hours of the
+    // series would otherwise fill with trades cut short by the download ending,
+    // which is not something that happens to a real order — and those truncated
+    // trades cluster at the most recent end, which is the time holdout.
+    if (at + waitBars >= m2.length) break;
+
+    const res = runBracket(m2, at, {
+      entry: geom.entry, stop: geom.stop, target: geom.target, dir, waitBars, holdBars,
+    });
+
+    const risk = Math.abs(geom.entry - geom.stop);
+    plans.push({
+      sym, i: at, t: m2[at].t,
+      kind: sweep.level.kind,
+      session: sessionOf(m2[at].t),
+      sessionLabel: SESSION_LABEL[sessionOf(m2[at].t)] || sessionOf(m2[at].t),
+      overlap: inOverlap(m2[at].t),
+      dir,
+      // The claim the live screen makes with nothing behind it, now attached to
+      // an outcome. 'none' is kept as its own value rather than folded into
+      // either side — a ranging market is not a weak trend.
+      align: trendAlign(tl.trend, sweep.dir).align,
+      riskAtr: risk / atr,
+      rr: geom.rr ?? null,
+      filled: res.filled,
+      why: res.why,
+      r: res.filled ? res.r : null,
+      how: res.how,
+    });
+  }
+  return { plans, sweeps };
+}
+
+/** One bracket at a fixed bar, with the geometry handed in. The plan baseline. */
+function bracketAt(cs, i, risk, rr, holdBars, up) {
+  const entry = cs[i].c;
+  const stop = up ? entry - risk : entry + risk;
+  const tgt = rr ? (up ? entry + rr * risk : entry - rr * risk) : null;
+  const last = Math.min(i + holdBars, cs.length - 1);
+  for (let j = i + 1; j <= last; j++) {
+    if (up ? cs[j].l <= stop : cs[j].h >= stop) return -1;
+    if (tgt != null && (up ? cs[j].h >= tgt : cs[j].l <= tgt)) return rr;
+  }
+  const raw = up ? cs[last].c - entry : entry - cs[last].c;
+  return raw / risk;
+}
+
+const median = xs => {
+  if (!xs.length) return null;
+  const a = [...xs].sort((x, y) => x - y);
+  return a[Math.floor(a.length / 2)];
+};
+
+/**
+ * The baseline for a plan: the same instrument, the same direction, the same
+ * SHAPE of bracket, entered at bars the model did not pick.
+ *
+ * A bracket's null is zero by construction — with a target k times the risk
+ * away, a driftless walk pays +k one time in (1+k) and −1 the rest, and those
+ * cancel exactly. So this baseline is not measuring the shape, it is measuring
+ * the instrument's drift over the hold, which is the one thing that can make a
+ * zero-expectation bet look like an edge. Gold trending up for two months makes
+ * every long bracket on gold profitable and none of them skilful.
+ *
+ * The geometry is the median of that instrument's own plans rather than each
+ * plan's exact numbers: a fresh sampled baseline per plan is several hundred
+ * full passes over forty thousand bars per instrument, for a number that is
+ * flat in the risk size and only really moves with the reward ratio.
+ */
+function planBaseline(lib, m2, dir, plans, holdBars, step = 97) {
+  const mine = plans.filter(p => p.dir === dir);
+  if (!mine.length) return null;
+  const riskAtr = median(mine.map(p => p.riskAtr)) || 1;
+  const rr = median(mine.map(p => p.rr).filter(x => x != null)) || 2;
+  const up = dir === 'up';
+  let sum = 0, n = 0;
+  for (let i = 120; i + holdBars < m2.length; i += step) {
+    const atr = atrOf(m2, i);
+    if (!atr || atr <= 0) continue;
+    sum += bracketAt(m2, i, riskAtr * atr, rr, holdBars, up);
+    n++;
+  }
+  return n ? { expR: sum / n, n, riskAtr, rr } : null;
 }
 
 /**
@@ -319,8 +511,12 @@ async function runLiquidityStudy({ oanda, log = () => {}, slice = null, universe
   // would mean something slightly different for each of them.
   const from = fromOpt ?? Date.now() - HISTORY_DAYS * 86400e3;
 
-  const collected = [];          // every entry, tagged
+  const collected = [];          // every market-entry trade, tagged
   const baselines = {};          // sym|dir|hold -> baseline
+  const planned = [];            // every limit plan — the trade the bot alerts on
+  const planBaselines = {};      // sym|dir -> matched-geometry baseline
+  const sweepLogs = {};          // sym -> [[t, kind], …], only for paired instruments
+  const h4rs = {};               // sym -> H4 log returns, only for paired instruments
 
   for (const inst of todo) {
     try {
@@ -348,14 +544,36 @@ async function runLiquidityStudy({ oanda, log = () => {}, slice = null, universe
           collected.push({ ...e, hold, r: t.r, how: t.how, unseen: !searchSyms.has(inst.sym) });
         }
       }
+      // The plan: the limit at the level, which is what the phone alert says.
+      const { plans, sweeps } = replayPlans(lib, inst.sym, m2, timeline);
+      planned.push(...plans.map(p => ({ ...p, unseen: !searchSyms.has(inst.sym) })));
+      for (const dir of ['up', 'down']) {
+        planBaselines[`${inst.sym}|${dir}`] = planBaseline(lib, m2, dir, plans, PLAN_HOLD);
+      }
+
+      // Only instruments that have a declared partner carry a sweep log and a
+      // returns series forward. The divergence question cannot be answered while
+      // one instrument is in memory — it needs the partner's history, and the
+      // partner is replayed in a different tick, possibly after a restart. These
+      // two small arrays are what survives to answer it at scoring time, and
+      // keeping them for all forty would be carrying data for a question that
+      // can never be asked of twenty-four of them.
+      if (lib.pairs.partnersOf(inst.sym).length) {
+        sweepLogs[inst.sym] = sweeps;
+        h4rs[inst.sym] = lib.pairs.returnsOf(h4).slice(-400);
+      }
+
+      const filled = plans.filter(p => p.filled).length;
       log(`Liquidity study ${inst.sym}: ${m2.length} bars, `
-        + `${collected.filter(c => c.sym === inst.sym).length} entries`);
+        + `${collected.filter(c => c.sym === inst.sym).length} entries, `
+        + `${plans.length} plans (${filled} filled)`);
     } catch (e) {
       log(`Liquidity study ${inst.sym}: ${e.message}`);
     }
   }
 
-  return { collected, baselines, all, searchSyms: [...searchSyms], from, METHOD_VERSION };
+  return { collected, baselines, planned, planBaselines, sweepLogs, h4rs,
+    all, searchSyms: [...searchSyms], from, METHOD_VERSION };
 }
 
 /**
@@ -390,7 +608,35 @@ async function runLiquidityStudy({ oanda, log = () => {}, slice = null, universe
  * matter what order the instruments were processed in.
  */
 
-const bucket = () => ({ n: 0, sum: 0, sumsq: 0, wins: 0, edgeSum: 0, edgeN: 0 });
+// `armed` counts every plan that was placed; `n` counts only the ones that
+// filled. A plan that never gets its retest is not a losing trade, it is not a
+// trade — averaging it in as a zero would dilute every number with orders
+// nobody held, and dropping it silently would hide that the fill rate is part
+// of the answer.
+const bucket = () => ({ n: 0, sum: 0, sumsq: 0, wins: 0, edgeSum: 0, edgeN: 0,
+  armed: 0, rrSum: 0, riskSum: 0 });
+
+/**
+ * Record a plan being placed, whether or not it went on to fill.
+ *
+ * The geometry is carried because it turned out to need watching. tradePlan's
+ * stop sits a fraction of an ATR beyond the sweep extreme, so a SHALLOW sweep
+ * produces a very small risk — while the target stays where it is, at the
+ * opposite side's liquidity. The ratio of the two is then enormous: a replay on
+ * synthetic data threw up a plan quoting 51R, and the live alert would have put
+ * that number on your phone. It is arithmetically correct and it means the
+ * opposite of what it looks like — a target that far away is one price will
+ * almost never reach before the stop, not a wonderful trade.
+ *
+ * So the average ratio and the average stop size are reported next to every
+ * result, and the question of whether the far targets ever pay becomes
+ * something to read off the table rather than an argument.
+ */
+function addArmed(b, p) {
+  b.armed++;
+  if (Number.isFinite(p?.rr)) b.rrSum += p.rr;
+  if (Number.isFinite(p?.riskAtr)) b.riskSum += p.riskAtr;
+}
 
 /** A fresh, empty aggregate for a window. */
 function emptyAggregate({ from, to = Date.now(), searchSyms = [] } = {}) {
@@ -404,6 +650,23 @@ function emptyAggregate({ from, to = Date.now(), searchSyms = [] } = {}) {
     syms: [],
     entries: 0,
     cells: {},
+    // The limit plan, by level kind and session — the trade the bot alerts on.
+    planCells: {},
+    // The plan again, sliced by whether the sweep ran with or against the 4H
+    // trend. Not crossed into planCells: six kinds by four sessions by three
+    // alignments is 72 questions on a few thousand trades, which is a machine
+    // for finding one that looks good. Pooled across kinds, "does alignment
+    // matter" is one question with three answers.
+    alignCells: {},
+    // And by whether the partner took its matching level. Filled in at scoring
+    // time, because it needs two instruments at once.
+    divCells: {},
+    // What the divergence pass needs, kept until every instrument is in.
+    pending: [],
+    sweepLogs: {},
+    h4rs: {},
+    plans: 0,
+    fills: 0,
   };
 }
 
@@ -416,7 +679,11 @@ function addTo(b, r, edge) {
 
 /** Turn a bucket back into the shape verdict() and the app expect. */
 function readBucket(b) {
-  if (!b || !b.n) return null;
+  if (!b || !b.n) {
+    return b?.armed ? { n: 0, armed: b.armed, fillRate: 0,
+      rr: b.rrSum ? +(b.rrSum / b.armed).toFixed(2) : null,
+      stopAtr: b.riskSum ? +(b.riskSum / b.armed).toFixed(3) : null } : null;
+  }
   const mean = b.sum / b.n;
   // The population form would understate the spread and make every z larger,
   // which on a significance test is the direction that invents results.
@@ -427,6 +694,15 @@ function readBucket(b) {
     sd: +Math.sqrt(varr).toFixed(4),
     win: +(b.wins / b.n).toFixed(3),
     edgeR: b.edgeN ? +(b.edgeSum / b.edgeN).toFixed(4) : null,
+    // Present only for plans. A market entry is always "filled" and reporting a
+    // fill rate of 1 on it would imply the number meant something there.
+    ...(b.armed ? {
+      armed: b.armed,
+      fillRate: +(b.n / b.armed).toFixed(3),
+      // The shape of the trades in this cell, averaged over every plan placed.
+      rr: b.rrSum ? +(b.rrSum / b.armed).toFixed(2) : null,
+      stopAtr: b.riskSum ? +(b.riskSum / b.armed).toFixed(3) : null,
+    } : {}),
   };
 }
 
@@ -437,6 +713,112 @@ function readBucket(b) {
  * restart that re-runs a slice it had already folded cannot double-count it into
  * significance.
  */
+/** Which split an entry belongs to. The instrument holdout wins over the date. */
+function splitOf(agg, seen, c) {
+  if (!seen.has(c.sym)) return 'unseen';
+  return c.t < agg.cut ? 'discovery' : 'time';
+}
+
+/**
+ * Fold the limit plans in.
+ *
+ * Separate from foldInto because a plan is a different object: it has an
+ * `armed` count that exists whether or not it filled, and its baseline is keyed
+ * by instrument and direction only — there is no hold dimension, because the
+ * plan runs to its stop or its target rather than to a clock.
+ */
+function foldPlans(agg, { planned = [], planBaselines = {}, sweepLogs = {}, h4rs = {} } = {}) {
+  const seen = new Set(agg.searchSyms);
+  const already = new Set(agg.done);
+
+  for (const p of planned) {
+    if (already.has(p.sym)) continue;
+    const split = splitOf(agg, seen, p);
+    const b = planBaselines[`${p.sym}|${p.dir}`];
+    const edge = p.filled && b ? p.r - b.expR : null;
+
+    const touch = (store, key, extra) => {
+      let cell = store[key];
+      if (!cell) cell = store[key] = { ...extra, discovery: bucket(), time: bucket(), unseen: bucket() };
+      // `armed` counts every plan placed, filled or not; addTo moves `n`, which
+      // counts only the fills. fillRate is n/armed, so both must be counted.
+      addArmed(cell[split], p);
+      if (p.filled) addTo(cell[split], p.r, edge);
+      return cell;
+    };
+    touch(agg.planCells, `${p.kind}|${p.session}`,
+      { kind: p.kind, session: p.session, sessionLabel: p.sessionLabel });
+    touch(agg.alignCells, p.align, { align: p.align });
+
+    agg.plans++;
+    if (p.filled) agg.fills++;
+    if (!agg.syms.includes(p.sym)) agg.syms.push(p.sym);
+
+    // Paired instruments keep their plans whole until every instrument is in.
+    // A few thousand small records, against the alternative of holding two
+    // forty-thousand-bar histories in memory at the same moment.
+    if (sweepLogs[p.sym] || agg.sweepLogs[p.sym]) {
+      agg.pending.push({ sym: p.sym, t: p.t, kind: p.kind, dir: p.dir,
+        filled: p.filled, r: p.r, edge, split, rr: p.rr, riskAtr: p.riskAtr });
+    }
+  }
+
+  for (const [sym, log] of Object.entries(sweepLogs)) {
+    if (!already.has(sym)) agg.sweepLogs[sym] = log;
+  }
+  for (const [sym, r] of Object.entries(h4rs)) {
+    if (!already.has(sym)) agg.h4rs[sym] = r;
+  }
+  return agg;
+}
+
+/**
+ * Did the partner take its matching level too?
+ *
+ * Runs once, at the end, over the plans that were kept whole. It needs both
+ * instruments and they are replayed in different ticks, so this is the one part
+ * of the study that cannot stream.
+ *
+ * ±2 hours because that is the window the live scanner looks back over when it
+ * decides a level is "swept". Widening it here would make the replay generous
+ * about something the live screen is strict about.
+ */
+function foldDivergence(lib, agg) {
+  const { partnersOf, correlate, mirrorKind, MIN_R } = lib.pairs;
+  const WINDOW = 2 * 3600e3;
+  const corr = {};
+  for (const sym of Object.keys(agg.sweepLogs)) {
+    for (const p of partnersOf(sym)) {
+      const key = [sym, p.sym].sort().join('|');
+      if (corr[key] !== undefined) continue;
+      corr[key] = (agg.h4rs[sym] && agg.h4rs[p.sym])
+        ? correlate(agg.h4rs[sym], agg.h4rs[p.sym]) : null;
+    }
+  }
+
+  for (const e of agg.pending) {
+    let verdict = null;
+    for (const p of partnersOf(e.sym)) {
+      const c = corr[[e.sym, p.sym].sort().join('|')];
+      if (!c || Math.abs(c.r) < MIN_R) continue;
+      const log = agg.sweepLogs[p.sym];
+      if (!log) continue;
+      const want = mirrorKind(e.kind, c.r);
+      const together = log.some(([t, k]) => k === want && Math.abs(t - e.t) <= WINDOW);
+      // The strongest related partner decides, and "together" is only claimed
+      // once — a second partner that stayed put does not turn it back.
+      verdict = together ? 'together' : (verdict === 'together' ? 'together' : 'alone');
+      if (together) break;
+    }
+    if (!verdict) continue;
+    let cell = agg.divCells[verdict];
+    if (!cell) cell = agg.divCells[verdict] = { divergence: verdict, discovery: bucket(), time: bucket(), unseen: bucket() };
+    addArmed(cell[e.split], e);
+    if (e.filled) addTo(cell[e.split], e.r, e.edge);
+  }
+  return agg;
+}
+
 function foldInto(agg, { collected = [], baselines = {} } = {}) {
   const seen = new Set(agg.searchSyms);
   const already = new Set(agg.done);
@@ -498,9 +880,9 @@ function scoreStudy(input) {
     foldInto(agg, input);
   }
 
-  const cells = Object.values(agg.cells || {}).map(c => {
+  const readFamily = (store, head) => Object.values(store || {}).map(c => {
     const cell = {
-      hold: c.hold, kind: c.kind, session: c.session, sessionLabel: c.sessionLabel,
+      ...head(c),
       discovery: readBucket(c.discovery),
       time: readBucket(c.time),
       unseen: readBucket(c.unseen),
@@ -509,7 +891,18 @@ function scoreStudy(input) {
     return cell;
   });
 
-  cells.sort((a, b) => (b.discovery?.edgeR ?? -9) - (a.discovery?.edgeR ?? -9));
+  const cells = readFamily(agg.cells, c => ({
+    hold: c.hold, kind: c.kind, session: c.session, sessionLabel: c.sessionLabel,
+  }));
+  const planCells = readFamily(agg.planCells, c => ({
+    kind: c.kind, session: c.session, sessionLabel: c.sessionLabel,
+  }));
+  const alignCells = readFamily(agg.alignCells, c => ({ align: c.align }));
+  const divCells = readFamily(agg.divCells, c => ({ divergence: c.divergence }));
+
+  const byEdge = (a, b) => (b.discovery?.edgeR ?? -9) - (a.discovery?.edgeR ?? -9);
+  cells.sort(byEdge); planCells.sort(byEdge);
+  alignCells.sort(byEdge); divCells.sort(byEdge);
   return {
     at: new Date().toISOString(),
     method: METHOD_VERSION,
@@ -524,7 +917,18 @@ function scoreStudy(input) {
     // the result.
     holdoutFrom: agg.cut ? new Date(agg.cut).toISOString() : null,
     searchHalf: agg.searchSyms || [],
+    // The market entry at the confirming bar's close — the model's original
+    // rule, kept because it is what the first published run measured.
     cells,
+    // The limit resting at the swept level — the trade the alert describes.
+    // This is the one that speaks to what you would actually place.
+    plans: agg.plans || 0,
+    fills: agg.fills || 0,
+    fillRate: agg.plans ? +((agg.fills || 0) / agg.plans).toFixed(3) : null,
+    planCells,
+    // And the two labels the live screen prints with nothing behind them.
+    alignCells,
+    divCells,
   };
 }
 
@@ -578,6 +982,7 @@ async function stepLiquidityStudy({ oanda, github, log = () => {}, perStep = PER
       slice: todo.map(i => i.sym),
     });
     foldInto(agg, raw);
+    foldPlans(agg, raw);
     // Marked done whether or not they yielded entries. An instrument with too
     // little history contributes nothing and must still count as processed, or
     // the run retries it every tick and never reaches the end.
@@ -591,6 +996,9 @@ async function stepLiquidityStudy({ oanda, github, log = () => {}, perStep = PER
     return { state: 'running', done: agg.done.length, total: all.length };
   }
 
+  // The one pass that cannot stream: it needs every paired instrument's sweeps
+  // at the same moment, so it runs here, once, after the last one is in.
+  foldDivergence(await loadLib(), agg);
   const result = scoreStudy(agg);
   await github.writeJSON(PATH, result, 'bot: liquidity sweep study', cur?.sha || null);
   // The progress file is emptied rather than left behind, so the next run after
@@ -607,7 +1015,9 @@ async function stepLiquidityStudy({ oanda, github, log = () => {}, perStep = PER
 module.exports = {
   runLiquidityStudy, scoreStudy, loadLib, replayOne, buildLevelTimeline, baselineFor,
   splitUniverse, verdict, atrOf, probit, strictZ,
-  stepLiquidityStudy, emptyAggregate, foldInto, markDone, readBucket, PROGRESS_PATH, PER_STEP,
+  stepLiquidityStudy, emptyAggregate, foldInto, foldPlans, foldDivergence, markDone,
+  readBucket, replayPlans, planBaseline, bracketAt, PROGRESS_PATH, PER_STEP,
+  PLAN_WAIT, PLAN_HOLD,
   PATH, METHOD_VERSION, HOLDS, HISTORY_DAYS,
   MIN_DISCOVERY, MIN_TIME_HOLDOUT, MIN_UNSEEN, CELLS,
 };

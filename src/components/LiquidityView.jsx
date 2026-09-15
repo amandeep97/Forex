@@ -331,7 +331,7 @@ function Context({ e }) {
 // into "Illegal constructor" — a Web API called without `new` — somewhere else
 // entirely. The name costs nothing; the class of bug it avoids is one that only
 // shows up on some engines.
-function HuntEvent({ e, onOpen, cell, plan }) {
+function HuntEvent({ e, onOpen, cell, plan, what }) {
   const long = e.dir === 'long';
   const col = e.state === 'setup' ? (long ? C.good : C.bad)
             : e.state === 'missed' ? '#64748b' : C.warn;
@@ -377,7 +377,7 @@ function HuntEvent({ e, onOpen, cell, plan }) {
 
       <Context e={e}/>
       <Plan p={plan}/>
-      <Record cell={cell}/>
+      <Record cell={cell} what={what}/>
 
       {e.state === 'setup' && e.entry != null && (
         <div style={{ display:'flex', gap:9, flexWrap:'wrap', marginTop:4, fontSize:9, fontFamily:C.mono }}>
@@ -565,7 +565,16 @@ export default function LiquidityView({ onOpen }) {
   // always "PDL|undefined|15" and the lookup missed every time. The study has
   // never published a file, so the miss was invisible: an empty result from an
   // absent study and an empty result from a bad key look identical.
-  const cellFor = e => study?.byCell?.[`${e.kind}|${e.session?.id}|${shortHold}`] || null;
+  // The plan cell first: the row shows a resting limit, so the replay's verdict
+  // on resting limits is the one that describes it. The market-entry cell is
+  // the fallback, and only because a study published before the plan replay
+  // existed has nothing else to offer — the two are different trades and the
+  // label says which one is being quoted.
+  const cellFor = e => study?.byPlanCell?.[`${e.kind}|${e.session?.id}`]
+    || study?.byCell?.[`${e.kind}|${e.session?.id}|${shortHold}`]
+    || null;
+  const cellWhat = e => study?.byPlanCell?.[`${e.kind}|${e.session?.id}`]
+    ? 'limit at the level' : 'market at the break';
 
   const shownEvents = events.filter(e =>
     matchState(e, fState) && matchTf(e, fTf) && matchClass(e, fClass) && matchCtx(e, fCtx));
@@ -668,7 +677,7 @@ export default function LiquidityView({ onOpen }) {
           </div>
         ) : shownEvents.map((e, i) => (
           <HuntEvent key={`${e.sym}-${e.levelPrice}-${i}`} e={e} onOpen={onOpen}
-            cell={cellFor(e)}
+            cell={cellFor(e)} what={cellWhat(e)}
             plan={e.plan && e.plan.level?.price === e.levelPrice ? e.plan : null}/>
         ))}
       </div>
