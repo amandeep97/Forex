@@ -912,7 +912,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789447017000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions impact unclear, no immediate price signal."
     },
     {
       "title": "Asian stocks steady as AI rebound offsets oil, rate and bond-market pressure",
@@ -929,7 +930,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789445594000
+      "firstAt": 1789445594000,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Oil pressure mentioned, stocks steady."
     },
     {
       "title": "China's August retail sales miss forecast while investment slump deepens, piling pressure on Beijing",
@@ -952,7 +957,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789445177000
+      "firstAt": 1789445177000,
+      "why": "China data irrelevant to these pairs."
     },
     {
       "title": "Russia-Iran Sanctions Bill Could Reach Trump’s Desk Within Days, Says Congressman - Eurasia Review",
@@ -972,7 +978,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789444775000
+      "firstAt": 1789444775000,
+      "why": "Bill status uncertain, no clear direction."
     },
     {
       "title": "Weapon shortfalls, 'hundreds' of buildings and aircraft damaged, $33.4 billion spent: the U.S. government tallies costs of the Iran war - CNBC",
@@ -992,7 +999,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789443900000
+      "firstAt": 1789443900000,
+      "why": "War costs reported, no new supply info."
     },
     {
       "title": "investingLive Asia-Pacific market news: Oil holds near highs",
@@ -1010,7 +1018,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789443821000
+      "firstAt": 1789443821000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil holds near highs."
     },
     {
       "title": "Ukraine war briefing: No energy ceasefire until Russia stops, Zelenskyy confirms after Trump claim - The Guardian",
@@ -1030,7 +1042,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789443360000
+      "firstAt": 1789443360000,
+      "why": "No ceasefire implies ongoing risk, direction unclear."
     },
     {
       "title": "Dollar Near Two-Week High On Oil Surge And Fed Rate Hike Bets - businesstoday.com.my",
@@ -1048,7 +1061,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789442912000
+      "firstAt": 1789442912000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil surge mentioned in headline."
     },
     {
       "title": "An analysis of Ukraine’s missile strike on the Progress rocket factory - The Space Review",
@@ -1068,7 +1085,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789441355000
+      "firstAt": 1789441355000,
+      "why": "Missile strike analysis, no market impact."
     },
     {
       "title": "Most markets drop as oil extends gains ahead of expected US rate hike - ABS-CBN",
@@ -1086,7 +1104,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789441332000
+      "firstAt": 1789441332000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil extends gains."
     },
     {
       "title": "Oil and Treasury yields haven’t moved this closely in seven years. That’s bad news for markets - CNBC",
@@ -1104,7 +1126,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789440780000
+      "firstAt": 1789440780000,
+      "why": "Correlation noted, no specific direction."
     },
     {
       "title": "United States Dollar Index strengthens above 99.50 as Fed rate hike bets rise - FXStreet",
@@ -1127,7 +1150,36 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789437392000
+      "firstAt": 1789437392000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Stronger dollar bearish for gold and majors."
+    },
+    {
+      "title": "Gold Trades Near $4,300 as Higher Oil Stokes Rate-Hike Bets - Bloomberg.com",
+      "link": "https://news.google.com/rss/articles/CBMitAFBVV95cUxOQTdDTXo4TnMyNl9WV1g0TjFOY21nQXhLSkExY1k2TlE1QnNpSXQzNEEyX3RzOGQ3cWwwN2NyZ2t1QnBodWZnbWZEdjk3dUVPZ3EtbmItZGFGYV83ZDBEdHppeEdVZEE2ajlkX0NZcV9kbEJkelVWRzNuYjhIaW5iSGp4SW45ekw3dDRDZ1ZxQ282blJSWU5jNkZEY3BocHNKZVdXSm96Ni1rM200MmFwSUxmZTk?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMitAFBVV95cUxOQTdDTXo4TnMyNl9WV1g0TjFOY21nQXhLSkExY1k2TlE1QnNpSXQzNEEyX3RzOGQ3cWwwN2NyZ2t1QnBodWZnbWZEdjk3dUVPZ3EtbmItZGFGYV83ZDBEdHppeEdVZEE2ajlkX0NZcV9kbEJkelVWRzNuYjhIaW5iSGp4SW45ekw3dDRDZ1ZxQ282blJSWU5jNkZEY3BocHNKZVdXSm96Ni1rM2",
+      "at": 1789439820000,
+      "inst": [
+        "XAU/USD",
+        "USOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1789438145000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Gold steady, oil higher."
     },
     {
       "title": "Russia sanctions bill passes House Rules Committee - The Hill",
@@ -1147,7 +1199,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789439460000
+      "firstAt": 1789439460000,
+      "why": "Committee passage, final outcome uncertain."
     },
     {
       "title": "Gold holds near $4,300 as oil disruption lifts Fed hike bets",
@@ -1165,8 +1218,12 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789439065000
+      "srcs": 2,
+      "firstAt": 1789439065000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Gold holds, oil disruption lifts prices."
     },
     {
       "title": "Iran strikes damaged US bases, embassies across 8 countries: Pentagon watchdog - The Times of India",
@@ -1517,7 +1574,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789429790000
+      "firstAt": 1789430640000
     },
     {
       "title": "US 10-Year Treasury Yield Touches 5% Intraday; Rate Hike Expectations Surpass 90% - finance.biggo.com",
@@ -1601,25 +1658,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789430400000
-    },
-    {
-      "title": "Gold Trades Near $4,300 as Higher Oil Stokes Rate-Hike Bets - Bloomberg.com",
-      "link": "https://news.google.com/rss/articles/CBMitAFBVV95cUxOQTdDTXo4TnMyNl9WV1g0TjFOY21nQXhLSkExY1k2TlE1QnNpSXQzNEEyX3RzOGQ3cWwwN2NyZ2t1QnBodWZnbWZEdjk3dUVPZ3EtbmItZGFGYV83ZDBEdHppeEdVZEE2ajlkX0NZcV9kbEJkelVWRzNuYjhIaW5iSGp4SW45ekw3dDRDZ1ZxQ282blJSWU5jNkZEY3BocHNKZVdXSm96Ni1rM200MmFwSUxmZTk?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMitAFBVV95cUxOQTdDTXo4TnMyNl9WV1g0TjFOY21nQXhLSkExY1k2TlE1QnNpSXQzNEEyX3RzOGQ3cWwwN2NyZ2t1QnBodWZnbWZEdjk3dUVPZ3EtbmItZGFGYV83ZDBEdHppeEdVZEE2ajlkX0NZcV9kbEJkelVWRzNuYjhIaW5iSGp4SW45ekw3dDRDZ1ZxQ282blJSWU5jNkZEY3BocHNKZVdXSm96Ni1rM2",
-      "at": 1789429790000,
-      "inst": [
-        "XAU/USD",
-        "USOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789427676000
     },
     {
       "title": "Foreign national convicted of smuggling US aerospace parts to Russia, violating sanctions - rocketcitynow.com",
@@ -2655,7 +2693,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-15T04:55:50.987Z",
-  "headlinesAt": "2026-09-15T04:55:50.987Z",
-  "updatedAt": "2026-09-15T04:55:50.987Z"
+  "calendarAt": "2026-09-15T04:57:22.319Z",
+  "headlinesAt": "2026-09-15T04:57:22.319Z",
+  "updatedAt": "2026-09-15T04:57:22.319Z"
 }
