@@ -885,7 +885,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789473747000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions bill opposition unclear for markets"
     },
     {
       "title": "‘My total balance should be $20 million’: I invested $1.1 million in a crypto platform. Have I lost it all?",
@@ -903,7 +904,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789473600000,
-      "_kind": null
+      "_kind": null,
+      "why": "Individual loss story, no market direction"
     },
     {
       "title": "Zelenskyy says Ukraine will pause attacks if Russia spares infrastructure - aljazeera.com",
@@ -924,7 +926,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789473600000,
-      "_kind": null
+      "_kind": null,
+      "why": "Diplomatic pause proposal, no clear direction"
     },
     {
       "title": "Russia Secretly Built Iran a 24-Helicopter Attack Fleet. Leaked Files Expose a Much Bigger Arms Pipeline - united24media.com",
@@ -945,7 +948,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789473060000,
-      "_kind": null
+      "_kind": null,
+      "why": "Arms leak, no immediate market impact"
     },
     {
       "title": "Dollar Dominates as Oil Surge Sparks Fed Rate Hike Expectations - Devdiscourse",
@@ -964,7 +968,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789473086000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil surge sparks rate hike expectations"
     },
     {
       "title": "US Sanctions Russia's Second Largest Bank for Helping Iran Evade Sanctions - Kurdistan24",
@@ -985,7 +993,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789471260000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions news, unclear market direction"
     },
     {
       "title": "Traditional bond investors have lost money for years. These five-star portfolio managers show a better way.",
@@ -1014,7 +1023,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789472751000,
-      "_kind": null
+      "_kind": null,
+      "why": "Single stock prediction, not index-wide"
     },
     {
       "title": "Ramit Sethi's first scholarship was $2K and he put it in the stock market. Here's the simple lesson he learned",
@@ -1042,7 +1052,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789472700000,
-      "_kind": null
+      "_kind": null,
+      "why": "Specific AI stocks, not broad index"
     },
     {
       "title": "Qualcomm’s Datacenter Pivot Is Real, but The Market Already Knows This",
@@ -1074,7 +1085,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789470894000,
-      "_kind": null
+      "_kind": null,
+      "why": "Yields and oil rising, mixed signals"
     },
     {
       "title": "ECB President Lagarde warns Europe must build its own AI",
@@ -1091,7 +1103,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789472554000,
-      "_kind": null
+      "_kind": null,
+      "why": "AI warning, no direct FX impact"
     },
     {
       "title": "Denmark says Russian warship fired flares at military helicopter",
@@ -1112,7 +1125,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789472400000,
-      "_kind": null
+      "_kind": null,
+      "why": "Military incident, unclear market direction"
     },
     {
       "title": "AI chip sell-off overblown: Zero GPU slowdown after Anthropic essay, analyst says",
@@ -1124,8 +1138,7 @@
       "sev": 1,
       "rel": 1,
       "srcs": 1,
-      "firstAt": 1789472335000,
-      "_kind": null
+      "firstAt": 1789472335000
     },
     {
       "title": "TSX futures edge lower as yields, oil climb ahead of Fed meeting",
@@ -1143,7 +1156,10 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789472289000,
-      "_kind": null
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil climbs ahead of Fed meeting"
     },
     {
       "title": "Bitcoin and ethereum prices today, Tuesday, September 15, 2026: Crypto prices sliding this morning ahead of Fed meeting",
@@ -1161,7 +1177,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789470894000
+      "firstAt": 1789470894000,
+      "dir": {
+        "BTC/USDT": "down",
+        "ETH/USDT": "down"
+      },
+      "why": "Crypto prices sliding ahead of Fed"
     },
     {
       "title": "Benchmark US government bond yield hits 19-year peak as oil prices surge",
@@ -1179,7 +1200,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789472211000
+      "firstAt": 1789472211000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil prices surge with yields"
     },
     {
       "title": "Stocks making the biggest moves premarket: Dave & Buster's, Enova, Etsy & more",
@@ -1194,7 +1219,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789472191000
+      "firstAt": 1789472191000,
+      "why": "Individual stock moves, no index direction"
     },
     {
       "title": "investingLive European news wrap: Crypto markets sink ahead of Clarity Act vote",
@@ -2578,10 +2604,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-15T12:08:08.620Z",
-  "headlinesAt": "2026-09-15T12:08:08.620Z",
-  "updatedAt": "2026-09-15T12:08:08.620Z"
+  "calendarAt": "2026-09-15T12:09:23.773Z",
+  "headlinesAt": "2026-09-15T12:09:23.773Z",
+  "updatedAt": "2026-09-15T12:09:23.773Z"
 }
