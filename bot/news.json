@@ -1026,8 +1026,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789492889000,
-      "_kind": null
+      "firstAt": 1789492889000
     },
     {
       "title": "AI stocks are rebounding. One analyst says there’s no spending slowdown in sight.",
@@ -2097,7 +2096,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789477259000
+      "firstAt": 1789478967000
     },
     {
       "title": "Corn futures fall on stronger dollar and improved crop ratings",
@@ -2145,24 +2144,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789478014000
-    },
-    {
-      "title": "Gold Ignores Weak Empire State Manufacturing Data as Fed Rate Hike Looms - News and Statistics - IndexBox",
-      "link": "https://news.google.com/rss/articles/CBMiugFBVV95cUxOWUw5ckR5eXdQbEY5YThwZlJ2NVZCYXVOS3g0emVhRFB5OVpfSlhsQTl4WFN3dWtaLWFPVmVyajBOc29zWHExZWIzb3UtRlM4SGdlVDV6WlVYdXV1ZFRfREQ5NnVPTzlXUnExZzFWRzVFbkdmMWlCdWg1dDhzcmxYY09oc0tmTnFhZFN5NFhIZzNpRjR2MndERGJsbGlEa29aYkhHVmpwMWppVFFyaFRZY1FSOWNfZ3FKRUE?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiugFBVV95cUxOWUw5ckR5eXdQbEY5YThwZlJ2NVZCYXVOS3g0emVhRFB5OVpfSlhsQTl4WFN3dWtaLWFPVmVyajBOc29zWHExZWIzb3UtRlM4SGdlVDV6WlVYdXV1ZFRfREQ5NnVPTzlXUnExZzFWRzVFbkdmMWlCdWg1dDhzcmxYY09oc0tmTnFhZFN5NFhIZzNpRjR2MndERGJsbGlEa29aYkhHVmpwMWppVF",
-      "at": 1789477259000,
-      "inst": [
-        "XAU/USD"
-      ],
-      "ccy": [
-        "USD",
-        "XAU"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 3,
-      "firstAt": 1789474964000
     },
     {
       "title": "German finance minister calls for gasoline price relief",
@@ -2354,7 +2335,7 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 2,
+      "srcs": 1,
       "firstAt": 1789475482000
     },
     {
@@ -2465,6 +2446,29 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789473172000
+    },
+    {
+      "title": "10-year Treasury yield tops 5% as Ed Yardeni warns of inflation, market pressures - Fox Business",
+      "link": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE1PRDVsTGtRN1kzdWhybE5sclN5NV9RVTkzdmlGcUNicEJqampmNkJIdURocTQwcEhpYkc0RlVnVHdFcE4yWHNzQWtCd21FYmtSLU5uZHE1bGY3NnM?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiW0FVX3lxTE1PRDVsTGtRN1kzdWhybE5sclN5NV9RVTkzdmlGcUNicEJqampmNkJIdURocTQwcEhpYkc0RlVnVHdFcE4yWHNzQWtCd21FYmtSLU5uZHE1bGY3NnM?oc=5\" target=\"_blank\">10-year Treasury yield tops 5% as Ed Yardeni warns of inflation, market pressures</a",
+      "at": 1789473088000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789473088000
     }
   ],
   "sources": [
@@ -2487,10 +2491,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-15T17:50:23.585Z",
-  "headlinesAt": "2026-09-15T17:50:23.585Z",
-  "updatedAt": "2026-09-15T17:50:23.585Z"
+  "calendarAt": "2026-09-15T17:51:37.739Z",
+  "headlinesAt": "2026-09-15T17:51:37.739Z",
+  "updatedAt": "2026-09-15T17:51:37.739Z"
 }
