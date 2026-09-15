@@ -884,7 +884,12 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789462221000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "EUR/USD": "down",
+        "USD/JPY": "up"
+      },
+      "why": "Dollar strength pressures euro and yen"
     },
     {
       "title": "Gold eases on stronger US rate hike odds - marketscreener.com",
@@ -903,7 +908,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789462641000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Stronger dollar and rates hurt gold"
     },
     {
       "title": "Goldman Sachs expects 25bp Fed hike on Wednesday",
@@ -926,7 +935,13 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789463100000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Fed hike expectations strengthen dollar"
     },
     {
       "title": "Markets are bracing for a rate hike this week. Here's what investors need to know. - Business Insider",
@@ -950,7 +965,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789463785000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Rate hike fears boost dollar"
     },
     {
       "title": "‘There might be a silver lining’: My friend’s wife died at 60 after a high-earning career. Can he claim her Social Security?",
@@ -968,7 +989,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789463700000,
-      "_kind": null
+      "_kind": null,
+      "why": "Irrelevant social security news"
     },
     {
       "title": "The Best 3 Nuclear Energy Stocks to Buy and Hold for 2030 and Beyond",
@@ -986,7 +1008,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789463700000,
-      "_kind": null
+      "_kind": null,
+      "why": "Stock picks do not move indices"
     },
     {
       "title": "German investor morale continues to rise in September but less than expected - ZEW survey",
@@ -1002,7 +1025,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789463336000,
-      "_kind": null
+      "_kind": null,
+      "why": "Mixed ZEW data unclear direction"
     },
     {
       "title": "Keybanc raises price targets on oil producers amid market shifts",
@@ -1019,7 +1043,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789463334000,
-      "_kind": null
+      "_kind": null,
+      "why": "Producer targets don't move spot oil"
     },
     {
       "title": "Vodafone stock analysis: momentum strong but German recovery still unproven",
@@ -1034,7 +1059,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789463211000,
-      "_kind": null
+      "_kind": null,
+      "why": "Stock analysis irrelevant to forex"
     },
     {
       "title": "Fever-Tree shares jump 4% after Kepler upgrades stock to Buy",
@@ -1065,7 +1091,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789463100000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Fed hike fears weigh on stocks"
     },
     {
       "title": "Alnylam's Sell-Off Looks Ugly -- but Wall Street Still Sees a Much Brighter Picture",
@@ -1080,7 +1110,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789463040000,
-      "_kind": null
+      "_kind": null,
+      "why": "Single stock news negligible for index"
     },
     {
       "title": "Strive's Bitcoin Stash Hits an Even 25,000 BTC After $36.6 Million Buy",
@@ -1097,7 +1128,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789462865000,
-      "_kind": null
+      "why": "Corporate buy has minimal market impact"
     },
     {
       "title": "Dollar Dominance: Euro Suffers as Oil Prices Soar and Fed Rate Hike Looms - devdiscourse.com",
@@ -1117,7 +1148,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 3,
-      "firstAt": 1789462159000
+      "firstAt": 1789462159000,
+      "dir": {
+        "EUR/USD": "down",
+        "USOIL": "up"
+      },
+      "why": "Dollar strength and oil surge"
     },
     {
       "title": "Gold Prices Fall as Rising Energy Costs Reinforce Rate-Hike Expectations",
@@ -1133,7 +1169,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789460106000
+      "firstAt": 1789460106000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Rate hike expectations lower gold"
     },
     {
       "title": "'Putin Is Watching:' US House Panel Advances Russia-Iran Sanctions Bill - Radio Free Europe/Radio Liberty",
@@ -1153,7 +1193,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789462125000
+      "firstAt": 1789462125000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Sanctions bill supports oil prices"
     },
     {
       "title": "Dollar ticks higher as oil prices climb, Fed rate hike chances firm - marketscreener.com",
@@ -1302,28 +1347,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789460563000
-    },
-    {
-      "title": "Federal Reserve Rate Hikes Would Likely Put the Trump Bull Market on Thin Ice",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/federal-rate-hikes-likely-put-082601568.html",
-      "source": "Yahoo Finance",
-      "at": 1789460761000,
-      "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789460761000
     },
     {
       "title": "Watch Ukraine Says No Deal Yet on Energy Strikes Halt - Bloomberg.com",
@@ -1806,18 +1829,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789455072000
-    },
-    {
-      "title": "FuboTV’s (FUBO) Revenue Explosion Meets A Skeptical Stock Market",
-      "link": "https://finance.yahoo.com/media-advertising/articles/fubotv-fubo-revenue-explosion-meets-062944401.html",
-      "source": "Yahoo Finance",
-      "at": 1789453784000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1789453784000
     },
     {
       "title": "What are the main events for today?",
@@ -2572,6 +2583,44 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789432500000
+    },
+    {
+      "title": "Gold holds ground as investors await Fed policy cues - The Business Times",
+      "link": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQWWZkbmZOdV80UzFfQVVJYzhzS1VzMnlDWWJsX0VoRDlWV0Zzd0ZraTVVUVNqdm43dHo5WEx3TDdZRUdqNng0NTN6Z3RYalBadmtRUzhQelhFZm1SNzlUaGdBcnNKNlF1cWduYjlPSWxfZU9BeW0xOHEzMVZjckdtd21HR3ViTVV3N2prR2NVU1h3VzVPZDBTUThVa0FNU1JzMFpxWTF6ODdNT0x3czhOVW85Slc5VkVpenV3?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiuwFBVV95cUxQWWZkbmZOdV80UzFfQVVJYzhzS1VzMnlDWWJsX0VoRDlWV0Zzd0ZraTVVUVNqdm43dHo5WEx3TDdZRUdqNng0NTN6Z3RYalBadmtRUzhQelhFZm1SNzlUaGdBcnNKNlF1cWduYjlPSWxfZU9BeW0xOHEzMVZjckdtd21HR3ViTVV3N2prR2NVU1h3VzVPZDBTUThVa0FNU1JzMFpxWTF6ODdNT0",
+      "at": 1789432500000,
+      "inst": [
+        "XAU/USD"
+      ],
+      "ccy": [
+        "USD",
+        "XAU"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789430640000
+    },
+    {
+      "title": "Gold holds losses as higher oil stokes September rate hike bets - The Business Times",
+      "link": "https://news.google.com/rss/articles/CBMiygFBVV95cUxPYWl1YjN6UnB5R000bHg1T3VEamJmdm9OTFNFRU1CVVVFMDg5YUNVU2JCYllfaTBXNjRLMFZhSEJBLUEwSGFmZU1aa2RMa2RlMjNWYmV5OWNHeE1MRVRwQ1Rxc0l5Y0FreU9sZEU5MGRpc0s5ZGlWcmVvd1NBMWttMzdaVC1HRjZZTkc2N1ROUmh5SEw1UWxCQ09mVlhWbHI3RmlUTGR3OXFVMFp4Q3JJSUZHenh0cVJEY2ljQjhKWW45Zlp6VXJVaWJ3?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiygFBVV95cUxPYWl1YjN6UnB5R000bHg1T3VEamJmdm9OTFNFRU1CVVVFMDg5YUNVU2JCYllfaTBXNjRLMFZhSEJBLUEwSGFmZU1aa2RMa2RlMjNWYmV5OWNHeE1MRVRwQ1Rxc0l5Y0FreU9sZEU5MGRpc0s5ZGlWcmVvd1NBMWttMzdaVC1HRjZZTkc2N1ROUmh5SEw1UWxCQ09mVlhWbHI3RmlUTGR3OXFVMF",
+      "at": 1789432500000,
+      "inst": [
+        "XAU/USD",
+        "USOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL",
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789430640000
     }
   ],
   "sources": [
@@ -2597,7 +2646,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-15T09:31:21.557Z",
-  "headlinesAt": "2026-09-15T09:31:21.557Z",
-  "updatedAt": "2026-09-15T09:31:21.557Z"
+  "calendarAt": "2026-09-15T09:32:52.374Z",
+  "headlinesAt": "2026-09-15T09:32:52.374Z",
+  "updatedAt": "2026-09-15T09:32:52.374Z"
 }
