@@ -930,7 +930,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789434900000,
-      "_kind": null
+      "_kind": null,
+      "why": "Geopolitical headline lacks clear market direction"
     },
     {
       "title": "Ukraine war briefing: No energy ceasefire until Russia stops, Zelenskyy confirms after Trump claim - The Guardian",
@@ -951,7 +952,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789434900000,
-      "_kind": "war-end"
+      "_kind": "war-end",
+      "why": "War briefing unclear for specific assets"
     },
     {
       "title": "US Fed rate hike looms, impacting NSE IPO and global markets; 10-year yields near 5% - The Economic Times",
@@ -974,7 +976,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789431443000
+      "firstAt": 1789431443000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Rate hike expectations strengthen dollar"
     },
     {
       "title": "Oil prices rise as Houthis attack Saudi Arabia, Hormuz talks delayed",
@@ -993,7 +1001,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789432950000
+      "firstAt": 1789432950000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Supply concerns boost oil prices"
     },
     {
       "title": "Global AI stocks fall as industry chiefs call for slowing development",
@@ -1007,7 +1020,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789433325000
+      "firstAt": 1789433325000,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "AI sector concerns weigh on stocks"
     },
     {
       "title": "Russia resupplies military bases in Syria for first time under new deal",
@@ -1027,7 +1044,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789433027000
+      "firstAt": 1789433027000,
+      "why": "Military news unclear for markets"
     },
     {
       "title": "Oil prices rise as Saudi pipeline outage, fresh attacks raise supply concerns",
@@ -1046,7 +1064,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789432950000
+      "firstAt": 1789432950000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Supply outages drive oil prices up"
     },
     {
       "title": "Gold holds losses as higher oil stokes September rate hike bets - The Business Times",
@@ -1066,7 +1089,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789432500000
+      "firstAt": 1789432500000,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "up"
+      },
+      "why": "Higher oil stokes rate hike bets"
     },
     {
       "title": "EU extends Russia sanction deadline - France 24",
@@ -1086,7 +1114,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789432275000
+      "firstAt": 1789432275000,
+      "why": "Sanction deadline extension unclear impact"
     },
     {
       "title": "Fed Rate-Hike Odds Top 90% as 10-Year Treasury Yield Touches 5% - Seoul Economic Daily",
@@ -1109,7 +1138,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789429790000
+      "firstAt": 1789429790000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "High yields strengthen dollar"
     },
     {
       "title": "U.S. stock futures flat as markets parse slowing AI development, Fed anticipation",
@@ -1131,7 +1166,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789430923000
+      "firstAt": 1789430923000,
+      "why": "Markets flat while parsing news"
     },
     {
       "title": "US 10-Year Treasury Yield Touches 5% Intraday; Rate Hike Expectations Surpass 90% - finance.biggo.com",
@@ -1154,7 +1190,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789430913000
+      "firstAt": 1789430913000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Yields spike strengthens dollar"
     },
     {
       "title": "House Dems face Trump tariff dilemma as major Russia sanctions bill heads to floor - Fox News",
@@ -1175,7 +1217,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789429200000
+      "firstAt": 1789429200000,
+      "why": "Political news unclear for markets"
     },
     {
       "title": "‘My total balance should be $20 million’: I invested $1.1 million in a crypto platform. Have I lost it all?",
@@ -1192,7 +1235,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789430460000
+      "firstAt": 1789430460000,
+      "why": "Individual loss story unclear for market"
     },
     {
       "title": "Iran war live: CENTCOM disputes IRGC claim supertanker struck by Hormuz nav",
@@ -1212,7 +1256,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789430400000
+      "firstAt": 1789430400000,
+      "why": "Disputed claim unclear for oil"
     },
     {
       "title": "Gold Holds Losses as Higher Oil Stokes September Rate-Hike Bets - bloomberg.com",
@@ -2677,10 +2722,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-15T01:36:51.207Z",
-  "headlinesAt": "2026-09-15T01:36:51.207Z",
-  "updatedAt": "2026-09-15T01:36:51.207Z"
+  "calendarAt": "2026-09-15T01:39:09.248Z",
+  "headlinesAt": "2026-09-15T01:39:09.248Z",
+  "updatedAt": "2026-09-15T01:39:09.248Z"
 }
