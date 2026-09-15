@@ -424,7 +424,7 @@ export default function LiquidityView({ onOpen }) {
           Measured on the VPS every minute, whether the app is open or not. A hunt is a level
           taken and given back — the stops beyond it were filled and price refused to stay there.
           The reversal is confirmed on 2-minute candles, which is why this cannot be a screen you
-          have to sit in front of. <strong style={{ color:C.dim }}>Not a measured edge:</strong> this
+          have to sit in front of.{' '}
           {study?.entries
             ? <>Replayed over {study.historyDays} days of 2-minute history: {study.entries} hunts,
                 scored against each instrument's own baseline and held out twice. Each row below
