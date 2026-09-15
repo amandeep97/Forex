@@ -458,6 +458,119 @@ function bar(t, o, c, hPad = 0.2, lPad = 0.05) {
       'correcting each family only within itself would make adding a family free');
   }
 
+  // ── The progress file has to stop growing with the run ───────────────────
+  //
+  // Divergence needs two instruments at once, so paired plans are held whole.
+  // On the first real run that took the progress file to 1.2MB and climbing,
+  // because INSTRUMENTS lists gold at 33 and silver at 34 but EUR/USD at 1 and
+  // USD/CHF at 4 — a pair could be thirty instruments apart and everything in
+  // between had to be carried.
+  {
+    const lib = await S.loadLib();
+    const all = ['XAU/USD', 'XAG/USD', 'EUR/USD', 'USD/CHF', 'GBP/USD', 'USD/JPY', 'EUR/NZD']
+      .map(sym => ({ sym, oanda: sym, cls: 'fx' }));
+    const { order, componentOf } = S.orderUniverse(lib, all);
+
+    check('every instrument survives the reordering exactly once',
+      order.length === all.length && new Set(order.map(i => i.sym)).size === all.length,
+      `${order.length} of ${all.length}`);
+
+    const idx = Object.fromEntries(order.map((i, n) => [i.sym, n]));
+    check('a pair is replayed back to back, not thirty instruments apart',
+      Math.abs(idx['XAU/USD'] - idx['XAG/USD']) === 1,
+      `gold at ${idx['XAU/USD']}, silver at ${idx['XAG/USD']}`);
+
+    // Pairs are transitive: EUR/USD is paired with GBP/USD and with USD/CHF, so
+    // all three have to travel together or the last one still waits.
+    check('a transitive group travels as one component',
+      componentOf['EUR/USD'] === componentOf['USD/CHF']
+      && componentOf['EUR/USD'] === componentOf['GBP/USD'],
+      'EUR/USD–GBP/USD and EUR/USD–USD/CHF make one group of three, not two of two');
+
+    check('an unpaired instrument is still replayed, just last',
+      componentOf['EUR/NZD'] === undefined && idx['EUR/NZD'] != null,
+      `EUR/NZD at ${idx['EUR/NZD']}`);
+
+    // And the drain: once a component is complete its plans are classified and
+    // its logs dropped, so the next component starts from nothing held.
+    const from = Date.UTC(2026, 0, 1), to = Date.UTC(2026, 2, 1);
+    const t0 = from + 86400e3;
+    const agg = S.emptyAggregate({ from, to, searchSyms: ['XAU/USD'] });
+    const ts = Array.from({ length: 60 }, (_, i) => (i + 1) * 14400e3);
+    agg.pending = [
+      { sym: 'XAU/USD', t: t0, kind: 'PDL', dir: 'up', filled: true, r: 1, edge: 0.5, split: 'discovery' },
+      { sym: 'EUR/USD', t: t0, kind: 'PDL', dir: 'up', filled: true, r: 1, edge: 0.5, split: 'discovery' },
+    ];
+    agg.sweepLogs = { 'XAU/USD': [[t0, 'PDL']], 'XAG/USD': [[t0, 'PDL']], 'EUR/USD': [[t0, 'PDL']] };
+    agg.h4rs = {
+      'XAU/USD': ts.map((t, i) => [t, Math.sin(i) * 0.01]),
+      'XAG/USD': ts.map((t, i) => [t, Math.sin(i) * 0.012]),
+      'EUR/USD': ts.map((t, i) => [t, Math.sin(i) * 0.01]),
+    };
+    // Gold's component is complete; EUR/USD's is not (GBP/USD, USD/CHF missing).
+    S.drainPending(lib, agg, componentOf, new Set(['XAU/USD', 'XAG/USD']));
+
+    check('a completed component is classified and released',
+      agg.pending.length === 1 && agg.pending[0].sym === 'EUR/USD'
+      && S.scoreStudy(agg).divCells.some(c => c.divergence === 'together'),
+      `${agg.pending.length} still held`);
+    check('and its sweep logs go with it, so nothing accumulates',
+      !agg.sweepLogs['XAU/USD'] && !agg.sweepLogs['XAG/USD'] && !!agg.sweepLogs['EUR/USD'],
+      Object.keys(agg.sweepLogs).join(',') || '(empty)',
+      'this is what bounds the file by the largest component instead of by the run');
+    check('an incomplete component is left alone rather than classified early',
+      agg.pending.length === 1,
+      'classifying against a partner that has not been replayed would read every sweep as "alone"');
+  }
+
+  // ── The two failures that stopped it publishing a second time ────────────
+  //
+  // The run reached 32 of 40 instruments and then restarted at 12, repeatedly.
+  // Two bugs compounding: the progress file crossed 1MB, GitHub's contents API
+  // answers a 200 with an EMPTY body above that size, JSON.parse("") threw, and
+  // the caller treated any read failure as "no progress yet" — so every tick
+  // threw the run away and began again, with a log showing normal progress.
+  {
+    const universe = ['A', 'B', 'C', 'D'].map(sym => ({ sym, oanda: sym, cls: 'fx', can: { candles: true } }));
+    const oanda = { async getCandles() { return []; }, async getCandlesSince() { return []; } };
+    const files = {};
+    let reads = 0, failNext = false;
+    const github = {
+      async readJSON(path) {
+        reads++;
+        if (failNext && path === S.PROGRESS_PATH) {
+          failNext = false;
+          throw new Error('Unexpected end of JSON input');
+        }
+        return files[path] ? { content: files[path], sha: 'x' } : null;
+      },
+      async writeJSON(path, payload) { files[path] = JSON.parse(JSON.stringify(payload)); return 'x'; },
+    };
+
+    // One step, so there is real progress on disk.
+    await S.stepLiquidityStudy({ oanda, github, log: () => {}, perStep: 2, universe });
+    const after = (files[S.PROGRESS_PATH].done || []).length;
+    check('a first step leaves progress behind', after === 2, `${after} done`);
+
+    // Now the read blows up, exactly as it did in production.
+    failNext = true;
+    const r = await S.stepLiquidityStudy({ oanda, github, log: () => {}, perStep: 2, universe });
+    check('an unreadable progress file waits instead of starting over',
+      (files[S.PROGRESS_PATH].done || []).length === after,
+      `${(files[S.PROGRESS_PATH].done || []).length} done after the failed read`,
+      'treating a read error as "no file yet" is what made the run restart forever');
+    check('and the step reports itself as still running, not finished',
+      r.state === 'running', r.state);
+
+    // A genuine absence still starts a run — the distinction has to cut both ways.
+    delete files[S.PROGRESS_PATH];
+    await S.stepLiquidityStudy({ oanda, github, log: () => {}, perStep: 2, universe });
+    check('a genuinely missing progress file does start a fresh run',
+      (files[S.PROGRESS_PATH]?.done || []).length === 2,
+      `${(files[S.PROGRESS_PATH]?.done || []).length} done`,
+      'not-found and read-failed must not be the same branch, in either direction');
+  }
+
   console.log(fails ? `\n${fails} FAILED` : '\nall passed');
   process.exit(fails ? 1 : 0);
 })();

@@ -591,12 +591,28 @@ async function runLiquidityStudy({ oanda, log = () => {}, slice = null, universe
  * to the end. `slice` existed for exactly this and was always called with null.
  *
  * Keeping partial RESULTS instead would mean writing tens of thousands of
- * replayed trades to a file once per slice. So nothing keeps the trades. Every
- * number the study reports — n, mean, sd, win rate, and the edge over baseline —
- * comes from sums that can be added to one instrument at a time: count, Σr, Σr²,
- * wins, and Σ(r − that instrument's baseline). The progress file is a few
- * kilobytes whether the universe is eight instruments or four hundred, and a
- * restart costs whatever was in flight rather than everything.
+ * replayed trades to a file once per slice. So almost nothing keeps the trades.
+ * Every number the study reports — n, mean, sd, win rate, fill rate, and the
+ * edge over baseline — comes from sums that can be added to one instrument at a
+ * time: count, Σr, Σr², wins, and Σ(r − that instrument's baseline). A restart
+ * costs whatever was in flight rather than everything.
+ *
+ * ── The one exception, and what it actually cost ────────────────────────────
+ *
+ * Divergence cannot be summed that way. "Did the partner take its level too" is
+ * a question about two instruments, and they are replayed in different steps,
+ * so paired instruments' plans ARE held whole. On the first real run that took
+ * the progress file to 1.2MB and still climbing — against a comment right here
+ * promising kilobytes. The comment being wrong was the worse half of that: a
+ * large file gets noticed, a confident comment does not get rechecked.
+ *
+ * What was wrong was the ORDER. INSTRUMENTS lists gold at 33 and silver at 34
+ * but EUR/USD at 1 and USD/CHF at 4, so a pair could be thirty instruments
+ * apart and every plan in between had to be carried until the run ended. Pairs
+ * are now replayed as connected components, back to back, and a component's
+ * plans are classified and released the moment its last member is in. What is
+ * held is bounded by the largest component — five instruments — rather than
+ * growing with the run.
  *
  * ── The one thing this changes about the measurement ────────────────────────
  *
@@ -773,6 +789,88 @@ function foldPlans(agg, { planned = [], planBaselines = {}, sweepLogs = {}, h4rs
 }
 
 /**
+ * Replay order: paired instruments next to each other, everything else after.
+ *
+ * The order used to be whatever INSTRUMENTS listed, which put gold at position
+ * 33 and silver at 34 but EUR/USD at 1 and USD/CHF at 4 — and the divergence
+ * question cannot be answered until BOTH sides of a pair have been replayed. So
+ * every paired plan had to be kept whole until the end of the run, and the
+ * progress file reached 1.2MB on the first real pass. The comment above
+ * emptyAggregate promised kilobytes; it was wrong, and a wrong comment about
+ * size is worse than a large file because nobody goes and looks.
+ *
+ * Pairs are transitive here — US500 is paired with US100, US30, GER40 and
+ * AUD/JPY — so this walks connected components rather than pairs. A component
+ * replayed together can be classified and discarded together, and what is held
+ * is bounded by the largest component instead of by the whole universe.
+ *
+ * @returns {{ order: any[], componentOf: Record<string,string> }}
+ */
+function orderUniverse(lib, all) {
+  const bySym = new Map(all.map(i => [i.sym, i]));
+  const seen = new Set();
+  const order = [];
+  const componentOf = {};
+  for (const inst of all) {
+    if (seen.has(inst.sym)) continue;
+    const partners = lib.pairs.partnersOf(inst.sym);
+    if (!partners.length) continue;
+    // Breadth-first over the pair graph.
+    const queue = [inst.sym], group = [];
+    seen.add(inst.sym);
+    while (queue.length) {
+      const sym = queue.shift();
+      const rec = bySym.get(sym);
+      if (rec) group.push(rec);
+      for (const p of lib.pairs.partnersOf(sym)) {
+        if (seen.has(p.sym) || !bySym.has(p.sym)) continue;
+        seen.add(p.sym); queue.push(p.sym);
+      }
+    }
+    const id = group[0].sym;
+    for (const g of group) componentOf[g.sym] = id;
+    order.push(...group);
+  }
+  for (const inst of all) if (!seen.has(inst.sym)) order.push(inst);
+  return { order, componentOf };
+}
+
+/**
+ * Classify and discard every held plan whose whole component is now replayed.
+ *
+ * Called after each step. Once a component is done there is nothing further to
+ * learn about it, so its plans are folded into the divergence cells and its
+ * sweep logs and returns are dropped — which is what keeps the progress file
+ * from growing with the run.
+ */
+function drainPending(lib, agg, componentOf, done) {
+  if (!agg.pending?.length) return agg;
+  const complete = new Set();
+  const members = {};
+  for (const [sym, id] of Object.entries(componentOf)) (members[id] = members[id] || []).push(sym);
+  for (const [id, syms] of Object.entries(members)) {
+    if (syms.every(s => done.has(s))) complete.add(id);
+  }
+  if (!complete.size) return agg;
+
+  const stay = [];
+  const go = [];
+  for (const e of agg.pending) {
+    (complete.has(componentOf[e.sym]) ? go : stay).push(e);
+  }
+  if (go.length) foldDivergence(lib, agg, go);
+  agg.pending = stay;
+  for (const sym of Object.keys(componentOf)) {
+    if (!complete.has(componentOf[sym])) continue;
+    // The logs are only needed by the component's own members, and they are all
+    // in. Another component's plans can never ask about these.
+    delete agg.sweepLogs[sym];
+    delete agg.h4rs[sym];
+  }
+  return agg;
+}
+
+/**
  * Did the partner take its matching level too?
  *
  * Runs once, at the end, over the plans that were kept whole. It needs both
@@ -783,7 +881,7 @@ function foldPlans(agg, { planned = [], planBaselines = {}, sweepLogs = {}, h4rs
  * decides a level is "swept". Widening it here would make the replay generous
  * about something the live screen is strict about.
  */
-function foldDivergence(lib, agg) {
+function foldDivergence(lib, agg, entries = null) {
   const { partnersOf, correlate, mirrorKind, MIN_R } = lib.pairs;
   const WINDOW = 2 * 3600e3;
   const corr = {};
@@ -796,7 +894,7 @@ function foldDivergence(lib, agg) {
     }
   }
 
-  for (const e of agg.pending) {
+  for (const e of (entries || agg.pending)) {
     let verdict = null;
     for (const p of partnersOf(e.sym)) {
       const c = corr[[e.sym, p.sym].sort().join('|')];
@@ -948,6 +1046,7 @@ function scoreStudy(input) {
  */
 async function stepLiquidityStudy({ oanda, github, log = () => {}, perStep = PER_STEP,
   universe = null, now = Date.now() } = {}) {
+  const lib = await loadLib();
   const all = (universe || INSTRUMENTS.filter(i => i.can?.candles && i.oanda))
     .map(i => ({ sym: i.sym, oanda: i.oanda, cls: i.cls }));
 
@@ -961,7 +1060,24 @@ async function stepLiquidityStudy({ oanda, github, log = () => {}, perStep = PER
   // Resume, or start. A progress file from an older method is discarded rather
   // than continued: half a run measured one way and half the other is a number
   // that describes nothing, and it would look completely normal.
-  const prog = await github.readJSON(PROGRESS_PATH).catch(() => null);
+  // A read that FAILS is not a read that found nothing.
+  //
+  // This was `.catch(() => null)`, which made a transient error indistinguishable
+  // from "no progress yet" — and the only thing it could then do was throw the
+  // run away and start again. Combined with the contents API returning an empty
+  // 200 for anything over 1MB, that produced a study that restarted from the
+  // first instrument on every single tick and could never publish.
+  //
+  // Not found is a fresh start. Anything else leaves the file alone and waits
+  // for the next tick, because hours of replay is not worth discarding over one
+  // bad response.
+  let prog = null;
+  try {
+    prog = await github.readJSON(PROGRESS_PATH);
+  } catch (e) {
+    log(`Liquidity study: progress unreadable (${e.message}) — waiting rather than starting over`);
+    return { state: 'running', done: 0, total: all.length };
+  }
   let agg = prog?.content;
   if (!agg || agg.method !== METHOD_VERSION || !agg.cells) {
     const { search } = splitUniverse(all);
@@ -974,7 +1090,10 @@ async function stepLiquidityStudy({ oanda, github, log = () => {}, perStep = PER
   }
 
   const done = new Set(agg.done);
-  const todo = all.filter(i => !done.has(i.sym)).slice(0, perStep);
+  // Paired instruments adjacent, so a component finishes together and its held
+  // plans can be classified and dropped instead of waiting for the whole run.
+  const { order, componentOf } = orderUniverse(lib, all);
+  const todo = order.filter(i => !done.has(i.sym)).slice(0, perStep);
 
   if (todo.length) {
     const raw = await runLiquidityStudy({
@@ -987,6 +1106,7 @@ async function stepLiquidityStudy({ oanda, github, log = () => {}, perStep = PER
     // little history contributes nothing and must still count as processed, or
     // the run retries it every tick and never reaches the end.
     markDone(agg, todo.map(i => i.sym));
+    drainPending(lib, agg, componentOf, new Set(agg.done));
     await github.writeJSON(PROGRESS_PATH, agg, 'bot: liquidity study progress',
       prog?.sha || null, { pretty: false });
   }
@@ -996,9 +1116,12 @@ async function stepLiquidityStudy({ oanda, github, log = () => {}, perStep = PER
     return { state: 'running', done: agg.done.length, total: all.length };
   }
 
-  // The one pass that cannot stream: it needs every paired instrument's sweeps
-  // at the same moment, so it runs here, once, after the last one is in.
-  foldDivergence(await loadLib(), agg);
+  // Whatever is still held: components that never completed, because an
+  // instrument in them had too little history to replay. They are classified
+  // with what there is rather than dropped, since a partner that produced no
+  // sweeps is a partner that did not take its level.
+  foldDivergence(lib, agg);
+  agg.pending = [];
   const result = scoreStudy(agg);
   await github.writeJSON(PATH, result, 'bot: liquidity sweep study', cur?.sha || null);
   // The progress file is emptied rather than left behind, so the next run after
@@ -1016,6 +1139,7 @@ module.exports = {
   runLiquidityStudy, scoreStudy, loadLib, replayOne, buildLevelTimeline, baselineFor,
   splitUniverse, verdict, atrOf, probit, strictZ,
   stepLiquidityStudy, emptyAggregate, foldInto, foldPlans, foldDivergence, markDone,
+  orderUniverse, drainPending,
   readBucket, replayPlans, planBaseline, bracketAt, PROGRESS_PATH, PER_STEP,
   PLAN_WAIT, PLAN_HOLD,
   PATH, METHOD_VERSION, HOLDS, HISTORY_DAYS,
