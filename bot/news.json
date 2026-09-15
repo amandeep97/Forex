@@ -19,12 +19,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789432950000,
-      "_kind": null,
-      "dir": {
-        "USOIL": "up",
-        "UKOIL": "up"
-      },
-      "why": "Supply concerns boost oil prices"
+      "_kind": null
     },
     {
       "title": "U.S. Stocks Gain as Inflation Figure Boosts Odds of Rate Hike - WSJ",
@@ -42,11 +37,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789431443000,
-      "_kind": null,
-      "dir": {
-        "US500": "up"
-      },
-      "why": "Stocks gain on rate hike odds"
+      "_kind": null
     },
     {
       "title": "House Dems face Trump tariff dilemma as major Russia sanctions bill heads to floor - 930 WFMD Free Talk",
@@ -68,8 +59,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789432570000,
-      "_kind": null,
-      "why": "Political news unclear for markets"
+      "_kind": null
     },
     {
       "title": "Gold holds losses as higher oil stokes September rate hike bets - The Business Times",
@@ -90,12 +80,28 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789432500000,
-      "_kind": null,
-      "dir": {
-        "XAU/USD": "down",
-        "USOIL": "up"
-      },
-      "why": "Gold falls, oil rises on rates"
+      "_kind": null
+    },
+    {
+      "title": "EU extends Russia sanction deadline - france24.com",
+      "link": "https://news.google.com/rss/articles/CBMiigFBVV95cUxOdTZhUGEtMnJjMTVMcHFYSUxOMFhaZFJ0MF9WUDg0SEZBMWhrWnhMQ1dSS2ljekdJeVBKbllXcDRMcVl4OXRYYl9TQldkckU3cHh4Z1ZKX0k4bkhnbjNwYVZGTEcwMFRfOURrMEdDRUllaEJNTUtCZzRUTVR1WllfeDAzWjRvcGM1OUE?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiigFBVV95cUxOdTZhUGEtMnJjMTVMcHFYSUxOMFhaZFJ0MF9WUDg0SEZBMWhrWnhMQ1dSS2ljekdJeVBKbllXcDRMcVl4OXRYYl9TQldkckU3cHh4Z1ZKX0k4bkhnbjNwYVZGTEcwMFRfOURrMEdDRUllaEJNTUtCZzRUTVR1WllfeDAzWjRvcGM1OUE?oc=5\" target=\"_blank\">EU extends Russia sa",
+      "at": 1789432275000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789432275000,
+      "_kind": null
     },
     {
       "title": "Fed Rate-Hike Odds Top 90% as 10-Year Treasury Yield Touches 5% - Seoul Economic Daily",
@@ -118,13 +124,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789429790000,
-      "dir": {
-        "XAU/USD": "down",
-        "EUR/USD": "down",
-        "GBP/USD": "down"
-      },
-      "why": "Strong dollar pressures gold and FX"
+      "firstAt": 1789429790000
     },
     {
       "title": "U.S. stock futures flat as markets parse slowing AI development, Fed anticipation",
@@ -146,8 +146,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789430923000,
-      "why": "Futures flat, no clear direction"
+      "firstAt": 1789430923000
     },
     {
       "title": "‘My total balance should be $20 million’: I invested $1.1 million in a crypto platform. Have I lost it all?",
@@ -164,8 +163,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789430460000,
-      "why": "Individual loss story, no market signal"
+      "firstAt": 1789430460000
     },
     {
       "title": "Iran war live: CENTCOM disputes IRGC claim supertanker struck by Hormuz nav",
@@ -185,8 +183,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789430400000,
-      "why": "Disputed claim, unclear market impact"
+      "firstAt": 1789430400000
     },
     {
       "title": "Gold Holds Losses as Higher Oil Stokes September Rate-Hike Bets - Bloomberg.com",
@@ -205,12 +202,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789427676000,
-      "dir": {
-        "XAU/USD": "down",
-        "USOIL": "up"
-      },
-      "why": "Gold falls, oil rises on rates"
+      "firstAt": 1789427676000
     },
     {
       "title": "Foreign national convicted of smuggling US aerospace parts to Russia, violating sanctions - rocketcitynow.com",
@@ -230,8 +222,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789429200000,
-      "why": "Sanctions news unclear for markets"
+      "firstAt": 1789429200000
     },
     {
       "title": "U.S. benchmark bond yield breaches 5% as oil, inflation worries mount - The Globe and Mail",
@@ -249,8 +240,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789428310000,
-      "why": "Yields breach 5%, oil worries mount"
+      "firstAt": 1789428310000
     },
     {
       "title": "Iran strikes on US diplomatic facilities raise war cost - thehill.com",
@@ -270,8 +260,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789428000000,
-      "why": "War costs unclear for markets"
+      "firstAt": 1789428000000
     },
     {
       "title": "Iran strikes on US diplomatic facilities in 4 Gulf countries cost $184M: IG report - thehill.com",
@@ -291,8 +280,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789428000000,
-      "why": "War costs unclear for markets"
+      "firstAt": 1789428000000
     },
     {
       "title": "AI doomsday fears are arriving at the worst possible time for the stock market",
@@ -308,7 +296,7 @@
       "firstAt": 1789427940000
     },
     {
-      "title": "Pentagon admits that Iranian strikes damaged and destroyed hundreds of buildings at US bases - fortune.com",
+      "title": "Pentagon admits that Iranian strikes damaged and destroyed hundreds of buildings at US bases - Fortune",
       "link": "https://news.google.com/rss/articles/CBMiogFBVV95cUxOU29uNUZVYndHTmtHQzdvQWNoVVNEdnltQjVjLThUWGhUZmtsemoyX1F6YnJhQUFpSGNXWnA4Qk9DNG1ocjltQ3JwM0hpc2xUeDhqRlB1NFpIN3hMWFExSFdTcTJhbHlVaDhHSF9FXzNpZVRJZlJpQWVjZGVXOGQzTkJobHA4M2M4TTlETE1idmhIRnZyTzNjSkEtQy1JSXF0ZlE?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiogFBVV95cUxOU29uNUZVYndHTmtHQzdvQWNoVVNEdnltQjVjLThUWGhUZmtsemoyX1F6YnJhQUFpSGNXWnA4Qk9DNG1ocjltQ3JwM0hpc2xUeDhqRlB1NFpIN3hMWFExSFdTcTJhbHlVaDhHSF9FXzNpZVRJZlJpQWVjZGVXOGQzTkJobHA4M2M4TTlETE1idmhIRnZyTzNjSkEtQy1JSXF0ZlE?oc=5\" targ",
@@ -325,8 +313,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789427880000,
-      "why": "Damage report unclear for markets"
+      "firstAt": 1789427880000
     },
     {
       "title": "Gold falls below $4,300 as higher US yields bolster Fed rate hike bets - FXStreet",
@@ -344,11 +331,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789427676000,
-      "dir": {
-        "XAU/USD": "down"
-      },
-      "why": "Gold falls on higher yields"
+      "firstAt": 1789427676000
     },
     {
       "title": "Zelensky says Ukraine ready to de-escalate if Russia halts strikes - france24.com",
@@ -1736,7 +1719,7 @@
       "firstAt": 1789407818000
     },
     {
-      "title": "Donald Trump claims Russia and Ukraine have agreed energy truce - Financial Times",
+      "title": "Donald Trump claims Russia and Ukraine have agreed energy truce - ft.com",
       "link": "https://news.google.com/rss/articles/CBMihAFBVV95cUxQOXFPZ2FQOWs4aW93RkhsSWJKMlF1ZFREMGVzSTVQakdSNW12MW1HWTRnNHJPbmtTN3NqNEl0T2RqUXVZRW1QRk5LWWpNRU5RMDBlc2VyeXpnMkl1VDBqd0lzRXpZUTd5RnpWSUl0RkpOam9WZXVsUnZESURKV1BVQnpCZk8?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMihAFBVV95cUxQOXFPZ2FQOWs4aW93RkhsSWJKMlF1ZFREMGVzSTVQakdSNW12MW1HWTRnNHJPbmtTN3NqNEl0T2RqUXVZRW1QRk5LWWpNRU5RMDBlc2VyeXpnMkl1VDBqd0lzRXpZUTd5RnpWSUl0RkpOam9WZXVsUnZESURKV1BVQnpCZk8?oc=5\" target=\"_blank\">Donald Trump claims Russia a",
@@ -1754,26 +1737,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789403640000
-    },
-    {
-      "title": "EU envoys extend Russia sanctions by seven days to debate six-month renewal, EU presidency says - Reuters",
-      "link": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxOeTYxSXhDTll0eGRna0pBbVlLRFM5VU1lMms4U2VSc3RhR1VVZUxyN0VXRmZKRkRLUkR6VFhlMmNNeDVSeTNnaDlyVVRkR0Z6ZUZZc1d2VmUxR0hvQXU0bU5QVWg3ZlVlRjNPMjRxaGFYY3V6VkljZWJvVHNFRTZVRGRHN3VUWURHMThrNk9sMGlhaElpUzhfaUZOaUcwUHd3VUJ5bnU2amlFYXJiNUdhU0hGVzJIVEMySjg0UHBpZmxkUQ?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiwgFBVV95cUxOeTYxSXhDTll0eGRna0pBbVlLRFM5VU1lMms4U2VSc3RhR1VVZUxyN0VXRmZKRkRLUkR6VFhlMmNNeDVSeTNnaDlyVVRkR0Z6ZUZZc1d2VmUxR0hvQXU0bU5QVWg3ZlVlRjNPMjRxaGFYY3V6VkljZWJvVHNFRTZVRGRHN3VUWURHMThrNk9sMGlhaElpUzhfaUZOaUcwUHd3VUJ5bnU2amlFYX",
-      "at": 1789405981000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789405981000
     }
   ],
   "sources": [
@@ -1800,6 +1763,6 @@
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-15T00:52:07.924Z",
-  "updatedAt": "2026-09-15T00:52:07.924Z"
+  "headlinesAt": "2026-09-15T00:54:07.980Z",
+  "updatedAt": "2026-09-15T00:54:07.980Z"
 }
