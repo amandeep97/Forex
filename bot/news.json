@@ -23,7 +23,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789445177000,
-      "_kind": null
+      "_kind": null,
+      "why": "China data weak, global impact unclear"
     },
     {
       "title": "investingLive Asia-Pacific market news: Oil holds near highs",
@@ -42,7 +43,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789443821000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil holds near highs"
     },
     {
       "title": "Global AI stocks fall as industry chiefs call for slowing development",
@@ -56,7 +61,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789443388000
+      "firstAt": 1789443388000,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Global AI stocks fall"
     },
     {
       "title": "Dollar Near Two-Week High On Oil Surge And Fed Rate Hike Bets - businesstoday.com.my",
@@ -74,7 +83,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789442912000
+      "firstAt": 1789442912000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil surge mentioned"
     },
     {
       "title": "Most markets drop as oil extends gains ahead of expected US rate hike - abs-cbn.com",
@@ -92,7 +105,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789441332000
+      "firstAt": 1789441332000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil extends gains"
     },
     {
       "title": "Oil and Treasury yields haven’t moved this closely in seven years. That’s bad news for markets - CNBC",
@@ -110,7 +127,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789440780000
+      "firstAt": 1789440780000,
+      "why": "Correlation warning, no direction"
     },
     {
       "title": "Santos signs deals with POSCO Steel and Western LNG",
@@ -124,7 +142,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789440261000
+      "firstAt": 1789440261000,
+      "why": "Deal signed, no price direction"
     },
     {
       "title": "United States Dollar Index strengthens above 99.50 as Fed rate hike bets rise - FXStreet",
@@ -147,7 +166,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789437392000
+      "firstAt": 1789437392000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Dollar strengthens, FX pairs fall"
     },
     {
       "title": "Russia sanctions bill passes House Rules Committee - thehill.com",
@@ -167,7 +192,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789439460000
+      "firstAt": 1789439460000,
+      "why": "Sanctions bill, no immediate price move"
     },
     {
       "title": "Waymo, Japanese partners target driverless taxi service in Tokyo in 2027",
@@ -181,7 +207,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789439066000
+      "firstAt": 1789439066000,
+      "why": "Waymo news, no FX impact"
     },
     {
       "title": "Gold holds near $4,300 as oil disruption lifts Fed hike bets",
@@ -200,7 +227,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789439065000
+      "firstAt": 1789439065000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Gold holds, oil disruption"
     },
     {
       "title": "Ukraine war briefing: No energy ceasefire until Russia stops, Zelenskyy confirms after Trump claim - The Guardian",
@@ -220,7 +251,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789438680000
+      "firstAt": 1789438680000,
+      "why": "War briefing, no clear direction"
     },
     {
       "title": "Dollar Near Two-Week High as Oil Surge Boosts Fed Rate Hike Bets - Global Banking & Finance Review",
@@ -238,7 +270,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789436333000
+      "firstAt": 1789436333000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil surge boosts rate bets"
     },
     {
       "title": "China August retail sales +0.4% y/y (expected +0.6%)",
@@ -261,7 +297,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789436296000
+      "firstAt": 1789436296000,
+      "why": "China data miss, global impact unclear"
     },
     {
       "title": "Dollar Surges Amid Rising Oil Prices and Fed Rate Hike Expectations - Devdiscourse",
@@ -279,7 +316,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789436333000
+      "firstAt": 1789436333000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Rising oil prices"
     },
     {
       "title": "Silver Price Forecast: XAG/USD falls to near $63.00 amid rising inflation, Treasury yields - FXStreet",
@@ -1740,10 +1781,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-15T04:07:12.814Z",
-  "updatedAt": "2026-09-15T04:07:12.814Z"
+  "headlinesAt": "2026-09-15T04:09:22.311Z",
+  "updatedAt": "2026-09-15T04:09:22.311Z"
 }
