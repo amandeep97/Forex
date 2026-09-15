@@ -38,6 +38,11 @@ const { INSTRUMENTS } = require('./instruments');
 
 const PATH = 'bot/liquidity.json';
 
+// What the replay concluded about this kind of hunt. Read, not computed — the
+// study publishes it and this only quotes it.
+const STUDY_PATH = 'bot/liquidity-study.json';
+const STUDY_TTL = 6 * 3600e3;
+
 // Bump this whenever the MEANING of a level changes.
 //
 // Restoring levels across restarts made the bot cheap and made it impossible to
@@ -127,6 +132,8 @@ class LiquidityScanner {
     this.servedAt = new Map();
     this.lib = null;
     this.restored = false;
+    this.study = null;
+    this.studyAt = 0;
   }
 
   // Pick up where the last process left off.
@@ -490,6 +497,22 @@ class LiquidityScanner {
 
     const dp = Math.abs(rec.price) < 20 ? 5 : 2;
     const side = p.dir === 'long' ? 'BUY' : 'SELL';
+
+    // What sixty days of replay says about this exact kind of hunt, in this
+    // session. Quoted whether or not it is flattering — especially when it is
+    // not, because that is the case a person needs it for.
+    const study = await this._loadStudy();
+    const ses = p.session?.id;
+    const cell = study?.byCell?.[`${p.level.kind}|${ses}`] || null;
+    const d = cell?.discovery;
+    const verdictLine = cell
+      ? `\n\n<b>${study.days}-day replay:</b> ${cell.verdict}`
+        + (d?.armed ? ` — ${d.armed} of these, ${Math.round((d.fillRate ?? 0) * 100)}% filled` : '')
+        + (d?.edgeR != null ? `, ${d.edgeR > 0 ? '+' : ''}${d.edgeR}R vs baseline` : '')
+        + (study.held === 0 ? `\nNo cell in the study beat its baseline on both holdouts.` : '')
+      : study
+        ? `\n\n<i>The replay has no cell for ${p.level.kind} in the ${p.session?.label || 'this'} session.</i>`
+        : `\n\n<i>The replay has not published yet.</i>`;
     await this.telegram.send(
       `<b>${side} LIMIT — ${rec.sym}</b>\n`
       + `${p.level.label} at ${p.level.price.toFixed(dp)} was swept and reclaimed\n\n`
@@ -505,9 +528,36 @@ class LiquidityScanner {
       + (p.align?.align && p.align.align !== 'none' ? `\n${p.align.align === 'with' ? '✓' : '⚠'} ${p.align.text}` : '')
       + (p.session ? `\n· ${p.session.label} session${p.session.overlap ? ' (London/NY overlap)' : ''}` : '')
       + (rec.div ? `\n· ${rec.div.text} (r ${rec.div.r}, ${rec.div.why})` : '')
+      + verdictLine
       + `\n\n<i>The order rests until price comes back. It dies if price closes `
-      + `beyond ${p.stop.toFixed(dp)}. Not a measured edge — this model has never been tested here.</i>`
+      + `beyond ${p.stop.toFixed(dp)}.</i>`
     ).catch(e => this.log(`Liquidity push: ${e.message}`));
+  }
+
+  // The replay's verdict, for the alert.
+  //
+  // The message used to end "Not a measured edge — this model has never been
+  // tested here." That was true when it was written and stopped being true the
+  // moment the study published. A caveat that has gone stale is worse than no
+  // caveat: it says the answer is unknown when the answer is known and is no.
+  async _loadStudy() {
+    if (this.study && Date.now() - this.studyAt < STUDY_TTL) return this.study;
+    try {
+      const cur = await this.github.readJSON(STUDY_PATH);
+      const cells = cur?.content?.planCells || [];
+      this.study = {
+        at: cur?.content?.at || null,
+        days: cur?.content?.historyDays ?? null,
+        byCell: Object.fromEntries(cells.map(c => [`${c.kind}|${c.session}`, c])),
+        held: cells.filter(c => c.verdict === 'holds').length,
+        total: cells.length,
+      };
+      this.studyAt = Date.now();
+    } catch (e) {
+      this.log(`Liquidity study read: ${e.message}`);
+      this.studyAt = Date.now();   // do not hammer it every tick
+    }
+    return this.study;
   }
 
   _signature() {

@@ -214,8 +214,13 @@ function sweptM2() {
       /LIMIT/.test(sent[0]), sent[0]?.split('\n')[0],
       'a market order at the break is the thing that made every row untradeable');
 
-    check('and says plainly that it is not a measured edge',
-      /never been tested|not a measured edge/i.test(sent[0]),
+    // This used to assert the words "never been tested". It was the right check
+    // right up until the study published, and then it enforced a claim that had
+    // become false. What the alert must carry is what is KNOWN — which with no
+    // study on file is that there is no study on file.
+    check('and says where the evidence stands, rather than asserting it is absent',
+      /replay/i.test(sent[0]),
+      (sent[0] || '').split('\n').filter(l => /replay/i.test(l)).join(' ') || '(nothing)',
       'an alert is the surface most likely to be acted on without reading anything else');
 
     const other = { ...rec, plan: { ...rec.plan, level: { ...rec.plan.level, price: 115 } } };
@@ -590,6 +595,69 @@ function sweptM2() {
     check('and an instrument backed off after a failure is not resurrected',
       !picked.includes('DEAD'),
       'retrying a failing fetch every tick forever is how a budget disappears');
+  }
+
+  // ── The alert has to quote the replay, including when it is unflattering ──
+  //
+  // The message used to end "Not a measured edge — this model has never been
+  // tested here." That was true when written and stopped being true the moment
+  // the study published. A caveat that has gone stale is worse than none: it
+  // says the answer is unknown when the answer is known, and is no.
+  {
+    const study = {
+      at: '2026-09-15T03:32:00Z', historyDays: 60,
+      planCells: [
+        { kind: 'PDL', session: 'london', verdict: 'not significant',
+          discovery: { n: 100, armed: 121, fillRate: 0.883, edgeR: -0.15 } },
+      ],
+    };
+    const sent = [];
+    const mk = content => new LiquidityScanner({
+      oanda: fakeOanda(), log: quiet,
+      telegram: { async send(m) { sent.push(m); } },
+      github: {
+        async readJSON(path) { return path.includes('study') ? { content, sha: 's' } : null; },
+        async writeJSON() { return 's'; },
+      },
+    });
+
+    const rec = {
+      sym: 'EUR/USD', price: 1.08, div: null,
+      plan: { state: 'armed', dir: 'long', entry: 1.08, stop: 1.0790, target: 1.0850,
+        targetLabel: "yesterday's high", rr: 7, level: { kind: 'PDL', price: 1.08, label: "yesterday's low" },
+        session: { id: 'london', label: 'London', overlap: false },
+        align: { align: 'with', text: 'with the 4H trend' } },
+    };
+
+    const s1 = mk(study);
+    await s1._announce(rec);
+    check('the alert quotes the replay verdict for this exact hunt',
+      /60-day replay:<\/b> not significant/.test(sent[0] || ''),
+      (sent[0] || '').split('\n').find(l => /replay/.test(l)) || '(no line)');
+    check('with the count, the fill rate and the edge, not just a word',
+      /121 of these/.test(sent[0]) && /88% filled/.test(sent[0]) && /-0\.15R vs baseline/.test(sent[0]),
+      (sent[0] || '').split('\n').find(l => /replay/.test(l)) || '');
+    check('and the stale "never been tested" caveat is gone',
+      !/never been tested/.test(sent[0] || ''),
+      '', 'the model has been tested; saying otherwise understates what is known');
+
+    // A study with no cell for this kind/session says so rather than implying
+    // the hunt was measured and passed.
+    sent.length = 0;
+    const s2 = mk({ ...study, planCells: [] });
+    await s2._announce(rec);
+    check('a hunt the replay has no cell for is named as untested, not as fine',
+      /no cell for PDL/.test(sent[0] || ''),
+      (sent[0] || '').split('\n').find(l => /cell/.test(l)) || '');
+
+    // And when nothing in the whole study held, the alert says that too — it is
+    // the single most important thing a person can know before placing this.
+    sent.length = 0;
+    const s3 = mk(study);
+    await s3._announce({ ...rec });
+    check('and it reports that no cell beat its baseline on both holdouts',
+      /No cell in the study beat its baseline/.test(sent[0] || ''),
+      '', 'that is the headline result, and it belongs on the message that asks you to trade');
   }
 
   console.log(fails ? `\n${fails} FAILED` : '\nall passed');
