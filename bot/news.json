@@ -20,7 +20,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789500480000,
-      "_kind": null
+      "_kind": null,
+      "why": "Political debate, no immediate market impact"
     },
     {
       "title": "Here’s what investors need to watch for on Wednesday — in addition to a Fed rate hike",
@@ -38,7 +39,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789500360000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Anticipated rate hike creates angst"
     },
     {
       "title": "Dow Jones tests 52,400 support in bearish downtrend: Live levels",
@@ -53,7 +58,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789499887000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US30": "down"
+      },
+      "why": "Bearish downtrend testing support"
     },
     {
       "title": "Nasdaq 100 coiled in tight range near 29,248: Hourly levels",
@@ -68,7 +77,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789499912000,
-      "_kind": null
+      "_kind": null,
+      "why": "Coiled in tight range"
     },
     {
       "title": "Crude Oil WTI surges 22.7% above 200-MA, RSI overbought: Live levels",
@@ -86,7 +96,12 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789499887000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Surges above moving average"
     },
     {
       "title": "Natural Gas tests $3.000 resistance with weak trend: Live levels",
@@ -101,7 +116,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789499887000,
-      "_kind": null
+      "_kind": null,
+      "why": "Tests resistance with weak trend"
     },
     {
       "title": "London Gas Oil surges 5% above 20-SMA, pullback looms: Live levels",
@@ -118,7 +134,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789499887000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Surges above moving average"
     },
     {
       "title": "Silver trapped in $63-$65 range with MACD crossover: Live levels",
@@ -135,7 +155,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789499887000,
-      "_kind": null
+      "_kind": null,
+      "why": "Trapped in range"
     },
     {
       "title": "S&P 500 boxed in 83-point range near key resistance: Live levels",
@@ -150,7 +171,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789499887000,
-      "_kind": null
+      "_kind": null,
+      "why": "Boxed in range near resistance"
     },
     {
       "title": "Brent Oil consolidates at $108.50 in bull flag: Live levels",
@@ -168,7 +190,12 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789499887000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Consolidates in bull flag"
     },
     {
       "title": "Dollar Index tests key resistance at 99.65: Live levels",
@@ -200,7 +227,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789499887000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Bear flag below resistance"
     },
     {
       "title": "Iran war has led to US munitions shortfalls, Pentagon inspector confirms",
@@ -221,7 +252,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789499624000,
-      "_kind": null
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Conflict escalation, supply concerns"
     },
     {
       "title": "AWS says it can't restore service to Bahrain, UAE facilities 6 months after Iran strikes - CNBC",
@@ -241,7 +277,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789499086000
+      "firstAt": 1789499086000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Ongoing conflict, infrastructure damage"
     },
     {
       "title": "Iranian strikes have damaged hundreds of structures at U.S. bases, watchdog says - The Washington Post",
@@ -261,7 +303,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789497978000
+      "firstAt": 1789497978000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Escalating conflict, base damage"
     },
     {
       "title": "UK sanctions on Israel ‘fall far short’ of its obligations, legal experts say - The Guardian",
@@ -281,7 +329,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789496340000
+      "firstAt": 1789496340000,
+      "why": "Legal opinion, no direct market impact"
     },
     {
       "title": "Fed weighs September rate hike as Treasury yields rise - Fox Business",
@@ -1157,19 +1206,19 @@
       "firstAt": 1789481329000
     },
     {
-      "title": "Russia and Ukraine Exchange Strikes Despite Trump's Claim of a Truce - oilprice.com",
+      "title": "Russia and Ukraine Exchange Strikes Despite Trump's Claim of a Truce - Crude Oil Prices Today | OilPrice.com",
       "link": "https://news.google.com/rss/articles/CBMisgFBVV95cUxOZWxzellrV0dRY2ppR3RJTTBwUE5DRTdZdVJUSkRXVHFrUFA4Z3QwYkRTdTRBaXNmdVlWZ3FHYXlBdWJOX3gxdVlKcnNnMnRuZGZzU0MxUm9YdnpubnVNRmt5UTJweUQzTDl2TGRnM3pGdWxrRFR0bmtGY05kOEI5ZFVkZTFFMjdaZ1F4RmFBYVpKS0tRclV5TzRvLTQ1TlZDYVR1bUVyUGhoQ00xcWxRVG9B0gG3AUFVX3lxTE5ubWNjM2NZY3NRRFd6WVZwQmJpVkJMcTRLNERqaFFDRWJKMWsxV1lCTGFRdjBwbERMX2ljV19KUXY1Y2lhbE1rbWgtcWZuX0JHTFF4S25HUFg4T2tGVmhpMW5XWkkyVFV4dk5YQURWU0tEanhIaUl0UmtJc2JLQ0lzWGlkNHhnYmNleW12c0RfZGhRa1UwUVpxWEtUV3R1ZE9iOTM2OWFBbVBIcHI5U3RXMjk3dFdIaw?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMisgFBVV95cUxOZWxzellrV0dRY2ppR3RJTTBwUE5DRTdZdVJUSkRXVHFrUFA4Z3QwYkRTdTRBaXNmdVlWZ3FHYXlBdWJOX3gxdVlKcnNnMnRuZGZzU0MxUm9YdnpubnVNRmt5UTJweUQzTDl2TGRnM3pGdWxrRFR0bmtGY05kOEI5ZFVkZTFFMjdaZ1F4RmFBYVpKS0tRclV5TzRvLTQ1TlZDYVR1bUVyUGhoQ0",
       "at": 1789480800000,
       "inst": [
-        "XAU/USD",
         "USOIL",
-        "UKOIL"
+        "UKOIL",
+        "XAU/USD"
       ],
       "ccy": [
-        "XAU",
-        "OIL"
+        "OIL",
+        "XAU"
       ],
       "sev": 2,
       "rel": 2,
@@ -1545,6 +1594,26 @@
       "firstAt": 1789471140000
     },
     {
+      "title": "Several U.S. military bases, diplomatic buildings have been damaged in Iran war: inspector general report - cbc.ca",
+      "link": "https://news.google.com/rss/articles/CBMidkFVX3lxTE9CZVo3Q014U0N1czIwWGExSVl3UFRtenp3YU8wWDdOOHRMc1ROdXpOVm5jWGJwTXo5czFPZklzWjdkQ3ZhY01SemFXNjYyNy1CUVAzX3ZnRk9nVTNVUmJRZDJMYUo3UE1QMktsMTFfN2I4LUlTVWc?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMidkFVX3lxTE9CZVo3Q014U0N1czIwWGExSVl3UFRtenp3YU8wWDdOOHRMc1ROdXpOVm5jWGJwTXo5czFPZklzWjdkQ3ZhY01SemFXNjYyNy1CUVAzX3ZnRk9nVTNVUmJRZDJMYUo3UE1QMktsMTFfN2I4LUlTVWc?oc=5\" target=\"_blank\">Several U.S. military bases, diplomatic building",
+      "at": 1789473086000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789471260000
+    },
+    {
       "title": "Dollar ticks up as oil prices climb, Fed rate hike chances firm - Yahoo Finance",
       "link": "https://news.google.com/rss/articles/CBMimgFBVV95cUxOZ0RodF9DeGJnLUpsenlibEQ0dkUwOU1MdmM1NWF0SGdkOEp5dF9iY0ZTQWh6V01jUjdPYnhYX2dNTlFpUi1odUtVam4wVnNCUDlqY3NUX2JYa0NGckRxcUNwOE5oMWdPN0Yxb2lGd3pNdS10VDJycnNzNlczNTVpcVZSLWNHNWxNYVlJQ0pSMi0yWGVtNlZTeWZ3?oc=5",
       "source": "Wires (macro)",
@@ -1696,26 +1765,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789471140000
-    },
-    {
-      "title": "Kremlin welcomes Trump's idea of energy truce with Ukraine, calls for sanctions removal - Reuters",
-      "link": "https://news.google.com/rss/articles/CBMiygFBVV95cUxQRUtpMWMtMTdEMzVkQTRQOFZCX3k5MVA0Vnc2bXh5ZlJxeE9NaHdGbkZzckxVakNiWDRQaF9sb2lMZ3luQ1NRWldaNm53RVdvTGpXUkdoclVzZ0dZX2hTZVFjRm1fT2M2MkRiLVBwbm56QlZWdFgxazhDU2lsNl85azRwbGdNcTZPMFdtazdRS0k0NEY3cV9mbFBkdjZFdjFfTzlIdzY3b3BUVWgxX3hmbzYxZ3U2STN6ZXNvSU54RnR3QmZRM1RjM25B?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiygFBVV95cUxQRUtpMWMtMTdEMzVkQTRQOFZCX3k5MVA0Vnc2bXh5ZlJxeE9NaHdGbkZzckxVakNiWDRQaF9sb2lMZ3luQ1NRWldaNm53RVdvTGpXUkdoclVzZ0dZX2hTZVFjRm1fT2M2MkRiLVBwbm56QlZWdFgxazhDU2lsNl85azRwbGdNcTZPMFdtazdRS0k0NEY3cV9mbFBkdjZFdjFfTzlIdzY3b3BUVW",
-      "at": 1789471490000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789471140000
     }
   ],
   "sources": [
@@ -1738,10 +1787,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-15T19:43:52.173Z",
-  "updatedAt": "2026-09-15T19:43:52.173Z"
+  "headlinesAt": "2026-09-15T19:45:41.025Z",
+  "updatedAt": "2026-09-15T19:45:41.025Z"
 }
