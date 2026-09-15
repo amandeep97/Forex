@@ -49,7 +49,7 @@ const PATH = 'bot/liquidity.json';
 // A version stamp fixes it at the root: levels computed by a different method
 // are not stale, they are WRONG, and no amount of waiting makes them right. On
 // restore they are dropped and rebuilt.
-const LEVEL_METHOD = 3;
+const LEVEL_METHOD = 4;
 
 // Levels are yesterday's and last week's, so an hour is generous.
 const LEVELS_TTL = 60 * 60e3;
@@ -82,6 +82,18 @@ const NEAR_ATR_DAILY = 2.0;
 // scan band: a request is worth spending well before a level is worth
 // mentioning on screen.
 const APPROACH_ATR = 0.5;
+
+// How far back the PLAN looks for its sweep, in two-minute bars.
+//
+// The hunt list uses sixty bars — two hours — because a hunt is news and stale
+// news is noise. A plan is not news: it is a resting order, and it is good for
+// as long as the level holds. Two hundred and forty bars is eight hours, which
+// is what tradePlan's own expiry allows.
+//
+// These two numbers have to agree. With the plan looking back two hours and
+// claiming eight, an armed plan would vanish at the two-hour mark for no reason
+// visible on screen — it would simply stop being found.
+const PLAN_WINDOW = 240;
 
 // A setup is announced once. Re-announcing the same sweep every two minutes
 // while it remains valid would train you to ignore the alert.
@@ -222,6 +234,16 @@ class LiquidityScanner {
     // survives depends on a ranking the reader cannot see.
     const states = this.lib.levelStates(m2, cached.levels, cached.atr, { near: APPROACH_ATR });
 
+    // The plan. Unlike the setup, this is true for hours rather than six
+    // minutes — a limit resting at the swept level, a stop beyond the extreme,
+    // and a target at the opposite side's liquidity. The setup stays too,
+    // because "the break confirmed four minutes ago" is still worth knowing;
+    // it just stopped being the only thing on offer.
+    const topSweep = this.lib.findSweep(m2, cached.levels, { within: PLAN_WINDOW });
+    const plan = topSweep
+      ? this.lib.tradePlan(m2, topSweep, cached.levels, cached.atr)
+      : null;
+
     const rec = {
       sym: inst.sym,
       cls: inst.cls,
@@ -240,6 +262,13 @@ class LiquidityScanner {
       // there are up to three a side and a column can only hold one, so the
       // one price is closest to is the one that matters.
       levels: this._columns(states),
+      plan: plan ? {
+        dir: plan.dir, state: plan.state, why: plan.why,
+        entry: plan.entry, stop: plan.stop, risk: plan.risk,
+        target: plan.target, targetLabel: plan.targetLabel, rr: plan.rr,
+        level: { kind: plan.level.kind, price: plan.level.price, label: plan.level.label },
+        sweptAt: plan.sweptAt,
+      } : null,
       // The raw level set and its scale, so a restart does not have to re-fetch
       // D, W and H4 for every instrument before it can say anything.
       lv: cached.levels.map(l => [l.kind, l.price, l.side, l.label]),
@@ -321,24 +350,34 @@ class LiquidityScanner {
     };
   }
 
+  // Announce the PLAN, not the six-minute setup.
+  //
+  // The old alert fired only on a confirmed setup, which is live for three
+  // two-minute bars. By the time a phone buzzes and is picked up, the window
+  // has closed — the live file showed zero tradeable rows every single time it
+  // was looked at. An armed plan is true for hours, so the message is still
+  // worth acting on when it is read.
   async _announce(rec) {
-    const s = rec.setup;
-    if (!s || !s.ready || !this.telegram) return;
-    const key = `${rec.sym}|${s.level.kind}|${s.level.price}|${s.dir}`;
+    const p = rec.plan;
+    if (!p || p.state !== 'armed' || !this.telegram) return;
+    const key = `${rec.sym}|${p.level.kind}|${p.level.price}|${p.dir}`;
     const now = Date.now();
     for (const [k, t] of this.announced) if (now - t > ANNOUNCE_TTL) this.announced.delete(k);
     if (this.announced.has(key)) return;
     this.announced.set(key, now);
 
     const dp = Math.abs(rec.price) < 20 ? 5 : 2;
+    const side = p.dir === 'long' ? 'BUY' : 'SELL';
     await this.telegram.send(
-      `<b>SWEEP ${s.dir.toUpperCase()} — ${rec.sym}</b>\n`
-      + `${s.level.label} at ${s.level.price.toFixed(dp)} swept and reclaimed\n`
-      + `${s.confirm.type} ${s.confirm.direction} on M2\n\n`
-      + `entry <b>${s.entry.toFixed(dp)}</b>\n`
-      + `stop <b>${s.stop.toFixed(dp)}</b>\n`
-      + `risk ${s.risk.toFixed(dp)}\n\n`
-      + `<i>Not a measured edge. This model has never been tested here.</i>`
+      `<b>${side} LIMIT — ${rec.sym}</b>\n`
+      + `${p.level.label} at ${p.level.price.toFixed(dp)} was swept and reclaimed\n\n`
+      + `entry <b>${p.entry.toFixed(dp)}</b> (limit, on the retest)\n`
+      + `stop <b>${p.stop.toFixed(dp)}</b>\n`
+      + (p.target != null
+        ? `target <b>${p.target.toFixed(dp)}</b> — ${p.targetLabel}${p.rr ? ` · ${p.rr}R` : ''}\n`
+        : `no opposite level to aim at\n`)
+      + `\n<i>The order rests until price comes back. It dies if price closes `
+      + `beyond ${p.stop.toFixed(dp)}. Not a measured edge — this model has never been tested here.</i>`
     ).catch(e => this.log(`Liquidity push: ${e.message}`));
   }
 
@@ -350,6 +389,7 @@ class LiquidityScanner {
         // file every two minutes on any instrument merely drifting near a
         // level, which is most of them on a quiet day.
         r.near ? Math.round(r.near.atrPct * 10) : null,
+        r.plan ? `${r.plan.state}:${r.plan.dir}:${r.plan.entry}` : null,
         // A column changing state is the whole point of the table, so the
         // signature has to see it or the file never gets rewritten.
         Object.entries(r.levels || {}).map(([k, v]) => `${k}:${v.state}`).sort().join(',')])
@@ -448,4 +488,4 @@ class LiquidityScanner {
 }
 
 module.exports = { LiquidityScanner, PATH, NEAR_ATR, NEAR_ATR_DAILY, APPROACH_ATR,
-  LEVELS_TTL, SCAN_TTL, LEVEL_JOBS, LEVEL_METHOD, atrOf };
+  LEVELS_TTL, SCAN_TTL, LEVEL_JOBS, LEVEL_METHOD, PLAN_WINDOW, atrOf };

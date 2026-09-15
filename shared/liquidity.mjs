@@ -434,6 +434,133 @@ export function confirmation(cs, sweep, { maxBars = 30 } = {}) {
 }
 
 /**
+ * A plan that survives being looked at an hour later.
+ *
+ * ── Why the setup was useless ───────────────────────────────────────────────
+ *
+ * sweepSetup emits a market entry at the close of the confirming bar, valid for
+ * three two-minute bars. Six minutes. That is an entry for a machine watching
+ * continuously, and the one reader this screen has is a person who checks a
+ * phone between other things. Measured against the live file: over days of
+ * running, the number of rows that were ever tradeable when looked at was zero.
+ * Not zero because the market was quiet — zero by construction.
+ *
+ * ── What a plan is instead ──────────────────────────────────────────────────
+ *
+ * After a high is swept, price is back BELOW the level. The trade is not to
+ * chase the break downward; it is a sell limit resting AT the level, filled if
+ * price comes back to retest it. That order sits there for hours. It fills or
+ * it does not, and either answer is fine.
+ *
+ * So a plan has four parts and no expiry measured in minutes:
+ *
+ *   entry   the level itself, as a limit
+ *   stop    beyond the swept extreme, where the idea is proven wrong
+ *   target  the nearest opposite-side liquidity, which is where the move is
+ *           drawn to — a sweep of the buy-side is a run at the sell-side
+ *   dead    price closing beyond the extreme: the sweep failed and became a
+ *           breakout, so the reason for the trade is gone
+ *
+ * ── Three states, all of them readable at a glance ──────────────────────────
+ *
+ *   ARMED      price has not returned to the level. The order would rest.
+ *   TRIGGERED  price has touched the level since the sweep. Filled.
+ *   DEAD       price closed beyond the extreme, or the plan aged out.
+ *
+ * ARMED is the state that did not exist before, and it is the one that makes
+ * this usable. It is true for hours, which is the point.
+ *
+ * @param {Candle[]} cs execution series, newest last
+ * @param {Sweep} sweep
+ * @param {Level[]} levels every level, so the opposite side can be found
+ * @param {number} atr the instrument's own scale
+ * The `sweep` must have been found over a window at least as long as
+ * `maxAgeMs`. Pass one found over two hours and claim eight and the plan simply
+ * stops being produced at the two-hour mark, with nothing on screen to say why.
+ * The scanner's PLAN_WINDOW exists to keep those two numbers together.
+ *
+ * `now` is nullable on purpose: null means "as of the last candle", which is
+ * the right default everywhere except a caller that genuinely wants the clock.
+ *
+ * @param {{ pad?:number, maxAgeMs?:number, now?:number|null }} [opts]
+ */
+export function tradePlan(cs, sweep, levels, atr,
+  { pad = 0.15, maxAgeMs = 8 * 3600e3, now: nowOpt = null } = {}) {
+  if (!cs?.length || !sweep) return null;
+  // Age is measured against the DATA, not the wall clock, unless a caller says
+  // otherwise. The two agree live, where the last two-minute bar is minutes
+  // old. They disagree everywhere else: a replay over last March would call
+  // every plan expired the moment it was built, and so would any test written
+  // with fixed timestamps. Measuring a plan's age against a clock that has
+  // nothing to do with its candles is how a function passes live and produces
+  // nonsense in every other context.
+  const now = nowOpt ?? (tsOf(cs[cs.length - 1]) ?? Date.now());
+  const long = sweep.dir === 'long';
+  const price = cs[cs.length - 1].c;
+  const sweptAt = tsOf(cs[sweep.at]);
+
+  // Beyond the extreme, with a cushion. Price already proved it can reach the
+  // extreme, so a stop at it is taken by a retest that changes nothing.
+  const cushion = (atr > 0 ? atr : Math.abs(price) * 0.001) * pad;
+  const stop = long ? sweep.extreme - cushion : sweep.extreme + cushion;
+  const entry = sweep.level.price;
+
+  // The draw: the nearest level on the OTHER side of price. A sweep of the
+  // buy-side below is a run at the sell-side above, and naming it turns a stop
+  // into a trade you can size.
+  const wantHigh = long;
+  const opposite = (levels || [])
+    .filter(l => (wantHigh ? l.side === 'high' && l.price > entry : l.side === 'low' && l.price < entry))
+    .sort((a, b) => (wantHigh ? a.price - b.price : b.price - a.price))[0] || null;
+
+  const risk = Math.abs(entry - stop);
+  const reward = opposite ? Math.abs(opposite.price - entry) : null;
+
+  // Has price come back to the level since the sweep? That is the fill.
+  //
+  // The check cannot start at the sweep bar. That bar is beyond the level by
+  // definition — it is the bar that did the sweeping — so counting it as a
+  // touch marks every plan filled the instant it is created, and ARMED never
+  // appears. Price has to LEAVE the level first, and the search for a return
+  // starts from there.
+  let reclaimedAt = -1;
+  for (let i = sweep.at + 1; i < cs.length; i++) {
+    if (long ? cs[i].c > entry : cs[i].c < entry) { reclaimedAt = i; break; }
+  }
+
+  let touched = false, invalid = false;
+  for (let i = sweep.at; i < cs.length; i++) {
+    // Closing beyond the extreme means the sweep was a breakout after all.
+    if (long ? cs[i].c < stop : cs[i].c > stop) invalid = true;
+    // A fill only counts once price has come back off the level.
+    if (reclaimedAt >= 0 && i > reclaimedAt
+      && (long ? cs[i].l <= entry : cs[i].h >= entry)) touched = true;
+  }
+  const aged = sweptAt != null && now - sweptAt > maxAgeMs;
+
+  const state = invalid ? 'dead' : aged ? 'dead' : touched ? 'triggered' : 'armed';
+
+  return {
+    dir: sweep.dir,
+    state,
+    why: invalid ? 'price closed beyond the swept extreme — it was a breakout'
+      : aged ? 'older than the plan is good for'
+      : touched ? 'price returned to the level'
+      : 'waiting for price to come back to the level',
+    entry, stop, risk,
+    target: opposite ? opposite.price : null,
+    targetLabel: opposite ? opposite.label : null,
+    reward,
+    // Null rather than a made-up number when there is no level to aim at. An
+    // invented target is the fastest way to make a bad trade look acceptable.
+    rr: reward && risk > 0 ? +(reward / risk).toFixed(2) : null,
+    level: sweep.level,
+    extreme: sweep.extreme,
+    sweptAt,
+  };
+}
+
+/**
  * The whole setup, or null.
  *
  * Returns the pieces a ticket needs and nothing else: which way, where to get

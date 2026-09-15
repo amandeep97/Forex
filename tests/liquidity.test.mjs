@@ -20,7 +20,7 @@
 //   about a liquidity event that had not occurred yet.
 import {
   keyLevels, findSweep, confirmation, sweepSetup, approach, levelStates, tsOf, lastClosed,
-  H4_SWINGS, LEVEL_RANK, RECLAIM_ATR,
+  tradePlan, H4_SWINGS, LEVEL_RANK, RECLAIM_ATR,
 } from '../shared/liquidity.mjs';
 import { detectBreaks } from '../shared/structure.mjs';
 
@@ -575,6 +575,95 @@ function detectableEarlier(cs, sweep, idx) {
   check('and with no scale to measure against, the old strict test stands',
     levelStates(barely, levels, 0).find(x => x.kind === 'PDH').state === 'through',
     'inventing a margin without an ATR would be picking a number out of the air');
+}
+
+// ── The plan, which is the whole point of the screen ───────────────────────
+//
+// The setup it replaces was a market entry valid for three two-minute bars. On
+// the live file, the number of rows that were ever tradeable when looked at was
+// zero — not because the market was quiet, but by construction. A plan is a
+// limit resting at the level, and it is true for hours.
+{
+  const LEVELS = [
+    { kind:'PDH', price:110, side:'high', label:"yesterday's high" },
+    { kind:'PDL', price:100, side:'low',  label:"yesterday's low" },
+    { kind:'PWH', price:120, side:'high', label:"last week's high" },
+  ];
+
+  // Swept the high at 110, now well below it and not back yet.
+  const armed = [];
+  let p = 104;
+  p = leg(armed, 8, 1, p);          // up through 110
+  leg(armed, 12, -0.8, p);          // and away, without returning
+  const sweep = findSweep(armed, LEVELS);
+  const plan = tradePlan(armed, sweep, LEVELS, 2);
+
+  check('a swept level with price away from it is ARMED, not expired',
+    plan?.state === 'armed', `${plan?.state} — ${plan?.why}`,
+    'this is the state that did not exist, and the reason the screen always said zero');
+
+  check('the entry is the level itself, as a limit',
+    plan.entry === 110, String(plan.entry),
+    'a market order at the break is a machine\'s entry; the retest is a person\'s');
+
+  check('the stop sits beyond the swept extreme',
+    plan.stop > plan.extreme, `${plan.stop.toFixed(2)} vs extreme ${plan.extreme.toFixed(2)}`,
+    'price already proved it can reach the extreme');
+
+  check('a swept HIGH plans a sell',
+    plan.dir === 'short', plan.dir);
+
+  check('the target is the nearest opposite-side liquidity',
+    plan.target === 100, `${plan.target} (${plan.targetLabel})`,
+    'a sweep of the sell-side above is a run at the buy-side below');
+
+  check('and the reward-to-risk is reported, so the trade can be judged before it is taken',
+    plan.rr > 0, `${plan.rr}R`);
+
+  // Price drifts for a long time without returning: still armed. This is the
+  // claim the whole change rests on — a plan is readable hours later.
+  const waited = [...armed];
+  let w = waited[waited.length - 1].c;
+  leg(waited, 90, -0.02, w);        // three hours of two-minute bars, going nowhere
+  // The sweep has to be found over a window as long as the plan claims to live,
+  // or it silently stops being produced. The scanner uses PLAN_WINDOW for
+  // exactly this; here the same width is passed explicitly.
+  check('and it is STILL armed three hours later',
+    tradePlan(waited, findSweep(waited, LEVELS, { within: 240 }), LEVELS, 2)?.state === 'armed',
+    `${waited.length} bars after the sweep`,
+    'the old setup expired in six minutes, which is why the screen always said zero');
+
+  // Price comes back to the level without closing beyond the extreme.
+  const touched = [...armed];
+  let q = touched[touched.length - 1].c;
+  leg(touched, 9, 0.95, q);         // back up to ~110, not through the stop
+  const t2 = tradePlan(touched, findSweep(armed, LEVELS), LEVELS, 2);
+  check('once price returns to the level the plan is TRIGGERED',
+    t2.state === 'triggered', `${t2.state} — ${t2.why}`,
+    'a limit that filled is not still waiting');
+
+  // Price closes beyond the extreme: the sweep was a breakout after all.
+  const broke = [];
+  let r = 104;
+  r = leg(broke, 8, 1, r);
+  r = leg(broke, 4, -0.5, r);
+  leg(broke, 20, 1.2, r);           // straight back up through the extreme
+  const b = tradePlan(broke, findSweep(broke, LEVELS) || sweep, LEVELS, 2);
+  check('a plan dies when price closes beyond the swept extreme',
+    b.state === 'dead', `${b.state} — ${b.why}`,
+    'the reason for the trade is gone; leaving it armed would be a resting order with no thesis');
+
+  check('an old plan dies on age rather than resting forever',
+    tradePlan(armed, sweep, LEVELS, 2, { now: Date.now() + 99 * 3600e3 }).state === 'dead',
+    'a limit from two days ago is not a plan, it is a forgotten order');
+
+  check('with no opposite level there is no target, and none is invented',
+    tradePlan(armed, sweep, [LEVELS[0]], 2).target === null
+    && tradePlan(armed, sweep, [LEVELS[0]], 2).rr === null,
+    'a made-up target is the fastest way to make a bad trade look acceptable');
+
+  check('and no sweep means no plan',
+    tradePlan(armed, null, LEVELS, 2) === null && tradePlan([], sweep, LEVELS, 2) === null);
 }
 
 console.log(fails ? `\n${fails} FAILED` : '\nall passed');
