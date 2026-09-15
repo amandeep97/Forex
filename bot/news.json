@@ -940,7 +940,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789436235000,
-      "_kind": null
+      "_kind": null,
+      "why": "Corporate IPO news, no clear FX direction"
     },
     {
       "title": "Kremlin welcomes Trump's call on Ukraine to halt strikes on diesel facilities - Red Lake Nation News",
@@ -961,7 +962,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789434900000,
-      "_kind": null
+      "_kind": null,
+      "why": "Geopolitical headline, direction unclear"
     },
     {
       "title": "Ukraine war briefing: No energy ceasefire until Russia stops, Zelenskyy confirms after Trump claim - The Guardian",
@@ -981,7 +983,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789432570000
+      "firstAt": 1789432570000,
+      "why": "War briefing, no clear market direction"
     },
     {
       "title": "US Fed rate hike looms, impacting NSE IPO and global markets; 10-year yields near 5% - The Economic Times",
@@ -1004,7 +1007,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789431443000
+      "firstAt": 1789431443000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Fed hike looms, yields rise"
     },
     {
       "title": "Oil prices rise as Houthis attack Saudi Arabia, Hormuz talks delayed",
@@ -1023,7 +1032,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789432950000
+      "firstAt": 1789432950000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Supply concerns push oil prices up"
     },
     {
       "title": "Global AI stocks fall as industry chiefs call for slowing development",
@@ -1037,7 +1051,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789433325000
+      "firstAt": 1789433325000,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "AI stocks fall on development concerns"
     },
     {
       "title": "Russia resupplies military bases in Syria for first time under new deal",
@@ -1057,7 +1075,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789433027000
+      "firstAt": 1789433027000,
+      "why": "Military resupply, no clear market impact"
     },
     {
       "title": "Oil prices rise as Saudi pipeline outage, fresh attacks raise supply concerns",
@@ -1076,7 +1095,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789432950000
+      "firstAt": 1789432950000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Pipeline outage raises oil supply concerns"
     },
     {
       "title": "House Dems face Trump tariff dilemma as major Russia sanctions bill heads to floor - wfmd.com",
@@ -1097,7 +1121,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789432570000
+      "firstAt": 1789432570000,
+      "why": "Sanctions bill, direction unclear"
     },
     {
       "title": "Gold holds losses as higher oil stokes September rate hike bets - The Business Times",
@@ -1117,7 +1142,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789432500000
+      "firstAt": 1789432500000,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "up"
+      },
+      "why": "Gold holds losses, oil stokes hike bets"
     },
     {
       "title": "EU extends Russia sanction deadline - France 24",
@@ -1137,7 +1167,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789432275000
+      "firstAt": 1789432275000,
+      "why": "Sanction deadline extension, no clear direction"
     },
     {
       "title": "Fed Rate-Hike Odds Top 90% as 10-Year Treasury Yield Touches 5% - Seoul Economic Daily",
@@ -1160,7 +1191,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789429790000
+      "firstAt": 1789429790000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "High hike odds, yields touch 5%"
     },
     {
       "title": "U.S. stock futures flat as markets parse slowing AI development, Fed anticipation",
@@ -1182,7 +1219,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789430923000
+      "firstAt": 1789430923000,
+      "why": "Futures flat, markets parsing news"
     },
     {
       "title": "US 10-Year Treasury Yield Touches 5% Intraday; Rate Hike Expectations Surpass 90% - finance.biggo.com",
@@ -1205,7 +1243,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789430913000
+      "firstAt": 1789430913000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Yields touch 5%, hike odds high"
     },
     {
       "title": "‘My total balance should be $20 million’: I invested $1.1 million in a crypto platform. Have I lost it all?",
@@ -1222,7 +1266,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789430460000
+      "firstAt": 1789430460000,
+      "why": "Individual loss story, no market direction"
     },
     {
       "title": "Iran war live: CENTCOM disputes IRGC claim supertanker struck by Hormuz nav",
@@ -2670,7 +2715,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-15T01:48:06.293Z",
-  "headlinesAt": "2026-09-15T01:48:06.293Z",
-  "updatedAt": "2026-09-15T01:48:06.293Z"
+  "calendarAt": "2026-09-15T01:50:08.285Z",
+  "headlinesAt": "2026-09-15T01:50:08.285Z",
+  "updatedAt": "2026-09-15T01:50:08.285Z"
 }
