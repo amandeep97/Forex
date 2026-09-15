@@ -816,7 +816,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789486231000,
-      "_kind": null
+      "_kind": null,
+      "why": "Turkey news irrelevant to US index"
     },
     {
       "title": "U.S. stocks fall as 10-year yield hits highest since 2007, oil prices resume surge",
@@ -834,7 +835,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789486211000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "US500": "down"
+      },
+      "why": "Yields up, oil surges, stocks fall"
     },
     {
       "title": "Denmark stocks lower at close of trade; OMX Copenhagen 20 down 0.84%",
@@ -849,7 +855,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789486204000,
-      "_kind": null
+      "_kind": null,
+      "why": "Denmark news irrelevant to US index"
     },
     {
       "title": "MGIC Investment, Radian Group stocks falls after FHFA director’s PMI comments",
@@ -864,7 +871,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789485598000,
-      "_kind": null
+      "_kind": null,
+      "why": "Specific stocks, unclear index impact"
     },
     {
       "title": "Ethereum Price Prediction: How High Will Ethereum Go in 2026?",
@@ -879,7 +887,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789485536000,
-      "_kind": null
+      "_kind": null,
+      "why": "Question implies uncertainty, no clear direction"
     },
     {
       "title": "How many rate hikes are on tap? Wall Street hopes to connect the Fed’s ‘dots.’",
@@ -897,7 +906,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789485360000,
-      "_kind": null
+      "_kind": null,
+      "why": "Speculative on future rate hikes"
     },
     {
       "title": "Russia: Trump's Ukraine ceasefire proposal is 'good idea' - dw.com",
@@ -918,7 +928,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789483721000,
-      "_kind": null
+      "_kind": null,
+      "why": "Ceasefire proposal, outcome uncertain"
     },
     {
       "title": "Morocco stocks lower at close of trade; Moroccan All Shares down 1.14%",
@@ -933,7 +944,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789485003000,
-      "_kind": null
+      "_kind": null,
+      "why": "Morocco news irrelevant to US index"
     },
     {
       "title": "Iranian strikes have damaged hundreds of structures at U.S. bases, watchdog says - The Washington Post",
@@ -954,7 +966,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789484941000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Escalation boosts risk assets and oil"
     },
     {
       "title": "Better Pricing for Ride-Hailing Worldwide: inDrive CEO & Founder Arsen Tomsky, Live at Nasdaq",
@@ -968,7 +986,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789484668000
+      "firstAt": 1789484668000,
+      "why": "Promotional event, no market direction"
     },
     {
       "title": "British woman abducted in Malawi, police say",
@@ -983,7 +1002,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789484607000
+      "firstAt": 1789484607000,
+      "why": "Crime news, no macro impact"
     },
     {
       "title": "Dollar Gains as Fed Rate Hike Looms Amid Soaring Oil Prices - Devdiscourse",
@@ -1001,7 +1021,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789483018000
+      "firstAt": 1789483018000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil prices soaring explicitly stated"
     },
     {
       "title": "Carney visits Europe: Can Canada seek refuge with the EU amid US trade war?",
@@ -1020,7 +1044,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789483782000
+      "firstAt": 1789483782000,
+      "why": "Trade war talk, direction unclear"
     },
     {
       "title": "Russia and Ukraine launch new energy attacks despite Trump’s ceasefire claim - NBC News",
@@ -1040,7 +1065,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789483721000
+      "firstAt": 1789483721000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Energy attacks boost oil and gold"
     },
     {
       "title": "EU Delays Decision on Extending Russia Sanctions after Member States Fail to Agree - Hungarian Conservative",
@@ -1060,7 +1091,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789482000000
+      "firstAt": 1789482000000,
+      "why": "Sanctions delay, mixed signals"
     },
     {
       "title": "The 10 most overvalued housing markets in America",
@@ -2508,7 +2540,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-15T15:36:51.773Z",
-  "headlinesAt": "2026-09-15T15:36:51.773Z",
-  "updatedAt": "2026-09-15T15:36:51.773Z"
+  "calendarAt": "2026-09-15T15:38:23.293Z",
+  "headlinesAt": "2026-09-15T15:38:23.293Z",
+  "updatedAt": "2026-09-15T15:38:23.293Z"
 }
