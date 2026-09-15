@@ -813,6 +813,25 @@
   ],
   "headlines": [
     {
+      "title": "Saudi Arabia may be just days away from not being able to export much oil",
+      "link": "https://www.marketwatch.com/story/saudi-arabia-may-be-just-days-away-from-not-being-able-to-export-much-oil-acfefd0c?mod=mw_rss_topstories",
+      "source": "MarketWatch",
+      "desc": "The oil exporting kingdom is now dealing with the shutdown of its East-West pipeline. Energy prices ‘are only going to rise on the back of this.’",
+      "at": 1789477380000,
+      "inst": [
+        "USOIL"
+      ],
+      "ccy": [
+        "OIL",
+        "USD"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1789476304000,
+      "_kind": null
+    },
+    {
       "title": "‘There might be a silver lining’: My friend’s wife died at 60 after a high-earning career. Can he claim her Social Security?",
       "link": "https://www.marketwatch.com/story/there-might-be-a-silver-lining-my-friends-wife-died-at-60-after-a-high-earning-career-can-he-claim-her-social-security-eb95210a?mod=mw_rss_topstories",
       "source": "MarketWatch",
@@ -828,11 +847,10 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789477200000,
-      "_kind": null,
-      "why": "Personal story, no market impact"
+      "_kind": null
     },
     {
-      "title": "Wells Fargo just cut its S&P 500 price target. Will others follow?",
+      "title": "Wells Fargo just lowered its S&P 500 year-end price target. Will others follow?",
       "link": "https://www.marketwatch.com/story/wells-fargo-just-cuts-its-s-p-500-price-target-will-others-follow-e32f968a?mod=mw_rss_topstories",
       "source": "MarketWatch",
       "desc": "In what may be a first since the early days of the war between the U.S. and Iran, a Wall Street firm is lowering rather than raising its S&P 500 year-end target.",
@@ -851,11 +869,7 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789476143000,
-      "_kind": null,
-      "dir": {
-        "US500": "down"
-      },
-      "why": "Lower S&P target bearish for stocks"
+      "_kind": null
     },
     {
       "title": "FTSE 100 today: Stocks fall on weak jobs data, U.S.-Iran rift lifts oil",
@@ -873,38 +887,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789476869000,
-      "_kind": null,
-      "dir": {
-        "USOIL": "up",
-        "US500": "down"
-      },
-      "why": "Oil up, stocks down on jobs"
-    },
-    {
-      "title": "U.S. seizes $61 million in crypto from Iranian oil sales on Binance",
-      "link": "https://finance.yahoo.com/markets/crypto/articles/u-seizes-61-million-crypto-125350183.html",
-      "source": "Yahoo Finance",
-      "at": 1789476830000,
-      "inst": [
-        "USOIL",
-        "BTC/USDT",
-        "XAU/USD",
-        "UKOIL"
-      ],
-      "ccy": [
-        "OIL",
-        "BTC",
-        "XAU"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789476830000,
-      "_kind": null,
-      "dir": {
-        "BTC/USDT": "down"
-      },
-      "why": "Crypto seizure negative for BTC"
+      "_kind": null
     },
     {
       "title": "No energy ceasefire between Ukraine and Russia yet - Yahoo",
@@ -925,36 +908,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789476267000,
-      "_kind": "war-end",
-      "dir": {
-        "USOIL": "up",
-        "UKOIL": "up"
-      },
-      "why": "No ceasefire implies higher oil"
-    },
-    {
-      "title": "Stock Market Today: Dow Falls As Yields, Oil Prices Rise Ahead Of Fed Meeting; Nvidia Set To Rebound (Live Coverage)",
-      "link": "https://www.investors.com/market-trend/stock-market-today/dow-jones-sp500-nasdaq-treasury-yields-oil-prices-nvidia-stock/?src=A00220&yptr=yahoo",
-      "source": "Yahoo Finance",
-      "at": 1789476738000,
-      "inst": [
-        "USOIL",
-        "US30"
-      ],
-      "ccy": [
-        "USD",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789475400000,
-      "_kind": null,
-      "dir": {
-        "USOIL": "up",
-        "US30": "down"
-      },
-      "why": "Oil rises, Dow falls"
+      "_kind": "war-end"
     },
     {
       "title": "An AI bubble is no longer Wall Street’s biggest fear. This market risk just took its place.",
@@ -970,11 +924,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789476660000,
-      "_kind": null,
-      "dir": {
-        "US500": "down"
-      },
-      "why": "Yield risk fears bearish for stocks"
+      "_kind": null
     },
     {
       "title": "Gold slips to five-week low below Rs 1.50 lakh as Fed rate cut hopes weaken - Moneycontrol.com",
@@ -993,32 +943,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789476574000,
-      "_kind": null,
-      "dir": {
-        "XAU/USD": "down"
-      },
-      "why": "Gold slips on weak Fed hopes"
-    },
-    {
-      "title": "Cathie Wood Dumps $60 Million In Crypto Stock Ahead Of Clarity Act Vote",
-      "link": "https://www.investors.com/news/cathie-wood-ark-invest-crypto-stocks-coinbase-bullish-circle-bitcoin-etf-clarity-act-vote/?src=A00220&yptr=yahoo",
-      "source": "Yahoo Finance",
-      "at": 1789476408000,
-      "inst": [
-        "BTC/USDT"
-      ],
-      "ccy": [
-        "BTC"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789476408000,
-      "_kind": null,
-      "dir": {
-        "BTC/USDT": "down"
-      },
-      "why": "Cathie Wood selling crypto stocks"
+      "_kind": null
     },
     {
       "title": "Saudi Arabia stocks lower at close of trade; Tadawul All Share down 0.89%",
@@ -1031,10 +956,9 @@
       "ccy": [],
       "sev": 1,
       "rel": 2,
-      "srcs": 1,
+      "srcs": 2,
       "firstAt": 1789476304000,
-      "_kind": null,
-      "why": "Saudi stocks irrelevant to US500"
+      "_kind": null
     },
     {
       "title": "Boomers and Retirees Can Load IRAs With 4 Quality Ultra-High-Yield Dividend Giants (One Yields 12.3%)",
@@ -1068,12 +992,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789476267000,
-      "_kind": null,
-      "dir": {
-        "USOIL": "up",
-        "UKOIL": "up"
-      },
-      "why": "Refinery strike boosts oil prices"
+      "_kind": null
     },
     {
       "title": "Health Care Roundup: Market Talk",
@@ -1085,7 +1004,7 @@
       "sev": 1,
       "rel": 1,
       "srcs": 1,
-      "firstAt": 1789476240000,
+      "firstAt": 1789475880000,
       "_kind": null
     },
     {
@@ -1104,12 +1023,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789476175000,
-      "_kind": null,
-      "dir": {
-        "USOIL": "down",
-        "UKOIL": "down"
-      },
-      "why": "Large crude purchase increases supply"
+      "_kind": null
     },
     {
       "title": "HIVE Digital subsidiary BUZZ HPC names capital-markets veteran to board",
@@ -1137,11 +1051,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789476092000,
-      "_kind": null,
-      "dir": {
-        "USOIL": "up"
-      },
-      "why": "Low SPR implies tighter supply"
+      "_kind": null
     },
     {
       "title": "Loonie slips as oil surge fuels rate worries ahead of Fed decision",
@@ -1161,12 +1071,35 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789476011000,
-      "_kind": null,
-      "dir": {
-        "USD/CAD": "up",
-        "USOIL": "up"
-      },
-      "why": "Loonie slips, oil surges"
+      "_kind": null
+    },
+    {
+      "title": "Energy & Utilities Roundup: Market Talk",
+      "link": "https://www.wsj.com/business/energy-utilities-roundup-market-talk-471af7da?siteid=yhoof2&yptr=yahoo",
+      "source": "Yahoo Finance",
+      "at": 1789475880000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 1,
+      "srcs": 1,
+      "firstAt": 1789475880000,
+      "_kind": null
+    },
+    {
+      "title": "Anthropic moving forward with $2 trillion IPO on Nasdaq",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/anthropic-moving-forward-2-trillion-123756375.html",
+      "source": "Yahoo Finance",
+      "at": 1789475876000,
+      "inst": [
+        "US100"
+      ],
+      "ccy": [],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789475876000,
+      "_kind": null
     },
     {
       "title": "The ‘Magnificent Seven’ has its mojo back. It’s on track to reach new highs.",
@@ -1179,8 +1112,7 @@
       "sev": 1,
       "rel": 1,
       "srcs": 1,
-      "firstAt": 1789475760000,
-      "_kind": null
+      "firstAt": 1789475760000
     },
     {
       "title": "Canada wholesale trade for the month of July 0.3% versus -0.5% estimate",
@@ -1197,11 +1129,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789475678000,
-      "dir": {
-        "USD/CAD": "down"
-      },
-      "why": "Strong trade data bullish CAD"
+      "firstAt": 1789475678000
     },
     {
       "title": "September US Empire Fed manufacturing +7.6 vs +15.0 expected",
@@ -1244,7 +1172,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789475400000
+      "firstAt": 1789474186000
     },
     {
       "title": "Dollar ticks up as oil prices climb, Fed rate hike chances firm - The Business Times",
@@ -1338,6 +1266,24 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789474380000
+    },
+    {
+      "title": "Stock Market Today: Dow Falls As Yields, Oil Prices Rise Ahead Of Fed Meeting; Nvidia Set To Rebound (Live Coverage)",
+      "link": "https://www.investors.com/market-trend/stock-market-today/dow-jones-sp500-nasdaq-treasury-yields-oil-prices-nvidia-stock/?src=A00220&yptr=yahoo",
+      "source": "Yahoo Finance",
+      "at": 1789474186000,
+      "inst": [
+        "USOIL",
+        "US30"
+      ],
+      "ccy": [
+        "USD",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1789474186000
     },
     {
       "title": "Oil prices climb as attacks, pipeline outage deepen Saudi supply concerns",
@@ -1936,19 +1882,6 @@
       "firstAt": 1789470673000
     },
     {
-      "title": "Factory robots long posed a safety threat to human workers. One company says it has solved that problem.",
-      "link": "https://www.marketwatch.com/story/factory-robots-long-posed-a-safety-threat-to-human-workers-one-company-says-its-solved-that-problem-2db84297?mod=mw_rss_topstories",
-      "source": "MarketWatch",
-      "desc": "Ahead of an expected public-market debut later this year, Agility Robotics says it has cracked the code and devised humanoids that can work safely alongside real humans.",
-      "at": 1789470120000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1789470120000
-    },
-    {
       "title": "US Targets Russian Bank For Helping Iran Evade Sanctions - RTTNews",
       "link": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE15aldZWDlScnRxU0hjSjRjNEZNdURwTXlmamxFWE1VVUlZdExKR3VmSjljbHJxYUZOdXR1enZKc1Z6M1d2VzZGWmRObWxoQnhOajhzSTdSMUc?oc=5",
       "source": "Wires (geo)",
@@ -2211,7 +2144,7 @@
       "link": "https://news.google.com/rss/articles/CBMipAFBVV95cUxQdE9PREpldGFGaks3Y1lhVUZEQjVzNjdUc0FFLXRVTEpGYjJSTXdVTXhOdlJIVUgwRTZ5eDh6LWZfOGlCVGN3OUd0OFNXMTdrcWUzWU5YdDgyVHJXeWx4Mm85dTl1aUVGZDMwZjg4NmtURTJGQVhMZHRRMVRMb0ZZRXR3bkZMcHp2aXpiSTBwaGk2WFBHZ1RyN2c3cVQtcTZMQXYtSg?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMipAFBVV95cUxQdE9PREpldGFGaks3Y1lhVUZEQjVzNjdUc0FFLXRVTEpGYjJSTXdVTXhOdlJIVUgwRTZ5eDh6LWZfOGlCVGN3OUd0OFNXMTdrcWUzWU5YdDgyVHJXeWx4Mm85dTl1aUVGZDMwZjg4NmtURTJGQVhMZHRRMVRMb0ZZRXR3bkZMcHp2aXpiSTBwaGk2WFBHZ1RyN2c3cVQtcTZMQXYtSg?oc=5\" t",
-      "at": 1789463785000,
+      "at": 1789463700000,
       "inst": [
         "XAU/USD",
         "EUR/USD",
@@ -2243,6 +2176,26 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789463336000
+    },
+    {
+      "title": "Israeli settlers protest UK sanctions outside consulate in East Jerusalem - Middle East Eye",
+      "link": "https://news.google.com/rss/articles/CBMitAFBVV95cUxORUMwc3dyY0JUT0JHbDktSmZoOFJfbTlVd0JRRXh4WWhxQVNuOGllUVM0LXIwemRhMmRzaGNLVVVuRHhDVVZPY2FNajRlUEJEaDlKZVJuVVBBVm1ZQXE5R3plM0RjZ2w2STVoczhmV0lfaHEwc1JCRDluTUtDZnpQZ1RJLTZTcHBqVFU2ZXpoNUNqcE16QVgzVFdZNVNaQjNWV0NsTHgtYkNaLUFDTV9RQlJxeHM?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMitAFBVV95cUxORUMwc3dyY0JUT0JHbDktSmZoOFJfbTlVd0JRRXh4WWhxQVNuOGllUVM0LXIwemRhMmRzaGNLVVVuRHhDVVZPY2FNajRlUEJEaDlKZVJuVVBBVm1ZQXE5R3plM0RjZ2w2STVoczhmV0lfaHEwc1JCRDluTUtDZnpQZ1RJLTZTcHBqVFU2ZXpoNUNqcE16QVgzVFdZNVNaQjNWV0NsTHgtYkNaLU",
+      "at": 1789463149000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789463149000
     },
     {
       "title": "U.S. 10-Year Yield Tops 5% as Markets Bet on Rate Hike - Seoul Economic Daily",
@@ -2341,8 +2294,8 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789461276000
+      "srcs": 2,
+      "firstAt": 1789459869000
     },
     {
       "title": "Will Saudi’s pipeline outage revive the oil market deficit? HSBC weighs in",
@@ -2439,7 +2392,7 @@
       "firstAt": 1789459987000
     },
     {
-      "title": "Heavy air strikes hit Yemen, UN says over 100,000 people displaced",
+      "title": "Saudi Arabia promises to respond to Houthi attacks ‘firmly’",
       "link": "https://www.aljazeera.com/news/2026/9/15/houthis-report-air-strikes-in-yemen-after-saudi-arabia-vows-firm-response?traffic_source=rss",
       "source": "Al Jazeera",
       "desc": "Saudi-led coalition promises to respond 'firmly' to Houthi strikes on urban areas in Saudi Arabia.",
@@ -2453,9 +2406,9 @@
         "XAU",
         "OIL"
       ],
-      "sev": 2,
+      "sev": 1,
       "rel": 2,
-      "srcs": 1,
+      "srcs": 2,
       "firstAt": 1789459869000
     },
     {
@@ -2526,26 +2479,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789458567000
-    },
-    {
-      "title": "US Sanctions Russia’s VTB Bank Over Iran Sanctions Evasion, Banking Ties - The Media Line",
-      "link": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxQNHV3WmtMRUYtRlktN1dhVmVsaF9FS0xvNEduSUh4QzhDb0p1c0JON2FIN2RlWjhQR21NRUU2YzY2S0w4dGFRV183THRkVzBIREtaTWRWM1hWR0Q5Z0xYb3EwY1BVTmxvbVlEMDFvY084aW4zQ1ZWZmVJX1J3V2ZiaGRzV0V0MzJxZjVjem1mRXkyUF90Mm9yUFlYSzFfNDQzcm5OTi1qUHJXdw?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiqgFBVV95cUxQNHV3WmtMRUYtRlktN1dhVmVsaF9FS0xvNEduSUh4QzhDb0p1c0JON2FIN2RlWjhQR21NRUU2YzY2S0w4dGFRV183THRkVzBIREtaTWRWM1hWR0Q5Z0xYb3EwY1BVTmxvbVlEMDFvY084aW4zQ1ZWZmVJX1J3V2ZiaGRzV0V0MzJxZjVjem1mRXkyUF90Mm9yUFlYSzFfNDQzcm5OTi1qUHJXdw",
-      "at": 1789458477000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789458477000
     }
   ],
   "sources": [
@@ -2571,7 +2504,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-15T13:05:12.412Z",
-  "headlinesAt": "2026-09-15T13:05:12.412Z",
-  "updatedAt": "2026-09-15T13:05:12.412Z"
+  "calendarAt": "2026-09-15T13:07:10.267Z",
+  "headlinesAt": "2026-09-15T13:07:10.267Z",
+  "updatedAt": "2026-09-15T13:07:10.267Z"
 }
