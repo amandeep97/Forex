@@ -882,7 +882,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789463700000,
-      "_kind": null
+      "_kind": null,
+      "why": "Personal finance story, no market impact"
     },
     {
       "title": "German investor morale continues to rise in September but less than expected - ZEW survey",
@@ -898,7 +899,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789463336000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "EUR/USD": "down"
+      },
+      "why": "Weaker than expected sentiment hurts Euro"
     },
     {
       "title": "Morgan Stanley joins Goldman Sachs in 11th-hour switch to forecasting a Fed hike",
@@ -916,7 +921,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789463100000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Fed hike forecast is bearish for stocks"
     },
     {
       "title": "Alnylam's Sell-Off Looks Ugly -- but Wall Street Still Sees a Much Brighter Picture",
@@ -931,7 +940,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789463040000,
-      "_kind": null
+      "_kind": null,
+      "why": "Single stock news, unclear index impact"
     },
     {
       "title": "Strive's Bitcoin Stash Hits an Even 25,000 BTC After $36.6 Million Buy",
@@ -948,7 +958,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789462865000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "BTC/USDT": "up"
+      },
+      "why": "Large corporate accumulation supports price"
     },
     {
       "title": "Dollar Dominance: Euro Suffers as Oil Prices Soar and Fed Rate Hike Looms - Devdiscourse",
@@ -969,7 +983,12 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789462159000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "EUR/USD": "down",
+        "USOIL": "up"
+      },
+      "why": "Strong dollar hurts Euro, oil rises"
     },
     {
       "title": "Gold Prices Fall as Rising Energy Costs Reinforce Rate-Hike Expectations",
@@ -986,7 +1005,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789460106000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Rate hike expectations pressure gold"
     },
     {
       "title": "Berenberg bullish on Antofagasta as copper selloff creates entry point",
@@ -1018,7 +1041,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789462393000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down",
+        "BTC/USDT": "down"
+      },
+      "why": "Crypto stocks falling implies risk-off sentiment"
     },
     {
       "title": "'Putin Is Watching:' US House Panel Advances Russia-Iran Sanctions Bill - Radio Free Europe/Radio Liberty",
@@ -1039,7 +1067,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789462125000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Sanctions bill supports oil, gold unclear"
     },
     {
       "title": "Dollar ticks higher as oil prices climb, Fed rate hike chances firm - marketscreener.com",
@@ -1058,7 +1091,10 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789462221000,
-      "_kind": null
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Headline explicitly states oil prices climb"
     },
     {
       "title": "Dollar's Dominance: Fed Rate Hike Looms Amid Surging Oil Prices - Devdiscourse",
@@ -1076,7 +1112,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789462159000
+      "firstAt": 1789462159000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Headline explicitly states surging oil prices"
     },
     {
       "title": "EU Delays Decision on Extending Russia Sanctions after Member States Fail to Agree - Hungarian Conservative",
@@ -1096,7 +1136,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789459425000
+      "firstAt": 1789459425000,
+      "why": "Delay in sanctions creates uncertainty"
     },
     {
       "title": "US dollar climbs ahead of expected Fed rate hike - TorFX News",
@@ -1119,7 +1160,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789461777000
+      "firstAt": 1789461777000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Stronger dollar weakens these pairs"
     },
     {
       "title": "Stocks Selloff Rages on as AI and Bond Fears Mount",
@@ -1133,7 +1180,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789461617000
+      "firstAt": 1789461617000,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Stocks selloff rages on fears"
     },
     {
       "title": "Oil prices rise as Houthis attack Saudi Arabia, Hormuz talks delayed",
@@ -1152,7 +1203,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789459869000
+      "firstAt": 1789459869000,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Geopolitical risk boosts oil and gold"
     },
     {
       "title": "NATO jets down drone in Lithuanian airspace after bloc warns strikes will drive support for Ukraine - WTOP News",
@@ -2570,10 +2627,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-15T09:19:38.296Z",
-  "headlinesAt": "2026-09-15T09:19:38.296Z",
-  "updatedAt": "2026-09-15T09:19:38.296Z"
+  "calendarAt": "2026-09-15T09:20:54.430Z",
+  "headlinesAt": "2026-09-15T09:20:54.430Z",
+  "updatedAt": "2026-09-15T09:20:54.430Z"
 }
