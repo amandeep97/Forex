@@ -901,7 +901,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789453214000,
-      "_kind": null
+      "_kind": null,
+      "why": "Data in-line with expectations"
     },
     {
       "title": "UK labour market cools further as payrolls fall and wage growth slows",
@@ -925,7 +926,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789453166000,
-      "_kind": null
+      "_kind": null,
+      "why": "Mixed data, no clear direction"
     },
     {
       "title": "Gold slips below $4,300 as firmer dollar, Fed hike bets pressure bullion",
@@ -943,7 +945,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789452475000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold slips below $4,300"
     },
     {
       "title": "Micron Taiwan union presses profit-sharing demand, keeps strike preparations alive",
@@ -960,7 +966,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789453109000,
-      "_kind": null
+      "_kind": null,
+      "why": "Irrelevant to gold prices"
     },
     {
       "title": "US blacklists Russia’s 2nd-largest VTB Bank over Iran sanctions evasion - Türkiye Today",
@@ -981,7 +988,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789452967000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions news, unclear market impact"
     },
     {
       "title": "Gold falls ₹115 on US interest rate hike fears, silver declines ₹461 - Business Standard",
@@ -1001,7 +1009,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789452475000
+      "firstAt": 1789452475000,
+      "dir": {
+        "XAU/USD": "down",
+        "XAG/USD": "down"
+      },
+      "why": "Gold and silver decline"
     },
     {
       "title": "Insight: Ukraine races to counter Russia's jet-powered drone attacks - reuters.com",
@@ -1021,7 +1034,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789449795000
+      "firstAt": 1789449795000,
+      "why": "Geopolitical news, unclear direction"
     },
     {
       "title": "Taiwan stocks lower at close of trade; Taiwan Weighted down 0.73%",
@@ -1035,7 +1049,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789452005000
+      "firstAt": 1789452005000,
+      "why": "Taiwan stocks, not US"
     },
     {
       "title": "Chinese chip stocks rise after Beijing unveils 5-year electronics plan",
@@ -1049,7 +1064,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789451964000
+      "firstAt": 1789451964000,
+      "why": "Chinese stocks, not US"
     },
     {
       "title": "U.S. 10-yr yields surge past 5%: which stocks are most vulnerable?",
@@ -1063,7 +1079,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789451608000
+      "firstAt": 1789451608000,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Yields surge, vulnerable stocks"
     },
     {
       "title": "Dollar Rises Amid Oil Surge and Anticipated Fed Rate Hike - Devdiscourse",
@@ -1081,7 +1101,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789451421000
+      "firstAt": 1789451421000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil surge mentioned"
     },
     {
       "title": "Internet shutdown crosses 100 days in Pakistan-administered Kashmir",
@@ -1104,7 +1128,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789451272000
+      "firstAt": 1789451272000,
+      "why": "Irrelevant to these pairs"
     },
     {
       "title": "China's August retail sales miss forecast while investment slump deepens, piling pressure on Beijing",
@@ -1127,7 +1152,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789450874000
+      "firstAt": 1789450874000,
+      "why": "China data, unclear impact"
     },
     {
       "title": "Asian currencies slip as yen pulls back, Fed and BOJ decisions loom",
@@ -1144,7 +1170,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789450446000
+      "firstAt": 1789450446000,
+      "dir": {
+        "USD/JPY": "down"
+      },
+      "why": "Yen pulls back, dollar weakens"
     },
     {
       "title": "Why Fed rate hike could put pressure on gold prices - Moneycontrol.com",
@@ -1162,7 +1192,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789449854000
+      "firstAt": 1789449854000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Rate hike pressures gold"
     },
     {
       "title": "Ukraine says ready to halt strikes on energy targets if Russia does so - Xinhua",
@@ -1544,7 +1578,7 @@
       "firstAt": 1789439460000
     },
     {
-      "title": "Dollar Near Two-Week High as Oil Surge Boosts Fed Rate Hike Bets - Global Banking & Finance Review",
+      "title": "Dollar Near Two-Week High as Oil Surge Boosts Fed Rate Hike Bets - globalbankingandfinance.com",
       "link": "https://news.google.com/rss/articles/CBMinwFBVV95cUxONmpEYnFtQ0xnTTNQZjhxQTJaUVhRUVhIbURwb1pZc2VEQVRDOFlIQWgzSnh1eGJPZDlWMjJ2YjZRVDlwN08tazFUc2RxRGF2V0trd0xraW5qX1E3OGplNTlpWVFjZUhZMzBJOWxTQWZIbUVmSUFIOEM1bWpOM2lBUklyWXVWaDhLZEMxN1RmbTcteENSWnBVUnBPYjc4cUE?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMinwFBVV95cUxONmpEYnFtQ0xnTTNQZjhxQTJaUVhRUVhIbURwb1pZc2VEQVRDOFlIQWgzSnh1eGJPZDlWMjJ2YjZRVDlwN08tazFUc2RxRGF2V0trd0xraW5qX1E3OGplNTlpWVFjZUhZMzBJOWxTQWZIbUVmSUFIOEM1bWpOM2lBUklyWXVWaDhLZEMxN1RmbTcteENSWnBVUnBPYjc4cUE?oc=5\" target=\"",
@@ -2652,7 +2686,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-15T06:40:22.855Z",
-  "headlinesAt": "2026-09-15T06:40:22.855Z",
-  "updatedAt": "2026-09-15T06:40:22.855Z"
+  "calendarAt": "2026-09-15T06:41:52.243Z",
+  "headlinesAt": "2026-09-15T06:41:52.243Z",
+  "updatedAt": "2026-09-15T06:41:52.243Z"
 }
