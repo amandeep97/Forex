@@ -813,6 +813,31 @@
   ],
   "headlines": [
     {
+      "title": "September US Empire Fed manufacturing +7.6 vs +15.0 expected",
+      "link": "https://investinglive.com/news/september-us-empire-fed-manufacturing-7-6-vs-15-0-expected/",
+      "source": "ForexLive",
+      "desc": "Prior was +20.6 This article was written by Adam Button at investinglive.com.",
+      "at": 1789475482000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789475482000,
+      "_kind": null,
+      "why": "Weak data, unclear market impact"
+    },
+    {
       "title": "Wells Fargo just cuts its S&P 500 price target. Will others follow?",
       "link": "https://www.marketwatch.com/story/wells-fargo-just-cuts-its-s-p-500-price-target-will-others-follow-e32f968a?mod=mw_rss_topstories",
       "source": "MarketWatch",
@@ -832,7 +857,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789474713000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Lower target bearish for stocks"
     },
     {
       "title": "Dollar ticks up as oil prices climb, Fed rate hike chances firm - The Business Times",
@@ -851,7 +880,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789472586000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil prices climbing"
     },
     {
       "title": "Top Retail Stocks Poised for Year-End Rally, Says Piper Sandler",
@@ -866,7 +899,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789475058000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Retail stocks poised for rally"
     },
     {
       "title": "Gold Steadies as Markets Await Federal Reserve Decision - Fana News -",
@@ -885,20 +922,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789474964000,
-      "_kind": null
-    },
-    {
-      "title": "This 5.5%-Yielding Dividend Stock Has Partnered With 3 Different Investment Giants This Year. Should Income Investors Be Worried or Excited?",
-      "link": "https://finance.yahoo.com/real-estate/articles/5-5-yielding-dividend-stock-122001822.html",
-      "source": "Yahoo Finance",
-      "at": 1789474801000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1789474801000,
-      "_kind": null
+      "_kind": null,
+      "why": "Gold steadies, awaiting Fed"
     },
     {
       "title": "10-year Treasury yield hits highest level since 2007",
@@ -921,20 +946,13 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789472586000,
-      "_kind": null
-    },
-    {
-      "title": "Jensen Huang Just Gave Artificial Intelligence (AI) Investors Trillions of Reasons to Remain Bullish",
-      "link": "https://finance.yahoo.com/technology/ai/articles/jensen-huang-just-gave-artificial-121925072.html",
-      "source": "Yahoo Finance",
-      "at": 1789474765000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1789474765000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "High yields bearish for metals, FX"
     },
     {
       "title": "Wells Fargo trims S&P 500 index’s year-end target to 7,700",
@@ -949,7 +967,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789474713000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Target trimmed, bearish signal"
     },
     {
       "title": "Smart Investors Are Watching This Metric As Coca-Cola Pushes Past All-Time Highs",
@@ -983,7 +1005,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789474380000,
-      "_kind": null
+      "_kind": null,
+      "why": "Legal opinion, no direct market impact"
     },
     {
       "title": "Stock Market Today: Dow Falls As Yields, Oil Prices Rise Ahead Of Fed Meeting; Nvidia Set To Rebound (Live Coverage)",
@@ -1002,7 +1025,41 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789474186000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "US30": "down"
+      },
+      "why": "Oil rises, Dow falls"
+    },
+    {
+      "title": "Fed rate hike expected Wednesday under Kevin Warsh",
+      "link": "https://finance.yahoo.com/economy/policy/articles/fed-rate-hike-expected-wednesday-120945216.html",
+      "source": "Yahoo Finance",
+      "at": 1789474185000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789474185000,
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Rate hike bearish for assets"
     },
     {
       "title": "Bernstein Flags Five Stocks to Benefit as Europe Faces Tighter Gas Market",
@@ -1017,7 +1074,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789474112000,
-      "_kind": null
+      "_kind": null,
+      "why": "Specific stocks, unclear index impact"
     },
     {
       "title": "Oil prices climb as attacks, pipeline outage deepen Saudi supply concerns",
@@ -1037,7 +1095,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789473988000,
-      "_kind": null
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Supply concerns boost oil prices"
     },
     {
       "title": "Meeks Delivers Remarks During Rules Committee Hearing Opposing Senate Russia Sanctions/Tariffs Bill - House.gov",
@@ -1057,7 +1119,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789473732000
+      "firstAt": 1789473732000,
+      "why": "Political hearing, unclear market impact"
     },
     {
       "title": "Zelenskyy says Ukraine will pause attacks if Russia spares infrastructure - Al Jazeera",
@@ -1077,7 +1140,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789471186000
+      "firstAt": 1789471047000,
+      "why": "Geopolitical pause, unclear direction"
     },
     {
       "title": "‘My total balance should be $20 million’: I invested $1.1 million in a crypto platform. Have I lost it all?",
@@ -1094,7 +1158,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789473600000
+      "firstAt": 1789473600000,
+      "why": "Individual loss story, no market signal"
     },
     {
       "title": "Russia Secretly Built Iran a 24-Helicopter Attack Fleet. Leaked Files Expose a Much Bigger Arms Pipeline - UNITED24 Media",
@@ -1482,7 +1547,7 @@
       "link": "https://news.google.com/rss/articles/CBMiugFBVV95cUxNR0xBM2hYamtNRV83VktFTTV3UXBqdFNHNmN5dHZ5NEdHSE1oZ0JaMHlQaUMzcnBUc0hPM0ozOFJ3MlBUZ1NQY0NBRUxVX1NqazNrUDN1LWRKQkJKWkxsSkhNYk1yc2FCMk5rcVprMDFEb3NCdG4zb1BSVlVodkVTczBDMU5fOEU3VWhzeTMzc1lfV1A3VUs5NUIyRnd5Zy1HN3hYQ2JWWVJtSEROdVY3TVYycktqeXZvSVHSAb8BQVVfeXFMTXZzNzQwLWcxNUd2QWdKbHhjQ2UxaHlTRVFVREpBUWFMVFdRM2NlOVVKVHN2YXhFWi0wTHlZLWpHQmh6aTBWSE5MaEFPeWlRMlpHN3luTmgtSkFVR1dQTk04ZkpIMGItWVpGNjBqbS1CQ192Qi1GcXlqeWczUnd6YUpkejJndUloRlRSVnctbGtTbFVnYnM2WUhlM3ZVbnByOWdnUGhmR0Ffd2RKVVFVSmV2ekxkY2RWc3RJb0U1Nms?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiugFBVV95cUxNR0xBM2hYamtNRV83VktFTTV3UXBqdFNHNmN5dHZ5NEdHSE1oZ0JaMHlQaUMzcnBUc0hPM0ozOFJ3MlBUZ1NQY0NBRUxVX1NqazNrUDN1LWRKQkJKWkxsSkhNYk1yc2FCMk5rcVprMDFEb3NCdG4zb1BSVlVodkVTczBDMU5fOEU3VWhzeTMzc1lfV1A3VUs5NUIyRnd5Zy1HN3hYQ2JWWVJtSE",
-      "at": 1789471186000,
+      "at": 1789471047000,
       "inst": [
         "XAU/USD",
         "USOIL",
@@ -1495,7 +1560,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789471186000
+      "firstAt": 1789471047000
     },
     {
       "title": "Iranian strikes cause $184m damage to US Gulf facilities - Middle East Monitor",
@@ -2216,7 +2281,7 @@
       "firstAt": 1789459987000
     },
     {
-      "title": "Heavy air strikes hit Yemen, UN says over 100,000 people displaced",
+      "title": "Heavy air strikes hit Yemen, UN says over 100000 people displaced",
       "link": "https://www.aljazeera.com/news/2026/9/15/houthis-report-air-strikes-in-yemen-after-saudi-arabia-vows-firm-response?traffic_source=rss",
       "source": "Al Jazeera",
       "desc": "Saudi-led coalition promises to respond 'firmly' to Houthi strikes on urban areas in Saudi Arabia.",
@@ -2468,27 +2533,24 @@
       "firstAt": 1789456283000
     },
     {
-      "title": "US 10 year Treasury yields hit 19 year high amid surging inflation -... - LBCI Lebanon",
-      "link": "https://news.google.com/rss/articles/CBMitwFBVV95cUxOMHhFNFRmN01JUGZXSm5ZT0ZyblVXd0hBOXdJVGctbUZ5d3Uyc0VudDBST3B0V0Rzdi1FczJva3JTdzU2WTFhRjR0R2xZMlRaOFQwT3hqWENaT3VDNi1CWjVzMkkzWlJpRTAwb3RNUS1mMFNkWDZJOGl0R1BFNkpISENJT2dydy1faEhtclRva21Ha1o4YzhQYWNxMVJGNzFGcWJZZmFQMHpMX3BZYlBEV0JzWndTeWc?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMitwFBVV95cUxOMHhFNFRmN01JUGZXSm5ZT0ZyblVXd0hBOXdJVGctbUZ5d3Uyc0VudDBST3B0V0Rzdi1FczJva3JTdzU2WTFhRjR0R2xZMlRaOFQwT3hqWENaT3VDNi1CWjVzMkkzWlJpRTAwb3RNUS1mMFNkWDZJOGl0R1BFNkpISENJT2dydy1faEhtclRva21Ha1o4YzhQYWNxMVJGNzFGcWJZZmFQMHpMX3",
-      "at": 1789455999000,
+      "title": "Palestine weekly: Settlement sanctions spark diplomatic crisis",
+      "link": "https://www.aljazeera.com/news/2026/9/15/palestine-weekly-settlement-sanctions-spark-diplomatic-crisis?traffic_source=rss",
+      "source": "Al Jazeera",
+      "desc": "New B'Tselem report frames events on ground as Israel's 'project of elimination' of Palestinians.",
+      "at": 1789455230000,
       "inst": [
         "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
+        "USOIL",
+        "UKOIL"
       ],
       "ccy": [
-        "USD"
+        "XAU",
+        "OIL"
       ],
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789455999000
+      "firstAt": 1789455230000
     }
   ],
   "sources": [
@@ -2514,7 +2576,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-15T12:34:37.106Z",
-  "headlinesAt": "2026-09-15T12:34:37.106Z",
-  "updatedAt": "2026-09-15T12:34:37.106Z"
+  "calendarAt": "2026-09-15T12:36:40.467Z",
+  "headlinesAt": "2026-09-15T12:36:40.467Z",
+  "updatedAt": "2026-09-15T12:36:40.467Z"
 }
