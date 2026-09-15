@@ -59,6 +59,23 @@ class GitHubClient {
     }
     if (!res.ok) throw new Error(`GitHub read ${res.status}: ${path}`);
     const data    = await res.json();
+    // Between 1MB and 100MB the contents endpoint answers 200 and hands back
+    // NOTHING: `content` is an empty string and `encoding` is "none". It does
+    // not fail, it does not 403, it just succeeds with no file in it.
+    //
+    // Decoding that gives "" and JSON.parse("") throws, which a caller that
+    // treats a read failure as "no file yet" turns into starting over. That is
+    // exactly what happened to the liquidity study: its progress file crossed
+    // 1MB, every read after that came back empty, and the run restarted from
+    // the first instrument on every tick — forever, with the log showing
+    // nothing but ordinary progress.
+    if (data.encoding === 'none' || !data.content) {
+      const blob = await fetch(
+        `https://api.github.com/repos/${this.owner}/${this.repo}/git/blobs/${data.sha}`,
+        { headers: { ...this._headers(), Accept: 'application/vnd.github.raw' } });
+      if (!blob.ok) throw new Error(`GitHub blob ${blob.status}: ${path}`);
+      return { content: JSON.parse(await blob.text()), sha: data.sha };
+    }
     const text    = Buffer.from(data.content, 'base64').toString('utf8');
     return { content: JSON.parse(text), sha: data.sha };
   }
