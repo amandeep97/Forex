@@ -903,7 +903,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789458477000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions impact unclear for these assets"
     },
     {
       "title": "US textile industry accelerates shift toward new markets amid tariffs, labor shortages, and innovation - Global Sources",
@@ -937,7 +938,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789458567000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "EUR/USD": "down",
+        "USD/CAD": "up"
+      },
+      "why": "Euro declines, dollar strengthens"
     },
     {
       "title": "Asian currencies weaken as yen pulls back, dollar nears two-week high",
@@ -955,7 +961,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789458517000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USD/JPY": "up"
+      },
+      "why": "Dollar nears high, yen pulls back"
     },
     {
       "title": "US Sanctions Russia’s VTB Bank Over Iran Sanctions Evasion, Banking Ties - The Media Line",
@@ -976,7 +986,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789458477000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions impact unclear for these assets"
     },
     {
       "title": "European sovereign debt pressured as traders price ECB hikes through early 2027",
@@ -993,7 +1004,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789458422000,
-      "_kind": null
+      "_kind": null,
+      "why": "Debt pressure unclear for currency direction"
     },
     {
       "title": "Bond selloff drives US benchmark beyond 5%; stocks rattled",
@@ -1008,7 +1020,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789458168000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Stocks rattled by bond selloff"
     },
     {
       "title": "The Fed may be on the verge of a serious mistake, prominent economists warn",
@@ -1031,7 +1047,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789457340000
+      "firstAt": 1789457340000,
+      "why": "Fed warning unclear for immediate direction"
     },
     {
       "title": "Israel and Saudi Arabia discuss intelligence aid amid growing Houthi attacks - The Jerusalem Post",
@@ -1051,7 +1068,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789456511000
+      "firstAt": 1789456511000,
+      "why": "Geopolitical talks unclear for market direction"
     },
     {
       "title": "Silver tests $63.08 Fibonacci support in bearish slide: Live",
@@ -1067,7 +1085,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789456274000
+      "firstAt": 1789456274000,
+      "dir": {
+        "XAG/USD": "down"
+      },
+      "why": "Silver in bearish slide"
     },
     {
       "title": "Gold clings to $4,320 support amid bearish momentum: Live levels",
@@ -1083,7 +1105,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789456274000
+      "firstAt": 1789456274000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold amid bearish momentum"
     },
     {
       "title": "Crude Oil WTI consolidates near $105 resistance: Live levels",
@@ -1100,7 +1126,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789456274000
+      "firstAt": 1789456274000,
+      "why": "Oil consolidates near resistance"
     },
     {
       "title": "Brent Oil coils at $107.65 with ADX at 38: Breakout or trap?",
@@ -1117,7 +1144,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789456283000
+      "firstAt": 1789456283000,
+      "why": "Oil coils, direction unclear"
     },
     {
       "title": "London Gas Oil nears resistance with bearish divergence: Live levels",
@@ -1133,7 +1161,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789456274000
+      "firstAt": 1789456274000,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Bearish divergence near resistance"
     },
     {
       "title": "Natural Gas stalls at $2.899 resistance: Live levels",
@@ -1147,7 +1179,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789456274000
+      "firstAt": 1789456274000,
+      "why": "Gas stalls at resistance"
     },
     {
       "title": "Ukraine Strikes Russian Oil Refinery as Putin Resists Energy Truce Ahead of Winter - Kyiv Post",
@@ -1167,7 +1200,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789455740000
+      "firstAt": 1789453911000,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Refinery strike boosts oil, gold safe haven"
     },
     {
       "title": "Gold Trades Near $4,300 as Higher Oil Stokes Rate-Hike Bets - Bloomberg.com",
@@ -1230,6 +1269,26 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789455072000
+    },
+    {
+      "title": "Zelenskyy says Ukraine ready to halt critical infrastructure strikes if Russia does - Shoreline Media Group",
+      "link": "https://news.google.com/rss/articles/CBMimgJBVV95cUxNemZKa0U5X2kxMVIteVdzeEh0d1RjamU4TFRkYzA1NmRyZ3g5N3FhdDl3bjgyckFBN0xBMm5qZHFSUWRfOFItRl84aThiNmFyY2RxZDB1LWRHemRaUElSUFlwSEw2T2Y4VFJNRUFYSzM3eWtkbkZ4dmF2TUxfd0Y3X1VndnU1N01hbjF0aElraloxalpjaEhKUk50SGoxeWdiRWdrc2l2bDBJdDdxTkpTaE9SQy1DYmJNNDluNkNaYS1vYmdJaV80NWNxeFZWbUhkTHlpQ081VEQ1U3lCeUh3YzlRTlQ3WXpDOHhUUkQ1TnpIRVpGUGp6NkpsT0p5SVpFbzh3UDA0Z2JwRmNlX1VjR0RpalRrTlZ2LWc?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMimgJBVV95cUxNemZKa0U5X2kxMVIteVdzeEh0d1RjamU4TFRkYzA1NmRyZ3g5N3FhdDl3bjgyckFBN0xBMm5qZHFSUWRfOFItRl84aThiNmFyY2RxZDB1LWRHemRaUElSUFlwSEw2T2Y4VFJNRUFYSzM3eWtkbkZ4dmF2TUxfd0Y3X1VndnU1N01hbjF0aElraloxalpjaEhKUk50SGoxeWdiRWdrc2l2bDBJdD",
+      "at": 1789453911000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789452180000
     },
     {
       "title": "What are the main events for today?",
@@ -1308,26 +1367,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789452967000
-    },
-    {
-      "title": "SCO anti-terrorism group condemns latest US strikes on Iran - muslimnetwork.tv",
-      "link": "https://news.google.com/rss/articles/CBMikwFBVV95cUxOQkZDeDVNWkJUemR6ejhYM1RHZDJPQWctYXVDcDZfYVE1MUc4Tm4yNjBXM2c1cDJQM2dyUkYtQW85VFFmeVpwaXBYRjlENFdRSXVDeVkyX2lnLWhScENKVzRIZDdDbnFhb0dqNUhDYWhQMkg3Y2tGdW9yOTZ6Y0JZSVN5Y041STR4cjJtcW5oSUY0Vmc?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMikwFBVV95cUxOQkZDeDVNWkJUemR6ejhYM1RHZDJPQWctYXVDcDZfYVE1MUc4Tm4yNjBXM2c1cDJQM2dyUkYtQW85VFFmeVpwaXBYRjlENFdRSXVDeVkyX2lnLWhScENKVzRIZDdDbnFhb0dqNUhDYWhQMkg3Y2tGdW9yOTZ6Y0JZSVN5Y041STR4cjJtcW5oSUY0Vmc?oc=5\" target=\"_blank\">SCO anti",
-      "at": 1789452675000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789452675000
     },
     {
       "title": "Gold falls ₹115 on US interest rate hike fears, silver declines ₹461 - Business Standard",
@@ -2046,26 +2085,6 @@
       "firstAt": 1789436296000
     },
     {
-      "title": "U.S. lawmaker submits amendment naming India in Russia sanctions act - The Hindu",
-      "link": "https://news.google.com/rss/articles/CBMiygFBVV95cUxQaG9MWW5zYjVRVDR1NWRqRl8xX2sxRGJOc1NHWGVZanhXbDlMTkFyOVB6dVFJQkpvSnFVZEdMUzZJako5Z21Dc2RkejN6a3RfRkRXSVRGOVNzQ0J4NDg1RklXQXMyd1FkV21ZZGt3TlJhWG1vdG5jSGwzQk5uVXZER2t5bHBOWWtWYWo5dWpkSy1qYi05UWdCbHpWWU41SF8xcFowQmZLcVdhQVhWRFJXRzNRNDBrcUpsTXl2Y2hud1huRE9IMDJ3Q3hB0gHQAUFVX3lxTE1nWVlMTGd2cXVrZnoyaEJxX0szOGRDelFJRGNYWmNsdEtwUC1WbVVSWEFYMk9VWXlheVBHWHFQSnl1S1FEcjBkN3h4U1pkS3l2TjJtaV9yVEVmRHJ0X2NPQjJ1RHBTNFhSMmZkakpZdGZhd09aN0pSdWs1UjdZUFU1aEZGajBMNThzMWg2OW9FV0FEaGJlMTREQW5vRnJtenRDZ0VjWHNKNENiNERyZXJnb0phVWUyamRSbWE2RklHQTBKYVowYVNrVDR3VDBWZHU?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiygFBVV95cUxQaG9MWW5zYjVRVDR1NWRqRl8xX2sxRGJOc1NHWGVZanhXbDlMTkFyOVB6dVFJQkpvSnFVZEdMUzZJako5Z21Dc2RkejN6a3RfRkRXSVRGOVNzQ0J4NDg1RklXQXMyd1FkV21ZZGt3TlJhWG1vdG5jSGwzQk5uVXZER2t5bHBOWWtWYWo5dWpkSy1qYi05UWdCbHpWWU41SF8xcFowQmZLcVdhQV",
-      "at": 1789434941000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789434941000
-    },
-    {
       "title": "Oil prices surge as Houthis attack Saudi Arabia, Hormuz talks delayed",
       "link": "https://www.investing.com/news/commodities-news/oil-prices-rise-as-houthis-attack-saudi-arabia-hormuz-talks-delayed-4900704",
       "source": "Investing Cmdty",
@@ -2633,6 +2652,26 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789420327000
+    },
+    {
+      "title": "Israeli attack targets Gaza displacement camp",
+      "link": "https://www.aljazeera.com/video/newsfeed/2026/9/14/israeli-attack-targets-gaza-displacement-camp?traffic_source=rss",
+      "source": "Al Jazeera",
+      "desc": "Israeli attack targets Gaza displacement camp",
+      "at": 1789421824000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789421824000
     }
   ],
   "sources": [
@@ -2655,10 +2694,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-15T08:01:21.888Z",
-  "headlinesAt": "2026-09-15T08:01:21.888Z",
-  "updatedAt": "2026-09-15T08:01:21.888Z"
+  "calendarAt": "2026-09-15T08:02:40.309Z",
+  "headlinesAt": "2026-09-15T08:02:40.309Z",
+  "updatedAt": "2026-09-15T08:02:40.309Z"
 }
