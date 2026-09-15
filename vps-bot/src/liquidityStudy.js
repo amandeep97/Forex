@@ -58,19 +58,26 @@ const HISTORY_DAYS = 60;
 // horizon rather than an edge.
 const HOLDS = [15, 90];
 
-// The sessions, in UTC. These are the boundaries an intraday trader actually
-// works to, not an even split of the clock.
-const SESSIONS = [
-  { id: 'asia',   label: 'Asia',         from: 0,  to: 7 },
-  { id: 'london', label: 'London',       from: 7,  to: 12 },
-  { id: 'ny',     label: 'New York',     from: 12, to: 17 },
-  { id: 'late',   label: 'Late/rollover', from: 17, to: 24 },
-];
+// The sessions used to be defined here, in UTC, and nowhere else. That was the
+// problem: the live scanner had no notion of a session at all, and the app's
+// hunt feed looked a row's verdict up by `${kind}|${session}|${hold}` — a field
+// nothing set. One definition now lives in shared/sessions.mjs and reaches this
+// file through loadLib, so a cell's bucket and a row's label cannot disagree.
+//
+// Scoring does not iterate a session list any more. It reads the sessions that
+// actually appear in the collected entries, the same way it already reads the
+// level kinds, so there is nothing here left to drift.
 
-const sessionOf = ms => {
-  const h = new Date(ms).getUTCHours();
-  return (SESSIONS.find(s => h >= s.from && h < s.to) || SESSIONS[0]).id;
-};
+// The multiple-comparison count, and it stays a LITERAL on purpose.
+//
+// Four sessions times six level kinds is the number of cells this study set out
+// to test. Deriving it from the data instead — counting the cells that happened
+// to have entries — would let a thin run quietly weaken its own correction: 12
+// populated cells would demand a lower z than 24, so the fewer trades a run
+// collected, the easier it would be for one of them to look significant. The
+// correction has to be for the number of questions ASKED, not the number that
+// came back with an answer.
+const CELLS = 4 * 6;
 
 // Minimum entries before a cell is allowed to say anything. Lower than the
 // regime search's because there is no search here — one hypothesis, not
@@ -78,7 +85,6 @@ const sessionOf = ms => {
 const MIN_DISCOVERY = 25;
 const MIN_TIME_HOLDOUT = 15;
 const MIN_UNSEEN = 20;
-const CELLS = SESSIONS.length * 6;   // the multiple-comparison count
 
 /**
  * The shared modules, as one plain object.
@@ -89,11 +95,12 @@ const CELLS = SESSIONS.length * 6;   // the multiple-comparison count
  * carry two namespaces together.
  */
 async function loadLib() {
-  const [liq, exits] = await Promise.all([
+  const [liq, exits, sessions] = await Promise.all([
     import('../../shared/liquidity.mjs'),
     import('../../shared/exits.mjs'),
+    import('../../shared/sessions.mjs'),
   ]);
-  return { ...liq, exits };
+  return { ...liq, exits, sessions };
 }
 
 function atrOf(cs, i, period = 14) {
@@ -170,6 +177,7 @@ async function buildLevelTimeline(lib, { daily, weekly, h4 }) {
  */
 function replayOne(lib, sym, m2, timeline, { hold }) {
   const { findSweep, confirmation } = lib;
+  const { sessionOf, SESSION_LABEL, inOverlap } = lib.sessions;
   const entries = [];
   let lastKey = null;
 
@@ -205,7 +213,12 @@ function replayOne(lib, sym, m2, timeline, { hold }) {
     entries.push({
       sym, i, t,
       kind: sweep.level.kind,
+      // The label travels with the entry so scoring, which is synchronous and
+      // cannot reach an ES module, never has to look one up. It is also the
+      // reason scoring no longer needs a session list at all.
       session: sessionOf(t),
+      sessionLabel: SESSION_LABEL[sessionOf(t)] || sessionOf(t),
+      overlap: inOverlap(t),
       dir: sweep.dir === 'long' ? 'up' : 'down',
       atr,
     });
@@ -354,6 +367,11 @@ async function runLiquidityStudy({ oanda, log = () => {}, slice = null, universe
 function scoreStudy({ collected, baselines, searchSyms }) {
   const seen = new Set(searchSyms);
   const kinds = [...new Set(collected.map(c => c.kind))].sort();
+  // The sessions that actually appear, read from the entries the same way the
+  // kinds are. There is no session list in this file any more — the one
+  // definition is shared/sessions.mjs, and the label rode in on each entry.
+  const sessions = [...new Set(collected.map(c => c.session))].sort()
+    .map(id => ({ id, label: collected.find(c => c.session === id)?.sessionLabel || id }));
   const cells = [];
 
   // The time holdout: the most recent third, held back from selection.
@@ -362,7 +380,7 @@ function scoreStudy({ collected, baselines, searchSyms }) {
 
   for (const hold of HOLDS) {
     for (const kind of kinds) {
-      for (const s of SESSIONS) {
+      for (const s of sessions) {
         const mine = collected.filter(c => c.hold === hold && c.kind === kind && c.session === s.id);
         if (!mine.length) continue;
 
@@ -409,7 +427,7 @@ function scoreStudy({ collected, baselines, searchSyms }) {
 
 module.exports = {
   runLiquidityStudy, scoreStudy, loadLib, replayOne, buildLevelTimeline, baselineFor,
-  sessionOf, splitUniverse, verdict, score, atrOf, probit, strictZ,
-  PATH, METHOD_VERSION, SESSIONS, HOLDS, HISTORY_DAYS,
+  splitUniverse, verdict, score, atrOf, probit, strictZ,
+  PATH, METHOD_VERSION, HOLDS, HISTORY_DAYS,
   MIN_DISCOVERY, MIN_TIME_HOLDOUT, MIN_UNSEEN, CELLS,
 };
