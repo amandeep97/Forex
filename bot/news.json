@@ -804,6 +804,26 @@
   ],
   "headlines": [
     {
+      "title": "AI stocks are rebounding. One analyst says there’s no spending slowdown in sight.",
+      "link": "https://www.marketwatch.com/story/ai-stocks-are-rebounding-one-analyst-says-theres-no-spending-slowdown-in-sight-8fd99c4b?mod=mw_rss_topstories",
+      "source": "MarketWatch",
+      "desc": "Customers are signing multiyear deals for chips and more: “That’s not what the front end of a downturn looks like.”",
+      "at": 1789492680000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789492680000,
+      "_kind": null,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "AI rebound signals positive market sentiment"
+    },
+    {
       "title": "Why investors need to learn the difference between uncertainty and risk in today’s market",
       "link": "https://www.marketwatch.com/story/what-investors-need-to-do-and-mistakes-not-to-make-in-todays-uncertain-world-8eb74333?mod=mw_rss_topstories",
       "source": "MarketWatch",
@@ -839,7 +859,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789492080000,
-      "_kind": null
+      "_kind": null,
+      "why": "Uncertain Fed decision impacts unclear"
     },
     {
       "title": "Estee Lauder outlook revised to stable by S&P on deleveraging",
@@ -854,7 +875,24 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789492011000,
-      "_kind": null
+      "_kind": null,
+      "why": "Single company rating change negligible"
+    },
+    {
+      "title": "Imperial Petroleum (IMPP) Posts Robust Q2 Topline Growth Despite Soft Fleet Utilization",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/imperial-petroleum-impp-posts-robust-170438574.html",
+      "source": "Yahoo Finance",
+      "at": 1789491878000,
+      "inst": [
+        "USOIL"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789491878000,
+      "_kind": null,
+      "why": "Company-specific news lacks broad impact"
     },
     {
       "title": "US energy chief says Saudi Arabia oil pipeline should be back online within days",
@@ -871,7 +909,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789491675000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Pipeline restart implies supply increase"
     },
     {
       "title": "Stock Market Midday, Sept. 15: Stocks Slide on AI and Bond Jitters",
@@ -886,7 +928,11 @@
       "rel": 2,
       "srcs": 3,
       "firstAt": 1789489157000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Stocks slide on AI and bond fears"
     },
     {
       "title": "Stock Market Today: Dow Dives, Oil Play Tests New Entry; Bitcoin Falls Ahead Of Clarity Act Vote (Live Coverage)",
@@ -906,7 +952,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789491131000,
-      "_kind": null
+      "dir": {
+        "US30": "down",
+        "BTC/USDT": "down"
+      },
+      "why": "Dow dives, Bitcoin falls, oil neutral"
     },
     {
       "title": "Israeli ‘influence campaign against Qatar’ launched after October 7 attack",
@@ -927,7 +977,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789491046000,
-      "_kind": null
+      "why": "Geopolitical news lacks immediate price direction"
     },
     {
       "title": "Institutional investors are dangerously overinvested in stocks",
@@ -942,19 +992,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789490700000
-    },
-    {
-      "title": "PBE vs. RSPH: Is a Biotech ETF or Equal-Weight Healthcare ETF the Better Choice for Investors?",
-      "link": "https://finance.yahoo.com/healthcare/articles/pbe-vs-rsph-biotech-etf-164333906.html",
-      "source": "Yahoo Finance",
-      "at": 1789490613000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1789490613000
+      "firstAt": 1789490700000,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Overinvestment warning suggests bearish risk"
     },
     {
       "title": "Stocks making the biggest moves midday: Skyworks Solutions, Axon, Dave & Buster's, Revvity & more",
@@ -969,7 +1011,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789490249000
+      "firstAt": 1789490249000,
+      "why": "Individual stock moves do not define index"
     },
     {
       "title": "Zumiez (ZUMZ) Falls on Weak Results and Lower Outlook, But Is the Selloff Overdone?",
@@ -998,7 +1041,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789489800000
+      "firstAt": 1789489800000,
+      "why": "Individual loss story lacks market impact"
     },
     {
       "title": "Stablecoin Yield Ban Would Boost Bank Lending by Just 0.02%: White House",
@@ -1030,7 +1074,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789487451000
+      "firstAt": 1789487451000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Conflict escalation boosts safe havens and oil"
     },
     {
       "title": "Canadian dollar extends daily losing streak ahead of expected Fed rate hike - marketscreener.com",
@@ -1047,7 +1097,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789489713000
+      "firstAt": 1789489713000,
+      "dir": {
+        "USD/CAD": "up"
+      },
+      "why": "Stronger dollar weakens Canadian currency"
     },
     {
       "title": "Tech stocks haven’t been this cheap since the launch of ChatGPT. Should you buy in?",
@@ -1063,7 +1117,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789489560000
+      "firstAt": 1789489560000,
+      "why": "Mixed views on tech valuation"
     },
     {
       "title": "Gold is starting to move on something a lot bigger than inflation",
@@ -1081,7 +1136,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789489260000
+      "firstAt": 1789489260000,
+      "why": "Gold moving on Fed credibility uncertainty"
     },
     {
       "title": "Opinion: Gold is starting to move on something a lot bigger than inflation - MarketWatch",
@@ -1395,34 +1451,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789486417000
-    },
-    {
-      "title": "Oil jumps nearly $3 as Saudi export halt, Libya outages stoke supply fears",
-      "link": "https://finance.yahoo.com/news/oil-prices-rise-saudi-pipeline-003617502.html",
-      "source": "Yahoo Finance",
-      "at": 1789486376000,
-      "inst": [
-        "USOIL"
-      ],
-      "ccy": [
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789486376000
-    },
-    {
-      "title": "How Allison Transmission Holdings (ALSN) is Capturing New Markets Beyond Commercial Vehicles",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/allison-transmission-holdings-alsn-capturing-153216137.html",
-      "source": "Yahoo Finance",
-      "at": 1789486336000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1789486336000
     },
     {
       "title": "Trump claimed that Russia and Ukraine had agreed to an energy truce. Neither side stopped the strikes. - Meduza",
@@ -2447,6 +2475,26 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789471140000
+    },
+    {
+      "title": "Kremlin welcomes Trump's idea of energy truce with Ukraine, calls for sanctions removal - Reuters",
+      "link": "https://news.google.com/rss/articles/CBMiygFBVV95cUxQRUtpMWMtMTdEMzVkQTRQOFZCX3k5MVA0Vnc2bXh5ZlJxeE9NaHdGbkZzckxVakNiWDRQaF9sb2lMZ3luQ1NRWldaNm53RVdvTGpXUkdoclVzZ0dZX2hTZVFjRm1fT2M2MkRiLVBwbm56QlZWdFgxazhDU2lsNl85azRwbGdNcTZPMFdtazdRS0k0NEY3cV9mbFBkdjZFdjFfTzlIdzY3b3BUVWgxX3hmbzYxZ3U2STN6ZXNvSU54RnR3QmZRM1RjM25B?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiygFBVV95cUxQRUtpMWMtMTdEMzVkQTRQOFZCX3k5MVA0Vnc2bXh5ZlJxeE9NaHdGbkZzckxVakNiWDRQaF9sb2lMZ3luQ1NRWldaNm53RVdvTGpXUkdoclVzZ0dZX2hTZVFjRm1fT2M2MkRiLVBwbm56QlZWdFgxazhDU2lsNl85azRwbGdNcTZPMFdtazdRS0k0NEY3cV9mbFBkdjZFdjFfTzlIdzY3b3BUVW",
+      "at": 1789471490000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1789471140000
     }
   ],
   "sources": [
@@ -2472,7 +2520,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-15T17:19:37.730Z",
-  "headlinesAt": "2026-09-15T17:19:37.730Z",
-  "updatedAt": "2026-09-15T17:19:37.730Z"
+  "calendarAt": "2026-09-15T17:22:40.424Z",
+  "headlinesAt": "2026-09-15T17:22:40.424Z",
+  "updatedAt": "2026-09-15T17:22:40.424Z"
 }
