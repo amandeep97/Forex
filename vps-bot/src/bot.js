@@ -22,6 +22,8 @@ const { runHourStudy } = require('./hourStudy');
 const { runMetalsStudy } = require('./metalsStudy');
 const { runRegimeStudy, METHOD_VERSION: REGIME_VERSION } = require('./regimeStudy');
 const { runRegimeSearch, METHOD_VERSION: SEARCH_VERSION } = require('./regimeSearch');
+const { runLiquidityStudy, scoreStudy,
+  PATH: LIQ_STUDY_PATH, METHOD_VERSION: LIQ_STUDY_VERSION } = require('./liquidityStudy');
 const { INSTRUMENTS }  = require('./instruments');
 
 const COT_STUDY_PATH = 'bot/cot-study.json';
@@ -107,6 +109,7 @@ class ForexBot {
     this.metalsStudyRan = false;
     this.regimeStudyRan = false;
     this.regimeSearchRan = false;
+    this.liqStudyRan = false;
     this.alertChecker = new AlertChecker({ oanda: this.oanda, github: this.github, telegram: this.telegram, env, log: this.log.bind(this) });
     this.updater = new Updater({ github: this.github, env, log: this.log.bind(this) });
     this.news = new NewsFetcher({
@@ -206,6 +209,35 @@ class ForexBot {
   // across markets, which does not turn over in seven days. It runs AFTER the
   // narrow study so that a failure here cannot cost you the answer you already
   // rely on.
+  // Does the sweep model pay? Replayed over sixty days of two-minute history
+  // rather than logged forward for six weeks.
+  //
+  // Once a fortnight, and only when the answer on file is missing, stale, or
+  // from an older method. Forty instruments of paged two-minute history is
+  // hundreds of requests and several minutes of arithmetic — not something to
+  // repeat on a tick, and the feed has to keep running throughout.
+  async _maybeLiquidityStudy() {
+    if (this.liqStudyRan) return;
+    const cur = await this.github.readJSON(LIQ_STUDY_PATH).catch(() => null);
+    const age = cur?.content?.at ? Date.now() - Date.parse(cur.content.at) : Infinity;
+    const stale = age >= 14 * 86400e3 || cur?.content?.method !== LIQ_STUDY_VERSION;
+    if (!stale) { this.liqStudyRan = true; return; }
+
+    this.liqStudyRan = true;   // set first, so a failure does not retry every tick
+    this.log('Liquidity study: replaying the sweep model over 60 days…');
+    const raw = await runLiquidityStudy({ oanda: this.oanda, log: this.log.bind(this) });
+    const result = scoreStudy(raw);
+    await this.github.writeJSON(LIQ_STUDY_PATH, result, 'bot: liquidity sweep study', cur?.sha || null);
+
+    const held = (result.cells || []).filter(c => c.verdict === 'holds');
+    this.log(`Liquidity study published — ${result.entries} entries across `
+      + `${result.instruments} instruments, ${held.length} of ${result.cells.length} cells held both holdouts`);
+    for (const c of held.slice(0, 3)) {
+      this.log(`  ${c.kind} ${c.session} hold ${c.hold}: unseen `
+        + `${c.unseen?.edgeR > 0 ? '+' : ''}${c.unseen?.edgeR}R on ${c.unseen?.n}`);
+    }
+  }
+
   async _maybeRegimeSearch() {
     if (this.regimeSearchRan) return;
     const cur = await this.github.readJSON(REGIME_SEARCH_PATH).catch(() => null);
@@ -275,6 +307,10 @@ class ForexBot {
     // stop switch: it places no orders, and "which instruments are worth
     // looking at on Monday" is a question best answered over the weekend.
     if (this.feed) await this.feed.tick().catch(e => this.warn(`Feed: ${e.message}`));
+
+    // Once a fortnight, and it takes minutes rather than seconds — so it runs
+    // after the feed has had its turn, never before.
+    await this._maybeLiquidityStudy().catch(e => this.warn(`Liquidity study: ${e.message}`));
 
     // The sweep model, on the same schedule and for the same reason: a
     // two-minute confirmation is exactly what a person cannot sit and wait for,

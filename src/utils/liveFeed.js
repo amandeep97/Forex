@@ -28,6 +28,32 @@ const LIQUIDITY_URL = 'https://raw.githubusercontent.com/amandeep97/Forex/main/b
 
 let liqCache = { at: 0, data: null };
 
+// The replay's verdict, so a live hunt can carry its own record.
+//
+// Sixty days of history says whether this kind of hunt, in this session, has
+// ever paid. Without it every row on the screen is a claim with nothing behind
+// it — which is what the Liquidity tab was until the study existed.
+const LIQ_STUDY_URL = 'https://raw.githubusercontent.com/amandeep97/Forex/main/bot/liquidity-study.json';
+let studyCache = { at: 0, data: null };
+
+export async function fetchLiquidityStudy({ force = false } = {}) {
+  const now = Date.now();
+  // A fortnightly study does not need a fresh fetch every minute.
+  if (!force && studyCache.data && now - studyCache.at < 15 * 60e3) return studyCache.data;
+  try {
+    const r = await fetch(`${LIQ_STUDY_URL}?t=${Math.floor(now / 9e5)}`);
+    if (!r.ok) return studyCache.data;
+    const j = await r.json();
+    // Keyed the way a row asks the question: this level kind, this session.
+    const byCell = {};
+    for (const c of j.cells || []) byCell[`${c.kind}|${c.session}|${c.hold}`] = c;
+    const data = { at: j.at, method: j.method, entries: j.entries, cells: j.cells || [], byCell,
+                   historyDays: j.historyDays, holds: j.holds || [] };
+    studyCache = { at: now, data };
+    return data;
+  } catch { return studyCache.data; }
+}
+
 /**
  * Rows keyed by symbol, or null when the bot has not published yet.
  *
