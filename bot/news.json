@@ -825,20 +825,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789493673000,
-      "_kind": null
-    },
-    {
-      "title": "AI Selloff Is ‘Panic,’ Meta May Be The Best Stock To Buy, Joseph Carlson Says",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/ai-selloff-panic-meta-may-173031348.html",
-      "source": "Yahoo Finance",
-      "at": 1789493431000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1789493431000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Fed hike fears boost dollar, hurt gold, euro, pound"
     },
     {
       "title": "Bitcoin, crypto stocks slip ahead of CLARITY Act, Fed decision",
@@ -857,7 +850,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789491131000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down",
+        "BTC/USDT": "down"
+      },
+      "why": "Crypto and stocks slip ahead of Fed decision"
     },
     {
       "title": "Canadian dollar extends daily losing streak ahead of expected Fed rate hike - KITCO",
@@ -875,7 +873,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789493284000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USD/CAD": "up"
+      },
+      "why": "Stronger dollar weakens Canadian dollar"
     },
     {
       "title": "U.S. 10-year treasury yield hits highest level since 2007 amid inflation fears, Fed hike bets - english.news.cn",
@@ -899,39 +901,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789493235000,
-      "_kind": null
-    },
-    {
-      "title": "Oil jumps more than $3 as Saudi loadings halt, Libya outages stoke supply fears",
-      "link": "https://finance.yahoo.com/news/oil-prices-rise-saudi-pipeline-003617502.html",
-      "source": "Yahoo Finance",
-      "at": 1789493178000,
-      "inst": [
-        "USOIL"
-      ],
-      "ccy": [
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789493178000,
-      "_kind": null
-    },
-    {
-      "title": "My Forever Portfolio: 3 Dividend-Paying Value Stocks That Are Too Cheap to Ignore.",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/forever-portfolio-3-dividend-paying-172500543.html",
-      "source": "Yahoo Finance",
-      "at": 1789493100000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789493100000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Rising yields and inflation fears boost dollar, hurt gold, e"
     },
     {
       "title": "Gold set to fall toward $4,000 as Warsh faces a Fed rate-hike dilemma - FXStreet",
@@ -950,10 +926,14 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789493072000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold set to fall toward $4,000"
     },
     {
-      "title": "Fed Seen Delivering Rate Hike to Avoid Disappointing Markets, Goldman Says - Yahoo Finance",
+      "title": "Fed Seen Delivering Rate Hike to Avoid Disappointing Markets, Goldman Says - finance.yahoo.com",
       "link": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNVnZwNl9hdzBGSWY5S0lYdTVMX19WdGM3Y3RQWjF0VmtxQXo2Sjl5RWN1N2JnSXhaUE5JQjg0eE5Nd2pCZFlqMG90Ni1KR3VhQVdzWVA0SGdSbEpfbmMyUk55bzVQTmRYeGd0LUNZZ3AyUjJWdHdLTFZUQ1FzMmxBLXQ4cEhxX0YtNG9uMFFLS2NNNjB4ajlSeFdB?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMimgFBVV95cUxNVnZwNl9hdzBGSWY5S0lYdTVMX19WdGM3Y3RQWjF0VmtxQXo2Sjl5RWN1N2JnSXhaUE5JQjg0eE5Nd2pCZFlqMG90Ni1KR3VhQVdzWVA0SGdSbEpfbmMyUk55bzVQTmRYeGd0LUNZZ3AyUjJWdHdLTFZUQ1FzMmxBLXQ4cEhxX0YtNG9uMFFLS2NNNjB4ajlSeFdB?oc=5\" target=\"_blank\"",
@@ -974,7 +954,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789492889000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Expected Fed hike boosts dollar, hurts gold, euro, pound"
     },
     {
       "title": "Fed Bears Loom: Why First US Rate Hike In Three Years Can Worsen D-Street's Selloff - NDTV Profit",
@@ -998,7 +984,35 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789492889000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Rate hike worsens selloff, boosts dollar, hurts gold, euro, "
+    },
+    {
+      "title": "Oil prices surge past $108 as Saudi pipeline shutdown continues",
+      "link": "https://finance.yahoo.com/energy/articles/oil-prices-surge-past-108-171815703.html",
+      "source": "Yahoo Finance",
+      "at": 1789492695000,
+      "inst": [
+        "USOIL"
+      ],
+      "ccy": [
+        "OIL",
+        "USD"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1789491675000,
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil prices surge past $108"
     },
     {
       "title": "AI stocks are rebounding. One analyst says there’s no spending slowdown in sight.",
@@ -1014,7 +1028,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789492680000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "AI stocks rebounding, no spending slowdown"
     },
     {
       "title": "What American Eagle’s (AEO) Q2 Numbers Say Beyond the Tariff Refund Boost",
@@ -1037,7 +1055,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789492665000,
-      "_kind": null
+      "_kind": null,
+      "why": "Retail earnings news irrelevant to macro instruments"
     },
     {
       "title": "IBD Stock Of The Day Scorpio Tankers Sails Toward Buy Point As Oil-Needy World Seeks Its Services",
@@ -1054,7 +1073,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789492644000,
-      "_kind": null
+      "_kind": null,
+      "why": "Tanker stock news, no direct oil price impact"
     },
     {
       "title": "Why investors need to learn the difference between uncertainty and risk in today’s market",
@@ -1090,7 +1110,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789492080000
+      "firstAt": 1789492080000,
+      "why": "Unclear if rate era is over, mixed signals"
     },
     {
       "title": "Estee Lauder outlook revised to stable by S&P on deleveraging",
@@ -1104,7 +1125,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789492011000
+      "firstAt": 1789492011000,
+      "why": "Single company outlook revision, negligible for index"
     },
     {
       "title": "Imperial Petroleum (IMPP) Posts Robust Q2 Topline Growth Despite Soft Fleet Utilization",
@@ -1118,7 +1140,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789491878000
+      "firstAt": 1789491878000,
+      "why": "Single company earnings, no direct oil price impact"
     },
     {
       "title": "US energy chief says Saudi Arabia oil pipeline should be back online within days",
@@ -1133,8 +1156,12 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789491675000
+      "srcs": 2,
+      "firstAt": 1789491675000,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Pipeline reopening expected, reducing supply risk"
     },
     {
       "title": "Stock Market Today: Dow Dives, Oil Play Tests New Entry; Bitcoin Falls Ahead Of Clarity Act Vote (Live Coverage)",
@@ -1858,7 +1885,7 @@
       "firstAt": 1789481166000
     },
     {
-      "title": "Press Release: Michael McCaul Backs Russia and Iran Sanctions Bill at House Rules Hearing - Quiver Quantitative",
+      "title": "Press Release: Michael McCaul Backs Russia and Iran Sanctions Bill at House Rules Hearing - quiverquant.com",
       "link": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxOblFVLWIzd2FDNkNhOG5wbnluSjFxbl9rQTBIUlNtbXY4elNnWExOWXFHY3RCRWNnZHlwd3VMdUhMdGZuZEtWV3NESllFMDJWY20xVDhrT251bGdmLUc4c1JUU1VCMXVPaVJBRTRkczZYamR5MVh6M1ByQkZhdXU1a05xUjVyVzJ1YTlDRk1uU3ZfazZYeVZpMTF0Nm84aHBJWUJpQnRTT3AyX2lZOHFfWS1fME1vZnQ4a0pVQm1FN2FtZw?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiwgFBVV95cUxOblFVLWIzd2FDNkNhOG5wbnluSjFxbl9rQTBIUlNtbXY4elNnWExOWXFHY3RCRWNnZHlwd3VMdUhMdGZuZEtWV3NESllFMDJWY20xVDhrT251bGdmLUc4c1JUU1VCMXVPaVJBRTRkczZYamR5MVh6M1ByQkZhdXU1a05xUjVyVzJ1YTlDRk1uU3ZfazZYeVZpMTF0Nm84aHBJWUJpQnRTT3AyX2",
@@ -1870,8 +1897,7 @@
       ],
       "ccy": [
         "XAU",
-        "OIL",
-        "USD"
+        "OIL"
       ],
       "sev": 2,
       "rel": 2,
@@ -1955,7 +1981,7 @@
       "firstAt": 1789480455000
     },
     {
-      "title": "Markets on edge as US Fed meets to tackle high inflation - Yahoo Finance",
+      "title": "Markets on edge as US Fed meets to tackle high inflation - finance.yahoo.com",
       "link": "https://news.google.com/rss/articles/CBMikAFBVV95cUxNQ3NtbVhiSUdJbkFFYjhUQ2Nkem1FZjU3VlF6NHdDa0k1emtVTXRuQ2FZbUFfWXdxNlpIZE5wYUxTaE04RGljdDBCbHRhVHJsOFVMT0RxakdlMGJxSzRrZTJ3S2ZpWERsX05kbkhYMHVQRVQtNTlnaUo0LWVxTkp0LTJCUFF6YWhXdFNCQ19wYTE?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMikAFBVV95cUxNQ3NtbVhiSUdJbkFFYjhUQ2Nkem1FZjU3VlF6NHdDa0k1emtVTXRuQ2FZbUFfWXdxNlpIZE5wYUxTaE04RGljdDBCbHRhVHJsOFVMT0RxakdlMGJxSzRrZTJ3S2ZpWERsX05kbkhYMHVQRVQtNTlnaUo0LWVxTkp0LTJCUFF6YWhXdFNCQ19wYTE?oc=5\" target=\"_blank\">Markets on e",
@@ -2478,6 +2504,44 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789473088000
+    },
+    {
+      "title": "Denmark says Russian warship fired flares at military helicopter",
+      "link": "https://www.bbc.co.uk/news/articles/cwn8mjl31p5yo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC World",
+      "desc": "The Danish prime minister has accused Russia of \"reckless\" behaviour, while the Kremlin is yet to comment.",
+      "at": 1789472400000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789472400000
+    },
+    {
+      "title": "Bitcoin and ethereum prices today, Tuesday, September 15, 2026: Crypto prices sliding this morning ahead of Fed meeting",
+      "link": "https://finance.yahoo.com/personal-finance/investing/article/bitcoin-and-ethereum-prices-today-tuesday-september-15-2026-crypto-prices-sliding-this-morning-ahead-of-fed-meeting-113732149.html",
+      "source": "Yahoo Finance",
+      "at": 1789472252000,
+      "inst": [
+        "BTC/USDT",
+        "ETH/USDT"
+      ],
+      "ccy": [
+        "USD",
+        "BTC"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1789470894000
     }
   ],
   "sources": [
@@ -2503,7 +2567,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-15T17:41:54.268Z",
-  "headlinesAt": "2026-09-15T17:41:54.268Z",
-  "updatedAt": "2026-09-15T17:41:54.268Z"
+  "calendarAt": "2026-09-15T17:43:25.932Z",
+  "headlinesAt": "2026-09-15T17:43:25.932Z",
+  "updatedAt": "2026-09-15T17:43:25.932Z"
 }
