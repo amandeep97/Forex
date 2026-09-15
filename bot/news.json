@@ -804,6 +804,28 @@
   ],
   "headlines": [
     {
+      "title": "Why one Wall Street firm thinks this year’s stock-market rally is running out of road",
+      "link": "https://www.marketwatch.com/story/wells-fargo-just-cuts-its-s-p-500-price-target-will-others-follow-e32f968a?mod=mw_rss_topstories",
+      "source": "MarketWatch",
+      "desc": "In what may be a first since the early days of the war between the U.S. and Iran, a Wall Street firm is lowering rather than raising its S&P 500 year-end target.",
+      "at": 1789480860000,
+      "inst": [
+        "US500",
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1789478280000,
+      "_kind": null
+    },
+    {
       "title": "Gold edges down as oil-driven inflation fears lift rate-hike bets - marketscreener.com",
       "link": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPV2pDeDVyUUoxeGdUNXpPNkZZUUs2Q2l0cEEwZ3RjS2prTk9zblRpYUdKSEJXUlBJbnRtbXpubHNNVXNleDd4TUctWW9OQkJuRTdGbExJZTQtdXlfVHZpRGhwTUZhMDZRMXJRR01aZG1TdDBJbWcxeWVCZG03ODRYQ3NEdXo2U2gxdlQ0VUVTazV3ZW9xYk5MYmN4VjU4VnJINVlVZ2pzRXJhY2tDRlowWUgwUkJ2T0l6eFE?oc=5",
       "source": "Wires (macro)",
@@ -822,12 +844,7 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789478014000,
-      "_kind": null,
-      "dir": {
-        "XAU/USD": "down",
-        "USOIL": "up"
-      },
-      "why": "Oil up, gold down on rate hike fears"
+      "_kind": null
     },
     {
       "title": "Gold struggles near $4,300 as 10-year US Treasury yield reaches 2007 high - FXStreet",
@@ -846,23 +863,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789480457000,
-      "_kind": null,
-      "dir": {
-        "XAU/USD": "down"
-      },
-      "why": "High yields pressure gold prices"
-    },
-    {
-      "title": "Elon Musk's $1 Trillion Pay Package Needs Tesla to Hit an $8.5 Trillion Market Cap. Here's What That Means for Shareholders.",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/elon-musks-1-trillion-pay-135000946.html",
-      "source": "Yahoo Finance",
-      "at": 1789480200000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1789480200000,
       "_kind": null
     },
     {
@@ -895,8 +895,27 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789479795000,
-      "_kind": null,
-      "why": "Demographic data lacks immediate market direction"
+      "_kind": null
+    },
+    {
+      "title": "Canada is a 'safe harbour' for global finance, Carney says",
+      "link": "https://www.bbc.co.uk/news/articles/cmq8jdgel128o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC World",
+      "desc": "The prime minister is hosting a major global investment summit, with the goal of attracting investment amid a trade war with the US.",
+      "at": 1789479781000,
+      "inst": [
+        "USD/CAD",
+        "XAU/USD"
+      ],
+      "ccy": [
+        "CAD",
+        "XAU"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1789478986000,
+      "_kind": null
     },
     {
       "title": "Wall St tepid at open as oil prices, Treasury yields rise",
@@ -914,11 +933,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789479755000,
-      "_kind": null,
-      "dir": {
-        "USOIL": "up"
-      },
-      "why": "Oil prices rise at open"
+      "_kind": null
     },
     {
       "title": "Cathie Wood Backs AI Slowdown but Calls Extinction Fears ‘Ridiculous:’ What Do Prediction Markets Say?",
@@ -930,32 +945,8 @@
       "sev": 1,
       "rel": 1,
       "srcs": 1,
-      "firstAt": 1789479691000,
+      "firstAt": 1789479388000,
       "_kind": null
-    },
-    {
-      "title": "Stock Market Today: Dow Falls As Yields, Oil Prices Rise With Fed Meeting Starting; Nvidia Rebounds (Live Coverage)",
-      "link": "https://www.investors.com/market-trend/stock-market-today/dow-jones-sp500-nasdaq-treasury-yields-oil-prices-nvidia-stock/?src=A00220&yptr=yahoo",
-      "source": "Yahoo Finance",
-      "at": 1789479664000,
-      "inst": [
-        "USOIL",
-        "US30"
-      ],
-      "ccy": [
-        "USD",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789479664000,
-      "_kind": null,
-      "dir": {
-        "USOIL": "up",
-        "US30": "down"
-      },
-      "why": "Oil up, Dow falls on yields"
     },
     {
       "title": "Scott Bessent testifies on Iran war, gas prices, inflation 2026 - qz.com",
@@ -977,8 +968,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789479448000,
-      "_kind": null,
-      "why": "Testimony context unclear for immediate direction"
+      "_kind": null
     },
     {
       "title": "U.S. stocks open lower amid surging yields, 10-year hits highest level since 2007",
@@ -993,11 +983,37 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789479377000,
-      "_kind": null,
-      "dir": {
-        "US500": "down"
-      },
-      "why": "Stocks open lower on surging yields"
+      "_kind": null
+    },
+    {
+      "title": "Ulta Beauty, Etsy upgraded: Wall Street's top analyst calls",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/qorvo-downgraded-ulta-beauty-upgraded-133354484.html",
+      "source": "Yahoo Finance",
+      "at": 1789479339000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1789478280000,
+      "_kind": null
+    },
+    {
+      "title": "Anthropic, OpenAI, and xAI Want to Slow Down Artificial Intelligence (AI) Development. These 2 Stocks Could Be the Biggest Losers.",
+      "link": "https://finance.yahoo.com/technology/ai/articles/anthropic-openai-xai-want-slow-133500297.html",
+      "source": "Yahoo Finance",
+      "at": 1789479300000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789479300000,
+      "_kind": null
     },
     {
       "title": "4 Oil & Gas Stocks Stifel Is Constructive On as Energy Prices Stay High",
@@ -1015,11 +1031,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789479198000,
-      "_kind": null,
-      "dir": {
-        "USOIL": "up"
-      },
-      "why": "High energy prices, mixed stock impact"
+      "_kind": null
     },
     {
       "title": "Carney: Canada to allow immediate expensing for most new capital investment",
@@ -1036,12 +1048,8 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789478986000,
-      "dir": {
-        "USD/CAD": "up"
-      },
-      "why": "USD rises, CAD falls on Fed hike"
+      "srcs": 2,
+      "firstAt": 1789478986000
     },
     {
       "title": "Gold weakens amid pressure from growing Fed rate hike bets",
@@ -1058,11 +1066,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789477259000,
-      "dir": {
-        "XAU/USD": "down"
-      },
-      "why": "Gold weakens on Fed rate hike bets"
+      "firstAt": 1789477259000
     },
     {
       "title": "Hong Kong Crypto Exchange CoinEx To Shutdown",
@@ -1079,8 +1083,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789478940000,
-      "why": "Exchange shutdown impact on price unclear"
+      "firstAt": 1789478940000
     },
     {
       "title": "Corn futures fall on stronger dollar and improved crop ratings",
@@ -1127,12 +1130,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 3,
-      "firstAt": 1789477380000,
-      "dir": {
-        "USOIL": "up",
-        "UKOIL": "up"
-      },
-      "why": "Supply disruptions push oil prices higher"
+      "firstAt": 1789477380000
     },
     {
       "title": "Robinhood To Offer Share Redemptions And Voting Rights On Tokenized Stocks",
@@ -1146,8 +1144,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789478700000,
-      "why": "Robinhood feature news lacks broad market direction"
+      "firstAt": 1789478700000
     },
     {
       "title": "Iranian strikes have damaged hundreds of structures at U.S. bases, watchdog says - The Washington Post",
@@ -1167,8 +1164,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789476267000,
-      "why": "Geopolitical news direction unclear for instruments"
+      "firstAt": 1789476267000
     },
     {
       "title": "An AI bubble is no longer Wall Street’s biggest fear. This stock-market risk just took its place.",
@@ -1182,12 +1178,8 @@
       "ccy": [],
       "sev": 1,
       "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789476960000,
-      "dir": {
-        "US500": "down"
-      },
-      "why": "Bond yield rise fears weigh on stocks"
+      "srcs": 2,
+      "firstAt": 1789478280000
     },
     {
       "title": "Oil prices edge higher as attacks, pipeline outage deepen Saudi supply concerns",
@@ -1335,27 +1327,6 @@
       "firstAt": 1789477200000
     },
     {
-      "title": "A Wall Street firm just lowered its S&P 500 price target. Start of a trend?",
-      "link": "https://www.marketwatch.com/story/wells-fargo-just-cuts-its-s-p-500-price-target-will-others-follow-e32f968a?mod=mw_rss_topstories",
-      "source": "MarketWatch",
-      "desc": "In what may be a first since the early days of the war between the U.S. and Iran, a Wall Street firm is lowering rather than raising its S&P 500 year-end target.",
-      "at": 1789476960000,
-      "inst": [
-        "US500",
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789476960000
-    },
-    {
       "title": "No energy ceasefire between Ukraine and Russia yet - Yahoo",
       "link": "https://news.google.com/rss/articles/CBMimwFBVV95cUxOemZkZU4zT2tJQnZyRFFtUWxXT20xNWdmOTNIU2NnakYxMmI1ZlJLWWx0NGtCTmJRVkVFemEyTkFMTUZJVldjbGU5V0NRVDZMTXNvNjlHNVUtX2RvSUlZUlFNaU1kUUJJcEdvS21TSFNBZGdnMjFXUk51NHI0a1U5Z0NTMl9PSzU3UFJPanhRMVlSRTVBZDVaVUl5OA?oc=5",
       "source": "Wires (geo)",
@@ -1374,6 +1345,24 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789476267000
+    },
+    {
+      "title": "Stock Market Today: Dow Falls As Yields, Oil Prices Rise Ahead Of Fed Meeting; Nvidia Set To Rebound (Live Coverage)",
+      "link": "https://www.investors.com/market-trend/stock-market-today/dow-jones-sp500-nasdaq-treasury-yields-oil-prices-nvidia-stock/?src=A00220&yptr=yahoo",
+      "source": "Yahoo Finance",
+      "at": 1789476738000,
+      "inst": [
+        "USOIL",
+        "US30"
+      ],
+      "ccy": [
+        "USD",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1789475400000
     },
     {
       "title": "Russia backs Trump's idea of energy ceasefire with Ukraine - aa.com.tr",
@@ -1537,7 +1526,7 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 1,
+      "srcs": 2,
       "firstAt": 1789475400000
     },
     {
@@ -1652,23 +1641,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789471140000
-    },
-    {
-      "title": "‘My total balance should be $20 million’: I invested $1.1 million in a crypto platform. Have I lost it all?",
-      "link": "https://www.marketwatch.com/story/my-total-balance-should-be-worth-20-million-i-invested-1-1-million-in-a-crypto-platform-have-i-lost-it-all-d22da562?mod=mw_rss_topstories",
-      "source": "MarketWatch",
-      "desc": "“I invested on the recommendation of an executive vice president of a major New York investment bank.”",
-      "at": 1789473600000,
-      "inst": [
-        "BTC/USDT"
-      ],
-      "ccy": [
-        "BTC"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789473600000
     },
     {
       "title": "Dollar ticks up as oil prices climb, Fed rate hike chances firm - marketscreener.com",
@@ -2499,25 +2471,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789460820000
-    },
-    {
-      "title": "Stocks drop, oil climbs and Treasury yields hit 19-year high - Yahoo Finance Singapore",
-      "link": "https://news.google.com/rss/articles/CBMihAFBVV95cUxOdTJWNDRBeFRWY0YwZm5lQkRmVGJPYS01UGFBTmRHUktJcjRaclViQTRPVUk4THpiS3lwanM5d0xRWDRtaFdNb3pvRWp4bkJzajdtaEtLVGhWS3R1a0dvbnZCSEZJSnBGdGhHMlo0WV80M3M3ME1WX1R5TTJJcjEya2o2Z20?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMihAFBVV95cUxOdTJWNDRBeFRWY0YwZm5lQkRmVGJPYS01UGFBTmRHUktJcjRaclViQTRPVUk4THpiS3lwanM5d0xRWDRtaFdNb3pvRWp4bkJzajdtaEtLVGhWS3R1a0dvbnZCSEZJSnBGdGhHMlo0WV80M3M3ME1WX1R5TTJJcjEya2o2Z20?oc=5\" target=\"_blank\">Stocks drop, oil climbs and ",
-      "at": 1789460343000,
-      "inst": [
-        "USOIL",
-        "US500"
-      ],
-      "ccy": [
-        "USD",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789459987000
     }
   ],
   "sources": [
@@ -2543,7 +2496,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-15T14:01:40.631Z",
-  "headlinesAt": "2026-09-15T14:01:40.631Z",
-  "updatedAt": "2026-09-15T14:01:40.631Z"
+  "calendarAt": "2026-09-15T14:03:09.063Z",
+  "headlinesAt": "2026-09-15T14:03:09.063Z",
+  "updatedAt": "2026-09-15T14:03:09.063Z"
 }
