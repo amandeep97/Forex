@@ -20,7 +20,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789481823000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Geopolitical conflict boosts safe havens and oil."
     },
     {
       "title": "Russia and Ukraine launch new energy attacks despite Trump’s ceasefire claim - NBC News",
@@ -41,7 +47,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789483721000,
-      "_kind": "war-end"
+      "_kind": "war-end",
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Energy attacks and conflict boost oil and gold."
     },
     {
       "title": "EU Delays Decision on Extending Russia Sanctions after Member States Fail to Agree - Hungarian Conservative",
@@ -62,7 +74,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789482000000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions delay unclear for immediate market direction."
     },
     {
       "title": "Marvell Technology Has Imploded Since June: One Defiant Wall Street Pro Says It’ll Double From Today",
@@ -77,7 +90,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789481640000,
-      "_kind": null
+      "_kind": null,
+      "why": "Single stock news, unclear for index."
     },
     {
       "title": "The 10 most overvalued housing markets in America",
@@ -106,7 +120,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789483336000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US30": "down"
+      },
+      "why": "Dow dives as yields jump."
     },
     {
       "title": "Insider Dumps 90,000 Shares of Energy Stock, Valued at $1.5 Million",
@@ -136,7 +154,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789483062000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Rate hike exposure implies bearish sentiment."
     },
     {
       "title": "AMD, Skyworks among market cap stock movers on Tuesday",
@@ -164,7 +186,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789482949000,
-      "_kind": null
+      "_kind": null,
+      "why": "Corporate news, no clear FX direction."
     },
     {
       "title": "30-year mortgage rate jumps to 7.17% — a nearly 2-year high — in the latest blow to the housing market",
@@ -188,7 +211,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789482900000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Yields up, rates up, FX down."
     },
     {
       "title": "Fed meeting live updates: Anticipation builds with Fed expected to hike interest rates for first time in 3 years",
@@ -211,7 +239,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789482892000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Rate hike expectations bearish for FX and gold."
     },
     {
       "title": "Fed, Bessent Fight For Credibility As 10-Year Treasury Yield Tops 5%",
@@ -234,7 +268,13 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789480457000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "High yields and Fed credibility bearish for FX."
     },
     {
       "title": "DLocal and Palomar: two midcap stocks with strong revenue growth and upside",
@@ -249,7 +289,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789482743000,
-      "_kind": null
+      "_kind": null,
+      "why": "Specific stocks, unclear for broad index."
     },
     {
       "title": "Inflation is sinking your high-yield savings account’s returns. Here’s one way to fight it.",
@@ -273,7 +314,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789481640000,
-      "_kind": null
+      "_kind": null,
+      "why": "General inflation commentary, no clear direction."
     },
     {
       "title": "LATEST: US sanctions Russia’s VTB Bank for third time over attempt to move ‘billions in Iranian assets’ - AML Intelligence",
@@ -293,7 +335,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789482272000
+      "firstAt": 1789482272000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Sanctions and geopolitical tension boost risk assets."
     },
     {
       "title": "What weapon could the US have put into space?",
@@ -310,7 +358,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789480651000
+      "firstAt": 1789480651000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Space warfare news boosts safe haven demand."
     },
     {
       "title": "Satellite image reveals major damage that shut crucial oil pipeline",
@@ -327,7 +379,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789482074000
+      "firstAt": 1789482074000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Pipeline damage cuts supply, bullish for oil."
     },
     {
       "title": "Press Release: Michael McCaul Backs Russia and Iran Sanctions Bill at House Rules Hearing - Quiver Quantitative",
@@ -1702,6 +1758,6 @@
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-15T14:59:53.742Z",
-  "updatedAt": "2026-09-15T14:59:53.742Z"
+  "headlinesAt": "2026-09-15T15:01:25.677Z",
+  "updatedAt": "2026-09-15T15:01:25.677Z"
 }
