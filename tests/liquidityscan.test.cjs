@@ -23,7 +23,7 @@
 //   And an alert fires once per sweep. Re-announcing the same setup every two
 //   minutes is how you teach someone to ignore the alert.
 const { LiquidityScanner, atrOf, NEAR_ATR, NEAR_ATR_DAILY, LEVEL_JOBS, LEVEL_METHOD,
-  LEVELS_TTL } = require('../vps-bot/src/liquidityScan');
+  LEVELS_TTL, ALERT_BUDGET, DIGEST_HOUR } = require('../vps-bot/src/liquidityScan');
 
 let fails = 0;
 const check = (n, c, e = '') => { console.log(`${c ? '  ok  ' : '  FAIL'}  ${n}${e ? ' — ' + e : ''}`); if (!c) fails++; };
@@ -187,12 +187,16 @@ function sweptM2() {
       oanda: fakeOanda(sweptM2), github: noGithub, log: quiet,
       telegram: { async send(t) { sent.push(t); } },
     });
+    // A watchlist instrument, a daily level, a real session — because the gate
+    // now requires all three. These checks are about the MESSAGE; the gate has
+    // its own block further down.
     const rec = {
-      sym: 'TEST', price: 105,
+      sym: 'XAU/USD', price: 105,
       plan: {
         dir: 'short', state: 'armed', why: 'waiting for price to come back to the level',
         entry: 110, stop: 112.4, risk: 2.4, target: 100, targetLabel: "yesterday's low", rr: 4.17,
         level: { kind:'PDH', price:110, label:"yesterday's high" }, sweptAt: Date.now(),
+        session: { id:'london', label:'London', overlap:false },
       },
     };
     await s._announce(rec);
@@ -658,6 +662,108 @@ function sweptM2() {
     check('and it reports that no cell beat its baseline on both holdouts',
       /No cell in the study beat its baseline/.test(sent[0] || ''),
       '', 'that is the headline result, and it belongs on the message that asks you to trade');
+  }
+
+  // ── Silence is the default; a push has to earn a reason ──────────────────
+  //
+  // The gate was "any armed plan" across forty instruments and six levels each.
+  // That is over a hundred pushes a day, mostly on crosses nobody here trades,
+  // and every one of them now ends with "no cell beat its baseline". A phone
+  // buzzing to say do not trade is worse than a quiet phone, because it also
+  // buries the two or three a week worth opening a chart for.
+  {
+    const sent = [];
+    const mk = () => {
+      const s = new LiquidityScanner({
+        oanda: fakeOanda(), log: quiet,
+        telegram: { async send(m) { sent.push(m); } },
+        github: { async readJSON() { return null; }, async writeJSON() { return 's'; } },
+      });
+      return s;
+    };
+    const plan = (o = {}) => ({
+      sym: o.sym || 'XAU/USD', price: 4300, div: o.div || null,
+      plan: {
+        state: 'armed', dir: 'long', entry: 4300, stop: 4290, target: 4350,
+        targetLabel: "yesterday's high", rr: 5,
+        level: { kind: o.kind || 'PDL', price: 4300, label: o.label || "yesterday's low" },
+        session: o.session || { id: 'london', label: 'London', overlap: false },
+      },
+    });
+
+    const s = mk();
+    check('a daily level on a watchlist instrument in London gets through',
+      !!s._alertReason(plan()), JSON.stringify(s._alertReason(plan())?.tag));
+
+    check('the same hunt on a cross nobody here trades does not',
+      s._alertReason(plan({ sym: 'GBP/CAD' })) === null,
+      'USD/CHF and GBP/CAD were two of the three alerts on the screen');
+
+    check('an H4 swing never does — they happen all day',
+      s._alertReason(plan({ kind: 'H4L' })) === null);
+
+    check('and a daily level in the Asian dead zone does not either',
+      s._alertReason(plan({ session: { id: 'asia', label: 'Asia', overlap: false } })) === null,
+      "yesterday's level at 03:00 with nobody in the market");
+
+    check('a WEEKLY level gets through whatever the session',
+      s._alertReason(plan({ kind: 'PWL', session: { id: 'asia', label: 'Asia', overlap: false } }))?.tag === 'WEEKLY',
+      'last week&apos;s extreme is rare and is the deepest pool on the board');
+
+    check('taking it alone gets through even outside the session window',
+      s._alertReason(plan({ session: { id: 'late', label: 'Late', overlap: false },
+        div: { verdict: 'alone', partner: 'XAG/USD' } }))?.tag === 'ALONE');
+
+    check('and the overlap is named as its own reason',
+      s._alertReason(plan({ session: { id: 'ny', label: 'New York', overlap: true } }))?.tag === 'OVERLAP');
+
+    // The budget, and the exemption that makes it work.
+    {
+      const b = mk();
+      const now = Date.now();
+      for (let i = 0; i < ALERT_BUDGET; i++) b.pushedAt.push({ at: now, budgeted: true });
+      check('past the daily budget an ordinary hunt is held back',
+        b._budgetOk({ tag: 'SESSION', budgeted: true }, now) === false,
+        `${ALERT_BUDGET} already sent`);
+      check('but a weekly sweep is never queued behind the common case',
+        b._budgetOk({ tag: 'WEEKLY', budgeted: false }, now) === true,
+        '', 'a budget that blocks the rare thing defeats its own purpose');
+      // And the window rolls.
+      b.pushedAt = b.pushedAt.map(x => ({ ...x, at: now - 25 * 3600e3 }));
+      check('yesterday&apos;s pushes do not count against today',
+        b._budgetOk({ tag: 'SESSION', budgeted: true }, now) === true);
+    }
+
+    // End to end: the suppressed ones are remembered, not dropped.
+    sent.length = 0;
+    const e = mk();
+    await e._announce(plan({ sym: 'GBP/CAD', label: "yesterday's high" }));
+    await e._announce(plan({ sym: 'USD/CHF', kind: 'H4H', label: 'a 4H swing high' }));
+    check('a suppressed hunt sends nothing',
+      sent.length === 0, `${sent.length} message(s)`);
+    check('and is kept for the digest rather than thrown away',
+      e.muted.length === 2,
+      `${e.muted.length} held`,
+      'a filter you cannot audit is one you stop trusting the first time you suspect it ate something');
+
+    await e._announce(plan());
+    check('while one that earns it is sent, with the reason on the message',
+      sent.length === 1 && /XAU\/USD/.test(sent[0]) && /SESSION|OVERLAP/.test(sent[0]),
+      (sent[0] || '').split('\n')[0]);
+
+    // The digest itself.
+    sent.length = 0;
+    const noon = Date.UTC(2026, 8, 16, DIGEST_HOUR, 5);
+    const fired = await e._digest(noon);
+    check('the digest goes out once a day and names what it held back',
+      fired && sent.length === 1 && /Quiet since yesterday/.test(sent[0])
+      && /GBP\/CAD/.test(sent[0]),
+      (sent[0] || '').split('\n')[0]);
+    check('and does not repeat later the same day',
+      await e._digest(noon + 3600e3) === false && sent.length === 1);
+    check('a digest with nothing held back is not sent at all',
+      await e._digest(noon + 25 * 3600e3) === false && sent.length === 1,
+      '', 'an empty summary is still a notification');
   }
 
   console.log(fails ? `\n${fails} FAILED` : '\nall passed');

@@ -104,6 +104,47 @@ const PLAN_WINDOW = 240;
 // while it remains valid would train you to ignore the alert.
 const ANNOUNCE_TTL = 6 * 3600e3;
 
+// ── Who gets a push, and who goes in the digest ─────────────────────────────
+//
+// The gate used to be "any armed plan": forty instruments, six levels each,
+// every session. That is over a hundred pushes a day, mostly on crosses nobody
+// here trades, and since the study published every one of them ended with "no
+// cell beat its baseline on both holdouts". A phone buzzing to tell you not to
+// trade is worse than a phone not buzzing, because it also buries the two or
+// three a week that are worth opening a chart for.
+//
+// So silence is the default and a push has to EARN a reason, which is printed
+// on the message. Three earn it, and nothing else does:
+//
+//   A WEEKLY high or low was taken. Last week's extremes are the deepest pool
+//   on the board and they get taken a handful of times a week across the whole
+//   watchlist. Rare by construction, so these are exempt from the daily budget.
+//
+//   A DAILY high or low was taken during London or New York. Yesterday's levels
+//   matter; yesterday's levels at 03:00 with nobody in the market do not.
+//
+//   OR IT TOOK THE LEVEL ALONE while its partner held. This is the one context
+//   reading that leaned positive in the replay — not significantly, and it is a
+//   reason to look rather than a reason to trade.
+//
+// None of this is a measured filter. The study found no edge anywhere, so there
+// is nothing to select on that has been shown to work. These are cuts by
+// RELEVANCE — what you trade, on levels that hold real orders, at times when
+// there is size in the market — and they are written here as preferences so
+// they can be argued with rather than buried in a threshold.
+const ALERT_SYMS_DEFAULT = 'XAU/USD,XAG/USD,US500,US100,US30,GER40,'
+  + 'EUR/USD,GBP/USD,USD/JPY,AUD/USD,USD/CAD,USOIL';
+const ALERT_KINDS = new Set(['PDH', 'PDL', 'PWH', 'PWL']);
+const ALERT_SESSIONS = new Set(['london', 'ny']);
+
+// A hard ceiling on ordinary pushes in a rolling day. Past it everything goes
+// to the digest, because the twenty-first alert of a day is not read.
+const ALERT_BUDGET = 6;
+
+// When the quiet summary goes out, in UTC. 12:00 is breakfast in Toronto: the
+// overnight is done, London is mid-session, New York has not opened.
+const DIGEST_HOUR = 12;
+
 function atrOf(cs, period = 14) {
   if (!cs || cs.length < period + 1) return null;
   let sum = 0;
@@ -134,6 +175,91 @@ class LiquidityScanner {
     this.restored = false;
     this.study = null;
     this.studyAt = 0;
+    this.pushedAt = [];          // rolling-day budget
+    this.muted = [];             // everything suppressed, for the digest
+    this.digestOn = null;        // the UTC day a digest last went out
+    this.alertSyms = new Set(String(env.LIQ_ALERT_SYMS || ALERT_SYMS_DEFAULT)
+      .split(',').map(x => x.trim()).filter(Boolean));
+    this.alertBudget = Number(env.LIQ_ALERT_BUDGET) > 0
+      ? Number(env.LIQ_ALERT_BUDGET) : ALERT_BUDGET;
+  }
+
+  /**
+   * Why this plan deserves to interrupt you, or null for silence.
+   *
+   * Returning a reason rather than a boolean so the message can say which rule
+   * let it through. An alert whose selection you cannot see is one you either
+   * trust blindly or stop reading.
+   */
+  _alertReason(rec) {
+    const p = rec.plan;
+    if (!p) return null;
+    if (!this.alertSyms.has(rec.sym)) return null;
+    const kind = p.level.kind;
+    if (!ALERT_KINDS.has(kind)) return null;
+
+    if (kind === 'PWH' || kind === 'PWL') {
+      return { tag: 'WEEKLY', budgeted: false,
+        why: "last week's extreme — the deepest resting orders on the board" };
+    }
+    if (rec.div?.verdict === 'alone') {
+      return { tag: 'ALONE', budgeted: true,
+        why: `${rec.div.partner} left its own level standing — this was not the whole complex moving` };
+    }
+    if (ALERT_SESSIONS.has(p.session?.id)) {
+      return { tag: p.session.overlap ? 'OVERLAP' : 'SESSION', budgeted: true,
+        why: p.session.overlap
+          ? "yesterday's level, taken with London and New York both open"
+          : `yesterday's level, taken in the ${p.session.label} session` };
+    }
+    return null;
+  }
+
+  /**
+   * Is there room in the rolling day?
+   *
+   * Weekly sweeps neither spend from the budget nor are blocked by it. They are
+   * rare by construction — a handful a week across twelve instruments — and the
+   * whole point of the budget is to stop the common case drowning the rare one,
+   * which it would do if the rare one queued behind it.
+   */
+  _budgetOk(reason, now = Date.now()) {
+    this.pushedAt = this.pushedAt.filter(x => now - x.at < 86400e3);
+    if (!reason.budgeted) return true;
+    return this.pushedAt.filter(x => x.budgeted).length < this.alertBudget;
+  }
+
+  /**
+   * The quiet summary: everything that did not earn a push, once a day.
+   *
+   * Suppressed is not discarded. A hunt on a cross at 03:00 is still a fact
+   * about the week, and a filter you cannot audit is one you stop trusting the
+   * first time you suspect it ate something.
+   */
+  async _digest(now = Date.now()) {
+    const d = new Date(now);
+    const day = d.toISOString().slice(0, 10);
+    if (d.getUTCHours() < DIGEST_HOUR || this.digestOn === day) return false;
+    this.digestOn = day;
+    const items = this.muted.splice(0);
+    if (!this.telegram || !items.length) return false;
+
+    const byReason = {};
+    for (const m of items) (byReason[m.why] = byReason[m.why] || []).push(m);
+    const line = m => `${m.sym} ${m.label}${m.session ? ` · ${m.session}` : ''}`;
+    const body = Object.entries(byReason)
+      .map(([why, list]) => `<b>${why}</b> (${list.length})\n`
+        + list.slice(0, 12).map(line).join('\n')
+        + (list.length > 12 ? `\n…and ${list.length - 12} more` : ''))
+      .join('\n\n');
+
+    await this.telegram.send(
+      `<b>Quiet since yesterday</b>\n`
+      + `${items.length} hunt(s) found and not pushed.\n\n${body}\n\n`
+      + `<i>Nothing here earned an alert. The full board is in the app's `
+      + `LIQUIDITY tab.</i>`
+    ).catch(e => this.log(`Liquidity digest: ${e.message}`));
+    return true;
   }
 
   // Pick up where the last process left off.
@@ -495,6 +621,21 @@ class LiquidityScanner {
     if (this.announced.has(key)) return;
     this.announced.set(key, now);
 
+    // Silence unless it earns a push. Everything else is remembered for the
+    // digest rather than thrown away — the deduplication above already ran, so
+    // a suppressed hunt is counted once, not once every two minutes.
+    const reason = this._alertReason(rec);
+    if (!reason || !this._budgetOk(reason, now)) {
+      this.muted.push({
+        sym: rec.sym, label: p.level.label, kind: p.level.kind, dir: p.dir,
+        session: p.session?.label || null, at: now,
+        why: !reason ? 'Not on the watchlist, or an H4 swing, or outside London/NY'
+          : 'Past the daily alert budget',
+      });
+      return;
+    }
+    this.pushedAt.push({ at: now, budgeted: reason.budgeted });
+
     const dp = Math.abs(rec.price) < 20 ? 5 : 2;
     const side = p.dir === 'long' ? 'BUY' : 'SELL';
 
@@ -514,8 +655,11 @@ class LiquidityScanner {
         ? `\n\n<i>The replay has no cell for ${p.level.kind} in the ${p.session?.label || 'this'} session.</i>`
         : `\n\n<i>The replay has not published yet.</i>`;
     await this.telegram.send(
-      `<b>${side} LIMIT — ${rec.sym}</b>\n`
-      + `${p.level.label} at ${p.level.price.toFixed(dp)} was swept and reclaimed\n\n`
+      `<b>${side} LIMIT — ${rec.sym}</b>  <i>${reason.tag}</i>\n`
+      + `${p.level.label} at ${p.level.price.toFixed(dp)} was swept and reclaimed\n`
+      // Why this one got through, in the message. An alert whose selection you
+      // cannot see is one you either trust blindly or stop reading.
+      + `<i>${reason.why}</i>\n\n`
       + `entry <b>${p.entry.toFixed(dp)}</b> (limit, on the retest)\n`
       + `stop <b>${p.stop.toFixed(dp)}</b>\n`
       + (p.target != null
@@ -651,6 +795,7 @@ class LiquidityScanner {
     // few things on it that changes what you would do — sending it and working
     // it out afterwards would put the weaker version on the phone every time.
     this._diverge();
+    await this._digest(now);
     for (const inst of candidates) {
       const rec = this.results.get(inst.sym);
       if (rec) await this._announce(rec).catch(e => this.log(`Liquidity announce ${inst.sym}: ${e.message}`));
@@ -707,4 +852,5 @@ class LiquidityScanner {
 }
 
 module.exports = { LiquidityScanner, PATH, NEAR_ATR, NEAR_ATR_DAILY, APPROACH_ATR,
-  LEVELS_TTL, SCAN_TTL, LEVEL_JOBS, LEVEL_METHOD, PLAN_WINDOW, atrOf };
+  LEVELS_TTL, SCAN_TTL, LEVEL_JOBS, LEVEL_METHOD, PLAN_WINDOW, atrOf,
+  ALERT_SYMS_DEFAULT, ALERT_KINDS, ALERT_SESSIONS, ALERT_BUDGET, DIGEST_HOUR };
