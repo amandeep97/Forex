@@ -63,7 +63,7 @@ const PER_STEP = 2;
 
 // Bump when the measurement changes meaning, so a stale answer is discarded
 // rather than shown next to a model it no longer describes.
-const METHOD_VERSION = 2;
+const METHOD_VERSION = 3;
 
 // Sixty days of two-minute bars is about 43,000 per instrument — nine paged
 // requests. Longer would be better and is not affordable across forty
@@ -208,6 +208,12 @@ async function buildLevelTimeline(lib, { daily, weekly, h4 }) {
       // trend" a testable claim rather than a label — it was asserted on the
       // live screen with nothing behind it.
       trend: lib.structure.readStructure(past).structure,
+      // The FOUR-HOUR ATR, because that is what the live scanner hands
+      // tradePlan — _refreshLevels computes atrOf(h4) and _scan passes it
+      // straight through. The replay was using the two-minute ATR, which makes
+      // tradePlan's cushion about two orders of magnitude smaller and the stop
+      // correspondingly tighter. Same function, same inputs, a different trade.
+      atr: atrOf(past, past.length - 1),
     });
   }
   return out;
@@ -329,13 +335,28 @@ function replayPlans(lib, sym, m2, timeline, { waitBars = PLAN_WAIT, holdBars = 
     lastKey = key;
 
     const at = start + sweep.at;              // the sweep bar, in the full series
-    const atr = atrOf(m2, i);
-    if (!atr || atr <= 0) continue;
+    const m2atr = atrOf(m2, i);               // only for scaling the baseline
+    if (!m2atr || m2atr <= 0 || !tl.atr || tl.atr <= 0) continue;
 
-    // Geometry from the live function. Only the window is passed, because that
-    // is all the live scanner has when it builds a plan.
-    const geom = tradePlan(window, sweep, tl.levels, atr, { now: t });
+    // Geometry from the live function, with the live function's inputs: the
+    // window it would have, and the four-hour ATR it is actually given.
+    const geom = tradePlan(window, sweep, tl.levels, tl.atr, { now: t });
     if (!geom || !(Math.abs(geom.entry - geom.stop) > 0)) continue;
+
+    // ── Only plans you could have been alerted to ────────────────────────────
+    //
+    // This is the bar the model FINDS the sweep on. The sweep itself is up to
+    // fifty-nine bars earlier, and the first version ran the order from there —
+    // so a plan could be filled on a retest that had already happened before
+    // anything knew there was a sweep to trade. That is a look-ahead, and it
+    // was worth roughly a full R: the first run of this reported +0.9R average
+    // on cells that pass every holdout.
+    //
+    // The live scanner alerts on state 'armed' and on nothing else. 'triggered'
+    // means the retest is already behind you and the entry has gone. So a plan
+    // that is anything but armed the moment it is found is not a trade that was
+    // ever on offer, and the order runs from HERE, not from the sweep.
+    if (geom.state !== 'armed') continue;
 
     const dir = sweep.dir === 'long' ? 'up' : 'down';
     sweeps.push([t, sweep.level.kind]);
@@ -345,9 +366,9 @@ function replayPlans(lib, sym, m2, timeline, { waitBars = PLAN_WAIT, holdBars = 
     // series would otherwise fill with trades cut short by the download ending,
     // which is not something that happens to a real order — and those truncated
     // trades cluster at the most recent end, which is the time holdout.
-    if (at + waitBars >= m2.length) break;
+    if (i + waitBars >= m2.length) break;
 
-    const res = runBracket(m2, at, {
+    const res = runBracket(m2, i, {
       entry: geom.entry, stop: geom.stop, target: geom.target, dir, waitBars, holdBars,
     });
 
@@ -363,7 +384,10 @@ function replayPlans(lib, sym, m2, timeline, { waitBars = PLAN_WAIT, holdBars = 
       // an outcome. 'none' is kept as its own value rather than folded into
       // either side — a ranging market is not a weak trend.
       align: trendAlign(tl.trend, sweep.dir).align,
-      riskAtr: risk / atr,
+      // Against the two-minute ATR, because that is the unit planBaseline
+      // samples in. The stop itself is built from the four-hour ATR above; this
+      // is only how the matched baseline is scaled.
+      riskAtr: risk / m2atr,
       rr: geom.rr ?? null,
       filled: res.filled,
       why: res.why,
