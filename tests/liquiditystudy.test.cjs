@@ -202,6 +202,150 @@ function bar(t, o, c, hPad = 0.2, lPad = 0.05) {
       'a holdout made entirely of one asset class tests the class, not the model');
   }
 
+  // ── Running across restarts, which is why it never published ────────────
+  //
+  // The study was correct and never produced a file. A full run is ~600 paged
+  // requests held in one blocking call, the bot restarts on every deploy, and
+  // each restart began again from the first instrument. So the run is now
+  // folded a couple of instruments at a time into a small aggregate that lives
+  // in a file. These checks are about the two ways that can go wrong.
+  {
+    const mk = (sym, t, r, extra = {}) => ({
+      sym, t, r, hold: 15, kind: 'PDL', session: 'london', sessionLabel: 'London',
+      dir: 'up', ...extra,
+    });
+    const from = Date.UTC(2026, 0, 1), to = Date.UTC(2026, 2, 1);
+    const mid = from + Math.round((to - from) * 0.67);
+    const early = from + 86400e3, late = mid + 86400e3;
+
+    const collected = [
+      ...Array.from({ length: 30 }, (_, i) => mk('A', early + i * 3600e3, 0.4 + i * 0.01)),
+      ...Array.from({ length: 20 }, (_, i) => mk('A', late + i * 3600e3, 0.2 - i * 0.01)),
+      ...Array.from({ length: 25 }, (_, i) => mk('B', early + i * 3600e3, 0.1 + i * 0.02)),
+    ];
+    const baselines = {
+      'A|up|15': { expR: 0.05, n: 100 },
+      'B|up|15': { expR: 0.02, n: 100 },
+    };
+    const searchSyms = ['A'];   // B is the instrument holdout
+
+    // ONE: folding instrument by instrument must give the same answer as
+    // folding everything at once. If it does not, the incremental path is
+    // measuring something different from the thing that was tested.
+    const whole = S.emptyAggregate({ from, to, searchSyms });
+    S.foldInto(whole, { collected, baselines });
+    S.markDone(whole, ['A', 'B']);
+
+    const piece = S.emptyAggregate({ from, to, searchSyms });
+    for (const sym of ['A', 'B']) {
+      S.foldInto(piece, { collected: collected.filter(c => c.sym === sym), baselines });
+      S.markDone(piece, [sym]);
+    }
+    const a = S.scoreStudy(whole), b = S.scoreStudy(piece);
+    const same = JSON.stringify(a.cells) === JSON.stringify(b.cells)
+      && a.entries === b.entries && a.instruments === b.instruments;
+    check('folding one instrument at a time gives the same cells as folding all at once',
+      same, `${a.entries} vs ${b.entries} entries`,
+      'a different answer on the incremental path would be measuring a different model');
+
+    // TWO: a restart mid-slice re-runs instruments it may already have folded.
+    // Double-counting them would inflate n, shrink the standard error and push
+    // a cell through the significance test on duplicated trades.
+    const before = JSON.stringify(S.scoreStudy(piece).cells);
+    S.foldInto(piece, { collected, baselines });      // the whole lot, again
+    check('re-folding an instrument already marked done changes nothing',
+      JSON.stringify(S.scoreStudy(piece).cells) === before && piece.entries === whole.entries,
+      `${piece.entries} entries after a repeat fold`,
+      'a restart that replays a finished slice must not double its sample');
+
+    // The running sums have to produce the same sd as the direct formula, or
+    // every z in the study is wrong in a way nothing would notice.
+    {
+      const rs = collected.filter(c => c.sym === 'A' && c.t < mid).map(c => c.r);
+      const m = rs.reduce((x, y) => x + y, 0) / rs.length;
+      const sd = Math.sqrt(rs.reduce((x, y) => x + (y - m) ** 2, 0) / (rs.length - 1));
+      const cell = a.cells.find(c => c.kind === 'PDL' && c.hold === 15);
+      check('sd from running sums matches the direct calculation',
+        cell && Math.abs(cell.discovery.sd - sd) < 1e-4 && cell.discovery.n === rs.length,
+        `${cell?.discovery?.sd} vs ${sd.toFixed(4)}`,
+        'the sample form, not the population one — the population form shrinks sd and invents significance');
+
+      check('and the edge is measured against each instrument\'s own baseline',
+        Math.abs(cell.discovery.edgeR - (m - 0.05)) < 1e-4,
+        `${cell.discovery.edgeR} vs ${(m - 0.05).toFixed(4)}`);
+    }
+
+    // The instrument holdout wins over the date. An instrument never looked at
+    // during selection belongs to `unseen` wherever it falls in time; letting
+    // it also feed `discovery` would put the holdout inside the thing it is
+    // supposed to be held out of.
+    {
+      const cell = a.cells.find(c => c.kind === 'PDL' && c.hold === 15);
+      const bOnly = collected.filter(c => c.sym === 'B').length;
+      check('an unseen instrument goes to the instrument holdout and nowhere else',
+        cell.unseen.n === bOnly
+        && cell.discovery.n + cell.time.n === collected.length - bOnly,
+        `unseen ${cell.unseen.n}, discovery ${cell.discovery.n}, time ${cell.time.n}`);
+    }
+
+    check('the holdout boundary is published, so a reader can check it',
+      typeof a.holdoutFrom === 'string' && Date.parse(a.holdoutFrom) === mid,
+      String(a.holdoutFrom),
+      'a holdout whose boundary is not stated cannot be verified by anyone');
+  }
+
+  // ── The stepper: resume, and only publish when everything is in ──────────
+  {
+    const universe = ['A', 'B', 'C', 'D'].map(sym => ({ sym, oanda: sym, cls: 'fx', can: { candles: true } }));
+    // No history, so every instrument is skipped — which is the point: the run
+    // must still REACH THE END rather than retrying the same instruments.
+    const oanda = { async getCandles() { return []; }, async getCandlesSince() { return []; } };
+
+    const files = {};
+    const github = {
+      async readJSON(path) { return files[path] ? { content: files[path], sha: 'x' } : null; },
+      async writeJSON(path, payload) { files[path] = JSON.parse(JSON.stringify(payload)); return 'x'; },
+    };
+
+    let r, guard = 0;
+    do {
+      r = await S.stepLiquidityStudy({ oanda, github, log: () => {}, perStep: 2, universe });
+    } while (r.state === 'running' && ++guard < 10);
+
+    check('a run that spans several ticks reaches the end and publishes',
+      r.state === 'published' && !!files[S.PATH],
+      `${r.state} after ${guard + 1} step(s)`,
+      'this is the failure that kept bot/liquidity-study.json a 404 for its whole existence');
+
+    check('it took more than one step, so it really was incremental',
+      guard >= 1, `${guard + 1} steps for ${universe.length} instruments at 2 a step`);
+
+    check('progress was written between steps, not only at the end',
+      files[S.PROGRESS_PATH] !== undefined,
+      'without a file on disk, a restart loses the whole run — which is what happened');
+
+    // Once published and current, a further tick does nothing at all.
+    const again = await S.stepLiquidityStudy({ oanda, github, log: () => {}, perStep: 2, universe });
+    check('a current published answer stops the run from starting again',
+      again.state === 'idle',
+      `${again.state}`,
+      'six hundred requests a tick would starve the feed the study is meant to run beside');
+
+    // A progress file from an older method is not resumed. Half a run measured
+    // one way and half the other is a number that describes nothing and looks
+    // entirely normal.
+    const stale = { ...files[S.PROGRESS_PATH], method: -1, done: ['A', 'B', 'C', 'D'], cells: {} };
+    const files2 = { [S.PROGRESS_PATH]: stale };
+    const gh2 = {
+      async readJSON(path) { return files2[path] ? { content: files2[path], sha: 'x' } : null; },
+      async writeJSON(path, payload) { files2[path] = JSON.parse(JSON.stringify(payload)); return 'x'; },
+    };
+    const fresh = await S.stepLiquidityStudy({ oanda, github: gh2, log: () => {}, perStep: 2, universe });
+    check('progress from an older method is restarted, not continued',
+      fresh.state === 'running' && files2[S.PROGRESS_PATH].done.length === 2,
+      `${fresh.state}, ${files2[S.PROGRESS_PATH].done.length} done`);
+  }
+
   console.log(fails ? `\n${fails} FAILED` : '\nall passed');
   process.exit(fails ? 1 : 0);
 })();
