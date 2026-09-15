@@ -15,7 +15,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789508400000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Semiconductor growth boosts tech stocks"
     },
     {
       "title": "How the Iran war is transforming the relationship between stocks, bonds and oil",
@@ -37,7 +41,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789508040000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "US500": "down"
+      },
+      "why": "Oil rises, stocks nervous"
     },
     {
       "title": "Houthi escalation in the Middle East brings new pain at the pump for Americans - WSTM",
@@ -58,7 +67,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789508025000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Middle East escalation boosts oil, gold"
     },
     {
       "title": "Mexico stocks lower at close of trade; S&P/BMV IPC down 1.11%",
@@ -73,7 +88,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789507803000,
-      "_kind": null
+      "_kind": null,
+      "why": "Mexico stocks down, US unclear"
     },
     {
       "title": "Two Democrats cross aisle to help tee up final vote on Russia sanctions bill - The Hill",
@@ -94,7 +110,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789505940000,
-      "_kind": null
+      "_kind": null,
+      "why": "Russia sanctions bill, no clear direction"
     },
     {
       "title": "Colombia stocks lower at close of trade; COLCAP down 0.81%",
@@ -109,7 +126,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789507502000,
-      "_kind": null
+      "_kind": null,
+      "why": "Colombia stocks down, US unclear"
     },
     {
       "title": "Russia stocks lower at close of trade; MOEX Russia Index down 0.92%",
@@ -124,7 +142,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789507203000,
-      "_kind": null
+      "why": "Russia stocks down, US unclear"
     },
     {
       "title": "Latin American stocks edge higher as oil prices surge",
@@ -141,7 +159,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789507128000
+      "firstAt": 1789507128000,
+      "dir": {
+        "USOIL": "up",
+        "US500": "up"
+      },
+      "why": "Oil surge lifts Latin American stocks"
     },
     {
       "title": "AI stocks are rebounding. One analyst says there’s no spending slowdown in sight.",
@@ -156,7 +179,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789506900000
+      "firstAt": 1789506900000,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "AI stocks rebound, no slowdown"
     },
     {
       "title": "Northwest European gasoline margins drop over $7 on crude surge",
@@ -173,7 +200,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789506900000
+      "firstAt": 1789506900000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Crude surge drives gasoline margins"
     },
     {
       "title": "If the Fed hikes rates, here's how the stock market might respond - marketplace.org",
@@ -196,7 +228,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789506900000
+      "firstAt": 1789506900000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Fed hike fears hurt assets"
     },
     {
       "title": "Gold dips as dollar, yields, and oil rise a day ahead of Fed’s expected rate hike",
@@ -215,7 +253,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789506242000
+      "firstAt": 1789506242000,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "up"
+      },
+      "why": "Dollar, yields, oil rise; gold dips"
     },
     {
       "title": "Inflation killed the penny. Now it’s coming for your dollar.",
@@ -238,7 +281,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789506000000
+      "firstAt": 1789506000000,
+      "why": "Inflation concerns, no clear direction"
     },
     {
       "title": "Opinion: Inflation killed the penny. Now it’s coming for your dollar. - MarketWatch",
@@ -261,7 +305,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789506000000
+      "firstAt": 1789506000000,
+      "why": "Inflation concerns, no clear direction"
     },
     {
       "title": "Inflation Fears and Oil Surge Rattle Markets - etf.com",
@@ -279,7 +324,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789506000000
+      "firstAt": 1789506000000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil surge rattles markets"
     },
     {
       "title": "US lawmakers spar over bill giving Trump more power to sanction Russia - theguardian.com",
@@ -754,7 +803,7 @@
       "firstAt": 1789497978000
     },
     {
-      "title": "Critical oil pipeline will be offline for weeks after attack by Iran-backed Houthi rebels - nypost.com",
+      "title": "Critical oil pipeline will be offline for weeks after attack by Iran-backed Houthi rebels - New York Post",
       "link": "https://news.google.com/rss/articles/CBMiywFBVV95cUxNdEZVYXF6NEpPSndqbzJjdF9HU0QzV1VBRjlRN0xoYl8zVllYMGl5bkExaTZLZXhjbHFCTTE0a1pXQTNvVFoxWU5LWk94Q042ZzJzaGlIWFd5ZHg2TTAyU3pFTUJORXlzMGxzalM0cTdvUmRUS183SDBpQ0dGQnBqV2VWOGRMUndDRGI3eHNvMzIxMklJaUh3LVgzQlNTN1BTLXdZaFQ3V1FYb2wzTUhTZ2FMaFFNem5VNFdOZFZrem9iZEJDSHZraE1kTQ?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiywFBVV95cUxNdEZVYXF6NEpPSndqbzJjdF9HU0QzV1VBRjlRN0xoYl8zVllYMGl5bkExaTZLZXhjbHFCTTE0a1pXQTNvVFoxWU5LWk94Q042ZzJzaGlIWFd5ZHg2TTAyU3pFTUJORXlzMGxzalM0cTdvUmRUS183SDBpQ0dGQnBqV2VWOGRMUndDRGI3eHNvMzIxMklJaUh3LVgzQlNTN1BTLXdZaFQ3V1FYb2",
@@ -1767,10 +1816,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-15T21:50:23.968Z",
-  "updatedAt": "2026-09-15T21:50:23.968Z"
+  "headlinesAt": "2026-09-15T21:52:08.810Z",
+  "updatedAt": "2026-09-15T21:52:08.810Z"
 }
