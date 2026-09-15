@@ -542,15 +542,40 @@ class LiquidityScanner {
     const insts = this._instruments();
 
     // 1. Level refresh, round-robin by staleness.
+    //
+    // A level set counts as stale when it is an hour old OR when it is missing
+    // something the current code reads off it. The 4H structure and the H4
+    // returns were added to _refreshLevels after the published file already
+    // existed, so every restored set had levels and prices and no trend — and
+    // an hour-old timestamp is the only thing that expires them. The first hour
+    // after that deploy, every row would have said "ranging" and shown no
+    // divergence, which is indistinguishable on screen from a market where
+    // nothing is trending and nothing is diverging.
+    //
+    // This is deliberately not a LEVEL_METHOD bump. The levels are not wrong,
+    // they are incomplete: throwing them away would blank the screen for four
+    // minutes to fix something that only needs filling in. The condition also
+    // costs nothing once satisfied, and backfills whatever gets added next.
+    const incomplete = rec => !rec || rec.trend === undefined || rec.trend === null;
     const stale = insts
-      .filter(i => now - (this.levels.get(i.sym)?.at || 0) > LEVELS_TTL)
+      .filter(i => {
+        const rec = this.levels.get(i.sym);
+        // An instrument with no levels at all is already covered by the age
+        // test; this must not resurrect one that was just backed off after a
+        // fetch failure, or it would retry every tick forever.
+        if (rec && rec.levels.length && incomplete(rec)) return true;
+        return now - (rec?.at || 0) > LEVELS_TTL;
+      })
       .sort((a, b) => (this.levels.get(a.sym)?.at || 0) - (this.levels.get(b.sym)?.at || 0))
       .slice(0, LEVEL_JOBS);
     for (const inst of stale) {
       try { await this._refreshLevels(inst); }
       catch (e) {
-        // Back this one off rather than retrying it every tick forever.
-        this.levels.set(inst.sym, { levels: [], atr: null, at: now - LEVELS_TTL + 10 * 60e3 });
+        // Back this one off rather than retrying it every tick forever. `trend`
+        // is set — to a definite "unknown" rather than left absent — so the
+        // backfill test above does not immediately pick it up again.
+        this.levels.set(inst.sym,
+          { levels: [], atr: null, trend: 'ranging', at: now - LEVELS_TTL + 10 * 60e3 });
         this.log(`Liquidity ${inst.sym} levels: ${e.message}`);
       }
     }

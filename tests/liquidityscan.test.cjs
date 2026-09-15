@@ -22,7 +22,8 @@
 //
 //   And an alert fires once per sweep. Re-announcing the same setup every two
 //   minutes is how you teach someone to ignore the alert.
-const { LiquidityScanner, atrOf, NEAR_ATR, NEAR_ATR_DAILY, LEVEL_JOBS, LEVEL_METHOD } = require('../vps-bot/src/liquidityScan');
+const { LiquidityScanner, atrOf, NEAR_ATR, NEAR_ATR_DAILY, LEVEL_JOBS, LEVEL_METHOD,
+  LEVELS_TTL } = require('../vps-bot/src/liquidityScan');
 
 let fails = 0;
 const check = (n, c, e = '') => { console.log(`${c ? '  ok  ' : '  FAIL'}  ${n}${e ? ' — ' + e : ''}`); if (!c) fails++; };
@@ -555,6 +556,40 @@ function sweptM2() {
     check('and so does the 4H structure reading',
       s.levels.get('XAU/USD')?.trend === 'bullish',
       'otherwise every row reads "ranging" for an hour after each deploy');
+  }
+
+  // A level set that is missing something the current code reads is refreshed,
+  // whatever its age. The 4H structure and the H4 returns were added after the
+  // published file existed, so every restored set had levels and no trend — and
+  // for an hour after that deploy every row would have read "ranging" with no
+  // divergence, which looks exactly like a quiet, untrending market.
+  {
+    const s = new LiquidityScanner({ oanda: fakeOanda(), github: noGithub, log: quiet });
+    const fresh = Date.now();
+    s.levels.set('OLD', { levels: [{ kind:'PDH', price:110, side:'high', label:'x' }], atr: 2, at: fresh });
+    s.levels.set('NEW', { levels: [{ kind:'PDH', price:110, side:'high', label:'x' }], atr: 2, trend: 'bullish', at: fresh });
+    // Backed off after a fetch failure: no levels, a deliberate 'ranging', and
+    // a timestamp that keeps it out of the age test.
+    s.levels.set('DEAD', { levels: [], atr: null, trend: 'ranging', at: fresh });
+
+    const insts = [{ sym:'OLD' }, { sym:'NEW' }, { sym:'DEAD' }];
+    const now = fresh;
+    const incomplete = rec => !rec || rec.trend === undefined || rec.trend === null;
+    const picked = insts.filter(i => {
+      const rec = s.levels.get(i.sym);
+      if (rec && rec.levels.length && incomplete(rec)) return true;
+      return now - (rec?.at || 0) > LEVELS_TTL;
+    }).map(i => i.sym);
+
+    check('a level set missing the trend reading is refreshed even when it is fresh',
+      picked.includes('OLD'), picked.join(',') || '(none)',
+      'an hour-old timestamp is the only other thing that expires them');
+    check('one that already has it is left alone',
+      !picked.includes('NEW'),
+      'otherwise every instrument refreshes every tick and the gating is gone');
+    check('and an instrument backed off after a failure is not resurrected',
+      !picked.includes('DEAD'),
+      'retrying a failing fetch every tick forever is how a budget disappears');
   }
 
   console.log(fails ? `\n${fails} FAILED` : '\nall passed');
