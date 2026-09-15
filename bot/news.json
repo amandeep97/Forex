@@ -825,22 +825,55 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789481336000,
-      "_kind": null
+      "_kind": null,
+      "why": "Fed meeting uncertainty creates market volatility"
     },
     {
-      "title": "Mauser Packaging Solutions combines US and Canadian operations",
-      "link": "https://finance.yahoo.com/small-business/articles/mauser-packaging-solutions-combines-us-140141974.html",
-      "source": "Yahoo Finance",
-      "at": 1789480901000,
+      "title": "Don’t Sell Gold and Silver on Rate Hike Fear, Here’s Why - NAI500",
+      "link": "https://news.google.com/rss/articles/CBMijwFBVV95cUxPQzM3cmw5aV9MQmpoY1FYZkt4dzZJRDFrbWduTThQSHVhSFZoT1pHWXRqVktQbVZqMG5lQjFUYk5FM1JIcm1ZZV9hTFd3b0ZCMTU0R3Q5UVdWcHZEU05OczJzd1RQZDk0cmt4ZlZ5a2k0cHlXbFU5R2JPUzJCc0Q3Z3ZZQkxKNWhpR2c4REM4aw?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMijwFBVV95cUxPQzM3cmw5aV9MQmpoY1FYZkt4dzZJRDFrbWduTThQSHVhSFZoT1pHWXRqVktQbVZqMG5lQjFUYk5FM1JIcm1ZZV9hTFd3b0ZCMTU0R3Q5UVdWcHZEU05OczJzd1RQZDk0cmt4ZlZ5a2k0cHlXbFU5R2JPUzJCc0Q3Z3ZZQkxKNWhpR2c4REM4aw?oc=5\" target=\"_blank\">Don’t Sell Go",
+      "at": 1789481329000,
       "inst": [
-        "USD/CAD"
+        "XAU/USD",
+        "XAG/USD"
       ],
-      "ccy": [],
-      "sev": 1,
+      "ccy": [
+        "XAU",
+        "XAG",
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1789478967000,
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "XAG/USD": "up"
+      },
+      "why": "Analyst advises against selling precious metals"
+    },
+    {
+      "title": "Oil prices climb amid Libya force majeure warning, Saudi Arabia pipeline outage",
+      "link": "https://www.investing.com/news/commodities-news/oil-prices-rise-as-houthis-attack-saudi-arabia-hormuz-talks-delayed-4900704",
+      "source": "Investing Cmdty",
+      "at": 1789481166000,
+      "inst": [
+        "USOIL"
+      ],
+      "ccy": [
+        "OIL"
+      ],
+      "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789480901000,
-      "_kind": null
+      "firstAt": 1789481166000,
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Supply disruptions push oil prices higher"
     },
     {
       "title": "Why one Wall Street firm thinks this year’s stock-market rally is running out of road",
@@ -862,7 +895,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789478280000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Wall Street firm lowers S&P 500 target"
     },
     {
       "title": "10-year Treasury hits 2007 high as oil stays above $100: AlphaCheck",
@@ -880,7 +917,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789480457000,
-      "_kind": null
+      "_kind": null,
+      "why": "Oil remains elevated above $100"
     },
     {
       "title": "Russia and Ukraine Exchange Strikes Despite Trump's Claim of a Truce - Crude Oil Prices Today | OilPrice.com",
@@ -901,7 +939,13 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789479664000,
-      "_kind": "war-end"
+      "_kind": "war-end",
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up",
+        "XAU/USD": "up"
+      },
+      "why": "Geopolitical conflict supports risk assets"
     },
     {
       "title": "Gold edges down as oil-driven inflation fears lift rate-hike bets - marketscreener.com",
@@ -922,20 +966,12 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789478014000,
-      "_kind": null
-    },
-    {
-      "title": "Insider Sells 1,434 Shares of Legendary REIT",
-      "link": "https://finance.yahoo.com/real-estate/articles/insider-sells-1-434-shares-135501233.html",
-      "source": "Yahoo Finance",
-      "at": 1789480501000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1789480501000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "up"
+      },
+      "why": "Inflation fears lift yields, pressuring gold"
     },
     {
       "title": "Gold struggles near $4,300 as 10-year US Treasury yield reaches 2007 high - FXStreet",
@@ -954,29 +990,23 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789480457000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "High Treasury yields weigh on gold"
     },
     {
-      "title": "Nvidia Rises To Key Level As Fed Rate-Decision Looms; Is Nvidia A Buy Now?",
-      "link": "https://www.investors.com/research/nvidia-nvda-stock-ai-chips-tech-september-2026-buy-now-markets/?src=A00220&yptr=yahoo",
+      "title": "Elon Musk's $1 Trillion Pay Package Needs Tesla to Hit an $8.5 Trillion Market Cap. Here's What That Means for Shareholders.",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/elon-musks-1-trillion-pay-135000946.html",
       "source": "Yahoo Finance",
-      "at": 1789480219000,
-      "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
+      "at": 1789480200000,
+      "inst": [],
+      "ccy": [],
       "sev": 1,
-      "rel": 2,
+      "rel": 1,
       "srcs": 1,
-      "firstAt": 1789480219000,
+      "firstAt": 1789480200000,
       "_kind": null
     },
     {
@@ -993,9 +1023,32 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789479198000,
-      "_kind": null
+      "srcs": 1,
+      "firstAt": 1789480020000,
+      "_kind": null,
+      "dir": {
+        "BTC/USDT": "down"
+      },
+      "why": "Cathie Wood sells crypto stocks"
+    },
+    {
+      "title": "4 stocks with the strongest short-term buy setups right now",
+      "link": "https://www.investing.com/news/stock-market-news/4-stocks-with-the-strongest-shortterm-buy-setups-right-now-93CH-4901968",
+      "source": "Investing",
+      "at": 1789479868000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789479868000,
+      "_kind": null,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Strong short-term buy setups identified"
     },
     {
       "title": "Traditional bond investors have lost money for years. These five-star portfolio managers show a better way.",
@@ -1027,7 +1080,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789479795000,
-      "_kind": null
+      "why": "Demographic data lacks immediate market impact"
     },
     {
       "title": "Canada is a 'safe harbour' for global finance, Carney says",
@@ -1047,7 +1100,10 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789478986000,
-      "_kind": null
+      "dir": {
+        "USD/CAD": "down"
+      },
+      "why": "Canada positioned as safe investment harbor"
     },
     {
       "title": "Wall St tepid at open as oil prices, Treasury yields rise",
@@ -1065,7 +1121,10 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789479755000,
-      "_kind": null
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil prices rise at market open"
     },
     {
       "title": "Stock Market Today: Dow Falls As Yields, Oil Prices Rise With Fed Meeting Starting; Nvidia Rebounds (Live Coverage)",
@@ -1083,7 +1142,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789479664000
+      "firstAt": 1789479664000,
+      "dir": {
+        "USOIL": "up",
+        "US30": "down"
+      },
+      "why": "Rising yields and oil pressure stocks"
     },
     {
       "title": "Scott Bessent testifies on Iran war, gas prices, inflation 2026 - qz.com",
@@ -1104,38 +1168,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789479448000
-    },
-    {
-      "title": "U.S. stocks open lower amid surging yields, 10-year hits highest level since 2007",
-      "link": "https://www.investing.com/news/stock-market-news/us-stock-futures-flat-as-markets-parse-slowing-ai-development-fed-anticipation-4900683",
-      "source": "Investing",
-      "at": 1789479377000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789479377000
-    },
-    {
-      "title": "4 Oil & Gas Stocks Stifel Is Constructive On as Energy Prices Stay High",
-      "link": "https://www.investing.com/news/stock-market-news/4-oil--gas-stocks-stifel-is-constructive-on-as-energy-prices-stay-high-93CH-4901938",
-      "source": "Investing",
-      "at": 1789479198000,
-      "inst": [
-        "USOIL",
-        "US500"
-      ],
-      "ccy": [
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789479198000
+      "firstAt": 1789479448000,
+      "why": "Testimony on inflation and war impacts"
     },
     {
       "title": "Carney: Canada to allow immediate expensing for most new capital investment",
@@ -1186,7 +1220,7 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 1,
+      "srcs": 2,
       "firstAt": 1789478940000
     },
     {
@@ -1216,25 +1250,6 @@
       "rel": 1,
       "srcs": 1,
       "firstAt": 1789478887000
-    },
-    {
-      "title": "Oil prices edge higher amid Saudi Arabia pipeline outage, Houthi attacks",
-      "link": "https://www.investing.com/news/commodities-news/oil-prices-rise-as-houthis-attack-saudi-arabia-hormuz-talks-delayed-4900704",
-      "source": "Investing Cmdty",
-      "at": 1789478829000,
-      "inst": [
-        "USOIL",
-        "XAU/USD",
-        "UKOIL"
-      ],
-      "ccy": [
-        "OIL",
-        "XAU"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 3,
-      "firstAt": 1789477380000
     },
     {
       "title": "Robinhood To Offer Share Redemptions And Voting Rights On Tokenized Stocks",
@@ -1301,7 +1316,7 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 2,
+      "srcs": 1,
       "firstAt": 1789478153000
     },
     {
@@ -1358,7 +1373,7 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 2,
+      "srcs": 1,
       "firstAt": 1789477380000
     },
     {
@@ -1652,6 +1667,28 @@
       "firstAt": 1789474964000
     },
     {
+      "title": "10-year Treasury yield hits highest level since 2007",
+      "link": "https://finance.yahoo.com/markets/article/10-year-treasury-yield-hits-highest-level-since-2007-121942773.html",
+      "source": "Yahoo Finance",
+      "at": 1789474782000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1789472586000
+    },
+    {
       "title": "Canadian manufacturers turning to new markets amid US tariffs - bastillepost.com",
       "link": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPaUVlZXJZV1VGLVJldVk2bDItbHh5UTB6dFlMcTdscGhST3V6X1BrQjcwZDV5OFJQSWU0QmxLSmZCZGo2OER6VlhPNWktYTRSQXlUWkFxVnJFWkJJeWJiQ1dBQWlGblZ3SmtjTDNZdzd1ay1pSndrQ2NwVUI3U0NocG13cTZyWTYwd1pBRjRDZTdjdEVTeTZ3alNvV1ZfSUoxOWpJcXNMZ18zcnhSVGVmYTdTbw?oc=5",
       "source": "Wires (macro)",
@@ -1744,7 +1781,7 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 1,
+      "srcs": 2,
       "firstAt": 1789472586000
     },
     {
@@ -2485,6 +2522,24 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789462125000
+    },
+    {
+      "title": "Dollar's Dominance: Fed Rate Hike Looms Amid Surging Oil Prices - Devdiscourse",
+      "link": "https://news.google.com/rss/articles/CBMitgFBVV95cUxPZlN0QVZkdnZWVWJFQ1hLa0dqSGdUbmpYUG4wSkdPeVdXYUh3cC14MzRva0tpQnFKRV90LWlDa1JFbllZNjQ5dXJyc3RPVUxnWE54UTJCa3RTeU5HbGNocjNyOTA5WlFtM3ZsLXhIWE13Q1Vscm5RTmFKM2stSjVabkpyMUdmZmstSFJFSnFiWXhtWE1QdTczOTNxNGNxaURKb0FPRlVtQXJQMjVJb3BuRUpzQm01d9IBuwFBVV95cUxNWS1tMnVwNGRyZ1U2Z0ZBeldYcFJIZElJMnB2djd4ZGZ6aWNMVzVPTmIwbzdqWVRWclEwRlBMa203MWJIdmhjdk1BemZsaURkaXVFMEFFMFdIUzR2QjNuUHhiTmMyb0FUY0RfMGhfWjhyUWoyNWJSbHNZd0FXWC1ZdUtBdG5jMVJRNnVwSVVuZVlPTjRzZnpaVHhiWEk3NkFCX09Tc1NTdm9GT2lveWQ2QTQ1YlNCTUtmVWZZ?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMitgFBVV95cUxPZlN0QVZkdnZWVWJFQ1hLa0dqSGdUbmpYUG4wSkdPeVdXYUh3cC14MzRva0tpQnFKRV90LWlDa1JFbllZNjQ5dXJyc3RPVUxnWE54UTJCa3RTeU5HbGNocjNyOTA5WlFtM3ZsLXhIWE13Q1Vscm5RTmFKM2stSjVabkpyMUdmZmstSFJFSnFiWXhtWE1QdTczOTNxNGNxaURKb0FPRlVtQXJQMj",
+      "at": 1789462159000,
+      "inst": [
+        "USOIL"
+      ],
+      "ccy": [
+        "USD",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789462159000
     }
   ],
   "sources": [
@@ -2507,10 +2562,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-15T14:12:22.902Z",
-  "headlinesAt": "2026-09-15T14:12:22.902Z",
-  "updatedAt": "2026-09-15T14:12:22.902Z"
+  "calendarAt": "2026-09-15T14:13:41.426Z",
+  "headlinesAt": "2026-09-15T14:13:41.426Z",
+  "updatedAt": "2026-09-15T14:13:41.426Z"
 }
