@@ -822,7 +822,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789476267000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Geopolitical risk boosts gold, oil unclear"
     },
     {
       "title": "Executive at Iconic Energy Company Sells Nearly 4,000 Shares",
@@ -838,6 +842,24 @@
       "_kind": null
     },
     {
+      "title": "TNR Gold launches probe into Eucalyptus Resources",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/tnr-gold-launches-probe-eucalyptus-131900123.html",
+      "source": "Yahoo Finance",
+      "at": 1789478340000,
+      "inst": [
+        "XAU/USD"
+      ],
+      "ccy": [
+        "XAU"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789478340000,
+      "_kind": null,
+      "why": "Company-specific probe, no broad market impact"
+    },
+    {
       "title": "An AI bubble is no longer Wall Street’s biggest fear. This stock-market risk just took its place.",
       "link": "https://www.marketwatch.com/story/an-ai-bubble-is-no-longer-wall-streets-biggest-fear-this-market-risk-just-took-its-place-ec939034?mod=mw_rss_topstories",
       "source": "MarketWatch",
@@ -851,7 +873,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789476960000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Bond yield fears weigh on equities"
     },
     {
       "title": "Oil prices edge higher as attacks, pipeline outage deepen Saudi supply concerns",
@@ -871,7 +897,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789478153000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Supply concerns push oil prices higher"
     },
     {
       "title": "Strike CEO Jack Mallers: Inflation Outlook, Bond Stress and BTC vs Gold - CryptoRank",
@@ -891,7 +922,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789478014000,
-      "_kind": null
+      "_kind": null,
+      "why": "Opinion piece, no clear directional signal"
     },
     {
       "title": "European equities slide to multi-month lows as Fed hike odds batters sentiment",
@@ -908,7 +940,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789477775000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Fed hike odds batter equity sentiment"
     },
     {
       "title": "Two sailors missing after tanker attacked in Strait of Hormuz, Oman says",
@@ -929,7 +965,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789477536000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Strait of Hormuz attack boosts risk assets"
     },
     {
       "title": "Saudi Arabia may be just days away from not being able to export much oil",
@@ -948,7 +990,10 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789477380000,
-      "_kind": null
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Export disruption drives oil prices up"
     },
     {
       "title": "Monday’s insider activity: CPI Card insiders buy $11.8 million",
@@ -971,7 +1016,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789477295000,
-      "_kind": null
+      "why": "Insider activity irrelevant to macro instruments"
     },
     {
       "title": "Gold Ignores Weak Empire State Manufacturing Data as Fed Rate Hike Looms - News and Statistics - IndexBox",
@@ -989,7 +1034,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789475482000
+      "firstAt": 1789475482000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Fed hike looms, gold ignores weak data"
     },
     {
       "title": "German finance minister calls for gasoline price relief",
@@ -1003,7 +1052,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789477253000
+      "firstAt": 1789477253000,
+      "why": "Domestic policy call, no clear FX impact"
     },
     {
       "title": "‘There might be a silver lining’: My friend’s wife died at 60 after a high-earning career. Can he claim her Social Security?",
@@ -1020,7 +1070,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789477200000
+      "firstAt": 1789477200000,
+      "why": "Irrelevant personal finance story"
     },
     {
       "title": "UK sanctions on Israel ‘fall far short’ of its obligations, legal experts say - The Guardian",
@@ -1040,7 +1091,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789477200000
+      "firstAt": 1789477200000,
+      "why": "Legal opinion, no clear market direction"
     },
     {
       "title": "A Wall Street firm just lowered its S&P 500 price target. Start of a trend?",
@@ -1061,7 +1113,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789476960000
+      "firstAt": 1789476960000,
+      "dir": {
+        "US500": "down",
+        "XAU/USD": "up"
+      },
+      "why": "Lower equity target, war risk boosts gold"
     },
     {
       "title": "No energy ceasefire between Ukraine and Russia yet - Yahoo",
@@ -1081,7 +1138,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789476267000
+      "firstAt": 1789476267000,
+      "why": "No ceasefire, status quo persists"
     },
     {
       "title": "Stock Market Today: Dow Falls As Yields, Oil Prices Rise Ahead Of Fed Meeting; Nvidia Set To Rebound (Live Coverage)",
@@ -1375,7 +1433,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789473626000
+      "firstAt": 1789471140000
     },
     {
       "title": "‘My total balance should be $20 million’: I invested $1.1 million in a crypto platform. Have I lost it all?",
@@ -1467,18 +1525,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789472760000
-    },
-    {
-      "title": "Ramit Sethi's first scholarship was $2K and he put it in the stock market. Here's the simple lesson he learned",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/ramit-sethis-first-scholarship-2k-114500607.html",
-      "source": "Yahoo Finance",
-      "at": 1789472700000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1789472700000
     },
     {
       "title": "US 10-year Treasury yield hits 5%: Will oil prices and Fed rate decision push yields even higher? | Hindustan Times - Hindustan Times",
@@ -1626,7 +1672,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789471316000
+      "firstAt": 1789469880000
     },
     {
       "title": "Gold struggles below $4,300 as 10-year US Treasury yield reaches 2007 high - FXStreet",
@@ -1664,7 +1710,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789471538000
+      "firstAt": 1789471140000
     },
     {
       "title": "Kremlin welcomes Trump's idea of energy truce with Ukraine, calls for sanctions removal - reuters.com",
@@ -1684,7 +1730,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789471488000
+      "firstAt": 1789471140000
     },
     {
       "title": "Kremlin welcomes Trump’s idea of energy truce with Ukraine, calls for sanctions removal",
@@ -1703,7 +1749,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789471488000
+      "firstAt": 1789471140000
     },
     {
       "title": "Markets On Edge As US Fed Meets To Tackle High Inflation - Channels Television",
@@ -1763,7 +1809,27 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789470680000
+      "firstAt": 1789469880000
+    },
+    {
+      "title": "Ukraine and Russia target energy infrastructure in strikes despite Trump - CBS News",
+      "link": "https://news.google.com/rss/articles/CBMilwFBVV95cUxOaXVPbkNVUEIzZXFya29Jc0JsRmdiYTRyTHNidUR0SkwyS2ljM0w4NVVhM3A2NFBkZTVtX25YRTk4eXZoZ1RJOE16YlN6TDA4OUlYTmRBaGNzMXhMN25QN2dxa3RyemJkbHAxV0VmRWE4b3NEVEZpd0dISXdFSUZJT1NQaGd4X1dSR213aTd4MDdEeGxUb05v?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMilwFBVV95cUxOaXVPbkNVUEIzZXFya29Jc0JsRmdiYTRyTHNidUR0SkwyS2ljM0w4NVVhM3A2NFBkZTVtX25YRTk4eXZoZ1RJOE16YlN6TDA4OUlYTmRBaGNzMXhMN25QN2dxa3RyemJkbHAxV0VmRWE4b3NEVEZpd0dISXdFSUZJT1NQaGd4X1dSR213aTd4MDdEeGxUb05v?oc=5\" target=\"_blank\">Ukr",
+      "at": 1789471140000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1789471140000
     },
     {
       "title": "Dozens of aircraft, hundreds of buildings: US loss to Iran attacks revealed",
@@ -1862,6 +1928,26 @@
       "firstAt": 1789470673000
     },
     {
+      "title": "US Targets Russian Bank For Helping Iran Evade Sanctions - RTTNews",
+      "link": "https://news.google.com/rss/articles/CBMimAFBVV95cUxPUmxaZGh6QlQ1cDdnYVF5LTB0c2dSYmlkUmttOVpQT0VIY2dCcHZfTGJGLUtxZm50R0hEMDNnNHJrSVZpcHBiSzF4MVBPdmptNUlhdGctdTUwWHJCUWhEVm1jNUVIOG11Zy11ZVA3SmlWWG9pUnBpTkFxMms0MDZwQVJ5bXp6WkRlbUNXaDFXNVBaeklGZUFLOA?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMimAFBVV95cUxPUmxaZGh6QlQ1cDdnYVF5LTB0c2dSYmlkUmttOVpQT0VIY2dCcHZfTGJGLUtxZm50R0hEMDNnNHJrSVZpcHBiSzF4MVBPdmptNUlhdGctdTUwWHJCUWhEVm1jNUVIOG11Zy11ZVA3SmlWWG9pUnBpTkFxMms0MDZwQVJ5bXp6WkRlbUNXaDFXNVBaeklGZUFLOA?oc=5\" target=\"_blank\">U",
+      "at": 1789469880000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789467763000
+    },
+    {
       "title": "LATEST: US sanctions Russia’s VTB Bank for third time over Iran sanctions evasion - AML Intelligence",
       "link": "https://news.google.com/rss/articles/CBMivAFBVV95cUxPX2NPd0xzbW1jajNWaDg4WjVEOXMtYllDeVBncEpYc0FaaHRqWU96NDBOTExvdUMyT0RlSU1TaURDcUE0TGlXakhmVFV1YWJSSk1uQnl3emdqeGFPaWpmRlh3c3FibC1iTVM4RVhEMExrZ2NUa3doXzFYaGN6UU9XVkwxYm5ZNVAxdjlYYmt0dzV1M3FqdWt4MFZ4VXYxVTI4TWgtMWtqWnlISF9hREFCZ0hhc3o4c0ZUZmVYMA?oc=5",
       "source": "Wires (geo)",
@@ -1879,7 +1965,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789467763000
+      "firstAt": 1789466673000
     },
     {
       "title": "Russian regions report Ukrainian strikes as Rostov governor cites 'massive' missile attack - Anadolu Ajansı",
@@ -1923,6 +2009,26 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789466679000
+    },
+    {
+      "title": "US sanctions target Russian bank over financial support for Iran - Yahoo",
+      "link": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxQSVNiV3JUOGNpSmpzZlMxZXJxMkEtTmRreE4xeTBNUVNIYllfZ0xqWDRwQ3kxb1lDN19qblZVS3kyX3RjX1FxYlc3Y1NfS2tabmpjZTJ1NFowTFVNcnpNLXdFdy1hTFNBYnNCTnBOUEFWNF9ZcTlNeFZLMFN5aWZQVDEtSWFuV085?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiiAFBVV95cUxQSVNiV3JUOGNpSmpzZlMxZXJxMkEtTmRreE4xeTBNUVNIYllfZ0xqWDRwQ3kxb1lDN19qblZVS3kyX3RjX1FxYlc3Y1NfS2tabmpjZTJ1NFowTFVNcnpNLXdFdy1hTFNBYnNCTnBOUEFWNF9ZcTlNeFZLMFN5aWZQVDEtSWFuV085?oc=5\" target=\"_blank\">US sanctions target Rus",
+      "at": 1789466673000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789465889000
     },
     {
       "title": "Gold weakens amid pressure from growing Fed rate hike bets",
@@ -1980,6 +2086,23 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789465791000
+    },
+    {
+      "title": "Trump Says Energy Truce Is Done but Putin Holds Back - Kyiv Post",
+      "link": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE9nWnZOVGc4S3F5RXVlZGp3cFlCZklCZWJaQURVd3A4SXc4UXpxOU0yX0hINHZwb19DaW9LSU9oWnJNWS15bU1iNUo1Zw?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiS0FVX3lxTE9nWnZOVGc4S3F5RXVlZGp3cFlCZklCZWJaQURVd3A4SXc4UXpxOU0yX0hINHZwb19DaW9LSU9oWnJNWS15bU1iNUo1Zw?oc=5\" target=\"_blank\">Trump Says Energy Truce Is Done but Putin Holds Back</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">Kyiv Post</font",
+      "at": 1789465689000,
+      "inst": [
+        "XAU/USD"
+      ],
+      "ccy": [
+        "XAU"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789465689000
     },
     {
       "title": "China's August retail sales miss forecast while investment slump deepens, piling pressure on Beijing",
@@ -2135,26 +2258,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789463336000
-    },
-    {
-      "title": "Israeli settlers protest UK sanctions outside consulate in East Jerusalem - Middle East Eye",
-      "link": "https://news.google.com/rss/articles/CBMitAFBVV95cUxORUMwc3dyY0JUT0JHbDktSmZoOFJfbTlVd0JRRXh4WWhxQVNuOGllUVM0LXIwemRhMmRzaGNLVVVuRHhDVVZPY2FNajRlUEJEaDlKZVJuVVBBVm1ZQXE5R3plM0RjZ2w2STVoczhmV0lfaHEwc1JCRDluTUtDZnpQZ1RJLTZTcHBqVFU2ZXpoNUNqcE16QVgzVFdZNVNaQjNWV0NsTHgtYkNaLUFDTV9RQlJxeHM?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMitAFBVV95cUxORUMwc3dyY0JUT0JHbDktSmZoOFJfbTlVd0JRRXh4WWhxQVNuOGllUVM0LXIwemRhMmRzaGNLVVVuRHhDVVZPY2FNajRlUEJEaDlKZVJuVVBBVm1ZQXE5R3plM0RjZ2w2STVoczhmV0lfaHEwc1JCRDluTUtDZnpQZ1RJLTZTcHBqVFU2ZXpoNUNqcE16QVgzVFdZNVNaQjNWV0NsTHgtYkNaLU",
-      "at": 1789463149000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789463149000
     },
     {
       "title": "U.S. 10-Year Yield Tops 5% as Markets Bet on Rate Hike - Seoul Economic Daily",
@@ -2438,62 +2541,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789458567000
-    },
-    {
-      "title": "US Sanctions Russia’s VTB Bank Over Iran Sanctions Evasion, Banking Ties - The Media Line",
-      "link": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxQNHV3WmtMRUYtRlktN1dhVmVsaF9FS0xvNEduSUh4QzhDb0p1c0JON2FIN2RlWjhQR21NRUU2YzY2S0w4dGFRV183THRkVzBIREtaTWRWM1hWR0Q5Z0xYb3EwY1BVTmxvbVlEMDFvY084aW4zQ1ZWZmVJX1J3V2ZiaGRzV0V0MzJxZjVjem1mRXkyUF90Mm9yUFlYSzFfNDQzcm5OTi1qUHJXdw?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiqgFBVV95cUxQNHV3WmtMRUYtRlktN1dhVmVsaF9FS0xvNEduSUh4QzhDb0p1c0JON2FIN2RlWjhQR21NRUU2YzY2S0w4dGFRV183THRkVzBIREtaTWRWM1hWR0Q5Z0xYb3EwY1BVTmxvbVlEMDFvY084aW4zQ1ZWZmVJX1J3V2ZiaGRzV0V0MzJxZjVjem1mRXkyUF90Mm9yUFlYSzFfNDQzcm5OTi1qUHJXdw",
-      "at": 1789458477000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789458477000
-    },
-    {
-      "title": "European sovereign debt pressured as traders price ECB hikes through early 2027",
-      "link": "https://www.investing.com/news/forex-news/european-sovereign-debt-pressured-as-traders-price-ecb-hikes-through-early-2027-4900845",
-      "source": "Investing FX",
-      "at": 1789458422000,
-      "inst": [
-        "EUR/USD"
-      ],
-      "ccy": [
-        "EUR"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789456733000
-    },
-    {
-      "title": "Russian Drones Target Kyiv Gas Stations Again as Morning Attack Injures Eight - united24media.com",
-      "link": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxNN3NrV1pOR0Vrc3FWODZDdkZNbnUzZWhPYTI4Y3ZVb3hxa3B1N2JPU2VSWXI1MW9iZDc1dXVKU3RPS2szYVZaUGd3SDBHUmFMYXY3WkowYks0RWUwcjFQaThtN1BXdkFPMHV1a3lhV3pGeEpnWHRrMDNaMTdqRjZRVUdVMzhPUlhDY0NrRVY4dFQyV05jRFpSRDBFeVdfTF8yN3k4R2JPM1dRVGRkS1pOS2JWbDY4b2NUZ2piQkFsYUE0Zw?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiwgFBVV95cUxNN3NrV1pOR0Vrc3FWODZDdkZNbnUzZWhPYTI4Y3ZVb3hxa3B1N2JPU2VSWXI1MW9iZDc1dXVKU3RPS2szYVZaUGd3SDBHUmFMYXY3WkowYks0RWUwcjFQaThtN1BXdkFPMHV1a3lhV3pGeEpnWHRrMDNaMTdqRjZRVUdVMzhPUlhDY0NrRVY4dFQyV05jRFpSRDBFeVdfTF8yN3k4R2JPM1dRVG",
-      "at": 1789456795000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789454439000
     }
   ],
   "sources": [
@@ -2516,10 +2563,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-15T13:31:53.570Z",
-  "headlinesAt": "2026-09-15T13:31:53.570Z",
-  "updatedAt": "2026-09-15T13:31:53.570Z"
+  "calendarAt": "2026-09-15T13:33:50.590Z",
+  "headlinesAt": "2026-09-15T13:33:50.590Z",
+  "updatedAt": "2026-09-15T13:33:50.590Z"
 }
