@@ -816,7 +816,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789502437000,
-      "_kind": null
+      "_kind": null,
+      "why": "Defense cooperation has no clear FX impact."
     },
     {
       "title": "The Fed’s expected interest-rate hike on Wednesday could be the start of something more troubling for investors",
@@ -834,7 +835,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789501800000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Rate hike anticipation creates investor angst."
     },
     {
       "title": "US lawmakers spar over bill giving Trump more power to sanction Russia - The Guardian",
@@ -855,7 +860,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789501620000,
-      "_kind": null
+      "_kind": null,
+      "why": "Legislative sparring lacks clear market direction."
     },
     {
       "title": "Bitcoin and crypto stocks remain down after US senate fails to advance regulatory bill",
@@ -873,7 +879,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789501355000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down",
+        "BTC/USDT": "down"
+      },
+      "why": "Regulatory failure hurts crypto and related stocks."
     },
     {
       "title": "Crypto stocks fall as Senate blocks landmark digital asset bill",
@@ -891,7 +902,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789501139000,
-      "_kind": null
+      "dir": {
+        "US500": "down",
+        "BTC/USDT": "down"
+      },
+      "why": "Senate blocking bill is bearish for crypto."
     },
     {
       "title": "Top SMid Biotechnology Stocks: JPMorgan’s Latest Pick",
@@ -905,7 +920,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789500721000
+      "firstAt": 1789500721000,
+      "why": "Specific stock picks do not move index."
     },
     {
       "title": "Israel lacking respect for dead buried in Gaza rubble: UN",
@@ -925,7 +941,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789500415000
+      "firstAt": 1789500415000,
+      "why": "Humanitarian news has no direct market impact."
     },
     {
       "title": "Markets on edge as US Fed meets to tackle high inflation - CNA",
@@ -948,7 +965,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789500056000
+      "firstAt": 1789500056000,
+      "why": "Market edge implies uncertainty, not direction."
     },
     {
       "title": "Crude Oil WTI surges 22.7% above 200-MA, RSI overbought: Live levels",
@@ -965,7 +983,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789499887000
+      "firstAt": 1789499887000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "WTI surge implies bullish momentum for oil."
     },
     {
       "title": "Natural Gas tests $3.000 resistance with weak trend: Live levels",
@@ -979,7 +1001,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789499887000
+      "firstAt": 1789499887000,
+      "why": "Testing resistance with weak trend is neutral."
     },
     {
       "title": "London Gas Oil surges 5% above 20-SMA, pullback looms: Live levels",
@@ -995,7 +1018,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789499887000
+      "firstAt": 1789499887000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Surge above moving average is bullish."
     },
     {
       "title": "Silver trapped in $63-$65 range with MACD crossover: Live levels",
@@ -1011,7 +1038,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789499887000
+      "firstAt": 1789499887000,
+      "why": "Range-bound trading indicates no clear direction."
     },
     {
       "title": "Brent Oil consolidates at $108.50 in bull flag: Live levels",
@@ -1028,7 +1056,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789499887000
+      "firstAt": 1789499887000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Bull flag consolidation suggests upward continuation."
     },
     {
       "title": "Gold bear flag below $4,372 resistance: Live levels",
@@ -1044,7 +1077,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789499887000
+      "firstAt": 1789499887000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Bear flag pattern indicates downward pressure."
     },
     {
       "title": "Iran war has led to US munitions shortfalls, Pentagon inspector confirms",
@@ -1064,7 +1101,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789499624000
+      "firstAt": 1789499624000,
+      "why": "Munitions shortfall news lacks clear market direction."
     },
     {
       "title": "AWS says it can't restore service to Bahrain, UAE facilities 6 months after Iran strikes - cnbc.com",
@@ -2539,10 +2577,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-15T20:08:09.152Z",
-  "headlinesAt": "2026-09-15T20:08:09.152Z",
-  "updatedAt": "2026-09-15T20:08:09.152Z"
+  "calendarAt": "2026-09-15T20:09:23.438Z",
+  "headlinesAt": "2026-09-15T20:09:23.438Z",
+  "updatedAt": "2026-09-15T20:09:23.438Z"
 }
