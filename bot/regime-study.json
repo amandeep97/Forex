@@ -1,5 +1,5 @@
 {
-  "asOf": "2026-09-08T05:55:02.809Z",
+  "asOf": "2026-09-15T05:55:33.534Z",
   "methodVersion": 5,
   "tf": "H1",
   "method": {
@@ -13,14 +13,14 @@
     ],
     "stopAtr": 1,
     "rr": 2,
-    "searched": 252,
+    "searched": 244,
     "carried": 12,
     "holdoutZ": 2.87,
     "note": "Candidates were searched on alternating fortnights and scored on the fortnights in between, which the search never saw. Entries are spaced by the holding period so one condition lasting six hours counts once. Trades that would straddle a block boundary are dropped. Every number is against what every other bar in the same slice paid over the same window with the same stop, not against 50%."
   },
   "windows": {
-    "recentFrom": "2025-09-08T05:54:45.572Z",
-    "priorFrom": "2022-09-09T05:54:45.572Z",
+    "recentFrom": "2025-09-15T05:55:16.943Z",
+    "priorFrom": "2022-09-16T05:55:16.943Z",
     "bars": {
       "XAU_USD": 23614,
       "XAG_USD": 23612
@@ -28,208 +28,106 @@
   },
   "rules": [
     {
-      "id": "dayPos=mid&vol=hot|up|24",
+      "id": "spike=spike&vol=hot|up|24",
       "all": [
-        "dayPos=mid",
+        "spike=spike",
         "vol=hot"
       ],
       "dir": "up",
       "hold": 24,
       "discovery": {
-        "n": 45,
-        "expR": 0.482,
-        "win": 49,
-        "resolved": 43,
+        "n": 74,
+        "expR": 0.524,
+        "win": 50,
+        "resolved": 72,
         "medBars": 6,
-        "openPct": 4,
-        "baseExpR": -0.072,
-        "baseWin": 31,
-        "baseN": 256,
-        "edgeR": 0.554,
-        "t": 2.33
-      },
-      "holdout": {
-        "n": 49,
-        "expR": 0.138,
-        "win": 38,
-        "resolved": 48,
-        "medBars": 5,
-        "openPct": 2,
-        "baseExpR": 0.058,
-        "baseWin": 35,
+        "openPct": 3,
+        "baseExpR": -0.13,
+        "baseWin": 29,
         "baseN": 258,
-        "edgeR": 0.08,
-        "t": 0.35
-      },
-      "prior": {
-        "n": 243,
-        "expR": -0.032,
-        "win": 30,
-        "resolved": 227,
-        "medBars": 9,
-        "openPct": 7,
-        "baseExpR": -0.005,
-        "baseWin": 33,
-        "baseN": 1474,
-        "edgeR": -0.027,
-        "t": -0.29
-      },
-      "label": "mid-range on the day + volatility running hot",
-      "verdict": "fades",
-      "novelty": "marginal"
-    },
-    {
-      "id": "drive=firm&vol=hot|up|24",
-      "all": [
-        "drive=firm",
-        "vol=hot"
-      ],
-      "dir": "up",
-      "hold": 24,
-      "discovery": {
-        "n": 62,
-        "expR": 0.484,
-        "win": 49,
-        "resolved": 59,
-        "medBars": 7,
-        "openPct": 5,
-        "baseExpR": -0.072,
-        "baseWin": 31,
-        "baseN": 256,
-        "edgeR": 0.556,
-        "t": 2.68
+        "edgeR": 0.654,
+        "t": 3.38
       },
       "holdout": {
-        "n": 51,
-        "expR": 0.063,
+        "n": 71,
+        "expR": 0.056,
         "win": 35,
-        "resolved": 49,
-        "medBars": 5,
-        "openPct": 4,
-        "baseExpR": 0.058,
-        "baseWin": 35,
-        "baseN": 258,
-        "edgeR": 0.005,
-        "t": 0.03
-      },
-      "prior": {
-        "n": 262,
-        "expR": 0.018,
-        "win": 32,
-        "resolved": 241,
-        "medBars": 7,
-        "openPct": 8,
-        "baseExpR": -0.005,
-        "baseWin": 33,
-        "baseN": 1474,
-        "edgeR": 0.023,
-        "t": 0.25
-      },
-      "label": "drifting up + volatility running hot",
-      "verdict": "fades",
-      "novelty": "marginal"
-    },
-    {
-      "id": "drive=firm&macro=macro-mixed|up|24",
-      "all": [
-        "drive=firm",
-        "macro=macro-mixed"
-      ],
-      "dir": "up",
-      "hold": 24,
-      "discovery": {
-        "n": 52,
-        "expR": 0.419,
-        "win": 46,
-        "resolved": 50,
-        "medBars": 6,
-        "openPct": 4,
-        "baseExpR": -0.072,
-        "baseWin": 31,
-        "baseN": 256,
-        "edgeR": 0.491,
-        "t": 2.18
-      },
-      "holdout": {
-        "n": 76,
-        "expR": 0.17,
-        "win": 39,
-        "resolved": 75,
+        "resolved": 71,
         "medBars": 4,
-        "openPct": 1,
-        "baseExpR": 0.058,
-        "baseWin": 35,
-        "baseN": 258,
-        "edgeR": 0.112,
-        "t": 0.59
+        "openPct": 0,
+        "baseExpR": -0.111,
+        "baseWin": 30,
+        "baseN": 256,
+        "edgeR": 0.167,
+        "t": 0.88
       },
       "prior": {
-        "n": 508,
-        "expR": 0.044,
-        "win": 35,
-        "resolved": 495,
+        "n": 455,
+        "expR": 0.146,
+        "win": 37,
+        "resolved": 430,
+        "medBars": 6,
+        "openPct": 5,
+        "baseExpR": 0.028,
+        "baseWin": 34,
+        "baseN": 1474,
+        "edgeR": 0.118,
+        "t": 1.55
+      },
+      "label": "a spike bar just printed + volatility running hot",
+      "verdict": "fades",
+      "novelty": "longstanding"
+    },
+    {
+      "id": "drive=firm&partner=partner-quiet|up|24",
+      "all": [
+        "drive=firm",
+        "partner=partner-quiet"
+      ],
+      "dir": "up",
+      "hold": 24,
+      "discovery": {
+        "n": 71,
+        "expR": 0.308,
+        "win": 43,
+        "resolved": 69,
         "medBars": 4,
         "openPct": 3,
-        "baseExpR": -0.005,
-        "baseWin": 33,
-        "baseN": 1474,
-        "edgeR": 0.049,
-        "t": 0.67
-      },
-      "label": "drifting up + partly macro, partly its own",
-      "verdict": "fades",
-      "novelty": "marginal"
-    },
-    {
-      "id": "dayPos=mid&vol=hot|up|12",
-      "all": [
-        "dayPos=mid",
-        "vol=hot"
-      ],
-      "dir": "up",
-      "hold": 12,
-      "discovery": {
-        "n": 63,
-        "expR": 0.454,
-        "win": 48,
-        "resolved": 56,
-        "medBars": 6,
-        "openPct": 11,
-        "baseExpR": 0.016,
-        "baseWin": 32,
-        "baseN": 488,
+        "baseExpR": -0.13,
+        "baseWin": 29,
+        "baseN": 258,
         "edgeR": 0.438,
-        "t": 2.27
+        "t": 2.25
       },
       "holdout": {
-        "n": 54,
-        "expR": 0.1,
-        "win": 33,
-        "resolved": 46,
+        "n": 62,
+        "expR": 0.258,
+        "win": 42,
+        "resolved": 62,
         "medBars": 5,
-        "openPct": 15,
-        "baseExpR": 0.058,
-        "baseWin": 33,
-        "baseN": 490,
-        "edgeR": 0.042,
-        "t": 0.22
+        "openPct": 0,
+        "baseExpR": -0.111,
+        "baseWin": 30,
+        "baseN": 256,
+        "edgeR": 0.369,
+        "t": 1.78
       },
       "prior": {
-        "n": 282,
-        "expR": -0.018,
-        "win": 27,
-        "resolved": 204,
-        "medBars": 8,
-        "openPct": 28,
-        "baseExpR": 0,
-        "baseWin": 30,
-        "baseN": 2948,
-        "edgeR": -0.018,
-        "t": -0.23
+        "n": 699,
+        "expR": -0.052,
+        "win": 32,
+        "resolved": 692,
+        "medBars": 4,
+        "openPct": 1,
+        "baseExpR": 0.028,
+        "baseWin": 34,
+        "baseN": 1474,
+        "edgeR": -0.08,
+        "t": -1.24
       },
-      "label": "mid-range on the day + volatility running hot",
+      "label": "drifting up + the other metal is quiet",
       "verdict": "fades",
-      "novelty": "marginal"
+      "novelty": "new"
     },
     {
       "id": "session=late&vol=hot|up|24",
@@ -240,459 +138,567 @@
       "dir": "up",
       "hold": 24,
       "discovery": {
-        "n": 53,
-        "expR": 0.368,
-        "win": 45,
-        "resolved": 51,
-        "medBars": 4,
-        "openPct": 4,
-        "baseExpR": -0.072,
-        "baseWin": 31,
-        "baseN": 256,
-        "edgeR": 0.44,
-        "t": 1.99
+        "n": 50,
+        "expR": 0.337,
+        "win": 43,
+        "resolved": 46,
+        "medBars": 5,
+        "openPct": 8,
+        "baseExpR": -0.13,
+        "baseWin": 29,
+        "baseN": 258,
+        "edgeR": 0.467,
+        "t": 2.11
       },
       "holdout": {
-        "n": 44,
-        "expR": -0.226,
-        "win": 26,
-        "resolved": 43,
+        "n": 51,
+        "expR": 0.086,
+        "win": 36,
+        "resolved": 50,
         "medBars": 3,
         "openPct": 2,
-        "baseExpR": 0.058,
-        "baseWin": 35,
-        "baseN": 258,
-        "edgeR": -0.284,
-        "t": -1.31
+        "baseExpR": -0.111,
+        "baseWin": 30,
+        "baseN": 256,
+        "edgeR": 0.197,
+        "t": 0.9
       },
       "prior": {
         "n": 331,
-        "expR": 0.006,
+        "expR": 0.015,
         "win": 32,
         "resolved": 308,
         "medBars": 9,
         "openPct": 7,
-        "baseExpR": -0.005,
-        "baseWin": 33,
+        "baseExpR": 0.028,
+        "baseWin": 34,
         "baseN": 1474,
-        "edgeR": 0.011,
-        "t": 0.12
+        "edgeR": -0.013,
+        "t": -0.15
       },
       "label": "after the New York close + volatility running hot",
-      "verdict": "fails",
-      "novelty": "marginal"
-    },
-    {
-      "id": "dayPos=mid&macro=macro-mixed|up|24",
-      "all": [
-        "dayPos=mid",
-        "macro=macro-mixed"
-      ],
-      "dir": "up",
-      "hold": 24,
-      "discovery": {
-        "n": 39,
-        "expR": 0.366,
-        "win": 45,
-        "resolved": 38,
-        "medBars": 4,
-        "openPct": 3,
-        "baseExpR": -0.072,
-        "baseWin": 31,
-        "baseN": 256,
-        "edgeR": 0.438,
-        "t": 1.71
-      },
-      "holdout": {
-        "n": 63,
-        "expR": 0.001,
-        "win": 33,
-        "resolved": 61,
-        "medBars": 4,
-        "openPct": 3,
-        "baseExpR": 0.058,
-        "baseWin": 35,
-        "baseN": 258,
-        "edgeR": -0.057,
-        "t": -0.29
-      },
-      "prior": {
-        "n": 465,
-        "expR": 0.003,
-        "win": 33,
-        "resolved": 455,
-        "medBars": 4,
-        "openPct": 2,
-        "baseExpR": -0.005,
-        "baseWin": 33,
-        "baseN": 1474,
-        "edgeR": 0.008,
-        "t": 0.1
-      },
-      "label": "mid-range on the day + partly macro, partly its own",
-      "verdict": "fails",
-      "novelty": "marginal"
-    },
-    {
-      "id": "pd=pd-high-swept&vol=hot|up|24",
-      "all": [
-        "pd=pd-high-swept",
-        "vol=hot"
-      ],
-      "dir": "up",
-      "hold": 24,
-      "discovery": {
-        "n": 39,
-        "expR": 0.267,
-        "win": 42,
-        "resolved": 38,
-        "medBars": 7,
-        "openPct": 3,
-        "baseExpR": -0.072,
-        "baseWin": 31,
-        "baseN": 256,
-        "edgeR": 0.339,
-        "t": 1.34
-      },
-      "holdout": {
-        "n": 29,
-        "expR": -0.172,
-        "win": 28,
-        "resolved": 29,
-        "medBars": 4,
-        "openPct": 0,
-        "baseExpR": 0.058,
-        "baseWin": 35,
-        "baseN": 258,
-        "edgeR": -0.23,
-        "t": -0.86
-      },
-      "prior": {
-        "n": 213,
-        "expR": -0.13,
-        "win": 28,
-        "resolved": 202,
-        "medBars": 6,
-        "openPct": 5,
-        "baseExpR": -0.005,
-        "baseWin": 33,
-        "baseN": 1474,
-        "edgeR": -0.125,
-        "t": -1.29
-      },
-      "label": "yesterday's high taken and given back + volatility running hot",
-      "verdict": "fails",
-      "novelty": "marginal"
-    },
-    {
-      "id": "pw=pw-high-swept|up|24",
-      "all": [
-        "pw=pw-high-swept"
-      ],
-      "dir": "up",
-      "hold": 24,
-      "discovery": {
-        "n": 39,
-        "expR": 0.385,
-        "win": 46,
-        "resolved": 39,
-        "medBars": 4,
-        "openPct": 0,
-        "baseExpR": -0.072,
-        "baseWin": 31,
-        "baseN": 256,
-        "edgeR": 0.457,
-        "t": 1.77
-      },
-      "holdout": {
-        "n": 32,
-        "expR": -0.507,
-        "win": 16,
-        "resolved": 31,
-        "medBars": 3,
-        "openPct": 3,
-        "baseExpR": 0.058,
-        "baseWin": 35,
-        "baseN": 258,
-        "edgeR": -0.565,
-        "t": -2.63
-      },
-      "prior": {
-        "n": 259,
-        "expR": 0.122,
-        "win": 37,
-        "resolved": 251,
-        "medBars": 4,
-        "openPct": 3,
-        "baseExpR": -0.005,
-        "baseWin": 33,
-        "baseN": 1474,
-        "edgeR": 0.127,
-        "t": 1.32
-      },
-      "label": "last week's high taken and given back",
-      "verdict": "fails",
-      "novelty": "faded"
-    },
-    {
-      "id": "session=late&vol=hot|up|12",
-      "all": [
-        "session=late",
-        "vol=hot"
-      ],
-      "dir": "up",
-      "hold": 12,
-      "discovery": {
-        "n": 68,
-        "expR": 0.412,
-        "win": 44,
-        "resolved": 59,
-        "medBars": 5,
-        "openPct": 13,
-        "baseExpR": 0.016,
-        "baseWin": 32,
-        "baseN": 488,
-        "edgeR": 0.396,
-        "t": 2.14
-      },
-      "holdout": {
-        "n": 58,
-        "expR": -0.116,
-        "win": 23,
-        "resolved": 47,
-        "medBars": 4,
-        "openPct": 19,
-        "baseExpR": 0.058,
-        "baseWin": 33,
-        "baseN": 490,
-        "edgeR": -0.174,
-        "t": -1
-      },
-      "prior": {
-        "n": 393,
-        "expR": 0.005,
-        "win": 25,
-        "resolved": 258,
-        "medBars": 9,
-        "openPct": 34,
-        "baseExpR": 0,
-        "baseWin": 30,
-        "baseN": 2948,
-        "edgeR": 0.005,
-        "t": 0.09
-      },
-      "label": "after the New York close + volatility running hot",
-      "verdict": "fails",
-      "novelty": "marginal"
-    },
-    {
-      "id": "drive=firm&vol=hot|up|12",
-      "all": [
-        "drive=firm",
-        "vol=hot"
-      ],
-      "dir": "up",
-      "hold": 12,
-      "discovery": {
-        "n": 82,
-        "expR": 0.445,
-        "win": 44,
-        "resolved": 64,
-        "medBars": 7,
-        "openPct": 22,
-        "baseExpR": 0.016,
-        "baseWin": 32,
-        "baseN": 488,
-        "edgeR": 0.429,
-        "t": 2.59
-      },
-      "holdout": {
-        "n": 60,
-        "expR": 0.116,
-        "win": 31,
-        "resolved": 49,
-        "medBars": 5,
-        "openPct": 18,
-        "baseExpR": 0.058,
-        "baseWin": 33,
-        "baseN": 490,
-        "edgeR": 0.058,
-        "t": 0.31
-      },
-      "prior": {
-        "n": 326,
-        "expR": 0.096,
-        "win": 33,
-        "resolved": 238,
-        "medBars": 7,
-        "openPct": 27,
-        "baseExpR": 0,
-        "baseWin": 30,
-        "baseN": 2948,
-        "edgeR": 0.096,
-        "t": 1.31
-      },
-      "label": "drifting up + volatility running hot",
       "verdict": "fades",
-      "novelty": "longstanding"
+      "novelty": "new"
     },
     {
-      "id": "dayPos=mid&macro=macro-mixed|up|12",
+      "id": "session=asia&vol=hot|up|12",
       "all": [
-        "dayPos=mid",
-        "macro=macro-mixed"
+        "session=asia",
+        "vol=hot"
       ],
       "dir": "up",
       "hold": 12,
       "discovery": {
-        "n": 53,
-        "expR": 0.357,
-        "win": 45,
-        "resolved": 49,
-        "medBars": 4,
-        "openPct": 8,
-        "baseExpR": 0.016,
-        "baseWin": 32,
-        "baseN": 488,
-        "edgeR": 0.341,
-        "t": 1.62
+        "n": 83,
+        "expR": 0.326,
+        "win": 41,
+        "resolved": 66,
+        "medBars": 6,
+        "openPct": 20,
+        "baseExpR": -0.075,
+        "baseWin": 29,
+        "baseN": 492,
+        "edgeR": 0.401,
+        "t": 2.51
       },
       "holdout": {
-        "n": 96,
-        "expR": -0.041,
-        "win": 28,
-        "resolved": 81,
-        "medBars": 5,
-        "openPct": 16,
-        "baseExpR": 0.058,
-        "baseWin": 33,
-        "baseN": 490,
-        "edgeR": -0.099,
-        "t": -0.68
+        "n": 83,
+        "expR": -0.034,
+        "win": 30,
+        "resolved": 67,
+        "medBars": 6,
+        "openPct": 19,
+        "baseExpR": -0.03,
+        "baseWin": 30,
+        "baseN": 486,
+        "edgeR": -0.004,
+        "t": -0.03
       },
       "prior": {
-        "n": 660,
-        "expR": 0.013,
-        "win": 31,
-        "resolved": 576,
-        "medBars": 4,
-        "openPct": 13,
-        "baseExpR": 0,
-        "baseWin": 30,
+        "n": 397,
+        "expR": 0.049,
+        "win": 28,
+        "resolved": 294,
+        "medBars": 7,
+        "openPct": 26,
+        "baseExpR": 0.031,
+        "baseWin": 31,
         "baseN": 2948,
-        "edgeR": 0.013,
-        "t": 0.23
+        "edgeR": 0.018,
+        "t": 0.25
       },
-      "label": "mid-range on the day + partly macro, partly its own",
+      "label": "Asian session + volatility running hot",
       "verdict": "fails",
       "novelty": "marginal"
     },
     {
-      "id": "drive=dropping&session=late|up|24",
+      "id": "session=late|up|24",
       "all": [
-        "drive=dropping",
         "session=late"
       ],
       "dir": "up",
       "hold": 24,
       "discovery": {
-        "n": 67,
-        "expR": 0.297,
-        "win": 43,
-        "resolved": 65,
-        "medBars": 4,
+        "n": 166,
+        "expR": 0.266,
+        "win": 42,
+        "resolved": 161,
+        "medBars": 3,
         "openPct": 3,
-        "baseExpR": -0.072,
-        "baseWin": 31,
-        "baseN": 256,
-        "edgeR": 0.369,
-        "t": 1.84
+        "baseExpR": -0.13,
+        "baseWin": 29,
+        "baseN": 258,
+        "edgeR": 0.396,
+        "t": 2.79
       },
       "holdout": {
-        "n": 60,
-        "expR": -0.032,
-        "win": 32,
-        "resolved": 59,
+        "n": 154,
+        "expR": 0.325,
+        "win": 44,
+        "resolved": 149,
         "medBars": 4,
-        "openPct": 2,
-        "baseExpR": 0.058,
-        "baseWin": 35,
-        "baseN": 258,
-        "edgeR": -0.09,
-        "t": -0.44
+        "openPct": 3,
+        "baseExpR": -0.111,
+        "baseWin": 30,
+        "baseN": 256,
+        "edgeR": 0.436,
+        "t": 2.98
       },
       "prior": {
-        "n": 395,
-        "expR": 0.155,
-        "win": 38,
-        "resolved": 378,
+        "n": 1020,
+        "expR": 0.052,
+        "win": 35,
+        "resolved": 988,
         "medBars": 7,
-        "openPct": 4,
-        "baseExpR": -0.005,
-        "baseWin": 33,
+        "openPct": 3,
+        "baseExpR": 0.028,
+        "baseWin": 34,
         "baseN": 1474,
-        "edgeR": 0.16,
-        "t": 1.98
+        "edgeR": 0.024,
+        "t": 0.42
       },
-      "label": "falling hard + after the New York close",
+      "label": "after the New York close",
+      "verdict": "confirmed",
+      "novelty": "new"
+    },
+    {
+      "id": "drive=firm&vol=hot|up|24",
+      "all": [
+        "drive=firm",
+        "vol=hot"
+      ],
+      "dir": "up",
+      "hold": 24,
+      "discovery": {
+        "n": 58,
+        "expR": 0.237,
+        "win": 41,
+        "resolved": 56,
+        "medBars": 6,
+        "openPct": 3,
+        "baseExpR": -0.13,
+        "baseWin": 29,
+        "baseN": 258,
+        "edgeR": 0.367,
+        "t": 1.74
+      },
+      "holdout": {
+        "n": 56,
+        "expR": 0.203,
+        "win": 40,
+        "resolved": 55,
+        "medBars": 8,
+        "openPct": 2,
+        "baseExpR": -0.111,
+        "baseWin": 30,
+        "baseN": 256,
+        "edgeR": 0.314,
+        "t": 1.47
+      },
+      "prior": {
+        "n": 264,
+        "expR": 0.038,
+        "win": 33,
+        "resolved": 241,
+        "medBars": 8,
+        "openPct": 9,
+        "baseExpR": 0.028,
+        "baseWin": 34,
+        "baseN": 1474,
+        "edgeR": 0.01,
+        "t": 0.11
+      },
+      "label": "drifting up + volatility running hot",
+      "verdict": "fades",
+      "novelty": "new"
+    },
+    {
+      "id": "session=asia&vol=hot|up|24",
+      "all": [
+        "session=asia",
+        "vol=hot"
+      ],
+      "dir": "up",
+      "hold": 24,
+      "discovery": {
+        "n": 75,
+        "expR": 0.234,
+        "win": 40,
+        "resolved": 70,
+        "medBars": 7,
+        "openPct": 7,
+        "baseExpR": -0.13,
+        "baseWin": 29,
+        "baseN": 258,
+        "edgeR": 0.364,
+        "t": 1.95
+      },
+      "holdout": {
+        "n": 74,
+        "expR": 0.066,
+        "win": 36,
+        "resolved": 73,
+        "medBars": 6,
+        "openPct": 1,
+        "baseExpR": -0.111,
+        "baseWin": 30,
+        "baseN": 256,
+        "edgeR": 0.177,
+        "t": 0.95
+      },
+      "prior": {
+        "n": 373,
+        "expR": 0.041,
+        "win": 33,
+        "resolved": 345,
+        "medBars": 8,
+        "openPct": 8,
+        "baseExpR": 0.028,
+        "baseWin": 34,
+        "baseN": 1474,
+        "edgeR": 0.013,
+        "t": 0.17
+      },
+      "label": "Asian session + volatility running hot",
+      "verdict": "fades",
+      "novelty": "new"
+    },
+    {
+      "id": "vol=hot|up|24",
+      "all": [
+        "vol=hot"
+      ],
+      "dir": "up",
+      "hold": 24,
+      "discovery": {
+        "n": 95,
+        "expR": 0.233,
+        "win": 40,
+        "resolved": 92,
+        "medBars": 7,
+        "openPct": 3,
+        "baseExpR": -0.13,
+        "baseWin": 29,
+        "baseN": 258,
+        "edgeR": 0.363,
+        "t": 2.1
+      },
+      "holdout": {
+        "n": 96,
+        "expR": -0.142,
+        "win": 28,
+        "resolved": 95,
+        "medBars": 4,
+        "openPct": 1,
+        "baseExpR": -0.111,
+        "baseWin": 30,
+        "baseN": 256,
+        "edgeR": -0.031,
+        "t": -0.19
+      },
+      "prior": {
+        "n": 562,
+        "expR": 0.07,
+        "win": 34,
+        "resolved": 526,
+        "medBars": 8,
+        "openPct": 6,
+        "baseExpR": 0.028,
+        "baseWin": 34,
+        "baseN": 1474,
+        "edgeR": 0.042,
+        "t": 0.61
+      },
+      "label": "volatility running hot",
       "verdict": "fails",
-      "novelty": "faded"
+      "novelty": "marginal"
+    },
+    {
+      "id": "drive=firm&session=asia|up|24",
+      "all": [
+        "drive=firm",
+        "session=asia"
+      ],
+      "dir": "up",
+      "hold": 24,
+      "discovery": {
+        "n": 113,
+        "expR": 0.213,
+        "win": 40,
+        "resolved": 108,
+        "medBars": 5,
+        "openPct": 4,
+        "baseExpR": -0.13,
+        "baseWin": 29,
+        "baseN": 258,
+        "edgeR": 0.343,
+        "t": 2.14
+      },
+      "holdout": {
+        "n": 94,
+        "expR": 0.284,
+        "win": 42,
+        "resolved": 92,
+        "medBars": 6,
+        "openPct": 2,
+        "baseExpR": -0.111,
+        "baseWin": 30,
+        "baseN": 256,
+        "edgeR": 0.395,
+        "t": 2.26
+      },
+      "prior": {
+        "n": 782,
+        "expR": 0.032,
+        "win": 34,
+        "resolved": 769,
+        "medBars": 5,
+        "openPct": 2,
+        "baseExpR": 0.028,
+        "baseWin": 34,
+        "baseN": 1474,
+        "edgeR": 0.004,
+        "t": 0.06
+      },
+      "label": "drifting up + Asian session",
+      "verdict": "holds",
+      "novelty": "new"
+    },
+    {
+      "id": "partner=partner-quiet&vol=hot|up|24",
+      "all": [
+        "partner=partner-quiet",
+        "vol=hot"
+      ],
+      "dir": "up",
+      "hold": 24,
+      "discovery": {
+        "n": 57,
+        "expR": 0.272,
+        "win": 42,
+        "resolved": 55,
+        "medBars": 6,
+        "openPct": 4,
+        "baseExpR": -0.13,
+        "baseWin": 29,
+        "baseN": 258,
+        "edgeR": 0.402,
+        "t": 1.89
+      },
+      "holdout": {
+        "n": 51,
+        "expR": 0.027,
+        "win": 34,
+        "resolved": 50,
+        "medBars": 5,
+        "openPct": 2,
+        "baseExpR": -0.111,
+        "baseWin": 30,
+        "baseN": 256,
+        "edgeR": 0.138,
+        "t": 0.64
+      },
+      "prior": {
+        "n": 336,
+        "expR": 0.151,
+        "win": 38,
+        "resolved": 318,
+        "medBars": 8,
+        "openPct": 5,
+        "baseExpR": 0.028,
+        "baseWin": 34,
+        "baseN": 1474,
+        "edgeR": 0.123,
+        "t": 1.43
+      },
+      "label": "the other metal is quiet + volatility running hot",
+      "verdict": "fades",
+      "novelty": "longstanding"
+    },
+    {
+      "id": "partner=partner-quiet&session=late|up|24",
+      "all": [
+        "partner=partner-quiet",
+        "session=late"
+      ],
+      "dir": "up",
+      "hold": 24,
+      "discovery": {
+        "n": 50,
+        "expR": 0.2,
+        "win": 40,
+        "resolved": 50,
+        "medBars": 3,
+        "openPct": 0,
+        "baseExpR": -0.13,
+        "baseWin": 29,
+        "baseN": 258,
+        "edgeR": 0.33,
+        "t": 1.46
+      },
+      "holdout": {
+        "n": 58,
+        "expR": 0.19,
+        "win": 40,
+        "resolved": 58,
+        "medBars": 4,
+        "openPct": 0,
+        "baseExpR": -0.111,
+        "baseWin": 30,
+        "baseN": 256,
+        "edgeR": 0.301,
+        "t": 1.42
+      },
+      "prior": {
+        "n": 500,
+        "expR": 0.039,
+        "win": 34,
+        "resolved": 490,
+        "medBars": 6,
+        "openPct": 2,
+        "baseExpR": 0.028,
+        "baseWin": 34,
+        "baseN": 1474,
+        "edgeR": 0.011,
+        "t": 0.15
+      },
+      "label": "the other metal is quiet + after the New York close",
+      "verdict": "fades",
+      "novelty": "new"
+    },
+    {
+      "id": "flow=sold-beyond-macro|up|24",
+      "all": [
+        "flow=sold-beyond-macro"
+      ],
+      "dir": "up",
+      "hold": 24,
+      "discovery": {
+        "n": 50,
+        "expR": 0.188,
+        "win": 38,
+        "resolved": 47,
+        "medBars": 5,
+        "openPct": 6,
+        "baseExpR": -0.13,
+        "baseWin": 29,
+        "baseN": 258,
+        "edgeR": 0.318,
+        "t": 1.44
+      },
+      "holdout": {
+        "n": 56,
+        "expR": 0.071,
+        "win": 36,
+        "resolved": 56,
+        "medBars": 3,
+        "openPct": 0,
+        "baseExpR": -0.111,
+        "baseWin": 30,
+        "baseN": 256,
+        "edgeR": 0.182,
+        "t": 0.86
+      },
+      "prior": {
+        "n": 360,
+        "expR": 0.017,
+        "win": 33,
+        "resolved": 348,
+        "medBars": 4,
+        "openPct": 3,
+        "baseExpR": 0.028,
+        "baseWin": 34,
+        "baseN": 1474,
+        "edgeR": -0.011,
+        "t": -0.12
+      },
+      "label": "sold beyond what the macro explains",
+      "verdict": "fades",
+      "novelty": "new"
     }
   ],
   "carriedForward": [],
   "tally": {
-    "fades": 5,
-    "fails": 7
+    "fades": 8,
+    "fails": 2,
+    "confirmed": 1,
+    "holds": 1
   },
   "untested": [
     {
       "key": "dollar=dollar-inverse",
-      "n": 4680,
+      "n": 4772,
       "why": "true on most bars — that is the market, not a condition",
-      "pct": 81.88
+      "pct": 82.73
+    },
+    {
+      "key": "pw=pw-low-swept",
+      "n": 114,
+      "why": "too rare to measure",
+      "pct": 1.98
     },
     {
       "key": "cdl=cdl-bull-weak",
-      "n": 110,
+      "n": 111,
       "why": "too rare to measure",
       "pct": 1.92
     },
     {
       "key": "rev=strong-hammer",
-      "n": 99,
+      "n": 109,
       "why": "too rare to measure",
-      "pct": 1.73
+      "pct": 1.89
     },
     {
       "key": "rev=strong-star",
-      "n": 87,
+      "n": 93,
       "why": "too rare to measure",
-      "pct": 1.52
-    },
-    {
-      "key": "cdl=cdl-bear-weak",
-      "n": 57,
-      "why": "too rare to measure",
-      "pct": 1
+      "pct": 1.61
     },
     {
       "key": "cdl=cdl-conflict",
-      "n": 56,
+      "n": 45,
       "why": "too rare to measure",
-      "pct": 0.98
+      "pct": 0.78
+    },
+    {
+      "key": "cdl=cdl-bear-weak",
+      "n": 44,
+      "why": "too rare to measure",
+      "pct": 0.76
     }
   ],
-  "discBars": 5716,
+  "discBars": 5768,
   "anatomy": {
     "XAU_USD": {
       "definition": "a pivot whose next leg ran 3 ATR or more counts as a turn; under 1.75 ATR it fizzled. Both sets are pivots, so \"ran vs died\" is the honest comparison — measuring a low against every bar mostly rediscovers that lows have falling prices before them.",
       "turns": {
-        "n": 397,
-        "inAtr": 1.9,
+        "n": 400,
+        "inAtr": 1.93,
         "inBars": 2,
-        "outAtr": 3.95,
+        "outAtr": 3.96,
         "outBars": 5,
-        "speed": 0.773,
+        "speed": 0.783,
         "up": 207,
         "conditions": [
           {
@@ -700,115 +706,115 @@
             "n": 19,
             "atEvent": 4.8,
             "atAnyBar": 1.8,
-            "lift": 2.69
+            "lift": 2.67
           },
           {
             "key": "rev=strong-star",
             "n": 13,
             "atEvent": 3.3,
             "atAnyBar": 1.4,
-            "lift": 2.28
+            "lift": 2.26
           },
           {
             "key": "pw=pw-high-swept",
             "n": 19,
             "atEvent": 4.8,
             "atAnyBar": 3,
-            "lift": 1.61
+            "lift": 1.6
           },
           {
             "key": "session=ny-am",
-            "n": 136,
+            "n": 137,
             "atEvent": 34.3,
             "atAnyBar": 21.8,
             "lift": 1.57
           },
           {
             "key": "spike=spike",
-            "n": 183,
-            "atEvent": 46.1,
+            "n": 186,
+            "atEvent": 46.5,
             "atAnyBar": 31.8,
-            "lift": 1.45
+            "lift": 1.46
           },
           {
             "key": "cdl=cdl-indecision",
-            "n": 71,
-            "atEvent": 17.9,
-            "atAnyBar": 13.6,
-            "lift": 1.32
+            "n": 72,
+            "atEvent": 18,
+            "atAnyBar": 13.5,
+            "lift": 1.33
           },
           {
             "key": "vol=calm",
-            "n": 107,
+            "n": 108,
             "atEvent": 27,
-            "atAnyBar": 21.2,
-            "lift": 1.27
-          },
-          {
-            "key": "partner=partner-quiet",
-            "n": 85,
-            "atEvent": 21.4,
-            "atAnyBar": 17.2,
-            "lift": 1.25
-          },
-          {
-            "key": "dayPos=mid",
-            "n": 44,
-            "atEvent": 11.1,
-            "atAnyBar": 9,
-            "lift": 1.23
-          },
-          {
-            "key": "dayPos=lower",
-            "n": 112,
-            "atEvent": 28.2,
-            "atAnyBar": 23.5,
-            "lift": 1.2
+            "atAnyBar": 21.1,
+            "lift": 1.28
           },
           {
             "key": "pd=pd-high-swept",
             "n": 40,
-            "atEvent": 10.1,
-            "atAnyBar": 8.4,
-            "lift": 1.2
+            "atEvent": 10,
+            "atAnyBar": 8.2,
+            "lift": 1.22
+          },
+          {
+            "key": "partner=partner-quiet",
+            "n": 83,
+            "atEvent": 20.8,
+            "atAnyBar": 17,
+            "lift": 1.22
+          },
+          {
+            "key": "dayPos=lower",
+            "n": 111,
+            "atEvent": 27.8,
+            "atAnyBar": 23.6,
+            "lift": 1.18
+          },
+          {
+            "key": "dayPos=mid",
+            "n": 42,
+            "atEvent": 10.5,
+            "atAnyBar": 8.9,
+            "lift": 1.17
           },
           {
             "key": "stretch=far-below",
-            "n": 69,
-            "atEvent": 17.4,
-            "atAnyBar": 14.9,
-            "lift": 1.17
+            "n": 71,
+            "atEvent": 17.8,
+            "atAnyBar": 15.3,
+            "lift": 1.16
           }
         ]
       },
       "fizzles": {
-        "n": 789,
-        "inAtr": 1.91,
+        "n": 786,
+        "inAtr": 1.9,
         "inBars": 2,
         "outAtr": 1.34,
         "outBars": 2,
-        "speed": 0.832,
+        "speed": 0.829,
         "conditions": [
           {
             "key": "cdl=cdl-conflict",
-            "n": 21,
-            "atEvent": 2.7,
+            "n": 20,
+            "atEvent": 2.5,
             "atAnyBar": 1,
-            "lift": 2.67
+            "lift": 2.59
           },
           {
             "key": "rev=strong-star",
             "n": 24,
-            "atEvent": 3,
+            "atEvent": 3.1,
             "atAnyBar": 1.4,
             "lift": 2.12
           },
           {
             "key": "rev=strong-hammer",
-            "n": 29,
-            "atEvent": 3.7,
+            "n": 28,
+            "atEvent": 3.6,
             "atAnyBar": 1.8,
-            "lift": 2.07
+            "lift": 2.01
           },
           {
             "key": "pw=pw-high-swept",
@@ -819,23 +825,23 @@
           },
           {
             "key": "stretch=above",
-            "n": 184,
-            "atEvent": 23.3,
-            "atAnyBar": 18.7,
-            "lift": 1.25
+            "n": 179,
+            "atEvent": 22.8,
+            "atAnyBar": 18.3,
+            "lift": 1.24
           },
           {
             "key": "pd=pd-high-swept",
-            "n": 81,
-            "atEvent": 10.3,
-            "atAnyBar": 8.4,
-            "lift": 1.22
+            "n": 79,
+            "atEvent": 10.1,
+            "atAnyBar": 8.2,
+            "lift": 1.23
           },
           {
             "key": "pd=pd-low-swept",
             "n": 74,
             "atEvent": 9.4,
-            "atAnyBar": 7.7,
+            "atAnyBar": 7.8,
             "lift": 1.21
           },
           {
@@ -843,43 +849,43 @@
             "n": 11,
             "atEvent": 1.4,
             "atAnyBar": 1.2,
-            "lift": 1.19
+            "lift": 1.15
+          },
+          {
+            "key": "spike=spike",
+            "n": 277,
+            "atEvent": 35.2,
+            "atAnyBar": 31.8,
+            "lift": 1.11
           },
           {
             "key": "drive=flat",
-            "n": 151,
-            "atEvent": 19.1,
+            "n": 148,
+            "atEvent": 18.8,
             "atAnyBar": 16.9,
-            "lift": 1.13
+            "lift": 1.11
           },
           {
             "key": "cdl=cdl-bear-medium",
-            "n": 161,
-            "atEvent": 20.4,
-            "atAnyBar": 18.3,
-            "lift": 1.12
-          },
-          {
-            "key": "dayPos=upper",
-            "n": 218,
-            "atEvent": 27.6,
-            "atAnyBar": 24.7,
-            "lift": 1.12
+            "n": 157,
+            "atEvent": 20,
+            "atAnyBar": 18.2,
+            "lift": 1.1
           },
           {
             "key": "dayPos=lower",
-            "n": 207,
-            "atEvent": 26.2,
-            "atAnyBar": 23.5,
-            "lift": 1.11
+            "n": 204,
+            "atEvent": 26,
+            "atAnyBar": 23.6,
+            "lift": 1.1
           }
         ]
       },
       "pumps": {
         "n": 207,
-        "inAtr": 1.92,
-        "inBars": 3,
-        "outAtr": 3.96,
+        "inAtr": 1.93,
+        "inBars": 2,
+        "outAtr": 4.02,
         "outBars": 5,
         "speed": 0.734,
         "conditions": [
@@ -892,174 +898,174 @@
           },
           {
             "key": "cdl=cdl-bull-medium",
-            "n": 55,
-            "atEvent": 26.6,
-            "atAnyBar": 17.1,
-            "lift": 1.56
+            "n": 54,
+            "atEvent": 26.1,
+            "atAnyBar": 17,
+            "lift": 1.53
           },
           {
             "key": "session=ny-am",
-            "n": 64,
-            "atEvent": 30.9,
+            "n": 65,
+            "atEvent": 31.4,
             "atAnyBar": 21.8,
-            "lift": 1.42
+            "lift": 1.44
           },
           {
             "key": "spike=spike",
-            "n": 92,
-            "atEvent": 44.4,
+            "n": 93,
+            "atEvent": 44.9,
             "atAnyBar": 31.8,
-            "lift": 1.4
-          },
-          {
-            "key": "dayPos=mid",
-            "n": 25,
-            "atEvent": 12.1,
-            "atAnyBar": 9,
-            "lift": 1.34
+            "lift": 1.41
           },
           {
             "key": "stretch=far-below",
-            "n": 40,
-            "atEvent": 19.3,
-            "atAnyBar": 14.9,
-            "lift": 1.3
-          },
-          {
-            "key": "cdl=cdl-indecision",
-            "n": 36,
-            "atEvent": 17.4,
-            "atAnyBar": 13.6,
-            "lift": 1.28
-          },
-          {
-            "key": "vol=calm",
-            "n": 56,
-            "atEvent": 27.1,
-            "atAnyBar": 21.2,
-            "lift": 1.28
+            "n": 42,
+            "atEvent": 20.3,
+            "atAnyBar": 15.3,
+            "lift": 1.33
           },
           {
             "key": "pd=pd-high-swept",
             "n": 22,
             "atEvent": 10.6,
-            "atAnyBar": 8.4,
-            "lift": 1.27
+            "atAnyBar": 8.2,
+            "lift": 1.3
           },
           {
             "key": "partner=partner-quiet",
             "n": 45,
             "atEvent": 21.7,
-            "atAnyBar": 17.2,
-            "lift": 1.27
+            "atAnyBar": 17,
+            "lift": 1.28
+          },
+          {
+            "key": "cdl=cdl-indecision",
+            "n": 36,
+            "atEvent": 17.4,
+            "atAnyBar": 13.5,
+            "lift": 1.28
+          },
+          {
+            "key": "vol=calm",
+            "n": 56,
+            "atEvent": 27.1,
+            "atAnyBar": 21.1,
+            "lift": 1.28
+          },
+          {
+            "key": "drive=dropping",
+            "n": 58,
+            "atEvent": 28,
+            "atAnyBar": 22.5,
+            "lift": 1.25
           },
           {
             "key": "dayPos=lower",
             "n": 61,
             "atEvent": 29.5,
-            "atAnyBar": 23.5,
+            "atAnyBar": 23.6,
             "lift": 1.25
           },
           {
-            "key": "drive=dropping",
-            "n": 56,
-            "atEvent": 27.1,
-            "atAnyBar": 22.1,
-            "lift": 1.22
+            "key": "dayPos=mid",
+            "n": 23,
+            "atEvent": 11.1,
+            "atAnyBar": 8.9,
+            "lift": 1.24
           }
         ]
       },
       "drops": {
-        "n": 190,
+        "n": 193,
         "inAtr": 1.89,
         "inBars": 2,
         "outAtr": 3.93,
         "outBars": 4,
-        "speed": 0.846,
+        "speed": 0.849,
         "conditions": [
           {
             "key": "rev=strong-star",
             "n": 12,
-            "atEvent": 6.3,
+            "atEvent": 6.2,
             "atAnyBar": 1.4,
-            "lift": 4.39
+            "lift": 4.32
           },
           {
             "key": "pw=pw-high-swept",
             "n": 13,
-            "atEvent": 6.8,
+            "atEvent": 6.7,
             "atAnyBar": 3,
-            "lift": 2.3
+            "lift": 2.26
           },
           {
             "key": "session=ny-am",
             "n": 72,
-            "atEvent": 37.9,
+            "atEvent": 37.3,
             "atAnyBar": 21.8,
-            "lift": 1.74
+            "lift": 1.71
           },
           {
             "key": "spike=spike",
-            "n": 91,
-            "atEvent": 47.9,
+            "n": 93,
+            "atEvent": 48.2,
             "atAnyBar": 31.8,
             "lift": 1.51
           },
           {
             "key": "cdl=cdl-indecision",
-            "n": 35,
-            "atEvent": 18.4,
-            "atAnyBar": 13.6,
-            "lift": 1.36
+            "n": 36,
+            "atEvent": 18.7,
+            "atAnyBar": 13.5,
+            "lift": 1.38
           },
           {
             "key": "vol=calm",
-            "n": 51,
-            "atEvent": 26.8,
-            "atAnyBar": 21.2,
+            "n": 52,
+            "atEvent": 26.9,
+            "atAnyBar": 21.1,
             "lift": 1.27
           },
           {
-            "key": "partner=partner-quiet",
-            "n": 40,
-            "atEvent": 21.1,
-            "atAnyBar": 17.2,
-            "lift": 1.23
-          },
-          {
             "key": "cdl=cdl-bear-medium",
-            "n": 42,
-            "atEvent": 22.1,
-            "atAnyBar": 18.3,
-            "lift": 1.21
+            "n": 44,
+            "atEvent": 22.8,
+            "atAnyBar": 18.2,
+            "lift": 1.25
           },
           {
             "key": "cdl=cdl-bull-strong",
-            "n": 22,
-            "atEvent": 11.6,
-            "atAnyBar": 9.7,
-            "lift": 1.2
+            "n": 23,
+            "atEvent": 11.9,
+            "atAnyBar": 9.6,
+            "lift": 1.24
           },
           {
-            "key": "drive=soft",
-            "n": 36,
-            "atEvent": 18.9,
-            "atAnyBar": 15.9,
-            "lift": 1.19
+            "key": "partner=partner-quiet",
+            "n": 38,
+            "atEvent": 19.7,
+            "atAnyBar": 17,
+            "lift": 1.16
+          },
+          {
+            "key": "partner=partner-diverge",
+            "n": 20,
+            "atEvent": 10.4,
+            "atAnyBar": 8.9,
+            "lift": 1.16
           },
           {
             "key": "flow=sold-beyond-macro",
             "n": 13,
-            "atEvent": 6.8,
-            "atAnyBar": 5.9,
-            "lift": 1.17
+            "atEvent": 6.7,
+            "atAnyBar": 5.8,
+            "lift": 1.16
           },
           {
-            "key": "cdl=cdl-bear-strong",
-            "n": 20,
-            "atEvent": 10.5,
-            "atAnyBar": 9.1,
-            "lift": 1.15
+            "key": "pd=pd-high-swept",
+            "n": 18,
+            "atEvent": 9.3,
+            "atAnyBar": 8.2,
+            "lift": 1.14
           }
         ]
       },
@@ -1067,132 +1073,124 @@
         {
           "key": "cdl=cdl-conflict",
           "atRan": 1.3,
-          "atDied": 2.7,
-          "ratio": 0.51,
+          "atDied": 2.5,
+          "ratio": 0.53,
           "nRan": 5,
-          "nDied": 21
+          "nDied": 20
         },
         {
           "key": "stretch=far-below",
-          "atRan": 17.4,
-          "atDied": 11.4,
+          "atRan": 17.8,
+          "atDied": 11.7,
           "ratio": 1.52,
-          "nRan": 69,
-          "nDied": 90
+          "nRan": 71,
+          "nDied": 92
+        },
+        {
+          "key": "session=ny-am",
+          "atRan": 34.3,
+          "atDied": 23.7,
+          "ratio": 1.45,
+          "nRan": 137,
+          "nDied": 186
         },
         {
           "key": "flow=sold-beyond-macro",
           "atRan": 6.3,
           "atDied": 4.3,
-          "ratio": 1.47,
+          "ratio": 1.45,
           "nRan": 25,
           "nDied": 34
         },
         {
-          "key": "session=ny-am",
-          "atRan": 34.3,
-          "atDied": 23.8,
-          "ratio": 1.44,
-          "nRan": 136,
-          "nDied": 188
-        },
-        {
           "key": "vol=calm",
           "atRan": 27,
-          "atDied": 19.3,
-          "ratio": 1.4,
-          "nRan": 107,
-          "nDied": 152
+          "atDied": 19.5,
+          "ratio": 1.39,
+          "nRan": 108,
+          "nDied": 153
         },
         {
           "key": "dayPos=at-day-low",
-          "atRan": 17.9,
-          "atDied": 12.9,
-          "ratio": 1.38,
-          "nRan": 71,
-          "nDied": 102
+          "atRan": 18.5,
+          "atDied": 13.6,
+          "ratio": 1.36,
+          "nRan": 74,
+          "nDied": 107
         },
         {
-          "key": "stretch=above",
-          "atRan": 17.1,
-          "atDied": 23.3,
-          "ratio": 0.74,
-          "nRan": 68,
-          "nDied": 184
+          "key": "rev=strong-hammer",
+          "atRan": 4.8,
+          "atDied": 3.6,
+          "ratio": 1.34,
+          "nRan": 19,
+          "nDied": 28
         },
         {
           "key": "flow=bought-beyond-macro",
           "atRan": 4.3,
           "atDied": 5.7,
-          "ratio": 0.76,
+          "ratio": 0.75,
           "nRan": 17,
           "nDied": 45
         },
         {
           "key": "spike=spike",
-          "atRan": 46.1,
-          "atDied": 35.1,
-          "ratio": 1.31,
-          "nRan": 183,
+          "atRan": 46.5,
+          "atDied": 35.2,
+          "ratio": 1.32,
+          "nRan": 186,
           "nDied": 277
         },
         {
-          "key": "rev=strong-hammer",
-          "atRan": 4.8,
-          "atDied": 3.7,
-          "ratio": 1.31,
-          "nRan": 19,
-          "nDied": 29
-        },
-        {
-          "key": "session=late",
-          "atRan": 8.1,
-          "atDied": 6.2,
-          "ratio": 1.3,
-          "nRan": 32,
-          "nDied": 49
-        },
-        {
-          "key": "session=asia",
-          "atRan": 24.4,
-          "atDied": 31.8,
+          "key": "stretch=above",
+          "atRan": 17.5,
+          "atDied": 22.8,
           "ratio": 0.77,
-          "nRan": 97,
-          "nDied": 251
+          "nRan": 70,
+          "nDied": 179
         },
         {
           "key": "cdl=cdl-bull-strong",
-          "atRan": 9.3,
-          "atDied": 7.2,
+          "atRan": 9.5,
+          "atDied": 7.4,
           "ratio": 1.29,
-          "nRan": 37,
-          "nDied": 57
+          "nRan": 38,
+          "nDied": 58
         },
         {
           "key": "cdl=cdl-bull-weak",
           "atRan": 1.8,
           "atDied": 1.4,
-          "ratio": 1.29,
+          "ratio": 1.28,
           "nRan": 7,
           "nDied": 11
+        },
+        {
+          "key": "session=late",
+          "atRan": 7.8,
+          "atDied": 6.1,
+          "ratio": 1.27,
+          "nRan": 31,
+          "nDied": 48
+        },
+        {
+          "key": "session=asia",
+          "atRan": 25.3,
+          "atDied": 31.9,
+          "ratio": 0.79,
+          "nRan": 101,
+          "nDied": 251
         }
       ],
       "pumpVsStall": [
         {
-          "key": "cdl=cdl-conflict",
-          "atRan": 1.4,
-          "atDied": 3.4,
-          "ratio": 0.47,
-          "nRan": 3,
-          "nDied": 13
-        },
-        {
           "key": "drive=soft",
           "atRan": 9.7,
-          "atDied": 20.3,
+          "atDied": 20.5,
           "ratio": 0.48,
           "nRan": 20,
-          "nDied": 77
+          "nDied": 78
         },
         {
           "key": "cdl=cdl-bear-strong",
@@ -1203,52 +1201,36 @@
           "nDied": 47
         },
         {
-          "key": "stretch=far-above",
-          "atRan": 24.6,
-          "atDied": 15.3,
-          "ratio": 1.61,
-          "nRan": 51,
-          "nDied": 58
-        },
-        {
           "key": "dayPos=at-day-high",
           "atRan": 16.9,
-          "atDied": 10.6,
-          "ratio": 1.6,
+          "atDied": 10.8,
+          "ratio": 1.57,
           "nRan": 35,
-          "nDied": 40
+          "nDied": 41
         },
         {
-          "key": "drive=ripping",
-          "atRan": 25.1,
-          "atDied": 17.2,
-          "ratio": 1.46,
-          "nRan": 52,
-          "nDied": 65
+          "key": "stretch=far-above",
+          "atRan": 23.2,
+          "atDied": 15.3,
+          "ratio": 1.52,
+          "nRan": 48,
+          "nDied": 58
         },
         {
           "key": "stretch=mid",
           "atRan": 19.3,
-          "atDied": 28.2,
-          "ratio": 0.69,
+          "atDied": 27.9,
+          "ratio": 0.7,
           "nRan": 40,
-          "nDied": 107
+          "nDied": 106
         },
         {
-          "key": "vol=calm",
-          "atRan": 27.1,
-          "atDied": 19.5,
-          "ratio": 1.39,
-          "nRan": 56,
-          "nDied": 74
-        },
-        {
-          "key": "session=asia",
-          "atRan": 23.2,
-          "atDied": 32.2,
-          "ratio": 0.72,
-          "nRan": 48,
-          "nDied": 122
+          "key": "drive=ripping",
+          "atRan": 24.6,
+          "atDied": 17.4,
+          "ratio": 1.42,
+          "nRan": 51,
+          "nDied": 66
         },
         {
           "key": "pw=pw-high-swept",
@@ -1257,88 +1239,112 @@
           "ratio": 0.72,
           "nRan": 6,
           "nDied": 16
+        },
+        {
+          "key": "vol=calm",
+          "atRan": 27.1,
+          "atDied": 19.7,
+          "ratio": 1.37,
+          "nRan": 56,
+          "nDied": 75
+        },
+        {
+          "key": "session=asia",
+          "atRan": 23.7,
+          "atDied": 32.4,
+          "ratio": 0.73,
+          "nRan": 49,
+          "nDied": 123
+        },
+        {
+          "key": "spike=spike",
+          "atRan": 44.9,
+          "atDied": 34.2,
+          "ratio": 1.31,
+          "nRan": 93,
+          "nDied": 130
         }
       ],
       "dropVsStall": [
         {
           "key": "flow=sold-beyond-macro",
-          "atRan": 6.8,
-          "atDied": 2.4,
-          "ratio": 2.77,
+          "atRan": 6.7,
+          "atDied": 2.5,
+          "ratio": 2.7,
           "nRan": 13,
           "nDied": 10
         },
         {
           "key": "dayPos=at-day-low",
-          "atRan": 16.8,
-          "atDied": 7.8,
-          "ratio": 2.15,
-          "nRan": 32,
-          "nDied": 32
+          "atRan": 17.1,
+          "atDied": 8.4,
+          "ratio": 2.04,
+          "nRan": 33,
+          "nDied": 34
         },
         {
           "key": "stretch=far-below",
-          "atRan": 15.3,
+          "atRan": 15,
           "atDied": 7.6,
-          "ratio": 2.02,
+          "ratio": 1.96,
           "nRan": 29,
           "nDied": 31
         },
         {
           "key": "pw=pw-high-swept",
-          "atRan": 6.8,
+          "atRan": 6.7,
           "atDied": 3.7,
-          "ratio": 1.87,
+          "ratio": 1.83,
           "nRan": 13,
           "nDied": 15
         },
         {
           "key": "session=ny-am",
-          "atRan": 37.9,
+          "atRan": 37.3,
           "atDied": 22.9,
-          "ratio": 1.65,
+          "ratio": 1.63,
           "nRan": 72,
-          "nDied": 94
+          "nDied": 93
         },
         {
           "key": "flow=bought-beyond-macro",
-          "atRan": 5.3,
-          "atDied": 8.5,
-          "ratio": 0.64,
+          "atRan": 5.2,
+          "atDied": 8.6,
+          "ratio": 0.62,
           "nRan": 10,
           "nDied": 35
         },
         {
-          "key": "cdl=cdl-bear-strong",
-          "atRan": 10.5,
-          "atDied": 6.8,
-          "ratio": 1.55,
-          "nRan": 20,
-          "nDied": 28
+          "key": "cdl=cdl-indecision",
+          "atRan": 18.7,
+          "atDied": 12.3,
+          "ratio": 1.52,
+          "nRan": 36,
+          "nDied": 50
         },
         {
           "key": "stretch=above",
-          "atRan": 15.8,
-          "atDied": 24.4,
-          "ratio": 0.65,
-          "nRan": 30,
-          "nDied": 100
-        },
-        {
-          "key": "cdl=cdl-indecision",
-          "atRan": 18.4,
-          "atDied": 12.4,
-          "ratio": 1.48,
-          "nRan": 35,
-          "nDied": 51
+          "atRan": 16.1,
+          "atDied": 24.1,
+          "ratio": 0.67,
+          "nRan": 31,
+          "nDied": 98
         },
         {
           "key": "session=ny-pm",
-          "atRan": 10,
-          "atDied": 14.9,
-          "ratio": 0.68,
+          "atRan": 9.8,
+          "atDied": 15,
+          "ratio": 0.67,
           "nRan": 19,
           "nDied": 61
+        },
+        {
+          "key": "dayPos=at-day-high",
+          "atRan": 24.4,
+          "atDied": 36.2,
+          "ratio": 0.68,
+          "nRan": 47,
+          "nDied": 147
         }
       ],
       "bars": 5912
@@ -1346,12 +1352,12 @@
     "XAG_USD": {
       "definition": "a pivot whose next leg ran 3 ATR or more counts as a turn; under 1.75 ATR it fizzled. Both sets are pivots, so \"ran vs died\" is the honest comparison — measuring a low against every bar mostly rediscovers that lows have falling prices before them.",
       "turns": {
-        "n": 413,
+        "n": 416,
         "inAtr": 1.86,
         "inBars": 2,
         "outAtr": 3.96,
         "outBars": 5,
-        "speed": 0.797,
+        "speed": 0.8,
         "up": 224,
         "conditions": [
           {
@@ -1359,177 +1365,177 @@
             "n": 14,
             "atEvent": 3.4,
             "atAnyBar": 1.4,
-            "lift": 2.41
+            "lift": 2.4
           },
           {
             "key": "rev=strong-hammer",
-            "n": 14,
-            "atEvent": 3.4,
-            "atAnyBar": 1.8,
-            "lift": 1.87
-          },
-          {
-            "key": "rev=strong-star",
-            "n": 13,
-            "atEvent": 3.1,
-            "atAnyBar": 1.8,
-            "lift": 1.79
-          },
-          {
-            "key": "session=ny-am",
-            "n": 125,
-            "atEvent": 30.3,
-            "atAnyBar": 21.8,
-            "lift": 1.39
-          },
-          {
-            "key": "spike=spike",
-            "n": 187,
-            "atEvent": 45.3,
-            "atAnyBar": 33.7,
-            "lift": 1.34
-          },
-          {
-            "key": "cdl=cdl-bear-strong",
-            "n": 52,
-            "atEvent": 12.6,
-            "atAnyBar": 9.5,
-            "lift": 1.32
-          },
-          {
-            "key": "partner=partner-diverge",
-            "n": 49,
-            "atEvent": 11.9,
-            "atAnyBar": 9.1,
-            "lift": 1.31
-          },
-          {
-            "key": "dayPos=mid",
-            "n": 47,
-            "atEvent": 11.4,
-            "atAnyBar": 8.8,
-            "lift": 1.3
-          },
-          {
-            "key": "cdl=cdl-bull-weak",
-            "n": 13,
-            "atEvent": 3.1,
-            "atAnyBar": 2.5,
-            "lift": 1.25
-          },
-          {
-            "key": "dayPos=lower",
-            "n": 113,
-            "atEvent": 27.4,
-            "atAnyBar": 22.8,
-            "lift": 1.2
-          },
-          {
-            "key": "pd=pd-high-swept",
-            "n": 50,
-            "atEvent": 12.1,
-            "atAnyBar": 10.2,
-            "lift": 1.18
-          },
-          {
-            "key": "stretch=far-below",
-            "n": 70,
-            "atEvent": 16.9,
-            "atAnyBar": 14.5,
-            "lift": 1.17
-          }
-        ]
-      },
-      "fizzles": {
-        "n": 741,
-        "inAtr": 1.95,
-        "inBars": 2,
-        "outAtr": 1.36,
-        "outBars": 2,
-        "speed": 0.891,
-        "conditions": [
-          {
-            "key": "rev=strong-hammer",
-            "n": 27,
+            "n": 15,
             "atEvent": 3.6,
-            "atAnyBar": 1.8,
-            "lift": 2.01
-          },
-          {
-            "key": "rev=strong-star",
-            "n": 26,
-            "atEvent": 3.5,
             "atAnyBar": 1.8,
             "lift": 1.99
           },
           {
+            "key": "rev=strong-star",
+            "n": 13,
+            "atEvent": 3.1,
+            "atAnyBar": 1.8,
+            "lift": 1.78
+          },
+          {
+            "key": "session=ny-am",
+            "n": 128,
+            "atEvent": 30.8,
+            "atAnyBar": 21.8,
+            "lift": 1.41
+          },
+          {
+            "key": "spike=spike",
+            "n": 190,
+            "atEvent": 45.7,
+            "atAnyBar": 33.6,
+            "lift": 1.36
+          },
+          {
+            "key": "partner=partner-diverge",
+            "n": 49,
+            "atEvent": 11.8,
+            "atAnyBar": 8.9,
+            "lift": 1.32
+          },
+          {
+            "key": "cdl=cdl-bear-strong",
+            "n": 51,
+            "atEvent": 12.3,
+            "atAnyBar": 9.5,
+            "lift": 1.29
+          },
+          {
+            "key": "dayPos=mid",
+            "n": 47,
+            "atEvent": 11.3,
+            "atAnyBar": 8.8,
+            "lift": 1.29
+          },
+          {
+            "key": "cdl=cdl-bull-weak",
+            "n": 13,
+            "atEvent": 3.1,
+            "atAnyBar": 2.5,
+            "lift": 1.24
+          },
+          {
+            "key": "pd=pd-high-swept",
+            "n": 51,
+            "atEvent": 12.3,
+            "atAnyBar": 10.3,
+            "lift": 1.19
+          },
+          {
+            "key": "dayPos=lower",
+            "n": 113,
+            "atEvent": 27.2,
+            "atAnyBar": 23.1,
+            "lift": 1.18
+          },
+          {
+            "key": "stretch=far-below",
+            "n": 73,
+            "atEvent": 17.5,
+            "atAnyBar": 15.1,
+            "lift": 1.16
+          }
+        ]
+      },
+      "fizzles": {
+        "n": 734,
+        "inAtr": 1.94,
+        "inBars": 2,
+        "outAtr": 1.36,
+        "outBars": 2,
+        "speed": 0.883,
+        "conditions": [
+          {
+            "key": "rev=strong-hammer",
+            "n": 26,
+            "atEvent": 3.5,
+            "atAnyBar": 1.8,
+            "lift": 1.96
+          },
+          {
+            "key": "rev=strong-star",
+            "n": 25,
+            "atEvent": 3.4,
+            "atAnyBar": 1.8,
+            "lift": 1.94
+          },
+          {
             "key": "pw=pw-low-swept",
             "n": 41,
-            "atEvent": 5.5,
-            "atAnyBar": 3.3,
-            "lift": 1.68
+            "atEvent": 5.6,
+            "atAnyBar": 3.5,
+            "lift": 1.59
           },
           {
             "key": "cdl=cdl-bull-weak",
             "n": 29,
-            "atEvent": 3.9,
+            "atEvent": 4,
             "atAnyBar": 2.5,
-            "lift": 1.55
+            "lift": 1.57
           },
           {
             "key": "cdl=cdl-bear-weak",
             "n": 16,
             "atEvent": 2.2,
             "atAnyBar": 1.4,
-            "lift": 1.54
+            "lift": 1.55
           },
           {
             "key": "pd=pd-high-swept",
-            "n": 110,
-            "atEvent": 14.8,
-            "atAnyBar": 10.2,
-            "lift": 1.45
+            "n": 111,
+            "atEvent": 15.1,
+            "atAnyBar": 10.3,
+            "lift": 1.47
           },
           {
             "key": "spike=spike",
-            "n": 322,
-            "atEvent": 43.5,
-            "atAnyBar": 33.7,
+            "n": 317,
+            "atEvent": 43.2,
+            "atAnyBar": 33.6,
             "lift": 1.29
           },
           {
             "key": "pd=pd-low-swept",
             "n": 69,
-            "atEvent": 9.3,
+            "atEvent": 9.4,
             "atAnyBar": 7.4,
             "lift": 1.27
           },
           {
             "key": "session=ny-am",
-            "n": 194,
-            "atEvent": 26.2,
+            "n": 195,
+            "atEvent": 26.6,
             "atAnyBar": 21.8,
-            "lift": 1.2
+            "lift": 1.22
           },
           {
             "key": "dayPos=lower",
-            "n": 200,
-            "atEvent": 27,
-            "atAnyBar": 22.8,
-            "lift": 1.18
+            "n": 204,
+            "atEvent": 27.8,
+            "atAnyBar": 23.1,
+            "lift": 1.2
           },
           {
             "key": "cdl=cdl-indecision",
-            "n": 127,
-            "atEvent": 17.1,
-            "atAnyBar": 14.7,
-            "lift": 1.17
+            "n": 126,
+            "atEvent": 17.2,
+            "atAnyBar": 14.8,
+            "lift": 1.16
           },
           {
             "key": "vol=hot",
-            "n": 223,
-            "atEvent": 30.1,
-            "atAnyBar": 26.8,
+            "n": 216,
+            "atEvent": 29.4,
+            "atAnyBar": 26.3,
             "lift": 1.12
           }
         ]
@@ -1539,15 +1545,15 @@
         "inAtr": 1.85,
         "inBars": 2,
         "outAtr": 3.99,
-        "outBars": 6,
-        "speed": 0.931,
+        "outBars": 5,
+        "speed": 0.927,
         "conditions": [
           {
             "key": "rev=strong-hammer",
-            "n": 14,
-            "atEvent": 6.3,
+            "n": 15,
+            "atEvent": 6.7,
             "atAnyBar": 1.8,
-            "lift": 3.45
+            "lift": 3.7
           },
           {
             "key": "cdl=cdl-bull-weak",
@@ -1557,167 +1563,167 @@
             "lift": 1.77
           },
           {
-            "key": "pw=pw-high-swept",
-            "n": 10,
-            "atEvent": 4.5,
-            "atAnyBar": 3.1,
-            "lift": 1.43
+            "key": "spike=spike",
+            "n": 105,
+            "atEvent": 46.9,
+            "atAnyBar": 33.6,
+            "lift": 1.4
           },
           {
             "key": "cdl=cdl-bull-medium",
             "n": 41,
             "atEvent": 18.3,
-            "atAnyBar": 13.2,
-            "lift": 1.38
-          },
-          {
-            "key": "spike=spike",
-            "n": 103,
-            "atEvent": 46,
-            "atAnyBar": 33.7,
-            "lift": 1.37
-          },
-          {
-            "key": "dayPos=lower",
-            "n": 67,
-            "atEvent": 29.9,
-            "atAnyBar": 22.8,
-            "lift": 1.31
+            "atAnyBar": 13.1,
+            "lift": 1.4
           },
           {
             "key": "pd=pd-high-swept",
             "n": 30,
             "atEvent": 13.4,
-            "atAnyBar": 10.2,
-            "lift": 1.31
-          },
-          {
-            "key": "dayPos=mid",
-            "n": 25,
-            "atEvent": 11.2,
-            "atAnyBar": 8.8,
-            "lift": 1.27
-          },
-          {
-            "key": "stretch=above",
-            "n": 53,
-            "atEvent": 23.7,
-            "atAnyBar": 18.9,
-            "lift": 1.25
+            "atAnyBar": 10.3,
+            "lift": 1.3
           },
           {
             "key": "session=ny-am",
-            "n": 61,
-            "atEvent": 27.2,
+            "n": 63,
+            "atEvent": 28.1,
             "atAnyBar": 21.8,
+            "lift": 1.29
+          },
+          {
+            "key": "dayPos=lower",
+            "n": 66,
+            "atEvent": 29.5,
+            "atAnyBar": 23.1,
+            "lift": 1.28
+          },
+          {
+            "key": "stretch=above",
+            "n": 52,
+            "atEvent": 23.2,
+            "atAnyBar": 18.6,
             "lift": 1.25
           },
           {
-            "key": "stretch=far-below",
-            "n": 40,
-            "atEvent": 17.9,
-            "atAnyBar": 14.5,
-            "lift": 1.23
+            "key": "pw=pw-high-swept",
+            "n": 9,
+            "atEvent": 4,
+            "atAnyBar": 3.2,
+            "lift": 1.25
           },
           {
             "key": "partner=partner-quiet",
             "n": 47,
             "atEvent": 21,
-            "atAnyBar": 17.2,
+            "atAnyBar": 17,
+            "lift": 1.23
+          },
+          {
+            "key": "dayPos=mid",
+            "n": 24,
+            "atEvent": 10.7,
+            "atAnyBar": 8.8,
             "lift": 1.22
+          },
+          {
+            "key": "stretch=far-below",
+            "n": 41,
+            "atEvent": 18.3,
+            "atAnyBar": 15.1,
+            "lift": 1.21
           }
         ]
       },
       "drops": {
-        "n": 189,
+        "n": 192,
         "inAtr": 1.97,
         "inBars": 3,
-        "outAtr": 3.94,
+        "outAtr": 3.93,
         "outBars": 4,
-        "speed": 0.688,
+        "speed": 0.695,
         "conditions": [
           {
             "key": "cdl=cdl-bear-weak",
             "n": 10,
-            "atEvent": 5.3,
+            "atEvent": 5.2,
             "atAnyBar": 1.4,
-            "lift": 3.77
+            "lift": 3.71
           },
           {
             "key": "rev=strong-star",
             "n": 12,
             "atEvent": 6.3,
             "atAnyBar": 1.8,
-            "lift": 3.61
+            "lift": 3.55
           },
           {
             "key": "cdl=cdl-bear-medium",
             "n": 47,
-            "atEvent": 24.9,
+            "atEvent": 24.5,
             "atAnyBar": 15.7,
-            "lift": 1.58
-          },
-          {
-            "key": "cdl=cdl-bear-strong",
-            "n": 28,
-            "atEvent": 14.8,
-            "atAnyBar": 9.5,
             "lift": 1.56
           },
           {
             "key": "session=ny-am",
-            "n": 64,
+            "n": 65,
             "atEvent": 33.9,
             "atAnyBar": 21.8,
             "lift": 1.55
           },
           {
-            "key": "flow=bought-beyond-macro",
-            "n": 14,
-            "atEvent": 7.4,
-            "atAnyBar": 4.9,
-            "lift": 1.51
+            "key": "cdl=cdl-bear-strong",
+            "n": 27,
+            "atEvent": 14.1,
+            "atAnyBar": 9.5,
+            "lift": 1.48
           },
           {
             "key": "partner=partner-diverge",
             "n": 25,
-            "atEvent": 13.2,
-            "atAnyBar": 9.1,
+            "atEvent": 13,
+            "atAnyBar": 8.9,
             "lift": 1.46
           },
           {
+            "key": "flow=bought-beyond-macro",
+            "n": 13,
+            "atEvent": 6.8,
+            "atAnyBar": 4.9,
+            "lift": 1.39
+          },
+          {
             "key": "dayPos=mid",
-            "n": 22,
-            "atEvent": 11.6,
+            "n": 23,
+            "atEvent": 12,
             "atAnyBar": 8.8,
-            "lift": 1.33
+            "lift": 1.36
           },
           {
             "key": "spike=spike",
-            "n": 84,
-            "atEvent": 44.4,
-            "atAnyBar": 33.7,
+            "n": 85,
+            "atEvent": 44.3,
+            "atAnyBar": 33.6,
             "lift": 1.32
           },
           {
             "key": "vol=calm",
-            "n": 50,
-            "atEvent": 26.5,
-            "atAnyBar": 20.4,
+            "n": 51,
+            "atEvent": 26.6,
+            "atAnyBar": 20.5,
             "lift": 1.3
           },
           {
             "key": "macro=macro-driven",
-            "n": 41,
-            "atEvent": 21.7,
-            "atAnyBar": 17.6,
+            "n": 43,
+            "atEvent": 22.4,
+            "atAnyBar": 18,
             "lift": 1.24
           },
           {
-            "key": "dollar=dollar-detached",
-            "n": 32,
-            "atEvent": 16.9,
-            "atAnyBar": 14.6,
+            "key": "round=at-round",
+            "n": 34,
+            "atEvent": 17.7,
+            "atAnyBar": 15.3,
             "lift": 1.16
           }
         ]
@@ -1725,279 +1731,279 @@
       "ranVsDied": [
         {
           "key": "pw=pw-low-swept",
-          "atRan": 2.9,
-          "atDied": 5.5,
-          "ratio": 0.54,
-          "nRan": 12,
+          "atRan": 3.4,
+          "atDied": 5.6,
+          "ratio": 0.62,
+          "nRan": 14,
           "nDied": 41
         },
         {
           "key": "cdl=cdl-bear-weak",
           "atRan": 3.4,
           "atDied": 2.2,
-          "ratio": 1.58,
+          "ratio": 1.55,
           "nRan": 14,
           "nDied": 16
         },
         {
-          "key": "cdl=cdl-bull-strong",
-          "atRan": 6.3,
-          "atDied": 9,
-          "ratio": 0.7,
-          "nRan": 26,
-          "nDied": 67
+          "key": "vol=calm",
+          "atRan": 23.8,
+          "atDied": 17.3,
+          "ratio": 1.38,
+          "nRan": 99,
+          "nDied": 127
         },
         {
           "key": "cdl=cdl-bear-strong",
-          "atRan": 12.6,
-          "atDied": 8.9,
-          "ratio": 1.41,
-          "nRan": 52,
+          "atRan": 12.3,
+          "atDied": 9,
+          "ratio": 1.37,
+          "nRan": 51,
           "nDied": 66
         },
         {
-          "key": "vol=calm",
-          "atRan": 23.7,
-          "atDied": 17,
-          "ratio": 1.4,
-          "nRan": 98,
-          "nDied": 126
-        },
-        {
           "key": "partner=partner-diverge",
-          "atRan": 11.9,
+          "atRan": 11.8,
           "atDied": 8.9,
           "ratio": 1.33,
           "nRan": 49,
+          "nDied": 65
+        },
+        {
+          "key": "cdl=cdl-bull-strong",
+          "atRan": 6.7,
+          "atDied": 9,
+          "ratio": 0.76,
+          "nRan": 28,
           "nDied": 66
         },
         {
           "key": "dayPos=mid",
-          "atRan": 11.4,
-          "atDied": 8.6,
-          "ratio": 1.32,
+          "atRan": 11.3,
+          "atDied": 8.9,
+          "ratio": 1.28,
           "nRan": 47,
-          "nDied": 64
+          "nDied": 65
         },
         {
           "key": "session=late",
-          "atRan": 6.8,
+          "atRan": 6.7,
           "atDied": 5.3,
-          "ratio": 1.29,
+          "ratio": 1.27,
           "nRan": 28,
           "nDied": 39
         },
         {
-          "key": "dayPos=at-day-high",
-          "atRan": 18.6,
-          "atDied": 23.9,
-          "ratio": 0.78,
-          "nRan": 77,
-          "nDied": 177
-        },
-        {
-          "key": "flow=bought-beyond-macro",
-          "atRan": 4.6,
-          "atDied": 3.6,
-          "ratio": 1.27,
-          "nRan": 19,
-          "nDied": 27
-        },
-        {
-          "key": "flow=sold-beyond-macro",
-          "atRan": 4.8,
-          "atDied": 3.9,
-          "ratio": 1.25,
-          "nRan": 20,
-          "nDied": 29
-        },
-        {
           "key": "pd=pd-high-swept",
-          "atRan": 12.1,
-          "atDied": 14.8,
-          "ratio": 0.82,
-          "nRan": 50,
-          "nDied": 110
+          "atRan": 12.3,
+          "atDied": 15.1,
+          "ratio": 0.81,
+          "nRan": 51,
+          "nDied": 111
+        },
+        {
+          "key": "dayPos=at-day-high",
+          "atRan": 18.8,
+          "atDied": 23.3,
+          "ratio": 0.81,
+          "nRan": 78,
+          "nDied": 171
         },
         {
           "key": "cdl=cdl-bull-weak",
           "atRan": 3.1,
-          "atDied": 3.9,
-          "ratio": 0.82,
+          "atDied": 4,
+          "ratio": 0.81,
           "nRan": 13,
           "nDied": 29
         },
         {
+          "key": "flow=sold-beyond-macro",
+          "atRan": 4.8,
+          "atDied": 4,
+          "ratio": 1.22,
+          "nRan": 20,
+          "nDied": 29
+        },
+        {
           "key": "vol=hot",
-          "atRan": 24.9,
-          "atDied": 30.1,
+          "atRan": 24.5,
+          "atDied": 29.4,
           "ratio": 0.83,
-          "nRan": 103,
-          "nDied": 223
+          "nRan": 102,
+          "nDied": 216
+        },
+        {
+          "key": "flow=bought-beyond-macro",
+          "atRan": 4.3,
+          "atDied": 3.7,
+          "ratio": 1.19,
+          "nRan": 18,
+          "nDied": 27
         }
       ],
       "pumpVsStall": [
         {
-          "key": "pw=pw-low-swept",
-          "atRan": 2.2,
-          "atDied": 4.3,
-          "ratio": 0.55,
-          "nRan": 5,
-          "nDied": 16
-        },
-        {
           "key": "session=late",
           "atRan": 8,
           "atDied": 4.6,
-          "ratio": 1.73,
+          "ratio": 1.72,
           "nRan": 18,
           "nDied": 17
         },
         {
-          "key": "partner=partner-quiet",
-          "atRan": 21,
-          "atDied": 15.5,
-          "ratio": 1.35,
-          "nRan": 47,
-          "nDied": 57
+          "key": "round=at-round",
+          "atRan": 11.2,
+          "atDied": 16.1,
+          "ratio": 0.7,
+          "nRan": 25,
+          "nDied": 59
         },
         {
-          "key": "stretch=above",
-          "atRan": 23.7,
-          "atDied": 17.7,
-          "ratio": 1.34,
-          "nRan": 53,
-          "nDied": 65
+          "key": "partner=partner-quiet",
+          "atRan": 21,
+          "atDied": 15,
+          "ratio": 1.4,
+          "nRan": 47,
+          "nDied": 55
         },
         {
           "key": "shift=relationship-broke",
           "atRan": 14.7,
-          "atDied": 19.8,
-          "ratio": 0.75,
+          "atDied": 19.9,
+          "ratio": 0.74,
           "nRan": 33,
           "nDied": 73
         },
         {
-          "key": "round=at-round",
-          "atRan": 12.1,
-          "atDied": 16,
-          "ratio": 0.76,
-          "nRan": 27,
-          "nDied": 59
-        },
-        {
-          "key": "drive=flat",
-          "atRan": 17.9,
-          "atDied": 13.9,
-          "ratio": 1.29,
-          "nRan": 40,
-          "nDied": 51
-        },
-        {
-          "key": "vol=calm",
-          "atRan": 21.4,
-          "atDied": 16.6,
-          "ratio": 1.29,
-          "nRan": 48,
-          "nDied": 61
+          "key": "pw=pw-low-swept",
+          "atRan": 3.1,
+          "atDied": 4.4,
+          "ratio": 0.74,
+          "nRan": 7,
+          "nDied": 16
         },
         {
           "key": "stretch=below",
-          "atRan": 15.6,
-          "atDied": 20.1,
-          "ratio": 0.78,
-          "nRan": 35,
-          "nDied": 74
+          "atRan": 15.2,
+          "atDied": 20.5,
+          "ratio": 0.75,
+          "nRan": 34,
+          "nDied": 75
+        },
+        {
+          "key": "stretch=above",
+          "atRan": 23.2,
+          "atDied": 17.5,
+          "ratio": 1.33,
+          "nRan": 52,
+          "nDied": 64
         },
         {
           "key": "pd=pd-high-swept",
           "atRan": 13.4,
-          "atDied": 17.4,
-          "ratio": 0.78,
+          "atDied": 17.8,
+          "ratio": 0.76,
           "nRan": 30,
-          "nDied": 64
+          "nDied": 65
+        },
+        {
+          "key": "drive=flat",
+          "atRan": 17.9,
+          "atDied": 13.7,
+          "ratio": 1.31,
+          "nRan": 40,
+          "nDied": 50
+        },
+        {
+          "key": "vol=calm",
+          "atRan": 21.4,
+          "atDied": 16.9,
+          "ratio": 1.27,
+          "nRan": 48,
+          "nDied": 62
         }
       ],
       "dropVsStall": [
         {
+          "key": "cdl=cdl-bear-strong",
+          "atRan": 14.1,
+          "atDied": 6.3,
+          "ratio": 2.24,
+          "nRan": 27,
+          "nDied": 23
+        },
+        {
           "key": "cdl=cdl-bull-strong",
-          "atRan": 3.7,
-          "atDied": 9.9,
-          "ratio": 0.39,
-          "nRan": 7,
-          "nDied": 37
+          "atRan": 4.2,
+          "atDied": 9.8,
+          "ratio": 0.45,
+          "nRan": 8,
+          "nDied": 36
         },
         {
           "key": "dayPos=at-day-low",
-          "atRan": 14.8,
-          "atDied": 6.4,
-          "ratio": 2.29,
+          "atRan": 14.6,
+          "atDied": 7.1,
+          "ratio": 2.06,
           "nRan": 28,
-          "nDied": 24
-        },
-        {
-          "key": "cdl=cdl-bear-strong",
-          "atRan": 14.8,
-          "atDied": 6.4,
-          "ratio": 2.29,
-          "nRan": 28,
-          "nDied": 24
+          "nDied": 26
         },
         {
           "key": "pw=pw-low-swept",
-          "atRan": 3.7,
-          "atDied": 6.7,
-          "ratio": 0.58,
+          "atRan": 3.6,
+          "atDied": 6.8,
+          "ratio": 0.56,
           "nRan": 7,
           "nDied": 25
         },
         {
           "key": "partner=partner-diverge",
-          "atRan": 13.2,
-          "atDied": 7.8,
-          "ratio": 1.7,
+          "atRan": 13,
+          "atDied": 8.2,
+          "ratio": 1.6,
           "nRan": 25,
-          "nDied": 29
-        },
-        {
-          "key": "flow=bought-beyond-macro",
-          "atRan": 7.4,
-          "atDied": 4.6,
-          "ratio": 1.63,
-          "nRan": 14,
-          "nDied": 17
+          "nDied": 30
         },
         {
           "key": "vol=calm",
-          "atRan": 26.5,
-          "atDied": 17.4,
-          "ratio": 1.52,
-          "nRan": 50,
+          "atRan": 26.6,
+          "atDied": 17.7,
+          "ratio": 1.5,
+          "nRan": 51,
           "nDied": 65
         },
         {
           "key": "dayPos=at-day-high",
-          "atRan": 22.2,
-          "atDied": 33.8,
-          "ratio": 0.66,
-          "nRan": 42,
-          "nDied": 126
+          "atRan": 22.4,
+          "atDied": 33.2,
+          "ratio": 0.68,
+          "nRan": 43,
+          "nDied": 122
         },
         {
           "key": "dayPos=mid",
-          "atRan": 11.6,
-          "atDied": 7.8,
-          "ratio": 1.5,
-          "nRan": 22,
-          "nDied": 29
+          "atRan": 12,
+          "atDied": 8.2,
+          "ratio": 1.47,
+          "nRan": 23,
+          "nDied": 30
         },
         {
-          "key": "session=ny-am",
-          "atRan": 33.9,
-          "atDied": 23.9,
-          "ratio": 1.42,
-          "nRan": 64,
-          "nDied": 89
+          "key": "flow=bought-beyond-macro",
+          "atRan": 6.8,
+          "atDied": 4.6,
+          "ratio": 1.47,
+          "nRan": 13,
+          "nDied": 17
+        },
+        {
+          "key": "session=ny-pm",
+          "atRan": 12,
+          "atDied": 17.1,
+          "ratio": 0.71,
+          "nRan": 23,
+          "nDied": 63
         }
       ],
       "bars": 5910
@@ -2007,17 +2013,17 @@
     "XAU_USD": [
       {
         "key": "partner=partner-quiet",
-        "nowPct": 17.2,
+        "nowPct": 17,
         "thenPct": 32.4,
-        "changePct": -15.2,
-        "ratio": 0.53
+        "changePct": -15.4,
+        "ratio": 0.52
       },
       {
         "key": "partner=partner-agree",
-        "nowPct": 73.7,
+        "nowPct": 74,
         "thenPct": 58.8,
-        "changePct": 14.9,
-        "ratio": 1.25
+        "changePct": 15.2,
+        "ratio": 1.26
       },
       {
         "key": "shift=relationship-broke",
@@ -2027,6 +2033,13 @@
         "ratio": 1.63
       },
       {
+        "key": "macro=macro-mixed",
+        "nowPct": 31.4,
+        "thenPct": 40.5,
+        "changePct": -9.1,
+        "ratio": 0.78
+      },
+      {
         "key": "macro=own-story",
         "nowPct": 36.7,
         "thenPct": 28,
@@ -2034,25 +2047,18 @@
         "ratio": 1.31
       },
       {
-        "key": "macro=macro-mixed",
-        "nowPct": 32.8,
-        "thenPct": 39.8,
-        "changePct": -7,
-        "ratio": 0.82
-      },
-      {
         "key": "spike=spike",
         "nowPct": 31.8,
         "thenPct": 36,
-        "changePct": -4.3,
+        "changePct": -4.2,
         "ratio": 0.88
       },
       {
         "key": "vol=hot",
-        "nowPct": 22.1,
-        "thenPct": 17.8,
-        "changePct": 4.3,
-        "ratio": 1.24
+        "nowPct": 21.8,
+        "thenPct": 17.9,
+        "changePct": 3.9,
+        "ratio": 1.22
       },
       {
         "key": "dollar=dollar-detached",
@@ -2062,32 +2068,25 @@
         "ratio": 1.38
       },
       {
-        "key": "dayPos=at-day-high",
-        "nowPct": 26.6,
-        "thenPct": 24.4,
-        "changePct": 2.2,
-        "ratio": 1.09
+        "key": "stretch=far-above",
+        "nowPct": 24.4,
+        "thenPct": 26.7,
+        "changePct": -2.3,
+        "ratio": 0.91
+      },
+      {
+        "key": "vol=calm",
+        "nowPct": 21.1,
+        "thenPct": 23.2,
+        "changePct": -2.1,
+        "ratio": 0.91
       },
       {
         "key": "stretch=mid",
         "nowPct": 25.3,
-        "thenPct": 23.1,
-        "changePct": 2.2,
-        "ratio": 1.1
-      },
-      {
-        "key": "dayPos=at-day-low",
-        "nowPct": 16.2,
-        "thenPct": 18.3,
-        "changePct": -2.1,
-        "ratio": 0.88
-      },
-      {
-        "key": "vol=calm",
-        "nowPct": 21.2,
-        "thenPct": 23.3,
-        "changePct": -2.1,
-        "ratio": 0.91
+        "thenPct": 23.2,
+        "changePct": 2.1,
+        "ratio": 1.09
       },
       {
         "key": "dollar=dollar-inverse",
@@ -2097,15 +2096,22 @@
         "ratio": 0.98
       },
       {
-        "key": "cdl=cdl-bear-medium",
-        "nowPct": 18.3,
-        "thenPct": 19.9,
-        "changePct": -1.7,
-        "ratio": 0.92
+        "key": "pd=pd-high-swept",
+        "nowPct": 8.2,
+        "thenPct": 10,
+        "changePct": -1.8,
+        "ratio": 0.82
+      },
+      {
+        "key": "dayPos=at-day-high",
+        "nowPct": 26.3,
+        "thenPct": 24.5,
+        "changePct": 1.8,
+        "ratio": 1.07
       },
       {
         "key": "cdl=cdl-bull-medium",
-        "nowPct": 17.1,
+        "nowPct": 17,
         "thenPct": 18.7,
         "changePct": -1.7,
         "ratio": 0.91
@@ -2114,24 +2120,24 @@
     "XAG_USD": [
       {
         "key": "partner=partner-quiet",
-        "nowPct": 17.2,
+        "nowPct": 17,
         "thenPct": 32.4,
-        "changePct": -15.2,
+        "changePct": -15.4,
         "ratio": 0.53
       },
       {
         "key": "partner=partner-agree",
-        "nowPct": 73.8,
+        "nowPct": 74,
         "thenPct": 58.8,
-        "changePct": 15,
-        "ratio": 1.25
+        "changePct": 15.3,
+        "ratio": 1.26
       },
       {
         "key": "macro=macro-mixed",
-        "nowPct": 38.9,
-        "thenPct": 53,
-        "changePct": -14,
-        "ratio": 0.74
+        "nowPct": 38.5,
+        "thenPct": 53.6,
+        "changePct": -15.1,
+        "ratio": 0.72
       },
       {
         "key": "dollar=dollar-detached",
@@ -2156,10 +2162,10 @@
       },
       {
         "key": "vol=hot",
-        "nowPct": 26.8,
-        "thenPct": 17.8,
-        "changePct": 9,
-        "ratio": 1.5
+        "nowPct": 26.3,
+        "thenPct": 18,
+        "changePct": 8.3,
+        "ratio": 1.46
       },
       {
         "key": "shift=relationship-broke",
@@ -2170,108 +2176,110 @@
       },
       {
         "key": "stretch=far-above",
-        "nowPct": 27.7,
-        "thenPct": 22.1,
-        "changePct": 5.7,
-        "ratio": 1.26
-      },
-      {
-        "key": "drive=ripping",
-        "nowPct": 30.7,
-        "thenPct": 26.4,
-        "changePct": 4.2,
-        "ratio": 1.16
-      },
-      {
-        "key": "spike=spike",
-        "nowPct": 33.7,
-        "thenPct": 37.7,
-        "changePct": -4.1,
-        "ratio": 0.89
-      },
-      {
-        "key": "cdl=cdl-bull-medium",
-        "nowPct": 13.2,
-        "thenPct": 17.4,
-        "changePct": -4.1,
-        "ratio": 0.76
+        "nowPct": 27.2,
+        "thenPct": 22.2,
+        "changePct": 5,
+        "ratio": 1.23
       },
       {
         "key": "macro=macro-driven",
-        "nowPct": 17.6,
-        "thenPct": 13.7,
+        "nowPct": 18,
+        "thenPct": 13.1,
+        "changePct": 4.9,
+        "ratio": 1.38
+      },
+      {
+        "key": "cdl=cdl-bull-medium",
+        "nowPct": 13.1,
+        "thenPct": 17.4,
+        "changePct": -4.3,
+        "ratio": 0.75
+      },
+      {
+        "key": "spike=spike",
+        "nowPct": 33.6,
+        "thenPct": 37.7,
+        "changePct": -4.2,
+        "ratio": 0.89
+      },
+      {
+        "key": "drive=ripping",
+        "nowPct": 30.3,
+        "thenPct": 26.5,
         "changePct": 3.9,
-        "ratio": 1.28
+        "ratio": 1.15
       },
       {
         "key": "dayPos=at-day-low",
-        "nowPct": 15.3,
-        "thenPct": 19.1,
-        "changePct": -3.8,
-        "ratio": 0.8
+        "nowPct": 15.5,
+        "thenPct": 19,
+        "changePct": -3.5,
+        "ratio": 0.82
       },
       {
-        "key": "dayPos=at-day-high",
-        "nowPct": 28,
-        "thenPct": 24.5,
-        "changePct": 3.5,
-        "ratio": 1.14
+        "key": "cdl=cdl-bear-medium",
+        "nowPct": 15.7,
+        "thenPct": 19,
+        "changePct": -3.3,
+        "ratio": 0.83
       }
     ]
   },
   "now": {
     "XAU_USD": {
-      "at": 1788840000000,
-      "close": 4436,
-      "atr": 13.18,
-      "keys": [
-        "session=asia",
-        "vol=calm",
-        "stretch=above",
-        "dayPos=upper",
-        "drive=ripping",
-        "partner=partner-agree",
-        "cdl=cdl-bear-medium",
-        "macro=macro-mixed",
-        "dollar=dollar-inverse"
-      ],
-      "plain": [
-        "Asian session",
-        "quiet volatility",
-        "above the mean",
-        "upper part of the day",
-        "ripping higher",
-        "the other metal agrees",
-        "a middling bearish candle pattern",
-        "partly macro, partly its own",
-        "moving inverse to the dollar as usual"
-      ],
-      "firing": []
-    },
-    "XAG_USD": {
-      "at": 1788840000000,
-      "close": 67.039,
-      "atr": 0.378,
+      "at": 1789444800000,
+      "close": 4304.925,
+      "atr": 15.791,
       "keys": [
         "session=asia",
         "vol=normal",
-        "stretch=far-above",
-        "dayPos=at-day-high",
-        "drive=ripping",
-        "partner=partner-agree",
-        "round=at-round",
+        "stretch=below",
+        "dayPos=upper",
+        "drive=firm",
+        "partner=partner-quiet",
+        "cdl=cdl-bull-medium",
+        "macro=macro-driven",
+        "dollar=dollar-inverse",
+        "flow=bought-beyond-macro"
+      ],
+      "plain": [
+        "Asian session",
+        "normal volatility",
+        "below the mean",
+        "upper part of the day",
+        "drifting up",
+        "the other metal is quiet",
+        "a middling bullish candle pattern",
+        "trading as a macro instrument",
+        "moving inverse to the dollar as usual",
+        "bought beyond what the macro explains"
+      ],
+      "firing": [
+        "drive=firm&session=asia|up|24"
+      ]
+    },
+    "XAG_USD": {
+      "at": 1789444800000,
+      "close": 63.33,
+      "atr": 0.365,
+      "keys": [
+        "session=asia",
+        "vol=calm",
+        "stretch=below",
+        "dayPos=upper",
+        "drive=flat",
+        "partner=partner-quiet",
         "cdl=cdl-indecision",
         "macro=macro-mixed",
         "dollar=dollar-inverse"
       ],
       "plain": [
         "Asian session",
-        "normal volatility",
-        "far above the mean",
-        "at the day's high",
-        "ripping higher",
-        "the other metal agrees",
-        "sitting on a round number",
+        "quiet volatility",
+        "below the mean",
+        "upper part of the day",
+        "going nowhere",
+        "the other metal is quiet",
         "a doji or spinning top",
         "partly macro, partly its own",
         "moving inverse to the dollar as usual"
@@ -2281,44 +2289,44 @@
   },
   "drivers": {
     "XAU_USD": {
-      "text": "only 38% of the last 10 days is explained by the dollar and the ten-year; the usual inverse move against the dollar is intact (-2.00); and falling when yields rise (-2.61), as it should",
-      "r2": 0.376,
-      "b1": -2.005,
-      "b2": -2.614,
-      "se1": 0.388,
-      "se2": 0.357,
+      "text": "44% of the last 10 days of hourly movement is the dollar and the ten-year; the usual inverse move against the dollar is intact (-2.17); and falling when yields rise (-2.08), as it should; over the last 12 hours it has gone 1.9 standard deviations further than those two account for — somebody is buying gold itself",
+      "r2": 0.44,
+      "b1": -2.166,
+      "b2": -2.077,
+      "se1": 0.329,
+      "se2": 0.272,
       "n": 240,
       "dollarSig": true,
       "rateSig": true,
-      "push": 0.82,
+      "push": 1.91,
       "shift": {
-        "dollar": 1.75,
-        "rate": -4.16,
-        "r2Now": 0.376,
-        "r2Before": 0.32
+        "dollar": 0.25,
+        "rate": -1.11,
+        "r2Now": 0.44,
+        "r2Before": 0.29
       },
       "rateKind": "price",
-      "at": 1788840000000
+      "at": 1789444800000
     },
     "XAG_USD": {
-      "text": "only 30% of the last 10 days is explained by the dollar and the ten-year; the usual inverse move against the dollar is intact (-3.07); and falling when yields rise (-4.26), as it should",
-      "r2": 0.305,
-      "b1": -3.071,
-      "b2": -4.26,
-      "se1": 0.725,
-      "se2": 0.666,
+      "text": "only 39% of the last 10 days is explained by the dollar and the ten-year; the usual inverse move against the dollar is intact (-3.28); and falling when yields rise (-3.37), as it should",
+      "r2": 0.388,
+      "b1": -3.277,
+      "b2": -3.369,
+      "se1": 0.577,
+      "se2": 0.476,
       "n": 240,
       "dollarSig": true,
       "rateSig": true,
-      "push": 0.85,
+      "push": 1.35,
       "shift": {
-        "dollar": 0.84,
-        "rate": -3.01,
-        "r2Now": 0.305,
-        "r2Before": 0.232
+        "dollar": -0.23,
+        "rate": 0.38,
+        "r2Now": 0.388,
+        "r2Before": 0.244
       },
       "rateKind": "price",
-      "at": 1788840000000
+      "at": 1789444800000
     }
   },
   "macro": {
