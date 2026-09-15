@@ -883,7 +883,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789474186000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "US30": "down"
+      },
+      "why": "Dow falls, oil rises ahead of Fed."
     },
     {
       "title": "Fed rate hike expected Wednesday under Kevin Warsh",
@@ -906,7 +911,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789474185000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Fed hike expectation strengthens dollar."
     },
     {
       "title": "Bernstein Flags Five Stocks to Benefit as Europe Faces Tighter Gas Market",
@@ -921,7 +932,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789474112000,
-      "_kind": null
+      "_kind": null,
+      "why": "Specific stock picks, unclear index impact."
     },
     {
       "title": "Oil prices climb as attacks, pipeline outage deepen Saudi supply concerns",
@@ -941,7 +953,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789473988000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Supply concerns push oil prices higher."
     },
     {
       "title": "Here Are Tuesday’s Top Wall Street Analyst Research Calls: Autodesk, Eli Lilly, Etsy, Lear, Netskope, Nokia, Northrop Grumman, Rapid7, Rivian Automotive, Ulta Beauty, and More",
@@ -956,7 +973,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789473866000,
-      "_kind": null
+      "_kind": null,
+      "why": "Mixed analyst calls, no clear direction."
     },
     {
       "title": "Meeks Delivers Remarks During Rules Committee Hearing Opposing Senate Russia Sanctions/Tariffs Bill - House.gov",
@@ -977,7 +995,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789473747000,
-      "_kind": null
+      "_kind": null,
+      "why": "Political hearing, no direct market impact."
     },
     {
       "title": "Zelenskyy says Ukraine will pause attacks if Russia spares infrastructure - Al Jazeera",
@@ -998,7 +1017,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789471186000,
-      "_kind": null
+      "_kind": null,
+      "why": "Geopolitical statement, unclear immediate market effect."
     },
     {
       "title": "‘My total balance should be $20 million’: I invested $1.1 million in a crypto platform. Have I lost it all?",
@@ -1016,7 +1036,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789473600000,
-      "_kind": null
+      "_kind": null,
+      "why": "Individual loss report, no market signal."
     },
     {
       "title": "Russia Secretly Built Iran a 24-Helicopter Attack Fleet. Leaked Files Expose a Much Bigger Arms Pipeline - united24media.com",
@@ -1037,7 +1058,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789473060000,
-      "_kind": null
+      "_kind": null,
+      "why": "Geopolitical news, unclear immediate price impact."
     },
     {
       "title": "Dollar ticks up as oil prices climb, Fed rate hike chances firm - marketscreener.com",
@@ -1056,7 +1078,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789473086000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil prices climb, dollar ticks up."
     },
     {
       "title": "Dollar Dominates as Oil Surge Sparks Fed Rate Hike Expectations - Devdiscourse",
@@ -1075,7 +1101,10 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789473086000,
-      "_kind": null
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil surge sparks rate hike expectations."
     },
     {
       "title": "US Sanctions Russia's Second Largest Bank for Helping Iran Evade Sanctions - Kurdistan24",
@@ -1096,7 +1125,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789471260000,
-      "_kind": null
+      "why": "Sanctions news, unclear immediate market direction."
     },
     {
       "title": "Traditional bond investors have lost money for years. These five-star portfolio managers show a better way.",
@@ -1151,7 +1180,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789470894000
+      "firstAt": 1789470894000,
+      "why": "Yields hit 5%, oil direction unclear."
     },
     {
       "title": "Denmark says Russian warship fired flares at military helicopter",
@@ -1171,7 +1201,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789472192000
+      "firstAt": 1789472192000,
+      "why": "Geopolitical incident, unclear immediate market impact."
     },
     {
       "title": "AI chip sell-off overblown: Zero GPU slowdown after Anthropic essay, analyst says",
@@ -1200,7 +1231,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789472289000
+      "firstAt": 1789472289000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil climbs ahead of Fed meeting."
     },
     {
       "title": "Bitcoin and ethereum prices today, Tuesday, September 15, 2026: Crypto prices sliding this morning ahead of Fed meeting",
@@ -2594,7 +2629,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-15T12:20:54.235Z",
-  "headlinesAt": "2026-09-15T12:20:54.235Z",
-  "updatedAt": "2026-09-15T12:20:54.235Z"
+  "calendarAt": "2026-09-15T12:22:23.103Z",
+  "headlinesAt": "2026-09-15T12:22:23.103Z",
+  "updatedAt": "2026-09-15T12:22:23.103Z"
 }
