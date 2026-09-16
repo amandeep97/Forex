@@ -824,7 +824,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789518868000,
-      "_kind": null
+      "_kind": null,
+      "why": "Stock futures rise, no clear FX direction"
     },
     {
       "title": "U.S. Treasury hits Russian bank with sanctions over Iran ties - Foundation for Defense of Democracies",
@@ -846,7 +847,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789518393000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions news, unclear immediate oil impact"
     },
     {
       "title": "Fed Rate Hike Looms: Impact on Stock Markets - Intellectia AI",
@@ -869,7 +871,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789517091000
+      "firstAt": 1789517091000,
+      "why": "General Fed hike discussion, no specific move"
     },
     {
       "title": "Iran war live: Iran’s top diplomat heads to China as war drags on",
@@ -889,7 +892,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789516800000
+      "firstAt": 1789516800000,
+      "why": "Diplomatic mediation, unclear market direction"
     },
     {
       "title": "Japan trade deficit widens as machinery orders unexpectedly fall",
@@ -907,7 +911,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789516745000
+      "firstAt": 1789516745000,
+      "dir": {
+        "USD/JPY": "down"
+      },
+      "why": "Weak data reduces BoJ tightening odds"
     },
     {
       "title": "The AI gold rush has a dress code: steel-toe boots",
@@ -923,7 +931,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789515752000
+      "firstAt": 1789515752000,
+      "why": "Metaphorical headline, no clear price signal"
     },
     {
       "title": "US Coast Guard boarded a Texas-bound oil tanker to investigate a cyberattack, Bloomberg News reports",
@@ -939,7 +948,29 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789515413000
+      "firstAt": 1789515413000,
+      "why": "Single tanker incident, negligible market impact"
+    },
+    {
+      "title": "Russia sanctions bill co-authored by late Sen. Lindsay Graham advances - CBS News",
+      "link": "https://news.google.com/rss/articles/CBMilwFBVV95cUxPTUcwRUEyYzJNcTVyQ3MyRFBoVkc5dGJBTVhwLVQwd0VCcEpNeHdqR1M2WjdZMjktWVYzWkdSTGRFNmdYSHBRZWlFZUNtbzdfek1oUjVucndqamZUSFRsVU03UU1nRjludlI0Z2RvVVNsVTM3QUNzMTZsNUJMSzB0TWo4UmtrdjZRY2oyUWtqczYtX2ZhWk0w?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMilwFBVV95cUxPTUcwRUEyYzJNcTVyQ3MyRFBoVkc5dGJBTVhwLVQwd0VCcEpNeHdqR1M2WjdZMjktWVYzWkdSTGRFNmdYSHBRZWlFZUNtbzdfek1oUjVucndqamZUSFRsVU03UU1nRjludlI0Z2RvVVNsVTM3QUNzMTZsNUJMSzB0TWo4UmtrdjZRY2oyUWtqczYtX2ZhWk0w?oc=5\" target=\"_blank\">Rus",
+      "at": 1789514340000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789514340000,
+      "why": "Sanctions bill advances, unclear immediate effect"
     },
     {
       "title": "Argentina intensifies campaign against Falklands oil companies",
@@ -956,7 +987,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789513432000
+      "firstAt": 1789513432000,
+      "why": "Legal complaints, no immediate supply change"
     },
     {
       "title": "US DoJ backs bond demand in Paramount-Warner Bros antitrust fight",
@@ -987,7 +1019,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789512380000
+      "firstAt": 1789512380000,
+      "why": "Investment summit, no clear currency direction"
     },
     {
       "title": "Gold price may dip with Fed rate hike - Bangkok Post",
@@ -1005,7 +1038,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789512000000
+      "firstAt": 1789512000000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Explicit prediction of gold price dip"
     },
     {
       "title": "Republican congressman calls to impeach US Defence Secretary Pete Hegseth",
@@ -1025,7 +1062,8 @@
       "sev": 3,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789511888000
+      "firstAt": 1789511888000,
+      "why": "Political impeachment call, no market direction"
     },
     {
       "title": "Ed Sheeran blames US tour promoter for dropping Macklemore",
@@ -1040,7 +1078,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789510904000
+      "firstAt": 1789510904000,
+      "why": "Celebrity news, irrelevant to currency markets"
     },
     {
       "title": "‘My total balance should be $20 million’: I invested $1.1 million in a crypto platform. Have I lost it all?",
@@ -1057,7 +1096,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789510500000
+      "firstAt": 1789510500000,
+      "why": "Individual scam story, no broad market impact"
     },
     {
       "title": "Why is the far-right embracing crypto?",
@@ -1074,7 +1114,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789510142000
+      "firstAt": 1789510142000,
+      "why": "Political adoption trend, unclear price direction"
     },
     {
       "title": "‘There might be a silver lining’: My friend’s wife died at 60 after a high-earning career. Can he claim her Social Security?",
@@ -2169,6 +2210,19 @@
       "firstAt": 1789488284000
     },
     {
+      "title": "Global bond yields hit fresh highs, raising stakes for big borrowers - Reuters",
+      "link": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNeThNUUotQTJlelBLMUoySDNIZnR5dlBReWhadGo3VWF6YTBDMG9aYW5JREJhMG9OdXFmMC1OQ1F1VGs5bkxxeXAwY0gweVFkZmpkMHYxelhsbVAta1AyUEk0bEluNWc0UnVTQ0JIZVVuTS1oQVZQdjNqazFKREV2b2RRU3dQanl0N2JvY052QTVSczVVck1YZW1uY1RVem1iNDJzQ1FEbXZwc3UzamZmTA?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMisAFBVV95cUxNeThNUUotQTJlelBLMUoySDNIZnR5dlBReWhadGo3VWF6YTBDMG9aYW5JREJhMG9OdXFmMC1OQ1F1VGs5bkxxeXAwY0gweVFkZmpkMHYxelhsbVAta1AyUEk0bEluNWc0UnVTQ0JIZVVuTS1oQVZQdjNqazFKREV2b2RRU3dQanl0N2JvY052QTVSczVVck1YZW1uY1RVem1iNDJzQ1FEbXZwc3",
+      "at": 1789487579000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789487579000
+    },
+    {
       "title": "How war and sanctions are reshaping how Russia governs its vast territory - The Conversation",
       "link": "https://news.google.com/rss/articles/CBMirAFBVV95cUxOM3pfa1JtbDlxVEFKckJmLVM4Z1BJOVZqTUZXVWFLa2VKZnpmYWNhcHFYQWthSEVTWXBkUkppUmhlYkNEU3hxTm9JZS05WW5yRENIYnZOMkFRcWZEQ2RXNldWS09UQ3VRRG4wX1JyVXdCQ0x6ZC01NGtKUlIzRmNRN1ZyRlpQYWMwdkZTRXhyQnlNUXhNVUtGNFFMeW1maHluLU5tcHlSek8zLVFi?oc=5",
       "source": "Wires (geo)",
@@ -2493,48 +2547,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789476267000
-    },
-    {
-      "title": "Loonie slips as oil surge fuels rate worries ahead of Fed decision",
-      "link": "https://www.investing.com/news/forex-news/loonie-slips-as-oil-surge-fuels-rate-worries-ahead-of-fed-decision-4901710",
-      "source": "Investing FX",
-      "at": 1789476011000,
-      "inst": [
-        "USD/CAD",
-        "USOIL"
-      ],
-      "ccy": [
-        "USD",
-        "CAD",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789476011000
-    },
-    {
-      "title": "Global markets on edge, rand softer as US Fed meets to tackle high inflation - IOL",
-      "link": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPQ1g0Tk1zUXluSld5VG5ubjh1TERNc1B2MDBpeFVWQWZJTFE1U3F2X0hvWUVXMHpwRlVYZUhTa1ZNWmxoMEFLbUJZSXlJbk1nQ0pGWlVxWmVqajV5QmxoX1daT1Mzc0Fvc1ZLZ3N6RXFxenY3UzQwdVdOS1FCMUphUGFRS3RKYXc1MzVETkhzUGo1YVo5U21zaWkzTk5FN2U5RGxxTmR2OGlSOEZxNnFNSGJkUFJpWHVQVVI3RDlycw?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMivwFBVV95cUxPQ1g0Tk1zUXluSld5VG5ubjh1TERNc1B2MDBpeFVWQWZJTFE1U3F2X0hvWUVXMHpwRlVYZUhTa1ZNWmxoMEFLbUJZSXlJbk1nQ0pGWlVxWmVqajV5QmxoX1daT1Mzc0Fvc1ZLZ3N6RXFxenY3UzQwdVdOS1FCMUphUGFRS3RKYXc1MzVETkhzUGo1YVo5U21zaWkzTk5FN2U5RGxxTmR2OGlSOE",
-      "at": 1789475771000,
-      "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789475771000
     }
   ],
   "sources": [
@@ -2557,10 +2569,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-16T00:36:23.750Z",
-  "headlinesAt": "2026-09-16T00:36:23.750Z",
-  "updatedAt": "2026-09-16T00:36:23.750Z"
+  "calendarAt": "2026-09-16T00:38:10.185Z",
+  "headlinesAt": "2026-09-16T00:38:10.185Z",
+  "updatedAt": "2026-09-16T00:38:10.185Z"
 }
