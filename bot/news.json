@@ -615,23 +615,6 @@
   ],
   "headlines": [
     {
-      "title": "Orlen secures 16 oil cargoes amid Saudi supply disruptions",
-      "link": "https://www.investing.com/news/stock-market-news/orlen-secures-16-oil-cargoes-amid-saudi-supply-disruptions-93CH-4904239",
-      "source": "Investing",
-      "at": 1789581041000,
-      "inst": [
-        "USOIL"
-      ],
-      "ccy": [
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789581041000,
-      "_kind": null
-    },
-    {
       "title": "A Rivian Insider Sells 15,000 Shares for $244,000 Amid a CFO Transition",
       "link": "https://finance.yahoo.com/markets/stocks/articles/rivian-insider-sells-15-000-174802425.html",
       "source": "Yahoo Finance",
@@ -663,7 +646,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789578287000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions bill discussion lacks immediate market impact"
     },
     {
       "title": "Comex Gold Settles 1.27% Higher at $4346.30",
@@ -680,7 +664,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789580700000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Gold price settled higher"
     },
     {
       "title": "The Dow, S&P 500, and Nasdaq Split Ahead of a Near-Certain Rate Hike",
@@ -699,7 +687,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789580462000,
-      "_kind": null
+      "_kind": null,
+      "why": "Market split ahead of rate hike"
     },
     {
       "title": "US DFC approves $500 million in guarantees to boost US exports to emerging markets",
@@ -730,7 +719,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789580571000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Oil slips on increased supply"
     },
     {
       "title": "BND and SGOV Are Both “Safe” Bond ETFs, Yet Only One Has Never Had a Losing Year",
@@ -765,7 +759,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789580549000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions meeting lacks immediate price direction"
     },
     {
       "title": "September Effect: 2 Memory Stocks to Buy on a Potential Market Dip",
@@ -780,7 +775,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789578842000,
-      "_kind": null
+      "_kind": null,
+      "why": "Stock pick article, no broad market direction"
     },
     {
       "title": "UK trade unions back motion to boycott and sanction Israel",
@@ -801,7 +797,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789580520000,
-      "_kind": null
+      "_kind": null,
+      "why": "Boycott motion unclear for commodity prices"
     },
     {
       "title": "Images show heavy damage from Iran strikes targeting US bases: report - The Korea Times",
@@ -822,7 +819,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789578337000,
-      "_kind": null
+      "_kind": null,
+      "why": "Geopolitical report lacks clear price direction"
     },
     {
       "title": "Does a Fed Interest Rate Hike Make Stocks Go Down?",
@@ -839,7 +837,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789580462000,
-      "_kind": null
+      "_kind": null,
+      "why": "Question about rate hike impact"
     },
     {
       "title": "British American Tobacco vs Altria: Which High-Yield Dividend Stock Is the Better Buy",
@@ -854,7 +853,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789580289000,
-      "_kind": null
+      "_kind": null,
+      "why": "Stock comparison, no currency direction"
     },
     {
       "title": "Belarus frees 25 political prisoners in return for US sanctions relief",
@@ -872,7 +872,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789580289000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions relief details unclear for gold"
     },
     {
       "title": "Nick Timiraos | An Expected Fed Rate Increase Raises a Harder Question: How Many More?",
@@ -895,7 +896,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789580278000,
-      "_kind": null
+      "_kind": null,
+      "why": "Fed rate hike question, no clear direction"
     },
     {
       "title": "Only 11 of 237 Active Dividend Funds Beat SCHD’s Index",
@@ -931,7 +933,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789580014000,
-      "_kind": null
+      "_kind": null,
+      "why": "Treasury market focus, no clear FX direction"
     },
     {
       "title": "Palantir, Microsoft’s biggest warning gets real for AI stocks",
@@ -946,7 +949,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789579980000,
-      "_kind": null
+      "why": "AI stock warning, no broad market direction"
     },
     {
       "title": "US House discusses Russia Sanctions Bill, recorded vote pending- Moneycontrol.com - LinkedIn",
@@ -966,7 +969,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789578287000
+      "firstAt": 1789578287000,
+      "why": "Sanctions bill discussion, no immediate impact"
     },
     {
       "title": "Russian spy satellites linked to Iran strikes: New evidence & analysis - Modern Ghana",
@@ -1005,28 +1009,6 @@
       "firstAt": 1789579484000
     },
     {
-      "title": "M&A stock targets: quantitative screener picks and analyst watchlist names",
-      "link": "https://www.investing.com/news/stock-market-news/ma-stock-targets-quantitative-screener-picks-and-analyst-watchlist-names-93CH-4904215",
-      "source": "Investing",
-      "at": 1789579347000,
-      "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789579347000
-    },
-    {
       "title": "Kosovo’s former president guilty of war crimes",
       "link": "https://www.aljazeera.com/video/newsfeed/2026/9/16/kosovos-former-president-guilty-of-war-crimes?traffic_source=rss",
       "source": "Al Jazeera",
@@ -1042,18 +1024,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789579215000
-    },
-    {
-      "title": "Carnival selloff overdone, a buying opportunity into earnings: Stifel",
-      "link": "https://www.investing.com/news/stock-market-news/carnival-selloff-overdone-a-buying-opportunity-into-earnings-stifel-4904212",
-      "source": "Investing",
-      "at": 1789579141000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1789579141000
     },
     {
       "title": "Eight children among 21 killed after war-damaged Gaza building collapses, rescuers say",
@@ -1077,7 +1047,7 @@
     },
     {
       "title": "WATCH LIVE: House considers bills on Russia sanctions, AI data center costs - PBS",
-      "link": "https://news.google.com/rss/articles/CBMisAFBVV95cUxPQ0lDTHNQYnZaU0dRNU1MU1d1RVdLTE9FbVlBYkl6czNMMzdLTUpvelA5a2QzSTZtREdvQWZIV3BIVk9majVuSmRWTWh1c25WWVhkcGl5eG1Bcm0zdUZIQnBwYU04dEJxeDktMzlVQjU2VFBsVy02WjEya3dwTFhETUlHNXUtYmZWN1Z2dXRKRlZUbHV4Q1JvOW9xa0swYVRvSlVVRU5RT0M0M1ppZy1faQ?oc=5",
+      "link": "https://news.google.com/rss/articles/CBMisAFBVV95cUxPQ0lDTHNQYnZaU0dRNU1MU1d1RVdLTE9FbVlBYkl6czNMMzdLTUpvelA5a2QzSTZtREdvQWZIV3BIVk9majVuSmRWTWh1c25WWVhkcGl5eG1Bcm0zdUZIQnBwYU04dEJxeDktMzlVQjU2VFBsVy02WjEya3dwTFhETUlHNXUtYmZWN1Z2dXRKRlZUbHV4Q1JvOW9xa0swYVRvSlVVRU5RT0M0M1ppZy1fadIBtgFBVV95cUxOQktsdVVFOUxaem8zalA5WXVtVGZ2bk5uU29Rd3hQVnlTcll2X2RENk1qV0p2dFljXzFLQ01oSEpERmJUSUNTNW1PNUt0NXIyV1ZjdG5famFkNXFzSlUwVGcyRHlWaHJ4Y1YtUy1CTE5hSmRMbjd5ZE1RUGJRZzlHeHZ6R0p4RWVJZnB0VGczVFFHWlNfNHlfYlpPSTlHSEZ2WjN1cm1fT1liWl9JaG5BVE02elpwdw?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMisAFBVV95cUxPQ0lDTHNQYnZaU0dRNU1MU1d1RVdLTE9FbVlBYkl6czNMMzdLTUpvelA5a2QzSTZtREdvQWZIV3BIVk9majVuSmRWTWh1c25WWVhkcGl5eG1Bcm0zdUZIQnBwYU04dEJxeDktMzlVQjU2VFBsVy02WjEya3dwTFhETUlHNXUtYmZWN1Z2dXRKRlZUbHV4Q1JvOW9xa0swYVRvSlVVRU5RT0M0M1",
       "at": 1789578855000,
@@ -1940,7 +1910,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789564121000
+      "firstAt": 1789566660000
     },
     {
       "title": "Norway’s sovereign wealth fund profits from Israeli holdings amid genocide",
@@ -1998,24 +1968,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789564663000
-    },
-    {
-      "title": "Gold Prices Rise As Federal Reserve Decision Takes Centre Stage - directorstalkinterviews.com",
-      "link": "https://news.google.com/rss/articles/CBMitAFBVV95cUxOb1JBLW1XR0VJVHRxTVdZSFNKYlNQbEx4N21rNVd6bUxDM05oTjdwSE5HQXdQLW80ei1BdUpJNkx0YUNSMnFRSnF1RFgxbjlvWGFxUWxwbmlhTndrcWNTd2VHN2hfSjJtUXpaVVNDcmdoSmI0Wm51QkRqWENSLUdlUkJ2bmxzWUF6SWhNT0xldVVBLUR4YTJ0d1lWb1RlWEJOT2pqQWNzOXNqeXh5V0N6Z1Vuczk?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMitAFBVV95cUxOb1JBLW1XR0VJVHRxTVdZSFNKYlNQbEx4N21rNVd6bUxDM05oTjdwSE5HQXdQLW80ei1BdUpJNkx0YUNSMnFRSnF1RFgxbjlvWGFxUWxwbmlhTndrcWNTd2VHN2hfSjJtUXpaVVNDcmdoSmI0Wm51QkRqWENSLUdlUkJ2bmxzWUF6SWhNT0xldVVBLUR4YTJ0d1lWb1RlWEJOT2pqQWNzOXNqeX",
-      "at": 1789564121000,
-      "inst": [
-        "XAU/USD"
-      ],
-      "ccy": [
-        "XAU",
-        "USD"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789564121000
     },
     {
       "title": "The world is debating sanctions against Israel. I am watching young warriors rebuild their lives - Fox News",
@@ -2156,26 +2108,6 @@
       "firstAt": 1789561227000
     },
     {
-      "title": "Russia's Syzran and Saratov oil refineries on hold after drone attacks, sources say - Reuters",
-      "link": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNWnpncV9vTnAzaGs4TU9VcGdNbFhCSnllZGxac1o2WUNLWHlRcEZLTnJ2QklhSGNaNHJCVFNVbVhmdEM2UWt4QzhWOUU2Rm1rZVdYWVh1RXJnMHpsSnRKTjFKcmlPaXE4R0FucGhLbnlOTTNFUjU5ZWIzaE5ZWVZGZml3YTV1dm0yeDNLNGFTTGtqbHkzUDFiWV9OSG1BSGtudXpLSFo5aUJ3NHZ6VEh1TjdCUURlZnprRGIzVDlEVThkRDl3?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMixAFBVV95cUxNWnpncV9vTnAzaGs4TU9VcGdNbFhCSnllZGxac1o2WUNLWHlRcEZLTnJ2QklhSGNaNHJCVFNVbVhmdEM2UWt4QzhWOUU2Rm1rZVdYWVh1RXJnMHpsSnRKTjFKcmlPaXE4R0FucGhLbnlOTTNFUjU5ZWIzaE5ZWVZGZml3YTV1dm0yeDNLNGFTTGtqbHkzUDFiWV9OSG1BSGtudXpLSFo5aUJ3NH",
-      "at": 1789561209000,
-      "inst": [
-        "USOIL",
-        "XAU/USD",
-        "UKOIL"
-      ],
-      "ccy": [
-        "OIL",
-        "XAU"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789560856000
-    },
-    {
       "title": "Higher-than-target inflation: US Fed to deliver rate decision with markets betting on hike - RTL Today",
       "link": "https://news.google.com/rss/articles/CBMipAFBVV95cUxQTmxJYV85X2tXZk5BalhyUlNJOERzZjhpaGRrUm1qeG4ycEJFbjZhUjFxRmlENmllSTBXUWJQOHdwbnVrQ040RHVrbXFfQXlGc01ueGZBNnJrdzIyNDkweWtPSTFsNzB0TVZ6S05GeHdyN0xNNzBXZjdvdjkyZ1NLb0JzdkswenFSczZPZWl5NElDZThzeHhhRFhJUEhnenpqcFA4Ng?oc=5",
       "source": "Wires (macro)",
@@ -2305,12 +2237,109 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789555238000
+    },
+    {
+      "title": "Warsh likely to side with financial markets over President Trump as Fed rate hike expected - 11Alive.com",
+      "link": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxQOHhuXy1vVHFMSFNCekR0S0t0WHN1cHV1Q1VfeURwNllTa2l0U1UzTVo2RTIyR0l6c2F4WHR0Qi1CU0d5SmRfWFJqdE04Q1J0RXVQaW93YmVHTnF2OTFVVG44ekJTUTFSVl9FcHBoTDBKc3VCYVpTSWRKX1ZZRHFZX1dlY1g2X1FrVjhfY0o1VWptcnd4el9HY0JkeGVUM2hoRXZ5X09YTDhnYkJNZ3ZpU3BOMDUzYWFvY25Td1VZRGZDSXBBZ09ZeGRhWTQ2aTRPelV3Zg?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi1AFBVV95cUxQOHhuXy1vVHFMSFNCekR0S0t0WHN1cHV1Q1VfeURwNllTa2l0U1UzTVo2RTIyR0l6c2F4WHR0Qi1CU0d5SmRfWFJqdE04Q1J0RXVQaW93YmVHTnF2OTFVVG44ekJTUTFSVl9FcHBoTDBKc3VCYVpTSWRKX1ZZRHFZX1dlY1g2X1FrVjhfY0o1VWptcnd4el9HY0JkeGVUM2hoRXZ5X09YTDhnYk",
+      "at": 1789556400000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789556400000
+    },
+    {
+      "title": "Silver price today, Wednesday, September 16, 2026: Silver prices rise in anticipation of the Fed",
+      "link": "https://finance.yahoo.com/personal-finance/investing/article/silver-price-today-wednesday-september-16-2026-silver-prices-rise-in-anticipation-of-the-fed-105134969.html",
+      "source": "Yahoo Finance",
+      "at": 1789555894000,
+      "inst": [
+        "XAG/USD"
+      ],
+      "ccy": [
+        "USD",
+        "XAG"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789555238000
+    },
+    {
+      "title": "Gold price today, Wednesday, September 16, 2026: Gold holds in the $4,300 range, awaiting the Fed's decision",
+      "link": "https://finance.yahoo.com/personal-finance/investing/article/gold-price-today-wednesday-september-16-2026-gold-holds-in-the-4300-range-awaiting-the-feds-decision-104038147.html",
+      "source": "Yahoo Finance",
+      "at": 1789555238000,
+      "inst": [
+        "XAU/USD"
+      ],
+      "ccy": [
+        "USD",
+        "XAU"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789552800000
+    },
+    {
+      "title": "US House advances Russia Sanctions Bill, India under 100% tariff risk - Fibre2Fashion",
+      "link": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxNcWROUkNiNXl6aEVfQ1l2X1BiRUtyWU8tSDJMZmhfdThzTngzTU80UmY0TkhVdEk4QkI1QW4zQ0dBU3BTNjNjVS1yaUxxbnA1S1hZZFZBbThNOU9WNTFPUGtGZ0loSGF0bkNkSFA5R0VTY2JlWU9lMFNPVWZTaTR0ZVBCVEtpWGVqNXRIMlVYbGxqcmJ0UlM2cm93dE93b0VMa0p2dThMcWZYbnA3SG1lQ0FyYkpacnZzTFMxUm5zOEprWnpyMll6Z2loN0VZUW1OeW9VaA?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi1AFBVV95cUxNcWROUkNiNXl6aEVfQ1l2X1BiRUtyWU8tSDJMZmhfdThzTngzTU80UmY0TkhVdEk4QkI1QW4zQ0dBU3BTNjNjVS1yaUxxbnA1S1hZZFZBbThNOU9WNTFPUGtGZ0loSGF0bkNkSFA5R0VTY2JlWU9lMFNPVWZTaTR0ZVBCVEtpWGVqNXRIMlVYbGxqcmJ0UlM2cm93dE93b0VMa0p2dThMcWZYbn",
+      "at": 1789554584000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL",
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789554466000
+    },
+    {
+      "title": "Brussels hints at change in Russia sanctions strategy - euractiv.com",
+      "link": "https://news.google.com/rss/articles/CBMijAFBVV95cUxPcGJCN21STmd1TmVNdzhDc1djRkI2eElmUlY3dmp0YUZKSG5PdlhrWVZILUF1WFlJN2NGWXIxUGJDYkgxWlhkZWRGdmZRLWFacWlHLW9qWERhai1ELXhLV0NNdWpWQlhhWFVKYjRTZmN1TWRNT1FzOXc1dTJ6emhEd1R1ZmVFTjRETks5dQ?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMijAFBVV95cUxPcGJCN21STmd1TmVNdzhDc1djRkI2eElmUlY3dmp0YUZKSG5PdlhrWVZILUF1WFlJN2NGWXIxUGJDYkgxWlhkZWRGdmZRLWFacWlHLW9qWERhai1ELXhLV0NNdWpWQlhhWFVKYjRTZmN1TWRNT1FzOXc1dTJ6emhEd1R1ZmVFTjRETks5dQ?oc=5\" target=\"_blank\">Brussels hints at",
+      "at": 1789554466000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789554466000
     }
   ],
   "sources": [
     "ForexLive",
     "MarketWatch",
-    "Investing",
     "Investing FX",
     "Investing Cmdty",
     "CNBC Markets",
@@ -2322,6 +2351,10 @@
   ],
   "failed": [
     {
+      "name": "Investing",
+      "why": "network timeout at: https://www.investing.com/rss/news_25.rss"
+    },
+    {
       "name": "FXStreet",
       "why": "403"
     },
@@ -2330,7 +2363,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-16T18:01:39.725Z",
-  "headlinesAt": "2026-09-16T18:01:39.725Z",
-  "updatedAt": "2026-09-16T18:01:39.725Z"
+  "calendarAt": "2026-09-16T18:03:24.991Z",
+  "headlinesAt": "2026-09-16T18:03:24.991Z",
+  "updatedAt": "2026-09-16T18:03:24.991Z"
 }
