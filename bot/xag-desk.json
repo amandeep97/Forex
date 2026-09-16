@@ -1,8 +1,37 @@
 {
-  "at": "2026-09-16T05:20:33.049Z",
-  "enabled": true,
+  "at": "2026-09-16T05:21:34.850Z",
+  "permitted": true,
+  "armed": false,
+  "enabled": false,
   "live": true,
   "riskUsd": 3,
+  "maxRiskUsd": 25,
+  "maxPerDay": 3,
+  "proposalTtlMin": 60,
+  "orderTtlHours": 8,
+  "placedToday": 0,
+  "limits": {
+    "riskUsd": {
+      "min": 0.5,
+      "max": 25,
+      "dflt": 3
+    },
+    "maxPerDay": {
+      "min": 1,
+      "max": 10,
+      "dflt": 3
+    },
+    "proposalTtlMin": {
+      "min": 5,
+      "max": 240,
+      "dflt": 60
+    },
+    "orderTtlHours": {
+      "min": 1,
+      "max": 24,
+      "dflt": 8
+    }
+  },
   "offset": 0,
   "pending": null,
   "history": []
