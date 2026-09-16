@@ -628,7 +628,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789574400000,
-      "_kind": null
+      "_kind": null,
+      "why": "General dividend growth news, no specific direction."
     },
     {
       "title": "Oil slips as Saudi Arabia offers more crude via Oman",
@@ -646,7 +647,12 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789573311000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Oil slips due to increased Saudi supply."
     },
     {
       "title": "Raw sugar edges lower as oil prices weigh on market",
@@ -663,7 +669,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789573743000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sugar news, no clear oil direction."
     },
     {
       "title": "Celsius Lead Director Hal Kravitz Buys 12,000 Shares for $336,000. What Does This Mean for Investors?",
@@ -697,7 +704,13 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789573311000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Geopolitical tension boosts safe havens and oil."
     },
     {
       "title": "Poland stocks lower at close of trade; WIG30 down 0.64%",
@@ -711,7 +724,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789572904000
+      "firstAt": 1789572904000,
+      "why": "Poland stocks news, irrelevant to US500."
     },
     {
       "title": "Senate is still a tossup, but Democrats now have slight edge, prediction market traders think",
@@ -738,7 +752,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789572633000
+      "firstAt": 1789572633000,
+      "why": "Turkey stocks news, irrelevant to US500."
     },
     {
       "title": "Denmark stocks lower at close of trade; OMX Copenhagen 20 down 0.23%",
@@ -752,7 +767,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789572604000
+      "firstAt": 1789572604000,
+      "why": "Denmark stocks news, irrelevant to US500."
     },
     {
       "title": "AWS “unable to restore access” to data centers hit by Iran strikes - datacenterdynamics.com",
@@ -772,7 +788,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789572496000
+      "firstAt": 1789572496000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Infrastructure damage from strikes boosts risk assets."
     },
     {
       "title": "House set to pass sweeping Russia sanctions bill honoring Lindsey Graham - CNBC",
@@ -792,7 +814,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789572466000
+      "firstAt": 1789572466000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Sanctions bill increases geopolitical risk premium."
     },
     {
       "title": "Ex-Trump ally Marjorie Taylor Greene says war on Iran must ‘stop’",
@@ -812,7 +840,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789572231000
+      "firstAt": 1789572231000,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Calls to stop war reduce geopolitical risk."
     },
     {
       "title": "Photos show widespread damage at US sites from Iranian attacks - BBC",
@@ -832,7 +866,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789572183000
+      "firstAt": 1789572183000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Confirmed damage from attacks increases risk."
     },
     {
       "title": "Building damaged by strikes collapses in Gaza, killing 21 as perilous living conditions persist - AP News",
@@ -852,7 +892,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789571406000
+      "firstAt": 1789571406000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Gaza conflict escalation increases global risk."
     },
     {
       "title": "Iranian strikes have damaged hundreds of structures at U.S. bases, watchdog says - The Washington Post",
@@ -872,7 +918,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789569722000
+      "firstAt": 1789569722000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Widespread damage confirms high geopolitical risk."
     },
     {
       "title": "S&P 500 Trucking Stock Craters On CFO's Warning",
@@ -886,7 +938,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789571773000
+      "firstAt": 1789571773000,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Specific stock crash drags index sentiment."
     },
     {
       "title": "IDF warns northern Israel communities prior to southern Lebanon strikes - The Jerusalem Post",
@@ -906,7 +962,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789569722000
+      "firstAt": 1789569722000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Lebanon strikes increase regional geopolitical risk."
     },
     {
       "title": "Stock Market Today: Nasdaq, S&P 500 Up With Fed Decision Looming; Intel, Micron, Sandisk Rise (Live Coverage)",
@@ -1861,7 +1923,7 @@
       "firstAt": 1789557917000
     },
     {
-      "title": "US plans major bomb shipment to Israel amid ongoing strikes in Gaza - wmar2news.com",
+      "title": "US plans major bomb shipment to Israel amid ongoing strikes in Gaza - WMAR 2 News Baltimore",
       "link": "https://news.google.com/rss/articles/CBMisAFBVV95cUxOYkpmWDg2ZUNBTXJYaW9zdV9QOWt1ZHhHM0pGbUdxUzNCaXNqb2xpMzNjclRUcGdObEVwTGpMc2c5Y0VDc2p3LXh6bUhlaDR5WEZaVkhQY2hsNmk3ZmpCMU9Ha2NSWGdaQUVhWFVESUhRbE9BNTZwbUdqSWhtYjZMcFNONFM2T3R0NEJ5U3BHWWdoNDVObzdKRmhHOW90UzlmeDJTQkt2ZENDdFRYSFphTQ?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMisAFBVV95cUxOYkpmWDg2ZUNBTXJYaW9zdV9QOWt1ZHhHM0pGbUdxUzNCaXNqb2xpMzNjclRUcGdObEVwTGpMc2c5Y0VDc2p3LXh6bUhlaDR5WEZaVkhQY2hsNmk3ZmpCMU9Ha2NSWGdaQUVhWFVESUhRbE9BNTZwbUdqSWhtYjZMcFNONFM2T3R0NEJ5U3BHWWdoNDVObzdKRmhHOW90UzlmeDJTQkt2ZENDdF",
@@ -2337,10 +2399,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-16T16:06:09.752Z",
-  "headlinesAt": "2026-09-16T16:06:09.752Z",
-  "updatedAt": "2026-09-16T16:06:09.752Z"
+  "calendarAt": "2026-09-16T16:08:24.882Z",
+  "headlinesAt": "2026-09-16T16:08:24.882Z",
+  "updatedAt": "2026-09-16T16:08:24.882Z"
 }
