@@ -679,9 +679,15 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 2,
+      "srcs": 3,
       "firstAt": 1789552235000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Higher yields strengthen dollar, hurt gold."
     },
     {
       "title": "Inflation killed the penny. Now it’s coming for your dollar.",
@@ -705,7 +711,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789554540000,
-      "_kind": null
+      "_kind": null,
+      "why": "Inflation concerns unclear for specific pairs."
     },
     {
       "title": "EU chief opens door for Canada to become 'associate member'",
@@ -723,7 +730,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789554525000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USD/CAD": "down"
+      },
+      "why": "EU-Canada ties weaken CAD, strengthen USD."
     },
     {
       "title": "Russian drone strike kills 5 and injures at least 7 on passenger bus in Ukraine - The Hill",
@@ -744,7 +755,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789551603000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Escalation boosts safe havens and oil."
     },
     {
       "title": "Fed rate decision: Warsh walks credibility tightrope as markets brace for rate hike - investingLive",
@@ -768,7 +785,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789554202000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Rate hike expectations strengthen dollar."
     },
     {
       "title": "Israeli double-tap strike kills 15-year-old and paramedic in Gaza",
@@ -789,7 +812,37 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789554109000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Geopolitical risk boosts gold and oil."
+    },
+    {
+      "title": "Stock Futures Rebound as Investors Buy the Dip Ahead of Crucial Fed Rate Decision",
+      "link": "https://www.barrons.com/livecoverage/stock-market-news-today-091626/card/stock-futures-rise-as-investors-buy-the-dip-ahead-of-crucial-fed-rate-decision-qDZltkyklZjR4pNrGG4W?siteid=yhoof2&yptr=yahoo",
+      "source": "Yahoo Finance",
+      "at": 1789554091000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1789552061000,
+      "_kind": null,
+      "why": "Stock rebound doesn't clearly move FX."
     },
     {
       "title": "Ukraine Strikes Russian Su-24 at Saky, Threatening Crimea-Based Aviation Operations - UNITED24 Media",
@@ -810,7 +863,29 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789551517000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Ukraine strike boosts risk assets."
+    },
+    {
+      "title": "Bill Ackman’s Pershing Square Capital Management Sold Alphabet and Bought These 2 Beaten-Down Stocks",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/bill-ackman-pershing-square-capital-102001741.html",
+      "source": "Yahoo Finance",
+      "at": 1789554001000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789554001000,
+      "_kind": null,
+      "why": "Specific stock moves don't move index."
     },
     {
       "title": "Crypto stocks decline as Senate bill fails to advance",
@@ -826,9 +901,14 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789552200000,
-      "_kind": null
+      "srcs": 1,
+      "firstAt": 1789553799000,
+      "_kind": null,
+      "dir": {
+        "US500": "down",
+        "BTC/USDT": "down"
+      },
+      "why": "Crypto bill failure hurts crypto stocks."
     },
     {
       "title": "‘My total balance should be $20 million’: I invested $1.1 million in a crypto platform. Have I lost it all?",
@@ -846,7 +926,32 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789553760000,
-      "_kind": null
+      "_kind": null,
+      "why": "Individual loss doesn't move market."
+    },
+    {
+      "title": "U.S. Treasury Yields, Dollar Little Changed Ahead of Fed's Likely Rate Hike",
+      "link": "https://www.barrons.com/livecoverage/stock-market-news-today-091626/card/u-s-treasury-yields-dollar-little-changed-ahead-of-fed-s-likely-rate-hike-ukREeFxKSuQvRnsYbLY0?siteid=yhoof2&yptr=yahoo",
+      "source": "Yahoo Finance",
+      "at": 1789553442000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 4,
+      "firstAt": 1789550809000,
+      "_kind": null,
+      "why": "Yields and dollar little changed."
     },
     {
       "title": "One Wall Street Analyst Just Said Tesla Stock Could Be Worth $840: Time to Buy?",
@@ -861,7 +966,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789553400000,
-      "_kind": null
+      "_kind": null,
+      "why": "Single stock view doesn't move index."
     },
     {
       "title": "Workers at German auto supplier Bosch call for EU action to stem job losses",
@@ -876,7 +982,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789553302000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "EUR/USD": "down"
+      },
+      "why": "German job losses weaken Euro."
     },
     {
       "title": "Bond market woes likely a factor for Fed, but intervention seen as unlikely",
@@ -899,7 +1009,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789553001000,
-      "_kind": "macro-shock"
+      "_kind": "macro-shock",
+      "why": "Bond woes unlikely to change Fed."
     },
     {
       "title": "Federal Reserve interest rate hikes usually pound stocks, but then something surprising happens",
@@ -986,8 +1097,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789552969000,
-      "_kind": null
+      "firstAt": 1789552969000
     },
     {
       "title": "Bitcoin ETFs Are Coming Off Their Best 3-Week Stretch of the Year. What's Next for Bitcoin?",
@@ -1003,8 +1113,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789552980000,
-      "_kind": null
+      "firstAt": 1789552980000
     },
     {
       "title": "FOMC preview: Rate hike priced in as markets await policy guidance - FXStreet",
@@ -1026,24 +1135,8 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789552006000,
-      "_kind": null
-    },
-    {
-      "title": "Dollar General Sees Shopper Pressure Persisting, Bets on Value and Delivery Growth",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/dollar-general-sees-shopper-pressure-100220770.html",
-      "source": "Yahoo Finance",
-      "at": 1789552940000,
-      "inst": [],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1789552940000,
-      "_kind": null
+      "srcs": 2,
+      "firstAt": 1789552006000
     },
     {
       "title": "Column: Netanyahu owes Israel an account of the Oct. 7 Hamas attack - thenewsherald.com",
@@ -1064,20 +1157,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789552842000
-    },
-    {
-      "title": "3 Semiconductor Stocks to Buy Before AI Demand Explodes in September",
-      "link": "https://finance.yahoo.com/technology/ai/articles/3-semiconductor-stocks-buy-ai-100013719.html",
-      "source": "Yahoo Finance",
-      "at": 1789552813000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789552813000
     },
     {
       "title": "Death of software 'greatly overstated' as sector flips the script on chip stocks: Chart of the Day",
@@ -1162,24 +1241,8 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 2,
+      "srcs": 3,
       "firstAt": 1789552235000
-    },
-    {
-      "title": "The Democrats Are Likely to Win Back the House and Senate in November. Here's 1 Crypto to Buy and 1 Crypto to Sell.",
-      "link": "https://finance.yahoo.com/markets/crypto/articles/democrats-likely-win-back-house-095000109.html",
-      "source": "Yahoo Finance",
-      "at": 1789552200000,
-      "inst": [
-        "BTC/USDT"
-      ],
-      "ccy": [
-        "BTC"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789552200000
     },
     {
       "title": "Oil slips as Saudi Arabia offers more crude via Oman; diesel near record high",
@@ -1253,7 +1316,7 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 2,
+      "srcs": 3,
       "firstAt": 1789550809000
     },
     {
@@ -1454,7 +1517,7 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 2,
+      "srcs": 3,
       "firstAt": 1789550809000
     },
     {
@@ -2438,7 +2501,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-16T10:32:10.232Z",
-  "headlinesAt": "2026-09-16T10:32:10.232Z",
-  "updatedAt": "2026-09-16T10:32:10.232Z"
+  "calendarAt": "2026-09-16T10:34:09.921Z",
+  "headlinesAt": "2026-09-16T10:34:09.921Z",
+  "updatedAt": "2026-09-16T10:34:09.921Z"
 }
