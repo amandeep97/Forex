@@ -618,8 +618,8 @@
       "title": "Fed approves interest rate hike, signals one more to come this year",
       "link": "https://www.cnbc.com/2026/09/16/fed-rate-decision-september-2026.html",
       "source": "CNBC Markets",
-      "desc": "The Federal Reserve on Wednesday approved its first interest rate hike in more than three years and indicated another to come.",
-      "at": 1789582323000,
+      "desc": "The Federal Reserve on Wednesday approved its first interest rate hike since 2023 and indicated another to come.",
+      "at": 1789582486000,
       "inst": [
         "XAU/USD",
         "EUR/USD",
@@ -635,8 +635,14 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789582323000,
-      "_kind": null
+      "firstAt": 1789582486000,
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Rate hike strengthens dollar, hurts gold and pairs."
     },
     {
       "title": "Here is what changed in the new Fed statement under Warsh",
@@ -660,7 +666,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789582219000,
-      "_kind": null
+      "_kind": null,
+      "why": "Statement comparison lacks specific directional impact."
     },
     {
       "title": "Federal Reserve hikes key rate for 1st time in 3 years, defying Trump demands for a cut - AP News",
@@ -684,7 +691,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789581840000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Rate hike boosts dollar, pressuring gold and FX."
     },
     {
       "title": "US Fed Rate Hike: Kevin Warsh Announces Rate Hike by 25 Bps To 3.75-4%; First Increase In 3 Years - News18",
@@ -708,7 +721,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789581756000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "25bps hike strengthens dollar, bearish for gold/EUR/GBP."
     },
     {
       "title": "Building permits, jobless claims and pending home sales due Thursday",
@@ -731,7 +750,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789581639000,
-      "_kind": null
+      "_kind": null,
+      "why": "Upcoming data release, no current direction."
     },
     {
       "title": "Orlen secures 16 oil cargoes amid Saudi supply disruptions",
@@ -748,7 +768,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789581041000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Securing cargoes amid disruptions supports supply stability."
     },
     {
       "title": "House takes up Russia sanctions bill backed by late Sen. Graham - KSL News",
@@ -769,7 +793,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789578287000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Russia sanctions may restrict supply, bullish oil."
     },
     {
       "title": "US DFC approves $500 million in guarantees to boost US exports to emerging markets",
@@ -798,7 +827,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789579080000
+      "firstAt": 1789579080000,
+      "dir": {
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Increased Saudi supply via Oman lowers prices."
     },
     {
       "title": "US Treasury gathers global financial institutions to advance Iran sanctions - Reuters",
@@ -819,7 +853,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789580549000
+      "firstAt": 1789580549000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Iran sanctions advance may restrict supply, bullish oil."
     },
     {
       "title": "UK trade unions back motion to boycott and sanction Israel",
@@ -839,7 +878,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789580520000
+      "firstAt": 1789580520000,
+      "why": "UK political motion has negligible market impact."
     },
     {
       "title": "Images show heavy damage from Iran strikes targeting US bases: report - The Korea Times",
@@ -859,7 +899,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789578337000
+      "firstAt": 1789578337000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Geopolitical escalation boosts safe havens and oil."
     },
     {
       "title": "Belarus frees 25 political prisoners in return for US sanctions relief",
@@ -876,7 +922,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789580289000
+      "firstAt": 1789580289000,
+      "why": "Belarus sanctions relief has minimal gold impact."
     },
     {
       "title": "US House discusses Russia Sanctions Bill, recorded vote pending- Moneycontrol.com - LinkedIn",
@@ -896,7 +943,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789578287000
+      "firstAt": 1789578287000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Russia sanctions bill discussion supports oil prices."
     },
     {
       "title": "Russian spy satellites linked to Iran strikes: New evidence & analysis - modernghana.com",
@@ -916,7 +968,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789576811000
+      "firstAt": 1789576811000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Iran strike evidence increases geopolitical risk premium."
     },
     {
       "title": "Continental Resources signs Venezuela oil development deal",
@@ -932,7 +990,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789579484000
+      "firstAt": 1789579484000,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "New Venezuela deal increases potential oil supply."
     },
     {
       "title": "Kosovo’s former president guilty of war crimes",
@@ -2115,58 +2177,6 @@
       "firstAt": 1789558566000
     },
     {
-      "title": "Bitcoin and ethereum prices today, Wednesday, September 16, 2026: Crypto prices tank after CLARITY Act fails and ahead of Fed decision",
-      "link": "https://finance.yahoo.com/personal-finance/investing/article/bitcoin-and-ethereum-prices-today-wednesday-september-16-2026-crypto-prices-tank-after-clarity-act-fails-and-ahead-of-fed-decision-112517152.html",
-      "source": "Yahoo Finance",
-      "at": 1789557917000,
-      "inst": [
-        "BTC/USDT",
-        "ETH/USDT"
-      ],
-      "ccy": [
-        "USD",
-        "BTC"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789555238000
-    },
-    {
-      "title": "Silver price today, Wednesday, September 16, 2026: Silver prices rise in anticipation of the Fed",
-      "link": "https://finance.yahoo.com/personal-finance/investing/article/silver-price-today-wednesday-september-16-2026-silver-prices-rise-in-anticipation-of-the-fed-105134969.html",
-      "source": "Yahoo Finance",
-      "at": 1789555894000,
-      "inst": [
-        "XAG/USD"
-      ],
-      "ccy": [
-        "USD",
-        "XAG"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789555238000
-    },
-    {
-      "title": "Gold price today, Wednesday, September 16, 2026: Gold holds in the $4,300 range, awaiting the Fed's decision",
-      "link": "https://finance.yahoo.com/personal-finance/investing/article/gold-price-today-wednesday-september-16-2026-gold-holds-in-the-4300-range-awaiting-the-feds-decision-104038147.html",
-      "source": "Yahoo Finance",
-      "at": 1789555238000,
-      "inst": [
-        "XAU/USD"
-      ],
-      "ccy": [
-        "USD",
-        "XAU"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789552800000
-    },
-    {
       "title": "US House advances Russia Sanctions Bill, India under 100% tariff risk - Fibre2Fashion",
       "link": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxNcWROUkNiNXl6aEVfQ1l2X1BiRUtyWU8tSDJMZmhfdThzTngzTU80UmY0TkhVdEk4QkI1QW4zQ0dBU3BTNjNjVS1yaUxxbnA1S1hZZFZBbThNOU9WNTFPUGtGZ0loSGF0bkNkSFA5R0VTY2JlWU9lMFNPVWZTaTR0ZVBCVEtpWGVqNXRIMlVYbGxqcmJ0UlM2cm93dE93b0VMa0p2dThMcWZYbnA3SG1lQ0FyYkpacnZzTFMxUm5zOEprWnpyMll6Z2loN0VZUW1OeW9VaA?oc=5",
       "source": "Wires (geo)",
@@ -2375,6 +2385,56 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789550986000
+    },
+    {
+      "title": "UBS sees EUR/CHF retest of 0.96 as Swiss franc lags on low yield",
+      "link": "https://www.investing.com/news/forex-news/ubs-sees-eurchf-retest-of-096-as-swiss-franc-lags-on-low-yield-93CH-4903208",
+      "source": "Investing FX",
+      "at": 1789550667000,
+      "inst": [
+        "USD/CHF"
+      ],
+      "ccy": [
+        "CHF"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789550667000
+    },
+    {
+      "title": "European Stocks Rise as Markets Await Federal Reserve Interest Rate Decision: DAX, CAC, FTSE100 - Yahoo Finance UK",
+      "link": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxPUmlSOEs2LXFwb3JMVm5FdEFXVXRQbHVEVXdQdVZSRUV3ZnNuMlBReS1NaEJhSDlXNDRtV2FJQUtRNWszYU1QRHc3YzZ5M0FheFR3RjdyVWJrYkk3aktFZEY3LWV2M3FXREJIWVhqYUZEcjdoSmd6UmJqRUY4RFA5OXhzMDBrTDFDMFBB?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiiwFBVV95cUxPUmlSOEs2LXFwb3JMVm5FdEFXVXRQbHVEVXdQdVZSRUV3ZnNuMlBReS1NaEJhSDlXNDRtV2FJQUtRNWszYU1QRHc3YzZ5M0FheFR3RjdyVWJrYkk3aktFZEY3LWV2M3FXREJIWVhqYUZEcjdoSmd6UmJqRUY4RFA5OXhzMDBrTDFDMFBB?oc=5\" target=\"_blank\">European Stocks Ris",
+      "at": 1789549036000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789549036000
+    },
+    {
+      "title": "Canada could become the first 'associate member' of the EU, says EU chief von der Leyen",
+      "link": "https://investinglive.com/news/canada-could-become-the-first-associate-member-of-the-eu-says-eu-chief-von-der-leyen/",
+      "source": "ForexLive",
+      "desc": "This is a rather bold proposal coming from European Commission president, Ursula von der Leyen, in her her annual state of the European Union address in Strasbourg.She has opened the door for Canada to become the first \"associate member\" of the EU, backing Canadian prime minister",
+      "at": 1789548338000,
+      "inst": [
+        "USD/CAD"
+      ],
+      "ccy": [
+        "CAD"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789548338000
     }
   ],
   "sources": [
@@ -2400,7 +2460,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-16T18:13:53.443Z",
-  "headlinesAt": "2026-09-16T18:13:53.443Z",
-  "updatedAt": "2026-09-16T18:13:53.443Z"
+  "calendarAt": "2026-09-16T18:15:26.175Z",
+  "headlinesAt": "2026-09-16T18:15:26.175Z",
+  "updatedAt": "2026-09-16T18:15:26.175Z"
 }
