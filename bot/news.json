@@ -636,7 +636,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789568725000,
-      "_kind": null
+      "_kind": null,
+      "why": "Corporate labor news, no clear macro impact"
     },
     {
       "title": "Cohere, Aleph Alpha combine to target enterprise AI market",
@@ -664,7 +665,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789568568000,
-      "_kind": null
+      "_kind": null,
+      "why": "Corporate M&A news, no clear macro impact"
     },
     {
       "title": "Debates on sanctions against Russia and Iran have begun in the U.S. House of Representatives - UA.NEWS",
@@ -685,7 +687,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789567200000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Sanctions fears boost safe havens and oil"
     },
     {
       "title": "BYD eyed for Xi’s Trump summit amid US tariff tensions - Bloomberg",
@@ -708,7 +716,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789568476000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Tariff tensions boost gold, hurt risk currencies"
     },
     {
       "title": "NFP acquires risk management company Moores Insurance",
@@ -731,7 +745,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789568439000,
-      "_kind": null
+      "_kind": null,
+      "why": "Irrelevant corporate acquisition news"
     },
     {
       "title": "Saudi Arabia calls attempted attack on Mecca a ‘red line’ as Iran-backed Houthis deny they did it - The Seattle Times",
@@ -752,7 +767,12 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789565153000,
-      "_kind": null
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Geopolitical escalation boosts safe havens and oil"
     },
     {
       "title": "Stock Market Today: Nasdaq, S&P 500 Up Ahead Of Likely Fed Rate Increase; AI Leader Dell Jams (Live Coverage)",
@@ -770,7 +790,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789567628000,
-      "_kind": null
+      "dir": {
+        "US500": "up",
+        "US100": "up"
+      },
+      "why": "Headline explicitly states stocks are up"
     },
     {
       "title": "Deutsche Bank To Offer Crypto Custody For Institutions",
@@ -786,7 +810,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789567560000
+      "firstAt": 1789567560000,
+      "dir": {
+        "BTC/USDT": "up"
+      },
+      "why": "Major bank adoption boosts crypto sentiment"
     },
     {
       "title": "10-year Treasury sits below 5% as market awaits Fed decision: AlphaCheck",
@@ -808,7 +836,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789567528000
+      "firstAt": 1789567528000,
+      "why": "Yield level reported, no clear directional bias"
     },
     {
       "title": "Ray Dalio’s Fund Was Buying These 2 AI Stocks",
@@ -822,7 +851,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789567527000
+      "firstAt": 1789567527000,
+      "why": "Specific stock news, unclear index impact"
     },
     {
       "title": "Why a Federal Reserve rate hike could be a ‘rare win’ for your retirement money",
@@ -845,7 +875,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789566660000
+      "firstAt": 1789566660000,
+      "why": "General retirement advice, no market direction"
     },
     {
       "title": "US July business inventories +0.8% vs +0.3% expected",
@@ -868,7 +899,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789567254000
+      "firstAt": 1789567254000,
+      "why": "US data, no clear FX direction implied"
     },
     {
       "title": "NAHB Housing market index for September 32 vs 34 estimate",
@@ -898,7 +930,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789567200000
+      "firstAt": 1789567200000,
+      "why": "Personal finance question, no market impact"
     },
     {
       "title": "Sweeping Russia-Iran Sanctions Bill Advances Toward House Vote - Crude Oil Prices Today | OilPrice.com",
@@ -918,7 +951,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789567200000
+      "firstAt": 1789567200000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up",
+        "XAU/USD": "up"
+      },
+      "why": "Sanctions bill boosts oil and safe havens"
     },
     {
       "title": "Wheat futures ease on technical selling and weaker crude oil",
@@ -935,7 +974,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789567044000
+      "firstAt": 1789567044000,
+      "dir": {
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Wheat eases on weaker crude oil"
     },
     {
       "title": "Saudis pound Yemen as Houthis solidify gains in new theatre of Middle East war",
@@ -2239,7 +2283,7 @@
       "firstAt": 1789552200000
     },
     {
-      "title": "Gold Prices Rebound Above $4,300 Ahead of Federal Reserve Rate Decision - finance.yahoo.com",
+      "title": "Gold Prices Rebound Above $4,300 Ahead of Federal Reserve Rate Decision - Yahoo Finance",
       "link": "https://news.google.com/rss/articles/CBMingFBVV95cUxNbkswQTJBdW5YWDgyT1Q2QmN3TzJnNXhWLWZZUmsxRTJqdmlYb1I1SXdqdU50MHB5Zy1ZNFJFTWpOelp5NVMwZVl3VWEyWUtNZ2d6VUJkS0J5UlZXeDEzTUpfSG9ScjV2dndLLW5fRWZRbmtnYVNCZUFaTm9mTm50ajJoR0UxMlNFWUJwQ3BDRjhVRzZqM0t1bEQ5NVVrZw?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMingFBVV95cUxNbkswQTJBdW5YWDgyT1Q2QmN3TzJnNXhWLWZZUmsxRTJqdmlYb1I1SXdqdU50MHB5Zy1ZNFJFTWpOelp5NVMwZVl3VWEyWUtNZ2d6VUJkS0J5UlZXeDEzTUpfSG9ScjV2dndLLW5fRWZRbmtnYVNCZUFaTm9mTm50ajJoR0UxMlNFWUJwQ3BDRjhVRzZqM0t1bEQ5NVVrZw?oc=5\" target=\"_",
@@ -2354,10 +2398,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-16T14:36:53.442Z",
-  "headlinesAt": "2026-09-16T14:36:53.442Z",
-  "updatedAt": "2026-09-16T14:36:53.442Z"
+  "calendarAt": "2026-09-16T14:38:10.541Z",
+  "headlinesAt": "2026-09-16T14:38:10.541Z",
+  "updatedAt": "2026-09-16T14:38:10.541Z"
 }
