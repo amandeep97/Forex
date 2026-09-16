@@ -768,11 +768,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789525950000,
-      "_kind": null,
-      "dir": {
-        "XAU/USD": "up"
-      },
-      "why": "Geopolitical tension boosts safe-haven gold demand."
+      "_kind": null
     },
     {
       "title": "US House advances Russia sanctions bill, paving way for final vote - The Kyiv Independent",
@@ -793,11 +789,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789525781000,
-      "_kind": null,
-      "dir": {
-        "XAU/USD": "up"
-      },
-      "why": "Sanctions bill increases geopolitical risk premium."
+      "_kind": null
     },
     {
       "title": "Gold slips ahead of Fed decision as oil, yields keep rate-hike bets elevated - Investing.com Australia",
@@ -819,11 +811,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789524860000,
-      "dir": {
-        "XAU/USD": "down"
-      },
-      "why": "Gold slips on elevated rate-hike bets."
+      "firstAt": 1789524860000
     },
     {
       "title": "Oil prices dip as U.S. inventory build offsets M.East supply jitters",
@@ -839,11 +827,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789524572000,
-      "dir": {
-        "USOIL": "down"
-      },
-      "why": "Inventory build offsets supply jitters, lowering prices."
+      "firstAt": 1789524572000
     },
     {
       "title": "Bond Market's Extreme' Short Counts On Fed To Deliver Rate Hike - NDTV Profit",
@@ -866,13 +850,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789524431000,
-      "dir": {
-        "XAU/USD": "down",
-        "EUR/USD": "down",
-        "GBP/USD": "down"
-      },
-      "why": "Rate hike expectations strengthen dollar, weaken gold."
+      "firstAt": 1789524431000
     },
     {
       "title": "Saudi Arabia cancels oil to Europe over East-West pipeline blast",
@@ -892,12 +870,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789523607000,
-      "dir": {
-        "USOIL": "up",
-        "UKOIL": "up"
-      },
-      "why": "Supply disruption from pipeline blast boosts oil."
+      "firstAt": 1789523607000
     },
     {
       "title": "DRC-Rwanda: Can Geneva talks break the cycle of war in eastern Congo?",
@@ -914,8 +887,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789522957000,
-      "why": "Regional conflict news lacks direct gold impact."
+      "firstAt": 1789522957000
     },
     {
       "title": "Attacks on Saudi oil expose Iraqi PM’s struggle to control armed factions",
@@ -935,12 +907,27 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789522514000,
-      "dir": {
-        "USOIL": "up",
-        "UKOIL": "up"
-      },
-      "why": "Pipeline attacks signal supply risk, boosting oil."
+      "firstAt": 1789522514000
+    },
+    {
+      "title": "UK sanctions on Israel ‘fall far short’ of its obligations, legal experts say - The Guardian",
+      "link": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQQUlnNGxzcEJ5VHZueV9MaUZJNXgwYU56SUZMZnhqb19ZS0JuaWc3WDUyaFJVbGFaVEQ4N1NZeHQyb25SWUNpYy1venJ5dVgyVmZlNTc1WTFKUlBGV28yT0NqX0dKSnk0enFyOWFDbUhTd3ItVWFuMDd1UUt2VkkyQV9nX2ZkaGRsZzd4djdSaHlfbi1oLTZVb0ZIQzVKbkhacWhnZEZmQWxFMmFmdWhLZDRpWQ?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiswFBVV95cUxQQUlnNGxzcEJ5VHZueV9MaUZJNXgwYU56SUZMZnhqb19ZS0JuaWc3WDUyaFJVbGFaVEQ4N1NZeHQyb25SWUNpYy1venJ5dVgyVmZlNTc1WTFKUlBGV28yT0NqX0dKSnk0enFyOWFDbUhTd3ItVWFuMDd1UUt2VkkyQV9nX2ZkaGRsZzd4djdSaHlfbi1oLTZVb0ZIQzVKbkhacWhnZEZmQWxFMm",
+      "at": 1789522200000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789522200000
     },
     {
       "title": "Australia’s Reliance Worldwide agrees to Brookfield’s $2.9 billion buyout bid",
@@ -956,8 +943,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789521892000,
-      "why": "Corporate buyout news has no clear FX impact."
+      "firstAt": 1789521892000
     },
     {
       "title": "Gold price may dip with Fed rate hike - Bangkok Post",
@@ -975,11 +961,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789521634000,
-      "dir": {
-        "XAU/USD": "down"
-      },
-      "why": "Fed rate hike expectations pressure gold prices."
+      "firstAt": 1789521634000
     },
     {
       "title": "US Dollar Supported by Expectations of Federal Reserve Rate Hikes - Global Banking & Finance Review",
@@ -1002,13 +984,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789520810000,
-      "dir": {
-        "XAU/USD": "down",
-        "EUR/USD": "down",
-        "GBP/USD": "down"
-      },
-      "why": "Stronger dollar weakens gold and major pairs."
+      "firstAt": 1789520810000
     },
     {
       "title": "Oil falls as US crude inventories rise despite Saudi supply concerns",
@@ -1025,12 +1001,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789520446000,
-      "dir": {
-        "USOIL": "down",
-        "UKOIL": "down"
-      },
-      "why": "Rising inventories outweigh supply concerns, lowering oil."
+      "firstAt": 1789520446000
     },
     {
       "title": "US House of Representatives advances bill on sanctions against Russia and Iran - UA.NEWS",
@@ -1050,11 +1021,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789518393000,
-      "dir": {
-        "XAU/USD": "up"
-      },
-      "why": "Sanctions bill increases geopolitical risk, aiding gold."
+      "firstAt": 1789518393000
     },
     {
       "title": "Australia: Westpac leading index signals softer but improving growth as RBA holds firm",
@@ -1072,8 +1039,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789519938000,
-      "why": "Mixed growth data offers no clear directional bias."
+      "firstAt": 1789519938000
     },
     {
       "title": "Iran war increasing inflation, straining US munitions: congressional report",
@@ -1094,11 +1060,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789519092000,
-      "dir": {
-        "XAU/USD": "up"
-      },
-      "why": "War inflation and munitions strain boost safe-haven gold."
+      "firstAt": 1789519092000
     },
     {
       "title": "U.S. House advances Russia sanctions Bill that seeks 100% tariffs on India, others; set for final vote - The Hindu",
@@ -1906,7 +1868,7 @@
       "firstAt": 1789499304000
     },
     {
-      "title": "AWS says it can't restore service to Bahrain, UAE facilities 6 months after Iran strikes - CNBC",
+      "title": "AWS says it can't restore service to Bahrain, UAE facilities 6 months after Iran strikes - cnbc.com",
       "link": "https://news.google.com/rss/articles/CBMipwFBVV95cUxNZDB1QU5NNUNJNmV0MzFyaVRkdkh2TF9xTE5pQ1U0UEt0dnJtVmpwbUdQeTdmMWp5LVExZkFHRTgxSjA1enI0U0k2dERqRjhCUUdvdnBkbFJrbk5ETUtXMU9PVHltbkFYeHpSdXhFUHg4Nm1lbFRFZ0g0T002dVNvQm04MnJ0UmxzbENTMXVERFBIS042X3poV3Jzei1zRm9uQjNHNnl4RdIBrAFBVV95cUxNM3d2Y0N4Q2ZraFpRWUJyZGl0ZUdYeXRBbnZGNkVmQThjdWIyeHlrUVlHQk85cVFiRUdIeWNYa2lNM3JQYXQ3cUE1U0lKRXRHQWZtWXMtZHdLNHhMcTB1LVY2a0RWdlByby1iZF9PamN6eWlxVUlpX2thNzBSaWZrZEJ2bEg5MnVxcWRhcVN5YU9JUlZLUHVSYi03akxsTTNtbGhIYjhkVHVBaFRw?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMipwFBVV95cUxNZDB1QU5NNUNJNmV0MzFyaVRkdkh2TF9xTE5pQ1U0UEt0dnJtVmpwbUdQeTdmMWp5LVExZkFHRTgxSjA1enI0U0k2dERqRjhCUUdvdnBkbFJrbk5ETUtXMU9PVHltbkFYeHpSdXhFUHg4Nm1lbFRFZ0g0T002dVNvQm04MnJ0UmxzbENTMXVERFBIS042X3poV3Jzei1zRm9uQjNHNnl4RdIBrA",
@@ -1964,26 +1926,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789497120000
-    },
-    {
-      "title": "UK sanctions on Israel ‘fall far short’ of its obligations, legal experts say - The Guardian",
-      "link": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQQUlnNGxzcEJ5VHZueV9MaUZJNXgwYU56SUZMZnhqb19ZS0JuaWc3WDUyaFJVbGFaVEQ4N1NZeHQyb25SWUNpYy1venJ5dVgyVmZlNTc1WTFKUlBGV28yT0NqX0dKSnk0enFyOWFDbUhTd3ItVWFuMDd1UUt2VkkyQV9nX2ZkaGRsZzd4djdSaHlfbi1oLTZVb0ZIQzVKbkhacWhnZEZmQWxFMmFmdWhLZDRpWQ?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiswFBVV95cUxQQUlnNGxzcEJ5VHZueV9MaUZJNXgwYU56SUZMZnhqb19ZS0JuaWc3WDUyaFJVbGFaVEQ4N1NZeHQyb25SWUNpYy1venJ5dVgyVmZlNTc1WTFKUlBGV28yT0NqX0dKSnk0enFyOWFDbUhTd3ItVWFuMDd1UUt2VkkyQV9nX2ZkaGRsZzd4djdSaHlfbi1oLTZVb0ZIQzVKbkhacWhnZEZmQWxFMm",
-      "at": 1789496340000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789496340000
     },
     {
       "title": "Fed weighs September rate hike as Treasury yields rise - Fox Business",
@@ -2575,10 +2517,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-16T02:56:23.958Z",
-  "headlinesAt": "2026-09-16T02:56:23.958Z",
-  "updatedAt": "2026-09-16T02:56:23.958Z"
+  "calendarAt": "2026-09-16T02:58:07.900Z",
+  "headlinesAt": "2026-09-16T02:58:07.900Z",
+  "updatedAt": "2026-09-16T02:58:07.900Z"
 }
