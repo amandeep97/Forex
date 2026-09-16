@@ -649,7 +649,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789586579000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Fed rate hike strengthens dollar"
     },
     {
       "title": "Boeing CEO says it is taking longer to stabilize 737 MAX output; shares slide",
@@ -680,7 +686,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789585503000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US30": "down"
+      },
+      "why": "Dow falls 500 points on rate hike"
     },
     {
       "title": "Crude Oil WTI stalls at $102.42 with bearish reversal forming: Live",
@@ -698,7 +708,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789586316000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Bearish reversal forming in crude oil"
     },
     {
       "title": "Nasdaq 100 trapped in tight range with ADX 13.5: Live levels",
@@ -713,7 +728,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789586280000,
-      "_kind": null
+      "_kind": null,
+      "why": "Nasdaq trapped in tight range"
     },
     {
       "title": "Natural Gas coils under $2.90 cloud resistance: Live levels",
@@ -728,7 +744,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789586280000,
-      "_kind": null
+      "_kind": null,
+      "why": "Natural gas coils under resistance"
     },
     {
       "title": "Dow Jones hits multi-month low at 51,943: Live levels",
@@ -743,7 +760,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789586280000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US30": "down"
+      },
+      "why": "Dow Jones hits multi-month low"
     },
     {
       "title": "Silver breaks 50% Fib support at $63: Live levels",
@@ -760,7 +781,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789586280000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAG/USD": "down"
+      },
+      "why": "Silver breaks support level"
     },
     {
       "title": "S&P 500 teeters at H&S neckline 7,604.75: Live levels",
@@ -775,7 +800,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789586280000,
-      "_kind": null
+      "_kind": null,
+      "why": "S&P 500 teeters at neckline"
     },
     {
       "title": "London Gas Oil flashes bull trap risk at $1,574: Live levels",
@@ -792,7 +818,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789586280000,
-      "_kind": null
+      "_kind": null,
+      "why": "London Gas Oil bull trap risk"
     },
     {
       "title": "Brent Oil squeezed at $105.93 amid fading momentum: Live levels",
@@ -810,7 +837,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789586280000,
-      "_kind": null
+      "_kind": null,
+      "why": "Brent oil squeezed with fading momentum"
     },
     {
       "title": "Gold hits 5-hour low below 200 SMA with oversold RSI: Live levels",
@@ -827,7 +855,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789586280000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold hits 5-hour low oversold"
     },
     {
       "title": "Jerusalem Daily: US to send $2.8BN worth of weapons to Israel",
@@ -848,7 +880,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789586068000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Weapons to Israel boosts risk assets"
     },
     {
       "title": "As Fed rolls out its first interest-rate hike in 3 years, officials are divided on what to do next",
@@ -872,7 +910,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789585800000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Fed hike strengthens dollar"
     },
     {
       "title": "From Halkbank to Golden Global: Iran sanctions and Turkey’s banking ties - Iran International",
@@ -891,7 +935,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789585778000,
-      "_kind": null
+      "_kind": null,
+      "why": "Iran sanctions news unclear for oil"
     },
     {
       "title": "Saudis pound Yemen as Houthis solidify gains in new theatre of Middle East war",
@@ -913,7 +958,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789585596000,
-      "_kind": null
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up"
+      },
+      "why": "Middle East conflict boosts safe havens"
     },
     {
       "title": "VIEW Stocks pull back after Fed raises rates, points to another hike this year - Reuters",
@@ -2388,7 +2437,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-16T19:36:23.755Z",
-  "headlinesAt": "2026-09-16T19:36:23.755Z",
-  "updatedAt": "2026-09-16T19:36:23.755Z"
+  "calendarAt": "2026-09-16T19:37:55.419Z",
+  "headlinesAt": "2026-09-16T19:37:55.419Z",
+  "updatedAt": "2026-09-16T19:37:55.419Z"
 }
