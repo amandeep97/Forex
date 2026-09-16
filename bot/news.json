@@ -2,6 +2,23 @@
   "calendar": [],
   "headlines": [
     {
+      "title": "Why optical stocks Lumentum and Coherent were the day’s biggest gainers",
+      "link": "https://www.marketwatch.com/story/why-optical-stocks-lumentum-and-coherent-were-the-days-biggest-gainers-051af440?mod=mw_rss_topstories",
+      "source": "MarketWatch",
+      "desc": "Investors are looking further down the AI data-center supply chain for signs of demand amid concerns of a spending slowdown, one expert says.",
+      "at": 1789591620000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789591620000,
+      "_kind": null,
+      "why": "Specific stock gains don't dictate index direction."
+    },
+    {
       "title": "Here’s a sneaky way to play the Fed’s rate increase",
       "link": "https://www.marketwatch.com/story/heres-a-sneaky-way-to-play-the-feds-rate-increase-6deb072f?mod=mw_rss_topstories",
       "source": "MarketWatch",
@@ -23,7 +40,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789591080000,
-      "_kind": null
+      "_kind": null,
+      "why": "General strategy article lacks specific directional signal."
     },
     {
       "title": "Fed rate hike pushes two-year Treasury yields to highest since July 2024 - Investing.com",
@@ -47,7 +65,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789589153000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Higher yields and rate hikes hurt gold and FX."
     },
     {
       "title": "Oil slips as Saudi Arabia offers more crude via Oman",
@@ -65,7 +89,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789590993000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Increased supply offers push oil prices lower."
     },
     {
       "title": "Peter Schiff: “The Fed Has Already Lost The Battle Against Inflation” & BTC vs GOLD Debate - CryptoRank",
@@ -85,7 +114,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789590790000,
-      "_kind": null
+      "_kind": null,
+      "why": "Opinion piece without clear immediate market impact."
     },
     {
       "title": "Congress on track to approve major Russia sanctions bill — that could hand new tariff powers to Trump - CNN",
@@ -107,7 +137,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789590745000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions bill impact on markets is uncertain."
     },
     {
       "title": "U.S. stocks lower at close of trade; Dow Jones Industrial Average down 1.21%",
@@ -123,7 +154,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789590662000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down",
+        "US30": "down"
+      },
+      "why": "Explicitly states stocks and Dow are lower."
     },
     {
       "title": "Canada stocks lower at close of trade; S&P/TSX Composite down 0.26%",
@@ -141,7 +177,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789590632000,
-      "_kind": null
+      "_kind": null,
+      "why": "Canadian stock drop doesn't clearly move US indices."
     },
     {
       "title": "Brazil stocks lower at close of trade; Bovespa down 0.51%",
@@ -156,7 +193,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789590603000,
-      "_kind": null
+      "_kind": null,
+      "why": "Brazilian stock performance does not directly move US500."
     },
     {
       "title": "US Equity Markets End Lower After Federal Reserve Increases Policy Rate - marketscreener.com",
@@ -180,7 +218,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789588481000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Rate hike strengthens dollar, weakening gold and EUR/GBP."
     },
     {
       "title": "Fed Issues First Rate Hike Since 2023 - WSJ",
@@ -204,7 +248,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789588961000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Rate hike implies stronger dollar, bearish for gold/FX."
     },
     {
       "title": "New Zealand Q2 GDP preview as RBNZ weighs timing of its next rate hike",
@@ -223,7 +273,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789590002000,
-      "_kind": null
+      "why": "Preview of data, outcome is uncertain."
     },
     {
       "title": "Economic and event calendar in Asia Thursday, September 17, 2026. FOMC done, moving on!",
@@ -246,7 +296,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789589536000
+      "firstAt": 1789589536000,
+      "why": "Commentary on post-event sentiment, no new data."
     },
     {
       "title": "Fed Rate Hike Sends Treasury Yields Higher and The Stock Market Lower - Mott Capital Management",
@@ -269,7 +320,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789588961000
+      "firstAt": 1789588961000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Higher yields and lower stocks signal hawkish Fed impact."
     },
     {
       "title": "Efforts underway for Zelenskyy-Trump meeting at UN next week",
@@ -289,7 +346,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789589151000
+      "firstAt": 1789589151000,
+      "why": "Diplomatic meeting news has unclear immediate market impact."
     },
     {
       "title": "Latin American Markets Slipped After The Fed’s Latest Rate Hike - Finimize",
@@ -1752,26 +1810,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789564843000
-    },
-    {
-      "title": "The world is debating sanctions against Israel. I am watching young warriors rebuild their lives - Fox News",
-      "link": "https://news.google.com/rss/articles/CBMitAFBVV95cUxON2d0NGxxdHM2TjFOb0hNc192bWtMXzBmQ1NPVTI3b2p6YWpjNV83bTlLZGJwNjVyNVlzMTBmMTVSLVJuODFSQ3hZNnpnT3kzc1hqakxyMEVVN091UXFCUTVjWHdRUXBmLVhFTkc2bmJLNl9GaG1HU3N2RlNzVVZtclBzVS04V0NyeWY5QkZMV0U1QnF6dVBEcnV4cjRRZGF2TUxCbnRxZXZvOUg0cXZVdkZiS23SAboBQVVfeXFMUFFiWnZEN0ItNlRTRUtfOTFlNDNwczktS0FMTTEtUUt0b1k1SGZlWVJvLXRGVmVCdm1uQUg1dFpmeWh2NjNGa0E3U21VWDNXazVBRDNhU3h1aTJrSmhsR2EzLTZrZWYxNEpKYm93dnJZUVRORjRMZzNUMjlzZTlxQ3A4Z2E3SFZFUTJDZDJkNHNWZGFXbGdYZ29JdmxscFF5Nml4bDUta2ZKR1JyOFJZd0ZTRFo3RUhhT1Vn?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMitAFBVV95cUxON2d0NGxxdHM2TjFOb0hNc192bWtMXzBmQ1NPVTI3b2p6YWpjNV83bTlLZGJwNjVyNVlzMTBmMTVSLVJuODFSQ3hZNnpnT3kzc1hqakxyMEVVN091UXFCUTVjWHdRUXBmLVhFTkc2bmJLNl9GaG1HU3N2RlNzVVZtclBzVS04V0NyeWY5QkZMV0U1QnF6dVBEcnV4cjRRZGF2TUxCbnRxZXZvOU",
-      "at": 1789563619000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789562842000
     }
   ],
   "sources": [
@@ -1798,6 +1836,6 @@
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-16T20:48:11.236Z",
-  "updatedAt": "2026-09-16T20:48:11.236Z"
+  "headlinesAt": "2026-09-16T20:50:16.887Z",
+  "updatedAt": "2026-09-16T20:50:16.887Z"
 }
