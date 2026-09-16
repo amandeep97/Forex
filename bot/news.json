@@ -17,7 +17,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789563180000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Rate hike certainty weighs on stocks"
     },
     {
       "title": "European equities stage best rally in a month ahead of Fed rate decision",
@@ -34,7 +38,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789563057000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "European rally boosts global sentiment"
     },
     {
       "title": "Stock Market Today: Dow Rises Ahead Of Likely Fed Hike, Warsh Comments; Intel, SK Hynix Jump (Live Coverage)",
@@ -51,7 +59,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789560470000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US30": "up"
+      },
+      "why": "Dow rises ahead of Fed decision"
     },
     {
       "title": "Opinion: Sanctions Against Israel Mark a Turning Point in International Political Antisemitism - Baltimore Jewish Times",
@@ -72,7 +84,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789562822000,
-      "_kind": null
+      "_kind": null,
+      "why": "Irrelevant political opinion piece"
     },
     {
       "title": "Saudi Arabia stocks lower at close of trade; Tadawul All Share down 0.02%",
@@ -87,7 +100,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789560040000,
-      "_kind": null
+      "_kind": null,
+      "why": "Saudi stocks irrelevant to US index"
     },
     {
       "title": "Oil price rally pauses as U.S. inventory build offsets Mideast supply jitters",
@@ -104,7 +118,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789562543000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Inventory build offsets supply jitters"
     },
     {
       "title": "Retail sales surged toward the end of summer. Economy still has plenty of momentum.",
@@ -128,7 +146,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789562520000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Strong economy implies hawkish Fed"
     },
     {
       "title": "Why is American Bitcoin stock gaining today?",
@@ -145,7 +169,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789562408000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "BTC/USDT": "up"
+      },
+      "why": "Bitcoin stock gaining implies bullish sentiment"
     },
     {
       "title": "US retail sales rebound sharply in August",
@@ -168,7 +196,13 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789561807000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Strong retail sales support dollar"
     },
     {
       "title": "The ‘CIA’ strategy beating the market: How one top-performing money manager spots mispriced stocks",
@@ -184,7 +218,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789562220000,
-      "_kind": null
+      "_kind": null,
+      "why": "Specific fund strategy, no market direction"
     },
     {
       "title": "EU chief backs plan for Canada to become 'associate member'",
@@ -202,7 +237,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789561199000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USD/CAD": "down"
+      },
+      "why": "Canada-EU ties weaken US leverage"
     },
     {
       "title": "Dune Oil updates OTCQB symbol, closes further private placement financing",
@@ -219,7 +258,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789562160000,
-      "_kind": null
+      "_kind": null,
+      "why": "Micro-cap news, no market impact"
     },
     {
       "title": "LyondellBasell (LYB) Retraces Amid Shifting Commodity Sentiment",
@@ -251,7 +291,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789561835000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USD/CAD": "down"
+      },
+      "why": "Weak Canadian data lowers CAD"
     },
     {
       "title": "US August advance retail sales +1.2% vs +0.8% expected",
@@ -275,7 +319,13 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789561807000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Strong data boosts dollar, weakens gold"
     },
     {
       "title": "Store brands like Kirkland are winning the war for consumer wallets, squeezing out national brands",
@@ -293,7 +343,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789561800000,
-      "_kind": null
+      "why": "Retail trends irrelevant to gold price"
     },
     {
       "title": "Eight children among 21 killed after war-damaged Gaza building collapses, rescuers say",
@@ -1015,10 +1065,10 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789552006000
+      "firstAt": 1789552969000
     },
     {
-      "title": "Ex-Fed Economist Warns About ‘Inflation Trap’ As Central Bank Prepares to Vote - Benzinga",
+      "title": "Ex-Fed Economist Warns About ‘Inflation Trap’ As Central Bank Prepares to Vote - benzinga.com",
       "link": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxQZGFYeXdVWUhTSkxZSFprTUk1Y3M0WW1GMm02NW5TWFdYN0VoSHFvN2hvVzhVU29zZVl5RTlOYjFKbWtjZjRYZnpsUmgzQmtoUjhWRWFfenJJa0JzU0I0WVlEUkdWZzUyLWMxYV9nT1dUVFJOZEM1cWNzY25lMWdwRFNBa0lzNWhMbklPcUxyblRvaWJpaEpHUm5IRlQxb1dBdGRSWE5OUEN3TlByZ2RZckxPbE92QkIzRFJlV2UxekNVeS1OU2NIMmFQNWNRNFUwdllGUHZzMzRWUVRiWF9j?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMi3wFBVV95cUxQZGFYeXdVWUhTSkxZSFprTUk1Y3M0WW1GMm02NW5TWFdYN0VoSHFvN2hvVzhVU29zZVl5RTlOYjFKbWtjZjRYZnpsUmgzQmtoUjhWRWFfenJJa0JzU0I0WVlEUkdWZzUyLWMxYV9nT1dUVFJOZEM1cWNzY25lMWdwRFNBa0lzNWhMbklPcUxyblRvaWJpaEpHUm5IRlQxb1dBdGRSWE5OUEN3Tl",
@@ -1081,7 +1131,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789552006000
+      "firstAt": 1789552969000
     },
     {
       "title": "Column: Netanyahu owes Israel an account of the Oct. 7 Hamas attack - thenewsherald.com",
@@ -1180,25 +1230,6 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789551000000
-    },
-    {
-      "title": "Australian Dollar treads water against Japanese Yen ahead of BoJ rate hike - FXStreet",
-      "link": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxOVlBzc1RZVTN6RkdOeEFrNmcwX19PUkM2QWd0QmFWZExxZDEtSzliM0psQl9laWEzSk9RZzNXOXdrbEZFMnNpOVlYSU1FTzl0T2RaS3hwaTR1VHBXdDhQeWNaZ1k4N2VtOV90Sjc5Uk40aEdXZkJLM3pLS1BSYjR3SFZ1TWw0T1lGenloa2stU1JGTGFRX2RCekI4WnFyU2RmYXFjWEktYzl6YXNUUzd4cmFaaXRVUUcx?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiuAFBVV95cUxOVlBzc1RZVTN6RkdOeEFrNmcwX19PUkM2QWd0QmFWZExxZDEtSzliM0psQl9laWEzSk9RZzNXOXdrbEZFMnNpOVlYSU1FTzl0T2RaS3hwaTR1VHBXdDhQeWNaZ1k4N2VtOV90Sjc5Uk40aEdXZkJLM3pLS1BSYjR3SFZ1TWw0T1lGenloa2stU1JGTGFRX2RCekI4WnFyU2RmYXFjWEktYzl6YX",
-      "at": 1789552006000,
-      "inst": [
-        "USD/JPY",
-        "AUD/USD"
-      ],
-      "ccy": [
-        "USD",
-        "JPY"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789550809000
     },
     {
       "title": "Former Kosovo President Hashim Thaci sentenced to 25 years for war crimes",
@@ -1357,7 +1388,7 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 2,
+      "srcs": 1,
       "firstAt": 1789550809000
     },
     {
@@ -1723,6 +1754,22 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789543046000
+    },
+    {
+      "title": "London Gas Oil tests resistance at $1,574: Live levels",
+      "link": "https://www.investing.com/news/commodities-news/london-gas-oil-surges-near-1524-resistance-live-levels-93CH-4898872",
+      "source": "Investing Cmdty",
+      "at": 1789542716000,
+      "inst": [
+        "USOIL"
+      ],
+      "ccy": [
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789542696000
     }
   ],
   "sources": [
@@ -1749,6 +1796,6 @@
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-16T12:58:55.226Z",
-  "updatedAt": "2026-09-16T12:58:55.226Z"
+  "headlinesAt": "2026-09-16T13:00:26.629Z",
+  "updatedAt": "2026-09-16T13:00:26.629Z"
 }
