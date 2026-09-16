@@ -174,6 +174,9 @@ export default function XagDeskPanel({ onLog, controls = false }) {
 
   const p = desk?.pending;
   const live = desk?.live;
+  // The heartbeat is twenty minutes, so half an hour of silence is not a slow
+  // tick — it is something to look at.
+  const stale = !!desk?.at && Date.now() - Date.parse(desk.at) > 30 * 60e3;
   const expired = p && p.expiresAt <= Date.now();
   const mins = p ? Math.max(0, Math.round((p.expiresAt - Date.now()) / 60e3)) : 0;
 
@@ -194,8 +197,20 @@ export default function XagDeskPanel({ onLog, controls = false }) {
             LIVE MONEY
           </span>
         )}
-        <span style={{ marginLeft: 'auto', fontSize: 8.5, color: '#334155', fontFamily: C.mono }}>
-          ${desk?.riskUsd ?? 3} risk · {desk?.at ? ago(Date.now() - Date.parse(desk.at)) : '—'}
+        {/* The age is proof of life, so it is labelled as one. The desk
+            refreshes this on a heartbeat even when nothing has happened —
+            without that, a quiet day and a dead process looked identical here.
+            Past half an hour something is wrong, and it says so rather than
+            leaving you to work out what "47m ago" ought to mean. */}
+        <span style={{ marginLeft: 'auto', fontSize: 8.5, fontFamily: C.mono,
+          color: stale ? C.warn : '#334155' }}
+        title={stale
+          ? 'The desk has not checked in for over half an hour. The bot may be down.'
+          : 'How long ago the desk last checked in.'}>
+          ${desk?.riskUsd ?? 3} risk · {desk?.at
+            ? `checked ${ago(Date.now() - Date.parse(desk.at))}`
+            : 'never checked in'}
+          {stale && ' ⚠'}
         </span>
       </div>
 

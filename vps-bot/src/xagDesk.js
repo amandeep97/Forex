@@ -122,6 +122,21 @@ function clamp(v, { min, max, dflt }) {
 // without bound.
 const HISTORY = 40;
 
+// ── Proof of life ───────────────────────────────────────────────────────────
+//
+// The desk only republishes when something changes, which is right for churn
+// and wrong for a screen. With nothing pending and nothing placed — the normal
+// state, most days — the file's timestamp froze, and the panel counted up from
+// it: "1m ago", "1h ago", "5h ago". A desk quietly watching silver and a desk
+// whose process died look exactly the same that way, and the second one is the
+// one you need to know about.
+//
+// So the file is refreshed on this interval even when nothing has changed. The
+// cost is one small commit every twenty minutes against a repo already taking
+// thousands a day; the gain is that the age on screen means what it appears to
+// mean.
+const HEARTBEAT = 20 * 60e3;
+
 const uid = () => 'X' + Date.now().toString(36).toUpperCase();
 
 class XagDesk {
@@ -137,6 +152,7 @@ class XagDesk {
     this.offset = 0;          // telegram update cursor
     this.sha = null;
     this.decisionsSha = null;
+    this.publishedAt = 0;
     this.restored = false;
     this.lastSig = null;
 
@@ -580,8 +596,14 @@ class XagDesk {
   async _publish() {
     if (!this.github) return;
     const sig = this._signature();
-    if (sig === this.lastSig) return;
+    const now = Date.now();
+    // Unchanged AND recently seen: nothing to say. Unchanged but quiet for a
+    // while: say so anyway, because "nothing has happened" and "nothing is
+    // running" are different facts and the screen cannot tell them apart from
+    // an old timestamp.
+    if (sig === this.lastSig && now - this.publishedAt < HEARTBEAT) return;
     this.lastSig = sig;
+    this.publishedAt = now;
     const payload = {
       at: new Date().toISOString(),
       // Permitted and armed are reported separately, because "off" has two very
@@ -613,4 +635,4 @@ class XagDesk {
 }
 
 module.exports = { XagDesk, SYM, OANDA_SYM, DESK_PATH, DECISIONS_PATH, CONTROL_PATH,
-  RISK_USD, MAX_PER_DAY, LIMITS, clamp };
+  RISK_USD, MAX_PER_DAY, LIMITS, HEARTBEAT, clamp };
