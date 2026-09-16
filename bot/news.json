@@ -2,6 +2,30 @@
   "calendar": [],
   "headlines": [
     {
+      "title": "Here are five key takeaways from Wednesday's Fed rate hike",
+      "link": "https://www.cnbc.com/2026/09/16/here-are-five-key-takeaways-from-wednesdays-fed-rate-hike.html",
+      "source": "CNBC Markets",
+      "desc": "The Fed on Wednesday delivered a much-expected interest rate hike.",
+      "at": 1789593831000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789593831000,
+      "_kind": null
+    },
+    {
       "title": "U.S. Markets Sell Off After Fed’s Warsh Says Inflation Is Still ‘Too High’ - WSJ",
       "link": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxOWXpmRks3Sk0xbFZuU01XWVltWmRBU1pHbUFQdnhUQmlZNWNzR2J4Y2huaURKOWpJckkyMHY0ZkNxeU04Q0ZwaDJVd21sMFEtNHBBdS1CSFZ2QXdDNzc1elZwdERMdmliWkFobC15d2ltVlliaVBVZXpjU1RIVGhHWnMtQ1QxUk5KOGh1UFBiUkhudmNGNko3Tmd2QWd4NEt3MGllRjRGY09BM0JHeFJnVm1uWWdITUZq?oc=5",
       "source": "Wires (macro)",
@@ -23,13 +47,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789593120000,
-      "_kind": null,
-      "dir": {
-        "XAU/USD": "down",
-        "EUR/USD": "down",
-        "GBP/USD": "down"
-      },
-      "why": "Hawkish Fed comments strengthen dollar, hurt gold and EUR/GB"
+      "_kind": null
     },
     {
       "title": "Fed approves interest rate hike, signals one more to come this year",
@@ -53,13 +71,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789592871000,
-      "_kind": null,
-      "dir": {
-        "XAU/USD": "down",
-        "EUR/USD": "down",
-        "GBP/USD": "down"
-      },
-      "why": "Rate hike strengthens dollar, pressuring gold and EUR/GBP."
+      "_kind": null
     },
     {
       "title": "Federal Reserve hikes key rate for 1st time in 3 years, defying Trump demands for a cut - AP News",
@@ -83,13 +95,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789590516000,
-      "_kind": null,
-      "dir": {
-        "XAU/USD": "down",
-        "EUR/USD": "down",
-        "GBP/USD": "down"
-      },
-      "why": "Fed hike boosts dollar, bearish for gold and EUR/GBP."
+      "_kind": null
     },
     {
       "title": "Iran strikes US-contracted vessel - Fox News",
@@ -110,13 +116,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789592699000,
-      "_kind": null,
-      "dir": {
-        "XAU/USD": "up",
-        "USOIL": "up",
-        "UKOIL": "up"
-      },
-      "why": "Geopolitical risk boosts gold and oil; FX unclear."
+      "_kind": null
     },
     {
       "title": "Intel’s stock rises as investors hope memory chips can mark the next step in its turnaround",
@@ -152,8 +152,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789590516000,
-      "why": "Markets rise, but specific FX/gold direction unclear."
+      "firstAt": 1789590516000
     },
     {
       "title": "Why optical stocks Lumentum and Coherent were the day’s biggest S&P 500 gainers",
@@ -168,8 +167,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789591920000,
-      "why": "Specific stock gainers do not imply index direction."
+      "firstAt": 1789591920000
     },
     {
       "title": "Latin American markets fall after Fed raises interest rates",
@@ -191,42 +189,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789591859000,
-      "dir": {
-        "XAU/USD": "down",
-        "EUR/USD": "down",
-        "GBP/USD": "down"
-      },
-      "why": "Fed hike strengthens dollar, bearish for gold and EUR/GBP."
-    },
-    {
-      "title": "Here are five key takeaways from Wednesday's Fed rate hike",
-      "link": "https://www.cnbc.com/2026/09/16/here-are-five-key-takeaways-from-wednesdays-fed-rate-hike.html",
-      "source": "CNBC Markets",
-      "desc": "The Fed on Wednesday delivered a much-expected interest rate hike.",
-      "at": 1789591402000,
-      "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789591402000,
-      "dir": {
-        "XAU/USD": "down",
-        "EUR/USD": "down",
-        "GBP/USD": "down"
-      },
-      "why": "Rate hike strengthens dollar, bearish for gold and EUR/GBP."
+      "firstAt": 1789591859000
     },
     {
       "title": "Here’s a sneaky way to play the Fed’s rate increase",
@@ -249,8 +212,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789591080000,
-      "why": "Trading strategy article lacks clear directional signal."
+      "firstAt": 1789591080000
     },
     {
       "title": "Fed rate hike pushes two-year Treasury yields to highest since July 2024 - Investing.com",
@@ -273,13 +235,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789589153000,
-      "dir": {
-        "XAU/USD": "down",
-        "EUR/USD": "down",
-        "GBP/USD": "down"
-      },
-      "why": "Rising yields strengthen dollar, bearish for gold and EUR/GB"
+      "firstAt": 1789589153000
     },
     {
       "title": "Oil slips as Saudi Arabia offers more crude via Oman",
@@ -296,12 +252,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789590993000,
-      "dir": {
-        "USOIL": "down",
-        "UKOIL": "down"
-      },
-      "why": "Increased supply from Saudi Arabia lowers oil prices."
+      "firstAt": 1789590993000
     },
     {
       "title": "Peter Schiff: “The Fed Has Already Lost The Battle Against Inflation” & BTC vs GOLD Debate - CryptoRank",
@@ -320,8 +271,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789590790000,
-      "why": "Opinion piece on inflation battle, no clear price signal."
+      "firstAt": 1789590790000
     },
     {
       "title": "Congress on track to approve major Russia sanctions bill — that could hand new tariff powers to Trump - CNN",
@@ -342,13 +292,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789590745000,
-      "dir": {
-        "XAU/USD": "up",
-        "USOIL": "up",
-        "UKOIL": "up"
-      },
-      "why": "Sanctions boost risk assets like gold and oil."
+      "firstAt": 1789590745000
     },
     {
       "title": "US Equity Markets End Lower After Federal Reserve Increases Policy Rate - marketscreener.com",
@@ -371,13 +315,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789588481000,
-      "dir": {
-        "XAU/USD": "down",
-        "EUR/USD": "down",
-        "GBP/USD": "down"
-      },
-      "why": "Rate hike strengthens dollar, bearish for gold and EUR/GBP."
+      "firstAt": 1789588481000
     },
     {
       "title": "Fed Issues First Rate Hike Since 2023 - WSJ",
@@ -400,13 +338,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789588961000,
-      "dir": {
-        "XAU/USD": "down",
-        "EUR/USD": "down",
-        "GBP/USD": "down"
-      },
-      "why": "Rate hike strengthens dollar, bearish for gold and EUR/GBP."
+      "firstAt": 1789588961000
     },
     {
       "title": "New Zealand Q2 GDP preview as RBNZ weighs timing of its next rate hike",
@@ -1883,6 +1815,6 @@
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-16T21:23:25.470Z",
-  "updatedAt": "2026-09-16T21:23:25.470Z"
+  "headlinesAt": "2026-09-16T21:24:54.209Z",
+  "updatedAt": "2026-09-16T21:24:54.209Z"
 }
