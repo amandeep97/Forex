@@ -25,6 +25,7 @@ const C = {
 
 const DESK = 'bot/xag-desk.json';
 const DECISIONS = 'bot/xag-decisions.json';
+const CONTROL = 'bot/xag-control.json';
 
 const STATE_TONE = {
   placed: { fg: C.good, label: 'PLACED' },
@@ -65,16 +66,53 @@ function Row({ p }) {
   );
 }
 
-export default function XagDeskPanel({ onLog }) {
+// ── The controls ────────────────────────────────────────────────────────────
+//
+// Shown only where `controls` is set — the Auto Trading tab. The proposal card
+// appears in both places, because a proposal has a deadline and should be
+// wherever you are; the settings do not, and a form next to a countdown invites
+// fiddling with the size of a trade you are in the middle of deciding.
+//
+// Everything here is bounded again on the bot, on the numbers that arrive. This
+// form is a convenience, not a guarantee: the file it writes can be edited by
+// hand and read by an older build, so it is not the place where safety lives.
+function Field({ label, value, unit, lo, hi, onChange, note }) {
+  return (
+    <label style={{ display: 'flex', gap: 8, alignItems: 'center', fontSize: 10, color: C.dim }}>
+      <span style={{ minWidth: 120 }}>{label}</span>
+      <input type="number" value={value} min={lo} max={hi} step="any"
+        onChange={e => onChange(e.target.value)}
+        style={{ width: 74, padding: '4px 6px', borderRadius: 3, fontFamily: C.mono,
+          fontSize: 11, border: `1px solid ${C.line}`, background: '#060a0f', color: C.txt }}/>
+      <span style={{ fontFamily: C.mono, fontSize: 9, color: '#334155' }}>
+        {unit} · {lo}–{hi}
+      </span>
+      {note && <span style={{ fontSize: 9, color: C.warn }}>{note}</span>}
+    </label>
+  );
+}
+
+export default function XagDeskPanel({ onLog, controls = false }) {
   const [desk, setDesk] = useState(null);
   const [err, setErr] = useState('');
   const [busy, setBusy] = useState('');
   const [, setTick] = useState(0);
+  // The form's own copy, so typing does not fight the twenty-second poll.
+  // Seeded from the desk once, then owned by the form until it is saved.
+  const [draft, setDraft] = useState(null);
 
   const pull = useCallback(async () => {
     try {
       const r = await ghRead(DESK, { noCache: true });
-      setDesk(r?.content || null);
+      const d = r?.content || null;
+      setDesk(d);
+      // Only seed the draft while nothing is being edited. Overwriting a
+      // half-typed number every twenty seconds is the classic way a settings
+      // form becomes unusable.
+      setDraft(prev => (prev ? prev : d && {
+        riskUsd: d.riskUsd, maxPerDay: d.maxPerDay,
+        proposalTtlMin: d.proposalTtlMin, orderTtlHours: d.orderTtlHours,
+      }));
       setErr('');
     } catch (e) { setErr(e.message); }
   }, []);
@@ -109,6 +147,31 @@ export default function XagDeskPanel({ onLog }) {
     finally { setBusy(''); }
   };
 
+  // ── Writing the control file ──────────────────────────────────────────────
+  //
+  // Read-modify-write against the live sha, like every other control in this
+  // app: two settings saved from two places must not clobber each other.
+  const writeControl = async (patch, label) => {
+    setBusy(label);
+    try {
+      const cur = await ghRead(CONTROL, { noCache: true }).catch(() => null);
+      const next = {
+        armed: false,
+        ...(cur?.content || {}),
+        ...(draft || {}),
+        ...patch,
+        updatedAt: new Date().toISOString(),
+      };
+      await ghWrite(CONTROL, next, `XAG desk: ${label}`, cur?.sha || null);
+      onLog?.('INFO', `XAG desk: ${label}`);
+      // The bot decides; this only shows the intent until the next poll brings
+      // back what was actually applied after clamping.
+      setDesk(d => (d ? { ...d, ...patch, armed: next.armed, enabled: !!d.permitted && !!next.armed } : d));
+      setTimeout(pull, 3000);
+    } catch (e) { setErr(e.message); }
+    finally { setBusy(''); }
+  };
+
   const p = desk?.pending;
   const live = desk?.live;
   const expired = p && p.expiresAt <= Date.now();
@@ -123,7 +186,7 @@ export default function XagDeskPanel({ onLog }) {
           color: desk?.enabled ? C.good : '#475569',
           border: `1px solid ${desk?.enabled ? C.good : '#475569'}44`,
           borderRadius: 3, padding: '0 5px' }}>
-          {desk?.enabled ? 'ARMED' : 'OFF'}
+          {desk?.enabled ? 'ARMED' : desk?.permitted === false ? 'NOT PERMITTED' : 'DISARMED'}
         </span>
         {live && (
           <span style={{ fontSize: 8.5, fontWeight: 900, fontFamily: C.mono, color: C.bad,
@@ -184,11 +247,92 @@ export default function XagDeskPanel({ onLog }) {
       ) : (
         <div style={{ padding: '12px 10px', fontSize: 10, color: C.dim, lineHeight: 1.7 }}>
           {!desk ? 'The desk has not published yet.'
-            : !desk.enabled
-              ? 'The desk is off. It places real orders, so it stays off until XAG_DESK=on is set on the VPS.'
+            : desk.permitted === false
+              ? 'The VPS has not permitted this desk. Set XAG_DESK=on there and restart the bot.'
+              : !desk.enabled
+                ? 'Disarmed. Arm it in the Auto Trading tab when you want it watching silver.'
               : p && (expired || p.state !== 'pending')
                 ? 'Nothing waiting — the last proposal has been answered or has lapsed.'
                 : 'Nothing waiting. A proposal appears here when silver takes a level and the plan arms.'}
+        </div>
+      )}
+
+      {/* ── Controls, in the Auto Trading tab only ── */}
+      {controls && desk && (
+        <div style={{ padding: '10px', borderTop: `1px solid ${C.line}` }}>
+          {/* The arm switch. Disabled entirely when the VPS has not permitted a
+              desk, with the reason said out loud — otherwise a dead toggle just
+              looks broken. */}
+          <div style={{ display: 'flex', gap: 8, alignItems: 'center', flexWrap: 'wrap' }}>
+            <button
+              onClick={() => writeControl({ armed: !desk.armed }, desk.armed ? 'disarm' : 'arm')}
+              disabled={!!busy || !desk.permitted}
+              style={{ padding: '8px 14px', borderRadius: 4, fontSize: 11, fontWeight: 800,
+                fontFamily: C.mono,
+                cursor: busy || !desk.permitted ? 'default' : 'pointer',
+                border: `1px solid ${desk.armed ? C.bad : C.good}66`,
+                background: desk.armed ? '#ef44441a' : '#22c55e14',
+                color: desk.permitted ? (desk.armed ? C.bad : C.good) : '#334155' }}>
+              {busy === 'arm' || busy === 'disarm' ? '…' : desk.armed ? 'DISARM' : 'ARM THE DESK'}
+            </button>
+            <span style={{ fontSize: 9.5, color: C.dim, lineHeight: 1.5 }}>
+              {!desk.permitted
+                ? <>The VPS has not permitted this desk. Set <code style={{ fontFamily: C.mono }}>XAG_DESK=on</code> and
+                   restart the bot — the app cannot switch that on, deliberately.</>
+                : desk.armed
+                  ? 'Live. Silver taking a level will ask you to place a trade.'
+                  : 'Permitted but disarmed. Nothing will be proposed.'}
+            </span>
+          </div>
+
+          {/* Settings. Bounded again on the bot, on the numbers that arrive. */}
+          {draft && (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 7, marginTop: 11 }}>
+              <Field label="Risk per trade" unit="$" value={draft.riskUsd}
+                lo={desk.limits?.riskUsd?.min ?? 0.5}
+                hi={Math.min(desk.limits?.riskUsd?.max ?? 25, desk.maxRiskUsd ?? 25)}
+                note={desk.maxRiskUsd < (desk.limits?.riskUsd?.max ?? 25)
+                  ? `VPS ceiling $${desk.maxRiskUsd}` : null}
+                onChange={v => setDraft(d => ({ ...d, riskUsd: v }))}/>
+              <Field label="Max trades a day" unit="placed" value={draft.maxPerDay}
+                lo={desk.limits?.maxPerDay?.min ?? 1} hi={desk.limits?.maxPerDay?.max ?? 10}
+                onChange={v => setDraft(d => ({ ...d, maxPerDay: v }))}/>
+              <Field label="Answer within" unit="min" value={draft.proposalTtlMin}
+                lo={desk.limits?.proposalTtlMin?.min ?? 5} hi={desk.limits?.proposalTtlMin?.max ?? 240}
+                onChange={v => setDraft(d => ({ ...d, proposalTtlMin: v }))}/>
+              <Field label="Order rests for" unit="hours" value={draft.orderTtlHours}
+                lo={desk.limits?.orderTtlHours?.min ?? 1} hi={desk.limits?.orderTtlHours?.max ?? 24}
+                onChange={v => setDraft(d => ({ ...d, orderTtlHours: v }))}/>
+
+              <div style={{ display: 'flex', gap: 8, alignItems: 'center', marginTop: 3 }}>
+                <button onClick={() => writeControl({}, 'settings')} disabled={!!busy}
+                  style={{ padding: '7px 14px', borderRadius: 4, fontSize: 10.5, fontWeight: 800,
+                    fontFamily: C.mono, cursor: busy ? 'default' : 'pointer',
+                    border: `1px solid ${C.accent}55`, background: '#38bdf814', color: C.accent }}>
+                  {busy === 'settings' ? 'SAVING…' : 'SAVE'}
+                </button>
+                <button onClick={() => setDraft({
+                  riskUsd: desk.riskUsd, maxPerDay: desk.maxPerDay,
+                  proposalTtlMin: desk.proposalTtlMin, orderTtlHours: desk.orderTtlHours,
+                })} disabled={!!busy}
+                  style={{ padding: '7px 10px', borderRadius: 4, fontSize: 10.5, fontWeight: 700,
+                    fontFamily: C.mono, cursor: 'pointer', border: `1px solid ${C.line}`,
+                    background: 'transparent', color: C.dim }}>
+                  REVERT
+                </button>
+                <span style={{ fontSize: 9, color: '#334155', lineHeight: 1.5 }}>
+                  {desk.placedToday ?? 0} of {desk.maxPerDay} placed today
+                </span>
+              </div>
+
+              {/* What is fixed, said plainly, so nobody hunts for the control. */}
+              <div style={{ fontSize: 9, color: '#334155', lineHeight: 1.6, marginTop: 4 }}>
+                Silver only, and that is not configurable. Values outside these ranges are
+                brought back inside them by the bot, and what you see above is what is
+                actually in force — not what was typed.
+              </div>
+            </div>
+          )}
         </div>
       )}
 

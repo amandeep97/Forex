@@ -7,7 +7,7 @@
 // being automated is the watching and the arithmetic, and the judgement stays
 // with a person. That only holds if the gate between proposal and venue is
 // airtight.
-const { XagDesk, SYM, OANDA_SYM, PROPOSAL_TTL } = require('../vps-bot/src/xagDesk');
+const { XagDesk, SYM, OANDA_SYM, CONTROL_PATH, LIMITS, clamp } = require('../vps-bot/src/xagDesk');
 
 let fails = 0;
 const check = (n, c, e = '') => { console.log(`${c ? '  ok  ' : '  FAIL'}  ${n}${e ? ' — ' + e : ''}`); if (!c) fails++; };
@@ -56,9 +56,20 @@ const memGithub = () => {
 
 const ENV = { XAG_DESK: 'on', OANDA_PRACTICE: 'false', TELEGRAM_CHAT_ID: '55' };
 
-const desk = (oanda, tg, env = {}) => new XagDesk({
-  oanda, telegram: tg, github: memGithub(), log: () => {}, env: { ...ENV, ...env },
-});
+// Armed is now a thing the APP says, not the environment. The env flag only
+// permits a desk to exist; the control file decides whether it is live. So the
+// harness seeds that file and loads it, which is the same path production
+// takes — a helper that just set cfg.armed would be testing a door nobody uses.
+const CONTROL = { armed: true, riskUsd: 3, maxPerDay: 3, proposalTtlMin: 60, orderTtlHours: 8 };
+
+async function mkDesk(oanda, tg, { env = {}, control = {}, github = null } = {}) {
+  const gh = github || memGithub();
+  if (control !== false) gh.files[CONTROL_PATH] = { ...CONTROL, ...control };
+  const d = new XagDesk({ oanda, telegram: tg, github: gh, log: () => {}, env: { ...ENV, ...env } });
+  await d._loadControl();
+  d._gh = gh;
+  return d;
+}
 
 const armed = (over = {}) => ({
   sym: SYM, price: 30.2,
@@ -76,7 +87,7 @@ const armed = (over = {}) => ({
   // ── Off unless deliberately switched on ──────────────────────────────────
   {
     const o = fakeOanda(), t = fakeTelegram();
-    const d = desk(o, t, { XAG_DESK: '' });
+    const d = await mkDesk(o, t, { env: { XAG_DESK: '' } });
     check('the desk is off unless XAG_DESK says on',
       (await d.propose(armed())) === null && t.sent.length === 0,
       '', 'a deploy must not turn on live order placement by arriving');
@@ -85,7 +96,7 @@ const armed = (over = {}) => ({
   // ── One instrument, and it is not configurable ───────────────────────────
   {
     const o = fakeOanda(), t = fakeTelegram();
-    const d = desk(o, t);
+    const d = await mkDesk(o, t);
     const gold = { ...armed(), sym: 'XAU/USD' };
     check('anything that is not silver is refused',
       (await d.propose(gold)) === null && t.sent.length === 0,
@@ -97,7 +108,7 @@ const armed = (over = {}) => ({
   // ── A proposal, sized to the cash risk ───────────────────────────────────
   {
     const o = fakeOanda(), t = fakeTelegram();
-    const d = desk(o, t);
+    const d = await mkDesk(o, t);
     const p = await d.propose(armed());
     // $3 over a 0.50 stop is 6 ounces.
     check('size comes from the risk budget and the stop, not from a lot table',
@@ -117,7 +128,7 @@ const armed = (over = {}) => ({
   // ── A stop too wide for the budget is refused, not rounded up ────────────
   {
     const o = fakeOanda(), t = fakeTelegram();
-    const d = desk(o, t);
+    const d = await mkDesk(o, t);
     // A $4 stop against a $3 budget is 0.75 ounces — below the 1 oz minimum.
     const p = await d.propose(armed({ entry: 30, stop: 26 }));
     check('a stop too wide for the risk budget proposes nothing',
@@ -128,7 +139,7 @@ const armed = (over = {}) => ({
   // ── Margin is checked before a person is interrupted ─────────────────────
   {
     const o = fakeOanda({ margin: 5 }), t = fakeTelegram();
-    const d = desk(o, t);
+    const d = await mkDesk(o, t);
     check('a trade the account cannot margin is never offered',
       (await d.propose(armed())) === null && t.sent.length === 0,
       '', 'an alert offering a trade that cannot be placed is worse than no alert');
@@ -137,16 +148,16 @@ const armed = (over = {}) => ({
   // ── One at a time, asked of the venue rather than of memory ──────────────
   {
     const t = fakeTelegram();
-    const d1 = desk(fakeOanda({ trades: [{ instrument: OANDA_SYM }] }), t);
+    const d1 = await mkDesk(fakeOanda({ trades: [{ instrument: OANDA_SYM }] }), t);
     check('silver already open means no new proposal',
       (await d1.propose(armed())) === null);
 
-    const d2 = desk(fakeOanda({ orders: [{ instrument: OANDA_SYM }] }), t);
+    const d2 = await mkDesk(fakeOanda({ orders: [{ instrument: OANDA_SYM }] }), t);
     check('and a silver order already resting means the same',
       (await d2.propose(armed())) === null,
       '', 'asked of the venue, because a manual trade from the OANDA app counts too');
 
-    const o3 = fakeOanda(), d3 = desk(o3, t);
+    const o3 = fakeOanda(), d3 = await mkDesk(o3, t);
     await d3.propose(armed());
     check('a second proposal is refused while one is live',
       (await d3.propose(armed())) === null,
@@ -156,7 +167,7 @@ const armed = (over = {}) => ({
   // ── Approval from Telegram places exactly one order ──────────────────────
   {
     const o = fakeOanda(), t = fakeTelegram();
-    const d = desk(o, t);
+    const d = await mkDesk(o, t);
     const p = await d.propose(armed());
     t._taps.push({ id: 'c1', data: `xag:ok:${p.id}`, from: '55', messageId: p.messageId });
     await d.tick();
@@ -189,7 +200,7 @@ const armed = (over = {}) => ({
   // ── A sell is mirrored, not half-mirrored ────────────────────────────────
   {
     const o = fakeOanda(), t = fakeTelegram();
-    const d = desk(o, t);
+    const d = await mkDesk(o, t);
     const p = await d.propose(armed({ dir: 'short', entry: 30, stop: 30.5, target: 28.5 }));
     t._taps.push({ id: 'c1', data: `xag:ok:${p.id}`, from: '55' });
     await d.tick();
@@ -201,7 +212,7 @@ const armed = (over = {}) => ({
   // ── Skip places nothing ──────────────────────────────────────────────────
   {
     const o = fakeOanda(), t = fakeTelegram();
-    const d = desk(o, t);
+    const d = await mkDesk(o, t);
     const p = await d.propose(armed());
     t._taps.push({ id: 'c1', data: `xag:no:${p.id}`, from: '55' });
     await d.tick();
@@ -213,7 +224,7 @@ const armed = (over = {}) => ({
   // ── Only the owner may approve ───────────────────────────────────────────
   {
     const o = fakeOanda(), t = fakeTelegram();
-    const d = desk(o, t);
+    const d = await mkDesk(o, t);
     const p = await d.propose(armed());
     t._taps.push({ id: 'c1', data: `xag:ok:${p.id}`, from: '999' });
     await d.tick();
@@ -228,7 +239,7 @@ const armed = (over = {}) => ({
   // ── Expiry, on the proposal ──────────────────────────────────────────────
   {
     const o = fakeOanda(), t = fakeTelegram();
-    const d = desk(o, t);
+    const d = await mkDesk(o, t);
     const p = await d.propose(armed());
     p.expiresAt = Date.now() - 1000;
     await d.tick();
@@ -246,7 +257,7 @@ const armed = (over = {}) => ({
   // ── The venue refusing is recorded, not swallowed ────────────────────────
   {
     const o = fakeOanda({ reject: 'PRICE_PRECISION_EXCEEDED' }), t = fakeTelegram();
-    const d = desk(o, t);
+    const d = await mkDesk(o, t);
     const p = await d.propose(armed());
     t._taps.push({ id: 'c1', data: `xag:ok:${p.id}`, from: '55' });
     await d.tick();
@@ -261,8 +272,8 @@ const armed = (over = {}) => ({
   // ── The app is the same gate, not a second one ───────────────────────────
   {
     const o = fakeOanda(), t = fakeTelegram();
-    const gh = memGithub();
-    const d = new XagDesk({ oanda: o, telegram: t, github: gh, log: () => {}, env: ENV });
+    const d = await mkDesk(o, t);
+    const gh = d._gh;
     const p = await d.propose(armed());
     gh.files['bot/xag-decisions.json'] = { [p.id]: 'approve' };
     await d.tick();
@@ -271,8 +282,9 @@ const armed = (over = {}) => ({
       `${o.placed.length} order(s) via ${d.history[0]?.approvedBy}`);
 
     // And the race that matters: both doorways answering the same proposal.
-    const o2 = fakeOanda(), t2 = fakeTelegram(), gh2 = memGithub();
-    const d2 = new XagDesk({ oanda: o2, telegram: t2, github: gh2, log: () => {}, env: ENV });
+    const o2 = fakeOanda(), t2 = fakeTelegram();
+    const d2 = await mkDesk(o2, t2);
+    const gh2 = d2._gh;
     const p2 = await d2.propose(armed());
     gh2.files['bot/xag-decisions.json'] = { [p2.id]: 'approve' };
     t2._taps.push({ id: 'c1', data: `xag:ok:${p2.id}`, from: '55' });
@@ -285,16 +297,16 @@ const armed = (over = {}) => ({
 
   // ── The Telegram cursor survives a restart ───────────────────────────────
   {
-    const gh = memGithub();
     const o = fakeOanda(), t = fakeTelegram();
-    const d = new XagDesk({ oanda: o, telegram: t, github: gh, log: () => {}, env: ENV });
+    const d = await mkDesk(o, t);
+    const gh = d._gh;
     const p = await d.propose(armed());
     t._taps.push({ id: 'c1', data: `xag:no:${p.id}`, from: '55' });
     await d.tick();
     const cursor = d.offset;
     check('the cursor advances past a processed tap', cursor > 0, String(cursor));
 
-    const d2 = new XagDesk({ oanda: fakeOanda(), telegram: fakeTelegram(), github: gh, log: () => {}, env: ENV });
+    const d2 = await mkDesk(fakeOanda(), fakeTelegram(), { github: gh });
     await d2._restore();
     check('and a restart picks it up rather than replaying the queue',
       d2.offset === cursor, `${d2.offset} vs ${cursor}`,
@@ -309,8 +321,7 @@ const armed = (over = {}) => ({
       pending: { id: 'OLD', state: 'pending', expiresAt: Date.now() - 60e3, dir: 'long',
         entry: 30, stop: 29.5, units: 6 },
     };
-    const o = fakeOanda();
-    const d = new XagDesk({ oanda: o, telegram: fakeTelegram(), github: gh, log: () => {}, env: ENV });
+    const d = await mkDesk(fakeOanda(), fakeTelegram(), { github: gh });
     await d._restore();
     check('a pending proposal that lapsed while the bot was down is closed, not restored',
       d.pending === null && d.history[0]?.state === 'expired',
@@ -325,8 +336,7 @@ const armed = (over = {}) => ({
   // switched off and behaving correctly.
   {
     const gh = memGithub();
-    const d = new XagDesk({ oanda: fakeOanda(), telegram: fakeTelegram(), github: gh,
-      log: () => {}, env: { ...ENV, XAG_DESK: '' } });
+    const d = await mkDesk(fakeOanda(), fakeTelegram(), { github: gh, env: { XAG_DESK: '' } });
     await d.tick();
     const file = gh.files['bot/xag-desk.json'];
     check('an off desk publishes its state so the app can say OFF',
@@ -342,6 +352,174 @@ const armed = (over = {}) => ({
     check('an off desk writes once, not on every tick',
       JSON.stringify(gh.files['bot/xag-desk.json']) === before,
       '', 'the signature check is what keeps a disabled feature from churning the repo');
+  }
+
+  // ── Two keys: the box permits, the app arms ──────────────────────────────
+  //
+  // Arming moved into the app so a change does not need SSH and a restart. The
+  // env flag stays, and it is not redundant: the app writes to a public repo
+  // with a token, and that same token can already approve a trade through the
+  // decisions file. If the app could arm the desk too, the token alone would be
+  // enough for the whole path from nothing to a live order.
+  {
+    const o = fakeOanda(), t = fakeTelegram();
+    const d = await mkDesk(o, t, { env: { XAG_DESK: '' }, control: { armed: true } });
+    check('the app cannot arm a desk the box has not permitted',
+      d.enabled === false && (await d.propose(armed())) === null && t.sent.length === 0,
+      `permitted=${d.permitted} armed=${d.cfg.armed}`,
+      'the env flag is the one lock a leaked token cannot pick');
+
+    const d2 = await mkDesk(fakeOanda(), fakeTelegram(), { control: { armed: false } });
+    check('and a permitted desk stays off until the app arms it',
+      d2.permitted === true && d2.enabled === false,
+      `permitted=${d2.permitted} enabled=${d2.enabled}`);
+
+    const d3 = await mkDesk(fakeOanda(), fakeTelegram(), { control: false });
+    check('no control file at all means disarmed, not armed',
+      d3.enabled === false,
+      '', 'a missing file must fail in the safe direction');
+
+    // Disarming takes effect on the next pass, with no restart.
+    const d4 = await mkDesk(fakeOanda(), fakeTelegram());
+    check('an armed desk is live', d4.enabled === true);
+    d4._gh.files[CONTROL_PATH] = { ...CONTROL, armed: false };
+    await d4.tick();
+    check('and disarming in the app takes hold on the next tick',
+      d4.enabled === false,
+      '', 'that is the whole point of moving it out of the environment');
+  }
+
+  // ── The numbers are bounded here, not in the form ────────────────────────
+  //
+  // A control file is just a file. It can be hand-edited, written by an older
+  // build, or corrupted. A UI that validates its own input has checked the
+  // honest case and nothing else.
+  {
+    const wild = await mkDesk(fakeOanda(), fakeTelegram(), {
+      control: { armed: true, riskUsd: 100000, maxPerDay: 999, proposalTtlMin: 0, orderTtlHours: 9999 },
+    });
+    check('an absurd risk is clamped to the ceiling, not honoured',
+      wild.riskUsd === LIMITS.riskUsd.max, `$${wild.riskUsd}`);
+    check('and so are the cap and both expiries',
+      wild.cfg.maxPerDay === LIMITS.maxPerDay.max
+      && wild.cfg.proposalTtlMin === LIMITS.proposalTtlMin.min
+      && wild.cfg.orderTtlHours === LIMITS.orderTtlHours.max,
+      `${wild.cfg.maxPerDay}/day, ${wild.cfg.proposalTtlMin}min, ${wild.cfg.orderTtlHours}h`);
+
+    const junk = await mkDesk(fakeOanda(), fakeTelegram(), {
+      control: { armed: true, riskUsd: 'lots', maxPerDay: null },
+    });
+    check('nonsense falls back to the default rather than to NaN',
+      junk.riskUsd === LIMITS.riskUsd.dflt && junk.cfg.maxPerDay === LIMITS.maxPerDay.dflt,
+      `$${junk.riskUsd}, ${junk.cfg.maxPerDay}/day`,
+      'NaN units would reach the venue as a rejected order at best');
+
+    // Absent is not the same as out of range. Number(null) is 0, which is
+    // finite, so a field an older app build never wrote used to be clamped to
+    // the MINIMUM — five minutes to answer a proposal instead of sixty.
+    const partial = await mkDesk(fakeOanda(), fakeTelegram(), { control: { armed: true } });
+    check('a field the app never wrote takes the default, not the minimum',
+      partial.cfg.proposalTtlMin === LIMITS.proposalTtlMin.dflt
+      && partial.cfg.orderTtlHours === LIMITS.orderTtlHours.dflt
+      && partial.cfg.maxPerDay === LIMITS.maxPerDay.dflt,
+      `${partial.cfg.proposalTtlMin}min, ${partial.cfg.orderTtlHours}h, ${partial.cfg.maxPerDay}/day`,
+      'an older build of the app must not silently shorten your answering window');
+
+    // The environment keeps a ceiling the app cannot type past.
+    const capped = await mkDesk(fakeOanda(), fakeTelegram(), {
+      env: { XAG_MAX_RISK_USD: '5' }, control: { armed: true, riskUsd: 25 },
+    });
+    check('the box can set a ceiling below the app’s own maximum',
+      capped.riskUsd === 5, `$${capped.riskUsd}`);
+  }
+
+  // ── The risk setting actually changes the size ───────────────────────────
+  {
+    const o = fakeOanda();
+    const d = await mkDesk(o, fakeTelegram(), { control: { armed: true, riskUsd: 6 } });
+    const p = await d.propose(armed());
+    check('doubling the risk doubles the ounces',
+      p.units === 12 && Math.abs(p.riskUsd - 6) < 1e-6,
+      `${p.units} oz risking $${p.riskUsd}`,
+      '$6 over a $0.50 stop is 12 ounces');
+  }
+
+  // ── A cap on the day, not just on the moment ─────────────────────────────
+  //
+  // "One at a time" bounds what is at risk in any instant. It does nothing
+  // about fill, stop, re-propose, repeat — which is the pattern that empties an
+  // account over an afternoon.
+  {
+    const o = fakeOanda(), t = fakeTelegram();
+    const d = await mkDesk(o, t, { control: { armed: true, maxPerDay: 2 } });
+    const now = Date.now();
+    d.history = [
+      { id: 'a', state: 'placed', closedAt: now - 3600e3 },
+      { id: 'b', state: 'placed', closedAt: now - 7200e3 },
+    ];
+    check('at the daily cap nothing is proposed',
+      (await d.propose(armed())) === null && t.sent.length === 0,
+      `${d._placedToday()} placed today, cap 2`);
+
+    // Skipped and expired proposals are not trades and must not count.
+    d.history = [
+      { id: 'a', state: 'rejected', closedAt: now - 3600e3 },
+      { id: 'b', state: 'expired', closedAt: now - 7200e3 },
+      { id: 'c', state: 'failed', closedAt: now - 7200e3 },
+    ];
+    check('skipped, expired and failed do not spend from the cap',
+      d._placedToday() === 0 && (await d.propose(armed())) !== null,
+      `${d._placedToday()} counted`,
+      'only an order that actually reached the venue is a trade');
+
+    // And the window rolls.
+    const e = await mkDesk(fakeOanda(), fakeTelegram(), { control: { armed: true, maxPerDay: 1 } });
+    e.history = [{ id: 'a', state: 'placed', closedAt: now - 25 * 3600e3 }];
+    check('yesterday’s fills do not count against today',
+      e._placedToday() === 0 && (await e.propose(armed())) !== null);
+  }
+
+  // ── What the app is shown is what is in force ────────────────────────────
+  {
+    const d = await mkDesk(fakeOanda(), fakeTelegram(), {
+      control: { armed: true, riskUsd: 999, maxPerDay: 2 },
+    });
+    await d.tick();
+    const f = d._gh.files['bot/xag-desk.json'];
+    check('the published settings are the clamped ones, not what was typed',
+      f.riskUsd === LIMITS.riskUsd.max && f.maxPerDay === 2,
+      `$${f.riskUsd}, ${f.maxPerDay}/day`,
+      'echoing back an unhonoured number is a promise the desk will not keep');
+    check('permitted and armed are reported separately',
+      f.permitted === true && f.armed === true && f.enabled === true,
+      '', 'off has two causes and only one of them is fixable from the app');
+    check('and the limits travel with it, so the form knows its own bounds',
+      f.limits?.riskUsd?.max === LIMITS.riskUsd.max);
+
+    // The signature has to see a settings change or the app never sees its edit
+    // land — the file would keep showing the old numbers.
+    const before = JSON.stringify(d._gh.files['bot/xag-desk.json']);
+    d._gh.files[CONTROL_PATH] = { ...CONTROL, armed: true, riskUsd: 7 };
+    await d.tick();
+    check('changing a setting republishes, so the screen catches up',
+      JSON.stringify(d._gh.files['bot/xag-desk.json']) !== before
+      && d._gh.files['bot/xag-desk.json'].riskUsd === 7,
+      `$${d._gh.files['bot/xag-desk.json'].riskUsd}`,
+      'the signature used to omit settings and only published by restart accident');
+  }
+
+  // ── The expiries are the ones the app asked for ──────────────────────────
+  {
+    const o = fakeOanda(), t = fakeTelegram();
+    const d = await mkDesk(o, t, { control: { armed: true, proposalTtlMin: 15, orderTtlHours: 2 } });
+    const p = await d.propose(armed());
+    const mins = Math.round((p.expiresAt - p.proposedAt) / 60e3);
+    check('a proposal lives as long as the app said', mins === 15, `${mins} min`);
+
+    t._taps.push({ id: 'c1', data: `xag:ok:${p.id}`, from: '55' });
+    await d.tick();
+    const hours = Math.round((o.placed[0].expiry - Date.now()) / 3600e3);
+    check('and the order rests for as long as the app said', hours === 2, `${hours}h`);
   }
 
   console.log(fails ? `\n${fails} FAILED` : '\nall passed');
