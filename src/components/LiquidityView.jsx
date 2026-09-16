@@ -416,7 +416,7 @@ function Cell({ c }) {
   );
 }
 
-export default function LiquidityView({ onOpen, onLog }) {
+export default function LiquidityView({ onOpen }) {
   const [liq, setLiq] = useState(null);
   const [err, setErr] = useState(null);
   const [showQuiet, setShowQuiet] = useState(false);
@@ -601,7 +601,7 @@ export default function LiquidityView({ onOpen, onLog }) {
           deadline on it. A proposal has an hour; the rest of the tab is a board
           that will still be there. */}
       <div style={{ padding:'10px 10px 0' }}>
-        <XagDeskPanel onLog={onLog}/>
+        <XagDeskPanel/>
       </div>
       <div style={{ padding:'10px 10px 0' }}>
         <div style={{ display:'flex', gap:8, alignItems:'baseline', flexWrap:'wrap' }}>

@@ -393,8 +393,13 @@ class XagDesk {
 
   /** One pass: expire what has lapsed, collect answers, publish. */
   async tick() {
-    if (!this.enabled) return;
     await this._restore();
+
+    // A desk that is off still publishes, once. Otherwise the app has no file
+    // to read and shows "the desk has not published yet" — which reads as
+    // broken, when the truth is that it is switched off and working correctly.
+    // The signature check means this writes a single time and then stays quiet.
+    if (!this.enabled) { await this._publish(); return; }
 
     if (this.pending && Date.now() > this.pending.expiresAt) {
       const p = this.pending;
