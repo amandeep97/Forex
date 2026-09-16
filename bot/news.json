@@ -631,7 +631,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789590002000,
-      "_kind": null
+      "_kind": null,
+      "why": "Reaction hinges on actual print divergence"
     },
     {
       "title": "Economic and event calendar in Asia Thursday, September 17, 2026. FOMC done, moving on!",
@@ -655,7 +656,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789589536000,
-      "_kind": null
+      "_kind": null,
+      "why": "Boring calendar, no clear directional bias"
     },
     {
       "title": "Wall Street falls as Fed signals more hikes, Warsh says inflation still too high",
@@ -672,7 +674,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789589519000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Wall Street falls on Fed hike signals"
     },
     {
       "title": "Fed Rate Hike Sends Treasury Yields Higher and The Stock Market Lower - Mott Capital Management",
@@ -696,7 +702,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789589153000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Hike raises yields, weakens dollar pairs"
     },
     {
       "title": "Gold price buckles under Warsh’s inflation fixation as Fed hikes rates - kitco.com",
@@ -715,7 +727,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789588627000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold buckles under inflation fixation and hike"
     },
     {
       "title": "US Federal Reserve sends Gold to fresh one-month lows - Mitrade",
@@ -734,7 +750,10 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789586325000,
-      "_kind": null
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Fed sends Gold to fresh lows"
     },
     {
       "title": "S&P upgrades Packaging Corp. rating to BBB+ on low leverage",
@@ -748,7 +767,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789588227000
+      "firstAt": 1789588227000,
+      "why": "Single corporate rating upgrade, no index impact"
     },
     {
       "title": "KNDS IPO may be delayed as defense shares weaken - Bloomberg",
@@ -779,7 +799,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789587816000
+      "firstAt": 1789587816000,
+      "why": "Seeking information, no immediate market impact"
     },
     {
       "title": "Goldman CEO says fixed income, currencies, commodities business slightly softer in Q3",
@@ -826,7 +847,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789587454000
+      "firstAt": 1789587454000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Fed hike strengthens dollar, weakens pairs"
     },
     {
       "title": "Federal Reserve hikes key rate for 1st time in 3 years, defying Trump demands for a cut - AP News",
@@ -849,7 +876,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789586325000
+      "firstAt": 1789586325000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Rate hike boosts dollar, pressures metals"
     },
     {
       "title": "'Warsh not only read the markets, but he read the room’: Experts react to Fed rate hike - Firstpost",
@@ -872,7 +905,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789586579000
+      "firstAt": 1789586579000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Rate hike implies stronger dollar environment"
     },
     {
       "title": "Dow Falls 500 Points as the Federal Reserve Raises Key Interest Rate - WSJ",
@@ -889,7 +928,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789586325000
+      "firstAt": 1789586325000,
+      "dir": {
+        "US30": "down"
+      },
+      "why": "Dow falls 500 points on rate hike"
     },
     {
       "title": "Crude Oil WTI stalls at $102.42 with bearish reversal forming: Live",
@@ -906,7 +949,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789586316000
+      "firstAt": 1789586316000,
+      "dir": {
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Bearish reversal forming in crude oil"
     },
     {
       "title": "Natural Gas coils under $2.90 cloud resistance: Live levels",
@@ -920,7 +968,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789586280000
+      "firstAt": 1789586280000,
+      "dir": {
+        "NATGAS": "down"
+      },
+      "why": "Coils under resistance, bearish technical setup"
     },
     {
       "title": "Silver breaks 50% Fib support at $63: Live levels",
@@ -936,7 +988,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789586280000
+      "firstAt": 1789586280000,
+      "dir": {
+        "XAG/USD": "down"
+      },
+      "why": "Silver breaks key support level"
     },
     {
       "title": "London Gas Oil flashes bull trap risk at $1,574: Live levels",
@@ -2379,7 +2435,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-16T20:23:55.578Z",
-  "headlinesAt": "2026-09-16T20:23:55.578Z",
-  "updatedAt": "2026-09-16T20:23:55.578Z"
+  "calendarAt": "2026-09-16T20:25:25.920Z",
+  "headlinesAt": "2026-09-16T20:25:25.920Z",
+  "updatedAt": "2026-09-16T20:25:25.920Z"
 }
