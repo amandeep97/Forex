@@ -863,24 +863,6 @@
       "firstAt": 1789543269000
     },
     {
-      "title": "Gold Holds Below $4,350 Ahead of Federal Reserve Decision - tradingpedia.com",
-      "link": "https://news.google.com/rss/articles/CBMinAFBVV95cUxNQ3NQSmI1RnpIWENmU1RqVVJwcnVzcENEQ00yeWgtUy15dkdSUVJVVW5XcjNlNk56cVMzSUNaUmwzeWlld0VGeWR4eUtwZGwyOFVHVmJjMy13a09NUlE4aFNDU1dvQ0hCOFMtMTBFcElYS2pzc1RUSE54eVdfMGpTdGppd3ZMVXBOaURXSzRYRW9iZ0pnUFpoNWYzOVU?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMinAFBVV95cUxNQ3NQSmI1RnpIWENmU1RqVVJwcnVzcENEQ00yeWgtUy15dkdSUVJVVW5XcjNlNk56cVMzSUNaUmwzeWlld0VGeWR4eUtwZGwyOFVHVmJjMy13a09NUlE4aFNDU1dvQ0hCOFMtMTBFcElYS2pzc1RUSE54eVdfMGpTdGppd3ZMVXBOaURXSzRYRW9iZ0pnUFpoNWYzOVU?oc=5\" target=\"_bla",
-      "at": 1789543075000,
-      "inst": [
-        "XAU/USD"
-      ],
-      "ccy": [
-        "XAU",
-        "USD"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789540770000
-    },
-    {
       "title": "‘Getting punched in the face’: Photos reveal aftermath of Iran strikes on US bases - The Times of India",
       "link": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxPa1ZjQWItZTdVQnk2aktxOEhza0FUbUc1NUxZUmpkVTBGQkVGSHZsZ2llQVk3N3dFXzRZYXN2QWZCSWNoT1dZaG40NEQteWthU2x4Tk0wWk1kbFpycy1LcktxdC1Vd2NCcVoyT1k3VWNaTndzZDFRZFM2dU1fY2lfTjJnLUdIbTMzTDJITGtOWTh3aVo0WlVncGE2eTA5Ukp4Tk84b2xOQ25nd25tVjhlSVBacEUtZ1E3YVhQWi05azJibUZ5Nm9wNG5acFlCTF93UkZnR2RYREYzUnIyVnZ1OFJCd3BDSnR4MXI5VExvcGrSAfYBQVVfeXFMUHJtY2MxYVV1dzZsOVF1d09nSFk3ZUZBTDhBZzJCODBwaGdyeXMta21NRHRhSjNueUxkaURVUDliaVdIUVJ6VmkwalhHbnZzZTVZZk1ZQTRHYUhnQmpEczdvOVljZkVYbFRwOUwxUTJNWG9PRjk0RW92TmY4d3NmcDdBR2t2TlRjYklyTmZTT1pYWDUweDMxSXdXYlI4NS1EaWVvZDNldVVMS2g4X3poNWVnTUt2U0xLQXNFeGlycVpxZFhxUnNORFZaUG5XWjlaMXhMdG5keDJZNHRNVHY3UmpHSUt1MmQ2RnNMeHNzUm9WRm1oMTZn?oc=5",
       "source": "Wires (geo)",
@@ -1085,7 +1067,7 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 2,
+      "srcs": 1,
       "firstAt": 1789540770000
     },
     {
@@ -1309,6 +1291,26 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789532381000
+    },
+    {
+      "title": "IDF kills senior Hamas Rafah Brigade commander Nael Abu Obeid in Gaza Strip strike - The Jerusalem Post",
+      "link": "https://news.google.com/rss/articles/CBMibkFVX3lxTFBHaVZYa0FzZ3ZBclR6Zng5X2ZHek9SZURscXBKa2FtSXI0OEVPd21pdlVGd1RGU2FNVEZlMVhlWDdlZXRNYUFjVDd5NklURU4tTDVWUmJDM1E1eVRxNkpRRUozWjA4bFJSUFk3Q1dR?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMibkFVX3lxTFBHaVZYa0FzZ3ZBclR6Zng5X2ZHek9SZURscXBKa2FtSXI0OEVPd21pdlVGd1RGU2FNVEZlMVhlWDdlZXRNYUFjVDd5NklURU4tTDVWUmJDM1E1eVRxNkpRRUozWjA4bFJSUFk3Q1dR?oc=5\" target=\"_blank\">IDF kills senior Hamas Rafah Brigade commander Nael Abu Obe",
+      "at": 1789533648000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789533369000
     },
     {
       "title": "US-Iran war has caused supply-chain bottlenecks in Pentagon, report finds - The Jerusalem Post",
@@ -2429,10 +2431,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-16T08:03:08.116Z",
-  "headlinesAt": "2026-09-16T08:03:08.116Z",
-  "updatedAt": "2026-09-16T08:03:08.116Z"
+  "calendarAt": "2026-09-16T08:04:24.582Z",
+  "headlinesAt": "2026-09-16T08:04:24.582Z",
+  "updatedAt": "2026-09-16T08:04:24.582Z"
 }
