@@ -634,7 +634,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789580549000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions news lacks immediate clear directional impact."
     },
     {
       "title": "US DFC approves $500 million in guarantees to boost US exports to emerging markets",
@@ -683,7 +684,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789580014000,
-      "_kind": null
+      "_kind": null,
+      "why": "Speculative Fed commentary, no clear directional signal."
     },
     {
       "title": "Palantir, Microsoft’s biggest warning gets real for AI stocks",
@@ -698,7 +700,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789579980000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "AI stock warning implies bearish sentiment for tech."
     },
     {
       "title": "US House discusses Russia Sanctions Bill, recorded vote pending- Moneycontrol.com - LinkedIn",
@@ -719,7 +725,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789578195000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions bill discussion is uncertain and pending."
     },
     {
       "title": "Chevron Doesn’t Need Oil to Hit New Highs. Here’s What Could Drive the Stock Instead",
@@ -736,7 +743,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789579812000,
-      "_kind": null
+      "_kind": null,
+      "why": "Stock-specific news, no clear oil price direction."
     },
     {
       "title": "Russian spy satellites linked to Iran strikes: New evidence & analysis - Modern Ghana",
@@ -757,7 +765,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789576811000,
-      "_kind": null
+      "_kind": null,
+      "why": "Geopolitical evidence, no immediate market direction."
     },
     {
       "title": "Continental Resources signs Venezuela oil development deal",
@@ -774,7 +783,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789579484000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "New supply deal implies bearish pressure on oil."
     },
     {
       "title": "Bitcoin ETF Outflows Hit $450mn as CLARITY Act Stalls in Senate",
@@ -791,7 +804,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789579325000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "BTC/USDT": "down"
+      },
+      "why": "ETF outflows and legislative stall are bearish."
     },
     {
       "title": "U.S. retail sales beat expectations with 1.2% gain in August",
@@ -814,7 +831,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789579369000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Strong US data implies stronger dollar, bearish pairs."
     },
     {
       "title": "M&A stock targets: quantitative screener picks and analyst watchlist names",
@@ -837,7 +860,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789579347000,
-      "_kind": null
+      "_kind": null,
+      "why": "General M&A news, no clear directional impact."
     },
     {
       "title": "Bitcoin Falls Under $76,000 After the Senate Stalls the CLARITY Act. Why BTC Took the Smallest Hit at 1.5%",
@@ -854,7 +878,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789579325000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "BTC/USDT": "down"
+      },
+      "why": "Price drop and legislative stall are bearish."
     },
     {
       "title": "Kosovo’s former president guilty of war crimes",
@@ -872,7 +900,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789579215000,
-      "_kind": null
+      "why": "Legal verdict has no clear gold price impact."
     },
     {
       "title": "Academy Sports Director Marley Sells 10,432 Shares at $53.25",
@@ -884,8 +912,7 @@
       "sev": 1,
       "rel": 1,
       "srcs": 1,
-      "firstAt": 1789579202000,
-      "_kind": null
+      "firstAt": 1789579202000
     },
     {
       "title": "Carnival selloff overdone, a buying opportunity into earnings: Stifel",
@@ -897,8 +924,7 @@
       "sev": 1,
       "rel": 1,
       "srcs": 1,
-      "firstAt": 1789579141000,
-      "_kind": null
+      "firstAt": 1789579141000
     },
     {
       "title": "Eight children among 21 killed after war-damaged Gaza building collapses, rescuers say",
@@ -918,7 +944,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789579007000
+      "firstAt": 1789579007000,
+      "why": "Tragic news, no clear immediate market direction."
     },
     {
       "title": "WATCH LIVE: House considers bills on Russia sanctions, AI data center costs - PBS",
@@ -938,7 +965,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789576287000
+      "firstAt": 1789576287000,
+      "why": "Bills under consideration, outcome uncertain."
     },
     {
       "title": "Stock Market Today: Nasdaq Leads Gains As Fed News Looms; Oil Ship Stocks Sail North (Live Coverage)",
@@ -957,7 +985,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789578842000
+      "firstAt": 1789578842000,
+      "dir": {
+        "USOIL": "up",
+        "US500": "up",
+        "US100": "up"
+      },
+      "why": "Nasdaq leads gains, oil stocks sail north."
     },
     {
       "title": "Russian Attacks Kill 6, Injure 17, Including 2 Children, Across Ukraine - Kyiv Post",
@@ -1106,7 +1140,7 @@
       "firstAt": 1789578050000
     },
     {
-      "title": "Will the Fed interest rate decision change expectations for further hikes? - fxstreet.com",
+      "title": "Will the Fed interest rate decision change expectations for further hikes? - FXStreet",
       "link": "https://news.google.com/rss/articles/CBMiswFBVV95cUxNZm54Y2RSUm9IYlFmSlRyQWNsdUxheXNRbkJwdV9Da2p1dFFIOGFENnlfRzRCNDRxd2ZOSkhEZWx2LVh6QlQwQzA5MlZscTMzdExvbXQxemdFX2ZwWWRGZkV5Nml2OGd6M1d5djFYMWFxaVM1Y3B1bXRtelpLRGxNNktlZ05MVlNtY3JOd1ZmNGZRcUZScVV1UUNZSWplanRfYkVEdTJwZ0wtQWo1MUdBcldsaw?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiswFBVV95cUxNZm54Y2RSUm9IYlFmSlRyQWNsdUxheXNRbkJwdV9Da2p1dFFIOGFENnlfRzRCNDRxd2ZOSkhEZWx2LVh6QlQwQzA5MlZscTMzdExvbXQxemdFX2ZwWWRGZkV5Nml2OGd6M1d5djFYMWFxaVM1Y3B1bXRtelpLRGxNNktlZ05MVlNtY3JOd1ZmNGZRcUZScVV1UUNZSWplanRfYkVEdTJwZ0wtQW",
@@ -2342,7 +2376,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-16T17:48:41.116Z",
-  "headlinesAt": "2026-09-16T17:48:41.116Z",
-  "updatedAt": "2026-09-16T17:48:41.116Z"
+  "calendarAt": "2026-09-16T17:50:41.564Z",
+  "headlinesAt": "2026-09-16T17:50:41.565Z",
+  "updatedAt": "2026-09-16T17:50:41.565Z"
 }
