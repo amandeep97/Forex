@@ -18,7 +18,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789594800000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down",
+        "US30": "down"
+      },
+      "why": "Dow falls 600 points, markets troubled."
     },
     {
       "title": "Oil halts surge after key Saudi pipeline said to restart at half capacity in days",
@@ -35,7 +40,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789594724000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Oil halts surge, supply restarts."
     },
     {
       "title": "Goldman Sachs sees slightly softer fixed income, currencies, commodities business, higher costs",
@@ -71,7 +80,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789591958000
+      "firstAt": 1789591958000,
+      "dir": {
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Rate hike strengthens dollar, weakens FX."
     },
     {
       "title": "Colombia stocks lower at close of trade; COLCAP down 2.16%",
@@ -85,7 +99,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789593903000
+      "firstAt": 1789593903000,
+      "why": "Colombia stocks lower, irrelevant to US500."
     },
     {
       "title": "Watch: Leaked photos reveal extensive damage at US bases in Gulf",
@@ -105,7 +120,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789593864000
+      "firstAt": 1789593864000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Geopolitical risk boosts gold and oil."
     },
     {
       "title": "Here are five key takeaways from Wednesday's Fed rate hike",
@@ -128,7 +149,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789593831000
+      "firstAt": 1789593831000,
+      "dir": {
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Rate hike implies stronger dollar."
     },
     {
       "title": "Russia stocks lower at close of trade; MOEX Russia Index down 1.93%",
@@ -142,7 +168,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789593603000
+      "firstAt": 1789593603000,
+      "why": "Russia stocks lower, irrelevant to US500."
     },
     {
       "title": "Fed Rate Hike Shakes Global Markets; Stocks and Oil Prices Tumble - Devdiscourse",
@@ -161,7 +188,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789590516000
+      "firstAt": 1789590516000,
+      "dir": {
+        "USOIL": "down",
+        "US500": "down"
+      },
+      "why": "Stocks and oil prices tumble."
     },
     {
       "title": "U.S. Markets Sell Off After Fed’s Warsh Says Inflation Is Still ‘Too High’ - WSJ",
@@ -184,7 +216,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789593120000
+      "firstAt": 1789593120000,
+      "dir": {
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Sell off, hawkish Fed, stronger dollar."
     },
     {
       "title": "Fed approves interest rate hike, signals one more to come this year",
@@ -207,7 +244,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789592871000
+      "firstAt": 1789592871000,
+      "dir": {
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Rate hike signals hawkishness, stronger dollar."
     },
     {
       "title": "Iran strikes US-contracted vessel - Fox News",
@@ -227,7 +269,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789592699000
+      "firstAt": 1789592699000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Iran strikes vessel, geopolitical risk rises."
     },
     {
       "title": "US interest rates raised for first time in three years",
@@ -250,7 +298,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789592531000
+      "firstAt": 1789592531000,
+      "dir": {
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Rate hike strengthens dollar, weakens FX."
     },
     {
       "title": "Intel’s stock rises as investors hope memory chips can mark the next step in its turnaround",
@@ -286,7 +339,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789590516000
+      "firstAt": 1789590516000,
+      "why": "Markets rise, assessing hike, direction unclear."
     },
     {
       "title": "Why optical stocks Lumentum and Coherent were the day’s biggest S&P 500 gainers",
@@ -301,7 +355,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789591920000
+      "firstAt": 1789591920000,
+      "why": "Specific stock gainers, no broad index direction."
     },
     {
       "title": "Here’s a sneaky way to play the Fed’s rate increase",
@@ -324,7 +379,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789591080000
+      "firstAt": 1789591080000,
+      "why": "Trading strategy advice, no clear direction."
     },
     {
       "title": "Oil slips as Saudi Arabia offers more crude via Oman",
@@ -1628,7 +1684,7 @@
       "firstAt": 1789572466000
     },
     {
-      "title": "IDF warns northern Israel communities prior to southern Lebanon strikes - The Jerusalem Post",
+      "title": "IDF warns northern Israel communities prior to southern Lebanon strikes - jpost.com",
       "link": "https://news.google.com/rss/articles/CBMibkFVX3lxTE9KeU5YTEJTb0dYaGtEY3ZON3FGR3M5UkR4dVFwdnB5N2tTZzZCTG0xeEdwTEt5S1pIOHY2VUVPZmp0OEQxX3RzQmNYdDkwd3BPVVh0RlAzeU9sZGxSOC1oSjVWWFVELWRLZG1XN05R?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMibkFVX3lxTE9KeU5YTEJTb0dYaGtEY3ZON3FGR3M5UkR4dVFwdnB5N2tTZzZCTG0xeEdwTEt5S1pIOHY2VUVPZmp0OEQxX3RzQmNYdDkwd3BPVVh0RlAzeU9sZGxSOC1oSjVWWFVELWRLZG1XN05R?oc=5\" target=\"_blank\">IDF warns northern Israel communities prior to southern Leb",
@@ -1791,6 +1847,6 @@
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-16T22:03:09.057Z",
-  "updatedAt": "2026-09-16T22:03:09.057Z"
+  "headlinesAt": "2026-09-16T22:04:11.059Z",
+  "updatedAt": "2026-09-16T22:04:11.059Z"
 }
