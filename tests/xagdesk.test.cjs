@@ -7,7 +7,7 @@
 // being automated is the watching and the arithmetic, and the judgement stays
 // with a person. That only holds if the gate between proposal and venue is
 // airtight.
-const { XagDesk, SYM, OANDA_SYM, CONTROL_PATH, LIMITS, clamp } = require('../vps-bot/src/xagDesk');
+const { XagDesk, SYM, OANDA_SYM, CONTROL_PATH, LIMITS, HEARTBEAT, clamp } = require('../vps-bot/src/xagDesk');
 
 let fails = 0;
 const check = (n, c, e = '') => { console.log(`${c ? '  ok  ' : '  FAIL'}  ${n}${e ? ' — ' + e : ''}`); if (!c) fails++; };
@@ -47,10 +47,19 @@ function fakeTelegram(taps = []) {
 
 const memGithub = () => {
   const files = {};
+  // Writes are counted per path. Asserting on the `at` timestamp instead looked
+  // reasonable and was not: three ticks against in-memory fakes finish inside
+  // one millisecond, so a genuine republish produced an identical ISO string
+  // and the test failed on clock resolution rather than on behaviour.
+  const writes = {};
   return {
-    files,
+    files, writes,
     async readJSON(p) { return files[p] ? { content: files[p], sha: 'x' } : null; },
-    async writeJSON(p, payload) { files[p] = JSON.parse(JSON.stringify(payload)); return 'x'; },
+    async writeJSON(p, payload) {
+      files[p] = JSON.parse(JSON.stringify(payload));
+      writes[p] = (writes[p] || 0) + 1;
+      return 'x';
+    },
   };
 };
 
@@ -568,6 +577,36 @@ const armed = (over = {}) => ({
     check('but another instrument being short does not block silver',
       (await d3.propose(armed())) !== null,
       '', 'gold and silver are related, not the same book');
+  }
+
+  // ── Proof of life ────────────────────────────────────────────────────────
+  //
+  // The desk only republished when something changed, so on a normal day —
+  // nothing pending, nothing placed — the timestamp froze and the panel counted
+  // up from it. A desk quietly watching silver and a desk whose process died
+  // looked identical, and the second is the one worth knowing about.
+  {
+    const d = await mkDesk(fakeOanda(), fakeTelegram());
+    const n = () => d._gh.writes['bot/xag-desk.json'] || 0;
+    await d.tick();
+    const first = n();
+
+    await d.tick(); await d.tick();
+    check('an unchanged desk does not rewrite the file every tick',
+      n() === first, `${n()} write(s) after three ticks`,
+      'a heartbeat on every tick would be a commit a minute for nothing');
+
+    // Once it has been quiet for a while, it says so anyway.
+    d.publishedAt = Date.now() - HEARTBEAT - 1000;
+    await d.tick();
+    check('but after a quiet stretch it republishes, so the age stays honest',
+      n() === first + 1,
+      `${n()} write(s), heartbeat ${Math.round(HEARTBEAT / 60e3)} min`,
+      '"nothing has happened" and "nothing is running" must not look the same');
+    check('and the heartbeat is comfortably shorter than the answer window',
+      HEARTBEAT < LIMITS.proposalTtlMin.dflt * 60e3,
+      `${Math.round(HEARTBEAT / 60e3)} min vs ${LIMITS.proposalTtlMin.dflt} min`,
+      'a stale screen must not be possible while a proposal is live on it');
   }
 
   console.log(fails ? `\n${fails} FAILED` : '\nall passed');
