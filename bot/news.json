@@ -19,7 +19,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789529236000,
-      "_kind": null
+      "_kind": null,
+      "why": "Mixed market news, no clear direction"
     },
     {
       "title": "Answer Saudi Arabia: Israel must take the opportunity presented by the Houthi attack - editorial - The Jerusalem Post",
@@ -39,7 +40,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789525484000
+      "firstAt": 1789525484000,
+      "why": "Geopolitical tension, unclear immediate market impact"
     },
     {
       "title": "Factbox-Private equity, foreign investors fuel Aussie M&A activity in 2026",
@@ -55,7 +57,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789527269000
+      "firstAt": 1789527269000,
+      "why": "M&A activity, no direct currency impact"
     },
     {
       "title": "House votes to limit Trump's power to strike Iran for 3rd time, as 7 Republicans defect - CBS News",
@@ -75,7 +78,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789526100000
+      "firstAt": 1789526100000,
+      "why": "Political news, unclear market direction"
     },
     {
       "title": "US House advances Russia sanctions bill, paving way for final vote - The Kyiv Independent",
@@ -95,7 +99,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789525781000
+      "firstAt": 1789525781000,
+      "why": "Sanctions bill, unclear immediate market impact"
     },
     {
       "title": "Gold slips ahead of Fed decision as oil, yields keep rate-hike bets elevated - Investing.com Australia",
@@ -117,7 +122,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789524860000
+      "firstAt": 1789524860000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold slips, oil/yields elevated"
     },
     {
       "title": "Oil prices dip as U.S. inventory build offsets M.East supply jitters",
@@ -133,7 +142,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789524572000
+      "firstAt": 1789524572000,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Inventory build offsets supply jitters"
     },
     {
       "title": "Bond Market's Extreme' Short Counts On Fed To Deliver Rate Hike - NDTV Profit",
@@ -156,7 +169,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789524431000
+      "firstAt": 1789524431000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Rate hike expectations support dollar"
     },
     {
       "title": "Saudi Arabia cancels oil to Europe over East-West pipeline blast",
@@ -176,7 +195,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789523607000
+      "firstAt": 1789523607000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Supply disruption supports oil prices"
     },
     {
       "title": "DRC-Rwanda: Can Geneva talks break the cycle of war in eastern Congo?",
@@ -193,7 +217,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789522957000
+      "firstAt": 1789522957000,
+      "why": "Regional conflict, unclear gold impact"
     },
     {
       "title": "Attacks on Saudi oil expose Iraqi PM’s struggle to control armed factions",
@@ -213,7 +238,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789522514000
+      "firstAt": 1789522514000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Pipeline attack implies supply risk"
     },
     {
       "title": "UK sanctions on Israel ‘fall far short’ of its obligations, legal experts say - The Guardian",
@@ -233,7 +263,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789522200000
+      "firstAt": 1789522200000,
+      "why": "Legal opinion, no market impact"
     },
     {
       "title": "Australia’s Reliance Worldwide agrees to Brookfield’s $2.9 billion buyout bid",
@@ -249,7 +280,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789521892000
+      "firstAt": 1789521892000,
+      "why": "Corporate buyout, no direct currency impact"
     },
     {
       "title": "US Dollar Supported by Expectations of Federal Reserve Rate Hikes - Global Banking & Finance Review",
@@ -272,7 +304,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789520810000
+      "firstAt": 1789520810000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Strong dollar expectations bearish for pairs"
     },
     {
       "title": "Oil falls as US crude inventories rise despite Saudi supply concerns",
@@ -289,7 +327,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789520446000
+      "firstAt": 1789520446000,
+      "dir": {
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Inventory rise outweighs supply concerns"
     },
     {
       "title": "US House of Representatives advances bill on sanctions against Russia and Iran - UA.NEWS",
@@ -1768,6 +1811,6 @@
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-16T03:39:08.743Z",
-  "updatedAt": "2026-09-16T03:39:08.743Z"
+  "headlinesAt": "2026-09-16T03:40:10.559Z",
+  "updatedAt": "2026-09-16T03:40:10.559Z"
 }
