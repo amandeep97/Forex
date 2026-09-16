@@ -18,7 +18,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789533040000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USD/CHF": "down"
+      },
+      "why": "Dollar declines, Swiss Franc edges higher"
     },
     {
       "title": "Gold rises ₹1,291 amid Fed rate-hike concerns, silver jumps ₹3,667 - Business Standard",
@@ -39,7 +43,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789533040000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "XAG/USD": "up"
+      },
+      "why": "Gold and silver prices rise"
     },
     {
       "title": "Congress Should Tighten Sanctions on Iran and Russia - Tikvah Ideas",
@@ -60,7 +69,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789530720000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions proposal unclear for immediate market direction"
     },
     {
       "title": "UK CPI preview: Inflation test lands just before the BOE rate decision",
@@ -79,7 +89,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789531958000,
-      "_kind": null
+      "_kind": null,
+      "why": "Inflation data release pending, direction unclear"
     },
     {
       "title": "Warsh likely to side with financial markets over Trump as Fed rate hike expected - WSLS",
@@ -102,7 +113,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789531289000
+      "firstAt": 1789531289000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Fed rate hike expectations strengthen dollar"
     },
     {
       "title": "Chinese investors rush into US stocks as Beijing opens wider path overseas",
@@ -116,7 +133,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789531227000
+      "firstAt": 1789531227000,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Chinese investors rush into US stocks"
     },
     {
       "title": "Crypto Clarity Act fails in Senate, leaving these stocks in regulatory limbo",
@@ -133,7 +154,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789530892000
+      "firstAt": 1789530892000,
+      "why": "Regulatory limbo, no clear immediate direction"
     },
     {
       "title": "'Ukraine Could Fall This Winter': Huge Warning From U.S. As Senators Oppose Russia Sanctions Bill - The Times of India",
@@ -153,7 +175,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789530720000
+      "firstAt": 1789530720000,
+      "why": "Geopolitical warning, no clear price direction"
     },
     {
       "title": "Asian stocks edge higher as Fed decision looms, oil rally pauses",
@@ -171,7 +194,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789530100000
+      "firstAt": 1789530100000,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Asian stocks edge higher, oil steady"
     },
     {
       "title": "Asian stocks struggle as markets await Fed rate decision amid inflation concerns - Malay Mail",
@@ -188,7 +215,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789530100000
+      "firstAt": 1789530100000,
+      "why": "Markets await Fed decision, direction unclear"
     },
     {
       "title": "Trump administration plans $2.8bn sale of 2,000-pound bombs to Israel",
@@ -205,7 +233,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789529990000
+      "firstAt": 1789529990000,
+      "why": "Bomb sale news, no clear FX impact"
     },
     {
       "title": "China’s defence chief warns against coercion, avoids US, Japan mention",
@@ -222,7 +251,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789529937000
+      "firstAt": 1789529937000,
+      "why": "Diplomatic warning, no clear currency direction"
     },
     {
       "title": "investingLive Asia-Pacific market news: Oil steady, crypto weighed",
@@ -241,7 +271,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789529236000
+      "firstAt": 1789529236000,
+      "why": "Oil steady, crypto weighed, no clear direction"
     },
     {
       "title": "Answer Saudi Arabia: Israel must take the opportunity presented by the Houthi attack - editorial - The Jerusalem Post",
@@ -261,7 +292,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789525484000
+      "firstAt": 1789525484000,
+      "why": "Editorial opinion, no clear market direction"
     },
     {
       "title": "Factbox-Private equity, foreign investors fuel Aussie M&A activity in 2026",
@@ -277,7 +309,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789527269000
+      "firstAt": 1789527269000,
+      "why": "M&A activity factbox, no clear direction"
     },
     {
       "title": "House votes to limit Trump's power to strike Iran for 3rd time, as 7 Republicans defect - CBS News",
@@ -320,24 +353,26 @@
       "firstAt": 1789525781000
     },
     {
-      "title": "Gold slips ahead of Fed decision as oil, yields keep rate-hike bets elevated - Investing.com India",
-      "link": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxQM3U3dGdjYkZndGs1U0ZWUnVNdXQtRW1CTGJNQ19hekNGTGNYem1MSDZJRWxWbVBLY1d1R09fVGdMZFVtZkJjNi1RWE1aNGdmd2lKdE5xellHOFBrbWJNalNuMFdpeEFKN1BXUW1tTElhTi1Sd1VqZ0twRHl6LUs5RE4waGMyRWNpNkE3cEhCMHJVUXR6R3BFNmx2TjFtZ19XT1ZORjFJWXpOaHlScm1xUnY2ZktnaUtXTTB2ejhCOVFpYWZZNVVuaQ?oc=5",
+      "title": "Gold slips ahead of Fed decision as oil, yields keep rate-hike bets elevated - Investing.com Australia",
+      "link": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxOaUliRUxNYTVoZzNnc0d5WGxTaUhidmo1WHoxUXNDOS0tU0NwSlh3c2RJaWpRVzFhRTROWmgteXRqdGlMUzd4Zi1fa2VPbFctcVhMNEM0aE1waDViVTAyR21PYkNuUlZoa1FPZE4tSTR2Vm85TGpGTU00VGFZVXI1RVVRbU9SbFNfaThpa2JEODQyZENTaHlWYmlXZWZKcTlRd05aUm9YSEIxWDV6ckR6WWM4YmJ2WHBiZTI5WDVic2NCNkl5bWk2bw?oc=5",
       "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiyAFBVV95cUxQM3U3dGdjYkZndGs1U0ZWUnVNdXQtRW1CTGJNQ19hekNGTGNYem1MSDZJRWxWbVBLY1d1R09fVGdMZFVtZkJjNi1RWE1aNGdmd2lKdE5xellHOFBrbWJNalNuMFdpeEFKN1BXUW1tTElhTi1Sd1VqZ0twRHl6LUs5RE4waGMyRWNpNkE3cEhCMHJVUXR6R3BFNmx2TjFtZ19XT1ZORjFJWXpOaH",
-      "at": 1789524723000,
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiyAFBVV95cUxOaUliRUxNYTVoZzNnc0d5WGxTaUhidmo1WHoxUXNDOS0tU0NwSlh3c2RJaWpRVzFhRTROWmgteXRqdGlMUzd4Zi1fa2VPbFctcVhMNEM0aE1waDViVTAyR21PYkNuUlZoa1FPZE4tSTR2Vm85TGpGTU00VGFZVXI1RVVRbU9SbFNfaThpa2JEODQyZENTaHlWYmlXZWZKcTlRd05aUm9YSEIxWD",
+      "at": 1789524860000,
       "inst": [
         "XAU/USD",
+        "AUD/USD",
         "USOIL"
       ],
       "ccy": [
         "USD",
+        "AUD",
         "XAU",
         "OIL"
       ],
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789524723000
+      "firstAt": 1789524860000
     },
     {
       "title": "Oil prices dip as U.S. inventory build offsets M.East supply jitters",
@@ -1476,6 +1511,29 @@
       "firstAt": 1789497120000
     },
     {
+      "title": "Ten-year Treasury yield hits highest level since 2007 - Financial Times",
+      "link": "https://news.google.com/rss/articles/CBMihAFBVV95cUxNRkFXQVZYTHlqVDctU2ZDTTBLWVEycHpiUFI0SWd6TFVZbDNZQVJiVGxHcG9mNmR4NnVYLUd1U3o0bTl4UkZCRG8ya01SdndPa2dOOXZacXJBYTBLSlVNNXUtclpldHREZVhYX25CakNVMVNfWmdBSjRldlJUOU1nRlY1ZHY?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMihAFBVV95cUxNRkFXQVZYTHlqVDctU2ZDTTBLWVEycHpiUFI0SWd6TFVZbDNZQVJiVGxHcG9mNmR4NnVYLUd1U3o0bTl4UkZCRG8ya01SdndPa2dOOXZacXJBYTBLSlVNNXUtclpldHREZVhYX25CakNVMVNfWmdBSjRldlJUOU1nRlY1ZHY?oc=5\" target=\"_blank\">Ten-year Treasury yield hits",
+      "at": 1789496033000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789496033000
+    },
+    {
       "title": "Ukraine's Zelenskyy tells CBS News Russia tried to attack his plane with drones twice in recent weeks - CBS News",
       "link": "https://news.google.com/rss/articles/CBMiogFBVV95cUxQeXdzc2RrLVZPRU9EdGpTTUZ4UXhEekpWU29zOGFrNlhGYi04LUphUVFFT1JKdU90YXRjNVVXNHYzV3FRSEoyVTVEN0haOW9mRHJ3alJ0bEtmWW4tSm1qY2xVaFJjYXFEa1JQYkZmZ3pWRzhWcUZXZVdzOXpMS3pqdlRnS0Z4ZThSYVNkbzBnbnRiRlJLVWp2ZmNUY1g0aFZmemc?oc=5",
       "source": "Wires (geo)",
@@ -1711,28 +1769,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789489143000
-    },
-    {
-      "title": "New York won’t crack down on Canada, UK for Israel sanctions - Gothamist",
-      "link": "https://news.google.com/rss/articles/CBMijgFBVV95cUxQLXRaSEphbWhxZzkyT0pBU0JpZjhXS203ckpCOFJqUnQtRUktSFVlRmI5cE1icmtBQXh3eUJlSTA5dTlNeXZkeGFjRVZVNU54b3BFOXlxYjM1N1FZdjIxZDlOSUMwRGhkc1NVSmVXUE1pcGJyY3Bod2xMdjQtNkVqRGR6RGxPZVh1eEEwQV93?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMijgFBVV95cUxQLXRaSEphbWhxZzkyT0pBU0JpZjhXS203ckpCOFJqUnQtRUktSFVlRmI5cE1icmtBQXh3eUJlSTA5dTlNeXZkeGFjRVZVNU54b3BFOXlxYjM1N1FZdjIxZDlOSUMwRGhkc1NVSmVXUE1pcGJyY3Bod2xMdjQtNkVqRGR6RGxPZVh1eEEwQV93?oc=5\" target=\"_blank\">New York won’t ",
-      "at": 1789488960000,
-      "inst": [
-        "USD/CAD",
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "CAD",
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789488960000
     }
   ],
   "sources": [
@@ -1755,10 +1791,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-16T04:38:53.515Z",
-  "updatedAt": "2026-09-16T04:38:53.515Z"
+  "headlinesAt": "2026-09-16T04:40:42.366Z",
+  "updatedAt": "2026-09-16T04:40:42.366Z"
 }
