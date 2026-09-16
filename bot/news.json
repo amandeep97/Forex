@@ -633,6 +633,28 @@
   ],
   "headlines": [
     {
+      "title": "Canada Building permits for the month of July -17.3 vs -6.4% estimate",
+      "link": "https://investinglive.com/news/canada-building-permits-for-the-month-of-july-17-3-vs-6-4-estimate/",
+      "source": "ForexLive",
+      "desc": "Prior month +18.3% This article was written by Greg Michalowski at investinglive.com.",
+      "at": 1789561835000,
+      "inst": [
+        "USD/CAD"
+      ],
+      "ccy": [
+        "CAD"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789561835000,
+      "_kind": null,
+      "dir": {
+        "USD/CAD": "down"
+      },
+      "why": "Weak Canadian data weakens CAD"
+    },
+    {
       "title": "US August advance retail sales +1.2% vs +0.8% expected",
       "link": "https://investinglive.com/news/us-august-advance-retail-sales-vs-0-8-expected/",
       "source": "ForexLive",
@@ -654,7 +676,13 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789560788000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Strong US data boosts dollar"
     },
     {
       "title": "Store brands like Kirkland are winning the war for consumer wallets, squeezing out national brands",
@@ -672,7 +700,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789561800000,
-      "_kind": null
+      "_kind": null,
+      "why": "Retail news irrelevant to gold"
     },
     {
       "title": "Eight children among 21 killed after war-damaged Gaza building collapses, rescuers say",
@@ -693,7 +722,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789561576000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Geopolitical risk boosts safe haven gold"
     },
     {
       "title": "Dollarama raises annual sales forecast in Canada as inflation-hit shoppers trade down",
@@ -711,7 +744,40 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789561484000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USD/CAD": "up"
+      },
+      "why": "Strong Canadian retail sales boost CAD"
+    },
+    {
+      "title": "Fed expected to raise interest rates for first time since 2023",
+      "link": "https://finance.yahoo.com/economy/policy/articles/fed-expected-raise-interest-rates-122319797.html",
+      "source": "Yahoo Finance",
+      "at": 1789561399000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789561399000,
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Rate hike expectations strengthen dollar"
     },
     {
       "title": "Basic Materials Roundup: Market Talk",
@@ -742,7 +808,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789560741000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "BTC/USDT": "down",
+        "ETH/USDT": "down"
+      },
+      "why": "Legislative failure creates regulatory uncertainty"
     },
     {
       "title": "Explainer-EU chief wants Canada to become an ’associate member’. What does that mean?",
@@ -759,7 +830,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789561199000,
-      "_kind": null
+      "_kind": null,
+      "why": "Political news unclear for currency"
     },
     {
       "title": "Financial Services Roundup: Market Talk",
@@ -771,8 +843,27 @@
       "sev": 1,
       "rel": 1,
       "srcs": 1,
-      "firstAt": 1789560455000,
+      "firstAt": 1789561140000,
       "_kind": null
+    },
+    {
+      "title": "S&P 500 Trucking Stock Craters On CFO's Warning",
+      "link": "https://www.investors.com/news/sp-500-stocks-jb-hunt-cfo-earnings-oil-diesel-prices-iran-war/?src=A00220&yptr=yahoo",
+      "source": "Yahoo Finance",
+      "at": 1789561071000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789561071000,
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Negative earnings warning hurts index"
     },
     {
       "title": "Alluvium Increases HCA Healthcare (HCA) Holdings After Its 17.5% Selloff",
@@ -803,7 +894,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789560741000,
-      "_kind": null
+      "_kind": null,
+      "why": "Price stable, mixed analyst views"
     },
     {
       "title": "Bond market woes likely a factor for Fed, but intervention seen as unlikely",
@@ -826,7 +918,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789560470000,
-      "_kind": "macro-shock"
+      "_kind": "macro-shock",
+      "why": "No clear directional signal"
     },
     {
       "title": "Stock Market Today: Dow Rises Ahead Of Likely Fed Hike, Warsh Comments; Intel, SK Hynix Jump (Live Coverage)",
@@ -843,7 +936,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789560470000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US30": "up"
+      },
+      "why": "Dow rises ahead of Fed"
     },
     {
       "title": "Dow Jones Futures Rise As Oil Prices, Yields Fall Before Fed Rate Hike; Will Market Rally Bid Bond Voyage?",
@@ -862,22 +959,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789560470000,
-      "_kind": null
-    },
-    {
-      "title": "Here Are Wednesday’s Top Wall Street Analyst Research Calls: Airbnb, Booking Holdings, Credicorp, Dutch Bros, Expedia, Hartford Financial Services, Group, Meritage Homes, Patchex, Yum! Brands, and More",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/wednesday-top-wall-street-analyst-120735558.html",
-      "source": "Yahoo Finance",
-      "at": 1789560455000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789560455000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "down",
+        "US30": "up"
+      },
+      "why": "Oil falls, stocks rise"
     },
     {
       "title": "Taxpayer group criticizes tariff provisions in Russia and Iran sanctions bill - wowo.com",
@@ -898,7 +985,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789560251000
+      "firstAt": 1789560251000,
+      "why": "Sanctions bill news unclear"
     },
     {
       "title": "Oil slips as Saudi Arabia offers more crude via Oman; diesel near record high",
@@ -915,7 +1003,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789560040000
+      "firstAt": 1789560040000,
+      "dir": {
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Increased supply lowers oil prices"
     },
     {
       "title": "The smartest money moves to make with interest rates expected to go higher",
@@ -1886,29 +1979,6 @@
       "firstAt": 1789550667000
     },
     {
-      "title": "CPI inflation: mortgage rates may rise further due to jittery markets - Mortgage Strategy",
-      "link": "https://news.google.com/rss/articles/CBMirgFBVV95cUxQX3NYUEhEYlZMSW1jeVE1OWlIZjVjQW9FZ2RwWDc1a19ySzhMcGZWRnIwTlNodXhsWDNBQUdSUWVITlRnRWdWSHVFQ3BZQ2VldFhQWXVyTkdZWm95YnF3blVBUWhscXZSRzlNOGtzczlJd2Jjb01rRk1CNF9SS0JZNktxOVF0R001eVZaUHhGZ0hVbWJfVnV5OHBGNUgzNEYxS29KaVdxVDVEMENiM1E?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMirgFBVV95cUxQX3NYUEhEYlZMSW1jeVE1OWlIZjVjQW9FZ2RwWDc1a19ySzhMcGZWRnIwTlNodXhsWDNBQUdSUWVITlRnRWdWSHVFQ3BZQ2VldFhQWXVyTkdZWm95YnF3blVBUWhscXZSRzlNOGtzczlJd2Jjb01rRk1CNF9SS0JZNktxOVF0R001eVZaUHhGZ0hVbWJfVnV5OHBGNUgzNEYxS29KaVdxVDVEME",
-      "at": 1789549282000,
-      "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789549282000
-    },
-    {
       "title": "Iran War Escalation Raises Blowback Risks 25 Years After 9/11 - Military.com",
       "link": "https://news.google.com/rss/articles/CBMijgFBVV95cUxPMzdaa2hXSXVQcHlNeHZUTE9sUGM0N2gyc1V0MDdybTdVanh1NmJzcDV2aEczRnh6MHFWVWpGRHhfWkVBa01wWTFHUWFOdUp4bldTSGNua2F1UHBqMHhLaVQwREpxd1FfUTVESGdHbGNVVk11SlNYeXNWY0w2SWVDZDV1cXdWSFhnXzZmMXF3?oc=5",
       "source": "Wires (geo)",
@@ -2334,29 +2404,6 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789541820000
-    },
-    {
-      "title": "Bond markets: Irish yields at 13-year high; UK inflation hits 3.1%; Fed decision looms over US - Business Post",
-      "link": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQRlFPSjVMSkhjelA4YnNpYmZCQ1FBRW1IcDdrVXRnT3Zoc1VBUW9sZkdVNXI3dWhTckNyaFczWUtQWmJhN0JGMFdONnJTb0wybUtjRGFSQ3VCeFNNRHlpdVFVSDMtSFRBZV9PenF4MGhvYWxadlBZNG1JREN5MDJod1FxdlN0XzY1NFkySkRpQzBJcUZ6cHhTV0NqdDlWWWtMSERzcDBKTzI3dVZqMEJwYnd2ejA3dlNSWnc?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiugFBVV95cUxQRlFPSjVMSkhjelA4YnNpYmZCQ1FBRW1IcDdrVXRnT3Zoc1VBUW9sZkdVNXI3dWhTckNyaFczWUtQWmJhN0JGMFdONnJTb0wybUtjRGFSQ3VCeFNNRHlpdVFVSDMtSFRBZV9PenF4MGhvYWxadlBZNG1JREN5MDJod1FxdlN0XzY1NFkySkRpQzBJcUZ6cHhTV0NqdDlWWWtMSERzcDBKTzI3dV",
-      "at": 1789541734000,
-      "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789541734000
     }
   ],
   "sources": [
@@ -2382,7 +2429,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-16T12:35:57.709Z",
-  "headlinesAt": "2026-09-16T12:35:57.709Z",
-  "updatedAt": "2026-09-16T12:35:57.709Z"
+  "calendarAt": "2026-09-16T12:37:26.752Z",
+  "headlinesAt": "2026-09-16T12:37:26.752Z",
+  "updatedAt": "2026-09-16T12:37:26.752Z"
 }
