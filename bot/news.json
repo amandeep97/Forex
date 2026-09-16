@@ -642,7 +642,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789571406000,
-      "_kind": null
+      "_kind": null,
+      "why": "Gaza strike news unclear for markets"
     },
     {
       "title": "93% Chance of a Fed Rate Hike Today. What Happens to Bitcoin Now? - CryptoRank",
@@ -661,6 +662,33 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789569234000,
+      "_kind": null,
+      "why": "Rate hike probability unclear for Bitcoin"
+    },
+    {
+      "title": "Direxion Semiconductor Bull ETF Drops 14% as Chip Sector Faces Sharp Selloff",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/direxion-semiconductor-bull-etf-drops-150500906.html",
+      "source": "Yahoo Finance",
+      "at": 1789571100000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 1,
+      "srcs": 1,
+      "firstAt": 1789571100000,
+      "_kind": null
+    },
+    {
+      "title": "This AI Stock Could Be Worth Far More Than Investors Think",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/ai-stock-could-worth-far-150034323.html",
+      "source": "Yahoo Finance",
+      "at": 1789570834000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 1,
+      "srcs": 1,
+      "firstAt": 1789570834000,
       "_kind": null
     },
     {
@@ -689,7 +717,24 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789570529000,
-      "_kind": null
+      "_kind": null,
+      "why": "Norway stocks irrelevant to US500"
+    },
+    {
+      "title": "6 Dividend Stocks With Huge Yields and Even Bigger Warning Signs",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/6-dividend-stocks-huge-yields-145520736.html",
+      "source": "Yahoo Finance",
+      "at": 1789570520000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789570520000,
+      "_kind": null,
+      "why": "Dividend stock warning signs unclear"
     },
     {
       "title": "Israel stocks higher at close of trade; TA 35 up 1.32%",
@@ -704,20 +749,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789570503000,
-      "_kind": null
-    },
-    {
-      "title": "CEO of Iconic Railroad Stock Unloads More Than 1,000 Shares",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/ceo-iconic-railroad-stock-unloads-145501348.html",
-      "source": "Yahoo Finance",
-      "at": 1789570501000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1789570501000,
-      "_kind": null
+      "_kind": null,
+      "why": "Israel stocks irrelevant to US500"
     },
     {
       "title": "Iran war has cost the US $38bn: How will it impact US economy, politics?",
@@ -738,7 +771,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789570431000,
-      "_kind": null
+      "_kind": null,
+      "why": "War cost impact unclear for assets"
     },
     {
       "title": "Senate is still a tossup, but Democrats now have slight edge, prediction market traders think",
@@ -768,7 +802,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789570226000,
-      "_kind": null
+      "_kind": null,
+      "why": "German politics unclear for EUR/USD"
     },
     {
       "title": "Greece stocks higher at close of trade; Athens General Composite up 0.13%",
@@ -783,20 +818,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789570203000,
-      "_kind": null
-    },
-    {
-      "title": "What History Reveals About Stock Market Crashes During Presidential Transitions",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/history-reveals-stock-market-crashes-145000280.html",
-      "source": "Yahoo Finance",
-      "at": 1789570200000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1789567628000,
-      "_kind": null
+      "_kind": null,
+      "why": "Greece stocks irrelevant to US500"
     },
     {
       "title": "Iranian strikes have damaged hundreds of structures at U.S. bases, watchdog says - The Washington Post",
@@ -817,7 +840,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789570189000,
-      "_kind": null
+      "_kind": null,
+      "why": "Iran strikes unclear for markets"
     },
     {
       "title": "US Politicians Are Buying These Two Stocks",
@@ -832,22 +856,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789567527000,
-      "_kind": null
-    },
-    {
-      "title": "Optics Stocks Rally as Oversold Bounce Takes Hold: Coherent Jumps 6%, Lumentum Climbs 5%, Applied Optoelectronics Advances 3%",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/optics-stocks-rally-oversold-bounce-144615359.html",
-      "source": "Yahoo Finance",
-      "at": 1789569975000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789569975000,
-      "_kind": null
+      "_kind": null,
+      "why": "Politician stock buying unclear for index"
     },
     {
       "title": "US crude oil inventories decline as fuel stocks increase",
@@ -866,7 +876,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789569970000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Crude inventory decline bullish for oil"
     },
     {
       "title": "Dollar Posts Modest Gains Ahead of Expected Fed Rate Hike - Barchart.com",
@@ -889,7 +904,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789566660000
+      "firstAt": 1789566660000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Dollar gains bearish for pairs"
     },
     {
       "title": "Russian drone strike on a passenger bus in Ukraine kills 5 people and wounds at least 7 others - Northeast Mississippi Daily Journal",
@@ -909,7 +930,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789569216000
+      "firstAt": 1789569216000,
+      "why": "Ukraine strike unclear for markets"
     },
     {
       "title": "Billionaire Ray Dalio’s Bridgewater’s and Cathie Wood’s ARK Portfolios: 2 Stocks They Both Own",
@@ -923,7 +945,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789567527000
+      "firstAt": 1789567527000,
+      "why": "Portfolio overlap unclear for index"
     },
     {
       "title": "Debates on sanctions against Russia and Iran have begun in the U.S. House of Representatives - UA.NEWS",
@@ -943,7 +966,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789567200000
+      "firstAt": 1789567200000,
+      "why": "Sanctions debate unclear for markets"
     },
     {
       "title": "J.B. Hunt flags Q3 cost pressures, shares sink 12%",
@@ -1202,22 +1226,6 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789564121000
-    },
-    {
-      "title": "Bitcoin ETFs See $450 Million In Outflows After Clarity Act Vote",
-      "link": "https://finance.yahoo.com/markets/crypto/articles/bitcoin-etfs-see-450-million-135000092.html",
-      "source": "Yahoo Finance",
-      "at": 1789566600000,
-      "inst": [
-        "BTC/USDT"
-      ],
-      "ccy": [
-        "BTC"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789566600000
     },
     {
       "title": "The ‘CIA’ strategy beating the market: How one top-performing money manager spots mispriced stocks",
@@ -2076,7 +2084,7 @@
       "firstAt": 1789557115000
     },
     {
-      "title": "Warsh likely to side with financial markets over President Trump as Fed rate hike expected - 11alive.com",
+      "title": "Warsh likely to side with financial markets over President Trump as Fed rate hike expected - 11Alive.com",
       "link": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxQOHhuXy1vVHFMSFNCekR0S0t0WHN1cHV1Q1VfeURwNllTa2l0U1UzTVo2RTIyR0l6c2F4WHR0Qi1CU0d5SmRfWFJqdE04Q1J0RXVQaW93YmVHTnF2OTFVVG44ekJTUTFSVl9FcHBoTDBKc3VCYVpTSWRKX1ZZRHFZX1dlY1g2X1FrVjhfY0o1VWptcnd4el9HY0JkeGVUM2hoRXZ5X09YTDhnYkJNZ3ZpU3BOMDUzYWFvY25Td1VZRGZDSXBBZ09ZeGRhWTQ2aTRPelV3Zg?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMi1AFBVV95cUxQOHhuXy1vVHFMSFNCekR0S0t0WHN1cHV1Q1VfeURwNllTa2l0U1UzTVo2RTIyR0l6c2F4WHR0Qi1CU0d5SmRfWFJqdE04Q1J0RXVQaW93YmVHTnF2OTFVVG44ekJTUTFSVl9FcHBoTDBKc3VCYVpTSWRKX1ZZRHFZX1dlY1g2X1FrVjhfY0o1VWptcnd4el9HY0JkeGVUM2hoRXZ5X09YTDhnYk",
@@ -2196,7 +2204,7 @@
       "firstAt": 1789553056000
     },
     {
-      "title": "AWS “unable to restore access” to data centers hit by Iran strikes - datacenterdynamics.com",
+      "title": "AWS “unable to restore access” to data centers hit by Iran strikes - Data Center Dynamics",
       "link": "https://news.google.com/rss/articles/CBMirAFBVV95cUxNX01QaGd0czZMVy1JS2VyZW04T2xYTmsxbElnMjNFOEJUczRKRWV5ek16ZjBSaGZUOWdiVVJiay1qNV9sckJsY0VsNjh2c1JzOWdVaXhmQnNMbFIzYVFxN3hVenV5c2x3MkczNjM3VFRWd0ZVTmI3Zm1RSWV3M1Qxb2lmTXdlZ1gtZnVESzdqQ24tbnJ3M0dEMjdOMzNQMENveWtaWE1GZ05uazlf?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMirAFBVV95cUxNX01QaGd0czZMVy1JS2VyZW04T2xYTmsxbElnMjNFOEJUczRKRWV5ek16ZjBSaGZUOWdiVVJiay1qNV9sckJsY0VsNjh2c1JzOWdVaXhmQnNMbFIzYVFxN3hVenV5c2x3MkczNjM3VFRWd0ZVTmI3Zm1RSWV3M1Qxb2lmTXdlZ1gtZnVESzdqQ24tbnJ3M0dEMjdOMzNQMENveWtaWE1GZ05uaz",
@@ -2302,6 +2310,25 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789550809000
+    },
+    {
+      "title": "Fed rate hike today: 3 storylines investors should watch in stocks, oil and Treasury yields - Business Insider",
+      "link": "https://news.google.com/rss/articles/CBMipgFBVV95cUxNMnFVZVFRVUlPNmpONEZkRk5yc1ZSa3FHaGFMQVdvMTJIbHNLdlhERk9iVThZRkN1N0FkZ3Z3M3IxMFdsMktmZWRPZUFMMmI5TDEzOU1IcjNfRXcyeE9NVURpbndrTVdEdkt4Qkl6eGJDYkFhdWxzbTFMNklOQXQ4QVhFVDhZM2xlMW95SVRkcjdERTczS2hzcEM5STN1Qk53WUdUMTFB?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMipgFBVV95cUxNMnFVZVFRVUlPNmpONEZkRk5yc1ZSa3FHaGFMQVdvMTJIbHNLdlhERk9iVThZRkN1N0FkZ3Z3M3IxMFdsMktmZWRPZUFMMmI5TDEzOU1IcjNfRXcyeE9NVURpbndrTVdEdkt4Qkl6eGJDYkFhdWxzbTFMNklOQXQ4QVhFVDhZM2xlMW95SVRkcjdERTczS2hzcEM5STN1Qk53WUdUMTFB?oc=5\"",
+      "at": 1789552200000,
+      "inst": [
+        "USOIL",
+        "US500"
+      ],
+      "ccy": [
+        "USD",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789552200000
     }
   ],
   "sources": [
@@ -2324,10 +2351,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-16T15:13:41.735Z",
-  "headlinesAt": "2026-09-16T15:13:41.735Z",
-  "updatedAt": "2026-09-16T15:13:41.735Z"
+  "calendarAt": "2026-09-16T15:14:57.207Z",
+  "headlinesAt": "2026-09-16T15:14:57.207Z",
+  "updatedAt": "2026-09-16T15:14:57.207Z"
 }
