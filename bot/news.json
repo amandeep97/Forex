@@ -16,7 +16,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789550671000,
-      "_kind": null
+      "_kind": null,
+      "why": "Corporate news, no clear FX impact"
     },
     {
       "title": "UBS sees EUR/CHF retest of 0.96 as Swiss franc lags on low yield",
@@ -33,7 +34,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789550667000,
-      "_kind": null
+      "_kind": null,
+      "why": "Commentary on EUR/CHF, not USD/CHF"
     },
     {
       "title": "Citi sees oil prices supported by geopolitical risks and demand",
@@ -50,7 +52,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789549639000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Oil prices supported by risks"
     },
     {
       "title": "Russian Drone Strike on Passenger Bus in Nikopol Kills Five People - UNITED24 Media",
@@ -71,7 +77,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789547836000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Geopolitical violence boosts safe havens and oil"
     },
     {
       "title": "Building collapse in Gaza kills 16 as perilous conditions persist for Palestinians during truce - The Washington Post",
@@ -92,7 +104,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789549903000,
-      "_kind": "war-end"
+      "_kind": "war-end",
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Conflict escalation supports gold and oil"
     },
     {
       "title": "What history says about longer-term bond yields after the first Fed hike",
@@ -116,7 +134,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789549860000,
-      "_kind": null
+      "_kind": null,
+      "why": "Historical analysis, no immediate direction"
     },
     {
       "title": "Piper Sandler warns on equity exposure as market breadth weakens",
@@ -153,7 +172,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789549311000,
-      "_kind": null
+      "_kind": null,
+      "why": "Mortgage rates, unclear FX impact"
     },
     {
       "title": "Iran War Escalation Raises Blowback Risks 25 Years After 9/11 - Military.com",
@@ -174,7 +194,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789549214000,
-      "_kind": null
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "War escalation boosts risk assets"
     },
     {
       "title": "U.S. Imposes Sanctions on Russia’s VTB - The Presidential Prayer Team",
@@ -195,7 +220,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789549200000,
-      "_kind": null
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Sanctions increase geopolitical risk premium"
     },
     {
       "title": "European Stocks Rise as Markets Await Federal Reserve Interest Rate Decision: DAX, CAC, FTSE100 - Yahoo Finance UK",
@@ -212,7 +242,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789549036000
+      "firstAt": 1789549036000,
+      "why": "European stocks rise, US unclear"
     },
     {
       "title": "Canada could become the first 'associate member' of the EU, says EU chief von der Leyen",
@@ -229,7 +260,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789548338000
+      "firstAt": 1789548338000,
+      "why": "Political proposal, no clear FX impact"
     },
     {
       "title": "Saudi Arabia calls an attempted Mecca attack a 'red line' as Iran-backed Houthis deny they did it - WKMG",
@@ -249,7 +281,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 3,
-      "firstAt": 1789546772000
+      "firstAt": 1789546772000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Middle East tension boosts gold and oil"
     },
     {
       "title": "Russian attacks across Ukraine kill at least 9, injure 36 as drone strike on bus kills 5 - kyivindependent.com",
@@ -269,7 +307,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789545627000
+      "firstAt": 1789545627000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Ukraine attacks boost safe havens and oil"
     },
     {
       "title": "Sterling today: Pound slips as Fed hike bets and UK inflation uptick weigh",
@@ -286,7 +330,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789546915000
+      "firstAt": 1789546915000,
+      "dir": {
+        "GBP/USD": "down"
+      },
+      "why": "Pound slips on Fed and inflation"
     },
     {
       "title": "Wednesday Morning Markets: Miners and Housebuilders Lead FTSE as Inflation Hits 3.1% - asktraders.com",
@@ -309,7 +357,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789546879000
+      "firstAt": 1789546879000,
+      "why": "Mixed market news, no clear direction"
     },
     {
       "title": "Oil slips as Saudi Arabia offers more crude via Oman",
@@ -1395,26 +1444,6 @@
       "firstAt": 1789518967000
     },
     {
-      "title": "Iran war live: Saudi coalition intercepts, destroys drone headed for Mecca",
-      "link": "https://www.aljazeera.com/news/liveblog/2026/9/16/iran-war-live-irans-top-diplomat-heads-to-china-as-war-drags-on?traffic_source=rss",
-      "source": "Al Jazeera",
-      "desc": "Saudi Arabia has intercepted and destroyed a Houthi drone that was heading toward Mecca.",
-      "at": 1789516800000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789516800000
-    },
-    {
       "title": "Japan trade deficit widens as machinery orders unexpectedly fall",
       "link": "https://investinglive.com/news/japan-trade-deficit-widens-as-machinery-orders-unexpectedly-fall/",
       "source": "ForexLive",
@@ -1740,6 +1769,29 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789506116000
+    },
+    {
+      "title": "Inflation killed the penny. Now it’s coming for your dollar.",
+      "link": "https://www.marketwatch.com/story/inflation-killed-the-penny-now-its-coming-for-your-dollar-78336cd8?mod=mw_rss_topstories",
+      "source": "MarketWatch",
+      "desc": "Congress congratulated itself for solving the penny problem, but what about the source of the problem — inflation?",
+      "at": 1789506000000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789506000000
     }
   ],
   "sources": [
@@ -1762,10 +1814,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-16T09:29:53.712Z",
-  "updatedAt": "2026-09-16T09:29:53.712Z"
+  "headlinesAt": "2026-09-16T09:31:40.572Z",
+  "updatedAt": "2026-09-16T09:31:40.572Z"
 }
