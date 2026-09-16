@@ -23,6 +23,7 @@ const { runMetalsStudy } = require('./metalsStudy');
 const { runRegimeStudy, METHOD_VERSION: REGIME_VERSION } = require('./regimeStudy');
 const { runRegimeSearch, METHOD_VERSION: SEARCH_VERSION } = require('./regimeSearch');
 const { stepLiquidityStudy } = require('./liquidityStudy');
+const { XagDesk } = require('./xagDesk');
 const { INSTRUMENTS }  = require('./instruments');
 
 const COT_STUDY_PATH = 'bot/cot-study.json';
@@ -126,10 +127,21 @@ class ForexBot {
           oanda: this.oanda, github: this.github, log: this.log.bind(this),
           notifier: new FeedNotifier({ github: this.github, telegram: this.telegram, env, log: this.log.bind(this) }),
         });
+    // Silver, with a human in the loop. Off unless XAG_DESK says on — this is
+    // the one thing here that places real orders, and it must not come on
+    // because a deploy arrived.
+    this.xagDesk = new XagDesk({
+      oanda: this.oanda, github: this.github, telegram: this.telegram,
+      env, log: this.log.bind(this),
+    });
     this.liquidity = env.LIQUIDITY_ENABLED === 'false'
       ? null
       : new LiquidityScanner({
           oanda: this.oanda, github: this.github, telegram: this.telegram,
+          // The scanner hands an armed silver plan to the desk instead of
+          // alerting it the ordinary way, so one hunt is one message rather
+          // than an alert and a proposal describing the same trade.
+          desk: this.xagDesk,
           env, log: this.log.bind(this),
         });
   }
@@ -327,6 +339,12 @@ class ForexBot {
       }
       await this.liquidity.tick(prices).catch(e => this.warn(`Liquidity: ${e.message}`));
     }
+
+    // The desk collects answers — taps from Telegram, decisions from the app —
+    // and expires what has gone stale. It runs whether or not the scanner did,
+    // because a proposal already out there still has to be answerable and still
+    // has to lapse on time if it is not.
+    await this.xagDesk.tick().catch(e => this.warn(`XAG desk: ${e.message}`));
 
     // Does an extreme in positioning precede anything? The app has been
     // asserting that it does — "crowded long, the side that unwinds badly" —
