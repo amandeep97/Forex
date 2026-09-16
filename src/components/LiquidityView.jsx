@@ -4,6 +4,10 @@ import { fetchLiquidity, fetchLiquidityStudy, ago } from '../utils/liveFeed';
 // of the event it is printed on. The scanner publishes the structure reading;
 // both sides call the same function on it.
 import { trendAlign } from '../../shared/liquidity.mjs';
+// The silver desk sits at the top of this tab rather than in AutoTrading,
+// because the proposal it shows comes from the model on this screen. Putting
+// it with the other engine would separate the plan from the thing that made it.
+import XagDeskPanel from './XagDesk';
 
 // ── LIQUIDITY ────────────────────────────────────────────────────────────────
 //
@@ -412,7 +416,7 @@ function Cell({ c }) {
   );
 }
 
-export default function LiquidityView({ onOpen }) {
+export default function LiquidityView({ onOpen, onLog }) {
   const [liq, setLiq] = useState(null);
   const [err, setErr] = useState(null);
   const [showQuiet, setShowQuiet] = useState(false);
@@ -593,6 +597,12 @@ export default function LiquidityView({ onOpen }) {
 
   return (
     <div style={{ background:C.bg, minHeight:'70vh', paddingBottom:20 }}>
+      {/* Above everything, because it is the only thing on this screen with a
+          deadline on it. A proposal has an hour; the rest of the tab is a board
+          that will still be there. */}
+      <div style={{ padding:'10px 10px 0' }}>
+        <XagDeskPanel onLog={onLog}/>
+      </div>
       <div style={{ padding:'10px 10px 0' }}>
         <div style={{ display:'flex', gap:8, alignItems:'baseline', flexWrap:'wrap' }}>
           <strong style={{ fontSize:14, color:'#38bdf8', fontFamily:C.mono, letterSpacing:1 }}>LIQUIDITY</strong>

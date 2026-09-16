@@ -156,8 +156,9 @@ function atrOf(cs, period = 14) {
 }
 
 class LiquidityScanner {
-  constructor({ oanda, github, telegram = null, log = () => {}, env = {} }) {
+  constructor({ oanda, github, telegram = null, desk = null, log = () => {}, env = {} }) {
     this.oanda = oanda;
+    this.desk = desk;
     this.github = github;
     this.telegram = telegram;
     this.log = log;
@@ -620,6 +621,22 @@ class LiquidityScanner {
     for (const [k, t] of this.announced) if (now - t > ANNOUNCE_TTL) this.announced.delete(k);
     if (this.announced.has(key)) return;
     this.announced.set(key, now);
+
+    // Silver goes to the desk instead of to the alert.
+    //
+    // The desk sends its own message, with buttons and a size on it, so an
+    // ordinary alert as well would be two notifications describing one trade —
+    // and the one without buttons is the one that cannot be acted on. If the
+    // desk is off, or refuses (already open, cannot be sized, cannot be
+    // margined), this falls through to the ordinary path and silver is alerted
+    // like anything else.
+    if (this.desk?.enabled && rec.sym === 'XAG/USD') {
+      const proposed = await this.desk.propose(rec).catch(e => {
+        this.log(`XAG desk propose: ${e.message}`);
+        return null;
+      });
+      if (proposed) return;
+    }
 
     // Silence unless it earns a push. Everything else is remembered for the
     // digest rather than thrown away — the deduplication above already ran, so

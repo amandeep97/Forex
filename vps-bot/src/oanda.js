@@ -159,6 +159,12 @@ class OandaClient {
       marginRate: +i.marginRate,
       minimumTradeSize: +(i.minimumTradeSize ?? 1),
       tradeUnitsPrecision: +(i.tradeUnitsPrecision ?? 0),
+      // How many decimals the VENUE accepts on a price for this instrument.
+      // Sending more is rejected outright, and the rejection reason
+      // (PRICE_PRECISION_EXCEEDED) arrives after the order has failed rather
+      // than before it is built. Asking costs nothing — the call is already
+      // being made for the margin rate.
+      displayPrecision: +(i.displayPrecision ?? 5),
       displayName: i.displayName || instrument,
     };
   }
@@ -200,6 +206,61 @@ class OandaClient {
       method: 'POST',
       body:   JSON.stringify({ order }),
     });
+  }
+
+  /**
+   * A LIMIT order resting at a price, with its stop and target attached.
+   *
+   * placeMarketOrder above is a different trade. The sweep model's plan is a
+   * limit at the swept level — "the order rests until price comes back" — and
+   * filling it at market instead means buying wherever price happens to be when
+   * a human taps approve, which is the one thing the plan exists to avoid. You
+   * get the level or you get nothing.
+   *
+   * GTD with an explicit expiry rather than GTC, because a plan has a life.
+   * tradePlan calls a setup dead after eight hours; an order still resting at
+   * that level three days later is not this trade any more, it is a limit
+   * nobody remembers placing. If the bot dies the moment after this returns,
+   * the order still expires on its own at the venue.
+   *
+   * @param {object} o
+   * @param {number} o.price   the limit price
+   * @param {number} o.units   signed — negative is a sell
+   * @param {Date|number} o.expiry  when the venue should cancel it
+   * @param {number} o.precision decimals this instrument accepts
+   */
+  async placeLimitOrder({ instrument, units, price, sl, tp, clientId, expiry, precision = 5 }) {
+    const px = v => Number(v).toFixed(precision);
+    const order = {
+      type:         'LIMIT',
+      instrument,
+      units:        String(Math.round(units)),
+      price:        px(price),
+      timeInForce:  'GTD',
+      gtdTime:      new Date(expiry).toISOString(),
+      positionFill: 'DEFAULT',
+      // On fill, not on placement: the stop and target come into existence with
+      // the position. Placing them separately leaves a window where the trade
+      // is open and unprotected, and that window is exactly when a level breaks.
+      triggerCondition: 'DEFAULT',
+    };
+    if (sl) order.stopLossOnFill   = { price: px(sl), timeInForce: 'GTC' };
+    if (tp) order.takeProfitOnFill = { price: px(tp), timeInForce: 'GTC' };
+    if (clientId) order.clientExtensions = { id: String(clientId).slice(0, 128), comment: 'ForexPro-XAG-desk' };
+    return this._req(`/accounts/${this.accountId}/orders`, {
+      method: 'POST',
+      body:   JSON.stringify({ order }),
+    });
+  }
+
+  /** Orders resting at the venue but not yet filled. */
+  async getPendingOrders() {
+    const data = await this._req(`/accounts/${this.accountId}/pendingOrders`);
+    return data.orders || [];
+  }
+
+  async cancelOrder(orderId) {
+    return this._req(`/accounts/${this.accountId}/orders/${orderId}/cancel`, { method: 'PUT' });
   }
 
   // Move the stop on a trade that is already open.
