@@ -18,7 +18,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789531958000,
-      "_kind": null
+      "_kind": null,
+      "why": "Inflation data preview, direction uncertain."
     },
     {
       "title": "Warsh likely to side with financial markets over Trump as Fed rate hike expected - Bozeman Daily Chronicle",
@@ -42,7 +43,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789531289000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Fed hike expectation strengthens dollar."
     },
     {
       "title": "Chinese investors rush into US stocks as Beijing opens wider path overseas",
@@ -57,7 +64,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789531227000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Chinese inflows boost US stocks."
     },
     {
       "title": "Crypto Clarity Act fails in Senate, leaving these stocks in regulatory limbo",
@@ -75,7 +86,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789530892000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down",
+        "BTC/USDT": "down"
+      },
+      "why": "Regulatory limbo weighs on assets."
     },
     {
       "title": "'Ukraine Could Fall This Winter': Huge Warning From U.S. As Senators Oppose Russia Sanctions Bill - The Times of India",
@@ -96,7 +112,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789530720000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Geopolitical risk boosts safe havens and oil."
     },
     {
       "title": "Asian stocks edge higher as Fed decision looms, oil rally pauses",
@@ -115,7 +137,12 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789530100000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "down",
+        "US500": "up"
+      },
+      "why": "Oil pauses, stocks edge higher."
     },
     {
       "title": "Asian stocks struggle as markets await Fed rate decision amid inflation concerns - Malay Mail",
@@ -132,7 +159,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789530100000
+      "firstAt": 1789530100000,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Inflation concerns weigh on stocks."
     },
     {
       "title": "Trump administration plans $2.8bn sale of 2,000-pound bombs to Israel",
@@ -149,7 +180,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789529990000
+      "firstAt": 1789529990000,
+      "why": "Bomb sale has no clear FX impact."
     },
     {
       "title": "China’s defence chief warns against coercion, avoids US, Japan mention",
@@ -166,7 +198,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789529937000
+      "firstAt": 1789529937000,
+      "why": "Diplomatic warning lacks direct market impact."
     },
     {
       "title": "investingLive Asia-Pacific market news: Oil steady, crypto weighed",
@@ -185,7 +218,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789529236000
+      "firstAt": 1789529236000,
+      "why": "Mixed news, no clear direction."
     },
     {
       "title": "Answer Saudi Arabia: Israel must take the opportunity presented by the Houthi attack - editorial - jpost.com",
@@ -205,7 +239,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789525484000
+      "firstAt": 1789525484000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Middle East tension boosts risk assets."
     },
     {
       "title": "Factbox-Private equity, foreign investors fuel Aussie M&A activity in 2026",
@@ -221,7 +261,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789527269000
+      "firstAt": 1789527269000,
+      "dir": {
+        "AUD/USD": "up"
+      },
+      "why": "M&A activity supports Australian economy."
     },
     {
       "title": "House votes to limit Trump's power to strike Iran for 3rd time, as 7 Republicans defect - CBS News",
@@ -241,7 +285,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789526100000
+      "firstAt": 1789526100000,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Reduced Iran strike risk lowers premiums."
     },
     {
       "title": "US House advances Russia sanctions bill, paving way for final vote - The Kyiv Independent",
@@ -261,7 +311,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789525781000
+      "firstAt": 1789525781000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Russia sanctions increase geopolitical risk."
     },
     {
       "title": "Gold slips ahead of Fed decision as oil, yields keep rate-hike bets elevated - Investing.com India",
@@ -281,7 +337,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789524723000
+      "firstAt": 1789524723000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold slips, oil steady."
     },
     {
       "title": "Oil prices dip as U.S. inventory build offsets M.East supply jitters",
@@ -417,7 +477,7 @@
       "firstAt": 1789520446000
     },
     {
-      "title": "US House of Representatives advances bill on sanctions against Russia and Iran - ua.news",
+      "title": "US House of Representatives advances bill on sanctions against Russia and Iran - UA.NEWS",
       "link": "https://news.google.com/rss/articles/CBMirwFBVV95cUxNeXNwUk1zVF80YkxqWXY3NzRfbXRsaEV3ZmU2X0VEdXBSQ01pRmtROUNUN2RGTVVWTFkxMWdteWYwUHFfNHp2RkpDYzdCbGpfYWt3UlJKdFNrT3pacHFEMlNRMGl3aC00OS1wbTF1WU15MEdVcFVsSFZuNlZCNmkyRnRJS05TVlZoMG11QVVtQTdsbEd5V0NDaFlpS2l0X2dGMDFHZXhKZmgtdEt2aTlZ?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMirwFBVV95cUxNeXNwUk1zVF80YkxqWXY3NzRfbXRsaEV3ZmU2X0VEdXBSQ01pRmtROUNUN2RGTVVWTFkxMWdteWYwUHFfNHp2RkpDYzdCbGpfYWt3UlJKdFNrT3pacHFEMlNRMGl3aC00OS1wbTF1WU15MEdVcFVsSFZuNlZCNmkyRnRJS05TVlZoMG11QVVtQTdsbEd5V0NDaFlpS2l0X2dGMDFHZXhKZmgtdE",
@@ -1750,10 +1810,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-16T04:17:54.463Z",
-  "updatedAt": "2026-09-16T04:17:54.463Z"
+  "headlinesAt": "2026-09-16T04:19:39.269Z",
+  "updatedAt": "2026-09-16T04:19:39.269Z"
 }
