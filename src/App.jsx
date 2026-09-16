@@ -397,10 +397,18 @@ export default function App() {
             demonstration undercuts every number above it. What the footer should
             say is which ACCOUNT is connected, which is the thing worth being
             warned about. */}
+        {/* Scoped to THIS app, deliberately.
+            It used to read "practice account" flat, and that became wrong the
+            day the VPS bot was pointed at a live one: the silver desk sits in
+            the Terminal tab with a red LIVE MONEY badge on it, and a footer
+            underneath calling the whole thing practice is the sort of
+            contradiction someone resolves in the comfortable direction. This
+            switcher governs what the APP places; it has never governed what the
+            bot places, and the wording now says which of the two it means. */}
         <span>
           {isReal
-            ? '⚠️ Live account — orders here are real money'
-            : 'ForexPro v1.3 · live market data · practice account'}
+            ? '⚠️ Live account — orders placed here are real money'
+            : 'ForexPro v1.3 · live market data · this app is in demo mode'}
         </span>
         <span>Session: {dateStr}</span>
       </footer>
