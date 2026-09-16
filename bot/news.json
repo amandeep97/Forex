@@ -681,7 +681,26 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789551240000,
-      "_kind": null
+      "_kind": null,
+      "why": "Fund recommendations do not imply FX direction."
+    },
+    {
+      "title": "Starbucks considers selling majority stake in its Japan business, sources say",
+      "link": "https://www.investing.com/news/stock-market-news/starbucks-considers-selling-majority-stake-in-its-japan-business-sources-say-4903209",
+      "source": "Investing",
+      "at": 1789551038000,
+      "inst": [
+        "USD/JPY"
+      ],
+      "ccy": [
+        "JPY"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789551038000,
+      "_kind": null,
+      "why": "Corporate stake sale has no clear FX impact."
     },
     {
       "title": "How could Indian markets react if Fed goes for rate hike tonight? Check what analysts say - Moneycontrol.com",
@@ -705,24 +724,53 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789550986000,
-      "_kind": null
+      "_kind": null,
+      "why": "Question about market reaction is neutral."
     },
     {
-      "title": "Starbucks considers selling majority stake in its Japan business, sources say",
-      "link": "https://www.investing.com/news/stock-market-news/starbucks-considers-selling-majority-stake-in-its-japan-business-sources-say-4903209",
-      "source": "Investing",
-      "at": 1789550671000,
+      "title": "Dollar consolidates ahead of Fed rate decision and Warsh signals",
+      "link": "https://www.investing.com/news/forex-news/asian-currencies-mixed-as-dollar-holds-gains-yen-slips-to-oneweek-low-4902879",
+      "source": "Investing FX",
+      "at": 1789550809000,
       "inst": [
-        "USD/JPY"
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
       ],
       "ccy": [
-        "JPY"
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789550809000,
+      "_kind": null,
+      "why": "Consolidation implies no clear directional move."
+    },
+    {
+      "title": "Goldman Sachs raises Euro Stoxx 50 dividend forecasts",
+      "link": "https://www.investing.com/news/stock-market-news/goldman-sachs-raises-euro-stoxx-50-dividend-forecasts-93CH-4903211",
+      "source": "Investing",
+      "at": 1789550713000,
+      "inst": [
+        "EUR/USD"
+      ],
+      "ccy": [
+        "EUR"
       ],
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789550671000,
-      "_kind": null
+      "firstAt": 1789550713000,
+      "_kind": null,
+      "dir": {
+        "EUR/USD": "up"
+      },
+      "why": "Higher dividend forecasts support Euro assets."
     },
     {
       "title": "UBS sees EUR/CHF retest of 0.96 as Swiss franc lags on low yield",
@@ -739,7 +787,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789550667000,
-      "_kind": null
+      "_kind": null,
+      "why": "Headline discusses EUR/CHF, not USD/CHF."
     },
     {
       "title": "Citi sees oil prices supported by geopolitical risks and demand",
@@ -756,7 +805,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789549639000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Geopolitical risks and demand support oil prices."
     },
     {
       "title": "Russian Drone Strike on Passenger Bus in Nikopol Kills Five People - UNITED24 Media",
@@ -777,7 +830,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789547836000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Conflict escalation boosts safe havens and oil."
     },
     {
       "title": "Building collapse in Gaza kills 16 as perilous conditions persist for Palestinians during truce - The Washington Post",
@@ -798,7 +857,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789549903000,
-      "_kind": "war-end"
+      "_kind": "war-end",
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Gaza violence boosts safe havens and oil."
     },
     {
       "title": "What history says about longer-term bond yields after the first Fed hike",
@@ -822,20 +887,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789549860000,
-      "_kind": null
-    },
-    {
-      "title": "Piper Sandler warns on equity exposure as market breadth weakens",
-      "link": "https://www.investing.com/news/stock-market-news/piper-sandler-warns-on-equity-exposure-as-market-breadth-weakens-93CH-4903176",
-      "source": "Investing",
-      "at": 1789549803000,
-      "inst": [],
-      "ccy": [],
-      "sev": 2,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1789549803000,
-      "_kind": null
+      "_kind": null,
+      "why": "Historical analysis does not dictate current direction."
     },
     {
       "title": "CPI inflation: mortgage rates may rise further due to jittery markets - Mortgage Strategy",
@@ -858,7 +911,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789549282000
+      "firstAt": 1789549282000,
+      "why": "Mortgage rates do not directly move FX."
     },
     {
       "title": "Iran War Escalation Raises Blowback Risks 25 Years After 9/11 - Military.com",
@@ -878,7 +932,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789549214000
+      "firstAt": 1789549214000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "War escalation boosts safe havens and oil."
     },
     {
       "title": "U.S. Imposes Sanctions on Russia’s VTB - The Presidential Prayer Team",
@@ -898,7 +958,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789549200000
+      "firstAt": 1789549200000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Sanctions increase geopolitical risk and oil supply concerns"
     },
     {
       "title": "European Stocks Rise as Markets Await Federal Reserve Interest Rate Decision: DAX, CAC, FTSE100 - Yahoo Finance UK",
@@ -915,7 +981,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789549036000
+      "firstAt": 1789549036000,
+      "why": "European stock rise does not imply US direction."
     },
     {
       "title": "Canada could become the first 'associate member' of the EU, says EU chief von der Leyen",
@@ -932,7 +999,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789548338000
+      "firstAt": 1789548338000,
+      "why": "EU membership proposal has no clear CAD impact."
     },
     {
       "title": "Saudi Arabia calls an attempted Mecca attack a 'red line' as Iran-backed Houthis deny they did it - WKMG",
@@ -1183,23 +1251,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789542563000
-    },
-    {
-      "title": "Asian currencies mixed as dollar holds near highs, yen steadies ahead of Fed",
-      "link": "https://www.investing.com/news/forex-news/asian-currencies-mixed-as-dollar-holds-gains-yen-slips-to-oneweek-low-4902879",
-      "source": "Investing FX",
-      "at": 1789543269000,
-      "inst": [
-        "USD/JPY"
-      ],
-      "ccy": [
-        "USD",
-        "JPY"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789543269000
     },
     {
       "title": "Security forces deploy as shops in western Iran strike on Mahsa Amini anniversary - Iran International",
@@ -2427,10 +2478,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-16T09:36:56.293Z",
-  "headlinesAt": "2026-09-16T09:36:56.293Z",
-  "updatedAt": "2026-09-16T09:36:56.293Z"
+  "calendarAt": "2026-09-16T09:38:42.336Z",
+  "headlinesAt": "2026-09-16T09:38:42.336Z",
+  "updatedAt": "2026-09-16T09:38:42.336Z"
 }
