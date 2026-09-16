@@ -317,6 +317,33 @@ const armed = (over = {}) => ({
       d.history[0]?.state);
   }
 
+  // ── A desk that is off still tells the app it is off ────────────────────
+  //
+  // tick() returned early when disabled, so bot/xag-desk.json was never
+  // written and the panel had no file to read. It showed "the desk has not
+  // published yet", which reads as broken when the truth is that it is
+  // switched off and behaving correctly.
+  {
+    const gh = memGithub();
+    const d = new XagDesk({ oanda: fakeOanda(), telegram: fakeTelegram(), github: gh,
+      log: () => {}, env: { ...ENV, XAG_DESK: '' } });
+    await d.tick();
+    const file = gh.files['bot/xag-desk.json'];
+    check('an off desk publishes its state so the app can say OFF',
+      !!file && file.enabled === false,
+      file ? `enabled=${file.enabled}` : '(no file)',
+      'no file at all is indistinguishable from a broken bot');
+    check('and it still places nothing',
+      d.pending === null && (await d.propose(armed())) === null);
+
+    // And it does not rewrite that file every tick forever.
+    const before = JSON.stringify(gh.files['bot/xag-desk.json']);
+    await d.tick(); await d.tick();
+    check('an off desk writes once, not on every tick',
+      JSON.stringify(gh.files['bot/xag-desk.json']) === before,
+      '', 'the signature check is what keeps a disabled feature from churning the repo');
+  }
+
   console.log(fails ? `\n${fails} FAILED` : '\nall passed');
   process.exit(fails ? 1 : 0);
 })();
