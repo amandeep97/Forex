@@ -768,7 +768,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789525950000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Geopolitical tension boosts safe-haven gold demand."
     },
     {
       "title": "US House advances Russia sanctions bill, paving way for final vote - The Kyiv Independent",
@@ -789,7 +793,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789525781000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Sanctions bill increases geopolitical risk premium."
     },
     {
       "title": "Gold slips ahead of Fed decision as oil, yields keep rate-hike bets elevated - Investing.com Australia",
@@ -811,7 +819,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789524860000
+      "firstAt": 1789524860000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold slips on elevated rate-hike bets."
     },
     {
       "title": "Oil prices dip as U.S. inventory build offsets M.East supply jitters",
@@ -827,7 +839,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789524572000
+      "firstAt": 1789524572000,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Inventory build offsets supply jitters, lowering prices."
     },
     {
       "title": "Bond Market's Extreme' Short Counts On Fed To Deliver Rate Hike - NDTV Profit",
@@ -850,7 +866,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789524431000
+      "firstAt": 1789524431000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Rate hike expectations strengthen dollar, weaken gold."
     },
     {
       "title": "Saudi Arabia cancels oil to Europe over East-West pipeline blast",
@@ -870,7 +892,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789523607000
+      "firstAt": 1789523607000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Supply disruption from pipeline blast boosts oil."
     },
     {
       "title": "DRC-Rwanda: Can Geneva talks break the cycle of war in eastern Congo?",
@@ -887,7 +914,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789522957000
+      "firstAt": 1789522957000,
+      "why": "Regional conflict news lacks direct gold impact."
     },
     {
       "title": "Attacks on Saudi oil expose Iraqi PM’s struggle to control armed factions",
@@ -907,7 +935,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789522514000
+      "firstAt": 1789522514000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Pipeline attacks signal supply risk, boosting oil."
     },
     {
       "title": "Australia’s Reliance Worldwide agrees to Brookfield’s $2.9 billion buyout bid",
@@ -923,7 +956,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789521892000
+      "firstAt": 1789521892000,
+      "why": "Corporate buyout news has no clear FX impact."
     },
     {
       "title": "Gold price may dip with Fed rate hike - Bangkok Post",
@@ -941,7 +975,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789521634000
+      "firstAt": 1789521634000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Fed rate hike expectations pressure gold prices."
     },
     {
       "title": "US Dollar Supported by Expectations of Federal Reserve Rate Hikes - Global Banking & Finance Review",
@@ -964,7 +1002,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789520810000
+      "firstAt": 1789520810000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Stronger dollar weakens gold and major pairs."
     },
     {
       "title": "Oil falls as US crude inventories rise despite Saudi supply concerns",
@@ -981,7 +1025,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789520446000
+      "firstAt": 1789520446000,
+      "dir": {
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Rising inventories outweigh supply concerns, lowering oil."
     },
     {
       "title": "US House of Representatives advances bill on sanctions against Russia and Iran - UA.NEWS",
@@ -1001,7 +1050,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789518393000
+      "firstAt": 1789518393000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Sanctions bill increases geopolitical risk, aiding gold."
     },
     {
       "title": "Australia: Westpac leading index signals softer but improving growth as RBA holds firm",
@@ -1019,7 +1072,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789519938000
+      "firstAt": 1789519938000,
+      "why": "Mixed growth data offers no clear directional bias."
     },
     {
       "title": "Iran war increasing inflation, straining US munitions: congressional report",
@@ -1040,7 +1094,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789519092000
+      "firstAt": 1789519092000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "War inflation and munitions strain boost safe-haven gold."
     },
     {
       "title": "U.S. House advances Russia sanctions Bill that seeks 100% tariffs on India, others; set for final vote - The Hindu",
@@ -1868,7 +1926,7 @@
       "firstAt": 1789499086000
     },
     {
-      "title": "Iranian strikes have damaged hundreds of structures at U.S. bases, watchdog says - The Washington Post",
+      "title": "Iranian strikes have damaged hundreds of structures at U.S. bases, watchdog says - washingtonpost.com",
       "link": "https://news.google.com/rss/articles/CBMiywFBVV95cUxOWHVUdFB5Z1ZSVjdYUFp3NkJDNHdQa2M0ckdvWGNRb3E3dUVLVkp6djlUeXlvbVdGTHZZbnZVazZDOEw3dnFDTGVnQVRyV2VxZEhBWDdGS3JoTUFTMVVEcjg1dHlWQWFXbUJsOGtYQ21mZFVwLXByVWNLLXFWNWpMbm5HdElBRWZnRldTZVVlQ2lSN1dJYWxsSlE2VFRZblh2X2tjWjBqbklIQnFaSmVLZEZDZklzM0ZpYnJFYmlNRmo0Q3hlc2RrYWtHSQ?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiywFBVV95cUxOWHVUdFB5Z1ZSVjdYUFp3NkJDNHdQa2M0ckdvWGNRb3E3dUVLVkp6djlUeXlvbVdGTHZZbnZVazZDOEw3dnFDTGVnQVRyV2VxZEhBWDdGS3JoTUFTMVVEcjg1dHlWQWFXbUJsOGtYQ21mZFVwLXByVWNLLXFWNWpMbm5HdElBRWZnRldTZVVlQ2lSN1dJYWxsSlE2VFRZblh2X2tjWjBqbklIQn",
@@ -1986,7 +2044,7 @@
       "firstAt": 1789494928000
     },
     {
-      "title": "Opinion | Democrats, don’t forget: These new sanctions could save lives - The Washington Post",
+      "title": "Opinion | Democrats, don’t forget: These new sanctions could save lives - washingtonpost.com",
       "link": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxNUVVpakh5cGtMa2Q3V011dGhOUEhPQVllUFkwTS1BQUMyVVFJVXNSMnVDU0hpU05vSkR1c1JOQ2hQVVRabXR3MDhaOTgtdlNXRkNwR0tUWDBvLVlkWkFoUGp6OEdBdFphVFlsUVVWMjlCODdPcjUyMmhZc2ppcVRWRkVaNWRBWmQ5U1JMcHRnM3lsenNFcFhraHo5Y2RJZWwwX2JfbUVfQjM?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiqAFBVV95cUxNUVVpakh5cGtMa2Q3V011dGhOUEhPQVllUFkwTS1BQUMyVVFJVXNSMnVDU0hpU05vSkR1c1JOQ2hQVVRabXR3MDhaOTgtdlNXRkNwR0tUWDBvLVlkWkFoUGp6OEdBdFphVFlsUVVWMjlCODdPcjUyMmhZc2ppcVRWRkVaNWRBWmQ5U1JMcHRnM3lsenNFcFhraHo5Y2RJZWwwX2JfbUVfQjM?oc",
@@ -2520,7 +2578,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-16T02:54:52.707Z",
-  "headlinesAt": "2026-09-16T02:54:52.707Z",
-  "updatedAt": "2026-09-16T02:54:52.707Z"
+  "calendarAt": "2026-09-16T02:56:23.958Z",
+  "headlinesAt": "2026-09-16T02:56:23.958Z",
+  "updatedAt": "2026-09-16T02:56:23.958Z"
 }
