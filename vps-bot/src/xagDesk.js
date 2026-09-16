@@ -50,20 +50,72 @@ const OANDA_SYM = 'XAG_USD';
 
 const DESK_PATH = 'bot/xag-desk.json';
 const DECISIONS_PATH = 'bot/xag-decisions.json';
-
-// How long a proposal stands before it dies unanswered. Long enough to be read
-// after a meeting, short enough that the level still means something.
-const PROPOSAL_TTL = 60 * 60e3;
-
-// How long the resting order lives at the venue once placed. tradePlan calls a
-// setup dead after eight hours and this agrees with it on purpose — two numbers
-// that disagree would leave an order alive for a plan the screen calls dead.
-const ORDER_TTL = 8 * 3600e3;
+// Written by the app. Read every tick, never trusted.
+const CONTROL_PATH = 'bot/xag-control.json';
 
 // The risk on one trade, in account currency. Not a percentage: the account is
 // small and a percentage of it is pennies, which rounds to zero units and
 // silently stops proposing anything.
 const RISK_USD = 3;
+
+// At most this many placed in a rolling day. There was no such limit, and with
+// nothing but "one at a time" in the way, a busy day could fill, stop out and
+// re-propose over and over. One at a time bounds the exposure at any instant;
+// this bounds it over a day, which is the number that actually empties an
+// account.
+const MAX_PER_DAY = 3;
+
+// ── What the app may change, and how far ────────────────────────────────────
+//
+// Two keys, deliberately. XAG_DESK in the environment says the desk is
+// PERMITTED; the app's control file says it is ARMED. The app can disarm, and
+// can arm again within what the box allows — but it can never turn on a desk
+// the box has switched off.
+//
+// That distinction is the whole reason there is still an env flag at all. The
+// app writes to a public repo with a token, and that same token can already
+// approve a trade through the decisions file. If the app could also arm the
+// desk, the token alone would be sufficient for the entire path from nothing to
+// a live order. The env flag is the one lock that a leaked token cannot pick,
+// and it costs one SSH session to set.
+//
+// Every bound below is enforced HERE, on the numbers that arrive, not in the
+// form that produced them. A control file is just a file: it can be edited by
+// hand, written by an older build of the app, or corrupted. A UI that validates
+// its own input has checked the honest case and nothing else.
+const LIMITS = {
+  riskUsd: { min: 0.5, max: 25, dflt: RISK_USD },
+  maxPerDay: { min: 1, max: 10, dflt: MAX_PER_DAY },
+  // How long a proposal stands before it dies unanswered. An hour is long
+  // enough to be read after a meeting and short enough that the level still
+  // means something.
+  proposalTtlMin: { min: 5, max: 240, dflt: 60 },
+  // How long the resting order lives at the venue once placed. Eight hours
+  // agrees with tradePlan, which calls a setup dead at the same age — two
+  // numbers that disagreed would leave an order alive for a plan the screen
+  // had already given up on. Raising this past 8 breaks that agreement, which
+  // is why the ceiling is a day rather than a week.
+  orderTtlHours: { min: 1, max: 24, dflt: 8 },
+};
+
+/**
+ * Coerce to a number inside its bounds, falling back to the default.
+ *
+ * ABSENT and OUT OF RANGE are different, and conflating them is a quiet way to
+ * change behaviour. This started as `Number(v)` with a finite check, and
+ * Number(null) is 0 — finite — so a field an older build of the app simply did
+ * not write got clamped to the MINIMUM rather than the default. Harmless for
+ * risk, where the minimum is the small end; not harmless for the proposal
+ * expiry, where it silently gives you five minutes to answer instead of sixty.
+ *
+ * So a missing value takes the default, and only a real number is bounded.
+ */
+function clamp(v, { min, max, dflt }) {
+  if (v === null || v === undefined || v === '') return dflt;
+  const n = Number(v);
+  if (!Number.isFinite(n)) return dflt;
+  return Math.min(max, Math.max(min, n));
+}
 
 // Kept so the app can show what happened, and trimmed so the file cannot grow
 // without bound.
@@ -87,14 +139,61 @@ class XagDesk {
     this.restored = false;
     this.lastSig = null;
 
-    // Off unless switched on deliberately. A desk that places live orders must
-    // not be something a deploy turns on by arriving.
-    this.enabled = String(env.XAG_DESK || '').toLowerCase() === 'on';
-    this.riskUsd = Number(env.XAG_RISK_USD) > 0 ? Number(env.XAG_RISK_USD) : RISK_USD;
+    // PERMITTED, not armed. The env flag says the box allows a desk at all; the
+    // app's control file decides whether it is live right now. A deploy must
+    // not turn on live order placement by arriving, and neither must a token.
+    this.permitted = String(env.XAG_DESK || '').toLowerCase() === 'on';
+
+    // The ceiling the app cannot type its way past. Bounded by LIMITS as well,
+    // so a fat-fingered environment variable cannot raise it either.
+    this.maxRiskUsd = clamp(env.XAG_MAX_RISK_USD ?? LIMITS.riskUsd.max, LIMITS.riskUsd);
+
+    // Settings as they stand. Replaced each tick from the control file, so a
+    // change in the app takes effect on the next pass rather than on a restart.
+    this.cfg = {
+      armed: false,
+      riskUsd: clamp(env.XAG_RISK_USD ?? LIMITS.riskUsd.dflt, LIMITS.riskUsd),
+      maxPerDay: LIMITS.maxPerDay.dflt,
+      proposalTtlMin: LIMITS.proposalTtlMin.dflt,
+      orderTtlHours: LIMITS.orderTtlHours.dflt,
+    };
 
     // Who may approve. Defaults to the chat the bot posts into, which for a
     // private chat is the owner's own user id.
     this.owner = String(env.TELEGRAM_OWNER_ID || env.TELEGRAM_CHAT_ID || '').trim();
+  }
+
+  /** Live only when the box permits it AND the app has armed it. */
+  get enabled() { return this.permitted && this.cfg.armed; }
+
+  /** Convenience for the rest of the class, which used to read a constant. */
+  get riskUsd() { return Math.min(this.cfg.riskUsd, this.maxRiskUsd); }
+
+  /**
+   * Settings from the app, bounded on arrival.
+   *
+   * Read every tick rather than at startup, because the point of moving these
+   * into the app was to stop needing an SSH session and a restart to change
+   * them. A missing file means disarmed: the safe direction, and the state a
+   * desk should be in when nobody has said otherwise.
+   */
+  async _loadControl() {
+    let cur = null;
+    try { cur = await this.github.readJSON(CONTROL_PATH); }
+    catch (e) { this.log(`XAG desk control: ${e.message} — keeping current settings`); return; }
+    const c = cur?.content || {};
+    this.cfg = {
+      armed: c.armed === true,
+      riskUsd: clamp(c.riskUsd, LIMITS.riskUsd),
+      maxPerDay: clamp(c.maxPerDay, LIMITS.maxPerDay),
+      proposalTtlMin: clamp(c.proposalTtlMin, LIMITS.proposalTtlMin),
+      orderTtlHours: clamp(c.orderTtlHours, LIMITS.orderTtlHours),
+    };
+  }
+
+  /** How many were actually placed in the last rolling day. */
+  _placedToday(now = Date.now()) {
+    return this.history.filter(h => h.state === 'placed' && now - (h.closedAt || 0) < 86400e3).length;
   }
 
   // ── State that has to survive a restart ──────────────────────────────────
@@ -211,6 +310,15 @@ class XagDesk {
     const clear = await this._clear();
     if (!clear.ok) { this.log(`XAG desk: skipped — ${clear.why}`); return null; }
 
+    // One at a time bounds what is at risk in any instant. This bounds it over
+    // a day, which is the number that actually empties an account: fill, stop,
+    // re-propose, repeat.
+    const placed = this._placedToday();
+    if (placed >= this.cfg.maxPerDay) {
+      this.log(`XAG desk: ${placed} already placed today, cap is ${this.cfg.maxPerDay}`);
+      return null;
+    }
+
     const sized = await this._size(p.entry, p.stop);
     if (!sized.units) { this.log(`XAG desk: not sized — ${sized.why}`); return null; }
 
@@ -228,7 +336,7 @@ class XagDesk {
       riskUsd: +sized.risk.toFixed(2), marginUsd: +(sized.margin || 0).toFixed(2),
       live: String(this.env.OANDA_PRACTICE) === 'false',
       proposedAt: now,
-      expiresAt: now + PROPOSAL_TTL,
+      expiresAt: now + this.cfg.proposalTtlMin * 60e3,
       state: 'pending',
       messageId: null,
     };
@@ -296,7 +404,7 @@ class XagDesk {
         sl: prop.stop,
         tp: prop.target ?? null,
         clientId: prop.id,
-        expiry: Date.now() + ORDER_TTL,
+        expiry: Date.now() + this.cfg.orderTtlHours * 3600e3,
         precision: prop.precision,
       });
       const created = res?.orderCreateTransaction;
@@ -386,7 +494,7 @@ class XagDesk {
     }[p.state] || `<b>Silver ${side} — ${p.state}</b>`;
     return `${head}\n`
       + `${p.units} oz at ${Number(p.entry).toFixed(dp)}, stop ${Number(p.stop).toFixed(dp)}`
-      + (p.state === 'placed' ? `\norder ${p.orderId} · rests ${Math.round(ORDER_TTL / 3600e3)}h`
+      + (p.state === 'placed' ? `\norder ${p.orderId} · rests ${this.cfg.orderTtlHours}h`
         : p.why ? `\n${p.why}` : '')
       + (p.approvedBy ? `\n<i>approved from ${p.approvedBy}</i>` : '');
   }
@@ -395,10 +503,15 @@ class XagDesk {
   async tick() {
     await this._restore();
 
-    // A desk that is off still publishes, once. Otherwise the app has no file
-    // to read and shows "the desk has not published yet" — which reads as
-    // broken, when the truth is that it is switched off and working correctly.
-    // The signature check means this writes a single time and then stays quiet.
+    // Before anything else: what has the app asked for? Reading it here rather
+    // than at startup is the whole point of moving these into the app — a
+    // change takes effect on the next pass instead of needing a restart.
+    await this._loadControl();
+
+    // A disarmed desk still publishes, so the app can show it as disarmed
+    // rather than as a bot that has stopped writing. The signature carries the
+    // settings, so this writes when something changes and stays quiet when it
+    // does not.
     if (!this.enabled) { await this._publish(); return; }
 
     if (this.pending && Date.now() > this.pending.expiresAt) {
@@ -412,10 +525,20 @@ class XagDesk {
     await this._publish();
   }
 
+  // Settings are in here on purpose.
+  //
+  // Without them, arming the desk changed nothing the signature could see —
+  // with nothing pending and no history, the key was identical before and
+  // after. It published anyway, but only because a restart clears lastSig, so
+  // the correctness depended on arming always involving a restart. Now that the
+  // app can arm it without one, that accident is gone and the signature has to
+  // carry what it is describing.
   _signature() {
     return JSON.stringify([
       this.pending?.id || null, this.pending?.state || null, this.offset,
       this.history[0]?.id || null, this.history[0]?.state || null,
+      this.permitted, this.cfg.armed, this.riskUsd, this.cfg.maxPerDay,
+      this.cfg.proposalTtlMin, this.cfg.orderTtlHours, this._placedToday(),
     ]);
   }
 
@@ -426,9 +549,22 @@ class XagDesk {
     this.lastSig = sig;
     const payload = {
       at: new Date().toISOString(),
+      // Permitted and armed are reported separately, because "off" has two very
+      // different causes and only one of them can be fixed from the app.
+      permitted: this.permitted,
+      armed: this.cfg.armed,
       enabled: this.enabled,
       live: String(this.env.OANDA_PRACTICE) === 'false',
+      // The settings AS APPLIED, after clamping. If the app asked for $100 and
+      // the ceiling is $25, the screen has to say 25 — showing back what was
+      // typed would be a promise the desk has no intention of keeping.
       riskUsd: this.riskUsd,
+      maxRiskUsd: this.maxRiskUsd,
+      maxPerDay: this.cfg.maxPerDay,
+      proposalTtlMin: this.cfg.proposalTtlMin,
+      orderTtlHours: this.cfg.orderTtlHours,
+      placedToday: this._placedToday(),
+      limits: LIMITS,
       offset: this.offset,
       pending: this.pending,
       history: this.history,
@@ -441,5 +577,5 @@ class XagDesk {
   }
 }
 
-module.exports = { XagDesk, SYM, OANDA_SYM, DESK_PATH, DECISIONS_PATH,
-  PROPOSAL_TTL, ORDER_TTL, RISK_USD };
+module.exports = { XagDesk, SYM, OANDA_SYM, DESK_PATH, DECISIONS_PATH, CONTROL_PATH,
+  RISK_USD, MAX_PER_DAY, LIMITS, clamp };

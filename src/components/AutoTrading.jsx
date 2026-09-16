@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { ghRead, ghWrite } from '../utils/githubSync';
+import XagDeskPanel from './XagDesk';
 import BotConfig from './BotConfig';
 import ChartModal from './ChartModal';
 
@@ -1469,6 +1470,17 @@ export default function AutoTrading({ accountMode = 'demo' }) {
           ⚠️ Real Money Mode — trades execute with real funds
         </div>
       )}
+
+      {/* The silver desk, first.
+          It is the only engine on this screen that is actually live, and it is
+          the one with a switch you will want in a hurry. The proposal card also
+          shows in the Terminal's LIQUIDITY tab, next to the model that produced
+          it; the CONTROLS are only here, because a settings form beside a
+          countdown invites changing the size of a trade you are mid-way through
+          deciding. */}
+      <div style={{ padding: '16px 20px 0' }}>
+        <XagDeskPanel controls/>
+      </div>
 
       {/* Header */}
       <div style={{ padding: '16px 20px 0', display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between' }}>
