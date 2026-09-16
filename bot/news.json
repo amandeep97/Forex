@@ -633,7 +633,32 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789575046000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Geopolitical conflict boosts safe havens and oil."
+    },
+    {
+      "title": "Dow Jones Tech Titan Apple, Nvidia Chipmaker TSMC, AMD, Bloom Energy In Or Near Buy Zones",
+      "link": "https://www.investors.com/stock-lists/stocks-near-a-buy-zone/dow-jones-apple-stock-aapl-nvidia-chipmaker-tsm-amd-bloom/?src=A00220&yptr=yahoo",
+      "source": "Yahoo Finance",
+      "at": 1789575031000,
+      "inst": [
+        "US30"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789575031000,
+      "_kind": null,
+      "dir": {
+        "US30": "up"
+      },
+      "why": "Tech stocks near buy zones suggest support."
     },
     {
       "title": "U.K. stocks higher at close of trade; Investing.com United Kingdom 100 up 0.29%",
@@ -648,7 +673,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789574837000,
-      "_kind": null
+      "_kind": null,
+      "why": "UK market news has no direct US impact."
     },
     {
       "title": "Spain stocks higher at close of trade; IBEX 35 up 0.41%",
@@ -663,7 +689,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789574924000,
-      "_kind": null
+      "_kind": null,
+      "why": "Spain market news has no direct US impact."
     },
     {
       "title": "Portugal stocks higher at close of trade; PSI up 1.00%",
@@ -678,7 +705,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789574897000,
-      "_kind": null
+      "_kind": null,
+      "why": "Portugal market news has no direct US impact."
     },
     {
       "title": "Netherlands stocks higher at close of trade; AEX up 0.02%",
@@ -693,7 +721,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789574867000,
-      "_kind": null
+      "_kind": null,
+      "why": "Netherlands market news has no direct US impact."
     },
     {
       "title": "Italy stocks higher at close of trade; Investing.com Italy 40 up 0.87%",
@@ -708,7 +737,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789574837000,
-      "_kind": null
+      "_kind": null,
+      "why": "Italy market news has no direct US impact."
     },
     {
       "title": "Germany stocks higher at close of trade; DAX up 0.62%",
@@ -724,7 +754,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789574783000,
-      "_kind": null
+      "_kind": null,
+      "why": "German market news has no direct US impact."
     },
     {
       "title": "Wall Street rises as oil halts surge ahead of first expected Fed hike since 2023",
@@ -743,7 +774,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789574741000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "down",
+        "US500": "up"
+      },
+      "why": "Wall Street rises, oil halts surge."
     },
     {
       "title": "France stocks higher at close of trade; CAC 40 up 0.62%",
@@ -758,7 +794,40 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789574734000,
-      "_kind": null
+      "_kind": null,
+      "why": "France market news has no direct US impact."
+    },
+    {
+      "title": "Want $7,000 In Passive Income? Invest $25,000 In Each of These 3 Dividend Stocks",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/want-7-000-passive-income-160533652.html",
+      "source": "Yahoo Finance",
+      "at": 1789574733000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789574732000,
+      "_kind": null,
+      "why": "General dividend advice, no specific market direction."
+    },
+    {
+      "title": "5 Elite Dividend Stocks Backed by America’s Massive Defense Budget",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/5-elite-dividend-stocks-backed-160532702.html",
+      "source": "Yahoo Finance",
+      "at": 1789574732000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789574732000,
+      "_kind": null,
+      "why": "General defense stock advice, no specific market direction."
     },
     {
       "title": "Belgium stocks higher at close of trade; BEL 20 up 0.16%",
@@ -773,30 +842,52 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789574704000,
-      "_kind": null
+      "_kind": null,
+      "why": "Belgium market news has no direct US impact."
     },
     {
-      "title": "How Long Could the Benchmark Treasury Yield Stay Above 5%?",
-      "link": "https://www.wsj.com/livecoverage/fed-meeting-warsh-interest-rate-09-16-2026/card/how-long-could-the-benchmark-treasury-yield-stay-above-5--rCVWs2LRXlX2ywDqbpkc?siteid=yhoof2&yptr=yahoo",
+      "title": "Oil Producers Slide as Crude Retreats: EOG Resources Drops 6%, ConocoPhillips and Occidental Petroleum Fall 5%",
+      "link": "https://finance.yahoo.com/energy/articles/oil-producers-slide-crude-retreats-160306957.html",
       "source": "Yahoo Finance",
-      "at": 1789574401000,
+      "at": 1789574586000,
       "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
+        "USOIL",
+        "UKOIL"
       ],
       "ccy": [
-        "USD"
+        "OIL"
       ],
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789574401000,
-      "_kind": null
+      "firstAt": 1789574586000,
+      "_kind": null,
+      "dir": {
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Crude retreats, oil producers slide."
+    },
+    {
+      "title": "The Bitcoin Price That Could Completely Change the MSTR Story, We See 97% Upside",
+      "link": "https://finance.yahoo.com/markets/crypto/articles/bitcoin-price-could-completely-change-160010698.html",
+      "source": "Yahoo Finance",
+      "at": 1789574410000,
+      "inst": [
+        "BTC/USDT"
+      ],
+      "ccy": [
+        "BTC"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789574410000,
+      "_kind": null,
+      "dir": {
+        "BTC/USDT": "up"
+      },
+      "why": "Analyst sees 97% upside potential."
     },
     {
       "title": "15 stocks that have grown dividends the most — and nearly all have beaten the S&P 500",
@@ -812,21 +903,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789574400000,
-      "_kind": null
-    },
-    {
-      "title": "EV Charging Stocks Climb as Small Caps Catch a Bid: Blink Charging Jumps 6%, ChargePoint Rises 4%, EVgo Ticks Up",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/ev-charging-stocks-climb-small-155923649.html",
-      "source": "Yahoo Finance",
-      "at": 1789574363000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789574363000,
       "_kind": null
     },
     {
@@ -853,21 +929,6 @@
       "_kind": null
     },
     {
-      "title": "Three Stocks Are Joining the S&P 500. Will They Actually Improve VOO’s Returns?",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/three-stocks-joining-p-500-155532777.html",
-      "source": "Yahoo Finance",
-      "at": 1789574132000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789574132000,
-      "_kind": null
-    },
-    {
       "title": "Stock Market Today: Nasdaq Leads Rebound As Fed Rate Decision Looms; This Industry Surges (Live Coverage)",
       "link": "https://www.investors.com/market-trend/stock-market-today/dow-jones-sp500-nasdaq-fed-rate-hike-warsh-intel-sk-hynix/?src=A00220&yptr=yahoo",
       "source": "Yahoo Finance",
@@ -885,23 +946,6 @@
       "_kind": null
     },
     {
-      "title": "Bitcoin ETFs Had Their Worst Day Since June Following Failed Clarity Act Vote",
-      "link": "https://finance.yahoo.com/markets/crypto/articles/bitcoin-etfs-had-worst-day-155007107.html",
-      "source": "Yahoo Finance",
-      "at": 1789573807000,
-      "inst": [
-        "BTC/USDT"
-      ],
-      "ccy": [
-        "BTC"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789573807000,
-      "_kind": null
-    },
-    {
       "title": "Oil slips as Saudi Arabia offers more crude via Oman",
       "link": "https://www.investing.com/news/commodities-news/oil-falls-as-us-crude-inventories-rise-despite-saudi-supply-concerns-4902799",
       "source": "Investing Cmdty",
@@ -916,8 +960,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789573311000,
-      "_kind": null
+      "firstAt": 1789573311000
     },
     {
       "title": "Raw sugar edges lower as oil prices weigh on market",
@@ -933,8 +976,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789573743000,
-      "_kind": null
+      "firstAt": 1789573743000
     },
     {
       "title": "Saudi Arabia calls attempted attack on Mecca a ‘red line’ as Iran-backed Houthis deny they did it - The Seattle Times",
@@ -2268,23 +2310,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789555238000
-    },
-    {
-      "title": "Gold price today, Wednesday, September 16, 2026: Gold holds in the $4,300 range, awaiting the Fed's decision",
-      "link": "https://finance.yahoo.com/personal-finance/investing/article/gold-price-today-wednesday-september-16-2026-gold-holds-in-the-4300-range-awaiting-the-feds-decision-104038147.html",
-      "source": "Yahoo Finance",
-      "at": 1789555238000,
-      "inst": [
-        "XAU/USD"
-      ],
-      "ccy": [
-        "USD",
-        "XAU"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789552800000
     }
   ],
   "sources": [
@@ -2310,7 +2335,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-16T16:18:24.055Z",
-  "headlinesAt": "2026-09-16T16:18:24.055Z",
-  "updatedAt": "2026-09-16T16:18:24.055Z"
+  "calendarAt": "2026-09-16T16:19:56.601Z",
+  "headlinesAt": "2026-09-16T16:19:56.601Z",
+  "updatedAt": "2026-09-16T16:19:56.601Z"
 }
