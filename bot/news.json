@@ -681,7 +681,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789549311000,
-      "_kind": null
+      "_kind": null,
+      "why": "Mortgage rates rise, no clear FX direction"
     },
     {
       "title": "The Escalation Ladder: Prolonged Iran War Raises Blowback Risks 25 Years After 9/11 - Military.com",
@@ -702,7 +703,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789549214000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Iran war escalation boosts safe havens, oil"
     },
     {
       "title": "U.S. Imposes Sanctions on Russia’s VTB - The Presidential Prayer Team",
@@ -723,7 +730,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789549200000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions on VTB, unclear immediate market impact"
     },
     {
       "title": "Canada could become the first 'associate member' of the EU, says EU chief von der Leyen",
@@ -741,7 +749,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789548338000,
-      "_kind": null
+      "_kind": null,
+      "why": "EU membership proposal, no clear CAD direction"
     },
     {
       "title": "Saudi Arabia calls an attempted Mecca attack a ‘red line’ as Iran-backed Houthis deny they did it - mypanhandle.com",
@@ -762,7 +771,13 @@
       "rel": 2,
       "srcs": 3,
       "firstAt": 1789546772000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Mecca attack red line, geopolitical risk rises"
     },
     {
       "title": "Russian attacks across Ukraine kill at least 9, injure 36 as drone strike on bus kills 5 - kyivindependent.com",
@@ -783,7 +798,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789545627000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Ukraine attacks, gold up, oil unclear"
     },
     {
       "title": "Indonesia stocks lower at close of trade; IDX Composite Index down 0.14%",
@@ -797,7 +816,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789547403000
+      "firstAt": 1789547403000,
+      "why": "Indonesia stocks lower, no US500 impact"
     },
     {
       "title": "Sterling today: Pound slips as Fed hike bets and UK inflation uptick weigh",
@@ -814,7 +834,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789546915000
+      "firstAt": 1789546915000,
+      "dir": {
+        "GBP/USD": "down"
+      },
+      "why": "Pound slips on Fed bets, UK inflation"
     },
     {
       "title": "Wednesday Morning Markets: Miners and Housebuilders Lead FTSE as Inflation Hits 3.1% - asktraders.com",
@@ -837,7 +861,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789546879000
+      "firstAt": 1789546879000,
+      "why": "UK inflation hits 3.1%, mixed market signals"
     },
     {
       "title": "Oil slips as Saudi Arabia offers more crude via Oman",
@@ -854,7 +879,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 3,
-      "firstAt": 1789546772000
+      "firstAt": 1789546772000,
+      "dir": {
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Saudi offers more crude, oil slips"
     },
     {
       "title": "EU gas curves push higher as depleted reserves and ECB rate-hikes anchor prices",
@@ -870,7 +900,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789546695000
+      "firstAt": 1789546695000,
+      "why": "Gas prices rise, no clear EUR direction"
     },
     {
       "title": "Five killed in Russian drone strike on bus in southern Ukraine - Euronews.com",
@@ -890,7 +921,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789544266000
+      "firstAt": 1789544266000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Ukraine drone strike, gold up, oil flat"
     },
     {
       "title": "SK Hynix, Intel shares rise on report of U.S. memory chip production plans",
@@ -922,7 +957,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789546206000
+      "firstAt": 1789546206000,
+      "why": "Russia sanctions bill, no clear market direction"
     },
     {
       "title": "At least 12 killed after war-damaged Gaza building collapses",
@@ -942,7 +978,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789545502000
+      "firstAt": 1789545502000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Gaza building collapse, gold up, oil flat"
     },
     {
       "title": "Former Kosovo President Hashim Thaci faces verdict for alleged war crimes",
@@ -959,7 +999,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789544970000
+      "firstAt": 1789544970000,
+      "why": "Kosovo verdict, no clear gold direction"
     },
     {
       "title": "Euro zone yields linger at multi-year peaks as traders brace for Fed rate decision",
@@ -2431,7 +2472,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-16T09:04:53.082Z",
-  "headlinesAt": "2026-09-16T09:04:53.082Z",
-  "updatedAt": "2026-09-16T09:04:53.082Z"
+  "calendarAt": "2026-09-16T09:06:27.055Z",
+  "headlinesAt": "2026-09-16T09:06:27.055Z",
+  "updatedAt": "2026-09-16T09:06:27.055Z"
 }
