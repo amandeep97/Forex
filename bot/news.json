@@ -20,7 +20,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789524723000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold slips, oil mixed on rate bets"
     },
     {
       "title": "Oil prices dip as U.S. inventory build offsets M.East supply jitters",
@@ -37,7 +41,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789524572000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Oil dips on inventory build"
     },
     {
       "title": "Bond Market's Extreme' Short Counts On Fed To Deliver Rate Hike - NDTV Profit",
@@ -61,7 +69,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789524431000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Fed hike expectations support dollar"
     },
     {
       "title": "Saudi Arabia cancels oil to Europe over East-West pipeline blast",
@@ -81,7 +95,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789523607000
+      "firstAt": 1789523607000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Saudi supply cut boosts oil"
     },
     {
       "title": "DRC-Rwanda: Can Geneva talks break the cycle of war in eastern Congo?",
@@ -98,7 +117,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789522957000
+      "firstAt": 1789522957000,
+      "why": "Geopolitical news unclear for gold"
     },
     {
       "title": "Attacks on Saudi oil expose Iraqi PM’s struggle to control armed factions",
@@ -118,7 +138,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789522514000
+      "firstAt": 1789522514000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Supply risk supports oil prices"
     },
     {
       "title": "Australia’s Reliance Worldwide agrees to Brookfield’s $2.9 billion buyout bid",
@@ -134,7 +159,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789521892000
+      "firstAt": 1789521892000,
+      "why": "Corporate buyout neutral for currency"
     },
     {
       "title": "Gold price may dip with Fed rate hike - bangkokpost.com",
@@ -152,7 +178,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789521634000
+      "firstAt": 1789521634000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold dips on rate hike"
     },
     {
       "title": "US Dollar Supported by Expectations of Federal Reserve Rate Hikes - Global Banking & Finance Review",
@@ -175,7 +205,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789520810000
+      "firstAt": 1789520810000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Strong dollar pressures gold and pairs"
     },
     {
       "title": "Oil falls as US crude inventories rise despite Saudi supply concerns",
@@ -192,27 +228,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789520446000
-    },
-    {
-      "title": "Lebanon's parliament speaker, Iran's foreign minister discuss Israeli attacks, ceasefire violations - Anadolu Ajansı",
-      "link": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxNWHZ4UTZtM2k0dERKV1VLdUhTZl94bXdBc0JFUzF1endiN0lUM2hOblFpOFdvVkJSaUdEZWhPZ05OQXJ3bDE4LS1GRF9DU0w3d0JtRE96bnRBZTU2VW5xRl9JVHk1SE45Z0ctakJfQnRoNzBWYmFnVllIQUJFMU5rYXR1RHFyS1RWeTZEQW5HbEZWdlpXa2hYbG5yQ2UtWFJ1NU1DSTlUZUV1SDU4a0owNzV4QVNrX2VXVDcyMFR0T1dXeVpLb2VENEdGMEUtY19LR09fN0Mtcw?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi1wFBVV95cUxNWHZ4UTZtM2k0dERKV1VLdUhTZl94bXdBc0JFUzF1endiN0lUM2hOblFpOFdvVkJSaUdEZWhPZ05OQXJ3bDE4LS1GRF9DU0w3d0JtRE96bnRBZTU2VW5xRl9JVHk1SE45Z0ctakJfQnRoNzBWYmFnVllIQUJFMU5rYXR1RHFyS1RWeTZEQW5HbEZWdlpXa2hYbG5yQ2UtWFJ1NU1DSTlUZUV1SD",
-      "at": 1789520360000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789520360000
+      "firstAt": 1789520446000,
+      "dir": {
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Oil falls on inventory rise"
     },
     {
       "title": "US House of Representatives advances bill on sanctions against Russia and Iran - UA.NEWS",
@@ -232,7 +253,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789518393000
+      "firstAt": 1789518393000,
+      "why": "Sanctions bill direction unclear"
     },
     {
       "title": "Australia: Westpac leading index signals softer but improving growth as RBA holds firm",
@@ -250,7 +272,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789519938000
+      "firstAt": 1789519938000,
+      "why": "Soft growth, RBA hold neutral"
     },
     {
       "title": "Iran war increasing inflation, straining US munitions: congressional report",
@@ -271,7 +294,29 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789519092000
+      "firstAt": 1789519092000,
+      "why": "Inflation report direction unclear"
+    },
+    {
+      "title": "U.S. House advances Russia sanctions Bill that seeks 100% tariffs on India, others; set for final vote - The Hindu",
+      "link": "https://news.google.com/rss/articles/CBMiywFBVV95cUxOYjRTaTdNa1Q3WnFyNVo3MGlsdkR3d1FTZFdiS19BbW9ObUs2LWRwY1BjM0JucDgyZ3Z3dE9SS0VGT3hmYjI3QlNpRlc5VzZqazhCN2N1TlFUamdGTUNPX1FqR3dhQ3p5RWdvc0FWaF9NN19SWUh4dHhTOWlWYjhXMmtyQmRGMXRlS3FUUjNvTUxTekxJR1FNeDV0Q3Z5VVlic3BXSk1ySkNUeV9jaVdEMEJ1OVBCY3VUN2o4UThUNHJXNm5kVklFLVdtY9IB0gFBVV95cUxQVldtalRKczFjTjV6ZHkybXcxRlBoQmtxRjFvYnlQUjJUUmdyQnJHVU15anhMeGtpQmVqXzB5RG54YUtsbEMzQ2xTUFJuMjkyZjg2VDhpSGVzZFpsWUM1NnFuVXNoWnFyNmdMbjV0d2U2ZFNGLWZhbWpyZlJCSnlGME5EMmZEQ0FxQUpRRG5aMTdqaU4wMjA0MEloMkNnRGgteTl1Ui1fYWM4RHJ1SllzSWVQM1NBaXZYcV9SeGRzcEp3Wm5HSXFJelZzNHk3S1dtZ0E?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiywFBVV95cUxOYjRTaTdNa1Q3WnFyNVo3MGlsdkR3d1FTZFdiS19BbW9ObUs2LWRwY1BjM0JucDgyZ3Z3dE9SS0VGT3hmYjI3QlNpRlc5VzZqazhCN2N1TlFUamdGTUNPX1FqR3dhQ3p5RWdvc0FWaF9NN19SWUh4dHhTOWlWYjhXMmtyQmRGMXRlS3FUUjNvTUxTekxJR1FNeDV0Q3Z5VVlic3BXSk1ySkNUeV",
+      "at": 1789518967000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789518967000,
+      "why": "Sanctions bill direction unclear"
     },
     {
       "title": "U.S. Treasury hits Russian bank with sanctions over Iran ties - Foundation for Defense of Democracies",
@@ -292,7 +337,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789518393000
+      "firstAt": 1789518393000,
+      "why": "Sanctions news direction unclear"
     },
     {
       "title": "Fed Rate Hike Looms: Impact on Stock Markets - Intellectia AI",
@@ -1269,7 +1315,7 @@
       "firstAt": 1789494285000
     },
     {
-      "title": "US-Iran war has caused supply-chain bottlenecks in Pentagon, report finds - jpost.com",
+      "title": "US-Iran war has caused supply-chain bottlenecks in Pentagon, report finds - The Jerusalem Post",
       "link": "https://news.google.com/rss/articles/CBMiakFVX3lxTE5sU05ZekFnWWUySFBiRkJvN1hzQm8zWDFpUDQ2Q2UyS2FqSzNQWlFXQlh1OWFCWlZKS05uYmNKTUhJQWNQdS1vcGNqamd6YnpEemE5VnBzaWhIYzY5WmJCV3FtWnNMVkFLdFE?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiakFVX3lxTE5sU05ZekFnWWUySFBiRkJvN1hzQm8zWDFpUDQ2Q2UyS2FqSzNQWlFXQlh1OWFCWlZKS05uYmNKTUhJQWNQdS1vcGNqamd6YnpEemE5VnBzaWhIYzY5WmJCV3FtWnNMVkFLdFE?oc=5\" target=\"_blank\">US-Iran war has caused supply-chain bottlenecks in Pentagon, rep",
@@ -1764,10 +1810,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-16T02:28:37.707Z",
-  "updatedAt": "2026-09-16T02:28:37.707Z"
+  "headlinesAt": "2026-09-16T02:29:54.063Z",
+  "updatedAt": "2026-09-16T02:29:54.063Z"
 }
