@@ -631,7 +631,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789586325000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold hits fresh one-month lows"
     },
     {
       "title": "S&P upgrades Packaging Corp. rating to BBB+ on low leverage",
@@ -646,7 +650,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789588227000,
-      "_kind": null
+      "_kind": null,
+      "why": "Single company credit upgrade"
     },
     {
       "title": "KNDS IPO may be delayed as defense shares weaken - Bloomberg",
@@ -679,7 +684,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789587816000,
-      "_kind": null
+      "_kind": null,
+      "why": "Political inquiry, no immediate market impact"
     },
     {
       "title": "Goldman CEO says fixed income, currencies, commodities business slightly softer in Q3",
@@ -728,7 +734,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789587454000
+      "firstAt": 1789587454000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Fed rate hike strengthens dollar"
     },
     {
       "title": "Senator Britt to Join Press Conference Ahead of House Vote on Russia Sanctions Bill - Forth.News",
@@ -748,7 +760,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789587338000
+      "firstAt": 1789587338000,
+      "why": "Political news, unclear market direction"
     },
     {
       "title": "Federal Reserve hikes key rate for 1st time in 3 years, defying Trump demands for a cut - AP News",
@@ -771,7 +784,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789586325000
+      "firstAt": 1789586325000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Fed hike boosts dollar, hurts others"
     },
     {
       "title": "'Warsh not only read the markets, but he read the room’: Experts react to Fed rate hike - Firstpost",
@@ -794,7 +813,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789586579000
+      "firstAt": 1789586579000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Fed hike reaction, dollar strength"
     },
     {
       "title": "Dow Falls 500 Points as the Federal Reserve Raises Key Interest Rate - WSJ",
@@ -811,7 +836,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789586325000
+      "firstAt": 1789586325000,
+      "dir": {
+        "US30": "down"
+      },
+      "why": "Dow falls on Fed rate hike"
     },
     {
       "title": "Crude Oil WTI stalls at $102.42 with bearish reversal forming: Live",
@@ -828,7 +857,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789586316000
+      "firstAt": 1789586316000,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "WTI bearish reversal forming"
     },
     {
       "title": "Natural Gas coils under $2.90 cloud resistance: Live levels",
@@ -842,7 +875,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789586280000
+      "firstAt": 1789586280000,
+      "dir": {
+        "NATGAS": "down"
+      },
+      "why": "Natural gas coils under resistance"
     },
     {
       "title": "Silver breaks 50% Fib support at $63: Live levels",
@@ -858,7 +895,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789586280000
+      "firstAt": 1789586280000,
+      "dir": {
+        "XAG/USD": "down"
+      },
+      "why": "Silver breaks support level"
     },
     {
       "title": "London Gas Oil flashes bull trap risk at $1,574: Live levels",
@@ -874,7 +915,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789586280000
+      "firstAt": 1789586280000,
+      "why": "Gas oil news, irrelevant to oil"
     },
     {
       "title": "Brent Oil squeezed at $105.93 amid fading momentum: Live levels",
@@ -891,7 +933,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789586280000
+      "firstAt": 1789586280000,
+      "dir": {
+        "UKOIL": "down"
+      },
+      "why": "Brent fading momentum, squeezed"
     },
     {
       "title": "Gold hits 5-hour low below 200 SMA with oversold RSI: Live levels",
@@ -907,7 +953,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789586280000
+      "firstAt": 1789586280000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold hits low, oversold RSI"
     },
     {
       "title": "Jerusalem Daily: US to send $2.8BN worth of weapons to Israel",
@@ -927,7 +977,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789586068000
+      "firstAt": 1789586068000,
+      "why": "Geopolitical news, unclear immediate direction"
     },
     {
       "title": "As Fed rolls out its first interest-rate hike in 3 years, officials are divided on what to do next",
@@ -1137,26 +1188,6 @@
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMivwFBVV95cUxQdGtKVXRwQXN1c3J1bnpHcXNvRzJEbE9DVEVqV3JOQWttNmNhbHR3ekdVNWhKY1VUSHVuUmZvLXJILXNXRWI1bWhpSnJNV1BqUGhESUl0dGFpUUJDVmtvTmZpeV9ZR3F3bUhJZGFfNllUdENsemJHd0xubFBzUy0yanFES0xxX0FPc1p4UHpNQnh6VU1NSmhwOHp1ZHdka0ItUGlKN0NlcE1Id2",
       "at": 1789583352000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789580847000
-    },
-    {
-      "title": "House Votes on Landmark Russia Sanctions Bill - Devdiscourse",
-      "link": "https://news.google.com/rss/articles/CBMioAFBVV95cUxNTnNRNGtndWV6ejFCa2Z3ZE82RDNFVnQwUWFOVEVxdEtTREdiQjZPSXFIQ3RwSEdCNTlhbnVUWU9mR2pjSldHWV9pNWswMVlPRG8yb1ExLVR5SGNhR0JNNUg0bjZjTWE4LUhNajUxR214R0JrR0ZMbzc1elo4cUlkb0JUSTdab1pVYmJRamYtVHoyTzI0bkFKSWRwMmRmZlRN0gGmAUFVX3lxTE1aOVZjZmIzb1lpVFd6WDRQY1h1Nm5fbmxNNVE3anJQSHp1TVhlSzFNeWlQem53RHgzMGk1TVo3VXd2RXVHWGFzdmcxc0ZrdmdiMi00dGFNcjAtejNVanZMcVIzY3pmWm5uQm5BMXBrMmtHcTJfOHlfN05iOG5yNHRmTlYtZER3a3JiTjE1Wm9sMXIyaFJSWlVqV1N3dnpFdEgzSlg2eFE?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMioAFBVV95cUxNTnNRNGtndWV6ejFCa2Z3ZE82RDNFVnQwUWFOVEVxdEtTREdiQjZPSXFIQ3RwSEdCNTlhbnVUWU9mR2pjSldHWV9pNWswMVlPRG8yb1ExLVR5SGNhR0JNNUg0bjZjTWE4LUhNajUxR214R0JrR0ZMbzc1elo4cUlkb0JUSTdab1pVYmJRamYtVHoyTzI0bkFKSWRwMmRmZlRN0gGmAUFVX3lxTE",
-      "at": 1789583349000,
       "inst": [
         "XAU/USD",
         "USOIL",
@@ -1946,7 +1977,7 @@
       "firstAt": 1789572231000
     },
     {
-      "title": "Fox News: Iran Attack Hits U.S.-Contracted Ship Carrying American Personnel - gCaptain",
+      "title": "Fox News: Iran Attack Hits U.S.-Contracted Ship Carrying American Personnel - gcaptain.com",
       "link": "https://news.google.com/rss/articles/CBMimwFBVV95cUxOX2ZuLTR6OXpkQUZGWjh6emVacW1FUzRCbXpHYmdnS2VWb20wNDJNMmRyLW1iekJOMVo2S3hGeUpHeUM0aE1UM1QxM0l6LUdDdVI1Q2U5R0trQ0NBMjFBM0RMY0hSa3ZHemVMQ2lOUDRpTTlxMzNiOW1weHdsMFFoOE45VlBGQkt1MmstSkk3QXp1SXFLdlhuQWUzUQ?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMimwFBVV95cUxOX2ZuLTR6OXpkQUZGWjh6emVacW1FUzRCbXpHYmdnS2VWb20wNDJNMmRyLW1iekJOMVo2S3hGeUpHeUM0aE1UM1QxM0l6LUdDdVI1Q2U5R0trQ0NBMjFBM0RMY0hSa3ZHemVMQ2lOUDRpTTlxMzNiOW1weHdsMFFoOE45VlBGQkt1MmstSkk3QXp1SXFLdlhuQWUzUQ?oc=5\" target=\"_blan",
@@ -2362,6 +2393,23 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789559692000
+    },
+    {
+      "title": "Philippines' Duterte seen in person at International Criminal Court for first time",
+      "link": "https://www.bbc.co.uk/news/articles/cq986j7x1nd3o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC World",
+      "desc": "He is due to be tried for crimes against humanity over thousands of deaths linked to his war on drugs.",
+      "at": 1789559409000,
+      "inst": [
+        "XAU/USD"
+      ],
+      "ccy": [
+        "XAU"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789559409000
     }
   ],
   "sources": [
@@ -2384,10 +2432,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-16T20:08:39.151Z",
-  "headlinesAt": "2026-09-16T20:08:39.151Z",
-  "updatedAt": "2026-09-16T20:08:39.151Z"
+  "calendarAt": "2026-09-16T20:09:54.780Z",
+  "headlinesAt": "2026-09-16T20:09:54.780Z",
+  "updatedAt": "2026-09-16T20:09:54.780Z"
 }
