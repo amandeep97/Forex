@@ -645,7 +645,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789587816000,
-      "_kind": null
+      "_kind": null,
+      "why": "Geopolitical uncertainty, no clear directional bias"
     },
     {
       "title": "Goldman CEO says fixed income, currencies, commodities business slightly softer in Q3",
@@ -688,7 +689,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789587586000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Bank stocks fall after rate hike"
     },
     {
       "title": "Wall Street falls as Fed’s Warsh says ’plain fact is that inflation is too high’",
@@ -705,7 +710,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789585020000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Wall Street falls on inflation concerns"
     },
     {
       "title": "investingLive Americas market news wrap: Fed hikes rates for the first time in three years",
@@ -729,7 +738,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789587454000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Rate hike strengthens dollar, hurts assets"
     },
     {
       "title": "Senator Britt to Join Press Conference Ahead of House Vote on Russia Sanctions Bill - Forth.News",
@@ -750,7 +765,38 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789587338000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions bill vote, unclear immediate impact"
+    },
+    {
+      "title": "Federal Reserve hikes key rate for 1st time in 3 years, defying Trump demands for a cut - AP News",
+      "link": "https://news.google.com/rss/articles/CBMingFBVV95cUxPVlB2TmNqY1dILUtfRTFBQ0JPSk53elRnU1QzdmhIQ3VvTWlkelRTd3haWHJ4bmxiY2ZOcGhvd09wMTllVkVLQzk5NkdKZzNPeHpaZTRHQ242Ynd2Q1ZIUU50cUp1N2JYd1lCQndZQlhMUTZFekFZWWNueUxNbmRiUHdBZ2dWbDgzNlhmejZneHptaFhGbDI1M0JPbk8zZw?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMingFBVV95cUxPVlB2TmNqY1dILUtfRTFBQ0JPSk53elRnU1QzdmhIQ3VvTWlkelRTd3haWHJ4bmxiY2ZOcGhvd09wMTllVkVLQzk5NkdKZzNPeHpaZTRHQ242Ynd2Q1ZIUU50cUp1N2JYd1lCQndZQlhMUTZFekFZWWNueUxNbmRiUHdBZ2dWbDgzNlhmejZneHptaFhGbDI1M0JPbk8zZw?oc=5\" target=\"_",
+      "at": 1789587060000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789586325000,
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Fed hike boosts dollar, lowers yields"
     },
     {
       "title": "'Warsh not only read the markets, but he read the room’: Experts react to Fed rate hike - Firstpost",
@@ -774,7 +820,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789586579000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Rate hike reaction, dollar strength implied"
     },
     {
       "title": "Dow Falls 500 Points as the Federal Reserve Raises Key Interest Rate - WSJ",
@@ -791,8 +843,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789585503000,
-      "_kind": null
+      "firstAt": 1789586325000,
+      "_kind": null,
+      "dir": {
+        "US30": "down"
+      },
+      "why": "Dow falls significantly on rate hike"
     },
     {
       "title": "Crude Oil WTI stalls at $102.42 with bearish reversal forming: Live",
@@ -810,7 +866,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789586316000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Bearish reversal forming for WTI"
     },
     {
       "title": "Natural Gas coils under $2.90 cloud resistance: Live levels",
@@ -825,7 +885,10 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789586280000,
-      "_kind": null
+      "dir": {
+        "NATGAS": "down"
+      },
+      "why": "Coils under resistance, bearish pressure"
     },
     {
       "title": "Silver breaks 50% Fib support at $63: Live levels",
@@ -842,7 +905,10 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789586280000,
-      "_kind": null
+      "dir": {
+        "XAG/USD": "down"
+      },
+      "why": "Breaks support level, bearish signal"
     },
     {
       "title": "London Gas Oil flashes bull trap risk at $1,574: Live levels",
@@ -859,7 +925,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789586280000,
-      "_kind": null
+      "why": "Bull trap risk, unclear direction"
     },
     {
       "title": "Brent Oil squeezed at $105.93 amid fading momentum: Live levels",
@@ -877,7 +943,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789586280000,
-      "_kind": null
+      "why": "Fading momentum, no clear direction"
     },
     {
       "title": "Gold hits 5-hour low below 200 SMA with oversold RSI: Live levels",
@@ -894,7 +960,10 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789586280000,
-      "_kind": null
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Hits low, oversold, bearish trend"
     },
     {
       "title": "Jerusalem Daily: US to send $2.8BN worth of weapons to Israel",
@@ -914,7 +983,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789586068000
+      "firstAt": 1789586068000,
+      "why": "Geopolitical news, unclear market impact"
     },
     {
       "title": "As Fed rolls out its first interest-rate hike in 3 years, officials are divided on what to do next",
@@ -973,29 +1043,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789585551000
-    },
-    {
-      "title": "Federal Reserve hikes key rate for 1st time in 3 years, defying Trump demands for a cut - Toronto Star",
-      "link": "https://news.google.com/rss/articles/CBMiiwJBVV95cUxPV2pQSi1UcDUwclFJSU9Ha0h5ZWdoTmZNMHZuQUVZTHNpbm8yNEJaa0ZRNU1mV0FRNTBJS09qUDhPay1fNjlPdjZIQ2tsLVNhNE5pWGZfYm1uM2lKeWk5VW03ZmZLN1BIWFF2RWdDamJ0VDA2WWtCVkRZc3h4el9oWGtTTThYN0hCUDBnUmtnSVJzRFpXeEx3RGN5YjZndXpXTzFuUV84Mk9TQTk1Qjk2QXdZTE40ajdkanNROXc3QkV1bTFVUEdoQTZCWFRrajNqdEtZVHRadGQwVDNzV3RkMFNDenFpeVdDNTBwMGhKRFlFcXNoSjZBMFJkc3NBZmRCTXBNd2RMNm9RYTA?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiiwJBVV95cUxPV2pQSi1UcDUwclFJSU9Ha0h5ZWdoTmZNMHZuQUVZTHNpbm8yNEJaa0ZRNU1mV0FRNTBJS09qUDhPay1fNjlPdjZIQ2tsLVNhNE5pWGZfYm1uM2lKeWk5VW03ZmZLN1BIWFF2RWdDamJ0VDA2WWtCVkRZc3h4el9oWGtTTThYN0hCUDBnUmtnSVJzRFpXeEx3RGN5YjZndXpXTzFuUV84Mk9TQT",
-      "at": 1789585503000,
-      "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789583211000
     },
     {
       "title": "Fed approves interest rate hike, signals one more to come this year",
@@ -1144,6 +1191,26 @@
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMivwFBVV95cUxQdGtKVXRwQXN1c3J1bnpHcXNvRzJEbE9DVEVqV3JOQWttNmNhbHR3ekdVNWhKY1VUSHVuUmZvLXJILXNXRWI1bWhpSnJNV1BqUGhESUl0dGFpUUJDVmtvTmZpeV9ZR3F3bUhJZGFfNllUdENsemJHd0xubFBzUy0yanFES0xxX0FPc1p4UHpNQnh6VU1NSmhwOHp1ZHdka0ItUGlKN0NlcE1Id2",
       "at": 1789583352000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789580847000
+    },
+    {
+      "title": "House Votes on Landmark Russia Sanctions Bill - Devdiscourse",
+      "link": "https://news.google.com/rss/articles/CBMioAFBVV95cUxNTnNRNGtndWV6ejFCa2Z3ZE82RDNFVnQwUWFOVEVxdEtTREdiQjZPSXFIQ3RwSEdCNTlhbnVUWU9mR2pjSldHWV9pNWswMVlPRG8yb1ExLVR5SGNhR0JNNUg0bjZjTWE4LUhNajUxR214R0JrR0ZMbzc1elo4cUlkb0JUSTdab1pVYmJRamYtVHoyTzI0bkFKSWRwMmRmZlRN0gGmAUFVX3lxTE1aOVZjZmIzb1lpVFd6WDRQY1h1Nm5fbmxNNVE3anJQSHp1TVhlSzFNeWlQem53RHgzMGk1TVo3VXd2RXVHWGFzdmcxc0ZrdmdiMi00dGFNcjAtejNVanZMcVIzY3pmWm5uQm5BMXBrMmtHcTJfOHlfN05iOG5yNHRmTlYtZER3a3JiTjE1Wm9sMXIyaFJSWlVqV1N3dnpFdEgzSlg2eFE?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMioAFBVV95cUxNTnNRNGtndWV6ejFCa2Z3ZE82RDNFVnQwUWFOVEVxdEtTREdiQjZPSXFIQ3RwSEdCNTlhbnVUWU9mR2pjSldHWV9pNWswMVlPRG8yb1ExLVR5SGNhR0JNNUg0bjZjTWE4LUhNajUxR214R0JrR0ZMbzc1elo4cUlkb0JUSTdab1pVYmJRamYtVHoyTzI0bkFKSWRwMmRmZlRN0gGmAUFVX3lxTE",
+      "at": 1789583349000,
       "inst": [
         "XAU/USD",
         "USOIL",
@@ -1331,33 +1398,10 @@
       "firstAt": 1789579891000
     },
     {
-      "title": "U.S. dollar gets strong bid in reaction Fed's 25 bps rate hike - CNBC",
-      "link": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQYnF0MERaazlLZ3o0anU4dVhYMGc4Sk1CNUtHNU1tdk9meFdYVkNyaXNkOHY2UU9wWk1NREVGNmVSWWpZdHhhem5YRjFyckpqTnhWQk91QjF0RWJMdnR1UF80LVdLMGNrdHNjM2Y1LUkyQVYyVEdfRFIxNGEtZjQzV091VWNpWHdSN2huQ2FiSkFpcl9GWEEyZDNLS0lSWWpWVHBsN0RB?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMipgFBVV95cUxQYnF0MERaazlLZ3o0anU4dVhYMGc4Sk1CNUtHNU1tdk9meFdYVkNyaXNkOHY2UU9wWk1NREVGNmVSWWpZdHhhem5YRjFyckpqTnhWQk91QjF0RWJMdnR1UF80LVdLMGNrdHNjM2Y1LUkyQVYyVEdfRFIxNGEtZjQzV091VWNpWHdSN2huQ2FiSkFpcl9GWEEyZDNLS0lSWWpWVHBsN0RB?oc=5\"",
-      "at": 1789582107000,
-      "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789582107000
-    },
-    {
       "title": "US Fed raises interest rates for first time in three years",
       "link": "https://www.aljazeera.com/economy/2026/9/16/us-fed-raises-interest-rates-as-inflation-weighs-on-economy?traffic_source=rss",
       "source": "Al Jazeera",
-      "desc": "The 25 basis-point hike is the first raise in three years and comes ahead of critical midterm elections in the US.",
+      "desc": "The 25 basis-point hike is the first raise in three years and comes before critical midterm elections in the US.",
       "at": 1789581831000,
       "inst": [
         "XAU/USD",
@@ -1479,6 +1523,29 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789578337000
+    },
+    {
+      "title": "U.S. dollar gets strong bid in reaction Fed's 25 bps rate hike - CNBC",
+      "link": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQYnF0MERaazlLZ3o0anU4dVhYMGc4Sk1CNUtHNU1tdk9meFdYVkNyaXNkOHY2UU9wWk1NREVGNmVSWWpZdHhhem5YRjFyckpqTnhWQk91QjF0RWJMdnR1UF80LVdLMGNrdHNjM2Y1LUkyQVYyVEdfRFIxNGEtZjQzV091VWNpWHdSN2huQ2FiSkFpcl9GWEEyZDNLS0lSWWpWVHBsN0RB?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMipgFBVV95cUxQYnF0MERaazlLZ3o0anU4dVhYMGc4Sk1CNUtHNU1tdk9meFdYVkNyaXNkOHY2UU9wWk1NREVGNmVSWWpZdHhhem5YRjFyckpqTnhWQk91QjF0RWJMdnR1UF80LVdLMGNrdHNjM2Y1LUkyQVYyVEdfRFIxNGEtZjQzV091VWNpWHdSN2huQ2FiSkFpcl9GWEEyZDNLS0lSWWpWVHBsN0RB?oc=5\"",
+      "at": 1789580498000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789580498000
     },
     {
       "title": "Belarus frees 25 political prisoners in return for US sanctions relief",
@@ -2192,23 +2259,6 @@
       "firstAt": 1789564843000
     },
     {
-      "title": "Russia’s Pole-21 Jams Ukrainian Weapons, But Still Gets Tech From Taiwan, Japan, and South Korea - UNITED24 Media",
-      "link": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxQT0liQTZZZ0ViZlJMZ2FRQkpEM1JaTnYtdXJUSmZVZ2dkWjNFT2F5eWlsTWIybWRuOHlBcENhbDdyNG4ybEdiOG8yVkdBNnhPLV94bVpqUFNqazcyd1VyUGZ3Uk5EbWotbm1SQ1pDLUY5RnVKNnlaT0pkcDRGZlBCcmhPZTVVa0lSRFlzX0N6MzVwcFVvYzlkS19EWm9hLVdXb01Mdy1QdG9kcGZXTnk5QmRTN0pNOEVsWFpBWEV3M2JVOUhRanhsTlBPaFJLQUxEa1Z4OWFn?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi1gFBVV95cUxQT0liQTZZZ0ViZlJMZ2FRQkpEM1JaTnYtdXJUSmZVZ2dkWjNFT2F5eWlsTWIybWRuOHlBcENhbDdyNG4ybEdiOG8yVkdBNnhPLV94bVpqUFNqazcyd1VyUGZ3Uk5EbWotbm1SQ1pDLUY5RnVKNnlaT0pkcDRGZlBCcmhPZTVVa0lSRFlzX0N6MzVwcFVvYzlkS19EWm9hLVdXb01Mdy1QdG9kcG",
-      "at": 1789564663000,
-      "inst": [
-        "USD/JPY"
-      ],
-      "ccy": [
-        "JPY"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789564663000
-    },
-    {
       "title": "The world is debating sanctions against Israel. I am watching young warriors rebuild their lives - foxnews.com",
       "link": "https://news.google.com/rss/articles/CBMitAFBVV95cUxON2d0NGxxdHM2TjFOb0hNc192bWtMXzBmQ1NPVTI3b2p6YWpjNV83bTlLZGJwNjVyNVlzMTBmMTVSLVJuODFSQ3hZNnpnT3kzc1hqakxyMEVVN091UXFCUTVjWHdRUXBmLVhFTkc2bmJLNl9GaG1HU3N2RlNzVVZtclBzVS04V0NyeWY5QkZMV0U1QnF6dVBEcnV4cjRRZGF2TUxCbnRxZXZvOUg0cXZVdkZiS23SAboBQVVfeXFMUFFiWnZEN0ItNlRTRUtfOTFlNDNwczktS0FMTTEtUUt0b1k1SGZlWVJvLXRGVmVCdm1uQUg1dFpmeWh2NjNGa0E3U21VWDNXazVBRDNhU3h1aTJrSmhsR2EzLTZrZWYxNEpKYm93dnJZUVRORjRMZzNUMjlzZTlxQ3A4Z2E3SFZFUTJDZDJkNHNWZGFXbGdYZ29JdmxscFF5Nml4bDUta2ZKR1JyOFJZd0ZTRFo3RUhhT1Vn?oc=5",
       "source": "Wires (geo)",
@@ -2393,10 +2443,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-16T19:47:23.347Z",
-  "headlinesAt": "2026-09-16T19:47:23.347Z",
-  "updatedAt": "2026-09-16T19:47:23.347Z"
+  "calendarAt": "2026-09-16T19:48:40.688Z",
+  "headlinesAt": "2026-09-16T19:48:40.688Z",
+  "updatedAt": "2026-09-16T19:48:40.688Z"
 }
