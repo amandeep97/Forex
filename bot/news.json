@@ -23,7 +23,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789537744000,
-      "_kind": null
+      "_kind": null,
+      "why": "Markets steady, awaiting Fed decision"
     },
     {
       "title": "Gold Prices Ease As Crude Oil Rally Reinforces Inflation And Fed Rate Hike Risks By Kedia Advisory - Investing.com India",
@@ -45,7 +46,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789536618000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Gold eases, oil rallies on inflation"
     },
     {
       "title": "Chinese chipmakers, electronics stocks rise on hopes of govt support after 5-year",
@@ -60,7 +67,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789537021000,
-      "_kind": null
+      "_kind": null,
+      "why": "Chinese stocks rise, US impact unclear"
     },
     {
       "title": "ADF neutralizes 63 Russian drones used to attack Ukraine overnight - Ukrinform",
@@ -81,7 +89,49 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789537020000,
-      "_kind": null
+      "_kind": null,
+      "why": "Ukraine drone attack, no clear market impact"
+    },
+    {
+      "title": "US House votes to end Iran war, 7 Republicans join in favour",
+      "link": "https://www.aljazeera.com/news/2026/9/16/us-house-votes-to-end-iran-war-7-republicans-join-in-favour?traffic_source=rss",
+      "source": "Al Jazeera",
+      "desc": "For a third time, the US House approved a war powers resolution, halting Trump's ability to continue military action.",
+      "at": 1789537013000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789537013000,
+      "_kind": null,
+      "why": "US House votes on Iran war"
+    },
+    {
+      "title": "Seoul court orders North Korea to pay $32.5m for blowing up office",
+      "link": "https://www.aljazeera.com/news/2026/9/16/seoul-court-orders-north-korea-to-pay-32-5m-for-blowing-up-office?traffic_source=rss",
+      "source": "Al Jazeera",
+      "desc": "Pyongyang blew up the Inter-Korean Liaison Office building in June 2020 after days of rising tensions.",
+      "at": 1789536694000,
+      "inst": [
+        "XAU/USD"
+      ],
+      "ccy": [
+        "XAU"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789536694000,
+      "_kind": null,
+      "why": "North Korea court order, no market impact"
     },
     {
       "title": "Gold prices today: Yellow metal inches higher ahead of Fed decision - Gulf News",
@@ -100,7 +150,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789536618000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Gold inches higher ahead of Fed"
     },
     {
       "title": "Oil slips on US stock build, Middle East disruptions limit losses",
@@ -116,7 +170,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789535206000
+      "firstAt": 1789535206000,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Oil slips on US stock build"
     },
     {
       "title": "Asian currencies mixed as dollar holds gains, yen slips to one-week low",
@@ -133,7 +191,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789534948000
+      "firstAt": 1789534948000,
+      "dir": {
+        "USD/JPY": "up"
+      },
+      "why": "Dollar holds gains, yen slips"
     },
     {
       "title": "US House Advances Russia Sanctions Bill Toward Final Vote | Ukraine news - #Mezha - Межа. Новини України.",
@@ -153,7 +215,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789532381000
+      "firstAt": 1789532381000,
+      "why": "Russia sanctions bill advances, no clear impact"
     },
     {
       "title": "Chinese stocks to watch as Beijing’s 2026-2030 electronics plan takes shape",
@@ -167,7 +230,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789534234000
+      "firstAt": 1789534234000,
+      "why": "Chinese electronics plan, US impact unclear"
     },
     {
       "title": "Swiss Franc edges higher as US Dollar declines despite Fed rate hike bets - FXStreet",
@@ -185,7 +249,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789533040000
+      "firstAt": 1789533040000,
+      "dir": {
+        "USD/CHF": "down"
+      },
+      "why": "Dollar declines, Swiss Franc edges higher"
     },
     {
       "title": "Congress Should Tighten Sanctions on Iran and Russia - ideas.tikvah.org",
@@ -205,7 +273,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789532381000
+      "firstAt": 1789532381000,
+      "why": "Sanctions proposal, no immediate market impact"
     },
     {
       "title": "Ukraine's drone strikes force 3 of Russia's largest diesel refineries to halt or slash output, Reuters reports - The Kyiv Independent",
@@ -225,7 +294,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789532296000
+      "firstAt": 1789532296000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Refinery halts boost oil supply concerns"
     },
     {
       "title": "UK CPI preview: Inflation test lands just before the BOE rate decision",
@@ -243,7 +317,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789531958000
+      "firstAt": 1789531958000,
+      "why": "UK CPI preview, direction unclear"
     },
     {
       "title": "Warsh likely to side with financial markets over Trump as Fed rate hike expected - Oskaloosa Herald",
@@ -1033,23 +1108,6 @@
       "firstAt": 1789508040000
     },
     {
-      "title": "US Senate crypto bill collapses in blow to industry",
-      "link": "https://www.aljazeera.com/economy/2026/9/15/us-senate-crypto-bill-collapses-in-blow-to-industry?traffic_source=rss",
-      "source": "Al Jazeera",
-      "desc": "The defeat dealt a major blow to efforts to establish the first comprehensive federal framework for digital-asset market",
-      "at": 1789507908000,
-      "inst": [
-        "BTC/USDT"
-      ],
-      "ccy": [
-        "BTC"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789507908000
-    },
-    {
       "title": "Two Democrats cross aisle to help tee up final vote on Russia sanctions bill - The Hill",
       "link": "https://news.google.com/rss/articles/CBMikAFBVV95cUxNYkMwaENYcTFqWnVmbXVXc2lBYzljTFFhOTAwVHlkelZNc2RxS2gxNTdlYVJXNW13SlBuOVpLd2xaMVBFZmY2MTY2eWNGdzN4ZDdFQ192VjBDSU9vN2ZKRU9kVVE3SjhSVndGcnZhbEV3NkdaWjJUTVRwei1RUzB3eldTNGgwcUozSXZVNTZXT1PSAZYBQVVfeXFMTlVVRDlHeDVDNElOWTJ2SzJfZDhJN0lzTUZCXzdtM0dzYjY2Y3VWQmcycFRTSjdyX2xtVzZlUlRsRDBsVm5Oakk3dkxtcnFsTXZEYnp6Ums5UGlwLVBOWHhjeUl5U0VHMWw5N1JWd040OFdsWl9oM0xqUHMzNnpLa3RpRmRSYmtnQ0VIM2pOQk9uRnYwYzZn?oc=5",
       "source": "Wires (geo)",
@@ -1713,29 +1771,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789493440000
-    },
-    {
-      "title": "Maxine Waters presses Treasury Secretary Scott Bessent on inflation - Fox Business",
-      "link": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE50aHhEQzNmemN4b2U2M09pUUU2OHpQU1locXRONFliYTlfS2lva2VwZllZYWFYVWNXSDN0WEJTdVJ4MnROMGlQQndwVzVhSFBjendMdnNHd205eWs?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiW0FVX3lxTE50aHhEQzNmemN4b2U2M09pUUU2OHpQU1locXRONFliYTlfS2lva2VwZllZYWFYVWNXSDN0WEJTdVJ4MnROMGlQQndwVzVhSFBjendMdnNHd205eWs?oc=5\" target=\"_blank\">Maxine Waters presses Treasury Secretary Scott Bessent on inflation</a>&nbsp;&nbsp;<",
-      "at": 1789493440000,
-      "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789493440000
     }
   ],
   "sources": [
@@ -1762,6 +1797,6 @@
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-16T05:58:52.737Z",
-  "updatedAt": "2026-09-16T05:58:52.737Z"
+  "headlinesAt": "2026-09-16T06:00:27.512Z",
+  "updatedAt": "2026-09-16T06:00:27.512Z"
 }
