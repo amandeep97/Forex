@@ -44,6 +44,7 @@
 //   ignored. The bot posts into a chat; a chat is not an authenticator.
 
 const { fmtPrice } = require('./utils');
+const { directionConflict } = require('./exposure');
 
 const SYM = 'XAG/USD';
 const OANDA_SYM = 'XAG_USD';
@@ -238,12 +239,21 @@ class XagDesk {
   /**
    * Is the account clear for a new proposal?
    *
-   * Asked of the VENUE, not of local state. The bot is not the only thing that
-   * can open a silver position — a manual trade from the OANDA app counts too,
-   * and a desk that only knew about its own orders would happily add to it.
+   * Asked of the VENUE, and ONLY of the venue.
+   *
+   * This used to begin `if (this.pending) return { ok: false, ... }`, which
+   * made it useless at the moment it mattered most. At execution time the
+   * proposal being executed is still `this.pending`, so the check returned
+   * before touching the venue, and the caller — which skipped any refusal
+   * mentioning a proposal — let the order through. The comment said "asked
+   * again rather than trusted"; it never asked.
+   *
+   * Whether a proposal is already live is a question about this desk's own
+   * state and belongs in propose(). This one is about the account: the bot is
+   * not the only thing that can open silver, and a manual trade from the OANDA
+   * app counts too.
    */
-  async _clear() {
-    if (this.pending) return { ok: false, why: 'a proposal is already live' };
+  async _clear(dir = null) {
     const [trades, orders] = await Promise.all([
       this.oanda.getOpenTrades(),
       this.oanda.getPendingOrders(),
@@ -253,6 +263,15 @@ class XagDesk {
     }
     if ((orders || []).some(o => o.instrument === OANDA_SYM)) {
       return { ok: false, why: 'a silver order is already resting' };
+    }
+    // Reached only when neither of the above fired, so today it can never
+    // disagree with them. It is here because those two are a POSITION LIMIT —
+    // one silver trade at a time — and this is a different rule about never
+    // holding both sides. If the limit is ever relaxed to allow adding to a
+    // winner, this is what still refuses the opposite side.
+    if (dir) {
+      const conflict = directionConflict({ trades, orders, instrument: OANDA_SYM, dir });
+      if (conflict) return { ok: false, why: conflict.why };
     }
     return { ok: true };
   }
@@ -307,7 +326,11 @@ class XagDesk {
     const p = rec.plan;
     if (!p || p.state !== 'armed') return null;
 
-    const clear = await this._clear();
+    // One live proposal at a time. This desk's own state, so it is asked here
+    // rather than inside a function about the account.
+    if (this.pending) { this.log('XAG desk: a proposal is already live'); return null; }
+
+    const clear = await this._clear(p.dir);
     if (!clear.ok) { this.log(`XAG desk: skipped — ${clear.why}`); return null; }
 
     // One at a time bounds what is at risk in any instant. This bounds it over
@@ -389,9 +412,21 @@ class XagDesk {
     prop.approvedBy = source;
 
     // The account can have changed since the proposal went out — a manual trade,
-    // another fill. Asked again rather than trusted.
-    const clear = await this._clear().catch(() => ({ ok: true }));
-    if (!clear.ok && !/proposal/.test(clear.why)) {
+    // another fill, an order from the strategy engine. Asked again rather than
+    // trusted.
+    //
+    // A FAILURE TO ASK IS A FAILURE. This used to be `.catch(() => ({ ok: true }))`,
+    // which turned an unreachable venue into "the account is clear" — the one
+    // moment the check cannot see the book being the moment it waves the order
+    // through. Now it refuses, and says why.
+    let clear;
+    try {
+      clear = await this._clear(prop.dir);
+    } catch (e) {
+      this._close(prop, 'failed', `could not check the account first (${e.message})`);
+      return prop;
+    }
+    if (!clear.ok) {
       this._close(prop, 'failed', clear.why);
       return prop;
     }

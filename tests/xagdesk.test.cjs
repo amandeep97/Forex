@@ -522,6 +522,54 @@ const armed = (over = {}) => ({
     check('and the order rests for as long as the app said', hours === 2, `${hours}h`);
   }
 
+  // ── A failure to CHECK is a failure ──────────────────────────────────────
+  //
+  // The pre-flight check before placing was wrapped in
+  // `.catch(() => ({ ok: true }))`, which turned an unreachable venue into "the
+  // account is clear". The one moment the check cannot see the book was the
+  // moment it waved the order through.
+  {
+    const o = fakeOanda(), t = fakeTelegram();
+    const d = await mkDesk(o, t);
+    const p = await d.propose(armed());
+    // The account becomes unreachable between proposing and approving.
+    o.getOpenTrades = async () => { throw new Error('ECONNRESET'); };
+    t._taps.push({ id: 'c1', data: `xag:ok:${p.id}`, from: '55' });
+    await d.tick();
+    check('an unreachable account refuses the order rather than placing it',
+      o.placed.length === 0 && d.history[0].state === 'failed',
+      `${o.placed.length} order(s), ${d.history[0]?.state}`);
+    check('and says that the check itself failed, not that the trade was bad',
+      /could not check the account/i.test(d.history[0].why || ''),
+      d.history[0]?.why);
+  }
+
+  // ── Never the other side ─────────────────────────────────────────────────
+  //
+  // Today the one-at-a-time rule already refuses any silver while silver is
+  // open, so this can never disagree with it. It is a separate rule because
+  // those two are a POSITION LIMIT and this is about never holding both sides:
+  // if the limit is ever relaxed to allow adding to a winner, this is what
+  // still refuses the opposite side.
+  {
+    const o = fakeOanda({ trades: [{ instrument: OANDA_SYM, currentUnits: '-6' }] });
+    const d = await mkDesk(o, fakeTelegram());
+    check('a long is never proposed while silver is short',
+      (await d.propose(armed())) === null);
+
+    const o2 = fakeOanda({ orders: [{ instrument: OANDA_SYM, units: '-6' }] });
+    const d2 = await mkDesk(o2, fakeTelegram());
+    check('nor while a short order is resting on it',
+      (await d2.propose(armed())) === null);
+
+    // Gold being short is not silver's problem.
+    const o3 = fakeOanda({ trades: [{ instrument: 'XAU_USD', currentUnits: '-6' }] });
+    const d3 = await mkDesk(o3, fakeTelegram());
+    check('but another instrument being short does not block silver',
+      (await d3.propose(armed())) !== null,
+      '', 'gold and silver are related, not the same book');
+  }
+
   console.log(fails ? `\n${fails} FAILED` : '\nall passed');
   process.exit(fails ? 1 : 0);
 })();

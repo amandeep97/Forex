@@ -24,6 +24,7 @@ const { runRegimeStudy, METHOD_VERSION: REGIME_VERSION } = require('./regimeStud
 const { runRegimeSearch, METHOD_VERSION: SEARCH_VERSION } = require('./regimeSearch');
 const { stepLiquidityStudy } = require('./liquidityStudy');
 const { XagDesk } = require('./xagDesk');
+const { conflictAtVenue } = require('./exposure');
 const { INSTRUMENTS }  = require('./instruments');
 
 const COT_STUDY_PATH = 'bot/cot-study.json';
@@ -682,6 +683,23 @@ class ForexBot {
     const afford = await this._affordable(pair, cp, units, account);
     if (!afford.ok) {
       this.log(`${pair}: cannot afford ${units} units — ${afford.why}`);
+      return false;
+    }
+
+    // ── Never the other side of something already on ────────────────────
+    //
+    // The per-pair guard above counts only THIS strategy's positions, so a
+    // silver long placed by the desk — or by another strategy — is invisible to
+    // it, and a short signal would open against it. Asked of the venue at the
+    // moment of placing, because the gap between a tick-start snapshot and here
+    // is exactly where the other engine places its order.
+    //
+    // Not caught: if the account cannot be read, nothing is placed. The one
+    // case where this check cannot see the book is the worst possible case to
+    // answer "go ahead" to.
+    const conflict = await conflictAtVenue(this.oanda, { instrument: pair, dir });
+    if (conflict) {
+      this.log(`${pair}: ${conflict.why}`);
       return false;
     }
 
