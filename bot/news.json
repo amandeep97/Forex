@@ -2,6 +2,62 @@
   "calendar": [],
   "headlines": [
     {
+      "title": "The five words from Kevin Warsh that scared markets - AFR",
+      "link": "https://news.google.com/rss/articles/CBMioAFBVV95cUxOMk4yMm5mWHEzOWRKUU9zQTFvMjJ2ZDhFOU9FSnhGd3pSSlphY2hwZW5ZR0JIajJ4OTB6Ymk3TUVSeWY0RV96UXZld2p5RXh5WGdSTWVzSGtzQlVCNXpSb3B3ZDJMV3F2SnF0TWJZalpXZ3ZZa0pfenJGWmllMUhsbF91dGlVOF94TER4ODVWTXJOMGpMcGJKY0pQampMMEpU?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMioAFBVV95cUxOMk4yMm5mWHEzOWRKUU9zQTFvMjJ2ZDhFOU9FSnhGd3pSSlphY2hwZW5ZR0JIajJ4OTB6Ymk3TUVSeWY0RV96UXZld2p5RXh5WGdSTWVzSGtzQlVCNXpSb3B3ZDJMV3F2SnF0TWJZalpXZ3ZZa0pfenJGWmllMUhsbF91dGlVOF94TER4ODVWTXJOMGpMcGJKY0pQampMMEpU?oc=5\" target=",
+      "at": 1789599180000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789599180000,
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Warsh comments scare markets, risk-off sentiment"
+    },
+    {
+      "title": "House passes Russia and Iran sanctions bill - Washington Examiner",
+      "link": "https://news.google.com/rss/articles/CBMivgFBVV95cUxNUzBDZnVRRkZVWGNjTW0zMnpJcm5zNC1kVXp3VG9SLW5vOG44aGZhdTUyMlJsY2FBZ0NlZHhpZjBja0xodkFnSVVYbWVRNzNxOFB0MXh4QWpObG41ODhfdjBFYzhpMldRLTRwd2xvWnpCNi1YS3BOZjRWTFNaY2JxTDU1RkpzNkgtcjhOVGZoSkc3cjNuaEhQekNmYWxiNV8tNEVxdGdOTkxmME9ac184TWQ1TWtHYlotYk9Fekdn?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMivgFBVV95cUxNUzBDZnVRRkZVWGNjTW0zMnpJcm5zNC1kVXp3VG9SLW5vOG44aGZhdTUyMlJsY2FBZ0NlZHhpZjBja0xodkFnSVVYbWVRNzNxOFB0MXh4QWpObG41ODhfdjBFYzhpMldRLTRwd2xvWnpCNi1YS3BOZjRWTFNaY2JxTDU1RkpzNkgtcjhOVGZoSkc3cjNuaEhQekNmYWxiNV8tNEVxdGdOTkxmME",
+      "at": 1789599000000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789597807000,
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Sanctions bill passed, potential oil supply disruption"
+    },
+    {
       "title": "Congresswoman Escobar Statement on Russia Sanctions Bill - Congresswoman Veronica Escobar (.gov)",
       "link": "https://news.google.com/rss/articles/CBMidEFVX3lxTE5WR2V3UFNtWlh5d1lOc25IRE5fbWYxM09mdmhJNEpfX2xaYmJzeEMyQnV1Um9GYi16UzB1SC1URkVxZXlXRDV1MUd2TmZVRUJHYjJ0cTFUb1VmMjRNNzNkR2dWWXpDMjRFeEJfZHdPb2ZNbV9X?oc=5",
       "source": "Wires (geo)",
@@ -20,7 +76,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789597807000,
-      "_kind": null
+      "_kind": null,
+      "why": "Statement on bill, no immediate market impact"
     },
     {
       "title": "New Zealand dollar pops a little on better than expected GDP data",
@@ -39,7 +96,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789598954000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "NZD/USD": "up"
+      },
+      "why": "Better than expected GDP data boosts currency"
     },
     {
       "title": "Any Iran Ceasefire Needs a Plan for the Ships and Oil Already Seized - Jurist.org",
@@ -60,7 +121,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789598907000,
-      "_kind": "war-end"
+      "_kind": "war-end",
+      "why": "Ceasefire discussion, unclear immediate market direction"
     },
     {
       "title": "US House passes Russia sanctions bill championed by late Senator Graham - marketscreener.com",
@@ -81,7 +143,39 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789596240000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Sanctions bill passed, geopolitical risk premium"
+    },
+    {
+      "title": "Middle East waits to see how US will respond to new escalation from Iran - Fox News",
+      "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFBkdFJmc3BsejNMV1dndzhqSEdfczdxZkhZeWpLYUlaOW1JN1lyMXlDRHZrZlRrZWpuMnpEOFBUeU1OXzZPcTg0ZlZtbXIxTzJwNUZIZVdR?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiVkFVX3lxTFBkdFJmc3BsejNMV1dndzhqSEdfczdxZkhZeWpLYUlaOW1JN1lyMXlDRHZrZlRrZWpuMnpEOFBUeU1OXzZPcTg0ZlZtbXIxTzJwNUZIZVdR?oc=5\" target=\"_blank\">Middle East waits to see how US will respond to new escalation from Iran</a>&nbsp;&nbsp;<fo",
+      "at": 1789598748000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789598170000,
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Iran escalation uncertainty boosts safe havens and oil"
     },
     {
       "title": "House Passes Russia Sanctions Bill After Fight Over Trump’s Tariff Powers - washingtonsun.com",
@@ -103,7 +197,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789596240000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Sanctions bill passed, potential oil supply impact"
     },
     {
       "title": "House passes Lindsey Graham sanctions act, sends anti-Russia bill to Trump’s desk - New York Post",
@@ -124,7 +223,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789596068000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Sanctions bill passed, geopolitical risk for oil"
     },
     {
       "title": "US House passes sweeping Russia sanctions bill, sending it to Trump - India Today",
@@ -145,7 +249,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789596240000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Sanctions bill passed, potential oil supply disruption"
     },
     {
       "title": "US House passes Russia sanctions bill - Breakingthenews.net",
@@ -166,7 +275,38 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789596240000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Sanctions bill passed, geopolitical risk for oil"
+    },
+    {
+      "title": "US Congress Passes Sweeping Russia Sanctions Bill - NDTV",
+      "link": "https://news.google.com/rss/articles/CBMilAFBVV95cUxOY3A0WkpwTno3eFVycGRfWWZ3cU1MMUdZYlJGczRFSmJDNU1mZ3FjU0RaaGF4ckJyaEhMWHdmTUFieVA0ckg0R3VoSHpGWEd2RE1HeTg4QXcwcWxGYVNfWE15dXpSbDlMbFFmMkJuNi1oWXBRSk1JQl9KNVFVQnBpR25mZThvUnJxMTlieE9KZGFYcE1K0gGcAUFVX3lxTFBaZVgtbzJqQzBNa0YyalJzVmVnRTlXWEJOd1l1aTJUNzE4cF9menBMNlZPVGwyM1RlYTlpd25KUkx5VERVaFIxT1JtYUpLTW1uWDcyMVAwZFlEcXZFMlV0aC1HbFBERGUyX0JndkhDRnhjb0dhWS12WDBQVHNtZy00TjRwdnRjcnBaN01VQkpKYkRyajFTWmlraHpTbw?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMilAFBVV95cUxOY3A0WkpwTno3eFVycGRfWWZ3cU1MMUdZYlJGczRFSmJDNU1mZ3FjU0RaaGF4ckJyaEhMWHdmTUFieVA0ckg0R3VoSHpGWEd2RE1HeTg4QXcwcWxGYVNfWE15dXpSbDlMbFFmMkJuNi1oWXBRSk1JQl9KNVFVQnBpR25mZThvUnJxMTlieE9KZGFYcE1K0gGcAUFVX3lxTFBaZVgtbzJqQzBNa0",
+      "at": 1789598495000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789596240000,
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Sanctions bill passed, potential oil supply impact"
     },
     {
       "title": "After Senate, US House passes Russia sanctions bill; 100% tariff threat looms for India - The Times of India",
@@ -188,7 +328,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789595709000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Sanctions and tariff threats, geopolitical risk"
     },
     {
       "title": "S House passes Russia sanctions bill, clears way for tariffs on India, China - India Today",
@@ -209,7 +354,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789595709000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Sanctions and tariffs, geopolitical risk for oil"
     },
     {
       "title": "US House passes sanctions, tariff bill to raise economic pressure on Russia - Reuters",
@@ -231,7 +381,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789595709000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Sanctions and tariffs, geopolitical risk for oil"
     },
     {
       "title": "Congress approves sweeping sanctions on Russia and Iran, sending bill to Trump’s desk - Deseret News",
@@ -844,26 +999,6 @@
       "firstAt": 1789591920000
     },
     {
-      "title": "Statement by High Representative/Vice-President Kaja Kallas to the European Parliament on the urgent need for EU support to Ukraine against Russia’s escalation of its war of aggression. - EEAS",
-      "link": "https://news.google.com/rss/articles/CBMizgFBVV95cUxOXzhfWlROWlFzbzJQcnlELTc0amtQSDVlaTRvZVg3V2FBRVd5Mko3LXNtRWxTVHhBZ3h1ZjQzNV9OMjlYLUh4a1hOUW00c21yREl1eWJUZ1ZVWVJVakR5VEtRVHlwU2EySTd2UTlpRDJXV2xHWDVIN05ycVRJZHEwODg1eU9MeXliTXRnTWE2UmFlYWRaYTlxM3RtdzBibGhuaWJaOGROb05mZjdMV3BDRVpCb1FXVjdUWVlIN29OTWRTVk14UUZLMk5BMHRxZw?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMizgFBVV95cUxOXzhfWlROWlFzbzJQcnlELTc0amtQSDVlaTRvZVg3V2FBRVd5Mko3LXNtRWxTVHhBZ3h1ZjQzNV9OMjlYLUh4a1hOUW00c21yREl1eWJUZ1ZVWVJVakR5VEtRVHlwU2EySTd2UTlpRDJXV2xHWDVIN05ycVRJZHEwODg1eU9MeXliTXRnTWE2UmFlYWRaYTlxM3RtdzBibGhuaWJaOGROb05mZj",
-      "at": 1789591359000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789591359000
-    },
-    {
       "title": "Here’s a sneaky way to play the Fed’s rate increase",
       "link": "https://www.marketwatch.com/story/heres-a-sneaky-way-to-play-the-feds-rate-increase-6deb072f?mod=mw_rss_topstories",
       "source": "MarketWatch",
@@ -1459,7 +1594,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789580809000
+      "firstAt": 1789580847000
     },
     {
       "title": "Dollar gains after Fed raises interest rates",
@@ -1634,26 +1769,6 @@
       "firstAt": 1789578191000
     },
     {
-      "title": "House passes Russia and Iran sanctions bill championed by Sen. Lindsey Graham - ABC News - Breaking News, Latest News and Videos",
-      "link": "https://news.google.com/rss/articles/CBMipAFBVV95cUxPSmlXU1czaFNUa25HYVlNdG1OSXppVlEweG5IUElycWMzQTZSRnlZRTN5WDd2aTgxZU43VlN6c2ozb0JKX2RycUZCZThzQUdtYkRtd3JBQUxQTmczN1pnVy1PTVJObzFzWXhVaHQycHlDbE5tQWltNU05WWV1WEhiVWd5SlpjeUQwYkYybThyUDI4NTVIMS0wVm5JVFJGU3JTNEdpR9IBqgFBVV95cUxNSUxmZFlfaF9wZW9EV1BTNi1ycHgxWFhvNWxMd0hTQUoxWmhGMVYtcGtNY3VrZ2YwcmoyV0VZNU9tcVFLQnBfbl9TMEZhMlpoei1nWnAxTk5yRDZTZTlMaEJXYVVUOE9PS0kwX3l1cndpOUM3YVVEcjR1WG9xQjE2OU1ZbEg0NHVZV252Q3Z0dTBvVTBlM05VWlZLc3c5MVhWZW5PenlRXzBYUQ?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMipAFBVV95cUxPSmlXU1czaFNUa25HYVlNdG1OSXppVlEweG5IUElycWMzQTZSRnlZRTN5WDd2aTgxZU43VlN6c2ozb0JKX2RycUZCZThzQUdtYkRtd3JBQUxQTmczN1pnVy1PTVJObzFzWXhVaHQycHlDbE5tQWltNU05WWV1WEhiVWd5SlpjeUQwYkYybThyUDI4NTVIMS0wVm5JVFJGU3JTNEdpR9IBqgFBVV",
-      "at": 1789580809000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 3,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789578191000
-    },
-    {
       "title": "US Treasury gathers global financial institutions to advance Iran sanctions - Reuters",
       "link": "https://news.google.com/rss/articles/CBMixAFBVV95cUxPXzUwU0VnMDVwQm1aTmZIQ25odU1FYXpWRkM4R2ZTMjdwalhFVDJ3dGtWV0szd1hYRVdJY1VlRmdPemJDOG9ONy1FZXUzbWhZRkFiTVVSRkdLX19Za3h2c0RneVpmbjhVdzhiZXRmYTJtc2JwYmFUU085RXBvclZoNkM1Y1AyUGF0RjhoTFRwaHF5WFNNbFlzdEMzSTZNNnhzTHB0N0p1aXdRYjY5SUpXVHhRVEtsclZPUkNGZEpCdzBvLVJu?oc=5",
       "source": "Wires (geo)",
@@ -1753,43 +1868,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789580289000
-    },
-    {
-      "title": "Russian spy satellites linked to Iran strikes: New evidence & analysis - Modern Ghana",
-      "link": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE11djVxcDFraEFHUFFSS1d6SGVtZ19uUFNJYko5R3BLS1lUaTN0VUg5WWkxRi0tem04M09JSXFLSnI0Nkt0VXhMSEFDdktqZ3ZEUVQzRll4eUttQ3dqcVZv0gFcQVVfeXFMTmZKZTJoOV9SX2M1ZVE1d0p0bnJ0WXNTM093QkdtbTB6Mnp0NkIzakpYYzc3OGRLWG1YZmU4SDVhSnVfbHRFZkJpb21QNDZsX3JzTDYtZ1VSSHI2Vmc?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiX0FVX3lxTE11djVxcDFraEFHUFFSS1d6SGVtZ19uUFNJYko5R3BLS1lUaTN0VUg5WWkxRi0tem04M09JSXFLSnI0Nkt0VXhMSEFDdktqZ3ZEUVQzRll4eUttQ3dqcVZv0gFcQVVfeXFMTmZKZTJoOV9SX2M1ZVE1d0p0bnJ0WXNTM093QkdtbTB6Mnp0NkIzakpYYzc3OGRLWG1YZmU4SDVhSnVfbHRFZkJpb2",
-      "at": 1789579511000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789576811000
-    },
-    {
-      "title": "Kosovo’s former president guilty of war crimes",
-      "link": "https://www.aljazeera.com/video/newsfeed/2026/9/16/kosovos-former-president-guilty-of-war-crimes?traffic_source=rss",
-      "source": "Al Jazeera",
-      "desc": "Hashim Thaci, former President of Kosovo and KLA leader, has been found guilty of war crimes in the Hague.",
-      "at": 1789579215000,
-      "inst": [
-        "XAU/USD"
-      ],
-      "ccy": [
-        "XAU"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789579215000
     }
   ],
   "sources": [
@@ -1816,6 +1894,6 @@
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-16T22:55:54.576Z",
-  "updatedAt": "2026-09-16T22:55:54.576Z"
+  "headlinesAt": "2026-09-16T22:57:28.571Z",
+  "updatedAt": "2026-09-16T22:57:28.571Z"
 }
