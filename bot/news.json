@@ -636,7 +636,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789570529000,
-      "_kind": null
+      "_kind": null,
+      "why": "Norway market news irrelevant to US"
     },
     {
       "title": "Israel stocks higher at close of trade; TA 35 up 1.32%",
@@ -651,6 +652,20 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789570503000,
+      "_kind": null,
+      "why": "Israel market news irrelevant to US"
+    },
+    {
+      "title": "CEO of Iconic Railroad Stock Unloads More Than 1,000 Shares",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/ceo-iconic-railroad-stock-unloads-145501348.html",
+      "source": "Yahoo Finance",
+      "at": 1789570501000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 1,
+      "srcs": 1,
+      "firstAt": 1789570501000,
       "_kind": null
     },
     {
@@ -681,7 +696,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789570226000,
-      "_kind": null
+      "_kind": null,
+      "why": "Political stability unclear impact on currency"
     },
     {
       "title": "Greece stocks higher at close of trade; Athens General Composite up 0.13%",
@@ -696,6 +712,20 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789570203000,
+      "_kind": null,
+      "why": "Greece market news irrelevant to US"
+    },
+    {
+      "title": "What History Reveals About Stock Market Crashes During Presidential Transitions",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/history-reveals-stock-market-crashes-145000280.html",
+      "source": "Yahoo Finance",
+      "at": 1789570200000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 1,
+      "srcs": 1,
+      "firstAt": 1789567628000,
       "_kind": null
     },
     {
@@ -717,7 +747,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789570189000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Geopolitical conflict boosts safe havens and oil"
     },
     {
       "title": "Analysis-Crypto bill’s defeat shows limits of industry’s political machine",
@@ -734,7 +770,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789570129000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "BTC/USDT": "down"
+      },
+      "why": "Bill defeat signals regulatory/political headwinds"
     },
     {
       "title": "J.B. Hunt options active as shares fall 12.7% after intra-quarter earnings warning",
@@ -748,6 +788,38 @@
       "srcs": 2,
       "firstAt": 1789568033000,
       "_kind": null
+    },
+    {
+      "title": "US Politicians Are Buying These Two Stocks",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/us-politicians-buying-two-stocks-144637200.html",
+      "source": "Yahoo Finance",
+      "at": 1789569997000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789567527000,
+      "_kind": null,
+      "why": "Specific stock news, not broad market"
+    },
+    {
+      "title": "Optics Stocks Rally as Oversold Bounce Takes Hold: Coherent Jumps 6%, Lumentum Climbs 5%, Applied Optoelectronics Advances 3%",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/optics-stocks-rally-oversold-bounce-144615359.html",
+      "source": "Yahoo Finance",
+      "at": 1789569975000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789569975000,
+      "_kind": null,
+      "why": "Sector-specific rally, not broad market"
     },
     {
       "title": "US crude oil inventories decline as fuel stocks increase",
@@ -766,22 +838,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789569970000,
-      "_kind": null
-    },
-    {
-      "title": "CVS Trading Well Below Wall Street Targets After Month’s Softening Creates Opening",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/cvs-trading-well-below-wall-144011771.html",
-      "source": "Yahoo Finance",
-      "at": 1789569611000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789569611000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Lower inventories support oil prices"
     },
     {
       "title": "Dollar Posts Modest Gains Ahead of Expected Fed Rate Hike - Barchart.com",
@@ -804,7 +866,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789566660000
+      "firstAt": 1789566660000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Stronger dollar pressures gold and pairs"
     },
     {
       "title": "Russian drone strike on a passenger bus in Ukraine kills 5 people and wounds at least 7 others - Northeast Mississippi Daily Journal",
@@ -824,7 +892,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789569216000
+      "firstAt": 1789569216000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Ukraine conflict escalation boosts risk assets"
     },
     {
       "title": "Billionaire Ray Dalio’s Bridgewater’s and Cathie Wood’s ARK Portfolios: 2 Stocks They Both Own",
@@ -838,7 +912,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789567527000
+      "firstAt": 1789567527000,
+      "why": "Specific stock holdings, not broad market"
     },
     {
       "title": "Debates on sanctions against Russia and Iran have begun in the U.S. House of Representatives - UA.NEWS",
@@ -858,7 +933,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789567200000
+      "firstAt": 1789567200000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Sanctions debates increase geopolitical risk"
     },
     {
       "title": "J.B. Hunt flags Q3 cost pressures, shares sink 12%",
@@ -890,7 +971,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789565153000
+      "firstAt": 1789565153000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Middle East tension boosts safe havens/oil"
     },
     {
       "title": "Gold recovers ahead of Fed: Can the rebound survive a rate hike? - fxstreet.com",
@@ -908,7 +995,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789567644000
+      "firstAt": 1789567644000,
+      "why": "Mixed signals on rate hike impact"
     },
     {
       "title": "Stock Market Today: Nasdaq, S&P 500 Up Ahead Of Likely Fed Rate Increase; AI Leader Dell Jams (Live Coverage)",
@@ -1169,18 +1257,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789566351000
-    },
-    {
-      "title": "CoStar (CSGP): Residential Strategy Unchanged Despite Persistent Market Skepticism",
-      "link": "https://finance.yahoo.com/real-estate/articles/costar-csgp-residential-strategy-unchanged-133542445.html",
-      "source": "Yahoo Finance",
-      "at": 1789565742000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1789565742000
     },
     {
       "title": "The ‘CIA’ strategy beating the market: How one top-performing money manager spots mispriced stocks",
@@ -2262,46 +2338,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789552061000
-    },
-    {
-      "title": "At least five killed in Russian drone strike near Ukraine front line - Al Jazeera",
-      "link": "https://news.google.com/rss/articles/CBMirgFBVV95cUxNc1c3LUM3SUlxbVRsOEswSTVlRzNkaGhxdDFYaXdIRjRaRHZlNmdqdzZnQmEyOWZUZzBSNE5Nb2dCWTNtdDMwNFdwZ2JKbHJkY0hmUHZWSU8zUjlfR0FkcGtEdnRUVFZZVndBSDNUNEhCYlVYWW9oNmQ3QmNrczZwUFZ0M3p3VW9fUWtEUzNPU2xudDhTTld0Y1JHUEhqMHFRNlZhcnJnVVlBRGFySVHSAbMBQVVfeXFMTlUwd1h5X0tzUzRiS2I4UzZpRE1CRXlnclJwNWNFWTM2a0JkbDBTeWIxbFVheEc0X2ZDRDFncjQxODR5U2VSd3dseWNIdlNHeXMteWJfdHJXLWR6Y2hvWFZPUVRIUXI2dlBQOUhaUm9kYk5UUGxuQ1BzUnZ5MWlvYXMxbHBOQThCMGxEV0ZpX1V5VjFISDNscTFOSkthRmZOaFpwY3JuM1J6YldOdUZnbjNSaVE?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMirgFBVV95cUxNc1c3LUM3SUlxbVRsOEswSTVlRzNkaGhxdDFYaXdIRjRaRHZlNmdqdzZnQmEyOWZUZzBSNE5Nb2dCWTNtdDMwNFdwZ2JKbHJkY0hmUHZWSU8zUjlfR0FkcGtEdnRUVFZZVndBSDNUNEhCYlVYWW9oNmQ3QmNrczZwUFZ0M3p3VW9fUWtEUzNPU2xudDhTTld0Y1JHUEhqMHFRNlZhcnJnVVlBRG",
-      "at": 1789551603000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789551603000
-    },
-    {
-      "title": "US House Advances Major Russia Sanctions Bill Targetting Oil Fleet and Child Abductions - UNITED24 Media",
-      "link": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxNMHpWM3dVVXZKdWZDUVhac2o0ejlsUFhlSmVKZlZwaXpENXg3bk1uUUN1ZjN0amR1WjRrN3hzYi1DWkpua3oxREpsSWVGUHNDbEpSeU5FcWl1cmJBUk5FZUl1UjBTT3NkUENMZzNJRHlaR1pFOUdBUUJUWnI1NHFCaE9ZZTlXM2d1aXg3NEdFZVljVlVJQ3ZiTU5XejVpbVctSzNVMXA0TVg4eGZIejZkTzRhZ2gzY2lfYjhDX1NVX2Q4QWc?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiwwFBVV95cUxNMHpWM3dVVXZKdWZDUVhac2o0ejlsUFhlSmVKZlZwaXpENXg3bk1uUUN1ZjN0amR1WjRrN3hzYi1DWkpua3oxREpsSWVGUHNDbEpSeU5FcWl1cmJBUk5FZUl1UjBTT3NkUENMZzNJRHlaR1pFOUdBUUJUWnI1NHFCaE9ZZTlXM2d1aXg3NEdFZVljVlVJQ3ZiTU5XejVpbVctSzNVMXA0TVg4eG",
-      "at": 1789551517000,
-      "inst": [
-        "USOIL",
-        "XAU/USD",
-        "UKOIL"
-      ],
-      "ccy": [
-        "OIL",
-        "XAU"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789549200000
     }
   ],
   "sources": [
@@ -2327,7 +2363,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-16T15:04:23.623Z",
-  "headlinesAt": "2026-09-16T15:04:23.623Z",
-  "updatedAt": "2026-09-16T15:04:23.623Z"
+  "calendarAt": "2026-09-16T15:05:55.302Z",
+  "headlinesAt": "2026-09-16T15:05:55.302Z",
+  "updatedAt": "2026-09-16T15:05:55.302Z"
 }
