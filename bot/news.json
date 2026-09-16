@@ -20,7 +20,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789541830000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Geopolitical risk boosts gold, oil unclear"
     },
     {
       "title": "Euro zone yields linger at multi-year peaks as traders brace for Fed rate decision",
@@ -38,7 +42,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789544094000,
-      "_kind": null
+      "_kind": null,
+      "why": "Yields high, Fed decision pending"
     },
     {
       "title": "Attack damages Bunge oilseeds plant in Ukraine - Oils & Fats International",
@@ -59,7 +64,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789544047000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Ukraine attack boosts gold, oil unclear"
     },
     {
       "title": "Markets price in multiple rate rises as inflation increases to 3.1% - financialreporter.co.uk",
@@ -83,7 +92,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789542563000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Rate hikes pressure metals and currencies"
     },
     {
       "title": "FTSE 100 today: Stocks edge higher as miners rally; Beijing presses U.S.-Iran talk",
@@ -98,7 +113,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789543693000,
-      "_kind": null
+      "_kind": null,
+      "why": "European news, US direction unclear"
     },
     {
       "title": "Asian currencies mixed as dollar holds near highs, yen steadies ahead of Fed",
@@ -116,7 +132,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789543269000,
-      "_kind": null
+      "_kind": null,
+      "why": "Dollar holds, yen steady, no clear move"
     },
     {
       "title": "Gold Holds Below $4,350 Ahead of Federal Reserve Decision - TradingPedia",
@@ -135,7 +152,7 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789540770000,
-      "_kind": null
+      "why": "Gold holds below level, awaiting Fed"
     },
     {
       "title": "‘Getting punched in the face’: Photos reveal aftermath of Iran strikes on US bases - The Times of India",
@@ -155,7 +172,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789542840000
+      "firstAt": 1789542840000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Iran strikes boost safe havens and oil"
     },
     {
       "title": "European stocks rise from 3-month lows as traders await high-stakes Fed decision",
@@ -171,7 +194,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789542790000
+      "firstAt": 1789542790000,
+      "why": "European stocks rise, US direction unclear"
     },
     {
       "title": "London Gas Oil tests resistance at $1,574: Live levels",
@@ -187,7 +211,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789542655000
+      "firstAt": 1789542655000,
+      "why": "Gas oil tests resistance, no clear direction"
     },
     {
       "title": "Natural Gas coils in $2.880-$2.950 range: Breakout watch live",
@@ -201,7 +226,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789542682000
+      "firstAt": 1789542682000,
+      "why": "Natural gas coils in range, awaiting breakout"
     },
     {
       "title": "Crude Oil WTI overbought at $104.26, pullback risk: Live levels",
@@ -218,7 +244,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789542655000
+      "firstAt": 1789542655000,
+      "dir": {
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "WTI overbought, pullback risk indicated"
     },
     {
       "title": "Silver stuck in $63-$66.25 range awaiting breakout: Live levels",
@@ -234,7 +265,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789542655000
+      "firstAt": 1789542655000,
+      "why": "Silver stuck in range, awaiting breakout"
     },
     {
       "title": "Brent Oil stalls at $107.69 with bearish divergence: Live levels",
@@ -251,7 +283,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789542655000
+      "firstAt": 1789542655000,
+      "dir": {
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Brent stalls with bearish divergence"
     },
     {
       "title": "Gold locked in tight range at $4,373: Live breakout levels",
@@ -267,7 +304,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789542655000
+      "firstAt": 1789542655000,
+      "why": "Gold locked in tight range, no direction"
     },
     {
       "title": "Forex Today 16/09: Markets Expecting Fed Rate Hike - DailyForex",
@@ -1768,10 +1806,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-16T07:47:38.696Z",
-  "updatedAt": "2026-09-16T07:47:38.696Z"
+  "headlinesAt": "2026-09-16T07:48:54.032Z",
+  "updatedAt": "2026-09-16T07:48:54.032Z"
 }
