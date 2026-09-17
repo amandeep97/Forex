@@ -386,7 +386,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789668058000,
-      "_kind": null
+      "_kind": null,
+      "why": "Nuclear IPO news irrelevant to gold."
     },
     {
       "title": "Industrial production data and Fed speakers highlight Friday’s calendar",
@@ -409,7 +410,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789668034000,
-      "_kind": null
+      "_kind": null,
+      "why": "Calendar preview implies no immediate direction."
     },
     {
       "title": "Securitize jumps after regulators greenlight some tokenized U.S. stock trading",
@@ -425,7 +427,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789667991000,
-      "_kind": null
+      "_kind": null,
+      "why": "Single stock news, index impact unclear."
     },
     {
       "title": "HighPeak Energy shares jump on report of potential sale",
@@ -454,7 +457,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789667915000,
-      "_kind": null
+      "_kind": null,
+      "why": "Mixed individual stock moves, index unclear."
     },
     {
       "title": "Trump weighs return to major Iran strikes: ‘I have a big decision coming up’ - Ynetnews",
@@ -475,7 +479,13 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789665323000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Geopolitical risk boosts safe havens and oil."
     },
     {
       "title": "JPMorgan Names Top Gold Mining Stocks Amid Sector Optimism",
@@ -493,7 +503,36 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789667693000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Gold sector optimism supports gold prices."
+    },
+    {
+      "title": "Fed Rate Hike: 10-Year Treasury Yield Could Top 6% Next Year - News and Statistics - IndexBox",
+      "link": "https://news.google.com/rss/articles/CBMivwFBVV95cUxNeHZCNE5GTW0yYlhWNTRlRGo3Z2t6cHlFX3A0R2VfU0h2ZlFfNzVUVFViRjBuYUVzYVFuamVROThwOWxaajFYVlZ0aGxVUmJtTEhPcEpPSzVtVk1PMExQLXVJSWpGQ3cwQTVKZFZMZ1BUR1FxaGhabjdSSWd0cXc0eEVKSlFZYjg3ajVRQUljVWExMGhOY2FDak5GcTEwbDMtbTJaTDFnV1RvMnZxVUJFbGMwV2p6U3RJS3plemNaMA?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMivwFBVV95cUxNeHZCNE5GTW0yYlhWNTRlRGo3Z2t6cHlFX3A0R2VfU0h2ZlFfNzVUVFViRjBuYUVzYVFuamVROThwOWxaajFYVlZ0aGxVUmJtTEhPcEpPSzVtVk1PMExQLXVJSWpGQ3cwQTVKZFZMZ1BUR1FxaGhabjdSSWd0cXc0eEVKSlFZYjg3ajVRQUljVWExMGhOY2FDak5GcTEwbDMtbTJaTDFnV1RvMn",
+      "at": 1789667540000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789667540000,
+      "_kind": null,
+      "why": "Future yield speculation, current direction unclear."
     },
     {
       "title": "CFTC expands crypto trading with new software provider rules",
@@ -510,7 +549,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789667414000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "BTC/USDT": "up"
+      },
+      "why": "Regulatory expansion supports crypto adoption."
     },
     {
       "title": "U.S. stocks and bonds rally as Fed rate uncertainty fades, oil prices slip",
@@ -529,7 +572,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789667316000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "down",
+        "US500": "up"
+      },
+      "why": "Stocks rally, oil slips explicitly."
     },
     {
       "title": "Saudis and Houthis exchange strikes, Yemenis take to boats to flee as Middle East war spreads",
@@ -549,10 +597,16 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789667310000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "War escalation drives risk assets higher."
     },
     {
-      "title": "Russia and China Veto US Resolution on Iran Sanctions Panel - wanaen.com",
+      "title": "Russia and China Veto US Resolution on Iran Sanctions Panel - WANA News Agency",
       "link": "https://news.google.com/rss/articles/CBMihgFBVV95cUxNaGZGNDJYT3VsSUcwSUdIdWVrU1FGM1pLbENtbG1sd3J0a2RFTEtSaXFVTUJVbDdxbTlpV3IzLWVsaDJ0SFM3M1U0TEpXV0lPTmVRTG54cmV0bzdkWjZoOVdjakFpbmtQU0RCMUxiV2h1OElLZEpWNEtPRjhyWjNEQ2dpb0JPdw?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMihgFBVV95cUxNaGZGNDJYT3VsSUcwSUdIdWVrU1FGM1pLbENtbG1sd3J0a2RFTEtSaXFVTUJVbDdxbTlpV3IzLWVsaDJ0SFM3M1U0TEpXV0lPTmVRTG54cmV0bzdkWjZoOVdjakFpbmtQU0RCMUxiV2h1OElLZEpWNEtPRjhyWjNEQ2dpb0JPdw?oc=5\" target=\"_blank\">Russia and China Veto US ",
@@ -570,7 +624,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789664454000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Sanctions veto increases geopolitical uncertainty."
     },
     {
       "title": "US clears way for $24.3 billion military aircraft sale to Saudi Arabia",
@@ -590,10 +650,10 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789666591000,
-      "_kind": null
+      "why": "Military sale has no clear market impact."
     },
     {
-      "title": "Human rights experts: ‘Reasonable grounds’ to believe US committed war crimes with Iran strikes - thehill.com",
+      "title": "Human rights experts: ‘Reasonable grounds’ to believe US committed war crimes with Iran strikes - The Hill",
       "link": "https://news.google.com/rss/articles/CBMiggFBVV95cUxQSmxqQ1Jvdy0xVFhhNFczZWpOdVpEdzZfMC01VlBybzRZNlVaV2Rva1ZSQ0w4SEsxLWE4S05xblF4X3ZhYU5CMjVJM205eWt3RDVjOGVBQThVYUc4LXFzcjVQYmJQTTlwN2pyVlJUeWRkMTFURlRhcTdXejVzSHV6dGNR0gGHAUFVX3lxTFBaUmFVLWVxdDJleEZaeTc5TTI4czBnVEdsOVRYb1BraGd2b1otZ1c2bjktTzZnQzltb2xXNzFLZHUxVVMxRHVmZElqNDBNU1lKbXhJVzUtS003ajBJQURDLUxKdGtQV1pXdThuczFHY3dzc0xhTVlMMXNmQW1HS2VVSXhyWnQwWQ?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiggFBVV95cUxQSmxqQ1Jvdy0xVFhhNFczZWpOdVpEdzZfMC01VlBybzRZNlVaV2Rva1ZSQ0w4SEsxLWE4S05xblF4X3ZhYU5CMjVJM205eWt3RDVjOGVBQThVYUc4LXFzcjVQYmJQTTlwN2pyVlJUeWRkMTFURlRhcTdXejVzSHV6dGNR0gGHAUFVX3lxTFBaUmFVLWVxdDJleEZaeTc5TTI4czBnVEdsOVRYb1",
@@ -610,7 +670,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789664724000
+      "firstAt": 1789664724000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "War crimes allegations heighten geopolitical risk."
     },
     {
       "title": "Russia’s global fuel customers push back against US sanctions bill - politico.eu",
@@ -630,7 +696,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789666388000
+      "firstAt": 1789666388000,
+      "why": "Sanctions pushback direction unclear for markets."
     },
     {
       "title": "Russia, China end mandate for independent monitoring of UN sanctions on Iran - The Mighty 790 KFGO",
@@ -650,7 +717,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789664100000
+      "firstAt": 1789664100000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "End of monitoring increases geopolitical risk."
     },
     {
       "title": "U.S. House passes Russia sanctions Bill seeking to impose up to 100% tariffs on India, others - The Hindu",
@@ -671,20 +744,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789664100000
-    },
-    {
-      "title": "2 Cybersecurity Stocks That Will Rule 2027",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/2-cybersecurity-stocks-rule-2027-173100563.html",
-      "source": "Yahoo Finance",
-      "at": 1789666260000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789666260000
     },
     {
       "title": "The UK’s King Charles warns AI leaders of ‘existential dangers’",
@@ -720,43 +779,6 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789665323000
-    },
-    {
-      "title": "How does the Fed interest rate affect car loans?",
-      "link": "https://finance.yahoo.com/news/fed-affects-auto-loan-rates-190622401.html",
-      "source": "Yahoo Finance",
-      "at": 1789665650000,
-      "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789665650000
-    },
-    {
-      "title": "Stock Market Today: Nasdaq Dwarfs Dow's Gain; This AI Chip Leader Breaks Out To All-Time High (Live Coverage)",
-      "link": "https://www.investors.com/market-trend/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-fed-reaction-generac-nebius-bloom-energy-spacex/?src=A00220&yptr=yahoo",
-      "source": "Yahoo Finance",
-      "at": 1789665427000,
-      "inst": [
-        "US100",
-        "US30"
-      ],
-      "ccy": [],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789665427000
     },
     {
       "title": "Why growth stocks’ surprising strength may be warning of a market bubble",
@@ -912,7 +934,7 @@
       "firstAt": 1789664347000
     },
     {
-      "title": "House sends Russia sanctions bill to Trump’s desk - thehill.com",
+      "title": "House sends Russia sanctions bill to Trump’s desk - The Hill",
       "link": "https://news.google.com/rss/articles/CBMijAFBVV95cUxPZFYwQmlYYlo3Y2hXTmZuZHRCRjZsTkEzM0JUNGNwUlhqRl9OZUJDaGZ0U0l2elUzWUhieGFsNW9pWkhrV3lOS3BCZ1BuM0w3dmNfMm0wZ0tYUzJKdEg3QnJvQk1JbDJvZkdpMDZfS2NaT1E5MklmN0c1cy1pakFOOXFFU1hvVEFBelFzYg?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMijAFBVV95cUxPZFYwQmlYYlo3Y2hXTmZuZHRCRjZsTkEzM0JUNGNwUlhqRl9OZUJDaGZ0U0l2elUzWUhieGFsNW9pWkhrV3lOS3BCZ1BuM0w3dmNfMm0wZ0tYUzJKdEg3QnJvQk1JbDJvZkdpMDZfS2NaT1E5MklmN0c1cy1pakFOOXFFU1hvVEFBelFzYg?oc=5\" target=\"_blank\">House sends Russi",
@@ -971,34 +993,8 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789662469000
-    },
-    {
-      "title": "AMD Leads Chip Stocks Higher Amid Sector Rebound",
-      "link": "https://www.investors.com/news/technology/amd-stock-leads-chip-stocks-sox-index-higher-amid-sector-rebound/?src=A00220&yptr=yahoo",
-      "source": "Yahoo Finance",
-      "at": 1789663310000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
       "srcs": 1,
-      "firstAt": 1789663310000
-    },
-    {
-      "title": "Rackspace’s Nvidia Partnership Sparks Early Rally, But a $2.8 Billion Debt Load Remains",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/rackspace-nvidia-partnership-sparks-early-163851620.html",
-      "source": "Yahoo Finance",
-      "at": 1789663131000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1789663131000
+      "firstAt": 1789662895000
     },
     {
       "title": "Trump plans to sign Russia sanctions bill 'soon,' White House source says - The Kyiv Independent",
@@ -1062,18 +1058,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789662632000
-    },
-    {
-      "title": "Assemblin Caverion prints €1.5B floating-rate note in bumper day for European high yield",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/assemblin-caverion-prints-1-5b-162749040.html",
-      "source": "Yahoo Finance",
-      "at": 1789662469000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789662469000
     },
     {
       "title": "Oil falls 2% to one-week low as Middle East supply disruption fears ease",
@@ -1530,7 +1514,7 @@
       "firstAt": 1789653698000
     },
     {
-      "title": "From Strategic Patience to Persistent Counter-Escalation: Iran’s Emerging Theory of Deterrence - quincyinst.org",
+      "title": "From Strategic Patience to Persistent Counter-Escalation: Iran’s Emerging Theory of Deterrence - Quincy Institute for Responsible Statecraft",
       "link": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxQVHVyaFJaeElfNXdpUWNtX0FPTW1iZ3hfeHpKU25oalFDZ2dUTW0zcGx6UHU1R1FWTmZENEVUcU81Um03VzRRbXlVVmpycGtZWDdKcHc2M284V2s3bVh2ejBBVnE0eEJoQThlNjJlN1NLMFAxaGdGOTJNRTdVUEkwdXhtQjVNRW9FVkNCYlNtZjMwbTJBeHlpRXNsWDc5ZXJ2b1E3SGdwMHVqbG9iQWhMUkNNcGRWZjU1S3g0QmFiMW15bkU?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiwwFBVV95cUxQVHVyaFJaeElfNXdpUWNtX0FPTW1iZ3hfeHpKU25oalFDZ2dUTW0zcGx6UHU1R1FWTmZENEVUcU81Um03VzRRbXlVVmpycGtZWDdKcHc2M284V2s3bVh2ejBBVnE0eEJoQThlNjJlN1NLMFAxaGdGOTJNRTdVUEkwdXhtQjVNRW9FVkNCYlNtZjMwbTJBeHlpRXNsWDc5ZXJ2b1E3SGdwMHVqbG",
@@ -1547,7 +1531,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789653600000
+      "firstAt": 1789652995000
     },
     {
       "title": "Markets steady after Fed rate hike; mixed trend across indices - BusinessLine",
@@ -2053,6 +2037,106 @@
       "rel": 1,
       "srcs": 2,
       "firstAt": 1789646615000
+    },
+    {
+      "title": "US August housing starts 1.275m vs 1.309m expected",
+      "link": "https://investinglive.com/news/us-august-housing-starts-vs-1-309m-expected/",
+      "source": "ForexLive",
+      "desc": "Prior was 1.239mPrior starts were -12.4%Building permits 1.394m vs 1.410m expectedPrior permits 1.433mUS housing starts fell 2.6% and permits were lower by 2.7% as the pain in the US housing market continues. US 30-year mortgage rates are now about 7% so there's no help coming bu",
+      "at": 1789648223000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 1,
+      "srcs": 1,
+      "firstAt": 1789648223000
+    },
+    {
+      "title": "US September Philly Fed business index +37.8 vs +30.5 expected",
+      "link": "https://investinglive.com/news/us-september-philly-fed-business-index-xx-vs-30-5-expected/",
+      "source": "ForexLive",
+      "desc": "Prior was +47.4Details:New orders 29.2 versus 30.1 last monthShipments 27.7 versus 27.7 last monthUnfilled orders 20.4 versus 14.4 last monthDelivery times 26.5 versus 3.7 last monthInventories -12.5 versus -3.7 last monthPrices paid 48.6 versus 40.9 last monthPrices received 31.",
+      "at": 1789648222000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789648222000
+    },
+    {
+      "title": "US initial jobless claims come in at 196K vs 208K estimate",
+      "link": "https://investinglive.com/news/us-initial-jobless-claims-come-in-at-196k-vs-208k-estimate/",
+      "source": "ForexLive",
+      "desc": "US jobless claims for the week ending September 12:Initial jobless claims: 196K vs 208K expected. Prior 206KFour-week average of initial claims: 203.25K vs 206K previouslyContinuing claims: 1.730M vs 1.780M expected. Prior revised to 1.769M from 1.774MFour-week average of continu",
+      "at": 1789648221000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789648221000
+    },
+    {
+      "title": "Canada August producer price index +1.3% m/m vs +0.6% prior",
+      "link": "https://investinglive.com/news/canada-august-producer-price-index-vs-0-6-prior/",
+      "source": "ForexLive",
+      "desc": "Prior was +0.6%Prices +13.5% y/y vs +12.4% priorRaw materials price index +3.1% m/m vs -2.1% priorRaw materials price index +22.8% y/y vs +18.2% priorThose are some real inflation pressures and help to explain why central banks are so worried. This article was written by Adam But",
+      "at": 1789648212000,
+      "inst": [
+        "USD/CAD"
+      ],
+      "ccy": [
+        "CAD",
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789648212000
+    },
+    {
+      "title": "Overseas Markets Mixed After Fed Rate Hike - stl.news",
+      "link": "https://news.google.com/rss/articles/CBMickFVX3lxTFBHYmVDRWJRbTl0aUthQmVZbUxwTzdrY0RqcXJCWHlzVW9TLWc3NHk1WFA1QnZiblgtUUNLS2F2VDVyTTlXLWtINmhMQ19VY1gtdmhvcXNHbU5weWExUVhWUWpaVl83ZXlOR0U0VnllTkY2QQ?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMickFVX3lxTFBHYmVDRWJRbTl0aUthQmVZbUxwTzdrY0RqcXJCWHlzVW9TLWc3NHk1WFA1QnZiblgtUUNLS2F2VDVyTTlXLWtINmhMQ19VY1gtdmhvcXNHbU5weWExUVhWUWpaVl83ZXlOR0U0VnllTkY2QQ?oc=5\" target=\"_blank\">Overseas Markets Mixed After Fed Rate Hike</a>&nbsp;&",
+      "at": 1789648133000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789646160000
     }
   ],
   "sources": [
@@ -2075,10 +2159,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-17T18:06:27.021Z",
-  "headlinesAt": "2026-09-17T18:06:27.021Z",
-  "updatedAt": "2026-09-17T18:06:27.021Z"
+  "calendarAt": "2026-09-17T18:07:44.689Z",
+  "headlinesAt": "2026-09-17T18:07:44.689Z",
+  "updatedAt": "2026-09-17T18:07:44.689Z"
 }
