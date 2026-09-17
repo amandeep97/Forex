@@ -561,6 +561,29 @@
   ],
   "headlines": [
     {
+      "title": "Gold Price Forecast: Fed Hikes Rates as Expected, May Raise Again This Year; Can Gold Hold $4,200? - TradingKey",
+      "link": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxNdzN5Q3pmREFMOXE4Q2xKZm9VbDk3TG1uX3VFSjZXMzdyWm1tTk5kVWRjTElPZ3pEMVRpLVRBdnRSUW9jVTlEY29TaHQwenZiZ2dQUTdMdFFDRXBwZmtlcDJwbXYzam0yb0s3REMxTzdMQWY4TXNDbnJweEJhVHFzb2tabmJUcEdwSm5DdU5hMktSLS1VVjVQcktDV1lubTk2UFNtQ0lsT1Y5bUJoc3MtQm5sdHZJVjQ0WjFWQTlITUItVmZKaU82M20tUUtqcUd4TDh1Zg?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi1AFBVV95cUxNdzN5Q3pmREFMOXE4Q2xKZm9VbDk3TG1uX3VFSjZXMzdyWm1tTk5kVWRjTElPZ3pEMVRpLVRBdnRSUW9jVTlEY29TaHQwenZiZ2dQUTdMdFFDRXBwZmtlcDJwbXYzam0yb0s3REMxTzdMQWY4TXNDbnJweEJhVHFzb2tabmJUcEdwSm5DdU5hMktSLS1VVjVQcktDV1lubTk2UFNtQ0lsT1Y5bU",
+      "at": 1789612185000,
+      "inst": [
+        "XAU/USD"
+      ],
+      "ccy": [
+        "USD",
+        "XAU"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789612185000,
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Fed hike bearish for gold"
+    },
+    {
       "title": "House passes bill to add economic sanctions on Russia via tariffs - The Washington Post",
       "link": "https://news.google.com/rss/articles/CBMixwFBVV95cUxQOHdjVEpfbkVvelpUSVlpbmJRS2t6VGptdXJBQ2ZDYWJZSGpmZHoxb0dSMkk5ZGkwOE4xaFgxNVV1aUZOc3BfZVJFWkFVTmNjbGw3YlRYb252VE1nbEtVTTBFUnpfZEFaZDM0VXpwS0EybmlDR1llbENFWVhGVjlQaDl6SVI0NEdwWTlNZWU3Y1huT21qNEZzLXR6cDRHcXg0QV95TEhZclB0d0FDbm9Yak9jUGZ0MmRNdmZZUTJEX1dFNWRMYU1B?oc=5",
       "source": "Wires (geo)",
@@ -579,7 +602,38 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789610702000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Sanctions boost safe havens, oil"
+    },
+    {
+      "title": "Asian markets mixed after Fed rate hike - Breakingthenews.net",
+      "link": "https://news.google.com/rss/articles/CBMijAFBVV95cUxNa052VDRyOXJHV1RhbEZJSUtRamFDOVFMWVJtWmFKNFJtUUExa2xIQ3lXQ29xM1Vzb1pQaGljLXp1XzlfQWRwbmp6VktUSlIwZWZObHpsX1UwQ2x1NmVCbTVjWVNmMnppY00zY0RvNEo5X0JvWW1FWkJiWkJqQkxKYm41b0czVkhMT0Rmag?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMijAFBVV95cUxNa052VDRyOXJHV1RhbEZJSUtRamFDOVFMWVJtWmFKNFJtUUExa2xIQ3lXQ29xM1Vzb1pQaGljLXp1XzlfQWRwbmp6VktUSlIwZWZObHpsX1UwQ2x1NmVCbTVjWVNmMnppY00zY0RvNEo5X0JvWW1FWkJiWkJqQkxKYm41b0czVkhMT0Rmag?oc=5\" target=\"_blank\">Asian markets mix",
+      "at": 1789611900000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 3,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789609397000,
+      "_kind": null,
+      "why": "Mixed markets, unclear direction"
     },
     {
       "title": "U.S. Federal Reserve Rate Hike Impacts Korean Wallets, Investments - 조선일보",
@@ -603,7 +657,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789609056000,
-      "_kind": null
+      "_kind": null,
+      "why": "General impact, no clear direction"
     },
     {
       "title": "Oil prices steady amid cooling M.East supply jitters",
@@ -620,7 +675,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789611089000,
-      "_kind": null
+      "_kind": null,
+      "why": "Prices steady, no direction"
     },
     {
       "title": "US passes Russia Sanctions Bill, Trump gets authority to levy 100% tariffs on India and China - The Indian Express",
@@ -641,7 +697,13 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789608515000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Sanctions boost gold, oil"
     },
     {
       "title": "Russia Sanctions Reaches Trump's Desk. How It Will Affect India's Oil Trade - NDTV",
@@ -662,7 +724,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789608515000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Sanctions boost gold, oil"
     },
     {
       "title": "Holtec Nuclear postpones U.S. IPO, citing market conditions",
@@ -679,7 +747,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789610750000,
-      "_kind": null
+      "_kind": null,
+      "why": "IPO delay, no gold impact"
     },
     {
       "title": "US House approves Russia sanctions bill threatening 100% tariffs on India, other trading partners - The New Indian Express",
@@ -700,7 +769,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789608515000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Sanctions boost gold, oil"
     },
     {
       "title": "Gold gives up gains after Fed rate hike, holds just above $4,300 as oil prices ease - Moneycontrol.com",
@@ -721,7 +796,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789609222000,
-      "_kind": null
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "down"
+      },
+      "why": "Gold gives up gains, oil eases"
     },
     {
       "title": "Gold slips as Fed hike, hawkish outlook strengthen dollar",
@@ -738,7 +817,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789609222000
+      "firstAt": 1789609222000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Strong dollar weakens gold"
     },
     {
       "title": "Reports: US, Houthis make secret deal over Yemen war",
@@ -758,7 +841,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789609998000
+      "firstAt": 1789609998000,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Peace deal lowers risk premium"
     },
     {
       "title": "Asian Markets Extend Gains As Oil Eases; Nikkei, Kospi Rise Post Fed Rate Hike - ndtvprofit.com",
@@ -776,7 +865,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789608925000
+      "firstAt": 1789608925000,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Oil eases, prices fall"
     },
     {
       "title": "How US Fed Rate Hike Will Impact Gold Prices — Key Factors To Watch - ndtvprofit.com",
@@ -794,7 +887,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789609056000
+      "firstAt": 1789609056000,
+      "why": "Analysis piece, no clear direction"
     },
     {
       "title": "Stock Market Today: Gift Nifty, US Fed Rate Hike To Trump Tariffs — Five Key Factors For Sensex, Nifty 50 On September 17 - ndtvprofit.com",
@@ -817,7 +911,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789609056000
+      "firstAt": 1789609056000,
+      "why": "General market factors, unclear"
     },
     {
       "title": "Asian stocks mixed as markets digest US Fed's first rate hike since 2023 - CNBC TV18",
@@ -1081,7 +1176,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789602576000
+      "firstAt": 1789602489000
     },
     {
       "title": "Fed rate hike jolts markets after it signals a huge shock - thestreet.com",
@@ -1395,7 +1490,25 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789601130000
+      "firstAt": 1789602489000
+    },
+    {
+      "title": "Gold falls to near $4,250 after Fed delivers rate hike - Mitrade",
+      "link": "https://news.google.com/rss/articles/CBMigwFBVV95cUxOTlY2aVM5MFd1U01jZHEwcks1R01pMmJwYVRTX3RfTFQ1RlAtc09SWHctaTlPLTVHSjVUN0Uydkt5Y280Ni1PVGwxdzQ5Y0VyNDdfbWlaS01FNmVULURuLW92NEd0b0U5R3RZOHlrS2JNMmJpeVlTMzlVZDhEMU5fRDA5NA?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMigwFBVV95cUxOTlY2aVM5MFd1U01jZHEwcks1R01pMmJwYVRTX3RfTFQ1RlAtc09SWHctaTlPLTVHSjVUN0Uydkt5Y280Ni1PVGwxdzQ5Y0VyNDdfbWlaS01FNmVULURuLW92NEd0b0U5R3RZOHlrS2JNMmJpeVlTMzlVZDhEMU5fRDA5NA?oc=5\" target=\"_blank\">Gold falls to near $4,250 aft",
+      "at": 1789602489000,
+      "inst": [
+        "XAU/USD"
+      ],
+      "ccy": [
+        "USD",
+        "XAU"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789602489000
     },
     {
       "title": "Robust House majority backs sanctions on Russia and Iran - Roll Call",
@@ -1433,24 +1546,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789601926000
-    },
-    {
-      "title": "Gold falls to near $4,250 after Fed delivers rate hike - FXStreet",
-      "link": "https://news.google.com/rss/articles/CBMinAFBVV95cUxQLV9TVFR1N0o3Q2RiWFVEUG4zNzlGRDZZTDJzYlJWVGd4NkVJeG9NaG5naDBfTjdLVDJmWW84NHpvRWY4RkE3SkxJWU1ma3JQa1RpNm1hZWdjaFBhdWhVZkFndzRaWDN3d3NjWjlyX2hpaGJGRFQ5czhBODdjdnBFOXY3THcyQ0ptSHhwdk9uR0hlWUdGUFU2MnhKbDU?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMinAFBVV95cUxQLV9TVFR1N0o3Q2RiWFVEUG4zNzlGRDZZTDJzYlJWVGd4NkVJeG9NaG5naDBfTjdLVDJmWW84NHpvRWY4RkE3SkxJWU1ma3JQa1RpNm1hZWdjaFBhdWhVZkFndzRaWDN3d3NjWjlyX2hpaGJGRFQ5czhBODdjdnBFOXY3THcyQ0ptSHhwdk9uR0hlWUdGUFU2MnhKbDU?oc=5\" target=\"_bla",
-      "at": 1789601130000,
-      "inst": [
-        "XAU/USD"
-      ],
-      "ccy": [
-        "USD",
-        "XAU"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789601130000
     },
     {
       "title": "US House passes sweeping Russia sanctions bill following months of delay - trtworld.com",
@@ -1533,7 +1628,7 @@
       "firstAt": 1789597815000
     },
     {
-      "title": "Fed Raises Rates in First Major Step by Warsh to Contain Inflation - The New York Times",
+      "title": "Fed Raises Rates in First Major Step by Warsh to Contain Inflation - nytimes.com",
       "link": "https://news.google.com/rss/articles/CBMimAFBVV95cUxNRXNJaUw1MEZvcHA2N19Dd0hBbjlCYkFqOFNjclNYRTl4WkxkRENSbnZ2b1djdnZEN2FXZjJWVktja1BINHUxNkp6dFNPTHdkYy1nWXNVSUV4U1RzazVUajhndFlwUU5NVU10WkJ6MmU0YUhsa2tMTUVoVmV0c1BidFU1OHFiOXZ0bkpoaHdjWjh1a2piWWVqSw?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMimAFBVV95cUxNRXNJaUw1MEZvcHA2N19Dd0hBbjlCYkFqOFNjclNYRTl4WkxkRENSbnZ2b1djdnZEN2FXZjJWVktja1BINHUxNkp6dFNPTHdkYy1nWXNVSUV4U1RzazVUajhndFlwUU5NVU10WkJ6MmU0YUhsa2tMTUVoVmV0c1BidFU1OHFiOXZ0bkpoaHdjWjh1a2piWWVqSw?oc=5\" target=\"_blank\">F",
@@ -1552,8 +1647,8 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789597848000
+      "srcs": 1,
+      "firstAt": 1789600305000
     },
     {
       "title": "U.S. House passes Russia sanctions bill, sending to Trump - The Globe and Mail",
@@ -1758,7 +1853,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789597848000
+      "firstAt": 1789598139000
     },
     {
       "title": "House sends Russia and Iran sanctions bill to Trump’s desk - washingtonexaminer.com",
@@ -2000,7 +2095,7 @@
       "firstAt": 1789595709000
     },
     {
-      "title": "House passes Russia sanctions bill named for Lindsey Graham, sending it to Trump - NBC News",
+      "title": "House passes Russia sanctions bill named for Lindsey Graham, sending it to Trump - nbcnews.com",
       "link": "https://news.google.com/rss/articles/CBMivwFBVV95cUxNa1Z3QlVPb0I2RU1YZ1VaTEw5b09Zc3YxVWxjNWZGMGQxWHR1YlhqWkQyQk04LVRmdm1neENQcGc3REUzYTFsSEQyZzFTNFNubHA5bXN4S1BtSGFyS05wemd5M3ZpYVNTeU1HZl9Qa01yME9lUTVjRkJxR0xwN2F2aUFiXzJLczR5N2xYem9Pa0ZaNnJDaWlTMnQ1Z3lkWHc1TTdFZi1YcV9YaWZZYU1EXy1YcEk2aW1UNkhVckVWdw?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMivwFBVV95cUxNa1Z3QlVPb0I2RU1YZ1VaTEw5b09Zc3YxVWxjNWZGMGQxWHR1YlhqWkQyQk04LVRmdm1neENQcGc3REUzYTFsSEQyZzFTNFNubHA5bXN4S1BtSGFyS05wemd5M3ZpYVNTeU1HZl9Qa01yME9lUTVjRkJxR0xwN2F2aUFiXzJLczR5N2xYem9Pa0ZaNnJDaWlTMnQ1Z3lkWHc1TTdFZi1YcV9YaW",
@@ -2020,7 +2115,7 @@
       "firstAt": 1789595709000
     },
     {
-      "title": "Congress Clears Russia Sanctions Bill, Sending It to Trump - The New York Times",
+      "title": "Congress Clears Russia Sanctions Bill, Sending It to Trump - nytimes.com",
       "link": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxOaHAycFF6cm5qMEF2RDZSeGxNUUNTSXVlQ0NqNFRzS2d5RlZRZlZoeTVDZlVoOUJIRXcyZWNjZWV6Z2RVVGxXREZhMDRZR3hWUC1pQzAxdlJsYlZRbENsc1YxMHBjT0JRaWlna3JKY1RtRjBTdGNmOTRhbndRdXZQeDg3OFBzbFktQVRj?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiiwFBVV95cUxOaHAycFF6cm5qMEF2RDZSeGxNUUNTSXVlQ0NqNFRzS2d5RlZRZlZoeTVDZlVoOUJIRXcyZWNjZWV6Z2RVVGxXREZhMDRZR3hWUC1pQzAxdlJsYlZRbENsc1YxMHBjT0JRaWlna3JKY1RtRjBTdGNmOTRhbndRdXZQeDg3OFBzbFktQVRj?oc=5\" target=\"_blank\">Congress Clears Rus",
@@ -2036,7 +2131,7 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 2,
+      "srcs": 1,
       "firstAt": 1789595709000
     },
     {
@@ -2302,42 +2397,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789594800000
-    },
-    {
-      "title": "Oil halts surge after key Saudi pipeline said to restart at half capacity in days",
-      "link": "https://www.investing.com/news/commodities-news/oil-prices-dip-as-us-inventory-build-offsets-meast-supply-jitters-4902840",
-      "source": "Investing Cmdty",
-      "at": 1789594724000,
-      "inst": [
-        "USOIL"
-      ],
-      "ccy": [
-        "OIL"
-      ],
-      "sev": 3,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789594724000
-    },
-    {
-      "title": "Watch: Leaked photos reveal extensive damage at US bases in Gulf",
-      "link": "https://www.bbc.co.uk/news/videos/c9dr7e1lr265o?at_medium=RSS&at_campaign=rss",
-      "source": "BBC World",
-      "desc": "The photos, provided by active military personnel, show a severed radar jet, flattened trailers and severely damaged buildings as a result of Iranian strikes.",
-      "at": 1789593864000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789593864000
     }
   ],
   "sources": [
@@ -2363,7 +2422,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-17T02:29:39.716Z",
-  "headlinesAt": "2026-09-17T02:29:39.717Z",
-  "updatedAt": "2026-09-17T02:29:39.717Z"
+  "calendarAt": "2026-09-17T02:31:42.419Z",
+  "headlinesAt": "2026-09-17T02:31:42.419Z",
+  "updatedAt": "2026-09-17T02:31:42.419Z"
 }
