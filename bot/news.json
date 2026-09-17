@@ -395,7 +395,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789666354000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions bill impact unclear"
     },
     {
       "title": "Why is Blossom Gold stock surging today?",
@@ -412,7 +413,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789668365000,
-      "_kind": null
+      "_kind": null,
+      "why": "Single stock news, no broad impact"
     },
     {
       "title": "Brazil’s Lula announces welfare increases ahead of presidential election",
@@ -436,7 +438,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789668425000,
-      "_kind": null
+      "_kind": null,
+      "why": "Brazil domestic policy, no direct FX impact"
     },
     {
       "title": "Macron and Aoun discuss efforts to back Lebanon’s army, end Israeli attacks",
@@ -457,7 +460,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789668410000,
-      "_kind": null
+      "_kind": null,
+      "why": "Diplomatic talks, no immediate market move"
     },
     {
       "title": "Arm, AMD among market cap stock movers on Thursday",
@@ -487,7 +491,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789668365000,
-      "_kind": null
+      "_kind": null,
+      "why": "Single stock news, no broad impact"
     },
     {
       "title": "Russia and China veto US draft to extend UN monitoring of Iran sanctions - thenationalnews.com",
@@ -508,7 +513,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789666354000,
-      "_kind": null
+      "why": "UN veto, no clear market direction"
     },
     {
       "title": "Holtec Nuclear shelves US IPO as AI trade hits turbulence",
@@ -524,7 +529,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789668058000
+      "firstAt": 1789668058000,
+      "why": "IPO shelve, no direct gold impact"
     },
     {
       "title": "Industrial production data and Fed speakers highlight Friday’s calendar",
@@ -546,7 +552,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789668034000
+      "firstAt": 1789668034000,
+      "why": "Data preview, no direction yet"
     },
     {
       "title": "Securitize jumps after regulators greenlight some tokenized U.S. stock trading",
@@ -561,7 +568,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789667991000
+      "firstAt": 1789667991000,
+      "why": "Single stock surge, index impact negligible"
     },
     {
       "title": "HighPeak Energy shares jump on report of potential sale",
@@ -588,7 +596,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789667915000
+      "firstAt": 1789667915000,
+      "why": "Mixed stock moves, no clear index trend"
     },
     {
       "title": "Trump weighs return to major Iran strikes: ‘I have a big decision coming up’ - Ynetnews",
@@ -608,7 +617,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789665323000
+      "firstAt": 1789665323000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Geopolitical risk boosts safe havens and oil"
     },
     {
       "title": "JPMorgan Names Top Gold Mining Stocks Amid Sector Optimism",
@@ -625,7 +640,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789667693000
+      "firstAt": 1789667693000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Gold sector optimism supports prices"
     },
     {
       "title": "Fed Rate Hike: 10-Year Treasury Yield Could Top 6% Next Year - News and Statistics - IndexBox",
@@ -648,7 +667,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789667540000
+      "firstAt": 1789667540000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Higher yields hurt gold and risk assets"
     },
     {
       "title": "Saudis and Houthis exchange strikes, Yemenis take to boats to flee as Middle East war spreads",
@@ -667,7 +692,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789667310000
+      "firstAt": 1789667310000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "War escalation boosts safe havens and oil"
     },
     {
       "title": "Russia and China Veto US Resolution on Iran Sanctions Panel - WANA News Agency",
@@ -687,7 +718,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789666354000
+      "firstAt": 1789666354000,
+      "why": "UN veto, no clear market direction"
     },
     {
       "title": "UN-backed experts cite possible US war crimes in Iran strikes - KPAX News",
@@ -2087,10 +2119,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-17T18:33:10.743Z",
-  "headlinesAt": "2026-09-17T18:33:10.743Z",
-  "updatedAt": "2026-09-17T18:33:10.743Z"
+  "calendarAt": "2026-09-17T18:34:26.341Z",
+  "headlinesAt": "2026-09-17T18:34:26.341Z",
+  "updatedAt": "2026-09-17T18:34:26.341Z"
 }
