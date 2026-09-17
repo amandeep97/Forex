@@ -23,7 +23,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789615492000,
-      "_kind": null
+      "_kind": null,
+      "why": "Fed hike priced in, no new direction"
     },
     {
       "title": "investingLive Asia-Pacific market news: Fed hike fallout dominates",
@@ -43,7 +44,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789616194000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Lower oil eases market nerves"
     },
     {
       "title": "Political reaction to House approval for sweeping Russia sanctions bill - AP News",
@@ -64,7 +70,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789613220000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions bill passed, direction unclear"
     },
     {
       "title": "House passes bill to add economic sanctions on Russia via tariffs - The Washington Post",
@@ -85,7 +92,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789613104000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions bill passed, direction unclear"
     },
     {
       "title": "House approves sweeping Russia sanctions bill named for Sen. Lindsey Graham, sending it to Pres. Trump - FOX Carolina News",
@@ -106,7 +114,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789613104000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions bill passed, direction unclear"
     },
     {
       "title": "Congress approves new sanctions against Russia - WUSA9",
@@ -127,7 +136,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789613104000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions bill passed, direction unclear"
     },
     {
       "title": "Bitcoin recovers to $76,305 after sharp drop as markets digest Fed rate hike - Moneycontrol.com",
@@ -146,7 +156,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789615492000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "BTC/USDT": "up"
+      },
+      "why": "Bitcoin recovers after sharp drop"
     },
     {
       "title": "U.S. House passes Russia sanctions bill championed by late Senator Graham - Japan Today",
@@ -168,7 +182,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789613104000
+      "firstAt": 1789613104000,
+      "why": "Sanctions bill passed, direction unclear"
     },
     {
       "title": "100% Trump tariffs loom: Russia sanctions bill passed in US; will it make India stop buying crude from Mo - The Times of India",
@@ -188,7 +203,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789613104000
+      "firstAt": 1789613104000,
+      "why": "Tariffs loom, impact uncertain"
     },
     {
       "title": "Berkshire may boost holdings in Japan’s trading houses- Bloomberg",
@@ -204,7 +220,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789613924000
+      "firstAt": 1789613924000,
+      "dir": {
+        "USD/JPY": "up"
+      },
+      "why": "Berkshire boosts Japan holdings, bullish JPY"
     },
     {
       "title": "Shares tick higher as Fed hikes rates, dollar jumps with short-term yields - straitstimes.com",
@@ -227,7 +247,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789613820000
+      "firstAt": 1789613820000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Dollar jumps, bearish for pairs"
     },
     {
       "title": "Morocco’s 2026 election: A test of political trust and engagement",
@@ -250,7 +276,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789613273000
+      "firstAt": 1789613273000,
+      "why": "Morocco election, no direct market impact"
     },
     {
       "title": "House Passes Russia Sanctions Bill - NewsRadio WHAM 1180",
@@ -270,7 +297,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789610799000
+      "firstAt": 1789610799000,
+      "why": "Sanctions bill passed, direction unclear"
     },
     {
       "title": "Chairman Wicker Celebrates House Passage of Russia Sanctions Bill - U.S. Senator Roger Wicker (.gov)",
@@ -290,7 +318,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789610799000
+      "firstAt": 1789610799000,
+      "why": "Sanctions bill passed, direction unclear"
     },
     {
       "title": "US House Passes Sweeping Russia Sanctions Bill, Sends It to Trump - Kyiv Post",
@@ -310,7 +339,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789610799000
+      "firstAt": 1789610799000,
+      "why": "Sanctions bill passed, direction unclear"
     },
     {
       "title": "Markets gain confidence in Federal Reserve’s resolve to curb inflation - AFR",
@@ -1816,10 +1846,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-17T03:49:23.520Z",
-  "updatedAt": "2026-09-17T03:49:23.520Z"
+  "headlinesAt": "2026-09-17T03:50:40.747Z",
+  "updatedAt": "2026-09-17T03:50:40.747Z"
 }
