@@ -20,7 +20,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789623557000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions impact analysis lacks immediate directional clarit"
     },
     {
       "title": "Exclusive-LVMH signed a secret 2002 pact to buy Hermès heir’s shares. Now he says his fortune is missing",
@@ -52,7 +53,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789623801000,
-      "_kind": null
+      "_kind": null,
+      "why": "Diplomatic warning without immediate market direction."
     },
     {
       "title": "Asian shares trade mixed after Wall Street falls following Fed rate hike - Business Standard",
@@ -70,7 +72,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789622542000,
-      "_kind": null
+      "_kind": null,
+      "why": "Asian mix reflects prior US fall, no new US direction."
     },
     {
       "title": "Taiwan stocks higher at close of trade; Taiwan Weighted up 1.01%",
@@ -85,7 +88,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789624804000,
-      "_kind": null
+      "why": "Taiwan stock performance does not imply US direction."
     },
     {
       "title": "Dollar Climbs After Fed Rate Hike: Implications for Global Markets - Devdiscourse",
@@ -109,7 +112,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789623000000,
-      "_kind": null
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Stronger dollar pressures gold and major currencies."
     },
     {
       "title": "Stock markets trade marginally higher after U.S. Fed rate hike; NSE IPO in focus - The Hindu",
@@ -132,7 +140,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789621800000
+      "firstAt": 1789621800000,
+      "why": "Marginal market moves imply no clear direction."
     },
     {
       "title": "Gold rebounds above $4,300 after Fed hike as dollar eases",
@@ -149,7 +158,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789624008000
+      "firstAt": 1789624008000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Gold rebounds as dollar eases."
     },
     {
       "title": "US Russia Sanctions Bill: What happens next for India- Moneycontrol.com - LinkedIn",
@@ -169,7 +182,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789621200000
+      "firstAt": 1789621200000,
+      "why": "Sanctions bill analysis lacks immediate price direction."
     },
     {
       "title": "Ukraine War, Day 1,667: US House Passes Russia Sanctions Bill - EA WorldView",
@@ -189,7 +203,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789621200000
+      "firstAt": 1789621200000,
+      "why": "Sanctions passage impact is uncertain and complex."
     },
     {
       "title": "Asia Markets React as Fed Makes First Rate Hike in Three Years - Devdiscourse",
@@ -212,7 +227,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789621800000
+      "firstAt": 1789621800000,
+      "why": "Mixed reaction implies no clear directional bias."
     },
     {
       "title": "Pound To Dollar Price Forecast: GBP Pressured After Hawkish Fed Rate Hike - Exchange Rates UK",
@@ -230,7 +246,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789621800000
+      "firstAt": 1789621800000,
+      "dir": {
+        "GBP/USD": "down"
+      },
+      "why": "Hawkish Fed pressures pound against dollar."
     },
     {
       "title": "Asian markets mixed following Fed rate hike as Trump tariff threats weigh - Seeking Alpha",
@@ -253,7 +273,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 3,
-      "firstAt": 1789620181000
+      "firstAt": 1789620181000,
+      "why": "Mixed markets and tariff threats create uncertainty."
     },
     {
       "title": "Dubai gold prices rise after Fed rate hike, but pare gains soon - Gulf News",
@@ -271,7 +292,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789622499000
+      "firstAt": 1789622499000,
+      "why": "Gains pared soon implies net neutral movement."
     },
     {
       "title": "US Congress Clears Russia Sanctions Bill With Tariffs of Up to 100% on Major Energy Buyers - EU Today",
@@ -291,7 +313,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789620600000
+      "firstAt": 1789620600000,
+      "why": "Sanctions bill details lack immediate price direction."
     },
     {
       "title": "Morning digest: Russia attacked Ukrainian cities again, the US adopted new sanctions against Russia, and the Federal Reserve raised interest rates. - Межа. Новини України.",
@@ -312,7 +335,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789620600000
+      "firstAt": 1789620600000,
+      "why": "Digest of events without specific price direction."
     },
     {
       "title": "US Congress Passes Sweeping Russia Sanctions Bill, Sends It To Trump - Radio Free Europe/Radio Liberty",
@@ -1816,6 +1840,6 @@
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-17T06:29:54.514Z",
-  "updatedAt": "2026-09-17T06:29:54.514Z"
+  "headlinesAt": "2026-09-17T06:31:26.410Z",
+  "updatedAt": "2026-09-17T06:31:26.410Z"
 }
