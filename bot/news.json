@@ -1,15 +1,6 @@
 {
   "calendar": [
     {
-      "title": "Housing Starts",
-      "country": "CAD",
-      "impact": "low",
-      "at": 1789560900000,
-      "forecast": "243K",
-      "previous": "229K",
-      "actual": ""
-    },
-    {
       "title": "Building Permits m/m",
       "country": "CAD",
       "impact": "low",
@@ -504,7 +495,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789645224000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "BTC/USDT": "up"
+      },
+      "why": "Long-term bullish price target prediction"
     },
     {
       "title": "investingLive European session wrap: Markets rise as oil and bond yields ease after Fed, BOE holds rates",
@@ -525,7 +520,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789646615000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Oil eases, GBP direction unclear"
     },
     {
       "title": "Wall Street on Fed rate hike: ’As hawkish as it gets’",
@@ -542,6 +541,23 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789646470000,
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Hawkish Fed view implies equity risk"
+    },
+    {
+      "title": "Verizon Stock: Connecting Investors To Value Along With 5.6% Yield",
+      "link": "https://www.investors.com/research/the-income-investor/verizon-vz-stock-income-investor-value-yield/?src=A00220&yptr=yahoo",
+      "source": "Yahoo Finance",
+      "at": 1789646401000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789646401000,
       "_kind": null
     },
     {
@@ -563,7 +579,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789646400000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions reauthorization lacks immediate price impact"
     },
     {
       "title": "Dow Jones Futures Rise After Hawkish Fed, Warsh Hit Stocks, Trump Fumes; AMD, Bloom Energy Eye Buy Points",
@@ -581,7 +598,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789646289000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "up",
+        "US30": "up"
+      },
+      "why": "Futures rise despite hawkish Fed"
     },
     {
       "title": "Volvo Cars plans 13 new models by 2030 in bid to double market share",
@@ -610,7 +632,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789646058000,
-      "_kind": null
+      "_kind": null,
+      "why": "Individual stock moves, no index direction"
     },
     {
       "title": "Falling Bitcoin Prices Drag Down Products and Mining Revenue for Canaan (CAN)",
@@ -627,48 +650,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789645224000,
-      "_kind": null
-    },
-    {
-      "title": "The Bond Market Is Heating Up. Is VGSH or ISTB the Better Bang for Your Buck?",
-      "link": "https://finance.yahoo.com/markets/options/articles/bond-market-heating-vgsh-istb-115101006.html",
-      "source": "Yahoo Finance",
-      "at": 1789645861000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789645861000,
-      "_kind": null
-    },
-    {
-      "title": "Five Below CHRO Maureen Gellerman Sells 1,610 Shares for $401,000",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/five-below-chro-maureen-gellerman-115002519.html",
-      "source": "Yahoo Finance",
-      "at": 1789645802000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1789645802000,
-      "_kind": null
-    },
-    {
-      "title": "If You Invest $340 a Month in the Vanguard S&P 500 ETF, Here's What History Says It Could Be Worth in 22 Years",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/invest-340-month-vanguard-p-115001141.html",
-      "source": "Yahoo Finance",
-      "at": 1789645801000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789645800000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "BTC/USDT": "down"
+      },
+      "why": "Falling prices explicitly stated"
     },
     {
       "title": "From \"boring\" to bumpy: Deutsche Bank sees equities staying supported",
@@ -683,7 +669,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789645754000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Equities seen staying supported"
     },
     {
       "title": "House passes sweeping Russia sanctions bill, sending measure to President Trump - kens5.com",
@@ -705,7 +695,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789643104000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions bill direction unclear for assets"
     },
     {
       "title": "CoreWeave’s tug-of-war: Record pricing power battles a $3B debt cloud",
@@ -722,7 +713,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789645594000,
-      "_kind": null
+      "_kind": null,
+      "why": "Company-specific news, no gold link"
     },
     {
       "title": "Exclusive-Apollo explores sale options for floating LNG infrastructure operator Energos, sources say",
@@ -736,7 +728,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789645355000
+      "firstAt": 1789645355000,
+      "why": "LNG sale options, no gas price signal"
     },
     {
       "title": "Bitcoin and ethereum prices today, Thursday, September 17, 2026: Crypto prices move up following Fed's rate increase",
@@ -754,7 +747,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789643332000
+      "firstAt": 1789644188000,
+      "dir": {
+        "BTC/USDT": "up",
+        "ETH/USDT": "up"
+      },
+      "why": "Crypto prices move up"
     },
     {
       "title": "Stock markets close flat after U.S. Fed rate hike; NSE IPO in focus - The Hindu",
@@ -777,7 +775,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789642660000
+      "firstAt": 1789642660000,
+      "why": "Markets flat, no clear FX direction"
     },
     {
       "title": "U.N.-backed experts allege U.S. war crimes in Iran - CBS News",
@@ -797,7 +796,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789644977000
+      "firstAt": 1789644977000,
+      "why": "War crimes allegation, no immediate price move"
     },
     {
       "title": "Gold, silver rebound as easing oil rally tempers inflation concerns - Anadolu Ajansı",
@@ -819,7 +819,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789642253000
+      "firstAt": 1789642253000,
+      "dir": {
+        "XAU/USD": "up",
+        "XAG/USD": "up",
+        "USOIL": "down"
+      },
+      "why": "Gold rebounds, oil rally eases"
     },
     {
       "title": "What’s the Asian Games accommodation crisis, and where will athletes stay?",
@@ -853,7 +859,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789643332000
+      "firstAt": 1789644188000
     },
     {
       "title": "Indian Equities Close Flat as US Fed Rate Hike Weighs; NSE IPO Subscribed 39% on Day 1 - Rediff",
@@ -911,23 +917,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789642682000
-    },
-    {
-      "title": "Gold price today, Thursday, September 17, 2026: Gold prices relatively stable following Fed rate increase",
-      "link": "https://finance.yahoo.com/personal-finance/investing/article/gold-price-today-thursday-september-17-2026-gold-prices-relatively-stable-following-fed-rate-increase-110852391.html",
-      "source": "Yahoo Finance",
-      "at": 1789643332000,
-      "inst": [
-        "XAU/USD"
-      ],
-      "ccy": [
-        "USD",
-        "XAU"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789642253000
     },
     {
       "title": "Ukraine sees energy and Black Sea ceasefire as possible key outcome of Zelenskyy-Trump meeting in New York - Yahoo",
@@ -1085,7 +1074,7 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 2,
+      "srcs": 1,
       "firstAt": 1789642253000
     },
     {
@@ -1484,7 +1473,7 @@
       "firstAt": 1789638169000
     },
     {
-      "title": "Experts cite possible US war crimes in Iran strikes that killed women, children - FOX 8 News",
+      "title": "Experts cite possible US war crimes in Iran strikes that killed women, children - fox8.com",
       "link": "https://news.google.com/rss/articles/CBMijAFBVV95cUxOcENmZm5neW1jQzFlX0FLb2xfUDg4MUdxakQ1eVBzV1JvTTJWaFh3ZkJTNnJfWE5FVmF6LUdXNWJOOVJhR3A0OWlCdHRiNDdhRllIaUV0WFJJaFE5NjNhT0FRWGlYTVB6NldyRm15bHdESTJkQjlPbVc1cFVkT1ZrWS1JLXRhTURmVmVzTdIBkgFBVV95cUxNYjdEWU1CemRSWHZSWUg0UlhUajR2VFROVGRxaEJOcmN0OUxTZ2RfUVBYNjhqTTdHQUszb1hTT04tcWZfbWFwMUI1NEtqNzdhWFRNME5DLThyRFFEQVd0N0lWUFMwNTRIU3l3WGhQWHV1eVBzTUJ6bTYxYTdEcjUxb3p6VVczams5VW84ZVNXamhGUQ?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMijAFBVV95cUxOcENmZm5neW1jQzFlX0FLb2xfUDg4MUdxakQ1eVBzV1JvTTJWaFh3ZkJTNnJfWE5FVmF6LUdXNWJOOVJhR3A0OWlCdHRiNDdhRllIaUV0WFJJaFE5NjNhT0FRWGlYTVB6NldyRm15bHdESTJkQjlPbVc1cFVkT1ZrWS1JLXRhTURmVmVzTdIBkgFBVV95cUxNYjdEWU1CemRSWHZSWUg0UlhUaj",
@@ -2209,6 +2198,65 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789627200000
+    },
+    {
+      "title": "What are the main events for today?",
+      "link": "https://investinglive.com/news/what-are-the-main-events-for-today-44/",
+      "source": "ForexLive",
+      "desc": "EUROPEAN SESSIONIn the European session, we have the BoE rate decision. The central bank is expected to keep the Bank Rate unchanged at 3.75% with a 6-3 vote split, while keeping a tigthening bias. The BoE has enough reasons to stay put for now, following a soft UK employment rep",
+      "at": 1789626790000,
+      "inst": [
+        "GBP/USD"
+      ],
+      "ccy": [
+        "GBP",
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789626790000
+    },
+    {
+      "title": "Yen Gains as Markets Brace for Aggressive BoJ Rate Hike - TradingPedia",
+      "link": "https://news.google.com/rss/articles/CBMinAFBVV95cUxQdjFMaGpmVTloejQzQjdzdUJvQVRJRnVWWFcyNUtvbng5b1F4YVp2Vl9hQ3doYXRkdDhMNnFaVDgteVBXcUdnbm5pdUc2ZnZLOHE5TXZKeDdEM3FJSUJDR1F5TU1lU0QwUFVEWHR2RDU4eHBndGs3eTg3eG40blVFZ0FIWlR1MGsxN1htd0ttVEJhVEZVRHppT2xvbDI?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMinAFBVV95cUxQdjFMaGpmVTloejQzQjdzdUJvQVRJRnVWWFcyNUtvbng5b1F4YVp2Vl9hQ3doYXRkdDhMNnFaVDgteVBXcUdnbm5pdUc2ZnZLOHE5TXZKeDdEM3FJSUJDR1F5TU1lU0QwUFVEWHR2RDU4eHBndGs3eTg3eG40blVFZ0FIWlR1MGsxN1htd0ttVEJhVEZVRHppT2xvbDI?oc=5\" target=\"_bla",
+      "at": 1789626630000,
+      "inst": [
+        "USD/JPY"
+      ],
+      "ccy": [
+        "JPY",
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789626630000
+    },
+    {
+      "title": "Stock markets trade marginally higher after U.S. Fed rate hike; NSE IPO in focus - The Hindu",
+      "link": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxNVmtnWUg5WktRbm1KOEpsQVA5YzVMclhaaWMzekVjSFNNaG5lczlBQk9NTE9CMWFMaE80MFA2VzhmVFZKTHdPLTBGMkxnM1d0bnVKSzJjdkVSSlRKN2tWZlcwUHdHT2R5cFBnS3dnVTZwdkZZRjNsSWdRSmU1bmUwWUdPVmFmMVlfMzB6TWhrS3pTcUg1RDBJMGJETGNNaHhaZFFMNlZNVWdGTFpyVE85b3J4dFhwQlozUFZSaU5xaHR4Tnl1dXRtVU4xRzZaVVRFN1lHVkFn0gHcAUFVX3lxTE9IY2c2WDd6QnowLWdlalNLRW9lV2FPUVR2Y0cxSUNBZ2R1NHFOMzNlaEpGMVN6cjgyRktZOVN3Y0ZUVGpVVWtmSm9BYzNaTnpvZ3NObURBRnhva2JHenhtdTJyYjZsYUtVcFRHUl9WTEsxMGZfVHE3aDF3ZERTb2s2amRRZFVQbFVOZ1FTLTI0M25Ub0xKY2NoMmJYMUtrTUJpTHNGN1J1ZS03SVozd205cU1TWnluUEJiSFhXUkJYWXIyLWg1T2lQZHRzYm43MVEtMzFiYzlralhMTlE?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi1gFBVV95cUxNVmtnWUg5WktRbm1KOEpsQVA5YzVMclhaaWMzekVjSFNNaG5lczlBQk9NTE9CMWFMaE80MFA2VzhmVFZKTHdPLTBGMkxnM1d0bnVKSzJjdkVSSlRKN2tWZlcwUHdHT2R5cFBnS3dnVTZwdkZZRjNsSWdRSmU1bmUwWUdPVmFmMVlfMzB6TWhrS3pTcUg1RDBJMGJETGNNaHhaZFFMNlZNVWdGTF",
+      "at": 1789624223000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789621800000
     }
   ],
   "sources": [
@@ -2231,10 +2279,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-17T12:13:25.196Z",
-  "headlinesAt": "2026-09-17T12:13:25.196Z",
-  "updatedAt": "2026-09-17T12:13:25.196Z"
+  "calendarAt": "2026-09-17T12:15:27.988Z",
+  "headlinesAt": "2026-09-17T12:15:27.988Z",
+  "updatedAt": "2026-09-17T12:15:27.988Z"
 }
