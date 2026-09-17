@@ -576,7 +576,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789624008000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Gold rebounds above $4,300"
     },
     {
       "title": "Ukraine War, Day 1,667: US House Passes Russia Sanctions Bill - EA WorldView",
@@ -597,7 +601,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789621200000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions bill passed, direction unclear"
     },
     {
       "title": "Pound To Dollar Price Forecast: GBP Pressured After Hawkish Fed Rate Hike - Exchange Rates UK",
@@ -616,7 +621,33 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789621800000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "GBP/USD": "down"
+      },
+      "why": "Pound pressured after hawkish Fed"
+    },
+    {
+      "title": "House passes sweeping Russia sanctions bill, sending it to Trump's desk - The New Voice of Ukraine",
+      "link": "https://news.google.com/rss/articles/CBMioAFBVV95cUxOakNvdl9aV0VuTjZRRXZ1QUtNT1I0dGF0V0tuQ25PYldUa3h5SnMzTXpGT1A0TmxOay1MRkU0ZTltMFlhMTNjNkJTZlp0S0N1bmFtVWctSXZSWk53NGZXYml3LWhuYUh2ZGZWaHpJOWNSTnRud2ZsalNoOUxaMUR3YkZ3Ny1zcmZLcGlMOWdYeTNaMVdKdXF0S1U5RGpfSlpT0gGcAUFVX3lxTFBUeUdGVDhXcVBGcUJnUmNYeTBtelF4ZTZQbVpsRVhVS2Q0ZzZIWWF6RGYzdjJwaklSOGdmRWktMnV4YXFOdG5CN1otLW5hWEZRX0xaeHppYi1KRTVBN3Bzem9TUTI0SUJKVzhXSTBkWWZVbWVaenZoUEw3dWctRTRRR3BzV1M1U0x0aU9DUFhDZ2x5OUt1QWI0cjZnQw?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMioAFBVV95cUxOakNvdl9aV0VuTjZRRXZ1QUtNT1I0dGF0V0tuQ25PYldUa3h5SnMzTXpGT1A0TmxOay1MRkU0ZTltMFlhMTNjNkJTZlp0S0N1bmFtVWctSXZSWk53NGZXYml3LWhuYUh2ZGZWaHpJOWNSTnRud2ZsalNoOUxaMUR3YkZ3Ny1zcmZLcGlMOWdYeTNaMVdKdXF0S1U5RGpfSlpT0gGcAUFVX3lxTF",
+      "at": 1789622940000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789620600000,
+      "_kind": null,
+      "why": "Sanctions bill passed, direction unclear"
     },
     {
       "title": "Asian markets mixed following Fed rate hike as Trump tariff threats weigh - Seeking Alpha",
@@ -639,7 +670,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 3,
-      "firstAt": 1789620181000
+      "firstAt": 1789620181000,
+      "why": "Markets mixed, no clear direction"
     },
     {
       "title": "Dubai gold prices rise after Fed rate hike, but pare gains soon - Gulf News",
@@ -657,7 +689,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789622499000
+      "firstAt": 1789622499000,
+      "why": "Gold rises then pares gains"
     },
     {
       "title": "US Congress Clears Russia Sanctions Bill With Tariffs of Up to 100% on Major Energy Buyers - EU Today",
@@ -677,7 +710,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789620600000
+      "firstAt": 1789620600000,
+      "why": "Sanctions bill cleared, direction unclear"
     },
     {
       "title": "Morning digest: Russia attacked Ukrainian cities again, the US adopted new sanctions against Russia, and the Federal Reserve raised interest rates. - mezha.net",
@@ -698,7 +732,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789620600000
+      "firstAt": 1789620600000,
+      "why": "Digest of events, no direction"
     },
     {
       "title": "China, HK benchmarks slip as gold stocks fall on US rate hike - marketscreener.com",
@@ -717,7 +752,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789622141000
+      "firstAt": 1789622141000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold stocks fall on rate hike"
     },
     {
       "title": "Stock Markets Today: Sensex, Nifty Open Higher Post Fed Rate Hike; NSE IPO - Rediff",
@@ -740,7 +779,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789620960000
+      "firstAt": 1789620960000,
+      "why": "Indian markets open higher, irrelevant"
     },
     {
       "title": "MEA ‘monitoring developments’ of Russia sanctions bill in U.S. Congress - The Hindu",
@@ -760,7 +800,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789620600000
+      "firstAt": 1789620600000,
+      "why": "India monitoring sanctions, no direction"
     },
     {
       "title": "‘You better clean up your act’: US lawmaker to India after Congress passes Russia sanctions bill - Firstpost",
@@ -780,7 +821,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789620600000
+      "firstAt": 1789620600000,
+      "why": "Lawmaker comments, no market direction"
     },
     {
       "title": "International students, 'visa hoppers' and backpackers targeted in Australia migration crackdown",
@@ -797,7 +839,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789621509000
+      "firstAt": 1789621509000,
+      "why": "Migration policy, no clear direction"
     },
     {
       "title": "Asian currencies mixed as dollar holds seven-week high, yen steadies",
@@ -814,7 +857,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789621352000
+      "firstAt": 1789621352000,
+      "why": "Dollar holds high, yen steadies"
     },
     {
       "title": "US 10-Year Treasury Yield nears 5% after Fed rate hike, Middle East tensions raise inflation fears - FXStreet",
@@ -835,7 +879,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789621270000
+      "firstAt": 1789621270000,
+      "why": "Yields rise, mixed signals"
     },
     {
       "title": "House approves sweeping Russia sanctions bill, sending it to Trump - Decatur Daily",
@@ -1079,7 +1124,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789616476000
+      "firstAt": 1789617515000
     },
     {
       "title": "U.S. Rate Hike After 3 Years Impacts South Korean Finances - 조선일보",
@@ -1103,29 +1148,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789616700000
-    },
-    {
-      "title": "Rupee crashes past 96 against the dollar after Fed's first rate hike in 3 years - Moneycontrol.com",
-      "link": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxOTkNGSk1MNGhsWnQxWmk5T1ZTRnRNVlp5WGJJdDR0OHFwSE5uNWdpMkVkZUJJaThNY0FwSlM4bzd5NUNqUnN2blpkREd4THNvNEJXQ1lGcXdqekZXdG1yV3lBSU9EdVRScW5yQm1jQ0I0TnQwQWZfRVlSUWdHU0poT01JVXBUYnhzODFObjR0ak9WYnd1Z3lwckZ4Ui1abE44OEFpLTItMkpEY0wxYk9sV1ZhdVZobVhaRFY1WXB2d2NyNGdYUXVBQlRnbWc0NjhaNm1vN3BwLWcwZ9IB3wFBVV95cUxQNUd2WEZtYWNZRkZGa19mejd0OVdyRzBpeE9oY2xlUHdXaVhlbEtxT1lvT1NDQzJJWXBJSzBVRy16ZUVEN3NRTThfWlhhTl9ydzJBNlhZaEdjdE4ya19nYmFxM0pVVFp6QzRZbWZXTTFlMUNyWVE4OHh6bXA5cGJHY0RFd0ROQ09QbXpKUWU3LXk4Y0ZiRHpLbHBEeGtjcjB5a09RX091TWMxXzUxNGRNdHota1BrMWdvZnRxT1RjaEFrc1c2QlBHS1A3V0gtcTl0YnVvNzBBb3ZkQWpMMGZJ?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi2gFBVV95cUxOTkNGSk1MNGhsWnQxWmk5T1ZTRnRNVlp5WGJJdDR0OHFwSE5uNWdpMkVkZUJJaThNY0FwSlM4bzd5NUNqUnN2blpkREd4THNvNEJXQ1lGcXdqekZXdG1yV3lBSU9EdVRScW5yQm1jQ0I0TnQwQWZfRVlSUWdHU0poT01JVXBUYnhzODFObjR0ak9WYnd1Z3lwckZ4Ui1abE44OEFpLTItMkpEY0",
-      "at": 1789616476000,
-      "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789615492000
     },
     {
       "title": "Markets like Fed maintaining its independence, while 50 bps rate hike is already priced in - Moneycontrol.com",
@@ -1922,6 +1944,29 @@
       "firstAt": 1789603200000
     },
     {
+      "title": "Fed Rate Hike: Here’s What It Means For India’s Rupee, Markets And RBI - News18",
+      "link": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPMFJxUDZOcVJpaEpmZHJxWVFrYnluRzlKT0lJVVNmMWZjbTVhanYtVHU4b0hTTFU2V1pEbXplOWtieF9VcHNLR2dkYXpISGNSLTlHSWpjUV8tei1EeFNOVmp5YlJfZUFpRDhjd29lVG9sMC12aVQ0ZzhDaHhOaEJRXzBVQ2ltcV9qSkVKYWE1M3MxZ2tmNWc3ZmtITzhFSHo1d2tYb21WVnRoYzkwQ2czRFVnNnjSAboBQVVfeXFMTzRpT05ZVHo0Wm1qTzVtVG04d294U2hwd28yOVJBbHR3NkEwUGt0akVEMUdkNUZXc2p6cXM2YzF6R0RNdXhKY2JrbkNKS0dMdmJUOFNlZ0lGWmxFZkh4MjBhLVhsYkIySmswY2FiVElDMzRJSkpjclJvNk1QYWtUaFBlSUVsMGdHMktkV01vZjVlUXJ0dXFMd2EyaVJXLThjMHBkSTNiLTNKMklqbWxVWmhaV0RxMHBRUFhB?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMitAFBVV95cUxPMFJxUDZOcVJpaEpmZHJxWVFrYnluRzlKT0lJVVNmMWZjbTVhanYtVHU4b0hTTFU2V1pEbXplOWtieF9VcHNLR2dkYXpISGNSLTlHSWpjUV8tei1EeFNOVmp5YlJfZUFpRDhjd29lVG9sMC12aVQ0ZzhDaHhOaEJRXzBVQ2ltcV9qSkVKYWE1M3MxZ2tmNWc3ZmtITzhFSHo1d2tYb21WVnRoYz",
+      "at": 1789603200000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789602576000
+    },
+    {
       "title": "House passes Russia sanctions bill that gives Trump more tariff power - upi.com",
       "link": "https://news.google.com/rss/articles/CBMilwFBVV95cUxORy1GRDh4SVFvLUZHekhQMGtzV0ZEdlRyS3JyVlo5dzZ0SEFNVzJzanZxdWNrd0NRQ3B0cjVTRUVwb1BjYVZZNGRWX2VWY3RTa2k4UHRlYjg2XzBQem5hMDFCQ2gxQm91MkpjZ3VvNkRWbERtemQxeEpEQ29mSWRVY1l1YU8zS3ZFemE1VU1wOHJ3Yl84bHFZ0gGcAUFVX3lxTE92TXd2WFZybFpmTkdyckQ1VnlHemVqdDJRY1JLRFdOMm5PMVVNcWU5RlZYcTRTRXZIQkVlMUpMWEg2NGxUZnNwTERTMEtZQUE3SmJMM3Q5bi1EWVphQlQxV3NjdE02QWhRSkt3bUdqZ3VSMm5BTWQ3TkxwanZtdEg4anFhWktlWXBoQ1c5MGdXTTBMWXVoSGJwSEt4Zg?oc=5",
       "source": "Wires (geo)",
@@ -2134,7 +2179,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789598139000
+      "firstAt": 1789598170000
     },
     {
       "title": "US military claims Strait of Hormuz remains open amid ongoing blockade",
@@ -2340,24 +2385,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789597815000
-    },
-    {
-      "title": "New Zealand dollar pops a little on better than expected GDP data",
-      "link": "https://investinglive.com/news/new-zealand-dollar-pops-a-little-on-better-than-expected-gdp-data/",
-      "source": "ForexLive",
-      "desc": "New Zealand Q2 GDP +2.6% y/yexpected +2.3%, prior +1.7%+0.2% q/qexpected +0.1%, prior +0.9%I'll have more to come on this separately ... added, here: NZ Q2 GDP beats forecasts at 2.6% y/y, easing RBNZ growth concerns This article was written by Eamonn Sheridan at investinglive.co",
-      "at": 1789598954000,
-      "inst": [
-        "NZD/USD"
-      ],
-      "ccy": [
-        "USD",
-        "NZD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789598954000
     }
   ],
   "sources": [
@@ -2383,7 +2410,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-17T05:55:26.823Z",
-  "headlinesAt": "2026-09-17T05:55:26.823Z",
-  "updatedAt": "2026-09-17T05:55:26.823Z"
+  "calendarAt": "2026-09-17T05:56:55.670Z",
+  "headlinesAt": "2026-09-17T05:56:55.670Z",
+  "updatedAt": "2026-09-17T05:56:55.670Z"
 }
