@@ -363,6 +363,20 @@
   ],
   "headlines": [
     {
+      "title": "This is the only cybersecurity stock that can post big gains, according to one analyst",
+      "link": "https://www.marketwatch.com/story/this-is-the-only-cybersecurity-stock-that-can-post-big-gains-according-to-one-analyst-8ffe034f?mod=mw_rss_topstories",
+      "source": "MarketWatch",
+      "desc": "Zscaler’s stock has missed out on the cybersecurity sector’s big rally this year — but it could soon get its moment in the spotlight",
+      "at": 1789670760000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 1,
+      "srcs": 1,
+      "firstAt": 1789670760000,
+      "_kind": null
+    },
+    {
       "title": "U.S. stocks and bonds rally as Fed rate uncertainty fades, oil prices slip",
       "link": "https://www.investing.com/news/stock-market-news/us-stock-futures-rise-after-hawkish-fed-dents-wall-st-4904721",
       "source": "Investing",
@@ -379,7 +393,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789670618000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "down",
+        "US500": "up"
+      },
+      "why": "Stocks rally, oil slips on Fed news"
     },
     {
       "title": "Marathon Petroleum options activity points to hedging by long-term holders",
@@ -394,7 +413,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789670267000,
-      "_kind": null
+      "_kind": null,
+      "why": "Options activity indicates hedging, no clear direction"
     },
     {
       "title": "US sanctions Cuban nickel reserves, military enterprises",
@@ -411,7 +431,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789670230000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions on Cuba unlikely to move gold"
     },
     {
       "title": "Gulf Markets Hold Firm Despite Tensions, US Rate Hike - ASHARQ AL-AWSAT English",
@@ -435,7 +456,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789667540000,
-      "_kind": null
+      "_kind": null,
+      "why": "Gulf markets firm, no clear FX direction"
     },
     {
       "title": "German court rules Meta liable for fake ads on Instagram, Facebook",
@@ -450,7 +472,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789669897000,
-      "_kind": null
+      "_kind": null,
+      "why": "Meta ruling has no clear FX impact"
     },
     {
       "title": "English FA calls for Infantino to release FIFA World Cup sell-off documents",
@@ -486,7 +509,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789668425000
+      "firstAt": 1789668425000,
+      "why": "Brazil welfare news irrelevant to these pairs"
     },
     {
       "title": "Macron and Aoun discuss efforts to back Lebanon’s army, end Israeli attacks",
@@ -506,7 +530,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789668410000
+      "firstAt": 1789668410000,
+      "why": "Lebanon talks unclear for oil or gold"
     },
     {
       "title": "Russia and China veto US draft to extend UN monitoring of Iran sanctions - thenationalnews.com",
@@ -526,7 +551,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789666376000
+      "firstAt": 1789666376000,
+      "why": "UN veto on Iran sanctions unclear impact"
     },
     {
       "title": "Securitize jumps after regulators greenlight some tokenized U.S. stock trading",
@@ -541,7 +567,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789667991000
+      "firstAt": 1789667991000,
+      "why": "Single stock surge doesn't move index clearly"
     },
     {
       "title": "Stocks making the biggest moves midday: Workday, Generac, Vital Farms, Vicor, Tower Semi & more",
@@ -556,7 +583,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789667915000
+      "firstAt": 1789667915000,
+      "why": "Individual stock moves don't define index direction"
     },
     {
       "title": "Trump weighs return to major Iran strikes: ‘I have a big decision coming up’ - Ynetnews",
@@ -576,7 +604,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789665323000
+      "firstAt": 1789665323000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Potential Iran strikes boost risk assets"
     },
     {
       "title": "Fed Rate Hike: 10-Year Treasury Yield Could Top 6% Next Year - News and Statistics - IndexBox",
@@ -599,7 +633,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789667540000
+      "firstAt": 1789667540000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Higher yields and rate hikes hurt assets"
     },
     {
       "title": "Saudis and Houthis exchange strikes, Yemenis take to boats to flee as Middle East war spreads",
@@ -618,7 +658,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789667310000
+      "firstAt": 1789667310000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Middle East war spreads, boosting risk assets"
     },
     {
       "title": "Russia and China Veto US Resolution on Iran Sanctions Panel - WANA News Agency",
@@ -638,7 +684,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789666376000
+      "firstAt": 1789666376000,
+      "why": "UN veto on Iran sanctions unclear impact"
     },
     {
       "title": "UN-backed experts cite possible US war crimes in Iran strikes - KPAX News",
@@ -658,7 +705,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789664724000
+      "firstAt": 1789664724000,
+      "why": "War crimes report unclear for market direction"
     },
     {
       "title": "Human rights experts: ‘Reasonable grounds’ to believe US committed war crimes with Iran strikes - The Hill",
@@ -1425,29 +1473,6 @@
       "firstAt": 1789653835000
     },
     {
-      "title": "The smartest money moves to make now that interest rates are going up",
-      "link": "https://www.marketwatch.com/story/the-smartest-money-moves-to-make-with-interest-rates-expected-to-go-higher-aefe375b?mod=mw_rss_topstories",
-      "source": "MarketWatch",
-      "desc": "The Fed’s quarter-point interest-rate hike will ‘bite’ consumers. Here’s how to prep your money.",
-      "at": 1789653840000,
-      "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789653840000
-    },
-    {
       "title": "Ukraine Strikes Two Russian S-400 Launchers, Drone Sites and Logistics Depots - UNITED24 Media",
       "link": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxPc2hXaVE2M0M0ZWo1MUEzVHpFS3FHT25PX282SG1hVWs4eEgxSkFTb2dSOUo0OVhfMXhGWHhGQnd2Y05LOVU4dm5TWHB5ZVVYRExmamZSU2FwOUNseG1UOG85TVIxWW5oYmtZQjd0cDBKZC12NV9zUFhqS2FKUHl4ZWJ1VnIyVjItMEVjUnlHejhUcFhlbnBTZ2dPUTdQT2FMMnZXMnRQNzh6LWxOWVUxenhXQTBXb1Y1cWRJZm90Wm4?oc=5",
       "source": "Wires (geo)",
@@ -2088,7 +2113,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-17T18:48:10.713Z",
-  "headlinesAt": "2026-09-17T18:48:10.713Z",
-  "updatedAt": "2026-09-17T18:48:10.713Z"
+  "calendarAt": "2026-09-17T18:49:12.426Z",
+  "headlinesAt": "2026-09-17T18:49:12.426Z",
+  "updatedAt": "2026-09-17T18:49:12.426Z"
 }
