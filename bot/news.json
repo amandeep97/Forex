@@ -417,6 +417,38 @@
   ],
   "headlines": [
     {
+      "title": "Norway stocks higher at close of trade; Oslo OBX up 0.58%",
+      "link": "https://www.investing.com/news/stock-market-news/norway-stocks-higher-at-close-of-trade-oslo-obx-up-058-4906027",
+      "source": "Investing",
+      "at": 1789656955000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789656955000,
+      "_kind": null,
+      "why": "Norway market news irrelevant to US."
+    },
+    {
+      "title": "Israel stocks higher at close of trade; TA 35 up 1.02%",
+      "link": "https://www.investing.com/news/stock-market-news/israel-stocks-higher-at-close-of-trade-ta-35-up-102-4906025",
+      "source": "Investing",
+      "at": 1789656929000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789656929000,
+      "_kind": null,
+      "why": "Israel market news irrelevant to US."
+    },
+    {
       "title": "Lahontan Gold signs agreement to acquire Emergent Metals",
       "link": "https://finance.yahoo.com/markets/commodities/articles/lahontan-gold-signs-agreement-acquire-145511685.html",
       "source": "Yahoo Finance",
@@ -431,7 +463,24 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789656911000,
-      "_kind": null
+      "_kind": null,
+      "why": "Specific company news, unclear macro impact."
+    },
+    {
+      "title": "Greece stocks lower at close of trade; Athens General Composite down 0.40%",
+      "link": "https://www.investing.com/news/stock-market-news/greece-stocks-lower-at-close-of-trade-athens-general-composite-down-040-4906024",
+      "source": "Investing",
+      "at": 1789656903000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789656903000,
+      "_kind": null,
+      "why": "Greece market news irrelevant to US."
     },
     {
       "title": "AI Server Stocks Rally as the Hardware Bid Broadens: Hewlett Packard Enterprise Jumps 9%, Super Micro Climbs 6%, Dell Rises 3%",
@@ -446,7 +495,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789656511000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "AI server stocks rally boosts index."
     },
     {
       "title": "SEC Clears a Path for Tokenized Stocks After Clarity Act Stumbles",
@@ -461,7 +514,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789656723000,
-      "_kind": null
+      "_kind": null,
+      "why": "Regulatory clarity unclear for broad market."
     },
     {
       "title": "German distiller Berentzen in talks to sell to Sazerac",
@@ -476,7 +530,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789656613000,
-      "_kind": null
+      "_kind": null,
+      "why": "Corporate M&A news, no macro direction."
     },
     {
       "title": "Insider Sale: CEO Dumps More Than 16,000 Shares of Financial Stock",
@@ -487,7 +542,7 @@
       "ccy": [],
       "sev": 1,
       "rel": 1,
-      "srcs": 1,
+      "srcs": 2,
       "firstAt": 1789656601000,
       "_kind": null
     },
@@ -504,9 +559,10 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 1,
+      "srcs": 2,
       "firstAt": 1789656600000,
-      "_kind": null
+      "_kind": null,
+      "why": "Nuclear stock news, irrelevant to gold."
     },
     {
       "title": "SpaceX Nasdaq-100 rebalance: what the $15.5B to $22B passive buying event means for SPCX",
@@ -521,20 +577,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789656366000,
-      "_kind": null
-    },
-    {
-      "title": "Intel, SanDisk among market cap stock movers on Thursday",
-      "link": "https://www.investing.com/news/stock-market-news/intel-sandisk-among-market-cap-stock-movers-on-thursday-93CH-4905997",
-      "source": "Investing",
-      "at": 1789655731000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1789655731000,
-      "_kind": null
+      "_kind": null,
+      "why": "SpaceX not in Nasdaq-100 index."
     },
     {
       "title": "A Chinese AI company just connected its model to Wall Street's leading data providers",
@@ -549,7 +593,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789655425000
+      "firstAt": 1789655425000,
+      "why": "Chinese AI news, unclear US impact."
     },
     {
       "title": "Retaliatory Canadian tariffs hit US dairy markets - Farmers' Advance",
@@ -564,7 +609,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789655340000
+      "firstAt": 1789655340000,
+      "why": "Sector-specific tariff news, unclear direction."
     },
     {
       "title": "Breakout Watch: Savvy Investors Get Wired Up For This Nvidia, Amazon Partner",
@@ -597,7 +643,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789652748000
+      "firstAt": 1789652748000,
+      "why": "Political vote, unclear market impact."
     },
     {
       "title": "Stock Market Today: Nasdaq Charges Higher On Amazon Deal; This Homebuilder Misses Views (Live Coverage)",
@@ -610,8 +657,12 @@
       "ccy": [],
       "sev": 1,
       "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789654788000
+      "srcs": 2,
+      "firstAt": 1789654788000,
+      "dir": {
+        "US100": "up"
+      },
+      "why": "Nasdaq charges higher on Amazon deal."
     },
     {
       "title": "Ghalibaf’s maths missile at Trump decoded: Is Iran fixing US interest rates?",
@@ -632,7 +683,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789654241000
+      "firstAt": 1789654241000,
+      "why": "Political rhetoric, unclear market direction."
     },
     {
       "title": "Renewed Industry Competition Sparks T-Mobile US’s (TMUS) Sell-Off",
@@ -663,7 +715,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789654043000
+      "firstAt": 1789654043000,
+      "why": "Uncertainty cited, no clear direction."
     },
     {
       "title": "The smartest money moves to make now that interest rates are going up",
@@ -2043,52 +2096,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789642863000
-    },
-    {
-      "title": "Stock markets close flat after US Fed rate hike - Rediff",
-      "link": "https://news.google.com/rss/articles/CBMiywFBVV95cUxOQkRpeDZTM0RIczZRTDlUVktIYnlpZmlDNEFPbk9SbTJBTGpBaW9QNWYzU1RUOWhPaUREWjVTdXVFejVSdUtMVHZEdHlEVjBnM2JXNEpsZTZFOEl6OTBURFRaVFh5RE93RXRPYVhvUURkSXkwVms2QXgxR2JadXRMSjRORW5QYzVRUXk0SU1tWUNycklmbTRiTC1RZWc1V3VaTEFFbmFkM1pMN0VCMmlvSXlnRzllSExIaTVVTjNTY0NfZkNtYlY2dEtISQ?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiywFBVV95cUxOQkRpeDZTM0RIczZRTDlUVktIYnlpZmlDNEFPbk9SbTJBTGpBaW9QNWYzU1RUOWhPaUREWjVTdXVFejVSdUtMVHZEdHlEVjBnM2JXNEpsZTZFOEl6OTBURFRaVFh5RE93RXRPYVhvUURkSXkwVms2QXgxR2JadXRMSjRORW5QYzVRUXk0SU1tWUNycklmbTRiTC1RZWc1V3VaTEFFbmFkM1pMN0",
-      "at": 1789642660000,
-      "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789642660000
-    },
-    {
-      "title": "Why is inflation rising again around the world?",
-      "link": "https://www.aljazeera.com/video/counting-the-cost/2026/9/17/why-is-inflation-rising-again-around-the-world?traffic_source=rss",
-      "source": "Al Jazeera",
-      "desc": "Rising energy prices are pushing inflation higher again, forcing major central banks to raise interest rates.",
-      "at": 1789642254000,
-      "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789642254000
     }
   ],
   "sources": [
@@ -2114,7 +2121,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-17T15:05:26.531Z",
-  "headlinesAt": "2026-09-17T15:05:26.531Z",
-  "updatedAt": "2026-09-17T15:05:26.531Z"
+  "calendarAt": "2026-09-17T15:06:58.266Z",
+  "headlinesAt": "2026-09-17T15:06:58.266Z",
+  "updatedAt": "2026-09-17T15:06:58.266Z"
 }
