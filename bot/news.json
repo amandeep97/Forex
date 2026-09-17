@@ -582,7 +582,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789609435000,
-      "_kind": null
+      "_kind": null,
+      "why": "Ringgit news irrelevant to listed instruments"
     },
     {
       "title": "Asian Markets Extend Gains As Oil Eases; Nikkei, Kospi Rise Post Fed Rate Hike - NDTV Profit",
@@ -601,7 +602,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789608925000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Oil eases as Asian markets rise"
     },
     {
       "title": "How US Fed Rate Hike Will Impact Gold Prices — Key Factors To Watch - NDTV Profit",
@@ -620,7 +625,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789609056000,
-      "_kind": null
+      "_kind": null,
+      "why": "Analysis of potential impact, no direction"
     },
     {
       "title": "Stock Market Today: Gift Nifty, US Fed Rate Hike To Trump Tariffs — Five Key Factors For Sensex, Nifty 50 On September 17 - NDTV Profit",
@@ -644,7 +650,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789609056000,
-      "_kind": null
+      "_kind": null,
+      "why": "General market factors, no clear direction"
     },
     {
       "title": "Asian stocks mixed as markets digest US Fed's first rate hike since 2023 - CNBC TV18",
@@ -662,7 +669,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789608925000,
-      "_kind": null
+      "_kind": null,
+      "why": "Asian stocks mixed, US market unclear"
     },
     {
       "title": "Singapore, Asia markets shrug off US Fed rate hike - The Business Times",
@@ -686,7 +694,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789608300000,
-      "_kind": null
+      "why": "Markets shrug off rate hike"
     },
     {
       "title": "Pappas Snubs Shaheen, Sides With Warren Wing Against Russia Sanctions Bill - NH Journal",
@@ -706,7 +714,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789606320000
+      "firstAt": 1789606320000,
+      "why": "Political opinion, no immediate market impact"
     },
     {
       "title": "Australian Dollar holds gains near 0.7100 despite Fed rate hike, IMF urges RBA to stay hawkish - fxstreet.com",
@@ -724,7 +733,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789607990000
+      "firstAt": 1789607990000,
+      "dir": {
+        "AUD/USD": "up"
+      },
+      "why": "AUD holds gains despite Fed hike"
     },
     {
       "title": "UK’s Burnham, Canada’s Carney discuss AI risks, defence cooperation",
@@ -741,7 +754,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789607666000
+      "firstAt": 1789607666000,
+      "why": "Diplomatic meeting, no direct currency impact"
     },
     {
       "title": "Oil prices extend losses as fears of Middle East supply disruptions ease",
@@ -757,7 +771,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789607208000
+      "firstAt": 1789607208000,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Oil prices extend losses"
     },
     {
       "title": "House Passes Russia Sanctions Bill Named After Lindsey Graham, Sends to Trump - KSLM Radio",
@@ -777,7 +795,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 3,
-      "firstAt": 1789604375000
+      "firstAt": 1789604375000,
+      "why": "Sanctions bill passed, impact unclear"
     },
     {
       "title": "US House passes Russia sanctions bill, India faces 100% tariff threat - Firstpost",
@@ -798,7 +817,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 3,
-      "firstAt": 1789604375000
+      "firstAt": 1789604375000,
+      "why": "Sanctions and tariffs, mixed signals"
     },
     {
       "title": "Congress passes sweeping US sanctions bill targeting Russia - Al Jazeera",
@@ -818,7 +838,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789604160000
+      "firstAt": 1789604160000,
+      "why": "Sanctions bill passed, no clear direction"
     },
     {
       "title": "Congress passes sweeping US sanctions bill targeting Russia",
@@ -838,7 +859,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789604160000
+      "firstAt": 1789604160000,
+      "why": "Sanctions bill passed, no clear direction"
     },
     {
       "title": "US Congress passes sweeping Russia sanctions bill - News.com.au",
@@ -858,7 +880,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789604160000
+      "firstAt": 1789604160000,
+      "why": "Sanctions bill passed, no clear direction"
     },
     {
       "title": "House passes Russia and Iran sanctions bill championed by Sen. Lindsey Graham - Yahoo",
@@ -2371,10 +2394,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-17T01:54:09.016Z",
-  "headlinesAt": "2026-09-17T01:54:09.016Z",
-  "updatedAt": "2026-09-17T01:54:09.016Z"
+  "calendarAt": "2026-09-17T01:55:26.782Z",
+  "headlinesAt": "2026-09-17T01:55:26.782Z",
+  "updatedAt": "2026-09-17T01:55:26.782Z"
 }
