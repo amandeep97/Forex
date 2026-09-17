@@ -375,7 +375,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789681684000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Risk-on sentiment boosts dollar, hurts gold and FX."
     },
     {
       "title": "US to allow Iran delegation to attend UN meetings in New York as war passes half-year mark",
@@ -396,7 +402,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789681279000,
-      "_kind": null
+      "_kind": null,
+      "why": "Diplomatic news lacks clear immediate market direction."
     },
     {
       "title": "Mexico stocks higher at close of trade; S&P/BMV IPC up 0.58%",
@@ -411,7 +418,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789680604000,
-      "_kind": null
+      "_kind": null,
+      "why": "Mexico stock news does not affect US index."
     },
     {
       "title": "Colombia stocks higher at close of trade; COLCAP up 0.40%",
@@ -426,7 +434,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789680303000,
-      "_kind": null
+      "_kind": null,
+      "why": "Colombia stock news does not affect US index."
     },
     {
       "title": "The bond market is seeing trouble. Why investors are buying now anyway.",
@@ -449,7 +458,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789680120000
+      "firstAt": 1789680120000,
+      "why": "Bond market trouble is ambiguous for these pairs."
     },
     {
       "title": "Micron, Intel and other chip stocks are furthering their strong comebacks",
@@ -464,7 +474,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789680120000
+      "firstAt": 1789680120000,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Chip stock strength supports broader US market index."
     },
     {
       "title": "Russia stocks lower at close of trade; MOEX Russia Index down 1.68%",
@@ -478,7 +492,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789680004000
+      "firstAt": 1789680004000,
+      "why": "Russia stock news does not affect US index."
     },
     {
       "title": "CBOT wheat futures fall on lack of bullish news",
@@ -513,7 +528,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789677246000
+      "firstAt": 1789677246000,
+      "why": "Market reaction to Fed chair is unclear."
     },
     {
       "title": "Latin American stocks climb as dollar weakens after Fed hike",
@@ -529,7 +545,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789679499000
+      "firstAt": 1789679499000,
+      "why": "Latin American stock news does not affect US index."
     },
     {
       "title": "Wall Street is betting Trump backs down on Iran — but what if the ‘TACO’ trade fails this time?",
@@ -544,7 +561,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 3,
-      "firstAt": 1789677095000
+      "firstAt": 1789677095000,
+      "why": "Speculative trade discussion lacks clear directional signal."
     },
     {
       "title": "Russia, China veto UN mandate to monitor Iran sanctions - Al Jazeera",
@@ -564,7 +582,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789677638000
+      "firstAt": 1789677638000,
+      "why": "UN veto news is ambiguous for markets."
     },
     {
       "title": "UN-backed experts cite possible US war crimes in Iran strikes - The Seattle Times",
@@ -584,7 +603,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789677095000
+      "firstAt": 1789677095000,
+      "why": "War crimes report lacks clear market direction."
     },
     {
       "title": "Russia, China veto UN mandate to monitor Iran sanctions",
@@ -604,7 +624,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789677638000
+      "firstAt": 1789677638000,
+      "why": "UN veto news is ambiguous for markets."
     },
     {
       "title": "Oil dips, Brent turns negative for the week amid easing Middle East supply fears",
@@ -621,7 +642,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789678488000
+      "firstAt": 1789678488000,
+      "dir": {
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Easing supply fears directly lower oil prices."
     },
     {
       "title": "Saudis and Houthis exchange strikes, Yemenis take to boats to flee as Middle East war spreads",
@@ -640,7 +666,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789678488000
+      "firstAt": 1789678488000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Spreading war increases geopolitical risk premium."
     },
     {
       "title": "Tech leads Wall St to higher close as oil eases, Treasury yields dip - Reuters",
@@ -880,7 +912,7 @@
       "firstAt": 1789675830000
     },
     {
-      "title": "Russia sanctions cheers, Democrat tariff fears - politico.com",
+      "title": "Russia sanctions cheers, Democrat tariff fears - Politico",
       "link": "https://news.google.com/rss/articles/CBMixAFBVV95cUxOSHRwM3A1VzZwZkRNcmVLLVcxNlV6Zkt0TVZXZ044UXJhd0ZCaVlKV1pLNzNlcU5JNHdCeTg1UHMzWFFzYVpiZkFNZThvOWtCbjVTNHpQX3BQLVd1bzM3cXVPLVY5ckRsbjhGLUI4QkNJR2s5aHZtQkJ0TUFvQU9jSXJyQzdBemRlT083dFhGRUVfR2ZpMGoyT1l2dGkxOHNUWWRiS3VkV2ZhakY0SkdhVDhmUzF0aVB1elBaODJTN3hfVGdF?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMixAFBVV95cUxOSHRwM3A1VzZwZkRNcmVLLVcxNlV6Zkt0TVZXZ044UXJhd0ZCaVlKV1pLNzNlcU5JNHdCeTg1UHMzWFFzYVpiZkFNZThvOWtCbjVTNHpQX3BQLVd1bzM3cXVPLVY5ckRsbjhGLUI4QkNJR2s5aHZtQkJ0TUFvQU9jSXJyQzdBemRlT083dFhGRUVfR2ZpMGoyT1l2dGkxOHNUWWRiS3VkV2Zhak",
@@ -1649,11 +1681,11 @@
       "firstAt": 1789664853000
     },
     {
-      "title": "Russia, China end mandate for independent monitoring of UN sanctions on Iran - Al-Monitor",
-      "link": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPUzFyZC02c3lGNmtuVlRRdlpfVU02SllYZ3M0Wk92dzZZc1VpWjRWY1VSMndqZnJCRTFKaWtzRTBVczV0Z1Y3aU0wXzhCU2NRUlJhVkl0UjcwRDZmSUNrMnEtY3RsOExrVnF1a2l1TlhORzB0VzhDR01tRmQzTnhrZk85bzE2Uy1DbFQtMEtkdFVSamp5MFFJXzNHSEg0aDh3cl9NdjJIbTJBVGNzQXVz?oc=5",
+      "title": "Russia, China end mandate for independent monitoring of UN sanctions on Iran - Reuters",
+      "link": "https://news.google.com/rss/articles/CBMiswFBVV95cUxOOHBsNEJfd0VCaF9BYlJXbDRTbFVTc1hGVE01TmdQaF9oRDdlaGw0YzU3TDRucEI4UjRpR2owemo3NUdFLTBkOVFCWm42Z0d3M0p1eHNvU3JBRkNyUG95VWoyWXRoY21lR0lvYjNXUjVEdUFON2x0dHdlbDF5OTlTOXpnV1kwNzlGQmRjODZGZzVsNXVjMHZvbXNad0dEWFdWTXVfdEVSNVh2dGx4elF1Nm5oaw?oc=5",
       "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMirwFBVV95cUxPUzFyZC02c3lGNmtuVlRRdlpfVU02SllYZ3M0Wk92dzZZc1VpWjRWY1VSMndqZnJCRTFKaWtzRTBVczV0Z1Y3aU0wXzhCU2NRUlJhVkl0UjcwRDZmSUNrMnEtY3RsOExrVnF1a2l1TlhORzB0VzhDR01tRmQzTnhrZk85bzE2Uy1DbFQtMEtkdFVSamp5MFFJXzNHSEg0aDh3cl9NdjJIbTJBVG",
-      "at": 1789665349000,
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiswFBVV95cUxOOHBsNEJfd0VCaF9BYlJXbDRTbFVTc1hGVE01TmdQaF9oRDdlaGw0YzU3TDRucEI4UjRpR2owemo3NUdFLTBkOVFCWm42Z0d3M0p1eHNvU3JBRkNyUG95VWoyWXRoY21lR0lvYjNXUjVEdUFON2x0dHdlbDF5OTlTOXpnV1kwNzlGQmRjODZGZzVsNXVjMHZvbXNad0dEWFdWTXVfdEVSNVh2dG",
+      "at": 1789665464000,
       "inst": [
         "XAU/USD",
         "USOIL",
@@ -2079,10 +2111,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-17T21:52:56.948Z",
-  "headlinesAt": "2026-09-17T21:52:56.948Z",
-  "updatedAt": "2026-09-17T21:52:56.948Z"
+  "calendarAt": "2026-09-17T21:54:12.530Z",
+  "headlinesAt": "2026-09-17T21:54:12.531Z",
+  "updatedAt": "2026-09-17T21:54:12.531Z"
 }
