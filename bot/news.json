@@ -417,7 +417,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789664454000,
-      "_kind": null
+      "_kind": null,
+      "why": "Geopolitical uncertainty without clear immediate price direc"
     },
     {
       "title": "Saudis and Houthis exchange strikes, Yemenis take to boats to flee as Middle East war spreads",
@@ -437,7 +438,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789666609000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Escalating Middle East conflict boosts safe havens and oil."
     },
     {
       "title": "US clears way for $24.3 billion military aircraft sale to Saudi Arabia",
@@ -457,7 +464,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789666591000,
-      "_kind": null
+      "_kind": null,
+      "why": "Military sale news has negligible direct market impact."
     },
     {
       "title": "Human rights experts: ‘Reasonable grounds’ to believe US committed war crimes with Iran strikes - thehill.com",
@@ -478,7 +486,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789664724000,
-      "_kind": null
+      "_kind": null,
+      "why": "Legal accusations do not directly move commodity prices."
     },
     {
       "title": "Russia, China end mandate for independent monitoring of UN sanctions on Iran - KELO-AM",
@@ -499,7 +508,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789664100000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions monitoring changes lack immediate price catalyst."
     },
     {
       "title": "2 Cybersecurity Stocks That Will Rule 2027",
@@ -514,7 +524,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789666260000,
-      "_kind": null
+      "_kind": null,
+      "why": "Specific stock picks do not move the index."
     },
     {
       "title": "The UK’s King Charles warns AI leaders of ‘existential dangers’",
@@ -530,7 +541,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789666194000,
-      "_kind": null
+      "_kind": null,
+      "why": "Monarch's AI comments have no direct FX impact."
     },
     {
       "title": "Trump weighs return to large-scale Iran strikes: ‘I have a big decision coming up’ - The Times of Israel",
@@ -551,7 +563,13 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789665323000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Potential Iran strikes increase geopolitical risk premium."
     },
     {
       "title": "Stocks making the biggest moves midday: Workday, Generac, Vital Farms, Vicor, Tower Semi & more",
@@ -566,7 +584,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789665720000
+      "firstAt": 1789665720000,
+      "why": "Individual stock moves do not define index direction."
     },
     {
       "title": "How does the Fed interest rate affect car loans?",
@@ -588,7 +607,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789665650000
+      "firstAt": 1789665650000,
+      "why": "Educational content on car loans lacks market direction."
     },
     {
       "title": "Pinterest Director Benjamin Silbermann Sells 93,750 Shares for $1.8 Million",
@@ -614,7 +634,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789665595000
+      "firstAt": 1789665595000,
+      "why": "LNG infrastructure sale is unrelated to natural gas prices."
     },
     {
       "title": "Stock Market Today: Nasdaq Dwarfs Dow's Gain; This AI Chip Leader Breaks Out To All-Time High (Live Coverage)",
@@ -629,7 +650,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789665427000
+      "firstAt": 1789665427000,
+      "dir": {
+        "US100": "up",
+        "US30": "up"
+      },
+      "why": "Nasdaq outperformance and AI breakout signal bullish sentime"
     },
     {
       "title": "Why growth stocks’ surprising strength may be warning of a market bubble",
@@ -644,7 +670,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789665360000
+      "firstAt": 1789665360000,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Bubble warnings imply bearish sentiment for growth stocks."
     },
     {
       "title": "Trump says he faces a “big decision” on whether to launch new attacks on Iran",
@@ -664,7 +694,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789665323000
+      "firstAt": 1789665323000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Imminent Iran attack decision boosts risk assets."
     },
     {
       "title": "Gold, US Treasuries surge as crude oil slide eases inflation concerns - Business Standard",
@@ -685,7 +721,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789665020000
+      "firstAt": 1789665020000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Gold surges while crude slides on inflation fears."
     },
     {
       "title": "Traders Pivot to Stablecoins as Markets Absorb Federal Reserve Rate Increase - Northeast Times",
@@ -2097,7 +2139,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-17T17:54:10.790Z",
-  "headlinesAt": "2026-09-17T17:54:10.790Z",
-  "updatedAt": "2026-09-17T17:54:10.790Z"
+  "calendarAt": "2026-09-17T17:55:13.893Z",
+  "headlinesAt": "2026-09-17T17:55:13.893Z",
+  "updatedAt": "2026-09-17T17:55:13.893Z"
 }
