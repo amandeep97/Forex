@@ -375,8 +375,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789680120000,
-      "_kind": null,
-      "why": "Bond market trouble, unclear FX impact"
+      "_kind": null
     },
     {
       "title": "Micron, Intel and other chip stocks are furthering their strong comebacks",
@@ -392,11 +391,35 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789680120000,
-      "_kind": null,
-      "dir": {
-        "US500": "up"
-      },
-      "why": "Chip stocks rallying, fears subsiding"
+      "_kind": null
+    },
+    {
+      "title": "Russia stocks lower at close of trade; MOEX Russia Index down 1.68%",
+      "link": "https://www.investing.com/news/stock-market-news/russia-stocks-lower-at-close-of-trade-moex-russia-index-down-168-4906486",
+      "source": "Investing",
+      "at": 1789680004000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789680004000,
+      "_kind": null
+    },
+    {
+      "title": "CBOT wheat futures fall on lack of bullish news",
+      "link": "https://www.investing.com/news/commodities-news/cbot-wheat-futures-fall-on-lack-of-bullish-news-93CH-4906483",
+      "source": "Investing Cmdty",
+      "at": 1789679769000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 1,
+      "srcs": 1,
+      "firstAt": 1789679769000,
+      "_kind": null
     },
     {
       "title": "The Day After the Fed Rate Hike, Financial Markets Applaud Kevin Warsh, Who Keeps Trump’s Confidence - The New York Sun",
@@ -420,8 +443,24 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789677246000,
-      "_kind": null,
-      "why": "Markets applaud Fed, direction unclear"
+      "_kind": null
+    },
+    {
+      "title": "Latin American stocks climb as dollar weakens after Fed hike",
+      "link": "https://www.investing.com/news/stock-market-news/latin-american-stocks-climb-as-dollar-weakens-after-fed-hike-93CH-4906472",
+      "source": "Investing",
+      "at": 1789679499000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789679499000,
+      "_kind": null
     },
     {
       "title": "Wall Street is betting Trump backs down on Iran — but what if the ‘TACO’ trade fails this time?",
@@ -437,8 +476,7 @@
       "rel": 2,
       "srcs": 3,
       "firstAt": 1789677095000,
-      "_kind": null,
-      "why": "Uncertainty over Iran trade strategy"
+      "_kind": null
     },
     {
       "title": "Russia, China veto UN mandate to monitor Iran sanctions - Al Jazeera",
@@ -457,10 +495,9 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 1,
+      "srcs": 2,
       "firstAt": 1789677638000,
-      "_kind": null,
-      "why": "UN veto, no clear price signal"
+      "_kind": null
     },
     {
       "title": "UN-backed experts cite possible US war crimes in Iran strikes - The Seattle Times",
@@ -481,8 +518,84 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789677095000,
-      "_kind": null,
-      "why": "War crimes report, no direct market impact"
+      "_kind": null
+    },
+    {
+      "title": "Russia, China veto UN mandate to monitor Iran sanctions",
+      "link": "https://www.aljazeera.com/news/2026/9/17/russia-china-veto-un-mandate-to-monitor-iran-sanctions?traffic_source=rss",
+      "source": "Al Jazeera",
+      "desc": "Move ends the Security Council’s watchdog panel on Iran sanctions.",
+      "at": 1789678901000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1789677638000,
+      "_kind": null
+    },
+    {
+      "title": "Oil dips, Brent turns negative for the week amid easing Middle East supply fears",
+      "link": "https://www.investing.com/news/commodities-news/oil-prices-steady-amid-cooling-meast-supply-jitters-4904755",
+      "source": "Investing Cmdty",
+      "at": 1789678712000,
+      "inst": [
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789678488000,
+      "_kind": null
+    },
+    {
+      "title": "Ocean container shipping rates could test record highs as Iran war fuel spike drives rise, analysts say",
+      "link": "https://www.investing.com/news/stock-market-news/ocean-container-shipping-rates-could-test-record-highs-as-iran-war-fuel-spike-drives-rise-analysts-say-4906455",
+      "source": "Investing",
+      "at": 1789678510000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789678510000
+    },
+    {
+      "title": "Saudis and Houthis exchange strikes, Yemenis take to boats to flee as Middle East war spreads",
+      "link": "https://www.investing.com/news/commodities-news/trump-hopes-iran-war-nearing-end-as-houthisaudi-fighting-escalates-4904794",
+      "source": "Investing Cmdty",
+      "at": 1789678488000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789678488000
     },
     {
       "title": "Tech leads Wall St to higher close as oil eases, Treasury yields dip - Reuters",
@@ -500,11 +613,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789678388000,
-      "dir": {
-        "USOIL": "down"
-      },
-      "why": "Oil eases, yields dip"
+      "firstAt": 1789678388000
     },
     {
       "title": "A sweeping US sanctions bill offers Ukraine new leverage on Russia, but enforcement looms - Chicago Tribune",
@@ -523,9 +632,8 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789675769000,
-      "why": "Sanctions bill, enforcement uncertain"
+      "srcs": 2,
+      "firstAt": 1789675769000
     },
     {
       "title": "Russia and China veto US proposal for UN experts to keep monitoring sanctions on Iran - The Times of Israel",
@@ -544,9 +652,8 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789675769000,
-      "why": "UN veto, no clear price signal"
+      "srcs": 3,
+      "firstAt": 1789675769000
     },
     {
       "title": "US to allow Iran delegation to attend UN meetings in New York as war passes half-year mark",
@@ -566,8 +673,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789677893000,
-      "why": "Diplomatic move, unclear market impact"
+      "firstAt": 1789677893000
     },
     {
       "title": "Blumenthal touts passage of Russia sanctions bill as CT Dems split - CT Mirror",
@@ -586,9 +692,8 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789675200000,
-      "why": "Sanctions bill passage, no immediate impact"
+      "srcs": 2,
+      "firstAt": 1789675200000
     },
     {
       "title": "Can ‘middle powers’ come together to build a new economic alliance?",
@@ -605,11 +710,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789677426000,
-      "dir": {
-        "USD/CAD": "down"
-      },
-      "why": "Canada-EU ties strengthen, CAD support"
+      "firstAt": 1789677426000
     },
     {
       "title": "Stocks Rally, Shaking Off Fed’s Rate Hike - WSJ",
@@ -626,11 +727,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789677360000,
-      "dir": {
-        "US500": "up"
-      },
-      "why": "Stocks rally after Fed hike"
+      "firstAt": 1789677360000
     },
     {
       "title": "UN experts say grounds to believe US committed war crimes in Iran strikes",
@@ -650,8 +747,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789677095000,
-      "why": "War crimes report, no direct market impact"
+      "firstAt": 1789677095000
     },
     {
       "title": "US Markets Wrap: Wall Street rebounds after Fed rate hike - businesspost.ie",
@@ -668,11 +764,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789677246000,
-      "dir": {
-        "US500": "up"
-      },
-      "why": "Wall Street rebounds after Fed hike"
+      "firstAt": 1789677246000
     },
     {
       "title": "Trump weighs return to large-scale Iran strikes: ‘I have a big decision coming up’ - The Times of Israel",
@@ -713,37 +805,6 @@
       "firstAt": 1789677094000
     },
     {
-      "title": "U.S. stocks higher at close of trade; Dow Jones Industrial Average up 0.62%",
-      "link": "https://www.investing.com/news/stock-market-news/us-stocks-higher-at-close-of-trade-dow-jones-industrial-average-up-062-4906410",
-      "source": "Investing",
-      "at": 1789677061000,
-      "inst": [
-        "US500",
-        "US30"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789677061000
-    },
-    {
-      "title": "Australia considers banning the use of smart glasses in government buildings",
-      "link": "https://www.investing.com/news/stock-market-news/australia-considers-banning-the-use-of-smart-glasses-in-government-buildings-4905554",
-      "source": "Investing",
-      "at": 1789677056000,
-      "inst": [
-        "AUD/USD"
-      ],
-      "ccy": [
-        "AUD"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789677056000
-    },
-    {
       "title": "Why have China’s oil prices reached a record high?",
       "link": "https://www.aljazeera.com/video/newsfeed/2026/9/17/why-have-chinas-oil-prices-reached-a-record-high?traffic_source=rss",
       "source": "Al Jazeera",
@@ -761,37 +822,6 @@
       "firstAt": 1789677039000
     },
     {
-      "title": "Canada stocks higher at close of trade; S&P/TSX Composite up 1.08%",
-      "link": "https://www.investing.com/news/stock-market-news/canada-stocks-higher-at-close-of-trade-sptsx-composite-up-108-4906401",
-      "source": "Investing",
-      "at": 1789677032000,
-      "inst": [
-        "USD/CAD",
-        "US500"
-      ],
-      "ccy": [
-        "CAD"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789677032000
-    },
-    {
-      "title": "Brazil stocks higher at close of trade; Bovespa up 0.24%",
-      "link": "https://www.investing.com/news/stock-market-news/brazil-stocks-higher-at-close-of-trade-bovespa-up-024-4906400",
-      "source": "Investing",
-      "at": 1789677003000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789677003000
-    },
-    {
       "title": "Tesla’s upcoming product frenzy could leave investors disappointed",
       "link": "https://www.marketwatch.com/story/teslas-upcoming-product-frenzy-could-leave-investors-disappointed-18619fb3?mod=mw_rss_topstories",
       "source": "MarketWatch",
@@ -803,39 +833,6 @@
       "rel": 1,
       "srcs": 1,
       "firstAt": 1789676580000
-    },
-    {
-      "title": "U.S. stocks post best day since August, bonds rally as Fed rate uncertainty fades",
-      "link": "https://www.investing.com/news/stock-market-news/us-stock-futures-rise-after-hawkish-fed-dents-wall-st-4904721",
-      "source": "Investing",
-      "at": 1789675959000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789675959000
-    },
-    {
-      "title": "Exclusive-Shell-led LNG Canada could approve Phase 2 expansion by early October, sources say",
-      "link": "https://www.investing.com/news/stock-market-news/exclusiveshellled-lng-canada-could-approve-phase-2-expansion-by-early-october-sources-say-4906358",
-      "source": "Investing",
-      "at": 1789675947000,
-      "inst": [
-        "USD/CAD",
-        "NATGAS"
-      ],
-      "ccy": [
-        "CAD"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789675947000
     },
     {
       "title": "Ukraine strikes two Russian S-400 launchers in Bryansk. The same systems were used to attack Kyiv overnight. - Euromaidan Press",
@@ -1070,7 +1067,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789672691000
+      "firstAt": 1789672713000
     },
     {
       "title": "Crude Oil WTI compresses at $101.42 in key decision zone: Live",
@@ -1087,7 +1084,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789672691000
+      "firstAt": 1789672714000
     },
     {
       "title": "Natural Gas stalls at $2.88 inside Ichimoku cloud: Live levels",
@@ -1101,56 +1098,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789672691000
-    },
-    {
-      "title": "Silver stalls at Ichimoku cloud resistance at $65.77: Live levels",
-      "link": "https://www.investing.com/news/commodities-news/silver-tests-200-sma-at-6408-amid-double-top-risk-live-levels-93CH-4898870",
-      "source": "Investing Cmdty",
-      "at": 1789672707000,
-      "inst": [
-        "XAG/USD"
-      ],
-      "ccy": [
-        "XAG"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789672691000
-    },
-    {
-      "title": "Brent Oil breaks down after double top: Live levels",
-      "link": "https://www.investing.com/news/commodities-news/brent-oil-consolidates-near-10764-amid-bull-fatigue-live-levels-93CH-4898867",
-      "source": "Investing Cmdty",
-      "at": 1789672705000,
-      "inst": [
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789672691000
-    },
-    {
-      "title": "Gold doji at $4,388 consolidation zone: Live levels",
-      "link": "https://www.investing.com/news/commodities-news/gold-clings-to-4355-confluence-support-live-levels-93CH-4898868",
-      "source": "Investing Cmdty",
-      "at": 1789672691000,
-      "inst": [
-        "XAU/USD"
-      ],
-      "ccy": [
-        "XAU"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789672691000
+      "firstAt": 1789672713000
     },
     {
       "title": "A view on inflation is increasingly important",
@@ -1976,41 +1924,6 @@
       "firstAt": 1789659327000
     },
     {
-      "title": "Five killed as Saudi Arabia and Yemen’s Houthis trade attacks",
-      "link": "https://www.aljazeera.com/news/2026/9/17/five-killed-as-saudi-arabia-and-yemens-houthis-trade-attacks?traffic_source=rss",
-      "source": "Al Jazeera",
-      "desc": "Houthi leader Abdel-Malik al-Houthi says Saudi claims that the group targeted Mecca are a 'heinous lie'.",
-      "at": 1789661449000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789661449000
-    },
-    {
-      "title": "Rare Ethiopian manuscript stolen by British forces triggers restitution row",
-      "link": "https://www.aljazeera.com/news/2026/9/17/rare-ethiopian-manuscript-stolen-by-british-triggers-restitution-row?traffic_source=rss",
-      "source": "Al Jazeera",
-      "desc": "The Gondar Gospel belonged to the library of Emperor Tewodros but was seized in a battle decades ago.",
-      "at": 1789660324000,
-      "inst": [
-        "GBP/USD"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789660324000
-    },
-    {
       "title": "A Russia Sanctions Bill Would Give Trump Vast New Tariff Powers - Reason Magazine",
       "link": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNOWdNSnZnVExTaUxRN1FKMnZuenlOd0JRTWJNWENUTXdyYU93ekxRM3NmSjVpQ29SNzVKN1oySEstb1d6QVJWX0xOWS1zdG5MR2pGOVZzaVBUZ3RxalpTSDRSWnlwaFFVdWZZclF1a0JTRFktV1hKbUpkRVRfR3otSVo3eER3aV9tbE1lNTE2Wm40YUE0QldJT2F3?oc=5",
       "source": "Wires (geo)",
@@ -2088,6 +2001,71 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789656540000
+    },
+    {
+      "title": "Bitcoin steady at $76.5k as markets digest Fed rate hike, M.East tensions - Investing.com",
+      "link": "https://news.google.com/rss/articles/CBMivAFBVV95cUxQaWEwb1l2N3hwRmpmaDNORHRIeGQtOGs1Y0t3NXZ5UzFiZkZaWVRmYTJhdjZLd19iYUpTdVFDOTMzeFAyd1JMb2x6YnZGUTMwZllxOURVdVREWjlXQ3JNQWg5cjExWW0wOEhGTjFmeWlIWU91SEVjMjFzMTJ4aDhjWGFRSTZjN2JuZ19KMVp4bS1YSHB2WkY2VExuNWJfemFyM25TTHRmbGV6MTBCYzM5ZkdLRkw2amptSXExWQ?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMivAFBVV95cUxQaWEwb1l2N3hwRmpmaDNORHRIeGQtOGs1Y0t3NXZ5UzFiZkZaWVRmYTJhdjZLd19iYUpTdVFDOTMzeFAyd1JMb2x6YnZGUTMwZllxOURVdVREWjlXQ3JNQWg5cjExWW0wOEhGTjFmeWlIWU91SEVjMjFzMTJ4aDhjWGFRSTZjN2JuZ19KMVp4bS1YSHB2WkY2VExuNWJfemFyM25TTHRmbGV6MT",
+      "at": 1789656441000,
+      "inst": [
+        "BTC/USDT"
+      ],
+      "ccy": [
+        "USD",
+        "BTC"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789656441000
+    },
+    {
+      "title": "A Chinese AI company just connected its model to Wall Street's leading data providers",
+      "link": "https://www.cnbc.com/2026/09/17/china-moonshot-kimi-financial-services.html",
+      "source": "CNBC Markets",
+      "desc": "The startup Moonshot said it signed on financial industry giants from investment bank CICC to venture capital firms",
+      "at": 1789655425000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789655425000
+    },
+    {
+      "title": "Stocks are in recovery mode after the Fed's first rate hike in years rattled markets - Business Insider",
+      "link": "https://news.google.com/rss/articles/CBMimAFBVV95cUxONGh6RkEtY2ktbWhXZ0ZMRHBQWXl0OUszZlA5Nkxla2NfbzFGOVRSWEJOUFZGcWNnYWExQmxSY1ZCcGJsZjhOTXg4RVJtQ3VEd1NLVlh6eGFEcUVrRTlvb29wSUk1ZWJ1bFBFZDZaaG9mckZ5Rm4wck83Si1jSnFKUEhsaTVKN1VxaEpGYkc0ckNLWWluSF9WSA?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMimAFBVV95cUxONGh6RkEtY2ktbWhXZ0ZMRHBQWXl0OUszZlA5Nkxla2NfbzFGOVRSWEJOUFZGcWNnYWExQmxSY1ZCcGJsZjhOTXg4RVJtQ3VEd1NLVlh6eGFEcUVrRTlvb29wSUk1ZWJ1bFBFZDZaaG9mckZ5Rm4wck83Si1jSnFKUEhsaTVKN1VxaEpGYkc0ckNLWWluSF9WSA?oc=5\" target=\"_blank\">S",
+      "at": 1789655340000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789655340000
+    },
+    {
+      "title": "Retaliatory Canadian tariffs hit US dairy markets - Farmers' Advance",
+      "link": "https://news.google.com/rss/articles/CBMitgFBVV95cUxPcncxajBkUkZfT3hnNkxuc25OanlZeTBYTnNpUGxieWZHOFVSazRCeUYxc09UMWtXbDYtcklJWkhXeWNMU2FZa19iUHlwN1JUSXE5Wkx0a0ZwckZXRHItTkJIM2ZBZzkza3U2Q0pTc2haWHprY3dBVXV0eXFVbHlzekFWNkFEOC1oTTR5TmI4Y0tVTy0tZzU5QTJPR21kaEJ0RmdtWFlMQWNuZEI1MlJLal9nRFFjQQ?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMitgFBVV95cUxPcncxajBkUkZfT3hnNkxuc25OanlZeTBYTnNpUGxieWZHOFVSazRCeUYxc09UMWtXbDYtcklJWkhXeWNMU2FZa19iUHlwN1JUSXE5Wkx0a0ZwckZXRHItTkJIM2ZBZzkza3U2Q0pTc2haWHprY3dBVXV0eXFVbHlzekFWNkFEOC1oTTR5TmI4Y0tVTy0tZzU5QTJPR21kaEJ0RmdtWFlMQWNuZE",
+      "at": 1789655340000,
+      "inst": [
+        "USD/CAD"
+      ],
+      "ccy": [],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789655340000
     }
   ],
   "sources": [
@@ -2113,7 +2091,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-17T21:24:58.348Z",
-  "headlinesAt": "2026-09-17T21:24:58.348Z",
-  "updatedAt": "2026-09-17T21:24:58.348Z"
+  "calendarAt": "2026-09-17T21:26:27.256Z",
+  "headlinesAt": "2026-09-17T21:26:27.256Z",
+  "updatedAt": "2026-09-17T21:26:27.256Z"
 }
