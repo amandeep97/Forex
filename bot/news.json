@@ -421,7 +421,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789660324000,
-      "_kind": null
+      "_kind": null,
+      "why": "Cultural news, no direct market impact"
     },
     {
       "title": "Generac Surges 16% on $2.4B Amazon Data Center Generator Deal; Caterpillar Ticks Up, Cummins Sits Out the Rally",
@@ -450,23 +451,6 @@
       "_kind": null
     },
     {
-      "title": "North American Gold ETF Buying Jumped From $71 Million to $7.7 Billion in One Month. Can GLDM Hold Up?",
-      "link": "https://finance.yahoo.com/markets/commodities/articles/north-american-gold-etf-buying-153725893.html",
-      "source": "Yahoo Finance",
-      "at": 1789659445000,
-      "inst": [
-        "XAU/USD"
-      ],
-      "ccy": [
-        "XAU"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789659445000,
-      "_kind": null
-    },
-    {
       "title": "A Russia Sanctions Bill Would Give Trump Vast New Tariff Powers - reason.com",
       "link": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNOWdNSnZnVExTaUxRN1FKMnZuenlOd0JRTWJNWENUTXdyYU93ekxRM3NmSjVpQ29SNzVKN1oySEstb1d6QVJWX0xOWS1zdG5MR2pGOVZzaVBUZ3RxalpTSDRSWnlwaFFVdWZZclF1a0JTRFktV1hKbUpkRVRfR3otSVo3eER3aV9tbE1lNTE2Wm40YUE0QldJT2F3?oc=5",
       "source": "Wires (geo)",
@@ -486,7 +470,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789657889000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions bill details unclear for markets"
     },
     {
       "title": "Poland stocks higher at close of trade; WIG30 up 1.66%",
@@ -501,7 +486,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789659303000,
-      "_kind": null
+      "why": "Polish stocks unrelated to US index"
     },
     {
       "title": "SEC Clears Path For Tokenized Stock Trading. These Stocks Rally.",
@@ -516,7 +501,10 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789659216000,
-      "_kind": null
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Tech innovation boosts market sentiment"
     },
     {
       "title": "Turkey stocks higher at close of trade; BIST 100 up 2.95%",
@@ -530,7 +518,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789659031000
+      "firstAt": 1789659031000,
+      "why": "Turkish stocks unrelated to US index"
     },
     {
       "title": "Denmark stocks higher at close of trade; OMX Copenhagen 20 up 1.91%",
@@ -544,7 +533,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789659004000
+      "firstAt": 1789659004000,
+      "why": "Danish stocks unrelated to US index"
     },
     {
       "title": "Saudis and Houthis exchange strikes, Yemenis take to boats to flee as Middle East war spreads",
@@ -563,7 +553,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789658692000
+      "firstAt": 1789658692000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Geopolitical conflict drives risk assets higher"
     },
     {
       "title": "Micron, Intel and other chip stocks are furthering their strong comebacks",
@@ -578,7 +574,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789658520000
+      "firstAt": 1789658520000,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Chip stocks rally on easing fears"
     },
     {
       "title": "Russia sanctions bill backed by Sen. Lindsey Graham passes US House - The Jerusalem Post",
@@ -598,7 +598,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789657889000
+      "firstAt": 1789657889000,
+      "why": "Sanctions bill impact uncertain"
     },
     {
       "title": "China, Russia veto renewal of UN Iran sanctions panel - IntelliNews",
@@ -618,7 +619,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789657287000
+      "firstAt": 1789657287000,
+      "why": "UN veto has limited immediate impact"
     },
     {
       "title": "US House passes Russia sanctions bill granting Trump tariff authority - news.cgtn.com",
@@ -639,7 +641,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789657889000
+      "firstAt": 1789657889000,
+      "why": "Sanctions bill impact uncertain"
     },
     {
       "title": "What are all the sanctions Iran is under?",
@@ -659,7 +662,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789657287000
+      "firstAt": 1789657287000,
+      "why": "General info, no new direction"
     },
     {
       "title": "Stock Market Today: Nasdaq Leads Charge After Fed Day; Nvidia, Amazon Rise (Live Coverage)",
@@ -675,7 +679,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789657255000
+      "firstAt": 1789657255000,
+      "dir": {
+        "US100": "up"
+      },
+      "why": "Nasdaq leads charge, tech stocks rise"
     },
     {
       "title": "Ryanair (RYAAY) Slashes its Winter Flight Plans to Dodge a Costly Oil Spike",
@@ -691,7 +699,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789656905000
+      "firstAt": 1789656905000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Airline cuts flights due to oil spike"
     },
     {
       "title": "U.S. Treasury Yields Fall as Fed Regains Trust, BOE Leaves Rates Unchanged - WSJ",
@@ -709,7 +721,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789656540000
+      "firstAt": 1789656540000,
+      "why": "Mixed signals from Fed and BOE"
     },
     {
       "title": "China faces oil challenge as prices soar and supply options narrow",
@@ -1811,23 +1824,6 @@
       "firstAt": 1789646615000
     },
     {
-      "title": "Dow futures climb 300 points as markets rebound after Fed rate decision - CNBC TV18",
-      "link": "https://news.google.com/rss/articles/CBMioAFBVV95cUxNQWxjSlAzOFMwVTRWcnBBM1dsWHh0X21BWS1OZWRHYzFUY09yYnhJd2lpS1Q1M0pHTU1UOV9QcGl2OW1zYzVMbDEzcWk3dDd1NGg3Zk5MQ09PdDdaV1I3N3dqZ09nbUNYMlJESlNDa0VSZ0pKcVgtSHMzazdteHI3akU4LUloMlRHSzBCMjRacEh4aXpaNGNDMWIzLW1aUGxT0gGmAUFVX3lxTE5IVjdWRVk3Q21vMWM4V1lPMXZ3cm9uT21IYkJSNzVWQ194SmdJRE1Ld09nNGJPUUNJV0Nvalp2RXhDcmt0bkNpNVpfa1pqaUhNT2w4TldNRzZIQ0R3OVNTY3VrSzMxT3FWek8xNjduT01RaGxRR0g0Z0RyaTIwalhHVEIxRUZ2VjRVOGh4ZFI2a0FmdHVIWWt5cVNIaTR1bUVha1FmOEE?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMioAFBVV95cUxNQWxjSlAzOFMwVTRWcnBBM1dsWHh0X21BWS1OZWRHYzFUY09yYnhJd2lpS1Q1M0pHTU1UOV9QcGl2OW1zYzVMbDEzcWk3dDd1NGg3Zk5MQ09PdDdaV1I3N3dqZ09nbUNYMlJESlNDa0VSZ0pKcVgtSHMzazdteHI3akU4LUloMlRHSzBCMjRacEh4aXpaNGNDMWIzLW1aUGxT0gGmAUFVX3lxTE",
-      "at": 1789646522000,
-      "inst": [
-        "US30"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789646522000
-    },
-    {
       "title": "Sentiment Improves As Markets Digest The Fed's Rate Hike - RTTNews",
       "link": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQYjVxZnRYRmdXeTIzYUIwQzNLQWJ3Zk5hUWRlUlF1WFVNZ1VSYzJzVGlmdU5ObWlGU2c5cmN1aUU4bDdJTkR0cEI5RUVYRklMUTRuVVBRZWh1S29pWU1CTDYxXy1Qa2ZIeHNOUlFYSHdSY2drSkJxVjhDV3lJOXdKc2poNlIxWWR2LS0ydzNoMjBvaE96SzZGag?oc=5",
       "source": "Wires (macro)",
@@ -2101,6 +2097,49 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789643332000
+    },
+    {
+      "title": "Gaza repairman helps journalists to keep documenting genocide",
+      "link": "https://www.aljazeera.com/video/newsfeed/2026/9/17/gaza-repairman-helps-journalists-to-keep-documenting-genocide?traffic_source=rss",
+      "source": "Al Jazeera",
+      "desc": "As journalists in Gaza continue documenting the war, camera repairman Mohammed Radwan keeps damaged equipment in use.",
+      "at": 1789642863000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789642863000
+    },
+    {
+      "title": "Stock markets close flat after US Fed rate hike - Rediff",
+      "link": "https://news.google.com/rss/articles/CBMiywFBVV95cUxOQkRpeDZTM0RIczZRTDlUVktIYnlpZmlDNEFPbk9SbTJBTGpBaW9QNWYzU1RUOWhPaUREWjVTdXVFejVSdUtMVHZEdHlEVjBnM2JXNEpsZTZFOEl6OTBURFRaVFh5RE93RXRPYVhvUURkSXkwVms2QXgxR2JadXRMSjRORW5QYzVRUXk0SU1tWUNycklmbTRiTC1RZWc1V3VaTEFFbmFkM1pMN0VCMmlvSXlnRzllSExIaTVVTjNTY0NfZkNtYlY2dEtISQ?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiywFBVV95cUxOQkRpeDZTM0RIczZRTDlUVktIYnlpZmlDNEFPbk9SbTJBTGpBaW9QNWYzU1RUOWhPaUREWjVTdXVFejVSdUtMVHZEdHlEVjBnM2JXNEpsZTZFOEl6OTBURFRaVFh5RE93RXRPYVhvUURkSXkwVms2QXgxR2JadXRMSjRORW5QYzVRUXk0SU1tWUNycklmbTRiTC1RZWc1V3VaTEFFbmFkM1pMN0",
+      "at": 1789642660000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789642660000
     }
   ],
   "sources": [
@@ -2126,7 +2165,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-17T16:03:55.293Z",
-  "headlinesAt": "2026-09-17T16:03:55.293Z",
-  "updatedAt": "2026-09-17T16:03:55.293Z"
+  "calendarAt": "2026-09-17T16:05:27.668Z",
+  "headlinesAt": "2026-09-17T16:05:27.668Z",
+  "updatedAt": "2026-09-17T16:05:27.668Z"
 }
