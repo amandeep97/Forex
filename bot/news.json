@@ -532,7 +532,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789631660000,
-      "_kind": null
+      "_kind": null,
+      "why": "Market context, no specific direction."
     },
     {
       "title": "Tom Lee says the ‘face-ripping’ rally he predicted is merely delayed",
@@ -556,7 +557,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789631400000,
-      "_kind": null
+      "_kind": null,
+      "why": "Positive spin, no clear direction."
     },
     {
       "title": "Russian attack on Ukraine's capital injures at least 16 - ABC News - Breaking News, Latest News and Videos",
@@ -577,7 +579,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789630752000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Geopolitical risk boosts safe havens, oil."
     },
     {
       "title": "India warns new US tariffs over Russian oil could impact ties",
@@ -595,7 +603,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789629713000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Tariff threats reduce oil demand."
     },
     {
       "title": "US Congress approves Russia sanctions that impact China and India - Euronews.com",
@@ -616,7 +628,12 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789627620000,
-      "_kind": null
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Sanctions increase geopolitical risk premium."
     },
     {
       "title": "Russia, Ukraine exchange overnight strikes, causing damage on both sides - Anadolu Ajansı",
@@ -636,7 +653,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789627470000
+      "firstAt": 1789627470000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Escalating conflict boosts risk assets."
     },
     {
       "title": "Bavarian Nordic shares rise after Tarja Stenvall named new CEO",
@@ -668,7 +691,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789627470000
+      "firstAt": 1789627470000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Sanctions bill increases geopolitical tension."
     },
     {
       "title": "European Markets Rally Amid Fed Rate Hike and Oil Price Decline - Devdiscourse",
@@ -686,7 +715,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789627632000
+      "firstAt": 1789627632000,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Explicitly states oil price decline."
     },
     {
       "title": "Oil prices extend losses on easing fears of Middle East supply disruption",
@@ -702,7 +735,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789629513000
+      "firstAt": 1789629513000,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Explicitly states oil prices extend losses."
     },
     {
       "title": "Long-end Treasury yields stay calm as markets digest the Fed",
@@ -725,7 +762,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789627632000
+      "firstAt": 1789627632000,
+      "why": "Yields calm, no clear direction."
     },
     {
       "title": "Republicans fear Russia sanctions bill will give Trump too much power on tariffs - Anadolu Ajansı",
@@ -745,7 +783,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789626540000
+      "firstAt": 1789626540000,
+      "why": "Political debate, no immediate market impact."
     },
     {
       "title": "Dollar hits seven-week high after rate hike - marketscreener.com",
@@ -768,7 +807,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789629148000
+      "firstAt": 1789629148000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Stronger dollar is bearish for these pairs."
     },
     {
       "title": "Natural Gas compresses near $2.90 in tight range: Live levels",
@@ -782,7 +827,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789629092000
+      "firstAt": 1789629092000,
+      "why": "Compressing in tight range, no direction."
     },
     {
       "title": "Gold at $4,357 faces resistance wall in bearish regime: Live levels",
@@ -798,7 +844,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789629092000
+      "firstAt": 1789629092000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Bearish regime and resistance imply downside."
     },
     {
       "title": "Brent Oil drops below key support at $103.66: Live levels",
@@ -815,7 +865,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789629092000
+      "firstAt": 1789629092000,
+      "dir": {
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Dropping below support is bearish."
     },
     {
       "title": "Silver trapped at $64.43 below key resistance: Live levels",
@@ -2318,10 +2373,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-17T08:00:41.397Z",
-  "headlinesAt": "2026-09-17T08:00:41.397Z",
-  "updatedAt": "2026-09-17T08:00:41.397Z"
+  "calendarAt": "2026-09-17T08:01:55.791Z",
+  "headlinesAt": "2026-09-17T08:01:55.791Z",
+  "updatedAt": "2026-09-17T08:01:55.791Z"
 }
