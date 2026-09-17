@@ -372,7 +372,13 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789677270000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Geopolitical risk boosts gold and oil"
     },
     {
       "title": "UN-backed experts cite possible US war crimes in Iran strikes - KJRH",
@@ -393,7 +399,13 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789675012000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "War crimes allegations increase geopolitical risk"
     },
     {
       "title": "Stocks Rally, Shaking Off Fed’s Rate Hike - WSJ",
@@ -411,7 +423,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789677360000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Stocks rally despite rate hike"
     },
     {
       "title": "UN experts say grounds to believe US committed war crimes in Iran strikes",
@@ -432,7 +448,13 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789675012000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "War crimes allegations increase geopolitical risk"
     },
     {
       "title": "US Markets Wrap: Wall Street rebounds after Fed rate hike - businesspost.ie",
@@ -450,7 +472,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789677246000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Wall Street rebounds after Fed hike"
     },
     {
       "title": "investingLive Americas FX news wrap 17 Sept",
@@ -469,7 +495,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789677094000,
-      "_kind": null
+      "_kind": null,
+      "why": "Mixed US data, no clear GBP direction"
     },
     {
       "title": "U.S. stocks higher at close of trade; Dow Jones Industrial Average up 0.62%",
@@ -485,7 +512,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789677061000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "up",
+        "US30": "up"
+      },
+      "why": "U.S. stocks higher at close"
     },
     {
       "title": "Australia considers banning the use of smart glasses in government buildings",
@@ -502,7 +534,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789677056000,
-      "_kind": null
+      "_kind": null,
+      "why": "Regulatory news unclear for AUD direction"
     },
     {
       "title": "Canada stocks higher at close of trade; S&P/TSX Composite up 1.08%",
@@ -520,7 +553,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789677032000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USD/CAD": "down"
+      },
+      "why": "Canadian stocks rise, weakens CAD"
     },
     {
       "title": "Brazil stocks higher at close of trade; Bovespa up 0.24%",
@@ -535,7 +572,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789677003000,
-      "_kind": null
+      "_kind": null,
+      "why": "Brazil stocks news irrelevant to US"
     },
     {
       "title": "Tesla’s upcoming product frenzy could leave investors disappointed",
@@ -565,7 +603,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789675959000
+      "firstAt": 1789675959000,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "U.S. stocks post best day"
     },
     {
       "title": "Exclusive-Shell-led LNG Canada could approve Phase 2 expansion by early October, sources say",
@@ -582,7 +624,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789675947000
+      "firstAt": 1789675947000,
+      "why": "LNG expansion news unclear for gas"
     },
     {
       "title": "Ukraine strikes two Russian S-400 launchers in Bryansk. The same systems were used to attack Kyiv overnight. - Euromaidan Press",
@@ -602,7 +645,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789675830000
+      "firstAt": 1789675830000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Ukraine strike boosts gold, oil unclear"
     },
     {
       "title": "Russia sanctions cheers, Democrat tariff fears - politico.com",
@@ -623,7 +670,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789675012000
+      "firstAt": 1789675012000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Sanctions and tariffs boost gold"
     },
     {
       "title": "Russia’s plans may include strikes against Ukraine’s allies, Poland says - Al Jazeera",
@@ -643,7 +694,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789675305000
+      "firstAt": 1789675305000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Russia strike threats boost gold"
     },
     {
       "title": "CT House delegation opposes Russia sanctions bill, citing Trump's tariff powers - WSHU",
@@ -2074,7 +2129,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-17T20:44:25.569Z",
-  "headlinesAt": "2026-09-17T20:44:25.569Z",
-  "updatedAt": "2026-09-17T20:44:25.569Z"
+  "calendarAt": "2026-09-17T20:45:56.720Z",
+  "headlinesAt": "2026-09-17T20:45:56.720Z",
+  "updatedAt": "2026-09-17T20:45:56.720Z"
 }
