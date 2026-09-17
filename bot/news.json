@@ -579,7 +579,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789604273000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions bill passed, direction unclear"
     },
     {
       "title": "US House passes Russia sanctions bill, India faces 100% tariff threat - Firstpost",
@@ -601,7 +602,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789604273000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions and tariffs, mixed impact"
     },
     {
       "title": "Congress passes sweeping US sanctions bill targeting Russia - Al Jazeera",
@@ -622,7 +624,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789604273000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions bill passed, no clear direction"
     },
     {
       "title": "House passes Russia and Iran sanctions bill championed by Sen. Lindsey Graham - Yahoo",
@@ -643,7 +646,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789604273000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions bill passed, direction unclear"
     },
     {
       "title": "Holtec postpones planned U.S. IPO citing market conditions - Bloomberg",
@@ -675,7 +679,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789602900000
+      "firstAt": 1789602900000,
+      "why": "Sanctions bill passed, direction unclear"
     },
     {
       "title": "U.S. stock futures rise after hawkish Fed dents Wall St",
@@ -697,7 +702,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789605201000
+      "firstAt": 1789605201000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Hawkish Fed strengthens dollar, weakens pairs"
     },
     {
       "title": "US CENTCOM tells Al Jazeera Hormuz blockade ‘highly effective’",
@@ -717,7 +728,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789605174000
+      "firstAt": 1789605174000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Hormuz blockade effective, oil supply risk"
     },
     {
       "title": "EU chief backs plan for Canada to become 'associate member'",
@@ -734,7 +750,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789605023000
+      "firstAt": 1789605023000,
+      "dir": {
+        "USD/CAD": "down"
+      },
+      "why": "Trade threats weaken dollar vs CAD"
     },
     {
       "title": "Trump says Canada becoming EU ‘associate member’ could be ‘hostile act’",
@@ -751,7 +771,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789605023000
+      "firstAt": 1789605023000,
+      "dir": {
+        "USD/CAD": "down"
+      },
+      "why": "Hostile act threat weakens dollar vs CAD"
     },
     {
       "title": "House passes bill to add economic sanctions on Russia via tariffs - The Washington Post",
@@ -771,7 +795,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789602460000
+      "firstAt": 1789602460000,
+      "why": "Sanctions bill passed, direction unclear"
     },
     {
       "title": "Gold price drops to $4,310/oz as Fed votes 12-0 in favor of 25 bps rate hike, with 16 of 18 policymakers seeing another hike in 2026 - kitco.com",
@@ -789,7 +814,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789602607000
+      "firstAt": 1789602607000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Rate hike and hawkish signal lower gold"
     },
     {
       "title": "House Passes Russia Sanctions Bill; Sent to Trump for Signature - Global Banking & Finance Review",
@@ -809,7 +838,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789601700000
+      "firstAt": 1789601700000,
+      "why": "Sanctions bill passed, direction unclear"
     },
     {
       "title": "Russia Sanctions Bill Passes, Authorizing Tariffs Up to 100% on China, India - WWD",
@@ -829,7 +859,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789601700000
+      "firstAt": 1789601700000,
+      "why": "Sanctions and tariffs, mixed impact"
     },
     {
       "title": "Russia strikes Ukraine's Kyiv, injures three in Odesa, officials say - Reuters",
@@ -849,7 +880,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789604220000
+      "firstAt": 1789604220000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Escalation boosts gold safe-haven demand"
     },
     {
       "title": "Fed rate hike jolts markets after it signals a huge shock - thestreet.com",
@@ -872,7 +907,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789604220000
+      "firstAt": 1789604220000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Hawkish Fed strengthens dollar, weakens pairs"
     },
     {
       "title": "Dollar and Treasury Yields Rally Together Following Fed Rate Hike - news.sbs.co.kr",
@@ -2371,10 +2412,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-17T01:06:23.691Z",
-  "headlinesAt": "2026-09-17T01:06:23.691Z",
-  "updatedAt": "2026-09-17T01:06:23.691Z"
+  "calendarAt": "2026-09-17T01:07:40.903Z",
+  "headlinesAt": "2026-09-17T01:07:40.903Z",
+  "updatedAt": "2026-09-17T01:07:40.903Z"
 }
