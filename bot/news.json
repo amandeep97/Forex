@@ -421,6 +421,19 @@
       "_kind": null
     },
     {
+      "title": "Assemblin Caverion prints €1.5B floating-rate note in bumper day for European high yield",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/assemblin-caverion-prints-1-5b-162749040.html",
+      "source": "Yahoo Finance",
+      "at": 1789662469000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789662469000,
+      "_kind": null
+    },
+    {
       "title": "U.S. stocks and bonds rally as Fed rate uncertainty fades",
       "link": "https://www.investing.com/news/stock-market-news/us-stock-futures-rise-after-hawkish-fed-dents-wall-st-4904721",
       "source": "Investing",
@@ -435,7 +448,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789662439000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Stocks rally as Fed uncertainty fades"
     },
     {
       "title": "Goldman sees India AI infrastructure stocks up 60% in 2026",
@@ -450,7 +467,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789662402000,
-      "_kind": null
+      "_kind": null,
+      "why": "India AI stocks unrelated to US500"
     },
     {
       "title": "European stocks post best day in 2-months in post-Fed bid",
@@ -467,6 +485,20 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789662014000,
+      "_kind": null,
+      "why": "European stocks rally, US500 unaffected"
+    },
+    {
+      "title": "Sea Limited COO Gang Ye Sells $4.2 Million in Shares",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/sea-limited-coo-gang-ye-162002885.html",
+      "source": "Yahoo Finance",
+      "at": 1789662002000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 1,
+      "srcs": 1,
+      "firstAt": 1789662002000,
       "_kind": null
     },
     {
@@ -484,7 +516,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789661918000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Oil falls on easing supply fears"
     },
     {
       "title": "FTSE 100 today: Stocks rally as BoE holds rates in line, Fed hike digested",
@@ -503,7 +539,45 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789659216000,
+      "_kind": null,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Stocks rally, BoE hold neutral for GBP"
+    },
+    {
+      "title": "Nokia Investors Won’t Like This: Jim Cramer Says NOK Stock Is a Buy",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/nokia-investors-won-t-jim-161549917.html",
+      "source": "Yahoo Finance",
+      "at": 1789661749000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 1,
+      "srcs": 1,
+      "firstAt": 1789661749000,
       "_kind": null
+    },
+    {
+      "title": "U.S. Stocks Climb as Markets Retrace Post-Fed Moves",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/stocks-rally-yields-fall-lower-085200278.html",
+      "source": "Yahoo Finance",
+      "at": 1789661700000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789661700000,
+      "_kind": null,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "U.S. stocks climb post-Fed"
     },
     {
       "title": "Russia, China veto UN Security Council Iran sanctions panel in contentious session - Anadolu Ajansı",
@@ -524,7 +598,24 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789659327000,
-      "_kind": null
+      "_kind": null,
+      "why": "UN veto unclear for commodities"
+    },
+    {
+      "title": "3 Dividend Stocks to Buy Now With Yields Over 3%",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/3-dividend-stocks-buy-now-161200713.html",
+      "source": "Yahoo Finance",
+      "at": 1789661520000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789661520000,
+      "_kind": null,
+      "why": "Dividend stock advice, no market direction"
     },
     {
       "title": "U.K. stocks higher at close of trade; Investing.com United Kingdom 100 up 1.25%",
@@ -539,7 +630,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789661359000,
-      "_kind": null
+      "_kind": null,
+      "why": "UK stocks higher, US500 unaffected"
     },
     {
       "title": "Why CoreWeave Is Tumbling Hard While the Market Is Soaring",
@@ -575,7 +667,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789661179000,
-      "_kind": null
+      "_kind": null,
+      "why": "Warsh comments unclear for FX/Gold"
     },
     {
       "title": "Stock Market Today: Nasdaq Leads Dow After Surprise Jobs Data; Gold Name Vaults Higher (Live Coverage)",
@@ -593,7 +686,13 @@
       "sev": 3,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789660617000
+      "firstAt": 1789660617000,
+      "dir": {
+        "XAU/USD": "up",
+        "US100": "up",
+        "US30": "up"
+      },
+      "why": "Nasdaq leads, Gold vaults higher"
     },
     {
       "title": "Rare Ethiopian manuscript stolen by British triggers restitution row",
@@ -608,7 +707,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789660324000
+      "firstAt": 1789660324000,
+      "why": "Manuscript theft unrelated to currency"
     },
     {
       "title": "ETSY Gets a Bullish Upgrade: What Investors Should Know",
@@ -641,7 +741,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789657889000
+      "firstAt": 1789657889000,
+      "why": "Sanctions bill unclear for commodities"
     },
     {
       "title": "SEC Clears Path For Tokenized Stock Trading. These Stocks Rally.",
@@ -655,7 +756,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789659216000
+      "firstAt": 1789659216000,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Tokenized stock trading clears, stocks rally"
     },
     {
       "title": "Saudis and Houthis exchange strikes, Yemenis take to boats to flee as Middle East war spreads",
@@ -674,7 +779,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789658692000
+      "firstAt": 1789658692000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Middle East war spreads, risk assets up"
     },
     {
       "title": "Micron, Intel and other chip stocks are furthering their strong comebacks",
@@ -773,22 +884,6 @@
       "firstAt": 1789657287000
     },
     {
-      "title": "Ryanair (RYAAY) Slashes its Winter Flight Plans to Dodge a Costly Oil Spike",
-      "link": "https://finance.yahoo.com/energy/articles/ryanair-ryaay-slashes-winter-flight-145505604.html",
-      "source": "Yahoo Finance",
-      "at": 1789656905000,
-      "inst": [
-        "USOIL"
-      ],
-      "ccy": [
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789656905000
-    },
-    {
       "title": "U.S. Treasury Yields Fall as Fed Regains Trust, BOE Leaves Rates Unchanged - WSJ",
       "link": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNVER1UFJ0ZVpGNjRWcnkxSU96Z01OUHY4MVVqQmcyZDYwZVhkNFdpMWlyU1NnNjhSQmZpSG5FODhMLXktd1laTjRESnhfc2pLenBvckhkWmRSNDFxMEw0Yi1DenJEc3l0bzExaGVZaDc3RDFUT3FkN2dmZGEzOVI4WkxadmZ4ZGtaaFVNUGFPeHhlNnQ5UkZXQkx0OVFPcWdVWWtVR0FISmRXb0s5dUI4aThxSmQ2dGktYTdySlJFcldQMEhOWkE?oc=5",
       "source": "Wires (macro)",
@@ -870,27 +965,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789655340000
-    },
-    {
-      "title": "Press Release: Eugene Vindman Says Russia Sanctions Vote Supports Ukraine and U.S. Security - Quiver Quantitative",
-      "link": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNRlN6SEk1dzFlUUxyRkV5X2pGbGNfa2JCdEkzQlpnN3ZIM2V4Q2tOOGIxc2JkYk1mZlpRYUFvV081WGVmSHdCQXhSWFVHTy04SzZXamdZR1hGalM1Y0JfMGRzbVZLUWdBUy04YkVieXhjOHNWSVV1cm5Bek93LXVGNEM0UzZoaFpSZUMtSFdwZm03eHl5RlpoQXYtOHNXRmJnLVBQc1NpN2VrZVhiR3Q1SVd2YmgzcFJCTGRHMEtKSFhWNUlV?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMixAFBVV95cUxNRlN6SEk1dzFlUUxyRkV5X2pGbGNfa2JCdEkzQlpnN3ZIM2V4Q2tOOGIxc2JkYk1mZlpRYUFvV081WGVmSHdCQXhSWFVHTy04SzZXamdZR1hGalM1Y0JfMGRzbVZLUWdBUy04YkVieXhjOHNWSVV1cm5Bek93LXVGNEM0UzZoaFpSZUMtSFdwZm03eHl5RlpoQXYtOHNXRmJnLVBQc1NpN2VrZV",
-      "at": 1789654980000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL",
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789652748000
     },
     {
       "title": "Ghalibaf’s maths missile at Trump decoded: Is Iran fixing US interest rates?",
@@ -2047,60 +2121,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789644656000
-    },
-    {
-      "title": "What’s the Asian Games accommodation crisis, and where will athletes stay?",
-      "link": "https://www.aljazeera.com/sports/2026/9/17/whats-the-asian-games-accommodation-crisis-and-where-will-athletes-stay?traffic_source=rss",
-      "source": "Al Jazeera",
-      "desc": "In a cost-cutting move, Japan decided against setting up a dedicated athletes' village but now faces a backlash.",
-      "at": 1789644482000,
-      "inst": [
-        "USD/JPY"
-      ],
-      "ccy": [
-        "JPY"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789644482000
-    },
-    {
-      "title": "Silver price today, Thursday, September 17, 2026: Silver prices stay steady post Fed decision",
-      "link": "https://finance.yahoo.com/personal-finance/investing/article/silver-price-today-thursday-september-17-2026-silver-prices-stay-steady-post-fed-decision-112308053.html",
-      "source": "Yahoo Finance",
-      "at": 1789644188000,
-      "inst": [
-        "XAG/USD"
-      ],
-      "ccy": [
-        "USD",
-        "XAG"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789643332000
-    },
-    {
-      "title": "Ukraine War, Day 1,667: US House Passes Russia Sanctions Bill - EA WorldView",
-      "link": "https://news.google.com/rss/articles/CBMigwFBVV95cUxQbDFqaGNtNUVkSjJ4Z28ybnJMMGJHMkRjSXBSd1BadWVoRldRcDhHcDNYMmpKRXFOT3l4Z2o1VXJBSFhwYzdkbkwtNm9obGZTbmd3eFdwYWZXSFQ4V05IRDZKdkdhR0htdTFsemxScW5mYnNPTVZRMUh1TENpSlpfM2hRaw?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMigwFBVV95cUxQbDFqaGNtNUVkSjJ4Z28ybnJMMGJHMkRjSXBSd1BadWVoRldRcDhHcDNYMmpKRXFOT3l4Z2o1VXJBSFhwYzdkbkwtNm9obGZTbmd3eFdwYWZXSFQ4V05IRDZKdkdhR0htdTFsemxScW5mYnNPTVZRMUh1TENpSlpfM2hRaw?oc=5\" target=\"_blank\">Ukraine War, Day 1,667: US Ho",
-      "at": 1789643900000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789641588000
     }
   ],
   "sources": [
@@ -2123,10 +2143,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-17T16:32:28.169Z",
-  "headlinesAt": "2026-09-17T16:32:28.169Z",
-  "updatedAt": "2026-09-17T16:32:28.169Z"
+  "calendarAt": "2026-09-17T16:33:44.223Z",
+  "headlinesAt": "2026-09-17T16:33:44.223Z",
+  "updatedAt": "2026-09-17T16:33:44.223Z"
 }
