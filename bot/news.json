@@ -2,11 +2,31 @@
   "calendar": [],
   "headlines": [
     {
-      "title": "Stock markets trade marginally higher after US Fed rate hike; NSE IPO in focus - DD India",
-      "link": "https://news.google.com/rss/articles/CBMirAFBVV95cUxOb1J3OHFrVWNsTmVaSkdnM05FX3Z2ZXNRZTFuQzktNjdFeFMzU0xoMF9GSXpBZHBidnBKVUVWenhCSG10T1dtTXI4Q3BKMTdSQVpmRzViVVRMajRIMEZPeWtRYTQwZE1FU3NYVTRodlZRLVBFOFpmcGpGLTdHY3J4WFBvX3pNTTZzU09aa1l5TzkxU2RzWWp6N3hTd0VCd3psUGJsbnlobHZlUE1O?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMirAFBVV95cUxOb1J3OHFrVWNsTmVaSkdnM05FX3Z2ZXNRZTFuQzktNjdFeFMzU0xoMF9GSXpBZHBidnBKVUVWenhCSG10T1dtTXI4Q3BKMTdSQVpmRzViVVRMajRIMEZPeWtRYTQwZE1FU3NYVTRodlZRLVBFOFpmcGpGLTdHY3J4WFBvX3pNTTZzU09aa1l5TzkxU2RzWWp6N3hTd0VCd3psUGJsbnlobHZlUE",
-      "at": 1789620960000,
+      "title": "Argentinian judge orders suspension of Falklands oil project",
+      "link": "https://www.aljazeera.com/news/2026/9/17/argentinian-judge-orders-suspension-of-falklands-oil-project?traffic_source=rss",
+      "source": "Al Jazeera",
+      "desc": "The symbolic move comes as Argentina escalates its claim over the British-administered territory.",
+      "at": 1789620727000,
+      "inst": [
+        "GBP/USD",
+        "USOIL"
+      ],
+      "ccy": [
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789620727000,
+      "_kind": null,
+      "why": "Symbolic move, no clear market impact"
+    },
+    {
+      "title": "Trump threatens to end trade with Mexico and Europe after rate hike",
+      "link": "https://www.aljazeera.com/video/newsfeed/2026/9/17/trump-threatens-to-end-trade-with-mexico-and-europe-after-rate-hike?traffic_source=rss",
+      "source": "Al Jazeera",
+      "desc": "US President Donald Trump had tried to pressure the Fed to lower rates, but it voted unanimously to raise them instead.",
+      "at": 1789620181000,
       "inst": [
         "XAU/USD",
         "EUR/USD",
@@ -22,8 +42,9 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789620960000,
-      "_kind": null
+      "firstAt": 1789620181000,
+      "_kind": null,
+      "why": "Mixed signals, unclear net direction"
     },
     {
       "title": "Trump hopes Iran war nearing end as Houthi-Saudi fighting escalates",
@@ -43,7 +64,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789619791000,
-      "_kind": null
+      "_kind": null,
+      "why": "Conflicting geopolitical signals, unclear direction"
     },
     {
       "title": "House passes Russia and Iran sanctions bill championed by Sen. Lindsey Graham - kaaltv.com",
@@ -63,7 +85,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789615500000
+      "firstAt": 1789615500000,
+      "why": "Sanctions bill passed, impact uncertain"
     },
     {
       "title": "Trump Plans to Sign Russia Sanctions Bill With Tariffs on Energy Buyers | Ukraine news - #Mezha - mezha.net",
@@ -83,7 +106,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789615500000
+      "firstAt": 1789615500000,
+      "why": "Sanctions plan, unclear immediate market effect"
     },
     {
       "title": "Rupee crosses 96 mark vs US dollar after Fed's first rate hike since 2023 - Business Standard",
@@ -106,7 +130,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789616476000
+      "firstAt": 1789616476000,
+      "why": "Rupee news, irrelevant to listed pairs"
     },
     {
       "title": "Asian stocks edge higher as Fed hike eases bond fears, China shares lag",
@@ -122,7 +147,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789617278000
+      "firstAt": 1789617278000,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Asian stocks edge higher"
     },
     {
       "title": "U.S. Rate Hike After 3 Years Impacts South Korean Finances - 조선일보",
@@ -145,7 +174,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789616700000
+      "firstAt": 1789616700000,
+      "why": "Korean finance news, irrelevant to pairs"
     },
     {
       "title": "Rupee crashes past 96 against the dollar after Fed's first rate hike in 3 years - Moneycontrol.com",
@@ -168,7 +198,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789613904000
+      "firstAt": 1789613904000,
+      "why": "Rupee news, irrelevant to listed pairs"
     },
     {
       "title": "Markets like Fed maintaining its independence, while 50 bps rate hike is already priced in - Moneycontrol.com",
@@ -191,7 +222,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789615492000
+      "firstAt": 1789615492000,
+      "why": "Hike priced in, no new direction"
     },
     {
       "title": "investingLive Asia-Pacific market news: Fed hike fallout dominates",
@@ -210,7 +242,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789616194000
+      "firstAt": 1789616194000,
+      "dir": {
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Lower oil eases market nerves"
     },
     {
       "title": "Political reaction to House approval for sweeping Russia sanctions bill - AP News",
@@ -230,7 +267,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789613220000
+      "firstAt": 1789613220000,
+      "why": "Political reaction, no clear market move"
     },
     {
       "title": "House passes bill to add economic sanctions on Russia via tariffs - washingtonpost.com",
@@ -250,7 +288,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789613104000
+      "firstAt": 1789613104000,
+      "why": "Sanctions bill passed, impact uncertain"
     },
     {
       "title": "House approves sweeping Russia sanctions bill named for Sen. Lindsey Graham, sending it to Pres. Trump - FOX Carolina News",
@@ -270,10 +309,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789613104000
+      "firstAt": 1789613104000,
+      "why": "Sanctions bill approved, unclear direction"
     },
     {
-      "title": "Yemeni forces target Houthis and a Saudi base as US rules out direct role",
+      "title": "Yemeni forces target Houthis as US rules out direct role",
       "link": "https://www.aljazeera.com/news/2026/9/17/yemeni-forces-target-houthis-and-a-saudi-base-as-us-rules-out-direct-role?traffic_source=rss",
       "source": "Al Jazeera",
       "desc": "Saudi Arabia requests missile defence support from allies as the US sees its own stock of interceptors dwindle.",
@@ -290,7 +330,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789615616000
+      "firstAt": 1789615616000,
+      "why": "Escalation and defense requests, unclear direction"
     },
     {
       "title": "Congress approves new sanctions against Russia - WUSA9",
@@ -697,22 +738,6 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789609056000
-    },
-    {
-      "title": "Holtec Nuclear postpones U.S. IPO, citing market conditions",
-      "link": "https://www.investing.com/news/stock-market-news/holtec-postpones-planned-us-ipo-citing-market-conditions--bloomberg-4904722",
-      "source": "Investing",
-      "at": 1789610750000,
-      "inst": [
-        "XAU/USD"
-      ],
-      "ccy": [
-        "XAU"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789610750000
     },
     {
       "title": "Any Iran Ceasefire Needs a Plan for the Ships and Oil Already Seized - Jurist.org",
@@ -1821,10 +1846,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-17T04:59:41.362Z",
-  "updatedAt": "2026-09-17T04:59:41.362Z"
+  "headlinesAt": "2026-09-17T05:00:58.796Z",
+  "updatedAt": "2026-09-17T05:00:58.796Z"
 }
