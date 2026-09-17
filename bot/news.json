@@ -17,7 +17,29 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789607666000,
-      "_kind": null
+      "_kind": null,
+      "why": "No clear directional impact on currency."
+    },
+    {
+      "title": "Oil prices extend losses as fears of Middle East supply disruptions ease",
+      "link": "https://www.investing.com/news/commodities-news/oil-prices-extend-losses-as-fears-of-middle-east-supply-disruptions-ease-4904737",
+      "source": "Investing Cmdty",
+      "at": 1789607208000,
+      "inst": [
+        "USOIL"
+      ],
+      "ccy": [
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789607208000,
+      "_kind": null,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Oil prices extend losses."
     },
     {
       "title": "House Passes Russia Sanctions Bill Named After Lindsey Graham, Sends to Trump - KSLM Radio",
@@ -36,9 +58,10 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 2,
+      "srcs": 3,
       "firstAt": 1789604273000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions bill passed, market impact unclear."
     },
     {
       "title": "US House passes Russia sanctions bill, India faces 100% tariff threat - Firstpost",
@@ -58,9 +81,10 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 2,
+      "srcs": 3,
       "firstAt": 1789604273000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions bill passed, market impact unclear."
     },
     {
       "title": "Congress passes sweeping US sanctions bill targeting Russia - Al Jazeera",
@@ -81,7 +105,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789604273000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions bill passed, market impact unclear."
     },
     {
       "title": "Congress passes sweeping US sanctions bill targeting Russia",
@@ -102,7 +127,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789604273000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions bill passed, market impact unclear."
     },
     {
       "title": "House passes Russia and Iran sanctions bill championed by Sen. Lindsey Graham - Yahoo",
@@ -121,9 +147,10 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 2,
+      "srcs": 3,
       "firstAt": 1789604273000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions bill passed, market impact unclear."
     },
     {
       "title": "Holtec postpones planned U.S. IPO citing market conditions - Bloomberg",
@@ -135,7 +162,7 @@
       "sev": 1,
       "rel": 1,
       "srcs": 1,
-      "firstAt": 1789603231000
+      "firstAt": 1789605309000
     },
     {
       "title": "House passes Iran, Russia sanctions bill, over objections from leading Democrats - Jewish Insider",
@@ -154,8 +181,9 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789602900000
+      "srcs": 3,
+      "firstAt": 1789602900000,
+      "why": "Sanctions bill passed, market impact unclear."
     },
     {
       "title": "U.S. stock futures rise after hawkish Fed dents Wall St",
@@ -177,7 +205,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789605201000
+      "firstAt": 1789605201000,
+      "why": "Stock futures rise, currency impact unclear."
     },
     {
       "title": "US CENTCOM tells Al Jazeera Hormuz blockade ‘highly effective’",
@@ -197,7 +226,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789605174000
+      "firstAt": 1789605174000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Hormuz blockade effective, supply risk rises."
     },
     {
       "title": "EU chief backs plan for Canada to become 'associate member'",
@@ -214,7 +248,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789605023000
+      "firstAt": 1789605023000,
+      "why": "Trade threats, direction unclear."
     },
     {
       "title": "Trump says Canada becoming EU ‘associate member’ could be ‘hostile act’",
@@ -231,7 +266,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789605023000
+      "firstAt": 1789605023000,
+      "why": "Trade threats, direction unclear."
     },
     {
       "title": "House passes bill to add economic sanctions on Russia via tariffs - The Washington Post",
@@ -250,11 +286,12 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789602460000
+      "srcs": 3,
+      "firstAt": 1789602460000,
+      "why": "Sanctions bill passed, market impact unclear."
     },
     {
-      "title": "Gold price drops to $4,310/oz as Fed votes 12-0 in favor of 25 bps rate hike, with 16 of 18 policymakers seeing another hike in 2026 - kitco.com",
+      "title": "Gold price drops to $4,310/oz as Fed votes 12-0 in favor of 25 bps rate hike, with 16 of 18 policymakers seeing another hike in 2026 - KITCO",
       "link": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQeDB4ci1xZFFWSS04aTRMUWxxOWI0MndZc1RJOTdoamFhVi1hY0htMF9zNkF1bV93OWtWVlhNZjZRbnFlSjJyQ0J2WHMyWEJ3cXAzUDBzWThNUEllLVRTcnF2SFFmazFPOW1QTS1OMHk2RHVzUWItZGcwLTh5b2Q2LUFUakpVYnA4M0ZFSDZpeG5aX3lBT3JRLW41MGhLM25KRjRSeGtXLVg4bm5fVHBoYkgycw?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiswFBVV95cUxQeDB4ci1xZFFWSS04aTRMUWxxOWI0MndZc1RJOTdoamFhVi1hY0htMF9zNkF1bV93OWtWVlhNZjZRbnFlSjJyQ0J2WHMyWEJ3cXAzUDBzWThNUEllLVRTcnF2SFFmazFPOW1QTS1OMHk2RHVzUWItZGcwLTh5b2Q2LUFUakpVYnA4M0ZFSDZpeG5aX3lBT3JRLW41MGhLM25KRjRSeGtXLVg4bm",
@@ -269,7 +306,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789602607000
+      "firstAt": 1789602607000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold drops on Fed rate hike."
     },
     {
       "title": "House Passes Russia Sanctions Bill; Sent to Trump for Signature - Global Banking & Finance Review",
@@ -289,7 +330,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789601700000
+      "firstAt": 1789601700000,
+      "why": "Sanctions bill passed, market impact unclear."
     },
     {
       "title": "Russia Sanctions Bill Passes, Authorizing Tariffs Up to 100% on China, India - WWD",
@@ -389,22 +431,6 @@
       "rel": 1,
       "srcs": 1,
       "firstAt": 1789603413000
-    },
-    {
-      "title": "Holtec Nuclear suspends planned US IPO",
-      "link": "https://www.investing.com/news/stock-market-news/holtec-nuclear-suspends-planned-us-ipo-bloomberg-news-reports-4904657",
-      "source": "Investing",
-      "at": 1789603231000,
-      "inst": [
-        "XAU/USD"
-      ],
-      "ccy": [
-        "XAU"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789603231000
     },
     {
       "title": "Iran war live: Trump says US nearing end of war, claims Tehran direct talks",
@@ -602,23 +628,6 @@
       "firstAt": 1789599000000
     },
     {
-      "title": "New Zealand Q2 GDP up more than expected, but growth remains sluggish",
-      "link": "https://www.investing.com/news/stock-market-news/new-zealand-q2-gdp-up-more-than-expected-but-growth-remains-sluggish-93CH-4904691",
-      "source": "Investing",
-      "at": 1789601569000,
-      "inst": [
-        "NZD/USD"
-      ],
-      "ccy": [
-        "NZD",
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789598954000
-    },
-    {
       "title": "Gold falls to near $4,250 after Fed delivers rate hike - FXStreet",
       "link": "https://news.google.com/rss/articles/CBMinAFBVV95cUxQLV9TVFR1N0o3Q2RiWFVEUG4zNzlGRDZZTDJzYlJWVGd4NkVJeG9NaG5naDBfTjdLVDJmWW84NHpvRWY4RkE3SkxJWU1ma3JQa1RpNm1hZWdjaFBhdWhVZkFndzRaWDN3d3NjWjlyX2hpaGJGRFQ5czhBODdjdnBFOXY3THcyQ0ptSHhwdk9uR0hlWUdGUFU2MnhKbDU?oc=5",
       "source": "Wires (macro)",
@@ -637,7 +646,7 @@
       "firstAt": 1789601130000
     },
     {
-      "title": "US House passes sweeping Russia sanctions bill following months of delay - TRT World",
+      "title": "US House passes sweeping Russia sanctions bill following months of delay - trtworld.com",
       "link": "https://news.google.com/rss/articles/CBMiWEFVX3lxTFBReTlWYjJVajlnZ183TmhVX2YyVVc4Q1J3UnZwVzlBZ3V0djM2TGxub19hQzIxakRoLUVLMlJyZ2JjUWdSZVRxUnRqTHRFenFySEY1U1pma2E?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiWEFVX3lxTFBReTlWYjJVajlnZ183TmhVX2YyVVc4Q1J3UnZwVzlBZ3V0djM2TGxub19hQzIxakRoLUVLMlJyZ2JjUWdSZVRxUnRqTHRFenFySEY1U1pma2E?oc=5\" target=\"_blank\">US House passes sweeping Russia sanctions bill following months of delay</a>&nbsp;&nbsp;",
@@ -978,7 +987,7 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 2,
+      "srcs": 1,
       "firstAt": 1789598954000
     },
     {
@@ -1786,6 +1795,29 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789590745000
+    },
+    {
+      "title": "US Equity Markets End Lower After Federal Reserve Increases Policy Rate - marketscreener.com",
+      "link": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxOMzNBeFcyaHYyZzRYRUU1NWhhT2t4ckVycktMTU83Y1BBSF94MUZLbS1qMjVMQ3BoMjNjNTJSbm1ubFNlWk90Qk5rOU8xc1NBRzU3ZGFkZ2RnVUs1VmxmbjU5X2RRYlZ2eGR4eVpZVEZVTVRDX1Z2RmMzQ3BGblprMVVwWjcxMlJrQ05sUUlGcjJkU0pwTEhSamdLbnVTOEEtMDZJTTFJRUttZ2JtUXNEN0xGQVJJNUUxb1libUN3YlZUQQ?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiwgFBVV95cUxOMzNBeFcyaHYyZzRYRUU1NWhhT2t4ckVycktMTU83Y1BBSF94MUZLbS1qMjVMQ3BoMjNjNTJSbm1ubFNlWk90Qk5rOU8xc1NBRzU3ZGFkZ2RnVUs1VmxmbjU5X2RRYlZ2eGR4eVpZVEZVTVRDX1Z2RmMzQ3BGblprMVVwWjcxMlJrQ05sUUlGcjJkU0pwTEhSamdLbnVTOEEtMDZJTTFJRUttZ2",
+      "at": 1789590516000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789588961000
     }
   ],
   "sources": [
@@ -1812,6 +1844,6 @@
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-17T01:18:53.763Z",
-  "updatedAt": "2026-09-17T01:18:53.763Z"
+  "headlinesAt": "2026-09-17T01:20:28.134Z",
+  "updatedAt": "2026-09-17T01:20:28.134Z"
 }
