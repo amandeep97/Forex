@@ -561,6 +561,32 @@
   ],
   "headlines": [
     {
+      "title": "House passes Russia and Iran sanctions bill championed by Sen. Lindsey Graham - kaaltv.com",
+      "link": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxOaHlJWkgwanBoRlhxcHZDV2RVdFZWTjZkMGlLSlZZeXZzUUthYllwMTBZQXh1NnNRdXltWEk0eVF0bkZQQ01WbjlkaHFTd3ZZRjhUUXd6b1liYmlrVWlLaXlXQUFZd1Bad0I0T2lid2FyMmhZd1R0bU5xMUFwV1Y1dzV3OVYyc1dPb0dOQ2ZMTGVSR2FpOEVsdWJTbjlkdngtc1FiSWhIWWs?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiqAFBVV95cUxOaHlJWkgwanBoRlhxcHZDV2RVdFZWTjZkMGlLSlZZeXZzUUthYllwMTBZQXh1NnNRdXltWEk0eVF0bkZQQ01WbjlkaHFTd3ZZRjhUUXd6b1liYmlrVWlLaXlXQUFZd1Bad0I0T2lid2FyMmhZd1R0bU5xMUFwV1Y1dzV3OVYyc1dPb0dOQ2ZMTGVSR2FpOEVsdWJTbjlkdngtc1FiSWhIWWs?oc",
+      "at": 1789618114000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789615500000,
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Sanctions may disrupt Russian oil supply"
+    },
+    {
       "title": "Trump Plans to Sign Russia Sanctions Bill With Tariffs on Energy Buyers | Ukraine news - #Mezha - Межа. Новини України.",
       "link": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE9zdFZkRlJPQmVmYWZMZnZrbEJwNVdPdGtpMVFYbEktUElLN0t0d3EtYXhFV05rZlBYZ1I3SVdiTmJta3pZNlRkRkFYajQ2R3F6TkFjNENNVHNUal9iV0pXdi1IV3pPT2s?oc=5",
       "source": "Wires (geo)",
@@ -579,28 +605,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789615500000,
-      "_kind": null
-    },
-    {
-      "title": "House passes Russia and Iran sanctions bill championed by Sen. Lindsey Graham - kaaltv.com",
-      "link": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxOaHlJWkgwanBoRlhxcHZDV2RVdFZWTjZkMGlLSlZZeXZzUUthYllwMTBZQXh1NnNRdXltWEk0eVF0bkZQQ01WbjlkaHFTd3ZZRjhUUXd6b1liYmlrVWlLaXlXQUFZd1Bad0I0T2lid2FyMmhZd1R0bU5xMUFwV1Y1dzV3OVYyc1dPb0dOQ2ZMTGVSR2FpOEVsdWJTbjlkdngtc1FiSWhIWWs?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiqAFBVV95cUxOaHlJWkgwanBoRlhxcHZDV2RVdFZWTjZkMGlLSlZZeXZzUUthYllwMTBZQXh1NnNRdXltWEk0eVF0bkZQQ01WbjlkaHFTd3ZZRjhUUXd6b1liYmlrVWlLaXlXQUFZd1Bad0I0T2lid2FyMmhZd1R0bU5xMUFwV1Y1dzV3OVYyc1dPb0dOQ2ZMTGVSR2FpOEVsdWJTbjlkdngtc1FiSWhIWWs?oc",
-      "at": 1789617679000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789615500000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Tariffs on energy buyers support oil prices"
     },
     {
       "title": "Rupee crosses 96 mark vs US dollar after Fed's first rate hike since 2023 - Business Standard",
@@ -624,7 +634,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789617515000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Stronger dollar weakens gold and major pairs"
     },
     {
       "title": "Asian stocks edge higher as Fed hike eases bond fears, China shares lag",
@@ -641,7 +657,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789617278000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Asian stocks edge higher"
     },
     {
       "title": "U.S. Rate Hike After 3 Years Impacts South Korean Finances - 조선일보",
@@ -664,7 +684,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789616700000
+      "firstAt": 1789616700000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Rate hike strengthens dollar, weakens gold"
     },
     {
       "title": "Markets like Fed maintaining its independence, while 50 bps rate hike is already priced in - Moneycontrol.com",
@@ -687,7 +713,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789615492000
+      "firstAt": 1789615492000,
+      "why": "Hike priced in, no new direction"
     },
     {
       "title": "investingLive Asia-Pacific market news: Fed hike fallout dominates",
@@ -706,7 +733,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789616194000
+      "firstAt": 1789616194000,
+      "dir": {
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Lower oil eases market nerves"
     },
     {
       "title": "Political reaction to House approval for sweeping Russia sanctions bill - AP News",
@@ -726,7 +758,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789613220000
+      "firstAt": 1789613220000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Sanctions bill implies potential supply disruption"
     },
     {
       "title": "House passes bill to add economic sanctions on Russia via tariffs - The Washington Post",
@@ -746,7 +783,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789613104000
+      "firstAt": 1789613104000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Sanctions via tariffs support oil prices"
     },
     {
       "title": "House approves sweeping Russia sanctions bill named for Sen. Lindsey Graham, sending it to Pres. Trump - FOX Carolina News",
@@ -766,7 +808,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789613104000
+      "firstAt": 1789613104000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Sweeping sanctions may restrict Russian oil"
     },
     {
       "title": "Yemeni forces target Houthis and a Saudi base as US rules out direct role",
@@ -786,7 +833,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789615616000
+      "firstAt": 1789615616000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Geopolitical conflict boosts safe havens and oil"
     },
     {
       "title": "Congress approves new sanctions against Russia - WUSA9",
@@ -806,7 +859,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789613104000
+      "firstAt": 1789613104000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "New sanctions support oil supply concerns"
     },
     {
       "title": "Bitcoin recovers to $76,305 after sharp drop as markets digest Fed rate hike - Moneycontrol.com",
@@ -824,7 +882,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789615492000
+      "firstAt": 1789615492000,
+      "dir": {
+        "BTC/USDT": "up"
+      },
+      "why": "Bitcoin recovers after sharp drop"
     },
     {
       "title": "U.S. House passes Russia sanctions bill championed by late Senator Graham - Japan Today",
@@ -846,7 +908,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789613104000
+      "firstAt": 1789613104000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Sanctions bill supports oil, dollar neutral"
     },
     {
       "title": "Fed Raises Rates in First Major Step by Warsh to Contain Inflation - The New York Times",
@@ -869,7 +935,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789613904000
+      "firstAt": 1789613904000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Rate hike strengthens dollar, weakens gold"
     },
     {
       "title": "100% Trump tariffs loom: Russia sanctions bill passed in US; will it make India stop buying crude from Mo - The Times of India",
@@ -1886,7 +1958,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789598139000
+      "firstAt": 1789598170000
     },
     {
       "title": "US military claims Strait of Hormuz remains open amid ongoing blockade",
@@ -2214,26 +2286,6 @@
       "firstAt": 1789595709000
     },
     {
-      "title": "Russia sanctions bill threatening 100% tariffs on India, others clears House, heads to Trump's desk | Hindustan Times - Hindustan Times",
-      "link": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxPUEdLX0xLcFVFR1VBdEtzaklyTEJJVTJjQzVBX205WGt4andmWEdEekRYakctQmNzWUdHUFpuNUluSDVJcmFNRUJ2d2lrcjQ4dEtFdHFVaFJwd3BEYlRRcnE2WnRHS1dkMEJfLXNoZk0yOFJhWnJyaVNYbHlFNGhDZ2VSckRIUk1jVjF6QUhNWUZXbzdTUS1MSFpjT2ZhbHlQWFN5cTJtUXlGQks0WlFxTXljZkgtRDZrY083SmtYaVBWU0dveVBqLWd6RHpBUVNiSmNjdG1Jcm5MbzhXYlE4QUpLLTlsUUN2dzdiMWFGc2HSAfYBQVVfeXFMUFROZWxYUUMtY1AzM1ByQy12V2xSZUI5Yno1c2Q1b2dfWmpXZk1FbFNia1VVMVlaUmR2TEpfQkphZlhvY3pKN3pPMFdnbVd6MWR2dXM1c1p0MmgxSkk0QnRvajdzcFRPbFhDalFCUDZjNm5iNXpmRnVEOTRzNExVZFVSdlJpdUZaaHNNNFZQenRaVHRpLUNjcHVIWlZYaXFrelp3QTVtY1otZXFYUkphQ2loZ05Gb29JcXEzZl9jcFdVbG9DOGlzVWJmcThYR29IVFE3LTRZcGZLbDc5LUw0NDlaM1FRTVpfc2hOMzZOdkhPZm05OEtn?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi8AFBVV95cUxPUEdLX0xLcFVFR1VBdEtzaklyTEJJVTJjQzVBX205WGt4andmWEdEekRYakctQmNzWUdHUFpuNUluSDVJcmFNRUJ2d2lrcjQ4dEtFdHFVaFJwd3BEYlRRcnE2WnRHS1dkMEJfLXNoZk0yOFJhWnJyaVNYbHlFNGhDZ2VSckRIUk1jVjF6QUhNWUZXbzdTUS1MSFpjT2ZhbHlQWFN5cTJtUXlGQk",
-      "at": 1789598139000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789595709000
-    },
-    {
       "title": "US House approves Graham's Russia sanctions bill - The Kyiv Independent",
       "link": "https://news.google.com/rss/articles/CBMiggFBVV95cUxQQnpweW1QMnFGd2IzWFJxeGI1Tm5RRnppUU43YnYxbnYwa1NJd0ExT3lUaThxRXdMTHJXNDNITmdubG85Z284bmpMLThZeV9nQ19zS0FCalBhdU13a21MQ2RVREFyZXNpUEl3dEM0MTJpb09SLUVTeWZRSGg4R0dnMEZR?oc=5",
       "source": "Wires (geo)",
@@ -2352,6 +2404,26 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789595709000
+    },
+    {
+      "title": "For checkpoint and settler attack news, Palestinians tune into the radio",
+      "link": "https://www.aljazeera.com/news/2026/9/16/for-checkpoint-and-settler-attack-news-palestinians-tune-into-the-radio?traffic_source=rss",
+      "source": "Al Jazeera",
+      "desc": "Palestinians in the West Bank navigate Israeli road closures and attacks with help from a local radio station.",
+      "at": 1789597834000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789597834000
     }
   ],
   "sources": [
@@ -2377,7 +2449,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-17T04:16:09.582Z",
-  "headlinesAt": "2026-09-17T04:16:09.582Z",
-  "updatedAt": "2026-09-17T04:16:09.582Z"
+  "calendarAt": "2026-09-17T04:18:11.210Z",
+  "headlinesAt": "2026-09-17T04:18:11.210Z",
+  "updatedAt": "2026-09-17T04:18:11.210Z"
 }
