@@ -6,7 +6,7 @@
       "link": "https://news.google.com/rss/articles/CBMinAFBVV95cUxNaFd1aGhkb29WOWlWNkdoS1NmVnI3QVFEUy1YczJxcU5tdF96QXNfNEZrNFp1cmFBZUdJQzBiY0ZzSExwNWZlbDdJSDgzSTVobzFqWWVtcFpoNGs2ZTlveTNTRU9lWUFOTmM4SWxmYmFvOEpnQW1Db0x0enlmUWc5NHJ3b1loUTk5VzBNb05xZTlwZnppNUIwaUhWb27SAaIBQVVfeXFMTU00VUIwdG1maGFOTkVxekRZSzM5Q0FBcjk1Y2VfOHB2THE1YU1oV2dIYjg3aGNta2tVbFBLZ2VRc3FCNHA5NzJyVThKcmo1RDNiMk8zSXBTd0M2Vml1d1UwRS12MUY5eTZzNWRaUk1RYTdTSURoNzRvb1BMdDhOUGp3VXdDNGZFc3F6NC1lREQyQThuMUVpdnhNTW1odVBzYkdR?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMinAFBVV95cUxNaFd1aGhkb29WOWlWNkdoS1NmVnI3QVFEUy1YczJxcU5tdF96QXNfNEZrNFp1cmFBZUdJQzBiY0ZzSExwNWZlbDdJSDgzSTVobzFqWWVtcFpoNGs2ZTlveTNTRU9lWUFOTmM4SWxmYmFvOEpnQW1Db0x0enlmUWc5NHJ3b1loUTk5VzBNb05xZTlwZnppNUIwaUhWb27SAaIBQVVfeXFMTU00VU",
-      "at": 1789630530000,
+      "at": 1789630752000,
       "inst": [
         "XAU/USD",
         "USOIL",
@@ -19,8 +19,12 @@
       "sev": 3,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789630530000,
-      "_kind": null
+      "firstAt": 1789630752000,
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Geopolitical risk boosts gold, oil unclear."
     },
     {
       "title": "US Congress approves Russia sanctions that impact China and India - Euronews.com",
@@ -41,7 +45,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789627620000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Sanctions hurt oil, boost gold safe haven."
     },
     {
       "title": "Russia, Ukraine exchange overnight strikes, causing damage on both sides - Anadolu Ajansı",
@@ -62,7 +72,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789627470000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Conflict escalates, gold up, oil mixed."
     },
     {
       "title": "Bavarian Nordic shares rise after Tarja Stenvall named new CEO",
@@ -94,7 +108,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789627632000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Oil prices decline explicitly stated."
     },
     {
       "title": "Oil prices extend losses on easing fears of Middle East supply disruption",
@@ -111,7 +129,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789629513000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Easing supply fears lower oil prices."
     },
     {
       "title": "Long-end Treasury yields stay calm as markets digest the Fed",
@@ -135,7 +157,7 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789627632000,
-      "_kind": null
+      "why": "Calm yields imply no clear directional move."
     },
     {
       "title": "Republicans fear Russia sanctions bill will give Trump too much power on tariffs - Anadolu Ajansı",
@@ -155,7 +177,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789626540000
+      "firstAt": 1789626540000,
+      "why": "Political debate lacks immediate market impact."
     },
     {
       "title": "+111%, +84%: The Fed raised rates; see why these AI-picked stocks keep climbing",
@@ -171,7 +194,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789629182000
+      "firstAt": 1789629182000,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Stocks climbing despite rate hike."
     },
     {
       "title": "Dollar hits seven-week high after rate hike - marketscreener.com",
@@ -194,7 +221,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789629148000
+      "firstAt": 1789629148000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Stronger dollar pressures gold and EUR/GBP."
     },
     {
       "title": "Natural Gas compresses near $2.90 in tight range: Live levels",
@@ -208,7 +241,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789629092000
+      "firstAt": 1789629092000,
+      "why": "Tight range implies no clear direction."
     },
     {
       "title": "Gold at $4,357 faces resistance wall in bearish regime: Live levels",
@@ -224,7 +258,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789629092000
+      "firstAt": 1789629092000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Bearish regime and resistance imply downward pressure."
     },
     {
       "title": "Brent Oil drops below key support at $103.66: Live levels",
@@ -241,7 +279,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789629092000
+      "firstAt": 1789629092000,
+      "dir": {
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Brent drops below key support level."
     },
     {
       "title": "Silver trapped at $64.43 below key resistance: Live levels",
@@ -257,7 +300,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789629092000
+      "firstAt": 1789629092000,
+      "dir": {
+        "XAG/USD": "down"
+      },
+      "why": "Trapped below key resistance implies bearish bias."
     },
     {
       "title": "London Gas Oil pulls back from $1,575: Live levels",
@@ -273,7 +320,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789629092000
+      "firstAt": 1789629092000,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Pullback implies downward price movement."
     },
     {
       "title": "Crude Oil WTI nears double-top breakdown at $100.76: Live levels",
@@ -290,14 +341,19 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789629092000
+      "firstAt": 1789629092000,
+      "dir": {
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Double-top breakdown signals bearish trend."
     },
     {
-      "title": "Bitcoin steady at $76.5k as markets digest Fed rate hike, M.East tensions By Investing.com - Investing.com South Africa",
-      "link": "https://news.google.com/rss/articles/CBMixgFBVV95cUxQNWM1Z2diLUFRM2JoR0VlVmkwUmNpaWdHOVNBdTZqUWxRNzMwNHFhLWwwUktPR19lYVFQMTlVQVg4ams5aHZoVmVaSzNFNTdWRG9SMGl5M2l1N1V2cGk2REVjZndBZjI0ZEpnV0dSUWJwN1ZZSkNzT2N5enZrTDVMakpVSVB6d2h5MVdpUFVMSG45WEVweDJoLUludy1VN29VTkFSYUN4QlBsVEFwNmNFRmxERjc2WlRMcFdSTFdSaFNZQlpvb2c?oc=5",
+      "title": "Bitcoin steady at $76.5k as markets digest Fed rate hike, M.East tensions - Investing.com",
+      "link": "https://news.google.com/rss/articles/CBMivAFBVV95cUxQaWEwb1l2N3hwRmpmaDNORHRIeGQtOGs1Y0t3NXZ5UzFiZkZaWVRmYTJhdjZLd19iYUpTdVFDOTMzeFAyd1JMb2x6YnZGUTMwZllxOURVdVREWjlXQ3JNQWg5cjExWW0wOEhGTjFmeWlIWU91SEVjMjFzMTJ4aDhjWGFRSTZjN2JuZ19KMVp4bS1YSHB2WkY2VExuNWJfemFyM25TTHRmbGV6MTBCYzM5ZkdLRkw2amptSXExWQ?oc=5",
       "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMixgFBVV95cUxQNWM1Z2diLUFRM2JoR0VlVmkwUmNpaWdHOVNBdTZqUWxRNzMwNHFhLWwwUktPR19lYVFQMTlVQVg4ams5aHZoVmVaSzNFNTdWRG9SMGl5M2l1N1V2cGk2REVjZndBZjI0ZEpnV0dSUWJwN1ZZSkNzT2N5enZrTDVMakpVSVB6d2h5MVdpUFVMSG45WEVweDJoLUludy1VN29VTkFSYUN4QlBsVE",
-      "at": 1789628903000,
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMivAFBVV95cUxQaWEwb1l2N3hwRmpmaDNORHRIeGQtOGs1Y0t3NXZ5UzFiZkZaWVRmYTJhdjZLd19iYUpTdVFDOTMzeFAyd1JMb2x6YnZGUTMwZllxOURVdVREWjlXQ3JNQWg5cjExWW0wOEhGTjFmeWlIWU91SEVjMjFzMTJ4aDhjWGFRSTZjN2JuZ19KMVp4bS1YSHB2WkY2VExuNWJfemFyM25TTHRmbGV6MT",
+      "at": 1789628531000,
       "inst": [
         "BTC/USDT"
       ],
@@ -312,10 +368,10 @@
     },
     {
       "title": "Gold Gains Over 1% as Markets Digest Fed Rate Hike... - jordannews.jo",
-      "link": "https://news.google.com/rss/articles/CBMinwFBVV95cUxPTGMtS2g0RHRvQ3pEZXJsd24zQkpaOVFBeldFb2Jhei1WUzRERmFneElTMUJBLVNFR2hKNnNuNHB0TFh3MVBQb3ZzTm04ekRBUGxyZXM3S1dHR01ZS0J5UG5YeWZ5NlRiazhhdjhETi1XYjJaYUs5OFUzYWRoVkpLR1p3M0RGZ2RDclE1d0FKMUk3VjBRNW04cVdXUGQ5MGs?oc=5",
+      "link": "https://news.google.com/rss/articles/CBMiowFBVV95cUxOZ2lwbXFUTWV5N2NjRzdCMDdhcFEtMjhmZUswaGZPVVQ4X2JrSVl6S2F0TU9tazdZSVZMWklfeEtwbUliVmdtbXI1aVVtaXhuVzBnOWFRVkRrb1pwYkZqYkFWQnZGcGpJcVkxT0pHR09kNzVKRk11ZHlsaWs4QURfWXpJbEljRVY5Nko3U3d3aFk1eDJDMnBmNnNZdlhvRDY4dTBn?oc=5",
       "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMinwFBVV95cUxPTGMtS2g0RHRvQ3pEZXJsd24zQkpaOVFBeldFb2Jhei1WUzRERmFneElTMUJBLVNFR2hKNnNuNHB0TFh3MVBQb3ZzTm04ekRBUGxyZXM3S1dHR01ZS0J5UG5YeWZ5NlRiazhhdjhETi1XYjJaYUs5OFUzYWRoVkpLR1p3M0RGZ2RDclE1d0FKMUk3VjBRNW04cVdXUGQ5MGs?oc=5\" target=\"",
-      "at": 1789628058000,
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiowFBVV95cUxOZ2lwbXFUTWV5N2NjRzdCMDdhcFEtMjhmZUswaGZPVVQ4X2JrSVl6S2F0TU9tazdZSVZMWklfeEtwbUliVmdtbXI1aVVtaXhuVzBnOWFRVkRrb1pwYkZqYkFWQnZGcGpJcVkxT0pHR09kNzVKRk11ZHlsaWs4QURfWXpJbEljRVY5Nko3U3d3aFk1eDJDMnBmNnNZdlhvRDY4dTBn?oc=5\" tar",
+      "at": 1789628105000,
       "inst": [
         "XAU/USD"
       ],
@@ -462,7 +518,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789625739000
+      "firstAt": 1789624624000
     },
     {
       "title": "US House Passes Bill to Tighten Sanctions on Russia and Iran - WANA News Agency",
@@ -482,7 +538,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789625739000
+      "firstAt": 1789624624000
     },
     {
       "title": "Russia Hits Kyiv as Ukraine Strikes Major Russian Oil Refinery - Bloomberg.com",
@@ -522,7 +578,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789625739000
+      "firstAt": 1789624624000
     },
     {
       "title": "Dollar Climbs After Fed Rate Hike: Implications for Global Markets - Devdiscourse",
@@ -546,6 +602,26 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789623000000
+    },
+    {
+      "title": "House passes bill to add economic sanctions on Russia via tariffs - washingtonpost.com",
+      "link": "https://news.google.com/rss/articles/CBMixwFBVV95cUxQOHdjVEpfbkVvelpUSVlpbmJRS2t6VGptdXJBQ2ZDYWJZSGpmZHoxb0dSMkk5ZGkwOE4xaFgxNVV1aUZOc3BfZVJFWkFVTmNjbGw3YlRYb252VE1nbEtVTTBFUnpfZEFaZDM0VXpwS0EybmlDR1llbENFWVhGVjlQaDl6SVI0NEdwWTlNZWU3Y1huT21qNEZzLXR6cDRHcXg0QV95TEhZclB0d0FDbm9Yak9jUGZ0MmRNdmZZUTJEX1dFNWRMYU1B?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMixwFBVV95cUxQOHdjVEpfbkVvelpUSVlpbmJRS2t6VGptdXJBQ2ZDYWJZSGpmZHoxb0dSMkk5ZGkwOE4xaFgxNVV1aUZOc3BfZVJFWkFVTmNjbGw3YlRYb252VE1nbEtVTTBFUnpfZEFaZDM0VXpwS0EybmlDR1llbENFWVhGVjlQaDl6SVI0NEdwWTlNZWU3Y1huT21qNEZzLXR6cDRHcXg0QV95TEhZclB0d0",
+      "at": 1789624624000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789622337000
     },
     {
       "title": "Stock markets trade marginally higher after U.S. Fed rate hike; NSE IPO in focus - The Hindu",
@@ -831,27 +907,6 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789621352000
-    },
-    {
-      "title": "US 10-Year Treasury Yield nears 5% after Fed rate hike, Middle East tensions raise inflation fears - fxstreet.com",
-      "link": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxNbnQ3aXBZV01acHFzbnphYzh0bU03UWo3QXBjaTJOal94b1huTmx3NC1Hb1pBdGtuYmExYlYyVll4VHRiR0ZDUFcwZDRJOGtRT2ZzMzUyWjJwX1dwQlotem1aS1RENlF0NHNfZDB6ZVk5UU9zZl9mX0RDQTJUTmJKWUdvcHcwNWtzSkRpWHlVdjFJSlhqZE03Yi1mVFVlR2xEZ1lkdzl4OXhNdGU2QjEzbHV3LVd4U1dRaDRjQWt0LXZjSkNzMHhwRDhFUW1TdF9MRjIwVlZ3?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi1gFBVV95cUxNbnQ3aXBZV01acHFzbnphYzh0bU03UWo3QXBjaTJOal94b1huTmx3NC1Hb1pBdGtuYmExYlYyVll4VHRiR0ZDUFcwZDRJOGtRT2ZzMzUyWjJwX1dwQlotem1aS1RENlF0NHNfZDB6ZVk5UU9zZl9mX0RDQTJUTmJKWUdvcHcwNWtzSkRpWHlVdjFJSlhqZE03Yi1mVFVlR2xEZ1lkdzl4OXhNdG",
-      "at": 1789621270000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "USD",
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789621270000
     },
     {
       "title": "Argentinian judge orders suspension of Falklands oil project",
@@ -1327,7 +1382,7 @@
       "firstAt": 1789609397000
     },
     {
-      "title": "Ringgit approaches three-month low as Fed rate hike strengthens dollar - The Edge Malaysia",
+      "title": "Ringgit approaches three-month low as Fed rate hike strengthens dollar - theedgemalaysia.com",
       "link": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE8wRWcyUkowMzh6ZnFPTXdNRElIWGx3ckNGZnFSa18tQjVabVNqSm9zZmlSazk0RzRvMHBHOWVBRHZNY2NTRUVvWG1tc1lSQkR1?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiUEFVX3lxTE8wRWcyUkowMzh6ZnFPTXdNRElIWGx3ckNGZnFSa18tQjVabVNqSm9zZmlSazk0RzRvMHBHOWVBRHZNY2NTRUVvWG1tc1lSQkR1?oc=5\" target=\"_blank\">Ringgit approaches three-month low as Fed rate hike strengthens dollar</a>&nbsp;&nbsp;<font color=\"",
@@ -1682,30 +1737,10 @@
       "firstAt": 1789604220000
     },
     {
-      "title": "House passes Russia sanctions bill, overcoming opposition from Democratic leaders - cbsnews.com",
+      "title": "House passes Russia sanctions bill, overcoming opposition from Democratic leaders - CBS News",
       "link": "https://news.google.com/rss/articles/CBMicEFVX3lxTE1EYWhRQVlOTGQ1b3AxdzQyR1VEUGh2UlFnV1ZWNG11VnhpTVp3NXh3STFJRTZDTzJmZC1mVk5JMFBCekxXRkQ5OHBFSVNZUFl3T0lJQ0QtNnZpNWgtRHhWcTA3SG5QY2F5T2NUcS1oWk8?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMicEFVX3lxTE1EYWhRQVlOTGQ1b3AxdzQyR1VEUGh2UlFnV1ZWNG11VnhpTVp3NXh3STFJRTZDTzJmZC1mVk5JMFBCekxXRkQ5OHBFSVNZUFl3T0lJQ0QtNnZpNWgtRHhWcTA3SG5QY2F5T2NUcS1oWk8?oc=5\" target=\"_blank\">House passes Russia sanctions bill, overcoming oppositio",
-      "at": 1789604160000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789602369000
-    },
-    {
-      "title": "Russia Sanctions Bill Passes, Authorizing Tariffs Up to 100% on China, India - Yahoo",
-      "link": "https://news.google.com/rss/articles/CBMiogFBVV95cUxQcmliUWx3clpibEpySTUzSTRCZVVfOWxlbXowV01wOERwNWZaSnpvTksyUHQyUGVrNDJJSVdBMnpxSElla1JRNUZDc0R4ZGVQaVpkSFE3OXU2NFYwRVFBMzZPc0M5Qjg0cmpCeGI2Q19FSzJBaXV0WTduREZIaHk2TXd5N0ZNVzhQOExJWXVHR2xhRUpLNndfNWVmN1VpWFI4TkE?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiogFBVV95cUxQcmliUWx3clpibEpySTUzSTRCZVVfOWxlbXowV01wOERwNWZaSnpvTksyUHQyUGVrNDJJSVdBMnpxSElla1JRNUZDc0R4ZGVQaVpkSFE3OXU2NFYwRVFBMzZPc0M5Qjg0cmpCeGI2Q19FSzJBaXV0WTduREZIaHk2TXd5N0ZNVzhQOExJWXVHR2xhRUpLNndfNWVmN1VpWFI4TkE?oc=5\" targ",
       "at": 1789604160000,
       "inst": [
         "XAU/USD",
@@ -1776,6 +1811,26 @@
       "rel": 1,
       "srcs": 1,
       "firstAt": 1789603413000
+    },
+    {
+      "title": "Iran war live: Trump says US nearing end of war, claims Tehran direct talks",
+      "link": "https://www.aljazeera.com/news/liveblog/2026/9/17/iran-war-live-trump-says-us-nearing-end-of-war-claims-tehran-direct-talks?traffic_source=rss",
+      "source": "Al Jazeera",
+      "desc": "President Trump says the US is nearing the end of the conflict with Iran and claims direct talks with Tehran.",
+      "at": 1789603200000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789603200000
     }
   ],
   "sources": [
@@ -1798,10 +1853,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-17T07:46:24.953Z",
-  "updatedAt": "2026-09-17T07:46:24.953Z"
+  "headlinesAt": "2026-09-17T07:48:11.635Z",
+  "updatedAt": "2026-09-17T07:48:11.635Z"
 }
