@@ -426,7 +426,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789664100000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions monitoring changes unclear for markets"
     },
     {
       "title": "Stock Market Today: Nasdaq Dwarfs Dow's Gain; This AI Chip Leader Breaks Out To All-Time High (Live Coverage)",
@@ -442,7 +443,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789664820000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US100": "up",
+        "US30": "up"
+      },
+      "why": "Nasdaq and Dow gains indicate bullishness"
     },
     {
       "title": "Why growth stocks’ surprising strength may be warning of a market bubble",
@@ -458,7 +464,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789665360000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Bubble warning implies bearish risk"
     },
     {
       "title": "Trump says he faces a “big decision” on whether to launch new attacks on Iran",
@@ -479,7 +489,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789665323000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Potential Iran attacks boost safe havens and oil"
     },
     {
       "title": "Goldman Reversed Its Fed Call Twice in Four Days. What an October Hike Does to Bitcoin and XRP.",
@@ -497,7 +513,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789665162000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "BTC/USDT": "down"
+      },
+      "why": "Rate hike fears bearish for crypto"
     },
     {
       "title": "Stock Market Midday, Sept. 17: Stocks Rebound From Post Fed Sell-off, Generac soars 20%",
@@ -514,7 +534,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789663310000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Stocks rebound from sell-off"
     },
     {
       "title": "Generac, Nebius, CoreWeave, Nokia, Lucid, Paramount, and More Stocks That Explain Today’s Market",
@@ -529,7 +553,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789664820000,
-      "_kind": null
+      "_kind": null,
+      "why": "Mixed stock performance unclear direction"
     },
     {
       "title": "UN fact-finding mission says US committed possible war crimes in Iran",
@@ -550,7 +575,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789662627000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Geopolitical tension boosts gold safe haven"
     },
     {
       "title": "Holtec Nuclear shelves US IPO as AI trade turbulence rattles markets",
@@ -567,7 +596,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789664473000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Market turbulence boosts gold safe haven"
     },
     {
       "title": "Russia, China veto extension of UN panel monitoring Iran sanctions - TRT World",
@@ -588,7 +621,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789661887000,
-      "_kind": null
+      "_kind": null,
+      "why": "Veto on monitoring unclear for markets"
     },
     {
       "title": "US securities regulator rolls out five-year exemption for tokenized stock trading",
@@ -619,7 +653,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789664347000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Rising oil prices explicitly stated"
     },
     {
       "title": "House sends Russia sanctions bill to Trump’s desk - The Hill",
@@ -639,7 +677,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789661703000
+      "firstAt": 1789661703000,
+      "why": "Sanctions bill impact unclear"
     },
     {
       "title": "US Democrats look to stop Trump’s Saudi nuclear deal",
@@ -658,7 +697,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789664068000
+      "firstAt": 1789664068000,
+      "why": "Political opposition unclear for markets"
     },
     {
       "title": "Russia’s global fuel customers push back against US sanctions bill - politico.eu",
@@ -678,7 +718,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789663869000
+      "firstAt": 1789663869000,
+      "why": "Customer pushback unclear for markets"
     },
     {
       "title": "Russia's Yaroslavl refinery shuts processing after a drone attack, sources say - Reuters",
@@ -698,7 +739,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789663439000
+      "firstAt": 1789663439000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Refinery shutdown tightens oil supply"
     },
     {
       "title": "European Markets Surge as Fed's Rate Hike Boosts Investor Confidence - Devdiscourse",
@@ -2129,7 +2175,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-17T17:27:57.913Z",
-  "headlinesAt": "2026-09-17T17:27:57.913Z",
-  "updatedAt": "2026-09-17T17:27:57.913Z"
+  "calendarAt": "2026-09-17T17:29:27.421Z",
+  "headlinesAt": "2026-09-17T17:29:27.421Z",
+  "updatedAt": "2026-09-17T17:29:27.421Z"
 }
