@@ -1,5 +1,5 @@
 {
-  "asOf": "2026-09-10T16:48:06.883Z",
+  "asOf": "2026-09-17T16:48:26.346Z",
   "days": 1199,
   "horizons": [
     5,
@@ -11,9 +11,9 @@
   "low": 10,
   "tests": 16,
   "now": {
-    "ratio": 65.42,
-    "percentile": 11,
-    "at": 1788901200000
+    "ratio": 67.7,
+    "percentile": 13,
+    "at": 1789506000000
   },
   "legacyZones": {
     "extremeHigh": 80,
@@ -28,18 +28,18 @@
     "horizons": {
       "5": {
         "episodes": 27,
-        "ratioWin": 63,
+        "ratioWin": 59,
         "ratioBase": 50,
-        "ratioZ": 1.34,
-        "ratioMedPct": 0.43,
+        "ratioZ": 0.92,
+        "ratioMedPct": 0.39,
         "ratioBaseMedPct": 0.04,
-        "pairWin": 63,
+        "pairWin": 59,
         "pairBase": 50,
-        "pairMedPct": 0.42,
+        "pairMedPct": 0.39,
         "pairBaseMedPct": 0.04,
-        "pairZ": 1.34,
+        "pairZ": 0.92,
         "auMedPct": 1.01,
-        "agMedPct": 1.55,
+        "agMedPct": 1.19,
         "baseN": 1194
       },
       "10": {
@@ -48,45 +48,45 @@
         "ratioBase": 49,
         "ratioZ": -0.51,
         "ratioMedPct": -0.19,
-        "ratioBaseMedPct": -0.12,
+        "ratioBaseMedPct": -0.1,
         "pairWin": 44,
         "pairBase": 49,
         "pairMedPct": -0.18,
-        "pairBaseMedPct": -0.13,
+        "pairBaseMedPct": -0.11,
         "pairZ": -0.51,
         "auMedPct": 2.1,
-        "agMedPct": 1.97,
+        "agMedPct": 2.06,
         "baseN": 1189
       },
       "20": {
         "episodes": 27,
-        "ratioWin": 52,
+        "ratioWin": 48,
         "ratioBase": 50,
-        "ratioZ": 0.21,
-        "ratioMedPct": 0.56,
-        "ratioBaseMedPct": 0.03,
-        "pairWin": 52,
+        "ratioZ": -0.21,
+        "ratioMedPct": -0.11,
+        "ratioBaseMedPct": 0.05,
+        "pairWin": 48,
         "pairBase": 50,
-        "pairMedPct": 0.57,
-        "pairBaseMedPct": 0.03,
-        "pairZ": 0.21,
-        "auMedPct": 4.7,
-        "agMedPct": 4.48,
+        "pairMedPct": -0.11,
+        "pairBaseMedPct": 0.05,
+        "pairZ": -0.21,
+        "auMedPct": 4.52,
+        "agMedPct": 2.79,
         "baseN": 1179
       },
       "40": {
         "episodes": 27,
         "ratioWin": 44,
-        "ratioBase": 48,
-        "ratioZ": -0.41,
+        "ratioBase": 49,
+        "ratioZ": -0.51,
         "ratioMedPct": -0.13,
-        "ratioBaseMedPct": -0.3,
+        "ratioBaseMedPct": -0.27,
         "pairWin": 44,
-        "pairBase": 48,
+        "pairBase": 49,
         "pairMedPct": -0.15,
-        "pairBaseMedPct": -0.31,
-        "pairZ": -0.41,
-        "auMedPct": 8.5,
+        "pairBaseMedPct": -0.27,
+        "pairZ": -0.51,
+        "auMedPct": 9,
         "agMedPct": 8.4,
         "baseN": 1159
       }
@@ -95,92 +95,92 @@
   "compressed": {
     "label": "ratio at or below the 10th percentile — gold cheap against silver",
     "hypothesis": "rise",
-    "episodes": 9,
+    "episodes": 10,
     "horizons": {
       "5": {
-        "episodes": 9,
-        "ratioWin": 78,
+        "episodes": 10,
+        "ratioWin": 80,
         "ratioBase": 50,
-        "ratioZ": 1.67,
+        "ratioZ": 1.89,
         "ratioMedPct": 1.3,
         "ratioBaseMedPct": -0.03,
-        "pairWin": 78,
+        "pairWin": 80,
         "pairBase": 50,
         "pairMedPct": 1.29,
         "pairBaseMedPct": -0.03,
-        "pairZ": 1.67,
+        "pairZ": 1.89,
         "auMedPct": -0.24,
         "agMedPct": -1.03,
         "baseN": 1194
       },
       "10": {
-        "episodes": 9,
-        "ratioWin": 67,
+        "episodes": 10,
+        "ratioWin": 60,
         "ratioBase": 51,
-        "ratioZ": 0.96,
+        "ratioZ": 0.57,
         "ratioMedPct": 1.22,
-        "ratioBaseMedPct": 0.12,
-        "pairWin": 67,
+        "ratioBaseMedPct": 0.1,
+        "pairWin": 60,
         "pairBase": 51,
         "pairMedPct": 1.19,
-        "pairBaseMedPct": 0.13,
-        "pairZ": 0.96,
+        "pairBaseMedPct": 0.11,
+        "pairZ": 0.57,
         "auMedPct": 0.05,
-        "agMedPct": -1.09,
+        "agMedPct": -0.64,
         "baseN": 1189
       },
       "20": {
-        "episodes": 9,
-        "ratioWin": 78,
+        "episodes": 10,
+        "ratioWin": 70,
         "ratioBase": 50,
-        "ratioZ": 1.67,
+        "ratioZ": 1.26,
         "ratioMedPct": 3.72,
-        "ratioBaseMedPct": -0.03,
-        "pairWin": 78,
+        "ratioBaseMedPct": -0.05,
+        "pairWin": 70,
         "pairBase": 50,
         "pairMedPct": 3.6,
-        "pairBaseMedPct": -0.03,
-        "pairZ": 1.67,
+        "pairBaseMedPct": -0.05,
+        "pairZ": 1.26,
         "auMedPct": 3.61,
-        "agMedPct": -2.94,
+        "agMedPct": -1.25,
         "baseN": 1179
       },
       "40": {
-        "episodes": 9,
-        "ratioWin": 78,
-        "ratioBase": 52,
-        "ratioZ": 1.56,
+        "episodes": 10,
+        "ratioWin": 70,
+        "ratioBase": 51,
+        "ratioZ": 1.2,
         "ratioMedPct": 11.31,
-        "ratioBaseMedPct": 0.3,
-        "pairWin": 78,
-        "pairBase": 52,
+        "ratioBaseMedPct": 0.27,
+        "pairWin": 70,
+        "pairBase": 51,
         "pairMedPct": 10.8,
-        "pairBaseMedPct": 0.31,
-        "pairZ": 1.56,
-        "auMedPct": 4.08,
-        "agMedPct": -5.59,
+        "pairBaseMedPct": 0.27,
+        "pairZ": 1.2,
+        "auMedPct": 4.14,
+        "agMedPct": -4.5,
         "baseN": 1159
       }
     }
   },
   "leadLag": {
-    "sameDay": 0.78,
+    "sameDay": 0.781,
     "silverLeadsGold": [
       {
         "lag": 1,
-        "r": 0.026
+        "r": 0.023
       },
       {
         "lag": 2,
-        "r": -0.06
+        "r": -0.057
       },
       {
         "lag": 3,
-        "r": 0.041
+        "r": 0.039
       },
       {
         "lag": 4,
-        "r": 0.012
+        "r": 0.014
       },
       {
         "lag": 5,
@@ -190,11 +190,11 @@
     "goldLeadsSilver": [
       {
         "lag": 1,
-        "r": -0.018
+        "r": -0.021
       },
       {
         "lag": 2,
-        "r": -0.084
+        "r": -0.079
       },
       {
         "lag": 3,
@@ -202,11 +202,11 @@
       },
       {
         "lag": 4,
-        "r": 0.034
+        "r": 0.037
       },
       {
         "lag": 5,
-        "r": 0.006
+        "r": 0.003
       }
     ]
   }
