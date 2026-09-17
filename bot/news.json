@@ -23,7 +23,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789680120000,
-      "_kind": null
+      "_kind": null,
+      "why": "Bond market trouble, unclear FX direction"
     },
     {
       "title": "Micron, Intel and other chip stocks are furthering their strong comebacks",
@@ -39,7 +40,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789680120000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Chip stocks strong comeback, fears subsiding"
     },
     {
       "title": "Russia stocks lower at close of trade; MOEX Russia Index down 1.68%",
@@ -54,7 +59,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789680004000,
-      "_kind": null
+      "_kind": null,
+      "why": "Russia stocks lower, irrelevant to US500"
     },
     {
       "title": "CBOT wheat futures fall on lack of bullish news",
@@ -91,7 +97,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789677246000,
-      "_kind": null
+      "_kind": null,
+      "why": "Fed hike aftermath, unclear market direction"
     },
     {
       "title": "Latin American stocks climb as dollar weakens after Fed hike",
@@ -108,7 +115,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789679499000,
-      "_kind": null
+      "_kind": null,
+      "why": "Latin American stocks climb, US500 unclear"
     },
     {
       "title": "Wall Street is betting Trump backs down on Iran — but what if the ‘TACO’ trade fails this time?",
@@ -123,7 +131,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 3,
-      "firstAt": 1789677095000
+      "firstAt": 1789677095000,
+      "why": "Uncertainty over Iran trade strategy"
     },
     {
       "title": "Russia, China veto UN mandate to monitor Iran sanctions - Al Jazeera",
@@ -143,7 +152,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789677638000
+      "firstAt": 1789677638000,
+      "why": "UN veto, unclear immediate market impact"
     },
     {
       "title": "UN-backed experts cite possible US war crimes in Iran strikes - The Seattle Times",
@@ -163,7 +173,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789677095000
+      "firstAt": 1789677095000,
+      "why": "War crimes report, unclear market direction"
     },
     {
       "title": "Russia, China veto UN mandate to monitor Iran sanctions",
@@ -183,7 +194,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789677638000
+      "firstAt": 1789677638000,
+      "why": "UN mandate veto, unclear market impact"
     },
     {
       "title": "Oil dips, Brent turns negative for the week amid easing Middle East supply fears",
@@ -200,7 +212,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789678488000
+      "firstAt": 1789678488000,
+      "dir": {
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Oil dips, Brent negative for week"
     },
     {
       "title": "Ocean container shipping rates could test record highs as Iran war fuel spike drives rise, analysts say",
@@ -219,7 +236,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789678510000
+      "firstAt": 1789678510000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Shipping rates rise, fuel spike"
     },
     {
       "title": "Saudis and Houthis exchange strikes, Yemenis take to boats to flee as Middle East war spreads",
@@ -238,7 +260,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789678488000
+      "firstAt": 1789678488000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Middle East war spreads, risk-off"
     },
     {
       "title": "Tech leads Wall St to higher close as oil eases, Treasury yields dip - Reuters",
@@ -256,7 +284,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789678388000
+      "firstAt": 1789678388000,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Oil eases, Treasury yields dip"
     },
     {
       "title": "Russia and China veto US proposal for UN experts to keep monitoring sanctions on Iran - The Times of Israel",
@@ -276,7 +308,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 3,
-      "firstAt": 1789675769000
+      "firstAt": 1789675769000,
+      "why": "UN veto, unclear market direction"
     },
     {
       "title": "A sweeping US sanctions bill offers Ukraine new leverage on Russia, but enforcement looms - Chicago Tribune",
@@ -296,7 +329,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789675769000
+      "firstAt": 1789675769000,
+      "why": "Sanctions bill, unclear immediate market impact"
     },
     {
       "title": "US to allow Iran delegation to attend UN meetings in New York as war passes half-year mark",
@@ -1736,10 +1770,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-17T21:39:10.885Z",
-  "updatedAt": "2026-09-17T21:39:10.885Z"
+  "headlinesAt": "2026-09-17T21:40:28.066Z",
+  "updatedAt": "2026-09-17T21:40:28.066Z"
 }
