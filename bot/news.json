@@ -2,6 +2,24 @@
   "calendar": [],
   "headlines": [
     {
+      "title": "Holtec Nuclear suspends planned US IPO",
+      "link": "https://www.investing.com/news/stock-market-news/holtec-nuclear-suspends-planned-us-ipo-bloomberg-news-reports-4904657",
+      "source": "Investing",
+      "at": 1789603231000,
+      "inst": [
+        "XAU/USD"
+      ],
+      "ccy": [
+        "XAU"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789603231000,
+      "_kind": null,
+      "why": "Nuclear IPO unrelated to gold"
+    },
+    {
       "title": "House Passes Graham's Russia Sanctions Bill - Newser",
       "link": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxPeUF0U1hTakxLX0RxWWZzaXRQTGhmcWgwRy11QVBuQ21SXzJNV3lxaFh0YmZuSEZMRnozejVEVDd5dERJZXhDUEF3OVR4dGlwbVdzdm90amtIU1ZIVHV0UllxaHZzU0JILUdGMW5OUC16eXNlS2RsZmNZZDlWdjdSZzBEZzBIOGRvSHVJ?oc=5",
       "source": "Wires (geo)",
@@ -20,7 +38,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789600804000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions bill direction unclear"
     },
     {
       "title": "Intel’s stock rises as investors hope memory chips can mark the next step in its turnaround",
@@ -53,7 +72,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789601130000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold slips after rate hike"
     },
     {
       "title": "Russia sanctions bill set to target Russian economy, energy sector - KPAX News",
@@ -74,7 +97,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789599900000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions bill direction unclear"
     },
     {
       "title": "WATCH LIVE: House passes sweeping Russia sanctions bill, sending it to Trump - PBS",
@@ -95,7 +119,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789599900000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions bill direction unclear"
     },
     {
       "title": "House approves sweeping Russia sanctions bill, sending it to Trump - Star Beacon",
@@ -116,7 +141,7 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789599000000,
-      "_kind": null
+      "why": "Sanctions bill direction unclear"
     },
     {
       "title": "New Zealand Q2 GDP up more than expected, but growth remains sluggish",
@@ -133,7 +158,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789598954000
+      "firstAt": 1789598954000,
+      "dir": {
+        "NZD/USD": "up"
+      },
+      "why": "GDP stronger than expected"
     },
     {
       "title": "Gold falls to near $4,250 after Fed delivers rate hike - FXStreet",
@@ -151,7 +180,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789601130000
+      "firstAt": 1789601130000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold falls after rate hike"
     },
     {
       "title": "US House passes sweeping Russia sanctions bill following months of delay - TRT World",
@@ -171,7 +204,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789598400000
+      "firstAt": 1789598400000,
+      "why": "Sanctions bill direction unclear"
     },
     {
       "title": "Meeks Issues Statement Following Vote on Russia Sanctions & Tariffs Bill - House.gov",
@@ -191,7 +225,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789598170000
+      "firstAt": 1789598170000,
+      "why": "Statement on sanctions vote"
     },
     {
       "title": "US military claims Strait of Hormuz remains open amid ongoing blockade",
@@ -211,23 +246,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789600486000
-    },
-    {
-      "title": "Holtec Nuclear suspends planned US IPO, Bloomberg News reports",
-      "link": "https://www.investing.com/news/stock-market-news/holtec-nuclear-suspends-planned-us-ipo-bloomberg-news-reports-4904657",
-      "source": "Investing",
-      "at": 1789600149000,
-      "inst": [
-        "XAU/USD"
-      ],
-      "ccy": [
-        "XAU"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789600149000
+      "firstAt": 1789600486000,
+      "why": "Strait status unclear impact"
     },
     {
       "title": "Asian stocks to fall as Fed hikes, dollar jumps - theedgemalaysia.com",
@@ -244,7 +264,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789600026000
+      "firstAt": 1789600026000,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Asian stocks to fall"
     },
     {
       "title": "US Congress passes Russia sanctions bill - dw.com",
@@ -264,7 +288,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789597815000
+      "firstAt": 1789597815000,
+      "why": "Sanctions bill direction unclear"
     },
     {
       "title": "House passes Russia sanctions bill, overcoming Democratic opposition - The Washington Post",
@@ -284,7 +309,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789597815000
+      "firstAt": 1789597815000,
+      "why": "Sanctions bill direction unclear"
     },
     {
       "title": "House passes late Sen. Lindsey Graham's Russia sanctions bill, sending it to Trump's desk - cbsnews.com",
@@ -304,7 +330,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789597815000
+      "firstAt": 1789597815000,
+      "why": "Sanctions bill direction unclear"
     },
     {
       "title": "After Senate, US House passes Russia sanctions bill; 100 per cent tariff threat looms for India - ANI News",
@@ -1795,10 +1822,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-17T00:04:25.329Z",
-  "updatedAt": "2026-09-17T00:04:25.329Z"
+  "headlinesAt": "2026-09-17T00:05:41.747Z",
+  "updatedAt": "2026-09-17T00:05:41.747Z"
 }
