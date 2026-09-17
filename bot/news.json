@@ -489,6 +489,40 @@
   ],
   "headlines": [
     {
+      "title": "Wall Street on Fed rate hike: ’As hawkish as it gets’",
+      "link": "https://www.investing.com/news/stock-market-news/wall-street-on-fed-rate-hike-as-hawkish-as-it-gets-4905491",
+      "source": "Investing",
+      "at": 1789646470000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789646470000,
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Hawkish Fed hike weighs on stocks"
+    },
+    {
+      "title": "Volvo Cars plans 13 new models by 2030 in bid to double market share",
+      "link": "https://www.investing.com/news/stock-market-news/volvo-cars-to-launch-13-new-models-this-decade-eyes-earnings-boost-4904813",
+      "source": "Investing",
+      "at": 1789646092000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 1,
+      "srcs": 1,
+      "firstAt": 1789646092000,
+      "_kind": null
+    },
+    {
       "title": "Stocks making the biggest moves premarket: Generac, Lennar, Nike & more",
       "link": "https://www.cnbc.com/2026/09/17/stocks-making-the-biggest-moves-premarket-gnrc-len-nke.html",
       "source": "CNBC Markets",
@@ -500,9 +534,29 @@
       "ccy": [],
       "sev": 1,
       "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789644623000,
-      "_kind": null
+      "srcs": 1,
+      "firstAt": 1789646058000,
+      "_kind": null,
+      "why": "Individual stock moves, no index direction"
+    },
+    {
+      "title": "From \"boring\" to bumpy: Deutsche Bank sees equities staying supported",
+      "link": "https://www.investing.com/news/stock-market-news/from-boring-to-bumpy-deutsche-bank-sees-equities-staying-supported-4905448",
+      "source": "Investing",
+      "at": 1789645754000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789645754000,
+      "_kind": null,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Equities staying supported"
     },
     {
       "title": "House passes sweeping Russia sanctions bill, sending measure to President Trump - kens5.com",
@@ -524,7 +578,26 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789643104000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions bill passed, direction unclear"
+    },
+    {
+      "title": "CoreWeave’s tug-of-war: Record pricing power battles a $3B debt cloud",
+      "link": "https://www.investing.com/news/stock-market-news/coreweaves-tugofwar-record-pricing-power-battles-a-3b-debt-cloud-4905438",
+      "source": "Investing",
+      "at": 1789645594000,
+      "inst": [
+        "XAU/USD"
+      ],
+      "ccy": [
+        "XAU"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789645594000,
+      "_kind": null,
+      "why": "Company-specific news, no gold direction"
     },
     {
       "title": "Exclusive-Apollo explores sale options for floating LNG infrastructure operator Energos, sources say",
@@ -539,7 +612,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789645355000,
-      "_kind": null
+      "_kind": null,
+      "why": "LNG sale options, no gas direction"
     },
     {
       "title": "Bitcoin and ethereum prices today, Thursday, September 17, 2026: Crypto prices move up following Fed's rate increase",
@@ -558,7 +632,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789643332000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "BTC/USDT": "up",
+        "ETH/USDT": "up"
+      },
+      "why": "Crypto prices move up"
     },
     {
       "title": "Stock markets close flat after U.S. Fed rate hike; NSE IPO in focus - The Hindu",
@@ -582,7 +661,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789642660000,
-      "_kind": null
+      "_kind": null,
+      "why": "Markets close flat, no clear direction"
     },
     {
       "title": "U.N.-backed experts allege U.S. war crimes in Iran - CBS News",
@@ -603,7 +683,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789644977000,
-      "_kind": null
+      "_kind": null,
+      "why": "War crimes allegation, no clear direction"
     },
     {
       "title": "Gold, silver rebound as easing oil rally tempers inflation concerns - Anadolu Ajansı",
@@ -625,19 +706,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789642253000
-    },
-    {
-      "title": "Premarket movers: Generac, Nebius rally, BCB Bancorp sinks",
-      "link": "https://www.investing.com/news/stock-market-news/premarket-movers-generac-nebius-rally-bcb-bancorp-sinks-4905356",
-      "source": "Investing",
-      "at": 1789644623000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 2,
-      "firstAt": 1789644623000
+      "firstAt": 1789642253000,
+      "dir": {
+        "XAU/USD": "up",
+        "XAG/USD": "up",
+        "USOIL": "down"
+      },
+      "why": "Gold rebounds, oil rally tempers"
     },
     {
       "title": "What’s the Asian Games accommodation crisis, and where will athletes stay?",
@@ -654,7 +729,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789644482000
+      "firstAt": 1789644482000,
+      "why": "Accommodation crisis, no currency direction"
     },
     {
       "title": "Silver price today, Thursday, September 17, 2026: Silver prices stay steady post Fed decision",
@@ -671,7 +747,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789643332000
+      "firstAt": 1789643332000,
+      "why": "Silver prices stay steady"
     },
     {
       "title": "Indian Equities Close Flat as US Fed Rate Hike Weighs; NSE IPO Subscribed 39% on Day 1 - Rediff",
@@ -688,21 +765,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789642660000
-    },
-    {
-      "title": "German court rules Meta liable for fake ads on Instagram, Facebook",
-      "link": "https://www.investing.com/news/stock-market-news/german-court-rules-meta-liable-for-fake-ads-on-instagram-facebook-4905194",
-      "source": "Investing",
-      "at": 1789643926000,
-      "inst": [
-        "EUR/USD"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789643926000
+      "firstAt": 1789642660000,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Fed rate hike weighs on equities"
     },
     {
       "title": "AI bosses say they can self-regulate and House passes Russia sanctions bill: Morning Rundown - NBC News",
@@ -722,7 +789,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789642682000
+      "firstAt": 1789642682000,
+      "why": "Morning rundown, no clear direction"
     },
     {
       "title": "Gold price today, Thursday, September 17, 2026: Gold prices relatively stable following Fed rate increase",
@@ -739,7 +807,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789642253000
+      "firstAt": 1789642253000,
+      "why": "Gold prices relatively stable"
     },
     {
       "title": "Ukraine sees energy and Black Sea ceasefire as possible key outcome of Zelenskyy-Trump meeting in New York - Yahoo",
@@ -2194,49 +2263,6 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789620181000
-    },
-    {
-      "title": "Asian markets mixed following Fed rate hike as Trump tariff threats weigh - Seeking Alpha",
-      "link": "https://news.google.com/rss/articles/CBMisAFBVV95cUxPRlo4dkZwZFQ1ZE9tNlBVNm02RXNYU1BadlRGaktfNzdXNmJxaFpOU1VCNHA0b2pKN1pxVmQzQndMSlBWelI3ZmxQSUsyMFRybWNDVG9vZzBnOHBoMXZCX09HTlctNUdBdVNKX2FDMkdBcU1KMW1mazcxcllLSnhOU1dfLS1IdzRpeG02czdjbG9ObkNMSW13UGZHZ0FxSWFlQVk2VFZFQ182UThyNFNJdQ?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMisAFBVV95cUxPRlo4dkZwZFQ1ZE9tNlBVNm02RXNYU1BadlRGaktfNzdXNmJxaFpOU1VCNHA0b2pKN1pxVmQzQndMSlBWelI3ZmxQSUsyMFRybWNDVG9vZzBnOHBoMXZCX09HTlctNUdBdVNKX2FDMkdBcU1KMW1mazcxcllLSnhOU1dfLS1IdzRpeG02czdjbG9ObkNMSW13UGZHZ0FxSWFlQVk2VFZFQ182UT",
-      "at": 1789622542000,
-      "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 3,
-      "firstAt": 1789620181000
-    },
-    {
-      "title": "US Congress Passes Sweeping Russia Sanctions Bill, Sends It To Trump - Radio Free Europe/Radio Liberty",
-      "link": "https://news.google.com/rss/articles/CBMijgFBVV95cUxPZUNEQ2tiemgxaWZNazZkRG40V2lqdEo2Y0dHcVhhSVZIT24yTzljY3FaWWl5YmQ3clN2OURHb2ZhczhYRkdrVjNNUWFnMUUzUzlvSnd5X25rUVFBeHZNaXBrSHByWEhUTTFOa0l2UFB3Zm5qNUplc0EtTGNpOXloeXlqYnN6Ni1wMnFFWGtn0gGQAUFVX3lxTFA0WDhkR3BvWklOcnNhTFNIdDQ4SmN6WTEtc1BfaXF5R0lDenhzR0c0SkFQbzJBb2MwOUQ0eEMxR3c5amZRVHNNQ2VmdmxVcUVUTWFsS0RwRGdCbmI4ZFVoQjBLVklUTTY3MEptT3FfeG5jeGZ6SWg5VnVzbE1GUXhKUXhnenZwaTFVZkN1VnY0Mw?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMijgFBVV95cUxPZUNEQ2tiemgxaWZNazZkRG40V2lqdEo2Y0dHcVhhSVZIT24yTzljY3FaWWl5YmQ3clN2OURHb2ZhczhYRkdrVjNNUWFnMUUzUzlvSnd5X25rUVFBeHZNaXBrSHByWEhUTTFOa0l2UFB3Zm5qNUplc0EtTGNpOXloeXlqYnN6Ni1wMnFFWGtn0gGQAUFVX3lxTFA0WDhkR3BvWklOcnNhTFNIdD",
-      "at": 1789622337000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789620181000
     }
   ],
   "sources": [
@@ -2262,7 +2288,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-17T12:03:56.033Z",
-  "headlinesAt": "2026-09-17T12:03:56.033Z",
-  "updatedAt": "2026-09-17T12:03:56.033Z"
+  "calendarAt": "2026-09-17T12:05:29.651Z",
+  "headlinesAt": "2026-09-17T12:05:29.651Z",
+  "updatedAt": "2026-09-17T12:05:29.651Z"
 }
