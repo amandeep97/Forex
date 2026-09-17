@@ -430,7 +430,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789658520000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Chip stocks rallying, AI fears subsiding"
     },
     {
       "title": "Exclusive-Apollo explores sale options for floating LNG infrastructure operator Energos, sources say",
@@ -445,7 +449,57 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789658404000,
-      "_kind": null
+      "_kind": null,
+      "why": "LNG sale options unrelated to gas prices"
+    },
+    {
+      "title": "Russia sanctions bill backed by Sen. Lindsey Graham passes US House - The Jerusalem Post",
+      "link": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE42X3pYbGFwM01tdmtqSDN6LS1xYVZ0UC1rYjNVcWQzbWxVUFN1QkIyVy1VRUFmel9nSThVd3p0ejl4Z29UeXlxTktNZENOaUtReHY5X1UxN0lKMUttd1hmejdqWmQ?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiZEFVX3lxTE42X3pYbGFwM01tdmtqSDN6LS1xYVZ0UC1rYjNVcWQzbWxVUFN1QkIyVy1VRUFmel9nSThVd3p0ejl4Z29UeXlxTktNZENOaUtReHY5X1UxN0lKMUttd1hmejdqWmQ?oc=5\" target=\"_blank\">Russia sanctions bill backed by Sen. Lindsey Graham passes US House</a>&",
+      "at": 1789658234000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789657941000,
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Sanctions boost gold, oil supply risk"
+    },
+    {
+      "title": "China, Russia veto renewal of UN Iran sanctions panel - IntelliNews",
+      "link": "https://news.google.com/rss/articles/CBMiogFBVV95cUxQeFVBTmluOERkVUljTzNwR0R0ZVd3Z3ZFMzRXb0lwZ2g5WnhnRGhTTHdtU2lGWktQRlBOZDZmSDNyOWhjZHV3UWRBWS1kYXh2VjQ0Xy00RnA0dGdQeE1BdVIteklaeV9pNWNHQ2oyeFcwMklESHVjeXZ1d2E1YmVIdnhHSlJDOU95enByNEVTemJvSlVianBsbjUyX3puWDlYYUE?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiogFBVV95cUxQeFVBTmluOERkVUljTzNwR0R0ZVd3Z3ZFMzRXb0lwZ2g5WnhnRGhTTHdtU2lGWktQRlBOZDZmSDNyOWhjZHV3UWRBWS1kYXh2VjQ0Xy00RnA0dGdQeE1BdVIteklaeV9pNWNHQ2oyeFcwMklESHVjeXZ1d2E1YmVIdnhHSlJDOU95enByNEVTemJvSlVianBsbjUyX3puWDlYYUE?oc=5\" targ",
+      "at": 1789657941000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1789657287000,
+      "_kind": null,
+      "why": "Veto removes immediate sanctions threat"
     },
     {
       "title": "Morocco stocks lower at close of trade; Moroccan All Shares down 0.17%",
@@ -460,28 +514,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789657803000,
-      "_kind": null
-    },
-    {
-      "title": "UN experts say grounds to believe US committed war crimes in Iran strikes - BBC",
-      "link": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE94c0dGTGFoQjNZRzNja2ZCVFlBSnczcTdaRW9oQU14MlVHdzBWSWFGdXJqdzB5Tm9LdUZGemtNcWZBeUxGRUQ1dXV4QnVHN29hNm9SS25XSjFGXzg?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiW0FVX3lxTE94c0dGTGFoQjNZRzNja2ZCVFlBSnczcTdaRW9oQU14MlVHdzBWSWFGdXJqdzB5Tm9LdUZGemtNcWZBeUxGRUQ1dXV4QnVHN29hNm9SS25XSjFGXzg?oc=5\" target=\"_blank\">UN experts say grounds to believe US committed war crimes in Iran strikes</a>&nbsp;&",
-      "at": 1789657667000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789657667000,
-      "_kind": null
+      "_kind": null,
+      "why": "Morocco stocks irrelevant to US index"
     },
     {
       "title": "JEPI and JEPQ Yield Way More Than SCHD, but SCHD Could Produce More Passive Income Over the Long Term. Here's Why.",
@@ -513,9 +547,10 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 1,
+      "srcs": 2,
       "firstAt": 1789657287000,
-      "_kind": null
+      "_kind": null,
+      "why": "General sanctions overview, no new news"
     },
     {
       "title": "Stock Market Today: Nasdaq Leads Charge After Fed Day; Nvidia, Amazon Rise (Live Coverage)",
@@ -532,7 +567,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789655090000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US100": "up"
+      },
+      "why": "Nasdaq leads charge, tech stocks rise"
     },
     {
       "title": "Ryanair (RYAAY) Slashes its Winter Flight Plans to Dodge a Costly Oil Spike",
@@ -548,7 +587,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789656905000
+      "firstAt": 1789656905000,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Airlines cutting flights due to oil costs"
     },
     {
       "title": "U.S. Treasury Yields Fall as Fed Regains Trust, BOE Leaves Rates Unchanged - WSJ",
@@ -566,7 +609,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789656540000
+      "firstAt": 1789656540000,
+      "why": "Yields fall, BOE unchanged, mixed signals"
     },
     {
       "title": "China faces oil challenge as prices soar and supply options narrow",
@@ -584,7 +628,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789656515000
+      "firstAt": 1789656515000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "China supply squeeze supports oil prices"
     },
     {
       "title": "A Chinese AI company just connected its model to Wall Street's leading data providers",
@@ -599,7 +648,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789655425000
+      "firstAt": 1789655425000,
+      "why": "Chinese AI news, unclear US market impact"
     },
     {
       "title": "Retaliatory Canadian tariffs hit US dairy markets - Farmers' Advance",
@@ -614,7 +664,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789655340000
+      "firstAt": 1789655340000,
+      "dir": {
+        "USD/CAD": "down"
+      },
+      "why": "Canadian tariffs hurt US exports, weak CAD"
     },
     {
       "title": "Breakout Watch: Savvy Investors Get Wired Up For This Nvidia, Amazon Partner",
@@ -647,7 +701,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789652748000
+      "firstAt": 1789652748000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Sanctions support Ukraine, geopolitical risk premium"
     },
     {
       "title": "Ghalibaf’s maths missile at Trump decoded: Is Iran fixing US interest rates?",
@@ -668,7 +728,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789654241000
+      "firstAt": 1789654241000,
+      "why": "Political rhetoric, no clear market direction"
     },
     {
       "title": "Renewed Industry Competition Sparks T-Mobile US’s (TMUS) Sell-Off",
@@ -699,7 +760,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789654043000
+      "firstAt": 1789654043000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "War uncertainty boosts safe havens, oil risk"
     },
     {
       "title": "The smartest money moves to make now that interest rates are going up",
@@ -2097,26 +2164,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789639500000
-    },
-    {
-      "title": "Trump claims direct talks with Iran: Is diplomacy picking up again?",
-      "link": "https://www.aljazeera.com/news/2026/9/17/trump-claims-direct-talks-with-iran-is-diplomacy-picking-up-again?traffic_source=rss",
-      "source": "Al Jazeera",
-      "desc": "The US president says Washington is 'hopefully toward the end' of Iran war, as global energy prices remain high.",
-      "at": 1789641166000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789641166000
     }
   ],
   "sources": [
@@ -2142,7 +2189,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-17T15:28:10.387Z",
-  "headlinesAt": "2026-09-17T15:28:10.387Z",
-  "updatedAt": "2026-09-17T15:28:10.387Z"
+  "calendarAt": "2026-09-17T15:30:15.491Z",
+  "headlinesAt": "2026-09-17T15:30:15.491Z",
+  "updatedAt": "2026-09-17T15:30:15.491Z"
 }
