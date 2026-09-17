@@ -431,7 +431,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789659445000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "ETF buying surge supports gold prices"
     },
     {
       "title": "A Russia Sanctions Bill Would Give Trump Vast New Tariff Powers - reason.com",
@@ -453,7 +457,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789657889000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions bill impact on markets unclear"
     },
     {
       "title": "Poland stocks higher at close of trade; WIG30 up 1.66%",
@@ -468,7 +473,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789659303000,
-      "_kind": null
+      "_kind": null,
+      "why": "Polish stocks unrelated to US index"
     },
     {
       "title": "SEC Clears Path For Tokenized Stock Trading. These Stocks Rally.",
@@ -483,7 +489,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789659216000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Tokenized trading clears path, stocks rally"
     },
     {
       "title": "Turkey stocks higher at close of trade; BIST 100 up 2.95%",
@@ -498,7 +508,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789659031000,
-      "_kind": null
+      "_kind": null,
+      "why": "Turkish stocks unrelated to US index"
     },
     {
       "title": "Denmark stocks higher at close of trade; OMX Copenhagen 20 up 1.91%",
@@ -513,7 +524,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789659004000,
-      "_kind": null
+      "_kind": null,
+      "why": "Danish stocks unrelated to US index"
     },
     {
       "title": "Saudis and Houthis exchange strikes, Yemenis take to boats to flee as Middle East war spreads",
@@ -533,7 +545,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789658692000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Middle East war spreads, risk assets rise"
     },
     {
       "title": "Micron, Intel and other chip stocks are furthering their strong comebacks",
@@ -549,21 +567,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789658520000,
-      "_kind": null
-    },
-    {
-      "title": "Exclusive-Apollo explores sale options for floating LNG infrastructure operator Energos, sources say",
-      "link": "https://www.investing.com/news/stock-market-news/exclusiveapollo-explores-sale-options-for-floating-lng-infrastructure-operatorenergos-sources-say-4905433",
-      "source": "Investing",
-      "at": 1789658404000,
-      "inst": [
-        "NATGAS"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789658404000
+      "_kind": null,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Chip stocks rally, AI fears subside"
     },
     {
       "title": "Russia sanctions bill backed by Sen. Lindsey Graham passes US House - The Jerusalem Post",
@@ -583,7 +591,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789657889000
+      "firstAt": 1789657889000,
+      "why": "Sanctions bill impact on markets unclear"
     },
     {
       "title": "China, Russia veto renewal of UN Iran sanctions panel - IntelliNews",
@@ -603,7 +612,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789657287000
+      "firstAt": 1789657287000,
+      "why": "UN veto impact on markets unclear"
     },
     {
       "title": "US House passes Russia sanctions bill granting Trump tariff authority - news.cgtn.com",
@@ -624,7 +634,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789657889000
+      "firstAt": 1789657889000,
+      "why": "Sanctions bill impact on markets unclear"
     },
     {
       "title": "What are all the sanctions Iran is under?",
@@ -644,7 +655,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789657287000
+      "firstAt": 1789657287000,
+      "why": "General sanctions overview, no new news"
     },
     {
       "title": "What are all the sanctions Iran is under? - Yahoo",
@@ -664,7 +676,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789657287000
+      "firstAt": 1789657287000,
+      "why": "General sanctions overview, no new news"
     },
     {
       "title": "Stock Market Today: Nasdaq Leads Charge After Fed Day; Nvidia, Amazon Rise (Live Coverage)",
@@ -680,7 +693,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789655090000
+      "firstAt": 1789655090000,
+      "dir": {
+        "US100": "up"
+      },
+      "why": "Nasdaq leads charge, tech stocks rise"
     },
     {
       "title": "Ryanair (RYAAY) Slashes its Winter Flight Plans to Dodge a Costly Oil Spike",
@@ -696,7 +713,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789656905000
+      "firstAt": 1789656905000,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Airlines cut flights to dodge oil spike"
     },
     {
       "title": "U.S. Treasury Yields Fall as Fed Regains Trust, BOE Leaves Rates Unchanged - WSJ",
@@ -2115,6 +2136,26 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789641588000
+    },
+    {
+      "title": "US Congress passes Russia sanctions bill - DW.com",
+      "link": "https://news.google.com/rss/articles/CBMifkFVX3lxTE5RUFVzeUhxTjN5UEpCUEN4bU14T3lYOVBROGxCckticlZFbGJWRTNGSU9IN3h5MDZCMTktVUpQREViUF9qYmRuZ1NwNWZPOHd0VW1lODBHYTFlUDk5czM4X3FOMDQyOTc1OE9YZzE1VG5DOHlDMVktWUxzWjg4QdIBfkFVX3lxTE5mQWlNTk5ST3BkWHFwZGhZaHZTMkdHZDlIVDNUd0pjcy16R083VkZWclNhd2FUTVRvQ3d4a01lRW1LcGl4TkNEdkdsUjhNUVVONFR5T3daQTNSZzlFa2VBTjFlQWU3QnhmSWo2a2VMU1BRV29UWEFWRi1CRXRaQQ?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMifkFVX3lxTE5RUFVzeUhxTjN5UEpCUEN4bU14T3lYOVBROGxCckticlZFbGJWRTNGSU9IN3h5MDZCMTktVUpQREViUF9qYmRuZ1NwNWZPOHd0VW1lODBHYTFlUDk5czM4X3FOMDQyOTc1OE9YZzE1VG5DOHlDMVktWUxzWjg4QdIBfkFVX3lxTE5mQWlNTk5ST3BkWHFwZGhZaHZTMkdHZDlIVDNUd0pjcy16R0",
+      "at": 1789643551000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789641588000
     }
   ],
   "sources": [
@@ -2137,10 +2178,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-17T15:50:11.329Z",
-  "headlinesAt": "2026-09-17T15:50:11.329Z",
-  "updatedAt": "2026-09-17T15:50:11.329Z"
+  "calendarAt": "2026-09-17T15:51:26.820Z",
+  "headlinesAt": "2026-09-17T15:51:26.820Z",
+  "updatedAt": "2026-09-17T15:51:26.820Z"
 }
