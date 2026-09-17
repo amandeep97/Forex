@@ -685,8 +685,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789610264000,
-      "_kind": null
+      "firstAt": 1789610264000
     },
     {
       "title": "Gold Price Forecast: Fed Hikes Rates as Expected, May Raise Again This Year; Can Gold Hold $4,200? - tradingkey.com",
@@ -1581,29 +1580,6 @@
       "firstAt": 1789599900000
     },
     {
-      "title": "Federal Reserve hikes key rate for 1st time in 3 years, defying Trump demands for a cut - AP News",
-      "link": "https://news.google.com/rss/articles/CBMingFBVV95cUxPVlB2TmNqY1dILUtfRTFBQ0JPSk53elRnU1QzdmhIQ3VvTWlkelRTd3haWHJ4bmxiY2ZOcGhvd09wMTllVkVLQzk5NkdKZzNPeHpaZTRHQ242Ynd2Q1ZIUU50cUp1N2JYd1lCQndZQlhMUTZFekFZWWNueUxNbmRiUHdBZ2dWbDgzNlhmejZneHptaFhGbDI1M0JPbk8zZw?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMingFBVV95cUxPVlB2TmNqY1dILUtfRTFBQ0JPSk53elRnU1QzdmhIQ3VvTWlkelRTd3haWHJ4bmxiY2ZOcGhvd09wMTllVkVLQzk5NkdKZzNPeHpaZTRHQ242Ynd2Q1ZIUU50cUp1N2JYd1lCQndZQlhMUTZFekFZWWNueUxNbmRiUHdBZ2dWbDgzNlhmejZneHptaFhGbDI1M0JPbk8zZw?oc=5\" target=\"_",
-      "at": 1789602120000,
-      "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 3,
-      "firstAt": 1789599817000
-    },
-    {
       "title": "U.S. Rate Hikes Strain Emerging Markets Amid High Oil Prices - chosun.com",
       "link": "https://news.google.com/rss/articles/CBMijgFBVV95cUxQM0lRN2s2SDM5d2t5Wm5kS2RQWVFBS0JhVVRSYVRTdW4tcDFHdkZ6YmN1UHpBa1JoOUU4VUluUGwydmRvaWNxLXBCcGp3M1Y4dmMzY3NNQ1V3QjZyUGJqYzRibFFCcUZkNk9JWXNWUm9iS3ZSMlo0TXRDY2ZmMzJXZXgzZHdkQ2hJLVQwVzNB?oc=5",
       "source": "Wires (macro)",
@@ -1738,7 +1714,7 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 2,
+      "srcs": 1,
       "firstAt": 1789597775000
     },
     {
@@ -1761,7 +1737,7 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 2,
+      "srcs": 1,
       "firstAt": 1789599817000
     },
     {
@@ -2351,6 +2327,26 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789596068000
+    },
+    {
+      "title": "Congress on track to approve major Russia sanctions bill - CNN",
+      "link": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQRm9vTGNPRmYtb1VNcGVzbGNFWHlsZ0dHa0E0X005VDRmUVJMalJiaHR2cmJmd2gtQzlhNHg4UV9IaGZXQXdzVkRoU1lQOVZCUjAzWlBncEFKUkQtTXI2WWNlRDQxcjc1WGZyUGJYcjNIUnVSTkFUR0RnTDFHN1RETW5lbmhqa1o0ZFE5dTlLTmtQNEppUkxmR3AyS1dLM0F3Vmx1NHdpaTRZOTNXd1dTM0VHNA?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiswFBVV95cUxQRm9vTGNPRmYtb1VNcGVzbGNFWHlsZ0dHa0E0X005VDRmUVJMalJiaHR2cmJmd2gtQzlhNHg4UV9IaGZXQXdzVkRoU1lQOVZCUjAzWlBncEFKUkQtTXI2WWNlRDQxcjc1WGZyUGJYcjNIUnVSTkFUR0RnTDFHN1RETW5lbmhqa1o0ZFE5dTlLTmtQNEppUkxmR3AyS1dLM0F3Vmx1NHdpaTRZOT",
+      "at": 1789595709000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789595709000
     }
   ],
   "sources": [
@@ -2376,7 +2372,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-17T03:09:53.961Z",
-  "headlinesAt": "2026-09-17T03:09:53.961Z",
-  "updatedAt": "2026-09-17T03:09:53.961Z"
+  "calendarAt": "2026-09-17T03:11:23.788Z",
+  "headlinesAt": "2026-09-17T03:11:23.788Z",
+  "updatedAt": "2026-09-17T03:11:23.788Z"
 }
