@@ -579,7 +579,12 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789609222000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "down"
+      },
+      "why": "Gold gives up gains, oil prices ease"
     },
     {
       "title": "House passes bill to add economic sanctions on Russia via tariffs - The Washington Post",
@@ -600,7 +605,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789610352000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Sanctions bill boosts risk assets, oil"
     },
     {
       "title": "Gold slips as Fed hike, hawkish outlook strengthen dollar",
@@ -618,7 +629,38 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789609222000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Gold slips as dollar strengthens"
+    },
+    {
+      "title": "Reports: US, Houthis make secret deal over Yemen war",
+      "link": "https://www.aljazeera.com/video/newsfeed/2026/9/17/reports-us-houthis-make-secret-deal-over-yemen-war?traffic_source=rss",
+      "source": "Al Jazeera",
+      "desc": "Yemen’s Houthis have agreed to allow US shipping unfettered Red Sea access if Washington refrains from military action.",
+      "at": 1789609998000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789609998000,
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Deal eases geopolitical risk, lowers prices"
     },
     {
       "title": "Asian Markets Extend Gains As Oil Eases; Nikkei, Kospi Rise Post Fed Rate Hike - NDTV Profit",
@@ -637,7 +679,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789608925000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Oil eases as markets digest Fed hike"
     },
     {
       "title": "How US Fed Rate Hike Will Impact Gold Prices — Key Factors To Watch - NDTV Profit",
@@ -656,7 +702,7 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789609056000,
-      "_kind": null
+      "why": "Analysis of factors, no immediate direction"
     },
     {
       "title": "Stock Market Today: Gift Nifty, US Fed Rate Hike To Trump Tariffs — Five Key Factors For Sensex, Nifty 50 On September 17 - NDTV Profit",
@@ -679,7 +725,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789609056000
+      "firstAt": 1789609056000,
+      "why": "General market factors, no clear direction"
     },
     {
       "title": "Asian stocks mixed as markets digest US Fed's first rate hike since 2023 - CNBC TV18",
@@ -696,7 +743,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789608925000
+      "firstAt": 1789608925000,
+      "why": "Markets digest hike, mixed sentiment"
     },
     {
       "title": "Singapore, Asia markets shrug off US Fed rate hike - The Business Times",
@@ -719,7 +767,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789608300000
+      "firstAt": 1789608300000,
+      "why": "Markets shrug off hike, neutral impact"
     },
     {
       "title": "Australian Dollar holds gains near 0.7100 despite Fed rate hike, IMF urges RBA to stay hawkish - FXStreet",
@@ -737,7 +786,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789607990000
+      "firstAt": 1789607990000,
+      "dir": {
+        "AUD/USD": "up"
+      },
+      "why": "AUD holds gains despite Fed hike"
     },
     {
       "title": "UK’s Burnham, Canada’s Carney discuss AI risks, defence cooperation",
@@ -754,7 +807,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789607666000
+      "firstAt": 1789607666000,
+      "why": "Political meeting, no direct FX impact"
     },
     {
       "title": "Oil prices extend losses as fears of Middle East supply disruptions ease",
@@ -770,7 +824,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789607208000
+      "firstAt": 1789607208000,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Oil extends losses on easing fears"
     },
     {
       "title": "House Passes Russia Sanctions Bill Named After Lindsey Graham, Sends to Trump - KSLM Radio",
@@ -790,7 +848,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 3,
-      "firstAt": 1789604375000
+      "firstAt": 1789604375000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Sanctions bill boosts risk assets, oil"
     },
     {
       "title": "US House passes Russia sanctions bill, India faces 100% tariff threat - Firstpost",
@@ -811,7 +875,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 3,
-      "firstAt": 1789604375000
+      "firstAt": 1789604375000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Sanctions bill boosts risk assets, oil"
     },
     {
       "title": "Congress passes sweeping US sanctions bill targeting Russia - Al Jazeera",
@@ -831,7 +901,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789604160000
+      "firstAt": 1789604160000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Sanctions bill boosts risk assets, oil"
     },
     {
       "title": "Congress passes sweeping US sanctions bill targeting Russia",
@@ -872,29 +948,6 @@
       "rel": 2,
       "srcs": 3,
       "firstAt": 1789604160000
-    },
-    {
-      "title": "U.S. Rate Hike After 3 Years: 5 Impacts on South Koreans - 조선일보",
-      "link": "https://news.google.com/rss/articles/CBMijgFBVV95cUxNTmhWUkZ0ck50eXZsODZLVjVHQ09jQVBNanFINDlBV2hmZ3FJZmNuLS1uNUNiaTdYazlnLXlvSFB6aVJjS3NmbUJJOXVWLTYxOWlDMDlZZDh2TGdYaUoyeTB4ZzNLNHhHUW9QQVBvdllGcDlhQ213YmtHZEx4NjFpOWhubExFWVN3WU1NZ2ZR?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMijgFBVV95cUxNTmhWUkZ0ck50eXZsODZLVjVHQ09jQVBNanFINDlBV2hmZ3FJZmNuLS1uNUNiaTdYazlnLXlvSFB6aVJjS3NmbUJJOXVWLTYxOWlDMDlZZDh2TGdYaUoyeTB4ZzNLNHhHUW9QQVBvdllGcDlhQ213YmtHZEx4NjFpOWhubExFWVN3WU1NZ2ZR?oc=5\" target=\"_blank\">U.S. Rate Hike ",
-      "at": 1789605900000,
-      "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789603200000
     },
     {
       "title": "Russian strikes injure 13 in Ukraine’s Kyiv, Odesa, officials say - Arab News",
@@ -2376,7 +2429,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-17T02:10:25.164Z",
-  "headlinesAt": "2026-09-17T02:10:25.164Z",
-  "updatedAt": "2026-09-17T02:10:25.164Z"
+  "calendarAt": "2026-09-17T02:11:56.640Z",
+  "headlinesAt": "2026-09-17T02:11:56.640Z",
+  "updatedAt": "2026-09-17T02:11:56.640Z"
 }
