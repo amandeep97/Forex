@@ -20,7 +20,29 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789633130000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Geopolitical conflict boosts safe havens and oil."
+    },
+    {
+      "title": "BofA favors these stocks as UK insurance yields stay attractive",
+      "link": "https://www.investing.com/news/stock-market-news/bofa-favors-these-stocks-as-uk-insurance-yields-stay-attractive-4905027",
+      "source": "Investing",
+      "at": 1789635268000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789635268000,
+      "_kind": null,
+      "why": "Specific stock picks, unclear broad market impact."
     },
     {
       "title": "Markets face a hawkish Fed as rate-cut hopes recede - Proactive Investors",
@@ -44,7 +66,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789635221000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Hawkish Fed strengthens dollar, hurting gold and FX."
     },
     {
       "title": "India says will take 'all necessary measures' to protect economic interests after US passes Russia sanctions bill - Anadolu Ajansı",
@@ -65,7 +93,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789633130000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions bill impact on markets is uncertain."
     },
     {
       "title": "Japanese Yen strengthens due to BoJ rate hike bets, weaker US Dollar - FXStreet",
@@ -84,7 +113,35 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789634977000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USD/JPY": "down"
+      },
+      "why": "Yen strengthens, implying USD/JPY falls."
+    },
+    {
+      "title": "We told you first: This energy play is up +35% premarket today despite Fed’s hike",
+      "link": "https://www.investing.com/news/stock-market-news/we-told-you-first-this-energy-play-is-up-34-premarket-today-despite-feds-hike-4905020",
+      "source": "Investing",
+      "at": 1789634968000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789634968000,
+      "_kind": null,
+      "why": "Specific energy stock news, unclear macro impact."
     },
     {
       "title": "UN-backed experts cite possible US war crimes in Iran strikes - newsday.com",
@@ -105,7 +162,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789633929000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "War crimes allegations increase geopolitical risk premium."
     },
     {
       "title": "U.S. Treasury Yields Fall as Market Regains Trust in Fed’s Inflation Resolve - WSJ",
@@ -129,7 +192,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789634940000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Falling yields usually support gold, but Fed trust implies s"
     },
     {
       "title": "Gold: Rate Hike Odds, Higher Inflation, and Political Pressure Surge Bearish Bets - Investing.com",
@@ -148,7 +217,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789632900000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Headline explicitly states bearish bets on gold."
     },
     {
       "title": "US Congress passes sweeping Russia sanctions bill - The Business Standard",
@@ -169,7 +242,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789633130000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions bill passage has mixed/unclear immediate market ef"
     },
     {
       "title": "Trump hopes Iran war nearing end as Houthi-Saudi fighting escalates",
@@ -189,7 +263,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789634208000,
-      "_kind": null
+      "_kind": null,
+      "why": "Conflicting signals on war duration and escalation."
     },
     {
       "title": "Oil prices extend losses as supply disruption fears ease",
@@ -206,7 +281,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789634187000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Oil prices extend losses."
     },
     {
       "title": "Post Fed rate hike, experts see up to 50bps RBI policy tightening in CY26 - Business Standard",
@@ -230,7 +309,7 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789634114000,
-      "_kind": null
+      "why": "RBI policy news has negligible direct impact on these pairs."
     },
     {
       "title": "Sanctions against Russia: Vlasiuk explains what Ukraine expects from adopted Graham bill - Ukrinform",
@@ -250,7 +329,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789631803000
+      "firstAt": 1789631803000,
+      "why": "Political commentary on sanctions, no clear market direction"
     },
     {
       "title": "UN mission finds grounds to believe US committed war crimes in Iran - The Jerusalem Post",
@@ -270,7 +350,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789633929000
+      "firstAt": 1789633929000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "War crimes findings heighten geopolitical risk and uncertain"
     },
     {
       "title": "Indonesia stocks higher at close of trade; IDX Composite Index up 0.35%",
@@ -1730,43 +1816,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789608300000
-    },
-    {
-      "title": "UK’s Burnham, Canada’s Carney discuss AI risks, defence cooperation",
-      "link": "https://www.aljazeera.com/news/2026/9/17/uk-and-canada-discuss-ai-risks-and-defence-ties-in-first-bilateral-meeting?traffic_source=rss",
-      "source": "Al Jazeera",
-      "desc": "UK and Canada explore AI risks, defence cooperation and joint initiatives during a bilateral meeting in Liverpool.",
-      "at": 1789607666000,
-      "inst": [
-        "USD/CAD"
-      ],
-      "ccy": [
-        "CAD"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789607666000
-    },
-    {
-      "title": "Congress passes sweeping US sanctions bill targeting Russia - Al Jazeera",
-      "link": "https://news.google.com/rss/articles/CBMiogFBVV95cUxON3ZYSEg3VnhFbkR6Q25RZkZuOFM1UWZ4Vk45TXpxUE4tQXZfZGR5VlZDR2VEOHhhcmd1ekdsLXlpRzhMMmtOYnh0VDA1UXZ3eFZZdnptWnJaeGhIU2k1bmdQNE9EQnU4VUwtU3l3YktfQUpobHBTTzltZ05tU05lZHZoVF9iZTZxS0JwYTlYajlTb29mSTFORHRYcHIwQ0RXekHSAacBQVVfeXFMUGRPNFRWTWxsenJNN0psUTg5NnAxTHlISGUxaHUzRnBLYzZ3OHpaa2YwU1poVDQ3SkozLVRjMGc4NEZkX0NPS1dCc05zdk9JZXhSRURhM0htcTRaMm1HSThJYzZKLWhSVTgxTzZVemp1T2F3UGtzNjRhWW9xQmdNdXk4LXFVTzFfT1ppT1gtaGMyNDJhTFBSa2czRVcxSUtYeTF2M0JaRjQ?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiogFBVV95cUxON3ZYSEg3VnhFbkR6Q25RZkZuOFM1UWZ4Vk45TXpxUE4tQXZfZGR5VlZDR2VEOHhhcmd1ekdsLXlpRzhMMmtOYnh0VDA1UXZ3eFZZdnptWnJaeGhIU2k1bmdQNE9EQnU4VUwtU3l3YktfQUpobHBTTzltZ05tU05lZHZoVF9iZTZxS0JwYTlYajlTb29mSTFORHRYcHIwQ0RXekHSAacBQVVfeX",
-      "at": 1789607273000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789605116000
     }
   ],
   "sources": [
@@ -1793,6 +1842,6 @@
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-17T09:04:24.606Z",
-  "updatedAt": "2026-09-17T09:04:24.606Z"
+  "headlinesAt": "2026-09-17T09:05:57.864Z",
+  "updatedAt": "2026-09-17T09:05:57.864Z"
 }
