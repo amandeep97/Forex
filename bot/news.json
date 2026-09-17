@@ -14,7 +14,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789688522000,
-      "_kind": null
+      "_kind": null,
+      "why": "IPO pricing is neutral for index"
     },
     {
       "title": "Gold (XAUUSD), Silver, Platinum Forecasts – Gold Rallies As Traders Bet Fed Will Keep Inflation Under Control - FXEmpire",
@@ -35,7 +36,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789688023000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "XAG/USD": "up"
+      },
+      "why": "Gold rallies on Fed inflation bets"
     },
     {
       "title": "Japan August inflation: Headline CPI 1.9% y/y (expected 2%)",
@@ -54,7 +60,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789685767000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USD/JPY": "down"
+      },
+      "why": "Lower CPI weakens yen carry trade"
     },
     {
       "title": "Saudis and Houthis exchange strikes, Yemenis flee by boat as Middle East war spreads",
@@ -73,7 +83,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789686077000
+      "firstAt": 1789686077000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Middle East war spreads risk premium"
     },
     {
       "title": "Bitcoin rebounds to $76,000 as markets shrug off U.S. rate hike - CHOSUNBIZ - Chosunbiz",
@@ -91,7 +107,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789687140000
+      "firstAt": 1789687140000,
+      "dir": {
+        "BTC/USDT": "up"
+      },
+      "why": "Bitcoin rebounds to $76,000 level"
     },
     {
       "title": "US approves $414M uranium investment in Niger, two years after troops left",
@@ -108,7 +128,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789686985000
+      "firstAt": 1789686985000,
+      "why": "Uranium investment has no clear FX impact"
     },
     {
       "title": "Turkey Tried to Have Key U.S. Witness in an Iran Sanctions-Busting Case Killed in a New York Jail - Middle East Forum",
@@ -128,7 +149,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789686077000
+      "firstAt": 1789686077000,
+      "why": "Legal case has no market direction"
     },
     {
       "title": "New Zealand data, food price inflation in August same as in July",
@@ -146,7 +168,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789685767000
+      "firstAt": 1789685767000,
+      "why": "Mixed data offers no clear direction"
     },
     {
       "title": "Tech leads Wall St to higher close as oil eases, Treasury yields dip - Reuters",
@@ -164,7 +187,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789685026000
+      "firstAt": 1789685026000,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Oil eases as yields dip"
     },
     {
       "title": "US markets rise after Fed rate hike — Channel NewsAsia - ua.news",
@@ -187,7 +214,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789681684000
+      "firstAt": 1789681684000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Stronger dollar after Fed rate hike"
     },
     {
       "title": "US to allow Iran delegation to attend UN meetings in New York as war passes half-year mark",
@@ -207,7 +240,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789681279000
+      "firstAt": 1789681279000,
+      "why": "Diplomatic move has no clear market impact"
     },
     {
       "title": "Trump administration approves sale of F-35 jets to Saudi Arabia",
@@ -227,7 +261,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789681097000
+      "firstAt": 1789681097000,
+      "why": "F-35 sale has no clear market impact"
     },
     {
       "title": "US Senator Shaheen: China Will Feel Impact Of Russia Sanctions - Radio Free Europe/Radio Liberty",
@@ -247,7 +282,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789678003000
+      "firstAt": 1789678003000,
+      "why": "Sanctions comment has no clear market impact"
     },
     {
       "title": "A sweeping US sanctions bill offers Ukraine new leverage on Russia, but enforcement looms - Chicago Tribune",
@@ -267,7 +303,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789677638000
+      "firstAt": 1789677638000,
+      "why": "Sanctions bill has no clear market impact"
     },
     {
       "title": "The 10-year Treasury is having its worst run in over 100 years. Why investors are buying bonds anyway.",
@@ -290,7 +327,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789680120000
+      "firstAt": 1789680120000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Rising yields strengthen dollar against assets"
     },
     {
       "title": "Micron, Intel and other chip stocks are furthering their strong comebacks",
@@ -1099,7 +1142,7 @@
       "firstAt": 1789669407000
     },
     {
-      "title": "UN experts say dem get grounds to believe say US commit war crimes for Iran strikes - bbc.com",
+      "title": "UN experts say dem get grounds to believe say US commit war crimes for Iran strikes - BBC",
       "link": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE14TzlBNWwzMjZPbVRUa00yR1hsNkktS1VaX2piSFE5OGJpWFgxdWNpVjVZRFVhVklSSWp2MXFxY2NaX0c1dV9FSTRHRDBFc0pxTXNEUU1CWFpSWHZuVEE?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiXkFVX3lxTE14TzlBNWwzMjZPbVRUa00yR1hsNkktS1VaX2piSFE5OGJpWFgxdWNpVjVZRFVhVklSSWp2MXFxY2NaX0c1dV9FSTRHRDBFc0pxTXNEUU1CWFpSWHZuVEE?oc=5\" target=\"_blank\">UN experts say dem get grounds to believe say US commit war crimes for Iran stri",
@@ -1266,26 +1309,6 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789665323000
-    },
-    {
-      "title": "Russia’s global fuel customers push back against US sanctions bill - politico.eu",
-      "link": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQdFJ3MmUyWFp0M0RPX2NSbFU0LTZGWTFGOW5IU3BsLVJFVU94Q1RlYl9pX0o1d0pTY3Z3WHN5a2RsV3YzWkMyTExwSy1UamViamYwRk0wMFNnVFh2azJPeTFHM1hPM0VFMlI4cHJ6UDR6OVdTT1hHQ3lLZV8xT1NhQkluRGVWdVd1MG5wYzl6X2lRdVVjOHlV?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMilwFBVV95cUxQdFJ3MmUyWFp0M0RPX2NSbFU0LTZGWTFGOW5IU3BsLVJFVU94Q1RlYl9pX0o1d0pTY3Z3WHN5a2RsV3YzWkMyTExwSy1UamViamYwRk0wMFNnVFh2azJPeTFHM1hPM0VFMlI4cHJ6UDR6OVdTT1hHQ3lLZV8xT1NhQkluRGVWdVd1MG5wYzl6X2lRdVVjOHlV?oc=5\" target=\"_blank\">Rus",
-      "at": 1789667160000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789667160000
     },
     {
       "title": "Human rights experts: ‘Reasonable grounds’ to believe US committed war crimes with Iran strikes - The Hill",
@@ -1500,7 +1523,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789661887000
+      "firstAt": 1789661300000
     },
     {
       "title": "Bond Markets Like What They Heard From Fed Chair Kevin Warsh - Investopedia",
@@ -1546,7 +1569,7 @@
       "firstAt": 1789663439000
     },
     {
-      "title": "European Markets Surge as Fed's Rate Hike Boosts Investor Confidence - Devdiscourse",
+      "title": "European Markets Surge as Fed's Rate Hike Boosts Investor Confidence - devdiscourse.com",
       "link": "https://news.google.com/rss/articles/CBMivgFBVV95cUxNTVBqYzJOZ2xVQ3dWbjdqVkJlenAxRzc5a21rZFU3ZjFOa25lQlNOQjJXNW5FdHc1YWNZYUVXTjc2cU16cVdjZl9CaHBjMDNnS1gtMVlkRWZia2Fsa3ZnbHkzOHlqVHY2cFRINkdZb0RXNWxkUTRlT2t2WENVX3ZnYmUzbFh6RC10X0Z6bzRkd2lKamZScEpWUWNkVkdQZjkzU3BJTEstUVNGRjR6bWtjcWprbHZ3QS1YVTNUQkpR0gHDAUFVX3lxTE5TQndjTURSdlpySWVZMkU0b1NEdWY0cmNLcDNRLUJjV2ZWbUtOTG1pLU9RamdZTy11U3ZacWI5ZE9VMFZkNGJNMkF1MS1UTnNvczlEYUVDOUNGNVhhYnh1dFNZNDZnTFZhdkVycllhWVRyaFAwc0ZCNkJfbE52eDZkWlIwTGZJSWh1czJZeGZEZENJeUVpVW5RaFJqcFZ2aTJXcXNkLXdOdm1PZFJUX2IyN2RMekNCVkJJUTlxX2tiY2MxUQ?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMivgFBVV95cUxNTVBqYzJOZ2xVQ3dWbjdqVkJlenAxRzc5a21rZFU3ZjFOa25lQlNOQjJXNW5FdHc1YWNZYUVXTjc2cU16cVdjZl9CaHBjMDNnS1gtMVlkRWZia2Fsa3ZnbHkzOHlqVHY2cFRINkdZb0RXNWxkUTRlT2t2WENVX3ZnYmUzbFh6RC10X0Z6bzRkd2lKamZScEpWUWNkVkdQZjkzU3BJTEstUVNGRj",
@@ -1631,6 +1654,26 @@
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMizgFBVV95cUxQQklnc1Bmc1E1MmdzajFTQ3ZJRm5UNHg2QjBNdnhMYjg3V3duLVpaNlhfTTNIeEM0TU5LOHBIdFNOX3lSblNyUUtZdTZtc3BYMjM5UkpwazFkMDRwc0VWcmJPS1BTRmlnSE00aHN5Mi0tY3FHQmo3NzJTN0R5MUxreU1tUXJXZm1zbl9aeWI4endUd05FZzB1MGlxRXVuVUFXQ21LOW1yUUlGQ0",
       "at": 1789661887000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789659327000
+    },
+    {
+      "title": "US House passes Russia sanctions bill championed by Graham, sending it to Trump - The Times of Israel",
+      "link": "https://news.google.com/rss/articles/CBMirgFBVV95cUxQbkNXVk5ENjB6YUt0V0xnZGkzUjZHLU0yLTJQTkw5RGFKcWtYRk95cllSeU1hUU9ob0xxdjY1ek5TZjh1NW1wMFlFTzNOTmUyOWxQSzBhV1hiWk91dXc5WTE2QlFJTE9rV0wtYW5mTWZnZFZFZUpKai1IcXc2bVh1OGJwREd4MjFYM0IwcUd5OWcyc0k5el85czZkTlZhM1dBV25MSjltLUZHUUUzNUHSAbMBQVVfeXFMUElXeUJJa2VQRVpQS21EVnN2QmxQTDJSREJxRFFxWTlSQXI2Z2pzZktqdGRoRTc4NDh0dVNyS2MyMjBHY05YUXVhd1hCUXE4bzVyNXVEU3RBOFAyVFZyVk1id0VWVlExbzZ0eno0MWRob0VuZmxGSWNQTGUtbzJNMUs3V3R5R3RXQmM5WjBUWWVwZ0wwVmRTMFJvaHBZd0NULWlzWmN4MWJzLWVvMUZrRy1TMXM?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMirgFBVV95cUxQbkNXVk5ENjB6YUt0V0xnZGkzUjZHLU0yLTJQTkw5RGFKcWtYRk95cllSeU1hUU9ob0xxdjY1ek5TZjh1NW1wMFlFTzNOTmUyOWxQSzBhV1hiWk91dXc5WTE2QlFJTE9rV0wtYW5mTWZnZFZFZUpKai1IcXc2bVh1OGJwREd4MjFYM0IwcUd5OWcyc0k5el85czZkTlZhM1dBV25MSjltLUZHUU",
+      "at": 1789661300000,
       "inst": [
         "XAU/USD",
         "USOIL",
@@ -1745,10 +1788,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-17T23:56:54.971Z",
-  "updatedAt": "2026-09-17T23:56:54.971Z"
+  "headlinesAt": "2026-09-17T23:58:12.461Z",
+  "updatedAt": "2026-09-17T23:58:12.461Z"
 }
