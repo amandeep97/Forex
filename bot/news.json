@@ -2,6 +2,28 @@
   "calendar": [],
   "headlines": [
     {
+      "title": "Republicans fear Russia sanctions bill will give Trump too much power on tariffs - Anadolu Ajansı",
+      "link": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPclpWNklPd29RWHprdE1BU1c1a0ctZFdfajJnaERqQk1CUURmSGgwWVRTdFlTdW9BbC04NWQ5MERVQzBsVU5BenpTVGZ2LWdPQzdvQkV0VURxanhpb08zaWxHaklzQWFOVG1JanVibktxQ3NZNEVJRXVZdl9WVm4zQ3ZMU3JNeEh5RVVwcVI0dXNCdXhXVFpDZ2pQR1pOMk1VTUZzNnZVekU2Q05aSE9RamdPdk54MV8ycnVQd2lJMA?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMivwFBVV95cUxPclpWNklPd29RWHprdE1BU1c1a0ctZFdfajJnaERqQk1CUURmSGgwWVRTdFlTdW9BbC04NWQ5MERVQzBsVU5BenpTVGZ2LWdPQzdvQkV0VURxanhpb08zaWxHaklzQWFOVG1JanVibktxQ3NZNEVJRXVZdl9WVm4zQ3ZMU3JNeEh5RVVwcVI0dXNCdXhXVFpDZ2pQR1pOMk1VTUZzNnZVekU2Q0",
+      "at": 1789629215000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1789626540000,
+      "_kind": null,
+      "why": "Political debate, no clear market direction"
+    },
+    {
       "title": "Natural Gas compresses near $2.90 in tight range: Live levels",
       "link": "https://www.investing.com/news/commodities-news/natural-gas-tests-2899-resistance-cluster-hourly-levels-93CH-4898874",
       "source": "Investing Cmdty",
@@ -12,9 +34,10 @@
       "ccy": [],
       "sev": 1,
       "rel": 2,
-      "srcs": 1,
+      "srcs": 2,
       "firstAt": 1789629092000,
-      "_kind": null
+      "_kind": null,
+      "why": "Compressing in tight range, no direction"
     },
     {
       "title": "Gold at $4,357 faces resistance wall in bearish regime: Live levels",
@@ -29,9 +52,13 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 1,
+      "srcs": 2,
       "firstAt": 1789629092000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Faces resistance wall in bearish regime"
     },
     {
       "title": "Brent Oil drops below key support at $103.66: Live levels",
@@ -47,9 +74,14 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 1,
+      "srcs": 2,
       "firstAt": 1789629092000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Brent drops below key support"
     },
     {
       "title": "Silver trapped at $64.43 below key resistance: Live levels",
@@ -64,9 +96,13 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 1,
+      "srcs": 2,
       "firstAt": 1789629092000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAG/USD": "down"
+      },
+      "why": "Trapped below key resistance"
     },
     {
       "title": "London Gas Oil pulls back from $1,575: Live levels",
@@ -81,9 +117,13 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 1,
+      "srcs": 2,
       "firstAt": 1789629092000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Pulls back from high level"
     },
     {
       "title": "Crude Oil WTI nears double-top breakdown at $100.76: Live levels",
@@ -99,9 +139,37 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 1,
+      "srcs": 2,
       "firstAt": 1789629092000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Nears double-top breakdown"
+    },
+    {
+      "title": "FTSE 100 today: Stocks rise as Fed hike lifts mood; BoE decision looms",
+      "link": "https://www.investing.com/news/stock-market-news/ftse-100-today-stocks-rise-as-fed-hike-lift-mood-boe-decision-looms-4904905",
+      "source": "Investing",
+      "at": 1789629044000,
+      "inst": [
+        "GBP/USD",
+        "US500"
+      ],
+      "ccy": [
+        "USD",
+        "GBP"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789629044000,
+      "_kind": null,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Stocks rise, currency direction unclear"
     },
     {
       "title": "Bitcoin steady at $76.5k as markets digest Fed rate hike, M.East tensions - Investing.com Nigeria",
@@ -125,7 +193,66 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789627632000,
-      "_kind": null
+      "_kind": null,
+      "why": "Steady, digesting news, no clear move"
+    },
+    {
+      "title": "European stocks catch a post-Fed bid as traders weigh Middle East peace chatter",
+      "link": "https://www.investing.com/news/stock-market-news/european-stocks-catch-a-postfed-bid-as-traders-weigh-middle-east-peace-chatter-4904808",
+      "source": "Investing",
+      "at": 1789628748000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1789628088000,
+      "_kind": null,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Catch a post-Fed bid"
+    },
+    {
+      "title": "Japan stocks higher at close of trade; Nikkei 225 up 0.53%",
+      "link": "https://www.investing.com/news/stock-market-news/japan-stocks-higher-at-close-of-trade-nikkei-225-up-053-4904889",
+      "source": "Investing",
+      "at": 1789628404000,
+      "inst": [
+        "USD/JPY",
+        "US500"
+      ],
+      "ccy": [
+        "JPY"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789628404000,
+      "_kind": null,
+      "why": "Japan stocks up, US assets unclear"
+    },
+    {
+      "title": "Asian stocks edge higher as Fed hike eases bond fears, China shares lag",
+      "link": "https://www.investing.com/news/stock-market-news/asian-stocks-edge-higher-as-fed-hike-eases-bond-fears-china-shares-lag-4904790",
+      "source": "Investing",
+      "at": 1789628287000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789628287000,
+      "_kind": null,
+      "why": "Asian stocks up, US direction unclear"
     },
     {
       "title": "Oil prices extend losses on easing fears of Middle East supply disruption",
@@ -140,9 +267,13 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 1,
+      "srcs": 2,
       "firstAt": 1789628088000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Extend losses on easing fears"
     },
     {
       "title": "Gold Gains Over 1% as Markets Digest Fed Rate Hike... - jordannews.jo",
@@ -161,7 +292,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789626630000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Gold gains over 1%"
     },
     {
       "title": "US Congress approves bill on sanctions against Russia - Yahoo",
@@ -182,7 +317,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789626471000,
-      "_kind": null
+      "why": "Sanctions approved, direction unclear"
     },
     {
       "title": "Fed Rate Hike Sends Treasury Yields Higher and the Stock Market Lower - Investing.com",
@@ -205,8 +340,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789626630000,
-      "_kind": null
+      "firstAt": 1789626630000
     },
     {
       "title": "Trump to sign new Russia sanctions bill — WSJ - The New Voice of Ukraine",
@@ -226,8 +360,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789626471000,
-      "_kind": null
+      "firstAt": 1789626471000
     },
     {
       "title": "Ukraine War, Day 1,667: US House Passes Russia Sanctions Bill - EA WorldView",
@@ -263,7 +396,7 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 1,
+      "srcs": 2,
       "firstAt": 1789627343000
     },
     {
@@ -303,26 +436,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789626790000
-    },
-    {
-      "title": "US Congress Clears Russia Sanctions Bill - The European Times",
-      "link": "https://news.google.com/rss/articles/CBMiggFBVV95cUxOTXllajRPNktaSUw0WFptWFViQ0kwczlBWnpqY3FIYnl6by1jRlBuRlNUYktmbFBZLWtnUkM2anFGeVBhWmxSQm5tXzBWc3l0aHlSNU00WW9pRE1vWTFJNXNFd3Nlaml5MExXd25sZVNaTllvQ0dQWXhoYnplbnZpS25B?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiggFBVV95cUxOTXllajRPNktaSUw0WFptWFViQ0kwczlBWnpqY3FIYnl6by1jRlBuRlNUYktmbFBZLWtnUkM2anFGeVBhWmxSQm5tXzBWc3l0aHlSNU00WW9pRE1vWTFJNXNFd3Nlaml5MExXd25sZVNaTllvQ0dQWXhoYnplbnZpS25B?oc=5\" target=\"_blank\">US Congress Clears Russia Sanct",
-      "at": 1789626663000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789626471000
     },
     {
       "title": "Yen Gains as Markets Brace for Aggressive BoJ Rate Hike - TradingPedia",
@@ -1715,84 +1828,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789600804000
-    },
-    {
-      "title": "Intel’s stock rises as investors hope memory chips can mark the next step in its turnaround",
-      "link": "https://www.marketwatch.com/story/intels-stock-rises-as-investors-hope-memory-chips-can-mark-the-next-step-in-its-turnaround-a276608f?mod=mw_rss_topstories",
-      "source": "MarketWatch",
-      "desc": "A report says Intel is in early talks with SK Hynix, which is considering some sort of partnership that would enable it to make memory chips in the U.S.",
-      "at": 1789602660000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1789602660000
-    },
-    {
-      "title": "Robust House majority backs sanctions on Russia and Iran - Roll Call",
-      "link": "https://news.google.com/rss/articles/CBMikwFBVV95cUxOQWZIYnFGaW14dEczTTdmUW1KWjUzUFBRaWFfcFJVU09DU2lIRGN4aGJqZ0JmZlB0U2toaFM1bkVwT1p4Wk96aE1wN0NKakJaeERwSFgwNzVpMlptSXFEbjFjNWZwM3dSUEZkX2ZGaldqNnMzMEhQcmRkbU94V2RHY3hla3BJSlJ0Si1laXE3SGNNY3c?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMikwFBVV95cUxOQWZIYnFGaW14dEczTTdmUW1KWjUzUFBRaWFfcFJVU09DU2lIRGN4aGJqZ0JmZlB0U2toaFM1bkVwT1p4Wk96aE1wN0NKakJaeERwSFgwNzVpMlptSXFEbjFjNWZwM3dSUEZkX2ZGaldqNnMzMEhQcmRkbU94V2RHY3hla3BJSlJ0Si1laXE3SGNNY3c?oc=5\" target=\"_blank\">Robust H",
-      "at": 1789602460000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789599900000
-    },
-    {
-      "title": "US Congress passes Russia sanctions bill - DW.com",
-      "link": "https://news.google.com/rss/articles/CBMifkFVX3lxTE5RUFVzeUhxTjN5UEpCUEN4bU14T3lYOVBROGxCckticlZFbGJWRTNGSU9IN3h5MDZCMTktVUpQREViUF9qYmRuZ1NwNWZPOHd0VW1lODBHYTFlUDk5czM4X3FOMDQyOTc1OE9YZzE1VG5DOHlDMVktWUxzWjg4QdIBfkFVX3lxTE5mQWlNTk5ST3BkWHFwZGhZaHZTMkdHZDlIVDNUd0pjcy16R083VkZWclNhd2FUTVRvQ3d4a01lRW1LcGl4TkNEdkdsUjhNUVVONFR5T3daQTNSZzlFa2VBTjFlQWU3QnhmSWo2a2VMU1BRV29UWEFWRi1CRXRaQQ?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMifkFVX3lxTE5RUFVzeUhxTjN5UEpCUEN4bU14T3lYOVBROGxCckticlZFbGJWRTNGSU9IN3h5MDZCMTktVUpQREViUF9qYmRuZ1NwNWZPOHd0VW1lODBHYTFlUDk5czM4X3FOMDQyOTc1OE9YZzE1VG5DOHlDMVktWUxzWjg4QdIBfkFVX3lxTE5mQWlNTk5ST3BkWHFwZGhZaHZTMkdHZDlIVDNUd0pjcy16R0",
-      "at": 1789602369000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789599840000
-    },
-    {
-      "title": "US House passes sweeping Russia sanctions bill following months of delay - TRT World",
-      "link": "https://news.google.com/rss/articles/CBMiWEFVX3lxTFBReTlWYjJVajlnZ183TmhVX2YyVVc4Q1J3UnZwVzlBZ3V0djM2TGxub19hQzIxakRoLUVLMlJyZ2JjUWdSZVRxUnRqTHRFenFySEY1U1pma2E?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiWEFVX3lxTFBReTlWYjJVajlnZ183TmhVX2YyVVc4Q1J3UnZwVzlBZ3V0djM2TGxub19hQzIxakRoLUVLMlJyZ2JjUWdSZVRxUnRqTHRFenFySEY1U1pma2E?oc=5\" target=\"_blank\">US House passes sweeping Russia sanctions bill following months of delay</a>&nbsp;&nbsp;",
-      "at": 1789601065000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789598400000
     }
   ],
   "sources": [
     "ForexLive",
     "MarketWatch",
+    "Investing",
     "Investing FX",
     "Investing Cmdty",
     "CNBC Markets",
@@ -1804,10 +1845,6 @@
   ],
   "failed": [
     {
-      "name": "Investing",
-      "why": "network timeout at: https://www.investing.com/rss/news_25.rss"
-    },
-    {
       "name": "FXStreet",
       "why": "403"
     },
@@ -1817,6 +1854,6 @@
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-17T07:16:55.808Z",
-  "updatedAt": "2026-09-17T07:16:55.808Z"
+  "headlinesAt": "2026-09-17T07:18:27.492Z",
+  "updatedAt": "2026-09-17T07:18:27.492Z"
 }
