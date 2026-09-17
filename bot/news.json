@@ -18,7 +18,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789685767000,
-      "_kind": null
+      "_kind": null,
+      "why": "Mixed data, no clear directional bias."
     },
     {
       "title": "Tech leads Wall St to higher close as oil eases, Treasury yields dip - Reuters",
@@ -37,7 +38,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789685026000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Oil eases, yields dip."
     },
     {
       "title": "Saudis and Houthis exchange strikes, Yemenis flee by boat as Middle East war spreads",
@@ -56,7 +61,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789683891000
+      "firstAt": 1789683891000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "War spreads, risk-off, supply fears."
     },
     {
       "title": "US markets rise after Fed rate hike — Channel NewsAsia - ua.news",
@@ -79,7 +90,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789681684000
+      "firstAt": 1789681684000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "up",
+        "GBP/USD": "up"
+      },
+      "why": "Markets rise, risk-on, USD weakens."
     },
     {
       "title": "US to allow Iran delegation to attend UN meetings in New York as war passes half-year mark",
@@ -99,7 +116,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789681279000
+      "firstAt": 1789681279000,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Diplomatic de-escalation, reduced geopolitical risk."
     },
     {
       "title": "Trump administration approves sale of F-35 jets to Saudi Arabia",
@@ -119,7 +142,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789681097000
+      "firstAt": 1789681097000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Arms deal, regional tension persists."
     },
     {
       "title": "US Senator Shaheen: China Will Feel Impact Of Russia Sanctions - Radio Free Europe/Radio Liberty",
@@ -139,7 +168,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789678108000
+      "firstAt": 1789678108000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Sanctions, geopolitical risk, supply concerns."
     },
     {
       "title": "A sweeping US sanctions bill offers Ukraine new leverage on Russia, but enforcement looms - Chicago Tribune",
@@ -159,7 +194,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789677638000
+      "firstAt": 1789677638000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Sanctions bill, geopolitical uncertainty."
     },
     {
       "title": "The 10-year Treasury is having its worst run in over 100 years. Why investors are buying bonds anyway.",
@@ -182,7 +223,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789680120000
+      "firstAt": 1789680120000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Yields rise, USD strengthens, bonds bought."
     },
     {
       "title": "Micron, Intel and other chip stocks are furthering their strong comebacks",
@@ -197,7 +244,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789680120000
+      "firstAt": 1789680120000,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Chip stocks strong, AI fears subsiding."
     },
     {
       "title": "CBOT wheat futures fall on lack of bullish news",
@@ -232,7 +283,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789677246000
+      "firstAt": 1789677246000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "up",
+        "GBP/USD": "up"
+      },
+      "why": "Markets applaud, risk-on, USD softens."
     },
     {
       "title": "Wall Street is betting Trump backs down on Iran — but what if the ‘TACO’ trade fails this time?",
@@ -247,7 +304,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789677246000
+      "firstAt": 1789677246000,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "TACO trade fails, Iran risk persists."
     },
     {
       "title": "Russia, China veto UN mandate to monitor Iran sanctions - Al Jazeera",
@@ -267,7 +328,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789677638000
+      "firstAt": 1789677638000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Veto, sanctions monitoring ends, risk up."
     },
     {
       "title": "Russia, China veto UN mandate to monitor Iran sanctions",
@@ -287,7 +354,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789677638000
+      "firstAt": 1789677638000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Veto, sanctions monitoring ends, risk up."
     },
     {
       "title": "Oil dips, Brent turns negative for the week amid easing Middle East supply fears",
@@ -304,7 +377,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789678712000
+      "firstAt": 1789678712000,
+      "dir": {
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Oil dips, supply fears ease."
     },
     {
       "title": "Russia and China veto US proposal for UN experts to keep monitoring sanctions on Iran - The Times of Israel",
@@ -1437,6 +1515,29 @@
       "firstAt": 1789661887000
     },
     {
+      "title": "Bond Markets Like What They Heard From Fed Chair Kevin Warsh - Investopedia",
+      "link": "https://news.google.com/rss/articles/CBMinwFBVV95cUxPblp2cnU5QlA3cVhlb2Z3WUp1Y3hmTE15VGh1LW95cjFDd0Z6ZUZYcmNWNHNZVVFfcVFYZ05vY3pJOTNwT0IzWTVnOE44SlJMZ1RUdVI4Zzh6a1RvMms2T3cwb1RYbEZSSmloWVNvQlVPMTFMQ195SkVmYVF1cC0zMTlqd1NGR1FvQ1pIdWh4d05tSkZEamZtSHVNR1NRdk0?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMinwFBVV95cUxPblp2cnU5QlA3cVhlb2Z3WUp1Y3hmTE15VGh1LW95cjFDd0Z6ZUZYcmNWNHNZVVFfcVFYZ05vY3pJOTNwT0IzWTVnOE44SlJMZ1RUdVI4Zzh6a1RvMms2T3cwb1RYbEZSSmloWVNvQlVPMTFMQ195SkVmYVF1cC0zMTlqd1NGR1FvQ1pIdWh4d05tSkZEamZtSHVNR1NRdk0?oc=5\" target=\"",
+      "at": 1789663655000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789663655000
+    },
+    {
       "title": "Russia's Yaroslavl refinery shuts processing after a drone attack, sources say - Reuters",
       "link": "https://news.google.com/rss/articles/CBMixAFBVV95cUxOUUdwcm5UdmhsM25Bc2lQT0Y4N0E0YTNGbnlQNEU5dWhsRjB6LXJBbWp0NUNBZ2w5YThsQXc3WXl0dVN6TlMzaGpleE5NbWd2cnljV3ZZV3pKdEZoX0o1U2JDRFRuM1R4bXMyaGNuMU0yX2ktZnEweUR4SmlsTHZNdDgya2RNNjRmU2xKeUtZV0oxUGYtQ1NULUR3QWlBU2JILUVwUXdGaW44cmhqR3ZhbkwyRlU2QThQRDRCb0ttZzl6MlRz?oc=5",
       "source": "Wires (geo)",
@@ -1704,21 +1805,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789655340000
-    },
-    {
-      "title": "Retaliatory Canadian tariffs hit US dairy markets - farmersadvance.com",
-      "link": "https://news.google.com/rss/articles/CBMitgFBVV95cUxPcncxajBkUkZfT3hnNkxuc25OanlZeTBYTnNpUGxieWZHOFVSazRCeUYxc09UMWtXbDYtcklJWkhXeWNMU2FZa19iUHlwN1JUSXE5Wkx0a0ZwckZXRHItTkJIM2ZBZzkza3U2Q0pTc2haWHprY3dBVXV0eXFVbHlzekFWNkFEOC1oTTR5TmI4Y0tVTy0tZzU5QTJPR21kaEJ0RmdtWFlMQWNuZEI1MlJLal9nRFFjQQ?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMitgFBVV95cUxPcncxajBkUkZfT3hnNkxuc25OanlZeTBYTnNpUGxieWZHOFVSazRCeUYxc09UMWtXbDYtcklJWkhXeWNMU2FZa19iUHlwN1JUSXE5Wkx0a0ZwckZXRHItTkJIM2ZBZzkza3U2Q0pTc2haWHprY3dBVXV0eXFVbHlzekFWNkFEOC1oTTR5TmI4Y0tVTy0tZzU5QTJPR21kaEJ0RmdtWFlMQWNuZE",
-      "at": 1789655340000,
-      "inst": [
-        "USD/CAD"
-      ],
-      "ccy": [],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789655340000
     }
   ],
   "sources": [
@@ -1741,10 +1827,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-17T23:05:40.587Z",
-  "updatedAt": "2026-09-17T23:05:40.587Z"
+  "headlinesAt": "2026-09-17T23:06:59.548Z",
+  "updatedAt": "2026-09-17T23:06:59.548Z"
 }
