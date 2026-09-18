@@ -14,7 +14,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789756228000,
-      "_kind": null
+      "_kind": null,
+      "why": "Developer extension has minimal macro impact"
     },
     {
       "title": "Three words from Kevin Warsh have Wall Street wondering how far the Fed will go with rate hikes",
@@ -32,7 +33,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789756111000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Fed rate hike uncertainty weighs on stocks"
     },
     {
       "title": "‘There might be a silver lining’: My friend’s wife died at 60 after a high-earning career. Can he claim her Social Security?",
@@ -50,7 +55,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789755960000,
-      "_kind": null
+      "_kind": null,
+      "why": "Personal finance story unrelated to silver"
     },
     {
       "title": "Venezuela, opposition faction weighing deal to move $4 billion in gold to US from UK, sources say",
@@ -67,7 +73,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789755846000,
-      "_kind": null
+      "_kind": null,
+      "why": "Gold movement news lacks clear price signal"
     },
     {
       "title": "Russia’s drones threaten Kyiv-bound Western officials as war effort stalls",
@@ -88,7 +95,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789755587000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "War escalation boosts safe havens and oil"
     },
     {
       "title": "BoE Rate Hike Vote Stalls, Markets Brace For Status Quo - The Globe and Mail",
@@ -107,7 +120,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789755324000,
-      "_kind": null
+      "why": "BoE vote stall implies status quo"
     },
     {
       "title": "Wendy’s shares slip after US franchisee files for bankruptcy",
@@ -119,8 +132,7 @@
       "sev": 1,
       "rel": 1,
       "srcs": 1,
-      "firstAt": 1789755317000,
-      "_kind": null
+      "firstAt": 1789755317000
     },
     {
       "title": "Lam Research and MicroStrategy among market cap stock movers on Friday",
@@ -152,7 +164,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789754678000
+      "firstAt": 1789754678000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Hybrid attacks increase geopolitical risk premium"
     },
     {
       "title": "Orion180 Insurance valued at $1.14 billion as shares fall in debut",
@@ -167,28 +185,6 @@
       "firstAt": 1789754481000
     },
     {
-      "title": "Economic data releases and Fed speech highlight Monday’s calendar",
-      "link": "https://www.investing.com/news/stock-market-news/economic-data-releases-and-fed-speech-highlight-mondays-calendar-93CH-4907762",
-      "source": "Investing",
-      "at": 1789754428000,
-      "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789754428000
-    },
-    {
       "title": "As Warren Buffett’s reign ends, fans should sell Berkshire — and buy these stocks instead",
       "link": "https://www.marketwatch.com/story/as-warren-buffetts-reign-ends-fans-should-sell-berkshire-and-buy-these-stocks-instead-bff5ba32?mod=mw_rss_topstories",
       "source": "MarketWatch",
@@ -201,7 +197,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 3,
-      "firstAt": 1789751702000
+      "firstAt": 1789751702000,
+      "why": "Berkshire advice doesn't dictate index direction"
     },
     {
       "title": "Oil slides following outreach to Iran to limit Houthis actions in Red Sea",
@@ -217,7 +214,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789752986000
+      "firstAt": 1789752986000,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "De-escalation in Red Sea lowers oil"
     },
     {
       "title": "2-year Treasury yield reaches multi-year high after Fed rate hike - Yahoo Finance",
@@ -240,7 +241,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789752582000
+      "firstAt": 1789752582000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Higher yields strengthen dollar against assets"
     },
     {
       "title": "Revealed: Ed Miliband ignored MI6’s warnings over Israel sanctions - The Spectator",
@@ -260,7 +267,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789752287000
+      "firstAt": 1789752287000,
+      "why": "Political scandal has no market impact"
     },
     {
       "title": "Iranians rally in biggest show of defiance against US since war began",
@@ -280,7 +288,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789752203000
+      "firstAt": 1789752203000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Iran defiance signals continued geopolitical tension"
     },
     {
       "title": "Two signs investors don’t have to fear an AI slowdown",
@@ -316,7 +330,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789750200000
+      "firstAt": 1789750200000,
+      "why": "General inflation discussion lacks specific direction"
     },
     {
       "title": "Why investors’ best move in reaction to Fed’s rate hike is doing nothing at all",
@@ -333,7 +348,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789749540000
+      "firstAt": 1789749540000,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Bullish argument for stocks over bonds"
     },
     {
       "title": "Canadian dollar weakens against major currencies in the week ending September 18",
@@ -349,7 +368,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789748757000
+      "firstAt": 1789748757000,
+      "dir": {
+        "USD/CAD": "up"
+      },
+      "why": "Weaker CAD means stronger USD pair"
     },
     {
       "title": "Netflix is too focused on podcasts and not enough on good shows, analysts say",
@@ -1672,6 +1695,26 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789714654000
+    },
+    {
+      "title": "Iran says it strikes an oil tanker, and other Mideast developments - WKMG",
+      "link": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxOb0tFS0JiemdYZlV4Q0k3SVVPaHFQRW9rQklNMTlaajFUcXEtNS1za2RZRkpNLXhuQjROek1CbG1uZFVNWWlnbUpQLXhWSlhuMFJNTnRKaWhhTXZvRjJoZGE5YnpMZHFGUmUwWDZuQWpGaFlOT2VqTTNqa2lwVnpGVkZKTHVHNjk5ZHJ6UUVEa3ExRkNrekpWYkRGS0ZYSWJiVVlKNmVEZFk3ZVM5RVdrVWVaeXZoZXN2?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiuAFBVV95cUxOb0tFS0JiemdYZlV4Q0k3SVVPaHFQRW9rQklNMTlaajFUcXEtNS1za2RZRkpNLXhuQjROek1CbG1uZFVNWWlnbUpQLXhWSlhuMFJNTnRKaWhhTXZvRjJoZGE5YnpMZHFGUmUwWDZuQWpGaFlOT2VqTTNqa2lwVnpGVkZKTHVHNjk5ZHJ6UUVEa3ExRkNrekpWYkRGS0ZYSWJiVVlKNmVEZFk3ZV",
+      "at": 1789713825000,
+      "inst": [
+        "USOIL",
+        "XAU/USD",
+        "UKOIL"
+      ],
+      "ccy": [
+        "OIL",
+        "XAU"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789713825000
     }
   ],
   "sources": [
@@ -1698,6 +1741,6 @@
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-18T18:44:26.842Z",
-  "updatedAt": "2026-09-18T18:44:26.842Z"
+  "headlinesAt": "2026-09-18T18:45:58.139Z",
+  "updatedAt": "2026-09-18T18:45:58.139Z"
 }
