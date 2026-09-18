@@ -174,6 +174,44 @@
   ],
   "headlines": [
     {
+      "title": "Russian hybrid attacks against Europe intensifying, says Macron",
+      "link": "https://www.bbc.co.uk/news/articles/cm2dw1w9d3yjo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC World",
+      "desc": "The French president says he has tasked the government with protecting critical infrastructure and defence industry sites.",
+      "at": 1789742521000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789742521000,
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Geopolitical risk boosts gold, oil unclear"
+    },
+    {
+      "title": "SpaceX stock falls as Starship's test flight slips to Sept. 28, retail investors sell shares",
+      "link": "https://finance.yahoo.com/markets/stocks/article/spacex-stock-falls-as-starships-test-flight-slips-to-sept-28-retail-investors-sell-shares-143200705.html",
+      "source": "Yahoo Finance",
+      "at": 1789741920000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 1,
+      "srcs": 1,
+      "firstAt": 1789741920000,
+      "_kind": null
+    },
+    {
       "title": "Oil pares losses as market weighs Saudi supply concerns, Middle East tensions",
       "link": "https://www.investing.com/news/commodities-news/oil-prices-fall-1-on-hopes-of-limited-supply-disruptions-4906600",
       "source": "Investing Cmdty",
@@ -191,7 +229,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789741834000,
-      "_kind": null
+      "_kind": null,
+      "why": "Oil pares losses, direction unclear"
     },
     {
       "title": "France in ‘game of chicken’ with EU on Russia sanctions, as clock ticks to expiry deadline - EUobserver",
@@ -212,7 +251,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789740823000,
-      "_kind": null
+      "_kind": null,
+      "why": "EU sanctions dispute, no clear market impact"
     },
     {
       "title": "Revealed: Ed Miliband ignored MI6’s warnings over Israel sanctions - The Spectator",
@@ -233,7 +273,27 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789741512000,
-      "_kind": null
+      "_kind": null,
+      "why": "Political news, no direct market impact"
+    },
+    {
+      "title": "Stock Market Today: Techs Move Higher As Dow Slides; Taiwan Semiconductor Nears Buy Point (Live Coverage)",
+      "link": "https://www.investors.com/market-trend/stock-market-today/dow-jones-sp500-nasdaq-oil-prices-apple-amd-micron-sandisk/?src=A00220&yptr=yahoo",
+      "source": "Yahoo Finance",
+      "at": 1789741499000,
+      "inst": [
+        "US30"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789741200000,
+      "_kind": null,
+      "dir": {
+        "US30": "down"
+      },
+      "why": "Dow slides, techs move higher"
     },
     {
       "title": "2 Growth Stocks I Plan to Buy if the Stock Market Crashes",
@@ -248,7 +308,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789741200000,
-      "_kind": null
+      "_kind": null,
+      "why": "Hypothetical buying plan, no current direction"
     },
     {
       "title": "Dow Jones oversold near 51,614 support: Live levels",
@@ -263,7 +324,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789740947000,
-      "_kind": null
+      "_kind": null,
+      "why": "Oversold near support, direction unclear"
     },
     {
       "title": "New US sanctions bill on Russia puts India's Modi in a bind - reuters.com",
@@ -284,7 +346,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789740823000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions bill, no clear immediate impact"
     },
     {
       "title": "S&P 500 wavers after best one-day rally in six weeks: AlphaCheck",
@@ -299,7 +362,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789740802000,
-      "_kind": null
+      "_kind": null,
+      "why": "S&P wavers after rally, direction unclear"
     },
     {
       "title": "LNG tanker hit by suspected cyberattack in Mediterranean Sea",
@@ -313,7 +377,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789740585000
+      "firstAt": 1789740585000,
+      "why": "Cyberattack on tanker, no clear price impact"
     },
     {
       "title": "Travis Kelce and others lost millions in a Ponzi scheme. Here’s what a basic index fund would have earned them instead.",
@@ -344,7 +409,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789740527000
+      "firstAt": 1789740527000,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "down"
+      },
+      "why": "Gold and oil trim losses"
     },
     {
       "title": "Fatal building collapse highlights dangers plaguing Gaza nearly a year after ceasefire - The Times of Israel",
@@ -364,43 +434,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789740222000
-    },
-    {
-      "title": "Russian hybrid attacks against Europe intensifying, says Macron",
-      "link": "https://www.bbc.co.uk/news/articles/cm2dw1w9d3yjo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC World",
-      "desc": "The French president says he has tasked the government with protecting critical infrastructure and defence industry sites.",
-      "at": 1789740129000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789740129000
-    },
-    {
-      "title": "U.S. Regulator Expands Crypto Trading To Online Platforms",
-      "link": "https://finance.yahoo.com/markets/crypto/articles/u-regulator-expands-crypto-trading-135400971.html",
-      "source": "Yahoo Finance",
-      "at": 1789739640000,
-      "inst": [
-        "BTC/USDT"
-      ],
-      "ccy": [
-        "BTC"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789739640000
+      "firstAt": 1789740222000,
+      "why": "Gaza news, no clear market impact"
     },
     {
       "title": "Oil trims losses as investors assess outlook for Mideast crude supply flows",
@@ -417,7 +452,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789739081000
+      "firstAt": 1789739081000,
+      "dir": {
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Oil trims losses, bearish sentiment"
     },
     {
       "title": "A sideways market and rising earnings are presenting a buying opportunity for this crucial sector",
@@ -450,7 +490,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789737915000
+      "firstAt": 1789737915000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Iran strikes tanker, risk premium rises"
     },
     {
       "title": "US voter opposition to war on Iran grows to new highs: Poll",
@@ -470,7 +516,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789736967000
+      "firstAt": 1789736967000,
+      "why": "Voter opposition, no clear market direction"
     },
     {
       "title": "FIFA’s Infantino ‘must go, no ifs or buts’, blasts German FA vice president",
@@ -871,7 +918,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789728487000
+      "firstAt": 1789729734000
     },
     {
       "title": "Gold Holds Gain as Lower Oil and Fed Hike Temper Inflation Fears - bloomberg.com",
@@ -890,8 +937,8 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789728487000
+      "srcs": 1,
+      "firstAt": 1789729591000
     },
     {
       "title": "North Korea anthem played at South’s Bangladesh hockey match at Asian Games",
@@ -909,23 +956,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789729144000
-    },
-    {
-      "title": "Gold price today, Friday, September 18, 2026: Gold hits weekly high as inflation concerns fade",
-      "link": "https://finance.yahoo.com/personal-finance/investing/article/gold-price-today-friday-september-18-2026-gold-hits-weekly-high-as-inflation-concerns-fade-104807567.html",
-      "source": "Yahoo Finance",
-      "at": 1789728487000,
-      "inst": [
-        "XAU/USD"
-      ],
-      "ccy": [
-        "XAU",
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789728487000
     },
     {
       "title": "Blumenthal touts passage of Russia sanctions bill as CT Dems split - Hartford Business Journal",
@@ -1860,7 +1890,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-18T14:41:42.346Z",
-  "headlinesAt": "2026-09-18T14:41:42.346Z",
-  "updatedAt": "2026-09-18T14:41:42.346Z"
+  "calendarAt": "2026-09-18T14:43:14.062Z",
+  "headlinesAt": "2026-09-18T14:43:14.062Z",
+  "updatedAt": "2026-09-18T14:43:14.062Z"
 }
