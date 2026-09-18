@@ -192,7 +192,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789758881000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Geopolitical conflict boosts safe havens and oil."
     },
     {
       "title": "Dollar advances vs yen as BOJ dissent clouds rate-hike outlook - marketscreener.com",
@@ -211,7 +217,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789758800000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USD/JPY": "up"
+      },
+      "why": "Dollar advances against yen."
     },
     {
       "title": "FedEx, Advent-led consortium secures over 89% of InPost shares in takeover offer",
@@ -245,7 +255,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789756260000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions rhetoric unclear for immediate price direction."
     },
     {
       "title": "Oil finishes lower as the market sniffs out a TACO",
@@ -266,7 +277,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789758321000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Oil finishes lower; gold direction unclear."
     },
     {
       "title": "US Treasury’s Bessent plans to discuss AI and rare earths with China’s He, source says",
@@ -289,7 +305,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789757682000,
-      "_kind": null
+      "_kind": null,
+      "why": "Trade talks discussion lacks clear directional bias."
     },
     {
       "title": "‘My total balance should be $20 million’: I invested $1.1 million in a crypto platform. Have I lost it all?",
@@ -306,7 +323,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789757160000
+      "firstAt": 1789757160000,
+      "why": "Individual loss story has no market impact."
     },
     {
       "title": "Venezuela, opposition faction weighing deal to move $4 billion in gold to US from UK, sources say",
@@ -322,7 +340,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789757010000
+      "firstAt": 1789757010000,
+      "why": "Gold movement news lacks clear price direction."
     },
     {
       "title": "Slotkin urges Trump to press Xi on report that Iran used Chinese satellite info in deadly Jordan attack - CBS News",
@@ -342,7 +361,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789756260000
+      "firstAt": 1789756260000,
+      "why": "Geopolitical tension unclear for specific asset direction."
     },
     {
       "title": "Trump to sign Russia sanctions bill today, source says - CBS News",
@@ -362,7 +382,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789756260000
+      "firstAt": 1789756260000,
+      "why": "Sanctions bill impact on these assets is unclear."
     },
     {
       "title": "Wall St mixed as benchmark Treasury yields reach 5%, oil takes a pause - Reuters",
@@ -380,7 +401,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789756231000
+      "firstAt": 1789756231000,
+      "why": "Oil takes a pause, implying no direction."
     },
     {
       "title": "Troubled Australian developer Bathla granted one-year extension to complete projects",
@@ -394,7 +416,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789756228000
+      "firstAt": 1789756228000,
+      "why": "Single developer news has negligible macro impact."
     },
     {
       "title": "Three words from Kevin Warsh have Wall Street wondering how far the Fed will go with rate hikes",
@@ -411,7 +434,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789756111000
+      "firstAt": 1789756111000,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Rate hike uncertainty weighs on equity valuations."
     },
     {
       "title": "‘There might be a silver lining’: My friend’s wife died at 60 after a high-earning career. Can he claim her Social Security?",
@@ -428,7 +455,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789755960000
+      "firstAt": 1789755960000,
+      "why": "Personal finance story unrelated to silver prices."
     },
     {
       "title": "Russia’s drones threaten Kyiv-bound Western officials as war effort stalls - Al Jazeera",
@@ -448,7 +476,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789755750000
+      "firstAt": 1789755750000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "War escalation boosts safe havens and oil."
     },
     {
       "title": "BoE Rate Hike Vote Stalls, Markets Brace For Status Quo - The Globe and Mail",
@@ -466,7 +500,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789755324000
+      "firstAt": 1789755324000,
+      "dir": {
+        "GBP/USD": "down"
+      },
+      "why": "BoE hike stall weakens pound expectations."
     },
     {
       "title": "Russia launches fresh attacks on Kyiv and Kharkiv - Euronews",
@@ -1886,7 +1924,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-18T19:21:58.980Z",
-  "headlinesAt": "2026-09-18T19:21:58.980Z",
-  "updatedAt": "2026-09-18T19:21:58.980Z"
+  "calendarAt": "2026-09-18T19:23:28.655Z",
+  "headlinesAt": "2026-09-18T19:23:28.655Z",
+  "updatedAt": "2026-09-18T19:23:28.655Z"
 }
