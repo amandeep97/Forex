@@ -341,7 +341,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789719505000,
-      "_kind": null
+      "_kind": null,
+      "why": "No clear gold direction implied."
     },
     {
       "title": "Sterling today: Pound gains as UK retail sales beat and dollar cools",
@@ -359,7 +360,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789719453000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "GBP/USD": "up"
+      },
+      "why": "Pound gains, dollar cools."
     },
     {
       "title": "Poland Warns Russia May Target Ukraine Supporters With \"Accidental\" Strikes - UNITED24 Media",
@@ -380,7 +385,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789719032000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Geopolitical risk boosts safe havens, oil."
     },
     {
       "title": "Houthi rebel offensive fuels fears of escalation in the Middle East and Europe - The Conversation",
@@ -401,7 +412,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789718934000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Escalation fears boost gold, oil."
     },
     {
       "title": "Euro zone yields head for weekly decline as post-Fed rally soothes duration fears",
@@ -418,7 +435,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789718105000
+      "firstAt": 1789718105000,
+      "why": "Yield decline direction unclear for pair."
     },
     {
       "title": "Iran’s Isolation Grows After U.S. Imposes Sweeping Sanctions on Airlines - nytimes.com",
@@ -438,7 +456,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789717860000
+      "firstAt": 1789717860000,
+      "why": "Sanctions impact unclear for these assets."
     },
     {
       "title": "Dollar jumps above 157 yen, Nikkei stock index climbs after BOJ rate hike - mainichi.jp",
@@ -456,7 +475,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789717845000
+      "firstAt": 1789717845000,
+      "dir": {
+        "USD/JPY": "up"
+      },
+      "why": "Dollar jumps above 157 yen."
     },
     {
       "title": "US House passes Russia sanctions bill granting Trump tariff authority - chinadailyasia.com",
@@ -477,7 +500,27 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789716716000
+      "firstAt": 1789716716000,
+      "why": "Sanctions bill impact unclear."
+    },
+    {
+      "title": "S. Korean won slightly weakens against U.S. dollar after BOJ's expected rate hike - Yonhap News Agency",
+      "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5oWldtZ2ZSeHlBTDF5NHhkV3dtcWMtd1NSeUpaenFOZ2gwZGhuS2JZdi1qUkdxUkEtaTZnb3pvS1J3Q3VDNlpFZmJWZzhxNzFjYTZiY29pSWJfdw?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiWkFVX3lxTE5oWldtZ2ZSeHlBTDF5NHhkV3dtcWMtd1NSeUpaenFOZ2gwZGhuS2JZdi1qUkdxUkEtaTZnb3pvS1J3Q3VDNlpFZmJWZzhxNzFjYTZiY29pSWJfdw?oc=5\" target=\"_blank\">S. Korean won slightly weakens against U.S. dollar after BOJ's expected rate hike</a>",
+      "at": 1789717634000,
+      "inst": [
+        "USD/JPY"
+      ],
+      "ccy": [
+        "USD",
+        "JPY"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789717634000,
+      "why": "Won news irrelevant to USD/JPY."
     },
     {
       "title": "Crypto is just one channel: how Russia launders corrupt wealth past sanctions - Transparency.org",
@@ -499,7 +542,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789716716000
+      "firstAt": 1789716716000,
+      "why": "Laundering article lacks market direction."
     },
     {
       "title": "U.S. Congress passes sweeping Russia sanctions bill, sends it to Trump - The Ukrainian Weekly",
@@ -519,7 +563,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789714020000
+      "firstAt": 1789714020000,
+      "why": "Sanctions bill impact unclear."
     },
     {
       "title": "Oil falls for 3rd straight day as supply concerns ease, diplomacy in focus",
@@ -535,7 +580,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789716070000
+      "firstAt": 1789716070000,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Oil falls for 3rd straight day."
     },
     {
       "title": "Why Japanese stocks rose as government bond yields and the yen fell after rate hike - CNBC",
@@ -554,7 +603,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789715965000
+      "firstAt": 1789715965000,
+      "dir": {
+        "USD/JPY": "down"
+      },
+      "why": "Yen fell, implying USD/JPY down."
     },
     {
       "title": "Gold Holds Gain as Lower Oil and Fed Hike Temper Inflation Fears - Bloomberg.com",
@@ -574,7 +627,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789713358000
+      "firstAt": 1789713358000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "down"
+      },
+      "why": "Gold holds gain, oil lower."
     },
     {
       "title": "Yen slides despite BOJ rate hike, dollar holds gains amid hawkish Fed",
@@ -591,7 +649,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789715914000
+      "firstAt": 1789715914000,
+      "dir": {
+        "USD/JPY": "down"
+      },
+      "why": "Yen slides, dollar holds gains."
     },
     {
       "title": "London Gas Oil clings to $1,460 support in tight range: Live levels",
@@ -1079,24 +1141,6 @@
       "firstAt": 1789710120000
     },
     {
-      "title": "Asia FX mixed as yen slides despite BOJ rate hike By Investing.com - Investing.com South Africa",
-      "link": "https://news.google.com/rss/articles/CBMinwFBVV95cUxOUlNveHo5aHoyajFoOGdBWmtjOFE5UVFtX2FKbTd1c2h3SzZTTGl0aTctNUNQUndRYjlEOUNnTElzU2pBY3RYbWY5bk9BbXR1ZzBTbno0Ymx1Y0dZWlVVVGE2amNWNS1kZkJKVE92SmZPMklBM1B2bmFIR3VWYUtFaVp1SVdrZDZTSjFGMU5USm9wcW4tRDU3aHFYNVJBZWc?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMinwFBVV95cUxOUlNveHo5aHoyajFoOGdBWmtjOFE5UVFtX2FKbTd1c2h3SzZTTGl0aTctNUNQUndRYjlEOUNnTElzU2pBY3RYbWY5bk9BbXR1ZzBTbno0Ymx1Y0dZWlVVVGE2amNWNS1kZkJKVE92SmZPMklBM1B2bmFIR3VWYUtFaVp1SVdrZDZTSjFGMU5USm9wcW4tRDU3aHFYNVJBZWc?oc=5\" target=\"",
-      "at": 1789709036000,
-      "inst": [
-        "USD/JPY"
-      ],
-      "ccy": [
-        "JPY",
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789709036000
-    },
-    {
       "title": "South Korea says US-North Korea talks possible, rules out Hormuz deployment",
       "link": "https://www.aljazeera.com/news/2026/9/18/south-korea-says-us-north-korea-talks-possible-rules-out-hormuz-deployment?traffic_source=rss",
       "source": "Al Jazeera",
@@ -1115,6 +1159,24 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789708990000
+    },
+    {
+      "title": "Asia FX mixed as yen slides despite BOJ rate hike By Investing.com - Investing.com Nigeria",
+      "link": "https://news.google.com/rss/articles/CBMinwFBVV95cUxNdmZOd3RvQzJaYnltRDhlZk1pS3BZSHNOczNPMVd4V09jeTgxY3E4VUJKQkcwZXdNMmV5dlZ3X0tyU1paOC1JRVFzTFpKdkpnTEdYNXA3aUNmOGZzRzdXbnVlS1dSa2NpV2pOZmVsdUZDdVRXZkFaUUpXRmpUd0FBTEZKUlJWRDIwUWlDUHE1bmQyT3g5aUlEcUFPQW5GVEk?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMinwFBVV95cUxNdmZOd3RvQzJaYnltRDhlZk1pS3BZSHNOczNPMVd4V09jeTgxY3E4VUJKQkcwZXdNMmV5dlZ3X0tyU1paOC1JRVFzTFpKdkpnTEdYNXA3aUNmOGZzRzdXbnVlS1dSa2NpV2pOZmVsdUZDdVRXZkFaUUpXRmpUd0FBTEZKUlJWRDIwUWlDUHE1bmQyT3g5aUlEcUFPQW5GVEk?oc=5\" target=\"",
+      "at": 1789708641000,
+      "inst": [
+        "USD/JPY"
+      ],
+      "ccy": [
+        "JPY",
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789708641000
     },
     {
       "title": "A sweeping US sanctions bill offers Ukraine new leverage on Russia, but enforcement looms - ABC News - Breaking News, Latest News and Videos",
@@ -1989,7 +2051,7 @@
       "firstAt": 1789676580000
     },
     {
-      "title": "CT House delegation opposes Russia sanctions bill, citing Trump's tariff powers - wshu.org",
+      "title": "CT House delegation opposes Russia sanctions bill, citing Trump's tariff powers - WSHU",
       "link": "https://news.google.com/rss/articles/CBMiowFBVV95cUxPQ3hrQWh1Z25kUWY4Rl9LRVFrLW1PTC1QQUE2LVg1a2pzMlBfdDNMbXF6dlpUYmQyUm5BcFdib2hYNzdCZmxKWnlMaGxHcUpOOVh1UkFXY1htYVdObVNIXzNtT2Z1WWlnMlVfTjByMHNxZmpvQU0tWWlfeldCcjdCald6a3pnNG1XOFVXd3FJRmF2XzBIMjloUDlIVjBWQVVXQUlr?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiowFBVV95cUxPQ3hrQWh1Z25kUWY4Rl9LRVFrLW1PTC1QQUE2LVg1a2pzMlBfdDNMbXF6dlpUYmQyUm5BcFdib2hYNzdCZmxKWnlMaGxHcUpOOVh1UkFXY1htYVdObVNIXzNtT2Z1WWlnMlVfTjByMHNxZmpvQU0tWWlfeldCcjdCald6a3pnNG1XOFVXd3FJRmF2XzBIMjloUDlIVjBWQVVXQUlr?oc=5\" tar",
@@ -2008,23 +2070,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789675200000
-    },
-    {
-      "title": "Saudi Arabia is now pushing to export more oil through the Strait of Hormuz",
-      "link": "https://www.marketwatch.com/story/saudi-arabia-is-now-pushing-to-export-more-oil-through-the-strait-of-hormuz-bcce044b?mod=mw_rss_topstories",
-      "source": "MarketWatch",
-      "desc": "With its East-West pipeline shut down, the Straight of Hormuz is the best avenue available and its spigot has recently opened up. Will it last?",
-      "at": 1789674720000,
-      "inst": [
-        "USOIL"
-      ],
-      "ccy": [
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789674720000
     }
   ],
   "sources": [
@@ -2047,10 +2092,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-18T08:30:43.718Z",
-  "headlinesAt": "2026-09-18T08:30:43.718Z",
-  "updatedAt": "2026-09-18T08:30:43.718Z"
+  "calendarAt": "2026-09-18T08:32:30.095Z",
+  "headlinesAt": "2026-09-18T08:32:30.095Z",
+  "updatedAt": "2026-09-18T08:32:30.095Z"
 }
