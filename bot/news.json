@@ -2,6 +2,24 @@
   "calendar": [],
   "headlines": [
     {
+      "title": "Nativo signs LoI for La Patona gold plant funding in Peru",
+      "link": "https://finance.yahoo.com/markets/commodities/articles/nativo-signs-loi-la-patona-151909445.html",
+      "source": "Yahoo Finance",
+      "at": 1789744749000,
+      "inst": [
+        "XAU/USD"
+      ],
+      "ccy": [
+        "XAU"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789744749000,
+      "_kind": null,
+      "why": "Company-specific news, unclear market impact"
+    },
+    {
       "title": "Russian hybrid attacks against Europe intensifying, says Macron",
       "link": "https://www.bbc.co.uk/news/articles/cm2dw1w9d3yjo?at_medium=RSS&at_campaign=rss",
       "source": "BBC World",
@@ -20,7 +38,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789744475000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Geopolitical tension boosts gold, oil unclear"
     },
     {
       "title": "Michigan synagogue reopens in time for Jewish High Holidays after terror attack - CBS News",
@@ -38,7 +60,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789744444000,
-      "_kind": null
+      "_kind": null,
+      "why": "Local news, no clear macro impact"
     },
     {
       "title": "Many young investors can’t afford to invest without their parents’ help",
@@ -66,8 +89,12 @@
       "sev": 3,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789743901000,
-      "_kind": null
+      "firstAt": 1789743866000,
+      "_kind": null,
+      "dir": {
+        "US30": "down"
+      },
+      "why": "Dow sinks on surprise data"
     },
     {
       "title": "Morocco stocks lower at close of trade; Moroccan All Shares down 2.18%",
@@ -82,7 +109,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789744203000,
-      "_kind": null
+      "_kind": null,
+      "why": "Morocco stocks irrelevant to US index"
     },
     {
       "title": "Pfizer’s Dividend Yield Is Enormous. But Is the Payout Still Growing?",
@@ -111,6 +139,19 @@
       "_kind": null
     },
     {
+      "title": "Stay In Sync With Stock Trends Using Exposure Levels, Market Pulse",
+      "link": "https://www.investors.com/how-to-invest/investors-corner/stock-market-exposure-levels-market-pulse-investors-nasdaq-sp500/?src=A00220&yptr=yahoo",
+      "source": "Yahoo Finance",
+      "at": 1789743866000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 1,
+      "srcs": 1,
+      "firstAt": 1789743866000,
+      "_kind": null
+    },
+    {
       "title": "CleanSpark Unveils $6.6B AI Data Center Lease as Miners Pivot Beyond Bitcoin",
       "link": "https://finance.yahoo.com/technology/ai/articles/cleanspark-unveils-6-6b-ai-150215603.html",
       "source": "Yahoo Finance",
@@ -125,21 +166,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789743735000,
-      "_kind": null
-    },
-    {
-      "title": "3 Stocks That Have Compounded Wealth for Decades. History Suggests the Next Decade Will Not Be Different",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/3-stocks-compounded-wealth-decades-145907091.html",
-      "source": "Yahoo Finance",
-      "at": 1789743547000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789743547000
+      "_kind": null,
+      "why": "Miner pivot, unclear immediate price impact"
     },
     {
       "title": "Dow Slides as Treasury Yields Near 5% After Fed Rate Hike - GuruFocus",
@@ -156,7 +184,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789742115000
+      "firstAt": 1789742115000,
+      "dir": {
+        "US30": "down"
+      },
+      "why": "Dow slides on high yields"
     },
     {
       "title": "Norway stocks lower at close of trade; Oslo OBX down 1.02%",
@@ -170,7 +202,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789743303000
+      "firstAt": 1789743303000,
+      "why": "Norway stocks irrelevant to US index"
     },
     {
       "title": "EU banks must be bigger, have deeper capital market, to compete with US, say top EU officials",
@@ -202,7 +235,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789741667000
+      "firstAt": 1789741667000,
+      "why": "Sanctions bill, unclear immediate market direction"
     },
     {
       "title": "Greece stocks lower at close of trade; Athens General Composite down 0.98%",
@@ -216,7 +250,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789743003000
+      "firstAt": 1789743003000,
+      "why": "Greece stocks irrelevant to US index"
     },
     {
       "title": "Here’s Why the Strategy Exits Boston Omaha Corp. (BOC)",
@@ -232,7 +267,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789742682000
+      "firstAt": 1789742682000,
+      "why": "Single stock exit, no FX impact"
     },
     {
       "title": "U.S. stocks slip in seesaw action at end of eventful week marked by Fed rate hike",
@@ -248,7 +284,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789742606000
+      "firstAt": 1789742606000,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "US stocks slip after Fed hike"
     },
     {
       "title": "U.N. report: U.S. strikes on Iran may have been war crimes - CNN",
@@ -268,7 +308,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789742377000
+      "firstAt": 1789742377000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "War crimes report boosts safe haven gold"
     },
     {
       "title": "Wall St slips as higher Treasury yields weigh on sentiment - Reuters",
@@ -291,7 +335,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789742115000
+      "firstAt": 1789742115000,
+      "dir": {
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Higher yields weigh on risk assets"
     },
     {
       "title": "SpaceX stock falls as Starship's test flight slips to Sept. 28, retail investors sell shares",
@@ -322,7 +371,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789741834000
+      "firstAt": 1789741834000,
+      "why": "Oil pares losses, mixed signals"
     },
     {
       "title": "Real Madrid’s Kylian Mbappe ends Nike partnership to join Swiss brand On",
@@ -477,8 +527,8 @@
       "ccy": [],
       "sev": 1,
       "rel": 1,
-      "srcs": 2,
-      "firstAt": 1789739789000
+      "srcs": 1,
+      "firstAt": 1789740540000
     },
     {
       "title": "Gold pares back gains as oil prices trim losses",
@@ -1588,26 +1638,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789716716000
-    },
-    {
-      "title": "U.S. Congress passes sweeping Russia sanctions bill, sends it to Trump - The Ukrainian Weekly",
-      "link": "https://news.google.com/rss/articles/CBMipwFBVV95cUxNeTNPYzA0aFluUjFwZVRXWjZDLUNEZElOdUJ0Q0k4WnRlcjQ2V3VmTnVHU2JqNWJBS3JjZE0wamRDN2hBVzljREVtS01zaFVZYkdmWEs4OXdhRFlrWU1qMkY4aWllYXFUWndaZ0tYUU9mVkQ3eVVnUVd2Y1ItVWctaV9EbmtpQ2FmMVZwaktOanBqZHlnVnBFSEN0eW9MdEtSVFVndUVTTQ?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMipwFBVV95cUxNeTNPYzA0aFluUjFwZVRXWjZDLUNEZElOdUJ0Q0k4WnRlcjQ2V3VmTnVHU2JqNWJBS3JjZE0wamRDN2hBVzljREVtS01zaFVZYkdmWEs4OXdhRFlrWU1qMkY4aWllYXFUWndaZ0tYUU9mVkQ3eVVnUVd2Y1ItVWctaV9EbmtpQ2FmMVZwaktOanBqZHlnVnBFSEN0eW9MdEtSVFVndUVTTQ?oc=",
-      "at": 1789716716000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789716716000
     }
   ],
   "sources": [
@@ -1634,6 +1664,6 @@
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-18T15:29:56.742Z",
-  "updatedAt": "2026-09-18T15:29:56.742Z"
+  "headlinesAt": "2026-09-18T15:31:28.512Z",
+  "updatedAt": "2026-09-18T15:31:28.512Z"
 }
