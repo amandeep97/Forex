@@ -195,23 +195,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789752720000,
-      "_kind": null
-    },
-    {
-      "title": "The Dow Is Down for a Third Straight Week and the Nasdaq Is Somehow Up",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/dow-down-third-straight-week-172517564.html",
-      "source": "Yahoo Finance",
-      "at": 1789752317000,
-      "inst": [
-        "US100",
-        "US30"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789752317000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Higher yields hurt gold and dollar pairs."
     },
     {
       "title": "Orion180 Insurance valued at $1.14 billion as shares fall in debut",
@@ -245,7 +235,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789752287000,
-      "_kind": null
+      "_kind": null,
+      "why": "Political news irrelevant to these markets."
     },
     {
       "title": "Iranians rally in biggest show of defiance against US since war began",
@@ -266,7 +257,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789752203000,
-      "_kind": null
+      "_kind": null,
+      "why": "Protest news lacks clear market direction."
     },
     {
       "title": "Russia plans ''accidental'' drone strikes on NATO countries, Tusk says - Euromaidan Press",
@@ -287,7 +279,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789751629000,
-      "_kind": null
+      "_kind": null,
+      "why": "Geopolitical threat unclear for specific assets."
     },
     {
       "title": "The Fed Just Raised Rates for the First Time in Three Years. History Says This Is What Comes Next.",
@@ -310,7 +303,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789751522000,
-      "_kind": null
+      "_kind": null,
+      "why": "Historical analysis lacks immediate directional signal."
     },
     {
       "title": "Stock Market Today: Dow Pressured As Yields Hit 5%; Chip Gear Players Jump, Lead Nasdaq 100 (Live Coverage)",
@@ -326,7 +320,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789750763000,
-      "_kind": null
+      "dir": {
+        "US100": "up",
+        "US30": "down"
+      },
+      "why": "Nasdaq leads up, Dow pressured down."
     },
     {
       "title": "AbCellera and Recursion Pharmaceuticals: two AI-drug stocks, two different stories",
@@ -340,7 +338,27 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789751068000
+      "firstAt": 1789751068000,
+      "why": "Specific stock news, index impact unclear."
+    },
+    {
+      "title": "JPMorgan Values Bitcoin at $266,000 Against Gold. Why It’s Trading Below $81,000?",
+      "link": "https://finance.yahoo.com/markets/crypto/articles/jpmorgan-values-bitcoin-266-000-170350427.html",
+      "source": "Yahoo Finance",
+      "at": 1789751030000,
+      "inst": [
+        "XAU/USD",
+        "BTC/USDT"
+      ],
+      "ccy": [
+        "XAU",
+        "BTC"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789750060000,
+      "why": "Valuation comparison, no clear price direction."
     },
     {
       "title": "Two signs investors don’t have to fear an AI slowdown",
@@ -369,7 +387,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789750763000
+      "firstAt": 1789750763000,
+      "why": "General outlook, no specific direction given."
     },
     {
       "title": "When To Dump Stocks: These IBD 50 Components Hit Sell Signals",
@@ -383,7 +402,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789750618000
+      "firstAt": 1789750618000,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Sell signals imply bearish sentiment."
     },
     {
       "title": "Carlyle Expands Canadian Energy Footprint with Parallax Acquisition",
@@ -397,7 +420,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789750537000
+      "firstAt": 1789750537000,
+      "why": "Corporate acquisition, currency impact unclear."
     },
     {
       "title": "IBD Stock Of The Day Eyes Buy Points As Investors Dig Into Its Pipeline",
@@ -432,7 +456,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789750200000
+      "firstAt": 1789750200000,
+      "why": "Inflation discussion, no clear directional bias."
     },
     {
       "title": "JPMorgan Sees Investment Banking and Trading Powering Q3 Growth",
@@ -473,7 +498,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789749540000
+      "firstAt": 1789749540000,
+      "why": "Advice to do nothing implies neutrality."
     },
     {
       "title": "Using A Limit Order To Buy Occidental Petroleum At A Discount",
@@ -487,7 +513,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789749274000
+      "firstAt": 1789749274000,
+      "why": "Trading strategy for single stock, not oil."
     },
     {
       "title": "Three words from Kevin Warsh have Wall Street wondering how far the Fed will go with rate hikes",
@@ -504,7 +531,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789749223000
+      "firstAt": 1789749223000,
+      "why": "Uncertainty about future hikes, no clear direction."
     },
     {
       "title": "Canadian dollar weakens against major currencies in the week ending September 18",
@@ -1828,7 +1856,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-18T17:39:13.911Z",
-  "headlinesAt": "2026-09-18T17:39:13.911Z",
-  "updatedAt": "2026-09-18T17:39:13.911Z"
+  "calendarAt": "2026-09-18T17:40:14.423Z",
+  "headlinesAt": "2026-09-18T17:40:14.423Z",
+  "updatedAt": "2026-09-18T17:40:14.423Z"
 }
