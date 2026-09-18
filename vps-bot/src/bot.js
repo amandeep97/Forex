@@ -360,10 +360,15 @@ class ForexBot {
       // rss is the number pm2 kills on; heap is what --max-old-space-size
       // bounds. A large gap between them means the growth is in Buffers and
       // strings from HTTP bodies, which that flag does not touch.
-      this.log(`mem rss ${mb(m.rss)}MB (${mb(m.rss - startRss) >= 0 ? '+' : ''}${mb(m.rss - startRss)}) `
-        + `heap ${mb(m.heapUsed)}/${mb(m.heapTotal)} ext ${mb(m.external)} `
-        + `arraybuf ${mb(m.arrayBuffers)}`
-        + (this._phases.length ? ` · ${this._phases.join(' ')}` : ''));
+      const line = `rss ${mb(m.rss)}MB (${mb(m.rss - startRss) >= 0 ? '+' : ''}${mb(m.rss - startRss)}) `
+        + `heap ${mb(m.heapUsed)}/${mb(m.heapTotal)} ext ${mb(m.external)}`
+        + (this._phases.length ? ` · ${this._phases.join(' ')}` : '');
+      this.log(`mem ${line}`);
+      // Published as well as logged, so this can be read without an SSH
+      // session. Diagnosing the restart loop has cost several rounds of "run
+      // this, paste the output" already, and the next person — or the next me,
+      // in a fresh session — should be able to see it from the outside.
+      this.lastMem = line;
     }
   }
 
@@ -567,6 +572,7 @@ class ForexBot {
 
     if (r.updated && r.restart) { this.updater.restart(); return true; }
     if (!r.updated && asked) this.log(`Update: ${r.reason}`);
+    this.updater.mem = this.lastMem || null;
     await this.updater.publish();
     return false;
   }
