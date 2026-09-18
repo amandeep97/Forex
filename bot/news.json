@@ -201,7 +201,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789763197000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Geopolitical tension boosts gold safe haven demand"
     },
     {
       "title": "Ukraine Returns To The U.S. Agenda As Congress Passes A Sweeping Sanctions Bill On Russia - Forbes",
@@ -222,7 +226,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789763197000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Sanctions bill increases geopolitical risk premium"
     },
     {
       "title": "US Treasury’s Bessent plans to discuss AI and rare earths with China’s He, source says",
@@ -245,7 +253,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789764557000,
-      "_kind": null
+      "_kind": null,
+      "why": "Trade talks neutral for currency pairs"
     },
     {
       "title": "Stocks are failing the ‘breadth’ test, but options traders still see reason to buy",
@@ -261,7 +270,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789764480000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Options traders signal buy despite weak breadth"
     },
     {
       "title": "Gold heads for slight weekly gain as decline in oil prices offset Fed rate hike",
@@ -281,7 +294,12 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789761442000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "down"
+      },
+      "why": "Gold gains on oil decline and Fed"
     },
     {
       "title": "Global stocks mixed as yen falls despite Bank of Japan rate hike - Yahoo Finance UK",
@@ -300,7 +318,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789763576000
+      "firstAt": 1789763576000,
+      "dir": {
+        "USD/JPY": "up"
+      },
+      "why": "Yen falls, stocks mixed globally"
     },
     {
       "title": "Analysis-Russia sanctions bill gives Trump sweeping new tariff powers",
@@ -320,7 +342,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789760940000
+      "firstAt": 1789760940000,
+      "why": "Sanctions bill impact unclear for commodities"
     },
     {
       "title": "U.S. stocks mixed at close of trade; Dow Jones Industrial Average down 0.19%",
@@ -335,7 +358,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789763460000
+      "firstAt": 1789763460000,
+      "dir": {
+        "US30": "down"
+      },
+      "why": "Dow down, stocks mixed at close"
     },
     {
       "title": "Canada stocks lower at close of trade; S&P/TSX Composite down 0.19%",
@@ -352,7 +379,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789763432000
+      "firstAt": 1789763432000,
+      "why": "Canada stocks lower, no US impact"
     },
     {
       "title": "Brazil stocks lower at close of trade; Bovespa down 0.41%",
@@ -366,7 +394,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789763404000
+      "firstAt": 1789763404000,
+      "why": "Brazil stocks lower, no US impact"
     },
     {
       "title": "Revealed: Ed Miliband ignored MI6’s warnings over Israel sanctions - The Spectator",
@@ -386,7 +415,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789763384000
+      "firstAt": 1789763384000,
+      "why": "UK political news irrelevant to markets"
     },
     {
       "title": "investingLive Americas market news wrap: Bonds slump again, yen rate check adds intrigue after BOJ",
@@ -406,7 +436,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789763380000
+      "firstAt": 1789763380000,
+      "dir": {
+        "USD/JPY": "up"
+      },
+      "why": "Yen rate check implies USD/JPY rise"
     },
     {
       "title": "Russia sanctions bill gives Trump sweeping new tariff powers - reuters.com",
@@ -427,7 +461,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789760940000
+      "firstAt": 1789760940000,
+      "why": "Sanctions bill impact unclear for commodities"
     },
     {
       "title": "US, China discuss cutting tariffs on US LNG ahead of Xi visit",
@@ -441,7 +476,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789763122000
+      "firstAt": 1789763122000,
+      "dir": {
+        "NATGAS": "up"
+      },
+      "why": "Tariff cuts boost US LNG demand"
     },
     {
       "title": "Gold holds steady despite Fed rate hike, suppor... - Pluang",
@@ -459,7 +498,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789761442000
+      "firstAt": 1789761442000,
+      "why": "Gold holds steady despite Fed hike"
     },
     {
       "title": "Accenture shares jump on Anthropic AI partnership",
@@ -1730,7 +1770,7 @@
       "firstAt": 1789733227000
     },
     {
-      "title": "Fire engulfs Zaporizhzhia mall in Ukraine after Russian attack – video - The Guardian",
+      "title": "Fire engulfs Zaporizhzhia mall in Ukraine after Russian attack – video - theguardian.com",
       "link": "https://news.google.com/rss/articles/CBMipgFBVV95cUxOeVprbG5xMkZMeXVfM1RFM2tvQjRpVUg4TlYzeG1CeVlHZjhkcGNma1RzQ3FEYXNHWGJlSkNFYzYtTDJZeUNtNHVVTGZaNmdzUGJSYzNSUS1HOVdPY1NmOFAtcjBPWXdjR3VpSEM5bk03UDNwS2RER0NMemg4MVpLNFNOMDNzb0NXWVl0TUZ0WXoydjRKMnA5Yzh6TXBWRndoSjJ2S3BR?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMipgFBVV95cUxOeVprbG5xMkZMeXVfM1RFM2tvQjRpVUg4TlYzeG1CeVlHZjhkcGNma1RzQ3FEYXNHWGJlSkNFYzYtTDJZeUNtNHVVTGZaNmdzUGJSYzNSUS1HOVdPY1NmOFAtcjBPWXdjR3VpSEM5bk03UDNwS2RER0NMemg4MVpLNFNOMDNzb0NXWVl0TUZ0WXoydjRKMnA5Yzh6TXBWRndoSjJ2S3BR?oc=5\"",
@@ -1898,10 +1938,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-18T21:05:56.949Z",
-  "headlinesAt": "2026-09-18T21:05:56.949Z",
-  "updatedAt": "2026-09-18T21:05:56.949Z"
+  "calendarAt": "2026-09-18T21:07:44.673Z",
+  "headlinesAt": "2026-09-18T21:07:44.673Z",
+  "updatedAt": "2026-09-18T21:07:44.673Z"
 }
