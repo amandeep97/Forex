@@ -1,5 +1,177 @@
 {
-  "calendar": [],
+  "calendar": [
+    {
+      "title": "FPI m/m",
+      "country": "NZD",
+      "impact": "low",
+      "at": 1789685100000,
+      "forecast": "",
+      "previous": "0.1%",
+      "actual": ""
+    },
+    {
+      "title": "Trade Balance",
+      "country": "NZD",
+      "impact": "low",
+      "at": 1789685100000,
+      "forecast": "-1775M",
+      "previous": "-1949M",
+      "actual": ""
+    },
+    {
+      "title": "RBA Gov Bullock Speaks",
+      "country": "AUD",
+      "impact": "medium",
+      "at": 1789687800000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "National Core CPI y/y",
+      "country": "JPY",
+      "impact": "low",
+      "at": 1789687800000,
+      "forecast": "1.8%",
+      "previous": "1.8%",
+      "actual": ""
+    },
+    {
+      "title": "BOJ Policy Rate",
+      "country": "JPY",
+      "impact": "high",
+      "at": 1789700040000,
+      "forecast": "<1.25%",
+      "previous": "<1.00%",
+      "actual": ""
+    },
+    {
+      "title": "Monetary Policy Statement",
+      "country": "JPY",
+      "impact": "high",
+      "at": 1789700040000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "German PPI m/m",
+      "country": "EUR",
+      "impact": "low",
+      "at": 1789711200000,
+      "forecast": "0.6%",
+      "previous": "1.1%",
+      "actual": ""
+    },
+    {
+      "title": "Retail Sales m/m",
+      "country": "GBP",
+      "impact": "medium",
+      "at": 1789711200000,
+      "forecast": "-0.2%",
+      "previous": "-0.5%",
+      "actual": ""
+    },
+    {
+      "title": "BOJ Press Conference",
+      "country": "JPY",
+      "impact": "high",
+      "at": 1789713000000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "Current Account",
+      "country": "EUR",
+      "impact": "low",
+      "at": 1789718400000,
+      "forecast": "30.7B",
+      "previous": "35.1B",
+      "actual": ""
+    },
+    {
+      "title": "ECOFIN Meetings",
+      "country": "EUR",
+      "impact": "low",
+      "at": 1789726500000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "Eurogroup Meetings",
+      "country": "EUR",
+      "impact": "low",
+      "at": 1789726500000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "ECB President Lagarde Speaks",
+      "country": "EUR",
+      "impact": "medium",
+      "at": 1789727400000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "Capacity Utilization Rate",
+      "country": "USD",
+      "impact": "low",
+      "at": 1789737300000,
+      "forecast": "76.4%",
+      "previous": "76.3%",
+      "actual": ""
+    },
+    {
+      "title": "Industrial Production m/m",
+      "country": "USD",
+      "impact": "low",
+      "at": 1789737300000,
+      "forecast": "0.3%",
+      "previous": "0.2%",
+      "actual": ""
+    },
+    {
+      "title": "FOMC Member Bowman Speaks",
+      "country": "USD",
+      "impact": "low",
+      "at": 1789738200000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "CB Leading Index m/m",
+      "country": "USD",
+      "impact": "low",
+      "at": 1789740000000,
+      "forecast": "0.1%",
+      "previous": "0.2%",
+      "actual": ""
+    },
+    {
+      "title": "FOMC Member Schmid Speaks",
+      "country": "USD",
+      "impact": "low",
+      "at": 1789746300000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "ECOFIN Meetings",
+      "country": "EUR",
+      "impact": "low",
+      "at": 1789812900000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    }
+  ],
   "headlines": [
     {
       "title": "Russian hybrid attacks against Europe intensifying, says Macron",
@@ -20,11 +192,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789744475000,
-      "_kind": null,
-      "dir": {
-        "XAU/USD": "up"
-      },
-      "why": "Geopolitical tension boosts gold safe haven demand."
+      "_kind": null
     },
     {
       "title": "Michigan synagogue reopens in time for Jewish High Holidays after terror attack - CBS News",
@@ -42,8 +210,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789744444000,
-      "_kind": null,
-      "why": "Local news, no clear macro impact."
+      "_kind": null
     },
     {
       "title": "Many young investors can’t afford to invest without their parents’ help",
@@ -60,6 +227,19 @@
       "_kind": null
     },
     {
+      "title": "Executive Dumps Nearly 2,000 Shares of Energy Stock, Valued at Almost $120,000",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/executive-dumps-nearly-2-000-150501861.html",
+      "source": "Yahoo Finance",
+      "at": 1789743901000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 1,
+      "srcs": 1,
+      "firstAt": 1789743901000,
+      "_kind": null
+    },
+    {
       "title": "3 Stocks That Have Compounded Wealth for Decades. History Suggests the Next Decade Will Not Be Different",
       "link": "https://finance.yahoo.com/markets/stocks/articles/3-stocks-compounded-wealth-decades-145907091.html",
       "source": "Yahoo Finance",
@@ -72,8 +252,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789743547000,
-      "_kind": null,
-      "why": "General commentary, no specific market move."
+      "_kind": null
     },
     {
       "title": "Red Cat and Unusual Machines Fall 3% as Drone Selloff Extends; Ondas Slips",
@@ -104,11 +283,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789743433000,
-      "_kind": null,
-      "dir": {
-        "US30": "down"
-      },
-      "why": "Dow slides on high yields and Fed hike."
+      "_kind": null
     },
     {
       "title": "Norway stocks lower at close of trade; Oslo OBX down 1.02%",
@@ -123,8 +298,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789743303000,
-      "_kind": null,
-      "why": "Norwegian market news, irrelevant to US index."
+      "_kind": null
     },
     {
       "title": "The Options Market Says Dell Stock Can Halve Or Double",
@@ -152,11 +326,7 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789743003000,
-      "_kind": null,
-      "dir": {
-        "US500": "down"
-      },
-      "why": "Major automakers falling drags index sentiment."
+      "_kind": null
     },
     {
       "title": "EU banks must be bigger, have deeper capital market, to compete with US, say top EU officials",
@@ -190,8 +360,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789741667000,
-      "_kind": null,
-      "why": "Sanctions bill details unclear for immediate price."
+      "_kind": null
     },
     {
       "title": "Greece stocks lower at close of trade; Athens General Composite down 0.98%",
@@ -205,9 +374,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789743003000,
-      "_kind": null,
-      "why": "Greek market news, irrelevant to US index."
+      "firstAt": 1789743003000
     },
     {
       "title": "31% of Berkshire Hathaway's Portfolio Is Concentrated in These 2 AI Stocks Under Greg Abel",
@@ -221,21 +388,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789742936000,
-      "_kind": null,
-      "why": "Portfolio composition news, no directional signal."
-    },
-    {
-      "title": "Warren Buffett’s Top Investment Pick: A Low-Cost Index Fund",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/warren-buffett-top-investment-pick-144606625.html",
-      "source": "Yahoo Finance",
-      "at": 1789742766000,
-      "inst": [],
-      "ccy": [],
-      "sev": 2,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1789742766000
+      "firstAt": 1789743000000
     },
     {
       "title": "Here’s Why the Strategy Exits Boston Omaha Corp. (BOC)",
@@ -251,8 +404,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789742682000,
-      "why": "Single stock strategy, no currency impact."
+      "firstAt": 1789742682000
     },
     {
       "title": "U.S. stocks slip in seesaw action at end of eventful week marked by Fed rate hike",
@@ -268,11 +420,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789742606000,
-      "dir": {
-        "US500": "down"
-      },
-      "why": "US stocks slip after Fed rate hike."
+      "firstAt": 1789742606000
     },
     {
       "title": "U.N. report: U.S. strikes on Iran may have been war crimes - CNN",
@@ -292,13 +440,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789742377000,
-      "dir": {
-        "XAU/USD": "up",
-        "USOIL": "up",
-        "UKOIL": "up"
-      },
-      "why": "Middle East conflict escalation boosts risk assets."
+      "firstAt": 1789742377000
     },
     {
       "title": "Palo Alto Networks, Oracle among market cap stock movers on Friday",
@@ -341,8 +483,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789741834000,
-      "why": "Oil pares losses, mixed signals."
+      "firstAt": 1789741834000
     },
     {
       "title": "Real Madrid’s Kylian Mbappe ends Nike partnership to join Swiss brand On",
@@ -359,8 +500,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789741818000,
-      "why": "Sports sponsorship news, no currency impact."
+      "firstAt": 1789741818000
     },
     {
       "title": "Global Markets: Chances rising for BoC rate hike - Manitoba Co-operator",
@@ -378,11 +518,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789741758000,
-      "dir": {
-        "USD/CAD": "down"
-      },
-      "why": "BoC hike expectations strengthen Canadian dollar."
+      "firstAt": 1789741758000
     },
     {
       "title": "France in ‘game of chicken’ with EU on Russia sanctions, as clock ticks to expiry deadline - EUobserver",
@@ -1642,7 +1778,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": null,
-  "headlinesAt": "2026-09-18T15:19:15.769Z",
-  "updatedAt": "2026-09-18T15:19:15.769Z"
+  "calendarAt": "2026-09-18T15:20:46.618Z",
+  "headlinesAt": "2026-09-18T15:20:46.618Z",
+  "updatedAt": "2026-09-18T15:20:46.618Z"
 }
