@@ -195,7 +195,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789761660000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Fed rate hike strengthens dollar"
     },
     {
       "title": "Gold shrugs off Fed rate hike as deeper forces drive safe-haven demand - KITCO",
@@ -214,7 +220,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789761442000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Gold shrugs off hike, safe-haven demand"
     },
     {
       "title": "Trump to sign Russia–Iran sanctions bill Friday — report - The New Voice of Ukraine",
@@ -235,7 +245,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789760364000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Sanctions boost safe-haven and oil supply risk"
     },
     {
       "title": "Trump reveals 'big decision' coming on Iran military strikes - KTVU",
@@ -255,7 +271,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789760364000
+      "firstAt": 1789760364000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Military strike fears boost safe-haven and oil"
     },
     {
       "title": "Trump Reacts to Fed Rate Hike as Markets Weigh Warsh’s Hawkish Stance - cheddar.com",
@@ -278,7 +300,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789760308000
+      "firstAt": 1789760308000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Hawkish stance strengthens dollar"
     },
     {
       "title": "Democratic Leaders Fear the New Russian Sanctions Bill Could 'Harm' Americans. Here's Why - Time Magazine",
@@ -298,7 +326,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789760182000
+      "firstAt": 1789760182000,
+      "why": "Political debate lacks clear market direction"
     },
     {
       "title": "U.S. stocks mixed at end of eventful week marked by Fed rate hike, AI uproar",
@@ -314,7 +343,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789759919000
+      "firstAt": 1789759919000,
+      "why": "Mixed stocks imply no clear direction"
     },
     {
       "title": "Lebanese artist turns Israeli missile debris into art",
@@ -334,7 +364,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789759892000
+      "firstAt": 1789759892000,
+      "why": "Art news irrelevant to markets"
     },
     {
       "title": "Nasdaq 100 breaks 29,800 consolidation: Live levels",
@@ -348,7 +379,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789759098000
+      "firstAt": 1789759098000,
+      "dir": {
+        "US100": "up"
+      },
+      "why": "Breaks consolidation implies upward momentum"
     },
     {
       "title": "Crude Oil WTI clings to $99.50 support amid breakdown risk: Live",
@@ -365,7 +400,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789759112000
+      "firstAt": 1789759112000,
+      "why": "Clings to support, unclear direction"
     },
     {
       "title": "Natural Gas consolidates near $2.90 above 200MA: Live levels",
@@ -379,7 +415,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789759098000
+      "firstAt": 1789759098000,
+      "why": "Consolidates near moving average"
     },
     {
       "title": "London Gas Oil stuck in $1,475-$1,515 range: Live levels",
@@ -395,7 +432,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789759098000
+      "firstAt": 1789759098000,
+      "why": "Stuck in range, no direction"
     },
     {
       "title": "Brent Oil clings to SuperTrend support at $103.09: Live levels",
@@ -412,7 +450,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789759098000
+      "firstAt": 1789759098000,
+      "why": "Clings to support, unclear direction"
     },
     {
       "title": "Silver stalls at $68.00 resistance with bull trap risk: Live",
@@ -428,7 +467,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789759098000
+      "firstAt": 1789759098000,
+      "dir": {
+        "XAG/USD": "down"
+      },
+      "why": "Stalls at resistance with bull trap risk"
     },
     {
       "title": "Gold consolidates between $4,393 and $4,435: Live levels",
@@ -444,7 +487,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789759098000
+      "firstAt": 1789759098000,
+      "why": "Consolidates between levels, no direction"
     },
     {
       "title": "Two injured by Israeli shelling as troops advance in southern Lebanon",
@@ -1894,10 +1938,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-18T20:09:42.090Z",
-  "headlinesAt": "2026-09-18T20:09:42.090Z",
-  "updatedAt": "2026-09-18T20:09:42.090Z"
+  "calendarAt": "2026-09-18T20:10:59.995Z",
+  "headlinesAt": "2026-09-18T20:10:59.995Z",
+  "updatedAt": "2026-09-18T20:10:59.995Z"
 }
