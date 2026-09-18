@@ -190,7 +190,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789761442000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Gold shrugs off hike, safe-haven demand drives price."
     },
     {
       "title": "Trump reveals 'big decision' coming on Iran military strikes - KTVU",
@@ -211,7 +215,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789759194000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Military strike threat boosts safe-haven and oil demand."
     },
     {
       "title": "Trump Reacts to Fed Rate Hike as Markets Weigh Warsh’s Hawkish Stance - cheddar.com",
@@ -235,7 +245,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789760308000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Hawkish Fed stance strengthens dollar, weakens euro/pound."
     },
     {
       "title": "U.S. stocks mixed at end of eventful week marked by Fed rate hike, AI uproar",
@@ -252,7 +267,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789759919000,
-      "_kind": null
+      "_kind": null,
+      "why": "Stocks mixed, no clear directional bias indicated."
     },
     {
       "title": "Lebanese artist turns Israeli missile debris into art",
@@ -273,7 +289,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789759892000,
-      "_kind": null
+      "_kind": null,
+      "why": "Art news has no direct market impact."
     },
     {
       "title": "UN-backed experts cite possible US war crimes in Iran strikes - KXLH News Helena",
@@ -293,7 +310,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789759194000
+      "firstAt": 1789759194000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "War crimes allegations increase geopolitical risk premium."
     },
     {
       "title": "Nasdaq 100 breaks 29,800 consolidation: Live levels",
@@ -307,7 +330,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789759098000
+      "firstAt": 1789759098000,
+      "dir": {
+        "US100": "up"
+      },
+      "why": "Nasdaq breaks consolidation, implying upward momentum."
     },
     {
       "title": "Crude Oil WTI clings to $99.50 support amid breakdown risk: Live",
@@ -324,7 +351,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789759112000
+      "firstAt": 1789759112000,
+      "why": "Oil clings to support, direction unclear."
     },
     {
       "title": "Natural Gas consolidates near $2.90 above 200MA: Live levels",
@@ -338,7 +366,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789759098000
+      "firstAt": 1789759098000,
+      "why": "Natural gas consolidates, no clear direction."
     },
     {
       "title": "London Gas Oil stuck in $1,475-$1,515 range: Live levels",
@@ -354,7 +383,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789759098000
+      "firstAt": 1789759098000,
+      "why": "Gas oil stuck in range, no direction."
     },
     {
       "title": "Brent Oil clings to SuperTrend support at $103.09: Live levels",
@@ -371,7 +401,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789759098000
+      "firstAt": 1789759098000,
+      "why": "Brent clings to support, direction unclear."
     },
     {
       "title": "Silver stalls at $68.00 resistance with bull trap risk: Live",
@@ -387,7 +418,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789759098000
+      "firstAt": 1789759098000,
+      "why": "Silver stalls at resistance, direction unclear."
     },
     {
       "title": "Gold consolidates between $4,393 and $4,435: Live levels",
@@ -403,7 +435,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789759098000
+      "firstAt": 1789759098000,
+      "why": "Gold consolidates, no clear direction."
     },
     {
       "title": "Two injured by Israeli shelling as troops advance in southern Lebanon",
@@ -423,10 +456,16 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789758881000
+      "firstAt": 1789758881000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Shelling and troop advance increase geopolitical risk."
     },
     {
-      "title": "FOREX-Dollar advances vs yen as BOJ dissent clouds rate-hike outlook - devdiscourse.com",
+      "title": "FOREX-Dollar advances vs yen as BOJ dissent clouds rate-hike outlook - Devdiscourse",
       "link": "https://news.google.com/rss/articles/CBMixgFBVV95cUxQLXVxVjRRYkZJVGtJbTltZU1VcUhSUmp3UXVBX0tEQ1BkaEg1QTNoajlIMG1CWWF4SlZSWXU2Y0h3V21hc3FrZVB2RDVUektnZjd5VUZwaEFRY1dlMFRseXduaU4zeVRhc1owMDRZSDc3SVBJRWswby1ZUWd4UmdEMnJmUDVKUzdCUDlqUmZzcVpWaFp5b3JmZm9EUUtQVnRqelJlSmxnUS1GZWJfa0ljY0llbUlSOTFKWUtMM3ZxVTF6UmFrMUHSAcsBQVVfeXFMTUtCM0lGQ0p4bVF2eDNDcTZpNTJxUXk5RlZKX3E3aTdwVDdSNGlxN0Vfa0NyZ2l1dDUyRWR4Qm14UTU2ZTZrbXczZnZpbDk2SE5UU3FNdjAxb05aNW5ScEJpWW5lQkNaeGJDRkRmNFRGX1lRWWJwYXB6Q3R1c0NpZXN1REQ2VTlNMjZmb1Nka0JUaHF1VHpNb3dCa2p0OGhaSklVVnJRbDJjTkRLVko4NEdBUkdGQkpsbUd0a2t5TlllNEgtN1ZGOUUyREE?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMixgFBVV95cUxQLXVxVjRRYkZJVGtJbTltZU1VcUhSUmp3UXVBX0tEQ1BkaEg1QTNoajlIMG1CWWF4SlZSWXU2Y0h3V21hc3FrZVB2RDVUektnZjd5VUZwaEFRY1dlMFRseXduaU4zeVRhc1owMDRZSDc3SVBJRWswby1ZUWd4UmdEMnJmUDVKUzdCUDlqUmZzcVpWaFp5b3JmZm9EUUtQVnRqelJlSmxnUS1GZW",
@@ -441,7 +480,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789758773000
+      "firstAt": 1789758773000,
+      "dir": {
+        "USD/JPY": "up"
+      },
+      "why": "Dollar advances vs yen, BOJ dissent weakens yen."
     },
     {
       "title": "Russia calls US sanctions bill unfriendly as India defends energy purchases - IntelliNews",
@@ -1777,7 +1820,7 @@
       "firstAt": 1789720871000
     },
     {
-      "title": "GLOBAL MARKETS-Stocks and bonds dip as central banks jack up rates to tame inflation - devdiscourse.com",
+      "title": "GLOBAL MARKETS-Stocks and bonds dip as central banks jack up rates to tame inflation - Devdiscourse",
       "link": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxQR2ZoandzdGFIREtQeHlseTRnbFZoVldYOVBwYmE0NUdBenU4MmxobFU5WFpoSE9jaG16LWdFOE0yNG9CYm5lUEN0N2hDUHRwYVoyeTFKd3hGemg0WTZzbWhBUEJhQ1hRWnhKamZqZG5TRTRqUlV6ZlpKWU9OdXMyUW5qZi1xMWdlbVNFM2ZFQU1mei1KZl9WOW16bzNWdUhWRm1RYnlVZUhkS0tTSE9IYkxTTEM0aHNVaFBGV2t2RGtfZVVtYnFEM0JVWXdUR1V3N040X2tTemVnd9IB3wFBVV95cUxPRVFILVNOT0ZTYXcyN01XTXluUE1tTldhM2RWZUtLdjRpcXBndExEcWhrODVmaVJmZzBUR05CTHh1UlhhS2dPUlVLRTRRWTNkYjdEZERQRDM2d3UzaHNBVXd6a1JYRFM0M3lPbzRlNzduVDA3YUxMaWZsQUVVSE5lakhnSDlTanhPWW4tQ1JnS181OW9MOHV0eTRDaklYaWhxYVZGWV82U1R1X1JCbWkyT2NfSFN3bV9JSUlhSVBwQWJZbWtNblBoMmp5ZzctTml5QlFLUFc5WFZ0VG9LRWZv?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMi2gFBVV95cUxQR2ZoandzdGFIREtQeHlseTRnbFZoVldYOVBwYmE0NUdBenU4MmxobFU5WFpoSE9jaG16LWdFOE0yNG9CYm5lUEN0N2hDUHRwYVoyeTFKd3hGemg0WTZzbWhBUEJhQ1hRWnhKamZqZG5TRTRqUlV6ZlpKWU9OdXMyUW5qZi1xMWdlbVNFM2ZFQU1mei1KZl9WOW16bzNWdUhWRm1RYnlVZUhkS0",
@@ -1893,7 +1936,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-18T19:59:58.663Z",
-  "headlinesAt": "2026-09-18T19:59:58.663Z",
-  "updatedAt": "2026-09-18T19:59:58.663Z"
+  "calendarAt": "2026-09-18T20:01:29.253Z",
+  "headlinesAt": "2026-09-18T20:01:29.253Z",
+  "updatedAt": "2026-09-18T20:01:29.253Z"
 }
