@@ -2,6 +2,31 @@
   "calendar": [],
   "headlines": [
     {
+      "title": "Poland's prime minister warns of Russian 'accidental' attacks on Ukraine's allies - NPR",
+      "link": "https://news.google.com/rss/articles/CBMicEFVX3lxTE1aQlg0YmhYenljb21GdWdmRURvTmV5dGJyTlROZlROblpNck5paFZteEl6NFhDUlVLMnB5RkFlTXBPempnSFFwTU1RTFh6T1Z6QTA5U2ZRbjlxMGk5TEd0THYtZEVsZEt6enZ0LWc0MzI?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMicEFVX3lxTE1aQlg0YmhYenljb21GdWdmRURvTmV5dGJyTlROZlROblpNck5paFZteEl6NFhDUlVLMnB5RkFlTXBPempnSFFwTU1RTFh6T1Z6QTA5U2ZRbjlxMGk5TEd0THYtZEVsZEt6enZ0LWc0MzI?oc=5\" target=\"_blank\">Poland's prime minister warns of Russian 'accidental' at",
+      "at": 1789746503000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1789744475000,
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Geopolitical risk boosts gold, oil unclear"
+    },
+    {
       "title": "Kansas City Fed’s Schmid backs rate hike to curb inflation",
       "link": "https://www.investing.com/news/stock-market-news/kansas-city-feds-schmid-backs-rate-hike-to-curb-inflation-93CH-4907643",
       "source": "Investing",
@@ -22,7 +47,37 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789746307000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Rate hike hawkish, weakens metals and FX"
+    },
+    {
+      "title": "Fed sat on Silicon Valley Bank flaws because regulators feared being wrong, report finds",
+      "link": "https://finance.yahoo.com/economy/policy/article/fed-sat-on-silicon-valley-bank-flaws-because-regulators-feared-being-wrong-report-finds-154331423.html",
+      "source": "Yahoo Finance",
+      "at": 1789746211000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789746211000,
+      "_kind": null,
+      "why": "Regulatory report, no clear market direction"
     },
     {
       "title": "Fed plans stress test overhaul for big banks",
@@ -45,7 +100,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789746163000,
-      "_kind": null
+      "_kind": null,
+      "why": "Stress test overhaul, neutral market impact"
     },
     {
       "title": "Poland stocks lower at close of trade; WIG30 down 0.59%",
@@ -60,7 +116,24 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789746003000,
-      "_kind": null
+      "_kind": null,
+      "why": "Polish stocks down, irrelevant to US500"
+    },
+    {
+      "title": "3 AI Stocks Stuck in Neutral to Buy Before Their Next Catalysts Hit",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/3-ai-stocks-stuck-neutral-153500608.html",
+      "source": "Yahoo Finance",
+      "at": 1789745700000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789745700000,
+      "_kind": null,
+      "why": "Stock picks, no broad market direction"
     },
     {
       "title": "Turkey stocks lower at close of trade; BIST 100 down 1.67%",
@@ -75,20 +148,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789745432000,
-      "_kind": null
-    },
-    {
-      "title": "Apple Stock Has a New Opportunity Investors Can’t Afford to Ignore",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/apple-stock-opportunity-investors-t-153005562.html",
-      "source": "Yahoo Finance",
-      "at": 1789745405000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1789745405000,
-      "_kind": null
+      "_kind": null,
+      "why": "Turkish stocks down, irrelevant to US500"
     },
     {
       "title": "Denmark stocks lower at close of trade; OMX Copenhagen 20 down 0.32%",
@@ -103,7 +164,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789745403000,
-      "_kind": null
+      "_kind": null,
+      "why": "Danish stocks down, irrelevant to US500"
     },
     {
       "title": "Rep. Simpson Supports Imposing Additional Sanctions on Russia - Congressman Mike Simpson (.gov)",
@@ -124,7 +186,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789743057000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Sanctions support gold, oil impact unclear"
     },
     {
       "title": "Zoomex Highlights ETF Perpetuals Ahead of This Week’s Federal Reserve Decision - markets.businessinsider.com",
@@ -148,20 +214,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789745219000,
-      "_kind": null
-    },
-    {
-      "title": "Why Shares of Rubrik Stock Rallied This Week",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/why-shares-rubrik-stock-rallied-152344392.html",
-      "source": "Yahoo Finance",
-      "at": 1789745024000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1789745024000,
-      "_kind": null
+      "_kind": null,
+      "why": "ETF news, no clear directional bias"
     },
     {
       "title": "'One reason' why wages are falling below inflation growth... Trump: Markets analyst - Modern Ghana",
@@ -185,24 +239,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789745024000,
-      "_kind": null
-    },
-    {
-      "title": "Bitcoin Blasts Past $80K and a Fresh Short Squeeze Is On",
-      "link": "https://finance.yahoo.com/markets/crypto/articles/bitcoin-blasts-past-80k-fresh-152249505.html",
-      "source": "Yahoo Finance",
-      "at": 1789744969000,
-      "inst": [
-        "BTC/USDT"
-      ],
-      "ccy": [
-        "BTC"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789744969000,
-      "_kind": null
+      "why": "Wage inflation comment, direction unclear"
     },
     {
       "title": "Gold Stock Franco-Nevada Flashes Strength Amid Rate-Hike Woes",
@@ -219,7 +256,10 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789744968000,
-      "_kind": null
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Gold stock strength implies bullish gold"
     },
     {
       "title": "Russian hybrid attacks against Europe intensifying, says Macron",
@@ -238,25 +278,12 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789744475000
-    },
-    {
-      "title": "Michigan synagogue reopens in time for Jewish High Holidays after terror attack - CBS News",
-      "link": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxPeGU3d0Z5YlVqSDdzenEzdi1jQ0E0Ry1rbk5fM0p6dF82VExZS3NVYnlQaHVhVmxuLXFxNllqMjVETVYzWDhlWTJwNW1uZlAxSXQ2SzJIaDBMbU82dGZ0N0tDYWUwQ0xwMWlzX20ybVBhODdCaFh5YzhoekhCaktNUWtFamdXVTduYV80?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiiwFBVV95cUxPeGU3d0Z5YlVqSDdzenEzdi1jQ0E0Ry1rbk5fM0p6dF82VExZS3NVYnlQaHVhVmxuLXFxNllqMjVETVYzWDhlWTJwNW1uZlAxSXQ2SzJIaDBMbU82dGZ0N0tDYWUwQ0xwMWlzX20ybVBhODdCaFh5YzhoekhCaktNUWtFamdXVTduYV80?oc=5\" target=\"_blank\">Michigan synagogue ",
-      "at": 1789744444000,
-      "inst": [
-        "XAU/USD"
-      ],
-      "ccy": [
-        "XAU"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789744444000
+      "srcs": 2,
+      "firstAt": 1789744475000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Escalating conflict boosts gold, oil unclear"
     },
     {
       "title": "Many young investors can’t afford to invest without their parents’ help",
@@ -283,7 +310,11 @@
       "sev": 3,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789743866000
+      "firstAt": 1789743866000,
+      "dir": {
+        "US30": "down"
+      },
+      "why": "Dow sinks on economic data"
     },
     {
       "title": "Stay In Sync With Stock Trends Using Exposure Levels, Market Pulse",
@@ -312,7 +343,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789742115000
+      "firstAt": 1789742115000,
+      "dir": {
+        "US30": "down"
+      },
+      "why": "Dow slides on yields and Fed"
     },
     {
       "title": "EU banks must be bigger, have deeper capital market, to compete with US, say top EU officials",
@@ -550,20 +585,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789741040000
-    },
-    {
-      "title": "S&P 500 wavers after best one-day rally in six weeks: AlphaCheck",
-      "link": "https://finance.yahoo.com/markets/article/sp-500-wavers-after-best-one-day-rally-in-six-weeks-alphacheck-141322068.html",
-      "source": "Yahoo Finance",
-      "at": 1789740802000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789740802000
     },
     {
       "title": "LNG tanker hit by suspected cyberattack in Mediterranean Sea",
@@ -1048,26 +1069,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789729734000
-    },
-    {
-      "title": "Michigan synagogue Temple Israel reopens after attempted terror attack - CBS News",
-      "link": "https://news.google.com/rss/articles/CBMiowFBVV95cUxQZlNzTFlzQ1B3OXRfZFZSZzdmTFJJX0ZqTzJVb3BBRlFJMXJRT2dfN1gwRzA2MWgtUEhoMm8yYUtiYzZWU0lhbUx2VG4xM2p5dzdvWnpfb2EtZHM4RHRvLWJrNVBfWTlYQTExQkFPb2ZDemplTkFmZ0FFZ082ZFRGdDBPd0xyMFNJXzhkWEY4QW1TNUd3VFhYVUtHZURKdl9XUXlZ?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiowFBVV95cUxQZlNzTFlzQ1B3OXRfZFZSZzdmTFJJX0ZqTzJVb3BBRlFJMXJRT2dfN1gwRzA2MWgtUEhoMm8yYUtiYzZWU0lhbUx2VG4xM2p5dzdvWnpfb2EtZHM4RHRvLWJrNVBfWTlYQTExQkFPb2ZDemplTkFmZ0FFZ082ZFRGdDBPd0xyMFNJXzhkWEY4QW1TNUd3VFhYVUtHZURKdl9XUXlZ?oc=5\" tar",
-      "at": 1789729920000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789729920000
     },
     {
       "title": "Silver price today, Friday, September 18, 2026: Silver prices recover quickly, hitting weekly high today",
@@ -1624,6 +1625,62 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789718704000
+    },
+    {
+      "title": "Iran’s Isolation Grows After U.S. Imposes Sweeping Sanctions on Airlines - The New York Times",
+      "link": "https://news.google.com/rss/articles/CBMipAFBVV95cUxOd21jUktGbU5udUZNVXpKdXIxRUtvM0JnZ0M2VDIwZ1ZSMWQ3WE1TZS1yTUFQU0FtYS02UjVCRzEydVVJdlhfVjd3aHNfc2FTQTd3RWctSUxTeDVMSmNQUHlrSHMtWE92cEhfaDBzZmFIR1NWUTZHR0xabW5VcjFkVXRZT2NUbTd2T1lRb2FvcHlkRmdkUnhNWnB4R2x4Qk1BYTUtRw?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMipAFBVV95cUxOd21jUktGbU5udUZNVXpKdXIxRUtvM0JnZ0M2VDIwZ1ZSMWQ3WE1TZS1yTUFQU0FtYS02UjVCRzEydVVJdlhfVjd3aHNfc2FTQTd3RWctSUxTeDVMSmNQUHlrSHMtWE92cEhfaDBzZmFIR1NWUTZHR0xabW5VcjFkVXRZT2NUbTd2T1lRb2FvcHlkRmdkUnhNWnB4R2x4Qk1BYTUtRw?oc=5\" t",
+      "at": 1789717860000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789717860000
+    },
+    {
+      "title": "Dollar jumps above 157 yen, Nikkei stock index climbs after BOJ rate hike - 毎日新聞",
+      "link": "https://news.google.com/rss/articles/CBMic0FVX3lxTE9pT2hXZUh2cm5XcXVrVkdTMElpS211eENIbThwSFBNUFRwWnRoRnZ1RDJVYWZYSFBNN1dHYU55ZzdndnQ2QU1Zd0Vja1BEYWgtdkR5Rk9zczdGY0tsRXl6dFFJMzZoVmdKZU1Xcl9LVkwtSkU?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMic0FVX3lxTE9pT2hXZUh2cm5XcXVrVkdTMElpS211eENIbThwSFBNUFRwWnRoRnZ1RDJVYWZYSFBNN1dHYU55ZzdndnQ2QU1Zd0Vja1BEYWgtdkR5Rk9zczdGY0tsRXl6dFFJMzZoVmdKZU1Xcl9LVkwtSkU?oc=5\" target=\"_blank\">Dollar jumps above 157 yen, Nikkei stock index climb",
+      "at": 1789717845000,
+      "inst": [
+        "USD/JPY"
+      ],
+      "ccy": [
+        "USD",
+        "JPY"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789717845000
+    },
+    {
+      "title": "S. Korean won slightly weakens against U.S. dollar after BOJ's expected rate hike - Yonhap News Agency",
+      "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5oWldtZ2ZSeHlBTDF5NHhkV3dtcWMtd1NSeUpaenFOZ2gwZGhuS2JZdi1qUkdxUkEtaTZnb3pvS1J3Q3VDNlpFZmJWZzhxNzFjYTZiY29pSWJfdw?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiWkFVX3lxTE5oWldtZ2ZSeHlBTDF5NHhkV3dtcWMtd1NSeUpaenFOZ2gwZGhuS2JZdi1qUkdxUkEtaTZnb3pvS1J3Q3VDNlpFZmJWZzhxNzFjYTZiY29pSWJfdw?oc=5\" target=\"_blank\">S. Korean won slightly weakens against U.S. dollar after BOJ's expected rate hike</a>",
+      "at": 1789717634000,
+      "inst": [
+        "USD/JPY"
+      ],
+      "ccy": [
+        "USD",
+        "JPY"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789717634000
     }
   ],
   "sources": [
@@ -1650,6 +1707,6 @@
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-18T15:52:12.079Z",
-  "updatedAt": "2026-09-18T15:52:12.079Z"
+  "headlinesAt": "2026-09-18T15:54:15.366Z",
+  "updatedAt": "2026-09-18T15:54:15.366Z"
 }
