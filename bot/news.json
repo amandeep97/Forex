@@ -359,7 +359,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789699020000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Oil prices fall for 3rd day"
     },
     {
       "title": "U.S. 10-Year Treasury yield reverses below 5% following Fed rate hike. - CME Group",
@@ -383,7 +387,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789698621000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "EUR/USD": "up",
+        "GBP/USD": "up"
+      },
+      "why": "Yield reversal below 5% supports assets"
     },
     {
       "title": "Gold vs silver: How Fed rate hike, dollar and geopolitical risks affect prices - CNBC TV18",
@@ -404,7 +414,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789698023000,
-      "_kind": null
+      "_kind": null,
+      "why": "Analysis of factors, no clear direction"
     },
     {
       "title": "Grayscale Says Fed Rate Hike Will Have Limited Impact on Crypto Markets - finance.biggo.com",
@@ -422,7 +433,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789697100000
+      "firstAt": 1789697100000,
+      "why": "Limited impact on crypto markets"
     },
     {
       "title": "Syria warns Israel poses ‘the greatest threat’ to Middle East stability",
@@ -442,7 +454,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789696734000
+      "firstAt": 1789696734000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Middle East instability boosts safe havens"
     },
     {
       "title": "UN findings show US strikes on Minab could be war crimes",
@@ -459,7 +477,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789696733000
+      "firstAt": 1789696733000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Geopolitical tension boosts gold demand"
     },
     {
       "title": "Gold rises as lower oil, Treasury yields ease inflation pressure - Investing.com",
@@ -479,7 +501,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789694717000
+      "firstAt": 1789694717000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "down"
+      },
+      "why": "Gold rises, oil lower"
     },
     {
       "title": "Will India really face a 100% US tariff? What the new Russia sanctions bill actually allows President Trump to do - Asia News Network",
@@ -500,7 +527,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789694130000
+      "firstAt": 1789694130000,
+      "why": "Tariff uncertainty, no clear direction"
     },
     {
       "title": "Gold holds gain as lower oil and Fed hike temper inflation fears - The Edge Malaysia",
@@ -520,7 +548,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789694717000
+      "firstAt": 1789694717000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "down"
+      },
+      "why": "Gold holds gain, oil lower"
     },
     {
       "title": "A sweeping U.S. sanctions bill offers Ukraine new leverage on Russia, but enforcement looms - Butler Eagle",
@@ -540,7 +573,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789694130000
+      "firstAt": 1789694130000,
+      "why": "Sanctions bill details, no immediate move"
     },
     {
       "title": "Oil prices fall 1% on hopes of limited supply disruptions",
@@ -556,7 +590,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789693943000
+      "firstAt": 1789693943000,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Oil prices fall 1%"
     },
     {
       "title": "RBA to assess if rates adequate to cool inflation, says Governor Bullock",
@@ -573,7 +611,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789693765000
+      "firstAt": 1789693765000,
+      "why": "RBA assessing rates, no clear signal"
     },
     {
       "title": "Yen weak ahead of BOJ decision; rate hike expected - Reuters",
@@ -591,7 +630,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789693140000
+      "firstAt": 1789693140000,
+      "dir": {
+        "USD/JPY": "down"
+      },
+      "why": "Yen weak ahead of BOJ hike"
     },
     {
       "title": "Iran in, Abbas out: Trump threatens new strikes as US grants Tehran leaders UN visas - Ynetnews",
@@ -611,7 +654,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789689600000
+      "firstAt": 1789689600000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "US threats boost risk assets"
     },
     {
       "title": "How Alabama’s congressional delegation voted on Russia sanctions bill - WSFA",
@@ -631,7 +680,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789690920000
+      "firstAt": 1789690920000,
+      "why": "Voting details, no market impact"
     },
     {
       "title": "Press Release: Rep. Scott Fitzgerald Votes on Russia, Iran Sanctions and Climate Waivers - Quiver Quantitative",
@@ -2111,10 +2161,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-18T02:44:11.042Z",
-  "headlinesAt": "2026-09-18T02:44:11.042Z",
-  "updatedAt": "2026-09-18T02:44:11.042Z"
+  "calendarAt": "2026-09-18T02:45:28.563Z",
+  "headlinesAt": "2026-09-18T02:45:28.563Z",
+  "updatedAt": "2026-09-18T02:45:28.563Z"
 }
