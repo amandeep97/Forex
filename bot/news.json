@@ -22,7 +22,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789705108000,
-      "_kind": null
+      "_kind": null,
+      "why": "India GDP news irrelevant to these pairs"
     },
     {
       "title": "Venezuela nears deal to move $4 billion gold reserve to New York, FT says",
@@ -39,7 +40,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789705108000,
-      "_kind": null
+      "_kind": null,
+      "why": "Gold reserve move unclear for price"
     },
     {
       "title": "Meloni: Putin Seeks Escalation With Europe to Distract From Ukraine Battlefield - Kyiv Post",
@@ -60,7 +62,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789704845000,
-      "_kind": null
+      "_kind": null,
+      "why": "Geopolitical noise without clear price direction"
     },
     {
       "title": "Oil prices fall for third day on hopes of limited Saudi supply disruptions",
@@ -77,7 +80,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789704076000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Oil prices fall on supply hopes"
     },
     {
       "title": "Why is the Japanese yen sliding today?",
@@ -94,7 +101,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789704009000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USD/JPY": "up"
+      },
+      "why": "Yen sliding implies USD/JPY rising"
     },
     {
       "title": "investingLive Asia-Pacific market news: BoJ hike and RBA hawkish tilt",
@@ -114,7 +125,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789702642000
+      "firstAt": 1789702642000,
+      "dir": {
+        "USD/JPY": "up",
+        "AUD/USD": "up"
+      },
+      "why": "Yen weakens, RBA hawkish boosts AUD"
     },
     {
       "title": "A look inside restored Temple Israel months after attack - CBS News",
@@ -134,7 +150,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789702080000
+      "firstAt": 1789702080000,
+      "why": "Temple restoration news irrelevant to markets"
     },
     {
       "title": "Gold and Silver Price Forecast: Oil Pullback Eases Inflation Fears - FXEmpire",
@@ -156,7 +173,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789702059000
+      "firstAt": 1789702059000,
+      "dir": {
+        "XAU/USD": "down",
+        "XAG/USD": "down",
+        "USOIL": "down"
+      },
+      "why": "Oil pullback eases inflation fears, bearish gold"
     },
     {
       "title": "Bank of Japan raises rates to 31-year high of 1.25% as inflation rises",
@@ -174,7 +197,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789701620000
+      "firstAt": 1789701620000,
+      "dir": {
+        "USD/JPY": "down"
+      },
+      "why": "BOJ rate hike strengthens yen"
     },
     {
       "title": "Asia chip, tech stocks track Wall St gains as yields fall",
@@ -189,7 +216,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789701352000
+      "firstAt": 1789701352000,
+      "dir": {
+        "US500": "up",
+        "US100": "up"
+      },
+      "why": "Tech stocks track Wall St gains"
     },
     {
       "title": "Fed Rate Hike Seen as 'Selling the News' — Taiwan Dollar Surges Past NT$31.8, RMB Hits 4-Year High - finance.biggo.com",
@@ -212,7 +244,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789700700000
+      "firstAt": 1789700700000,
+      "why": "Fed hike seen as selling news"
     },
     {
       "title": "Asian stocks rise as oil retreat eases inflation fears, BOJ in focus",
@@ -232,7 +265,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789700668000
+      "firstAt": 1789700668000,
+      "dir": {
+        "USOIL": "down",
+        "US500": "up"
+      },
+      "why": "Oil retreat, Asian stocks rise"
     },
     {
       "title": "Explainer-What commodity markets can expect from the Trump-Xi summit",
@@ -264,7 +302,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789697971000
+      "firstAt": 1789697971000,
+      "why": "Sanctions bill direction unclear for these"
     },
     {
       "title": "Yen falls to 156 per dollar on softer inflation before BOJ rate move - Nikkei Asia",
@@ -282,7 +321,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789699800000
+      "firstAt": 1789699800000,
+      "dir": {
+        "USD/JPY": "up"
+      },
+      "why": "Yen falls to 156 per dollar"
     },
     {
       "title": "Oil prices fall for 3rd day as supply concerns ease, diplomacy in focus",
@@ -298,7 +341,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789699020000
+      "firstAt": 1789699020000,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Oil prices fall as supply eases"
     },
     {
       "title": "U.S. 10-Year Treasury yield reverses below 5% following Fed rate hike. - CME Group",
@@ -1754,10 +1801,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-18T04:26:10.905Z",
-  "updatedAt": "2026-09-18T04:26:10.905Z"
+  "headlinesAt": "2026-09-18T04:27:28.255Z",
+  "updatedAt": "2026-09-18T04:27:28.255Z"
 }
