@@ -291,7 +291,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789728493000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Geopolitical risk boosts gold, oil unclear."
     },
     {
       "title": "Australian Dollar rises as RBA keeps rate hike option alive - FXStreet",
@@ -310,7 +314,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789729652000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "AUD/USD": "up"
+      },
+      "why": "RBA hike option supports Australian dollar."
     },
     {
       "title": "UN Probe Says US School Strike in Iran May Be War Crime, Tehran Committed Crimes Against Humanity - The Media Line",
@@ -331,7 +339,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789728493000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "War crime probe boosts gold, oil unclear."
     },
     {
       "title": "The next Iran strike: How legal, economic, and diplomatic pressures are priming the region for war - Bulletin of the Atomic Scientists",
@@ -352,7 +364,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789728901000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "War pressure boosts gold and oil."
     },
     {
       "title": "Ukrainian Strike Cripples Russian Orion Drone Operations in Crimea - UNITED24 Media",
@@ -373,7 +391,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789728493000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Ukraine strike boosts gold, oil unclear."
     },
     {
       "title": "Gold price today, Friday, September 18, 2026: Gold hits weekly high as inflation concerns fade",
@@ -391,7 +413,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789728487000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Gold hits weekly high on fading inflation."
     },
     {
       "title": "European stocks snap two-week slide as Fed resolve",
@@ -408,7 +434,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789728404000,
-      "_kind": null
+      "_kind": null,
+      "why": "European stocks news, US direction unclear."
     },
     {
       "title": "Blumenthal touts passage of Russia sanctions bill as CT Dems split - Hartford Business Journal",
@@ -429,7 +456,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789725779000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions bill direction unclear for assets."
     },
     {
       "title": "‘My children did not attack Iran’: 2bn South Asians suffer from distant war - Al Jazeera",
@@ -449,7 +477,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789727999000
+      "firstAt": 1789727999000,
+      "why": "Humanitarian angle, no clear market direction."
     },
     {
       "title": "A sideways market and rising earnings are presenting opportunities not seen since ChatGPT first launched",
@@ -479,7 +508,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789727700000
+      "firstAt": 1789727700000,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Lower oil prices soothe inflation fears."
     },
     {
       "title": "What Fed rate hikes mean for gold prices in 2027, according to Goldman",
@@ -501,7 +534,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789726080000
+      "firstAt": 1789726080000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Fed hikes bearish for gold and FX."
     },
     {
       "title": "India stocks mixed at close of trade; Nifty 50 up 0.33%",
@@ -515,7 +554,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789727406000
+      "firstAt": 1789727406000,
+      "why": "India stocks news, US direction unclear."
     },
     {
       "title": "Israel is killing the people who could end its wars",
@@ -535,7 +575,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789727374000
+      "firstAt": 1789727374000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Assassinations boost gold, oil direction unclear."
     },
     {
       "title": "Ukraine fires drone barrage as Russia launches elections",
@@ -555,7 +599,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789727297000
+      "firstAt": 1789727297000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Ukraine drone barrage boosts gold, oil unclear."
     },
     {
       "title": "Oil prices set for weekly fall on easing fears over Saudi supply disruption",
@@ -571,7 +619,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789726743000
+      "firstAt": 1789726743000,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Easing supply fears drive weekly oil fall."
     },
     {
       "title": "AM Markets Need to Know: F-35 sale, China tariffs, and more (SPX:) - Seeking Alpha",
@@ -1993,7 +2045,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-18T11:15:27.842Z",
-  "headlinesAt": "2026-09-18T11:15:27.842Z",
-  "updatedAt": "2026-09-18T11:15:27.842Z"
+  "calendarAt": "2026-09-18T11:16:58.286Z",
+  "headlinesAt": "2026-09-18T11:16:58.286Z",
+  "updatedAt": "2026-09-18T11:16:58.286Z"
 }
