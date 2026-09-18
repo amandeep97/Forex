@@ -2,6 +2,22 @@
   "calendar": [],
   "headlines": [
     {
+      "title": "3 Energy and Utility Stocks Named Top Analyst Favorites at Raymond James",
+      "link": "https://www.investing.com/news/stock-market-news/3-energy-and-utility-stocks-named-top-analyst-favorites-at-raymond-james-93CH-4906890",
+      "source": "Investing",
+      "at": 1789723724000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789723724000,
+      "_kind": null,
+      "why": "Specific stock news, unclear index impact"
+    },
+    {
       "title": "Yen tumbles despite BOJ lifting rates as Ueda pre-empts aggressive tightening",
       "link": "https://www.investing.com/news/forex-news/asia-fx-mixed-as-yen-slides-despite-boj-rate-hike-4906678",
       "source": "Investing FX",
@@ -16,7 +32,33 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789723222000,
-      "_kind": null
+      "dir": {
+        "USD/JPY": "up"
+      },
+      "why": "Yen tumbles, dollar strengthens"
+    },
+    {
+      "title": "+200%: Tech and energy winners extend AI-picked strategy leads despite Fed hike",
+      "link": "https://www.investing.com/news/stock-market-news/200-tech-and-energy-winners-extend-aipicked-strategy-leads-despite-fed-hike-4906881",
+      "source": "Investing",
+      "at": 1789723065000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789723065000,
+      "why": "Stock strategy news, unclear macro direction"
     },
     {
       "title": "Venezuela nears deal to move $4 billion gold reserve to New York, FT says",
@@ -32,7 +74,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789722052000
+      "firstAt": 1789722052000,
+      "why": "Reserve movement, unclear price impact"
     },
     {
       "title": "Here’s what BoE tightening means for EUR/GBP",
@@ -48,7 +91,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789722035000
+      "firstAt": 1789722035000,
+      "why": "BoE tightening impact on GBP unclear"
     },
     {
       "title": "Gold prices on pace weekly gain as oil prices dip",
@@ -66,7 +110,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789721818000
+      "firstAt": 1789721818000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "down"
+      },
+      "why": "Gold gaining, oil dipping"
     },
     {
       "title": "Global markets feel pressure as central banks turn hawkish on inflation - Modern Diplomacy",
@@ -89,7 +138,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789721446000
+      "firstAt": 1789721446000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Hawkish central banks pressure markets"
     },
     {
       "title": "A Chinese AI company just connected its model to Wall Street's leading data providers",
@@ -104,7 +159,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789720871000
+      "firstAt": 1789720871000,
+      "why": "AI news, unclear market direction"
     },
     {
       "title": "‘Just ask Grok’: How ISIL is using Big Tech’s AI to build bombs",
@@ -119,7 +175,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789720799000
+      "firstAt": 1789720799000,
+      "why": "Negative news, unclear market impact"
     },
     {
       "title": "Oil extends declines amid easing supply concerns, ongoing diplomatic efforts",
@@ -135,21 +192,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789720789000
-    },
-    {
-      "title": "Indonesia stocks lower at close of trade; IDX Composite Index down 0.46%",
-      "link": "https://www.investing.com/news/stock-market-news/indonesia-stocks-lower-at-close-of-trade-idx-composite-index-down-046-4906816",
-      "source": "Investing",
-      "at": 1789720503000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789720503000
+      "firstAt": 1789720789000,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Oil extends declines"
     },
     {
       "title": "European natural gas set to snap five-week winning streak",
@@ -163,7 +210,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789720409000
+      "firstAt": 1789720409000,
+      "dir": {
+        "NATGAS": "down"
+      },
+      "why": "Gas set to snap winning streak"
     },
     {
       "title": "Oil prices fall 2% on easing fears over Saudi supply disruption",
@@ -179,7 +230,40 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789720226000
+      "firstAt": 1789720226000,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Oil prices fall 2%"
+    },
+    {
+      "title": "Markets predict interest rate hike as cost of living bites - news24.com.au",
+      "link": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxNbXhjTEdpZGtKZDRTenhlNTRwY2JCSVZzSFd0MnpQdWFjc1MxaE5xSjBmRmM5ZFBzWFMtRlRIMnh1ellXcUVHMFVVbzQxRGgyRVU2dlNYZW1PYXM1Wi1TeHlwaUZTOHdmdENqblJUcHRETXoxNVVTY0VnUTFnQzRkYXZvYXdDYTJaYXozVklFTFYza1lmR2J5N3dvQ2JBcVJ0UFR1elN4bWNpQ04tUHJBQjZNUDZBZlp5WWZVdWtlYjZmYjJzUzNnbG5TRE1RSVllekQwajdXSdIB3AFBVV95cUxPOFRPSl9ZRU5xekNCblF5VzJRcDk4VjNZaTVPb0hUN1ZTYlV4bmVueDZUUF9sWFQ0NHpWLW9RYkFJR0tLQV9fRDhaMFZGdzgzdkVnVzFBOTFyY0xmbWl4SmE0MThBcDk5NmhMaE5uREkzT3BIVnVpSUF1Q2VqSS1pcmRLVGUtdm1FY1lQWVY2cWJ2R1FvWmcyS1lWOGlNaVNHNzRBb0hJVjRiRWxpNXhXaXU3X0Y1bWllVnhpZDZKSVIyUXBJWWdjVGtRMnJ3MXZLanphWkVvWjlwOWhO?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi1wFBVV95cUxNbXhjTEdpZGtKZDRTenhlNTRwY2JCSVZzSFd0MnpQdWFjc1MxaE5xSjBmRmM5ZFBzWFMtRlRIMnh1ellXcUVHMFVVbzQxRGgyRVU2dlNYZW1PYXM1Wi1TeHlwaUZTOHdmdENqblJUcHRETXoxNVVTY0VnUTFnQzRkYXZvYXdDYTJaYXozVklFTFYza1lmR2J5N3dvQ2JBcVJ0UFR1elN4bWNpQ0",
+      "at": 1789720168000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789719299000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Rate hike expectations pressure assets"
     },
     {
       "title": "Yen slides despite BOJ rate hike, dollar holds gains amid hawkish Fed By Investing.com - Investing.com South Africa",
@@ -197,7 +281,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789719975000
+      "firstAt": 1789719975000,
+      "dir": {
+        "USD/JPY": "up"
+      },
+      "why": "Yen slides, dollar holds gains"
     },
     {
       "title": "UBS sees EUR/USD long opportunity on central bank dynamics",
@@ -219,7 +307,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789719692000
+      "firstAt": 1789719692000,
+      "dir": {
+        "EUR/USD": "up"
+      },
+      "why": "UBS sees EUR/USD long opportunity"
     },
     {
       "title": "Revealed: Ed Miliband ignored MI6’s warnings over Israel sanctions - The Spectator",
@@ -386,24 +478,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789716716000
-    },
-    {
-      "title": "S. Korean won slightly weakens against U.S. dollar after BOJ's expected rate hike - Yonhap News Agency",
-      "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5oWldtZ2ZSeHlBTDF5NHhkV3dtcWMtd1NSeUpaenFOZ2gwZGhuS2JZdi1qUkdxUkEtaTZnb3pvS1J3Q3VDNlpFZmJWZzhxNzFjYTZiY29pSWJfdw?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiWkFVX3lxTE5oWldtZ2ZSeHlBTDF5NHhkV3dtcWMtd1NSeUpaenFOZ2gwZGhuS2JZdi1qUkdxUkEtaTZnb3pvS1J3Q3VDNlpFZmJWZzhxNzFjYTZiY29pSWJfdw?oc=5\" target=\"_blank\">S. Korean won slightly weakens against U.S. dollar after BOJ's expected rate hike</a>",
-      "at": 1789717634000,
-      "inst": [
-        "USD/JPY"
-      ],
-      "ccy": [
-        "USD",
-        "JPY"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789717634000
     },
     {
       "title": "Crypto is just one channel: how Russia launders corrupt wealth past sanctions - Transparency.org",
@@ -1453,7 +1527,7 @@
       "firstAt": 1789685767000
     },
     {
-      "title": "Trump Wants Putin to End the War. He May Offer Russia Business Deals First. - nytimes.com",
+      "title": "Trump Wants Putin to End the War. He May Offer Russia Business Deals First. - The New York Times",
       "link": "https://news.google.com/rss/articles/CBMie0FVX3lxTE11eG5ZRWl5UHhEOGxBWTVIMDB4bGJ4aXNXSTFfS0JLVjlnSVVTM1lxd0NmRnJoLVFxMDdIQi0yd0Z1T3VZcTc4ckxFU1JsOXpWN2ZSMGxyT0FXTVdMbkoyM2RRaGxZVXZyQWFkV1VFc1ZLNkpfdnlud0pwSQ?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMie0FVX3lxTE11eG5ZRWl5UHhEOGxBWTVIMDB4bGJ4aXNXSTFfS0JLVjlnSVVTM1lxd0NmRnJoLVFxMDdIQi0yd0Z1T3VZcTc4ckxFU1JsOXpWN2ZSMGxyT0FXTVdMbkoyM2RRaGxZVXZyQWFkV1VFc1ZLNkpfdnlud0pwSQ?oc=5\" target=\"_blank\">Trump Wants Putin to End the War. He May ",
@@ -1662,26 +1736,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789677360000
-    },
-    {
-      "title": "UN experts say grounds to believe US committed war crimes in Iran strikes",
-      "link": "https://www.bbc.co.uk/news/articles/cm9w4n5nverdo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC World",
-      "desc": "The US has not acknowledged carrying out February's deadly strikes on a primary school in Minab and a sports complex in Lamerd.",
-      "at": 1789677270000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789676760000
     }
   ],
   "sources": [
@@ -1708,6 +1762,6 @@
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-18T09:50:28.387Z",
-  "updatedAt": "2026-09-18T09:50:28.387Z"
+  "headlinesAt": "2026-09-18T09:51:59.277Z",
+  "updatedAt": "2026-09-18T09:51:59.277Z"
 }
