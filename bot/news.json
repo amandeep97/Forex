@@ -16,7 +16,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789726163000,
-      "_kind": null
+      "_kind": null,
+      "why": "Gold reserve movement unclear for price"
     },
     {
       "title": "European stocks snap two-week slide as Fed resolve",
@@ -33,7 +34,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789726157000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Stocks snap slide, positive sentiment"
     },
     {
       "title": "The Fed’s never been so confident on economic growth. What investors should do now, according to KKR.",
@@ -57,7 +62,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789726080000,
-      "_kind": null
+      "_kind": null,
+      "why": "Fed confidence unclear for specific pairs"
     },
     {
       "title": "The Fed hasn’t been this terse since 2007. What a 130-word statement signals for market stability.",
@@ -81,7 +87,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789726080000,
-      "_kind": null
+      "_kind": null,
+      "why": "Terse statement signals stability, direction unclear"
     },
     {
       "title": "The Trump administration is considering business deals with Russia before a ceasefire, not after - Plataforma Media",
@@ -102,7 +109,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789725981000,
-      "_kind": null
+      "_kind": null,
+      "why": "Political news, no clear market direction"
     },
     {
       "title": "Russia and China Veto U.S. UN Resolution Extending Iran Sanctions Monitoring: how 18 outlets framed it - NewsCord",
@@ -123,7 +131,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789725600000,
-      "_kind": null
+      "_kind": null,
+      "why": "UN veto, no immediate price impact"
     },
     {
       "title": "Meloni: Putin Seeks European Escalation to Mask Ukraine Failures - Kyiv Post",
@@ -144,7 +153,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789725683000,
-      "_kind": null
+      "_kind": null,
+      "why": "Political commentary, no clear market signal"
     },
     {
       "title": "Mortgage and refinance interest rates today, Friday, September 18, 2026: Rates mostly higher following the Fed",
@@ -167,7 +177,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789725600000,
-      "_kind": null
+      "_kind": null,
+      "why": "Mortgage rates, indirect and unclear impact"
     },
     {
       "title": "U.S. May Have Committed War Crimes in Iran, U.N. Report Says - Time Magazine",
@@ -189,7 +200,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789725600000,
-      "_kind": null
+      "_kind": null,
+      "why": "Geopolitical report, no clear price direction"
     },
     {
       "title": "House Approves Russia Sanctions Bill - The Presidential Prayer Team",
@@ -210,7 +222,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789725600000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions bill, impact uncertain"
     },
     {
       "title": "Australian Dollar soars against Japanese Yen as BoJ rate hike disappoints hawks - FXStreet",
@@ -229,7 +242,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789725319000
+      "firstAt": 1789725319000,
+      "dir": {
+        "USD/JPY": "down",
+        "AUD/USD": "up"
+      },
+      "why": "AUD soars, JPY weakens on BoJ"
     },
     {
       "title": "Investors buy US stocks at fastest pace in three months, BofA says",
@@ -243,7 +261,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789725276000
+      "firstAt": 1789725276000,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Fastest buying pace in three months"
     },
     {
       "title": "‘This is a war’: South Africa battles femicide as women’s bodies pile up",
@@ -260,7 +282,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789724623000
+      "firstAt": 1789724623000,
+      "why": "Unrelated social news, no market impact"
     },
     {
       "title": "Yen tumbles despite BOJ lifting rates as Ueda pre-empts aggressive tightening",
@@ -276,7 +299,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789723222000
+      "firstAt": 1789723222000,
+      "dir": {
+        "USD/JPY": "up"
+      },
+      "why": "Yen tumbles, dollar strengthens"
     },
     {
       "title": "Iran says it strikes an oil tanker, and other Mideast developments - AP News",
@@ -296,7 +323,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789722360000
+      "firstAt": 1789722360000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Oil tanker strike boosts risk assets"
     },
     {
       "title": "Treasury Sanctions Crypto Exchange Behind Iran's Bitcoin Tolls on Hormuz Ships - Yahoo Finance",
@@ -1737,6 +1770,6 @@
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-18T10:28:11.647Z",
-  "updatedAt": "2026-09-18T10:28:11.647Z"
+  "headlinesAt": "2026-09-18T10:29:43.384Z",
+  "updatedAt": "2026-09-18T10:29:43.384Z"
 }
