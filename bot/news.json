@@ -189,7 +189,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789757160000,
-      "_kind": null
+      "_kind": null,
+      "why": "Personal loss story, no market direction."
     },
     {
       "title": "Venezuela, opposition faction weighing deal to move $4 billion in gold to US from UK, sources say",
@@ -206,7 +207,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789757010000,
-      "_kind": null
+      "_kind": null,
+      "why": "Gold movement news, unclear price impact."
     },
     {
       "title": "Troubled Australian developer Bathla granted one-year extension to complete projects",
@@ -221,7 +223,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789756228000,
-      "_kind": null
+      "_kind": null,
+      "why": "Developer extension, negligible macro impact."
     },
     {
       "title": "Three words from Kevin Warsh have Wall Street wondering how far the Fed will go with rate hikes",
@@ -239,7 +242,10 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789756111000,
-      "_kind": null
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Fed rate hike uncertainty weighs on stocks."
     },
     {
       "title": "‘There might be a silver lining’: My friend’s wife died at 60 after a high-earning career. Can he claim her Social Security?",
@@ -256,7 +262,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789755960000
+      "firstAt": 1789755960000,
+      "why": "Social security article, irrelevant to silver."
     },
     {
       "title": "Russia’s drones threaten Kyiv-bound Western officials as war effort stalls - aljazeera.com",
@@ -276,7 +283,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789755750000
+      "firstAt": 1789755750000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "War escalation boosts safe havens and oil."
     },
     {
       "title": "BoE Rate Hike Vote Stalls, Markets Brace For Status Quo - The Globe and Mail",
@@ -294,7 +307,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789755324000
+      "firstAt": 1789755324000,
+      "dir": {
+        "GBP/USD": "down"
+      },
+      "why": "BoE stall implies weaker GBP outlook."
     },
     {
       "title": "Wendy’s shares slip after US franchisee files for bankruptcy",
@@ -338,7 +355,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789754678000
+      "firstAt": 1789754678000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "European security threats boost risk assets."
     },
     {
       "title": "Socgen remains bullish on gold price in Q4 as central banks won’t get ahead of inflation - KITCO",
@@ -356,7 +379,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789753617000
+      "firstAt": 1789753617000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Socgen bullish on gold price outlook."
     },
     {
       "title": "As Warren Buffett’s reign ends, fans should sell Berkshire — and buy these stocks instead",
@@ -371,7 +398,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 3,
-      "firstAt": 1789751702000
+      "firstAt": 1789751702000,
+      "why": "Opinion piece, no clear market signal."
     },
     {
       "title": "Oil slides following outreach to Iran to limit Houthis actions in Red Sea",
@@ -387,7 +415,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789752986000
+      "firstAt": 1789752986000,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Oil slides on Iran outreach news."
     },
     {
       "title": "2-year Treasury yield reaches multi-year high after Fed rate hike - Yahoo Finance",
@@ -410,7 +442,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789752582000
+      "firstAt": 1789752582000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Higher yields strengthen dollar, weaken others."
     },
     {
       "title": "Revealed: Ed Miliband ignored MI6’s warnings over Israel sanctions - The Spectator",
@@ -430,7 +468,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789752287000
+      "firstAt": 1789752287000,
+      "why": "Political scandal, no direct market impact."
     },
     {
       "title": "Iranians rally in biggest show of defiance against US since war began",
@@ -450,7 +489,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789752203000
+      "firstAt": 1789752203000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Iran defiance increases geopolitical risk premium."
     },
     {
       "title": "Two signs investors don’t have to fear an AI slowdown",
@@ -486,7 +531,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789750200000
+      "firstAt": 1789750200000,
+      "why": "General inflation discussion, no specific direction."
     },
     {
       "title": "Why investors’ best move in reaction to Fed’s rate hike is doing nothing at all",
@@ -1871,7 +1917,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-18T18:57:26.865Z",
-  "headlinesAt": "2026-09-18T18:57:26.865Z",
-  "updatedAt": "2026-09-18T18:57:26.865Z"
+  "calendarAt": "2026-09-18T18:58:57.998Z",
+  "headlinesAt": "2026-09-18T18:58:57.998Z",
+  "updatedAt": "2026-09-18T18:58:57.998Z"
 }
