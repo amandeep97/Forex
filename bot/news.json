@@ -1,177 +1,5 @@
 {
-  "calendar": [
-    {
-      "title": "FPI m/m",
-      "country": "NZD",
-      "impact": "low",
-      "at": 1789685100000,
-      "forecast": "",
-      "previous": "0.1%",
-      "actual": ""
-    },
-    {
-      "title": "Trade Balance",
-      "country": "NZD",
-      "impact": "low",
-      "at": 1789685100000,
-      "forecast": "-1775M",
-      "previous": "-1949M",
-      "actual": ""
-    },
-    {
-      "title": "RBA Gov Bullock Speaks",
-      "country": "AUD",
-      "impact": "medium",
-      "at": 1789687800000,
-      "forecast": "",
-      "previous": "",
-      "actual": ""
-    },
-    {
-      "title": "National Core CPI y/y",
-      "country": "JPY",
-      "impact": "low",
-      "at": 1789687800000,
-      "forecast": "1.8%",
-      "previous": "1.8%",
-      "actual": ""
-    },
-    {
-      "title": "BOJ Policy Rate",
-      "country": "JPY",
-      "impact": "high",
-      "at": 1789700040000,
-      "forecast": "<1.25%",
-      "previous": "<1.00%",
-      "actual": ""
-    },
-    {
-      "title": "Monetary Policy Statement",
-      "country": "JPY",
-      "impact": "high",
-      "at": 1789700040000,
-      "forecast": "",
-      "previous": "",
-      "actual": ""
-    },
-    {
-      "title": "German PPI m/m",
-      "country": "EUR",
-      "impact": "low",
-      "at": 1789711200000,
-      "forecast": "0.6%",
-      "previous": "1.1%",
-      "actual": ""
-    },
-    {
-      "title": "Retail Sales m/m",
-      "country": "GBP",
-      "impact": "medium",
-      "at": 1789711200000,
-      "forecast": "-0.2%",
-      "previous": "-0.5%",
-      "actual": ""
-    },
-    {
-      "title": "BOJ Press Conference",
-      "country": "JPY",
-      "impact": "high",
-      "at": 1789713000000,
-      "forecast": "",
-      "previous": "",
-      "actual": ""
-    },
-    {
-      "title": "Current Account",
-      "country": "EUR",
-      "impact": "low",
-      "at": 1789718400000,
-      "forecast": "30.7B",
-      "previous": "35.1B",
-      "actual": ""
-    },
-    {
-      "title": "ECOFIN Meetings",
-      "country": "EUR",
-      "impact": "low",
-      "at": 1789726500000,
-      "forecast": "",
-      "previous": "",
-      "actual": ""
-    },
-    {
-      "title": "Eurogroup Meetings",
-      "country": "EUR",
-      "impact": "low",
-      "at": 1789726500000,
-      "forecast": "",
-      "previous": "",
-      "actual": ""
-    },
-    {
-      "title": "ECB President Lagarde Speaks",
-      "country": "EUR",
-      "impact": "medium",
-      "at": 1789727400000,
-      "forecast": "",
-      "previous": "",
-      "actual": ""
-    },
-    {
-      "title": "Capacity Utilization Rate",
-      "country": "USD",
-      "impact": "low",
-      "at": 1789737300000,
-      "forecast": "76.4%",
-      "previous": "76.3%",
-      "actual": ""
-    },
-    {
-      "title": "Industrial Production m/m",
-      "country": "USD",
-      "impact": "low",
-      "at": 1789737300000,
-      "forecast": "0.3%",
-      "previous": "0.2%",
-      "actual": ""
-    },
-    {
-      "title": "FOMC Member Bowman Speaks",
-      "country": "USD",
-      "impact": "low",
-      "at": 1789738200000,
-      "forecast": "",
-      "previous": "",
-      "actual": ""
-    },
-    {
-      "title": "CB Leading Index m/m",
-      "country": "USD",
-      "impact": "low",
-      "at": 1789740000000,
-      "forecast": "0.1%",
-      "previous": "0.2%",
-      "actual": ""
-    },
-    {
-      "title": "FOMC Member Schmid Speaks",
-      "country": "USD",
-      "impact": "low",
-      "at": 1789746300000,
-      "forecast": "",
-      "previous": "",
-      "actual": ""
-    },
-    {
-      "title": "ECOFIN Meetings",
-      "country": "EUR",
-      "impact": "low",
-      "at": 1789812900000,
-      "forecast": "",
-      "previous": "",
-      "actual": ""
-    }
-  ],
+  "calendar": [],
   "headlines": [
     {
       "title": "Why investors’ best move in reaction to Fed’s rate hike is doing nothing at all",
@@ -189,7 +17,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789749540000,
-      "_kind": null
+      "_kind": null,
+      "why": "Neutral advice to hold stocks"
     },
     {
       "title": "Mbappe leaves Nike, signs with On as Swiss sportswear maker forays into soccer",
@@ -206,7 +35,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789749400000,
-      "_kind": null
+      "_kind": null,
+      "why": "Corporate news, no direct FX impact"
     },
     {
       "title": "Crypto stocks surge as bitcoin and ethereum rally sharply",
@@ -225,7 +55,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789749396000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "up",
+        "BTC/USDT": "up",
+        "ETH/USDT": "up"
+      },
+      "why": "Crypto rally lifts related stocks"
     },
     {
       "title": "Three words from Kevin Warsh have Wall Street wondering how far the Fed will go with rate hikes",
@@ -243,7 +79,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789749223000,
-      "_kind": null
+      "_kind": null,
+      "why": "Uncertainty about future rate hikes"
     },
     {
       "title": "Two signs investors don’t have to fear an AI slowdown",
@@ -274,7 +111,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789748757000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USD/CAD": "up"
+      },
+      "why": "CAD weakens against USD"
     },
     {
       "title": "The CFTC Just Sent Its Crypto Rules to the White House. What’s in the Filing, and How Quickly Could It Move?",
@@ -291,7 +132,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789748654000,
-      "_kind": null
+      "_kind": null,
+      "why": "Regulatory filing, direction unclear"
     },
     {
       "title": "Boeing selloff overdone despite CEO's production comments, BofA says",
@@ -333,7 +175,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789748563000,
-      "_kind": null
+      "_kind": null,
+      "why": "Bond market influence, no clear direction"
     },
     {
       "title": "JPMorgan says one asset class could soon beat gold",
@@ -350,7 +193,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789748316000,
-      "_kind": null
+      "_kind": null,
+      "why": "Comparison to other assets, no direction"
     },
     {
       "title": "Two-Year U.S. Treasury Yield Reaches New Multi-Year High - wsj.com",
@@ -373,7 +217,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789748160000
+      "firstAt": 1789748160000,
+      "why": "Yield high, mixed implications"
     },
     {
       "title": "Angola to ship fewer crude oil cargoes in November",
@@ -390,7 +235,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789747912000
+      "firstAt": 1789747912000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Supply reduction supports prices"
     },
     {
       "title": "The Oil Fund Beating USO by Harvesting Roll Yield Faces Its Biggest Test Yet",
@@ -406,7 +256,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789747836000
+      "firstAt": 1789747836000,
+      "why": "Fund performance test, no price signal"
     },
     {
       "title": "Insider Buy: Planet Fitness Director Acquires Shares Valued at Nearly $120,000",
@@ -435,7 +286,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789747477000
+      "firstAt": 1789747477000,
+      "dir": {
+        "US30": "down",
+        "BTC/USDT": "up"
+      },
+      "why": "Dow pressured, Bitcoin surges"
     },
     {
       "title": "Russia's $118 Billion Arctic Oil Bet Pushes Ahead Despite Sanctions - Crude Oil Prices Today | OilPrice.com",
@@ -455,7 +311,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789745390000
+      "firstAt": 1789745390000,
+      "why": "Geopolitical news, no clear price direction"
     },
     {
       "title": "Japanese Yen slides as markets look beyond BoJ rate hike - FXStreet",
@@ -473,7 +330,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789746881000
+      "firstAt": 1789746881000,
+      "dir": {
+        "USD/JPY": "up"
+      },
+      "why": "Yen slides against dollar"
     },
     {
       "title": "US says Iran sanctions working, as Turkey, Oman suspend Mahan Air flights - JNS.org",
@@ -493,7 +354,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789746756000
+      "firstAt": 1789746756000,
+      "why": "Sanctions update, no clear direction"
     },
     {
       "title": "Wall St slips as higher Treasury yields weigh on sentiment - Reuters",
@@ -1821,7 +1683,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-18T16:46:56.712Z",
-  "headlinesAt": "2026-09-18T16:46:56.712Z",
-  "updatedAt": "2026-09-18T16:46:56.712Z"
+  "calendarAt": null,
+  "headlinesAt": "2026-09-18T16:48:27.532Z",
+  "updatedAt": "2026-09-18T16:48:27.532Z"
 }
