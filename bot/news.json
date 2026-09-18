@@ -20,7 +20,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789763384000,
-      "_kind": null
+      "_kind": null,
+      "why": "Political news, no direct market impact"
     },
     {
       "title": "investingLive Americas market news wrap: Bonds slump again, yen rate check adds intrigue after BOJ",
@@ -41,7 +42,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789763380000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USD/JPY": "up"
+      },
+      "why": "Yen rate check implies USD strength"
     },
     {
       "title": "Russia sanctions bill gives Trump sweeping new tariff powers - Reuters",
@@ -63,7 +68,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789760940000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions bill, unclear immediate market direction"
     },
     {
       "title": "Gold holds steady despite Fed rate hike, suppor... - Pluang",
@@ -82,7 +88,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789761442000,
-      "_kind": null
+      "_kind": null,
+      "why": "Gold holds steady, no clear direction"
     },
     {
       "title": "Accenture shares jump on Anthropic AI partnership",
@@ -112,7 +119,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789762401000,
-      "_kind": null
+      "_kind": null,
+      "why": "Stocks end mixed, no clear direction"
     },
     {
       "title": "Yen set for worst week since Oct 2025 as BoJ’s hike seen as not aggressive enough",
@@ -128,7 +136,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789761938000
+      "firstAt": 1789761938000,
+      "dir": {
+        "USD/JPY": "up"
+      },
+      "why": "Yen weakness implies USD strength"
     },
     {
       "title": "Russian attack hits Ukraine, Zelenskyy hosts regional summit - WQAD",
@@ -148,7 +160,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789761900000
+      "firstAt": 1789761900000,
+      "why": "Geopolitical news, unclear immediate direction"
     },
     {
       "title": "My rental property is paid off, but I need cash. Is this a bad time to take out a $50,000 HELOC?",
@@ -171,7 +184,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789761660000
+      "firstAt": 1789761660000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Fed hike strengthens dollar, weakens pairs"
     },
     {
       "title": "Oil slides after China asks Iran to limit Houthi attacks on Saudi oil facilities",
@@ -190,7 +209,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789761629000
+      "firstAt": 1789761629000,
+      "dir": {
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Oil slides on reduced supply risk"
     },
     {
       "title": "Gold shrugs off Fed rate hike as deeper forces drive safe-haven demand - KITCO",
@@ -208,7 +232,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789761442000
+      "firstAt": 1789761442000,
+      "why": "Gold shrugs off hike, no clear direction"
     },
     {
       "title": "Trump to sign Russia–Iran sanctions bill Friday — report - The New Voice of Ukraine",
@@ -228,7 +253,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789760364000
+      "firstAt": 1789760364000,
+      "why": "Sanctions bill, unclear immediate market direction"
     },
     {
       "title": "Trump reveals 'big decision' coming on Iran military strikes - KTVU",
@@ -248,7 +274,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789760364000
+      "firstAt": 1789760364000,
+      "why": "Military decision pending, unclear direction"
     },
     {
       "title": "Russia labels Cannes-winning director Andrey Zvyagintsev a ‘foreign agent’",
@@ -268,7 +295,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789760356000
+      "firstAt": 1789760356000,
+      "why": "Cultural news, no market impact"
     },
     {
       "title": "Trump Reacts to Fed Rate Hike as Markets Weigh Warsh’s Hawkish Stance - cheddar.com",
@@ -291,7 +319,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789760308000
+      "firstAt": 1789760308000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Hawkish stance strengthens dollar, weakens pairs"
     },
     {
       "title": "Democratic Leaders Fear the New Russian Sanctions Bill Could 'Harm' Americans. Here's Why - Time Magazine",
@@ -311,7 +345,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789760182000
+      "firstAt": 1789760182000,
+      "why": "Political debate, no clear market direction"
     },
     {
       "title": "Lebanese artist turns Israeli missile debris into art",
@@ -1726,10 +1761,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-18T20:39:12.678Z",
-  "updatedAt": "2026-09-18T20:39:12.678Z"
+  "headlinesAt": "2026-09-18T20:41:28.583Z",
+  "updatedAt": "2026-09-18T20:41:28.583Z"
 }
