@@ -22,7 +22,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789716716000,
-      "_kind": null
+      "_kind": null,
+      "why": "Geopolitical context, no direct price impact"
     },
     {
       "title": "U.S. Congress passes sweeping Russia sanctions bill, sends it to Trump - The Ukrainian Weekly",
@@ -43,7 +44,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789714020000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Sanctions increase risk, boosting safe havens"
     },
     {
       "title": "Nestle weighing options after Russia takes control of local unit; shares dip",
@@ -73,7 +80,10 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789716070000,
-      "_kind": null
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Supply concerns ease, diplomacy reduces risk"
     },
     {
       "title": "Yen slides despite BOJ rate hike, dollar holds gains amid hawkish Fed",
@@ -90,7 +100,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789715914000
+      "firstAt": 1789715914000,
+      "dir": {
+        "USD/JPY": "up"
+      },
+      "why": "Dollar holds gains, yen slides"
     },
     {
       "title": "FTSE 100 today: Stocks slip on Hormuz crisis despite retail sales beat",
@@ -106,7 +120,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789715640000
+      "firstAt": 1789715640000,
+      "why": "European news, unclear US impact"
     },
     {
       "title": "European stocks snap two-week slide as Fed resolve",
@@ -122,7 +137,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789715598000
+      "firstAt": 1789715598000,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Risk-on sentiment from Fed resolve"
     },
     {
       "title": "London Gas Oil clings to $1,460 support in tight range: Live levels",
@@ -138,7 +157,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789715491000
+      "firstAt": 1789715491000,
+      "why": "Technical level, no directional bias"
     },
     {
       "title": "Silver tests $67.94 Fibonacci resistance: Live levels",
@@ -154,7 +174,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789715491000
+      "firstAt": 1789715491000,
+      "why": "Technical level, no directional bias"
     },
     {
       "title": "Natural Gas stuck in tight range above $2.815 support: Live levels",
@@ -168,7 +189,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789715491000
+      "firstAt": 1789715491000,
+      "why": "Technical level, no directional bias"
     },
     {
       "title": "Crude Oil WTI trapped between $99.50 and $102.60: Live levels",
@@ -185,7 +207,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789715491000
+      "firstAt": 1789715491000,
+      "why": "Technical range, no directional bias"
     },
     {
       "title": "Brent Oil squeezed below $106.10 resistance: Live levels",
@@ -202,7 +225,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789715491000
+      "firstAt": 1789715491000,
+      "dir": {
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Squeezed below resistance implies bearish pressure"
     },
     {
       "title": "Gold stalls at $4,433 with weak ADX after $130 rally: Live levels",
@@ -218,7 +246,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789715491000
+      "firstAt": 1789715491000,
+      "why": "Stalls with weak momentum indicators"
     },
     {
       "title": "UN experts say grounds to believe US committed war crimes in Iran strikes - Türkiye Today",
@@ -238,7 +267,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789713297000
+      "firstAt": 1789713240000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "War crimes allegation increases geopolitical risk"
     },
     {
       "title": "‘Outrageous lies’: How Israeli voters are shrugging off Western sanctions - Al Jazeera",
@@ -258,7 +293,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789714654000
+      "firstAt": 1789714654000,
+      "why": "Political opinion, no direct market impact"
     },
     {
       "title": "UN-backed experts cite possible US war crimes in Iran strikes - KBZK News",
@@ -278,7 +314,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789713297000
+      "firstAt": 1789713240000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "War crimes allegation increases geopolitical risk"
     },
     {
       "title": "President Trump Weighs Renewed Iran Strikes Ahead of Gulf Leaders Meeting - The Media Line",
@@ -298,7 +340,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789713297000
+      "firstAt": 1789713240000
     },
     {
       "title": "United Nations: Russia And China Block The Extension Of Sanctions Monitoring Against Iran - i24NEWS",
@@ -396,31 +438,11 @@
       "firstAt": 1789713747000
     },
     {
-      "title": "Iran says it strikes an oil tanker, and other Mideast developments - YourCentralValley.com",
-      "link": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPd2plV3V6d2dQTG9CeTdFZ0lDVVF0WThuR0pSN3dOTWNrc2NuVnhqYU85LTZuekphRDVRZllhd1paRV9iUUtUcDNsMzQ5bG1zLU5pOGhweDdkYmNrUmIxT1dXVHFvYjlxdVJFRlBGRFFIdDR2YkFTZGdpR0dnSVk5S1NBbHB6TU10a0ttaXQyVW9JQm15Qjk2dHZoLWVsWklDVUJkeHIzcUZCb2pHM05jWHJKQmw1R0YtWWfSAb8BQVVfeXFMTmQ4aHpGTG10clNfdDNXNG9KTlZxSWxCekEwd1FPcE82Tm5OcXRvTDJCLTJQV1ZXV1hBREplTXZQUGk3M3ZLeTRCRWNYcUd3WDY2anltZVBBalJiQms4VDR1OTJCb1E0QmRLSXUyY2NyZXA1eWRuYk53Mmx2WWFBcjV1ZHdSQUY5REtJckdyLU9HQ1pUOC1jNEdkWDUzYUYyVF9mY2ZyeTdaZzNBcGZlVVFBRG1OR2J2bFpqTDZQVFU?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiugFBVV95cUxPd2plV3V6d2dQTG9CeTdFZ0lDVVF0WThuR0pSN3dOTWNrc2NuVnhqYU85LTZuekphRDVRZllhd1paRV9iUUtUcDNsMzQ5bG1zLU5pOGhweDdkYmNrUmIxT1dXVHFvYjlxdVJFRlBGRFFIdDR2YkFTZGdpR0dnSVk5S1NBbHB6TU10a0ttaXQyVW9JQm15Qjk2dHZoLWVsWklDVUJkeHIzcUZCb2",
-      "at": 1789713297000,
-      "inst": [
-        "USOIL",
-        "XAU/USD",
-        "UKOIL"
-      ],
-      "ccy": [
-        "OIL",
-        "XAU"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789713297000
-    },
-    {
       "title": "Gold prices rise, eye weekly gain as oil and yields ease after Fed hike - Investing.com",
       "link": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQbmNBLW1LVHFPd3o2a2Nwd0Y3N2lRemMzSHhBQlNnTzFQQTdueF8tM2ppblVLR2NMQlRuM3d4a09lazlUU25lMkY4eW5OUW5fTVpTanU4UjRFV2JpT0Q5LXd1V21iRGJLalM1TmJjdEItRTJIc2JTMzJvcG1nc3hOemNxbWlsUFhuckZtSjd6RnFTU3JoVUd2c2dJYklaQ2lrVXhLZ05ITTRsRG5pdXVCUWxoaktsajA5TEkw?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiuwFBVV95cUxQbmNBLW1LVHFPd3o2a2Nwd0Y3N2lRemMzSHhBQlNnTzFQQTdueF8tM2ppblVLR2NMQlRuM3d4a09lazlUU25lMkY4eW5OUW5fTVpTanU4UjRFV2JpT0Q5LXd1V21iRGJLalM1TmJjdEItRTJIc2JTMzJvcG1nc3hOemNxbWlsUFhuckZtSjd6RnFTU3JoVUd2c2dJYklaQ2lrVXhLZ05ITTRsRG",
-      "at": 1789713225000,
+      "at": 1789713358000,
       "inst": [
         "XAU/USD",
         "USOIL"
@@ -433,7 +455,27 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789713225000
+      "firstAt": 1789713358000
+    },
+    {
+      "title": "Iran says it strikes an oil tanker, and other Mideast developments - AP News",
+      "link": "https://news.google.com/rss/articles/CBMinwFBVV95cUxNeWdlRjU5QTRNU0tfUUpTVW1iYUNBQ3hWejBlMVBaWTFEbFh1MkVtM1QzamhsY240NFQ3aW1vTUdMb0JaVUk2QWY1WE9SZWNqLUpzWVI4OFpyWlN1b0pXTW5vZzNEc3ZqZV9wdVowMGpzeHJub1ZFTWtoZGRyRklIbnR2d19mOVhhWG5GdkxTdTB1bktBRHFMSlVGbEZ5Mk0?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMinwFBVV95cUxNeWdlRjU5QTRNU0tfUUpTVW1iYUNBQ3hWejBlMVBaWTFEbFh1MkVtM1QzamhsY240NFQ3aW1vTUdMb0JaVUk2QWY1WE9SZWNqLUpzWVI4OFpyWlN1b0pXTW5vZzNEc3ZqZV9wdVowMGpzeHJub1ZFTWtoZGRyRklIbnR2d19mOVhhWG5GdkxTdTB1bktBRHFMSlVGbEZ5Mk0?oc=5\" target=\"",
+      "at": 1789713240000,
+      "inst": [
+        "USOIL",
+        "XAU/USD",
+        "UKOIL"
+      ],
+      "ccy": [
+        "OIL",
+        "XAU"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789713240000
     },
     {
       "title": "What are the main events for today?",
@@ -1067,6 +1109,23 @@
       "firstAt": 1789695300000
     },
     {
+      "title": "Yen slumps after BOJ hikes rates as expected - Reuters",
+      "link": "https://news.google.com/rss/articles/CBMiowFBVV95cUxQZTZWMHVPOWZ5RDBIc2NmX2tmcE5pODNpeGhnaGJhZ0RrVkRtVTVud1FUY2NhNkttREN4QjNtTlZRTGtPNTFZVUIzWm1XNU5xNEdqTnNILXhybG1oMXVJV3N6YmxpRjFIX01sZWVEQ2xiRW1weUpEWjFfU1NCOXZuU0Vjc2xtMGpacjFGZ2ZZLXpnN1R3YWphMDcta0VyYjEyYU40?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiowFBVV95cUxQZTZWMHVPOWZ5RDBIc2NmX2tmcE5pODNpeGhnaGJhZ0RrVkRtVTVud1FUY2NhNkttREN4QjNtTlZRTGtPNTFZVUIzWm1XNU5xNEdqTnNILXhybG1oMXVJV3N6YmxpRjFIX01sZWVEQ2xiRW1weUpEWjFfU1NCOXZuU0Vjc2xtMGpacjFGZ2ZZLXpnN1R3YWphMDcta0VyYjEyYU40?oc=5\" tar",
+      "at": 1789693140000,
+      "inst": [
+        "USD/JPY"
+      ],
+      "ccy": [
+        "JPY"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789693140000
+    },
+    {
       "title": "Yen weak ahead of BOJ decision; rate hike expected - Yahoo Finance",
       "link": "https://news.google.com/rss/articles/CBMinAFBVV95cUxPUk1idE5mMTYydGh2YjhJLWpNYmFYREM4QWNKeklqaFZrbm1KVmlyQU1NR3JCYktrMi1jc0RST2Q3VmR1cFdOaTZJS0I2MTdManpPNzhySjRvVDBGSDhBU1JZNWhkTk94STVpaHFjaGZLV3ZnRDdvMnBlNVNWUjBISlhpNGhRTHkwSlFGbHY3Z25DWlotQ0JhRGFrLS0?oc=5",
       "source": "Wires (macro)",
@@ -1260,6 +1319,26 @@
       "firstAt": 1789687447000
     },
     {
+      "title": "Trump Wants Putin to End the War. He May Offer Russia Business Deals First. - The New York Times",
+      "link": "https://news.google.com/rss/articles/CBMie0FVX3lxTE11eG5ZRWl5UHhEOGxBWTVIMDB4bGJ4aXNXSTFfS0JLVjlnSVVTM1lxd0NmRnJoLVFxMDdIQi0yd0Z1T3VZcTc4ckxFU1JsOXpWN2ZSMGxyT0FXTVdMbkoyM2RRaGxZVXZyQWFkV1VFc1ZLNkpfdnlud0pwSQ?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMie0FVX3lxTE11eG5ZRWl5UHhEOGxBWTVIMDB4bGJ4aXNXSTFfS0JLVjlnSVVTM1lxd0NmRnJoLVFxMDdIQi0yd0Z1T3VZcTc4ckxFU1JsOXpWN2ZSMGxyT0FXTVdMbkoyM2RRaGxZVXZyQWFkV1VFc1ZLNkpfdnlud0pwSQ?oc=5\" target=\"_blank\">Trump Wants Putin to End the War. He May ",
+      "at": 1789687215000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789687215000
+    },
+    {
       "title": "US approves $414M uranium investment in Niger, two years after troops left",
       "link": "https://www.aljazeera.com/news/2026/9/17/us-approves-414m-uranium-investment-in-niger-two-years-after-troops-left?traffic_source=rss",
       "source": "Al Jazeera",
@@ -1313,26 +1392,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789685767000
-    },
-    {
-      "title": "Trump Wants Putin to End the War. He May Offer Russia Business Deals First. - The New York Times",
-      "link": "https://news.google.com/rss/articles/CBMie0FVX3lxTE11eG5ZRWl5UHhEOGxBWTVIMDB4bGJ4aXNXSTFfS0JLVjlnSVVTM1lxd0NmRnJoLVFxMDdIQi0yd0Z1T3VZcTc4ckxFU1JsOXpWN2ZSMGxyT0FXTVdMbkoyM2RRaGxZVXZyQWFkV1VFc1ZLNkpfdnlud0pwSQ?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMie0FVX3lxTE11eG5ZRWl5UHhEOGxBWTVIMDB4bGJ4aXNXSTFfS0JLVjlnSVVTM1lxd0NmRnJoLVFxMDdIQi0yd0Z1T3VZcTc4ckxFU1JsOXpWN2ZSMGxyT0FXTVdMbkoyM2RRaGxZVXZyQWFkV1VFc1ZLNkpfdnlud0pwSQ?oc=5\" target=\"_blank\">Trump Wants Putin to End the War. He May ",
-      "at": 1789685115000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789685115000
     },
     {
       "title": "Tech leads Wall St to higher close as oil eases, Treasury yields dip - Reuters",
@@ -1472,6 +1531,26 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789680120000
+    },
+    {
+      "title": "Russia, China veto U.S. proposal for UN experts to keep monitoring sanctions on Iran - The Hindu",
+      "link": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxNeW1MVGFrSjNCd1Q3YWhwYXpZZC0yQ0Z5d0tFV1hqREYzWGNNaXMxTHpoNXZoOFZKRzF0VU1qVXh3ZzMtaUpMYVVQamIwOXRtckR5ejdTWV9LaWc5ZjBzbzZuRXdLV1BQUC1SdVRLY0tuN3ZxZUpQdzk2eFlzZ0l5ck9pclY4cXRHd0pLNGVZbVRJSm9Ra2pxNzBuRklNdS15aHN0YWJJT05IYVZJVGpYSUR0N053WkUtM2hqUElrdnpQcUZtY3AwWE5RNlM1OXpESTZfX3FndVBFWEh2THfSAeQBQVVfeXFMT1lXdTRDNnRGSHBkc0FOU2dMYnlNS3VVQXp1TE13TlRVUHZmWGJKdGFVTFlPUlUxM3RvR0dXN1VMTlpyUzBlTnBvVEprdTVtY1ZDUDlhMEMtaFN6cU5MWGV1SHFudHNYRmM1SzkyS0RmNzVZUUtYRjdySVRaYjRUZWtsTHJHR01JSXZjcUFvSWVCbll2WjM0bVdRWUptRC1Ua3BLaWZzcF9UZU1UR0c2cGhPTTdLYW9qMDFoOEJnaGN6N2c1dkpaQm13dGFQbU9CUVd2Zlk5RnJWT3hqYmVtU1UyV2Nf?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi3gFBVV95cUxNeW1MVGFrSjNCd1Q3YWhwYXpZZC0yQ0Z5d0tFV1hqREYzWGNNaXMxTHpoNXZoOFZKRzF0VU1qVXh3ZzMtaUpMYVVQamIwOXRtckR5ejdTWV9LaWc5ZjBzbzZuRXdLV1BQUC1SdVRLY0tuN3ZxZUpQdzk2eFlzZ0l5ck9pclY4cXRHd0pLNGVZbVRJSm9Ra2pxNzBuRklNdS15aHN0YWJJT05IYV",
+      "at": 1789679893000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789677638000
     },
     {
       "title": "Wall Street is betting Trump backs down on Iran — but what if the ‘TACO’ trade fails this time?",
@@ -1634,27 +1713,6 @@
       "firstAt": 1789676580000
     },
     {
-      "title": "Russia sanctions cheers, Democrat tariff fears - Politico",
-      "link": "https://news.google.com/rss/articles/CBMixAFBVV95cUxOSHRwM3A1VzZwZkRNcmVLLVcxNlV6Zkt0TVZXZ044UXJhd0ZCaVlKV1pLNzNlcU5JNHdCeTg1UHMzWFFzYVpiZkFNZThvOWtCbjVTNHpQX3BQLVd1bzM3cXVPLVY5ckRsbjhGLUI4QkNJR2s5aHZtQkJ0TUFvQU9jSXJyQzdBemRlT083dFhGRUVfR2ZpMGoyT1l2dGkxOHNUWWRiS3VkV2ZhakY0SkdhVDhmUzF0aVB1elBaODJTN3hfVGdF?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMixAFBVV95cUxOSHRwM3A1VzZwZkRNcmVLLVcxNlV6Zkt0TVZXZ044UXJhd0ZCaVlKV1pLNzNlcU5JNHdCeTg1UHMzWFFzYVpiZkFNZThvOWtCbjVTNHpQX3BQLVd1bzM3cXVPLVY5ckRsbjhGLUI4QkNJR2s5aHZtQkJ0TUFvQU9jSXJyQzdBemRlT083dFhGRUVfR2ZpMGoyT1l2dGkxOHNUWWRiS3VkV2Zhak",
-      "at": 1789675769000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL",
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789675200000
-    },
-    {
       "title": "CT House delegation opposes Russia sanctions bill, citing Trump's tariff powers - WSHU",
       "link": "https://news.google.com/rss/articles/CBMiowFBVV95cUxPQ3hrQWh1Z25kUWY4Rl9LRVFrLW1PTC1QQUE2LVg1a2pzMlBfdDNMbXF6dlpUYmQyUm5BcFdib2hYNzdCZmxKWnlMaGxHcUpOOVh1UkFXY1htYVdObVNIXzNtT2Z1WWlnMlVfTjByMHNxZmpvQU0tWWlfeldCcjdCald6a3pnNG1XOFVXd3FJRmF2XzBIMjloUDlIVjBWQVVXQUlr?oc=5",
       "source": "Wires (geo)",
@@ -1674,23 +1732,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789675200000
-    },
-    {
-      "title": "Saudi Arabia is now pushing to export more oil through the Strait of Hormuz",
-      "link": "https://www.marketwatch.com/story/saudi-arabia-is-now-pushing-to-export-more-oil-through-the-strait-of-hormuz-bcce044b?mod=mw_rss_topstories",
-      "source": "MarketWatch",
-      "desc": "With its East-West pipeline shut down, the Straight of Hormuz is the best avenue available and its spigot has recently opened up. Will it last?",
-      "at": 1789674720000,
-      "inst": [
-        "USOIL"
-      ],
-      "ccy": [
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789674720000
     }
   ],
   "sources": [
@@ -1713,10 +1754,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-18T07:49:56.319Z",
-  "updatedAt": "2026-09-18T07:49:56.319Z"
+  "headlinesAt": "2026-09-18T07:51:45.072Z",
+  "updatedAt": "2026-09-18T07:51:45.072Z"
 }
