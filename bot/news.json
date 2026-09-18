@@ -216,7 +216,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789738498000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "up",
+        "US100": "up"
+      },
+      "why": "Stocks open higher"
     },
     {
       "title": "FTSE 100 today: Stocks slide as Hormuz tanker hit, Aramco cuts Europe supply",
@@ -231,7 +236,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789737915000,
-      "_kind": null
+      "_kind": null,
+      "why": "FTSE news, US unclear"
     },
     {
       "title": "A sideways market and rising earnings are presenting a buying opportunity for this crucial sector",
@@ -265,7 +271,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789737915000
+      "firstAt": 1789737915000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Supply risk boosts gold, oil"
     },
     {
       "title": "European equities cap 3rd-weekly decline as Saudi supply cuts stings",
@@ -279,7 +291,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789734990000
+      "firstAt": 1789734990000,
+      "why": "European news, US unclear"
     },
     {
       "title": "US voter opposition to war on Iran grows to new highs: Poll",
@@ -299,7 +312,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789736967000
+      "firstAt": 1789736967000,
+      "why": "Poll data, no clear direction"
     },
     {
       "title": "FIFA’s Infantino ‘must go, no ifs or buts’, blasts German FA vice president",
@@ -314,7 +328,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789736735000
+      "firstAt": 1789736735000,
+      "why": "Football news, no FX impact"
     },
     {
       "title": "Stocks and bonds rally post-Fed rate hike as Tr... - Pluang",
@@ -331,7 +346,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789736643000
+      "firstAt": 1789736643000,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Stocks rally post-Fed"
     },
     {
       "title": "Russian hybrid attacks against Europe intensifying, says Macron",
@@ -351,7 +370,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789736458000
+      "firstAt": 1789736458000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Geopolitical risk boosts gold"
     },
     {
       "title": "As Houthis grab Bab al-Mandeb, US appears willing to watch from sidelines",
@@ -371,7 +394,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789735949000
+      "firstAt": 1789735949000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Shipping risk boosts gold, oil"
     },
     {
       "title": "Why does Canada want to join the Europe-led JEF military partnership?",
@@ -390,7 +419,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789735875000
+      "firstAt": 1789735875000,
+      "why": "Political news, no clear direction"
     },
     {
       "title": "Naphtha prices in Asia drop for third day amid oil weakness",
@@ -406,7 +436,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789735499000
+      "firstAt": 1789735499000,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Naphtha prices drop"
     },
     {
       "title": "Why mortgage bonds are set to deteriorate, and possibly hit the whole market, according to this Wall Street expert",
@@ -423,7 +457,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789735200000
+      "firstAt": 1789735200000,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Mortgage bond deterioration risk"
     },
     {
       "title": "Tighter financial conditions could keep markets cautious until inflation cools - TradingView",
@@ -446,7 +484,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789735027000
+      "firstAt": 1789735027000,
+      "why": "Cautious markets, no clear direction"
     },
     {
       "title": "Oil prices edge lower on easing fears over Saudi supply disruption",
@@ -462,7 +501,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789734990000
+      "firstAt": 1789734990000,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Oil prices edge lower"
     },
     {
       "title": "Iran says it strikes an oil tanker, and other Mideast developments - AP News",
@@ -482,7 +525,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789734900000
+      "firstAt": 1789734900000,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Tanker strike boosts gold, oil"
     },
     {
       "title": "Tesla’s upcoming product frenzy could leave investors disappointed",
@@ -1608,6 +1657,26 @@
       "firstAt": 1789713221000
     },
     {
+      "title": "Russia adapts a training missile to lead its ballistic onslaught of Ukraine - reuters.com",
+      "link": "https://news.google.com/rss/articles/CBMivgFBVV95cUxOeUNWVzAzWVRGVXc5RkhoNEFoVkNIbGZob2gyU2k0NmhuRXVqckx6NTh5R1BQTHlnMENfN1dXa2RYVGVnenRjQVJhdFQ0c2hHTjQzTjB1bW4xVVB0R1pHUDZYYk1oN2FDNUN2dEk5UXA5N3RaeXVVWnRBZWRDY043aEE3SmprQl9RMFdpWFJ3a2dkZDF0Mk5UemV1b0c2UldEaENtQWxIZjhHclBROXBOVHlZcmRWczk3SDJaaWJR?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMivgFBVV95cUxOeUNWVzAzWVRGVXc5RkhoNEFoVkNIbGZob2gyU2k0NmhuRXVqckx6NTh5R1BQTHlnMENfN1dXa2RYVGVnenRjQVJhdFQ0c2hHTjQzTjB1bW4xVVB0R1pHUDZYYk1oN2FDNUN2dEk5UXA5N3RaeXVVWnRBZWRDY043aEE3SmprQl9RMFdpWFJ3a2dkZDF0Mk5UemV1b0c2UldEaENtQWxIZjhHcl",
+      "at": 1789713079000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789713079000
+    },
+    {
       "title": "UK retail sales unexpectedly rise in August, backed by recovery in department stores, non-store retailers",
       "link": "https://investinglive.com/news/uk-retail-sales-unexpectedly-rise-in-august-backed-by-recovery-in-department-stores-non-store-retailers/",
       "source": "ForexLive",
@@ -1859,26 +1928,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789705638000
-    },
-    {
-      "title": "Russian Offensive Campaign Assessment, September 17, 2026 - Institute for the Study of War",
-      "link": "https://news.google.com/rss/articles/CBMirgFBVV95cUxNa3ctTmt0dE9ieHMxVmxneEd4QVpNbFV2R1F3WnNlbGJWZlU4d1NJZWU3R2p1cElhcmtFa1J0M3NoQTJkX0FXY0t4bG9iYlZfSEs3NnFTc21oeWdfT00wUXJERE1pMmVQcjd3bkFURjRHTlBPaUF4NkJ2Qlk1aE5oZzl0MzNnRXVTcnVxdWxwaGlqZGotQTl4ZFhmbzRIQzcwVUd6c3RkaXFSWmRyX3c?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMirgFBVV95cUxNa3ctTmt0dE9ieHMxVmxneEd4QVpNbFV2R1F3WnNlbGJWZlU4d1NJZWU3R2p1cElhcmtFa1J0M3NoQTJkX0FXY0t4bG9iYlZfSEs3NnFTc21oeWdfT00wUXJERE1pMmVQcjd3bkFURjRHTlBPaUF4NkJ2Qlk1aE5oZzl0MzNnRXVTcnVxdWxwaGlqZGotQTl4ZFhmbzRIQzcwVUd6c3RkaXFSWm",
-      "at": 1789703136000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789703136000
     }
   ],
   "sources": [
@@ -1904,7 +1953,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-18T13:56:56.214Z",
-  "headlinesAt": "2026-09-18T13:56:56.214Z",
-  "updatedAt": "2026-09-18T13:56:56.214Z"
+  "calendarAt": "2026-09-18T13:58:28.453Z",
+  "headlinesAt": "2026-09-18T13:58:28.453Z",
+  "updatedAt": "2026-09-18T13:58:28.453Z"
 }
