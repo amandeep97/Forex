@@ -1,177 +1,5 @@
 {
-  "calendar": [
-    {
-      "title": "FPI m/m",
-      "country": "NZD",
-      "impact": "low",
-      "at": 1789685100000,
-      "forecast": "",
-      "previous": "0.1%",
-      "actual": ""
-    },
-    {
-      "title": "Trade Balance",
-      "country": "NZD",
-      "impact": "low",
-      "at": 1789685100000,
-      "forecast": "-1775M",
-      "previous": "-1949M",
-      "actual": ""
-    },
-    {
-      "title": "RBA Gov Bullock Speaks",
-      "country": "AUD",
-      "impact": "medium",
-      "at": 1789687800000,
-      "forecast": "",
-      "previous": "",
-      "actual": ""
-    },
-    {
-      "title": "National Core CPI y/y",
-      "country": "JPY",
-      "impact": "low",
-      "at": 1789687800000,
-      "forecast": "1.8%",
-      "previous": "1.8%",
-      "actual": ""
-    },
-    {
-      "title": "BOJ Policy Rate",
-      "country": "JPY",
-      "impact": "high",
-      "at": 1789700040000,
-      "forecast": "<1.25%",
-      "previous": "<1.00%",
-      "actual": ""
-    },
-    {
-      "title": "Monetary Policy Statement",
-      "country": "JPY",
-      "impact": "high",
-      "at": 1789700040000,
-      "forecast": "",
-      "previous": "",
-      "actual": ""
-    },
-    {
-      "title": "German PPI m/m",
-      "country": "EUR",
-      "impact": "low",
-      "at": 1789711200000,
-      "forecast": "0.6%",
-      "previous": "1.1%",
-      "actual": ""
-    },
-    {
-      "title": "Retail Sales m/m",
-      "country": "GBP",
-      "impact": "medium",
-      "at": 1789711200000,
-      "forecast": "-0.2%",
-      "previous": "-0.5%",
-      "actual": ""
-    },
-    {
-      "title": "BOJ Press Conference",
-      "country": "JPY",
-      "impact": "high",
-      "at": 1789713000000,
-      "forecast": "",
-      "previous": "",
-      "actual": ""
-    },
-    {
-      "title": "Current Account",
-      "country": "EUR",
-      "impact": "low",
-      "at": 1789718400000,
-      "forecast": "30.7B",
-      "previous": "35.1B",
-      "actual": ""
-    },
-    {
-      "title": "ECOFIN Meetings",
-      "country": "EUR",
-      "impact": "low",
-      "at": 1789726500000,
-      "forecast": "",
-      "previous": "",
-      "actual": ""
-    },
-    {
-      "title": "Eurogroup Meetings",
-      "country": "EUR",
-      "impact": "low",
-      "at": 1789726500000,
-      "forecast": "",
-      "previous": "",
-      "actual": ""
-    },
-    {
-      "title": "ECB President Lagarde Speaks",
-      "country": "EUR",
-      "impact": "medium",
-      "at": 1789727400000,
-      "forecast": "",
-      "previous": "",
-      "actual": ""
-    },
-    {
-      "title": "Capacity Utilization Rate",
-      "country": "USD",
-      "impact": "low",
-      "at": 1789737300000,
-      "forecast": "76.4%",
-      "previous": "76.3%",
-      "actual": ""
-    },
-    {
-      "title": "Industrial Production m/m",
-      "country": "USD",
-      "impact": "low",
-      "at": 1789737300000,
-      "forecast": "0.3%",
-      "previous": "0.2%",
-      "actual": ""
-    },
-    {
-      "title": "FOMC Member Bowman Speaks",
-      "country": "USD",
-      "impact": "low",
-      "at": 1789738200000,
-      "forecast": "",
-      "previous": "",
-      "actual": ""
-    },
-    {
-      "title": "CB Leading Index m/m",
-      "country": "USD",
-      "impact": "low",
-      "at": 1789740000000,
-      "forecast": "0.1%",
-      "previous": "0.2%",
-      "actual": ""
-    },
-    {
-      "title": "FOMC Member Schmid Speaks",
-      "country": "USD",
-      "impact": "low",
-      "at": 1789746300000,
-      "forecast": "",
-      "previous": "",
-      "actual": ""
-    },
-    {
-      "title": "ECOFIN Meetings",
-      "country": "EUR",
-      "impact": "low",
-      "at": 1789812900000,
-      "forecast": "",
-      "previous": "",
-      "actual": ""
-    }
-  ],
+  "calendar": [],
   "headlines": [
     {
       "title": "Oil finishes lower as the market sniffs out a TACO",
@@ -192,7 +20,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789758321000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Oil lower, gold direction unclear"
     },
     {
       "title": "US Treasury’s Bessent plans to discuss AI and rare earths with China’s He, source says",
@@ -215,7 +48,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789757682000,
-      "_kind": null
+      "_kind": null,
+      "why": "Trade talks, no clear direction"
     },
     {
       "title": "‘My total balance should be $20 million’: I invested $1.1 million in a crypto platform. Have I lost it all?",
@@ -233,7 +67,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789757160000,
-      "_kind": null
+      "_kind": null,
+      "why": "Individual loss, no market signal"
     },
     {
       "title": "Venezuela, opposition faction weighing deal to move $4 billion in gold to US from UK, sources say",
@@ -250,7 +85,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789757010000,
-      "_kind": null
+      "_kind": null,
+      "why": "Gold movement, no price direction"
     },
     {
       "title": "Slotkin urges Trump to press Xi on report that Iran used Chinese satellite info in deadly Jordan attack - CBS News",
@@ -270,7 +106,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789756260000
+      "firstAt": 1789756260000,
+      "why": "Geopolitical tension, unclear impact"
     },
     {
       "title": "Trump to sign Russia sanctions bill today, source says - CBS News",
@@ -290,7 +127,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789756260000
+      "firstAt": 1789756260000,
+      "why": "Sanctions bill, unclear market impact"
     },
     {
       "title": "Wall St mixed as benchmark Treasury yields reach 5%, oil takes a pause - Reuters",
@@ -308,7 +146,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789756231000
+      "firstAt": 1789756231000,
+      "why": "Oil takes a pause"
     },
     {
       "title": "Troubled Australian developer Bathla granted one-year extension to complete projects",
@@ -322,7 +161,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789756228000
+      "firstAt": 1789756228000,
+      "why": "Developer extension, no FX impact"
     },
     {
       "title": "Three words from Kevin Warsh have Wall Street wondering how far the Fed will go with rate hikes",
@@ -339,7 +179,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789756111000
+      "firstAt": 1789756111000,
+      "why": "Fed uncertainty, mixed signals"
     },
     {
       "title": "‘There might be a silver lining’: My friend’s wife died at 60 after a high-earning career. Can he claim her Social Security?",
@@ -356,7 +197,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789755960000
+      "firstAt": 1789755960000,
+      "why": "Personal finance, no market impact"
     },
     {
       "title": "Russia’s drones threaten Kyiv-bound Western officials as war effort stalls - aljazeera.com",
@@ -376,7 +218,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789755750000
+      "firstAt": 1789755750000,
+      "why": "War news, unclear market direction"
     },
     {
       "title": "BoE Rate Hike Vote Stalls, Markets Brace For Status Quo - The Globe and Mail",
@@ -394,7 +237,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789755324000
+      "firstAt": 1789755324000,
+      "why": "BoE status quo, no clear move"
     },
     {
       "title": "Wendy’s shares slip after US franchisee files for bankruptcy",
@@ -438,7 +282,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789754678000
+      "firstAt": 1789754678000,
+      "why": "Hybrid attacks, unclear market impact"
     },
     {
       "title": "Socgen remains bullish on gold price in Q4 as central banks won’t get ahead of inflation - KITCO",
@@ -456,7 +301,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789753617000
+      "firstAt": 1789753617000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Socgen bullish on gold price"
     },
     {
       "title": "As Warren Buffett’s reign ends, fans should sell Berkshire — and buy these stocks instead",
@@ -471,7 +320,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 3,
-      "firstAt": 1789751702000
+      "firstAt": 1789751702000,
+      "why": "Berkshire underperformance, no index signal"
     },
     {
       "title": "End of the ‘unipolar order’: Sino-Russian vetoes deal a blow to US Iran sanctions push - Tehran Times",
@@ -1871,10 +1721,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-18T19:10:43.544Z",
-  "headlinesAt": "2026-09-18T19:10:43.544Z",
-  "updatedAt": "2026-09-18T19:10:43.544Z"
+  "calendarAt": null,
+  "headlinesAt": "2026-09-18T19:11:58.119Z",
+  "updatedAt": "2026-09-18T19:11:58.119Z"
 }
