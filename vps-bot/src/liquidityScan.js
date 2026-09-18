@@ -104,6 +104,11 @@ const PLAN_WINDOW = 240;
 // while it remains valid would train you to ignore the alert.
 const ANNOUNCE_TTL = 6 * 3600e3;
 
+// How many suppressed hunts the digest will carry over a restart. A day's worth
+// of held-back hunts across forty instruments, with room to spare — bounded so
+// the published file cannot grow on a busy day.
+const MUTED_MAX = 200;
+
 // ── Who gets a push, and who goes in the digest ─────────────────────────────
 //
 // The gate used to be "any armed plan": forty instruments, six levels each,
@@ -314,9 +319,37 @@ class LiquidityScanner {
           }
         }
       }
+      // ── What has already been said, and to whom ──────────────────────────
+      //
+      // This is the state that decides whether you get a message, and it was
+      // the only state here living purely in memory. Every restart forgot it,
+      // and with pm2 showing over eight thousand restarts the result was the
+      // same EUR/USD sweep announced again every few minutes — over a hundred
+      // copies of one alert. The sweep had not changed; the process had.
+      //
+      // All four matter, and each fails differently when lost:
+      //
+      //   announced — the dedup. Losing it re-sends every live sweep.
+      //   pushedAt  — the daily budget. Losing it makes the cap unreachable,
+      //               because the count restarts before it can ever be hit.
+      //   muted     — the digest's contents. Losing it drops the audit trail
+      //               for the very alerts the filter held back.
+      //   digestOn  — the day the digest last went out. Losing it means a
+      //               second digest after any restart past midday.
+      const a = cur?.content?.alerts;
+      if (a) {
+        const now = Date.now();
+        for (const [k, t] of a.announced || []) {
+          if (now - t < ANNOUNCE_TTL) this.announced.set(k, t);
+        }
+        this.pushedAt = (a.pushed || []).filter(x => now - x.at < 86400e3);
+        this.muted = Array.isArray(a.muted) ? a.muted.slice(0, MUTED_MAX) : [];
+        this.digestOn = a.digestOn || null;
+      }
+
       if (this.results.size) {
         this.log(`Liquidity: restored ${this.results.size} instrument(s), `
-          + `${this.levels.size} with levels — no rebuild needed`);
+          + `${this.levels.size} with levels, ${this.announced.size} alert(s) already sent`);
       }
     } catch (e) {
       this.log(`Liquidity restore: ${e.message} — starting cold`);
@@ -739,7 +772,13 @@ class LiquidityScanner {
         // A column changing state is the whole point of the table, so the
         // signature has to see it or the file never gets rewritten.
         Object.entries(r.levels || {}).map(([k, v]) => `${k}:${v.state}`).sort().join(',')])
-      .sort());
+      .sort())
+      // Plus what has been said. Without this the dedup record could be
+      // computed and never written: announcing does not necessarily change any
+      // row — an armed plan that was already armed looks identical — so the
+      // file would keep the pre-alert state and the next restart would send it
+      // all over again. The fix for the restarts would then have fixed nothing.
+      + `|${this.announced.size}|${this.pushedAt.length}|${this.muted.length}|${this.digestOn}`;
   }
 
   /**
@@ -847,6 +886,14 @@ class LiquidityScanner {
       // Instruments with levels but no scan yet are listed so the app can say
       // "not checked" rather than showing nothing and implying "nothing there".
       watching: this._instruments().filter(i => this.levels.get(i.sym)?.levels?.length).map(i => i.sym),
+      // What has already been said. Carried across restarts so a sweep is
+      // announced once per sweep rather than once per process.
+      alerts: {
+        announced: [...this.announced.entries()],
+        pushed: this.pushedAt,
+        muted: this.muted.slice(0, MUTED_MAX),
+        digestOn: this.digestOn,
+      },
       rows: [...this.results.values()].sort((a, b) => {
         // A live setup outranks a taken level, which outranks an approach to
         // the daily high or low, which outranks an approach to anything else.
