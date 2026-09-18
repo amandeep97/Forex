@@ -302,7 +302,72 @@ class ForexBot {
   warn(msg) { console.warn(`[${new Date().toISOString()}] WARN ${msg}`); }
   err(msg, e) { console.error(`[${new Date().toISOString()}] ERR ${msg}`, e?.message || ''); }
 
+  // ── Where the memory goes ────────────────────────────────────────────────
+  //
+  // This bot was being killed by pm2 for crossing its memory ceiling roughly
+  // once a tick, for months, and every attempt to reason about which phase was
+  // responsible was a guess. Raising the ceiling from 256M to 640M only moved
+  // the wall — the process now survives about five minutes instead of ninety
+  // seconds, which is a ratio, not a fix.
+  //
+  // RSS is the number pm2 kills on, and RSS is NOT the JS heap: the bulk here
+  // is almost certainly Buffers and strings from HTTP response bodies — candle
+  // JSON, forty instruments at a time — which live outside the heap entirely.
+  // That is why --max-old-space-size did so little. So both are reported, and
+  // the gap between them says which kind of memory is growing.
+  //
+  // One line a tick, only naming phases that moved RSS by more than a few
+  // megabytes, so this stays readable rather than becoming noise nobody reads.
+  async _phase(name, fn) {
+    const before = process.memoryUsage();
+    try { return await fn(); } finally {
+      const after = process.memoryUsage();
+      const mb = v => Math.round(v / 1048576);
+      const rss = mb(after.rss - before.rss);
+      // External too, and not only RSS. A freshly allocated Buffer lands in
+      // `external`/`arrayBuffers` before the resident set catches up, so a
+      // filter watching RSS alone would miss the very allocation this is here
+      // to find — proved by the smoke test, where a 9MB Buffer moved
+      // arrayBuffers by 9 and RSS by 0.
+      // `external` already INCLUDES `arrayBuffers` in Node, so adding the two
+      // reports a 30MB Buffer as 60 — caught in the smoke test before this
+      // shipped, and it would have sent the next person hunting an allocation
+      // twice the size of the real one.
+      const ext = mb(after.external - before.external);
+      if (Math.abs(rss) >= 4 || Math.abs(ext) >= 4) {
+        const sign = v => (v > 0 ? `+${v}` : `${v}`);
+        this._phases.push(`${name} ${sign(rss)}${ext ? `/ext${sign(ext)}` : ''}`);
+      }
+    }
+  }
+
+  /**
+   * The tick, with a memory line at the end of it.
+   *
+   * A wrapper rather than a log at the bottom of _run, because _run returns
+   * early in several places — the weekend guard, the stop switch, a self-update
+   * — and a summary that only prints on the path that happens to reach the last
+   * line would be missing from exactly the ticks worth investigating.
+   */
   async run() {
+    this._phases = [];
+    const startRss = process.memoryUsage().rss;
+    try {
+      return await this._run();
+    } finally {
+      const m = process.memoryUsage();
+      const mb = v => Math.round(v / 1048576);
+      // rss is the number pm2 kills on; heap is what --max-old-space-size
+      // bounds. A large gap between them means the growth is in Buffers and
+      // strings from HTTP bodies, which that flag does not touch.
+      this.log(`mem rss ${mb(m.rss)}MB (${mb(m.rss - startRss) >= 0 ? '+' : ''}${mb(m.rss - startRss)}) `
+        + `heap ${mb(m.heapUsed)}/${mb(m.heapTotal)} ext ${mb(m.external)} `
+        + `arraybuf ${mb(m.arrayBuffers)}`
+        + (this._phases.length ? ` · ${this._phases.join(' ')}` : ''));
+    }
+  }
+
+  async _run() {
     this.log('── Tick ──────────────────────');
 
     // Self-update first, so a tick never runs half on old code and half on new.
@@ -311,21 +376,25 @@ class ForexBot {
     if (await this._maybeUpdate()) return;
 
     // Price/candle/trendline alerts run every tick, independent of trading (works weekends for crypto)
-    await this.alertChecker.check().catch(e => this.warn(`Alert check: ${e.message}`));
+    await this._phase('alerts', () =>
+      this.alertChecker.check().catch(e => this.warn(`Alert check: ${e.message}`)));
 
     // News runs before the weekend guard for the same reason the feed does: a
     // calendar is most useful on Sunday evening, when nothing is trading and
     // there is still time to read it.
-    await this.news.run().catch(e => this.warn(`News: ${e.message}`));
+    await this._phase('news', () =>
+      this.news.run().catch(e => this.warn(`News: ${e.message}`)));
 
     // The live feed also runs before the weekend guard and before the remote
     // stop switch: it places no orders, and "which instruments are worth
     // looking at on Monday" is a question best answered over the weekend.
-    if (this.feed) await this.feed.tick().catch(e => this.warn(`Feed: ${e.message}`));
+    if (this.feed) await this._phase('feed', () =>
+      this.feed.tick().catch(e => this.warn(`Feed: ${e.message}`)));
 
     // Once a fortnight, and it takes minutes rather than seconds — so it runs
     // after the feed has had its turn, never before.
-    await this._maybeLiquidityStudy().catch(e => this.warn(`Liquidity study: ${e.message}`));
+    await this._phase('liqStudy', () =>
+      this._maybeLiquidityStudy().catch(e => this.warn(`Liquidity study: ${e.message}`)));
 
     // The sweep model, on the same schedule and for the same reason: a
     // two-minute confirmation is exactly what a person cannot sit and wait for,
@@ -338,24 +407,26 @@ class ForexBot {
       for (const [sym, rec] of Object.entries(this.feed?.data || {})) {
         if (Number.isFinite(rec?.price)) prices[sym] = rec.price;
       }
-      await this.liquidity.tick(prices).catch(e => this.warn(`Liquidity: ${e.message}`));
+      await this._phase('liqScan', () =>
+        this.liquidity.tick(prices).catch(e => this.warn(`Liquidity: ${e.message}`)));
     }
 
     // The desk collects answers — taps from Telegram, decisions from the app —
     // and expires what has gone stale. It runs whether or not the scanner did,
     // because a proposal already out there still has to be answerable and still
     // has to lapse on time if it is not.
-    await this.xagDesk.tick().catch(e => this.warn(`XAG desk: ${e.message}`));
+    await this._phase('xagDesk', () =>
+      this.xagDesk.tick().catch(e => this.warn(`XAG desk: ${e.message}`)));
 
     // Does an extreme in positioning precede anything? The app has been
     // asserting that it does — "crowded long, the side that unwinds badly" —
     // on an instrument where nobody had measured it. Runs when the published
     // answer is missing or a week old, which on a weekend is free: the only
     // thing this competes with is a feed republishing an unchanged board.
-    await this._maybeCOTStudy().catch(e => this.warn(`COT study: ${e.message}`));
-    await this._maybeHourStudy().catch(e => this.warn(`Hour study: ${e.message}`));
-    await this._maybeMetalsStudy().catch(e => this.warn(`Metals study: ${e.message}`));
-    await this._maybeRegimeStudy().catch(e => this.warn(`Regime study: ${e.message}`));
+    await this._phase('cot', () => this._maybeCOTStudy().catch(e => this.warn(`COT study: ${e.message}`)));
+    await this._phase('hour', () => this._maybeHourStudy().catch(e => this.warn(`Hour study: ${e.message}`)));
+    await this._phase('metals', () => this._maybeMetalsStudy().catch(e => this.warn(`Metals study: ${e.message}`)));
+    await this._phase('regime', () => this._maybeRegimeStudy().catch(e => this.warn(`Regime study: ${e.message}`)));
     await this._maybeRegimeSearch().catch(e => this.warn(`Wide search: ${e.message}`));
 
     if (isWeekend()) { this.log('Weekend — skipped'); return; }
