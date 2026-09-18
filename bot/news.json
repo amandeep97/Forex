@@ -273,6 +273,22 @@
   ],
   "headlines": [
     {
+      "title": "Is the S&P 500 in an “earnings bubble”? Goldman weighs in",
+      "link": "https://www.investing.com/news/stock-market-news/is-the-sp-500-in-an-earnings-bubble-goldman-weighs-in-4907120",
+      "source": "Investing",
+      "at": 1789729855000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789729855000,
+      "_kind": null,
+      "why": "Question about earnings bubble, no clear direction."
+    },
+    {
       "title": "Rostov Airfield Strike: Six Russian Aircraft Hit - MiGFlug",
       "link": "https://news.google.com/rss/articles/CBMilgFBVV95cUxNXzJGa0c0ejJTZ3J0X1lmaTRoaDVpSmJFa2JpbF83UXRxRFVzc3pxMmtjNXVuNTU3MEthVDNMMjRuTW9EX3l1YWtQTGg1QUUyLXV5UUxya3VUN2NLYy0ycUp3M1MwRkx2QW9vUTRpLU01ZjZnV3pveDZrWm1aNkYtRWVGdmszWVVEamNraEIxMDRpSlRBVmc?oc=5",
       "source": "Wires (geo)",
@@ -293,9 +309,32 @@
       "firstAt": 1789728493000,
       "_kind": null,
       "dir": {
-        "XAU/USD": "up"
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
       },
-      "why": "Geopolitical risk boosts gold, oil unclear."
+      "why": "Geopolitical escalation boosts safe havens and oil."
+    },
+    {
+      "title": "Silver price today, Friday, September 18, 2026: Silver prices recover quickly, hitting weekly high today",
+      "link": "https://finance.yahoo.com/personal-finance/investing/article/silver-price-today-friday-september-18-2026-silver-prices-recover-quickly-hitting-weekly-high-today-110854090.html",
+      "source": "Yahoo Finance",
+      "at": 1789729734000,
+      "inst": [
+        "XAG/USD"
+      ],
+      "ccy": [
+        "XAG"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789728487000,
+      "_kind": null,
+      "dir": {
+        "XAG/USD": "up"
+      },
+      "why": "Silver prices recover and hit weekly high."
     },
     {
       "title": "Australian Dollar rises as RBA keeps rate hike option alive - FXStreet",
@@ -318,7 +357,7 @@
       "dir": {
         "AUD/USD": "up"
       },
-      "why": "RBA hike option supports Australian dollar."
+      "why": "RBA keeping rate hike option alive supports AUD."
     },
     {
       "title": "UN Probe Says US School Strike in Iran May Be War Crime, Tehran Committed Crimes Against Humanity - The Media Line",
@@ -341,9 +380,11 @@
       "firstAt": 1789728493000,
       "_kind": null,
       "dir": {
-        "XAU/USD": "up"
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
       },
-      "why": "War crime probe boosts gold, oil unclear."
+      "why": "War crime allegations increase geopolitical risk premium."
     },
     {
       "title": "The next Iran strike: How legal, economic, and diplomatic pressures are priming the region for war - Bulletin of the Atomic Scientists",
@@ -370,7 +411,7 @@
         "USOIL": "up",
         "UKOIL": "up"
       },
-      "why": "War pressure boosts gold and oil."
+      "why": "Primed for war implies rising risk and prices."
     },
     {
       "title": "Ukrainian Strike Cripples Russian Orion Drone Operations in Crimea - UNITED24 Media",
@@ -393,9 +434,11 @@
       "firstAt": 1789728493000,
       "_kind": null,
       "dir": {
-        "XAU/USD": "up"
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
       },
-      "why": "Ukraine strike boosts gold, oil unclear."
+      "why": "Ukraine strike on Russia increases conflict risk."
     },
     {
       "title": "Gold price today, Friday, September 18, 2026: Gold hits weekly high as inflation concerns fade",
@@ -417,7 +460,7 @@
       "dir": {
         "XAU/USD": "up"
       },
-      "why": "Gold hits weekly high on fading inflation."
+      "why": "Gold hits weekly high as inflation concerns fade."
     },
     {
       "title": "European stocks snap two-week slide as Fed resolve",
@@ -434,8 +477,10 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789728404000,
-      "_kind": null,
-      "why": "European stocks news, US direction unclear."
+      "dir": {
+        "US500": "up"
+      },
+      "why": "European stocks snap slide, implying positive global sentime"
     },
     {
       "title": "Blumenthal touts passage of Russia sanctions bill as CT Dems split - Hartford Business Journal",
@@ -456,8 +501,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789725779000,
-      "_kind": null,
-      "why": "Sanctions bill direction unclear for assets."
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Russia sanctions bill increases geopolitical and supply risk"
     },
     {
       "title": "‘My children did not attack Iran’: 2bn South Asians suffer from distant war - Al Jazeera",
@@ -478,7 +527,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789727999000,
-      "why": "Humanitarian angle, no clear market direction."
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Humanitarian crisis highlights ongoing war risks."
     },
     {
       "title": "A sideways market and rising earnings are presenting opportunities not seen since ChatGPT first launched",
@@ -512,7 +566,7 @@
       "dir": {
         "USOIL": "down"
       },
-      "why": "Lower oil prices soothe inflation fears."
+      "why": "Lower oil prices explicitly stated in headline."
     },
     {
       "title": "What Fed rate hikes mean for gold prices in 2027, according to Goldman",
@@ -540,22 +594,7 @@
         "EUR/USD": "down",
         "GBP/USD": "down"
       },
-      "why": "Fed hikes bearish for gold and FX."
-    },
-    {
-      "title": "India stocks mixed at close of trade; Nifty 50 up 0.33%",
-      "link": "https://www.investing.com/news/stock-market-news/india-stocks-mixed-at-close-of-trade-nifty-50-up-033-4907007",
-      "source": "Investing",
-      "at": 1789727406000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789727406000,
-      "why": "India stocks news, US direction unclear."
+      "why": "Fed rate hikes imply stronger dollar, bearish for pairs."
     },
     {
       "title": "Israel is killing the people who could end its wars",
@@ -577,9 +616,11 @@
       "srcs": 1,
       "firstAt": 1789727374000,
       "dir": {
-        "XAU/USD": "up"
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
       },
-      "why": "Assassinations boost gold, oil direction unclear."
+      "why": "Assassinations prolong conflict, increasing geopolitical ris"
     },
     {
       "title": "Ukraine fires drone barrage as Russia launches elections",
@@ -601,9 +642,11 @@
       "srcs": 1,
       "firstAt": 1789727297000,
       "dir": {
-        "XAU/USD": "up"
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
       },
-      "why": "Ukraine drone barrage boosts gold, oil unclear."
+      "why": "Ongoing drone barrage and elections sustain conflict risk."
     },
     {
       "title": "Oil prices set for weekly fall on easing fears over Saudi supply disruption",
@@ -619,11 +662,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789726743000,
-      "dir": {
-        "USOIL": "down"
-      },
-      "why": "Easing supply fears drive weekly oil fall."
+      "firstAt": 1789726743000
     },
     {
       "title": "AM Markets Need to Know: F-35 sale, China tariffs, and more (SPX:) - Seeking Alpha",
@@ -1949,6 +1988,26 @@
       "firstAt": 1789701075000
     },
     {
+      "title": "Russia, China Veto UN Monitoring of Iran Sanctions - yahoo.com",
+      "link": "https://news.google.com/rss/articles/CBMilgFBVV95cUxOTENYVTN5WVpPWVZWOGdKVk1zRkFxcEEwRUphemowbTBNVWQyZnZ2VkQ3anhHRTVRMjNsdEFFTjM2YVg3X0dzMm0zX0xWT2FzREhsMEZHUHJLRDVUSzFrbHFzdlhSSldUNHNaUWJJRE93b0xXcUdRVFptcGo0bWlHVjc4dnY3Vk1XeVNwVTlKazJIUE5FaEE?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMilgFBVV95cUxOTENYVTN5WVpPWVZWOGdKVk1zRkFxcEEwRUphemowbTBNVWQyZnZ2VkQ3anhHRTVRMjNsdEFFTjM2YVg3X0dzMm0zX0xWT2FzREhsMEZHUHJLRDVUSzFrbHFzdlhSSldUNHNaUWJJRE93b0xXcUdRVFptcGo0bWlHVjc4dnY3Vk1XeVNwVTlKazJIUE5FaEE?oc=5\" target=\"_blank\">Russ",
+      "at": 1789697971000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789697971000
+    },
+    {
       "title": "Grayscale Says Fed Rate Hike Will Have Limited Impact on Crypto Markets - finance.biggo.com",
       "link": "https://news.google.com/rss/articles/CBMidkFVX3lxTE1MRDB0OU1ZSF92dFlxbjF1ajJxSG1lY3hmQVYzWkQyMU9va283bzdhQ1BtVlo0VG1vbXY0RzV4XzRCc1RCTE1TVTlFdnFkTFNnOWN3bUpPYno1cnNwSFlFTnBXVXNpUThBOG91dHh5LW1HYk1LMGc?oc=5",
       "source": "Wires (macro)",
@@ -1982,44 +2041,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789695120000
-    },
-    {
-      "title": "Yen slumps to two-week low after BOJ rate hike underwhelms - Reuters",
-      "link": "https://news.google.com/rss/articles/CBMiowFBVV95cUxQZTZWMHVPOWZ5RDBIc2NmX2tmcE5pODNpeGhnaGJhZ0RrVkRtVTVud1FUY2NhNkttREN4QjNtTlZRTGtPNTFZVUIzWm1XNU5xNEdqTnNILXhybG1oMXVJV3N6YmxpRjFIX01sZWVEQ2xiRW1weUpEWjFfU1NCOXZuU0Vjc2xtMGpacjFGZ2ZZLXpnN1R3YWphMDcta0VyYjEyYU40?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiowFBVV95cUxQZTZWMHVPOWZ5RDBIc2NmX2tmcE5pODNpeGhnaGJhZ0RrVkRtVTVud1FUY2NhNkttREN4QjNtTlZRTGtPNTFZVUIzWm1XNU5xNEdqTnNILXhybG1oMXVJV3N6YmxpRjFIX01sZWVEQ2xiRW1weUpEWjFfU1NCOXZuU0Vjc2xtMGpacjFGZ2ZZLXpnN1R3YWphMDcta0VyYjEyYU40?oc=5\" tar",
-      "at": 1789693140000,
-      "inst": [
-        "USD/JPY"
-      ],
-      "ccy": [
-        "JPY",
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789693140000
-    },
-    {
-      "title": "A sweeping US sanctions bill offers Ukraine new leverage on Russia, but enforcement looms - AP News",
-      "link": "https://news.google.com/rss/articles/CBMinwFBVV95cUxPWjY0a0VnbUEwVzU0RTA0MmlSR1JBZVBSNmRKS2VoN2N1cDdoU0xVV2JoSDViWGstWUxSMGhNVVF4d3JqdURCMHJFdE1EQWNVVElyUzJMMFBIa2liR0NMaWk3dDVDOG1LT0QyNFlPSEwxZkgwUXhyOEVuTVA1QnN3LXNMTlNieFVvVHRMaTdFeVowckc5Z1luZW5MbUtuSVU?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMinwFBVV95cUxPWjY0a0VnbUEwVzU0RTA0MmlSR1JBZVBSNmRKS2VoN2N1cDdoU0xVV2JoSDViWGstWUxSMGhNVVF4d3JqdURCMHJFdE1EQWNVVElyUzJMMFBIa2liR0NMaWk3dDVDOG1LT0QyNFlPSEwxZkgwUXhyOEVuTVA1QnN3LXNMTlNieFVvVHRMaTdFeVowckc5Z1luZW5MbUtuSVU?oc=5\" target=\"",
-      "at": 1789691580000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789691100000
     }
   ],
   "sources": [
@@ -2045,7 +2066,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-18T11:16:58.286Z",
-  "headlinesAt": "2026-09-18T11:16:58.286Z",
-  "updatedAt": "2026-09-18T11:16:58.286Z"
+  "calendarAt": "2026-09-18T11:18:30.031Z",
+  "headlinesAt": "2026-09-18T11:18:30.031Z",
+  "updatedAt": "2026-09-18T11:18:30.031Z"
 }
