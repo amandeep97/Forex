@@ -216,7 +216,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789738498000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "up",
+        "US100": "up"
+      },
+      "why": "Stocks open higher"
     },
     {
       "title": "FTSE 100 today: Stocks slide as Hormuz tanker hit, Aramco cuts Europe supply",
@@ -231,7 +236,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789737915000,
-      "_kind": null
+      "_kind": null,
+      "why": "FTSE news, US market unclear"
     },
     {
       "title": "A sideways market and rising earnings are presenting a buying opportunity for this crucial sector",
@@ -266,7 +272,13 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789737915000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Supply risk boosts oil, gold"
     },
     {
       "title": "European equities cap 3rd-weekly decline as Saudi supply cuts stings",
@@ -281,7 +293,7 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789734990000,
-      "_kind": null
+      "why": "European news, US market unclear"
     },
     {
       "title": "US voter opposition to war on Iran grows to new highs: Poll",
@@ -301,7 +313,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789736967000
+      "firstAt": 1789736967000,
+      "why": "Poll data, no clear direction"
     },
     {
       "title": "FIFA’s Infantino ‘must go, no ifs or buts’, blasts German FA vice president",
@@ -316,7 +329,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789736735000
+      "firstAt": 1789736735000,
+      "why": "Football news, no FX impact"
     },
     {
       "title": "Stocks and bonds rally post-Fed rate hike as Tr... - Pluang",
@@ -333,7 +347,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789736643000
+      "firstAt": 1789736643000,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Stocks rally post-Fed"
     },
     {
       "title": "Russian hybrid attacks against Europe intensifying, says Macron",
@@ -353,7 +371,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789736458000
+      "firstAt": 1789736458000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Geopolitical risk boosts gold"
     },
     {
       "title": "Wall St set for tepid open as oil prices fall, Treasury yields rise - reuters.com",
@@ -371,7 +393,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789733795000
+      "firstAt": 1789733795000,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Oil prices fall"
     },
     {
       "title": "As Houthis grab Bab al-Mandeb, US appears willing to watch from sidelines",
@@ -391,7 +417,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789735949000
+      "firstAt": 1789735949000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Shipping risk boosts oil, gold"
     },
     {
       "title": "Why does Canada want to join the Europe-led JEF military partnership?",
@@ -410,7 +442,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789735875000
+      "firstAt": 1789735875000,
+      "why": "Geopolitical news, no clear direction"
     },
     {
       "title": "Naphtha prices in Asia drop for third day amid oil weakness",
@@ -426,7 +459,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789735499000
+      "firstAt": 1789735499000,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Oil weakness mentioned"
     },
     {
       "title": "Why mortgage bonds are set to deteriorate, and possibly hit the whole market, according to this Wall Street expert",
@@ -443,7 +480,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789735200000
+      "firstAt": 1789735200000,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Mortgage bonds deteriorate, market risk"
     },
     {
       "title": "Tighter financial conditions could keep markets cautious until inflation cools - TradingView",
@@ -466,7 +507,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789735027000
+      "firstAt": 1789735027000,
+      "why": "Cautious markets, no clear direction"
     },
     {
       "title": "Oil prices edge lower on easing fears over Saudi supply disruption",
@@ -482,7 +524,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789734990000
+      "firstAt": 1789734990000,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Oil prices edge lower"
     },
     {
       "title": "Iran says it strikes an oil tanker, and other Mideast developments - AP News",
@@ -687,6 +733,23 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789731637000
+    },
+    {
+      "title": "EU fails to agree on extending sanctions against Putin and Lavrov - pravda.com.ua",
+      "link": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE5ZUmJOYVlRTUxUMF9mTWpqeFpRWmxTUTdrS0puWG1Ed0x3UUUtUC1rMm81SzRaZDFMY1lxNmg3SkRUTVgtU3l3T2pZWnNYMnFla2h5TU85YlFvWjJ0cW14SEhaejQ?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiZEFVX3lxTE5ZUmJOYVlRTUxUMF9mTWpqeFpRWmxTUTdrS0puWG1Ed0x3UUUtUC1rMm81SzRaZDFMY1lxNmg3SkRUTVgtU3l3T2pZWnNYMnFla2h5TU85YlFvWjJ0cW14SEhaejQ?oc=5\" target=\"_blank\">EU fails to agree on extending sanctions against Putin and Lavrov</a>&nb",
+      "at": 1789730700000,
+      "inst": [
+        "XAU/USD"
+      ],
+      "ccy": [
+        "XAU"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789730700000
     },
     {
       "title": "Revealed: Ed Miliband ignored MI6’s warnings over Israel sanctions - The Spectator",
@@ -1807,6 +1870,23 @@
       "firstAt": 1789707635000
     },
     {
+      "title": "RBA leaders warn that interest rates are just back to 'sensible level' - ABC News & Headlines – Australian Broadcasting Corporation",
+      "link": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxPSkxJZkRfNzAtUHMzNTFkY3RTa01scmFJU1V1b1pIcUl0RHVuYnNZbnk2bVFtU0lONjdYcjRtU0RoNEdmcWowR0FIMjZnZ2h5MTJETVh0d3VuZEVOcW54Y191X290OVl6cW1Ca0tIbkwtdE1fWGd4SDNfaGdpZ3JIV2dWQ1BVRTNLdVZiSVpUZ0o2Tm13eHRpS0xLZF94X3ZUTEtGUVJ3Ujc1U0k?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiqwFBVV95cUxPSkxJZkRfNzAtUHMzNTFkY3RTa01scmFJU1V1b1pIcUl0RHVuYnNZbnk2bVFtU0lONjdYcjRtU0RoNEdmcWowR0FIMjZnZ2h5MTJETVh0d3VuZEVOcW54Y191X290OVl6cW1Ca0tIbkwtdE1fWGd4SDNfaGdpZ3JIV2dWQ1BVRTNLdVZiSVpUZ0o2Tm13eHRpS0xLZF94X3ZUTEtGUVJ3Ujc1U0",
+      "at": 1789706210000,
+      "inst": [
+        "AUD/USD"
+      ],
+      "ccy": [
+        "AUD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789706210000
+    },
+    {
       "title": "House clears Russia sanctions as Republicans dodge impeachment vote - NJ Spotlight News",
       "link": "https://news.google.com/rss/articles/CBMirAFBVV95cUxQUjBLUEpEM1dWS2lGS1BSbDVzeVhSTUFtZDZNTXFpX2w1QzF4cjV4WnpZU2kwVnNSU2FMUVVzSHZxTXdHaWF1el9CR0N0YnpzaTN6a0dxYmNmaGx2dXZmM0NTSy0xRmpRUHR2SmxhSk8xOFQ5VnVMWXlSNGJyZGREWGxlZlNHcHBfTFJsMjJHelVnSzVSQkRZY2NUQXFKNXVCYmVKUHZ6dVowb3ZZ?oc=5",
       "source": "Wires (geo)",
@@ -1827,47 +1907,10 @@
       "firstAt": 1789705638000
     },
     {
-      "title": "RBA leaders warn that interest rates are just back to 'sensible level' - ABC News & Headlines – Australian Broadcasting Corporation",
-      "link": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxPSkxJZkRfNzAtUHMzNTFkY3RTa01scmFJU1V1b1pIcUl0RHVuYnNZbnk2bVFtU0lONjdYcjRtU0RoNEdmcWowR0FIMjZnZ2h5MTJETVh0d3VuZEVOcW54Y191X290OVl6cW1Ca0tIbkwtdE1fWGd4SDNfaGdpZ3JIV2dWQ1BVRTNLdVZiSVpUZ0o2Tm13eHRpS0xLZF94X3ZUTEtGUVJ3Ujc1U0k?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiqwFBVV95cUxPSkxJZkRfNzAtUHMzNTFkY3RTa01scmFJU1V1b1pIcUl0RHVuYnNZbnk2bVFtU0lONjdYcjRtU0RoNEdmcWowR0FIMjZnZ2h5MTJETVh0d3VuZEVOcW54Y191X290OVl6cW1Ca0tIbkwtdE1fWGd4SDNfaGdpZ3JIV2dWQ1BVRTNLdVZiSVpUZ0o2Tm13eHRpS0xLZF94X3ZUTEtGUVJ3Ujc1U0",
-      "at": 1789705911000,
-      "inst": [
-        "AUD/USD"
-      ],
-      "ccy": [
-        "AUD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789705911000
-    },
-    {
       "title": "Russia, China block US push to maintain UN oversight of Iran sanctions - Euronews.com",
       "link": "https://news.google.com/rss/articles/CBMisgFBVV95cUxPV1lIQkNQbno5QkhpYU9ETnhzTTlIeXJ6YVIzbmV0YW1kSDJXNmU1SFBaLXVMZk9KaE90WVJCV195Zlc3eTJXTTc2LTJwRDFpalRWWW04emRVSnlFNnJZRGQwUFFIWFNyYUY1RmdfdENEWWdyRmdCcEpySk9EOTZHOVB3b19PQUtaUnRQSmhrN2czdHZsUDhrdVhWRll5S05IMEU2TkVwTnZTY3pJZXJJSC1n?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMisgFBVV95cUxPV1lIQkNQbno5QkhpYU9ETnhzTTlIeXJ6YVIzbmV0YW1kSDJXNmU1SFBaLXVMZk9KaE90WVJCV195Zlc3eTJXTTc2LTJwRDFpalRWWW04emRVSnlFNnJZRGQwUFFIWFNyYUY1RmdfdENEWWdyRmdCcEpySk9EOTZHOVB3b19PQUtaUnRQSmhrN2czdHZsUDhrdVhWRll5S05IMEU2TkVwTnZTY3",
-      "at": 1789705638000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789705638000
-    },
-    {
-      "title": "Video. Russia, China block US push to maintain UN oversight of Iran sanctions - Euronews.com",
-      "link": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPX2FnazFEVnpIbkV3cVBUdkk4SGdTYjR6cFNQTDFQZTdLcUJid0hoZWkzR2UyX2RTY1JSa3lYcnFYa2FOb2dNdkpHWFktdzNORVFUdm1vdWI1MmlLQmJkUnNpdHFaS0FTVlNlWS1VakZaQ1lBeWR3WkNEbkRBWndwWG1hajZHTzNvLURKWERpU1BQaUp3RWVNZ2NLOTRTRGVBM1dhN0FVSGpJTzNIZ3dQcGlYQmljYkxsTmc?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiugFBVV95cUxPX2FnazFEVnpIbkV3cVBUdkk4SGdTYjR6cFNQTDFQZTdLcUJid0hoZWkzR2UyX2RTY1JSa3lYcnFYa2FOb2dNdkpHWFktdzNORVFUdm1vdWI1MmlLQmJkUnNpdHFaS0FTVlNlWS1VakZaQ1lBeWR3WkNEbkRBWndwWG1hajZHTzNvLURKWERpU1BQaUp3RWVNZ2NLOTRTRGVBM1dhN0FVSGpJTz",
       "at": 1789705638000,
       "inst": [
         "XAU/USD",
@@ -1907,7 +1950,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-18T13:45:57.750Z",
-  "headlinesAt": "2026-09-18T13:45:57.750Z",
-  "updatedAt": "2026-09-18T13:45:57.750Z"
+  "calendarAt": "2026-09-18T13:47:29.594Z",
+  "headlinesAt": "2026-09-18T13:47:29.594Z",
+  "updatedAt": "2026-09-18T13:47:29.594Z"
 }
