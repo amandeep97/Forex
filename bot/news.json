@@ -357,8 +357,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789711740000,
-      "_kind": null,
-      "why": "Tata is not a US500 constituent."
+      "_kind": null
     },
     {
       "title": "Taiwan stocks higher at close of trade; Taiwan Weighted up 1.80%",
@@ -373,8 +372,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789711504000,
-      "_kind": null,
-      "why": "Taiwan market news does not move US500."
+      "_kind": null
     },
     {
       "title": "UK retail sales unexpectedly rise in August, backed by recovery in department stores, non-store retailers",
@@ -398,12 +396,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789711241000,
-      "_kind": null,
-      "dir": {
-        "XAU/USD": "down",
-        "GBP/USD": "up"
-      },
-      "why": "Strong UK data boosts GBP, weakens USD."
+      "_kind": null
     },
     {
       "title": "Russia adapts a training missile to lead its ballistic onslaught of Ukraine - Reuters",
@@ -423,9 +416,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789710453000,
-      "_kind": null,
-      "why": "Geopolitical news lacks clear immediate price direction."
+      "firstAt": 1789711200000,
+      "_kind": null
     },
     {
       "title": "Sandoz gets Canadian approval for generic Ozempic drug",
@@ -440,8 +432,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789710988000,
-      "_kind": null,
-      "why": "Pharmaceutical approval has negligible FX impact."
+      "_kind": null
     },
     {
       "title": "Chinese robotics stocks rise as Tesla reportedly launches audit for Optimus",
@@ -456,8 +447,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789710972000,
-      "_kind": null,
-      "why": "Chinese robotics news does not move US500."
+      "_kind": null
     },
     {
       "title": "Forex Today: US Dollar holds gains as markets weigh Fed rate hike, BoJ move in focus - FXStreet",
@@ -475,58 +465,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789710593000,
-      "dir": {
-        "USD/JPY": "up"
-      },
-      "why": "Dollar holds gains implies USD strength."
-    },
-    {
-      "title": "Russia and China Veto UN Monitoring of Sanctions Against Iran | Ukraine news - #Mezha - Межа. Новини України.",
-      "link": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE8xR29xOXZwRjZDdW84TWJfV1FlcGVMazZxVW5kckVTSTM1Nk8xR2YyWWptZ3JCWENxQzNkSFk1VTVOSVoxNjVVUkwyc2dpWEtkQ2hqQTB2a0x2WGc4QkI1Ni1NSQ?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiY0FVX3lxTE8xR29xOXZwRjZDdW84TWJfV1FlcGVMazZxVW5kckVTSTM1Nk8xR2YyWWptZ3JCWENxQzNkSFk1VTVOSVoxNjVVUkwyc2dpWEtkQ2hqQTB2a0x2WGc4QkI1Ni1NSQ?oc=5\" target=\"_blank\">Russia and China Veto UN Monitoring of Sanctions Against Iran | Ukraine n",
-      "at": 1789710453000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789710453000,
-      "why": "UN veto news is ambiguous for markets."
-    },
-    {
-      "title": "Asian stocks climb as BOJ hike lifts Japan, oil pullback eases inflation pressure",
-      "link": "https://www.investing.com/news/stock-market-news/asian-stocks-rise-as-oil-retreat-eases-inflation-fears-boj-in-focus-4906641",
-      "source": "Investing",
-      "at": 1789710214000,
-      "inst": [
-        "USD/JPY",
-        "USOIL",
-        "US500"
-      ],
-      "ccy": [
-        "JPY",
-        "OIL",
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789710214000,
-      "dir": {
-        "USD/JPY": "down",
-        "USOIL": "down",
-        "US500": "up"
-      },
-      "why": "BOJ hike weakens JPY, oil pullback, stocks climb."
+      "firstAt": 1789710593000
     },
     {
       "title": "Venezuela nears deal to move $4 billion gold reserve to New York, FT says",
@@ -542,8 +481,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789710144000,
-      "why": "Gold reserve movement is not a price signal."
+      "firstAt": 1789710144000
     },
     {
       "title": "Fed rate hike: Will T-bills make a comeback? - The Business Times",
@@ -566,8 +504,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789710120000,
-      "why": "T-bill discussion is neutral for these pairs."
+      "firstAt": 1789710120000
     },
     {
       "title": "South Korea says US-North Korea talks possible, rules out Hormuz deployment",
@@ -587,8 +524,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789708990000,
-      "why": "Talks and no deployment are mixed signals."
+      "firstAt": 1789708990000
     },
     {
       "title": "Gold prices rise, eye weekly gain as oil and yields ease after Fed hike",
@@ -607,12 +543,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789708665000,
-      "dir": {
-        "XAU/USD": "up",
-        "USOIL": "down"
-      },
-      "why": "Gold rises, oil eases after Fed hike."
+      "firstAt": 1789708665000
     },
     {
       "title": "Fire engulfs Zaporizhzhia shopping centre after Russian strike",
@@ -632,8 +563,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789707809000,
-      "why": "Strike news is ambiguous for immediate prices."
+      "firstAt": 1789707809000
     },
     {
       "title": "Australia to detain tourists who overstay visas amid immigration crackdown",
@@ -650,8 +580,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789707774000,
-      "why": "Immigration policy has no clear FX impact."
+      "firstAt": 1789707774000
     },
     {
       "title": "Dollar jumps above 157 yen line after 2 BOJ board members opposed rate hike - 毎日新聞",
@@ -1127,7 +1056,7 @@
       "firstAt": 1789693140000
     },
     {
-      "title": "Iran in, Abbas out: Trump threatens new strikes as US grants Tehran leaders UN visas - ynetnews.com",
+      "title": "Iran in, Abbas out: Trump threatens new strikes as US grants Tehran leaders UN visas - Ynetnews",
       "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1Zck9VTWVLdk5BYTFOWk9oelV2eVFkRkVkMFI2VEVBUFFmZ0VlVUcwTjJRdXdxT3ZKR2pBdWxqSnI3YTdUTmhPVElMeDZjUkk2clc3WGdR?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiVkFVX3lxTE1Zck9VTWVLdk5BYTFOWk9oelV2eVFkRkVkMFI2VEVBUFFmZ0VlVUcwTjJRdXdxT3ZKR2pBdWxqSnI3YTdUTmhPVElMeDZjUkk2clc3WGdR?oc=5\" target=\"_blank\">Iran in, Abbas out: Trump threatens new strikes as US grants Tehran leaders UN visas</a>&nb",
@@ -1164,10 +1093,10 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789688872000
+      "firstAt": 1789688483000
     },
     {
-      "title": "Press Release: Rep. Scott Fitzgerald Votes on Russia, Iran Sanctions and Climate Waivers - quiverquant.com",
+      "title": "Press Release: Rep. Scott Fitzgerald Votes on Russia, Iran Sanctions and Climate Waivers - Quiver Quantitative",
       "link": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxQbktMYkwzTTdjNTNRdy1sRVNfUDdTN1FUc2lnM3B5cHdVRUJHV0RrUW16TDVlZVZnQWJiVzkzRVpSZ3Y5aTVIa0ZlU2lrRi1kVldHdm5uT0FRUDlLSEp2NUZMcnJVb2Y2dFBQbzJ1TGQ5ZGZ3THhsaklvSnRDV3FGMXNXcXlxcXVCemdqRjhROGc2eWhWbU9nZ0NrTGpMR0VnQmZOV25uRUcyeWpYc1NtZnd0S29ENE1zXzhYQi1ZMlZIdjA?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiwwFBVV95cUxQbktMYkwzTTdjNTNRdy1sRVNfUDdTN1FUc2lnM3B5cHdVRUJHV0RrUW16TDVlZVZnQWJiVzkzRVpSZ3Y5aTVIa0ZlU2lrRi1kVldHdm5uT0FRUDlLSEp2NUZMcnJVb2Y2dFBQbzJ1TGQ5ZGZ3THhsaklvSnRDV3FGMXNXcXlxcXVCemdqRjhROGc2eWhWbU9nZ0NrTGpMR0VnQmZOV25uRUcyeW",
@@ -1179,12 +1108,13 @@
       ],
       "ccy": [
         "XAU",
-        "OIL"
+        "OIL",
+        "USD"
       ],
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789688872000
+      "firstAt": 1789688483000
     },
     {
       "title": "Trump weighs major Iran escalation as China steps up diplomatic push - iranintl.com",
@@ -1244,7 +1174,27 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789688872000
+      "firstAt": 1789688483000
+    },
+    {
+      "title": "House Sends Russia Sanctions Bill to Trump's Desk - The South Shore Press",
+      "link": "https://news.google.com/rss/articles/CBMinwFBVV95cUxNanhXd0RKRFhtYm4wWjZtTkVrM2hsR0NKT3J3akdfWi1sYkpkVXJZWjFTajlsSllKbEJEWUtTTFJYUVAzdjliRXBNZmVzM3BfQWd5V1h1NVRET001c3VweElqY1dyWUJuV3RqclJNOUEyRXc3cmFZVGJYN0Yta3ZmcjNQbjYyMFM2ekRNMm9SZ1hSbFZuM012eU13Zy1DbGs?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMinwFBVV95cUxNanhXd0RKRFhtYm4wWjZtTkVrM2hsR0NKT3J3akdfWi1sYkpkVXJZWjFTajlsSllKbEJEWUtTTFJYUVAzdjliRXBNZmVzM3BfQWd5V1h1NVRET001c3VweElqY1dyWUJuV3RqclJNOUEyRXc3cmFZVGJYN0Yta3ZmcjNQbjYyMFM2ekRNMm9SZ1hSbFZuM012eU13Zy1DbGs?oc=5\" target=\"",
+      "at": 1789688483000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789688483000
     },
     {
       "title": "US markets rebound after Fed Reserve rate hike - news24.com.au",
@@ -1626,7 +1576,7 @@
       "firstAt": 1789678712000
     },
     {
-      "title": "Blumenthal touts passage of Russia sanctions bill as CT Dems split - ctmirror.org",
+      "title": "Blumenthal touts passage of Russia sanctions bill as CT Dems split - CT Mirror",
       "link": "https://news.google.com/rss/articles/CBMioAFBVV95cUxPcVZoczlNbEptTzk0VzJ6WmtYNUZBYVdFLU9LV3NYVUNqdWRtUHVBOVJ1WURsYUUzSVpMRWE0clRJYWVhSTZlQlZMMzRkekFzZjdrTGk1eHZVcUJLbDVOemxfOVBGOTlwMFd2MEZINVE0WmE1OWdUa3RtZWJOa3B6NWpMa1ZCZVpadWxHR1NRemJ3TkgtLUg4SlRsT3VEVENC?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMioAFBVV95cUxPcVZoczlNbEptTzk0VzJ6WmtYNUZBYVdFLU9LV3NYVUNqdWRtUHVBOVJ1WURsYUUzSVpMRWE0clRJYWVhSTZlQlZMMzRkekFzZjdrTGk1eHZVcUJLbDVOemxfOVBGOTlwMFd2MEZINVE0WmE1OWdUa3RtZWJOa3B6NWpMa1ZCZVpadWxHR1NRemJ3TkgtLUg4SlRsT3VEVENC?oc=5\" target=",
@@ -1810,26 +1760,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789675200000
-    },
-    {
-      "title": "Russia’s plans may include strikes against Ukraine’s allies, Poland says - Al Jazeera",
-      "link": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxNR2xWNEEwQWQ0RHJ6aXlUVC1Wc1d6UDJOcktCNU5mcWl6SWRvaVN0MW0zcHhsSUc2bXdsLWY5SHVGWWZHQkU1UHlXWjNsb3RfMG1nZklkOE5vMzkwUWtwOG96Qmh3X3R0elVvUW5lMFhaVU11anNfbHJNNUdwQWcyWFM1UnBpcWhaY1RHUnBPN191OTlwSElUUTU2Mk11TElKalFHblFxbXdUd9IBrwFBVV95cUxObVNxaGNEdDZvNi0yOWwyYmxBUWQ1MmwxbWVLRmt0V2dpdlF6WmtEdHhHajlxZDBKeEJDZFE1ZXdjUzQtVHRNVngtT29rTEwtSl83R3BlSlVqbW5SdHA5aDBPMGRIbTZWbGJhOHFiZGhPaFVVZUpOUTIyYXFDSXcxQWkzS2dJZmhGX2RUVGU1ajc3bW9RaWk4UDNlQjVlUGhsc0hCc3RKYnpuYXRCVlNF?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiqgFBVV95cUxNR2xWNEEwQWQ0RHJ6aXlUVC1Wc1d6UDJOcktCNU5mcWl6SWRvaVN0MW0zcHhsSUc2bXdsLWY5SHVGWWZHQkU1UHlXWjNsb3RfMG1nZklkOE5vMzkwUWtwOG96Qmh3X3R0elVvUW5lMFhaVU11anNfbHJNNUdwQWcyWFM1UnBpcWhaY1RHUnBPN191OTlwSElUUTU2Mk11TElKalFHblFxbXdUd9",
-      "at": 1789675305000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789675305000
     },
     {
       "title": "CT House delegation opposes Russia sanctions bill, citing Trump's tariff powers - WSHU",
@@ -2091,6 +2021,41 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789667991000
+    },
+    {
+      "title": "Stocks making the biggest moves midday: Workday, Generac, Vital Farms, Vicor, Tower Semi & more",
+      "link": "https://www.cnbc.com/2026/09/17/stocks-making-the-biggest-moves-premarket-wday-gnrc-vicr-tsem-vitl.html",
+      "source": "CNBC Markets",
+      "desc": "These are some of the stocks posting the largest moves midday.",
+      "at": 1789667915000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789667915000
+    },
+    {
+      "title": "Trump weighs return to major Iran strikes: ‘I have a big decision coming up’ - Ynetnews",
+      "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE5UbXpuSHBhc1lCN25RSG42LVFFaHNNQTJsZndiRVlvZ2xXT0VtZVJGNjl1d0dEQmhjaHNMT0FEZUFxV0FLWGQ3UlZsUjNxc1dMNC1fZEp3?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiVkFVX3lxTE5UbXpuSHBhc1lCN25RSG42LVFFaHNNQTJsZndiRVlvZ2xXT0VtZVJGNjl1d0dEQmhjaHNMT0FEZUFxV0FLWGQ3UlZsUjNxc1dMNC1fZEp3?oc=5\" target=\"_blank\">Trump weighs return to major Iran strikes: ‘I have a big decision coming up’</a>&nbsp;&nbsp",
+      "at": 1789667843000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1789665323000
     }
   ],
   "sources": [
@@ -2116,7 +2081,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-18T06:23:57.808Z",
-  "headlinesAt": "2026-09-18T06:23:57.808Z",
-  "updatedAt": "2026-09-18T06:23:57.808Z"
+  "calendarAt": "2026-09-18T06:25:26.533Z",
+  "headlinesAt": "2026-09-18T06:25:26.533Z",
+  "updatedAt": "2026-09-18T06:25:26.533Z"
 }
