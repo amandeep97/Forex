@@ -766,6 +766,91 @@ function sweptM2() {
       '', 'an empty summary is still a notification');
   }
 
+  // ── One alert per SWEEP, not one per process ─────────────────────────────
+  //
+  // The dedup, the daily budget, the digest's contents and the day it last went
+  // out all lived in memory and nothing else here did. pm2 shows this bot has
+  // restarted over eight thousand times, and every restart forgot all four — so
+  // one EUR/USD sweep arrived on the phone again every few minutes, more than a
+  // hundred copies of a message about a thing that had happened once. The sweep
+  // had not changed. The process had.
+  {
+    const sent = [];
+    const files = {};
+    const gh = {
+      async readJSON(path) { return files[path] ? { content: files[path], sha: 'x' } : null; },
+      async writeJSON(path, payload) { files[path] = JSON.parse(JSON.stringify(payload)); return 'x'; },
+    };
+    const mk = () => new LiquidityScanner({
+      oanda: fakeOanda(), log: quiet, github: gh,
+      telegram: { async send(m) { sent.push(m); } },
+    });
+    const rec = () => ({
+      sym: 'EUR/USD', price: 1.14561, div: null,
+      plan: { state: 'armed', dir: 'long', entry: 1.14561, stop: 1.14517,
+        target: 1.14978, targetLabel: "yesterday's high", rr: 9.5,
+        level: { kind: 'PDL', price: 1.14561, label: "yesterday's low" },
+        session: { id: 'ny', label: 'New York', overlap: true } },
+    });
+
+    const a = mk();
+    await a._restore();
+    a.results.set('EUR/USD', rec());
+    await a._announce(rec());
+    await a._publish();
+    check('the first time a sweep is seen, it is announced',
+      sent.length === 1, `${sent.length} message(s)`);
+
+    // Same process, same sweep: already covered before this change.
+    await a._announce(rec());
+    check('and not again within the same process',
+      sent.length === 1, `${sent.length} message(s)`);
+
+    // The part that was broken. A brand new process, the same live sweep.
+    const b = mk();
+    await b._restore();
+    b.results.set('EUR/USD', rec());
+    await b._announce(rec());
+    check('a RESTART does not re-announce a sweep already sent',
+      sent.length === 1,
+      `${sent.length} message(s) after a restart`,
+      'this is the bug that put a hundred copies of one alert on the phone');
+
+    check('the record of what was sent survives in the published file',
+      (files['bot/liquidity.json']?.alerts?.announced || []).length === 1,
+      `${(files['bot/liquidity.json']?.alerts?.announced || []).length} remembered`);
+
+    // The budget has to survive too, or the cap can never be reached: the count
+    // restarts before it can be hit.
+    check('and so does the daily budget count',
+      b.pushedAt.length === 1, `${b.pushedAt.length} push(es) carried over`);
+
+    // An entry older than the dedup window is dropped rather than carried
+    // forever, so the same level can be announced again tomorrow.
+    files['bot/liquidity.json'].alerts.announced = [['EUR/USD|PDL|1.14561|long', Date.now() - 7 * 3600e3]];
+    const c = mk();
+    await c._restore();
+    c.results.set('EUR/USD', rec());
+    await c._announce(rec());
+    check('but an expired record is not carried, so tomorrow it can fire again',
+      sent.length === 2, `${sent.length} message(s)`,
+      'the dedup is a window, not a permanent ban on a price');
+  }
+
+  // The signature has to see an alert being sent. Announcing does not
+  // necessarily change any row — an armed plan that was already armed looks
+  // identical — so without this the dedup record would be computed and never
+  // written, and the next restart would send it all over again.
+  {
+    const s = new LiquidityScanner({ oanda: fakeOanda(), github: noGithub, log: quiet });
+    s.results.set('A', { sym: 'A', at: Date.now(), setup: null, near: null, levels: {} });
+    const before = s._signature();
+    s.announced.set('A|PDL|1|long', Date.now());
+    check('sending an alert changes the publish signature',
+      s._signature() !== before,
+      '', 'otherwise the fix for the restarts would have fixed nothing');
+  }
+
   console.log(fails ? `\n${fails} FAILED` : '\nall passed');
   process.exit(fails ? 1 : 0);
 })();
