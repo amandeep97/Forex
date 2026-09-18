@@ -345,6 +345,28 @@
   ],
   "headlines": [
     {
+      "title": "Australia stocks lower at close of trade; S&P/ASX 200 down 0.01%",
+      "link": "https://www.investing.com/news/stock-market-news/australia-stocks-lower-at-close-of-trade-spasx-200-down-001-4906726",
+      "source": "Investing",
+      "at": 1789713003000,
+      "inst": [
+        "AUD/USD",
+        "US500"
+      ],
+      "ccy": [
+        "AUD"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789713003000,
+      "_kind": null,
+      "dir": {
+        "AUD/USD": "down"
+      },
+      "why": "Australian stocks lower, slight negative sentiment."
+    },
+    {
       "title": "Tata Group stocks fall after $2.6 billion SP Group stake sale plan",
       "link": "https://www.investing.com/news/stock-market-news/tata-group-stocks-fall-after-26-billion-sp-group-stake-sale-plan-93CH-4906709",
       "source": "Investing",
@@ -357,7 +379,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789711740000,
-      "_kind": null
+      "_kind": null,
+      "why": "Tata news irrelevant to US index."
     },
     {
       "title": "Taiwan stocks higher at close of trade; Taiwan Weighted up 1.80%",
@@ -372,7 +395,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789711504000,
-      "_kind": null
+      "why": "Taiwan stocks irrelevant to US index."
     },
     {
       "title": "Insight: Russia adapts a training missile to lead its ballistic onslaught of Ukraine - Reuters",
@@ -393,7 +416,28 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789710453000,
-      "_kind": null
+      "why": "Geopolitical news, direction unclear for assets."
+    },
+    {
+      "title": "Oman oil escape route: How ship-to-ship transfers work — despite big risks",
+      "link": "https://www.aljazeera.com/news/2026/9/18/oman-oil-escape-route-how-ship-to-ship-transfers-work-despite-big?traffic_source=rss",
+      "source": "Al Jazeera",
+      "desc": "Oman’s Sohar port is becoming a popular spot for ship-to-ship oil transfers amid continued Hormuz blockade.",
+      "at": 1789711328000,
+      "inst": [
+        "USOIL",
+        "XAU/USD",
+        "UKOIL"
+      ],
+      "ccy": [
+        "OIL",
+        "XAU"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789711328000,
+      "why": "Logistics news, no clear price direction."
     },
     {
       "title": "UK retail sales unexpectedly rise in August, backed by recovery in department stores, non-store retailers",
@@ -416,7 +460,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789711241000
+      "firstAt": 1789711241000,
+      "dir": {
+        "GBP/USD": "up"
+      },
+      "why": "Strong UK data supports GBP."
     },
     {
       "title": "Iran’s Isolation Grows After U.S. Imposes Sweeping Sanctions on Airlines - nytimes.com",
@@ -436,35 +484,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789710453000
-    },
-    {
-      "title": "Sandoz gets Canadian approval for generic Ozempic drug",
-      "link": "https://www.investing.com/news/stock-market-news/sandoz-gets-canadian-approval-for-generic-ozempic-drug-93CH-4906696",
-      "source": "Investing",
-      "at": 1789710988000,
-      "inst": [
-        "USD/CAD"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789710988000
-    },
-    {
-      "title": "Chinese robotics stocks rise as Tesla reportedly launches audit for Optimus",
-      "link": "https://www.investing.com/news/stock-market-news/chinese-robotics-stocks-rise-as-tesla-reportedly-launches-audit-for-optimus-4906695",
-      "source": "Investing",
-      "at": 1789710972000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789710972000
+      "firstAt": 1789710453000,
+      "why": "Sanctions news, direction unclear."
     },
     {
       "title": "Forex Today: US Dollar holds gains as markets weigh Fed rate hike, BoJ move in focus - FXStreet",
@@ -482,7 +503,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789710593000
+      "firstAt": 1789710593000,
+      "dir": {
+        "USD/JPY": "up"
+      },
+      "why": "Dollar holds gains, implies strength."
     },
     {
       "title": "Russia and China Veto UN Monitoring of Sanctions Against Iran | Ukraine news - #Mezha - Межа. Новини України.",
@@ -502,7 +527,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789710453000
+      "firstAt": 1789710453000,
+      "why": "UN veto, no clear market impact."
     },
     {
       "title": "Venezuela nears deal to move $4 billion gold reserve to New York, FT says",
@@ -518,7 +544,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789710144000
+      "firstAt": 1789710144000,
+      "why": "Gold reserve move, unclear price impact."
     },
     {
       "title": "Fed rate hike: Will T-bills make a comeback? - The Business Times",
@@ -541,7 +568,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789710120000
+      "firstAt": 1789710120000,
+      "why": "T-bill discussion, no clear direction."
     },
     {
       "title": "South Korea says US-North Korea talks possible, rules out Hormuz deployment",
@@ -561,7 +589,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789708990000
+      "firstAt": 1789708990000,
+      "why": "Talks possible, no clear direction."
     },
     {
       "title": "Gold prices rise, eye weekly gain as oil and yields ease after Fed hike",
@@ -580,7 +609,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789708665000
+      "firstAt": 1789708665000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "down"
+      },
+      "why": "Gold rises, oil eases."
     },
     {
       "title": "Fire engulfs Zaporizhzhia shopping centre after Russian strike",
@@ -600,7 +634,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789707809000
+      "firstAt": 1789707809000,
+      "why": "Strike news, no clear asset direction."
     },
     {
       "title": "Australia to detain tourists who overstay visas amid immigration crackdown",
@@ -617,7 +652,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789707774000
+      "firstAt": 1789707774000,
+      "why": "Immigration policy, no clear FX impact."
     },
     {
       "title": "Dollar jumps above 157 yen line after 2 BOJ board members opposed rate hike - 毎日新聞",
@@ -1448,26 +1484,6 @@
       "firstAt": 1789681279000
     },
     {
-      "title": "Trump administration approves sale of F-35 jets to Saudi Arabia",
-      "link": "https://www.aljazeera.com/news/2026/9/17/trump-administration-approves-sale-of-f-35-jets-to-saudi-arabia?traffic_source=rss",
-      "source": "Al Jazeera",
-      "desc": "The deal, which needs approval from Congress, comes as Riyadh seeks Washington's help in its war with Yemen's Houthis.",
-      "at": 1789681097000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789681097000
-    },
-    {
       "title": "The 10-year Treasury is having its worst run in over 100 years. Why investors are buying bonds anyway.",
       "link": "https://www.marketwatch.com/story/the-bond-market-is-seeing-trouble-why-investors-are-buying-now-anyway-065a2f9f?mod=mw_rss_topstories",
       "source": "MarketWatch",
@@ -2058,6 +2074,21 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789667991000
+    },
+    {
+      "title": "Stocks making the biggest moves midday: Workday, Generac, Vital Farms, Vicor, Tower Semi & more",
+      "link": "https://www.cnbc.com/2026/09/17/stocks-making-the-biggest-moves-premarket-wday-gnrc-vicr-tsem-vitl.html",
+      "source": "CNBC Markets",
+      "desc": "These are some of the stocks posting the largest moves midday.",
+      "at": 1789667915000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789667915000
     }
   ],
   "sources": [
@@ -2080,10 +2111,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-18T06:34:12.732Z",
-  "headlinesAt": "2026-09-18T06:34:12.732Z",
-  "updatedAt": "2026-09-18T06:34:12.732Z"
+  "calendarAt": "2026-09-18T06:35:30.726Z",
+  "headlinesAt": "2026-09-18T06:35:30.726Z",
+  "updatedAt": "2026-09-18T06:35:30.726Z"
 }
