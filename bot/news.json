@@ -273,6 +273,69 @@
   ],
   "headlines": [
     {
+      "title": "Bank of Japan rate hike is a warning shot for global markets - finchannel",
+      "link": "https://news.google.com/rss/articles/CBMiygFBVV95cUxQS0RkaDVheTVMejY0NXZjd2Y2MnNMeHE4elJCdEpTdHcxd0VWV1dhOXRKZFNqNFZ4eFp3UjBIdktzYU1Jbml6N2xXay1GZHkxTUxrWUhPbVFUVWNUOWYyNmFNNU1ZOFN2YUZqUk1IWV9DRVJDZEpSc2tCRFFhSE5RSjVSNk5UNkJyNG9paHFjYmM0czBGTkNKZngyYVQ5V2s5YjUxRkFfaEw0V0F0NTdzUzhuWjY1LXM3eXN5VHBwaTR1QU5yMHFWN3Zn?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiygFBVV95cUxQS0RkaDVheTVMejY0NXZjd2Y2MnNMeHE4elJCdEpTdHcxd0VWV1dhOXRKZFNqNFZ4eFp3UjBIdktzYU1Jbml6N2xXay1GZHkxTUxrWUhPbVFUVWNUOWYyNmFNNU1ZOFN2YUZqUk1IWV9DRVJDZEpSc2tCRFFhSE5RSjVSNk5UNkJyNG9paHFjYmM0czBGTkNKZngyYVQ5V2s5YjUxRkFfaEw0V0",
+      "at": 1789731637000,
+      "inst": [
+        "USD/JPY"
+      ],
+      "ccy": [
+        "JPY",
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789731637000,
+      "_kind": null,
+      "dir": {
+        "USD/JPY": "down"
+      },
+      "why": "BOJ hike weakens dollar, strengthens yen"
+    },
+    {
+      "title": "Bitcoin and ethereum prices today, Friday, September 18, 2026: Crypto prices rise as investors move past CLARITY's failure",
+      "link": "https://finance.yahoo.com/personal-finance/investing/article/bitcoin-and-ethereum-prices-today-friday-september-18-2026-crypto-prices-rise-as-investors-move-past-claritys-failure-114025818.html",
+      "source": "Yahoo Finance",
+      "at": 1789731625000,
+      "inst": [
+        "BTC/USDT",
+        "ETH/USDT"
+      ],
+      "ccy": [
+        "BTC"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789729734000,
+      "_kind": null,
+      "dir": {
+        "BTC/USDT": "up",
+        "ETH/USDT": "up"
+      },
+      "why": "Crypto prices rise on positive sentiment"
+    },
+    {
+      "title": "Stocks making the biggest moves premarket: Netflix, Nucor, Xenon Pharmaceuticals & more",
+      "link": "https://www.cnbc.com/2026/09/18/stocks-making-the-biggest-moves-premarket-nflx-nue-xene.html",
+      "source": "CNBC Markets",
+      "desc": "These are the stocks posting the largest moves premarket.",
+      "at": 1789731409000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789731409000,
+      "_kind": null,
+      "why": "Individual stock moves, no index direction"
+    },
+    {
       "title": "A sideways market and rising earnings are presenting a buying opportunity for this crucial sector",
       "link": "https://www.marketwatch.com/story/a-sideways-market-and-rising-earnings-are-presenting-opportunities-not-seen-since-chatgpt-first-launched-0c37f89d?mod=mw_rss_topstories",
       "source": "MarketWatch",
@@ -305,7 +368,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789730650000,
-      "_kind": null
+      "_kind": null,
+      "why": "Political news, no clear market impact"
     },
     {
       "title": "TSX futures inch higher as dip in oil prices helps ease inflation fears",
@@ -323,7 +387,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789730289000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Oil prices dip, easing inflation fears"
     },
     {
       "title": "Is the S&P 500 in an “earnings bubble”? Goldman weighs in",
@@ -338,7 +406,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789729855000,
-      "_kind": null
+      "why": "Question about earnings bubble, no direction"
     },
     {
       "title": "Rostov Airfield Strike: Six Russian Aircraft Hit - MiGFlug",
@@ -359,7 +427,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789728493000,
-      "_kind": null
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Military strike increases geopolitical risk"
     },
     {
       "title": "Silver price today, Friday, September 18, 2026: Silver prices recover quickly, hitting weekly high today",
@@ -375,7 +448,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789728487000
+      "firstAt": 1789728487000,
+      "dir": {
+        "XAG/USD": "up"
+      },
+      "why": "Silver prices recover to weekly high"
     },
     {
       "title": "Australian Dollar rises as RBA keeps rate hike option alive - FXStreet",
@@ -393,7 +470,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789729652000
+      "firstAt": 1789729652000,
+      "dir": {
+        "AUD/USD": "up"
+      },
+      "why": "RBA hike option supports Australian dollar"
     },
     {
       "title": "North Korea anthem played at South’s Bangladesh hockey match at Asian Games",
@@ -410,7 +491,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789729144000
+      "firstAt": 1789729144000,
+      "why": "Sports incident, no financial impact"
     },
     {
       "title": "The next Iran strike: How legal, economic, and diplomatic pressures are priming the region for war - Bulletin of the Atomic Scientists",
@@ -430,7 +512,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789728901000
+      "firstAt": 1789728901000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Iran war risk boosts safe havens"
     },
     {
       "title": "Ukrainian Strike Cripples Russian Orion Drone Operations in Crimea - UNITED24 Media",
@@ -450,7 +538,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789728493000
+      "firstAt": 1789728493000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Ukraine strike increases geopolitical tension"
     },
     {
       "title": "Gold price today, Friday, September 18, 2026: Gold hits weekly high as inflation concerns fade",
@@ -467,7 +561,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789728487000
+      "firstAt": 1789728487000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Gold hits weekly high on inflation fade"
     },
     {
       "title": "European stocks snap two-week slide as Fed resolve",
@@ -483,7 +581,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789728404000
+      "firstAt": 1789728404000,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "European stocks rise, positive global sentiment"
     },
     {
       "title": "Blumenthal touts passage of Russia sanctions bill as CT Dems split - Hartford Business Journal",
@@ -503,7 +605,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789725779000
+      "firstAt": 1789725779000,
+      "why": "Sanctions bill passage, unclear immediate impact"
     },
     {
       "title": "United Nations says US may have committed war crimes in Iran: What it means",
@@ -1721,24 +1824,6 @@
       "firstAt": 1789707809000
     },
     {
-      "title": "Dollar jumps above 157 yen line after 2 BOJ board members opposed rate hike - 毎日新聞",
-      "link": "https://news.google.com/rss/articles/CBMic0FVX3lxTE5jby1YZzdzQmFhTFZ1RDBRSHhGWmI5OUVBRENFT3pqSHlrWUNjOEYxN3dEdVZjRHZDSEI2cHIxQWROV19IY05wakZDTFBJR05NSjRpZnctSTl3TWFBUHBMd0gydXVIbGFnakYtNzZRQ1pQRlE?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMic0FVX3lxTE5jby1YZzdzQmFhTFZ1RDBRSHhGWmI5OUVBRENFT3pqSHlrWUNjOEYxN3dEdVZjRHZDSEI2cHIxQWROV19IY05wakZDTFBJR05NSjRpZnctSTl3TWFBUHBMd0gydXVIbGFnakYtNzZRQ1pQRlE?oc=5\" target=\"_blank\">Dollar jumps above 157 yen line after 2 BOJ board me",
-      "at": 1789707635000,
-      "inst": [
-        "USD/JPY"
-      ],
-      "ccy": [
-        "USD",
-        "JPY"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789707635000
-    },
-    {
       "title": "RBA leaders warn that interest rates are just back to 'sensible level' - ABC News & Headlines – Australian Broadcasting Corporation",
       "link": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxPSkxJZkRfNzAtUHMzNTFkY3RTa01scmFJU1V1b1pIcUl0RHVuYnNZbnk2bVFtU0lONjdYcjRtU0RoNEdmcWowR0FIMjZnZ2h5MTJETVh0d3VuZEVOcW54Y191X290OVl6cW1Ca0tIbkwtdE1fWGd4SDNfaGdpZ3JIV2dWQ1BVRTNLdVZiSVpUZ0o2Tm13eHRpS0xLZF94X3ZUTEtGUVJ3Ujc1U0k?oc=5",
       "source": "Wires (macro)",
@@ -1927,46 +2012,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789693140000
-    },
-    {
-      "title": "A sweeping US sanctions bill offers Ukraine new leverage on Russia, but enforcement looms - AP News",
-      "link": "https://news.google.com/rss/articles/CBMinwFBVV95cUxPWjY0a0VnbUEwVzU0RTA0MmlSR1JBZVBSNmRKS2VoN2N1cDdoU0xVV2JoSDViWGstWUxSMGhNVVF4d3JqdURCMHJFdE1EQWNVVElyUzJMMFBIa2liR0NMaWk3dDVDOG1LT0QyNFlPSEwxZkgwUXhyOEVuTVA1QnN3LXNMTlNieFVvVHRMaTdFeVowckc5Z1luZW5MbUtuSVU?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMinwFBVV95cUxPWjY0a0VnbUEwVzU0RTA0MmlSR1JBZVBSNmRKS2VoN2N1cDdoU0xVV2JoSDViWGstWUxSMGhNVVF4d3JqdURCMHJFdE1EQWNVVElyUzJMMFBIa2liR0NMaWk3dDVDOG1LT0QyNFlPSEwxZkgwUXhyOEVuTVA1QnN3LXNMTlNieFVvVHRMaTdFeVowckc5Z1luZW5MbUtuSVU?oc=5\" target=\"",
-      "at": 1789691580000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789691100000
-    },
-    {
-      "title": "How Alabama’s congressional delegation voted on Russia sanctions bill - WSFA",
-      "link": "https://news.google.com/rss/articles/CBMinwFBVV95cUxPRXM4ZVBLajdJVFAxZHJ6Y3JOMUVTVnBvUURKalpvUHdJOTNQdTVHZG5lUHg5N2d6aWxhQTFjWmxDWUw2QXZuVDhta0c1Q0ROOUE3ckVKSEg2V2hpcmd3WkNuRTdteW5FQzFGRnF1OEdsWUF1LXAwSzFKUHNnWEJCUGRRaVk3MUJPR3RvbWlYa0g0LTJNN2Y3WnE1Z3NwUWvSAbMBQVVfeXFMT3VVNFp2a1NDOVk5d09SaXROa2k0RjRzLTJLbVFLN28wVmoxWXVZX3M2em9TakR5NU1EYjAtODVwQTVlRzJDc1ZSWFFUR0tXR3FYeVhWSi1jMjhGV2ZQSHZVTjh3YlZlV205d1JSYjJfYUdUWVEwRW91dGpmNHhZb2tyTTVYbUVBQ3pIbWw0TzRybnRKeW94MkhoOU9zSEdHTHdMQ1RINmNhM0pwbGFibWIwWFE?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMinwFBVV95cUxPRXM4ZVBLajdJVFAxZHJ6Y3JOMUVTVnBvUURKalpvUHdJOTNQdTVHZG5lUHg5N2d6aWxhQTFjWmxDWUw2QXZuVDhta0c1Q0ROOUE3ckVKSEg2V2hpcmd3WkNuRTdteW5FQzFGRnF1OEdsWUF1LXAwSzFKUHNnWEJCUGRRaVk3MUJPR3RvbWlYa0g0LTJNN2Y3WnE1Z3NwUWvSAbMBQVVfeXFMT3",
-      "at": 1789691100000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789688872000
     }
   ],
   "sources": [
@@ -1989,10 +2034,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-18T11:40:56.183Z",
-  "headlinesAt": "2026-09-18T11:40:56.183Z",
-  "updatedAt": "2026-09-18T11:40:56.183Z"
+  "calendarAt": "2026-09-18T11:42:45.343Z",
+  "headlinesAt": "2026-09-18T11:42:45.343Z",
+  "updatedAt": "2026-09-18T11:42:45.343Z"
 }
