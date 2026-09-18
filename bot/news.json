@@ -16,7 +16,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789691176000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Softer oil mentioned in headline"
     },
     {
       "title": "How Alabama’s congressional delegation voted on Russia sanctions bill - WSFA",
@@ -37,7 +41,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789691100000,
-      "_kind": null
+      "_kind": null,
+      "why": "Voting details, no market impact"
     },
     {
       "title": "Gold Holds Gain as Lower Oil and Fed Hike Temper Inflation Fears - bloomberg.com",
@@ -58,7 +63,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789690500000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "down"
+      },
+      "why": "Gold holds gain, lower oil"
     },
     {
       "title": "Trump weighs major Iran escalation as China steps up diplomatic push - Iran International",
@@ -78,7 +88,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789689600000
+      "firstAt": 1789689600000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Iran escalation risk premium"
     },
     {
       "title": "Iran war live: Trump weighs ‘big decision’ on Iran, tanker hit in Hormuz",
@@ -98,7 +114,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789689600000
+      "firstAt": 1789689600000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "War risk, tanker hit"
     },
     {
       "title": "Orion180 prices IPO at $12 per share on Nasdaq",
@@ -112,7 +134,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789688522000
+      "firstAt": 1789688522000,
+      "why": "Single IPO pricing event"
     },
     {
       "title": "Japan August inflation: Headline CPI 1.9% y/y (expected 2%)",
@@ -130,7 +153,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789685767000
+      "firstAt": 1789685767000,
+      "dir": {
+        "USD/JPY": "down"
+      },
+      "why": "Lower inflation weakens Yen carry"
     },
     {
       "title": "Rising oil, rates and yields brew up stagflation cocktail for markets - reuters.com",
@@ -147,7 +174,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789687806000
+      "firstAt": 1789687806000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Rising oil explicitly stated"
     },
     {
       "title": "Saudis and Houthis exchange strikes, Yemenis flee by boat as Middle East war spreads",
@@ -166,7 +197,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789686077000
+      "firstAt": 1789686077000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Middle East war spreads"
     },
     {
       "title": "Bitcoin rebounds to $76,000 as markets shrug off U.S. rate hike - CHOSUNBIZ - Chosunbiz",
@@ -184,7 +221,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789687140000
+      "firstAt": 1789687140000,
+      "dir": {
+        "BTC/USDT": "up"
+      },
+      "why": "Bitcoin rebounds to $76,000"
     },
     {
       "title": "US approves $414M uranium investment in Niger, two years after troops left",
@@ -201,7 +242,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789686985000
+      "firstAt": 1789686985000,
+      "why": "Geopolitical investment, unclear FX impact"
     },
     {
       "title": "Turkey Tried to Have Key U.S. Witness in an Iran Sanctions-Busting Case Killed in a New York Jail - Middle East Forum",
@@ -221,7 +263,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789686077000
+      "firstAt": 1789686077000,
+      "why": "Legal case, no market impact"
     },
     {
       "title": "New Zealand data, food price inflation in August same as in July",
@@ -239,7 +282,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789685767000
+      "firstAt": 1789685767000,
+      "why": "Mixed data, no clear direction"
     },
     {
       "title": "Tech leads Wall St to higher close as oil eases, Treasury yields dip - reuters.com",
@@ -257,7 +301,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789685026000
+      "firstAt": 1789685026000,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Oil eases mentioned"
     },
     {
       "title": "Congress passes new sanctions on Russia and countries using Russian energy - PBS",
@@ -277,7 +325,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789684838000
+      "firstAt": 1789684838000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Sanctions on Russian energy"
     },
     {
       "title": "Alabama comments on Russia sanctions - WSFA",
@@ -1754,6 +1808,6 @@
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-18T00:35:57.564Z",
-  "updatedAt": "2026-09-18T00:35:57.564Z"
+  "headlinesAt": "2026-09-18T00:37:26.608Z",
+  "updatedAt": "2026-09-18T00:37:26.608Z"
 }
