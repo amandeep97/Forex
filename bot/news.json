@@ -218,7 +218,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789754678000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Geopolitical tension boosts gold, oil unclear."
     },
     {
       "title": "Orion180 Insurance valued at $1.14 billion as shares fall in debut",
@@ -254,7 +258,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789754428000,
-      "_kind": null
+      "_kind": null,
+      "why": "Calendar preview, no specific direction."
     },
     {
       "title": "Investing.com’s stocks of the week",
@@ -269,7 +274,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789754322000,
-      "_kind": null
+      "_kind": null,
+      "why": "General stock picks, no clear direction."
     },
     {
       "title": "As Warren Buffett’s reign ends, fans should sell Berkshire — and buy these stocks instead",
@@ -284,7 +290,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 3,
-      "firstAt": 1789751702000
+      "firstAt": 1789751702000,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Suggests buying stocks over Berkshire."
     },
     {
       "title": "Oil slides following outreach to Iran to limit Houthis actions in Red Sea",
@@ -300,7 +310,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789752986000
+      "firstAt": 1789752986000,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "De-escalation news lowers oil prices."
     },
     {
       "title": "2-year Treasury yield reaches multi-year high after Fed rate hike - Yahoo Finance",
@@ -323,7 +337,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789752582000
+      "firstAt": 1789752582000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Higher yields strengthen dollar, hurt metals/forex."
     },
     {
       "title": "Revealed: Ed Miliband ignored MI6’s warnings over Israel sanctions - The Spectator",
@@ -343,7 +363,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789752287000
+      "firstAt": 1789752287000,
+      "why": "Political news, no clear market impact."
     },
     {
       "title": "Iranians rally in biggest show of defiance against US since war began",
@@ -363,7 +384,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789752203000
+      "firstAt": 1789752203000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Iran defiance increases geopolitical risk."
     },
     {
       "title": "Two signs investors don’t have to fear an AI slowdown",
@@ -399,7 +426,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789750200000
+      "firstAt": 1789750200000,
+      "why": "General inflation discussion, no clear direction."
     },
     {
       "title": "Why investors’ best move in reaction to Fed’s rate hike is doing nothing at all",
@@ -416,7 +444,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789749540000
+      "firstAt": 1789749540000,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Stocks should beat bonds despite rates."
     },
     {
       "title": "Three words from Kevin Warsh have Wall Street wondering how far the Fed will go with rate hikes",
@@ -433,7 +465,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789749223000
+      "firstAt": 1789749223000,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Uncertainty about further hikes weighs on stocks."
     },
     {
       "title": "Canadian dollar weakens against major currencies in the week ending September 18",
@@ -449,7 +485,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789748757000
+      "firstAt": 1789748757000,
+      "dir": {
+        "USD/CAD": "up"
+      },
+      "why": "Weaker CAD means stronger USD/CAD."
     },
     {
       "title": "Netflix is too focused on podcasts and not enough on good shows, analysts say",
@@ -485,7 +525,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789748160000
+      "firstAt": 1789748160000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Higher yields strengthen dollar, hurt metals/forex."
     },
     {
       "title": "Angola to ship fewer crude oil cargoes in November",
@@ -502,7 +548,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789747912000
+      "firstAt": 1789747912000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Supply reduction supports oil prices."
     },
     {
       "title": "Russia's $118 Billion Arctic Oil Bet Pushes Ahead Despite Sanctions - Crude Oil Prices Today | OilPrice.com",
@@ -522,7 +573,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789745390000
+      "firstAt": 1789745390000,
+      "dir": {
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Increased supply potential weighs on oil."
     },
     {
       "title": "Japanese Yen slides as markets look beyond BoJ rate hike - FXStreet",
@@ -1393,6 +1449,28 @@
       "firstAt": 1789727999000
     },
     {
+      "title": "What Fed rate hikes mean for gold prices in 2027, according to Goldman",
+      "link": "https://www.investing.com/news/commodities-news/what-fed-rate-hikes-mean-for-gold-prices-in-2027-according-to-goldman-4907014",
+      "source": "Investing Cmdty",
+      "at": 1789727681000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789727681000
+    },
+    {
       "title": "AM Markets Need to Know: F-35 sale, China tariffs, and more (SPX:) - Seeking Alpha",
       "link": "https://news.google.com/rss/articles/CBMimgFBVV95cUxOcU10bzdrV09FNGlqQTc4cFlKakxvRWpydHVQNzg4RDBhSWsyVVI0d3FfdTNCRmEtQk1XTWwyQTZvZHNBWUpUS1J1X09kQnBPZ0h2UTJMNWJOZTBCMnc3RXRwR2tzSUMyMVRIazdZbkdCN1lXMTZGMWNPNWRqcGg0dC15cDQ5YndCOV9kTG9Qb0Rrd2x2eVBJVnNR?oc=5",
       "source": "Wires (macro)",
@@ -1823,22 +1901,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789711241000
-    },
-    {
-      "title": "Why is the Australian Dollar gaining today?",
-      "link": "https://www.investing.com/news/forex-news/why-is-australian-dollar-gaining-today-93CH-4906672",
-      "source": "Investing FX",
-      "at": 1789711104000,
-      "inst": [
-        "AUD/USD"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789711104000
     }
   ],
   "sources": [
@@ -1864,7 +1926,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-18T18:21:56.984Z",
-  "headlinesAt": "2026-09-18T18:21:56.984Z",
-  "updatedAt": "2026-09-18T18:21:56.984Z"
+  "calendarAt": "2026-09-18T18:23:28.719Z",
+  "headlinesAt": "2026-09-18T18:23:28.719Z",
+  "updatedAt": "2026-09-18T18:23:28.719Z"
 }
