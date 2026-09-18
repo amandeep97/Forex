@@ -558,6 +558,26 @@
       "firstAt": 1789739415000
     },
     {
+      "title": "Gold Rises as Lower Oil Prices Ease Inflation Concerns - TradingView",
+      "link": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQLVNaLVp5bE5iZ2xMUmxKakl5bXZTN3lKWWpreFRubmxZb2FWbm1Pa1pwb0tkVVhXQl9qV3ZvQ25CdFpaRHRUUHdwczVqWVROSzR6SmRlRjFUOWo1Mms0QWRsUDU3SHEwUlFsaGdyVk1UME1vR2hQMzAxMU50dWVMX0tHUHFUWFotWFV0VnNHemsyTk0tNFRMWDZ5TmJua2k1cE9lYzljYnI?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiqAFBVV95cUxQLVNaLVp5bE5iZ2xMUmxKakl5bXZTN3lKWWpreFRubmxZb2FWbm1Pa1pwb0tkVVhXQl9qV3ZvQ25CdFpaRHRUUHdwczVqWVROSzR6SmRlRjFUOWo1Mms0QWRsUDU3SHEwUlFsaGdyVk1UME1vR2hQMzAxMU50dWVMX0tHUHFUWFotWFV0VnNHemsyTk0tNFRMWDZ5TmJua2k1cE9lYzljYnI?oc",
+      "at": 1789741318000,
+      "inst": [
+        "XAU/USD",
+        "USOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL",
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1789740527000
+    },
+    {
       "title": "Russia seizes assets of French firms, summons UK envoy over Ukraine support",
       "link": "https://www.aljazeera.com/news/2026/9/18/russia-seizes-assets-of-french-firms-summons-uk-envoy-over-ukraine-support?traffic_source=rss",
       "source": "Al Jazeera",
@@ -633,7 +653,7 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 1,
+      "srcs": 2,
       "firstAt": 1789740527000
     },
     {
@@ -1482,7 +1502,7 @@
       "firstAt": 1789725600000
     },
     {
-      "title": "Yen Swings as Markets Digest Bank of Japan’s Rate Path - WSJ",
+      "title": "Yen Swings as Markets Digest Bank of Japan’s Rate Path - wsj.com",
       "link": "https://news.google.com/rss/articles/CBMitgFBVV95cUxNNWJMQTlUdklLNlVnQWxVN0RNb1YyVWtPcG5pY19oUnhfbzVUWEVFc1NxQi1PRDAyVkNjdDBTOHZLU1A1ZGxyUFhOY3cxblBmX1l2aDc3RDZfUmp4cXpTNHI0X1FzZ2VoSXVRalAxTGYxR0UxZHdoTU9PS1VjaW1RWUt5eC05emI0VXAyV2s5ZkRDTks0aVROMWlnODN0a210bmpnOWgwZHFzNHlzSno0RVZPeUFzdw?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMitgFBVV95cUxNNWJMQTlUdklLNlVnQWxVN0RNb1YyVWtPcG5pY19oUnhfbzVUWEVFc1NxQi1PRDAyVkNjdDBTOHZLU1A1ZGxyUFhOY3cxblBmX1l2aDc3RDZfUmp4cXpTNHI0X1FzZ2VoSXVRalAxTGYxR0UxZHdoTU9PS1VjaW1RWUt5eC05emI0VXAyV2s5ZkRDTks0aVROMWlnODN0a210bmpnOWgwZHFzNH",
@@ -1734,24 +1754,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789717845000
-    },
-    {
-      "title": "S. Korean won slightly weakens against U.S. dollar after BOJ's expected rate hike - en.yna.co.kr",
-      "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5oWldtZ2ZSeHlBTDF5NHhkV3dtcWMtd1NSeUpaenFOZ2gwZGhuS2JZdi1qUkdxUkEtaTZnb3pvS1J3Q3VDNlpFZmJWZzhxNzFjYTZiY29pSWJfdw?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiWkFVX3lxTE5oWldtZ2ZSeHlBTDF5NHhkV3dtcWMtd1NSeUpaenFOZ2gwZGhuS2JZdi1qUkdxUkEtaTZnb3pvS1J3Q3VDNlpFZmJWZzhxNzFjYTZiY29pSWJfdw?oc=5\" target=\"_blank\">S. Korean won slightly weakens against U.S. dollar after BOJ's expected rate hike</a>",
-      "at": 1789717634000,
-      "inst": [
-        "USD/JPY"
-      ],
-      "ccy": [
-        "USD",
-        "JPY"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789717634000
     }
   ],
   "sources": [
@@ -1774,10 +1776,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-18T15:16:41.991Z",
-  "headlinesAt": "2026-09-18T15:16:41.991Z",
-  "updatedAt": "2026-09-18T15:16:41.991Z"
+  "calendarAt": "2026-09-18T15:17:58.673Z",
+  "headlinesAt": "2026-09-18T15:17:58.673Z",
+  "updatedAt": "2026-09-18T15:17:58.673Z"
 }
