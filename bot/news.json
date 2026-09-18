@@ -16,7 +16,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789753403000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Stocks slip after Fed rate hike"
     },
     {
       "title": "Caviar and champagne: Air France’s luxury shift helps ride out Iran war impact",
@@ -36,7 +40,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789753396000,
-      "_kind": null
+      "_kind": null,
+      "why": "Air France news irrelevant to commodities"
     },
     {
       "title": "As Warren Buffett’s reign ends, fans should sell Berkshire — and buy these stocks instead",
@@ -52,7 +57,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789750867000,
-      "_kind": null
+      "_kind": null,
+      "why": "Berkshire underperformance doesn't dictate S&P direction"
     },
     {
       "title": "Oil slides following outreach to Iran to limit Houthis actions in Red Sea",
@@ -69,14 +75,18 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789752986000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Oil slides on Iran outreach news"
     },
     {
       "title": "2-year Treasury yield reaches multi-year high after Fed rate hike - qz.com",
       "link": "https://news.google.com/rss/articles/CBMifkFVX3lxTE9FLUg3bDRYSmRZQW82TDlfazRORExJT0ZvVEZBNUpIODNyNDlCQWhyVDdXaUpxeTBGdkI4UTNzZFRVV0JkMlJOWkg1Zm9sSi1hUjY1VzNPdnEtMnVSaG15VWtBQUNiUFhBNFgtdnd1bXc0bkdYcTBBbUZEeVViZw?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMifkFVX3lxTE9FLUg3bDRYSmRZQW82TDlfazRORExJT0ZvVEZBNUpIODNyNDlCQWhyVDdXaUpxeTBGdkI4UTNzZFRVV0JkMlJOWkg1Zm9sSi1hUjY1VzNPdnEtMnVSaG15VWtBQUNiUFhBNFgtdnd1bXc0bkdYcTBBbUZEeVViZw?oc=5\" target=\"_blank\">2-year Treasury yield reaches multi-y",
-      "at": 1789752720000,
+      "at": 1789752753000,
       "inst": [
         "XAU/USD",
         "EUR/USD",
@@ -92,8 +102,9 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789752720000,
-      "_kind": null
+      "firstAt": 1789752753000,
+      "_kind": null,
+      "why": "Yield rise direction unclear for FX"
     },
     {
       "title": "The Dow Is Down for a Third Straight Week and the Nasdaq Is Somehow Up",
@@ -109,7 +120,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789752317000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US100": "up",
+        "US30": "down"
+      },
+      "why": "Nasdaq up, Dow down explicitly stated"
     },
     {
       "title": "Orion180 Insurance valued at $1.14 billion as shares fall in debut",
@@ -143,7 +159,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789752287000,
-      "_kind": null
+      "_kind": null,
+      "why": "Political news irrelevant to commodities"
     },
     {
       "title": "Iranians rally in biggest show of defiance against US since war began",
@@ -164,7 +181,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789752203000,
-      "_kind": null
+      "_kind": null,
+      "why": "Iran rally unclear for market direction"
     },
     {
       "title": "Russia plans ''accidental'' drone strikes on NATO countries, Tusk says - Euromaidan Press",
@@ -184,7 +202,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789751629000
+      "firstAt": 1789751629000,
+      "why": "Geopolitical threat unclear for immediate price"
     },
     {
       "title": "Stock Market Today: Dow Pressured As Yields Hit 5%; Chip Gear Players Jump, Lead Nasdaq 100 (Live Coverage)",
@@ -199,7 +218,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789751387000
+      "firstAt": 1789751387000,
+      "dir": {
+        "US100": "up",
+        "US30": "down"
+      },
+      "why": "Nasdaq leads up, Dow pressured down"
     },
     {
       "title": "AbCellera and Recursion Pharmaceuticals: two AI-drug stocks, two different stories",
@@ -213,7 +237,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789751068000
+      "firstAt": 1789751068000,
+      "why": "Specific stocks, no broad market signal"
     },
     {
       "title": "Two signs investors don’t have to fear an AI slowdown",
@@ -240,7 +265,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789750618000
+      "firstAt": 1789750618000,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Sell signals imply bearish sentiment"
     },
     {
       "title": "Carlyle Expands Canadian Energy Footprint with Parallax Acquisition",
@@ -254,7 +283,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789750537000
+      "firstAt": 1789750537000,
+      "why": "Corporate acquisition, no clear FX impact"
     },
     {
       "title": "IBD Stock Of The Day Eyes Buy Points As Investors Dig Into Its Pipeline",
@@ -289,7 +319,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789750200000
+      "firstAt": 1789750200000,
+      "why": "General inflation discussion, no clear direction"
     },
     {
       "title": "JPMorgan Sees Investment Banking and Trading Powering Q3 Growth",
@@ -330,7 +361,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789749540000
+      "firstAt": 1789749540000,
+      "why": "Advice to do nothing implies neutrality"
     },
     {
       "title": "Using A Limit Order To Buy Occidental Petroleum At A Discount",
@@ -1653,10 +1685,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-18T17:51:57.187Z",
-  "updatedAt": "2026-09-18T17:51:57.187Z"
+  "headlinesAt": "2026-09-18T17:53:13.508Z",
+  "updatedAt": "2026-09-18T17:53:13.508Z"
 }
