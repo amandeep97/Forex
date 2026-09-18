@@ -1,5 +1,177 @@
 {
-  "calendar": [],
+  "calendar": [
+    {
+      "title": "FPI m/m",
+      "country": "NZD",
+      "impact": "low",
+      "at": 1789685100000,
+      "forecast": "",
+      "previous": "0.1%",
+      "actual": ""
+    },
+    {
+      "title": "Trade Balance",
+      "country": "NZD",
+      "impact": "low",
+      "at": 1789685100000,
+      "forecast": "-1775M",
+      "previous": "-1949M",
+      "actual": ""
+    },
+    {
+      "title": "RBA Gov Bullock Speaks",
+      "country": "AUD",
+      "impact": "medium",
+      "at": 1789687800000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "National Core CPI y/y",
+      "country": "JPY",
+      "impact": "low",
+      "at": 1789687800000,
+      "forecast": "1.8%",
+      "previous": "1.8%",
+      "actual": ""
+    },
+    {
+      "title": "BOJ Policy Rate",
+      "country": "JPY",
+      "impact": "high",
+      "at": 1789700040000,
+      "forecast": "<1.25%",
+      "previous": "<1.00%",
+      "actual": ""
+    },
+    {
+      "title": "Monetary Policy Statement",
+      "country": "JPY",
+      "impact": "high",
+      "at": 1789700040000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "German PPI m/m",
+      "country": "EUR",
+      "impact": "low",
+      "at": 1789711200000,
+      "forecast": "0.6%",
+      "previous": "1.1%",
+      "actual": ""
+    },
+    {
+      "title": "Retail Sales m/m",
+      "country": "GBP",
+      "impact": "medium",
+      "at": 1789711200000,
+      "forecast": "-0.2%",
+      "previous": "-0.5%",
+      "actual": ""
+    },
+    {
+      "title": "BOJ Press Conference",
+      "country": "JPY",
+      "impact": "high",
+      "at": 1789713000000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "Current Account",
+      "country": "EUR",
+      "impact": "low",
+      "at": 1789718400000,
+      "forecast": "30.7B",
+      "previous": "35.1B",
+      "actual": ""
+    },
+    {
+      "title": "ECOFIN Meetings",
+      "country": "EUR",
+      "impact": "low",
+      "at": 1789726500000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "Eurogroup Meetings",
+      "country": "EUR",
+      "impact": "low",
+      "at": 1789726500000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "ECB President Lagarde Speaks",
+      "country": "EUR",
+      "impact": "medium",
+      "at": 1789727400000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "Capacity Utilization Rate",
+      "country": "USD",
+      "impact": "low",
+      "at": 1789737300000,
+      "forecast": "76.4%",
+      "previous": "76.3%",
+      "actual": ""
+    },
+    {
+      "title": "Industrial Production m/m",
+      "country": "USD",
+      "impact": "low",
+      "at": 1789737300000,
+      "forecast": "0.3%",
+      "previous": "0.2%",
+      "actual": ""
+    },
+    {
+      "title": "FOMC Member Bowman Speaks",
+      "country": "USD",
+      "impact": "low",
+      "at": 1789738200000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "CB Leading Index m/m",
+      "country": "USD",
+      "impact": "low",
+      "at": 1789740000000,
+      "forecast": "0.1%",
+      "previous": "0.2%",
+      "actual": ""
+    },
+    {
+      "title": "FOMC Member Schmid Speaks",
+      "country": "USD",
+      "impact": "low",
+      "at": 1789746300000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "ECOFIN Meetings",
+      "country": "EUR",
+      "impact": "low",
+      "at": 1789812900000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    }
+  ],
   "headlines": [
     {
       "title": "Sweden stocks lower at close of trade; OMX Stockholm 30 down 0.82%",
@@ -14,7 +186,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789747232000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sweden market news, no US impact"
     },
     {
       "title": "Finland stocks lower at close of trade; OMX Helsinki 25 down 0.81%",
@@ -29,7 +202,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789747204000,
-      "_kind": null
+      "_kind": null,
+      "why": "Finland market news, no US impact"
     },
     {
       "title": "Japanese Yen slides as markets look beyond BoJ rate hike - FXStreet",
@@ -48,7 +222,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789746881000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USD/JPY": "up"
+      },
+      "why": "Yen slides implies dollar strength"
     },
     {
       "title": "US says Iran sanctions working, as Turkey, Oman suspend Mahan Air flights - JNS.org",
@@ -69,7 +247,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789746756000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions status unclear for price direction"
     },
     {
       "title": "Orion180 Insurance debuts on Nasdaq with $1.14 billion valuation",
@@ -84,7 +263,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789746647000,
-      "_kind": null
+      "_kind": null,
+      "why": "Single IPO, negligible index impact"
     },
     {
       "title": "NuScale Power Drops 7% as Nuclear Stocks Hand Back the Vote Rally; Oklo Falls 5%, Centrus Energy Slides 3%",
@@ -102,7 +282,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789746587000,
-      "_kind": null
+      "_kind": null,
+      "why": "Specific stock drops, no broad signal"
     },
     {
       "title": "Wall St slips as higher Treasury yields weigh on sentiment - Reuters",
@@ -126,7 +307,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789745630000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Higher yields weigh on sentiment"
     },
     {
       "title": "Poland's prime minister warns of Russian 'accidental' attacks on Ukraine's allies - NPR",
@@ -147,7 +334,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789744475000,
-      "_kind": null
+      "_kind": null,
+      "why": "Geopolitical warning, direction unclear"
     },
     {
       "title": "These Steelmakers Sink To Bottom Of S&P 500 After Issuing Weak Guidance",
@@ -162,7 +350,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789746474000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sector-specific weakness, negligible index impact"
     },
     {
       "title": "These Shipping Stocks Yield Up to 9%. The Dividends Come With a Catch",
@@ -177,7 +366,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789746339000,
-      "_kind": null
+      "_kind": null,
+      "why": "Shipping sector analysis, no clear direction"
     },
     {
       "title": "Fed sat on Silicon Valley Bank flaws because regulators feared being wrong, report finds",
@@ -200,20 +390,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789746211000,
-      "_kind": null
-    },
-    {
-      "title": "This Nation's Stock Market Is Outperforming All Others This Year. Should You Invest?",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/nations-stock-market-outperforming-others-154316022.html",
-      "source": "Yahoo Finance",
-      "at": 1789746196000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1789743866000,
-      "_kind": null
+      "_kind": null,
+      "why": "Regulatory report, no immediate market move"
     },
     {
       "title": "Dow Slides as Treasury Yields Near 5% After Fed Rate Hike - Yahoo Finance",
@@ -230,7 +408,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789745630000
+      "firstAt": 1789745630000,
+      "dir": {
+        "US30": "down"
+      },
+      "why": "Dow slides on high yields"
     },
     {
       "title": "Rep. Simpson Supports Imposing Additional Sanctions on Russia - Congressman Mike Simpson (.gov)",
@@ -250,7 +432,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789743057000
+      "firstAt": 1789743057000,
+      "why": "Sanctions support, direction unclear"
     },
     {
       "title": "Zoomex Highlights ETF Perpetuals Ahead of This Week’s Federal Reserve Decision - markets.businessinsider.com",
@@ -273,7 +456,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789745219000
+      "firstAt": 1789745219000,
+      "why": "ETF product highlight, no market signal"
     },
     {
       "title": "'One reason' why wages are falling below inflation growth... Trump: Markets analyst - Modern Ghana",
@@ -296,7 +480,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789745024000
+      "firstAt": 1789745024000,
+      "why": "Wage inflation comment, no clear direction"
     },
     {
       "title": "Gold Stock Franco-Nevada Flashes Strength Amid Rate-Hike Woes",
@@ -1621,6 +1806,24 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789717845000
+    },
+    {
+      "title": "S. Korean won slightly weakens against U.S. dollar after BOJ's expected rate hike - Yonhap News Agency",
+      "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5oWldtZ2ZSeHlBTDF5NHhkV3dtcWMtd1NSeUpaenFOZ2gwZGhuS2JZdi1qUkdxUkEtaTZnb3pvS1J3Q3VDNlpFZmJWZzhxNzFjYTZiY29pSWJfdw?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiWkFVX3lxTE5oWldtZ2ZSeHlBTDF5NHhkV3dtcWMtd1NSeUpaenFOZ2gwZGhuS2JZdi1qUkdxUkEtaTZnb3pvS1J3Q3VDNlpFZmJWZzhxNzFjYTZiY29pSWJfdw?oc=5\" target=\"_blank\">S. Korean won slightly weakens against U.S. dollar after BOJ's expected rate hike</a>",
+      "at": 1789717634000,
+      "inst": [
+        "USD/JPY"
+      ],
+      "ccy": [
+        "USD",
+        "JPY"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789717634000
     }
   ],
   "sources": [
@@ -1643,10 +1846,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
-  "calendarAt": null,
-  "headlinesAt": "2026-09-18T16:08:27.202Z",
-  "updatedAt": "2026-09-18T16:08:27.202Z"
+  "calendarAt": "2026-09-18T16:10:14.313Z",
+  "headlinesAt": "2026-09-18T16:10:14.313Z",
+  "updatedAt": "2026-09-18T16:10:14.313Z"
 }
