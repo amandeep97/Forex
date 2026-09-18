@@ -20,7 +20,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789708990000,
-      "_kind": null
+      "_kind": null,
+      "why": "Geopolitical uncertainty without clear directional impact"
     },
     {
       "title": "Gold prices rise, eye weekly gain as oil and yields ease after Fed hike",
@@ -40,7 +41,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789708665000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "down"
+      },
+      "why": "Gold rises, oil eases on Fed hike"
     },
     {
       "title": "Airline oil exposure: winners and losers as jet fuel costs surge",
@@ -57,7 +63,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789707832000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Jet fuel costs surge implies higher oil"
     },
     {
       "title": "Fire engulfs Zaporizhzhia shopping centre after Russian strike",
@@ -78,7 +88,10 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789707809000,
-      "_kind": null
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Ukraine strike boosts safe-haven gold demand"
     },
     {
       "title": "Australia to detain tourists who overstay visas amid immigration crackdown",
@@ -96,7 +109,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789707774000,
-      "_kind": null
+      "why": "Immigration policy has no clear FX impact"
     },
     {
       "title": "Asian gold stocks rise as bullion rebounds from near six-week low",
@@ -113,7 +126,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789706974000
+      "firstAt": 1789706974000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Gold rebounds from recent lows"
     },
     {
       "title": "Why is the Japanese yen sliding today?",
@@ -129,7 +146,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789706867000
+      "firstAt": 1789706867000,
+      "dir": {
+        "USD/JPY": "up"
+      },
+      "why": "Yen sliding implies USD/JPY rising"
     },
     {
       "title": "Venezuela nears $4 bln U.S. gold transfer deal, FT reports",
@@ -145,7 +166,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789705108000
+      "firstAt": 1789705108000,
+      "why": "Venezuela gold transfer deal unclear impact"
     },
     {
       "title": "Russia, China block US push to maintain UN oversight of Iran sanctions - Euronews.com",
@@ -165,7 +187,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789705638000
+      "firstAt": 1789705638000,
+      "why": "Sanctions oversight blocked, no clear price move"
     },
     {
       "title": "Saudis and Houthis exchange strikes, Yemenis flee by boat as Middle East war spreads",
@@ -184,7 +207,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789705533000
+      "firstAt": 1789705533000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Middle East war spreads boosts risk assets"
     },
     {
       "title": "Venezuela nears deal to move $4 billion gold reserve to New York, FT says",
@@ -200,7 +229,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789705108000
+      "firstAt": 1789705108000,
+      "why": "Venezuela gold deal unclear market impact"
     },
     {
       "title": "Meloni: Putin Seeks Escalation With Europe to Distract From Ukraine Battlefield - Kyiv Post",
@@ -220,7 +250,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789704845000
+      "firstAt": 1789704845000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Escalation rhetoric supports safe-haven gold"
     },
     {
       "title": "Palestinian official calls Israel’s E1 settlement plans ‘a dangerous escalation’ - Anadolu Ajansı",
@@ -240,7 +274,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789704323000
+      "firstAt": 1789704323000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Settlement plans escalate regional tensions"
     },
     {
       "title": "Oil prices fall for third day on hopes of limited Saudi supply disruptions",
@@ -256,7 +294,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789704076000
+      "firstAt": 1789704076000,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Oil falls on limited supply disruption hopes"
     },
     {
       "title": "investingLive Asia-Pacific market news: BoJ hike and RBA hawkish tilt",
@@ -276,7 +318,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789702642000
+      "firstAt": 1789702642000,
+      "dir": {
+        "USD/JPY": "up",
+        "AUD/USD": "up"
+      },
+      "why": "Yen weakens, RBA hawkish tilt lifts AUD"
     },
     {
       "title": "A look inside restored Temple Israel months after attack - CBS News",
@@ -1744,6 +1791,6 @@
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-18T05:32:12.582Z",
-  "updatedAt": "2026-09-18T05:32:12.582Z"
+  "headlinesAt": "2026-09-18T05:33:42.625Z",
+  "updatedAt": "2026-09-18T05:33:42.625Z"
 }
