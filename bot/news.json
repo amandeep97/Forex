@@ -174,21 +174,6 @@
   ],
   "headlines": [
     {
-      "title": "The S&P 500 Is 3% Below Its Record. Should You Buy Vanguard's Index Fund Now, or Wait for a Correction?",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/p-500-3-below-record-174901078.html",
-      "source": "Yahoo Finance",
-      "at": 1789753741000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789753741000,
-      "_kind": null
-    },
-    {
       "title": "Caviar and champagne: Air France’s luxury shift helps ride out Iran war impact",
       "link": "https://www.investing.com/news/stock-market-news/caviar-and-champagne-air-frances-luxury-shift-helps-ride-out-iran-war-impact-4907755",
       "source": "Investing",
@@ -206,20 +191,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789753707000,
-      "_kind": null
-    },
-    {
-      "title": "Natera CEO Steven Chapman Sells 1,698 Shares for $545,000",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/natera-ceo-steven-chapman-sells-174701389.html",
-      "source": "Yahoo Finance",
-      "at": 1789753621000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1789753501000,
-      "_kind": null
+      "_kind": null,
+      "why": "Luxury shift mitigates war impact"
     },
     {
       "title": "Goldman Sachs drops surprise call for next Fed interest-rate hike",
@@ -242,20 +215,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789753620000,
-      "_kind": null
-    },
-    {
-      "title": "NXP Semiconductors' COO Sells 1,000 Shares",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/nxp-semiconductors-coo-sells-1-174501385.html",
-      "source": "Yahoo Finance",
-      "at": 1789753501000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1789753501000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Surprise Fed hike call"
     },
     {
       "title": "U.S. stocks slip at end of eventful week marked by Fed rate hike, AI safety uproar",
@@ -272,20 +238,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789753403000,
-      "_kind": null
-    },
-    {
-      "title": "Enbridge’s Payout Ratio Hits 148% Even as the Dividend Streak Holds at 31 Years. Here’s Where Shares Could Go in 2026.",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/enbridge-payout-ratio-hits-148-174102111.html",
-      "source": "Yahoo Finance",
-      "at": 1789753262000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1789753262000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Stocks slip after Fed hike"
     },
     {
       "title": "As Warren Buffett’s reign ends, fans should sell Berkshire — and buy these stocks instead",
@@ -299,9 +256,10 @@
       "ccy": [],
       "sev": 2,
       "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789753138000,
-      "_kind": null
+      "srcs": 3,
+      "firstAt": 1789751702000,
+      "_kind": null,
+      "why": "Berkshire underperformance vs S&P 500"
     },
     {
       "title": "Chip Stocks Hit Ceiling Amid Sector Rebound. Macom Is A Standout.",
@@ -316,7 +274,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789753068000,
-      "_kind": null
+      "_kind": null,
+      "why": "Chip stocks hit ceiling"
     },
     {
       "title": "Coinbase Seeks Approval to List Perpetual Futures Tied to U.S. Stocks",
@@ -331,7 +290,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789753020000,
-      "_kind": null
+      "_kind": null,
+      "why": "Coinbase seeks futures approval"
     },
     {
       "title": "Oil slides following outreach to Iran to limit Houthis actions in Red Sea",
@@ -348,7 +308,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789752986000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Oil slides on Iran outreach"
     },
     {
       "title": "How to Build $6,350 a Month in Dividend Income Without Owning a Single Yield Trap",
@@ -385,7 +349,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789752753000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Yields hit multi-year high"
     },
     {
       "title": "Orion180 Insurance valued at $1.14 billion as shares fall in debut",
@@ -417,7 +387,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789752287000
+      "firstAt": 1789752287000,
+      "why": "Miliband ignored MI6 warnings"
     },
     {
       "title": "Iranians rally in biggest show of defiance against US since war began",
@@ -437,7 +408,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789752203000
+      "firstAt": 1789752203000,
+      "why": "Iranians rally in Tehran"
     },
     {
       "title": "Stock Market Today: Dow Pressured As Yields Hit 5%; Chip Gear Players Jump, Lead Nasdaq 100 (Live Coverage)",
@@ -452,7 +424,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789751387000
+      "firstAt": 1789751387000,
+      "dir": {
+        "US100": "up",
+        "US30": "down"
+      },
+      "why": "Dow pressured, Nasdaq led by chips"
     },
     {
       "title": "AbCellera and Recursion Pharmaceuticals: two AI-drug stocks, two different stories",
@@ -466,7 +443,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789751068000
+      "firstAt": 1789751068000,
+      "why": "AI drug stocks analysis"
     },
     {
       "title": "Two signs investors don’t have to fear an AI slowdown",
@@ -493,7 +471,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789750618000
+      "firstAt": 1789750618000,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "IBD 50 components hit sell signals"
     },
     {
       "title": "Carlyle Expands Canadian Energy Footprint with Parallax Acquisition",
@@ -507,7 +489,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789750537000
+      "firstAt": 1789750537000,
+      "why": "Carlyle expands Canadian energy footprint"
     },
     {
       "title": "IBD Stock Of The Day Eyes Buy Points As Investors Dig Into Its Pipeline",
@@ -542,7 +525,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789750200000
+      "firstAt": 1789750200000,
+      "why": "Inflation and interest rates discussion"
     },
     {
       "title": "JPMorgan Sees Investment Banking and Trading Powering Q3 Growth",
@@ -1778,6 +1762,79 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789720871000
+    },
+    {
+      "title": "GLOBAL MARKETS-Stocks and bonds dip as central banks jack up rates to tame inflation - Devdiscourse",
+      "link": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxQR2ZoandzdGFIREtQeHlseTRnbFZoVldYOVBwYmE0NUdBenU4MmxobFU5WFpoSE9jaG16LWdFOE0yNG9CYm5lUEN0N2hDUHRwYVoyeTFKd3hGemg0WTZzbWhBUEJhQ1hRWnhKamZqZG5TRTRqUlV6ZlpKWU9OdXMyUW5qZi1xMWdlbVNFM2ZFQU1mei1KZl9WOW16bzNWdUhWRm1RYnlVZUhkS0tTSE9IYkxTTEM0aHNVaFBGV2t2RGtfZVVtYnFEM0JVWXdUR1V3N040X2tTemVnd9IB3wFBVV95cUxPRVFILVNOT0ZTYXcyN01XTXluUE1tTldhM2RWZUtLdjRpcXBndExEcWhrODVmaVJmZzBUR05CTHh1UlhhS2dPUlVLRTRRWTNkYjdEZERQRDM2d3UzaHNBVXd6a1JYRFM0M3lPbzRlNzduVDA3YUxMaWZsQUVVSE5lakhnSDlTanhPWW4tQ1JnS181OW9MOHV0eTRDaklYaWhxYVZGWV82U1R1X1JCbWkyT2NfSFN3bV9JSUlhSVBwQWJZbWtNblBoMmp5ZzctTml5QlFLUFc5WFZ0VG9LRWZv?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi2gFBVV95cUxQR2ZoandzdGFIREtQeHlseTRnbFZoVldYOVBwYmE0NUdBenU4MmxobFU5WFpoSE9jaG16LWdFOE0yNG9CYm5lUEN0N2hDUHRwYVoyeTFKd3hGemg0WTZzbWhBUEJhQ1hRWnhKamZqZG5TRTRqUlV6ZlpKWU9OdXMyUW5qZi1xMWdlbVNFM2ZFQU1mei1KZl9WOW16bzNWdUhWRm1RYnlVZUhkS0",
+      "at": 1789720649000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789720649000
+    },
+    {
+      "title": "UBS sees EUR/USD long opportunity on central bank dynamics",
+      "link": "https://www.investing.com/news/forex-news/ubs-sees-eurusd-long-opportunity-on-central-bank-dynamics-93CH-4906809",
+      "source": "Investing FX",
+      "at": 1789719692000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789719692000
+    },
+    {
+      "title": "Sterling today: Pound gains as UK retail sales beat and dollar cools",
+      "link": "https://www.investing.com/news/forex-news/sterling-today-pound-gains-as-uk-retail-sales-beat-and-dollar-cools-4906805",
+      "source": "Investing FX",
+      "at": 1789719453000,
+      "inst": [
+        "GBP/USD"
+      ],
+      "ccy": [
+        "USD",
+        "GBP"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789719453000
+    },
+    {
+      "title": "Euro Nears July Low as Markets Scale Back ECB Rate-Hike Bets - TradingView",
+      "link": "https://news.google.com/rss/articles/CBMisAFBVV95cUxObEM5NmtFS2hqRXF4RVgxX1k4SVlhSW9PclRfSGdIODNJVmpvMkZXSlRuSE1MaU14bjZaN2NpNUlXTGd3VXBkYklBSllwSk84YXkzNk5kSEttV2dON21NUW4tek14Z2tBcWdPNDZKbzB2MFFzM2F1OTlFSmlYVTFtaFhIYzY2T0gxR2VoOEV2LTRPdGZwaVJPSjZYaFJjdEVQVmJSazlXNjM2Ukp1STRQRg?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMisAFBVV95cUxObEM5NmtFS2hqRXF4RVgxX1k4SVlhSW9PclRfSGdIODNJVmpvMkZXSlRuSE1MaU14bjZaN2NpNUlXTGd3VXBkYklBSllwSk84YXkzNk5kSEttV2dON21NUW4tek14Z2tBcWdPNDZKbzB2MFFzM2F1OTlFSmlYVTFtaFhIYzY2T0gxR2VoOEV2LTRPdGZwaVJPSjZYaFJjdEVQVmJSazlXNjM2Uk",
+      "at": 1789719299000,
+      "inst": [
+        "EUR/USD"
+      ],
+      "ccy": [
+        "EUR"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789719299000
     }
   ],
   "sources": [
@@ -1803,7 +1860,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-18T18:00:30.796Z",
-  "headlinesAt": "2026-09-18T18:00:30.796Z",
-  "updatedAt": "2026-09-18T18:00:30.796Z"
+  "calendarAt": "2026-09-18T18:01:59.171Z",
+  "headlinesAt": "2026-09-18T18:01:59.171Z",
+  "updatedAt": "2026-09-18T18:01:59.171Z"
 }
