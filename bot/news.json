@@ -202,7 +202,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789750763000,
-      "_kind": null
+      "_kind": null,
+      "why": "General market outlook, no specific direction."
     },
     {
       "title": "Mbappe leaves Nike, signs with On as Swiss sportswear maker forays into soccer",
@@ -219,7 +220,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789750549000,
-      "_kind": null
+      "_kind": null,
+      "why": "Corporate news, no direct FX impact."
     },
     {
       "title": "Oil Retreat Slows on Saudi Supply Concerns",
@@ -236,51 +238,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789750320000,
-      "_kind": null
-    },
-    {
-      "title": "Stock Market Midday, Sept. 18: Stocks Slip, Crypto Gains",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/stock-market-midday-sept-18-165101918.html",
-      "source": "Yahoo Finance",
-      "at": 1789750261000,
-      "inst": [
-        "US500",
-        "BTC/USDT"
-      ],
-      "ccy": [
-        "BTC"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789750261000,
-      "_kind": null
-    },
-    {
-      "title": "Will Micron Follow Nvidia and Give Investors a Huge Dividend Hike?",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/micron-nvidia-investors-huge-dividend-165002846.html",
-      "source": "Yahoo Finance",
-      "at": 1789750202000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1789749747000,
-      "_kind": null
-    },
-    {
-      "title": "First Solar CTO Markus Gloeckler Sells 800 Shares for $160,000",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/first-solar-cto-markus-gloeckler-165001923.html",
-      "source": "Yahoo Finance",
-      "at": 1789750201000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1789750201000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Supply concerns support oil prices."
     },
     {
       "title": "What’s really driving inflation and rising interest rates",
@@ -304,24 +266,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789750200000,
-      "_kind": null
-    },
-    {
-      "title": "Energy Transfer vs. Williams Companies: Which Natural Gas Giant Wins the AI Power Buildout?",
-      "link": "https://finance.yahoo.com/energy/articles/energy-transfer-vs-williams-companies-165000205.html",
-      "source": "Yahoo Finance",
-      "at": 1789750200000,
-      "inst": [
-        "NATGAS"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789750200000,
-      "_kind": null
+      "_kind": null,
+      "why": "General inflation discussion, no clear direction."
     },
     {
       "title": "JPMorgan Sees Investment Banking and Trading Powering Q3 Growth",
@@ -350,6 +296,58 @@
       "_kind": null
     },
     {
+      "title": "Bitcoin Never Sleeps but BITI Does: The Hidden Cost of Weekday-Only Hedging",
+      "link": "https://finance.yahoo.com/markets/crypto/articles/bitcoin-never-sleeps-biti-does-164328893.html",
+      "source": "Yahoo Finance",
+      "at": 1789749808000,
+      "inst": [
+        "BTC/USDT"
+      ],
+      "ccy": [
+        "BTC"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789749808000,
+      "_kind": null,
+      "why": "Educational article on hedging costs."
+    },
+    {
+      "title": "Why Shares of Okta Stock Shot Up 10% This Week",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/why-shares-okta-stock-shot-164325002.html",
+      "source": "Yahoo Finance",
+      "at": 1789749805000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 1,
+      "srcs": 1,
+      "firstAt": 1789749805000,
+      "_kind": null
+    },
+    {
+      "title": "XRP Surges 6.9% as Bitcoin Rebound Reopens Door to Golden Cross",
+      "link": "https://finance.yahoo.com/markets/crypto/articles/xrp-surges-6-9-bitcoin-164232030.html",
+      "source": "Yahoo Finance",
+      "at": 1789749752000,
+      "inst": [
+        "BTC/USDT"
+      ],
+      "ccy": [
+        "BTC"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789749752000,
+      "_kind": null,
+      "dir": {
+        "BTC/USDT": "up"
+      },
+      "why": "Bitcoin rebound mentioned positively."
+    },
+    {
       "title": "Why investors’ best move in reaction to Fed’s rate hike is doing nothing at all",
       "link": "https://www.marketwatch.com/story/why-investors-best-move-in-reaction-to-feds-rate-hike-is-doing-nothing-at-all-6ff56b4c?mod=mw_rss_topstories",
       "source": "MarketWatch",
@@ -364,7 +362,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789749540000
+      "firstAt": 1789749540000,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Stocks expected to beat bonds."
     },
     {
       "title": "Using A Limit Order To Buy Occidental Petroleum At A Discount",
@@ -378,7 +380,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789749274000
+      "firstAt": 1789749274000,
+      "why": "Specific stock trading strategy, not oil price."
     },
     {
       "title": "Three words from Kevin Warsh have Wall Street wondering how far the Fed will go with rate hikes",
@@ -395,7 +398,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789749223000
+      "firstAt": 1789749223000,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Uncertainty over further rate hikes."
     },
     {
       "title": "Canadian dollar weakens against major currencies in the week ending September 18",
@@ -411,7 +418,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789748757000
+      "firstAt": 1789748757000,
+      "dir": {
+        "USD/CAD": "up"
+      },
+      "why": "Weaker CAD implies stronger USD."
     },
     {
       "title": "Netflix is too focused on podcasts and not enough on good shows, analysts say",
@@ -447,7 +458,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789748160000
+      "firstAt": 1789748160000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Higher yields strengthen dollar, hurt assets."
     },
     {
       "title": "Angola to ship fewer crude oil cargoes in November",
@@ -464,7 +481,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789747912000
+      "firstAt": 1789747912000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Reduced supply supports oil prices."
     },
     {
       "title": "Stock Market Today: Dow Pressured As Yields Hit 5%; Strategy Soars As Bitcoin Price Tops $80,500 (Live Coverage)",
@@ -481,7 +503,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789747477000
+      "firstAt": 1789747477000,
+      "dir": {
+        "US30": "down",
+        "BTC/USDT": "up"
+      },
+      "why": "Dow pressured, Bitcoin price tops level."
     },
     {
       "title": "Russia's $118 Billion Arctic Oil Bet Pushes Ahead Despite Sanctions - Crude Oil Prices Today | OilPrice.com",
@@ -501,7 +528,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789745390000
+      "firstAt": 1789745390000,
+      "why": "Geopolitical news, mixed or unclear impact."
     },
     {
       "title": "Japanese Yen slides as markets look beyond BoJ rate hike - FXStreet",
@@ -519,7 +547,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789746881000
+      "firstAt": 1789746881000,
+      "dir": {
+        "USD/JPY": "up"
+      },
+      "why": "Yen slides, implying dollar strength."
     },
     {
       "title": "US says Iran sanctions working, as Turkey, Oman suspend Mahan Air flights - JNS.org",
@@ -674,8 +706,8 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789745476000
+      "srcs": 2,
+      "firstAt": 1789744968000
     },
     {
       "title": "Rep. Simpson Supports Imposing Additional Sanctions on Russia - Congressman Mike Simpson (.gov)",
@@ -762,6 +794,22 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789745009000
+    },
+    {
+      "title": "Gold Stock Franco-Nevada Flashes Strength Amid Rate-Hike Woes",
+      "link": "https://www.investors.com/stock-lists/sector-leaders/gold-stock-franco-nevada-fnv/?src=A00220&yptr=yahoo",
+      "source": "Yahoo Finance",
+      "at": 1789744968000,
+      "inst": [
+        "XAU/USD"
+      ],
+      "ccy": [
+        "XAU"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1789744968000
     },
     {
       "title": "Russian hybrid attacks against Europe intensifying, says Macron",
@@ -1828,7 +1876,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-18T17:09:32.289Z",
-  "headlinesAt": "2026-09-18T17:09:32.289Z",
-  "updatedAt": "2026-09-18T17:09:32.289Z"
+  "calendarAt": "2026-09-18T17:10:58.456Z",
+  "headlinesAt": "2026-09-18T17:10:58.456Z",
+  "updatedAt": "2026-09-18T17:10:58.456Z"
 }
