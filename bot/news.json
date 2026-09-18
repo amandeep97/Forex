@@ -16,7 +16,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789719505000,
-      "_kind": null
+      "_kind": null,
+      "why": "No clear gold direction"
     },
     {
       "title": "Sterling today: Pound gains as UK retail sales beat and dollar cools",
@@ -34,7 +35,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789719453000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "GBP/USD": "up"
+      },
+      "why": "Pound gains on retail sales"
     },
     {
       "title": "Poland Warns Russia May Target Ukraine Supporters With \"Accidental\" Strikes - UNITED24 Media",
@@ -55,7 +60,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789719032000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Geopolitical risk boosts safe havens"
     },
     {
       "title": "Houthi rebel offensive fuels fears of escalation in the Middle East and Europe - The Conversation",
@@ -76,7 +87,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789718934000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Escalation fears boost risk assets"
     },
     {
       "title": "Euro zone yields head for weekly decline as post-Fed rally soothes duration fears",
@@ -94,7 +111,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789718105000,
-      "_kind": null
+      "why": "Yield decline unclear for FX"
     },
     {
       "title": "Iran’s Isolation Grows After U.S. Imposes Sweeping Sanctions on Airlines - The New York Times",
@@ -114,7 +131,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789717860000
+      "firstAt": 1789717860000,
+      "why": "Sanctions impact unclear for markets"
     },
     {
       "title": "US House passes Russia sanctions bill granting Trump tariff authority - chinadailyasia.com",
@@ -135,7 +153,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789716716000
+      "firstAt": 1789716716000,
+      "why": "Sanctions bill impact unclear"
     },
     {
       "title": "Crypto is just one channel: how Russia launders corrupt wealth past sanctions - Transparency.org",
@@ -157,7 +176,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789716716000
+      "firstAt": 1789716716000,
+      "why": "Laundering news lacks market direction"
     },
     {
       "title": "U.S. Congress passes sweeping Russia sanctions bill, sends it to Trump - The Ukrainian Weekly",
@@ -177,7 +197,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789714020000
+      "firstAt": 1789714020000,
+      "why": "Sanctions bill impact unclear"
     },
     {
       "title": "Oil falls for 3rd straight day as supply concerns ease, diplomacy in focus",
@@ -193,7 +214,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789716070000
+      "firstAt": 1789716070000,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Oil falls on supply ease"
     },
     {
       "title": "Why Japanese stocks rose as government bond yields and the yen fell after rate hike - CNBC",
@@ -212,7 +237,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789715965000
+      "firstAt": 1789715965000,
+      "dir": {
+        "USD/JPY": "up"
+      },
+      "why": "Yen falls, stocks rise"
     },
     {
       "title": "Gold Holds Gain as Lower Oil and Fed Hike Temper Inflation Fears - Bloomberg.com",
@@ -232,7 +261,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789713358000
+      "firstAt": 1789713358000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "down"
+      },
+      "why": "Gold holds gain, oil lower"
     },
     {
       "title": "Yen slides despite BOJ rate hike, dollar holds gains amid hawkish Fed",
@@ -249,7 +283,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789715914000
+      "firstAt": 1789715914000,
+      "dir": {
+        "USD/JPY": "up"
+      },
+      "why": "Yen slides, dollar holds"
     },
     {
       "title": "London Gas Oil clings to $1,460 support in tight range: Live levels",
@@ -265,7 +303,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789715491000
+      "firstAt": 1789715491000,
+      "why": "Gas oil tight range"
     },
     {
       "title": "Silver tests $67.94 Fibonacci resistance: Live levels",
@@ -281,7 +320,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789715491000
+      "firstAt": 1789715491000,
+      "why": "Silver tests resistance level"
     },
     {
       "title": "Natural Gas stuck in tight range above $2.815 support: Live levels",
@@ -1722,10 +1762,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-18T08:23:56.067Z",
-  "updatedAt": "2026-09-18T08:23:56.067Z"
+  "headlinesAt": "2026-09-18T08:25:14.654Z",
+  "updatedAt": "2026-09-18T08:25:14.654Z"
 }
