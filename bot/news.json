@@ -2,6 +2,22 @@
   "calendar": [],
   "headlines": [
     {
+      "title": "Leader’s Advantage Acquisition prices $150M IPO on Nasdaq",
+      "link": "https://www.investing.com/news/stock-market-news/leaders-advantage-acquisition-prices-150m-ipo-on-nasdaq-432SI-4906590",
+      "source": "Investing",
+      "at": 1789692961000,
+      "inst": [
+        "US100"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789692961000,
+      "_kind": null,
+      "why": "Single IPO has negligible market impact"
+    },
+    {
       "title": "U.S. stock futures edge lower after Wall St rallies on softer oil, yields",
       "link": "https://www.investing.com/news/stock-market-news/us-stock-futures-edge-lower-after-wall-st-rallies-on-softer-oil-yields-4906586",
       "source": "Investing",
@@ -15,7 +31,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789691176000
+      "firstAt": 1789691176000,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Softer oil mentioned in headline"
     },
     {
       "title": "How Alabama’s congressional delegation voted on Russia sanctions bill - WSFA",
@@ -35,7 +55,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789690920000
+      "firstAt": 1789690920000,
+      "why": "Voting details lack clear market direction"
     },
     {
       "title": "Press Release: Rep. Scott Fitzgerald Votes on Russia, Iran Sanctions and Climate Waivers - Quiver Quantitative",
@@ -56,7 +77,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789690920000
+      "firstAt": 1789690920000,
+      "why": "Specific vote lacks clear market direction"
     },
     {
       "title": "Gold rises as traders reassess positions after Fed rate hike - Business Recorder",
@@ -74,7 +96,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789689300000
+      "firstAt": 1789689300000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Gold rises explicitly stated"
     },
     {
       "title": "Gold Holds Gain as Lower Oil and Fed Hike Temper Inflation Fears - Bloomberg.com",
@@ -94,7 +120,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789689300000
+      "firstAt": 1789689300000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "down"
+      },
+      "why": "Gold holds gain, lower oil"
     },
     {
       "title": "Trump weighs major Iran escalation as China steps up diplomatic push - iranintl.com",
@@ -114,7 +145,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789689600000
+      "firstAt": 1789689600000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Escalation risk boosts safe havens and oil"
     },
     {
       "title": "Iran war live: Trump weighs ‘big decision’ on Iran, tanker hit in Hormuz",
@@ -134,7 +171,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789689600000
+      "firstAt": 1789689600000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "War risk boosts gold and oil"
     },
     {
       "title": "Market Reverses Overnight After Fed Rate Hike: Chip Stocks Lead US Rally, Gold Reclaims $4,300 - finance.biggo.com",
@@ -153,7 +196,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789689300000
+      "firstAt": 1789689300000,
+      "dir": {
+        "XAU/USD": "up",
+        "US500": "up"
+      },
+      "why": "Gold reclaims level, US rally"
     },
     {
       "title": "The Fed Raised Rates For The First Time In Three Years. The Dollar And Global Yields Are Feeling It. - International Business Times",
@@ -176,7 +224,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789689241000
+      "firstAt": 1789689241000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Stronger dollar hurts gold and FX"
     },
     {
       "title": "Orion180 prices IPO at $12 per share on Nasdaq",
@@ -190,7 +244,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789688522000
+      "firstAt": 1789688522000,
+      "why": "Single IPO has negligible market impact"
     },
     {
       "title": "US markets rebound after Fed Reserve rate hike - news24.com.au",
@@ -213,7 +268,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789688422000
+      "firstAt": 1789688422000,
+      "why": "Rebound context lacks specific direction"
     },
     {
       "title": "Japan August inflation: Headline CPI 1.9% y/y (expected 2%)",
@@ -231,7 +287,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789685767000
+      "firstAt": 1789685767000,
+      "dir": {
+        "USD/JPY": "down"
+      },
+      "why": "Lower inflation weakens yen carry trade"
     },
     {
       "title": "Rising oil, rates and yields brew up stagflation cocktail for markets - Reuters",
@@ -248,7 +308,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789687806000
+      "firstAt": 1789687806000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Rising oil explicitly stated"
     },
     {
       "title": "Saudis and Houthis exchange strikes, Yemenis flee by boat as Middle East war spreads",
@@ -267,7 +331,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789686077000
+      "firstAt": 1789686077000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "War spread boosts risk assets"
     },
     {
       "title": "Bitcoin rebounds to $76,000 as markets shrug off U.S. rate hike - CHOSUNBIZ - Chosunbiz",
@@ -726,7 +796,27 @@
       "firstAt": 1789677426000
     },
     {
-      "title": "Stocks Rally, Shaking Off Fed’s Rate Hike - wsj.com",
+      "title": "UN-backed experts cite possible US war crimes in Iran strikes - KJRH",
+      "link": "https://news.google.com/rss/articles/CBMisgFBVV95cUxNY2dXQmpuT0FPNlU4NHA3NkdsbXhNRE85U1JJTjhFOGU4NEVEMlF4OFFpQXBLUTY1Vnk4ZjhuVmNuUDEyOHMxSTJQVGxJaDRBaDdYSlVqT3FnQV9nVkI3WWVibDdQRUVINEEtNUlkWVpHLXd3bDBtSHhIY3NfOXVfZnRZM3dVUS1QOXc1NkdPeHM5NWpESnZfbU1HUnRfVGRqTUFYRlVGY3hXN3FCTEM3enVB?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMisgFBVV95cUxNY2dXQmpuT0FPNlU4NHA3NkdsbXhNRE85U1JJTjhFOGU4NEVEMlF4OFFpQXBLUTY1Vnk4ZjhuVmNuUDEyOHMxSTJQVGxJaDRBaDdYSlVqT3FnQV9nVkI3WWVibDdQRUVINEEtNUlkWVpHLXd3bDBtSHhIY3NfOXVfZnRZM3dVUS1QOXc1NkdPeHM5NWpESnZfbU1HUnRfVGRqTUFYRlVGY3hXN3",
+      "at": 1789677361000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1789676760000
+    },
+    {
+      "title": "Stocks Rally, Shaking Off Fed’s Rate Hike - WSJ",
       "link": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxNcEY5MXoyN25xbktPM1ZDVUZEbmpiNW5zbTZuMEg4REdwYlRaazREQjFNb1hXbmRRUC1wVXJwX3h6U25WZUFXbDgxbjV1dmpxY3J5MkRmc0szZllwMzBFcGF2dlJiNmNGVEZvcXBzdDQzNF9WYXg3UThlMDVjRVNKUFNQYzZCSmJ2aVg0?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiiwFBVV95cUxNcEY5MXoyN25xbktPM1ZDVUZEbmpiNW5zbTZuMEg4REdwYlRaazREQjFNb1hXbmRRUC1wVXJwX3h6U25WZUFXbDgxbjV1dmpxY3J5MkRmc0szZllwMzBFcGF2dlJiNmNGVEZvcXBzdDQzNF9WYXg3UThlMDVjRVNKUFNQYzZCSmJ2aVg0?oc=5\" target=\"_blank\">Stocks Rally, Shaki",
@@ -1687,43 +1777,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789662544000
-    },
-    {
-      "title": "Is Canada about to join the EU?",
-      "link": "https://www.bbc.co.uk/news/videos/c6wyz8kk2nepo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC World",
-      "desc": "Ties between Canada and the European Union have been getting closer as trade dispute with the US continue.",
-      "at": 1789661915000,
-      "inst": [
-        "USD/CAD"
-      ],
-      "ccy": [
-        "CAD"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789661915000
-    },
-    {
-      "title": "Adviser to Ukrainian president breaks down impact of new sanctions on Russia - CNN",
-      "link": "https://news.google.com/rss/articles/CBMizgFBVV95cUxQQklnc1Bmc1E1MmdzajFTQ3ZJRm5UNHg2QjBNdnhMYjg3V3duLVpaNlhfTTNIeEM0TU5LOHBIdFNOX3lSblNyUUtZdTZtc3BYMjM5UkpwazFkMDRwc0VWcmJPS1BTRmlnSE00aHN5Mi0tY3FHQmo3NzJTN0R5MUxreU1tUXJXZm1zbl9aeWI4endUd05FZzB1MGlxRXVuVUFXQ21LOW1yUUlGQ0l6TVhOamdsbUZqYXdkbGtrOWt4X1BRM0hXRENTN2NzZDRHUQ?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMizgFBVV95cUxQQklnc1Bmc1E1MmdzajFTQ3ZJRm5UNHg2QjBNdnhMYjg3V3duLVpaNlhfTTNIeEM0TU5LOHBIdFNOX3lSblNyUUtZdTZtc3BYMjM5UkpwazFkMDRwc0VWcmJPS1BTRmlnSE00aHN5Mi0tY3FHQmo3NzJTN0R5MUxreU1tUXJXZm1zbl9aeWI4endUd05FZzB1MGlxRXVuVUFXQ21LOW1yUUlGQ0",
-      "at": 1789661887000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789659327000
     }
   ],
   "sources": [
@@ -1750,6 +1803,6 @@
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-18T01:04:25.408Z",
-  "updatedAt": "2026-09-18T01:04:25.408Z"
+  "headlinesAt": "2026-09-18T01:06:06.663Z",
+  "updatedAt": "2026-09-18T01:06:06.663Z"
 }
