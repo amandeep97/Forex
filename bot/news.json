@@ -192,7 +192,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789751629000,
-      "_kind": null
+      "_kind": null,
+      "why": "Geopolitical risk unclear for specific assets"
     },
     {
       "title": "Stock Market Today: Dow Pressured As Yields Hit 5%; Chip Gear Players Jump, Lead Nasdaq 100 (Live Coverage)",
@@ -208,7 +209,12 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789750763000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US100": "up",
+        "US30": "down"
+      },
+      "why": "Nasdaq leads up, Dow pressured down"
     },
     {
       "title": "AbCellera and Recursion Pharmaceuticals: two AI-drug stocks, two different stories",
@@ -223,7 +229,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789751068000,
-      "_kind": null
+      "_kind": null,
+      "why": "Specific stock news, no broad index impact"
     },
     {
       "title": "JPMorgan Values Bitcoin at $266,000 Against Gold. Why It’s Trading Below $81,000?",
@@ -242,7 +249,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789750060000,
-      "_kind": null
+      "_kind": null,
+      "why": "Valuation comparison, no clear directional signal"
     },
     {
       "title": "Two signs investors don’t have to fear an AI slowdown",
@@ -271,7 +279,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789749223000,
-      "_kind": null
+      "_kind": null,
+      "why": "Single stock decline, negligible index impact"
     },
     {
       "title": "Market outlook: bond yields, oil prices, and equity signals heading into next week",
@@ -288,7 +297,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789750763000,
-      "_kind": null
+      "_kind": null,
+      "why": "General market outlook, no specific direction"
     },
     {
       "title": "When To Dump Stocks: These IBD 50 Components Hit Sell Signals",
@@ -303,7 +313,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789750618000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Sell signals on index components imply weakness"
     },
     {
       "title": "Mbappe leaves Nike, signs with On as Swiss sportswear maker forays into soccer",
@@ -320,7 +334,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789750549000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USD/CHF": "down"
+      },
+      "why": "Swiss brand success implies stronger CHF"
     },
     {
       "title": "Carlyle Expands Canadian Energy Footprint with Parallax Acquisition",
@@ -335,7 +353,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789750537000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USD/CAD": "down"
+      },
+      "why": "Canadian energy expansion implies stronger CAD"
     },
     {
       "title": "IBD Stock Of The Day Eyes Buy Points As Investors Dig Into Its Pipeline",
@@ -371,7 +393,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789750200000
+      "firstAt": 1789750200000,
+      "why": "General inflation discussion, no clear direction"
     },
     {
       "title": "JPMorgan Sees Investment Banking and Trading Powering Q3 Growth",
@@ -412,7 +435,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789749540000
+      "firstAt": 1789749540000,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Stocks should beat bonds implies bullish"
     },
     {
       "title": "Using A Limit Order To Buy Occidental Petroleum At A Discount",
@@ -426,7 +453,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789749274000
+      "firstAt": 1789749274000,
+      "why": "Single stock trading strategy, no oil impact"
     },
     {
       "title": "Three words from Kevin Warsh have Wall Street wondering how far the Fed will go with rate hikes",
@@ -443,7 +471,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789749223000
+      "firstAt": 1789749223000,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Rate hike uncertainty implies bearish for stocks"
     },
     {
       "title": "Canadian dollar weakens against major currencies in the week ending September 18",
@@ -459,7 +491,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789748757000
+      "firstAt": 1789748757000,
+      "dir": {
+        "USD/CAD": "up"
+      },
+      "why": "Canadian dollar weakens implies stronger USD"
     },
     {
       "title": "Netflix is too focused on podcasts and not enough on good shows, analysts say",
@@ -495,7 +531,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789748160000
+      "firstAt": 1789748160000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Higher yields imply stronger USD, lower pairs"
     },
     {
       "title": "Saudi Export Pivot Sends Brent Below $105",
@@ -916,7 +958,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789741758000
+      "firstAt": 1789741158000
     },
     {
       "title": "France in ‘game of chicken’ with EU on Russia sanctions, as clock ticks to expiry deadline - EUobserver",
@@ -977,6 +1019,24 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789740527000
+    },
+    {
+      "title": "Bank of Japan Rate Hike Is a Warning Shot for Global Markets - Investorideas.com",
+      "link": "https://news.google.com/rss/articles/CBMitgFBVV95cUxOeDlNSmRfSzQ4eTlOTU9qUjRBYVdiUVZyYWdOc3l0LWhQdkllbFZlNWVZVUl0eWtzb29SeFdqbkluNlBuaWU0YmxObGdxZEgzcU12aFo1dnR1Smk0cDV5WDZSampfSFljU3VSR3hySjJtcnZyLVBNcFRqUV9CdzVkNVFQdnpyU3l6VTNjZHRXMl9oaTRLLTREUUFPZlFtZ3hRZ2tVcFhXY0xkLW9rNzJaUmVBTkgwQQ?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMitgFBVV95cUxOeDlNSmRfSzQ4eTlOTU9qUjRBYVdiUVZyYWdOc3l0LWhQdkllbFZlNWVZVUl0eWtzb29SeFdqbkluNlBuaWU0YmxObGdxZEgzcU12aFo1dnR1Smk0cDV5WDZSampfSFljU3VSR3hySjJtcnZyLVBNcFRqUV9CdzVkNVFQdnpyU3l6VTNjZHRXMl9oaTRLLTREUUFPZlFtZ3hRZ2tVcFhXY0xkLW",
+      "at": 1789741158000,
+      "inst": [
+        "USD/JPY"
+      ],
+      "ccy": [
+        "JPY",
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789741158000
     },
     {
       "title": "Russia seizes assets of French firms, summons UK envoy over Ukraine support - Al Jazeera",
@@ -1358,24 +1418,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789732099000
-    },
-    {
-      "title": "Bank of Japan rate hike is a warning shot for global markets - finchannel",
-      "link": "https://news.google.com/rss/articles/CBMiygFBVV95cUxQS0RkaDVheTVMejY0NXZjd2Y2MnNMeHE4elJCdEpTdHcxd0VWV1dhOXRKZFNqNFZ4eFp3UjBIdktzYU1Jbml6N2xXay1GZHkxTUxrWUhPbVFUVWNUOWYyNmFNNU1ZOFN2YUZqUk1IWV9DRVJDZEpSc2tCRFFhSE5RSjVSNk5UNkJyNG9paHFjYmM0czBGTkNKZngyYVQ5V2s5YjUxRkFfaEw0V0F0NTdzUzhuWjY1LXM3eXN5VHBwaTR1QU5yMHFWN3Zn?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiygFBVV95cUxQS0RkaDVheTVMejY0NXZjd2Y2MnNMeHE4elJCdEpTdHcxd0VWV1dhOXRKZFNqNFZ4eFp3UjBIdktzYU1Jbml6N2xXay1GZHkxTUxrWUhPbVFUVWNUOWYyNmFNNU1ZOFN2YUZqUk1IWV9DRVJDZEpSc2tCRFFhSE5RSjVSNk5UNkJyNG9paHFjYmM0czBGTkNKZngyYVQ5V2s5YjUxRkFfaEw0V0",
-      "at": 1789731637000,
-      "inst": [
-        "USD/JPY"
-      ],
-      "ccy": [
-        "JPY",
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789731637000
     },
     {
       "title": "Bitcoin and ethereum prices today, Friday, September 18, 2026: Crypto prices rise as investors move past CLARITY's failure",
@@ -1820,10 +1862,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-18T17:21:14.380Z",
-  "headlinesAt": "2026-09-18T17:21:14.380Z",
-  "updatedAt": "2026-09-18T17:21:14.380Z"
+  "calendarAt": "2026-09-18T17:22:28.112Z",
+  "headlinesAt": "2026-09-18T17:22:28.112Z",
+  "updatedAt": "2026-09-18T17:22:28.112Z"
 }
