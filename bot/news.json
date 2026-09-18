@@ -201,6 +201,22 @@
   ],
   "headlines": [
     {
+      "title": "European equities cap 3rd-weekly decline as Saudi supply cuts stings",
+      "link": "https://www.investing.com/news/stock-market-news/european-stocks-snap-twoweek-slide-as-fed-resolve-4906682",
+      "source": "Investing",
+      "at": 1789737374000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1789734990000,
+      "_kind": null,
+      "why": "European news, unclear US impact"
+    },
+    {
       "title": "US voter opposition to war on Iran grows to new highs: Poll",
       "link": "https://www.aljazeera.com/news/2026/9/18/us-voter-opposition-to-war-on-iran-grows-to-new-highs-poll?traffic_source=rss",
       "source": "Al Jazeera",
@@ -219,7 +235,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789736967000,
-      "_kind": null
+      "_kind": null,
+      "why": "Poll data, no clear market direction"
     },
     {
       "title": "FIFA’s Infantino ‘must go, no ifs or buts’, blasts German FA vice president",
@@ -235,7 +252,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789736735000,
-      "_kind": null
+      "_kind": null,
+      "why": "Football news, no economic impact"
     },
     {
       "title": "Stocks and bonds rally post-Fed rate hike as Tr... - Pluang",
@@ -253,7 +271,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789736643000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Stocks and bonds rally post-Fed"
     },
     {
       "title": "Russian hybrid attacks against Europe intensifying, says Macron",
@@ -274,30 +296,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789736458000,
-      "_kind": null
-    },
-    {
-      "title": "U.S. stock futures mixed as traders digest eventful week marked by Fed rate hike",
-      "link": "https://www.investing.com/news/stock-market-news/us-stock-futures-edge-lower-after-wall-st-rallies-on-softer-oil-yields-4906586",
-      "source": "Investing",
-      "at": 1789736316000,
-      "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789736316000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Geopolitical tension boosts gold"
     },
     {
       "title": "Wall St set for tepid open as oil prices fall, Treasury yields rise - Reuters",
@@ -316,7 +319,10 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789733795000,
-      "_kind": null
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Oil prices fall, tepid open"
     },
     {
       "title": "As Houthis grab Bab al-Mandeb, US appears willing to watch from sidelines",
@@ -336,7 +342,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789735949000
+      "firstAt": 1789735949000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Houthi threat boosts risk assets"
     },
     {
       "title": "Why does Canada want to join the Europe-led JEF military partnership?",
@@ -355,7 +367,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789735875000
+      "firstAt": 1789735875000,
+      "why": "Political news, no clear direction"
     },
     {
       "title": "Naphtha prices in Asia drop for third day amid oil weakness",
@@ -371,7 +384,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789735499000
+      "firstAt": 1789735499000,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Naphtha prices drop amid weakness"
     },
     {
       "title": "Why mortgage bonds are set to deteriorate, and possibly hit the whole market, according to this Wall Street expert",
@@ -388,7 +405,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789735200000
+      "firstAt": 1789735200000,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Mortgage bonds deteriorate, market risk"
     },
     {
       "title": "Tighter financial conditions could keep markets cautious until inflation cools - TradingView",
@@ -411,7 +432,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789735027000
+      "firstAt": 1789735027000,
+      "why": "Cautious markets, no clear direction"
     },
     {
       "title": "Oil prices edge lower on easing fears over Saudi supply disruption",
@@ -426,8 +448,12 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789734990000
+      "srcs": 2,
+      "firstAt": 1789734990000,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Oil prices edge lower"
     },
     {
       "title": "Iran says it strikes an oil tanker, and other Mideast developments - AP News",
@@ -447,7 +473,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789734900000
+      "firstAt": 1789734900000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Iran strikes tanker, risk premium"
     },
     {
       "title": "Tesla’s upcoming product frenzy could leave investors disappointed",
@@ -482,7 +514,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 3,
-      "firstAt": 1789732200000
+      "firstAt": 1789732200000,
+      "why": "Yield curve flattens, mixed signals"
     },
     {
       "title": "investingLive European session wrap: Yen slides after BOJ hike as markets stay on edge",
@@ -502,7 +535,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789733227000
+      "firstAt": 1789733227000,
+      "dir": {
+        "USD/JPY": "up"
+      },
+      "why": "Yen slides after BOJ hike"
     },
     {
       "title": "Fire engulfs Zaporizhzhia mall in Ukraine after Russian attack – video - The Guardian",
@@ -961,6 +998,26 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789725683000
+    },
+    {
+      "title": "Turkey to halt Iranian Mahan Air flights over US sanctions risk - Middle East Eye",
+      "link": "https://news.google.com/rss/articles/CBMimAFBVV95cUxPdHhLU3ZDNFhkcGZIeVpNcTAwMF9RazRTY1dWVnUzMmVOWkVPSTlwb0RRS2RjZ1A3Wl9ZRmJ3Q2J0dFV6OWFZZTRZSnJ2djhNYnhTVGNCeE40MWNVVGNLM0JFSk10MjJpaE9jbnloVy1OeFUzbHBXNUxMOFdLYXhWX08ySlR2b3hZWnFfT0YydnJEV0RQQl9rVw?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMimAFBVV95cUxPdHhLU3ZDNFhkcGZIeVpNcTAwMF9RazRTY1dWVnUzMmVOWkVPSTlwb0RRS2RjZ1A3Wl9ZRmJ3Q2J0dFV6OWFZZTRZSnJ2djhNYnhTVGNCeE40MWNVVGNLM0JFSk10MjJpaE9jbnloVy1OeFUzbHBXNUxMOFdLYXhWX08ySlR2b3hZWnFfT0YydnJEV0RQQl9rVw?oc=5\" target=\"_blank\">T",
+      "at": 1789725618000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789725618000
     },
     {
       "title": "U.S. May Have Committed War Crimes in Iran, U.N. Report Says - Time Magazine",
@@ -1618,26 +1675,6 @@
       "firstAt": 1789713221000
     },
     {
-      "title": "Russia adapts a training missile to lead its ballistic onslaught of Ukraine - Reuters",
-      "link": "https://news.google.com/rss/articles/CBMivgFBVV95cUxOeUNWVzAzWVRGVXc5RkhoNEFoVkNIbGZob2gyU2k0NmhuRXVqckx6NTh5R1BQTHlnMENfN1dXa2RYVGVnenRjQVJhdFQ0c2hHTjQzTjB1bW4xVVB0R1pHUDZYYk1oN2FDNUN2dEk5UXA5N3RaeXVVWnRBZWRDY043aEE3SmprQl9RMFdpWFJ3a2dkZDF0Mk5UemV1b0c2UldEaENtQWxIZjhHclBROXBOVHlZcmRWczk3SDJaaWJR?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMivgFBVV95cUxOeUNWVzAzWVRGVXc5RkhoNEFoVkNIbGZob2gyU2k0NmhuRXVqckx6NTh5R1BQTHlnMENfN1dXa2RYVGVnenRjQVJhdFQ0c2hHTjQzTjB1bW4xVVB0R1pHUDZYYk1oN2FDNUN2dEk5UXA5N3RaeXVVWnRBZWRDY043aEE3SmprQl9RMFdpWFJ3a2dkZDF0Mk5UemV1b0c2UldEaENtQWxIZjhHcl",
-      "at": 1789713079000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789713079000
-    },
-    {
       "title": "UK retail sales unexpectedly rise in August, backed by recovery in department stores, non-store retailers",
       "link": "https://investinglive.com/news/uk-retail-sales-unexpectedly-rise-in-august-backed-by-recovery-in-department-stores-non-store-retailers/",
       "source": "ForexLive",
@@ -1931,7 +1968,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-18T13:23:26.144Z",
-  "headlinesAt": "2026-09-18T13:23:26.144Z",
-  "updatedAt": "2026-09-18T13:23:26.144Z"
+  "calendarAt": "2026-09-18T13:25:00.069Z",
+  "headlinesAt": "2026-09-18T13:25:00.069Z",
+  "updatedAt": "2026-09-18T13:25:00.069Z"
 }
