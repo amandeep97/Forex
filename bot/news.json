@@ -15,7 +15,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789720871000,
-      "_kind": null
+      "_kind": null,
+      "why": "AI data partnership lacks direct market impact"
     },
     {
       "title": "Oil extends declines amid easing supply concerns, ongoing diplomatic efforts",
@@ -32,7 +33,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789720789000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Oil declines on easing supply concerns"
     },
     {
       "title": "Indonesia stocks lower at close of trade; IDX Composite Index down 0.46%",
@@ -47,7 +52,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789720503000,
-      "_kind": null
+      "_kind": null,
+      "why": "Indonesia stock news irrelevant to US500"
     },
     {
       "title": "European natural gas set to snap five-week winning streak",
@@ -62,7 +68,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789720409000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "NATGAS": "down"
+      },
+      "why": "Gas set to snap winning streak"
     },
     {
       "title": "Oil prices fall 2% on easing fears over Saudi supply disruption",
@@ -79,7 +89,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789720226000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Oil falls on easing Saudi fears"
     },
     {
       "title": "Yen slides despite BOJ rate hike, dollar holds gains amid hawkish Fed By Investing.com - Investing.com South Africa",
@@ -98,7 +112,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789719975000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USD/JPY": "up"
+      },
+      "why": "Dollar holds gains, yen slides"
     },
     {
       "title": "UBS sees EUR/USD long opportunity on central bank dynamics",
@@ -121,7 +139,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789719692000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "EUR/USD": "up"
+      },
+      "why": "UBS sees EUR/USD long opportunity"
     },
     {
       "title": "Factbox-Texas power plant, nuclear projects under discussion in South Korea’s US investment package",
@@ -138,7 +160,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789719505000,
-      "_kind": null
+      "_kind": null,
+      "why": "Nuclear investment news unclear for gold"
     },
     {
       "title": "Sterling today: Pound gains as UK retail sales beat and dollar cools",
@@ -156,7 +179,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789719453000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "GBP/USD": "up"
+      },
+      "why": "Pound gains as dollar cools"
     },
     {
       "title": "Poland Warns Russia May Target Ukraine Supporters With \"Accidental\" Strikes - UNITED24 Media",
@@ -176,7 +203,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789719032000
+      "firstAt": 1789719032000,
+      "why": "Geopolitical warning lacks immediate price direction"
     },
     {
       "title": "Houthi rebel offensive fuels fears of escalation in the Middle East and Europe - The Conversation",
@@ -196,7 +224,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789718934000
+      "firstAt": 1789718934000,
+      "why": "Escalation fears direction unclear for assets"
     },
     {
       "title": "Euro zone yields head for weekly decline as post-Fed rally soothes duration fears",
@@ -213,7 +242,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789718105000
+      "firstAt": 1789718105000,
+      "why": "Yield decline direction unclear for euro"
     },
     {
       "title": "Iran’s Isolation Grows After U.S. Imposes Sweeping Sanctions on Airlines - The New York Times",
@@ -233,7 +263,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789717860000
+      "firstAt": 1789717860000,
+      "why": "Sanctions news unclear for immediate direction"
     },
     {
       "title": "Dollar jumps above 157 yen, Nikkei stock index climbs after BOJ rate hike - mainichi.jp",
@@ -251,7 +282,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789717845000
+      "firstAt": 1789717845000,
+      "dir": {
+        "USD/JPY": "up"
+      },
+      "why": "Dollar jumps above 157 yen"
     },
     {
       "title": "US House passes Russia sanctions bill granting Trump tariff authority - chinadailyasia.com",
@@ -272,7 +307,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789716716000
+      "firstAt": 1789716716000,
+      "why": "Sanctions bill direction unclear for markets"
     },
     {
       "title": "S. Korean won slightly weakens against U.S. dollar after BOJ's expected rate hike - Yonhap News Agency",
@@ -1724,10 +1760,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-18T08:43:55.992Z",
-  "updatedAt": "2026-09-18T08:43:55.992Z"
+  "headlinesAt": "2026-09-18T08:45:15.137Z",
+  "updatedAt": "2026-09-18T08:45:15.137Z"
 }
