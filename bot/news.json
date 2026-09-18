@@ -216,7 +216,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789735200000,
-      "_kind": null
+      "_kind": null,
+      "why": "Mortgage bond risk unclear for equities"
     },
     {
       "title": "Tighter financial conditions could keep markets cautious until inflation cools (SP500:) - Seeking Alpha",
@@ -234,7 +235,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789735027000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Tighter conditions keep markets cautious"
     },
     {
       "title": "Oil prices edge lower on easing fears over Saudi supply disruption",
@@ -251,7 +256,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789734990000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Oil prices edge lower"
     },
     {
       "title": "Iran says it strikes an oil tanker, and other Mideast developments - AP News",
@@ -272,7 +281,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789734900000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Iran strikes tanker, supply fears rise"
     },
     {
       "title": "Tesla’s upcoming product frenzy could leave investors disappointed",
@@ -304,7 +319,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789734750000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "EUR/USD": "down"
+      },
+      "why": "ECB hikes won't solve inflation"
     },
     {
       "title": "U.S. Treasury curve flattens as long-end yields ease off multi-year peaks",
@@ -326,7 +345,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789732200000
+      "firstAt": 1789732200000,
+      "why": "Treasury curve flattens, yields ease"
     },
     {
       "title": "Can global equities keep rising? UBS sees these factors driving upside",
@@ -340,7 +360,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789733503000
+      "firstAt": 1789733503000,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "UBS sees factors driving upside"
     },
     {
       "title": "investingLive European session wrap: Yen slides after BOJ hike as markets stay on edge",
@@ -360,7 +384,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789733227000
+      "firstAt": 1789733227000,
+      "dir": {
+        "USD/JPY": "up"
+      },
+      "why": "Yen slides after BOJ hike"
     },
     {
       "title": "Fire engulfs Zaporizhzhia mall in Ukraine after Russian attack – video - The Guardian",
@@ -380,7 +408,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789732980000
+      "firstAt": 1789732980000,
+      "why": "Ukraine mall fire, no clear market impact"
     },
     {
       "title": "Vlasiuk names countries that could face tariffs after Russia sanctions bill is signed - Ukrinform",
@@ -400,7 +429,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789732800000
+      "firstAt": 1789732800000,
+      "why": "Russia sanctions bill, unclear market impact"
     },
     {
       "title": "Wall Street is betting Trump backs down on Iran — but what if the ‘TACO’ trade fails this time?",
@@ -415,7 +445,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789732260000
+      "firstAt": 1789732260000,
+      "why": "Uncertainty over Trump-Iran trade outcome"
     },
     {
       "title": "The 10-year Treasury is having its worst run in over 100 years. Why investors are buying bonds anyway.",
@@ -438,7 +469,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789732200000
+      "firstAt": 1789732200000,
+      "why": "Bond buying despite high yields"
     },
     {
       "title": "Stocks making the biggest moves premarket: Netflix, Nucor, Xenon Pharmaceuticals & more",
@@ -453,7 +485,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789732099000
+      "firstAt": 1789732099000,
+      "why": "Individual stock moves, no index direction"
     },
     {
       "title": "Bank of Japan rate hike is a warning shot for global markets - finchannel",
@@ -471,7 +504,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789731637000
+      "firstAt": 1789731637000,
+      "dir": {
+        "USD/JPY": "up"
+      },
+      "why": "BOJ hike weakens yen"
     },
     {
       "title": "Bitcoin and ethereum prices today, Friday, September 18, 2026: Crypto prices rise as investors move past CLARITY's failure",
@@ -488,7 +525,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789731625000
+      "firstAt": 1789731625000,
+      "dir": {
+        "BTC/USDT": "up",
+        "ETH/USDT": "up"
+      },
+      "why": "Crypto prices rise"
     },
     {
       "title": "A sideways market and rising earnings are presenting a buying opportunity for this crucial sector",
@@ -1093,7 +1135,7 @@
       "firstAt": 1789720789000
     },
     {
-      "title": "Yen slumps 1% against Singdollar, greenback after BOJ hikes rates - businesstimes.com.sg",
+      "title": "Yen slumps 1% against Singdollar, greenback after BOJ hikes rates - The Business Times",
       "link": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxNbWV0NmwzUG5WeC1TdWlTVG1haHRXUE5PU0M0QThLOG9lcDJNc3FGT2Q0VTUzRUpIU1pZRjl6Y3hYTVJLVmxqRC1KZG50RDMwTWdjd3lJYkdzcDJuRldnMmlGQkdJUEtVOVYxWDVwY3pRZVVDMHRZQzN4WmozYklfS0hTMlNjYzJNTU1KYXloU3M2MHdvWHJyazQyWGNQNHhSSEJvN0ZpdFZYbW93R2ZVX1BJLTdPYUREWFo4YUQ0RWx1WXBtTTN3eFZxYzJYU200LVRpZHhpTTU?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMi2AFBVV95cUxNbWV0NmwzUG5WeC1TdWlTVG1haHRXUE5PU0M0QThLOG9lcDJNc3FGT2Q0VTUzRUpIU1pZRjl6Y3hYTVJLVmxqRC1KZG50RDMwTWdjd3lJYkdzcDJuRldnMmlGQkdJUEtVOVYxWDVwY3pRZVVDMHRZQzN4WmozYklfS0hTMlNjYzJNTU1KYXloU3M2MHdvWHJyazQyWGNQNHhSSEJvN0ZpdFZYbW",
@@ -1653,7 +1695,7 @@
       "firstAt": 1789710554000
     },
     {
-      "title": "The Fed hiked rates for the first time since 2023. Will T-bills make a comeback? - businesstimes.com.sg",
+      "title": "The Fed hiked rates for the first time since 2023. Will T-bills make a comeback? - The Business Times",
       "link": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxPRGVrUDVvNk5mZl9lLWhKTDNtMDJ5bXJNbjQtejVSYlQ4VnRnbV9XbGpwZ2dKcDlOLV9hYnk1T1BxLXU5c0hGRjRmSDljZVphVFRjTFdlbE9OeXVIeWpXZ1N3bHhPeTlmaGJDbjBBRnFWQ3Fpcmg2cFB6YmowU25OSzhrbnZVVGExcVg3aVBuZ1pNd05TOVJMWjd6eWw4MEY4V0xZcl9PYjVIWHNQYjlHanJTQjRsd010LWxZVWFwYmJOb25tVXVKTThQeFlraFdpNnc?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMi0gFBVV95cUxPRGVrUDVvNk5mZl9lLWhKTDNtMDJ5bXJNbjQtejVSYlQ4VnRnbV9XbGpwZ2dKcDlOLV9hYnk1T1BxLXU5c0hGRjRmSDljZVphVFRjTFdlbE9OeXVIeWpXZ1N3bHhPeTlmaGJDbjBBRnFWQ3Fpcmg2cFB6YmowU25OSzhrbnZVVGExcVg3aVBuZ1pNd05TOVJMWjd6eWw4MEY4V0xZcl9PYjVIWH",
@@ -1907,7 +1949,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-18T12:57:26.581Z",
-  "headlinesAt": "2026-09-18T12:57:26.581Z",
-  "updatedAt": "2026-09-18T12:57:26.581Z"
+  "calendarAt": "2026-09-18T12:58:57.701Z",
+  "headlinesAt": "2026-09-18T12:58:57.701Z",
+  "updatedAt": "2026-09-18T12:58:57.701Z"
 }
