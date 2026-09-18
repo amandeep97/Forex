@@ -354,7 +354,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789694717000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "down"
+      },
+      "why": "Gold gains, oil falls on inflation fears"
     },
     {
       "title": "A sweeping U.S. sanctions bill offers Ukraine new leverage on Russia, but enforcement looms - Butler Eagle",
@@ -375,7 +380,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789694130000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions bill news unclear for markets"
     },
     {
       "title": "Oil prices fall 1% on hopes of limited supply disruptions",
@@ -392,7 +398,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789693943000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Oil prices fall on supply hopes"
     },
     {
       "title": "RBA to assess if rates adequate to cool inflation, says Governor Bullock",
@@ -410,7 +420,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789693765000,
-      "_kind": null
+      "_kind": null,
+      "why": "RBA assessment neutral for currency"
     },
     {
       "title": "Yen weak ahead of BOJ decision; rate hike expected - Reuters",
@@ -428,7 +439,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789693140000
+      "firstAt": 1789693140000,
+      "dir": {
+        "USD/JPY": "down"
+      },
+      "why": "Yen weak implies dollar strength"
     },
     {
       "title": "Leader’s Advantage Acquisition prices $150M IPO on Nasdaq",
@@ -442,7 +457,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789692961000
+      "firstAt": 1789692961000,
+      "why": "IPO news specific to company"
     },
     {
       "title": "Iran in, Abbas out: Trump threatens new strikes as US grants Tehran leaders UN visas - Ynetnews",
@@ -462,7 +478,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789689600000
+      "firstAt": 1789689600000,
+      "why": "Geopolitical news unclear for direction"
     },
     {
       "title": "U.S. stock futures edge lower after Wall St rallies on softer oil, yields",
@@ -478,7 +495,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789691176000
+      "firstAt": 1789691176000,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Stocks rally on softer oil"
     },
     {
       "title": "How Alabama’s congressional delegation voted on Russia sanctions bill - WSFA",
@@ -498,7 +519,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789690920000
+      "firstAt": 1789690920000,
+      "why": "Voting details unclear for markets"
     },
     {
       "title": "Press Release: Rep. Scott Fitzgerald Votes on Russia, Iran Sanctions and Climate Waivers - Quiver Quantitative",
@@ -519,7 +541,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789690920000
+      "firstAt": 1789690920000,
+      "why": "Press release unclear for direction"
     },
     {
       "title": "Trump weighs major Iran escalation as China steps up diplomatic push - Iran International",
@@ -539,7 +562,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789689600000
+      "firstAt": 1789689600000,
+      "why": "Escalation risk unclear for direction"
     },
     {
       "title": "Iran war live: Trump weighs ‘big decision’ on Iran, tanker hit in Hormuz",
@@ -559,7 +583,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789689600000
+      "firstAt": 1789689600000,
+      "why": "War risk unclear for direction"
     },
     {
       "title": "Market Reverses Overnight After Fed Rate Hike: Chip Stocks Lead US Rally, Gold Reclaims $4,300 - finance.biggo.com",
@@ -578,7 +603,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789689300000
+      "firstAt": 1789689300000,
+      "dir": {
+        "XAU/USD": "up",
+        "US500": "up"
+      },
+      "why": "Gold reclaims level, US rally"
     },
     {
       "title": "The Fed Raised Rates For The First Time In Three Years. The Dollar And Global Yields Are Feeling It. - International Business Times",
@@ -601,7 +631,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789689241000
+      "firstAt": 1789689241000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Dollar strength hurts gold and pairs"
     },
     {
       "title": "US markets rebound after Fed Reserve rate hike - news24.com.au",
@@ -624,7 +660,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789688422000
+      "firstAt": 1789688422000,
+      "why": "Market rebound unclear for direction"
     },
     {
       "title": "Japan August inflation: Headline CPI 1.9% y/y (expected 2%)",
@@ -2089,7 +2126,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-18T01:35:26.580Z",
-  "headlinesAt": "2026-09-18T01:35:26.580Z",
-  "updatedAt": "2026-09-18T01:35:26.580Z"
+  "calendarAt": "2026-09-18T01:36:56.664Z",
+  "headlinesAt": "2026-09-18T01:36:56.664Z",
+  "updatedAt": "2026-09-18T01:36:56.664Z"
 }
