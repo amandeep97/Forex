@@ -22,7 +22,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789764557000,
-      "_kind": null
+      "_kind": null,
+      "why": "Geopolitical talks unclear for markets"
     },
     {
       "title": "Stocks are failing the ‘breadth’ test, but options traders still see reason to buy",
@@ -38,7 +39,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789764480000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Options traders see reason to buy"
     },
     {
       "title": "Gold heads for slight weekly gain as decline in oil prices offset Fed rate hike",
@@ -58,7 +63,12 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789761442000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "down"
+      },
+      "why": "Gold gains, oil declines"
     },
     {
       "title": "Global stocks mixed as yen falls despite Bank of Japan rate hike - Yahoo Finance UK",
@@ -78,7 +88,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789763576000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USD/JPY": "up"
+      },
+      "why": "Yen falls, stocks mixed"
     },
     {
       "title": "Analysis-Russia sanctions bill gives Trump sweeping new tariff powers",
@@ -99,7 +113,7 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789760940000,
-      "_kind": null
+      "why": "Sanctions bill impact unclear"
     },
     {
       "title": "U.S. stocks mixed at close of trade; Dow Jones Industrial Average down 0.19%",
@@ -114,7 +128,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789763460000
+      "firstAt": 1789763460000,
+      "dir": {
+        "US30": "down"
+      },
+      "why": "Stocks mixed, Dow down"
     },
     {
       "title": "Canada stocks lower at close of trade; S&P/TSX Composite down 0.19%",
@@ -131,7 +149,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789763432000
+      "firstAt": 1789763432000,
+      "why": "Canada stocks lower, US mixed"
     },
     {
       "title": "Brazil stocks lower at close of trade; Bovespa down 0.41%",
@@ -145,7 +164,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789763404000
+      "firstAt": 1789763404000,
+      "why": "Brazil stocks lower, US mixed"
     },
     {
       "title": "Revealed: Ed Miliband ignored MI6’s warnings over Israel sanctions - The Spectator",
@@ -165,7 +185,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789763384000
+      "firstAt": 1789763384000,
+      "why": "Political news irrelevant to markets"
     },
     {
       "title": "investingLive Americas market news wrap: Bonds slump again, yen rate check adds intrigue after BOJ",
@@ -185,7 +206,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789763380000
+      "firstAt": 1789763380000,
+      "dir": {
+        "USD/JPY": "up"
+      },
+      "why": "Bonds slump, yen rate check"
     },
     {
       "title": "Russia sanctions bill gives Trump sweeping new tariff powers - reuters.com",
@@ -206,7 +231,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789760940000
+      "firstAt": 1789760940000,
+      "why": "Sanctions bill impact unclear"
     },
     {
       "title": "US, China discuss cutting tariffs on US LNG ahead of Xi visit",
@@ -220,7 +246,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789763122000
+      "firstAt": 1789763122000,
+      "dir": {
+        "NATGAS": "up"
+      },
+      "why": "Tariff cuts boost LNG demand"
     },
     {
       "title": "Gold holds steady despite Fed rate hike, suppor... - Pluang",
@@ -238,7 +268,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789761442000
+      "firstAt": 1789761442000,
+      "why": "Gold holds steady"
     },
     {
       "title": "Accenture shares jump on Anthropic AI partnership",
@@ -266,7 +297,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789762401000
+      "firstAt": 1789762401000,
+      "why": "Stocks end mixed for week"
     },
     {
       "title": "Yen set for worst week since Oct 2025 as BoJ’s hike seen as not aggressive enough",
@@ -282,7 +314,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789761938000
+      "firstAt": 1789761938000,
+      "dir": {
+        "USD/JPY": "up"
+      },
+      "why": "Yen set for worst week"
     },
     {
       "title": "Russian attack hits Ukraine, Zelenskyy hosts regional summit - WQAD",
@@ -1717,6 +1753,6 @@
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-18T21:01:26.988Z",
-  "updatedAt": "2026-09-18T21:01:26.988Z"
+  "headlinesAt": "2026-09-18T21:02:58.231Z",
+  "updatedAt": "2026-09-18T21:02:58.231Z"
 }
