@@ -363,7 +363,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789702642000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USD/JPY": "up",
+        "AUD/USD": "up"
+      },
+      "why": "BoJ hike weakens yen, RBA hawkish lifts AUD"
     },
     {
       "title": "A look inside restored Temple Israel months after attack - CBS News",
@@ -383,7 +388,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789702080000
+      "firstAt": 1789702080000,
+      "why": "Temple Israel restoration news irrelevant to markets"
     },
     {
       "title": "Gold and Silver Price Forecast: Oil Pullback Eases Inflation Fears - FXEmpire",
@@ -405,7 +411,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789702059000
+      "firstAt": 1789702059000,
+      "dir": {
+        "XAU/USD": "up",
+        "XAG/USD": "up",
+        "USOIL": "down"
+      },
+      "why": "Oil pullback eases inflation fears, bullish gold"
     },
     {
       "title": "Japan’s interest rate hiked to 31-year high at 1.25% as inflation rises",
@@ -423,7 +435,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789701620000
+      "firstAt": 1789701620000,
+      "dir": {
+        "USD/JPY": "down"
+      },
+      "why": "BoJ hike to 31-year high strengthens yen"
     },
     {
       "title": "Asia chip, tech stocks track Wall St gains as yields fall",
@@ -438,7 +454,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789701352000
+      "firstAt": 1789701352000,
+      "dir": {
+        "US500": "up",
+        "US100": "up"
+      },
+      "why": "Tech stocks track Wall St gains"
     },
     {
       "title": "Fed Rate Hike Seen as 'Selling the News' — Taiwan Dollar Surges Past NT$31.8, RMB Hits 4-Year High - finance.biggo.com",
@@ -461,7 +482,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789700700000
+      "firstAt": 1789700700000,
+      "why": "Mixed signals on Fed hike and currency moves"
     },
     {
       "title": "Asian stocks rise as oil retreat eases inflation fears, BOJ in focus",
@@ -481,7 +503,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789700668000
+      "firstAt": 1789700668000,
+      "dir": {
+        "USOIL": "down",
+        "US500": "up"
+      },
+      "why": "Oil retreat eases inflation fears, stocks rise"
     },
     {
       "title": "Explainer-What commodity markets can expect from the Trump-Xi summit",
@@ -513,7 +540,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789697971000
+      "firstAt": 1789697971000,
+      "why": "Sanctions bill direction unclear for commodities"
     },
     {
       "title": "Yen falls to 156 per dollar on softer inflation before BOJ rate move - asia.nikkei.com",
@@ -531,7 +559,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789699800000
+      "firstAt": 1789699800000,
+      "dir": {
+        "USD/JPY": "up"
+      },
+      "why": "Yen falls to 156 per dollar"
     },
     {
       "title": "Oil prices fall for 3rd day as supply concerns ease, diplomacy in focus",
@@ -547,7 +579,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789699020000
+      "firstAt": 1789699020000,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Oil prices fall as supply concerns ease"
     },
     {
       "title": "U.S. 10-Year Treasury yield reverses below 5% following Fed rate hike. - CME Group",
@@ -570,7 +606,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789698621000
+      "firstAt": 1789698621000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Yields fall below 5%, bullish for gold"
     },
     {
       "title": "Shipping stocks: how the Hormuz crisis benefited the sector in 2026",
@@ -584,7 +624,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789698309000
+      "firstAt": 1789698309000,
+      "why": "Shipping sector specific news, unclear for index"
     },
     {
       "title": "Gold vs silver: How Fed rate hike, dollar and geopolitical risks affect prices - CNBC TV18",
@@ -604,7 +645,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789698023000
+      "firstAt": 1789698023000,
+      "why": "General analysis of factors, no clear direction"
     },
     {
       "title": "Russia, China Veto UN Monitoring of Iran Sanctions - Yahoo",
@@ -624,7 +666,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789697971000
+      "firstAt": 1789697971000,
+      "why": "UN veto news unclear for immediate price impact"
     },
     {
       "title": "Tusk: Intelligence Warns Russia Plans ‘Accidental’ Hybrid Strikes Against Ukraine’s Allies - Kyiv Post",
@@ -644,7 +687,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789697706000
+      "firstAt": 1789697706000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Geopolitical risk warning boosts safe havens and oil"
     },
     {
       "title": "Grayscale Says Fed Rate Hike Will Have Limited Impact on Crypto Markets - finance.biggo.com",
@@ -2094,10 +2143,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-18T03:59:25.418Z",
-  "headlinesAt": "2026-09-18T03:59:25.418Z",
-  "updatedAt": "2026-09-18T03:59:25.418Z"
+  "calendarAt": "2026-09-18T04:01:13.126Z",
+  "headlinesAt": "2026-09-18T04:01:13.126Z",
+  "updatedAt": "2026-09-18T04:01:13.127Z"
 }
