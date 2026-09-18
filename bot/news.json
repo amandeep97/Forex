@@ -233,7 +233,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789737915000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Supply disruption risk boosts oil and gold"
     },
     {
       "title": "European equities cap 3rd-weekly decline as Saudi supply cuts stings",
@@ -248,7 +254,8 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789734990000,
-      "_kind": null
+      "_kind": null,
+      "why": "European news does not clearly move US stocks"
     },
     {
       "title": "US voter opposition to war on Iran grows to new highs: Poll",
@@ -269,7 +276,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789736967000,
-      "_kind": null
+      "_kind": null,
+      "why": "Poll results lack immediate market directional impact"
     },
     {
       "title": "FIFA’s Infantino ‘must go, no ifs or buts’, blasts German FA vice president",
@@ -284,7 +292,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789736735000
+      "firstAt": 1789736735000,
+      "why": "Football news irrelevant to currency markets"
     },
     {
       "title": "Stocks and bonds rally post-Fed rate hike as Tr... - Pluang",
@@ -301,7 +310,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789736643000
+      "firstAt": 1789736643000,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Stocks rally following Fed rate hike"
     },
     {
       "title": "Russian hybrid attacks against Europe intensifying, says Macron",
@@ -321,7 +334,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789736458000
+      "firstAt": 1789736458000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Geopolitical tension supports gold, oil unclear"
     },
     {
       "title": "Wall St set for tepid open as oil prices fall, Treasury yields rise - Reuters",
@@ -339,7 +356,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789733795000
+      "firstAt": 1789733795000,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Oil prices fall, yields rise"
     },
     {
       "title": "As Houthis grab Bab al-Mandeb, US appears willing to watch from sidelines",
@@ -359,7 +380,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789735949000
+      "firstAt": 1789735949000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Shipping risk in Bab al-Mandeb boosts commodities"
     },
     {
       "title": "Why does Canada want to join the Europe-led JEF military partnership?",
@@ -378,7 +405,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789735875000
+      "firstAt": 1789735875000,
+      "why": "Political news lacks clear immediate market direction"
     },
     {
       "title": "Naphtha prices in Asia drop for third day amid oil weakness",
@@ -394,7 +422,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789735499000
+      "firstAt": 1789735499000,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Naphtha prices drop amid oil weakness"
     },
     {
       "title": "Why mortgage bonds are set to deteriorate, and possibly hit the whole market, according to this Wall Street expert",
@@ -411,7 +443,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789735200000
+      "firstAt": 1789735200000,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Mortgage bond deterioration risks hitting whole market"
     },
     {
       "title": "Tighter financial conditions could keep markets cautious until inflation cools - TradingView",
@@ -434,7 +470,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789735027000
+      "firstAt": 1789735027000,
+      "why": "Cautious markets imply no clear directional move"
     },
     {
       "title": "Oil prices edge lower on easing fears over Saudi supply disruption",
@@ -450,7 +487,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789734990000
+      "firstAt": 1789734990000,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Oil prices edge lower on easing fears"
     },
     {
       "title": "Iran says it strikes an oil tanker, and other Mideast developments - AP News",
@@ -470,7 +511,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789734900000
+      "firstAt": 1789734900000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Iran strikes tanker, boosting risk assets"
     },
     {
       "title": "Tesla’s upcoming product frenzy could leave investors disappointed",
@@ -501,7 +548,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789734418000
+      "firstAt": 1789734418000,
+      "dir": {
+        "USD/JPY": "up"
+      },
+      "why": "Yen slumps, implying dollar strength"
     },
     {
       "title": "U.S. Treasury curve flattens as long-end yields ease off multi-year peaks",
@@ -1918,7 +1969,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-18T13:35:42.834Z",
-  "headlinesAt": "2026-09-18T13:35:42.834Z",
-  "updatedAt": "2026-09-18T13:35:42.834Z"
+  "calendarAt": "2026-09-18T13:37:43.633Z",
+  "headlinesAt": "2026-09-18T13:37:43.633Z",
+  "updatedAt": "2026-09-18T13:37:43.633Z"
 }
