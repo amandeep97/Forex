@@ -314,6 +314,52 @@
       "_kind": null
     },
     {
+      "title": "U.S. stock futures steady as lower oil prices soothe some inflation fears",
+      "link": "https://www.investing.com/news/stock-market-news/us-stock-futures-edge-lower-after-wall-st-rallies-on-softer-oil-yields-4906586",
+      "source": "Investing",
+      "at": 1789727700000,
+      "inst": [
+        "USOIL"
+      ],
+      "ccy": [
+        "OIL",
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789727700000,
+      "_kind": null,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Lower oil prices mentioned directly."
+    },
+    {
+      "title": "What Fed rate hikes mean for gold prices in 2027, according to Goldman",
+      "link": "https://www.investing.com/news/commodities-news/what-fed-rate-hikes-mean-for-gold-prices-in-2027-according-to-goldman-4907014",
+      "source": "Investing Cmdty",
+      "at": 1789727681000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1789726080000,
+      "_kind": null,
+      "why": "Future outlook, no immediate direction."
+    },
+    {
       "title": "‘My children did not attack Iran’: 2bn South Asians suffer from distant war - Al Jazeera",
       "link": "https://news.google.com/rss/articles/CBMiswFBVV95cUxNaWFheEdlMXY2cmN4MS11NWxGSU5pODF5VklKWDR1TVB4T0Jnazh1LXh1YWN0VWFRamRNckRMZHBqNy1JWmhyVGNySWU3Z3lDazJhOTJWYm5FTG84ZHBSdEEwM0pYa3N5QjVrTW0zM1NtZGxfQWQ3SUwzX3I3RUZ3Y3E0X192NlhUZlR0V2lDZWdSdVhjYU9iRWtQeFdUckVUUzhqd19vV2Z0QTFBQmxTSGpOZ9IBuAFBVV95cUxQS3VYaWFubzhIMnM2T2NEUF80OV82OGhNUHNzMjAxVnlXb3BZam5uekF3bW84VTNTMHBKcnNzRnlSanJNNW5vakprOGJVczRNYnVEZl81YkNkZW5xY3Niemk3S3o4dk9mM1JLMDdxS1NrenNPVzd4eVJRRWVfTjlrSzl6ajBPc3VaTG1wLWxhNTh2ZTB1Y1VfclhoUnkxVDZRMmk3OFdZTmt1SmgxdUQ0ZzloZUNYQjFE?oc=5",
       "source": "Wires (geo)",
@@ -332,7 +378,24 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789727624000,
-      "_kind": null
+      "_kind": null,
+      "why": "Humanitarian focus, no market signal."
+    },
+    {
+      "title": "India stocks mixed at close of trade; Nifty 50 up 0.33%",
+      "link": "https://www.investing.com/news/stock-market-news/india-stocks-mixed-at-close-of-trade-nifty-50-up-033-4907007",
+      "source": "Investing",
+      "at": 1789727406000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789727406000,
+      "_kind": null,
+      "why": "Indian stocks, not US."
     },
     {
       "title": "Oil prices set for weekly fall on easing fears over Saudi supply disruption",
@@ -349,7 +412,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789726743000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Set for weekly fall."
     },
     {
       "title": "AM Markets Need to Know: F-35 sale, China tariffs, and more - TradingView",
@@ -378,23 +445,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789726163000
-    },
-    {
-      "title": "European stocks snap two-week slide as Fed resolve",
-      "link": "https://www.investing.com/news/stock-market-news/european-stocks-snap-twoweek-slide-as-fed-resolve-4906682",
-      "source": "Investing",
-      "at": 1789726157000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789726157000
+      "firstAt": 1789726163000,
+      "why": "Reserve movement, no price signal."
     },
     {
       "title": "The Fed’s never been so confident on economic growth. What investors should do now, according to KKR.",
@@ -416,8 +468,9 @@
       ],
       "sev": 1,
       "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789726080000
+      "srcs": 2,
+      "firstAt": 1789726080000,
+      "why": "General confidence, no specific move."
     },
     {
       "title": "The Fed hasn’t been this terse since 2007. What a 130-word statement signals for market stability.",
@@ -440,7 +493,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789726080000
+      "firstAt": 1789726080000,
+      "why": "Statement analysis, no clear direction."
     },
     {
       "title": "The Trump administration is considering business deals with Russia before a ceasefire, not after - Plataforma Media",
@@ -460,7 +514,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789725981000
+      "firstAt": 1789725981000,
+      "why": "Geopolitical speculation, unclear impact."
     },
     {
       "title": "Russia and China Veto U.S. UN Resolution Extending Iran Sanctions Monitoring: how 18 outlets framed it - NewsCord",
@@ -480,7 +535,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789725600000
+      "firstAt": 1789725600000,
+      "why": "UN vote, no immediate market move."
     },
     {
       "title": "Meloni: Putin Seeks European Escalation to Mask Ukraine Failures - Kyiv Post",
@@ -500,7 +556,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789725683000
+      "firstAt": 1789725683000,
+      "why": "Political commentary, no market signal."
     },
     {
       "title": "Mortgage and refinance interest rates today, Friday, September 18, 2026: Rates mostly higher following the Fed",
@@ -522,7 +579,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789725600000
+      "firstAt": 1789725600000,
+      "why": "Mortgage rates, not FX direction."
     },
     {
       "title": "U.S. May Have Committed War Crimes in Iran, U.N. Report Says - Time Magazine",
@@ -543,7 +601,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789725600000
+      "firstAt": 1789725600000,
+      "why": "UN report, no clear market impact."
     },
     {
       "title": "House Approves Russia Sanctions Bill - The Presidential Prayer Team",
@@ -563,7 +622,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789725600000
+      "firstAt": 1789725600000,
+      "why": "Sanctions bill, unclear immediate effect."
     },
     {
       "title": "Australian Dollar soars against Japanese Yen as BoJ rate hike disappoints hawks - FXStreet",
@@ -582,7 +642,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789725319000
+      "firstAt": 1789725319000,
+      "dir": {
+        "USD/JPY": "down"
+      },
+      "why": "BoJ hike disappoints, JPY weakens."
     },
     {
       "title": "‘This is a war’: South Africa battles femicide as women’s bodies pile up",
@@ -677,7 +741,7 @@
       "firstAt": 1789722035000
     },
     {
-      "title": "Gold prices on pace weekly gain as oil prices dip",
+      "title": "Gold prices on pace for weekly gain as oil prices dip",
       "link": "https://www.investing.com/news/commodities-news/gold-rises-as-lower-oil-treasury-yields-ease-inflation-pressure-4906609",
       "source": "Investing Cmdty",
       "at": 1789721818000,
@@ -1125,23 +1189,6 @@
         "NATGAS"
       ],
       "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789715507000
-    },
-    {
-      "title": "Crude Oil WTI trapped between $99.50 and $102.60: Live levels",
-      "link": "https://www.investing.com/news/commodities-news/crude-oil-wti-stalls-near-10446-highs-on-fading-momentum-live-93CH-4898875",
-      "source": "Investing Cmdty",
-      "at": 1789715507000,
-      "inst": [
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "OIL"
-      ],
       "sev": 1,
       "rel": 2,
       "srcs": 1,
@@ -1974,26 +2021,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789685026000
-    },
-    {
-      "title": "Congress passes new sanctions on Russia and countries using Russian energy - pbs.org",
-      "link": "https://news.google.com/rss/articles/CBMirAFBVV95cUxQd2wyM1lQS3kwT1Mtbk42MFFEakowYm9IYjZPNElaQzVlTGY1dUhQNUpxX0k4NERzbDVnWm1QbWhrOVo5VjNtajY0dlk1STQ2NXptVnZ4aEdVV2FodG1VOWpkYXVEdHZhM2x4SjJKeW9NNXFzdDVjQ1NEVW1pdllnaDhEVHNKVzJvMXkxMHFES2RzTWgwWC1XYUlqc0VSVW83dFBhZkR5NGpJbGdG?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMirAFBVV95cUxQd2wyM1lQS3kwT1Mtbk42MFFEakowYm9IYjZPNElaQzVlTGY1dUhQNUpxX0k4NERzbDVnWm1QbWhrOVo5VjNtajY0dlk1STQ2NXptVnZ4aEdVV2FodG1VOWpkYXVEdHZhM2x4SjJKeW9NNXFzdDVjQ1NEVW1pdllnaDhEVHNKVzJvMXkxMHFES2RzTWgwWC1XYUlqc0VSVW83dFBhZkR5NGpJbG",
-      "at": 1789684838000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789684838000
     }
   ],
   "sources": [
@@ -2019,7 +2046,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-18T10:44:27.842Z",
-  "headlinesAt": "2026-09-18T10:44:27.842Z",
-  "updatedAt": "2026-09-18T10:44:27.842Z"
+  "calendarAt": "2026-09-18T10:46:00.367Z",
+  "headlinesAt": "2026-09-18T10:46:00.367Z",
+  "updatedAt": "2026-09-18T10:46:00.367Z"
 }
