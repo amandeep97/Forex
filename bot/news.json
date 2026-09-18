@@ -354,7 +354,13 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789689600000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Escalation fears boost safe havens and oil"
     },
     {
       "title": "Iran war live: Trump weighs ‘big decision’ on Iran, tanker hit in Hormuz",
@@ -375,7 +381,13 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789689600000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "War fears drive risk-off and oil supply concerns"
     },
     {
       "title": "Orion180 prices IPO at $12 per share on Nasdaq",
@@ -389,27 +401,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789688522000
-    },
-    {
-      "title": "House Sends Russia Sanctions Bill to Trump's Desk - The South Shore Press",
-      "link": "https://news.google.com/rss/articles/CBMimgFBVV95cUxQYTg5RUd6MEtkWUZZM0FKQ3VYMll3Z3ROZEdYc0poOElzRm1OOHp4V0JTcFpXM09YMlNqSHFpdGdqa1BTZDFrRWlZZTZYTUNzczlrV1Z4dk10RlRfYkpnTHZuSWhtYzlUVG5wTGJhdGM5eU5OSDcyTjNnVk1GdXFaU01hMlVJWU5VMnlaUWl5VUVLSjJYMVlFX1Zn?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMimgFBVV95cUxQYTg5RUd6MEtkWUZZM0FKQ3VYMll3Z3ROZEdYc0poOElzRm1OOHp4V0JTcFpXM09YMlNqSHFpdGdqa1BTZDFrRWlZZTZYTUNzczlrV1Z4dk10RlRfYkpnTHZuSWhtYzlUVG5wTGJhdGM5eU5OSDcyTjNnVk1GdXFaU01hMlVJWU5VMnlaUWl5VUVLSjJYMVlFX1Zn?oc=5\" target=\"_blank\"",
-      "at": 1789688483000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789688483000
+      "firstAt": 1789688522000,
+      "why": "IPO pricing is neutral for index"
     },
     {
       "title": "Japan August inflation: Headline CPI 1.9% y/y (expected 2%)",
@@ -427,7 +420,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789685767000
+      "firstAt": 1789685767000,
+      "dir": {
+        "USD/JPY": "down"
+      },
+      "why": "Lower inflation weakens yen carry trade"
     },
     {
       "title": "Saudis and Houthis exchange strikes, Yemenis flee by boat as Middle East war spreads",
@@ -446,7 +443,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789686077000
+      "firstAt": 1789686077000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Regional conflict spreads, boosting risk assets"
     },
     {
       "title": "Bitcoin rebounds to $76,000 as markets shrug off U.S. rate hike - CHOSUNBIZ - Chosunbiz",
@@ -464,7 +467,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789687140000
+      "firstAt": 1789687140000,
+      "dir": {
+        "BTC/USDT": "up"
+      },
+      "why": "Bitcoin rebounds to higher price levels"
     },
     {
       "title": "US approves $414M uranium investment in Niger, two years after troops left",
@@ -481,7 +488,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789686985000
+      "firstAt": 1789686985000,
+      "why": "Uranium investment impact on CAD unclear"
     },
     {
       "title": "Turkey Tried to Have Key U.S. Witness in an Iran Sanctions-Busting Case Killed in a New York Jail - Middle East Forum",
@@ -501,7 +509,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789686077000
+      "firstAt": 1789686077000,
+      "why": "Legal news has no clear market impact"
     },
     {
       "title": "New Zealand data, food price inflation in August same as in July",
@@ -519,7 +528,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789685767000
+      "firstAt": 1789685767000,
+      "dir": {
+        "NZD/USD": "up"
+      },
+      "why": "Better trade balance supports New Zealand dollar"
     },
     {
       "title": "Tech leads Wall St to higher close as oil eases, Treasury yields dip - Reuters",
@@ -537,7 +550,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789685026000
+      "firstAt": 1789685026000,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Oil eases as yields dip"
     },
     {
       "title": "Alabama comments on Russia sanctions - WSFA",
@@ -557,7 +574,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789679175000
+      "firstAt": 1789679175000,
+      "why": "Sanctions comments lack immediate market direction"
     },
     {
       "title": "US markets rise after Fed rate hike — Channel NewsAsia - ua.news",
@@ -580,7 +598,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789681684000
+      "firstAt": 1789681684000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Stronger dollar pressures gold and majors"
     },
     {
       "title": "US to allow Iran delegation to attend UN meetings in New York as war passes half-year mark",
@@ -600,7 +624,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789681279000
+      "firstAt": 1789681279000,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Diplomatic engagement reduces geopolitical risk premium"
     },
     {
       "title": "Trump administration approves sale of F-35 jets to Saudi Arabia",
@@ -620,7 +650,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789681097000
+      "firstAt": 1789681097000,
+      "why": "Arms sale has no clear price impact"
     },
     {
       "title": "US Senator Shaheen: China Will Feel Impact Of Russia Sanctions - Radio Free Europe/Radio Liberty",
@@ -640,7 +671,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789678003000
+      "firstAt": 1789678901000,
+      "why": "Sanctions impact on China is speculative"
     },
     {
       "title": "A sweeping US sanctions bill offers Ukraine new leverage on Russia, but enforcement looms - Chicago Tribune",
@@ -699,6 +731,26 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789680120000
+    },
+    {
+      "title": "Russia, China veto U.S. proposal for UN experts to keep monitoring sanctions on Iran - The Hindu",
+      "link": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxNeW1MVGFrSjNCd1Q3YWhwYXpZZC0yQ0Z5d0tFV1hqREYzWGNNaXMxTHpoNXZoOFZKRzF0VU1qVXh3ZzMtaUpMYVVQamIwOXRtckR5ejdTWV9LaWc5ZjBzbzZuRXdLV1BQUC1SdVRLY0tuN3ZxZUpQdzk2eFlzZ0l5ck9pclY4cXRHd0pLNGVZbVRJSm9Ra2pxNzBuRklNdS15aHN0YWJJT05IYVZJVGpYSUR0N053WkUtM2hqUElrdnpQcUZtY3AwWE5RNlM1OXpESTZfX3FndVBFWEh2THfSAeQBQVVfeXFMT1lXdTRDNnRGSHBkc0FOU2dMYnlNS3VVQXp1TE13TlRVUHZmWGJKdGFVTFlPUlUxM3RvR0dXN1VMTlpyUzBlTnBvVEprdTVtY1ZDUDlhMEMtaFN6cU5MWGV1SHFudHNYRmM1SzkyS0RmNzVZUUtYRjdySVRaYjRUZWtsTHJHR01JSXZjcUFvSWVCbll2WjM0bVdRWUptRC1Ua3BLaWZzcF9UZU1UR0c2cGhPTTdLYW9qMDFoOEJnaGN6N2c1dkpaQm13dGFQbU9CUVd2Zlk5RnJWT3hqYmVtU1UyV2Nf?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi3gFBVV95cUxNeW1MVGFrSjNCd1Q3YWhwYXpZZC0yQ0Z5d0tFV1hqREYzWGNNaXMxTHpoNXZoOFZKRzF0VU1qVXh3ZzMtaUpMYVVQamIwOXRtckR5ejdTWV9LaWc5ZjBzbzZuRXdLV1BQUC1SdVRLY0tuN3ZxZUpQdzk2eFlzZ0l5ck9pclY4cXRHd0pLNGVZbVRJSm9Ra2pxNzBuRklNdS15aHN0YWJJT05IYV",
+      "at": 1789679893000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 3,
+      "firstAt": 1789677270000
     },
     {
       "title": "CBOT wheat futures fall on lack of bullish news",
@@ -768,7 +820,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789676520000
+      "firstAt": 1789676760000
     },
     {
       "title": "Russia, China veto UN mandate to monitor Iran sanctions",
@@ -788,7 +840,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789676520000
+      "firstAt": 1789676760000
     },
     {
       "title": "Oil dips, Brent turns negative for the week amid easing Middle East supply fears",
@@ -806,26 +858,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789678712000
-    },
-    {
-      "title": "Russia and China veto US proposal for UN experts to keep monitoring sanctions on Iran - The Times of Israel",
-      "link": "https://news.google.com/rss/articles/CBMiywFBVV95cUxQMk1vdE5MaGt5S3JvVk41WHFtX3Y5ZmhGQ2lSbll2TkxjN1hSamtSaXRiRmttX05wUDZ1enRHVzBCS1NTcjFteDdkWnNFNG1mUzRiV21LNlB2YTVPZ0h6dDBHOUQ3ZmtOOGZOcEZ3al9aYWFNNlA0MHdXenpOSkxVeFBPTHlzVDZJU0ZkWHotV2NYTWhFWG9NQWxiTGVUZWVJY3JYRTh4SjdrV2c0Y1VuZlBua0RDdFoyVFRkd21VRG5PLV9UdDlMLW9RZw?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiywFBVV95cUxQMk1vdE5MaGt5S3JvVk41WHFtX3Y5ZmhGQ2lSbll2TkxjN1hSamtSaXRiRmttX05wUDZ1enRHVzBCS1NTcjFteDdkWnNFNG1mUzRiV21LNlB2YTVPZ0h6dDBHOUQ3ZmtOOGZOcEZ3al9aYWFNNlA0MHdXenpOSkxVeFBPTHlzVDZJU0ZkWHotV2NYTWhFWG9NQWxiTGVUZWVJY3JYRTh4SjdrV2",
-      "at": 1789678003000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 3,
-      "firstAt": 1789675769000
     },
     {
       "title": "Blumenthal touts passage of Russia sanctions bill as CT Dems split - CT Mirror",
@@ -865,6 +897,26 @@
       "firstAt": 1789677426000
     },
     {
+      "title": "UN-backed experts cite possible US war crimes in Iran strikes - KJRH",
+      "link": "https://news.google.com/rss/articles/CBMisgFBVV95cUxNY2dXQmpuT0FPNlU4NHA3NkdsbXhNRE85U1JJTjhFOGU4NEVEMlF4OFFpQXBLUTY1Vnk4ZjhuVmNuUDEyOHMxSTJQVGxJaDRBaDdYSlVqT3FnQV9nVkI3WWVibDdQRUVINEEtNUlkWVpHLXd3bDBtSHhIY3NfOXVfZnRZM3dVUS1QOXc1NkdPeHM5NWpESnZfbU1HUnRfVGRqTUFYRlVGY3hXN3FCTEM3enVB?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMisgFBVV95cUxNY2dXQmpuT0FPNlU4NHA3NkdsbXhNRE85U1JJTjhFOGU4NEVEMlF4OFFpQXBLUTY1Vnk4ZjhuVmNuUDEyOHMxSTJQVGxJaDRBaDdYSlVqT3FnQV9nVkI3WWVibDdQRUVINEEtNUlkWVpHLXd3bDBtSHhIY3NfOXVfZnRZM3dVUS1QOXc1NkdPeHM5NWpESnZfbU1HUnRfVGRqTUFYRlVGY3hXN3",
+      "at": 1789677361000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1789676760000
+    },
+    {
       "title": "Stocks Rally, Shaking Off Fed’s Rate Hike - wsj.com",
       "link": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxNcEY5MXoyN25xbktPM1ZDVUZEbmpiNW5zbTZuMEg4REdwYlRaazREQjFNb1hXbmRRUC1wVXJwX3h6U25WZUFXbDgxbjV1dmpxY3J5MkRmc0szZllwMzBFcGF2dlJiNmNGVEZvcXBzdDQzNF9WYXg3UThlMDVjRVNKUFNQYzZCSmJ2aVg0?oc=5",
       "source": "Wires (macro)",
@@ -899,7 +951,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789677270000
+      "firstAt": 1789676760000
     },
     {
       "title": "US Markets Wrap: Wall Street rebounds after Fed rate hike - businesspost.ie",
@@ -954,6 +1006,26 @@
       "firstAt": 1789677039000
     },
     {
+      "title": "Russia and China veto US proposal for UN experts to keep monitoring sanctions on Iran - AP News",
+      "link": "https://news.google.com/rss/articles/CBMipAFBVV95cUxOeDA2blR2dUlUOUJkM2pMajVRVC1jRTg4VFdPWHc3UXVtb0xQbElWbkxoUkxnaXhfZkFQNkpkVHJmcTlNbE9mbHZqcDRKbXo0YW52WlU3VHBsX3NLeWxUNkFyT2RHMllLVUp0MXVrRERpODk3SmduekVDbTRRdDNHWW5jYm5lVFFkQWs5RjFoQXFGQzQxRWpLdmpiUWdQT3VsZy1YNg?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMipAFBVV95cUxOeDA2blR2dUlUOUJkM2pMajVRVC1jRTg4VFdPWHc3UXVtb0xQbElWbkxoUkxnaXhfZkFQNkpkVHJmcTlNbE9mbHZqcDRKbXo0YW52WlU3VHBsX3NLeWxUNkFyT2RHMllLVUp0MXVrRERpODk3SmduekVDbTRRdDNHWW5jYm5lVFFkQWs5RjFoQXFGQzQxRWpLdmpiUWdQT3VsZy1YNg?oc=5\" t",
+      "at": 1789676760000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 3,
+      "firstAt": 1789675200000
+    },
+    {
       "title": "Tesla’s upcoming product frenzy could leave investors disappointed",
       "link": "https://www.marketwatch.com/story/teslas-upcoming-product-frenzy-could-leave-investors-disappointed-18619fb3?mod=mw_rss_topstories",
       "source": "MarketWatch",
@@ -965,27 +1037,6 @@
       "rel": 1,
       "srcs": 1,
       "firstAt": 1789676580000
-    },
-    {
-      "title": "Press Release: Rep. Dave Min Says He Voted for Russia Sanctions Bill - Quiver Quantitative",
-      "link": "https://news.google.com/rss/articles/CBMipgFBVV95cUxNQUhvOHRYdjlUNXlSY2cwaURMVjdtdHJXak9ROGdFTmMxSC1WRUV1WWw3TW0wWmpXWkFXN0lOekotWXFodFk0M3NiUC1JMGxLek1yZ0xsOE1ZVHBiRG5ac2MtOEttVVZ2b0oyMkJ0MEx2Nll6WmM4OGU5bGNFYVhuelNCZVh5TGxrSEV5NkZxbkJUdTBRX3JXZTZUNGlfdTlBTEl0elpB?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMipgFBVV95cUxNQUhvOHRYdjlUNXlSY2cwaURMVjdtdHJXak9ROGdFTmMxSC1WRUV1WWw3TW0wWmpXWkFXN0lOekotWXFodFk0M3NiUC1JMGxLek1yZ0xsOE1ZVHBiRG5ac2MtOEttVVZ2b0oyMkJ0MEx2Nll6WmM4OGU5bGNFYVhuelNCZVh5TGxrSEV5NkZxbkJUdTBRX3JXZTZUNGlfdTlBTEl0elpB?oc=5\"",
-      "at": 1789676520000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL",
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789675200000
     },
     {
       "title": "Russia sanctions cheers, Democrat tariff fears - Politico",
@@ -1499,7 +1550,27 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789669140000
+      "firstAt": 1789668226000
+    },
+    {
+      "title": "Russia and China veto US draft to extend UN monitoring of Iran sanctions - thenationalnews.com",
+      "link": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxQZXptVERqSmY2OTJXQTdxQVJNM3FBLWN2UHJwT21LV1RmMnlPbmYwQk0yNlV4bHJwel9YS1RON1c3MGNBRkV3MFBoOVJpZmE1TVdSS1JjdmhyQ0tZR3U3eVlCV3RyTkoyQkVoc3pqMFIwOXh6bUdLNmpvYk5rZXhJcVRQOVRvNW1uaEt1NmxBczRNRVliNTV2M2NGV1FUak1UT2FaZmNiZWYzeUJhVHdpUjRoN2RBUUMyWVFRSlhmUzhPUQ?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiwgFBVV95cUxQZXptVERqSmY2OTJXQTdxQVJNM3FBLWN2UHJwT21LV1RmMnlPbmYwQk0yNlV4bHJwel9YS1RON1c3MGNBRkV3MFBoOVJpZmE1TVdSS1JjdmhyQ0tZR3U3eVlCV3RyTkoyQkVoc3pqMFIwOXh6bUdLNmpvYk5rZXhJcVRQOVRvNW1uaEt1NmxBczRNRVliNTV2M2NGV1FUak1UT2FaZmNiZWYzeU",
+      "at": 1789668226000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789668226000
     },
     {
       "title": "US sanctions Iranian financier's crypto exchange, says it processes Hormuz payments - Reuters",
@@ -1522,26 +1593,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789668225000
-    },
-    {
-      "title": "UN Report Cites Possible US War Crimes In Iran Strikes, Crimes Against Humanity By Tehran - Northeast Times",
-      "link": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxOWUEzMlF1WUxvak1qMFdHRWVGR3FJVVI2aWZaWGtrVHJUZ2xiR3d4RjdKc2Y5OXlXMUg4WmxFLW92WEdxQTFReVVWS0RkRzFKbjlnbTljcHc2ZlhSaXdGaWFJeldCbmc0T3BsM29VOEVLdzNENWJJT0JwNTM2NnZ4akRFZE9lN1BvMC1oWmhMaWMtdENxb0p4X2dObGFsSWR6SnlDaGVJQTNlU1JyaTZBdVozYWNZaGdL?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiuAFBVV95cUxOWUEzMlF1WUxvak1qMFdHRWVGR3FJVVI2aWZaWGtrVHJUZ2xiR3d4RjdKc2Y5OXlXMUg4WmxFLW92WEdxQTFReVVWS0RkRzFKbjlnbTljcHc2ZlhSaXdGaWFJeldCbmc0T3BsM29VOEVLdzNENWJJT0JwNTM2NnZ4akRFZE9lN1BvMC1oWmhMaWMtdENxb0p4X2dObGFsSWR6SnlDaGVJQTNlU1",
-      "at": 1789668099000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789666097000
     },
     {
       "title": "Securitize jumps after regulators greenlight some tokenized U.S. stock trading",
@@ -1594,7 +1645,7 @@
       "firstAt": 1789665323000
     },
     {
-      "title": "Human rights experts: ‘Reasonable grounds’ to believe US committed war crimes with Iran strikes - thehill.com",
+      "title": "Human rights experts: ‘Reasonable grounds’ to believe US committed war crimes with Iran strikes - The Hill",
       "link": "https://news.google.com/rss/articles/CBMiggFBVV95cUxQSmxqQ1Jvdy0xVFhhNFczZWpOdVpEdzZfMC01VlBybzRZNlVaV2Rva1ZSQ0w4SEsxLWE4S05xblF4X3ZhYU5CMjVJM205eWt3RDVjOGVBQThVYUc4LXFzcjVQYmJQTTlwN2pyVlJUeWRkMTFURlRhcTdXejVzSHV6dGNR0gGHAUFVX3lxTFBaUmFVLWVxdDJleEZaeTc5TTI4czBnVEdsOVRYb1BraGd2b1otZ1c2bjktTzZnQzltb2xXNzFLZHUxVVMxRHVmZElqNDBNU1lKbXhJVzUtS003ajBJQURDLUxKdGtQV1pXdThuczFHY3dzc0xhTVlMMXNmQW1HS2VVSXhyWnQwWQ?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiggFBVV95cUxQSmxqQ1Jvdy0xVFhhNFczZWpOdVpEdzZfMC01VlBybzRZNlVaV2Rva1ZSQ0w4SEsxLWE4S05xblF4X3ZhYU5CMjVJM205eWt3RDVjOGVBQThVYUc4LXFzcjVQYmJQTTlwN2pyVlJUeWRkMTFURlRhcTdXejVzSHV6dGNR0gGHAUFVX3lxTFBaUmFVLWVxdDJleEZaeTc5TTI4czBnVEdsOVRYb1",
@@ -1668,7 +1719,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789662932000
+      "firstAt": 1789663439000
     },
     {
       "title": "Trump says he faces a “big decision” on whether to launch new attacks on Iran",
@@ -1752,7 +1803,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789663347000
+      "firstAt": 1789664724000
     },
     {
       "title": "Warm words on Canada's EU 'associate membership' but no guarantees",
@@ -1852,26 +1903,6 @@
       "firstAt": 1789663439000
     },
     {
-      "title": "UN-backed experts cite possible US war crimes in Iran strikes - KRCG",
-      "link": "https://news.google.com/rss/articles/CBMinwFBVV95cUxQaHRLZmVzN1FhSEU5MDV6ODk4dFBuVHdQWkNzR2o0NVRBbERwWS1wUTFZMFA3VjRrZ2FMVHVpMzZpWDBiZUlEU084dUV5WkFITDNyWm5LcnBIUDdFQlhySGNEc0Npck0zcUhvQ05QV29tU3JWeUFtUWdZSTRUR0R2RDZIdVVOd2E2dFpfWHNUVVdyYUx2NnZmLVBnUVFuVEE?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMinwFBVV95cUxQaHRLZmVzN1FhSEU5MDV6ODk4dFBuVHdQWkNzR2o0NVRBbERwWS1wUTFZMFA3VjRrZ2FMVHVpMzZpWDBiZUlEU084dUV5WkFITDNyWm5LcnBIUDdFQlhySGNEc0Npck0zcUhvQ05QV29tU3JWeUFtUWdZSTRUR0R2RDZIdVVOd2E2dFpfWHNUVVdyYUx2NnZmLVBnUVFuVEE?oc=5\" target=\"",
-      "at": 1789663347000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789663347000
-    },
-    {
       "title": "European Markets Surge as Fed's Rate Hike Boosts Investor Confidence - Devdiscourse",
       "link": "https://news.google.com/rss/articles/CBMivgFBVV95cUxNTVBqYzJOZ2xVQ3dWbjdqVkJlenAxRzc5a21rZFU3ZjFOa25lQlNOQjJXNW5FdHc1YWNZYUVXTjc2cU16cVdjZl9CaHBjMDNnS1gtMVlkRWZia2Fsa3ZnbHkzOHlqVHY2cFRINkdZb0RXNWxkUTRlT2t2WENVX3ZnYmUzbFh6RC10X0Z6bzRkd2lKamZScEpWUWNkVkdQZjkzU3BJTEstUVNGRjR6bWtjcWprbHZ3QS1YVTNUQkpR0gHDAUFVX3lxTE5TQndjTURSdlpySWVZMkU0b1NEdWY0cmNLcDNRLUJjV2ZWbUtOTG1pLU9RamdZTy11U3ZacWI5ZE9VMFZkNGJNMkF1MS1UTnNvczlEYUVDOUNGNVhhYnh1dFNZNDZnTFZhdkVycllhWVRyaFAwc0ZCNkJfbE52eDZkWlIwTGZJSWh1czJZeGZEZENJeUVpVW5RaFJqcFZ2aTJXcXNkLXdOdm1PZFJUX2IyN2RMekNCVkJJUTlxX2tiY2MxUQ?oc=5",
       "source": "Wires (macro)",
@@ -1893,26 +1924,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789662895000
-    },
-    {
-      "title": "Trump plans to sign Russia sanctions bill 'soon,' White House source says - The Kyiv Independent",
-      "link": "https://news.google.com/rss/articles/CBMioAFBVV95cUxQd0xFMm1XbkRzd3MxMG5WSmpkbWtVSDJHUnRTSzdvbnhfWlNHcFdTb2RPV09OVjFOdnZZb2hTR0oyZ0Q3OHVSeHhfSVN2Mjh5ck5mbWU2X1dIZTJJeDZnTnBGWElBNVFnRXJ6LWRISEx5RldoMEkzUDdJZWxraTZKUjJxRjVYMUNsSmVtdFFMMFBCaWx6dDY4NEFMSjlQM1F2?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMioAFBVV95cUxQd0xFMm1XbkRzd3MxMG5WSmpkbWtVSDJHUnRTSzdvbnhfWlNHcFdTb2RPV09OVjFOdnZZb2hTR0oyZ0Q3OHVSeHhfSVN2Mjh5ck5mbWU2X1dIZTJJeDZnTnBGWElBNVFnRXJ6LWRISEx5RldoMEkzUDdJZWxraTZKUjJxRjVYMUNsSmVtdFFMMFBCaWx6dDY4NEFMSjlQM1F2?oc=5\" target=",
-      "at": 1789662932000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789661887000
     },
     {
       "title": "Markets shift to rate-hike mode after US Fed's hawkish turn - TradingView",
@@ -2069,6 +2080,39 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789656540000
+    },
+    {
+      "title": "Bitcoin steady at $76.5k as markets digest Fed rate hike, M.East tensions - Investing.com",
+      "link": "https://news.google.com/rss/articles/CBMivAFBVV95cUxQaWEwb1l2N3hwRmpmaDNORHRIeGQtOGs1Y0t3NXZ5UzFiZkZaWVRmYTJhdjZLd19iYUpTdVFDOTMzeFAyd1JMb2x6YnZGUTMwZllxOURVdVREWjlXQ3JNQWg5cjExWW0wOEhGTjFmeWlIWU91SEVjMjFzMTJ4aDhjWGFRSTZjN2JuZ19KMVp4bS1YSHB2WkY2VExuNWJfemFyM25TTHRmbGV6MTBCYzM5ZkdLRkw2amptSXExWQ?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMivAFBVV95cUxQaWEwb1l2N3hwRmpmaDNORHRIeGQtOGs1Y0t3NXZ5UzFiZkZaWVRmYTJhdjZLd19iYUpTdVFDOTMzeFAyd1JMb2x6YnZGUTMwZllxOURVdVREWjlXQ3JNQWg5cjExWW0wOEhGTjFmeWlIWU91SEVjMjFzMTJ4aDhjWGFRSTZjN2JuZ19KMVp4bS1YSHB2WkY2VExuNWJfemFyM25TTHRmbGV6MT",
+      "at": 1789656441000,
+      "inst": [
+        "BTC/USDT"
+      ],
+      "ccy": [
+        "USD",
+        "BTC"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789656441000
+    },
+    {
+      "title": "A Chinese AI company just connected its model to Wall Street's leading data providers",
+      "link": "https://www.cnbc.com/2026/09/17/china-moonshot-kimi-financial-services.html",
+      "source": "CNBC Markets",
+      "desc": "The startup Moonshot said it signed on financial industry giants from investment bank CICC to venture capital firms",
+      "at": 1789655425000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789655425000
     }
   ],
   "sources": [
@@ -2094,7 +2138,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-18T00:18:55.326Z",
-  "headlinesAt": "2026-09-18T00:18:55.326Z",
-  "updatedAt": "2026-09-18T00:18:55.326Z"
+  "calendarAt": "2026-09-18T00:20:28.447Z",
+  "headlinesAt": "2026-09-18T00:20:28.447Z",
+  "updatedAt": "2026-09-18T00:20:28.447Z"
 }
