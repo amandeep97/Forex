@@ -321,7 +321,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789726080000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Strong growth confidence implies hawkish Fed, stronger dolla"
     },
     {
       "title": "The Fed hasn’t been this terse since 2007. What a 130-word statement signals for market stability.",
@@ -345,7 +351,35 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789726080000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Hawkish Fed statement signals stronger dollar, lower risk as"
+    },
+    {
+      "title": "The Trump administration is considering business deals with Russia before a ceasefire, not after - Plataforma Media",
+      "link": "https://news.google.com/rss/articles/CBMiogFBVV95cUxOa2F6Wkc5bW43MjliMzNKMTROMm9GdHo3cWtYN1A5cmNwWUN4OVhxeUk4bGxDa3p0SUxzZVBUZ1ZtbXpGNFM5NlZYbEhhT0ozVzF1WEFZVDUyNFhDZnRJd1RQYy1NNjN0QTFaTndmVWV1N0o1WmRwQWc4VUpIRTlsakRtSTJjbGl3VklkS3pySW1pSDFRUUR2MWMtdENkaTRZSFE?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiogFBVV95cUxOa2F6Wkc5bW43MjliMzNKMTROMm9GdHo3cWtYN1A5cmNwWUN4OVhxeUk4bGxDa3p0SUxzZVBUZ1ZtbXpGNFM5NlZYbEhhT0ozVzF1WEFZVDUyNFhDZnRJd1RQYy1NNjN0QTFaTndmVWV1N0o1WmRwQWc4VUpIRTlsakRtSTJjbGl3VklkS3pySW1pSDFRUUR2MWMtdENkaTRZSFE?oc=5\" targ",
+      "at": 1789725981000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789725981000,
+      "_kind": null,
+      "why": "Geopolitical uncertainty unclear for immediate price directi"
     },
     {
       "title": "Mortgage and refinance interest rates today, Friday, September 18, 2026: Rates mostly higher following the Fed",
@@ -368,7 +402,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789725600000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Higher rates imply stronger dollar, bearish for gold and FX."
     },
     {
       "title": "House Approves Russia Sanctions Bill - The Presidential Prayer Team",
@@ -389,7 +429,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789725600000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions bill impact on markets is unclear."
     },
     {
       "title": "Australian Dollar soars against Japanese Yen as BoJ rate hike disappoints hawks - FXStreet",
@@ -409,7 +450,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789725319000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USD/JPY": "down",
+        "AUD/USD": "up"
+      },
+      "why": "AUD up vs JPY; JPY weak implies USD/JPY down."
     },
     {
       "title": "Venezuela nears deal to move $4 billion gold reserve to New York, FT says",
@@ -426,7 +472,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789725277000,
-      "_kind": null
+      "_kind": null,
+      "why": "Reserve movement does not clearly change spot price."
     },
     {
       "title": "Investors buy US stocks at fastest pace in three months, BofA says",
@@ -441,7 +488,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789725276000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Fastest buying pace indicates bullish sentiment for stocks."
     },
     {
       "title": "British sanctions, ‘NAZA’ and the campaign against Israel - The Jerusalem Post",
@@ -463,7 +514,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789725188000,
-      "_kind": null
+      "_kind": null,
+      "why": "Political news has no clear market direction."
     },
     {
       "title": "‘This is a war’: South Africa battles femicide as women’s bodies pile up",
@@ -481,7 +533,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789724623000,
-      "_kind": null
+      "why": "Social issue unrelated to gold price direction."
     },
     {
       "title": "Yen tumbles despite BOJ lifting rates as Ueda pre-empts aggressive tightening",
@@ -497,7 +549,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789723222000
+      "firstAt": 1789723222000,
+      "dir": {
+        "USD/JPY": "up"
+      },
+      "why": "Yen tumbles, implying USD/JPY rises."
     },
     {
       "title": "Iran says it strikes an oil tanker, and other Mideast developments - AP News",
@@ -517,7 +573,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789722360000
+      "firstAt": 1789722360000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Mideast conflict escalation boosts safe havens and oil."
     },
     {
       "title": "Treasury Sanctions Crypto Exchange Behind Iran's Bitcoin Tolls on Hormuz Ships - Yahoo Finance",
@@ -540,7 +602,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789721822000
+      "firstAt": 1789721822000,
+      "dir": {
+        "BTC/USDT": "down"
+      },
+      "why": "Sanctions bearish for crypto; others unclear."
     },
     {
       "title": "Here’s what BoE tightening means for EUR/GBP",
@@ -556,7 +622,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789722035000
+      "firstAt": 1789722035000,
+      "dir": {
+        "GBP/USD": "up"
+      },
+      "why": "BoE tightening supports GBP against USD."
     },
     {
       "title": "Yen slumps to two-week low after BOJ rate hike underwhelms - Yahoo Finance",
@@ -574,7 +644,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789721822000
+      "firstAt": 1789721822000,
+      "dir": {
+        "USD/JPY": "up"
+      },
+      "why": "Yen slumps, implying USD/JPY rises."
     },
     {
       "title": "Gold prices on pace weekly gain as oil prices dip",
@@ -920,27 +994,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789717845000
-    },
-    {
-      "title": "US House passes Russia sanctions bill granting Trump tariff authority - chinadailyasia.com",
-      "link": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE5lSkY3QlRnbnEtNTZ5OXRmeFd3bjU0Z3l6ZmxsaEY0Z1ZyVEx5YkxKbVpERnN0QlBDUEpkdldVckkxTDUzakVOSGh2MC1XaVpId09Xb3pmalQ?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiWEFVX3lxTE5lSkY3QlRnbnEtNTZ5OXRmeFd3bjU0Z3l6ZmxsaEY0Z1ZyVEx5YkxKbVpERnN0QlBDUEpkdldVckkxTDUzakVOSGh2MC1XaVpId09Xb3pmalQ?oc=5\" target=\"_blank\">US House passes Russia sanctions bill granting Trump tariff authority</a>&nbsp;&nbsp;<fo",
-      "at": 1789717836000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL",
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789716716000
     },
     {
       "title": "Crypto is just one channel: how Russia launders corrupt wealth past sanctions - Transparency.org",
@@ -1375,29 +1428,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789710554000
-    },
-    {
-      "title": "Fed rate hike: Will T-bills make a comeback? - The Business Times",
-      "link": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQYW83dnozOUFFUkkzd2Z3OGZZRmVCdmMwNDdkWS1KV1FhSW8xbTFaVzNOcjRHRU9jaWoyQkl5RWxUV1l4cXZxTHJWMkRKV1ZtaEpmR3Fvc3RVLUxHelo4anVPaGx6bXpJQkw0ZF9XQUxQWUhYM0hWMkNsZ0htcGZ1bE0xblNUZnBlYmZqMkZrdEVBOGdvM1Vud1I2UkplaVo2dGRPNkFfVnY5WXBiWXdpUmluSzBvRkNBeVE?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiugFBVV95cUxQYW83dnozOUFFUkkzd2Z3OGZZRmVCdmMwNDdkWS1KV1FhSW8xbTFaVzNOcjRHRU9jaWoyQkl5RWxUV1l4cXZxTHJWMkRKV1ZtaEpmR3Fvc3RVLUxHelo4anVPaGx6bXpJQkw0ZF9XQUxQWUhYM0hWMkNsZ0htcGZ1bE0xblNUZnBlYmZqMkZrdEVBOGdvM1Vud1I2UkplaVo2dGRPNkFfVnY5WX",
-      "at": 1789710120000,
-      "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789710120000
     },
     {
       "title": "South Korea says US-North Korea talks possible, rules out Hormuz deployment",
@@ -2012,6 +2042,26 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789681684000
+    },
+    {
+      "title": "US to allow Iran delegation to attend UN meetings in New York as war passes half-year mark",
+      "link": "https://www.bbc.co.uk/news/articles/c6n8m72r13ngo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC World",
+      "desc": "The BBC understands Iranian President Masoud Pezeshkian and Foreign Minister Abbas Araghchi are among the delegates allowed to enter the US.",
+      "at": 1789681279000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789681279000
     }
   ],
   "sources": [
@@ -2034,10 +2084,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-18T10:13:26.633Z",
-  "headlinesAt": "2026-09-18T10:13:26.633Z",
-  "updatedAt": "2026-09-18T10:13:26.633Z"
+  "calendarAt": "2026-09-18T10:15:16.068Z",
+  "headlinesAt": "2026-09-18T10:15:16.068Z",
+  "updatedAt": "2026-09-18T10:15:16.068Z"
 }
