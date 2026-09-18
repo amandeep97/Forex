@@ -350,7 +350,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789691176000,
-      "_kind": null
+      "_kind": null,
+      "why": "Oil context unclear, focus on stocks"
     },
     {
       "title": "How Alabama’s congressional delegation voted on Russia sanctions bill - WSFA",
@@ -371,7 +372,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789691100000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions vote impact unclear"
     },
     {
       "title": "Gold rises as traders reassess positions after Fed rate hike - Business Recorder",
@@ -389,7 +391,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789689300000
+      "firstAt": 1789689300000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Gold rises explicitly stated"
     },
     {
       "title": "Gold Holds Gain as Lower Oil and Fed Hike Temper Inflation Fears - bloomberg.com",
@@ -409,7 +415,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789689300000
+      "firstAt": 1789689300000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "down"
+      },
+      "why": "Gold holds gain, oil lower"
     },
     {
       "title": "Trump weighs major Iran escalation as China steps up diplomatic push - Iran International",
@@ -429,7 +440,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789689600000
+      "firstAt": 1789689600000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Escalation boosts risk assets"
     },
     {
       "title": "Iran war live: Trump weighs ‘big decision’ on Iran, tanker hit in Hormuz",
@@ -449,7 +466,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789689600000
+      "firstAt": 1789689600000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "War risk boosts safe havens"
     },
     {
       "title": "Market Reverses Overnight After Fed Rate Hike: Chip Stocks Lead US Rally, Gold Reclaims $4,300 - finance.biggo.com",
@@ -468,7 +491,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789689300000
+      "firstAt": 1789689300000,
+      "dir": {
+        "XAU/USD": "up",
+        "US500": "up"
+      },
+      "why": "Gold and US stocks rally"
     },
     {
       "title": "Orion180 prices IPO at $12 per share on Nasdaq",
@@ -482,7 +510,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789688522000
+      "firstAt": 1789688522000,
+      "why": "IPO pricing neutral for index"
     },
     {
       "title": "Japan August inflation: Headline CPI 1.9% y/y (expected 2%)",
@@ -500,7 +529,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789685767000
+      "firstAt": 1789685767000,
+      "dir": {
+        "USD/JPY": "down"
+      },
+      "why": "Lower inflation weakens yen carry"
     },
     {
       "title": "Rising oil, rates and yields brew up stagflation cocktail for markets - Reuters",
@@ -517,7 +550,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789687806000
+      "firstAt": 1789687806000,
+      "dir": {
+        "USOIL": "up"
+      },
+      "why": "Rising oil explicitly stated"
     },
     {
       "title": "Saudis and Houthis exchange strikes, Yemenis flee by boat as Middle East war spreads",
@@ -536,7 +573,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789686077000
+      "firstAt": 1789686077000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "War spreads, risk premium rises"
     },
     {
       "title": "Bitcoin rebounds to $76,000 as markets shrug off U.S. rate hike - CHOSUNBIZ - Chosunbiz",
@@ -554,7 +597,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789687140000
+      "firstAt": 1789687140000,
+      "dir": {
+        "BTC/USDT": "up"
+      },
+      "why": "Bitcoin rebounds explicitly stated"
     },
     {
       "title": "US approves $414M uranium investment in Niger, two years after troops left",
@@ -571,7 +618,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789686985000
+      "firstAt": 1789686985000,
+      "why": "Uranium investment impact unclear"
     },
     {
       "title": "Turkey Tried to Have Key U.S. Witness in an Iran Sanctions-Busting Case Killed in a New York Jail - Middle East Forum",
@@ -591,7 +639,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789686077000
+      "firstAt": 1789686077000,
+      "why": "Legal news, no market impact"
     },
     {
       "title": "New Zealand data, food price inflation in August same as in July",
@@ -609,7 +658,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789685767000
+      "firstAt": 1789685767000,
+      "why": "Inflation data neutral for currency"
     },
     {
       "title": "Tech leads Wall St to higher close as oil eases, Treasury yields dip - Reuters",
@@ -2079,10 +2129,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-18T00:49:10.994Z",
-  "headlinesAt": "2026-09-18T00:49:10.994Z",
-  "updatedAt": "2026-09-18T00:49:10.994Z"
+  "calendarAt": "2026-09-18T00:50:27.666Z",
+  "headlinesAt": "2026-09-18T00:50:27.666Z",
+  "updatedAt": "2026-09-18T00:50:27.666Z"
 }
