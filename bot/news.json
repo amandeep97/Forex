@@ -6,7 +6,7 @@
       "link": "https://news.google.com/rss/articles/CBMitwFBVV95cUxQLWFJZWRXbUxGcFFQelEwdndwMlVhUlRRUm52T2p4R2I1SFd1SDc1eUlkLUJ0WGowYXVmVkUxanhkcTBKUDVSaHVnOVlvUzhXdjh5Rlpycjh0M0kzemJKUm10N1V0ekRQNnhzOTg4OFIxVUI0OW9QUE9ETkNUa05HR0Npck9pQms2ZFNaUEJjaWtydE14TTY4OFVIdDItMFphdFp2Z0N4WVVzc0RleFlMQlZlcUtJTm8?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMitwFBVV95cUxQLWFJZWRXbUxGcFFQelEwdndwMlVhUlRRUm52T2p4R2I1SFd1SDc1eUlkLUJ0WGowYXVmVkUxanhkcTBKUDVSaHVnOVlvUzhXdjh5Rlpycjh0M0kzemJKUm10N1V0ekRQNnhzOTg4OFIxVUI0OW9QUE9ETkNUa05HR0Npck9pQms2ZFNaUEJjaWtydE14TTY4OFVIdDItMFphdFp2Z0N4WVVzc0",
-      "at": 1789701894000,
+      "at": 1789702059000,
       "inst": [
         "XAU/USD",
         "XAG/USD",
@@ -21,8 +21,14 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789701894000,
-      "_kind": null
+      "firstAt": 1789702059000,
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "XAG/USD": "up",
+        "USOIL": "down"
+      },
+      "why": "Oil pullback eases inflation fears, bullish metals"
     },
     {
       "title": "Asia chip, tech stocks track Wall St gains as yields fall",
@@ -38,7 +44,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789701352000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "up",
+        "US100": "up"
+      },
+      "why": "Tech stocks track Wall St gains"
     },
     {
       "title": "Fed Rate Hike Seen as 'Selling the News' — Taiwan Dollar Surges Past NT$31.8, RMB Hits 4-Year High - finance.biggo.com",
@@ -62,7 +73,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789700700000,
-      "_kind": null
+      "why": "Mixed signals, no clear directional bias"
     },
     {
       "title": "Asian stocks rise as oil retreat eases inflation fears, BOJ in focus",
@@ -83,7 +94,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789700668000,
-      "_kind": null
+      "dir": {
+        "USOIL": "down",
+        "US500": "up"
+      },
+      "why": "Oil retreat, Asian stocks rise"
     },
     {
       "title": "Explainer-What commodity markets can expect from the Trump-Xi summit",
@@ -115,7 +130,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789697971000
+      "firstAt": 1789697971000,
+      "why": "Sanctions bill passed, market impact unclear"
     },
     {
       "title": "Yen falls to 156 per dollar on softer inflation before BOJ rate move - Nikkei Asia",
@@ -133,7 +149,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789699800000
+      "firstAt": 1789699800000,
+      "dir": {
+        "USD/JPY": "up"
+      },
+      "why": "Yen falls, dollar strengthens"
     },
     {
       "title": "Oil prices fall for 3rd day as supply concerns ease, diplomacy in focus",
@@ -149,7 +169,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789699020000
+      "firstAt": 1789699020000,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Oil prices fall on supply concerns"
     },
     {
       "title": "U.S. 10-Year Treasury yield reverses below 5% following Fed rate hike. - CME Group",
@@ -172,7 +196,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789698621000
+      "firstAt": 1789698621000,
+      "dir": {
+        "XAU/USD": "up",
+        "EUR/USD": "up",
+        "GBP/USD": "up"
+      },
+      "why": "Yields fall, bullish for risk assets"
     },
     {
       "title": "Shipping stocks: how the Hormuz crisis benefited the sector in 2026",
@@ -186,7 +216,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789698309000
+      "firstAt": 1789698309000,
+      "why": "Historical sector analysis, no current direction"
     },
     {
       "title": "Gold vs silver: How Fed rate hike, dollar and geopolitical risks affect prices - CNBC TV18",
@@ -206,7 +237,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789698023000
+      "firstAt": 1789698023000,
+      "why": "General analysis, no specific price move"
     },
     {
       "title": "Russia, China Veto UN Monitoring of Iran Sanctions - Yahoo",
@@ -226,27 +258,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789697971000
-    },
-    {
-      "title": "Tusk: Intelligence Warns Russia Plans ‘Accidental’ Hybrid Strikes Against Ukraine’s Allies - Kyiv Post",
-      "link": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE5yeVo4RTd2YVkxY193TTNhOU1iZVBBaG9KcVBmYXhQdGJCLUg2VmpqTVhRVVFrSlVuVkR3dEZONGY1Smc1ZzdsQ1JhVQ?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiS0FVX3lxTE5yeVo4RTd2YVkxY193TTNhOU1iZVBBaG9KcVBmYXhQdGJCLUg2VmpqTVhRVVFrSlVuVkR3dEZONGY1Smc1ZzdsQ1JhVQ?oc=5\" target=\"_blank\">Tusk: Intelligence Warns Russia Plans ‘Accidental’ Hybrid Strikes Against Ukraine’s Allies</a>&nbsp;&nbsp",
-      "at": 1789697706000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789697706000
+      "firstAt": 1789697971000,
+      "why": "Geopolitical news, unclear immediate market impact"
     },
     {
       "title": "Grayscale Says Fed Rate Hike Will Have Limited Impact on Crypto Markets - finance.biggo.com",
@@ -264,7 +277,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789697100000
+      "firstAt": 1789697100000,
+      "why": "Limited impact expected on crypto markets"
     },
     {
       "title": "Syria warns Israel poses ‘the greatest threat’ to Middle East stability",
@@ -284,7 +298,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789696734000
+      "firstAt": 1789696734000,
+      "why": "Geopolitical tension, unclear immediate price direction"
     },
     {
       "title": "UN findings show US strikes on Minab could be war crimes",
@@ -301,7 +316,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789696733000
+      "firstAt": 1789696733000,
+      "why": "Geopolitical news, unclear immediate price direction"
     },
     {
       "title": "Gold rises as lower oil, Treasury yields ease inflation pressure - Investing.com",
@@ -321,7 +337,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789694717000
+      "firstAt": 1789694717000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "down"
+      },
+      "why": "Gold rises, oil falls on inflation ease"
     },
     {
       "title": "Will India really face a 100% US tariff? What the new Russia sanctions bill actually allows President Trump to do - Asia News Network",
@@ -1734,6 +1755,23 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789664724000
+    },
+    {
+      "title": "Warm words on Canada's EU 'associate membership' but no guarantees",
+      "link": "https://www.bbc.co.uk/news/articles/crlyqg1ekj4po?at_medium=RSS&at_campaign=rss",
+      "source": "BBC World",
+      "desc": "There is no certainty that the idea will ever get off the ground, let alone become a blueprint for other countries, writes the BBC's Katya Adler.",
+      "at": 1789664383000,
+      "inst": [
+        "USD/CAD"
+      ],
+      "ccy": [
+        "CAD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789664383000
     }
   ],
   "sources": [
@@ -1756,10 +1794,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-18T03:34:25.563Z",
-  "updatedAt": "2026-09-18T03:34:25.563Z"
+  "headlinesAt": "2026-09-18T03:35:42.814Z",
+  "updatedAt": "2026-09-18T03:35:42.814Z"
 }
