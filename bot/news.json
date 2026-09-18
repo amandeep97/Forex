@@ -300,6 +300,29 @@
   ],
   "headlines": [
     {
+      "title": "British sanctions, ‘NAZA’ and the campaign against Israel - The Jerusalem Post",
+      "link": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE5ZcFZHZVlUeTlnVzVybV9xZFBGVmRxWURPMFN3VXYwZnJ4V3dUc3BTdERmbndjUVdfcVhMTnl0aXlDVVMwd3B5Y1pDNVZPTjRYZ08ybUhDdw?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiV0FVX3lxTE5ZcFZHZVlUeTlnVzVybV9xZFBGVmRxWURPMFN3VXYwZnJ4V3dUc3BTdERmbndjUVdfcVhMTnl0aXlDVVMwd3B5Y1pDNVZPTjRYZ08ybUhDdw?oc=5\" target=\"_blank\">British sanctions, ‘NAZA’ and the campaign against Israel</a>&nbsp;&nbsp;<font color=\"#6f",
+      "at": 1789725188000,
+      "inst": [
+        "GBP/USD",
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789725188000,
+      "_kind": null,
+      "why": "Geopolitical headline lacks specific market direction."
+    },
+    {
       "title": "‘This is a war’: South Africa battles femicide as women’s bodies pile up",
       "link": "https://www.aljazeera.com/news/2026/9/18/this-is-a-war-south-africa-battles-femicide-as-womens-bodies-pile-up?traffic_source=rss",
       "source": "Al Jazeera",
@@ -315,7 +338,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789724623000,
-      "_kind": null
+      "_kind": null,
+      "why": "Social issue unrelated to gold prices."
     },
     {
       "title": "3 Energy and Utility Stocks Named Top Analyst Favorites at Raymond James",
@@ -329,7 +353,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789723724000
+      "firstAt": 1789723724000,
+      "why": "Specific stock picks, unclear index impact."
     },
     {
       "title": "Yen tumbles despite BOJ lifting rates as Ueda pre-empts aggressive tightening",
@@ -345,7 +370,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789723222000
+      "firstAt": 1789723222000,
+      "dir": {
+        "USD/JPY": "up"
+      },
+      "why": "Yen tumbles implies dollar strength."
     },
     {
       "title": "+200%: Tech and energy winners extend AI-picked strategy leads despite Fed hike",
@@ -367,7 +396,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789723065000
+      "firstAt": 1789723065000,
+      "why": "Stock strategy news, unclear FX impact."
     },
     {
       "title": "Venezuela nears deal to move $4 billion gold reserve to New York, FT says",
@@ -383,7 +413,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789722052000
+      "firstAt": 1789722052000,
+      "why": "Reserve movement, unclear price direction."
     },
     {
       "title": "Here’s what BoE tightening means for EUR/GBP",
@@ -399,7 +430,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789722035000
+      "firstAt": 1789722035000,
+      "why": "BoE tightening affects EUR/GBP, not GBP/USD directly."
     },
     {
       "title": "Gold prices on pace weekly gain as oil prices dip",
@@ -417,7 +449,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789721818000
+      "firstAt": 1789721818000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "down"
+      },
+      "why": "Gold gaining, oil dipping explicitly stated."
     },
     {
       "title": "Global markets feel pressure as central banks turn hawkish on inflation - Modern Diplomacy",
@@ -440,7 +477,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789721446000
+      "firstAt": 1789721446000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Hawkish central banks strengthen dollar, weaken pairs."
     },
     {
       "title": "A Chinese AI company just connected its model to Wall Street's leading data providers",
@@ -455,7 +498,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789720871000
+      "firstAt": 1789720871000,
+      "why": "AI news, unclear immediate index impact."
     },
     {
       "title": "‘Just ask Grok’: How ISIL is using Big Tech’s AI to build bombs",
@@ -470,7 +514,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789720799000
+      "firstAt": 1789720799000,
+      "why": "Security news, unclear tech stock impact."
     },
     {
       "title": "Oil extends declines amid easing supply concerns, ongoing diplomatic efforts",
@@ -486,7 +531,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789720789000
+      "firstAt": 1789720789000,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Oil extends declines explicitly stated."
     },
     {
       "title": "European natural gas set to snap five-week winning streak",
@@ -500,7 +549,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789720409000
+      "firstAt": 1789720409000,
+      "dir": {
+        "NATGAS": "down"
+      },
+      "why": "Snapping winning streak implies price drop."
     },
     {
       "title": "Oil prices fall 2% on easing fears over Saudi supply disruption",
@@ -516,7 +569,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789720226000
+      "firstAt": 1789720226000,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Oil prices fall explicitly stated."
     },
     {
       "title": "Markets predict interest rate hike as cost of living bites - news24.com.au",
@@ -539,7 +596,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789719299000
+      "firstAt": 1789719299000,
+      "why": "Rate hike prediction, unclear immediate direction."
     },
     {
       "title": "Yen slides despite BOJ rate hike, dollar holds gains amid hawkish Fed By Investing.com - Investing.com South Africa",
@@ -1970,23 +2028,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789675200000
-    },
-    {
-      "title": "Stocks Rally, Shaking Off Fed’s Rate Hike - WSJ",
-      "link": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxNcEY5MXoyN25xbktPM1ZDVUZEbmpiNW5zbTZuMEg4REdwYlRaazREQjFNb1hXbmRRUC1wVXJwX3h6U25WZUFXbDgxbjV1dmpxY3J5MkRmc0szZllwMzBFcGF2dlJiNmNGVEZvcXBzdDQzNF9WYXg3UThlMDVjRVNKUFNQYzZCSmJ2aVg0?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiiwFBVV95cUxNcEY5MXoyN25xbktPM1ZDVUZEbmpiNW5zbTZuMEg4REdwYlRaazREQjFNb1hXbmRRUC1wVXJwX3h6U25WZUFXbDgxbjV1dmpxY3J5MkRmc0szZllwMzBFcGF2dlJiNmNGVEZvcXBzdDQzNF9WYXg3UThlMDVjRVNKUFNQYzZCSmJ2aVg0?oc=5\" target=\"_blank\">Stocks Rally, Shaki",
-      "at": 1789677360000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789677360000
     }
   ],
   "sources": [
@@ -2009,10 +2050,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-18T09:59:11.615Z",
-  "headlinesAt": "2026-09-18T09:59:11.615Z",
-  "updatedAt": "2026-09-18T09:59:11.615Z"
+  "calendarAt": "2026-09-18T10:00:31.645Z",
+  "headlinesAt": "2026-09-18T10:00:31.645Z",
+  "updatedAt": "2026-09-18T10:00:31.645Z"
 }
