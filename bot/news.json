@@ -195,7 +195,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789750200000,
-      "_kind": null
+      "_kind": null,
+      "why": "General market overview, no specific direction."
     },
     {
       "title": "Why Shares of Okta Stock Shot Up 10% This Week",
@@ -225,7 +226,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789749396000,
-      "_kind": null
+      "_kind": null,
+      "why": "Altcoins rally, BTC direction unclear."
     },
     {
       "title": "Why investors’ best move in reaction to Fed’s rate hike is doing nothing at all",
@@ -243,7 +245,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789749540000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Stocks should beat bonds despite rates."
     },
     {
       "title": "Mbappe leaves Nike, signs with On as Swiss sportswear maker forays into soccer",
@@ -260,7 +266,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789749400000,
-      "_kind": null
+      "_kind": null,
+      "why": "Corporate news, no clear FX impact."
     },
     {
       "title": "Crypto stocks surge as bitcoin and ethereum rally sharply",
@@ -279,7 +286,13 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789749370000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "up",
+        "BTC/USDT": "up",
+        "ETH/USDT": "up"
+      },
+      "why": "Crypto stocks and coins surge."
     },
     {
       "title": "Kevin O’Leary Is Buying Crypto Again — His Gold Theory Points to $760K Bitcoin",
@@ -298,7 +311,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789749370000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "BTC/USDT": "up"
+      },
+      "why": "Bullish BTC prediction, gold theory unclear."
     },
     {
       "title": "Using A Limit Order To Buy Occidental Petroleum At A Discount",
@@ -313,7 +330,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789749274000,
-      "_kind": null
+      "_kind": null,
+      "why": "Trading strategy, not oil price news."
     },
     {
       "title": "Three words from Kevin Warsh have Wall Street wondering how far the Fed will go with rate hikes",
@@ -331,7 +349,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789749223000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Uncertainty over further rate hikes."
     },
     {
       "title": "Two signs investors don’t have to fear an AI slowdown",
@@ -361,7 +383,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789748757000
+      "firstAt": 1789748757000,
+      "dir": {
+        "USD/CAD": "up"
+      },
+      "why": "Canadian dollar weakens against USD."
     },
     {
       "title": "The CFTC Just Sent Its Crypto Rules to the White House. What’s in the Filing, and How Quickly Could It Move?",
@@ -377,7 +403,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789748654000
+      "firstAt": 1789748654000,
+      "why": "Regulatory filing, no immediate price impact."
     },
     {
       "title": "Boeing selloff overdone despite CEO's production comments, BofA says",
@@ -416,7 +443,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789748563000
+      "firstAt": 1789748563000,
+      "why": "Bond market driving stocks, direction unclear."
     },
     {
       "title": "JPMorgan says one asset class could soon beat gold",
@@ -432,7 +460,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789748316000
+      "firstAt": 1789748316000,
+      "dir": {
+        "XAU/USD": "down"
+      },
+      "why": "Another asset class could beat gold."
     },
     {
       "title": "Two-Year U.S. Treasury Yield Reaches New Multi-Year High - wsj.com",
@@ -455,7 +487,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789748160000
+      "firstAt": 1789748160000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Higher yields strengthen USD, weaken others."
     },
     {
       "title": "Angola to ship fewer crude oil cargoes in November",
@@ -472,7 +510,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789747912000
+      "firstAt": 1789747912000,
+      "dir": {
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Supply reduction supports oil prices."
     },
     {
       "title": "Stock Market Today: Dow Pressured As Yields Hit 5%; Strategy Soars As Bitcoin Price Tops $80,500 (Live Coverage)",
@@ -489,7 +532,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789747477000
+      "firstAt": 1789747477000,
+      "dir": {
+        "US30": "down",
+        "BTC/USDT": "up"
+      },
+      "why": "Dow pressured, Bitcoin tops $80,500."
     },
     {
       "title": "Russia's $118 Billion Arctic Oil Bet Pushes Ahead Despite Sanctions - Crude Oil Prices Today | OilPrice.com",
@@ -921,7 +969,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789741758000
+      "firstAt": 1789741158000
     },
     {
       "title": "Revealed: Ed Miliband ignored MI6’s warnings over Israel sanctions - The Spectator",
@@ -962,6 +1010,24 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789740527000
+    },
+    {
+      "title": "Bank of Japan Rate Hike Is a Warning Shot for Global Markets - Investorideas.com",
+      "link": "https://news.google.com/rss/articles/CBMitgFBVV95cUxOeDlNSmRfSzQ4eTlOTU9qUjRBYVdiUVZyYWdOc3l0LWhQdkllbFZlNWVZVUl0eWtzb29SeFdqbkluNlBuaWU0YmxObGdxZEgzcU12aFo1dnR1Smk0cDV5WDZSampfSFljU3VSR3hySjJtcnZyLVBNcFRqUV9CdzVkNVFQdnpyU3l6VTNjZHRXMl9oaTRLLTREUUFPZlFtZ3hRZ2tVcFhXY0xkLW9rNzJaUmVBTkgwQQ?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMitgFBVV95cUxOeDlNSmRfSzQ4eTlOTU9qUjRBYVdiUVZyYWdOc3l0LWhQdkllbFZlNWVZVUl0eWtzb29SeFdqbkluNlBuaWU0YmxObGdxZEgzcU12aFo1dnR1Smk0cDV5WDZSampfSFljU3VSR3hySjJtcnZyLVBNcFRqUV9CdzVkNVFQdnpyU3l6VTNjZHRXMl9oaTRLLTREUUFPZlFtZ3hRZ2tVcFhXY0xkLW",
+      "at": 1789741158000,
+      "inst": [
+        "USD/JPY"
+      ],
+      "ccy": [
+        "JPY",
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789741158000
     },
     {
       "title": "Russia seizes assets of French firms, summons UK envoy over Ukraine support",
@@ -1193,12 +1259,18 @@
       "firstAt": 1789735499000
     },
     {
-      "title": "Tighter financial conditions could keep markets cautious until inflation cools (SP500:) - Seeking Alpha",
-      "link": "https://news.google.com/rss/articles/CBMitwFBVV95cUxQQ2EtQS1CY0c5LUpwLUtJTVhkcWYwNzBBX2lpQ28yRF9GTFNQV0FZa29HWndvXzVEU1NQLTI2NVBaY3g1Qzk1NnJmSVhGUlc3T2VPY2w0bW81b2NFR05LT3hnSF9SckxGTm5QQkU4NHp6SWNYMklxV1J1YzlQbVdtWWYxVjJtX2tJUUNaNlhHeXRHeFZGenFYRUlQZ1FoQnRBR0ZBaXFfVzVqYXJHREQ0VGNxX1pmTkU?oc=5",
+      "title": "Tighter financial conditions could keep markets cautious until inflation cools - TradingView",
+      "link": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxOTTl0QnNVLXNxUXRtS1d0SzAwZ1BDQm9vaGFKakNQNllYUWRiZlFfVHRBckxWakFvblE3Wk9PWjFlQy1MS1lmdHpxRGJvM21wZWw0M2ZJTk9sdXNiSEJFS0RuQlAya3BpRGRnclhQOWkxN25VZGgyeDFxMHAyamFqaHpfd0JWdGdNTGJRdG1pc3Qwc3ZCZ3dfcU13MzJoZDZZNEI5MVRvTmJ4ejdPTjNMT0FVNE9rX2lxVkE2UGlSMGtXV2s3QjNodjZzQzg5RDlEeVp6ZmxZRHc?oc=5",
       "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMitwFBVV95cUxQQ2EtQS1CY0c5LUpwLUtJTVhkcWYwNzBBX2lpQ28yRF9GTFNQV0FZa29HWndvXzVEU1NQLTI2NVBaY3g1Qzk1NnJmSVhGUlc3T2VPY2w0bW81b2NFR05LT3hnSF9SckxGTm5QQkU4NHp6SWNYMklxV1J1YzlQbVdtWWYxVjJtX2tJUUNaNlhHeXRHeFZGenFYRUlQZ1FoQnRBR0ZBaXFfVzVqYX",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi2AFBVV95cUxOTTl0QnNVLXNxUXRtS1d0SzAwZ1BDQm9vaGFKakNQNllYUWRiZlFfVHRBckxWakFvblE3Wk9PWjFlQy1MS1lmdHpxRGJvM21wZWw0M2ZJTk9sdXNiSEJFS0RuQlAya3BpRGRnclhQOWkxN25VZGgyeDFxMHAyamFqaHpfd0JWdGdNTGJRdG1pc3Qwc3ZCZ3dfcU13MzJoZDZZNEI5MVRvTmJ4ej",
       "at": 1789735027000,
       "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
         "US500"
       ],
       "ccy": [
@@ -1208,6 +1280,24 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789735027000
+    },
+    {
+      "title": "Yen slumps to two-week low after BOJ rate hike underwhelms - Yahoo Finance",
+      "link": "https://news.google.com/rss/articles/CBMinAFBVV95cUxPUk1idE5mMTYydGh2YjhJLWpNYmFYREM4QWNKeklqaFZrbm1KVmlyQU1NR3JCYktrMi1jc0RST2Q3VmR1cFdOaTZJS0I2MTdManpPNzhySjRvVDBGSDhBU1JZNWhkTk94STVpaHFjaGZLV3ZnRDdvMnBlNVNWUjBISlhpNGhRTHkwSlFGbHY3Z25DWlotQ0JhRGFrLS0?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMinAFBVV95cUxPUk1idE5mMTYydGh2YjhJLWpNYmFYREM4QWNKeklqaFZrbm1KVmlyQU1NR3JCYktrMi1jc0RST2Q3VmR1cFdOaTZJS0I2MTdManpPNzhySjRvVDBGSDhBU1JZNWhkTk94STVpaHFjaGZLV3ZnRDdvMnBlNVNWUjBISlhpNGhRTHkwSlFGbHY3Z25DWlotQ0JhRGFrLS0?oc=5\" target=\"_bla",
+      "at": 1789734418000,
+      "inst": [
+        "USD/JPY"
+      ],
+      "ccy": [
+        "JPY",
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789734418000
     },
     {
       "title": "U.S. Treasury curve flattens as long-end yields ease off multi-year peaks",
@@ -1305,24 +1395,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789732099000
-    },
-    {
-      "title": "Bank of Japan rate hike is a warning shot for global markets - finchannel",
-      "link": "https://news.google.com/rss/articles/CBMiygFBVV95cUxQS0RkaDVheTVMejY0NXZjd2Y2MnNMeHE4elJCdEpTdHcxd0VWV1dhOXRKZFNqNFZ4eFp3UjBIdktzYU1Jbml6N2xXay1GZHkxTUxrWUhPbVFUVWNUOWYyNmFNNU1ZOFN2YUZqUk1IWV9DRVJDZEpSc2tCRFFhSE5RSjVSNk5UNkJyNG9paHFjYmM0czBGTkNKZngyYVQ5V2s5YjUxRkFfaEw0V0F0NTdzUzhuWjY1LXM3eXN5VHBwaTR1QU5yMHFWN3Zn?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiygFBVV95cUxQS0RkaDVheTVMejY0NXZjd2Y2MnNMeHE4elJCdEpTdHcxd0VWV1dhOXRKZFNqNFZ4eFp3UjBIdktzYU1Jbml6N2xXay1GZHkxTUxrWUhPbVFUVWNUOWYyNmFNNU1ZOFN2YUZqUk1IWV9DRVJDZEpSc2tCRFFhSE5RSjVSNk5UNkJyNG9paHFjYmM0czBGTkNKZngyYVQ5V2s5YjUxRkFfaEw0V0",
-      "at": 1789731637000,
-      "inst": [
-        "USD/JPY"
-      ],
-      "ccy": [
-        "JPY",
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789731637000
     },
     {
       "title": "Bitcoin and ethereum prices today, Friday, September 18, 2026: Crypto prices rise as investors move past CLARITY's failure",
@@ -1785,26 +1857,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789719299000
-    },
-    {
-      "title": "Houthi rebel offensive fuels fears of escalation in the Middle East and Europe - theconversation.com",
-      "link": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQRlVMQk9vUnM5MVRubEJzX2I5VkNsNl9sMV9LcjVxd2R4WGxoOF9UazhzTW9DdjFnLUcxLVM0OXVVS0RXV2d1ZWwtbnY5ZUdnVG1sRFRCYUw2cl91NnJkeVJCSkV3X3lTTUJVaEgyOXhINElqNFBadEZMZ3VqYjV1QS1XdHJwYU9jVExUT29IRk5Fa0xsVmpBbG5nTm1ZT2Iza0ZhYTM0WkdXdlUyUXZkVElhNA?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiswFBVV95cUxQRlVMQk9vUnM5MVRubEJzX2I5VkNsNl9sMV9LcjVxd2R4WGxoOF9UazhzTW9DdjFnLUcxLVM0OXVVS0RXV2d1ZWwtbnY5ZUdnVG1sRFRCYUw2cl91NnJkeVJCSkV3X3lTTUJVaEgyOXhINElqNFBadEZMZ3VqYjV1QS1XdHJwYU9jVExUT29IRk5Fa0xsVmpBbG5nTm1ZT2Iza0ZhYTM0WkdXdl",
-      "at": 1789718934000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789718934000
     }
   ],
   "sources": [
@@ -1830,7 +1882,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-18T17:00:58.339Z",
-  "headlinesAt": "2026-09-18T17:00:58.339Z",
-  "updatedAt": "2026-09-18T17:00:58.339Z"
+  "calendarAt": "2026-09-18T17:02:28.381Z",
+  "headlinesAt": "2026-09-18T17:02:28.381Z",
+  "updatedAt": "2026-09-18T17:02:28.381Z"
 }
