@@ -1,204 +1,5 @@
 {
-  "calendar": [
-    {
-      "title": "Pending Home Sales m/m",
-      "country": "USD",
-      "impact": "low",
-      "at": 1789653600000,
-      "forecast": "-0.2%",
-      "previous": "-2.3%",
-      "actual": ""
-    },
-    {
-      "title": "CB Leading Index m/m",
-      "country": "AUD",
-      "impact": "low",
-      "at": 1789655400000,
-      "forecast": "",
-      "previous": "0.3%",
-      "actual": ""
-    },
-    {
-      "title": "Natural Gas Storage",
-      "country": "USD",
-      "impact": "low",
-      "at": 1789655400000,
-      "forecast": "49B",
-      "previous": "40B",
-      "actual": ""
-    },
-    {
-      "title": "FPI m/m",
-      "country": "NZD",
-      "impact": "low",
-      "at": 1789685100000,
-      "forecast": "",
-      "previous": "0.1%",
-      "actual": ""
-    },
-    {
-      "title": "Trade Balance",
-      "country": "NZD",
-      "impact": "low",
-      "at": 1789685100000,
-      "forecast": "-1775M",
-      "previous": "-1949M",
-      "actual": ""
-    },
-    {
-      "title": "RBA Gov Bullock Speaks",
-      "country": "AUD",
-      "impact": "medium",
-      "at": 1789687800000,
-      "forecast": "",
-      "previous": "",
-      "actual": ""
-    },
-    {
-      "title": "National Core CPI y/y",
-      "country": "JPY",
-      "impact": "low",
-      "at": 1789687800000,
-      "forecast": "1.8%",
-      "previous": "1.8%",
-      "actual": ""
-    },
-    {
-      "title": "BOJ Policy Rate",
-      "country": "JPY",
-      "impact": "high",
-      "at": 1789700040000,
-      "forecast": "<1.25%",
-      "previous": "<1.00%",
-      "actual": ""
-    },
-    {
-      "title": "Monetary Policy Statement",
-      "country": "JPY",
-      "impact": "high",
-      "at": 1789700040000,
-      "forecast": "",
-      "previous": "",
-      "actual": ""
-    },
-    {
-      "title": "German PPI m/m",
-      "country": "EUR",
-      "impact": "low",
-      "at": 1789711200000,
-      "forecast": "0.6%",
-      "previous": "1.1%",
-      "actual": ""
-    },
-    {
-      "title": "Retail Sales m/m",
-      "country": "GBP",
-      "impact": "medium",
-      "at": 1789711200000,
-      "forecast": "-0.2%",
-      "previous": "-0.5%",
-      "actual": ""
-    },
-    {
-      "title": "BOJ Press Conference",
-      "country": "JPY",
-      "impact": "high",
-      "at": 1789713000000,
-      "forecast": "",
-      "previous": "",
-      "actual": ""
-    },
-    {
-      "title": "Current Account",
-      "country": "EUR",
-      "impact": "low",
-      "at": 1789718400000,
-      "forecast": "30.7B",
-      "previous": "35.1B",
-      "actual": ""
-    },
-    {
-      "title": "ECOFIN Meetings",
-      "country": "EUR",
-      "impact": "low",
-      "at": 1789726500000,
-      "forecast": "",
-      "previous": "",
-      "actual": ""
-    },
-    {
-      "title": "Eurogroup Meetings",
-      "country": "EUR",
-      "impact": "low",
-      "at": 1789726500000,
-      "forecast": "",
-      "previous": "",
-      "actual": ""
-    },
-    {
-      "title": "ECB President Lagarde Speaks",
-      "country": "EUR",
-      "impact": "medium",
-      "at": 1789727400000,
-      "forecast": "",
-      "previous": "",
-      "actual": ""
-    },
-    {
-      "title": "Capacity Utilization Rate",
-      "country": "USD",
-      "impact": "low",
-      "at": 1789737300000,
-      "forecast": "76.4%",
-      "previous": "76.3%",
-      "actual": ""
-    },
-    {
-      "title": "Industrial Production m/m",
-      "country": "USD",
-      "impact": "low",
-      "at": 1789737300000,
-      "forecast": "0.3%",
-      "previous": "0.2%",
-      "actual": ""
-    },
-    {
-      "title": "FOMC Member Bowman Speaks",
-      "country": "USD",
-      "impact": "low",
-      "at": 1789738200000,
-      "forecast": "",
-      "previous": "",
-      "actual": ""
-    },
-    {
-      "title": "CB Leading Index m/m",
-      "country": "USD",
-      "impact": "low",
-      "at": 1789740000000,
-      "forecast": "0.1%",
-      "previous": "0.2%",
-      "actual": ""
-    },
-    {
-      "title": "FOMC Member Schmid Speaks",
-      "country": "USD",
-      "impact": "low",
-      "at": 1789746300000,
-      "forecast": "",
-      "previous": "",
-      "actual": ""
-    },
-    {
-      "title": "ECOFIN Meetings",
-      "country": "EUR",
-      "impact": "low",
-      "at": 1789812900000,
-      "forecast": "",
-      "previous": "",
-      "actual": ""
-    }
-  ],
+  "calendar": [],
   "headlines": [
     {
       "title": "Why mortgage bonds are set to deteriorate, and possibly hit the whole market, according to this Wall Street expert",
@@ -216,7 +17,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789735200000,
-      "_kind": null
+      "_kind": null,
+      "why": "Mortgage bond risk unclear for equities"
     },
     {
       "title": "Tighter financial conditions could keep markets cautious until inflation cools (SP500:) - Seeking Alpha",
@@ -234,7 +36,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789735027000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Tighter conditions keep markets cautious"
     },
     {
       "title": "Oil prices edge lower on easing fears over Saudi supply disruption",
@@ -251,7 +57,38 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789734990000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Oil prices edge lower"
+    },
+    {
+      "title": "Iran says it strikes an oil tanker, and other Mideast developments - AP News",
+      "link": "https://news.google.com/rss/articles/CBMinwFBVV95cUxNeWdlRjU5QTRNU0tfUUpTVW1iYUNBQ3hWejBlMVBaWTFEbFh1MkVtM1QzamhsY240NFQ3aW1vTUdMb0JaVUk2QWY1WE9SZWNqLUpzWVI4OFpyWlN1b0pXTW5vZzNEc3ZqZV9wdVowMGpzeHJub1ZFTWtoZGRyRklIbnR2d19mOVhhWG5GdkxTdTB1bktBRHFMSlVGbEZ5Mk0?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMinwFBVV95cUxNeWdlRjU5QTRNU0tfUUpTVW1iYUNBQ3hWejBlMVBaWTFEbFh1MkVtM1QzamhsY240NFQ3aW1vTUdMb0JaVUk2QWY1WE9SZWNqLUpzWVI4OFpyWlN1b0pXTW5vZzNEc3ZqZV9wdVowMGpzeHJub1ZFTWtoZGRyRklIbnR2d19mOVhhWG5GdkxTdTB1bktBRHFMSlVGbEZ5Mk0?oc=5\" target=\"",
+      "at": 1789734900000,
+      "inst": [
+        "USOIL",
+        "XAU/USD",
+        "UKOIL"
+      ],
+      "ccy": [
+        "OIL",
+        "XAU"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789734900000,
+      "_kind": null,
+      "dir": {
+        "USOIL": "up",
+        "XAU/USD": "up",
+        "UKOIL": "up"
+      },
+      "why": "Iran strikes tanker, supply fears rise"
     },
     {
       "title": "Tesla’s upcoming product frenzy could leave investors disappointed",
@@ -283,7 +120,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789734750000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "EUR/USD": "down"
+      },
+      "why": "ECB hikes won't solve inflation"
     },
     {
       "title": "U.S. Treasury curve flattens as long-end yields ease off multi-year peaks",
@@ -305,7 +146,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789732200000
+      "firstAt": 1789732200000,
+      "why": "Treasury curve flattens, yields ease"
     },
     {
       "title": "Can global equities keep rising? UBS sees these factors driving upside",
@@ -319,7 +161,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789733503000
+      "firstAt": 1789733503000,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "UBS sees factors driving upside"
     },
     {
       "title": "investingLive European session wrap: Yen slides after BOJ hike as markets stay on edge",
@@ -339,7 +185,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789733227000
+      "firstAt": 1789733227000,
+      "dir": {
+        "USD/JPY": "up"
+      },
+      "why": "Yen slides after BOJ hike"
     },
     {
       "title": "Fire engulfs Zaporizhzhia mall in Ukraine after Russian attack – video - The Guardian",
@@ -359,7 +209,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789732980000
+      "firstAt": 1789732980000,
+      "why": "Ukraine mall fire, no clear market impact"
     },
     {
       "title": "Vlasiuk names countries that could face tariffs after Russia sanctions bill is signed - Ukrinform",
@@ -379,7 +230,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789732800000
+      "firstAt": 1789732800000,
+      "why": "Russia sanctions bill, unclear market impact"
     },
     {
       "title": "Wall Street is betting Trump backs down on Iran — but what if the ‘TACO’ trade fails this time?",
@@ -394,7 +246,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789732260000
+      "firstAt": 1789732260000,
+      "why": "Uncertainty over Trump-Iran trade outcome"
     },
     {
       "title": "The 10-year Treasury is having its worst run in over 100 years. Why investors are buying bonds anyway.",
@@ -417,7 +270,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789732200000
+      "firstAt": 1789732200000,
+      "why": "Bond buying despite high yields"
     },
     {
       "title": "Stocks making the biggest moves premarket: Netflix, Nucor, Xenon Pharmaceuticals & more",
@@ -432,7 +286,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789732099000
+      "firstAt": 1789732099000,
+      "why": "Individual stock moves, no index direction"
     },
     {
       "title": "Bank of Japan rate hike is a warning shot for global markets - finchannel",
@@ -450,7 +305,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789731637000
+      "firstAt": 1789731637000,
+      "dir": {
+        "USD/JPY": "up"
+      },
+      "why": "BOJ hike weakens yen"
     },
     {
       "title": "Bitcoin and ethereum prices today, Friday, September 18, 2026: Crypto prices rise as investors move past CLARITY's failure",
@@ -467,7 +326,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789731625000
+      "firstAt": 1789731625000,
+      "dir": {
+        "BTC/USDT": "up",
+        "ETH/USDT": "up"
+      },
+      "why": "Crypto prices rise"
     },
     {
       "title": "A sideways market and rising earnings are presenting a buying opportunity for this crucial sector",
@@ -504,10 +368,10 @@
     },
     {
       "title": "Rostov Airfield Strike: Six Russian Aircraft Hit - MiGFlug",
-      "link": "https://news.google.com/rss/articles/CBMilgFBVV95cUxQVE1fQ1lUbVBUWUUzdU50eXdTclhlOEd2WXdhbEQyWG1pQXVWOWJkOWNwMnhKTGlWNWtzMnNIYlA3TF82UkQ3VHRaU08zYkUzeGlZMHdJX3U3TnJMUWxsbC02M2U4YW5UdnozbzBZaVFpVnJWQmpUMU43MVpzTDVlS1RzVmlwa05MQzRBU3o3aVRnTjJDdWc?oc=5",
+      "link": "https://news.google.com/rss/articles/CBMilgFBVV95cUxNXzJGa0c0ejJTZ3J0X1lmaTRoaDVpSmJFa2JpbF83UXRxRFVzc3pxMmtjNXVuNTU3MEthVDNMMjRuTW9EX3l1YWtQTGg1QUUyLXV5UUxya3VUN2NLYy0ycUp3M1MwRkx2QW9vUTRpLU01ZjZnV3pveDZrWm1aNkYtRWVGdmszWVVEamNraEIxMDRpSlRBVmc?oc=5",
       "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMilgFBVV95cUxQVE1fQ1lUbVBUWUUzdU50eXdTclhlOEd2WXdhbEQyWG1pQXVWOWJkOWNwMnhKTGlWNWtzMnNIYlA3TF82UkQ3VHRaU08zYkUzeGlZMHdJX3U3TnJMUWxsbC02M2U4YW5UdnozbzBZaVFpVnJWQmpUMU43MVpzTDVlS1RzVmlwa05MQzRBU3o3aVRnTjJDdWc?oc=5\" target=\"_blank\">Rost",
-      "at": 1789729863000,
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMilgFBVV95cUxNXzJGa0c0ejJTZ3J0X1lmaTRoaDVpSmJFa2JpbF83UXRxRFVzc3pxMmtjNXVuNTU3MEthVDNMMjRuTW9EX3l1YWtQTGg1QUUyLXV5UUxya3VUN2NLYy0ycUp3M1MwRkx2QW9vUTRpLU01ZjZnV3pveDZrWm1aNkYtRWVGdmszWVVEamNraEIxMDRpSlRBVmc?oc=5\" target=\"_blank\">Rost",
+      "at": 1789729853000,
       "inst": [
         "XAU/USD",
         "USOIL",
@@ -520,7 +384,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789728493000
+      "firstAt": 1789729853000
     },
     {
       "title": "Australian Dollar rises as RBA keeps rate hike option alive - FXStreet",
@@ -594,26 +458,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789728711000
-    },
-    {
-      "title": "Ukrainian Strike Cripples Russian Orion Drone Operations in Crimea - UNITED24 Media",
-      "link": "https://news.google.com/rss/articles/CBMiswFBVV95cUxON0hTREtUMEk5QlkzOGFuMjJHQXJHbU1tNzNab1drR3RWNllTMzRTbU9YNUtXTkVGVURvbUMwWUhNSS1PbFdEeEZCZmR2X2VtN0l1VWppQTd3RXNxUzhLN29qTUl5cmI1LTFJdVJMS3h1V29UdDJOWjRqWGNJWDIzQzV6YndHbWE5cmt1SEwtdTBsM3BvdUpzR0dsbWIxQ1BzczZkN0JrT2c3LVVxVE9rQkh3bw?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiswFBVV95cUxON0hTREtUMEk5QlkzOGFuMjJHQXJHbU1tNzNab1drR3RWNllTMzRTbU9YNUtXTkVGVURvbUMwWUhNSS1PbFdEeEZCZmR2X2VtN0l1VWppQTd3RXNxUzhLN29qTUl5cmI1LTFJdVJMS3h1V29UdDJOWjRqWGNJWDIzQzV6YndHbWE5cmt1SEwtdTBsM3BvdUpzR0dsbWIxQ1BzczZkN0JrT2c3LV",
-      "at": 1789728493000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789728493000
     },
     {
       "title": "Blumenthal touts passage of Russia sanctions bill as CT Dems split - Hartford Business Journal",
@@ -813,7 +657,7 @@
       "firstAt": 1789726080000
     },
     {
-      "title": "The Trump administration is considering business deals with Russia before a ceasefire, not after - plataformamedia.com",
+      "title": "The Trump administration is considering business deals with Russia before a ceasefire, not after - Plataforma Media",
       "link": "https://news.google.com/rss/articles/CBMiogFBVV95cUxOa2F6Wkc5bW43MjliMzNKMTROMm9GdHo3cWtYN1A5cmNwWUN4OVhxeUk4bGxDa3p0SUxzZVBUZ1ZtbXpGNFM5NlZYbEhhT0ozVzF1WEFZVDUyNFhDZnRJd1RQYy1NNjN0QTFaTndmVWV1N0o1WmRwQWc4VUpIRTlsakRtSTJjbGl3VklkS3pySW1pSDFRUUR2MWMtdENkaTRZSFE?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiogFBVV95cUxOa2F6Wkc5bW43MjliMzNKMTROMm9GdHo3cWtYN1A5cmNwWUN4OVhxeUk4bGxDa3p0SUxzZVBUZ1ZtbXpGNFM5NlZYbEhhT0ozVzF1WEFZVDUyNFhDZnRJd1RQYy1NNjN0QTFaTndmVWV1N0o1WmRwQWc4VUpIRTlsakRtSTJjbGl3VklkS3pySW1pSDFRUUR2MWMtdENkaTRZSFE?oc=5\" targ",
@@ -943,26 +787,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789723222000
-    },
-    {
-      "title": "Iran says it strikes an oil tanker, and other Mideast developments - AP News",
-      "link": "https://news.google.com/rss/articles/CBMinwFBVV95cUxNeWdlRjU5QTRNU0tfUUpTVW1iYUNBQ3hWejBlMVBaWTFEbFh1MkVtM1QzamhsY240NFQ3aW1vTUdMb0JaVUk2QWY1WE9SZWNqLUpzWVI4OFpyWlN1b0pXTW5vZzNEc3ZqZV9wdVowMGpzeHJub1ZFTWtoZGRyRklIbnR2d19mOVhhWG5GdkxTdTB1bktBRHFMSlVGbEZ5Mk0?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMinwFBVV95cUxNeWdlRjU5QTRNU0tfUUpTVW1iYUNBQ3hWejBlMVBaWTFEbFh1MkVtM1QzamhsY240NFQ3aW1vTUdMb0JaVUk2QWY1WE9SZWNqLUpzWVI4OFpyWlN1b0pXTW5vZzNEc3ZqZV9wdVowMGpzeHJub1ZFTWtoZGRyRklIbnR2d19mOVhhWG5GdkxTdTB1bktBRHFMSlVGbEZ5Mk0?oc=5\" target=\"",
-      "at": 1789722360000,
-      "inst": [
-        "USOIL",
-        "XAU/USD",
-        "UKOIL"
-      ],
-      "ccy": [
-        "OIL",
-        "XAU"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789722360000
     },
     {
       "title": "Treasury Sanctions Crypto Exchange Behind Iran's Bitcoin Tolls on Hormuz Ships - Yahoo Finance",
@@ -1212,7 +1036,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789719032000
+      "firstAt": 1789717926000
     },
     {
       "title": "Houthi rebel offensive fuels fears of escalation in the Middle East and Europe - The Conversation",
@@ -1233,6 +1057,26 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789718934000
+    },
+    {
+      "title": "Russia adapts a training missile to lead its ballistic onslaught of Ukraine - Reuters",
+      "link": "https://news.google.com/rss/articles/CBMivgFBVV95cUxOeUNWVzAzWVRGVXc5RkhoNEFoVkNIbGZob2gyU2k0NmhuRXVqckx6NTh5R1BQTHlnMENfN1dXa2RYVGVnenRjQVJhdFQ0c2hHTjQzTjB1bW4xVVB0R1pHUDZYYk1oN2FDNUN2dEk5UXA5N3RaeXVVWnRBZWRDY043aEE3SmprQl9RMFdpWFJ3a2dkZDF0Mk5UemV1b0c2UldEaENtQWxIZjhHclBROXBOVHlZcmRWczk3SDJaaWJR?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMivgFBVV95cUxOeUNWVzAzWVRGVXc5RkhoNEFoVkNIbGZob2gyU2k0NmhuRXVqckx6NTh5R1BQTHlnMENfN1dXa2RYVGVnenRjQVJhdFQ0c2hHTjQzTjB1bW4xVVB0R1pHUDZYYk1oN2FDNUN2dEk5UXA5N3RaeXVVWnRBZWRDY043aEE3SmprQl9RMFdpWFJ3a2dkZDF0Mk5UemV1b0c2UldEaENtQWxIZjhHcl",
+      "at": 1789717926000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789717926000
     },
     {
       "title": "Iran’s Isolation Grows After U.S. Imposes Sweeping Sanctions on Airlines - The New York Times",
@@ -1557,26 +1401,6 @@
       "firstAt": 1789713221000
     },
     {
-      "title": "Russia adapts a training missile to lead its ballistic onslaught of Ukraine - Reuters",
-      "link": "https://news.google.com/rss/articles/CBMivgFBVV95cUxOeUNWVzAzWVRGVXc5RkhoNEFoVkNIbGZob2gyU2k0NmhuRXVqckx6NTh5R1BQTHlnMENfN1dXa2RYVGVnenRjQVJhdFQ0c2hHTjQzTjB1bW4xVVB0R1pHUDZYYk1oN2FDNUN2dEk5UXA5N3RaeXVVWnRBZWRDY043aEE3SmprQl9RMFdpWFJ3a2dkZDF0Mk5UemV1b0c2UldEaENtQWxIZjhHclBROXBOVHlZcmRWczk3SDJaaWJR?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMivgFBVV95cUxOeUNWVzAzWVRGVXc5RkhoNEFoVkNIbGZob2gyU2k0NmhuRXVqckx6NTh5R1BQTHlnMENfN1dXa2RYVGVnenRjQVJhdFQ0c2hHTjQzTjB1bW4xVVB0R1pHUDZYYk1oN2FDNUN2dEk5UXA5N3RaeXVVWnRBZWRDY043aEE3SmprQl9RMFdpWFJ3a2dkZDF0Mk5UemV1b0c2UldEaENtQWxIZjhHcl",
-      "at": 1789713079000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789713079000
-    },
-    {
       "title": "Oman oil escape route: How ship-to-ship transfers work — despite big risks",
       "link": "https://www.aljazeera.com/news/2026/9/18/oman-oil-escape-route-how-ship-to-ship-transfers-work-despite-big?traffic_source=rss",
       "source": "Al Jazeera",
@@ -1849,6 +1673,26 @@
       "firstAt": 1789702642000
     },
     {
+      "title": "Russia, China Veto UN Monitoring of Iran Sanctions - Yahoo",
+      "link": "https://news.google.com/rss/articles/CBMilgFBVV95cUxOTENYVTN5WVpPWVZWOGdKVk1zRkFxcEEwRUphemowbTBNVWQyZnZ2VkQ3anhHRTVRMjNsdEFFTjM2YVg3X0dzMm0zX0xWT2FzREhsMEZHUHJLRDVUSzFrbHFzdlhSSldUNHNaUWJJRE93b0xXcUdRVFptcGo0bWlHVjc4dnY3Vk1XeVNwVTlKazJIUE5FaEE?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMilgFBVV95cUxOTENYVTN5WVpPWVZWOGdKVk1zRkFxcEEwRUphemowbTBNVWQyZnZ2VkQ3anhHRTVRMjNsdEFFTjM2YVg3X0dzMm0zX0xWT2FzREhsMEZHUHJLRDVUSzFrbHFzdlhSSldUNHNaUWJJRE93b0xXcUdRVFptcGo0bWlHVjc4dnY3Vk1XeVNwVTlKazJIUE5FaEE?oc=5\" target=\"_blank\">Russ",
+      "at": 1789697971000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789697971000
+    },
+    {
       "title": "Grayscale Says Fed Rate Hike Will Have Limited Impact on Crypto Markets - finance.biggo.com",
       "link": "https://news.google.com/rss/articles/CBMidkFVX3lxTE1MRDB0OU1ZSF92dFlxbjF1ajJxSG1lY3hmQVYzWkQyMU9va283bzdhQ1BtVlo0VG1vbXY0RzV4XzRCc1RCTE1TVTlFdnFkTFNnOWN3bUpPYno1cnNwSFlFTnBXVXNpUThBOG91dHh5LW1HYk1LMGc?oc=5",
       "source": "Wires (macro)",
@@ -1904,10 +1748,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-18T12:47:26.340Z",
-  "headlinesAt": "2026-09-18T12:47:26.340Z",
-  "updatedAt": "2026-09-18T12:47:26.340Z"
+  "calendarAt": null,
+  "headlinesAt": "2026-09-18T12:48:43.523Z",
+  "updatedAt": "2026-09-18T12:48:43.524Z"
 }
