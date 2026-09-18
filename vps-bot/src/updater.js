@@ -91,6 +91,9 @@ class Updater {
         checkedAt: this.checkedAt ? new Date(this.checkedAt).toISOString() : null,
         bootedAt: this.bootedAt || (this.bootedAt = new Date().toISOString()),
         lastError: this.lastError,
+        // The last tick's memory breakdown, so a restart loop can be diagnosed
+        // from the published file instead of over someone's shoulder.
+        mem: this.mem || null,
         ...extra,
       };
       const cur = await this.github.readJSON(VERSION_PATH).catch(() => null);
@@ -98,7 +101,7 @@ class Updater {
       // the publish that precedes a self-update restart is written by the OLD
       // process and therefore carries the OLD boot time, so without this the
       // file would keep claiming an uptime that ended minutes ago.
-      const same = cur?.content && ['sha', 'behind', 'autoUpdate', 'lastError', 'bootedAt']
+      const same = cur?.content && ['sha', 'behind', 'autoUpdate', 'lastError', 'bootedAt', 'mem']
         .every(k => JSON.stringify(cur.content[k]) === JSON.stringify(payload[k]));
       if (same) return;
       this.versionSha = await this.github.writeJSON(
