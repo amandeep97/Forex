@@ -314,7 +314,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789723222000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USD/JPY": "up"
+      },
+      "why": "Yen tumbles, dollar strengthens"
     },
     {
       "title": "Venezuela nears deal to move $4 billion gold reserve to New York, FT says",
@@ -330,7 +334,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789722052000
+      "firstAt": 1789722052000,
+      "why": "Gold reserve move unclear impact"
     },
     {
       "title": "Here’s what BoE tightening means for EUR/GBP",
@@ -346,7 +351,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789722035000
+      "firstAt": 1789722035000,
+      "why": "BoE tightening impact unclear"
     },
     {
       "title": "Gold prices on pace weekly gain as oil prices dip",
@@ -364,7 +370,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789721818000
+      "firstAt": 1789721818000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "down"
+      },
+      "why": "Gold gains, oil dips"
     },
     {
       "title": "Global markets feel pressure as central banks turn hawkish on inflation - Modern Diplomacy",
@@ -387,7 +398,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789721446000
+      "firstAt": 1789721446000,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Hawkish banks pressure markets"
     },
     {
       "title": "A Chinese AI company just connected its model to Wall Street's leading data providers",
@@ -402,7 +419,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789720871000
+      "firstAt": 1789720871000,
+      "why": "AI data partnership neutral"
     },
     {
       "title": "‘Just ask Grok’: How ISIL is using Big Tech’s AI to build bombs",
@@ -417,7 +435,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789720799000
+      "firstAt": 1789720799000,
+      "why": "AI security issue neutral"
     },
     {
       "title": "Oil extends declines amid easing supply concerns, ongoing diplomatic efforts",
@@ -433,7 +452,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789720789000
+      "firstAt": 1789720789000,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Oil declines on supply easing"
     },
     {
       "title": "Indonesia stocks lower at close of trade; IDX Composite Index down 0.46%",
@@ -447,7 +470,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789720503000
+      "firstAt": 1789720503000,
+      "why": "Indonesia stocks irrelevant to US"
     },
     {
       "title": "European natural gas set to snap five-week winning streak",
@@ -461,7 +485,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789720409000
+      "firstAt": 1789720409000,
+      "dir": {
+        "NATGAS": "down"
+      },
+      "why": "Gas snaps winning streak"
     },
     {
       "title": "Oil prices fall 2% on easing fears over Saudi supply disruption",
@@ -477,7 +505,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789720226000
+      "firstAt": 1789720226000,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "Oil falls on supply fears"
     },
     {
       "title": "Yen slides despite BOJ rate hike, dollar holds gains amid hawkish Fed By Investing.com - Investing.com South Africa",
@@ -495,7 +527,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789719975000
+      "firstAt": 1789719975000,
+      "dir": {
+        "USD/JPY": "up"
+      },
+      "why": "Yen slides, dollar holds"
     },
     {
       "title": "UBS sees EUR/USD long opportunity on central bank dynamics",
@@ -517,7 +553,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789719692000
+      "firstAt": 1789719692000,
+      "dir": {
+        "EUR/USD": "up"
+      },
+      "why": "UBS sees EUR long opportunity"
     },
     {
       "title": "Revealed: Ed Miliband ignored MI6’s warnings over Israel sanctions - The Spectator",
@@ -537,7 +577,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789719579000
+      "firstAt": 1789719579000,
+      "why": "Political news irrelevant to markets"
     },
     {
       "title": "Factbox-Texas power plant, nuclear projects under discussion in South Korea’s US investment package",
@@ -553,7 +594,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789719505000
+      "firstAt": 1789719505000,
+      "why": "Nuclear investment unclear for gold"
     },
     {
       "title": "Sterling today: Pound gains as UK retail sales beat and dollar cools",
@@ -2005,7 +2047,7 @@
       "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-18T09:44:26.214Z",
-  "headlinesAt": "2026-09-18T09:44:26.214Z",
-  "updatedAt": "2026-09-18T09:44:26.214Z"
+  "calendarAt": "2026-09-18T09:45:58.228Z",
+  "headlinesAt": "2026-09-18T09:45:58.228Z",
+  "updatedAt": "2026-09-18T09:45:58.228Z"
 }
