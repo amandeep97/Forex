@@ -364,6 +364,21 @@ class ForexBot {
         + `heap ${mb(m.heapUsed)}/${mb(m.heapTotal)} ext ${mb(m.external)}`
         + (this._phases.length ? ` · ${this._phases.join(' ')}` : '');
       this.log(`mem ${line}`);
+      // Published from HERE, not from the updater's own check. That check runs
+      // at the START of a tick and then only every fifteen minutes, so the
+      // first publish after a boot carried no reading at all — nothing had
+      // finished a tick yet — and the process was dying before the next one was
+      // due. The field stayed null through every restart.
+      //
+      // Only when it has not been published since boot, or when RSS has moved
+      // 25MB since the last one: enough to watch it climb, not so much that a
+      // diagnostic becomes a commit a minute.
+      const rssNow = mb(m.rss);
+      if (this._memPublishedAt == null || Math.abs(rssNow - this._memPublishedAt) >= 25) {
+        this._memPublishedAt = rssNow;
+        this.updater.mem = line;
+        this.updater.publish().catch(() => {});
+      }
       // Published as well as logged, so this can be read without an SSH
       // session. Diagnosing the restart loop has cost several rounds of "run
       // this, paste the output" already, and the next person — or the next me,
