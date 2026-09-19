@@ -96,7 +96,18 @@ function recordShutdown(how, extra = {}) {
     softFailures,
     ...extra,
   };
-  try { fs.writeFileSync(BLACK_BOX, JSON.stringify(rec)); } catch { /* best effort */ }
+  // NOT a silent catch. "The record could not be written" and "the process was
+  // killed before it could write one" produce the same empty result, and only
+  // one of them is a finding about the bot. Silently swallowing this would have
+  // let a broken instrument masquerade as a diagnosis — which is exactly the
+  // mistake this file exists to stop making.
+  try {
+    fs.writeFileSync(BLACK_BOX, JSON.stringify(rec));
+    rec.recorded = true;
+  } catch (e) {
+    rec.recorded = false;
+    try { fs.writeSync(2, `[${rec.at}] BLACK BOX WRITE FAILED: ${e.message}\n`); } catch { /* nothing left */ }
+  }
   try {
     fs.writeSync(2, `[${rec.at}] ${how} — shutting down · rss ${rec.rssMB}MB `
       + `heap ${rec.heapMB} ext ${rec.extMB} · up ${rec.uptimeS}s · soft ${softFailures}\n`);
@@ -125,6 +136,18 @@ process.on('exit', code => {
 });
 
 bot.lastShutdown = takeShutdownRecord();
+
+// Checked once at boot, so "no shutdown record" can be read as a fact about the
+// process rather than a fact about the filesystem. Without this, an unwritable
+// directory looks exactly like a SIGKILL, forever.
+try {
+  fs.writeFileSync(`${BLACK_BOX}.probe`, '1');
+  fs.unlinkSync(`${BLACK_BOX}.probe`);
+} catch (e) {
+  console.error(`[${stamp()}] BLACK BOX UNWRITABLE at ${BLACK_BOX} — `
+    + `a missing shutdown record proves nothing while this is true: ${e.message}`);
+  bot.blackBoxBroken = e.message;
+}
 
 async function tick() {
   try {
