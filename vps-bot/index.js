@@ -64,18 +64,67 @@ process.on('uncaughtException', e => survive('Uncaught exception', e));
 // SIGHUP is added because it is the one ordinary way a process is asked to
 // leave that nothing here was listening for.
 const fs = require('node:fs');
-for (const sig of ['SIGTERM', 'SIGINT', 'SIGHUP']) {
-  process.on(sig, () => {
-    const m = process.memoryUsage();
-    const mb = v => Math.round(v / 1048576);
-    try {
-      fs.writeSync(2, `[${stamp()}] ${sig} — shutting down · rss ${mb(m.rss)}MB `
-        + `heap ${mb(m.heapUsed)}/${mb(m.heapTotal)} ext ${mb(m.external)} `
-        + `· up ${Math.round(process.uptime())}s · soft failures ${softFailures}\n`);
-    } catch { /* a closed fd at shutdown must not mask the signal itself */ }
-    process.exit(0);
-  });
+const path = require('node:path');
+
+// ── A black box, so nobody has to read a log again ──────────────────────────
+//
+// Diagnosing why this process keeps restarting has cost hours of "run this,
+// paste the output", and every one of those round trips went through someone's
+// phone. It should never have needed a human. The process knows how it died;
+// it just had nowhere durable to write it.
+//
+// So the last moments are recorded to a LOCAL file, synchronously, and the next
+// boot picks it up and publishes it to bot/vps-version.json before deleting it.
+// Synchronous because an exiting process cannot be trusted to finish a network
+// call, and local-then-forward because the one thing it definitely can do is
+// write a small file.
+//
+// The absence of the file is itself the diagnosis, and it is the answer that
+// has been missing all along: if a boot finds no record, the previous process
+// did not receive a signal and did not throw. It was SIGKILLed — the OOM
+// killer, or something calling kill -9 — and no amount of logging inside the
+// process could ever have shown that.
+const BLACK_BOX = path.join(__dirname, '.last-shutdown.json');
+
+function recordShutdown(how, extra = {}) {
+  const m = process.memoryUsage();
+  const mb = v => Math.round(v / 1048576);
+  const rec = {
+    how, at: stamp(),
+    rssMB: mb(m.rss), heapMB: mb(m.heapUsed), extMB: mb(m.external),
+    uptimeS: Math.round(process.uptime()),
+    softFailures,
+    ...extra,
+  };
+  try { fs.writeFileSync(BLACK_BOX, JSON.stringify(rec)); } catch { /* best effort */ }
+  try {
+    fs.writeSync(2, `[${rec.at}] ${how} — shutting down · rss ${rec.rssMB}MB `
+      + `heap ${rec.heapMB} ext ${rec.extMB} · up ${rec.uptimeS}s · soft ${softFailures}\n`);
+  } catch { /* a closed fd at shutdown must not mask the signal itself */ }
+  return rec;
 }
+
+/** Read and clear the previous process's record. Null means it was killed. */
+function takeShutdownRecord() {
+  try {
+    const raw = fs.readFileSync(BLACK_BOX, 'utf8');
+    fs.unlinkSync(BLACK_BOX);
+    return JSON.parse(raw);
+  } catch { return null; }
+}
+
+for (const sig of ['SIGTERM', 'SIGINT', 'SIGHUP']) {
+  process.on(sig, () => { recordShutdown(sig); process.exit(0); });
+}
+// A deliberate exit — the updater restarting into new code — is recorded too,
+// so a planned restart is never mistaken for an unexplained one.
+process.on('exit', code => {
+  try {
+    if (!fs.existsSync(BLACK_BOX)) recordShutdown(`exit(${code})`);
+  } catch { /* nothing left to do at this point */ }
+});
+
+bot.lastShutdown = takeShutdownRecord();
 
 async function tick() {
   try {

@@ -99,6 +99,10 @@ class Updater {
         // The last tick's memory breakdown, so a restart loop can be diagnosed
         // from the published file instead of over someone's shoulder.
         mem: this.mem || null,
+        // How the PREVIOUS process died, recorded by it and carried here by
+        // this one. `null` is not missing data — it means no signal and no
+        // throw, which is to say it was killed outright.
+        lastShutdown: this.lastShutdown === undefined ? null : this.lastShutdown,
         ...extra,
       };
       const cur = await this.github.readJSON(VERSION_PATH).catch(() => null);
@@ -106,7 +110,7 @@ class Updater {
       // the publish that precedes a self-update restart is written by the OLD
       // process and therefore carries the OLD boot time, so without this the
       // file would keep claiming an uptime that ended minutes ago.
-      const same = cur?.content && ['sha', 'behind', 'autoUpdate', 'lastError', 'bootedAt', 'mem']
+      const same = cur?.content && ['sha', 'behind', 'autoUpdate', 'lastError', 'bootedAt', 'mem', 'lastShutdown']
         .every(k => JSON.stringify(cur.content[k]) === JSON.stringify(payload[k]));
       if (same) return;
       this.versionSha = await this.github.writeJSON(
