@@ -17,7 +17,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789834500000,
-      "_kind": null
+      "_kind": null,
+      "why": "Personal anecdote, no market impact"
     },
     {
       "title": "Trump officially signs Russia sanctions bill into law | Morning in America - newsnationnow.com",
@@ -38,7 +39,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789833983000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Sanctions boost gold, hurt oil"
     },
     {
       "title": "Marvell (MRVL) and GlobalFoundries (GFS) Rise on Expanded Deal: What Investors Should Know",
@@ -74,7 +81,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789833420000,
-      "_kind": null
+      "_kind": null,
+      "why": "Vague warning, direction unclear"
     },
     {
       "title": "Investors Borrowed $1.45 Trillion to Buy Stocks. Is the Market One Correction Away From a Margin-Call Avalanche?",
@@ -89,28 +97,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789833251000,
-      "_kind": null
-    },
-    {
-      "title": "Latvian president: Most NATO countries could not repel Russian missile attack - The New Voice of Ukraine",
-      "link": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxOQ2hoejJ2MjVkcENMaWZWNjF0N1hEbVYxa3ZtOE4yalVzNXNfM0lOREpSbzNvWkJrUE9hbWkyS1dUZzRqUXFTaXZMclFOcDJOa0dTSWtEbndfVXVlcmhzci1jLTVmRkV2NE1oMFdhNlBkcmxWRENfSTU1bi11Q2RRLTQzUDd1OVVSOWk0UXNpcmxHbXE3azBBeVp0cnZtWlVWQW9XeW9IR2VpeHc4SUgzSjlhV1p6alZ2Ymdr0gG3AUFVX3lxTE9XcDNBNnR2ZEprR256cUFaTjhxR2d2ZUtnRUxkOUVPSG1RVHJmRmFxNFRmdVItb2hFX29Ta2ZIMldpU2MwcUxndDFJZDNkOFA2WlZuYjNKVmJNZ1VMc3VDTUxUQUN1VElRUUxKcU56VmtZUEE5TmwxNGx1WGJ3NTltSUFNSWJRejVsc3UzU29jd0EwYlF3X2dacVpDcEJqV1N3N3pCS1EyRHF0TzZic3RLcmdEZjBXMA?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiuwFBVV95cUxOQ2hoejJ2MjVkcENMaWZWNjF0N1hEbVYxa3ZtOE4yalVzNXNfM0lOREpSbzNvWkJrUE9hbWkyS1dUZzRqUXFTaXZMclFOcDJOa0dTSWtEbndfVXVlcmhzci1jLTVmRkV2NE1oMFdhNlBkcmxWRENfSTU1bi11Q2RRLTQzUDd1OVVSOWk0UXNpcmxHbXE3azBBeVp0cnZtWlVWQW9XeW9IR2VpeH",
-      "at": 1789833000000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789833000000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "Margin debt implies correction risk"
     },
     {
       "title": "What S&P 500 Gains of 9.5% in the First Half Signal for the Rest of the Year",
@@ -124,7 +115,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789832100000
+      "firstAt": 1789832100000,
+      "why": "Reflective on past gains, no clear signal"
     },
     {
       "title": "First Phosphate secures Swiss backing for mine - ICYMI",
@@ -140,7 +132,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789832040000
+      "firstAt": 1789832040000,
+      "why": "Company news, no currency impact"
     },
     {
       "title": "Anthropic IPO: 1 Key Lesson Investors Can Learn From SpaceX",
@@ -204,26 +197,6 @@
       "firstAt": 1789831200000
     },
     {
-      "title": "Russia reports ‘powerful’ cyberattacks on second day of parliamentary vote",
-      "link": "https://www.aljazeera.com/news/2026/9/19/russia-reports-powerful-cyberattacks-on-second-day-of-parliamentary-vote?traffic_source=rss",
-      "source": "Al Jazeera",
-      "desc": "This is Russia's first election since it invaded Ukraine, and is expected to gauge public support for the ongoing war.",
-      "at": 1789831080000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789831080000
-    },
-    {
       "title": "‘My total balance should be $20 million’: I invested $1.1 million in a crypto platform. Have I lost it all?",
       "link": "https://www.marketwatch.com/story/my-total-balance-should-be-worth-20-million-i-invested-1-1-million-in-a-crypto-platform-have-i-lost-it-all-d22da562?mod=mw_rss_topstories",
       "source": "MarketWatch",
@@ -238,7 +211,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789830900000
+      "firstAt": 1789830900000,
+      "why": "Individual scam, no market direction"
     },
     {
       "title": "15 stocks that have grown dividends the most — and nearly all have beaten the S&P 500",
@@ -253,7 +227,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789829820000
+      "firstAt": 1789829820000,
+      "why": "General dividend correlation, no specific move"
     },
     {
       "title": "US clears $2.68 billion air defence package for Ukraine as Russian strikes intensify - Firstpost",
@@ -273,7 +248,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789828473000
+      "firstAt": 1789828473000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Ukraine aid boosts gold, oil neutral"
     },
     {
       "title": "Zelenskyy approves new long-range strikes on targets in Russia - Türkiye Today",
@@ -293,7 +272,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789825764000
+      "firstAt": 1789825764000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Escalation boosts gold, oil unclear"
     },
     {
       "title": "“Critically important”: Zelenskyy thanks Trump for Russia sanctions bill with nod to Lindsey Graham - Nepalnews.com",
@@ -313,7 +296,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789823340000
+      "firstAt": 1789823340000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "down",
+        "UKOIL": "down"
+      },
+      "why": "Sanctions boost gold, hurt oil"
     },
     {
       "title": "All EU sanctions linked to Russia's war may expire as France, Slovakia seek to delist oligarchs - The Kyiv Independent",
@@ -333,7 +322,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789825426000
+      "firstAt": 1789825426000,
+      "dir": {
+        "XAU/USD": "down",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Sanctions expiry lowers gold, raises oil"
     },
     {
       "title": "‘Resist him forcefully’: Congress hits back at Trump over Russia sanctions law - The Times of India",
@@ -353,7 +348,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789822680000
+      "firstAt": 1789822680000,
+      "why": "Political dispute, no clear market move"
     },
     {
       "title": "An unaffordable car market highlights Iran’s cost-of-living crisis",
@@ -380,7 +376,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789823791000
+      "firstAt": 1789823791000,
+      "dir": {
+        "US30": "up"
+      },
+      "why": "Futures rally, stocks surge"
     },
     {
       "title": "Taiwan flexes military capabilities ahead of Trump-Xi talks",
@@ -397,7 +397,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789823599000
+      "firstAt": 1789823599000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Geopolitical tension boosts gold"
     },
     {
       "title": "Trump signs Russia sanctions bill named after Lindsey Graham - Washington Examiner",
@@ -992,10 +996,10 @@
       "firstAt": 1789797219000
     },
     {
-      "title": "Trump Signs Russia Sanctions Bill - Newsradio WTAM 1100",
-      "link": "https://news.google.com/rss/articles/CBMigwFBVV95cUxNZl9LOWc3aHhicVdnTlRUdVlCYTdybGY0SWtlZGJNMW5tZ1BjRlpYc09zTlg3b1dQdUdfdERQY21QODJNSTJVZmFQWGZMSzBBaTUzTFVrLWdtLUpkTUdCV1ZqS3JDR2NOX2EyaE9iaHZuUk9aYzhQM0RoSjBYRjFSYnJSSQ?oc=5",
+      "title": "Trump Signs Russia Sanctions Bill - WBZ NewsRadio 1030",
+      "link": "https://news.google.com/rss/articles/CBMijgFBVV95cUxOeTE1YTR4SU5wdWEzSHhseXZLVFpxcFlKV0ZMbkJTMEp4Vl9zZGhiSnkxZTBZcG0zRzhBVW1iUzczNTRlNThLU2Vub094dVEzY0VUTnZINTBTUGZkNWlIZHlFUmpXd01qM1JsRmVCNF84VXdTR0lWamtXX0x5dXhsbGEtXzZQbi1vOEY0Z3dB?oc=5",
       "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMigwFBVV95cUxNZl9LOWc3aHhicVdnTlRUdVlCYTdybGY0SWtlZGJNMW5tZ1BjRlpYc09zTlg3b1dQdUdfdERQY21QODJNSTJVZmFQWGZMSzBBaTUzTFVrLWdtLUpkTUdCV1ZqS3JDR2NOX2EyaE9iaHZuUk9aYzhQM0RoSjBYRjFSYnJSSQ?oc=5\" target=\"_blank\">Trump Signs Russia Sanctions ",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMijgFBVV95cUxOeTE1YTR4SU5wdWEzSHhseXZLVFpxcFlKV0ZMbkJTMEp4Vl9zZGhiSnkxZTBZcG0zRzhBVW1iUzczNTRlNThLU2Vub094dVEzY0VUTnZINTBTUGZkNWlIZHlFUmpXd01qM1JsRmVCNF84VXdTR0lWamtXX0x5dXhsbGEtXzZQbi1vOEY0Z3dB?oc=5\" target=\"_blank\">Trump Signs Rus",
       "at": 1789793340000,
       "inst": [
         "XAU/USD",
@@ -1189,7 +1193,7 @@
       "firstAt": 1789780942000
     },
     {
-      "title": "Trump Signs Russia Sanctions Bill, Clears Way For 100% Tariffs On India, China - ndtv.com",
+      "title": "Trump Signs Russia Sanctions Bill, Clears Way For 100% Tariffs On India, China - NDTV",
       "link": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxOME1SV3BuamFzcHAyU29XUWg3NDdZa0MydExDV0tMbW5YN0JLN3ZMNTZwOG9tUjFWMENSNlZFZzV3SjlxWVFTRWs0MDhZLVA2N25nYTJncTdWcmU2YmxMaXhqcmNIZVJ6ODZEUlUxQ09RNjlweThhZEVzVEdYMDg5Sy05RkhGajBCUVIyTDVxTHh6VXVyWkdOVWtXZU9GOW8yN2NyXzBoNFlBSE5qdWtZbVdMbF9lcUhMajNOeWFhYkFLOWg5RWFqZkFjVWtVNUlnX3RQaWM5TdIB3wFBVV95cUxNM0ktZlpWUlBhZXZFZ0ltcnpLdFZrQUloOXVIY0dOdXh2dU5PMnV6YjAtWllhaURReHZLdWR4YmgxR3dUZjYzalBCM2lycUJqWmViMHpLVGI3YmxOUmVodHFhU0JPWDJRcldFeEZJYnlLQm5ERzhWZk5CT3UtWXM1djZid3lNeE82dlFoeXZ5X1RwbHlaZXN5SzRNUnN4Sm9RZ0gzekpTbkdGZHplNjU4cEZMcUVXeENNVHJuMkxrTTJuOFNSNms1aVhYenlQOFAzZTk2NlFjWUtVWkd1VWZr?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMi1wFBVV95cUxOME1SV3BuamFzcHAyU29XUWg3NDdZa0MydExDV0tMbW5YN0JLN3ZMNTZwOG9tUjFWMENSNlZFZzV3SjlxWVFTRWs0MDhZLVA2N25nYTJncTdWcmU2YmxMaXhqcmNIZVJ6ODZEUlUxQ09RNjlweThhZEVzVEdYMDg5Sy05RkhGajBCUVIyTDVxTHh6VXVyWkdOVWtXZU9GOW8yN2NyXzBoNFlBSE",
@@ -1483,7 +1487,7 @@
       "firstAt": 1789768020000
     },
     {
-      "title": "Trump Steps Up Pressure On Russia, Green Lights Bill For New Sanctions - ndtv.com",
+      "title": "Trump Steps Up Pressure On Russia, Green Lights Bill For New Sanctions - NDTV",
       "link": "https://news.google.com/rss/articles/CBMilAFBVV95cUxQR25nVG9WTnhrNHF0M05lanBwVmdkbXpWdmdnYkJMRHRmc1ExcjlCT0V6LXEwTlBodVBMa3VWMTdhTkVqc1RnQ2pzT1pPOThKWWw1emtGM19WY1E3d2xtcG1ONGdpWGo2Q2tlQm9RMGJPS203andDbUdKZzlOaVdhM3RfVzdpNm43a3UwdzdtRGpybXZu0gGcAUFVX3lxTFBFR1VIbEpTTjV0cmZDbHJ1NkxVdW5fNDVTQTVvVDItcXJlYzA0NUZMWS1FcXFTOE1oNTRJNnViQnQ2ei15ZW8zYm1nR2ViaHRyck1wdFBnUEkyRUVkMERGSm43c0VvdXFxSHRlaWIzcy0yaDJFcV9MVkNYOFZOaTllQkZKYjA5Q2JQMFZMZWlwdmhyaVpMWGpiS09RUA?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMilAFBVV95cUxQR25nVG9WTnhrNHF0M05lanBwVmdkbXpWdmdnYkJMRHRmc1ExcjlCT0V6LXEwTlBodVBMa3VWMTdhTkVqc1RnQ2pzT1pPOThKWWw1emtGM19WY1E3d2xtcG1ONGdpWGo2Q2tlQm9RMGJPS203andDbUdKZzlOaVdhM3RfVzdpNm43a3UwdzdtRGpybXZu0gGcAUFVX3lxTFBFR1VIbEpTTjV0cm",
@@ -1682,6 +1686,46 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789768020000
+    },
+    {
+      "title": "Trump signs Graham sanctions bill targeting Russia - Українська правда",
+      "link": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE9QRTRVU3Q0eTFIUEFHRm5YRU9TYjBLSWtZTlZfSjJTNWxyMVRxSFQ0aElXM1NZOWVXZkRzLUh4VF80a09qdGNCLUlRU3VRY3hRdWRrXzc2MF9jQktwaUJvSHk3aWfSAXBBVV95cUxPeUhpNlJzTXBRd1A2ZHhvNUNlelZUZHFQZDdlaWlITmt0dW5yNkdZZlhaUHVJSExlaW93T3c3WUd4dTU1TlpuV2g5VGtWMHNHeUt4Slg0ell0eFNTR0NNbG5UaEFiakhHWTNVVkpraVBx?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiZEFVX3lxTE9QRTRVU3Q0eTFIUEFHRm5YRU9TYjBLSWtZTlZfSjJTNWxyMVRxSFQ0aElXM1NZOWVXZkRzLUh4VF80a09qdGNCLUlRU3VRY3hRdWRrXzc2MF9jQktwaUJvSHk3aWfSAXBBVV95cUxPeUhpNlJzTXBRd1A2ZHhvNUNlelZUZHFQZDdlaWlITmt0dW5yNkdZZlhaUHVJSExlaW93T3c3WUd4dTU1Tl",
+      "at": 1789768800000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1789768020000
+    },
+    {
+      "title": "Russia, China Block Renewal of UN Panel Overseeing Iran Sanctions Compliance - Haaretz",
+      "link": "https://news.google.com/rss/articles/CBMimAJBVV95cUxOcHc4TFN1bEJnUTVBXzFVRFBXcGpfMnRSaUpUWkZvaks0ZHFCU2RSb0dqamluLWQ2TEJ4dHJrZUpBZ2FoZHYwRGRuVWd5dWlDcDhydWtYS3BVUXM2UkEwMHNvWXdHbF9lcjBWS2R6Mko0RnVaYUdoQy1xdWlxNTV6UDhOZDlMWndDOC1KVEUwZWdMczBGNzFPMFRrU2RkR25rQ2JIWC15VE5Remo1UTFIT01HMWhCd1lyZkl3dE53bUVWRWZOazJLa2szMDU4M1hHSzhHbUUtMWl1OHg2bE44TVg3RkVGdnA0ZFdaZXpIUTYwUjIyb2xrRVhEN19LSkZvMU9KZGhUbjl4ZXdMWW54dDV2Y0VETndN?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMimAJBVV95cUxOcHc4TFN1bEJnUTVBXzFVRFBXcGpfMnRSaUpUWkZvaks0ZHFCU2RSb0dqamluLWQ2TEJ4dHJrZUpBZ2FoZHYwRGRuVWd5dWlDcDhydWtYS3BVUXM2UkEwMHNvWXdHbF9lcjBWS2R6Mko0RnVaYUdoQy1xdWlxNTV6UDhOZDlMWndDOC1KVEUwZWdMczBGNzFPMFRrU2RkR25rQ2JIWC15VE5Rem",
+      "at": 1789768020000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1789768020000
     }
   ],
   "sources": [
@@ -1704,10 +1748,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
   "calendarAt": null,
-  "headlinesAt": "2026-09-19T16:17:25.128Z",
-  "updatedAt": "2026-09-19T16:17:25.128Z"
+  "headlinesAt": "2026-09-19T16:19:54.549Z",
+  "updatedAt": "2026-09-19T16:19:54.549Z"
 }
