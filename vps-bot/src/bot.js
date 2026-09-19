@@ -377,7 +377,12 @@ class ForexBot {
       if (this._memPublishedAt == null || Math.abs(rssNow - this._memPublishedAt) >= 25) {
         this._memPublishedAt = rssNow;
         this.updater.mem = line;
-        this.updater.publish().catch(() => {});
+        // Not `.catch(() => {})`. The field has been null in the published file
+        // through every restart while this code looked correct, and a swallowed
+        // rejection is exactly how a write that never lands goes on looking
+        // like one that did — the same pattern that hid the study's failures
+        // and the desk's pre-flight check earlier today.
+        this.updater.publish().catch(e => this.warn(`mem publish: ${e.message}`));
       }
       // Published as well as logged, so this can be read without an SSH
       // session. Diagnosing the restart loop has cost several rounds of "run
