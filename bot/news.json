@@ -1,15 +1,6 @@
 {
   "calendar": [
     {
-      "title": "FOMC Member Bowman Speaks",
-      "country": "USD",
-      "impact": "low",
-      "at": 1789738200000,
-      "forecast": "",
-      "previous": "",
-      "actual": ""
-    },
-    {
       "title": "CB Leading Index m/m",
       "country": "USD",
       "impact": "low",
@@ -57,7 +48,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789822009000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions bill signed, market impact unclear."
     },
     {
       "title": "Lithuania, Estonia welcome Trump signing Russia sanctions bill into law - A News",
@@ -78,7 +70,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789822009000,
-      "_kind": null
+      "_kind": null,
+      "why": "Political reaction to sanctions, no direct price signal."
     },
     {
       "title": "Every New Reactor Needs Fuel: 3 Uranium Stocks Positioned for the Nuclear Buildout",
@@ -96,7 +89,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789822817000,
-      "_kind": null
+      "why": "Sector-specific news, broad market impact unclear."
     },
     {
       "title": "Warsh’s Fed shows it’s serious about taming inflation. Why Wall Street now believes it.",
@@ -114,7 +107,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789822800000,
-      "_kind": null
+      "why": "Inflation outlook stable, no clear directional bias."
     },
     {
       "title": "Child among three Palestinians killed in Israeli attacks across Gaza",
@@ -135,7 +128,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789822771000,
-      "_kind": null
+      "why": "Casualty report, no immediate macroeconomic impact."
     },
     {
       "title": "What’s behind reports that the Israeli army is low on troops, equipment?",
@@ -155,7 +148,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789822303000
+      "firstAt": 1789822303000,
+      "why": "Military logistics report, no clear market direction."
     },
     {
       "title": "China Slams US Law Tightening Sanctions on Russia and Iran - Bloomberg.com",
@@ -175,7 +169,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789822009000
+      "firstAt": 1789822009000,
+      "why": "Diplomatic friction, no clear price implication."
     },
     {
       "title": "Flames, smoke seen near Riyadh airport after Saudi warning of aerial attack threat",
@@ -194,7 +189,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789821383000
+      "firstAt": 1789821383000,
+      "why": "Security alert, no confirmed supply disruption."
     },
     {
       "title": "What History Reveals About Investing Through a Stock Market Crash",
@@ -226,7 +222,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789821277000
+      "firstAt": 1789821277000,
+      "why": "Sanctions lifted, geopolitical risk slightly reduced."
     },
     {
       "title": "Stock Market Week Ahead: Keeping An Eye Out For Change",
@@ -239,6 +236,23 @@
       "rel": 1,
       "srcs": 1,
       "firstAt": 1789820967000
+    },
+    {
+      "title": "Can Bitcoin Reclaim $100,000 in 2026? One Factor Could Decide Everything.",
+      "link": "https://finance.yahoo.com/markets/crypto/articles/bitcoin-reclaim-100-000-2026-122400854.html",
+      "source": "Yahoo Finance",
+      "at": 1789820640000,
+      "inst": [
+        "BTC/USDT"
+      ],
+      "ccy": [
+        "BTC"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789820640000,
+      "why": "Speculative question, no definitive direction."
     },
     {
       "title": "Fed's rate hike halts 10-year Treasury yield ri... - Pluang",
@@ -261,7 +275,8 @@
       "sev": 3,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789820527000
+      "firstAt": 1789820527000,
+      "why": "Yield movement, no clear currency direction."
     },
     {
       "title": "In Gaza, actors perform a war they are still living",
@@ -281,7 +296,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789820332000
+      "firstAt": 1789820332000,
+      "why": "Cultural report, no financial market impact."
     },
     {
       "title": "Dow Jones Futures: Nasdaq, S&P 500 Hold; Robinhood, Sandisk, AMD, Moderna Surge Into Buy Areas",
@@ -297,7 +313,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789819732000
+      "firstAt": 1789819732000,
+      "why": "Futures holding, specific stocks surging."
     },
     {
       "title": "Robinhood Soars, SpaceX Orbits Entry: Five Stocks Near Buy Points",
@@ -311,7 +328,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789819239000
+      "firstAt": 1789819239000,
+      "why": "Stock-specific news, broad index impact unclear."
     },
     {
       "title": "A sudden end to the Iran war would strike a blow against oil prices and energy stocks. Yet company insiders are buying.",
@@ -332,7 +350,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789819200000
+      "firstAt": 1789819200000,
+      "dir": {
+        "USOIL": "down"
+      },
+      "why": "War end lowers oil, insiders buy energy."
     },
     {
       "title": "Bitcoin is back at $80,000 as rest of crypto joins the rally: Chart of the Day",
@@ -1745,29 +1767,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789761629000
-    },
-    {
-      "title": "Trump Reacts to Fed Rate Hike as Markets Weigh Warsh’s Hawkish Stance - cheddar.com",
-      "link": "https://news.google.com/rss/articles/CBMioAFBVV95cUxPSmxKWUhENWxFTjBNeUg2OC1PVG9ZSkl4ZXUwQXBHTEJpRHRxUnhCUzJvem9DM1J4QnlqSGZfTXdfdWtWRThJbUI3bmNEb2I0NEZlLTg3Y2w2aVpHVTNWQVctVHpRRVk1bWU3UTIwR0FvTDBLaG5Ea2VJMFgycERLQ3pKV3VWcnhWcVliLWVRcUl1TmNOMXpnZEs1YS02ZnIx?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMioAFBVV95cUxPSmxKWUhENWxFTjBNeUg2OC1PVG9ZSkl4ZXUwQXBHTEJpRHRxUnhCUzJvem9DM1J4QnlqSGZfTXdfdWtWRThJbUI3bmNEb2I0NEZlLTg3Y2w2aVpHVTNWQVctVHpRRVk1bWU3UTIwR0FvTDBLaG5Ea2VJMFgycERLQ3pKV3VWcnhWcVliLWVRcUl1TmNOMXpnZEs1YS02ZnIx?oc=5\" target=",
-      "at": 1789760308000,
-      "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789760308000
     }
   ],
   "sources": [
@@ -1790,10 +1789,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-19T13:29:14.236Z",
-  "headlinesAt": "2026-09-19T13:29:14.236Z",
-  "updatedAt": "2026-09-19T13:29:14.236Z"
+  "calendarAt": "2026-09-19T13:32:22.461Z",
+  "headlinesAt": "2026-09-19T13:32:22.461Z",
+  "updatedAt": "2026-09-19T13:32:22.461Z"
 }
