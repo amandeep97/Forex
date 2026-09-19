@@ -115,6 +115,7 @@ class ForexBot {
     this.updater = new Updater({ github: this.github, env, log: this.log.bind(this) });
     // Set by index.js from the black-box file the previous process left behind.
     this.lastShutdown = undefined;
+    this.blackBoxBroken = null;
     this.news = new NewsFetcher({
       github: this.github, log: this.log.bind(this),
       // So a geopolitical wire can reach the phone without the app being open,
@@ -380,6 +381,7 @@ class ForexBot {
         this._memPublishedAt = rssNow;
         this.updater.mem = line;
         this.updater.lastShutdown = this.lastShutdown;
+        this.updater.blackBoxBroken = this.blackBoxBroken;
         // Not `.catch(() => {})`. The field has been null in the published file
         // through every restart while this code looked correct, and a swallowed
         // rejection is exactly how a write that never lands goes on looking
@@ -597,6 +599,7 @@ class ForexBot {
     if (!r.updated && asked) this.log(`Update: ${r.reason}`);
     this.updater.mem = this.lastMem || null;
     this.updater.lastShutdown = this.lastShutdown;
+    this.updater.blackBoxBroken = this.blackBoxBroken;
     await this.updater.publish();
     return false;
   }

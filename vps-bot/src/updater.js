@@ -103,6 +103,9 @@ class Updater {
         // this one. `null` is not missing data — it means no signal and no
         // throw, which is to say it was killed outright.
         lastShutdown: this.lastShutdown === undefined ? null : this.lastShutdown,
+        // Set only when the black box cannot be written. While this is present,
+        // a null lastShutdown says nothing about how the process died.
+        blackBoxBroken: this.blackBoxBroken || null,
         ...extra,
       };
       const cur = await this.github.readJSON(VERSION_PATH).catch(() => null);
@@ -110,7 +113,7 @@ class Updater {
       // the publish that precedes a self-update restart is written by the OLD
       // process and therefore carries the OLD boot time, so without this the
       // file would keep claiming an uptime that ended minutes ago.
-      const same = cur?.content && ['sha', 'behind', 'autoUpdate', 'lastError', 'bootedAt', 'mem', 'lastShutdown']
+      const same = cur?.content && ['sha', 'behind', 'autoUpdate', 'lastError', 'bootedAt', 'mem', 'lastShutdown', 'blackBoxBroken']
         .every(k => JSON.stringify(cur.content[k]) === JSON.stringify(payload[k]));
       if (same) return;
       this.versionSha = await this.github.writeJSON(
