@@ -61,6 +61,11 @@ class Updater {
     this.log = log || (() => {});
     this.repo = repo;
     this.enabled = env.BOT_AUTO_UPDATE !== 'false';
+    // One seam, so the restart decision can be tested without a repo. The
+    // interesting cases here are a merge that moves HEAD and a merge that does
+    // not — the difference between updating and looping forever — and neither
+    // is reachable from outside without standing in for git.
+    this.git = git;
     this.intervalMs = (parseInt(env.BOT_UPDATE_CHECK_MIN, 10) || 15) * 60_000;
     this.checkedAt = 0;
     this.sha = null;
@@ -70,8 +75,8 @@ class Updater {
   }
 
   async _identify() {
-    this.sha = await git(['rev-parse', 'HEAD'], this.repo);
-    this.branch = await git(['rev-parse', '--abbrev-ref', 'HEAD'], this.repo);
+    this.sha = await this.git(['rev-parse', 'HEAD'], this.repo);
+    this.branch = await this.git(['rev-parse', '--abbrev-ref', 'HEAD'], this.repo);
     return { sha: this.sha, branch: this.branch };
   }
 
@@ -111,13 +116,13 @@ class Updater {
 
   async _behind() {
     const upstream = `origin/${this.branch}`;
-    const out = await git(['rev-list', '--left-right', '--count', `HEAD...${upstream}`], this.repo);
+    const out = await this.git(['rev-list', '--left-right', '--count', `HEAD...${upstream}`], this.repo);
     const [, ahead] = out.split(/\s+/).map(Number);   // right side = commits we lack
     return Number.isFinite(ahead) ? ahead : null;
   }
 
   async _dirty() {
-    const out = await git(['status', '--porcelain', '--untracked-files=no'], this.repo);
+    const out = await this.git(['status', '--porcelain', '--untracked-files=no'], this.repo);
     return out ? out.split('\n').filter(Boolean) : [];
   }
 
@@ -134,7 +139,7 @@ class Updater {
       return { updated: false, reason };
     }
 
-    await git(['fetch', 'origin', this.branch], this.repo, 120_000);
+    await this.git(['fetch', 'origin', this.branch], this.repo, 120_000);
     const behind = await this._behind();
     if (!behind && !force) {
       this.checkedAt = Date.now();
@@ -145,7 +150,7 @@ class Updater {
     const from = this.sha;
 
     try {
-      await git(['merge', '--ff-only', `origin/${this.branch}`], this.repo, 120_000);
+      await this.git(['merge', '--ff-only', `origin/${this.branch}`], this.repo, 120_000);
     } catch (e) {
       // Not fast-forwardable means the branch history diverged — a human
       // decision, not something to resolve automatically at 3am.
@@ -155,15 +160,41 @@ class Updater {
       return { updated: false, reason: this.lastError };
     }
 
-    const to = await git(['rev-parse', 'HEAD'], this.repo);
+    const to = await this.git(['rev-parse', 'HEAD'], this.repo);
     this.sha = to;
     this.checkedAt = Date.now();
     this.lastError = null;
 
+    // ── Never restart into the same commit ──────────────────────────────────
+    //
+    // This is what was restarting the bot every five minutes — the update check
+    // interval — with the SAME sha each time, for as long as anyone has looked.
+    //
+    // `behind` decides whether to attempt a merge, and nothing checked whether
+    // the merge actually moved anything. When it reported a non-zero count but
+    // the fast-forward was a no-op — a stale remote-tracking ref, a fetch that
+    // half-failed, a ref that could not be locked because the bot and a human
+    // fetched at the same moment, all of which are in this bot's logs — `from`
+    // and `to` came back identical and it exited anyway. pm2 restarted it, the
+    // next check came round, and it did it again. Restarting into identical
+    // code cannot fix anything, so it can only loop.
+    //
+    // It hid well: a clean exit(0) keeps pm2's `unstable restarts` at 0, and
+    // the published file showed `behind: 0` because publish recomputes it after
+    // the merge. Every dashboard said healthy while nothing that took longer
+    // than five minutes could finish.
+    if (to === from) {
+      const reason = `git said ${behind} commit(s) behind but the merge changed nothing`;
+      this.lastError = reason;
+      this.log(`Updater: ${reason} — not restarting`);
+      await this.publish();
+      return { updated: false, reason, from: sha(from) };
+    }
+
     // Ask git what actually changed rather than comparing file sizes — a
     // dependency bump that happens to keep the byte count identical would
     // otherwise restart into a tree missing the module it now needs.
-    const depsChanged = await git(
+    const depsChanged = await this.git(
       ['diff', '--name-only', `${from}..${to}`, '--', 'vps-bot/package.json', 'vps-bot/package-lock.json'],
       this.repo).catch(() => '');
 
