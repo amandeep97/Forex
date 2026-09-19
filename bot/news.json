@@ -1,5 +1,24 @@
 {
-  "calendar": [],
+  "calendar": [
+    {
+      "title": "FOMC Member Schmid Speaks",
+      "country": "USD",
+      "impact": "low",
+      "at": 1789746300000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "ECOFIN Meetings",
+      "country": "EUR",
+      "impact": "low",
+      "at": 1789812900000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    }
+  ],
   "headlines": [
     {
       "title": "US clears $2.68 billion air defence package for Ukraine as Russian strikes intensify - Firstpost",
@@ -41,6 +60,19 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789828075000,
+      "_kind": null
+    },
+    {
+      "title": "Media Tycoon John Malone Buys 37,082 More Liberty Latin America Preference Shares. What Does This Tell Investors?",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/media-tycoon-john-malone-buys-142501643.html",
+      "source": "Yahoo Finance",
+      "at": 1789827901000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 1,
+      "srcs": 1,
+      "firstAt": 1789826700000,
       "_kind": null
     },
     {
@@ -107,40 +139,24 @@
       "firstAt": 1789826571000
     },
     {
-      "title": "Schwab Treasury ETF vs SPDR Corporate Bond ETF. Which Bond Fund Is the Better Insurance Policy for Your Portfolio?",
-      "link": "https://finance.yahoo.com/markets/options/articles/schwab-treasury-etf-vs-spdr-135701711.html",
-      "source": "Yahoo Finance",
-      "at": 1789826221000,
+      "title": "All EU sanctions linked to Russia's war may expire as France, Slovakia seek to delist oligarchs - The Kyiv Independent",
+      "link": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPSDA3ZHV4ZUVSMGVTQzlmZVA5Z0E4dkJ2M3VMaENpTjRGeVNJOXU2SU9valA2cGs5aURtVW92YUxhYThIT3RjZWFKQk1hVElEUlU4bEw5Vm4yNVVvZW9NOHRpbURhSG4zb1pXV0dnaGFvSTJOMFJha1hZUzhiSlEzUmp3V2RVaU51ZWdOMUpqWkZBdnc0Y0VDUDJQZlg4bF9fQ1NqajFyR2x4elIzdkZlS29oT3VXWXpSUk54WGNsWQ?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMivwFBVV95cUxPSDA3ZHV4ZUVSMGVTQzlmZVA5Z0E4dkJ2M3VMaENpTjRGeVNJOXU2SU9valA2cGs5aURtVW92YUxhYThIT3RjZWFKQk1hVElEUlU4bEw5Vm4yNVVvZW9NOHRpbURhSG4zb1pXV0dnaGFvSTJOMFJha1hZUzhiSlEzUmp3V2RVaU51ZWdOMUpqWkZBdnc0Y0VDUDJQZlg4bF9fQ1NqajFyR2x4el",
+      "at": 1789825426000,
       "inst": [
         "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
+        "USOIL",
+        "UKOIL"
       ],
       "ccy": [
-        "USD"
+        "XAU",
+        "OIL"
       ],
-      "sev": 1,
+      "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789826221000
-    },
-    {
-      "title": "Bank of America Sets 12-Month S&P 500 Target at 7,800, Sees 2% Upside",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/bank-america-sets-12-month-134200044.html",
-      "source": "Yahoo Finance",
-      "at": 1789825320000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789825320000
+      "firstAt": 1789825426000
     },
     {
       "title": "An unaffordable car market highlights Iran’s cost-of-living crisis",
@@ -581,7 +597,7 @@
       "link": "https://news.google.com/rss/articles/CBMiS0FVX3lxTFBlWmxzWFVpdHgxQXl2eUhocDBWNnhMQWNhMmFaR1JMbWVEMmY4UllGdEhMOExleExjQ1lNRXJWc1AxQ3d3OHRmZlFOYw?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiS0FVX3lxTFBlWmxzWFVpdHgxQXl2eUhocDBWNnhMQWNhMmFaR1JMbWVEMmY4UllGdEhMOExleExjQ1lNRXJWc1AxQ3d3OHRmZlFOYw?oc=5\" target=\"_blank\">AFU Strikes Russian UAV Bases, Ammo Depot, and Training Range</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">Kyiv P",
-      "at": 1789815352000,
+      "at": 1789815385000,
       "inst": [
         "XAU/USD",
         "USOIL",
@@ -594,7 +610,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789815352000
+      "firstAt": 1789815385000
     },
     {
       "title": "Russia should respond to US sanctions with 'military deterrence': Dmitry Medvedev - The Times of India",
@@ -1738,7 +1754,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": null,
-  "headlinesAt": "2026-09-19T14:41:55.564Z",
-  "updatedAt": "2026-09-19T14:41:55.564Z"
+  "calendarAt": "2026-09-19T14:44:01.934Z",
+  "headlinesAt": "2026-09-19T14:44:01.934Z",
+  "updatedAt": "2026-09-19T14:44:01.934Z"
 }
