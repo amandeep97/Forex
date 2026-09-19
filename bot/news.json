@@ -21,6 +21,20 @@
   ],
   "headlines": [
     {
+      "title": "Traditional bond investors have lost money for years. These five-star portfolio managers show a better way.",
+      "link": "https://www.marketwatch.com/story/heres-the-best-way-to-invest-in-bonds-for-the-long-term-according-to-these-five-star-portfolio-managers-bbf0d5e3?mod=mw_rss_topstories",
+      "source": "MarketWatch",
+      "desc": "A fixed-income team at Morgan Stanley say investing in distressed debt and frontier local-market investing have helped drive solid returns for their fund.",
+      "at": 1789827780000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789827780000,
+      "_kind": null
+    },
+    {
       "title": "Anthropic's IPO Is Coming. Here's What That Means for S&P 500 Investors.",
       "link": "https://finance.yahoo.com/markets/stocks/articles/anthropics-ipo-coming-heres-means-140500319.html",
       "source": "Yahoo Finance",
@@ -33,7 +47,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789826700000,
-      "_kind": null
+      "_kind": null,
+      "why": "IPO news lacks clear directional impact"
     },
     {
       "title": "IBM Has Raised Its Dividend for 31 Years. Inflation Is Still Winning",
@@ -56,7 +71,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789826571000,
-      "_kind": null
+      "_kind": null,
+      "why": "Inflation context unclear for specific pairs"
     },
     {
       "title": "Schwab Treasury ETF vs SPDR Corporate Bond ETF. Which Bond Fund Is the Better Insurance Policy for Your Portfolio?",
@@ -79,7 +95,29 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789826221000,
-      "_kind": null
+      "_kind": null,
+      "why": "Bond fund comparison irrelevant to FX"
+    },
+    {
+      "title": "“Critically important”: Zelenskyy thanks Trump for Russia sanctions bill with nod to Lindsey Graham - Nepalnews.com",
+      "link": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxOTWpKdTBkYmQ3UUc4SkRRdkdoMjhXc3pnNmh5c2ZJTU8tT28xVWdxRDNaV3ZMWjNpRVBwMkg2NS1ib3VoeTZ5RXhPR3B3NDk5ZU0zVjROc2ZRTl9tXzV6Z29kaWlHbkV0WVZleFJFdDdqVncxSHNUeWtKWWs0b2dKUldvcDFQZUlMSUpFdHgxak9nZlIyaHM1SzhXS082MlkzLWF0MlVIYURhNjNuSmFNX2VUb1oyanctaGRwUWFuQ200cEFsNERvdTl3NWZNLVZUbjEwZV9hYVlWWnM?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi2wFBVV95cUxOTWpKdTBkYmQ3UUc4SkRRdkdoMjhXc3pnNmh5c2ZJTU8tT28xVWdxRDNaV3ZMWjNpRVBwMkg2NS1ib3VoeTZ5RXhPR3B3NDk5ZU0zVjROc2ZRTl9tXzV6Z29kaWlHbkV0WVZleFJFdDdqVncxSHNUeWtKWWs0b2dKUldvcDFQZUlMSUpFdHgxak9nZlIyaHM1SzhXS082MlkzLWF0MlVIYURhNj",
+      "at": 1789825764000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789823340000,
+      "why": "Sanctions bill impact on oil unclear"
     },
     {
       "title": "All EU sanctions linked to Russia's war may expire as France, Slovakia seek to delist oligarchs - The Kyiv Independent",
@@ -99,7 +137,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789825426000
+      "firstAt": 1789825426000,
+      "why": "Sanctions expiration speculation unclear for oil"
     },
     {
       "title": "Bank of America Sets 12-Month S&P 500 Target at 7,800, Sees 2% Upside",
@@ -113,7 +152,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789825320000
+      "firstAt": 1789825320000,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Bullish target implies upside potential"
     },
     {
       "title": "An unaffordable car market highlights Iran’s cost-of-living crisis",
@@ -140,7 +183,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789823791000
+      "firstAt": 1789823791000,
+      "dir": {
+        "US30": "up"
+      },
+      "why": "Surging stocks suggest bullish momentum"
     },
     {
       "title": "Taiwan flexes military capabilities ahead of Trump-Xi talks",
@@ -157,7 +204,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789823599000
+      "firstAt": 1789823599000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Geopolitical tension boosts safe-haven demand"
     },
     {
       "title": "Trump signs Russia sanctions bill named after Lindsey Graham - Washington Examiner",
@@ -177,7 +228,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789822009000
+      "firstAt": 1789822009000,
+      "why": "Sanctions signing impact on oil unclear"
     },
     {
       "title": "Lithuania, Estonia welcome Trump signing Russia sanctions bill into law - A News",
@@ -197,7 +249,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789822009000
+      "firstAt": 1789822009000,
+      "why": "Sanctions signing impact on oil unclear"
     },
     {
       "title": "Warsh’s Fed shows it’s serious about taming inflation. Why Wall Street now believes it.",
@@ -214,7 +267,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789822800000
+      "firstAt": 1789822800000,
+      "why": "Inflation control impact on equities unclear"
     },
     {
       "title": "Child among three Palestinians killed in Israeli attacks across Gaza",
@@ -234,7 +288,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789822771000
+      "firstAt": 1789822771000,
+      "why": "Casualty report lacks clear market direction"
     },
     {
       "title": "What’s behind reports that the Israeli army is low on troops, equipment?",
@@ -254,7 +309,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789822303000
+      "firstAt": 1789822303000,
+      "why": "Military shortage reports unclear for markets"
     },
     {
       "title": "China opposes US secondary sanctions under new Russia-Iran law, reserves right to take necessary measures to safeguard development interests - Global Times",
@@ -274,7 +330,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789822009000
+      "firstAt": 1789822009000,
+      "why": "China opposition unclear for oil direction"
     },
     {
       "title": "China Slams US Law Tightening Sanctions on Russia and Iran - Bloomberg.com",
@@ -294,7 +351,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789822009000
+      "firstAt": 1789822009000,
+      "why": "China criticism unclear for oil direction"
     },
     {
       "title": "Flames, smoke seen near Riyadh airport after Saudi warning of aerial attack threat",
@@ -785,7 +843,7 @@
       "firstAt": 1789801280000
     },
     {
-      "title": "Trump signs into law sanctions package targeting Russia's economy - euronews.com",
+      "title": "Trump signs into law sweeping Russia sanctions package aiming to choke off revenues funding the war in Ukraine - euronews.com",
       "link": "https://news.google.com/rss/articles/CBMixAFBVV95cUxOdEpMdnhDNVdRRnZaSFVYNWNrbUVWal9VQTU4T1c1LXRyeFgtMnFfSVg0NENhc3ZXVTI2YVFaRGRtOUlrRmIzaXlUbjlEcDZxWkZEZ2wtcjRTWnFGQnQ0LVBMSUJqWmJnMF9ZVGxhMmE3T0VLOVdtNXgwWFNuQnNub2NDU2VnN0FwLXFDbUFhazVtTWJWeTFrejJfdGYyTTMwMk42RFZRcnVKcWFSZ0cwV1dwMklFWFZNZ2d6WVNUWDZZTFEt?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMixAFBVV95cUxOdEpMdnhDNVdRRnZaSFVYNWNrbUVWal9VQTU4T1c1LXRyeFgtMnFfSVg0NENhc3ZXVTI2YVFaRGRtOUlrRmIzaXlUbjlEcDZxWkZEZ2wtcjRTWnFGQnQ0LVBMSUJqWmJnMF9ZVGxhMmE3T0VLOVdtNXgwWFNuQnNub2NDU2VnN0FwLXFDbUFhazVtTWJWeTFrejJfdGYyTTMwMk42RFZRcnVKcW",
@@ -1706,47 +1764,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789763380000
-    },
-    {
-      "title": "Russia sanctions bill gives Trump sweeping new tariff powers - Reuters",
-      "link": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxNWEtRUVNvYVIwTTZqQ3pmak0zd0NlNjZEcmxxQ3FUWTJKVUZjTHdjUmt1SThTNVFmZWl5OXVLUmljaWJoSFRQbU5qVnZDUjcyWEhJNk5yWjZDOTNzazlrenItWHdvODFNbE5Ka3ZoMGF4ZFRGcEFFeVhlWF8tWGZYYU1XWWttR3BuR0hmdF9iY0Z2WGQwbFJfV2lOT2FwSExyT21yUE80ZVM?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiqAFBVV95cUxNWEtRUVNvYVIwTTZqQ3pmak0zd0NlNjZEcmxxQ3FUWTJKVUZjTHdjUmt1SThTNVFmZWl5OXVLUmljaWJoSFRQbU5qVnZDUjcyWEhJNk5yWjZDOTNzazlrenItWHdvODFNbE5Ka3ZoMGF4ZFRGcEFFeVhlWF8tWGZYYU1XWWttR3BuR0hmdF9iY0Z2WGQwbFJfV2lOT2FwSExyT21yUE80ZVM?oc",
-      "at": 1789763040000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL",
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789763040000
-    },
-    {
-      "title": "Gold futures test 5-session high after BOJ rate hike. - CME Group",
-      "link": "https://news.google.com/rss/articles/CBMirAFBVV95cUxNY0lQYURTMnpWcERkejNaSkdqNDJsaVFibXpOWW5OZjgyV1VfaU5NX0N0UGNWeEhuYTRMU3Rjd2JSV0tKeC1RcjhJZXpLQXE4MGZNV3FpSUhuTTkzbkUzVVpYV0lvUkJyVm1zblZGalBraC1XTm1IX0lkWFBTb1hycVJ5VUZIMkx1X2s1cU1yOWU1VFpWdGRZNzdfdVJkdTNOWjM5NnJZM1BVd0ZM?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMirAFBVV95cUxNY0lQYURTMnpWcERkejNaSkdqNDJsaVFibXpOWW5OZjgyV1VfaU5NX0N0UGNWeEhuYTRMU3Rjd2JSV0tKeC1RcjhJZXpLQXE4MGZNV3FpSUhuTTkzbkUzVVpYV0lvUkJyVm1zblZGalBraC1XTm1IX0lkWFBTb1hycVJ5VUZIMkx1X2s1cU1yOWU1VFpWdGRZNzdfdVJkdTNOWjM5NnJZM1BVd0",
-      "at": 1789762538000,
-      "inst": [
-        "XAU/USD",
-        "USD/JPY"
-      ],
-      "ccy": [
-        "JPY",
-        "XAU",
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789762538000
     }
   ],
   "sources": [
@@ -1772,7 +1789,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-19T14:23:50.768Z",
-  "headlinesAt": "2026-09-19T14:23:50.768Z",
-  "updatedAt": "2026-09-19T14:23:50.768Z"
+  "calendarAt": "2026-09-19T14:26:31.166Z",
+  "headlinesAt": "2026-09-19T14:26:31.166Z",
+  "updatedAt": "2026-09-19T14:26:31.166Z"
 }
