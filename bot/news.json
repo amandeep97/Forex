@@ -166,7 +166,11 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789775220000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Sanctions boost gold, oil impact unclear"
     },
     {
       "title": "Israeli strike on motorcycle kills Palestinian in Gaza City, injures child",
@@ -187,7 +191,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789776123000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Gaza violence boosts gold, oil unclear"
     },
     {
       "title": "Iran war live: Trump extends sanctions on Iran, Houthi supporters in Sanaa",
@@ -208,13 +216,19 @@
       "rel": 2,
       "srcs": 3,
       "firstAt": 1789775220000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Iran sanctions boost gold and oil"
     },
     {
-      "title": "China, Russia veto Iran sanctions panel extension at UN - China Daily Global Edition",
-      "link": "https://news.google.com/rss/articles/CBMiggFBVV95cUxPWkpIRzk3QnFZRldvbUlhYmkzREpiSFd3RFlRRlVIR2J4clNUbFFyLVVYMzRPTXpacnJ1NHBaSkRXdHBDalRrUy1xR2xHX1phT1BWWG84b1M1MU1GcjE4ZTNPSnRjbFNnWEFvRHlyRFdwdUZNSWRSS1JUR2psaUJEdy1R?oc=5",
+      "title": "China, Russia veto Iran sanctions panel extension at UN - China Daily",
+      "link": "https://news.google.com/rss/articles/CBMifkFVX3lxTE14SmhqQTB5SnIyS1BLNGNSTWRkb0FoaUhyQ0l4dTJ2NFM5a0FIRUtmTkJrdUQ2eDhXZlpLcUFlS2RJYTZienVQYlNVQ2t6NXZPMnJEb2hpcU1mdGRHWU9pYTFSMUp3NjhzeUd4cEQwWVR4VmJ4c2F1YWU1NVhjZw?oc=5",
       "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiggFBVV95cUxPWkpIRzk3QnFZRldvbUlhYmkzREpiSFd3RFlRRlVIR2J4clNUbFFyLVVYMzRPTXpacnJ1NHBaSkRXdHBDalRrUy1xR2xHX1phT1BWWG84b1M1MU1GcjE4ZTNPSnRjbFNnWEFvRHlyRFdwdUZNSWRSS1JUR2psaUJEdy1R?oc=5\" target=\"_blank\">China, Russia veto Iran sanctio",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMifkFVX3lxTE14SmhqQTB5SnIyS1BLNGNSTWRkb0FoaUhyQ0l4dTJ2NFM5a0FIRUtmTkJrdUQ2eDhXZlpLcUFlS2RJYTZienVQYlNVQ2t6NXZPMnJEb2hpcU1mdGRHWU9pYTFSMUp3NjhzeUd4cEQwWVR4VmJ4c2F1YWU1NVhjZw?oc=5\" target=\"_blank\">China, Russia veto Iran sanctions pan",
       "at": 1789775557000,
       "inst": [
         "XAU/USD",
@@ -228,7 +242,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789773193000
+      "firstAt": 1789773193000,
+      "why": "UN veto unclear for markets"
     },
     {
       "title": "Trump officially signs Russia sanctions bill into law - The Hill",
@@ -248,7 +263,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789773193000
+      "firstAt": 1789773193000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Russia sanctions boost gold, oil unclear"
     },
     {
       "title": "US Treasury’s Bessent to discuss AI, trade, rare earths with China’s He, source says",
@@ -270,7 +289,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789774588000
+      "firstAt": 1789774588000,
+      "why": "Trade talks unclear for FX"
     },
     {
       "title": "Taiwan Dollar: CBC holds rates but flags inflation risks – Commerzbank - FXStreet",
@@ -293,7 +313,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789774320000
+      "firstAt": 1789774320000,
+      "why": "Taiwan news irrelevant to listed FX"
     },
     {
       "title": "Houthis accuse Saudi Arabia of launching 26 strikes in 24 hours",
@@ -313,7 +334,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789773240000
+      "firstAt": 1789773240000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Yemen conflict boosts gold and oil"
     },
     {
       "title": "Trump signs Russia sanctions bill; China and India face possible 100% tariffs - TRT World",
@@ -333,7 +360,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 3,
-      "firstAt": 1789770514000
+      "firstAt": 1789770514000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Sanctions boost gold, oil impact unclear"
     },
     {
       "title": "S&P 500, Nasdaq advance, turning the page on a tumultuous week - Reuters",
@@ -349,7 +380,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789773024000
+      "firstAt": 1789773024000,
+      "dir": {
+        "US500": "up",
+        "US100": "up"
+      },
+      "why": "Stocks advance, bullish for indices"
     },
     {
       "title": "A four-minute warning isn't enough: Russia's new relentless missile tactics exhaust Kyiv residents",
@@ -369,7 +405,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789770670000
+      "firstAt": 1789770670000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Ukraine attacks boost gold, oil unclear"
     },
     {
       "title": "US, China discuss cutting tariffs on US LNG ahead of Xi visit",
@@ -383,7 +423,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789772503000
+      "firstAt": 1789772503000,
+      "dir": {
+        "NATGAS": "up"
+      },
+      "why": "LNG tariff cuts boost gas demand"
     },
     {
       "title": "Trump Signs a Sanctions Bill Targeting Russia, but Pursues Deals Too - The New York Times",
@@ -403,7 +447,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789769700000
+      "firstAt": 1789769700000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Sanctions boost gold, oil impact unclear"
     },
     {
       "title": "Trump signs Lindsey Graham Russia-Iran sanctions bill into law - thenationalnews.com",
@@ -423,7 +471,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789769700000
+      "firstAt": 1789769700000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Sanctions boost gold, oil impact unclear"
     },
     {
       "title": "Zelenskyy Thanks Trump as US Law Strengthens Sanctions on Russia | Ukraine news - #Mezha - Межа. Новини України.",
@@ -443,7 +495,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789769073000
+      "firstAt": 1789769073000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Sanctions boost gold, oil impact unclear"
     },
     {
       "title": "‘My total balance should be $20 million’: I invested $1.1 million in a crypto platform. Have I lost it all?",
@@ -1907,7 +1963,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-19T00:25:30.798Z",
-  "headlinesAt": "2026-09-19T00:25:30.798Z",
-  "updatedAt": "2026-09-19T00:25:30.798Z"
+  "calendarAt": "2026-09-19T00:27:44.322Z",
+  "headlinesAt": "2026-09-19T00:27:44.322Z",
+  "updatedAt": "2026-09-19T00:27:44.322Z"
 }
