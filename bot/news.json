@@ -1,6 +1,34 @@
 {
-  "calendar": [],
+  "calendar": [
+    {
+      "title": "ECOFIN Meetings",
+      "country": "EUR",
+      "impact": "low",
+      "at": 1789812900000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    }
+  ],
   "headlines": [
+    {
+      "title": "Canada optimistic about concluding trade talks with India by year-end, minister says",
+      "link": "https://www.investing.com/news/commodities-news/canada-optimistic-about-concluding-trade-talks-with-india-by-yearend-minister-says-4908078",
+      "source": "Investing Cmdty",
+      "at": 1789838683000,
+      "inst": [
+        "USD/CAD"
+      ],
+      "ccy": [
+        "CAD"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789838683000,
+      "_kind": null,
+      "why": "Trade talks outcome uncertain"
+    },
     {
       "title": "3 ETFs That Work Better Together for Dividend Investors",
       "link": "https://finance.yahoo.com/markets/stocks/articles/3-etfs-better-together-dividend-172000542.html",
@@ -35,7 +63,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789838220000,
-      "_kind": null
+      "_kind": null,
+      "why": "Warning content unspecified"
     },
     {
       "title": "Micron (MU) Unveils Breakthrough Memory Product. It Says Much About the Memory Market",
@@ -83,7 +112,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789837226000
+      "firstAt": 1789837226000,
+      "why": "General consumer impact unclear"
     },
     {
       "title": "4 ETFs That Cover Nearly Everything Investors Need",
@@ -109,7 +139,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789835691000
+      "firstAt": 1789835691000,
+      "dir": {
+        "US30": "up"
+      },
+      "why": "Stocks surge into buy areas"
     },
     {
       "title": "Demonstrators in US form human chain to protest Kennedy Center closure vote",
@@ -154,7 +188,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789834705000
+      "firstAt": 1789834705000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Geopolitical risk boosts safe havens"
     },
     {
       "title": "‘There might be a silver lining’: My friend’s wife died at 60 after a high-earning career. Can he claim her Social Security?",
@@ -171,7 +211,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789834500000
+      "firstAt": 1789834500000,
+      "why": "Irrelevant social security query"
     },
     {
       "title": "Marvell (MRVL) and GlobalFoundries (GFS) Rise on Expanded Deal: What Investors Should Know",
@@ -186,11 +227,24 @@
       "firstAt": 1789833444000
     },
     {
-      "title": "Latvian president: Most NATO countries could not repel Russian missile attack - english.nv.ua",
-      "link": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxOQ2hoejJ2MjVkcENMaWZWNjF0N1hEbVYxa3ZtOE4yalVzNXNfM0lOREpSbzNvWkJrUE9hbWkyS1dUZzRqUXFTaXZMclFOcDJOa0dTSWtEbndfVXVlcmhzci1jLTVmRkV2NE1oMFdhNlBkcmxWRENfSTU1bi11Q2RRLTQzUDd1OVVSOWk0UXNpcmxHbXE3azBBeVp0cnZtWlVWQW9XeW9IR2VpeHc4SUgzSjlhV1p6alZ2Ymdr0gG3AUFVX3lxTE9XcDNBNnR2ZEprR256cUFaTjhxR2d2ZUtnRUxkOUVPSG1RVHJmRmFxNFRmdVItb2hFX29Ta2ZIMldpU2MwcUxndDFJZDNkOFA2WlZuYjNKVmJNZ1VMc3VDTUxUQUN1VElRUUxKcU56VmtZUEE5TmwxNGx1WGJ3NTltSUFNSWJRejVsc3UzU29jd0EwYlF3X2dacVpDcEJqV1N3N3pCS1EyRHF0TzZic3RLcmdEZjBXMA?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiuwFBVV95cUxOQ2hoejJ2MjVkcENMaWZWNjF0N1hEbVYxa3ZtOE4yalVzNXNfM0lOREpSbzNvWkJrUE9hbWkyS1dUZzRqUXFTaXZMclFOcDJOa0dTSWtEbndfVXVlcmhzci1jLTVmRkV2NE1oMFdhNlBkcmxWRENfSTU1bi11Q2RRLTQzUDd1OVVSOWk0UXNpcmxHbXE3azBBeVp0cnZtWlVWQW9XeW9IR2VpeH",
-      "at": 1789833000000,
+      "title": "Want to land more job interviews? Stop letting AI write your résumé.",
+      "link": "https://www.marketwatch.com/story/are-ai-written-resumes-more-likely-to-get-you-a-job-the-answer-may-surprise-you-ae408827?mod=mw_rss_topstories",
+      "source": "MarketWatch",
+      "desc": "Research shows job seekers could get an edge in this labor market by actually writing their own resumes.",
+      "at": 1789831200000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 1,
+      "srcs": 1,
+      "firstAt": 1789831200000
+    },
+    {
+      "title": "Russia reports ‘powerful’ cyberattacks on second day of parliamentary vote",
+      "link": "https://www.aljazeera.com/news/2026/9/19/russia-reports-powerful-cyberattacks-on-second-day-of-parliamentary-vote?traffic_source=rss",
+      "source": "Al Jazeera",
+      "desc": "This is Russia's first election since it invaded Ukraine, and is expected to gauge public support for the ongoing war.",
+      "at": 1789831080000,
       "inst": [
         "XAU/USD",
         "USOIL",
@@ -203,20 +257,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789833000000
-    },
-    {
-      "title": "Want to land more job interviews? Stop letting AI write your résumé.",
-      "link": "https://www.marketwatch.com/story/are-ai-written-resumes-more-likely-to-get-you-a-job-the-answer-may-surprise-you-ae408827?mod=mw_rss_topstories",
-      "source": "MarketWatch",
-      "desc": "Research shows job seekers could get an edge in this labor market by actually writing their own resumes.",
-      "at": 1789831200000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1789831200000
+      "firstAt": 1789831080000,
+      "why": "Cyberattacks lack direct market impact"
     },
     {
       "title": "‘My total balance should be $20 million’: I invested $1.1 million in a crypto platform. Have I lost it all?",
@@ -233,87 +275,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789830900000
-    },
-    {
-      "title": "Zelenskyy approves new long-range strikes on targets in Russia - Türkiye Today",
-      "link": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxONERwU0VvdXRpZkwxbXRueC1KaDhSc3pLLV9FaFRkZEF5YUxDTzBVNUYwZFU1YVd3MXZpa0IzTFB1MHpYQVVSUzNodnhvMEw4bENYMmRTZWVySW5vYlFoXzNlQ04xZmhrY1VpTlgzQ3QzSTM0M08xZkZ6MV9pNzBaeDVNUE1zd2hEbmJ1UGxKV2hTSjBIRXJnbHU5VG5TeWgxOS05MTNCNTY?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiqAFBVV95cUxONERwU0VvdXRpZkwxbXRueC1KaDhSc3pLLV9FaFRkZEF5YUxDTzBVNUYwZFU1YVd3MXZpa0IzTFB1MHpYQVVSUzNodnhvMEw4bENYMmRTZWVySW5vYlFoXzNlQ04xZmhrY1VpTlgzQ3QzSTM0M08xZkZ6MV9pNzBaeDVNUE1zd2hEbmJ1UGxKV2hTSjBIRXJnbHU5VG5TeWgxOS05MTNCNTY?oc",
-      "at": 1789828075000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789825764000
-    },
-    {
-      "title": "“Critically important”: Zelenskyy thanks Trump for Russia sanctions bill with nod to Lindsey Graham - english.nepalnews.com",
-      "link": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxOTWpKdTBkYmQ3UUc4SkRRdkdoMjhXc3pnNmh5c2ZJTU8tT28xVWdxRDNaV3ZMWjNpRVBwMkg2NS1ib3VoeTZ5RXhPR3B3NDk5ZU0zVjROc2ZRTl9tXzV6Z29kaWlHbkV0WVZleFJFdDdqVncxSHNUeWtKWWs0b2dKUldvcDFQZUlMSUpFdHgxak9nZlIyaHM1SzhXS082MlkzLWF0MlVIYURhNjNuSmFNX2VUb1oyanctaGRwUWFuQ200cEFsNERvdTl3NWZNLVZUbjEwZV9hYVlWWnM?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi2wFBVV95cUxOTWpKdTBkYmQ3UUc4SkRRdkdoMjhXc3pnNmh5c2ZJTU8tT28xVWdxRDNaV3ZMWjNpRVBwMkg2NS1ib3VoeTZ5RXhPR3B3NDk5ZU0zVjROc2ZRTl9tXzV6Z29kaWlHbkV0WVZleFJFdDdqVncxSHNUeWtKWWs0b2dKUldvcDFQZUlMSUpFdHgxak9nZlIyaHM1SzhXS082MlkzLWF0MlVIYURhNj",
-      "at": 1789825764000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789823340000
-    },
-    {
-      "title": "All EU sanctions linked to Russia's war may expire as France, Slovakia seek to delist oligarchs - kyivindependent.com",
-      "link": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPSDA3ZHV4ZUVSMGVTQzlmZVA5Z0E4dkJ2M3VMaENpTjRGeVNJOXU2SU9valA2cGs5aURtVW92YUxhYThIT3RjZWFKQk1hVElEUlU4bEw5Vm4yNVVvZW9NOHRpbURhSG4zb1pXV0dnaGFvSTJOMFJha1hZUzhiSlEzUmp3V2RVaU51ZWdOMUpqWkZBdnc0Y0VDUDJQZlg4bF9fQ1NqajFyR2x4elIzdkZlS29oT3VXWXpSUk54WGNsWQ?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMivwFBVV95cUxPSDA3ZHV4ZUVSMGVTQzlmZVA5Z0E4dkJ2M3VMaENpTjRGeVNJOXU2SU9valA2cGs5aURtVW92YUxhYThIT3RjZWFKQk1hVElEUlU4bEw5Vm4yNVVvZW9NOHRpbURhSG4zb1pXV0dnaGFvSTJOMFJha1hZUzhiSlEzUmp3V2RVaU51ZWdOMUpqWkZBdnc0Y0VDUDJQZlg4bF9fQ1NqajFyR2x4el",
-      "at": 1789825426000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789825426000
-    },
-    {
-      "title": "‘Resist him forcefully’: Congress hits back at Trump over Russia sanctions law - The Times of India",
-      "link": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxNNG1ZWkpzbkhrZDhXRWVITENzeHkydDZ1M2VpazhKSXUxaHpDRGc3M2VFSy1WM0JwdDN3TDJRbDEzZmNrbGZNeEgtNXBGQUxBLTl3a3paWk5lZF8zdmtLQXYySlNQNWUxVE9qU2hnN3RNVmU4Mi1aY3hjbFV1VklUZlhtWGJPRGV2M3dlWWxaR3RuTEFJbm1sNWN4Rm1KMVFOZTZPV0ZMSXg1UzhFZWxQeTQyTnJoZ2JQVGtDSkQtVUpwaUpNNXkzM1N1aFZlY1k5c20tWW1HajJPMVhy0gHiAUFVX3lxTFBoMTFfV2duS0l2X21idWxjR2cxQ0lXOEV6X3RoSGFZNVY2clJSTzZ2bmNHVEtSV05aTW1Ld29DRVRNYmx4bFI3c05NdHA4Q1NxRXNtYjFVbEU0Y1llS2RzZjZVYjRuNmtCb1Bic2xNUDkzWFhXMzMxVjc3ZDBja01ISEsyZXQxMnZxWTBabXFaVnlWaU43ZE0zUUhjalIzZ1F3ZkRBUGlZOG43bE5mQzhEQXRPME0xVDg1MjNNM2JqdU0xcmp1c0xxR1drNG5ORmtkTkczNTR6aERVdWpwTnZBMGc?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi3AFBVV95cUxNNG1ZWkpzbkhrZDhXRWVITENzeHkydDZ1M2VpazhKSXUxaHpDRGc3M2VFSy1WM0JwdDN3TDJRbDEzZmNrbGZNeEgtNXBGQUxBLTl3a3paWk5lZF8zdmtLQXYySlNQNWUxVE9qU2hnN3RNVmU4Mi1aY3hjbFV1VklUZlhtWGJPRGV2M3dlWWxaR3RuTEFJbm1sNWN4Rm1KMVFOZTZPV0ZMSXg1Uz",
-      "at": 1789825200000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789822992000
+      "firstAt": 1789830900000,
+      "why": "Individual scam report"
     },
     {
       "title": "An unaffordable car market highlights Iran’s cost-of-living crisis",
@@ -343,47 +306,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789823599000
-    },
-    {
-      "title": "Trump signs Russia sanctions bill named after Lindsey Graham - washingtonexaminer.com",
-      "link": "https://news.google.com/rss/articles/CBMipgFBVV95cUxNVUNDU3B0QlI0U0xsWDZ1cGNZdXFDb25qWklwSC1BTkJ1SFh4OG9LQjJZSjNmR2tFVFdpd0lUSFBmdk1hb2E5Z2tnc2NVR2wxc1p1UFdycC1oUjNMN05XNHNNeU00MkpkSDh6aFpPTEJNSDNYb2xxRkJCX1VZZlF0X2ZiX1NtcmJ2M1ZiWmFCOFNyeEJnS25DVXEzYlFQMzdWWVN6U3pn?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMipgFBVV95cUxNVUNDU3B0QlI0U0xsWDZ1cGNZdXFDb25qWklwSC1BTkJ1SFh4OG9LQjJZSjNmR2tFVFdpd0lUSFBmdk1hb2E5Z2tnc2NVR2wxc1p1UFdycC1oUjNMN05XNHNNeU00MkpkSDh6aFpPTEJNSDNYb2xxRkJCX1VZZlF0X2ZiX1NtcmJ2M1ZiWmFCOFNyeEJnS25DVXEzYlFQMzdWWVN6U3pn?oc=5\"",
-      "at": 1789823340000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789822009000
-    },
-    {
-      "title": "Lithuania, Estonia welcome Trump signing Russia sanctions bill into law - A News",
-      "link": "https://news.google.com/rss/articles/CBMisgFBVV95cUxOWHM2dWwwbGRKSG5ScGxmeW1xUWgtc05MdHhKSm1yU2J5aUJJX00waE1sN3NteXN5SkQ4S2luYm55X25PODNJYmZST2pfeXhEQ3g3Z3lySjBLeTZSYUMwaUtIMlBzNU9WMGR3MFFHMFJuR0RTZ29NUmQ5ZEZmd0RNU1JhV1U2dEw4WDlndnNIQlo4NmhJWXZlY1RHQzZ3RFIyOFppN1QycmRKTXRPM2ZMbFZn0gG3AUFVX3lxTFBkR2RXS1RJRTdtNlkzbldFekJ5Sl90VHp3V2tZdTBUeDh5WGR0QUVxTG16T2xWNlNzRXVlN2xOTWlkWHRUcWltb3VSUlAxclZoRkowc3hIT0RHR0h5YUs0ZTAzT2Y4ck16cTh5bHgwSUI5dVBIYnVNNURNLTUxNXN2dWZGUV90N1F5ZDNJV1FQNW5Xc2YwSUUzWTB3T213WmE1c3pTTnJuTGI3NjdJdzdvekhLal93aw?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMisgFBVV95cUxOWHM2dWwwbGRKSG5ScGxmeW1xUWgtc05MdHhKSm1yU2J5aUJJX00waE1sN3NteXN5SkQ4S2luYm55X25PODNJYmZST2pfeXhEQ3g3Z3lySjBLeTZSYUMwaUtIMlBzNU9WMGR3MFFHMFJuR0RTZ29NUmQ5ZEZmd0RNU1JhV1U2dEw4WDlndnNIQlo4NmhJWXZlY1RHQzZ3RFIyOFppN1QycmRKTX",
-      "at": 1789822992000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789822009000
+      "firstAt": 1789823599000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Military tension boosts gold"
     },
     {
       "title": "Child among four Palestinians killed in Israeli attacks across Gaza",
@@ -403,7 +330,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789822771000
+      "firstAt": 1789822771000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Conflict escalation boosts gold"
     },
     {
       "title": "What’s behind reports that the Israeli army is low on troops, equipment?",
@@ -423,27 +354,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789822303000
-    },
-    {
-      "title": "China Slams US Law Tightening Sanctions on Russia and Iran - bloomberg.com",
-      "link": "https://news.google.com/rss/articles/CBMirgFBVV95cUxPUzBLUDV6NHM2Q3NkaUpNWno0ZXZlZjA5WEFOX0ZpYU9qbVZfdVEySm9scjZwSzN2RnlBZURRcHRvWGhQNXpJS1NFcEVsV1ZtWjZpczZNN2lkMHZCa1ItbWtydklKRnRKNTRHT1hnWkpRUUxkSkllYWFqVHIwbWppMU93NHZVNDdMV3F4SVZGTWtRZ2szNkU0WFVLOVltT1dOamQwdzhBZDBrR0FtWVE?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMirgFBVV95cUxPUzBLUDV6NHM2Q3NkaUpNWno0ZXZlZjA5WEFOX0ZpYU9qbVZfdVEySm9scjZwSzN2RnlBZURRcHRvWGhQNXpJS1NFcEVsV1ZtWjZpczZNN2lkMHZCa1ItbWtydklKRnRKNTRHT1hnWkpRUUxkSkllYWFqVHIwbWppMU93NHZVNDdMV3F4SVZGTWtRZ2szNkU0WFVLOVltT1dOamQwdzhBZDBrR0",
-      "at": 1789822009000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789822009000
+      "firstAt": 1789822303000,
+      "why": "Military shortages unclear impact"
     },
     {
       "title": "US lifts sanctions on Eritrea ‘to advance US regional interests’ in Red Sea",
@@ -463,30 +375,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789821277000
-    },
-    {
-      "title": "Fed's rate hike halts 10-year Treasury yield ri... - Pluang",
-      "link": "https://news.google.com/rss/articles/CBMihgFBVV95cUxQRWRBVnBuS3JUZHhPRnVacG5yRTFCckNDN3pRY3FvRWZXMzNiYVpPNnFCSTJBZkNxU3VoMVRRUXcwX2I5T1lYZmt0TUlIRmxhbS0wNWJlbUpyd3BKYWRkMzVsNUtnSFVvUldfeDc0YVVmMmM1T3V3ajZ2aWZfN2ViMjQxNElRUQ?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMihgFBVV95cUxQRWRBVnBuS3JUZHhPRnVacG5yRTFCckNDN3pRY3FvRWZXMzNiYVpPNnFCSTJBZkNxU3VoMVRRUXcwX2I5T1lYZmt0TUlIRmxhbS0wNWJlbUpyd3BKYWRkMzVsNUtnSFVvUldfeDc0YVVmMmM1T3V3ajZ2aWZfN2ViMjQxNElRUQ?oc=5\" target=\"_blank\">Fed's rate hike halts 10-",
-      "at": 1789820527000,
-      "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 3,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789820527000
+      "firstAt": 1789821277000,
+      "why": "Sanctions lift impact unclear"
     },
     {
       "title": "In Gaza, actors perform a war they are still living",
@@ -506,7 +396,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789820332000
+      "firstAt": 1789820332000,
+      "why": "Cultural article no market impact"
     },
     {
       "title": "Shark attack prompts rare kill order in Western Australia as victim named",
@@ -523,243 +414,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789818622000
-    },
-    {
-      "title": "Canada optimistic about concluding trade talks with India by year-end, minister says",
-      "link": "https://www.investing.com/news/commodities-news/canada-optimistic-about-concluding-trade-talks-with-india-by-yearend-minister-says-4908078",
-      "source": "Investing Cmdty",
-      "at": 1789817428000,
-      "inst": [
-        "USD/CAD"
-      ],
-      "ccy": [
-        "CAD"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789817428000
-    },
-    {
-      "title": "World’s largest economy joins Saudi Arabia, Turkey and Israel in battle for Red Sea influence as it lifts sanctions on Eritrea despite its role in Ethiopia war that killed 600,000 - Business Insider Africa",
-      "link": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxQOFBZTWNtamNSVGd5Q0ZJT2VoRjBJTTNsZXBvbnRIYUM3d3NkSlFXdVl1TlVIcUI5czNZdThRYjVnQWFBcUV5U1VXdEtDWVl5UUFsYnEtVmF4cTNNb2hBVjZzOENQeXAzbXpWaV9jX1dXaHA5ZmlhUXFNM0FuQTEtM0lXTGoyREI4X3Z6MkpDeFpyY0tKVDlwRFlMOUwtaWZoQXgxQTdyaUw3WktLRHRONGFESWZaQURBc2J5d2tpMnY2ZTFSaGQ1WW9fcHZORldoaDFHeA?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi1AFBVV95cUxQOFBZTWNtamNSVGd5Q0ZJT2VoRjBJTTNsZXBvbnRIYUM3d3NkSlFXdVl1TlVIcUI5czNZdThRYjVnQWFBcUV5U1VXdEtDWVl5UUFsYnEtVmF4cTNNb2hBVjZzOENQeXAzbXpWaV9jX1dXaHA5ZmlhUXFNM0FuQTEtM0lXTGoyREI4X3Z6MkpDeFpyY0tKVDlwRFlMOUwtaWZoQXgxQTdyaUw3Wk",
-      "at": 1789817425000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789817425000
-    },
-    {
-      "title": "Trump Signs Sanctions Law Targeting Deportation of Ukraine Children - kyivpost.com",
-      "link": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE1TUFIyM2hkbmpaSG80M2tnaTVsTjJTQ2J1N1hEa09XeXl5bEl6TllvLVJkN0N3VnVNYmtDVm56NHZjeW1SSDFxN0VVTQ?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiS0FVX3lxTE1TUFIyM2hkbmpaSG80M2tnaTVsTjJTQ2J1N1hEa09XeXl5bEl6TllvLVJkN0N3VnVNYmtDVm56NHZjeW1SSDFxN0VVTQ?oc=5\" target=\"_blank\">Trump Signs Sanctions Law Targeting Deportation of Ukraine Children</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">",
-      "at": 1789817111000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789817111000
-    },
-    {
-      "title": "Russia kills eight people in Ukraine, attacks two vessels in Black Sea - Al Jazeera",
-      "link": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQajNJUlRQUzJ2c1dDTDJvYllaRUpFQk1WdHM5SHFNck15OE16WWN6NVBXRDh6SUJETi1MbmVreDJia0JIU09WbEZ6MjlnLUR2czR2c0w1bjFiS040VGt1NFYwTjhwN2tDTWRvVUVKb3o4SzF1ejBwVE1zOVBaWVlHSzNqU3Z2MFJaSzB2SGd1M2VpYU1lNGVoRmktNGF6UlNkZVVCUE930gGrAUFVX3lxTE9OdlZfcm1IMjNoQ1IwN1M1dHptbHVPNGtRcm5oWWZhd2pOeF85aEI0Q05TNXAycG1WVW9zdHhuWVk0eGJCYWZjLVFrUzN2VVJnU2pnd2N0dXlCSDRTSXp1b28tbUYzci1GWjJORlpDMS12TE5SZExPeUdGR2JxNC1rLXB6dTcwb0ZwWVdvSUpCMHhKY0ltejljQ3puaXdDVUJSclRiTHRtR2FuMA?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMipgFBVV95cUxQajNJUlRQUzJ2c1dDTDJvYllaRUpFQk1WdHM5SHFNck15OE16WWN6NVBXRDh6SUJETi1MbmVreDJia0JIU09WbEZ6MjlnLUR2czR2c0w1bjFiS040VGt1NFYwTjhwN2tDTWRvVUVKb3o4SzF1ejBwVE1zOVBaWVlHSzNqU3Z2MFJaSzB2SGd1M2VpYU1lNGVoRmktNGF6UlNkZVVCUE930gGrAU",
-      "at": 1789815763000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789815763000
-    },
-    {
-      "title": "Russia should respond to US sanctions with 'military deterrence': Dmitry Medvedev - The Times of India",
-      "link": "https://news.google.com/rss/articles/CBMi8gFBVV95cUxNS0liV3B0cDREcS1lUlF0SGlzNW5SVldJVEF2QjVXSzQyTF9iY0hOOUcyUUdNVjEwTTBvV3RDV0w2YUlSMm1ZcXYtdGo0S0RFMFlTOWJMZWVDdWJlTExXYUMwQm8yWnh3R3VGQmtSbWtIc25mazVnVUVqTi1vMGdsT0Z4NGVSYmc4Wkd4d211UFZlb3J2VmtBUm5PMEsteHo4cmlaU01nMUpCY0hmSHRwYUUzMW8tQzJBMnIyeHoxWWxOOGp2akNqbm9fU3VYaThPNzhtemZxTjN1R0EtZ3UwOUNaX1VPNUd3N2FXLWJmelJMUdIB9wFBVV95cUxOUFphU2Y0YW1EaTJXSzJaV1oyNk9QNmpDMUZXT1hsTHp1U1pwYnp6OU1iUjg5Z0ZyMGRPMFdDMUFnSXVlSkVZS3NpTF9pd2RTSjA1R1hDNzBVblRURUZJTFktUTc1V2p2eEFZWEZqQU5wTU15QzBOUnFxQ3U5bFVIVWZuZy16eXlkTHl0VVdzZ3JxdEtJUkFmQm8tM1phV2gwREd1cmxsMUQyWGhkOTRhN2xKVWx4M2MzWmlnZm83eGQ1aXdUV1c2dTFxVkhvUVdNbFJSMkJNcHZucFpxektUSFc0WUh3LU1TWHdXQzZjTGxqQ0g5YmhB?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi8gFBVV95cUxNS0liV3B0cDREcS1lUlF0SGlzNW5SVldJVEF2QjVXSzQyTF9iY0hOOUcyUUdNVjEwTTBvV3RDV0w2YUlSMm1ZcXYtdGo0S0RFMFlTOWJMZWVDdWJlTExXYUMwQm8yWnh3R3VGQmtSbWtIc25mazVnVUVqTi1vMGdsT0Z4NGVSYmc4Wkd4d211UFZlb3J2VmtBUm5PMEsteHo4cmlaU01nMUpCY0",
-      "at": 1789813680000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789813680000
-    },
-    {
-      "title": "Zelenskyy thanks Trump for signing 'critically important' Russia sanctions bill - ABC News - Breaking News, Latest News and Videos",
-      "link": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxONTJ4dFVSYnVWdnNUdm9BeFVrLWtzNENxVGhLdld4VE9pbkluYmZfMHpKLUo1anBySzJmdTljaUZ0TkdOQ0JHc1pkczJpYzg1R2lfVmVBaEpXdlhGR3l5NE5Fdm14OG9NT05qcjJOQTdWN19tWXpNQ0QteEQ5a2FDZWFHU0JtVG5EUDVsTUNsLTFoMDhWbHhfb0JPTHV1N0tUcExKYVc5Qm1SVFBUdzBVYXBnb05PSHhIMGtF0gHAAUFVX3lxTE84RXR6VlpibkpTZ2lmUy1IQWpSbHV6NElURTdudnBxWDVNUnJUUTlsUnU0bUZhbzlod2VmWjh2SkVSQ0JNLVdHYjZ5MGhia2hOUXpNTHh4RlN3QmNzWS1hTklWZ0prTGo2VkxaSk1iZGtfREg3RGNfV3RYRlJ3QWJxbVNyR2taT0JoWlNNd2Z5aGVnSHhrWXRVajMtQTNwZGtveUI0bjA3ZUFqcy04eU5vajB3SWZZNXlrUzFINVlqNw?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiuwFBVV95cUxONTJ4dFVSYnVWdnNUdm9BeFVrLWtzNENxVGhLdld4VE9pbkluYmZfMHpKLUo1anBySzJmdTljaUZ0TkdOQ0JHc1pkczJpYzg1R2lfVmVBaEpXdlhGR3l5NE5Fdm14OG9NT05qcjJOQTdWN19tWXpNQ0QteEQ5a2FDZWFHU0JtVG5EUDVsTUNsLTFoMDhWbHhfb0JPTHV1N0tUcExKYVc5Qm1SVF",
-      "at": 1789809046000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 3,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789807628000
-    },
-    {
-      "title": "Trump signs Bill authorising sweeping Russia sanctions - CNA",
-      "link": "https://news.google.com/rss/articles/CBMiggFBVV95cUxPS09KYWJ2dDY3ZUtFdll6VVYwdVRQdHk5cG5rQkVJbnVMZ0swUVR2cU1vdElfaXdYUzRabVJVR3Y1dVVZUGctbEQ0dkJ4WGtMYzRqTG1WTGhMQVBXYWVUQlNhVllMdWpxOUUya0kwbDgzYmMycVl0V0lGVU5NZ1psSGxR?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiggFBVV95cUxPS09KYWJ2dDY3ZUtFdll6VVYwdVRQdHk5cG5rQkVJbnVMZ0swUVR2cU1vdElfaXdYUzRabVJVR3Y1dVVZUGctbEQ0dkJ4WGtMYzRqTG1WTGhMQVBXYWVUQlNhVllMdWpxOUUya0kwbDgzYmMycVl0V0lGVU5NZ1psSGxR?oc=5\" target=\"_blank\">Trump signs Bill authorising sw",
-      "at": 1789808940000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789807628000
-    },
-    {
-      "title": "Russia Warns New U.S. Sanctions Law Would Harm Trump’s Peace Efforts - The New York Times",
-      "link": "https://news.google.com/rss/articles/CBMihAFBVV95cUxPMGFVVjBESXNDS3pqTXUwbll6TlgyMzctMUpMSjY2c2tnTG1TRUN2UjM4dWE4MHZMWENTX1pXeHQ1MEpCUFNuQXFhVTZXNzMwQkJ1S29WMTFyOGw3NDRhVnp0V2dLSHRWY1ZLSHRGXzNydFZjbkVhN1VDWmJnSm5pSEViYzU?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMihAFBVV95cUxPMGFVVjBESXNDS3pqTXUwbll6TlgyMzctMUpMSjY2c2tnTG1TRUN2UjM4dWE4MHZMWENTX1pXeHQ1MEpCUFNuQXFhVTZXNzMwQkJ1S29WMTFyOGw3NDRhVnp0V2dLSHRWY1ZLSHRGXzNydFZjbkVhN1VDWmJnSm5pSEViYzU?oc=5\" target=\"_blank\">Russia Warns New U.S. Sancti",
-      "at": 1789808411000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789807628000
-    },
-    {
-      "title": "Trump Signs Sweeping “Sanctions From Hell” Bill Against Russia Into Law - united24media.com",
-      "link": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxQRmJucThlVUVwN0dvZ0VzX252Z3pNVHBpWkJCaW1sTFVraTNZUU1YaDdyZ3dwV2t4M1RlUkYtWXJUdS1DWjRLQURhWlkza0NQR3NUWlU3aDlQdHYzalgxdlJCYXM1cndpU3lQOGJRYXJ0VjI2ZnQtTDUtVjcyMkxnbGVGaDlDWXFPbUx1ekZxRk9JclJPX3M3aS1LUkJGeXRZRkhPWWdWTTN5TTg?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiqwFBVV95cUxQRmJucThlVUVwN0dvZ0VzX252Z3pNVHBpWkJCaW1sTFVraTNZUU1YaDdyZ3dwV2t4M1RlUkYtWXJUdS1DWjRLQURhWlkza0NQR3NUWlU3aDlQdHYzalgxdlJCYXM1cndpU3lQOGJRYXJ0VjI2ZnQtTDUtVjcyMkxnbGVGaDlDWXFPbUx1ekZxRk9JclJPX3M3aS1LUkJGeXRZRkhPWWdWTTN5TT",
-      "at": 1789807628000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789805908000
-    },
-    {
-      "title": "Trump signs Russia-Iran sanctions bill, India, China faces risk of tariffs up to 100% - Firstpost",
-      "link": "https://news.google.com/rss/articles/CBMixwFBVV95cUxPckZoZXU4M3ltdndfazctMElmZmVfWWVEODFkZThLTHNmMVB2eFd5dUctX1BTOGVBVlNnVGUtano5MVpoc0taZEZDclI0ZUtWR3dVZENISGlRbUhtVUJGamZiNmtXb01mY3JCbU5wNTBDV2xnN3MzeHZoMXNhNFpTbTR5ZmFpVjlPYnlna0lmXzRMeWlDZC1DUHV4NHFIYWJQeEpDNVRmN0ozeE9Kc0swVzc0N2dUZTM2Uy1iZ1gyRmhFUjJKMzRr0gHMAUFVX3lxTE9VOW4waEJpSlhlNzhWRmNZV0RfUWctVldEMzB3TGt1OU5xNk91bTI5SEVLWFVtX0RyclYxU0JBVG04SEFnbWtLa0dCRVY5VlFsVTk2WmNSLXNadXg3bXhSNWhTSkhSNVpGcE9pRlpCQ3NuOUFEVC1lazI3MV81dlN1azVQaVVHM2ROeUNyVV9JQzNrbU55QUNNRTlmSTVMLWVJUEFxZzZuUFFHNEpGX1pERmVid0YwUzVrT09zS0N0N1RkTHFzMERGbUdtYg?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMixwFBVV95cUxPckZoZXU4M3ltdndfazctMElmZmVfWWVEODFkZThLTHNmMVB2eFd5dUctX1BTOGVBVlNnVGUtano5MVpoc0taZEZDclI0ZUtWR3dVZENISGlRbUhtVUJGamZiNmtXb01mY3JCbU5wNTBDV2xnN3MzeHZoMXNhNFpTbTR5ZmFpVjlPYnlna0lmXzRMeWlDZC1DUHV4NHFIYWJQeEpDNVRmN0ozeE",
-      "at": 1789805908000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789803364000
-    },
-    {
-      "title": "Trump signs law expanding sanctions on Russia and Iran - سانا",
-      "link": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE1ZTGJQN242cGp2Q0NsOV84VWoxdWhXNE1lVUV2eW1uVl9tLXRCSTlfZnJyMHgzWnJWSVJqOEI5ZE8zTkdCNlZzUEVhWWhpMnM0WFBR?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiU0FVX3lxTE1ZTGJQN242cGp2Q0NsOV84VWoxdWhXNE1lVUV2eW1uVl9tLXRCSTlfZnJyMHgzWnJWSVJqOEI5ZE8zTkdCNlZzUEVhWWhpMnM0WFBR?oc=5\" target=\"_blank\">Trump signs law expanding sanctions on Russia and Iran</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">سان",
-      "at": 1789803364000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789802762000
-    },
-    {
-      "title": "Trump Signs Sweeping Russia Sanctions Law - The Diplomatic Insight",
-      "link": "https://news.google.com/rss/articles/CBMigAFBVV95cUxQWFFVaDR5bEx4MERGcTVONzlkSkRlZHJ4TFFSLVNWcXFxREEwbjZRUlMteEhZdTAwUENlRHo2SXFhNE5DbG41RVhudjFNVVNORm4yYmdqbXhaTkkwd0hYNzAtTlkyelFyUzdYb2ZOUUltdTZsMmszbkMtZlVTTmxnSQ?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMigAFBVV95cUxQWFFVaDR5bEx4MERGcTVONzlkSkRlZHJ4TFFSLVNWcXFxREEwbjZRUlMteEhZdTAwUENlRHo2SXFhNE5DbG41RVhudjFNVVNORm4yYmdqbXhaTkkwd0hYNzAtTlkyelFyUzdYb2ZOUUltdTZsMmszbkMtZlVTTmxnSQ?oc=5\" target=\"_blank\">Trump Signs Sweeping Russia Sanct",
-      "at": 1789802762000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789802762000
+      "firstAt": 1789818622000,
+      "why": "Shark attack no economic impact"
     },
     {
       "title": "Deutsche Bank sees cautious positioning despite market resilience",
@@ -772,129 +428,6 @@
       "rel": 1,
       "srcs": 1,
       "firstAt": 1789802368000
-    },
-    {
-      "title": "Fed Issues First Rate Hike Since 2023 - WSJ",
-      "link": "https://news.google.com/rss/articles/CBMijAFBVV95cUxNZ2FjY0hoY3UwX3V5Q3VvNUZWS1dBWHJmVVNINWU2MVFGeWFqTnpVcXRhQmowVTg3Y2VDSlVNaGRDVk1IRFFyeTJfOHJpajlpYzd3VUFnNllGTFljc2xtS09sZFhoOGtCX0JaMTB2VG9ZOURMUGF6OWNSY1BrVWlOeW85cGlpMng3aFp2Mw?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMijAFBVV95cUxNZ2FjY0hoY3UwX3V5Q3VvNUZWS1dBWHJmVVNINWU2MVFGeWFqTnpVcXRhQmowVTg3Y2VDSlVNaGRDVk1IRFFyeTJfOHJpajlpYzd3VUFnNllGTFljc2xtS09sZFhoOGtCX0JaMTB2VG9ZOURMUGF6OWNSY1BrVWlOeW85cGlpMng3aFp2Mw?oc=5\" target=\"_blank\">Fed Issues First ",
-      "at": 1789801280000,
-      "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789801280000
-    },
-    {
-      "title": "Trump signs into law sanctions package targeting Russia's economy - euronews.com",
-      "link": "https://news.google.com/rss/articles/CBMixAFBVV95cUxOdEpMdnhDNVdRRnZaSFVYNWNrbUVWal9VQTU4T1c1LXRyeFgtMnFfSVg0NENhc3ZXVTI2YVFaRGRtOUlrRmIzaXlUbjlEcDZxWkZEZ2wtcjRTWnFGQnQ0LVBMSUJqWmJnMF9ZVGxhMmE3T0VLOVdtNXgwWFNuQnNub2NDU2VnN0FwLXFDbUFhazVtTWJWeTFrejJfdGYyTTMwMk42RFZRcnVKcWFSZ0cwV1dwMklFWFZNZ2d6WVNUWDZZTFEt?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMixAFBVV95cUxOdEpMdnhDNVdRRnZaSFVYNWNrbUVWal9VQTU4T1c1LXRyeFgtMnFfSVg0NENhc3ZXVTI2YVFaRGRtOUlrRmIzaXlUbjlEcDZxWkZEZ2wtcjRTWnFGQnQ0LVBMSUJqWmJnMF9ZVGxhMmE3T0VLOVdtNXgwWFNuQnNub2NDU2VnN0FwLXFDbUFhazVtTWJWeTFrejJfdGYyTTMwMk42RFZRcnVKcW",
-      "at": 1789798840000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789797219000
-    },
-    {
-      "title": "Ukraine’s Foreign Minister Calls Trump’s Russia and Iran Sanctions Law Historic - Межа. Новини України.",
-      "link": "https://news.google.com/rss/articles/CBMicEFVX3lxTE1pSWdFcUpCellmRXNmVHAxRV9XZWdrT0xFTFJuWnBNSjNfeG15UFducFhHdVNxWVYwSjdiYmc0SHlDMDUxMHozYmF4RHVfTlY1S1pUdGQxSFBpNGp5LS10WEZIS1dJTHhhRVQwTW9zaGE?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMicEFVX3lxTE1pSWdFcUpCellmRXNmVHAxRV9XZWdrT0xFTFJuWnBNSjNfeG15UFducFhHdVNxWVYwSjdiYmc0SHlDMDUxMHozYmF4RHVfTlY1S1pUdGQxSFBpNGp5LS10WEZIS1dJTHhhRVQwTW9zaGE?oc=5\" target=\"_blank\">Ukraine’s Foreign Minister Calls Trump’s Russia and Iran",
-      "at": 1789797812000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789797219000
-    },
-    {
-      "title": "Prelude to escalation. Russia strikes targets near Polish borders - Defence24.com",
-      "link": "https://news.google.com/rss/articles/CBMioAFBVV95cUxNaXZ2c1hmUHpNcEN5X3hkX0RCYXhpTkRYd0NZUFUxZkszUDRKd0dRYUtCNGlSQUN4bmJRQmR1Y3Q1SV8yUEdxcTFFc2ZxTHNMODlTRmJSSEswM2RzdGhsS3daREFiV2d0NnloM0RjVnA0bC1JZ00xdWM0OTk0TC1rdkZIUksxYkRzZUJzVGhuZl9JTmZWeUxmVmE2cGpiSWha?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMioAFBVV95cUxNaXZ2c1hmUHpNcEN5X3hkX0RCYXhpTkRYd0NZUFUxZkszUDRKd0dRYUtCNGlSQUN4bmJRQmR1Y3Q1SV8yUEdxcTFFc2ZxTHNMODlTRmJSSEswM2RzdGhsS3daREFiV2d0NnloM0RjVnA0bC1JZ00xdWM0OTk0TC1rdkZIUksxYkRzZUJzVGhuZl9JTmZWeUxmVmE2cGpiSWha?oc=5\" target=",
-      "at": 1789797600000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789797600000
-    },
-    {
-      "title": "Trump Signs Russia-Iran Sanctions Bill, Putting New Pressure Tools At His Disposal - Radio Free Europe/Radio Liberty",
-      "link": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE9hZUd3TVBEWFJra0RKbGdzWE9xNlFyZVFrMTRseDNSMmhRY3pSMDEtWWQzWWY0VTlqQ3NVUnlQSXktRE9heUktVXgxVzc3QdIBUEFVX3lxTE1nNGlOb3JoQVVpNkowWjU0XzQ1NExCZkg0UFF5NmdLM09nbGhsLW1sUkJUcFpGYXl2Q00xR0haWDBnbnlHNkJqWFdnUWpTTDd0?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiTkFVX3lxTE9hZUd3TVBEWFJra0RKbGdzWE9xNlFyZVFrMTRseDNSMmhRY3pSMDEtWWQzWWY0VTlqQ3NVUnlQSXktRE9heUktVXgxVzc3QdIBUEFVX3lxTE1nNGlOb3JoQVVpNkowWjU0XzQ1NExCZkg0UFF5NmdLM09nbGhsLW1sUkJUcFpGYXl2Q00xR0haWDBnbnlHNkJqWFdnUWpTTDd0?oc=5\" target=",
-      "at": 1789797219000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789797219000
-    },
-    {
-      "title": "Trump Signs Russia Sanctions Bill - 700WLW",
-      "link": "https://news.google.com/rss/articles/CBMihgFBVV95cUxORmRPOFNsNVMycWx5ZFNlcnBlXzA2dGl1aWJpRDVlNjkwdGxZQUhJZnZ2U1hQbDg2UnRSR3RYN21CS3hQMm8xbklmRFVQeGw0V3hGa1lxZjFPVlEtM051am51ZXBZdW5mQVk1Yl9IeDhCZ1Q1am8tWXlvWGI5dkNmZmFJenB3QQ?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMihgFBVV95cUxORmRPOFNsNVMycWx5ZFNlcnBlXzA2dGl1aWJpRDVlNjkwdGxZQUhJZnZ2U1hQbDg2UnRSR3RYN21CS3hQMm8xbklmRFVQeGw0V3hGa1lxZjFPVlEtM051am51ZXBZdW5mQVk1Yl9IeDhCZ1Q1am8tWXlvWGI5dkNmZmFJenB3QQ?oc=5\" target=\"_blank\">Trump Signs Russia Sancti",
-      "at": 1789793340000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789793340000
     },
     {
       "title": "Saudi Arabia issues first air raid alerts for Riyadh since Houthis escalated attacks",
@@ -914,47 +447,13 @@
       "sev": 3,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789791647000
-    },
-    {
-      "title": "Pres. Trump signs sweeping Russia sanctions bill, aiming to choke off funds for Moscow in Ukraine war - Alaska's News Source",
-      "link": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxPRmJQM1BhN2drOENuTUczdmhIZ0tUcUxjSG91SUpFMVd5LTM2VThLTVhCUmVEVFZncUc5bTFoZEJ3QndFWk5haTF4X3NObmJJQ0hsUDVPbGpfdEZKdDRNakJjZEdXS1pIdVBBa3R6MmcwSWZuM2JsazFJa2VCdGZaZGFlOFNxRjJBZ1RvMnllZ243RHp0elJsTVNxRTJvVUhyTVdRQ084c1pLNndCaU53S1FkUjVvVXJaSzN1SHBFZUdYT0puZ1JnNks3Sk9vd1dKQWhMWUNYSXM?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi2AFBVV95cUxPRmJQM1BhN2drOENuTUczdmhIZ0tUcUxjSG91SUpFMVd5LTM2VThLTVhCUmVEVFZncUc5bTFoZEJ3QndFWk5haTF4X3NObmJJQ0hsUDVPbGpfdEZKdDRNakJjZEdXS1pIdVBBa3R6MmcwSWZuM2JsazFJa2VCdGZaZGFlOFNxRjJBZ1RvMnllZ243RHp0elJsTVNxRTJvVUhyTVdRQ084c1pLNn",
-      "at": 1789789860000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789789680000
-    },
-    {
-      "title": "Trump signs Lindsey Graham’s Russia sanctions bill into law - New York Post",
-      "link": "https://news.google.com/rss/articles/CBMingFBVV95cUxOejZyenhmalNLbklhS1BLeklPMExFX1NjdktkZDVIVDZ3aHJYcF9ObDhTa1dlUUdlSmlwVVlzZ0lhWFROb25PUkJENTIwdC01U25vQjBzdXFITnJlRGUxRUxzYWpUelR3ek9aWEt1WnpzWXN6M1dpTlBLcWtBTEVjSWFESVdBWTZqU3pZZTVwbnZ6YVdzVkJYUmUyMTM0Zw?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMingFBVV95cUxOejZyenhmalNLbklhS1BLeklPMExFX1NjdktkZDVIVDZ3aHJYcF9ObDhTa1dlUUdlSmlwVVlzZ0lhWFROb25PUkJENTIwdC01U25vQjBzdXFITnJlRGUxRUxzYWpUelR3ek9aWEt1WnpzWXN6M1dpTlBLcWtBTEVjSWFESVdBWTZqU3pZZTVwbnZ6YVdzVkJYUmUyMTM0Zw?oc=5\" target=\"_",
-      "at": 1789789680000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789789680000
+      "firstAt": 1789791647000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Air raid alerts boost risk assets"
     },
     {
       "title": "US Treasury’s Bessent to discuss AI, rare earths with China’s He, source says",
@@ -979,158 +478,6 @@
       "firstAt": 1789783946000
     },
     {
-      "title": "President Donald Trump signs sweeping Russia sanctions bill named for Lindsey Graham, aiming to choke off funds for Moscow - ABC7 Los Angeles",
-      "link": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxQUm53UjZyS3hlcGFpT1V3RlVCQU4tSEdmSmJwX2tqcGt5OWhrLWZwUTNqN1Zma3dJdnFBMElUWDhBNFZkeUxxRlJ0d0lpbG1YalFwbENvZEdCbEU4WGFCdlVnSmdhbmVMNmE2T1FZOHdLMGFCXzRRYzc1Y245WEtiTXRmSElWTkVvU21maDM5dG94ZXFhNFlNUHROVzc2eERka0VHRERIaVVSQmplb3lkcFU4YlV4REJNWVRvNE1UUG9CbEdCYkU0RUphaHVseFNCOTl5c2E3dmd5WlkwZXI40gHfAUFVX3lxTFBSbndSNnJLeGVwYWlPVXdGVUJBTi1IR2ZKYnBfa2pwa3k5aGstZnBRM2o3VmZrd0l2cUEwSVRYOEE0VmR5THFGUnR3SWlsbVhqUXBsQ29kR0JsRThYYUJ2VWdKZ2FuZUw2YTZPUVk4d0swYUJfNFFjNzVjbjlYS2JNdGZISVZORW9TbWZoMzl0b3hlcWE0WU1QdE5XNzZ4RGRrRUdEREhpVVJCamVveWRwVThiVXhEQk1ZVG80TVRQb0JsR0JiRTRFSmFodWx4U0I5OXlzYTd2Z3laWTBlcjg?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi3wFBVV95cUxQUm53UjZyS3hlcGFpT1V3RlVCQU4tSEdmSmJwX2tqcGt5OWhrLWZwUTNqN1Zma3dJdnFBMElUWDhBNFZkeUxxRlJ0d0lpbG1YalFwbENvZEdCbEU4WGFCdlVnSmdhbmVMNmE2T1FZOHdLMGFCXzRRYzc1Y245WEtiTXRmSElWTkVvU21maDM5dG94ZXFhNFlNUHROVzc2eERka0VHRERIaVVSQm",
-      "at": 1789782585000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789779960000
-    },
-    {
-      "title": "Trump signs broad Russia sanctions bill - DW.com",
-      "link": "https://news.google.com/rss/articles/CBMifEFVX3lxTE5sOU5yNnA3Wjl1d2c1N1Y2SDBzRmdpMV95UkFQX2xRaTE3dTMtT21aRGR0SllZOHZpSDZ1X0djM0dqa1Z5MWZ2OVVob3hKT0VDN1FWUjVpdGNnZkd0eGNEMVFRUktJZHJrWTY0OXRWWTdpMW9vb3RZMTBYYmLSAXxBVV95cUxQNkMtWDhWU3QzTGpkSi1YNlNHZzhzUzZxLUZ3a1VCQ2hJTWlyS09vakZ1eG40QS15TlA4cTNPbXVvbnNUUmwtTnVfQmlLYTFYa21GdHhHR0I0US1DQjBMYTJsczQ3Sng4TWZqTkdKMkp0bVU0R09wYTgzRENu?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMifEFVX3lxTE5sOU5yNnA3Wjl1d2c1N1Y2SDBzRmdpMV95UkFQX2xRaTE3dTMtT21aRGR0SllZOHZpSDZ1X0djM0dqa1Z5MWZ2OVVob3hKT0VDN1FWUjVpdGNnZkd0eGNEMVFRUktJZHJrWTY0OXRWWTdpMW9vb3RZMTBYYmLSAXxBVV95cUxQNkMtWDhWU3QzTGpkSi1YNlNHZzhzUzZxLUZ3a1VCQ2hJTWlyS0",
-      "at": 1789781445000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789778993000
-    },
-    {
-      "title": "Markets digest fed rate hike, oil prices - Fox Business",
-      "link": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE5mUDhZSFhKa05PdlZfTVRmTU80S0hkVFN6ZVBTeGE3REJCbERERzVTXzE4OHd3dzdKVU5yYlpmOHdLRTgtbU5nc0RZZEpDQWgtNUZwNXdkaXo0YzQ?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiW0FVX3lxTE5mUDhZSFhKa05PdlZfTVRmTU80S0hkVFN6ZVBTeGE3REJCbERERzVTXzE4OHd3dzdKVU5yYlpmOHdLRTgtbU5nc0RZZEpDQWgtNUZwNXdkaXo0YzQ?oc=5\" target=\"_blank\">Markets digest fed rate hike, oil prices</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">Fox Bu",
-      "at": 1789781209000,
-      "inst": [
-        "USOIL"
-      ],
-      "ccy": [
-        "USD",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789781209000
-    },
-    {
-      "title": "More U.S. troops have died amid Iran war than Pentagon has disclosed publicly - The Washington Post",
-      "link": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxQYk51QUpzSHBoWFR4UjJDZjhsbUNqck1YU2RndG93S2tzZjBMS2RqTWFKRURWenlzYzFpTGJYV2k4STFQZjNCbjhHaE5kUnZfeUlMNmhtblBBYzRzV1B0SHREbGk3R2JqbDVKSTJRMWduU2dTZzZ6Qkh0XzV3OUEyWWVldnJrTW00bDk0ZU5VbzBzVS1GSTJIVnpXLU00eVhuLUJ4V2llajVJdlJoN2EwXzhtTkwycklCS3dnNkRMd056Qm5Bd0N2MndkU0FBaTlRZEE?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi0gFBVV95cUxQYk51QUpzSHBoWFR4UjJDZjhsbUNqck1YU2RndG93S2tzZjBMS2RqTWFKRURWenlzYzFpTGJYV2k4STFQZjNCbjhHaE5kUnZfeUlMNmhtblBBYzRzV1B0SHREbGk3R2JqbDVKSTJRMWduU2dTZzZ6Qkh0XzV3OUEyWWVldnJrTW00bDk0ZU5VbzBzVS1GSTJIVnpXLU00eVhuLUJ4V2llajVJdl",
-      "at": 1789781036000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789781036000
-    },
-    {
-      "title": "‘We Won’t Let Putin Wait Us Out’: Senator Shaheen Outlines Sweeping New US Sanctions Package - kyivpost.com",
-      "link": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE4zby1fVHRXNk1XcWUwS24zc2MzamswOWdvTTE1c2lIcmVUc1hFN0NvQU12dzZ0YjcwWTRLU0d2Q2hNNUFzOFZsZncxOA?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiS0FVX3lxTE4zby1fVHRXNk1XcWUwS24zc2MzamswOWdvTTE1c2lIcmVUc1hFN0NvQU12dzZ0YjcwWTRLU0d2Q2hNNUFzOFZsZncxOA?oc=5\" target=\"_blank\">‘We Won’t Let Putin Wait Us Out’: Senator Shaheen Outlines Sweeping New US Sanctions Package</a>&nbsp;&nb",
-      "at": 1789780942000,
-      "inst": [
-        "XAU/USD"
-      ],
-      "ccy": [
-        "XAU"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789780942000
-    },
-    {
-      "title": "Trump Signs Russia Sanctions Bill, Clears Way For 100% Tariffs On India, China - NDTV",
-      "link": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxOME1SV3BuamFzcHAyU29XUWg3NDdZa0MydExDV0tMbW5YN0JLN3ZMNTZwOG9tUjFWMENSNlZFZzV3SjlxWVFTRWs0MDhZLVA2N25nYTJncTdWcmU2YmxMaXhqcmNIZVJ6ODZEUlUxQ09RNjlweThhZEVzVEdYMDg5Sy05RkhGajBCUVIyTDVxTHh6VXVyWkdOVWtXZU9GOW8yN2NyXzBoNFlBSE5qdWtZbVdMbF9lcUhMajNOeWFhYkFLOWg5RWFqZkFjVWtVNUlnX3RQaWM5TdIB3wFBVV95cUxNM0ktZlpWUlBhZXZFZ0ltcnpLdFZrQUloOXVIY0dOdXh2dU5PMnV6YjAtWllhaURReHZLdWR4YmgxR3dUZjYzalBCM2lycUJqWmViMHpLVGI3YmxOUmVodHFhU0JPWDJRcldFeEZJYnlLQm5ERzhWZk5CT3UtWXM1djZid3lNeE82dlFoeXZ5X1RwbHlaZXN5SzRNUnN4Sm9RZ0gzekpTbkdGZHplNjU4cEZMcUVXeENNVHJuMkxrTTJuOFNSNms1aVhYenlQOFAzZTk2NlFjWUtVWkd1VWZr?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi1wFBVV95cUxOME1SV3BuamFzcHAyU29XUWg3NDdZa0MydExDV0tMbW5YN0JLN3ZMNTZwOG9tUjFWMENSNlZFZzV3SjlxWVFTRWs0MDhZLVA2N25nYTJncTdWcmU2YmxMaXhqcmNIZVJ6ODZEUlUxQ09RNjlweThhZEVzVEdYMDg5Sy05RkhGajBCUVIyTDVxTHh6VXVyWkdOVWtXZU9GOW8yN2NyXzBoNFlBSE",
-      "at": 1789779960000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789777788000
-    },
-    {
-      "title": "Trump signs sweeping Russia sanctions over Ukraine war - Al Jazeera",
-      "link": "https://news.google.com/rss/articles/CBMimwFBVV95cUxPZW53Y3d4N25GZjVKRlJ4RkxiRkZ6Y1NKTVJoUGp3bHFzZTk3OGJvdG1qMm9ubDhqQmo0YVYtQnc4aWNRejUwd2VFX1NVRFRMM1h0QXhLX2VwRTlYM2psTFBWeC1BekxaVUFfQm54bXhpOGtUdTU3MkJKUVV5cHpTcFBpRlQyVXFMVFpFcEVoVnN1S1hxQ0VLaTY0a9IBoAFBVV95cUxQOTFZdG83ZU5IOUxvQ2RqMnhzRnZfY2pZOTIyTHF2YUVSR2pCeGJTV25IWTVCU2w3WEg1LWl3SkdvVXVhZGJONEFZTk5VNlh3VFRnaGphSTlmRGtTaDkyNjM4YVlaOW8wOWZmaWxRNHpQVS1KT1ZyaGVUaUNnTzdQX25HODFUN1ZhcmVuNVZRVnFwNmlrbG1OSmRnTzF6MWFI?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMimwFBVV95cUxPZW53Y3d4N25GZjVKRlJ4RkxiRkZ6Y1NKTVJoUGp3bHFzZTk3OGJvdG1qMm9ubDhqQmo0YVYtQnc4aWNRejUwd2VFX1NVRFRMM1h0QXhLX2VwRTlYM2psTFBWeC1BekxaVUFfQm54bXhpOGtUdTU3MkJKUVV5cHpTcFBpRlQyVXFMVFpFcEVoVnN1S1hxQ0VLaTY0a9IBoAFBVV95cUxQOTFZdG",
-      "at": 1789778993000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789777020000
-    },
-    {
-      "title": "Donald Trump signs Lindsey O. Graham sanctions act into law - The Jerusalem Post",
-      "link": "https://news.google.com/rss/articles/CBMiX0FVX3lxTFBQUVBMU2dmV0VCTm40S0RVZVhTWkJKUEFJekFfaXNsLWZVTjV1Mm82U0ZvbjdsQ2VtWjcwSnE0UG82VXdkVWlCR2ZRSFJORVJTYkVPNnBhWmppczBkbTFZ?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiX0FVX3lxTFBQUVBMU2dmV0VCTm40S0RVZVhTWkJKUEFJekFfaXNsLWZVTjV1Mm82U0ZvbjdsQ2VtWjcwSnE0UG82VXdkVWlCR2ZRSFJORVJTYkVPNnBhWmppczBkbTFZ?oc=5\" target=\"_blank\">Donald Trump signs Lindsey O. Graham sanctions act into law</a>&nbsp;&nbsp;<fon",
-      "at": 1789777788000,
-      "inst": [
-        "XAU/USD"
-      ],
-      "ccy": [
-        "XAU"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789777020000
-    },
-    {
       "title": "Analysis-Russia sanctions bill gives Trump sweeping new tariff powers",
       "link": "https://www.investing.com/news/commodities-news/analysisrussia-sanctions-bill-gives-trump-sweeping-new-tariff-powers-4907872",
       "source": "Investing Cmdty",
@@ -1147,107 +494,8 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789774620000
-    },
-    {
-      "title": "Trump signs Lindsey Graham Act extending Iran sanctions to 2031 - Middle East Eye",
-      "link": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxOV2xwbHN6UURiQWxZaWhCbDU2N1FCR2dYVGNHelNxU3RsWVAweFZ3TWU5b1U1NkpEMXktOXAtWmlrTTlPWWRRdzhwZ3d4OTA3cjRTLXdyLVhDdTNwcEVKM2x4NHpUZ3FhY3p0WVJLSU0yUEE3bHRPbXBLSHBpWHl2bExieVFaZHhNajhuUGljY294dFJKSVF6LTBwZHluYWJRT2FwaHRiWE5iVDRDS0RubzdkLXY4QURt?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiuAFBVV95cUxOV2xwbHN6UURiQWxZaWhCbDU2N1FCR2dYVGNHelNxU3RsWVAweFZ3TWU5b1U1NkpEMXktOXAtWmlrTTlPWWRRdzhwZ3d4OTA3cjRTLXdyLVhDdTNwcEVKM2x4NHpUZ3FhY3p0WVJLSU0yUEE3bHRPbXBLSHBpWHl2bExieVFaZHhNajhuUGljY294dFJKSVF6LTBwZHluYWJRT2FwaHRiWE5iVD",
-      "at": 1789777020000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789774620000
-    },
-    {
-      "title": "Taiwan Dollar: CBC holds rates but flags inflation risks – Commerzbank - mitrade.com",
-      "link": "https://news.google.com/rss/articles/CBMigwFBVV95cUxOb0FoVWl0LXlFZTRqb25mMHRKSldRZDVkSXhqT1BJT2ZJSmtwVGFTVGVBWkFhWWNfbE5nZkdfYnJxV2x2N01lLUFHb1hrbkpZM3dDZXZ2OTBWZDVLMWhCUHV1dUVvNVljRFFGQ085SGJZZlF0NUU5QlQzZktBd3dwTDFDbw?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMigwFBVV95cUxOb0FoVWl0LXlFZTRqb25mMHRKSldRZDVkSXhqT1BJT2ZJSmtwVGFTVGVBWkFhWWNfbE5nZkdfYnJxV2x2N01lLUFHb1hrbkpZM3dDZXZ2OTBWZDVLMWhCUHV1dUVvNVljRFFGQ085SGJZZlF0NUU5QlQzZktBd3dwTDFDbw?oc=5\" target=\"_blank\">Taiwan Dollar: CBC holds rate",
-      "at": 1789775942000,
-      "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
       "srcs": 1,
-      "firstAt": 1789775942000
-    },
-    {
-      "title": "Trump signs sweeping Russia sanctions bill, aiming to choke off funds for Moscow in Ukraine war - AP News",
-      "link": "https://news.google.com/rss/articles/CBMisgFBVV95cUxOQV9zNlc2QnFzVHhiYnV6M24xcUxBMmVValVkZDZSblJBbFVtQW1CMzNLSGZLWW9kTmlzekEzbllyajZCQnJmX2p3TXBGRUVUbWo5djRtaWVPVU9wUHJnc2ZKcEJBbVN2VWZEVGFBVG1RVktzaGNKbm12NEdEenNrWVA4N1dhSkZNMzB5WFJSRnJXd3F4TmlJVHRRM2pkbC1mcWhuVk9ybi1LRkZYdnVzSXRn?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMisgFBVV95cUxOQV9zNlc2QnFzVHhiYnV6M24xcUxBMmVValVkZDZSblJBbFVtQW1CMzNLSGZLWW9kTmlzekEzbllyajZCQnJmX2p3TXBGRUVUbWo5djRtaWVPVU9wUHJnc2ZKcEJBbVN2VWZEVGFBVG1RVktzaGNKbm12NEdEenNrWVA4N1dhSkZNMzB5WFJSRnJXd3F4TmlJVHRRM2pkbC1mcWhuVk9ybi1LRk",
-      "at": 1789774620000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789772183000
-    },
-    {
-      "title": "S&P 500, Nasdaq advance, turning the page on a tumultuous week - Reuters",
-      "link": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPZ2p6dkpCd0xfbVRBMnhySFRVbm5OSElMZXRXc0NpaGhoRmw2MzNfSUstaC1RVFFnUU1DNUM0MEpHTmxhbHJxOC1Ec2lMWU0xMFVaSVdsZGdVSi1JaWpDX093SHhBdlBkdFdGZnFpd05yYW9LRXk2NkdOMnRWSzJ2dkhuTFpDN01LM1JvNjhyamFZM2dLRFRzM24xSUZwRGVBakhwM3N3em1ycFBuWVg2UVB2OTQ?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMitAFBVV95cUxPZ2p6dkpCd0xfbVRBMnhySFRVbm5OSElMZXRXc0NpaGhoRmw2MzNfSUstaC1RVFFnUU1DNUM0MEpHTmxhbHJxOC1Ec2lMWU0xMFVaSVdsZGdVSi1JaWpDX093SHhBdlBkdFdGZnFpd05yYW9LRXk2NkdOMnRWSzJ2dkhuTFpDN01LM1JvNjhyamFZM2dLRFRzM24xSUZwRGVBakhwM3N3em1ycF",
-      "at": 1789773024000,
-      "inst": [
-        "US500",
-        "US100"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789773024000
-    },
-    {
-      "title": "Latvia’s president warns that Europe is not up to date with drone and aerial warfare in Ukraine - The Guardian",
-      "link": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxQUUJXUi1XS0JHaGMxYkdha2drRHM1VGJQdmJza3ZMU3NPWTlvX29ReVMzRDJUMjFhMXRPRU81d3ZnQldsMDAyR1dqRUlRRmNYZ1pfQW1IRWNWWG1fQkdmZnVtOVFZZkhuTDdlc0tnWjVMRm9XRkRTLUJGbmxFWS02cTYwVnJGUGly?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiiAFBVV95cUxQUUJXUi1XS0JHaGMxYkdha2drRHM1VGJQdmJza3ZMU3NPWTlvX29ReVMzRDJUMjFhMXRPRU81d3ZnQldsMDAyR1dqRUlRRmNYZ1pfQW1IRWNWWG1fQkdmZnVtOVFZZkhuTDdlc0tnWjVMRm9XRkRTLUJGbmxFWS02cTYwVnJGUGly?oc=5\" target=\"_blank\">Latvia’s president warn",
-      "at": 1789772760000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789772760000
+      "firstAt": 1789777111000
     },
     {
       "title": "A four-minute warning isn't enough: Russia's new relentless missile tactics exhaust Kyiv residents",
@@ -1270,207 +518,6 @@
       "firstAt": 1789772618000
     },
     {
-      "title": "Trump signs Lindsey Graham Russia-Iran sanctions bill into law - thenationalnews.com",
-      "link": "https://news.google.com/rss/articles/CBMijAFBVV95cUxOZEozZWl0ZGthb0txd0wtalQ2T094c2VMWmpzX20tZXlTZExJMFd4M2NQXy13N3VvaWl0TVBKcUFRWE9hMy1IWnBuSDFhZjZVR19HbFNWSGZWaWVhRzhTcThLbXIwS19USzdOalBsVW1LYTg5SGJhcVRkWDBZMThyUDRXQUZmU2ZPMEt5OA?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMijAFBVV95cUxOZEozZWl0ZGthb0txd0wtalQ2T094c2VMWmpzX20tZXlTZExJMFd4M2NQXy13N3VvaWl0TVBKcUFRWE9hMy1IWnBuSDFhZjZVR19HbFNWSGZWaWVhRzhTcThLbXIwS19USzdOalBsVW1LYTg5SGJhcVRkWDBZMThyUDRXQUZmU2ZPMEt5OA?oc=5\" target=\"_blank\">Trump signs Linds",
-      "at": 1789772183000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789769908000
-    },
-    {
-      "title": "Trump signs bill imposing sanctions on Russia and giving him more power to levy tariffs - The Guardian",
-      "link": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNLWVudVZFMERYYlhsNEJxTFdxZjlYaFFLZkZPZF9zTDJ6dEItZDRfUngtOGVvNm1HQnNHUVZhVl9RMkYyNzF2YTFQNTBmcHFYVC1RMXFzeFhoR0ZqVlNDZVdCaXNDYUROVTVhNXpxSlotTGJTRGJPQXBqdm8ydm93VVk3YkRRdzl4?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiiAFBVV95cUxNLWVudVZFMERYYlhsNEJxTFdxZjlYaFFLZkZPZF9zTDJ6dEItZDRfUngtOGVvNm1HQnNHUVZhVl9RMkYyNzF2YTFQNTBmcHFYVC1RMXFzeFhoR0ZqVlNDZVdCaXNDYUROVTVhNXpxSlotTGJTRGJPQXBqdm8ydm93VVk3YkRRdzl4?oc=5\" target=\"_blank\">Trump signs bill imposi",
-      "at": 1789771440000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789768868000
-    },
-    {
-      "title": "Trump Signs Sweeping Russia Sanctions Bill Into Law - kyivpost.com",
-      "link": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE1mV1BwX3pYVUJDMmlaSFEtWmNPVUp3dlRwekZCdm8tbmtidldxUkY1dWRxVFYxQTNnbGQ4cjAtUXF3Tm40YnJkeWExRQ?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiS0FVX3lxTE1mV1BwX3pYVUJDMmlaSFEtWmNPVUp3dlRwekZCdm8tbmtidldxUkY1dWRxVFYxQTNnbGQ4cjAtUXF3Tm40YnJkeWExRQ?oc=5\" target=\"_blank\">Trump Signs Sweeping Russia Sanctions Bill Into Law</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">kyivpost.com</fo",
-      "at": 1789770670000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789768020000
-    },
-    {
-      "title": "Trump Steps Up Pressure On Russia, Green Lights Bill For New Sanctions - NDTV",
-      "link": "https://news.google.com/rss/articles/CBMilAFBVV95cUxQR25nVG9WTnhrNHF0M05lanBwVmdkbXpWdmdnYkJMRHRmc1ExcjlCT0V6LXEwTlBodVBMa3VWMTdhTkVqc1RnQ2pzT1pPOThKWWw1emtGM19WY1E3d2xtcG1ONGdpWGo2Q2tlQm9RMGJPS203andDbUdKZzlOaVdhM3RfVzdpNm43a3UwdzdtRGpybXZu0gGcAUFVX3lxTFBFR1VIbEpTTjV0cmZDbHJ1NkxVdW5fNDVTQTVvVDItcXJlYzA0NUZMWS1FcXFTOE1oNTRJNnViQnQ2ei15ZW8zYm1nR2ViaHRyck1wdFBnUEkyRUVkMERGSm43c0VvdXFxSHRlaWIzcy0yaDJFcV9MVkNYOFZOaTllQkZKYjA5Q2JQMFZMZWlwdmhyaVpMWGpiS09RUA?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMilAFBVV95cUxQR25nVG9WTnhrNHF0M05lanBwVmdkbXpWdmdnYkJMRHRmc1ExcjlCT0V6LXEwTlBodVBMa3VWMTdhTkVqc1RnQ2pzT1pPOThKWWw1emtGM19WY1E3d2xtcG1ONGdpWGo2Q2tlQm9RMGJPS203andDbUdKZzlOaVdhM3RfVzdpNm43a3UwdzdtRGpybXZu0gGcAUFVX3lxTFBFR1VIbEpTTjV0cm",
-      "at": 1789770480000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789768020000
-    },
-    {
-      "title": "Trump Signs a Sanctions Bill Targeting Russia, but Pursues Deals Too - The New York Times",
-      "link": "https://news.google.com/rss/articles/CBMie0FVX3lxTE11eG5ZRWl5UHhEOGxBWTVIMDB4bGJ4aXNXSTFfS0JLVjlnSVVTM1lxd0NmRnJoLVFxMDdIQi0yd0Z1T3VZcTc4ckxFU1JsOXpWN2ZSMGxyT0FXTVdMbkoyM2RRaGxZVXZyQWFkV1VFc1ZLNkpfdnlud0pwSQ?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMie0FVX3lxTE11eG5ZRWl5UHhEOGxBWTVIMDB4bGJ4aXNXSTFfS0JLVjlnSVVTM1lxd0NmRnJoLVFxMDdIQi0yd0Z1T3VZcTc4ckxFU1JsOXpWN2ZSMGxyT0FXTVdMbkoyM2RRaGxZVXZyQWFkV1VFc1ZLNkpfdnlud0pwSQ?oc=5\" target=\"_blank\">Trump Signs a Sanctions Bill Targeting Ru",
-      "at": 1789770358000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789768020000
-    },
-    {
-      "title": "Gold prices rebound after Fed rate hike and eas... - Pluang",
-      "link": "https://news.google.com/rss/articles/CBMirAFBVV95cUxOOVh6LW1aYjRJR2NBTlVNOUlEc19CS3BqT245TkgxZFNXTG1vUlhtMlJMZFYwQllVR3JNaExXVDNpRU9pN3lUbHIyMFV6YWhrUXdaOTZfXzloU1FxVC1rN19adS1TMU9QSFhvb2pTTjBiN3pfSlZkYTEtcDVNY2FabTVBMS1kTWh1bnBtSzNsUktjRU5acmlVVHBaakNVa0p4YVBnNDFEMWxxajNf?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMirAFBVV95cUxOOVh6LW1aYjRJR2NBTlVNOUlEc19CS3BqT245TkgxZFNXTG1vUlhtMlJMZFYwQllVR3JNaExXVDNpRU9pN3lUbHIyMFV6YWhrUXdaOTZfXzloU1FxVC1rN19adS1TMU9QSFhvb2pTTjBiN3pfSlZkYTEtcDVNY2FabTVBMS1kTWh1bnBtSzNsUktjRU5acmlVVHBaakNVa0p4YVBnNDFEMWxxaj",
-      "at": 1789770206000,
-      "inst": [
-        "XAU/USD"
-      ],
-      "ccy": [
-        "USD",
-        "XAU"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789770206000
-    },
-    {
-      "title": "Trump signs Russia sanctions bill into law - Reuters",
-      "link": "https://news.google.com/rss/articles/CBMikAFBVV95cUxQMWZ3NVV2eHJuOEVQcDhZX3BVSnh2aWxQcE0wWERtWGc3MG9ZS3VmN1lqemJPNS1NbE1pU3RDTlR5TUIteF9hMVdNY2NITDU2N3lva3hWelYydUQ1Nm9xWUZZUHN3R29QeXR3VzhIdFNyOXJ6T1FLNlNEU3JIbUx3Q1ZCVWxHdnI4ZmhJVjFfd0s?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMikAFBVV95cUxQMWZ3NVV2eHJuOEVQcDhZX3BVSnh2aWxQcE0wWERtWGc3MG9ZS3VmN1lqemJPNS1NbE1pU3RDTlR5TUIteF9hMVdNY2NITDU2N3lva3hWelYydUQ1Nm9xWUZZUHN3R29QeXR3VzhIdFNyOXJ6T1FLNlNEU3JIbUx3Q1ZCVWxHdnI4ZmhJVjFfd0s?oc=5\" target=\"_blank\">Trump signs ",
-      "at": 1789770053000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789768020000
-    },
-    {
-      "title": "Trump signs Russia sanctions bill into law: White House - aa.com.tr",
-      "link": "https://news.google.com/rss/articles/CBMimAFBVV95cUxPZGtGOXcyVFNhb0l3QWZLYUVsajVhSG1ScGY4Z3lwZF81bm9FWmFrd2xUTGx3bVJ3SXkwelJsNlgtMmV2WUsxU3k2Y0p1UUJHR0Nfd0Y5MUl5QjAwX2FELWFkOFEySnJpVW0ybXhDQ1NNSzFTYUJSV05XQm8xVFFvLWthMXV4Znh5ZnJLSFREcDdlYnBNRE5Wbw?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMimAFBVV95cUxPZGtGOXcyVFNhb0l3QWZLYUVsajVhSG1ScGY4Z3lwZF81bm9FWmFrd2xUTGx3bVJ3SXkwelJsNlgtMmV2WUsxU3k2Y0p1UUJHR0Nfd0Y5MUl5QjAwX2FELWFkOFEySnJpVW0ybXhDQ1NNSzFTYUJSV05XQm8xVFFvLWthMXV4Znh5ZnJLSFREcDdlYnBNRE5Wbw?oc=5\" target=\"_blank\">T",
-      "at": 1789769908000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789768020000
-    },
-    {
-      "title": "Peso slides toward 17.3 to the dollar after US Fed’s first rate hike since 2023 - Mexico News Daily",
-      "link": "https://news.google.com/rss/articles/CBMipAFBVV95cUxPSEg3Umpvenl0TG8zQ2lVYWJCY01KdExOWlpxdU5pMDJ4NTNWeTJqUHVYYkFSOUhpQ2JmV2NSSVRnSTRCX0FQcHVKcjQyckpHREVTSVJHYlFDbERTbHNaS1lCM1BUaHI4TDRIZzVJc1R1bU8wbVRfT3FaR1cwQjJObzhsN1p5bjJIcFc3S2hZY3FDU1ZiUVhFcEFlc085UmlBdWd3Yg?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMipAFBVV95cUxPSEg3Umpvenl0TG8zQ2lVYWJCY01KdExOWlpxdU5pMDJ4NTNWeTJqUHVYYkFSOUhpQ2JmV2NSSVRnSTRCX0FQcHVKcjQyckpHREVTSVJHYlFDbERTbHNaS1lCM1BUaHI4TDRIZzVJc1R1bU8wbVRfT3FaR1cwQjJObzhsN1p5bjJIcFc3S2hZY3FDU1ZiUVhFcEFlc085UmlBdWd3Yg?oc=5\" t",
-      "at": 1789769890000,
-      "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789769890000
-    },
-    {
-      "title": "Trump signs Russia sanctions bill that opens China, India to tariffs - Nikkei Asia",
-      "link": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPVmNtSkNCWENnZnRnT1Y1NkJMSE8yeUZuZ3B5cE9sUlJHbWpRSkdKYVk0MC1SY25OWXF4aUY5c3NHVXl4WjVBSGQ5RWJ2VUxYLXB1SThMdW9kUi1uZEEtZTJZTHhZRGtta3YwVndzdE1KVHJaSWU2d0FFVDVDM3R3bEdGMVJHd3RpalI5UnFxbkk5RV9faHV2aWZ6N0JpbG8wSHliMjVCSGdYejFUZDBFZlkxRHFLajhsSGFOalN4Zw?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMivwFBVV95cUxPVmNtSkNCWENnZnRnT1Y1NkJMSE8yeUZuZ3B5cE9sUlJHbWpRSkdKYVk0MC1SY25OWXF4aUY5c3NHVXl4WjVBSGQ5RWJ2VUxYLXB1SThMdW9kUi1uZEEtZTJZTHhZRGtta3YwVndzdE1KVHJaSWU2d0FFVDVDM3R3bEdGMVJHd3RpalI5UnFxbkk5RV9faHV2aWZ6N0JpbG8wSHliMjVCSGdYej",
-      "at": 1789769220000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789768020000
-    },
-    {
       "title": "Trump signs sweeping Russia sanctions bill",
       "link": "https://www.bbc.co.uk/news/articles/cqvgy34ndj4eo?at_medium=RSS&at_campaign=rss",
       "source": "BBC World",
@@ -1487,105 +534,8 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789768020000
-    },
-    {
-      "title": "Trump takes aim at Russia's energy sector with sanctions bill - BBC",
-      "link": "https://news.google.com/rss/articles/CBMiXkFVX3lxTFBUN1d3SFpDMGMtYkFiV19SYTF1YnVsZUQ0NWV5dkRtRU9za3dQbDEwRnl5aDRBTVdqNy1KMzdzOHZRSlZpWTBkV3FZTjJSZUF2QTAycjNEcDRkNXViYlE?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiXkFVX3lxTFBUN1d3SFpDMGMtYkFiV19SYTF1YnVsZUQ0NWV5dkRtRU9za3dQbDEwRnl5aDRBTVdqNy1KMzdzOHZRSlZpWTBkV3FZTjJSZUF2QTAycjNEcDRkNXViYlE?oc=5\" target=\"_blank\">Trump takes aim at Russia's energy sector with sanctions bill</a>&nbsp;&nbsp;<fo",
-      "at": 1789769147000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789768868000
-    },
-    {
-      "title": "Trump signs sweeping Russia sanctions bill into law - kyivindependent.com",
-      "link": "https://news.google.com/rss/articles/CBMihwFBVV95cUxQSFFNNExVTzJDRWJReDZsY0toNzYxQVMtZGIwYlpaS095WnY4U0MwWDRWTUFZOXBxM0JTSWRnRFZDaWFwUEQtRzNMVkdpMnZGWmYwclg2Z2ZIY0NXMW5vRVVpMVJLOGtrUVdDU2hZdFJUbUJ1cUpNNXZJNnp3cUpPSTd0cmlYblE?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMihwFBVV95cUxQSFFNNExVTzJDRWJReDZsY0toNzYxQVMtZGIwYlpaS095WnY4U0MwWDRWTUFZOXBxM0JTSWRnRFZDaWFwUEQtRzNMVkdpMnZGWmYwclg2Z2ZIY0NXMW5vRVVpMVJLOGtrUVdDU2hZdFJUbUJ1cUpNNXZJNnp3cUpPSTd0cmlYblE?oc=5\" target=\"_blank\">Trump signs sweeping Rus",
-      "at": 1789769073000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789768020000
-    },
-    {
-      "title": "Trump signs Russia sanctions bill championed by Lindsey Graham - CBS News",
-      "link": "https://news.google.com/rss/articles/CBMihAFBVV95cUxQdVYwSFBVcFptYTZtUVNuOXNGMEJpRUluRXVET1lvVnFhT0pFUDN1Wks2bXl3NkM5ZGt4N0o3TW1nUk5fSC10VVVSRlJudlE5VVZTMnFqNHpTWDRPMEEyVU4xOHJoTGUyd1lqQmZtUXRGRllqOHAzY01idzQzTmo1U0xoRmU?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMihAFBVV95cUxQdVYwSFBVcFptYTZtUVNuOXNGMEJpRUluRXVET1lvVnFhT0pFUDN1Wks2bXl3NkM5ZGt4N0o3TW1nUk5fSC10VVVSRlJudlE5VVZTMnFqNHpTWDRPMEEyVU4xOHJoTGUyd1lqQmZtUXRGRllqOHAzY01idzQzTmo1U0xoRmU?oc=5\" target=\"_blank\">Trump signs Russia sanctions",
-      "at": 1789768868000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789768020000
-    },
-    {
-      "title": "Russia, China Block Renewal of UN Panel Overseeing Iran Sanctions Compliance - Haaretz",
-      "link": "https://news.google.com/rss/articles/CBMimAJBVV95cUxOcHc4TFN1bEJnUTVBXzFVRFBXcGpfMnRSaUpUWkZvaks0ZHFCU2RSb0dqamluLWQ2TEJ4dHJrZUpBZ2FoZHYwRGRuVWd5dWlDcDhydWtYS3BVUXM2UkEwMHNvWXdHbF9lcjBWS2R6Mko0RnVaYUdoQy1xdWlxNTV6UDhOZDlMWndDOC1KVEUwZWdMczBGNzFPMFRrU2RkR25rQ2JIWC15VE5Remo1UTFIT01HMWhCd1lyZkl3dE53bUVWRWZOazJLa2szMDU4M1hHSzhHbUUtMWl1OHg2bE44TVg3RkVGdnA0ZFdaZXpIUTYwUjIyb2xrRVhEN19LSkZvMU9KZGhUbjl4ZXdMWW54dDV2Y0VETndN?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMimAJBVV95cUxOcHc4TFN1bEJnUTVBXzFVRFBXcGpfMnRSaUpUWkZvaks0ZHFCU2RSb0dqamluLWQ2TEJ4dHJrZUpBZ2FoZHYwRGRuVWd5dWlDcDhydWtYS3BVUXM2UkEwMHNvWXdHbF9lcjBWS2R6Mko0RnVaYUdoQy1xdWlxNTV6UDhOZDlMWndDOC1KVEUwZWdMczBGNzFPMFRrU2RkR25rQ2JIWC15VE5Rem",
-      "at": 1789768020000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789768020000
-    },
-    {
-      "title": "Why Did Silver Go Up Today Amid Market Changes? - GoldSilver",
-      "link": "https://news.google.com/rss/articles/CBMingFBVV95cUxQVi1pVGJFQktKTVFESkc2SnVqWVp6YlhteE1XZUZndEVERjJVQkx5RzBNZW56UTZmQ0cyWmF6c1A4aHJvNE82ck1qc0pXbV9qeWVBSFJDZk0xc0FMZkJqZ0tDUWFRcXRtWnhwdTVpS2YxU2NmN3dLZUFfQUJCaU9tQ2ktejkzSlYwTWltWF9pS0o5a05DRTFzdlZYNllVZw?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMingFBVV95cUxQVi1pVGJFQktKTVFESkc2SnVqWVp6YlhteE1XZUZndEVERjJVQkx5RzBNZW56UTZmQ0cyWmF6c1A4aHJvNE82ck1qc0pXbV9qeWVBSFJDZk0xc0FMZkJqZ0tDUWFRcXRtWnhwdTVpS2YxU2NmN3dLZUFfQUJCaU9tQ2ktejkzSlYwTWltWF9pS0o5a05DRTFzdlZYNllVZw?oc=5\" target=\"_",
-      "at": 1789767639000,
-      "inst": [
-        "XAG/USD"
-      ],
-      "ccy": [
-        "XAG"
-      ],
-      "sev": 1,
-      "rel": 2,
       "srcs": 1,
-      "firstAt": 1789767639000
+      "firstAt": 1789769147000
     },
     {
       "title": "Oil prices snap two-week winning streak on easing Middle East supply fears",
@@ -1619,27 +569,8 @@
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789761717000
-    },
-    {
-      "title": "Global stocks mixed as yen falls despite Bank of Japan rate hike - Yahoo Finance UK",
-      "link": "https://news.google.com/rss/articles/CBMigAFBVV95cUxNZ2syQ0NrUktCcHRfemRnSGdxd0Fkc1F0Nl9BSUtSMlhpZU0wUnhKVFJFRUVrNUJPNTE0Q0VHeUptUnloSnBoTWRDc1pVRVVXTWhzbl9ZTVQzWV80VmxtZXBoWk5aY3B5bEZFZDRITUFZVHBqY256OGV6US1ZLXNVag?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMigAFBVV95cUxNZ2syQ0NrUktCcHRfemRnSGdxd0Fkc1F0Nl9BSUtSMlhpZU0wUnhKVFJFRUVrNUJPNTE0Q0VHeUptUnloSnBoTWRDc1pVRVVXTWhzbl9ZTVQzWV80VmxtZXBoWk5aY3B5bEZFZDRITUFZVHBqY256OGV6US1ZLXNVag?oc=5\" target=\"_blank\">Global stocks mixed as yen falls ",
-      "at": 1789763576000,
-      "inst": [
-        "USD/JPY",
-        "US500"
-      ],
-      "ccy": [
-        "JPY",
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
       "srcs": 1,
-      "firstAt": 1789763576000
+      "firstAt": 1789764117000
     },
     {
       "title": "investingLive Americas market news wrap: Bonds slump again, yen rate check adds intrigue after BOJ",
@@ -1662,11 +593,130 @@
       "firstAt": 1789763380000
     },
     {
-      "title": "Russia sanctions bill gives Trump sweeping new tariff powers - Reuters",
-      "link": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxNWEtRUVNvYVIwTTZqQ3pmak0zd0NlNjZEcmxxQ3FUWTJKVUZjTHdjUmt1SThTNVFmZWl5OXVLUmljaWJoSFRQbU5qVnZDUjcyWEhJNk5yWjZDOTNzazlrenItWHdvODFNbE5Ka3ZoMGF4ZFRGcEFFeVhlWF8tWGZYYU1XWWttR3BuR0hmdF9iY0Z2WGQwbFJfV2lOT2FwSExyT21yUE80ZVM?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiqAFBVV95cUxNWEtRUVNvYVIwTTZqQ3pmak0zd0NlNjZEcmxxQ3FUWTJKVUZjTHdjUmt1SThTNVFmZWl5OXVLUmljaWJoSFRQbU5qVnZDUjcyWEhJNk5yWjZDOTNzazlrenItWHdvODFNbE5Ka3ZoMGF4ZFRGcEFFeVhlWF8tWGZYYU1XWWttR3BuR0hmdF9iY0Z2WGQwbFJfV2lOT2FwSExyT21yUE80ZVM?oc",
-      "at": 1789763040000,
+      "title": "Yen set for worst week since Oct 2025 as BoJ’s hike seen as not aggressive enough",
+      "link": "https://www.investing.com/news/forex-news/asia-fx-mixed-as-yen-slides-despite-boj-rate-hike-4906678",
+      "source": "Investing FX",
+      "at": 1789761938000,
+      "inst": [
+        "USD/JPY"
+      ],
+      "ccy": [
+        "JPY"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789761938000
+    },
+    {
+      "title": "Oil slides after China asks Iran to limit Houthi attacks on Saudi oil facilities",
+      "link": "https://www.investing.com/news/commodities-news/oil-prices-fall-1-on-hopes-of-limited-supply-disruptions-4906600",
+      "source": "Investing Cmdty",
+      "at": 1789761629000,
+      "inst": [
+        "USOIL",
+        "XAU/USD",
+        "UKOIL"
+      ],
+      "ccy": [
+        "OIL",
+        "XAU"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789761629000
+    },
+    {
+      "title": "Crude Oil WTI clings to $99.50 support amid breakdown risk: Live",
+      "link": "https://www.investing.com/news/commodities-news/crude-oil-wti-stalls-near-10446-highs-on-fading-momentum-live-93CH-4898875",
+      "source": "Investing Cmdty",
+      "at": 1789759126000,
+      "inst": [
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789759126000
+    },
+    {
+      "title": "Natural Gas consolidates near $2.90 above 200MA: Live levels",
+      "link": "https://www.investing.com/news/commodities-news/natural-gas-tests-2899-resistance-cluster-hourly-levels-93CH-4898874",
+      "source": "Investing Cmdty",
+      "at": 1789759122000,
+      "inst": [
+        "NATGAS"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789759120000
+    },
+    {
+      "title": "London Gas Oil stuck in $1,475-$1,515 range: Live levels",
+      "link": "https://www.investing.com/news/commodities-news/london-gas-oil-surges-near-1524-resistance-live-levels-93CH-4898872",
+      "source": "Investing Cmdty",
+      "at": 1789759120000,
+      "inst": [
+        "USOIL"
+      ],
+      "ccy": [
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789759120000
+    },
+    {
+      "title": "Oil finishes lower as the market sniffs out a TACO",
+      "link": "https://investinglive.com/news/oil-finishes-lower-as-the-market-sniffs-out-a-taco/",
+      "source": "ForexLive",
+      "desc": "WTI crude oil on the November contract is trading down $1.64 to $95.60.That's something of a win for the bears, as it finished last week at $95.94. Since then, we've had a mixed series of updates on the pipeline attacks in Saudi Arabia but the latest ones say they're doing bypass",
+      "at": 1789758321000,
+      "inst": [
+        "USOIL",
+        "UKOIL",
+        "XAU/USD"
+      ],
+      "ccy": [
+        "OIL",
+        "XAU"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789758321000
+    },
+    {
+      "title": "Three words from Kevin Warsh have Wall Street wondering how far the Fed will go with rate hikes",
+      "link": "https://www.cnbc.com/2026/09/18/three-words-from-kevin-warsh-have-wall-street-wondering-how-far-the-fed-will-go-with-rate-hikes.html",
+      "source": "CNBC Markets",
+      "desc": "The chairman both explained this week's decision to raise interest rates, and raised vexing questions about what comes next",
+      "at": 1789756111000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789756111000
+    },
+    {
+      "title": "Russian hybrid attacks against Europe intensifying, says Macron",
+      "link": "https://www.bbc.co.uk/news/articles/cm2dw1w9d3yjo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC World",
+      "desc": "The French president says he has tasked the government with protecting critical infrastructure and defence industry sites.",
+      "at": 1789754678000,
       "inst": [
         "XAU/USD",
         "USOIL",
@@ -1674,33 +724,916 @@
       ],
       "ccy": [
         "XAU",
-        "OIL",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789754678000
+    },
+    {
+      "title": "North Korean anthem played for South Korea at Asian Games",
+      "link": "https://www.bbc.co.uk/sport/hockey/articles/cmx2zg85gq03o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC World",
+      "desc": "Organisers have apologised for playing the North Korean national anthem for the South Korean men's hockey team at the Asian Games in Japan.",
+      "at": 1789751889000,
+      "inst": [
+        "USD/JPY"
+      ],
+      "ccy": [
+        "JPY"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789751889000
+    },
+    {
+      "title": "Canadian dollar weakens against major currencies in the week ending September 18",
+      "link": "https://www.investing.com/news/forex-news/canadian-dollar-weakens-against-major-currencies-in-the-week-ending-september-18-93CH-4907692",
+      "source": "Investing FX",
+      "at": 1789748757000,
+      "inst": [
+        "USD/CAD"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789748757000
+    },
+    {
+      "title": "U.S. Treasury curve flattens as long-end yields ease off multi-year peaks",
+      "link": "https://www.investing.com/news/forex-news/euro-zone-yields-head-for-weekly-decline-as-postfed-rally-soothes-duration-fears-4906685",
+      "source": "Investing FX",
+      "at": 1789733795000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789733795000
+    },
+    {
+      "title": "investingLive European session wrap: Yen slides after BOJ hike as markets stay on edge",
+      "link": "https://investinglive.com/news/investinglive-european-session-wrap-yen-slides-after-boj-hike-as-markets-stay-on-edge/",
+      "source": "ForexLive",
+      "desc": "Headlines:USD/JPY jumps to 157 after BOJ rate hike as dovish dissents weigh on yenBOJ governor Ueda says will continue to tighten policy in response to economic, price developmentsBOJ governor Ueda says spring wage talks key to judging inflation trendECB president Lagarde pushes ",
+      "at": 1789733227000,
+      "inst": [
+        "EUR/USD",
+        "USD/JPY"
+      ],
+      "ccy": [
+        "EUR",
+        "JPY",
         "USD"
       ],
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789763040000
+      "firstAt": 1789733227000
     },
     {
-      "title": "Gold futures test 5-session high after BOJ rate hike. - CME Group",
-      "link": "https://news.google.com/rss/articles/CBMirAFBVV95cUxNY0lQYURTMnpWcERkejNaSkdqNDJsaVFibXpOWW5OZjgyV1VfaU5NX0N0UGNWeEhuYTRMU3Rjd2JSV0tKeC1RcjhJZXpLQXE4MGZNV3FpSUhuTTkzbkUzVVpYV0lvUkJyVm1zblZGalBraC1XTm1IX0lkWFBTb1hycVJ5VUZIMkx1X2s1cU1yOWU1VFpWdGRZNzdfdVJkdTNOWjM5NnJZM1BVd0ZM?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMirAFBVV95cUxNY0lQYURTMnpWcERkejNaSkdqNDJsaVFibXpOWW5OZjgyV1VfaU5NX0N0UGNWeEhuYTRMU3Rjd2JSV0tKeC1RcjhJZXpLQXE4MGZNV3FpSUhuTTkzbkUzVVpYV0lvUkJyVm1zblZGalBraC1XTm1IX0lkWFBTb1hycVJ5VUZIMkx1X2s1cU1yOWU1VFpWdGRZNzdfdVJkdTNOWjM5NnJZM1BVd0",
-      "at": 1789762538000,
+      "title": "Stocks making the biggest moves premarket: Netflix, Nucor, Xenon Pharmaceuticals & more",
+      "link": "https://www.cnbc.com/2026/09/18/stocks-making-the-biggest-moves-premarket-nflx-nue-xene.html",
+      "source": "CNBC Markets",
+      "desc": "These are the stocks posting the largest moves premarket.",
+      "at": 1789732099000,
       "inst": [
-        "XAU/USD",
-        "USD/JPY"
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789732099000
+    },
+    {
+      "title": "Bitcoin and ethereum prices today, Friday, September 18, 2026: Crypto prices rise as investors move past CLARITY's failure",
+      "link": "https://finance.yahoo.com/personal-finance/investing/article/bitcoin-and-ethereum-prices-today-friday-september-18-2026-crypto-prices-rise-as-investors-move-past-claritys-failure-114025818.html",
+      "source": "Yahoo Finance",
+      "at": 1789731625000,
+      "inst": [
+        "BTC/USDT",
+        "ETH/USDT"
       ],
       "ccy": [
-        "JPY",
+        "BTC"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789729734000
+    },
+    {
+      "title": "Silver price today, Friday, September 18, 2026: Silver prices recover quickly, hitting weekly high today",
+      "link": "https://finance.yahoo.com/personal-finance/investing/article/silver-price-today-friday-september-18-2026-silver-prices-recover-quickly-hitting-weekly-high-today-110854090.html",
+      "source": "Yahoo Finance",
+      "at": 1789729734000,
+      "inst": [
+        "XAG/USD"
+      ],
+      "ccy": [
+        "XAG"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789728487000
+    },
+    {
+      "title": "Gold price today, Friday, September 18, 2026: Gold hits weekly high as inflation concerns fade",
+      "link": "https://finance.yahoo.com/personal-finance/investing/article/gold-price-today-friday-september-18-2026-gold-hits-weekly-high-as-inflation-concerns-fade-104807567.html",
+      "source": "Yahoo Finance",
+      "at": 1789728487000,
+      "inst": [
+        "XAU/USD"
+      ],
+      "ccy": [
         "XAU",
         "USD"
       ],
       "sev": 2,
       "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789761717000
+      "srcs": 1,
+      "firstAt": 1789728487000
+    },
+    {
+      "title": "Here’s what BoE tightening means for EUR/GBP",
+      "link": "https://www.investing.com/news/forex-news/heres-what-boe-tightening-means-for-eurgbp-4906839",
+      "source": "Investing FX",
+      "at": 1789722035000,
+      "inst": [
+        "GBP/USD"
+      ],
+      "ccy": [
+        "GBP"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789722035000
+    },
+    {
+      "title": "A Chinese AI company just connected its model to Wall Street's leading data providers",
+      "link": "https://www.cnbc.com/2026/09/17/china-moonshot-kimi-financial-services.html",
+      "source": "CNBC Markets",
+      "desc": "The startup Moonshot said it signed on financial industry giants from investment bank CICC to venture capital firms",
+      "at": 1789720871000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789720871000
+    },
+    {
+      "title": "UBS sees EUR/USD long opportunity on central bank dynamics",
+      "link": "https://www.investing.com/news/forex-news/ubs-sees-eurusd-long-opportunity-on-central-bank-dynamics-93CH-4906809",
+      "source": "Investing FX",
+      "at": 1789719692000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789719692000
+    },
+    {
+      "title": "Sterling today: Pound gains as UK retail sales beat and dollar cools",
+      "link": "https://www.investing.com/news/forex-news/sterling-today-pound-gains-as-uk-retail-sales-beat-and-dollar-cools-4906805",
+      "source": "Investing FX",
+      "at": 1789719453000,
+      "inst": [
+        "GBP/USD"
+      ],
+      "ccy": [
+        "USD",
+        "GBP"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789719453000
+    },
+    {
+      "title": "What are the main events for today?",
+      "link": "https://investinglive.com/news/what-are-the-main-events-for-today-45/",
+      "source": "ForexLive",
+      "desc": "EUROPEAN SESSIONIn the European session, we don't have much on the agenda other than a couple of low-tier releases like the Eurozone current account and Italian construction output. The data won't change anything for the ECB, so the market reaction will likely be muted. AMERICAN ",
+      "at": 1789713221000,
+      "inst": [
+        "EUR/USD"
+      ],
+      "ccy": [
+        "EUR"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789713221000
+    },
+    {
+      "title": "UK retail sales unexpectedly rise in August, backed by recovery in department stores, non-store retailers",
+      "link": "https://investinglive.com/news/uk-retail-sales-unexpectedly-rise-in-august-backed-by-recovery-in-department-stores-non-store-retailers/",
+      "source": "ForexLive",
+      "desc": "UK August retail sales +0.5% vs -0.2% m/m expectedPrior -0.5%UK August retail sales +2.4% vs +1.9% y/y expectedPrior +1.6%; revised to +1.2%UK August retail sales (ex autos, fuel) +0.6% vs -0.2% m/m expectedPrior -0.9%UK August retail sales (ex autos, fuel) +2.7% vs +1.9% y/y exp",
+      "at": 1789711241000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789711241000
+    },
+    {
+      "title": "Why is the Australian Dollar gaining today?",
+      "link": "https://www.investing.com/news/forex-news/why-is-australian-dollar-gaining-today-93CH-4906672",
+      "source": "Investing FX",
+      "at": 1789711104000,
+      "inst": [
+        "AUD/USD"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789711104000
+    },
+    {
+      "title": "investingLive Asia-Pacific market news: BoJ hike and RBA hawkish tilt",
+      "link": "https://investinglive.com/news/investinglive-asia-pacific-market-news-boj-hike-and-rba-hawkish-tilt/",
+      "source": "ForexLive",
+      "desc": "Yen weakens on BoJ hike as two dissents temper hawkish read Alt headlines:Bank of Japan (BOJ) raises policy rate by 25bp, as expectedRe Airbus, Pratt & Whitney: French airline has grounded a newly upgraded aircraftGoldman keeps $5,400 gold forecast intact despite Fed hikeUBS sees",
+      "at": 1789702642000,
+      "inst": [
+        "USD/JPY",
+        "AUD/USD"
+      ],
+      "ccy": [
+        "USD",
+        "JPY",
+        "AUD"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789702642000
+    },
+    {
+      "title": "Japan August inflation: Headline CPI 1.9% y/y (expected 2%)",
+      "link": "https://investinglive.com/news/japan-august-inflation-headline-cpi-y-y-expected-2/",
+      "source": "ForexLive",
+      "desc": "Just the data here, I'll have more to come on this separately.August y/y headline CPI 1.9%expected 2.0%, prior 1.9%CPI Ex-Food and Energy (AKA core-core CPI) 1.7% expected 2.0%, prior 1.8%Ex-Food CPI (AKA core CPI) 1.7% expected 1.8%, prior 1.8%Background:Preview: BoJ rate hike b",
+      "at": 1789687822000,
+      "inst": [
+        "USD/JPY"
+      ],
+      "ccy": [
+        "JPY",
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789685767000
+    },
+    {
+      "title": "New Zealand data, food price inflation in August same as in July",
+      "link": "https://investinglive.com/news/new-zealand-data-food-price-inflation-in-august-same-as-in-july/",
+      "source": "ForexLive",
+      "desc": "New Zealand August data. Trade Balance -1349mn Expected -1775mn, Prior -2118mnAnnual Trade Balance -5.44bnImports 8bn Prior 9.33bnExports 6.66bnPrior 7.22bn ---Food Prices (y/y) 1.9% Prior 1.9%for the m/m +0.3% This article was written by Eamonn Sheridan at investinglive.com.",
+      "at": 1789685767000,
+      "inst": [
+        "NZD/USD"
+      ],
+      "ccy": [
+        "NZD",
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789685767000
+    },
+    {
+      "title": "$10,000 in a high-yield savings account or $10,000 in a CD: Which one will earn more in one year?",
+      "link": "https://finance.yahoo.com/personal-finance/banking/article/10000-high-yield-savings-account-vs-cd-earnings-one-year-211941165.html",
+      "source": "Yahoo Finance",
+      "at": 1789679981000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789679981000
+    },
+    {
+      "title": "investingLive Americas FX news wrap 17 Sept",
+      "link": "https://investinglive.com/news/investinglive-americas-fx-news-wrap-17-sept/",
+      "source": "ForexLive",
+      "desc": "US September Philly Fed business index +37.8 vs +30.5 expectedUS August housing starts 1.275m vs 1.309m expectedUS initial jobless claims come in at 196K vs 208K estimateCanada August producer price index +1.3% m/m vs +0.6% priorBOE's Bailey: Decision on rates will get more diffi",
+      "at": 1789677094000,
+      "inst": [
+        "GBP/USD"
+      ],
+      "ccy": [
+        "USD",
+        "GBP"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789677094000
+    },
+    {
+      "title": "Dollar halts six-day rally after Fed hike, sterling slips after BoE stands pat",
+      "link": "https://www.investing.com/news/forex-news/asian-currencies-mixed-as-dollar-holds-sevenweek-high-yen-steadies-4904802",
+      "source": "Investing FX",
+      "at": 1789673072000,
+      "inst": [
+        "GBP/USD"
+      ],
+      "ccy": [
+        "USD",
+        "GBP"
+      ],
+      "sev": 3,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789673072000
+    },
+    {
+      "title": "A view on inflation is increasingly important",
+      "link": "https://investinglive.com/news/a-view-on-inflation-is-increasingly-important/",
+      "source": "ForexLive",
+      "desc": "The Fed has set out to tackle inflation and they certainly have the tools to get the job done. How aggressively they use those tools and how the economy responds is less certain, so is the geopolitical backdrop.At the moment, the market is pricing in the thinnest rate hike in US ",
+      "at": 1789672277000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789672277000
+    },
+    {
+      "title": "Securitize jumps after regulators greenlight some tokenized U.S. stock trading",
+      "link": "https://www.cnbc.com/2026/09/17/securitize-jumps-after-regulators-greenlight-tokenized-us-stocks.html",
+      "source": "CNBC Markets",
+      "desc": "Securitize surged Thursday after federal regulators greenlit the issuing of tokenized stocks on some trading platforms in the U.S.",
+      "at": 1789667991000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789667991000
+    },
+    {
+      "title": "Stocks making the biggest moves midday: Workday, Generac, Vital Farms, Vicor, Tower Semi & more",
+      "link": "https://www.cnbc.com/2026/09/17/stocks-making-the-biggest-moves-premarket-wday-gnrc-vicr-tsem-vitl.html",
+      "source": "CNBC Markets",
+      "desc": "These are some of the stocks posting the largest moves midday.",
+      "at": 1789667915000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789667915000
+    },
+    {
+      "title": "Trump says he faces a “big decision” on whether to launch new attacks on Iran",
+      "link": "https://investinglive.com/news/trump-says-he-faces-a-big-decision-on-whether-to-launch-new-attacks-on-iran/",
+      "source": "ForexLive",
+      "desc": "US President Trump told Axios he is at a “critical juncture” regarding the war in Iran:The officials say Trump needs to decide soon on the way forward, partly because the US military can't stay in its current holding pattern much longer. “At some point you have to decide what is ",
+      "at": 1789665323000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789665323000
+    },
+    {
+      "title": "Is Canada about to join the EU?",
+      "link": "https://www.bbc.co.uk/news/videos/c6wyz8kk2nepo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC World",
+      "desc": "Ties between Canada and the European Union have been getting closer as trade dispute with the US continue.",
+      "at": 1789661915000,
+      "inst": [
+        "USD/CAD"
+      ],
+      "ccy": [
+        "CAD"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789661915000
+    },
+    {
+      "title": "US August pending home sales +0.3% vs -0.6% expected",
+      "link": "https://investinglive.com/news/us-august-pending-home-sales-0-3-vs-0-6-expected/",
+      "source": "ForexLive",
+      "desc": "Prior was -2.3%Index at vs 71.2 prior This article was written by Adam Button at investinglive.com.",
+      "at": 1789653698000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 1,
+      "srcs": 1,
+      "firstAt": 1789653698000
+    },
+    {
+      "title": "US August housing starts 1.275m vs 1.309m expected",
+      "link": "https://investinglive.com/news/us-august-housing-starts-vs-1-309m-expected/",
+      "source": "ForexLive",
+      "desc": "Prior was 1.239mPrior starts were -12.4%Building permits 1.394m vs 1.410m expectedPrior permits 1.433mUS housing starts fell 2.6% and permits were lower by 2.7% as the pain in the US housing market continues. US 30-year mortgage rates are now about 7% so there's no help coming bu",
+      "at": 1789648223000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 1,
+      "srcs": 1,
+      "firstAt": 1789648223000
+    },
+    {
+      "title": "US September Philly Fed business index +37.8 vs +30.5 expected",
+      "link": "https://investinglive.com/news/us-september-philly-fed-business-index-xx-vs-30-5-expected/",
+      "source": "ForexLive",
+      "desc": "Prior was +47.4Details:New orders 29.2 versus 30.1 last monthShipments 27.7 versus 27.7 last monthUnfilled orders 20.4 versus 14.4 last monthDelivery times 26.5 versus 3.7 last monthInventories -12.5 versus -3.7 last monthPrices paid 48.6 versus 40.9 last monthPrices received 31.",
+      "at": 1789648222000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789648222000
+    },
+    {
+      "title": "US initial jobless claims come in at 196K vs 208K estimate",
+      "link": "https://investinglive.com/news/us-initial-jobless-claims-come-in-at-196k-vs-208k-estimate/",
+      "source": "ForexLive",
+      "desc": "US jobless claims for the week ending September 12:Initial jobless claims: 196K vs 208K expected. Prior 206KFour-week average of initial claims: 203.25K vs 206K previouslyContinuing claims: 1.730M vs 1.780M expected. Prior revised to 1.769M from 1.774MFour-week average of continu",
+      "at": 1789648221000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789648221000
+    },
+    {
+      "title": "Canada August producer price index +1.3% m/m vs +0.6% prior",
+      "link": "https://investinglive.com/news/canada-august-producer-price-index-vs-0-6-prior/",
+      "source": "ForexLive",
+      "desc": "Prior was +0.6%Prices +13.5% y/y vs +12.4% priorRaw materials price index +3.1% m/m vs -2.1% priorRaw materials price index +22.8% y/y vs +18.2% priorThose are some real inflation pressures and help to explain why central banks are so worried. This article was written by Adam But",
+      "at": 1789648212000,
+      "inst": [
+        "USD/CAD"
+      ],
+      "ccy": [
+        "CAD",
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789648212000
+    },
+    {
+      "title": "China privately asks Iran to help rein in Houthis after Saudi appeal, sources say",
+      "link": "https://investinglive.com/news/china-privately-asks-iran-to-help-rein-in-houthis-after-saudi-appeal-sources-say/",
+      "source": "ForexLive",
+      "desc": "China has privately asked Iran to use its influence over Yemen's Houthis to help contain the group's military campaign, according to three Iranian sources familiar with the matter. The request reportedly followed an appeal from Saudi Arabia to Beijing as Houthi forces rapidly exp",
+      "at": 1789647029000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789647029000
+    },
+    {
+      "title": "investingLive European session wrap: Markets rise as oil and bond yields ease after Fed, BOE holds rates",
+      "link": "https://investinglive.com/news/investinglive-european-session-wrap-markets-rise-as-oil-and-bond-yields-ease-after-fed-boe-holds-rates/",
+      "source": "ForexLive",
+      "desc": "Headlines:BOE leaves bank rate unchanged at 3.75% in 6-3 voteLong-end Treasury yields stay calm as markets digest the FedWas the Fed really that hawkish or the market just overreacted? An objective overviewOil prices ease as Saudi Arabia projects to restore half pipeline capacity",
+      "at": 1789646615000,
+      "inst": [
+        "GBP/USD",
+        "USOIL"
+      ],
+      "ccy": [
+        "USD",
+        "GBP",
+        "OIL"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789646615000
+    },
+    {
+      "title": "Stocks making the biggest moves premarket: Generac, Lennar, Nike & more",
+      "link": "https://www.cnbc.com/2026/09/17/stocks-making-the-biggest-moves-premarket-gnrc-len-nke.html",
+      "source": "CNBC Markets",
+      "desc": "These are the stocks posting the largest moves in the premarket.",
+      "at": 1789646058000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789646058000
+    },
+    {
+      "title": "Why your cell phone bill is getting so expensive — and how that helped convince the Fed to raise rates",
+      "link": "https://finance.yahoo.com/economy/policy/article/why-your-cell-phone-bill-is-getting-so-expensive--and-how-that-helped-convince-the-fed-to-raise-rates-100000440.html",
+      "source": "Yahoo Finance",
+      "at": 1789639200000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789639200000
+    },
+    {
+      "title": "Euro area inflation nudges up in August to 3.2% as energy prices jump",
+      "link": "https://investinglive.com/news/euro-area-inflation-nudges-up-in-august-to-3-2-as-energy-prices-jump/",
+      "source": "ForexLive",
+      "desc": "Eurozone August final CPI +3.2% vs +3.3% y/y expectedPrior +2.9%Eurozone August final core CPI +2.4% vs +2.4% y/y expectedPrior +2.5%The breakdownThe final estimate shows a mild revision lower to headline annual inflation, recording 3.2% in August. The monthly estimate still reaf",
+      "at": 1789635616000,
+      "inst": [
+        "EUR/USD"
+      ],
+      "ccy": [
+        "EUR",
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789635616000
+    },
+    {
+      "title": "Long-end Treasury yields stay calm as markets digest the Fed",
+      "link": "https://investinglive.com/news/long-end-treasury-yields-stay-calm-as-markets-digest-the-fed/",
+      "source": "ForexLive",
+      "desc": "There are plenty of ways to pick apart the market reaction to the Fed, but I think the one that matters most right now is happening in the bond market. More specifically, at the long-end of the curve.10-year Treasury yields are still hovering just below 5% after the Fed raised in",
+      "at": 1789629397000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789629397000
+    },
+    {
+      "title": "Trump reaches for tariffs again as EU opens door to Canada 'associate membership'",
+      "link": "https://investinglive.com/news/trump-reaches-for-tariffs-again-as-eu-opens-door-to-canada-associate-membership/",
+      "source": "ForexLive",
+      "desc": "After the EU talked about pulling Canada closer to its orbit yesterday, it was only a matter of time before we see Trump respond with his distaste and displeasure over the situation.And you can probably guess what his go-to response was to that. Yes, tariffs. Again.The EU opened ",
+      "at": 1789627343000,
+      "inst": [
+        "USD/CAD"
+      ],
+      "ccy": [
+        "CAD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789627343000
+    },
+    {
+      "title": "investingLive Asia-Pacific market news: Fed hike fallout dominates",
+      "link": "https://investinglive.com/news/investinglive-asia-pacific-market-news-fed-hike-fallout-dominates/",
+      "source": "ForexLive",
+      "desc": "Nikkei, Kospi gain as expected Fed hike and lower oil ease market nervesTD forecast a Federal Reserve (FOMC) rate hike in October and JanuaryGoldman ditches one and done call, now sees a second Fed hike in OctoberSaudi crude reroute via Oman pulls oil off four month highsPBOC set",
+      "at": 1789616194000,
+      "inst": [
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "USD",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789616194000
+    },
+    {
+      "title": "New Zealand dollar pops a little on better than expected GDP data",
+      "link": "https://investinglive.com/news/new-zealand-dollar-pops-a-little-on-better-than-expected-gdp-data/",
+      "source": "ForexLive",
+      "desc": "New Zealand Q2 GDP +2.6% y/yexpected +2.3%, prior +1.7%+0.2% q/qexpected +0.1%, prior +0.9%I'll have more to come on this separately ... added, here: NZ Q2 GDP beats forecasts at 2.6% y/y, easing RBNZ growth concerns This article was written by Eamonn Sheridan at investinglive.co",
+      "at": 1789598954000,
+      "inst": [
+        "NZD/USD"
+      ],
+      "ccy": [
+        "USD",
+        "NZD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789598954000
+    },
+    {
+      "title": "Here are five key takeaways from Wednesday's Fed rate hike",
+      "link": "https://www.cnbc.com/2026/09/16/here-are-five-key-takeaways-from-wednesdays-fed-rate-hike.html",
+      "source": "CNBC Markets",
+      "desc": "The Fed on Wednesday delivered a much-expected interest rate hike.",
+      "at": 1789593831000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789593831000
+    },
+    {
+      "title": "Fed approves interest rate hike, signals one more to come this year",
+      "link": "https://www.cnbc.com/2026/09/16/fed-rate-decision-september-2026.html",
+      "source": "CNBC Markets",
+      "desc": "The Federal Reserve on Wednesday approved its first interest rate hike since 2023 and indicated another to come.",
+      "at": 1789592871000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789592871000
+    },
+    {
+      "title": "Here is what changed in the new Fed statement under Warsh",
+      "link": "https://www.cnbc.com/2026/09/16/september-fed-statement-redline.html",
+      "source": "CNBC Markets",
+      "desc": "This is a comparison of Wednesday's Federal Open Market Committee statement with the one issued after the Fed's previous policymaking meeting in July.",
+      "at": 1789582734000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789582734000
+    },
+    {
+      "title": "Senate is still a toss-up, but Democrats now have slight edge, prediction market traders think",
+      "link": "https://www.cnbc.com/2026/09/16/prediction-markets-say-democrats-are-slightly-favored-to-win-senate.html",
+      "source": "CNBC Markets",
+      "desc": "Traders on both Kalshi and Polymarket see Democrats with one of their best chances to flip the U.S. Senate since the contracts on the election opened.",
+      "at": 1789576001000,
+      "inst": [],
+      "ccy": [],
+      "sev": 1,
+      "rel": 1,
+      "srcs": 1,
+      "firstAt": 1789576001000
+    },
+    {
+      "title": "Stocks making the biggest moves premarket: SK Hynix, J.B. Hunt, Expedia & more",
+      "link": "https://www.cnbc.com/2026/09/16/stocks-making-the-biggest-moves-premarket-skhy-jbht-expe-more.html",
+      "source": "CNBC Markets",
+      "desc": "These are the stocks posting the largest moves premarket.",
+      "at": 1789559063000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789559063000
+    },
+    {
+      "title": "Stocks making the biggest moves midday: Skyworks Solutions, Axon, Dave & Buster's, Revvity & more",
+      "link": "https://www.cnbc.com/2026/09/15/stocks-making-the-biggest-moves-midday-swks-axon-play-rvty.html",
+      "source": "CNBC Markets",
+      "desc": "These are the stocks posting the largest moves midday.",
+      "at": 1789494928000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789494928000
+    },
+    {
+      "title": "Stocks making the biggest moves premarket: Dave & Buster's, Enova, Etsy & more",
+      "link": "https://www.cnbc.com/2026/09/15/stocks-making-the-biggest-moves-premarket-play-enva-etsy.html",
+      "source": "CNBC Markets",
+      "desc": "These are the stocks posting the largest moves in early trading.",
+      "at": 1789472191000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789472191000
+    },
+    {
+      "title": "China's August retail sales miss forecast while investment slump deepens, piling pressure on Beijing",
+      "link": "https://www.cnbc.com/2026/09/15/china-august-retail-sales-industrial-output-investment-exports-.html",
+      "source": "CNBC Markets",
+      "desc": "China's investment slump deepened, retail sales growth slowed further in August while industrial output blew past estimates as Beijing warns of supply-demand imbalance.",
+      "at": 1789465574000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789465574000
+    },
+    {
+      "title": "Warsh's credibility is on the line this week as Trump policies put pressure on Fed to hike",
+      "link": "https://www.cnbc.com/2026/09/14/warshs-credibility-is-on-the-line-this-week-as-trump-policies-put-pressure-on-fed-to-hike.html",
+      "source": "CNBC Markets",
+      "desc": "With inflation above target and no visibility on lower oil prices or stability of tariffs, the Fed chairman needs to pass the test that has faced his predecessors",
+      "at": 1789418943000,
+      "inst": [
+        "USOIL"
+      ],
+      "ccy": [
+        "USD",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789418943000
+    },
+    {
+      "title": "Bank of America expects third-quarter investment banking fees to fall more than 10%; shares slide",
+      "link": "https://www.cnbc.com/2026/09/14/bank-of-america-bac-q3-investment-banking-fees.html",
+      "source": "CNBC Markets",
+      "desc": "The muted outlook from the country's second-largest bank by assets could be an early signal that Wall Street's AI boom might have hit turbulence.",
+      "at": 1789418063000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789418063000
     }
   ],
   "sources": [
@@ -1712,9 +1645,7 @@
     "CNBC Markets",
     "Yahoo Finance",
     "Al Jazeera",
-    "BBC World",
-    "Wires (geo)",
-    "Wires (macro)"
+    "BBC World"
   ],
   "failed": [
     {
@@ -1723,10 +1654,18 @@
     },
     {
       "name": "DailyFX",
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+    },
+    {
+      "name": "Wires (geo)",
+      "why": "no items parsed"
+    },
+    {
+      "name": "Wires (macro)",
       "why": "no items parsed"
     }
   ],
-  "calendarAt": null,
-  "headlinesAt": "2026-09-19T17:42:03.916Z",
-  "updatedAt": "2026-09-19T17:42:03.916Z"
+  "calendarAt": "2026-09-19T17:44:35.293Z",
+  "headlinesAt": "2026-09-19T17:44:35.293Z",
+  "updatedAt": "2026-09-19T17:44:35.293Z"
 }
