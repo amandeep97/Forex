@@ -41,10 +41,40 @@ function survive(kind, e) {
 process.on('unhandledRejection', e => survive('Unhandled rejection', e));
 process.on('uncaughtException', e => survive('Uncaught exception', e));
 
-// Exiting on a signal should still be quick and quiet, so pm2 restarts and
-// stops are not mistaken for the crashes above.
-for (const sig of ['SIGTERM', 'SIGINT']) {
-  process.on(sig, () => { console.log(`[${stamp()}] ${sig} — shutting down`); process.exit(0); });
+// ── Why a signal has to be logged SYNCHRONOUSLY ─────────────────────────────
+//
+// This was `console.log(...); process.exit(0)`. console.log to a PIPE — which
+// is what pm2 gives a managed process — is asynchronous on POSIX, and
+// process.exit() does not wait for it, so the line CAN be discarded before it
+// lands. Tested directly and a single short write did survive, so this is not
+// proven to be what happened here; it is simply not something to rely on when
+// the line in question is the only record of how the process died.
+//
+// The reason it matters: this bot restarts every five minutes with no logged
+// cause at all. Not the updater — its one exit line in eight hundred lines of
+// log is a genuine update. Not pm2's SIGINT, which stopped appearing after the
+// memory ceiling was raised. Something ends the process and leaves nothing
+// behind, so the record of it has to be as hard to lose as possible.
+//
+// fs.writeSync to fd 2 cannot be truncated by the exit that follows it, and
+// the memory at the moment of the signal is the number that settles whether a
+// ceiling was crossed. The tick-end reading cannot: it is taken after a
+// collection and shows the trough, not the peak that pm2 would have sampled.
+//
+// SIGHUP is added because it is the one ordinary way a process is asked to
+// leave that nothing here was listening for.
+const fs = require('node:fs');
+for (const sig of ['SIGTERM', 'SIGINT', 'SIGHUP']) {
+  process.on(sig, () => {
+    const m = process.memoryUsage();
+    const mb = v => Math.round(v / 1048576);
+    try {
+      fs.writeSync(2, `[${stamp()}] ${sig} — shutting down · rss ${mb(m.rss)}MB `
+        + `heap ${mb(m.heapUsed)}/${mb(m.heapTotal)} ext ${mb(m.external)} `
+        + `· up ${Math.round(process.uptime())}s · soft failures ${softFailures}\n`);
+    } catch { /* a closed fd at shutdown must not mask the signal itself */ }
+    process.exit(0);
+  });
 }
 
 async function tick() {
