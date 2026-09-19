@@ -70,7 +70,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789834705000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Geopolitical risk boosts safe havens and oil."
     },
     {
       "title": "‘There might be a silver lining’: My friend’s wife died at 60 after a high-earning career. Can he claim her Social Security?",
@@ -88,7 +94,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789834500000,
-      "_kind": null
+      "_kind": null,
+      "why": "Irrelevant personal finance story."
     },
     {
       "title": "Trump officially signs Russia sanctions bill into law | Morning in America - NewsNation",
@@ -108,7 +115,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789833983000
+      "firstAt": 1789833983000,
+      "why": "Sanctions law impact unclear."
     },
     {
       "title": "Is Berkshire Hathaway Stock a Better Buy Than an S&P 500 Index Fund?",
@@ -122,7 +130,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789833000000
+      "firstAt": 1789833900000,
+      "why": "Comparative analysis, no clear direction."
     },
     {
       "title": "Bitcoin's Sharpest Rally in Two Years Ran Almost Entirely on Short Liquidations",
@@ -138,7 +147,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789833663000
+      "firstAt": 1789833663000,
+      "why": "Rally driven by shorts, sustainability unclear."
     },
     {
       "title": "Marvell (MRVL) and GlobalFoundries (GFS) Rise on Expanded Deal: What Investors Should Know",
@@ -172,7 +182,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789833420000
+      "firstAt": 1789833420000,
+      "why": "Inflation outlook ambiguous for direction."
     },
     {
       "title": "Investors Borrowed $1.45 Trillion to Buy Stocks. Is the Market One Correction Away From a Margin-Call Avalanche?",
@@ -186,21 +197,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789833251000
-    },
-    {
-      "title": "What S&P 500 Gains of 9.5% in the First Half Signal for the Rest of the Year",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/p-500-gains-9-5-153500487.html",
-      "source": "Yahoo Finance",
-      "at": 1789832100000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789832100000
+      "firstAt": 1789833251000,
+      "dir": {
+        "US500": "down"
+      },
+      "why": "High margin debt signals correction risk."
     },
     {
       "title": "Want to land more job interviews? Stop letting AI write your résumé.",
@@ -230,7 +231,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789830900000
+      "firstAt": 1789830900000,
+      "why": "Individual scam story, no market impact."
     },
     {
       "title": "15 stocks that have grown dividends the most — and nearly all have beaten the S&P 500",
@@ -245,7 +247,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789829820000
+      "firstAt": 1789829820000,
+      "why": "Dividend growth correlation, no immediate move."
     },
     {
       "title": "Zelenskyy approves new long-range strikes on targets in Russia - Türkiye Today",
@@ -265,7 +268,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789825764000
+      "firstAt": 1789825764000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Escalation boosts risk assets and oil."
     },
     {
       "title": "“Critically important”: Zelenskyy thanks Trump for Russia sanctions bill with nod to Lindsey Graham - Nepalnews.com",
@@ -285,7 +294,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789823340000
+      "firstAt": 1789823340000,
+      "why": "Diplomatic thanks, no clear market move."
     },
     {
       "title": "All EU sanctions linked to Russia's war may expire as France, Slovakia seek to delist oligarchs - The Kyiv Independent",
@@ -305,7 +315,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789825426000
+      "firstAt": 1789825426000,
+      "why": "Sanctions expiry speculation, unclear impact."
     },
     {
       "title": "‘Resist him forcefully’: Congress hits back at Trump over Russia sanctions law - The Times of India",
@@ -325,7 +336,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789822680000
+      "firstAt": 1789822680000,
+      "why": "Political conflict, no clear asset direction."
     },
     {
       "title": "An unaffordable car market highlights Iran’s cost-of-living crisis",
@@ -352,7 +364,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789823791000
+      "firstAt": 1789823791000,
+      "dir": {
+        "US30": "up"
+      },
+      "why": "Futures rally and stocks surge into buy areas."
     },
     {
       "title": "Taiwan flexes military capabilities ahead of Trump-Xi talks",
@@ -369,7 +385,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789823599000
+      "firstAt": 1789823599000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Military tension boosts safe haven demand."
     },
     {
       "title": "Trump signs Russia sanctions bill named after Lindsey Graham - Washington Examiner",
@@ -690,7 +710,7 @@
       "firstAt": 1789813680000
     },
     {
-      "title": "Zelenskyy thanks Trump for signing 'critically important' Russia sanctions bill - ABC News - Breaking News, Latest News and Videos",
+      "title": "Zelenskyy thanks Trump for signing 'critically important' Russia sanctions bill - abcnews.com",
       "link": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxONTJ4dFVSYnVWdnNUdm9BeFVrLWtzNENxVGhLdld4VE9pbkluYmZfMHpKLUo1anBySzJmdTljaUZ0TkdOQ0JHc1pkczJpYzg1R2lfVmVBaEpXdlhGR3l5NE5Fdm14OG9NT05qcjJOQTdWN19tWXpNQ0QteEQ5a2FDZWFHU0JtVG5EUDVsTUNsLTFoMDhWbHhfb0JPTHV1N0tUcExKYVc5Qm1SVFBUdzBVYXBnb05PSHhIMGtF0gHAAUFVX3lxTE84RXR6VlpibkpTZ2lmUy1IQWpSbHV6NElURTdudnBxWDVNUnJUUTlsUnU0bUZhbzlod2VmWjh2SkVSQ0JNLVdHYjZ5MGhia2hOUXpNTHh4RlN3QmNzWS1hTklWZ0prTGo2VkxaSk1iZGtfREg3RGNfV3RYRlJ3QWJxbVNyR2taT0JoWlNNd2Z5aGVnSHhrWXRVajMtQTNwZGtveUI0bjA3ZUFqcy04eU5vajB3SWZZNXlrUzFINVlqNw?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiuwFBVV95cUxONTJ4dFVSYnVWdnNUdm9BeFVrLWtzNENxVGhLdld4VE9pbkluYmZfMHpKLUo1anBySzJmdTljaUZ0TkdOQ0JHc1pkczJpYzg1R2lfVmVBaEpXdlhGR3l5NE5Fdm14OG9NT05qcjJOQTdWN19tWXpNQ0QteEQ5a2FDZWFHU0JtVG5EUDVsTUNsLTFoMDhWbHhfb0JPTHV1N0tUcExKYVc5Qm1SVF",
@@ -704,7 +724,7 @@
         "XAU",
         "OIL"
       ],
-      "sev": 3,
+      "sev": 2,
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789807628000
@@ -1416,7 +1436,7 @@
       "firstAt": 1789768020000
     },
     {
-      "title": "Trump Signs a Sanctions Bill Targeting Russia, but Pursues Deals Too - The New York Times",
+      "title": "Trump Signs a Sanctions Bill Targeting Russia, but Pursues Deals Too - nytimes.com",
       "link": "https://news.google.com/rss/articles/CBMie0FVX3lxTE11eG5ZRWl5UHhEOGxBWTVIMDB4bGJ4aXNXSTFfS0JLVjlnSVVTM1lxd0NmRnJoLVFxMDdIQi0yd0Z1T3VZcTc4ckxFU1JsOXpWN2ZSMGxyT0FXTVdMbkoyM2RRaGxZVXZyQWFkV1VFc1ZLNkpfdnlud0pwSQ?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMie0FVX3lxTE11eG5ZRWl5UHhEOGxBWTVIMDB4bGJ4aXNXSTFfS0JLVjlnSVVTM1lxd0NmRnJoLVFxMDdIQi0yd0Z1T3VZcTc4ckxFU1JsOXpWN2ZSMGxyT0FXTVdMbkoyM2RRaGxZVXZyQWFkV1VFc1ZLNkpfdnlud0pwSQ?oc=5\" target=\"_blank\">Trump Signs a Sanctions Bill Targeting Ru",
@@ -1688,6 +1708,25 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789765994000
+    },
+    {
+      "title": "Gold heads for slight weekly gain as decline in oil prices offset Fed rate hike",
+      "link": "https://www.investing.com/news/commodities-news/gold-rises-as-lower-oil-treasury-yields-ease-inflation-pressure-4906609",
+      "source": "Investing Cmdty",
+      "at": 1789764117000,
+      "inst": [
+        "XAU/USD",
+        "USOIL"
+      ],
+      "ccy": [
+        "USD",
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1789762538000
     }
   ],
   "sources": [
@@ -1713,7 +1752,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-19T16:38:08.371Z",
-  "headlinesAt": "2026-09-19T16:38:08.371Z",
-  "updatedAt": "2026-09-19T16:38:08.371Z"
+  "calendarAt": "2026-09-19T16:40:23.474Z",
+  "headlinesAt": "2026-09-19T16:40:23.474Z",
+  "updatedAt": "2026-09-19T16:40:23.474Z"
 }
