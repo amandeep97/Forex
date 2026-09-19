@@ -72,7 +72,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789822800000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "US500": "up"
+      },
+      "why": "Fed credibility boosts market confidence"
     },
     {
       "title": "What’s behind reports that the Israeli army is low on troops, equipment?",
@@ -93,7 +97,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789822303000,
-      "_kind": null
+      "_kind": null,
+      "why": "Military shortage reports unclear impact"
     },
     {
       "title": "China Slams US Law Tightening Sanctions on Russia and Iran - Bloomberg.com",
@@ -114,7 +119,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789822009000,
-      "_kind": null
+      "_kind": null,
+      "why": "Diplomatic friction lacks clear market direction"
     },
     {
       "title": "Flames, smoke seen near Riyadh airport after Saudi warning of aerial attack threat",
@@ -134,7 +140,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789821383000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Aerial threat near Riyadh boosts risk assets"
     },
     {
       "title": "US lifts sanctions on Eritrea ‘to advance US regional interests’ in Red Sea",
@@ -155,7 +167,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789821277000,
-      "_kind": null
+      "why": "Sanctions lift impact unclear for markets"
     },
     {
       "title": "Fed's rate hike halts 10-year Treasury yield ri... - Pluang",
@@ -178,7 +190,8 @@
       "sev": 3,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789820527000
+      "firstAt": 1789820527000,
+      "why": "Yield halt direction unclear for FX"
     },
     {
       "title": "In Gaza, actors perform a war they are still living",
@@ -198,7 +211,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789820332000
+      "firstAt": 1789820332000,
+      "why": "Cultural news has no market impact"
     },
     {
       "title": "A sudden end to the Iran war would strike a blow against oil prices and energy stocks. Yet company insiders are buying.",
@@ -219,7 +233,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789819200000
+      "firstAt": 1789819200000,
+      "dir": {
+        "USOIL": "down",
+        "US500": "up",
+        "XAU/USD": "down"
+      },
+      "why": "War end lowers oil, boosts stocks"
     },
     {
       "title": "Ukraine says 4 killed, 21 injured in overnight strikes by Russia - Anadolu Ajansı",
@@ -239,7 +259,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789818895000
+      "firstAt": 1789818895000,
+      "why": "Ukraine strikes unclear for commodity prices"
     },
     {
       "title": "Shark attack prompts rare kill order in Western Australia as victim named",
@@ -256,7 +277,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789818622000
+      "firstAt": 1789818622000,
+      "why": "Shark attack has no economic impact"
     },
     {
       "title": "Canada optimistic about concluding trade talks with India by year-end, minister says",
@@ -272,7 +294,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789817428000
+      "firstAt": 1789817428000,
+      "why": "Trade talks optimism unclear for CAD"
     },
     {
       "title": "Stocks face a growing list of threats — so why are investors staying so calm?",
@@ -287,7 +310,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789817400000
+      "firstAt": 1789817400000,
+      "why": "Investor calm implies no immediate move"
     },
     {
       "title": "Russia kills eight people in Ukraine, attacks two vessels in Black Sea - aljazeera.com",
@@ -307,7 +331,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789815763000
+      "firstAt": 1789815763000,
+      "why": "Ukraine attacks unclear for oil prices"
     },
     {
       "title": "US joins Saudi Arabia, UAE, Turkey and Israel in race for Red Sea influence as it lifts Eritrea sanctions linked to Ethiopia war that killed 600,000 - Business Insider Africa",
@@ -327,7 +352,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789815445000
+      "firstAt": 1789815445000,
+      "why": "Geopolitical shift lacks clear price signal"
     },
     {
       "title": "AFU Strikes Russian UAV Bases, Ammo Depot, and Training Range - Kyiv Post",
@@ -347,7 +373,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789815352000
+      "firstAt": 1789815352000,
+      "why": "Ukraine strikes unclear for market direction"
     },
     {
       "title": "Russia should respond to US sanctions with 'military deterrence': Dmitry Medvedev - The Times of India",
@@ -367,27 +394,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789813190000
-    },
-    {
-      "title": "Trump signs Russia sanctions Bill into law - Manorama Yearbook",
-      "link": "https://news.google.com/rss/articles/CBMisgFBVV95cUxQbm8yVHg1Wm16Mld3cmZGeHhZbTFvdTI0X3c1cXplLTlLX2JhRU9OekRkcVB0ZmRQc1J6NVRJRFFlT0s2SWlReWxXVHJXUjhkck5QRFhEOVBFamFvZmdjRHVuMy1yM2VKZGRvWWxKUjRpNE44TEFzS2laOEFvbm82c3NrU2kxWlFCbHVDR0NnUWJ3TWlnWjAwWkVsT0k2TjZDc013ZjJpaGh6eGoxb2p3a2p3?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMisgFBVV95cUxQbm8yVHg1Wm16Mld3cmZGeHhZbTFvdTI0X3c1cXplLTlLX2JhRU9OekRkcVB0ZmRQc1J6NVRJRFFlT0s2SWlReWxXVHJXUjhkck5QRFhEOVBFamFvZmdjRHVuMy1yM2VKZGRvWWxKUjRpNE44TEFzS2laOEFvbm82c3NrU2kxWlFCbHVDR0NnUWJ3TWlnWjAwWkVsT0k2TjZDc013ZjJpaGh6eG",
-      "at": 1789813190000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789810775000
+      "firstAt": 1789813680000
     },
     {
       "title": "Trump signs Russia, Iran sanctions law allowing tariffs of up to 100 pc - National Herald",
@@ -407,27 +414,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789808940000
-    },
-    {
-      "title": "Russia Warns New U.S. Sanctions Law Would Harm Trump’s Peace Efforts - The New York Times",
-      "link": "https://news.google.com/rss/articles/CBMihAFBVV95cUxPMGFVVjBESXNDS3pqTXUwbll6TlgyMzctMUpMSjY2c2tnTG1TRUN2UjM4dWE4MHZMWENTX1pXeHQ1MEpCUFNuQXFhVTZXNzMwQkJ1S29WMTFyOGw3NDRhVnp0V2dLSHRWY1ZLSHRGXzNydFZjbkVhN1VDWmJnSm5pSEViYzU?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMihAFBVV95cUxPMGFVVjBESXNDS3pqTXUwbll6TlgyMzctMUpMSjY2c2tnTG1TRUN2UjM4dWE4MHZMWENTX1pXeHQ1MEpCUFNuQXFhVTZXNzMwQkJ1S29WMTFyOGw3NDRhVnp0V2dLSHRWY1ZLSHRGXzNydFZjbkVhN1VDWmJnSm5pSEViYzU?oc=5\" target=\"_blank\">Russia Warns New U.S. Sancti",
-      "at": 1789809809000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789807628000
+      "firstAt": 1789808411000
     },
     {
       "title": "Trump signs Bill authorising sweeping Russia sanctions - CNA",
@@ -448,6 +435,26 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789807628000
+    },
+    {
+      "title": "Russia Warns New U.S. Sanctions Law Would Harm Trump’s Peace Efforts - The New York Times",
+      "link": "https://news.google.com/rss/articles/CBMihAFBVV95cUxPMGFVVjBESXNDS3pqTXUwbll6TlgyMzctMUpMSjY2c2tnTG1TRUN2UjM4dWE4MHZMWENTX1pXeHQ1MEpCUFNuQXFhVTZXNzMwQkJ1S29WMTFyOGw3NDRhVnp0V2dLSHRWY1ZLSHRGXzNydFZjbkVhN1VDWmJnSm5pSEViYzU?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMihAFBVV95cUxPMGFVVjBESXNDS3pqTXUwbll6TlgyMzctMUpMSjY2c2tnTG1TRUN2UjM4dWE4MHZMWENTX1pXeHQ1MEpCUFNuQXFhVTZXNzMwQkJ1S29WMTFyOGw3NDRhVnp0V2dLSHRWY1ZLSHRGXzNydFZjbkVhN1VDWmJnSm5pSEViYzU?oc=5\" target=\"_blank\">Russia Warns New U.S. Sancti",
+      "at": 1789808411000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789806180000
     },
     {
       "title": "Trump Signs Sweeping Russia Sanctions Bill - The Moscow Times",
@@ -762,7 +769,7 @@
       "firstAt": 1789791647000
     },
     {
-      "title": "Pres. Trump signs sweeping Russia sanctions bill, aiming to choke off funds for Moscow in Ukraine war - Alaska's News Source",
+      "title": "Pres. Trump signs sweeping Russia sanctions bill, aiming to choke off funds for Moscow in Ukraine war - alaskasnewssource.com",
       "link": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxPRmJQM1BhN2drOENuTUczdmhIZ0tUcUxjSG91SUpFMVd5LTM2VThLTVhCUmVEVFZncUc5bTFoZEJ3QndFWk5haTF4X3NObmJJQ0hsUDVPbGpfdEZKdDRNakJjZEdXS1pIdVBBa3R6MmcwSWZuM2JsazFJa2VCdGZaZGFlOFNxRjJBZ1RvMnllZ243RHp0elJsTVNxRTJvVUhyTVdRQ084c1pLNndCaU53S1FkUjVvVXJaSzN1SHBFZUdYT0puZ1JnNks3Sk9vd1dKQWhMWUNYSXM?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMi2AFBVV95cUxPRmJQM1BhN2drOENuTUczdmhIZ0tUcUxjSG91SUpFMVd5LTM2VThLTVhCUmVEVFZncUc5bTFoZEJ3QndFWk5haTF4X3NObmJJQ0hsUDVPbGpfdEZKdDRNakJjZEdXS1pIdVBBa3R6MmcwSWZuM2JsazFJa2VCdGZaZGFlOFNxRjJBZ1RvMnllZ243RHp0elJsTVNxRTJvVUhyTVdRQ084c1pLNn",
@@ -1803,6 +1810,24 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789756097000
+    },
+    {
+      "title": "Stock Futures Rise as Oil Retreats and Markets Digest Fed Rate Hike - finance.biggo.com",
+      "link": "https://news.google.com/rss/articles/CBMidkFVX3lxTE5YRkt4TTBLU19oNUZJNWFMMElYQUVUX0FwMVBXcnVGZmE2bzhhY3ZOdm1WbXlIR0RWUElGaERTMzVaOWR5dFotSk1GbC1fTEVGcjlfMUo3R1dhV2p1aGxRUFVsbWlpeGdZWUd3VmRPcFZmeUozVnc?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMidkFVX3lxTE5YRkt4TTBLU19oNUZJNWFMMElYQUVUX0FwMVBXcnVGZmE2bzhhY3ZOdm1WbXlIR0RWUElGaERTMzVaOWR5dFotSk1GbC1fTEVGcjlfMUo3R1dhV2p1aGxRUFVsbWlpeGdZWUd3VmRPcFZmeUozVnc?oc=5\" target=\"_blank\">Stock Futures Rise as Oil Retreats and Markets D",
+      "at": 1789755660000,
+      "inst": [
+        "USOIL"
+      ],
+      "ccy": [
+        "USD",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789755660000
     }
   ],
   "sources": [
@@ -1825,10 +1850,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-19T13:03:28.200Z",
-  "headlinesAt": "2026-09-19T13:03:28.200Z",
-  "updatedAt": "2026-09-19T13:03:28.200Z"
+  "calendarAt": "2026-09-19T13:06:10.925Z",
+  "headlinesAt": "2026-09-19T13:06:10.925Z",
+  "updatedAt": "2026-09-19T13:06:10.925Z"
 }
