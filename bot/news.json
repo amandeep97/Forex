@@ -1,5 +1,105 @@
 {
-  "calendar": [],
+  "calendar": [
+    {
+      "title": "Current Account",
+      "country": "EUR",
+      "impact": "low",
+      "at": 1789718400000,
+      "forecast": "30.7B",
+      "previous": "35.1B",
+      "actual": ""
+    },
+    {
+      "title": "Foreign Direct Investment ytd/y",
+      "country": "CNY",
+      "impact": "low",
+      "at": 1789722120000,
+      "forecast": "",
+      "previous": "-6.2%",
+      "actual": ""
+    },
+    {
+      "title": "ECOFIN Meetings",
+      "country": "EUR",
+      "impact": "low",
+      "at": 1789726500000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "Eurogroup Meetings",
+      "country": "EUR",
+      "impact": "low",
+      "at": 1789726500000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "ECB President Lagarde Speaks",
+      "country": "EUR",
+      "impact": "medium",
+      "at": 1789727400000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "Capacity Utilization Rate",
+      "country": "USD",
+      "impact": "low",
+      "at": 1789737300000,
+      "forecast": "76.4%",
+      "previous": "76.3%",
+      "actual": ""
+    },
+    {
+      "title": "Industrial Production m/m",
+      "country": "USD",
+      "impact": "low",
+      "at": 1789737300000,
+      "forecast": "0.3%",
+      "previous": "0.2%",
+      "actual": ""
+    },
+    {
+      "title": "FOMC Member Bowman Speaks",
+      "country": "USD",
+      "impact": "low",
+      "at": 1789738200000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "CB Leading Index m/m",
+      "country": "USD",
+      "impact": "low",
+      "at": 1789740000000,
+      "forecast": "0.1%",
+      "previous": "0.2%",
+      "actual": ""
+    },
+    {
+      "title": "FOMC Member Schmid Speaks",
+      "country": "USD",
+      "impact": "low",
+      "at": 1789746300000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "ECOFIN Meetings",
+      "country": "EUR",
+      "impact": "low",
+      "at": 1789812900000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    }
+  ],
   "headlines": [
     {
       "title": "Iran Condemns Terrorist Attack on Mosque in Pakistan - tasnimnews.ir",
@@ -20,8 +120,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789799462000,
-      "_kind": null,
-      "why": "No clear market impact"
+      "_kind": null
     },
     {
       "title": "Trump signs into law sanctions package targeting Russia's economy - Euronews.com",
@@ -41,38 +140,26 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789798680000,
-      "_kind": null,
-      "dir": {
-        "XAU/USD": "up"
-      },
-      "why": "Sanctions increase geopolitical risk"
+      "firstAt": 1789796413000,
+      "_kind": null
     },
     {
-      "title": "Trump signs Russia sanctions bill: What it means and will India actually face 100% tariff - The Times of India",
-      "link": "https://news.google.com/rss/articles/CBMijgJBVV95cUxNb0F3bDFOZmtuMnFRQW5LaUZQWFp4UTA0dXZaNTM2U0k5QnUtTGpja21MTFVHeFhfMWg4Z1RjelhUZGFZelFWTlJaTUxqalN6VGRZVklTbmJyQTlqVDhsU3Z3SWpXeGVJQlJkbEpvT2VWNmlSQTdqd0pOdjl2YV9hbGxTcm0zOEhTdkhYbkJzRGhCQlFzS09JWG13MlBmUnB3S3dEUGg1YWkzMER5Qy1HYXdROUlRVHNOVE9WN3pVTmV6N2lDNjdTaWp4MnRFUE9UbktxdHpkWWtxOG9YdVVfaU44OVZWUllkR3RwSlkxaEw2eWFybVBNemJ4NFcxRXVoS1FRekJzUmtLUDBxZ2fSAZMCQVVfeXFMT0s0bFBlanlGWkJyZm1xVnhfM2QxOVF6bHQ3RGc5cTZMNmxRamZFQ0xqd3RxNWJSLTVtblo0dVkzUldfd3BUeTdRS2VtamFFc3VCTURFOTRacThlcXRUdXk4TGdQZjBjNndDWmk0UGxaUEthak5KXzQ3RWFPeUFCOVNCT3QzRVRTaS1pV1RsOG5hejFsdTUwelBiQ1N0YUNyVWk2RHAwTEROaGY5eDlVRndrczR1RGFYMFk4N3huUHZfZUprd3lJOHJ3SEY4UTlYaDNENXI5VWU3dlpyU2Q2TUg0aEtMWE5NLTk1b3Atb1ZobHNubjNlZGZTeWkyX2JnR2RsbzFoY3kyLWEwYllZcjc0STg?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMijgJBVV95cUxNb0F3bDFOZmtuMnFRQW5LaUZQWFp4UTA0dXZaNTM2U0k5QnUtTGpja21MTFVHeFhfMWg4Z1RjelhUZGFZelFWTlJaTUxqalN6VGRZVklTbmJyQTlqVDhsU3Z3SWpXeGVJQlJkbEpvT2VWNmlSQTdqd0pOdjl2YV9hbGxTcm0zOEhTdkhYbkJzRGhCQlFzS09JWG13MlBmUnB3S3dEUGg1YWkzME",
-      "at": 1789798680000,
+      "title": "Dow Falls 1.5% in Third Straight Weekly Loss, as Feds First Rate Hike Since 2023 Rattles Markets - HDFC Sky",
+      "link": "https://news.google.com/rss/articles/CBMixAFBVV95cUxQVDhxTWpYTTUzVXZEVUNpVzNPM29HSGFhMXUtcEVqaWo5NVZzQklhN3I1YklQN2RTeERGb0dNd0lBUVFyQ1lxM3NxRTlrdVh5SUljU3Q2SkJpbHU2SHF0SFRoelowd3kxUThtMGRFdnFycXhha2xUYlBCaWUzbmJoLTFsNDVTLW9USlViMS1fVHVqZ2RiSGYtZDl5SHkzUFNoZHhzVlRsSzZ3S2Nqc3BpUEplNHAxNkMwY2RNTTBkRENlT1Ry?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMixAFBVV95cUxQVDhxTWpYTTUzVXZEVUNpVzNPM29HSGFhMXUtcEVqaWo5NVZzQklhN3I1YklQN2RTeERGb0dNd0lBUVFyQ1lxM3NxRTlrdVh5SUljU3Q2SkJpbHU2SHF0SFRoelowd3kxUThtMGRFdnFycXhha2xUYlBCaWUzbmJoLTFsNDVTLW9USlViMS1fVHVqZ2RiSGYtZDl5SHkzUFNoZHhzVlRsSzZ3S2",
+      "at": 1789798242000,
       "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
+        "US30"
       ],
       "ccy": [
-        "XAU",
-        "OIL",
         "USD"
       ],
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789797812000,
-      "_kind": null,
-      "dir": {
-        "XAU/USD": "up"
-      },
-      "why": "Sanctions increase geopolitical risk"
+      "firstAt": 1789798242000,
+      "_kind": null
     },
     {
       "title": "Ukraine’s Foreign Minister Calls Trump’s Russia and Iran Sanctions Law Historic - Межа. Новини України.",
@@ -92,11 +179,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789795160000,
-      "dir": {
-        "XAU/USD": "up"
-      },
-      "why": "Sanctions increase geopolitical risk"
+      "firstAt": 1789795160000
     },
     {
       "title": "Prelude to escalation. Russia strikes targets near Polish borders - Defence24.com",
@@ -116,11 +199,47 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789797600000,
-      "dir": {
-        "XAU/USD": "up"
-      },
-      "why": "Escalation increases safe-haven demand"
+      "firstAt": 1789797600000
+    },
+    {
+      "title": "Trump Signs Russia-Iran Sanctions Bill, Putting New Pressure Tools At His Disposal - Radio Free Europe/Radio Liberty",
+      "link": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE9hZUd3TVBEWFJra0RKbGdzWE9xNlFyZVFrMTRseDNSMmhRY3pSMDEtWWQzWWY0VTlqQ3NVUnlQSXktRE9heUktVXgxVzc3QdIBUEFVX3lxTE1nNGlOb3JoQVVpNkowWjU0XzQ1NExCZkg0UFF5NmdLM09nbGhsLW1sUkJUcFpGYXl2Q00xR0haWDBnbnlHNkJqWFdnUWpTTDd0?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiTkFVX3lxTE9hZUd3TVBEWFJra0RKbGdzWE9xNlFyZVFrMTRseDNSMmhRY3pSMDEtWWQzWWY0VTlqQ3NVUnlQSXktRE9heUktVXgxVzc3QdIBUEFVX3lxTE1nNGlOb3JoQVVpNkowWjU0XzQ1NExCZkg0UFF5NmdLM09nbGhsLW1sUkJUcFpGYXl2Q00xR0haWDBnbnlHNkJqWFdnUWpTTDd0?oc=5\" target=",
+      "at": 1789797219000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789795160000
+    },
+    {
+      "title": "Trump signs Russia sanctions law, India and China face risk of 100% US tariffs - daily-sun.com",
+      "link": "https://news.google.com/rss/articles/CBMitgFBVV95cUxPUDZjLWhVM2dhLTRkM0NxSTRkb25kS3BlWUMtODRkNGtHaVUySWUteVg0Y1pBMmJ2eXVOS3BmeXNUbExYLUZpTm5sLUxZSTZHdzB1TFB3bXozY3IxeXFScXltRWdtOEZvRS1zNDE0U3RTTTRiaDdvNjRzTkt4NHZJSHNkWjBYWVhfTVhsVjYtY0VyMVZCYTktZ1gzc3VwTGd6YVFhQTJ6V01Vcm1FbjRQVTlqUnFUUQ?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMitgFBVV95cUxPUDZjLWhVM2dhLTRkM0NxSTRkb25kS3BlWUMtODRkNGtHaVUySWUteVg0Y1pBMmJ2eXVOS3BmeXNUbExYLUZpTm5sLUxZSTZHdzB1TFB3bXozY3IxeXFScXltRWdtOEZvRS1zNDE0U3RTTTRiaDdvNjRzTkt4NHZJSHNkWjBYWVhfTVhsVjYtY0VyMVZCYTktZ1gzc3VwTGd6YVFhQTJ6V01Vcm",
+      "at": 1789796413000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789795160000
     },
     {
       "title": "ADF neutralizes three Banderol missiles, 138 Russian drones used to attack Ukraine overnight - Ukrinform",
@@ -140,11 +259,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789796280000,
-      "dir": {
-        "XAU/USD": "up"
-      },
-      "why": "Escalation increases safe-haven demand"
+      "firstAt": 1789796280000
     },
     {
       "title": "Trump signs bill expanding Russia sanctions, extending Iran measures - bastillepost.com",
@@ -164,11 +279,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789793231000,
-      "dir": {
-        "XAU/USD": "up"
-      },
-      "why": "Sanctions increase geopolitical risk"
+      "firstAt": 1789793231000
     },
     {
       "title": "Morning Digest: The U.S. Is Preparing $2.7 Billion for Air Defense for Ukraine, Trump Signed Sanctions Against Russia – September 19, 2026 - Межа. Новини України.",
@@ -188,11 +299,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789793231000,
-      "dir": {
-        "XAU/USD": "up"
-      },
-      "why": "Sanctions increase geopolitical risk"
+      "firstAt": 1789793231000
     },
     {
       "title": "Trump Signs Russia Sanctions Bill - KFBK News Radio",
@@ -212,11 +319,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789790696000,
-      "dir": {
-        "XAU/USD": "up"
-      },
-      "why": "Sanctions increase geopolitical risk"
+      "firstAt": 1789790696000
     },
     {
       "title": "Trump signs Russia sanctions Bill into Act: India, China face 100% tariff threat - The Indian Express",
@@ -237,11 +340,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789790696000,
-      "dir": {
-        "XAU/USD": "up"
-      },
-      "why": "Sanctions increase geopolitical risk"
+      "firstAt": 1789790696000
     },
     {
       "title": "Japan has record 100,000 people aged over 100: How societies are ageing",
@@ -258,8 +357,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789792266000,
-      "why": "Demographic news lacks immediate direction"
+      "firstAt": 1789792266000
     },
     {
       "title": "Saudi Arabia issues first air raid alerts for Riyadh since Houthis escalated attacks",
@@ -279,13 +377,7 @@
       "sev": 3,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789791647000,
-      "dir": {
-        "XAU/USD": "up",
-        "USOIL": "up",
-        "UKOIL": "up"
-      },
-      "why": "Escalation boosts oil and gold"
+      "firstAt": 1789791647000
     },
     {
       "title": "Trump signs Russia-Iran sanctions law, opens door to 100% tariffs on India - The Economic Times",
@@ -305,11 +397,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789789091000,
-      "dir": {
-        "XAU/USD": "up"
-      },
-      "why": "Sanctions increase geopolitical risk"
+      "firstAt": 1789789091000
     },
     {
       "title": "Pres. Trump signs sweeping Russia sanctions bill, aiming to choke off funds for Moscow in Ukraine war - Alaska's News Source",
@@ -329,11 +417,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789789091000,
-      "dir": {
-        "XAU/USD": "up"
-      },
-      "why": "Sanctions increase geopolitical risk"
+      "firstAt": 1789789091000
     },
     {
       "title": "Trump signs Lindsey Graham’s Russia sanctions bill into law - New York Post",
@@ -353,11 +437,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789789091000,
-      "dir": {
-        "XAU/USD": "up"
-      },
-      "why": "Sanctions increase geopolitical risk"
+      "firstAt": 1789789091000
     },
     {
       "title": "Trump signs Russia sanctions bill; India faces 100% tariff risk - Rediff",
@@ -559,7 +639,7 @@
       "firstAt": 1789781209000
     },
     {
-      "title": "More U.S. troops have died amid Iran war than Pentagon has disclosed publicly - The Washington Post",
+      "title": "More U.S. troops have died amid Iran war than Pentagon has disclosed publicly - washingtonpost.com",
       "link": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxQYk51QUpzSHBoWFR4UjJDZjhsbUNqck1YU2RndG93S2tzZjBMS2RqTWFKRURWenlzYzFpTGJYV2k4STFQZjNCbjhHaE5kUnZfeUlMNmhtblBBYzRzV1B0SHREbGk3R2JqbDVKSTJRMWduU2dTZzZ6Qkh0XzV3OUEyWWVldnJrTW00bDk0ZU5VbzBzVS1GSTJIVnpXLU00eVhuLUJ4V2llajVJdlJoN2EwXzhtTkwycklCS3dnNkRMd056Qm5Bd0N2MndkU0FBaTlRZEE?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMi0gFBVV95cUxQYk51QUpzSHBoWFR4UjJDZjhsbUNqck1YU2RndG93S2tzZjBMS2RqTWFKRURWenlzYzFpTGJYV2k4STFQZjNCbjhHaE5kUnZfeUlMNmhtblBBYzRzV1B0SHREbGk3R2JqbDVKSTJRMWduU2dTZzZ6Qkh0XzV3OUEyWWVldnJrTW00bDk0ZU5VbzBzVS1GSTJIVnpXLU00eVhuLUJ4V2llajVJdl",
@@ -696,7 +776,7 @@
       "firstAt": 1789774620000
     },
     {
-      "title": "Trump signs Lindsey Graham Act extending Iran sanctions to 2031 - middleeasteye.net",
+      "title": "Trump signs Lindsey Graham Act extending Iran sanctions to 2031 - Middle East Eye",
       "link": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxOV2xwbHN6UURiQWxZaWhCbDU2N1FCR2dYVGNHelNxU3RsWVAweFZ3TWU5b1U1NkpEMXktOXAtWmlrTTlPWWRRdzhwZ3d4OTA3cjRTLXdyLVhDdTNwcEVKM2x4NHpUZ3FhY3p0WVJLSU0yUEE3bHRPbXBLSHBpWHl2bExieVFaZHhNajhuUGljY294dFJKSVF6LTBwZHluYWJRT2FwaHRiWE5iVDRDS0RubzdkLXY4QURt?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiuAFBVV95cUxOV2xwbHN6UURiQWxZaWhCbDU2N1FCR2dYVGNHelNxU3RsWVAweFZ3TWU5b1U1NkpEMXktOXAtWmlrTTlPWWRRdzhwZ3d4OTA3cjRTLXdyLVhDdTNwcEVKM2x4NHpUZ3FhY3p0WVJLSU0yUEE3bHRPbXBLSHBpWHl2bExieVFaZHhNajhuUGljY294dFJKSVF6LTBwZHluYWJRT2FwaHRiWE5iVD",
@@ -1041,26 +1121,6 @@
       "rel": 1,
       "srcs": 1,
       "firstAt": 1789771260000
-    },
-    {
-      "title": "Trump Signs Lindsey Graham's Russia Sanctions Bill, Aimed at Moscow War Funds - Yahoo",
-      "link": "https://news.google.com/rss/articles/CBMimgFBVV95cUxPT2NHVkdzOXFQeTNhZmRTWkJCMkVRNVEyMTh3NkZFTWhmT05iSmxaWmhhbjhVQ1NvWDA5aldvMG1DeVd1NzhZYTlQTDRUMVctZWpsNm9vejFTSDZRQ1JKdG00VU1oblhLbW1BRXNDSlZWLWVNNVVfbHZPRU5mRGlqUnlzMzlHbXBpc19ZYXo2cEhfeTRHOTVNaTd3?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMimgFBVV95cUxPT2NHVkdzOXFQeTNhZmRTWkJCMkVRNVEyMTh3NkZFTWhmT05iSmxaWmhhbjhVQ1NvWDA5aldvMG1DeVd1NzhZYTlQTDRUMVctZWpsNm9vejFTSDZRQ1JKdG00VU1oblhLbW1BRXNDSlZWLWVNNVVfbHZPRU5mRGlqUnlzMzlHbXBpc19ZYXo2cEhfeTRHOTVNaTd3?oc=5\" target=\"_blank\"",
-      "at": 1789771028000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789768757000
     },
     {
       "title": "Trump Signs Sweeping Russia Sanctions Bill Into Law - Kyiv Post",
@@ -1773,26 +1833,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789756111000
-    },
-    {
-      "title": "Russia’s drones threaten Kyiv-bound Western officials as war effort stalls - Al Jazeera",
-      "link": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxOYm94TzBfWE5NV3JjbXNiazFGVGpHY0JMYUdtRm95VkpDS08wbkJwSS0yZlljN21xdFJTX1ZiZ04wOTNQdVRyXy1Ba2t0NXMyN0VNdWkxczN4ZFh1SHRoVDcyOHhFODVlWFc2M3JxOWtPeTJEX2Y2NlhCRkdCOVU0Y0t4Zjg1Ukt00gGOAUFVX3lxTFBJcGlud1JhbmE1MFdDZ05hNC1aakg3YnprVzd1X25vX1duQTFMbHc4eGh2dG8yQ2pteFh3ZkFETmNCcUdiWXBTRXBVak9hc05Jb2JaNUJoWDBqX19RUWtZaFU4T2tkRHNVRE1vTHdMSHRXNURyUEJvVnBFNkxROXBlWlNvbUVNQ0xTSFJsemc?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiiAFBVV95cUxOYm94TzBfWE5NV3JjbXNiazFGVGpHY0JMYUdtRm95VkpDS08wbkJwSS0yZlljN21xdFJTX1ZiZ04wOTNQdVRyXy1Ba2t0NXMyN0VNdWkxczN4ZFh1SHRoVDcyOHhFODVlWFc2M3JxOWtPeTJEX2Y2NlhCRkdCOVU0Y0t4Zjg1Ukt00gGOAUFVX3lxTFBJcGlud1JhbmE1MFdDZ05hNC1aakg3Yn",
-      "at": 1789756097000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789756097000
     }
   ],
   "sources": [
@@ -1815,10 +1855,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": null,
-  "headlinesAt": "2026-09-19T06:36:58.973Z",
-  "updatedAt": "2026-09-19T06:36:58.973Z"
+  "calendarAt": "2026-09-19T06:39:24.159Z",
+  "headlinesAt": "2026-09-19T06:39:24.159Z",
+  "updatedAt": "2026-09-19T06:39:24.159Z"
 }
