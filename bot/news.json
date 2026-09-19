@@ -1,5 +1,15 @@
 {
-  "calendar": [],
+  "calendar": [
+    {
+      "title": "ECOFIN Meetings",
+      "country": "EUR",
+      "impact": "low",
+      "at": 1789812900000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    }
+  ],
   "headlines": [
     {
       "title": "It’s not a winner-take-all stock market. This hedge-fund manager favors three underdogs.",
@@ -52,6 +62,21 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789833983000,
+      "_kind": null
+    },
+    {
+      "title": "Is Berkshire Hathaway Stock a Better Buy Than an S&P 500 Index Fund?",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/berkshire-hathaway-stock-better-buy-160500962.html",
+      "source": "Yahoo Finance",
+      "at": 1789833900000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789833000000,
       "_kind": null
     },
     {
@@ -119,8 +144,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789833251000,
-      "_kind": null
+      "firstAt": 1789833251000
     },
     {
       "title": "What S&P 500 Gains of 9.5% in the First Half Signal for the Rest of the Year",
@@ -151,30 +175,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789832040000
-    },
-    {
-      "title": "Anthropic IPO: 1 Key Lesson Investors Can Learn From SpaceX",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/anthropic-ipo-1-key-lesson-153000984.html",
-      "source": "Yahoo Finance",
-      "at": 1789831800000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1789831800000
-    },
-    {
-      "title": "Star Bulk Carriers Director Pappas Buys 74,400 Shares for $2.1 Million. Is This a Sign the Shipping Bull Market Will Continue?",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/star-bulk-carriers-director-pappas-152301004.html",
-      "source": "Yahoo Finance",
-      "at": 1789831381000,
-      "inst": [],
-      "ccy": [],
-      "sev": 1,
-      "rel": 1,
-      "srcs": 1,
-      "firstAt": 1789831381000
     },
     {
       "title": "Want to land more job interviews? Stop letting AI write your résumé.",
@@ -1369,26 +1369,6 @@
       "firstAt": 1789772618000
     },
     {
-      "title": "Trump Signs a Sanctions Bill Targeting Russia, but Pursues Deals Too - The New York Times",
-      "link": "https://news.google.com/rss/articles/CBMie0FVX3lxTE11eG5ZRWl5UHhEOGxBWTVIMDB4bGJ4aXNXSTFfS0JLVjlnSVVTM1lxd0NmRnJoLVFxMDdIQi0yd0Z1T3VZcTc4ckxFU1JsOXpWN2ZSMGxyT0FXTVdMbkoyM2RRaGxZVXZyQWFkV1VFc1ZLNkpfdnlud0pwSQ?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMie0FVX3lxTE11eG5ZRWl5UHhEOGxBWTVIMDB4bGJ4aXNXSTFfS0JLVjlnSVVTM1lxd0NmRnJoLVFxMDdIQi0yd0Z1T3VZcTc4ckxFU1JsOXpWN2ZSMGxyT0FXTVdMbkoyM2RRaGxZVXZyQWFkV1VFc1ZLNkpfdnlud0pwSQ?oc=5\" target=\"_blank\">Trump Signs a Sanctions Bill Targeting Ru",
-      "at": 1789772280000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789769908000
-    },
-    {
       "title": "Trump signs Lindsey Graham Russia-Iran sanctions bill into law - thenationalnews.com",
       "link": "https://news.google.com/rss/articles/CBMijAFBVV95cUxOZEozZWl0ZGthb0txd0wtalQ2T094c2VMWmpzX20tZXlTZExJMFd4M2NQXy13N3VvaWl0TVBKcUFRWE9hMy1IWnBuSDFhZjZVR19HbFNWSGZWaWVhRzhTcThLbXIwS19USzdOalBsVW1LYTg5SGJhcVRkWDBZMThyUDRXQUZmU2ZPMEt5OA?oc=5",
       "source": "Wires (geo)",
@@ -1454,6 +1434,26 @@
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMilAFBVV95cUxQR25nVG9WTnhrNHF0M05lanBwVmdkbXpWdmdnYkJMRHRmc1ExcjlCT0V6LXEwTlBodVBMa3VWMTdhTkVqc1RnQ2pzT1pPOThKWWw1emtGM19WY1E3d2xtcG1ONGdpWGo2Q2tlQm9RMGJPS203andDbUdKZzlOaVdhM3RfVzdpNm43a3UwdzdtRGpybXZu0gGcAUFVX3lxTFBFR1VIbEpTTjV0cm",
       "at": 1789770480000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1789768020000
+    },
+    {
+      "title": "Trump Signs a Sanctions Bill Targeting Russia, but Pursues Deals Too - The New York Times",
+      "link": "https://news.google.com/rss/articles/CBMie0FVX3lxTE11eG5ZRWl5UHhEOGxBWTVIMDB4bGJ4aXNXSTFfS0JLVjlnSVVTM1lxd0NmRnJoLVFxMDdIQi0yd0Z1T3VZcTc4ckxFU1JsOXpWN2ZSMGxyT0FXTVdMbkoyM2RRaGxZVXZyQWFkV1VFc1ZLNkpfdnlud0pwSQ?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMie0FVX3lxTE11eG5ZRWl5UHhEOGxBWTVIMDB4bGJ4aXNXSTFfS0JLVjlnSVVTM1lxd0NmRnJoLVFxMDdIQi0yd0Z1T3VZcTc4ckxFU1JsOXpWN2ZSMGxyT0FXTVdMbkoyM2RRaGxZVXZyQWFkV1VFc1ZLNkpfdnlud0pwSQ?oc=5\" target=\"_blank\">Trump Signs a Sanctions Bill Targeting Ru",
+      "at": 1789770358000,
       "inst": [
         "XAU/USD",
         "USOIL",
@@ -1688,6 +1688,23 @@
       "rel": 2,
       "srcs": 2,
       "firstAt": 1789768020000
+    },
+    {
+      "title": "Why Did Silver Go Up Today Amid Market Changes? - GoldSilver",
+      "link": "https://news.google.com/rss/articles/CBMingFBVV95cUxQVi1pVGJFQktKTVFESkc2SnVqWVp6YlhteE1XZUZndEVERjJVQkx5RzBNZW56UTZmQ0cyWmF6c1A4aHJvNE82ck1qc0pXbV9qeWVBSFJDZk0xc0FMZkJqZ0tDUWFRcXRtWnhwdTVpS2YxU2NmN3dLZUFfQUJCaU9tQ2ktejkzSlYwTWltWF9pS0o5a05DRTFzdlZYNllVZw?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMingFBVV95cUxQVi1pVGJFQktKTVFESkc2SnVqWVp6YlhteE1XZUZndEVERjJVQkx5RzBNZW56UTZmQ0cyWmF6c1A4aHJvNE82ck1qc0pXbV9qeWVBSFJDZk0xc0FMZkJqZ0tDUWFRcXRtWnhwdTVpS2YxU2NmN3dLZUFfQUJCaU9tQ2ktejkzSlYwTWltWF9pS0o5a05DRTFzdlZYNllVZw?oc=5\" target=\"_",
+      "at": 1789767639000,
+      "inst": [
+        "XAG/USD"
+      ],
+      "ccy": [
+        "XAG"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789767639000
     }
   ],
   "sources": [
@@ -1713,7 +1730,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": null,
-  "headlinesAt": "2026-09-19T16:22:11.612Z",
-  "updatedAt": "2026-09-19T16:22:11.612Z"
+  "calendarAt": "2026-09-19T16:24:28.224Z",
+  "headlinesAt": "2026-09-19T16:24:28.224Z",
+  "updatedAt": "2026-09-19T16:24:28.224Z"
 }
