@@ -1,24 +1,6 @@
 {
   "calendar": [
     {
-      "title": "Capacity Utilization Rate",
-      "country": "USD",
-      "impact": "low",
-      "at": 1789737300000,
-      "forecast": "76.4%",
-      "previous": "76.3%",
-      "actual": ""
-    },
-    {
-      "title": "Industrial Production m/m",
-      "country": "USD",
-      "impact": "low",
-      "at": 1789737300000,
-      "forecast": "0.3%",
-      "previous": "0.2%",
-      "actual": ""
-    },
-    {
       "title": "FOMC Member Bowman Speaks",
       "country": "USD",
       "impact": "low",
@@ -72,7 +54,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789822800000,
-      "_kind": null
+      "_kind": null,
+      "why": "Fed inflation outlook unclear for stocks"
     },
     {
       "title": "What’s behind reports that the Israeli army is low on troops, equipment?",
@@ -93,7 +76,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789822303000,
-      "_kind": null
+      "_kind": null,
+      "why": "Military shortages unclear for markets"
     },
     {
       "title": "China Slams US Law Tightening Sanctions on Russia and Iran - Bloomberg.com",
@@ -114,7 +98,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789822009000,
-      "_kind": null
+      "why": "Sanctions news unclear for assets"
     },
     {
       "title": "Flames, smoke seen near Riyadh airport after Saudi warning of aerial attack threat",
@@ -133,7 +117,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789821383000
+      "firstAt": 1789821383000,
+      "why": "Airport incident unclear for markets"
     },
     {
       "title": "What History Reveals About Investing Through a Stock Market Crash",
@@ -165,7 +150,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789821277000
+      "firstAt": 1789821277000,
+      "why": "Sanctions lift unclear for markets"
     },
     {
       "title": "Stock Market Week Ahead: Keeping An Eye Out For Change",
@@ -193,7 +179,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789820640000
+      "firstAt": 1789820640000,
+      "why": "Bitcoin price prediction unclear"
     },
     {
       "title": "Fed's rate hike halts 10-year Treasury yield ri... - Pluang",
@@ -216,7 +203,8 @@
       "sev": 3,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789820527000
+      "firstAt": 1789820527000,
+      "why": "Fed rate hike impact unclear"
     },
     {
       "title": "Zscaler CEO Jay Chaudhry Sells 2,852 Shares for $550,000",
@@ -248,7 +236,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789820332000
+      "firstAt": 1789820332000,
+      "why": "Gaza theatre news irrelevant to markets"
     },
     {
       "title": "Ray Dalio Just Explained Why He's Cautious on AI Stocks. Here's What He Said.",
@@ -262,7 +251,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789820220000
+      "firstAt": 1789820220000,
+      "why": "Dalio caution unclear for index"
     },
     {
       "title": "Dow Jones Futures: Nasdaq, S&P 500 Hold; Robinhood, Sandisk, AMD, Moderna Surge Into Buy Areas",
@@ -278,7 +268,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789819732000
+      "firstAt": 1789819732000,
+      "why": "Futures holding steady, no clear direction"
     },
     {
       "title": "Robinhood Soars, SpaceX Orbits Entry: Five Stocks Near Buy Points",
@@ -292,7 +283,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789819239000
+      "firstAt": 1789819239000,
+      "why": "Stock buy points unclear for index"
     },
     {
       "title": "A sudden end to the Iran war would strike a blow against oil prices and energy stocks. Yet company insiders are buying.",
@@ -313,7 +305,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789819200000
+      "firstAt": 1789819200000,
+      "why": "War end impact unclear for assets"
     },
     {
       "title": "Bitcoin is back at $80,000 as rest of crypto joins the rally: Chart of the Day",
@@ -329,7 +322,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789819195000
+      "firstAt": 1789819195000,
+      "dir": {
+        "BTC/USDT": "up"
+      },
+      "why": "Bitcoin rally implies bullish direction"
     },
     {
       "title": "Ukraine says 4 killed, 21 injured in overnight strikes by Russia - Anadolu Ajansı",
@@ -349,7 +346,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789818895000
+      "firstAt": 1789818895000,
+      "why": "Ukraine strikes unclear for markets"
     },
     {
       "title": "Shark attack prompts rare kill order in Western Australia as victim named",
@@ -366,7 +364,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789818622000
+      "firstAt": 1789818622000,
+      "why": "Shark attack irrelevant to currency"
     },
     {
       "title": "Canada optimistic about concluding trade talks with India by year-end, minister says",
@@ -1794,7 +1793,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-19T13:14:51.122Z",
-  "headlinesAt": "2026-09-19T13:14:51.122Z",
-  "updatedAt": "2026-09-19T13:14:51.122Z"
+  "calendarAt": "2026-09-19T13:17:38.888Z",
+  "headlinesAt": "2026-09-19T13:17:38.888Z",
+  "updatedAt": "2026-09-19T13:17:38.888Z"
 }
