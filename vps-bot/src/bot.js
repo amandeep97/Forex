@@ -323,8 +323,10 @@ class ForexBot {
   // megabytes, so this stays readable rather than becoming noise nobody reads.
   async _phase(name, fn) {
     const before = process.memoryUsage();
+    if (before.rss > (this._peakRss || 0)) this._peakRss = before.rss;
     try { return await fn(); } finally {
       const after = process.memoryUsage();
+      if (after.rss > (this._peakRss || 0)) this._peakRss = after.rss;
       const mb = v => Math.round(v / 1048576);
       const rss = mb(after.rss - before.rss);
       // External too, and not only RSS. A freshly allocated Buffer lands in
@@ -355,6 +357,23 @@ class ForexBot {
   async run() {
     this._phases = [];
     const startRss = process.memoryUsage().rss;
+    // ── The number every reading so far has missed ──────────────────────────
+    //
+    // Every memory figure published up to now is taken at the END of a tick,
+    // after a collection, and shows the trough. pm2 samples whenever it likes
+    // and kills on what it sees — so a phase that allocates hundreds of
+    // megabytes and releases them would be invisible here and fatal there.
+    //
+    // That matters because the way this process dies fits it exactly: pm2's
+    // memory restart sends SIGINT, waits, then SIGKILLs. A signal handler
+    // cannot run while the event loop is inside a long synchronous stretch, so
+    // a kill during heavy work leaves no record — which is precisely what the
+    // black box has been reporting.
+    //
+    // Sampled at every phase boundary rather than on a timer, because a timer
+    // is a callback and cannot fire during the synchronous work it would need
+    // to observe.
+    this._peakRss = startRss;
     try {
       return await this._run();
     } finally {
@@ -363,7 +382,8 @@ class ForexBot {
       // rss is the number pm2 kills on; heap is what --max-old-space-size
       // bounds. A large gap between them means the growth is in Buffers and
       // strings from HTTP bodies, which that flag does not touch.
-      const line = `rss ${mb(m.rss)}MB (${mb(m.rss - startRss) >= 0 ? '+' : ''}${mb(m.rss - startRss)}) `
+      const line = `rss ${mb(m.rss)}MB peak ${mb(this._peakRss)}MB `
+        + `(${mb(m.rss - startRss) >= 0 ? '+' : ''}${mb(m.rss - startRss)}) `
         + `heap ${mb(m.heapUsed)}/${mb(m.heapTotal)} ext ${mb(m.external)}`
         + (this._phases.length ? ` · ${this._phases.join(' ')}` : '');
       this.log(`mem ${line}`);
