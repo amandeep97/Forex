@@ -113,6 +113,8 @@ class ForexBot {
     this.liqStudyDone = false;
     this.alertChecker = new AlertChecker({ oanda: this.oanda, github: this.github, telegram: this.telegram, env, log: this.log.bind(this) });
     this.updater = new Updater({ github: this.github, env, log: this.log.bind(this) });
+    // Set by index.js from the black-box file the previous process left behind.
+    this.lastShutdown = undefined;
     this.news = new NewsFetcher({
       github: this.github, log: this.log.bind(this),
       // So a geopolitical wire can reach the phone without the app being open,
@@ -377,6 +379,7 @@ class ForexBot {
       if (this._memPublishedAt == null || Math.abs(rssNow - this._memPublishedAt) >= 25) {
         this._memPublishedAt = rssNow;
         this.updater.mem = line;
+        this.updater.lastShutdown = this.lastShutdown;
         // Not `.catch(() => {})`. The field has been null in the published file
         // through every restart while this code looked correct, and a swallowed
         // rejection is exactly how a write that never lands goes on looking
@@ -593,6 +596,7 @@ class ForexBot {
     if (r.updated && r.restart) { this.updater.restart(); return true; }
     if (!r.updated && asked) this.log(`Update: ${r.reason}`);
     this.updater.mem = this.lastMem || null;
+    this.updater.lastShutdown = this.lastShutdown;
     await this.updater.publish();
     return false;
   }
