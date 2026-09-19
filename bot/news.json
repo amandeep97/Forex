@@ -147,7 +147,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789793231000,
-      "_kind": null
+      "_kind": null,
+      "why": "Geopolitical news, direction unclear."
     },
     {
       "title": "Trump Signs Russia Sanctions Bill - NewsRadio WHAM 1180",
@@ -168,7 +169,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789790696000
+      "firstAt": 1789790696000,
+      "why": "Sanctions news, direction unclear."
     },
     {
       "title": "Trump signs Russia sanctions Bill into Act: India, China face 100% tariff threat - The Indian Express",
@@ -189,7 +191,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789790696000
+      "firstAt": 1789790696000,
+      "why": "Sanctions and tariffs, direction unclear."
     },
     {
       "title": "Japan has record 100,000 people aged over 100: How societies are ageing",
@@ -206,7 +209,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789792266000
+      "firstAt": 1789792266000,
+      "why": "Demographic news, no market impact."
     },
     {
       "title": "Saudi Arabia issues first air raid alerts for Riyadh since Houthis escalated attacks",
@@ -226,7 +230,8 @@
       "sev": 3,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789791647000
+      "firstAt": 1789791647000,
+      "why": "Air raid alert, direction unclear."
     },
     {
       "title": "Trump signs Russia-Iran sanctions law, opens door to 100% tariffs on India - The Economic Times",
@@ -246,7 +251,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789789091000
+      "firstAt": 1789789091000,
+      "why": "Sanctions and tariffs, direction unclear."
     },
     {
       "title": "Pres. Trump signs sweeping Russia sanctions bill, aiming to choke off funds for Moscow in Ukraine war - Alaska's News Source",
@@ -266,7 +272,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789789091000
+      "firstAt": 1789789091000,
+      "why": "Sanctions news, direction unclear."
     },
     {
       "title": "Trump signs Lindsey Graham’s Russia sanctions bill into law - nypost.com",
@@ -286,7 +293,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789789091000
+      "firstAt": 1789789091000,
+      "why": "Sanctions news, direction unclear."
     },
     {
       "title": "Trump signs Russia sanctions bill; India faces 100% tariff risk - Rediff",
@@ -307,7 +315,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789789091000
+      "firstAt": 1789789091000,
+      "why": "Sanctions and tariffs, direction unclear."
     },
     {
       "title": "North Korea dismisses UN nuclear watchdog resolution",
@@ -324,7 +333,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789788594000
+      "firstAt": 1789788594000,
+      "why": "North Korea nuclear stance, unclear."
     },
     {
       "title": "Report: More US troops have died in Iran war than Pentagon says",
@@ -344,7 +354,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789786971000
+      "firstAt": 1789786971000,
+      "why": "War casualty report, direction unclear."
     },
     {
       "title": "Trump signs Russia sanctions law: India faces fresh 100% tariff threat over Russian oil - wionews.com",
@@ -365,7 +376,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789782741000
+      "firstAt": 1789782741000,
+      "why": "Sanctions and tariffs, direction unclear."
     },
     {
       "title": "Oil Price Plunge Douses Inflation Fears as Gold Hits One-Week High, Snaps Four-Week Losing Streak - finance.biggo.com",
@@ -385,7 +397,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789784700000
+      "firstAt": 1789784700000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "down"
+      },
+      "why": "Gold high, oil plunge."
     },
     {
       "title": "US Treasury’s Bessent to discuss AI, rare earths with China’s He, source says",
@@ -407,7 +424,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789783946000
+      "firstAt": 1789783946000,
+      "why": "Trade talks, direction unclear."
     },
     {
       "title": "Morning Digest: Trump signs Russia sanctions bill into law; Mamata moves SC against freeze on TMC symbol, and more - The Hindu",
@@ -427,7 +445,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789781445000
+      "firstAt": 1789781445000,
+      "why": "Sanctions news, direction unclear."
     },
     {
       "title": "Trump signs broad Russia sanctions bill - dw.com",
@@ -450,10 +469,10 @@
       "firstAt": 1789778764000
     },
     {
-      "title": "Markets digest fed rate hike, oil prices - foxbusiness.com",
+      "title": "Markets digest fed rate hike, oil prices - Fox Business",
       "link": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE5mUDhZSFhKa05PdlZfTVRmTU80S0hkVFN6ZVBTeGE3REJCbERERzVTXzE4OHd3dzdKVU5yYlpmOHdLRTgtbU5nc0RZZEpDQWgtNUZwNXdkaXo0YzQ?oc=5",
       "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiW0FVX3lxTE5mUDhZSFhKa05PdlZfTVRmTU80S0hkVFN6ZVBTeGE3REJCbERERzVTXzE4OHd3dzdKVU5yYlpmOHdLRTgtbU5nc0RZZEpDQWgtNUZwNXdkaXo0YzQ?oc=5\" target=\"_blank\">Markets digest fed rate hike, oil prices</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">foxbus",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiW0FVX3lxTE5mUDhZSFhKa05PdlZfTVRmTU80S0hkVFN6ZVBTeGE3REJCbERERzVTXzE4OHd3dzdKVU5yYlpmOHdLRTgtbU5nc0RZZEpDQWgtNUZwNXdkaXo0YzQ?oc=5\" target=\"_blank\">Markets digest fed rate hike, oil prices</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">Fox Bu",
       "at": 1789781209000,
       "inst": [
         "USOIL"
@@ -1882,10 +1901,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-19T05:29:02.426Z",
-  "headlinesAt": "2026-09-19T05:29:02.426Z",
-  "updatedAt": "2026-09-19T05:29:02.426Z"
+  "calendarAt": "2026-09-19T05:31:52.118Z",
+  "headlinesAt": "2026-09-19T05:31:52.118Z",
+  "updatedAt": "2026-09-19T05:31:52.118Z"
 }
