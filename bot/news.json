@@ -1,5 +1,114 @@
 {
-  "calendar": [],
+  "calendar": [
+    {
+      "title": "BOJ Press Conference",
+      "country": "JPY",
+      "impact": "high",
+      "at": 1789713000000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "Current Account",
+      "country": "EUR",
+      "impact": "low",
+      "at": 1789718400000,
+      "forecast": "30.7B",
+      "previous": "35.1B",
+      "actual": ""
+    },
+    {
+      "title": "Foreign Direct Investment ytd/y",
+      "country": "CNY",
+      "impact": "low",
+      "at": 1789722120000,
+      "forecast": "",
+      "previous": "-6.2%",
+      "actual": ""
+    },
+    {
+      "title": "ECOFIN Meetings",
+      "country": "EUR",
+      "impact": "low",
+      "at": 1789726500000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "Eurogroup Meetings",
+      "country": "EUR",
+      "impact": "low",
+      "at": 1789726500000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "ECB President Lagarde Speaks",
+      "country": "EUR",
+      "impact": "medium",
+      "at": 1789727400000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "Capacity Utilization Rate",
+      "country": "USD",
+      "impact": "low",
+      "at": 1789737300000,
+      "forecast": "76.4%",
+      "previous": "76.3%",
+      "actual": ""
+    },
+    {
+      "title": "Industrial Production m/m",
+      "country": "USD",
+      "impact": "low",
+      "at": 1789737300000,
+      "forecast": "0.3%",
+      "previous": "0.2%",
+      "actual": ""
+    },
+    {
+      "title": "FOMC Member Bowman Speaks",
+      "country": "USD",
+      "impact": "low",
+      "at": 1789738200000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "CB Leading Index m/m",
+      "country": "USD",
+      "impact": "low",
+      "at": 1789740000000,
+      "forecast": "0.1%",
+      "previous": "0.2%",
+      "actual": ""
+    },
+    {
+      "title": "FOMC Member Schmid Speaks",
+      "country": "USD",
+      "impact": "low",
+      "at": 1789746300000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "ECOFIN Meetings",
+      "country": "EUR",
+      "impact": "low",
+      "at": 1789812900000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    }
+  ],
   "headlines": [
     {
       "title": "Trump signs Russia sanctions law, India and China face risk of 100% US tariffs - daily-sun.com",
@@ -20,11 +129,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789795160000,
-      "_kind": null,
-      "dir": {
-        "XAU/USD": "up"
-      },
-      "why": "Sanctions boost gold, tariffs unclear for oil"
+      "_kind": null
     },
     {
       "title": "ADF neutralizes three Banderol missiles, 138 Russian drones used to attack Ukraine overnight - ukrinform.net",
@@ -45,11 +150,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789796280000,
-      "_kind": null,
-      "dir": {
-        "XAU/USD": "up"
-      },
-      "why": "Ukraine attack boosts gold, oil unclear"
+      "_kind": null
     },
     {
       "title": "Morning Digest: The U.S. Is Preparing $2.7 Billion for Air Defense for Ukraine, Trump Signed Sanctions Against Russia – September 19, 2026 - mezha.net",
@@ -69,11 +170,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789793231000,
-      "dir": {
-        "XAU/USD": "up"
-      },
-      "why": "Sanctions boost gold, oil direction unclear"
+      "firstAt": 1789793231000
     },
     {
       "title": "Trump Signs Russia Sanctions Bill - KFBK News Radio",
@@ -93,11 +190,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789790696000,
-      "dir": {
-        "XAU/USD": "up"
-      },
-      "why": "Sanctions boost gold, oil direction unclear"
+      "firstAt": 1789790696000
     },
     {
       "title": "Trump signs Russia sanctions Bill into Act: India, China face 100% tariff threat - The Indian Express",
@@ -118,11 +211,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789790696000,
-      "dir": {
-        "XAU/USD": "up"
-      },
-      "why": "Sanctions boost gold, tariffs unclear for oil"
+      "firstAt": 1789790696000
     },
     {
       "title": "Japan has record 100,000 people aged over 100: How societies are ageing",
@@ -139,8 +228,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789792266000,
-      "why": "Demographic news lacks immediate market direction"
+      "firstAt": 1789792266000
     },
     {
       "title": "Saudi Arabia issues first air raid alerts for Riyadh since Houthis escalated attacks",
@@ -160,13 +248,7 @@
       "sev": 3,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789791647000,
-      "dir": {
-        "XAU/USD": "up",
-        "USOIL": "up",
-        "UKOIL": "up"
-      },
-      "why": "Saudi alerts boost gold and oil prices"
+      "firstAt": 1789791647000
     },
     {
       "title": "Trump signs Russia-Iran sanctions law, opens door to 100% tariffs on India - The Economic Times",
@@ -186,11 +268,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789789091000,
-      "dir": {
-        "XAU/USD": "up"
-      },
-      "why": "Sanctions boost gold, tariffs unclear for oil"
+      "firstAt": 1789789091000
     },
     {
       "title": "Pres. Trump signs sweeping Russia sanctions bill, aiming to choke off funds for Moscow in Ukraine war - Alaska's News Source",
@@ -210,11 +288,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789789091000,
-      "dir": {
-        "XAU/USD": "up"
-      },
-      "why": "Sanctions boost gold, oil direction unclear"
+      "firstAt": 1789789091000
     },
     {
       "title": "Trump signs Lindsey Graham’s Russia sanctions bill into law - nypost.com",
@@ -234,11 +308,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789789091000,
-      "dir": {
-        "XAU/USD": "up"
-      },
-      "why": "Sanctions boost gold, oil direction unclear"
+      "firstAt": 1789789091000
     },
     {
       "title": "Trump signs Russia sanctions bill; India faces 100% tariff risk - rediff.com",
@@ -259,11 +329,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789789091000,
-      "dir": {
-        "XAU/USD": "up"
-      },
-      "why": "Sanctions boost gold, tariffs unclear for oil"
+      "firstAt": 1789789091000
     },
     {
       "title": "North Korea dismisses UN nuclear watchdog resolution",
@@ -280,11 +346,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789788594000,
-      "dir": {
-        "XAU/USD": "up"
-      },
-      "why": "North Korea nuclear stance boosts gold demand"
+      "firstAt": 1789788594000
     },
     {
       "title": "Report: More US troops have died in Iran war than Pentagon says",
@@ -304,11 +366,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789786971000,
-      "dir": {
-        "XAU/USD": "up"
-      },
-      "why": "War deaths boost gold, oil unclear"
+      "firstAt": 1789786971000
     },
     {
       "title": "Trump signs Russia sanctions law: India faces fresh 100% tariff threat over Russian oil - wionews.com",
@@ -329,11 +387,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789782585000,
-      "dir": {
-        "XAU/USD": "up"
-      },
-      "why": "Sanctions boost gold, tariffs unclear for oil"
+      "firstAt": 1789782585000
     },
     {
       "title": "Oil Price Plunge Douses Inflation Fears as Gold Hits One-Week High, Snaps Four-Week Losing Streak - finance.biggo.com",
@@ -353,12 +407,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789784700000,
-      "dir": {
-        "XAU/USD": "up",
-        "USOIL": "down"
-      },
-      "why": "Gold hits high, oil plunges on news"
+      "firstAt": 1789784700000
     },
     {
       "title": "US Treasury’s Bessent to discuss AI, rare earths with China’s He, source says",
@@ -870,7 +919,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789769700000
+      "firstAt": 1789769884000
     },
     {
       "title": "Trump signs Lindsey Graham Russia-Iran sanctions bill into law - thenationalnews.com",
@@ -890,7 +939,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789769700000
+      "firstAt": 1789769884000
     },
     {
       "title": "Zelenskyy thanks Trump for signing Russia sanctions law - Yahoo",
@@ -910,7 +959,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789769700000
+      "firstAt": 1789769884000
     },
     {
       "title": "‘My total balance should be $20 million’: I invested $1.1 million in a crypto platform. Have I lost it all?",
@@ -1095,27 +1144,6 @@
       "ccy": [
         "XAU",
         "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 2,
-      "firstAt": 1789768020000
-    },
-    {
-      "title": "Trump signs Russia sanctions bill into law, gets authority to impose up to 100% tariff on India & China - The Times of India",
-      "link": "https://news.google.com/rss/articles/CBMinAJBVV95cUxOZFY0SEU3MEw0dUdUMEJOREdFUXF1amFCQWxKc2JfeFlGc3A2T3dHRURmWHJKbVRGZkUyMk8yZ0w2bXcwMDAtT1d2c0ZyaUhiU3pLSk1zMG5YV1MxbWJVVVhtUDVITUJ6VDlBNW01Um56OFFfcWlxZmtHQUtPcWxEdGpNTERBVWVfUFpRazZ5NXA2OFN2VFVMVVZIZkFKMGFaNUJWZklRbnZTcDBKSTVVc1NWVHBlSmZaR1JCZFBMMDY3Rm5WYmJaQjNhNXE0NzRRZmc5aTV6ZkdGZjB0UE1qaWk2eHRJTUxiTWVuRkVwV1dqVi16anlURXg5MGpIN21SRnNGendWeW1YUkVpRkJNTUxWLUZMaGg0RXNkUtIBogJBVV95cUxOUFdXbENocFNyZThlaW5CQWtyX1c3ZFNjOVVTMENTc09lM3FHbFMtVTcyMmJ3ZE5PNGN4SlEyX0ZteDVSMktvS2kxZ2xYRjNNU1p4MUM2QVZzNW1Ob05CbzRkRmhpVG5ReWFiMVhlNkN1YTlxM2hRbzZnTi01Z3d2cUlkcDhnYWVTeUF0d19hR2RROW1CeXBoa3NGSFRtWGpkM2xhOFJBeDB1azFlMkZnbTR2TTVfOTBTdGljaE5qS3ZUWG5ybU91ZUEtV1lLNlhGM0RXTUctSFZFWENtcHN1bjdkZUVORjhUVjl5a1V1XzNMTW9LbGwxaVI5cnlSZElCMy1fbUMxT0JYR09IT081NnNjZXVNY2dqOXhUQkpodG9KUQ?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMinAJBVV95cUxOZFY0SEU3MEw0dUdUMEJOREdFUXF1amFCQWxKc2JfeFlGc3A2T3dHRURmWHJKbVRGZkUyMk8yZ0w2bXcwMDAtT1d2c0ZyaUhiU3pLSk1zMG5YV1MxbWJVVVhtUDVITUJ6VDlBNW01Um56OFFfcWlxZmtHQUtPcWxEdGpNTERBVWVfUFpRazZ5NXA2OFN2VFVMVVZIZkFKMGFaNUJWZklRbnZTcD",
-      "at": 1789769700000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL",
-        "USD"
       ],
       "sev": 2,
       "rel": 2,
@@ -1790,6 +1818,29 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789753617000
+    },
+    {
+      "title": "2-year Treasury yield reaches multi-year high after Fed rate hike - qz.com",
+      "link": "https://news.google.com/rss/articles/CBMifkFVX3lxTE9FLUg3bDRYSmRZQW82TDlfazRORExJT0ZvVEZBNUpIODNyNDlCQWhyVDdXaUpxeTBGdkI4UTNzZFRVV0JkMlJOWkg1Zm9sSi1hUjY1VzNPdnEtMnVSaG15VWtBQUNiUFhBNFgtdnd1bXc0bkdYcTBBbUZEeVViZw?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMifkFVX3lxTE9FLUg3bDRYSmRZQW82TDlfazRORExJT0ZvVEZBNUpIODNyNDlCQWhyVDdXaUpxeTBGdkI4UTNzZFRVV0JkMlJOWkg1Zm9sSi1hUjY1VzNPdnEtMnVSaG15VWtBQUNiUFhBNFgtdnd1bXc0bkdYcTBBbUZEeVViZw?oc=5\" target=\"_blank\">2-year Treasury yield reaches multi-y",
+      "at": 1789752753000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789752753000
     }
   ],
   "sources": [
@@ -1815,7 +1866,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": null,
-  "headlinesAt": "2026-09-19T06:01:38.665Z",
-  "updatedAt": "2026-09-19T06:01:38.665Z"
+  "calendarAt": "2026-09-19T06:03:48.806Z",
+  "headlinesAt": "2026-09-19T06:03:48.806Z",
+  "updatedAt": "2026-09-19T06:03:48.806Z"
 }
