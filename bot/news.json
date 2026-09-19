@@ -12,7 +12,7 @@
   ],
   "headlines": [
     {
-      "title": "Trump signs Russia-Iran sanctions bill - Tehran Times",
+      "title": "Trump signs Russia-Iran sanctions bill - tehrantimes.com",
       "link": "https://news.google.com/rss/articles/CBMihAFBVV95cUxNN25zM2o1d01GemVxc1RRUGh0bFE2bnBCUzhFYTNZWVN1UDl6eTNFN1p1WDZqZGx6RXJ3Z2NOcjBiVHNqSDhxcXBKLWNDMElzOE1Ed3VuckQwdm9VTHdJN0d2QnBYUm9jRHE1X2JBMUdzeWY3NHJxMXB1Q1I3ZWc1cWI5azY?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMihAFBVV95cUxNN25zM2o1d01GemVxc1RRUGh0bFE2bnBCUzhFYTNZWVN1UDl6eTNFN1p1WDZqZGx6RXJ3Z2NOcjBiVHNqSDhxcXBKLWNDMElzOE1Ed3VuckQwdm9VTHdJN0d2QnBYUm9jRHE1X2JBMUdzeWY3NHJxMXB1Q1I3ZWc1cWI5azY?oc=5\" target=\"_blank\">Trump signs Russia-Iran sanc",
@@ -30,7 +30,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789839658000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Sanctions increase geopolitical risk and oil supply fears."
     },
     {
       "title": "Canada optimistic about concluding trade talks with India by year-end, minister says",
@@ -47,7 +53,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789838683000,
-      "_kind": null
+      "_kind": null,
+      "why": "Trade talks news lacks clear directional impact."
     },
     {
       "title": "3 ETFs That Work Better Together for Dividend Investors",
@@ -81,7 +88,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789838220000
+      "firstAt": 1789838220000,
+      "why": "Warning about hikes is ambiguous without context."
     },
     {
       "title": "Micron (MU) Unveils Breakthrough Memory Product. It Says Much About the Memory Market",
@@ -129,7 +137,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789837226000
+      "firstAt": 1789837226000,
+      "why": "General consumer advice lacks specific market direction."
     },
     {
       "title": "Dow Jones Futures: Can The Market Rally Take Flight? Robinhood, Sandisk, AMD, Moderna Surge Into Buy Areas",
@@ -143,7 +152,11 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789835691000
+      "firstAt": 1789835691000,
+      "dir": {
+        "US30": "up"
+      },
+      "why": "Stocks surging into buy areas suggests bullish momentum."
     },
     {
       "title": "NATO says it is ready for possible Russian escalation - pravda.com.ua",
@@ -163,7 +176,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789833000000
+      "firstAt": 1789833000000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Escalation fears boost safe havens and energy prices."
     },
     {
       "title": "Demonstrators in US form human chain to protest Kennedy Center closure vote",
@@ -208,7 +227,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789834705000
+      "firstAt": 1789834705000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Aerial attack threat near Riyadh spikes risk premium."
     },
     {
       "title": "‘There might be a silver lining’: My friend’s wife died at 60 after a high-earning career. Can he claim her Social Security?",
@@ -225,7 +250,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789834500000
+      "firstAt": 1789834500000,
+      "why": "Personal finance story unrelated to silver prices."
     },
     {
       "title": "Marvell (MRVL) and GlobalFoundries (GFS) Rise on Expanded Deal: What Investors Should Know",
@@ -257,7 +283,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789833000000
+      "firstAt": 1789833000000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "NATO weakness fears increase geopolitical risk premium."
     },
     {
       "title": "Want to land more job interviews? Stop letting AI write your résumé.",
@@ -287,7 +319,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789830900000
+      "firstAt": 1789830900000,
+      "why": "Individual scam story has no systemic market impact."
     },
     {
       "title": "Zelenskyy approves new long-range strikes on targets in Russia - Türkiye Today",
@@ -307,24 +340,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789825764000
-    },
-    {
-      "title": "U.S. Stocks Gain as Inflation Figure Boosts Odds of Rate Hike - WSJ",
-      "link": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxOQTU4U2E5eHdCS1RuSzRBV3p4R0lyUVZqRkYzNWFiZDFKc1lfNmt2dmxockZfc3hiNi0ya1JkenExQXc1anNMTm55RlZ6WWI2bkxmcjl3QkRKdHlTSV96S1B2VXdCdFVuYUhuRUNWZ25wNWdMamRBU2JtTlhVamNqSkJrOTRDOHpTczZSUHBrTEJFT29KVm4wckJSWjF2SG1FcmNPSUtENWQ?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiqAFBVV95cUxOQTU4U2E5eHdCS1RuSzRBV3p4R0lyUVZqRkYzNWFiZDFKc1lfNmt2dmxockZfc3hiNi0ya1JkenExQXc1anNMTm55RlZ6WWI2bkxmcjl3QkRKdHlTSV96S1B2VXdCdFVuYUhuRUNWZ25wNWdMamRBU2JtTlhVamNqSkJrOTRDOHpTczZSUHBrTEJFT29KVm4wckJSWjF2SG1FcmNPSUtENWQ?oc",
-      "at": 1789827098000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789827098000
+      "firstAt": 1789825764000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Ukraine strikes on Russia heighten conflict risk."
     },
     {
       "title": "“Critically important”: Zelenskyy thanks Trump for Russia sanctions bill with nod to Lindsey Graham - english.nepalnews.com",
@@ -344,7 +366,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789823340000
+      "firstAt": 1789823340000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Sanctions approval increases geopolitical tension and risk."
     },
     {
       "title": "All EU sanctions linked to Russia's war may expire as France, Slovakia seek to delist oligarchs - kyivindependent.com",
@@ -364,7 +392,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789825426000
+      "firstAt": 1789825426000,
+      "why": "Sanctions expiration speculation is unclear and complex."
     },
     {
       "title": "‘Resist him forcefully’: Congress hits back at Trump over Russia sanctions law - The Times of India",
@@ -384,7 +413,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789822992000
+      "firstAt": 1789822992000,
+      "why": "Political conflict over sanctions lacks clear market directi"
     },
     {
       "title": "An unaffordable car market highlights Iran’s cost-of-living crisis",
@@ -414,7 +444,11 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789823599000
+      "firstAt": 1789823599000,
+      "dir": {
+        "XAU/USD": "up"
+      },
+      "why": "Military drills ahead of talks increase geopolitical risk."
     },
     {
       "title": "Trump signs Russia sanctions bill named after Lindsey Graham - washingtonexaminer.com",
@@ -1713,6 +1747,26 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789763040000
+    },
+    {
+      "title": "Gold futures test 5-session high after BOJ rate hike. - CME Group",
+      "link": "https://news.google.com/rss/articles/CBMirAFBVV95cUxNY0lQYURTMnpWcERkejNaSkdqNDJsaVFibXpOWW5OZjgyV1VfaU5NX0N0UGNWeEhuYTRMU3Rjd2JSV0tKeC1RcjhJZXpLQXE4MGZNV3FpSUhuTTkzbkUzVVpYV0lvUkJyVm1zblZGalBraC1XTm1IX0lkWFBTb1hycVJ5VUZIMkx1X2s1cU1yOWU1VFpWdGRZNzdfdVJkdTNOWjM5NnJZM1BVd0ZM?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMirAFBVV95cUxNY0lQYURTMnpWcERkejNaSkdqNDJsaVFibXpOWW5OZjgyV1VfaU5NX0N0UGNWeEhuYTRMU3Rjd2JSV0tKeC1RcjhJZXpLQXE4MGZNV3FpSUhuTTkzbkUzVVpYV0lvUkJyVm1zblZGalBraC1XTm1IX0lkWFBTb1hycVJ5VUZIMkx1X2s1cU1yOWU1VFpWdGRZNzdfdVJkdTNOWjM5NnJZM1BVd0",
+      "at": 1789762538000,
+      "inst": [
+        "XAU/USD",
+        "USD/JPY"
+      ],
+      "ccy": [
+        "JPY",
+        "XAU",
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 2,
+      "firstAt": 1789761717000
     }
   ],
   "sources": [
@@ -1735,10 +1789,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-19T17:51:23.066Z",
-  "headlinesAt": "2026-09-19T17:51:23.066Z",
-  "updatedAt": "2026-09-19T17:51:23.066Z"
+  "calendarAt": "2026-09-19T17:53:52.923Z",
+  "headlinesAt": "2026-09-19T17:53:52.923Z",
+  "updatedAt": "2026-09-19T17:53:52.923Z"
 }
