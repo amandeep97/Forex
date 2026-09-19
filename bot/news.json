@@ -1,5 +1,150 @@
 {
-  "calendar": [],
+  "calendar": [
+    {
+      "title": "BOJ Policy Rate",
+      "country": "JPY",
+      "impact": "high",
+      "at": 1789700040000,
+      "forecast": "<1.25%",
+      "previous": "<1.00%",
+      "actual": ""
+    },
+    {
+      "title": "Monetary Policy Statement",
+      "country": "JPY",
+      "impact": "high",
+      "at": 1789700040000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "German PPI m/m",
+      "country": "EUR",
+      "impact": "low",
+      "at": 1789711200000,
+      "forecast": "0.6%",
+      "previous": "1.1%",
+      "actual": ""
+    },
+    {
+      "title": "Retail Sales m/m",
+      "country": "GBP",
+      "impact": "medium",
+      "at": 1789711200000,
+      "forecast": "-0.2%",
+      "previous": "-0.5%",
+      "actual": ""
+    },
+    {
+      "title": "BOJ Press Conference",
+      "country": "JPY",
+      "impact": "high",
+      "at": 1789713000000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "Current Account",
+      "country": "EUR",
+      "impact": "low",
+      "at": 1789718400000,
+      "forecast": "30.7B",
+      "previous": "35.1B",
+      "actual": ""
+    },
+    {
+      "title": "Foreign Direct Investment ytd/y",
+      "country": "CNY",
+      "impact": "low",
+      "at": 1789722120000,
+      "forecast": "",
+      "previous": "-6.2%",
+      "actual": ""
+    },
+    {
+      "title": "ECOFIN Meetings",
+      "country": "EUR",
+      "impact": "low",
+      "at": 1789726500000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "Eurogroup Meetings",
+      "country": "EUR",
+      "impact": "low",
+      "at": 1789726500000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "ECB President Lagarde Speaks",
+      "country": "EUR",
+      "impact": "medium",
+      "at": 1789727400000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "Capacity Utilization Rate",
+      "country": "USD",
+      "impact": "low",
+      "at": 1789737300000,
+      "forecast": "76.4%",
+      "previous": "76.3%",
+      "actual": ""
+    },
+    {
+      "title": "Industrial Production m/m",
+      "country": "USD",
+      "impact": "low",
+      "at": 1789737300000,
+      "forecast": "0.3%",
+      "previous": "0.2%",
+      "actual": ""
+    },
+    {
+      "title": "FOMC Member Bowman Speaks",
+      "country": "USD",
+      "impact": "low",
+      "at": 1789738200000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "CB Leading Index m/m",
+      "country": "USD",
+      "impact": "low",
+      "at": 1789740000000,
+      "forecast": "0.1%",
+      "previous": "0.2%",
+      "actual": ""
+    },
+    {
+      "title": "FOMC Member Schmid Speaks",
+      "country": "USD",
+      "impact": "low",
+      "at": 1789746300000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "title": "ECOFIN Meetings",
+      "country": "EUR",
+      "impact": "low",
+      "at": 1789812900000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    }
+  ],
   "headlines": [
     {
       "title": "Morning Digest: Trump signs Russia sanctions bill into law; Mamata moves SC against freeze on TMC symbol, and more - The Hindu",
@@ -20,8 +165,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789781445000,
-      "_kind": null,
-      "why": "General news digest, no clear direction."
+      "_kind": null
     },
     {
       "title": "Trump signs Russia-Iran sanctions law targeting Russian oil buyers - Daily Pioneer",
@@ -42,12 +186,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789781445000,
-      "_kind": null,
-      "dir": {
-        "USOIL": "up",
-        "UKOIL": "up"
-      },
-      "why": "Sanctions on oil buyers suggest supply risk."
+      "_kind": null
     },
     {
       "title": "Trump signs broad Russia sanctions bill - dw.com",
@@ -67,8 +206,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789778764000,
-      "why": "Sanctions bill signed, market impact unclear."
+      "firstAt": 1789778764000
     },
     {
       "title": "You Probably Have the Iran War Backward - Foundation for Defense of Democracies",
@@ -88,8 +226,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789781435000,
-      "why": "Opinion piece, no immediate market signal."
+      "firstAt": 1789781435000
     },
     {
       "title": "More U.S. troops have died amid Iran war than Pentagon has disclosed publicly - The Washington Post",
@@ -109,8 +246,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789781036000,
-      "why": "Casualty report, no direct market impact."
+      "firstAt": 1789781036000
     },
     {
       "title": "‘We Won’t Let Putin Wait Us Out’: Senator Shaheen Outlines Sweeping New US Sanctions Package - Kyiv Post",
@@ -127,8 +263,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789780942000,
-      "why": "Sanctions proposal, not yet enacted."
+      "firstAt": 1789780942000
     },
     {
       "title": "Trump Signs Russia Sanctions Bill, Clears Way For 100% Tariffs On India, China - NDTV",
@@ -148,8 +283,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789778469000,
-      "why": "Sanctions and tariffs, mixed/unclear impact."
+      "firstAt": 1789778469000
     },
     {
       "title": "Markets digest fed rate hike, oil prices - Fox Business",
@@ -167,11 +301,10 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789779334000,
-      "why": "Market digest, no specific direction."
+      "firstAt": 1789779334000
     },
     {
-      "title": "Trump signs sweeping Russia sanctions over Ukraine war - Al Jazeera",
+      "title": "Trump signs sweeping Russia sanctions over Ukraine war - aljazeera.com",
       "link": "https://news.google.com/rss/articles/CBMimwFBVV95cUxPZW53Y3d4N25GZjVKRlJ4RkxiRkZ6Y1NKTVJoUGp3bHFzZTk3OGJvdG1qMm9ubDhqQmo0YVYtQnc4aWNRejUwd2VFX1NVRFRMM1h0QXhLX2VwRTlYM2psTFBWeC1BekxaVUFfQm54bXhpOGtUdTU3MkJKUVV5cHpTcFBpRlQyVXFMVFpFcEVoVnN1S1hxQ0VLaTY0a9IBoAFBVV95cUxQOTFZdG83ZU5IOUxvQ2RqMnhzRnZfY2pZOTIyTHF2YUVSR2pCeGJTV25IWTVCU2w3WEg1LWl3SkdvVXVhZGJONEFZTk5VNlh3VFRnaGphSTlmRGtTaDkyNjM4YVlaOW8wOWZmaWxRNHpQVS1KT1ZyaGVUaUNnTzdQX25HODFUN1ZhcmVuNVZRVnFwNmlrbG1OSmRnTzF6MWFI?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMimwFBVV95cUxPZW53Y3d4N25GZjVKRlJ4RkxiRkZ6Y1NKTVJoUGp3bHFzZTk3OGJvdG1qMm9ubDhqQmo0YVYtQnc4aWNRejUwd2VFX1NVRFRMM1h0QXhLX2VwRTlYM2psTFBWeC1BekxaVUFfQm54bXhpOGtUdTU3MkJKUVV5cHpTcFBpRlQyVXFMVFpFcEVoVnN1S1hxQ0VLaTY0a9IBoAFBVV95cUxQOTFZdG",
@@ -188,8 +321,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 3,
-      "firstAt": 1789776730000,
-      "why": "Sanctions signed, no clear price direction."
+      "firstAt": 1789776730000
     },
     {
       "title": "Trump signs sweeping Russia sanctions over Ukraine war",
@@ -209,8 +341,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 3,
-      "firstAt": 1789776730000,
-      "why": "Sanctions signed, no clear price direction."
+      "firstAt": 1789776730000
     },
     {
       "title": "Trump signs Russia-Iran sanctions law, opens door to 100% tariffs on India - The Economic Times",
@@ -230,8 +361,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 3,
-      "firstAt": 1789776000000,
-      "why": "Sanctions and tariffs, unclear net effect."
+      "firstAt": 1789776000000
     },
     {
       "title": "US Treasury’s Bessent to discuss AI, trade, rare earths with China’s He, source says",
@@ -253,8 +383,7 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789778544000,
-      "why": "Trade talks, no clear directional bias."
+      "firstAt": 1789778544000
     },
     {
       "title": "Trump signs new sanctions on Russia, gains power to impose tariffs on third countries - EFE - Agencia de noticias",
@@ -274,8 +403,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 3,
-      "firstAt": 1789776000000,
-      "why": "Sanctions and tariffs, unclear market impact."
+      "firstAt": 1789776000000
     },
     {
       "title": "Analysis-Russia sanctions bill gives Trump sweeping new tariff powers",
@@ -295,8 +423,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 3,
-      "firstAt": 1789774668000,
-      "why": "Analysis of tariff powers, no price signal."
+      "firstAt": 1789774668000
     },
     {
       "title": "Trump signs Lindsey Graham Act extending Iran sanctions to 2031 - Middle East Eye",
@@ -316,8 +443,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 3,
-      "firstAt": 1789774668000,
-      "why": "Iran sanctions extension, no clear direction."
+      "firstAt": 1789774668000
     },
     {
       "title": "Donald Trump signs Lindsey O. Graham sanctions act into law - jpost.com",
@@ -783,7 +909,7 @@
       "firstAt": 1789768020000
     },
     {
-      "title": "Gold prices rebound after Fed rate hike and eas... - Pluang",
+      "title": "Gold prices rebound after Fed rate hike and eas... - pluang.com",
       "link": "https://news.google.com/rss/articles/CBMirAFBVV95cUxOOVh6LW1aYjRJR2NBTlVNOUlEc19CS3BqT245TkgxZFNXTG1vUlhtMlJMZFYwQllVR3JNaExXVDNpRU9pN3lUbHIyMFV6YWhrUXdaOTZfXzloU1FxVC1rN19adS1TMU9QSFhvb2pTTjBiN3pfSlZkYTEtcDVNY2FabTVBMS1kTWh1bnBtSzNsUktjRU5acmlVVHBaakNVa0p4YVBnNDFEMWxxajNf?oc=5",
       "source": "Wires (macro)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMirAFBVV95cUxOOVh6LW1aYjRJR2NBTlVNOUlEc19CS3BqT245TkgxZFNXTG1vUlhtMlJMZFYwQllVR3JNaExXVDNpRU9pN3lUbHIyMFV6YWhrUXdaOTZfXzloU1FxVC1rN19adS1TMU9QSFhvb2pTTjBiN3pfSlZkYTEtcDVNY2FabTVBMS1kTWh1bnBtSzNsUktjRU5acmlVVHBaakNVa0p4YVBnNDFEMWxxaj",
@@ -1775,10 +1901,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
-  "calendarAt": null,
-  "headlinesAt": "2026-09-19T02:17:56.918Z",
-  "updatedAt": "2026-09-19T02:17:56.918Z"
+  "calendarAt": "2026-09-19T02:20:20.706Z",
+  "headlinesAt": "2026-09-19T02:20:20.706Z",
+  "updatedAt": "2026-09-19T02:20:20.706Z"
 }
