@@ -57,6 +57,40 @@
   ],
   "headlines": [
     {
+      "title": "Dow Jones Futures: Nasdaq, S&P 500 Hold; Robinhood, Sandisk, AMD, Moderna Surge Into Buy Areas",
+      "link": "https://www.investors.com/market-trend/stock-market-today/dow-jones-futures-robinhood-sandisk-amd-moderna-surge-buy-areas/?src=A00220&yptr=yahoo",
+      "source": "Yahoo Finance",
+      "at": 1789819732000,
+      "inst": [
+        "US500",
+        "US100",
+        "US30"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789819732000,
+      "_kind": null,
+      "why": "Mixed futures, specific stocks surge"
+    },
+    {
+      "title": "Robinhood Soars, SpaceX Orbits Entry: Five Stocks Near Buy Points",
+      "link": "https://www.investors.com/news/robinhood-stock-spacex-stocks-near-buy-points/?src=A00220&yptr=yahoo",
+      "source": "Yahoo Finance",
+      "at": 1789819239000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789819239000,
+      "_kind": null,
+      "why": "Individual stock news, index unclear"
+    },
+    {
       "title": "A sudden end to the Iran war would strike a blow against oil prices and energy stocks. Yet company insiders are buying.",
       "link": "https://www.marketwatch.com/story/a-sudden-end-to-the-iran-war-would-strike-a-blow-against-oil-prices-and-energy-stocks-yet-company-insiders-are-buying-673899a0?mod=mw_rss_topstories",
       "source": "MarketWatch",
@@ -76,7 +110,12 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789819200000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "USOIL": "down",
+        "US500": "up"
+      },
+      "why": "War end hurts oil, insiders buy stocks"
     },
     {
       "title": "Bitcoin is back at $80,000 as rest of crypto joins the rally: Chart of the Day",
@@ -93,7 +132,11 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789819195000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "BTC/USDT": "up"
+      },
+      "why": "Bitcoin rallies to $80,000"
     },
     {
       "title": "Ukraine says 4 killed, 21 injured in overnight strikes by Russia - Anadolu Ajansı",
@@ -114,7 +157,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789818895000,
-      "_kind": null
+      "_kind": null,
+      "why": "Ukraine strikes, no clear market direction"
     },
     {
       "title": "Shark attack prompts rare kill order in Western Australia as victim named",
@@ -132,7 +176,7 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789818622000,
-      "_kind": null
+      "why": "Shark attack, no economic impact"
     },
     {
       "title": "Canada optimistic about concluding trade talks with India by year-end, minister says",
@@ -148,7 +192,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789817428000
+      "firstAt": 1789817428000,
+      "why": "Trade talks optimistic, direction unclear"
     },
     {
       "title": "Stocks face a growing list of threats — so why are investors staying so calm?",
@@ -163,7 +208,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789817400000
+      "firstAt": 1789817400000,
+      "why": "Investors calm despite threats"
     },
     {
       "title": "Russia kills eight people in Ukraine, attacks two vessels in Black Sea - Al Jazeera",
@@ -183,7 +229,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789815763000
+      "firstAt": 1789815763000,
+      "why": "Russia attacks Ukraine, no clear direction"
     },
     {
       "title": "US joins Saudi Arabia, UAE, Turkey and Israel in race for Red Sea influence as it lifts Eritrea sanctions linked to Ethiopia war that killed 600,000 - Business Insider Africa",
@@ -203,7 +250,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789815445000
+      "firstAt": 1789815445000,
+      "why": "Red Sea influence, sanctions lifted"
     },
     {
       "title": "AFU Strikes Russian UAV Bases, Ammo Depot, and Training Range - Kyiv Post",
@@ -223,7 +271,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789815385000
+      "firstAt": 1789815385000,
+      "why": "Ukraine strikes Russian bases"
     },
     {
       "title": "Russia should respond to US sanctions with 'military deterrence': Dmitry Medvedev - The Times of India",
@@ -243,7 +292,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789813190000
+      "firstAt": 1789813190000,
+      "why": "Medvedev warns of military deterrence"
     },
     {
       "title": "Trump signs Russia sanctions Bill into law - Manorama Yearbook",
@@ -263,7 +313,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789810775000
+      "firstAt": 1789810775000,
+      "why": "Trump signs Russia sanctions bill"
     },
     {
       "title": "Trump signs Russia, Iran sanctions law allowing tariffs of up to 100 pc - National Herald",
@@ -283,7 +334,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789808940000
+      "firstAt": 1789808940000,
+      "why": "Sanctions law allows high tariffs"
     },
     {
       "title": "Russia Warns New U.S. Sanctions Law Would Harm Trump’s Peace Efforts - The New York Times",
@@ -303,7 +355,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789807628000
+      "firstAt": 1789807628000,
+      "why": "Russia warns sanctions harm peace efforts"
     },
     {
       "title": "Zelenskyy thanks Trump for signing 'critically important' Russia sanctions bill - ABC News - Breaking News, Latest News and Videos",
@@ -1747,46 +1800,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789754678000
-    },
-    {
-      "title": "2-year Treasury yield reaches multi-year high after Fed rate hike - qz.com",
-      "link": "https://news.google.com/rss/articles/CBMifkFVX3lxTE9FLUg3bDRYSmRZQW82TDlfazRORExJT0ZvVEZBNUpIODNyNDlCQWhyVDdXaUpxeTBGdkI4UTNzZFRVV0JkMlJOWkg1Zm9sSi1hUjY1VzNPdnEtMnVSaG15VWtBQUNiUFhBNFgtdnd1bXc0bkdYcTBBbUZEeVViZw?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMifkFVX3lxTE9FLUg3bDRYSmRZQW82TDlfazRORExJT0ZvVEZBNUpIODNyNDlCQWhyVDdXaUpxeTBGdkI4UTNzZFRVV0JkMlJOWkg1Zm9sSi1hUjY1VzNPdnEtMnVSaG15VWtBQUNiUFhBNFgtdnd1bXc0bkdYcTBBbUZEeVViZw?oc=5\" target=\"_blank\">2-year Treasury yield reaches multi-y",
-      "at": 1789752753000,
-      "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789752753000
-    },
-    {
-      "title": "North Korean anthem played for South Korea at Asian Games",
-      "link": "https://www.bbc.co.uk/sport/hockey/articles/cmx2zg85gq03o?at_medium=RSS&at_campaign=rss",
-      "source": "BBC World",
-      "desc": "Organisers have apologised for playing the North Korean national anthem for the South Korean men's hockey team at the Asian Games in Japan.",
-      "at": 1789751889000,
-      "inst": [
-        "USD/JPY"
-      ],
-      "ccy": [
-        "JPY"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789751889000
     }
   ],
   "sources": [
@@ -1812,7 +1825,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-19T12:18:21.579Z",
-  "headlinesAt": "2026-09-19T12:18:21.579Z",
-  "updatedAt": "2026-09-19T12:18:21.579Z"
+  "calendarAt": "2026-09-19T12:20:51.308Z",
+  "headlinesAt": "2026-09-19T12:20:51.308Z",
+  "updatedAt": "2026-09-19T12:20:51.308Z"
 }
