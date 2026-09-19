@@ -78,7 +78,13 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789820527000,
-      "_kind": null
+      "_kind": null,
+      "dir": {
+        "XAU/USD": "down",
+        "EUR/USD": "down",
+        "GBP/USD": "down"
+      },
+      "why": "Hawkish Fed hike boosts dollar, hurts metals."
     },
     {
       "title": "Zscaler CEO Jay Chaudhry Sells 2,852 Shares for $550,000",
@@ -112,7 +118,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789820332000,
-      "_kind": null
+      "_kind": null,
+      "why": "Cultural news has no market impact."
     },
     {
       "title": "Ray Dalio Just Explained Why He's Cautious on AI Stocks. Here's What He Said.",
@@ -127,7 +134,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789820220000,
-      "_kind": null
+      "_kind": null,
+      "why": "Commentary on AI stocks lacks clear direction."
     },
     {
       "title": "Dow Jones Futures: Nasdaq, S&P 500 Hold; Robinhood, Sandisk, AMD, Moderna Surge Into Buy Areas",
@@ -144,7 +152,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789819732000,
-      "_kind": null
+      "_kind": null,
+      "why": "Futures holding steady implies no clear direction."
     },
     {
       "title": "A sudden end to the Iran war would strike a blow against oil prices and energy stocks. Yet company insiders are buying.",
@@ -165,7 +174,12 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789819200000
+      "firstAt": 1789819200000,
+      "dir": {
+        "USOIL": "down",
+        "US500": "up"
+      },
+      "why": "War end lowers oil; insiders buy stocks."
     },
     {
       "title": "Ukraine says 4 killed, 21 injured in overnight strikes by Russia - Anadolu Ajansı",
@@ -185,7 +199,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789818895000
+      "firstAt": 1789818895000,
+      "why": "Routine conflict news, no clear market signal."
     },
     {
       "title": "Shark attack prompts rare kill order in Western Australia as victim named",
@@ -202,7 +217,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789818622000
+      "firstAt": 1789818622000,
+      "why": "Shark attack is unrelated to currency markets."
     },
     {
       "title": "Canada optimistic about concluding trade talks with India by year-end, minister says",
@@ -218,7 +234,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789817428000
+      "firstAt": 1789817428000,
+      "why": "Trade talks outcome uncertain, no clear move."
     },
     {
       "title": "Stocks face a growing list of threats — so why are investors staying so calm?",
@@ -233,7 +250,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789817400000
+      "firstAt": 1789817400000,
+      "why": "Investor calm suggests stability, not direction."
     },
     {
       "title": "Russia kills eight people in Ukraine, attacks two vessels in Black Sea - Al Jazeera",
@@ -253,7 +271,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789815763000
+      "firstAt": 1789815763000,
+      "why": "Escalation news is ambiguous for specific assets."
     },
     {
       "title": "US joins Saudi Arabia, UAE, Turkey and Israel in race for Red Sea influence as it lifts Eritrea sanctions linked to Ethiopia war that killed 600,000 - Business Insider Africa",
@@ -273,7 +292,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789815445000
+      "firstAt": 1789815445000,
+      "why": "Geopolitical shifts are complex and unclear."
     },
     {
       "title": "AFU Strikes Russian UAV Bases, Ammo Depot, and Training Range - Kyiv Post",
@@ -293,7 +313,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789815352000
+      "firstAt": 1789815352000,
+      "why": "Military strike news lacks clear market direction."
     },
     {
       "title": "Russia should respond to US sanctions with 'military deterrence': Dmitry Medvedev - The Times of India",
@@ -313,7 +334,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789813680000
+      "firstAt": 1789813680000,
+      "why": "Political rhetoric does not dictate immediate price."
     },
     {
       "title": "Trump signs Russia, Iran sanctions law allowing tariffs of up to 100 pc - National Herald",
@@ -333,7 +355,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789808940000
+      "firstAt": 1789808940000,
+      "why": "Sanctions impact is long-term and uncertain."
     },
     {
       "title": "Russia Warns New U.S. Sanctions Law Would Harm Trump’s Peace Efforts - The New York Times",
@@ -353,7 +376,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789807628000
+      "firstAt": 1789807628000,
+      "why": "Diplomatic warnings do not imply clear direction."
     },
     {
       "title": "Zelenskyy thanks Trump for signing 'critically important' Russia sanctions bill - ABC News - Breaking News, Latest News and Videos",
@@ -421,6 +445,26 @@
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiqwFBVV95cUxQRmJucThlVUVwN0dvZ0VzX252Z3pNVHBpWkJCaW1sTFVraTNZUU1YaDdyZ3dwV2t4M1RlUkYtWXJUdS1DWjRLQURhWlkza0NQR3NUWlU3aDlQdHYzalgxdlJCYXM1cndpU3lQOGJRYXJ0VjI2ZnQtTDUtVjcyMkxnbGVGaDlDWXFPbUx1ekZxRk9JclJPX3M3aS1LUkJGeXRZRkhPWWdWTTN5TT",
       "at": 1789807628000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789805908000
+    },
+    {
+      "title": "Trump signs sweeping new Russia and Iran sanctions law - The New Voice of Ukraine",
+      "link": "https://news.google.com/rss/articles/CBMimwFBVV95cUxPNWRTcVBUOVBsSXFYcW5NVUEtNTVTQkxDTGJ1ZG1iblp1U3BxQXFCQ0VickdRTFR1bjJybmZmcnpVWnV6TU9sRTRzRHVpcmFpa2ZPdkk2M2FlRVRPdTNiRUpBMTNhZlRJblFLUWlJOEE4SEozOExDQkQ3YTNIU0VkU25Nd2RtWkI3V3hvMG9wNFRteE1RZlJjTGxDZ9IBlAFBVV95cUxOYU9wZF94WWx4ZGpCN2J4ODN3Zkg4dEx6NUZCd0N4b2EtbElWTnRqNGdXODY5TDd4NjgwWC1BZEd0M2RxRUhMalNWT3duT25JOGZDN2VibHA2eW5PMkpMNTlVMDlyZXlyay1MRTVpZWpMNk9yeFJiMm9ZSzVxZnEwOWZIV1BmWnBwUWE3UThEZ1ZDV3Ns?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMimwFBVV95cUxPNWRTcVBUOVBsSXFYcW5NVUEtNTVTQkxDTGJ1ZG1iblp1U3BxQXFCQ0VickdRTFR1bjJybmZmcnpVWnV6TU9sRTRzRHVpcmFpa2ZPdkk2M2FlRVRPdTNiRUpBMTNhZlRJblFLUWlJOEE4SEozOExDQkQ3YTNIU0VkU25Nd2RtWkI3V3hvMG9wNFRteE1RZlJjTGxDZ9IBlAFBVV95cUxOYU9wZF",
+      "at": 1789806180000,
       "inst": [
         "XAU/USD",
         "USOIL",
@@ -665,7 +709,7 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789790747000
+      "firstAt": 1789793340000
     },
     {
       "title": "Japan has record 100,000 people aged over 100: How societies are ageing",
@@ -703,27 +747,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789791647000
-    },
-    {
-      "title": "Trump signs Russia sanctions law: India faces fresh 100% tariff threat over Russian oil - WION",
-      "link": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxPSUxzUEFjMU5hSU9OTFBCTkVDTjgteTF0a2tvNk11STRTbE9MeHdlUE5rR3dpVU8wV0VSTm5ZN2QyQkl0SHRLVG80QnJZNDh2Zm9GZ0x3YVpQcDlUSVRvWVVCTm9qNm0wQTVBMTVHbFljYldWMzkxcnIzcmpuOUc5UVpRQ0FlYk95QzlxaE96aUIzYjQ3QU8xZkRERWxveGNCLWNEbk5OTFlLU2lFdjhwUGM4WXNnREIyZUgzckpfaTM0a1RZcFg3SEpReXNqRUdBVGtsY3RtWVFCd9IB3wFBVV95cUxNTlUydHZQS0V2d1dycUppSnRXcWFNMTVRTkJmWVA5YzREUXBybFNDa25HUjRxckkwTnNqbWJPQTJPLUE0aDE2M2t6aUp6NkpwSmp0RFR3ajdzX1cxRFFmTEE2NGY2UklxYXFWTlh2anp1Tk9TQU5iR1ljU1hKN0FXbVVJYy1RcFhremM5NlF6ZG10ZTVzcmJVRjVYTjRWbEJxczloNXk4c0dUYk4yQ01ONjR0bWJhSXExYVc3NUlic1FUYUd4b3RBbThaN2daQThYZ2YwWElJTkptdV8tc3Fj?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi2gFBVV95cUxPSUxzUEFjMU5hSU9OTFBCTkVDTjgteTF0a2tvNk11STRTbE9MeHdlUE5rR3dpVU8wV0VSTm5ZN2QyQkl0SHRLVG80QnJZNDh2Zm9GZ0x3YVpQcDlUSVRvWVVCTm9qNm0wQTVBMTVHbFljYldWMzkxcnIzcmpuOUc5UVpRQ0FlYk95QzlxaE96aUIzYjQ3QU8xZkRERWxveGNCLWNEbk5OTFlLU2",
-      "at": 1789790747000,
-      "inst": [
-        "USOIL",
-        "XAU/USD",
-        "UKOIL"
-      ],
-      "ccy": [
-        "OIL",
-        "XAU",
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789789680000
     },
     {
       "title": "Pres. Trump signs sweeping Russia sanctions bill, aiming to choke off funds for Moscow in Ukraine war - Alaska's News Source",
@@ -1803,10 +1826,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-19T12:36:00.723Z",
-  "headlinesAt": "2026-09-19T12:36:00.723Z",
-  "updatedAt": "2026-09-19T12:36:00.723Z"
+  "calendarAt": "2026-09-19T12:38:19.175Z",
+  "headlinesAt": "2026-09-19T12:38:19.175Z",
+  "updatedAt": "2026-09-19T12:38:19.175Z"
 }
