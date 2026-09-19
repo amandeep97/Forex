@@ -57,6 +57,25 @@
   ],
   "headlines": [
     {
+      "title": "Shark attack prompts rare kill order in Western Australia as victim named",
+      "link": "https://www.bbc.co.uk/news/articles/cqwyzdnk442lo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC World",
+      "desc": "Greg O'Neill \"loved the ocean\", his family say, as police boats and helicopters patrol Perth's beaches in search of his body and the shark that attacked him.",
+      "at": 1789818622000,
+      "inst": [
+        "AUD/USD"
+      ],
+      "ccy": [
+        "AUD"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789818622000,
+      "_kind": null,
+      "why": "Shark attack has no clear market impact."
+    },
+    {
       "title": "Canada optimistic about concluding trade talks with India by year-end, minister says",
       "link": "https://www.investing.com/news/commodities-news/canada-optimistic-about-concluding-trade-talks-with-india-by-yearend-minister-says-4908078",
       "source": "Investing Cmdty",
@@ -71,7 +90,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789817428000,
-      "_kind": null
+      "_kind": null,
+      "why": "Trade talks outcome uncertain, no clear direction."
     },
     {
       "title": "Stocks face a growing list of threats — so why are investors staying so calm?",
@@ -87,7 +107,8 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789817400000,
-      "_kind": null
+      "_kind": null,
+      "why": "Investor calm suggests stability, no clear move."
     },
     {
       "title": "Russian attacks on Ukraine kill at least 11 and injure dozens over past 24 hours - Euronews.com",
@@ -107,7 +128,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789815763000
+      "firstAt": 1789815763000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Escalating conflict boosts safe havens and oil."
     },
     {
       "title": "Trump signs sweeping Russia sanctions bill into law - WION",
@@ -127,7 +154,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789813190000
+      "firstAt": 1789813190000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Sanctions increase geopolitical risk and oil supply fears."
     },
     {
       "title": "Russia kills eight people in Ukraine, attacks two vessels in Black Sea - Al Jazeera",
@@ -147,7 +180,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789815763000
+      "firstAt": 1789815763000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Military escalation drives risk-off sentiment."
     },
     {
       "title": "AFU Strikes Russian UAV Bases, Ammo Depot, and Training Range - Kyiv Post",
@@ -167,7 +206,13 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789815352000
+      "firstAt": 1789815352000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Ukraine strikes Russian assets, increasing conflict risk."
     },
     {
       "title": "Russia should respond to US sanctions with 'military deterrence': Dmitry Medvedev - The Times of India",
@@ -187,7 +232,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789813190000
+      "firstAt": 1789813190000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Threat of military deterrence heightens geopolitical tension"
     },
     {
       "title": "Trump signs Russia sanctions Bill into law - Manorama Yearbook",
@@ -207,7 +258,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789810775000
+      "firstAt": 1789810775000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Sanctions law increases geopolitical risk premium."
     },
     {
       "title": "Trump signs Russia, Iran sanctions law allowing tariffs of up to 100 pc - National Herald",
@@ -227,24 +284,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789808411000
-    },
-    {
-      "title": "Deadly shark attack prompts rare kill order in Western Australia",
-      "link": "https://www.bbc.co.uk/news/articles/cqwyzdnk442lo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC World",
-      "desc": "Police boats and helicopters are patrolling Perth's beaches as authorities continue their search for the swimmer's body, and the shark that attacked him.",
-      "at": 1789809552000,
-      "inst": [
-        "AUD/USD"
-      ],
-      "ccy": [
-        "AUD"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789809552000
+      "firstAt": 1789808411000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Sanctions and tariffs boost risk assets and oil."
     },
     {
       "title": "Zelenskyy thanks Trump for signing 'critically important' Russia sanctions bill - ABC News - Breaking News, Latest News and Videos",
@@ -264,7 +310,13 @@
       "sev": 3,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789807628000
+      "firstAt": 1789807628000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Sanctions bill signing confirms geopolitical risk."
     },
     {
       "title": "Trump signs Bill authorising sweeping Russia sanctions - CNA",
@@ -284,7 +336,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789807628000
+      "firstAt": 1789807628000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Sweeping sanctions increase market uncertainty."
     },
     {
       "title": "Russia Warns New U.S. Sanctions Law Would Harm Trump’s Peace Efforts - The New York Times",
@@ -304,7 +362,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789807628000
+      "firstAt": 1789807628000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Sanctions harm peace efforts, increasing conflict risk."
     },
     {
       "title": "Trump Signs Sweeping Russia Sanctions Bill - The Moscow Times",
@@ -324,7 +388,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789805908000
+      "firstAt": 1789805908000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Sanctions bill signing boosts risk-off sentiment."
     },
     {
       "title": "Trump Signs Sweeping “Sanctions From Hell” Bill Against Russia Into Law - UNITED24 Media",
@@ -344,7 +414,13 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789805908000
+      "firstAt": 1789805908000,
+      "dir": {
+        "XAU/USD": "up",
+        "USOIL": "up",
+        "UKOIL": "up"
+      },
+      "why": "Severe sanctions increase geopolitical and supply risks."
     },
     {
       "title": "Trump signs Russia-Iran sanctions bill, India, China faces risk of tariffs up to 100% - Firstpost",
@@ -714,23 +790,6 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789789680000
-    },
-    {
-      "title": "North Korea dismisses UN nuclear watchdog resolution",
-      "link": "https://www.aljazeera.com/news/2026/9/19/north-korea-dismisses-un-nuclear-watchdog-resolution?traffic_source=rss",
-      "source": "Al Jazeera",
-      "desc": "The country rebukes the UN atomic agency's 'double standards' and says nuclear status is 'irreversible'.",
-      "at": 1789788594000,
-      "inst": [
-        "XAU/USD"
-      ],
-      "ccy": [
-        "XAU"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789788594000
     },
     {
       "title": "US Treasury’s Bessent to discuss AI, rare earths with China’s He, source says",
@@ -1479,23 +1538,6 @@
       "firstAt": 1789764480000
     },
     {
-      "title": "US Stocks End Mixed as Fed Rate Hike Drives Treasury Yields - SuaraGarut.ID",
-      "link": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE03bmoyS293c19QTWFZaEFMdHN0cU9LYWZfdEtweXZMcWlwR1dlMGp2WERmd2wxVm4xc2FMV09hUkdubXp2UDROalVlZlpRdVVWTXpkemVyTDdFQ0tMLS1EQnZFVQ?oc=5",
-      "source": "Wires (macro)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiY0FVX3lxTE03bmoyS293c19QTWFZaEFMdHN0cU9LYWZfdEtweXZMcWlwR1dlMGp2WERmd2wxVm4xc2FMV09hUkdubXp2UDROalVlZlpRdVVWTXpkemVyTDdFQ0tMLS1EQnZFVQ?oc=5\" target=\"_blank\">US Stocks End Mixed as Fed Rate Hike Drives Treasury Yields</a>&nbsp;&nbs",
-      "at": 1789764240000,
-      "inst": [
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789764240000
-    },
-    {
       "title": "Gold heads for slight weekly gain as decline in oil prices offset Fed rate hike",
       "link": "https://www.investing.com/news/commodities-news/gold-rises-as-lower-oil-treasury-yields-ease-inflation-pressure-4906609",
       "source": "Investing Cmdty",
@@ -1773,6 +1815,41 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789756260000
+    },
+    {
+      "title": "Three words from Kevin Warsh have Wall Street wondering how far the Fed will go with rate hikes",
+      "link": "https://www.cnbc.com/2026/09/18/three-words-from-kevin-warsh-have-wall-street-wondering-how-far-the-fed-will-go-with-rate-hikes.html",
+      "source": "CNBC Markets",
+      "desc": "The chairman both explained this week's decision to raise interest rates, and raised vexing questions about what comes next",
+      "at": 1789756111000,
+      "inst": [
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789756111000
+    },
+    {
+      "title": "Stock Futures Rise as Oil Retreats and Markets Digest Fed Rate Hike - finance.biggo.com",
+      "link": "https://news.google.com/rss/articles/CBMidkFVX3lxTE5YRkt4TTBLU19oNUZJNWFMMElYQUVUX0FwMVBXcnVGZmE2bzhhY3ZOdm1WbXlIR0RWUElGaERTMzVaOWR5dFotSk1GbC1fTEVGcjlfMUo3R1dhV2p1aGxRUFVsbWlpeGdZWUd3VmRPcFZmeUozVnc?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMidkFVX3lxTE5YRkt4TTBLU19oNUZJNWFMMElYQUVUX0FwMVBXcnVGZmE2bzhhY3ZOdm1WbXlIR0RWUElGaERTMzVaOWR5dFotSk1GbC1fTEVGcjlfMUo3R1dhV2p1aGxRUFVsbWlpeGdZWUd3VmRPcFZmeUozVnc?oc=5\" target=\"_blank\">Stock Futures Rise as Oil Retreats and Markets D",
+      "at": 1789755660000,
+      "inst": [
+        "USOIL"
+      ],
+      "ccy": [
+        "USD",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789755660000
     }
   ],
   "sources": [
@@ -1798,7 +1875,7 @@
       "why": "no items parsed"
     }
   ],
-  "calendarAt": "2026-09-19T11:49:15.000Z",
-  "headlinesAt": "2026-09-19T11:49:15.000Z",
-  "updatedAt": "2026-09-19T11:49:15.000Z"
+  "calendarAt": "2026-09-19T11:52:23.119Z",
+  "headlinesAt": "2026-09-19T11:52:23.119Z",
+  "updatedAt": "2026-09-19T11:52:23.119Z"
 }
