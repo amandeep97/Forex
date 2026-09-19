@@ -147,27 +147,6 @@
   ],
   "headlines": [
     {
-      "title": "Trump Signs Russia-Iran Sanctions Law, Allowing Up to 100% Tariffs on Top Importers of Russian Energy - bloomingbit",
-      "link": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE9meWlzNm10NUgzNVhiUVE2Yl83eUI2WVViWmVlMTFLWFJOdW1BOEwtLXp5U1ZHUHZ4ZXVQV0cyZ2N6Q181NlVKRTE0VTBwd3lqNHhMaw?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMiVEFVX3lxTE9meWlzNm10NUgzNVhiUVE2Yl83eUI2WVViWmVlMTFLWFJOdW1BOEwtLXp5U1ZHUHZ4ZXVQV0cyZ2N6Q181NlVKRTE0VTBwd3lqNHhMaw?oc=5\" target=\"_blank\">Trump Signs Russia-Iran Sanctions Law, Allowing Up to 100% Tariffs on Top Importers of Russia",
-      "at": 1789777594000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 3,
-      "firstAt": 1789775220000,
-      "_kind": null
-    },
-    {
       "title": "Analysis-Russia sanctions bill gives Trump sweeping new tariff powers",
       "link": "https://www.investing.com/news/commodities-news/analysisrussia-sanctions-bill-gives-trump-sweeping-new-tariff-powers-4907872",
       "source": "Investing Cmdty",
@@ -186,7 +165,8 @@
       "rel": 2,
       "srcs": 3,
       "firstAt": 1789775220000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions bill impact unclear"
     },
     {
       "title": "Trump signs Russia sanctions bill into law - Yahoo",
@@ -207,7 +187,8 @@
       "rel": 2,
       "srcs": 3,
       "firstAt": 1789775220000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions bill signed, impact unclear"
     },
     {
       "title": "Donald Trump signs Lindsey O. Graham sanctions act into law - The Jerusalem Post",
@@ -225,7 +206,8 @@
       "rel": 2,
       "srcs": 3,
       "firstAt": 1789775220000,
-      "_kind": null
+      "_kind": null,
+      "why": "Sanctions act signed, impact unclear"
     },
     {
       "title": "Trump signs Russia sanctions bill, India among countries facing 100% tariff risk - India Today",
@@ -247,7 +229,7 @@
       "rel": 2,
       "srcs": 3,
       "firstAt": 1789775220000,
-      "_kind": null
+      "why": "Tariff risk, impact unclear"
     },
     {
       "title": "Israeli strike on motorcycle kills Palestinian in Gaza City, injures child",
@@ -267,7 +249,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789776123000
+      "firstAt": 1789776123000,
+      "why": "Gaza strike, no clear direction"
     },
     {
       "title": "Iran war live: Trump extends sanctions on Iran, Houthi supporters in Sanaa",
@@ -287,7 +270,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 4,
-      "firstAt": 1789775220000
+      "firstAt": 1789775220000,
+      "why": "Iran sanctions extended, impact unclear"
     },
     {
       "title": "China, Russia veto Iran sanctions panel extension at UN - China Daily Global Edition",
@@ -307,7 +291,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789773193000
+      "firstAt": 1789773193000,
+      "why": "UN veto, impact unclear"
     },
     {
       "title": "Trump officially signs Russia sanctions bill into law - The Hill",
@@ -327,7 +312,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 3,
-      "firstAt": 1789773193000
+      "firstAt": 1789773193000,
+      "why": "Sanctions bill signed, impact unclear"
     },
     {
       "title": "US Treasury’s Bessent to discuss AI, trade, rare earths with China’s He, source says",
@@ -349,7 +335,8 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789774588000
+      "firstAt": 1789774588000,
+      "why": "Trade talks, impact unclear"
     },
     {
       "title": "Taiwan Dollar: CBC holds rates but flags inflation risks – Commerzbank - FXStreet",
@@ -372,7 +359,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789774320000
+      "firstAt": 1789774320000,
+      "why": "Taiwan rates, no direct impact"
     },
     {
       "title": "Houthis accuse Saudi Arabia of launching 26 strikes in 24 hours",
@@ -392,7 +380,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789773240000
+      "firstAt": 1789773240000,
+      "why": "Yemen conflict, impact unclear"
     },
     {
       "title": "Trump signs Russia sanctions bill; China and India face possible 100% tariffs - TRT World",
@@ -412,7 +401,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789770514000
+      "firstAt": 1789770514000,
+      "why": "Tariffs, impact unclear"
     },
     {
       "title": "S&P 500, Nasdaq advance, turning the page on a tumultuous week - reuters.com",
@@ -428,7 +418,12 @@
       "sev": 1,
       "rel": 2,
       "srcs": 1,
-      "firstAt": 1789773024000
+      "firstAt": 1789773024000,
+      "dir": {
+        "US500": "up",
+        "US100": "up"
+      },
+      "why": "Stocks advance, bullish"
     },
     {
       "title": "A four-minute warning isn't enough: Russia's new relentless missile tactics exhaust Kyiv residents",
@@ -448,7 +443,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789770670000
+      "firstAt": 1789770670000,
+      "why": "Ukraine attacks, impact unclear"
     },
     {
       "title": "US, China discuss cutting tariffs on US LNG ahead of Xi visit",
@@ -462,7 +458,8 @@
       "sev": 2,
       "rel": 2,
       "srcs": 2,
-      "firstAt": 1789772503000
+      "firstAt": 1789772503000,
+      "why": "Tariff talks, impact unclear"
     },
     {
       "title": "Trump Signs a Sanctions Bill Targeting Russia, but Pursues Deals Too - The New York Times",
@@ -1878,6 +1875,29 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789744920000
+    },
+    {
+      "title": "Zoomex Highlights ETF Perpetuals Ahead of This Week’s Federal Reserve Decision - markets.businessinsider.com",
+      "link": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxNQmxOREdyamt3VDdwMVcxa1hoTVB4N0xjU1hraVFZX3o4UnQ2WVptc1ZISld0QkdWOC0tQ09Cemp5NDNkYWJNbmNCQWF0Z2FRM2JpR1d4WHROLTMzSGRzcFpUQ3FjenFJN2IyNzlDSXRqaGdRMXY5cU5zV2loMjlCNWNxcl8weFJyT1ozcHlvdFFXSzJkVEZURkVfckxwLXU2MTN6dlRUX3MwakxlZXZvY1VSb2d5cHBlRElQRVo3TGUtS3dJbHFvSmppWHdLb2UtNHg0?oc=5",
+      "source": "Wires (macro)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMi0wFBVV95cUxNQmxOREdyamt3VDdwMVcxa1hoTVB4N0xjU1hraVFZX3o4UnQ2WVptc1ZISld0QkdWOC0tQ09Cemp5NDNkYWJNbmNCQWF0Z2FRM2JpR1d4WHROLTMzSGRzcFpUQ3FjenFJN2IyNzlDSXRqaGdRMXY5cU5zV2loMjlCNWNxcl8weFJyT1ozcHlvdFFXSzJkVEZURkVfckxwLXU2MTN6dlRUX3Mwak",
+      "at": 1789745219000,
+      "inst": [
+        "XAU/USD",
+        "EUR/USD",
+        "GBP/USD",
+        "USD/JPY",
+        "AUD/USD",
+        "USD/CAD",
+        "US500"
+      ],
+      "ccy": [
+        "USD"
+      ],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789745219000
     }
   ],
   "sources": [
@@ -1900,10 +1920,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "no items parsed"
+      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
     }
   ],
-  "calendarAt": "2026-09-19T00:41:22.746Z",
-  "headlinesAt": "2026-09-19T00:41:22.746Z",
-  "updatedAt": "2026-09-19T00:41:22.746Z"
+  "calendarAt": "2026-09-19T00:43:49.162Z",
+  "headlinesAt": "2026-09-19T00:43:49.162Z",
+  "updatedAt": "2026-09-19T00:43:49.162Z"
 }
