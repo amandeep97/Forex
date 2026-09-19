@@ -1,5 +1,15 @@
 {
-  "calendar": [],
+  "calendar": [
+    {
+      "title": "ECOFIN Meetings",
+      "country": "EUR",
+      "impact": "low",
+      "at": 1789812900000,
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    }
+  ],
   "headlines": [
     {
       "title": "Zelenskyy says he approved new long-range strikes in response to Russian strikes on Ukraine - Anadolu Ajansı",
@@ -20,6 +30,22 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789835849000,
+      "_kind": null
+    },
+    {
+      "title": "There Are Only a Handful of Nasdaq-100 Stocks That Yield Over 3%. Here's My Top Pick to Buy in September.",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/only-handful-nasdaq-100-stocks-163500606.html",
+      "source": "Yahoo Finance",
+      "at": 1789835700000,
+      "inst": [
+        "US500",
+        "US100"
+      ],
+      "ccy": [],
+      "sev": 1,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789835700000,
       "_kind": null
     },
     {
@@ -146,22 +172,6 @@
       "firstAt": 1789833900000
     },
     {
-      "title": "Bitcoin's Sharpest Rally in Two Years Ran Almost Entirely on Short Liquidations",
-      "link": "https://finance.yahoo.com/markets/crypto/articles/bitcoins-sharpest-rally-two-years-160103232.html",
-      "source": "Yahoo Finance",
-      "at": 1789833663000,
-      "inst": [
-        "BTC/USDT"
-      ],
-      "ccy": [
-        "BTC"
-      ],
-      "sev": 1,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789833663000
-    },
-    {
       "title": "Marvell (MRVL) and GlobalFoundries (GFS) Rise on Expanded Deal: What Investors Should Know",
       "link": "https://finance.yahoo.com/technology/articles/marvell-mrvl-globalfoundries-gfs-rise-155724895.html",
       "source": "Yahoo Finance",
@@ -172,28 +182,6 @@
       "rel": 1,
       "srcs": 1,
       "firstAt": 1789833444000
-    },
-    {
-      "title": "Federal Reserve Inflation Outlook Signals a Critical Warning for Investors",
-      "link": "https://finance.yahoo.com/economy/policy/articles/federal-inflation-outlook-signals-critical-155700852.html",
-      "source": "Yahoo Finance",
-      "at": 1789833420000,
-      "inst": [
-        "XAU/USD",
-        "EUR/USD",
-        "GBP/USD",
-        "USD/JPY",
-        "AUD/USD",
-        "USD/CAD",
-        "US500"
-      ],
-      "ccy": [
-        "USD"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789833420000
     },
     {
       "title": "Want to land more job interviews? Stop letting AI write your résumé.",
@@ -629,27 +617,7 @@
       "firstAt": 1789813680000
     },
     {
-      "title": "Russia Warns New U.S. Sanctions Law Would Harm Trump’s Peace Efforts - nytimes.com",
-      "link": "https://news.google.com/rss/articles/CBMihAFBVV95cUxPMGFVVjBESXNDS3pqTXUwbll6TlgyMzctMUpMSjY2c2tnTG1TRUN2UjM4dWE4MHZMWENTX1pXeHQ1MEpCUFNuQXFhVTZXNzMwQkJ1S29WMTFyOGw3NDRhVnp0V2dLSHRWY1ZLSHRGXzNydFZjbkVhN1VDWmJnSm5pSEViYzU?oc=5",
-      "source": "Wires (geo)",
-      "desc": "<a href=\"https://news.google.com/rss/articles/CBMihAFBVV95cUxPMGFVVjBESXNDS3pqTXUwbll6TlgyMzctMUpMSjY2c2tnTG1TRUN2UjM4dWE4MHZMWENTX1pXeHQ1MEpCUFNuQXFhVTZXNzMwQkJ1S29WMTFyOGw3NDRhVnp0V2dLSHRWY1ZLSHRGXzNydFZjbkVhN1VDWmJnSm5pSEViYzU?oc=5\" target=\"_blank\">Russia Warns New U.S. Sancti",
-      "at": 1789809809000,
-      "inst": [
-        "XAU/USD",
-        "USOIL",
-        "UKOIL"
-      ],
-      "ccy": [
-        "XAU",
-        "OIL"
-      ],
-      "sev": 2,
-      "rel": 2,
-      "srcs": 1,
-      "firstAt": 1789807628000
-    },
-    {
-      "title": "Zelenskyy thanks Trump for signing 'critically important' Russia sanctions bill - abcnews.com",
+      "title": "Zelenskyy thanks Trump for signing 'critically important' Russia sanctions bill - ABC News - Breaking News, Latest News and Videos",
       "link": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxONTJ4dFVSYnVWdnNUdm9BeFVrLWtzNENxVGhLdld4VE9pbkluYmZfMHpKLUo1anBySzJmdTljaUZ0TkdOQ0JHc1pkczJpYzg1R2lfVmVBaEpXdlhGR3l5NE5Fdm14OG9NT05qcjJOQTdWN19tWXpNQ0QteEQ5a2FDZWFHU0JtVG5EUDVsTUNsLTFoMDhWbHhfb0JPTHV1N0tUcExKYVc5Qm1SVFBUdzBVYXBnb05PSHhIMGtF0gHAAUFVX3lxTE84RXR6VlpibkpTZ2lmUy1IQWpSbHV6NElURTdudnBxWDVNUnJUUTlsUnU0bUZhbzlod2VmWjh2SkVSQ0JNLVdHYjZ5MGhia2hOUXpNTHh4RlN3QmNzWS1hTklWZ0prTGo2VkxaSk1iZGtfREg3RGNfV3RYRlJ3QWJxbVNyR2taT0JoWlNNd2Z5aGVnSHhrWXRVajMtQTNwZGtveUI0bjA3ZUFqcy04eU5vajB3SWZZNXlrUzFINVlqNw?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiuwFBVV95cUxONTJ4dFVSYnVWdnNUdm9BeFVrLWtzNENxVGhLdld4VE9pbkluYmZfMHpKLUo1anBySzJmdTljaUZ0TkdOQ0JHc1pkczJpYzg1R2lfVmVBaEpXdlhGR3l5NE5Fdm14OG9NT05qcjJOQTdWN19tWXpNQ0QteEQ5a2FDZWFHU0JtVG5EUDVsTUNsLTFoMDhWbHhfb0JPTHV1N0tUcExKYVc5Qm1SVF",
@@ -663,7 +631,7 @@
         "XAU",
         "OIL"
       ],
-      "sev": 2,
+      "sev": 3,
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789807628000
@@ -674,6 +642,26 @@
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMiggFBVV95cUxPS09KYWJ2dDY3ZUtFdll6VVYwdVRQdHk5cG5rQkVJbnVMZ0swUVR2cU1vdElfaXdYUzRabVJVR3Y1dVVZUGctbEQ0dkJ4WGtMYzRqTG1WTGhMQVBXYWVUQlNhVllMdWpxOUUya0kwbDgzYmMycVl0V0lGVU5NZ1psSGxR?oc=5\" target=\"_blank\">Trump signs Bill authorising sw",
       "at": 1789808940000,
+      "inst": [
+        "XAU/USD",
+        "USOIL",
+        "UKOIL"
+      ],
+      "ccy": [
+        "XAU",
+        "OIL"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789807628000
+    },
+    {
+      "title": "Russia Warns New U.S. Sanctions Law Would Harm Trump’s Peace Efforts - nytimes.com",
+      "link": "https://news.google.com/rss/articles/CBMihAFBVV95cUxPMGFVVjBESXNDS3pqTXUwbll6TlgyMzctMUpMSjY2c2tnTG1TRUN2UjM4dWE4MHZMWENTX1pXeHQ1MEpCUFNuQXFhVTZXNzMwQkJ1S29WMTFyOGw3NDRhVnp0V2dLSHRWY1ZLSHRGXzNydFZjbkVhN1VDWmJnSm5pSEViYzU?oc=5",
+      "source": "Wires (geo)",
+      "desc": "<a href=\"https://news.google.com/rss/articles/CBMihAFBVV95cUxPMGFVVjBESXNDS3pqTXUwbll6TlgyMzctMUpMSjY2c2tnTG1TRUN2UjM4dWE4MHZMWENTX1pXeHQ1MEpCUFNuQXFhVTZXNzMwQkJ1S29WMTFyOGw3NDRhVnp0V2dLSHRWY1ZLSHRGXzNydFZjbkVhN1VDWmJnSm5pSEViYzU?oc=5\" target=\"_blank\">Russia Warns New U.S. Sancti",
+      "at": 1789808411000,
       "inst": [
         "XAU/USD",
         "USOIL",
@@ -1556,7 +1544,7 @@
       "firstAt": 1789768020000
     },
     {
-      "title": "Trump signs Russia sanctions bill championed by Lindsey Graham - cbsnews.com",
+      "title": "Trump signs Russia sanctions bill championed by Lindsey Graham - CBS News",
       "link": "https://news.google.com/rss/articles/CBMihAFBVV95cUxQdVYwSFBVcFptYTZtUVNuOXNGMEJpRUluRXVET1lvVnFhT0pFUDN1Wks2bXl3NkM5ZGt4N0o3TW1nUk5fSC10VVVSRlJudlE5VVZTMnFqNHpTWDRPMEEyVU4xOHJoTGUyd1lqQmZtUXRGRllqOHAzY01idzQzTmo1U0xoRmU?oc=5",
       "source": "Wires (geo)",
       "desc": "<a href=\"https://news.google.com/rss/articles/CBMihAFBVV95cUxQdVYwSFBVcFptYTZtUVNuOXNGMEJpRUluRXVET1lvVnFhT0pFUDN1Wks2bXl3NkM5ZGt4N0o3TW1nUk5fSC10VVVSRlJudlE5VVZTMnFqNHpTWDRPMEEyVU4xOHJoTGUyd1lqQmZtUXRGRllqOHAzY01idzQzTmo1U0xoRmU?oc=5\" target=\"_blank\">Trump signs Russia sanctions",
@@ -1685,6 +1673,26 @@
       "rel": 2,
       "srcs": 1,
       "firstAt": 1789763576000
+    },
+    {
+      "title": "investingLive Americas market news wrap: Bonds slump again, yen rate check adds intrigue after BOJ",
+      "link": "https://investinglive.com/news/investinglive-americas-market-news-wrap-bonds-slump-again-yen-rate-check-adds-intrigue-after-boj/",
+      "source": "ForexLive",
+      "desc": "US industrial production 0.0% versus 0.3% expectedKansas City Fed's Schmid: recent data suggest inflation trending above 3%Japan conducted an FX rate check earlier - reportHow have interest rate expectations changed after this week's events?Markets:Gold up $41 to $4381US 10-year ",
+      "at": 1789763380000,
+      "inst": [
+        "XAU/USD",
+        "USD/JPY"
+      ],
+      "ccy": [
+        "USD",
+        "JPY",
+        "XAU"
+      ],
+      "sev": 2,
+      "rel": 2,
+      "srcs": 1,
+      "firstAt": 1789763380000
     }
   ],
   "sources": [
@@ -1707,10 +1715,10 @@
     },
     {
       "name": "DailyFX",
-      "why": "network timeout at: https://www.dailyfx.com/feeds/market-news"
+      "why": "no items parsed"
     }
   ],
-  "calendarAt": null,
-  "headlinesAt": "2026-09-19T16:52:22.419Z",
-  "updatedAt": "2026-09-19T16:52:22.419Z"
+  "calendarAt": "2026-09-19T16:54:37.946Z",
+  "headlinesAt": "2026-09-19T16:54:37.946Z",
+  "updatedAt": "2026-09-19T16:54:37.946Z"
 }
